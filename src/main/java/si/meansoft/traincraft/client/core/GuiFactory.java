@@ -10,7 +10,7 @@ package si.meansoft.traincraft.client.core;
 import cpw.mods.fml.client.IModGuiFactory;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
-import si.meansoft.meancore.client.gui.GuiExampleConfig;
+import si.meansoft.meancore.client.gui.GuiConfigMC;
 
 import java.util.Set;
 
@@ -20,7 +20,7 @@ public class GuiFactory implements IModGuiFactory {
 
     @Override
     public Class<? extends GuiScreen> mainConfigGuiClass() {
-        return GuiExampleConfig.class;
+        return GuiConfigMC.class;
     }
 
     @Override

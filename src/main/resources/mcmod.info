@@ -1,14 +1,14 @@
 [
 {
-  "modid": "examplemod",
-  "name": "Example Mod",
-  "description": "Example placeholder mod.",
+  "modid": "traincraft",
+  "name": "Traincraft",
+  "description": "Traincraft a mod for minecraft",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "",
   "updateUrl": "",
-  "authorList": ["ExampleDude"],
-  "credits": "The Forge and FML guys, for making this example",
+  "authorList": ["Mrbrutal, Spitfire4466"],
+  "credits": "The Forge, FML and MCP guys, for making this possible",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []

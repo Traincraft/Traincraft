@@ -12,7 +12,7 @@ import si.meansoft.meancore.common.library.InfoMC;
 public class InfoTC {
 
     public static final String MOD = "TC";
-    public static final String MODID = "Traincraft";
+    public static final String MODID = "traincraft";
     public static final String MODNAME = "Traincraft";
 
     public static final String FINGERPRINT = "@FINGERPRINT@";

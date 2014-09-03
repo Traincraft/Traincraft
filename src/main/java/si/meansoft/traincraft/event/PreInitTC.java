@@ -9,14 +9,18 @@ package si.meansoft.traincraft.event;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import si.meansoft.meancore.common.block.EMBlockInit;
 import si.meansoft.meancore.common.config.ConfigHandler;
-import si.meansoft.meancore.common.item.EMItemInit;
 import si.meansoft.meancore.event.PreInit;
+import si.meansoft.traincraft.common.config.ConfigTC;
+import si.meansoft.traincraft.common.library.InfoTC;
 
 public class PreInitTC extends PreInit {
 
     public void init(FMLPreInitializationEvent evt) {
-        //super.init(evt);
+
+        System.out.println("TC: " + evt.getModConfigurationDirectory());
+
+        ConfigHandler.init(evt.getSuggestedConfigurationFile(), InfoTC.MODID);
+        FMLCommonHandler.instance().bus().register(new ConfigTC());
     }
 }
