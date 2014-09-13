@@ -25,6 +25,7 @@
 *.sqlite
 .pydevproject
 *.properties
+!version.properties
 
 # OS generated files #
 ######################
