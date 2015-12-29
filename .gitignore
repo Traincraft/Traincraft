@@ -42,6 +42,9 @@ Thumbs.db
 #################
 *.war
 *.ear
+*.iml
+*.ipr
+*.iws
 
 # Files #
 #########

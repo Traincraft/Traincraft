@@ -29,6 +29,7 @@ public class Traincraft {
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent evt) {
+        System.out.println("TC-0: " + evt.getSuggestedConfigurationFile());
         PreInitTC pi = new PreInitTC();
         pi.init(evt);
     }

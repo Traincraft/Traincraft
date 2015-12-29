@@ -22,5 +22,6 @@ public class InfoTC {
     public static final String CLIENT_PROXY = "si.meansoft.traincraft.proxy.ClientProxy";
     public static final String GUI_FACTORY = "si.meansoft.traincraft.client.core.GuiFactory";
 
+    //TODO change to hard dependency
     public static final String DEPENDENCIES = InfoMC.DEPENDENCIES + "required-after:MeanCore@[" + InfoMC.VERSION + ");";
 }

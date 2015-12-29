@@ -5,12 +5,15 @@
   "description": "Traincraft a mod for minecraft",
   "version": "${version}",
   "mcversion": "${mcversion}",
-  "url": "",
-  "updateUrl": "",
+  "url": "http://www.traincraft-mod.com",
+  "updateUrl": "http://www.traincraft-mod.com/Traincraft/downloads.html",
   "authorList": ["Mrbrutal, Spitfire4466"],
   "credits": "The Forge, FML and MCP guys, for making this possible",
-  "logoFile": "",
+  "logoFile": "logo.png",
   "screenshots": [],
-  "dependencies": []
+  "dependencies": [
+    "MinecraftForge",
+    "MeanCore"
+  ]
 }
 ]
