@@ -5,8 +5,8 @@
  * @author Mrbrutal
  */
 
-@API(owner = InfoTC.MODID, apiVersion = "1.0", provides = InfoTC.MODID+"|API")
+@API(owner = Traincraft.MODID, apiVersion = "1.0", provides = Traincraft.MODNAME+"|API")
 package si.meansoft.traincraft.API;
 
-import si.meansoft.traincraft.common.library.InfoTC;
+import si.meansoft.traincraft.Traincraft;
 import cpw.mods.fml.common.API;

@@ -7,7 +7,5 @@
 
 package si.meansoft.traincraft.proxy;
 
-import si.meansoft.meancore.proxy.IProxy;
-
-public class CommonProxy implements IProxy {
+public class CommonProxy{
 }

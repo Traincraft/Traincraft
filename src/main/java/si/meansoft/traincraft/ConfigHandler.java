@@ -5,12 +5,12 @@
  * @author Mrbrutal
  */
 
-package si.meansoft.traincraft.common.config;
+package si.meansoft.traincraft;
 
 import cpw.mods.fml.client.event.ConfigChangedEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.common.config.Configuration;
-import si.meansoft.meancore.common.library.InfoMC;
+import si.meansoft.traincraft.Traincraft;
 
 import java.io.File;
 
@@ -35,7 +35,7 @@ public class ConfigHandler {
 
     @SubscribeEvent
     public void onConfigurationChangedEvent(ConfigChangedEvent.OnConfigChangedEvent event) {
-        if (event.modID.equalsIgnoreCase(InfoMC.MODID)) {
+        if (event.modID.equalsIgnoreCase(Traincraft.MODID)) {
             loadConfiguration();
         }
     }
