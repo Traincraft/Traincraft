@@ -19,9 +19,6 @@ It adds new functionality and looks to the vanilla trains, and some other areas 
 * The Blog and Forums page: http://blog.meansoft.si
 * The Wiki: http://wiki.meansoft.si
 * IRC: #Traincraft on Esper.net - Currently not used
-* Patreon Page: http://www.patreon.com/Mrbrutal
-
-<a href="http://www.patreon.com/Mrbrutal"> ![Patreon](http://blog.meansoft.si/blog/wp-content/uploads/2014/09/kaGh5_patreon_name_and_message.png)</a>
 
 ## Issues
 
@@ -47,10 +44,11 @@ There will also be a jenkins build engine available for setting things up, and b
 
 Traincraft is licensed under a custom usage license tailored specifically for the project. It can be read [here](https://github.com/Mrbrutal/Traincraft-164/blob/master/LICENSE.md).
 
- * Key things to keep in mind:
-  * You may **NOT** create works using the Traincraft code (source or binary) without Mrbrutal's explicit permission except in the cases listed in this license.
-  * You may **NOT** create derivative Jars from Traincraft source to distribute to other users.
-  * You **MAY** use snippets of Traincraft Code posted on the Official Github in your own projects, but only if your project consists of less than 25% of Traincraft derived code. You must give credit to the Traincraft Project for the code used, including a link to the Github Project. Put this in your class file headers that contain Traincraft code, in your readme, and on the main download page.
-  * You may **NOT** use Traincraft Art Assets in other projects **unless** the project is intended to operate alongside Traincraft. Examples are Addons and InterMod Integration. Art assests include and are not limited to: Textures, Models(.obj or source code), Sounds, Any other art part of Traincraft.
-  * You **MAY** fork and edit the Github Project for the purpose of contributing to the Official Traincraft Project. You may **NOT** distribute any Jar created from a fork for any reason.
+  * You **MAY** you remix, transform, or build upon the **sources** material, but you **MUST** distribute your contributions under the same license as the original. Forks and edits of the Github Project **SHOULD** be for the purpose of contributing to the Official Traincraft Project.
+  * You **MUST** give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use. 
+  * Contributors should work along to distribute **only one** Official Traincraft build created from a fork. 
+  * Official website is available for distribution of the Official Traincraft builds: contact spitfire4466@gmail.com
+  * Unofficial builds may **NOT** be named or distributed under the name "Traincraft" but **MUST** contain a statement explicitely showing it is a derivative of the Official Traincraft mod.
+  * You may **NOT** use the material for commercial purposes. 
+  * You may **NOT** use Traincraft Art Assets in other projects **unless** the project is intended to operate alongside Traincraft or is the Official continuation of Traincraft. Examples are Addons and InterMod Integration. Art assests include and are not limited to: Textures, Models(.obj or source code), Sounds, Any other art part of Traincraft.
   * All contributions to the Official Traincraft Project must be covered by a Contributor Licensing Agreement signed by the contributor.
