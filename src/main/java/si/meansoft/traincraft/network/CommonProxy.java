@@ -5,8 +5,7 @@
  * @author Mrbrutal
  */
 
-package si.meansoft.traincraft.proxy;
+package si.meansoft.traincraft.network;
 
-public class ClientProxy extends CommonProxy {
-
+public class CommonProxy {
 }

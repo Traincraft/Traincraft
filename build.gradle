@@ -1,148 +1,50 @@
 buildscript {
     repositories {
-        mavenCentral()
+        jcenter()
         maven {
             name = "forge"
             url = "http://files.minecraftforge.net/maven"
         }
-        maven {
-            name = "sonatype"
-            url = "https://oss.sonatype.org/content/repositories/snapshots/"
-        }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.1-SNAPSHOT'
     }
 }
+apply plugin: 'net.minecraftforge.gradle.forge'
 
-apply plugin: 'forge'
-apply plugin: 'maven'
-
-ext.configFile = file "version.properties"
-
+ext.configFile = file "build.properties"
 configFile.withReader {
-    // Load config.  It shall from now be referenced as simply config or project.config
     def prop = new Properties()
     prop.load(it)
     project.ext.config = new ConfigSlurper().parse prop
 }
 
-/*
- * Set the version number depending on the environment
- * if BUILD_NUMBER is in the environment
- *      {minecraft}-version.BUILD_NUMBER
- * Else use
- *      {minecraft}-version
- */
-if (System.getenv("BUILD_NUMBER") != null) {
-    if(System.getenv("BUILD_NUMBER").toInteger()<10) {
-        version = "${config.minecraft_version}-${config.mod_version}_00" + System.getenv("BUILD_NUMBER");
-    }
-    else if(System.getenv("BUILD_NUMBER").toInteger()<100 && System.getenv("BUILD_NUMBER").toInteger()>=10) {
-        version = "${config.minecraft_version}-${config.mod_version}_0" + System.getenv("BUILD_NUMBER");
-    }
-    else {
-        version = "${config.minecraft_version}-${config.mod_version}_" + System.getenv("BUILD_NUMBER");
-    }
-} else {
-    version = "${config.minecraft_version}-${config.mod_version}_000"
-}
-println(version);
-group= "si.meansoft.Traincraft"
+version = config.modVersion
+group= "si.meansoft.traincraft"
 archivesBaseName = "Traincraft"
 
 minecraft {
-    version = "1.7.2-10.12.2.1147"
-    assetDir = "run/assets"
-
-    replaceIn "common/library/InfoTC.java"
-    replace "@VERSION@", project.version
-    replace "@FML@", "${config.fml_version}"
-    replace "@FML-MAX@", "${config.fml_version}"
-    replace "@FORGE@", "${config.forge_version}"
-    replace "@FORGE-MAX@", "${config.forge_version}"
-    if (project.hasProperty("traincraft_signature")) {
-        replace "@FINGERPRINT@", project.traincraft_signature
-    }
+    version = config.forgeVersion
+    runDir = "run"
+    mappings = config.mappings
+    makeObfSourceJar = false
+    useDepAts = true
+    replaceIn "Traincraft.java"
+    replace "@MODID@", config.modid.toString()
+    replace "@MODNAME@", config.modName.toString()
+    replace "@VERSION@", config.modVersion.toString()
 }
 
-dependencies {
-    // you may put jars on which you depend on in ./libs
-    // or you may define them like so..
-    //compile "some.group:artifact:version:classifier"
-    //compile "some.group:artifact:version"
-    compile "si.meansoft.meancore:MeanCore:1.7.2-1.0.0_16"
-      
-    // real examples
-    //compile 'com.mod-buildcraft:buildcraft:6.0.8:dev'  // adds buildcraft to the dev env
-    //compile 'com.googlecode.efficient-java-matrix-library:ejml:0.24' // adds ejml to the dev env
-
-    // for more info...
-    // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
-    // http://www.gradle.org/docs/current/userguide/dependency_management.html
-}
-
-repositories {
-    mavenLocal()
-}
+dependencies {}
 
 processResources {
-    // this will ensure that this task is redone when the versions change.
-    inputs.property "version", project.version
-    inputs.property "mcversion", project.minecraft.version
-
-    // replace stuff in mcmod.info, nothing else
+    inputs.property "version", config.modVersion
+    inputs.property "mcversion", config.minecraftVersion
     from(sourceSets.main.resources.srcDirs) {
         include 'mcmod.info'
-                
-        // replace version and mcversion
-        expand 'version':project.version, 'mcversion':project.minecraft.version
+        expand 'version':config.modVersion, 'mcversion':config.minecraftVersion
     }
-        
-    // copy everything else, thats not the mcmod.info
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
     }
-}
-
-import net.minecraftforge.gradle.delayed.*
-import net.minecraftforge.gradle.tasks.dev.ChangelogTask
-
-task createChangelog(type: ChangelogTask) {
-    if (("${System.getenv().JOB_NAME}" != null) && project.hasProperty("jenkins_server") && project.hasProperty("jenkins_password")) {
-        def jobName = "${System.getenv().JOB_NAME}"
-        def buildNumber = "${System.getenv().BUILD_NUMBER}"
-
-        setServerRoot(new DelayedString(project, project.jenkins_server))
-        setJobName(new DelayedString(project, jobName.toString()))
-        setAuthName(new DelayedString(project, project.jenkins_user))
-        setAuthPassword(new DelayedString(project, project.jenkins_password))
-        setTargetBuild({ buildNumber.toString() });
-        setOutput(new DelayedFile(project, 'build/libs/' + project.archivesBaseName + '-' + project.version + '-changelog.txt'));
-    }
-
-    onlyIf {
-        return (("${System.getenv().JOB_NAME}" != null) && project.hasProperty("jenkins_server") && project.hasProperty("jenkins_password"))
-    }
-}
-
-tasks.build.dependsOn('createChangelog')
-tasks.build.dependsOn('signJar')
-
-task signJar(dependsOn: 'reobf') {
-    // the actual action.. sign the jar.
-    doLast {
-        logger.lifecycle "signing $jar"
-        ant.signjar(
-                destDir: jar.destinationDir, // same place it came from
-                jar: jar.getArchivePath(),
-                keystore: project.traincraft_keystore_location,
-                alias: project.keystore_alias,
-                storepass: project.keystore_password
-        )
-    }
-}
-
-artifacts {
-    archives jar
 }
