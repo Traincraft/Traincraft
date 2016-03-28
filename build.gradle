@@ -30,7 +30,6 @@ minecraft {
     makeObfSourceJar = false
     useDepAts = true
     replaceIn "Traincraft.java"
-    replace "@MODID@", config.modid.toString()
     replace "@MODNAME@", config.modName.toString()
     replace "@VERSION@", config.modVersion.toString()
 }
