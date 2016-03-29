@@ -5,12 +5,14 @@ import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.*;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import si.meansoft.traincraft.blocks.BlockBase;
 import si.meansoft.traincraft.gen.WorldGen;
 import si.meansoft.traincraft.network.CommonProxy;
+import si.meansoft.traincraft.network.GuiHandler;
 
 @Mod(modid = Traincraft.MODID, name= Traincraft.NAME, version = Traincraft.VERSION)
 public class Traincraft {
@@ -38,16 +40,21 @@ public class Traincraft {
         };
         logger.info("Register Blocks, Items, ...");
         BlockRegistry.preInit();
+        //ItemReg
+        TileEntityRegistry.preInit();
         GameRegistry.registerWorldGenerator(new WorldGen(), 10);
+        NetworkRegistry.INSTANCE.registerGuiHandler(INSTANCE, new GuiHandler());
         logger.info("Register Renderer!");
         proxy.preInit(evt);
         logger.info("Finished PreInitializing!");
     }
+
     @Mod.EventHandler
     public void init(FMLInitializationEvent evt) {
         proxy.init(evt);
         logger.info("Finished Initializing");
     }
+
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent evt) {
         proxy.postInit(evt);

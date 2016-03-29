@@ -1,6 +1,7 @@
 package si.meansoft.traincraft.blocks;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.oredict.OreDictionary;
@@ -44,6 +45,26 @@ public class BlockBase extends Block {
     }
     public BlockBase setForgeModel(){
         return setForgeModel(getRegistryName());
+    }
+
+    public BlockBase setHarvestLevel(ToolEnum tool, int hardness){
+        setHarvestLevel(tool.tool, hardness);
+        return this;
+    }
+
+    public BlockBase setSound(SoundType sound){
+        setSoundType(sound);
+        return this;
+    }
+
+    public enum ToolEnum{
+        PICKAXE("pickaxe"),
+        AXE("axe"),
+        SHOVEL("shovel");
+        public String tool;
+        ToolEnum(String tool) {
+            this.tool = tool;
+        }
     }
 
 }
