@@ -13,7 +13,7 @@ public class BlockRegistry {
     public static Block oilSand;
 
     public static void preInit(){
-        oilSand = new BlockBase(Material.sand, "oilSand").generateBlock(Blocks.sand, 50, 80, 7, 11).addOreDict("oreOilSand");
+        oilSand = new BlockBase(Material.sand, "oilSand").generateBlock(Blocks.sand, 50, 80, 7, 11).addOreDict("oreOilSand").setForgeModel();
     }
 
 }

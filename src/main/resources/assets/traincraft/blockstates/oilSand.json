@@ -1,9 +1,11 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "minecraft:cube_all",
-    "transform": "forge:default-block",
-    "textures": "traincraft:blocks/blockOilSand"
+    "textures": {
+      "all": "traincraft:blocks/blockOilSand"
+    },
+    "model": "cube_all",
+    "transform": "forge:default-block"
     },
   "variants": {
     "normal": [{}],

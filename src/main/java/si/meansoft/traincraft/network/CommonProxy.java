@@ -9,19 +9,19 @@ package si.meansoft.traincraft.network;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import si.meansoft.traincraft.util.PropertyString;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class CommonProxy {
 
     protected static List<Item> renderList = new ArrayList<Item>();
+    protected static HashMap<Block, ResourceLocation> forgeRender = new HashMap<Block, ResourceLocation>();
 
     public void preInit(FMLPreInitializationEvent event){}
 
@@ -30,8 +30,15 @@ public class CommonProxy {
     public void postInit(FMLPostInitializationEvent event){}
 
     public static void addStackToRender(Item item){
-        if(!renderList.contains(item))
+        if(!renderList.contains(item)) {
             renderList.add(item);
+        }
+    }
+
+    public static void addForgeRender(Block block, ResourceLocation location){
+        if(!forgeRender.containsKey(block)){
+            forgeRender.put(block, location);
+        }
     }
 
 }

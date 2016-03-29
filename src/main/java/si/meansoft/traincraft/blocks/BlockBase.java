@@ -2,14 +2,18 @@ package si.meansoft.traincraft.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.oredict.OreDictionary;
 import si.meansoft.traincraft.Traincraft;
 import si.meansoft.traincraft.gen.WorldGen;
+import si.meansoft.traincraft.network.CommonProxy;
 
 /**
  * @author canitzp
  */
 public class BlockBase extends Block {
+
+    public boolean forgeModel = false;
 
     public BlockBase(Material materialIn, String name) {
         super(materialIn);
@@ -32,6 +36,14 @@ public class BlockBase extends Block {
     public BlockBase addOreDict(String oreDict){
         OreDictionary.registerOre(oreDict, this);
         return this;
+    }
+
+    public BlockBase setForgeModel(String name){
+        CommonProxy.addForgeRender(this, new ResourceLocation(name));
+        return this;
+    }
+    public BlockBase setForgeModel(){
+        return setForgeModel(getRegistryName());
     }
 
 }
