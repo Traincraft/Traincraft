@@ -1,17 +1,22 @@
 # Traincraft - A mod for Minecraft
 
-Here you will find the source code for the **Official Traincraft Project**.
+Here you will find the source code for the **UnOfficial Traincraft 1.7.10 Port**.
 
 
 ## What is Traincraft?
 
 Traincraft is a mod written for [Minecraft](https://minecraft.net/). It is built on top of the [Minecraft Forge](https://github.com/MinecraftForge) API.
 
-It adds new functionality and looks to the vanilla trains, and some other areas of the game. It adds over 80+ trains, wagons, and other vehicles. It also ads a completely new railway system with curved tracks and slopes. It was originaly started by **Spitfire4466**, then jointly developed with **Mrbrutal**, and now maintained by me, **Mrbrutal**. It has had well over 1,000,000 downloads and has been in development since 1.2.x versions of Minecraft.
+It adds new functionality and looks to the vanilla trains, and some other areas of the game. It adds over 80+ trains, wagons, and other vehicles. It also ads a completely new railway system with curved tracks and slopes. It was originaly started by **Spitfire4466**, then jointly developed with **Mrbrutal**, and now maintained by **Mrbrutal**. It has had well over 1,000,000 downloads and has been in development since 1.2.x versions of Minecraft.
 
-## Why are you posting the Source Code?
+##What is this fork?
+This Specific fork is maintained by **morphicschris** and **EternalBlueFlame** and is intended to be a branch of the official project for porting and cleanup of the 1.6.4 Traincraft to 1.7.10, for the purpose of contributing to the overall project, this branch is currently an unofficial derivative until otherwise stated by **Mrbrutal**.
 
-> Since Spitfire4466 and me are exceedingly low on time to work on this project, open source was the only viable sollution. But since open source is something I've never done on this level or size, I'm a bit hessitant to do so. But in the hopes that I can still be a part of this and so that we can make Traincraft great again, I'm opening the source code for everyone to see. Furthermore, both versions of Traincraft will be open sourced, so that anyone willing to contribute will be able to contribute on both fronts.
+**Mrbrutal** and **Spitfire4466** still maintain full rights and project lead even in this branch.
+
+## Why did **Mrbrutal** post the Source Code?
+
+> Since Spitfire4466 and **Mrbrutal** are exceedingly low on time to work on this project, open source was the only viable sollution. But since open source is something **Mrbrutal** has never done on this level or size, and is a bit hessitant to do so. But in the hopes that he can still be a part of this, and so that we can make Traincraft great again, he has opened the source code for everyone to see. Furthermore, both versions of Traincraft will be open sourced, so that anyone willing to contribute will be able to contribute on both fronts.
 
 ## Official Links
 
@@ -22,19 +27,21 @@ It adds new functionality and looks to the vanilla trains, and some other areas 
 
 ## Issues
 
-An issue system or website will be provided in due time. Possibly, we might just use the GitHub's own system.
+Use the GitHub's own system.
 
 ## Contributing
 
-Regarding new features/behavior changes, please submit a Suggestion Issue to the Tracker before you write a single line of code. Keeping everyone on the same page saves time and effort and reduces negative experiences all around when a change turns out to be controversial.
+Regarding new features/behavior changes, please submit a new Suggestion Issue to the Tracker before you write any code. Keeping everyone on the same page saves time and effort and reduces negative experiences all around when a change turns out to be controversial.
 
-For now, the focus should be on updating the mod to the 1.7.x and 1.8.x branches, before adding any new features. Those will be added when the rewrite version is being done.
+For now, the focus should be on updating the mod to the 1.7.x branches, before adding any new features. Those will be added when the port is done.
 
 ## Building
 
-Traincraft will follow standard Forge conventions for setting up and building a project, with a couple additional details (details to come).
+Traincraft will follow standard Forge conventions for setting up and building a project, with a couple additional details (details to come). See [here](http://www.minecraftforge.net/wiki/Installation/Source)
+After you finish the tutorial you must manually define the SDK (the root path of your JDK installation folder) and you must manually define the location of your :ForgeBin:
+You must also import the requires API libraries for the related mods (ic2, Buildcraft, railcraft, etc), more on this to come.
 
-There will also be a jenkins build engine available for setting things up, and building releases quicker (details to come).
+Unlike the main branch, this branch is not planned to have a Jenkins build engine.
 
 ## License
 
