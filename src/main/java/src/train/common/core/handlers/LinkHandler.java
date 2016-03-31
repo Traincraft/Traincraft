@@ -10,7 +10,7 @@ import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.packet.Packet3Chat;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.ChatMessageComponent;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import src.train.common.api.AbstractTrains;
@@ -617,7 +617,7 @@ public class LinkHandler {
 					EntityPlayer player = cart1.worldObj.getClosestPlayer(cart1.posX, cart1.posY, cart1.posZ, 300);
 					if(player!=null){
 						PacketDispatcher.sendPacketToPlayer(
-							new Packet3Chat(ChatMessageComponent.createFromText(String.format("[TRAINCRAFT] The rolling stock at %d %d %d had a problem loading and has lost its link. Attached cart was too far away", (int)cart1.posX, (int)cart1.posY, (int)cart1.posZ))),
+							new Packet3Chat(new ChatComponentText(String.format("[TRAINCRAFT] The rolling stock at %d %d %d had a problem loading and has lost its link. Attached cart was too far away", (int)cart1.posX, (int)cart1.posY, (int)cart1.posZ))),
 							(Player) player);
 					}
 				}

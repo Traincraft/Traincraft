@@ -13,7 +13,7 @@ import mods.railcraft.api.carts.ILinkageManager;
 import mods.railcraft.api.tracks.ITrackPowered;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import src.train.common.api.AbstractTrains;
 import src.train.common.core.handlers.LinkHandler;
 import src.train.common.library.TrackIDs;
@@ -27,7 +27,7 @@ public class BlockCouplerTrack extends TrackBaseTraincraft implements ITrackPowe
 		return TrackIDs.COUPLER_TRACK;
 	}
 	@Override
-	public Icon getIcon() {
+	public IIcon getIcon() {
 		if (isPowered()) {
 			return getIcon(1);
 		}

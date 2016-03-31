@@ -3,7 +3,7 @@ package src.train.common.items;
 import java.util.List;
 
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -118,7 +118,7 @@ public class ItemTCRail extends Item {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IconRegister iconRegister) {
+	public void registerIcons(IIconRegister iconRegister) {
 		this.itemIcon = iconRegister.registerIcon(Info.modID.toLowerCase() + ":tracks/" + ItemIDs.getIcon(this.itemID));
 	}
 

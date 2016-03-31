@@ -3,7 +3,7 @@ package src.train.common.items;
 import java.util.List;
 
 import ic2.api.item.IBoxable;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -28,7 +28,7 @@ public class ItemChunkLoaderActivator extends Item implements IBoxable {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IconRegister iconRegister) {
+	public void registerIcons(IIconRegister iconRegister) {
 		this.itemIcon = iconRegister.registerIcon(Info.modID.toLowerCase() + ":chunk_loader");
 	}
 	@SideOnly(Side.CLIENT)

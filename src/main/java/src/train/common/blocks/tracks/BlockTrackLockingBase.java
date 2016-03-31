@@ -11,7 +11,7 @@ import mods.railcraft.api.tracks.ITrackLockdown;
 import mods.railcraft.api.tracks.ITrackPowered;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.EventBus;
 
@@ -26,7 +26,7 @@ public abstract class BlockTrackLockingBase extends TrackBaseTraincraft implemen
 	protected int delay = 0;
 	
 	@Override
-	public Icon getIcon() {
+	public IIcon getIcon() {
 		if ((isPowered()) || (this.delay > 0)) {
 			return getIcon(1);
 		}

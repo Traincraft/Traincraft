@@ -36,7 +36,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.ChatMessageComponent;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
@@ -1129,7 +1129,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 						d9 = 0;
 					}
 					if (FMLCommonHandler.instance().getMinecraftServerInstance() != null && this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer) {
-						FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().sendChatMsg(new ChatMessageComponent().addText(((EntityPlayer) this.riddenByEntity).username + " derailed " + this.trainOwner + "'s locomotive"));
+						FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().sendChatMsg(new ChatComponentText(((EntityPlayer) this.riddenByEntity).username + " derailed " + this.trainOwner + "'s locomotive"));
 					}
 				}
 

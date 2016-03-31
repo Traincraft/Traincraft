@@ -12,13 +12,13 @@ import mods.railcraft.api.tracks.ITrackEmitter;
 import mods.railcraft.api.tracks.ITrackItemIconProvider;
 import mods.railcraft.api.tracks.ITrackPowered;
 import mods.railcraft.api.tracks.TrackSpec;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import src.train.common.entity.rollingStock.EntityStockCar;
 import src.train.common.library.Info;
 import src.train.common.library.TrackIDs;
@@ -62,7 +62,7 @@ public class BlockAnimalBoardingTrack extends TrackBaseTraincraft implements ITr
 		}
 	}
 	@Override
-	public Icon getIcon() {
+	public IIcon getIcon() {
 		if (this.delay > 0) {
 			return getIcon(1);
 		}

@@ -15,7 +15,7 @@ import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import src.train.common.api.Locomotive;
 import src.train.common.library.TrackIDs;
 
@@ -112,7 +112,7 @@ public class BlockLocomotiveSpeedControllerTrack extends TrackBaseTraincraft imp
 	}
 
 	@Override
-	public Icon getIcon() {
+	public IIcon getIcon() {
 		int value = 0;
 		if(mode>=0 && mode<3)value=0;
 		if(mode>=3 && mode<6)value=1;

@@ -6,7 +6,7 @@ import buildcraft.api.tools.IToolWrench;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 import src.train.common.Traincraft;
 import src.train.common.library.Info;
 import src.train.common.library.ItemIDs;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 
 public class ItemWrench extends Item implements IToolWrench{
 
@@ -26,7 +26,7 @@ public class ItemWrench extends Item implements IToolWrench{
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IconRegister iconRegister) {
+	public void registerIcons(IIconRegister iconRegister) {
 		this.itemIcon = iconRegister.registerIcon(Info.modID.toLowerCase() + ":parts/" + ItemIDs.getIcon(this.itemID));
 	}
 	

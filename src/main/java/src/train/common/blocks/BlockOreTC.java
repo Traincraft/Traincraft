@@ -6,11 +6,11 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSand;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.item.EntityFallingSand;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import src.train.common.Traincraft;
 import src.train.common.library.BlockIDs;
@@ -20,10 +20,10 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockOreTC extends BlockSand {
 
-	private static Icon texture1;
-	private static Icon texture2;
-	private static Icon texture3;
-	private static Icon texture4;
+	private static IIcon texture1;
+	private static IIcon texture2;
+	private static IIcon texture3;
+	private static IIcon texture4;
 
 	public BlockOreTC(int id, int tex) {
 		super(id, Material.rock);
@@ -31,7 +31,7 @@ public class BlockOreTC extends BlockSand {
 	}
 
 	@Override
-	public Icon getIcon(int side, int metadata) {
+	public IIcon getIcon(int side, int metadata) {
 		if (metadata == 0) {
 			return texture1;
 		}
@@ -134,14 +134,14 @@ public class BlockOreTC extends BlockSand {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IconRegister iconRegister) {
+	public void registerIcons(IIconRegister iconRegister) {
 		texture1 = iconRegister.registerIcon(Info.modID.toLowerCase() + ":ores/ore_copper");
 		texture2 = iconRegister.registerIcon(Info.modID.toLowerCase() + ":ores/ore_oilsands");
 		texture3 = iconRegister.registerIcon(Info.modID.toLowerCase() + ":ores/ore_petroleum");
 		texture4 = iconRegister.registerIcon(Info.modID.toLowerCase() + ":ballast_test");
 	}
 
-	public static Icon getTexture1() {
+	public static IIcon getTexture1() {
 		return texture1;
 	}
 }

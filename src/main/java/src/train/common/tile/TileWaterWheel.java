@@ -20,7 +20,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.common.MinecraftForge;
 import src.train.common.core.TrainModBlockUtil;
 import src.train.common.core.handlers.PacketHandler;

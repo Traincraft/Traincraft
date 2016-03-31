@@ -11,7 +11,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import src.train.common.Traincraft;
@@ -63,8 +63,8 @@ public class BlockSignal extends BlockContainer {
 	}
 
 	@Override
-	public Icon getIcon(int i, int j) {
-		Icon icon = null;
+	public IIcon getIcon(int i, int j) {
+		IIcon icon = null;
 		return icon;
 	}
 

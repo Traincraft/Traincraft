@@ -4,18 +4,18 @@ import java.util.Random;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 import src.train.common.Traincraft;
 import src.train.common.library.GuiIDs;
 import src.train.common.library.Info;
@@ -26,10 +26,10 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockAssemblyTableI extends BlockContainer {
 
-	private Icon textureTop;
-	private Icon textureBottom;
-	private Icon textureFront;
-	private Icon textureSide;
+	private IIcon textureTop;
+	private IIcon textureBottom;
+	private IIcon textureFront;
+	private IIcon textureSide;
 
 	public BlockAssemblyTableI(int i, int j, Material material) {
 		super(i, material);
@@ -79,7 +79,7 @@ public class BlockAssemblyTableI extends BlockContainer {
 	}
 
 	@Override
-	public Icon getBlockTexture(IBlockAccess worldAccess, int i, int j, int k, int side) {
+	public IIcon getBlockTexture(IBlockAccess worldAccess, int i, int j, int k, int side) {
 		if (((TileCrafterTierI) worldAccess.getBlockTileEntity(i, j, k)).getFacing() != null) {
 			side = TileHelper.getOrientationFromSide(((TileCrafterTierI) worldAccess.getBlockTileEntity(i, j, k)).getFacing(), ForgeDirection.getOrientation(side)).ordinal();
 		}
@@ -149,7 +149,7 @@ public class BlockAssemblyTableI extends BlockContainer {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IconRegister iconRegister) {
+	public void registerIcons(IIconRegister iconRegister) {
 		textureTop = iconRegister.registerIcon(Info.modID.toLowerCase() + ":assembly_1_top");
 		textureBottom = iconRegister.registerIcon(Info.modID.toLowerCase() + ":assembly_1_bottom");
 		textureFront = iconRegister.registerIcon(Info.modID.toLowerCase() + ":assembly_1_front");
