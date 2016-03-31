@@ -51,6 +51,7 @@ public class Traincraft {
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent evt) {
+        RecipeRegistry.init();
         proxy.init(evt);
         logger.info("Finished Initializing");
     }

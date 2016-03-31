@@ -1,18 +1,20 @@
 package si.meansoft.traincraft.api.recipes;
 
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author canitzp
  */
 public class DistilleryRecipes {
 
-    private static HashMap<ItemStack, RecipeHandler> recipeMap = new HashMap<ItemStack, RecipeHandler>();
-    private static HashMap<ItemStack, Pair<ItemStack, FluidStack>> fillingMap = new HashMap<ItemStack, Pair<ItemStack, FluidStack>>();
+    private static Map<ItemStack, RecipeHandler> recipeMap = new HashMap<ItemStack, RecipeHandler>();
+    private static Map<ItemStack, Pair<ItemStack, FluidStack>> fillingMap = new HashMap<ItemStack, Pair<ItemStack, FluidStack>>();
 
     public static void addRecipe(ItemStack output, ItemStack input, FluidStack fluidOutput, float exp, int burnTime){
         recipeMap.put(input, new RecipeHandler(burnTime, exp, fluidOutput, output));
@@ -32,19 +34,28 @@ public class DistilleryRecipes {
     }
 
     public static RecipeHandler getRecipe(ItemStack input){
-        return recipeMap.containsKey(input) ? recipeMap.get(input) : null;
+        for(Map.Entry<ItemStack, RecipeHandler> entry : recipeMap.entrySet()){
+            if(entry.getKey().isItemEqual(input)){
+                return entry.getValue();
+            }
+        }
+        return new RecipeHandler();
     }
 
-    private static class RecipeHandler {
+    public static class RecipeHandler {
         public ItemStack outputStack;
         public FluidStack outputFluid;
         public float outputExp;
         public int burnTime;
+        public boolean isNull;
         public RecipeHandler(int burnTime, float outputExp, FluidStack outputFluid, ItemStack outputStack) {
             this.burnTime = burnTime;
             this.outputExp = outputExp;
             this.outputFluid = outputFluid;
             this.outputStack = outputStack;
+        }
+        public RecipeHandler(){
+            this.isNull = true;
         }
     }
 }

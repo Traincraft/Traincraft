@@ -79,6 +79,12 @@ public class TileEntityInventory extends TileEntity implements ISidedInventory {
         return null;
     }
 
+    public void incrStackSize(int index, int count) {
+        if(slots[index] != null) {
+            this.setInventorySlotContents(index, new ItemStack(slots[index].getItem(), slots[index].stackSize + count, slots[index].getItemDamage()));
+        }
+    }
+
     @Override
     public ItemStack removeStackFromSlot(int index) {
         return this.slots[index] = null;
