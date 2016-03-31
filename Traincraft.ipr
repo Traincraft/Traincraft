@@ -37,11 +37,6 @@
             <option value="$PROJECT_DIR$" />
           </set>
         </option>
-        <option name="myModules">
-          <set>
-            <option value="$PROJECT_DIR$" />
-          </set>
-        </option>
       </GradleProjectSettings>
     </option>
   </component>
@@ -85,6 +80,20 @@
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
   </component>
   <component name="libraryTable">
+    <library name="buildcraft-7.1.16">
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/lib/buildcraft-7.1.16.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="CodeChickenCore-1.7.10-1.0.4.29-dev">
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/lib/CodeChickenCore-1.7.10-1.0.4.29-dev.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
     <library name="Gradle: :forgeSrc:1.7.10-10.13.4.1614-1.7.10">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/minecraft/net/minecraftforge/forge/1.7.10-10.13.4.1614-1.7.10/forgeSrc-1.7.10-10.13.4.1614-1.7.10.jar!/" />
@@ -609,6 +618,22 @@
     <library name="Gradle: tv.twitch:twitch:5.16">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/tv.twitch/twitch/5.16/1f55f009c61637c10c0acfb8b5ffc600f30044b4/twitch-5.16.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="industrialcraft-2-2.2.817-experimental-dev">
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/lib/industrialcraft-2-2.2.817-experimental-dev.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$PROJECT_DIR$/lib/industrialcraft-2-2.2.817-experimental-dev.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="NotEnoughItems-1.7.10-1.0.3.74-dev">
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/lib/NotEnoughItems-1.7.10-1.0.3.74-dev.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />

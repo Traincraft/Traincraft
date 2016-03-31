@@ -658,43 +658,9 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/dependencies/buildcraft-7.1.16.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/dependencies/CodeChickenCore-1.7.10-1.0.4.29-dev.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/dependencies/industrialcraft-2-2.2.817-experimental-dev.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="jar://$MODULE_DIR$/dependencies/industrialcraft-2-2.2.817-experimental-dev.jar!/" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/dependencies/NotEnoughItems-1.7.10-1.0.3.74-dev.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
+    <orderEntry type="library" exported="" name="CodeChickenCore-1.7.10-1.0.4.29-dev" level="project" />
+    <orderEntry type="library" exported="" name="buildcraft-7.1.16" level="project" />
+    <orderEntry type="library" exported="" name="industrialcraft-2-2.2.817-experimental-dev" level="project" />
+    <orderEntry type="library" exported="" name="NotEnoughItems-1.7.10-1.0.3.74-dev" level="project" />
   </component>
 </module>
