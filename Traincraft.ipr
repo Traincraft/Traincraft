@@ -631,6 +631,13 @@
         <root url="jar://$PROJECT_DIR$/lib/industrialcraft-2-2.2.817-experimental-dev.jar!/" />
       </SOURCES>
     </library>
+    <library name="jl1.0.1">
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/lib/jl1.0.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
     <library name="NotEnoughItems-1.7.10-1.0.3.74-dev">
       <CLASSES>
         <root url="jar://$PROJECT_DIR$/lib/NotEnoughItems-1.7.10-1.0.3.74-dev.jar!/" />
