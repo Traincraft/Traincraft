@@ -3,7 +3,7 @@ package src.train.common.items;
 import java.util.List;
 
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -109,8 +109,8 @@ public class ItemTCRail extends Item {
 		return false;
 	}
 
-	public ItemTCRail(int id, TrackTypes t) {
-		super(id);
+	public ItemTCRail(TrackTypes t) {
+		super();
 		maxStackSize = 64;
 		setCreativeTab(Traincraft.tcTab);
 		this.type = t;
@@ -118,13 +118,13 @@ public class ItemTCRail extends Item {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IconRegister iconRegister) {
+	public void registerIcons(IIconRegister iconRegister) {
 		this.itemIcon = iconRegister.registerIcon(Info.modID.toLowerCase() + ":tracks/" + ItemIDs.getIcon(this.itemID));
 	}
 
 	private boolean canPlaceTrack(World world, int x, int y, int z) {
-		int l = world.getBlockId(x, y, z);
-		int l1 = world.getBlockId(x, y - 1, z);
+		Block l = world.getBlock(x, y, z);
+		Block l1 = world.getBlock(x, y - 1, z);
 		Block block = Block.blocksList[l];
 		return (block == null || block.isBlockReplaceable(world, x, y, z)) && (world.doesBlockHaveSolidTopSurface(x, y - 1, z) || l1 == BlockIDs.bridgePillar.blockID);
 	}

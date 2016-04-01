@@ -4,14 +4,15 @@ import ic2.api.item.IElectricItem;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.ChatMessageComponent;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 
 import org.lwjgl.input.Keyboard;
 
@@ -22,10 +23,9 @@ import src.train.common.core.handlers.FuelHandler;
 import src.train.common.core.handlers.PacketHandler;
 import src.train.common.library.EnumSounds;
 import src.train.common.library.Info;
-import buildcraft.api.inventory.ISpecialInventory;
 import cpw.mods.fml.common.FMLCommonHandler;
 
-public abstract class Locomotive extends EntityRollingStock implements ISpecialInventory {
+public abstract class Locomotive extends EntityRollingStock implements IInventory {
 	public int inventorySize;
 	public double speedDivider = 3.6;
 	protected ItemStack locoInvent[];
@@ -170,7 +170,7 @@ public abstract class Locomotive extends EntityRollingStock implements ISpecialI
 	 * set the max speed in km/h if the param is 0 then the default speed is
 	 * used
 	 * 
-	 * @param speed
+	 * //@param speed //this is for making documentation of some sort via javadoc, shouldn't be relevant to the operation of the mod
 	 */
 	public void setCustomSpeed(double m) {
 		if (m != 0) {
@@ -216,7 +216,7 @@ public abstract class Locomotive extends EntityRollingStock implements ISpecialI
 	 * set the fuel consumption rate for each loco if i is 0 then default
 	 * consumption is used
 	 * 
-	 * @param i
+	 * //@param i //this is for making documentation of some sort via javadoc, shouldn't be relevant to the operation of the mod
 	 * @return
 	 */
 	public int setFuelConsumption(int c) {
@@ -324,7 +324,7 @@ public abstract class Locomotive extends EntityRollingStock implements ISpecialI
 			PacketHandler.sendPacketToClients(PacketHandler.setTrainLockedToClient(riddenByEntity, this, locked), worldObj, (int) posX, (int) posY, (int) posZ, 5);
 		}
 		if (this.getTrainLockedFromPacket()) {
-			if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer && !((EntityPlayer) this.riddenByEntity).username.toLowerCase().equals(this.trainOwner.toLowerCase())) { return; }
+			if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer && !((EntityPlayer) this.riddenByEntity).getDisplayName().toLowerCase().equals(this.trainOwner.toLowerCase())) { return; }
 		}
 		pressKey(i);
 		//System.out.println(i);
@@ -514,7 +514,7 @@ public abstract class Locomotive extends EntityRollingStock implements ISpecialI
 			whistleDelay--;
 		}
 		if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer) {
-			this.lastRider = ((EntityPlayer) this.riddenByEntity).username;
+			this.lastRider = ((EntityPlayer) this.riddenByEntity).getDisplayName();
 			this.lastEntityRider = (this.riddenByEntity);
 		}
 
@@ -600,7 +600,7 @@ public abstract class Locomotive extends EntityRollingStock implements ISpecialI
 					this.setDead();
 				}
 				if (!worldObj.isRemote && FMLCommonHandler.instance().getMinecraftServerInstance() != null && this.lastEntityRider != null && this.lastEntityRider instanceof EntityPlayer) {
-					FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().sendChatMsg(new ChatMessageComponent().addText(((EntityPlayer) this.lastEntityRider).username + " blew " + this.trainOwner + "'s locomotive"));
+					FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().sendChatMsg(new ChatComponentText(((EntityPlayer) this.lastEntityRider).getDisplayName() + " blew " + this.trainOwner + "'s locomotive"));
 				}
 				if (!worldObj.isRemote) statsEventHandler.trainExplode(this.uniqueID, this.trainName, this.trainType, this.trainCreator, new String((int) posX + ";" + (int) posY + ";" + (int) posZ));
 				// if (!worldObj.isRemote)PacketHandler.sendPacketToClients(PacketHandler.sendStatsToServer(7,this.uniqueID, this.trainName, this.trainType, this.trainOwner,"", (int) posX, (int) posY, (int) posZ),this.worldObj, (int)posX,(int)posY,(int)posZ, 12.0D);
@@ -625,7 +625,7 @@ public abstract class Locomotive extends EntityRollingStock implements ISpecialI
 			//System.out.println();
 			if (this.worldObj.handleMaterialAcceleration(this.boundingBox.expand(0.0D, -0.2000000059604645D, 0.0D).contract(0.001D, 0.001D, 0.001D), Material.water, this) && this.updateTicks % 4 == 0) {
 				if (!hasDrowned && !worldObj.isRemote && FMLCommonHandler.instance().getMinecraftServerInstance() != null && this.lastEntityRider != null && this.lastEntityRider instanceof EntityPlayer) {
-					FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().sendChatMsg(new ChatMessageComponent().addText(((EntityPlayer) this.lastEntityRider).username + " drowned " + this.trainOwner + "'s locomotive"));
+					FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().sendChatMsg(new ChatComponentText(((EntityPlayer) this.lastEntityRider).getDisplayName() + " drowned " + this.trainOwner + "'s locomotive"));
 				}
 				//this.attackEntityFrom(DamageSource.generic, 100);
 				((Locomotive) this).setCustomSpeed(0);// set speed to normal
@@ -777,7 +777,7 @@ public abstract class Locomotive extends EntityRollingStock implements ISpecialI
 			if (doAdd) locoInvent[i] = itemstack1;
 			return itemstack1.stackSize;
 		}
-		else if (locoInvent[i] != null && locoInvent[i].itemID == itemstack1.itemID && itemstack1.isStackable() && (!itemstack1.getHasSubtypes() || locoInvent[i].getItemDamage() == itemstack1.getItemDamage()) && ItemStack.areItemStackTagsEqual(locoInvent[i], itemstack1)) {
+		else if (locoInvent[i] != null && locoInvent[i] == itemstack1 && itemstack1.isStackable() && (!itemstack1.getHasSubtypes() || locoInvent[i].getItemDamage() == itemstack1.getItemDamage()) && ItemStack.areItemStackTagsEqual(locoInvent[i], itemstack1)) {
 
 			int var9 = locoInvent[i].stackSize + itemstack1.stackSize;
 			if (var9 <= itemstack1.getMaxStackSize()) {
@@ -805,7 +805,7 @@ public abstract class Locomotive extends EntityRollingStock implements ISpecialI
 	 *            Orientation the ItemStack is offered from.
 	 * @return Amount of items used from the passed stack.
 	 */
-	@Override
+	//@Override //Doesn't override a superclass
 	public int addItem(ItemStack stack, boolean doAdd, ForgeDirection from) {
 		if (stack == null) { return 0; }
 		//FuelHandler.steamFuelLast(itemstack) > 0 || LiquidManager.getInstance().isDieselLocoFuel(itemstack)||(itemstack.getItem().shiftedIndex==Item.redstone.shiftedIndex) || (itemstack.getItem() instanceof IElectricItem)
@@ -820,7 +820,7 @@ public abstract class Locomotive extends EntityRollingStock implements ISpecialI
 			if (LiquidManager.getInstance().isDieselLocoFuel(stack)) return placeInSpecialInvent(stack, 0, doAdd);
 		}
 		if (this instanceof ElectricTrain) {
-			if ((stack.getItem().itemID == Item.redstone.itemID) || (stack.getItem() instanceof IElectricItem)) return placeInSpecialInvent(stack, 0, doAdd);
+			if ((stack.getItem() == Item.itemRegistry.getObject("redstone")) || (stack.getItem() instanceof IElectricItem)) return placeInSpecialInvent(stack, 0, doAdd);
 		}
 		return 0;
 
@@ -838,7 +838,7 @@ public abstract class Locomotive extends EntityRollingStock implements ISpecialI
 	 *            item stacks)
 	 * @return Array of item stacks extracted from the inventory
 	 */
-	@Override
+	//@Override
 	public ItemStack[] extractItem(boolean doRemove, ForgeDirection from, int maxItemCount) {
 		return null;
 	}
@@ -921,13 +921,13 @@ public abstract class Locomotive extends EntityRollingStock implements ISpecialI
 		}
 	}
 
-	@Override
+	//@Override
 	public void openChest() {}
 
-	@Override
+	//@Override
 	public void closeChest() {}
 
-	@Override
+	//@Override
 	public void onInventoryChanged() {
 		if (!worldObj.isRemote) {
 			this.slotsFilled = 0;

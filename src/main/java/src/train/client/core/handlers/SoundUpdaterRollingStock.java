@@ -1,5 +1,6 @@
 package src.train.client.core.handlers;
 
+import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.client.audio.SoundManager;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.util.MathHelper;
@@ -13,7 +14,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class SoundUpdaterRollingStock {
 
-	private SoundManager theSoundManager;
+	private SoundHandler theSoundManager;
 
 	/** Minecart which sound is being updated. */
 	private EntityRollingStock theMinecart;
@@ -29,7 +30,7 @@ public class SoundUpdaterRollingStock {
 	private float volume2 = 0.0F;
 	private double cartSpeed = 0.0D;
 
-	public void update(SoundManager par1SoundManager, EntityRollingStock rollingStock, EntityPlayerSP par3EntityPlayerSP) {
+	public void update(SoundHandler par1SoundManager, EntityRollingStock rollingStock, EntityPlayerSP par3EntityPlayerSP) {
 		this.theSoundManager = par1SoundManager;
 		this.theMinecart = rollingStock;
 		this.thePlayer = par3EntityPlayerSP;

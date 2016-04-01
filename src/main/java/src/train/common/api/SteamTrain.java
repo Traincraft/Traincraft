@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
@@ -82,7 +82,7 @@ public abstract class SteamTrain extends Locomotive implements IFluidHandler {
 			return;
 		if (theTank != null && theTank.getFluid() != null) {
 			this.dataWatcher.updateObject(23, theTank.getFluid().amount);
-			this.dataWatcher.updateObject(4, theTank.getFluid().fluidID);
+			this.dataWatcher.updateObject(4, theTank.getFluid().getFluidID());
 			if (theTank.getFluid().amount <= 1) {
 				motionX *= 0.94;
 				motionZ *= 0.94;
@@ -143,7 +143,7 @@ public abstract class SteamTrain extends Locomotive implements IFluidHandler {
 				loco.locoInvent[i] = itemstack1;
 				return;
 			}
-			else if (loco.locoInvent[i] != null && loco.locoInvent[i].itemID == itemstack1.itemID && itemstack1.isStackable() && (!itemstack1.getHasSubtypes() || locoInvent[i].getItemDamage() == itemstack1.getItemDamage()) && ItemStack.areItemStackTagsEqual(locoInvent[i], itemstack1)) {
+			else if (loco.locoInvent[i] != null && loco.locoInvent[i] == itemstack1 && itemstack1.isStackable() && (!itemstack1.getHasSubtypes() || locoInvent[i].getItemDamage() == itemstack1.getItemDamage()) && ItemStack.areItemStackTagsEqual(locoInvent[i], itemstack1)) {
 				int var9 = locoInvent[i].stackSize + itemstack1.stackSize;
 				if (var9 <= itemstack1.getMaxStackSize()) {
 					loco.locoInvent[i].stackSize = var9;
@@ -155,7 +155,7 @@ public abstract class SteamTrain extends Locomotive implements IFluidHandler {
 				return;
 			}
 			else if (i == loco.locoInvent.length - 1) {
-				dropItemWithOffset(itemstack1.getItem().itemID, 1, 0.0F);
+				dropItem(itemstack1.getItem(), 1);
 				return;
 			}
 		}
@@ -167,7 +167,7 @@ public abstract class SteamTrain extends Locomotive implements IFluidHandler {
 			return;
 		this.update += 1;
 		if (this.update % 8 == 0 && itemstack != null) {
-			ItemStack result = LiquidManager.getInstance().processContainer(this, 1, theTank, itemstack, 0);
+			ItemStack result = LiquidManager.getInstance().processContainer(this, 1, theTank, itemstack, 0); //'this' needs to be the loco inventory, but that's not an inventory it's a Itemstack[]
 			if (result != null) {
 				placeInInvent(result, loco);
 				decrStackSize(1, 1);

@@ -1,5 +1,7 @@
 package src.train.common.api;
 
+import buildcraft.api.fuels.BuildcraftFuelRegistry;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import mods.railcraft.api.fuel.FuelManager;
 import net.minecraft.block.material.Material;
 import net.minecraft.inventory.IInventory;
@@ -7,7 +9,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -19,7 +20,6 @@ import src.train.common.blocks.BlockTraincraftFluid;
 import src.train.common.items.ItemBlockFluid;
 import src.train.common.library.BlockIDs;
 import src.train.common.library.ItemIDs;
-import buildcraft.api.fuels.IronEngineFuel;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -53,26 +53,26 @@ public class LiquidManager {
 		FluidRegistry.registerFluid(DIESEL);
 		FluidRegistry.registerFluid(REFINED_FUEL);
 		BlockIDs.diesel.block = new BlockTraincraftFluid(BlockIDs.diesel.blockID, DIESEL, Material.water).setFlammable(true).setFlammability(5);
-		DIESEL.setBlockID(BlockIDs.diesel.block);
+		DIESEL.setBlock(BlockIDs.diesel.block);
 		BlockIDs.refinedFuel.block = new BlockTraincraftFluid(BlockIDs.refinedFuel.blockID, REFINED_FUEL, Material.water).setFlammable(true).setFlammability(4);
-		REFINED_FUEL.setBlockID(BlockIDs.refinedFuel.block);
+		REFINED_FUEL.setBlock(BlockIDs.refinedFuel.block);
 		FluidContainerRegistry.registerFluidContainer(DIESEL, new ItemStack(ItemIDs.diesel.item), new ItemStack(ItemIDs.emptyCanister.item));
 		FluidContainerRegistry.registerFluidContainer(REFINED_FUEL, new ItemStack(ItemIDs.refinedFuel.item), new ItemStack(ItemIDs.emptyCanister.item));
 		dieselFilter();
 		FuelManager.addBoilerFuel(DIESEL, 60000);
 		FuelManager.addBoilerFuel(REFINED_FUEL, 96000);
-		IronEngineFuel.addFuel(DIESEL, 3, 200000);
-		IronEngineFuel.addFuel(REFINED_FUEL, 6, 100000);
+		BuildcraftFuelRegistry.fuel.addFuel(DIESEL, 3, 200000);
+		BuildcraftFuelRegistry.fuel.addFuel(REFINED_FUEL, 6, 100000);
 		MinecraftForge.EVENT_BUS.register(this);
 
 		Traincraft.proxy.registerBlock(BlockIDs.diesel.block, ItemBlockFluid.class);
 		Traincraft.proxy.registerBlock(BlockIDs.refinedFuel.block, ItemBlockFluid.class);
 	}
 
-	@ForgeSubscribe
+	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
 	public void textureHook(TextureStitchEvent.Post event) {
-		if (event.map.textureType == 0) {
+		if (event.map.getTextureType() == 0) {
 			DIESEL.setIcons(BlockIDs.diesel.block.getBlockTextureFromSide(1), BlockIDs.diesel.block.getBlockTextureFromSide(2));
 			REFINED_FUEL.setIcons(BlockIDs.refinedFuel.block.getBlockTextureFromSide(1), BlockIDs.refinedFuel.block.getBlockTextureFromSide(2));
 		}
@@ -157,7 +157,7 @@ public class LiquidManager {
 
 	public ItemStack processContainer(IInventory inventory, IFluidTank tank, ItemStack itemstack, int tankIndex) {
 		FluidStack bucketLiquid = getFluidInContainer(itemstack);
-		ItemStack emptyItem = itemstack.getItem().getContainerItemStack(itemstack);
+		ItemStack emptyItem = itemstack.getItem().getContainerItem(itemstack);
 
 		if ((bucketLiquid != null) && (emptyItem == null)) {
 			int used = tank.fill(bucketLiquid, false);
@@ -184,7 +184,7 @@ public class LiquidManager {
 
 	public ItemStack processContainer(IInventory inventory, int inventoryIndex, StandardTank tank, ItemStack itemstack, int tankIndex) {
 		FluidStack bucketLiquid = getFluidInContainer(itemstack);
-		ItemStack emptyItem = itemstack.getItem().getContainerItemStack(itemstack);
+		ItemStack emptyItem = itemstack.getItem().getContainerItem(itemstack);
 		if ((bucketLiquid != null)) {
 			int used = tank.fill(bucketLiquid, false);
 			if (used >= bucketLiquid.amount) {
@@ -308,12 +308,12 @@ public class LiquidManager {
 		public int fill(FluidStack resource, boolean doFill) {
 			if (multiFilter != null) {
 				for (int i = 0; i < multiFilter.length; i++) {
-					if (multiFilter[i] != null && (resource.fluidID != multiFilter[i].fluidID)) {
+					if (multiFilter[i] != null && (resource.getFluidID() != multiFilter[i].getFluidID())) {
 						return super.fill(resource, doFill);
 					}
 				}
 			}
-			else if (filter.fluidID != resource.fluidID) {
+			else if (filter.getFluidID() != resource.getFluidID()) {
 				return super.fill(resource, doFill);
 			}
 			return 0;
