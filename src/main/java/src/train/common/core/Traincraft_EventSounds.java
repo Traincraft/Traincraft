@@ -2,6 +2,7 @@ package src.train.common.core;
 
 import java.io.File;
 
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.client.audio.SoundPoolEntry;
 import net.minecraftforge.client.event.sound.SoundLoadEvent;
 import net.minecraftforge.event.ForgeSubscribe;
@@ -13,11 +14,12 @@ import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 
 public class Traincraft_EventSounds {
-	@ForgeSubscribe
+	@SubscribeEvent
 	public void onSound(SoundLoadEvent event) {
 		try {
 			for (EnumSoundsFiles sounds : EnumSoundsFiles.values()) {
 				event.manager.soundPoolSounds.addSound(Info.resourceLocation+":"+sounds.getSoundName());
+
 			}
 		} catch (Exception e) {
 			System.err.println("Failed to register one or more sounds.");

@@ -66,7 +66,7 @@ public class BlockAssemblyTableII extends BlockContainer {
 	}
 
 	@Override
-	public Icon getIcon(int i, int j) {
+	public IIcon getIcon(int i, int j) {
 		if (i == 1) {
 			return textureTop;
 		}
@@ -140,7 +140,7 @@ public class BlockAssemblyTableII extends BlockContainer {
 	}
 
 	@Override
-	public TileEntity createNewTileEntity(World var1) {
+	public TileEntity createNewTileEntity(World var1, int meta) {
 		return new TileCrafterTierII();
 	}
 
