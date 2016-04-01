@@ -1139,7 +1139,11 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 						d9 = 0;
 					}
 					if (FMLCommonHandler.instance().getMinecraftServerInstance() != null && this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer) {
+<<<<<<< HEAD
 						FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().sendChatMsg(new ChatComponentText(((EntityPlayer) this.riddenByEntity).getDisplayName() + " derailed " + this.trainOwner + "'s locomotive"));
+=======
+						FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().sendChatMsg(new ChatComponentText(((EntityPlayer) this.riddenByEntity).username + " derailed " + this.trainOwner + "'s locomotive"));
+>>>>>>> origin/1.7
 					}
 				}
 

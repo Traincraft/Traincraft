@@ -6,7 +6,7 @@ import java.util.List;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.ChatMessageComponent;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 
 public class TrainsDamageSource extends DamageSource {
@@ -41,9 +41,9 @@ public class TrainsDamageSource extends DamageSource {
 	 * Returns the message to be displayed on player death.
 	 */
 	@Override
-	public ChatMessageComponent getDeathMessage(EntityLivingBase living) {
+	public ChatComponentText getDeathMessage(EntityLivingBase living) {
 		String name="";
 		if(living instanceof EntityPlayer)name=((EntityPlayer)living).username;
-			return ChatMessageComponent.createFromText(name + deathMessage);
+			return new ChatComponentText(name + deathMessage);
 	}
 }

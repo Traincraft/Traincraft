@@ -11,12 +11,12 @@ import java.util.ArrayList;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.model.ModelBiped;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.EnumArmorMaterial;
+import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
@@ -24,7 +24,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.ForgeSubscribe;
@@ -41,8 +41,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemTCCompositeSuit extends ItemTCArmor {
 	/** The EnumArmorMaterial used for this ItemArmor */
-	private final EnumArmorMaterial material;
-	public ItemTCCompositeSuit(int par1, EnumArmorMaterial material, int par3, int par4, int color) {
+	private final ArmorMaterial material;
+	public ItemTCCompositeSuit(int par1, ArmorMaterial material, int par3, int par4, int color) {
 		super(par1, material, par3, par4,color);
 		this.material = material;
 		setCreativeTab(Traincraft.tcTab);

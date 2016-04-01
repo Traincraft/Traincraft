@@ -7,13 +7,13 @@
 
 package src.train.common.items;
 
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
-import net.minecraft.item.EnumArmorMaterial;
+import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import src.train.common.Traincraft;
 import src.train.common.library.Info;
 import src.train.common.library.ItemIDs;
@@ -22,12 +22,12 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemTCArmor extends ItemArmor {
 	/** The EnumArmorMaterial used for this ItemArmor */
-	private final EnumArmorMaterial material;
+	private final ArmorMaterial material;
 	public int color;
-	private Icon iconOverlay;
+	private IIcon iconOverlay;
 	public int updateTicks=0;
 	
-	public ItemTCArmor(int par1, EnumArmorMaterial material, int par3, int par4, int color) {
+	public ItemTCArmor(int par1, ArmorMaterial material, int par3, int par4, int color) {
 		super(par1, material, par3, par4);
 		this.material = material;
 		setCreativeTab(Traincraft.tcTab);
@@ -120,7 +120,7 @@ public class ItemTCArmor extends ItemArmor {
 	}
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IconRegister iconRegister) {
+	public void registerIcons(IIconRegister iconRegister) {
 		this.itemIcon = iconRegister.registerIcon(Info.modID.toLowerCase() + ":armour/" + ItemIDs.getIcon(this.itemID));
 		if(color!=0){
 			this.iconOverlay = iconRegister.registerIcon(Info.modID.toLowerCase() + ":armour/" + ItemIDs.getIcon(this.itemID) + "_overlay");

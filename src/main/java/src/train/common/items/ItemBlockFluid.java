@@ -5,13 +5,13 @@ import java.util.List;
 import src.train.common.blocks.BlockTraincraftFluid;
 
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidBase;
 import cpw.mods.fml.relauncher.Side;
@@ -19,7 +19,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemBlockFluid extends ItemBlock {
 	@SideOnly(Side.CLIENT)
-	private Icon icon;
+	private IIcon icon;
 	
 	private BlockTraincraftFluid fluid;
 	private int id;
@@ -32,7 +32,7 @@ public class ItemBlockFluid extends ItemBlock {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IconRegister icon) {
+	public void registerIcons(IIconRegister icon) {
 		String s = ((Block) fluid).getItemIconName();
 		if (s != null) {
 			this.icon = icon.registerIcon(s);

@@ -6,7 +6,7 @@ import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.api.carts.IMinecart;
 import mods.railcraft.api.core.items.IMinecartItem;
 import net.minecraft.block.BlockRailBase;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
@@ -404,7 +404,7 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IconRegister iconRegister) {
+	public void registerIcons(IIconRegister iconRegister) {
 		this.itemIcon = iconRegister.registerIcon(Info.modID.toLowerCase() + ":trains/" + ItemIDs.getIcon(this.itemID));
 	}
 }

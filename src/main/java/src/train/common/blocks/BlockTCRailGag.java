@@ -5,11 +5,11 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import src.train.common.Traincraft;
@@ -21,7 +21,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockTCRailGag extends Block {
-	private Icon texture;
+	private IIcon texture;
 	float f = 0.125F;
 
 	public BlockTCRailGag(int id) {
@@ -122,12 +122,12 @@ public class BlockTCRailGag extends Block {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IconRegister iconRegister) {
+	public void registerIcons(IIconRegister iconRegister) {
 		texture = iconRegister.registerIcon(Info.modID.toLowerCase() + ":tracks/rail_normal_turned");
 	}
 
 	@Override
-	public Icon getIcon(int i, int j) {
+	public IIcon getIcon(int i, int j) {
 		return texture;
 	}
 

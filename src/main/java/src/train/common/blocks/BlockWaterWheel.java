@@ -15,7 +15,7 @@ import src.train.common.tile.TileWaterWheel;
 import src.train.common.tile.TileWindMill;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -23,13 +23,13 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockWaterWheel extends Block {
-	private Icon texture;
+	private IIcon texture;
 
 	public BlockWaterWheel(int id) {
 		super(id, Material.wood);
@@ -112,12 +112,12 @@ public class BlockWaterWheel extends Block {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IconRegister iconRegister) {
+	public void registerIcons(IIconRegister iconRegister) {
 		texture = iconRegister.registerIcon(Info.modID.toLowerCase() + ":water_wheel");
 	}
 
 	@Override
-	public Icon getIcon(int i, int j) {
+	public IIcon getIcon(int i, int j) {
 		return texture;
 	}
 

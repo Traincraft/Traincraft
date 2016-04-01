@@ -15,7 +15,7 @@ import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import src.train.common.entity.rollingStock.EntityStockCar;
 import src.train.common.library.TrackIDs;
 
@@ -58,7 +58,7 @@ public class BlockMobBoardingTrack extends TrackBaseTraincraft implements ITrack
 		}
 	}
 	@Override
-	public Icon getIcon() {
+	public IIcon getIcon() {
 		if (this.delay > 0) {
 			return getIcon(1);
 		}

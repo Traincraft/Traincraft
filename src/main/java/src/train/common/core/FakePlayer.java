@@ -16,7 +16,7 @@ import net.minecraft.stats.StatBase;
 import net.minecraft.tileentity.TileEntityBrewingStand;
 import net.minecraft.tileentity.TileEntityDispenser;
 import net.minecraft.tileentity.TileEntityFurnace;
-import net.minecraft.util.ChatMessageComponent;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.FoodStats;
@@ -254,5 +254,5 @@ public class FakePlayer extends EntityPlayer {
 	}
 
 	@Override
-	public void sendChatToPlayer(ChatMessageComponent chatmessagecomponent) {}
+	public void sendChatToPlayer(ChatComponentText chatmessagecomponent) {}
 }

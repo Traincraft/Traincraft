@@ -12,15 +12,15 @@ import src.train.common.library.Info;
 import src.train.common.tile.TileLantern;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
 public class BlockLantern extends Block {
-	private Icon texture;
+	private IIcon texture;
 
 	public BlockLantern(int id) {
 		super(id, Material.rock);
@@ -86,12 +86,12 @@ public class BlockLantern extends Block {
 	}
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IconRegister iconRegister) {
+	public void registerIcons(IIconRegister iconRegister) {
 		texture = iconRegister.registerIcon(Info.modID.toLowerCase() + ":lantern");
 	}
 
 	@Override
-	public Icon getIcon(int i, int j) {
+	public IIcon getIcon(int i, int j) {
 		return texture;
 	}
 }

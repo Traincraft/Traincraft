@@ -11,7 +11,7 @@ import java.io.IOException;
 
 import mods.railcraft.api.tracks.ITrackEmitter;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import src.train.common.library.TrackIDs;
 
 public class BlockDetectorTrack extends TrackBaseTraincraft implements ITrackEmitter {
@@ -33,7 +33,7 @@ public class BlockDetectorTrack extends TrackBaseTraincraft implements ITrackEmi
 		}
 	}
 	@Override
-	public Icon getIcon() {
+	public IIcon getIcon() {
 		if (this.delay > 0) {
 			return getIcon(1);
 		}

@@ -5,9 +5,9 @@ import java.util.Map;
 
 import src.train.common.library.TrackIDs;
 
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 
 import mods.railcraft.api.core.ITextureLoader;
 import mods.railcraft.api.tracks.ITrackItemIconProvider;
@@ -18,20 +18,20 @@ public class TrackTextureLoader implements ITextureLoader, ITrackItemIconProvide
 	public final Map textures = new HashMap();
 	//public final Map itemIcon = new HashMap();
 	@Override
-	public void registerIcons(IconRegister iconRegister) {
+	public void registerIcons(IIconRegister iconRegister) {
 		for (TrackIDs track : TrackIDs.values()) {
-			Icon[] icons = SheetTextureStitched.unstitchIcons(iconRegister, track.getTextureTag(), track.getNumIcons());
+			IIcon[] icons = SheetTextureStitched.unstitchIcons(iconRegister, track.getTextureTag(), track.getNumIcons());
 			this.textures.put(track.getTrackSpec(), icons);
 			//this.itemIcon.put(track.getTrackSpec(), icons[track.getNumIcons()]);
 		}
 	}
 	@Override
-	public Icon getTrackItemIcon(TrackSpec spec) {
+	public IIcon getTrackItemIcon(TrackSpec spec) {
 		return getTrackIcons(spec)[0];
 	}
 
-	public Icon[] getTrackIcons(TrackSpec spec) {
-		return (Icon[]) this.textures.get(spec);
+	public IIcon[] getTrackIcons(TrackSpec spec) {
+		return (IIcon[]) this.textures.get(spec);
 	}
 
 }

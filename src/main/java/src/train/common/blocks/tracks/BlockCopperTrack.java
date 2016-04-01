@@ -3,7 +3,7 @@
  */
 package src.train.common.blocks.tracks;
 
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import src.train.common.library.TrackIDs;
 
 public class BlockCopperTrack extends TrackBaseTraincraft {
@@ -16,7 +16,7 @@ public class BlockCopperTrack extends TrackBaseTraincraft {
 		return TrackIDs.COPPER_TRACK;
 	}
 	@Override
-	public Icon getIcon() {
+	public IIcon getIcon() {
 		int meta = this.tileEntity.getBlockMetadata();
 		if (meta >= 6) {
 			return getIcon(1);

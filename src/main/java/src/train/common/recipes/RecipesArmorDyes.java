@@ -9,7 +9,7 @@ import net.minecraft.block.BlockColored;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryCrafting;
-import net.minecraft.item.EnumArmorMaterial;
+import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;

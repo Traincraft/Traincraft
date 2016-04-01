@@ -12,7 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.packet.Packet3Chat;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.ChatMessageComponent;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.ChunkCoordIntPair;
 import net.minecraft.world.World;
@@ -239,7 +239,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 				if (chunkTicket == null) {
 					if (playerEntity != null && !this.chunkLoadErrorDisplayed) {
 						chunkLoadErrorDisplayed = true;
-						PacketDispatcher.sendPacketToPlayer(new Packet3Chat(ChatMessageComponent.createFromText(String.format("[TRAINCRAFT] The locomotive at %d, %d, %d will not load chunk because there are no more chunkloaders available", (int)posX, (int)posY, (int)posZ))), (Player) playerEntity);
+						PacketDispatcher.sendPacketToPlayer(new Packet3Chat(new ChatComponentText(String.format("[TRAINCRAFT] The locomotive at %d, %d, %d will not load chunk because there are no more chunkloaders available", (int)posX, (int)posY, (int)posZ))), (Player) playerEntity);
 					}
 					chunkForced = false;
 				}
@@ -315,7 +315,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		if (this.playerEntity != null && !this.chunkLoadMsgDisplayed) {
 			this.chunkLoadMsgDisplayed = true;
 			PacketDispatcher.sendPacketToPlayer(
-					new Packet3Chat(ChatMessageComponent.createFromText(String.format("[TRAINCRAFT] The locomotive at %d %d %d will keep chunks loaded for herself and %d carts", (int)posX, (int)posY, (int)posZ, chunks.size()-1))),
+					new Packet3Chat(new ChatComponentText(String.format("[TRAINCRAFT] The locomotive at %d %d %d will keep chunks loaded for herself and %d carts", (int)posX, (int)posY, (int)posZ, chunks.size()-1))),
 					(Player) this.playerEntity);
 		}
 		oldChunkCoordX = this.chunkCoordX;

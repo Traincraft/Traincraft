@@ -15,7 +15,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import src.train.common.api.*;
 
 public class BlockStationTrack extends BlockTrackLockingBase implements ITrackLockdown,ITrackPowered{
@@ -29,7 +29,7 @@ public class BlockStationTrack extends BlockTrackLockingBase implements ITrackLo
 	private int mode = 0;
 	
 	@Override
-	public Icon getIcon() {
+	public IIcon getIcon() {
 		//System.out.println(delay);
 		if ((this.delay > 0)) {
 			return getIcon(4+this.mode);

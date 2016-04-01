@@ -11,18 +11,18 @@ import java.util.Random;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 import src.train.common.Traincraft;
 import src.train.common.library.BlockIDs;
 import src.train.common.library.GuiIDs;
@@ -38,12 +38,12 @@ public class BlockOpenHearthFurnace extends BlockContainer {
 	private static boolean keepFurnaceInventory = false;
 	private Random furnaceRand;
 
-	private Icon textureTop_off;
-	private Icon textureTop_on;
-	private Icon textureBottom;
-	private Icon textureFront_off;
-	private Icon textureFront_on;
-	private Icon textureSide;
+	private IIcon textureTop_off;
+	private IIcon textureTop_on;
+	private IIcon textureBottom;
+	private IIcon textureFront_off;
+	private IIcon textureFront_on;
+	private IIcon textureSide;
 
 	protected BlockOpenHearthFurnace(int par1, int par2, boolean active) {
 		super(par1, Material.rock);
@@ -94,7 +94,7 @@ public class BlockOpenHearthFurnace extends BlockContainer {
 	}
 
 	@Override
-	public Icon getBlockTexture(IBlockAccess worldAccess, int i, int j, int k, int side) {
+	public IIcon getBlockTexture(IBlockAccess worldAccess, int i, int j, int k, int side) {
 		if (((TileEntityOpenHearthFurnace) worldAccess.getBlockTileEntity(i, j, k)).getFacing() != null) {
 			side = TileHelper.getOrientationFromSide(((TileEntityOpenHearthFurnace) worldAccess.getBlockTileEntity(i, j, k)).getFacing(), ForgeDirection.getOrientation(side)).ordinal();
 		}
@@ -198,7 +198,7 @@ public class BlockOpenHearthFurnace extends BlockContainer {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IconRegister iconRegister) {
+	public void registerIcons(IIconRegister iconRegister) {
 		textureTop_off = iconRegister.registerIcon(Info.modID.toLowerCase() + ":furnace_off_top");
 		textureTop_on = iconRegister.registerIcon(Info.modID.toLowerCase() + ":furnace_on_top");
 		textureBottom = iconRegister.registerIcon(Info.modID.toLowerCase() + ":furnace_bottom");

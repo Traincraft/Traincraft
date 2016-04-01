@@ -18,8 +18,8 @@ import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.Icon;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraft.util.IIcon;
+import net.minecraftforge.common.util.ForgeDirection;
 import src.train.common.api.ElectricTrain;
 import src.train.common.api.EntityRollingStock;
 import src.train.common.core.handlers.EnergyNetHandler;
@@ -75,7 +75,7 @@ public class BlockEnergyTrack extends TrackBaseTraincraft implements ITrackPower
 	}
 
 	@Override
-	public Icon getIcon() {
+	public IIcon getIcon() {
 		int meta = this.tileEntity.getBlockMetadata();
 		if (meta >= 6) {
 			if (energy > 0)

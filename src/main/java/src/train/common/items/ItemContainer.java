@@ -12,7 +12,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import src.train.common.Traincraft;
 import src.train.common.library.Info;
 import src.train.common.library.ItemIDs;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -26,7 +26,7 @@ public class ItemContainer extends Item {
 	
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IconRegister iconRegister) {
+	public void registerIcons(IIconRegister iconRegister) {
 		this.itemIcon = iconRegister.registerIcon(Info.modID.toLowerCase() + ":parts/" + ItemIDs.getIcon(this.itemID));
 	}
 	
