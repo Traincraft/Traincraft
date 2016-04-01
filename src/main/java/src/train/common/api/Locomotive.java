@@ -600,11 +600,8 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 					this.setDead();
 				}
 				if (!worldObj.isRemote && FMLCommonHandler.instance().getMinecraftServerInstance() != null && this.lastEntityRider != null && this.lastEntityRider instanceof EntityPlayer) {
-<<<<<<< HEAD
 					FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().sendChatMsg(new ChatComponentText(((EntityPlayer) this.lastEntityRider).getDisplayName() + " blew " + this.trainOwner + "'s locomotive"));
-=======
-					FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().sendChatMsg(new ChatComponentText(((EntityPlayer) this.lastEntityRider).username + " blew " + this.trainOwner + "'s locomotive"));
->>>>>>> origin/1.7
+					FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().sendChatMsg(new ChatComponentText(((EntityPlayer) this.lastEntityRider).getDisplayName() + " blew " + this.trainOwner + "'s locomotive"));
 				}
 				if (!worldObj.isRemote) statsEventHandler.trainExplode(this.uniqueID, this.trainName, this.trainType, this.trainCreator, new String((int) posX + ";" + (int) posY + ";" + (int) posZ));
 				// if (!worldObj.isRemote)PacketHandler.sendPacketToClients(PacketHandler.sendStatsToServer(7,this.uniqueID, this.trainName, this.trainType, this.trainOwner,"", (int) posX, (int) posY, (int) posZ),this.worldObj, (int)posX,(int)posY,(int)posZ, 12.0D);
@@ -629,11 +626,8 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 			//System.out.println();
 			if (this.worldObj.handleMaterialAcceleration(this.boundingBox.expand(0.0D, -0.2000000059604645D, 0.0D).contract(0.001D, 0.001D, 0.001D), Material.water, this) && this.updateTicks % 4 == 0) {
 				if (!hasDrowned && !worldObj.isRemote && FMLCommonHandler.instance().getMinecraftServerInstance() != null && this.lastEntityRider != null && this.lastEntityRider instanceof EntityPlayer) {
-<<<<<<< HEAD
 					FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().sendChatMsg(new ChatComponentText(((EntityPlayer) this.lastEntityRider).getDisplayName() + " drowned " + this.trainOwner + "'s locomotive"));
-=======
-					FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().sendChatMsg(new ChatComponentText(((EntityPlayer) this.lastEntityRider).username + " drowned " + this.trainOwner + "'s locomotive"));
->>>>>>> origin/1.7
+					FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().sendChatMsg(new ChatComponentText(((EntityPlayer) this.lastEntityRider).getDisplayName() + " drowned " + this.trainOwner + "'s locomotive"));
 				}
 				//this.attackEntityFrom(DamageSource.generic, 100);
 				((Locomotive) this).setCustomSpeed(0);// set speed to normal
