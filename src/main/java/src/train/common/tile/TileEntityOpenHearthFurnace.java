@@ -10,7 +10,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.network.packet.Packet;
+import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -93,7 +93,7 @@ public class TileEntityOpenHearthFurnace extends TileEntity implements IInventor
 	}
 
 	@Override
-	public String getInvName() {
+	public String getInventoryName() {
 		return "Open Hearth Furnace";
 	}
 
@@ -289,26 +289,26 @@ public class TileEntityOpenHearthFurnace extends TileEntity implements IInventor
 		if (it == null) {
 			return 0;
 		}
-		int var1 = it.getItem().itemID;
+		Item var1 = it.getItem();
 		if (var1 < 256 && Block.blocksList[var1].blockMaterial == Material.wood)
 			return 300;
-		if (var1 == Item.stick.itemID)
+		else if (var1 == Item.itemRegistry.getObject("stick"))
 			return 100;
-		if (var1 == Item.coal.itemID)
+		else if (var1 == Item.itemRegistry.getObject("coal"))
 			return 2600;
-		if (var1 == Item.bucketLava.itemID)
+		else if (var1 == Item.itemRegistry.getObject("bucketLava"))
 			return 20000;
-		if (var1 == Block.sapling.blockID)
+		else if (var1 == Block.sapling.blockID)
 			return 100;
-		if (var1 == Item.blazeRod.itemID)
+		else if (var1 == Item.itemRegistry.getObject("blazeRod"))
 			return 2500;
-		if (var1 == BlockIDs.oreTC.blockID && it.getItemDamage() == 1)
+		else if (var1 == BlockIDs.oreTC.blockID && it.getItemDamage() == 1)
 			return 2500;
-		if (var1 == BlockIDs.oreTC.blockID && it.getItemDamage() == 2)
+		else if (var1 == BlockIDs.oreTC.blockID && it.getItemDamage() == 2)
 			return 2500;
-		if (var1 == ItemIDs.diesel.itemID)
+		else if (var1 == ItemIDs.diesel.itemID)
 			return 4000;
-		if (var1 == ItemIDs.refinedFuel.itemID)
+		else if (var1 == ItemIDs.refinedFuel.itemID)
 			return 6000;
 		int ret = GameRegistry.getFuelValue(it);
 		return ret;
@@ -320,7 +320,7 @@ public class TileEntityOpenHearthFurnace extends TileEntity implements IInventor
 		if (worldObj == null) {
 			return true;
 		}
-		if (worldObj.getBlockTileEntity(xCoord, yCoord, zCoord) != this) {
+		if (worldObj.getTileEntity(xCoord, yCoord, zCoord) != this) {
 			return false;
 		}
 		return entityplayer.getDistanceSq(xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D) <= 64D;
@@ -336,10 +336,10 @@ public class TileEntityOpenHearthFurnace extends TileEntity implements IInventor
 	}
 
 	@Override
-	public void openChest() {}
+	public void openInventory() {}
 
 	@Override
-	public void closeChest() {}
+	public void closeInventory() {}
 
 	@Override
 	public Packet getDescriptionPacket() {
@@ -353,7 +353,7 @@ public class TileEntityOpenHearthFurnace extends TileEntity implements IInventor
 	}
 
 	@Override
-	public boolean isInvNameLocalized() {
+	public boolean hasCustomInventoryName() {
 		return false;
 	}
 

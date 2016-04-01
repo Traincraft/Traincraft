@@ -10,7 +10,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.packet.Packet3Chat;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
@@ -30,8 +29,6 @@ import src.train.common.items.ItemRollingStock;
 import src.train.common.library.EnumTrains;
 import buildcraft.api.tools.IToolWrench;
 import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.network.PacketDispatcher;
-import cpw.mods.fml.common.network.Player;
 
 public abstract class AbstractTrains extends EntityMinecart implements IMinecart, IRoutableCart {
 
@@ -174,7 +171,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 					}
 				}
 				this.setSize((float) trainSpec.getWidth(), (float) trainSpec.getHeight());
-				this.entityName = trainSpec.getInternalName();
+				this.setMinecartName(trainSpec.name());
 			}
 		}
 	}
@@ -239,12 +236,12 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 				if (chunkTicket == null) {
 					if (playerEntity != null && !this.chunkLoadErrorDisplayed) {
 						chunkLoadErrorDisplayed = true;
-						PacketDispatcher.sendPacketToPlayer(new Packet3Chat(new ChatComponentText(String.format("[TRAINCRAFT] The locomotive at %d, %d, %d will not load chunk because there are no more chunkloaders available", (int)posX, (int)posY, (int)posZ))), (Player) playerEntity);
+						FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().sendChatMsg(new ChatComponentText(String.format("[TRAINCRAFT] The locomotive at %d, %d, %d will not load chunk because there are no more chunkloaders available", (int)posX, (int)posY, (int)posZ)));
 					}
 					chunkForced = false;
 				}
 				else if(!chunkForced){
-					chunkTicket.getModData().setInteger("locoID", this.entityId);
+					chunkTicket.getModData().setInteger("locoID", this.ID);
 					ForgeChunkManager.forceChunk(chunkTicket, new ChunkCoordIntPair((int) posX >> 4, (int) posZ >> 4));
 					forceChunkLoading(chunkTicket);
 					chunkForced = true;
@@ -314,9 +311,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		}
 		if (this.playerEntity != null && !this.chunkLoadMsgDisplayed) {
 			this.chunkLoadMsgDisplayed = true;
-			PacketDispatcher.sendPacketToPlayer(
-					new Packet3Chat(new ChatComponentText(String.format("[TRAINCRAFT] The locomotive at %d %d %d will keep chunks loaded for herself and %d carts", (int)posX, (int)posY, (int)posZ, chunks.size()-1))),
-					(Player) this.playerEntity);
+			FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().sendChatMsg(new ChatComponentText(String.format("[TRAINCRAFT] The locomotive at %d %d %d will keep chunks loaded for herself and %d carts", (int)posX, (int)posY, (int)posZ, chunks.size()-1)));
 		}
 		oldChunkCoordX = this.chunkCoordX;
 		oldChunkCoordZ = this.chunkCoordZ;
@@ -342,14 +337,14 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 				this.playerEntity = entityplayer;
 				if (getFlag(7)) {
 					this.setFlag(7, false);
-					entityplayer.addChatMessage("Stop loading chunks");
+					entityplayer.addChatMessage((new ChatComponentText("Stop loading chunks"));
 					ForgeChunkManager.releaseTicket(chunkTicket);
 					chunkForced = false;
 					chunkTicket = null;
 				}
 				else if (!getFlag(7)) {
 					this.setFlag(7, true);
-					entityplayer.addChatMessage("Start loading chunks");
+					entityplayer.addChatMessage(new ChatComponentText("Start loading chunks"));
 				}
 				itemstack.damageItem(1, entityplayer);
 				return true;
@@ -595,18 +590,18 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 	/** Locking for passengers, flat, caboose, jukebox,workcart */
 	protected boolean lockThisCart(ItemStack itemstack, EntityPlayer entityplayer) {
 		if (itemstack != null && itemstack.getItem() instanceof IToolWrench) {
-			if (entityplayer.username.toLowerCase().equals(this.trainOwner.toLowerCase())) {
+			if (entityplayer.getDisplayName().toLowerCase().equals(this.trainOwner.toLowerCase())) {
 				if (locked) {
 					locked = false;
-					entityplayer.addChatMessage("unlocked");
+					entityplayer.addChatMessage(new ChatComponentText("unlocked"));
 				}
 				else if (!locked) {
 					locked = true;
-					entityplayer.addChatMessage("locked");
+					entityplayer.addChatMessage(new ChatComponentText("locked"));
 				}
 			}
 			else {
-				entityplayer.addChatMessage("You are not the owner!");
+				entityplayer.addChatMessage(new ChatComponentText("You are not the owner!"));
 			}
 			return true;
 		}
@@ -620,12 +615,12 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 	protected boolean canBeDestroyedByPlayer(DamageSource damagesource) {
 		if (this.getTrainLockedFromPacket()) {
 			if (damagesource.getEntity() instanceof EntityPlayer) {
-				if ((damagesource.getEntity() instanceof EntityPlayerMP) && MinecraftServer.getServer() != null && MinecraftServer.getServer().getConfigurationManager() != null && MinecraftServer.getServer().getConfigurationManager().isPlayerOpped(((EntityPlayer) damagesource.getEntity()).username) && ((EntityPlayer) damagesource.getEntity()).inventory.getCurrentItem() != null && ((EntityPlayer) damagesource.getEntity()).inventory.getCurrentItem().getItem() instanceof IToolWrench) {
+				if ((damagesource.getEntity() instanceof EntityPlayerMP) && MinecraftServer.getServer() != null && MinecraftServer.getServer().getConfigurationManager() != null && MinecraftServer.getServer().getConfigurationManager().isPlayerOpped(((EntityPlayer) damagesource.getEntity()).getDisplayName()) && ((EntityPlayer) damagesource.getEntity()).inventory.getCurrentItem() != null && ((EntityPlayer) damagesource.getEntity()).inventory.getCurrentItem().getItem() instanceof IToolWrench) {
 
-					((EntityPlayer) damagesource.getEntity()).addChatMessage("Removing the train using OP permission");
+					((EntityPlayer) damagesource.getEntity()).addChatMessage(new ChatComponentText("Removing the train using OP permission"));
 				}
-				else if (!((EntityPlayer) damagesource.getEntity()).username.toLowerCase().equals(this.trainOwner.toLowerCase())) {
-					((EntityPlayer) damagesource.getEntity()).addChatMessage("You are not the owner!");
+				else if (!((EntityPlayer) damagesource.getEntity()).getDisplayName().toLowerCase().equals(this.trainOwner.toLowerCase())) {
+					((EntityPlayer) damagesource.getEntity()).addChatMessage(new ChatComponentText("You are not the owner!"));
 					return true;
 				}
 			}

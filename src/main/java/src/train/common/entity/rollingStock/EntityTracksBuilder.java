@@ -5,7 +5,7 @@ import java.util.List;
 
 import mods.railcraft.api.tracks.RailTools;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockFluid;
+import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.BlockRailBase;
 import net.minecraft.block.BlockTorch;
 import net.minecraft.client.Minecraft;
@@ -178,18 +178,18 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 		if (worldObj.isRemote)
 			return;
 
-		tunnelBlockStack = new ItemStack(Block.glass, 1);
+		tunnelBlockStack = new ItemStack(Block.getBlockFromName("glass"), 1);
 		if (getFuel() < maxFuel) {
 			if (BuilderInvent[0] != null) {
 				if ((FuelHandler.steamFuelLast(BuilderInvent[0])>0) && getFuel() + 300 < maxFuel) {
 					fuelTrain += 300;
 					decrStackInInvent(0, 1, 1);
 				}
-				if (BuilderInvent[0] != null && PluginIndustrialCraft.getItems().containsKey(PluginIndustrialCraft.getNames()[15]) && BuilderInvent[0].itemID == PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[15]).itemID && getFuel() + 600 < maxFuel) {
+				if (BuilderInvent[0] != null && PluginIndustrialCraft.getItems().containsKey(PluginIndustrialCraft.getNames()[15]) && Item.getIdFromItem(BuilderInvent[0].getItem()) == Item.getIdFromItem(PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[15]).getItem()) && getFuel() + 600 < maxFuel) {
 					fuelTrain += 600;
 					decrStackInInvent(0, 1, 1);
 				}
-				if (BuilderInvent[0] != null && (PluginRailcraft.getItems().containsKey(PluginRailcraft.getNames()[1]) && (BuilderInvent[0].itemID == PluginRailcraft.getItems().get(PluginRailcraft.getNames()[1]).itemID)) && getFuel() + 800 < maxFuel) {
+				if (BuilderInvent[0] != null && (PluginRailcraft.getItems().containsKey(PluginRailcraft.getNames()[1]) && (Item.getIdFromItem(BuilderInvent[0].getItem()) == Item.getIdFromItem(PluginRailcraft.getItems().get(PluginRailcraft.getNames()[1]).getItem()))) && getFuel() + 800 < maxFuel) {
 					fuelTrain += 800;
 					decrStackInInvent(0, 1, 1);
 				}
@@ -314,7 +314,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 	}
 
 	@Override
-	public String getInvName() {
+	public String getInventoryName() {
 		return "Tracks Builder";
 	}
 
@@ -328,7 +328,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 			return true;
 		}
 
-		entityplayer.openGui(Traincraft.instance, GuiIDs.BUILDER, worldObj, this.entityId, -1, (int) this.posZ);
+		entityplayer.openGui(Traincraft.instance, GuiIDs.BUILDER, worldObj, this.getEntityId(), -1, (int) this.posZ);
 		pushZ = (posZ - entityplayer.posZ);
 		pushX = (posX - entityplayer.posX);
 		applyDragAndPushForces();
@@ -336,10 +336,10 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 	}
 
 	@Override
-	public void openChest() {}
+	public void openInventory() {}
 
 	@Override
-	public void closeChest() {}
+	public void closeInventory() {}
 
 	public int scaleMaxFuel(int i) {
 		return (this.getFuel() * i) / maxFuel;
@@ -488,27 +488,27 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 	}
 
 	public boolean isBlockInteresting(ItemStack i) {
-		int blockNow = i.itemID;
+		Item blockNow = i.getItem();
 		boolean is = false;
-		if (blockNow == Item.diamond.itemID) {
+		if (blockNow == Item.itemRegistry.getObject("diamond")) {
 			is = true;
 		}
-		else if (blockNow == Item.ingotGold.itemID) {
+		else if (blockNow == Item.itemRegistry.getObject("ingotGold")) {
 			is = true;
 		}
-		else if (blockNow == Item.ingotIron.itemID) {
+		else if (blockNow == Item.itemRegistry.getObject("ingotIron")) {
 			is = true;
 		}
-		else if (blockNow == Item.dyePowder.itemID) {
+		else if (blockNow == Item.itemRegistry.getObject("dyePowder")) {
 			is = true;
 		}
-		else if (blockNow == Item.coal.itemID) {
+		else if (blockNow == Item.itemRegistry.getObject("coal")) {
 			is = true;
 		}
-		else if (blockNow == Item.redstone.itemID) {
+		else if (blockNow == Item.itemRegistry.getObject("redstone")) {
 			is = true;
 		}
-		else if (BuilderOreHandler.isOre(blockNow)) {
+		else if (BuilderOreHandler.isOre(Item.getIdFromItem(blockNow))) {
 			is = true;
 		}
 		else {
@@ -623,7 +623,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 
 	/* Is it a cable from industrial craft 2? */
 	private boolean isCableOrPipe(ItemStack i) {
-		return i.itemID == PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[45]).itemID || i.itemID == PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[33]).itemID || i.itemID == PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[36]).itemID || i.itemID == PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[35]).itemID || i.itemID == PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[37]).itemID || i.itemID == PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[38]).itemID || i.itemID == PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[39]).itemID || i.itemID == PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[40]).itemID || i.itemID == PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[41]).itemID || i.itemID == PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[42]).itemID || i.itemID == PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[43]).itemID || i.getItem().getClass().getSimpleName().equals("ItemPipe");
+		return Item.getIdFromItem(i.getItem()) == Item.getIdFromItem(PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[45]).getItem()) || Item.getIdFromItem(i.getItem()) == Item.getIdFromItem(PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[33]).getItem()) || Item.getIdFromItem(i.getItem()) == Item.getIdFromItem(PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[36]).getItem()) || i.itemID == PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[35]).itemID || i.itemID == PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[37]).itemID || Item.getIdFromItem(i.getItem()) == Item.getIdFromItem(PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[38]).getItem()) || Item.getIdFromItem(i.getItem()) == Item.getIdFromItem(PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[39]).getItem()) || Item.getIdFromItem(i.getItem()) == Item.getIdFromItem(PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[40]).getItem()) || Item.getIdFromItem(i.getItem()) == Item.getIdFromItem(PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[41]).getItem()) || Item.getIdFromItem(i.getItem()) == Item.getIdFromItem(PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[42]).getItem()) || Item.getIdFromItem(i.getItem()) == Item.getIdFromItem(PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[43]).getItem()) || i.getItem().getClass().getSimpleName().equals("ItemPipe");
 	}
 
 	private boolean isOverheadLine(int i) {
@@ -633,7 +633,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 
 	/* Is it a forbidden block? */
 	private boolean UnAuthorizedBlock(int i) {
-		return i == 57 || i == 42 || i == 41 || i == 81 || i == 56 || i == 21 || i == 16 || i == 15 || i == 14 || i == 116 || i == 114 || i == 113 || i == 111 || i == 109 || i == 108 || i == 107 || i == 106 || i == 31 || i == 30 || i == 26 || i == 18 || i == 7 || i == 6 || i == 37 || i == 38 || i == 39 || i == 40 || i == 43 || i == 51 || i == 52 || i == 53 || i == 55 || i == 57 || i == 63 || i == 64 || i == 67 || i == 68 || i == 70 || i == 71 || i == 72 || i == 77 || i == 78 || i == 81 || i == 83 || i == 92 || i == 95 || BuilderOreHandler.isOre(i) || (PluginIndustrialCraft.getItems().containsKey(PluginIndustrialCraft.getNames()[2]) && i == PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[2]).itemID) || (PluginIndustrialCraft.getItems().containsKey(PluginIndustrialCraft.getNames()[1]) && i == PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[1]).itemID) || (PluginIndustrialCraft.getItems().containsKey(PluginIndustrialCraft.getNames()[0]) && i == PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[0]).itemID);
+		return i == 57 || i == 42 || i == 41 || i == 81 || i == 56 || i == 21 || i == 16 || i == 15 || i == 14 || i == 116 || i == 114 || i == 113 || i == 111 || i == 109 || i == 108 || i == 107 || i == 106 || i == 31 || i == 30 || i == 26 || i == 18 || i == 7 || i == 6 || i == 37 || i == 38 || i == 39 || i == 40 || i == 43 || i == 51 || i == 52 || i == 53 || i == 55 || i == 57 || i == 63 || i == 64 || i == 67 || i == 68 || i == 70 || i == 71 || i == 72 || i == 77 || i == 78 || i == 81 || i == 83 || i == 92 || i == 95 || BuilderOreHandler.isOre(i) || (PluginIndustrialCraft.getItems().containsKey(PluginIndustrialCraft.getNames()[2]) && i == Item.getIdFromItem(PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[2]).getItem()) || (PluginIndustrialCraft.getItems().containsKey(PluginIndustrialCraft.getNames()[1]) && i == Item.getIdFromItem(PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[1]).getItem()) || (PluginIndustrialCraft.getItems().containsKey(PluginIndustrialCraft.getNames()[0]) && i == Item.getIdFromItem(PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[0]).getItem()))));
 	}
 
 	private void decrStackInInvent(int slot, int num, int random) {
@@ -685,16 +685,16 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 
 					if (i == 4) {
 						//upperBlock = 0;
-						upperBlockStack = new ItemStack(Block.stone);
+						upperBlockStack = new ItemStack(Block.getBlockFromName("stone"));
 
 					}
 					if (i == 5) {
 						//upperCenterBlock = 0;
-						upperCenterBlockStack = new ItemStack(Block.stone);
+						upperCenterBlockStack = new ItemStack(Block.getBlockFromName("stone"));
 					}
 					if (i == 6) {
 						//upperBlock1 = 0;
-						upperBlock1Stack = new ItemStack(Block.stone);
+						upperBlock1Stack = new ItemStack(Block.getBlockFromName("stone"));
 					}
 				}
 			}
@@ -712,7 +712,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 	private void moveStacks() {
 		if (BuilderInvent[1] == null) {
 			for (int i = 8; i <= 10; i++) {
-				if (BuilderInvent[i] != null && (RailTools.isTrackItem(BuilderInvent[i]) || BuilderInvent[i].itemID == Block.rail.blockID || (BuilderInvent[i].itemID == Block.railPowered.blockID) || (BuilderInvent[i].itemID == Block.railDetector.blockID))) {
+				if (BuilderInvent[i] != null && (RailTools.isTrackItem(BuilderInvent[i]) || Item.getIdFromItem(BuilderInvent[i].getItem()) == Block.getIdFromBlock(Block.getBlockFromName("rail")) || Item.getIdFromItem(BuilderInvent[i].getItem()) == Block.getIdFromBlock(Block.getBlockFromName("railPowered")) || (Item.getIdFromItem(BuilderInvent[i].getItem()) == Block.getIdFromBlock(Block.getBlockFromName("railDetector.blockID"))))) {
 					BuilderInvent[1] = BuilderInvent[i].copy();
 					decrStackSize(i, 64);
 					break;
@@ -751,12 +751,12 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 
 	/* Gets the drops of the block then calls blockSpawner */
 	public void getBlockList(World worldObj, int i, int j, int k) {
-		if ((worldObj.getBlockId(i, j, k) != 0)) {
+		if ((Block.getIdFromBlock(worldObj.getBlock(i, j, k)) != 0)) {
 			ArrayList<ItemStack> stacks = new ArrayList<ItemStack>(TrainModBlockUtil.getItemStackFromBlock(worldObj, (int) i, (int) j, (int) k));//underBlockStack.getItem().getMetadata(underBlockStack.getItemDamage())
 			for (ItemStack s : stacks) {
-				if((s.itemID<Block.blocksList.length && (BlockRailBase.isRailBlock(s.itemID))))return;
-				if (s.itemID != 0 && (s.itemID != Block.glass.blockID) && (s.getItem().itemID != tunnelBlockStack.getItem().itemID)) {// && (isBlockInteresting(s))) {// can't spawn rails or air blocks or glass blocks
-					if ((worldObj.getBlockId(i, j, k) != tunnelBlockStack.getItem().itemID)) {
+				if((Item.getIdFromItem(s.getItem())<Block.blocksList.length && (BlockRailBase.isRailBlock(s.getItem()))))return;
+				if (Item.getIdFromItem(s.getItem()) != 0 && (s.getItem() != Block.glass.blockID) && (Item.getIdFromItem(s.getItem())) != Item.getIdFromItem(tunnelBlockStack.getItem())) {// && (isBlockInteresting(s))) {// can't spawn rails or air blocks or glass blocks
+					if ((Block.getIdFromBlock(worldObj.getBlock(i, j, k)) != Item.getIdFromItem(tunnelBlockStack.getItem()))) {
 						putInInvent(s);
 					}
 				}
@@ -773,7 +773,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 		if (pos == null) {
 			return;
 		}
-		int id = worldObj.getBlockId((int) pos.xCoord, (int) pos.yCoord, (int) pos.zCoord);
+		int id = Block.getIdFromBlock(worldObj.getBlock((int) pos.xCoord, (int) pos.yCoord, (int) pos.zCoord));
 		int meta = worldObj.getBlockMetadata((int) pos.xCoord, (int) pos.yCoord, (int) pos.zCoord);
 		if (Block.blocksList[id] != null && id != 0 && !worldObj.isRemote) {
 			this.playMiningEffect(pos, id);
@@ -814,7 +814,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 	 */
 	private void playMiningEffect(Vec3 pos, int block_index) {
 		miningTickCounter++;
-		int id = worldObj.getBlockId((int) pos.xCoord, (int) pos.yCoord, (int) pos.zCoord);
+		int id = Block.getIdFromBlock(worldObj.getBlock((int) pos.xCoord, (int) pos.yCoord, (int) pos.zCoord));
 		Block block = Block.blocksList[id];
 
 		if (!FMLCommonHandler.instance().getMinecraftServerInstance().isDedicatedServer()) {
@@ -850,10 +850,10 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 	}
 
 	public void putRoof(int i, int j, int k, int inv, World worldObj, ItemStack block) {
-		if (!tunnelActive && block != null && (worldObj.getBlockId(i, j, k) != block.itemID)) {
+		if (!tunnelActive && block != null && (Block.getIdFromBlock(worldObj.getBlock(i, j, k)) != Item.getIdFromItem(block.getItem()))) {
 			// worldObj.getBlockId(i-1,j+3,k) == Block.dirt.blockID || worldObj.getBlockId(i-1,j+3,k) == 8 || worldObj.getBlockId(i-1,j+3,k) == 9 || worldObj.getBlockId(i-1,j+3,k) == 10 || worldObj.getBlockId(i-1,j+3,k) == 11 || worldObj.getBlockId(i-1,j+3,k) == 12 || worldObj.getBlockId(i-1,j+3,k) == 13 || worldObj.getBlockId(i-1,j+3,k) == 1){
 			getBlockList(worldObj, i, j, k);
-			worldObj.setBlock(i, j, k, block.itemID, block.getItem().getMetadata(block.getItemDamage()), 3);
+			worldObj.setBlock(i, j, k, Block.getBlockById(Item.getIdFromItem(block.getItem())), block.getItem().getMetadata(block.getItemDamage()), 3);
 			decrStackInInvent(inv, 1, 1);
 		}
 	}

@@ -6,12 +6,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import com.google.common.eventbus.Subscribe;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.ChunkCoordIntPair;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeChunkManager;
 import net.minecraftforge.common.ForgeChunkManager.Ticket;
-import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.EntityEvent;
 import src.train.common.api.AbstractTrains;
 import src.train.common.api.EntityBogie;
@@ -31,7 +31,7 @@ public class ChunkHandler implements ForgeChunkManager.LoadingCallback, ForgeChu
 		return instance;
 	}
 	
-	@ForgeSubscribe
+	@Subscribe
 	public void entityEnteredChunk(EntityEvent.EnteringChunk var1) {
 		Entity var2 = var1.entity;
 		//System.out.println("entered "+var2);

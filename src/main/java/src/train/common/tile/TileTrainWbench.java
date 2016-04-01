@@ -12,7 +12,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.network.packet.Packet;
+import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 import src.train.common.core.handlers.PacketHandler;
@@ -25,6 +25,25 @@ public class TileTrainWbench extends TileEntity implements IInventory {
 
 	public TileTrainWbench() {
 		workbenchItemStacks = new ItemStack[9];
+	}
+
+	@Override
+	public void closeInventory() {
+
+	}
+
+	@Override
+	public String getInventoryName() {
+		return "TrainWorkbench";
+	}
+
+	@Override
+	public boolean hasCustomInventoryName() {
+		return false;
+	}
+
+	@Override
+	public void openInventory() {
 	}
 
 	@Override
@@ -116,17 +135,13 @@ public class TileTrainWbench extends TileEntity implements IInventory {
 		return 64;
 	}
 
-	@Override
-	public void onInventoryChanged() {
-		super.onInventoryChanged();
-	}
 
 	@Override
 	public boolean isUseableByPlayer(EntityPlayer player) {
 		if (worldObj == null) {
 			return true;
 		}
-		if (worldObj.getBlockTileEntity(xCoord, yCoord, zCoord) != this) {
+		if (worldObj.getTileEntity(xCoord, yCoord, zCoord) != this) {
 			return false;
 		}
 		return player.getDistanceSq(xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D) <= 64D;
@@ -142,28 +157,12 @@ public class TileTrainWbench extends TileEntity implements IInventory {
 	}
 
 	@Override
-	public String getInvName() {
-		return "TrainWorkbench";
-	}
-
-	@Override
-	public void openChest() {}
-
-	@Override
-	public void closeChest() {}
-
-	@Override
 	public Packet getDescriptionPacket() {
 		return PacketHandler.getTEPClient(this);
 	}
 
 	public void handlePacketDataFromServer(byte orientation) {
 		facing = ForgeDirection.getOrientation(orientation);
-	}
-
-	@Override
-	public boolean isInvNameLocalized() {
-		return false;
 	}
 
 	@Override

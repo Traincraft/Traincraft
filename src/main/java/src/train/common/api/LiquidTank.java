@@ -2,6 +2,7 @@ package src.train.common.api;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
@@ -15,10 +16,9 @@ import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
 import net.minecraftforge.fluids.IFluidTank;
 import src.train.common.api.LiquidManager.StandardTank;
-import buildcraft.api.inventory.ISpecialInventory;
 import buildcraft.api.tools.IToolWrench;
 
-public class LiquidTank extends EntityRollingStock implements IFluidHandler, ISpecialInventory {
+public class LiquidTank extends EntityRollingStock implements IFluidHandler, ISidedInventory {
 	private FluidStack liquid;
 	private int capacity;
 	protected ItemStack cargoItems[];
@@ -96,7 +96,7 @@ public class LiquidTank extends EntityRollingStock implements IFluidHandler, ISp
 			return;
 		if (theTank != null && theTank.getFluid() != null) {
 			this.dataWatcher.updateObject(18, theTank.getFluid().amount);
-			this.dataWatcher.updateObject(4, theTank.getFluid().fluidID);
+			this.dataWatcher.updateObject(4, theTank.getFluid());
 			if (theTank.getFluid().getFluid() != null)
 				this.dataWatcher.updateObject(22, theTank.getFluid().getFluid().getName());
 			handleMass();
@@ -125,19 +125,19 @@ public class LiquidTank extends EntityRollingStock implements IFluidHandler, ISp
 			return itemstack;
 		this.update += 1;
 		if (this.update % 8 == 0 && itemstack != null) {
-			ItemStack emptyItem = itemstack.getItem().getContainerItemStack(itemstack);
+			ItemStack emptyItem = itemstack.getItem().getContainerItem(itemstack);
 			if(cargoItems[1] == null) {
 				result = LiquidManager.getInstance().processContainer(this, 0, theTank, itemstack, 0);
 			}
 			else if(emptyItem != null) {
-				if(cargoItems[1] != null && emptyItem.getItem().itemID == cargoItems[1].itemID) {
+				if(cargoItems[1] != null && emptyItem.getItem() == cargoItems[1].getItem()) {
     				if(cargoItems[1].stackSize+1 < cargoItems[1].getMaxStackSize()) {
     					result = LiquidManager.getInstance().processContainer(this, 0, theTank, itemstack, 0);
     				}
 				}
 			}
 			else {
-				if(cargoItems[1] != null && itemstack.getItem().itemID == cargoItems[1].itemID) {
+				if(cargoItems[1] != null && itemstack.getItem() == cargoItems[1].getItem()) {
     				if(cargoItems[1].stackSize+1 <= cargoItems[1].getMaxStackSize()) {
     					result = LiquidManager.getInstance().processContainer(this, 0, theTank, itemstack, 0);
     				}
@@ -148,7 +148,7 @@ public class LiquidTank extends EntityRollingStock implements IFluidHandler, ISp
 				if(cargoItems[1] == null) {
 					cargoItems[1] = result;
 				}
-				else if(cargoItems[1].getItem().itemID == result.itemID) {
+				else if(cargoItems[1].getItem() == result.getItem()) {
 					cargoItems[1].stackSize += 1;
 				}
 			}
@@ -174,7 +174,7 @@ public class LiquidTank extends EntityRollingStock implements IFluidHandler, ISp
 				cargoItems[i] = itemstack1;
 			return itemstack1.stackSize;
 		}
-		else if (cargoItems[i] != null && cargoItems[i].itemID == itemstack1.itemID && itemstack1.isStackable() && (!itemstack1.getHasSubtypes() || cargoItems[i].getItemDamage() == itemstack1.getItemDamage()) && ItemStack.areItemStackTagsEqual(cargoItems[i], itemstack1)) {
+		else if (cargoItems[i] != null && cargoItems[i].getItem() == itemstack1.getItem() && itemstack1.isStackable() && (!itemstack1.getHasSubtypes() || cargoItems[i].getItemDamage() == itemstack1.getItemDamage()) && ItemStack.areItemStackTagsEqual(cargoItems[i], itemstack1)) {
 
 			int var9 = cargoItems[i].stackSize + itemstack1.stackSize;
 			if (var9 <= itemstack1.getMaxStackSize()) {
@@ -199,7 +199,7 @@ public class LiquidTank extends EntityRollingStock implements IFluidHandler, ISp
 	 * @param from Orientation the ItemStack is offered from.
 	 * @return Amount of items used from the passed stack.
 	 */
-	@Override
+	//@Override Doesn't Override anything
 	public int addItem(ItemStack stack, boolean doAdd, ForgeDirection from) {
 		if (stack == null) {
 			return 0;
@@ -217,9 +217,24 @@ public class LiquidTank extends EntityRollingStock implements IFluidHandler, ISp
 	 * @param maxItemCount Maximum amount of items to extract (spread over all returned item stacks)
 	 * @return Array of item stacks extracted from the inventory
 	 */
-	@Override
-	public ItemStack[] extractItem(boolean doRemove, ForgeDirection from, int maxItemCount) {
+	//@Override Doesn't override anything
+	public ItemStack[] canExtractItem(boolean doRemove, ForgeDirection from, int maxItemCount) {
 		return null;
+	}
+
+	@Override
+	public boolean canExtractItem(int p_102008_1_, ItemStack p_102008_2_, int p_102008_3_) {
+		return false;
+	}
+
+	@Override
+	public int[] getAccessibleSlotsFromSide(int p_94128_1_) {
+		return new int[0];
+	}
+
+	@Override
+	public boolean canInsertItem(int p_102007_1_, ItemStack p_102007_2_, int p_102007_3_) {
+		return false;
 	}
 
 	@Override
@@ -267,18 +282,20 @@ public class LiquidTank extends EntityRollingStock implements IFluidHandler, ISp
 	}
 
 	@Override
-	public String getInvName() {
+	public void markDirty() {
+
+	}
+
+	@Override
+	public String getInventoryName() {
 		return null;
 	}
 
 	@Override
-	public void onInventoryChanged() {}
+	public void openInventory() {}
 
 	@Override
-	public void openChest() {}
-
-	@Override
-	public void closeChest() {}
+	public void closeInventory() {}
 
 	@Override
 	public int getInventoryStackLimit() {

@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.List;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockFluid;
+import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.entity.Entity;
@@ -128,42 +128,42 @@ public class TileWaterWheel extends TileEntity/*TileEntityElectrical*/ implement
 		}
 		if(!isSimulating()){
 			double dir=0;
-			Block blockXP = Block.blocksList[worldObj.getBlockId((int)xCoord+1, (int)yCoord, (int)zCoord)];
-			Block blockXN = Block.blocksList[worldObj.getBlockId((int)xCoord-1, (int)yCoord, (int)zCoord)];
-			Block blockZP = Block.blocksList[worldObj.getBlockId((int)xCoord, (int)yCoord, (int)zCoord+1)];
-			Block blockZN = Block.blocksList[worldObj.getBlockId((int)xCoord, (int)yCoord, (int)zCoord-1)];
-			Block blockTop = Block.blocksList[worldObj.getBlockId((int)xCoord, (int)yCoord+1, (int)zCoord)];
-			Block blockBottom = Block.blocksList[worldObj.getBlockId((int)xCoord, (int)yCoord-1, (int)zCoord)];
+			Block blockXP = worldObj.getBlock((int)xCoord+1, (int)yCoord, (int)zCoord);
+			Block blockXN = worldObj.getBlock((int)xCoord-1, (int)yCoord, (int)zCoord);
+			Block blockZP = worldObj.getBlock((int)xCoord, (int)yCoord, (int)zCoord+1);
+			Block blockZN = worldObj.getBlock((int)xCoord, (int)yCoord, (int)zCoord-1);
+			Block blockTop = worldObj.getBlock((int)xCoord, (int)yCoord+1, (int)zCoord);
+			Block blockBottom = worldObj.getBlock((int)xCoord, (int)yCoord-1, (int)zCoord);
 
 
-			if(blockXP instanceof BlockFluid && this.worldObj.getBlockMaterial(this.xCoord+1, this.yCoord, this.zCoord).isLiquid() && worldObj.getBlockMetadata((int)xCoord+1, (int)yCoord, (int)zCoord)!= 0){
+			if(blockXP instanceof BlockLiquid && this.worldObj.getBlock(this.xCoord+1, this.yCoord, this.zCoord).getMaterial().isLiquid() && worldObj.getBlockMetadata((int)xCoord+1, (int)yCoord, (int)zCoord)!= 0){
 				if(this.getBlockMetadata()!=2)worldObj.setBlockMetadataWithNotify((int)xCoord, (int)yCoord, (int)zCoord, 2,2);
-				blockMaterial = this.worldObj.getBlockMaterial(this.xCoord+1, this.yCoord, this.zCoord);
+				blockMaterial = this.worldObj.getBlock(this.xCoord+1, this.yCoord, this.zCoord).getMaterial();
 				dir = -1;
 				if(blockMaterial!=blockMaterial.lava)setWaterDir((int)dir);
 
-			}else if(blockXN instanceof BlockFluid && this.worldObj.getBlockMaterial(this.xCoord-1, this.yCoord, this.zCoord).isLiquid() && worldObj.getBlockMetadata((int)xCoord-1, (int)yCoord, (int)zCoord)!= 0){
+			}else if(blockXN instanceof BlockLiquid && this.worldObj.getBlock(this.xCoord-1, this.yCoord, this.zCoord).getMaterial().isLiquid() && worldObj.getBlockMetadata((int)xCoord-1, (int)yCoord, (int)zCoord)!= 0){
 				if(this.getBlockMetadata()!=0)worldObj.setBlockMetadataWithNotify((int)xCoord, (int)yCoord, (int)zCoord, 0,2);
-				blockMaterial = this.worldObj.getBlockMaterial(this.xCoord-1, this.yCoord, this.zCoord);
+				blockMaterial = this.worldObj.getBlock(this.xCoord-1, this.yCoord, this.zCoord).getMaterial();
 				dir = 1;
 				if(blockMaterial!=blockMaterial.lava)setWaterDir((int)dir);
-			}else if(blockZN instanceof BlockFluid && this.worldObj.getBlockMaterial(this.xCoord, this.yCoord, this.zCoord-1).isLiquid() && worldObj.getBlockMetadata((int)xCoord, (int)yCoord, (int)zCoord-1)!= 0){
+			}else if(blockZN instanceof BlockLiquid && this.worldObj.getBlock(this.xCoord, this.yCoord, this.zCoord-1).getMaterial().isLiquid() && worldObj.getBlockMetadata((int)xCoord, (int)yCoord, (int)zCoord-1)!= 0){
 				if(this.getBlockMetadata()!=1)worldObj.setBlockMetadataWithNotify((int)xCoord, (int)yCoord, (int)zCoord, 1,2);
-				blockMaterial = this.worldObj.getBlockMaterial(this.xCoord, this.yCoord, this.zCoord-1);
+				blockMaterial = this.worldObj.getBlock(this.xCoord, this.yCoord, this.zCoord-1).getMaterial();
 				dir = -3;
 				if(blockMaterial!=blockMaterial.lava)setWaterDir((int)dir);
-			}else if(blockZP instanceof BlockFluid && this.worldObj.getBlockMaterial(this.xCoord, this.yCoord, this.zCoord+1).isLiquid() && worldObj.getBlockMetadata((int)xCoord, (int)yCoord, (int)zCoord+1)!= 0){
+			}else if(blockZP instanceof BlockLiquid && this.worldObj.getBlock(this.xCoord, this.yCoord, this.zCoord+1).getMaterial().isLiquid() && worldObj.getBlockMetadata((int)xCoord, (int)yCoord, (int)zCoord+1)!= 0){
 				if(this.getBlockMetadata()!=3)worldObj.setBlockMetadataWithNotify((int)xCoord, (int)yCoord, (int)zCoord, 3,2);
-				blockMaterial = this.worldObj.getBlockMaterial(this.xCoord, this.yCoord, this.zCoord+1);
+				blockMaterial = this.worldObj.getBlock(this.xCoord, this.yCoord, this.zCoord+1).getMaterial();
 				dir = 0;
 				if(blockMaterial!=blockMaterial.lava)setWaterDir((int)dir);
-			}else if(blockTop instanceof BlockFluid && this.worldObj.getBlockMaterial(this.xCoord, this.yCoord+1, this.zCoord).isLiquid()&&worldObj.getBlockMetadata((int)xCoord, (int)yCoord+1, (int)zCoord)!= 0){
-				blockMaterial = this.worldObj.getBlockMaterial(this.xCoord, this.yCoord+1, this.zCoord);
-				dir = ((BlockFluid)blockTop).getFlowDirection(this.worldObj,this.xCoord, this.yCoord+1, this.zCoord,blockMaterial);
+			}else if(blockTop instanceof BlockLiquid && this.worldObj.getBlock(this.xCoord, this.yCoord+1, this.zCoord).getMaterial().isLiquid()&&worldObj.getBlockMetadata((int)xCoord, (int)yCoord+1, (int)zCoord)!= 0){
+				blockMaterial = this.worldObj.getBlock(this.xCoord, this.yCoord+1, this.zCoord).getMaterial();
+				dir = ((BlockLiquid)blockTop).getFlowDirection(this.worldObj,this.xCoord, this.yCoord+1, this.zCoord,blockMaterial);
 				if(blockMaterial!=blockMaterial.lava)setWaterDir((int)dir);
-			}else if(blockBottom instanceof BlockFluid && this.worldObj.getBlockMaterial(this.xCoord, this.yCoord-1, this.zCoord).isLiquid() &&worldObj.getBlockMetadata((int)xCoord, (int)yCoord-1, (int)zCoord)!= 0){
-				blockMaterial = this.worldObj.getBlockMaterial(this.xCoord, this.yCoord-1, this.zCoord);
-				dir = ((BlockFluid)blockBottom).getFlowDirection(this.worldObj,this.xCoord, this.yCoord-1, this.zCoord,blockMaterial);
+			}else if(blockBottom instanceof BlockLiquid && this.worldObj.getBlock(this.xCoord, this.yCoord-1, this.zCoord).getMaterial().isLiquid() &&worldObj.getBlockMetadata((int)xCoord, (int)yCoord-1, (int)zCoord)!= 0){
+				blockMaterial = this.worldObj.getBlock(this.xCoord, this.yCoord-1, this.zCoord).getMaterial();
+				dir = ((BlockLiquid)blockBottom).getFlowDirection(this.worldObj,this.xCoord, this.yCoord-1, this.zCoord,blockMaterial);
 				if((int)dir == -3||(int)dir==-2){
 					dir=0;
 				}else if((int)dir == 0){

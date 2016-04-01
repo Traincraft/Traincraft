@@ -2,13 +2,11 @@ package src.train.common.core.handlers;
 
 import java.util.List;
 
-import cpw.mods.fml.common.network.PacketDispatcher;
-import cpw.mods.fml.common.network.Player;
+import ibxm.Player;
 import mods.railcraft.api.tracks.RailTools;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.network.packet.Packet3Chat;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.MathHelper;
@@ -446,7 +444,7 @@ public class LinkHandler {
 
 					EntityPlayer entityplayer = cart1.worldObj.getClosestPlayerToEntity(cart1, 20);//
 					if (entityplayer != null && byPlayer) {
-						entityplayer.addChatMessage("attached!");
+						entityplayer.addChatMessage(new ChatComponentText("attached!"));
 					}
 				}
 			}
@@ -616,9 +614,7 @@ public class LinkHandler {
 				if(cart1.worldObj!=null){
 					EntityPlayer player = cart1.worldObj.getClosestPlayer(cart1.posX, cart1.posY, cart1.posZ, 300);
 					if(player!=null){
-						PacketDispatcher.sendPacketToPlayer(
-							new Packet3Chat(new ChatComponentText(String.format("[TRAINCRAFT] The rolling stock at %d %d %d had a problem loading and has lost its link. Attached cart was too far away", (int)cart1.posX, (int)cart1.posY, (int)cart1.posZ))),
-							(Player) player);
+						player.addChatMessage(new ChatComponentText(String.format("[TRAINCRAFT] The rolling stock at %d %d %d had a problem loading and has lost its link. Attached cart was too far away", (int)cart1.posX, (int)cart1.posY, (int)cart1.posZ)));
 					}
 				}
 				

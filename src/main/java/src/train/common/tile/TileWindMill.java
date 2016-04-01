@@ -103,7 +103,7 @@ public class TileWindMill extends TileEntity implements IEnergySource {
 		 */
 		if (updateTicks % 20 == 0 && !worldObj.isRemote) {
 			if (!this.worldObj.isAirBlock(this.xCoord, this.yCoord + 1, this.zCoord)) {
-				Block block = Block.blocksList[this.worldObj.getBlockId(this.xCoord, this.yCoord + 1, this.zCoord)];
+				Block block = this.worldObj.getBlock(this.xCoord, this.yCoord + 1, this.zCoord);
 				if (block != null) {
 					ArrayList<ItemStack> stacks = new ArrayList<ItemStack>(TrainModBlockUtil.getItemStackFromBlock(worldObj, this.xCoord, this.yCoord + 1, this.zCoord));
 					for (ItemStack s : stacks) {
