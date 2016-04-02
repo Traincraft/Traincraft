@@ -155,7 +155,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 					j = itemstack.stackSize;
 				}
 				itemstack.stackSize -= j;
-				EntityItem entityitem = new EntityItem(worldObj, posX + (double) f, posY + (double) f1, posZ + (double) f2, new ItemStack(itemstack.itemID, j, itemstack.getItemDamage()));
+				EntityItem entityitem = new EntityItem(worldObj, posX + (double) f, posY + (double) f1, posZ + (double) f2, new ItemStack(itemstack.getItem(), j, itemstack.getItemDamage()));
 				float f3 = 0.05F;
 				entityitem.motionX = (float) rand.nextGaussian() * f3;
 				entityitem.motionY = (float) rand.nextGaussian() * f3 + 0.2F;
@@ -755,7 +755,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 			ArrayList<ItemStack> stacks = new ArrayList<ItemStack>(TrainModBlockUtil.getItemStackFromBlock(worldObj, (int) i, (int) j, (int) k));//underBlockStack.getItem().getMetadata(underBlockStack.getItemDamage())
 			for (ItemStack s : stacks) {
 				if((Item.getIdFromItem(s.getItem())<Block.blocksList.length && (BlockRailBase.isRailBlock(s.getItem()))))return;
-				if (Item.getIdFromItem(s.getItem()) != 0 && (s.getItem() != Block.glass.blockID) && (Item.getIdFromItem(s.getItem())) != Item.getIdFromItem(tunnelBlockStack.getItem())) {// && (isBlockInteresting(s))) {// can't spawn rails or air blocks or glass blocks
+				if (Item.getIdFromItem(s.getItem()) != 0 && (s.getItem() != Item.getItemFromBlock(Block.getBlockFromName("glass"))) && (Item.getIdFromItem(s.getItem())) != Item.getIdFromItem(tunnelBlockStack.getItem())) {// && (isBlockInteresting(s))) {// can't spawn rails or air blocks or glass blocks
 					if ((Block.getIdFromBlock(worldObj.getBlock(i, j, k)) != Item.getIdFromItem(tunnelBlockStack.getItem()))) {
 						putInInvent(s);
 					}
@@ -846,7 +846,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 	}
 
 	public boolean noRoof(int i) {
-		return i == 0 || i == 6 || i == 18 || i == 23 || i == 25 || i == 26 || i == 27 || i == 28 || i == 29 || i == 35 || i == 41 || i == 46 || i == 52 || i == 54 || i == 55 || i == 53 || i == 61 || i == 62 || i == 58 || i == 64 || i == 65 || i == 66 || i == 75 || i == 76 || i == 78 || i == 81 || i == 83 || i == 84 || i == 85 || i == 93 || i == 94 || i == 95 || i == 96 || i == 101 || i == 106 || i == 107 || i == 111 || i == 115 || i == 116 || i == 117 || i == 118 || i == 122 || i == Block.wood.blockID || BuilderOreHandler.isOre(i);
+		return i == 0 || i == 6 || i == 18 || i == 23 || i == 25 || i == 26 || i == 27 || i == 28 || i == 29 || i == 35 || i == 41 || i == 46 || i == 52 || i == 54 || i == 55 || i == 53 || i == 61 || i == 62 || i == 58 || i == 64 || i == 65 || i == 66 || i == 75 || i == 76 || i == 78 || i == 81 || i == 83 || i == 84 || i == 85 || i == 93 || i == 94 || i == 95 || i == 96 || i == 101 || i == 106 || i == 107 || i == 111 || i == 115 || i == 116 || i == 117 || i == 118 || i == 122 || i == Block.getIdFromBlock(Block.getBlockFromName("wood")) || BuilderOreHandler.isOre(i);
 	}
 
 	public void putRoof(int i, int j, int k, int inv, World worldObj, ItemStack block) {
@@ -877,24 +877,24 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 				return true;
 
 			}
-			if ((BuilderInvent[1].itemID == Item.ingotIron.itemID && getFuel() > 0)) {
+			if ((Item.getIdFromItem(BuilderInvent[1].getItem()) == Item.ingotIron.itemID && getFuel() > 0)) {
 				trackfuel = 1;
-				tracksStack = new ItemStack(Block.rail);
+				tracksStack = new ItemStack(Block.getBlockFromName("rail"));
 				return true;
 			}
 			if (BuilderInvent[1] != null && PluginIndustrialCraft.getItems().containsKey(PluginIndustrialCraft.getNames()[32]) && getFuel() > 0) {//
-				if ((BuilderInvent[1].itemID == PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[32]).itemID) && getFuel() > 0) {
+				if ((Item.getIdFromItem(BuilderInvent[1].getItem()) == Item.getIdFromItem(PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[32]).getItem())) && getFuel() > 0) {
 					trackfuel = 1;
-					tracksStack = new ItemStack(Block.rail);
+					tracksStack = new ItemStack(Block.getBlockFromName("rail"));
 					return true;
 				}
 			}
-			if ((BuilderInvent[1].itemID == ItemIDs.steel.item.itemID) && getFuel() > 0) {
+			if ((Item.getIdFromItem(BuilderInvent[1].getItem()) == Item.getIdFromItem(ItemIDs.steel.item) && getFuel() > 0) {
 				trackfuel = 1;
-				tracksStack = new ItemStack(Block.rail);
+				tracksStack = new ItemStack(Block.getBlockFromName("rail"));
 				return true;
 			}
-			if ((BuilderInvent[1].itemID == Block.rail.blockID) || (BuilderInvent[1].itemID == Block.railPowered.blockID) || (BuilderInvent[1].itemID == Block.railDetector.blockID)) {
+			if ((Item.getIdFromItem(BuilderInvent[1].getItem()) == Block.getIdFromBlock(Block.getBlockFromName("rail"))) || (Item.getIdFromItem(BuilderInvent[1].getItem()) == Block.getIdFromBlock(Block.getBlockFromName("railPowered"))) || (Item.getIdFromItem(BuilderInvent[1].getItem()) == Block.getIdFromBlock(Block.getBlockFromName("railDetector")))) {
 				if (getFuel() > 0) {
 					tracksStack = BuilderInvent[1].copy();
 					trackfuel = 1;
@@ -968,7 +968,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 			return true;
 		}
 		else {
-			int var5 = par1World.getBlockId(par2, par3, par4);
+			int var5 = Block.getIdFromBlock(par1World.getBlock(par2, par3, par4));
 			return (Block.blocksList[var5] != null && Block.blocksList[var5].canPlaceTorchOnTop(par1World, par2, par3, par4));
 		}
 	}
@@ -989,7 +989,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 		}
 		else {
 			//worldObj.setBlockMetadataWithNotify(i + d, j+ hY, k - 1, 0);
-			vec = Vec3.fakePool.getVecFromPool(i + d, j + hY, k - 1);
+			vec = Vec3.createVectorHelper(i + d, j + hY, k - 1);
 			this.harvestBlock_do(vec);
 		}
 
@@ -997,7 +997,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 		}
 		else {
 			//worldObj.setBlockMetadataWithNotify(i + d, j+ hY, k + 1, 0);
-			vec = Vec3.fakePool.getVecFromPool(i + d, j + hY, k + 1);
+			vec = Vec3.createVectorHelper(i + d, j + hY, k + 1);
 			this.harvestBlock_do(vec);
 		}
 
@@ -1005,21 +1005,21 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 		}
 		else {
 			//worldObj.setBlockMetadataWithNotify(i + d, j+ hY, k, 0);
-			vec = Vec3.fakePool.getVecFromPool(i + d, j + hY, k);
+			vec = Vec3.createVectorHelper(i + d, j + hY, k);
 			this.harvestBlock_do(vec);
 		}
 
-		vec = Vec3.fakePool.getVecFromPool(i + d, j + hY + 1, k);
+		vec = Vec3.createVectorHelper(i + d, j + hY + 1, k);
 		this.harvestBlock_do(vec);
-		vec = Vec3.fakePool.getVecFromPool(i + d, j + hY + 2, k);
+		vec = Vec3.createVectorHelper(i + d, j + hY + 2, k);
 		this.harvestBlock_do(vec);
-		vec = Vec3.fakePool.getVecFromPool(i + d, j + hY + 1, k - 1);
+		vec = Vec3.createVectorHelper(i + d, j + hY + 1, k - 1);
 		this.harvestBlock_do(vec);
-		vec = Vec3.fakePool.getVecFromPool(i + d, j + hY + 2, k + 1);
+		vec = Vec3.createVectorHelper(i + d, j + hY + 2, k + 1);
 		this.harvestBlock_do(vec);
-		vec = Vec3.fakePool.getVecFromPool(i + d, j + hY + 1, k + 1);
+		vec = Vec3.createVectorHelper(i + d, j + hY + 1, k + 1);
 		this.harvestBlock_do(vec);
-		vec = Vec3.fakePool.getVecFromPool(i + d, j + hY + 2, k - 1);
+		vec = Vec3.createVectorHelper(i + d, j + hY + 2, k - 1);
 		this.harvestBlock_do(vec);
 
 		if (tunnelActive) {// puts dirt then glass (default) in a tunnel shape for underwater tunnel
@@ -1079,27 +1079,27 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 			getBlockList(worldObj, i + 2 * iX, j + hY + 4, k - 2);
 			worldObj.setBlockToAir(i + 2 * iX, j + hY + 4, k - 2);
 
-			worldObj.setBlock(i + (2 * iX), j + hY + 3, k, Block.glass.blockID);
-			worldObj.setBlock(i + (2 * iX), j + hY + 1, k, Block.glass.blockID);
-			worldObj.setBlock(i + (2 * iX), j + hY + 2, k, Block.glass.blockID);
-			worldObj.setBlock(i + (2 * iX), j + hY + 1, k - 1, Block.glass.blockID);
-			worldObj.setBlock(i + (2 * iX), j + hY + 1, k + 1, Block.glass.blockID);
-			worldObj.setBlock(i + (2 * iX), j + hY + 2, k + 1, Block.glass.blockID);
-			worldObj.setBlock(i + (2 * iX), j + hY + 2, k - 1, Block.glass.blockID);
+			worldObj.setBlock(i + (2 * iX), j + hY + 3, k, Block.getBlockFromName("glass"));
+			worldObj.setBlock(i + (2 * iX), j + hY + 1, k, Block.getBlockFromName("glass"));
+			worldObj.setBlock(i + (2 * iX), j + hY + 2, k, Block.getBlockFromName("glass"));
+			worldObj.setBlock(i + (2 * iX), j + hY + 1, k - 1, Block.getBlockFromName("glass"));
+			worldObj.setBlock(i + (2 * iX), j + hY + 1, k + 1, Block.getBlockFromName("glass"));
+			worldObj.setBlock(i + (2 * iX), j + hY + 2, k + 1, Block.getBlockFromName("glass"));
+			worldObj.setBlock(i + (2 * iX), j + hY + 2, k - 1, Block.getBlockFromName("glass"));
 
-			worldObj.setBlock(i + (2 * iX), j + hY + 3, k + 1, Block.glass.blockID);
-			worldObj.setBlock(i + (2 * iX), j + hY + 3, k - 1, Block.glass.blockID);
+			worldObj.setBlock(i + (2 * iX), j + hY + 3, k + 1, Block.getBlockFromName("glass"));
+			worldObj.setBlock(i + (2 * iX), j + hY + 3, k - 1, Block.getBlockFromName("glass"));
 			worldObj.setBlock(i + (2 * iX), j + hY + 3, k + 2, tunnelBlockStack.getItem().itemID, tunnelBlockStack.getItem().getMetadata(tunnelBlockStack.getItemDamage()), 3);
 			worldObj.setBlock(i + (2 * iX), j + hY + 3, k - 2, tunnelBlockStack.getItem().itemID, tunnelBlockStack.getItem().getMetadata(tunnelBlockStack.getItemDamage()), 3);
-			worldObj.setBlock(i + (2 * iX), j + hY + 2, k + 2, Block.glass.blockID);
-			worldObj.setBlock(i + (2 * iX), j + hY + 2, k - 2, Block.glass.blockID);
-			worldObj.setBlock(i + (2 * iX), j + hY + 1, k + 2, Block.glass.blockID);
-			worldObj.setBlock(i + (2 * iX), j + hY + 1, k - 2, Block.glass.blockID);
-			worldObj.setBlock(i + (2 * iX), j + hY, k + 2, Block.glass.blockID);
-			worldObj.setBlock(i + (2 * iX), j + hY, k - 2, Block.glass.blockID);
-			worldObj.setBlock(i + (2 * iX), j + hY, k + 1, Block.glass.blockID);
-			worldObj.setBlock(i + (2 * iX), j + hY, k - 1, Block.glass.blockID);
-			// worldObj.setBlock(i,j,k,Block.glass.blockID);
+			worldObj.setBlock(i + (2 * iX), j + hY + 2, k + 2, Block.getBlockFromName("glass"));
+			worldObj.setBlock(i + (2 * iX), j + hY + 2, k - 2, Block.getBlockFromName("glass"));
+			worldObj.setBlock(i + (2 * iX), j + hY + 1, k + 2, Block.getBlockFromName("glass"));
+			worldObj.setBlock(i + (2 * iX), j + hY + 1, k - 2, Block.getBlockFromName("glass"));
+			worldObj.setBlock(i + (2 * iX), j + hY, k + 2, Block.getBlockFromName("glass"));
+			worldObj.setBlock(i + (2 * iX), j + hY, k - 2, Block.getBlockFromName("glass"));
+			worldObj.setBlock(i + (2 * iX), j + hY, k + 1, Block.getBlockFromName("glass"));
+			worldObj.setBlock(i + (2 * iX), j + hY, k - 1, Block.getBlockFromName("glass"));
+			// worldObj.setBlock(i,j,k,Block.getBlockFromName("glass"));
 
 			worldObj.setBlockToAir(i + iX, j + hY + 3, k + 1);//removes excess of glass
 			worldObj.setBlockToAir(i + iX, j + hY + 3, k - 1);
@@ -1159,7 +1159,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 		else {
 			//worldObj.setBlockMetadataWithNotify(i - 1, j+ hY, k + d, 0, -1);
 			worldObj.setBlock(i - 1, j + hY, k + d, 0);
-			vec = Vec3.fakePool.getVecFromPool(i - 1, j + hY, k + d);
+			vec = Vec3.createVectorHelper(i - 1, j + hY, k + d);
 			this.harvestBlock_do(vec);
 		}
 
@@ -1168,7 +1168,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 		else {
 			//worldObj.setBlockMetadataWithNotify(i + 1, j+ hY, k + d, 0, -1);
 			worldObj.setBlock(i + 1, j + hY, k + d, 0);
-			vec = Vec3.fakePool.getVecFromPool(i + 1, j + hY, k + d);
+			vec = Vec3.createVectorHelper(i + 1, j + hY, k + d);
 			this.harvestBlock_do(vec);
 		}
 
@@ -1177,20 +1177,20 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 		else {
 			//worldObj.setBlockMetadataWithNotify(i, j+ hY, k + d, 0, -1);
 			worldObj.setBlock(i, j + hY, k + d, 0);
-			vec = Vec3.fakePool.getVecFromPool(i, j + hY, k + d);
+			vec = Vec3.createVectorHelper(i, j + hY, k + d);
 			this.harvestBlock_do(vec);
 		}
-		vec = Vec3.fakePool.getVecFromPool(i, j + hY + 1, k + d);
+		vec = Vec3.createVectorHelper(i, j + hY + 1, k + d);
 		this.harvestBlock_do(vec);
-		vec = Vec3.fakePool.getVecFromPool(i, j + hY + 2, k + d);
+		vec = Vec3.createVectorHelper(i, j + hY + 2, k + d);
 		this.harvestBlock_do(vec);
-		vec = Vec3.fakePool.getVecFromPool(i - 1, j + hY + 1, k + d);
+		vec = Vec3.createVectorHelper(i - 1, j + hY + 1, k + d);
 		this.harvestBlock_do(vec);
-		vec = Vec3.fakePool.getVecFromPool(i + 1, j + hY + 2, k + d);
+		vec = Vec3.createVectorHelper(i + 1, j + hY + 2, k + d);
 		this.harvestBlock_do(vec);
-		vec = Vec3.fakePool.getVecFromPool(i + 1, j + hY + 1, k + d);
+		vec = Vec3.createVectorHelper(i + 1, j + hY + 1, k + d);
 		this.harvestBlock_do(vec);
-		vec = Vec3.fakePool.getVecFromPool(i - 1, j + hY + 2, k + d);
+		vec = Vec3.createVectorHelper(i - 1, j + hY + 2, k + d);
 		this.harvestBlock_do(vec);
 
 		if (tunnelActive) {
@@ -1249,25 +1249,25 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 			getBlockList(worldObj, i - 2, j + hY + 4, k + 2 * kZ);
 			worldObj.setBlockToAir(i - 2, j + hY + 4, k + 2 * kZ);
 
-			worldObj.setBlock(i, j + hY + 3, k + (2 * kZ), Block.glass.blockID);
-			worldObj.setBlock(i, j + hY + 1, k + (2 * kZ), Block.glass.blockID);
-			worldObj.setBlock(i, j + hY + 2, k + (2 * kZ), Block.glass.blockID);
-			worldObj.setBlock(i - 1, j + hY + 1, k + (2 * kZ), Block.glass.blockID);
-			worldObj.setBlock(i + 1, j + hY + 1, k + (2 * kZ), Block.glass.blockID);
-			worldObj.setBlock(i + 1, j + hY + 2, k + (2 * kZ), Block.glass.blockID);
-			worldObj.setBlock(i - 1, j + hY + 2, k + (2 * kZ), Block.glass.blockID);
-			worldObj.setBlock(i + 1, j + hY + 3, k + (2 * kZ), Block.glass.blockID);
-			worldObj.setBlock(i - 1, j + hY + 3, k + (2 * kZ), Block.glass.blockID);
+			worldObj.setBlock(i, j + hY + 3, k + (2 * kZ), Block.getBlockFromName("glass"));
+			worldObj.setBlock(i, j + hY + 1, k + (2 * kZ), Block.getBlockFromName("glass"));
+			worldObj.setBlock(i, j + hY + 2, k + (2 * kZ), Block.getBlockFromName("glass"));
+			worldObj.setBlock(i - 1, j + hY + 1, k + (2 * kZ), Block.getBlockFromName("glass"));
+			worldObj.setBlock(i + 1, j + hY + 1, k + (2 * kZ), Block.getBlockFromName("glass"));
+			worldObj.setBlock(i + 1, j + hY + 2, k + (2 * kZ), Block.getBlockFromName("glass"));
+			worldObj.setBlock(i - 1, j + hY + 2, k + (2 * kZ), Block.getBlockFromName("glass"));
+			worldObj.setBlock(i + 1, j + hY + 3, k + (2 * kZ), Block.getBlockFromName("glass"));
+			worldObj.setBlock(i - 1, j + hY + 3, k + (2 * kZ), Block.getBlockFromName("glass"));
 			worldObj.setBlock(i + 2, j + hY + 3, k + (2 * kZ), tunnelBlockStack.getItem().itemID, tunnelBlockStack.getItem().getMetadata(tunnelBlockStack.getItemDamage()), 3);
 			worldObj.setBlock(i - 2, j + hY + 3, k + (2 * kZ), tunnelBlockStack.getItem().itemID, tunnelBlockStack.getItem().getMetadata(tunnelBlockStack.getItemDamage()), 3);
-			worldObj.setBlock(i + 2, j + hY + 2, k + (2 * kZ), Block.glass.blockID);
-			worldObj.setBlock(i - 2, j + hY + 2, k + (2 * kZ), Block.glass.blockID);
-			worldObj.setBlock(i + 2, j + hY + 1, k + (2 * kZ), Block.glass.blockID);
-			worldObj.setBlock(i - 2, j + hY + 1, k + (2 * kZ), Block.glass.blockID);
-			worldObj.setBlock(i + 2, j + hY, k + (2 * kZ), Block.glass.blockID);
-			worldObj.setBlock(i - 2, j + hY, k + (2 * kZ), Block.glass.blockID);
-			worldObj.setBlock(i + 1, j + hY, k + (2 * kZ), Block.glass.blockID);
-			worldObj.setBlock(i - 1, j + hY, k + (2 * kZ), Block.glass.blockID);
+			worldObj.setBlock(i + 2, j + hY + 2, k + (2 * kZ), Block.getBlockFromName("glass"));
+			worldObj.setBlock(i - 2, j + hY + 2, k + (2 * kZ), Block.getBlockFromName("glass"));
+			worldObj.setBlock(i + 2, j + hY + 1, k + (2 * kZ), Block.getBlockFromName("glass"));
+			worldObj.setBlock(i - 2, j + hY + 1, k + (2 * kZ), Block.getBlockFromName("glass"));
+			worldObj.setBlock(i + 2, j + hY, k + (2 * kZ), Block.getBlockFromName("glass"));
+			worldObj.setBlock(i - 2, j + hY, k + (2 * kZ), Block.getBlockFromName("glass"));
+			worldObj.setBlock(i + 1, j + hY, k + (2 * kZ), Block.getBlockFromName("glass"));
+			worldObj.setBlock(i - 1, j + hY, k + (2 * kZ), Block.getBlockFromName("glass"));
 
 			// tunnel
 			worldObj.setBlockToAir(i + 1, j + hY + 3, k + kZ);

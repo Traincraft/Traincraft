@@ -337,7 +337,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 				this.playerEntity = entityplayer;
 				if (getFlag(7)) {
 					this.setFlag(7, false);
-					entityplayer.addChatMessage((new ChatComponentText("Stop loading chunks"));
+					entityplayer.addChatMessage(new ChatComponentText("Stop loading chunks"));
 					ForgeChunkManager.releaseTicket(chunkTicket);
 					chunkForced = false;
 					chunkTicket = null;
