@@ -35,7 +35,7 @@ public class ClientProxy extends CommonProxy {
     }
 
     private void registerModel(Item item){
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0, new ModelResourceLocation(new ResourceLocation(Traincraft.MODID, item.getRegistryName()), "inventory"));
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
     }
 
     private void registerForgeBlock(Block block, ResourceLocation location){

@@ -17,7 +17,7 @@ public class BlockRegistry {
 
     public static void preInit(){
         oilSand = new BlockBase(Material.sand, "oilSand").generateBlock(Blocks.sand, 50, 80, 7, 11).addOreDict("oreOilSand").setForgeModel().setHarvestLevel(BlockBase.ToolEnum.SHOVEL, 2).setSound(SoundType.SAND);
-        distillery = new BlockDistillery();
+        distillery = new BlockDistillery().setForgeModel();
     }
 
 }

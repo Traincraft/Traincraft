@@ -2,6 +2,8 @@ package si.meansoft.traincraft;
 
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
 import si.meansoft.traincraft.api.recipes.DistilleryRecipes;
 
 /**
@@ -14,7 +16,7 @@ public class RecipeRegistry {
     }
 
     private static void initDistillRecipes(){
-        DistilleryRecipes.addRecipe(new ItemStack(Items.apple), new ItemStack(BlockRegistry.oilSand));
+        DistilleryRecipes.addRecipe(new ItemStack(Items.apple), new ItemStack(BlockRegistry.oilSand), new FluidStack(FluidRegistry.WATER, 1000), 50, 500);
     }
 
 }

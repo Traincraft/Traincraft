@@ -1,11 +1,23 @@
 package si.meansoft.traincraft.gui;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidTank;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import org.lwjgl.opengl.GL11;
 import si.meansoft.traincraft.TraincraftResources;
 import si.meansoft.traincraft.tileEntities.TileEntityDistillery;
 
@@ -37,24 +49,36 @@ public class GuiDistillery extends GuiContainer {
         }
         int i1 = this.getCookProgressScaled(22);
         this.drawTexturedModalRect(guiLeft + 87, guiTop + 36, 184, 15, i1, 41);
+        drawFluid(this.distillery.tank, guiLeft + 144, guiTop + 6, 20, 52);
     }
 
-    private int getCookProgressScaled(int pixels)
-    {
+    private int getCookProgressScaled(int pixels) {
         int i = this.distillery.currentCookTime;
         int j = this.distillery.maxCookTime;
-        return j != 0 && i != 0 ? i * pixels / j : 0;
+        return j > 0 && i > 0 ? (j - i) * pixels / j : 0;
     }
 
     private int getBurnLeftScaled(int pixels)
     {
-        int i = this.distillery.currentBurn;
+        int i = this.distillery.maxBurnTime;
 
         if (i == 0)
         {
-            i = 200;
+            i = 1;
         }
 
-        return this.distillery.maxBurnTime * pixels / i;
+        return this.distillery.currentBurn * pixels / i;
     }
+
+    private void drawFluid(FluidTank tank, int x, int y, int width, int height){
+        if(tank != null && tank.getFluid() != null){
+            ResourceLocation fluidTexture = tank.getFluid().getFluid().getStill();
+            fluidTexture = new ResourceLocation(fluidTexture.getResourceDomain(), "textures/" + fluidTexture.getResourcePath() + ".png");
+            Minecraft.getMinecraft().getTextureManager().bindTexture(fluidTexture);
+            int factor = this.distillery.getField(4) * height / tank.getCapacity();
+            System.out.println(this.distillery.getField(4));
+            drawModalRectWithCustomSizedTexture(x, y + height - factor, 0, 0, width, factor, 16, 512);
+        }
+    }
+
 }

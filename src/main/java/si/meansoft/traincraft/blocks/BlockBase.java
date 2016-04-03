@@ -39,8 +39,8 @@ public class BlockBase extends Block {
         return this;
     }
 
-    public BlockBase setForgeModel(String name){
-        CommonProxy.addForgeRender(this, new ResourceLocation(name));
+    public BlockBase setForgeModel(ResourceLocation name){
+        CommonProxy.addForgeRender(this, name);
         return this;
     }
     public BlockBase setForgeModel(){

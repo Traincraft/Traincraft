@@ -13,6 +13,10 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import net.minecraftforge.fml.relauncher.Side;
+import si.meansoft.traincraft.Traincraft;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,10 +26,14 @@ public class CommonProxy {
 
     protected static List<Item> renderList = new ArrayList<Item>();
     protected static HashMap<Block, ResourceLocation> forgeRender = new HashMap<Block, ResourceLocation>();
+    public static SimpleNetworkWrapper wrapper;
 
     public void preInit(FMLPreInitializationEvent event){}
 
-    public void init(FMLInitializationEvent event){}
+    public void init(FMLInitializationEvent event){
+        wrapper = NetworkRegistry.INSTANCE.newSimpleChannel(Traincraft.MODID);
+        wrapper.registerMessage(PacketSyncFluid.Handler.class, PacketSyncFluid.class, 0, Side.CLIENT);
+    }
 
     public void postInit(FMLPostInitializationEvent event){}
 

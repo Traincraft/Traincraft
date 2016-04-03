@@ -1,6 +1,5 @@
 package si.meansoft.traincraft.api.recipes;
 
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 import org.apache.commons.lang3.tuple.Pair;
@@ -17,7 +16,7 @@ public class DistilleryRecipes {
     private static Map<ItemStack, Pair<ItemStack, FluidStack>> fillingMap = new HashMap<ItemStack, Pair<ItemStack, FluidStack>>();
 
     public static void addRecipe(ItemStack output, ItemStack input, FluidStack fluidOutput, float exp, int burnTime){
-        recipeMap.put(input, new RecipeHandler(burnTime, exp, fluidOutput, output));
+        recipeMap.put(input, new RecipeHandler(burnTime, exp, fluidOutput.copy(), output.copy()));
     }
     public static void addRecipe(ItemStack output, ItemStack input, FluidStack fluidOutput, float exp){
         addRecipe(output, input, fluidOutput, exp, 200);
