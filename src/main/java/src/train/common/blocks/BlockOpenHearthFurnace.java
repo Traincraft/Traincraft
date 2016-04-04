@@ -46,7 +46,7 @@ public class BlockOpenHearthFurnace extends BlockContainer {
 	private IIcon textureSide;
 
 	protected BlockOpenHearthFurnace(int par1, int par2, boolean active) {
-		super(par1, Material.rock);
+		super(Material.rock);
 		furnaceRand = new Random();
 		setCreativeTab(Traincraft.tcTab);
 		//setRequiresSelfNotify();
@@ -62,7 +62,7 @@ public class BlockOpenHearthFurnace extends BlockContainer {
 	}
 
 	@Override
-	public Icon getIcon(int i, int j) {
+	public IIcon getIcon(int i, int j) {
 		if (!this.isActive) {
 			if (i == 1) {
 				return textureTop_off;
@@ -95,8 +95,8 @@ public class BlockOpenHearthFurnace extends BlockContainer {
 
 	@Override
 	public IIcon getBlockTexture(IBlockAccess worldAccess, int i, int j, int k, int side) {
-		if (((TileEntityOpenHearthFurnace) worldAccess.getBlockTileEntity(i, j, k)).getFacing() != null) {
-			side = TileHelper.getOrientationFromSide(((TileEntityOpenHearthFurnace) worldAccess.getBlockTileEntity(i, j, k)).getFacing(), ForgeDirection.getOrientation(side)).ordinal();
+		if (((TileEntityOpenHearthFurnace) worldAccess.getTileEntity(i, j, k)).getFacing() != null) {
+			side = TileHelper.getOrientationFromSide(((TileEntityOpenHearthFurnace) worldAccess.getTileEntity(i, j, k)).getFacing(), ForgeDirection.getOrientation(side)).ordinal();
 		}
 		if (!this.isActive) {
 			return side == 1 ? textureTop_off : side == 0 ? textureBottom : side == 3 ? textureFront_off : textureSide;
@@ -108,7 +108,7 @@ public class BlockOpenHearthFurnace extends BlockContainer {
 
 	public static void updateHearthFurnaceBlockState(boolean flag, World world, int i, int j, int k, Random random) {
 		int l = world.getBlockMetadata(i, j, k);
-		TileEntity tileentity = world.getBlockTileEntity(i, j, k);
+		TileEntity tileentity = world.getTileEntity(i, j, k);
 
 		keepFurnaceInventory = true;
 
@@ -122,13 +122,13 @@ public class BlockOpenHearthFurnace extends BlockContainer {
 		world.setBlockMetadataWithNotify(i, j, k, l, 0);
 		if (tileentity != null) {
 			tileentity.validate();
-			world.setBlockTileEntity(i, j, k, tileentity);
+			world.setTileEntity(i, j, k, tileentity);
 		}
 	}
 
 	@Override
 	public boolean onBlockActivated(World world, int i, int j, int k, EntityPlayer player, int par6, float par7, float par8, float par9) {
-		TileEntity te = world.getBlockTileEntity(i, j, k);
+		TileEntity te = world.getTileEntity(i, j, k);
 		if (player.isSneaking()) {
 			return false;
 		}
@@ -149,7 +149,7 @@ public class BlockOpenHearthFurnace extends BlockContainer {
 	@Override
 	public void breakBlock(World world, int i, int j, int k, int par5, int par6) {
 		if (!keepFurnaceInventory) {
-			TileEntityOpenHearthFurnace tileentityfurnace = (TileEntityOpenHearthFurnace) world.getBlockTileEntity(i, j, k);
+			TileEntityOpenHearthFurnace tileentityfurnace = (TileEntityOpenHearthFurnace) world.getTileEntity(i, j, k);
 			if (tileentityfurnace != null) {
 				label0: for (int l = 0; l < tileentityfurnace.getSizeInventory(); l++) {
 					ItemStack itemstack = tileentityfurnace.getStackInSlot(l);
@@ -183,7 +183,7 @@ public class BlockOpenHearthFurnace extends BlockContainer {
 
 	@Override
 	public void onBlockPlacedBy(World world, int i, int j, int k, EntityLivingBase entityliving, ItemStack stack) {
-		TileEntityOpenHearthFurnace te = (TileEntityOpenHearthFurnace) world.getBlockTileEntity(i, j, k);
+		TileEntityOpenHearthFurnace te = (TileEntityOpenHearthFurnace) world.getTileEntity(i, j, k);
 		if (te != null) {
 			int dir = MathHelper.floor_double((double) ((entityliving.rotationYaw * 4F) / 360F) + 0.5D) & 3;
 			te.setFacing(ForgeDirection.getOrientation(dir == 0 ? 2 : dir == 1 ? 5 : dir == 2 ? 3 : 4));
@@ -192,7 +192,7 @@ public class BlockOpenHearthFurnace extends BlockContainer {
 	}
 
 	@Override
-	public TileEntity createNewTileEntity(World var1) {
+	public TileEntity createNewTileEntity(World var1, int i) {
 		return new TileEntityOpenHearthFurnace();
 	}
 

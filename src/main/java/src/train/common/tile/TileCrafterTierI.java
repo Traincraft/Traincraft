@@ -6,6 +6,7 @@ import java.util.Random;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -89,7 +90,7 @@ public class TileCrafterTierI extends TileEntity implements IInventory, ITier {
 	}
 
 	@Override
-	public String getInvName() {
+	public String getInventoryName() {
 		return "TierI";
 	}
 
@@ -204,10 +205,10 @@ public class TileCrafterTierI extends TileEntity implements IInventory, ITier {
 	}
 
 	@Override
-	public void openChest() {}
+	public void openInventory() {}
 
 	@Override
-	public void closeChest() {}
+	public void closeInventory() {}
 
 	@Override
 	public Packet getDescriptionPacket() {
@@ -220,7 +221,7 @@ public class TileCrafterTierI extends TileEntity implements IInventory, ITier {
 
 	private boolean listContains(List<ItemStack> list, ItemStack stack) {
 		for (int i = 0; i < list.size(); i++) {
-			if (list.get(i).itemID == stack.itemID) {
+			if (Item.getIdFromItem(list.get(i).getItem()) == Item.getIdFromItem(stack.getItem())) {
 				return true;
 			}
 		}
@@ -258,7 +259,7 @@ public class TileCrafterTierI extends TileEntity implements IInventory, ITier {
 	}
 
 	@Override
-	public boolean isInvNameLocalized() {
+	public boolean hasCustomInventoryName() {
 		return false;
 	}
 

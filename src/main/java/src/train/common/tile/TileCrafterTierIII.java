@@ -88,7 +88,8 @@ public class TileCrafterTierIII extends TileEntity implements IInventory, ITier 
 		}
 	}
 
-	public String getInvName() {
+	@Override
+	public String getInventoryName() {
 		return "TierIII";
 	}
 
@@ -164,7 +165,7 @@ public class TileCrafterTierIII extends TileEntity implements IInventory, ITier 
 			ItemStack stack = recipes.get(j).hasComponents(crafterInventory[0], crafterInventory[1], crafterInventory[2], crafterInventory[3], crafterInventory[4], crafterInventory[5], crafterInventory[6], crafterInventory[7], crafterInventory[8], crafterInventory[9]);
 			if (stack != null) {
 				resultList.add(stack);
-				crafterInventory[count + 10] = new ItemStack(stack.itemID, 1, 0);
+				crafterInventory[count + 10] = new ItemStack(stack.getItem(), 1, 0);
 				count++;
 			}
 		}
@@ -186,7 +187,7 @@ public class TileCrafterTierIII extends TileEntity implements IInventory, ITier 
 		if (worldObj == null) {
 			return true;
 		}
-		if (worldObj.getBlockTileEntity(xCoord, yCoord, zCoord) != this) {
+		if (worldObj.getTileEntity(xCoord, yCoord, zCoord) != this) {
 			return false;
 		}
 		return player.getDistanceSq(xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D) <= 64D;
@@ -202,10 +203,10 @@ public class TileCrafterTierIII extends TileEntity implements IInventory, ITier 
 	}
 
 	@Override
-	public void openChest() {}
+	public void openInventory() {}
 
 	@Override
-	public void closeChest() {}
+	public void closeInventory() {}
 
 	@Override
 	public Packet getDescriptionPacket() {
@@ -256,9 +257,7 @@ public class TileCrafterTierIII extends TileEntity implements IInventory, ITier 
 	}
 
 	@Override
-	public boolean isInvNameLocalized() {
-		return false;
-	}
+	public boolean hasCustomInventoryName() {return false;}
 
 	@Override
 	public boolean isItemValidForSlot(int i, ItemStack itemstack) {

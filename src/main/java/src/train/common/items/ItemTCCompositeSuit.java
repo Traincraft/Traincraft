@@ -9,6 +9,7 @@ package src.train.common.items;
 
 import java.util.ArrayList;
 
+import com.google.common.eventbus.Subscribe;
 import net.minecraft.block.Block;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -27,7 +28,6 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
@@ -192,7 +192,7 @@ public class ItemTCCompositeSuit extends ItemTCArmor {
 	/**
 	 * Boots protect against fall damage
 	 */
-	@ForgeSubscribe
+	@Subscribe
 	public void onEntityLivingFallEvent(LivingFallEvent event)
 	{
 		if(event.entity instanceof EntityPlayer){

@@ -99,7 +99,7 @@ public class CommonProxy implements IGuiHandler {
 
 	@Override
 	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-		TileEntity te = world.getBlockTileEntity(x, y, z);
+		TileEntity te = world.getTileEntity(x, y, z);
 		EntityPlayer riddenByEntity = null;
 		Entity entity = null;
 		entity = player.ridingEntity;

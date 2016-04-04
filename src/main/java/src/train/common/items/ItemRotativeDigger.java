@@ -14,7 +14,7 @@ import src.train.common.entity.digger.EntityRotativeDigger;
 public class ItemRotativeDigger extends Item {
 
 	public ItemRotativeDigger(int i) {
-		super(i);
+		super();
 		maxStackSize = 5;
 		setCreativeTab(Traincraft.tcTab);
 	}

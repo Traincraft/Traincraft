@@ -9,6 +9,7 @@ package src.train.common.core.handlers;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import src.train.common.items.ItemRollingStock;
 import src.train.common.library.AchievementIDs;
@@ -23,7 +24,7 @@ public class CraftingHandler implements ICraftingHandler {
 		for (AchievementIDs Ach : AchievementIDs.values()) {
 			if (Ach.getItemIds() != null) {
 				for (int i = 0; i < Ach.getItemIds().length; i++) {
-					if (Ach.getItemIds()[i] == itemstack.itemID) {
+					if (Ach.getItemIds()[i] == Item.getIdFromItem(itemstack.getItem())) {
 						player.addStat(Ach.achievement, 1);
 					}
 				}
@@ -36,7 +37,7 @@ public class CraftingHandler implements ICraftingHandler {
 					int readID = TraincraftSaveHandler.readInt(FMLCommonHandler.instance().getMinecraftServerInstance(), "numberOfTrains:");
 					int newID = ((ItemRollingStock) itemstack.getItem()).setNewUniqueID(itemstack, player, readID);
 					TraincraftSaveHandler.writeValue(FMLCommonHandler.instance().getMinecraftServerInstance(), "numberOfTrains:", new String("" + newID));
-					statsEvent.trainCreate(itemstack.getTagCompound().getInteger("uniqueID"), ((ItemRollingStock) itemstack.getItem()).getTrainName(), ((ItemRollingStock) itemstack.getItem()).getTrainType(), player.username, new String((int) player.posX + ";" + (int) player.posY + ";" + (int) player.posZ));
+					statsEvent.trainCreate(itemstack.getTagCompound().getInteger("uniqueID"), ((ItemRollingStock) itemstack.getItem()).getTrainName(), ((ItemRollingStock) itemstack.getItem()).getTrainType(), player.getDisplayName(), new String((int) player.posX + ";" + (int) player.posY + ";" + (int) player.posZ));
 
 				}
 			}
@@ -48,7 +49,7 @@ public class CraftingHandler implements ICraftingHandler {
 		for (AchievementIDs Ach : AchievementIDs.values()) {
 			if (Ach.getItemIds() != null) {
 				for (int i = 0; i < Ach.getItemIds().length; i++) {
-					if (Ach.getItemIds()[i] == itemstack.itemID) {
+					if (Ach.getItemIds()[i] == Item.getIdFromItem(itemstack.getItem())) {
 						player.addStat(Ach.achievement, 1);
 					}
 				}

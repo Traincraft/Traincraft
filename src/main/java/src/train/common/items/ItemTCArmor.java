@@ -9,6 +9,7 @@ package src.train.common.items;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
@@ -115,15 +116,15 @@ public class ItemTCArmor extends ItemArmor {
 	}
 	@SideOnly(Side.CLIENT)
 	@Override
-	public Icon getIconFromDamageForRenderPass(int par1, int par2) {
+	public IIcon getIconFromDamageForRenderPass(int par1, int par2) {
 		return par2 == 1 ? this.iconOverlay : super.getIconFromDamageForRenderPass(par1, par2);
 	}
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister iconRegister) {
-		this.itemIcon = iconRegister.registerIcon(Info.modID.toLowerCase() + ":armour/" + ItemIDs.getIcon(this.itemID));
+		this.itemIcon = iconRegister.registerIcon(Info.modID.toLowerCase() + ":armour/" + ItemIDs.getIcon(Item.getIdFromItem(this)));
 		if(color!=0){
-			this.iconOverlay = iconRegister.registerIcon(Info.modID.toLowerCase() + ":armour/" + ItemIDs.getIcon(this.itemID) + "_overlay");
+			this.iconOverlay = iconRegister.registerIcon(Info.modID.toLowerCase() + ":armour/" + ItemIDs.getIcon(Item.getIdFromItem(this)) + "_overlay");
 		}
 	}
 	@Override
