@@ -65,7 +65,6 @@ public class BlockContainerBase extends BlockBase implements ITileEntityProvider
         return tileentity != null && tileentity.receiveClientEvent(eventID, eventParam);
     }
 
-
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {
         try {

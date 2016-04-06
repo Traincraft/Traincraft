@@ -1,5 +1,6 @@
 package si.meansoft.traincraft;
 
+import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.Mod;
@@ -67,7 +68,7 @@ public class Traincraft {
         block.setRegistryName(blockName);
         if(!block.forgeModel) CommonProxy.addStackToRender(Item.getItemFromBlock(block));
         block.setCreativeTab(tab);
-        GameRegistry.registerBlock(block);
+        GameRegistry.register((Block)block);
     }
 
 }
