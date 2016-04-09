@@ -17,7 +17,7 @@ import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.packet.Packet;
+import net.minecraft.network.Packet;
 import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -311,7 +311,7 @@ public class TileWaterWheel extends TileEntity/*TileEntityElectrical*/ implement
 	 * IC2
 	 * @return
 	 */
-	//@Override
+	@Override
 	public int getMaxEnergyOutput() {
 		return this.production;
 	}

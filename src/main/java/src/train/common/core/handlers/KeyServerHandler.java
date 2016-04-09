@@ -7,6 +7,7 @@ import java.io.IOException;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.NetLoginHandler;
+import net.minecraft.network.NetworkManager;
 import net.minecraft.network.packet.NetHandler;
 import net.minecraft.network.packet.Packet1Login;
 import net.minecraft.network.packet.Packet250CustomPayload;
@@ -19,12 +20,11 @@ import src.train.common.entity.zeppelin.AbstractZeppelin;
 import cpw.mods.fml.common.network.IConnectionHandler;
 import cpw.mods.fml.common.network.IPacketHandler;
 import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.common.network.Player;
 
 public class KeyServerHandler implements IConnectionHandler, IPacketHandler {
 
 	@Override
-	public void onPacketData(INetworkManager manager, Packet250CustomPayload packet, Player player) {
+	public void onPacketData(NetworkManager manager, Packet250CustomPayload packet, EntityPlayer player) {
 		DataInputStream dataStream = new DataInputStream(new ByteArrayInputStream(packet.data));
 
 		try {
@@ -51,28 +51,28 @@ public class KeyServerHandler implements IConnectionHandler, IPacketHandler {
 	}
 
 	@Override
-	public void playerLoggedIn(Player player, NetHandler netHandler, INetworkManager manager) {
+	public void playerLoggedIn(EntityPlayer player, NetHandler netHandler, NetworkManager manager) {
 		NetworkRegistry.instance().registerChannel(this, "TrainMod");
 	}
 
 	@Override
-	public String connectionReceived(NetLoginHandler netHandler, INetworkManager manager) {
+	public String connectionReceived(NetLoginHandler netHandler, NetworkManager manager) {
 		return null;
 	}
 
 	@Override
-	public void connectionOpened(NetHandler netClientHandler, String server, int port, INetworkManager manager) {}
+	public void connectionOpened(NetHandler netClientHandler, String server, int port, NetworkManager manager) {}
 
 	@Override
-	public void connectionOpened(NetHandler netClientHandler, MinecraftServer server, INetworkManager manager) {}
+	public void connectionOpened(NetHandler netClientHandler, MinecraftServer server, NetworkManager manager) {}
 
 	@Override
-	public void connectionClosed(INetworkManager manager) {
+	public void connectionClosed(NetworkManager manager) {
 		Traincraft.proxy.killAllStreams();
 	}
 
 	@Override
-	public void clientLoggedIn(NetHandler clientHandler, INetworkManager manager, Packet1Login login) {
+	public void clientLoggedIn(NetHandler clientHandler, NetworkManager manager, Packet1Login login) {
 		NetworkRegistry.instance().registerChannel(this, "TrainMod");
 	}
 }

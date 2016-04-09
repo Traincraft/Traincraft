@@ -8,7 +8,7 @@
 package src.train.common.tile;
 
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.packet.Packet;
+import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
 import src.train.common.core.handlers.PacketHandler;
 

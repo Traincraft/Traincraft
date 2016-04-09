@@ -3,7 +3,6 @@ package src.train.common.items;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumMovingObjectType;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
@@ -45,7 +44,7 @@ public class ItemRotativeDigger extends Item {
 		if (movingobjectposition == null) {
 			return itemstack;
 		}
-		if (movingobjectposition.typeOfHit == EnumMovingObjectType.TILE) {
+		if (movingobjectposition.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK) {
 			int i = movingobjectposition.blockX;
 			int j = movingobjectposition.blockY;
 			int k = movingobjectposition.blockZ;

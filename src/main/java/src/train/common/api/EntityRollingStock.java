@@ -2426,7 +2426,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		}
 	}
 
-	//@Override REMOVED
+	@Override
 	protected void adjustSlopeVelocities(int i1) {
 		if (this instanceof Locomotive) { return; }
 		double d4 = 0.0058125D;//0.0078125D
@@ -2558,8 +2558,8 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		return (this.dataWatcher.getWatchableObjectInt(21));
 	}
 
-	//@Override //Does not override superclass
-	protected void doBlockCollisions() {
+	@Override
+	protected void  func_145775_I() {
 		int var1 = MathHelper.floor_double(this.boundingBoxSmall.minX + 0.001D);
 		int var2 = MathHelper.floor_double(this.boundingBoxSmall.minY + 0.001D);
 		int var3 = MathHelper.floor_double(this.boundingBoxSmall.minZ + 0.001D);

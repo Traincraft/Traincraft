@@ -5,6 +5,7 @@ import java.util.Random;
 
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
@@ -171,7 +172,7 @@ public class TileTCRail extends TileEntity {
 		if (manualOverride) {
 			//System.out.println(updateTicks);
 			updateTicks++;
-			List list = worldObj.getEntitiesWithinAABB(EntityMinecart.class, AxisAlignedBB.getAABBPool().getAABB((double) ((float) xCoord + f), (double) yCoord, (double) ((float) zCoord + f), (double) ((float) (xCoord + 1) - f), (double) ((float) (yCoord + 1) - f), (double) ((float) (zCoord + 1) - f)));
+			List list = worldObj.getEntitiesWithinAABB(EntityMinecart.class, AxisAlignedBB.getBoundingBox((double) ((float) xCoord + f), (double) yCoord, (double) ((float) zCoord + f), (double) ((float) (xCoord + 1) - f), (double) ((float) (yCoord + 1) - f), (double) ((float) (zCoord + 1) - f)));
 			if (updateTicks > 50 && list.isEmpty()) {
 				manualOverride = false;
 				//setSwitchState(false,false);
@@ -185,28 +186,28 @@ public class TileTCRail extends TileEntity {
 		}
 		if (type != null && (type.equals(TrackTypes.MEDIUM_RIGHT_SWITCH.getLabel()) || (type.equals(TrackTypes.LARGE_RIGHT_SWITCH.getLabel())) || (type.equals(TrackTypes.MEDIUM_RIGHT_PARALLEL_SWITCH.getLabel())))) {
 			if (facingMeta == 2 && !getSwitchState()) {
-				List list = worldObj.getEntitiesWithinAABB(EntityMinecart.class, AxisAlignedBB.getAABBPool().getAABB((double) ((float) xCoord + 1), (double) yCoord, (double) ((float) zCoord - 1), (double) ((float) (xCoord + 2) - f), (double) ((float) (yCoord + 1) - f), (double) ((float) (zCoord) - f)));
+				List list = worldObj.getEntitiesWithinAABB(EntityMinecart.class, AxisAlignedBB.getBoundingBox((double) ((float) xCoord + 1), (double) yCoord, (double) ((float) zCoord - 1), (double) ((float) (xCoord + 2) - f), (double) ((float) (yCoord + 1) - f), (double) ((float) (zCoord) - f)));
 				if (!list.isEmpty()) {
 					changeSwitchState(worldObj, this, xCoord, yCoord, zCoord);
 					setSwitchState(true, true);
 				}
 			}
 			if (facingMeta == 0 && !getSwitchState()) {
-				List list = worldObj.getEntitiesWithinAABB(EntityMinecart.class, AxisAlignedBB.getAABBPool().getAABB((double) ((float) xCoord - 2), (double) yCoord, (double) ((float) zCoord + 2), (double) ((float) (xCoord) - f), (double) ((float) (yCoord + 1) - f), (double) ((float) (zCoord + 2) - f)));
+				List list = worldObj.getEntitiesWithinAABB(EntityMinecart.class, AxisAlignedBB.getBoundingBox((double) ((float) xCoord - 2), (double) yCoord, (double) ((float) zCoord + 2), (double) ((float) (xCoord) - f), (double) ((float) (yCoord + 1) - f), (double) ((float) (zCoord + 2) - f)));
 				if (!list.isEmpty()) {
 					changeSwitchState(worldObj, this, xCoord, yCoord, zCoord);
 					setSwitchState(true, true);
 				}
 			}
 			if (facingMeta == 1 && !getSwitchState()) {
-				List list = worldObj.getEntitiesWithinAABB(EntityMinecart.class, AxisAlignedBB.getAABBPool().getAABB((double) ((float) xCoord - 1), (double) yCoord, (double) ((float) zCoord - 1), (double) ((float) (xCoord) - f), (double) ((float) (yCoord + 1) - f), (double) ((float) (zCoord) - f)));
+				List list = worldObj.getEntitiesWithinAABB(EntityMinecart.class, AxisAlignedBB.getBoundingBox((double) ((float) xCoord - 1), (double) yCoord, (double) ((float) zCoord - 1), (double) ((float) (xCoord) - f), (double) ((float) (yCoord + 1) - f), (double) ((float) (zCoord) - f)));
 				if (!list.isEmpty()) {
 					changeSwitchState(worldObj, this, xCoord, yCoord, zCoord);
 					setSwitchState(true, true);
 				}
 			}
 			if (facingMeta == 3 && !getSwitchState()) {
-				List list = worldObj.getEntitiesWithinAABB(EntityMinecart.class, AxisAlignedBB.getAABBPool().getAABB((double) ((float) xCoord + 1), (double) yCoord, (double) ((float) zCoord + 1), (double) ((float) (xCoord + 3) - f), (double) ((float) (yCoord + 1) - f), (double) ((float) (zCoord + 2) - f)));
+				List list = worldObj.getEntitiesWithinAABB(EntityMinecart.class, AxisAlignedBB.getBoundingBox((double) ((float) xCoord + 1), (double) yCoord, (double) ((float) zCoord + 1), (double) ((float) (xCoord + 3) - f), (double) ((float) (yCoord + 1) - f), (double) ((float) (zCoord + 2) - f)));
 				if (!list.isEmpty()) {
 					changeSwitchState(worldObj, this, xCoord, yCoord, zCoord);
 					setSwitchState(true, true);
@@ -215,28 +216,28 @@ public class TileTCRail extends TileEntity {
 		}
 		if (type != null && (type.equals(TrackTypes.MEDIUM_LEFT_SWITCH.getLabel()) || type.equals(TrackTypes.LARGE_LEFT_SWITCH.getLabel()) || (type.equals(TrackTypes.MEDIUM_LEFT_PARALLEL_SWITCH.getLabel())))) {
 			if (facingMeta == 2 && !getSwitchState()) {
-				List list = worldObj.getEntitiesWithinAABB(EntityMinecart.class, AxisAlignedBB.getAABBPool().getAABB((double) ((float) xCoord - 1), (double) yCoord, (double) ((float) zCoord - 1), (double) ((float) (xCoord) - f), (double) ((float) (yCoord + 1) - f), (double) ((float) (zCoord) - f)));
+				List list = worldObj.getEntitiesWithinAABB(EntityMinecart.class, AxisAlignedBB.getBoundingBox((double) ((float) xCoord - 1), (double) yCoord, (double) ((float) zCoord - 1), (double) ((float) (xCoord) - f), (double) ((float) (yCoord + 1) - f), (double) ((float) (zCoord) - f)));
 				if (!list.isEmpty()) {
 					changeSwitchState(worldObj, this, xCoord, yCoord, zCoord);
 					setSwitchState(true, true);
 				}
 			}
 			if (facingMeta == 0 && !getSwitchState()) {
-				List list = worldObj.getEntitiesWithinAABB(EntityMinecart.class, AxisAlignedBB.getAABBPool().getAABB((double) ((float) xCoord + 1), (double) yCoord, (double) ((float) zCoord + 1), (double) ((float) (xCoord + 2) - f), (double) ((float) (yCoord + 1) - f), (double) ((float) (zCoord + 2) - f)));
+				List list = worldObj.getEntitiesWithinAABB(EntityMinecart.class, AxisAlignedBB.getBoundingBox((double) ((float) xCoord + 1), (double) yCoord, (double) ((float) zCoord + 1), (double) ((float) (xCoord + 2) - f), (double) ((float) (yCoord + 1) - f), (double) ((float) (zCoord + 2) - f)));
 				if (!list.isEmpty()) {
 					changeSwitchState(worldObj, this, xCoord, yCoord, zCoord);
 					setSwitchState(true, true);
 				}
 			}
 			if (facingMeta == 1 && !getSwitchState()) {
-				List list = worldObj.getEntitiesWithinAABB(EntityMinecart.class, AxisAlignedBB.getAABBPool().getAABB((double) ((float) xCoord - 1), (double) yCoord, (double) ((float) zCoord + 1), (double) ((float) (xCoord) - f), (double) ((float) (yCoord + 1) - f), (double) ((float) (zCoord + 2) - f)));
+				List list = worldObj.getEntitiesWithinAABB(EntityMinecart.class, AxisAlignedBB.getBoundingBox((double) ((float) xCoord - 1), (double) yCoord, (double) ((float) zCoord + 1), (double) ((float) (xCoord) - f), (double) ((float) (yCoord + 1) - f), (double) ((float) (zCoord + 2) - f)));
 				if (!list.isEmpty()) {
 					changeSwitchState(worldObj, this, xCoord, yCoord, zCoord);
 					setSwitchState(true, true);
 				}
 			}
 			if (facingMeta == 3 && !getSwitchState()) {
-				List list = worldObj.getEntitiesWithinAABB(EntityMinecart.class, AxisAlignedBB.getAABBPool().getAABB((double) ((float) xCoord + 1), (double) yCoord, (double) ((float) zCoord - 1), (double) ((float) (xCoord + 3) - f), (double) ((float) (yCoord + 1) - f), (double) ((float) (zCoord) - f)));
+				List list = worldObj.getEntitiesWithinAABB(EntityMinecart.class, AxisAlignedBB.getBoundingBox((double) ((float) xCoord + 1), (double) yCoord, (double) ((float) zCoord - 1), (double) ((float) (xCoord + 3) - f), (double) ((float) (yCoord + 1) - f), (double) ((float) (zCoord) - f)));
 				if (!list.isEmpty()) {
 					changeSwitchState(worldObj, this, xCoord, yCoord, zCoord);
 					setSwitchState(true, true);

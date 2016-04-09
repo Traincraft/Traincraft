@@ -199,7 +199,7 @@ public class LiquidTank extends EntityRollingStock implements IFluidHandler, ISi
 	 * @param from Orientation the ItemStack is offered from.
 	 * @return Amount of items used from the passed stack.
 	 */
-	//@Override Doesn't Override anything
+	@Override
 	public int addItem(ItemStack stack, boolean doAdd, ForgeDirection from) {
 		if (stack == null) {
 			return 0;
@@ -217,7 +217,7 @@ public class LiquidTank extends EntityRollingStock implements IFluidHandler, ISi
 	 * @param maxItemCount Maximum amount of items to extract (spread over all returned item stacks)
 	 * @return Array of item stacks extracted from the inventory
 	 */
-	//@Override Doesn't override anything
+	@Override
 	public ItemStack[] canExtractItem(boolean doRemove, ForgeDirection from, int maxItemCount) {
 		return null;
 	}

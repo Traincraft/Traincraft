@@ -18,7 +18,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.INetworkManager;
-import net.minecraft.network.packet.Packet;
+import net.minecraft.network.Packet;
 import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
@@ -52,14 +52,13 @@ import com.google.common.io.ByteStreams;
 
 import cpw.mods.fml.common.network.IPacketHandler;
 import cpw.mods.fml.common.network.PacketDispatcher;
-import cpw.mods.fml.common.network.Player;
 
 public class PacketHandler implements IPacketHandler {
 
 	protected RollingStockStatsEventHandler statsEventHandler = new RollingStockStatsEventHandler();
 
 	@Override
-	public void onPacketData(INetworkManager manager, Packet250CustomPayload packet, Player player) {
+	public void onPacketData(INetworkManager manager, Packet250CustomPayload packet, EntityPlayer player) {
 		ByteArrayDataInput data = ByteStreams.newDataInput(packet.data);
 		int packetIndex = data.readInt();
 		World world = ((EntityPlayer) player).worldObj;
@@ -67,7 +66,7 @@ public class PacketHandler implements IPacketHandler {
 			int x = data.readInt();
 			int y = data.readInt();
 			int z = data.readInt();
-			TileEntity te = world.getBlockTileEntity(x, y, z);
+			TileEntity te = world.getTileEntity(x, y, z);
 			if (te instanceof TileTrainWbench) {
 				byte orientation = data.readByte();
 				((TileTrainWbench) te).handlePacketDataFromServer(orientation);
@@ -131,7 +130,7 @@ public class PacketHandler implements IPacketHandler {
 			int x = data.readInt();
 			int y = data.readInt();
 			int z = data.readInt();
-			TileEntity te = world.getBlockTileEntity(x, y, z);
+			TileEntity te = world.getTileEntity(x, y, z);
 			if (te instanceof TileEntityDistil) {
 				byte orientation = data.readByte();
 				short cookTime = data.readShort();
@@ -158,7 +157,7 @@ public class PacketHandler implements IPacketHandler {
 			}
 			if (player != null && player instanceof EntityPlayer && ((EntityPlayer) player).ridingEntity != null && ((EntityPlayer) player).ridingEntity instanceof Locomotive) {
 				Locomotive lo = (Locomotive) ((EntityPlayer) player).ridingEntity;
-				if (lo.entityId == ID) {
+				if (lo.getEntityId() == ID) {
 					lo.setParkingBrakeFromPacket(brake);//parkingBrake=brake;//setParkingBrake(brake);
 				}
 			}
@@ -171,7 +170,7 @@ public class PacketHandler implements IPacketHandler {
 			if (lis3 != null && lis3.size() > 0) {
 				for (int j1 = 0; j1 < lis3.size(); j1++) {
 					Entity entity = (Entity) lis3.get(j1);
-					if (entity instanceof EntityTracksBuilder && ((EntityTracksBuilder) entity).entityId == ID) {
+					if (entity instanceof EntityTracksBuilder && ((EntityTracksBuilder) entity).getEntityId() == ID) {
 						if (packetIndex == 3) {
 							((EntityTracksBuilder) entity).setPlannedHeightFromPacket(set);
 						}
@@ -186,7 +185,7 @@ public class PacketHandler implements IPacketHandler {
 			int x = data.readInt();
 			int y = data.readInt();
 			int z = data.readInt();
-			TileEntity te = world.getBlockTileEntity(x, y, z);
+			TileEntity te = world.getTileEntity(x, y, z);
 			if (te instanceof TileEntityDistil) {
 				short amount = data.readShort();
 				short liquidID = data.readShort();
@@ -198,7 +197,7 @@ public class PacketHandler implements IPacketHandler {
 			int page = data.readInt();
 			int recipe = data.readInt();
 
-			if (((EntityPlayer) player).entityId == entityID) {
+			if (((EntityPlayer) player).getEntityId() == entityID) {
 				if (((EntityPlayer) player).getCurrentEquippedItem() != null && (((EntityPlayer) player).getCurrentEquippedItem().getItem() instanceof ItemRecipeBook)) {
 					ItemStack stack = ((EntityPlayer) player).getCurrentEquippedItem();
 					NBTTagCompound var3 = stack.getTagCompound();
@@ -215,7 +214,7 @@ public class PacketHandler implements IPacketHandler {
 			int x = data.readInt();
 			int y = data.readInt();
 			int z = data.readInt();
-			TileEntity te = world.getBlockTileEntity(x, y, z);
+			TileEntity te = world.getTileEntity(x, y, z);
 			if (te instanceof TileGeneratorDiesel) {
 				boolean producing = data.readBoolean();
 				short amount = data.readShort();
@@ -249,7 +248,7 @@ public class PacketHandler implements IPacketHandler {
 			if (lis3 != null && lis3.size() > 0) {
 				for (int j1 = 0; j1 < lis3.size(); j1++) {
 					Entity entity = (Entity) lis3.get(j1);
-					if (entity instanceof AbstractTrains && ((AbstractTrains) entity).entityId == ID) {
+					if (entity instanceof AbstractTrains && ((AbstractTrains) entity).getEntityId() == ID) {
 						((AbstractTrains) entity).setTrainLockedFromPacket(locked);
 					}
 				}
@@ -265,7 +264,7 @@ public class PacketHandler implements IPacketHandler {
 			if (lis3 != null && lis3.size() > 0) {
 				for (int j1 = 0; j1 < lis3.size(); j1++) {
 					Entity entity = (Entity) lis3.get(j1);
-					if (entity instanceof AbstractTrains && ((AbstractTrains) entity).entityId == ID) {
+					if (entity instanceof AbstractTrains && ((AbstractTrains) entity).getEntityId() == ID) {
 						((AbstractTrains) entity).setTrainLockedFromPacket(locked, theOwner);
 					}
 				}
@@ -308,8 +307,8 @@ public class PacketHandler implements IPacketHandler {
 		}
 	}
 
-	private Entity getEntityByID(int par1, Player player) {
-		return (Entity) (par1 == ((EntityPlayer) player).entityId ? player : ((EntityPlayer) player).worldObj.getEntityByID(par1));
+	private Entity getEntityByID(int par1, EntityPlayer player) {
+		return (Entity) (par1 == ((EntityPlayer) player).getEntityId() ? player : ((EntityPlayer) player).worldObj.getEntityByID(par1));
 	}
 
 	public static Packet getTEPClient(TileEntity te) {
@@ -494,7 +493,7 @@ public class PacketHandler implements IPacketHandler {
 		try {
 			if (entity != null && entity instanceof EntityRollingStock) {
 				dos.writeInt(11);
-				dos.writeInt(entity.entityId);
+				dos.writeInt(entity.getEntityId());
 				dos.writeInt((int) rotationYawServer);
 				dos.writeInt((int) realRotation);
 				dos.writeBoolean(isInReverse);
@@ -526,7 +525,7 @@ public class PacketHandler implements IPacketHandler {
 		try {
 			if (entity != null && entity instanceof AbstractZeppelin) {
 				dos.writeInt(14);
-				dos.writeInt(entity.entityId);
+				dos.writeInt(entity.getEntityId());
 				dos.writeInt((int) rotationYawServer);
 				dos.writeInt((int) roll);
 			}
@@ -556,7 +555,7 @@ public class PacketHandler implements IPacketHandler {
 			if (entity instanceof Locomotive) {
 				Locomotive lo = (Locomotive) entity;
 				dos.writeInt(2);
-				dos.writeInt(lo.entityId);//.getID());
+				dos.writeInt(lo.getEntityId());//.getID());
 				dos.writeBoolean(set);
 			}
 		}
@@ -581,7 +580,7 @@ public class PacketHandler implements IPacketHandler {
 			if (entity instanceof Locomotive) {
 				Locomotive lo = (Locomotive) entity;
 				dos.writeInt(17);
-				dos.writeInt(lo.entityId);//.getID());
+				dos.writeInt(lo.getEntityId());//.getID());
 				dos.writeBoolean(set);
 			}
 		}
@@ -606,7 +605,7 @@ public class PacketHandler implements IPacketHandler {
 			if (entity instanceof AbstractTrains) {
 				AbstractTrains lo = (AbstractTrains) entity;
 				dos.writeInt(12);
-				dos.writeInt(lo.entityId);//.getID());
+				dos.writeInt(lo.getEntityId());//.getID());
 				dos.writeBoolean(set);
 			}
 		}
@@ -629,7 +628,7 @@ public class PacketHandler implements IPacketHandler {
 			if (entity instanceof AbstractTrains) {
 				AbstractTrains lo = (AbstractTrains) entity;
 				dos.writeInt(13);
-				dos.writeInt(lo.entityId);//.getID());
+				dos.writeInt(lo.getEntityId());//.getID());
 				dos.writeBoolean(set);
 				dos.writeBytes(lo.trainOwner);
 			}
@@ -649,7 +648,7 @@ public class PacketHandler implements IPacketHandler {
 			if (entity instanceof EntityTracksBuilder) {
 				EntityTracksBuilder lo = (EntityTracksBuilder) entity;
 				dos.writeInt(packetID);
-				dos.writeInt(lo.entityId);//.getID());
+				dos.writeInt(lo.getEntityId());//.getID());
 				dos.writeInt(set);
 			}
 		}
@@ -670,7 +669,7 @@ public class PacketHandler implements IPacketHandler {
 		DataOutputStream dos = new DataOutputStream(bos);
 		try {
 			dos.writeInt(6);
-			dos.writeInt(player.entityId);//.getID());
+			dos.writeInt(player.getEntityId());//.getID());
 			dos.writeInt(page);
 			dos.writeInt(recipe);
 		}
@@ -693,7 +692,7 @@ public class PacketHandler implements IPacketHandler {
 		try {
 			if (entity != null && entity instanceof EntityJukeBoxCart) {
 				dos.writeInt(15);
-				dos.writeInt(entity.entityId);
+				dos.writeInt(entity.getEntityId());
 				dos.writeUTF(url);
 				dos.writeBoolean(isPlaying);
 			}
@@ -717,7 +716,7 @@ public class PacketHandler implements IPacketHandler {
 			if (entity instanceof AbstractTrains) {
 				AbstractTrains lo = (AbstractTrains) entity;
 				dos.writeInt(16);
-				dos.writeInt(lo.entityId);
+				dos.writeInt(lo.getEntityId());
 				dos.writeInt(slotsFilled);
 			}
 		}

@@ -807,7 +807,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 	 *            Orientation the ItemStack is offered from.
 	 * @return Amount of items used from the passed stack.
 	 */
-	//@Override //Doesn't override a superclass
+	@Override
 	public int addItem(ItemStack stack, boolean doAdd, ForgeDirection from) {
 		if (stack == null) { return 0; }
 		//FuelHandler.steamFuelLast(itemstack) > 0 || LiquidManager.getInstance().isDieselLocoFuel(itemstack)||(itemstack.getItem().shiftedIndex==Item.redstone.shiftedIndex) || (itemstack.getItem() instanceof IElectricItem)
@@ -840,7 +840,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 	 *            item stacks)
 	 * @return Array of item stacks extracted from the inventory
 	 */
-	//@Override
+	@Override
 	public ItemStack[] extractItem(boolean doRemove, ForgeDirection from, int maxItemCount) {
 		return null;
 	}
@@ -923,14 +923,14 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 		}
 	}
 
-	//@Override
-	public void openChest() {}
+	@Override
+	public void openInventory() {}
 
-	//@Override
-	public void closeChest() {}
+	@Override
+	public void closeInventory() {}
 
-	//@Override
-	public void onInventoryChanged() {
+	@Override
+	public void markDirty() {
 		if (!worldObj.isRemote) {
 			this.slotsFilled = 0;
 			for (int i = 0; i < getSizeInventory(); i++) {

@@ -13,7 +13,6 @@ import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.EventBus;
 
 public abstract class BlockTrackLockingBase extends TrackBaseTraincraft implements ITrackLockdown, ITrackPowered {
 	protected static double START_BOOST = 0.0004D;

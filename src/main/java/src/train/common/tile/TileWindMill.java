@@ -12,7 +12,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.packet.Packet;
+import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.common.MinecraftForge;
@@ -145,10 +145,8 @@ public class TileWindMill extends TileEntity implements IEnergySource {
 		return true;
 	}
 
-	//@Override
-	public int getMaxEnergyOutput() {
-		return 10;
-	}
+	@Override
+	public int getMaxEnergyOutput() {return 10;}
 
 	@Override
 	public boolean emitsEnergyTo(TileEntity receiver, ForgeDirection direction) {

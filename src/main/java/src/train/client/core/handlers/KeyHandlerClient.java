@@ -4,6 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.NetLoginHandler;
 import net.minecraft.network.packet.NetHandler;
@@ -13,7 +14,6 @@ import net.minecraft.server.MinecraftServer;
 import cpw.mods.fml.common.network.IConnectionHandler;
 import cpw.mods.fml.common.network.IPacketHandler;
 import cpw.mods.fml.common.network.PacketDispatcher;
-import cpw.mods.fml.common.network.Player;
 
 public class KeyHandlerClient implements IConnectionHandler, IPacketHandler {
 
@@ -43,12 +43,12 @@ public class KeyHandlerClient implements IConnectionHandler, IPacketHandler {
 	}
 
 	@Override
-	public void onPacketData(INetworkManager manager, Packet250CustomPayload packet, Player player) {
+	public void onPacketData(INetworkManager manager, Packet250CustomPayload packet, EntityPlayer player) {
 
 	}
 
 	@Override
-	public void playerLoggedIn(Player player, NetHandler netHandler, INetworkManager manager) {
+	public void playerLoggedIn(EntityPlayer player, NetHandler netHandler, INetworkManager manager) {
 
 	}
 
