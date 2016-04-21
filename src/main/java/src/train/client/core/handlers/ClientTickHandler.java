@@ -36,12 +36,12 @@ public class ClientTickHandler implements ITickHandler {
     		if(mc.theWorld != null && mc != null && mc.theWorld.playerEntities != null) {
     			for (int i = 0; i < mc.theWorld.playerEntities.size(); i++) {
     				AbstractClientPlayer player = (AbstractClientPlayer)mc.theWorld.playerEntities.get(i);
-    				CapesHelper user = CapesHelper.users.get(player.username);
+    				CapesHelper user = CapesHelper.users.get(player.getDisplayName());
     				if(user == null ) {
-    					user = new CapesHelper(player.username);
-    					CapesHelper.users.put(player.username, user);
+    					user = new CapesHelper(player.getDisplayName());
+    					CapesHelper.users.put(player.getDisplayName(), user);
     					user.setDaemon(true);
-    					user.setName("Cape for " + player.username);
+    					user.setName("Cape for " + player.getDisplayName());
     					user.start();
     				}else if((user.isLoaded) && (user.MCCape)) {
     					player.downloadImageCape = user.getCurrentImage();

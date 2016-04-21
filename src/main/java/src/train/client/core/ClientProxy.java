@@ -154,7 +154,7 @@ public class ClientProxy extends CommonProxy {
 
 	@Override
 	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-		TileEntity te = world.getBlockTileEntity(x, y, z);
+		TileEntity te = world.getTileEntity(x, y, z);
 		EntityPlayer riddenByEntity = null;
 		Entity entity = player.ridingEntity;
 		//entity = ;
@@ -165,7 +165,7 @@ public class ClientProxy extends CommonProxy {
 		Entity entity1 = null;
 		if (y == -1) {
 			for (Object ent : world.loadedEntityList) {
-				if (((Entity) ent).entityId == x)
+				if (((Entity) ent).getEntityId() == x)
 					entity1 = (Entity) ent;
 			}
 		}

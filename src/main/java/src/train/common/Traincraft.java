@@ -76,7 +76,7 @@ public class Traincraft {
 	public static boolean mysqlLoggerEnabled;
 
 	@EventHandler
-	public void preInit(FMLPreInitializationEvent event) {	
+	public void preInit(FMLPreInitializationEvent event) {
 		proxy.registerSounds();
 		//ForgeChunkManager.setForcedChunkLoadingCallback(instance, ChunkHandler.getInstance());
 		MinecraftForge.EVENT_BUS.register(ChunkHandler.getInstance());

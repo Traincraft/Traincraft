@@ -5,12 +5,13 @@ import java.io.DataInputStream;
 import java.io.IOException;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.network.INetHandler;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.NetLoginHandler;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.packet.NetHandler;
 import net.minecraft.network.packet.Packet1Login;
-import net.minecraft.network.packet.Packet250CustomPayload;
+import src.train.common.Packet250CustomPayload;
 import net.minecraft.server.MinecraftServer;
 import src.train.common.Traincraft;
 import src.train.common.api.EntityRollingStock;
@@ -51,7 +52,7 @@ public class KeyServerHandler implements IConnectionHandler, IPacketHandler {
 	}
 
 	@Override
-	public void playerLoggedIn(EntityPlayer player, NetHandler netHandler, NetworkManager manager) {
+	public void playerLoggedIn(EntityPlayer player, INetHandler netHandler, NetworkManager manager) {
 		NetworkRegistry.instance().registerChannel(this, "TrainMod");
 	}
 
@@ -61,10 +62,10 @@ public class KeyServerHandler implements IConnectionHandler, IPacketHandler {
 	}
 
 	@Override
-	public void connectionOpened(NetHandler netClientHandler, String server, int port, NetworkManager manager) {}
+	public void connectionOpened(INetHandler netClientHandler, String server, int port, NetworkManager manager) {}
 
 	@Override
-	public void connectionOpened(NetHandler netClientHandler, MinecraftServer server, NetworkManager manager) {}
+	public void connectionOpened(INetHandler netClientHandler, MinecraftServer server, NetworkManager manager) {}
 
 	@Override
 	public void connectionClosed(NetworkManager manager) {
@@ -72,7 +73,7 @@ public class KeyServerHandler implements IConnectionHandler, IPacketHandler {
 	}
 
 	@Override
-	public void clientLoggedIn(NetHandler clientHandler, NetworkManager manager, Packet1Login login) {
+	public void clientLoggedIn(INetHandler clientHandler, NetworkManager manager, Packet1Login login) {
 		NetworkRegistry.instance().registerChannel(this, "TrainMod");
 	}
 }

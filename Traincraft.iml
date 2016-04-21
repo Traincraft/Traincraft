@@ -663,5 +663,16 @@
     <orderEntry type="library" exported="" name="industrialcraft-2-2.2.817-experimental-dev" level="project" />
     <orderEntry type="library" exported="" name="NotEnoughItems-1.7.10-1.0.3.74-dev" level="project" />
     <orderEntry type="library" exported="" name="jl1.0.1" level="project" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/minecraft/net/minecraftforge/forge/1.7.10-10.13.4.1558-1.7.10/forgeSrc-1.7.10-10.13.4.1558-1.7.10.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.gradle/caches/minecraft/net/minecraftforge/forge/1.7.10-10.13.4.1558-1.7.10/forgeSrc-1.7.10-10.13.4.1558-1.7.10-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
   </component>
 </module>

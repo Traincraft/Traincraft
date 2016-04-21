@@ -12,6 +12,7 @@ import java.util.TreeSet;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityFurnace;
 
@@ -253,7 +254,7 @@ public class NEIDistillationTowerRecipePlugin extends FurnaceRecipeHandler{
         afuelsDistil = new ArrayList<FuelPairDistil>();
         for(ItemStack item : ItemList.items)
         {
-            if(!efuelsDistil.contains(item.itemID))
+            if(!efuelsDistil.contains(Item.getIdFromItem(item.getItem())))
             {
                 int burnTime = TileEntityFurnace.getItemBurnTime(item);
                 if(burnTime > 0)

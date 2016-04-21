@@ -10,7 +10,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.network.packet.Packet;
+import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.Fluid;
@@ -139,7 +139,7 @@ public class TileEntityDistil extends TileEntity implements IInventory, IFluidHa
 	}
 
 	@Override
-	public String getInvName() {
+	public String getInventoryName() {
 		return "Distillation tower";
 	}
 
@@ -433,10 +433,10 @@ public class TileEntityDistil extends TileEntity implements IInventory, IFluidHa
 	}
 
 	@Override
-	public void openChest() {}
+	public void openInventory() {}
 
 	@Override
-	public void closeChest() {}
+	public void closeInventory() {}
 
 	/*@Override
 	public int getStartInventorySide(ForgeDirection side) {
@@ -523,7 +523,7 @@ public class TileEntityDistil extends TileEntity implements IInventory, IFluidHa
 	}
 
 	@Override
-	public boolean isInvNameLocalized() {
+	public boolean hasCustomInventoryName() {
 		return false;
 	}
 

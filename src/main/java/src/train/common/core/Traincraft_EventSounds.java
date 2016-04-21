@@ -5,7 +5,6 @@ import java.io.File;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.client.audio.SoundPoolEntry;
 import net.minecraftforge.client.event.sound.SoundLoadEvent;
-import net.minecraftforge.event.ForgeSubscribe;
 import src.train.common.Traincraft;
 import src.train.common.library.EnumSoundsFiles;
 import src.train.common.library.Info;

@@ -129,7 +129,7 @@ public class EntityLocoSteam4_4_0 extends SteamTrain {
 		return inventorySize;
 	}
 	@Override
-	public String getInvName() {
+	public String getInventoryName() {
 		return "Steam Locomotive";
 	}
 

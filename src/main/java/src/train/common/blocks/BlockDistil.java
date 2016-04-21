@@ -57,7 +57,7 @@ public class BlockDistil extends BlockContainer {
 	}
 
 	@Override
-	public Icon getIcon(int i, int j) {
+	public IIcon getIcon(int i, int j) {
 		if (!this.isActive) {
 			if (i == 1) {
 				return textureTop;
@@ -96,8 +96,8 @@ public class BlockDistil extends BlockContainer {
 
 	@Override
 	public IIcon getBlockTexture(IBlockAccess worldAccess, int i, int j, int k, int side) {
-		if (((TileEntityDistil) worldAccess.getBlockTileEntity(i, j, k)).getFacing() != null) {
-			side = TileHelper.getOrientationFromSide(((TileEntityDistil) worldAccess.getBlockTileEntity(i, j, k)).getFacing(), ForgeDirection.getOrientation(side)).ordinal();
+		if (((TileEntityDistil) worldAccess.getTileEntity(i, j, k)).getFacing() != null) {
+			side = TileHelper.getOrientationFromSide(((TileEntityDistil) worldAccess.getTileEntity(i, j, k)).getFacing(), ForgeDirection.getOrientation(side)).ordinal();
 		}
 		if (!this.isActive) {
 			return side == 1 ? textureTop : side == 0 ? textureBottom : side == 4 ? textureSide : side == 5 ? textureSide : side == 3 ? textureFront_off : textureBack;
@@ -109,7 +109,7 @@ public class BlockDistil extends BlockContainer {
 
 	@Override
 	public boolean onBlockActivated(World world, int i, int j, int k, EntityPlayer player, int par6, float par7, float par8, float par9) {
-		TileEntity te = world.getBlockTileEntity(i, j, k);
+		TileEntity te = world.getTileEntity(i, j, k);
 		if (player.isSneaking()) {
 			return false;
 		}
@@ -125,7 +125,7 @@ public class BlockDistil extends BlockContainer {
 	@SideOnly(Side.CLIENT)
 	public void randomDisplayTick(World world, int i, int j, int k, Random random) {
 		if (this.isActive) {
-			ForgeDirection side = ((TileEntityDistil) world.getBlockTileEntity(i, j, k)).getFacing();
+			ForgeDirection side = ((TileEntityDistil) world.getTileEntity(i, j, k)).getFacing();
 			float var7 = (float) i + 0.5F;
 			float var8 = (float) j + 0.0F + random.nextFloat() * 6.0F / 16.0F;
 			float var9 = (float) k + 0.5F;
@@ -162,7 +162,7 @@ public class BlockDistil extends BlockContainer {
 
 	public static void updateDistilBlockState(boolean flag, World world, int i, int j, int k) {
 		int l = world.getBlockMetadata(i, j, k);
-		TileEntity tileentity = world.getBlockTileEntity(i, j, k);
+		TileEntity tileentity = world.getTileEntity(i, j, k);
 		keepDistilInventory = true;
 		if (flag) {
 			world.setBlock(i, j, k, BlockIDs.distilActive.blockID);
@@ -174,14 +174,14 @@ public class BlockDistil extends BlockContainer {
 		world.setBlockMetadataWithNotify(i, j, k, l, 2);
 		if (tileentity != null) {
 			tileentity.validate();
-			world.setBlockTileEntity(i, j, k, tileentity);
+			world.setTileEntity(i, j, k, tileentity);
 		}
 	}
 
 	@Override
 	public void breakBlock(World world, int i, int j, int k, int par5, int par6) {
 		if (!keepDistilInventory) {
-			TileEntityDistil tileentitydistil = (TileEntityDistil) world.getBlockTileEntity(i, j, k);
+			TileEntityDistil tileentitydistil = (TileEntityDistil) world.getTileEntity(i, j, k);
 			if (tileentitydistil != null) {
 				label0: for (int l = 0; l < tileentitydistil.getSizeInventory(); l++) {
 					ItemStack itemstack = tileentitydistil.getStackInSlot(l);
@@ -221,7 +221,7 @@ public class BlockDistil extends BlockContainer {
 
 	@Override
 	public void onBlockPlacedBy(World world, int i, int j, int k, EntityLivingBase entityliving, ItemStack stack) {
-		TileEntityDistil te = (TileEntityDistil) world.getBlockTileEntity(i, j, k);
+		TileEntityDistil te = (TileEntityDistil) world.getTileEntity(i, j, k);
 		if (te != null) {
 			int dir = MathHelper.floor_double((double) ((entityliving.rotationYaw * 4F) / 360F) + 0.5D) & 3;
 			te.setFacing(ForgeDirection.getOrientation(dir == 0 ? 2 : dir == 1 ? 5 : dir == 2 ? 3 : 4));

@@ -5,7 +5,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EnumStatus;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.entity.player.PlayerCapabilities;
 import net.minecraft.inventory.ContainerPlayer;
@@ -16,10 +15,7 @@ import net.minecraft.stats.StatBase;
 import net.minecraft.tileentity.TileEntityBrewingStand;
 import net.minecraft.tileentity.TileEntityDispenser;
 import net.minecraft.tileentity.TileEntityFurnace;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.ChunkCoordinates;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.FoodStats;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
 
 /**
@@ -38,7 +34,7 @@ public class FakePlayer extends EntityPlayer {
 		super(world, "");
 		inventory = new InventoryPlayer(this);
 		inventory.currentItem = 0;
-		inventory.setInventorySlotContents(0, new ItemStack(Item.pickaxeDiamond, 1, 0));
+		inventory.setInventorySlotContents(0, new ItemStack(Item.getItemById(278), 1, 0));//278 is diamond pickaxe
 		foodStats = new FoodStats();
 		flyToggleTimer = 0;
 		// score = 0;
@@ -181,7 +177,7 @@ public class FakePlayer extends EntityPlayer {
 	}
 
 	@Override
-	public void addChatMessage(String s) {}
+	public void addChatMessage(IChatComponent chatComponent) {}
 
 	@Override
 	public void triggerAchievement(StatBase statbase) {}
@@ -193,7 +189,7 @@ public class FakePlayer extends EntityPlayer {
 	public void addToPlayerScore(Entity par1Entity, int par2) {}
 
 	@Override
-	protected void jump() {}
+	public void jump() {}
 
 	@Override
 	public void moveEntityWithHeading(float f, float f1) {}

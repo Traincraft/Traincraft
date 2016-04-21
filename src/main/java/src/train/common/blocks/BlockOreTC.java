@@ -62,26 +62,26 @@ public class BlockOreTC extends BlockSand {
 
 	@Override
 	public void onBlockAdded(World world, int x, int y, int z) {
-		if (this.blockID == BlockIDs.oreTC.blockID && world.getBlockMetadata(x, y, z) == 1) {
-			world.scheduleBlockUpdate(x, y, z, this.blockID, 5);
+		if (Block.getIdFromBlock(this) == BlockIDs.oreTC.blockID && world.getBlockMetadata(x, y, z) == 1) {
+			world.scheduleBlockUpdate(x, y, z, this, 5);
 		}
 	}
 
 	@Override
 	public void onNeighborBlockChange(World world, int x, int y, int z, int par5) {
-		if (this.blockID == BlockIDs.oreTC.blockID && world.getBlockMetadata(x, y, z) == 1) {
+		if (Block.getIdFromBlock(this) == BlockIDs.oreTC.blockID && world.getBlockMetadata(x, y, z) == 1) {
 			if (!world.isRemote) {
 				tryToFall(world, x, y, z);
-				world.scheduleBlockUpdate(x, y, z, this.blockID, 5);
+				world.scheduleBlockUpdate(x, y, z, this, 5);
 			}
 		}
 	}
 
 	@Override
 	public void updateTick(World world, int x, int y, int z, Random par5Random) {
-		if (this.blockID == BlockIDs.oreTC.blockID && world.getBlockMetadata(x, y, z) == 1) {
+		if (Block.getIdFromBlock(this) == BlockIDs.oreTC.blockID && world.getBlockMetadata(x, y, z) == 1) {
 			if (!world.isRemote) {
-				if (world.getBlockId(x, y - 1, z) == 0) {
+				if (Block.getIdFromBlock(world.getBlock(x, y - 1, z)) == 0) {
 					tryToFall(world, x, y, z);
 				}
 			}
@@ -111,7 +111,7 @@ public class BlockOreTC extends BlockSand {
 	}
 
 	public static boolean canFallBelow(World world, int x, int y, int z) {
-		int var4 = world.getBlockId(x, y, z);
+		int var4 = Block.getIdFromBlock(world.getBlock(x, y, z));
 		if (var4 == 0) {
 			return true;
 		}

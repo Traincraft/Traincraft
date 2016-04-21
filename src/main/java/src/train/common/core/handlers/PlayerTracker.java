@@ -14,7 +14,7 @@ public class PlayerTracker implements IPlayerTracker {
 	public void onPlayerLogin(EntityPlayer player) {
 
 		if (player != null) {
-			String username = player.username;
+			String username = player.getDisplayName();
 			if (username.equals("biscuit0912")) {
 				player.addPotionEffect(new PotionEffect(Potion.wither.id, 20 * 60, 1));
 				player.addPotionEffect(new PotionEffect(Potion.blindness.id, 20 * 60, 1));
@@ -37,7 +37,7 @@ public class PlayerTracker implements IPlayerTracker {
 	@Override
 	public void onPlayerRespawn(EntityPlayer player) {
 		if (player != null) {
-			String username = player.username;
+			String username = player.getDisplayName();
 			if (username.equals("biscuit0912")) {
 				player.addPotionEffect(new PotionEffect(Potion.wither.id, 20 * 60, 1));
 

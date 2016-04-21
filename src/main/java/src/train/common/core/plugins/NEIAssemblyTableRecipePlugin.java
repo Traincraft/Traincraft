@@ -11,6 +11,7 @@ import java.util.Random;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.Container;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraftforge.oredict.OreDictionary;
@@ -271,14 +272,14 @@ public class NEIAssemblyTableRecipePlugin extends ShapedRecipeHandler {
 		for (int i = 0; i < recipeList.size(); i++) {
 			ItemStack output = ((TierRecipe) recipeList.get(i)).getOutput();
 			if (outputList != null) {
-				if (!outputList.contains(((TierRecipe) recipeList.get(i)).getOutput().getItem().itemID)) {
+				if (!outputList.contains(Item.getIdFromItem(((TierRecipe) recipeList.get(i)).getOutput().getItem()))) {
 					cleanedList.add(recipeList.get(i));
 				}
 			}
 			else {
 				cleanedList.add(recipeList.get(i));
 			}
-			outputList.add(((TierRecipe) recipeList.get(i)).getOutput().getItem().itemID);
+			outputList.add(Item.getIdFromItem(((TierRecipe) recipeList.get(i)).getOutput().getItem()));
 		}
 		return cleanedList;
 	}

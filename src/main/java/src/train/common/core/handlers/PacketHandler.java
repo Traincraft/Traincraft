@@ -17,9 +17,9 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.INetworkManager;
+import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
-import net.minecraft.network.packet.Packet250CustomPayload;
+import src.train.common.Packet250CustomPayload;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
@@ -58,7 +58,7 @@ public class PacketHandler implements IPacketHandler {
 	protected RollingStockStatsEventHandler statsEventHandler = new RollingStockStatsEventHandler();
 
 	@Override
-	public void onPacketData(INetworkManager manager, Packet250CustomPayload packet, EntityPlayer player) {
+	public void onPacketData(NetworkManager manager, Packet250CustomPayload packet, EntityPlayer player) {
 		ByteArrayDataInput data = ByteStreams.newDataInput(packet.data);
 		int packetIndex = data.readInt();
 		World world = ((EntityPlayer) player).worldObj;
