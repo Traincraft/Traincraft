@@ -69,8 +69,8 @@ public class Util {
                 if (canHarvest) {
                     block.harvestBlock(world, player, pos, state, tile, player.getHeldItemMainhand());
                 }
-                if (EnchantmentHelper.getEnchantmentLevel(Enchantments.fortune, stack) != 0) {
-                    block.dropXpOnBlockBreak(world, pos, block.getExpDrop(state, world, pos, EnchantmentHelper.getEnchantmentLevel(Enchantments.fortune, stack)));
+                if (EnchantmentHelper.getEnchantmentLevel(Enchantments.FORTUNE, stack) != 0) {
+                    block.dropXpOnBlockBreak(world, pos, block.getExpDrop(state, world, pos, EnchantmentHelper.getEnchantmentLevel(Enchantments.FORTUNE, stack)));
                 }
 
             }

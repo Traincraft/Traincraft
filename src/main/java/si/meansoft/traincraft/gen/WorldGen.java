@@ -46,7 +46,7 @@ public class WorldGen implements IWorldGenerator {
                 int posY = minY+random.nextInt(yDiff);
                 int posZ = blockZPos+random.nextInt(16);
                 Block block = Block.getBlockFromItem(stack.getItem());
-                new WorldGenMinable(block.getStateFromMeta(stack.getMetadata()), maxVeinSize, BlockMatcher.forBlock(blockIn)).generate(world, random, new BlockPos(posX, posY, posZ));
+                new WorldGenMinable(block.getDefaultState(), maxVeinSize, BlockMatcher.forBlock(blockIn)).generate(world, random, new BlockPos(posX, posY, posZ));
             }
         }
     }

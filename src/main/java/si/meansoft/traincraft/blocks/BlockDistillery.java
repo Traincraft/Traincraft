@@ -18,7 +18,7 @@ public class BlockDistillery extends BlockContainerBase {
     public static final PropertyBool ACTIVE = PropertyBool.create("active");
 
     public BlockDistillery() {
-        super(Material.iron, "distillery", TileEntityDistillery.class);
+        super(Material.IRON, "distillery", TileEntityDistillery.class);
         addGuiContainer(GuiHandler.DISTILLERY, GuiDistillery.class, ContainerDistillery.class);
         this.setDefaultState(this.getBlockState().getBaseState().withProperty(ACTIVE, false).withProperty(FACING, EnumFacing.NORTH));
     }

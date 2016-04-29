@@ -30,7 +30,7 @@ public class BlockContainerBase extends BlockBase implements ITileEntityProvider
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
 
     public BlockContainerBase(Material materialIn, String name, Class<? extends TileEntity> tileClass) {
-        super(materialIn, name);
+        super(materialIn, name, true);
         this.isBlockContainer = true;
         this.tileClass = tileClass;
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));

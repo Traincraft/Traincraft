@@ -75,7 +75,7 @@ public class ContainerDistillery extends Container {
     public void detectAndSendChanges() {
         super.detectAndSendChanges();
 
-        for(ICrafting crafting : this.crafters){
+        for(ICrafting crafting : this.listeners){
             if(this.currentBurn != this.distillery.currentBurn){
                 crafting.sendProgressBarUpdate(this, 0, this.distillery.getField(0));
             }

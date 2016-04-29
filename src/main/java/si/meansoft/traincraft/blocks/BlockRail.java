@@ -1,5 +1,6 @@
 package si.meansoft.traincraft.blocks;
 
+import net.minecraft.block.BlockContainer;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
@@ -14,7 +15,10 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import si.meansoft.traincraft.Traincraft;
 import si.meansoft.traincraft.Util;
+import si.meansoft.traincraft.tileEntities.TileEntityRail;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,28 +27,25 @@ import java.util.Locale;
 /**
  * @author canitzp
  */
-public class BlockRail extends BlockBase{
+public class BlockRail extends BlockContainer{
 
-    public static final PropertyEnum HARVESTTYPE = PropertyEnum.create("trackharvest", TrackHarvestEvent.class);
-    public static final PropertyEnum HARVESTTYPE2 = PropertyEnum.create("trackharvest2", TrackHarvestEvent.class);
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
     public TrackLength length;
     public TrackDirection direction;
 
     public BlockRail(String extraName, TrackLength length, TrackDirection direction) {
-        super(Material.iron, "track" + Util.firstCharToUpperCase(length.name) + Util.firstCharToUpperCase(direction.name) + extraName);
+        super(Material.IRON);
         this.length = length;
         this.direction = direction;
-        this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(HARVESTTYPE, TrackHarvestEvent.NORTH).withProperty(HARVESTTYPE2, TrackHarvestEvent.NORTH));
+        this.isBlockContainer = true;
+        this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
+        GameRegistry.register(this.setRegistryName(Traincraft.MODID, "testRail"));
+        //Traincraft.registerBlock(this, "track" + Util.firstCharToUpperCase(length.name) + Util.firstCharToUpperCase(direction.name) + extraName, true);
     }
 
     @Override
     protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, FACING, HARVESTTYPE, HARVESTTYPE2);
-    }
-
-    public BlockRail(TrackLength length, TrackDirection direction) {
-        this("", length, direction);
+        return new BlockStateContainer(this, FACING);
     }
 
     @Override
@@ -58,31 +59,25 @@ public class BlockRail extends BlockBase{
     }
 
     @Override
-    public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity te, ItemStack stack) {
-        super.harvestBlock(worldIn, player, pos, state, te, stack);
-        TrackHarvestEvent.onHarvestTrack(worldIn, player, pos, state, te, stack);
+    public void onBlockDestroyedByPlayer(World worldIn, BlockPos pos, IBlockState state){
+        System.out.println(worldIn.getTileEntity(pos));
+        //TrackPlacing.harvestTrack(worldIn, pos, state, (TileEntityRail) worldIn.getTileEntity(pos));
     }
 
     @Override
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
-        EnumFacing facing = placer.getHorizontalFacing();
-        world.setBlockState(pos, state.withProperty(FACING, facing.getOpposite()).withProperty(HARVESTTYPE, TrackHarvestEvent.NORTH).withProperty(HARVESTTYPE2, TrackHarvestEvent.NONE), 2);
-        switch (facing){
-            case NORTH:{
-                List<BlockPos> posList = new ArrayList<BlockPos>();
-                for(int i = 0; i < this.length.lenght; i++){
-                    posList.add(new BlockPos(pos.getX(), pos.getY(), pos.getZ() - i));
-                }
-                for(BlockPos setPos : posList){
-                    world.setBlockState(setPos, this.getDefaultState().withProperty(FACING, facing.getOpposite()).withProperty(HARVESTTYPE, TrackHarvestEvent.NORTH).withProperty(HARVESTTYPE2, TrackHarvestEvent.SOUTH));
-                }
-            }
-        }
+        //TrackPlacing.placeTrack(world, (EntityPlayer) placer, pos, state, this.length, this.direction);
+        world.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing().getOpposite()), 2);
     }
 
     @Override
     public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
         return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite());
+    }
+
+    @Override
+    public TileEntity createNewTileEntity(World worldIn, int meta){
+        return new TileEntityRail();
     }
 
     public enum TrackDirection{
@@ -104,29 +99,6 @@ public class BlockRail extends BlockBase{
         TrackLength(String name, int length){
             this.name = name;
             this.lenght = length;
-        }
-    }
-    public enum TrackHarvestEvent implements IStringSerializable{
-        NORTH,
-        EAST,
-        SOUTH,
-        WEST,
-        NORTH_EAST,
-        NORTH_WEST,
-        SOUTH_EAST,
-        SOUTH_WEST,
-        NONE;
-        @Override
-        public String getName() {
-            return this.name().toLowerCase(Locale.ROOT);
-        }
-        public static void onHarvestTrack(World world, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity tileEntity, ItemStack harvestTool){
-            TrackHarvestEvent event = (TrackHarvestEvent) state.getValue(HARVESTTYPE);
-            switch (event){
-                case NORTH:{
-                    Util.playerHarvestBlock(world, pos.add(0, 0, -1), player, harvestTool);
-                }
-            }
         }
     }
 }

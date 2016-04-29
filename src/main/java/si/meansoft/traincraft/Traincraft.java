@@ -3,11 +3,12 @@ package si.meansoft.traincraft;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.*;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
-import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.registry.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import si.meansoft.traincraft.blocks.BlockBase;
@@ -63,12 +64,18 @@ public class Traincraft {
         logger.info("Now you can't stop the trains!");
     }
 
-    public static void registerBlock(BlockBase block, String blockName){
+    public static void registerBlock(Block block, String blockName, boolean forgeModel){
         block.setUnlocalizedName(MODID + ":" + blockName);
         block.setRegistryName(blockName);
-        if(!block.forgeModel) CommonProxy.addStackToRender(Item.getItemFromBlock(block));
         block.setCreativeTab(tab);
-        GameRegistry.register((Block)block);
+        ItemBlock itemBlock = (ItemBlock) new ItemBlock(block).setRegistryName(block.getRegistryName());
+        GameRegistry.register(block);
+        GameRegistry.register(new ItemBlock(block).setRegistryName(block.getRegistryName()));
+        if(!forgeModel){
+            CommonProxy.addStackToRender(itemBlock);
+        } else {
+            CommonProxy.addForgeRender(itemBlock);
+        }
     }
 
 }

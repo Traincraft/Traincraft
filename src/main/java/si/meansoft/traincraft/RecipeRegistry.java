@@ -16,7 +16,7 @@ public class RecipeRegistry {
     }
 
     private static void initDistillRecipes(){
-        DistilleryRecipes.addRecipe(new ItemStack(Items.apple), new ItemStack(BlockRegistry.oilSand), new FluidStack(FluidRegistry.WATER, 1000), 50, 500);
+        DistilleryRecipes.addRecipe(new ItemStack(Items.APPLE), new ItemStack(BlockRegistry.oilSand), new FluidStack(FluidRegistry.WATER, 1000), 50, 500);
     }
 
 }

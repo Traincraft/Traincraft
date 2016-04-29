@@ -11,12 +11,9 @@ import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.item.ItemBlock;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import si.meansoft.traincraft.Traincraft;
-
-import java.util.Map;
 
 public class ClientProxy extends CommonProxy {
 
@@ -27,9 +24,9 @@ public class ClientProxy extends CommonProxy {
                 registerModel(item);
             }
         }
-        for(Map.Entry<Block, ResourceLocation> entry : forgeRender.entrySet()){
-            if(entry.getKey() != null && entry.getValue() != null){
-                registerForgeBlock(entry.getKey(), entry.getValue());
+        for(ItemBlock item : forgeRender){
+            if(item != null) {
+                registerForgeBlock(item);
             }
         }
     }
@@ -38,7 +35,7 @@ public class ClientProxy extends CommonProxy {
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
     }
 
-    private void registerForgeBlock(Block block, ResourceLocation location){
-        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0, new ModelResourceLocation(location, "inventory"));
+    private void registerForgeBlock(ItemBlock block){
+        ModelLoader.setCustomModelResourceLocation(block, 0, new ModelResourceLocation(block.getRegistryName(), "inventory"));
     }
 }

@@ -3,7 +3,9 @@ package si.meansoft.traincraft.blocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.oredict.OreDictionary;
 import si.meansoft.traincraft.Traincraft;
 import si.meansoft.traincraft.gen.WorldGen;
@@ -14,11 +16,12 @@ import si.meansoft.traincraft.network.CommonProxy;
  */
 public class BlockBase extends Block {
 
-    public boolean forgeModel = false;
+    private Block instance;
 
-    public BlockBase(Material materialIn, String name) {
+    public BlockBase(Material materialIn, String name, boolean forgeModel) {
         super(materialIn);
-        Traincraft.registerBlock(this, name);
+        Traincraft.registerBlock(this, name, forgeModel);
+        this.instance = ForgeRegistries.BLOCKS.getValue(getRegistryName());
     }
 
     /**
@@ -30,21 +33,13 @@ public class BlockBase extends Block {
      * The example values you'll find in the class: 'net.minecraft.world.gen.ChunkProviderSettings'
      */
     public BlockBase generateBlock(Block toSpawnInside, int minY, int maxY, int maxVeinSize, int chanceToSpawn){
-        WorldGen.addBlockToSpawn(this, toSpawnInside, minY, maxY, maxVeinSize, chanceToSpawn);
+        WorldGen.addBlockToSpawn(this.instance, toSpawnInside, minY, maxY, maxVeinSize, chanceToSpawn);
         return this;
     }
 
     public BlockBase addOreDict(String oreDict){
-        OreDictionary.registerOre(oreDict, this);
+        OreDictionary.registerOre(oreDict, this.instance);
         return this;
-    }
-
-    public BlockBase setForgeModel(ResourceLocation name){
-        CommonProxy.addForgeRender(this, name);
-        return this;
-    }
-    public BlockBase setForgeModel(){
-        return setForgeModel(getRegistryName());
     }
 
     public BlockBase setHarvestLevel(ToolEnum tool, int hardness){
