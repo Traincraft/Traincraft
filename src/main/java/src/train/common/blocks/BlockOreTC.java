@@ -8,7 +8,8 @@ import net.minecraft.block.BlockSand;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.item.EntityFallingSand;
+import net.minecraft.entity.item.EntityFallingBlock;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
@@ -26,7 +27,7 @@ public class BlockOreTC extends BlockSand {
 	private static IIcon texture4;
 
 	public BlockOreTC(int id, int tex) {
-		super(id, Material.rock);
+		super();
 		setCreativeTab(Traincraft.tcTab);
 	}
 
@@ -52,7 +53,7 @@ public class BlockOreTC extends BlockSand {
 
 	@Override
 	public int idDropped(int i, Random random, int j) {
-		return blockID;
+		return Block.getIdFromBlock(this);
 	}
 
 	@Override
@@ -68,7 +69,7 @@ public class BlockOreTC extends BlockSand {
 	}
 
 	@Override
-	public void onNeighborBlockChange(World world, int x, int y, int z, int par5) {
+	public void onNeighborBlockChange(World world, int x, int y, int z, Block par5) {
 		if (Block.getIdFromBlock(this) == BlockIDs.oreTC.blockID && world.getBlockMetadata(x, y, z) == 1) {
 			if (!world.isRemote) {
 				tryToFall(world, x, y, z);
@@ -94,7 +95,7 @@ public class BlockOreTC extends BlockSand {
 			if (canFallBelow(world, x, y - 1, z) && y >= 0) {
 				byte byte0 = 32;
 				if (!world.checkChunksExist(x - byte0, y - byte0, z - byte0, x + byte0, y + byte0, z + byte0)) {
-					world.setBlock(x, y, z, 0);
+					world.setBlock(x, y, z, Block.getBlockById(0));
 					for (; canFallBelow(world, x, y - 1, z) && y > 0; y--) {
 						if (y > 0) {
 							world.setBlockMetadataWithNotify(x, y, z, BlockIDs.oreTC.blockID, 1);
@@ -102,7 +103,7 @@ public class BlockOreTC extends BlockSand {
 					}
 				}
 				else {
-					EntityFallingSand ent = new EntityFallingSand(world, (double) x + 0.5D, (double) y + 0.5D, (double) z + 0.5D, blockID, meta);
+					EntityFallingBlock ent = new EntityFallingBlock(world, (double) x + 0.5D, (double) y + 0.5D, (double) z + 0.5D, this, meta);
 					//onStartFalling(ent);
 					world.spawnEntityInWorld(ent);
 				}
@@ -111,22 +112,23 @@ public class BlockOreTC extends BlockSand {
 	}
 
 	public static boolean canFallBelow(World world, int x, int y, int z) {
-		int var4 = Block.getIdFromBlock(world.getBlock(x, y, z));
-		if (var4 == 0) {
+		Block var4 = world.getBlock(x, y, z);
+		if (var4 == Block.getBlockById(0)) {
 			return true;
 		}
-		else if (var4 == Block.fire.blockID) {
+		//id 51 is fire
+		else if (var4 == Block.getBlockById(51)) {
 			return true;
 		}
 		else {
-			Material var5 = Block.blocksList[var4].blockMaterial;
+			Material var5 = var4.getMaterial();
 			return var5 == Material.water ? true : var5 == Material.lava;
 		}
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubBlocks(int par1, CreativeTabs tab, List subItems) {
+	public void getSubBlocks(Item par1, CreativeTabs tab, List subItems) {
 		for (int i = 0; i < 4; i++) {
 			subItems.add(new ItemStack(this, 1, i));
 		}
@@ -134,7 +136,7 @@ public class BlockOreTC extends BlockSand {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IIconRegister iconRegister) {
+	public void registerBlockIcons(IIconRegister iconRegister) {
 		texture1 = iconRegister.registerIcon(Info.modID.toLowerCase() + ":ores/ore_copper");
 		texture2 = iconRegister.registerIcon(Info.modID.toLowerCase() + ":ores/ore_oilsands");
 		texture3 = iconRegister.registerIcon(Info.modID.toLowerCase() + ":ores/ore_petroleum");

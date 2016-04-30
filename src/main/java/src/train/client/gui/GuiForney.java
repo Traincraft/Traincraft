@@ -5,6 +5,7 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
@@ -112,7 +113,7 @@ public class GuiForney extends GuiContainer {
 			//System.out.println("2 "+((EntityPlayer)((AbstractTrains) loco).riddenByEntity).username);
 			//System.out.println(((EntityPlayer)((AbstractTrains) loco).riddenByEntity).username.equalsIgnoreCase(((AbstractTrains) loco).trainOwner.trim()));
 
-			if (((AbstractTrains) loco).riddenByEntity != null && ((AbstractTrains) loco).riddenByEntity instanceof EntityPlayer && ((EntityPlayer) ((AbstractTrains) loco).riddenByEntity).username.toLowerCase().equals(((AbstractTrains) loco).trainOwner.toLowerCase())) {
+			if (((AbstractTrains) loco).riddenByEntity != null && ((AbstractTrains) loco).riddenByEntity instanceof EntityPlayer && ((EntityPlayer) ((AbstractTrains) loco).riddenByEntity).getDisplayName().toLowerCase().equals(((AbstractTrains) loco).trainOwner.toLowerCase())) {
 				if ((!((AbstractTrains) loco).locked)) {
 					((AbstractTrains) loco).sendTrainLockedPacket((EntityPlayer) ((AbstractTrains) loco).riddenByEntity, true);
 					((AbstractTrains) loco).locked = true;
@@ -127,7 +128,7 @@ public class GuiForney extends GuiContainer {
 				}
 			}
 			else if (((AbstractTrains) loco).riddenByEntity != null && ((AbstractTrains) loco).riddenByEntity instanceof EntityPlayer) {
-				((EntityPlayer) ((AbstractTrains) loco).riddenByEntity).addChatMessage("You are not the owner");
+				((EntityPlayer) ((AbstractTrains) loco).riddenByEntity).addChatMessage(new ChatComponentText("You are not the owner"));
 			}
 		}
 	}
@@ -144,7 +145,7 @@ public class GuiForney extends GuiContainer {
 		if (!((Locomotive) loco).locked)
 			state = "Unlocked";
 
-		int textWidth = fontRenderer.getStringWidth("the GUI, change speed, destroy it.");
+		int textWidth = fontRendererObj.getStringWidth("the GUI, change speed, destroy it.");
 		int startX = 90;
 		int startY = 5;
 
@@ -157,11 +158,11 @@ public class GuiForney extends GuiContainer {
 		int colour2 = (colour1 & 0xfefefe) >> 1 | colour1 & 0xff000000;
 		drawGradientRect(startX - 3, startY - 3, startX + textWidth + 3, startY + 8 + 3 + 40, colour1, colour2);
 		drawGradientRect(startX - 2, startY - 2, startX + textWidth + 2, startY + 8 + 2 + 40, i4, i4);
-		fontRenderer.drawStringWithShadow(str, startX, startY, -1);
-		fontRenderer.drawStringWithShadow("only its owner can open", startX, startY + 10, -1);
-		fontRenderer.drawStringWithShadow("the GUI, change speed, destroy it.", startX, startY + 20, -1);
-		fontRenderer.drawStringWithShadow("Current state: " + state, startX, startY + 30, -1);
-		fontRenderer.drawStringWithShadow("Owner: " + ((AbstractTrains) loco).trainOwner.trim(), startX, startY + 40, -1);
+		fontRendererObj.drawStringWithShadow(str, startX, startY, -1);
+		fontRendererObj.drawStringWithShadow("only its owner can open", startX, startY + 10, -1);
+		fontRendererObj.drawStringWithShadow("the GUI, change speed, destroy it.", startX, startY + 20, -1);
+		fontRendererObj.drawStringWithShadow("Current state: " + state, startX, startY + 30, -1);
+		fontRendererObj.drawStringWithShadow("Owner: " + ((AbstractTrains) loco).trainOwner.trim(), startX, startY + 40, -1);
 	}
 
 	public boolean intersectsWith(int mouseX, int mouseY) {
@@ -179,16 +180,16 @@ public class GuiForney extends GuiContainer {
 		GL11.glDisable(GL11.GL_LIGHTING);
 		GL11.glDisable(GL11.GL_DEPTH_TEST);
 
-		fontRenderer.drawString(loco.getInvName(), 37, 3, 0x000000);
-		fontRenderer.drawString(loco.getInvName(), 39, 1, 0x000000);
-		fontRenderer.drawString(loco.getInvName(), 37, 1, 0x000000);
-		fontRenderer.drawString(loco.getInvName(), 39, 3, 0x000000);
+		fontRendererObj.drawString(loco.getInventoryName(), 37, 3, 0x000000);
+		fontRendererObj.drawString(loco.getInventoryName(), 39, 1, 0x000000);
+		fontRendererObj.drawString(loco.getInventoryName(), 37, 1, 0x000000);
+		fontRendererObj.drawString(loco.getInventoryName(), 39, 3, 0x000000);
 
-		fontRenderer.drawString(loco.getInvName(), 38, 3, 0x000000);
-		fontRenderer.drawString(loco.getInvName(), 38, 1, 0x000000);
-		fontRenderer.drawString(loco.getInvName(), 37, 2, 0x000000);
-		fontRenderer.drawString(loco.getInvName(), 39, 2, 0x000000);
-		fontRenderer.drawString(loco.getInvName(), 38, 2, 0xd3a900);
+		fontRendererObj.drawString(loco.getInventoryName(), 38, 3, 0x000000);
+		fontRendererObj.drawString(loco.getInventoryName(), 38, 1, 0x000000);
+		fontRendererObj.drawString(loco.getInventoryName(), 37, 2, 0x000000);
+		fontRendererObj.drawString(loco.getInventoryName(), 39, 2, 0x000000);
+		fontRendererObj.drawString(loco.getInventoryName(), 38, 2, 0xd3a900);
 
 		GL11.glEnable(GL11.GL_LIGHTING);
 		GL11.glEnable(GL11.GL_DEPTH_TEST);
@@ -215,20 +216,20 @@ public class GuiForney extends GuiContainer {
 			int load = (((SteamTrain) loco).getWater());
 			int lo = Math.abs(((load * 50) / (((SteamTrain) loco).getCartTankCapacity())));
 
-			if (((SteamTrain) loco).getLiquidItemID() == LiquidManager.WATER_FILTER.fluidID) {
+			if (((SteamTrain) loco).getLiquidItemID() == LiquidManager.WATER_FILTER.getFluidID()) {
 				drawTexturedModalRect(j + 143, (k + 68) - lo, 190, 69 - lo, 18, lo + 1);
 			}
 		}
-		fontRenderer.drawStringWithShadow("Carts pulled: " + loco.getCurrentNumCartsPulled(), 1, 10, 0xFFFFFF);
-		fontRenderer.drawStringWithShadow("Mass pulled: " + loco.getCurrentMassPulled(), 1, 20, 0xFFFFFF);
-		fontRenderer.drawStringWithShadow("Speed reduction: " + loco.getCurrentSpeedSlowDown(), 1, 30, 0xFFFFFF);
-		fontRenderer.drawStringWithShadow("Accel reduction: " + loco.getCurrentAccelSlowDown(), 1, 40, 0xFFFFFF);
-		fontRenderer.drawStringWithShadow("Brake reduction: " + loco.getCurrentBrakeSlowDown(), 1, 50, 0xFFFFFF);
-		fontRenderer.drawStringWithShadow("Fuel consumption: 1 every " + loco.getFuelConsumption() + " ticks", 1, 60, 0xFFFFFF);
-		fontRenderer.drawStringWithShadow("Fuel: " + loco.getFuel(), 1, 70, 0xFFFFFF);
-		fontRenderer.drawStringWithShadow("Power: " + loco.getPower() + " Mhp", 1, 80, 0xFFFFFF);
-		fontRenderer.drawStringWithShadow("State: " + loco.getState(), 1, 90, 0xFFFFFF);
-		fontRenderer.drawStringWithShadow("Heat level: " + loco.getOverheatLevel(), 1, 100, 0xFFFFFF);
-		fontRenderer.drawStringWithShadow("Maximum Speed: " + (loco.getCustomSpeedGUI()), 1, 110, 0xFFFFFF);
+		fontRendererObj.drawStringWithShadow("Carts pulled: " + loco.getCurrentNumCartsPulled(), 1, 10, 0xFFFFFF);
+		fontRendererObj.drawStringWithShadow("Mass pulled: " + loco.getCurrentMassPulled(), 1, 20, 0xFFFFFF);
+		fontRendererObj.drawStringWithShadow("Speed reduction: " + loco.getCurrentSpeedSlowDown(), 1, 30, 0xFFFFFF);
+		fontRendererObj.drawStringWithShadow("Accel reduction: " + loco.getCurrentAccelSlowDown(), 1, 40, 0xFFFFFF);
+		fontRendererObj.drawStringWithShadow("Brake reduction: " + loco.getCurrentBrakeSlowDown(), 1, 50, 0xFFFFFF);
+		fontRendererObj.drawStringWithShadow("Fuel consumption: 1 every " + loco.getFuelConsumption() + " ticks", 1, 60, 0xFFFFFF);
+		fontRendererObj.drawStringWithShadow("Fuel: " + loco.getFuel(), 1, 70, 0xFFFFFF);
+		fontRendererObj.drawStringWithShadow("Power: " + loco.getPower() + " Mhp", 1, 80, 0xFFFFFF);
+		fontRendererObj.drawStringWithShadow("State: " + loco.getState(), 1, 90, 0xFFFFFF);
+		fontRendererObj.drawStringWithShadow("Heat level: " + loco.getOverheatLevel(), 1, 100, 0xFFFFFF);
+		fontRendererObj.drawStringWithShadow("Maximum Speed: " + (loco.getCustomSpeedGUI()), 1, 110, 0xFFFFFF);
 	}
 }

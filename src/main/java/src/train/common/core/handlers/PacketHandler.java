@@ -12,6 +12,8 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.List;
 
+import cpw.mods.fml.common.network.internal.FMLProxyPacket;
+import io.netty.handler.codec.MessageToMessageCodec;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -53,7 +55,7 @@ import com.google.common.io.ByteStreams;
 import cpw.mods.fml.common.network.IPacketHandler;
 import cpw.mods.fml.common.network.PacketDispatcher;
 
-public class PacketHandler implements IPacketHandler {
+public class PacketHandler extends MessageToMessageCodec<FMLProxyPacket, Packet250CustomPayload> {
 
 	protected RollingStockStatsEventHandler statsEventHandler = new RollingStockStatsEventHandler();
 

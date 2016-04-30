@@ -2,6 +2,7 @@ package src.train.client.core.handlers;
 
 import java.util.EnumSet;
 
+import cpw.mods.fml.common.gameevent.TickEvent;
 import org.lwjgl.Sys;
 
 import net.minecraft.client.Minecraft;
@@ -23,7 +24,6 @@ import src.train.common.library.BlockIDs;
 import src.train.common.library.Info;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.ITickHandler;
-import cpw.mods.fml.common.TickType;
 
 public class ClientTickHandler implements ITickHandler {
 	private static final Minecraft mc = Minecraft.getMinecraft();
@@ -31,8 +31,8 @@ public class ClientTickHandler implements ITickHandler {
 	private HUDloco locoHUD = new HUDloco(Traincraft.proxy.getClientInstance());
 
 	@Override
-	public void tickStart(EnumSet<TickType> type, Object... tickData) {
-		if(type.equals(EnumSet.of(TickType.CLIENT))) {
+	public void tickStart(EnumSet<TickEvent.Type> type, Object... tickData) {
+		if(type.equals(EnumSet.of(TickEvent.Type.CLIENT))) {
     		if(mc.theWorld != null && mc != null && mc.theWorld.playerEntities != null) {
     			for (int i = 0; i < mc.theWorld.playerEntities.size(); i++) {
     				AbstractClientPlayer player = (AbstractClientPlayer)mc.theWorld.playerEntities.get(i);
@@ -60,15 +60,15 @@ public class ClientTickHandler implements ITickHandler {
 	}
 
 	@Override
-	public void tickEnd(EnumSet<TickType> type, Object... tickData) {
-		if(type.equals(EnumSet.of(TickType.RENDER))) {
+	public void tickEnd(EnumSet<TickEvent.Type> type, Object... tickData) {
+		if(type.equals(EnumSet.of(TickEvent.Type.RENDER))) {
 			onRenderTick();
 		}
 	}
 
 	@Override
-	public EnumSet<TickType> ticks() {
-		return EnumSet.of(TickType.RENDER, TickType.CLIENT);
+	public EnumSet<TickEvent.Type> ticks() {
+		return EnumSet.of(TickEvent.Type.RENDER, TickEvent.Type.CLIENT);
 	}
 
 	@Override

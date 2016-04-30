@@ -14,13 +14,11 @@ import net.minecraft.item.ItemStack;
 import src.train.common.items.ItemRollingStock;
 import src.train.common.library.AchievementIDs;
 import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.ICraftingHandler;
 
-public class CraftingHandler implements ICraftingHandler {
+public class CraftingHandler {
 	private RollingStockStatsEventHandler statsEvent = new RollingStockStatsEventHandler();
 
-	@Override
-	public void onCrafting(EntityPlayer player, ItemStack itemstack, IInventory craftMatrix) {
+	public void crafting(EntityPlayer player, ItemStack itemstack, IInventory craftMatrix){
 		for (AchievementIDs Ach : AchievementIDs.values()) {
 			if (Ach.getItemIds() != null) {
 				for (int i = 0; i < Ach.getItemIds().length; i++) {
@@ -44,8 +42,8 @@ public class CraftingHandler implements ICraftingHandler {
 		}
 	}
 
-	@Override
-	public void onSmelting(EntityPlayer player, ItemStack itemstack) {
+
+	public void smelting(EntityPlayer player, ItemStack itemstack) {
 		for (AchievementIDs Ach : AchievementIDs.values()) {
 			if (Ach.getItemIds() != null) {
 				for (int i = 0; i < Ach.getItemIds().length; i++) {

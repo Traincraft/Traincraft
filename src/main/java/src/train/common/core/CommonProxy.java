@@ -3,6 +3,8 @@ package src.train.common.core;
 import java.util.ArrayList;
 import java.util.List;
 
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.gameevent.TickEvent;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
@@ -65,7 +67,6 @@ import com.google.common.collect.Lists;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 
 public class CommonProxy implements IGuiHandler {
@@ -78,7 +79,7 @@ public class CommonProxy implements IGuiHandler {
 	public void registerRenderInformation() {}
 
 	public void registerTileEntities() {
-		TickRegistry.registerTickHandler(new ServerTickHandler(), Side.SERVER);
+		FMLCommonHandler.instance().bus().register(new ServerTickHandler());
 		GameRegistry.registerTileEntity(TileCrafterTierI.class, "TileCrafterTierI");
 		GameRegistry.registerTileEntity(TileCrafterTierII.class, "TileCrafterTierII");
 		GameRegistry.registerTileEntity(TileCrafterTierIII.class, "TileCrafterTierIII");

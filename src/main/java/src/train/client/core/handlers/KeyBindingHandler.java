@@ -9,11 +9,11 @@ package src.train.client.core.handlers;
 
 import java.util.EnumSet;
 
+import cpw.mods.fml.common.gameevent.TickEvent;
 import net.minecraft.client.settings.KeyBinding;
 import src.train.client.core.helpers.KeyBindingHelper;
 import src.train.common.library.Info;
 import cpw.mods.fml.client.registry.KeyBindingRegistry;
-import cpw.mods.fml.common.TickType;
 
 public class KeyBindingHandler extends KeyBindingRegistry.KeyHandler {
 
@@ -27,8 +27,8 @@ public class KeyBindingHandler extends KeyBindingRegistry.KeyHandler {
 	}
 
 	@Override
-	public EnumSet<TickType> ticks() {
-		return EnumSet.of(TickType.CLIENT);
+	public EnumSet<TickEvent.Type> ticks() {
+		return EnumSet.of(TickEvent.Type.CLIENT);
 	}
 
 	private static String getLocalizedKey(String key) {
@@ -36,9 +36,9 @@ public class KeyBindingHandler extends KeyBindingRegistry.KeyHandler {
 	}
 
 	@Override
-	public void keyDown(EnumSet<TickType> types, KeyBinding kb, boolean tickEnd, boolean isRepeat) {}
+	public void keyDown(EnumSet<TickEvent.Type> types, KeyBinding kb, boolean tickEnd, boolean isRepeat) {}
 
 	@Override
-	public void keyUp(EnumSet<TickType> types, KeyBinding kb, boolean tickEnd) {}
+	public void keyUp(EnumSet<TickEvent.Type> types, KeyBinding kb, boolean tickEnd) {}
 
 }

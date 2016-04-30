@@ -3,6 +3,7 @@ package src.train.common;
 import java.io.File;
 import java.util.logging.Logger;
 
+import cpw.mods.fml.common.FMLCommonHandler;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
@@ -137,7 +138,7 @@ public class Traincraft {
 		
 		/* GUI handler initiation */
 		NetworkRegistry.instance().registerGuiHandler(instance, proxy);
-		GameRegistry.registerCraftingHandler(new CraftingHandler());
+		FMLCommonHandler.instance().bus().register(new CraftingHandler());
 
 		/* Ore dictionary */
 		OreHandler.registerOres();

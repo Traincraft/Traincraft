@@ -11,12 +11,12 @@ import java.io.IOException;
 public class Packet250CustomPayload extends Packet {
         public String channel;
         public int length;
-        public byte message[];
+        public byte data[];
         public Packet250CustomPayload() {}
-        public Packet250CustomPayload(String channel, byte[] message) {
+        public Packet250CustomPayload(String channel, byte[] data) {
                 this.channel = channel;
-                this.length = message.length;
-                this.message = message;
+                this.length = data.length;
+                this.data = data;
         }
         public void readPacketData(PacketBuffer datainputstream)
                 throws IOException {
@@ -24,17 +24,17 @@ public class Packet250CustomPayload extends Packet {
                 length = datainputstream.readShort();
                 if (length > 0 && length < 32767)
                 {
-                        message = new byte[length];
-                        datainputstream.readBytes(message);
+                        data = new byte[length];
+                        datainputstream.readBytes(data);
                 }
         }
         public void writePacketData(PacketBuffer dataoutputstream)
                 throws IOException {
                 dataoutputstream.writeStringToBuffer(channel);
                 dataoutputstream.writeShort((short) length);
-                if (message != null)
+                if (data != null)
                 {
-                        dataoutputstream.writeBytes(message);
+                        dataoutputstream.writeBytes(data);
                 }
         }
         public void processPacket(INetHandler nethandler) {
