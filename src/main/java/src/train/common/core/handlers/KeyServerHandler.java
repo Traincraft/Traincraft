@@ -53,7 +53,7 @@ public class KeyServerHandler implements IConnectionHandler, IPacketHandler {
 
 	@Override
 	public void playerLoggedIn(EntityPlayer player, INetHandler netHandler, NetworkManager manager) {
-		NetworkRegistry.instance().registerChannel(this, "TrainMod");
+		NetworkRegistry.INSTANCE.registerChannel(this, "TrainMod");
 	}
 
 	@Override
@@ -74,6 +74,6 @@ public class KeyServerHandler implements IConnectionHandler, IPacketHandler {
 
 	@Override
 	public void clientLoggedIn(INetHandler clientHandler, NetworkManager manager, Packet1Login login) {
-		NetworkRegistry.instance().registerChannel(this, "TrainMod");
+		NetworkRegistry.INSTANCE.registerChannel(this, "TrainMod");
 	}
 }

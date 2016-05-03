@@ -57,12 +57,12 @@ public class SpeedHandler {
 	 * @return
 	 */
 	public static boolean isSpeedRailAt(World world, int i, int j, int k) {
-		int id = world.getBlockId(i, j, k);
-		Block block = Block.blocksList[id];
+		Block block = world.getBlock(i, j, k);
+		//Block block = Block.blocksList[id];
 		if (block != null && block.getClass().getName() == "IRailSpeed") {
 			return true;
 		}
-		TileEntity tile = world.getBlockTileEntity(i, j, k);
+		TileEntity tile = world.getTileEntity(i, j, k);
 		return tile != null && tile.getClass().getName() == "IRailSpeed";
 	}
 

@@ -238,7 +238,7 @@ public class TileEntityOpenHearthFurnace extends TileEntity implements IInventor
 		if (furnaceItemStacks[1] == null) {//second input slot
 			return false;
 		}
-		ItemStack itemstack = OpenHearthFurnaceRecipes.smelting().getSmeltingResultFromItem1(furnaceItemStacks[0].getItem().itemID);
+		ItemStack itemstack = OpenHearthFurnaceRecipes.smelting().getSmeltingResultFromItem1(Item.getIdFromItem(furnaceItemStacks[0].getItem()));
 		if (!OpenHearthFurnaceRecipes.smelting().areItemPartOfRecipe(furnaceItemStacks[0].copy(), furnaceItemStacks[1].copy())) {//second input slot
 			return false;
 		}
@@ -255,12 +255,12 @@ public class TileEntityOpenHearthFurnace extends TileEntity implements IInventor
 		if (!canSmelt()) {
 			return;
 		}
-		ItemStack itemstack = OpenHearthFurnaceRecipes.smelting().getSmeltingResultFromItem1(furnaceItemStacks[0].getItem().itemID);
+		ItemStack itemstack = OpenHearthFurnaceRecipes.smelting().getSmeltingResultFromItem1(Item.getIdFromItem(furnaceItemStacks[0].getItem()));
 		if (furnaceItemStacks[3] == null) {
 			furnaceItemStacks[3] = itemstack.copy();
 
 		}
-		else if (furnaceItemStacks[3].itemID == itemstack.itemID) {
+		else if (furnaceItemStacks[3].getItem() == itemstack.getItem()) {
 			furnaceItemStacks[3].stackSize += itemstack.stackSize;
 
 		}

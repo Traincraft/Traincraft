@@ -21,7 +21,7 @@ public abstract class DieselTrain extends Locomotive implements IFluidHandler {
 	private FluidStack liquid;
 
 	public DieselTrain(World world, int liquidId, int quantity, int capacity) {
-		this(new FluidStack(liquidId, quantity), capacity, world, null, null);
+		this( new FluidStack(liquidId, quantity) , capacity, world, null, null);
 	}
 
 	public DieselTrain(World world, int liquidId, int quantity, int capacity, FluidStack filter) {
@@ -58,7 +58,7 @@ public abstract class DieselTrain extends Locomotive implements IFluidHandler {
 			return;
 		if (theTank != null && theTank.getFluid() != null) {
 			this.dataWatcher.updateObject(23, theTank.getFluid().amount);
-			this.dataWatcher.updateObject(4, theTank.getFluid().fluidID);
+			this.dataWatcher.updateObject(4, theTank.getFluid().getFluidID());
 			if (theTank.getFluid().amount <= 1) {
 				motionX *= 0.94;
 				motionZ *= 0.94;
@@ -106,7 +106,7 @@ public abstract class DieselTrain extends Locomotive implements IFluidHandler {
 				locoInvent[i] = itemstack1;
 				return;
 			}
-			else if (locoInvent[i] != null && locoInvent[i].itemID == itemstack1.itemID && itemstack1.isStackable() && (!itemstack1.getHasSubtypes() || locoInvent[i].getItemDamage() == itemstack1.getItemDamage()) && ItemStack.areItemStackTagsEqual(locoInvent[i], itemstack1)) {
+			else if (locoInvent[i] != null && locoInvent[i].getItem() == itemstack1.getItem() && itemstack1.isStackable() && (!itemstack1.getHasSubtypes() || locoInvent[i].getItemDamage() == itemstack1.getItemDamage()) && ItemStack.areItemStackTagsEqual(locoInvent[i], itemstack1)) {
 				int var9 = locoInvent[i].stackSize + itemstack1.stackSize;
 				if (var9 <= itemstack1.getMaxStackSize()) {
 					locoInvent[i].stackSize = var9;
@@ -118,7 +118,7 @@ public abstract class DieselTrain extends Locomotive implements IFluidHandler {
 				return;
 			}
 			else if (i == locoInvent.length - 1) {
-				dropItemWithOffset(itemstack1.getItem().itemID, 1, 0.0F);
+				dropItemWithOffset(itemstack1.getItem(), 1, 0.0F);
 				return;
 			}
 		}

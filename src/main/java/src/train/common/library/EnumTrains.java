@@ -323,8 +323,8 @@ public enum EnumTrains {
 	 * @param mass
 	 * @param colors
 	 * @param guiRenderScale
-	 * @param bogieLocoPositions
-	 * @param bogieUtilityPositions
+	 * //@param bogieLocoPositions
+	 * //@param bogieUtilityPositions
 	 * @param width
 	 * @param height
 	 * @param cargoCapacity
@@ -441,7 +441,7 @@ public enum EnumTrains {
 	public static EnumTrains getCurrentTrain(Item item){
 		if(item==null)return null;
 		for (EnumTrains trains : EnumTrains.values()) {
-			if(trains!=null && trains.getItem()!=null && trains.getItem().itemID == item.itemID){
+			if(trains!=null && trains.getItem()!=null && trains.getItem() == item){
 				return trains;
 			}
 		}
@@ -451,7 +451,7 @@ public enum EnumTrains {
 	public static AbstractTrains getEntityWithItem(Item item, World world, double x, double y, double z){
 		if(item==null)return null;
 		for (EnumTrains trains : EnumTrains.values()) {
-			if(trains!=null && trains.getItem()!=null && trains.getItem().itemID == item.itemID){
+			if(trains!=null && trains.getItem()!=null && trains.getItem() == item){
 				AbstractTrains train = trains.getEntity(world, x, y, z);
 				return train;
 			}

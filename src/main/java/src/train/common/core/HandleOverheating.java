@@ -68,7 +68,7 @@ public class HandleOverheating {
 			/**
 			 * Only over heats in hard mode
 			 */
-			if (entity.worldObj.difficultySetting >= 2) {
+			if (entity.worldObj.difficultySetting.getDifficultyId() >= 2) {
 				/**
 				 * train is breaking, increment a delayer break won't overheat too quickly
 				 */

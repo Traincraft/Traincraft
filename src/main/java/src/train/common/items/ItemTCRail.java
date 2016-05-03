@@ -126,8 +126,8 @@ public class ItemTCRail extends Item {
 	private boolean canPlaceTrack(World world, int x, int y, int z) {
 		Block l = world.getBlock(x, y, z);
 		Block l1 = world.getBlock(x, y - 1, z);
-		Block block = Block.blocksList[l];
-		return (block == null || block.isBlockReplaceable(world, x, y, z)) && (world.doesBlockHaveSolidTopSurface(x, y - 1, z) || l1 == BlockIDs.bridgePillar.blockID);
+		//Block block = Block.blocksList[l];
+		return (l == null || l.isReplaceable(world, x, y, z)) && (world.doesBlockHaveSolidTopSurface(x, y - 1, z) || l1 == BlockIDs.bridgePillar.block);
 	}
 
 	/**
@@ -136,8 +136,8 @@ public class ItemTCRail extends Item {
 	 * @param x
 	 * @param y
 	 * @param z
-	 * @param posX[] array of gag
-	 * @param posZ[] array of gag
+	 * //@param posX[] array of gag
+	 * //@param posZ[] array of gag
 	 * @param l orientation
 	 * @param exitFacing
 	 * @param posExitX

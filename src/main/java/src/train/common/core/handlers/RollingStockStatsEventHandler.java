@@ -41,13 +41,13 @@ public class RollingStockStatsEventHandler {
 		//System.out.println(trainDistanceTraveled);
 		if (train.riddenByEntity != null && train.riddenByEntity instanceof EntityPlayer) {
 			for (playerDistance d : plDist) {
-				if (((EntityPlayer) train.riddenByEntity).username.equals(d.getUsername())) {
+				if (((EntityPlayer) train.riddenByEntity).getDisplayName().equals(d.getUsername())) {
 					d.setDistance(d.getDistance() + (var7));
 					//System.out.println(d.getDistance()+" "+((EntityPlayer)riddenByEntity).username);
 					return;
 				}
 			}
-			plDist.add(new playerDistance(((EntityPlayer) train.riddenByEntity).username, (double) (var7)));
+			plDist.add(new playerDistance(((EntityPlayer) train.riddenByEntity).getDisplayName(), (double) (var7)));
 		}
 	}
 
@@ -89,9 +89,9 @@ public class RollingStockStatsEventHandler {
 	 * @param trainType
 	 * @param trainCreator
 	 * @param trainDestroyer
-	 * @param posX
-	 * @param posY
-	 * @param posZ
+	 * //@param posX
+	 * //@param posY
+	 * //@param posZ
 	 */
 	public void trainDestroy(int trainID, String trainName, String trainType, String trainCreator, String trainDestroyer, String pos) {
 		Map<String, String> destroy = new HashMap<String, String>();
@@ -115,9 +115,9 @@ public class RollingStockStatsEventHandler {
 	 * @param trainName
 	 * @param trainType
 	 * @param trainCreator
-	 * @param posX
-	 * @param posY
-	 * @param posZ
+	 * //@param posX
+	 * //@param posY
+	 * //@param posZ
 	 */
 	public void trainExplode(int trainID, String trainName, String trainType, String trainCreator, String pos) {
 		Map<String, String> explode = new HashMap<String, String>();
@@ -140,9 +140,9 @@ public class RollingStockStatsEventHandler {
 	 * @param trainName
 	 * @param trainType
 	 * @param trainCreator
-	 * @param posX
-	 * @param posY
-	 * @param posZ
+	 * //@param posX
+	 * //@param posY
+	 * //@param posZ
 	 */
 	public void trainCreate(int trainID, String trainName, String trainType, String trainCreator, String pos) {
 		Map<String, String> create = new HashMap<String, String>();
@@ -165,9 +165,9 @@ public class RollingStockStatsEventHandler {
 	 * @param trainName
 	 * @param trainType
 	 * @param trainCreator
-	 * @param posX
-	 * @param posY
-	 * @param posZ
+	 * //@param posX
+	 * //@param posY
+	 * //@param posZ
 	 */
 	public void trainPlace(int trainID, String trainName, String trainType, String trainCreator, String trainPlacer, String pos) {
 		Map<String, String> place = new HashMap<String, String>();
@@ -192,9 +192,9 @@ public class RollingStockStatsEventHandler {
 	 * @param trainType
 	 * @param trainCreator
 	 * @param color
-	 * @param posX
-	 * @param posY
-	 * @param posZ
+	 * //@param posX
+	 * //@param posY
+	 * //@param posZ
 	 */
 	public void trainPaint(int trainID, String trainName, String trainType, String trainCreator, String trainInteracter, String color, String pos) {
 		Map<String, String> paint = new HashMap<String, String>();

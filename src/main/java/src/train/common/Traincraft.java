@@ -24,7 +24,6 @@ import src.train.common.core.handlers.FuelHandler;
 import src.train.common.core.handlers.KeyServerHandler;
 import src.train.common.core.handlers.OreHandler;
 import src.train.common.core.handlers.PacketHandler;
-import src.train.common.core.handlers.PlayerTracker;
 import src.train.common.core.handlers.RecipeHandler;
 import src.train.common.core.handlers.VillagerTraincraftHandler;
 import src.train.common.generation.ComponentVillageTrainstation;
@@ -43,13 +42,12 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStoppedEvent;
-import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.VillagerRegistry;
 
 @Mod(modid = Info.modID, name = Info.modName, version = Info.modVersion)
-@NetworkMod(clientSideRequired = true, serverSideRequired = true, versionBounds = "[" + Info.modVersion + "]", channels = { Info.channel }, packetHandler = PacketHandler.class, connectionHandler = KeyServerHandler.class)
+//@NetworkMod(clientSideRequired = true, serverSideRequired = true, versionBounds = "[" + Info.modVersion + "]", channels = { Info.channel }, packetHandler = PacketHandler.class, connectionHandler = KeyServerHandler.class)
 public class Traincraft {
 
 	/* TrainCraft instance */
@@ -83,7 +81,7 @@ public class Traincraft {
 		MinecraftForge.EVENT_BUS.register(ChunkHandler.getInstance());
 
 		/* Log */
-		tcLog.setParent(FMLLog.getLogger());
+		tcLog.setParent(java.util.logging.Logger.getAnonymousLogger());
 		tcLog.info("Starting Traincraft " + Info.modVersion + "!");
 
 		/* Config handler */
@@ -106,11 +104,12 @@ public class Traincraft {
 		tcTab = new CreativeTabTraincraft(CreativeTabs.getNextID(), "Traincraft");
 
 		/* Ore generation */
-		GameRegistry.registerWorldGenerator(new WorldGenWorld());
+		GameRegistry.registerWorldGenerator(new WorldGenWorld(),5);
 		MapGenStructureIO.func_143031_a(ComponentVillageTrainstation.class, "Trainstation");
 
 		/* Player tracker */
-		GameRegistry.registerPlayerTracker(new PlayerTracker());
+		//GameRegistry.registerPlayerTracker(new PlayerTracker());
+		//managed with forge subscribe now, this should be obsolete, i think
 
 		/* Track registration */
 		TrainModCore.RegisterNewTracks();
@@ -137,7 +136,7 @@ public class Traincraft {
 		//proxy.getCape();
 		
 		/* GUI handler initiation */
-		NetworkRegistry.instance().registerGuiHandler(instance, proxy);
+		NetworkRegistry.INSTANCE.registerGuiHandler(instance, proxy);
 		FMLCommonHandler.instance().bus().register(new CraftingHandler());
 
 		/* Ore dictionary */

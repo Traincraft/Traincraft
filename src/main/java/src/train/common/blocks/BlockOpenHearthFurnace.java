@@ -9,6 +9,7 @@ package src.train.common.blocks;
 
 import java.util.Random;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -52,7 +53,7 @@ public class BlockOpenHearthFurnace extends BlockContainer {
 		//setRequiresSelfNotify();
 		isActive = active;
 		if (isActive) {
-			setLightValue(0.8F);
+			setLightLevel(0.8F);
 		}
 	}
 
@@ -147,7 +148,7 @@ public class BlockOpenHearthFurnace extends BlockContainer {
 	}
 
 	@Override
-	public void breakBlock(World world, int i, int j, int k, int par5, int par6) {
+	public void breakBlock(World world, int i, int j, int k, Block par5, int par6) {
 		if (!keepFurnaceInventory) {
 			TileEntityOpenHearthFurnace tileentityfurnace = (TileEntityOpenHearthFurnace) world.getTileEntity(i, j, k);
 			if (tileentityfurnace != null) {
@@ -168,7 +169,7 @@ public class BlockOpenHearthFurnace extends BlockContainer {
 							i1 = itemstack.stackSize;
 						}
 						itemstack.stackSize -= i1;
-						EntityItem entityitem = new EntityItem(world, (float) i + f, (float) j + f1, (float) k + f2, new ItemStack(itemstack.itemID, i1, itemstack.getItemDamage()));
+						EntityItem entityitem = new EntityItem(world, (float) i + f, (float) j + f1, (float) k + f2, new ItemStack(itemstack.getItem(), i1, itemstack.getItemDamage()));
 						float f3 = 0.05F;
 						entityitem.motionX = (float) furnaceRand.nextGaussian() * f3;
 						entityitem.motionY = (float) furnaceRand.nextGaussian() * f3 + 0.2F;

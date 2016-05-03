@@ -146,7 +146,7 @@ public class NEIDistillationTowerRecipePlugin extends FurnaceRecipeHandler{
             ItemStack item = recipe.getValue();
             if(NEIServerUtils.areStacksSameType(item, result))
             {
-            	ItemStack ingredient = new ItemStack(recipe.getKey(), 1, -1);
+            	ItemStack ingredient = new ItemStack(Item.getItemById(recipe.getKey()), 1, -1);
             	if(ingredient!=null && ingredient.getItem() instanceof ItemBlockOreTC){
             		ingredient.setItemDamage(1);
             		arecipes.add(new SmeltingPair(ingredient, item));
@@ -181,7 +181,7 @@ public class NEIDistillationTowerRecipePlugin extends FurnaceRecipeHandler{
         for(Entry<Integer, ItemStack> recipe : recipes.entrySet())
         {
             ItemStack item = recipe.getValue();
-            if(ingredient.itemID == recipe.getKey())
+            if(Item.getIdFromItem(ingredient.getItem()) == recipe.getKey())
             {
             	if(ingredient!=null && ingredient.getItem() instanceof ItemBlockOreTC){
             		ingredient.setItemDamage(1);
@@ -241,12 +241,12 @@ public class NEIDistillationTowerRecipePlugin extends FurnaceRecipeHandler{
     private static void removeFuelsDistil()
     {
         efuelsDistil = new TreeSet<Integer>();
-        efuelsDistil.add(Block.mushroomCapBrown.blockID);
-        efuelsDistil.add(Block.mushroomCapRed.blockID);
-        efuelsDistil.add(Block.signPost.blockID);
-        efuelsDistil.add(Block.signWall.blockID);
-        efuelsDistil.add(Block.doorWood.blockID);
-        efuelsDistil.add(Block.lockedChest.blockID);
+        efuelsDistil.add(39);//brown mushroom
+        efuelsDistil.add(40);//red mushroom
+        efuelsDistil.add(63);//signpost
+        efuelsDistil.add(68);//wall signpost
+        efuelsDistil.add(64);//wooden door
+        efuelsDistil.add(146);//trapped chest
     }
     
     private static void findFuelsDistil()

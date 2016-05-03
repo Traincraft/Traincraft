@@ -2,7 +2,6 @@ package src.train.common.core;
 
 import java.util.List;
 
-import net.minecraft.src.BaseMod;
 import src.train.common.Traincraft;
 import src.train.common.core.interfaces.IPlugin;
 import src.train.common.core.plugins.PluginIndustrialCraft;
@@ -12,7 +11,6 @@ import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.ModContainer;
 
 public class TrainModCore {
-	public static BaseMod instance;
 	public static IPlugin pluginIC2 = new PluginIndustrialCraft();
 	public static IPlugin pluginRailcraft = new PluginRailcraft();
 

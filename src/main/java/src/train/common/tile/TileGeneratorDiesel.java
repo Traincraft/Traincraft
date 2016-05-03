@@ -141,12 +141,12 @@ public class TileGeneratorDiesel extends TileEntity implements IPowerReceptor,IP
 			
 			this.provider.update();
 			ArrayList<TileEntity> tile = new ArrayList<TileEntity>();
-			tile.add(0, worldObj.getBlockTileEntity(xCoord+1, yCoord, zCoord));
-			tile.add(1,worldObj.getBlockTileEntity(xCoord-1, yCoord, zCoord));
-			tile.add(2,worldObj.getBlockTileEntity(xCoord, yCoord-1, zCoord));
-			tile.add(3,worldObj.getBlockTileEntity(xCoord, yCoord+1, zCoord));
-			tile.add(4,worldObj.getBlockTileEntity(xCoord, yCoord, zCoord-1));
-			tile.add(5,worldObj.getBlockTileEntity(xCoord, yCoord, zCoord+1));
+			tile.add(0, worldObj.getTileEntity(xCoord+1, yCoord, zCoord));
+			tile.add(1,worldObj.getTileEntity(xCoord-1, yCoord, zCoord));
+			tile.add(2,worldObj.getTileEntity(xCoord, yCoord-1, zCoord));
+			tile.add(3,worldObj.getTileEntity(xCoord, yCoord+1, zCoord));
+			tile.add(4,worldObj.getTileEntity(xCoord, yCoord, zCoord-1));
+			tile.add(5,worldObj.getTileEntity(xCoord, yCoord, zCoord+1));
 			for(int t = 0;t<tile.size();t++){
 				if(tile.get(t) !=null && tile.get(t) instanceof IPowerReceptor){
 					IPowerReceptor receptor = (IPowerReceptor)tile.get(t);
@@ -198,7 +198,7 @@ public class TileGeneratorDiesel extends TileEntity implements IPowerReceptor,IP
 			}
 			if(this.theTank.getFluid()!=null){
 				amount = this.theTank.getFluid().amount;
-				this.liquidItemID = this.theTank.getFluid().fluidID;
+				this.liquidItemID = this.theTank.getFluid().getFluidID();
 			}else{
 				amount = 0;
 				this.liquidItemID=0;
@@ -405,7 +405,7 @@ public class TileGeneratorDiesel extends TileEntity implements IPowerReceptor,IP
 				dieselItemStacks[i] = itemstack1;
 			return true;
 		}
-		else if (dieselItemStacks[i] != null && dieselItemStacks[i].itemID == itemstack1.itemID && itemstack1.isStackable() && (!itemstack1.getHasSubtypes() || dieselItemStacks[i].getItemDamage() == itemstack1.getItemDamage()) && ItemStack.areItemStackTagsEqual(dieselItemStacks[i], itemstack1)) {
+		else if (dieselItemStacks[i] != null && dieselItemStacks[i].getItem() == itemstack1.getItem() && itemstack1.isStackable() && (!itemstack1.getHasSubtypes() || dieselItemStacks[i].getItemDamage() == itemstack1.getItemDamage()) && ItemStack.areItemStackTagsEqual(dieselItemStacks[i], itemstack1)) {
 			int var9 = dieselItemStacks[i].stackSize + itemstack1.stackSize;
 			if (var9 <= itemstack1.getMaxStackSize()) {
 				if (doAdd)
@@ -471,7 +471,7 @@ public class TileGeneratorDiesel extends TileEntity implements IPowerReceptor,IP
 	}
 
 	@Override
-	public String getInvName() {
+	public String getInventoryName() {
 		return "Diesel Generator";
 	}
 	@Override
@@ -482,19 +482,19 @@ public class TileGeneratorDiesel extends TileEntity implements IPowerReceptor,IP
 		if (worldObj == null) {
 			return true;
 		}
-		if (worldObj.getBlockTileEntity(xCoord, yCoord, zCoord) != this) {
+		if (worldObj.getTileEntity(xCoord, yCoord, zCoord) != this) {
 			return false;
 		}
 		return entityplayer.getDistanceSq(xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D) <= 64D;
 	}
 	@Override
-	public void openChest() {}
+	public void openInventory() {}
 
 	@Override
-	public void closeChest() {}
+	public void closeInventory() {}
 
 	@Override
-	public boolean isInvNameLocalized() {
+	public boolean hasCustomInventoryName() {
 		return false;
 	}
 

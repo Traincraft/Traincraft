@@ -12,7 +12,6 @@ import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.api.core.WorldCoordinate;
 import mods.railcraft.api.tracks.RailTools;
 import mods.railcraft.api.tracks.TrackScanner;
-import mods.railcraft.common.blocks.signals.Signals;
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.nbt.NBTTagCompound;
@@ -39,6 +38,7 @@ public abstract class SignalBlock extends AbstractPair {
     private int update = rand.nextInt();
     //    private UUID uuid = UUID.randomUUID();
     private boolean changedAspect = false;
+    public static final int VALIDATION_CHECK_INTERVAL = 16384;
 
     public SignalBlock(String locTag, TileEntity tile, int numPairs) {
         super(locTag, tile, numPairs);
@@ -353,7 +353,7 @@ public abstract class SignalBlock extends AbstractPair {
         } catch (Throwable ex) {
 //            Game.logErrorAPI("Railcraft", ex, AbstractPair.class);
         }
-        if (update % Signals.getSignalUpdateInterval() == 0) {
+        if (update % SignalTools.signalUpdateInterval == 0) {
             SignalAspect prev = getSignalAspect();
             if (prev != SignalAspect.BLINK_RED)
                 changedAspect = true;
@@ -361,7 +361,7 @@ public abstract class SignalBlock extends AbstractPair {
             if (getSignalAspect() == SignalAspect.BLINK_RED && prev != SignalAspect.BLINK_RED)
                 printDebug("Signal Block changed aspect to BLINK_RED: source:[{0}, {1}, {2}] pairs: {3}", tile.xCoord, tile.yCoord, tile.zCoord, pairings);
         }
-        if (update % Signals.VALIDATION_CHECK_INTERVAL == 0) {
+        if (update % VALIDATION_CHECK_INTERVAL == 0) {
             Status trackStatus = getTrackStatus();
             switch (trackStatus) {
                 case INVALID:

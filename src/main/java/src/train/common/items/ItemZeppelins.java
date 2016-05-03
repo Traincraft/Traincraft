@@ -7,7 +7,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.EnumMovingObjectType;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
@@ -22,8 +21,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemZeppelins extends Item {
 	private int type;
-	public ItemZeppelins(int i,int type) {
-		super(i);
+	public ItemZeppelins(int type) {
+		super();
 		maxStackSize = 5;
 		setCreativeTab(Traincraft.tcTab);
 		this.type=type;
@@ -53,7 +52,7 @@ public class ItemZeppelins extends Item {
 			if (entityplayer != null) entityplayer.addChatMessage(new ChatComponentText("Zeppelin has been deactivated by the OP"));
 			return itemstack;
 		}
-		if (movingobjectposition.typeOfHit == EnumMovingObjectType.TILE) {
+		if (movingobjectposition.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK) {
 			int i = movingobjectposition.blockX;
 			int j = movingobjectposition.blockY;
 			int k = movingobjectposition.blockZ;

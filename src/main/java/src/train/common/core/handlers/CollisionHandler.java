@@ -177,8 +177,8 @@ public class CollisionHandler {
 					if (par1Entity instanceof EntityMinecart) {
 						double d4 = par1Entity.posX - entityOne.posX;
 						double d5 = par1Entity.posZ - entityOne.posZ;
-						Vec3 vec3 = this.worldObj.getWorldVec3Pool().getVecFromPool(d4, 0.0D, d5).normalize();
-						Vec3 vec31 = this.worldObj.getWorldVec3Pool().getVecFromPool((double) MathHelper.cos(entityOne.rotationYaw * (float) Math.PI / 180.0F), 0.0D, (double) MathHelper.sin(entityOne.rotationYaw * (float) Math.PI / 180.0F)).normalize();
+						Vec3 vec3 = Vec3.createVectorHelper(d4, 0.0D, d5).normalize();
+						Vec3 vec31 = Vec3.createVectorHelper((double) MathHelper.cos(entityOne.rotationYaw * (float) Math.PI / 180.0F), 0.0D, (double) MathHelper.sin(entityOne.rotationYaw * (float) Math.PI / 180.0F)).normalize();
 						double d6 = Math.abs(vec3.dotProduct(vec31));
 
 						/*
@@ -257,8 +257,8 @@ public class CollisionHandler {
 					if (entity instanceof EntityMinecart) {
 						double var10 = entity.posX - entityOne.posX;
 						double var12 = entity.posZ - entityOne.posZ;
-						Vec3 var14 = Vec3.fakePool.getVecFromPool(var10, 0.0D, var12).normalize();
-						Vec3 var15 = Vec3.fakePool.getVecFromPool((double) MathHelper.cos(entityOne.rotationYaw * (float) Math.PI / 180.0F), 0.0D, (double) MathHelper.sin(entityOne.rotationYaw * (float) Math.PI / 180.0F)).normalize();
+						Vec3 var14 = Vec3.createVectorHelper(var10, 0.0D, var12).normalize();
+						Vec3 var15 = Vec3.createVectorHelper((double) MathHelper.cos(entityOne.rotationYaw * (float) Math.PI / 180.0F), 0.0D, (double) MathHelper.sin(entityOne.rotationYaw * (float) Math.PI / 180.0F)).normalize();
 						double var16 = Math.abs(var14.dotProduct(var15));
 
 						if (var16 < 0.800000011920929D) {
@@ -298,11 +298,11 @@ public class CollisionHandler {
 							entityOne.addVelocity(-var2, 0.0D, -var4);
 						if(entity instanceof EntityPlayer){
 
-							Vec3 vec3d4 = Vec3.fakePool.getVecFromPool(entityOne.posX, entityOne.posY, entityOne.posZ);
-							Vec3 vec3d5 = Vec3.fakePool.getVecFromPool(entityOne.posX + entityOne.motionX, entityOne.posY + entityOne.motionY, entityOne.posZ + entityOne.motionZ);
-							MovingObjectPosition movingobjectposition = worldObj.rayTraceBlocks_do_do(vec3d4, vec3d5, false, true);
+							Vec3 vec3d4 = Vec3.createVectorHelper(entityOne.posX, entityOne.posY, entityOne.posZ);
+							Vec3 vec3d5 = Vec3.createVectorHelper(entityOne.posX + entityOne.motionX, entityOne.posY + entityOne.motionY, entityOne.posZ + entityOne.motionZ);
+							MovingObjectPosition movingobjectposition = worldObj.rayTraceBlocks(vec3d4, vec3d5, false);
 							if (movingobjectposition != null) {
-								vec3d5 = Vec3.fakePool.getVecFromPool(movingobjectposition.hitVec.xCoord, movingobjectposition.hitVec.yCoord, movingobjectposition.hitVec.zCoord);
+								vec3d5 = Vec3.createVectorHelper(movingobjectposition.hitVec.xCoord, movingobjectposition.hitVec.yCoord, movingobjectposition.hitVec.zCoord);
 							}
 							if (entity != null && entity instanceof EntityPlayer) {
 								movingobjectposition = new MovingObjectPosition(entity);
@@ -384,11 +384,11 @@ public class CollisionHandler {
 
 			if (entity.ridingEntity == null) {
 
-				Vec3 vec3d4 = Vec3.fakePool.getVecFromPool(entityOne.posX, entityOne.posY, entityOne.posZ);
-				Vec3 vec3d5 = Vec3.fakePool.getVecFromPool(entityOne.posX + entityOne.motionX, entityOne.posY + entityOne.motionY, entityOne.posZ + entityOne.motionZ);
-				MovingObjectPosition movingobjectposition = worldObj.rayTraceBlocks_do_do(vec3d4, vec3d5, false, true);
+				Vec3 vec3d4 = Vec3.createVectorHelper(entityOne.posX, entityOne.posY, entityOne.posZ);
+				Vec3 vec3d5 = Vec3.createVectorHelper(entityOne.posX + entityOne.motionX, entityOne.posY + entityOne.motionY, entityOne.posZ + entityOne.motionZ);
+				MovingObjectPosition movingobjectposition = worldObj.rayTraceBlocks(vec3d4, vec3d5, false);
 				if (movingobjectposition != null) {
-					vec3d5 = Vec3.fakePool.getVecFromPool(movingobjectposition.hitVec.xCoord, movingobjectposition.hitVec.yCoord, movingobjectposition.hitVec.zCoord);
+					vec3d5 = Vec3.createVectorHelper(movingobjectposition.hitVec.xCoord, movingobjectposition.hitVec.yCoord, movingobjectposition.hitVec.zCoord);
 				}
 
 				if (entity != null) {
@@ -483,8 +483,8 @@ public class CollisionHandler {
 			if (entity instanceof AbstractTrains) {
 				double d4 = entity.posX - entityOne.posX;
 				double d5 = entity.posZ - entityOne.posZ;
-				Vec3 vec3d = Vec3.fakePool.getVecFromPool(d4, 0.0D, d5).normalize();
-				Vec3 vec3d1 = Vec3.fakePool.getVecFromPool(MathHelper.cos((entityOne.rotationYaw * 3.141593F) / 180F), 0.0D, MathHelper.sin((entityOne.rotationYaw * 3.141593F) / 180F)).normalize();
+				Vec3 vec3d = Vec3.createVectorHelper(d4, 0.0D, d5).normalize();
+				Vec3 vec3d1 = Vec3.createVectorHelper(MathHelper.cos((entityOne.rotationYaw * 3.141593F) / 180F), 0.0D, MathHelper.sin((entityOne.rotationYaw * 3.141593F) / 180F)).normalize();
 				double d6 = Math.abs(vec3d.dotProduct(vec3d1));
 
 				double d7 = entity.motionX + entityOne.motionX;
@@ -570,8 +570,8 @@ public class CollisionHandler {
 			if (entity instanceof EntityMinecart) {
 				double d4 = entity.posX - entityOne.posX;
 				double d5 = entity.posZ - entityOne.posZ;
-				Vec3 vec3d = Vec3.fakePool.getVecFromPool(d4, 0.0D, d5).normalize();
-				Vec3 vec3d1 = Vec3.fakePool.getVecFromPool(MathHelper.cos((entityOne.rotationYaw * 3.141593F) / 180F), 0.0D, MathHelper.sin((entityOne.rotationYaw * 3.141593F) / 180F)).normalize();
+				Vec3 vec3d = Vec3.createVectorHelper(d4, 0.0D, d5).normalize();
+				Vec3 vec3d1 = Vec3.createVectorHelper(MathHelper.cos((entityOne.rotationYaw * 3.141593F) / 180F), 0.0D, MathHelper.sin((entityOne.rotationYaw * 3.141593F) / 180F)).normalize();
 				double d6 = Math.abs(vec3d.dotProduct(vec3d1));
 
 				if (d6 < 0.80000001192092896D) {
