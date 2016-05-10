@@ -71,7 +71,7 @@ public abstract class Tender extends Freight implements IFluidHandler {
 			return;
 		if (theTank != null && theTank.getFluid() != null) {
 			this.dataWatcher.updateObject(23, theTank.getFluid().amount);
-			this.dataWatcher.updateObject(4, theTank.getFluid().fluidID);
+			this.dataWatcher.updateObject(4, theTank.getFluid().getFluidID());
 		}
 		else if (theTank != null && theTank.getFluid() == null) {
 			this.dataWatcher.updateObject(23, 0);
@@ -137,7 +137,7 @@ public abstract class Tender extends Freight implements IFluidHandler {
 				tender.tenderItems[i] = itemstack1;
 				return;
 			}
-			else if (tender.tenderItems[i] != null && tender.tenderItems[i].itemID == itemstack1.itemID && itemstack1.isStackable() && (!itemstack1.getHasSubtypes() || tender.tenderItems[i].getItemDamage() == itemstack1.getItemDamage()) && ItemStack.areItemStackTagsEqual(tender.tenderItems[i], itemstack1)) {
+			else if (tender.tenderItems[i] != null && tender.tenderItems[i].getItem() == itemstack1.getItem() && itemstack1.isStackable() && (!itemstack1.getHasSubtypes() || tender.tenderItems[i].getItemDamage() == itemstack1.getItemDamage()) && ItemStack.areItemStackTagsEqual(tender.tenderItems[i], itemstack1)) {
 				int var9 = tender.tenderItems[i].stackSize + itemstack1.stackSize;
 				if (var9 <= itemstack1.getMaxStackSize()) {
 					tender.tenderItems[i].stackSize = var9;
@@ -149,7 +149,7 @@ public abstract class Tender extends Freight implements IFluidHandler {
 				return;
 			}
 			else if (i == tender.tenderItems.length - 1) {
-				dropItemWithOffset(itemstack1.getItem().itemID, 1, 0.0F);
+				dropItem(itemstack1.getItem(), 1);
 				return;
 			}
 		}

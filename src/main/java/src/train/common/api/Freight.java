@@ -7,6 +7,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.Constants;
 
 public abstract class Freight extends EntityRollingStock implements IInventory {
 	public ItemStack cargoItems[];
@@ -48,10 +49,10 @@ public abstract class Freight extends EntityRollingStock implements IInventory {
 	}
 
 	@Override
-	public void openChest() {}
+	public void openInventory() {}
 
 	@Override
-	public void closeChest() {}
+	public void closeInventory() {}
 
 	@Override
 	public ItemStack getStackInSlotOnClosing(int par1) {
@@ -93,7 +94,7 @@ public abstract class Freight extends EntityRollingStock implements IInventory {
 	}
 
 	@Override
-	public void onInventoryChanged() {
+	public void markDirty() {
 		if(!worldObj.isRemote){
 			this.slotsFilled=0;
 			for (int i = 0; i < getSizeInventory(); i++) {
@@ -107,7 +108,7 @@ public abstract class Freight extends EntityRollingStock implements IInventory {
 	}
 
 	@Override
-	public String getInvName() {
+	public String getInventoryName() {
 		return "Freight cart";
 	}
 
@@ -171,10 +172,10 @@ public abstract class Freight extends EntityRollingStock implements IInventory {
 	protected void readEntityFromNBT(NBTTagCompound nbttagcompound) {
 		super.readEntityFromNBT(nbttagcompound);
 		ItemStack cargoItemsCount[];
-		NBTTagList nbttaglist = nbttagcompound.getTagList("Items");
+		NBTTagList nbttaglist = nbttagcompound.getTagList("Items", Constants.NBT.TAG_COMPOUND);
 		cargoItemsCount = new ItemStack[getSizeInventory()];
 		for (int i = 0; i < nbttaglist.tagCount(); i++) {
-			NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist.tagAt(i);
+			NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist.getCompoundTagAt(i);
 			int j = nbttagcompound1.getByte("Slot") & 0xff;
 			if (j >= 0 && j < cargoItemsCount.length) {
 				cargoItemsCount[j] = ItemStack.loadItemStackFromNBT(nbttagcompound1);

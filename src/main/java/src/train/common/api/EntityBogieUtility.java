@@ -2,6 +2,7 @@ package src.train.common.api;
 
 import java.util.List;
 
+import com.mojang.authlib.GameProfile;
 import mods.railcraft.api.carts.IMinecart;
 import mods.railcraft.api.carts.IRoutableCart;
 import net.minecraft.block.Block;
@@ -135,5 +136,11 @@ public class EntityBogieUtility extends EntityBogie implements IMinecart, IRouta
 			}else if(!this.entityMainTrain.isAttached)this.entityMainTrain.applyEntityCollision(par1Entity);
 		}
 	}
+
+	@Override
+	public GameProfile getOwner(){
+
+	}
+
 }
 
