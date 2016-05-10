@@ -9,7 +9,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.StatCollector;
 
 import org.lwjgl.opengl.GL11;
 
@@ -49,7 +51,7 @@ public class GuiTender extends GuiContainer {
 	@Override
 	protected void actionPerformed(GuiButton guibutton) {
 		if (guibutton.id == 3) {
-			if(player!=null && player instanceof EntityPlayer && player.username.toLowerCase().equals(((AbstractTrains) tender).trainOwner.toLowerCase())){
+			if(player!=null && player instanceof EntityPlayer && player.getCommandSenderName().toLowerCase().equals(((AbstractTrains) tender).trainOwner.toLowerCase())){
 				if ((!((AbstractTrains) tender).locked)){
 					AxisAlignedBB box = ((Tender) tender).boundingBox.expand(5, 5, 5);
 					List lis3 = ((Tender) tender).worldObj.getEntitiesWithinAABBExcludingEntity(tender, box);
@@ -80,7 +82,7 @@ public class GuiTender extends GuiContainer {
 					this.initGui();
 				}
 			}else if(player!=null && player instanceof EntityPlayer){
-				player.addChatMessage("You are not the owner");
+				player.addChatMessage(new ChatComponentText("You are not the owner"));
 			}
 		}
 	}
@@ -90,16 +92,16 @@ public class GuiTender extends GuiContainer {
 		GL11.glDisable(GL11.GL_LIGHTING);
 		GL11.glDisable(GL11.GL_DEPTH_TEST);
 
-		fontRenderer.drawString(((IInventory) tender).getInvName(), 34, 1, 0x000000);
-		fontRenderer.drawString(((IInventory) tender).getInvName(), 36, 3, 0x000000);
-		fontRenderer.drawString(((IInventory) tender).getInvName(), 34, 3, 0x000000);
-		fontRenderer.drawString(((IInventory) tender).getInvName(), 36, 1, 0x000000);
+		fontRendererObj.drawString(((IInventory) tender).getInventoryName(), 34, 1, 0x000000);
+		fontRendererObj.drawString(((IInventory) tender).getInventoryName(), 36, 3, 0x000000);
+		fontRendererObj.drawString(((IInventory) tender).getInventoryName(), 34, 3, 0x000000);
+		fontRendererObj.drawString(((IInventory) tender).getInventoryName(), 36, 1, 0x000000);
 
-		fontRenderer.drawString(((IInventory) tender).getInvName(), 34, 2, 0x000000);
-		fontRenderer.drawString(((IInventory) tender).getInvName(), 36, 2, 0x000000);
-		fontRenderer.drawString(((IInventory) tender).getInvName(), 35, 3, 0x000000);
-		fontRenderer.drawString(((IInventory) tender).getInvName(), 35, 1, 0x000000);
-		fontRenderer.drawString(((IInventory) tender).getInvName(), 35, 2, 0xd3a900);
+		fontRendererObj.drawString(((IInventory) tender).getInventoryName(), 34, 2, 0x000000);
+		fontRendererObj.drawString(((IInventory) tender).getInventoryName(), 36, 2, 0x000000);
+		fontRendererObj.drawString(((IInventory) tender).getInventoryName(), 35, 3, 0x000000);
+		fontRendererObj.drawString(((IInventory) tender).getInventoryName(), 35, 1, 0x000000);
+		fontRendererObj.drawString(((IInventory) tender).getInventoryName(), 35, 2, 0xd3a900);
 
 		GL11.glEnable(GL11.GL_LIGHTING);
 		GL11.glEnable(GL11.GL_DEPTH_TEST);
@@ -119,7 +121,7 @@ public class GuiTender extends GuiContainer {
 		if(((AbstractTrains) tender).locked)state="Locked";
 		if(!((AbstractTrains) tender).locked)state="Unlocked";
 		
-		int textWidth = fontRenderer.getStringWidth("the GUI, change speed, destroy it.");
+		int textWidth = fontRendererObj.getStringWidth("the GUI, change speed, destroy it.");
 		int startX = 90;
 		int startY = 5;
 
@@ -132,11 +134,11 @@ public class GuiTender extends GuiContainer {
 		int colour2 = (colour1 & 0xfefefe) >> 1 | colour1 & 0xff000000;
 		drawGradientRect(startX - 3, startY - 3, startX + textWidth + 3, startY + 8 + 3 + 40, colour1, colour2);
 		drawGradientRect(startX - 2, startY - 2, startX + textWidth + 2, startY + 8 + 2 + 40, i4, i4);
-		fontRenderer.drawStringWithShadow(str, startX, startY, -1);
-		fontRenderer.drawStringWithShadow("only its owner can open", startX, startY + 10, -1);
-		fontRenderer.drawStringWithShadow("the GUI and destroy it.", startX, startY + 20, -1);
-		fontRenderer.drawStringWithShadow("Current state: "+state, startX, startY+30, -1);
-		fontRenderer.drawStringWithShadow("Owner: "+((AbstractTrains) tender).trainOwner.trim(), startX, startY+40, -1);
+		fontRendererObj.drawStringWithShadow(str, startX, startY, -1);
+		fontRendererObj.drawStringWithShadow("only its owner can open", startX, startY + 10, -1);
+		fontRendererObj.drawStringWithShadow("the GUI and destroy it.", startX, startY + 20, -1);
+		fontRendererObj.drawStringWithShadow("Current state: "+state, startX, startY+30, -1);
+		fontRendererObj.drawStringWithShadow("Owner: "+((AbstractTrains) tender).trainOwner.trim(), startX, startY+40, -1);
 	}
 	public boolean intersectsWith(int mouseX, int mouseY) {
 		//System.out.println(mouseX+" "+mouseY);
@@ -161,7 +163,7 @@ public class GuiTender extends GuiContainer {
 			int load = (((Tender) tender).getWater());
 			int lo = Math.abs(((load * 50) / (((Tender) tender).getCartTankCapacity())));
 
-			if (((Tender) tender).getLiquidItemID() == LiquidManager.WATER_FILTER.fluidID) {
+			if (((Tender) tender).getLiquidItemID() == LiquidManager.WATER_FILTER.getFluidID()) {
 
 				drawTexturedModalRect(j + 143, (k + 69) - lo, 190, 69 - lo, 18, lo);
 			}

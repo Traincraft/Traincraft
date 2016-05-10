@@ -61,7 +61,7 @@ public abstract class GuiTraincraft extends GuiContainer {
 	}
 
 	protected int getCenteredOffset(String string, int xWidth) {
-		return (xWidth - fontRenderer.getStringWidth(string)) / 2;
+		return (xWidth - fontRendererObj.getStringWidth(string)) / 2;
 	}
 
 	@Override
@@ -186,7 +186,7 @@ public abstract class GuiTraincraft extends GuiContainer {
 		}
 
 		if (item != null) {
-			itemRenderer.renderItemIntoGUI(this.fontRenderer, this.mc.renderEngine, item, x, y);
+			itemRender.renderItemIntoGUI(this.fontRendererObj, this.mc.renderEngine, item, x, y);
 		}
 		else {
 			String var4 = Info.guiPrefix + "Icons.png";
@@ -234,7 +234,7 @@ public abstract class GuiTraincraft extends GuiContainer {
 			GL11.glDisable(GL11.GL_DEPTH_TEST);
 			GL11.glEnable(GL11.GL_BLEND);
 			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_SRC_ALPHA);
-			this.itemRenderer.renderItemIntoGUI(this.mc.fontRenderer, this.mc.renderEngine, item, j + x, k + y);
+			this.itemRender.renderItemIntoGUI(this.mc.fontRenderer, this.mc.renderEngine, item, j + x, k + y);
 			GL11.glDisable(GL11.GL_BLEND);
 			GL11.glEnable(GL11.GL_LIGHTING);
 			GL11.glEnable(GL11.GL_DEPTH_TEST);

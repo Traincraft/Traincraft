@@ -23,7 +23,7 @@ public class ModelWindMill extends ModelBase {
 	public float wheel1 = 0.4188790204786391F;
 
 	public ModelWindMill() {
-		modelWindMill = AdvancedModelLoader.loadModel(Info.modelPrefix + "wind_mill.obj");
+		modelWindMill = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "wind_mill.obj"));
 	}
 
 	public void render() {
@@ -47,7 +47,7 @@ public class ModelWindMill extends ModelBase {
 		float f4 = (float) (j & 255) / 255.0F;
 		GL11.glColor3f(f1 * f2, f1 * f3, f1 * f4);
 		GL11.glScalef(0.5f, 0.5f, 0.5f);
-		int facing = windMill.worldObj.getBlockMetadata((int) windMill.xCoord, (int) windMill.yCoord, (int) windMill.zCoord);
+		int facing = windMill.getWorldObj().getBlockMetadata((int) windMill.xCoord, (int) windMill.yCoord, (int) windMill.zCoord);
 		if (facing == 3) {
 		}
 		if (facing == 1) {

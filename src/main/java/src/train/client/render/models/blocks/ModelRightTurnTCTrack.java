@@ -20,9 +20,9 @@ public class ModelRightTurnTCTrack extends ModelBase {
 	private IModelCustom modelVeryLargeRightTurn;
 
 	public ModelRightTurnTCTrack() {
-		modelMediumRightTurn = AdvancedModelLoader.loadModel(Info.modelPrefix + "track_curve_medium.obj");
-		modelLargeRightTurn = AdvancedModelLoader.loadModel(Info.modelPrefix + "track_curve_big.obj");
-		modelVeryLargeRightTurn = AdvancedModelLoader.loadModel(Info.modelPrefix + "track_curve_very_big.obj");
+		modelMediumRightTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_medium.obj"));
+		modelLargeRightTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_big.obj"));
+		modelVeryLargeRightTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_very_big.obj"));
 	}
 
 	public void renderMedium() {
@@ -47,7 +47,7 @@ public class ModelRightTurnTCTrack extends ModelBase {
 		FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
 		GL11.glColor3f(1, 1, 1);
 		//GL11.glScalef(0.5f, 0.5f, 0.5f);
-		int facing = tcRail.worldObj.getBlockMetadata((int) tcRail.xCoord, (int) tcRail.yCoord, (int) tcRail.zCoord);
+		int facing = tcRail.getWorldObj().getBlockMetadata((int) tcRail.xCoord, (int) tcRail.yCoord, (int) tcRail.zCoord);
 
 		if (facing == 3) {
 			if(type.equals("very_large"))

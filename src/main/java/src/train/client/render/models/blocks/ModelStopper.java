@@ -36,7 +36,7 @@ public class ModelStopper extends ModelBase {
 
 	public ModelStopper(float scale) {
 		
-		track =  AdvancedModelLoader.loadModel(Info.modelPrefix + "track_normal.obj");
+		track =  AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_normal.obj"));
 		
 		box = new CustomModelRenderer(43, 4, 64, 64);
 		box.addBox(0F, 0F, 0F, 2, 15, 1, scale);

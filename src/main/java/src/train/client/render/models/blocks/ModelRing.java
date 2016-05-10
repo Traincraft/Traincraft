@@ -21,7 +21,7 @@ public class ModelRing extends ModelBase  {
 private IModelCustom ring;
 	
 	public ModelRing() {
-		ring = new AdvancedModelLoader().loadModel(Info.modelPrefix + "ring.obj");
+		ring = new AdvancedModelLoader().loadModel(new ResourceLocation(Info.modelPrefix + "ring.obj"));
 	}
 	
 	public void render() {

@@ -23,12 +23,12 @@ public class ModelLeftSwitchTCTrack extends ModelBase {
 	private IModelCustom modelLargeLeftSwitchInactive;
 
 	public ModelLeftSwitchTCTrack() {
-		modelMediumLeftSwitchActive = AdvancedModelLoader.loadModel(Info.modelPrefix + "track_switch_small_active_left_new.obj");
-		modelMediumLeftSwitchInactive = AdvancedModelLoader.loadModel(Info.modelPrefix + "track_switch_small_inactive_left_new.obj");
-		modelMediumLeftParallelSwitchInactive = AdvancedModelLoader.loadModel(Info.modelPrefix + "track_switch_parallel_inactive_left.obj");
-		modelMediumLeftParallelSwitchActive = AdvancedModelLoader.loadModel(Info.modelPrefix + "track_switch_parallel_active_left.obj");
-		modelLargeLeftSwitchActive = AdvancedModelLoader.loadModel(Info.modelPrefix + "track_switch_medium_active_left.obj");
-		modelLargeLeftSwitchInactive = AdvancedModelLoader.loadModel(Info.modelPrefix + "track_switch_medium_inactive_left.obj");
+		modelMediumLeftSwitchActive = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_switch_small_active_left_new.obj"));
+		modelMediumLeftSwitchInactive = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_switch_small_inactive_left_new.obj"));
+		modelMediumLeftParallelSwitchInactive = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_switch_parallel_inactive_left.obj"));
+		modelMediumLeftParallelSwitchActive = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_switch_parallel_active_left.obj"));
+		modelLargeLeftSwitchActive = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_switch_medium_active_left.obj"));
+		modelLargeLeftSwitchInactive = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_switch_medium_inactive_left.obj"));
 		
 	}
 
@@ -62,7 +62,7 @@ public class ModelLeftSwitchTCTrack extends ModelBase {
 		FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
 		GL11.glColor3f(1, 1, 1);
 		//GL11.glScalef(0.5f, 0.5f, 0.5f);
-		int facing = tcRail.worldObj.getBlockMetadata((int) tcRail.xCoord, (int) tcRail.yCoord, (int) tcRail.zCoord);
+		int facing = tcRail.getWorldObj().getBlockMetadata((int) tcRail.xCoord, (int) tcRail.yCoord, (int) tcRail.zCoord);
 
 		if (facing == 3) {
 			if(type.equals("medium")){

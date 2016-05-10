@@ -71,8 +71,6 @@ import cpw.mods.fml.relauncher.Side;
 
 public class CommonProxy implements IGuiHandler {
 	public static List<MP3Player> playerList = new ArrayList();
-	
-	public void registerKeyBindingHandler() {}
 
 	public void setKeyBinding(String name, int value) {}
 
@@ -234,8 +232,6 @@ public class CommonProxy implements IGuiHandler {
 	}
 
 	public void registerVillagerSkin(int villagerId, String textureName) {}
-	
-	public void getCape() {}
 	
 	public static void killAllStreams() {
 		for (MP3Player p : playerList) {
