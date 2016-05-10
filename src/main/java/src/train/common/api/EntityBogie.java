@@ -445,7 +445,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
                 float railMaxSpeed = rail.getRailMaxSpeed(worldObj, this, j, i, k);
                 double maxSpeed = Math.min(railMaxSpeed, getCurrentCartSpeedCapOnRail());
                 int i1 = rail.getBasicRailMetadata(worldObj, this, j, i, k);
-                this.updateOnTrack(j, i, k, maxSpeed, getSlopeAdjustment(), l, i1);
+                this.updateOnTrack(j, i, k, maxSpeed, getSlopeAdjustment(), Block.getIdFromBlock(l), i1);
                 if (l == Block.railActivator.blockID)
                 {
                     this.onActivatorRailPass(j, i, k, (worldObj.getBlockMetadata(j, i, k) & 8) != 0);
@@ -530,7 +530,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
                 this.func_94088_b(onGround ? d4 : getMaxSpeedAirLateral());
             }
            
-            this.doBlockCollisions();
+            this.func_145775_I();
             this.rotationPitch = 0.0F;
             double d6 = this.prevPosX - this.posX;
             double d7 = this.prevPosZ - this.posZ;

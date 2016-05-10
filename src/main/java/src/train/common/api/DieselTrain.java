@@ -118,7 +118,7 @@ public abstract class DieselTrain extends Locomotive implements IFluidHandler {
 				return;
 			}
 			else if (i == locoInvent.length - 1) {
-				dropItemWithOffset(itemstack1.getItem(), 1, 0.0F);
+				dropItem(itemstack1.getItem(), 1);
 				return;
 			}
 		}

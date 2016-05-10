@@ -15,6 +15,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
+import net.minecraftforge.common.util.Constants;
 import org.lwjgl.input.Keyboard;
 
 import src.train.common.Traincraft;
@@ -86,11 +87,11 @@ public abstract class AbstractWorkCart extends EntityRollingStock implements IIn
 	@Override
 	protected void readEntityFromNBT(NBTTagCompound nbttagcompound) {
 		super.readEntityFromNBT(nbttagcompound);
-		NBTTagList var2 = nbttagcompound.getTagList("Items");
+		NBTTagList var2 = nbttagcompound.getTagList("Items", Constants.NBT.TAG_COMPOUND);
 		this.furnaceItemStacks = new ItemStack[this.getSizeInventoryWork()];
 
 		for (int var3 = 0; var3 < var2.tagCount(); ++var3) {
-			NBTTagCompound var4 = (NBTTagCompound) var2.tagAt(var3);
+			NBTTagCompound var4 = (NBTTagCompound) var2.getCompoundTagAt(var3);
 			byte var5 = var4.getByte("Slot");
 
 			if (var5 >= 0 && var5 < this.furnaceItemStacks.length) {
@@ -153,7 +154,7 @@ public abstract class AbstractWorkCart extends EntityRollingStock implements IIn
 						--this.furnaceItemStacks[1].stackSize;
 
 						if (this.furnaceItemStacks[1].stackSize == 0) {
-							this.furnaceItemStacks[1] = this.furnaceItemStacks[1].getItem().getContainerItemStack(furnaceItemStacks[1]);
+							this.furnaceItemStacks[1] = this.furnaceItemStacks[1].getItem().getContainerItem(furnaceItemStacks[1]);
 						}
 					}
 				}
@@ -229,17 +230,17 @@ public abstract class AbstractWorkCart extends EntityRollingStock implements IIn
 			return 0;
 		}
 		else {
-			int var1 = par0ItemStack.getItem().itemID;
+			int var1 = Item.getIdFromItem(par0ItemStack.getItem());
 			Item var2 = par0ItemStack.getItem();
 
-			if (par0ItemStack.getItem() instanceof ItemBlock && Block.blocksList[var1] != null) {
-				Block var3 = Block.blocksList[var1];
+			if (par0ItemStack.getItem() instanceof ItemBlock && Block.getBlockFromItem(var2) != null) {
+				Block var3 = Block.getBlockFromItem(var2);
 
-				if (var3 == Block.woodSingleSlab) {
+				if (var3 == Block.getBlockById(126)) {//126 is wooden slab
 					return 150;
 				}
 
-				if (var3.blockMaterial == Material.wood) {
+				if (var3.getMaterial() == Material.wood) {
 					return 300;
 				}
 			}
@@ -248,15 +249,15 @@ public abstract class AbstractWorkCart extends EntityRollingStock implements IIn
 				return 200;
 			if (var2 instanceof ItemSword && ((ItemSword) var2).getToolMaterialName().equals("WOOD"))
 				return 200;
-			if (var1 == Item.stick.itemID)
+			if (var1 == 280)//280 is stick
 				return 100;
-			if (var1 == Item.coal.itemID)
+			if (var1 == 263)//263 is coal
 				return 1600;
-			if (var1 == Item.bucketLava.itemID)
+			if (var1 == 327)//327 is lava bucket
 				return 20000;
-			if (var1 == Block.sapling.blockID)
+			if (var1 == 6)//6 is sapling
 				return 100;
-			if (var1 == Item.blazeRod.itemID)
+			if (var1 == 369)//369 is blaze rod
 				return 2400;
 			return GameRegistry.getFuelValue(par0ItemStack);
 		}
@@ -331,18 +332,15 @@ public abstract class AbstractWorkCart extends EntityRollingStock implements IIn
 		}
 	}
 	@Override
-	public void openChest() {}
+	public void openInventory() {}
 
 	@Override
-	public void closeChest() {}
+	public void closeInventory() {}
 
 	@Override
 	public int getSizeInventory() {
 		return 0;
 	}
-
-	@Override
-	public void onInventoryChanged() {}
 
 	@Override
 	public boolean attackEntityFrom(DamageSource damagesource, float i) {

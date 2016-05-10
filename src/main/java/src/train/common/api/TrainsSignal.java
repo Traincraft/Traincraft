@@ -15,11 +15,11 @@ public class TrainsSignal {
 
 		/* Basically checks if there is a signal somewhere in front of the cart, using the speed */
 		/* t represents the distance to the signal */
-		TileSignal te = (TileSignal) worldObj.getBlockTileEntity(i, j, k);
+		TileSignal te = (TileSignal) worldObj.getTileEntity(i, j, k);
 
 		if ((motionX > 0) && motionZ == 0) {
 			for (int t = 0; t < 12; t++) {
-				if ((worldObj.getBlockId(i + t, j, k + l) == BlockIDs.signal.blockID) || (worldObj.getBlockId(i + t, j, k - l) == BlockIDs.signal.blockID)) {// k = sides, j= heigh, i front
+				if ((worldObj.getBlock(i + t, j, k + l) == BlockIDs.signal.block) || (worldObj.getBlock(i + t, j, k - l) == BlockIDs.signal.block)) {// k = sides, j= heigh, i front
 					action = 1;
 					if (t == 2) {
 						action = 2;
@@ -34,7 +34,7 @@ public class TrainsSignal {
 		}
 		else if ((motionX < 0) && motionZ == 0) {
 			for (int t = 0; t < 12; t++) {
-				if ((worldObj.getBlockId(i - t, j, k + l) == BlockIDs.signal.blockID) || (worldObj.getBlockId(i - t, j, k - l) == BlockIDs.signal.blockID)) {// k = sides, j= heigh, i front
+				if ((worldObj.getBlock(i - t, j, k + l) == BlockIDs.signal.block) || (worldObj.getBlock(i - t, j, k - l) == BlockIDs.signal.block)) {// k = sides, j= heigh, i front
 					action = 1;
 					if (t == 2) {
 						action = 2;
@@ -50,7 +50,7 @@ public class TrainsSignal {
 		else if ((motionZ > 0) && motionX == 0) {
 			// k - = front
 			for (int t = 0; t < 12; t++) {
-				if ((worldObj.getBlockId(i + l, j, k + t) == BlockIDs.signal.blockID) || (worldObj.getBlockId(i - l, j, k + t) == BlockIDs.signal.blockID)) {// k = sides, j= heigh, i front
+				if ((worldObj.getBlock(i + l, j, k + t) == BlockIDs.signal.block) || (worldObj.getBlock(i - l, j, k + t) == BlockIDs.signal.block)) {// k = sides, j= heigh, i front
 					action = 1;
 					if (t == 2) {
 						action = 2;
@@ -65,7 +65,7 @@ public class TrainsSignal {
 		}
 		else if ((motionZ < 0) && motionX == 0) {
 			for (int t = 0; t < 12; t++) {
-				if ((worldObj.getBlockId(i + l, j, k - t) == BlockIDs.signal.blockID) || (worldObj.getBlockId(i - l, j, k - t) == BlockIDs.signal.blockID)) {// k = sides, j= heigh, i front
+				if ((worldObj.getBlock(i + l, j, k - t) == BlockIDs.signal.block) || (worldObj.getBlock(i - l, j, k - t) == BlockIDs.signal.block)) {// k = sides, j= heigh, i front
 					action = 1;
 					if (t == 2) {
 						action = 2;

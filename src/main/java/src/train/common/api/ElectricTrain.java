@@ -54,7 +54,7 @@ public abstract class ElectricTrain extends Locomotive {
 		
 		/* if the loco has fuel */
 		if (getFuel() < maxEnergy) {
-			if (locoInvent[0] != null && locoInvent[0].itemID == Item.redstone.itemID && ((getFuel() + redstoneEnergy) <= maxEnergy)) {
+			if (locoInvent[0] != null && locoInvent[0].getItem() == Item.getItemById(331) && ((getFuel() + redstoneEnergy) <= maxEnergy)) { //331 is redstone dust
 				fuelTrain += redstoneEnergy;
 				decrStackSize(0, 1);
 			}
@@ -65,7 +65,7 @@ public abstract class ElectricTrain extends Locomotive {
 				//System.out.println("Amount: " + transfer + " Fuel: " + getFuel());//TODO debug
 			}*/
 			else if (locoInvent[0] != null && locoInvent[0].getItem() instanceof IElectricItem) {
-				double transfer = ElectricItem.manager.discharge(locoInvent[0], (int)(maxEnergy - getFuel()),3,false,false);
+				double transfer = ElectricItem.manager.discharge(locoInvent[0], (int)(maxEnergy - getFuel()),3,false,false,false);
 				fuelTrain += (int) transfer;// / 100;
 			}
 		}/* else if (getFuel() <= 0) {// fuel check if (locoInvent[0] != null && (PluginIndustrialCraft.getItems().containsKey(PluginIndustrialCraft.getNames()[20])) && (PluginIndustrialCraft.getItems().containsKey(PluginIndustrialCraft.getNames()[23]))) { if ((locoInvent[0].itemID == PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[20]).itemID)) { hasUranium = true; fuelTrain = maxEnergy; if (!worldObj.isRemote) { decrStackSize(0, 1); } reduceExplosionChance = 1000; for (int u = 1; u < locoInvent.length; u++) {// checks the inventory
@@ -85,7 +85,7 @@ public abstract class ElectricTrain extends Locomotive {
 			if (PluginIndustrialCraft.getItems().containsKey(PluginIndustrialCraft.getNames()[21])) {
 				for (int u = 1; u < locoInvent.length; u++) {
 					if (locoInvent[u] != null) {
-						if (locoInvent[u].itemID == PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[21]).itemID) {
+						if (locoInvent[u].getItem() == PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[21]).getItem()) {
 							reduceExplosionChance += 10000;
 							if (rand.nextInt(100) == 0) {
 								locoInvent[u].setItemDamage(4);

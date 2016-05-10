@@ -1024,7 +1024,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			collisionhandler.handleCollisions(this, boundingBox);
 		}
 		//collisionhandler.handleCollisions(this, boundingBox);
-		this.doBlockCollisions();
+		this.func_145775_I();
 		MinecraftForge.EVENT_BUS.post(new MinecartUpdateEvent(this, i, j, k));
 		//setBoundingBoxSmall(posX, posY, posZ, 0.98F, 0.7F);
 		numLaps++;
