@@ -24,12 +24,12 @@ public class HUDloco extends GuiScreen {
 
 	public HUDloco(Minecraft game) {
 		this.game = game;
-		fontRenderer = Minecraft.getMinecraft().fontRenderer;
+		fontRendererObj = Minecraft.getMinecraft().fontRenderer;
 	}
 
 	public void renderSkillHUD(Locomotive rcCar) {
-		windowWidth = new ScaledResolution(game.gameSettings, game.displayWidth, game.displayHeight).getScaledWidth();
-		windowHeight = new ScaledResolution(game.gameSettings, game.displayWidth, game.displayHeight).getScaledHeight();
+		windowWidth = new ScaledResolution(game, game.displayWidth, game.displayHeight).getScaledWidth();
+		windowHeight = new ScaledResolution(game, game.displayWidth, game.displayHeight).getScaledHeight();
 		j = (windowWidth - sizeX) / 2;
 		k = (windowHeight - sizeY) / 2;
 		renderBG(rcCar);
@@ -85,12 +85,12 @@ public class HUDloco extends GuiScreen {
 		GL11.glEnable(3042 /* GL_BLEND */);
 		GL11.glEnable(32826);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		fontRenderer.drawStringWithShadow("Speed:", 96, (windowHeight / 2) + 7 + (h), 0xFFFFFF);
-		fontRenderer.drawStringWithShadow("  " + ((int) Math.abs(((float) (speed)))) + "", 96, (windowHeight / 2) + 18 + (h), 0xFFFFFF);
-		fontRenderer.drawStringWithShadow(" " + "Km/h", 96, (windowHeight / 2) + 29 + (h), 0xFFFFFF);
+		fontRendererObj.drawStringWithShadow("Speed:", 96, (windowHeight / 2) + 7 + (h), 0xFFFFFF);
+		fontRendererObj.drawStringWithShadow("  " + ((int) Math.abs(((float) (speed)))) + "", 96, (windowHeight / 2) + 18 + (h), 0xFFFFFF);
+		fontRendererObj.drawStringWithShadow(" " + "Km/h", 96, (windowHeight / 2) + 29 + (h), 0xFFFFFF);
 
 		if (loco.canOverheat()) {
-			fontRenderer.drawStringWithShadow("State: " + ((Locomotive) loco).getState(), 40, (windowHeight / 2) + 80, 0xFFFFFF);
+			fontRendererObj.drawStringWithShadow("State: " + ((Locomotive) loco).getState(), 40, (windowHeight / 2) + 80, 0xFFFFFF);
 		}
 		GL11.glDisable(32826);
 		GL11.glDisable(3042 /* GL_BLEND */);
@@ -142,7 +142,7 @@ public class HUDloco extends GuiScreen {
 		else {
 			drawTexturedModalRect(24, (windowHeight / 2) + 17, 154, 170 + l, 9, t);// l max = 70
 		}
-		// fontRenderer.drawStringWithShadow("Fuel:", 4, (windowHeight/2)+1, 0xFFFFFF);
+		// fontRendererObj.drawStringWithShadow("Fuel:", 4, (windowHeight/2)+1, 0xFFFFFF);
 		GL11.glDisable(32826);
 		GL11.glDisable(3042 /* GL_BLEND */);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
@@ -215,7 +215,7 @@ public class HUDloco extends GuiScreen {
 		if (overheatLevel > loco.getOverheatTime() + 30) {
 			overheatLevel = loco.getOverheatTime() + 30;
 		}
-		// fontRenderer.drawStringWithShadow("Heat:", 33, (windowHeight/2)+1, 0xFFFFFF);
+		// fontRendererObj.drawStringWithShadow("Heat:", 33, (windowHeight/2)+1, 0xFFFFFF);
 		GL11.glEnable(3042 /* GL_BLEND */);
 		GL11.glEnable(32826);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);

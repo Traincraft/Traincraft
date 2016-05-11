@@ -21,7 +21,7 @@ public class ModelLights extends ModelBase {
 	private IModelCustom present;
 	
 	public ModelLights() {
-		present = new AdvancedModelLoader().loadModel(Info.modelPrefix + "lights2.obj");
+		present = new AdvancedModelLoader().loadModel(new ResourceLocation(Info.modelPrefix + "lights2.obj"));
 	}
 	
 	public void render(String partname) {

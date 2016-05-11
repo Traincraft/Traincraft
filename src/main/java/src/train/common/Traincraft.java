@@ -88,9 +88,6 @@ public class Traincraft {
 		ConfigHandler.init(new File(event.getModConfigurationDirectory(), Info.modName + ".cfg"));
 		proxy.getKeysFromProperties();
 
-		/* Register the KeyBinding Handler */
-		proxy.registerKeyBindingHandler();
-
 		/* Tile Entities */
 		proxy.registerTileEntities();
 

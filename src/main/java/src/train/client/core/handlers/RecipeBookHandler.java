@@ -1,9 +1,14 @@
 package src.train.client.core.handlers;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import src.train.common.api.crafting.ITierRecipe;
+import src.train.common.core.interfaces.ITCRecipe;
 import src.train.common.core.managers.TierRecipe;
 import src.train.common.library.BlockIDs;
 import src.train.common.library.ItemIDs;
@@ -36,51 +41,36 @@ public class RecipeBookHandler {
 		vanillaWorkTableRecipes[19] = ItemIDs.jacket_ticketMan_paintable.item.getUnlocalizedName();
 	}
 
-	public static List workbenchListCleaner(List recipeList) {
-		ArrayList outputList = new ArrayList();
-		ArrayList cleanedList = new ArrayList();
-		for (int i = 0; i < recipeList.size(); i++) {
-			if (recipeList.get(i) instanceof ShapedTrainRecipes) {
-				if (outputList != null) {
-					if (!outputList.contains(((ShapedTrainRecipes) recipeList.get(i)).getRecipeOutput().getItem().itemID)) {
-						cleanedList.add(recipeList.get(i));
-					}
+	// TODO: Make parameters more specific than List
+	public static List<ITCRecipe> workbenchListCleaner(List recipeList) {
+		Set<String> outputs = new HashSet<String>();
+		ArrayList<ITCRecipe> cleaned = new ArrayList<ITCRecipe>();
+		for(Object r: recipeList) {
+			if (r instanceof ShapedTrainRecipes || r instanceof ShapelessTrainRecipe) {
+				ITCRecipe recipe = (ITCRecipe) r;
+				String output = Item.itemRegistry.getNameForObject(recipe.getRecipeOutput().getItem());
+				if (!outputs.contains(output)) {
+					cleaned.add(recipe);
+					outputs.add(output);
 				}
-				else {
-					cleanedList.add(recipeList.get(i));
-				}
-				outputList.add(((ShapedTrainRecipes) recipeList.get(i)).getRecipeOutput().getItem().itemID);
-			}
-			if (recipeList.get(i) instanceof ShapelessTrainRecipe) {
-
-				if (outputList != null) {
-					if (!outputList.contains(((ShapelessTrainRecipe) recipeList.get(i)).getRecipeOutput().getItem().itemID)) {
-						cleanedList.add(recipeList.get(i));
-					}
-				}
-				else {
-					cleanedList.add(recipeList.get(i));
-				}
-				outputList.add(((ShapelessTrainRecipe) recipeList.get(i)).getRecipeOutput().getItem().itemID);
 			}
 		}
-		return cleanedList;
+		return cleaned;
 	}
 
-	public static List assemblyListCleaner(List recipeList) {
-		ArrayList outputList = new ArrayList();
-		ArrayList cleanedList = new ArrayList();
-		for (int i = 0; i < recipeList.size(); i++) {
-			ItemStack output = ((TierRecipe) recipeList.get(i)).getOutput();
-			if (outputList != null) {
-				if (!outputList.contains(((TierRecipe) recipeList.get(i)).getOutput().getItem().itemID)) {
-					cleanedList.add(recipeList.get(i));
+	// TODO: Make it more generic: TierRecipe -> ITierRecipe
+	public static List<TierRecipe> assemblyListCleaner(List recipeList) {
+		Set<String> outputs = new HashSet<String>();
+		ArrayList<TierRecipe> cleanedList = new ArrayList<TierRecipe>();
+		for(Object r: recipeList) {
+			if(r instanceof TierRecipe) {
+				TierRecipe recipe = (TierRecipe) r;
+				String output = Item.itemRegistry.getNameForObject(recipe.getOutput().getItem());
+				if (!outputs.contains(output)) {
+					cleanedList.add(recipe);
+					outputs.add(output);
 				}
 			}
-			else {
-				cleanedList.add(recipeList.get(i));
-			}
-			outputList.add(((TierRecipe) recipeList.get(i)).getOutput().getItem().itemID);
 		}
 		return cleanedList;
 	}

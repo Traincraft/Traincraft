@@ -21,7 +21,7 @@ public class ModelPresent extends ModelBase {
 	private IModelCustom present;
 	
 	public ModelPresent() {
-		present = new AdvancedModelLoader().loadModel(Info.modelPrefix + "present.obj");
+		present = new AdvancedModelLoader().loadModel(new ResourceLocation(Info.modelPrefix + "present.obj"));
 	}
 	
 	public void render() {

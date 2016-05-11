@@ -5,6 +5,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.AdvancedModelLoader;
@@ -24,7 +25,7 @@ public class ModelLantern extends ModelBase {
 	private final RenderItem renderItem;
 
 	public ModelLantern() {
-		modelLantern = AdvancedModelLoader.loadModel(Info.modelPrefix + "lantern.obj");
+		modelLantern = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "lantern.obj"));
 		renderItem = new RenderItem() {
 
 			@Override
@@ -68,13 +69,13 @@ public class ModelLantern extends ModelBase {
 		// Pop this matrix from the stack.
 		GL11.glPopMatrix();
 		GL11.glPushMatrix();
-		EntityItem ghostEntityItem = new EntityItem(lantern.worldObj);
-		ghostEntityItem.setEntityItemStack(new ItemStack(Block.torchWood, 1));
+		EntityItem ghostEntityItem = new EntityItem(lantern.getWorldObj());
+		ghostEntityItem.setEntityItemStack(new ItemStack(Blocks.torch, 1));
 		ghostEntityItem.hoverStart = 0.0F;
 
 		GL11.glTranslatef((float) x + 0.5F, (float) y + 0.1F, (float) z + 0.5F);
 		GL11.glScalef(0.5F, 0.5F, 0.5F);
-		renderItem.doRenderItem(ghostEntityItem, 0, 0, 0, 0, 0);
+		renderItem.doRender(ghostEntityItem, 0, 0, 0, 0, 0);
 
 		GL11.glPopMatrix();
 	}

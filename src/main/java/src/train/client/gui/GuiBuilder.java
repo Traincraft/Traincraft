@@ -2,12 +2,15 @@ package src.train.client.gui;
 
 import java.util.List;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 
@@ -62,14 +65,14 @@ public class GuiBuilder extends GuiContainer {
 
 	@Override
 	protected void drawGuiContainerForegroundLayer(int i, int j) {
-		fontRenderer.drawString("Builder", 4, 8, 0x404040);
-		fontRenderer.drawString("Inventory", 113, 100, 0x404040);
-		fontRenderer.drawString("Doesn't work", 4, 160, 0x404040);
-		fontRenderer.drawString("with new tracks", 4, 170, 0x404040);
-		fontRenderer.drawString("yet", 4, 180, 0x404040);
+		fontRendererObj.drawString("Builder", 4, 8, 0x404040);
+		fontRendererObj.drawString("Inventory", 113, 100, 0x404040);
+		fontRendererObj.drawString("Doesn't work", 4, 160, 0x404040);
+		fontRendererObj.drawString("with new tracks", 4, 170, 0x404040);
+		fontRendererObj.drawString("yet", 4, 180, 0x404040);
 
-		fontRenderer.drawString(StatCollector.translateToLocal("builder.currElev.name") + ": " + (int) builder.currentHeight, 120, -25, 0xFFFFFF);
-		fontRenderer.drawString(StatCollector.translateToLocal("builder.reqElev.name") + ": " + (int) builder.getPlannedHeight(), 120, -10, 0xFFFFFF);
+		fontRendererObj.drawString(StatCollector.translateToLocal("builder.currElev.name") + ": " + (int) builder.currentHeight, 120, -25, 0xFFFFFF);
+		fontRendererObj.drawString(StatCollector.translateToLocal("builder.reqElev.name") + ": " + (int) builder.getPlannedHeight(), 120, -10, 0xFFFFFF);
 		if (intersectsWith(i, j)) {
 			drawCreativeTabHoveringText("When a builder is locked,", i, j);
 		}
@@ -95,7 +98,7 @@ public class GuiBuilder extends GuiContainer {
 		}
 
 		if (guibutton.id == 4) {
-			if (player != null && player instanceof EntityPlayer && player.username.toLowerCase().equals(((AbstractTrains) builder).trainOwner.toLowerCase())) {
+			if (player != null && player instanceof EntityPlayer && player.getCommandSenderName().toLowerCase().equals(((AbstractTrains) builder).trainOwner.toLowerCase())) {
 				if ((!((AbstractTrains) builder).locked)) {
 					AxisAlignedBB box = ((EntityTracksBuilder) builder).boundingBox.expand(5, 5, 5);
 					List lis3 = ((EntityTracksBuilder) builder).worldObj.getEntitiesWithinAABBExcludingEntity(builder, box);
@@ -129,7 +132,7 @@ public class GuiBuilder extends GuiContainer {
 				}
 			}
 			else if (player != null && player instanceof EntityPlayer) {
-				player.addChatMessage(StatCollector.translateToLocal("train.owner.name"));
+				player.addChatMessage(new ChatComponentText(StatCollector.translateToLocal("train.owner.name")));
 			}
 		}
 	}
@@ -144,7 +147,7 @@ public class GuiBuilder extends GuiContainer {
 		if (!((AbstractTrains) builder).locked)
 			state = "Unlocked";
 
-		int textWidth = fontRenderer.getStringWidth("the GUI, change speed, destroy it.");
+		int textWidth = fontRendererObj.getStringWidth("the GUI, change speed, destroy it.");
 		int startX = 10;
 		int startY = -10;
 
@@ -157,11 +160,11 @@ public class GuiBuilder extends GuiContainer {
 		int colour2 = (colour1 & 0xfefefe) >> 1 | colour1 & 0xff000000;
 		drawGradientRect(startX - 3, startY - 3, startX + textWidth + 3, startY + 8 + 3 + 40, colour1, colour2);
 		drawGradientRect(startX - 2, startY - 2, startX + textWidth + 2, startY + 8 + 2 + 40, i4, i4);
-		fontRenderer.drawStringWithShadow(str, startX, startY, -1);
-		fontRenderer.drawStringWithShadow("only its owner can open", startX, startY + 10, -1);
-		fontRenderer.drawStringWithShadow("the GUI and destroy it.", startX, startY + 20, -1);
-		fontRenderer.drawStringWithShadow("Current state: " + state, startX, startY + 30, -1);
-		fontRenderer.drawStringWithShadow("Owner: " + ((AbstractTrains) builder).trainOwner.trim(), startX, startY + 40, -1);
+		fontRendererObj.drawStringWithShadow(str, startX, startY, -1);
+		fontRendererObj.drawStringWithShadow("only its owner can open", startX, startY + 10, -1);
+		fontRendererObj.drawStringWithShadow("the GUI and destroy it.", startX, startY + 20, -1);
+		fontRendererObj.drawStringWithShadow("Current state: " + state, startX, startY + 30, -1);
+		fontRendererObj.drawStringWithShadow("Owner: " + ((AbstractTrains) builder).trainOwner.trim(), startX, startY + 40, -1);
 	}
 
 	public boolean intersectsWith(int mouseX, int mouseY) {

@@ -3,23 +3,26 @@ package src.train.client.core;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Iterator;
+import java.util.logging.Level;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 import src.train.client.core.handlers.ClientTickHandler;
-import src.train.client.core.handlers.KeyBindingHandler;
 import src.train.client.core.handlers.RecipeBookHandler;
 import src.train.client.core.helpers.HolidayHelper;
-import src.train.client.core.helpers.KeyBindingHelper;
 import src.train.client.gui.GuiBuilder;
 import src.train.client.gui.GuiCrafterTier;
 import src.train.client.gui.GuiCraftingCart;
@@ -86,8 +89,8 @@ import src.train.common.tile.TileTrainWbench;
 import src.train.common.tile.TileWaterWheel;
 import src.train.common.tile.TileWindMill;
 import cpw.mods.fml.client.registry.ClientRegistry;
-import cpw.mods.fml.client.registry.KeyBindingRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.ModContainer;
 import cpw.mods.fml.common.registry.VillagerRegistry;
@@ -101,21 +104,15 @@ public class ClientProxy extends CommonProxy {
 		helper.setDaemon(true);
 		helper.start();
 	}
-	
-	@Override
-	public void registerKeyBindingHandler() {
-		KeyBindingRegistry.registerKeyBinding(new KeyBindingHandler());
-	}
 
 	@Override
 	public void setKeyBinding(String name, int value) {
-		KeyBindingHelper.addKeyBinding(name, value);
-		KeyBindingHelper.addIsRepeating(false);
+		ClientRegistry.registerKeyBinding(new KeyBinding(name, value, Info.modName));
 	}
 
 	@Override
 	public void registerRenderInformation() {
-		TickRegistry.registerTickHandler(new ClientTickHandler(), Side.CLIENT);
+		FMLCommonHandler.instance().bus().register(new ClientTickHandler());
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityRollingStock.class, new RenderRollingStock());
 		RenderingRegistry.registerEntityRenderingHandler(EntityZeppelinTwoBalloons.class, new RenderZeppelins());
@@ -287,27 +284,34 @@ public class ClientProxy extends CommonProxy {
 	}
 	
 	@Override
-	public void getCape() {
-		TickRegistry.registerTickHandler(new ClientTickHandler(), Side.CLIENT);
-	}
-	
-	@Override
 	public EntityPlayer getPlayer() {
 		return getMinecraft().thePlayer;
 	}
-	
+
+	// TODO: Refactor this to not use id.
 	@Override
 	public void doNEICheck(int id) {
-		if (Minecraft.getMinecraft().thePlayer != null ) {
-            Iterator modsIT = Loader.instance().getModList().iterator();
-            ModContainer modc;
-            while (modsIT.hasNext()) {
-                modc = (ModContainer) modsIT.next();
-                if ("Not Enough Items".equals(modc.getName().trim())) {
-                    codechicken.nei.api.API.hideItem(id);
-                    return;
-                }
-            }
+		if (Minecraft.getMinecraft().thePlayer != null) {
+			if(Loader.isModLoaded("Not Enough Items")) {
+				ItemStack item = new ItemStack(Item.getItemById(id));
+				try {
+					Class neiApi = Class.forName("codechicken.nei.api.API");
+					Method hideItem = neiApi.getDeclaredMethod("hideItem", item.getClass());
+					hideItem.invoke(null, item);
+				} catch (ClassNotFoundException e) {
+					Traincraft.tcLog.log(Level.WARNING, "Chicken core didn't have required class: Wrong version of the library or something is horribly wrong", e);
+				} catch (NoSuchMethodException e) {
+					Traincraft.tcLog.log(Level.WARNING, "Chicken core didn't have required method: Wrong version of the library or something is horribly wrong", e);
+				} catch (SecurityException e) {
+					Traincraft.tcLog.log(Level.SEVERE, "Something is horribly wrong", e);
+				} catch (IllegalAccessException e) {
+					Traincraft.tcLog.log(Level.SEVERE, "Something is horribly wrong", e);
+				} catch (IllegalArgumentException e) {
+					Traincraft.tcLog.log(Level.WARNING, "Chicken core had the method but it's signature was wrong: Wrong version of the library or something is horribly wrong", e);
+				} catch (InvocationTargetException e) {
+					Traincraft.tcLog.log(Level.WARNING, "The method we called from Chicken core threw an exception", e);
+				}
+			}
         }
 	}
 }

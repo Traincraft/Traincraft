@@ -33,7 +33,7 @@ public class RenderRollingStock extends Render {
 	 */
 	public void renderTheMinecart(EntityRollingStock cart, double x, double y, double z, float yaw, float time) {
 		GL11.glPushMatrix();
-		long var10 = (long) cart.entityId * 493286711L;
+		long var10 = (long) cart.getEntityId() * 493286711L;
 		var10 = var10 * var10 * 4392167121L + var10 * 98761L;
 		float var12 = (((float) (var10 >> 16 & 7L) + 0.5F) / 8.0F - 0.5F) * 0.004F;
 		float var13 = (((float) (var10 >> 20 & 7L) + 0.5F) / 8.0F - 0.5F) * 0.004F;
@@ -111,7 +111,9 @@ public class RenderRollingStock extends Render {
 		int i = MathHelper.floor_double(cart.posX);
 		int j = MathHelper.floor_double(cart.posY);
 		int k = MathHelper.floor_double(cart.posZ);
-		if (cart!=null && cart.worldObj!=null && (BlockRailBase.isRailBlockAt(cart.worldObj, i, j, k) || BlockRailBase.isRailBlockAt(cart.worldObj, i, j-1, k) )){
+
+		// NOTE: func_150049_b_ = isRailBlockAt
+		if (cart!=null && cart.worldObj!=null && (BlockRailBase.func_150049_b_(cart.worldObj, i, j, k) || BlockRailBase.func_150049_b_(cart.worldObj, i, j-1, k) )){
 			cart.setMountedYOffset(-0.3);
 			
 		}else if(cart.posYFromServer != 0){
@@ -146,7 +148,8 @@ public class RenderRollingStock extends Render {
 			cart.setRenderPitch(pitch);
 		}
 		else {
-			if (cart!=null && cart.worldObj!=null && (BlockRailBase.isRailBlockAt(cart.worldObj, i, j, k) || BlockRailBase.isRailBlockAt(cart.worldObj, i, j-1, k) )){
+			// NOTE: func_150049_b_ = isRailBlockAt
+			if (cart!=null && cart.worldObj!=null && (BlockRailBase.func_150049_b_(cart.worldObj, i, j, k) || BlockRailBase.func_150049_b_(cart.worldObj, i, j-1, k) )){
 				if(cart.isClientInReverse){
 					yaw+=180;
 				}

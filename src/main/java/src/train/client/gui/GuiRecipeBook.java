@@ -9,6 +9,8 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -88,8 +90,8 @@ public class GuiRecipeBook extends GuiScreen {
 
 		addPage("Keys:\n" + "To interact with the trains (e.g. enter/leave, display the inventory) click above the shadow the train is casting on the ground.\n" + "Inside the locomotive press R to open up the GUI: This is where you can put fuel, water, additional cargo, set brakes, etc.\n", "", "left", new ArrayList<StackToDraw>() {
 			{
-				add(new StackToDraw(new ItemStack(Item.coal), 60, 160));
-				add(new StackToDraw(new ItemStack(Item.bucketWater), 120, 160));
+				add(new StackToDraw(new ItemStack(Items.coal), 60, 160));
+				add(new StackToDraw(new ItemStack(Items.water_bucket), 120, 160));
 			}
 		});
 
@@ -111,8 +113,8 @@ public class GuiRecipeBook extends GuiScreen {
 				add(new StackToDraw(new ItemStack(ItemIDs.balloon.item), 170, 16));
 				add(new StackToDraw(new ItemStack(ItemIDs.propeller.item), 40, 135));
 				add(new StackToDraw(new ItemStack(ItemIDs.steamengine.item), 60, 135));
-				add(new StackToDraw(new ItemStack(Item.boat), 120, 135));
-				add(new StackToDraw(new ItemStack(Item.stick), 140, 135));
+				add(new StackToDraw(new ItemStack(Items.boat), 120, 135));
+				add(new StackToDraw(new ItemStack(Items.stick), 140, 135));
 
 			}
 		});
@@ -120,10 +122,10 @@ public class GuiRecipeBook extends GuiScreen {
 			{
 				add(new StackToDraw(new ItemStack(ItemIDs.minecartTender.item), 20, 16));
 				add(new StackToDraw(new ItemStack(ItemIDs.minecartLocomogulBlue.item), 170, 16));
-				add(new StackToDraw(new ItemStack(Item.coal), 40, 155));
-				add(new StackToDraw(new ItemStack(Item.bucketWater), 60, 155));
-				add(new StackToDraw(new ItemStack(Block.planks), 80, 155));
-				add(new StackToDraw(new ItemStack(Item.blazeRod), 100, 155));
+				add(new StackToDraw(new ItemStack(Items.coal), 40, 155));
+				add(new StackToDraw(new ItemStack(Items.water_bucket), 60, 155));
+				add(new StackToDraw(new ItemStack(Blocks.planks), 80, 155));
+				add(new StackToDraw(new ItemStack(Items.blaze_rod), 100, 155));
 				add(new StackToDraw(new ItemStack(ItemIDs.diesel.item), 120, 155));
 				add(new StackToDraw(new ItemStack(ItemIDs.refinedFuel.item), 140, 155));
 			}
@@ -132,7 +134,7 @@ public class GuiRecipeBook extends GuiScreen {
 		addPage("Electric locomotives need redstone or Re-Batteries, the can also be powered by Electric tracks (requires Universal Electricity).\n" + "\n" + "Heat:\n" + "Heat level is indicated by the heat bar in the HUD.\n" + "Heat level will go to a normal state when the train is fueled but don't forget to put water in steam locomotive or it will overheat very fast.\n", "", "left", new ArrayList<StackToDraw>() {
 			{
 				add(new StackToDraw(new ItemStack(ItemIDs.minecartBR_E69.item), 20, 16));
-				add(new StackToDraw(new ItemStack(Item.redstone), 170, 16));
+				add(new StackToDraw(new ItemStack(Items.redstone), 170, 16));
 			}
 		});
 
@@ -142,7 +144,7 @@ public class GuiRecipeBook extends GuiScreen {
 				"TC locomotives can be routed using Railcraft routing track. Destination will show in the GUI. There is no space for tickets in the GUI. Not 'Color=' compatible. Sneak+Crowbar to reset 'Dest:'", "", "right", new ArrayList<StackToDraw>() {
 			{
 				add(new StackToDraw(new ItemStack(ItemIDs.firebox.item), 20, 16));
-				add(new StackToDraw(new ItemStack(Block.tnt), 170, 16));
+				add(new StackToDraw(new ItemStack(Blocks.tnt), 170, 16));
 			}
 		});
 		addPage("Minecraft Horse Power - Mhp:\n\n" + "Locomotives have different pulling abilities represented by their 'power' in Mhp.\n" + "Each cart has a mass in tons which will affect the locomotive depending on its power.\n" + "Mass pulled affects the maximum speed, the brake rate and accelerate rate, as well as fuel consumption.\n" + "", "", "left", new ArrayList<StackToDraw>() {
@@ -159,7 +161,7 @@ public class GuiRecipeBook extends GuiScreen {
 		});
 		addPage("Derailment:\n\n" + "Do not go too fast on turns or your locomotives will derail!\n\n" + "It is recommended to slow down under 90km/h before turning or you will find yourself crashing off tracks.", "", "right", new ArrayList<StackToDraw>() {
 			{
-				add(new StackToDraw(new ItemStack(Item.skull, 1, 1), 20, 16));
+				add(new StackToDraw(new ItemStack(Items.skull, 1, 1), 20, 16));
 			}
 		});
 
@@ -178,35 +180,35 @@ public class GuiRecipeBook extends GuiScreen {
 		addPage("Chunk Loading:\n\n" + "Each rolling stock can load one chunk around itself.\n" + "To start chunk loading, right click with chunk loader activator on the rolling stock.\n" + "To stop chunk loading, right click again.\n", "", "right", new ArrayList<StackToDraw>() {
 			{
 				add(new StackToDraw(new ItemStack(ItemIDs.chunkLoaderActivator.item), 20, 16));
-				add(new StackToDraw(new ItemStack(Item.enderPearl), 170, 16));
+				add(new StackToDraw(new ItemStack(Items.ender_pearl), 170, 16));
 			}
 		});
 		addPage("Colors:\n\n" + "Some rolling stock has several textures and can be painted with dyes.\n" + "The rolling stock that can be painted will show the possible colors in the chat once placed in the world.\n" + "To paint, simply right click with the correct dye.\n" +
 				"Lantern color is randomly picked, but you can set the color manually with a wrench. Enter the color code from http://www.colorpicker.com/", "", "left", new ArrayList<StackToDraw>() {
 			{
-				add(new StackToDraw(new ItemStack(Item.dyePowder, 1, 1), 20, 16));
-				add(new StackToDraw(new ItemStack(Item.dyePowder, 1, 11), 170, 16));
+				add(new StackToDraw(new ItemStack(Items.dye, 1, 1), 20, 16));
+				add(new StackToDraw(new ItemStack(Items.dye, 1, 11), 170, 16));
 			}
 		});
 		addPage("Stock car:\n\n" + "The stock car is the only rolling stock that can be ridden by any animals and mobs.\n" + "To fill the stock car, either collide the animal with the car or use the animal/mob boarding tracks (Railcraft required).\n" + "To empty the car, use the disembark track (Railcraft required).\n", "", "right", new ArrayList<StackToDraw>() {
 			{
 				add(new StackToDraw(new ItemStack(ItemIDs.minecartStockCar.item), 20, 16));
-				add(new StackToDraw(new ItemStack(Item.skull, 1, 4), 170, 16));
+				add(new StackToDraw(new ItemStack(Items.skull, 1, 4), 170, 16));
 			}
 		});
 		addPage("A word about tracks I:\n" + "Copper tracks will slows trains down.\n" + "Steel tracks allow trains to go faster.\n" + "Speed controller track allows to change the locomotive's max speed (hit with crowbar).\n" + "The energy track can be powered by redstone and will power electric trains, redstone power will be transmitted two tracks away.\n", "", "left", new ArrayList<StackToDraw>() {
 			{
-				add(new StackToDraw(new ItemStack(Block.rail), 17, 16));
-				add(new StackToDraw(new ItemStack(Block.rail), 17, 32));
-				add(new StackToDraw(new ItemStack(Block.rail), 17, 48));
-				add(new StackToDraw(new ItemStack(Block.rail), 17, 64));
-				add(new StackToDraw(new ItemStack(Block.rail), 17, 80));
-				add(new StackToDraw(new ItemStack(Block.rail), 17, 96));
-				add(new StackToDraw(new ItemStack(Block.rail), 17, 112));
-				add(new StackToDraw(new ItemStack(Block.rail), 17, 128));
-				add(new StackToDraw(new ItemStack(Block.rail), 17, 144));
-				add(new StackToDraw(new ItemStack(Block.rail), 17, 160));
-				add(new StackToDraw(new ItemStack(Block.railPowered), 170, 16));
+				add(new StackToDraw(new ItemStack(Blocks.rail), 17, 16));
+				add(new StackToDraw(new ItemStack(Blocks.rail), 17, 32));
+				add(new StackToDraw(new ItemStack(Blocks.rail), 17, 48));
+				add(new StackToDraw(new ItemStack(Blocks.rail), 17, 64));
+				add(new StackToDraw(new ItemStack(Blocks.rail), 17, 80));
+				add(new StackToDraw(new ItemStack(Blocks.rail), 17, 96));
+				add(new StackToDraw(new ItemStack(Blocks.rail), 17, 112));
+				add(new StackToDraw(new ItemStack(Blocks.rail), 17, 128));
+				add(new StackToDraw(new ItemStack(Blocks.rail), 17, 144));
+				add(new StackToDraw(new ItemStack(Blocks.rail), 17, 160));
+				add(new StackToDraw(new ItemStack(Blocks.golden_rail), 170, 16));
 			}
 		});
 		addPage("A word about tracks II:\n" +
@@ -215,16 +217,16 @@ public class GuiRecipeBook extends GuiScreen {
 				"Locomotive holding track will only hold TC locomotives. No boost is given, the previous speed is restored once released.\n" +
 				"All tracks require Railcraft to be installed.","","right",new ArrayList<StackToDraw>() {
 					{
-						add(new StackToDraw(new ItemStack(Block.railActivator), 17, 16));
-						add(new StackToDraw(new ItemStack(Block.railPowered), 170, 16));
+						add(new StackToDraw(new ItemStack(Blocks.activator_rail), 17, 16));
+						add(new StackToDraw(new ItemStack(Blocks.golden_rail), 170, 16));
 					}
 				});
 		addPage("Steel rails parts and copper rails parts are crafted inside RC Rolling Machine, tracks are assembled in vanilla workbench.\n" +
 				"TC boarding/disembarking track are designed to work only on the Stock Car. Animal boarding will take any nearby animal and put it inside a passing Stock Car. Mob boarding will affect any mob.\n" +
 				"Disembark will eject any mob inside the Stock Car.","","left",new ArrayList<StackToDraw>() {
 			{
-				add(new StackToDraw(new ItemStack(Block.railDetector), 17, 16));
-				add(new StackToDraw(new ItemStack(Block.railPowered), 170, 16));
+				add(new StackToDraw(new ItemStack(Blocks.detector_rail), 17, 16));
+				add(new StackToDraw(new ItemStack(Blocks.golden_rail), 170, 16));
 			}
 		});
 		addPage("Builder I:\n\n" + "The tracks builder has a very special inventory, in order to start it you must provide:\n" + "Ballast in the slot under it (planks, gravel, stone, ...).\n" + "Coal in the fuel slot, Tracks in the slot under the fuel slot." + "The slot on the right of the builder will activate tunnel function when provided (not all blocks are accepted).\n", "", "right", new ArrayList<StackToDraw>() {
@@ -245,8 +247,8 @@ public class GuiRecipeBook extends GuiScreen {
 		});
 		addPage("Limitations:\n\n" + "VERY IMPORTANT:\n" + "Long trains imply limitations: Do not try to make sharp 180 turns, leave 6 spaces between each 90 turn. " + "Otherwise weird stuff will happen especially with SD70 and very long carts.\n\n" + "Always PULL carts!, bounding boxes are bugged <=> push is crapy !", "", "right", new ArrayList<StackToDraw>() {
 			{
-				add(new StackToDraw(new ItemStack(Block.railDetector), 20, 16));
-				add(new StackToDraw(new ItemStack(Block.rail), 170, 16));
+				add(new StackToDraw(new ItemStack(Blocks.detector_rail), 20, 16));
+				add(new StackToDraw(new ItemStack(Blocks.rail), 170, 16));
 				add(new StackToDraw(new ItemStack(ItemIDs.minecartPower.item), 40, 165));
 				add(new StackToDraw(new ItemStack(ItemIDs.minecartFlatCartWoodUS.item), 60, 165));
 				add(new StackToDraw(new ItemStack(ItemIDs.minecartBoxCartUS.item), 80, 165));
@@ -269,8 +271,8 @@ public class GuiRecipeBook extends GuiScreen {
 				add(new StackToDraw(new ItemStack(BlockIDs.openFurnaceIdle.block), 20, 16));
 				add(new StackToDraw(new ItemStack(BlockIDs.openFurnaceActive.block), 80, 155));
 				add(new StackToDraw(new ItemStack(ItemIDs.graphite.item), 70, 135));
-				add(new StackToDraw(new ItemStack(Item.ingotIron), 90, 135));
-				add(new StackToDraw(new ItemStack(Item.coal), 80, 175));
+				add(new StackToDraw(new ItemStack(Items.iron_ingot), 90, 135));
+				add(new StackToDraw(new ItemStack(Items.coal), 80, 175));
 				add(new StackToDraw(new ItemStack(ItemIDs.steel.item), 120, 155));
 			}
 		});
@@ -280,7 +282,7 @@ public class GuiRecipeBook extends GuiScreen {
 				add(new StackToDraw(new ItemStack(BlockIDs.distilIdle.block), 20, 16));
 				add(new StackToDraw(new ItemStack(BlockIDs.distilActive.block), 150, 40));
 				add(new StackToDraw(new ItemStack(BlockIDs.oreTC.block, 1, 1), 150, 20));
-				add(new StackToDraw(new ItemStack(Item.coal), 150, 60));
+				add(new StackToDraw(new ItemStack(Items.coal), 150, 60));
 				add(new StackToDraw(new ItemStack(ItemIDs.diesel.item), 167, 40));
 				add(new StackToDraw(new ItemStack(ItemIDs.rawPlastic.item), 182, 40));
 			}
@@ -366,8 +368,8 @@ public class GuiRecipeBook extends GuiScreen {
 				"" +
 				"","","right",new ArrayList<StackToDraw>() {
 					{
-						add(new StackToDraw(new ItemStack(Item.skull, 1, 4), 20, 16));
-						add(new StackToDraw(new ItemStack(Item.skull, 1, 4), 170, 16));
+						add(new StackToDraw(new ItemStack(Items.skull, 1, 4), 20, 16));
+						add(new StackToDraw(new ItemStack(Items.skull, 1, 4), 170, 16));
 					}
 				});
 		
@@ -453,13 +455,13 @@ public class GuiRecipeBook extends GuiScreen {
 	}
 
 	private void updateButtons() {
-		this.buttonBack.drawButton = (this.currPage == bookTotalPages-1);
+		this.buttonBack.visible = (this.currPage == bookTotalPages-1);
 		this.buttonBack.showButton = true;
-		this.buttonRead.drawButton = (this.currPage == 0);
+		this.buttonRead.visible = (this.currPage == 0);
 		this.buttonRead.showButton = false;
-		this.buttonNextPage.drawButton = (this.currPage > 0 && this.currPage < this.bookTotalPages - 1);
+		this.buttonNextPage.visible = (this.currPage > 0 && this.currPage < this.bookTotalPages - 1);
 		this.buttonNextPage.showButton = (this.currPage > 0 && this.currPage < this.bookTotalPages - 1);
-		this.buttonPreviousPage.drawButton = this.currPage > 0;
+		this.buttonPreviousPage.visible = this.currPage > 0;
 		this.buttonPreviousPage.showButton = this.currPage > 0;
 	}
 
@@ -523,32 +525,32 @@ public class GuiRecipeBook extends GuiScreen {
 
 		pageIndic = String.format(StatCollector.translateToLocal("book.pageIndicator"), new Object[] { Integer.valueOf(this.currPage + 1), Integer.valueOf(this.bookTotalPages) });
 
-		var9 = this.fontRenderer.getStringWidth(pageIndic);
+		var9 = this.fontRendererObj.getStringWidth(pageIndic);
 		if (this.currPage > 0) {
-			this.fontRenderer.drawString(pageIndic, var5 - var9 + this.bookImageWidth - 44, var6 + 7, 0);
+			this.fontRendererObj.drawString(pageIndic, var5 - var9 + this.bookImageWidth - 44, var6 + 7, 0);
 		}
 		super.drawScreen(par1, par2, par3);
 
 		if (this.currPage < rightPage.size()) {
-			int var10 = this.fontRenderer.getStringWidth(leftPage.get(this.currPage));
-			this.fontRenderer.drawSplitString(leftPage.get(this.currPage), var5 + 36, var6 + 16 + 16, 140, 0);
+			int var10 = this.fontRendererObj.getStringWidth(leftPage.get(this.currPage));
+			this.fontRendererObj.drawSplitString(leftPage.get(this.currPage), var5 + 36, var6 + 16 + 16, 140, 0);
 
-			int var11 = this.fontRenderer.getStringWidth(rightPage.get(this.currPage));
-			this.fontRenderer.drawSplitString(rightPage.get(this.currPage), var5 + 250, var6 + 16 + 16, 140, 0);
+			int var11 = this.fontRendererObj.getStringWidth(rightPage.get(this.currPage));
+			this.fontRendererObj.drawSplitString(rightPage.get(this.currPage), var5 + 250, var6 + 16 + 16, 140, 0);
 
 			GL11.glEnable(32826);
 			RenderHelper.enableGUIStandardItemLighting();
 			if (this.leftPageItemStacks != null && this.leftPageItemStacks.get(this.currPage) != null && this.leftPageItemStacks.get(this.currPage).get(0) != null) {
 				for (int t = 0; t < this.leftPageItemStacks.get(this.currPage).size(); t++) {
 					if (this.leftPageItemStacks.get(this.currPage).get(t) != null) {
-						renderItem.renderItemIntoGUI(this.fontRenderer, this.mc.renderEngine, ((StackToDraw) this.leftPageItemStacks.get(this.currPage).get(t)).getItemStack(), var5 + ((StackToDraw) this.leftPageItemStacks.get(this.currPage).get(t)).getX(), var6 + ((StackToDraw) this.leftPageItemStacks.get(this.currPage).get(t)).getY());
+						renderItem.renderItemIntoGUI(this.fontRendererObj, this.mc.renderEngine, ((StackToDraw) this.leftPageItemStacks.get(this.currPage).get(t)).getItemStack(), var5 + ((StackToDraw) this.leftPageItemStacks.get(this.currPage).get(t)).getX(), var6 + ((StackToDraw) this.leftPageItemStacks.get(this.currPage).get(t)).getY());
 					}
 				}
 			}
 			if (this.rightPageItemStacks != null && this.rightPageItemStacks.get(this.currPage) != null && this.rightPageItemStacks.get(this.currPage).get(0) != null) {
 				for (int t = 0; t < this.rightPageItemStacks.get(this.currPage).size(); t++) {
 					if (this.rightPageItemStacks.get(this.currPage).get(t) != null) {
-						renderItem.renderItemIntoGUI(this.fontRenderer, this.mc.renderEngine, ((StackToDraw) this.rightPageItemStacks.get(this.currPage).get(t)).getItemStack(), var5 + ((StackToDraw) this.rightPageItemStacks.get(this.currPage).get(t)).getX() + 210, var6 + ((StackToDraw) this.rightPageItemStacks.get(this.currPage).get(t)).getY());
+						renderItem.renderItemIntoGUI(this.fontRendererObj, this.mc.renderEngine, ((StackToDraw) this.rightPageItemStacks.get(this.currPage).get(t)).getItemStack(), var5 + ((StackToDraw) this.rightPageItemStacks.get(this.currPage).get(t)).getX() + 210, var6 + ((StackToDraw) this.rightPageItemStacks.get(this.currPage).get(t)).getY());
 					}
 				}
 			}
@@ -627,33 +629,33 @@ public class GuiRecipeBook extends GuiScreen {
 			offset = 194;
 		GL11.glEnable(32826);
 		if (itemList[0] != null)
-			renderItem.renderItemIntoGUI(this.fontRenderer, this.mc.renderEngine, itemList[0], var5 + 50 + offset, var6 + 67);
+			renderItem.renderItemIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList[0], var5 + 50 + offset, var6 + 67);
 		if (itemList[1] != null)
-			renderItem.renderItemIntoGUI(this.fontRenderer, this.mc.renderEngine, itemList[1], var5 + 68 + offset, var6 + 67);
+			renderItem.renderItemIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList[1], var5 + 68 + offset, var6 + 67);
 		if (itemList[2] != null)
-			renderItem.renderItemIntoGUI(this.fontRenderer, this.mc.renderEngine, itemList[2], var5 + 86 + offset, var6 + 67);
+			renderItem.renderItemIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList[2], var5 + 86 + offset, var6 + 67);
 		if (itemList[3] != null)
-			renderItem.renderItemIntoGUI(this.fontRenderer, this.mc.renderEngine, itemList[3], var5 + 50 + offset, var6 + 85);
+			renderItem.renderItemIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList[3], var5 + 50 + offset, var6 + 85);
 		if (itemList[4] != null)
-			renderItem.renderItemIntoGUI(this.fontRenderer, this.mc.renderEngine, itemList[4], var5 + 68 + offset, var6 + 85);
+			renderItem.renderItemIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList[4], var5 + 68 + offset, var6 + 85);
 		if (itemList[5] != null)
-			renderItem.renderItemIntoGUI(this.fontRenderer, this.mc.renderEngine, itemList[5], var5 + 86 + offset, var6 + 85);
+			renderItem.renderItemIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList[5], var5 + 86 + offset, var6 + 85);
 		if (itemList[6] != null)
-			renderItem.renderItemIntoGUI(this.fontRenderer, this.mc.renderEngine, itemList[6], var5 + 50 + offset, var6 + 103);
+			renderItem.renderItemIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList[6], var5 + 50 + offset, var6 + 103);
 		if (itemList[7] != null)
-			renderItem.renderItemIntoGUI(this.fontRenderer, this.mc.renderEngine, itemList[7], var5 + 68 + offset, var6 + 103);
+			renderItem.renderItemIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList[7], var5 + 68 + offset, var6 + 103);
 		if (itemList[8] != null)
-			renderItem.renderItemIntoGUI(this.fontRenderer, this.mc.renderEngine, itemList[8], var5 + 86 + offset, var6 + 103);
+			renderItem.renderItemIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList[8], var5 + 86 + offset, var6 + 103);
 		if (itemOutput != null)
-			renderItem.renderItemIntoGUI(this.fontRenderer, this.mc.renderEngine, itemOutput, var5 + 145 + offset, var6 + 85);
+			renderItem.renderItemIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemOutput, var5 + 145 + offset, var6 + 85);
 		if (itemOutput != null)
-			this.fontRenderer.drawString(itemOutput.getItem().getItemDisplayName(itemOutput), var5 + 20 + offset, var6 + 40, 0);
+			this.fontRendererObj.drawString(itemOutput.getItem().getItemStackDisplayName(itemOutput), var5 + 20 + offset, var6 + 40, 0);
 		if (itemOutput != null)
-			this.fontRenderer.drawString("Crafted in: Train Workbench", var5 + 20 + offset, var6 + 130, 0);
+			this.fontRendererObj.drawString("Crafted in: Train Workbench", var5 + 20 + offset, var6 + 130, 0);
 		if (itemOutput != null) {
 			for (int z = 0; z < RecipeBookHandler.vanillaWorkTableRecipes.length; z++) {
-				if (itemOutput!=null && itemOutput.getItem()!= null && RecipeBookHandler.vanillaWorkTableRecipes[z]!=null && RecipeBookHandler.vanillaWorkTableRecipes[z].equals(itemOutput.getItem().getItemDisplayName(itemOutput))) {
-					this.fontRenderer.drawString("Also crafted in: Crafting Table", var5 + 20 + offset, var6 + 140, 0);
+				if (itemOutput!=null && itemOutput.getItem()!= null && RecipeBookHandler.vanillaWorkTableRecipes[z]!=null && RecipeBookHandler.vanillaWorkTableRecipes[z].equals(itemOutput.getItem().getItemStackDisplayName(itemOutput))) {
+					this.fontRendererObj.drawString("Also crafted in: Crafting Table", var5 + 20 + offset, var6 + 140, 0);
 					break;
 				}
 			}
@@ -672,60 +674,60 @@ public class GuiRecipeBook extends GuiScreen {
 			offset = 271;
 		GL11.glEnable(32826);
 		if (itemList.get(0) != null)
-			renderItem.renderItemIntoGUI(this.fontRenderer, this.mc.renderEngine, itemList.get(0), var5 + 94 + offset, var6 + 76);
+			renderItem.renderItemIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList.get(0), var5 + 94 + offset, var6 + 76);
 		if (itemList.get(0) != null)
-			renderItem.renderItemOverlayIntoGUI(this.fontRenderer, this.mc.renderEngine, itemList.get(0), var5 + 94 + offset, var6 + 76);
+			renderItem.renderItemOverlayIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList.get(0), var5 + 94 + offset, var6 + 76);
 		if (itemList.get(1) != null)
-			renderItem.renderItemIntoGUI(this.fontRenderer, this.mc.renderEngine, itemList.get(1), var5 + 113 + offset, var6 + 143);
+			renderItem.renderItemIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList.get(1), var5 + 113 + offset, var6 + 143);
 		if (itemList.get(1) != null)
-			renderItem.renderItemOverlayIntoGUI(this.fontRenderer, this.mc.renderEngine, itemList.get(1), var5 + 113 + offset, var6 + 143);
+			renderItem.renderItemOverlayIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList.get(1), var5 + 113 + offset, var6 + 143);
 		if (itemList.get(2) != null)
-			renderItem.renderItemIntoGUI(this.fontRenderer, this.mc.renderEngine, itemList.get(2), var5 + 148 + offset, var6 + 143);
+			renderItem.renderItemIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList.get(2), var5 + 148 + offset, var6 + 143);
 		if (itemList.get(2) != null)
-			renderItem.renderItemOverlayIntoGUI(this.fontRenderer, this.mc.renderEngine, itemList.get(2), var5 + 148 + offset, var6 + 143);
+			renderItem.renderItemOverlayIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList.get(2), var5 + 148 + offset, var6 + 143);
 		if (itemList.get(3) != null)
-			renderItem.renderItemIntoGUI(this.fontRenderer, this.mc.renderEngine, itemList.get(3), var5 + 214 + offset, var6 + 143);
+			renderItem.renderItemIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList.get(3), var5 + 214 + offset, var6 + 143);
 		if (itemList.get(3) != null)
-			renderItem.renderItemOverlayIntoGUI(this.fontRenderer, this.mc.renderEngine, itemList.get(3), var5 + 214 + offset, var6 + 143);
+			renderItem.renderItemOverlayIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList.get(3), var5 + 214 + offset, var6 + 143);
 		if (itemList.get(4) != null)
-			renderItem.renderItemIntoGUI(this.fontRenderer, this.mc.renderEngine, itemList.get(4), var5 + 148 + offset, var6 + 77);
+			renderItem.renderItemIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList.get(4), var5 + 148 + offset, var6 + 77);
 		if (itemList.get(4) != null)
-			renderItem.renderItemOverlayIntoGUI(this.fontRenderer, this.mc.renderEngine, itemList.get(4), var5 + 148 + offset, var6 + 77);
+			renderItem.renderItemOverlayIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList.get(4), var5 + 148 + offset, var6 + 77);
 		if (itemList.get(5) != null)
-			renderItem.renderItemIntoGUI(this.fontRenderer, this.mc.renderEngine, itemList.get(5), var5 + 184 + offset, var6 + 77);
+			renderItem.renderItemIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList.get(5), var5 + 184 + offset, var6 + 77);
 		if (itemList.get(5) != null)
-			renderItem.renderItemOverlayIntoGUI(this.fontRenderer, this.mc.renderEngine, itemList.get(5), var5 + 184 + offset, var6 + 77);
+			renderItem.renderItemOverlayIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList.get(5), var5 + 184 + offset, var6 + 77);
 		if (itemList.get(6) != null)
-			renderItem.renderItemIntoGUI(this.fontRenderer, this.mc.renderEngine, itemList.get(6), var5 + 149 + offset, var6 + 110);
+			renderItem.renderItemIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList.get(6), var5 + 149 + offset, var6 + 110);
 		if (itemList.get(6) != null)
-			renderItem.renderItemOverlayIntoGUI(this.fontRenderer, this.mc.renderEngine, itemList.get(6), var5 + 149 + offset, var6 + 110);
+			renderItem.renderItemOverlayIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList.get(6), var5 + 149 + offset, var6 + 110);
 		if (itemList.get(7) != null)
-			renderItem.renderItemIntoGUI(this.fontRenderer, this.mc.renderEngine, itemList.get(7), var5 + 185 + offset, var6 + 110);
+			renderItem.renderItemIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList.get(7), var5 + 185 + offset, var6 + 110);
 		if (itemList.get(7) != null)
-			renderItem.renderItemOverlayIntoGUI(this.fontRenderer, this.mc.renderEngine, itemList.get(7), var5 + 185 + offset, var6 + 110);
+			renderItem.renderItemOverlayIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList.get(7), var5 + 185 + offset, var6 + 110);
 		if (itemList.get(8) != null)
-			renderItem.renderItemIntoGUI(this.fontRenderer, this.mc.renderEngine, itemList.get(8), var5 + 94 + offset, var6 + 110);
+			renderItem.renderItemIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList.get(8), var5 + 94 + offset, var6 + 110);
 		if (itemList.get(8) != null)
-			renderItem.renderItemOverlayIntoGUI(this.fontRenderer, this.mc.renderEngine, itemList.get(8), var5 + 94 + offset, var6 + 110);
+			renderItem.renderItemOverlayIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList.get(8), var5 + 94 + offset, var6 + 110);
 		if (itemList.get(9) != null)
-			renderItem.renderItemIntoGUI(this.fontRenderer, this.mc.renderEngine, itemList.get(9), var5 + 214 + offset, var6 + 77);
+			renderItem.renderItemIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList.get(9), var5 + 214 + offset, var6 + 77);
 		if (itemList.get(9) != null)
-			renderItem.renderItemOverlayIntoGUI(this.fontRenderer, this.mc.renderEngine, itemList.get(9), var5 + 214 + offset, var6 + 77);
+			renderItem.renderItemOverlayIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList.get(9), var5 + 214 + offset, var6 + 77);
 		ItemStack output = recipeList.get(page).getOutput();
 		if (output != null && side.equals("left"))
-			renderItem.renderItemIntoGUI(this.fontRenderer, this.mc.renderEngine, output, var5 + 162, var6 + 177);
+			renderItem.renderItemIntoGUI(this.fontRendererObj, this.mc.renderEngine, output, var5 + 162, var6 + 177);
 		if (output != null && side.equals("right"))
-			renderItem.renderItemIntoGUI(this.fontRenderer, this.mc.renderEngine, output, var5 + 432, var6 + 177);
+			renderItem.renderItemIntoGUI(this.fontRendererObj, this.mc.renderEngine, output, var5 + 432, var6 + 177);
 		String name = "";
 		if (output != null && output.getItem() instanceof ItemRollingStock)
 			name = ((ItemRollingStock)output.getItem()).getStatName();
 		if (side.equals("left")) {
-			this.fontRenderer.drawString("Tier: " + tier, var5 - var9 + this.bookImageWidth - 56, var6 + 40, 0);
-			this.fontRenderer.drawString(name, var5 - var9 + this.bookImageWidth - 55, var6 + 56, 0xffffff);
+			this.fontRendererObj.drawString("Tier: " + tier, var5 - var9 + this.bookImageWidth - 56, var6 + 40, 0);
+			this.fontRendererObj.drawString(name, var5 - var9 + this.bookImageWidth - 55, var6 + 56, 0xffffff);
 		}
 		if (side.equals("right")) {
-			this.fontRenderer.drawString(name, var5 - var9 + this.bookImageWidth + 215, var6 + 56, 0xffffff);
-			this.fontRenderer.drawString("Tier: " + tier, var5 - var9 + this.bookImageWidth + 338, var6 + 40, 0);
+			this.fontRendererObj.drawString(name, var5 - var9 + this.bookImageWidth + 215, var6 + 56, 0xffffff);
+			this.fontRendererObj.drawString("Tier: " + tier, var5 - var9 + this.bookImageWidth + 338, var6 + 40, 0);
 		}			
 		GL11.glDisable(32826);
 	}
@@ -746,7 +748,7 @@ public class GuiRecipeBook extends GuiScreen {
 	
 	@Override
 	protected void keyTyped(char par1, int par2) {
-		if(par2 == 1 || par2 == this.mc.gameSettings.keyBindInventory.keyCode) {
+		if(par2 == 1 || par2 == this.mc.gameSettings.keyBindInventory.getKeyCode()) {
 			this.mc.thePlayer.closeScreen();
 		}
 		//42 left shift

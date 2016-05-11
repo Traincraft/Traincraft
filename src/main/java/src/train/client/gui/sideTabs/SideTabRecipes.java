@@ -7,6 +7,7 @@
 
 package src.train.client.gui.sideTabs;
 
+import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
@@ -110,23 +111,23 @@ public class SideTabRecipes extends SideTab {
 		}
 		else {
 			if ((x > -98 && x < -88) && (y < 49 && y > 33)) {
-				soundManager.playSoundFX("random.click", 1.0F, 1.0F);
+				soundManager.playSound(PositionedSoundRecord.func_147673_a(new ResourceLocation("random.click")));
 				gui.recipeSize--;
 				return true;
 			}
 			else if ((x > -36 && x < -10) && (y < 49 && y > 33)) {
-				soundManager.playSoundFX("random.click", 1.0F, 1.0F);
+				soundManager.playSound(PositionedSoundRecord.func_147673_a(new ResourceLocation("random.click")));
 				gui.recipeSize++;
 				return true;
 			}
 			else if ((x > -98 && x < -71) && (y < 71 && y > 61)) {
-				soundManager.playSoundFX("random.click", 1.0F, 1.0F);
+				soundManager.playSound(PositionedSoundRecord.func_147673_a(new ResourceLocation("random.click")));
 				gui.isShow = true;
 				gui.isClear = false;
 				return true;
 			}
 			else if ((x > -54 && x < -26) && (y < 71 && y > 61)) {
-				soundManager.playSoundFX("random.click", 1.0F, 1.0F);
+				soundManager.playSound(PositionedSoundRecord.func_147673_a(new ResourceLocation("random.click")));
 				gui.isClear = true;
 				gui.isShow = false;
 				return true;

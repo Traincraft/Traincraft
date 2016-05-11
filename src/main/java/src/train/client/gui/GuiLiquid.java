@@ -8,6 +8,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -67,7 +68,7 @@ public class GuiLiquid extends GuiContainer {
 	@Override
 	protected void actionPerformed(GuiButton guibutton) {
 		if (guibutton.id == 3) {
-			if(player!=null && player instanceof EntityPlayer && player.username.toLowerCase().equals(((AbstractTrains) liquid).trainOwner.toLowerCase())){
+			if(player!=null && player instanceof EntityPlayer && player.getCommandSenderName().toLowerCase().equals(((AbstractTrains) liquid).trainOwner.toLowerCase())){
 				if ((!((AbstractTrains) liquid).locked)){
 					AxisAlignedBB box = ((LiquidTank) liquid).boundingBox.expand(5, 5, 5);
 					List lis3 = ((LiquidTank) liquid).worldObj.getEntitiesWithinAABBExcludingEntity(liquid, box);
@@ -98,7 +99,7 @@ public class GuiLiquid extends GuiContainer {
 					this.initGui();
 				}
 			}else if(player!=null && player instanceof EntityPlayer){
-				player.addChatMessage("You are not the owner");
+				player.addChatMessage(new ChatComponentText("You are not the owner"));
 			}
 		}
 	}
@@ -107,7 +108,7 @@ public class GuiLiquid extends GuiContainer {
 		int j = (width - xSize) / 2;
 		int k = (height - ySize) / 2;
 		int liqui = (((LiquidTank) liquid).getAmount() * 50) / ((LiquidTank) liquid).getCapacity();
-		int textWidth = fontRenderer.getStringWidth(((LiquidTank) liquid).getAmount() + "/" + ((LiquidTank) liquid).getCapacity());
+		int textWidth = fontRendererObj.getStringWidth(((LiquidTank) liquid).getAmount() + "/" + ((LiquidTank) liquid).getCapacity());
 		int startX = t + 14;
 		int startY = g - 12;
 
@@ -121,10 +122,10 @@ public class GuiLiquid extends GuiContainer {
 		drawGradientRect(startX - 3, startY - 3, startX + textWidth + 3, startY + 8 + 3 + 10, colour1, colour2);
 		drawGradientRect(startX - 2, startY - 2, startX + textWidth + 2, startY + 8 + 2 + 10, i4, i4);
 		if (str != null && str.length() > 0)
-			fontRenderer.drawStringWithShadow(str, startX, startY, -1);
+			fontRendererObj.drawStringWithShadow(str, startX, startY, -1);
 		else
-			fontRenderer.drawStringWithShadow("Empty", startX, startY, -1);
-		fontRenderer.drawStringWithShadow(((LiquidTank) liquid).getAmount() + "/" + ((LiquidTank) liquid).getCapacity(), startX, startY + 10, -1);
+			fontRendererObj.drawStringWithShadow("Empty", startX, startY, -1);
+		fontRendererObj.drawStringWithShadow(((LiquidTank) liquid).getAmount() + "/" + ((LiquidTank) liquid).getCapacity(), startX, startY + 10, -1);
 	}
 
 	@Override
@@ -132,16 +133,16 @@ public class GuiLiquid extends GuiContainer {
 		GL11.glDisable(GL11.GL_LIGHTING);
 		GL11.glDisable(GL11.GL_DEPTH_TEST);
 
-		fontRenderer.drawString(liquid.getInvName(), 65, 1, 0x000000);
-		fontRenderer.drawString(liquid.getInvName(), 65, 3, 0x000000);
-		fontRenderer.drawString(liquid.getInvName(), 63, 1, 0x000000);
-		fontRenderer.drawString(liquid.getInvName(), 63, 3, 0x000000);
+		fontRendererObj.drawString(liquid.getInventoryName(), 65, 1, 0x000000);
+		fontRendererObj.drawString(liquid.getInventoryName(), 65, 3, 0x000000);
+		fontRendererObj.drawString(liquid.getInventoryName(), 63, 1, 0x000000);
+		fontRendererObj.drawString(liquid.getInventoryName(), 63, 3, 0x000000);
 
-		fontRenderer.drawString(liquid.getInvName(), 65, 2, 0x000000);
-		fontRenderer.drawString(liquid.getInvName(), 63, 2, 0x000000);
-		fontRenderer.drawString(liquid.getInvName(), 64, 1, 0x000000);
-		fontRenderer.drawString(liquid.getInvName(), 64, 3, 0x000000);
-		fontRenderer.drawString(liquid.getInvName(), 64, 2, 0xd3a900);
+		fontRendererObj.drawString(liquid.getInventoryName(), 65, 2, 0x000000);
+		fontRendererObj.drawString(liquid.getInventoryName(), 63, 2, 0x000000);
+		fontRendererObj.drawString(liquid.getInventoryName(), 64, 1, 0x000000);
+		fontRendererObj.drawString(liquid.getInventoryName(), 64, 3, 0x000000);
+		fontRendererObj.drawString(liquid.getInventoryName(), 64, 2, 0xd3a900);
 
 		GL11.glEnable(GL11.GL_LIGHTING);
 		GL11.glEnable(GL11.GL_DEPTH_TEST);
@@ -159,7 +160,7 @@ public class GuiLiquid extends GuiContainer {
 		if(((AbstractTrains) liquid).locked)state="Locked";
 		if(!((AbstractTrains) liquid).locked)state="Unlocked";
 		
-		int textWidth = fontRenderer.getStringWidth("the GUI, change speed, destroy it.");
+		int textWidth = fontRendererObj.getStringWidth("the GUI, change speed, destroy it.");
 		int startX = 90;
 		int startY = 5;
 
@@ -172,11 +173,11 @@ public class GuiLiquid extends GuiContainer {
 		int colour2 = (colour1 & 0xfefefe) >> 1 | colour1 & 0xff000000;
 		drawGradientRect(startX - 3, startY - 3, startX + textWidth + 3, startY + 8 + 3 + 40, colour1, colour2);
 		drawGradientRect(startX - 2, startY - 2, startX + textWidth + 2, startY + 8 + 2 + 40, i4, i4);
-		fontRenderer.drawStringWithShadow(str, startX, startY, -1);
-		fontRenderer.drawStringWithShadow("only its owner can open", startX, startY + 10, -1);
-		fontRenderer.drawStringWithShadow("the GUI and destroy it.", startX, startY + 20, -1);
-		fontRenderer.drawStringWithShadow("Current state: "+state, startX, startY+30, -1);
-		fontRenderer.drawStringWithShadow("Owner: "+((AbstractTrains) liquid).trainOwner.trim(), startX, startY+40, -1);
+		fontRendererObj.drawStringWithShadow(str, startX, startY, -1);
+		fontRendererObj.drawStringWithShadow("only its owner can open", startX, startY + 10, -1);
+		fontRendererObj.drawStringWithShadow("the GUI and destroy it.", startX, startY + 20, -1);
+		fontRendererObj.drawStringWithShadow("Current state: "+state, startX, startY+30, -1);
+		fontRendererObj.drawStringWithShadow("Owner: "+((AbstractTrains) liquid).trainOwner.trim(), startX, startY+40, -1);
 	}
 	public boolean intersectsWithLockButton(int mouseX, int mouseY) {
 		//System.out.println(mouseX+" "+mouseY);

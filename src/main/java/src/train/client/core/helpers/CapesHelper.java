@@ -7,17 +7,26 @@
 
 package src.train.client.core.helpers;
 
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import src.train.client.core.handlers.ClientTickHandler;
+import com.mojang.authlib.minecraft.MinecraftProfileTexture.Type;
 
+import src.train.client.core.handlers.ClientTickHandler;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.client.renderer.IImageBuffer;
+import net.minecraft.client.renderer.ImageBufferDownload;
 import net.minecraft.client.renderer.ThreadDownloadImageData;
+import net.minecraft.client.renderer.texture.ITextureObject;
+import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.StringUtils;
 
 public class CapesHelper extends Thread {
 	
@@ -70,27 +79,27 @@ public class CapesHelper extends Thread {
           dlImages();
         }catch(Exception e) {}
 	}
-	
+
 	public void dlImages() {
 		if(isAnimated) {
 			animatedFramesRL = new ResourceLocation[animatedFrameUrls.size()];
 			animatedFramesImages = new ThreadDownloadImageData[animatedFrameUrls.size()];
 			for (int i = 0; i < animatedFrameUrls.size(); i++) {
-				animatedFramesRL[i] = ClientTickHandler.capeAnimatedRL(username, i+1);
-				animatedFramesImages[i] = ClientTickHandler.dlImage(animatedFramesRL[i], (String)animatedFrameUrls.get(i));
+				animatedFramesRL[i] = capeAnimatedRL(username, i+1);
+				animatedFramesImages[i] = dlImage(animatedFramesRL[i], animatedFrameUrls.get(i));
 			}
 		}
 		else if(isStatic) {
-			staticRL = ClientTickHandler.capeStaticRL(username);
-			staticImage = ClientTickHandler.dlImage(staticRL, staticUrl);
+			staticRL = capeStaticRL(username);
+			staticImage = dlImage(staticRL, staticUrl);
 		}
 		else {
 			MCCape = false;
 		}
 		isLoaded = true;
 	}
-	
-	public ThreadDownloadImageData getCurrentImage() {
+
+	public ResourceLocation getCurrentRL() {
 		if(isAnimated) {
 			long time = Minecraft.getSystemTime();
 			if(time > lastFrameTime + animInterval) {
@@ -100,15 +109,24 @@ public class CapesHelper extends Thread {
 					currFrame = 0;
 				}
 			}
-			return animatedFramesImages[currFrame];
-		}
-		return staticImage;
-	}
-	
-	public ResourceLocation getCurrentRL() {
-		if(isAnimated) {
 			return animatedFramesRL[currFrame];
 		}
 		return staticRL;
+	}
+
+	private static ResourceLocation capeStaticRL(String username) {
+		return new ResourceLocation("cloaks/" + StringUtils.stripControlCodes(username));
+	}
+
+	private static ResourceLocation capeAnimatedRL(String username, int frameNumber) {
+		return new ResourceLocation("cloaks/" + StringUtils.stripControlCodes(username) + "/" + frameNumber);
+	}
+
+	private static ThreadDownloadImageData dlImage(ResourceLocation rl, String url) {
+		TextureManager textures = Minecraft.getMinecraft().renderEngine;
+		File file = new File(rl.getResourcePath());
+		ThreadDownloadImageData data = new ThreadDownloadImageData(file, url, rl, null);
+		textures.loadTexture(rl, data);
+		return data;
 	}
 }

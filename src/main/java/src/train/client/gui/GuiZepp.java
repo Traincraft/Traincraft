@@ -22,10 +22,10 @@ public class GuiZepp extends GuiContainer {
 
 	@Override
 	protected void drawGuiContainerForegroundLayer(int i, int j) {
-		fontRenderer.drawString(zepp.getInvName(), 60, 6, 0x404040);
-		fontRenderer.drawString("Inventory", 8, (ySize - 96) + 2, 0x404040);
+		fontRendererObj.drawString(zepp.getInvName(), 60, 6, 0x404040);
+		fontRendererObj.drawString("Inventory", 8, (ySize - 96) + 2, 0x404040);
 		if (zepp.numCargoSlots > 0) {
-			fontRenderer.drawString("Cargo:", 36, 22, 0x404040);
+			fontRendererObj.drawString("Cargo:", 36, 22, 0x404040);
 		}
 	}
 

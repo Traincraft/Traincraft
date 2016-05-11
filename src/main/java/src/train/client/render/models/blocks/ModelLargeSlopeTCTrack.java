@@ -20,9 +20,9 @@ public class ModelLargeSlopeTCTrack extends ModelBase {
 	private IModelCustom modelLargeSlopeBallast;
 	private String type = "";
 	public ModelLargeSlopeTCTrack() {
-		modeltrack = AdvancedModelLoader.loadModel(Info.modelPrefix + "track_slope.obj");
-		modelLargeSlopeWood = AdvancedModelLoader.loadModel(Info.modelPrefix + "supports_wood.obj");
-		modelLargeSlopeBallast = AdvancedModelLoader.loadModel(Info.modelPrefix + "supports_ballast.obj");
+		modeltrack = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_slope.obj"));
+		modelLargeSlopeWood = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "supports_wood.obj"));
+		modelLargeSlopeBallast = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "supports_ballast.obj"));
 	}
 
 	public void render(String type) {
@@ -52,7 +52,7 @@ public class ModelLargeSlopeTCTrack extends ModelBase {
 
 		GL11.glColor3f(1, 1, 1);
 		//GL11.glScalef(0.5f, 0.5f, 0.5f);
-		int facing = tcRail.worldObj.getBlockMetadata((int) tcRail.xCoord, (int) tcRail.yCoord, (int) tcRail.zCoord);
+		int facing = tcRail.getWorldObj().getBlockMetadata((int) tcRail.xCoord, (int) tcRail.yCoord, (int) tcRail.zCoord);
 
 		if (facing == 3) {
 			GL11.glRotatef(-90, 0, 1, 0);

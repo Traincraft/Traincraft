@@ -7,6 +7,7 @@
 
 package src.train.client.gui.sideTabs;
 
+import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.client.audio.SoundManager;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.util.ResourceLocation;
@@ -46,7 +47,7 @@ public abstract class SideTab {
 
 	public GuiCrafterTier gui;
 	protected static FontRenderer fontRenderer = FMLClientHandler.instance().getClient().fontRenderer;
-	protected static SoundManager soundManager = FMLClientHandler.instance().getClient().sndManager;
+	protected static SoundHandler soundManager = FMLClientHandler.instance().getClient().getSoundHandler();
 
 	public SideTab(GuiCrafterTier gui, boolean side, boolean x, boolean y) {
 		this.gui = gui;

@@ -23,7 +23,7 @@ public class ModelWindMillWheel extends ModelBase {
 	public float wheel1 = 0.4188790204786391F;
 
 	public ModelWindMillWheel() {
-		modelWindMillWheel = AdvancedModelLoader.loadModel(Info.modelPrefix + "wind_mill_wheel.obj");
+		modelWindMillWheel = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "wind_mill_wheel.obj"));
 	}
 
 	public void render() {
@@ -48,7 +48,7 @@ public class ModelWindMillWheel extends ModelBase {
 		GL11.glColor3f(f1 * f2, f1 * f3, f1 * f4);
 		GL11.glScalef(0.45f, 0.45f, 0.45f);
 
-		int facing = windMill.worldObj.getBlockMetadata((int) windMill.xCoord, (int) windMill.yCoord, (int) windMill.zCoord);
+		int facing = windMill.getWorldObj().getBlockMetadata((int) windMill.xCoord, (int) windMill.yCoord, (int) windMill.zCoord);
 		if (facing == 3) {
 		}
 		if (facing == 1) {
@@ -61,10 +61,10 @@ public class ModelWindMillWheel extends ModelBase {
 			GL11.glRotatef(90, 0, 1, 0);
 		}
 		int windStrength = (int) (windMill.windClient + (((double) windMill.yCoord / 256) * 10));//* (windMill.yCoord - 64);
-		if (windMill.worldObj.isThundering()) {
+		if (windMill.getWorldObj().isThundering()) {
 			windStrength *= 7.5;
 		}
-		else if (windMill.worldObj.isRaining()) {
+		else if (windMill.getWorldObj().isRaining()) {
 			windStrength *= 4.5;
 		}
 		//System.out.println(windStrength+" "+(((double)windMill.yCoord/256)*10));

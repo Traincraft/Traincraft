@@ -22,8 +22,8 @@ public class GuiFurnaceCart extends GuiContainer {
 
 	@Override
 	protected void drawGuiContainerForegroundLayer(int i, int j) {
-		this.fontRenderer.drawString(StatCollector.translateToLocal("container.furnace"), 60, 6, 4210752);
-		this.fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, this.ySize - 96 + 2, 4210752);
+		this.fontRendererObj.drawString(StatCollector.translateToLocal("container.furnace"), 60, 6, 4210752);
+		this.fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, this.ySize - 96 + 2, 4210752);
 	}
 
 	@Override

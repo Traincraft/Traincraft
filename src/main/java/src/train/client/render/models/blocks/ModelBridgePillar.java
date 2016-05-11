@@ -26,7 +26,7 @@ public class ModelBridgePillar extends ModelBase {
 	private IModelCustom bridgePillar;
 
 	public ModelBridgePillar() {
-		bridgePillar = new AdvancedModelLoader().loadModel(Info.modelPrefix + "bridge_block.obj");
+		bridgePillar = new AdvancedModelLoader().loadModel(new ResourceLocation(Info.modelPrefix + "bridge_block.obj"));
 	}
 	
 	public void render() {
@@ -40,7 +40,7 @@ public class ModelBridgePillar extends ModelBase {
 
 		FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_slope.png"));
 		GL11.glColor3f(1, 1, 1);
-		int facing = pillar.worldObj.getBlockMetadata((int) pillar.xCoord, (int) pillar.yCoord, (int) pillar.zCoord);
+		int facing = pillar.getWorldObj().getBlockMetadata((int) pillar.xCoord, (int) pillar.yCoord, (int) pillar.zCoord);
 		if(facing == 2){
 			GL11.glRotatef(90, 0, 1, 0);
 		}

@@ -31,7 +31,7 @@ public class ModelTCBook extends ModelBase {
 	float rot = 0.0f;
 	
 	public ModelTCBook() {
-		book = AdvancedModelLoader.loadModel(Info.modelPrefix + "book2.obj");
+		book = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "book2.obj"));
 	}
 	
 	public void render(int pages) {

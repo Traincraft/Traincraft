@@ -24,7 +24,7 @@ public class GuiCustomButton extends GuiButton {
 		this.width = 200;
 		this.height = 20;
 		this.enabled = true;
-		this.drawButton = true;
+		this.visible = true;
 		this.id = par1;
 		this.xPosition = par2;
 		this.yPosition = par3;
@@ -44,7 +44,7 @@ public class GuiCustomButton extends GuiButton {
 
 	@Override
 	public void drawButton(Minecraft mc, int par2, int par3) {
-		if (this.drawButton) {
+		if (this.visible) {
 			FontRenderer var4 = mc.fontRenderer;
 			mc.getTextureManager().bindTexture(new ResourceLocation(Info.resourceLocation,this.texture));
 			//GL11.glBindTexture(GL11.GL_TEXTURE_2D, textureInt);
