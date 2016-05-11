@@ -10,6 +10,7 @@ package src.train.common.blocks;
 import java.util.ArrayList;
 import java.util.Random;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -33,8 +34,8 @@ public class BlockGeneratorDiesel extends BlockContainer {
 
 	private IIcon texture;
 
-	public BlockGeneratorDiesel(int par1) {
-		super(par1, Material.iron);
+	public BlockGeneratorDiesel() {
+		super(Material.iron);
 		setCreativeTab(Traincraft.tcTab);
 		this.setTickRandomly(true);
 		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1F, 1F, 1F);
@@ -62,7 +63,7 @@ public class BlockGeneratorDiesel extends BlockContainer {
 	
 	@Override
 	public boolean onBlockActivated(World world, int i, int j, int k, EntityPlayer player, int par6, float par7, float par8, float par9) {
-		TileEntity te = world.getBlockTileEntity(i, j, k);
+		TileEntity te = world.getTileEntity(i, j, k);
 		if (player.isSneaking()) {
 			return false;
 		}
@@ -78,10 +79,10 @@ public class BlockGeneratorDiesel extends BlockContainer {
      * their own) Args: x, y, z, neighbor blockID
      */
 	@Override
-    public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, int par5)
+    public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, Block par5)
     {
         boolean flag = par1World.isBlockIndirectlyGettingPowered(par2, par3, par4);
-        TileGeneratorDiesel tile = (TileGeneratorDiesel)par1World.getBlockTileEntity(par2, par3, par4);
+        TileGeneratorDiesel tile = (TileGeneratorDiesel)par1World.getTileEntity(par2, par3, par4);
 
         if (tile != null)
         {
@@ -91,7 +92,7 @@ public class BlockGeneratorDiesel extends BlockContainer {
 
 	@Override
 	public void onBlockPlacedBy(World world, int par2, int par3, int par4, EntityLivingBase living, ItemStack stack) {
-		TileGeneratorDiesel te = (TileGeneratorDiesel) world.getBlockTileEntity(par2, par3, par4);
+		TileGeneratorDiesel te = (TileGeneratorDiesel) world.getTileEntity(par2, par3, par4);
 		int var6 = MathHelper.floor_double((double) (living.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
 		int var7 = world.getBlockMetadata(par2, par3, par4) >> 2;
 		++var6;
@@ -130,7 +131,7 @@ public class BlockGeneratorDiesel extends BlockContainer {
 	@Override
 	public void randomDisplayTick(World world, int par2, int par3, int par4, Random rand) {
 		int l = world.getBlockMetadata(par2, par3, par4);
-		TileEntity tile = world.getBlockTileEntity(par2, par3, par4);
+		TileEntity tile = world.getTileEntity(par2, par3, par4);
 		if(tile !=null && tile instanceof TileGeneratorDiesel && ((TileGeneratorDiesel)tile).isProducing()){
 			double d0 = (double) ((float) par2 + 0.5F);
 			double d1 = (double) ((float) par3 + 0.7F);
@@ -166,19 +167,13 @@ public class BlockGeneratorDiesel extends BlockContainer {
 		}
 	}
 	@Override
-	public TileEntity createNewTileEntity(World world) {
+	public TileEntity createNewTileEntity(World world, int meta) {
 		return new TileGeneratorDiesel();
-	}
-
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	@Override
-	public void addCreativeItems(ArrayList itemList) {
-		itemList.add(new ItemStack(this));
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IIconRegister iconRegister) {
+	public void registerBlockIcons(IIconRegister iconRegister) {
 		texture = iconRegister.registerIcon(Info.modID.toLowerCase() + ":generator_diesel");
 	}
 }

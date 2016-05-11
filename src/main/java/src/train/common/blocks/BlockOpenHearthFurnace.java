@@ -17,6 +17,7 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
@@ -46,7 +47,7 @@ public class BlockOpenHearthFurnace extends BlockContainer {
 	private IIcon textureFront_on;
 	private IIcon textureSide;
 
-	protected BlockOpenHearthFurnace(int par1, int par2, boolean active) {
+	protected BlockOpenHearthFurnace(int par2, boolean active) {
 		super(Material.rock);
 		furnaceRand = new Random();
 		setCreativeTab(Traincraft.tcTab);
@@ -58,8 +59,8 @@ public class BlockOpenHearthFurnace extends BlockContainer {
 	}
 
 	@Override
-	public int idDropped(int i, Random random, int j) {
-		return BlockIDs.openFurnaceIdle.blockID;
+	public Item getItemDropped(int i, Random random, int j) {
+		return Item.getItemFromBlock(BlockIDs.openFurnaceIdle.block);
 	}
 
 	@Override
@@ -95,7 +96,7 @@ public class BlockOpenHearthFurnace extends BlockContainer {
 	}
 
 	@Override
-	public IIcon getBlockTexture(IBlockAccess worldAccess, int i, int j, int k, int side) {
+	public IIcon getIcon(IBlockAccess worldAccess, int i, int j, int k, int side) {
 		if (((TileEntityOpenHearthFurnace) worldAccess.getTileEntity(i, j, k)).getFacing() != null) {
 			side = TileHelper.getOrientationFromSide(((TileEntityOpenHearthFurnace) worldAccess.getTileEntity(i, j, k)).getFacing(), ForgeDirection.getOrientation(side)).ordinal();
 		}
@@ -199,7 +200,7 @@ public class BlockOpenHearthFurnace extends BlockContainer {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IIconRegister iconRegister) {
+	public void registerBlockIcons(IIconRegister iconRegister) {
 		textureTop_off = iconRegister.registerIcon(Info.modID.toLowerCase() + ":furnace_off_top");
 		textureTop_on = iconRegister.registerIcon(Info.modID.toLowerCase() + ":furnace_on_top");
 		textureBottom = iconRegister.registerIcon(Info.modID.toLowerCase() + ":furnace_bottom");

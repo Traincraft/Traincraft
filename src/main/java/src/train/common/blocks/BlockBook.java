@@ -36,8 +36,8 @@ public class BlockBook extends BlockContainer {
 	
 	IIcon texture;
 
-	public BlockBook(int par1) {
-		super(par1, Material.wood);
+	public BlockBook() {
+		super(Material.wood);
 		setCreativeTab(Traincraft.tcTab);
 		setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.14F, 1F);
 	}
@@ -63,23 +63,13 @@ public class BlockBook extends BlockContainer {
 	}
 	
 	@Override
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public void addCreativeItems(ArrayList itemList) {
-		itemList.add(new ItemStack(this));
-	}
-	
-	@Override
 	public boolean canPlaceBlockAt(World world, int x, int y, int z) {
-		Block block = Block.blocksList[world.getBlockId(x, y-1, z)];
-		if(block != null && world.isBlockSolidOnSide(x, y - 1, z, UP)) {
-			return true;
-		}
-		return false;
+		return world.isSideSolid(x, y - 1, z, UP);
 	}
 	
 	@Override
 	public boolean onBlockActivated(World world, int i, int j, int k, EntityPlayer player, int par6, float par7, float par8, float par9) {
-		TileEntity te = world.getBlockTileEntity(i, j, k);
+		TileEntity te = world.getTileEntity(i, j, k);
 		if (player.isSneaking()) {
 			return false;
 		}
@@ -93,7 +83,7 @@ public class BlockBook extends BlockContainer {
 	
 	@Override
 	public void onBlockPlacedBy(World world, int par2, int par3, int par4, EntityLivingBase living, ItemStack stack) {
-		TileBook te = (TileBook) world.getBlockTileEntity(par2, par3, par4);
+		TileBook te = (TileBook) world.getTileEntity(par2, par3, par4);
 		int var6 = MathHelper.floor_double((double) (living.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
 		int var7 = world.getBlockMetadata(par2, par3, par4) >> 2;
 		++var6;
@@ -126,12 +116,12 @@ public class BlockBook extends BlockContainer {
 	
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IIconRegister iconRegister) {
+	public void registerBlockIcons(IIconRegister iconRegister) {
 		texture = iconRegister.registerIcon(Info.modID.toLowerCase() + ":item_book_blue");
 	}
 	
 	@Override
-	public TileEntity createNewTileEntity(World world) {
+	public TileEntity createNewTileEntity(World world, int meta) {
 		return new TileBook();
 	}
 }

@@ -21,8 +21,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class BlockWindMill extends Block {
 	private IIcon texture;
 
-	public BlockWindMill(int id) {
-		super(id, Material.wood);
+	public BlockWindMill() {
+		super(Material.wood);
 		setCreativeTab(Traincraft.tcTab);
 		this.setTickRandomly(true);
 		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1F, 2F, 1F);
@@ -57,7 +57,7 @@ public class BlockWindMill extends Block {
 	@Override
 	public void randomDisplayTick(World par1World, int par2, int par3, int par4, Random par5Random) {
 		int l = par1World.getBlockMetadata(par2, par3, par4);
-		TileEntity tile = par1World.getBlockTileEntity(par2, par3, par4);
+		TileEntity tile = par1World.getTileEntity(par2, par3, par4);
 		if (tile != null && tile instanceof TileWindMill && ((TileWindMill) tile).windClient > 0) {
 			if (par5Random.nextInt(20) == 0) {
 				par1World.playSound(par2, par3, par4, "minecart.inside", par5Random.nextFloat() * 0.25F + 0.1F, par5Random.nextFloat() * 1F - 0.6F, true);
@@ -94,7 +94,7 @@ public class BlockWindMill extends Block {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IIconRegister iconRegister) {
+	public void registerBlockIcons(IIconRegister iconRegister) {
 		texture = iconRegister.registerIcon(Info.modID.toLowerCase() + ":wind_mill");
 	}
 
@@ -107,9 +107,9 @@ public class BlockWindMill extends Block {
 	 * ejects contained items into the world, and notifies neighbours of an update, as appropriate
 	 */
 	@Override
-	public void breakBlock(World par1World, int par2, int par3, int par4, int par5, int par6) {
+	public void breakBlock(World par1World, int par2, int par3, int par4, Block par5, int par6) {
 		int l = par1World.getBlockMetadata(par2, par3, par4);
-		TileEntity tile = par1World.getBlockTileEntity(par2, par3, par4);
+		TileEntity tile = par1World.getTileEntity(par2, par3, par4);
 		if (tile != null && tile instanceof TileWindMill) {
 			((TileWindMill) tile).onChunkUnload();
 		}

@@ -7,9 +7,12 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.item.EntityMinecart;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import src.train.common.Traincraft;
@@ -24,8 +27,8 @@ public class BlockTCRailGag extends Block {
 	private IIcon texture;
 	float f = 0.125F;
 
-	public BlockTCRailGag(int id) {
-		super(id, Material.iron);
+	public BlockTCRailGag() {
+		super(Material.iron);
 		setCreativeTab(Traincraft.tcTab);
 		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.125F, 1.0F);
 	}
@@ -34,19 +37,19 @@ public class BlockTCRailGag extends Block {
 	 * Checks to see if its valid to put this block at the specified coordinates. Args: world, x, y, z
 	 */
 	public boolean canPlaceBlockAt(World par1World, int par2, int par3, int par4) {
-		int l = par1World.getBlockId(par2, par3, par4);
-		Block block = Block.blocksList[l];
+		Block block = par1World.getBlock(par2, par3, par4);
 		return false;
 	}
 
 	@Override
-	public void breakBlock(World world, int i, int j, int k, int par5, int par6) {
-		TileTCRailGag tileEntity = (TileTCRailGag) world.getBlockTileEntity(i, j, k);
+	public void breakBlock(World world, int i, int j, int k, Block par5, int par6) {
+		TileTCRailGag tileEntity = (TileTCRailGag) world.getTileEntity(i, j, k);
 		if (tileEntity != null) {
-			world.destroyBlock(tileEntity.originX, tileEntity.originY, tileEntity.originZ, false);
-			world.removeBlockTileEntity(tileEntity.originX, tileEntity.originY, tileEntity.originZ);
+			// NOTE: func_147480_a = destroyBlock
+			world.func_147480_a(tileEntity.originX, tileEntity.originY, tileEntity.originZ, false);
+			world.removeTileEntity(tileEntity.originX, tileEntity.originY, tileEntity.originZ);
 		}
-		world.removeBlockTileEntity(i, j, k);
+		world.removeTileEntity(i, j, k);
 	}
 
 	/**
@@ -57,23 +60,24 @@ public class BlockTCRailGag extends Block {
 		return 0;
 	}
 
-	@SideOnly(Side.CLIENT)
 	@Override
-	public int idPicked(World world, int i, int j, int k) {
-		return 0;
+    public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z, EntityPlayer player) {
+		return null;
 	}
-
+	
 	@Override
-	public void onNeighborBlockChange(World world, int i, int j, int k, int par5) {
-		TileTCRailGag tileEntity = (TileTCRailGag) world.getBlockTileEntity(i, j, k);
+	public void onNeighborBlockChange(World world, int i, int j, int k, Block par5) {
+		TileTCRailGag tileEntity = (TileTCRailGag) world.getTileEntity(i, j, k);
 		if (tileEntity != null) {
-			if (world.getBlockId(tileEntity.originX, tileEntity.originY, tileEntity.originZ) < 1) {
-				world.destroyBlock(i, j, k, false);
-				world.removeBlockTileEntity(i, j, k);
+			if (world.isAirBlock(tileEntity.originX, tileEntity.originY, tileEntity.originZ)) {
+				// NOTE: func_147480_a = destroyBlock
+				world.func_147480_a(i, j, k, false);
+				world.removeTileEntity(i, j, k);
 			}
-			if (!world.doesBlockHaveSolidTopSurface(i, j - 1, k) && world.getBlockId(i, j-1, k) != BlockIDs.bridgePillar.blockID) {
-				world.destroyBlock(i, j, k, false);
-				world.removeBlockTileEntity(i, j, k);
+			if (!World.doesBlockHaveSolidTopSurface(world, i, j - 1, k) && world.getBlock(i, j-1, k) != BlockIDs.bridgePillar.block) {
+				// NOTE: func_147480_a = destroyBlock
+				world.func_147480_a(i, j, k, false);
+				world.removeTileEntity(i, j, k);
 			}
 		}
 	}
@@ -83,7 +87,7 @@ public class BlockTCRailGag extends Block {
 	 */
 	@Override
 	public void setBlockBoundsBasedOnState(IBlockAccess par1IBlockAccess, int i, int j, int k) {
-		TileTCRailGag tileEntity = (TileTCRailGag) par1IBlockAccess.getBlockTileEntity(i, j, k);
+		TileTCRailGag tileEntity = (TileTCRailGag) par1IBlockAccess.getTileEntity(i, j, k);
 		if (tileEntity != null) {
 			//System.out.println(tileEntity.type+" "+tileEntity.bbHeight);
 			this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, tileEntity.bbHeight, 1.0F);
@@ -122,7 +126,7 @@ public class BlockTCRailGag extends Block {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IIconRegister iconRegister) {
+	public void registerBlockIcons(IIconRegister iconRegister) {
 		texture = iconRegister.registerIcon(Info.modID.toLowerCase() + ":tracks/rail_normal_turned");
 	}
 
@@ -136,13 +140,13 @@ public class BlockTCRailGag extends Block {
 	 */
 	@Override
 	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int i, int j, int k) {
-		TileTCRailGag tileEntity = (TileTCRailGag) world.getBlockTileEntity(i, j, k);
+		TileTCRailGag tileEntity = (TileTCRailGag) world.getTileEntity(i, j, k);
 		if (tileEntity != null && tileEntity.type != null && (tileEntity.type.equals(TrackTypes.LARGE_SLOPE_WOOD.getLabel()) || tileEntity.type.equals(TrackTypes.LARGE_SLOPE_GRAVEL.getLabel()) || tileEntity.type.equals(TrackTypes.LARGE_SLOPE_BALLAST.getLabel()))) {
-			List list = world.getEntitiesWithinAABB(EntityMinecart.class, AxisAlignedBB.getAABBPool().getAABB((double) ((float) i - 1.5), (double) j, (double) ((float) k - 1.5), (double) ((float) (i + 1.5)), (double) ((float) (j + 1.5)), (double) ((float) (k + 1.5))));
+			List list = world.getEntitiesWithinAABB(EntityMinecart.class, AxisAlignedBB.getBoundingBox((double) ((float) i - 1.5), (double) j, (double) ((float) k - 1.5), (double) ((float) (i + 1.5)), (double) ((float) (j + 1.5)), (double) ((float) (k + 1.5))));
 			if (!list.isEmpty()) {
 				return null;
 			}
-			return AxisAlignedBB.getAABBPool().getAABB((double) i + this.minX, (double) j + this.minY, (double) k + this.minZ, (double) i + this.maxX, (double) j + tileEntity.bbHeight - 0.2, (double) k + this.maxZ);
+			return AxisAlignedBB.getBoundingBox((double) i + this.minX, (double) j + this.minY, (double) k + this.minZ, (double) i + this.maxX, (double) j + tileEntity.bbHeight - 0.2, (double) k + this.maxZ);
 		}
 		return null;
 	}

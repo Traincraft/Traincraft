@@ -10,6 +10,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 
 import mods.railcraft.api.tracks.ITrackEmitter;
+import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
 import src.train.common.library.TrackIDs;
@@ -41,9 +42,9 @@ public class BlockDetectorTrack extends TrackBaseTraincraft implements ITrackEmi
 	}
 
 	protected void notifyNeighbors() {
-		int id = getWorld().getBlockId(getX(), getY(), getZ());
-		getWorld().notifyBlocksOfNeighborChange(getX(), getY(), getZ(), id);
-		getWorld().notifyBlocksOfNeighborChange(getX(), getY() - 1, getZ(), id);
+		Block block = getWorld().getBlock(getX(), getY(), getZ());
+		getWorld().notifyBlocksOfNeighborChange(getX(), getY(), getZ(), block);
+		getWorld().notifyBlocksOfNeighborChange(getX(), getY() - 1, getZ(), block);
 
 		markBlockNeedsUpdate();
 	}

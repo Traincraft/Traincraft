@@ -31,8 +31,8 @@ import net.minecraft.world.World;
 public class BlockWaterWheel extends Block {
 	private IIcon texture;
 
-	public BlockWaterWheel(int id) {
-		super(id, Material.wood);
+	public BlockWaterWheel() {
+		super(Material.wood);
 		setCreativeTab(Traincraft.tcTab);
 		this.setTickRandomly(true);
 		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1F, 1F, 1F);
@@ -67,7 +67,7 @@ public class BlockWaterWheel extends Block {
 	@Override
 	public void randomDisplayTick(World par1World, int par2, int par3, int par4, Random par5Random) {
 		int l = par1World.getBlockMetadata(par2, par3, par4);
-		TileEntity tile = par1World.getBlockTileEntity(par2, par3, par4);
+		TileEntity tile = par1World.getTileEntity(par2, par3, par4);
 		if (tile != null && tile instanceof TileWaterWheel && ((TileWaterWheel) tile).getWaterDir() > -1001) {
 			double d0 = (double) ((float) par2 + 0.5F);
 			double d1 = (double) ((float) par3 + 0.7F);
@@ -112,7 +112,7 @@ public class BlockWaterWheel extends Block {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IIconRegister iconRegister) {
+	public void registerBlockIcons(IIconRegister iconRegister) {
 		texture = iconRegister.registerIcon(Info.modID.toLowerCase() + ":water_wheel");
 	}
 
@@ -125,9 +125,9 @@ public class BlockWaterWheel extends Block {
 	 * ejects contained items into the world, and notifies neighbours of an update, as appropriate
 	 */
 	@Override
-	public void breakBlock(World par1World, int par2, int par3, int par4, int par5, int par6) {
+	public void breakBlock(World par1World, int par2, int par3, int par4, Block par5, int par6) {
 		int l = par1World.getBlockMetadata(par2, par3, par4);
-		TileEntity tile = par1World.getBlockTileEntity(par2, par3, par4);
+		TileEntity tile = par1World.getTileEntity(par2, par3, par4);
 		if (tile != null && tile instanceof TileWaterWheel) {
 			((TileWaterWheel) tile).onChunkUnload();
 		}

@@ -27,7 +27,7 @@ public class BlockOreTC extends BlockSand {
 	private static IIcon texture3;
 	private static IIcon texture4;
 
-	public BlockOreTC(int id, int tex) {
+	public BlockOreTC(int tex) {
 		super();
 		setCreativeTab(Traincraft.tcTab);
 	}
@@ -50,11 +50,6 @@ public class BlockOreTC extends BlockSand {
 	@Override
 	public int damageDropped(int metadata) {
 		return metadata;
-	}
-
-	@Override
-	public int idDropped(int i, Random random, int j) {
-		return Block.getIdFromBlock(this);
 	}
 
 	@Override

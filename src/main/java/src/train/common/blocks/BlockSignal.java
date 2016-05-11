@@ -8,6 +8,7 @@ import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
@@ -31,16 +32,16 @@ import cpw.mods.fml.client.registry.RenderingRegistry;
 
 public class BlockSignal extends BlockContainer {
 
-	public BlockSignal(int i, int j) {
-		super(i, Material.circuits);
-		this.setLightValue(1.0F);
+	public BlockSignal(int j) {
+		super(Material.circuits);
+		this.setLightLevel(1.0F);
 		setBlockBounds(0.2F, 0.0F, 0.2F, 0.8F, 2.6F, 0.8F);
 		setCreativeTab(Traincraft.tcTab);
 	}
 
 	@Override
-	public int idDropped(int i, Random random, int par3) {
-		return ItemIDs.signal.item.itemID;
+	public Item getItemDropped(int i, Random random, int j) {
+		return ItemIDs.signal.item;
 	}
 	@Override
 	public int quantityDropped(Random random) {
@@ -79,7 +80,7 @@ public class BlockSignal extends BlockContainer {
 
 	public void onBlockPlacedBy(World world, int i, int j, int k, EntityLiving entityliving) {
 		int l = MathHelper.floor_double((double) ((entityliving.rotationYaw * 4F) / 360F) + 0.5D) & 3;
-		TileSignal te = (TileSignal) world.getBlockTileEntity(i, j, k);
+		TileSignal te = (TileSignal) world.getTileEntity(i, j, k);
 
 		/*
 		 * if (l == 0) { world.setBlockMetadataWithNotify(i, j, k, 2); te.rot = 2; } if (l == 1) { world.setBlockMetadataWithNotify(i, j, k, 5); te.rot = 5; } if (l == 2) { world.setBlockMetadataWithNotify(i, j, k, 3); te.rot = 3; } if (l == 3) { world.setBlockMetadataWithNotify(i, j, k, 4); te.rot = 4; } */
@@ -116,13 +117,13 @@ public class BlockSignal extends BlockContainer {
 			}
 		}
 
-		world.scheduleBlockUpdate(i, j, k, this.blockID, 4);
+		world.scheduleBlockUpdate(i, j, k, this, 4);
 		updateTick(world, i, j, k);
 	}
 	@Override
 	public void onBlockAdded(World world, int i, int j, int k) {
 		super.onBlockAdded(world, i, j, k);
-		TileSignal te = (TileSignal) world.getBlockTileEntity(i, j, k);
+		TileSignal te = (TileSignal) world.getTileEntity(i, j, k);
 
 		if (world.isBlockIndirectlyGettingPowered(i, j, k)) {
 
@@ -167,7 +168,7 @@ public class BlockSignal extends BlockContainer {
 	public void updateTick(World world, int i, int j, int k) {
 		int l = world.getBlockMetadata(i, j, k);
 
-		TileSignal te = (TileSignal) world.getBlockTileEntity(i, j, k);
+		TileSignal te = (TileSignal) world.getTileEntity(i, j, k);
 		if (te == null)
 			return;
 		//te.rot = l;
@@ -185,12 +186,12 @@ public class BlockSignal extends BlockContainer {
 		return true;
 	}
 	@Override
-	public void onNeighborBlockChange(World world, int i, int j, int k, int l) {
-		TileSignal te = (TileSignal) world.getBlockTileEntity(i, j, k);
+	public void onNeighborBlockChange(World world, int i, int j, int k, Block l) {
+		TileSignal te = (TileSignal) world.getTileEntity(i, j, k);
 		if (te == null)
 			return;
 		if (te.state == 1 && !world.isBlockIndirectlyGettingPowered(i, j, k)) {
-			world.scheduleBlockUpdate(i, j, k, this.blockID, 4);
+			world.scheduleBlockUpdate(i, j, k, this, 4);
 		}
 		else if (te.state == 0 && world.isBlockIndirectlyGettingPowered(i, j, k)) {
 			// world.setBlockWithNotify(i, j, k,Train.ActiveSignalBlock.blockID);
@@ -202,13 +203,7 @@ public class BlockSignal extends BlockContainer {
 	}
 
 	@Override
-	public TileEntity createNewTileEntity(World world) {
+	public TileEntity createNewTileEntity(World world, int meta) {
 		return new TileSignal();
-	}
-
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	@Override
-	public void addCreativeItems(ArrayList itemList) {
-		itemList.add(new ItemStack(this));
 	}
 }

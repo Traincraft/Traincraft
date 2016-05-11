@@ -29,8 +29,8 @@ public class BlockBridgePillar extends BlockContainer {
 
 	private IIcon texture;
 
-	public BlockBridgePillar(int par1) {
-		super(par1, Material.wood);
+	public BlockBridgePillar() {
+		super(Material.wood);
 		setCreativeTab(Traincraft.tcTab);
 	}
 
@@ -55,15 +55,10 @@ public class BlockBridgePillar extends BlockContainer {
 	}
 
 	@Override
-	public TileEntity createNewTileEntity(World world) {
+	public TileEntity createNewTileEntity(World world, int meta) {
 		return new TileBridgePillar();
 	}
-
-	@Override
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public void addCreativeItems(ArrayList itemList) {
-		itemList.add(new ItemStack(this));
-	}
+	
 	/**
 	 * Called when the block is placed in the world.
 	 */
@@ -92,7 +87,7 @@ public class BlockBridgePillar extends BlockContainer {
 	}
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IIconRegister iconRegister) {
+	public void registerBlockIcons(IIconRegister iconRegister) {
 		texture = iconRegister.registerIcon(Info.modID.toLowerCase() + ":assembly_1_bottom");
 	}
 }

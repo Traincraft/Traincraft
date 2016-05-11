@@ -35,8 +35,8 @@ public class BlockStopper extends BlockContainer {
 
 	private IIcon texture;
 
-	public BlockStopper(int par1, int par2) {
-		super(par1, Material.iron);
+	public BlockStopper(int par2) {
+		super(Material.iron);
 		setCreativeTab(Traincraft.tcTab);
 	}
 
@@ -62,7 +62,7 @@ public class BlockStopper extends BlockContainer {
 
 	@Override
 	public boolean canPlaceBlockAt(World world, int x, int y, int z) {
-		if (world.isBlockSolidOnSide(x, y - 1, z, UP)) {
+		if (world.isSideSolid(x, y, z, UP)) {
 			return true;
 		}
 		else {
@@ -72,7 +72,7 @@ public class BlockStopper extends BlockContainer {
 
 	@Override
 	public void onBlockPlacedBy(World world, int par2, int par3, int par4, EntityLivingBase living, ItemStack stack) {
-		TileStopper te = (TileStopper) world.getBlockTileEntity(par2, par3, par4);
+		TileStopper te = (TileStopper) world.getTileEntity(par2, par3, par4);
 		int var6 = MathHelper.floor_double((double) (living.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
 		int var7 = world.getBlockMetadata(par2, par3, par4) >> 2;
 		++var6;
@@ -104,19 +104,13 @@ public class BlockStopper extends BlockContainer {
 	}
 
 	@Override
-	public TileEntity createNewTileEntity(World world) {
+	public TileEntity createNewTileEntity(World world, int meta) {
 		return new TileStopper();
 	}
 
 	@Override
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public void addCreativeItems(ArrayList itemList) {
-		itemList.add(new ItemStack(this));
-	}
-
-	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IIconRegister iconRegister) {
+	public void registerBlockIcons(IIconRegister iconRegister) {
 		texture = iconRegister.registerIcon(Info.modID.toLowerCase() + ":stopper");
 	}
 }

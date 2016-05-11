@@ -22,8 +22,8 @@ import net.minecraft.world.World;
 public class BlockLantern extends Block {
 	private IIcon texture;
 
-	public BlockLantern(int id) {
-		super(id, Material.rock);
+	public BlockLantern() {
+		super(Material.rock);
 		setCreativeTab(Traincraft.tcTab);
 		this.setTickRandomly(true);
 		float f = 0.3F;
@@ -74,7 +74,7 @@ public class BlockLantern extends Block {
 	}
 	@Override
 	public boolean onBlockActivated(World world, int i, int j, int k, EntityPlayer player, int par6, float par7, float par8, float par9) {
-		TileEntity te = world.getBlockTileEntity(i, j, k);
+		TileEntity te = world.getTileEntity(i, j, k);
 		if (player.isSneaking()) {
 			return false;
 		}
@@ -86,7 +86,7 @@ public class BlockLantern extends Block {
 	}
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IIconRegister iconRegister) {
+	public void registerBlockIcons(IIconRegister iconRegister) {
 		texture = iconRegister.registerIcon(Info.modID.toLowerCase() + ":lantern");
 	}
 

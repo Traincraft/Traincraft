@@ -18,6 +18,8 @@ import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.IChatComponent;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.common.util.ForgeDirection;
 import src.train.common.api.ElectricTrain;
@@ -50,8 +52,7 @@ public class BlockEnergyTrack extends TrackBaseTraincraft implements ITrackPower
 
 	private Block getThisBlock() {
 		if (thisBlock == null) {
-			int id = getWorld().getBlockId(getX(), getY(), getZ());
-			thisBlock = Block.blocksList[id];
+			thisBlock = getWorld().getBlock(getX(), getY(), getZ());
 		}
 		return thisBlock;
 	}
@@ -92,9 +93,9 @@ public class BlockEnergyTrack extends TrackBaseTraincraft implements ITrackPower
 	}
 
 	private void notifyNeighbors() {
-		int id = getWorld().getBlockId(getX(), getY(), getZ());
-		getWorld().notifyBlocksOfNeighborChange(getX(), getY(), getZ(), id);
-		getWorld().notifyBlocksOfNeighborChange(getX(), getY() - 1, getZ(), id);
+		Block block = getWorld().getBlock(getX(), getY(), getZ());
+		getWorld().notifyBlocksOfNeighborChange(getX(), getY(), getZ(), block);
+		getWorld().notifyBlocksOfNeighborChange(getX(), getY() - 1, getZ(), block);
 
 		markBlockNeedsUpdate();
 	}
@@ -108,7 +109,7 @@ public class BlockEnergyTrack extends TrackBaseTraincraft implements ITrackPower
 		
 		if ((current != null) && ((current.getItem() instanceof IToolCrowbar))) {
 			IToolCrowbar crowbar = (IToolCrowbar) current.getItem();
-			player.addChatMessage("stored: " + ((int)this.energy) + "/"+(int)this.getMaxEnergy()+" EU");
+			player.addChatMessage(new ChatComponentText("stored: " + ((int)this.energy) + "/"+(int)this.getMaxEnergy()+" EU"));
 			markBlockNeedsUpdate();
 			crowbar.onWhack(player, current, getX(), getY(), getZ());
 			sendUpdateToClient();
