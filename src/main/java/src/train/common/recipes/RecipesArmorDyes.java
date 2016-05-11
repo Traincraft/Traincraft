@@ -2,6 +2,7 @@ package src.train.common.recipes;
 
 import java.util.ArrayList;
 
+import net.minecraft.init.Items;
 import src.train.common.Traincraft;
 import src.train.common.core.interfaces.ITCRecipe;
 import src.train.common.items.*;
@@ -38,7 +39,7 @@ public class RecipesArmorDyes implements ITCRecipe {
 					itemstack = itemstack1;
 				}
 				else {
-					if (itemstack1.itemID != Item.dyePowder.itemID) {
+					if (itemstack1.getItem() != Items.dye) {
 						return false;
 					}
 
@@ -91,7 +92,7 @@ public class RecipesArmorDyes implements ITCRecipe {
 					}
 				}
 				else {
-					if (itemstack1.itemID != Item.dyePowder.itemID) {
+					if (itemstack1.getItem() != Items.dye) {
 						return null;
 					}
 

@@ -11,6 +11,7 @@ import java.util.List;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemBlock;
@@ -18,7 +19,7 @@ import net.minecraft.item.ItemStack;
 
 public class ItemBlockGeneratorDiesel extends ItemBlock {
 
-	public ItemBlockGeneratorDiesel(int id) {
+	public ItemBlockGeneratorDiesel(Block id) {
 		super(id);
 	}
 

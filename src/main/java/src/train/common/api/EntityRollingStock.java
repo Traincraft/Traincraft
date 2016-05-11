@@ -32,6 +32,7 @@ import net.minecraft.entity.passive.EntityMooshroom;
 import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -1052,7 +1053,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			posY = j;
 			boolean flag = false;
 			boolean flag1 = false;
-			if (l == Block.getBlockFromName("railPowered")) {
+			if (l == Blocks.golden_rail) {
 				if (true) {
 					flag = (worldObj.getBlockMetadata(i, j, k) & 8) != 0;
 					flag1 = !flag;
@@ -1604,7 +1605,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		if (BlockRailBase.func_150051_a(l)) {
 			int i1 = ((BlockRailBase) l).getBasicRailMetadata(worldObj, this, i, j, k);// getBasicRailMetadata2(worldObj, this, i, j, k);
 			d1 = j;
-			if (l == Block.getBlockFromName("railPowered")) {
+			if (l == Blocks.golden_rail) {
 				if (i1 == 8) {
 					i1 = 0;
 				}

@@ -22,8 +22,8 @@ import src.train.common.library.ItemIDs;
 
 public class ItemRecipeBook extends Item implements IBoxable {
 
-	public ItemRecipeBook(int i) {
-		super(i);
+	public ItemRecipeBook() {
+		super();
 		maxStackSize = 1;
 		setCreativeTab(Traincraft.tcTab);
 	}

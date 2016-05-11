@@ -9,6 +9,7 @@ package src.train.common.items;
 
 import java.util.List;
 
+import net.minecraft.block.Block;
 import src.train.common.Traincraft;
 import src.train.common.library.GuiIDs;
 
@@ -23,7 +24,7 @@ import net.minecraft.world.World;
 
 public class ItemBlockBook extends ItemBlock {
 
-	public ItemBlockBook(int par1) {
+	public ItemBlockBook(Block par1) {
 		super(par1);
 	}
 	

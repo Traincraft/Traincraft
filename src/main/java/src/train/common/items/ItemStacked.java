@@ -14,8 +14,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemStacked extends Item {
 
-	public ItemStacked(int i, int maxUse) {
-		super(i);
+	public ItemStacked(int maxUse) {
+		super();
 		maxStackSize = 1;
 		this.setMaxDamage(maxUse);
 		setCreativeTab(Traincraft.tcTab);
@@ -44,6 +44,6 @@ public class ItemStacked extends Item {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister iconRegister) {
-		this.itemIcon = iconRegister.registerIcon(Info.modID.toLowerCase() + ":parts/" + ItemIDs.getIcon(this.itemID));
+		this.itemIcon = iconRegister.registerIcon(Info.modID.toLowerCase() + ":parts/" + ItemIDs.getIcon(Item.getIdFromItem(this)));
 	}
 }

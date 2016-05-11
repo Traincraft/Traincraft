@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import src.train.common.core.handlers.ConfigHandler;
@@ -30,10 +32,10 @@ public class DistilRecipes {
 			addSmelting(/* new ItemStack(BlockIDs.OreTC.blockID, 1, 1) */BlockIDs.oreTC.blockID, new ItemStack(ItemIDs.diesel.item, 2), 0.5F, 1, new ItemStack(ItemIDs.rawPlastic.item, 1));
 			//addSmelting(/*new ItemStack(BlockIDs.OreTC.blockID, 1, 2)*/BlockIDs.OreTC.blockID, new ItemStack(ItemIDs.diesel.item, 2), 0.5F, 1, new ItemStack(ItemIDs.rawPlastic.item, 1));
 		}
-		addSmelting(Item.reed.itemID, new ItemStack(ItemIDs.diesel.item), 0.2F, 4, new ItemStack(ItemIDs.rawPlastic.item, 1));
-		addSmelting(Block.leaves.blockID, new ItemStack(ItemIDs.diesel.item), 0.2F, 6, new ItemStack(ItemIDs.rawPlastic.item, 2));
-		addSmelting(ItemIDs.diesel.item.itemID, new ItemStack(ItemIDs.refinedFuel.item), 1F, 2, new ItemStack(ItemIDs.rawPlastic.item, 1));
-		addSmelting(Item.wheat.itemID, new ItemStack(ItemIDs.diesel.item), 0.2F, 4, new ItemStack(ItemIDs.rawPlastic.item, 1));
+		addSmelting(Item.getIdFromItem(Items.reeds), new ItemStack(ItemIDs.diesel.item), 0.2F, 4, new ItemStack(ItemIDs.rawPlastic.item, 1));
+		addSmelting(Block.getIdFromBlock(Blocks.leaves), new ItemStack(ItemIDs.diesel.item), 0.2F, 6, new ItemStack(ItemIDs.rawPlastic.item, 2));
+		addSmelting(ItemIDs.diesel.itemID, new ItemStack(ItemIDs.refinedFuel.item), 1F, 2, new ItemStack(ItemIDs.rawPlastic.item, 1));
+		addSmelting(Item.getIdFromItem(Items.wheat), new ItemStack(ItemIDs.diesel.item), 0.2F, 4, new ItemStack(ItemIDs.rawPlastic.item, 1));
 	}
 
 	/*
@@ -45,12 +47,12 @@ public class DistilRecipes {
 	 * @param itemstack: Output
 	 * @param exp: Experience
 	 * @param plasticChance used as follow: Math.random(plasticChance)==0
-	 * @param plasticSktack: the plastic output and output size
+	 * //@param plasticSktack: the plastic output and output size
 	 */
 	public void addSmelting(int i, ItemStack itemstack, float exp, int plasticChance, ItemStack plasticStack) {
 		smeltingList.put(Integer.valueOf(i), itemstack);
 		plasticList.put(Integer.valueOf(i), plasticStack);
-		this.experienceList.put(Integer.valueOf(plasticStack.getItem().itemID), Float.valueOf(exp));
+		this.experienceList.put(Integer.valueOf(Item.getIdFromItem(plasticStack.getItem())), Float.valueOf(exp));
 		this.plasticChanceList.put(Integer.valueOf(i), Float.valueOf(plasticChance));
 	}
 

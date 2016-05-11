@@ -2,6 +2,7 @@ package src.train.common.items;
 
 import java.util.List;
 
+import net.minecraft.item.Item;
 import src.train.common.blocks.BlockTraincraftFluid;
 
 import net.minecraft.block.Block;
@@ -24,9 +25,9 @@ public class ItemBlockFluid extends ItemBlock {
 	private BlockTraincraftFluid fluid;
 	private int id;
 	
-	public ItemBlockFluid(int id, Block fluid) {
+	public ItemBlockFluid(Block id, Block fluid) {
 		super(id);
-		this.id = id;
+		this.id = Block.getIdFromBlock(id);
 		this.fluid = (BlockTraincraftFluid) fluid;
 	}
 
@@ -57,7 +58,7 @@ public class ItemBlockFluid extends ItemBlock {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubItems(int par1, CreativeTabs par2CreativeTabs, List par3List) {
+	public void getSubItems(Item par1, CreativeTabs par2CreativeTabs, List par3List) {
 		((Block) fluid).getSubBlocks(par1, par2CreativeTabs, par3List);
 	}
 }

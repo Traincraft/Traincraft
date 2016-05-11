@@ -28,8 +28,8 @@ public class ItemTCArmor extends ItemArmor {
 	private IIcon iconOverlay;
 	public int updateTicks=0;
 	
-	public ItemTCArmor(int par1, ArmorMaterial material, int par3, int par4, int color) {
-		super(par1, material, par3, par4);
+	public ItemTCArmor(ArmorMaterial material, int par3, int par4, int color) {
+		super(material, par3, par4);
 		this.material = material;
 		setCreativeTab(Traincraft.tcTab);
 		this.color = color;
@@ -148,7 +148,7 @@ public class ItemTCArmor extends ItemArmor {
 
 			if (!nbttagcompound.hasKey("display"))
 			{
-				nbttagcompound.setCompoundTag("display", nbttagcompound1);
+				nbttagcompound.setTag("display", nbttagcompound1);
 			}
 
 			nbttagcompound1.setInteger("color", par2);

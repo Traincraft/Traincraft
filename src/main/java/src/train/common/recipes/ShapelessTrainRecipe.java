@@ -46,7 +46,7 @@ public class ShapelessTrainRecipe implements ITCRecipe {
 				Iterator var8 = var3.iterator();
 				while (var8.hasNext()) {
 					ItemStack var9 = (ItemStack) var8.next();
-					if (var6.itemID == var9.itemID && (var9.getItemDamage() == OreDictionary.WILDCARD_VALUE || var6.getItemDamage() == var9.getItemDamage()) /* && var6.stackSize == var9.stackSize */) {
+					if (var6 == var9 && (var9.getItemDamage() == OreDictionary.WILDCARD_VALUE || var6.getItemDamage() == var9.getItemDamage()) /* && var6.stackSize == var9.stackSize */) {
 						var7 = true;
 						var3.remove(var9);
 						break;

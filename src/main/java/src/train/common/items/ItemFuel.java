@@ -12,8 +12,8 @@ import src.train.common.Traincraft;
 public class ItemFuel extends Item implements IBoxable {
 	private ArrayList<String[]> info;
 
-	public ItemFuel(int i, ArrayList<String[]> list) {
-		super(i);
+	public ItemFuel(ArrayList<String[]> list) {
+		super();
 		maxStackSize = 64;
 		setCreativeTab(Traincraft.tcTab);
 		this.info = list;

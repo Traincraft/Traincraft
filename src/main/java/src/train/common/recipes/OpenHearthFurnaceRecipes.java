@@ -3,6 +3,7 @@ package src.train.common.recipes;
 import java.util.HashMap;
 import java.util.Map;
 
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import src.train.common.library.ItemIDs;
@@ -26,7 +27,7 @@ public class OpenHearthFurnaceRecipes {
 		smeltingListResult2 = new HashMap();
 		smeltingListCookTime = new HashMap();
 
-		addSmelting(Item.ingotIron.itemID, (new ItemStack(ItemIDs.graphite.item)).itemID, new ItemStack(ItemIDs.steel.item), 2F, 1000);
+		addSmelting(Item.getIdFromItem(Items.iron_ingot), Item.getIdFromItem(new ItemStack(ItemIDs.graphite.item).getItem()), new ItemStack(ItemIDs.steel.item), 2F, 1000);
 		//addSmelting(ItemIDs.graphite.itemID,Item.ingotIron.shiftedIndex, new ItemStack(ItemIDs.steel.item),2F);
 	}
 
@@ -53,18 +54,18 @@ public class OpenHearthFurnaceRecipes {
 		if (i != null && j != null) {
 			int resultFrom1 = 1000;
 			int resultFrom2 = 1000;
-			if (smeltingListCookTime.containsKey(Integer.valueOf(i.itemID)))
-				resultFrom1 = (Integer) smeltingListCookTime.get(Integer.valueOf(i.itemID));
-			if (smeltingListCookTime.containsKey(Integer.valueOf(j.itemID)))
-				resultFrom2 = (Integer) smeltingListCookTime.get(Integer.valueOf(j.itemID));
+			if (smeltingListCookTime.containsKey(Integer.valueOf(Item.getIdFromItem(i.getItem()))))
+				resultFrom1 = (Integer) smeltingListCookTime.get(Integer.valueOf(Item.getIdFromItem(i.getItem())));
+			if (smeltingListCookTime.containsKey(Integer.valueOf(Item.getIdFromItem(j.getItem()))))
+				resultFrom2 = (Integer) smeltingListCookTime.get(Integer.valueOf(Item.getIdFromItem(j.getItem())));
 			return resultFrom1 != 0 ? resultFrom1 : resultFrom2;
 		}
 		return 600;
 	}
 
 	public boolean areItemPartOfRecipe(ItemStack i, ItemStack j) {
-		ItemStack resultFrom1 = (ItemStack) smeltingListResult1.get(Integer.valueOf(i.itemID));
-		ItemStack resultFrom2 = (ItemStack) smeltingListResult1.get(Integer.valueOf(j.itemID));
+		ItemStack resultFrom1 = (ItemStack) smeltingListResult1.get(Integer.valueOf(Item.getIdFromItem(i.getItem())));
+		ItemStack resultFrom2 = (ItemStack) smeltingListResult1.get(Integer.valueOf(Item.getIdFromItem(j.getItem())));
 		if (resultFrom1 == null || resultFrom2 == null) {
 			return false;
 		}

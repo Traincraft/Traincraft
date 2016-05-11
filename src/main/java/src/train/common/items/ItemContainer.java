@@ -18,8 +18,8 @@ import net.minecraft.item.ItemStack;
 
 public class ItemContainer extends Item {
 
-	public ItemContainer(int par1) {
-		super(par1);
+	public ItemContainer() {
+		super();
 		maxStackSize = 64;
 		setCreativeTab(Traincraft.tcTab);
 	}
@@ -27,7 +27,7 @@ public class ItemContainer extends Item {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister iconRegister) {
-		this.itemIcon = iconRegister.registerIcon(Info.modID.toLowerCase() + ":parts/" + ItemIDs.getIcon(this.itemID));
+		this.itemIcon = iconRegister.registerIcon(Info.modID.toLowerCase() + ":parts/" + ItemIDs.getIcon(Item.getIdFromItem(this)));
 	}
 	
 	@Override

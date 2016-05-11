@@ -14,8 +14,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemChunkLoaderActivator extends Item implements IBoxable {
 
-	public ItemChunkLoaderActivator(int i) {
-		super(i);
+	public ItemChunkLoaderActivator() {
+		super();
 		maxStackSize = 1;
 		setCreativeTab(Traincraft.tcTab);
 		setMaxDamage(10);

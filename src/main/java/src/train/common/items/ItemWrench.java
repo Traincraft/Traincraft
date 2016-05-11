@@ -18,8 +18,8 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 public class ItemWrench extends Item implements IToolWrench{
 
-	public ItemWrench(int i) {
-		super(i);
+	public ItemWrench() {
+		super();
 		maxStackSize = 1;
 		setCreativeTab(Traincraft.tcTab);
 	}
@@ -27,13 +27,13 @@ public class ItemWrench extends Item implements IToolWrench{
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister iconRegister) {
-		this.itemIcon = iconRegister.registerIcon(Info.modID.toLowerCase() + ":parts/" + ItemIDs.getIcon(this.itemID));
+		this.itemIcon = iconRegister.registerIcon(Info.modID.toLowerCase() + ":parts/" + ItemIDs.getIcon(Item.getIdFromItem(this)));
 	}
 	
 	@Override
 	public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
-		int blockId = world.getBlockId(x, y, z);
-		if (Block.blocksList[blockId].rotateBlock(world, x, y, z, ForgeDirection.getOrientation(side))) {
+		Block blockId = world.getBlock(x, y, z);
+		if (blockId.rotateBlock(world, x, y, z, ForgeDirection.getOrientation(side))) {
 			player.swingItem();
 			return !world.isRemote;
 		}

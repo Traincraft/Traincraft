@@ -9,6 +9,7 @@ import net.minecraft.block.BlockRailBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
@@ -446,7 +447,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
                 double maxSpeed = Math.min(railMaxSpeed, getCurrentCartSpeedCapOnRail());
                 int i1 = rail.getBasicRailMetadata(worldObj, this, j, i, k);
                 this.updateOnTrack(j, i, k, maxSpeed, getSlopeAdjustment(), Block.getIdFromBlock(l), i1);
-                if (l == Block.railActivator.blockID)
+                if (l == Blocks.activator_rail)
                 {
                     this.onActivatorRailPass(j, i, k, (worldObj.getBlockMetadata(j, i, k) & 8) != 0);
                 }

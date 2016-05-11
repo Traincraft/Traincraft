@@ -42,8 +42,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class ItemTCCompositeSuit extends ItemTCArmor {
 	/** The EnumArmorMaterial used for this ItemArmor */
 	private final ArmorMaterial material;
-	public ItemTCCompositeSuit(int par1, ArmorMaterial material, int par3, int par4, int color) {
-		super(par1, material, par3, par4,color);
+	public ItemTCCompositeSuit(ArmorMaterial material, int par3, int par4, int color) {
+		super(material, par3, par4,color);
 		this.material = material;
 		setCreativeTab(Traincraft.tcTab);
 		this.color = color;
@@ -97,9 +97,9 @@ public class ItemTCCompositeSuit extends ItemTCArmor {
         return EnumRarity.epic;
     }
 	@Override
-	public void onArmorTickUpdate(World world, EntityPlayer player,
+	public void onArmorTick(World world, EntityPlayer player,
 			ItemStack stack) {
-		super.onArmorTickUpdate(world, player, stack);
+		super.onArmorTick(world, player, stack);
 		updateTicks++;
 		ItemStack armorHelmet = player.inventory.armorItemInSlot(3);
 		if(armorHelmet!=null && armorHelmet.getItem() instanceof ItemTCCompositeSuit){
