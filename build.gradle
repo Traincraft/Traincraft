@@ -11,6 +11,13 @@ buildscript {
     }
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: 'idea'
+
+repositories {
+    maven {
+        url "http://dvs1.progwml6.com/files/maven"
+    }
+}
 
 ext.configFile = file "build.properties"
 configFile.withReader {
@@ -34,7 +41,9 @@ minecraft {
     replace "@VERSION@", config.modVersion.toString()
 }
 
-dependencies {}
+dependencies {
+    deobfCompile "mezz.jei:jei_" + config.minecraftVersion.toString() + ":" + config.jeiVersion.toString()
+}
 
 processResources {
     inputs.property "version", config.modVersion

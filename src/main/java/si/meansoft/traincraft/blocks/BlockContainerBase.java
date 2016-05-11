@@ -8,6 +8,7 @@ import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
@@ -18,6 +19,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import si.meansoft.traincraft.Traincraft;
+import si.meansoft.traincraft.network.CommonProxy;
 import si.meansoft.traincraft.network.GuiHandler;
 
 /**
@@ -29,11 +31,15 @@ public class BlockContainerBase extends BlockBase implements ITileEntityProvider
     protected int guiId = -1;
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
 
-    public BlockContainerBase(Material materialIn, String name, Class<? extends TileEntity> tileClass) {
-        super(materialIn, name, true);
+    public BlockContainerBase(Material materialIn, String name, Class<? extends TileEntity> tileClass, RenderType renderType) {
+        super(materialIn, name, renderType);
         this.isBlockContainer = true;
         this.tileClass = tileClass;
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
+    }
+    public BlockContainerBase(Material materialIn, String name, Class<? extends TileEntity> tileClass, TileEntitySpecialRenderer specialRenderer){
+        this(materialIn, name, tileClass, RenderType.OBJ);
+        CommonProxy.addOBJRender(tileClass, specialRenderer);
     }
 
     public BlockContainerBase addGuiContainer(int id, Class<? extends GuiContainer> gui, Class<? extends Container> con){

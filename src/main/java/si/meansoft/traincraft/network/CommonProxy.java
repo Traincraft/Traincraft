@@ -8,8 +8,10 @@
 package si.meansoft.traincraft.network;
 
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -27,6 +29,7 @@ public class CommonProxy {
 
     protected static List<Item> renderList = new ArrayList<Item>();
     protected static List<ItemBlock> forgeRender = new ArrayList<ItemBlock>();
+    protected static HashMap<Class<? extends TileEntity>, TileEntitySpecialRenderer> objRender = new HashMap<Class<? extends TileEntity>, TileEntitySpecialRenderer>();
     public static SimpleNetworkWrapper wrapper;
 
     public void preInit(FMLPreInitializationEvent event){}
@@ -47,6 +50,12 @@ public class CommonProxy {
     public static void addForgeRender(ItemBlock block){
         if(!forgeRender.contains(block)){
             forgeRender.add(block);
+        }
+    }
+
+    public static void addOBJRender(Class<? extends TileEntity> tileEntity, TileEntitySpecialRenderer specialRenderer){
+        if(!objRender.containsKey(tileEntity)){
+            objRender.put(tileEntity, specialRenderer);
         }
     }
 

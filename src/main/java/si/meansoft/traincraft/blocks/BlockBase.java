@@ -18,9 +18,9 @@ public class BlockBase extends Block {
 
     private Block instance;
 
-    public BlockBase(Material materialIn, String name, boolean forgeModel) {
+    public BlockBase(Material materialIn, String name, RenderType renderType) {
         super(materialIn);
-        Traincraft.registerBlock(this, name, forgeModel);
+        Traincraft.registerBlock(this, name, renderType);
         this.instance = ForgeRegistries.BLOCKS.getValue(getRegistryName());
     }
 
@@ -60,6 +60,12 @@ public class BlockBase extends Block {
         ToolEnum(String tool) {
             this.tool = tool;
         }
+    }
+
+    public enum  RenderType{
+        NORMAL,
+        FORGEJSON,
+        OBJ
     }
 
 }

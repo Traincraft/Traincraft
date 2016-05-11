@@ -10,10 +10,17 @@ package si.meansoft.traincraft.network;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.client.model.obj.OBJLoader;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import si.meansoft.traincraft.Traincraft;
+
+import java.util.Map;
 
 public class ClientProxy extends CommonProxy {
 
@@ -28,6 +35,10 @@ public class ClientProxy extends CommonProxy {
             if(item != null) {
                 registerForgeBlock(item);
             }
+        }
+        OBJLoader.INSTANCE.addDomain(Traincraft.NAME);
+        for(Map.Entry<Class<? extends TileEntity>, TileEntitySpecialRenderer> entry : objRender.entrySet()){
+            ClientRegistry.bindTileEntitySpecialRenderer(entry.getKey(), entry.getValue());
         }
     }
 
