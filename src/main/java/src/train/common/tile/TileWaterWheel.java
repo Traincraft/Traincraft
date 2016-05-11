@@ -27,7 +27,7 @@ import src.train.common.core.handlers.PacketHandler;
 import src.train.common.library.Info;
 import cpw.mods.fml.common.FMLCommonHandler;
 
-public class TileWaterWheel extends TileEntity/*TileEntityElectrical*/ implements IEnergySource{
+public class TileWaterWheel extends TileEntity/*TileEntityElectrical*/ implements IEnergySource {
 	private int facingMeta;
 	private int waterDirection;
 	Material blockMaterial;
@@ -307,13 +307,12 @@ public class TileWaterWheel extends TileEntity/*TileEntityElectrical*/ implement
 	public boolean isAddedToEnergyNet() {
 		return this.addedToEnergyNet;
 	}*/
-	/**
-	 * IC2
-	 * @return
-	 */
+	
 	@Override
-	public int getMaxEnergyOutput() {
-		return this.production;
+	public int getSourceTier() {
+		// TODO: Should this really be this low or is there a mistake?
+		// NOTE: This was deduced from previously existing getMaxEnergyOutput
+		return 0; //Microvoltage
 	}
 	/*@Override
 	public float getRequest(ForgeDirection direction) {

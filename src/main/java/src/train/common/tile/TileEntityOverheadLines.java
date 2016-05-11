@@ -61,6 +61,7 @@ public class TileEntityOverheadLines extends TileEntity implements IEnergySink{
 			 * IC2
 			 */
 			if (isSimulating()&&!addedToEnergyNet) {
+				//TODO: This is require by IC2 to know about this energy tile
 				//MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
 			}
 		}
@@ -153,12 +154,12 @@ public class TileEntityOverheadLines extends TileEntity implements IEnergySink{
 		Front=par1NBTTagCompound.getBoolean("Front");
 	}
 	@Override
-	public double demandedEnergyUnits() {
+	public double getDemandedEnergy() {
 		return this.getMaxEnergy() - this.getEnergy();
 	}
 
 	@Override
-	public double injectEnergyUnits(ForgeDirection directionFrom, double amount) {
+	public double injectEnergy(ForgeDirection directionFrom, double amount, double voltage) {
 		this.energy+=amount;
 		isProvider = true;
 		if(this.energy>this.getMaxEnergy()){
@@ -168,6 +169,13 @@ public class TileEntityOverheadLines extends TileEntity implements IEnergySink{
 		}
 		return 0;
 	}
+
+	@Override
+	public int getSinkTier() {
+		// NOTE: This was deduced from previously existing getMaxSafeInputs value 1024
+		return 3; // High Voltage
+	}
+	
 	public double getEnergy() {
 		return this.energy;
 	}
@@ -178,10 +186,7 @@ public class TileEntityOverheadLines extends TileEntity implements IEnergySink{
 	public double getMaxEnergy() {
 		return this.maxEnergy;
 	}
-	@Override
-	public int getMaxSafeInput() {
-		return 1024;
-	}
+	
 	@Override
 	public boolean acceptsEnergyFrom(TileEntity emitter,
 			ForgeDirection direction) {

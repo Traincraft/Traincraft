@@ -5,6 +5,8 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -13,6 +15,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.util.ForgeDirection;
 import src.train.common.blocks.BlockOpenHearthFurnace;
 import src.train.common.core.handlers.PacketHandler;
@@ -101,10 +104,10 @@ public class TileEntityOpenHearthFurnace extends TileEntity implements IInventor
 	public void readFromNBT(NBTTagCompound nbtTag) {
 		super.readFromNBT(nbtTag);
 		facing = ForgeDirection.getOrientation(nbtTag.getByte("Orientation"));
-		NBTTagList nbttaglist = nbtTag.getTagList("Items");
+		NBTTagList nbttaglist = nbtTag.getTagList("Items", Constants.NBT.TAG_COMPOUND);
 		furnaceItemStacks = new ItemStack[getSizeInventory()];
 		for (int i = 0; i < nbttaglist.tagCount(); i++) {
-			NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist.tagAt(i);
+			NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
 			byte byte0 = nbttagcompound1.getByte("Slot");
 			if (byte0 >= 0 && byte0 < furnaceItemStacks.length) {
 				this.furnaceItemStacks[byte0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
@@ -207,7 +210,7 @@ public class TileEntityOpenHearthFurnace extends TileEntity implements IInventor
 			}
 		}
 		if (flag1) {
-			onInventoryChanged();
+			markDirty();
 		}
 	}
 
@@ -290,29 +293,28 @@ public class TileEntityOpenHearthFurnace extends TileEntity implements IInventor
 			return 0;
 		}
 		Item var1 = it.getItem();
-		if (var1 < 256 && Block.blocksList[var1].blockMaterial == Material.wood)
+		if (Item.getIdFromItem(var1) < 256 && Block.getBlockFromItem(var1).getMaterial() == Material.wood)
 			return 300;
-		else if (var1 == Item.itemRegistry.getObject("stick"))
+		if (var1 == Items.stick)
 			return 100;
-		else if (var1 == Item.itemRegistry.getObject("coal"))
+		if (var1 == Items.coal)
 			return 2600;
-		else if (var1 == Item.itemRegistry.getObject("bucketLava"))
+		if (var1 == Items.lava_bucket)
 			return 20000;
-		else if (var1 == Block.sapling.blockID)
+		if (var1 == Item.getItemFromBlock(Blocks.sapling))
 			return 100;
-		else if (var1 == Item.itemRegistry.getObject("blazeRod"))
+		if (var1 == Items.blaze_rod)
 			return 2500;
-		else if (var1 == BlockIDs.oreTC.blockID && it.getItemDamage() == 1)
+		if (var1 == Item.getItemFromBlock(BlockIDs.oreTC.block) && it.getItemDamage() == 1)
 			return 2500;
-		else if (var1 == BlockIDs.oreTC.blockID && it.getItemDamage() == 2)
+		if (var1 == Item.getItemFromBlock(BlockIDs.oreTC.block) && it.getItemDamage() == 2)
 			return 2500;
-		else if (var1 == ItemIDs.diesel.itemID)
+		if (var1 == ItemIDs.diesel.item)
 			return 4000;
-		else if (var1 == ItemIDs.refinedFuel.itemID)
+		if (var1 == ItemIDs.refinedFuel.item)
 			return 6000;
 		int ret = GameRegistry.getFuelValue(it);
 		return ret;
-
 	}
 
 	@Override

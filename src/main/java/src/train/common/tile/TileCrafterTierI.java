@@ -103,7 +103,7 @@ public class TileCrafterTierI extends TileEntity implements IInventory, ITier {
 		NBTTagList nbttaglist = nbtTag.getTagList("Items", Constants.NBT.TAG_COMPOUND);
 		this.crafterInventory = new ItemStack[this.getSizeInventory()];
 		for (int i = 0; i < nbttaglist.tagCount(); i++) {
-			NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist.getCompoundTagAt(i);
+			NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
 			byte byte0 = nbttagcompound1.getByte("Slot");
 			if (byte0 >= 0 && byte0 < crafterInventory.length) {
 				this.crafterInventory[byte0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
@@ -112,7 +112,7 @@ public class TileCrafterTierI extends TileEntity implements IInventory, ITier {
 
 		NBTTagList nbttaglist2 = nbtTag.getTagList("Known", Constants.NBT.TAG_COMPOUND);
 		for (int i = 0; i < nbttaglist2.tagCount(); i++) {
-			NBTTagCompound nbttagcompound2 = (NBTTagCompound) nbttaglist2.getCompoundTagAt(i);
+			NBTTagCompound nbttagcompound2 = nbttaglist2.getCompoundTagAt(i);
 			byte byte1 = nbttagcompound2.getByte("Recipe");
 			if (byte1 >= 0) {
 				if (!listContains(knownRecipes, ItemStack.loadItemStackFromNBT(nbttagcompound2))) {
