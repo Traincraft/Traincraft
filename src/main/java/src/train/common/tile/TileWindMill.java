@@ -145,8 +145,14 @@ public class TileWindMill extends TileEntity implements IEnergySource {
 		return true;
 	}
 
-	@Override
 	public int getMaxEnergyOutput() {return 10;}
+	
+	@Override
+	public int getSourceTier() {
+		// TODO: Should this really be this low or is there a mistake?
+		// NOTE: This was deduced from getMaxEnergyOutput
+		return 1; //Low Voltage
+	}
 
 	@Override
 	public boolean emitsEnergyTo(TileEntity receiver, ForgeDirection direction) {

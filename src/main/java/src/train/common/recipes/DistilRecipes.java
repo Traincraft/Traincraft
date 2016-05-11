@@ -60,19 +60,20 @@ public class DistilRecipes {
 		return this.experienceList.containsKey(Integer.valueOf(i)) ? ((Float) this.experienceList.get(Integer.valueOf(i))).floatValue() : 0.0F;
 	}
 
-	public int getPlasticChance(int i) {
-		if (this.plasticChanceList.containsKey(Integer.valueOf(i))) {
-			return (int) ((Float) this.plasticChanceList.get(Integer.valueOf(i))).floatValue();
+	public int getPlasticChance(Item item) {
+		int i = Item.getIdFromItem(item);
+		if (this.plasticChanceList.containsKey(i)) {
+			return (int) ((Float) this.plasticChanceList.get(i)).floatValue();
 		}
 		return 0;
 	}
 
-	public ItemStack getSmeltingResult(int i) {
-		return (ItemStack) smeltingList.get(Integer.valueOf(i));
+	public ItemStack getSmeltingResult(Item i) {
+		return (ItemStack) smeltingList.get(Item.getIdFromItem(i));
 	}
 
-	public ItemStack getPlasticResult(int i) {
-		return (ItemStack) plasticList.get(Integer.valueOf(i));
+	public ItemStack getPlasticResult(Item i) {
+		return (ItemStack) plasticList.get(Item.getIdFromItem(i));
 	}
 
 	public Map getSmeltingList() {

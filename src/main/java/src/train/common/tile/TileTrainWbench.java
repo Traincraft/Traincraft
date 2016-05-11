@@ -14,6 +14,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.util.ForgeDirection;
 import src.train.common.core.handlers.PacketHandler;
 
@@ -99,10 +100,10 @@ public class TileTrainWbench extends TileEntity implements IInventory {
 	public void readFromNBT(NBTTagCompound nbtTag) {
 		super.readFromNBT(nbtTag);
 		facing = ForgeDirection.getOrientation(nbtTag.getByte("Orientation"));
-		NBTTagList tagList = nbtTag.getTagList("Items");
+		NBTTagList tagList = nbtTag.getTagList("Items", Constants.NBT.TAG_COMPOUND);
 		workbenchItemStacks = new ItemStack[getSizeInventory()];
 		for (int i = 0; i < tagList.tagCount(); ++i) {
-			NBTTagCompound tagCompound = (NBTTagCompound) tagList.tagAt(i);
+			NBTTagCompound tagCompound = tagList.getCompoundTagAt(i);
 			byte slot = tagCompound.getByte("Slot");
 			if (slot >= 0 && slot < workbenchItemStacks.length) {
 				workbenchItemStacks[slot] = ItemStack.loadItemStackFromNBT(tagCompound);
