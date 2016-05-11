@@ -123,30 +123,30 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityBogie.class, new RenderBogie());
 
 		ClientRegistry.bindTileEntitySpecialRenderer(TileStopper.class, new RenderStopper());
-		MinecraftForgeClient.registerItemRenderer(Item.getItemById(BlockIDs.stopper.blockID), new ItemRenderStopper());
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockIDs.stopper.block), new ItemRenderStopper());
 		
 		//ClientRegistry.bindTileEntitySpecialRenderer(TileBook.class, new RenderTCBook());
 		//MinecraftForgeClient.registerItemRenderer(BlockIDs.book.blockID, new ItemRenderBook());
 
 		ClientRegistry.bindTileEntitySpecialRenderer(TileSignal.class, new RenderSignal());
-		MinecraftForgeClient.registerItemRenderer(Item.getItemById(BlockIDs.signal.blockID), new ItemRenderSignal());
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockIDs.signal.block), new ItemRenderSignal());
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileLantern.class, new RenderLantern());
-		MinecraftForgeClient.registerItemRenderer(Item.getItemById(BlockIDs.lantern.blockID), new ItemRenderLantern());
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockIDs.lantern.block), new ItemRenderLantern());
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileWaterWheel.class, new RenderWaterWheel());
-		MinecraftForgeClient.registerItemRenderer(Item.getItemById(BlockIDs.waterWheel.blockID), new ItemRenderWaterWheel());
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockIDs.waterWheel.block), new ItemRenderWaterWheel());
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileWindMill.class, new RenderWindMill());
-		MinecraftForgeClient.registerItemRenderer(Item.getItemById(BlockIDs.windMill.blockID), new ItemRenderWindMill());
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockIDs.windMill.block), new ItemRenderWindMill());
 
 		ClientRegistry.bindTileEntitySpecialRenderer(TileGeneratorDiesel.class, new RenderGeneratorDiesel());
-		MinecraftForgeClient.registerItemRenderer(Item.getItemById(BlockIDs.generatorDiesel.blockID), new ItemRenderGeneratorDiesel());
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockIDs.generatorDiesel.block), new ItemRenderGeneratorDiesel());
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileTCRail.class, new RenderTCRail());
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileBridgePillar.class, new RenderBridgePillar());
-		MinecraftForgeClient.registerItemRenderer(Item.getItemById(BlockIDs.bridgePillar.blockID), new ItemRenderBridgePillar());
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockIDs.bridgePillar.block), new ItemRenderBridgePillar());
 	}
 
 	@Override

@@ -7,6 +7,7 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.entity.player.PlayerCapabilities;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.ContainerPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -34,7 +35,7 @@ public class FakePlayer extends EntityPlayer {
 		super(world, "");
 		inventory = new InventoryPlayer(this);
 		inventory.currentItem = 0;
-		inventory.setInventorySlotContents(0, new ItemStack(Item.getItemById(278), 1, 0));//278 is diamond pickaxe
+		inventory.setInventorySlotContents(0, new ItemStack(Items.diamond_pickaxe, 1, 0));
 		foodStats = new FoodStats();
 		flyToggleTimer = 0;
 		// score = 0;

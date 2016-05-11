@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
@@ -48,128 +49,117 @@ public class ComponentVillageTrainstation extends StructureVillagePieces.Village
 
 			this.boundingBox.offset(0, this.averageGroundLevel - this.boundingBox.maxY + 9 - 1, 0);
 		}
-		this.fillWithBlocks(world, structureboundingbox, 1, 1, 1, 7, 5, 4, Block.getBlockById(0), Block.getBlockById(0), false);
-		this.fillWithBlocks(world, structureboundingbox, 0, 0, 0, 8, 0, 5, Block.getBlockFromName("brick"), Block.getBlockFromName("brick"), false);
-		this.fillWithBlocks(world, structureboundingbox, 0, 5, 0, 8, 5, 5, Block.getBlockFromName("brick"), Block.getBlockFromName("brick"), false);
-		this.fillWithBlocks(world, structureboundingbox, 0, 6, 1, 8, 6, 4, Block.getBlockFromName("brick"), Block.getBlockFromName("brick"), false);
-		this.fillWithBlocks(world, structureboundingbox, 0, 7, 2, 8, 7, 3, Block.getBlockFromName("brick"), Block.getBlockFromName("brick"), false);
-		//oak stairs are id 53
-		int i = this.getMetadataWithOffset(Block.getBlockById(53), 3);
-		int j = this.getMetadataWithOffset(Block.getBlockById(53), 2);
+		this.fillWithBlocks(world, structureboundingbox, 1, 1, 1, 7, 5, 4, Blocks.air, Blocks.air, false);
+		this.fillWithBlocks(world, structureboundingbox, 0, 0, 0, 8, 0, 5, Blocks.brick_block, Blocks.brick_block, false);
+		this.fillWithBlocks(world, structureboundingbox, 0, 5, 0, 8, 5, 5, Blocks.brick_block, Blocks.brick_block, false);
+		this.fillWithBlocks(world, structureboundingbox, 0, 6, 1, 8, 6, 4, Blocks.brick_block, Blocks.brick_block, false);
+		this.fillWithBlocks(world, structureboundingbox, 0, 7, 2, 8, 7, 3, Blocks.brick_block, Blocks.brick_block, false);
+		int i = this.getMetadataWithOffset(Blocks.oak_stairs, 3);
+		int j = this.getMetadataWithOffset(Blocks.oak_stairs, 2);
 		int k;
 		int l;
 
 		for (k = -1; k <= 2; ++k) {
 			for (l = 0; l <= 8; ++l) {
-				this.placeBlockAtCurrentPosition(world, Block.getBlockById(53), i, l, 6 + k, k, structureboundingbox);
-				this.placeBlockAtCurrentPosition(world, Block.getBlockById(53), j, l, 6 + k, 5 - k, structureboundingbox);
+				this.placeBlockAtCurrentPosition(world, Blocks.oak_stairs, i, l, 6 + k, k, structureboundingbox);
+				this.placeBlockAtCurrentPosition(world, Blocks.oak_stairs, j, l, 6 + k, 5 - k, structureboundingbox);
 			}
 		}
 
-		this.fillWithBlocks(world, structureboundingbox, 0, 1, 0, 0, 1, 5, Block.getBlockFromName("brick"), Block.getBlockFromName("brick"), false);
-		this.fillWithBlocks(world, structureboundingbox, 1, 1, 5, 8, 1, 5, Block.getBlockFromName("brick"), Block.getBlockFromName("brick"), false);
-		this.fillWithBlocks(world, structureboundingbox, 8, 1, 0, 8, 1, 4, Block.getBlockFromName("brick"), Block.getBlockFromName("brick"), false);
-		this.fillWithBlocks(world, structureboundingbox, 2, 1, 0, 7, 1, 0, Block.getBlockFromName("brick"), Block.getBlockFromName("brick"), false);
-		this.fillWithBlocks(world, structureboundingbox, 0, 2, 0, 0, 4, 0, Block.getBlockFromName("brick"), Block.getBlockFromName("brick"), false);
-		this.fillWithBlocks(world, structureboundingbox, 0, 2, 5, 0, 4, 5, Block.getBlockFromName("brick"), Block.getBlockFromName("brick"), false);
-		this.fillWithBlocks(world, structureboundingbox, 8, 2, 5, 8, 4, 5, Block.getBlockFromName("brick"), Block.getBlockFromName("brick"), false);
-		this.fillWithBlocks(world, structureboundingbox, 8, 2, 0, 8, 4, 0, Block.getBlockFromName("brick"), Block.getBlockFromName("brick"), false);
-		//id 5 is oak wood planks
-		this.fillWithBlocks(world, structureboundingbox, 0, 2, 1, 0, 4, 4, Block.getBlockById(5), Block.getBlockById(5), false);
-		this.fillWithBlocks(world, structureboundingbox, 1, 2, 5, 7, 4, 5, Block.getBlockById(5), Block.getBlockById(5), false);
-		this.fillWithBlocks(world, structureboundingbox, 8, 2, 1, 8, 4, 4, Block.getBlockById(5), Block.getBlockById(5), false);
-		this.fillWithBlocks(world, structureboundingbox, 1, 2, 0, 7, 4, 0, Block.getBlockById(5), Block.getBlockById(5), false);
-		//thin glass was actually moved to glass_pane which now has the Id of 102
-		this.placeBlockAtCurrentPosition(world, Block.getBlockById(102), 0, 4, 2, 0, structureboundingbox);
-		this.placeBlockAtCurrentPosition(world, Block.getBlockById(102), 0, 5, 2, 0, structureboundingbox);
-		this.placeBlockAtCurrentPosition(world, Block.getBlockById(102), 0, 6, 2, 0, structureboundingbox);
-		this.placeBlockAtCurrentPosition(world, Block.getBlockById(102), 0, 4, 3, 0, structureboundingbox);
-		this.placeBlockAtCurrentPosition(world, Block.getBlockById(102), 0, 5, 3, 0, structureboundingbox);
-		this.placeBlockAtCurrentPosition(world, Block.getBlockById(102), 0, 6, 3, 0, structureboundingbox);
-		this.placeBlockAtCurrentPosition(world, Block.getBlockById(102), 0, 0, 2, 2, structureboundingbox);
-		this.placeBlockAtCurrentPosition(world, Block.getBlockById(102), 0, 0, 2, 3, structureboundingbox);
-		this.placeBlockAtCurrentPosition(world, Block.getBlockById(102), 0, 0, 3, 2, structureboundingbox);
-		this.placeBlockAtCurrentPosition(world, Block.getBlockById(102), 0, 0, 3, 3, structureboundingbox);
-		this.placeBlockAtCurrentPosition(world, Block.getBlockById(102), 0, 8, 2, 2, structureboundingbox);
-		this.placeBlockAtCurrentPosition(world, Block.getBlockById(102), 0, 8, 2, 3, structureboundingbox);
-		this.placeBlockAtCurrentPosition(world, Block.getBlockById(102), 0, 8, 3, 2, structureboundingbox);
-		this.placeBlockAtCurrentPosition(world, Block.getBlockById(102), 0, 8, 3, 3, structureboundingbox);
-		this.placeBlockAtCurrentPosition(world, Block.getBlockById(102), 0, 2, 3, 5, structureboundingbox);
-		this.placeBlockAtCurrentPosition(world, Block.getBlockById(102), 0, 2, 2, 5, structureboundingbox);
-		this.placeBlockAtCurrentPosition(world, Block.getBlockById(102), 0, 3, 2, 5, structureboundingbox);
-		this.placeBlockAtCurrentPosition(world, Block.getBlockById(102), 0, 3, 3, 5, structureboundingbox);
+		this.fillWithBlocks(world, structureboundingbox, 0, 1, 0, 0, 1, 5, Blocks.brick_block, Blocks.brick_block, false);
+		this.fillWithBlocks(world, structureboundingbox, 1, 1, 5, 8, 1, 5, Blocks.brick_block, Blocks.brick_block, false);
+		this.fillWithBlocks(world, structureboundingbox, 8, 1, 0, 8, 1, 4, Blocks.brick_block, Blocks.brick_block, false);
+		this.fillWithBlocks(world, structureboundingbox, 2, 1, 0, 7, 1, 0, Blocks.brick_block, Blocks.brick_block, false);
+		this.fillWithBlocks(world, structureboundingbox, 0, 2, 0, 0, 4, 0, Blocks.brick_block, Blocks.brick_block, false);
+		this.fillWithBlocks(world, structureboundingbox, 0, 2, 5, 0, 4, 5, Blocks.brick_block, Blocks.brick_block, false);
+		this.fillWithBlocks(world, structureboundingbox, 8, 2, 5, 8, 4, 5, Blocks.brick_block, Blocks.brick_block, false);
+		this.fillWithBlocks(world, structureboundingbox, 8, 2, 0, 8, 4, 0, Blocks.brick_block, Blocks.brick_block, false);
+		this.fillWithBlocks(world, structureboundingbox, 0, 2, 1, 0, 4, 4, Blocks.planks, Blocks.planks, false);
+		this.fillWithBlocks(world, structureboundingbox, 1, 2, 5, 7, 4, 5, Blocks.planks, Blocks.planks, false);
+		this.fillWithBlocks(world, structureboundingbox, 8, 2, 1, 8, 4, 4, Blocks.planks, Blocks.planks, false);
+		this.fillWithBlocks(world, structureboundingbox, 1, 2, 0, 7, 4, 0, Blocks.planks, Blocks.planks, false);
+		this.placeBlockAtCurrentPosition(world, Blocks.glass_pane, 0, 4, 2, 0, structureboundingbox);
+		this.placeBlockAtCurrentPosition(world, Blocks.glass_pane, 0, 5, 2, 0, structureboundingbox);
+		this.placeBlockAtCurrentPosition(world, Blocks.glass_pane, 0, 6, 2, 0, structureboundingbox);
+		this.placeBlockAtCurrentPosition(world, Blocks.glass_pane, 0, 4, 3, 0, structureboundingbox);
+		this.placeBlockAtCurrentPosition(world, Blocks.glass_pane, 0, 5, 3, 0, structureboundingbox);
+		this.placeBlockAtCurrentPosition(world, Blocks.glass_pane, 0, 6, 3, 0, structureboundingbox);
+		this.placeBlockAtCurrentPosition(world, Blocks.glass_pane, 0, 0, 2, 2, structureboundingbox);
+		this.placeBlockAtCurrentPosition(world, Blocks.glass_pane, 0, 0, 2, 3, structureboundingbox);
+		this.placeBlockAtCurrentPosition(world, Blocks.glass_pane, 0, 0, 3, 2, structureboundingbox);
+		this.placeBlockAtCurrentPosition(world, Blocks.glass_pane, 0, 0, 3, 3, structureboundingbox);
+		this.placeBlockAtCurrentPosition(world, Blocks.glass_pane, 0, 8, 2, 2, structureboundingbox);
+		this.placeBlockAtCurrentPosition(world, Blocks.glass_pane, 0, 8, 2, 3, structureboundingbox);
+		this.placeBlockAtCurrentPosition(world, Blocks.glass_pane, 0, 8, 3, 2, structureboundingbox);
+		this.placeBlockAtCurrentPosition(world, Blocks.glass_pane, 0, 8, 3, 3, structureboundingbox);
+		this.placeBlockAtCurrentPosition(world, Blocks.glass_pane, 0, 2, 3, 5, structureboundingbox);
+		this.placeBlockAtCurrentPosition(world, Blocks.glass_pane, 0, 2, 2, 5, structureboundingbox);
+		this.placeBlockAtCurrentPosition(world, Blocks.glass_pane, 0, 3, 2, 5, structureboundingbox);
+		this.placeBlockAtCurrentPosition(world, Blocks.glass_pane, 0, 3, 3, 5, structureboundingbox);
 
 		for (int z = 0; z < 9; z++) {
-			this.placeBlockAtCurrentPosition(world, Block.getBlockFromName("brick"), 0, z, 0, 6, structureboundingbox);
-			//stoneSingleSlab is now stone_slab with an id of 44
-			this.placeBlockAtCurrentPosition(world, Block.getBlockById(44), 4, z, 0, 7, structureboundingbox);
-			this.placeBlockAtCurrentPosition(world, Block.getBlockFromName("rail"), 0, z, 0, 8, structureboundingbox);
-			//the id for stonebrick is 98
-			this.placeBlockAtCurrentPosition(world, Block.getBlockById(98), 0, z, -1, 8, structureboundingbox);
+			this.placeBlockAtCurrentPosition(world, Blocks.brick_block, 0, z, 0, 6, structureboundingbox);
+			this.placeBlockAtCurrentPosition(world, Blocks.stone_slab, 4, z, 0, 7, structureboundingbox);
+			this.placeBlockAtCurrentPosition(world, Blocks.rail, 0, z, 0, 8, structureboundingbox);
+			this.placeBlockAtCurrentPosition(world, Blocks.stonebrick, 0, z, -1, 8, structureboundingbox);
 		}
-		this.placeBlockAtCurrentPosition(world, Block.getBlockFromName("brick"), 0, 2, 0, 7, structureboundingbox);
-		//the id for fence is 85
-		this.placeBlockAtCurrentPosition(world, Block.getBlockById(85), 0, 2, 1, 7, structureboundingbox);
-		this.placeBlockAtCurrentPosition(world, Block.getBlockById(85), 0, 2, 2, 7, structureboundingbox);
-		this.placeBlockAtCurrentPosition(world, Block.getBlockById(85), 0, 2, 3, 7, structureboundingbox);
+		this.placeBlockAtCurrentPosition(world, Blocks.brick_block, 0, 2, 0, 7, structureboundingbox);
+		this.placeBlockAtCurrentPosition(world, Blocks.fence, 0, 2, 1, 7, structureboundingbox);
+		this.placeBlockAtCurrentPosition(world, Blocks.fence, 0, 2, 2, 7, structureboundingbox);
+		this.placeBlockAtCurrentPosition(world, Blocks.fence, 0, 2, 3, 7, structureboundingbox);
 
-		this.placeBlockAtCurrentPosition(world, Block.getBlockFromName("brick"), 0, 6, 0, 7, structureboundingbox);
-		this.placeBlockAtCurrentPosition(world, Block.getBlockById(85), 0, 6, 1, 7, structureboundingbox);
-		this.placeBlockAtCurrentPosition(world, Block.getBlockById(85), 0, 6, 2, 7, structureboundingbox);
-		this.placeBlockAtCurrentPosition(world, Block.getBlockById(85), 0, 6, 3, 7, structureboundingbox);
-		//woodSingleSlab is now wood_slab with an id of 126
-		this.fillWithBlocks(world, structureboundingbox, 1, 4, 7, 7, 4, 7, Block.getBlockById(126), Block.getBlockById(126), false);
-		this.fillWithBlocks(world, structureboundingbox, 1, 4, 6, 7, 4, 6, Block.getBlockById(126), Block.getBlockById(126), false);
-		this.fillWithBlocks(world, structureboundingbox, 1, 4, 8, 7, 4, 8, Block.getBlockById(126), Block.getBlockById(126), false);
-		this.placeBlockAtCurrentPosition(world, Block.getBlockById(85), 0, 0, 1, 6, structureboundingbox);
+		this.placeBlockAtCurrentPosition(world, Blocks.brick_block, 0, 6, 0, 7, structureboundingbox);
+		this.placeBlockAtCurrentPosition(world, Blocks.fence, 0, 6, 1, 7, structureboundingbox);
+		this.placeBlockAtCurrentPosition(world, Blocks.fence, 0, 6, 2, 7, structureboundingbox);
+		this.placeBlockAtCurrentPosition(world, Blocks.fence, 0, 6, 3, 7, structureboundingbox);
+		this.fillWithBlocks(world, structureboundingbox, 1, 4, 7, 7, 4, 7, Blocks.wooden_slab, Blocks.wooden_slab, false);
+		this.fillWithBlocks(world, structureboundingbox, 1, 4, 6, 7, 4, 6, Blocks.wooden_slab, Blocks.wooden_slab, false);
+		this.fillWithBlocks(world, structureboundingbox, 1, 4, 8, 7, 4, 8, Blocks.wooden_slab, Blocks.wooden_slab, false);
+		this.placeBlockAtCurrentPosition(world, Blocks.fence, 0, 0, 1, 6, structureboundingbox);
 		this.placeBlockAtCurrentPosition(world, BlockIDs.lantern.block, 0, 0, 2, 6, structureboundingbox);
-		this.placeBlockAtCurrentPosition(world, Block.getBlockById(85), 0, 8, 1, 6, structureboundingbox);
+		this.placeBlockAtCurrentPosition(world, Blocks.fence, 0, 8, 1, 6, structureboundingbox);
 		this.placeBlockAtCurrentPosition(world, BlockIDs.lantern.block, 0, 8, 2, 6, structureboundingbox);
 
-		this.placeBlockAtCurrentPosition(world, Block.getBlockById(102), 0, 5, 2, 5, structureboundingbox);
-		this.placeBlockAtCurrentPosition(world, Block.getBlockById(102), 0, 6, 2, 5, structureboundingbox);
-		this.fillWithBlocks(world, structureboundingbox, 1, 4, 1, 7, 4, 1, Block.getBlockById(5), Block.getBlockById(5), false);
-		this.fillWithBlocks(world, structureboundingbox, 1, 4, 4, 7, 4, 4, Block.getBlockById(5), Block.getBlockById(5), false);
-		//the id of bookshelf is now 47
-		this.fillWithBlocks(world, structureboundingbox, 4, 3, 4, 7, 3, 4, Block.getBlockById(47), Block.getBlockById(47), false);
-		this.fillWithBlocks(world, structureboundingbox, 5, 3, 5, 6, 3, 5, Block.getBlockById(102), Block.getBlockById(102), false);
-		//fenceIron is now iron_bars and has an id of 101
-		this.fillWithBlocks(world, structureboundingbox, 4, 3, 3, 7, 3, 3, Block.getBlockById(101), Block.getBlockById(101), false);
+		this.placeBlockAtCurrentPosition(world, Blocks.glass_pane, 0, 5, 2, 5, structureboundingbox);
+		this.placeBlockAtCurrentPosition(world, Blocks.glass_pane, 0, 6, 2, 5, structureboundingbox);
+		this.fillWithBlocks(world, structureboundingbox, 1, 4, 1, 7, 4, 1, Blocks.planks, Blocks.planks, false);
+		this.fillWithBlocks(world, structureboundingbox, 1, 4, 4, 7, 4, 4, Blocks.planks, Blocks.planks, false);
+		this.fillWithBlocks(world, structureboundingbox, 4, 3, 4, 7, 3, 4, Blocks.bookshelf, Blocks.bookshelf, false);
+		this.fillWithBlocks(world, structureboundingbox, 5, 3, 5, 6, 3, 5, Blocks.glass_pane, Blocks.glass_pane, false);
+		this.fillWithBlocks(world, structureboundingbox, 4, 3, 3, 7, 3, 3, Blocks.iron_bars, Blocks.iron_bars, false);
 		this.placeBlockAtCurrentPosition(world, BlockIDs.lantern.block, 0, 7, 4, 3, structureboundingbox);
 		this.placeBlockAtCurrentPosition(world, BlockIDs.lantern.block, 0, 4, 4, 3, structureboundingbox);
 
-		this.placeBlockAtCurrentPosition(world, Block.getBlockById(101), 0, 4, 2, 3, structureboundingbox);
-		this.fillWithBlocks(world, structureboundingbox, 4, 1, 3, 7, 1, 3, Block.getBlockById(101), Block.getBlockById(101), false);
-		this.placeBlockAtCurrentPosition(world, Block.getBlockById(5), 0, 7, 1, 3, structureboundingbox);
-		this.placeBlockAtCurrentPosition(world, Block.getBlockById(5), 0, 7, 1, 4, structureboundingbox);
-		this.placeBlockAtCurrentPosition(world, Block.getBlockById(5), 0, 4, 1, 3, structureboundingbox);
-		this.placeBlockAtCurrentPosition(world, Block.getBlockById(5), 0, 4, 1, 4, structureboundingbox);
-		this.placeBlockAtCurrentPosition(world, Block.getBlockById(101), 0, 4, 2, 3, structureboundingbox);
-		this.placeBlockAtCurrentPosition(world, Block.getBlockById(101), 0, 4, 2, 4, structureboundingbox);
-		this.placeBlockAtCurrentPosition(world, Block.getBlockById(101), 0, 7, 2, 3, structureboundingbox);
-		this.placeBlockAtCurrentPosition(world, Block.getBlockById(101), 0, 7, 2, 4, structureboundingbox);
-		this.placeBlockAtCurrentPosition(world, Block.getBlockById(5), 0, 1, 1, 4, structureboundingbox);
-		this.placeBlockAtCurrentPosition(world, Block.getBlockById(53), this.getMetadataWithOffset(Block.getBlockById(53), 1), 1, 1, 3, structureboundingbox);
-		k = this.getMetadataWithOffset(Block.getBlockById(53), 3);
-		this.placeBlockAtCurrentPosition(world, Block.getBlockById(53), k, 3, 1, 4, structureboundingbox);
-		this.placeBlockAtCurrentPosition(world, Block.getBlockById(53), k, 2, 1, 4, structureboundingbox);
-		this.placeBlockAtCurrentPosition(world, Block.getBlockById(85), 0, 2, 1, 3, structureboundingbox);
-		//pressurePlatePlanks is now wooden_pressure_plate with an id of 72
-		this.placeBlockAtCurrentPosition(world, Block.getBlockById(72), 0, 2, 2, 3, structureboundingbox);
+		this.placeBlockAtCurrentPosition(world, Blocks.iron_bars, 0, 4, 2, 3, structureboundingbox);
+		this.fillWithBlocks(world, structureboundingbox, 4, 1, 3, 7, 1, 3, Blocks.iron_bars, Blocks.iron_bars, false);
+		this.placeBlockAtCurrentPosition(world, Blocks.planks, 0, 7, 1, 3, structureboundingbox);
+		this.placeBlockAtCurrentPosition(world, Blocks.planks, 0, 7, 1, 4, structureboundingbox);
+		this.placeBlockAtCurrentPosition(world, Blocks.planks, 0, 4, 1, 3, structureboundingbox);
+		this.placeBlockAtCurrentPosition(world, Blocks.planks, 0, 4, 1, 4, structureboundingbox);
+		this.placeBlockAtCurrentPosition(world, Blocks.iron_bars, 0, 4, 2, 3, structureboundingbox);
+		this.placeBlockAtCurrentPosition(world, Blocks.iron_bars, 0, 4, 2, 4, structureboundingbox);
+		this.placeBlockAtCurrentPosition(world, Blocks.iron_bars, 0, 7, 2, 3, structureboundingbox);
+		this.placeBlockAtCurrentPosition(world, Blocks.iron_bars, 0, 7, 2, 4, structureboundingbox);
+		this.placeBlockAtCurrentPosition(world, Blocks.planks, 0, 1, 1, 4, structureboundingbox);
+		this.placeBlockAtCurrentPosition(world, Blocks.oak_stairs, this.getMetadataWithOffset(Blocks.oak_stairs, 1), 1, 1, 3, structureboundingbox);
+		k = this.getMetadataWithOffset(Blocks.oak_stairs, 3);
+		this.placeBlockAtCurrentPosition(world, Blocks.oak_stairs, k, 3, 1, 4, structureboundingbox);
+		this.placeBlockAtCurrentPosition(world, Blocks.oak_stairs, k, 2, 1, 4, structureboundingbox);
+		this.placeBlockAtCurrentPosition(world, Blocks.fence, 0, 2, 1, 3, structureboundingbox);
+		this.placeBlockAtCurrentPosition(world, Blocks.wooden_pressure_plate, 0, 2, 2, 3, structureboundingbox);
 		this.placeBlockAtCurrentPosition(world, BlockIDs.trainWorkbench.block, 0, 7, 1, 1, structureboundingbox);
-		this.placeBlockAtCurrentPosition(world, Block.getBlockById(0), 0, 1, 1, 0, structureboundingbox);
-		this.placeBlockAtCurrentPosition(world, Block.getBlockById(0), 0, 1, 2, 0, structureboundingbox);
-		//doorWood is now wooden_door with an id of 64
-		this.placeDoorAtCurrentPosition(world, structureboundingbox, random, 1, 1, 0, this.getMetadataWithOffset(Block.getBlockById(64), 1));
+		this.placeBlockAtCurrentPosition(world, Blocks.air, 0, 1, 1, 0, structureboundingbox);
+		this.placeBlockAtCurrentPosition(world, Blocks.air, 0, 1, 2, 0, structureboundingbox);
+		this.placeDoorAtCurrentPosition(world, structureboundingbox, random, 1, 1, 0, this.getMetadataWithOffset(Blocks.wooden_door, 1));
 
-		if (this.getBlockAtCurrentPosition(world, 1, 0, -1, structureboundingbox) == Block.getBlockById(0) && this.getBlockAtCurrentPosition(world, 1, -1, -1, structureboundingbox) != Block.getBlockById(0)) {
-			this.placeBlockAtCurrentPosition(world, Block.getBlockById(44), 4, 1, 0, -1, structureboundingbox);
+		if (this.getBlockAtCurrentPosition(world, 1, 0, -1, structureboundingbox) == Blocks.air && this.getBlockAtCurrentPosition(world, 1, -1, -1, structureboundingbox) != Blocks.air) {
+			this.placeBlockAtCurrentPosition(world, Blocks.stone_slab, 4, 1, 0, -1, structureboundingbox);
 		}
 
 		for (l = 0; l < 6; ++l) {
 			for (int i1 = 0; i1 < 9; ++i1) {
 				this.clearCurrentPositionBlocksUpwards(world, i1, 9, l, structureboundingbox);
-				this.func_151554_b(world, Block.getBlockFromName("brick"), 0, i1, -1, l, structureboundingbox);
+				this.func_151554_b(world, Blocks.brick_block, 0, i1, -1, l, structureboundingbox);
 			}
 		}
 

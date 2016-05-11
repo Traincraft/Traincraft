@@ -9,6 +9,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.item.EntityFallingBlock;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -95,7 +96,7 @@ public class BlockOreTC extends BlockSand {
 			if (canFallBelow(world, x, y - 1, z) && y >= 0) {
 				byte byte0 = 32;
 				if (!world.checkChunksExist(x - byte0, y - byte0, z - byte0, x + byte0, y + byte0, z + byte0)) {
-					world.setBlock(x, y, z, Block.getBlockById(0));
+					world.setBlock(x, y, z, Blocks.air);
 					for (; canFallBelow(world, x, y - 1, z) && y > 0; y--) {
 						if (y > 0) {
 							world.setBlockMetadataWithNotify(x, y, z, BlockIDs.oreTC.blockID, 1);
@@ -113,11 +114,10 @@ public class BlockOreTC extends BlockSand {
 
 	public static boolean canFallBelow(World world, int x, int y, int z) {
 		Block var4 = world.getBlock(x, y, z);
-		if (var4 == Block.getBlockById(0)) {
+		if (var4 == Blocks.air) {
 			return true;
 		}
-		//id 51 is fire
-		else if (var4 == Block.getBlockById(51)) {
+		else if (var4 == Blocks.fire) {
 			return true;
 		}
 		else {

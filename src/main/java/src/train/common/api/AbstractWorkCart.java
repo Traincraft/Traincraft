@@ -3,6 +3,8 @@ package src.train.common.api;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -249,15 +251,15 @@ public abstract class AbstractWorkCart extends EntityRollingStock implements IIn
 				return 200;
 			if (var2 instanceof ItemSword && ((ItemSword) var2).getToolMaterialName().equals("WOOD"))
 				return 200;
-			if (var1 == 280)//280 is stick
+			if (var1 == Item.getIdFromItem(Items.stick))
 				return 100;
-			if (var1 == 263)//263 is coal
+			if (var1 == Item.getIdFromItem(Items.coal))
 				return 1600;
-			if (var1 == 327)//327 is lava bucket
+			if (var1 == Item.getIdFromItem(Items.lava_bucket))
 				return 20000;
-			if (var1 == 6)//6 is sapling
+			if (var1 == Block.getIdFromBlock(Blocks.sapling))//6 is sapling
 				return 100;
-			if (var1 == 369)//369 is blaze rod
+			if (var1 == Item.getIdFromItem(Items.blaze_rod))
 				return 2400;
 			return GameRegistry.getFuelValue(par0ItemStack);
 		}

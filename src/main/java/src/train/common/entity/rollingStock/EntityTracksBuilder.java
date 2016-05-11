@@ -13,6 +13,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -712,7 +714,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 	private void moveStacks() {
 		if (BuilderInvent[1] == null) {
 			for (int i = 8; i <= 10; i++) {
-				if (BuilderInvent[i] != null && (RailTools.isTrackItem(BuilderInvent[i]) || Item.getIdFromItem(BuilderInvent[i].getItem()) == Block.getIdFromBlock(Block.getBlockFromName("rail")) || Item.getIdFromItem(BuilderInvent[i].getItem()) == Block.getIdFromBlock(Block.getBlockFromName("railPowered")) || (Item.getIdFromItem(BuilderInvent[i].getItem()) == Block.getIdFromBlock(Block.getBlockFromName("railDetector.blockID"))))) {
+				if (BuilderInvent[i] != null && (RailTools.isTrackItem(BuilderInvent[i]) || Item.getIdFromItem(BuilderInvent[i].getItem()) == Block.getIdFromBlock(Blocks.rail) || Item.getIdFromItem(BuilderInvent[i].getItem()) == Block.getIdFromBlock(Block.getBlockFromName("railPowered")) || (Item.getIdFromItem(BuilderInvent[i].getItem()) == Block.getIdFromBlock(Block.getBlockFromName("railDetector.blockID"))))) {
 					BuilderInvent[1] = BuilderInvent[i].copy();
 					decrStackSize(i, 64);
 					break;
@@ -754,7 +756,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 		if ((Block.getIdFromBlock(worldObj.getBlock(i, j, k)) != 0)) {
 			ArrayList<ItemStack> stacks = new ArrayList<ItemStack>(TrainModBlockUtil.getItemStackFromBlock(worldObj, (int) i, (int) j, (int) k));//underBlockStack.getItem().getMetadata(underBlockStack.getItemDamage())
 			for (ItemStack s : stacks) {
-				if( (BlockRailBase.getBlockFromName("rail") == Block.getBlockFromItem(s.getItem())))return;
+				if( (BlockRailBases.rail== Block.getBlockFromItem(s.getItem())))return;
 				if (Item.getIdFromItem(s.getItem()) != 0 && (s.getItem() != Item.getItemFromBlock(Block.getBlockFromName("glass"))) && (Item.getIdFromItem(s.getItem())) != Item.getIdFromItem(tunnelBlockStack.getItem())) {// && (isBlockInteresting(s))) {// can't spawn rails or air blocks or glass blocks
 					if ((Block.getIdFromBlock(worldObj.getBlock(i, j, k)) != Item.getIdFromItem(tunnelBlockStack.getItem()))) {
 						putInInvent(s);
@@ -800,7 +802,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 	 * @return is not harvested
 	 */
 	private boolean shouldIgnoreBlockForHarvesting(Vec3 pos, int id) {
-		if (id == 0 || Block.getBlockById(id) == null || id == Block.getIdFromBlock(Block.getBlockFromName("bedrock")) || id == Block.getIdFromBlock(Block.getBlockFromName("fire")) || id == Block.getIdFromBlock(Block.getBlockFromName("portal")) || id == Block.getIdFromBlock(Block.getBlockFromName("endPortal")) || Block.getBlockById(id) instanceof BlockLiquid || id == 55 || id == 70 || id == 72) {
+		if (id == 0 || Block.getBlockById(id) == null || id == Block.getIdFromBlock(Blocks.bedrock) || id == Block.getIdFromBlock(Blocks.fire) || id == Block.getIdFromBlock(Blocks.portal) || id == Block.getIdFromBlock(Blocks.end_portal) || Block.getBlockById(id) instanceof BlockLiquid || id == 55 || id == 70 || id == 72) {
 			return true;
 		}
 		return false;
@@ -852,7 +854,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 		if (!tunnelActive && block != null && (Block.getIdFromBlock(worldObj.getBlock(i, j, k)) != Item.getIdFromItem(block.getItem()))) {
 			// worldObj.getBlockId(i-1,j+3,k) == Block.dirt.blockID || worldObj.getBlockId(i-1,j+3,k) == 8 || worldObj.getBlockId(i-1,j+3,k) == 9 || worldObj.getBlockId(i-1,j+3,k) == 10 || worldObj.getBlockId(i-1,j+3,k) == 11 || worldObj.getBlockId(i-1,j+3,k) == 12 || worldObj.getBlockId(i-1,j+3,k) == 13 || worldObj.getBlockId(i-1,j+3,k) == 1){
 			getBlockList(worldObj, i, j, k);
-			worldObj.setBlock(i, j, k, Block.getBlockById(Item.getIdFromItem(block.getItem())), block.getItem().getMetadata(block.getItemDamage()), 3);
+			worldObj.setBlock(i, j, k, Block.getBlockFromItem(block.getItem()), block.getItem().getMetadata(block.getItemDamage()), 3);
 			decrStackInInvent(inv, 1, 1);
 		}
 	}
@@ -876,24 +878,24 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 				return true;
 
 			}
-			if ((Item.getIdFromItem(BuilderInvent[1].getItem()) == Item.ingotIron.itemID && getFuel() > 0)) {
+			if ((Item.getIdFromItem(BuilderInvent[1].getItem()) == Item.getIdFromItem(Items.iron_ingot) && getFuel() > 0)) {
 				trackfuel = 1;
-				tracksStack = new ItemStack(Block.getBlockFromName("rail"));
+				tracksStack = new ItemStack(Blocks.rail);
 				return true;
 			}
 			if (BuilderInvent[1] != null && PluginIndustrialCraft.getItems().containsKey(PluginIndustrialCraft.getNames()[32]) && getFuel() > 0) {//
 				if ((Item.getIdFromItem(BuilderInvent[1].getItem()) == Item.getIdFromItem(PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[32]).getItem())) && getFuel() > 0) {
 					trackfuel = 1;
-					tracksStack = new ItemStack(Block.getBlockFromName("rail"));
+					tracksStack = new ItemStack(Blocks.rail);
 					return true;
 				}
 			}
 			if (Item.getIdFromItem(BuilderInvent[1].getItem()) == Item.getIdFromItem(ItemIDs.steel.item) && getFuel() > 0) {
 				trackfuel = 1;
-				tracksStack = new ItemStack(Block.getBlockFromName("rail"));
+				tracksStack = new ItemStack(Blocks.rail);
 				return true;
 			}
-			if ((Item.getIdFromItem(BuilderInvent[1].getItem()) == Block.getIdFromBlock(Block.getBlockFromName("rail"))) || (Item.getIdFromItem(BuilderInvent[1].getItem()) == Block.getIdFromBlock(Block.getBlockFromName("railPowered"))) || (Item.getIdFromItem(BuilderInvent[1].getItem()) == Block.getIdFromBlock(Block.getBlockFromName("railDetector")))) {
+			if ((Item.getIdFromItem(BuilderInvent[1].getItem()) == Block.getIdFromBlock(Blocks.rail)) || (Item.getIdFromItem(BuilderInvent[1].getItem()) == Block.getIdFromBlock(Blocks.golden_rail)) || (Item.getIdFromItem(BuilderInvent[1].getItem()) == Block.getIdFromBlock(Blocks.detector_rail))) {
 				if (getFuel() > 0) {
 					tracksStack = BuilderInvent[1].copy();
 					trackfuel = 1;
@@ -984,7 +986,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 		getBlockList(worldObj, i + d, j + hY + 1, k + 1);
 		getBlockList(worldObj, i + d, j + hY + 2, k - 1);
 		getBlockList(worldObj, i + d, j + hY + 2, k + 1);
-		if (((worldObj.getBlock(i + d, j + hY, k - 1) == Block.getBlockFromName("rail")) || Block.getIdFromBlock(worldObj.getBlock(i + d, j + hY, k - 1))==BlockIDs.tcRail.blockID || Block.getIdFromBlock(worldObj.getBlock(i + d, j + hY, k - 1))==BlockIDs.tcRailGag.blockID)&& followTracks) {
+		if (((worldObj.getBlock(i + d, j + hY, k - 1) == Blocks.rail) || Block.getIdFromBlock(worldObj.getBlock(i + d, j + hY, k - 1))==BlockIDs.tcRail.blockID || Block.getIdFromBlock(worldObj.getBlock(i + d, j + hY, k - 1))==BlockIDs.tcRailGag.blockID)&& followTracks) {
 		}
 		else {
 			//worldObj.setBlockMetadataWithNotify(i + d, j+ hY, k - 1, 0);
@@ -992,7 +994,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 			this.harvestBlock_do(vec);
 		}
 
-		if (((Block.getBlockFromName("rail") == worldObj.getBlock(i + d, j + hY, k + 1)) || Block.getIdFromBlock(worldObj.getBlock(i + d, j + hY, k + 1))==BlockIDs.tcRail.blockID || Block.getIdFromBlock(worldObj.getBlock(i + d, j + hY, k + 1))==BlockIDs.tcRailGag.blockID ) && followTracks) {
+		if (((Blocks.rail== worldObj.getBlock(i + d, j + hY, k + 1)) || Block.getIdFromBlock(worldObj.getBlock(i + d, j + hY, k + 1))==BlockIDs.tcRail.blockID || Block.getIdFromBlock(worldObj.getBlock(i + d, j + hY, k + 1))==BlockIDs.tcRailGag.blockID ) && followTracks) {
 		}
 		else {
 			//worldObj.setBlockMetadataWithNotify(i + d, j+ hY, k + 1, 0);
@@ -1000,7 +1002,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 			this.harvestBlock_do(vec);
 		}
 
-		if ((Block.getBlockFromName("rail")==(worldObj.getBlock(i + d, j + hY, k)) || Block.getIdFromBlock(worldObj.getBlock(i + d, j + hY, k))==BlockIDs.tcRail.blockID || Block.getIdFromBlock(worldObj.getBlock(i + d, j + hY, k))==BlockIDs.tcRailGag.blockID)&& followTracks) {
+		if ((Blocks.rail==(worldObj.getBlock(i + d, j + hY, k)) || Block.getIdFromBlock(worldObj.getBlock(i + d, j + hY, k))==BlockIDs.tcRail.blockID || Block.getIdFromBlock(worldObj.getBlock(i + d, j + hY, k))==BlockIDs.tcRailGag.blockID)&& followTracks) {
 		}
 		else {
 			//worldObj.setBlockMetadataWithNotify(i + d, j+ hY, k, 0);
@@ -1122,13 +1124,13 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 				decrStackInInvent(5, 1, 1);
 			}
 			if (upperCenterBlockStack == null)
-				worldObj.setBlock(i + iX, j + hY + 4, k, Block.getBlockById(1));
+				worldObj.setBlock(i + iX, j + hY + 4, k, Blocks.stone);
 			worldObj.setBlockToAir(i + iX, j + hY, k - 1);
 			worldObj.setBlockToAir(i + iX, j + hY, k + 1);
 			worldObj.setBlockToAir(i + iX, j + hY + 1, k);
 			worldObj.setBlockToAir(i + iX, j + hY + 2, k);
 
-			if (hY < 0 && !  (Block.getBlockFromName("rail") == worldObj.getBlock(i + iX, j + hY, k))) {//code is different when going down
+			if (hY < 0 && !  (Blocks.rail== worldObj.getBlock(i + iX, j + hY, k))) {//code is different when going down
 				worldObj.setBlockToAir(i + iX, j + hY, k);
 			}
 			else {
@@ -1153,29 +1155,29 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 		getBlockList(worldObj, i + 1, j + hY + 1, k + d);
 		getBlockList(worldObj, i - 1, j + hY + 2, k + d);
 
-		if (( Block.getBlockFromName("rail")==(worldObj.getBlock(i - 1, j + hY, k + d)) || Block.getIdFromBlock(worldObj.getBlock(i - 1, j + hY, k + d))==BlockIDs.tcRail.blockID || Block.getIdFromBlock(worldObj.getBlock(i - 1, j + hY, k + d))==BlockIDs.tcRailGag.blockID) && followTracks) {
+		if (( Blocks.rail==(worldObj.getBlock(i - 1, j + hY, k + d)) || Block.getIdFromBlock(worldObj.getBlock(i - 1, j + hY, k + d))==BlockIDs.tcRail.blockID || Block.getIdFromBlock(worldObj.getBlock(i - 1, j + hY, k + d))==BlockIDs.tcRailGag.blockID) && followTracks) {
 		}
 		else {
 			//worldObj.setBlockMetadataWithNotify(i - 1, j+ hY, k + d, 0, -1);
-			worldObj.setBlock(i - 1, j + hY, k + d, Block.getBlockById(0));
+			worldObj.setBlock(i - 1, j + hY, k + d, Blocks.air);
 			vec = Vec3.createVectorHelper(i - 1, j + hY, k + d);
 			this.harvestBlock_do(vec);
 		}
 
-		if ((Block.getBlockFromName("rail")==(worldObj.getBlock(i + 1, j + hY, k + d)) || Block.getIdFromBlock(worldObj.getBlock(i + 1, j + hY, k + d))==BlockIDs.tcRail.blockID || Block.getIdFromBlock(worldObj.getBlock(i + 1, j + hY, k + d))==BlockIDs.tcRailGag.blockID) && followTracks) {
+		if ((Blocks.rail==(worldObj.getBlock(i + 1, j + hY, k + d)) || Block.getIdFromBlock(worldObj.getBlock(i + 1, j + hY, k + d))==BlockIDs.tcRail.blockID || Block.getIdFromBlock(worldObj.getBlock(i + 1, j + hY, k + d))==BlockIDs.tcRailGag.blockID) && followTracks) {
 		}
 		else {
 			//worldObj.setBlockMetadataWithNotify(i + 1, j+ hY, k + d, 0, -1);
-			worldObj.setBlock(i + 1, j + hY, k + d, Block.getBlockById(0));
+			worldObj.setBlock(i + 1, j + hY, k + d, Blocks.air);
 			vec = Vec3.createVectorHelper(i + 1, j + hY, k + d);
 			this.harvestBlock_do(vec);
 		}
 
-		if ((Block.getBlockFromName("rail")==(worldObj.getBlock(i, j + hY, k + d)) || Block.getIdFromBlock(worldObj.getBlock(i, j + hY, k + d))==BlockIDs.tcRail.blockID || Block.getIdFromBlock(worldObj.getBlock(i, j + hY, k + d))==BlockIDs.tcRailGag.blockID) && followTracks) {
+		if ((Blocks.rail==(worldObj.getBlock(i, j + hY, k + d)) || Block.getIdFromBlock(worldObj.getBlock(i, j + hY, k + d))==BlockIDs.tcRail.blockID || Block.getIdFromBlock(worldObj.getBlock(i, j + hY, k + d))==BlockIDs.tcRailGag.blockID) && followTracks) {
 		}
 		else {
 			//worldObj.setBlockMetadataWithNotify(i, j+ hY, k + d, 0, -1);
-			worldObj.setBlock(i, j + hY, k + d, Block.getBlockById(0));
+			worldObj.setBlock(i, j + hY, k + d, Blocks.air);
 			vec = Vec3.createVectorHelper(i, j + hY, k + d);
 			this.harvestBlock_do(vec);
 		}
@@ -1293,7 +1295,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 				worldObj.setBlock(i, j + hY + 4, k + kZ, Block.getBlockById(1));
 			worldObj.setBlockToAir(i - 1, j + hY, k + kZ);
 			worldObj.setBlockToAir(i + 1, j + hY, k + kZ);
-			if (hY < 0 && !(Block.getBlockFromName("rail")==(worldObj.getBlock(i, j + hY, k + kZ)))) {
+			if (hY < 0 && !(Blocks.rail==(worldObj.getBlock(i, j + hY, k + kZ)))) {
 				worldObj.setBlockToAir(i, j + hY, k + kZ);
 			}
 			else {
@@ -1429,7 +1431,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 
 			//torchPlacer(i, j, k, iX, kZ);
 
-			if (hY == 0 && !BlockRailBase.isRailBlock(worldObj.getBlock(i, j + hY, k)) && !BlockRailBase.isRailBlock(worldObj.getBlock(i, j, k)) && Block.rail.canPlaceBlockAt(worldObj, i, j + hY, k)) {
+			if (hY == 0 && !BlockRailBase.isRailBlock(worldObj.getBlock(i, j + hY, k)) && !BlockRailBase.isRailBlock(worldObj.getBlock(i, j, k)) && Blocks.rail.canPlaceBlockAt(worldObj, i, j + hY, k)) {
 				checkForTracks();
 				trackfuel--;
 
@@ -1438,7 +1440,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 				}
 				RailTools.placeRailAt(tracksStack.copy(), worldObj, i, j + hY, k);
 			}
-			else if (hY < 0 && Block.getIdFromBlock(worldObj.getBlock(i, j + hY, k)) == 0 && Block.getIdFromBlock(worldObj.getBlock(i, j + hY - 1, k)) != 0 && Block.rail.canPlaceBlockAt(worldObj, i, j + hY, k)) {
+			else if (hY < 0 && Block.getIdFromBlock(worldObj.getBlock(i, j + hY, k)) == 0 && Block.getIdFromBlock(worldObj.getBlock(i, j + hY - 1, k)) != 0 && Blocks.rail.canPlaceBlockAt(worldObj, i, j + hY, k)) {
 				checkForTracks();
 				trackfuel--;
 
@@ -1449,7 +1451,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 
 				// builder goes up
 			}
-			else if (hY > 0 && (Block.getBlockFromName("rail")!=worldObj.getBlock(i + iX, j + hY, k + kZ)) && Block.getBlockFromName("rail")!=worldObj.getBlock(i + iX, j + hY + 1, k + kZ) && Block.getBlockFromName("rail")!=worldObj.getBlock(i + iX, j, k + kZ) && Block.getBlockFromName("rail")!=worldObj.getBlock(i, j + hY, k) && Block.getBlockFromName("rail")!=worldObj.getBlock(i, j - hY, k) && Block.rail.canPlaceBlockAt(worldObj, i + iX, j + hY, k + kZ)) {
+			else if (hY > 0 && (Blocks.rail!=worldObj.getBlock(i + iX, j + hY, k + kZ)) && Blocks.rail!=worldObj.getBlock(i + iX, j + hY + 1, k + kZ) && Blocks.rail!=worldObj.getBlock(i + iX, j, k + kZ) && Blocks.rail!=worldObj.getBlock(i, j + hY, k) && Blocks.rail!=worldObj.getBlock(i, j - hY, k) && Blocks.rail.canPlaceBlockAt(worldObj, i + iX, j + hY, k + kZ)) {
 				checkForTracks();
 				trackfuel--;
 				if (!worldObj.isRemote) {

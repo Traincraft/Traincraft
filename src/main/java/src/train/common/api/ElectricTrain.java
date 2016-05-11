@@ -3,6 +3,7 @@ package src.train.common.api;
 import ic2.api.item.ElectricItem;
 import ic2.api.item.IElectricItem;
 import ic2.api.item.IElectricItemManager;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -54,7 +55,7 @@ public abstract class ElectricTrain extends Locomotive {
 		
 		/* if the loco has fuel */
 		if (getFuel() < maxEnergy) {
-			if (locoInvent[0] != null && locoInvent[0].getItem() == Item.getItemById(331) && ((getFuel() + redstoneEnergy) <= maxEnergy)) { //331 is redstone dust
+			if (locoInvent[0] != null && locoInvent[0].getItem() == Items.redstone && ((getFuel() + redstoneEnergy) <= maxEnergy)) {
 				fuelTrain += redstoneEnergy;
 				decrStackSize(0, 1);
 			}

@@ -12,6 +12,8 @@ import java.util.TreeSet;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityFurnace;
@@ -241,12 +243,12 @@ public class NEIDistillationTowerRecipePlugin extends FurnaceRecipeHandler{
     private static void removeFuelsDistil()
     {
         efuelsDistil = new TreeSet<Integer>();
-        efuelsDistil.add(39);//brown mushroom
-        efuelsDistil.add(40);//red mushroom
-        efuelsDistil.add(63);//signpost
-        efuelsDistil.add(68);//wall signpost
-        efuelsDistil.add(64);//wooden door
-        efuelsDistil.add(146);//trapped chest
+        efuelsDistil.add(Block.getIdFromBlock(Blocks.brown_mushroom));
+        efuelsDistil.add(Block.getIdFromBlock(Blocks.red_mushroom));
+        efuelsDistil.add(Block.getIdFromBlock(Blocks.standing_sign));
+        efuelsDistil.add(Block.getIdFromBlock(Blocks.wall_sign));
+        efuelsDistil.add(Block.getIdFromBlock(Blocks.wooden_door));
+        efuelsDistil.add(Block.getIdFromBlock(Blocks.trapped_chest));
     }
     
     private static void findFuelsDistil()
