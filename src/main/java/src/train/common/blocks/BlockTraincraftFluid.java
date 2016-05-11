@@ -25,8 +25,8 @@ public class BlockTraincraftFluid extends BlockFluidClassic {
 	protected boolean flammable;
 	protected int flammability = 0;	
 
-	public BlockTraincraftFluid(int id, Fluid fluid, Material material) {
-		super(id, fluid, material);
+	public BlockTraincraftFluid(Fluid fluid, Material material) {
+		super(fluid, material);
 	}
 
 	@Override
@@ -36,7 +36,7 @@ public class BlockTraincraftFluid extends BlockFluidClassic {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IIconRegister iconRegister) {
+	public void registerBlockIcons(IIconRegister iconRegister) {
 		this.theIcon = new IIcon[]{iconRegister.registerIcon(Info.modID.toLowerCase() + ":liquid_" + fluidName), iconRegister.registerIcon(Info.modID.toLowerCase() +":liquid_" + fluidName + "_flow")};
 	}
 
@@ -51,34 +51,34 @@ public class BlockTraincraftFluid extends BlockFluidClassic {
 	}
 
 	@Override
-	public int getFireSpreadSpeed(World world, int x, int y, int z, int metadata, ForgeDirection face) {
+	public int getFireSpreadSpeed(IBlockAccess world, int x, int y, int z, ForgeDirection face) {
 		return flammable ? 300 : 0;
 	}
 
 	@Override
-	public int getFlammability(IBlockAccess world, int x, int y, int z, int metadata, ForgeDirection face) {
+	public int getFlammability(IBlockAccess world, int x, int y, int z, ForgeDirection face) {
 		return flammability;
 	}
 
 	@Override
-	public boolean isFlammable(IBlockAccess world, int x, int y, int z, int metadata, ForgeDirection face) {
+	public boolean isFlammable(IBlockAccess world, int x, int y, int z, ForgeDirection face) {
 		return flammable;
 	}
 
 	@Override
-	public boolean isFireSource(World world, int x, int y, int z, int metadata, ForgeDirection side) {
+	public boolean isFireSource(World world, int x, int y, int z, ForgeDirection side) {
 		return flammable && flammability == 0;
 	}
 
 	@Override
 	public boolean canDisplace(IBlockAccess world, int x, int y, int z) {
-		if (world.getBlockMaterial(x,  y,  z).isLiquid()) return false;
+		if (world.getBlock(x,  y,  z).getMaterial().isLiquid()) return false;
 		return super.canDisplace(world, x, y, z);
 	}
 	
 	@Override
 	public boolean displaceIfPossible(World world, int x, int y, int z) {
-		if (world.getBlockMaterial(x,  y,  z).isLiquid()) return false;
+		if (world.getBlock(x,  y,  z).getMaterial().isLiquid()) return false;
 		return super.displaceIfPossible(world, x, y, z);
 	}
 	

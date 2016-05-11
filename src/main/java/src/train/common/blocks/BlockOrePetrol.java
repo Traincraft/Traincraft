@@ -15,8 +15,8 @@ public class BlockOrePetrol extends Block {
 	private IIcon texture2;
 	private int tx;
 
-	public BlockOrePetrol(int i, int j) {
-		super(i, Material.rock);
+	public BlockOrePetrol(int j) {
+		super(Material.rock);
 		tx = j;
 		setCreativeTab(Traincraft.tcTab);
 	}
@@ -33,7 +33,7 @@ public class BlockOrePetrol extends Block {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IIconRegister iconRegister) {
+	public void registerBlockIcons(IIconRegister iconRegister) {
 		texture1 = iconRegister.registerIcon(Info.modID.toLowerCase() + ":ores/ore_oilsands");
 		texture2 = iconRegister.registerIcon(Info.modID.toLowerCase() + ":ores/ore_petroleum");
 	}

@@ -12,6 +12,7 @@ import mods.railcraft.api.tracks.ITrackEmitter;
 import mods.railcraft.api.tracks.ITrackItemIconProvider;
 import mods.railcraft.api.tracks.ITrackPowered;
 import mods.railcraft.api.tracks.TrackSpec;
+import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityMinecart;
@@ -69,9 +70,9 @@ public class BlockAnimalBoardingTrack extends TrackBaseTraincraft implements ITr
 		return getIcon(0);
 	}
 	protected void notifyNeighbors() {
-		int id = getWorld().getBlockId(getX(), getY(), getZ());
-		getWorld().notifyBlocksOfNeighborChange(getX(), getY(), getZ(), id);
-		getWorld().notifyBlocksOfNeighborChange(getX(), getY() - 1, getZ(), id);
+		Block block = getWorld().getBlock(getX(), getY(), getZ());
+		getWorld().notifyBlocksOfNeighborChange(getX(), getY(), getZ(), block);
+		getWorld().notifyBlocksOfNeighborChange(getX(), getY() - 1, getZ(), block);
 
 		markBlockNeedsUpdate();
 	}

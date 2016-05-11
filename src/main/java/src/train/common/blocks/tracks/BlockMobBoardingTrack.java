@@ -10,6 +10,7 @@ import java.util.List;
 
 import mods.railcraft.api.tracks.ITrackEmitter;
 import mods.railcraft.api.tracks.ITrackPowered;
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.item.EntityMinecart;
@@ -66,9 +67,9 @@ public class BlockMobBoardingTrack extends TrackBaseTraincraft implements ITrack
 	}
 
 	protected void notifyNeighbors() {
-		int id = getWorld().getBlockId(getX(), getY(), getZ());
-		getWorld().notifyBlocksOfNeighborChange(getX(), getY(), getZ(), id);
-		getWorld().notifyBlocksOfNeighborChange(getX(), getY() - 1, getZ(), id);
+		Block block = getWorld().getBlock(getX(), getY(), getZ());
+		getWorld().notifyBlocksOfNeighborChange(getX(), getY(), getZ(), block);
+		getWorld().notifyBlocksOfNeighborChange(getX(), getY() - 1, getZ(), block);
 
 		markBlockNeedsUpdate();
 	}

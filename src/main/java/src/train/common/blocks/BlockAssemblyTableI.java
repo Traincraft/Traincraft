@@ -2,6 +2,7 @@ package src.train.common.blocks;
 
 import java.util.Random;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -31,8 +32,8 @@ public class BlockAssemblyTableI extends BlockContainer {
 	private IIcon textureFront;
 	private IIcon textureSide;
 
-	public BlockAssemblyTableI(int i, int j, Material material) {
-		super(i, material);
+	public BlockAssemblyTableI(int j, Material material) {
+		super(material);
 		setCreativeTab(Traincraft.tcTab);
 	}
 
@@ -48,7 +49,7 @@ public class BlockAssemblyTableI extends BlockContainer {
 
 	@Override
 	public boolean onBlockActivated(World world, int i, int j, int k, EntityPlayer player, int par6, float par7, float par8, float par9) {
-		TileEntity te = world.getBlockTileEntity(i, j, k);
+		TileEntity te = world.getTileEntity(i, j, k);
 		if (!world.isRemote) {
 			if (!player.isSneaking()) {
 				if (te != null && te instanceof TileCrafterTierI) {
@@ -79,22 +80,17 @@ public class BlockAssemblyTableI extends BlockContainer {
 	}
 
 	@Override
-	public IIcon getBlockTexture(IBlockAccess worldAccess, int i, int j, int k, int side) {
-		if (((TileCrafterTierI) worldAccess.getBlockTileEntity(i, j, k)).getFacing() != null) {
-			side = TileHelper.getOrientationFromSide(((TileCrafterTierI) worldAccess.getBlockTileEntity(i, j, k)).getFacing(), ForgeDirection.getOrientation(side)).ordinal();
+	public IIcon getIcon(IBlockAccess worldAccess, int i, int j, int k, int side) {
+		if (((TileCrafterTierI) worldAccess.getTileEntity(i, j, k)).getFacing() != null) {
+			side = TileHelper.getOrientationFromSide(((TileCrafterTierI) worldAccess.getTileEntity(i, j, k)).getFacing(), ForgeDirection.getOrientation(side)).ordinal();
 		}
 		return side == 1 ? textureTop : side == 0 ? textureBottom : side == 3 ? textureFront : textureSide;
 	}
-
+	
 	@Override
-	public int idDropped(int i, Random random, int j) {
-		return this.blockID;
-	}
-
-	@Override
-	public void breakBlock(World world, int i, int j, int k, int par5, int par6) {
+	public void breakBlock(World world, int i, int j, int k, Block par5, int par6) {
 		Random distilRand = new Random();
-		TileCrafterTierI tileentitytierI = (TileCrafterTierI) world.getBlockTileEntity(i, j, k);
+		TileCrafterTierI tileentitytierI = (TileCrafterTierI) world.getTileEntity(i, j, k);
 		if (tileentitytierI != null) {
 			label0: for (int l = 0; l < tileentitytierI.getSizeInventory(); l++) {
 				ItemStack itemstack = tileentitytierI.getStackInSlot(l);
@@ -113,7 +109,7 @@ public class BlockAssemblyTableI extends BlockContainer {
 						i1 = itemstack.stackSize;
 					}
 					itemstack.stackSize -= i1;
-					EntityItem entityitem = new EntityItem(world, (float) i + f, (float) j + f1, (float) k + f2, new ItemStack(itemstack.itemID, i1, itemstack.getItemDamage()));
+					EntityItem entityitem = new EntityItem(world, (float) i + f, (float) j + f1, (float) k + f2, new ItemStack(itemstack.getItem(), i1, itemstack.getItemDamage()));
 					float f3 = 0.05F;
 					entityitem.motionX = (float) distilRand.nextGaussian() * f3;
 					entityitem.motionY = (float) distilRand.nextGaussian() * f3 + 0.2F;
@@ -134,7 +130,7 @@ public class BlockAssemblyTableI extends BlockContainer {
 	@Override
 	public void onBlockPlacedBy(World world, int i, int j, int k, EntityLivingBase entityliving, ItemStack stack) {
 		super.onBlockPlacedBy(world, i, j, k, entityliving, stack);
-		TileCrafterTierI te = (TileCrafterTierI) world.getBlockTileEntity(i, j, k);
+		TileCrafterTierI te = (TileCrafterTierI) world.getTileEntity(i, j, k);
 		if (te != null) {
 			int dir = MathHelper.floor_double((double) ((entityliving.rotationYaw * 4F) / 360F) + 0.5D) & 3;
 			te.setFacing(ForgeDirection.getOrientation(dir == 0 ? 2 : dir == 1 ? 5 : dir == 2 ? 3 : 4));
@@ -149,7 +145,7 @@ public class BlockAssemblyTableI extends BlockContainer {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IIconRegister iconRegister) {
+	public void registerBlockIcons(IIconRegister iconRegister) {
 		textureTop = iconRegister.registerIcon(Info.modID.toLowerCase() + ":assembly_1_top");
 		textureBottom = iconRegister.registerIcon(Info.modID.toLowerCase() + ":assembly_1_bottom");
 		textureFront = iconRegister.registerIcon(Info.modID.toLowerCase() + ":assembly_1_front");

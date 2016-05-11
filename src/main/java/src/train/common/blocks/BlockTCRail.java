@@ -21,6 +21,7 @@ import net.minecraft.tileentity.TileEntityNote;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
+import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import src.train.common.Traincraft;
@@ -38,8 +39,8 @@ public class BlockTCRail extends Block {
 	private IIcon texture;
 	private int itemID;
 
-	public BlockTCRail(int id) {
-		super(id, Material.iron);
+	public BlockTCRail() {
+		super(Material.iron);
 		setCreativeTab(Traincraft.tcTab);
 		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.125F, 1.0F);
 	}
@@ -48,24 +49,17 @@ public class BlockTCRail extends Block {
 	 * Checks to see if its valid to put this block at the specified coordinates. Args: world, x, y, z
 	 */
 	public boolean canPlaceBlockAt(World par1World, int par2, int par3, int par4) {
-		int l = par1World.getBlockId(par2, par3, par4);
-		Block block = Block.blocksList[l];
+		Block block = par1World.getBlock(par2, par3, par4);
 		return false;
 	}
-	
-	@Override
-	public int idDropped(int par1, Random par2Random, int par3) {
-		return blockID;
-	}
 
-	@SideOnly(Side.CLIENT)
 	@Override
-	public int idPicked(World world, int i, int j, int k) {
-		TileTCRail tileEntity = (TileTCRail) world.getBlockTileEntity(i, j, k);
+    public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z, EntityPlayer player)  {
+		TileTCRail tileEntity = (TileTCRail) world.getTileEntity(x, y, z);
 		if (tileEntity != null) {
-			return tileEntity.idDrop;
+			return new ItemStack(Item.getItemById(tileEntity.idDrop), 0);
 		}
-		return 0;
+		return null;
 	}
 
 	@Override
@@ -79,38 +73,41 @@ public class BlockTCRail extends Block {
 	}
 
 	@Override
-	public void breakBlock(World world, int i, int j, int k, int par5, int par6) {
-		TileTCRail tileEntity = (TileTCRail) world.getBlockTileEntity(i, j, k);
+	public void breakBlock(World world, int i, int j, int k, Block par5, int par6) {
+		TileTCRail tileEntity = (TileTCRail) world.getTileEntity(i, j, k);
 		if (tileEntity != null && tileEntity.isLinkedToRail) {
-			world.destroyBlock(tileEntity.linkedX, tileEntity.linkedY, tileEntity.linkedZ, false);
-			world.removeBlockTileEntity(tileEntity.linkedX, tileEntity.linkedY, tileEntity.linkedZ);
+			// NOTE: func_147480_a = destroyBlock
+			world.func_147480_a(tileEntity.linkedX, tileEntity.linkedY, tileEntity.linkedZ, false);
+			world.removeTileEntity(tileEntity.linkedX, tileEntity.linkedY, tileEntity.linkedZ);
 		}
 		if (tileEntity != null && tileEntity.idDrop != 0 && !world.isRemote) {
 			EntityPlayer player = Traincraft.proxy.getPlayer();
 			boolean flag = player instanceof EntityPlayer && ((EntityPlayer)player).capabilities.isCreativeMode;
 			if(!flag) {
-				this.dropBlockAsItem_do(world, i, j, k, new ItemStack(tileEntity.idDrop, 1, 0));
+				this.dropBlockAsItem(world, i, j, k, new ItemStack(Item.getItemById(tileEntity.idDrop), 1, 0));
 			}
 		}
-		world.removeBlockTileEntity(i, j, k);
+		world.removeTileEntity(i, j, k);
 	}
 
 	@Override
-	public void onNeighborBlockChange(World world, int i, int j, int k, int par5) {
-		TileEntity tile = world.getBlockTileEntity(i, j, k);
+	public void onNeighborBlockChange(World world, int i, int j, int k, Block par5) {
+		TileEntity tile = world.getTileEntity(i, j, k);
 		if (tile == null || !(tile instanceof TileTCRail))
 			return;
 
-		TileTCRail tileEntity = (TileTCRail) world.getBlockTileEntity(i, j, k);
+		TileTCRail tileEntity = (TileTCRail) world.getTileEntity(i, j, k);
 		if (tileEntity != null && tileEntity.isLinkedToRail) {
-			if (world.getBlockId(tileEntity.linkedX, tileEntity.linkedY, tileEntity.linkedZ) < 1) {
-				world.destroyBlock(i, j, k, false);
-				world.removeBlockTileEntity(i, j, k);
+			if (world.isAirBlock(tileEntity.linkedX, tileEntity.linkedY, tileEntity.linkedZ)) {
+				// NOTE: func_147480_a = destroyBlock
+				world.func_147480_a(i, j, k, false);
+				world.removeTileEntity(i, j, k);
 			}
 		}
-		if (!world.doesBlockHaveSolidTopSurface(i, j - 1, k) && world.getBlockId(i, j-1, k) != BlockIDs.bridgePillar.blockID) {
-			world.destroyBlock(i, j, k, false);
-			world.removeBlockTileEntity(i, j, k);
+		if (!World.doesBlockHaveSolidTopSurface(world, i, j - 1, k) && world.getBlock(i, j-1, k) != BlockIDs.bridgePillar.block) {
+			// NOTE: func_147480_a = destroyBlock
+			world.func_147480_a(i, j, k, false);
+			world.removeTileEntity(i, j, k);
 		}
 		if (tileEntity != null && !world.isRemote) {
 			boolean flag = world.isBlockIndirectlyGettingPowered(i, j, k);
@@ -144,7 +141,7 @@ public class BlockTCRail extends Block {
 
 	@Override
 	public boolean onBlockActivated(World world, int i, int j, int k, EntityPlayer player, int par6, float par7, float par8, float par9) {
-		TileEntity te = world.getBlockTileEntity(i, j, k);
+		TileEntity te = world.getTileEntity(i, j, k);
 		int l = world.getBlockMetadata(i, j, k);
 		if (!world.isRemote && te != null && (te instanceof TileTCRail)) {
 			if (player != null && player.inventory != null && player.inventory.getCurrentItem() != null && (player.inventory.getCurrentItem().getItem() instanceof IToolWrench) && ((TileTCRail) te).getType() != null && ((TileTCRail) te).getType().equals(TrackTypes.SMALL_STRAIGHT.getLabel())) {
@@ -162,7 +159,7 @@ public class BlockTCRail extends Block {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IIconRegister iconRegister) {
+	public void registerBlockIcons(IIconRegister iconRegister) {
 		texture = iconRegister.registerIcon(Info.modID.toLowerCase() + ":tracks/rail_normal_turned");
 	}
 

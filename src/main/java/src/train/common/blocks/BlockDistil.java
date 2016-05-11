@@ -2,6 +2,7 @@ package src.train.common.blocks;
 
 import java.util.Random;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -9,6 +10,7 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
@@ -39,21 +41,21 @@ public class BlockDistil extends BlockContainer {
 	private IIcon textureSide;
 	private IIcon textureBack;
 
-	public BlockDistil(int i, int j, boolean flag) {
-		super(i, Material.rock);
+	public BlockDistil(int j, boolean flag) {
+		super(Material.rock);
 		isActive = flag;
 		distilRand = new Random();
 		setCreativeTab(Traincraft.tcTab);
 		//setRequiresSelfNotify();
 
 		if (isActive) {
-			setLightValue(0.8F);
+			setLightLevel(0.8F);
 		}
 	}
 
 	@Override
-	public int idDropped(int i, Random random, int j) {
-		return BlockIDs.distilIdle.blockID;
+	public Item getItemDropped(int i, Random random, int j) {
+		return Item.getItemFromBlock(BlockIDs.distilIdle.block);
 	}
 
 	@Override
@@ -95,7 +97,7 @@ public class BlockDistil extends BlockContainer {
 	}
 
 	@Override
-	public IIcon getBlockTexture(IBlockAccess worldAccess, int i, int j, int k, int side) {
+	public IIcon getIcon(IBlockAccess worldAccess, int i, int j, int k, int side) {
 		if (((TileEntityDistil) worldAccess.getTileEntity(i, j, k)).getFacing() != null) {
 			side = TileHelper.getOrientationFromSide(((TileEntityDistil) worldAccess.getTileEntity(i, j, k)).getFacing(), ForgeDirection.getOrientation(side)).ordinal();
 		}
@@ -165,10 +167,10 @@ public class BlockDistil extends BlockContainer {
 		TileEntity tileentity = world.getTileEntity(i, j, k);
 		keepDistilInventory = true;
 		if (flag) {
-			world.setBlock(i, j, k, BlockIDs.distilActive.blockID);
+			world.setBlock(i, j, k, BlockIDs.distilActive.block);
 		}
 		else {
-			world.setBlock(i, j, k, BlockIDs.distilIdle.blockID);
+			world.setBlock(i, j, k, BlockIDs.distilIdle.block);
 		}
 		keepDistilInventory = false;
 		world.setBlockMetadataWithNotify(i, j, k, l, 2);
@@ -179,7 +181,7 @@ public class BlockDistil extends BlockContainer {
 	}
 
 	@Override
-	public void breakBlock(World world, int i, int j, int k, int par5, int par6) {
+	public void breakBlock(World world, int i, int j, int k, Block par5, int par6) {
 		if (!keepDistilInventory) {
 			TileEntityDistil tileentitydistil = (TileEntityDistil) world.getTileEntity(i, j, k);
 			if (tileentitydistil != null) {
@@ -200,7 +202,7 @@ public class BlockDistil extends BlockContainer {
 							i1 = itemstack.stackSize;
 						}
 						itemstack.stackSize -= i1;
-						EntityItem entityitem = new EntityItem(world, (float) i + f, (float) j + f1, (float) k + f2, new ItemStack(itemstack.itemID, i1, itemstack.getItemDamage()));
+						EntityItem entityitem = new EntityItem(world, (float) i + f, (float) j + f1, (float) k + f2, new ItemStack(itemstack.getItem(), i1, itemstack.getItemDamage()));
 						float f3 = 0.05F;
 						entityitem.motionX = (float) distilRand.nextGaussian() * f3;
 						entityitem.motionY = (float) distilRand.nextGaussian() * f3 + 0.2F;
@@ -230,13 +232,13 @@ public class BlockDistil extends BlockContainer {
 	}
 
 	@Override
-	public TileEntity createNewTileEntity(World world) {
+	public TileEntity createNewTileEntity(World world, int meta) {
 		return new TileEntityDistil();
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IIconRegister iconRegister) {
+	public void registerBlockIcons(IIconRegister iconRegister) {
 		textureTop = iconRegister.registerIcon(Info.modID.toLowerCase() + ":distil_top");
 		textureBottom = iconRegister.registerIcon(Info.modID.toLowerCase() + ":distil_bottom");
 		textureFront_off = iconRegister.registerIcon(Info.modID.toLowerCase() + ":distil_off_front");
