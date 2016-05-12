@@ -8,8 +8,11 @@
 package src.train.common.core.managers;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 import src.train.common.api.crafting.ITierRecipe;
@@ -17,48 +20,32 @@ import src.train.common.api.crafting.ITierRecipe;
 public class TierRecipe implements ITierRecipe {
 
 	private final int tier;
-	private final ItemStack planks;
-	private final ItemStack wheels;
-	private final ItemStack frame;
-	private final ItemStack coupler;
-	private final ItemStack chimney;
-	private final ItemStack cab;
-	private final ItemStack boiler;
-	private final ItemStack firebox;
-	private final ItemStack additional;
-	private final ItemStack dye;
 	private final ItemStack output;
 	private final int outputSize;
 
-	private final List<ItemStack> stacks;
+	private final ItemStack[] stacks;
 
-	public TierRecipe(int tier, ItemStack planks, ItemStack wheels, ItemStack frame, ItemStack coupler, ItemStack chimney, ItemStack cab, ItemStack boiler, ItemStack firebox, ItemStack additional, ItemStack dye, ItemStack output, int outputSize) {
+	public TierRecipe(int tier, ItemStack planks, ItemStack wheels,
+			ItemStack frame, ItemStack coupler, ItemStack chimney,
+			ItemStack cab, ItemStack boiler, ItemStack firebox,
+			ItemStack additional, ItemStack dye, ItemStack output,
+			int outputSize) {
 		this.tier = tier;
-		this.planks = planks;
-		this.wheels = wheels;
-		this.frame = frame;
-		this.coupler = coupler;
-		this.chimney = chimney;
-		this.cab = cab;
-		this.boiler = boiler;
-		this.firebox = firebox;
-		this.additional = additional;
-		this.dye = dye;
 		this.output = output;
 		this.outputSize = outputSize;
 
-		stacks = new ArrayList<ItemStack>();
-
-		stacks.add(0, planks);
-		stacks.add(1, wheels);
-		stacks.add(2, frame);
-		stacks.add(3, coupler);
-		stacks.add(4, chimney);
-		stacks.add(5, cab);
-		stacks.add(6, boiler);
-		stacks.add(7, firebox);
-		stacks.add(8, additional);
-		stacks.add(9, dye);
+		stacks = new ItemStack[] {
+			planks,
+			wheels,
+			frame,
+			coupler,
+			chimney,
+			cab,
+			boiler,
+			firebox,
+			additional,
+			dye,
+		};
 	}
 
 	@Override
@@ -83,111 +70,54 @@ public class TierRecipe implements ITierRecipe {
 
 	@Override
 	public ItemStack getRecipeIn(int slot) {
-		ItemStack stack;
-		switch (slot) {
-		case 0:
-			stack = planks;
-		case 1:
-			stack = wheels;
-		case 2:
-			stack = frame;
-		case 3:
-			stack = coupler;
-		case 4:
-			stack = chimney;
-		case 5:
-			stack = cab;
-		case 6:
-			stack = boiler;
-		case 7:
-			stack = firebox;
-		case 8:
-			stack = additional;
-		case 9:
-			stack = dye;
-		default:
-			stack = null;
-		}
-		return stack;
-	}
-
-	@Override
-	public List<ItemStack> getInput() {
-		List<ItemStack> list = getList(planks, wheels, frame, coupler, chimney, cab, boiler, firebox, additional, dye);
-		return list;
-	}
-
-	public static List getList(ItemStack planks, ItemStack wheels, ItemStack frame, ItemStack coupler, ItemStack chimney, ItemStack cab, ItemStack boiler, ItemStack firebox, ItemStack additional, ItemStack dye) {
-		List<ItemStack> list = new ArrayList<ItemStack>();
-		list.add(0, planks);
-		list.add(1, wheels);
-		list.add(2, frame);
-		list.add(3, coupler);
-		list.add(4, chimney);
-		list.add(5, cab);
-		list.add(6, boiler);
-		list.add(7, firebox);
-		list.add(8, additional);
-		list.add(9, dye);
-		return list;
-	}
-
-	public ItemStack hasComponents(ItemStack planks, ItemStack wheels, ItemStack frame, ItemStack coupler, ItemStack chimney, ItemStack cab, ItemStack boiler, ItemStack firebox, ItemStack additional, ItemStack dye) {
-		List<ItemStack> list = getList(planks, wheels, frame, coupler, chimney, cab, boiler, firebox, additional, dye);
-		int x = 0;
-		for (int i = 0; i < 10; i++) {
-			if (areItemsIdentical(list.get(i), stacks.get(i)) && areSizesIdentical(list.get(i), stacks.get(i))) {
-				x++;
-			}
-		}
-		if (x == 10) {
-			return output;
+		if(slot < stacks.length) {
+			return stacks[slot].copy();
 		}
 		return null;
 	}
 
+	@Override
+	public List<ItemStack> getInput() {
+		return Arrays.asList(stacks);
+	}
+
+	public ItemStack hasComponents(ItemStack... items) {
+		for (int i = 0; i < stacks.length; i++) {
+			if(!areItemsIdentical(items[i], stacks[i])) {
+				return null;
+			}
+			if(!areSizesIdentical(items[i], stacks[i])) {
+				return null;
+			}
+		}
+		return output;
+	}
+
 	public static boolean areItemsIdentical(ItemStack inSlot, ItemStack inRecipe) {
-		if (inRecipe == null) {
-			return true;
-		}
-		else {
+		if (inRecipe == null || inSlot == null) {
+			return inRecipe == inSlot;
+		} else {
+			if (Item.getIdFromItem(inSlot.getItem()) != Item.getIdFromItem(inRecipe.getItem())) {
+				return false;
+			}
 			if (inRecipe.getItemDamage() == OreDictionary.WILDCARD_VALUE) {
-				if (inSlot == null && inRecipe != null) {
-					return false;
-				}
-				if ((inSlot.itemID == inRecipe.itemID)) {
-					return true;
-				}
+				return true;
 			}
-			else {
-				if (inSlot == null && inRecipe != null) {
-					return false;
-				}
-				if ((inSlot.itemID == inRecipe.itemID) && (inSlot.getItemDamage() == inRecipe.getItemDamage())) {
-					return true;
-				}
-			}
+			return inSlot.getItemDamage() == inRecipe.getItemDamage();
 		}
-		return false;
 	}
 
 	public static boolean areSizesIdentical(ItemStack inSlot, ItemStack inRecipe) {
-		if (inRecipe == null) {
-			return true;
+		if (inRecipe == null || inSlot == null) {
+			return inRecipe == inSlot;
 		}
-		if (inSlot == null && inRecipe != null) {
-			return false;
-		}
-		if (inSlot.stackSize >= inRecipe.stackSize) {
-			return true;
-		}
-		return false;
+		return inSlot.stackSize >= inRecipe.stackSize;
 	}
 
 	@Override
 	public int toDecrease(int slot) {
-		if (stacks.get(slot) != null) {
-			return stacks.get(slot).stackSize;
+		if (slot < stacks.length) {
+			return stacks[slot].stackSize;
 		}
 		return 0;
 	}
