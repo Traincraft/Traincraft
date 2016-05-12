@@ -2,6 +2,8 @@ package src.train.common.core.handlers;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import src.train.common.core.plugins.PluginIndustrialCraft;
@@ -37,26 +39,39 @@ public class FuelHandler implements IFuelHandler {
 		if (it == null) {
 			return 0;
 		}
-		int var1 = it.getItem().itemID;
-		if (var1 < 256 && Block.blocksList[var1].blockMaterial == Material.wood)
+		Block block = Block.getBlockFromItem(it.getItem());
+		if (block != null && block.getMaterial() == Material.wood) {
 			return wood;
-		if (var1 == Item.stick.itemID)
+		}
+		int id = Item.getIdFromItem(it.getItem());
+		if (id == Item.getIdFromItem(Items.stick)) {
 			return stick;
-		if (var1 == Item.coal.itemID)
+		}
+		if (id == Item.getIdFromItem(Items.coal)) {
 			return coal;
-		if (var1 == Item.bucketLava.itemID)
+		}
+		if (id == Item.getIdFromItem(Items.lava_bucket)) {
 			return bucketLava;
-		if (var1 == Block.sapling.blockID)
+		}
+		if (id == Item.getIdFromItem(Item.getItemFromBlock(Blocks.sapling))) {
 			return sapling;
-		if (var1 == Item.blazeRod.itemID)
+		}
+		if (id == Item.getIdFromItem(Items.blaze_rod)) {
 			return blazeRod;
-		if (PluginIndustrialCraft.getItems().containsKey(PluginIndustrialCraft.getNames()[15]) && var1 == PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[15]).itemID)
+		}
+		// TODO: Hardcoding index to arbitrary array is worse than hardcoding the contents of that index...
+		String coalFuelName = PluginIndustrialCraft.getNames()[15];
+		if (PluginIndustrialCraft.getItems().containsKey(coalFuelName) &&
+				id == Item.getIdFromItem(PluginIndustrialCraft.getItems().get(coalFuelName).getItem())) {
 			return coalFuel;
-		if (PluginRailcraft.getItems().containsKey(PluginRailcraft.getNames()[1]) && var1 == PluginRailcraft.getItems().get(PluginRailcraft.getNames()[1]).itemID)
+		}
+		String cokeCoalName = PluginRailcraft.getNames()[1];
+		if (PluginRailcraft.getItems().containsKey(cokeCoalName) &&
+				id == Item.getIdFromItem(PluginRailcraft.getItems().get(cokeCoalName).getItem())) {
 			return cokeCoal;
+		}
 
-		int ret = GameRegistry.getFuelValue(it);
-		return ret;
+		return GameRegistry.getFuelValue(it);
 	}
 
 	/**
@@ -66,8 +81,7 @@ public class FuelHandler implements IFuelHandler {
 	 */
 	@Override
 	public int getBurnTime(ItemStack fuel) {
-		int var1 = fuel.itemID;
-		if(var1 == BlockIDs.oreTC.blockID && (fuel.getItemDamage()==1 || fuel.getItemDamage()==2)){
+		if(Item.getIdFromItem(fuel.getItem()) == Item.getIdFromItem(Item.getItemFromBlock(BlockIDs.oreTC.block)) && (fuel.getItemDamage() == 1 || fuel.getItemDamage() == 2)){
 			return 2400;
 		}
 		return 0;

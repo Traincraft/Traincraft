@@ -169,7 +169,7 @@ public class TileCrafterTierII extends TileEntity implements IInventory, ITier {
 		List<TierRecipe> recipes = TierRecipeManager.getInstance().getTierRecipeList(2);
 		int count = 0;
 		for (int j = 0; j < recipes.size(); j++) {
-			ItemStack stack = recipes.get(j).hasComponents(crafterInventory[0], crafterInventory[1], crafterInventory[2], crafterInventory[3], crafterInventory[4], crafterInventory[5], crafterInventory[6], crafterInventory[7], crafterInventory[8], crafterInventory[9]);
+			ItemStack stack = recipes.get(j).hasComponents(crafterInventory);
 			if (stack != null) {
 				if((count+10)<crafterInventory.length) {
 					resultList.add(stack);

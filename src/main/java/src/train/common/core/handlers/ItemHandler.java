@@ -12,9 +12,11 @@ import java.util.ArrayList;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRailBase;
 import net.minecraft.entity.Entity;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
+import src.train.common.Traincraft;
 import src.train.common.api.DieselTrain;
 import src.train.common.api.ElectricTrain;
 import src.train.common.api.Freight;
@@ -48,25 +50,20 @@ import src.train.common.items.ItemTCRail;
 public class ItemHandler {
 
 	public static boolean handleItems(Entity entity, ItemStack itemstack) {
-		if(itemstack!= null) {
-    		if(entity instanceof Freight) {
-    			return handleFreight(entity, itemstack);
-    		}
-    		else if(entity instanceof DieselTrain) {
-    			return handleDiesel(entity, itemstack);
-    		}
-    		else if(entity instanceof ElectricTrain) {
-    			return handleElectric(entity, itemstack);
-    		}
-            else if(entity instanceof SteamTrain) {
-            	return handleSteam(entity, itemstack);
-            }
-            else if(entity instanceof Tender) {
-            	return handleTender(entity, itemstack);
-            }
-            else {
-            	return handleOther(entity, itemstack);
-            }
+		if (itemstack != null) {
+			if (entity instanceof Freight) {
+				return handleFreight(entity, itemstack);
+			} else if (entity instanceof DieselTrain) {
+				return handleDiesel(entity, itemstack);
+			} else if (entity instanceof ElectricTrain) {
+				return handleElectric(entity, itemstack);
+			} else if (entity instanceof SteamTrain) {
+				return handleSteam(entity, itemstack);
+			} else if (entity instanceof Tender) {
+				return handleTender(entity, itemstack);
+			} else {
+				return handleOther(entity, itemstack);
+			}
 		}
 		return false;
 	}
@@ -92,186 +89,157 @@ public class ItemHandler {
 	}
 
 	public static boolean handleFreight(Entity entity, ItemStack itemstack) {
-		//System.out.println(entity.getEntityName());
-		
-		Block block = null;
-		if (itemstack.itemID < Block.blocksList.length/* && itemstack.itemID < 256 && itemstack.itemID > 421*/) {
-			block = Block.blocksList[itemstack.itemID];
+		Block block = Block.getBlockFromItem(itemstack.getItem());
+		if (block == null) {
+			return false;
 		}
-		
-		if(entity instanceof EntityBoxCartUS) {
+		if (entity instanceof EntityBoxCartUS) {
 			return true;
 		}
-		else if(entity instanceof EntityFlatCarLogs_DB) {
-			if(block != null) {
-				return isDict("logWood", itemstack);
+		if (entity instanceof EntityFlatCarLogs_DB) {
+			return isDict("logWood", itemstack);
+		}
+		if (entity instanceof EntityFlatCarRails_DB) {
+			if (block instanceof BlockRailBase) {
+				return true;
 			}
-			return false;
+			return itemstack.getItem() instanceof ItemTCRail;
 		}
-		else if(entity instanceof EntityFlatCarRails_DB) {
-			if(block != null) {
-        		if(Block.blocksList[itemstack.itemID] instanceof BlockRailBase) {
-        			return true;
-        		}
-        	}
-			if(itemstack!=null && itemstack.getItem() instanceof ItemTCRail)return true;
-			
-        	return false;
+		if (entity instanceof EntityFlatCartWoodUS) {
+			return isDict("plankWood", itemstack);
 		}
-		else if(entity instanceof EntityFlatCartWoodUS) {
-			if(block != null) {
-				return isDict("plankWood", itemstack);
-			}
-			return false;	
-		}
-		else if(entity instanceof EntityFreightCart) {
+		if (entity instanceof EntityFreightCart) {
 			return true;
 		}
-        else if(entity instanceof EntityFreightCart2) {
-        	return true;		
-        }
-        else if(entity instanceof EntityFreightCartSmall) {
-        	return true;
-        }
-        else if(entity instanceof EntityFreightCartUS) {
-        	if(block != null && !woodStuff(itemstack)) {
-        		if(block instanceof Block) {
-        			return true;
-        		}
-        	}
-        	return false;
-        }
-        else if(entity instanceof EntityFreightCenterbeam_Empty) {
-        	return true;
-        }
-        else if(entity instanceof EntityFreightCenterbeam_Wood_1) {
-        	if(block != null) {
-        		return woodStuff(itemstack);
-			}
-			return false;
-        }
-        else if(entity instanceof EntityFreightCenterbeam_Wood_2) {
-        	if(block != null) {
-				return woodStuff(itemstack);
-			}
-			return false;
-        }
-        else if(entity instanceof EntityFreightClosed) {
-        	if(block != null && !woodStuff(itemstack)) {
-        		if(block instanceof Block) {
-        			return true;
-        		}
-        	}
-        	return false;
-        }
-        else if(entity instanceof EntityFreightGondola_DB) {
-        	if(block != null && !woodStuff(itemstack)) {
-        		if(block instanceof Block) {
-        			return true;
-        		}
-        	}
-        	return false;
+		if (entity instanceof EntityFreightCart2) {
+			return true;
 		}
-        else if(entity instanceof EntityFreightGrain) {
-        	if(itemstack.getItem().itemID == Item.wheat.itemID || itemstack.getItem().itemID == Item.seeds.itemID || itemstack.getItem().itemID == Item.melonSeeds.itemID || itemstack.getItem().itemID == Item.pumpkinSeeds.itemID) {
-        		return true;
-        	}
-        	if(cropStuff(itemstack)) {
-        		return true;
-        	}
-        	return false;		
-        }
-        else if(entity instanceof EntityFreightHopperUS) {
-        	if(block != null) {
-        		if(block instanceof Block && !woodStuff(itemstack)) {
-        			return true;
-        		}
-        		else {
-        			return false;
-        		}
-        	}
-        	else {
-        		return false;
-        	}
-        }
-        else if(entity instanceof EntityFreightMinetrain) {
-        	if(block != null) {
-        		if(block.isOpaqueCube()) {
-        			return true;
-        		}
-        		return false;
-        	}
-        	else {
-        		if(itemstack.getItem().isDamaged(itemstack)) {
-        			return false;
-        		}
-        	}
-        }
-        else if(entity instanceof EntityFreightOpen2) {
-        	if(block != null && !woodStuff(itemstack)) {
-        		if(block instanceof Block) {
-        			return true;
-        		}
-        	}
-        	return false;
-        }
-        else if(entity instanceof EntityFreightTrailer) {
-        	return true;
-        }
-        else if(entity instanceof EntityFreightWagenDB) {
-        	return true;
-        }
-        else if(entity instanceof EntityFreightWellcar) {
-        	return true;
-        }
-        else if(entity instanceof EntityFreightWood) {
-        	if(block != null) {
-        		return isDict("logWood", itemstack);
+		if (entity instanceof EntityFreightCartSmall) {
+			return true;
+		}
+		if (entity instanceof EntityFreightCartUS) {
+			if (!woodStuff(itemstack)) {
+				// TODO: Why there is this check? Did they though it could be
+				// item?
+				if (block instanceof Block) {
+					return true;
+				}
 			}
 			return false;
 		}
-        else if(entity instanceof EntityFreightWood2) {
-        	if(block != null) {
-				return isDict("logWood", itemstack);
+		if (entity instanceof EntityFreightCenterbeam_Empty) {
+			return true;
+		}
+		if (entity instanceof EntityFreightCenterbeam_Wood_1) {
+			return woodStuff(itemstack);
+		}
+		if (entity instanceof EntityFreightCenterbeam_Wood_2) {
+			return woodStuff(itemstack);
+		}
+		if (entity instanceof EntityFreightClosed) {
+			if (!woodStuff(itemstack)) {
+				// TODO: Why there is this check? Did they though it could be
+				// item?
+				if (block instanceof Block) {
+					return true;
+				}
 			}
-			return false;		
-        }
-        else if(entity instanceof EntityFreightOpenWagon) {
-        	if(block != null) {
-        		if(block instanceof Block && !woodStuff(itemstack)) {
-        			System.out.println(block.getLocalizedName());
-        			return true;
-        		}
-        	}
-        	return false;
-        }
+			return false;
+		}
+		if (entity instanceof EntityFreightGondola_DB) {
+			if (!woodStuff(itemstack)) {
+				// TODO: Why there is this check? Did they though it could be
+				// item?
+				if (block instanceof Block) {
+					return true;
+				}
+			}
+			return false;
+		}
+		if (entity instanceof EntityFreightGrain) {
+			int id = Item.getIdFromItem(itemstack.getItem());
+			if (id == Item.getIdFromItem(Items.wheat)
+					|| id == Item.getIdFromItem(Items.wheat_seeds)
+					|| id == Item.getIdFromItem(Items.melon_seeds)
+					|| id == Item.getIdFromItem(Items.pumpkin_seeds)) {
+				return true;
+			}
+			return cropStuff(itemstack);
+		}
+		if (entity instanceof EntityFreightHopperUS) {
+			// TODO: Why there is this check? Did they though it could be item?
+			return block instanceof Block && !woodStuff(itemstack);
+		}
+		if (entity instanceof EntityFreightMinetrain) {
+			if (block != null) {
+				return block.isOpaqueCube();
+			} else {
+				// TODO: Why there is this? NOTE: This wouldn't have been
+				// deadcode because the blocks nullness wasn't checked
+				if (itemstack.getItem().isDamaged(itemstack)) {
+					return false;
+				}
+			}
+		}
+		if (entity instanceof EntityFreightOpen2) {
+			if (!woodStuff(itemstack)) {
+				// TODO: Why there is this check? Did they though it could be
+				// item?
+				if (block instanceof Block) {
+					return true;
+				}
+			}
+			return false;
+		}
+		if (entity instanceof EntityFreightTrailer) {
+			return true;
+		}
+		if (entity instanceof EntityFreightWagenDB) {
+			return true;
+		}
+		if (entity instanceof EntityFreightWellcar) {
+			return true;
+		}
+		if (entity instanceof EntityFreightWood) {
+			return isDict("logWood", itemstack);
+		}
+		if (entity instanceof EntityFreightWood2) {
+			return isDict("logWood", itemstack);
+		}
+		if (entity instanceof EntityFreightOpenWagon) {
+			// TODO: Why there is this check? Did they though it could be item?
+			if (block instanceof Block && !woodStuff(itemstack)) {
+				return true;
+			}
+		}
 		return false;
 	}
-	
+
 	private static boolean cropStuff(ItemStack itemstack) {
-		String[] names = new String[] {"cropCorn", "cropHops", "cropRice", "seedCorn"};
-		for (int i = 0; i < names.length; i++) {
-			if(isDict(names[i], itemstack)) {
+		String[] names = new String[] { "cropCorn", "cropHops", "cropRice",
+				"seedCorn" };
+		for (String name: names) {
+			if (isDict(name, itemstack)) {
 				return true;
 			}
 		}
 		return false;
 	}
-	
+
 	private static boolean woodStuff(ItemStack itemstack) {
-		String[] names = new String[] {"logWood", "plankWood", "slabWood", "stickWood", "stairWood"};
-		for (int i = 0; i < names.length; i++) {
-			if(isDict(names[i], itemstack)) {
+		String[] names = new String[] { "logWood", "plankWood", "slabWood",
+				"stickWood", "stairWood" };
+		for (String name: names) {
+			if (isDict(name, itemstack)) {
 				return true;
 			}
 		}
 		return false;
 	}
-	
+
 	private static boolean isDict(String name, ItemStack itemstack) {
-		ArrayList<ItemStack> items = OreDictionary.getOres(name);
-		for (int i = 0; i < items.size(); i++) {
-			if(itemstack.getItem().itemID == items.get(i).itemID) {
+		for (ItemStack item : OreDictionary.getOres(name)) {
+			if (itemstack.isItemEqual(item)) {
 				return true;
 			}
 		}
