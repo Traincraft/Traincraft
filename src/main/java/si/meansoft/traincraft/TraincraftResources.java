@@ -7,7 +7,9 @@ import net.minecraft.util.ResourceLocation;
  */
 public enum TraincraftResources {
 
-    DISTILLERY("guiDistillery");
+    DISTILLERY("guiDistillery"),
+    CRAFTERSTEAM("guiCrafterSteam")
+    ;
 
     String name;
     TraincraftResources(String guiName) {

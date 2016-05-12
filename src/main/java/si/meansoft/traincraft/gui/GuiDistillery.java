@@ -76,7 +76,6 @@ public class GuiDistillery extends GuiContainer {
             fluidTexture = new ResourceLocation(fluidTexture.getResourceDomain(), "textures/" + fluidTexture.getResourcePath() + ".png");
             Minecraft.getMinecraft().getTextureManager().bindTexture(fluidTexture);
             int factor = this.distillery.getField(4) * height / tank.getCapacity();
-            System.out.println(this.distillery.getField(4));
             drawModalRectWithCustomSizedTexture(x, y + height - factor, 0, 0, width, factor, 16, 512);
         }
     }

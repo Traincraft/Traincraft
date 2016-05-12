@@ -27,7 +27,7 @@ import si.meansoft.traincraft.network.GuiHandler;
  */
 public class BlockContainerBase extends BlockBase implements ITileEntityProvider{
 
-    private Class<? extends TileEntity> tileClass;
+    protected Class<? extends TileEntity> tileClass;
     protected int guiId = -1;
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
 
