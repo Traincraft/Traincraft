@@ -87,7 +87,7 @@ public class InventoryFreight extends Container {
 			while (par1ItemStack.stackSize > 0 && (!bool && var6 < j || bool && var6 >= i)) {
 				var7 = (Slot) this.inventorySlots.get(var6);
 				var8 = var7.getStack();
-				if (var8 != null && var8.itemID == par1ItemStack.itemID && (!par1ItemStack.getHasSubtypes() || par1ItemStack.getItemDamage() == var8.getItemDamage()) && ItemStack.areItemStackTagsEqual(par1ItemStack, var8)) {
+				if (var8 != null && var8.getItem() == par1ItemStack.getItem() && (!par1ItemStack.getHasSubtypes() || par1ItemStack.getItemDamage() == var8.getItemDamage()) && ItemStack.areItemStackTagsEqual(par1ItemStack, var8)) {
 					int var9 = var8.stackSize + par1ItemStack.stackSize;
 					int maxSize = par1ItemStack.getMaxStackSize();//default is item max stack size
 					if (bool == false) {//if items are transfered to the freight inventory, otherwise use normal max size

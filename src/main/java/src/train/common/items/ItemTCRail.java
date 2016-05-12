@@ -9,6 +9,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.MathHelper;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import src.train.common.Traincraft;
 import src.train.common.library.BlockIDs;
@@ -127,7 +128,7 @@ public class ItemTCRail extends Item {
 		Block l = world.getBlock(x, y, z);
 		Block l1 = world.getBlock(x, y - 1, z);
 		//Block block = Block.blocksList[l];
-		return (l == null || l.isReplaceable(world, x, y, z)) && (world.doesBlockHaveSolidTopSurface(x, y - 1, z) || l1 == BlockIDs.bridgePillar.block);
+		return (l == null || l.isReplaceable(world, x, y, z)) && (World.doesBlockHaveSolidTopSurface(world ,x, y - 1, z) || l1 == BlockIDs.bridgePillar.block);
 	}
 
 	/**

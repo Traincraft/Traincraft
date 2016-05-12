@@ -69,7 +69,7 @@ public class EntityMailWagen_DB extends AbstractWorkCart implements IInventory {
 					j = itemstack.stackSize;
 				}
 				itemstack.stackSize -= j;
-				EntityItem entityitem = new EntityItem(worldObj, posX + (double) f, posY + (double) f1, posZ + (double) f2, new ItemStack(itemstack.itemID, j, itemstack.getItemDamage()));
+				EntityItem entityitem = new EntityItem(worldObj, posX + (double) f, posY + (double) f1, posZ + (double) f2, new ItemStack(itemstack.getItem(), j, itemstack.getItemDamage()));
 				float f3 = 0.05F;
 				entityitem.motionX = (float) rand.nextGaussian() * f3;
 				entityitem.motionY = (float) rand.nextGaussian() * f3 + 0.2F;
@@ -82,7 +82,7 @@ public class EntityMailWagen_DB extends AbstractWorkCart implements IInventory {
 
 	@Override
 	public void pressKey(int i) {
-		if(locked && riddenByEntity != null && riddenByEntity instanceof EntityPlayer&& !((EntityPlayer)riddenByEntity).username.toLowerCase().equals(this.trainOwner.toLowerCase())){
+		if(locked && riddenByEntity != null && riddenByEntity instanceof EntityPlayer&& !((EntityPlayer)riddenByEntity).getDisplayName().toLowerCase().equals(this.trainOwner.toLowerCase())){
 			return;
 		}
 		if (i == 7) {
@@ -100,7 +100,7 @@ public class EntityMailWagen_DB extends AbstractWorkCart implements IInventory {
 	}
 
 	@Override
-	public String getInvName() {
+	public String getInventoryName() {
 		return "Mail Wagen";
 	}
 
@@ -145,4 +145,6 @@ public class EntityMailWagen_DB extends AbstractWorkCart implements IInventory {
 	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
 		return true;
 	}
+
+	public void markDirty(){};
 }

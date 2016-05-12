@@ -10,6 +10,7 @@ package src.train.common.generation;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -17,11 +18,11 @@ import src.train.common.library.BlockIDs;
 
 public class WorldGenOres extends WorldGenerator {
 
-	private int bID;
+	private Block bID;
 	private int meta;
 	private int size;
 
-	public WorldGenOres(int blockID, int metadata, int sizeOfVein) {
+	public WorldGenOres(Block blockID, int metadata, int sizeOfVein) {
 		this.bID = blockID;
 		this.meta = metadata;
 		this.size = sizeOfVein;
@@ -60,11 +61,11 @@ public class WorldGenOres extends WorldGenerator {
 					}
 					for (int zGen = k1; zGen <= j2; zGen++) {
 						double d14 = (((double) zGen + 0.5D) - d8) / (d10 / 2D);
-						if ((d12 * d12 + d13 * d13 + d14 * d14 < 1.0D && world.getBlockId(xGen, yGen, zGen) == Block.sandStone.blockID && (bID == BlockIDs.oreTC.blockID && meta == 1)) || (d12 * d12 + d13 * d13 + d14 * d14 < 1.0D && world.getBlockId(xGen, yGen, zGen) == Block.sand.blockID && (bID == BlockIDs.oreTC.blockID && meta == 1) && world.getBlockId(xGen, yGen + 1, zGen) == Block.sand.blockID)) {
+						if ((d12 * d12 + d13 * d13 + d14 * d14 < 1.0D && world.getBlock(xGen, yGen, zGen) == Blocks.sandstone && (bID == BlockIDs.oreTC.block && meta == 1)) || (d12 * d12 + d13 * d13 + d14 * d14 < 1.0D && world.getBlock(xGen, yGen, zGen) == Blocks.sand && (bID == BlockIDs.oreTC.block && meta == 1) && world.getBlock(xGen, yGen + 1, zGen) == Blocks.sand)) {
 							//System.out.println("Generating sand ores at " + xGen + " | " + yGen + " | " + zGen + "  : " + meta);
 							world.setBlock(xGen, yGen, zGen, bID, meta, 2);
 						}
-						if ((d12 * d12 + d13 * d13 + d14 * d14 < 1.0D && world.getBlockId(xGen, yGen, zGen) == Block.stone.blockID && (bID == BlockIDs.oreTC.blockID && meta != 1))) {
+						if ((d12 * d12 + d13 * d13 + d14 * d14 < 1.0D && world.getBlock(xGen, yGen, zGen) == Blocks.stone && (bID == BlockIDs.oreTC.block && meta != 1))) {
 							//System.out.println("Generating other ores at " + xGen + " | " + yGen + " | " + zGen + "  : " + meta);
 							world.setBlock(xGen, yGen, zGen, bID, meta, 2);
 						}

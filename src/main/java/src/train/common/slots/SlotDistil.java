@@ -1,9 +1,11 @@
 package src.train.common.slots;
 
+import cpw.mods.fml.common.gameevent.PlayerEvent;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import src.train.common.recipes.DistilRecipes;
@@ -59,7 +61,7 @@ public class SlotDistil extends Slot {
 
 		if (!this.thePlayer.worldObj.isRemote) {
 			int var2 = this.amount;
-			float var3 = DistilRecipes.smelting().getExperience(itemstack.itemID);
+			float var3 = DistilRecipes.smelting().getExperience(Item.getIdFromItem(itemstack.getItem()));
 			int var4;
 
 			if (var3 == 0.0F) {
@@ -84,6 +86,6 @@ public class SlotDistil extends Slot {
 
 		this.amount = 0;
 
-		GameRegistry.onItemSmelted(thePlayer, itemstack);
+		new PlayerEvent.ItemSmeltedEvent(thePlayer, itemstack);
 	}
 }

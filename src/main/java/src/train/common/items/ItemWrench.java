@@ -58,7 +58,7 @@ public class ItemWrench extends Item implements IToolWrench{
 	}
 
 	@Override
-	public boolean shouldPassSneakingClickToBlock(World par2World, int par4, int par5, int par6) {
+	public boolean doesSneakBypassUse(World world, int x, int y, int z, EntityPlayer player) {
 		return true;
 	}
 }

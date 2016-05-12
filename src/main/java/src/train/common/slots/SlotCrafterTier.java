@@ -22,6 +22,6 @@ public class SlotCrafterTier extends Slot {
 
 	@Override
 	public void onSlotChanged() {
-		this.inventory.onInventoryChanged();
+		this.inventory.markDirty();
 	}
 }

@@ -25,9 +25,9 @@ public class WorldGenWorld implements IWorldGenerator {
 
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
-		copper = new WorldGenOres(BlockIDs.oreTC.blockID, 0, 6);
-		oilSands = new WorldGenOres(BlockIDs.oreTC.blockID, 1, 20);
-		petroleum = new WorldGenOres(BlockIDs.oreTC.blockID, 2, 14);
+		copper = new WorldGenOres(BlockIDs.oreTC.block, 0, 6);
+		oilSands = new WorldGenOres(BlockIDs.oreTC.block, 1, 20);
+		petroleum = new WorldGenOres(BlockIDs.oreTC.block, 2, 14);
 
 		if (ConfigHandler.ORE_GEN) {
 			oilSands.generateVeins(world, random, chunkX * 16, chunkZ * 16, 2, 60, 6);

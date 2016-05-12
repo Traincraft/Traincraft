@@ -11,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.Constants;
 import src.train.common.Traincraft;
 import src.train.common.api.Freight;
 import src.train.common.library.GuiIDs;
@@ -67,7 +68,7 @@ public class EntityFreightCartSmall extends Freight implements IInventory {
 					j = itemstack.stackSize;
 				}
 				itemstack.stackSize -= j;
-				EntityItem entityitem = new EntityItem(worldObj, posX + (double) f, posY + (double) f1, posZ + (double) f2, new ItemStack(itemstack.itemID, j, itemstack.getItemDamage()));
+				EntityItem entityitem = new EntityItem(worldObj, posX + (double) f, posY + (double) f1, posZ + (double) f2, new ItemStack(itemstack.getItem(), j, itemstack.getItemDamage()));
 				float f3 = 0.05F;
 				entityitem.motionX = (float) rand.nextGaussian() * f3;
 				entityitem.motionY = (float) rand.nextGaussian() * f3 + 0.2F;
@@ -98,10 +99,10 @@ public class EntityFreightCartSmall extends Freight implements IInventory {
 	protected void readEntityFromNBT(NBTTagCompound nbttagcompound) {
 		super.readEntityFromNBT(nbttagcompound);
 		
-		NBTTagList nbttaglist = nbttagcompound.getTagList("Items");
+		NBTTagList nbttaglist = nbttagcompound.getTagList("Items", Constants.NBT.TAG_COMPOUND);
 		cargoItems = new ItemStack[getSizeInventory()];
 		for (int i = 0; i < nbttaglist.tagCount(); i++) {
-			NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist.tagAt(i);
+			NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist.getCompoundTagAt(i);
 			int j = nbttagcompound1.getByte("Slot") & 0xff;
 			if (j >= 0 && j < cargoItems.length) {
 				cargoItems[j] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
@@ -109,7 +110,7 @@ public class EntityFreightCartSmall extends Freight implements IInventory {
 		}
 	}
 	@Override
-	public String getInvName() {
+	public String getInventoryName() {
 		return "Freight cart";
 	}
 
@@ -124,7 +125,7 @@ public class EntityFreightCartSmall extends Freight implements IInventory {
 		if ((super.interactFirst(entityplayer))) {
 			return false;
 		}
-		entityplayer.openGui(Traincraft.instance, GuiIDs.FREIGHT, worldObj, this.entityId, -1, (int) this.posZ);
+		entityplayer.openGui(Traincraft.instance, GuiIDs.FREIGHT, worldObj, this.getEntityId(), -1, (int) this.posZ);
 		return true;
 	}
 	

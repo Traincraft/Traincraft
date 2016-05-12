@@ -70,7 +70,7 @@ public class EntityCabooseWorkCart extends AbstractWorkCart implements IInventor
 					j = itemstack.stackSize;
 				}
 				itemstack.stackSize -= j;
-				EntityItem entityitem = new EntityItem(worldObj, posX + f, posY + f1, posZ + f2, new ItemStack(itemstack.itemID, j, itemstack.getItemDamage()));
+				EntityItem entityitem = new EntityItem(worldObj, posX + f, posY + f1, posZ + f2, new ItemStack(itemstack.getItem(), j, itemstack.getItemDamage()));
 				float f3 = 0.05F;
 				entityitem.motionX = (float) rand.nextGaussian() * f3;
 				entityitem.motionY = (float) rand.nextGaussian() * f3 + 0.2F;
@@ -83,7 +83,7 @@ public class EntityCabooseWorkCart extends AbstractWorkCart implements IInventor
 
 	@Override
 	public void pressKey(int i) {
-		if(locked && riddenByEntity != null && riddenByEntity instanceof EntityPlayer&& !((EntityPlayer)riddenByEntity).username.toLowerCase().equals(this.trainOwner.toLowerCase())){
+		if(locked && riddenByEntity != null && riddenByEntity instanceof EntityPlayer&& !((EntityPlayer)riddenByEntity).getDisplayName().toLowerCase().equals(this.trainOwner.toLowerCase())){
 			return;
 		}
 		if (i == 7 && riddenByEntity != null && riddenByEntity instanceof EntityPlayer) {
@@ -101,7 +101,7 @@ public class EntityCabooseWorkCart extends AbstractWorkCart implements IInventor
 	}
 
 	@Override
-	public String getInvName() {
+	public String getInventoryName() {
 		return "Caboose";
 	}
 
@@ -150,4 +150,6 @@ public class EntityCabooseWorkCart extends AbstractWorkCart implements IInventor
 	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
 		return true;
 	}
+
+	public void markDirty(){}
 }

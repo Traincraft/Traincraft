@@ -12,6 +12,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemRecord;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import paulscode.sound.SoundSystem;
@@ -83,7 +84,7 @@ public class EntityJukeBoxCart extends EntityRollingStock {
 		super.setDead();
 		isDead = true;
 		if (side == Side.CLIENT) {
-			String s1 = "entity_" + this.entityId;
+			String s1 = "entity_" + this.getEntityId();
 		}
 	}
 
@@ -158,7 +159,7 @@ public class EntityJukeBoxCart extends EntityRollingStock {
 		if (!this.isPlaying) {
 			this.isPlaying = true;
 			if (side == Side.CLIENT) {
-				this.player = new MP3Player(this.streamURL, this.worldObj, this.entityId);
+				this.player = new MP3Player(this.streamURL, this.worldObj, this.getEntityId());
 				Traincraft.proxy.playerList.add(this.player);
 			}
 		}
@@ -185,13 +186,13 @@ public class EntityJukeBoxCart extends EntityRollingStock {
 		if ((super.interactFirst(entityplayer))) {
 			return false;
 		}
-		if (locked && !entityplayer.username.toLowerCase().equals(this.trainOwner.toLowerCase())) {
+		if (locked && !entityplayer.getDisplayName().toLowerCase().equals(this.trainOwner.toLowerCase())) {
 			if (!worldObj.isRemote)
-				entityplayer.addChatMessage("this train is locked");
+				entityplayer.addChatMessage(new ChatComponentText("this train is locked"));
 			return true;
 		}
 		
-		entityplayer.openGui(Traincraft.instance, GuiIDs.JUKEBOX, worldObj, this.entityId, -1, (int) this.posZ);
+		entityplayer.openGui(Traincraft.instance, GuiIDs.JUKEBOX, worldObj, this.getEntityId(), -1, (int) this.posZ);
 		return true;
 	}
 	

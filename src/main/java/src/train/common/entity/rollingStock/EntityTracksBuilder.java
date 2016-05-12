@@ -1431,7 +1431,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 
 			//torchPlacer(i, j, k, iX, kZ);
 
-			if (hY == 0 && !BlockRailBase.isRailBlock(worldObj.getBlock(i, j + hY, k)) && !BlockRailBase.isRailBlock(worldObj.getBlock(i, j, k)) && Blocks.rail.canPlaceBlockAt(worldObj, i, j + hY, k)) {
+			if (hY == 0 && !BlockRailBase.func_150051_a(worldObj.getBlock(i, j + hY, k)) && !BlockRailBase.func_150051_a(worldObj.getBlock(i, j, k)) && Blocks.rail.canPlaceBlockAt(worldObj, i, j + hY, k)) {
 				checkForTracks();
 				trackfuel--;
 

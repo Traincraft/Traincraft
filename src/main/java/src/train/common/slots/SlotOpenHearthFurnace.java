@@ -1,9 +1,11 @@
 package src.train.common.slots;
 
+import cpw.mods.fml.common.gameevent.PlayerEvent;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import src.train.common.library.AchievementIDs;
@@ -59,13 +61,13 @@ public class SlotOpenHearthFurnace extends Slot {
 	protected void onCrafting(ItemStack itemstack) {
 		itemstack.onCrafting(this.thePlayer.worldObj, this.thePlayer, this.amount);
 
-		GameRegistry.onItemSmelted(thePlayer, itemstack);
-		if (itemstack.itemID == ItemIDs.steel.item.itemID)
+		new PlayerEvent.ItemSmeltedEvent(thePlayer, itemstack);
+		if (itemstack.getItem() == ItemIDs.steel.item)
 			thePlayer.addStat(AchievementIDs.steel.achievement, 1);
 
 		if (!this.thePlayer.worldObj.isRemote) {
 			int var2 = this.amount;
-			float var3 = OpenHearthFurnaceRecipes.smelting().getExperience(itemstack.itemID);
+			float var3 = OpenHearthFurnaceRecipes.smelting().getExperience(Item.getIdFromItem(itemstack.getItem()));
 			int var4;
 
 			if (var3 == 0.0F) {

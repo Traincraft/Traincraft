@@ -9,6 +9,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -19,6 +20,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
+import net.minecraftforge.common.util.Constants;
 import org.lwjgl.input.Keyboard;
 
 import src.train.client.core.handlers.KeyHandlerClient;
@@ -228,7 +230,7 @@ public class EntityRotativeDigger extends Entity implements IInventory {
 					k = itemstack.stackSize;
 				}
 				itemstack.stackSize -= k;
-				EntityItem entityitem = new EntityItem(worldObj, posX + f, posY + f1, posZ + f2, new ItemStack(itemstack.itemID, k, itemstack.getItemDamage()));
+				EntityItem entityitem = new EntityItem(worldObj, posX + f, posY + f1, posZ + f2, new ItemStack(itemstack.getItem(), k, itemstack.getItemDamage()));
 				float f3 = 0.05F;
 				entityitem.motionX = (float) rand.nextGaussian() * f3;
 				entityitem.motionY = (float) rand.nextGaussian() * f3 + 0.2F;
@@ -355,7 +357,7 @@ public class EntityRotativeDigger extends Entity implements IInventory {
 		double newY = -(((cosPitch - x) * -sinPitch));
 		double newZ = (y * sinRoll - x * cosRoll) * sinYaw + ((-x * sinRoll + y * cosRoll) * 0 + z * 0.01745) * cosYaw;
 
-		return Vec3.fakePool.getVecFromPool(newX, newY, newZ);
+		return Vec3.createVectorHelper(newX, newY, newZ);
 	}
 
 	public float getYaw() {
@@ -596,10 +598,10 @@ public class EntityRotativeDigger extends Entity implements IInventory {
 		}
 
 		if (Math.sqrt((motionX * motionX) + (motionZ * motionZ)) > 0.01) {
-			Vec3 pos = Vec3.fakePool.getVecFromPool(posX, posY - 1, posZ);
-			int id = worldObj.getBlockId((int) posX, (int) posY - 1, (int) posZ);
-			if (Block.blocksList[id] != null) {
-				this.playMiningEffect(pos, id);
+			Vec3 pos = Vec3.createVectorHelper(posX, posY - 1, posZ);
+			Block id = worldObj.getBlock((int) posX, (int) posY - 1, (int) posZ);
+			if (id != null) {
+				this.playMiningEffect(pos, Block.getIdFromBlock(id));
 			}
 		}
 	}
@@ -612,8 +614,8 @@ public class EntityRotativeDigger extends Entity implements IInventory {
 	 */
 
 	private void playMiningEffect(Vec3 pos, int block_index) {
-		int id = worldObj.getBlockId((int) pos.xCoord, (int) pos.yCoord, (int) pos.zCoord);
-		Block block = Block.blocksList[id];
+		Block id = worldObj.getBlock((int) pos.xCoord, (int) pos.yCoord, (int) pos.zCoord);
+		Block block = id;
 		if (block != null) {
 			Minecraft.getMinecraft().effectRenderer.addBlockHitEffects((int) pos.xCoord, (int) pos.yCoord, (int) pos.zCoord, block_index < 4 ? getSideFromYaw() : (block_index < 6 ? 1 : 0));
 		}
@@ -683,10 +685,10 @@ public class EntityRotativeDigger extends Entity implements IInventory {
 	@Override
 	protected void readEntityFromNBT(NBTTagCompound nbttagcompound) {
 		fuel = nbttagcompound.getShort("Fuel");
-		NBTTagList nbttaglist = nbttagcompound.getTagList("Items");
+		NBTTagList nbttaglist = nbttagcompound.getTagList("Items", Constants.NBT.TAG_COMPOUND);
 		zeppInvent = new ItemStack[getSizeInventory()];
 		for (int i = 0; i < nbttaglist.tagCount(); i++) {
-			NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist.tagAt(i);
+			NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist.getCompoundTagAt(i);
 			int j = nbttagcompound1.getByte("Slot") & 0xff;
 			if (j >= 0 && j < zeppInvent.length) {
 				zeppInvent[j] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
@@ -752,14 +754,14 @@ public class EntityRotativeDigger extends Entity implements IInventory {
 		if (itemstack != null && itemstack.stackSize > getInventoryStackLimit()) {
 			itemstack.stackSize = getInventoryStackLimit();
 		}
-		if (itemstack != null && itemstack.itemID == 263 && i == 0 && riddenByEntity != null && (riddenByEntity instanceof EntityPlayer)) {
+		if (itemstack != null && itemstack.getItem() == Items.coal && i == 0 && riddenByEntity != null && (riddenByEntity instanceof EntityPlayer)) {
 			// ((EntityPlayer)riddenByEntity).func_25046_a(Train.field_27542_startTrain, 1);
 		}
 
 	}
 
 	@Override
-	public String getInvName() {
+	public String getInventoryName() {
 		return "Rotative Digger";
 	}
 
@@ -777,7 +779,7 @@ public class EntityRotativeDigger extends Entity implements IInventory {
 	}
 
 	@Override
-	public void onInventoryChanged() {}
+	public void markDirty() {}
 
 	public int getFuel() {
 		return (this.dataWatcher.getWatchableObjectInt(20));
@@ -802,7 +804,7 @@ public class EntityRotativeDigger extends Entity implements IInventory {
 		/* This is a temporary fix for testing purpose Or maybe not. Does this thing really needs a GUI? */
 		ItemStack var2 = entityplayer.inventory.getCurrentItem();
 
-		if (var2 != null && var2.itemID == ItemIDs.refinedFuel.item.itemID) {
+		if (var2 != null && var2.getItem() == ItemIDs.refinedFuel.item) {
 			if (--var2.stackSize == 0) {
 				entityplayer.inventory.setInventorySlotContents(entityplayer.inventory.currentItem, (ItemStack) null);
 			}
@@ -820,10 +822,10 @@ public class EntityRotativeDigger extends Entity implements IInventory {
 	}
 
 	@Override
-	public void openChest() {}
+	public void openInventory() {}
 
 	@Override
-	public void closeChest() {}
+	public void closeInventory() {}
 
 	@Override
 	public boolean isUseableByPlayer(EntityPlayer entityplayer) {
@@ -834,7 +836,7 @@ public class EntityRotativeDigger extends Entity implements IInventory {
 	}
 
 	@Override
-	public boolean isInvNameLocalized() {
+	public boolean hasCustomInventoryName() {
 		return false;
 	}
 

@@ -134,8 +134,8 @@ public class TrainCraftingManager {
 			}
 		}
 
-		if (var2 == 2 && var3.itemID == var4.itemID && var3.stackSize == 1 && var4.stackSize == 1 && Item.itemsList[var3.itemID].isRepairable()) {
-			Item var11 = Item.itemsList[var3.itemID];
+		if (var2 == 2 && var3.getItem() == var4.getItem() && var3.stackSize == 1 && var4.stackSize == 1 && var3.getItem().isRepairable()) {
+			Item var11 = var3.getItem();
 			int var10 = var11.getMaxDamage() - var3.getItemDamageForDisplay();
 			int var7 = var11.getMaxDamage() - var4.getItemDamageForDisplay();
 			int var8 = var10 + var7 + var11.getMaxDamage() * 10 / 100;
@@ -144,7 +144,7 @@ public class TrainCraftingManager {
 			if (var9 < 0) {
 				var9 = 0;
 			}
-			return new ItemStack(var3.itemID, 1, var9);
+			return new ItemStack(var3.getItem(), 1, var9);
 		}
 		else {
 			for (var5 = 0; var5 < this.recipes.size(); ++var5) {

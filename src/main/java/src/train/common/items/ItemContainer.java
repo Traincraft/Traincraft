@@ -36,7 +36,7 @@ public class ItemContainer extends Item {
 	}
 	
 	@Override
-	public ItemStack getContainerItemStack(ItemStack itemStack) {
+	public ItemStack getContainerItem(ItemStack itemStack) {
 		return new ItemStack(ItemIDs.emptyCanister.item);
 	}
 

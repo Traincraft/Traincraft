@@ -1,5 +1,6 @@
 package src.train.common.slots;
 
+import cpw.mods.fml.common.gameevent.PlayerEvent;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
@@ -29,7 +30,7 @@ public class SlotResultTier extends Slot {
 
 	@Override
 	public void onSlotChanged() {
-		this.inventory.onInventoryChanged();
+		this.inventory.markDirty();
 	}
 
 	@Override
@@ -41,6 +42,6 @@ public class SlotResultTier extends Slot {
 		}
 		this.onCrafting(itemstack);
 		super.onPickupFromSlot(player, itemstack);
-		GameRegistry.onItemCrafted(player, itemstack, craftMatrix);
+		new PlayerEvent.ItemCraftedEvent(player, itemstack, craftMatrix);
 	}
 }

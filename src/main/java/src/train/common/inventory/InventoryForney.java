@@ -3,6 +3,7 @@ package src.train.common.inventory;
 import ic2.api.item.IElectricItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
@@ -65,7 +66,7 @@ public class InventoryForney extends Container {
 				}
 			}
 			else if (i > inventorySize) {
-				if (FuelHandler.steamFuelLast(itemstack) > 0 || LiquidManager.getInstance().isDieselLocoFuel(itemstack) || (itemstack.getItem().itemID == Item.redstone.itemID) || (itemstack.getItem() instanceof IElectricItem)) {
+				if (FuelHandler.steamFuelLast(itemstack) > 0 || LiquidManager.getInstance().isDieselLocoFuel(itemstack) || (itemstack.getItem() == Items.redstone) || (itemstack.getItem() instanceof IElectricItem)) {
 					if (!mergeItemStack(itemstack1, 0, 1, false)) {
 						return null;
 					}
