@@ -34,7 +34,7 @@ public class GuiDistil extends GuiContainer {
 			if(Item.getIdFromItem(distilInventory.distilItemStacks[0].getItem()) == BlockIDs.oreTC.blockID && (distilInventory.distilItemStacks[0].getItemDamage() != 1 && distilInventory.distilItemStacks[0].getItemDamage() != 2)){
 				return;
 			}
-			double plasticChance = DistilRecipes.smelting().getPlasticChance(Item.getIdFromItem(distilInventory.distilItemStacks[0].getItem()));
+			double plasticChance = DistilRecipes.smelting().getPlasticChance(distilInventory.distilItemStacks[0].getItem());
 			if(plasticChance!=0){//stops showing 100% for blocks that aren't part of a recipe
 				double chanceShown = ((1 / plasticChance) * 100);
 				fontRendererObj.drawString((int) chanceShown + "%", 79, 70, 0x404040);
