@@ -20,13 +20,13 @@ public class TrainModBlockUtil {
 	public static double TO_BC_RATIO = 1 / BC3_RATIO;
 	
 	public static ArrayList<ItemStack> getItemStackFromBlock(World world, int i, int j, int k) {
-		Block block = Block.blocksList[world.getBlockId(i, j, k)];
+		Block block = world.getBlock(i, j, k);
 
 		if (block == null) {
 			return null;
 		}
 
 		int meta = world.getBlockMetadata(i, j, k);
-		return block.getBlockDropped(world, i, j, k, meta, 0);
+		return block.getDrops(world, i, j, k, meta, 0);
 	}
 }

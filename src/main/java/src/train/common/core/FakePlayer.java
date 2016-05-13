@@ -1,5 +1,6 @@
 package src.train.common.core;
 
+import com.mojang.authlib.GameProfile;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -19,6 +20,8 @@ import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
 
+import java.util.UUID;
+
 /**
  * Fake player entity, which is used in calls requiring player instance. All methods are modified to do nothing, to prevent modification of player stats.
  * 
@@ -32,7 +35,7 @@ public class FakePlayer extends EntityPlayer {
 	 * @param world the world
 	 */
 	public FakePlayer(World world) {
-		super(world, "");
+		super(world, new GameProfile(new UUID(0,0),""));
 		inventory = new InventoryPlayer(this);
 		inventory.currentItem = 0;
 		inventory.setInventorySlotContents(0, new ItemStack(Items.diamond_pickaxe, 1, 0));
@@ -76,10 +79,6 @@ public class FakePlayer extends EntityPlayer {
 		super.onDeath(damagesource);
 	}
 
-	@Override
-	public EntityItem dropPlayerItem(ItemStack itemstack) {
-		return null;
-	}
 
 	@Override
 	public EntityItem dropPlayerItemWithRandomChoice(ItemStack itemstack, boolean flag) {
@@ -101,15 +100,6 @@ public class FakePlayer extends EntityPlayer {
 	public int getTotalArmorValue() {
 		return 0;
 	}
-
-	@Override
-	public void displayGUIFurnace(TileEntityFurnace tileentityfurnace) {}
-
-	@Override
-	public void displayGUIDispenser(TileEntityDispenser tileentitydispenser) {}
-
-	@Override
-	public void displayGUIBrewingStand(TileEntityBrewingStand tileentitybrewingstand) {}
 
 	@Override
 	public ItemStack getCurrentEquippedItem() {
@@ -250,6 +240,4 @@ public class FakePlayer extends EntityPlayer {
 		return null;
 	}
 
-	@Override
-	public void sendChatToPlayer(ChatComponentText chatmessagecomponent) {}
 }

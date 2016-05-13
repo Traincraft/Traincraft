@@ -41,9 +41,9 @@ public class TrainsDamageSource extends DamageSource {
 	 * Returns the message to be displayed on player death.
 	 */
 	@Override
-	public ChatComponentText getDeathMessage(EntityLivingBase living) {
+	public ChatComponentText func_151519_b(EntityLivingBase living) {
 		String name="";
-		if(living instanceof EntityPlayer)name=((EntityPlayer)living).username;
+		if(living instanceof EntityPlayer)name=((EntityPlayer)living).getDisplayName();
 			return new ChatComponentText(name + deathMessage);
 	}
 }

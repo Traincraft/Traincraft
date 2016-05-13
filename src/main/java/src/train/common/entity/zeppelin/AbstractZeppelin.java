@@ -10,6 +10,8 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -21,6 +23,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
+import net.minecraftforge.common.util.Constants;
 import org.lwjgl.input.Keyboard;
 
 import src.train.client.core.handlers.KeyHandlerClient;
@@ -216,7 +219,7 @@ public abstract class AbstractZeppelin extends Entity implements IInventory {
 					k = itemstack.stackSize;
 				}
 				itemstack.stackSize -= k;
-				EntityItem entityitem = new EntityItem(worldObj, posX + (double) f, posY + (double) f1, posZ + (double) f2, new ItemStack(itemstack.itemID, k, itemstack.getItemDamage()));
+				EntityItem entityitem = new EntityItem(worldObj, posX + (double) f, posY + (double) f1, posZ + (double) f2, new ItemStack(itemstack.getItem(), k, itemstack.getItemDamage()));
 				float f3 = 0.05F;
 				entityitem.motionX = (float) rand.nextGaussian() * f3;
 				entityitem.motionY = (float) rand.nextGaussian() * f3 + 0.2F;
@@ -273,7 +276,7 @@ public abstract class AbstractZeppelin extends Entity implements IInventory {
 			if (this.riddenByEntity != null && (this.riddenByEntity instanceof EntityLivingBase)&&bombTimer<=0) {
 				if(this.zeppInvent!=null && this.zeppInvent.length>0){
 					for(int t=0;t<this.zeppInvent.length;t++){
-						if(this.zeppInvent[t]!=null && this.zeppInvent[t].getItem()!=null && this.zeppInvent[t].getItem().itemID==Block.tnt.blockID){
+						if(this.zeppInvent[t]!=null && this.zeppInvent[t].getItem()!=null && this.zeppInvent[t].getItem() == Item.getItemFromBlock(Blocks.tnt)){
 							EntityTNTPrimed entitytntprimed = new EntityTNTPrimed(this.worldObj, (double) ((float) posX), (double) ((float) posY -1F), (double) ((float) posZ), (EntityLivingBase) this.riddenByEntity);
 							this.worldObj.spawnEntityInWorld(entitytntprimed);
 							this.worldObj.playSoundAtEntity(entitytntprimed, "random.fuse", 1.0F, 1.0F);
@@ -377,7 +380,7 @@ public abstract class AbstractZeppelin extends Entity implements IInventory {
 		double newY = -(((cosPitch - x) * -sinPitch));
 		double newZ = (y * sinRoll - x * cosRoll) * sinYaw + ((-x * sinRoll + y * cosRoll) * 0 + z * 0.01745) * cosYaw;
 
-		return Vec3.fakePool.getVecFromPool(newX, newY, newZ);
+		return Vec3.createVectorHelper(newX, newY, newZ);
 	}
 
 	public float getYaw() {
@@ -477,7 +480,7 @@ public abstract class AbstractZeppelin extends Entity implements IInventory {
 			}
 		}
 		if (getFuel() <= 0) {
-			if (zeppInvent[0] != null && zeppInvent[0].itemID == Item.coal.itemID) {
+			if (zeppInvent[0] != null && zeppInvent[0].getItem() == Items.coal) {
 				fuel = 1000;
 				this.dataWatcher.updateObject(20, fuel);
 				decrStackSize(0, 1);
@@ -663,10 +666,10 @@ public abstract class AbstractZeppelin extends Entity implements IInventory {
 		this.dataWatcher.updateObject(20, nbttagcompound.getInteger("Fuel"));
 		this.altitude = nbttagcompound.getBoolean("altitude");
 		this.idle = nbttagcompound.getBoolean("idle");
-		NBTTagList nbttaglist = nbttagcompound.getTagList("Items");
+		NBTTagList nbttaglist = nbttagcompound.getTagList("Items", Constants.NBT.TAG_COMPOUND);
 		zeppInvent = new ItemStack[getSizeInventory()];
 		for (int i = 0; i < nbttaglist.tagCount(); i++) {
-			NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist.tagAt(i);
+			NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist.getCompoundTagAt(i);
 			int j = nbttagcompound1.getByte("Slot") & 0xff;
 			if (j >= 0 && j < zeppInvent.length) {
 				zeppInvent[j] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
@@ -732,7 +735,7 @@ public abstract class AbstractZeppelin extends Entity implements IInventory {
 	}
 
 	@Override
-	public String getInvName() {
+	public String getInventoryName() {
 		return "Zeppelin";
 	}
 
@@ -750,7 +753,7 @@ public abstract class AbstractZeppelin extends Entity implements IInventory {
 	}
 
 	@Override
-	public void onInventoryChanged() {}
+	public void markDirty() {}
 
 	boolean ImIn = false;
 	ItemStack itemstack;
@@ -767,10 +770,10 @@ public abstract class AbstractZeppelin extends Entity implements IInventory {
 	}
 
 	@Override
-	public void openChest() {}
+	public void openInventory() {}
 
 	@Override
-	public void closeChest() {}
+	public void closeInventory() {}
 
 	@Override
 	public boolean isUseableByPlayer(EntityPlayer entityplayer) {
@@ -788,7 +791,7 @@ public abstract class AbstractZeppelin extends Entity implements IInventory {
 	}
 
 	@Override
-	public boolean isInvNameLocalized() {
+	public boolean hasCustomInventoryName() {
 		return false;
 	}
 

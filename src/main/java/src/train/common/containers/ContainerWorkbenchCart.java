@@ -67,7 +67,7 @@ public class ContainerWorkbenchCart extends Container {
 				ItemStack var3 = craftMatrix.getStackInSlotOnClosing(var2);
 
 				if (var3 != null) {
-					par1EntityPlayer.dropPlayerItem(var3);
+					par1EntityPlayer.dropItem(var3.getItem(), var3.stackSize);
 				}
 			}
 		}

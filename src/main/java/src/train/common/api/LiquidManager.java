@@ -52,9 +52,9 @@ public class LiquidManager {
 	public void registerLiquids() {
 		FluidRegistry.registerFluid(DIESEL);
 		FluidRegistry.registerFluid(REFINED_FUEL);
-		BlockIDs.diesel.block = new BlockTraincraftFluid(BlockIDs.diesel.blockID, DIESEL, Material.water).setFlammable(true).setFlammability(5);
+		BlockIDs.diesel.block = new BlockTraincraftFluid(DIESEL, Material.water).setFlammable(true).setFlammability(5);
 		DIESEL.setBlock(BlockIDs.diesel.block);
-		BlockIDs.refinedFuel.block = new BlockTraincraftFluid(BlockIDs.refinedFuel.blockID, REFINED_FUEL, Material.water).setFlammable(true).setFlammability(4);
+		BlockIDs.refinedFuel.block = new BlockTraincraftFluid(REFINED_FUEL, Material.water).setFlammable(true).setFlammability(4);
 		REFINED_FUEL.setBlock(BlockIDs.refinedFuel.block);
 		FluidContainerRegistry.registerFluidContainer(DIESEL, new ItemStack(ItemIDs.diesel.item), new ItemStack(ItemIDs.emptyCanister.item));
 		FluidContainerRegistry.registerFluidContainer(REFINED_FUEL, new ItemStack(ItemIDs.refinedFuel.item), new ItemStack(ItemIDs.emptyCanister.item));

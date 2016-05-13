@@ -53,7 +53,7 @@ public class NEIDistillationTowerRecipePlugin extends FurnaceRecipeHandler{
                     maxDamage++;
                     stack.item.setItemDamage(maxDamage);
                 }
-                while(NEIClientUtils.isValidItem(stack.item));
+                while(stack.item != null);
                 
                 stack.item.setItemDamage(cycle % maxDamage);
                 return stack;
@@ -120,7 +120,7 @@ public class NEIDistillationTowerRecipePlugin extends FurnaceRecipeHandler{
             for(Entry<Integer, ItemStack> recipe : recipes.entrySet())
             {
                 ItemStack item = recipe.getValue();
-                ItemStack ingredient = new ItemStack(recipe.getKey(), 1, -1);
+                ItemStack ingredient = new ItemStack(Item.getItemById(recipe.getKey()), 1, -1);
             	if(ingredient!=null && ingredient.getItem() instanceof ItemBlockOreTC){
             		ingredient.setItemDamage(1);
             		arecipes.add(new SmeltingPair(ingredient, item));

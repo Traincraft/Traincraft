@@ -756,7 +756,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 		if ((Block.getIdFromBlock(worldObj.getBlock(i, j, k)) != 0)) {
 			ArrayList<ItemStack> stacks = new ArrayList<ItemStack>(TrainModBlockUtil.getItemStackFromBlock(worldObj, (int) i, (int) j, (int) k));//underBlockStack.getItem().getMetadata(underBlockStack.getItemDamage())
 			for (ItemStack s : stacks) {
-				if( (BlockRailBases.rail== Block.getBlockFromItem(s.getItem())))return;
+				if( (BlockRailBase.func_150051_a(Block.getBlockFromItem(s.getItem()))))return;
 				if (Item.getIdFromItem(s.getItem()) != 0 && (s.getItem() != Item.getItemFromBlock(Block.getBlockFromName("glass"))) && (Item.getIdFromItem(s.getItem())) != Item.getIdFromItem(tunnelBlockStack.getItem())) {// && (isBlockInteresting(s))) {// can't spawn rails or air blocks or glass blocks
 					if ((Block.getIdFromBlock(worldObj.getBlock(i, j, k)) != Item.getIdFromItem(tunnelBlockStack.getItem()))) {
 						putInInvent(s);

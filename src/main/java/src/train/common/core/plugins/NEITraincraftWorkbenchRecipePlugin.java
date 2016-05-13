@@ -185,26 +185,26 @@ public class NEITraincraftWorkbenchRecipePlugin extends ShapedRecipeHandler {
 		for (int i = 0; i < recipeList.size(); i++) {
 			if (recipeList.get(i) instanceof ShapedTrainRecipes) {
 				if (outputList != null) {
-					if (!outputList.contains(((ShapedTrainRecipes) recipeList.get(i)).getRecipeOutput().getItem().itemID)) {
+					if (!outputList.contains(((ShapedTrainRecipes) recipeList.get(i)).getRecipeOutput().getItem())) {
 						cleanedList.add(recipeList.get(i));
 					}
 				}
 				else {
 					cleanedList.add(recipeList.get(i));
 				}
-				outputList.add(((ShapedTrainRecipes) recipeList.get(i)).getRecipeOutput().getItem().itemID);
+				outputList.add(((ShapedTrainRecipes) recipeList.get(i)).getRecipeOutput().getItem());
 			}
 			if (recipeList.get(i) instanceof ShapelessTrainRecipe) {
 
 				if (outputList != null) {
-					if (!outputList.contains(((ShapelessTrainRecipe) recipeList.get(i)).getRecipeOutput().getItem().itemID)) {
+					if (!outputList.contains(((ShapelessTrainRecipe) recipeList.get(i)).getRecipeOutput().getItem())) {
 						cleanedList.add(recipeList.get(i));
 					}
 				}
 				else {
 					cleanedList.add(recipeList.get(i));
 				}
-				outputList.add(((ShapelessTrainRecipe) recipeList.get(i)).getRecipeOutput().getItem().itemID);
+				outputList.add(((ShapelessTrainRecipe) recipeList.get(i)).getRecipeOutput().getItem());
 			}
 		}
 		return cleanedList;
