@@ -97,7 +97,7 @@ public class TileEntityDistillery extends TileEntityInventory implements ITickab
             DistilleryRecipes.RecipeHandler recipe = DistilleryRecipes.getRecipe(input);
 
             //Burn
-            if(((fuel != null && !recipe.isNull) || this.currentBurnStack != null || this.currentBurn > 0)){
+            if(((fuel != null && recipe != null) || this.currentBurnStack != null || this.currentBurn > 0)){
                 if(currentBurn <= 0 && !this.isTankFull()){
                     this.decrStackSize(1, 1);
                     this.currentBurn = this.maxBurnTime = TileEntityFurnace.getItemBurnTime(fuel);
@@ -108,7 +108,7 @@ public class TileEntityDistillery extends TileEntityInventory implements ITickab
 
             //Distill
             if (!this.isCooking() && input != null && isBurning()) {
-                if (!recipe.isNull && this.tank.getFluidAmount() + recipe.outputFluid.amount <= this.tank.getCapacity()) {
+                if (recipe != null && this.tank.getFluidAmount() + recipe.outputFluid.amount <= this.tank.getCapacity()) {
                     this.decrStackSize(0, 1);
                     this.currentCookTime = this.maxCookTime = recipe.burnTime;
                     this.currentBurnStack = recipe.outputStack.copy();

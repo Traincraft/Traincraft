@@ -93,7 +93,8 @@ public class TileEntityInventory extends TileEntity implements ISidedInventory {
 
     @Override
     public void setInventorySlotContents(int index, ItemStack stack) {
-        this.slots[index] = stack;
+        if(index >= 0 && index <= this.slots.length)
+            this.slots[index] = stack;
     }
 
     @Override
@@ -187,5 +188,15 @@ public class TileEntityInventory extends TileEntity implements ISidedInventory {
                 }
             }
         }
+    }
+
+    public int getNextFreeSlot(int slotIDMin, int slotIDMax){
+        for(int i = slotIDMin; i <= slotIDMax; i++){
+            ItemStack stack = getStackInSlot(i);
+            if(stack == null){
+                return i;
+            }
+        }
+        return -1;
     }
 }

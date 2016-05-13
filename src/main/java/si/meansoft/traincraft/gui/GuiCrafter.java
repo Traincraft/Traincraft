@@ -7,18 +7,24 @@ import net.minecraft.inventory.Container;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import si.meansoft.traincraft.TraincraftResources;
+import si.meansoft.traincraft.tileEntities.TileEntityCrafter;
 
 /**
  * @author canitzp
  */
-public class GuiCrafterSteam extends GuiContainer {
+public class GuiCrafter extends GuiContainer {
 
-    private static final ResourceLocation guiLoc = TraincraftResources.CRAFTERSTEAM.newResourceLocation();
+    private static ResourceLocation guiLoc;
 
-    public GuiCrafterSteam(Container container, EntityPlayer player, TileEntity crafterSteam) {
+    public GuiCrafter(Container container, EntityPlayer player, TileEntity crafter) {
         super(container);
         this.xSize = 176;
         this.ySize = 254;
+        switch(((TileEntityCrafter)crafter).tier){
+            case STEAM: guiLoc = TraincraftResources.CRAFTERSTEAM.newResourceLocation(); break;
+            case DIESEL: guiLoc = TraincraftResources.CRAFTERDIESEL.newResourceLocation(); break;
+            case ELECTRO: guiLoc = TraincraftResources.CRAFTERELECTRO.newResourceLocation(); break;
+        }
     }
 
     @Override

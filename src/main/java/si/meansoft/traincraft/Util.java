@@ -35,6 +35,10 @@ public class Util {
         return string.length() >= 1 ? string.substring(0, 1).toUpperCase() + string.substring(1) : string;
     }
 
+    public static int getStackSize(ItemStack stack){
+        return stack != null ? stack.stackSize : 0;
+    }
+
     /**
     * Harvests a Block by a Player
     *

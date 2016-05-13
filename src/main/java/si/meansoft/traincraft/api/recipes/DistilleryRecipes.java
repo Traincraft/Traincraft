@@ -38,7 +38,7 @@ public class DistilleryRecipes {
                 return entry.getValue();
             }
         }
-        return new RecipeHandler();
+        return null;
     }
 
     public static class RecipeHandler {
@@ -46,15 +46,11 @@ public class DistilleryRecipes {
         public FluidStack outputFluid;
         public float outputExp;
         public int burnTime;
-        public boolean isNull;
         public RecipeHandler(int burnTime, float outputExp, FluidStack outputFluid, ItemStack outputStack) {
             this.burnTime = burnTime;
             this.outputExp = outputExp;
             this.outputFluid = outputFluid;
             this.outputStack = outputStack;
-        }
-        public RecipeHandler(){
-            this.isNull = true;
         }
     }
 }
