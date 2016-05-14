@@ -23,7 +23,6 @@ import net.minecraftforge.common.util.Constants;
 
 import org.lwjgl.input.Keyboard;
 
-import src.train.client.core.handlers.KeyHandlerClient;
 import src.train.common.Traincraft;
 import src.train.common.core.handlers.ConfigHandler;
 import src.train.common.core.network.PacketKeyPress;
@@ -32,7 +31,6 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityRotativeDigger extends Entity implements IInventory {
-	public KeyHandlerClient keyHandler;
 
 	public int start;
 	private ItemStack cargoItems[];// added
@@ -102,7 +100,6 @@ public class EntityRotativeDigger extends Entity implements IInventory {
 		inventorySize = numCargoSlots + numCargoSlots2 + numCargoSlots1 + 5;
 		zeppInvent = new ItemStack[inventorySize];
 		idle = false;
-		keyHandler = new KeyHandlerClient();
 
 		/**
 		 * Entities are always rendered even if out player's sight => no more flickering/disappearing

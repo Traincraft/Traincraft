@@ -96,7 +96,8 @@ public class RecipesArmorDyes implements ITCRecipe {
 						return null;
 					}
 
-					float[] afloat = EntitySheep.fleeceColorTable[BlockColored.getBlockFromDye(itemstack1.getItemDamage())];
+					float[] afloat = EntitySheep.fleeceColorTable[itemstack1.getItemDamage()];
+
 					int j1 = (int) (afloat[0] * 255.0F);
 					int k1 = (int) (afloat[1] * 255.0F);
 					i1 = (int) (afloat[2] * 255.0F);

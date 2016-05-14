@@ -10,18 +10,19 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-import src.train.client.core.handlers.KeyHandlerClient;
+
 import src.train.common.api.AbstractTrains;
 import src.train.common.api.LiquidManager;
 import src.train.common.api.Locomotive;
 import src.train.common.api.SteamTrain;
+import src.train.common.core.network.PacketKeyPress;
 import src.train.common.inventory.InventoryForney;
 import src.train.common.inventory.InventoryLoco;
 import src.train.common.library.Info;
 
 public class GuiForney extends GuiContainer {
 
-	private KeyHandlerClient keyhandler;
+
 	private String texture = Info.guiPrefix + "customButton.png";
 	private int textureX = 0;
 	private int textureY = 46;
@@ -40,7 +41,6 @@ public class GuiForney extends GuiContainer {
 
 	public GuiForney(InventoryPlayer inventoryplayer, Entity entityminecart) {
 		super(new InventoryForney(inventoryplayer, (Locomotive) entityminecart));
-		keyhandler = new KeyHandlerClient();
 		loco = (Locomotive) entityminecart;
 	}
 

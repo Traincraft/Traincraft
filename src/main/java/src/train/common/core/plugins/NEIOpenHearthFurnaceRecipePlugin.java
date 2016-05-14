@@ -10,6 +10,8 @@ import java.util.Map.Entry;
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.gui.inventory.GuiFurnace;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.item.crafting.ShapedRecipes;
@@ -135,7 +137,7 @@ public class NEIOpenHearthFurnaceRecipePlugin extends ShapedRecipeHandler {
 			for (Entry<Integer, ItemStack> recipe : recipes.entrySet()) {
 				ItemStack item = recipe.getValue();
 				ItemStack item2 = new ItemStack(recipesIngredient.get(recipe.getKey()), 1, -1);
-				arecipes.add(getShape(new ItemStack(recipe.getKey(), 1, -1), item2, item));
+				arecipes.add(getShape(new ItemStack(Item.getItemById(recipe.getKey()), 1, -1), item2, item));
 			}
 		}
 		else {
@@ -152,7 +154,7 @@ public class NEIOpenHearthFurnaceRecipePlugin extends ShapedRecipeHandler {
 			ItemStack item = recipe.getValue();
 			if (NEIServerUtils.areStacksSameType(item, result)) {
 				ItemStack item2 = new ItemStack(recipesIngredient.get(recipe.getKey()), 1, -1);
-				arecipes.add(getShape(new ItemStack(recipe.getKey(), 1, -1), item2, result));
+				arecipes.add(getShape(new ItemStack(Item.getItemById(recipe.getKey()), 1, -1), item2, result));
 			}
 		}
 
@@ -175,7 +177,7 @@ public class NEIOpenHearthFurnaceRecipePlugin extends ShapedRecipeHandler {
 
 		for (Entry<Integer, ItemStack> recipe : recipes.entrySet()) {
 			ItemStack item = recipe.getValue();
-			if (ingredient.itemID == recipe.getKey()) {
+			if (ingredient.getItem() == Item.getItemById(recipe.getKey())) {
 				ItemStack item2 = new ItemStack(recipesIngredient.get(recipe.getKey()), 1, -1);
 				arecipes.add(getShape(ingredient, item2, item));
 			}
@@ -198,7 +200,7 @@ public class NEIOpenHearthFurnaceRecipePlugin extends ShapedRecipeHandler {
 	}
 
 	public static ArrayList<FuelPair> afuels;
-	public static TreeSet<Integer> efuels;
+	public static TreeSet<Item> efuels;
 
 	@Override
 	public TemplateRecipeHandler newInstance() {
@@ -214,19 +216,19 @@ public class NEIOpenHearthFurnaceRecipePlugin extends ShapedRecipeHandler {
 	}
 
 	private static void removeFuels() {
-		efuels = new TreeSet<Integer>();
-		efuels.add(Block.mushroomCapBrown.blockID);
-		efuels.add(Block.mushroomCapRed.blockID);
-		efuels.add(Block.signPost.blockID);
-		efuels.add(Block.signWall.blockID);
-		efuels.add(Block.doorWood.blockID);
-		efuels.add(Block.lockedChest.blockID);
+		efuels = new TreeSet<Item>();
+		efuels.add(Item.getItemFromBlock(Blocks.brown_mushroom));
+		efuels.add(Item.getItemFromBlock(Blocks.red_mushroom));
+		efuels.add(Item.getItemFromBlock(Blocks.standing_sign));
+		efuels.add(Item.getItemFromBlock(Blocks.wall_sign));
+		efuels.add(Item.getItemFromBlock(Blocks.wooden_door));
+		efuels.add(Item.getItemFromBlock(Blocks.trapped_chest));
 	}
 
 	private static void findFuels() {
 		afuels = new ArrayList<FuelPair>();
 		for (ItemStack item : ItemList.items) {
-			if (!efuels.contains(item.itemID)) {
+			if (!efuels.contains(item)) {
 				int burnTime = TileEntityFurnace.getItemBurnTime(item);
 				if (burnTime > 0) afuels.add(new FuelPair(item.copy(), burnTime));
 			}

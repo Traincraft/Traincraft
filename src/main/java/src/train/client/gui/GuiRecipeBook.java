@@ -720,7 +720,7 @@ public class GuiRecipeBook extends GuiScreen {
 			renderItem.renderItemIntoGUI(this.fontRendererObj, this.mc.renderEngine, output, var5 + 432, var6 + 177);
 		String name = "";
 		if (output != null && output.getItem() instanceof ItemRollingStock)
-			name = ((ItemRollingStock)output.getItem()).getStatName();
+			name = ((ItemRollingStock)output.getItem()).getTrainName();
 		if (side.equals("left")) {
 			this.fontRendererObj.drawString("Tier: " + tier, var5 - var9 + this.bookImageWidth - 56, var6 + 40, 0);
 			this.fontRendererObj.drawString(name, var5 - var9 + this.bookImageWidth - 55, var6 + 56, 0xffffff);

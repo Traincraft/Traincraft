@@ -35,13 +35,13 @@ public class EntityZeppelinTwoBalloons extends AbstractZeppelin{
 		}
 		setBeenAttacked();
 		if (boatCurrentDamage > 40) {
-			dropItemWithOffset(ItemIDs.airship.item.itemID, 1, 0.0F);
+			dropItem(ItemIDs.airship.item, 1);
 			setDead();
 		}
 		return true;
 	}
 	@Override
-	public String getInvName() {
+	public String getInventoryName() {
 		return "Zeppelin Two Balloons";
 	}
 }

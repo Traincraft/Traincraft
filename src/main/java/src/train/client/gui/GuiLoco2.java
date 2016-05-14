@@ -10,7 +10,7 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-import src.train.client.core.handlers.KeyHandlerClient;
+
 import src.train.common.api.AbstractTrains;
 import src.train.common.api.DieselTrain;
 import src.train.common.api.ElectricTrain;
@@ -22,7 +22,7 @@ import src.train.common.library.Info;
 
 public class GuiLoco2 extends GuiContainer {
 
-	private KeyHandlerClient keyhandler;
+
 	private String texture = Info.guiPrefix + "customButton.png";
 	private int textureX = 0;
 	private int textureY = 46;
@@ -40,7 +40,6 @@ public class GuiLoco2 extends GuiContainer {
 
 	public GuiLoco2(InventoryPlayer inventoryplayer, Entity entityminecart) {
 		super(new InventoryLoco(inventoryplayer, (Locomotive) entityminecart));
-		keyhandler = new KeyHandlerClient();
 		loco = (Locomotive) entityminecart;
 	}
 

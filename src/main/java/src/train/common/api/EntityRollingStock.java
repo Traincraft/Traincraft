@@ -53,7 +53,7 @@ import net.minecraftforge.event.entity.minecart.MinecartUpdateEvent;
 
 import org.lwjgl.input.Keyboard;
 
-import src.train.client.core.handlers.KeyHandlerClient;
+
 import src.train.client.core.handlers.SoundUpdaterRollingStock;
 import src.train.common.Traincraft;
 import src.train.common.core.HandleOverheating;
@@ -136,7 +136,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 	private CollisionHandler collisionhandler;
 	public LinkHandler linkhandler;
 	private TrainsOnClick trainsOnClick;
-	public KeyHandlerClient keyHandler;
 	protected SpeedHandler speedhandler;
 	public boolean isBraking;
 	public boolean isClimbing;
@@ -219,7 +218,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		preventEntitySpawning = true;
 		isImmuneToFire = true;
 		//field_70499_f = false;
-		keyHandler = new KeyHandlerClient();
 
 		//setSize(0.98F, 1.98F);
 		//yOffset = 0;
