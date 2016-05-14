@@ -1,13 +1,22 @@
 package si.meansoft.traincraft.tileEntities;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.block.model.IBakedModel;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.client.model.IModel;
+import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.client.model.obj.OBJModel;
+import net.minecraftforge.common.model.TRSRTransformation;
+import org.lwjgl.opengl.GL11;
 import si.meansoft.traincraft.Traincraft;
 
 import java.io.IOException;
@@ -21,41 +30,53 @@ public class TileEntityRail extends TileEntity{
 
     public List<BlockPos> harvestPositions = new ArrayList<BlockPos>();
 
-    public static class RailRenderer extends TileEntitySpecialRenderer{
-        OBJModel.Parser parser;
-        ResourceLocation texture;
-        public RailRenderer(ResourceLocation modelLocation, ResourceLocation modelTexture){
-            System.out.println("render");
-            IResourceManager manager = Minecraft.getMinecraft().getResourceManager();
-            try{
-                parser = new OBJModel.Parser(manager.getResource(modelLocation), manager);
-                this.texture = modelTexture;
-            } catch(IOException e){
-                e.printStackTrace();
-            }
+    public static class RailRenderer extends TileEntitySpecialRenderer<TileEntityRail>{
+        IBakedModel bakedModel;
+        IModel model;
+        ResourceLocation modelLocation;
+        public RailRenderer(ResourceLocation modelLocation){
+            this.modelLocation = modelLocation;
         }
-        @Override
-        public void renderTileEntityAt(TileEntity te, double x, double y, double z, float partialTicks, int destroyStage){
-            try{
-                OBJLoader.INSTANCE.loadModel(new ResourceLocation(Traincraft.MODID, "models/long_straight.obj"));
-            } catch(Exception e){
-                e.printStackTrace();
-            }
-            /*
-            if(this.parser != null){
-                System.out.println(this.texture);
-                GlStateManager.pushMatrix();
-                GlStateManager.translate(x, y, z);
-                Minecraft.getMinecraft().getTextureManager().bindTexture(this.texture);
-                GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-                try{
 
+        private IBakedModel bake(){
+            if(bakedModel == null){
+                try{
+                    model = ModelLoaderRegistry.getModel(new ResourceLocation(Traincraft.MODID, "block/long_straight.obj"));
+                    bakedModel = model.bake(TRSRTransformation.identity(), DefaultVertexFormats.ITEM, location -> Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(location.toString()));
                 } catch(Exception e){
                     e.printStackTrace();
                 }
-                GlStateManager.popMatrix();
             }
-            */
+            return bakedModel;
+        }
+
+        @Override
+        public void renderTileEntityAt(TileEntityRail te, double x, double y, double z, float partialTicks, int destroyStage){
+            GlStateManager.pushAttrib();
+            GlStateManager.pushMatrix();
+            GlStateManager.translate(x, y, z);
+            GlStateManager.disableRescaleNormal();
+            renderOBJ(te);
+            GlStateManager.popMatrix();
+            GlStateManager.popAttrib();
+        }
+
+        private void renderOBJ(TileEntityRail te){
+            GlStateManager.pushMatrix();
+            this.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
+            IBakedModel model = bake();
+            if(model == null){
+                System.out.println("egsg");
+                return;
+            }
+            GlStateManager.shadeModel(GL11.GL_FLAT);
+
+            GlStateManager.translate(-te.getPos().getX(), -te.getPos().getY(), -te.getPos().getZ());
+            Tessellator tessy = Tessellator.getInstance();
+            tessy.getBuffer().begin(GL11.GL_QUADS, DefaultVertexFormats.BLOCK);
+            Minecraft.getMinecraft().getBlockRendererDispatcher().getBlockModelRenderer().renderModel(te.getWorld(), model, te.getWorld().getBlockState(te.getPos()), te.getPos(), Tessellator.getInstance().getBuffer(), false);
+            tessy.draw();
+            GlStateManager.popMatrix();
         }
     }
 

@@ -1,0 +1,13 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "custom": {
+      "flip-v": true
+    },
+    "model": "traincraft:models/block/long_straight.obj"
+  },
+  "variants": {
+    "normal": [{}],
+    "inventory": [{}]
+  }
+}

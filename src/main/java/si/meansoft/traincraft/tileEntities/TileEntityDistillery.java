@@ -96,50 +96,57 @@ public class TileEntityDistillery extends TileEntityInventory implements ITickab
             ItemStack output = this.getStackInSlot(4);
             DistilleryRecipes.RecipeHandler recipe = DistilleryRecipes.getRecipe(input);
 
-            //Burn
-            if(((fuel != null && recipe != null) || this.currentBurnStack != null || this.currentBurn > 0)){
-                if(currentBurn <= 0 && !this.isTankFull()){
-                    this.decrStackSize(1, 1);
-                    this.currentBurn = this.maxBurnTime = TileEntityFurnace.getItemBurnTime(fuel);
-                } else {
-                    this.currentBurn--;
+            if(recipe != null){
+                //Burn
+                if((fuel != null || this.currentBurnStack != null || this.currentBurn > 0)){
+                    if(currentBurn <= 0 && !this.isTankFull()){
+                        this.decrStackSize(1, 1);
+                        this.currentBurn = this.maxBurnTime = TileEntityFurnace.getItemBurnTime(fuel);
+                    } else {
+                        this.currentBurn--;
+                    }
                 }
-            }
 
-            //Distill
-            if (!this.isCooking() && input != null && isBurning()) {
-                if (recipe != null && this.tank.getFluidAmount() + recipe.outputFluid.amount <= this.tank.getCapacity()) {
-                    this.decrStackSize(0, 1);
-                    this.currentCookTime = this.maxCookTime = recipe.burnTime;
-                    this.currentBurnStack = recipe.outputStack.copy();
-                }
-            } else {
-                if (this.currentCookTime == 1 && this.isBurning()) {
-                    if (output == null) {
-                        if(this.currentBurnStack != null)
-                            this.setInventorySlotContents(4, this.currentBurnStack.copy());
-                        if(recipe.outputFluid != null){
-                            this.tank.fill(recipe.outputFluid.copy(), true);
-                        }
-                        this.currentBurnStack = null;
-                        this.currentCookTime--;
-                        dropXP(getWorld(), getPos(), recipe.outputExp);
-                    } else if (output.isItemEqual(this.currentBurnStack)) {
-                        if (output.copy().stackSize + this.currentBurnStack.copy().stackSize <= this.getInventoryStackLimit()) {
-                            this.incrStackSize(4, this.currentBurnStack.copy().stackSize);
-                            this.currentBurnStack = null;
-                            this.currentCookTime--;
+                //Distill
+                if (!this.isCooking() && input != null && isBurning()) {
+                    if (this.tank.getFluidAmount() + recipe.outputFluid.amount <= this.tank.getCapacity()) {
+                        this.decrStackSize(0, 1);
+                        this.currentCookTime = this.maxCookTime = recipe.burnTime;
+                        this.currentBurnStack = recipe.outputStack.copy();
+                    }
+                } else {
+                    if (this.currentCookTime == 1 && this.isBurning()) {
+                        if (output == null) {
+                            if(this.currentBurnStack != null)
+                                this.setInventorySlotContents(4, this.currentBurnStack.copy());
                             if(recipe.outputFluid != null){
                                 this.tank.fill(recipe.outputFluid.copy(), true);
                             }
+                            this.currentBurnStack = null;
+                            this.currentCookTime--;
                             dropXP(getWorld(), getPos(), recipe.outputExp);
+                        } else if (output.isItemEqual(this.currentBurnStack)) {
+                            if (output.copy().stackSize + this.currentBurnStack.copy().stackSize <= this.getInventoryStackLimit()) {
+                                this.incrStackSize(4, this.currentBurnStack.copy().stackSize);
+                                this.currentBurnStack = null;
+                                this.currentCookTime--;
+                                if(recipe.outputFluid != null){
+                                    this.tank.fill(recipe.outputFluid.copy(), true);
+                                }
+                                dropXP(getWorld(), getPos(), recipe.outputExp);
+                            }
                         }
+                        this.markDirty();
+                    } else if(this.isBurning()) {
+                        this.currentCookTime--;
+                    } else {
+                        this.currentCookTime++;
                     }
-                    this.markDirty();
-                } else if(this.isBurning()) {
-                    this.currentCookTime--;
-                } else {
-                    this.currentCookTime++;
+                }
+            } else {
+                //Burn
+                if(this.currentBurn > 0){
+                    this.currentBurn--;
                 }
             }
             setState(this.isBurning(), BlockDistillery.ACTIVE, getWorld(), getPos());
@@ -167,12 +174,14 @@ public class TileEntityDistillery extends TileEntityInventory implements ITickab
 
     @Override
     public void writeToNBT(NBTTagCompound compound) {
-        super.writeToNBT(compound);
         this.writeTileEntity(compound);
+        super.writeToNBT(compound);
     }
 
     private NBTTagCompound writeTileEntity(NBTTagCompound compound){
         this.tank.writeToNBT(compound);
+        compound.setInteger("currentCookTime", this.currentCookTime);
+        compound.setInteger("currentBurnTime", this.currentBurn);
         if(this.currentBurnStack != null){
             this.currentBurnStack.writeToNBT(compound);
         }
@@ -180,6 +189,8 @@ public class TileEntityDistillery extends TileEntityInventory implements ITickab
     }
     private void readTileEntity(NBTTagCompound compound){
         this.tank.readFromNBT(compound);
+        this.currentCookTime = compound.getInteger("currentCookTime");
+        this.currentBurn = compound.getInteger("currentBurnTime");
         if(this.isCooking()){
             this.currentBurnStack = ItemStack.loadItemStackFromNBT(compound);
         }

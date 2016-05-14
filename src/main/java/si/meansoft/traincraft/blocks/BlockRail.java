@@ -23,7 +23,7 @@ public class BlockRail extends BlockContainerBase{
     public TrackDirection direction;
 
     public BlockRail(String extraName, TrackLength length, TrackDirection direction) {
-        super(Material.IRON, "track" + Util.firstCharToUpperCase(length.name) + Util.firstCharToUpperCase(direction.name) + extraName, TileEntityRail.class, new TileEntityRail.RailRenderer(new ResourceLocation(Traincraft.MODID, "models/long_straight.obj"), new ResourceLocation(Traincraft.MODID, "models/trackLongStraight.png")));
+        super(Material.IRON, "track" + Util.firstCharToUpperCase(length.name) + Util.firstCharToUpperCase(direction.name) + extraName, TileEntityRail.class, new TileEntityRail.RailRenderer(new ResourceLocation(Traincraft.MODID, "block/long_straight")));
         this.length = length;
         this.direction = direction;
     }

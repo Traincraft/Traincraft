@@ -38,7 +38,7 @@ public class BlockContainerBase extends BlockBase implements ITileEntityProvider
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
     }
     public BlockContainerBase(Material materialIn, String name, Class<? extends TileEntity> tileClass, TileEntitySpecialRenderer specialRenderer){
-        this(materialIn, name, tileClass, RenderType.OBJ);
+        this(materialIn, name, tileClass, (RenderType) null);
         CommonProxy.addOBJRender(tileClass, specialRenderer);
     }
 
