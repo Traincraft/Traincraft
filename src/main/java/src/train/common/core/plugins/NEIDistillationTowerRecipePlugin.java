@@ -1,7 +1,5 @@
 package src.train.common.core.plugins;
 
-import static codechicken.core.gui.GuiDraw.changeTexture;
-import static codechicken.core.gui.GuiDraw.drawTexturedModalRect;
 
 import java.awt.Rectangle;
 import java.util.ArrayList;
@@ -215,12 +213,14 @@ public class NEIDistillationTowerRecipePlugin extends FurnaceRecipeHandler{
         	drawProgressBar(140, 2, 177, 57, 18, 52, 70, 3);
         }
     }
+    /*/
     public void drawBackground(int recipe)
     {
         GL11.glColor4f(1, 1, 1, 1);
         changeTexture(getGuiTexture());
         drawTexturedModalRect(0, 0, 5, 4, 166, 75);
     }
+    /*/
     @Override
     public String getOverlayIdentifier()
     {

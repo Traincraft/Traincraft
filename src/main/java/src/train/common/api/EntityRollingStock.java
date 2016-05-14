@@ -2427,10 +2427,10 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		}
 	}
 
-	@Override
+
 	protected void adjustSlopeVelocities(int i1) {
 		if (this instanceof Locomotive) { return; }
-		double d4 = 0.0058125D;//0.0078125D
+		double d4 = -0.002D;//0.0078125D
 		if (i1 == 2) {
 			motionX -= d4;
 		}

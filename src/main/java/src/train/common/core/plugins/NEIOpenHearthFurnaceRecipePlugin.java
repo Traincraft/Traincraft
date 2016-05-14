@@ -136,7 +136,7 @@ public class NEIOpenHearthFurnaceRecipePlugin extends ShapedRecipeHandler {
 
 			for (Entry<Integer, ItemStack> recipe : recipes.entrySet()) {
 				ItemStack item = recipe.getValue();
-				ItemStack item2 = new ItemStack(recipesIngredient.get(recipe.getKey()), 1, -1);
+				ItemStack item2 = new ItemStack(Item.getItemById(recipesIngredient.get(recipe.getKey())), 1, -1);
 				arecipes.add(getShape(new ItemStack(Item.getItemById(recipe.getKey()), 1, -1), item2, item));
 			}
 		}
@@ -153,7 +153,7 @@ public class NEIOpenHearthFurnaceRecipePlugin extends ShapedRecipeHandler {
 		for (Entry<Integer, ItemStack> recipe : recipes.entrySet()) {
 			ItemStack item = recipe.getValue();
 			if (NEIServerUtils.areStacksSameType(item, result)) {
-				ItemStack item2 = new ItemStack(recipesIngredient.get(recipe.getKey()), 1, -1);
+				ItemStack item2 = new ItemStack(Item.getItemById(recipesIngredient.get(recipe.getKey())), 1, -1);
 				arecipes.add(getShape(new ItemStack(Item.getItemById(recipe.getKey()), 1, -1), item2, result));
 			}
 		}
@@ -178,7 +178,7 @@ public class NEIOpenHearthFurnaceRecipePlugin extends ShapedRecipeHandler {
 		for (Entry<Integer, ItemStack> recipe : recipes.entrySet()) {
 			ItemStack item = recipe.getValue();
 			if (ingredient.getItem() == Item.getItemById(recipe.getKey())) {
-				ItemStack item2 = new ItemStack(recipesIngredient.get(recipe.getKey()), 1, -1);
+				ItemStack item2 = new ItemStack(Item.getItemById(recipesIngredient.get(recipe.getKey())), 1, -1);
 				arecipes.add(getShape(ingredient, item2, item));
 			}
 		}

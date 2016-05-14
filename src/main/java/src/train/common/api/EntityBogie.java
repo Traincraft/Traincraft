@@ -2,6 +2,7 @@ package src.train.common.api;
 
 import java.util.List;
 
+import com.mojang.authlib.GameProfile;
 import mods.railcraft.api.carts.IMinecart;
 import mods.railcraft.api.carts.IRoutableCart;
 import net.minecraft.block.Block;
@@ -43,6 +44,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 	protected int bogieIndex;
 	public double bogieShift;
 	protected Side side;
+
 
 	public EntityBogie(World world) {
 		super(world);
@@ -307,9 +309,9 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 	}
 
 	@Override
-	protected void updateOnTrack(int par1, int par2, int par3, double par4, double par6, int par8, int par9) {
+	protected void func_145821_a(int par1, int par2, int par3, double par4, double par6, Block par8, int par9) {
 		par4 = 1.8;
-		super.updateOnTrack(par1, par2, par3, par4, par6, par8, par9);
+		super.func_145821_a(par1, par2, par3, par4, par6, par8, par9);
 	}
 	/**
      * Called to update the entity's position/logic.
@@ -320,11 +322,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		//if(side.isServer())System.out.println("Bogie server "+ posY);
     	setCurrentCartSpeedCapOnRail(1.8F);
 		setMaxSpeedAirLateral(1.8F);
-		
-        if (this.field_82344_g != null)
-        {
-            this.field_82344_g.update();
-        }
+
 
         if (this.getRollingAmplitude() > 0)
         {
@@ -346,7 +344,9 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
         if (!this.worldObj.isRemote && this.worldObj instanceof WorldServer)
         {
             this.worldObj.theProfiler.startSection("portal");
-            MinecraftServer minecraftserver = ((WorldServer)this.worldObj).getMinecraftServer();
+
+            MinecraftServer minecraftserver = MinecraftServer.getServer();
+
             i = this.getMaxInPortalTime();
 
             if (this.inPortal)
@@ -446,7 +446,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
                 float railMaxSpeed = rail.getRailMaxSpeed(worldObj, this, j, i, k);
                 double maxSpeed = Math.min(railMaxSpeed, getCurrentCartSpeedCapOnRail());
                 int i1 = rail.getBasicRailMetadata(worldObj, this, j, i, k);
-                this.updateOnTrack(j, i, k, maxSpeed, getSlopeAdjustment(), Block.getIdFromBlock(l), i1);
+                this.func_145821_a(j, i, k, maxSpeed, getSlopeAdjustment(), l, i1);
                 if (l == Blocks.activator_rail)
                 {
                     this.onActivatorRailPass(j, i, k, (worldObj.getBlockMetadata(j, i, k) & 8) != 0);
@@ -900,6 +900,8 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 			motionZ = maxSpeed;
 		}
 	}
-    
+
+	@Override
+    public GameProfile getOwner(){return null;}
 
 }

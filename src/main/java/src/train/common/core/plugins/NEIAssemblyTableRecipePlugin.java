@@ -1,9 +1,5 @@
 package src.train.common.core.plugins;
 
-import static codechicken.core.gui.GuiDraw.changeTexture;
-import static codechicken.core.gui.GuiDraw.drawTexturedModalRect;
-import static codechicken.core.gui.GuiDraw.drawString;
-
 import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
@@ -216,6 +212,7 @@ public class NEIAssemblyTableRecipePlugin extends ShapedRecipeHandler {
 		return false;
 	}
 
+	/*/
 	public void drawBackground(int recipe) {
 		GL11.glColor4f(1, 1, 1, 1);
 		TierRecipe tierRecipe = null;
@@ -230,7 +227,7 @@ public class NEIAssemblyTableRecipePlugin extends ShapedRecipeHandler {
 			drawString("Tier: " + tierRecipe.getTier(), 0, -11, 0x404040, false);
 		}
 	}
-
+	/*/
 	@Override
 	public int recipiesPerPage() {
 		return 1;
