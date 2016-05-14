@@ -134,9 +134,9 @@ public class Traincraft {
 		/* Networking and Packet initialisation */
 		int packetID = 0;
 		modChannel = NetworkRegistry.INSTANCE.newSimpleChannel(Info.modID);
-		modChannel.registerMessage(PacketKeyPress.Handler.class, PacketKeyPress.class, packetID, Side.SERVER);
-		modChannel.registerMessage(PacketSetJukeboxStreamingUrl.Handler.class, PacketSetJukeboxStreamingUrl.class, packetID, Side.SERVER);
-		modChannel.registerMessage(PacketSlotsFilled.Handler.class, PacketSlotsFilled.class, packetID, Side.CLIENT);
+		modChannel.registerMessage(PacketKeyPress.Handler.class, PacketKeyPress.class, ++packetID, Side.SERVER);
+		modChannel.registerMessage(PacketSetJukeboxStreamingUrl.Handler.class, PacketSetJukeboxStreamingUrl.class, ++packetID, Side.SERVER);
+		modChannel.registerMessage(PacketSlotsFilled.Handler.class, PacketSlotsFilled.class, ++packetID, Side.CLIENT);
 	}
 
 	@EventHandler
