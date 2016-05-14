@@ -29,6 +29,11 @@ public class TileEntityDistillery extends TileEntityInventory implements ITickab
     public int currentBurn = 0, currentCookTime = 0, maxBurnTime = 0, maxCookTime = 0;
     public ItemStack currentBurnStack = null;
 
+    private int lastCurrentBurn;
+    private int lastCurrentCookTime;
+    private int lastMaxBurnTime;
+    private int lastMaxCookTime;
+
     public TileEntityDistillery() {
         super("InventoryDistillery", 6);
     }
@@ -43,7 +48,7 @@ public class TileEntityDistillery extends TileEntityInventory implements ITickab
         return index != 0 && index != 1 && index != 2 && direction == EnumFacing.DOWN;
     }
 
-    @Override
+    /*@Override
     public int getField(int id) {
         switch (id){
             case 0: return currentBurn;
@@ -71,7 +76,7 @@ public class TileEntityDistillery extends TileEntityInventory implements ITickab
                 }
             } break;
         }
-    }
+    }*/
 
     public boolean isBurning(){
         return currentBurn > 0;
@@ -150,60 +155,53 @@ public class TileEntityDistillery extends TileEntityInventory implements ITickab
                 }
             }
             setState(this.isBurning(), BlockDistillery.ACTIVE, getWorld(), getPos());
-            Util.sendTilePacketToAllAround(this);
+
+            if(this.maxBurnTime != this.lastMaxBurnTime || this.maxCookTime != this.lastMaxCookTime || this.currentCookTime != this.lastCurrentCookTime || this.currentBurn != this.lastCurrentBurn){
+                this.lastCurrentBurn = this.currentBurn;
+                this.lastMaxBurnTime = this.maxBurnTime;
+                this.lastMaxCookTime = this.maxCookTime;
+                this.lastCurrentCookTime = this.currentCookTime;
+
+                this.syncToClient();
+            }
         }
     }
 
     @Override
-    public Packet<?> getDescriptionPacket() {
-        return new SPacketUpdateTileEntity(getPos(), 0, this.writeTileEntity(new NBTTagCompound()));
-    }
+    public void readFromNBT(NBTTagCompound compound, boolean isForSyncing) {
+        super.readFromNBT(compound, isForSyncing);
 
-    @Override
-    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
-        if(pkt != null){
-            this.readTileEntity(pkt.getNbtCompound());
-        }
-    }
-
-    @Override
-    public void readFromNBT(NBTTagCompound compound) {
-        super.readFromNBT(compound);
-        this.readTileEntity(compound);
-    }
-
-    @Override
-    public void writeToNBT(NBTTagCompound compound) {
-        this.writeTileEntity(compound);
-        super.writeToNBT(compound);
-    }
-
-    private NBTTagCompound writeTileEntity(NBTTagCompound compound){
-        this.tank.writeToNBT(compound);
-        compound.setInteger("currentCookTime", this.currentCookTime);
-        compound.setInteger("currentBurnTime", this.currentBurn);
-        if(this.currentBurnStack != null){
-            this.currentBurnStack.writeToNBT(compound);
-        }
-        return compound;
-    }
-    private void readTileEntity(NBTTagCompound compound){
         this.tank.readFromNBT(compound);
         this.currentCookTime = compound.getInteger("currentCookTime");
         this.currentBurn = compound.getInteger("currentBurnTime");
-        if(this.isCooking()){
+        if(isForSyncing){
+            this.maxBurnTime = compound.getInteger("maxBurnTime");
+            this.maxCookTime = compound.getInteger("maxCookTime");
+        }
+        else if(this.isCooking()){
             this.currentBurnStack = ItemStack.loadItemStackFromNBT(compound);
+        }
+    }
+
+    @Override
+    public void writeToNBT(NBTTagCompound compound, boolean isForSyncing) {
+        super.writeToNBT(compound, isForSyncing);
+
+        this.tank.writeToNBT(compound);
+        compound.setInteger("currentCookTime", this.currentCookTime);
+        compound.setInteger("currentBurnTime", this.currentBurn);
+        if(isForSyncing){
+            compound.setInteger("maxBurnTime", this.maxBurnTime);
+            compound.setInteger("maxCookTime", this.maxCookTime);
+        }
+        else if(this.currentBurnStack != null){
+            this.currentBurnStack.writeToNBT(compound);
         }
     }
 
     public static void setState(boolean active, PropertyBool property, World world, BlockPos pos){
         IBlockState iblockstate = world.getBlockState(pos);
-        TileEntity tileentity = world.getTileEntity(pos);
         world.setBlockState(pos, iblockstate.getBlock().getDefaultState().withProperty(property, active).withProperty(BlockDistillery.FACING, iblockstate.getValue(BlockDistillery.FACING)), 3);
-        if (tileentity != null) {
-            tileentity.validate();
-            world.setTileEntity(pos, tileentity);
-        }
     }
 
     public static void dropXP(World world, BlockPos pos, float xp){
