@@ -19,12 +19,14 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-
 import net.minecraftforge.common.util.Constants;
+
 import org.lwjgl.input.Keyboard;
 
 import src.train.client.core.handlers.KeyHandlerClient;
+import src.train.common.Traincraft;
 import src.train.common.core.handlers.ConfigHandler;
+import src.train.common.core.network.PacketKeyPress;
 import src.train.common.library.ItemIDs;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -238,21 +240,18 @@ public class EntityRotativeDigger extends Entity implements IInventory {
 				worldObj.spawnEntityInWorld(entityitem);
 			} while (true);
 		}
-		if (wheels != null && wheels.length > 0) {
+	if (wheels != null && wheels.length > 0) {
 
-			for (int i = 0; i < wheels.length; i++) {
-				wheels[i].setDead();
-			}
+		for (int i = 0; i < wheels.length; i++) {
+			wheels[i].setDead();
 		}
-		super.setDead();
+	}
+	super.setDead();
 	}
 
 	public void pressKeyClient(int i) {
 
-		keyHandler.sendKeyControlsPacket(i);
-
-		return;
-
+		Traincraft.modChannel.sendToServer(new PacketKeyPress(i));
 	}
 
 	public void pressKey(int i) {

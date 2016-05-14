@@ -1,9 +1,10 @@
 package src.train.common.api;
 
+import static mods.railcraft.api.tracks.RailTools.isRailBlockAt;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mojang.authlib.GameProfile;
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.api.carts.ILinkableCart;
 import mods.railcraft.api.core.items.IToolCrowbar;
@@ -11,7 +12,6 @@ import mods.railcraft.api.tracks.RailTools;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRailBase;
 import net.minecraft.client.audio.SoundHandler;
-import net.minecraft.client.audio.SoundManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLiving;
@@ -64,6 +64,7 @@ import src.train.common.core.handlers.LinkHandler;
 import src.train.common.core.handlers.PacketHandler;
 import src.train.common.core.handlers.TrainHandler;
 import src.train.common.core.handlers.TrainsDamageSource;
+import src.train.common.core.network.PacketKeyPress;
 import src.train.common.entity.rollingStock.EntityStockCar;
 import src.train.common.entity.rollingStock.EntityTracksBuilder;
 import src.train.common.items.ItemTCRail;
@@ -72,13 +73,14 @@ import src.train.common.library.BlockIDs;
 import src.train.common.library.EnumTrains;
 import src.train.common.tile.TileTCRail;
 import src.train.common.tile.TileTCRailGag;
+
+import com.mojang.authlib.GameProfile;
+
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-
-import static mods.railcraft.api.tracks.RailTools.isRailBlockAt;
 
 public class EntityRollingStock extends AbstractTrains implements ILinkableCart {
 	public int fuelTrain;
@@ -520,8 +522,8 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 	}
 
 	public void pressKeyTrain(int i) {
-		keyHandler.sendKeyControlsPacket(i);
-		return;
+
+		Traincraft.modChannel.sendToServer(new PacketKeyPress(i));
 	}
 
 	public void pressKeyClient() {
@@ -1374,7 +1376,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 
 			setPosition(posX, posY + yOffset, p_corr_z);
 			//setPosition(posX, posY + yOffset, posZ);
-			
+
 			motionX = Math.copySign(norm, motionX);
 			motionZ = 0;
 			moveEntity(motionX, 0.0D, 0.0D);

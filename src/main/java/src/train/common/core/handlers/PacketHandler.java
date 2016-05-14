@@ -7,13 +7,13 @@
 
 package src.train.common.core.handlers;
 
+import io.netty.handler.codec.MessageToMessageCodec;
+
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.List;
 
-import cpw.mods.fml.common.network.internal.FMLProxyPacket;
-import io.netty.handler.codec.MessageToMessageCodec;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -21,14 +21,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
-import src.train.common.Packet250CustomPayload;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
+import src.train.common.Packet250CustomPayload;
 import src.train.common.api.AbstractTrains;
 import src.train.common.api.EntityRollingStock;
 import src.train.common.api.Locomotive;
-import src.train.common.entity.rollingStock.EntityJukeBoxCart;
 import src.train.common.entity.rollingStock.EntityTracksBuilder;
 import src.train.common.entity.zeppelin.AbstractZeppelin;
 import src.train.common.items.ItemRecipeBook;
@@ -52,8 +51,7 @@ import src.train.common.tile.TileWindMill;
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteStreams;
 
-import cpw.mods.fml.common.network.IPacketHandler;
-import cpw.mods.fml.common.network.PacketDispatcher;
+import cpw.mods.fml.common.network.internal.FMLProxyPacket;
 
 public class PacketHandler extends MessageToMessageCodec<FMLProxyPacket, Packet250CustomPayload> {
 
@@ -61,9 +59,11 @@ public class PacketHandler extends MessageToMessageCodec<FMLProxyPacket, Packet2
 
 	@Override
 	public void onPacketData(NetworkManager manager, Packet250CustomPayload packet, EntityPlayer player) {
+
+		World world = ((EntityPlayer) player).worldObj;
 		ByteArrayDataInput data = ByteStreams.newDataInput(packet.data);
 		int packetIndex = data.readInt();
-		World world = ((EntityPlayer) player).worldObj;
+
 		if (packetIndex == 0) {
 			int x = data.readInt();
 			int y = data.readInt();
@@ -283,21 +283,16 @@ public class PacketHandler extends MessageToMessageCodec<FMLProxyPacket, Packet2
 			}
 		}
 		else if (packetIndex == 15) {
-			int entityID = data.readInt();
-			String url = data.readUTF();
-			boolean playing = data.readBoolean();
-			Entity entity = this.getEntityByID(entityID, player);
-			if (entity instanceof EntityJukeBoxCart) {
-				((EntityJukeBoxCart) entity).recievePacket(url, playing);
-			}
+
+			/*
+			 * Replaced by PacketSetJukeboxStreamingUrl.Handler#onMessage()
+			 */
 		}
 		else if (packetIndex == 16) {
-			int entityID = data.readInt();
-			int slotsFilled = data.readInt();
-			Entity entity = this.getEntityByID(entityID, player);
-			if (entity instanceof Locomotive) {
-				((Locomotive) entity).recieveSlotsFilled(slotsFilled);
-			}
+
+			/*
+			 * Replaced by PacketSlotsFilled.Handler#onMessage()
+			 */
 		}
 		else if (packetIndex == 17) {
 			int entityID = data.readInt();
@@ -684,49 +679,6 @@ public class PacketHandler extends MessageToMessageCodec<FMLProxyPacket, Packet2
 			EntityClientPlayerMP playerMP = (EntityClientPlayerMP) player;
 			playerMP.sendQueue.addToSendQueue(packet);
 		}
-		return packet;
-	}
-
-	public static Packet setJukeBoxStreamingUrl(EntityPlayer player, Entity entity, String url, boolean isPlaying) {
-		ByteArrayOutputStream bos = new ByteArrayOutputStream();
-		DataOutputStream dos = new DataOutputStream(bos);
-		if (url != null && url.length() > 64) url = url.substring(0, 63);
-		try {
-			if (entity != null && entity instanceof EntityJukeBoxCart) {
-				dos.writeInt(15);
-				dos.writeInt(entity.getEntityId());
-				dos.writeUTF(url);
-				dos.writeBoolean(isPlaying);
-			}
-		}
-		catch (IOException e) {
-			e.printStackTrace();
-		}
-		Packet250CustomPayload packet = new Packet250CustomPayload(Info.channel, bos.toByteArray());
-		packet.length = bos.size();
-		if (player instanceof EntityClientPlayerMP) {
-			EntityClientPlayerMP playerMP = (EntityClientPlayerMP) player;
-			playerMP.sendQueue.addToSendQueue(packet);
-		}
-		return packet;
-	}
-
-	public static Packet setSlotsFilledPacket(Entity entity, int slotsFilled) {
-		ByteArrayOutputStream bos = new ByteArrayOutputStream();
-		DataOutputStream dos = new DataOutputStream(bos);
-		try {
-			if (entity instanceof AbstractTrains) {
-				AbstractTrains lo = (AbstractTrains) entity;
-				dos.writeInt(16);
-				dos.writeInt(lo.getEntityId());
-				dos.writeInt(slotsFilled);
-			}
-		}
-		catch (IOException e) {
-			e.printStackTrace();
-		}
-		Packet250CustomPayload packet = new Packet250CustomPayload(Info.channel, bos.toByteArray());
-		packet.length = bos.size();
 		return packet;
 	}
 }

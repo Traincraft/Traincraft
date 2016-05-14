@@ -3,13 +3,12 @@ package src.train.common;
 import java.io.File;
 import java.util.logging.Logger;
 
-import cpw.mods.fml.common.FMLCommonHandler;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraftforge.common.AchievementPage;
-import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.util.EnumHelper;
 import src.train.common.api.LiquidManager;
 import src.train.common.blocks.TCBlocks;
 import src.train.common.core.CommonProxy;
@@ -21,11 +20,12 @@ import src.train.common.core.handlers.ConfigHandler;
 import src.train.common.core.handlers.CraftingHandler;
 import src.train.common.core.handlers.EntityHandler;
 import src.train.common.core.handlers.FuelHandler;
-import src.train.common.core.handlers.KeyServerHandler;
 import src.train.common.core.handlers.OreHandler;
-import src.train.common.core.handlers.PacketHandler;
 import src.train.common.core.handlers.RecipeHandler;
 import src.train.common.core.handlers.VillagerTraincraftHandler;
+import src.train.common.core.network.PacketKeyPress;
+import src.train.common.core.network.PacketSetJukeboxStreamingUrl;
+import src.train.common.core.network.PacketSlotsFilled;
 import src.train.common.generation.ComponentVillageTrainstation;
 import src.train.common.generation.WorldGenWorld;
 import src.train.common.items.TCItems;
@@ -33,7 +33,7 @@ import src.train.common.library.Info;
 import src.train.common.mysql.mysqlLogInterface;
 import src.train.common.mysql.mysqlLogger;
 import src.train.common.recipes.AssemblyTableRecipes;
-import cpw.mods.fml.common.FMLLog;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -43,8 +43,10 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStoppedEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.VillagerRegistry;
+import cpw.mods.fml.relauncher.Side;
 
 @Mod(modid = Info.modID, name = Info.modName, version = Info.modVersion)
 //@NetworkMod(clientSideRequired = true, serverSideRequired = true, versionBounds = "[" + Info.modVersion + "]", channels = { Info.channel }, packetHandler = PacketHandler.class, connectionHandler = KeyServerHandler.class)
@@ -60,6 +62,9 @@ public class Traincraft {
 
 	/* TrainCraft Logger */
 	public static Logger tcLog = Logger.getLogger(Info.modID);
+
+	/** Network Channel to send packets on */
+	public static SimpleNetworkWrapper modChannel;
 
 	/* Creative tab for Traincraft */
 	public static CreativeTabs tcTab;
@@ -96,7 +101,7 @@ public class Traincraft {
 		trainArmor = proxy.addArmor("armor");
 		trainCloth = proxy.addArmor("Paintable");
 		trainCompositeSuit = proxy.addArmor("CompositeSuit");
-		
+
 		/* Tab for creative items/blocks */
 		tcTab = new CreativeTabTraincraft(CreativeTabs.getNextID(), "Traincraft");
 
@@ -110,28 +115,35 @@ public class Traincraft {
 
 		/* Track registration */
 		TrainModCore.RegisterNewTracks();
-		
+
 		/*Fuel registration*/
 		GameRegistry.registerFuelHandler(new FuelHandler());
-		
+
 		TCBlocks.init();
 		TCItems.init();
-		
+
 		/* Register entities */
 		EntityHandler.init();
 
 		AchievementHandler.load();
 		AchievementPage.registerAchievementPage(AchievementHandler.tmPage);
-		
+
 		/* Check holidays */
 		proxy.isHoliday();
+
+		/* Networking and Packet initialisation */
+		int packetID = 0;
+		modChannel = NetworkRegistry.INSTANCE.newSimpleChannel(Info.modID);
+		modChannel.registerMessage(PacketKeyPress.Handler.class, PacketKeyPress.class, packetID, Side.SERVER);
+		modChannel.registerMessage(PacketSetJukeboxStreamingUrl.Handler.class, PacketSetJukeboxStreamingUrl.class, packetID, Side.SERVER);
+		modChannel.registerMessage(PacketSlotsFilled.Handler.class, PacketSlotsFilled.class, packetID, Side.CLIENT);
 	}
 
 	@EventHandler
 	public void load(FMLInitializationEvent event) {
 
 		//proxy.getCape();
-		
+
 		/* GUI handler initiation */
 		NetworkRegistry.INSTANCE.registerGuiHandler(instance, proxy);
 		FMLCommonHandler.instance().bus().register(new CraftingHandler());
@@ -146,24 +158,24 @@ public class Traincraft {
 
 		/* Register the liquids */
 		LiquidManager.getInstance().registerLiquids();
-		
+
 		/* Liquid FX */
 		proxy.registerTextureFX();
 
 		/* Try to load mysql */
 		if (ConfigHandler.MYSQL_ENABLE)
 			mysqlLoggerEnabled = logMysql.enableLogger();
-		
+
 		/*Trainman Villager*/
 		VillagerRegistry.instance().registerVillagerId(ConfigHandler.TRAINCRAFT_VILLAGER_ID);
 		VillagerTraincraftHandler villageHandler = new VillagerTraincraftHandler();
 		VillagerRegistry.instance().registerVillageCreationHandler(villageHandler);
-	    proxy.registerVillagerSkin(ConfigHandler.TRAINCRAFT_VILLAGER_ID, "station_chief.png");
-	    VillagerRegistry.instance().registerVillageTradeHandler(ConfigHandler.TRAINCRAFT_VILLAGER_ID, villageHandler);
-	    
-	    proxy.registerBookHandler();
+		proxy.registerVillagerSkin(ConfigHandler.TRAINCRAFT_VILLAGER_ID, "station_chief.png");
+		VillagerRegistry.instance().registerVillageTradeHandler(ConfigHandler.TRAINCRAFT_VILLAGER_ID, villageHandler);
+
+		proxy.registerBookHandler();
 	}
-	
+
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent evt) {
 		proxy.registerChunkHandler(instance);
@@ -174,9 +186,9 @@ public class Traincraft {
 		TrainModCore.ModsLoaded();
 		LiquidManager.getLiquidsFromDictionnary();
 	}
-	
+
 	@EventHandler
 	public void serverStop(FMLServerStoppedEvent event) {
-		 proxy.killAllStreams();
+		proxy.killAllStreams();
 	}
 }

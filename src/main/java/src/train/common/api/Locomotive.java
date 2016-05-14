@@ -21,9 +21,12 @@ import src.train.common.core.HandleMaxAttachedCarts;
 import src.train.common.core.handlers.ConfigHandler;
 import src.train.common.core.handlers.FuelHandler;
 import src.train.common.core.handlers.PacketHandler;
+import src.train.common.core.network.PacketKeyPress;
+import src.train.common.core.network.PacketSlotsFilled;
 import src.train.common.library.EnumSounds;
 import src.train.common.library.Info;
 import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
 
 public abstract class Locomotive extends EntityRollingStock implements IInventory {
 	public int inventorySize;
@@ -371,8 +374,8 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 	 * @param i
 	 */
 	public void pressKeyLoco(int i) {
-		keyHandler.sendKeyControlsPacket(i);
-		return;
+
+		Traincraft.modChannel.sendToServer(new PacketKeyPress(i));
 	}
 
 	/**
@@ -491,7 +494,8 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 						slotsFilled++;
 					}
 				}
-				PacketHandler.sendPacketToClients(PacketHandler.setSlotsFilledPacket(this, slotsFilled), worldObj, (int) posX, (int) posY, (int) posZ, 150);
+
+				Traincraft.modChannel.sendToAllAround(new PacketSlotsFilled(this, slotsFilled), new TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
 			}
 			/**
 			 * Fuel consumption
@@ -828,22 +832,23 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 
 	}
 
-	/**
-	 * Requests items to be extracted from the inventory
-	 * 
-	 * @param doRemove
-	 *            If false no actual extraction may occur.
-	 * @param from
-	 *            Orientation the ItemStack is requested from.
-	 * @param maxItemCount
-	 *            Maximum amount of items to extract (spread over all returned
-	 *            item stacks)
-	 * @return Array of item stacks extracted from the inventory
-	 */
-	@Override
-	public ItemStack[] extractItem(boolean doRemove, ForgeDirection from, int maxItemCount) {
-		return null;
-	}
+	//  Quoted out as it doesn't seem to have any use nor to be called at all.
+	//	/**
+	//	 * Requests items to be extracted from the inventory
+	//	 * 
+	//	 * @param doRemove
+	//	 *            If false no actual extraction may occur.
+	//	 * @param from
+	//	 *            Orientation the ItemStack is requested from.
+	//	 * @param maxItemCount
+	//	 *            Maximum amount of items to extract (spread over all returned
+	//	 *            item stacks)
+	//	 * @return Array of item stacks extracted from the inventory
+	//	 */
+	//	@Override
+	//	public ItemStack[] extractItem(boolean doRemove, ForgeDirection from, int maxItemCount) {
+	//		return null;
+	//	}
 
 	@Override
 	public boolean attackEntityFrom(DamageSource damagesource, float i) {
@@ -931,15 +936,22 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 
 	@Override
 	public void markDirty() {
+
 		if (!worldObj.isRemote) {
+
 			this.slotsFilled = 0;
+
 			for (int i = 0; i < getSizeInventory(); i++) {
+
 				ItemStack itemstack = getStackInSlot(i);
+
 				if (itemstack != null) {
+
 					slotsFilled++;
 				}
 			}
-			PacketHandler.sendPacketToClients(PacketHandler.setSlotsFilledPacket(this, slotsFilled), worldObj, (int) posX, (int) posY, (int) posZ, 150);
+
+			Traincraft.modChannel.sendToAllAround(new PacketSlotsFilled(this, slotsFilled), new TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
 		}
 	}
 

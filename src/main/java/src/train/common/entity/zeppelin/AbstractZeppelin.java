@@ -2,7 +2,6 @@ package src.train.common.entity.zeppelin;
 
 import java.util.List;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -18,20 +17,19 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-
 import net.minecraftforge.common.util.Constants;
+
 import org.lwjgl.input.Keyboard;
 
 import src.train.client.core.handlers.KeyHandlerClient;
 import src.train.common.Traincraft;
 import src.train.common.core.handlers.ConfigHandler;
 import src.train.common.core.handlers.PacketHandler;
+import src.train.common.core.network.PacketKeyPress;
 import src.train.common.library.GuiIDs;
-import src.train.common.library.ItemIDs;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -73,7 +71,7 @@ public abstract class AbstractZeppelin extends Entity implements IInventory {
 	protected double field_9386_l;
 	protected boolean field_70279_a;
 	protected double field_70276_b;
-	
+
 	protected int boatPosRotationIncrements;
 	protected double boatX;
 	protected double boatY;
@@ -91,7 +89,7 @@ public abstract class AbstractZeppelin extends Entity implements IInventory {
 	public float pitch = 0F;
 	public float roll = 0F;
 	private int bombTimer;
-	
+
 	public AbstractZeppelin(World world) {
 		super(world);
 		boatCurrentDamage = 0;
@@ -231,8 +229,8 @@ public abstract class AbstractZeppelin extends Entity implements IInventory {
 	}
 
 	public void pressKeyClient(int i) {
-		keyHandler.sendKeyControlsPacket(i);
-		return;
+
+		Traincraft.modChannel.sendToServer(new PacketKeyPress(i));
 	}
 
 	public void pressKey(int i) {
