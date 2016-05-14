@@ -33,9 +33,13 @@ public class Traincraft {
     public static Logger logger = LogManager.getLogger(NAME);
     public static CreativeTabs tab;
 
+    static{
+        net.minecraftforge.fluids.FluidRegistry.enableUniversalBucket();
+    }
+
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent evt) {
-        logger.info("Let the trains out! " + NAME + ": " + VERSION + "!");
+        logger.info("[Traincraft] Let the trains out! " + NAME + ": " + VERSION + "!");
         tab = new CreativeTabs("traincraftTab") {
             @Override
             public Item getTabIconItem() {
@@ -44,26 +48,29 @@ public class Traincraft {
         };
         logger.info("Register Blocks, Items, ...");
         BlockRegistry.preInit();
-        //ItemReg
+        ItemRegistry.preInit();
+        FluidRegistry.preInit();
         TileEntityRegistry.preInit();
         GameRegistry.registerWorldGenerator(new WorldGen(), 10);
         NetworkRegistry.INSTANCE.registerGuiHandler(INSTANCE, new GuiHandler());
         logger.info("Register Renderer!");
         proxy.preInit(evt);
-        logger.info("Finished PreInitializing!");
+        logger.info("[Traincraft] Finished PreInitializing!");
     }
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent evt) {
+        logger.info("[Traincraft] Start to Initializing");
         RecipeRegistry.init();
         proxy.init(evt);
-        logger.info("Finished Initializing");
+        logger.info("[Traincraft] Finished Initializing");
     }
 
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent evt) {
+        logger.info("[Traincraft] Start to PostInitializing");
         proxy.postInit(evt);
-        logger.info("Now you can't stop the trains!");
+        logger.info("[Traincraft] Now you can't stop the trains!");
     }
 
     public static void registerBlock(Block block, String blockName, BlockBase.RenderType renderType){
@@ -74,12 +81,14 @@ public class Traincraft {
         GameRegistry.register(block);
         GameRegistry.register(itemBlock);
         CommonProxy.addForgeRender(itemBlock);
-        /*
-        switch(renderType){
-            case NORMAL: CommonProxy.addStackToRender(itemBlock); break;
-            case FORGEJSON: CommonProxy.addForgeRender(itemBlock); break;
-        }
-        */
+    }
+
+    public static void registerItem(Item item, String blockName){
+        item.setUnlocalizedName(MODID + ":" + blockName);
+        item.setRegistryName(blockName);
+        item.setCreativeTab(tab);
+        GameRegistry.register(item);
+        CommonProxy.addForgeRender(item);
     }
 
 }

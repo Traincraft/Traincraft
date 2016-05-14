@@ -41,6 +41,22 @@ public class BlockCrafter extends BlockContainerBase {
             this.name = name;
             this.guiID = guiID;
         }
+        public static CrafterTier getTierFromInt(int tier){
+            switch(tier){
+                case 1: return STEAM;
+                case 2: return DIESEL;
+                case 3: return ELECTRO;
+            }
+            return null;
+        }
+        public int getID(){
+            switch(this){
+                case STEAM: return 1;
+                case DIESEL: return 2;
+                case ELECTRO: return 3;
+            }
+            return 0;
+        }
     }
 
 }

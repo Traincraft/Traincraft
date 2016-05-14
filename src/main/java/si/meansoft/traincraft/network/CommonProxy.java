@@ -27,8 +27,7 @@ import java.util.List;
 
 public class CommonProxy {
 
-    protected static List<Item> renderList = new ArrayList<Item>();
-    protected static List<ItemBlock> forgeRender = new ArrayList<ItemBlock>();
+    protected static List<Item> forgeRender = new ArrayList<Item>();
     protected static HashMap<Class<? extends TileEntity>, TileEntitySpecialRenderer> objRender = new HashMap<Class<? extends TileEntity>, TileEntitySpecialRenderer>();
     public static SimpleNetworkWrapper wrapper;
 
@@ -41,13 +40,7 @@ public class CommonProxy {
 
     public void postInit(FMLPostInitializationEvent event){}
 
-    public static void addStackToRender(Item item){
-        if(!renderList.contains(item)) {
-            renderList.add(item);
-        }
-    }
-
-    public static void addForgeRender(ItemBlock block){
+    public static void addForgeRender(Item block){
         if(!forgeRender.contains(block)){
             forgeRender.add(block);
         }
