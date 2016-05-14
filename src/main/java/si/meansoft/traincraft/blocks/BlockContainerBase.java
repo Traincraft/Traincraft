@@ -76,9 +76,9 @@ public class BlockContainerBase extends BlockBase implements ITileEntityProvider
         try {
             return tileClass.newInstance();
         } catch (Exception e) {
-            e.printStackTrace();
+            Traincraft.logger.fatal("Creating a TileEntity threw an exception!", e);
+            return null;
         }
-        return null;
     }
 
     @Override

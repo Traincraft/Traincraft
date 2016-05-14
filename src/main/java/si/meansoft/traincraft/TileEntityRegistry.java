@@ -1,9 +1,11 @@
 package si.meansoft.traincraft;
 
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import si.meansoft.traincraft.tileEntities.TileEntityCrafter;
+import si.meansoft.traincraft.tileEntities.crafter.TileEntityCrafterDiesel;
 import si.meansoft.traincraft.tileEntities.TileEntityDistillery;
 import si.meansoft.traincraft.tileEntities.TileEntityRail;
+import si.meansoft.traincraft.tileEntities.crafter.TileEntityCrafterElectro;
+import si.meansoft.traincraft.tileEntities.crafter.TileEntityCrafterSteam;
 
 /**
  * @author canitzp
@@ -11,9 +13,12 @@ import si.meansoft.traincraft.tileEntities.TileEntityRail;
 public class TileEntityRegistry {
 
     public static void preInit(){
-        GameRegistry.registerTileEntity(TileEntityDistillery.class, "TileEntityDistillery");
-        GameRegistry.registerTileEntity(TileEntityRail.class, "TileEntityRail");
-        GameRegistry.registerTileEntity(TileEntityCrafter.class, "TileEntityCrafter");
+        //Has to be registered with modid as duplicate registry ids will lead into the tile not being registered at all
+        GameRegistry.registerTileEntity(TileEntityDistillery.class, Traincraft.MODID+"TileEntityDistillery");
+        GameRegistry.registerTileEntity(TileEntityRail.class, Traincraft.MODID+"TileEntityRail");
+        GameRegistry.registerTileEntity(TileEntityCrafterSteam.class, Traincraft.MODID+"TileEntityCrafterSteam");
+        GameRegistry.registerTileEntity(TileEntityCrafterDiesel.class, Traincraft.MODID+"TileEntityCrafterDiesel");
+        GameRegistry.registerTileEntity(TileEntityCrafterElectro.class, Traincraft.MODID+"TileEntityCrafterElectro");
     }
 
 }
