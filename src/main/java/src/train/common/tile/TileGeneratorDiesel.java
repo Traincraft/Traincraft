@@ -169,7 +169,7 @@ public class TileGeneratorDiesel extends TileEntity implements IFluidHandler, II
 				setIsProducing(false);
 			}
 		}
-		this.currentOutput = Energy.fromRF((currentOutput.toRF() * 740 + output.toRF()) / 750);
+		//this.currentOutput = Energy.fromRF((currentOutput.toRF() * 740 + output.toRF()) / 750);
 	}
 
 	public static Packet setGeneratorLiquid(TileEntity te) {
@@ -205,7 +205,7 @@ public class TileGeneratorDiesel extends TileEntity implements IFluidHandler, II
 	@Override
 	public void readFromNBT(NBTTagCompound nbtTag) {
 		super.readFromNBT(nbtTag);
-		this.energy = Energy.fromRF(nbtTag.getFloat("Energy"));
+		//this.energy = Energy.fromRF(nbtTag.getFloat("Energy"));
 		this.direction = ForgeDirection.getOrientation(nbtTag.getInteger("direction"));
 		this.theTank.readFromNBT(nbtTag);
 		this.powered = nbtTag.getBoolean("powered");
@@ -214,7 +214,7 @@ public class TileGeneratorDiesel extends TileEntity implements IFluidHandler, II
 	@Override
 	public void writeToNBT(NBTTagCompound nbtTag) {
 		super.writeToNBT(nbtTag);
-		nbtTag.setFloat("Energy", energy.toRF());
+		//nbtTag.setFloat("Energy", energy.toRF());
 		nbtTag.setInteger("direction", direction.ordinal());
 		this.theTank.writeToNBT(nbtTag);
 		nbtTag.setBoolean("powered", this.powered);

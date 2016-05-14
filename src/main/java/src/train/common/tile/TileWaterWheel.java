@@ -183,26 +183,31 @@ public class TileWaterWheel extends TileEntity/*TileEntityElectrical*/ implement
 
 			if(getWaterDir()==0 && this.getBlockMetadata() !=3){
 				worldObj.setBlockMetadataWithNotify((int)xCoord, (int)yCoord, (int)zCoord, 3,2);
-				sendPacketToServer(getTEPClient(this,3));
+				//TODO Packets
+				// sendPacketToServer(getTEPClient(this,3));
 				//System.out.println("3");
 			}
 			if((getWaterDir()==-3 || getWaterDir()==-2) && this.getBlockMetadata() !=1){
 				worldObj.setBlockMetadataWithNotify((int)xCoord, (int)yCoord, (int)zCoord, 1,2);
-				sendPacketToServer(getTEPClient(this,1));
+				//TODO Packets
+				// sendPacketToServer(getTEPClient(this,1));
 				//System.out.println("1");
 			}
 			if(getWaterDir()==-1 && this.getBlockMetadata() !=2){
 				worldObj.setBlockMetadataWithNotify((int)xCoord, (int)yCoord, (int)zCoord, 2,2);
-				sendPacketToServer(getTEPClient(this,2));
+				//TODO Packets
+				// sendPacketToServer(getTEPClient(this,2));
 				//System.out.println("2");
 			}
 			if(getWaterDir()==1 && this.getBlockMetadata() !=0){
 				worldObj.setBlockMetadataWithNotify((int)xCoord, (int)yCoord, (int)zCoord, 0,3);
-				sendPacketToServer(getTEPClient(this,0));
+				//TODO Packets
+				// sendPacketToServer(getTEPClient(this,0));
 				//System.out.println("0");
 			}
 			if(this.updateTicks%60==0){
-				sendPacketToServer(getTEPClient(this,this.getBlockMetadata()));
+				//TODO Packets
+				// sendPacketToServer(getTEPClient(this,this.getBlockMetadata()));
 			}
 		}
 		if(worldObj.isRemote)return;
