@@ -1,6 +1,7 @@
 package si.meansoft.traincraft;
 
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import si.meansoft.traincraft.tileEntities.TileEntityHearthFurnace;
 import si.meansoft.traincraft.tileEntities.crafter.TileEntityCrafterDiesel;
 import si.meansoft.traincraft.tileEntities.TileEntityDistillery;
 import si.meansoft.traincraft.tileEntities.TileEntityRail;
@@ -19,6 +20,7 @@ public class TileEntityRegistry {
         GameRegistry.registerTileEntity(TileEntityCrafterSteam.class, Traincraft.MODID+"TileEntityCrafterSteam");
         GameRegistry.registerTileEntity(TileEntityCrafterDiesel.class, Traincraft.MODID+"TileEntityCrafterDiesel");
         GameRegistry.registerTileEntity(TileEntityCrafterElectro.class, Traincraft.MODID+"TileEntityCrafterElectro");
+        GameRegistry.registerTileEntity(TileEntityHearthFurnace.class, Traincraft.MODID+"TileHearthFurnace");
     }
 
 }

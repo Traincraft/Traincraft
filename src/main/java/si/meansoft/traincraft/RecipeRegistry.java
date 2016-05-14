@@ -1,9 +1,11 @@
 package si.meansoft.traincraft;
 
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import si.meansoft.traincraft.api.recipes.DistilleryRecipes;
+import si.meansoft.traincraft.api.recipes.HearthFurnaceRecipes;
 
 /**
  * @author canitzp
@@ -26,6 +28,9 @@ public class RecipeRegistry {
     }
 
     private static void initDistillRecipes(){
+        //TODO Swap apple for graphite and gold ingot for steel
+        HearthFurnaceRecipes.addRecipe(new ItemStack(Items.APPLE), new ItemStack(Items.IRON_INGOT), new ItemStack(Items.GOLD_INGOT), 1200);
+
         DistilleryRecipes.addRecipe(new ItemStack(ItemRegistry.plastic), new ItemStack(BlockRegistry.oilSand), new FluidStack(FluidRegistry.diesel, 1000), 50, 200);
         DistilleryRecipes.addFillingRecipe(new ItemStack(ItemRegistry.fuelCanister), new ItemStack(ItemRegistry.fuelCanisterEmpty), new FluidStack(FluidRegistry.diesel, 1000));
     }

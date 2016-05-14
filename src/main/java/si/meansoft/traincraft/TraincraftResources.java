@@ -10,8 +10,8 @@ public enum TraincraftResources {
     DISTILLERY("guiDistillery"),
     CRAFTERSTEAM("guiCrafterSteam"),
     CRAFTERDIESEL("guiCrafterDiesel"),
-    CRAFTERELECTRO("guiCrafterElectro")
-    ;
+    CRAFTERELECTRO("guiCrafterElectro"),
+    HEARTH_FURNACE("guiHearthFurnace");
 
     String name;
     TraincraftResources(String guiName) {
