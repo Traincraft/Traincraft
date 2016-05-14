@@ -7,15 +7,13 @@
 
 package src.train.client.render.models.blocks;
 
-import org.lwjgl.opengl.GL11;
-
 import cpw.mods.fml.client.FMLClientHandler;
-import src.train.common.library.Info;
 import net.minecraft.client.model.ModelBase;
-import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.IModelCustom;
+import org.lwjgl.opengl.GL11;
+import src.train.common.library.Info;
 
 public class ModelPresent extends ModelBase {
 	private IModelCustom present;

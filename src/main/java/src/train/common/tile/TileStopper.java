@@ -8,9 +8,7 @@
 package src.train.common.tile;
 
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
-import src.train.common.core.handlers.PacketHandler;
 
 public class TileStopper extends TileEntity {
 
@@ -40,10 +38,13 @@ public class TileStopper extends TileEntity {
 		nbtTag.setByte("Orientation", (byte) facingMeta);
 	}
 
+	//TODO Packets
+	/*
 	@Override
 	public Packet getDescriptionPacket() {
 		return PacketHandler.getTEPClient(this);
 	}
+	*/
 
 	public void handlePacketDataFromServer(byte orientation) {
 		facingMeta = orientation;

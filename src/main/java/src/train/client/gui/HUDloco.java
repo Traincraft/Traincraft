@@ -5,9 +5,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.opengl.GL11;
-
 import src.train.common.api.DieselTrain;
 import src.train.common.api.Locomotive;
 import src.train.common.api.SteamTrain;

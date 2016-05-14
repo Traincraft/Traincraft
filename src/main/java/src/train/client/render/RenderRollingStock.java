@@ -1,23 +1,21 @@
 package src.train.client.render;
 
-import java.util.ArrayList;
-import java.util.Random;
-
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockRailBase;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Vec3;
-
 import org.lwjgl.opengl.GL11;
-
 import src.train.common.api.EntityRollingStock;
 import src.train.common.api.Locomotive;
 import src.train.common.entity.rollingStock.EntityTracksBuilder;
 import src.train.common.library.Info;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+
+import java.util.ArrayList;
+import java.util.Random;
 
 @SideOnly(Side.CLIENT)
 public class RenderRollingStock extends Render {

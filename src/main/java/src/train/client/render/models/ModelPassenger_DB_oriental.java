@@ -7,9 +7,9 @@
 
 package src.train.client.render.models;
 
-import src.train.client.render.CustomModelRenderer;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
+import src.train.client.render.CustomModelRenderer;
 
 public class ModelPassenger_DB_oriental extends ModelBase {
 	

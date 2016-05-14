@@ -1,22 +1,14 @@
 package src.train.common.api;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidContainerRegistry;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidTankInfo;
-import net.minecraftforge.fluids.IFluidHandler;
-import net.minecraftforge.fluids.IFluidTank;
+import net.minecraftforge.fluids.*;
 import src.train.common.api.LiquidManager.StandardTank;
-import buildcraft.api.tools.IToolWrench;
 
 public class LiquidTank extends EntityRollingStock implements IFluidHandler, ISidedInventory {
 	private FluidStack liquid;
@@ -191,6 +183,8 @@ public class LiquidTank extends EntityRollingStock implements IFluidHandler, ISi
 		return itemstack1.stackSize;
 	}
 
+	//TODO idk what to do here
+	/*
 	/**
 	 * Offers an ItemStack for addition to the inventory.
 	 * 
@@ -199,6 +193,7 @@ public class LiquidTank extends EntityRollingStock implements IFluidHandler, ISi
 	 * @param from Orientation the ItemStack is offered from.
 	 * @return Amount of items used from the passed stack.
 	 */
+	/*
 	@Override
 	public int addItem(ItemStack stack, boolean doAdd, ForgeDirection from) {
 		if (stack == null) {
@@ -208,7 +203,9 @@ public class LiquidTank extends EntityRollingStock implements IFluidHandler, ISi
 			return placeInSpecialInvent(stack, 0, doAdd);
 		return 0;
 	}
+	*/
 
+	/*
 	/**
 	 * Requests items to be extracted from the inventory
 	 * 
@@ -217,10 +214,12 @@ public class LiquidTank extends EntityRollingStock implements IFluidHandler, ISi
 	 * @param maxItemCount Maximum amount of items to extract (spread over all returned item stacks)
 	 * @return Array of item stacks extracted from the inventory
 	 */
+	/*
 	@Override
 	public ItemStack[] canExtractItem(boolean doRemove, ForgeDirection from, int maxItemCount) {
 		return null;
 	}
+	*/
 
 	@Override
 	public boolean canExtractItem(int p_102008_1_, ItemStack p_102008_2_, int p_102008_3_) {

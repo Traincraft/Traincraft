@@ -1,16 +1,16 @@
 package src.train.client.core.handlers;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.audio.SoundHandler;
-import net.minecraft.client.audio.SoundManager;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.util.MathHelper;
 import src.train.common.api.EntityRollingStock;
 import src.train.common.api.Locomotive;
 import src.train.common.core.handlers.ConfigHandler;
 import src.train.common.entity.rollingStock.EntityJukeBoxCart;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
+//TODO Fix the sounds
 @SideOnly(Side.CLIENT)
 public class SoundUpdaterRollingStock {
 
@@ -53,14 +53,14 @@ public class SoundUpdaterRollingStock {
 		this.isMoving = this.cartSpeed >= 0.01D;
 		//System.out.println(isMoving);
 		if (var2 && !this.riddenByPlayer) {
-			this.theSoundManager.stopEntitySound(this.thePlayer);
+			//this.theSoundManager.stopEntitySound(this.thePlayer);
 		}
 
 		if (this.isDead || !this.flag && this.volume1 == 0.0F && this.volume2 == 0.0F) {
 			if (!var3) {
-				this.theSoundManager.stopEntitySound(this.theMinecart);
+				//this.theSoundManager.stopEntitySound(this.theMinecart);
 				if (var2 || this.riddenByPlayer) {
-					this.theSoundManager.stopEntitySound(this.thePlayer);
+					//this.theSoundManager.stopEntitySound(this.thePlayer);
 				}
 			}
 			this.flag = true;
@@ -69,11 +69,13 @@ public class SoundUpdaterRollingStock {
 			}
 		}
 
+		/*
 		if (!this.theSoundManager.isEntitySoundPlaying(this.theMinecart) && this.volume1 > 0.0F) {
 			this.theSoundManager.playEntitySound("minecart.base", this.theMinecart, this.volume1, this.soundPitch, false);
 			this.flag = false;
 			var1 = true;
 		}
+		*/
 		if (this.isMoving) {
 			if (this.soundPitch < 1.0F) {
 				this.soundPitch += 0.0025F;
@@ -93,21 +95,22 @@ public class SoundUpdaterRollingStock {
 		}
 		if (!this.flag) {
 			if (this.soundPitch != var6) {
-				this.theSoundManager.setEntitySoundPitch(this.theMinecart, this.soundPitch);
+				//this.theSoundManager.setEntitySoundPitch(this.theMinecart, this.soundPitch);
 			}
 			if (this.volume1 != var5) {
-				this.theSoundManager.setEntitySoundVolume(this.theMinecart, this.volume1);
+				//this.theSoundManager.setEntitySoundVolume(this.theMinecart, this.volume1);
 			}
 			if (this.volume2 != var7) {
-				this.theSoundManager.setEntitySoundVolume(this.thePlayer, this.volume2);
+				//this.theSoundManager.setEntitySoundVolume(this.thePlayer, this.volume2);
 			}
 		}
 		if (!var1 && (this.volume1 > 0.0F || this.volume2 > 0.0F)) {
-			this.theSoundManager.updateSoundLocation(this.theMinecart);
+			//this.theSoundManager.updateSoundLocation(this.theMinecart);
 			if (this.riddenByPlayer) {
-				this.theSoundManager.updateSoundLocation(this.thePlayer, this.theMinecart);
+				//this.theSoundManager.updateSoundLocation(this.thePlayer, this.theMinecart);
 			}
 		}
+		/*
 		else {
 			if (this.theSoundManager.isEntitySoundPlaying(this.theMinecart)) {
 				this.theSoundManager.stopEntitySound(this.theMinecart);
@@ -116,5 +119,6 @@ public class SoundUpdaterRollingStock {
 				this.theSoundManager.stopEntitySound(this.thePlayer);
 			}
 		}
+		*/
 	}
 }

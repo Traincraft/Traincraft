@@ -1,13 +1,14 @@
 package src.train.common.core.handlers;
 
-import java.util.EnumSet;
-import java.util.Random;
-
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.relauncher.Side;
 import net.minecraft.world.World;
 
+import java.util.EnumSet;
+import java.util.Random;
+
+//TODO
 public class ServerTickHandler extends TickEvent {
 	private int windTicker = 0;
 
@@ -20,14 +21,16 @@ public class ServerTickHandler extends TickEvent {
 	}
 
 	@SubscribeEvent
-	public void onServerTickHandler(EnumSet<Type> type, Object... tickData) {
-		if (type.contains(Type.WORLD)) {
+	public void onServerTickHandler(ServerTickHandler handler) {
+		/*
+		if (handler.type.contains(Type.WORLD)) {
 			World world = (World) tickData[0];
 			if (windTicker % 128 == 0) {
 				updateWind(world);
 			}
 			windTicker += 1;
 		}
+		*/
 
 	}
 

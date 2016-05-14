@@ -1,8 +1,5 @@
 package src.train.common.recipes;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -11,6 +8,9 @@ import net.minecraft.item.ItemStack;
 import src.train.common.core.handlers.ConfigHandler;
 import src.train.common.library.BlockIDs;
 import src.train.common.library.ItemIDs;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class DistilRecipes {
 

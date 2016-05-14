@@ -7,12 +7,9 @@
 
 package src.train.common.core.handlers;
 
-import java.util.ArrayList;
-
-import net.minecraft.block.Block;
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.oredict.OreDictionary;
@@ -21,7 +18,8 @@ import src.train.common.inventory.TrainCraftingManager;
 import src.train.common.library.BlockIDs;
 import src.train.common.library.ItemIDs;
 import src.train.common.recipes.RecipesArmorDyes;
-import cpw.mods.fml.common.registry.GameRegistry;
+
+import java.util.ArrayList;
 
 public class RecipeHandler {
 	public static void initBlockRecipes() {

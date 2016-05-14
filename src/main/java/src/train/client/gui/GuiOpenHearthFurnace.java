@@ -3,9 +3,7 @@ package src.train.client.gui;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.opengl.GL11;
-
 import src.train.common.containers.ContainerOpenHearthFurnace;
 import src.train.common.library.Info;
 import src.train.common.tile.TileEntityOpenHearthFurnace;

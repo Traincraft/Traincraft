@@ -7,14 +7,12 @@
 
 package src.train.client.render.models.blocks;
 
+import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.IModelCustom;
-
 import org.lwjgl.opengl.GL11;
-
-import cpw.mods.fml.client.FMLClientHandler;
 import src.train.client.render.CustomModelRenderer;
 import src.train.common.library.Info;
 
@@ -35,6 +33,8 @@ public class ModelStopper extends ModelBase {
 	private float scale;
 
 	public ModelStopper(float scale) {
+
+		System.out.println(new ResourceLocation(Info.modelPrefix + "track_normal.obj"));
 		
 		track =  AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_normal.obj"));
 		

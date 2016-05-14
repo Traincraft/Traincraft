@@ -3,8 +3,6 @@ package src.train.common.entity.rollingStock;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import src.train.common.api.EntityRollingStock;
 import src.train.common.api.IPassenger;

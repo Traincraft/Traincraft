@@ -3,10 +3,7 @@ package src.train.common.tile;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
-import src.train.common.core.handlers.PacketHandler;
 
 public class TileBridgePillar extends TileEntity {
 

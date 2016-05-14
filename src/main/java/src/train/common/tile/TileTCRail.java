@@ -1,21 +1,19 @@
 package src.train.common.tile;
 
-import java.util.List;
-import java.util.Random;
-
-import net.minecraft.entity.item.EntityMinecart;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.Packet;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.world.World;
-import src.train.common.core.handlers.PacketHandler;
-import src.train.common.items.ItemTCRail;
-import src.train.common.items.ItemTCRail.TrackTypes;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.entity.item.EntityMinecart;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.world.World;
+import src.train.common.items.ItemTCRail;
+import src.train.common.items.ItemTCRail.TrackTypes;
+
+import java.util.List;
+import java.util.Random;
 
 public class TileTCRail extends TileEntity {
 	protected Random rand = new Random();
@@ -256,7 +254,8 @@ public class TileTCRail extends TileEntity {
 		this.switchActive = state;
 		this.manualOverride = manualOverride;
 		if (manualOverride) updateTicks = 0;
-		PacketHandler.sendPacketToClients(getDescriptionPacket(), worldObj, xCoord, yCoord, zCoord, 50D);
+		//TODO Packets
+		// PacketHandler.sendPacketToClients(getDescriptionPacket(), worldObj, xCoord, yCoord, zCoord, 50D);
 	}
 
 	@Override
@@ -310,10 +309,13 @@ public class TileTCRail extends TileEntity {
 		super.writeToNBT(nbt);
 	}
 
+	//TODO Packets
+	/*
 	@Override
 	public Packet getDescriptionPacket() {
 		return PacketHandler.getTEPClient(this);
 	}
+	*/
 
 	public void handlePacketDataFromServer(byte orientation, String type, boolean hasModel, boolean switchActive, int idDropped) {
 		facingMeta = orientation;

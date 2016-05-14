@@ -7,16 +7,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.opengl.GL11;
-
-
-import src.train.common.api.AbstractTrains;
-import src.train.common.api.DieselTrain;
-import src.train.common.api.ElectricTrain;
-import src.train.common.api.LiquidManager;
-import src.train.common.api.Locomotive;
-import src.train.common.api.SteamTrain;
+import src.train.common.api.*;
 import src.train.common.inventory.InventoryLoco;
 import src.train.common.library.Info;
 

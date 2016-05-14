@@ -1,25 +1,22 @@
 package src.train.common.tile;
 
+import cpw.mods.fml.common.FMLCommonHandler;
 import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergySource;
-
-import java.util.ArrayList;
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.util.ForgeDirection;
 import src.train.common.core.TrainModBlockUtil;
-import src.train.common.core.handlers.PacketHandler;
 import src.train.common.core.handlers.ServerTickHandler;
-import cpw.mods.fml.common.FMLCommonHandler;
+
+import java.util.ArrayList;
+import java.util.Random;
 
 public class TileWindMill extends TileEntity implements IEnergySource {
 	private int facingMeta;
@@ -63,10 +60,13 @@ public class TileWindMill extends TileEntity implements IEnergySource {
 		nbt.setByte("Orientation", (byte) facingMeta);
 	}
 
+	//TODO Packets
+	/*
 	@Override
 	public Packet getDescriptionPacket() {
 		return PacketHandler.getTEPClient(this);
 	}
+	*/
 
 	public void handlePacketDataFromServer(byte orientation, int wind) {
 		facingMeta = orientation;
@@ -135,7 +135,8 @@ public class TileWindMill extends TileEntity implements IEnergySource {
 			//System.out.println(this.IC2production);
 			if (IC2production > this.getMaxEnergyOutput())
 				IC2production = this.getMaxEnergyOutput();
-			PacketHandler.sendPacketToClients(this.getDescriptionPacket(), worldObj, this.xCoord, this.yCoord, this.zCoord, 40D);
+			//TODO Packets
+			// PacketHandler.sendPacketToClients(this.getDescriptionPacket(), worldObj, this.xCoord, this.yCoord, this.zCoord, 40D);
 		}
 
 	}

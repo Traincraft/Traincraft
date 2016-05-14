@@ -1,9 +1,9 @@
 package src.train.common.core.handlers;
 
-import java.util.ArrayList;
-
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
+
+import java.util.ArrayList;
 
 public class BuilderOreHandler {
 	public static boolean isOre(int id) {

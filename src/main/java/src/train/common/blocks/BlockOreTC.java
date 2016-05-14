@@ -1,8 +1,7 @@
 package src.train.common.blocks;
 
-import java.util.List;
-import java.util.Random;
-
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSand;
 import net.minecraft.block.material.Material;
@@ -17,8 +16,9 @@ import net.minecraft.world.World;
 import src.train.common.Traincraft;
 import src.train.common.library.BlockIDs;
 import src.train.common.library.Info;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+
+import java.util.List;
+import java.util.Random;
 
 public class BlockOreTC extends BlockSand {
 

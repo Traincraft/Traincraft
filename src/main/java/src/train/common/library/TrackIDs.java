@@ -6,34 +6,13 @@
  */
 package src.train.common.library;
 
+import mods.railcraft.api.tracks.TrackRegistry;
+import mods.railcraft.api.tracks.TrackSpec;
+import src.train.common.blocks.tracks.*;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import mods.railcraft.api.tracks.TrackRegistry;
-import mods.railcraft.api.tracks.TrackSpec;
-import src.train.common.blocks.tracks.BlockAnimalBoardingTrack;
-import src.train.common.blocks.tracks.BlockCopperTrack;
-import src.train.common.blocks.tracks.BlockCouplerTrack;
-import src.train.common.blocks.tracks.BlockDetectorAllLocomotiveTrack;
-import src.train.common.blocks.tracks.BlockDetectorDieselLocomotiveTrack;
-import src.train.common.blocks.tracks.BlockDetectorFreightTrack;
-import src.train.common.blocks.tracks.BlockDetectorHornAllLocomotiveTrack;
-import src.train.common.blocks.tracks.BlockDetectorPassengerTrack;
-import src.train.common.blocks.tracks.BlockDetectorSteamLocomotiveTrack;
-import src.train.common.blocks.tracks.BlockDetectorTankCartsTrack;
-import src.train.common.blocks.tracks.BlockDisembarkTrack;
-import src.train.common.blocks.tracks.BlockEnergyTrack;
-import src.train.common.blocks.tracks.BlockLocomotiveHoldingTrack;
-import src.train.common.blocks.tracks.BlockLocomotiveSpeedControllerTrack;
-import src.train.common.blocks.tracks.BlockMobBoardingTrack;
-import src.train.common.blocks.tracks.BlockSnowyCopperTrack;
-import src.train.common.blocks.tracks.BlockSnowySteelTrack;
-import src.train.common.blocks.tracks.BlockStationTrack;
-import src.train.common.blocks.tracks.BlockSteelTrack;
-import src.train.common.blocks.tracks.BlockVanillaSnowyTrack;
-import src.train.common.blocks.tracks.TrackTextureLoader;
-import src.train.common.core.plugins.PluginRailcraft;
 
 public enum TrackIDs {
 	DETECTOR_FREIGHT(2, "detector.freight", 8, BlockDetectorFreightTrack.class, Arrays.asList("Emits a redstone signal on all","passing Traincraft freight carts")),

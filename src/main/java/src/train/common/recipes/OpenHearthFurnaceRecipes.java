@@ -1,12 +1,12 @@
 package src.train.common.recipes;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import src.train.common.library.ItemIDs;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class OpenHearthFurnaceRecipes {
 

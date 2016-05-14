@@ -1,24 +1,19 @@
 package src.train.common.items;
 
-import java.util.List;
-
-import ic2.api.item.IBoxable;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import ic2.api.item.IBoxable;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.MovingObjectPosition;
-import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import src.train.common.Traincraft;
-import src.train.common.entity.digger.EntityRotativeDigger;
 import src.train.common.library.GuiIDs;
 import src.train.common.library.Info;
-import src.train.common.library.ItemIDs;
+
+import java.util.List;
 
 public class ItemRecipeBook extends Item implements IBoxable {
 

@@ -5,9 +5,7 @@ import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.opengl.GL11;
-
 import src.train.client.render.models.ModelZeppelinOneBalloon;
 import src.train.client.render.models.ModelZeppelinTwoBalloons;
 import src.train.common.entity.zeppelin.AbstractZeppelin;

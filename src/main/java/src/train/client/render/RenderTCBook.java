@@ -7,11 +7,10 @@
 
 package src.train.client.render;
 
-import src.train.client.render.models.blocks.ModelTCBook;
-import src.train.common.tile.TileBook;
-import src.train.common.tile.TileWindMill;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
+import src.train.client.render.models.blocks.ModelTCBook;
+import src.train.common.tile.TileBook;
 
 public class RenderTCBook extends TileEntitySpecialRenderer {
 

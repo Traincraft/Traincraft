@@ -1,7 +1,7 @@
 package src.train.common.entity.zeppelin;
 
-import java.util.List;
-
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -21,16 +21,13 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
-
 import org.lwjgl.input.Keyboard;
-
 import src.train.common.Traincraft;
 import src.train.common.core.handlers.ConfigHandler;
-import src.train.common.core.handlers.PacketHandler;
 import src.train.common.core.network.PacketKeyPress;
 import src.train.common.library.GuiIDs;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+
+import java.util.List;
 
 public abstract class AbstractZeppelin extends Entity implements IInventory {
 	protected ItemStack zeppInvent[];
@@ -618,7 +615,8 @@ public abstract class AbstractZeppelin extends Entity implements IInventory {
 		}
 		this.rotationYaw = (float) ((double) this.rotationYaw + d12);
 		this.setRotation(this.rotationYaw, this.rotationPitch);
-		PacketHandler.sendPacketToClients(PacketHandler.setRotationPacketZeppelin(this, rotationYaw, roll), worldObj, (int) posX, (int) posY, (int) posZ, 400D);
+		//TODO Packets
+		// PacketHandler.sendPacketToClients(PacketHandler.setRotationPacketZeppelin(this, rotationYaw, roll), worldObj, (int) posX, (int) posY, (int) posZ, 400D);
 	}
 
 	@Override

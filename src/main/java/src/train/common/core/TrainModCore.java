@@ -1,14 +1,13 @@
 package src.train.common.core;
 
-import java.util.List;
-
+import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.ModContainer;
 import src.train.common.Traincraft;
 import src.train.common.core.interfaces.IPlugin;
 import src.train.common.core.plugins.PluginIndustrialCraft;
 import src.train.common.core.plugins.PluginRailcraft;
-import src.train.common.library.BlockIDs;
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.ModContainer;
+
+import java.util.List;
 
 public class TrainModCore {
 	public static IPlugin pluginIC2 = new PluginIndustrialCraft();

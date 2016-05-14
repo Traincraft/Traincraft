@@ -1,32 +1,25 @@
 package src.train.common.api;
 
-import ic2.api.item.IElectricItem;
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
-
 import org.lwjgl.input.Keyboard;
-
 import src.train.common.Traincraft;
 import src.train.common.core.HandleMaxAttachedCarts;
 import src.train.common.core.handlers.ConfigHandler;
-import src.train.common.core.handlers.FuelHandler;
-import src.train.common.core.handlers.PacketHandler;
 import src.train.common.core.network.PacketKeyPress;
 import src.train.common.core.network.PacketSlotsFilled;
 import src.train.common.library.EnumSounds;
 import src.train.common.library.Info;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
 
 public abstract class Locomotive extends EntityRollingStock implements IInventory {
 	public int inventorySize;
@@ -324,7 +317,8 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 	public void keyHandlerFromPacket(int i) {
 		if (lastUpdateTick == updateTicks) { return; }
 		if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer) {
-			PacketHandler.sendPacketToClients(PacketHandler.setTrainLockedToClient(riddenByEntity, this, locked), worldObj, (int) posX, (int) posY, (int) posZ, 5);
+			//TODO Packets
+			// PacketHandler.sendPacketToClients(PacketHandler.setTrainLockedToClient(riddenByEntity, this, locked), worldObj, (int) posX, (int) posY, (int) posZ, 5);
 		}
 		if (this.getTrainLockedFromPacket()) {
 			if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer && !((EntityPlayer) this.riddenByEntity).getDisplayName().toLowerCase().equals(this.trainOwner.toLowerCase())) { return; }
@@ -362,7 +356,8 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 				else {
 					setParkingBrakeFromPacket(true);
 				}
-				PacketHandler.sendPacketToClients(PacketHandler.setParkingBrake(riddenByEntity, this, parkingBrake, false), worldObj, (int) posX, (int) posY, (int) posZ, 5);
+				//TODO Packets
+				// PacketHandler.sendPacketToClients(PacketHandler.setParkingBrake(riddenByEntity, this, parkingBrake, false), worldObj, (int) posX, (int) posY, (int) posZ, 5);
 			}
 		}
 		lastUpdateTick = updateTicks;
@@ -476,7 +471,8 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 		pressKeyClient();
 		if (!worldObj.isRemote) {
 			if (updateTicks % 50 == 0) {
-				PacketHandler.sendPacketToClients(PacketHandler.setParkingBrake(riddenByEntity, this, parkingBrake, false), worldObj, (int) posX, (int) posY, (int) posZ, 50);
+				//TODO Packets
+				// PacketHandler.sendPacketToClients(PacketHandler.setParkingBrake(riddenByEntity, this, parkingBrake, false), worldObj, (int) posX, (int) posY, (int) posZ, 50);
 				this.setLocoTurnedOn(isLocoTurnedOn, false, true,500);//sending to client
 			}
 
@@ -679,7 +675,8 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 	}
 
 	public void sendParkingBrakePacket(boolean packet) {
-		PacketHandler.setParkingBrake(this.riddenByEntity, this, packet, true);
+		//TODO Packets
+		// PacketHandler.setParkingBrake(this.riddenByEntity, this, packet, true);
 	}
 
 	/**
@@ -770,8 +767,14 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 
 	public void setLocoTurnedOn(boolean set, boolean toServer, boolean toClient, double distance) {
 		this.isLocoTurnedOn = set;
-		if (toServer) PacketHandler.setLocoTurnedOn(this.riddenByEntity, this, set, true);
-		if (toClient) PacketHandler.sendPacketToClients(PacketHandler.setLocoTurnedOn(riddenByEntity, this, set, false), worldObj, (int) posX, (int) posY, (int) posZ, distance);
+		if (toServer){
+			//TODO Packets
+			// PacketHandler.setLocoTurnedOn(this.riddenByEntity, this, set, true);
+		}
+		if (toClient){
+			//TODO Packets
+			//PacketHandler.sendPacketToClients(PacketHandler.setLocoTurnedOn(riddenByEntity, this, set, false), worldObj, (int) posX, (int) posY, (int) posZ, distance);
+		}
 	}
 
 	public boolean isLocoTurnedOn() {
@@ -800,6 +803,9 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 
 	}
 
+
+	//TODO idk what to do here
+	/*
 	/**
 	 * Offers an ItemStack for addition to the inventory.
 	 * 
@@ -811,6 +817,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 	 *            Orientation the ItemStack is offered from.
 	 * @return Amount of items used from the passed stack.
 	 */
+	/*
 	@Override
 	public int addItem(ItemStack stack, boolean doAdd, ForgeDirection from) {
 		if (stack == null) { return 0; }
@@ -831,6 +838,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 		return 0;
 
 	}
+	*/
 
 	//  Quoted out as it doesn't seem to have any use nor to be called at all.
 	//	/**

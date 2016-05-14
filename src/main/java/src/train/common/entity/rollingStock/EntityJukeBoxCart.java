@@ -1,34 +1,25 @@
 package src.train.common.entity.rollingStock;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import mods.railcraft.api.core.items.IToolCrowbar;
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.EntityItem;
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemRecord;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
-import paulscode.sound.SoundSystem;
 import src.train.common.Traincraft;
 import src.train.common.api.EntityRollingStock;
-import src.train.common.api.IPassenger;
-import src.train.common.core.util.MP3Player;
 import src.train.common.library.GuiIDs;
 import src.train.common.library.ItemIDs;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class EntityJukeBoxCart extends EntityRollingStock {
 	
-	public MP3Player player = null;
 	public boolean isPlaying = false;
 	public boolean isInvalid = false;
 	public String streamURL = "";
@@ -102,6 +93,8 @@ public class EntityJukeBoxCart extends EntityRollingStock {
 			}
 		}
 		if (side == Side.CLIENT) {
+			//TODO Fix sounds
+			/*
 			if (this.updateTicks % 10 == 0 && !this.isPlaying() && this.dataWatcher.getWatchableObjectInt(23) != 0) {
 				this.streamURL = this.dataWatcher.getWatchableObjectString(22);
 				this.startStream();
@@ -135,6 +128,7 @@ public class EntityJukeBoxCart extends EntityRollingStock {
 					worldObj.spawnParticle("note", (double) posX, (double) posY + 1.2D, (double) posZ, (double) random2 / 24.0D, 0.0D, 0.0D);
 				}
 			}
+			*/
 		}
 	}
 
@@ -156,6 +150,7 @@ public class EntityJukeBoxCart extends EntityRollingStock {
 	}
 
 	public void startStream() {
+		/*
 		if (!this.isPlaying) {
 			this.isPlaying = true;
 			if (side == Side.CLIENT) {
@@ -163,9 +158,11 @@ public class EntityJukeBoxCart extends EntityRollingStock {
 				Traincraft.proxy.playerList.add(this.player);
 			}
 		}
+		*/
 	}
 
 	public void stopStream() {
+		/*
 		if (this.isPlaying) {
 			if (side == Side.CLIENT && this.player != null) {
 				this.player.stop();
@@ -173,6 +170,7 @@ public class EntityJukeBoxCart extends EntityRollingStock {
 			}
 			this.isPlaying = false;
 		}
+		*/
 	}
 
 	public boolean isPlaying() {

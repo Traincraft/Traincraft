@@ -1,33 +1,28 @@
 package src.train.common.core.plugins;
 
 
-import java.awt.Rectangle;
+import codechicken.nei.ItemList;
+import codechicken.nei.NEIServerUtils;
+import codechicken.nei.PositionedStack;
+import codechicken.nei.recipe.FurnaceRecipeHandler;
+import codechicken.nei.recipe.TemplateRecipeHandler;
+import net.minecraft.block.Block;
+import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntityFurnace;
+import src.train.client.gui.GuiDistil;
+import src.train.common.items.ItemBlockOreTC;
+import src.train.common.library.ItemIDs;
+import src.train.common.recipes.DistilRecipes;
+
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.TreeSet;
-
-import net.minecraft.block.Block;
-import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntityFurnace;
-
-import org.lwjgl.opengl.GL11;
-
-import src.train.client.gui.GuiDistil;
-import src.train.common.items.ItemBlockOreTC;
-import src.train.common.library.ItemIDs;
-import src.train.common.recipes.DistilRecipes;
-import codechicken.nei.ItemList;
-import codechicken.nei.NEIClientUtils;
-import codechicken.nei.NEIServerUtils;
-import codechicken.nei.PositionedStack;
-import codechicken.nei.recipe.FurnaceRecipeHandler;
-import codechicken.nei.recipe.TemplateRecipeHandler;
 
 public class NEIDistillationTowerRecipePlugin extends FurnaceRecipeHandler{
 	public class SmeltingPair extends CachedRecipe

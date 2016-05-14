@@ -2,10 +2,8 @@ package src.train.common.slots;
 
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import src.train.common.api.LiquidManager;
-import src.train.common.core.handlers.FuelHandler;
 
 public class SpecialSlots extends Slot {
 	public SpecialSlots(IInventory iinventory, int i, int j, int k) {

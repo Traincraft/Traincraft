@@ -7,6 +7,7 @@
 
 package src.train.common.core.handlers;
 
+import cpw.mods.fml.common.registry.EntityRegistry;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
@@ -17,7 +18,6 @@ import src.train.common.core.EntityIds;
 import src.train.common.entity.zeppelin.EntityZeppelinOneBalloon;
 import src.train.common.entity.zeppelin.EntityZeppelinTwoBalloons;
 import src.train.common.library.EnumTrains;
-import cpw.mods.fml.common.registry.EntityRegistry;
 
 public class EntityHandler {
 	public static void init() {	

@@ -1,25 +1,16 @@
 package src.train.common.generation;
 
-import java.util.List;
-import java.util.Random;
-
-import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.StructureVillagePieces;
 import src.train.common.api.EntityRollingStock;
-import src.train.common.entity.rollingStock.EntityBoxCartUS;
-import src.train.common.entity.rollingStock.EntityCaboose;
-import src.train.common.entity.rollingStock.EntityCaboose3;
-import src.train.common.entity.rollingStock.EntityCabooseLogging;
-import src.train.common.entity.rollingStock.EntityFreightCart;
-import src.train.common.entity.rollingStock.EntityFreightCartSmall;
-import src.train.common.entity.rollingStock.EntityFreightWood2;
-import src.train.common.entity.rollingStock.EntityPassenger2;
-import src.train.common.entity.rollingStock.EntityStockCar;
+import src.train.common.entity.rollingStock.*;
 import src.train.common.library.BlockIDs;
+
+import java.util.List;
+import java.util.Random;
 
 public class ComponentVillageTrainstation extends StructureVillagePieces.Village {
 

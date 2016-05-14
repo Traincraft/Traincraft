@@ -7,12 +7,8 @@
 
 package src.train.common.tile;
 
-import src.train.common.core.handlers.PacketHandler;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
-import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.common.util.ForgeDirection;
 
 public class TileBook extends TileEntity {
 	
@@ -42,10 +38,13 @@ public class TileBook extends TileEntity {
 		nbtTag.setByte("Orientation", (byte) facingMeta);
 	}
 
+	//TODO Packets
+	/*
 	@Override
 	public Packet getDescriptionPacket() {
 		return PacketHandler.getTEPClient(this);
 	}
+	*/
 	
 	@Override
 	public void updateEntity() {

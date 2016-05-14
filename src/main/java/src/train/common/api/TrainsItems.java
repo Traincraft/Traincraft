@@ -1,9 +1,9 @@
 package src.train.common.api;
 
+import net.minecraft.item.ItemStack;
+
 import java.util.Map;
 import java.util.TreeMap;
-
-import net.minecraft.item.ItemStack;
 
 /**
  * This class contains a registry of all currently active Trains mod items. Which items are registered depends on the user's settings in "TrainConfig.cfg", so the available items may vary from one installation to the next.

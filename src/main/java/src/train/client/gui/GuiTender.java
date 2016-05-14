@@ -1,7 +1,5 @@
 package src.train.client.gui;
 
-import java.util.List;
-
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.Entity;
@@ -11,15 +9,14 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.StatCollector;
-
 import org.lwjgl.opengl.GL11;
-
 import src.train.common.api.AbstractTrains;
 import src.train.common.api.LiquidManager;
 import src.train.common.api.Tender;
 import src.train.common.inventory.InventoryTender;
 import src.train.common.library.Info;
+
+import java.util.List;
 
 public class GuiTender extends GuiContainer {
 

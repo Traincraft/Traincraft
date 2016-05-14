@@ -1,6 +1,5 @@
 package src.train.common.blocks.tracks;
 
-import src.train.common.library.Info;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.util.IIcon;

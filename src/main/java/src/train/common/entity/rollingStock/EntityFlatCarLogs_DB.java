@@ -1,8 +1,5 @@
 package src.train.common.entity.rollingStock;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,6 +13,9 @@ import src.train.common.Traincraft;
 import src.train.common.api.Freight;
 import src.train.common.library.GuiIDs;
 import src.train.common.library.ItemIDs;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class EntityFlatCarLogs_DB extends Freight implements IInventory {
 	public int freightInventorySize;

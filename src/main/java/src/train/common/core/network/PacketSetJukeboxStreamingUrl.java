@@ -1,13 +1,13 @@
 package src.train.common.core.network;
 
-import io.netty.buffer.ByteBuf;
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.Entity;
-import src.train.common.entity.rollingStock.EntityJukeBoxCart;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import io.netty.buffer.ByteBuf;
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.Entity;
+import src.train.common.entity.rollingStock.EntityJukeBoxCart;
 
 /**
  * Sent to the server to set a Jukebox' music stream URL.<p>

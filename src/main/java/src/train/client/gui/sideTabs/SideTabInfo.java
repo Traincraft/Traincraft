@@ -7,10 +7,10 @@
 
 package src.train.client.gui.sideTabs;
 
-import src.train.client.gui.GuiCrafterTier;
-import src.train.common.library.Info;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import src.train.client.gui.GuiCrafterTier;
+import src.train.common.library.Info;
 
 @SideOnly(Side.CLIENT)
 public class SideTabInfo extends SideTab {

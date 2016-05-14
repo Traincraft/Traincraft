@@ -3,6 +3,8 @@
  */
 package src.train.common.mysql;
 
+import src.train.common.core.handlers.ConfigHandler;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -10,8 +12,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
-
-import src.train.common.core.handlers.ConfigHandler;
 
 public class mysqlLogger extends main implements mysqlLogInterface {
 	//END OF SETTINGS :)

@@ -7,13 +7,13 @@
 
 package src.train.common.core.handlers;
 
+import cpw.mods.fml.common.FMLCommonHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import src.train.common.items.ItemRollingStock;
 import src.train.common.library.AchievementIDs;
-import cpw.mods.fml.common.FMLCommonHandler;
 
 public class CraftingHandler {
 	private RollingStockStatsEventHandler statsEvent = new RollingStockStatsEventHandler();

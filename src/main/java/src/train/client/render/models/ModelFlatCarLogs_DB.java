@@ -1,6 +1,5 @@
 package src.train.client.render.models;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
 import src.train.client.render.CustomModelRenderer;

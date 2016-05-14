@@ -7,40 +7,34 @@
 
 package src.train.common.tile;
 
+import cofh.api.energy.IEnergyProvider;
+import cofh.api.energy.IEnergyReceiver;
+import cpw.mods.fml.common.FMLCommonHandler;
 import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergySource;
-
-import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.util.ArrayList;
-
-import cofh.api.energy.IEnergyProvider;
-import cofh.api.energy.IEnergyReceiver;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.Packet;
-import src.train.common.Packet250CustomPayload;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
-import net.minecraftforge.fluids.IFluidTank;
+import src.train.common.Packet250CustomPayload;
 import src.train.common.api.LiquidManager;
 import src.train.common.api.LiquidManager.StandardTank;
-import src.train.common.core.TrainModBlockUtil;
-import src.train.common.core.handlers.PacketHandler;
 import src.train.common.core.util.Energy;
 import src.train.common.library.Info;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.relauncher.Side;
+
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 
 public class TileGeneratorDiesel extends TileEntity implements IFluidHandler, IInventory, IEnergySource, IEnergyProvider {
 	private static final Energy OUTPUT = Energy.fromRF(80);
@@ -157,8 +151,8 @@ public class TileGeneratorDiesel extends TileEntity implements IFluidHandler, II
 				}
 			}
 			if (FMLCommonHandler.instance().getEffectiveSide().isServer()) {
-				PacketHandler.sendPacketToClients(
-						this.setGeneratorLiquid(this), this.worldObj, xCoord, yCoord, zCoord, 12.0D);
+				//TODO Packets
+				// PacketHandler.sendPacketToClients(this.setGeneratorLiquid(this), this.worldObj, xCoord, yCoord, zCoord, 12.0D);
 			}
 		}
 
@@ -226,10 +220,13 @@ public class TileGeneratorDiesel extends TileEntity implements IFluidHandler, II
 		nbtTag.setBoolean("powered", this.powered);
 	}
 
+	//TODO Packets
+	/*
 	@Override
 	public Packet getDescriptionPacket() {
 		return PacketHandler.getTEPClient(this);
 	}
+	*/
 
 	public void handlePacketDataFromServer(byte orientation) {
 		direction = ForgeDirection.getOrientation((int) orientation);

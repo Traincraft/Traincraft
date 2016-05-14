@@ -7,7 +7,6 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import src.train.common.core.interfaces.ITier;
 import src.train.common.core.managers.TierRecipeManager;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 public class SlotResultTier extends Slot {
 

@@ -1,13 +1,11 @@
 package src.train.common.entity.rollingStock;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.common.FMLCommonHandler;
 import mods.railcraft.api.tracks.RailTools;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.BlockRailBase;
-import net.minecraft.block.BlockTorch;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
@@ -17,8 +15,8 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.AxisAlignedBB;
@@ -37,8 +35,9 @@ import src.train.common.core.plugins.PluginRailcraft;
 import src.train.common.library.BlockIDs;
 import src.train.common.library.GuiIDs;
 import src.train.common.library.ItemIDs;
-import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.common.FMLCommonHandler;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class EntityTracksBuilder extends EntityRollingStock implements IInventory {
 	protected boolean field_856_i;
@@ -820,7 +819,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 
 		if (!FMLCommonHandler.instance().getMinecraftServerInstance().isDedicatedServer()) {
 			if (miningTickCounter % 8 == 0 && block != null && !worldObj.isRemote && Minecraft.getMinecraft() != null) {
-				FMLClientHandler.instance().getClient().sndManager.playSound(block.stepSound.getBreakSound(), (int) pos.xCoord + 0.5F, (int) pos.yCoord + 0.5F, (int) pos.zCoord + 0.5F, (block.stepSound.getVolume() + 1.0F) / 8F, block.stepSound.getPitch() * 0.5F);
+				this.worldObj.playSound((int) pos.xCoord + 0.5F, (int) pos.yCoord + 0.5F, (int) pos.zCoord + 0.5F, block.stepSound.getBreakSound(), 1.0F, block.stepSound.getPitch() * 0.5F, true);
 			}
 			if (miningTickCounter % 8 == 0 && block_index != 0 && block != null && pos != null) {
 				if (FMLClientHandler.instance().getClient() != null) {

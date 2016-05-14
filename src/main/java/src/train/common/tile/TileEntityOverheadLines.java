@@ -1,15 +1,15 @@
 package src.train.common.tile;
 
+import cpw.mods.fml.common.FMLCommonHandler;
 import ic2.api.Direction;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergySink;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.util.ForgeDirection;
 import src.train.common.blocks.tracks.BlockEnergyTrack;
 import src.train.common.core.handlers.OverheadLinesEnergyNetHandler;
-import cpw.mods.fml.common.FMLCommonHandler;
 
 
 /**

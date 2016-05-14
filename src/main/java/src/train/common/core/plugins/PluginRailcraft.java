@@ -1,24 +1,21 @@
 package src.train.common.core.plugins;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.logging.Level;
-
+import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.common.registry.LanguageRegistry;
 import mods.railcraft.api.crafting.RailcraftCraftingManager;
-import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 import src.train.common.Traincraft;
 import src.train.common.core.TrainModCore;
 import src.train.common.core.interfaces.IPlugin;
-import src.train.common.items.ItemTrain;
 import src.train.common.library.ItemIDs;
 import src.train.common.library.TrackIDs;
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.registry.LanguageRegistry;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.logging.Level;
 
 public class PluginRailcraft implements IPlugin {
 	public static PluginRailcraft instance = new PluginRailcraft();

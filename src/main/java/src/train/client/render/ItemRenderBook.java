@@ -7,18 +7,15 @@
 
 package src.train.client.render;
 
-import org.lwjgl.opengl.GL11;
-
 import cpw.mods.fml.client.FMLClientHandler;
-import src.train.client.render.models.blocks.ModelTCBook;
-import src.train.common.library.Info;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
-import net.minecraftforge.client.IItemRenderer.ItemRenderType;
+import org.lwjgl.opengl.GL11;
+import src.train.client.render.models.blocks.ModelTCBook;
+import src.train.common.library.Info;
 
 public class ItemRenderBook implements IItemRenderer {
 	

@@ -1,5 +1,7 @@
 package src.train.common.core.handlers;
 
+import cpw.mods.fml.common.IFuelHandler;
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
@@ -9,8 +11,6 @@ import net.minecraft.item.ItemStack;
 import src.train.common.core.plugins.PluginIndustrialCraft;
 import src.train.common.core.plugins.PluginRailcraft;
 import src.train.common.library.BlockIDs;
-import cpw.mods.fml.common.IFuelHandler;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 public class FuelHandler implements IFuelHandler {
 

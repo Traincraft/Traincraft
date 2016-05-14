@@ -1,10 +1,9 @@
 package src.train.common.core.handlers;
 
-import java.util.ArrayList;
-
-import src.train.common.api.AbstractTrains;
 import src.train.common.api.EntityRollingStock;
 import src.train.common.api.Locomotive;
+
+import java.util.ArrayList;
 
 public class TrainHandler {
 	private EntityRollingStock rolling;

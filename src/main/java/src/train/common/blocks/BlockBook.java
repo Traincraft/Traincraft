@@ -7,20 +7,8 @@
 
 package src.train.common.blocks;
 
-import static net.minecraftforge.common.util.ForgeDirection.UP;
-
-import java.util.ArrayList;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import src.train.common.Traincraft;
-import src.train.common.library.GuiIDs;
-import src.train.common.library.Info;
-import src.train.common.tile.TileBook;
-import src.train.common.tile.TileEntityDistil;
-import src.train.common.tile.TileGeneratorDiesel;
-import src.train.common.tile.TileStopper;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -31,6 +19,11 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import src.train.common.Traincraft;
+import src.train.common.library.Info;
+import src.train.common.tile.TileBook;
+
+import static net.minecraftforge.common.util.ForgeDirection.UP;
 
 public class BlockBook extends BlockContainer {
 	

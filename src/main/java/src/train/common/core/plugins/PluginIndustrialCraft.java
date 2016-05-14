@@ -1,23 +1,14 @@
 package src.train.common.core.plugins;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import ic2.api.item.IC2Items;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.logging.Level;
-
-import net.minecraft.block.Block;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.OreDictionary;
 import src.train.common.Traincraft;
 import src.train.common.core.TrainModCore;
-import src.train.common.core.handlers.ConfigHandler;
 import src.train.common.core.interfaces.IPlugin;
-import src.train.common.inventory.TrainCraftingManager;
-import src.train.common.library.BlockIDs;
-import src.train.common.library.ItemIDs;
-import cpw.mods.fml.common.registry.GameRegistry;
+
+import java.util.HashMap;
+import java.util.logging.Level;
 
 public class PluginIndustrialCraft implements IPlugin {
 	public static PluginIndustrialCraft instance = new PluginIndustrialCraft();

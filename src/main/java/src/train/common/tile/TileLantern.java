@@ -1,13 +1,11 @@
 package src.train.common.tile;
 
-import java.util.Random;
-
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
-import src.train.common.core.handlers.PacketHandler;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
+
+import java.util.Random;
 
 public class TileLantern extends TileEntity {
 	protected Random rand = new Random();
@@ -25,11 +23,14 @@ public class TileLantern extends TileEntity {
 		nbt.setInteger("randomColor", randomColor);
 		super.writeToNBT(nbt);
 	}
-	
+
+	//TODO Packets
+	/*
 	@Override
 	public Packet getDescriptionPacket() {
 		return PacketHandler.getTEPClient(this);
 	}
+	*/
 	
 	public void handlePacketDataFromServer(int color) {
 		side = FMLCommonHandler.instance().getEffectiveSide();
@@ -39,7 +40,8 @@ public class TileLantern extends TileEntity {
 		 * Color has to pass through the server to be registered
 		 */
 		if(side== Side.SERVER) {
-			PacketHandler.sendPacketToClients(PacketHandler.getTEPClient(this), worldObj, this.xCoord, this.yCoord, this.zCoord, 12D);
+			//TODO Packets
+			// PacketHandler.sendPacketToClients(PacketHandler.getTEPClient(this), worldObj, this.xCoord, this.yCoord, this.zCoord, 12D);
 		}
 	}
 	

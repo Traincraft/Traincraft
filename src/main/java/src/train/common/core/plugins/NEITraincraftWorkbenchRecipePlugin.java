@@ -1,26 +1,22 @@
 package src.train.common.core.plugins;
 
-import java.awt.Rectangle;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
+import codechicken.nei.NEIClientUtils;
+import codechicken.nei.PositionedStack;
+import codechicken.nei.recipe.ShapedRecipeHandler;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraftforge.oredict.OreDictionary;
-import net.minecraftforge.oredict.ShapedOreRecipe;
 import src.train.client.gui.GuiTrainCraftingBlock;
 import src.train.common.inventory.TrainCraftingManager;
 import src.train.common.recipes.ShapedTrainRecipes;
 import src.train.common.recipes.ShapelessTrainRecipe;
-import codechicken.nei.NEIClientUtils;
-import codechicken.nei.PositionedStack;
-import codechicken.nei.recipe.ShapedRecipeHandler;
-import codechicken.nei.recipe.ShapedRecipeHandler.CachedShapedRecipe;
-import codechicken.nei.recipe.TemplateRecipeHandler.CachedRecipe;
+
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class NEITraincraftWorkbenchRecipePlugin extends ShapedRecipeHandler {
 	private List<ShapedTrainRecipes> recipeListWB = workbenchListCleaner(TrainCraftingManager.getInstance().getShapedRecipes());

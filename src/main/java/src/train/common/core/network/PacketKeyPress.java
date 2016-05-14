@@ -1,14 +1,14 @@
 package src.train.common.core.network;
 
+import cpw.mods.fml.common.network.simpleimpl.IMessage;
+import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
+import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
 import src.train.common.api.EntityRollingStock;
 import src.train.common.api.Locomotive;
 import src.train.common.entity.digger.EntityRotativeDigger;
 import src.train.common.entity.zeppelin.AbstractZeppelin;
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
-import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
-import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
 /**
  * Sent to the server when a key is pressed on the client.<p>

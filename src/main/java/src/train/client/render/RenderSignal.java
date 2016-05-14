@@ -2,9 +2,7 @@ package src.train.client.render;
 
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
-
 import org.lwjgl.opengl.GL11;
-
 import src.train.client.render.models.blocks.ModelBlockSignal;
 import src.train.common.tile.TileSignal;
 

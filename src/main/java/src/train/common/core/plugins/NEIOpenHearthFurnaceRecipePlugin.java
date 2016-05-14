@@ -1,35 +1,25 @@
 package src.train.common.core.plugins;
 
-import java.awt.Rectangle;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.TreeSet;
-import java.util.Map.Entry;
-
-import net.minecraft.block.Block;
+import codechicken.nei.ItemList;
+import codechicken.nei.NEIServerUtils;
+import codechicken.nei.PositionedStack;
+import codechicken.nei.recipe.ShapedRecipeHandler;
+import codechicken.nei.recipe.TemplateRecipeHandler;
 import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.client.gui.inventory.GuiFurnace;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.tileentity.TileEntityFurnace;
 import src.train.client.gui.GuiOpenHearthFurnace;
 import src.train.common.recipes.OpenHearthFurnaceRecipes;
-import src.train.common.recipes.ShapedTrainRecipes;
-import codechicken.nei.ItemList;
-import codechicken.nei.NEIClientUtils;
-import codechicken.nei.NEIServerUtils;
-import codechicken.nei.PositionedStack;
-import codechicken.nei.recipe.FurnaceRecipeHandler;
-import codechicken.nei.recipe.ShapedRecipeHandler;
-import codechicken.nei.recipe.TemplateRecipeHandler;
-import codechicken.nei.recipe.FurnaceRecipeHandler.FuelPair;
-import codechicken.nei.recipe.FurnaceRecipeHandler.SmeltingPair;
-import codechicken.nei.recipe.TemplateRecipeHandler.CachedRecipe;
-import codechicken.nei.recipe.TemplateRecipeHandler.RecipeTransferRect;
+
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map.Entry;
+import java.util.TreeSet;
 
 public class NEIOpenHearthFurnaceRecipePlugin extends ShapedRecipeHandler {
 	CachedShapedRecipe getShape(ItemStack ingredient1, ItemStack ingredient2, ItemStack result) {

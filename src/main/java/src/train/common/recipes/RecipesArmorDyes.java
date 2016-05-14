@@ -1,21 +1,14 @@
 package src.train.common.recipes;
 
-import java.util.ArrayList;
-
-import net.minecraft.init.Items;
-import src.train.common.Traincraft;
-import src.train.common.core.interfaces.ITCRecipe;
-import src.train.common.items.*;
-import net.minecraft.block.BlockColored;
 import net.minecraft.entity.passive.EntitySheep;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.InventoryCrafting;
-import net.minecraft.item.ItemArmor.ArmorMaterial;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.world.World;
+import src.train.common.core.interfaces.ITCRecipe;
+import src.train.common.items.ItemTCArmor;
+
+import java.util.ArrayList;
 
 public class RecipesArmorDyes implements ITCRecipe {
 

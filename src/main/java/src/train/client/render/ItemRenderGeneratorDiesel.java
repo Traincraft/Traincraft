@@ -7,16 +7,14 @@
 
 package src.train.client.render;
 
+import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
-
 import org.lwjgl.opengl.GL11;
-
 import src.train.client.render.models.blocks.ModelGeneratorDiesel;
 import src.train.common.library.Info;
-import cpw.mods.fml.client.FMLClientHandler;
 
 public class ItemRenderGeneratorDiesel implements IItemRenderer {
 

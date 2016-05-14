@@ -1,14 +1,12 @@
 package src.train.client.render.models;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
+import org.lwjgl.opengl.GL11;
 import src.train.client.core.helpers.HolidayHelper;
 import src.train.client.render.CustomModelRenderer;
 import src.train.client.render.models.blocks.ModelRing;
-import src.train.common.core.handlers.ConfigHandler;
 
 public class ModelLocoC62Class extends ModelBase {
 	

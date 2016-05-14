@@ -1,16 +1,14 @@
 package src.train.common.recipes;
 
-import java.util.ArrayList;
-
-import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 import src.train.common.api.crafting.ITierCraftingManager;
 import src.train.common.core.managers.TierRecipeManager;
 import src.train.common.library.ItemIDs;
+
+import java.util.ArrayList;
 
 public class AssemblyTableRecipes {
 

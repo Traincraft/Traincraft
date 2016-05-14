@@ -1,10 +1,10 @@
 package src.train.common.core;
 
-import java.util.ArrayList;
-
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+
+import java.util.ArrayList;
 
 public class TrainModBlockUtil {
 	/**

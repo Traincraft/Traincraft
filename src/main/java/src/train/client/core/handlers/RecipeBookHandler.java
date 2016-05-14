@@ -1,19 +1,17 @@
 package src.train.client.core.handlers;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import src.train.common.api.crafting.ITierRecipe;
 import src.train.common.core.interfaces.ITCRecipe;
 import src.train.common.core.managers.TierRecipe;
 import src.train.common.library.BlockIDs;
 import src.train.common.library.ItemIDs;
 import src.train.common.recipes.ShapedTrainRecipes;
 import src.train.common.recipes.ShapelessTrainRecipe;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class RecipeBookHandler {
 	/**

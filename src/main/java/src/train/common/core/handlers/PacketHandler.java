@@ -7,13 +7,11 @@
 
 package src.train.common.core.handlers;
 
+import com.google.common.io.ByteArrayDataInput;
+import com.google.common.io.ByteStreams;
+import cpw.mods.fml.common.network.internal.FMLProxyPacket;
+import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageCodec;
-
-import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.util.List;
-
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -32,28 +30,17 @@ import src.train.common.entity.rollingStock.EntityTracksBuilder;
 import src.train.common.entity.zeppelin.AbstractZeppelin;
 import src.train.common.items.ItemRecipeBook;
 import src.train.common.library.Info;
-import src.train.common.tile.TileBook;
-import src.train.common.tile.TileCrafterTierI;
-import src.train.common.tile.TileCrafterTierII;
-import src.train.common.tile.TileCrafterTierIII;
-import src.train.common.tile.TileEntityDistil;
-import src.train.common.tile.TileEntityOpenHearthFurnace;
-import src.train.common.tile.TileGeneratorDiesel;
-import src.train.common.tile.TileLantern;
-import src.train.common.tile.TileSignal;
-import src.train.common.tile.TileStopper;
-import src.train.common.tile.TileTCRail;
-import src.train.common.tile.TileTCRailGag;
-import src.train.common.tile.TileTrainWbench;
-import src.train.common.tile.TileWaterWheel;
-import src.train.common.tile.TileWindMill;
+import src.train.common.tile.*;
 
-import com.google.common.io.ByteArrayDataInput;
-import com.google.common.io.ByteStreams;
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.util.List;
 
-import cpw.mods.fml.common.network.internal.FMLProxyPacket;
-
+//TODO Packets
 public class PacketHandler extends MessageToMessageCodec<FMLProxyPacket, Packet250CustomPayload> {
+
+	/*
 
 	protected RollingStockStatsEventHandler statsEventHandler = new RollingStockStatsEventHandler();
 
@@ -287,12 +274,14 @@ public class PacketHandler extends MessageToMessageCodec<FMLProxyPacket, Packet2
 			/*
 			 * Replaced by PacketSetJukeboxStreamingUrl.Handler#onMessage()
 			 */
+	/*
 		}
 		else if (packetIndex == 16) {
 
 			/*
 			 * Replaced by PacketSlotsFilled.Handler#onMessage()
 			 */
+	/*
 		}
 		else if (packetIndex == 17) {
 			int entityID = data.readInt();
@@ -474,6 +463,7 @@ public class PacketHandler extends MessageToMessageCodec<FMLProxyPacket, Packet2
 		packet.length = bos.size();
 		return packet;
 	}
+	*/
 
 	/**
 	 * RollingStock rotation packet sent to client
@@ -537,7 +527,8 @@ public class PacketHandler extends MessageToMessageCodec<FMLProxyPacket, Packet2
 
 	public static void sendPacketToClients(Packet packet, World worldObj, int x, int y, int z, double range) {
 		try {
-			PacketDispatcher.sendPacketToAllAround(x, y, z, range, worldObj.provider.dimensionId, packet);
+			//TODO Packets
+			// PacketDispatcher.sendPacketToAllAround(x, y, z, range, worldObj.provider.dimensionId, packet);
 		}
 		catch (Exception e) {
 			System.out.println("Sending packet to client failed.");
@@ -680,5 +671,15 @@ public class PacketHandler extends MessageToMessageCodec<FMLProxyPacket, Packet2
 			playerMP.sendQueue.addToSendQueue(packet);
 		}
 		return packet;
+	}
+
+	@Override
+	protected void encode(ChannelHandlerContext ctx, Packet250CustomPayload msg, List<Object> out) throws Exception{
+		//Only for compiling
+	}
+
+	@Override
+	protected void decode(ChannelHandlerContext ctx, FMLProxyPacket msg, List<Object> out) throws Exception{
+		//Only for compiling
 	}
 }

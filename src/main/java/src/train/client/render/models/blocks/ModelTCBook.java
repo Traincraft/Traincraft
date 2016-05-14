@@ -7,19 +7,17 @@
 
 package src.train.client.render.models.blocks;
 
-import org.lwjgl.opengl.GL11;
-
 import cpw.mods.fml.client.FMLClientHandler;
-import src.train.common.library.Info;
-import src.train.common.tile.TileBook;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.IModelCustom;
+import org.lwjgl.opengl.GL11;
+import src.train.common.library.Info;
+import src.train.common.tile.TileBook;
 
 public class ModelTCBook extends ModelBase {
 	private IModelCustom book;

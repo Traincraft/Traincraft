@@ -1,15 +1,13 @@
 package src.train.client.render;
 
+import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
-
 import org.lwjgl.opengl.GL11;
-
 import src.train.client.render.models.blocks.ModelWindMill;
 import src.train.client.render.models.blocks.ModelWindMillWheel;
 import src.train.common.library.Info;
-import cpw.mods.fml.client.FMLClientHandler;
 
 public class ItemRenderWindMill implements IItemRenderer {
 	private ModelWindMill modelWindMill;

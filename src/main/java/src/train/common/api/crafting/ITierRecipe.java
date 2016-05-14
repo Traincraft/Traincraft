@@ -7,9 +7,9 @@
 
 package src.train.common.api.crafting;
 
-import java.util.List;
-
 import net.minecraft.item.ItemStack;
+
+import java.util.List;
 
 public interface ITierRecipe {
 

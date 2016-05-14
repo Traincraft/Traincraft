@@ -1,38 +1,5 @@
 package src.train.common;
 
-import java.io.File;
-import java.util.logging.Logger;
-
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.ItemArmor.ArmorMaterial;
-import net.minecraft.world.gen.structure.MapGenStructureIO;
-import net.minecraftforge.common.AchievementPage;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.util.EnumHelper;
-import src.train.common.api.LiquidManager;
-import src.train.common.blocks.TCBlocks;
-import src.train.common.core.CommonProxy;
-import src.train.common.core.CreativeTabTraincraft;
-import src.train.common.core.TrainModCore;
-import src.train.common.core.handlers.AchievementHandler;
-import src.train.common.core.handlers.ChunkHandler;
-import src.train.common.core.handlers.ConfigHandler;
-import src.train.common.core.handlers.CraftingHandler;
-import src.train.common.core.handlers.EntityHandler;
-import src.train.common.core.handlers.FuelHandler;
-import src.train.common.core.handlers.OreHandler;
-import src.train.common.core.handlers.RecipeHandler;
-import src.train.common.core.handlers.VillagerTraincraftHandler;
-import src.train.common.core.network.PacketKeyPress;
-import src.train.common.core.network.PacketSetJukeboxStreamingUrl;
-import src.train.common.core.network.PacketSlotsFilled;
-import src.train.common.generation.ComponentVillageTrainstation;
-import src.train.common.generation.WorldGenWorld;
-import src.train.common.items.TCItems;
-import src.train.common.library.Info;
-import src.train.common.mysql.mysqlLogInterface;
-import src.train.common.mysql.mysqlLogger;
-import src.train.common.recipes.AssemblyTableRecipes;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -47,6 +14,31 @@ import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.VillagerRegistry;
 import cpw.mods.fml.relauncher.Side;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.ItemArmor.ArmorMaterial;
+import net.minecraft.world.gen.structure.MapGenStructureIO;
+import net.minecraftforge.common.AchievementPage;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.util.EnumHelper;
+import src.train.common.api.LiquidManager;
+import src.train.common.blocks.TCBlocks;
+import src.train.common.core.CommonProxy;
+import src.train.common.core.CreativeTabTraincraft;
+import src.train.common.core.TrainModCore;
+import src.train.common.core.handlers.*;
+import src.train.common.core.network.PacketKeyPress;
+import src.train.common.core.network.PacketSetJukeboxStreamingUrl;
+import src.train.common.core.network.PacketSlotsFilled;
+import src.train.common.generation.ComponentVillageTrainstation;
+import src.train.common.generation.WorldGenWorld;
+import src.train.common.items.TCItems;
+import src.train.common.library.Info;
+import src.train.common.mysql.mysqlLogInterface;
+import src.train.common.mysql.mysqlLogger;
+import src.train.common.recipes.AssemblyTableRecipes;
+
+import java.io.File;
+import java.util.logging.Logger;
 
 @Mod(modid = Info.modID, name = Info.modName, version = Info.modVersion)
 //@NetworkMod(clientSideRequired = true, serverSideRequired = true, versionBounds = "[" + Info.modVersion + "]", channels = { Info.channel }, packetHandler = PacketHandler.class, connectionHandler = KeyServerHandler.class)
@@ -93,9 +85,6 @@ public class Traincraft {
 		ConfigHandler.init(new File(event.getModConfigurationDirectory(), Info.modName + ".cfg"));
 		proxy.getKeysFromProperties();
 
-		/* Tile Entities */
-		proxy.registerTileEntities();
-
 		/* Rendering registration */
 		proxy.registerRenderInformation();
 		trainArmor = proxy.addArmor("armor");
@@ -126,10 +115,13 @@ public class Traincraft {
 		EntityHandler.init();
 
 		AchievementHandler.load();
-		AchievementPage.registerAchievementPage(AchievementHandler.tmPage);
+		//TODO AchievementPage.registerAchievementPage(AchievementHandler.tmPage);
 
 		/* Check holidays */
 		proxy.isHoliday();
+
+		/* Tile Entities */
+		proxy.registerTileEntities();
 
 		/* Networking and Packet initialisation */
 		int packetID = 0;

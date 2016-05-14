@@ -1,9 +1,9 @@
 package src.train.common.core.plugins;
 
-import src.train.common.Traincraft;
 import codechicken.nei.api.API;
 import codechicken.nei.api.IConfigureNEI;
 import cpw.mods.fml.common.Mod;
+import src.train.common.Traincraft;
 
 public class NEITraincraftConfig implements IConfigureNEI {
 
@@ -13,8 +13,8 @@ public class NEITraincraftConfig implements IConfigureNEI {
         API.registerUsageHandler(new NEITraincraftWorkbenchRecipePlugin());
         API.registerRecipeHandler(new NEIAssemblyTableRecipePlugin());
         API.registerUsageHandler(new NEIAssemblyTableRecipePlugin());
-        API.registerRecipeHandler(new NEIOpenHearthFurnaceRecipePlugin());
-        API.registerUsageHandler(new NEIOpenHearthFurnaceRecipePlugin());
+        //TODO Crash while loading World API.registerRecipeHandler(new NEIOpenHearthFurnaceRecipePlugin());
+        //TODO Crash while loading World API.registerUsageHandler(new NEIOpenHearthFurnaceRecipePlugin());
         API.registerRecipeHandler(new NEIDistillationTowerRecipePlugin());
         API.registerUsageHandler(new NEIDistillationTowerRecipePlugin());
 	}

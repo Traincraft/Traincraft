@@ -1,8 +1,7 @@
 package src.train.common.blocks;
 
-import java.util.List;
-import java.util.Random;
-
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -20,8 +19,9 @@ import src.train.common.items.ItemTCRail.TrackTypes;
 import src.train.common.library.BlockIDs;
 import src.train.common.library.Info;
 import src.train.common.tile.TileTCRailGag;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+
+import java.util.List;
+import java.util.Random;
 
 public class BlockTCRailGag extends Block {
 	private IIcon texture;

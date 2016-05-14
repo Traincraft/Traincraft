@@ -7,8 +7,6 @@
 
 package src.train.common.core.handlers;
 
-import java.util.ArrayList;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRailBase;
 import net.minecraft.entity.Entity;
@@ -16,35 +14,8 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
-import src.train.common.Traincraft;
-import src.train.common.api.DieselTrain;
-import src.train.common.api.ElectricTrain;
-import src.train.common.api.Freight;
-import src.train.common.api.SteamTrain;
-import src.train.common.api.Tender;
-import src.train.common.entity.rollingStock.EntityBoxCartUS;
-import src.train.common.entity.rollingStock.EntityFlatCarLogs_DB;
-import src.train.common.entity.rollingStock.EntityFlatCarRails_DB;
-import src.train.common.entity.rollingStock.EntityFlatCartWoodUS;
-import src.train.common.entity.rollingStock.EntityFreightCart;
-import src.train.common.entity.rollingStock.EntityFreightCart2;
-import src.train.common.entity.rollingStock.EntityFreightCartSmall;
-import src.train.common.entity.rollingStock.EntityFreightCartUS;
-import src.train.common.entity.rollingStock.EntityFreightCenterbeam_Empty;
-import src.train.common.entity.rollingStock.EntityFreightCenterbeam_Wood_1;
-import src.train.common.entity.rollingStock.EntityFreightCenterbeam_Wood_2;
-import src.train.common.entity.rollingStock.EntityFreightClosed;
-import src.train.common.entity.rollingStock.EntityFreightGondola_DB;
-import src.train.common.entity.rollingStock.EntityFreightGrain;
-import src.train.common.entity.rollingStock.EntityFreightHopperUS;
-import src.train.common.entity.rollingStock.EntityFreightMinetrain;
-import src.train.common.entity.rollingStock.EntityFreightOpen2;
-import src.train.common.entity.rollingStock.EntityFreightOpenWagon;
-import src.train.common.entity.rollingStock.EntityFreightTrailer;
-import src.train.common.entity.rollingStock.EntityFreightWagenDB;
-import src.train.common.entity.rollingStock.EntityFreightWellcar;
-import src.train.common.entity.rollingStock.EntityFreightWood;
-import src.train.common.entity.rollingStock.EntityFreightWood2;
+import src.train.common.api.*;
+import src.train.common.entity.rollingStock.*;
 import src.train.common.items.ItemTCRail;
 
 public class ItemHandler {

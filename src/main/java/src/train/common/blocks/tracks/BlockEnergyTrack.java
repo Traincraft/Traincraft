@@ -5,28 +5,23 @@
  */
 package src.train.common.blocks.tracks;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.util.EnumSet;
-
+import cpw.mods.fml.common.FMLCommonHandler;
 import mods.railcraft.api.core.items.IToolCrowbar;
 import mods.railcraft.api.tracks.ITrackPowered;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockRail;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.IChatComponent;
 import net.minecraft.util.IIcon;
-import net.minecraftforge.common.util.ForgeDirection;
 import src.train.common.api.ElectricTrain;
 import src.train.common.api.EntityRollingStock;
-import src.train.common.core.handlers.EnergyNetHandler;
 import src.train.common.library.TrackIDs;
-import cpw.mods.fml.common.FMLCommonHandler;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 
 public class BlockEnergyTrack extends TrackBaseTraincraft implements ITrackPowered{
 	private byte delay = 0;

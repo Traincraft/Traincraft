@@ -1,10 +1,10 @@
 package src.train.common.core;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.google.common.collect.Lists;
+import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.gameevent.TickEvent;
+import cpw.mods.fml.common.network.IGuiHandler;
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
@@ -17,60 +17,20 @@ import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.ForgeChunkManager;
 import net.minecraftforge.common.ForgeChunkManager.Ticket;
 import src.train.common.Traincraft;
-import src.train.common.api.AbstractTrains;
-import src.train.common.api.EntityRollingStock;
-import src.train.common.api.Freight;
-import src.train.common.api.LiquidTank;
-import src.train.common.api.Tender;
-import src.train.common.containers.ContainerDistil;
-import src.train.common.containers.ContainerGeneratorDiesel;
-import src.train.common.containers.ContainerOpenHearthFurnace;
-import src.train.common.containers.ContainerTier;
-import src.train.common.containers.ContainerTrainWorkbench;
-import src.train.common.containers.ContainerWorkbenchCart;
+import src.train.common.api.*;
+import src.train.common.containers.*;
 import src.train.common.core.handlers.ServerTickHandler;
-import src.train.common.core.util.MP3Player;
 import src.train.common.entity.digger.EntityRotativeDigger;
 import src.train.common.entity.rollingStock.EntityJukeBoxCart;
 import src.train.common.entity.rollingStock.EntityTracksBuilder;
 import src.train.common.entity.zeppelin.AbstractZeppelin;
-import src.train.common.inventory.InventoryBuilder;
-import src.train.common.inventory.InventoryForney;
-import src.train.common.inventory.InventoryFreight;
-import src.train.common.inventory.InventoryJukeBoxCart;
-import src.train.common.inventory.InventoryLiquid;
-import src.train.common.inventory.InventoryLoco;
-import src.train.common.inventory.InventoryRotativeDigger;
-import src.train.common.inventory.InventoryTender;
-import src.train.common.inventory.InventoryWorkCart;
-import src.train.common.inventory.InventoryZepp;
+import src.train.common.inventory.*;
 import src.train.common.library.GuiIDs;
-import src.train.common.tile.TileBook;
-import src.train.common.tile.TileBridgePillar;
-import src.train.common.tile.TileCrafterTierI;
-import src.train.common.tile.TileCrafterTierII;
-import src.train.common.tile.TileCrafterTierIII;
-import src.train.common.tile.TileEntityDistil;
-import src.train.common.tile.TileEntityOpenHearthFurnace;
-import src.train.common.tile.TileGeneratorDiesel;
-import src.train.common.tile.TileLantern;
-import src.train.common.tile.TileSignal;
-import src.train.common.tile.TileStopper;
-import src.train.common.tile.TileTCRail;
-import src.train.common.tile.TileTCRailGag;
-import src.train.common.tile.TileTrainWbench;
-import src.train.common.tile.TileWaterWheel;
-import src.train.common.tile.TileWindMill;
+import src.train.common.tile.*;
 
-import com.google.common.collect.Lists;
-
-import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.common.network.IGuiHandler;
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.relauncher.Side;
+import java.util.List;
 
 public class CommonProxy implements IGuiHandler {
-	public static List<MP3Player> playerList = new ArrayList();
 
 	public void setKeyBinding(String name, int value) {}
 
@@ -234,9 +194,11 @@ public class CommonProxy implements IGuiHandler {
 	public void registerVillagerSkin(int villagerId, String textureName) {}
 	
 	public static void killAllStreams() {
+		/*
 		for (MP3Player p : playerList) {
 			p.stop();
 		}
+		*/
 	}
 	
 	public static boolean checkJukeboxEntity(World world, int id) {

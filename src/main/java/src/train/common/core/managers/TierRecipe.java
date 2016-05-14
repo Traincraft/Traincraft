@@ -7,15 +7,13 @@
 
 package src.train.common.core.managers;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 import src.train.common.api.crafting.ITierRecipe;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class TierRecipe implements ITierRecipe {
 

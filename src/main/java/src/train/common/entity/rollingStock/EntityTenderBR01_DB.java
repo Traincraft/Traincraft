@@ -1,8 +1,5 @@
 package src.train.common.entity.rollingStock;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,7 +14,6 @@ import src.train.common.api.LiquidManager;
 import src.train.common.api.Tender;
 import src.train.common.library.EnumTrains;
 import src.train.common.library.GuiIDs;
-import src.train.common.library.ItemIDs;
 
 public class EntityTenderBR01_DB extends Tender implements IInventory {
 	public int freightInventorySize;

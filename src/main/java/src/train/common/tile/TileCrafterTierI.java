@@ -1,24 +1,22 @@
 package src.train.common.tile;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.util.ForgeDirection;
-import src.train.common.core.handlers.PacketHandler;
 import src.train.common.core.interfaces.ITier;
 import src.train.common.core.managers.TierRecipe;
 import src.train.common.core.managers.TierRecipeManager;
 import src.train.common.library.Info;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class TileCrafterTierI extends TileEntity implements IInventory, ITier {
 	private Random rand;
@@ -211,10 +209,13 @@ public class TileCrafterTierI extends TileEntity implements IInventory, ITier {
 	@Override
 	public void closeInventory() {}
 
+	//TODO Packets
+	/*
 	@Override
 	public Packet getDescriptionPacket() {
 		return PacketHandler.getTEPClient(this);
 	}
+	*/
 
 	public void handlePacketDataFromServer(byte orientation) {
 		facing = ForgeDirection.getOrientation(orientation);

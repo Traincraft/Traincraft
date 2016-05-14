@@ -1,12 +1,10 @@
 package src.train.client.render.models;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
+import org.lwjgl.opengl.GL11;
 import src.train.client.render.CustomModelRenderer;
 import src.train.common.api.Freight;
-import src.train.common.core.handlers.ConfigHandler;
 
 public class ModelOpenWagon extends ModelBase {
 	

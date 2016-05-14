@@ -7,16 +7,12 @@
 
 package src.train.common.blocks;
 
-import static net.minecraftforge.common.util.ForgeDirection.UP;
-
-import java.util.ArrayList;
-
-import mods.railcraft.api.tracks.ITrackInstance;
-import net.minecraft.block.Block;
+import cpw.mods.fml.client.registry.RenderingRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -24,12 +20,10 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import src.train.common.Traincraft;
-import src.train.common.library.BlockIDs;
 import src.train.common.library.Info;
 import src.train.common.tile.TileStopper;
-import cpw.mods.fml.client.registry.RenderingRegistry;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+
+import static net.minecraftforge.common.util.ForgeDirection.UP;
 
 public class BlockStopper extends BlockContainer {
 

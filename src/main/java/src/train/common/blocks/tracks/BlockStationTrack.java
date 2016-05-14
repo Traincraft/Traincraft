@@ -1,11 +1,5 @@
 package src.train.common.blocks.tracks;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-
-import src.train.common.Traincraft;
-import src.train.common.library.TrackIDs;
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.api.core.items.IToolCrowbar;
 import mods.railcraft.api.tracks.ITrackLockdown;
@@ -14,10 +8,15 @@ import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IIcon;
-import src.train.common.api.*;
+import src.train.common.api.AbstractTrains;
+import src.train.common.api.Locomotive;
+import src.train.common.library.TrackIDs;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 
 public class BlockStationTrack extends BlockTrackLockingBase implements ITrackLockdown,ITrackPowered{
 	protected static float DIR_THRESHOLD = 0.01F;

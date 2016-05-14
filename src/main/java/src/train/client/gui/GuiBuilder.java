@@ -1,27 +1,22 @@
 package src.train.client.gui;
 
-import java.util.List;
-
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
-
 import org.lwjgl.opengl.GL11;
-
 import src.train.common.api.AbstractTrains;
-import src.train.common.core.handlers.PacketHandler;
 import src.train.common.entity.rollingStock.EntityTracksBuilder;
 import src.train.common.inventory.InventoryBuilder;
 import src.train.common.inventory.InventoryLoco;
 import src.train.common.library.Info;
+
+import java.util.List;
 
 public class GuiBuilder extends GuiContainer {
 
@@ -183,7 +178,8 @@ public class GuiBuilder extends GuiContainer {
 			for (int j1 = 0; j1 < lis3.size(); j1++) {
 				Entity entity = (Entity) lis3.get(j1);
 				if (entity instanceof EntityPlayer) {
-					PacketHandler.setBuilderPlannedHeight(entity, builder, packet, packetID);
+					//TODO Packets
+					// PacketHandler.setBuilderPlannedHeight(entity, builder, packet, packetID);
 				}
 			}
 		}

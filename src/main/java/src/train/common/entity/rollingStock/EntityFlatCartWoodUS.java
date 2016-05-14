@@ -1,8 +1,5 @@
 package src.train.common.entity.rollingStock;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,13 +7,11 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
 import src.train.common.Traincraft;
 import src.train.common.api.Freight;
 import src.train.common.library.GuiIDs;
-import src.train.common.library.ItemIDs;
 
 public class EntityFlatCartWoodUS extends Freight implements IInventory{
 	public int freightInventorySize;

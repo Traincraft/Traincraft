@@ -1,23 +1,21 @@
 package src.train.client.gui;
 
-import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.Packet;
-import src.train.common.Packet250CustomPayload;
 import net.minecraft.tileentity.TileEntity;
-
 import org.lwjgl.input.Keyboard;
-
+import src.train.common.Packet250CustomPayload;
 import src.train.common.library.Info;
 import src.train.common.tile.TileLantern;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 
 @SideOnly(Side.CLIENT)
 public class GuiLantern extends GuiScreen {

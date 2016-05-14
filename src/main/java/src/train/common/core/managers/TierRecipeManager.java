@@ -7,13 +7,13 @@
 
 package src.train.common.core.managers;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import src.train.common.api.crafting.ITierCraftingManager;
 import src.train.common.api.crafting.ITierRecipe;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TierRecipeManager implements ITierCraftingManager {
 

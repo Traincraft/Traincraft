@@ -11,7 +11,6 @@ import net.minecraft.util.MathHelper;
 import src.train.common.library.AchievementIDs;
 import src.train.common.library.ItemIDs;
 import src.train.common.recipes.OpenHearthFurnaceRecipes;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 public class SlotOpenHearthFurnace extends Slot {
 	private EntityPlayer thePlayer;

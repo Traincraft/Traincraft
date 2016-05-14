@@ -8,8 +8,6 @@
 package src.train.common.library;
 
 import net.minecraft.item.Item;
-import src.train.common.api.SpeedHandler;
-import src.train.common.core.HandleMaxAttachedCarts;
 
 public enum ItemIDs {
 	diesel("ItemContainer", "item_diesel_filled", 20),

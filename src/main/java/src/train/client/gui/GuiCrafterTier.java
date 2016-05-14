@@ -1,7 +1,5 @@
 package src.train.client.gui;
 
-import java.util.List;
-
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
@@ -10,9 +8,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.opengl.GL11;
-
 import src.train.client.gui.sideTabs.SideTabInfo;
 import src.train.client.gui.sideTabs.SideTabRecipes;
 import src.train.client.gui.sideTabs.SideTabSlots;
@@ -24,6 +20,8 @@ import src.train.common.core.managers.TierRecipeManager;
 import src.train.common.library.EnumTrains;
 import src.train.common.library.Info;
 import src.train.common.library.ItemIDs;
+
+import java.util.List;
 
 public class GuiCrafterTier extends GuiTraincraft {
 

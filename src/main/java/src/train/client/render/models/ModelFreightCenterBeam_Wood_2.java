@@ -1,13 +1,9 @@
 package src.train.client.render.models;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
 import src.train.client.render.CustomModelRenderer;
 import src.train.common.api.Freight;
-import src.train.common.api.LiquidTank;
-import src.train.common.core.handlers.ConfigHandler;
 
 public class ModelFreightCenterBeam_Wood_2 extends ModelBase {
 

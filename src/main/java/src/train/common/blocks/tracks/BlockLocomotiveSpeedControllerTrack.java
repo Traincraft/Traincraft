@@ -5,10 +5,6 @@
  */
 package src.train.common.blocks.tracks;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-
 import mods.railcraft.api.core.items.IToolCrowbar;
 import mods.railcraft.api.tracks.ITrackPowered;
 import net.minecraft.block.Block;
@@ -20,6 +16,10 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IIcon;
 import src.train.common.api.Locomotive;
 import src.train.common.library.TrackIDs;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 
 public class BlockLocomotiveSpeedControllerTrack extends TrackBaseTraincraft implements ITrackPowered{
 	private int mode = 0;

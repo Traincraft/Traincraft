@@ -1,12 +1,11 @@
 package src.train.common.items;
 
 import ic2.api.item.IBoxable;
-
-import java.util.ArrayList;
-
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import src.train.common.Traincraft;
+
+import java.util.ArrayList;
 
 //Keeping this class for future uses. It is not used at the moment
 public class ItemFuel extends Item implements IBoxable {

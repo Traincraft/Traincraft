@@ -1,8 +1,8 @@
 package src.train.common.items;
 
-import java.util.List;
-
 import com.mojang.authlib.GameProfile;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.api.carts.IMinecart;
 import mods.railcraft.api.core.items.IMinecartItem;
@@ -21,13 +21,7 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import src.train.common.Traincraft;
-import src.train.common.api.AbstractTrains;
-import src.train.common.api.DieselTrain;
-import src.train.common.api.ElectricTrain;
-import src.train.common.api.EntityRollingStock;
-import src.train.common.api.Locomotive;
-import src.train.common.api.SteamTrain;
-import src.train.common.api.Tender;
+import src.train.common.api.*;
 import src.train.common.core.handlers.ConfigHandler;
 import src.train.common.core.handlers.RollingStockStatsEventHandler;
 import src.train.common.entity.rollingStock.EntityTracksBuilder;
@@ -38,8 +32,8 @@ import src.train.common.library.Info;
 import src.train.common.library.ItemIDs;
 import src.train.common.tile.TileTCRail;
 import src.train.common.tile.TileTCRailGag;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+
+import java.util.List;
 
 public class ItemRollingStock extends ItemMinecart implements IMinecart, IMinecartItem {
 

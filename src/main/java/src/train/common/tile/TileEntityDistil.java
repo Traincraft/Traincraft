@@ -1,7 +1,9 @@
 package src.train.common.tile;
 
-import java.util.Random;
-
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,27 +14,18 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidContainerRegistry;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidTankInfo;
-import net.minecraftforge.fluids.IFluidHandler;
-import net.minecraftforge.fluids.IFluidTank;
+import net.minecraftforge.fluids.*;
 import src.train.common.api.LiquidManager;
 import src.train.common.api.LiquidManager.StandardTank;
 import src.train.common.blocks.BlockDistil;
-import src.train.common.core.handlers.PacketHandler;
 import src.train.common.library.BlockIDs;
 import src.train.common.library.ItemIDs;
 import src.train.common.recipes.DistilRecipes;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+
+import java.util.Random;
 
 public class TileEntityDistil extends TileEntity implements IInventory, IFluidHandler {
 
@@ -273,7 +266,8 @@ public class TileEntityDistil extends TileEntity implements IInventory, IFluidHa
 							liquidItemID = 0;
 						}
 						flag1 = true;
-						PacketHandler.sendPacketToClients(PacketHandler.setDistilLiquid(this), this.worldObj, xCoord, yCoord, zCoord, 12.0D);
+						//TODO Packets
+						// PacketHandler.sendPacketToClients(PacketHandler.setDistilLiquid(this), this.worldObj, xCoord, yCoord, zCoord, 12.0D);
 					}
 				}
 			}
@@ -289,8 +283,11 @@ public class TileEntityDistil extends TileEntity implements IInventory, IFluidHa
 			else {
 				liquidItemID = 0;
 			}
-			if (updateTicks % 8 == 0)
-				PacketHandler.sendPacketToClients(PacketHandler.setDistilLiquid(this), this.worldObj, xCoord, yCoord, zCoord, 12.0D);
+			if (updateTicks % 8 == 0){
+				//TODO Packets
+				// PacketHandler.sendPacketToClients(PacketHandler.setDistilLiquid(this), this.worldObj, xCoord, yCoord, zCoord, 12.0D);
+			}
+
 
 		}
 		if (flag1) {
@@ -361,7 +358,8 @@ public class TileEntityDistil extends TileEntity implements IInventory, IFluidHa
 			if (theTank.getFluid() != null) {
 				liquidItemID = theTank.getFluid().getFluidID();
 			}
-			PacketHandler.sendPacketToClients(PacketHandler.setDistilLiquid(this), this.worldObj, xCoord, yCoord, zCoord, 12.0D);
+			//TODO Packets
+			// PacketHandler.sendPacketToClients(PacketHandler.setDistilLiquid(this), this.worldObj, xCoord, yCoord, zCoord, 12.0D);
 		}
 
 		if (distilItemStacks[0].getItem().hasContainerItem(distilItemStacks[0])) {
@@ -454,10 +452,13 @@ public class TileEntityDistil extends TileEntity implements IInventory, IFluidHa
 		return 2;
 	}*/
 
+	//TODO Packets
+	/*
 	@Override
 	public Packet getDescriptionPacket() {
 		return PacketHandler.getTEPClient(this);
 	}
+	*/
 
 	public void handlePacketDataFromServer(byte orientation, short cookTime, short burnTime, short amount, short liquidID) {
 		facing = ForgeDirection.getOrientation(orientation);

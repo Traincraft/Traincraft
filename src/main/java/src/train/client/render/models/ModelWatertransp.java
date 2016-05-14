@@ -1,14 +1,12 @@
 package src.train.client.render.models;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.entity.Entity;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
-import src.train.client.core.helpers.FluidRenderHelper;
+import org.lwjgl.opengl.GL11;
 import src.train.client.render.CustomModelRenderer;
 import src.train.common.api.LiquidTank;
 

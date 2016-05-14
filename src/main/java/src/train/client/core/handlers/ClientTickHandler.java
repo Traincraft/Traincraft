@@ -1,35 +1,17 @@
 package src.train.client.core.handlers;
 
-import java.util.EnumSet;
-
+import com.mojang.authlib.minecraft.MinecraftProfileTexture;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
-import cpw.mods.fml.common.gameevent.TickEvent.Phase;
 import cpw.mods.fml.common.gameevent.TickEvent.Type;
-
-import org.lwjgl.Sys;
-
-import com.mojang.authlib.minecraft.MinecraftProfileTexture;
-
+import cpw.mods.fml.relauncher.Side;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
-import net.minecraft.client.entity.EntityPlayerSP;
-import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.renderer.IImageBuffer;
-import net.minecraft.client.renderer.ThreadDownloadImageData;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.StringUtils;
 import src.train.client.core.helpers.CapesHelper;
 import src.train.client.gui.HUDloco;
 import src.train.common.Traincraft;
 import src.train.common.api.Locomotive;
-import src.train.common.core.TrainModCore;
 import src.train.common.library.BlockIDs;
-import src.train.common.library.Info;
-import cpw.mods.fml.common.FMLLog;
-import cpw.mods.fml.relauncher.Side;
 
 public class ClientTickHandler {
 	private static final Minecraft mc = Minecraft.getMinecraft();

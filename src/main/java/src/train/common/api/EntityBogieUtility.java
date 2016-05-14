@@ -1,24 +1,15 @@
 package src.train.common.api;
 
-import java.util.List;
-
-import com.mojang.authlib.GameProfile;
 import mods.railcraft.api.carts.IMinecart;
 import mods.railcraft.api.carts.IRoutableCart;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockRailBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+
+import java.util.List;
 
 public class EntityBogieUtility extends EntityBogie implements IMinecart, IRoutableCart{
 
@@ -135,11 +126,6 @@ public class EntityBogieUtility extends EntityBogie implements IMinecart, IRouta
 				this.entityMainTrain.applyEntityCollision(par1Entity);
 			}else if(!this.entityMainTrain.isAttached)this.entityMainTrain.applyEntityCollision(par1Entity);
 		}
-	}
-
-	@Override
-	public GameProfile getOwner(){
-
 	}
 
 }

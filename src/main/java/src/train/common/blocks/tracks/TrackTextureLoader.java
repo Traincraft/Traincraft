@@ -1,17 +1,14 @@
 package src.train.common.blocks.tracks;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import src.train.common.library.TrackIDs;
-
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.util.IIcon;
-
 import mods.railcraft.api.core.ITextureLoader;
 import mods.railcraft.api.tracks.ITrackItemIconProvider;
 import mods.railcraft.api.tracks.TrackSpec;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.util.IIcon;
+import src.train.common.library.TrackIDs;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class TrackTextureLoader implements ITextureLoader, ITrackItemIconProvider {
 	public static final TrackTextureLoader INSTANCE = new TrackTextureLoader();

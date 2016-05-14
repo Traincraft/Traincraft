@@ -1,16 +1,14 @@
 package src.train.client.render.models;
 
-import org.lwjgl.opengl.GL11;
-
 import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
+import org.lwjgl.opengl.GL11;
 import src.train.client.core.helpers.HolidayHelper;
 import src.train.client.render.CustomModelRenderer;
 import src.train.client.render.models.blocks.ModelRing;
-import src.train.common.core.handlers.ConfigHandler;
 import src.train.common.library.Info;
 
 public class ModelLocoBR80_DB extends ModelBase {

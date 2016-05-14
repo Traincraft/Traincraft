@@ -7,16 +7,14 @@
 
 package src.train.client.render;
 
+import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.opengl.GL11;
-
 import src.train.client.render.models.blocks.ModelStopper;
 import src.train.common.library.Info;
 import src.train.common.tile.TileStopper;
-import cpw.mods.fml.client.FMLClientHandler;
 
 public class RenderStopper extends TileEntitySpecialRenderer {
 

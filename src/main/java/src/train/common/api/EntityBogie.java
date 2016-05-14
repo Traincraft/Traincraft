@@ -1,8 +1,9 @@
 package src.train.common.api;
 
-import java.util.List;
-
 import com.mojang.authlib.GameProfile;
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import mods.railcraft.api.carts.IMinecart;
 import mods.railcraft.api.carts.IRoutableCart;
 import net.minecraft.block.Block;
@@ -27,9 +28,8 @@ import src.train.common.items.ItemTCRail.TrackTypes;
 import src.train.common.library.BlockIDs;
 import src.train.common.tile.TileTCRail;
 import src.train.common.tile.TileTCRailGag;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+
+import java.util.List;
 
 public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableCart {
 
@@ -397,6 +397,8 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 
         if (this.worldObj.isRemote)
         {
+			//TODO Access Transformer for protected fields
+			/*
             if (this.turnProgress > 0)
             {
                 double d0 = this.posX + (this.minecartX - this.posX) / (double)this.turnProgress;
@@ -414,6 +416,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
                 this.setPosition(this.posX, this.posY, this.posZ);
                 this.setRotation(this.rotationYaw, this.rotationPitch);
             }
+            */
         }
         else
         {
@@ -540,17 +543,21 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
             {
                 this.rotationYaw = (float)(Math.atan2(d7, d6) * 180.0D / Math.PI);
 
+				//TODO Access Transformer for protected fields
+				/*
                 if (this.isInReverse)
                 {
                     this.rotationYaw += 180.0F;
                 }
+                */
             }
             double d8 = (double)MathHelper.wrapAngleTo180_float(this.rotationYaw - this.prevRotationYaw);
 
             if (d8 < -170.0D || d8 >= 170.0D)
             {
                 this.rotationYaw += 180.0F;
-                this.isInReverse = !this.isInReverse;
+				//TODO Access Transformer for protected fields
+				// this.isInReverse = !this.isInReverse;
             }
 
             this.setRotation(this.rotationYaw, this.rotationPitch);

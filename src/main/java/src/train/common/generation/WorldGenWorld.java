@@ -7,13 +7,13 @@
 
 package src.train.common.generation;
 
-import java.util.Random;
-
+import cpw.mods.fml.common.IWorldGenerator;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import src.train.common.core.handlers.ConfigHandler;
 import src.train.common.library.BlockIDs;
-import cpw.mods.fml.common.IWorldGenerator;
+
+import java.util.Random;
 
 public class WorldGenWorld implements IWorldGenerator {
 

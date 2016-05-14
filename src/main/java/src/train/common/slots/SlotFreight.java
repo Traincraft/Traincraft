@@ -7,14 +7,12 @@
 
 package src.train.common.slots;
 
-import src.train.common.api.Freight;
-import src.train.common.core.handlers.ItemHandler;
-import src.train.common.entity.rollingStock.EntityBoxCartUS;
 import net.minecraft.entity.Entity;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import src.train.common.api.Freight;
+import src.train.common.core.handlers.ItemHandler;
 
 public class SlotFreight extends Slot {
 	

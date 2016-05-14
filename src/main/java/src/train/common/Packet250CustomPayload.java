@@ -1,6 +1,5 @@
 package src.train.common;
 
-import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.network.INetHandler;
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketBuffer;

@@ -7,20 +7,14 @@
 
 package src.train.client.render.models.blocks;
 
-import java.io.IOException;
-
-import net.minecraft.client.Minecraft;
+import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.IModelCustom;
-import net.minecraftforge.client.model.ModelFormatException;
-
 import org.lwjgl.opengl.GL11;
-
 import src.train.common.library.Info;
 import src.train.common.tile.TileBridgePillar;
-import cpw.mods.fml.client.FMLClientHandler;
 
 public class ModelBridgePillar extends ModelBase {
 	private IModelCustom bridgePillar;

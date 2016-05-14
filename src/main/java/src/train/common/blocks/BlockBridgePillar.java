@@ -7,8 +7,9 @@
 
 package src.train.common.blocks;
 
-import java.util.ArrayList;
-
+import cpw.mods.fml.client.registry.RenderingRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -21,9 +22,6 @@ import net.minecraft.world.World;
 import src.train.common.Traincraft;
 import src.train.common.library.Info;
 import src.train.common.tile.TileBridgePillar;
-import cpw.mods.fml.client.registry.RenderingRegistry;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockBridgePillar extends BlockContainer {
 

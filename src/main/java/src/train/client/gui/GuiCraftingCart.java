@@ -5,9 +5,7 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
-
 import org.lwjgl.opengl.GL11;
-
 import src.train.common.containers.ContainerWorkbenchCart;
 import src.train.common.library.Info;
 

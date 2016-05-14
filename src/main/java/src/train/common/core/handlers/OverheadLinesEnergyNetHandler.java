@@ -1,8 +1,8 @@
 package src.train.common.core.handlers;
 
-import java.util.ArrayList;
-
 import src.train.common.tile.TileEntityOverheadLines;
+
+import java.util.ArrayList;
 
 public class OverheadLinesEnergyNetHandler {
 

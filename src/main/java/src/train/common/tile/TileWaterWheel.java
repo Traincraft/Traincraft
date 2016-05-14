@@ -1,15 +1,9 @@
 package src.train.common.tile;
 
-import ic2.api.Direction;
+import cpw.mods.fml.common.FMLCommonHandler;
 import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergySource;
-
-import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.util.List;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
@@ -18,14 +12,17 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.Packet;
-import src.train.common.Packet250CustomPayload ;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.util.ForgeDirection;
+import src.train.common.Packet250CustomPayload;
 import src.train.common.core.TrainModBlockUtil;
-import src.train.common.core.handlers.PacketHandler;
 import src.train.common.library.Info;
-import cpw.mods.fml.common.FMLCommonHandler;
+
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.util.List;
 
 public class TileWaterWheel extends TileEntity/*TileEntityElectrical*/ implements IEnergySource {
 	private int facingMeta;
@@ -97,10 +94,14 @@ public class TileWaterWheel extends TileEntity/*TileEntityElectrical*/ implement
 		nbt.setByte("Orientation", (byte) facingMeta);
 		nbt.setDouble("generateRate", this.generateWatts);
 	}
+
+	//TODO Packets
+	/*
 	@Override
 	public Packet getDescriptionPacket() {
 		return PacketHandler.getTEPClient(this);
 	}
+	*/
 
 	public void handlePacketDataFromServer(byte orientation) {
 		facingMeta = orientation;

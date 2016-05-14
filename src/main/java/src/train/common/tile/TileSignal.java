@@ -1,14 +1,12 @@
 package src.train.common.tile;
 
-import java.util.List;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
-import src.train.common.core.handlers.PacketHandler;
+
+import java.util.List;
 
 //client
 public class TileSignal extends TileEntity {
@@ -53,10 +51,14 @@ public class TileSignal extends TileEntity {
 		nbttagcompound.setInteger("rot", this.rot);
 	}
 
+	//TODO Packets
+	/*
 	@Override
 	public Packet getDescriptionPacket() {
 		return PacketHandler.getTEPClient(this);
 	}
+	*/
+
 	@Override
 	public void updateEntity() {
 		int x1 = 1;// x2

@@ -2,14 +2,7 @@ package src.train.client.render;
 
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
-import src.train.client.render.models.blocks.ModelLargeSlopeTCTrack;
-import src.train.client.render.models.blocks.ModelLeftSwitchTCTrack;
-import src.train.client.render.models.blocks.ModelLeftTurnTCTrack;
-import src.train.client.render.models.blocks.ModelMediumStraightTCTrack;
-import src.train.client.render.models.blocks.ModelRightSwitchTCTrack;
-import src.train.client.render.models.blocks.ModelRightTurnTCTrack;
-import src.train.client.render.models.blocks.ModelSmallStraightTCTrack;
-import src.train.client.render.models.blocks.ModelTwoWaysCrossingTCTrack;
+import src.train.client.render.models.blocks.*;
 import src.train.common.items.ItemTCRail.TrackTypes;
 import src.train.common.tile.TileTCRail;
 

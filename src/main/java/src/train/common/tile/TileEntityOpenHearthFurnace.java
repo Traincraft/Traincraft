@@ -1,7 +1,9 @@
 package src.train.common.tile;
 
-import java.util.Random;
-
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,20 +14,16 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.util.ForgeDirection;
 import src.train.common.blocks.BlockOpenHearthFurnace;
-import src.train.common.core.handlers.PacketHandler;
 import src.train.common.library.BlockIDs;
 import src.train.common.library.ItemIDs;
 import src.train.common.recipes.OpenHearthFurnaceRecipes;
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import cpw.mods.fml.common.FMLCommonHandler;
+
+import java.util.Random;
 
 public class TileEntityOpenHearthFurnace extends TileEntity implements IInventory {
 
@@ -343,10 +341,13 @@ public class TileEntityOpenHearthFurnace extends TileEntity implements IInventor
 	@Override
 	public void closeInventory() {}
 
+	//TODO Packets
+	/*
 	@Override
 	public Packet getDescriptionPacket() {
 		return PacketHandler.getTEPClient(this);
 	}
+	*/
 
 	public void handlePacketDataFromServer(byte orientation, short cookTime, short burnTime) {
 		facing = ForgeDirection.getOrientation(orientation);

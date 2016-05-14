@@ -5,15 +5,15 @@
  */
 package src.train.common.blocks.tracks;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-
 import mods.railcraft.api.tracks.ITrackEmitter;
 import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
 import src.train.common.library.TrackIDs;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 
 public class BlockDetectorTrack extends TrackBaseTraincraft implements ITrackEmitter {
 	private byte delay = 0;

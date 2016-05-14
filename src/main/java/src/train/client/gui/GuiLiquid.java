@@ -1,7 +1,5 @@
 package src.train.client.gui;
 
-import java.util.List;
-
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.Entity;
@@ -12,15 +10,15 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
-
 import org.lwjgl.opengl.GL11;
-
 import src.train.client.core.helpers.FluidRenderHelper;
 import src.train.common.api.AbstractTrains;
 import src.train.common.api.LiquidTank;
 import src.train.common.inventory.InventoryLiquid;
 import src.train.common.inventory.InventoryLoco;
 import src.train.common.library.Info;
+
+import java.util.List;
 
 public class GuiLiquid extends GuiContainer {
 

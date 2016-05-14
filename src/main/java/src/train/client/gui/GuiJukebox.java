@@ -1,15 +1,7 @@
 package src.train.client.gui;
 
-import java.awt.Toolkit;
-import java.awt.datatransfer.Clipboard;
-import java.awt.datatransfer.DataFlavor;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
-import java.util.List;
-
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
@@ -19,17 +11,23 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
-
 import src.train.common.Traincraft;
 import src.train.common.api.AbstractTrains;
 import src.train.common.core.network.PacketSetJukeboxStreamingUrl;
 import src.train.common.entity.rollingStock.EntityJukeBoxCart;
 import src.train.common.library.Info;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+
+import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.List;
 
 public class GuiJukebox extends GuiScreen {
 
@@ -113,7 +111,7 @@ public class GuiJukebox extends GuiScreen {
 
 		//fontRendererObj.drawString("Date: " + Calendar.getInstance().get(Calendar.MONTH) + " " + Calendar.getInstance().get(Calendar.DATE), var5 - gui_width / 2, var6 - 30, 0xffffffff);
 
-		if((Minecraft.getMinecraft().thePlayer != null) && ((jukebox).player != null) && (!(jukebox).isInvalid)) {
+		if((Minecraft.getMinecraft().thePlayer != null) && (!(jukebox).isInvalid)) {
 			fontRendererObj.drawString("Volume: " + (int) Math.ceil(jukebox.volume * 100), width / 2 - 26, height / 2 + 18, 0xff0e0e0e);
 		}
 		else {
@@ -250,7 +248,7 @@ public class GuiJukebox extends GuiScreen {
 		}
 
 		if (button.id == 4) {
-			if((Minecraft.getMinecraft().thePlayer != null) && (((EntityJukeBoxCart) jukebox).player != null) && (!((EntityJukeBoxCart) jukebox).isInvalid)){
+			if((Minecraft.getMinecraft().thePlayer != null) && (!((EntityJukeBoxCart) jukebox).isInvalid)){
 				if(jukebox.volume<1.0f) {
 					jukebox.volume += 0.1f;
 				}
@@ -258,7 +256,7 @@ public class GuiJukebox extends GuiScreen {
 		}
 
 		if (button.id == 5) {
-			if((Minecraft.getMinecraft().thePlayer != null) && (((EntityJukeBoxCart) jukebox).player != null) && (!((EntityJukeBoxCart) jukebox).isInvalid)){
+			if((Minecraft.getMinecraft().thePlayer != null) && (!((EntityJukeBoxCart) jukebox).isInvalid)){
 				if(jukebox.volume>0.0f) {
 					jukebox.volume -= 0.1f;
 				}

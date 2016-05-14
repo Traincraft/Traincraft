@@ -2,26 +2,20 @@ package src.train.common.api;
 
 import buildcraft.api.fuels.BuildcraftFuelRegistry;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import mods.railcraft.api.fuel.FuelManager;
 import net.minecraft.block.material.Material;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidContainerRegistry;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidTank;
-import net.minecraftforge.fluids.IFluidTank;
+import net.minecraftforge.fluids.*;
 import src.train.common.Traincraft;
 import src.train.common.blocks.BlockTraincraftFluid;
 import src.train.common.items.ItemBlockFluid;
 import src.train.common.library.BlockIDs;
 import src.train.common.library.ItemIDs;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class LiquidManager {
 
@@ -65,8 +59,9 @@ public class LiquidManager {
 		BuildcraftFuelRegistry.fuel.addFuel(REFINED_FUEL, 6, 100000);
 		MinecraftForge.EVENT_BUS.register(this);
 
-		Traincraft.proxy.registerBlock(BlockIDs.diesel.block, ItemBlockFluid.class);
-		Traincraft.proxy.registerBlock(BlockIDs.refinedFuel.block, ItemBlockFluid.class);
+		//TODO
+		//Traincraft.proxy.registerBlock(BlockIDs.diesel.block, ItemBlockFluid.class);
+		//Traincraft.proxy.registerBlock(BlockIDs.refinedFuel.block, ItemBlockFluid.class);
 	}
 
 	@SubscribeEvent

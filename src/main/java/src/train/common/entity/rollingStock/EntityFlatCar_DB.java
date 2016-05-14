@@ -1,22 +1,11 @@
 package src.train.common.entity.rollingStock;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import buildcraft.api.tools.IToolWrench;
-
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
-import src.train.common.api.AbstractTrains;
 import src.train.common.api.EntityRollingStock;
 import src.train.common.api.IPassenger;
-import src.train.common.library.ItemIDs;
 
 public class EntityFlatCar_DB extends EntityRollingStock implements IPassenger {
 

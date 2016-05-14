@@ -4,9 +4,7 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.opengl.GL11;
-
 import src.train.common.api.LiquidManager;
 import src.train.common.containers.ContainerDistil;
 import src.train.common.library.BlockIDs;

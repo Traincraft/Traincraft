@@ -6,9 +6,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
-
 import org.lwjgl.opengl.GL11;
-
 import src.train.common.containers.ContainerTrainWorkbench;
 import src.train.common.library.Info;
 

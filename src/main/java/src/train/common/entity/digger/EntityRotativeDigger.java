@@ -1,7 +1,7 @@
 package src.train.common.entity.digger;
 
-import java.util.List;
-
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
@@ -20,15 +20,13 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
-
 import org.lwjgl.input.Keyboard;
-
 import src.train.common.Traincraft;
 import src.train.common.core.handlers.ConfigHandler;
 import src.train.common.core.network.PacketKeyPress;
 import src.train.common.library.ItemIDs;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+
+import java.util.List;
 
 public class EntityRotativeDigger extends Entity implements IInventory {
 

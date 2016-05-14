@@ -15,9 +15,6 @@ import net.minecraftforge.common.AchievementPage;
 import src.train.common.library.AchievementIDs;
 import src.train.common.library.BlockIDs;
 import src.train.common.library.ItemIDs;
-import cpw.mods.fml.common.registry.LanguageRegistry;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class AchievementHandler {
 
@@ -40,6 +37,8 @@ public class AchievementHandler {
 	}
 
 	public static void load() {
+		//TODO
+		/*
 		AchievementIDs.trainWB.achievement = achievement("trainWB", 0, 0, BlockIDs.trainWorkbench.block, (Achievement) null);
 		AchievementIDs.woodenParts.achievement = achievement("woodenParts", -2, 2, ItemIDs.woodenBogie.item, AchievementIDs.trainWB.achievement);
 		AchievementIDs.ironParts.achievement = achievement("ironParts", 0, 2, ItemIDs.ironBogie.item, AchievementIDs.trainWB.achievement);
@@ -87,5 +86,6 @@ public class AchievementHandler {
 		Achievement ach[] = new Achievement[] { AchievementIDs.steel.achievement, AchievementIDs.stake.achievement, AchievementIDs.dieselFuel.achievement, AchievementIDs.electMotor.achievement, AchievementIDs.dieselEngine.achievement, AchievementIDs.firebox.achievement, AchievementIDs.zeppelin.achievement, AchievementIDs.smallSteam.achievement, AchievementIDs.normalSteam.achievement, AchievementIDs.passenger.achievement, AchievementIDs.freight.achievement, AchievementIDs.liquid.achievement, AchievementIDs.tender.achievement, AchievementIDs.diesel.achievement, AchievementIDs.tram.achievement, AchievementIDs.fast.achievement, AchievementIDs.workCart.achievement, AchievementIDs.builder.achievement, AchievementIDs.jukebox.achievement, AchievementIDs.openHearth.achievement, AchievementIDs.engineer.achievement, AchievementIDs.distilationTower.achievement, AchievementIDs.plastic.achievement, AchievementIDs.fineCopperWire.achievement, AchievementIDs.electronicCircuit.achievement, AchievementIDs.generator.achievement, AchievementIDs.woodenParts.achievement, AchievementIDs.ironParts.achievement, AchievementIDs.steelParts.achievement, AchievementIDs.trainWB.achievement, AchievementIDs.assemblyTable.achievement, AchievementIDs.mail.achievement, AchievementIDs.minetrain.achievement, AchievementIDs.cherepanov.achievement, AchievementIDs.flatCart.achievement, AchievementIDs.stockCar.achievement, AchievementIDs.caboose.achievement };
 
 		tmPage = new AchievementPage("TrainCraft", ach);
+		*/
 	}
 }

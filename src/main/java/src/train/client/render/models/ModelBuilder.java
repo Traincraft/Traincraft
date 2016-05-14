@@ -1,12 +1,12 @@
 package src.train.client.render.models;
 
+import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import src.train.client.render.CustomModelRenderer;
 import src.train.common.entity.rollingStock.EntityTracksBuilder;
 import src.train.common.library.Info;
-import cpw.mods.fml.client.FMLClientHandler;
 
 public class ModelBuilder extends ModelBase {
 

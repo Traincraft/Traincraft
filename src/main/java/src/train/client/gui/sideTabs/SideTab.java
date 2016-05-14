@@ -7,19 +7,16 @@
 
 package src.train.client.gui.sideTabs;
 
-import net.minecraft.client.audio.SoundHandler;
-import net.minecraft.client.audio.SoundManager;
-import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.util.ResourceLocation;
-
-import org.lwjgl.opengl.GL11;
-
-import src.train.client.core.helpers.SessionHelper;
-import src.train.client.gui.GuiCrafterTier;
-import src.train.common.library.Info;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.audio.SoundHandler;
+import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.util.ResourceLocation;
+import org.lwjgl.opengl.GL11;
+import src.train.client.core.helpers.SessionHelper;
+import src.train.client.gui.GuiCrafterTier;
+import src.train.common.library.Info;
 
 @SideOnly(Side.CLIENT)
 public abstract class SideTab {

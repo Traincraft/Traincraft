@@ -12,11 +12,9 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.util.ForgeDirection;
-import src.train.common.core.handlers.PacketHandler;
 
 public class TileTrainWbench extends TileEntity implements IInventory {
 
@@ -156,10 +154,13 @@ public class TileTrainWbench extends TileEntity implements IInventory {
 		this.facing = face;
 	}
 
+	//TODO Packets
+	/*
 	@Override
 	public Packet getDescriptionPacket() {
 		return PacketHandler.getTEPClient(this);
 	}
+	*/
 
 	public void handlePacketDataFromServer(byte orientation) {
 		facing = ForgeDirection.getOrientation(orientation);

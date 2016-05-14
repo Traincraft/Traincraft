@@ -1,10 +1,8 @@
 package src.train.client.gui;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
+import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
@@ -13,18 +11,13 @@ import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
-
 import org.lwjgl.opengl.GL11;
-
 import src.train.client.core.handlers.RecipeBookHandler;
 import src.train.client.render.ItemRenderBook;
-import src.train.client.render.models.blocks.ModelTCBook;
-import src.train.common.core.handlers.PacketHandler;
 import src.train.common.core.managers.TierRecipe;
 import src.train.common.core.managers.TierRecipeManager;
 import src.train.common.inventory.TrainCraftingManager;
@@ -34,9 +27,9 @@ import src.train.common.library.Info;
 import src.train.common.library.ItemIDs;
 import src.train.common.recipes.ShapedTrainRecipes;
 import src.train.common.recipes.ShapelessTrainRecipe;
-import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @SideOnly(Side.CLIENT)
 public class GuiRecipeBook2 extends GuiScreen {
@@ -745,7 +738,8 @@ public class GuiRecipeBook2 extends GuiScreen {
 	public void onGuiClosed() {
 		ItemRenderBook.open = false;
 		NBTTagCompound var3 = this.itemstackBook.getTagCompound();
-		PacketHandler.setBookPage(this.editingPlayer, this.currPage, this.currRecipe);
+		//TODO Packets
+		// PacketHandler.setBookPage(this.editingPlayer, this.currPage, this.currRecipe);
 		this.itemstackBook.getTagCompound().setInteger("currPage", this.currPage);
 		this.itemstackBook.getTagCompound().setInteger("currRecipe", this.currRecipe);
 		super.onGuiClosed();

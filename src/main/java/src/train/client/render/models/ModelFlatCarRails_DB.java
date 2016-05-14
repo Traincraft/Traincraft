@@ -4,8 +4,6 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
 import src.train.client.render.CustomModelRenderer;
 import src.train.common.api.Freight;
-import src.train.common.core.handlers.ConfigHandler;
-import src.train.common.entity.rollingStock.EntityFlatCarRails_DB;
 
 public class ModelFlatCarRails_DB extends ModelBase {
 

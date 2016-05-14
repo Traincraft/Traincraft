@@ -1,13 +1,10 @@
 package src.train.common.tile;
 
-import java.util.Random;
-
-import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
-import src.train.common.core.handlers.PacketHandler;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
+
+import java.util.Random;
 
 public class TileTCRailGag extends TileEntity {
 	protected Random rand = new Random();
@@ -38,10 +35,13 @@ public class TileTCRailGag extends TileEntity {
 		super.writeToNBT(nbt);
 	}
 
+	//TODO Packets
+	/*
 	@Override
 	public Packet getDescriptionPacket() {
 		return PacketHandler.getTEPClient(this);
 	}
+	*/
 
 	public void handlePacketDataFromServer(String type, int bbHeight) {
 		this.type = type;

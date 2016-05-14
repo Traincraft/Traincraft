@@ -9,7 +9,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import src.train.common.recipes.DistilRecipes;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 public class SlotDistil extends Slot {
 	private EntityPlayer thePlayer;
