@@ -17,6 +17,7 @@ import java.util.HashMap;
 public class GuiHandler implements IGuiHandler {
 
     public static final int DISTILLERY = 0, CRAFTERSTEAM = 2, CRAFTERDIESEL = 3, CRAFTERELECTRO = 4;
+    public static final int HEARTH_FURNACE = 5;
     public static HashMap<Integer, Pair<Class<? extends GuiContainer>, Class<? extends Container>>> guiConMap = new HashMap<Integer, Pair<Class<? extends GuiContainer>, Class<? extends Container>>>();
 
     public static void addGuiContainerDepend(int id, Class<? extends GuiContainer> gui, Class<? extends Container> container){

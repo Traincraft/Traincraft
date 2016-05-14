@@ -5,7 +5,6 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
@@ -13,7 +12,7 @@ import net.minecraft.util.text.TextComponentString;
 /**
  * @author canitzp
  */
-public class TileEntityInventory extends TileEntity implements ISidedInventory {
+public class TileEntityInventory extends TileEntityBase implements ISidedInventory {
 
     public ItemStack[] slots;
     public String invName;
@@ -159,32 +158,36 @@ public class TileEntityInventory extends TileEntity implements ISidedInventory {
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound compound) {
-        if(this.slots.length > 0){
-            NBTTagList tagList = new NBTTagList();
-            for(int currentIndex = 0; currentIndex < slots.length; currentIndex++){
-                NBTTagCompound tagCompound = new NBTTagCompound();
-                tagCompound.setByte("Slot", (byte)currentIndex);
-                if(slots[currentIndex] != null){
-                    slots[currentIndex].writeToNBT(tagCompound);
+    public void writeToNBT(NBTTagCompound compound, boolean isForSyncing) {
+        if(!isForSyncing){
+            if(this.slots.length > 0){
+                NBTTagList tagList = new NBTTagList();
+                for(int currentIndex = 0; currentIndex < slots.length; currentIndex++){
+                    NBTTagCompound tagCompound = new NBTTagCompound();
+                    tagCompound.setByte("Slot", (byte)currentIndex);
+                    if(slots[currentIndex] != null){
+                        slots[currentIndex].writeToNBT(tagCompound);
+                    }
+                    tagList.appendTag(tagCompound);
                 }
-                tagList.appendTag(tagCompound);
+                compound.setTag("Items", tagList);
             }
-            compound.setTag("Items", tagList);
         }
-        super.writeToNBT(compound);
+        super.writeToNBT(compound, isForSyncing);
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound compound) {
-        super.readFromNBT(compound);
-        if(this.slots.length > 0){
-            NBTTagList tagList = compound.getTagList("Items", 10);
-            for(int i = 0; i < tagList.tagCount(); i++){
-                NBTTagCompound tagCompound = tagList.getCompoundTagAt(i);
-                byte slotIndex = tagCompound.getByte("Slot");
-                if(slotIndex >= 0 && slotIndex < slots.length){
-                    slots[slotIndex] = ItemStack.loadItemStackFromNBT(tagCompound);
+    public void readFromNBT(NBTTagCompound compound, boolean isForSyncing) {
+        super.readFromNBT(compound, isForSyncing);
+        if(!isForSyncing){
+            if(this.slots.length > 0){
+                NBTTagList tagList = compound.getTagList("Items", 10);
+                for(int i = 0; i < tagList.tagCount(); i++){
+                    NBTTagCompound tagCompound = tagList.getCompoundTagAt(i);
+                    byte slotIndex = tagCompound.getByte("Slot");
+                    if(slotIndex >= 0 && slotIndex < slots.length){
+                        slots[slotIndex] = ItemStack.loadItemStackFromNBT(tagCompound);
+                    }
                 }
             }
         }
