@@ -1,26 +1,28 @@
 package src.train.common.tile;
 
-import cpw.mods.fml.common.FMLCommonHandler;
 import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergySource;
+
+import java.util.ArrayList;
+import java.util.Random;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ForgeDirection;
 import src.train.common.core.TrainModBlockUtil;
 import src.train.common.core.handlers.ServerTickHandler;
-
-import java.util.ArrayList;
-import java.util.Random;
+import cpw.mods.fml.common.FMLCommonHandler;
 
 public class TileWindMill extends TileEntity implements IEnergySource {
 	private int facingMeta;
-	private int waterDirection;
 	Material blockMaterial;
 	private int updateTicks = 0;
 	private static Random rand = new Random();
@@ -52,27 +54,23 @@ public class TileWindMill extends TileEntity implements IEnergySource {
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
 		facingMeta = nbt.getByte("Orientation");
+		this.windClient = nbt.getInteger("Wind");
 	}
 
 	@Override
 	public void writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
 		nbt.setByte("Orientation", (byte) facingMeta);
+		nbt.setInteger("Wind", this.windClient);
 	}
 
-	//TODO Packets
-	/*
 	@Override
 	public Packet getDescriptionPacket() {
-		return PacketHandler.getTEPClient(this);
-	}
-	*/
 
-	public void handlePacketDataFromServer(byte orientation, int wind) {
-		facingMeta = orientation;
-		if (orientation != -1)
-			worldObj.setBlockMetadataWithNotify((int) xCoord, (int) yCoord, (int) zCoord, orientation, 2);
-		this.windClient = wind;
+		NBTTagCompound nbt = new NBTTagCompound();
+		this.writeToNBT(nbt);
+
+		return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, nbt);
 	}
 
 	public boolean isSimulating() {
@@ -135,19 +133,15 @@ public class TileWindMill extends TileEntity implements IEnergySource {
 			//System.out.println(this.IC2production);
 			if (IC2production > this.getMaxEnergyOutput())
 				IC2production = this.getMaxEnergyOutput();
-			//TODO Packets
-			// PacketHandler.sendPacketToClients(this.getDescriptionPacket(), worldObj, this.xCoord, this.yCoord, this.zCoord, 40D);
+			
+			this.markDirty();
+			this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
 		}
 
 	}
 
-	@Override
-	public boolean canUpdate() {
-		return true;
-	}
-
 	public int getMaxEnergyOutput() {return 10;}
-	
+
 	@Override
 	public int getSourceTier() {
 		// TODO: Should this really be this low or is there a mistake?

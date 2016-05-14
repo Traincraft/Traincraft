@@ -1,9 +1,7 @@
 package src.train.common.tile;
 
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.Random;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,18 +12,27 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraftforge.fluids.*;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidContainerRegistry;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidTankInfo;
+import net.minecraftforge.fluids.IFluidHandler;
+import net.minecraftforge.fluids.IFluidTank;
 import src.train.common.api.LiquidManager;
 import src.train.common.api.LiquidManager.StandardTank;
 import src.train.common.blocks.BlockDistil;
 import src.train.common.library.BlockIDs;
 import src.train.common.library.ItemIDs;
 import src.train.common.recipes.DistilRecipes;
-
-import java.util.Random;
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class TileEntityDistil extends TileEntity implements IInventory, IFluidHandler {
 
@@ -60,21 +67,16 @@ public class TileEntityDistil extends TileEntity implements IInventory, IFluidHa
 	}
 
 	/**
-	 * used by the GUI
-	 * 
-	 * @return
+	 * Used by the GUI
 	 */
 	@SideOnly(Side.CLIENT)
 	public int getLiquid() {
-		//if(random.nextInt(30)==0)System.out.println(side +" GUI "+amount);
-		return (amount);
 
+		return (amount);
 	}
 
 	/**
-	 * used by the GUI
-	 * 
-	 * @return int
+	 * Used by the GUI
 	 */
 	@SideOnly(Side.CLIENT)
 	public int getLiquidItemID() {
@@ -141,20 +143,29 @@ public class TileEntityDistil extends TileEntity implements IInventory, IFluidHa
 
 	@Override
 	public void readFromNBT(NBTTagCompound nbtTag) {
+
 		super.readFromNBT(nbtTag);
+
 		facing = ForgeDirection.getOrientation(nbtTag.getByte("Orientation"));
 		NBTTagList nbttaglist = nbtTag.getTagList("Items", Constants.NBT.TAG_COMPOUND);
 		distilItemStacks = new ItemStack[getSizeInventory()];
+
 		for (int i = 0; i < nbttaglist.tagCount(); i++) {
+
 			NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
 			byte byte0 = nbttagcompound1.getByte("Slot");
+
 			if (byte0 >= 0 && byte0 < distilItemStacks.length) {
+
 				this.distilItemStacks[byte0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
 			}
 		}
+
 		distilBurnTime = nbtTag.getShort("BurnTime");
 		distilCookTime = nbtTag.getShort("CookTime");
 		currentItemBurnTime = getItemBurnTime(distilItemStacks[1]);
+		amount = nbtTag.getInteger("Amount");
+		liquidItemID = nbtTag.getInteger("LiquidID");
 		this.theTank.readFromNBT(nbtTag);
 	}
 
@@ -165,19 +176,28 @@ public class TileEntityDistil extends TileEntity implements IInventory, IFluidHa
 
 	@Override
 	public void writeToNBT(NBTTagCompound nbtTag) {
+
 		super.writeToNBT(nbtTag);
+
 		nbtTag.setByte("Orientation", (byte) facing.ordinal());
 		nbtTag.setShort("BurnTime", (short) distilBurnTime);
 		nbtTag.setShort("CookTime", (short) distilCookTime);
+		nbtTag.setInteger("Amount", this.amount);
+		nbtTag.setInteger("LiquidID", this.liquidItemID);
+
 		NBTTagList nbttaglist = new NBTTagList();
+
 		for (int i = 0; i < this.distilItemStacks.length; i++) {
+
 			if (this.distilItemStacks[i] != null) {
+
 				NBTTagCompound nbttagcompound1 = new NBTTagCompound();
 				nbttagcompound1.setByte("Slot", (byte) i);
 				this.distilItemStacks[i].writeToNBT(nbttagcompound1);
 				nbttaglist.appendTag(nbttagcompound1);
 			}
 		}
+
 		nbtTag.setTag("Items", nbttaglist);
 		this.theTank.writeToNBT(nbtTag);
 	}
@@ -206,91 +226,134 @@ public class TileEntityDistil extends TileEntity implements IInventory, IFluidHa
 
 	@Override
 	public void updateEntity() {
+
 		updateTicks++;
+
 		boolean flag = distilBurnTime > 0;
 		boolean flag1 = false;
+
 		if (distilBurnTime > 0) {
+
 			distilBurnTime--;
 		}
+
 		//if(updateTicks%40==0)System.out.println(side +" "+amount);
 		//if(updateTicks%40==0)System.out.println("amount3 " + amount +" "+ worldObj.isRemote);
+
 		if (!worldObj.isRemote) {
+
 			//if(updateTicks%40==0)this.onInventoryChanged();
 			if (distilBurnTime == 0 && canSmelt()) {
+
 				currentItemBurnTime = distilBurnTime = getItemBurnTime(distilItemStacks[1]);
+
 				if (distilBurnTime > 0) {
+
 					flag1 = true;
+
 					if (distilItemStacks[1] != null) {
+
 						if (distilItemStacks[1].getItem().hasContainerItem(distilItemStacks[1])) {
+
 							distilItemStacks[1] = new ItemStack(distilItemStacks[1].getItem().getContainerItem());
 						}
 						else {
+
 							distilItemStacks[1].stackSize--;
 						}
+
 						if (distilItemStacks[1].stackSize == 0) {
+
 							distilItemStacks[1] = null;
 						}
 					}
 				}
 			}
+
 			if (isBurning() && canSmelt()) {
+
 				distilCookTime++;
+
 				if (distilCookTime == cookDuration) {
+
 					distilCookTime = 0;
 					smeltItem();
 					flag1 = true;
 				}
 			}
 			else {
+
 				distilCookTime = 0;
 			}
+
 			if (flag != (distilBurnTime > 0)) {
+
 				flag1 = true;
 				BlockDistil.updateDistilBlockState(distilBurnTime > 0, worldObj, xCoord, yCoord, zCoord);
 			}
+
 			if (distilItemStacks[2] != null) {
+
 				if (this.updateTicks % 8 == 0) {
+
 					ItemStack result = LiquidManager.getInstance().processContainer(this, 2, theTank, distilItemStacks[2], 0);
+
 					if (result != null && placeInInvent(result, 4, false)) {
+
 						placeInInvent(result, 4, true);
+
 						if (theTank.getFluid() != null) {
+
 							amount = theTank.getFluid().amount;
 						}
 						else {
+
 							amount = 0;
 						}
+
 						if (theTank.getFluid() != null) {
+
 							liquidItemID = theTank.getFluid().getFluidID();
 						}
 						else {
+
 							liquidItemID = 0;
 						}
+
 						flag1 = true;
-						//TODO Packets
-						// PacketHandler.sendPacketToClients(PacketHandler.setDistilLiquid(this), this.worldObj, xCoord, yCoord, zCoord, 12.0D);
+
+						this.markDirty();
+						this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
 					}
 				}
 			}
+
 			if (theTank.getFluid() != null) {
+
 				amount = theTank.getFluid().amount;
 			}
 			else {
+
 				amount = 0;
 			}
+
 			if (theTank.getFluid() != null) {
+
 				liquidItemID = theTank.getFluid().getFluidID();
 			}
 			else {
+
 				liquidItemID = 0;
 			}
+
 			if (updateTicks % 8 == 0){
-				//TODO Packets
-				// PacketHandler.sendPacketToClients(PacketHandler.setDistilLiquid(this), this.worldObj, xCoord, yCoord, zCoord, 12.0D);
+
+				this.markDirty();
+				this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
 			}
-
-
 		}
 		if (flag1) {
+
 			markDirty();
 		}
 	}
@@ -358,8 +421,9 @@ public class TileEntityDistil extends TileEntity implements IInventory, IFluidHa
 			if (theTank.getFluid() != null) {
 				liquidItemID = theTank.getFluid().getFluidID();
 			}
-			//TODO Packets
-			// PacketHandler.sendPacketToClients(PacketHandler.setDistilLiquid(this), this.worldObj, xCoord, yCoord, zCoord, 12.0D);
+
+			this.markDirty();
+			this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
 		}
 
 		if (distilItemStacks[0].getItem().hasContainerItem(distilItemStacks[0])) {
@@ -452,26 +516,13 @@ public class TileEntityDistil extends TileEntity implements IInventory, IFluidHa
 		return 2;
 	}*/
 
-	//TODO Packets
-	/*
 	@Override
 	public Packet getDescriptionPacket() {
-		return PacketHandler.getTEPClient(this);
-	}
-	*/
 
-	public void handlePacketDataFromServer(byte orientation, short cookTime, short burnTime, short amount, short liquidID) {
-		facing = ForgeDirection.getOrientation(orientation);
-		distilBurnTime = (int) burnTime;
-		distilCookTime = (int) cookTime;
-		this.amount = (int) amount;
-		this.liquidItemID = liquidID;
-	}
+		NBTTagCompound nbt = new NBTTagCompound();
+		this.writeToNBT(nbt);
 
-	public void handlePacketDataFromServer(short amount, short liquidID) {
-		this.amount = (int) amount;
-		liquidItemID = liquidID;
-		//System.out.println(side +" packet "+amount);
+		return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, nbt);
 	}
 
 	public FluidStack getFluid()

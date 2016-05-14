@@ -1,28 +1,19 @@
 package src.train.common.tile;
 
-import cpw.mods.fml.common.FMLCommonHandler;
 import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergySource;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.entity.EntityClientPlayerMP;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ForgeDirection;
-import src.train.common.Packet250CustomPayload;
 import src.train.common.core.TrainModBlockUtil;
-import src.train.common.library.Info;
-
-import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.util.List;
+import cpw.mods.fml.common.FMLCommonHandler;
 
 public class TileWaterWheel extends TileEntity/*TileEntityElectrical*/ implements IEnergySource {
 	private int facingMeta;
@@ -62,6 +53,7 @@ public class TileWaterWheel extends TileEntity/*TileEntityElectrical*/ implement
 	{
 		return direction == ForgeDirection.getOrientation(connectDirection())||direction == ForgeDirection.getOrientation(connectDirection()).getOpposite();
 	}*/
+
 	private int connectDirection(){
 		int l = worldObj.getBlockMetadata((int)xCoord, (int)yCoord, (int)zCoord);
 		if(l==3||l==1){
@@ -71,46 +63,53 @@ public class TileWaterWheel extends TileEntity/*TileEntityElectrical*/ implement
 		}
 
 	}
-	public TileWaterWheel()
-	{
+
+	public TileWaterWheel() {
+
 		facingMeta = this.blockMetadata;
 	}
+
 	public int getFacing() {
+
 		return facingMeta;
 	}
 
 	public void setFacing(int facing) {
+
 		this.facingMeta = facing;
 	}
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
+
 		super.readFromNBT(nbt);
+
 		facingMeta = nbt.getByte("Orientation");
 		this.generateWatts = nbt.getDouble("generateRate");
 	}
+
 	@Override
 	public void writeToNBT(NBTTagCompound nbt) {
+
 		super.writeToNBT(nbt);
+
 		nbt.setByte("Orientation", (byte) facingMeta);
 		nbt.setDouble("generateRate", this.generateWatts);
 	}
 
-	//TODO Packets
-	/*
 	@Override
 	public Packet getDescriptionPacket() {
-		return PacketHandler.getTEPClient(this);
-	}
-	*/
 
-	public void handlePacketDataFromServer(byte orientation) {
-		facingMeta = orientation;
-		if(orientation!=-1)worldObj.setBlockMetadataWithNotify((int)xCoord, (int)yCoord, (int)zCoord, orientation,2);
+		NBTTagCompound nbt = new NBTTagCompound();
+		this.writeToNBT(nbt);
+
+		return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, nbt);
 	}
-	public boolean isSimulating()
-	{
+
+	public boolean isSimulating() {
+
 		return !FMLCommonHandler.instance().getEffectiveSide().isClient();
 	}
+
 	@Override
 	public void onChunkUnload()
 	{
@@ -119,16 +118,24 @@ public class TileWaterWheel extends TileEntity/*TileEntityElectrical*/ implement
 			this.addedToEnergyNet = false;
 		}
 	}
+
 	@Override
 	public void updateEntity() {
+
 		super.updateEntity();
+
 		updateTicks++;
+
 		if (isSimulating()&&!addedToEnergyNet) {
+
 			MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
 			this.addedToEnergyNet = true;
 		}
+
 		if(!isSimulating()){
+
 			double dir=0;
+
 			Block blockXP = worldObj.getBlock((int)xCoord+1, (int)yCoord, (int)zCoord);
 			Block blockXN = worldObj.getBlock((int)xCoord-1, (int)yCoord, (int)zCoord);
 			Block blockZP = worldObj.getBlock((int)xCoord, (int)yCoord, (int)zCoord+1);
@@ -160,11 +167,11 @@ public class TileWaterWheel extends TileEntity/*TileEntityElectrical*/ implement
 				if(blockMaterial!=blockMaterial.lava)setWaterDir((int)dir);
 			}else if(blockTop instanceof BlockLiquid && this.worldObj.getBlock(this.xCoord, this.yCoord+1, this.zCoord).getMaterial().isLiquid()&&worldObj.getBlockMetadata((int)xCoord, (int)yCoord+1, (int)zCoord)!= 0){
 				blockMaterial = this.worldObj.getBlock(this.xCoord, this.yCoord+1, this.zCoord).getMaterial();
-				dir = ((BlockLiquid)blockTop).getFlowDirection(this.worldObj,this.xCoord, this.yCoord+1, this.zCoord,blockMaterial);
+				dir = BlockLiquid.getFlowDirection(this.worldObj,this.xCoord, this.yCoord+1, this.zCoord,blockMaterial);
 				if(blockMaterial!=blockMaterial.lava)setWaterDir((int)dir);
 			}else if(blockBottom instanceof BlockLiquid && this.worldObj.getBlock(this.xCoord, this.yCoord-1, this.zCoord).getMaterial().isLiquid() &&worldObj.getBlockMetadata((int)xCoord, (int)yCoord-1, (int)zCoord)!= 0){
 				blockMaterial = this.worldObj.getBlock(this.xCoord, this.yCoord-1, this.zCoord).getMaterial();
-				dir = ((BlockLiquid)blockBottom).getFlowDirection(this.worldObj,this.xCoord, this.yCoord-1, this.zCoord,blockMaterial);
+				dir = BlockLiquid.getFlowDirection(this.worldObj,this.xCoord, this.yCoord-1, this.zCoord,blockMaterial);
 				if((int)dir == -3||(int)dir==-2){
 					dir=0;
 				}else if((int)dir == 0){
@@ -176,41 +183,51 @@ public class TileWaterWheel extends TileEntity/*TileEntityElectrical*/ implement
 				}
 				if(blockMaterial!=blockMaterial.lava)setWaterDir((int)dir);
 			}
+			else {
 
-			else{
 				setWaterDir((int)-1001);
 			}
 
-			if(getWaterDir()==0 && this.getBlockMetadata() !=3){
-				worldObj.setBlockMetadataWithNotify((int)xCoord, (int)yCoord, (int)zCoord, 3,2);
-				//TODO Packets
-				// sendPacketToServer(getTEPClient(this,3));
-				//System.out.println("3");
+			switch (this.getWaterDir()) {
+
+			case -3:
+			case -2:
+				if (this.getBlockMetadata() != 1) {
+
+					this.worldObj.setBlockMetadataWithNotify(this.xCoord, this.yCoord, this.zCoord, 1, 2);
+				}
+				break;
+
+			case -1:
+				if (this.getBlockMetadata() != 2) {
+
+					this.worldObj.setBlockMetadataWithNotify(this.xCoord, this.yCoord, this.zCoord, 2, 2);
+				}
+				break;
+
+			case 0:
+				if (this.getBlockMetadata() != 3) {
+
+					this.worldObj.setBlockMetadataWithNotify(this.xCoord, this.yCoord, this.zCoord, 3, 2);
+				}
+				break;
+
+			case 1:
+				if (this.getBlockMetadata() != 0) {
+
+					this.worldObj.setBlockMetadataWithNotify(this.xCoord, this.yCoord, this.zCoord, 0, 2);
+				}
+				break;
 			}
-			if((getWaterDir()==-3 || getWaterDir()==-2) && this.getBlockMetadata() !=1){
-				worldObj.setBlockMetadataWithNotify((int)xCoord, (int)yCoord, (int)zCoord, 1,2);
-				//TODO Packets
-				// sendPacketToServer(getTEPClient(this,1));
-				//System.out.println("1");
-			}
-			if(getWaterDir()==-1 && this.getBlockMetadata() !=2){
-				worldObj.setBlockMetadataWithNotify((int)xCoord, (int)yCoord, (int)zCoord, 2,2);
-				//TODO Packets
-				// sendPacketToServer(getTEPClient(this,2));
-				//System.out.println("2");
-			}
-			if(getWaterDir()==1 && this.getBlockMetadata() !=0){
-				worldObj.setBlockMetadataWithNotify((int)xCoord, (int)yCoord, (int)zCoord, 0,3);
-				//TODO Packets
-				// sendPacketToServer(getTEPClient(this,0));
-				//System.out.println("0");
-			}
-			if(this.updateTicks%60==0){
-				//TODO Packets
-				// sendPacketToServer(getTEPClient(this,this.getBlockMetadata()));
-			}
+
+			this.markDirty();
+			this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
 		}
-		if(worldObj.isRemote)return;
+
+		if (worldObj.isRemote) {
+
+			return;
+		}
 
 		this.prevGenerateWatts = this.generateWatts;
 		/*ForgeDirection outputDirection = ForgeDirection.getOrientation(connectDirection());
@@ -233,40 +250,6 @@ public class TileWaterWheel extends TileEntity/*TileEntityElectrical*/ implement
 			//if(getWaterDir()>-1001)sendEnergy(this.production);
 		}
 
-	}
-	private void sendPacketToServer(Packet packet){
-		List list = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, getBlockType().getCollisionBoundingBoxFromPool(worldObj, xCoord, yCoord, zCoord).expand(10, 10, 10));//AxisAlignedBB.getAABBPool().getAABB((double)((float)this.xCoord - f), (double)this.yCoord, (double)((float)this.zCoord - f), (double)((float)(this.xCoord + 1) + f), (double)((float)(this.yCoord + 1) + f), (double)((float)(this.zCoord + 1) + f)));
-		
-		if (list != null && list.size() > 0) {
-			for (int j1 = 0; j1 < list.size(); j1++) {
-				Entity entity = (Entity) list.get(j1);
-				if (entity instanceof EntityPlayer) {
-					if (entity instanceof EntityClientPlayerMP) {
-						EntityClientPlayerMP playerMP = (EntityClientPlayerMP) entity;
-						playerMP.sendQueue.addToSendQueue(packet);
-					}
-				}
-			}
-		}
-	}
-	private static Packet getTEPClient(TileEntity te,int meta) {
-		ByteArrayOutputStream bos = new ByteArrayOutputStream();
-		DataOutputStream dos = new DataOutputStream(bos);
-		try{
-			if (te != null && te instanceof TileWaterWheel) {
-				TileWaterWheel tem = (TileWaterWheel) te;
-				dos.writeInt(0);
-				dos.writeInt(tem.xCoord);
-				dos.writeInt(tem.yCoord);
-				dos.writeInt(tem.zCoord);
-				dos.writeByte(meta);
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		Packet250CustomPayload packet = new Packet250CustomPayload(Info.channel, bos.toByteArray());
-		packet.length = bos.size();
-		return packet;
 	}
 
 	private void setWaterDir(int i){
@@ -313,7 +296,7 @@ public class TileWaterWheel extends TileEntity/*TileEntityElectrical*/ implement
 	public boolean isAddedToEnergyNet() {
 		return this.addedToEnergyNet;
 	}*/
-	
+
 	@Override
 	public int getSourceTier() {
 		// TODO: Should this really be this low or is there a mistake?

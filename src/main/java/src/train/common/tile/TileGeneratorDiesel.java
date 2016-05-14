@@ -18,6 +18,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
@@ -150,10 +151,6 @@ public class TileGeneratorDiesel extends TileEntity implements IFluidHandler, II
 					placeInInvent(result, 1, true);
 				}
 			}
-			if (FMLCommonHandler.instance().getEffectiveSide().isServer()) {
-				//TODO Packets
-				// PacketHandler.sendPacketToClients(this.setGeneratorLiquid(this), this.worldObj, xCoord, yCoord, zCoord, 12.0D);
-			}
 		}
 
 		Energy output = Energy.zero();
@@ -195,13 +192,6 @@ public class TileGeneratorDiesel extends TileEntity implements IFluidHandler, II
 		return packet;
 	}
 
-	public void handlePacketDataFromServer(boolean isProducing, short amount,
-			short liquidID) {
-		this.setIsProducing(isProducing);
-		this.amountClient = (int) amount;
-		liquidItemIDClient = liquidID;
-	}
-
 	@Override
 	public void readFromNBT(NBTTagCompound nbtTag) {
 		super.readFromNBT(nbtTag);
@@ -209,6 +199,11 @@ public class TileGeneratorDiesel extends TileEntity implements IFluidHandler, II
 		this.direction = ForgeDirection.getOrientation(nbtTag.getInteger("direction"));
 		this.theTank.readFromNBT(nbtTag);
 		this.powered = nbtTag.getBoolean("powered");
+		
+		// Dirty work-around for easier synchronisation without additional Packets.
+		this.producing = nbtTag.getBoolean("isProducing");
+		this.amountClient = nbtTag.getInteger("Amount");
+		this.liquidItemIDClient = nbtTag.getInteger("LiquidID");
 	}
 
 	@Override
@@ -218,18 +213,18 @@ public class TileGeneratorDiesel extends TileEntity implements IFluidHandler, II
 		nbtTag.setInteger("direction", direction.ordinal());
 		this.theTank.writeToNBT(nbtTag);
 		nbtTag.setBoolean("powered", this.powered);
+		nbtTag.setBoolean("isProducing", this.producing);
+		nbtTag.setInteger("Amount", this.amountClient);
+		nbtTag.setInteger("LiquidID", this.liquidItemIDClient);
 	}
 
-	//TODO Packets
-	/*
 	@Override
 	public Packet getDescriptionPacket() {
-		return PacketHandler.getTEPClient(this);
-	}
-	*/
 
-	public void handlePacketDataFromServer(byte orientation) {
-		direction = ForgeDirection.getOrientation((int) orientation);
+		NBTTagCompound nbt = new NBTTagCompound();
+		this.writeToNBT(nbt);
+
+		return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, nbt);
 	}
 
 	public Energy getEnergy() {

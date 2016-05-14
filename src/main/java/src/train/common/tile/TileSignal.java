@@ -1,12 +1,14 @@
 package src.train.common.tile;
 
+import java.util.List;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
-
-import java.util.List;
 
 //client
 public class TileSignal extends TileEntity {
@@ -35,9 +37,6 @@ public class TileSignal extends TileEntity {
 		this.rot = facing;
 	}
 
-	public void handlePacketDataFromServer(byte orientation) {
-		facingMeta = orientation;
-	}
 	@Override
 	public void readFromNBT(NBTTagCompound nbttagcompound) {
 		state = nbttagcompound.getInteger("state");
@@ -51,13 +50,14 @@ public class TileSignal extends TileEntity {
 		nbttagcompound.setInteger("rot", this.rot);
 	}
 
-	//TODO Packets
-	/*
 	@Override
 	public Packet getDescriptionPacket() {
-		return PacketHandler.getTEPClient(this);
+
+		NBTTagCompound nbt = new NBTTagCompound();
+		this.writeToNBT(nbt);
+
+		return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, nbt);
 	}
-	*/
 
 	@Override
 	public void updateEntity() {
@@ -66,55 +66,65 @@ public class TileSignal extends TileEntity {
 		int x3 = 1;// z2
 		int x4 = 1;// x1
 		int x5 = 1;// z1
-		// System.out.println("rot: "+rot);
-		if (rot == 2) {
+
+		switch (this.rot) {
+
+		case 2:
 			x4 = -1;
 			x5 = -9;
 			x1 = 1;
 			x3 = 1;
-		}// ok
-		if (rot == 4) {
-			x4 = -9;
-			x5 = -1;
-			x1 = 1;
-			x3 = 1;
-		}// ok
-		if (rot == 3) {
+			break;
+
+		case 3:
 			x3 = 9;
 			x1 = 1;
 			x4 = -1;
 			x5 = 1;
-		}
-		;// ok
-		if (rot == 5) {
+			break;
+
+		case 4:
+			x4 = -9;
+			x5 = -1;
+			x1 = 1;
+			x3 = 1;
+			break;
+
+		case 5:
 			x3 = 1;
 			x1 = 9;
 			x4 = 1;
 			x5 = -1;
+			break;
 		}
-		;// ok
+
 		List list = this.worldObj.getEntitiesWithinAABB(EntityMinecart.class, AxisAlignedBB.getBoundingBox((double) this.xCoord + x4, (double) this.yCoord, (double) this.zCoord + x5, (double) (this.xCoord + x1), (double) (this.yCoord + 1), (double) (this.zCoord + x3)).expand(1.0D, 1.0D, 1.0D));
+		Entity entity;
 
 		if (list != null && list.size() > 0) {
 
 			for (int j1 = 0; j1 < list.size(); j1++) {
-				Entity entity = (Entity) list.get(j1);
-				if (entity instanceof EntityMinecart) {
-					// System.out.println("entityIn rot: "+ rot + " x1: "+ x1+" x3: "+x3+ " state: "+state);
-					if (fu == 0 && state == 0) {
-						tempSpeedX = ((EntityMinecart) entity).motionX;
-						tempSpeedZ = ((EntityMinecart) entity).motionZ;
 
-					}
+				entity = (Entity) list.get(j1);
+
+				if (entity instanceof EntityMinecart) {
+
 					if (state == 0) {
-						((EntityMinecart) entity).motionX *= 0.85D;
-						((EntityMinecart) entity).motionZ *= 0.85D;
+
+						if (fu == 0) {
+
+							tempSpeedX = entity.motionX;
+							tempSpeedZ = entity.motionZ;
+						}
+
+						entity.motionX *= 0.85D;
+						entity.motionZ *= 0.85D;
 						fu++;
 					}
+					else if (fu > 0 && state == 1) {
 
-					if (fu > 0 && state == 1) {
-						((EntityMinecart) entity).motionX = tempSpeedX;
-						((EntityMinecart) entity).motionZ = tempSpeedZ;
+						entity.motionX = tempSpeedX;
+						entity.motionZ = tempSpeedZ;
 						fu = 0;
 					}
 				}

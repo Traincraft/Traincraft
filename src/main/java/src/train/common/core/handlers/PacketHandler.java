@@ -7,11 +7,14 @@
 
 package src.train.common.core.handlers;
 
-import com.google.common.io.ByteArrayDataInput;
-import com.google.common.io.ByteStreams;
-import cpw.mods.fml.common.network.internal.FMLProxyPacket;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageCodec;
+
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.util.List;
+
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -30,113 +33,40 @@ import src.train.common.entity.rollingStock.EntityTracksBuilder;
 import src.train.common.entity.zeppelin.AbstractZeppelin;
 import src.train.common.items.ItemRecipeBook;
 import src.train.common.library.Info;
-import src.train.common.tile.*;
+import src.train.common.tile.TileBook;
+import src.train.common.tile.TileCrafterTierI;
+import src.train.common.tile.TileCrafterTierII;
+import src.train.common.tile.TileCrafterTierIII;
+import src.train.common.tile.TileEntityDistil;
+import src.train.common.tile.TileEntityOpenHearthFurnace;
+import src.train.common.tile.TileGeneratorDiesel;
+import src.train.common.tile.TileLantern;
+import src.train.common.tile.TileSignal;
+import src.train.common.tile.TileStopper;
+import src.train.common.tile.TileTCRail;
+import src.train.common.tile.TileTCRailGag;
+import src.train.common.tile.TileTrainWbench;
+import src.train.common.tile.TileWaterWheel;
+import src.train.common.tile.TileWindMill;
 
-import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.util.List;
+import com.google.common.io.ByteArrayDataInput;
+import com.google.common.io.ByteStreams;
+
+import cpw.mods.fml.common.network.internal.FMLProxyPacket;
 
 //TODO Packets
 public class PacketHandler extends MessageToMessageCodec<FMLProxyPacket, Packet250CustomPayload> {
 
-	/*
-
 	protected RollingStockStatsEventHandler statsEventHandler = new RollingStockStatsEventHandler();
 
-	@Override
+	//@Override
 	public void onPacketData(NetworkManager manager, Packet250CustomPayload packet, EntityPlayer player) {
 
 		World world = ((EntityPlayer) player).worldObj;
 		ByteArrayDataInput data = ByteStreams.newDataInput(packet.data);
 		int packetIndex = data.readInt();
 
-		if (packetIndex == 0) {
-			int x = data.readInt();
-			int y = data.readInt();
-			int z = data.readInt();
-			TileEntity te = world.getTileEntity(x, y, z);
-			if (te instanceof TileTrainWbench) {
-				byte orientation = data.readByte();
-				((TileTrainWbench) te).handlePacketDataFromServer(orientation);
-			}
-			if (te instanceof TileCrafterTierIII) {
-				byte orientation = data.readByte();
-				((TileCrafterTierIII) te).handlePacketDataFromServer(orientation);
-			}
-			if (te instanceof TileCrafterTierII) {
-				byte orientation = data.readByte();
-				((TileCrafterTierII) te).handlePacketDataFromServer(orientation);
-			}
-			if (te instanceof TileCrafterTierI) {
-				byte orientation = data.readByte();
-				((TileCrafterTierI) te).handlePacketDataFromServer(orientation);
-			}
-			if (te instanceof TileStopper) {
-				byte orientation = data.readByte();
-				((TileStopper) te).handlePacketDataFromServer(orientation);
-			}
-			if (te instanceof TileBook) {
-				byte orientation = data.readByte();
-				((TileBook) te).handlePacketDataFromServer(orientation);
-			}
-			if (te instanceof TileSignal) {
-				byte orientation = data.readByte();
-				((TileSignal) te).handlePacketDataFromServer(orientation);
-			}
-			if (te instanceof TileLantern) {
-				int color = data.readInt();
-				((TileLantern) te).handlePacketDataFromServer(color);
-			}
-			if (te instanceof TileWaterWheel) {
-				byte orientation = data.readByte();
-				((TileWaterWheel) te).handlePacketDataFromServer(orientation);
-			}
-			if (te instanceof TileWindMill) {
-				byte orientation = data.readByte();
-				int wind = data.readInt();
-				((TileWindMill) te).handlePacketDataFromServer(orientation, wind);
-			}
-			if (te instanceof TileGeneratorDiesel) {
-				byte orientation = data.readByte();
-				((TileGeneratorDiesel) te).handlePacketDataFromServer(orientation);
-			}
-			if (te instanceof TileTCRail) {
-				byte orientation = data.readByte();
-				String type = data.readUTF();
-				boolean hasModel = data.readBoolean();
-				boolean switchActive = data.readBoolean();
-				int idDrop = data.readInt();
-				((TileTCRail) te).handlePacketDataFromServer(orientation, type, hasModel, switchActive, idDrop);
-			}
-			if (te instanceof TileTCRailGag) {
-				String type = data.readUTF();
-				int bbHeight = data.readInt();
-				((TileTCRailGag) te).handlePacketDataFromServer(type, bbHeight);
-			}
-		}
-		else if (packetIndex == 1) {
-			int x = data.readInt();
-			int y = data.readInt();
-			int z = data.readInt();
-			TileEntity te = world.getTileEntity(x, y, z);
-			if (te instanceof TileEntityDistil) {
-				byte orientation = data.readByte();
-				short cookTime = data.readShort();
-				short burnTime = data.readShort();
-				short amount = data.readShort();
-				short liquidID = data.readShort();
-				((TileEntityDistil) te).handlePacketDataFromServer(orientation, cookTime, burnTime, amount, liquidID);
-			}
-			if (te instanceof TileEntityOpenHearthFurnace) {
-				byte orientation = data.readByte();
-				short cookTime = data.readShort();
-				short burnTime = data.readShort();
-				((TileEntityOpenHearthFurnace) te).handlePacketDataFromServer(orientation, cookTime, burnTime);
-			}
-
-		}
-		else if (packetIndex == 2) {
+		if (packetIndex == 2) {
 			int ID = data.readInt();
 			boolean brake = data.readBoolean();
 			Entity entity = this.getEntityByID(ID, player);
@@ -170,17 +100,6 @@ public class PacketHandler extends MessageToMessageCodec<FMLProxyPacket, Packet2
 				}
 			}
 		}
-		else if (packetIndex == 5) {
-			int x = data.readInt();
-			int y = data.readInt();
-			int z = data.readInt();
-			TileEntity te = world.getTileEntity(x, y, z);
-			if (te instanceof TileEntityDistil) {
-				short amount = data.readShort();
-				short liquidID = data.readShort();
-				((TileEntityDistil) te).handlePacketDataFromServer(amount, liquidID);
-			}
-		}
 		else if (packetIndex == 6) {
 			int entityID = data.readInt();
 			int page = data.readInt();
@@ -197,18 +116,6 @@ public class PacketHandler extends MessageToMessageCodec<FMLProxyPacket, Packet2
 					stack.getTagCompound().setInteger("currPage", page);
 					stack.getTagCompound().setInteger("currRecipe", recipe);
 				}
-			}
-		}
-		else if (packetIndex == 7) {
-			int x = data.readInt();
-			int y = data.readInt();
-			int z = data.readInt();
-			TileEntity te = world.getTileEntity(x, y, z);
-			if (te instanceof TileGeneratorDiesel) {
-				boolean producing = data.readBoolean();
-				short amount = data.readShort();
-				short liquidID = data.readShort();
-				((TileGeneratorDiesel) te).handlePacketDataFromServer(producing, amount, liquidID);
 			}
 		}
 		else if (packetIndex == 11) {
@@ -268,20 +175,6 @@ public class PacketHandler extends MessageToMessageCodec<FMLProxyPacket, Packet2
 				((AbstractZeppelin) entity).rotationYawClient = rotationServer;
 				((AbstractZeppelin) entity).roll = roll;
 			}
-		}
-		else if (packetIndex == 15) {
-
-			/*
-			 * Replaced by PacketSetJukeboxStreamingUrl.Handler#onMessage()
-			 */
-	/*
-		}
-		else if (packetIndex == 16) {
-
-			/*
-			 * Replaced by PacketSlotsFilled.Handler#onMessage()
-			 */
-	/*
 		}
 		else if (packetIndex == 17) {
 			int entityID = data.readInt();
@@ -441,29 +334,6 @@ public class PacketHandler extends MessageToMessageCodec<FMLProxyPacket, Packet2
 		packet.length = bos.size();
 		return packet;
 	}
-
-	public static Packet setDistilLiquid(TileEntity te) {
-		ByteArrayOutputStream bos = new ByteArrayOutputStream();
-		DataOutputStream dos = new DataOutputStream(bos);
-		try {
-			if (te != null && te instanceof TileEntityDistil) {
-				TileEntityDistil tem = (TileEntityDistil) te;
-				dos.writeInt(5);
-				dos.writeInt(tem.xCoord);
-				dos.writeInt(tem.yCoord);
-				dos.writeInt(tem.zCoord);
-				dos.writeShort(tem.amount);
-				dos.writeShort(tem.liquidItemID);
-			}
-		}
-		catch (IOException e) {
-			e.printStackTrace();
-		}
-		Packet250CustomPayload packet = new Packet250CustomPayload(Info.channel, bos.toByteArray());
-		packet.length = bos.size();
-		return packet;
-	}
-	*/
 
 	/**
 	 * RollingStock rotation packet sent to client

@@ -12,9 +12,14 @@ import net.minecraftforge.common.util.ForgeDirection;
 public class TileHelper {
 
 	/**
-	 * Finds the side of a block depending on it's facing direction from the given side. The side numbers are compatible with the function "getBlockTextureFromSideAndMetadata".
+	 * Finds the side of a block depending on its facing direction from the given side. The side numbers are compatible with the function "getBlockTextureFromSideAndMetadata".<p>
 	 * 
-	 * Bottom: 0; Top: 1; Back: 2; Front: 3; Left: 4; Right: 5;
+	 * Bottom: 0<br>
+	 * Top: 1<br>
+	 * Back: 2<br>
+	 * Front: 3<br>
+	 * Left: 4<br>
+	 * Right: 5<br>
 	 * 
 	 * @param front - The direction in which this block is facing/front. Use a number between 0 and 5. Default is 3.
 	 * @param side - The side you are trying to find. A number between 0 and 5.

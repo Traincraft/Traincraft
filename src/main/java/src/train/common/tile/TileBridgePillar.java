@@ -25,8 +25,9 @@ public class TileBridgePillar extends TileEntity {
 		}
 	}
 	
-	@Override
+	/*
+	@Override // Why would you even do this..?
 	public void updateEntity() {
 		super.updateEntity();
-	}
+	}*/
 }

@@ -5,6 +5,8 @@ import ic2.api.Direction;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergySink;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -75,6 +77,9 @@ public class TileEntityOverheadLines extends TileEntity implements IEnergySink{
 			}
 		}
 /*
+
+		TODO This has been qouted out. Perhaps check and re-activate?
+		
 		List lis3 = this.worldObj.getEntitiesWithinAABB(ElectricTrain.class, AxisAlignedBB.getBoundingBoxFromPool((double)this.xCoord, (double)this.yCoord, (double)this.zCoord, (double)(this.xCoord + 1), (double)(this.yCoord + 1), (double)(this.zCoord + 1)).expand(1.0D, 4.0D, 1.0D));
 
 		if (lis3 != null && lis3.size() > 0) {
@@ -194,6 +199,15 @@ public class TileEntityOverheadLines extends TileEntity implements IEnergySink{
 	}
 	public boolean facingMatchesDirection(Direction direction) { 
 		return direction.toSideValue() == getFacing(); 
+	}
+	
+	@Override
+	public Packet getDescriptionPacket() {
+
+		NBTTagCompound nbt = new NBTTagCompound();
+		this.writeToNBT(nbt);
+
+		return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, nbt);
 	}
 }
 
