@@ -2,7 +2,7 @@ package si.meansoft.traincraft.api.recipes;
 
 import net.minecraft.item.ItemStack;
 import si.meansoft.traincraft.Util;
-import si.meansoft.traincraft.tileEntities.TileEntityCrafter;
+import si.meansoft.traincraft.tileEntities.crafter.TileEntityCrafterBase;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,7 +28,7 @@ public class CrafterRecipes{
         }
         return null;
     }
-    public static void craftSteam(TileEntityCrafter tileEntity, RecipeHandlerSteam recipeHandler){
+    public static void craftSteam(TileEntityCrafterBase tileEntity, RecipeHandlerSteam recipeHandler){
         ItemStack output = getSteamOutput(recipeHandler);
         if(output != null){
             tileEntity.decrStackSize(16, Util.getStackSize(recipeHandler.smokeStack));
@@ -57,7 +57,7 @@ public class CrafterRecipes{
         }
         return null;
     }
-    public static void craftDiesel(TileEntityCrafter tileEntity, RecipeHandlerDiesel recipeHandler){
+    public static void craftDiesel(TileEntityCrafterBase tileEntity, RecipeHandlerDiesel recipeHandler){
         ItemStack output = getDieselOutput(recipeHandler);
         if(output != null){
             tileEntity.decrStackSize(16, Util.getStackSize(recipeHandler.horn));
@@ -86,7 +86,7 @@ public class CrafterRecipes{
         }
         return null;
     }
-    public static void craftElectro(TileEntityCrafter tileEntity, RecipeHandlerElectro recipeHandler){
+    public static void craftElectro(TileEntityCrafterBase tileEntity, RecipeHandlerElectro recipeHandler){
         ItemStack output = getElectroOutput(recipeHandler);
         if(output != null){
             tileEntity.decrStackSize(16, Util.getStackSize(recipeHandler.horn));

@@ -7,7 +7,7 @@ import net.minecraft.inventory.Container;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import si.meansoft.traincraft.TraincraftResources;
-import si.meansoft.traincraft.tileEntities.TileEntityCrafter;
+import si.meansoft.traincraft.tileEntities.crafter.TileEntityCrafterBase;
 
 /**
  * @author canitzp
@@ -20,7 +20,7 @@ public class GuiCrafter extends GuiContainer {
         super(container);
         this.xSize = 176;
         this.ySize = 254;
-        switch(((TileEntityCrafter)crafter).tier){
+        switch(((TileEntityCrafterBase)crafter).getTier()){
             case STEAM: guiLoc = TraincraftResources.CRAFTERSTEAM.newResourceLocation(); break;
             case DIESEL: guiLoc = TraincraftResources.CRAFTERDIESEL.newResourceLocation(); break;
             case ELECTRO: guiLoc = TraincraftResources.CRAFTERELECTRO.newResourceLocation(); break;
