@@ -3,6 +3,7 @@ package si.meansoft.traincraft.container;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import si.meansoft.traincraft.tileEntities.TileEntityHearthFurnace;
 
@@ -31,5 +32,10 @@ public class ContainerHearthFurnace extends Container {
     @Override
     public boolean canInteractWith(EntityPlayer playerIn) {
         return true;
+    }
+
+    @Override
+    public ItemStack transferStackInSlot(EntityPlayer playerIn, int index){
+        return null;
     }
 }
