@@ -6,8 +6,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -59,7 +57,7 @@ public class BlockRail extends BlockBase implements ITileEntityProvider{
     @Override
     public IBlockState onBlockPlaced(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer){
         if(!world.isRemote){
-            if(TrackPlacing.canPlaceTrack(world, pos, this.length, placer.getHorizontalFacing())){
+            if(TrackPlacing.canPlaceStraightTrack(world, pos, this.length, placer.getHorizontalFacing())){
                 TrackPlacing.placeTrack(world, (EntityPlayer) placer, pos, getDefaultState(), this.length, this.direction);
             }
         }

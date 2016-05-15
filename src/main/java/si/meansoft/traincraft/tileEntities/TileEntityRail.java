@@ -1,36 +1,22 @@
 package si.meansoft.traincraft.tileEntities;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.block.model.IBakedModel;
-import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.client.resources.IResourceManager;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.client.model.IModel;
-import net.minecraftforge.client.model.ModelLoaderRegistry;
-import net.minecraftforge.client.model.obj.OBJLoader;
-import net.minecraftforge.client.model.obj.OBJModel;
-import net.minecraftforge.common.model.TRSRTransformation;
-import org.lwjgl.opengl.GL11;
-import si.meansoft.traincraft.Traincraft;
 import si.meansoft.traincraft.Util;
-import si.meansoft.traincraft.client.models.ModelGeneratorDiesel;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @author canitzp
  */
-public class TileEntityRail extends TileEntity{
+//TODO Ellpeck save the harvestPositions to NBT
+public class TileEntityRail extends TileEntityBase{
 
     public List<BlockPos> harvestPositions = new ArrayList<BlockPos>();
     public EnumFacing rotation = EnumFacing.NORTH;
@@ -38,6 +24,18 @@ public class TileEntityRail extends TileEntity{
     public void placeTrack(List<BlockPos> harvestPositions, EnumFacing rotation){
         this.harvestPositions = harvestPositions;
         this.rotation = rotation;
+    }
+
+    @Override
+    public void writeToNBT(NBTTagCompound compound, boolean isForSyncing){
+        super.writeToNBT(compound, isForSyncing);
+        compound.setInteger("rotation", this.rotation.getHorizontalIndex());
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound compound, boolean isForSyncing){
+        super.readFromNBT(compound, isForSyncing);
+        this.rotation = EnumFacing.getHorizontal(compound.getInteger("rotation"));
     }
 
     public static class RailRenderer extends TileEntitySpecialRenderer<TileEntityRail>{
@@ -52,6 +50,18 @@ public class TileEntityRail extends TileEntity{
             GlStateManager.pushMatrix();
             GlStateManager.translate(x, y, z);
             GlStateManager.disableRescaleNormal();
+            switch(te.rotation){
+                case EAST:{
+                    GlStateManager.rotate(90, 0, 1, 0);
+                    GlStateManager.translate(-1, 0, 0);
+                    break;
+                }
+                case WEST:{
+                    GlStateManager.rotate(-90, 0, 1, 0);
+                    GlStateManager.translate(0, 0, -1);
+                    break;
+                }
+            }
             this.bakedModel = Util.renderObjectFile(this.bakedModel, modelLocation, te, 0, 0, 0);
             GlStateManager.popMatrix();
             GlStateManager.popAttrib();
