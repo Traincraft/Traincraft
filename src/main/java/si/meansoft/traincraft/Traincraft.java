@@ -74,21 +74,33 @@ public class Traincraft {
     }
 
     public static void registerBlock(Block block, String blockName){
+        registerBlock(block, blockName, true);
+    }
+
+    public static void registerBlock(Block block, String blockName, boolean defaultRender){
         block.setUnlocalizedName(MODID + ":" + blockName);
         block.setRegistryName(blockName);
         block.setCreativeTab(tab);
         ItemBlockGeneric itemBlock = new ItemBlockGeneric(block);
         GameRegistry.register(block);
         GameRegistry.register(itemBlock);
-        CommonProxy.addForgeRender(itemBlock);
+        if(defaultRender){
+            CommonProxy.addForgeRender(itemBlock);
+        }
     }
 
-    public static void registerItem(Item item, String blockName){
-        item.setUnlocalizedName(MODID + ":" + blockName);
-        item.setRegistryName(blockName);
+    public static void registerItem(Item item, String itemName){
+        registerItem(item, itemName, true);
+    }
+
+    public static void registerItem(Item item, String itemName, boolean defaultRender){
+        item.setUnlocalizedName(MODID + ":" + itemName);
+        item.setRegistryName(itemName);
         item.setCreativeTab(tab);
         GameRegistry.register(item);
-        CommonProxy.addForgeRender(item);
+        if(defaultRender){
+            CommonProxy.addForgeRender(item);
+        }
     }
 
 }

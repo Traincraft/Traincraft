@@ -20,6 +20,8 @@ import net.minecraftforge.common.ForgeHooks;
  */
 public class Util {
 
+    public static final String BUGGED_ITEM_NAME = "uwotm8";
+
     public static void sendTilePacketToAllAround(TileEntity tile){
         for(EntityPlayer player : tile.getWorld().playerEntities){
             if(player instanceof EntityPlayerMP){

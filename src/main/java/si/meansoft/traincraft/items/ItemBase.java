@@ -9,7 +9,11 @@ import si.meansoft.traincraft.Traincraft;
 public class ItemBase extends Item{
 
     public ItemBase(String name){
-        Traincraft.registerItem(this, name);
+        this(name, true);
+    }
+
+    public ItemBase(String name, boolean defaultRenderer){
+        Traincraft.registerItem(this, name, defaultRenderer);
     }
 
 }
