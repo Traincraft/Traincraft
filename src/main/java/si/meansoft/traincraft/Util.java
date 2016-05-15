@@ -104,4 +104,17 @@ public class Util {
         return null;
     }
 
+    public static ItemStack decreaseItemStack(ItemStack toDecrease, ItemStack decreaseValue){
+        if(ItemStack.areItemStacksEqual(toDecrease, decreaseValue)){
+            int i = toDecrease.copy().stackSize - decreaseValue.copy().stackSize;
+            if(i > 0){
+                toDecrease.stackSize -= decreaseValue.stackSize;
+            } else if(i <= 0){
+                toDecrease = null;
+            }
+            return toDecrease;
+        }
+        return toDecrease == null ? decreaseValue : null;
+    }
+
 }

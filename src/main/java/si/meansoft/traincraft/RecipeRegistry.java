@@ -30,15 +30,17 @@ public class RecipeRegistry {
     }
 
     private static void initDistillRecipes(){
-        //TODO Swap apple for graphite and gold ingot for steel
-        HearthFurnaceRecipes.addRecipe(new ItemStack(Items.APPLE), new ItemStack(Items.IRON_INGOT), new ItemStack(Items.GOLD_INGOT), 1200);
-
         DistilleryRecipes.addRecipe(new ItemStack(ItemRegistry.material, 1, ItemMaterial.Materials.PLASTIC.ordinal()), new ItemStack(BlockRegistry.oilSand), new FluidStack(FluidRegistry.diesel, 1000), 50, 200);
         DistilleryRecipes.addFillingRecipe(new ItemStack(ItemRegistry.material, 2, ItemMaterial.Materials.FUEL_CANISTER_FULL.ordinal()), new ItemStack(ItemRegistry.material, 2, ItemMaterial.Materials.FUEL_CANISTER_EMPTY.ordinal()), new FluidStack(FluidRegistry.diesel, 1000));
     }
 
     private static void initCrafterRecipes(){
         //CrafterRecipes.addSteamRecipe(new ItemStack(Blocks.BRICK_BLOCK), null, null, null, null, null, null, null, null, null, null);
+    }
+
+    private static void initHearthFurnaceRecipes(){
+        HearthFurnaceRecipes.addRecipe(new ItemStack(ItemRegistry.material, 1, 0), new ItemStack(Items.IRON_INGOT), new ItemStack(ItemRegistry.material, 1, 1), 1200);
+
     }
 
 }

@@ -32,6 +32,10 @@ public class DistilleryRecipes {
         fillingMap.put(output, Pair.of(input, inputFluid));
     }
 
+    public static Pair<ItemStack, FluidStack> getFillingOutput(ItemStack input, FluidStack inputFluid){
+        return fillingMap.containsKey(input) ? fillingMap.get(input) : null;
+    }
+
     public static RecipeHandler getRecipe(ItemStack input){
         for(Map.Entry<ItemStack, RecipeHandler> entry : recipeMap.entrySet()){
             if(entry.getKey().isItemEqual(input)){
