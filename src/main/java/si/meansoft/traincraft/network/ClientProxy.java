@@ -21,7 +21,6 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import si.meansoft.traincraft.FluidRegistry;
 import si.meansoft.traincraft.Traincraft;
@@ -34,18 +33,16 @@ public class ClientProxy extends CommonProxy {
     public void preInit(FMLPreInitializationEvent event) {
         this.registerFluidRenderer(FluidRegistry.diesel);
         OBJLoader.INSTANCE.addDomain("traincraft");
-        for(Item item : forgeRender){
-            if(item != null) {
-                registerForgeBlock(item);
-            }
+        for(Map.Entry<ItemStack, ModelResourceLocation> entry : forgeRender.entrySet()){
+            this.registerForgeRenderer(entry.getKey(), entry.getValue());
         }
         for(Map.Entry<Class<? extends TileEntity>, TileEntitySpecialRenderer> entry : objRender.entrySet()){
             ClientRegistry.bindTileEntitySpecialRenderer(entry.getKey(), entry.getValue());
         }
     }
 
-    private void registerForgeBlock(Item block){
-        ModelLoader.setCustomModelResourceLocation(block, 0, new ModelResourceLocation(block.getRegistryName(), "inventory"));
+    private void registerForgeRenderer(ItemStack stack, ModelResourceLocation location){
+        ModelLoader.setCustomModelResourceLocation(stack.getItem(), stack.getItemDamage(), location);
     }
 
     private void registerFluidRenderer(Fluid fluid){
