@@ -18,6 +18,7 @@ public class BlockRegistry {
     public static Block distillery, crafterSteam, crafterDiesel, crafterElectro;
     public static Block hearthFurnace;
     public static Block trackLongStraight;
+    public static Block windmill;
 
     public static void preInit(){
         oilSand = new BlockBase(Material.SAND, "oilSand").generateBlock(Blocks.SAND, 50, 80, 7, 11).addOreDict("oreOilSand").setHarvestLevel(BlockBase.ToolEnum.SHOVEL, 2).setSound(SoundType.SAND);
@@ -27,6 +28,7 @@ public class BlockRegistry {
         crafterDiesel = new BlockCrafter(BlockCrafter.CrafterTier.DIESEL);
         crafterElectro = new BlockCrafter(BlockCrafter.CrafterTier.ELECTRO);
         hearthFurnace = new BlockHearthFurnace();
+        windmill = new BlockWindmill();
     }
 
 }

@@ -30,7 +30,7 @@ public class BlockRail extends BlockBase implements ITileEntityProvider{
 
     public BlockRail(String extraName, TrackLength length, TrackDirection direction) {
         super(Material.IRON, "track" + Util.firstCharToUpperCase(length.name) + Util.firstCharToUpperCase(direction.name) + extraName);
-        CommonProxy.addOBJRender(TileEntityRail.class, new TileEntityRail.RailRenderer(new ResourceLocation(Traincraft.MODID, "block/" + "track" + Util.firstCharToUpperCase(length.name) + Util.firstCharToUpperCase(direction.name) + extraName)));
+        CommonProxy.addOBJRender(TileEntityRail.class, new TileEntityRail.RailRenderer(new ResourceLocation(Traincraft.MODID, "block/" + "track" + Util.firstCharToUpperCase(length.name) + Util.firstCharToUpperCase(direction.name) + extraName + ".obj")));
         this.length = length;
         this.direction = direction;
         this.isBlockContainer = true;

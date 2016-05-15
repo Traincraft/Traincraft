@@ -38,7 +38,6 @@ public class CommonProxy {
 
     public void init(FMLInitializationEvent event){
         wrapper = NetworkRegistry.INSTANCE.newSimpleChannel(Traincraft.MODID);
-        wrapper.registerMessage(PacketSyncFluid.Handler.class, PacketSyncFluid.class, 0, Side.CLIENT);
     }
 
     public void postInit(FMLPostInitializationEvent event){}

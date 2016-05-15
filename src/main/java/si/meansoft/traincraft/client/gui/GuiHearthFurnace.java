@@ -1,4 +1,4 @@
-package si.meansoft.traincraft.gui;
+package si.meansoft.traincraft.client.gui;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
@@ -14,7 +14,7 @@ import si.meansoft.traincraft.tileEntities.TileEntityHearthFurnace;
  */
 public class GuiHearthFurnace extends GuiContainer{
 
-    private static ResourceLocation guiLoc = TraincraftResources.HEARTH_FURNACE.newResourceLocation();
+    private static ResourceLocation guiLoc = TraincraftResources.GUI_HEARTH_FURNACE.newGuiLocation();
     public TileEntityHearthFurnace tile;
 
     public GuiHearthFurnace(Container container, EntityPlayer player, TileEntity tile){

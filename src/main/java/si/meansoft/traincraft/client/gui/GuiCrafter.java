@@ -1,4 +1,4 @@
-package si.meansoft.traincraft.gui;
+package si.meansoft.traincraft.client.gui;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
@@ -21,9 +21,9 @@ public class GuiCrafter extends GuiContainer {
         this.xSize = 176;
         this.ySize = 254;
         switch(((TileEntityCrafterBase)crafter).getTier()){
-            case STEAM: guiLoc = TraincraftResources.CRAFTERSTEAM.newResourceLocation(); break;
-            case DIESEL: guiLoc = TraincraftResources.CRAFTERDIESEL.newResourceLocation(); break;
-            case ELECTRO: guiLoc = TraincraftResources.CRAFTERELECTRO.newResourceLocation(); break;
+            case STEAM: guiLoc = TraincraftResources.GUI_CRAFTERSTEAM.newGuiLocation(); break;
+            case DIESEL: guiLoc = TraincraftResources.GUI_CRAFTERDIESEL.newGuiLocation(); break;
+            case ELECTRO: guiLoc = TraincraftResources.GUI_CRAFTERELECTRO.newGuiLocation(); break;
         }
     }
 

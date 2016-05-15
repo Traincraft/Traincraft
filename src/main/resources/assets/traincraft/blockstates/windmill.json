@@ -2,7 +2,7 @@
   "forge_marker": 1,
   "defaults": {
     "custom": { "flip-v": true },
-    "model": "traincraft:trackLongStraight.obj"
+    "model": "traincraft:modelWindmill.obj"
   },
   "variants": {
     "normal": [{}],
