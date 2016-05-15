@@ -17,7 +17,7 @@ public class BlockCrafter extends BlockContainerBase {
     public CrafterTier tier;
 
     public BlockCrafter(CrafterTier tier) {
-        super(Material.ANVIL, tier.name, tier.tileClass, RenderType.FORGEJSON);
+        super(Material.ANVIL, tier.name, tier.tileClass);
         this.tier = tier;
         addGuiContainer(tier.guiID, GuiCrafter.class, ContainerCrafter.class);
     }

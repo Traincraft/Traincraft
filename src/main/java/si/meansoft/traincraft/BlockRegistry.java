@@ -17,11 +17,12 @@ public class BlockRegistry {
     public static Block oilSand;
     public static Block distillery, crafterSteam, crafterDiesel, crafterElectro;
     public static Block hearthFurnace;
+    public static Block trackLongStraight;
 
     public static void preInit(){
-        oilSand = new BlockBase(Material.SAND, "oilSand", BlockBase.RenderType.FORGEJSON).generateBlock(Blocks.SAND, 50, 80, 7, 11).addOreDict("oreOilSand").setHarvestLevel(BlockBase.ToolEnum.SHOVEL, 2).setSound(SoundType.SAND);
+        oilSand = new BlockBase(Material.SAND, "oilSand").generateBlock(Blocks.SAND, 50, 80, 7, 11).addOreDict("oreOilSand").setHarvestLevel(BlockBase.ToolEnum.SHOVEL, 2).setSound(SoundType.SAND);
         distillery = new BlockDistillery();
-        Block rail = new BlockRail("", BlockRail.TrackLength.LONG, BlockRail.TrackDirection.STRAIGHT);
+        trackLongStraight = new BlockRail(BlockRail.TrackLength.LONG, BlockRail.TrackDirection.STRAIGHT);
         crafterSteam = new BlockCrafter(BlockCrafter.CrafterTier.STEAM);
         crafterDiesel = new BlockCrafter(BlockCrafter.CrafterTier.DIESEL);
         crafterElectro = new BlockCrafter(BlockCrafter.CrafterTier.ELECTRO);

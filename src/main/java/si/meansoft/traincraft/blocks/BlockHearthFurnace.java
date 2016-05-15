@@ -17,7 +17,7 @@ import si.meansoft.traincraft.tileEntities.TileEntityHearthFurnace;
 public class BlockHearthFurnace extends BlockContainerBase{
 
     public BlockHearthFurnace(){
-        super(Material.ROCK, "hearthFurnace", TileEntityHearthFurnace.class, RenderType.FORGEJSON);
+        super(Material.ROCK, "hearthFurnace", TileEntityHearthFurnace.class);
         this.addGuiContainer(GuiHandler.HEARTH_FURNACE, GuiHearthFurnace.class, ContainerHearthFurnace.class);
 
         this.setDefaultState(this.getBlockState().getBaseState().withProperty(BlockDistillery.ACTIVE, false).withProperty(FACING, EnumFacing.NORTH));

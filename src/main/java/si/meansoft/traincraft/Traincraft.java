@@ -73,16 +73,14 @@ public class Traincraft {
         logger.info("[Traincraft] Now you can't stop the trains!");
     }
 
-    public static void registerBlock(Block block, String blockName, BlockBase.RenderType renderType){
+    public static void registerBlock(Block block, String blockName){
         block.setUnlocalizedName(MODID + ":" + blockName);
         block.setRegistryName(blockName);
         block.setCreativeTab(tab);
         ItemBlockGeneric itemBlock = new ItemBlockGeneric(block);
         GameRegistry.register(block);
         GameRegistry.register(itemBlock);
-        if(renderType != null){
-            CommonProxy.addForgeRender(itemBlock);
-        }
+        CommonProxy.addForgeRender(itemBlock);
     }
 
     public static void registerItem(Item item, String blockName){

@@ -31,14 +31,14 @@ public class BlockContainerBase extends BlockBase implements ITileEntityProvider
     protected int guiId = -1;
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
 
-    public BlockContainerBase(Material materialIn, String name, Class<? extends TileEntity> tileClass, RenderType renderType) {
-        super(materialIn, name, renderType);
+    public BlockContainerBase(Material materialIn, String name, Class<? extends TileEntity> tileClass) {
+        super(materialIn, name);
         this.isBlockContainer = true;
         this.tileClass = tileClass;
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
     }
     public BlockContainerBase(Material materialIn, String name, Class<? extends TileEntity> tileClass, TileEntitySpecialRenderer specialRenderer){
-        this(materialIn, name, tileClass, (RenderType) null);
+        this(materialIn, name, tileClass);
         CommonProxy.addOBJRender(tileClass, specialRenderer);
     }
 

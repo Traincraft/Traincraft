@@ -21,6 +21,7 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import si.meansoft.traincraft.FluidRegistry;
 import si.meansoft.traincraft.Traincraft;
@@ -31,15 +32,13 @@ public class ClientProxy extends CommonProxy {
 
     @Override
     public void preInit(FMLPreInitializationEvent event) {
+        this.registerFluidRenderer(FluidRegistry.diesel);
+        OBJLoader.INSTANCE.addDomain("traincraft");
         for(Item item : forgeRender){
             if(item != null) {
                 registerForgeBlock(item);
             }
         }
-
-        this.registerFluidRenderer(FluidRegistry.diesel);
-
-        OBJLoader.INSTANCE.addDomain(Traincraft.NAME);
         for(Map.Entry<Class<? extends TileEntity>, TileEntitySpecialRenderer> entry : objRender.entrySet()){
             ClientRegistry.bindTileEntitySpecialRenderer(entry.getKey(), entry.getValue());
         }

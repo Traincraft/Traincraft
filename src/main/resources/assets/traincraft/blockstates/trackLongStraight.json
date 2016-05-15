@@ -1,9 +1,7 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "custom": {
-      "flip-v": true
-    },
+    "custom": { "flip-v": true },
     "model": "traincraft:long_straight.obj"
   },
   "variants": {

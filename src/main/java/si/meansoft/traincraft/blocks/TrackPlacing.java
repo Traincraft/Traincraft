@@ -12,8 +12,6 @@ import si.meansoft.traincraft.tileEntities.TileEntityRail;
 import java.util.ArrayList;
 import java.util.List;
 
-import static si.meansoft.traincraft.blocks.BlockRail.FACING;
-
 /**
  * @author canitzp
  */
@@ -21,7 +19,7 @@ public class TrackPlacing {
 
     public static void placeTrack(World world, EntityPlayer player, BlockPos pos, IBlockState state, BlockRail.TrackLength length, BlockRail.TrackDirection direction){
         EnumFacing facing = player.getHorizontalFacing();
-        world.setBlockState(pos, state.withProperty(FACING, facing.getOpposite()), 2);
+        world.setBlockState(pos, state, 2);
         switch(direction){
             case STRAIGHT:{
                 if(canPlaceTrack(world, pos, length, facing)){
@@ -55,10 +53,10 @@ public class TrackPlacing {
                     posList.add(new BlockPos(pos.getX(), pos.getY(), pos.getZ() - i));
                 }
                 for(BlockPos setPos : posList){
-                    world.setBlockState(setPos, state.withProperty(FACING, facing.getOpposite()));
+                    world.setBlockState(setPos, state);
                     TileEntityRail te = (TileEntityRail) world.getTileEntity(setPos);
                     if(te != null){
-                        te.harvestPositions.addAll(posList);
+                        te.placeTrack(posList, facing);
                     }
                 }
             }

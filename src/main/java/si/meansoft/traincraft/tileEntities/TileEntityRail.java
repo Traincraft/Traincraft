@@ -2,6 +2,7 @@ package si.meansoft.traincraft.tileEntities;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.texture.TextureMap;
@@ -9,6 +10,7 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.client.model.IModel;
@@ -29,6 +31,12 @@ import java.util.List;
 public class TileEntityRail extends TileEntity{
 
     public List<BlockPos> harvestPositions = new ArrayList<BlockPos>();
+    public EnumFacing rotation = EnumFacing.NORTH;
+
+    public void placeTrack(List<BlockPos> harvestPositions, EnumFacing rotation){
+        this.harvestPositions = harvestPositions;
+        this.rotation = rotation;
+    }
 
     public static class RailRenderer extends TileEntitySpecialRenderer<TileEntityRail>{
         IBakedModel bakedModel;
@@ -55,6 +63,7 @@ public class TileEntityRail extends TileEntity{
             GlStateManager.pushAttrib();
             GlStateManager.pushMatrix();
             GlStateManager.translate(x, y, z);
+
             GlStateManager.disableRescaleNormal();
             renderOBJ(te);
             GlStateManager.popMatrix();
@@ -63,19 +72,26 @@ public class TileEntityRail extends TileEntity{
 
         private void renderOBJ(TileEntityRail te){
             GlStateManager.pushMatrix();
+            /*
+            switch(te.rotation){
+                case NORTH: GlStateManager.rotate(90, 0, 0, 0);
+            }*/
+            GlStateManager.translate(0.5F, 0, 0.5F);
+            RenderHelper.disableStandardItemLighting();
             this.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
-            IBakedModel model = bake();
-            if(model == null){
-                System.out.println("egsg");
-                return;
+            /*
+            if (Minecraft.isAmbientOcclusionEnabled()) {
+                GlStateManager.shadeModel(GL11.GL_SMOOTH);
+            } else {
+                GlStateManager.shadeModel(GL11.GL_FLAT);
             }
-            GlStateManager.shadeModel(GL11.GL_FLAT);
-
+            */
             GlStateManager.translate(-te.getPos().getX(), -te.getPos().getY(), -te.getPos().getZ());
             Tessellator tessy = Tessellator.getInstance();
             tessy.getBuffer().begin(GL11.GL_QUADS, DefaultVertexFormats.BLOCK);
-            Minecraft.getMinecraft().getBlockRendererDispatcher().getBlockModelRenderer().renderModel(te.getWorld(), model, te.getWorld().getBlockState(te.getPos()), te.getPos(), Tessellator.getInstance().getBuffer(), false);
+            Minecraft.getMinecraft().getBlockRendererDispatcher().getBlockModelRenderer().renderModel(te.getWorld(), bake(), te.getWorld().getBlockState(te.getPos()), te.getPos(), Tessellator.getInstance().getBuffer(), false);
             tessy.draw();
+            RenderHelper.enableStandardItemLighting();
             GlStateManager.popMatrix();
         }
     }
