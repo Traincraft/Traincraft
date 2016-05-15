@@ -1,11 +1,13 @@
 package si.meansoft.traincraft.tileEntities;
 
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.ITickable;
 import si.meansoft.traincraft.api.recipes.HearthFurnaceRecipes;
 import si.meansoft.traincraft.api.recipes.HearthFurnaceRecipes.Recipe;
+import si.meansoft.traincraft.blocks.BlockDistillery;
 
 public class TileEntityHearthFurnace extends TileEntityInventory implements ITickable{
 
@@ -32,19 +34,28 @@ public class TileEntityHearthFurnace extends TileEntityInventory implements ITic
     @Override
     public void update(){
         if(!this.worldObj.isRemote){
+            boolean lastIsBurning = this.fuelTime > 0;
+
             this.doFuelBurning();
+
+            if(lastIsBurning != this.fuelTime > 0){
+                IBlockState state = this.worldObj.getBlockState(pos);
+                this.worldObj.setBlockState(pos, state.getBlock().getDefaultState().withProperty(BlockDistillery.ACTIVE, this.fuelTime > 0).withProperty(BlockDistillery.FACING, state.getValue(BlockDistillery.FACING)), 3);
+            }
 
             if(this.fuelTime > 0 && this.canProcess()){
                 if(this.maxProcessTime <= 0){
                     Recipe recipe = this.getRecipeForInputs();
                     if(recipe != null){
                         this.maxProcessTime = recipe.processTime;
+                        this.markDirty();
                     }
                 }
                 else{
                     this.processTime++;
                     if(this.processTime >= this.maxProcessTime){
                         this.process();
+                        this.markDirty();
 
                         this.processTime = 0;
                         this.maxProcessTime = 0;
@@ -94,6 +105,13 @@ public class TileEntityHearthFurnace extends TileEntityInventory implements ITic
     }
 
     private void doFuelBurning(){
+        if(this.fuelTime > 0){
+            this.fuelTime--;
+            if(this.fuelTime <= 0){
+                this.maxFuelTime = 0;
+            }
+        }
+
         if(this.fuelTime <= 0){
             if(this.slots[FUEL_SLOT] != null && this.canProcess()){
                 int burnTime = TileEntityFurnace.getItemBurnTime(this.slots[FUEL_SLOT]);
@@ -106,12 +124,6 @@ public class TileEntityHearthFurnace extends TileEntityInventory implements ITic
                     this.fuelTime = burnTime;
                     this.maxFuelTime = burnTime;
                 }
-            }
-        }
-        else{
-            this.fuelTime--;
-            if(this.fuelTime <= 0){
-                this.maxFuelTime = 0;
             }
         }
     }
