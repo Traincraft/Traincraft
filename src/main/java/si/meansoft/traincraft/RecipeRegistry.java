@@ -6,6 +6,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import si.meansoft.traincraft.api.recipes.DistilleryRecipes;
 import si.meansoft.traincraft.api.recipes.HearthFurnaceRecipes;
+import si.meansoft.traincraft.items.ItemMaterial;
 
 /**
  * @author canitzp
@@ -24,15 +25,16 @@ public class RecipeRegistry {
     }
 
     private static void initShapeless(){
-        GameRegistry.addShapelessRecipe(new ItemStack(ItemRegistry.fuelCanisterEmpty, 2), new ItemStack(ItemRegistry.plastic), new ItemStack(ItemRegistry.plastic), new ItemStack(ItemRegistry.plastic), new ItemStack(ItemRegistry.plastic));
+        ItemStack plasticStack = new ItemStack(ItemRegistry.material, 1, ItemMaterial.Materials.PLASTIC.ordinal());
+        GameRegistry.addShapelessRecipe(new ItemStack(ItemRegistry.material, 2, ItemMaterial.Materials.FUEL_CANISTER_EMPTY.ordinal()), plasticStack.copy(), plasticStack.copy(), plasticStack.copy(), plasticStack.copy());
     }
 
     private static void initDistillRecipes(){
         //TODO Swap apple for graphite and gold ingot for steel
         HearthFurnaceRecipes.addRecipe(new ItemStack(Items.APPLE), new ItemStack(Items.IRON_INGOT), new ItemStack(Items.GOLD_INGOT), 1200);
 
-        DistilleryRecipes.addRecipe(new ItemStack(ItemRegistry.plastic), new ItemStack(BlockRegistry.oilSand), new FluidStack(FluidRegistry.diesel, 1000), 50, 200);
-        DistilleryRecipes.addFillingRecipe(new ItemStack(ItemRegistry.fuelCanister), new ItemStack(ItemRegistry.fuelCanisterEmpty), new FluidStack(FluidRegistry.diesel, 1000));
+        DistilleryRecipes.addRecipe(new ItemStack(ItemRegistry.material, 1, ItemMaterial.Materials.PLASTIC.ordinal()), new ItemStack(BlockRegistry.oilSand), new FluidStack(FluidRegistry.diesel, 1000), 50, 200);
+        DistilleryRecipes.addFillingRecipe(new ItemStack(ItemRegistry.material, 2, ItemMaterial.Materials.FUEL_CANISTER_FULL.ordinal()), new ItemStack(ItemRegistry.material, 2, ItemMaterial.Materials.FUEL_CANISTER_EMPTY.ordinal()), new FluidStack(FluidRegistry.diesel, 1000));
     }
 
     private static void initCrafterRecipes(){

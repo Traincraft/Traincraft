@@ -9,7 +9,10 @@ public class ItemMaterial extends ItemSubtypeBase{
     public enum Materials{
 
         GRAPHITE("Graphite"),
-        STEEL_INGOT("Steel");
+        STEEL_INGOT("Steel"),
+        PLASTIC("Plastic"),
+        FUEL_CANISTER_EMPTY("FuelCanisterEmpty"),
+        FUEL_CANISTER_FULL("FuelCanisterFull");
 
         public String name;
 
