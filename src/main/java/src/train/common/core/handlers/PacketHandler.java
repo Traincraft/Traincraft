@@ -27,7 +27,6 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 import src.train.common.Packet250CustomPayload;
 import src.train.common.api.AbstractTrains;
-import src.train.common.api.EntityRollingStock;
 import src.train.common.api.Locomotive;
 import src.train.common.entity.rollingStock.EntityTracksBuilder;
 import src.train.common.entity.zeppelin.AbstractZeppelin;
@@ -116,24 +115,6 @@ public class PacketHandler extends MessageToMessageCodec<FMLProxyPacket, Packet2
 					stack.getTagCompound().setInteger("currPage", page);
 					stack.getTagCompound().setInteger("currRecipe", recipe);
 				}
-			}
-		}
-		else if (packetIndex == 11) {
-			int entityID = data.readInt();
-			int rotationServer = data.readInt();
-			int realRotation = data.readInt();
-			boolean isInReverse = data.readBoolean();
-			int anglePitch = data.readInt();
-			int posY = data.readInt();
-			double posYD = ((double) posY / 1000000);
-			boolean shouldSetPosY = data.readBoolean();
-			Entity entity = this.getEntityByID(entityID, player);
-			if (entity instanceof EntityRollingStock) {
-				((EntityRollingStock) entity).rotationYawClient = rotationServer;
-				((EntityRollingStock) entity).rotationYawClientReal = realRotation;
-				((EntityRollingStock) entity).isClientInReverse = isInReverse;
-				((EntityRollingStock) entity).anglePitchClient = anglePitch;
-				((EntityRollingStock) entity).setYFromServer(posYD, shouldSetPosY);
 			}
 		}
 		else if (packetIndex == 12) {
@@ -325,38 +306,6 @@ public class PacketHandler extends MessageToMessageCodec<FMLProxyPacket, Packet2
 				dos.writeInt(tem.zCoord);
 				dos.writeUTF(tem.type);
 				dos.writeInt((int) (tem.bbHeight * 1000));
-			}
-		}
-		catch (IOException e) {
-			e.printStackTrace();
-		}
-		Packet250CustomPayload packet = new Packet250CustomPayload(Info.channel, bos.toByteArray());
-		packet.length = bos.size();
-		return packet;
-	}
-
-	/**
-	 * RollingStock rotation packet sent to client
-	 * 
-	 * @param entity
-	 * @param rotationYawServer
-	 * @param realRotation
-	 * @param anglePitch
-	 * @return
-	 */
-	public static Packet setRotationPacket(Entity entity, float rotationYawServer, float realRotation, boolean isInReverse, float anglePitch, double posY, boolean shouldSetPosY) {
-		ByteArrayOutputStream bos = new ByteArrayOutputStream();
-		DataOutputStream dos = new DataOutputStream(bos);
-		try {
-			if (entity != null && entity instanceof EntityRollingStock) {
-				dos.writeInt(11);
-				dos.writeInt(entity.getEntityId());
-				dos.writeInt((int) rotationYawServer);
-				dos.writeInt((int) realRotation);
-				dos.writeBoolean(isInReverse);
-				dos.writeInt((int) anglePitch);
-				dos.writeInt((int) (posY * 1000000));
-				dos.writeBoolean(shouldSetPosY);
 			}
 		}
 		catch (IOException e) {

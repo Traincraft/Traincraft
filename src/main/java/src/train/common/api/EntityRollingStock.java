@@ -1,11 +1,10 @@
 package src.train.common.api;
 
-import com.mojang.authlib.GameProfile;
-import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import static mods.railcraft.api.tracks.RailTools.isRailBlockAt;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.api.carts.ILinkableCart;
 import mods.railcraft.api.core.items.IToolCrowbar;
@@ -18,8 +17,20 @@ import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityMinecart;
-import net.minecraft.entity.monster.*;
-import net.minecraft.entity.passive.*;
+import net.minecraft.entity.monster.EntityCreeper;
+import net.minecraft.entity.monster.EntityEnderman;
+import net.minecraft.entity.monster.EntityGiantZombie;
+import net.minecraft.entity.monster.EntityIronGolem;
+import net.minecraft.entity.monster.EntityPigZombie;
+import net.minecraft.entity.monster.EntitySkeleton;
+import net.minecraft.entity.monster.EntitySlime;
+import net.minecraft.entity.monster.EntitySpider;
+import net.minecraft.entity.monster.EntityZombie;
+import net.minecraft.entity.passive.EntityChicken;
+import net.minecraft.entity.passive.EntityCow;
+import net.minecraft.entity.passive.EntityMooshroom;
+import net.minecraft.entity.passive.EntityPig;
+import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemDye;
@@ -27,19 +38,32 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.*;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.minecart.MinecartCollisionEvent;
 import net.minecraftforge.event.entity.minecart.MinecartInteractEvent;
 import net.minecraftforge.event.entity.minecart.MinecartUpdateEvent;
+
 import org.lwjgl.input.Keyboard;
+
 import src.train.client.core.handlers.SoundUpdaterRollingStock;
 import src.train.common.Traincraft;
 import src.train.common.core.HandleOverheating;
-import src.train.common.core.handlers.*;
+import src.train.common.core.handlers.CollisionHandler;
+import src.train.common.core.handlers.ConfigHandler;
+import src.train.common.core.handlers.FuelHandler;
+import src.train.common.core.handlers.LinkHandler;
+import src.train.common.core.handlers.TrainHandler;
+import src.train.common.core.handlers.TrainsDamageSource;
 import src.train.common.core.network.PacketKeyPress;
+import src.train.common.core.network.PacketRollingStockRotation;
 import src.train.common.entity.rollingStock.EntityStockCar;
 import src.train.common.entity.rollingStock.EntityTracksBuilder;
 import src.train.common.items.ItemTCRail;
@@ -49,10 +73,14 @@ import src.train.common.library.EnumTrains;
 import src.train.common.tile.TileTCRail;
 import src.train.common.tile.TileTCRailGag;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.mojang.authlib.GameProfile;
 
-import static mods.railcraft.api.tracks.RailTools.isRailBlockAt;
+import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
+import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityRollingStock extends AbstractTrains implements ILinkableCart {
 	public int fuelTrain;
@@ -961,9 +989,10 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		}
 
 		if (shouldServerSetPosYOnClient || (previousServerRealRotation2 != serverRealRotation) || (rotationYaw != prevRotationYaw) || (anglePitch != prevAnglePitch)) {
-			//TODO Packets
-			// PacketHandler.sendPacketToClients(PacketHandler.setRotationPacket(this, rotationYaw, serverRealRotation, isServerInReverse, anglePitch * 60, posY, shouldServerSetPosYOnClient), worldObj, (int) posX, (int) posY, (int) posZ, 300D);
+
+			Traincraft.modChannel.sendToAllAround(new PacketRollingStockRotation(this, (int) (anglePitch * 60), shouldServerSetPosYOnClient), new TargetPoint(worldObj.provider.dimensionId, posX, posY, posZ, 300.0D));
 		}
+
 		this.prevAnglePitch = anglePitch;
 		previousServerRealRotation2 = serverRealRotation;
 
