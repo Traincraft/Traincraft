@@ -7,7 +7,7 @@ import net.minecraft.inventory.Container;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import si.meansoft.traincraft.TraincraftResources;
-import si.meansoft.traincraft.tileEntities.crafter.TileEntityCrafterBase;
+import si.meansoft.traincraft.tile.crafter.TileEntityCrafterBase;
 
 /**
  * @author canitzp

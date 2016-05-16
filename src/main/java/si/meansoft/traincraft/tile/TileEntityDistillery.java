@@ -1,4 +1,4 @@
-package si.meansoft.traincraft.tileEntities;
+package si.meansoft.traincraft.tile;
 
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.IBlockState;

@@ -1,4 +1,4 @@
-package si.meansoft.traincraft.tileEntities.crafter;
+package si.meansoft.traincraft.tile.crafter;
 
 import si.meansoft.traincraft.blocks.BlockCrafter;
 

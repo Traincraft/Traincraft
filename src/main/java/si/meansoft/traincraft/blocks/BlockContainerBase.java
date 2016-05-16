@@ -37,11 +37,6 @@ public class BlockContainerBase extends BlockBase implements ITileEntityProvider
         this.tileClass = tileClass;
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
     }
-    //TODO Find a better way to initialize the TESR so that it can be @SideOnly'd
-    public BlockContainerBase(Material materialIn, String name, Class<? extends TileEntity> tileClass, TileEntitySpecialRenderer specialRenderer){
-        this(materialIn, name, tileClass);
-        CommonProxy.addOBJRender(tileClass, specialRenderer);
-    }
 
     public BlockContainerBase addGuiContainer(int id, Class<? extends GuiContainer> gui, Class<? extends Container> con){
         GuiHandler.addGuiContainerDepend(id, gui, con);

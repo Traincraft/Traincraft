@@ -2,7 +2,7 @@ package si.meansoft.traincraft.api.recipes;
 
 import net.minecraft.item.ItemStack;
 import si.meansoft.traincraft.Util;
-import si.meansoft.traincraft.tileEntities.crafter.TileEntityCrafterBase;
+import si.meansoft.traincraft.tile.crafter.TileEntityCrafterBase;
 
 import java.util.HashMap;
 
@@ -97,8 +97,7 @@ public class CrafterRecipes{
             if(obj instanceof Recipe){
                 Recipe rh = (Recipe)obj;
                 for(int i = 0; i < this.inputs.length; i++){
-                    //TODO This might have to be areItemsEqual, as we don't want to check for stacksize?
-                    if(!ItemStack.areItemStacksEqual(rh.inputs[i], this.inputs[i])){
+                    if(!ItemStack.areItemsEqual(rh.inputs[i], this.inputs[i])){
                         return false;
                     }
                 }

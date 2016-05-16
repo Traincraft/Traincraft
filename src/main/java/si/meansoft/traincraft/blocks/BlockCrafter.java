@@ -4,10 +4,10 @@ import net.minecraft.block.material.Material;
 import si.meansoft.traincraft.container.ContainerCrafter;
 import si.meansoft.traincraft.client.gui.GuiCrafter;
 import si.meansoft.traincraft.network.GuiHandler;
-import si.meansoft.traincraft.tileEntities.crafter.TileEntityCrafterBase;
-import si.meansoft.traincraft.tileEntities.crafter.TileEntityCrafterDiesel;
-import si.meansoft.traincraft.tileEntities.crafter.TileEntityCrafterElectro;
-import si.meansoft.traincraft.tileEntities.crafter.TileEntityCrafterSteam;
+import si.meansoft.traincraft.tile.crafter.TileEntityCrafterBase;
+import si.meansoft.traincraft.tile.crafter.TileEntityCrafterDiesel;
+import si.meansoft.traincraft.tile.crafter.TileEntityCrafterElectro;
+import si.meansoft.traincraft.tile.crafter.TileEntityCrafterSteam;
 
 /**
  * @author canitzp

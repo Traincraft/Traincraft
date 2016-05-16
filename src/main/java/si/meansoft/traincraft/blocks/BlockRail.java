@@ -6,6 +6,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -16,7 +17,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import si.meansoft.traincraft.Traincraft;
 import si.meansoft.traincraft.Util;
 import si.meansoft.traincraft.network.CommonProxy;
-import si.meansoft.traincraft.tileEntities.TileEntityRail;
+import si.meansoft.traincraft.tile.TileEntityRail;
 
 /**
  * @author canitzp
@@ -52,6 +53,11 @@ public class BlockRail extends BlockBase implements ITileEntityProvider{
     @Override
     public boolean isOpaqueCube(IBlockState state){
         return false;
+    }
+
+    @Override
+    public EnumBlockRenderType getRenderType(IBlockState state){
+        return EnumBlockRenderType.MODEL;
     }
 
     @Override

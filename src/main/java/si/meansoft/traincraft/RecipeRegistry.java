@@ -18,6 +18,7 @@ public class RecipeRegistry {
         initShapeless();
         initDistillRecipes();
         initCrafterRecipes();
+        initHearthFurnaceRecipes();
     }
 
     private static void initShaped(){
@@ -39,7 +40,7 @@ public class RecipeRegistry {
     }
 
     private static void initHearthFurnaceRecipes(){
-        HearthFurnaceRecipes.addRecipe(new ItemStack(ItemRegistry.material, 1, 0), new ItemStack(Items.IRON_INGOT), new ItemStack(ItemRegistry.material, 1, 1), 1200);
+        HearthFurnaceRecipes.addRecipe(new ItemStack(ItemRegistry.material, 1, ItemMaterial.Materials.GRAPHITE.ordinal()), new ItemStack(Items.IRON_INGOT), new ItemStack(ItemRegistry.material, 1, ItemMaterial.Materials.STEEL_INGOT.ordinal()), 1200);
 
     }
 

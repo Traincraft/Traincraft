@@ -1,4 +1,4 @@
-package si.meansoft.traincraft.tileEntities;
+package si.meansoft.traincraft.tile;
 
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.IBakedModel;
@@ -8,8 +8,8 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import org.lwjgl.opengl.GL11;
 import si.meansoft.traincraft.Util;
-import si.meansoft.traincraft.tileEntities.TileEntityBase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,8 +67,11 @@ public class TileEntityRail extends TileEntityBase{
         public void renderTileEntityAt(TileEntityRail te, double x, double y, double z, float partialTicks, int destroyStage){
             GlStateManager.pushAttrib();
             GlStateManager.pushMatrix();
-            GlStateManager.translate(x, y, z);
-            GlStateManager.disableRescaleNormal();
+            GlStateManager.enableRescaleNormal();
+            GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+            GlStateManager.enableBlend();
+            GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+            GlStateManager.translate(x + 0.5, y, z + 0.5);
             switch(te.rotation){
                 case EAST:{
                     GlStateManager.rotate(90, 0, 1, 0);
@@ -83,6 +86,7 @@ public class TileEntityRail extends TileEntityBase{
             }
             this.bakedModel = Util.renderObjectFile(this.bakedModel, modelLocation, te, 0, 0, 0);
             GlStateManager.popMatrix();
+            GlStateManager.disableBlend();
             GlStateManager.popAttrib();
         }
     }

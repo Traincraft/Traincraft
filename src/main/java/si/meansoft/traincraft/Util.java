@@ -59,22 +59,13 @@ public class Util {
     @SideOnly(Side.CLIENT)
     public static IBakedModel renderObjectFile(IBakedModel currentModel, ResourceLocation objLocation, TileEntity te, float xOffset, float yOffset, float zOffset){
         if(currentModel != null){
-            GlStateManager.pushMatrix();
-            GlStateManager.translate(0.5F + xOffset, 0 + yOffset, 0.5F + zOffset);
-            RenderHelper.disableStandardItemLighting();
+            GlStateManager.translate(-te.getPos().getX() + xOffset, -te.getPos().getY() + yOffset, -te.getPos().getZ() + zOffset);
             Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
-            if (Minecraft.isAmbientOcclusionEnabled()) {
-                GlStateManager.shadeModel(GL11.GL_SMOOTH);
-            } else {
-                GlStateManager.shadeModel(GL11.GL_FLAT);
-            }
-            GlStateManager.translate(-te.getPos().getX(), -te.getPos().getY(), -te.getPos().getZ());
             Tessellator tessy = Tessellator.getInstance();
             tessy.getBuffer().begin(GL11.GL_QUADS, DefaultVertexFormats.BLOCK);
             Minecraft.getMinecraft().getBlockRendererDispatcher().getBlockModelRenderer().renderModel(te.getWorld(), currentModel, te.getWorld().getBlockState(te.getPos()), te.getPos(), Tessellator.getInstance().getBuffer(), false);
             tessy.draw();
             RenderHelper.enableStandardItemLighting();
-            GlStateManager.popMatrix();
         } else {
             currentModel = getBakedModel(objLocation);
             if(currentModel != null){

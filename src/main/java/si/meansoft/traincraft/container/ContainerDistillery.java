@@ -6,7 +6,7 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityFurnace;
-import si.meansoft.traincraft.tileEntities.TileEntityDistillery;
+import si.meansoft.traincraft.tile.TileEntityDistillery;
 
 /**
  * @author canitzp
