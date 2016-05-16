@@ -64,11 +64,14 @@ public class TileEntityDistillery extends TileEntityInventory implements ITickab
     @Override
     public void update() {
         if(!this.worldObj.isRemote){
+            boolean wasBurning = this.isBurning();
+
             ItemStack input = this.getStackInSlot(0);
             ItemStack fuel = this.getStackInSlot(1);
             ItemStack output = this.getStackInSlot(4);
             DistilleryRecipes.RecipeHandler recipe = DistilleryRecipes.getRecipe(input);
 
+            //TODO Fix this breaking when reloading the world because the recipe doesn't get saved properly
             if(recipe != null){
                 //Burn
                 if((fuel != null || this.currentBurnStack != null || this.currentBurn > 0)){
@@ -135,7 +138,9 @@ public class TileEntityDistillery extends TileEntityInventory implements ITickab
                 }
             }
 
-            setState(this.isBurning(), BlockDistillery.ACTIVE, getWorld(), getPos());
+            if(wasBurning != this.isBurning()){
+                setState(this.isBurning(), BlockDistillery.ACTIVE, getWorld(), getPos());
+            }
 
             if(this.maxBurnTime != this.lastMaxBurnTime || this.maxCookTime != this.lastMaxCookTime || this.currentCookTime != this.lastCurrentCookTime || this.currentBurn != this.lastCurrentBurn){
                 this.lastCurrentBurn = this.currentBurn;
@@ -148,7 +153,6 @@ public class TileEntityDistillery extends TileEntityInventory implements ITickab
         }
     }
 
-    //TODO save current recipe instead of only the current burning stack
     @Override
     public void readFromNBT(NBTTagCompound compound, boolean isForSyncing) {
         super.readFromNBT(compound, isForSyncing);
@@ -156,11 +160,9 @@ public class TileEntityDistillery extends TileEntityInventory implements ITickab
         this.tank.readFromNBT(compound);
         this.currentCookTime = compound.getInteger("currentCookTime");
         this.currentBurn = compound.getInteger("currentBurnTime");
-        if(isForSyncing){
-            this.maxBurnTime = compound.getInteger("maxBurnTime");
-            this.maxCookTime = compound.getInteger("maxCookTime");
-        }
-        else if(this.isCooking()){
+        this.maxBurnTime = compound.getInteger("maxBurnTime");
+        this.maxCookTime = compound.getInteger("maxCookTime");
+        if(!isForSyncing && this.isCooking()){
             this.currentBurnStack = ItemStack.loadItemStackFromNBT(compound);
         }
     }
@@ -172,11 +174,9 @@ public class TileEntityDistillery extends TileEntityInventory implements ITickab
         this.tank.writeToNBT(compound);
         compound.setInteger("currentCookTime", this.currentCookTime);
         compound.setInteger("currentBurnTime", this.currentBurn);
-        if(isForSyncing){
-            compound.setInteger("maxBurnTime", this.maxBurnTime);
-            compound.setInteger("maxCookTime", this.maxCookTime);
-        }
-        else if(this.currentBurnStack != null){
+        compound.setInteger("maxBurnTime", this.maxBurnTime);
+        compound.setInteger("maxCookTime", this.maxCookTime);
+        if(!isForSyncing && this.currentBurnStack != null){
             this.currentBurnStack.writeToNBT(compound);
         }
     }
