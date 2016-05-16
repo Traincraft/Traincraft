@@ -78,7 +78,19 @@ public class Util {
     }
 
     @SideOnly(Side.CLIENT)
-    private static IBakedModel getBakedModel(ResourceLocation location){
+    public static void renderObjectFile(IBakedModel currentModel, TileEntity te){
+        if(currentModel != null){
+            GlStateManager.translate(-te.getPos().getX(), -te.getPos().getY(), -te.getPos().getZ());
+            Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
+            Tessellator tessy = Tessellator.getInstance();
+            tessy.getBuffer().begin(GL11.GL_QUADS, DefaultVertexFormats.BLOCK);
+            Minecraft.getMinecraft().getBlockRendererDispatcher().getBlockModelRenderer().renderModel(te.getWorld(), currentModel, te.getWorld().getBlockState(te.getPos()), te.getPos(), Tessellator.getInstance().getBuffer(), false);
+            tessy.draw();
+        }
+    }
+
+    @SideOnly(Side.CLIENT)
+    public static IBakedModel getBakedModel(ResourceLocation location){
         try{
             return ModelLoaderRegistry.getModel(location).bake(TRSRTransformation.identity(), DefaultVertexFormats.ITEM, new Function<ResourceLocation, TextureAtlasSprite>(){
                 @Nullable

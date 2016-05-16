@@ -15,6 +15,7 @@ import si.meansoft.traincraft.Traincraft;
 import si.meansoft.traincraft.TraincraftResources;
 import si.meansoft.traincraft.Util;
 import si.meansoft.traincraft.blocks.BlockRail;
+import si.meansoft.traincraft.network.ClientProxy;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,10 +31,12 @@ public class TileEntityRail extends TileEntityBase{
     public EnumFacing rotation = EnumFacing.NORTH;
     //isOn, xOffset, yoffset, zOffset, °x, °y, °z
     protected int[] glArguments = new int[]{1, 0, 0, 0, 0, 0, 0};
+    protected BlockRail.Rails railType;
 
     public void placeTrack(List<BlockPos> harvestPositions, EnumFacing rotation){
         this.harvestPositions = harvestPositions;
         this.rotation = rotation;
+        this.railType = ((BlockRail)worldObj.getBlockState(pos).getBlock()).railType;
     }
 
     public TileEntityRail renderOff(){
@@ -68,7 +71,7 @@ public class TileEntityRail extends TileEntityBase{
         compound.setTag("HarvestPositions", list);
 
         compound.setIntArray("glArgs", this.glArguments);
-
+        compound.setInteger("railType", this.railType.ordinal());
     }
 
     @Override
@@ -88,28 +91,18 @@ public class TileEntityRail extends TileEntityBase{
         }
 
         this.glArguments = compound.getIntArray("glArgs");
-
+        this.railType = BlockRail.Rails.values()[compound.getInteger("railType")];
     }
 
     @SideOnly(Side.CLIENT)
     public static class RailRenderer extends TileEntitySpecialRenderer<TileEntityRail>{
-        IBakedModel bakedModel;
-        ResourceLocation currentLoc;
         @Override
         public void renderTileEntityAt(TileEntityRail te, double x, double y, double z, float partialTicks, int destroyStage){
-            ResourceLocation newLoc = ((BlockRail)te.worldObj.getBlockState(te.pos).getBlock()).railResources;
-            if(currentLoc == null || newLoc != this.currentLoc){
-                this.bakedModel = null;
-                this.currentLoc = newLoc;
-            }
-            if(currentLoc != null && te.glArguments != null && te.glArguments[0] == 1){
+            if(te.glArguments != null && te.glArguments[0] != 0){
+                //ClientProxy.bakeAllModels();
                 GlStateManager.pushAttrib();
                 GlStateManager.pushMatrix();
-                //GlStateManager.enableRescaleNormal();
-                GlStateManager.disableLighting();
                 GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-                //GlStateManager.enableBlend();
-                //GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
                 GlStateManager.translate(x + 0.5, y, z + 0.5);
 
                 GlStateManager.rotate(te.glArguments[4], 1, 0, 0);
@@ -118,14 +111,33 @@ public class TileEntityRail extends TileEntityBase{
 
                 GlStateManager.translate(te.glArguments[1], te.glArguments[2], te.glArguments[3]);
 
-                this.bakedModel = Util.renderObjectFile(this.bakedModel, this.currentLoc, te, 0, 0, 0);
-                GlStateManager.enableLighting();
+                Util.renderObjectFile(ClientProxy.railModels.get(te.railType), te);
+
                 GlStateManager.popMatrix();
-                //GlStateManager.disableBlend();
                 GlStateManager.popAttrib();
+            }
+
+
+            /*
+            ResourceLocation newLoc = ((BlockRail)te.worldObj.getBlockState(te.pos).getBlock()).railResources;
+            if(currentLoc == null || newLoc != this.currentLoc){
+                this.bakedModel = null;
+                this.currentLoc = newLoc;
+            }
+            if(currentLoc != null && te.glArguments != null && te.glArguments[0] == 1){
+
+                //GlStateManager.enableRescaleNormal();
+                GlStateManager.disableLighting();
+
+                //GlStateManager.enableBlend();
+                //GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+
+                GlStateManager.enableLighting();
+
             } else {
                 te.syncToClient();
             }
+            */
         }
     }
 

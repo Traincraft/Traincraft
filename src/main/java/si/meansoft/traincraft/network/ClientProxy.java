@@ -10,6 +10,7 @@ package si.meansoft.traincraft.network;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.ItemMeshDefinition;
+import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -24,10 +25,16 @@ import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import si.meansoft.traincraft.FluidRegistry;
 import si.meansoft.traincraft.Traincraft;
+import si.meansoft.traincraft.Util;
+import si.meansoft.traincraft.blocks.BlockRail;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class ClientProxy extends CommonProxy {
+
+    public static HashMap<BlockRail.Rails, IBakedModel> railModels = new HashMap<>();
+    private static boolean hasBaked = false;
 
     @Override
     public void preInit(FMLPreInitializationEvent event) {
@@ -64,6 +71,16 @@ public class ClientProxy extends CommonProxy {
         ModelLoader.registerItemVariants(item);
         ModelLoader.setCustomMeshDefinition(item, mesh);
         ModelLoader.setCustomStateMapper(block, mapper);
+    }
+
+    public static void bakeAllModels(){
+        if(!hasBaked){
+            System.out.println("bake");
+            for(BlockRail.Rails rail : BlockRail.Rails.values()){
+                railModels.put(rail, Util.getBakedModel(rail.location));
+            }
+            hasBaked = true;
+        }
     }
 
 }

@@ -15,8 +15,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import si.meansoft.traincraft.Traincraft;
-import si.meansoft.traincraft.TraincraftResources;
 import si.meansoft.traincraft.Util;
+import si.meansoft.traincraft.network.ClientProxy;
 import si.meansoft.traincraft.network.CommonProxy;
 import si.meansoft.traincraft.tile.TileEntityRail;
 
@@ -28,20 +28,20 @@ public class BlockRail extends BlockBase implements ITileEntityProvider{
     public TrackLength length;
     public TrackDirection direction;
     public String nameExtra;
-    public ResourceLocation railResources;
+    public Rails railType;
 
-    public BlockRail(String extraName, TrackLength length, TrackDirection direction, ResourceLocation railResources) {
+    public BlockRail(String extraName, TrackLength length, TrackDirection direction, Rails railType) {
         super(Material.IRON, "track" + Util.firstCharToUpperCase(length.name) + Util.firstCharToUpperCase(direction.name) + extraName);
         CommonProxy.addOBJRender(TileEntityRail.class, new TileEntityRail.RailRenderer());
         this.length = length;
         this.direction = direction;
         this.nameExtra = extraName;
-        this.railResources = railResources;
+        this.railType = railType;
         this.isBlockContainer = true;
     }
 
-    public BlockRail(TrackLength length, TrackDirection direction, ResourceLocation railResources) {
-        this("", length, direction, railResources);
+    public BlockRail(TrackLength length, TrackDirection direction, Rails railType) {
+        this("", length, direction, railType);
     }
 
     @Override
@@ -113,8 +113,12 @@ public class BlockRail extends BlockBase implements ITileEntityProvider{
         }
     }
     @SideOnly(Side.CLIENT)
-    public static class RailResources{
-        public static final ResourceLocation trackLongStraight = new ResourceLocation(Traincraft.MODID, "block/trackLongStraight.obj");
-        public static final ResourceLocation trackShortCurve = new ResourceLocation(Traincraft.MODID, "block/trackShortCurve.obj");
+    public enum Rails{
+        LONGSTRAIGHT(new ResourceLocation(Traincraft.MODID, "block/trackLongStraight.obj")),
+        SHORTCURVE(new ResourceLocation(Traincraft.MODID, "block/trackShortCurve.obj"));
+        public ResourceLocation location;
+        Rails(ResourceLocation location){
+            this.location = location;
+        }
     }
 }

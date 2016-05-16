@@ -6,9 +6,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import si.meansoft.traincraft.blocks.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * @author canitzp
  */
@@ -30,8 +27,8 @@ public class BlockRegistry {
         hearthFurnace = new BlockHearthFurnace();
         windmill = new BlockWindmill();
 
-        trackLongStraight = new BlockRail(BlockRail.TrackLength.LONG, BlockRail.TrackDirection.STRAIGHT, BlockRail.RailResources.trackLongStraight);
-        trackLongCurve = new BlockRail(BlockRail.TrackLength.SHORT, BlockRail.TrackDirection.CURVE, BlockRail.RailResources.trackShortCurve);
+        trackLongStraight = new BlockRail(BlockRail.TrackLength.LONG, BlockRail.TrackDirection.STRAIGHT, BlockRail.Rails.LONGSTRAIGHT);
+        trackLongCurve = new BlockRail(BlockRail.TrackLength.SHORT, BlockRail.TrackDirection.CURVE, BlockRail.Rails.SHORTCURVE);
     }
 
 }
