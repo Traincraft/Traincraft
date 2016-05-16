@@ -60,7 +60,7 @@ public class Traincraft {
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent evt) {
-        logger.info("[Traincraft] Start to Initializing");
+        logger.info("[Traincraft] Started Initializing");
         RecipeRegistry.init();
         proxy.init(evt);
         logger.info("[Traincraft] Finished Initializing");
@@ -68,7 +68,7 @@ public class Traincraft {
 
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent evt) {
-        logger.info("[Traincraft] Start to PostInitializing");
+        logger.info("[Traincraft] Started PostInitializing");
         proxy.postInit(evt);
         logger.info("[Traincraft] Now you can't stop the trains!");
     }
