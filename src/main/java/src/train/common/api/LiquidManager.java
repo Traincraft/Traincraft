@@ -33,8 +33,8 @@ public class LiquidManager {
 	public static Fluid honey;
 	public static Fluid juice;
 
-	public static final Fluid DIESEL = new Fluid("Diesel").setUnlocalizedName("diesel.name").setDensity(860);
-	public static final Fluid REFINED_FUEL = new Fluid("RefinedFuel").setDensity(820).setUnlocalizedName("refinedfuel.name");
+	public static final Fluid DIESEL = new Fluid("fuelDiesel").setUnlocalizedName("diesel.name").setDensity(860);
+	public static final Fluid REFINED_FUEL = new Fluid("fuel").setDensity(820).setUnlocalizedName("refinedfuel.name");
 
 	public static LiquidManager getInstance() {
 		if (instance == null) {

@@ -142,12 +142,19 @@ public class ItemHandler {
 			return block instanceof Block && !woodStuff(itemstack);
 		}
 		if (entity instanceof EntityFreightMinetrain) {
+
 			if (block != null) {
+
 				return block.isOpaqueCube();
-			} else {
+			}
+			else {
+
 				// TODO: Why there is this? NOTE: This wouldn't have been
 				// deadcode because the blocks nullness wasn't checked
+				// TODO NOTE #2: This IS dead code; the method called to return the given field "block" will ALWAYS return some sort of Block instance, be it "Block.air". The check that probably should be done here is likely not a null check, but probably rather a check on the TYPE of block.
+
 				if (itemstack.getItem().isDamaged(itemstack)) {
+
 					return false;
 				}
 			}
@@ -188,7 +195,7 @@ public class ItemHandler {
 
 	private static boolean cropStuff(ItemStack itemstack) {
 		String[] names = new String[] { "cropCorn", "cropHops", "cropRice",
-				"seedCorn" };
+		"seedCorn" };
 		for (String name: names) {
 			if (isDict(name, itemstack)) {
 				return true;
