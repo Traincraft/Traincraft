@@ -1,10 +1,10 @@
-package si.meansoft.traincraft.tileentities.crafter;
+package si.meansoft.traincraft.tileEntities.crafter;
 
 import net.minecraft.util.ITickable;
 import si.meansoft.traincraft.api.recipes.CrafterRecipes;
 import si.meansoft.traincraft.api.recipes.CrafterRecipes.Recipe;
 import si.meansoft.traincraft.blocks.BlockCrafter;
-import si.meansoft.traincraft.tileentities.TileEntityInventory;
+import si.meansoft.traincraft.tileEntities.TileEntityInventory;
 
 /**
  * @author canitzp

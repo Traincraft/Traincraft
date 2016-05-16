@@ -7,7 +7,7 @@ import net.minecraft.util.EnumFacing;
 import si.meansoft.traincraft.container.ContainerHearthFurnace;
 import si.meansoft.traincraft.client.gui.GuiHearthFurnace;
 import si.meansoft.traincraft.network.GuiHandler;
-import si.meansoft.traincraft.tileentities.TileEntityHearthFurnace;
+import si.meansoft.traincraft.tileEntities.TileEntityHearthFurnace;
 
 public class BlockHearthFurnace extends BlockContainerBase{
 

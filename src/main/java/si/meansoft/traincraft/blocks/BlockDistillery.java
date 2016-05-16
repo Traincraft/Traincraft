@@ -8,7 +8,7 @@ import net.minecraft.util.EnumFacing;
 import si.meansoft.traincraft.container.ContainerDistillery;
 import si.meansoft.traincraft.client.gui.GuiDistillery;
 import si.meansoft.traincraft.network.GuiHandler;
-import si.meansoft.traincraft.tileentities.TileEntityDistillery;
+import si.meansoft.traincraft.tileEntities.TileEntityDistillery;
 
 /**
  * @author canitzp

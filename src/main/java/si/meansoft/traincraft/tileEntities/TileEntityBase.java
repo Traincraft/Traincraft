@@ -1,4 +1,4 @@
-package si.meansoft.traincraft.tileentities;
+package si.meansoft.traincraft.tileEntities;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;

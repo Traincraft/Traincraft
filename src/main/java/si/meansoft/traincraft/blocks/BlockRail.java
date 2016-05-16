@@ -16,7 +16,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import si.meansoft.traincraft.Traincraft;
 import si.meansoft.traincraft.Util;
 import si.meansoft.traincraft.network.CommonProxy;
-import si.meansoft.traincraft.tileentities.TileEntityRail;
+import si.meansoft.traincraft.tileEntities.TileEntityRail;
 
 /**
  * @author canitzp

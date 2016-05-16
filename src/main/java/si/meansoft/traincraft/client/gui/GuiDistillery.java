@@ -9,7 +9,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidTank;
 import si.meansoft.traincraft.TraincraftResources;
-import si.meansoft.traincraft.tileentities.TileEntityDistillery;
+import si.meansoft.traincraft.tileEntities.TileEntityDistillery;
 
 /**
  * @author canitzp

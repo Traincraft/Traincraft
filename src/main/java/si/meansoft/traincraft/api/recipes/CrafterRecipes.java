@@ -2,7 +2,7 @@ package si.meansoft.traincraft.api.recipes;
 
 import net.minecraft.item.ItemStack;
 import si.meansoft.traincraft.Util;
-import si.meansoft.traincraft.tileentities.crafter.TileEntityCrafterBase;
+import si.meansoft.traincraft.tileEntities.crafter.TileEntityCrafterBase;
 
 import java.util.HashMap;
 

@@ -5,7 +5,7 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import si.meansoft.traincraft.tileentities.TileEntityHearthFurnace;
+import si.meansoft.traincraft.tileEntities.TileEntityHearthFurnace;
 
 /**
  * @author canitzp

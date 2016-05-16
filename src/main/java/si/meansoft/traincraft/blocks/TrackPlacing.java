@@ -7,7 +7,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import si.meansoft.traincraft.tileentities.TileEntityRail;
+import si.meansoft.traincraft.tileEntities.TileEntityRail;
 
 import java.util.ArrayList;
 import java.util.List;

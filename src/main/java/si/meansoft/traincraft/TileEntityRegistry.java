@@ -1,13 +1,13 @@
 package si.meansoft.traincraft;
 
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import si.meansoft.traincraft.tileentities.TileEntityHearthFurnace;
-import si.meansoft.traincraft.tileentities.TileEntityWindmill;
-import si.meansoft.traincraft.tileentities.crafter.TileEntityCrafterDiesel;
-import si.meansoft.traincraft.tileentities.TileEntityDistillery;
-import si.meansoft.traincraft.tileentities.TileEntityRail;
-import si.meansoft.traincraft.tileentities.crafter.TileEntityCrafterElectro;
-import si.meansoft.traincraft.tileentities.crafter.TileEntityCrafterSteam;
+import si.meansoft.traincraft.tileEntities.TileEntityDistillery;
+import si.meansoft.traincraft.tileEntities.TileEntityHearthFurnace;
+import si.meansoft.traincraft.tileEntities.TileEntityRail;
+import si.meansoft.traincraft.tileEntities.TileEntityWindmill;
+import si.meansoft.traincraft.tileEntities.crafter.TileEntityCrafterDiesel;
+import si.meansoft.traincraft.tileEntities.crafter.TileEntityCrafterElectro;
+import si.meansoft.traincraft.tileEntities.crafter.TileEntityCrafterSteam;
 
 /**
  * @author canitzp
