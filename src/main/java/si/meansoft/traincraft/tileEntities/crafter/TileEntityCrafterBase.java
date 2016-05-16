@@ -23,7 +23,7 @@ public abstract class TileEntityCrafterBase extends TileEntityInventory implemen
                 break;
             }
             case DIESEL:{
-                CrafterRecipes.RecipeHandlerDiesel recipeHandler = new CrafterRecipes.RecipeHandlerDiesel(getStackInSlot(16), getStackInSlot(17), getStackInSlot(18), getStackInSlot(19), getStackInSlot(20), getStackInSlot(21), getStackInSlot(22), getStackInSlot(23), getStackInSlot(24), getStackInSlot(25));
+                CrafterRecipes.Recipe recipeHandler = new CrafterRecipes.Recipe(getStackInSlot(16), getStackInSlot(17), getStackInSlot(18), getStackInSlot(19), getStackInSlot(20), getStackInSlot(21), getStackInSlot(22), getStackInSlot(23), getStackInSlot(24), getStackInSlot(25));
                 CrafterRecipes.craftDiesel(this, recipeHandler);
                 break;
             }
