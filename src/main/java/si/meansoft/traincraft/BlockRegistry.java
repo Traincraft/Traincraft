@@ -30,8 +30,8 @@ public class BlockRegistry {
         hearthFurnace = new BlockHearthFurnace();
         windmill = new BlockWindmill();
 
-        trackLongStraight = new BlockRail(BlockRail.TrackLength.LONG, BlockRail.TrackDirection.STRAIGHT);
-        trackLongCurve = new BlockRail(BlockRail.TrackLength.SHORT, BlockRail.TrackDirection.CURVE);
+        trackLongStraight = new BlockRail(BlockRail.TrackLength.LONG, BlockRail.TrackDirection.STRAIGHT, BlockRail.RailResources.trackLongStraight);
+        trackLongCurve = new BlockRail(BlockRail.TrackLength.SHORT, BlockRail.TrackDirection.CURVE, BlockRail.RailResources.trackShortCurve);
     }
 
 }

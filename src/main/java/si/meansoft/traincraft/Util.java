@@ -60,6 +60,7 @@ public class Util {
     @SideOnly(Side.CLIENT)
     public static IBakedModel renderObjectFile(IBakedModel currentModel, ResourceLocation objLocation, TileEntity te, float xOffset, float yOffset, float zOffset){
         if(currentModel != null){
+            RenderHelper.disableStandardItemLighting();
             GlStateManager.translate(-te.getPos().getX() + xOffset, -te.getPos().getY() + yOffset, -te.getPos().getZ() + zOffset);
             Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
             Tessellator tessy = Tessellator.getInstance();
@@ -79,8 +80,7 @@ public class Util {
     @SideOnly(Side.CLIENT)
     private static IBakedModel getBakedModel(ResourceLocation location){
         try{
-            IBakedModel model;
-            model = ModelLoaderRegistry.getModel(location).bake(TRSRTransformation.identity(), DefaultVertexFormats.ITEM, new Function<ResourceLocation, TextureAtlasSprite>(){
+            return ModelLoaderRegistry.getModel(location).bake(TRSRTransformation.identity(), DefaultVertexFormats.ITEM, new Function<ResourceLocation, TextureAtlasSprite>(){
                 @Nullable
                 @Override
                 public TextureAtlasSprite apply(@Nullable ResourceLocation input){
@@ -90,7 +90,6 @@ public class Util {
                     return null;
                 }
             });
-            return model;
         } catch(Exception e){
             e.printStackTrace();
         }

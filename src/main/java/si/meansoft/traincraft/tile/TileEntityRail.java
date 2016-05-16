@@ -28,14 +28,12 @@ public class TileEntityRail extends TileEntityBase{
 
     public List<BlockPos> harvestPositions = new ArrayList<BlockPos>();
     public EnumFacing rotation = EnumFacing.NORTH;
-    public ResourceLocation objLoc;
     //isOn, xOffset, yoffset, zOffset, °x, °y, °z
-    public int[] glArguments = new int[]{1, 0, 0, 0, 0, 0, 0};
+    protected int[] glArguments = new int[]{1, 0, 0, 0, 0, 0, 0};
 
     public void placeTrack(List<BlockPos> harvestPositions, EnumFacing rotation){
         this.harvestPositions = harvestPositions;
         this.rotation = rotation;
-        this.objLoc = Util.getObjectLocationFromRail((BlockRail) worldObj.getBlockState(pos).getBlock());
     }
 
     public TileEntityRail renderOff(){
@@ -69,7 +67,6 @@ public class TileEntityRail extends TileEntityBase{
         }
         compound.setTag("HarvestPositions", list);
 
-        compound.setString("modelLocation", this.objLoc.getResourcePath());
         compound.setIntArray("glArgs", this.glArguments);
 
     }
@@ -90,21 +87,22 @@ public class TileEntityRail extends TileEntityBase{
             }
         }
 
-        this.objLoc = new ResourceLocation(Traincraft.MODID, compound.getString("modelLocation"));
         this.glArguments = compound.getIntArray("glArgs");
 
     }
 
+    @SideOnly(Side.CLIENT)
     public static class RailRenderer extends TileEntitySpecialRenderer<TileEntityRail>{
         IBakedModel bakedModel;
         ResourceLocation currentLoc;
         @Override
         public void renderTileEntityAt(TileEntityRail te, double x, double y, double z, float partialTicks, int destroyStage){
-            if(currentLoc == null || te.objLoc != this.currentLoc){
+            ResourceLocation newLoc = ((BlockRail)te.worldObj.getBlockState(te.pos).getBlock()).railResources;
+            if(currentLoc == null || newLoc != this.currentLoc){
                 this.bakedModel = null;
-                this.currentLoc = te.objLoc;
+                this.currentLoc = newLoc;
             }
-            if(te.objLoc != null && te.glArguments != null && te.glArguments.length == 7 && te.glArguments[0] == 1){
+            if(currentLoc != null && te.glArguments != null && te.glArguments[0] == 1){
                 GlStateManager.pushAttrib();
                 GlStateManager.pushMatrix();
                 //GlStateManager.enableRescaleNormal();
@@ -120,21 +118,6 @@ public class TileEntityRail extends TileEntityBase{
 
                 GlStateManager.translate(te.glArguments[1], te.glArguments[2], te.glArguments[3]);
 
-
-                /*
-                switch(te.rotation){
-                    case EAST:{
-                        GlStateManager.rotate(90, 0, 1, 0);
-                        GlStateManager.translate(-1, 0, 0);
-                        break;
-                    }
-                    case WEST:{
-                        GlStateManager.rotate(-90, 0, 1, 0);
-                        GlStateManager.translate(0, 0, -1);
-                        break;
-                    }
-                }
-                */
                 this.bakedModel = Util.renderObjectFile(this.bakedModel, this.currentLoc, te, 0, 0, 0);
                 GlStateManager.enableLighting();
                 GlStateManager.popMatrix();

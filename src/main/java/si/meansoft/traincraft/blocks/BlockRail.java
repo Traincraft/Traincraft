@@ -28,18 +28,20 @@ public class BlockRail extends BlockBase implements ITileEntityProvider{
     public TrackLength length;
     public TrackDirection direction;
     public String nameExtra;
+    public ResourceLocation railResources;
 
-    public BlockRail(String extraName, TrackLength length, TrackDirection direction) {
+    public BlockRail(String extraName, TrackLength length, TrackDirection direction, ResourceLocation railResources) {
         super(Material.IRON, "track" + Util.firstCharToUpperCase(length.name) + Util.firstCharToUpperCase(direction.name) + extraName);
         CommonProxy.addOBJRender(TileEntityRail.class, new TileEntityRail.RailRenderer());
         this.length = length;
         this.direction = direction;
         this.nameExtra = extraName;
+        this.railResources = railResources;
         this.isBlockContainer = true;
     }
 
-    public BlockRail(TrackLength length, TrackDirection direction) {
-        this("", length, direction);
+    public BlockRail(TrackLength length, TrackDirection direction, ResourceLocation railResources) {
+        this("", length, direction, railResources);
     }
 
     @Override
@@ -109,5 +111,10 @@ public class BlockRail extends BlockBase implements ITileEntityProvider{
             this.name = name;
             this.lenght = length;
         }
+    }
+    @SideOnly(Side.CLIENT)
+    public static class RailResources{
+        public static final ResourceLocation trackLongStraight = new ResourceLocation(Traincraft.MODID, "block/trackLongStraight.obj");
+        public static final ResourceLocation trackShortCurve = new ResourceLocation(Traincraft.MODID, "block/trackShortCurve.obj");
     }
 }
