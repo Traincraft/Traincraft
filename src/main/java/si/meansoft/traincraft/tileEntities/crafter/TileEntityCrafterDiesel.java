@@ -1,7 +1,6 @@
-package si.meansoft.traincraft.tileEntities.crafter;
+package si.meansoft.traincraft.tileentities.crafter;
 
 import si.meansoft.traincraft.blocks.BlockCrafter;
-import si.meansoft.traincraft.tileEntities.crafter.TileEntityCrafterBase;
 
 public class TileEntityCrafterDiesel extends TileEntityCrafterBase{
 

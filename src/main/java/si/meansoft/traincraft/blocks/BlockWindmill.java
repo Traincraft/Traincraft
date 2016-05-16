@@ -12,7 +12,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import si.meansoft.traincraft.network.CommonProxy;
-import si.meansoft.traincraft.tileEntities.TileEntityWindmill;
+import si.meansoft.traincraft.tileentities.TileEntityWindmill;
 
 /**
  * @author canitzp

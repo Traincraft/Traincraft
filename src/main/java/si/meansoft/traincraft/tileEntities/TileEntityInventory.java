@@ -1,4 +1,4 @@
-package si.meansoft.traincraft.tileEntities;
+package si.meansoft.traincraft.tileentities;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;

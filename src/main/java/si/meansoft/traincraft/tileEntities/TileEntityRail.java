@@ -1,4 +1,4 @@
-package si.meansoft.traincraft.tileEntities;
+package si.meansoft.traincraft.tileentities;
 
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.IBakedModel;

@@ -1,4 +1,4 @@
-package si.meansoft.traincraft.tileEntities;
+package si.meansoft.traincraft.tileentities;
 
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.IBakedModel;
@@ -7,7 +7,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.ResourceLocation;
-import org.lwjgl.opengl.GL11;
 import si.meansoft.traincraft.TraincraftResources;
 import si.meansoft.traincraft.Util;
 
