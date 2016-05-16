@@ -35,7 +35,7 @@ public class ItemSubtypeBase extends ItemBase{
     @Override
     public String getUnlocalizedName(ItemStack stack){
         if(stack.getItemDamage() >= this.subtypes.getEnumConstants().length){
-            return Util.BUGGED_ITEM_NAME;
+            return "uwotm8";
         }
         else{
             return this.getUnlocalizedName()+this.subtypes.getEnumConstants()[stack.getItemDamage()].toString();

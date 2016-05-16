@@ -37,8 +37,6 @@ import javax.annotation.Nullable;
  */
 public class Util {
 
-    public static final String BUGGED_ITEM_NAME = "uwotm8";
-
     public static void sendTilePacketToAllAround(TileEntity tile){
         for(EntityPlayer player : tile.getWorld().playerEntities){
             if(player instanceof EntityPlayerMP){
@@ -94,7 +92,10 @@ public class Util {
                 @Nullable
                 @Override
                 public TextureAtlasSprite apply(@Nullable ResourceLocation input){
-                    return Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(input.toString());
+                    if(input != null){
+                        return Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(input.toString());
+                    }
+                    return null;
                 }
             });
             return model;

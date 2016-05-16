@@ -21,7 +21,7 @@ public class GuiHandler implements IGuiHandler {
     public static HashMap<Integer, Pair<Class<? extends GuiContainer>, Class<? extends Container>>> guiConMap = new HashMap<Integer, Pair<Class<? extends GuiContainer>, Class<? extends Container>>>();
 
     public static void addGuiContainerDepend(int id, Class<? extends GuiContainer> gui, Class<? extends Container> container){
-        guiConMap.put(id, Pair.<Class<? extends GuiContainer>, Class<? extends Container>>of(gui, container));
+        guiConMap.put(id, Pair.of(gui, container));
     }
 
     public static GuiContainer getGui(int id, EntityPlayer player, TileEntity tile){
