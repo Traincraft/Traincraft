@@ -8,23 +8,53 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.opengl.GL11;
+import si.meansoft.traincraft.Traincraft;
+import si.meansoft.traincraft.TraincraftResources;
 import si.meansoft.traincraft.Util;
+import si.meansoft.traincraft.blocks.BlockRail;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
  * @author canitzp
  */
+//TODO Ellpeck the save/read method isn't working for harvest positions
 public class TileEntityRail extends TileEntityBase{
 
     public List<BlockPos> harvestPositions = new ArrayList<BlockPos>();
     public EnumFacing rotation = EnumFacing.NORTH;
+    public ResourceLocation objLoc;
+    //isOn, xOffset, yoffset, zOffset, °x, °y, °z
+    public int[] glArguments = new int[]{1, 0, 0, 0, 0, 0, 0};
 
     public void placeTrack(List<BlockPos> harvestPositions, EnumFacing rotation){
         this.harvestPositions = harvestPositions;
         this.rotation = rotation;
+        this.objLoc = Util.getObjectLocationFromRail((BlockRail) worldObj.getBlockState(pos).getBlock());
+    }
+
+    public TileEntityRail renderOff(){
+        this.glArguments[0] = 0;
+        return this;
+    }
+
+    public TileEntityRail renderTranslate(int x, int y, int z){
+        this.glArguments[1] = x;
+        this.glArguments[2] = y;
+        this.glArguments[3] = z;
+        return this;
+    }
+
+    public TileEntityRail renderRotate(int x, int y, int z){
+        this.glArguments[4] = x;
+        this.glArguments[5] = y;
+        this.glArguments[6] = z;
+        return this;
     }
 
     @Override
@@ -38,6 +68,10 @@ public class TileEntityRail extends TileEntityBase{
             tag.setIntArray("Coords", new int[]{pos.getX(), pos.getY(), pos.getZ()});
         }
         compound.setTag("HarvestPositions", list);
+
+        compound.setString("modelLocation", this.objLoc.getResourcePath());
+        compound.setIntArray("glArgs", this.glArguments);
+
     }
 
     @Override
@@ -55,40 +89,60 @@ public class TileEntityRail extends TileEntityBase{
                 this.harvestPositions.add(pos);
             }
         }
+
+        this.objLoc = new ResourceLocation(Traincraft.MODID, compound.getString("modelLocation"));
+        this.glArguments = compound.getIntArray("glArgs");
+
     }
 
     public static class RailRenderer extends TileEntitySpecialRenderer<TileEntityRail>{
         IBakedModel bakedModel;
-        ResourceLocation modelLocation;
-        public RailRenderer(ResourceLocation modelLocation){
-            this.modelLocation = modelLocation;
-        }
+        ResourceLocation currentLoc;
         @Override
         public void renderTileEntityAt(TileEntityRail te, double x, double y, double z, float partialTicks, int destroyStage){
-            GlStateManager.pushAttrib();
-            GlStateManager.pushMatrix();
-            GlStateManager.enableRescaleNormal();
-            GlStateManager.disableLighting();
-            GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-            GlStateManager.enableBlend();
-            GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-            GlStateManager.translate(x + 0.5, y, z + 0.5);
-            switch(te.rotation){
-                case EAST:{
-                    GlStateManager.rotate(90, 0, 1, 0);
-                    GlStateManager.translate(-1, 0, 0);
-                    break;
-                }
-                case WEST:{
-                    GlStateManager.rotate(-90, 0, 1, 0);
-                    GlStateManager.translate(0, 0, -1);
-                    break;
-                }
+            if(currentLoc == null || te.objLoc != this.currentLoc){
+                this.bakedModel = null;
+                this.currentLoc = te.objLoc;
             }
-            this.bakedModel = Util.renderObjectFile(this.bakedModel, modelLocation, te, 0, 0, 0);
-            GlStateManager.popMatrix();
-            GlStateManager.disableBlend();
-            GlStateManager.popAttrib();
+            if(te.objLoc != null && te.glArguments != null && te.glArguments.length == 7 && te.glArguments[0] == 1){
+                GlStateManager.pushAttrib();
+                GlStateManager.pushMatrix();
+                //GlStateManager.enableRescaleNormal();
+                GlStateManager.disableLighting();
+                GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+                //GlStateManager.enableBlend();
+                //GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+                GlStateManager.translate(x + 0.5, y, z + 0.5);
+
+                GlStateManager.rotate(te.glArguments[4], 1, 0, 0);
+                GlStateManager.rotate(te.glArguments[5], 0, 1, 0);
+                GlStateManager.rotate(te.glArguments[6], 0, 0, 1);
+
+                GlStateManager.translate(te.glArguments[1], te.glArguments[2], te.glArguments[3]);
+
+
+                /*
+                switch(te.rotation){
+                    case EAST:{
+                        GlStateManager.rotate(90, 0, 1, 0);
+                        GlStateManager.translate(-1, 0, 0);
+                        break;
+                    }
+                    case WEST:{
+                        GlStateManager.rotate(-90, 0, 1, 0);
+                        GlStateManager.translate(0, 0, -1);
+                        break;
+                    }
+                }
+                */
+                this.bakedModel = Util.renderObjectFile(this.bakedModel, this.currentLoc, te, 0, 0, 0);
+                GlStateManager.enableLighting();
+                GlStateManager.popMatrix();
+                //GlStateManager.disableBlend();
+                GlStateManager.popAttrib();
+            } else {
+                te.syncToClient();
+            }
         }
     }
 

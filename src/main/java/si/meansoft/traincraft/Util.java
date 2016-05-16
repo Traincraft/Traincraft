@@ -29,6 +29,7 @@ import net.minecraftforge.common.model.TRSRTransformation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.opengl.GL11;
+import si.meansoft.traincraft.blocks.BlockRail;
 
 import javax.annotation.Nullable;
 
@@ -107,6 +108,10 @@ public class Util {
             return toDecrease;
         }
         return toDecrease == null ? decreaseValue : null;
+    }
+
+    public static ResourceLocation getObjectLocationFromRail(BlockRail block){
+        return block != null ? new ResourceLocation(Traincraft.MODID, "block/" + "track" + firstCharToUpperCase(block.length.name) + firstCharToUpperCase(block.direction.name) + block.nameExtra + ".obj") : null;
     }
 
 }

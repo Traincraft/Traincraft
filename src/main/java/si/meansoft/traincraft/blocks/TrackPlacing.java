@@ -17,14 +17,21 @@ import java.util.List;
  */
 public class TrackPlacing {
 
-    public static void placeTrack(World world, EntityPlayer player, BlockPos pos, IBlockState state, BlockRail.TrackLength length, BlockRail.TrackDirection direction){
+    public static void placeTrack(World world, EntityPlayer player, BlockPos pos, IBlockState state, float hitX, float hitY, float hitZ, BlockRail.TrackLength length, BlockRail.TrackDirection direction){
         EnumFacing facing = player.getHorizontalFacing();
-        //world.setBlockState(pos, state, 2);
         switch(direction){
             case STRAIGHT:{
                 if(canPlaceStraightTrack(world, pos, length, facing)){
                     placeStraight(world, player, pos, state, length, facing);
                 }
+                break;
+            }
+            case CURVE:{
+                CurveDirection curveDirection = getCurveDirection(facing, hitX, hitZ);
+                //if(canPlaceCurve(world, player, pos, length, facing, curveDirection)){
+                    placeCurved(world, player, pos, state, length, facing, curveDirection);
+                //}
+                break;
             }
         }
     }
@@ -108,6 +115,7 @@ public class TrackPlacing {
                     TileEntityRail te = (TileEntityRail) world.getTileEntity(setPos);
                     if(te != null){
                         te.placeTrack(posList, facing);
+                        te.renderRotate(0, 90, 0);
                     }
                 }
                 break;
@@ -136,9 +144,163 @@ public class TrackPlacing {
                     TileEntityRail te = (TileEntityRail) world.getTileEntity(setPos);
                     if(te != null){
                         te.placeTrack(posList, facing);
+                        te.renderRotate(0, 90, 0);
+                        te.renderTranslate(0, 0, 0);
                     }
                 }
                 break;
+            }
+        }
+    }
+
+    public static CurveDirection getCurveDirection(EnumFacing facing, float hitX, float hitZ){
+        switch(facing){
+            case NORTH: return hitX < 0.5 ? CurveDirection.LEFT : CurveDirection.RIGHT;
+            case EAST: return hitZ < 0.5 ? CurveDirection.LEFT : CurveDirection.RIGHT;
+            case SOUTH: return hitX > 0.5 ? CurveDirection.LEFT : CurveDirection.RIGHT;
+            case WEST: return hitZ > 0.5 ? CurveDirection.LEFT : CurveDirection.RIGHT;
+        }
+        return CurveDirection.NONE;
+    }
+
+    public static boolean canPlaceCurve(World world, EntityPlayer player, BlockPos pos, BlockRail.TrackLength length, EnumFacing facing, CurveDirection curveDirection){
+        switch(curveDirection){
+            case RIGHT:{
+
+            }
+        }
+        return false;
+    }
+
+    public static void placeCurved(World world, EntityPlayer player, BlockPos pos, IBlockState state, BlockRail.TrackLength length, EnumFacing facing, CurveDirection direction){
+        switch(direction){
+            case RIGHT:{
+                switch(facing){
+                    case NORTH:{
+                        switch(length){
+                            case SHORT:{
+                                List<BlockPos> posList = new ArrayList<BlockPos>();
+                                posList.add(new BlockPos(pos.getX(), pos.getY(), pos.getZ()));
+                                posList.add(new BlockPos(pos.getX(), pos.getY(), pos.getZ() - 1));
+                                posList.add(new BlockPos(pos.getX() + 1, pos.getY(), pos.getZ() - 1));
+                                posList.add(new BlockPos(pos.getX() + 1, pos.getY(), pos.getZ() - 2));
+                                posList.add(new BlockPos(pos.getX() + 2, pos.getY(), pos.getZ() - 2));
+                                for(int i = 0; i < posList.size(); i++){
+                                    BlockPos setPos = posList.get(i);
+                                    world.setBlockState(setPos, state);
+                                    TileEntityRail te = (TileEntityRail) world.getTileEntity(setPos);
+                                    if(te != null){
+                                        te.placeTrack(posList, facing);
+                                        if(i == 0){
+                                            te.renderRotate(0, 90, 0);
+                                            te.renderTranslate(-1, 0, 3);
+                                        } else if(i == 4){
+                                            te.renderRotate(0, 90, 0);
+                                            te.renderTranslate(-3, 0, 1);
+                                        } else {
+                                            te.renderOff();
+                                        }
+
+                                    }
+                                }
+                                break;
+                            }
+                        }
+                        break;
+                    }
+                    case EAST:{
+                        switch(length){
+                            case SHORT:{
+                                List<BlockPos> posList = new ArrayList<BlockPos>();
+                                posList.add(new BlockPos(pos.getX(), pos.getY(), pos.getZ()));
+                                posList.add(new BlockPos(pos.getX() + 1, pos.getY(), pos.getZ()));
+                                posList.add(new BlockPos(pos.getX() + 1, pos.getY(), pos.getZ() + 1));
+                                posList.add(new BlockPos(pos.getX() + 2, pos.getY(), pos.getZ() + 1));
+                                posList.add(new BlockPos(pos.getX() + 2, pos.getY(), pos.getZ() + 2));
+                                for(int i = 0; i < posList.size(); i++){
+                                    BlockPos setPos = posList.get(i);
+                                    world.setBlockState(setPos, state);
+                                    TileEntityRail te = (TileEntityRail) world.getTileEntity(setPos);
+                                    if(te != null){
+                                        te.placeTrack(posList, facing);
+                                        if(i == 0){
+                                            te.renderTranslate(-1, 0, 3);
+                                        } else if(i == 4){
+                                            te.renderTranslate(-3, 0, 1);
+                                        } else {
+                                            te.renderOff();
+                                        }
+                                    }
+                                }
+                                break;
+                            }
+                        }
+                        break;
+                    }
+                    case SOUTH:{
+                        switch(length){
+                            case SHORT:{
+                                List<BlockPos> posList = new ArrayList<BlockPos>();
+                                posList.add(new BlockPos(pos.getX(), pos.getY(), pos.getZ()));
+                                posList.add(new BlockPos(pos.getX(), pos.getY(), pos.getZ() + 1));
+                                posList.add(new BlockPos(pos.getX() - 1, pos.getY(), pos.getZ() + 1));
+                                posList.add(new BlockPos(pos.getX() - 1, pos.getY(), pos.getZ() + 2));
+                                posList.add(new BlockPos(pos.getX() - 2, pos.getY(), pos.getZ() + 2));
+                                for(int i = 0; i < posList.size(); i++){
+                                    BlockPos setPos = posList.get(i);
+                                    world.setBlockState(setPos, state);
+                                    TileEntityRail te = (TileEntityRail) world.getTileEntity(setPos);
+                                    if(te != null){
+                                        te.placeTrack(posList, facing);
+                                        if(i == 0){
+                                            te.renderRotate(0, -90, 0);
+                                            te.renderTranslate(-1, 0, 3);
+                                        } else if(i == 4){
+                                            te.renderRotate(0, -90, 0);
+                                            te.renderTranslate(-3, 0, 1);
+                                        } else {
+                                            te.renderOff();
+                                        }
+
+                                    }
+                                }
+                                break;
+                            }
+                        }
+                        break;
+                    }
+                    case WEST:{
+                        switch(length){
+                            case SHORT:{
+                                List<BlockPos> posList = new ArrayList<BlockPos>();
+                                posList.add(new BlockPos(pos.getX(), pos.getY(), pos.getZ()));
+                                posList.add(new BlockPos(pos.getX() - 1, pos.getY(), pos.getZ()));
+                                posList.add(new BlockPos(pos.getX() - 1, pos.getY(), pos.getZ() - 1));
+                                posList.add(new BlockPos(pos.getX() - 2, pos.getY(), pos.getZ() - 1));
+                                posList.add(new BlockPos(pos.getX() - 2, pos.getY(), pos.getZ() - 2));
+                                for(int i = 0; i < posList.size(); i++){
+                                    BlockPos setPos = posList.get(i);
+                                    world.setBlockState(setPos, state);
+                                    TileEntityRail te = (TileEntityRail) world.getTileEntity(setPos);
+                                    if(te != null){
+                                        te.placeTrack(posList, facing);
+                                        if(i == 0){
+                                            te.renderRotate(0, 180, 0);
+                                            te.renderTranslate(-1, 0, 3);
+                                        } else if(i == 4){
+                                            te.renderRotate(0, 180, 0);
+                                            te.renderTranslate(-3, 0, 1);
+                                        } else {
+                                            te.renderOff();
+                                        }
+                                    }
+                                }
+                                break;
+                            }
+                        }
+                        break;
+                    }
+                }
             }
         }
     }
@@ -147,6 +309,12 @@ public class TrackPlacing {
         for(BlockPos pos1 : te.harvestPositions){
             world.setBlockToAir(pos1);
         }
+    }
+
+    private enum CurveDirection{
+        RIGHT,
+        LEFT,
+        NONE
     }
 
 }

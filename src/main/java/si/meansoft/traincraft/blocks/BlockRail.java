@@ -15,6 +15,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import si.meansoft.traincraft.Traincraft;
+import si.meansoft.traincraft.TraincraftResources;
 import si.meansoft.traincraft.Util;
 import si.meansoft.traincraft.network.CommonProxy;
 import si.meansoft.traincraft.tile.TileEntityRail;
@@ -26,12 +27,14 @@ public class BlockRail extends BlockBase implements ITileEntityProvider{
 
     public TrackLength length;
     public TrackDirection direction;
+    public String nameExtra;
 
     public BlockRail(String extraName, TrackLength length, TrackDirection direction) {
         super(Material.IRON, "track" + Util.firstCharToUpperCase(length.name) + Util.firstCharToUpperCase(direction.name) + extraName);
-        CommonProxy.addOBJRender(TileEntityRail.class, new TileEntityRail.RailRenderer(new ResourceLocation(Traincraft.MODID, "block/" + "track" + Util.firstCharToUpperCase(length.name) + Util.firstCharToUpperCase(direction.name) + extraName + ".obj")));
+        CommonProxy.addOBJRender(TileEntityRail.class, new TileEntityRail.RailRenderer());
         this.length = length;
         this.direction = direction;
+        this.nameExtra = extraName;
         this.isBlockContainer = true;
     }
 
@@ -63,9 +66,7 @@ public class BlockRail extends BlockBase implements ITileEntityProvider{
     @Override
     public IBlockState onBlockPlaced(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer){
         if(!world.isRemote){
-            if(TrackPlacing.canPlaceStraightTrack(world, pos, this.length, placer.getHorizontalFacing())){
-                TrackPlacing.placeTrack(world, (EntityPlayer) placer, pos, getDefaultState(), this.length, this.direction);
-            }
+            TrackPlacing.placeTrack(world, (EntityPlayer) placer, pos, getDefaultState(), hitX, hitY, hitZ, this.length, this.direction);
         }
         return null;
     }
@@ -91,8 +92,7 @@ public class BlockRail extends BlockBase implements ITileEntityProvider{
 
     public enum TrackDirection{
         STRAIGHT("straight"),
-        CURVE_RIGHT("curveRight"),
-        CURVE_LEFT("curveLeft"),
+        CURVE("curve"),
         SPECIAL("");
         public String name;
         TrackDirection(String name){

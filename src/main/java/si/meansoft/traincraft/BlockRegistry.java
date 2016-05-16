@@ -18,17 +18,20 @@ public class BlockRegistry {
     public static Block distillery, crafterSteam, crafterDiesel, crafterElectro;
     public static Block hearthFurnace;
     public static Block trackLongStraight;
+    public static Block trackLongCurve;
     public static Block windmill;
 
     public static void preInit(){
         oilSand = new BlockBase(Material.SAND, "oilSand").generateBlock(Blocks.SAND, 50, 80, 7, 11).addOreDict("oreOilSand").setHarvestLevel(BlockBase.ToolEnum.SHOVEL, 2).setSound(SoundType.SAND);
         distillery = new BlockDistillery();
-        trackLongStraight = new BlockRail(BlockRail.TrackLength.LONG, BlockRail.TrackDirection.STRAIGHT);
         crafterSteam = new BlockCrafter(BlockCrafter.CrafterTier.STEAM);
         crafterDiesel = new BlockCrafter(BlockCrafter.CrafterTier.DIESEL);
         crafterElectro = new BlockCrafter(BlockCrafter.CrafterTier.ELECTRO);
         hearthFurnace = new BlockHearthFurnace();
         windmill = new BlockWindmill();
+
+        trackLongStraight = new BlockRail(BlockRail.TrackLength.LONG, BlockRail.TrackDirection.STRAIGHT);
+        trackLongCurve = new BlockRail(BlockRail.TrackLength.SHORT, BlockRail.TrackDirection.CURVE);
     }
 
 }
