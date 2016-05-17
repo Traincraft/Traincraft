@@ -89,12 +89,7 @@ public class ItemHandler {
 			return true;
 		}
 		if (entity instanceof EntityFreightCartUS) {
-			if (!woodStuff(itemstack)) {
-				if (block !=null) {
-					return true;
-				}
-			}
-			return false;
+			return !woodStuff(itemstack);
 		}
 		if (entity instanceof EntityFreightCenterbeam_Empty) {
 			return true;
@@ -129,22 +124,14 @@ public class ItemHandler {
 			return cropStuff(itemstack);
 		}
 		if (entity instanceof EntityFreightHopperUS) {
-			return block !=null && !woodStuff(itemstack);
+			return !woodStuff(itemstack);
 		}
 		if (entity instanceof EntityFreightMinetrain) {
-			if (block != null) {
 				return block.isOpaqueCube();
-			} else {
-				if (itemstack.getItem().isDamaged(itemstack)) {
-					return false;
-				}
-			}
 		}
 		if (entity instanceof EntityFreightOpen2) {
 			if (!woodStuff(itemstack)) {
-				if (block !=null) {
 					return true;
-				}
 			}
 			return false;
 		}
@@ -164,9 +151,7 @@ public class ItemHandler {
 			return isDict("logWood", itemstack);
 		}
 		if (entity instanceof EntityFreightOpenWagon) {
-			if (block !=null && !woodStuff(itemstack)) {
-				return true;
-			}
+				return !woodStuff(itemstack);
 		}
 		return false;
 	}
