@@ -21,7 +21,7 @@ public class ItemRotativeDigger extends Item {
 	public boolean canBeStoredInToolbox(ItemStack itemstack) {
 		return true;
 	}
-	
+
 	@Override
 	public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer entityplayer) {
 		float f = 1.0F;

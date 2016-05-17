@@ -1,9 +1,29 @@
-/build
-/Traincraft.iws
-/out
-/.gradle
-/run
-/eclipse
-/Traincraft.iml
-/Traincraft.ipr
-/.idea
+# eclipse
+bin
+eclipse
+*.launch
+.settings
+.metadata
+.classpath
+.project
+
+# idea
+out
+*.iws
+
+# gradle
+build
+.gradle
+
+# build
+asm
+config
+logs
+options.txt
+saves
+usernamecache.json
+crash-report
+crash-reports
+
+# other
+run

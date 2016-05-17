@@ -19,7 +19,7 @@ import src.train.common.tile.TileTCRailGag;
 
 import java.util.List;
 
-public class ItemTCRail extends Item {
+public class ItemTCRail extends ItemPart {
 	private TrackTypes type;
 
 	public enum TrackTypes {
@@ -55,7 +55,7 @@ public class ItemTCRail extends Item {
 		private ItemIDs item;
 		private String tooltip;
 
-		private TrackTypes(String label, String type, ItemIDs item, String tooltip) {
+		TrackTypes(String label, String type, ItemIDs item, String tooltip) {
 			this.label = label;
 			this.type = type;
 			this.item = item;
@@ -81,46 +81,29 @@ public class ItemTCRail extends Item {
 	}
 
 	public static boolean isTCTurnTrack(TileTCRail tile) {
-		if ((tile.getType().equals(TrackTypes.MEDIUM_LEFT_SWITCH.getLabel()) && tile.getSwitchState()) || (tile.getType().equals(TrackTypes.MEDIUM_RIGHT_SWITCH.getLabel()) && tile.getSwitchState()) || (tile.getType().equals(TrackTypes.LARGE_LEFT_SWITCH.getLabel()) && tile.getSwitchState()) || (tile.getType().equals(TrackTypes.LARGE_RIGHT_SWITCH.getLabel()) && tile.getSwitchState()) || (tile.getType().equals(TrackTypes.MEDIUM_RIGHT_PARALLEL_SWITCH.getLabel()) && tile.getSwitchState()) || (tile.getType().equals(TrackTypes.MEDIUM_LEFT_PARALLEL_SWITCH.getLabel()) && tile.getSwitchState()) || tile.getType().equals(TrackTypes.MEDIUM_RIGHT_TURN.getLabel()) || tile.getType().equals(TrackTypes.LARGE_RIGHT_TURN.getLabel()) || tile.getType().equals(TrackTypes.LARGE_LEFT_TURN.getLabel()) || tile.getType().equals(TrackTypes.VERY_LARGE_RIGHT_TURN.getLabel()) || tile.getType().equals(TrackTypes.VERY_LARGE_LEFT_TURN.getLabel()) || tile.getType().equals(TrackTypes.MEDIUM_LEFT_TURN.getLabel()))
-			return true;
-		return false;
+		return (tile.getType().equals(TrackTypes.MEDIUM_LEFT_SWITCH.getLabel()) && tile.getSwitchState()) || (tile.getType().equals(TrackTypes.MEDIUM_RIGHT_SWITCH.getLabel()) && tile.getSwitchState()) || (tile.getType().equals(TrackTypes.LARGE_LEFT_SWITCH.getLabel()) && tile.getSwitchState()) || (tile.getType().equals(TrackTypes.LARGE_RIGHT_SWITCH.getLabel()) && tile.getSwitchState()) || (tile.getType().equals(TrackTypes.MEDIUM_RIGHT_PARALLEL_SWITCH.getLabel()) && tile.getSwitchState()) || (tile.getType().equals(TrackTypes.MEDIUM_LEFT_PARALLEL_SWITCH.getLabel()) && tile.getSwitchState()) || tile.getType().equals(TrackTypes.MEDIUM_RIGHT_TURN.getLabel()) || tile.getType().equals(TrackTypes.LARGE_RIGHT_TURN.getLabel()) || tile.getType().equals(TrackTypes.LARGE_LEFT_TURN.getLabel()) || tile.getType().equals(TrackTypes.VERY_LARGE_RIGHT_TURN.getLabel()) || tile.getType().equals(TrackTypes.VERY_LARGE_LEFT_TURN.getLabel()) || tile.getType().equals(TrackTypes.MEDIUM_LEFT_TURN.getLabel());
 	}
 
 	public static boolean isTCStraightTrack(TileTCRail tile) {
-		if ((tile.getType().equals(TrackTypes.MEDIUM_LEFT_SWITCH.getLabel()) && !tile.getSwitchState()) || (tile.getType().equals(TrackTypes.MEDIUM_RIGHT_SWITCH.getLabel()) && !tile.getSwitchState()) || (tile.getType().equals(TrackTypes.LARGE_LEFT_SWITCH.getLabel()) && !tile.getSwitchState()) || (tile.getType().equals(TrackTypes.LARGE_RIGHT_SWITCH.getLabel()) && !tile.getSwitchState()) || (tile.getType().equals(TrackTypes.MEDIUM_RIGHT_PARALLEL_SWITCH.getLabel()) && !tile.getSwitchState()) || (tile.getType().equals(TrackTypes.MEDIUM_LEFT_PARALLEL_SWITCH.getLabel()) && !tile.getSwitchState()) || tile.getType().equals(TrackTypes.MEDIUM_STRAIGHT.getLabel()) || tile.getType().equals(TrackTypes.LONG_STRAIGHT.getLabel()) || tile.getType().equals(TrackTypes.SMALL_STRAIGHT.getLabel()))
-			return true;
-		return false;
+		return (tile.getType().equals(TrackTypes.MEDIUM_LEFT_SWITCH.getLabel()) && !tile.getSwitchState()) || (tile.getType().equals(TrackTypes.MEDIUM_RIGHT_SWITCH.getLabel()) && !tile.getSwitchState()) || (tile.getType().equals(TrackTypes.LARGE_LEFT_SWITCH.getLabel()) && !tile.getSwitchState()) || (tile.getType().equals(TrackTypes.LARGE_RIGHT_SWITCH.getLabel()) && !tile.getSwitchState()) || (tile.getType().equals(TrackTypes.MEDIUM_RIGHT_PARALLEL_SWITCH.getLabel()) && !tile.getSwitchState()) || (tile.getType().equals(TrackTypes.MEDIUM_LEFT_PARALLEL_SWITCH.getLabel()) && !tile.getSwitchState()) || tile.getType().equals(TrackTypes.MEDIUM_STRAIGHT.getLabel()) || tile.getType().equals(TrackTypes.LONG_STRAIGHT.getLabel()) || tile.getType().equals(TrackTypes.SMALL_STRAIGHT.getLabel());
 	}
 
 	public static boolean isTCTwoWaysCrossingTrack(TileTCRail tile) {
-		if (tile.getType().equals(TrackTypes.TWO_WAYS_CROSSING.getLabel()))
-			return true;
-		return false;
+		return tile.getType().equals(TrackTypes.TWO_WAYS_CROSSING.getLabel());
 	}
 
 	public static boolean isTCSwitch(TileTCRail tile) {
-		if ((tile.getType().equals(TrackTypes.MEDIUM_LEFT_SWITCH.getLabel())) || (tile.getType().equals(TrackTypes.MEDIUM_RIGHT_SWITCH.getLabel())) || (tile.getType().equals(TrackTypes.LARGE_LEFT_SWITCH.getLabel())) || (tile.getType().equals(TrackTypes.LARGE_RIGHT_SWITCH.getLabel())) || (tile.getType().equals(TrackTypes.MEDIUM_RIGHT_PARALLEL_SWITCH.getLabel())) || (tile.getType().equals(TrackTypes.MEDIUM_LEFT_PARALLEL_SWITCH.getLabel())))
-			return true;
-		return false;
+		return (tile.getType().equals(TrackTypes.MEDIUM_LEFT_SWITCH.getLabel())) || (tile.getType().equals(TrackTypes.MEDIUM_RIGHT_SWITCH.getLabel())) || (tile.getType().equals(TrackTypes.LARGE_LEFT_SWITCH.getLabel())) || (tile.getType().equals(TrackTypes.LARGE_RIGHT_SWITCH.getLabel())) || (tile.getType().equals(TrackTypes.MEDIUM_RIGHT_PARALLEL_SWITCH.getLabel())) || (tile.getType().equals(TrackTypes.MEDIUM_LEFT_PARALLEL_SWITCH.getLabel()));
 	}
 
 	public static boolean isTCSlopeTrack(TileTCRail tile) {
-		if (tile.getType().equals(TrackTypes.LARGE_SLOPE_WOOD.getLabel()) || tile.getType().equals(TrackTypes.LARGE_SLOPE_GRAVEL.getLabel()) || tile.getType().equals(TrackTypes.LARGE_SLOPE_BALLAST.getLabel()))
-			return true;
-		return false;
+		return tile.getType().equals(TrackTypes.LARGE_SLOPE_WOOD.getLabel()) || tile.getType().equals(TrackTypes.LARGE_SLOPE_GRAVEL.getLabel()) || tile.getType().equals(TrackTypes.LARGE_SLOPE_BALLAST.getLabel());
 	}
 
 	public ItemTCRail(TrackTypes t) {
-		super();
-		maxStackSize = 64;
-		setCreativeTab(Traincraft.tcTab);
+		super(t.getItem().iconName);
+		this.overridePath("tracks");
 		this.type = t;
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerIcons(IIconRegister iconRegister) {
-		this.itemIcon = iconRegister.registerIcon(Info.modID.toLowerCase() + ":tracks/" + ItemIDs.getIcon(Item.getIdFromItem(this)));
 	}
 
 	private boolean canPlaceTrack(World world, int x, int y, int z) {

@@ -60,7 +60,7 @@ public class TileEntityDistil extends TileEntity implements IInventory, IFluidHa
 		distilCookTime = 0;
 		cookDuration = 400;//default is 200
 		random = new Random();
-		this.liquid = new FluidStack(0, 0);
+		//this.liquid = new FluidStack(0, 0);
 		this.maxTank = 30000;
 		this.theTank = LiquidManager.getInstance().new FilteredTank(maxTank, LiquidManager.getInstance().dieselFilter(), 1);
 		tankArray[0] = theTank;

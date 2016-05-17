@@ -37,13 +37,15 @@ import java.util.List;
 
 public class ItemRollingStock extends ItemMinecart implements IMinecart, IMinecartItem {
 
+	private String iconName = "";
 	private String trainName;
 	private String trainCreator;
 	private int trainColor = -1;
 	private RollingStockStatsEventHandler statsEvent = new RollingStockStatsEventHandler();
 
-	public ItemRollingStock() {
+	public ItemRollingStock(String iconName) {
 		super(1);
+		this.iconName = iconName;
 		maxStackSize = 1;
 		trainName = this.getUnlocalizedName();
 		setCreativeTab(Traincraft.tcTab);
@@ -206,27 +208,28 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 		for(EnumTrains train : EnumTrains.values()){
 			if(train.getItem() == itemstack.getItem()){
 				rollingStock = (EntityRollingStock) train.getEntity(world, (float) i + 0.5F, (float) j + 0.5F, (float) k + 0.5F);
-		    
 				if(train.getColors()!=null){
-					rollingStock.setColor(rollingStock.getColorFromString(train.getColors()[0]));
+					if(rollingStock != null){
+						rollingStock.setColor(AbstractTrains.getColorFromString(train.getColors()[0]));
+					}
 				}
 			}
 		}
 		if (rollingStock != null && rollingStock instanceof EntityRollingStock) {
 			if (!world.isRemote) {
-				
+
 				if((rollingStock instanceof SteamTrain && !ConfigHandler.ENABLE_STEAM) || (rollingStock instanceof ElectricTrain && !ConfigHandler.ENABLE_ELECTRIC) || (rollingStock instanceof DieselTrain && !ConfigHandler.ENABLE_DIESEL) || (rollingStock instanceof EntityTracksBuilder && !ConfigHandler.ENABLE_BUILDER) ||(rollingStock instanceof Tender && !ConfigHandler.ENABLE_TENDER)){
 					if(player != null)player.addChatMessage(new ChatComponentText("This type of train has been deactivated by the OP"));
 					rollingStock.setDead();
 					return rollingStock;
 				}
-				
+
 				int dir = 0;
 				int meta = world.getBlockMetadata(i, j, k);
 				//System.out.println(meta);
 				if (player != null)
 					dir = MathHelper.floor_double((double) ((player.rotationYaw * 4F) / 360F) + 0.5D) & 3;
-				//180 = 3 = EAST 
+				//180 = 3 = EAST
 				//0 = 0 = SOUTH
 				//90 = 1 = WEST
 				// -180 = 2 = NORTH
@@ -387,12 +390,12 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 
 	@Override
 	public boolean canBePlacedByNonPlayer(ItemStack cart) {
-		return true; 
+		return true;
 	}
-	  
-	 @Override
-	 public EntityMinecart placeCart(GameProfile owner, ItemStack cart, World world, int i, int j, int k) {
-		 return placeCart((EntityPlayer) null, cart, world, i, j, k);
+
+	@Override
+	public EntityMinecart placeCart(GameProfile owner, ItemStack cart, World world, int i, int j, int k) {
+		return placeCart((EntityPlayer) null, cart, world, i, j, k);
 	}
 
 	@Override
@@ -403,6 +406,6 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister iconRegister) {
-		this.itemIcon = iconRegister.registerIcon(Info.modID.toLowerCase() + ":trains/" + ItemIDs.getIcon(Item.getIdFromItem(this)));
+		this.itemIcon = iconRegister.registerIcon(Info.modID.toLowerCase() + ":trains/" + this.iconName);
 	}
 }

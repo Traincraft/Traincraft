@@ -13,8 +13,8 @@ public class NEITraincraftConfig implements IConfigureNEI {
         API.registerUsageHandler(new NEITraincraftWorkbenchRecipePlugin());
         API.registerRecipeHandler(new NEIAssemblyTableRecipePlugin());
         API.registerUsageHandler(new NEIAssemblyTableRecipePlugin());
-        //TODO Crash while loading World API.registerRecipeHandler(new NEIOpenHearthFurnaceRecipePlugin());
-        //TODO Crash while loading World API.registerUsageHandler(new NEIOpenHearthFurnaceRecipePlugin());
+        API.registerRecipeHandler(new NEIOpenHearthFurnaceRecipePlugin());
+        API.registerUsageHandler(new NEIOpenHearthFurnaceRecipePlugin());
         API.registerRecipeHandler(new NEIDistillationTowerRecipePlugin());
         API.registerUsageHandler(new NEIDistillationTowerRecipePlugin());
 	}

@@ -1,6 +1,6 @@
 /*******************************************************************************
  * Copyright (c) 2012 mrbrutal. All rights reserved.
- * 
+ *
  * @name TrainCraft
  * @author mrbrutal
  ******************************************************************************/
@@ -60,7 +60,7 @@ public enum ItemIDs {
 	emptyCanister("ItemContainer", "item_canister", 40),
 	copperRail("ItemRail", "item_rail_copper", 1),
 	steelRail("ItemRail", "item_rail_steel", 1),
-	recipeBook("ItemRecipeBook", "", 1),
+	recipeBook("ItemRecipeBook", "item_book_blue", 1),
 
 	minecartWork("ItemRollingStock", "train_work", 4),
 	minecartTender("ItemRollingStock", "train_tender", 4),
@@ -163,18 +163,18 @@ public enum ItemIDs {
 	minecartLocoSteamAdler("ItemRollingStock", "train_adler", 3),
 	minecartTenderAdler("ItemRollingStock", "train_tender_adler", 1),
 	minecartPassengerAdler("ItemRollingStock", "train_passenger_adler", 2),
-	
+
 	minecartCabooseLogging("ItemRollingStock", "train_logging_caboose", 1),
 	minecartPassengerTramNY("ItemRollingStock", "train_tram_ny", 3),
 	//TODO Needs icon
 	//minecartPassengerDBOriental("ItemRollingStock", "train_tram_ny", 2),
 	minecartLocoSD40("ItemRollingStock", "train_sd40", 10),
 	zeppelin("ItemZeppelin", "item_zeppelin_one_balloon", 1),
-	
+
 	tcRailSmallStraight("ItemTCRail", "item_rail_straight_small", 5),
 	tcRailMediumStraight("ItemTCRail", "item_rail_straight_medium", 5),
 	tcRailLongStraight("ItemTCRail", "item_rail_straight_large", 5),
-	
+
 	tcRailMediumTurn("ItemTCRail", "item_rail_turn_medium", 5),
 	tcRailLargeTurn("ItemTCRail", "item_rail_turn_large", 5),
 	tcRailVeryLargeTurn("ItemTCRail", "item_rail_turn_veryLarge", 5),
@@ -182,7 +182,7 @@ public enum ItemIDs {
 	tcRailMediumSwitch("ItemTCRail", "item_rail_switch_medium", 5),
 	tcRailLargeSwitch("ItemTCRail", "item_rail_switch_large", 5),
 	tcRailMediumParallelSwitch("ItemTCRail", "item_rail_switch_parallel", 5),
-	
+
 	tcRailTwoWaysCrossing("ItemTCRail","item_rail_two_ways_crossing",5),
 	tcRailLargeSlopeWood("ItemTCRail", "item_rail_straight_slope_wood", 5),
 	tcRailLargeSlopeGravel("ItemTCRail", "item_rail_straight_slope_gravel", 5),
@@ -210,12 +210,4 @@ public enum ItemIDs {
 		this.amountForEmerald = amountForEmerald;
 	}
 
-	public static String getIcon(int itemIDs) {
-		for (ItemIDs itemID : ItemIDs.values()) {
-			if (itemIDs == itemID.itemID + 256) {
-				return itemID.iconName;
-			}
-		}
-		return "";
-	}
 }

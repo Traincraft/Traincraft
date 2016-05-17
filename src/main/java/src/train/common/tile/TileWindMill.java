@@ -18,7 +18,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ForgeDirection;
 import src.train.common.core.TrainModBlockUtil;
-import src.train.common.core.handlers.ServerTickHandler;
+import src.train.common.core.handlers.WorldEvents;
 import cpw.mods.fml.common.FMLCommonHandler;
 
 public class TileWindMill extends TileEntity implements IEnergySource {
@@ -120,7 +120,7 @@ public class TileWindMill extends TileEntity implements IEnergySource {
 		 * Calculate production using wind strength
 		 */
 		if (isSimulating() && (updateTicks % 128 == 0)) {
-			IC2production = (int) (ServerTickHandler.windStrength + (((double) this.yCoord / 256) * 10));
+			IC2production = (int) (WorldEvents.windStrength + (((double) this.yCoord / 256) * 10));
 			if (this.IC2production <= 0.0D)
 				IC2production = 0;
 			if (this.worldObj.isThundering())

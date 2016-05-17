@@ -492,9 +492,12 @@ public class TileGeneratorDiesel extends TileEntity implements IFluidHandler, II
 	 */
 	@Override
 	public double getOfferedEnergy() {
+		//TODO null check
+		/*
 		if(produceIC2) {
 			return currentOutput.toEU();
 		}
+		*/
 		return 0;
 	}
 

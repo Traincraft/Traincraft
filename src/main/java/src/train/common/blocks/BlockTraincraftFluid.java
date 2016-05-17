@@ -78,6 +78,6 @@ public class BlockTraincraftFluid extends BlockFluidClassic {
 	
 	@Override
 	public String getUnlocalizedName() {
-		return "fluid."+fluidName;
+		return "fluid." + Info.modID + ":" + fluidName;
 	}
 }

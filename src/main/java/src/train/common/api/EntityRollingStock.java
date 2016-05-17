@@ -56,12 +56,7 @@ import org.lwjgl.input.Keyboard;
 import src.train.client.core.handlers.SoundUpdaterRollingStock;
 import src.train.common.Traincraft;
 import src.train.common.core.HandleOverheating;
-import src.train.common.core.handlers.CollisionHandler;
-import src.train.common.core.handlers.ConfigHandler;
-import src.train.common.core.handlers.FuelHandler;
-import src.train.common.core.handlers.LinkHandler;
-import src.train.common.core.handlers.TrainHandler;
-import src.train.common.core.handlers.TrainsDamageSource;
+import src.train.common.core.handlers.*;
 import src.train.common.core.network.PacketKeyPress;
 import src.train.common.core.network.PacketRollingStockRotation;
 import src.train.common.entity.rollingStock.EntityStockCar;
@@ -119,7 +114,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 	public double anglePitchClient;
 	public float serverRealRotation;
 	public float previousServerRealRotation;
-	public float previousServerRealRotation2; // TODO DON'T EVEN START WITH THIS. Please, for god's sake, label them properly! ..or at least add some sort of description.
+	public float previousServerRealRotation2;
 	public boolean isServerInReverse = false;
 	public boolean isClientInReverse = false;
 	public boolean serverInReverseSignPositive = false;
@@ -923,30 +918,20 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			serverRealPitch = anglePitch;
 		}
 		else {
-			//			float rotation = rotationYaw;
-			//			//System.out.println(Math.abs(rotationYaw-this.previousServerRealRotation));
-			//			if (Math.abs(rotationYaw - this.previousServerRealRotation) > 170 && Math.abs(rotationYaw - this.previousServerRealRotation) < 190) {
-			//				this.isServerInReverse = !this.isServerInReverse;
-			//			}
-			//			previousServerRealRotation = rotation;
-			//
-			//			if (this.isServerInReverse) {
-			//				if (serverInReverseSignPositive) {
-			//					rotation += 180.0f;
-			//				}
-			//				else {
-			//					rotation -= 180.0f;
-			//				}
-			//			}
-
-			float delta = MathHelper.wrapAngleTo180_float(this.rotationYaw - this.previousServerRealRotation); //Math.abs(this.rotationYaw - this.previousServerRealRotation);
-
-			this.previousServerRealRotation = this.rotationYaw;
-
-			if (delta < -170.0F || delta >= 170.0F) { // if (delta > 170.0F || delta < 190.0F) {
-
-				this.rotationYaw += 180.0F;
+			float rotation = rotationYaw;
+			//System.out.println(Math.abs(rotationYaw-this.previousServerRealRotation));
+			if (Math.abs(rotationYaw - this.previousServerRealRotation) > 170 && Math.abs(rotationYaw - this.previousServerRealRotation) < 190) {
 				this.isServerInReverse = !this.isServerInReverse;
+			}
+			previousServerRealRotation = rotation;
+
+			if (this.isServerInReverse) {
+				if (serverInReverseSignPositive) {
+					rotation += 180.0f;
+				}
+				else {
+					rotation -= 180.0f;
+				}
 			}
 
 			serverRealRotation = rotation;
@@ -1701,8 +1686,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 
 		if (!worldObj.isRemote) {
 			//System.out.println(this.uniqueID);
-			//TODO Packets
-			// PacketHandler.sendPacketToClients(PacketHandler.setTrainLockedToClient(entityplayer, this, locked), worldObj, (int) posX, (int) posY, (int) posZ, 15);
+			 PacketHandler.sendPacketToClients(PacketHandler.setTrainLockedToClient(entityplayer, this, locked), worldObj, (int) posX, (int) posY, (int) posZ, 15);
 		}
 		playerEntity = entityplayer;
 		itemstack = entityplayer.inventory.getCurrentItem();

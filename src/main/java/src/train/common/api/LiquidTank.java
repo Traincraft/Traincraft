@@ -183,7 +183,7 @@ public class LiquidTank extends EntityRollingStock implements IFluidHandler, ISi
 		return itemstack1.stackSize;
 	}
 
-	//TODO idk what to do here
+	//TODO Fix ISided Inventory buildcraft support
 	/*
 	/**
 	 * Offers an ItemStack for addition to the inventory.

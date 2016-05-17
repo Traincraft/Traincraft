@@ -126,7 +126,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		angle = MathHelper.wrapAngleTo180_float(angle);
 		float serverRealRotation = angle;
 		//System.out.println("distance "+Math.sqrt(dx*dx+dz*dz)+" "+this.entityMainTrain);
-		//		
+		//
 		//		double rads = serverRealRotation * Math.PI / 180.0D;
 		//		double pitchRads = entityMainTrain.serverRealPitch * Math.PI / 180.0D;
 		//		double cos = Math.cos(rads);
@@ -180,7 +180,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		//		if (adj2) {
 		//		System.out.println(entityMainTrain.motionX + " " + entityMainTrain.motionZ);
 		//		System.out.println(Math.sqrt(entityMainTrain.motionX*entityMainTrain.motionX + entityMainTrain.motionZ*entityMainTrain.motionZ));
-		//		
+		//
 		//		if (Math.abs(entityMainTrain.motionX) > 0.003 || Math.abs(entityMainTrain.motionZ) > 0.003) {
 		//			this.motionX -= springX;
 		//			this.motionZ -= springZ;
@@ -669,33 +669,33 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 
 				switch (meta) {
 
-				case 0:
-					if (this.motionZ < 0.0D && Math.abs(this.motionX) < 0.01D) {
+					case 0:
+						if (this.motionZ < 0.0D && Math.abs(this.motionX) < 0.01D) {
 
-						tile2 = this.worldObj.getTileEntity(x, y, z - 1);
-					}
-					break;
+							tile2 = this.worldObj.getTileEntity(x, y, z - 1);
+						}
+						break;
 
-				case 1:
-					if (Math.abs(this.motionZ) < 0.01D && this.motionX > 0.0D) {
+					case 1:
+						if (Math.abs(this.motionZ) < 0.01D && this.motionX > 0.0D) {
 
-						tile2 = this.worldObj.getTileEntity(x + 1, y, z);
-					}
-					break;
+							tile2 = this.worldObj.getTileEntity(x + 1, y, z);
+						}
+						break;
 
-				case 2:
-					if (this.motionZ > 0.0D && Math.abs(this.motionX) < 0.01D) {
+					case 2:
+						if (this.motionZ > 0.0D && Math.abs(this.motionX) < 0.01D) {
 
-						tile2 = this.worldObj.getTileEntity(x, y, z + 1);
-					}
-					break;
+							tile2 = this.worldObj.getTileEntity(x, y, z + 1);
+						}
+						break;
 
-				case 3:
-					if (Math.abs(this.motionZ) < 0.01D && this.motionX < 0.0D) {
+					case 3:
+						if (Math.abs(this.motionZ) < 0.01D && this.motionX < 0.0D) {
 
-						tile2 = this.worldObj.getTileEntity(x - 1, y, z);
-					}
-					break;
+							tile2 = this.worldObj.getTileEntity(x - 1, y, z);
+						}
+						break;
 				}
 
 				if (tile2 instanceof TileTCRail) {

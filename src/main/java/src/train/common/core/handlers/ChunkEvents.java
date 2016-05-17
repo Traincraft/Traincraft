@@ -15,17 +15,8 @@ import src.train.common.api.Locomotive;
 
 import java.util.*;
 
-public class ChunkHandler implements ForgeChunkManager.LoadingCallback, ForgeChunkManager.OrderedLoadingCallback, ForgeChunkManager.PlayerOrderedLoadingCallback {
-	private static ChunkHandler instance;
+public class ChunkEvents implements ForgeChunkManager.LoadingCallback, ForgeChunkManager.PlayerOrderedLoadingCallback {
 
-	public static ChunkHandler getInstance() {
-		if (instance == null) {
-			instance = new ChunkHandler();
-		}
-
-		return instance;
-	}
-	
 	@Subscribe
 	public void entityEnteredChunk(EntityEvent.EnteringChunk var1) {
 		Entity var2 = var1.entity;
@@ -40,7 +31,7 @@ public class ChunkHandler implements ForgeChunkManager.LoadingCallback, ForgeChu
 		}
 		if (var2 instanceof EntityBogie) {
 			if (!var2.worldObj.isRemote) {
-				if(((EntityBogie) var2).entityMainTrain!=null && ((EntityBogie) var2).entityMainTrain instanceof AbstractTrains){
+				if(((EntityBogie) var2).entityMainTrain!=null){
 					AbstractTrains stock = ((EntityBogie) var2).entityMainTrain;
 					Ticket ticket = stock.getChunkTicket();
 					if(ticket!=null && stock.shouldChunkLoad)stock.forceChunkLoading(ticket);
@@ -72,6 +63,7 @@ public class ChunkHandler implements ForgeChunkManager.LoadingCallback, ForgeChu
 	}
 	@Override
 	public void ticketsLoaded(List var1, World var2) {
+		//TODO railcraft support for chunkloaders
 		/*Iterator var3 = var1.iterator();
 
 		while (var3.hasNext()) {
@@ -86,25 +78,7 @@ public class ChunkHandler implements ForgeChunkManager.LoadingCallback, ForgeChu
 			}
 		}*/
 	}
-	@Override
-	public List ticketsLoaded(List var1, World var2, int var3) {
-		HashSet var4 = new HashSet();
-		HashSet var5 = new HashSet();
-		Iterator var6 = var1.iterator();
 
-		while (var6.hasNext()) {
-			Ticket var7 = (Ticket) var6.next();
-			Entity var8 = var7.getEntity();
-			if (var8 instanceof AbstractTrains) {
-				var5.add(var7);
-			}
-		}
-
-		LinkedList var13 = new LinkedList();
-		var13.addAll(var5);
-		var13.addAll(var4);
-		return var13;
-	}
 	@Override
 	public ListMultimap playerTicketsLoaded(ListMultimap var1, World var2) {
 		return LinkedListMultimap.create();

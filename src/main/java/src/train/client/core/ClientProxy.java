@@ -238,16 +238,14 @@ public class ClientProxy extends CommonProxy {
 		return getMinecraft().thePlayer;
 	}
 
-	// TODO: Refactor this to not use id.
 	@Override
-	public void doNEICheck(int id) {
+	public void doNEICheck(ItemStack stack) {
 		if (Minecraft.getMinecraft().thePlayer != null) {
 			if(Loader.isModLoaded("Not Enough Items")) {
-				ItemStack item = new ItemStack(Item.getItemById(id));
 				try {
 					Class neiApi = Class.forName("codechicken.nei.api.API");
-					Method hideItem = neiApi.getDeclaredMethod("hideItem", item.getClass());
-					hideItem.invoke(null, item);
+					Method hideItem = neiApi.getDeclaredMethod("hideItem", stack.getClass());
+					hideItem.invoke(null, stack);
 				} catch (ClassNotFoundException e) {
 					Traincraft.tcLog.log(Level.WARNING, "Chicken core didn't have required class: Wrong version of the library or something is horribly wrong", e);
 				} catch (NoSuchMethodException e) {

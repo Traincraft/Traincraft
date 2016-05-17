@@ -33,8 +33,8 @@ public class LiquidManager {
 	public static Fluid honey;
 	public static Fluid juice;
 
-	public static final Fluid DIESEL = new Fluid("fuelDiesel").setUnlocalizedName("diesel.name").setDensity(860);
-	public static final Fluid REFINED_FUEL = new Fluid("fuel").setDensity(820).setUnlocalizedName("refinedfuel.name");
+	public static final Fluid DIESEL = new Fluid("Diesel").setUnlocalizedName("diesel.name").setDensity(860);
+	public static final Fluid REFINED_FUEL = new Fluid("RefinedFuel").setDensity(820).setUnlocalizedName("refinedfuel.name");
 
 	public static LiquidManager getInstance() {
 		if (instance == null) {
@@ -58,10 +58,9 @@ public class LiquidManager {
 		BuildcraftFuelRegistry.fuel.addFuel(DIESEL, 3, 200000);
 		BuildcraftFuelRegistry.fuel.addFuel(REFINED_FUEL, 6, 100000);
 		MinecraftForge.EVENT_BUS.register(this);
-
-		//TODO
-		//Traincraft.proxy.registerBlock(BlockIDs.diesel.block, ItemBlockFluid.class);
-		//Traincraft.proxy.registerBlock(BlockIDs.refinedFuel.block, ItemBlockFluid.class);
+		
+		Traincraft.proxy.registerBlock(BlockIDs.diesel.block, ItemBlockFluid.class);
+		Traincraft.proxy.registerBlock(BlockIDs.refinedFuel.block, ItemBlockFluid.class);
 	}
 
 	@SubscribeEvent

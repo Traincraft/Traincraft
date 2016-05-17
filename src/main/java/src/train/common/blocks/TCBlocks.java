@@ -12,13 +12,13 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import src.train.common.library.BlockIDs;
+import src.train.common.library.Info;
 
 public class TCBlocks {
 
 	public static void init() {
 		loadBlocks();
 		registerBlocks();
-		nameBlocks();
 		setHarvestLevels();
 	}
 
@@ -53,19 +53,13 @@ public class TCBlocks {
 
 	public static void registerBlocks() {
 		for (BlockIDs blocks : BlockIDs.values()) {
-			if(blocks.block != null && blocks.hasItemBlock){
-				GameRegistry.registerBlock(blocks.block, blocks.itemBlockClass, blocks.name());
-			}
-			else if (blocks.block != null) {
-				GameRegistry.registerBlock(blocks.block, blocks.name());
-			}
-		}
-	}
-
-	public static void nameBlocks() {
-		for (BlockIDs blocks : BlockIDs.values()) {
-			if (blocks.block != null) {
-				blocks.block.setBlockName(blocks.name());
+			if(blocks.block != null) {
+				blocks.block.setBlockName(Info.modID + ":" + blocks.name());
+				if (blocks.hasItemBlock) {
+					GameRegistry.registerBlock(blocks.block, blocks.itemBlockClass, blocks.name());
+				} else {
+					GameRegistry.registerBlock(blocks.block, blocks.name());
+				}
 			}
 		}
 	}

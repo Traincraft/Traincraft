@@ -14,36 +14,19 @@ import src.train.common.blocks.BlockTraincraftFluid;
 import java.util.List;
 
 public class ItemBlockFluid extends ItemBlock {
-	@SideOnly(Side.CLIENT)
-	private IIcon icon;
-	
+
 	private BlockTraincraftFluid fluid;
 	private int id;
 
-	public ItemBlockFluid(Block block){
+	public ItemBlockFluid(Block block) {
 		super(block);
 	}
-	
+
 	public ItemBlockFluid(Block id, Block fluid) {
 		super(id);
 		this.id = Block.getIdFromBlock(id);
 		this.fluid = (BlockTraincraftFluid) fluid;
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerIcons(IIconRegister icon) {
-		String s = ((Block) fluid).getItemIconName();
-		if (s != null) {
-			this.icon = icon.registerIcon(s);
 		}
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public CreativeTabs getCreativeTab() {
-		return ((Block) fluid).getCreativeTabToDisplayOn();
-	}
 
 	@Override
 	public String getUnlocalizedName(ItemStack par1ItemStack) {
@@ -53,11 +36,6 @@ public class ItemBlockFluid extends ItemBlock {
 	@Override
 	public String getUnlocalizedName() {
 		return ((Block) fluid).getUnlocalizedName();
-	}
+		}
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void getSubItems(Item par1, CreativeTabs par2CreativeTabs, List par3List) {
-		((Block) fluid).getSubBlocks(par1, par2CreativeTabs, par3List);
-	}
 }

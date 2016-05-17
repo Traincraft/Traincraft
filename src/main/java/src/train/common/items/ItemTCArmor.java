@@ -21,47 +21,18 @@ import src.train.common.library.Info;
 import src.train.common.library.ItemIDs;
 
 public class ItemTCArmor extends ItemArmor {
-	/** The EnumArmorMaterial used for this ItemArmor */
-	private final ArmorMaterial material;
 	public int color;
 	private IIcon iconOverlay;
 	public int updateTicks=0;
+	private String iconName = "";
 	
-	public ItemTCArmor(ArmorMaterial material, int par3, int par4, int color) {
+	public ItemTCArmor(String iconName, ArmorMaterial material, int par3, int par4, int color) {
 		super(material, par3, par4);
-		this.material = material;
 		setCreativeTab(Traincraft.tcTab);
 		this.color = color;
+		this.iconName = iconName;
 	}
-	/*@Override
-	public String getArmorTexture(ItemStack stack, Entity entity, int slot, int layer) {
-		//System.out.println(color);
-		System.out.println(layer);
-		if (stack.getItem() == ItemIDs.overalls.item) {
-			return Info.resourceLocation+":"+Info.armorPrefix + "blue_overalls.png";
-		}
-		else if (stack.getItem() == ItemIDs.jacket.item) {
-			return Info.resourceLocation+":"+Info.armorPrefix + "orange_jacket.png";
-		}
-		else if(stack.getItem() == ItemIDs.hat.item){
-			return Info.resourceLocation+":"+Info.armorPrefix + "blue_hat.png";
 
-		}
-		else if(stack.getItem() == ItemIDs.hat_ticketMan_paintable.item || stack.getItem() == ItemIDs.jacket_ticketMan_paintable.item){
-			return Info.resourceLocation+":"+Info.armorPrefix+"ticket_man_"+layer+".png";
-		}else if(stack.getItem() == ItemIDs.pants_ticketMan_paintable.item){
-			return Info.resourceLocation+":"+Info.armorPrefix+"ticket_man_pants_"+layer+".png";
-			
-		}else if(stack.getItem() == ItemIDs.hat_driver_paintable.item || stack.getItem() == ItemIDs.jacket_driver_paintable.item){
-			return Info.resourceLocation+":"+Info.armorPrefix+"driver_"+layer+".png";
-		}else if(stack.getItem() == ItemIDs.pants_driver_paintable.item){
-			return Info.resourceLocation+":"+Info.armorPrefix+"driver_pants_"+layer+".png";
-			
-		}
-		else{
-			return "";
-		}
-	}*/
 	/**
      * Called by RenderBiped and RenderPlayer to determine the armor texture that 
      * should be use for the currently equiped item.
@@ -105,27 +76,31 @@ public class ItemTCArmor extends ItemArmor {
 			
 		}
 		else{
-			return "";
+			return super.getArmorTexture(stack, entity, slot, type);
 		}
 	}
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean requiresMultipleRenderPasses() {
 		return color!=0;
 	}
+
 	@SideOnly(Side.CLIENT)
 	@Override
 	public IIcon getIconFromDamageForRenderPass(int par1, int par2) {
 		return par2 == 1 ? this.iconOverlay : super.getIconFromDamageForRenderPass(par1, par2);
 	}
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister iconRegister) {
-		this.itemIcon = iconRegister.registerIcon(Info.modID.toLowerCase() + ":armour/" + ItemIDs.getIcon(Item.getIdFromItem(this)));
+		this.itemIcon = iconRegister.registerIcon(Info.modID.toLowerCase() + ":armour/" + this.iconName);
 		if(color!=0){
-			this.iconOverlay = iconRegister.registerIcon(Info.modID.toLowerCase() + ":armour/" + ItemIDs.getIcon(Item.getIdFromItem(this)) + "_overlay");
+			this.iconOverlay = iconRegister.registerIcon(Info.modID.toLowerCase() + ":armour/" + this.iconName + "_overlay");
 		}
 	}
+
 	@Override
 	public void func_82813_b(ItemStack par1ItemStack, int par2)
 	{
@@ -182,7 +157,7 @@ public class ItemTCArmor extends ItemArmor {
 	@Override
 	public boolean hasColor(ItemStack par1ItemStack)
 	{
-		return color==0 ? false : (!par1ItemStack.hasTagCompound() ? false : (!par1ItemStack.getTagCompound().hasKey("display") ? false : par1ItemStack.getTagCompound().getCompoundTag("display").hasKey("color")));
+		return color != 0 && (par1ItemStack.hasTagCompound() && (par1ItemStack.getTagCompound().hasKey("display") && par1ItemStack.getTagCompound().getCompoundTag("display").hasKey("color")));
 	}
 
 	/**

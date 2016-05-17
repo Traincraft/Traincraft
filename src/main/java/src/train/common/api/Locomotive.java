@@ -16,6 +16,7 @@ import org.lwjgl.input.Keyboard;
 import src.train.common.Traincraft;
 import src.train.common.core.HandleMaxAttachedCarts;
 import src.train.common.core.handlers.ConfigHandler;
+import src.train.common.core.handlers.PacketHandler;
 import src.train.common.core.network.PacketKeyPress;
 import src.train.common.core.network.PacketSlotsFilled;
 import src.train.common.library.EnumSounds;
@@ -356,8 +357,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 				else {
 					setParkingBrakeFromPacket(true);
 				}
-				//TODO Packets
-				// PacketHandler.sendPacketToClients(PacketHandler.setParkingBrake(riddenByEntity, this, parkingBrake, false), worldObj, (int) posX, (int) posY, (int) posZ, 5);
+				PacketHandler.sendPacketToClients(PacketHandler.setParkingBrake(riddenByEntity, this, parkingBrake, false), worldObj, (int) posX, (int) posY, (int) posZ, 5);
 			}
 		}
 		lastUpdateTick = updateTicks;
@@ -471,8 +471,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 		pressKeyClient();
 		if (!worldObj.isRemote) {
 			if (updateTicks % 50 == 0) {
-				//TODO Packets
-				// PacketHandler.sendPacketToClients(PacketHandler.setParkingBrake(riddenByEntity, this, parkingBrake, false), worldObj, (int) posX, (int) posY, (int) posZ, 50);
+				 PacketHandler.sendPacketToClients(PacketHandler.setParkingBrake(riddenByEntity, this, parkingBrake, false), worldObj, (int) posX, (int) posY, (int) posZ, 50);
 				this.setLocoTurnedOn(isLocoTurnedOn, false, true,500);//sending to client
 			}
 
@@ -768,12 +767,10 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 	public void setLocoTurnedOn(boolean set, boolean toServer, boolean toClient, double distance) {
 		this.isLocoTurnedOn = set;
 		if (toServer){
-			//TODO Packets
-			// PacketHandler.setLocoTurnedOn(this.riddenByEntity, this, set, true);
+			 PacketHandler.setLocoTurnedOn(this.riddenByEntity, this, set, true);
 		}
 		if (toClient){
-			//TODO Packets
-			//PacketHandler.sendPacketToClients(PacketHandler.setLocoTurnedOn(riddenByEntity, this, set, false), worldObj, (int) posX, (int) posY, (int) posZ, distance);
+			PacketHandler.sendPacketToClients(PacketHandler.setLocoTurnedOn(riddenByEntity, this, set, false), worldObj, (int) posX, (int) posY, (int) posZ, distance);
 		}
 	}
 
@@ -804,7 +801,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 	}
 
 
-	//TODO idk what to do here
+	//TODO Fix ISided Inventory buildcraft support
 	/*
 	/**
 	 * Offers an ItemStack for addition to the inventory.

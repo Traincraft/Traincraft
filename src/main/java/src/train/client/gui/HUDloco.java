@@ -1,11 +1,15 @@
 package src.train.client.gui;
 
+import com.google.common.eventbus.Subscribe;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import org.lwjgl.opengl.GL11;
+import src.train.client.core.handlers.ClientTickHandler;
 import src.train.common.api.DieselTrain;
 import src.train.common.api.Locomotive;
 import src.train.common.api.SteamTrain;
@@ -14,22 +18,21 @@ import src.train.common.library.Info;
 public class HUDloco extends GuiScreen {
 
 	private Minecraft game;
-	private int windowWidth, wave = 0, windowHeight;
-	private int sizeX = 137;
-	private int sizeY = 90;
-	private int j;
-	private int k;
+	private int windowWidth, windowHeight;
 
-	public HUDloco(Minecraft game) {
-		this.game = game;
-		fontRendererObj = Minecraft.getMinecraft().fontRenderer;
+	@SubscribeEvent
+	public void onGameRender(RenderGameOverlayEvent.Post event){
+		if (game != null && game.thePlayer != null && game.thePlayer.ridingEntity != null && game.thePlayer.ridingEntity instanceof Locomotive && Minecraft.isGuiEnabled() && game.currentScreen == null) {
+			renderSkillHUD(event, (Locomotive) game.thePlayer.ridingEntity);
+		} else {
+			this.game = this.mc = Minecraft.getMinecraft();
+			this.fontRendererObj = this.game.fontRenderer;
+		}
 	}
 
-	public void renderSkillHUD(Locomotive rcCar) {
-		windowWidth = new ScaledResolution(game, game.displayWidth, game.displayHeight).getScaledWidth();
-		windowHeight = new ScaledResolution(game, game.displayWidth, game.displayHeight).getScaledHeight();
-		j = (windowWidth - sizeX) / 2;
-		k = (windowHeight - sizeY) / 2;
+	public void renderSkillHUD(RenderGameOverlayEvent event, Locomotive rcCar) {
+		windowWidth = event.resolution.getScaledWidth();
+		windowHeight = event.resolution.getScaledWidth() - 150;
 		renderBG(rcCar);
 		/**
 		 * Steam Train have water
@@ -50,7 +53,7 @@ public class HUDloco extends GuiScreen {
 	}
 
 	private void renderBG(Locomotive rcCar) {
-		GL11.glEnable(3042 /* GL_BLEND */);
+		GL11.glEnable(3042);
 		GL11.glEnable(32826);
 		this.zLevel = -90.0F;
 		RenderHelper.enableStandardItemLighting();
@@ -62,12 +65,10 @@ public class HUDloco extends GuiScreen {
 		else {
 			game.renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation,Info.guiPrefix + "locohud.png"));
 		}
-
-		drawTexturedModalRect(0, (windowHeight / 2) - 0, 0, 150, 137, 90);
-
+		drawTexturedModalRect(0, (windowHeight / 2), 0, 150, 137, 90);
 		GL11.glDisable(32826);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		GL11.glDisable(3042 /* GL_BLEND */);
+		GL11.glDisable(3042);
 	}
 
 	private void renderText(Locomotive loco) {
@@ -247,7 +248,5 @@ public class HUDloco extends GuiScreen {
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		GL11.glDisable(3042 /* GL_BLEND */);
 	}
-	
-	@Override
-	public void onGuiClosed() {}
+
 }

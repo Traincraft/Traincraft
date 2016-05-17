@@ -190,7 +190,6 @@ public class NEIOpenHearthFurnaceRecipePlugin extends ShapedRecipeHandler {
 	}
 
 	public static ArrayList<FuelPair> afuels;
-	public static TreeSet<Item> efuels;
 
 	@Override
 	public TemplateRecipeHandler newInstance() {
@@ -205,27 +204,15 @@ public class NEIOpenHearthFurnaceRecipePlugin extends ShapedRecipeHandler {
 		drawProgressBar(74, 23, 176, 14, 24, 16, 48, 0);
 	}
 
-	private static void removeFuels() {
-		efuels = new TreeSet<Item>();
-		efuels.add(Item.getItemFromBlock(Blocks.brown_mushroom));
-		efuels.add(Item.getItemFromBlock(Blocks.red_mushroom));
-		efuels.add(Item.getItemFromBlock(Blocks.standing_sign));
-		efuels.add(Item.getItemFromBlock(Blocks.wall_sign));
-		efuels.add(Item.getItemFromBlock(Blocks.wooden_door));
-		efuels.add(Item.getItemFromBlock(Blocks.trapped_chest));
-	}
 
 	private static void findFuels() {
 		afuels = new ArrayList<FuelPair>();
 		for (ItemStack item : ItemList.items) {
-			if (!efuels.contains(item)) {
 				int burnTime = TileEntityFurnace.getItemBurnTime(item);
 				if (burnTime > 0) afuels.add(new FuelPair(item.copy(), burnTime));
-			}
 		}
 	}
 
 	static {
-		removeFuels();
 	}
 }

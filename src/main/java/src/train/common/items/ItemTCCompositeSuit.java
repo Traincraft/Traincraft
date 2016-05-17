@@ -8,6 +8,7 @@
 package src.train.common.items;
 
 import com.google.common.eventbus.Subscribe;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.Entity;
@@ -18,33 +19,21 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import src.train.common.Traincraft;
+import src.train.common.core.CommonProxy;
 import src.train.common.library.Info;
 import src.train.common.library.ItemIDs;
 
 public class ItemTCCompositeSuit extends ItemTCArmor {
-	/** The EnumArmorMaterial used for this ItemArmor */
-	private final ArmorMaterial material;
-	public ItemTCCompositeSuit(ArmorMaterial material, int par3, int par4, int color) {
-		super(material, par3, par4,color);
-		this.material = material;
+	public ItemTCCompositeSuit(String iconName, ArmorMaterial material, int par3, int par4, int color) {
+		super(iconName, material, par3, par4,color);
 		setCreativeTab(Traincraft.tcTab);
 		this.color = color;
-		MinecraftForge.EVENT_BUS.register(this);
-		
+		Traincraft.proxy.registerEvent(this);
 	}
-	/*@Override
-	public String getArmorTexture(ItemStack stack, Entity entity, int slot, int layer) {
-		if(stack.getItem() == ItemIDs.helmet_suit_paintable.item || stack.getItem() == ItemIDs.jacket_suit_paintable.item || stack.getItem() == ItemIDs.boots_suit_paintable.item){
-			return Info.resourceLocation+":"+Info.armorPrefix+"composite_suit_"+layer+".png";
-		}else if(stack.getItem() == ItemIDs.pants_suit_paintable.item){
-			return Info.resourceLocation+":"+Info.armorPrefix+"composite_suit_pants_"+layer+".png";	
-		}
-		else{
-			return "";
-		}
-	}*/
+
 	/**
      * Called by RenderBiped and RenderPlayer to determine the armor texture that 
      * should be use for the currently equiped item.
@@ -68,9 +57,10 @@ public class ItemTCCompositeSuit extends ItemTCArmor {
 			return Info.resourceLocation+":"+Info.armorPrefix+"composite_suit_pants_"+1+".png";	
 		}
 		else{
-			return "";
+			return super.getArmorTexture(stack, entity, slot, type);
 		}
 	}
+
 	/**
      * Return an item rarity from EnumRarity
      */
@@ -154,29 +144,30 @@ public class ItemTCCompositeSuit extends ItemTCArmor {
 		}
 
 	}
+
 	/**
 	 * Initially projected to have a jump boost
 	 */
-	/*
-	@ForgeSubscribe
-	public void onEntityLivingJumpEvent(LivingJumpEvent event)
+	@SubscribeEvent
+	public void onEntityLivingJumpEvent(LivingEvent.LivingJumpEvent event)
 	{
 		if(event.entity instanceof EntityPlayer){
 			EntityPlayer player = (EntityPlayer)event.entity;
 			ItemStack armor = player.inventory.armorItemInSlot(1);
 			if(armor!=null && armor.getItem() instanceof ItemTCArmor){
 				ItemTCArmor itemarmor = (ItemTCArmor)armor.getItem();
-				if(itemarmor.getArmorMaterial() == Traincraft.instance.armorSuit){
+				if(itemarmor.getArmorMaterial() == Traincraft.instance.armorCompositeSuit){
 					event.entity.motionY+=0.05;
 					armor.damageItem(10, player);
 				}
 			}
 		}
-	}*/
+	}
+
 	/**
 	 * Boots protect against fall damage
 	 */
-	@Subscribe
+	@SubscribeEvent
 	public void onEntityLivingFallEvent(LivingFallEvent event)
 	{
 		if(event.entity instanceof EntityPlayer){

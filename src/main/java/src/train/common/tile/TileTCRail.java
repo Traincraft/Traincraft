@@ -6,6 +6,7 @@ import java.util.List;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -45,8 +46,8 @@ public class TileTCRail extends TileEntity {
 	public boolean hasRotated = false;
 
 	public TileTCRail() {
-
-		facingMeta = this.getBlockMetadata();
+		if(this.worldObj != null)
+			facingMeta = this.getBlockMetadata();
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -358,6 +359,12 @@ public class TileTCRail extends TileEntity {
 		this.writeToNBT(nbt);
 
 		return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, nbt);
+	}
+
+	@Override
+	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt){
+		this.readFromNBT(pkt.func_148857_g());
+		super.onDataPacket(net, pkt);
 	}
 
 	public void changeSwitchState(World world, TileEntity tileEntity, int i, int j, int k) {

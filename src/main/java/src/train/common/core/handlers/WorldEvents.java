@@ -8,33 +8,23 @@ import net.minecraft.world.World;
 import java.util.EnumSet;
 import java.util.Random;
 
-//TODO
-public class ServerTickHandler extends TickEvent {
+public class WorldEvents{
 	private int windTicker = 0;
-
 	private static Random rand = new Random();
 	public static int windStrength = 10 + rand.nextInt(10);
 
-
-	public ServerTickHandler() {
-		super(Type.WORLD, Side.SERVER, Phase.START);
-	}
-
 	@SubscribeEvent
-	public void onServerTickHandler(ServerTickHandler handler) {
-		/*
-		if (handler.type.contains(Type.WORLD)) {
-			World world = (World) tickData[0];
-			if (windTicker % 128 == 0) {
-				updateWind(world);
+	public void onWorldTick(TickEvent.WorldTickEvent handler){
+		World world = handler.world;
+		if(world.isRemote){
+			if(windTicker % 128 == 0){
+				updateWind();
 			}
 			windTicker += 1;
 		}
-		*/
-
 	}
 
-	private static void updateWind(World world) {
+	private static void updateWind() {
 		int upChance = 10;
 		int downChance = 10;
 		if (windStrength > 20) {
@@ -49,6 +39,5 @@ public class ServerTickHandler extends TickEvent {
 		if (rand.nextInt(100) <= downChance) {
 			windStrength -= 1;
 		}
-
 	}
 }

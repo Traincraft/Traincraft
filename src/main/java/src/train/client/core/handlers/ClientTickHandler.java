@@ -5,18 +5,21 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.Type;
 import cpw.mods.fml.relauncher.Side;
+import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
+import net.minecraft.item.ItemStack;
 import src.train.client.core.helpers.CapesHelper;
 import src.train.client.gui.HUDloco;
 import src.train.common.Traincraft;
 import src.train.common.api.Locomotive;
+import src.train.common.blocks.TCBlocks;
 import src.train.common.library.BlockIDs;
+import src.train.common.library.Info;
 
 public class ClientTickHandler {
 	private static final Minecraft mc = Minecraft.getMinecraft();
 	private static boolean isHidden = false;
-	private HUDloco locoHUD = new HUDloco(Traincraft.proxy.getClientInstance());
 
 	@SubscribeEvent
 	public void tick(TickEvent event) {
@@ -28,7 +31,6 @@ public class ClientTickHandler {
 				tickStart(event);
 				break;
 			case END:
-				tickEnd(event);
 				break;
 			default:
 				break;
@@ -36,7 +38,7 @@ public class ClientTickHandler {
 	}
 
 	private void tickStart(TickEvent event) {
-		if(mc.theWorld != null && mc != null && mc.theWorld.playerEntities != null) {
+		if(mc.theWorld != null && mc.theWorld.playerEntities != null) {
 			for (Object p: mc.theWorld.playerEntities) {
 				AbstractClientPlayer player = (AbstractClientPlayer) p;
 				CapesHelper user = CapesHelper.users.get(player.getDisplayName());
@@ -46,31 +48,19 @@ public class ClientTickHandler {
 					user.setDaemon(true);
 					user.setName("Cape for " + player.getDisplayName());
 					user.start();
-				}else if(user.isLoaded && user.MCCape) {
+				}else if(CapesHelper.isLoaded && user.MCCape) {
 					// NOTE: func_152121_a = switchTexture
 					player.func_152121_a(MinecraftProfileTexture.Type.CAPE, user.getCurrentRL());
 				}
 			}
 		}
 		if(!isHidden) {
-			if(mc.theWorld != null && mc != null && mc.theWorld.playerEntities != null) {
-				Traincraft.proxy.doNEICheck(BlockIDs.tcRail.blockID);
-				Traincraft.proxy.doNEICheck(BlockIDs.tcRailGag.blockID);
+			if(mc.theWorld != null && mc.theWorld.playerEntities != null) {
+				Traincraft.proxy.doNEICheck(new ItemStack(Block.getBlockFromName(Info.modID + ":tcRail")));
+				Traincraft.proxy.doNEICheck(new ItemStack(Block.getBlockFromName(Info.modID + ":tcRailGag")));
 				isHidden = true;
 			}
 		}
 	}
 
-	public void tickEnd(TickEvent event) {
-		if(event.type == Type.RENDER) {
-			onRenderTick();
-		}
-	}
-
-
-	public void onRenderTick() {
-		if (mc.thePlayer != null && mc.thePlayer.ridingEntity != null && mc.thePlayer.ridingEntity instanceof Locomotive && mc.isGuiEnabled() && mc.currentScreen == null) {
-			locoHUD.renderSkillHUD((Locomotive) mc.thePlayer.ridingEntity);
-		}
-	}
 }

@@ -24,7 +24,6 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 	@Override
 	public void renderTileEntityAt(TileEntity var1, double x, double y, double z, float var8) {
 		if(var1 instanceof TileTCRail){
-			//System.out.println(((TileTCRail)var1).getType());
 			if(((TileTCRail)var1).hasModel && ((TileTCRail)var1).getType()!=null && ((TileTCRail)var1).getType().equals(TrackTypes.SMALL_STRAIGHT.getLabel())){
 				modelSmallStraight.render((TileTCRail) var1, x, y, z);
 			}

@@ -3,6 +3,7 @@ package src.train.common.core;
 import com.google.common.collect.Lists;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
@@ -11,15 +12,21 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.ForgeChunkManager;
 import net.minecraftforge.common.ForgeChunkManager.Ticket;
+import net.minecraftforge.common.MinecraftForge;
+import src.train.client.core.handlers.ClientTickHandler;
+import src.train.client.gui.HUDloco;
 import src.train.common.Traincraft;
 import src.train.common.api.*;
 import src.train.common.containers.*;
-import src.train.common.core.handlers.ServerTickHandler;
+import src.train.common.core.handlers.ChunkEvents;
+import src.train.common.core.handlers.CraftingHandler;
+import src.train.common.core.handlers.WorldEvents;
 import src.train.common.entity.digger.EntityRotativeDigger;
 import src.train.common.entity.rollingStock.EntityJukeBoxCart;
 import src.train.common.entity.rollingStock.EntityTracksBuilder;
@@ -36,8 +43,26 @@ public class CommonProxy implements IGuiHandler {
 
 	public void registerRenderInformation() {}
 
+	public void registerEvents(FMLPreInitializationEvent event){
+		System.out.println("Events");
+		WorldEvents worldEvents = new WorldEvents();
+		ClientTickHandler tickHandler = new ClientTickHandler();
+		ChunkEvents chunkEvents = new ChunkEvents();
+		HUDloco huDloco = new HUDloco();
+
+		registerEvent(worldEvents);
+		registerEvent(tickHandler);
+		registerEvent(chunkEvents);
+		registerEvent(huDloco);
+
+	}
+
+	public void registerEvent(Object o){
+		FMLCommonHandler.instance().bus().register(o);
+		MinecraftForge.EVENT_BUS.register(o);
+	}
+
 	public void registerTileEntities() {
-		FMLCommonHandler.instance().bus().register(new ServerTickHandler());
 		GameRegistry.registerTileEntity(TileCrafterTierI.class, "TileCrafterTierI");
 		GameRegistry.registerTileEntity(TileCrafterTierII.class, "TileCrafterTierII");
 		GameRegistry.registerTileEntity(TileCrafterTierIII.class, "TileCrafterTierIII");
@@ -210,7 +235,7 @@ public class CommonProxy implements IGuiHandler {
 	
 	public void isHoliday() {}
 
-	public void doNEICheck(int id) {}
+	public void doNEICheck(ItemStack stack) {}
 	
 	public EntityPlayer getPlayer() {
 		return null;

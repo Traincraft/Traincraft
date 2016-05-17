@@ -16,7 +16,7 @@ import src.train.common.library.GuiIDs;
 
 public class EntityLocoSteamShay extends SteamTrain {
 	public EntityLocoSteamShay(World world) {
-		super(world, 0, 0, EnumTrains.locoSteamShay.getTankCapacity(), LiquidManager.WATER_FILTER);
+		super(world, EnumTrains.locoSteamShay.getTankCapacity(), LiquidManager.WATER_FILTER);
 		initLocoSteam();
 	}
 

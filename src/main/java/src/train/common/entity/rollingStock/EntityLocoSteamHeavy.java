@@ -15,7 +15,7 @@ import src.train.common.library.GuiIDs;
 
 public class EntityLocoSteamHeavy extends SteamTrain {
 	public EntityLocoSteamHeavy(World world) {
-		super(world, 0, 0, 5000/*change value here to EnumTrains..getTankCapacity()*/, LiquidManager.WATER_FILTER);
+		super(world, 5000/*change value here to EnumTrains..getTankCapacity()*/, LiquidManager.WATER_FILTER);
 		initLocoSteam();
 	}
 

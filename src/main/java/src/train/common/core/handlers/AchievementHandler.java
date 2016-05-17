@@ -29,7 +29,7 @@ public class AchievementHandler {
 	}
 	
 	private static Achievement achievement(String name, int column, int row, ItemStack stack, Achievement parent) {
-		Achievement result = new Achievement("achievement.tc." + name, "tc." + name, column, row, stack, parent);
+		Achievement result = new Achievement("achievement.tc." + name, "tc:" + name, column, row, stack, parent);
 		if(stack == null) {
 			result.initIndependentStat();
 		}
@@ -37,8 +37,6 @@ public class AchievementHandler {
 	}
 
 	public static void load() {
-		//TODO
-		/*
 		AchievementIDs.trainWB.achievement = achievement("trainWB", 0, 0, BlockIDs.trainWorkbench.block, (Achievement) null);
 		AchievementIDs.woodenParts.achievement = achievement("woodenParts", -2, 2, ItemIDs.woodenBogie.item, AchievementIDs.trainWB.achievement);
 		AchievementIDs.ironParts.achievement = achievement("ironParts", 0, 2, ItemIDs.ironBogie.item, AchievementIDs.trainWB.achievement);
@@ -81,11 +79,11 @@ public class AchievementHandler {
 		AchievementIDs.mail.achievement = achievement("mail", 7, 10, ItemIDs.minecartMailWagon_DB.item, AchievementIDs.assemblyTable.achievement);
 		AchievementIDs.stockCar.achievement = achievement("stockcar", 5, 12, ItemIDs.minecartStockCar.item, AchievementIDs.assemblyTable.achievement);
 		AchievementIDs.caboose.achievement = achievement("caboose", 7, 12, ItemIDs.minecartCaboose.item, AchievementIDs.assemblyTable.achievement);
-		AchievementIDs.flatCart.achievement = achievement("caboose", 5, 14, ItemIDs.minecartFlatCartRail_DB.item, AchievementIDs.assemblyTable.achievement);
+		AchievementIDs.flatCart.achievement = achievement("flatCart", 5, 14, ItemIDs.minecartFlatCartRail_DB.item, AchievementIDs.assemblyTable.achievement);
 		//TODO put this: AchievementIDs.heavySteam.achievement  back once Heavy Steam is back
 		Achievement ach[] = new Achievement[] { AchievementIDs.steel.achievement, AchievementIDs.stake.achievement, AchievementIDs.dieselFuel.achievement, AchievementIDs.electMotor.achievement, AchievementIDs.dieselEngine.achievement, AchievementIDs.firebox.achievement, AchievementIDs.zeppelin.achievement, AchievementIDs.smallSteam.achievement, AchievementIDs.normalSteam.achievement, AchievementIDs.passenger.achievement, AchievementIDs.freight.achievement, AchievementIDs.liquid.achievement, AchievementIDs.tender.achievement, AchievementIDs.diesel.achievement, AchievementIDs.tram.achievement, AchievementIDs.fast.achievement, AchievementIDs.workCart.achievement, AchievementIDs.builder.achievement, AchievementIDs.jukebox.achievement, AchievementIDs.openHearth.achievement, AchievementIDs.engineer.achievement, AchievementIDs.distilationTower.achievement, AchievementIDs.plastic.achievement, AchievementIDs.fineCopperWire.achievement, AchievementIDs.electronicCircuit.achievement, AchievementIDs.generator.achievement, AchievementIDs.woodenParts.achievement, AchievementIDs.ironParts.achievement, AchievementIDs.steelParts.achievement, AchievementIDs.trainWB.achievement, AchievementIDs.assemblyTable.achievement, AchievementIDs.mail.achievement, AchievementIDs.minetrain.achievement, AchievementIDs.cherepanov.achievement, AchievementIDs.flatCart.achievement, AchievementIDs.stockCar.achievement, AchievementIDs.caboose.achievement };
 
 		tmPage = new AchievementPage("TrainCraft", ach);
-		*/
+
 	}
 }

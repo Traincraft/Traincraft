@@ -276,7 +276,7 @@ public class PacketHandler extends MessageToMessageCodec<FMLProxyPacket, Packet2
 				dos.writeInt(tem.yCoord);
 				dos.writeInt(tem.zCoord);
 				dos.writeByte(tem.getFacing());
-				dos.writeInt(ServerTickHandler.windStrength);
+				dos.writeInt(WorldEvents.windStrength);
 			}
 			if (te != null && te instanceof TileGeneratorDiesel) {
 				TileGeneratorDiesel tem = (TileGeneratorDiesel) te;

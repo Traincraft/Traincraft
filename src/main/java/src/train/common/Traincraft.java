@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
+import net.minecraftforge.common.AchievementPage;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.EnumHelper;
 import src.train.common.api.LiquidManager;
@@ -13,15 +14,8 @@ import src.train.common.blocks.TCBlocks;
 import src.train.common.core.CommonProxy;
 import src.train.common.core.CreativeTabTraincraft;
 import src.train.common.core.TrainModCore;
-import src.train.common.core.handlers.AchievementHandler;
-import src.train.common.core.handlers.ChunkHandler;
-import src.train.common.core.handlers.ConfigHandler;
-import src.train.common.core.handlers.CraftingHandler;
-import src.train.common.core.handlers.EntityHandler;
-import src.train.common.core.handlers.FuelHandler;
-import src.train.common.core.handlers.OreHandler;
-import src.train.common.core.handlers.RecipeHandler;
-import src.train.common.core.handlers.VillagerTraincraftHandler;
+import src.train.common.core.handlers.*;
+import src.train.common.core.handlers.ChunkEvents;
 import src.train.common.core.network.PacketKeyPress;
 import src.train.common.core.network.PacketRollingStockRotation;
 import src.train.common.core.network.PacketSetJukeboxStreamingUrl;
@@ -82,8 +76,7 @@ public class Traincraft {
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		proxy.registerSounds();
-		//ForgeChunkManager.setForcedChunkLoadingCallback(instance, ChunkHandler.getInstance());
-		MinecraftForge.EVENT_BUS.register(ChunkHandler.getInstance());
+		//ForgeChunkManager.setForcedChunkLoadingCallback(instance, ChunkEvents.getInstance());
 
 		/* Log */
 		tcLog.setParent(java.util.logging.Logger.getAnonymousLogger());
@@ -123,13 +116,15 @@ public class Traincraft {
 		EntityHandler.init();
 
 		AchievementHandler.load();
-		//TODO AchievementPage.registerAchievementPage(AchievementHandler.tmPage);
+		AchievementPage.registerAchievementPage(AchievementHandler.tmPage);
 
 		/* Check holidays */
 		proxy.isHoliday();
 
 		/* Tile Entities */
 		proxy.registerTileEntities();
+
+		proxy.registerEvents(event);
 
 		/* Networking and Packet initialisation */
 		int packetID = 0;
