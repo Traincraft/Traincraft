@@ -119,7 +119,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 	public double anglePitchClient;
 	public float serverRealRotation;
 	public float previousServerRealRotation;
-	public float previousServerRealRotation2;
+	public float previousServerRealRotation2; // TODO DON'T EVEN START WITH THIS. Please, for god's sake, label them properly! ..or at least add some sort of description.
 	public boolean isServerInReverse = false;
 	public boolean isClientInReverse = false;
 	public boolean serverInReverseSignPositive = false;
@@ -923,20 +923,30 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			serverRealPitch = anglePitch;
 		}
 		else {
-			float rotation = rotationYaw;
-			//System.out.println(Math.abs(rotationYaw-this.previousServerRealRotation));
-			if (Math.abs(rotationYaw - this.previousServerRealRotation) > 170 && Math.abs(rotationYaw - this.previousServerRealRotation) < 190) {
-				this.isServerInReverse = !this.isServerInReverse;
-			}
-			previousServerRealRotation = rotation;
+			//			float rotation = rotationYaw;
+			//			//System.out.println(Math.abs(rotationYaw-this.previousServerRealRotation));
+			//			if (Math.abs(rotationYaw - this.previousServerRealRotation) > 170 && Math.abs(rotationYaw - this.previousServerRealRotation) < 190) {
+			//				this.isServerInReverse = !this.isServerInReverse;
+			//			}
+			//			previousServerRealRotation = rotation;
+			//
+			//			if (this.isServerInReverse) {
+			//				if (serverInReverseSignPositive) {
+			//					rotation += 180.0f;
+			//				}
+			//				else {
+			//					rotation -= 180.0f;
+			//				}
+			//			}
 
-			if (this.isServerInReverse) {
-				if (serverInReverseSignPositive) {
-					rotation += 180.0f;
-				}
-				else {
-					rotation -= 180.0f;
-				}
+			float delta = MathHelper.wrapAngleTo180_float(this.rotationYaw - this.previousServerRealRotation); //Math.abs(this.rotationYaw - this.previousServerRealRotation);
+
+			this.previousServerRealRotation = this.rotationYaw;
+
+			if (delta < -170.0F || delta >= 170.0F) { // if (delta > 170.0F || delta < 190.0F) {
+
+				this.rotationYaw += 180.0F;
+				this.isServerInReverse = !this.isServerInReverse;
 			}
 
 			serverRealRotation = rotation;
