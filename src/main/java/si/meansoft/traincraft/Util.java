@@ -12,6 +12,7 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -23,6 +24,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.model.TRSRTransformation;
@@ -30,6 +32,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.opengl.GL11;
 import si.meansoft.traincraft.blocks.BlockRail;
+import si.meansoft.traincraft.network.ClientProxy;
 
 import javax.annotation.Nullable;
 
@@ -81,11 +84,18 @@ public class Util {
     public static void renderObjectFile(IBakedModel currentModel, TileEntity te){
         if(currentModel != null){
             GlStateManager.translate(-te.getPos().getX(), -te.getPos().getY(), -te.getPos().getZ());
-            Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
             Tessellator tessy = Tessellator.getInstance();
             tessy.getBuffer().begin(GL11.GL_QUADS, DefaultVertexFormats.BLOCK);
             Minecraft.getMinecraft().getBlockRendererDispatcher().getBlockModelRenderer().renderModel(te.getWorld(), currentModel, te.getWorld().getBlockState(te.getPos()), te.getPos(), Tessellator.getInstance().getBuffer(), false);
             tessy.draw();
+        }
+    }
+
+    @SideOnly(Side.CLIENT)
+    public static void renderIBakedModel(IBakedModel model, TileEntity tileEntity, VertexBuffer renderer){
+        if(model != null){
+            GlStateManager.translate(-tileEntity.getPos().getX(), -tileEntity.getPos().getY(), -tileEntity.getPos().getZ());
+            ClientProxy.blockRenderer.getBlockModelRenderer().renderModel(MinecraftForgeClient.getRegionRenderCache(tileEntity.getWorld(), tileEntity.getPos()), model, tileEntity.getWorld().getBlockState(tileEntity.getPos()), tileEntity.getPos(), renderer, false);
         }
     }
 

@@ -9,6 +9,8 @@ package si.meansoft.traincraft.network;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.BlockRendererDispatcher;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -19,6 +21,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.client.model.ModelLoaderRegistry;
+import net.minecraftforge.client.model.b3d.B3DLoader;
 import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
@@ -35,11 +39,14 @@ public class ClientProxy extends CommonProxy {
 
     public static HashMap<BlockRail.Rails, IBakedModel> railModels = new HashMap<>();
     private static boolean hasBaked = false;
+    public static BlockRendererDispatcher blockRenderer;
+    public static IBakedModel model;
 
     @Override
     public void preInit(FMLPreInitializationEvent event) {
         this.registerFluidRenderer(FluidRegistry.diesel);
         OBJLoader.INSTANCE.addDomain("traincraft");
+        B3DLoader.INSTANCE.addDomain("traincraft");
         for(Map.Entry<ItemStack, ModelResourceLocation> entry : forgeRender.entrySet()){
             this.registerForgeRenderer(entry.getKey(), entry.getValue());
         }
@@ -73,14 +80,18 @@ public class ClientProxy extends CommonProxy {
         ModelLoader.setCustomStateMapper(block, mapper);
     }
 
+    /*
     public static void bakeAllModels(){
         if(!hasBaked){
             System.out.println("bake");
+            model = Util.getBakedModel(BlockRail.Rails.LONGSTRAIGHT.location);
+            blockRenderer = Minecraft.getMinecraft().getBlockRendererDispatcher();
             for(BlockRail.Rails rail : BlockRail.Rails.values()){
                 railModels.put(rail, Util.getBakedModel(rail.location));
             }
             hasBaked = true;
         }
     }
+    */
 
 }

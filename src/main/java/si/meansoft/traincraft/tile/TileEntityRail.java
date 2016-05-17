@@ -1,24 +1,16 @@
 package si.meansoft.traincraft.tile;
 
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.lwjgl.opengl.GL11;
-import si.meansoft.traincraft.Traincraft;
-import si.meansoft.traincraft.TraincraftResources;
-import si.meansoft.traincraft.Util;
 import si.meansoft.traincraft.blocks.BlockRail;
-import si.meansoft.traincraft.network.ClientProxy;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -98,46 +90,21 @@ public class TileEntityRail extends TileEntityBase{
     public static class RailRenderer extends TileEntitySpecialRenderer<TileEntityRail>{
         @Override
         public void renderTileEntityAt(TileEntityRail te, double x, double y, double z, float partialTicks, int destroyStage){
-            if(te.glArguments != null && te.glArguments[0] != 0){
+            if(te.railType != null && te.glArguments != null && te.glArguments[0] != 0){
                 //ClientProxy.bakeAllModels();
-                GlStateManager.pushAttrib();
                 GlStateManager.pushMatrix();
-                GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+                //GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
                 GlStateManager.translate(x + 0.5, y, z + 0.5);
-
-                GlStateManager.rotate(te.glArguments[4], 1, 0, 0);
-                GlStateManager.rotate(te.glArguments[5], 0, 1, 0);
-                GlStateManager.rotate(te.glArguments[6], 0, 0, 1);
-
-                GlStateManager.translate(te.glArguments[1], te.glArguments[2], te.glArguments[3]);
-
-                Util.renderObjectFile(ClientProxy.railModels.get(te.railType), te);
-
+                //GlStateManager.translate(te.glArguments[1], te.glArguments[2], te.glArguments[3]);
+                //GlStateManager.rotate(te.glArguments[4] + 90, 1, 0, 0);
+                //GlStateManager.rotate(te.glArguments[5] + 180, 0, 1, 0);
+                //GlStateManager.rotate(te.glArguments[6], 0, 0, 1);
+                //this.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
+                //Util.renderObjectFile(ClientProxy.model, te);
+                this.bindTexture(te.railType.modelTexture);
+                te.railType.model.render(0.015625F);
                 GlStateManager.popMatrix();
-                GlStateManager.popAttrib();
             }
-
-
-            /*
-            ResourceLocation newLoc = ((BlockRail)te.worldObj.getBlockState(te.pos).getBlock()).railResources;
-            if(currentLoc == null || newLoc != this.currentLoc){
-                this.bakedModel = null;
-                this.currentLoc = newLoc;
-            }
-            if(currentLoc != null && te.glArguments != null && te.glArguments[0] == 1){
-
-                //GlStateManager.enableRescaleNormal();
-                GlStateManager.disableLighting();
-
-                //GlStateManager.enableBlend();
-                //GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-
-                GlStateManager.enableLighting();
-
-            } else {
-                te.syncToClient();
-            }
-            */
         }
     }
 
