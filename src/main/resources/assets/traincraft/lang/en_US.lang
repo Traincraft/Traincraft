@@ -1,0 +1,6 @@
+#Some special things:
+itemGroup.traincraftTab=Traincraft
+
+
+#Blocks:
+tile.traincraft:oilSand.name=Oil Sand

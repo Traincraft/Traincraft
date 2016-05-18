@@ -1,64 +1,106 @@
 package si.meansoft.traincraft;
 
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.*;
-import si.meansoft.meancore.common.library.InfoMC;
-import si.meansoft.meancore.event.Fingerprint;
-import si.meansoft.meancore.proxy.IProxy;
-import si.meansoft.traincraft.common.library.InfoTC;
-import si.meansoft.traincraft.event.*;
+import net.minecraft.block.Block;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
+import net.minecraftforge.client.model.obj.OBJLoader;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.fml.common.event.*;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.registry.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import si.meansoft.traincraft.blocks.BlockBase;
+import si.meansoft.traincraft.gen.WorldGen;
+import si.meansoft.traincraft.items.ItemBlockGeneric;
+import si.meansoft.traincraft.network.CommonProxy;
+import si.meansoft.traincraft.network.GuiHandler;
 
-@Mod(modid = InfoTC.MODID, name= InfoTC.MODNAME, certificateFingerprint = InfoTC.FINGERPRINT, version = InfoTC.VERSION, guiFactory = InfoTC.GUI_FACTORY)
+@Mod(modid = Traincraft.MODID, name= Traincraft.NAME, version = Traincraft.VERSION)
 public class Traincraft {
 
-    @Mod.Instance(InfoTC.MODID)
-    public static Traincraft instance;
+    public static final String MODID = "traincraft";
+    public static final String NAME = "@MODNAME@";
+    public static final String VERSION = "@VERSION@";
+    public static final String CLIENTPROXY = "si.meansoft.traincraft.network.ClientProxy";
+    public static final String COMMONPROXY = "si.meansoft.traincraft.network.CommonProxy";
+    @Mod.Instance(Traincraft.MODID)
+    public static Traincraft INSTANCE;
+    @SidedProxy(clientSide = Traincraft.CLIENTPROXY, serverSide = Traincraft.COMMONPROXY)
+    public static CommonProxy proxy;
+    public static Logger logger = LogManager.getLogger(NAME);
+    public static CreativeTabs tab;
 
-    private static ServerTC sr = new ServerTC();
-
-    @SidedProxy(clientSide = InfoTC.CLIENT_PROXY, serverSide = InfoTC.SERVER_PROXY)
-    public static IProxy proxy;
-
-    @EventHandler
-    public void invalidFingerprint(FMLFingerprintViolationEvent evt) {
-        Fingerprint fp = new Fingerprint();
-        fp.init(evt, InfoTC.FINGERPRINT);
+    static{
+        net.minecraftforge.fluids.FluidRegistry.enableUniversalBucket();
     }
 
-    @EventHandler
+    @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent evt) {
-        System.out.println("TC-0: " + evt.getSuggestedConfigurationFile());
-        PreInitTC pi = new PreInitTC();
-        pi.init(evt);
+        logger.info("[Traincraft] Let the trains out! " + NAME + ": " + VERSION + "!");
+        tab = new CreativeTabs("traincraftTab") {
+            @Override
+            public Item getTabIconItem() {
+                return Item.getItemFromBlock(BlockRegistry.oilSand);
+            }
+        };
+        logger.info("Register Blocks, Items, ...");
+        BlockRegistry.preInit();
+        ItemRegistry.preInit();
+        FluidRegistry.preInit();
+        TileEntityRegistry.preInit();
+        GameRegistry.registerWorldGenerator(new WorldGen(), 10);
+        NetworkRegistry.INSTANCE.registerGuiHandler(INSTANCE, new GuiHandler());
+        logger.info("Register Renderer!");
+        proxy.preInit(evt);
+        logger.info("[Traincraft] Finished PreInitializing!");
     }
 
-    @EventHandler
+    @Mod.EventHandler
     public void init(FMLInitializationEvent evt) {
-        InitTC in = new InitTC();
-        in.init(evt);
+        logger.info("[Traincraft] Started Initializing");
+        RecipeRegistry.init();
+        proxy.init(evt);
+        logger.info("[Traincraft] Finished Initializing");
     }
 
-    @EventHandler
-    public void readIMC(FMLInterModComms.IMCEvent evt) {
-        ReadIMCTC imc = new ReadIMCTC();
-        imc.init(evt);
-    }
-
-    @EventHandler
+    @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent evt) {
-        PostInitTC pi = new PostInitTC();
-        pi.init(evt);
+        logger.info("[Traincraft] Started PostInitializing");
+        proxy.postInit(evt);
+        logger.info("[Traincraft] Now you can't stop the trains!");
     }
 
-    @EventHandler
-    public void serverStarting(FMLServerStartingEvent evt) {
-        sr.initStart(evt);
+    public static void registerBlock(Block block, String blockName){
+        registerBlock(block, blockName, true);
     }
 
-    @EventHandler
-    public void serverStopping(FMLServerStoppingEvent evt) {
-        sr.initStop(evt);
+    public static void registerBlock(Block block, String blockName, boolean defaultRender){
+        block.setUnlocalizedName(MODID + ":" + blockName);
+        block.setRegistryName(blockName);
+        block.setCreativeTab(tab);
+        ItemBlockGeneric itemBlock = new ItemBlockGeneric(block);
+        GameRegistry.register(block);
+        GameRegistry.register(itemBlock);
+        if(defaultRender){
+            CommonProxy.addForgeRender(itemBlock);
+        }
     }
+
+    public static void registerItem(Item item, String itemName){
+        registerItem(item, itemName, true);
+    }
+
+    public static void registerItem(Item item, String itemName, boolean defaultRender){
+        item.setUnlocalizedName(MODID + ":" + itemName);
+        item.setRegistryName(itemName);
+        item.setCreativeTab(tab);
+        GameRegistry.register(item);
+        if(defaultRender){
+            CommonProxy.addForgeRender(item);
+        }
+    }
+
 }
