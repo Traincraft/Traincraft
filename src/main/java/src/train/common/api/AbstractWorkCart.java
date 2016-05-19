@@ -172,10 +172,7 @@ public abstract class AbstractWorkCart extends EntityRollingStock implements IIn
 				var2 = true;
 			}
 		}
-
-		//TODO REIMPLEMENT
-		/*
-		 * if (var2) { this.onInventoryChanged(); } */
+		if (var2) { this.markDirty(); }
 	}
 
 	/**

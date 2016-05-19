@@ -7,13 +7,20 @@
 
 package src.train.common.core.handlers;
 
+import com.sun.xml.internal.ws.client.dispatch.PacketDispatch;
+import cpw.mods.fml.common.network.FMLEmbeddedChannel;
+import cpw.mods.fml.common.network.FMLOutboundHandler;
+import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.network.simpleimpl.IMessage;
+import cpw.mods.fml.relauncher.Side;
+import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageCodec;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.util.List;
+import java.util.*;
 
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.entity.Entity;
@@ -26,6 +33,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 import src.train.common.Packet250CustomPayload;
+import src.train.common.Traincraft;
 import src.train.common.api.AbstractTrains;
 import src.train.common.api.Locomotive;
 import src.train.common.entity.rollingStock.EntityTracksBuilder;
@@ -53,10 +61,41 @@ import com.google.common.io.ByteStreams;
 
 import cpw.mods.fml.common.network.internal.FMLProxyPacket;
 
-//TODO Packets
+@ChannelHandler.Sharable
 public class PacketHandler extends MessageToMessageCodec<FMLProxyPacket, Packet250CustomPayload> {
 
 	protected RollingStockStatsEventHandler statsEventHandler = new RollingStockStatsEventHandler();
+	private boolean isPostInitialised = false;
+	public EnumMap<Side, FMLEmbeddedChannel> channels;
+	private LinkedList<Class<? extends Packet250CustomPayload>> packets = new LinkedList<Class<? extends Packet250CustomPayload>>();
+
+
+	// Method to call from FMLInitializationEvent
+	public void initialise() {
+		this.channels = NetworkRegistry.INSTANCE.newChannel("TUT", this);
+	}
+
+	// Method to call from FMLPostInitializationEvent
+	// Ensures that packet discriminators are common between server and client by using logical sorting
+	public void postInitialise() {
+		if (this.isPostInitialised) {
+			return;
+		}
+
+		this.isPostInitialised = true;
+		Collections.sort(this.packets, new Comparator<Class<? extends Packet250CustomPayload>>() {
+
+			@Override
+			public int compare(Class<? extends Packet250CustomPayload> clazz1, Class<? extends Packet250CustomPayload> clazz2) {
+				int com = String.CASE_INSENSITIVE_ORDER.compare(clazz1.getCanonicalName(), clazz2.getCanonicalName());
+				if (com == 0) {
+					com = clazz1.getCanonicalName().compareTo(clazz2.getCanonicalName());
+				}
+
+				return com;
+			}
+		});
+	}
 
 	//@Override
 	public void onPacketData(NetworkManager manager, Packet250CustomPayload packet, EntityPlayer player) {
@@ -171,7 +210,7 @@ public class PacketHandler extends MessageToMessageCodec<FMLProxyPacket, Packet2
 		return (Entity) (par1 == ((EntityPlayer) player).getEntityId() ? player : ((EntityPlayer) player).worldObj.getEntityByID(par1));
 	}
 
-	public static Packet getTEPClient(TileEntity te) {
+	public static IMessage getTEPClient(TileEntity te) {
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		DataOutputStream dos = new DataOutputStream(bos);
 		try {
@@ -321,11 +360,9 @@ public class PacketHandler extends MessageToMessageCodec<FMLProxyPacket, Packet2
 	 * 
 	 * @param entity
 	 * @param rotationYawServer
-	 * @param realRotation
-	 * @param anglePitch
 	 * @return
 	 */
-	public static Packet setRotationPacketZeppelin(Entity entity, float rotationYawServer, float roll) {
+	public static IMessage setRotationPacketZeppelin(Entity entity, float rotationYawServer, float roll) {
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		DataOutputStream dos = new DataOutputStream(bos);
 		try {
@@ -344,10 +381,13 @@ public class PacketHandler extends MessageToMessageCodec<FMLProxyPacket, Packet2
 		return packet;
 	}
 
-	public static void sendPacketToClients(Packet packet, World worldObj, int x, int y, int z, double range) {
+	public static void sendPacketToClients(IMessage packet, World worldObj, int x, int y, int z, double range) {
 		try {
-			//TODO Packets
 			// PacketDispatcher.sendPacketToAllAround(x, y, z, range, worldObj.provider.dimensionId, packet);
+			//TODO FIXED-ISH
+			Traincraft.packetPipeline.channels.get(Side.SERVER).attr(FMLOutboundHandler.FML_MESSAGETARGET).set(FMLOutboundHandler.OutboundTarget.ALLAROUNDPOINT);
+			Traincraft.packetPipeline.channels.get(Side.SERVER).attr(FMLOutboundHandler.FML_MESSAGETARGETARGS).set(new NetworkRegistry.TargetPoint(worldObj.provider.dimensionId,x,y,z,range));
+			Traincraft.packetPipeline.channels.get(Side.SERVER).writeAndFlush(packet);
 		}
 		catch (Exception e) {
 			System.out.println("Sending packet to client failed.");
@@ -355,7 +395,7 @@ public class PacketHandler extends MessageToMessageCodec<FMLProxyPacket, Packet2
 		}
 	}
 
-	public static Packet setParkingBrake(Entity player, Entity entity, boolean set, boolean toServer) {
+	public IMessage setParkingBrake(Entity player, Entity entity, boolean set, boolean toServer) {
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		DataOutputStream dos = new DataOutputStream(bos);
 		try {
@@ -374,13 +414,15 @@ public class PacketHandler extends MessageToMessageCodec<FMLProxyPacket, Packet2
 			packet.length = bos.size();
 			if (player instanceof EntityClientPlayerMP) {
 				EntityClientPlayerMP playerMP = (EntityClientPlayerMP) player;
-				playerMP.sendQueue.addToSendQueue(packet);
+				this.channels.get(Side.SERVER).attr(FMLOutboundHandler.FML_MESSAGETARGET).set(FMLOutboundHandler.OutboundTarget.PLAYER);
+				this.channels.get(Side.SERVER).attr(FMLOutboundHandler.FML_MESSAGETARGETARGS).set(player);
+				this.channels.get(Side.SERVER).writeAndFlush(packet);
 			}
 		}
 		return packet;
 	}
 
-	public static Packet setLocoTurnedOn(Entity player, Entity entity, boolean set, boolean toServer) {
+	public IMessage setLocoTurnedOn(Entity player, Entity entity, boolean set, boolean toServer) {
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		DataOutputStream dos = new DataOutputStream(bos);
 		try {
@@ -399,13 +441,15 @@ public class PacketHandler extends MessageToMessageCodec<FMLProxyPacket, Packet2
 			packet.length = bos.size();
 			if (player instanceof EntityClientPlayerMP) {
 				EntityClientPlayerMP playerMP = (EntityClientPlayerMP) player;
-				playerMP.sendQueue.addToSendQueue(packet);
+				this.channels.get(Side.SERVER).attr(FMLOutboundHandler.FML_MESSAGETARGET).set(FMLOutboundHandler.OutboundTarget.PLAYER);
+				this.channels.get(Side.SERVER).attr(FMLOutboundHandler.FML_MESSAGETARGETARGS).set(player);
+				this.channels.get(Side.SERVER).writeAndFlush(packet);
 			}
 		}
 		return packet;
 	}
 
-	public static Packet setTrainLocked(Entity player, Entity entity, boolean set) {
+	public IMessage setTrainLocked(Entity player, Entity entity, boolean set) {
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		DataOutputStream dos = new DataOutputStream(bos);
 		try {
@@ -423,12 +467,14 @@ public class PacketHandler extends MessageToMessageCodec<FMLProxyPacket, Packet2
 		packet.length = bos.size();
 		if (player instanceof EntityClientPlayerMP) {
 			EntityClientPlayerMP playerMP = (EntityClientPlayerMP) player;
-			playerMP.sendQueue.addToSendQueue(packet);
+			this.channels.get(Side.SERVER).attr(FMLOutboundHandler.FML_MESSAGETARGET).set(FMLOutboundHandler.OutboundTarget.PLAYER);
+			this.channels.get(Side.SERVER).attr(FMLOutboundHandler.FML_MESSAGETARGETARGS).set(player);
+			this.channels.get(Side.SERVER).writeAndFlush(packet);
 		}
 		return packet;
 	}
 
-	public static Packet setTrainLockedToClient(Entity player, Entity entity, boolean set) {
+	public static IMessage setTrainLockedToClient(Entity player, Entity entity, boolean set) {
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		DataOutputStream dos = new DataOutputStream(bos);
 		try {
@@ -448,7 +494,7 @@ public class PacketHandler extends MessageToMessageCodec<FMLProxyPacket, Packet2
 		return packet;
 	}
 
-	public static Packet setBuilderPlannedHeight(Entity player, Entity entity, int set, int packetID) {
+	public IMessage setBuilderPlannedHeight(Entity player, Entity entity, int set, int packetID) {
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		DataOutputStream dos = new DataOutputStream(bos);
 		try {
@@ -466,12 +512,14 @@ public class PacketHandler extends MessageToMessageCodec<FMLProxyPacket, Packet2
 		packet.length = bos.size();
 		if (player instanceof EntityClientPlayerMP) {
 			EntityClientPlayerMP playerMP = (EntityClientPlayerMP) player;
-			playerMP.sendQueue.addToSendQueue(packet);
+			this.channels.get(Side.SERVER).attr(FMLOutboundHandler.FML_MESSAGETARGET).set(FMLOutboundHandler.OutboundTarget.PLAYER);
+			this.channels.get(Side.SERVER).attr(FMLOutboundHandler.FML_MESSAGETARGETARGS).set(player);
+			this.channels.get(Side.SERVER).writeAndFlush(packet);
 		}
 		return packet;
 	}
 
-	public static Packet setBookPage(Entity player, int page, int recipe) {
+	public IMessage setBookPage(Entity player, int page, int recipe) {
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		DataOutputStream dos = new DataOutputStream(bos);
 		try {
@@ -487,7 +535,9 @@ public class PacketHandler extends MessageToMessageCodec<FMLProxyPacket, Packet2
 		packet.length = bos.size();
 		if (player instanceof EntityClientPlayerMP) {
 			EntityClientPlayerMP playerMP = (EntityClientPlayerMP) player;
-			playerMP.sendQueue.addToSendQueue(packet);
+			this.channels.get(Side.SERVER).attr(FMLOutboundHandler.FML_MESSAGETARGET).set(FMLOutboundHandler.OutboundTarget.PLAYER);
+			this.channels.get(Side.SERVER).attr(FMLOutboundHandler.FML_MESSAGETARGETARGS).set(player);
+			this.channels.get(Side.SERVER).writeAndFlush(packet);
 		}
 		return packet;
 	}

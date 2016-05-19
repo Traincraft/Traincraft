@@ -2,6 +2,7 @@ package src.train.common.tile;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import ic2.api.Direction;
+import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergySink;
 import net.minecraft.nbt.NBTTagCompound;
@@ -64,7 +65,7 @@ public class TileEntityOverheadLines extends TileEntity implements IEnergySink{
 			 */
 			if (isSimulating()&&!addedToEnergyNet) {
 				//TODO: This is require by IC2 to know about this energy tile
-				//MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
+				MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
 			}
 		}
 		if (updateTicks % 200 == 0) {

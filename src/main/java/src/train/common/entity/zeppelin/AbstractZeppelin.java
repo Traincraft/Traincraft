@@ -1,5 +1,6 @@
 package src.train.common.entity.zeppelin;
 
+import cpw.mods.fml.common.network.FMLOutboundHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.material.Material;
@@ -24,6 +25,7 @@ import net.minecraftforge.common.util.Constants;
 import org.lwjgl.input.Keyboard;
 import src.train.common.Traincraft;
 import src.train.common.core.handlers.ConfigHandler;
+import src.train.common.core.handlers.PacketHandler;
 import src.train.common.core.network.PacketKeyPress;
 import src.train.common.library.GuiIDs;
 
@@ -223,7 +225,7 @@ public abstract class AbstractZeppelin extends Entity implements IInventory {
 	}
 
 	public void pressKeyClient(int i) {
-
+		//TODO packets
 		Traincraft.modChannel.sendToServer(new PacketKeyPress(i));
 	}
 
@@ -616,7 +618,7 @@ public abstract class AbstractZeppelin extends Entity implements IInventory {
 		this.rotationYaw = (float) ((double) this.rotationYaw + d12);
 		this.setRotation(this.rotationYaw, this.rotationPitch);
 		//TODO Packets
-		// PacketHandler.sendPacketToClients(PacketHandler.setRotationPacketZeppelin(this, rotationYaw, roll), worldObj, (int) posX, (int) posY, (int) posZ, 400D);
+		PacketHandler.sendPacketToClients(PacketHandler.setRotationPacketZeppelin(this, rotationYaw, roll), worldObj, (int) posX, (int) posY, (int) posZ, 400D);
 	}
 
 	@Override

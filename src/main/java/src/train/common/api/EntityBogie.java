@@ -271,11 +271,12 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 	@Override
 	protected void writeEntityToNBT(NBTTagCompound nbttagcompound) {
 
+		/*/TODO this code doesn't seem needed, more testing should be done.
 		nbttagcompound.setInteger("trainID", entityMainTrainID);
 		nbttagcompound.setInteger("bogieIndex", bogieIndex);
 		nbttagcompound.setDouble("bogieShift", bogieShift);
-
-		super.writeToNBT(nbttagcompound);
+		writeToNBT(nbttagcompound);
+		/*/
 	}
 
 	@Override

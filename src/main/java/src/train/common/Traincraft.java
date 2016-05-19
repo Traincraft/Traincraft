@@ -57,6 +57,7 @@ public class Traincraft {
 	/* TrainCraft Logger */
 	public static Logger tcLog = Logger.getLogger(Info.modID);
 
+	//TODO remove mod channel
 	/** Network Channel to send packets on */
 	public static SimpleNetworkWrapper modChannel;
 
@@ -128,6 +129,7 @@ public class Traincraft {
 
 		/* Networking and Packet initialisation */
 		int packetID = 0;
+		//TODO remove the mod channels
 		modChannel = NetworkRegistry.INSTANCE.newSimpleChannel(Info.modID);
 		modChannel.registerMessage(PacketKeyPress.Handler.class, PacketKeyPress.class, ++packetID, Side.SERVER);
 		modChannel.registerMessage(PacketRollingStockRotation.Handler.class, PacketRollingStockRotation.class, ++packetID, Side.CLIENT);
@@ -135,6 +137,20 @@ public class Traincraft {
 		modChannel.registerMessage(PacketSlotsFilled.Handler.class, PacketSlotsFilled.class, ++packetID, Side.CLIENT);
 	}
 
+	//Register new network class
+	public static final PacketHandler packetPipeline = new PacketHandler();
+
+	@EventHandler
+	public void initialise(FMLInitializationEvent evt) {
+		packetPipeline.initialise();
+	}
+
+	@EventHandler
+	public void postInitialise(FMLPostInitializationEvent evt) {
+		packetPipeline.postInitialise();
+	}
+
+	//initialize
 	@EventHandler
 	public void load(FMLInitializationEvent event) {
 
