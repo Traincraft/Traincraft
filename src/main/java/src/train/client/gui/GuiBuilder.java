@@ -10,7 +10,6 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
-import src.train.common.Traincraft;
 import src.train.common.api.AbstractTrains;
 import src.train.common.core.handlers.PacketHandler;
 import src.train.common.entity.rollingStock.EntityTracksBuilder;
@@ -181,7 +180,7 @@ public class GuiBuilder extends GuiContainer {
 				Entity entity = (Entity) lis3.get(j1);
 				if (entity instanceof EntityPlayer) {
 					//TODO Packets
-					Traincraft.packetPipeline.setBuilderPlannedHeight(entity, builder, packet, packetID);
+					 PacketHandler.setBuilderPlannedHeight(entity, builder, packet, packetID);
 				}
 			}
 		}

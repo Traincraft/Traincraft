@@ -1,6 +1,5 @@
 package src.train.client.gui;
 
-import cpw.mods.fml.common.network.FMLOutboundHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
@@ -16,7 +15,6 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 import src.train.common.Traincraft;
 import src.train.common.api.AbstractTrains;
-import src.train.common.core.network.PacketKeyPress;
 import src.train.common.core.network.PacketSetJukeboxStreamingUrl;
 import src.train.common.entity.rollingStock.EntityJukeBoxCart;
 import src.train.common.library.Info;
@@ -218,18 +216,19 @@ public class GuiJukebox extends GuiScreen {
 
 						this.jukebox.streamURL = this.streamTextBox.getText();
 					}
-					//Traincraft.modChannel.sendTo(new PacketSetJukeboxStreamingUrl(this.jukebox, this.jukebox.streamURL, true), (EntityPlayerMP) this.player);
+
+					Traincraft.modChannel.sendTo(new PacketSetJukeboxStreamingUrl(this.jukebox, this.jukebox.streamURL, true), (EntityPlayerMP) this.player);
 					jukebox.startStream();
 				}
 				else {
 
-					//Traincraft.modChannel.sendTo(new PacketSetJukeboxStreamingUrl(this.jukebox, this.jukebox.streamURL, false), (EntityPlayerMP) this.player);
+					Traincraft.modChannel.sendTo(new PacketSetJukeboxStreamingUrl(this.jukebox, this.jukebox.streamURL, false), (EntityPlayerMP) this.player);
 					jukebox.stopStream();
 				}
 			}
 			else if (jukebox.isPlaying) {
 
-				//Traincraft.modChannel.sendTo(new PacketSetJukeboxStreamingUrl(this.jukebox, this.jukebox.streamURL, false), (EntityPlayerMP) this.player);
+				Traincraft.modChannel.sendTo(new PacketSetJukeboxStreamingUrl(this.jukebox, this.jukebox.streamURL, false), (EntityPlayerMP) this.player);
 				jukebox.stopStream();
 			}
 		}

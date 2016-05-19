@@ -1,7 +1,5 @@
 package src.train.client.gui;
 
-import cpw.mods.fml.common.network.FMLOutboundHandler;
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.gui.GuiButton;
@@ -12,7 +10,6 @@ import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
 import org.lwjgl.input.Keyboard;
 import src.train.common.Packet250CustomPayload;
-import src.train.common.Traincraft;
 import src.train.common.library.Info;
 import src.train.common.tile.TileLantern;
 
@@ -69,9 +66,8 @@ public class GuiLantern extends GuiScreen {
 					colorString = colorString.substring(0, 6);//remove additionnal characters
 					if(colorString.length()==6 &&tryParse(colorString)!=null){//if parse is possible (if string can be converted to an int)
 						int color = tryParse(colorString);//parse the string as a 16 int	
-						IMessage packet = this.getTEPClient(lanternBlock, color);//send packet to server
-						Traincraft.packetPipeline.channels.get(Side.CLIENT).attr(FMLOutboundHandler.FML_MESSAGETARGET).set(FMLOutboundHandler.OutboundTarget.TOSERVER);
-						Traincraft.packetPipeline.channels.get(Side.CLIENT).writeAndFlush(packet);
+						Packet packet = this.getTEPClient(lanternBlock, color);//send packet to server
+						this.mc.getNetHandler().addToSendQueue(packet);
 					}
 				}
 				this.mc.displayGuiScreen((GuiScreen)null);
@@ -93,7 +89,7 @@ public class GuiLantern extends GuiScreen {
 		}
 	}
 	
-	public static IMessage getTEPClient(TileEntity te, int color) {
+	public static Packet getTEPClient(TileEntity te, int color) {
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		DataOutputStream dos = new DataOutputStream(bos);
 		try {

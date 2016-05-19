@@ -18,7 +18,6 @@ import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
 import src.train.client.core.handlers.RecipeBookHandler;
 import src.train.client.render.ItemRenderBook;
-import src.train.common.Traincraft;
 import src.train.common.core.handlers.PacketHandler;
 import src.train.common.core.managers.TierRecipe;
 import src.train.common.core.managers.TierRecipeManager;
@@ -741,7 +740,7 @@ public class GuiRecipeBook2 extends GuiScreen {
 		ItemRenderBook.open = false;
 		NBTTagCompound var3 = this.itemstackBook.getTagCompound();
 		//TODO Packets
-		Traincraft.packetPipeline.setBookPage(this.editingPlayer, this.currPage, this.currRecipe);
+		PacketHandler.setBookPage(this.editingPlayer, this.currPage, this.currRecipe);
 		this.itemstackBook.getTagCompound().setInteger("currPage", this.currPage);
 		this.itemstackBook.getTagCompound().setInteger("currRecipe", this.currRecipe);
 		super.onGuiClosed();

@@ -1,6 +1,5 @@
 package src.train.common.entity.digger;
 
-import cpw.mods.fml.common.network.FMLOutboundHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -246,7 +245,7 @@ public class EntityRotativeDigger extends Entity implements IInventory {
 	}
 
 	public void pressKeyClient(int i) {
-		//TODO Packets
+
 		Traincraft.modChannel.sendToServer(new PacketKeyPress(i));
 	}
 

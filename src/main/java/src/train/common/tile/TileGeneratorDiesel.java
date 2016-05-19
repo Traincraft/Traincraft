@@ -10,7 +10,6 @@ package src.train.common.tile;
 import cofh.api.energy.IEnergyProvider;
 import cofh.api.energy.IEnergyReceiver;
 import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergySource;
@@ -170,7 +169,7 @@ public class TileGeneratorDiesel extends TileEntity implements IFluidHandler, II
 		//this.currentOutput = Energy.fromRF((currentOutput.toRF() * 740 + output.toRF()) / 750);
 	}
 
-	public static IMessage setGeneratorLiquid(TileEntity te) {
+	public static Packet setGeneratorLiquid(TileEntity te) {
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		DataOutputStream dos = new DataOutputStream(bos);
 		try {

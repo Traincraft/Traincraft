@@ -24,7 +24,7 @@ public abstract class SteamTrain extends Locomotive implements IFluidHandler {
 	private IFluidTank[] tankArray = new IFluidTank[1];
 
 	/**
-	 *
+	 * 
 	 * @param world
 	 * @param capacity
 	 */
@@ -54,7 +54,7 @@ public abstract class SteamTrain extends Locomotive implements IFluidHandler {
 
 	/**
 	 * returns the waterConsumption for each steam loco default is 200: rand.nextInt(200)==0
-	 *
+	 * 
 	 * @return
 	 */
 	public int getWaterConsumption() {
@@ -91,7 +91,7 @@ public abstract class SteamTrain extends Locomotive implements IFluidHandler {
 
 	/**
 	 * added for SMP, used by the HUD
-	 *
+	 * 
 	 * @return
 	 */
 	public int getWater() {
@@ -100,7 +100,7 @@ public abstract class SteamTrain extends Locomotive implements IFluidHandler {
 
 	/**
 	 * used by the GUI
-	 *
+	 * 
 	 * @return int
 	 */
 	public int getLiquidItemID() {
