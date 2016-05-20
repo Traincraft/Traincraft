@@ -16,10 +16,7 @@ import src.train.common.core.CreativeTabTraincraft;
 import src.train.common.core.TrainModCore;
 import src.train.common.core.handlers.*;
 import src.train.common.core.handlers.ChunkEvents;
-import src.train.common.core.network.PacketKeyPress;
-import src.train.common.core.network.PacketRollingStockRotation;
-import src.train.common.core.network.PacketSetJukeboxStreamingUrl;
-import src.train.common.core.network.PacketSlotsFilled;
+import src.train.common.core.network.*;
 import src.train.common.generation.ComponentVillageTrainstation;
 import src.train.common.generation.WorldGenWorld;
 import src.train.common.items.TCItems;
@@ -133,6 +130,7 @@ public class Traincraft {
 		modChannel.registerMessage(PacketRollingStockRotation.Handler.class, PacketRollingStockRotation.class, ++packetID, Side.CLIENT);
 		modChannel.registerMessage(PacketSetJukeboxStreamingUrl.Handler.class, PacketSetJukeboxStreamingUrl.class, ++packetID, Side.SERVER);
 		modChannel.registerMessage(PacketSlotsFilled.Handler.class, PacketSlotsFilled.class, ++packetID, Side.CLIENT);
+		modChannel.registerMessage(PacketParkingBreak.Handler.class, PacketParkingBreak.class, ++packetID, Side.SERVER);
 	}
 
 	@EventHandler

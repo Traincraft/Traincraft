@@ -18,6 +18,7 @@ import src.train.common.core.HandleMaxAttachedCarts;
 import src.train.common.core.handlers.ConfigHandler;
 import src.train.common.core.handlers.PacketHandler;
 import src.train.common.core.network.PacketKeyPress;
+import src.train.common.core.network.PacketParkingBreak;
 import src.train.common.core.network.PacketSlotsFilled;
 import src.train.common.library.EnumSounds;
 import src.train.common.library.Info;
@@ -357,7 +358,8 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 				else {
 					setParkingBrakeFromPacket(true);
 				}
-				PacketHandler.sendPacketToClients(PacketHandler.setParkingBrake(riddenByEntity, this, parkingBrake, false), worldObj, (int) posX, (int) posY, (int) posZ, 5);
+				Traincraft.modChannel.sendToServer(new PacketParkingBreak(parkingBrake));
+				//PacketHandler.sendPacketToClients(PacketHandler.setParkingBrake(riddenByEntity, this, parkingBrake, false), worldObj, (int) posX, (int) posY, (int) posZ, 5);
 			}
 		}
 		lastUpdateTick = updateTicks;

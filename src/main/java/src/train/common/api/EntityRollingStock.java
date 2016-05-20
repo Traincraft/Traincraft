@@ -4,6 +4,7 @@ import static mods.railcraft.api.tracks.RailTools.isRailBlockAt;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.api.carts.ILinkableCart;
@@ -190,7 +191,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 
 	@Override
 	public GameProfile getOwner() {
-		return null;
+		return this.playerEntity.getGameProfile();
 	}
 
 	public EntityRollingStock(World world, double d, double d1, double d2) {
