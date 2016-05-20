@@ -1,15 +1,11 @@
 # eclipse
 bin
-eclipse
 *.launch
 .settings
 .metadata
-.classpath
-.project
 
 # idea
 out
-*.iws
 
 # gradle
 build
