@@ -675,7 +675,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 
 	public void sendParkingBrakePacket(boolean packet) {
 		//TODO Packets
-		// PacketHandler.setParkingBrake(this.riddenByEntity, this, packet, true);
+		PacketHandler.setParkingBrake(this.riddenByEntity, this, packet, true);
 	}
 
 	/**

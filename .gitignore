@@ -3,9 +3,14 @@ bin
 *.launch
 .settings
 .metadata
+eclipse
 
 # idea
 out
+.idea
+Traincraft-5.iws
+Traincraft-5.iml
+Traincraft-5.ipr
 
 # gradle
 build
