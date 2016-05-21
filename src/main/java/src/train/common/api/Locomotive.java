@@ -320,7 +320,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 		if (lastUpdateTick == updateTicks) { return; }
 		if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer) {
 			//TODO Packets
-			// PacketHandler.sendPacketToClients(PacketHandler.setTrainLockedToClient(riddenByEntity, this, locked), worldObj, (int) posX, (int) posY, (int) posZ, 5);
+			Traincraft.modChannel.sendToAllAround(PacketHandler.setTrainLockedToClient(riddenByEntity, this, locked), new TargetPoint(worldObj.provider.dimensionId, (int) posX, (int) posY, (int) posZ, 5));
 		}
 		if (this.getTrainLockedFromPacket()) {
 			if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer && !((EntityPlayer) this.riddenByEntity).getDisplayName().toLowerCase().equals(this.trainOwner.toLowerCase())) { return; }
@@ -358,7 +358,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 				else {
 					setParkingBrakeFromPacket(true);
 				}
-				Traincraft.modChannel.sendToServer(new PacketParkingBreak(parkingBrake));
+				Traincraft.modChannel.sendToAllAround(PacketHandler.setParkingBrake(riddenByEntity, this, parkingBrake, false), new TargetPoint(worldObj.provider.dimensionId, posX, posY, posZ, 5));
 				//PacketHandler.sendPacketToClients(PacketHandler.setParkingBrake(riddenByEntity, this, parkingBrake, false), worldObj, (int) posX, (int) posY, (int) posZ, 5);
 			}
 		}
@@ -473,7 +473,8 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 		pressKeyClient();
 		if (!worldObj.isRemote) {
 			if (updateTicks % 50 == 0) {
-				 PacketHandler.sendPacketToClients(PacketHandler.setParkingBrake(riddenByEntity, this, parkingBrake, false), worldObj, (int) posX, (int) posY, (int) posZ, 50);
+				Traincraft.modChannel.sendToAllAround(PacketHandler.setParkingBrake(riddenByEntity, this, parkingBrake, false), new TargetPoint(worldObj.provider.dimensionId, posX, posY, posZ, 5));
+				 //PacketHandler.sendPacketToClients(PacketHandler.setParkingBrake(riddenByEntity, this, parkingBrake, false), worldObj, (int) posX, (int) posY, (int) posZ, 50);
 				this.setLocoTurnedOn(isLocoTurnedOn, false, true,500);//sending to client
 			}
 

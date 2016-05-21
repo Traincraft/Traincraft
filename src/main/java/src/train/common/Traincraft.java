@@ -131,6 +131,7 @@ public class Traincraft {
 		modChannel.registerMessage(PacketSetJukeboxStreamingUrl.Handler.class, PacketSetJukeboxStreamingUrl.class, ++packetID, Side.SERVER);
 		modChannel.registerMessage(PacketSlotsFilled.Handler.class, PacketSlotsFilled.class, ++packetID, Side.CLIENT);
 		modChannel.registerMessage(PacketParkingBreak.Handler.class, PacketParkingBreak.class, ++packetID, Side.SERVER);
+		modChannel.registerMessage(PacketSetTrainLockedToClient.Handler.class, PacketSetTrainLockedToClient.class, ++packetID, Side.SERVER);
 	}
 
 	@EventHandler

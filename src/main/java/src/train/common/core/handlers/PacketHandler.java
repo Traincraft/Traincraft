@@ -7,6 +7,7 @@
 
 package src.train.common.core.handlers;
 
+import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageCodec;
 
@@ -18,6 +19,7 @@ import java.util.List;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -26,8 +28,11 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 import src.train.common.Packet250CustomPayload;
+import src.train.common.Traincraft;
 import src.train.common.api.AbstractTrains;
 import src.train.common.api.Locomotive;
+import src.train.common.core.network.PacketParkingBreak;
+import src.train.common.core.network.PacketSetTrainLockedToClient;
 import src.train.common.entity.rollingStock.EntityTracksBuilder;
 import src.train.common.entity.zeppelin.AbstractZeppelin;
 import src.train.common.items.ItemRecipeBook;
@@ -355,29 +360,14 @@ public class PacketHandler extends MessageToMessageCodec<FMLProxyPacket, Packet2
 		}
 	}
 
-	public static Packet setParkingBrake(Entity player, Entity entity, boolean set, boolean toServer) {
-		ByteArrayOutputStream bos = new ByteArrayOutputStream();
-		DataOutputStream dos = new DataOutputStream(bos);
-		try {
-			if (entity instanceof Locomotive) {
-				Locomotive lo = (Locomotive) entity;
-				dos.writeInt(2);
-				dos.writeInt(lo.getEntityId());//.getID());
-				dos.writeBoolean(set);
-			}
-		}
-		catch (IOException e) {
-			e.printStackTrace();
-		}
-		Packet250CustomPayload packet = new Packet250CustomPayload(Info.channel, bos.toByteArray());
+	public static IMessage setParkingBrake(Entity player, Entity entity, boolean set, boolean toServer) {
+		PacketParkingBreak parking = new PacketParkingBreak(set);
 		if (toServer) {
-			packet.length = bos.size();
 			if (player instanceof EntityClientPlayerMP) {
-				EntityClientPlayerMP playerMP = (EntityClientPlayerMP) player;
-				playerMP.sendQueue.addToSendQueue(packet);
+				Traincraft.modChannel.sendToServer(parking);
 			}
 		}
-		return packet;
+		return parking;
 	}
 
 	public static Packet setLocoTurnedOn(Entity player, Entity entity, boolean set, boolean toServer) {
@@ -428,23 +418,8 @@ public class PacketHandler extends MessageToMessageCodec<FMLProxyPacket, Packet2
 		return packet;
 	}
 
-	public static Packet setTrainLockedToClient(Entity player, Entity entity, boolean set) {
-		ByteArrayOutputStream bos = new ByteArrayOutputStream();
-		DataOutputStream dos = new DataOutputStream(bos);
-		try {
-			if (entity instanceof AbstractTrains) {
-				AbstractTrains lo = (AbstractTrains) entity;
-				dos.writeInt(13);
-				dos.writeInt(lo.getEntityId());//.getID());
-				dos.writeBoolean(set);
-				dos.writeBytes(lo.trainOwner);
-			}
-		}
-		catch (IOException e) {
-			e.printStackTrace();
-		}
-		Packet250CustomPayload packet = new Packet250CustomPayload(Info.channel, bos.toByteArray());
-		packet.length = bos.size();
+	public static IMessage setTrainLockedToClient(Entity player, Entity entity, boolean set) {
+		PacketSetTrainLockedToClient packet = new PacketSetTrainLockedToClient(set);
 		return packet;
 	}
 

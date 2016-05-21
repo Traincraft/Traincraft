@@ -271,11 +271,11 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 	@Override
 	protected void writeEntityToNBT(NBTTagCompound nbttagcompound) {
 		//TODO errors because the entity's owner is not defined, or at least not being saved
-		nbttagcompound.setInteger("trainID", entityMainTrainID);
-		nbttagcompound.setInteger("bogieIndex", bogieIndex);
-		nbttagcompound.setDouble("bogieShift", bogieShift);
+		//nbttagcompound.setInteger("trainID", entityMainTrainID);
+		//nbttagcompound.setInteger("bogieIndex", bogieIndex);
+		//nbttagcompound.setDouble("bogieShift", bogieShift);
 
-		super.writeToNBT(nbttagcompound);
+//		super.writeToNBT(nbttagcompound);
 	}
 
 	@Override

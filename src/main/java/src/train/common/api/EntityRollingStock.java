@@ -849,7 +849,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			/*
 			 * for (int bog = 0; bog < this.bogieUtility.length; bog++) { if
 			 * (bogieUtility[bog] != null) {
-			 * 
+			 *
 			 * double rads = this.serverRealRotation * 3.141592653589793D /
 			 * 180.0D; double pitchRads = this.renderPitch * 3.141592653589793D
 			 * / 180.0D; this.bogieUtility[bog].setPosition((float) (posX -
@@ -928,6 +928,16 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				this.rotationYaw += 180.0F;
 				this.isServerInReverse = !this.isServerInReverse;
 			}
+			previousServerRealRotation = rotation;
+
+			if (this.isServerInReverse) {
+				if (serverInReverseSignPositive) {
+					rotation += 180.0f;
+				}
+				else {
+					rotation -= 180.0f;
+				}
+			}
 
 			serverRealRotation = rotation;
 
@@ -979,10 +989,8 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		}
 
 		if (shouldServerSetPosYOnClient || (previousServerRealRotation2 != serverRealRotation) || (rotationYaw != prevRotationYaw) || (anglePitch != prevAnglePitch)) {
-
 			Traincraft.modChannel.sendToAllAround(new PacketRollingStockRotation(this, (int) (anglePitch * 60), shouldServerSetPosYOnClient), new TargetPoint(worldObj.provider.dimensionId, posX, posY, posZ, 300.0D));
 		}
-
 		this.prevAnglePitch = anglePitch;
 		previousServerRealRotation2 = serverRealRotation;
 
@@ -1681,7 +1689,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 
 		if (!worldObj.isRemote) {
 			//System.out.println(this.uniqueID);
-			 PacketHandler.sendPacketToClients(PacketHandler.setTrainLockedToClient(entityplayer, this, locked), worldObj, (int) posX, (int) posY, (int) posZ, 15);
+			 Traincraft.modChannel.sendToAllAround(PacketHandler.setTrainLockedToClient(entityplayer, this, locked), new TargetPoint(worldObj.provider.dimensionId, (int) posX, (int) posY, (int) posZ, 15));
 		}
 		playerEntity = entityplayer;
 		itemstack = entityplayer.inventory.getCurrentItem();
@@ -1728,7 +1736,9 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 						this.setColor(itemstack.getItemDamage());
 						itemstack.stackSize--;
 
-						if (!worldObj.isRemote) statsEventHandler.trainPaint(this.uniqueID, trainName, trainType, this.trainCreator, entityplayer.getDisplayName(), AbstractTrains.getColorAsString(itemstack.getItemDamage()), new String(posX + ";" + posY + ";" + posZ));
+						if (!worldObj.isRemote){
+							statsEventHandler.trainPaint(this.uniqueID, trainName, trainType, this.trainCreator, entityplayer.getDisplayName(), AbstractTrains.getColorAsString(itemstack.getItemDamage()), new String(posX + ";" + posY + ";" + posZ));
+						}
 						//if (!worldObj.isRemote)PacketHandler.sendPacketToClients(PacketHandler.sendStatsToServer(10,this.uniqueID,trainName ,trainType, this.trainOwner, this.getColorAsString(itemstack.getItemDamage()), (int)posX, (int)posY, (int)posZ),this.worldObj, (int)posX,(int)posY,(int)posZ, 12.0D);
 
 						return true;
