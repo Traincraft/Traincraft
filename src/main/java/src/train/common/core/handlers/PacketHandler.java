@@ -32,6 +32,7 @@ import src.train.common.Traincraft;
 import src.train.common.api.AbstractTrains;
 import src.train.common.api.Locomotive;
 import src.train.common.core.network.PacketParkingBreak;
+import src.train.common.core.network.PacketSetLocoTurnedOn;
 import src.train.common.core.network.PacketSetTrainLockedToClient;
 import src.train.common.entity.rollingStock.EntityTracksBuilder;
 import src.train.common.entity.zeppelin.AbstractZeppelin;
@@ -370,8 +371,8 @@ public class PacketHandler extends MessageToMessageCodec<FMLProxyPacket, Packet2
 		return parking;
 	}
 
-	public static Packet setLocoTurnedOn(Entity player, Entity entity, boolean set, boolean toServer) {
-		ByteArrayOutputStream bos = new ByteArrayOutputStream();
+	public static IMessage setLocoTurnedOn(Entity player, Entity entity, boolean set, boolean toServer) {
+		/*/ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		DataOutputStream dos = new DataOutputStream(bos);
 		try {
 			if (entity instanceof Locomotive) {
@@ -390,6 +391,12 @@ public class PacketHandler extends MessageToMessageCodec<FMLProxyPacket, Packet2
 			if (player instanceof EntityClientPlayerMP) {
 				EntityClientPlayerMP playerMP = (EntityClientPlayerMP) player;
 				playerMP.sendQueue.addToSendQueue(packet);
+			}
+		}/*/
+		PacketSetLocoTurnedOn packet = new PacketSetLocoTurnedOn(set);
+		if (toServer) {
+			if (player instanceof EntityClientPlayerMP) {
+				Traincraft.modChannel.sendToServer(packet);
 			}
 		}
 		return packet;

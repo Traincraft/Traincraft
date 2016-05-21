@@ -18,7 +18,6 @@ import src.train.common.core.HandleMaxAttachedCarts;
 import src.train.common.core.handlers.ConfigHandler;
 import src.train.common.core.handlers.PacketHandler;
 import src.train.common.core.network.PacketKeyPress;
-import src.train.common.core.network.PacketParkingBreak;
 import src.train.common.core.network.PacketSlotsFilled;
 import src.train.common.library.EnumSounds;
 import src.train.common.library.Info;
@@ -677,7 +676,6 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 	}
 
 	public void sendParkingBrakePacket(boolean packet) {
-		//TODO Packets
 		PacketHandler.setParkingBrake(this.riddenByEntity, this, packet, true);
 	}
 
@@ -766,14 +764,17 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 			if (this.isLocoTurnedOn()) fuelTrain--;
 		}
 	}
+	public void setLocoTurnedOnFromPacket(boolean set) {
+		this.isLocoTurnedOn = set;
+	}
 
 	public void setLocoTurnedOn(boolean set, boolean toServer, boolean toClient, double distance) {
 		this.isLocoTurnedOn = set;
-		if (toServer){
-			 PacketHandler.setLocoTurnedOn(this.riddenByEntity, this, set, true);
+		if (toServer) {
+			PacketHandler.setLocoTurnedOn(this.riddenByEntity, this, set, true);
 		}
-		if (toClient){
-			PacketHandler.sendPacketToClients(PacketHandler.setLocoTurnedOn(riddenByEntity, this, set, false), worldObj, (int) posX, (int) posY, (int) posZ, distance);
+		if (toClient) {
+			Traincraft.modChannel.sendToAllAround(PacketHandler.setLocoTurnedOn(riddenByEntity, this, set, false), new TargetPoint(worldObj.provider.dimensionId, (int) posX, (int) posY, (int) posZ, distance));
 		}
 	}
 
