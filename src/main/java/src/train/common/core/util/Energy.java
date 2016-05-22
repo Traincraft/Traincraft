@@ -1,7 +1,7 @@
 package src.train.common.core.util;
 
 public final class Energy {
-	private float rf;
+	private float rf = 0;
 	
 	private Energy(float rf) {
 		this.rf = rf;
@@ -32,10 +32,10 @@ public final class Energy {
 	}
 	
 	public float toEU() {
-		return rf / 4;
+		return rf * 0.25f;
 	}
 	
 	public float toMJ() {
-		return rf / 10;
+		return rf * 0.1f;
 	}
 }

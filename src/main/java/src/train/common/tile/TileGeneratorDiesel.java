@@ -44,9 +44,9 @@ public class TileGeneratorDiesel extends TileEntity implements IFluidHandler, II
 	private static final Energy MAX_ENERGY_EXTRACTED = Energy.fromRF(1600);
 	private static final int DIESEL_USAGE = 1;
 	
-	private Energy energy;
-	private Energy extraEnergy;
-	private Energy currentOutput;
+	private Energy energy = Energy.zero();
+	private Energy extraEnergy = Energy.zero();
+	private Energy currentOutput = Energy.zero();
 	private boolean powered;
 	private int update;
 	private ForgeDirection direction;
@@ -120,7 +120,7 @@ public class TileGeneratorDiesel extends TileEntity implements IFluidHandler, II
 						Energy extracted = getPowerToExtract(receptor, from);
 						if (extracted.toRF() > 0) {
 							Energy needed = Energy.fromRF(receptor.receiveEnergy(from, (int) extracted.toRF(), true));
-							extractEnergy(needed, needed, true); // Comment out for constant power
+							currentOutput = extractEnergy(needed, needed, true); // Comment out for constant power
 							// currentOutput = extractEnergy(0, needed, true);
 							// // Uncomment for constant power
 							produceIC2 = false;// if a bc pipe is drawing energy, do not output IC2
