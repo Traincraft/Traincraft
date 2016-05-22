@@ -1,21 +1,20 @@
 package src.train.common;
 
 import java.io.File;
-import java.util.logging.Logger;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraftforge.common.AchievementPage;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.EnumHelper;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import src.train.common.api.LiquidManager;
 import src.train.common.blocks.TCBlocks;
 import src.train.common.core.CommonProxy;
 import src.train.common.core.CreativeTabTraincraft;
 import src.train.common.core.TrainModCore;
 import src.train.common.core.handlers.*;
-import src.train.common.core.handlers.ChunkEvents;
 import src.train.common.core.network.*;
 import src.train.common.generation.ComponentVillageTrainstation;
 import src.train.common.generation.WorldGenWorld;
@@ -52,7 +51,7 @@ public class Traincraft {
 	public static CommonProxy proxy;
 
 	/* TrainCraft Logger */
-	public static Logger tcLog = Logger.getLogger(Info.modID);
+	public static Logger tcLog = LogManager.getLogger(Info.modName);
 
 	/** Network Channel to send packets on */
 	public static SimpleNetworkWrapper modChannel;
@@ -72,58 +71,38 @@ public class Traincraft {
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
-		proxy.registerSounds();
-		//ForgeChunkManager.setForcedChunkLoadingCallback(instance, ChunkEvents.getInstance());
-
-		/* Log */
-		tcLog.setParent(java.util.logging.Logger.getAnonymousLogger());
 		tcLog.info("Starting Traincraft " + Info.modVersion + "!");
-
 		/* Config handler */
 		ConfigHandler.init(new File(event.getModConfigurationDirectory(), Info.modName + ".cfg"));
 		proxy.getKeysFromProperties();
 
-		/* Rendering registration */
-		proxy.registerRenderInformation();
+		/* Register Items, Blocks, ... */
+		tcLog.info("Initialize Blocks, Items, ...");
+		tcTab = new CreativeTabTraincraft(CreativeTabs.getNextID(), "Traincraft");
 		trainArmor = proxy.addArmor("armor");
 		trainCloth = proxy.addArmor("Paintable");
 		trainCompositeSuit = proxy.addArmor("CompositeSuit");
+		TCBlocks.init();
+		TrainModCore.RegisterNewTracks();
+		TCItems.init();
+		EntityHandler.init();
+		proxy.registerTileEntities();
+		proxy.registerSounds();
 
-		/* Tab for creative items/blocks */
-		tcTab = new CreativeTabTraincraft(CreativeTabs.getNextID(), "Traincraft");
-
-		/* Ore generation */
+		GameRegistry.registerFuelHandler(new FuelHandler());
+		AchievementHandler.load();
+		AchievementPage.registerAchievementPage(AchievementHandler.tmPage);
 		GameRegistry.registerWorldGenerator(new WorldGenWorld(),5);
 		MapGenStructureIO.func_143031_a(ComponentVillageTrainstation.class, "Trainstation");
 
-		/* Player tracker */
-		//GameRegistry.registerPlayerTracker(new PlayerTracker());
-		//managed with forge subscribe now, this should be obsolete, i think
-
-		/* Track registration */
-		TrainModCore.RegisterNewTracks();
-
-		/*Fuel registration*/
-		GameRegistry.registerFuelHandler(new FuelHandler());
-
-		TCBlocks.init();
-		TCItems.init();
-
-		/* Register entities */
-		EntityHandler.init();
-
-		AchievementHandler.load();
-		AchievementPage.registerAchievementPage(AchievementHandler.tmPage);
-
-		/* Check holidays */
+		/* Other Proxy init */
+		tcLog.info("Initialize Renderer and Events");
+		proxy.registerRenderInformation();
+		proxy.registerEvents(event);
 		proxy.isHoliday();
 
-		/* Tile Entities */
-		proxy.registerTileEntities();
-
-		proxy.registerEvents(event);
-
 		/* Networking and Packet initialisation */
+		tcLog.info("Initialize Packets");
 		int packetID = 0;
 		modChannel = NetworkRegistry.INSTANCE.newSimpleChannel(Info.modID);
 		modChannel.registerMessage(PacketKeyPress.Handler.class, PacketKeyPress.class, ++packetID, Side.SERVER);
@@ -133,14 +112,17 @@ public class Traincraft {
 		modChannel.registerMessage(PacketParkingBreak.Handler.class, PacketParkingBreak.class, ++packetID, Side.SERVER);
 		modChannel.registerMessage(PacketSetTrainLockedToClient.Handler.class, PacketSetTrainLockedToClient.class, ++packetID, Side.SERVER);
 		modChannel.registerMessage(PacketSetLocoTurnedOn.Handler.class, PacketSetLocoTurnedOn.class, ++packetID, Side.SERVER);
+		tcLog.info("Finished PreInitialization");
 	}
 
 	@EventHandler
 	public void load(FMLInitializationEvent event) {
+		tcLog.info("Start Initialization");
 
 		//proxy.getCape();
 
 		/* GUI handler initiation */
+		tcLog.info("Initialize Gui");
 		NetworkRegistry.INSTANCE.registerGuiHandler(instance, proxy);
 		FMLCommonHandler.instance().bus().register(new CraftingHandler());
 
@@ -148,11 +130,13 @@ public class Traincraft {
 		OreHandler.registerOres();
 
 		/* Recipes */
+		tcLog.info("Initialize Recipes");
 		RecipeHandler.initBlockRecipes();
 		RecipeHandler.initItemRecipes();
 		AssemblyTableRecipes.recipes();
 
 		/* Register the liquids */
+		tcLog.info("Initialize Fluids");
 		LiquidManager.getInstance().registerLiquids();
 
 		/* Liquid FX */
@@ -163,6 +147,7 @@ public class Traincraft {
 			mysqlLoggerEnabled = logMysql.enableLogger();
 
 		/*Trainman Villager*/
+		tcLog.info("Initialize Station Chief Villager");
 		VillagerRegistry.instance().registerVillagerId(ConfigHandler.TRAINCRAFT_VILLAGER_ID);
 		VillagerTraincraftHandler villageHandler = new VillagerTraincraftHandler();
 		VillagerRegistry.instance().registerVillageCreationHandler(villageHandler);
@@ -170,17 +155,20 @@ public class Traincraft {
 		VillagerRegistry.instance().registerVillageTradeHandler(ConfigHandler.TRAINCRAFT_VILLAGER_ID, villageHandler);
 
 		proxy.registerBookHandler();
+		tcLog.info("Finished Initialization");
 	}
 
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent evt) {
+		tcLog.info("Start to PostInitialize");
+		tcLog.info("Register ChunkHandler");
 		proxy.registerChunkHandler(instance);
-	}
 
-	@EventHandler
-	public void modsLoaded(FMLPostInitializationEvent event) {
+		tcLog.info("Activation Mod Compatibility");
 		TrainModCore.ModsLoaded();
 		LiquidManager.getLiquidsFromDictionnary();
+
+		tcLog.info("Finished PostInitialization");
 	}
 
 	@EventHandler

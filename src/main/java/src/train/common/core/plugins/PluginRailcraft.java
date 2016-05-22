@@ -7,6 +7,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
+import org.apache.logging.log4j.Level;
 import src.train.common.Traincraft;
 import src.train.common.core.TrainModCore;
 import src.train.common.core.interfaces.IPlugin;
@@ -15,7 +16,6 @@ import src.train.common.library.TrackIDs;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.logging.Level;
 
 public class PluginRailcraft implements IPlugin {
 	public static PluginRailcraft instance = new PluginRailcraft();
@@ -183,10 +183,10 @@ public class PluginRailcraft implements IPlugin {
 		}
 
 		if (missing.equals("")) {
-			Traincraft.tcLog.fine("Railcraft items loaded");
+			Traincraft.tcLog.info("Railcraft items loaded");
 		}
 		else {
-			Traincraft.tcLog.log(Level.WARNING, "Railcraft items not loaded: " + missing);
+			Traincraft.tcLog.log(Level.WARN, "Railcraft items not loaded: " + missing);
 		}
 	}
 

@@ -2,6 +2,7 @@ package src.train.common.api;
 
 import buildcraft.api.fuels.BuildcraftFuelRegistry;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mods.railcraft.api.fuel.FuelManager;
@@ -43,6 +44,10 @@ public class LiquidManager {
 		return instance;
 	}
 
+	public static void registerFluidBlock(BlockTraincraftFluid block){
+		GameRegistry.registerBlock(block, ItemBlockFluid.class, "fluid." + block.getFluid().getName());
+	}
+
 	public void registerLiquids() {
 		FluidRegistry.registerFluid(DIESEL);
 		FluidRegistry.registerFluid(REFINED_FUEL);
@@ -58,9 +63,9 @@ public class LiquidManager {
 		BuildcraftFuelRegistry.fuel.addFuel(DIESEL, 3, 200000);
 		BuildcraftFuelRegistry.fuel.addFuel(REFINED_FUEL, 6, 100000);
 		MinecraftForge.EVENT_BUS.register(this);
-		
-		Traincraft.proxy.registerBlock(BlockIDs.diesel.block, ItemBlockFluid.class);
-		Traincraft.proxy.registerBlock(BlockIDs.refinedFuel.block, ItemBlockFluid.class);
+
+		registerFluidBlock((BlockTraincraftFluid) BlockIDs.diesel.block);
+		registerFluidBlock((BlockTraincraftFluid) BlockIDs.refinedFuel.block);
 	}
 
 	@SubscribeEvent
@@ -89,10 +94,10 @@ public class LiquidManager {
 		FluidStack bucketLiquid = getFluidInContainer(stack);
 		multiFilter = LiquidManager.getInstance().dieselFilter();
 		if (multiFilter != null) {
-			for (int i = 0; i < multiFilter.length; i++) {
-				if (multiFilter[i] != null && bucketLiquid != null && multiFilter[i].isFluidEqual(bucketLiquid))
+			for(FluidStack aMultiFilter : multiFilter){
+				if(aMultiFilter != null && bucketLiquid != null && aMultiFilter.isFluidEqual(bucketLiquid))
 					return true;
-				if (isEmptyContainer(stack))
+				if(isEmptyContainer(stack))
 					return true;
 			}
 		}
