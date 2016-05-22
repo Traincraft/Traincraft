@@ -17,13 +17,24 @@ buildscript {
 
 apply plugin: 'forge'
 
-version = "1.0"
-group= "com.yourname.modid" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "modid"
+
+ext.configFile = file "build.properties"
+configFile.withReader {
+    def prop = new Properties()
+    prop.load(it)
+    project.ext.config = new ConfigSlurper().parse prop
+}
+
+
+version = config.modVersion
+group= "src.train" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = "tc"
 
 minecraft {
     version = "1.7.10-10.13.4.1614-1.7.10"
     runDir = "eclipse"
+    replaceIn "Info.java"
+    replace "@VERSION1@", config.modVersion.toString()
 }
 
 dependencies {

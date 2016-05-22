@@ -3,12 +3,12 @@ package src.train.common.core.plugins;
 import cpw.mods.fml.common.registry.GameRegistry;
 import ic2.api.item.IC2Items;
 import net.minecraft.item.ItemStack;
+import org.apache.logging.log4j.Level;
 import src.train.common.Traincraft;
 import src.train.common.core.TrainModCore;
 import src.train.common.core.interfaces.IPlugin;
 
 import java.util.HashMap;
-import java.util.logging.Level;
 
 public class PluginIndustrialCraft implements IPlugin {
 	public static PluginIndustrialCraft instance = new PluginIndustrialCraft();
@@ -45,10 +45,10 @@ public class PluginIndustrialCraft implements IPlugin {
 		}
 
 		if (missing.equals("")) {
-			Traincraft.tcLog.fine("IC2 items loaded");
+			Traincraft.tcLog.info("IC2 items loaded");
 		}
 		else {
-			Traincraft.tcLog.log(Level.WARNING, "IC2 items not loaded: " + missing);
+			Traincraft.tcLog.log(Level.WARN, "IC2 items not loaded: " + missing);
 		}
 	}
 

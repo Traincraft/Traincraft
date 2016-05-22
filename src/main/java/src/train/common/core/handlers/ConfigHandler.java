@@ -133,7 +133,7 @@ public class ConfigHandler {
 			}
 			
 		} catch (Exception e) {
-			Traincraft.tcLog.severe("Traincraft had a problem loading its configuration\n" + e);
+			Traincraft.tcLog.fatal("Traincraft had a problem loading its configuration\n" + e);
 		} finally {
 			if(cf.hasChanged()) {
 				cf.save();

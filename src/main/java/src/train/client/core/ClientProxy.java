@@ -17,6 +17,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
+import org.apache.logging.log4j.Level;
 import src.train.client.core.handlers.ClientTickHandler;
 import src.train.client.core.handlers.RecipeBookHandler;
 import src.train.client.core.helpers.HolidayHelper;
@@ -43,7 +44,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.logging.Level;
 
 public class ClientProxy extends CommonProxy {
 
@@ -191,7 +191,7 @@ public class ClientProxy extends CommonProxy {
 							ConfigHandler.Key_Right = Integer.parseInt(split[1]);
 						}
 					} catch (Exception e) {
-						Traincraft.tcLog.fine("Skiping option in options.txt file.");
+						Traincraft.tcLog.info("Skipping option in options.txt file.");
 					}
 				}
 			} catch (Exception e1) {
@@ -247,17 +247,17 @@ public class ClientProxy extends CommonProxy {
 					Method hideItem = neiApi.getDeclaredMethod("hideItem", stack.getClass());
 					hideItem.invoke(null, stack);
 				} catch (ClassNotFoundException e) {
-					Traincraft.tcLog.log(Level.WARNING, "Chicken core didn't have required class: Wrong version of the library or something is horribly wrong", e);
+					Traincraft.tcLog.log(Level.WARN, "Chicken core didn't have required class: Wrong version of the library or something is horribly wrong", e);
 				} catch (NoSuchMethodException e) {
-					Traincraft.tcLog.log(Level.WARNING, "Chicken core didn't have required method: Wrong version of the library or something is horribly wrong", e);
+					Traincraft.tcLog.log(Level.WARN, "Chicken core didn't have required method: Wrong version of the library or something is horribly wrong", e);
 				} catch (SecurityException e) {
-					Traincraft.tcLog.log(Level.SEVERE, "Something is horribly wrong", e);
+					Traincraft.tcLog.log(Level.FATAL, "Something is horribly wrong", e);
 				} catch (IllegalAccessException e) {
-					Traincraft.tcLog.log(Level.SEVERE, "Something is horribly wrong", e);
+					Traincraft.tcLog.log(Level.FATAL, "Something is horribly wrong", e);
 				} catch (IllegalArgumentException e) {
-					Traincraft.tcLog.log(Level.WARNING, "Chicken core had the method but it's signature was wrong: Wrong version of the library or something is horribly wrong", e);
+					Traincraft.tcLog.log(Level.WARN, "Chicken core had the method but it's signature was wrong: Wrong version of the library or something is horribly wrong", e);
 				} catch (InvocationTargetException e) {
-					Traincraft.tcLog.log(Level.WARNING, "The method we called from Chicken core threw an exception", e);
+					Traincraft.tcLog.log(Level.WARN, "The method we called from Chicken core threw an exception", e);
 				}
 			}
         }

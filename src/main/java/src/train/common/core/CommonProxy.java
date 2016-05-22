@@ -46,7 +46,6 @@ public class CommonProxy implements IGuiHandler {
 	public void registerRenderInformation() {}
 
 	public void registerEvents(FMLPreInitializationEvent event){
-		System.out.println("Events");
 		WorldEvents worldEvents = new WorldEvents();
 		ChunkEvents chunkEvents = new ChunkEvents();
 
@@ -209,14 +208,6 @@ public class CommonProxy implements IGuiHandler {
 	public void registerSounds() {}
 	
 	public void registerBookHandler() {}
-    
-	public void registerBlock(Block block) {
-        GameRegistry.registerBlock(block, block.getUnlocalizedName().replace("tile.", ""));
-	}
-	
-	public void registerBlock(Block block, Class<? extends ItemBlock> item) {
-		GameRegistry.registerBlock(block, item, Info.modID + "_" + block.getUnlocalizedName().replace("tc:", ""));
-    }
 
 	public Minecraft getMinecraft() {
 		return null;
