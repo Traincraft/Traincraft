@@ -177,150 +177,7 @@ public class PacketHandler extends MessageToMessageCodec<FMLProxyPacket, Packet2
 		return (Entity) (par1 == ((EntityPlayer) player).getEntityId() ? player : ((EntityPlayer) player).worldObj.getEntityByID(par1));
 	}
 
-	public static Packet getTEPClient(TileEntity te) {
-		ByteArrayOutputStream bos = new ByteArrayOutputStream();
-		DataOutputStream dos = new DataOutputStream(bos);
-		try {
-			if (te != null && te instanceof TileTrainWbench) {
-				TileTrainWbench tem = (TileTrainWbench) te;
-				dos.writeInt(0);
-				dos.writeInt(tem.xCoord);
-				dos.writeInt(tem.yCoord);
-				dos.writeInt(tem.zCoord);
-				dos.writeByte(tem.getFacing().ordinal());
-			}
-			if (te != null && te instanceof TileCrafterTierIII) {
-				TileCrafterTierIII tem = (TileCrafterTierIII) te;
-				dos.writeInt(0);
-				dos.writeInt(tem.xCoord);
-				dos.writeInt(tem.yCoord);
-				dos.writeInt(tem.zCoord);
-				dos.writeByte(tem.getFacing().ordinal());
-			}
-			if (te != null && te instanceof TileCrafterTierII) {
-				TileCrafterTierII tem = (TileCrafterTierII) te;
-				dos.writeInt(0);
-				dos.writeInt(tem.xCoord);
-				dos.writeInt(tem.yCoord);
-				dos.writeInt(tem.zCoord);
-				dos.writeByte(tem.getFacing().ordinal());
-			}
-			if (te != null && te instanceof TileCrafterTierI) {
-				TileCrafterTierI tem = (TileCrafterTierI) te;
-				dos.writeInt(0);
-				dos.writeInt(tem.xCoord);
-				dos.writeInt(tem.yCoord);
-				dos.writeInt(tem.zCoord);
-				dos.writeByte(tem.getFacing().ordinal());
-			}
-			if (te != null && te instanceof TileEntityDistil) {
-				TileEntityDistil tem = (TileEntityDistil) te;
-				dos.writeInt(1);
-				dos.writeInt(tem.xCoord);
-				dos.writeInt(tem.yCoord);
-				dos.writeInt(tem.zCoord);
-				dos.writeByte(tem.getFacing().ordinal());
-				dos.writeShort(tem.distilCookTime);
-				dos.writeShort(tem.distilBurnTime);
-				dos.writeShort(tem.amount);
-				dos.writeShort(tem.liquidItemID);
-			}
-			if (te != null && te instanceof TileEntityOpenHearthFurnace) {
-				TileEntityOpenHearthFurnace tem = (TileEntityOpenHearthFurnace) te;
-				dos.writeInt(1);
-				dos.writeInt(tem.xCoord);
-				dos.writeInt(tem.yCoord);
-				dos.writeInt(tem.zCoord);
-				dos.writeByte(tem.getFacing().ordinal());
-				dos.writeShort(tem.furnaceCookTime);
-				dos.writeShort(tem.furnaceBurnTime);
-			}
-			if (te != null && te instanceof TileStopper) {
-				TileStopper tem = (TileStopper) te;
-				dos.writeInt(0);
-				dos.writeInt(tem.xCoord);
-				dos.writeInt(tem.yCoord);
-				dos.writeInt(tem.zCoord);
-				dos.writeByte(tem.getFacing());
-			}
-			if (te != null && te instanceof TileBook) {
-				TileBook tem = (TileBook) te;
-				dos.writeInt(0);
-				dos.writeInt(tem.xCoord);
-				dos.writeInt(tem.yCoord);
-				dos.writeInt(tem.zCoord);
-				dos.writeByte(tem.getFacing());
-			}
-			if (te != null && te instanceof TileSignal) {
-				TileSignal tem = (TileSignal) te;
-				dos.writeInt(0);
-				dos.writeInt(tem.xCoord);
-				dos.writeInt(tem.yCoord);
-				dos.writeInt(tem.zCoord);
-				dos.writeByte(tem.getFacing());
-			}
-			if (te != null && te instanceof TileLantern) {
-				TileLantern tem = (TileLantern) te;
-				dos.writeInt(0);
-				dos.writeInt(tem.xCoord);
-				dos.writeInt(tem.yCoord);
-				dos.writeInt(tem.zCoord);
-				dos.writeInt(tem.randomColor);
-			}
-			if (te != null && te instanceof TileWaterWheel) {
-				TileWaterWheel tem = (TileWaterWheel) te;
-				dos.writeInt(0);
-				dos.writeInt(tem.xCoord);
-				dos.writeInt(tem.yCoord);
-				dos.writeInt(tem.zCoord);
-				dos.writeByte(tem.getFacing());
-			}
-			if (te != null && te instanceof TileWindMill) {
-				TileWindMill tem = (TileWindMill) te;
-				dos.writeInt(0);
-				dos.writeInt(tem.xCoord);
-				dos.writeInt(tem.yCoord);
-				dos.writeInt(tem.zCoord);
-				dos.writeByte(tem.getFacing());
-				dos.writeInt(WorldEvents.windStrength);
-			}
-			if (te != null && te instanceof TileGeneratorDiesel) {
-				TileGeneratorDiesel tem = (TileGeneratorDiesel) te;
-				dos.writeInt(0);
-				dos.writeInt(tem.xCoord);
-				dos.writeInt(tem.yCoord);
-				dos.writeInt(tem.zCoord);
-				dos.writeByte(tem.getFacing());
-			}
-			if (te != null && te instanceof TileTCRail) {
-				TileTCRail tem = (TileTCRail) te;
-				dos.writeInt(0);
-				dos.writeInt(tem.xCoord);
-				dos.writeInt(tem.yCoord);
-				dos.writeInt(tem.zCoord);
-				dos.writeByte(tem.getFacing());
-				dos.writeUTF(tem.getType());
-				dos.writeBoolean(tem.hasModel);
-				dos.writeBoolean(tem.getSwitchState());
-				dos.writeInt(tem.idDrop);
-			}
-			if (te != null && te instanceof TileTCRailGag) {
-				TileTCRailGag tem = (TileTCRailGag) te;
-				dos.writeInt(0);
-				dos.writeInt(tem.xCoord);
-				dos.writeInt(tem.yCoord);
-				dos.writeInt(tem.zCoord);
-				dos.writeUTF(tem.type);
-				dos.writeInt((int) (tem.bbHeight * 1000));
-			}
-		}
-		catch (IOException e) {
-			e.printStackTrace();
-		}
-		Packet250CustomPayload packet = new Packet250CustomPayload(Info.channel, bos.toByteArray());
-		packet.length = bos.size();
-		return packet;
-	}
+
 
 	/**
 	 * Zeppelin rotation packet sent to client
@@ -350,16 +207,6 @@ public class PacketHandler extends MessageToMessageCodec<FMLProxyPacket, Packet2
 		return packet;
 	}
 
-	public static void sendPacketToClients(Packet packet, World worldObj, int x, int y, int z, double range) {
-		try {
-			//TODO Packets
-			// PacketDispatcher.sendPacketToAllAround(x, y, z, range, worldObj.provider.dimensionId, packet);
-		}
-		catch (Exception e) {
-			System.out.println("Sending packet to client failed.");
-			e.printStackTrace();
-		}
-	}
 
 	public static IMessage setParkingBrake(Entity player, Entity entity, boolean set, boolean toServer) {
 		PacketParkingBreak parking = new PacketParkingBreak(set);
@@ -372,27 +219,6 @@ public class PacketHandler extends MessageToMessageCodec<FMLProxyPacket, Packet2
 	}
 
 	public static IMessage setLocoTurnedOn(Entity player, Entity entity, boolean set, boolean toServer) {
-		/*/ByteArrayOutputStream bos = new ByteArrayOutputStream();
-		DataOutputStream dos = new DataOutputStream(bos);
-		try {
-			if (entity instanceof Locomotive) {
-				Locomotive lo = (Locomotive) entity;
-				dos.writeInt(17);
-				dos.writeInt(lo.getEntityId());//.getID());
-				dos.writeBoolean(set);
-			}
-		}
-		catch (IOException e) {
-			e.printStackTrace();
-		}
-		Packet250CustomPayload packet = new Packet250CustomPayload(Info.channel, bos.toByteArray());
-		if (toServer) {
-			packet.length = bos.size();
-			if (player instanceof EntityClientPlayerMP) {
-				EntityClientPlayerMP playerMP = (EntityClientPlayerMP) player;
-				playerMP.sendQueue.addToSendQueue(packet);
-			}
-		}/*/
 		PacketSetLocoTurnedOn packet = new PacketSetLocoTurnedOn(set);
 		if (toServer) {
 			if (player instanceof EntityClientPlayerMP) {

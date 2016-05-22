@@ -975,20 +975,14 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			rollingServerPitch = tempPitch2;
 		}
 		//System.out.println(updateTicks);
-		if (updateTicks > 840) {
-			shouldServerSetPosYOnClient = false;
-		}
-		else {
+		if (updateTicks % 20 == 0 ^ updateTicks > 420) {
 			shouldServerSetPosYOnClient = true;
 		}
-		if (updateTicks % 20 == 0 && updateTicks > 840) {
-			shouldServerSetPosYOnClient = true;
-		}
-		else if (shouldServerSetPosYOnClient && updateTicks > 840) {
+		else if (shouldServerSetPosYOnClient && updateTicks > 420) {
 			shouldServerSetPosYOnClient = false;
 		}
 
-		if (shouldServerSetPosYOnClient || (previousServerRealRotation2 != serverRealRotation) || (rotationYaw != prevRotationYaw) || (anglePitch != prevAnglePitch)) {
+		if (shouldServerSetPosYOnClient) {
 			Traincraft.modChannel.sendToAllAround(new PacketRollingStockRotation(this, (int) (anglePitch * 60), shouldServerSetPosYOnClient), new TargetPoint(worldObj.provider.dimensionId, posX, posY, posZ, 300.0D));
 		}
 		this.prevAnglePitch = anglePitch;

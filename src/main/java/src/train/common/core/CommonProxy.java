@@ -33,6 +33,7 @@ import src.train.common.entity.rollingStock.EntityTracksBuilder;
 import src.train.common.entity.zeppelin.AbstractZeppelin;
 import src.train.common.inventory.*;
 import src.train.common.library.GuiIDs;
+import src.train.common.library.Info;
 import src.train.common.tile.*;
 
 import java.util.List;
@@ -209,7 +210,7 @@ public class CommonProxy implements IGuiHandler {
 	}
 	
 	public void registerBlock(Block block, Class<? extends ItemBlock> item) {
-		GameRegistry.registerBlock(block, item, block.getUnlocalizedName().replace("tile.", ""));
+		GameRegistry.registerBlock(block, item, Info.modID + "_" + block.getUnlocalizedName().replace("tc:", ""));
     }
 
 	public Minecraft getMinecraft() {

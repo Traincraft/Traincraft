@@ -17,12 +17,7 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidContainerRegistry;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidTankInfo;
-import net.minecraftforge.fluids.IFluidHandler;
-import net.minecraftforge.fluids.IFluidTank;
+import net.minecraftforge.fluids.*;
 import src.train.common.api.LiquidManager;
 import src.train.common.api.LiquidManager.StandardTank;
 import src.train.common.blocks.BlockDistil;
@@ -60,7 +55,7 @@ public class TileEntityDistil extends TileEntity implements IInventory, IFluidHa
 		distilCookTime = 0;
 		cookDuration = 400;//default is 200
 		random = new Random();
-		this.liquid = new FluidStack(0, 0);
+		this.liquid = new FluidStack(FluidRegistry.WATER, 0);
 		this.maxTank = 30000;
 		this.theTank = LiquidManager.getInstance().new FilteredTank(maxTank, LiquidManager.getInstance().dieselFilter(), 1);
 		tankArray[0] = theTank;

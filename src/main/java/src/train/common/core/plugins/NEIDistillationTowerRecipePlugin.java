@@ -36,7 +36,7 @@ public class NEIDistillationTowerRecipePlugin extends FurnaceRecipeHandler{
         @Override
         public PositionedStack getIngredient()
         {
-            int cycle = cycleticks / 48;
+            int cycle = cycleticks *(1/48);
             if(ingred.item.getItemDamage() == -1)
             {
                 PositionedStack stack = ingred.copy();
@@ -61,7 +61,7 @@ public class NEIDistillationTowerRecipePlugin extends FurnaceRecipeHandler{
         @Override
         public PositionedStack getOtherStack() 
         {
-            return afuelsDistil.get((cycleticks/48) % afuelsDistil.size()).stack;
+            return afuelsDistil.get((cycleticks*(1/48)) % afuelsDistil.size()).stack;
         }
         /**
          * Return extra items that are not directly involved in the ingredient->result relationship. Eg fuels.
@@ -72,7 +72,7 @@ public class NEIDistillationTowerRecipePlugin extends FurnaceRecipeHandler{
         public List<PositionedStack> getOtherStacks()
         {
             ArrayList<PositionedStack> stacks = new ArrayList<PositionedStack>();
-            PositionedStack stack = afuelsDistil.get((cycleticks/48) % afuelsDistil.size()).stack;
+            PositionedStack stack = afuelsDistil.get((cycleticks*(1/48)) % afuelsDistil.size()).stack;
             PositionedStack stackPlastic = new PositionedStack(new ItemStack(ItemIDs.rawPlastic.item,1,-1), 111, 56);
             if(stack != null)
                 stacks.add(stack);

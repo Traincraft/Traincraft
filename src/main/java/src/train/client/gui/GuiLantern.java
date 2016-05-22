@@ -1,5 +1,6 @@
 package src.train.client.gui;
 
+import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.gui.GuiButton;
@@ -10,6 +11,8 @@ import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
 import org.lwjgl.input.Keyboard;
 import src.train.common.Packet250CustomPayload;
+import src.train.common.Traincraft;
+import src.train.common.core.network.PacketLantern;
 import src.train.common.library.Info;
 import src.train.common.tile.TileLantern;
 
@@ -66,8 +69,9 @@ public class GuiLantern extends GuiScreen {
 					colorString = colorString.substring(0, 6);//remove additionnal characters
 					if(colorString.length()==6 &&tryParse(colorString)!=null){//if parse is possible (if string can be converted to an int)
 						int color = tryParse(colorString);//parse the string as a 16 int	
-						Packet packet = this.getTEPClient(lanternBlock, color);//send packet to server
-						this.mc.getNetHandler().addToSendQueue(packet);
+						//Packet packet = this.getTEPClient(lanternBlock, color);//send packet to server
+						//this.mc.getNetHandler().addToSendQueue(packet);
+						Traincraft.modChannel.sendToServer(getTEPClient(lanternBlock, color));
 					}
 				}
 				this.mc.displayGuiScreen((GuiScreen)null);
@@ -89,23 +93,14 @@ public class GuiLantern extends GuiScreen {
 		}
 	}
 	
-	public static Packet getTEPClient(TileEntity te, int color) {
-		ByteArrayOutputStream bos = new ByteArrayOutputStream();
-		DataOutputStream dos = new DataOutputStream(bos);
-		try {
+	public static IMessage getTEPClient(TileEntity te, int color) {
+		PacketLantern packet = null;
 			if (te != null && te instanceof TileLantern) {
 				TileLantern tem = (TileLantern) te;
-				dos.writeInt(0);
-				dos.writeInt(tem.xCoord);
-				dos.writeInt(tem.yCoord);
-				dos.writeInt(tem.zCoord);
-				dos.writeInt(color);
+				packet = new PacketLantern(color, tem.xCoord, tem.yCoord, tem.zCoord);
 			}
-		}catch (IOException e) {
-			e.printStackTrace();
-		}
-		Packet250CustomPayload packet = new Packet250CustomPayload(Info.channel, bos.toByteArray());
-		packet.length = bos.size();
+		//PacketLantern packet = new PacketLantern(color, tem.xCoord, tem.yCoord, tem.zCoord);
+
 		return packet;
 
 	}

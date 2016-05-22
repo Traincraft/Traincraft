@@ -53,6 +53,7 @@ public class PacketKeyPress implements IMessage {
 
 		@Override
 		public IMessage onMessage(PacketKeyPress message, MessageContext context) {
+			System.out.print("Packet Key Pressed");
 
 			Entity ridingEntity = context.getServerHandler().playerEntity.ridingEntity;
 
