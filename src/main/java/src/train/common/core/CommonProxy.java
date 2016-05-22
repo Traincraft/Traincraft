@@ -6,6 +6,7 @@ import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.relauncher.Side;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
@@ -47,14 +48,18 @@ public class CommonProxy implements IGuiHandler {
 	public void registerEvents(FMLPreInitializationEvent event){
 		System.out.println("Events");
 		WorldEvents worldEvents = new WorldEvents();
-		ClientTickHandler tickHandler = new ClientTickHandler();
 		ChunkEvents chunkEvents = new ChunkEvents();
-		HUDloco huDloco = new HUDloco();
 
 		registerEvent(worldEvents);
-		registerEvent(tickHandler);
 		registerEvent(chunkEvents);
-		registerEvent(huDloco);
+
+		if (event.getSide() == Side.CLIENT){
+			ClientTickHandler tickHandler = new ClientTickHandler();
+			HUDloco huDloco = new HUDloco();
+
+			registerEvent(tickHandler);
+			registerEvent(huDloco);
+		}
 
 	}
 

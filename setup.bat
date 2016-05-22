@@ -1,3 +1,4 @@
+@echo on
 @ECHO ##########################################################################
 @ECHO
 @ECHO  Gradle startup script for Windows
@@ -7,21 +8,31 @@
 @ECHO Choose an IDE:
 @ECHO [1] Eclipse
 @ECHO [2] Idea (Intelij)
+@ECHO 
+@ECHO 
+:tryagain
+@echo off
+set /p variable=""
+IF "%variable%"=="1" (goto eclipse)
+IF "%variable%"=="eclipse" (goto eclipse)
+IF "%variable%"=="Eclipse" (goto eclipse)
 
-if "%INPUT%"=="1" goto eclipse
-else if "%INPUT%"=="eclipse" goto eclipse
-else if "%INPUT%"=="Eclipse" goto eclipse
+IF "%variable%"=="2" (goto intelij)
+IF "%variable%"=="Intelij" (goto intelij)
+IF "%variable%"=="intelij" (goto intelij)
+IF "%variable%"=="idea" (goto intelij)
+IF "%variable%"=="Idea" (goto intelij)
 
-else if "%INPUT%"=="2" goto intelij
-else if "%INPUT%"=="Intelij" goto intelij
-else if "%INPUT%"=="intelij" goto intelij
-else if "%INPUT%"=="idea" goto intelij
-else if "%INPUT%"=="Idea" goto intelij
-
+pause
+@echo on
+@ECHO Incorrect option, try again.
+goto tryagain
 
 
 
 :eclipse
+@echo on
+@ECHO ##########################################################################
 gradlew setupDecompWorkspace --refresh-dependencies
 gradlew eclipse
 
@@ -37,6 +48,7 @@ exit
 
 
 :intelij
+@echo on
 gradlew setupDecompWorkspace --refresh-dependencies
 gradlew idea
 

@@ -49,11 +49,12 @@ public class BlockOpenHearthFurnace extends BlockContainer {
 	protected BlockOpenHearthFurnace(int par2, boolean active) {
 		super(Material.rock);
 		furnaceRand = new Random();
-		setCreativeTab(Traincraft.tcTab);
 		//setRequiresSelfNotify();
 		isActive = active;
 		if (isActive) {
 			setLightLevel(0.8F);
+		} else {
+			setCreativeTab(Traincraft.tcTab);
 		}
 	}
 

@@ -44,11 +44,12 @@ public class BlockDistil extends BlockContainer {
 		super(Material.rock);
 		isActive = flag;
 		distilRand = new Random();
-		setCreativeTab(Traincraft.tcTab);
 		//setRequiresSelfNotify();
 
 		if (isActive) {
 			setLightLevel(0.8F);
+		} else {
+			setCreativeTab(Traincraft.tcTab);
 		}
 	}
 
