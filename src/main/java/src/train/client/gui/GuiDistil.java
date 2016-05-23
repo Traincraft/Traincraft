@@ -91,12 +91,14 @@ public class GuiDistil extends GuiContainer {
 		drawTexturedModalRect(j, k, 0, 0, xSize, ySize);
 		int amount = distilInventory.amount;
 		int liqui = (amount * 50) / distilInventory.getTankCapacity();
-		if ((LiquidManager.DIESEL != null && distilInventory.getLiquidItemID() == LiquidManager.DIESEL.getID())) {
-			drawTexturedModalRect(j + 145, (k + 57) - liqui, 177, 107 - liqui, 18, liqui);
-		}
-		if ((LiquidManager.REFINED_FUEL != null && distilInventory.getLiquidItemID() == LiquidManager.REFINED_FUEL.getID())) {
-			drawTexturedModalRect(j + 145, (k + 57) - liqui, 177, 107 - liqui, 18, liqui);
-			drawRect(j + 145, k + 57, 177, 107, 0);
+		if (distilInventory.getFluid() != null) {
+			if ((LiquidManager.DIESEL != null && distilInventory.getFluid().getFluidID() == LiquidManager.DIESEL.getID())) {
+				drawTexturedModalRect(j + 145, (k + 57) - liqui, 177, 107 - liqui, 18, liqui);
+			}
+			if ((LiquidManager.REFINED_FUEL != null && distilInventory.getFluid().getFluidID() == LiquidManager.REFINED_FUEL.getID())) {
+				drawTexturedModalRect(j + 145, (k + 57) - liqui, 177, 107 - liqui, 18, liqui);
+				drawRect(j + 145, k + 57, 177, 107, 0);
+			}
 		}
 		if (distilInventory.isBurning()) {
 			int l = distilInventory.getBurnTimeRemainingScaled(12);

@@ -919,6 +919,8 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			serverRealPitch = anglePitch;
 		}
 		else {
+			float rotation = rotationYaw;
+
 			float delta = MathHelper.wrapAngleTo180_float(this.rotationYaw - this.previousServerRealRotation); //Math.abs(this.rotationYaw - this.previousServerRealRotation);
 
 			this.previousServerRealRotation = this.rotationYaw;
@@ -1451,7 +1453,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			motionX = Math.copySign(norm, motionX);
 			motionY = 0;
 			motionZ = 0;
-			moveEntity(motionX, 0.0D, 0.0D);	
+			moveEntity(motionX, 0.0D, 0.0D);
 		}
 	}
 
