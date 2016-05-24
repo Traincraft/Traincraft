@@ -1,8 +1,10 @@
 package src.train.client.gui;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import src.train.common.api.LiquidManager;
@@ -89,17 +91,13 @@ public class GuiDistil extends GuiContainer {
 		int j = (width - xSize) / 2;
 		int k = (height - ySize) / 2;
 		drawTexturedModalRect(j, k, 0, 0, xSize, ySize);
-		int amount = distilInventory.amount;
-		int liqui = (amount * 50) / distilInventory.getTankCapacity();
-		if (distilInventory.getFluid() != null) {
-			if ((LiquidManager.DIESEL != null && distilInventory.getFluid().getFluidID() == LiquidManager.DIESEL.getID())) {
-				drawTexturedModalRect(j + 145, (k + 57) - liqui, 177, 107 - liqui, 18, liqui);
-			}
-			if ((LiquidManager.REFINED_FUEL != null && distilInventory.getFluid().getFluidID() == LiquidManager.REFINED_FUEL.getID())) {
-				drawTexturedModalRect(j + 145, (k + 57) - liqui, 177, 107 - liqui, 18, liqui);
-				drawRect(j + 145, k + 57, 177, 107, 0);
-			}
+		int amount = distilInventory.getLiquid(); //TODO why cant I access amount?????
+		int liqui =  Math.abs((amount * 50) / (distilInventory.getTankCapacity()));
+		drawTexturedModalRect(j + 145, (k + 57) - liqui, 177, 107 - liqui, 18, liqui + 1);
+		if (LiquidManager.REFINED_FUEL != null && distilInventory.getLiquidItemID() == LiquidManager.REFINED_FUEL.getID()) {
+			drawRect(j + 145, k + 57, 177, 107, 0);
 		}
+
 		if (distilInventory.isBurning()) {
 			int l = distilInventory.getBurnTimeRemainingScaled(12);
 			drawTexturedModalRect(j + 56, (k + 36 + 12) - l, 176, 12 - l, 14, l + 2);
