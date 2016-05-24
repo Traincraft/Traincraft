@@ -91,9 +91,9 @@ public class GuiDistil extends GuiContainer {
 		int j = (width - xSize) / 2;
 		int k = (height - ySize) / 2;
 		drawTexturedModalRect(j, k, 0, 0, xSize, ySize);
-		int amount = distilInventory.getLiquid(); //TODO why cant I access amount?????
+		int amount = distilInventory.getLiquid();
 		int liqui =  Math.abs((amount * 50) / (distilInventory.getTankCapacity()));
-		drawTexturedModalRect(j + 145, (k + 57) - liqui, 177, 107 - liqui, 18, liqui + 1);
+		drawTexturedModalRect(j + 145, (k + 57) - liqui, 177, 107 - liqui, 18, liqui);
 		if (LiquidManager.REFINED_FUEL != null && distilInventory.getLiquidItemID() == LiquidManager.REFINED_FUEL.getID()) {
 			drawRect(j + 145, k + 57, 177, 107, 0);
 		}

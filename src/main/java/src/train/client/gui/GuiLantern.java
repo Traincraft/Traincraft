@@ -1,5 +1,6 @@
 package src.train.client.gui;
 
+import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -98,6 +99,7 @@ public class GuiLantern extends GuiScreen {
 			if (te != null && te instanceof TileLantern) {
 				TileLantern tem = (TileLantern) te;
 				packet = new PacketLantern(color, tem.xCoord, tem.yCoord, tem.zCoord);
+				Traincraft.modChannel.sendToAllAround(packet, new NetworkRegistry.TargetPoint(te.getWorldObj().provider.dimensionId, te.xCoord, te.yCoord, te.zCoord, 150));
 			}
 		//PacketLantern packet = new PacketLantern(color, tem.xCoord, tem.yCoord, tem.zCoord);
 

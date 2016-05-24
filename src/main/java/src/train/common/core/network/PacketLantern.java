@@ -5,7 +5,9 @@ import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
+import net.minecraft.tileentity.TileEntity;
 import src.train.common.api.Locomotive;
+import src.train.common.tile.TileLantern;
 
 public class PacketLantern implements IMessage {
 
@@ -46,6 +48,17 @@ public class PacketLantern implements IMessage {
 
         @Override
         public IMessage onMessage(PacketLantern message, MessageContext context) {
+
+            TileEntity lantern = context.getServerHandler().playerEntity.worldObj.getTileEntity(message.xPos, message.yPos, message.zPos);
+
+			/* "instanceof" is null-safe, but we check to avoid four unnecessary instanceof checks for when the value is null anyways. */
+            if (lantern != null) {
+
+                if (lantern instanceof TileLantern) {
+                    ((TileLantern) lantern).setColor(message.color);
+                }
+            }
+
 
             return null;
         }

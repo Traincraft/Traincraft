@@ -12,7 +12,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
+import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.Constants;
@@ -159,7 +161,7 @@ public class TileEntityDistil extends TileEntity implements IInventory, IFluidHa
 		distilBurnTime = nbtTag.getShort("BurnTime");
 		distilCookTime = nbtTag.getShort("CookTime");
 		currentItemBurnTime = getItemBurnTime(distilItemStacks[1]);
-		amount = nbtTag.getInteger("Amount");
+		this.amount = nbtTag.getInteger("Amount");
 		liquidItemID = nbtTag.getInteger("LiquidID");
 		this.theTank.readFromNBT(nbtTag);
 	}
@@ -511,6 +513,10 @@ public class TileEntityDistil extends TileEntity implements IInventory, IFluidHa
 		return 2;
 	}*/
 
+	@Override
+	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
+		readFromNBT(pkt.func_148857_g());
+	}
 	@Override
 	public Packet getDescriptionPacket() {
 

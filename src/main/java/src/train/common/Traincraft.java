@@ -112,6 +112,7 @@ public class Traincraft {
 		modChannel.registerMessage(PacketParkingBreak.Handler.class, PacketParkingBreak.class, ++packetID, Side.SERVER);
 		modChannel.registerMessage(PacketSetTrainLockedToClient.Handler.class, PacketSetTrainLockedToClient.class, ++packetID, Side.SERVER);
 		modChannel.registerMessage(PacketSetLocoTurnedOn.Handler.class, PacketSetLocoTurnedOn.class, ++packetID, Side.SERVER);
+		modChannel.registerMessage(PacketLantern.Handler.class, PacketLantern.class, ++packetID, Side.SERVER);
 		tcLog.info("Finished PreInitialization");
 	}
 

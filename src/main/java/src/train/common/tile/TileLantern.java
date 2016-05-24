@@ -3,6 +3,7 @@ package src.train.common.tile;
 import java.util.Random;
 
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -12,7 +13,7 @@ public class TileLantern extends TileEntity {
 	/** Static instance used to access random number generation to create random colors. */
 	protected static final Random rand = new Random();
 
-	public int randomColor = (rand.nextInt() * 0xFFFFFF << 0);
+	public int randomColor = (rand.nextInt() * 0xFFFFFF);
 
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
@@ -42,5 +43,13 @@ public class TileLantern extends TileEntity {
 	public String getColor() {
 
 		return String.format("#%06X", (0xFFFFFF & this.randomColor));
+	}
+
+	public void  setColor(int col){
+		randomColor = col;
+	}
+	@Override
+	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
+		readFromNBT(pkt.func_148857_g());
 	}
 }
