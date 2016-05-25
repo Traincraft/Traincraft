@@ -221,20 +221,6 @@ public class TileEntityOpenHearthFurnace extends TileTraincraft{
 	}
 
 	@Override
-	public Packet getDescriptionPacket() {
-		NBTTagCompound nbt = new NBTTagCompound();
-		this.writeToNBT(nbt, true);
-		return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, nbt);
-	}
-
-	@Override
-	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt){
-		if(pkt != null){
-			this.readFromNBT(pkt.func_148857_g(), true);
-		}
-	}
-
-	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt, boolean forSyncing){
 		super.writeToNBT(nbt, forSyncing);
 		nbt.setByte("Orientation", (byte) facing.ordinal());

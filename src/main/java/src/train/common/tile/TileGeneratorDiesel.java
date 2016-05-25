@@ -24,10 +24,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidTankInfo;
-import net.minecraftforge.fluids.IFluidHandler;
+import net.minecraftforge.fluids.*;
 import src.train.common.Packet250CustomPayload;
 import src.train.common.api.LiquidManager;
 import src.train.common.api.LiquidManager.StandardTank;
@@ -38,7 +35,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-public class TileGeneratorDiesel extends TileTraincraft implements IFluidHandler, IInventory, IEnergySource, IEnergyProvider {
+//TODO not working and canitzp dont know why
+public class TileGeneratorDiesel extends TileTraincraft implements IFluidHandler, IEnergySource, IEnergyProvider {
 	private static final Energy OUTPUT = Energy.fromRF(80);
 	private static final Energy MAX_ENERGY = Energy.fromRF(300000);
 	private static final Energy MAX_ENERGY_RECEIVED = Energy.fromRF(12000);
@@ -51,7 +49,7 @@ public class TileGeneratorDiesel extends TileTraincraft implements IFluidHandler
 	private boolean powered;
 	private int update;
 	private ForgeDirection direction;
-	private StandardTank theTank;
+	private FluidTank theTank;
 	private boolean producing;
 	
 	private int liquidItemIDClient;
@@ -90,15 +88,15 @@ public class TileGeneratorDiesel extends TileTraincraft implements IFluidHandler
 
 	@Override
 	public void updateEntity() {
-		/**
-		 * IC2
-		 */
-		if (isSimulating() && !addedToEnergyNet) {
-			MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
-			this.addedToEnergyNet = true;
-		}
-
 		if (!worldObj.isRemote) {
+			/**
+			 * IC2
+			 */
+			if (isSimulating() && !addedToEnergyNet) {
+				MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
+				this.addedToEnergyNet = true;
+			}
+
 			produceIC2 = true;
 			
 			for(ForgeDirection dir: new ForgeDirection[] {
@@ -167,11 +165,12 @@ public class TileGeneratorDiesel extends TileTraincraft implements IFluidHandler
 			}
 		}
 		//this.currentOutput = Energy.fromRF((currentOutput.toRF() * 740 + output.toRF()) / 750);
+		this.syncTileEntity();
 	}
 
 	@Override
-	public void readFromNBT(NBTTagCompound nbtTag) {
-		super.readFromNBT(nbtTag);
+	public NBTTagCompound readFromNBT(NBTTagCompound nbtTag, boolean forSyncing) {
+		super.readFromNBT(nbtTag, forSyncing);
 		//this.energy = Energy.fromRF(nbtTag.getFloat("Energy"));
 		this.direction = ForgeDirection.getOrientation(nbtTag.getInteger("direction"));
 		this.theTank.readFromNBT(nbtTag);
@@ -181,11 +180,12 @@ public class TileGeneratorDiesel extends TileTraincraft implements IFluidHandler
 		this.producing = nbtTag.getBoolean("isProducing");
 		this.amountClient = nbtTag.getInteger("Amount");
 		this.liquidItemIDClient = nbtTag.getInteger("LiquidID");
+		return nbtTag;
 	}
 
 	@Override
-	public void writeToNBT(NBTTagCompound nbtTag) {
-		super.writeToNBT(nbtTag);
+	public NBTTagCompound writeToNBT(NBTTagCompound nbtTag, boolean forSyncing) {
+		super.writeToNBT(nbtTag, forSyncing);
 		//nbtTag.setFloat("Energy", energy.toRF());
 		nbtTag.setInteger("direction", direction.ordinal());
 		this.theTank.writeToNBT(nbtTag);
@@ -193,15 +193,7 @@ public class TileGeneratorDiesel extends TileTraincraft implements IFluidHandler
 		nbtTag.setBoolean("isProducing", this.producing);
 		nbtTag.setInteger("Amount", this.amountClient);
 		nbtTag.setInteger("LiquidID", this.liquidItemIDClient);
-	}
-
-	@Override
-	public Packet getDescriptionPacket() {
-
-		NBTTagCompound nbt = new NBTTagCompound();
-		this.writeToNBT(nbt);
-
-		return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, nbt);
+		return nbtTag;
 	}
 
 	public Energy getEnergy() {
@@ -282,15 +274,6 @@ public class TileGeneratorDiesel extends TileTraincraft implements IFluidHandler
 		return (amountClient);
 	}
 
-	/**
-	 * used by the GUI
-	 * 
-	 * @return int
-	 */
-	public int getLiquidItemIDClient() {
-		return liquidItemIDClient;
-	}
-
 	public int getTankCapacity() {
 		return theTank.getCapacity();
 	}
@@ -320,65 +303,6 @@ public class TileGeneratorDiesel extends TileTraincraft implements IFluidHandler
 		}
 		return false;
 
-	}
-
-	@Override
-	public int getSizeInventory() {
-		return slots.length;
-	}
-
-	@Override
-	public ItemStack getStackInSlot(int i) {
-		return slots[i];
-	}
-
-	@Override
-	public ItemStack decrStackSize(int i, int j) {
-		if (slots[i] != null) {
-			if (slots[i].stackSize <= j) {
-				ItemStack itemstack = slots[i];
-				slots[i] = null;
-				return itemstack;
-			}
-			ItemStack itemstack1 = slots[i].splitStack(j);
-			if (slots[i].stackSize == 0) {
-				slots[i] = null;
-			}
-			return itemstack1;
-		} else {
-			return null;
-		}
-	}
-
-	@Override
-	public ItemStack getStackInSlotOnClosing(int par1) {
-		if (this.slots[par1] != null) {
-			ItemStack var2 = this.slots[par1];
-			this.slots[par1] = null;
-			return var2;
-		} else {
-			return null;
-		}
-	}
-
-	@Override
-	public int getInventoryStackLimit() {
-		return 64;
-	}
-
-	public boolean isUseableByPlayer(EntityPlayer entityplayer) {
-		if (worldObj == null) {
-			return true;
-		}
-		if (worldObj.getTileEntity(xCoord, yCoord, zCoord) != this) {
-			return false;
-		}
-		return entityplayer.getDistanceSq(xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D) <= 64D;
-	}
-
-	@Override
-	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
-		return true;
 	}
 
 	@Override
@@ -488,11 +412,6 @@ public class TileGeneratorDiesel extends TileTraincraft implements IFluidHandler
 	@Override
 	public int getMaxEnergyStored(ForgeDirection dir) {
 		return (int) MAX_ENERGY.toRF();
-	}
-
-	@Override
-	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
-		readFromNBT(pkt.func_148857_g());
 	}
 
 }
