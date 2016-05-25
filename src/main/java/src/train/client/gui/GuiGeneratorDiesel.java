@@ -11,12 +11,21 @@ import src.train.common.tile.TileGeneratorDiesel;
 public class GuiGeneratorDiesel extends GuiContainer {
 
 	private TileGeneratorDiesel dieselInventory;
+	private int staticAmount;
 
 	public GuiGeneratorDiesel(InventoryPlayer invPlayer, TileGeneratorDiesel tile) {
 		super(new ContainerGeneratorDiesel(invPlayer, tile));
 		dieselInventory = tile;
+		staticAmount = dieselInventory.getLiquid();
 	}
 
+	@Override
+	public void updateScreen(){
+		if (dieselInventory.getLiquid() != staticAmount){
+			staticAmount = dieselInventory.getLiquid();
+			super.updateScreen();
+		}
+	}
 	@Override
 	protected void drawGuiContainerForegroundLayer(int par1, int par2) {
 		fontRendererObj.drawString("Diesel Generator", 8, 6, 0x404040);
@@ -26,7 +35,7 @@ public class GuiGeneratorDiesel extends GuiContainer {
 	@Override
 	public void drawScreen(int t, int g, float par3) {
 		super.drawScreen(t, g, par3);
-		int amount = dieselInventory.getLiquidAmount();
+		int amount = dieselInventory.getLiquid();
 		int liqui = (amount * 50) / dieselInventory.getTankCapacity();
 		//if ((LiquidManager.diesel != null && dieselInventory.getLiquidItemIDClient() == LiquidManager.diesel.itemID)) {
 			if (intersectsWith(t, g)) {
@@ -40,8 +49,8 @@ public class GuiGeneratorDiesel extends GuiContainer {
 		int j = (width - xSize) / 2;
 		int k = (height - ySize) / 2;
 
-		int liqui = (dieselInventory.getLiquidAmount() * 50) / dieselInventory.getTankCapacity();
-		int textWidth = fontRendererObj.getStringWidth(dieselInventory.getLiquidAmount() + "/" + dieselInventory.getTankCapacity());
+		int liqui = (dieselInventory.getLiquid()* 50) / dieselInventory.getTankCapacity();
+		int textWidth = fontRendererObj.getStringWidth(dieselInventory.getLiquid() + "/" + dieselInventory.getTankCapacity());
 		int startX = t + 14;
 		int startY = g - 12;
 
@@ -55,7 +64,7 @@ public class GuiGeneratorDiesel extends GuiContainer {
 		drawGradientRect(startX - 3, startY - 3, startX + textWidth + 3, startY + 8 + 3 + 10, colour1, colour2);
 		drawGradientRect(startX - 2, startY - 2, startX + textWidth + 2, startY + 8 + 2 + 10, i4, i4);
 		fontRendererObj.drawStringWithShadow(str, startX, startY, -1);
-		fontRendererObj.drawStringWithShadow(dieselInventory.getLiquidAmount() + "/" + dieselInventory.getTankCapacity(), startX, startY + 10, -1);
+		fontRendererObj.drawStringWithShadow(dieselInventory.getLiquid() + "/" + dieselInventory.getTankCapacity(), startX, startY + 10, -1);
 	}
 
 	@Override
@@ -65,8 +74,8 @@ public class GuiGeneratorDiesel extends GuiContainer {
 		int j = (width - xSize) / 2;
 		int k = (height - ySize) / 2;
 		drawTexturedModalRect(j, k, 0, 0, xSize, ySize);
-		int amount = dieselInventory.getLiquidAmount();
-		int liqui = (amount * 50) / dieselInventory.getTankCapacity();
+		int amount = dieselInventory.getLiquid();
+		int liqui = Math.abs((amount * 50) / (dieselInventory.getTankCapacity()));
 		//if ((LiquidManager.diesel != null && dieselInventory.getLiquidItemIDClient() == LiquidManager.diesel.itemID)) {
 		drawTexturedModalRect(j + 145, (k + 57) - liqui, 177, 107 - liqui, 18, liqui);
 		//}

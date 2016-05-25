@@ -31,9 +31,8 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class TileEntityDistil extends TileEntity implements IInventory, IFluidHandler {
+public class TileEntityDistil extends TileTraincraft implements IInventory, IFluidHandler {
 
-	public ItemStack distilItemStacks[];
 	private ForgeDirection facing;
 	public int distilBurnTime;
 	public int currentItemBurnTime;
@@ -44,20 +43,18 @@ public class TileEntityDistil extends TileEntity implements IInventory, IFluidHa
 	private int maxTank = 0;
 	private StandardTank theTank;
 	private IFluidTank[] tankArray = new IFluidTank[1];
-	private FluidStack liquid;
 	public int amount;
 	public int liquidItemID;
 	public Side side = FMLCommonHandler.instance().getEffectiveSide();
 
 	public TileEntityDistil() {
 
-		distilItemStacks = new ItemStack[5];
+		super(5, "Distillation tower");
 		distilBurnTime = 0;
 		currentItemBurnTime = 0;
 		distilCookTime = 0;
 		cookDuration = 400;//default is 200
 		random = new Random();
-		this.liquid = new FluidStack(FluidRegistry.WATER, 0);
 		this.maxTank = 30000;
 		this.theTank = LiquidManager.getInstance().new FilteredTank(maxTank, LiquidManager.getInstance().dieselFilter(), 1);
 		tankArray[0] = theTank;
@@ -84,59 +81,6 @@ public class TileEntityDistil extends TileEntity implements IInventory, IFluidHa
 		return theTank;
 	}
 
-	@Override
-	public int getSizeInventory() {
-		return distilItemStacks.length;
-	}
-
-	@Override
-	public ItemStack getStackInSlot(int i) {
-		return distilItemStacks[i];
-	}
-
-	@Override
-	public ItemStack decrStackSize(int i, int j) {
-		if (distilItemStacks[i] != null) {
-			if (distilItemStacks[i].stackSize <= j) {
-				ItemStack itemstack = distilItemStacks[i];
-				distilItemStacks[i] = null;
-				return itemstack;
-			}
-			ItemStack itemstack1 = distilItemStacks[i].splitStack(j);
-			if (distilItemStacks[i].stackSize == 0) {
-				distilItemStacks[i] = null;
-			}
-			return itemstack1;
-		}
-		else {
-			return null;
-		}
-	}
-
-	@Override
-	public ItemStack getStackInSlotOnClosing(int par1) {
-		if (this.distilItemStacks[par1] != null) {
-			ItemStack var2 = this.distilItemStacks[par1];
-			this.distilItemStacks[par1] = null;
-			return var2;
-		}
-		else {
-			return null;
-		}
-	}
-
-	@Override
-	public void setInventorySlotContents(int i, ItemStack itemstack) {
-		distilItemStacks[i] = itemstack;
-		if (itemstack != null && itemstack.stackSize > getInventoryStackLimit()) {
-			itemstack.stackSize = getInventoryStackLimit();
-		}
-	}
-
-	@Override
-	public String getInventoryName() {
-		return "Distillation tower";
-	}
 
 	@Override
 	public void readFromNBT(NBTTagCompound nbtTag) {
@@ -145,22 +89,22 @@ public class TileEntityDistil extends TileEntity implements IInventory, IFluidHa
 
 		facing = ForgeDirection.getOrientation(nbtTag.getByte("Orientation"));
 		NBTTagList nbttaglist = nbtTag.getTagList("Items", Constants.NBT.TAG_COMPOUND);
-		distilItemStacks = new ItemStack[getSizeInventory()];
+		slots = new ItemStack[getSizeInventory()];
 
 		for (int i = 0; i < nbttaglist.tagCount(); i++) {
 
 			NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
 			byte byte0 = nbttagcompound1.getByte("Slot");
 
-			if (byte0 >= 0 && byte0 < distilItemStacks.length) {
+			if (byte0 >= 0 && byte0 < slots.length) {
 
-				this.distilItemStacks[byte0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
+				this.slots[byte0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
 			}
 		}
 
 		distilBurnTime = nbtTag.getShort("BurnTime");
 		distilCookTime = nbtTag.getShort("CookTime");
-		currentItemBurnTime = getItemBurnTime(distilItemStacks[1]);
+		currentItemBurnTime = getItemBurnTime(slots[1]);
 		this.amount = nbtTag.getInteger("Amount");
 		liquidItemID = nbtTag.getInteger("LiquidID");
 		this.theTank.readFromNBT(nbtTag);
@@ -184,24 +128,19 @@ public class TileEntityDistil extends TileEntity implements IInventory, IFluidHa
 
 		NBTTagList nbttaglist = new NBTTagList();
 
-		for (int i = 0; i < this.distilItemStacks.length; i++) {
+		for (int i = 0; i < this.slots.length; i++) {
 
-			if (this.distilItemStacks[i] != null) {
+			if (this.slots[i] != null) {
 
 				NBTTagCompound nbttagcompound1 = new NBTTagCompound();
 				nbttagcompound1.setByte("Slot", (byte) i);
-				this.distilItemStacks[i].writeToNBT(nbttagcompound1);
+				this.slots[i].writeToNBT(nbttagcompound1);
 				nbttaglist.appendTag(nbttagcompound1);
 			}
 		}
 
 		nbtTag.setTag("Items", nbttaglist);
 		this.theTank.writeToNBT(nbtTag);
-	}
-
-	@Override
-	public int getInventoryStackLimit() {
-		return 64;
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -242,26 +181,26 @@ public class TileEntityDistil extends TileEntity implements IInventory, IFluidHa
 			//if(updateTicks%40==0)this.onInventoryChanged();
 			if (distilBurnTime == 0 && canSmelt()) {
 
-				currentItemBurnTime = distilBurnTime = getItemBurnTime(distilItemStacks[1]);
+				currentItemBurnTime = distilBurnTime = getItemBurnTime(slots[1]);
 
 				if (distilBurnTime > 0) {
 
 					flag1 = true;
 
-					if (distilItemStacks[1] != null) {
+					if (slots[1] != null) {
 
-						if (distilItemStacks[1].getItem().hasContainerItem(distilItemStacks[1])) {
+						if (slots[1].getItem().hasContainerItem(slots[1])) {
 
-							distilItemStacks[1] = new ItemStack(distilItemStacks[1].getItem().getContainerItem());
+							slots[1] = new ItemStack(slots[1].getItem().getContainerItem());
 						}
 						else {
 
-							distilItemStacks[1].stackSize--;
+							slots[1].stackSize--;
 						}
 
-						if (distilItemStacks[1].stackSize == 0) {
+						if (slots[1].stackSize == 0) {
 
-							distilItemStacks[1] = null;
+							slots[1] = null;
 						}
 					}
 				}
@@ -289,11 +228,11 @@ public class TileEntityDistil extends TileEntity implements IInventory, IFluidHa
 				BlockDistil.updateDistilBlockState(distilBurnTime > 0, worldObj, xCoord, yCoord, zCoord);
 			}
 
-			if (distilItemStacks[2] != null) {
+			if (slots[2] != null) {
 
 				if (this.updateTicks % 8 == 0) {
 
-					ItemStack result = LiquidManager.getInstance().processContainer(this, 2, theTank, distilItemStacks[2], 0);
+					ItemStack result = LiquidManager.getInstance().processContainer(this, 2, theTank, slots[2], 0);
 
 					if (result != null && placeInInvent(result, 4, false)) {
 
@@ -356,21 +295,21 @@ public class TileEntityDistil extends TileEntity implements IInventory, IFluidHa
 	}
 
 	private boolean placeInInvent(ItemStack itemstack1, int i, boolean doAdd) {
-		if (distilItemStacks[i] == null) {
+		if (slots[i] == null) {
 			if (doAdd)
-				distilItemStacks[i] = itemstack1;
+				slots[i] = itemstack1;
 			return true;
 		}
-		else if (distilItemStacks[i] != null && Item.getIdFromItem(distilItemStacks[i].getItem()) == Item.getIdFromItem(itemstack1.getItem()) && itemstack1.isStackable() && (!itemstack1.getHasSubtypes() || distilItemStacks[i].getItemDamage() == itemstack1.getItemDamage()) && ItemStack.areItemStackTagsEqual(distilItemStacks[i], itemstack1)) {
-			int var9 = distilItemStacks[i].stackSize + itemstack1.stackSize;
+		else if (slots[i] != null && Item.getIdFromItem(slots[i].getItem()) == Item.getIdFromItem(itemstack1.getItem()) && itemstack1.isStackable() && (!itemstack1.getHasSubtypes() || slots[i].getItemDamage() == itemstack1.getItemDamage()) && ItemStack.areItemStackTagsEqual(slots[i], itemstack1)) {
+			int var9 = slots[i].stackSize + itemstack1.stackSize;
 			if (var9 <= itemstack1.getMaxStackSize()) {
 				if (doAdd)
-					distilItemStacks[i].stackSize = var9;
+					slots[i].stackSize = var9;
 
 			}
-			else if (distilItemStacks[i].stackSize < itemstack1.getMaxStackSize()) {
+			else if (slots[i].stackSize < itemstack1.getMaxStackSize()) {
 				if (doAdd)
-					distilItemStacks[i].stackSize += 1;
+					slots[i].stackSize += 1;
 			}
 			return true;
 		}
@@ -379,14 +318,14 @@ public class TileEntityDistil extends TileEntity implements IInventory, IFluidHa
 	}
 
 	private boolean canSmelt() {
-		if (distilItemStacks[0] == null) {
+		if (slots[0] == null) {
 			return false;
 		}
-		ItemStack itemstack = DistilRecipes.smelting().getSmeltingResult(distilItemStacks[0].getItem());
+		ItemStack itemstack = DistilRecipes.smelting().getSmeltingResult(slots[0].getItem());
 		if (itemstack == null) {
 			return false;
 		}
-		if (Item.getIdFromItem(distilItemStacks[0].getItem()) == Item.getIdFromItem(Item.getItemFromBlock(BlockIDs.oreTC.block)) && (distilItemStacks[0].getItemDamage() != 1 && distilItemStacks[0].getItemDamage() != 2)) {
+		if (Item.getIdFromItem(slots[0].getItem()) == Item.getIdFromItem(Item.getItemFromBlock(BlockIDs.oreTC.block)) && (slots[0].getItemDamage() != 1 && slots[0].getItemDamage() != 2)) {
 			return false;
 		}
 		FluidStack resultLiquid = FluidContainerRegistry.getFluidForFilledItem(itemstack);
@@ -400,9 +339,9 @@ public class TileEntityDistil extends TileEntity implements IInventory, IFluidHa
 		if (!canSmelt()) {
 			return;
 		}
-		ItemStack itemstack = DistilRecipes.smelting().getSmeltingResult(distilItemStacks[0].getItem());
-		ItemStack plasticStack = DistilRecipes.smelting().getPlasticResult(distilItemStacks[0].getItem());
-		int plasticChance = DistilRecipes.smelting().getPlasticChance(distilItemStacks[0].getItem());
+		ItemStack itemstack = DistilRecipes.smelting().getSmeltingResult(slots[0].getItem());
+		ItemStack plasticStack = DistilRecipes.smelting().getPlasticResult(slots[0].getItem());
+		int plasticChance = DistilRecipes.smelting().getPlasticChance(slots[0].getItem());
 		FluidStack resultLiquid = FluidContainerRegistry.getFluidForFilledItem(itemstack);
 		if (resultLiquid == null)
 			return;
@@ -423,23 +362,23 @@ public class TileEntityDistil extends TileEntity implements IInventory, IFluidHa
 			this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
 		}
 
-		if (distilItemStacks[0].getItem().hasContainerItem(distilItemStacks[0])) {
-			distilItemStacks[0] = new ItemStack(distilItemStacks[0].getItem().getContainerItem());
+		if (slots[0].getItem().hasContainerItem(slots[0])) {
+			slots[0] = new ItemStack(slots[0].getItem().getContainerItem());
 		}
 		else {
-			distilItemStacks[0].stackSize--;
+			slots[0].stackSize--;
 		}
-		if (distilItemStacks[0].stackSize <= 0) {
-			distilItemStacks[0] = null;
+		if (slots[0].stackSize <= 0) {
+			slots[0] = null;
 		}
 	}
 
 	private void outputPlastic(ItemStack plasticStack) {
-		if (distilItemStacks[3] == null) {
-			distilItemStacks[3] = plasticStack.copy();
+		if (slots[3] == null) {
+			slots[3] = plasticStack.copy();
 		}
-		else if (Item.getIdFromItem(distilItemStacks[3].getItem()) == Item.getIdFromItem(plasticStack.getItem())) {
-			distilItemStacks[3].stackSize += plasticStack.stackSize;
+		else if (Item.getIdFromItem(slots[3].getItem()) == Item.getIdFromItem(plasticStack.getItem())) {
+			slots[3].stackSize += plasticStack.stackSize;
 		}
 		this.markDirty();
 	}
@@ -473,17 +412,6 @@ public class TileEntityDistil extends TileEntity implements IInventory, IFluidHa
 		return ret;
 	}
 
-	@Override
-	public boolean isUseableByPlayer(EntityPlayer entityplayer) {
-		if (worldObj == null) {
-			return true;
-		}
-		if (worldObj.getTileEntity(xCoord, yCoord, zCoord) != this) {
-			return false;
-		}
-		return entityplayer.getDistanceSq(xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D) <= 64D;
-	}
-
 	public ForgeDirection getFacing() {
 		if(facing!=null)return this.facing;
 		return ForgeDirection.NORTH;
@@ -499,20 +427,6 @@ public class TileEntityDistil extends TileEntity implements IInventory, IFluidHa
 	@Override
 	public void closeInventory() {}
 
-	/*@Override
-	public int getStartInventorySide(ForgeDirection side) {
-		if (side == ForgeDirection.DOWN)
-			return 1;
-		if (side == ForgeDirection.UP)
-			return 0;
-		return 2;
-	}
-
-	@Override
-	public int getSizeInventorySide(ForgeDirection side) {
-		return 2;
-	}*/
-
 	@Override
 	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
 		readFromNBT(pkt.func_148857_g());
@@ -526,14 +440,8 @@ public class TileEntityDistil extends TileEntity implements IInventory, IFluidHa
 		return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, nbt);
 	}
 
-	public FluidStack getFluid()
-	{
+	public FluidStack getFluid() {
 		return theTank.getFluid();
-	}
-
-	public int getFluidAmount()
-	{
-		return theTank.getFluidAmount();
 	}
 
 	@Override
@@ -543,18 +451,15 @@ public class TileEntityDistil extends TileEntity implements IInventory, IFluidHa
 	}
 
 	@Override
-	public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain)
-	{
-		if (resource == null || !resource.isFluidEqual(theTank.getFluid()))
-		{
+	public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain) {
+		if (resource == null || !resource.isFluidEqual(theTank.getFluid())) {
 			return null;
 		}
 		return theTank.drain(resource.amount, doDrain);
 	}
 
 	@Override
-	public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain)
-	{
+	public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain) {
 		return theTank.drain(maxDrain, doDrain);
 	}
 
@@ -577,10 +482,6 @@ public class TileEntityDistil extends TileEntity implements IInventory, IFluidHa
 		return new FluidTankInfo[] { theTank.getInfo() };
 	}
 
-	@Override
-	public boolean hasCustomInventoryName() {
-		return false;
-	}
 
 	@Override
 	public boolean isItemValidForSlot(int i, ItemStack itemstack) {

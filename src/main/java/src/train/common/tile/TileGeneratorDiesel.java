@@ -17,6 +17,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -37,7 +38,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-public class TileGeneratorDiesel extends TileEntity implements IFluidHandler, IInventory, IEnergySource, IEnergyProvider {
+public class TileGeneratorDiesel extends TileTraincraft implements IFluidHandler, IInventory, IEnergySource, IEnergyProvider {
 	private static final Energy OUTPUT = Energy.fromRF(80);
 	private static final Energy MAX_ENERGY = Energy.fromRF(300000);
 	private static final Energy MAX_ENERGY_RECEIVED = Energy.fromRF(12000);
@@ -52,10 +53,9 @@ public class TileGeneratorDiesel extends TileEntity implements IFluidHandler, II
 	private ForgeDirection direction;
 	private StandardTank theTank;
 	private boolean producing;
-	private ItemStack dieselItemStacks[];
 	
 	private int liquidItemIDClient;
-	private int amountClient;
+	public int amountClient;
 	/**
 	 * IC2 variable
 	 */
@@ -63,9 +63,9 @@ public class TileGeneratorDiesel extends TileEntity implements IFluidHandler, II
 	private boolean produceIC2;
 
 	public TileGeneratorDiesel() {
+		super(2, "Diesel Generator");
 		direction = ForgeDirection.getOrientation(this.blockMetadata);
 		this.theTank = LiquidManager.getInstance().new FilteredTank(30000, LiquidManager.getInstance().dieselFilter(), 1);
-		dieselItemStacks = new ItemStack[2];
 	}
 
 	public int getFacing() {
@@ -145,8 +145,8 @@ public class TileGeneratorDiesel extends TileEntity implements IFluidHandler, II
 		this.update += 1;
 
 		if (this.update % 8 == 0) {
-			if (dieselItemStacks[0] != null) {
-				ItemStack result = LiquidManager.getInstance().processContainer(this, 0, theTank, dieselItemStacks[0], 0);
+			if (slots[0] != null) {
+				ItemStack result = LiquidManager.getInstance().processContainer(this, 0, theTank, slots[0], 0);
 				if (result != null && placeInInvent(result, 1, false)) {
 					placeInInvent(result, 1, true);
 				}
@@ -167,29 +167,6 @@ public class TileGeneratorDiesel extends TileEntity implements IFluidHandler, II
 			}
 		}
 		//this.currentOutput = Energy.fromRF((currentOutput.toRF() * 740 + output.toRF()) / 750);
-	}
-
-	public static Packet setGeneratorLiquid(TileEntity te) {
-		ByteArrayOutputStream bos = new ByteArrayOutputStream();
-		DataOutputStream dos = new DataOutputStream(bos);
-		try {
-			if (te != null && te instanceof TileGeneratorDiesel) {
-				TileGeneratorDiesel tem = (TileGeneratorDiesel) te;
-				dos.writeInt(7);
-				dos.writeInt(tem.xCoord);
-				dos.writeInt(tem.yCoord);
-				dos.writeInt(tem.zCoord);
-				dos.writeBoolean(tem.isProducing());
-				dos.writeShort(tem.theTank.getFluid().amount);
-				dos.writeShort(tem.theTank.getFluid().getFluidID());
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		Packet250CustomPayload packet = new Packet250CustomPayload(
-				Info.channel, bos.toByteArray());
-		packet.length = bos.size();
-		return packet;
 	}
 
 	@Override
@@ -301,8 +278,8 @@ public class TileGeneratorDiesel extends TileEntity implements IFluidHandler, II
 	 * 
 	 * @return
 	 */
-	public int getLiquidAmount() {
-		return amountClient;
+	public int getLiquid() {
+		return (amountClient);
 	}
 
 	/**
@@ -319,24 +296,24 @@ public class TileGeneratorDiesel extends TileEntity implements IFluidHandler, II
 	}
 
 	private boolean placeInInvent(ItemStack itemstack1, int i, boolean doAdd) {
-		if (dieselItemStacks[i] == null) {
+		if (slots[i] == null) {
 			if (doAdd) {
-				dieselItemStacks[i] = itemstack1;
+				slots[i] = itemstack1;
 			}
 			return true;
-		} else if (dieselItemStacks[i] != null
-				&& dieselItemStacks[i].getItem() == itemstack1.getItem()
+		} else if (slots[i] != null
+				&& slots[i].getItem() == itemstack1.getItem()
 				&& itemstack1.isStackable()
-				&& (!itemstack1.getHasSubtypes() || dieselItemStacks[i]
+				&& (!itemstack1.getHasSubtypes() || slots[i]
 						.getItemDamage() == itemstack1.getItemDamage())
-				&& ItemStack.areItemStackTagsEqual(dieselItemStacks[i],
+				&& ItemStack.areItemStackTagsEqual(slots[i],
 						itemstack1)) {
-			int var9 = dieselItemStacks[i].stackSize + itemstack1.stackSize;
+			int var9 = slots[i].stackSize + itemstack1.stackSize;
 			if(doAdd) {
 				if (var9 <= itemstack1.getMaxStackSize()) {
-					dieselItemStacks[i].stackSize = var9;
-				} else if (dieselItemStacks[i].stackSize < itemstack1.getMaxStackSize()) {
-					dieselItemStacks[i].stackSize += 1;
+					slots[i].stackSize = var9;
+				} else if (slots[i].stackSize < itemstack1.getMaxStackSize()) {
+					slots[i].stackSize += 1;
 				}
 			}
 			return true;
@@ -347,25 +324,25 @@ public class TileGeneratorDiesel extends TileEntity implements IFluidHandler, II
 
 	@Override
 	public int getSizeInventory() {
-		return dieselItemStacks.length;
+		return slots.length;
 	}
 
 	@Override
 	public ItemStack getStackInSlot(int i) {
-		return dieselItemStacks[i];
+		return slots[i];
 	}
 
 	@Override
 	public ItemStack decrStackSize(int i, int j) {
-		if (dieselItemStacks[i] != null) {
-			if (dieselItemStacks[i].stackSize <= j) {
-				ItemStack itemstack = dieselItemStacks[i];
-				dieselItemStacks[i] = null;
+		if (slots[i] != null) {
+			if (slots[i].stackSize <= j) {
+				ItemStack itemstack = slots[i];
+				slots[i] = null;
 				return itemstack;
 			}
-			ItemStack itemstack1 = dieselItemStacks[i].splitStack(j);
-			if (dieselItemStacks[i].stackSize == 0) {
-				dieselItemStacks[i] = null;
+			ItemStack itemstack1 = slots[i].splitStack(j);
+			if (slots[i].stackSize == 0) {
+				slots[i] = null;
 			}
 			return itemstack1;
 		} else {
@@ -375,26 +352,13 @@ public class TileGeneratorDiesel extends TileEntity implements IFluidHandler, II
 
 	@Override
 	public ItemStack getStackInSlotOnClosing(int par1) {
-		if (this.dieselItemStacks[par1] != null) {
-			ItemStack var2 = this.dieselItemStacks[par1];
-			this.dieselItemStacks[par1] = null;
+		if (this.slots[par1] != null) {
+			ItemStack var2 = this.slots[par1];
+			this.slots[par1] = null;
 			return var2;
 		} else {
 			return null;
 		}
-	}
-
-	@Override
-	public void setInventorySlotContents(int i, ItemStack itemstack) {
-		dieselItemStacks[i] = itemstack;
-		if (itemstack != null && itemstack.stackSize > getInventoryStackLimit()) {
-			itemstack.stackSize = getInventoryStackLimit();
-		}
-	}
-
-	@Override
-	public String getInventoryName() {
-		return "Diesel Generator";
 	}
 
 	@Override
@@ -410,19 +374,6 @@ public class TileGeneratorDiesel extends TileEntity implements IFluidHandler, II
 			return false;
 		}
 		return entityplayer.getDistanceSq(xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D) <= 64D;
-	}
-
-	@Override
-	public void openInventory() {
-	}
-
-	@Override
-	public void closeInventory() {
-	}
-
-	@Override
-	public boolean hasCustomInventoryName() {
-		return true;
 	}
 
 	@Override
@@ -537,6 +488,11 @@ public class TileGeneratorDiesel extends TileEntity implements IFluidHandler, II
 	@Override
 	public int getMaxEnergyStored(ForgeDirection dir) {
 		return (int) MAX_ENERGY.toRF();
+	}
+
+	@Override
+	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
+		readFromNBT(pkt.func_148857_g());
 	}
 
 }

@@ -17,24 +17,34 @@ import src.train.common.tile.TileEntityDistil;
 public class GuiDistil extends GuiContainer {
 
 	private TileEntityDistil distilInventory;
+	private int staticAmount;
 
 	public GuiDistil(InventoryPlayer invPlayer, TileEntityDistil tileentitydistil) {
 		super(new ContainerDistil(invPlayer, tileentitydistil));
 		distilInventory = tileentitydistil;
+		staticAmount = distilInventory.amount;
+	}
+
+	@Override
+	public void updateScreen(){
+		if (distilInventory.amount != staticAmount){
+			staticAmount = distilInventory.amount;
+			super.updateScreen();
+		}
 	}
 
 	@Override
 	protected void drawGuiContainerForegroundLayer(int par1, int par2) {
 		fontRendererObj.drawString("Distillation tower", 8, 6, 0x404040);
 		fontRendererObj.drawString("Inventory", 8, (ySize - 96) + 2, 0x404040);
-		if (distilInventory.distilItemStacks[0] != null) {
+		if (distilInventory.slots[0] != null) {
 			/**
 			 * Stops showing 100% on copper 
 			 */
-			if(Item.getIdFromItem(distilInventory.distilItemStacks[0].getItem()) == BlockIDs.oreTC.blockID && (distilInventory.distilItemStacks[0].getItemDamage() != 1 && distilInventory.distilItemStacks[0].getItemDamage() != 2)){
+			if(Item.getIdFromItem(distilInventory.slots[0].getItem()) == BlockIDs.oreTC.blockID && (distilInventory.slots[0].getItemDamage() != 1 && distilInventory.slots[0].getItemDamage() != 2)){
 				return;
 			}
-			double plasticChance = DistilRecipes.smelting().getPlasticChance(distilInventory.distilItemStacks[0].getItem());
+			double plasticChance = DistilRecipes.smelting().getPlasticChance(distilInventory.slots[0].getItem());
 			if(plasticChance!=0){//stops showing 100% for blocks that aren't part of a recipe
 				double chanceShown = ((1 / plasticChance) * 100);
 				fontRendererObj.drawString((int) chanceShown + "%", 79, 70, 0x404040);

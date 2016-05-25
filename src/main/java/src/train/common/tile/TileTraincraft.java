@@ -23,6 +23,8 @@ public class TileTraincraft extends TileEntity implements ISidedInventory{
     public ItemStack[] slots;
     public String invName;
 
+    public TileTraincraft(){}
+
     public TileTraincraft(int slotAmount, String inventoryname){
         this.slots = new ItemStack[slotAmount];
         this.invName = inventoryname;

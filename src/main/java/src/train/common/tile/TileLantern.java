@@ -48,6 +48,7 @@ public class TileLantern extends TileEntity {
 	public void  setColor(int col){
 		randomColor = col;
 	}
+
 	@Override
 	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
 		readFromNBT(pkt.func_148857_g());
