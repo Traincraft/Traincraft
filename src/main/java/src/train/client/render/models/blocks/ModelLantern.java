@@ -51,7 +51,7 @@ public class ModelLantern extends ModelBase {
 
 		// Bind the texture, so that OpenGL properly textures our block.
 		FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation,Info.modelTexPrefix + "lantern_uv_draw_2.png"));
-		int j = lantern.randomColor;
+		int j = lantern.getRandomColor();
 		//System.out.println(j);
 		float f1 = 1.0F;
 		float f2 = (float) (j >> 16 & 255) / 255.0F;

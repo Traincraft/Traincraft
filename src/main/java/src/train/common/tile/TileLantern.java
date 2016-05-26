@@ -13,7 +13,8 @@ public class TileLantern extends TileEntity {
 	/** Static instance used to access random number generation to create random colors. */
 	protected static final Random rand = new Random();
 
-	public int randomColor = (rand.nextInt() * 0xFFFFFF);
+	private int randomColor = (rand.nextInt() * 0xFFFFFF);
+	private int oldColor = 0;
 
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
@@ -45,6 +46,10 @@ public class TileLantern extends TileEntity {
 		return String.format("#%06X", (0xFFFFFF & this.randomColor));
 	}
 
+	public int getRandomColor(){
+		return this.oldColor;
+	}
+
 	public void  setColor(int col){
 		randomColor = col;
 	}
@@ -53,4 +58,15 @@ public class TileLantern extends TileEntity {
 	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
 		readFromNBT(pkt.func_148857_g());
 	}
+
+	@Override
+	public void updateEntity(){
+		if (oldColor != randomColor){
+			oldColor = randomColor;
+			this.markDirty();
+			this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
+			System.out.println("updated entity");
+		}
+	}
+
 }

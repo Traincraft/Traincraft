@@ -191,7 +191,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 
 	@Override
 	public GameProfile getOwner() {
-		return this.playerEntity.getGameProfile();
+		return CartTools.getCartOwner(this);
 	}
 
 	public EntityRollingStock(World world, double d, double d1, double d2) {

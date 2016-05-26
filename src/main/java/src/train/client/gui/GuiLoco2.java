@@ -39,7 +39,7 @@ public class GuiLoco2 extends GuiContainer {
 	public void initGui() {
 		super.initGui();
 		buttonList.clear();
-		if (!((Locomotive) loco).parkingBrake) {
+		if (!loco.parkingBrake) {
 			if (loco instanceof SteamTrain) {
 				textureX = 41;
 				textureY = 13;
@@ -56,7 +56,7 @@ public class GuiLoco2 extends GuiContainer {
 			buttonPosY = -13;
 			buttonList.add(new GuiCustomButton(2, ((width - xSize) / 2) + buttonPosX - 12, ((height - ySize) / 2) + buttonPosY, textureSizeX, textureSizeY, "", texture, textureX, textureY));//Brake: Off
 		}
-		else if (((Locomotive) loco).parkingBrake) {
+		else if (loco.parkingBrake) {
 			if (loco instanceof SteamTrain) {
 				textureX = 0;
 				textureY = 13;
@@ -75,14 +75,14 @@ public class GuiLoco2 extends GuiContainer {
 		}
 		int var1 = (this.width - xSize) / 2;
 		int var2 = (this.height - ySize) / 2;
-		if (!((Locomotive) loco).locked) {
+		if (!loco.locked) {
 			this.buttonList.add(this.buttonLock = new GuiButton(3, var1 + 108, var2 - 10, 67, 10, "Unlocked"));
 		}
 		else {
 			this.buttonList.add(this.buttonLock = new GuiButton(3, var1 + 108, var2 - 10, 67, 10, "Locked"));
 		}
 		if (!(loco instanceof SteamTrain)) {
-			if (((Locomotive) loco).isLocoTurnedOn()) {
+			if (loco.isLocoTurnedOn()) {
 				this.buttonList.add(this.buttonLock = new GuiButton(4, var1 + 108, var2 - 22, 67, 12, "Stop Engine"));
 			}
 			else {
@@ -94,36 +94,36 @@ public class GuiLoco2 extends GuiContainer {
 	@Override
 	protected void actionPerformed(GuiButton guibutton) {
 		if (guibutton.id == 2) {
-			if ((!((Locomotive) loco).getParkingBrakeFromPacket()) && ((Locomotive) loco).getSpeed() < 10) {
-				((Locomotive) loco).sendParkingBrakePacket(true);
-				((Locomotive) loco).parkingBrake = true;
+			if ((!loco.getParkingBrakeFromPacket()) && loco.getSpeed() < 10) {
+				loco.sendParkingBrakePacket(true);
+				loco.parkingBrake = true;
 				guibutton.displayString = "Brake: On";
 				this.initGui();
 			}
-			else if (((Locomotive) loco).getSpeed() < 10) {
-				((Locomotive) loco).sendParkingBrakePacket(false);
-				((Locomotive) loco).parkingBrake = false;
+			else if (loco.getSpeed() < 10) {
+				loco.sendParkingBrakePacket(false);
+				loco.parkingBrake = false;
 				guibutton.displayString = "Brake: Off";
 				this.initGui();
 			}
 		}
 		if (guibutton.id == 3) {
-			if (((AbstractTrains) loco).riddenByEntity != null && ((AbstractTrains) loco).riddenByEntity instanceof EntityPlayer && ((EntityPlayer) ((AbstractTrains) loco).riddenByEntity).getDisplayName().toLowerCase().equals(((AbstractTrains) loco).trainOwner.toLowerCase())) {
-				if ((!((AbstractTrains) loco).locked)) {
-					((AbstractTrains) loco).sendTrainLockedPacket((EntityPlayer) ((AbstractTrains) loco).riddenByEntity, true);
-					((AbstractTrains) loco).locked = true;
+			if (loco.riddenByEntity != null && loco.riddenByEntity instanceof EntityPlayer && ((EntityPlayer) loco.riddenByEntity).getDisplayName().equals(loco.getTrainOwner())) {
+				if ((!loco.locked)) {
+					loco.sendTrainLockedPacket((EntityPlayer) loco.riddenByEntity, true);
+					loco.locked = true;
 					guibutton.displayString = "Locked";
 					this.initGui();
 				}
 				else {
-					((AbstractTrains) loco).sendTrainLockedPacket((EntityPlayer) ((AbstractTrains) loco).riddenByEntity, false);
-					((AbstractTrains) loco).locked = false;
+					loco.sendTrainLockedPacket((EntityPlayer) loco.riddenByEntity, false);
+					loco.locked = false;
 					guibutton.displayString = "UnLocked";
 					this.initGui();
 				}
 			}
-			else if (((AbstractTrains) loco).riddenByEntity != null && ((AbstractTrains) loco).riddenByEntity instanceof EntityPlayer) {
-				((EntityPlayer) ((AbstractTrains) loco).riddenByEntity).addChatMessage(new ChatComponentText("You are not the owner"));
+			else if (loco.riddenByEntity != null && loco.riddenByEntity instanceof EntityPlayer) {
+				((EntityPlayer) loco.riddenByEntity).addChatMessage(new ChatComponentText("You are not the owner"));
 			}
 		}
 		if (guibutton.id == 4) {
@@ -149,8 +149,8 @@ public class GuiLoco2 extends GuiContainer {
 
 		//int liqui = (dieselInventory.getLiquidAmount() * 50) / dieselInventory.getTankCapacity();
 		String state = "";
-		if (((Locomotive) loco).locked) state = "Locked";
-		if (!((Locomotive) loco).locked) state = "Unlocked";
+		if (loco.locked) state = "Locked";
+		if (!loco.locked) state = "Unlocked";
 
 		int textWidth = fontRendererObj.getStringWidth("the GUI, change speed, destroy it.");
 		int startX = 90;

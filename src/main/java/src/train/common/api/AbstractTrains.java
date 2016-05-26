@@ -143,17 +143,17 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		renderDistanceWeight = 2.0D;
 		statsEventHandler = new RollingStockStatsEventHandler(this);
 		color = -1;
-		dataWatcher.addObject(12, Integer.valueOf((int) color));
+		dataWatcher.addObject(12, color);
 		acceptedColors = new ArrayList();
 		if (!world.isRemote) ID = ++numberOfTrains;
-		dataWatcher.addObject(5, Integer.valueOf((int) ID));
-		dataWatcher.addObject(6, String.valueOf((String) trainType));
-		dataWatcher.addObject(7, String.valueOf((String) trainOwner));
-		dataWatcher.addObject(8, String.valueOf((String) trainDestroyer));
-		dataWatcher.addObject(9, String.valueOf((String) trainName));
-		dataWatcher.addObject(10, Integer.valueOf((int) numberOfTrains));
-		dataWatcher.addObject(11, Integer.valueOf((int) uniqueID));
-		dataWatcher.addObject(13, String.valueOf((String) trainCreator));
+		dataWatcher.addObject(5, ID);
+		dataWatcher.addObject(6, trainType);
+		dataWatcher.addObject(7, trainOwner);
+		dataWatcher.addObject(8, trainDestroyer);
+		dataWatcher.addObject(9, trainName);
+		dataWatcher.addObject(10, numberOfTrains);
+		dataWatcher.addObject(11, uniqueID);
+		dataWatcher.addObject(13, trainCreator);
 		if(!ConfigHandler.CHUNK_LOADING)shouldChunkLoad=false;
 		this.setFlag(7, shouldChunkLoad);
 		
@@ -222,8 +222,8 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 				TraincraftSaveHandler.createFile(FMLCommonHandler.instance().getMinecraftServerInstance());
 				int readID = TraincraftSaveHandler.readInt(FMLCommonHandler.instance().getMinecraftServerInstance(), "numberOfTrains:");
 				int newID = setNewUniqueID(readID);
-				TraincraftSaveHandler.writeValue(FMLCommonHandler.instance().getMinecraftServerInstance(), "numberOfTrains:", new String("" + newID));
-				statsEventHandler.trainPlace(newID, this.trainName, this.trainType, this.trainOwner, this.trainOwner, new String((int) posX + ";" + (int) posY + ";" + (int) posZ));
+				TraincraftSaveHandler.writeValue(FMLCommonHandler.instance().getMinecraftServerInstance(), "numberOfTrains:", "" + newID);
+				statsEventHandler.trainPlace(newID, this.trainName, this.trainType, this.trainOwner, this.trainOwner, (int) posX + ";" + (int) posY + ";" + (int) posZ);
 				//System.out.println("Train is missing an ID, adding new one for "+this.trainName+" "+this.uniqueID);
 			}
 		}
@@ -587,13 +587,12 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 
 	public void sendTrainLockedPacket(EntityPlayer entity, boolean locked) {
 		Traincraft.modChannel.sendToServer(PacketHandler.setTrainLockedToClient(entity, this, locked));
-		//PacketHandler.setTrainLocked(entity, this, locked);
 	}
 
 	/** Locking for passengers, flat, caboose, jukebox,workcart */
 	protected boolean lockThisCart(ItemStack itemstack, EntityPlayer entityplayer) {
 		if (itemstack != null && itemstack.getItem() instanceof IToolWrench) {
-			if (entityplayer.getDisplayName().toLowerCase().equals(this.trainOwner.toLowerCase())) {
+			if (entityplayer.getDisplayName().equals(this.trainOwner)) {
 				if (locked) {
 					locked = false;
 					entityplayer.addChatMessage(new ChatComponentText("unlocked"));
