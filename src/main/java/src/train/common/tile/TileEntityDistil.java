@@ -43,7 +43,6 @@ public class TileEntityDistil extends TileTraincraft implements IFluidHandler {
 	private int updateTicks;
 	private int maxTank = 0;
 	private StandardTank theTank;
-	private IFluidTank[] tankArray = new IFluidTank[1];
 	public int amount;
 	public int liquidItemID;
 
@@ -56,7 +55,6 @@ public class TileEntityDistil extends TileTraincraft implements IFluidHandler {
 		random = new Random();
 		this.maxTank = 30000;
 		this.theTank = LiquidManager.getInstance().new FilteredTank(maxTank, LiquidManager.getInstance().dieselFilter(), 1);
-		tankArray[0] = theTank;
 	}
 
 	/**

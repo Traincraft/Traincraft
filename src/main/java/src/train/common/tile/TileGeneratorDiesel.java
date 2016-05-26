@@ -10,6 +10,8 @@ package src.train.common.tile;
 import cofh.api.energy.IEnergyProvider;
 import cofh.api.energy.IEnergyReceiver;
 import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergySource;
@@ -35,22 +37,21 @@ import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-//TODO not working and canitzp dont know why
 public class TileGeneratorDiesel extends TileTraincraft implements IFluidHandler, IEnergySource, IEnergyProvider {
 	private static final Energy OUTPUT = Energy.fromRF(80);
 	private static final Energy MAX_ENERGY = Energy.fromRF(300000);
-	private static final Energy MAX_ENERGY_RECEIVED = Energy.fromRF(12000);
 	private static final Energy MAX_ENERGY_EXTRACTED = Energy.fromRF(1600);
-	private static final int DIESEL_USAGE = 1;
+	private static final int DIESEL_USAGE = 100;
 	
 	private Energy energy = Energy.zero();
 	private Energy extraEnergy = Energy.zero();
 	private Energy currentOutput = Energy.zero();
-	private boolean powered;
+	private Energy needed = Energy.zero();
+	private boolean powered = false;
 	private int update;
 	private ForgeDirection direction;
-	private FluidTank theTank;
-	private boolean producing;
+	private StandardTank theTank;
+	private boolean producing =false;
 	
 	private int liquidItemIDClient;
 	public int amountClient;
@@ -115,18 +116,14 @@ public class TileGeneratorDiesel extends TileTraincraft implements IFluidHandler
 					IEnergyReceiver receptor = (IEnergyReceiver) tile;
 					ForgeDirection from = dir.getOpposite();
 					if(receptor.canConnectEnergy(from)) {
-						Energy extracted = getPowerToExtract(receptor, from);
-						if (extracted.toRF() > 0) {
-							Energy needed = Energy.fromRF(receptor.receiveEnergy(from, (int) extracted.toRF(), true));
-							currentOutput = extractEnergy(needed, needed, true); // Comment out for constant power
-							// currentOutput = extractEnergy(0, needed, true);
-							// // Uncomment for constant power
-							produceIC2 = false;// if a bc pipe is drawing energy, do not output IC2
-						}
+						burn(receptor, from);
+						this.markDirty();
+						this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
+						this.syncTileEntity();
+						produceIC2 = false;// if a bc pipe is drawing energy, do not output IC2
 					}
 				}
 			}
-			burn();
 		}
 	}
 
@@ -134,65 +131,59 @@ public class TileGeneratorDiesel extends TileTraincraft implements IFluidHandler
 		Energy cur = Energy.fromRF(receptor.getEnergyStored(from));
 		Energy max = Energy.fromRF(receptor.getMaxEnergyStored(from));
 		Energy canReceive = Energy.fromRF(receptor.receiveEnergy(from, (int)(max.toRF() - cur.toRF()), false));
-		return extractEnergy(Energy.zero(), canReceive, false); // Comment out for constant power
-		// return extractEnergy(0, getActualOutput(), false); // Uncomment for constant power
+		return extractEnergy(Energy.zero(), canReceive, false);
 	}
 
 
-	public void burn() {
+	public void burn(IEnergyReceiver receptor, ForgeDirection from) {
 		this.update += 1;
 
-		if (this.update % 8 == 0) {
-			if (slots[0] != null) {
-				ItemStack result = LiquidManager.getInstance().processContainer(this, 0, theTank, slots[0], 0);
-				if (result != null && placeInInvent(result, 1, false)) {
-					placeInInvent(result, 1, true);
-				}
+		if (this.update % 8 == 0 && slots[0] != null) {
+			ItemStack result = LiquidManager.getInstance().processContainer(this, 0, theTank, slots[0], 0);
+			if (result != null && placeInInvent(result, 1, false)) {
+				placeInInvent(result, 1, true);
 			}
 		}
 
-		Energy output = Energy.zero();
-		if (isPowered() && theTank.drain(DIESEL_USAGE, false) != null && energy.toRF() < MAX_ENERGY.toRF()) {
-			if (this.update % 8 == 0) {
+		if (isPowered() && theTank.drain(DIESEL_USAGE, false) != null && energy.toRF() < MAX_ENERGY.toRF() && (amountClient>=DIESEL_USAGE)) {
+			if(this.update % 8 == 0 ) {
 				setIsProducing(true);
+				if (needed.toRF() >= OUTPUT.toRF()) {
+					currentOutput = needed;
+				} else{
+					currentOutput = OUTPUT;
+				}
+				addEnergy(currentOutput);
+				theTank.drain(DIESEL_USAGE, true);
+				getPowerToExtract(receptor, from);
+				amountClient -= DIESEL_USAGE;
 			}
-			output = OUTPUT.copy();
-			addEnergy(OUTPUT);
-			theTank.drain(DIESEL_USAGE, true);
-		} else {
-			if (this.update % 8 == 0) {
-				setIsProducing(false);
-			}
+		} else{
+			setIsProducing(false);
 		}
-		//this.currentOutput = Energy.fromRF((currentOutput.toRF() * 740 + output.toRF()) / 750);
-		this.syncTileEntity();
 	}
 
 	@Override
 	public NBTTagCompound readFromNBT(NBTTagCompound nbtTag, boolean forSyncing) {
 		super.readFromNBT(nbtTag, forSyncing);
-		//this.energy = Energy.fromRF(nbtTag.getFloat("Energy"));
 		this.direction = ForgeDirection.getOrientation(nbtTag.getInteger("direction"));
-		this.theTank.readFromNBT(nbtTag);
 		this.powered = nbtTag.getBoolean("powered");
-		
-		// Dirty work-around for easier synchronisation without additional Packets.
 		this.producing = nbtTag.getBoolean("isProducing");
 		this.amountClient = nbtTag.getInteger("Amount");
 		this.liquidItemIDClient = nbtTag.getInteger("LiquidID");
+		this.theTank.readFromNBT(nbtTag);
 		return nbtTag;
 	}
 
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound nbtTag, boolean forSyncing) {
 		super.writeToNBT(nbtTag, forSyncing);
-		//nbtTag.setFloat("Energy", energy.toRF());
 		nbtTag.setInteger("direction", direction.ordinal());
-		this.theTank.writeToNBT(nbtTag);
 		nbtTag.setBoolean("powered", this.powered);
 		nbtTag.setBoolean("isProducing", this.producing);
 		nbtTag.setInteger("Amount", this.amountClient);
 		nbtTag.setInteger("LiquidID", this.liquidItemIDClient);
+		this.theTank.writeToNBT(nbtTag);
 		return nbtTag;
 	}
 
@@ -261,17 +252,20 @@ public class TileGeneratorDiesel extends TileTraincraft implements IFluidHandler
 		return !FMLCommonHandler.instance().getEffectiveSide().isClient();
 	}
 
-	public float getMaxOutputMJ() {
-		return this.OUTPUT.toMJ();
-	}
 
 	/**
 	 * used by the GUI
 	 * 
 	 * @return
 	 */
+	@SideOnly(Side.CLIENT)
 	public int getLiquid() {
 		return (amountClient);
+	}
+
+	@SideOnly(Side.CLIENT)
+	public StandardTank getTank() {
+		return theTank;
 	}
 
 	public int getTankCapacity() {
