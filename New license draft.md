@@ -3,29 +3,29 @@
 1.2. You may distribute modified versions of Traincraft, as long as you:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;1.2.1. Distribute your contributions under the same license as the original.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;1.2.2. Give credit where appropriate or reasonable.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;1.2.3. Provide a link to the license on github.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.2.3.1. you may optionally include a copy of the Traincraft license with your modified version if you have not made any modifications to the license.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;1.2.3. Provide a link to the license on GitHub.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.2.3.1. You may optionally include a copy of the Traincraft license with your modified version if you have not made any modifications to the license.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;1.2.4. Indicate if changes were made, and to what.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;1.2.5. Have clear indication that the modified version is not the official Traincraft.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;1.2.6. Provide a link(s) to the official [Traincraft Website](http://traincraft-mod.com/)<br/>
-1.3. You may use Traincraft on a multiplayer server(s) and in modpacks provided that you abide by the following:<br/>
-    1.3.1. Private modpacks are permitted without requiring that you meet the restrictions, but they must be protected via password and, or whitelist.<br/>
+1.3. You may use Traincraft on a multiplayer server(s) and in modpack(s) provided that you abide by the following:<br/>
+    1.3.1. Private modpack(s) are permitted without requiring that you meet the restrictions, but they must be protected via password and, or whitelist.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;1.3.2. You may create and publish addons for Traincraft freely however:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.3.2.1. Traincraft reserves the right to implement similar features, with or without credit to you or your addon.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.3.2.2. No addon code will ever be included in Traincraft without the addon maker's permission to do so.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;1.3.3. You include Traincraft in your list of mods for the modpack and, or server, along with a link to the [Traincraft Website](http://traincraft-mod.com).<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.3.3.1. You may optionally include a link to the Traincraft Github and, or the [Traincraft Blog](http://blog.meansoft.si/).<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;1.3.4. If you use a beta build in your modpack and, or server, you must note that the version of Traincraft included is developmental and prone to errors, unforseen and, or otherwise.<br/>
-1.4. You may earn revenue from modpacks, servers, texturepacks, and addons, provided that you, do not go against the Minecraft EULA in doing so.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;1.3.3. You must include Traincraft in your list of mods for the modpack(s) and, or server(s), along with a link to the [Traincraft Website](http://traincraft-mod.com).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.3.3.1. You may optionally include a link to the Traincraft GitHub and, or the [Traincraft Blog](http://blog.meansoft.si/).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;1.3.4. If you use a beta build in your modpack(s) and, or server(s), you must note that the version of Traincraft included is developmental and prone to errors, unforseen and, or otherwise.<br/>
+1.4. You may earn revenue from modpack(s), server(s), texturepack(s), and addon(s), provided that you do not go against the Minecraft EULA in doing so.<br/>
 1.5. You may create and publish, both private and public:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;1.5.1. Texture pack(s) made for Traincraft so long as it does not contain any original Traincraft code or art assets.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;1.5.2. Videos that display all or part of Traincraft.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.5.2.1. Revenue gained from videos that include the Traincraft mod are not limited by the Minecraft EULA, or the Traincraft EULA.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.5.2.2. You should but are not required to provide a link to the [Traincraft Website](http://traincraft-mod.com/). and, or the Traincraft github.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.5.2.2. You should but are not required to provide a link to the [Traincraft Website](http://traincraft-mod.com/). and, or the Traincraft GitHub.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;1.5.3. maps that require Traincraft. You may distribute Traincraft with your map if you meet the requirements defined in 1. Usage.<br/>
 1.6. Unless defined otherwise by this EULA, you may not publicly distribute the Traincraft source, mod, and, or assets, without Mrbrutal's explicit permission.<br/>
 1.7. To distribute your addon or modified Traincraft via the Official website, you are required to get permission from spitfire4466@gmail.com<br/>
-1.8. All contributions to the Traincraft Github, and any related forks, must be covered by a Contributor Licensing Agreement signed by the contributor.<br/>
+1.8. All contributions to the Traincraft GitHub, and any related forks, must be covered by a Contributor Licensing Agreement signed by the contributor.<br/>
 
 
 ## 2. Limitation of liability
@@ -33,7 +33,7 @@
 2.2. we only supply the Software and Documents for domestic and private use. You agree not to use the Software and Documents for any commercial or re-sale purposes, and we have no liability to you for any loss of profit, loss of business, business interruption, or loss of business opportunity.<br/>
 2.3. You acknowledge that the Software may not be free of bugs or errors, and agree that the existence of any errors shall not constitute a breach of this Licence.<br/>
 2.4. We do not offer any warranty or guarantee in respect of the operation of your Accounts and we shall have no liability to you resulting from the operation of your accounts and the effect that has on the Software.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;2.4.1. the term "accounts" is intended to refer to, but is not limited to, Mojang/Minecraft, and Github.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;2.4.1. The term "accounts" is intended to refer to, but is not limited to, Mojang/Minecraft, and GitHub.<br/>
 2.5. We shall have no liability under or in connection with this Licence whether in contract, tort (including negligence), breach of statutory duty or otherwise. This does not apply to the types of loss set out in condition 2.6.<br/>
 2.6. Nothing in this Licence shall limit or exclude our liability for:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;2.6.1. Fraud or fraudulent misrepresentation.<br/>
