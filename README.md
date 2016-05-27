@@ -31,7 +31,7 @@ This specific fork is maintained by **EternalBlueFlame** and is intended to port
 **Mrbrutal** and **Spitfire4466** still maintain full rights and project lead in this fork.
 
 ##Why did **Mrbrutal** post the Source Code?
-> As of late, **Spitfire4466** and **Mrbrutal** have had little time to work on Traincraft. Open-sourcing the mod was the only viable option that would ensure its continuation. Message from **Mrbrutal**: I have never open-sourced a project on this level or size, and am a bit hesitant to do so. However, in the hopes that we can make Traincraft great again (no this is not a Trump reference) and that I can still be a part of this, I have open-sourced both versionns of Traincraft  here on Github. Anyone that is willing to contribute can contribute as long as they have signed the CLA (scroll down).
+> As of late, **Spitfire4466** and **Mrbrutal** have had little time to work on Traincraft. Open-sourcing the mod was the only viable option that would ensure its continuation. Message from **Mrbrutal**: I have never open-sourced a project on this level or size, and am a bit hesitant to do so. However, in the hopes that we can make Traincraft great again (no this is not a Trump reference) and that I can still be a part of this, I have open-sourced both versions of Traincraft  here on Github. Anyone that is willing to contribute can contribute as long as they have signed the CLA (scroll down).
 
 ##Contributing
 The traincraft project welcomes contributions from anyone, provided they have signed the Contributor Licensing Agreement (CLA) found [here](https://cla-assistant.io/Mrbrutal/Traincraft).
