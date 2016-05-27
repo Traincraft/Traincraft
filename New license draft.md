@@ -45,9 +45,9 @@
 ## 3. TERMINATION
 3.1. We may terminate this Licence immediately by written notice (digital or otherwise) to you if you commit a material or persistent breach of this Licence which you fail to remedy (if remediable) within 14 days after the service of written notice requiring you to do so.<br/>
 3.2. Upon termination for any reason:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;3.2.1. all rights granted to you under this Licence shall cease.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;3.2.2. you must immediately cease all activities authorised by this Licence.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;3.2.3. you must immediately delete or remove the Software from all equipment (where possible) in your possession, and immediately destroy or return to us (at our option) all copies of the Software and Documents then in your possession, custody or control and, in the case of destruction, certify to us that you have done so.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;3.2.1. All rights granted to you under this Licence shall cease.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;3.2.2. You must immediately cease all activities authorised by this Licence.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;3.2.3. You must immediately delete or remove the Software from all equipment (where possible) in your possession, and immediately destroy or return to us (at our option) all copies of the Software and Documents then in your possession, custody or control and, in the case of destruction, certify to us that you have done so.<br/>
 
 
 ## 4. EVENTS OUTSIDE OUR CONTROL
@@ -57,8 +57,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;4.2.2. Illness that may or may not result in hospitalization.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;4.2.3. Natural disaster or other unaccountable damage to our selves and/or hardware.<br/>
 4.3. If an Event Outside Our Control takes place that affects the performance of our obligations under this Licence:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;4.3.1. our obligations under this Licence will be suspended and the time for performance of our obligations will be extended for the duration of the Event Outside Our Control.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;4.3.2. we will use our reasonable endeavours to find a solution by which our obligations under this Licence may be performed despite the Event Outside Our Control.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;4.3.1. Our obligations under this Licence will be suspended and the time for performance of our obligations will be extended for the duration of the Event Outside Our Control.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;4.3.2. We will use our reasonable endeavours to find a solution by which our obligations under this Licence may be performed despite the Event Outside Our Control.<br/>
 
 
 ## 5. OTHER IMPORTANT TERMS
