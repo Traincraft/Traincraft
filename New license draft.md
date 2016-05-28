@@ -1,3 +1,9 @@
+Copyright (c) 2016, MEANSOFT</b>
+All rights reserved.</b>
+</b>
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:</b>
+
+
 ## 1. Usage and Distribution
 1.1. The .cfg files in the Traincraft config folder are not considered part of Traincraft and may be freely distributed.<br/>
 1.2. You may distribute modified versions of Traincraft, as long as you:<br/>
@@ -26,7 +32,8 @@
 1.6. Unless defined otherwise by this EULA, you may not publicly distribute the Traincraft source, mod, and, or assets, without Mrbrutal's explicit permission.<br/>
 1.7. To distribute your addon or modified Traincraft via the Official website, you are required to get permission from spitfire4466@gmail.com<br/>
 1.8. All contributions to the Traincraft GitHub, and any related forks, must be covered by a Contributor Licensing Agreement signed by the contributor.<br/>
-
+1.9. All advertising materials mentioning features or use of this software must display a link to the [Traincraft Website](http://traincraft-mod.com/). and, or the Traincraft GitHub.
+1.10. Neither the name of MEANSOFT nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
 
 ## 2. Limitation of liability
 2.1. You acknowledge that the Software has not been developed to meet your individual requirements, and that it is therefore your responsibility to ensure that the facilities and functions of the Software meet your requirements.<br/>
