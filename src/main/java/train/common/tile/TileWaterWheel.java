@@ -168,24 +168,13 @@ public class TileWaterWheel extends TileEntity implements IEnergyProvider {
 				}
 				break;
 			}
-			energy.setEnergyStored(getEnergyStored(ForgeDirection.UNKNOWN));
-			pushEnergy(this.worldObj, this.xCoord, this.yCoord, this.zCoord, ForgeDirection.NORTH, energy);
-			pushEnergy(this.worldObj, this.xCoord, this.yCoord, this.zCoord, ForgeDirection.SOUTH, energy);
-			pushEnergy(this.worldObj, this.xCoord, this.yCoord, this.zCoord, ForgeDirection.EAST, energy);
-			pushEnergy(this.worldObj, this.xCoord, this.yCoord, this.zCoord, ForgeDirection.WEST, energy);
+
+			if (worldObj.isRemote) {
+				energy.setEnergyStored(getEnergyStored(ForgeDirection.UNKNOWN));
+				PowerUtil.pushEnergy(this.worldObj, this.xCoord, this.yCoord, this.zCoord, false, new ForgeDirection[]{ForgeDirection.NORTH, ForgeDirection.SOUTH, ForgeDirection.EAST, ForgeDirection.WEST}, energy);
+			}
 			this.markDirty();
 			this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
-		}
-	}
-	public void pushEnergy(World world, int x, int y, int z, ForgeDirection side, EnergyStorage storage){
-		if (this.canConnectEnergy(side)) {
-			TileEntity tile = world.getTileEntity(x + side.offsetX, y + side.offsetY, z + side.offsetZ);
-			if (tile != null && tile instanceof IEnergyReceiver && storage.getEnergyStored() > 0) {
-				if (((IEnergyReceiver) tile).canConnectEnergy(side.getOpposite())) {
-					int receive = ((IEnergyReceiver) tile).receiveEnergy(side.getOpposite(), Math.min(storage.getMaxExtract(), storage.getEnergyStored()), false);
-					storage.extractEnergy(receive, false);
-				}
-			}
 		}
 	}
 

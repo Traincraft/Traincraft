@@ -6,16 +6,13 @@ import java.util.Random;
 
 import cofh.api.energy.EnergyStorage;
 import cofh.api.energy.IEnergyProvider;
-import cofh.api.energy.IEnergyReceiver;
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import train.common.core.TrainModBlockUtil;
 import train.common.core.handlers.WorldEvents;
@@ -25,7 +22,7 @@ public class TileWindMill extends TileEntity implements IEnergyProvider {
 	private int updateTicks = 0;
 	private static Random rand = new Random();
 	public int windClient = 0;
-	public EnergyStorage IC2production = new EnergyStorage(600);
+	public EnergyStorage energy = new EnergyStorage(60);
 
 
 	public TileWindMill() {
@@ -90,42 +87,27 @@ public class TileWindMill extends TileEntity implements IEnergyProvider {
 		 * Calculate production using wind strength
 		 */
 		if (!worldObj.isRemote && (updateTicks % 128 == 0)) {
-			IC2production.setEnergyStored((int) (WorldEvents.windStrength + (((double) this.yCoord / 256) * 10)));
-			if (this.IC2production.getEnergyStored() <= 0)
-				IC2production.setEnergyStored(0);
+			energy.setEnergyStored(energy.getEnergyStored() + WorldEvents.windStrength + (( this.yCoord / 256) * 10));
+			if (this.energy.getEnergyStored() <= 0)
+				energy.setEnergyStored(0);
 			if (this.worldObj.isThundering())
-				this.IC2production.setEnergyStored(Math.round(this.IC2production.getEnergyStored() *3.5f));
+				this.energy.setEnergyStored(Math.round(this.energy.getEnergyStored() *3.5f));
 			else if (this.worldObj.isRaining()) {
-				this.IC2production.setEnergyStored(Math.round(this.IC2production.getEnergyStored() *2.2f));
+				this.energy.setEnergyStored(Math.round(this.energy.getEnergyStored() *2.2f));
 			}
 
-			IC2production.setEnergyStored(Math.round(this.IC2production.getEnergyStored()/4));
-			//System.out.println(this.IC2production);
-			if (IC2production.getEnergyStored() > this.getMaxEnergyOutput()){
-				IC2production.setEnergyStored(this.getMaxEnergyOutput());}
+			energy.setEnergyStored(Math.round(this.energy.getEnergyStored()/4));
+			if (energy.getEnergyStored() > this.getMaxEnergyOutput()){
+				energy.setEnergyStored(this.getMaxEnergyOutput());}
 			
 			this.markDirty();
 			this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
 		}
 
-		pushEnergy(worldObj, this.xCoord,this.yCoord,this.zCoord,ForgeDirection.NORTH,IC2production);
-		pushEnergy(worldObj, this.xCoord,this.yCoord,this.zCoord,ForgeDirection.SOUTH,IC2production);
-		pushEnergy(worldObj, this.xCoord,this.yCoord,this.zCoord,ForgeDirection.EAST,IC2production);
-		pushEnergy(worldObj, this.xCoord,this.yCoord,this.zCoord,ForgeDirection.WEST,IC2production);
-		pushEnergy(worldObj, this.xCoord,this.yCoord,this.zCoord,ForgeDirection.DOWN,IC2production);
-
-	}
-
-	public void pushEnergy(World world, int x, int y, int z, ForgeDirection side, EnergyStorage storage){
-		if (this.canConnectEnergy(side)) {
-			TileEntity tile = world.getTileEntity(x + side.offsetX, y + side.offsetY, z + side.offsetZ);
-			if (tile != null && tile instanceof IEnergyReceiver && storage.getEnergyStored() > 0) {
-				if (((IEnergyReceiver) tile).canConnectEnergy(side.getOpposite())) {
-					int receive = ((IEnergyReceiver) tile).receiveEnergy(side.getOpposite(), Math.min(storage.getMaxExtract(), storage.getEnergyStored()), false);
-					storage.extractEnergy(receive, false);
-				}
-			}
+		if (worldObj.isRemote) {
+			PowerUtil.pushEnergy(this.worldObj, this.xCoord, this.yCoord, this.zCoord, false, new ForgeDirection[]{ForgeDirection.NORTH, ForgeDirection.SOUTH, ForgeDirection.EAST, ForgeDirection.WEST}, energy);
 		}
+
 	}
 	public int getMaxEnergyOutput() {return 10;}
 
