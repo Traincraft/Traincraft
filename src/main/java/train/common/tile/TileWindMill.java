@@ -16,6 +16,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 import train.common.core.TrainModBlockUtil;
 import train.common.core.handlers.WorldEvents;
+import train.common.core.util.Energy;
 
 public class TileWindMill extends TileEntity implements IEnergyProvider {
 	private int facingMeta;
@@ -62,6 +63,7 @@ public class TileWindMill extends TileEntity implements IEnergyProvider {
 
 	@Override
 	public void updateEntity() {
+		super.updateEntity();
 		updateTicks++;
 		/**
 		 * Remove any block on top of the wind mill
@@ -105,7 +107,7 @@ public class TileWindMill extends TileEntity implements IEnergyProvider {
 		}
 
 		if (worldObj.isRemote) {
-			PowerUtil.pushEnergy(this.worldObj, this.xCoord, this.yCoord, this.zCoord, false, new ForgeDirection[]{ForgeDirection.NORTH, ForgeDirection.SOUTH, ForgeDirection.EAST, ForgeDirection.WEST}, energy);
+			Energy.pushEnergy(this.worldObj, this.xCoord, this.yCoord, this.zCoord, false, new ForgeDirection[]{ForgeDirection.NORTH, ForgeDirection.SOUTH, ForgeDirection.EAST, ForgeDirection.WEST}, energy);
 		}
 
 	}

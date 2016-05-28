@@ -6,6 +6,7 @@ import cofh.api.energy.IEnergyReceiver;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
@@ -13,6 +14,7 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+import train.common.core.util.Energy;
 
 public class TileWaterWheel extends TileEntity implements IEnergyProvider {
 	private int facingMeta;
@@ -51,6 +53,7 @@ public class TileWaterWheel extends TileEntity implements IEnergyProvider {
 		super.readFromNBT(nbt);
 
 		facingMeta = nbt.getByte("Orientation");
+		this.energy.readFromNBT(nbt);
 	}
 
 	@Override
@@ -59,6 +62,7 @@ public class TileWaterWheel extends TileEntity implements IEnergyProvider {
 		super.writeToNBT(nbt);
 
 		nbt.setByte("Orientation", (byte) facingMeta);
+		this.energy.writeToNBT(nbt);
 	}
 
 	@Override
@@ -76,9 +80,10 @@ public class TileWaterWheel extends TileEntity implements IEnergyProvider {
 
 	@Override
 	public void updateEntity() {
+		super.updateEntity();
 		updateTicks++;
 
-		if(worldObj.isRemote && updateTicks % 40 !=0) {
+		if(worldObj.isRemote && updateTicks % 2 ==0) {
 
 			double dir=0;
 
@@ -94,30 +99,45 @@ public class TileWaterWheel extends TileEntity implements IEnergyProvider {
 				if(this.getBlockMetadata()!=2)worldObj.setBlockMetadataWithNotify((int)xCoord, (int)yCoord, (int)zCoord, 2,2);
 				blockMaterial = this.worldObj.getBlock(this.xCoord+1, this.yCoord, this.zCoord).getMaterial();
 				dir = -1;
-				if(blockMaterial!=blockMaterial.lava)setWaterDir((int)dir);
+				if(blockMaterial!=blockMaterial.lava) {
+					setWaterDir((int) dir);
+					this.energy.receiveEnergy(5, false);
+				}
 
 			}else if(blockXN instanceof BlockLiquid && this.worldObj.getBlock(this.xCoord-1, this.yCoord, this.zCoord).getMaterial().isLiquid() && worldObj.getBlockMetadata((int)xCoord-1, (int)yCoord, (int)zCoord)!= 0){
 				if(this.getBlockMetadata()!=0)worldObj.setBlockMetadataWithNotify((int)xCoord, (int)yCoord, (int)zCoord, 0,2);
 				blockMaterial = this.worldObj.getBlock(this.xCoord-1, this.yCoord, this.zCoord).getMaterial();
 				dir = 1;
-				if(blockMaterial!=blockMaterial.lava)setWaterDir((int)dir);
+				if(blockMaterial!=blockMaterial.lava){
+					setWaterDir((int)dir);
+					this.energy.receiveEnergy(5, false);
+				}
 
 			}else if(blockZN instanceof BlockLiquid && this.worldObj.getBlock(this.xCoord, this.yCoord, this.zCoord-1).getMaterial().isLiquid() && worldObj.getBlockMetadata((int)xCoord, (int)yCoord, (int)zCoord-1)!= 0){
 				if(this.getBlockMetadata()!=1)worldObj.setBlockMetadataWithNotify((int)xCoord, (int)yCoord, (int)zCoord, 1,2);
 				blockMaterial = this.worldObj.getBlock(this.xCoord, this.yCoord, this.zCoord-1).getMaterial();
 				dir = -3;
-				if(blockMaterial!=blockMaterial.lava)setWaterDir((int)dir);
+				if(blockMaterial!=blockMaterial.lava){
+					setWaterDir((int) dir);
+					this.energy.receiveEnergy(5, false);
+				}
 
 			}else if(blockZP instanceof BlockLiquid && this.worldObj.getBlock(this.xCoord, this.yCoord, this.zCoord+1).getMaterial().isLiquid() && worldObj.getBlockMetadata((int)xCoord, (int)yCoord, (int)zCoord+1)!= 0){
 				if(this.getBlockMetadata()!=3)worldObj.setBlockMetadataWithNotify((int)xCoord, (int)yCoord, (int)zCoord, 3,2);
 				blockMaterial = this.worldObj.getBlock(this.xCoord, this.yCoord, this.zCoord+1).getMaterial();
 				dir = 0;
-				if(blockMaterial!=blockMaterial.lava)setWaterDir((int)dir);
+				if(blockMaterial!=blockMaterial.lava){
+					setWaterDir((int) dir);
+					this.energy.receiveEnergy(5, false);
+				}
 
 			}else if(blockTop instanceof BlockLiquid && this.worldObj.getBlock(this.xCoord, this.yCoord+1, this.zCoord).getMaterial().isLiquid()&&worldObj.getBlockMetadata((int)xCoord, (int)yCoord+1, (int)zCoord)!= 0){
 				blockMaterial = this.worldObj.getBlock(this.xCoord, this.yCoord+1, this.zCoord).getMaterial();
 				dir = BlockLiquid.getFlowDirection(this.worldObj,this.xCoord, this.yCoord+1, this.zCoord,blockMaterial);
-				if(blockMaterial!=blockMaterial.lava)setWaterDir((int)dir);
+				if(blockMaterial!=blockMaterial.lava){
+					setWaterDir((int) dir);
+					this.energy.receiveEnergy(5, false);
+				}
 
 			}else if(blockBottom instanceof BlockLiquid && this.worldObj.getBlock(this.xCoord, this.yCoord-1, this.zCoord).getMaterial().isLiquid() &&worldObj.getBlockMetadata((int)xCoord, (int)yCoord-1, (int)zCoord)!= 0){
 				blockMaterial = this.worldObj.getBlock(this.xCoord, this.yCoord-1, this.zCoord).getMaterial();
@@ -132,9 +152,12 @@ public class TileWaterWheel extends TileEntity implements IEnergyProvider {
 				}else if((int)dir==1){
 					dir=-1;
 				}
-				if(blockMaterial!=blockMaterial.lava)setWaterDir((int)dir);
+				if(blockMaterial!=blockMaterial.lava){
+					setWaterDir((int) dir);
+					this.energy.receiveEnergy(5, false);
+				}
 			} else {
-				setWaterDir((int)-1001);
+				setWaterDir(-1001);
 			}
 
 			switch (this.getWaterDir()) {
@@ -142,37 +165,36 @@ public class TileWaterWheel extends TileEntity implements IEnergyProvider {
 			case -3:
 			case -2:
 				if (this.getBlockMetadata() != 1) {
-
 					this.worldObj.setBlockMetadataWithNotify(this.xCoord, this.yCoord, this.zCoord, 1, 2);
 				}
 				break;
 
 			case -1:
 				if (this.getBlockMetadata() != 2) {
-
 					this.worldObj.setBlockMetadataWithNotify(this.xCoord, this.yCoord, this.zCoord, 2, 2);
 				}
 				break;
 
 			case 0:
 				if (this.getBlockMetadata() != 3) {
-
 					this.worldObj.setBlockMetadataWithNotify(this.xCoord, this.yCoord, this.zCoord, 3, 2);
 				}
 				break;
 
 			case 1:
 				if (this.getBlockMetadata() != 0) {
-
 					this.worldObj.setBlockMetadataWithNotify(this.xCoord, this.yCoord, this.zCoord, 0, 2);
 				}
 				break;
 			}
 
-			if (worldObj.isRemote) {
-				energy.setEnergyStored(getEnergyStored(ForgeDirection.UNKNOWN));
-				PowerUtil.pushEnergy(this.worldObj, this.xCoord, this.yCoord, this.zCoord, false, new ForgeDirection[]{ForgeDirection.NORTH, ForgeDirection.SOUTH, ForgeDirection.EAST, ForgeDirection.WEST}, energy);
+
+
+			if(!worldObj.isRemote){
+				Energy.pushEnergy(this.worldObj, this.xCoord, this.yCoord, this.zCoord, false, new ForgeDirection[]{ForgeDirection.NORTH, ForgeDirection.SOUTH, ForgeDirection.EAST, ForgeDirection.WEST}, this.energy);
 			}
+
+
 			this.markDirty();
 			this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
 		}
@@ -193,16 +215,10 @@ public class TileWaterWheel extends TileEntity implements IEnergyProvider {
 
 	@Override
 	public int extractEnergy(ForgeDirection from, int maxReceive, boolean simulate){
-		return this.getEnergyStored(from);
+		return 10;
 	}
 	@Override
-	public int getEnergyStored(ForgeDirection from){
-		if (this.getWaterDir()>-1001){
-			return 5;
-		} else{
-			return 0;
-		}
-	}
+	public int getEnergyStored(ForgeDirection from){return 10;}
 	@Override
 	public int getMaxEnergyStored(ForgeDirection from){
 		return this.getEnergyStored(from);

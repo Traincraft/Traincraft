@@ -1,6 +1,6 @@
 /*******************************************************************************
  * Copyright (c) 2013 Spitfire4466. All rights reserved.
- * 
+ *
  * @name TrainCraft
  * @author Spitfire4466
  ******************************************************************************/
@@ -16,28 +16,28 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
 import train.common.api.LiquidManager;
 import train.common.api.LiquidManager.StandardTank;
-import train.common.core.util.Energy;
 
 public class TileGeneratorDiesel extends TileTraincraft implements IFluidHandler, IEnergyProvider {
-	private static final Energy OUTPUT = Energy.fromRF(80);
-	private static final Energy MAX_ENERGY = Energy.fromRF(300000);
-	private static final Energy MAX_ENERGY_EXTRACTED = Energy.fromRF(1600);
+	private static final float OUTPUT = 80;
+	private static final float MAX_ENERGY = 300000;
+	private static final float MAX_ENERGY_EXTRACTED = 1600;
 	private static final int DIESEL_USAGE = 100;
-	
-	private Energy energy = Energy.zero();
-	private Energy extraEnergy = Energy.zero();
-	private Energy currentOutput = Energy.zero();
-	private Energy needed = Energy.zero();
+
+	private float energy = 0;
+	private float extraEnergy = 0;
+	private float currentOutput = 0;
+	private float needed = 0;
 	private boolean powered = false;
 	private int update;
 	private ForgeDirection direction;
 	private StandardTank theTank;
 	private boolean producing =false;
-	
+
 	private int liquidItemIDClient;
 	public int amountClient;
 
@@ -63,14 +63,14 @@ public class TileGeneratorDiesel extends TileTraincraft implements IFluidHandler
 	@Override
 	public void updateEntity() {
 		if (!worldObj.isRemote) {
-			
+
 			for(ForgeDirection dir: new ForgeDirection[] {
 					ForgeDirection.EAST,
 					ForgeDirection.WEST,
 					ForgeDirection.DOWN,
 					ForgeDirection.UP,
 					ForgeDirection.NORTH,
-					ForgeDirection.SOUTH,	
+					ForgeDirection.SOUTH,
 			}) {
 				int x = xCoord + dir.offsetX;
 				int y = yCoord + dir.offsetY;
@@ -90,11 +90,11 @@ public class TileGeneratorDiesel extends TileTraincraft implements IFluidHandler
 		}
 	}
 
-	private Energy getPowerToExtract(IEnergyReceiver receptor, ForgeDirection from) {
-		Energy cur = Energy.fromRF(receptor.getEnergyStored(from));
-		Energy max = Energy.fromRF(receptor.getMaxEnergyStored(from));
-		Energy canReceive = Energy.fromRF(receptor.receiveEnergy(from, (int)(max.toRF() - cur.toRF()), false));
-		return extractEnergy(Energy.zero(), canReceive, false);
+	private float getPowerToExtract(IEnergyReceiver receptor, ForgeDirection from) {
+		float cur = receptor.getEnergyStored(from);
+		float max = receptor.getMaxEnergyStored(from);
+		float canReceive = receptor.receiveEnergy(from, (int)(max - cur), false);
+		return extractEnergy(0, canReceive, false);
 	}
 
 
@@ -108,10 +108,8 @@ public class TileGeneratorDiesel extends TileTraincraft implements IFluidHandler
 			}
 		}
 
-		if (isPowered() && theTank.drain(DIESEL_USAGE, false) != null && energy.toRF() < MAX_ENERGY.toRF() && (amountClient>=DIESEL_USAGE)) {
-			if(this.update % 8 == 0 ) {
-				setIsProducing(true);
-				if (needed.toRF() >= OUTPUT.toRF()) {
+		if (isPowered() && theTank.drain(DIESEL_USAGE, false) != null && energy < MAX_ENERGY && (amountClient>=DIESEL_USAGE)) {
+				if (needed >= OUTPUT) {
 					currentOutput = needed;
 				} else{
 					currentOutput = OUTPUT;
@@ -121,9 +119,6 @@ public class TileGeneratorDiesel extends TileTraincraft implements IFluidHandler
 				getPowerToExtract(receptor, from);
 				amountClient -= DIESEL_USAGE;
 			}
-		} else{
-			setIsProducing(false);
-		}
 	}
 
 	@Override
@@ -150,11 +145,11 @@ public class TileGeneratorDiesel extends TileTraincraft implements IFluidHandler
 		return nbtTag;
 	}
 
-	public Energy getEnergy() {
+	public float getEnergy() {
 		return this.energy;
 	}
 
-	public Energy getCurrentOutput() {
+	public float getCurrentOutput() {
 		return this.currentOutput;
 	}
 
@@ -174,37 +169,37 @@ public class TileGeneratorDiesel extends TileTraincraft implements IFluidHandler
 		this.producing = producing;
 	}
 
-	public void addEnergy(Energy addition) {
-		this.energy = Energy.fromRF(energy.toRF() + addition.toRF());
-		if (this.energy.toRF() > MAX_ENERGY.toRF())
-			this.energy = MAX_ENERGY.copy();
+	public void addEnergy(float addition) {
+		this.energy = energy+ addition;
+		if (this.energy > MAX_ENERGY)
+			this.energy = MAX_ENERGY;
 	}
 
-	public void subtractEnergy(Energy subtraction) {
-		this.energy = Energy.fromRF(energy.toRF() - subtraction.toRF());
-		if (this.energy.toRF() < 0)
-			this.energy = Energy.zero();
+	public void subtractEnergy(float subtraction) {
+		this.energy = energy - subtraction;
+		if (this.energy < 0)
+			this.energy = 0;
 	}
 
-	public Energy extractEnergy(Energy min, Energy max, boolean doExtract) {
-		if (this.energy.toRF() < min.toRF()) {
-			return Energy.zero();
+	public float extractEnergy(float min, float max, boolean doExtract) {
+		if (this.energy < min) {
+			return 0;
 		}
 
-		float combinedMax = MAX_ENERGY_EXTRACTED.toRF() + this.extraEnergy.toRF() * 0.5F;
-		Energy actualMax = Energy.fromRF(Math.min(combinedMax, max.toRF()));
-		Energy extracted;
-		if (energy.toRF() >= actualMax.toRF()) {
+		float combinedMax = MAX_ENERGY_EXTRACTED + this.extraEnergy * 0.5F;
+		float actualMax = Math.min(combinedMax, max);
+		float extracted;
+		if (energy >= actualMax) {
 			extracted = actualMax;
 			if (doExtract) {
-				this.energy = Energy.fromRF(energy.toRF() + actualMax.toRF());
-				this.extraEnergy = Energy.fromRF(extraEnergy.toRF() - Math.min(actualMax.toRF(), extraEnergy.toRF()));
+				this.energy = energy + actualMax;
+				this.extraEnergy = extraEnergy - Math.min(actualMax, extraEnergy);
 			}
 		} else {
-			extracted = energy.copy();
+			extracted = energy;
 			if (doExtract) {
-				this.energy = Energy.zero();
-				this.extraEnergy = Energy.zero();
+				this.energy = 0;
+				this.extraEnergy = 0;
 			}
 		}
 
@@ -212,13 +207,13 @@ public class TileGeneratorDiesel extends TileTraincraft implements IFluidHandler
 	}
 
 	public boolean isSimulating() {
-		return !FMLCommonHandler.instance().getEffectiveSide().isClient();
+		return !worldObj.isRemote;
 	}
 
 
 	/**
 	 * used by the GUI
-	 * 
+	 *
 	 * @return
 	 */
 	@SideOnly(Side.CLIENT)
@@ -245,9 +240,9 @@ public class TileGeneratorDiesel extends TileTraincraft implements IFluidHandler
 				&& slots[i].getItem() == itemstack1.getItem()
 				&& itemstack1.isStackable()
 				&& (!itemstack1.getHasSubtypes() || slots[i]
-						.getItemDamage() == itemstack1.getItemDamage())
+				.getItemDamage() == itemstack1.getItemDamage())
 				&& ItemStack.areItemStackTagsEqual(slots[i],
-						itemstack1)) {
+				itemstack1)) {
 			int var9 = slots[i].stackSize + itemstack1.stackSize;
 			if(doAdd) {
 				if (var9 <= itemstack1.getMaxStackSize()) {
@@ -300,7 +295,8 @@ public class TileGeneratorDiesel extends TileTraincraft implements IFluidHandler
 	public FluidTankInfo[] getTankInfo(ForgeDirection from) {
 		return new FluidTankInfo[] { theTank.getInfo() };
 	}
-	
+
+
 	/**
 	 * BuildCraft
 	 */
@@ -308,29 +304,29 @@ public class TileGeneratorDiesel extends TileTraincraft implements IFluidHandler
 	public boolean canConnectEnergy(ForgeDirection dir) {
 		return true;
 	}
-	
+
 	/**
 	 * BuildCraft
 	 */
 	@Override
 	public int extractEnergy(ForgeDirection dir, int amount, boolean simulate) {
-		return (int) extractEnergy(Energy.fromRF(amount), Energy.fromRF(amount), simulate).toRF();
+		return (int) extractEnergy(amount, amount, simulate);
 	}
-	
+
 	/**
 	 * BuildCraft
 	 */
 	@Override
 	public int getEnergyStored(ForgeDirection dir) {
-		return (int) energy.toRF();
+		return (int) energy;
 	}
-	
+
 	/**
 	 * BuildCraft
 	 */
 	@Override
 	public int getMaxEnergyStored(ForgeDirection dir) {
-		return (int) MAX_ENERGY.toRF();
+		return (int) MAX_ENERGY;
 	}
 
 }
