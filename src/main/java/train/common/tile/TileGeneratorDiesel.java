@@ -23,8 +23,9 @@ public class TileGeneratorDiesel extends Energy implements IFluidHandler, IEnerg
 	private boolean powered = false;
 	private int update;
 	private ForgeDirection direction;
-	private StandardTank theTank;
+	private FluidTank theTank;
 	private boolean producing =false;
+
 
 	private int liquidItemIDClient;
 	public int amountClient;
@@ -53,24 +54,44 @@ public class TileGeneratorDiesel extends Energy implements IFluidHandler, IEnerg
 	public void updateEntity() {
 		if (!worldObj.isRemote) {
 			this.update += 1;
-			if (this.update % 8 == 0 && slots[0] != null) {
-				ItemStack result = LiquidManager.getInstance().processContainer(this, 0, theTank, slots[0], 0);
-				if (result != null && placeInInvent(result, 1, false)) {
-					placeInInvent(result, 1, true);
-					amountClient = theTank.getFluidAmount();
+				if (slots[0] != null && update % 8 ==0) {
+					ItemStack result = LiquidManager.getInstance().processContainer(this, 0, theTank, slots[0], 0);
+					if (result != null && placeInInvent(result, 1, false)) {
+						placeInInvent(result, 1, true);
+						amountClient = theTank.getFluidAmount();
+					}
 				}
+
+				if (isPowered() && theTank.drain(100, false) != null && (amountClient >= 100) && update % 8 ==0) {
+					theTank.drain(100, true);
+					amountClient -= 100;
+					//super.setIsRunning(true);
+					//super.updateEntity();
+					this.energy.receiveEnergy(20, false);
+					//pushEnergy(worldObj, this.xCoord, this.yCoord, this.zCoord, ForgeDirection.);
+					this.markDirty();
+					this.syncTileEntity();
+				} else if( theTank.drain(100, false) != null && 80 <= this.energy.getMaxEnergyStored() - this.energy.getEnergyStored()){
+					//super.setIsRunning(false);
+					//super.updateEntity();
+					for(ForgeDirection side : ForgeDirection.VALID_DIRECTIONS){
+						if (this.canConnectEnergy(side)){
+							pushEnergy(worldObj, this.xCoord + side.offsetX, this.yCoord + side.offsetY, this.zCoord + side.offsetZ, side, this.energy);
+						}
+					}
+				}
+
+				if (isPowered()){
+					this.setIsProducing(true);
+				} else {
+					this.setIsProducing(false);
+				}
+
 				//mark the entity dirty and sync it.
 				this.markDirty();
-				this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
 				this.syncTileEntity();
 			}
 
-			if (isPowered() && update %16 ==0 && theTank.drain(100, false) != null && (amountClient>=100)) {
-				theTank.drain(100, true);
-				super.updateEntity();
-				amountClient -= 100;
-			}
-		}
 	}
 
 	@Override
@@ -112,9 +133,20 @@ public class TileGeneratorDiesel extends Energy implements IFluidHandler, IEnerg
 	}
 
 	@SideOnly(Side.CLIENT)
-	public StandardTank getTank() {
+	public FluidTank getTank() {
 		return this.theTank;
 	}
+
+
+
+	public boolean isProducing() {
+		return this.producing;
+	}
+
+	public void setIsProducing(boolean producing) {
+		this.producing = producing;
+	}
+
 
 	public int getTankCapacity() {
 		return theTank.getCapacity();
