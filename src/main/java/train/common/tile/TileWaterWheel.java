@@ -191,7 +191,7 @@ public class TileWaterWheel extends TileEntity implements IEnergyProvider {
 
 
 			if(!worldObj.isRemote){
-				Energy.pushEnergy(this.worldObj, this.xCoord, this.yCoord, this.zCoord, false, new ForgeDirection[]{ForgeDirection.NORTH, ForgeDirection.SOUTH, ForgeDirection.EAST, ForgeDirection.WEST}, this.energy);
+				//Energy.pushEnergy(this.worldObj, this.xCoord, this.yCoord, this.zCoord, false, new ForgeDirection[]{ForgeDirection.NORTH, ForgeDirection.SOUTH, ForgeDirection.EAST, ForgeDirection.WEST}, this.energy);
 			}
 
 
