@@ -1,0 +1,336 @@
+/*******************************************************************************
+ * Copyright (c) 2013 Spitfire4466. All rights reserved.
+ * 
+ * @name TrainCraft
+ * @author Spitfire4466
+ ******************************************************************************/
+
+package train.common.tile;
+
+import cofh.api.energy.IEnergyProvider;
+import cofh.api.energy.IEnergyReceiver;
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraftforge.fluids.*;
+import train.common.api.LiquidManager;
+import train.common.api.LiquidManager.StandardTank;
+import train.common.core.util.Energy;
+
+public class TileGeneratorDiesel extends TileTraincraft implements IFluidHandler, IEnergyProvider {
+	private static final Energy OUTPUT = Energy.fromRF(80);
+	private static final Energy MAX_ENERGY = Energy.fromRF(300000);
+	private static final Energy MAX_ENERGY_EXTRACTED = Energy.fromRF(1600);
+	private static final int DIESEL_USAGE = 100;
+	
+	private Energy energy = Energy.zero();
+	private Energy extraEnergy = Energy.zero();
+	private Energy currentOutput = Energy.zero();
+	private Energy needed = Energy.zero();
+	private boolean powered = false;
+	private int update;
+	private ForgeDirection direction;
+	private StandardTank theTank;
+	private boolean producing =false;
+	
+	private int liquidItemIDClient;
+	public int amountClient;
+
+	public TileGeneratorDiesel() {
+		super(2, "Diesel Generator");
+		direction = ForgeDirection.getOrientation(this.blockMetadata);
+		this.theTank = LiquidManager.getInstance().new FilteredTank(30000, LiquidManager.getInstance().dieselFilter(), 1);
+	}
+
+	public int getFacing() {
+		return direction.ordinal();
+	}
+
+	public void setFacing(int facing) {
+		direction = ForgeDirection.getOrientation(facing);
+	}
+
+
+	public int getMaxEnergyOutput() {
+		return 10;
+	}
+
+	@Override
+	public void updateEntity() {
+		if (!worldObj.isRemote) {
+			
+			for(ForgeDirection dir: new ForgeDirection[] {
+					ForgeDirection.EAST,
+					ForgeDirection.WEST,
+					ForgeDirection.DOWN,
+					ForgeDirection.UP,
+					ForgeDirection.NORTH,
+					ForgeDirection.SOUTH,	
+			}) {
+				int x = xCoord + dir.offsetX;
+				int y = yCoord + dir.offsetY;
+				int z = zCoord + dir.offsetZ;
+				TileEntity tile = worldObj.getTileEntity(x, y, z);
+				if(tile != null && tile instanceof IEnergyReceiver) {
+					IEnergyReceiver receptor = (IEnergyReceiver) tile;
+					ForgeDirection from = dir.getOpposite();
+					if(receptor.canConnectEnergy(from)) {
+						burn(receptor, from);
+						this.markDirty();
+						this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
+						this.syncTileEntity();
+					}
+				}
+			}
+		}
+	}
+
+	private Energy getPowerToExtract(IEnergyReceiver receptor, ForgeDirection from) {
+		Energy cur = Energy.fromRF(receptor.getEnergyStored(from));
+		Energy max = Energy.fromRF(receptor.getMaxEnergyStored(from));
+		Energy canReceive = Energy.fromRF(receptor.receiveEnergy(from, (int)(max.toRF() - cur.toRF()), false));
+		return extractEnergy(Energy.zero(), canReceive, false);
+	}
+
+
+	public void burn(IEnergyReceiver receptor, ForgeDirection from) {
+		this.update += 1;
+
+		if (this.update % 8 == 0 && slots[0] != null) {
+			ItemStack result = LiquidManager.getInstance().processContainer(this, 0, theTank, slots[0], 0);
+			if (result != null && placeInInvent(result, 1, false)) {
+				placeInInvent(result, 1, true);
+			}
+		}
+
+		if (isPowered() && theTank.drain(DIESEL_USAGE, false) != null && energy.toRF() < MAX_ENERGY.toRF() && (amountClient>=DIESEL_USAGE)) {
+			if(this.update % 8 == 0 ) {
+				setIsProducing(true);
+				if (needed.toRF() >= OUTPUT.toRF()) {
+					currentOutput = needed;
+				} else{
+					currentOutput = OUTPUT;
+				}
+				addEnergy(currentOutput);
+				theTank.drain(DIESEL_USAGE, true);
+				getPowerToExtract(receptor, from);
+				amountClient -= DIESEL_USAGE;
+			}
+		} else{
+			setIsProducing(false);
+		}
+	}
+
+	@Override
+	public NBTTagCompound readFromNBT(NBTTagCompound nbtTag, boolean forSyncing) {
+		super.readFromNBT(nbtTag, forSyncing);
+		this.direction = ForgeDirection.getOrientation(nbtTag.getInteger("direction"));
+		this.powered = nbtTag.getBoolean("powered");
+		this.producing = nbtTag.getBoolean("isProducing");
+		this.amountClient = nbtTag.getInteger("Amount");
+		this.liquidItemIDClient = nbtTag.getInteger("LiquidID");
+		this.theTank.readFromNBT(nbtTag);
+		return nbtTag;
+	}
+
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound nbtTag, boolean forSyncing) {
+		super.writeToNBT(nbtTag, forSyncing);
+		nbtTag.setInteger("direction", direction.ordinal());
+		nbtTag.setBoolean("powered", this.powered);
+		nbtTag.setBoolean("isProducing", this.producing);
+		nbtTag.setInteger("Amount", this.amountClient);
+		nbtTag.setInteger("LiquidID", this.liquidItemIDClient);
+		this.theTank.writeToNBT(nbtTag);
+		return nbtTag;
+	}
+
+	public Energy getEnergy() {
+		return this.energy;
+	}
+
+	public Energy getCurrentOutput() {
+		return this.currentOutput;
+	}
+
+	public boolean isPowered() {
+		return powered;
+	}
+
+	public void setIsPowered(boolean power) {
+		powered = power;
+	}
+
+	public boolean isProducing() {
+		return producing;
+	}
+
+	public void setIsProducing(boolean producing) {
+		this.producing = producing;
+	}
+
+	public void addEnergy(Energy addition) {
+		this.energy = Energy.fromRF(energy.toRF() + addition.toRF());
+		if (this.energy.toRF() > MAX_ENERGY.toRF())
+			this.energy = MAX_ENERGY.copy();
+	}
+
+	public void subtractEnergy(Energy subtraction) {
+		this.energy = Energy.fromRF(energy.toRF() - subtraction.toRF());
+		if (this.energy.toRF() < 0)
+			this.energy = Energy.zero();
+	}
+
+	public Energy extractEnergy(Energy min, Energy max, boolean doExtract) {
+		if (this.energy.toRF() < min.toRF()) {
+			return Energy.zero();
+		}
+
+		float combinedMax = MAX_ENERGY_EXTRACTED.toRF() + this.extraEnergy.toRF() * 0.5F;
+		Energy actualMax = Energy.fromRF(Math.min(combinedMax, max.toRF()));
+		Energy extracted;
+		if (energy.toRF() >= actualMax.toRF()) {
+			extracted = actualMax;
+			if (doExtract) {
+				this.energy = Energy.fromRF(energy.toRF() + actualMax.toRF());
+				this.extraEnergy = Energy.fromRF(extraEnergy.toRF() - Math.min(actualMax.toRF(), extraEnergy.toRF()));
+			}
+		} else {
+			extracted = energy.copy();
+			if (doExtract) {
+				this.energy = Energy.zero();
+				this.extraEnergy = Energy.zero();
+			}
+		}
+
+		return extracted;
+	}
+
+	public boolean isSimulating() {
+		return !FMLCommonHandler.instance().getEffectiveSide().isClient();
+	}
+
+
+	/**
+	 * used by the GUI
+	 * 
+	 * @return
+	 */
+	@SideOnly(Side.CLIENT)
+	public int getLiquid() {
+		return (amountClient);
+	}
+
+	@SideOnly(Side.CLIENT)
+	public StandardTank getTank() {
+		return theTank;
+	}
+
+	public int getTankCapacity() {
+		return theTank.getCapacity();
+	}
+
+	private boolean placeInInvent(ItemStack itemstack1, int i, boolean doAdd) {
+		if (slots[i] == null) {
+			if (doAdd) {
+				slots[i] = itemstack1;
+			}
+			return true;
+		} else if (slots[i] != null
+				&& slots[i].getItem() == itemstack1.getItem()
+				&& itemstack1.isStackable()
+				&& (!itemstack1.getHasSubtypes() || slots[i]
+						.getItemDamage() == itemstack1.getItemDamage())
+				&& ItemStack.areItemStackTagsEqual(slots[i],
+						itemstack1)) {
+			int var9 = slots[i].stackSize + itemstack1.stackSize;
+			if(doAdd) {
+				if (var9 <= itemstack1.getMaxStackSize()) {
+					slots[i].stackSize = var9;
+				} else if (slots[i].stackSize < itemstack1.getMaxStackSize()) {
+					slots[i].stackSize += 1;
+				}
+			}
+			return true;
+		}
+		return false;
+
+	}
+
+	@Override
+	public World getWorldObj() {
+		return this.worldObj;
+	}
+
+
+	@Override
+	public int fill(ForgeDirection from, FluidStack resource, boolean doFill) {
+		return theTank.fill(resource, doFill);
+	}
+
+	@Override
+	public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain) {
+		if (resource == null || !resource.isFluidEqual(theTank.getFluid())) {
+			return null;
+		}
+		return theTank.drain(resource.amount, doDrain);
+	}
+
+	@Override
+	public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain) {
+		return theTank.drain(maxDrain, doDrain);
+	}
+
+	@Override
+	public boolean canFill(ForgeDirection from, Fluid fluid) {
+		return true;
+	}
+
+	@Override
+	public boolean canDrain(ForgeDirection from, Fluid fluid) {
+		return true;
+	}
+
+	@Override
+	public FluidTankInfo[] getTankInfo(ForgeDirection from) {
+		return new FluidTankInfo[] { theTank.getInfo() };
+	}
+	
+	/**
+	 * BuildCraft
+	 */
+	@Override
+	public boolean canConnectEnergy(ForgeDirection dir) {
+		return true;
+	}
+	
+	/**
+	 * BuildCraft
+	 */
+	@Override
+	public int extractEnergy(ForgeDirection dir, int amount, boolean simulate) {
+		return (int) extractEnergy(Energy.fromRF(amount), Energy.fromRF(amount), simulate).toRF();
+	}
+	
+	/**
+	 * BuildCraft
+	 */
+	@Override
+	public int getEnergyStored(ForgeDirection dir) {
+		return (int) energy.toRF();
+	}
+	
+	/**
+	 * BuildCraft
+	 */
+	@Override
+	public int getMaxEnergyStored(ForgeDirection dir) {
+		return (int) MAX_ENERGY.toRF();
+	}
+
+}
