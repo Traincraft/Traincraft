@@ -130,13 +130,13 @@ public class TileTraincraft extends TileEntity implements ISidedInventory{
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound nbt){
+    public final void writeToNBT(NBTTagCompound nbt){
         super.writeToNBT(nbt);
         this.writeToNBT(nbt, false);
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound nbt){
+    public final void readFromNBT(NBTTagCompound nbt){
         super.readFromNBT(nbt);
         this.readFromNBT(nbt, false);
     }
@@ -157,7 +157,7 @@ public class TileTraincraft extends TileEntity implements ISidedInventory{
         return nbt;
     }
 
-    public NBTTagCompound readFromNBT(NBTTagCompound nbt, boolean forSyncing){
+    public void readFromNBT(NBTTagCompound nbt, boolean forSyncing){
         if(!forSyncing){
             NBTTagList nbttaglist = nbt.getTagList("Items", Constants.NBT.TAG_COMPOUND);
             this.slots = new ItemStack[getSizeInventory()];
@@ -169,7 +169,6 @@ public class TileTraincraft extends TileEntity implements ISidedInventory{
                 }
             }
         }
-        return nbt;
     }
 
     public void syncTileEntity(){

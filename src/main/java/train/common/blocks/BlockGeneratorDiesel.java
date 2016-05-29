@@ -1,6 +1,6 @@
 /*******************************************************************************
  * Copyright (c) 2013 Spitfire4466. All rights reserved.
- * 
+ *
  * @name TrainCraft
  * @author Spitfire4466
  ******************************************************************************/
@@ -58,7 +58,7 @@ public class BlockGeneratorDiesel extends BlockContainer {
 	public IIcon getIcon(int i, int j) {
 		return texture;
 	}
-	
+
 	@Override
 	public boolean onBlockActivated(World world, int i, int j, int k, EntityPlayer player, int par6, float par7, float par8, float par9) {
 		TileEntity te = world.getTileEntity(i, j, k);
@@ -84,7 +84,7 @@ public class BlockGeneratorDiesel extends BlockContainer {
 
         if (tile != null)
         {
-            tile.setIsPowered(flag);
+            tile.powered = flag;
         }
     }
 
@@ -130,7 +130,7 @@ public class BlockGeneratorDiesel extends BlockContainer {
 	public void randomDisplayTick(World world, int par2, int par3, int par4, Random rand) {
 		int l = world.getBlockMetadata(par2, par3, par4);
 		TileEntity tile = world.getTileEntity(par2, par3, par4);
-		if(tile !=null && tile instanceof TileGeneratorDiesel && ((TileGeneratorDiesel)tile).isProducing()){
+		if(tile !=null && tile instanceof TileGeneratorDiesel && ((TileGeneratorDiesel)tile).currentBurnTime > 0){
 			double d0 = (double) ((float) par2 + 0.5F);
 			double d1 = (double) ((float) par3 + 0.7F);
 			double d2 = (double) ((float) par4 + 0.5F);
@@ -160,7 +160,7 @@ public class BlockGeneratorDiesel extends BlockContainer {
 				break;
 			default:
 				break;
-			}	
+			}
 			//world.spawnParticle("flame", d0, par3 + d3, d2, 0.0D, 0.0D, 0.0D);
 		}
 	}
