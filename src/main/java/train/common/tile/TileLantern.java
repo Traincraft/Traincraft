@@ -64,8 +64,6 @@ public class TileLantern extends TileEntity {
 		if (oldColor != randomColor){
 			oldColor = randomColor;
 			this.markDirty();
-			this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
-			System.out.println("updated entity");
 		}
 	}
 

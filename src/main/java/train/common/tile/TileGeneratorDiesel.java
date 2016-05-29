@@ -16,7 +16,7 @@ import net.minecraftforge.fluids.*;
 import train.common.api.LiquidManager;
 import train.common.core.util.Energy;
 
-public class TileGeneratorDiesel extends Energy implements IFluidHandler, IEnergyProvider{
+public class TileGeneratorDiesel extends Energy implements IFluidHandler{
 
     public boolean powered;
     private ForgeDirection direction;
@@ -28,7 +28,7 @@ public class TileGeneratorDiesel extends Energy implements IFluidHandler, IEnerg
     private int lastBurnTime;
 
     public TileGeneratorDiesel(){
-        super(2, "Diesel Generator", 60, 320, 80);
+        super(2, "Diesel Generator", 320, 80);
         super.setSides(new ForgeDirection[]{ForgeDirection.EAST, ForgeDirection.WEST, ForgeDirection.NORTH, ForgeDirection.SOUTH, ForgeDirection.UP, ForgeDirection.DOWN});
         direction = ForgeDirection.getOrientation(this.blockMetadata);
         this.theTank = LiquidManager.getInstance().new FilteredTank(30000, LiquidManager.dieselFilter(), 1);
@@ -68,18 +68,14 @@ public class TileGeneratorDiesel extends Energy implements IFluidHandler, IEnerg
             }
 
             if(this.energy.getEnergyStored() > 0){
-                for(ForgeDirection side : ForgeDirection.VALID_DIRECTIONS){
-                    if(this.canConnectEnergy(side)){
-                        pushEnergy(worldObj, this.xCoord, this.yCoord, this.zCoord, side, this.energy);
-                    }
-                }
+                pushEnergy(worldObj, this.xCoord, this.yCoord, this.zCoord, this.energy);
             }
+        }
 
-            if(this.theTank.getFluidAmount() != this.lastTankAmount || this.currentBurnTime != this.lastBurnTime){
-                this.lastTankAmount = this.theTank.getFluidAmount();
-                this.lastBurnTime = this.currentBurnTime;
-                this.syncTileEntity();
-            }
+        if(this.theTank.getFluidAmount() != this.lastTankAmount || this.currentBurnTime != this.lastBurnTime){
+            this.lastTankAmount = this.theTank.getFluidAmount();
+            this.lastBurnTime = this.currentBurnTime;
+            this.syncTileEntity();
         }
 
     }
@@ -88,9 +84,9 @@ public class TileGeneratorDiesel extends Energy implements IFluidHandler, IEnerg
     public void readFromNBT(NBTTagCompound nbtTag, boolean forSyncing){
         super.readFromNBT(nbtTag, forSyncing);
         if(!forSyncing){
-            this.direction = ForgeDirection.values()[nbtTag.getInteger("direction")];
             this.powered = nbtTag.getBoolean("Powered");
         }
+        this.direction = ForgeDirection.values()[nbtTag.getInteger("direction")];
         this.currentBurnTime = nbtTag.getInteger("BurnTime");
         this.theTank.readFromNBT(nbtTag);
     }
@@ -99,9 +95,9 @@ public class TileGeneratorDiesel extends Energy implements IFluidHandler, IEnerg
     public NBTTagCompound writeToNBT(NBTTagCompound nbtTag, boolean forSyncing){
         super.writeToNBT(nbtTag, forSyncing);
         if(!forSyncing){
-            nbtTag.setInteger("direction", direction.ordinal());
             nbtTag.setBoolean("Powered", this.powered);
         }
+        nbtTag.setInteger("direction", direction.ordinal());
         nbtTag.setInteger("BurnTime", this.currentBurnTime);
         this.theTank.writeToNBT(nbtTag);
         return nbtTag;

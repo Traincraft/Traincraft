@@ -55,7 +55,6 @@ public class BlockWaterWheel extends Block {
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void randomDisplayTick(World par1World, int par2, int par3, int par4, Random par5Random) {
-		int l = par1World.getBlockMetadata(par2, par3, par4);
 		TileEntity tile = par1World.getTileEntity(par2, par3, par4);
 		if (tile != null && tile instanceof TileWaterWheel && ((TileWaterWheel) tile).getWaterDir() > -1001) {
 			double d0 = (double) ((float) par2 + 0.5F);
@@ -118,7 +117,7 @@ public class BlockWaterWheel extends Block {
 		int l = par1World.getBlockMetadata(par2, par3, par4);
 		TileEntity tile = par1World.getTileEntity(par2, par3, par4);
 		if (tile != null && tile instanceof TileWaterWheel) {
-			((TileWaterWheel) tile).onChunkUnload();
+			(tile).onChunkUnload();
 		}
 		super.breakBlock(par1World, par2, par3, par4, par5, par6);
 	}
