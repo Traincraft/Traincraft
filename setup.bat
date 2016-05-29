@@ -1,17 +1,19 @@
-@echo on
+@echo off
 @ECHO ##########################################################################
-@ECHO
+@ECHO.
 @ECHO  Gradle startup script for Windows
-@ECHO
+@ECHO  This is to prepare the source for use with an IDE.
+@ECHO  This is NOT for compiling the program. Use the IDE for that.
+@ECHO. 
 @ECHO ##########################################################################
 
 @ECHO Choose an IDE:
 @ECHO [1] Eclipse
 @ECHO [2] Idea (Intelij)
-@ECHO 
-@ECHO 
-:tryagain
 @echo off
+@ECHO.
+@ECHO. 
+:tryagain
 set /p variable=""
 IF "%variable%"=="1" (goto eclipse)
 IF "%variable%"=="eclipse" (goto eclipse)
@@ -24,7 +26,6 @@ IF "%variable%"=="idea" (goto intelij)
 IF "%variable%"=="Idea" (goto intelij)
 
 pause
-@echo on
 @ECHO Incorrect option, try again.
 goto tryagain
 
@@ -32,31 +33,62 @@ goto tryagain
 
 :eclipse
 @echo on
-@ECHO ##########################################################################
-gradlew setupDecompWorkspace --refresh-dependencies
-gradlew eclipse
-
-@ECHO ##########################################################################
-@ECHO
-@ECHO  Mod is ready to be opened in Eclipse
-@ECHO  NOTE: you must manually add the dependencies from the lib folder, aside from buildcraft, to your project structure
-@ECHO
-@ECHO ##########################################################################
+start call gradlew setupDecompWorkspace --refresh-dependencies
+@echo off
+@ECHO.
+@ECHO.
+@ ECHO After the other window finishes, close it and
 pause
-exit
+@echo on
+start call gradlew eclipse
+@echo off
+@ECHO.
+@ECHO.
+@ ECHO After the other window finishes, close it and
+pause
 
+@ECHO ##########################################################################
+@ECHO.
+@ECHO  Mod is ready to be opened in Eclipse.
+@ECHO  You may open the project via gradle or directory import.
+@ECHO  You may now exit this window.
+@ECHO.
+@ECHO ##########################################################################
+
+pause
+
+goto quit
 
 
 :intelij
 @echo on
-gradlew setupDecompWorkspace --refresh-dependencies
-gradlew idea
+start call gradlew setupDecompWorkspace --refresh-dependencies
+@echo off
+@ECHO.
+@ECHO.
+@ ECHO After the other window finishes, close it and
+pause
+@echo on
+start call gradlew idea
+@echo off
+@ECHO.
+@ECHO.
+@ ECHO After the other window finishes, close it and
+pause
 
 @ECHO ##########################################################################
-@ECHO
-@ECHO  Mod is ready to be opened in Intelij/Idea
-@ECHO  NOTE: you must manually add the dependencies from the lib folder, aside from buildcraft, to your project structure
-@ECHO
+@ECHO.
+@ECHO  Mod is ready to be opened in Intelij/Idea.
+@ECHO  You may open the project via gradle import or via: Traincraft-5.ipr
+@ECHO  You may now exit this window.
+@ECHO.
 @ECHO ##########################################################################
+
 pause
-exit
+
+goto quit
+
+
+
+:quit
+
