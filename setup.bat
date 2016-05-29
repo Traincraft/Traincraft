@@ -51,6 +51,10 @@ pause
 @ECHO.
 @ECHO  Mod is ready to be opened in Eclipse.
 @ECHO  You may open the project via gradle or directory import.
+@ECHO  NOTICE: you must manually add the lib folder to your project dependencies.
+@ECHO  NOTICE: if you get an error asking you to select a deobfuscateor, you can find this in:
+@ECHO  %USERPROFILE%/.gradle/caches/minecraft/net/minecraftforge/forge/FORGEVERSION/unpacked/conf
+@ECHO.
 @ECHO  You may now exit this window.
 @ECHO.
 @ECHO ##########################################################################
@@ -80,6 +84,10 @@ pause
 @ECHO.
 @ECHO  Mod is ready to be opened in Intelij/Idea.
 @ECHO  You may open the project via gradle import or via: Traincraft-5.ipr
+@ECHO  NOTICE: you must manually add the lib folder to your project dependencies.
+@ECHO  NOTICE: if you get an error asking you to select a deobfuscateor, you can find this in:
+@ECHO  %USERPROFILE%/.gradle/caches/minecraft/net/minecraftforge/forge/FORGEVERSION/unpacked/conf
+@ECHO.
 @ECHO  You may now exit this window.
 @ECHO.
 @ECHO ##########################################################################
