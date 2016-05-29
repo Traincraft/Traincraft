@@ -30,8 +30,6 @@ public class Energy extends TileTraincraft implements IEnergyProvider {
 	private int OUTPUT = 80; //max RF made at a time
 
 	public EnergyStorage energy = new EnergyStorage(3000,80); //core energy value the first value is max storage and the second is transfer max.
-	private int extraEnergy = 0; //buffer for excess energy
-	private boolean isRunning =true; //is running
 	private ForgeDirection[] sides = new ForgeDirection[]{}; //defines supported sides
 
 	public Energy(int inventorySlots, String name, int output, int maxEnergy, int maxTransfer){
@@ -71,19 +69,16 @@ public class Energy extends TileTraincraft implements IEnergyProvider {
 
 	/*/
 	@Override
-	public void readFromNBT(NBTTagCompound nbtTag) {
-		super.readFromNBT(nbtTag);
-		this.isRunning = nbtTag.getBoolean("isProducing");
-		this.extraEnergy = nbtTag.getInteger("extraEnergy");
+	public void readFromNBT(NBTTagCompound nbtTag, boolean forSyncing) {
+		super.readFromNBT(nbtTag, forSyncing);
 		this.energy.readFromNBT(nbtTag);
 	}
 
 	@Override
-	public void writeToNBT(NBTTagCompound nbtTag) {
-		super.writeToNBT(nbtTag);
-		nbtTag.setBoolean("isProducing", this.isRunning);
-		this.extraEnergy = nbtTag.getInteger("extraEnergy");
+	public NBTTagCompound writeToNBT(NBTTagCompound nbtTag, boolean forSyncing) {
+		super.writeToNBT(nbtTag, forSyncing);
 		this.energy.writeToNBT(nbtTag);
+		return nbtTag;
 	}
 	public void setSides(ForgeDirection[] listOfSides){
 		this.sides = listOfSides;
