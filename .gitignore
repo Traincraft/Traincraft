@@ -8,9 +8,9 @@ eclipse
 # idea
 out
 .idea
-Traincraft-5.iws
-Traincraft-5.iml
-Traincraft-5.ipr
+*.iws
+*.iml
+*.ipr
 
 # gradle
 build
