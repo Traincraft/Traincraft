@@ -6,6 +6,7 @@ import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.FurnaceRecipeHandler;
 import codechicken.nei.recipe.TemplateRecipeHandler;
+import cpw.mods.fml.common.Optional;
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.init.Blocks;
@@ -102,7 +103,7 @@ public class NEIDistillationTowerRecipePlugin extends FurnaceRecipeHandler{
     {
         return "Distillation tower";
     }
-    
+    @Optional.Method(modid = "NotEnoughItems")
     @Override
     public void loadCraftingRecipes(String outputId, Object... results)
     {
@@ -154,7 +155,7 @@ public class NEIDistillationTowerRecipePlugin extends FurnaceRecipeHandler{
         }
         
     }
-    
+    @Optional.Method(modid = "NotEnoughItems")
     @Override
     public void loadUsageRecipes(String inputId, Object... ingredients)
     {

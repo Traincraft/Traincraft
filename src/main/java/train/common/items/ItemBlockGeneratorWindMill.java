@@ -18,8 +18,7 @@ public class ItemBlockGeneratorWindMill extends ItemBlock{
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
-		par3List.add("\u00a77" + "IC2 generator");
-		par3List.add("\u00a77" + "Max Production (storm): 5 EU/t");
-		par3List.add("\u00a77" + "Output at the back");
+		par3List.add("\u00a77" + "RF generator.");
+		par3List.add("\u00a77" + "Max Production (storm): 15 RF/t.");
 	}
 }

@@ -26,8 +26,8 @@ public class ItemBlockGeneratorDiesel extends ItemBlock {
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
-		par3List.add("\u00a77" + "BC: 8MJ/tick");
-		par3List.add("\u00a77" + "IC2: 20EU/tick");
+		par3List.add("\u00a77" + "RF generator.");
+		par3List.add("\u00a77" + "Max Production: 70 RF/t.");
 		par3List.add("\u00a77" + "Don't place 2 together.");
 	}
 

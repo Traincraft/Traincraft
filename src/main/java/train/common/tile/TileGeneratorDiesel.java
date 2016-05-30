@@ -7,7 +7,7 @@
 
 package train.common.tile;
 
-import cofh.api.energy.IEnergyProvider;
+
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;

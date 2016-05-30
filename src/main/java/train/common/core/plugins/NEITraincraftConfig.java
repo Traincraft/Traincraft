@@ -3,10 +3,11 @@ package train.common.core.plugins;
 import codechicken.nei.api.API;
 import codechicken.nei.api.IConfigureNEI;
 import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.Optional;
 import train.common.Traincraft;
 
 public class NEITraincraftConfig implements IConfigureNEI {
-
+    @Optional.Method(modid = "NotEnoughItems")
 	@Override
 	public void loadConfig() {
 		API.registerRecipeHandler(new NEITraincraftWorkbenchRecipePlugin());

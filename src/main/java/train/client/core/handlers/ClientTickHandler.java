@@ -1,6 +1,7 @@
 package train.client.core.handlers;
 
 import com.mojang.authlib.minecraft.MinecraftProfileTexture;
+import cpw.mods.fml.common.Optional;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.relauncher.Side;
@@ -49,6 +50,10 @@ public class ClientTickHandler {
 				}
 			}
 		}
+		neiTick();
+	}
+	@Optional.Method(modid = "NotEnoughItems")
+	private void neiTick(){
 		if(!isHidden) {
 			if(mc.theWorld != null && mc.theWorld.playerEntities != null) {
 				Traincraft.proxy.doNEICheck(new ItemStack(Block.getBlockFromName(Info.modID + ":tcRail")));

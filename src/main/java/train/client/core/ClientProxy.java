@@ -4,6 +4,7 @@ import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.Optional;
 import cpw.mods.fml.common.registry.VillagerRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
@@ -104,7 +105,6 @@ public class ClientProxy extends CommonProxy {
 		TileEntity te = world.getTileEntity(x, y, z);
 		EntityPlayer riddenByEntity = null;
 		Entity entity = player.ridingEntity;
-		//entity = ;
 		if (player.ridingEntity != null) {
 			riddenByEntity = (EntityPlayer) entity.riddenByEntity;
 		}
@@ -238,6 +238,7 @@ public class ClientProxy extends CommonProxy {
 		return getMinecraft().thePlayer;
 	}
 
+	@Optional.Method(modid = "NotEnoughItems")
 	@Override
 	public void doNEICheck(ItemStack stack) {
 		if (Minecraft.getMinecraft().thePlayer != null) {

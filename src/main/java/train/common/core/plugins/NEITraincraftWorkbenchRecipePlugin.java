@@ -3,6 +3,7 @@ package train.common.core.plugins;
 import codechicken.nei.NEIClientUtils;
 import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.ShapedRecipeHandler;
+import cpw.mods.fml.common.Optional;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
@@ -162,7 +163,7 @@ public class NEITraincraftWorkbenchRecipePlugin extends ShapedRecipeHandler {
 			}
 		}
 	}
-
+	@Optional.Method(modid = "NotEnoughItems")
 	@Override
 	public void loadCraftingRecipes(String outputId, Object... results) {
 		if (outputId.equals("train workbench") && getClass() == NEITraincraftWorkbenchRecipePlugin.class) {
