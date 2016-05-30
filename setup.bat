@@ -1,15 +1,17 @@
+:restart
 @echo off
 @ECHO ##########################################################################
 @ECHO.
 @ECHO  Gradle startup script for Windows
 @ECHO  This is to prepare the source for use with an IDE.
-@ECHO  This is NOT for compiling the program. Use the IDE for that.
+@ECHO  Optionally you may compile the .jar as well.
 @ECHO. 
 @ECHO ##########################################################################
 
 @ECHO Choose an IDE:
 @ECHO [1] Eclipse
 @ECHO [2] Idea (Intelij)
+@ECHO [3] Build the source.
 @echo off
 @ECHO.
 @ECHO. 
@@ -24,6 +26,8 @@ IF "%variable%"=="Intelij" (goto intelij)
 IF "%variable%"=="intelij" (goto intelij)
 IF "%variable%"=="idea" (goto intelij)
 IF "%variable%"=="Idea" (goto intelij)
+
+IF "%variable%"=="3" (goto build)
 
 pause
 @ECHO Incorrect option, try again.
@@ -95,6 +99,28 @@ pause
 goto quit
 
 
+:build
+@echo on
+start call gradlew build
+@echo off
+@ECHO.
+@ECHO.
+@ ECHO After the other window finishes, close it and
+pause
+
+@ECHO ##########################################################################
+@ECHO.
+@ECHO  To find the compiled jar file look in /build/lib
+@ECHO.
+@ECHO  You may now exit this window, or continue to go back to the main menu.
+@ECHO.
+@ECHO ##########################################################################
+
+pause
+
+goto restart
+
 
 :quit
 
+exit
