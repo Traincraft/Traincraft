@@ -1,8 +1,8 @@
 package train.common.blocks.tracks;
 
-import railcraft.api.carts.CartTools;
-import railcraft.api.tracks.ITrackLockdown;
-import railcraft.api.tracks.ITrackPowered;
+import mods.railcraft.api.carts.CartTools;
+import mods.railcraft.api.tracks.ITrackLockdown;
+import mods.railcraft.api.tracks.ITrackPowered;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.nbt.NBTTagCompound;
 import train.common.api.Locomotive;

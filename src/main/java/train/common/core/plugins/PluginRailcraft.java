@@ -2,7 +2,7 @@ package train.common.core.plugins;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
-import railcraft.api.crafting.RailcraftCraftingManager;
+import mods.railcraft.api.crafting.RailcraftCraftingManager;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;

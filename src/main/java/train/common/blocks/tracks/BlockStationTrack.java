@@ -1,9 +1,9 @@
 package train.common.blocks.tracks;
 
-import railcraft.api.carts.CartTools;
-import railcraft.api.core.items.IToolCrowbar;
-import railcraft.api.tracks.ITrackLockdown;
-import railcraft.api.tracks.ITrackPowered;
+import mods.railcraft.api.carts.CartTools;
+import mods.railcraft.api.core.items.IToolCrowbar;
+import mods.railcraft.api.tracks.ITrackLockdown;
+import mods.railcraft.api.tracks.ITrackPowered;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

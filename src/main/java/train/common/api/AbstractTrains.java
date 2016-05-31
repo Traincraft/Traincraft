@@ -2,8 +2,8 @@ package train.common.api;
 
 import buildcraft.api.tools.IToolWrench;
 import cpw.mods.fml.common.FMLCommonHandler;
-import railcraft.api.carts.IMinecart;
-import railcraft.api.carts.IRoutableCart;
+import mods.railcraft.api.carts.IMinecart;
+import mods.railcraft.api.carts.IRoutableCart;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;

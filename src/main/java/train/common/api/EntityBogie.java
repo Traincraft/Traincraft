@@ -2,8 +2,8 @@ package train.common.api;
 
 import java.util.List;
 
-import railcraft.api.carts.IMinecart;
-import railcraft.api.carts.IRoutableCart;
+import mods.railcraft.api.carts.IMinecart;
+import mods.railcraft.api.carts.IRoutableCart;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRailBase;
 import net.minecraft.entity.Entity;

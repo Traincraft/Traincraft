@@ -4,9 +4,9 @@
  */
 package train.common.blocks.tracks;
 
-import railcraft.api.carts.CartTools;
-import railcraft.api.carts.ILinkageManager;
-import railcraft.api.tracks.ITrackPowered;
+import mods.railcraft.api.carts.CartTools;
+import mods.railcraft.api.carts.ILinkageManager;
+import mods.railcraft.api.tracks.ITrackPowered;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;

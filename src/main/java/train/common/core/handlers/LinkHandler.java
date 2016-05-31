@@ -1,6 +1,6 @@
 package train.common.core.handlers;
 
-import railcraft.api.tracks.RailTools;
+import mods.railcraft.api.tracks.RailTools;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;

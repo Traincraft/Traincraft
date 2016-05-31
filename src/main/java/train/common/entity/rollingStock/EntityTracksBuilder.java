@@ -1,8 +1,9 @@
 package train.common.entity.rollingStock;
 
+import com.mojang.authlib.GameProfile;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
-import railcraft.api.tracks.RailTools;
+import mods.railcraft.api.tracks.RailTools;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.BlockRailBase;
@@ -1468,4 +1469,8 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
 		return true;
 	}
+
+	@Override
+	public GameProfile getOwner(){return null;}
+
 }

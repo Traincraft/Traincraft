@@ -3,7 +3,7 @@
  */
 package train.common.blocks.tracks;
 
-import railcraft.api.tracks.ITrackEmitter;
+import mods.railcraft.api.tracks.ITrackEmitter;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityMinecart;

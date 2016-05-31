@@ -5,7 +5,6 @@ import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.ShapedRecipeHandler;
 import codechicken.nei.recipe.TemplateRecipeHandler;
-import cpw.mods.fml.common.Optional;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -116,7 +115,7 @@ public class NEIOpenHearthFurnaceRecipePlugin extends ShapedRecipeHandler {
 		//transferRects.add(new RecipeTransferRect(new Rectangle(50, 23, 18, 18), "fuel"));
 		transferRects.add(new RecipeTransferRect(new Rectangle(74, 23, 24, 18), "open hearth furnace"));
 	}
-	@Optional.Method(modid = "NotEnoughItems")
+
 	@Override
 	public void loadCraftingRecipes(String outputId, Object... results) {
 		if (outputId.equals("open hearth furnace") && getClass() == NEIOpenHearthFurnaceRecipePlugin.class) {
@@ -148,7 +147,7 @@ public class NEIOpenHearthFurnaceRecipePlugin extends ShapedRecipeHandler {
 		}
 
 	}
-	@Optional.Method(modid = "NotEnoughItems")
+
 	@Override
 	public void loadUsageRecipes(String inputId, Object... ingredients) {
 		if (inputId.equals("fuel") && getClass() == NEIOpenHearthFurnaceRecipePlugin.class) {

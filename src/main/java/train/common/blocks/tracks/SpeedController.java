@@ -6,7 +6,7 @@
  */
 package train.common.blocks.tracks;
 
-import railcraft.api.tracks.ITrackInstance;
+import mods.railcraft.api.tracks.ITrackInstance;
 import net.minecraft.entity.item.EntityMinecart;
 
 public class SpeedController {

@@ -47,7 +47,7 @@ public class Traincraft {
 	public static Traincraft instance;
 
 	/* TrainCraft proxy files */
-	@SidedProxy(clientSide = "train.client.core.ClientProxy", serverSide = "train.client.core.CommonProxy")
+	@SidedProxy(clientSide = "train.client.core.ClientProxy", serverSide = "train.common.core.CommonProxy")
 	public static CommonProxy proxy;
 
 	/* TrainCraft Logger */

@@ -4,9 +4,9 @@
  */
 package train.common.blocks.tracks;
 
-import railcraft.api.tracks.TrackInstanceBase;
-import railcraft.api.tracks.TrackRegistry;
-import railcraft.api.tracks.TrackSpec;
+import mods.railcraft.api.tracks.TrackInstanceBase;
+import mods.railcraft.api.tracks.TrackRegistry;
+import mods.railcraft.api.tracks.TrackSpec;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.util.IIcon;
 import train.common.library.TrackIDs;

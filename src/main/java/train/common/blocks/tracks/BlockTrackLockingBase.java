@@ -1,9 +1,9 @@
 package train.common.blocks.tracks;
 
-import railcraft.api.events.CartLockdownEvent.Lock;
-import railcraft.api.events.CartLockdownEvent.Release;
-import railcraft.api.tracks.ITrackLockdown;
-import railcraft.api.tracks.ITrackPowered;
+import mods.railcraft.api.events.CartLockdownEvent.Lock;
+import mods.railcraft.api.events.CartLockdownEvent.Release;
+import mods.railcraft.api.tracks.ITrackLockdown;
+import mods.railcraft.api.tracks.ITrackPowered;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;

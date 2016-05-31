@@ -1,8 +1,8 @@
 package train.common.blocks.tracks;
 
-import railcraft.api.core.ITextureLoader;
-import railcraft.api.tracks.ITrackItemIconProvider;
-import railcraft.api.tracks.TrackSpec;
+import mods.railcraft.api.core.ITextureLoader;
+import mods.railcraft.api.tracks.ITrackItemIconProvider;
+import mods.railcraft.api.tracks.TrackSpec;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.util.IIcon;
 import train.common.library.TrackIDs;

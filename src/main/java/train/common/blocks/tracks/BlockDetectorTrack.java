@@ -5,7 +5,7 @@
  */
 package train.common.blocks.tracks;
 
-import railcraft.api.tracks.ITrackEmitter;
+import mods.railcraft.api.tracks.ITrackEmitter;
 import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;

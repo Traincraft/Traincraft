@@ -5,8 +5,8 @@
  */
 package train.common.blocks.tracks;
 
-import railcraft.api.core.items.IToolCrowbar;
-import railcraft.api.tracks.ITrackPowered;
+import mods.railcraft.api.core.items.IToolCrowbar;
+import mods.railcraft.api.tracks.ITrackPowered;
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;

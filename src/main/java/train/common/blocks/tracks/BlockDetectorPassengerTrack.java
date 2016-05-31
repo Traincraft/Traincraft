@@ -5,7 +5,7 @@
  */
 package train.common.blocks.tracks;
 
-import railcraft.api.tracks.ITrackEmitter;
+import mods.railcraft.api.tracks.ITrackEmitter;
 import net.minecraft.entity.item.EntityMinecart;
 import train.common.api.IPassenger;
 import train.common.library.TrackIDs;

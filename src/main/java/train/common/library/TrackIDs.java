@@ -6,8 +6,8 @@
  */
 package train.common.library;
 
-import railcraft.api.tracks.TrackRegistry;
-import railcraft.api.tracks.TrackSpec;
+import mods.railcraft.api.tracks.TrackRegistry;
+import mods.railcraft.api.tracks.TrackSpec;
 import train.common.blocks.tracks.*;
 
 import java.util.ArrayList;

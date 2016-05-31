@@ -1,7 +1,7 @@
 package train.common.api;
 
-import railcraft.api.carts.IMinecart;
-import railcraft.api.carts.IRoutableCart;
+import mods.railcraft.api.carts.IMinecart;
+import mods.railcraft.api.carts.IRoutableCart;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
