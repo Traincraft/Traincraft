@@ -211,8 +211,8 @@ public class LiquidTank extends EntityRollingStock implements IFluidHandler, ISi
 	 * 
 	 * @param doRemove If false no actual extraction may occur.
 	 * @param from Orientation the ItemStack is requested from.
-	 * @param maxItemCount Maximum amount of items to extract (spread over all returned stack stacks)
-	 * @return Array of stack stacks extracted from the inventory
+	 * @param maxItemCount Maximum amount of items to extract (spread over all returned item stacks)
+	 * @return Array of item stacks extracted from the inventory
 	 */
 	/*
 	@Override

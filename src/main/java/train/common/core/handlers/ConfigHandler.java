@@ -35,7 +35,7 @@ public class ConfigHandler {
 	public static int TRAINCRAFT_VILLAGER_ID;
 	public static boolean REAL_TRAIN_SPEED;
 	public static final String CATEGORY_BLOCK   = "block";
-	public static final String CATEGORY_ITEM    = "stack";
+	public static final String CATEGORY_ITEM    = "item";
 
 	public static int Key_Acc = 17; // W
 	public static int Key_Dec = 31; // S

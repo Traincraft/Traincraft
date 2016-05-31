@@ -21,7 +21,7 @@ public class FuelHandler implements IFuelHandler {
 	private static int[] burnTimes = new int[]{300, 100, 1200, 1000, 2000, 150, 12000, 200};
 	private static Item[] burnableItems = new Item[]{Items.stick,Items.coal, Items.lava_bucket, Items.blaze_rod, Item.getItemFromBlock(Blocks.wooden_slab), Item.getItemFromBlock(Blocks.coal_block), Item.getItemFromBlock(Blocks.sapling)};
 	//TODO add coke coal from railcraft
-	//secondary option, a bit poor way of going about it, but if necessary, an option for burnable stack support without adding that specific mod would be a name check against a list of strings.
+	//secondary option, a bit poor way of going about it, but if necessary, an option for burnable item support without adding that specific mod would be a name check against a list of strings.
 
 
 	/**
@@ -37,7 +37,7 @@ public class FuelHandler implements IFuelHandler {
 			//simple if material wood, return the wood burn time
 			return burnTimes[0];
 		} else{
-			//iterate through the burnables list to try and find the stack, and return the burn value of it from the burn times list
+			//iterate through the burnables list to try and find the item, and return the burn value of it from the burn times list
 			for(Item item : burnableItems){
 				if(it.getItem() == item){
 					return burnTimes[Arrays.asList(burnableItems).indexOf(item) +1];

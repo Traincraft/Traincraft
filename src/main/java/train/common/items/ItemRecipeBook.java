@@ -23,7 +23,7 @@ public class ItemRecipeBook extends Item {
 	}
 
 	/**
-	 * Called whenever this stack is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
+	 * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
 	 */
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
@@ -55,7 +55,7 @@ public class ItemRecipeBook extends Item {
 	}
 
 	/**
-	 * If this function returns true (or the stack is damageable), the ItemStack's NBT tag will be sent to the client.
+	 * If this function returns true (or the item is damageable), the ItemStack's NBT tag will be sent to the client.
 	 */
 	@Override
 	public boolean getShareTag() {

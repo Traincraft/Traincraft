@@ -34,7 +34,7 @@ public class ItemTCArmor extends ItemArmor {
 
 	/**
      * Called by RenderBiped and RenderPlayer to determine the armor texture that 
-     * should be use for the currently equiped stack.
+     * should be use for the currently equiped item.
      * This will only be called on instances of ItemArmor. 
      * 
      * Returning null from this function will use the default value.

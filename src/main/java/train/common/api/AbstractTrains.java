@@ -63,7 +63,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 	protected EnumTrains trainSpec;
 
 	/**
-	 * The name of the train based on the stack name
+	 * The name of the train based on the item name
 	 */
 	public String trainName = "";
 	public double accelerate = 0.7D;
@@ -115,7 +115,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 	protected String trainDestroyer = "";
 
 	/**
-	 * unique ID for a train. ID is create when stack is created. This allows to
+	 * unique ID for a train. ID is create when item is created. This allows to
 	 * track a train not only in his entity form
 	 */
 	public int uniqueID = -1;

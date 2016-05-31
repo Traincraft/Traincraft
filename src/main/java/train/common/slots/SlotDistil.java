@@ -43,7 +43,7 @@ public class SlotDistil extends Slot {
 	}
 
 	/**
-	 * the itemStack passed in is the output - ie, iron ingots, and pickaxes, not ore and wood. Typically increases an internal count then calls onCrafting(stack).
+	 * the itemStack passed in is the output - ie, iron ingots, and pickaxes, not ore and wood. Typically increases an internal count then calls onCrafting(item).
 	 */
 	@Override
 	protected void onCrafting(ItemStack itemstack, int par2) {

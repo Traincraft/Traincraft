@@ -32,7 +32,7 @@ public class ItemBlockGeneratorDiesel extends ItemBlock {
 	}
 
 	/**
-	 * Return an stack rarity from EnumRarity
+	 * Return an item rarity from EnumRarity
 	 */
 	@Override
 	@SideOnly(Side.CLIENT)

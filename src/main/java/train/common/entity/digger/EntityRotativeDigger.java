@@ -201,7 +201,7 @@ public class EntityRotativeDigger extends Entity implements IInventory {
 		setBeenAttacked();
 		if (boatCurrentDamage > 40) {
 
-			//dropItemWithOffset(ItemIDs.minecartRotativeDigger.stack.shiftedIndex, 1, 0.0F);
+			//dropItemWithOffset(ItemIDs.minecartRotativeDigger.item.shiftedIndex, 1, 0.0F);
 
 			setDead();
 		}
@@ -426,7 +426,7 @@ public class EntityRotativeDigger extends Entity implements IInventory {
 		}
 
 		//It hasn't any GUI for now
-		/*if (fuel <= 0) { if (zeppInvent[0] != null && zeppInvent[0].itemID == ItemIDs.refinedFuel.stack.shiftedIndex) { fuel = ConfigHandler2.ZeppelinCoal; this.dataWatcher.updateObject(20, fuel); decrStackSize(0, 1); } } */
+		/*if (fuel <= 0) { if (zeppInvent[0] != null && zeppInvent[0].itemID == ItemIDs.refinedFuel.item.shiftedIndex) { fuel = ConfigHandler2.ZeppelinCoal; this.dataWatcher.updateObject(20, fuel); decrStackSize(0, 1); } } */
 
 		if (boatTimeSinceHit > 0) {
 			boatTimeSinceHit--;

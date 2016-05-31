@@ -28,7 +28,7 @@ public class OpenHearthFurnaceRecipes {
 		smeltingListCookTime = new HashMap();
 
 		addSmelting(Item.getIdFromItem(Items.iron_ingot), Item.getIdFromItem(new ItemStack(ItemIDs.graphite.item).getItem()), new ItemStack(ItemIDs.steel.item), 2F, 1000);
-		//addSmelting(ItemIDs.graphite.itemID,Item.ingotIron.shiftedIndex, new ItemStack(ItemIDs.steel.stack),2F);
+		//addSmelting(ItemIDs.graphite.itemID,Item.ingotIron.shiftedIndex, new ItemStack(ItemIDs.steel.item),2F);
 	}
 
 	public void addSmelting(int i, int j, ItemStack itemstack, float exp, int cookTime) {
