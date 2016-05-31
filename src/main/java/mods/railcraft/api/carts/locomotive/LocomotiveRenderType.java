@@ -76,7 +76,7 @@ public enum LocomotiveRenderType {
     }
 
     /**
-     * This function will return a Locomotive stack with the skin identifier
+     * This function will return a Locomotive item with the skin identifier
      * saved in the NBT. Use it to create a recipe for your skin.
      *
      * @param rendererTag
@@ -89,7 +89,7 @@ public enum LocomotiveRenderType {
 
 
     /**
-     * This function will return a Locomotive stack with the skin identifier
+     * This function will return a Locomotive item with the skin identifier
      * saved in the NBT. Use it to create a recipe for your skin.
      *
      * @param rendererTag

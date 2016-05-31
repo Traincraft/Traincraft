@@ -20,7 +20,7 @@ import com.mojang.authlib.GameProfile;
 public interface IRoutingTrack {
 
     /**
-     * This function will be used to construct a ticket stack for the Routing
+     * This function will be used to construct a ticket item for the Routing
      * Track.
      *
      * @param dest The Destination routing String

@@ -81,7 +81,7 @@ public abstract class LocomotiveModelRenderer {
     }
 
     /**
-     * Register any stack textures you require here.
+     * Register any item textures you require here.
      *
      * @param iconRegister
      */

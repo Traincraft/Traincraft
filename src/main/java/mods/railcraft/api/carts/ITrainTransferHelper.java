@@ -41,10 +41,10 @@ public interface ITrainTransferHelper {
     ItemStack pushStack(EntityMinecart requester, ItemStack stack);
 
     /**
-     * Will request an stack from the Train.
+     * Will request an item from the Train.
      *
      * @param requester the source EntityMinecart
-     * @param filter    a IStackFilter that defines the requested stack
+     * @param filter    a IStackFilter that defines the requested item
      * @return the ItemStack pulled from the Train, or null if the request cannot be met
      * @see mods.railcraft.api.carts.IItemCart
      */

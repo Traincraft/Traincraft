@@ -69,7 +69,7 @@ public abstract class RailTools {
     }
 
     /**
-     * Returns true if the ItemStack contains a valid Railcraft Track stack.
+     * Returns true if the ItemStack contains a valid Railcraft Track item.
      * <p/>
      * Will return false is passed a vanilla rail.
      *

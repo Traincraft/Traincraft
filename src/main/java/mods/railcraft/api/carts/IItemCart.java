@@ -33,7 +33,7 @@ public interface IItemCart {
 
     /**
      * This function controls whether a cart will accept a pushed Item.
-     * Even if this function returns true, there still must be a slot that accepts the stack in question before it can be added to the cart.
+     * Even if this function returns true, there still must be a slot that accepts the item in question before it can be added to the cart.
      * <p/>
      * If this interface is not implemented, it is assumed to be true.
      *
@@ -44,8 +44,8 @@ public interface IItemCart {
     boolean canAcceptPushedItem(EntityMinecart requester, ItemStack stack);
 
     /**
-     * This function controls whether a cart will fulfill a pull request for a specific stack.
-     * Even if this function returns true, there still must be a slot that can extract the stack in question before it can be removed from the cart.
+     * This function controls whether a cart will fulfill a pull request for a specific item.
+     * Even if this function returns true, there still must be a slot that can extract the item in question before it can be removed from the cart.
      * <p/>
      * If this interface is not implemented, it is assumed to be true.
      *

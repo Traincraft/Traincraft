@@ -14,7 +14,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 /**
- * This interface should be implemented by any cart stack,
+ * This interface should be implemented by any cart item,
  * but it is generally optional.
  *
  * @author CovertJaguar <http://www.railcraft.info>
@@ -23,7 +23,7 @@ public interface IMinecartItem
 {
 
     /**
-     * Controls whether this cart stack can be placed by the Cart and Train Dispensers.
+     * Controls whether this cart item can be placed by the Cart and Train Dispensers.
      *
      * Generally, you can ignore the placeCart() function if this returns false.
      *
