@@ -89,10 +89,10 @@ public class InventoryFreight extends Container {
 				var8 = var7.getStack();
 				if (var8 != null && var8.getItem() == par1ItemStack.getItem() && (!par1ItemStack.getHasSubtypes() || par1ItemStack.getItemDamage() == var8.getItemDamage()) && ItemStack.areItemStackTagsEqual(par1ItemStack, var8)) {
 					int var9 = var8.stackSize + par1ItemStack.stackSize;
-					int maxSize = par1ItemStack.getMaxStackSize();//default is item max stack size
+					int maxSize = par1ItemStack.getMaxStackSize();//default is stack max stack size
 					if (bool == false) {//if items are transfered to the freight inventory, otherwise use normal max size
 						if (par1ItemStack.getMaxStackSize() < inv.getInventoryStackLimit())
-							maxSize = par1ItemStack.getMaxStackSize();//if maxStack size is lower than inventory's max then use maxStackSize of the item
+							maxSize = par1ItemStack.getMaxStackSize();//if maxStack size is lower than inventory's max then use maxStackSize of the stack
 						if (par1ItemStack.getMaxStackSize() >= inv.getInventoryStackLimit())
 							maxSize = inv.getInventoryStackLimit();//otherwise use maxStackSize of the inventory
 					}
@@ -132,7 +132,7 @@ public class InventoryFreight extends Container {
 					int maxSize = par1ItemStack.getMaxStackSize();
 					if (!bool) {//if items are transfered to freight inventory
 						if (par1ItemStack.getMaxStackSize() < inv.getInventoryStackLimit())
-							maxSize = par1ItemStack.getMaxStackSize();//if maxStack size is lower than inventory's max then use maxStackSize of the item
+							maxSize = par1ItemStack.getMaxStackSize();//if maxStack size is lower than inventory's max then use maxStackSize of the stack
 						if (par1ItemStack.getMaxStackSize() >= inv.getInventoryStackLimit())
 							maxSize = inv.getInventoryStackLimit();//otherwise use maxStackSize of the inventory
 					}

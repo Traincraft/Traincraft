@@ -19,17 +19,17 @@ public class TrainsItems {
 	private static final Map<String, ItemStack> registry = new TreeMap<String, ItemStack>();
 
 	/**
-	 * This function will return an ItemStack containing the item that corresponds to the provided tag.
+	 * This function will return an ItemStack containing the stack that corresponds to the provided tag.
 	 * 
-	 * Generally item tags will correspond to the tags used in "TrainConfig.cfg", but there will be some exceptions.
+	 * Generally stack tags will correspond to the tags used in "TrainConfig.cfg", but there will be some exceptions.
 	 * 
-	 * This function can and will return null for just about every item if the item is disabled via the configuration files. You must test the return value for safety.
+	 * This function can and will return null for just about every stack if the stack is disabled via the configuration files. You must test the return value for safety.
 	 * 
 	 * For list of available tags see the printItemTags() function.
 	 * 
-	 * @param tag The item tag
-	 * @param qty The stackSize of the returned item
-	 * @return The ItemStack or null if no item exists for that tag
+	 * @param tag The stack tag
+	 * @param qty The stackSize of the returned stack
+	 * @return The ItemStack or null if no stack exists for that tag
 	 */
 	public ItemStack getItem(String tag, int qty) {
 		ItemStack stack = registry.get(tag);
@@ -41,12 +41,12 @@ public class TrainsItems {
 	}
 
 	/**
-	 * Registers a new item with the Registry.
+	 * Registers a new stack with the Registry.
 	 * 
 	 * This should generally only be called by the mod itself while the mod is initializing during the Train.load() call.
 	 * 
 	 * @param tag The tag name
-	 * @param item The item
+	 * @param item The stack
 	 */
 	public static void registerItem(String tag, ItemStack item) {
 		registry.put(tag, item);

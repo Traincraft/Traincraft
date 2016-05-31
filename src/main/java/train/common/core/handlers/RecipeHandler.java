@@ -152,13 +152,13 @@ public class RecipeHandler {
 		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.coaldust.item, 4), new Object[] { "   ","###","   ", Character.valueOf('#'), Items.coal });
 		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.coaldust.item, 4), new Object[] { "   ","   ","###", Character.valueOf('#'), Items.coal });
 		
-		//TrainCraftingManager.instance.addShapelessRecipe(new ItemStack(ItemIDs.coaldust.item, 4), new Object[] { Items.coal, Items.coal, Items.coal, Items.coal });// coal dust
+		//TrainCraftingManager.instance.addShapelessRecipe(new ItemStack(ItemIDs.coaldust.stack, 4), new Object[] { Items.coal, Items.coal, Items.coal, Items.coal });// coal dust
 		
-		//TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.signal.item, 2), new Object[] { "#", "X", "X", Character.valueOf('X'), ItemIDs.steel.item, Character.valueOf('#'), Items.redstone });
+		//TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.signal.stack, 2), new Object[] { "#", "X", "X", Character.valueOf('X'), ItemIDs.steel.stack, Character.valueOf('#'), Items.redstone });
 		/* diesel generator */
 		TrainCraftingManager.instance.addRecipe(new ItemStack(BlockIDs.generatorDiesel.block, 1), new Object[] { "C  ", "DE ", Character.valueOf('C'), ItemIDs.steelchimney.item, Character.valueOf('D'), ItemIDs.dieselengine.item, Character.valueOf('E'), ItemIDs.electronicCircuit.item });
 		
-		/* Zepplin parts and zeppelin item */
+		/* Zepplin parts and zeppelin stack */
 		if (ConfigHandler.ENABLE_ZEPPELIN) {
 			TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.balloon.item, 1), new Object[] { "###", "# #", "###", Character.valueOf('#'), Blocks.wool });// Balloon  
 			TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.steamengine.item, 1), new Object[] { "C  ", "BF ", Character.valueOf('C'), ItemIDs.steelchimney.item, Character.valueOf('B'), ItemIDs.boiler.item, Character.valueOf('F'), ItemIDs.firebox.item });// Small steam engine 

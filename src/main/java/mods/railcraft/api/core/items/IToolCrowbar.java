@@ -33,7 +33,7 @@ public interface IToolCrowbar {
     public boolean canWhack(EntityPlayer player, ItemStack crowbar, int x, int y, int z);
 
     /**
-     * Callback to do damage to the item.
+     * Callback to do damage to the stack.
      *
      * @param player
      * @param crowbar

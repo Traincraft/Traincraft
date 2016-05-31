@@ -2280,8 +2280,8 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 	/**
 	 * This function returns an ItemStack that represents this cart. This should
 	 * be an ItemStack that can be used by the player to place the cart. This is
-	 * the item that was registered with the cart via the registerMinecart
-	 * function, but is not necessary the item the cart drops when destroyed.
+	 * the stack that was registered with the cart via the registerMinecart
+	 * function, but is not necessary the stack the cart drops when destroyed.
 	 * 
 	 * @return An ItemStack that can be used to place the cart.
 	 */

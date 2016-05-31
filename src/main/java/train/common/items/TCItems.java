@@ -36,7 +36,7 @@ public class TCItems {
 				}
 			}
 		}
-		//ItemIDs.signal.item = new ItemSignal(ItemIDs.signal.itemID, BlockIDs.activeSignal.block).setIconIndex(ItemIDs.signal.iconIndex);
+		//ItemIDs.signal.stack = new ItemSignal(ItemIDs.signal.itemID, BlockIDs.activeSignal.block).setIconIndex(ItemIDs.signal.iconIndex);
 		ItemIDs.chunkLoaderActivator.item = new ItemChunkLoaderActivator();
 		ItemIDs.recipeBook.item = new ItemRecipeBook();
 		

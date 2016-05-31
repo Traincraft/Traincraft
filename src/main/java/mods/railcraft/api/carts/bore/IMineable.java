@@ -36,7 +36,7 @@ public interface IMineable
      * @param y y-Coord
      * @param z z-Coord
      * @param bore The Bore entity
-     * @param head The BoreHead, item implements IBoreHead.
+     * @param head The BoreHead, stack implements IBoreHead.
      * @return true if mineable
      * @see IBoreHead
      */

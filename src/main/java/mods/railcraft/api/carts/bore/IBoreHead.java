@@ -11,7 +11,7 @@ package mods.railcraft.api.carts.bore;
 import net.minecraft.util.ResourceLocation;
 
 /**
- * This interface it used to define an item that can
+ * This interface it used to define an stack that can
  * be used as a bore head for the Tunnel Bore.
  * @author CovertJaguar <http://www.railcraft.info>
  */

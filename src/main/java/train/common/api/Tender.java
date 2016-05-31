@@ -97,7 +97,7 @@ public abstract class Tender extends Freight implements IFluidHandler {
 				this.itemInsideCount+=itemstack.stackSize;
 			}
 		}
-		mass+=(this.itemInsideCount*0.0001);//1 item = 1 kilo
+		mass+=(this.itemInsideCount*0.0001);//1 stack = 1 kilo
 		mass+=(preciseAmount/10000);//1 bucket = 1 kilo
 	}
 

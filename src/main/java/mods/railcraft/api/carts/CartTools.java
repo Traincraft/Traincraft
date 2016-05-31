@@ -107,15 +107,15 @@ public abstract class CartTools {
     }
 
     /**
-     * Spawns a new cart entity using the provided item.
+     * Spawns a new cart entity using the provided stack.
      * <p/>
-     * The backing item must implement <code>IMinecartItem</code> and/or extend
+     * The backing stack must implement <code>IMinecartItem</code> and/or extend
      * <code>ItemMinecart</code>.
      * <p/>
      * Generally Forge requires all cart items to extend ItemMinecart.
      *
      * @param owner The player name that should used as the owner
-     * @param cart  An ItemStack containing a cart item, will not be changed by
+     * @param cart  An ItemStack containing a cart stack, will not be changed by
      *              the function
      * @param world The World object
      * @param x     x-Coord
@@ -150,7 +150,7 @@ public abstract class CartTools {
     }
 
     /**
-     * Offers an item stack to linked carts or drops it if no one wants it.
+     * Offers an stack stack to linked carts or drops it if no one wants it.
      *
      * @param cart
      * @param stack

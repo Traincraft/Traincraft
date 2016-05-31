@@ -4,7 +4,7 @@
 package train.common.blocks.tracks;
 
 import net.minecraft.util.IIcon;
-import train.common.library.TrackIDs;
+import train.common.library.Tracks;
 
 public class BlockSteelTrack extends TrackBaseTraincraft {
 	public BlockSteelTrack() {
@@ -12,8 +12,8 @@ public class BlockSteelTrack extends TrackBaseTraincraft {
 	}
 
 	@Override
-	public TrackIDs getTrackType() {
-		return TrackIDs.STEEL_TRACK;
+	public Tracks getTrackType() {
+		return Tracks.STEEL_TRACK;
 	}
 	@Override
 	public IIcon getIcon() {

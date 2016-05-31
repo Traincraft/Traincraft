@@ -8,7 +8,7 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
-import train.common.library.TrackIDs;
+import train.common.library.Tracks;
 import train.common.entity.rollingStock.EntityStockCar;
 
 import java.io.DataInputStream;
@@ -19,8 +19,8 @@ public class BlockDisembarkTrack extends TrackBaseTraincraft implements ITrackEm
 	private byte delay = 0;
 
 	@Override
-	public TrackIDs getTrackType() {
-		return TrackIDs.DISEMBARK_TRACK;
+	public Tracks getTrackType() {
+		return Tracks.DISEMBARK_TRACK;
 	}
 	@Override
 	public void onMinecartPass(EntityMinecart cart) {

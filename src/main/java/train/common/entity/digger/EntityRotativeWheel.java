@@ -153,7 +153,7 @@ public class EntityRotativeWheel extends Entity {
 	}
 
 	/**
-	 * Perform block harvesting, drop the item, remove block and play sound.
+	 * Perform block harvesting, drop the stack, remove block and play sound.
 	 * 
 	 * @param pos
 	 */

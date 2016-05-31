@@ -35,7 +35,7 @@ public interface IEnergyTransfer {
      * @param amount              amount of energy to transfer in EU
      * @param tier                tier of the source device, has to be at least as high as the target device
      * @param ignoreTransferLimit ignore the transfer limit specified by getTransferLimit()
-     * @param simulate            don't actually change the item, just determine the return value
+     * @param simulate            don't actually change the stack, just determine the return value
      * @return The amount of EU not used
      */
     public double injectEnergy(Object source, double amount, int tier, boolean ignoreTransferLimit, boolean simulate, boolean passAlong);
@@ -50,7 +50,7 @@ public interface IEnergyTransfer {
      * @param amount              amount of energy to transfer in EU
      * @param tier                tier of the source device, has to be at least as high as the target device
      * @param ignoreTransferLimit ignore the transfer limit specified by getTransferLimit()
-     * @param simulate            don't actually change the item, just determine the return value
+     * @param simulate            don't actually change the stack, just determine the return value
      * @param passAlong           whether neighboring carts should be asked to provide any missing power.
      * @return The amount of EU transferred
      */

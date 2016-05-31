@@ -8,8 +8,12 @@
 package train.common.generation;
 
 import cpw.mods.fml.common.IWorldGenerator;
+import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldType;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.feature.WorldGenMinable;
 import train.common.core.handlers.ConfigHandler;
 import train.common.library.BlockIDs;
 
@@ -17,24 +21,29 @@ import java.util.Random;
 
 public class WorldGenWorld implements IWorldGenerator {
 
-	WorldGenOres oilSands;
-	WorldGenOres petroleum;
-	WorldGenOres copper;
-
-	public WorldGenWorld() {}
-
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
-		copper = new WorldGenOres(BlockIDs.oreTC.block, 0, 6);
-		oilSands = new WorldGenOres(BlockIDs.oreTC.block, 1, 20);
-		petroleum = new WorldGenOres(BlockIDs.oreTC.block, 2, 14);
+		if(world.provider.terrainType != WorldType.FLAT){
 
-		if (ConfigHandler.ORE_GEN) {
-			oilSands.generateVeins(world, random, chunkX * 16, chunkZ * 16, 2, 60, 6);
-			petroleum.generateVeins(world, random, chunkX * 16, chunkZ * 16, 3, 44, 8);
+			if (ConfigHandler.ORE_GEN) {
+				addOreSpawn(BlockIDs.oreTC.block, 1, Blocks.sand, world, random, chunkX * 16, chunkZ * 16, 10, 2, 25, 75);
+				addOreSpawn(BlockIDs.oreTC.block, 2, Blocks.stone, world, random, chunkX * 16, chunkZ * 16, 14, 3, 10, 50);
+			}
+			if (ConfigHandler.COPPER_ORE_GEN) {
+				addOreSpawn(BlockIDs.oreTC.block, 0, Blocks.stone, world, random, chunkX * 16, chunkZ * 16, 6, 4, 5, 50);
+			}
 		}
-		if (ConfigHandler.COPPER_ORE_GEN) {
-			copper.generateVeins(world, random, chunkX * 16, chunkZ * 16, 4, 44, 8);
+	}
+
+	private void addOreSpawn(Block block, int meta, Block blockIn, World world, Random random, int blockXPos, int blockZPos, int maxVeinSize, int chancesToSpawn, int minY, int maxY){
+		if(maxY > minY){
+			int yDiff = maxY - minY;
+			for(int i = 0; i < chancesToSpawn; i++){
+				int posX = blockXPos + random.nextInt(16);
+				int posY = minY + random.nextInt(yDiff);
+				int posZ = blockZPos + random.nextInt(16);
+				new WorldGenMinable(block, meta, maxVeinSize, blockIn).generate(world, random, posX, posY, posZ);
+			}
 		}
 	}
 }

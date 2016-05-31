@@ -19,7 +19,7 @@ public enum EnumTrains {
 	passengerHighSpeedZeroED("Passenger High Speed Zero ED",EntityPassengerHighSpeedCarZeroED.class, 37,ItemIDs.minecartPassengerHighSpeedCarZeroED.item,"train_high_speed_cart_zeroed","passenger",0,0,2,0,0,0,0,0,0,null,18,null,null,0.98,1.98),
 	passengerTramNY("Passenger Tram NY",EntityPassengerTramNY.class, 55,ItemIDs.minecartPassengerTramNY.item,"train_tram_ny","passenger",0,0,1,0,0,0,0,0,0,null,18,null,null,0.98,1.98),
 	passengerAdler("Passenger Adler",EntityPassengerAdler.class, 95,ItemIDs.minecartPassengerAdler.item,"train_passenger_adler","passenger",0,0,1,0,0,0,0,0,0,null,18,null,null,0.98,1.98),
-	//passengerDBOriental("pass_DB_oriental",EntityPassengerDBOriental.class, 56,ItemIDs.minecartPassengerDBOriental.item,"train_tram_ny","passenger",0,0,1,0,0,0,0,0,0,null,18,null,null,0.98,1.98),
+	//passengerDBOriental("pass_DB_oriental",EntityPassengerDBOriental.class, 56,ItemIDs.minecartPassengerDBOriental.stack,"train_tram_ny","passenger",0,0,1,0,0,0,0,0,0,null,18,null,null,0.98,1.98),
 	
 	/** Caboose */
 	cabooseRed("Caboose Red",EntityCaboose.class, 85,ItemIDs.minecartCaboose.item,"train_caboose","caboose",0,0,0.5,0,0,0,0,0,0,null,18,null,null,0.98,1.98),
@@ -73,7 +73,7 @@ public enum EnumTrains {
 
 	/** Tenders */
 	tenderSmall("Tender Small Black",EntityTenderSmall.class, 4,ItemIDs.minecartTender.item,"train_tender","tender",0,0,0.1,0,0,0,0,0,5000,null,18,null,null,0.98,0.98,new String[] {"Water capacity: 5000mb"}),
-	//tenderHeavy("Tender Heavy",EntityTenderHeavy.class, 34,ItemIDs.minecartTenderHeavy.item,"train_tender_heavy","tender",0,0,2,0,0,0,0,0,14000,null,18,null,null,0.98,1.98,new String[] {"Water capacity: 14000mb"}),
+	//tenderHeavy("Tender Heavy",EntityTenderHeavy.class, 34,ItemIDs.minecartTenderHeavy.stack,"train_tender_heavy","tender",0,0,2,0,0,0,0,0,14000,null,18,null,null,0.98,1.98,new String[] {"Water capacity: 14000mb"}),
 	tender4_4_0("Tender 4-4-0 Red",EntityTender4_4_0.class, 83,ItemIDs.minecartSteamRedTender.item,"train_tender_steam","tender",0,0,0.2,0,0,0,0,0,8000,new String[] {"Black","White","Brown","Blue","Green","Red"},18,null,null,0.98,0.98,new String[] {"Water capacity: 8000mb"}),
 	tenderBR01("Tender BR01",EntityTenderBR01_DB.class, 103,ItemIDs.minecartTenderBR01_DB.item,"train_tender_br01","tender",0,0,0.5,0,0,0,0,0,20000,null,18,null,null,0.98,1.98,new String[] {"Water capacity: 20000mb"}),
 	tenderEr_Ussr("Tender ER_USSR",EntityTenderEr_Ussr.class, 9,ItemIDs.minecartTenderEr.item,"train_tender_ussr","tender",0,0,2,0,0,0,0,0,16000,null,18,null,null,0.98,1.98,new String[] {"Water capacity: 16000mb"}),
@@ -183,7 +183,7 @@ public enum EnumTrains {
 	}
 	
 	/**
-	 * Constructor for additionnal tooltips on the item
+	 * Constructor for additionnal tooltips on the stack
 	 * @param internalName
 	 * @param entityClass
 	 * @param entityID

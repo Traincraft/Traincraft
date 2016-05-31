@@ -83,7 +83,6 @@ public class Traincraft {
 		trainCloth = proxy.addArmor("Paintable");
 		trainCompositeSuit = proxy.addArmor("CompositeSuit");
 		TCBlocks.init();
-		TrainModCore.RegisterNewTracks();
 		TCItems.init();
 		EntityHandler.init();
 		proxy.registerTileEntities();
@@ -102,17 +101,8 @@ public class Traincraft {
 		proxy.isHoliday();
 
 		/* Networking and Packet initialisation */
-		tcLog.info("Initialize Packets");
-		int packetID = 0;
-		modChannel = NetworkRegistry.INSTANCE.newSimpleChannel(Info.modID);
-		modChannel.registerMessage(PacketKeyPress.Handler.class, PacketKeyPress.class, ++packetID, Side.SERVER);
-		modChannel.registerMessage(PacketRollingStockRotation.Handler.class, PacketRollingStockRotation.class, ++packetID, Side.CLIENT);
-		modChannel.registerMessage(PacketSetJukeboxStreamingUrl.Handler.class, PacketSetJukeboxStreamingUrl.class, ++packetID, Side.SERVER);
-		modChannel.registerMessage(PacketSlotsFilled.Handler.class, PacketSlotsFilled.class, ++packetID, Side.CLIENT);
-		modChannel.registerMessage(PacketParkingBreak.Handler.class, PacketParkingBreak.class, ++packetID, Side.SERVER);
-		modChannel.registerMessage(PacketSetTrainLockedToClient.Handler.class, PacketSetTrainLockedToClient.class, ++packetID, Side.SERVER);
-		modChannel.registerMessage(PacketSetLocoTurnedOn.Handler.class, PacketSetLocoTurnedOn.class, ++packetID, Side.SERVER);
-		modChannel.registerMessage(PacketLantern.Handler.class, PacketLantern.class, ++packetID, Side.SERVER);
+		PacketHandler.init();
+
 		tcLog.info("Finished PreInitialization");
 	}
 

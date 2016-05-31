@@ -109,7 +109,7 @@ public abstract class AbstractWorkCart extends EntityRollingStock implements IIn
 
 	@SideOnly(Side.CLIENT)
 	/**
-	 * Returns an integer between 0 and the passed value representing how close the current item is to being completely
+	 * Returns an integer between 0 and the passed value representing how close the current stack is to being completely
 	 * cooked
 	 */
 	public int getCookProgressScaled(int par1) {
@@ -119,7 +119,7 @@ public abstract class AbstractWorkCart extends EntityRollingStock implements IIn
 	@SideOnly(Side.CLIENT)
 	/**
 	 * Returns an integer between 0 and the passed value representing how much burn time is left on the current fuel
-	 * item, where 0 means that the item is exhausted and the passed value means that the item is fresh
+	 * stack, where 0 means that the stack is exhausted and the passed value means that the stack is fresh
 	 */
 	public int getBurnTimeRemainingScaled(int par1) {
 		if (this.currentItemBurnTime == 0) {
@@ -179,7 +179,7 @@ public abstract class AbstractWorkCart extends EntityRollingStock implements IIn
 	}
 
 	/**
-	 * Returns true if the furnace can smelt an item, i.e. has a source item, destination stack isn't full, etc.
+	 * Returns true if the furnace can smelt an stack, i.e. has a source stack, destination stack isn't full, etc.
 	 */
 	private boolean canSmelt() {
 		if (this.furnaceItemStacks[0] == null) {
@@ -199,7 +199,7 @@ public abstract class AbstractWorkCart extends EntityRollingStock implements IIn
 	}
 
 	/**
-	 * Turn one item from the furnace source stack into the appropriate smelted item in the furnace result stack
+	 * Turn one stack from the furnace source stack into the appropriate smelted stack in the furnace result stack
 	 */
 	public void smeltItem() {
 		if (this.canSmelt()) {
@@ -219,7 +219,7 @@ public abstract class AbstractWorkCart extends EntityRollingStock implements IIn
 	}
 
 	/**
-	 * Returns the number of ticks that the supplied fuel item will keep the furnace burning, or 0 if the item isn't fuel
+	 * Returns the number of ticks that the supplied fuel stack will keep the furnace burning, or 0 if the stack isn't fuel
 	 */
 	public static int getItemBurnTime(ItemStack par0ItemStack) {
 		if (par0ItemStack == null) {
@@ -260,7 +260,7 @@ public abstract class AbstractWorkCart extends EntityRollingStock implements IIn
 	}
 
 	/**
-	 * Return true if item is a fuel source (getItemBurnTime() > 0).
+	 * Return true if stack is a fuel source (getItemBurnTime() > 0).
 	 */
 	public static boolean isItemFuel(ItemStack par0ItemStack) {
 		return getItemBurnTime(par0ItemStack) > 0;
@@ -318,7 +318,7 @@ public abstract class AbstractWorkCart extends EntityRollingStock implements IIn
 	}
 
 	/**
-	 * Sets the given item stack to the specified slot in the inventory (can be crafting or armor sections).
+	 * Sets the given stack stack to the specified slot in the inventory (can be crafting or armor sections).
 	 */
 	@Override
 	public void setInventorySlotContents(int par1, ItemStack par2ItemStack) {

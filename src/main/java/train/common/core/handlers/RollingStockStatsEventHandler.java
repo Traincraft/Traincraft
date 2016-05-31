@@ -134,7 +134,7 @@ public class RollingStockStatsEventHandler {
 	}
 
 	/**
-	 * trainCreate event, on item creation
+	 * trainCreate event, on stack creation
 	 * 
 	 * @param trainID
 	 * @param trainName

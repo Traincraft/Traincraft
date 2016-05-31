@@ -7,14 +7,14 @@ package train.common.blocks.tracks;
 
 import mods.railcraft.api.tracks.ITrackEmitter;
 import net.minecraft.entity.item.EntityMinecart;
-import train.common.library.TrackIDs;
+import train.common.library.Tracks;
 import train.common.api.LiquidTank;
 
 public class BlockDetectorTankCartsTrack extends BlockDetectorTrack implements ITrackEmitter {
 
 	@Override
-	public TrackIDs getTrackType() {
-		return TrackIDs.DETECTOR_TANK_CARTS;
+	public Tracks getTrackType() {
+		return Tracks.DETECTOR_TANK_CARTS;
 	}
 
 	@Override

@@ -21,8 +21,8 @@ public interface IBlastFurnaceCraftingManager {
      * Adds a new Blast Furnace Recipe.
      *
      * @param input the input, if null the function will silently abort
-     * @param matchDamage if true, it will compare item damage, if false, just
-     * the item ID
+     * @param matchDamage if true, it will compare stack damage, if false, just
+     * the stack ID
      * @param matchNBT if true, it will compare nbt
      * @param cookTime the time it takes to cook the recipe
      * @param output the output

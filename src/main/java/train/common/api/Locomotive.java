@@ -850,8 +850,8 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 	//	 *            Orientation the ItemStack is requested from.
 	//	 * @param maxItemCount
 	//	 *            Maximum amount of items to extract (spread over all returned
-	//	 *            item stacks)
-	//	 * @return Array of item stacks extracted from the inventory
+	//	 *            stack stacks)
+	//	 * @return Array of stack stacks extracted from the inventory
 	//	 */
 	//	@Override
 	//	public ItemStack[] extractItem(boolean doRemove, ForgeDirection from, int maxItemCount) {

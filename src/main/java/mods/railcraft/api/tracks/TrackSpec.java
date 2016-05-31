@@ -51,7 +51,7 @@ public final class TrackSpec {
      * for Railcraft. Capped at Short.MAX_VALUE
      * @param tag A unique internal string identifier (ex.
      * "railcraft:track.speed.transition")
-     * @param iconProvider The provider for Track item icons
+     * @param iconProvider The provider for Track stack icons
      * @param instanceClass The ITrackInstance class that corresponds to this
      * TrackSpec
      * @see ITrackItemIconProvider
@@ -67,7 +67,7 @@ public final class TrackSpec {
      * for Railcraft. Capped at Short.MAX_VALUE
      * @param tag A unique internal string identifier (ex.
      * "railcraft:track.speed.transition")
-     * @param iconProvider The provider for Track item icons
+     * @param iconProvider The provider for Track stack icons
      * @param instanceClass The ITrackInstance class that corresponds to this
      * TrackSpec
      * @param tooltip The tool tip for the Track Item

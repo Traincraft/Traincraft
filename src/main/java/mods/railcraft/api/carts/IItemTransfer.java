@@ -22,10 +22,10 @@ import mods.railcraft.api.core.items.IStackFilter;
 public interface IItemTransfer {
     /**
      * Offers an ItemStack to the object implementing this interface.
-     * This function will return null if the item is accepted in full,
+     * This function will return null if the stack is accepted in full,
      * otherwise it will return whatever is rejected.
      *
-     * @param source The Object offering the item
+     * @param source The Object offering the stack
      * @param offer  The ItemStack being offered
      * @return Unused or unwanted portions of offer
      */
@@ -51,7 +51,7 @@ public interface IItemTransfer {
      * InvTools.isItemEqual(it.requestItem(this,request), request) == true
      *
      * @param source  The Object submitting the request
-     * @param request The type of item requested
+     * @param request The type of stack requested
      * @return An ItemStack to fulfill the request or null if refused.
      */
     public ItemStack requestItem(Object source, ItemStack request);
@@ -66,7 +66,7 @@ public interface IItemTransfer {
      * IStackFilter.matches(it.requestItem(this,request), request) == true
      *
      * @param source  The Object submitting the request
-     * @param request The type of item requested
+     * @param request The type of stack requested
      * @return An ItemStack to fulfill the request or null if refused.
      */
     public ItemStack requestItem(Object source, IStackFilter request);

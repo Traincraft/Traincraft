@@ -9,7 +9,7 @@ import mods.railcraft.api.tracks.ITrackEmitter;
 import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
-import train.common.library.TrackIDs;
+import train.common.library.Tracks;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -19,7 +19,7 @@ public class BlockDetectorTrack extends TrackBaseTraincraft implements ITrackEmi
 	private byte delay = 0;
 
 	@Override
-	public TrackIDs getTrackType() {
+	public Tracks getTrackType() {
 		return null;
 	}
 	@Override

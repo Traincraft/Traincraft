@@ -6,7 +6,7 @@ import mods.railcraft.api.tracks.ITrackPowered;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.nbt.NBTTagCompound;
 import train.common.api.Locomotive;
-import train.common.library.TrackIDs;
+import train.common.library.Tracks;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -17,8 +17,8 @@ public class BlockLocomotiveHoldingTrack extends BlockTrackLockingBase implement
 	protected boolean launchForward = true;
 	protected byte reset = 0;
 
-	public TrackIDs getTrackType() {
-		return TrackIDs.LOCO_HOLDING_TRACK;
+	public Tracks getTrackType() {
+		return Tracks.LOCO_HOLDING_TRACK;
 	}
 	@Override
 	public void updateEntity() {

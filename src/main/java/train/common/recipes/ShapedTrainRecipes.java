@@ -31,7 +31,7 @@ public class ShapedTrainRecipes implements ITCRecipe {
 	/** Is the ItemStack that you get when craft the recipe. */
 	private ItemStack recipeOutput;
 
-	/** Is the itemID of the output item that you get when craft the recipe. */
+	/** Is the itemID of the output stack that you get when craft the recipe. */
 	public final int recipeOutputItemID;
 	private boolean field_92049_f = false;
 

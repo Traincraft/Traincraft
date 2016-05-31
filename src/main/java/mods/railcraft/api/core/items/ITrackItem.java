@@ -14,7 +14,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 /**
- * Should be implemented by any rail item class that wishes to have
+ * Should be implemented by any rail stack class that wishes to have
  * it's rails placed by for example the Tunnel Bore or Track Relayer.
  *
  * If you defined your rails with a TrackSpec, you don't need to worry about this.
@@ -44,7 +44,7 @@ public interface ITrackItem
     public Block getPlacedBlock();
 
     /**
-     * Return true if the given tile entity corresponds to this Track item.
+     * Return true if the given tile entity corresponds to this Track stack.
      *
      * If the track has no tile entity, return true on null.
      *

@@ -12,7 +12,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import train.common.entity.rollingStock.EntityStockCar;
-import train.common.library.TrackIDs;
+import train.common.library.Tracks;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -23,8 +23,8 @@ public class BlockAnimalBoardingTrack extends TrackBaseTraincraft implements ITr
 	private byte delay = 0;
 
 	@Override
-	public TrackIDs getTrackType() {
-		return TrackIDs.ANIMAL_BOARDING_TRACK;
+	public Tracks getTrackType() {
+		return Tracks.ANIMAL_BOARDING_TRACK;
 	}
 	@Override
 	public void onMinecartPass(EntityMinecart cart) {
