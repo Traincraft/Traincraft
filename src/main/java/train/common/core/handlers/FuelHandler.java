@@ -8,69 +8,43 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import train.common.core.plugins.PluginRailcraft;
-import train.common.core.plugins.PluginIndustrialCraft;
 import train.common.library.BlockIDs;
+
+import java.util.Arrays;
 
 public class FuelHandler implements IFuelHandler {
 
 	/**
-	 * durations for these materials
+	 * durations for the materials
 	 */
-	public static int stick = 200;
-	public static int wood = 700;
-	public static int bucketLava = 1000;
-	public static int coal = 1200;
-	public static int sapling = 200;
-	public static int blazeRod = 2000;
-	public static int coalFuel = 1400;
-	public static int cokeCoal = 1800;
-	
-	public static int DEFAULT_FUEL = 40;
-	public static int DEFAULT_WATER = 200;
+	//0 is wood, the rest follow in line with the order of burnableItems
+	private static int[] burnTimes = new int[]{300, 100, 1200, 1000, 2000, 150, 12000, 200};
+	private static Item[] burnableItems = new Item[]{Items.stick,Items.coal, Items.lava_bucket, Items.blaze_rod, Item.getItemFromBlock(Blocks.wooden_slab), Item.getItemFromBlock(Blocks.coal_block), Item.getItemFromBlock(Blocks.sapling)};
+	//TODO add coke coal from railcraft
+	//secondary option, a bit poor way of going about it, but if necessary, an option for burnable item support without adding that specific mod would be a name check against a list of strings.
+
 
 	/**
 	 * returns a fuel duration for steam engines
 	 * 
-	 * @param itemstack
+	 * @param it
 	 * @return
 	 */
 	public static int steamFuelLast(ItemStack it) {
 		if (it == null) {
 			return 0;
+		} else if (Block.getBlockFromItem(it.getItem()) != null && Block.getBlockFromItem(it.getItem()).getMaterial() == Material.wood){
+			//simple if material wood, return the wood burn time
+			return burnTimes[0];
+		} else{
+			//iterate through the burnables list to try and find the item, and return the burn value of it from the burn times list
+			for(Item item : burnableItems){
+				if(it.getItem() == item){
+					return burnTimes[Arrays.asList(burnableItems).indexOf(item) +1];
+				}
+			}
 		}
-		Block block = Block.getBlockFromItem(it.getItem());
-		if (block != null && block.getMaterial() == Material.wood) {
-			return wood;
-		}
-		int id = Item.getIdFromItem(it.getItem());
-		if (id == Item.getIdFromItem(Items.stick)) {
-			return stick;
-		}
-		if (id == Item.getIdFromItem(Items.coal)) {
-			return coal;
-		}
-		if (id == Item.getIdFromItem(Items.lava_bucket)) {
-			return bucketLava;
-		}
-		if (id == Item.getIdFromItem(Item.getItemFromBlock(Blocks.sapling))) {
-			return sapling;
-		}
-		if (id == Item.getIdFromItem(Items.blaze_rod)) {
-			return blazeRod;
-		}
-		// TODO: Hardcoding index to arbitrary array is worse than hardcoding the contents of that index...
-		String coalFuelName = PluginIndustrialCraft.getNames()[15];
-		if (PluginIndustrialCraft.getItems().containsKey(coalFuelName) &&
-				id == Item.getIdFromItem(PluginIndustrialCraft.getItems().get(coalFuelName).getItem())) {
-			return coalFuel;
-		}
-		String cokeCoalName = PluginRailcraft.getNames()[1];
-		if (PluginRailcraft.getItems().containsKey(cokeCoalName) &&
-				id == Item.getIdFromItem(PluginRailcraft.getItems().get(cokeCoalName).getItem())) {
-			return cokeCoal;
-		}
-
+		//if all else fails, try and get a default value
 		return GameRegistry.getFuelValue(it);
 	}
 

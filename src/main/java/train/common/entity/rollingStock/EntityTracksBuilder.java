@@ -31,7 +31,6 @@ import train.common.api.Freight;
 import train.common.core.TrainModBlockUtil;
 import train.common.core.handlers.BuilderOreHandler;
 import train.common.core.handlers.FuelHandler;
-import train.common.core.plugins.PluginIndustrialCraft;
 import train.common.core.plugins.PluginRailcraft;
 import train.common.library.BlockIDs;
 import train.common.library.GuiIDs;
@@ -185,10 +184,6 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 			if (BuilderInvent[0] != null) {
 				if ((FuelHandler.steamFuelLast(BuilderInvent[0])>0) && getFuel() + 300 < maxFuel) {
 					fuelTrain += 300;
-					decrStackInInvent(0, 1, 1);
-				}
-				if (BuilderInvent[0] != null && PluginIndustrialCraft.getItems().containsKey(PluginIndustrialCraft.getNames()[15]) && Item.getIdFromItem(BuilderInvent[0].getItem()) == Item.getIdFromItem(PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[15]).getItem()) && getFuel() + 600 < maxFuel) {
-					fuelTrain += 600;
 					decrStackInInvent(0, 1, 1);
 				}
 				if (BuilderInvent[0] != null && (PluginRailcraft.getItems().containsKey(PluginRailcraft.getNames()[1]) && (Item.getIdFromItem(BuilderInvent[0].getItem()) == Item.getIdFromItem(PluginRailcraft.getItems().get(PluginRailcraft.getNames()[1]).getItem()))) && getFuel() + 800 < maxFuel) {
@@ -623,11 +618,6 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 		return is;
 	}
 
-	/* Is it a cable from industrial craft 2? */
-	private boolean isCableOrPipe(ItemStack i) {
-		return Item.getIdFromItem(i.getItem()) == Item.getIdFromItem(PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[45]).getItem()) || Item.getIdFromItem(i.getItem()) == Item.getIdFromItem(PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[33]).getItem()) || Item.getIdFromItem(i.getItem()) == Item.getIdFromItem(PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[36]).getItem()) || Item.getIdFromItem(i.getItem()) == Item.getIdFromItem(PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[35]).getItem()) || Item.getIdFromItem(i.getItem()) == Item.getIdFromItem(PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[37]).getItem()) || Item.getIdFromItem(i.getItem()) == Item.getIdFromItem(PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[38]).getItem()) || Item.getIdFromItem(i.getItem()) == Item.getIdFromItem(PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[39]).getItem()) || Item.getIdFromItem(i.getItem()) == Item.getIdFromItem(PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[40]).getItem()) || Item.getIdFromItem(i.getItem()) == Item.getIdFromItem(PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[41]).getItem()) || Item.getIdFromItem(i.getItem()) == Item.getIdFromItem(PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[42]).getItem()) || Item.getIdFromItem(i.getItem()) == Item.getIdFromItem(PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[43]).getItem()) || i.getItem().getClass().getSimpleName().equals("ItemPipe");
-	}
-
 	private boolean isOverheadLine(int i) {
 		/* if(InitOverheadLine.lineItem==null){ return false; } return i==InitOverheadLine.lineItem.itemID; */
 		return false;
@@ -635,7 +625,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 
 	/* Is it a forbidden block? */
 	private boolean UnAuthorizedBlock(int i) {
-		return i == 57 || i == 42 || i == 41 || i == 81 || i == 56 || i == 21 || i == 16 || i == 15 || i == 14 || i == 116 || i == 114 || i == 113 || i == 111 || i == 109 || i == 108 || i == 107 || i == 106 || i == 31 || i == 30 || i == 26 || i == 18 || i == 7 || i == 6 || i == 37 || i == 38 || i == 39 || i == 40 || i == 43 || i == 51 || i == 52 || i == 53 || i == 55 || i == 57 || i == 63 || i == 64 || i == 67 || i == 68 || i == 70 || i == 71 || i == 72 || i == 77 || i == 78 || i == 81 || i == 83 || i == 92 || i == 95 || BuilderOreHandler.isOre(i) || (PluginIndustrialCraft.getItems().containsKey(PluginIndustrialCraft.getNames()[2]) && i == Item.getIdFromItem(PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[2]).getItem()) || (PluginIndustrialCraft.getItems().containsKey(PluginIndustrialCraft.getNames()[1]) && i == Item.getIdFromItem(PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[1]).getItem()) || (PluginIndustrialCraft.getItems().containsKey(PluginIndustrialCraft.getNames()[0]) && i == Item.getIdFromItem(PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[0]).getItem()))));
+		return i == 57 || i == 42 || i == 41 || i == 81 || i == 56 || i == 21 || i == 16 || i == 15 || i == 14 || i == 116 || i == 114 || i == 113 || i == 111 || i == 109 || i == 108 || i == 107 || i == 106 || i == 31 || i == 30 || i == 26 || i == 18 || i == 7 || i == 6 || i == 37 || i == 38 || i == 39 || i == 40 || i == 43 || i == 51 || i == 52 || i == 53 || i == 55 || i == 57 || i == 63 || i == 64 || i == 67 || i == 68 || i == 70 || i == 71 || i == 72 || i == 77 || i == 78 || i == 81 || i == 83 || i == 92 || i == 95 || BuilderOreHandler.isOre(i);
 	}
 
 	private void decrStackInInvent(int slot, int num, int random) {
@@ -882,13 +872,6 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 				trackfuel = 1;
 				tracksStack = new ItemStack(Blocks.rail);
 				return true;
-			}
-			if (BuilderInvent[1] != null && PluginIndustrialCraft.getItems().containsKey(PluginIndustrialCraft.getNames()[32]) && getFuel() > 0) {//
-				if ((Item.getIdFromItem(BuilderInvent[1].getItem()) == Item.getIdFromItem(PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[32]).getItem())) && getFuel() > 0) {
-					trackfuel = 1;
-					tracksStack = new ItemStack(Blocks.rail);
-					return true;
-				}
 			}
 			if (Item.getIdFromItem(BuilderInvent[1].getItem()) == Item.getIdFromItem(ItemIDs.steel.item) && getFuel() > 0) {
 				trackfuel = 1;

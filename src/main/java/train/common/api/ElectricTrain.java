@@ -3,7 +3,6 @@ package train.common.api;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import train.common.core.plugins.PluginIndustrialCraft;
 
 public abstract class ElectricTrain extends Locomotive {
 
@@ -79,18 +78,6 @@ public abstract class ElectricTrain extends Locomotive {
 		}
 		else {
 			if(this.isLocoTurnedOn())fuelTrain--;
-			if (PluginIndustrialCraft.getItems().containsKey(PluginIndustrialCraft.getNames()[21])) {
-				for (int u = 1; u < locoInvent.length; u++) {
-					if (locoInvent[u] != null) {
-						if (locoInvent[u].getItem() == PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[21]).getItem()) {
-							reduceExplosionChance += 10000;
-							if (rand.nextInt(100) == 0) {
-								locoInvent[u].setItemDamage(4);
-							}
-						}
-					}
-				}
-			}
 		}
 		if (hasUranium && (rand.nextInt(reduceExplosionChance) == 0) && (!Ignite)) {// fuse
 			Ignite = true;
