@@ -58,8 +58,10 @@ public enum ItemIDs {
 	//refinedFuelLiquid("ItemTrain", "item_liquid_fuel"),
 	//dieselLiquid("ItemTrain", "item_liquid_diesel"),
 	emptyCanister("ItemContainer", "item_canister", 40),
-	copperRail("ItemRail", "item_rail_copper", 1),
-	steelRail("ItemRail", "item_rail_steel", 1),
+	//copperRail("ItemRail", "item_rail_copper", 1),
+	//steelRail("ItemRail", "item_rail_steel", 1),
+	copperRail("ItemTrain", "item_rail_copper", 1),
+	steelRail("ItemTrain", "item_rail_steel", 1),
 	recipeBook("ItemRecipeBook", "item_book_blue", 1),
 
 	minecartWork("ItemRollingStock", "train_work", 4),

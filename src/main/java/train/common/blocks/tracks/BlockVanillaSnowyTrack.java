@@ -4,13 +4,13 @@
 package train.common.blocks.tracks;
 
 import net.minecraft.util.IIcon;
-import train.common.library.TrackIDs;
+import train.common.library.Tracks;
 
 public class BlockVanillaSnowyTrack extends TrackBaseTraincraft {
 
 	@Override
-	public TrackIDs getTrackType() {
-		return TrackIDs.VANILLA_SNOWY_TRACK;
+	public Tracks getTrackType() {
+		return Tracks.VANILLA_SNOWY_TRACK;
 	}
 	@Override
 	public IIcon getIcon() {

@@ -8,13 +8,13 @@ package train.common.blocks.tracks;
 import mods.railcraft.api.tracks.ITrackEmitter;
 import net.minecraft.entity.item.EntityMinecart;
 import train.common.api.Freight;
-import train.common.library.TrackIDs;
+import train.common.library.Tracks;
 
 public class BlockDetectorFreightTrack extends BlockDetectorTrack implements ITrackEmitter {
 
 	@Override
-	public TrackIDs getTrackType() {
-		return TrackIDs.DETECTOR_FREIGHT;
+	public Tracks getTrackType() {
+		return Tracks.DETECTOR_FREIGHT;
 	}
 
 	@Override

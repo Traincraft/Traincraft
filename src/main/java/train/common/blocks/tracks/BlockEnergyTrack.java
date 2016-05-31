@@ -17,7 +17,7 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IIcon;
 import train.common.api.ElectricTrain;
 import train.common.api.EntityRollingStock;
-import train.common.library.TrackIDs;
+import train.common.library.Tracks;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -41,8 +41,8 @@ public class BlockEnergyTrack extends TrackBaseTraincraft implements ITrackPower
 	}
 
 	@Override
-	public TrackIDs getTrackType() {
-		return TrackIDs.ENERGY_TRACK;
+	public Tracks getTrackType() {
+		return Tracks.ENERGY_TRACK;
 	}
 
 	private Block getThisBlock() {

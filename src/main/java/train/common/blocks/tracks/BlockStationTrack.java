@@ -12,7 +12,7 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IIcon;
 import train.common.api.AbstractTrains;
 import train.common.api.Locomotive;
-import train.common.library.TrackIDs;
+import train.common.library.Tracks;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -36,8 +36,8 @@ public class BlockStationTrack extends BlockTrackLockingBase implements ITrackLo
 		}
 		return getIcon(0+this.mode);
 	}
-	public TrackIDs getTrackType() {
-		return TrackIDs.STATION_TRACK;
+	public Tracks getTrackType() {
+		return Tracks.STATION_TRACK;
 	}
 	@Override
 	public void updateEntity() {

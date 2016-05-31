@@ -186,7 +186,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 					fuelTrain += 300;
 					decrStackInInvent(0, 1, 1);
 				}
-				if (BuilderInvent[0] != null && (PluginRailcraft.getItems().containsKey(PluginRailcraft.getNames()[1]) && (Item.getIdFromItem(BuilderInvent[0].getItem()) == Item.getIdFromItem(PluginRailcraft.getItems().get(PluginRailcraft.getNames()[1]).getItem()))) && getFuel() + 800 < maxFuel) {
+				if (BuilderInvent[0] != null && BuilderInvent[0].isItemEqual(PluginRailcraft.RailcraftParts.INGOT_STEEL.stack) && getFuel() + 800 < maxFuel) {
 					fuelTrain += 800;
 					decrStackInInvent(0, 1, 1);
 				}
@@ -543,7 +543,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 								j1 = lis.size();
 							}
 						}
-						else if ((!hasBeenPlaced) && (u == ((Freight) entity).cargoItems.length)) {// inventory is full, drop item
+						else if ((!hasBeenPlaced) && (u == ((Freight) entity).cargoItems.length)) {// inventory is full, drop stack
 							noFreight = true;
 						}
 					}
@@ -571,7 +571,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 						u = BuilderInvent.length;
 					}
 				}
-				else if ((!hasBeenPlaced) && (u == BuilderInvent.length - 1)) {// inventory is full, drop item
+				else if ((!hasBeenPlaced) && (u == BuilderInvent.length - 1)) {// inventory is full, drop stack
 					// dropItemWithOffset(itemdug.itemID, 1, 1.0F);//has to be fixed
 					entityDropItem(itemdug, 1.0F);
 					u = BuilderInvent.length;
@@ -757,7 +757,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 	}
 
 	/**
-	 * Perform block harvesting, drop the item, remove block and play sound.
+	 * Perform block harvesting, drop the stack, remove block and play sound.
 	 * 
 	 * @param pos
 	 */

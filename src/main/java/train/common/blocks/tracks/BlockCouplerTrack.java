@@ -12,7 +12,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
 import train.common.api.AbstractTrains;
 import train.common.core.handlers.LinkHandler;
-import train.common.library.TrackIDs;
+import train.common.library.Tracks;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -23,8 +23,8 @@ public class BlockCouplerTrack extends TrackBaseTraincraft implements ITrackPowe
 	private boolean powered = false;
 
 	@Override
-	public TrackIDs getTrackType() {
-		return TrackIDs.COUPLER_TRACK;
+	public Tracks getTrackType() {
+		return Tracks.COUPLER_TRACK;
 	}
 	@Override
 	public IIcon getIcon() {
