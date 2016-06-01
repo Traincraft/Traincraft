@@ -368,6 +368,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 	 * @param i
 	 */
 	public void pressKeyLoco(int i) {
+		if (updateTicks % 50 == 0) {
 			Traincraft.modChannel.sendToServer(new PacketKeyPress(i));
 		}
 	}
