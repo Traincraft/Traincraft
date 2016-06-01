@@ -41,10 +41,10 @@ public class BlockTCRail extends Block {
 	}
 
 	@Override
-    public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z, EntityPlayer player)  {
-		TileTCRail tileEntity = (TileTCRail) world.getTileEntity(x, y, z);
-		if (tileEntity != null) {
-			return new ItemStack(Item.getItemById(tileEntity.idDrop), 0);
+	public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z, EntityPlayer player)  {
+		TileEntity tileEntity = world.getTileEntity(x, y, z);
+		if (tileEntity instanceof TileTCRail && ((TileTCRail)tileEntity).idDrop != 0) {
+			return new ItemStack(Item.getItemById(((TileTCRail)tileEntity).idDrop), 0);
 		}
 		return null;
 	}
