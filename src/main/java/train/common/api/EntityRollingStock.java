@@ -1658,8 +1658,9 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		nbttagcompound.setDouble("speedLimiter", this.speedLimiter);
 		nbttagcompound.setFloat("serverRealRotation", this.serverRealRotation);
 		//nbttagcompound.setBoolean("hasSpawnedBogie", this.hasSpawnedBogie);
-		//nbttagcompound.setBoolean("needsBogieUpdate", this.needsBogieUpdate);
+		nbttagcompound.setBoolean("needsBogieUpdate", this.needsBogieUpdate);
 		nbttagcompound.setBoolean("firstLoad", this.firstLoad);
+		nbttagcompound.setFloat("rotation", this.rotation);
 	}
 
 	@Override
@@ -1668,8 +1669,9 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		this.speedLimiter = nbttagcompound.getDouble("speedLimiter");
 		this.serverRealRotation = nbttagcompound.getFloat("serverRealRotation");
 		//this.hasSpawnedBogie = nbttagcompound.getBoolean("hasSpawnedBogie");
-		//this.needsBogieUpdate = nbttagcompound.getBoolean("needsBogieUpdate");
+		this.needsBogieUpdate = nbttagcompound.getBoolean("needsBogieUpdate");
 		this.firstLoad = nbttagcompound.getBoolean("firstLoad");
+		this.rotation = nbttagcompound.getFloat("rotation");
 	}
 
 	@Override

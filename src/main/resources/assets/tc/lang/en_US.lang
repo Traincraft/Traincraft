@@ -26,6 +26,29 @@ fluid.tc:diesel.name=Diesel fuel
 fluid.tc:refinedfuel.name=Refined fuel
 tile.tc:bridgePillar.name=Bridge pillar
 
+
+<!-- ## Railcraft items ## -->
+tile.tc.track.detector.freight.name=Freight Cart Detector Track
+tile.tc.track.detector.passenger.name=Passenger Cart Detector Track
+tile.tc.track.detector.loco.name=Locomotive Detector Track
+tile.tc.track.detector.steam.name=Steam Locomotive Detector Track
+tile.tc.track.detector.diesel.name=Diesel Locomotive Detector Track
+tile.tc.track.detector.tank.name=Tank Cart Detector Track
+tile.tc.track.boarding.animal.name=Animal Boarding Track (Stock Car only)
+tile.tc.track.boarding.mob.name=Mob Boarding Track (Stock Car only)
+tile.tc.track.disembark.name=Disembarking Track (Stock Car only)
+tile.tc.track.energy.name=Electric Track
+tile.tc.track.holding.loco.name=Locomotive Holding Track
+tile.tc.track.station.name=Station Track
+tile.tc.track.horn.loco.name=Whistle Track
+tile.tc.track.snow.name=Snowy track
+tile.tc.track.snow.steel.name=Snowy steel track
+tile.tc.track.snow.copper.name=Snowy copper track
+tile.tc.track.copper.name=Copper Track
+tile.tc.track.coupler.name=Coupler Track
+tile.tc.track.speed.loco.name=Speed Limiter Track
+tile.tc.track.steel.name=Steel Track
+
 <!-- ## Items ## -->
 item.tc:diesel.name=(Filled) Diesel Canister
 item.tc:stake.name=Stake
