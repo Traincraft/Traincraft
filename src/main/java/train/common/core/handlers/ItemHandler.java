@@ -9,7 +9,9 @@ package train.common.core.handlers;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRailBase;
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -68,7 +70,7 @@ public class ItemHandler {
 			return true;
 		}
 		if (entity instanceof EntityFlatCarLogs_DB) {
-			return isDict("logWood", itemstack);
+			return itemstack.getItem() == new ItemStack(Item.getItemFromBlock(Blocks.log) , 1, OreDictionary.WILDCARD_VALUE).getItem();
 		}
 		if (entity instanceof EntityFlatCarRails_DB) {
 			if (block instanceof BlockRailBase) {
@@ -77,7 +79,7 @@ public class ItemHandler {
 			return itemstack.getItem() instanceof ItemTCRail;
 		}
 		if (entity instanceof EntityFlatCartWoodUS) {
-			return isDict("plankWood", itemstack);
+			return itemstack.getItem() == new ItemStack(Item.getItemFromBlock(Blocks.planks) , 1, OreDictionary.WILDCARD_VALUE).getItem();
 		}
 		if (entity instanceof EntityFreightCart) {
 			return true;
@@ -89,19 +91,19 @@ public class ItemHandler {
 			return true;
 		}
 		if (entity instanceof EntityFreightCartUS) {
-			return !woodStuff(itemstack);
+			return !(itemstack.getItem() == new ItemStack(Item.getItemFromBlock(Blocks.log) , 1, OreDictionary.WILDCARD_VALUE).getItem()) && !(itemstack.getItem() == new ItemStack(Item.getItemFromBlock(Blocks.planks) , 1, OreDictionary.WILDCARD_VALUE).getItem());
 		}
 		if (entity instanceof EntityFreightCenterbeam_Empty) {
 			return true;
 		}
 		if (entity instanceof EntityFreightCenterbeam_Wood_1) {
-			return woodStuff(itemstack);
+			return itemstack.getItem() == new ItemStack(Item.getItemFromBlock(Blocks.log) , 1, OreDictionary.WILDCARD_VALUE).getItem() || itemstack.getItem() == new ItemStack(Item.getItemFromBlock(Blocks.planks) , 1, OreDictionary.WILDCARD_VALUE).getItem();
 		}
 		if (entity instanceof EntityFreightCenterbeam_Wood_2) {
-			return woodStuff(itemstack);
+			return itemstack.getItem() == new ItemStack(Item.getItemFromBlock(Blocks.log) , 1, OreDictionary.WILDCARD_VALUE).getItem() || itemstack.getItem() == new ItemStack(Item.getItemFromBlock(Blocks.planks) , 1, OreDictionary.WILDCARD_VALUE).getItem();
 		}
 		if (entity instanceof EntityFreightClosed) {
-			if (!woodStuff(itemstack)) {
+			if (!(itemstack.getItem() == new ItemStack(Item.getItemFromBlock(Blocks.log) , 1, OreDictionary.WILDCARD_VALUE).getItem()) && !(itemstack.getItem() == new ItemStack(Item.getItemFromBlock(Blocks.planks) , 1, OreDictionary.WILDCARD_VALUE).getItem())) {
 				if (block !=null) {
 					return true;
 				}
@@ -109,7 +111,7 @@ public class ItemHandler {
 			return false;
 		}
 		if (entity instanceof EntityFreightGondola_DB) {
-			if (!woodStuff(itemstack)) {
+			if (!(itemstack.getItem() == new ItemStack(Item.getItemFromBlock(Blocks.log) , 1, OreDictionary.WILDCARD_VALUE).getItem())) {
 				if (block !=null) {
 					return true;
 				}
@@ -124,13 +126,13 @@ public class ItemHandler {
 			return cropStuff(itemstack);
 		}
 		if (entity instanceof EntityFreightHopperUS) {
-			return !woodStuff(itemstack);
+			return !(itemstack.getItem() == new ItemStack(Item.getItemFromBlock(Blocks.log) , 1, OreDictionary.WILDCARD_VALUE).getItem()) && !(itemstack.getItem() == new ItemStack(Item.getItemFromBlock(Blocks.planks) , 1, OreDictionary.WILDCARD_VALUE).getItem());
 		}
 		if (entity instanceof EntityFreightMinetrain) {
 				return block.isOpaqueCube();
 		}
 		if (entity instanceof EntityFreightOpen2) {
-			if (!woodStuff(itemstack)) {
+			if (!(itemstack.getItem() == new ItemStack(Item.getItemFromBlock(Blocks.log) , 1, OreDictionary.WILDCARD_VALUE).getItem()) && !(itemstack.getItem() == new ItemStack(Item.getItemFromBlock(Blocks.planks) , 1, OreDictionary.WILDCARD_VALUE).getItem())) {
 					return true;
 			}
 			return false;
@@ -145,13 +147,13 @@ public class ItemHandler {
 			return true;
 		}
 		if (entity instanceof EntityFreightWood) {
-			return isDict("logWood", itemstack);
+			return itemstack.getItem() == new ItemStack(Item.getItemFromBlock(Blocks.log) , 1, OreDictionary.WILDCARD_VALUE).getItem();
 		}
 		if (entity instanceof EntityFreightWood2) {
-			return isDict("logWood", itemstack);
+			return itemstack.getItem() == new ItemStack(Item.getItemFromBlock(Blocks.log) , 1, OreDictionary.WILDCARD_VALUE).getItem();
 		}
 		if (entity instanceof EntityFreightOpenWagon) {
-				return !woodStuff(itemstack);
+				return !(itemstack.getItem() == new ItemStack(Item.getItemFromBlock(Blocks.log) , 1, OreDictionary.WILDCARD_VALUE).getItem());
 		}
 		return false;
 	}
@@ -159,17 +161,6 @@ public class ItemHandler {
 	private static boolean cropStuff(ItemStack itemstack) {
 		String[] names = new String[] { "cropCorn", "cropHops", "cropRice",
 				"seedCorn" };
-		for (String name: names) {
-			if (isDict(name, itemstack)) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	private static boolean woodStuff(ItemStack itemstack) {
-		String[] names = new String[] { "logWood", "plankWood", "slabWood",
-				"stickWood", "stairWood" };
 		for (String name: names) {
 			if (isDict(name, itemstack)) {
 				return true;

@@ -9,6 +9,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.fluids.FluidRegistry;
 import train.common.Traincraft;
 import train.common.api.Tender;
 import train.common.library.GuiIDs;
@@ -19,7 +20,7 @@ public class EntityTenderU57 extends Tender implements IInventory {
 	public int numFreightSlots;
 
 	public EntityTenderU57(World world) {
-		super(world, 0, 0, 10000 /*EnumTrains..getTankCapacity()*/, LiquidManager.WATER_FILTER);
+		super(world, FluidRegistry.WATER, 0, 10000 /*EnumTrains..getTankCapacity()*/, LiquidManager.WATER_FILTER);
 		initFreightTender();
 	}
 

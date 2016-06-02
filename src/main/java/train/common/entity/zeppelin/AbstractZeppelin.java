@@ -1,5 +1,6 @@
 package train.common.entity.zeppelin;
 
+import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.material.Material;
@@ -24,7 +25,9 @@ import net.minecraftforge.common.util.Constants;
 import org.lwjgl.input.Keyboard;
 import train.common.Traincraft;
 import train.common.core.handlers.ConfigHandler;
+import train.common.core.handlers.PacketHandler;
 import train.common.core.network.PacketKeyPress;
+import train.common.core.network.PacketZeppelinRotation;
 import train.common.library.GuiIDs;
 
 import java.util.List;
@@ -616,7 +619,7 @@ public abstract class AbstractZeppelin extends Entity implements IInventory {
 		this.rotationYaw = (float) ((double) this.rotationYaw + d12);
 		this.setRotation(this.rotationYaw, this.rotationPitch);
 		//TODO Packets
-		// PacketHandler.sendPacketToClients(PacketHandler.setRotationPacketZeppelin(this, rotationYaw, roll), worldObj, (int) posX, (int) posY, (int) posZ, 400D);
+		Traincraft.modChannel.sendToAllAround(new PacketZeppelinRotation(rotationYaw, roll), new NetworkRegistry.TargetPoint(worldObj.provider.dimensionId, posX, posY, posZ, 400D));
 	}
 
 	@Override

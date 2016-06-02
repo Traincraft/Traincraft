@@ -17,11 +17,13 @@ import java.io.IOException;
 
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.Packet;
 import train.common.Traincraft;
 import train.common.core.network.*;
 import train.common.entity.rollingStock.EntityTracksBuilder;
 import train.common.Packet250CustomPayload;
+import train.common.entity.zeppelin.AbstractZeppelin;
 import train.common.library.Info;
 
 public class PacketHandler {
@@ -40,6 +42,8 @@ public class PacketHandler {
 		Traincraft.modChannel.registerMessage(PacketSetTrainLockedToClient.Handler.class, PacketSetTrainLockedToClient.class, ++packetID, Side.SERVER);
 		Traincraft.modChannel.registerMessage(PacketSetLocoTurnedOn.Handler.class, PacketSetLocoTurnedOn.class, ++packetID, Side.SERVER);
 		Traincraft.modChannel.registerMessage(PacketLantern.Handler.class, PacketLantern.class, ++packetID, Side.SERVER);
+		Traincraft.modChannel.registerMessage(PacketZeppelinRotation.Handler.class, PacketZeppelinRotation.class, ++packetID, Side.SERVER);
+		Traincraft.modChannel.registerMessage(PacketTrackBuilderHeight.Handler.class, PacketTrackBuilderHeight.class, ++packetID, Side.SERVER);
 	}
 
 	public static IMessage setParkingBrake(Entity player, Entity entity, boolean set, boolean toServer) {
@@ -66,25 +70,10 @@ public class PacketHandler {
 		return new PacketSetTrainLockedToClient(set);
 	}
 
-	public static Packet setBuilderPlannedHeight(Entity player, Entity entity, int set, int packetID) {
-		ByteArrayOutputStream bos = new ByteArrayOutputStream();
-		DataOutputStream dos = new DataOutputStream(bos);
-		try {
-			if (entity instanceof EntityTracksBuilder) {
-				EntityTracksBuilder lo = (EntityTracksBuilder) entity;
-				dos.writeInt(packetID);
-				dos.writeInt(lo.getEntityId());//.getID());
-				dos.writeInt(set);
-			}
-		}
-		catch (IOException e) {
-			e.printStackTrace();
-		}
-		Packet250CustomPayload packet = new Packet250CustomPayload(Info.channel, bos.toByteArray());
-		packet.length = bos.size();
-		if (player instanceof EntityClientPlayerMP) {
-			EntityClientPlayerMP playerMP = (EntityClientPlayerMP) player;
-			playerMP.sendQueue.addToSendQueue(packet);
+	public static IMessage setBuilderPlannedHeight(Entity player, Entity entity, int set, int packetID) {
+		PacketTrackBuilderHeight packet = new PacketTrackBuilderHeight(set);
+		if (player instanceof EntityPlayerMP) {
+			Traincraft.modChannel.sendToServer(packet);
 		}
 		return packet;
 	}

@@ -49,20 +49,17 @@ public class EntityFreightWood extends Freight implements IInventory {
 	public void setDead() {
 		super.setDead();
 		isDead = true;
-		if (worldObj.isRemote) {
-			return;
-		}
-		label2: for (int i = 0; i < getSizeInventory(); i++) {
-			ItemStack itemstack = getStackInSlot(i);
-			if (itemstack == null) {
-				continue;
-			}
-			float f = rand.nextFloat() * 0.8F + 0.1F;
-			float f1 = rand.nextFloat() * 0.8F + 0.1F;
-			float f2 = rand.nextFloat() * 0.8F + 0.1F;
-			do {
+		if (!worldObj.isRemote) {
+			for (int i = 0; i < getSizeInventory(); i++) {
+				ItemStack itemstack = getStackInSlot(i);
+				if (itemstack == null) {
+					continue;
+				}
+				float f = rand.nextFloat() * 0.8F + 0.1F;
+				float f1 = rand.nextFloat() * 0.8F + 0.1F;
+				float f2 = rand.nextFloat() * 0.8F + 0.1F;
 				if (itemstack.stackSize <= 0) {
-					continue label2;
+					return;
 				}
 				int j = rand.nextInt(21) + 10;
 				if (j > itemstack.stackSize) {
@@ -75,9 +72,9 @@ public class EntityFreightWood extends Freight implements IInventory {
 				entityitem.motionY = (float) rand.nextGaussian() * f3 + 0.2F;
 				entityitem.motionZ = (float) rand.nextGaussian() * f3;
 				worldObj.spawnEntityInWorld(entityitem);
-			} while (true);
+			}
+			isDead = true;
 		}
-		isDead = true;
 	}
 
 	@Override

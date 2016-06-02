@@ -21,20 +21,20 @@ public class LiquidTank extends EntityRollingStock implements IFluidHandler, ISi
 	/**
 	 * 
 	 * @param world
-	 * @param liquidId
+	 * @param fluid
 	 * @param quantity
 	 * @param capacity
 	 */
-	public LiquidTank(World world, int liquidId, int quantity, int capacity) {
-		this(new FluidStack(liquidId, quantity), capacity, world, null, false);
+	public LiquidTank(World world, Fluid fluid, int quantity, int capacity) {
+		this(new FluidStack(fluid, quantity), capacity, world, null, false);
 	}
 
-	public LiquidTank(World world, int liquidId, int quantity, int capacity, FluidStack filter) {
-		this(new FluidStack(liquidId, quantity), capacity, world, filter, false);
+	public LiquidTank(World world, Fluid fluid, int quantity, int capacity, FluidStack filter) {
+		this(new FluidStack(fluid, quantity), capacity, world, filter, false);
 	}
 	
-	public LiquidTank(World world, int liquidId, int quantity, int capacity, FluidStack filter, boolean reverseSort) {
-		this(new FluidStack(liquidId, quantity), capacity, world, filter, reverseSort);
+	public LiquidTank(World world, Fluid fluid, int quantity, int capacity, FluidStack filter, boolean reverseSort) {
+		this(new FluidStack(fluid, quantity), capacity, world, filter, reverseSort);
 	}
 
 	private LiquidTank(FluidStack liquid, int capacity, World world, FluidStack filter, boolean reverseSort) {

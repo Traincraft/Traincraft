@@ -15,7 +15,7 @@ public abstract class Freight extends EntityRollingStock implements IInventory {
 	private int slotsFilled=0;
 	public Freight(World world) {
 		super(world);
-		dataWatcher.addObject(22, new Integer(0));
+		dataWatcher.addObject(22, 0);
 	}
 
 	@Override
@@ -175,7 +175,7 @@ public abstract class Freight extends EntityRollingStock implements IInventory {
 		NBTTagList nbttaglist = nbttagcompound.getTagList("Items", Constants.NBT.TAG_COMPOUND);
 		cargoItemsCount = new ItemStack[getSizeInventory()];
 		for (int i = 0; i < nbttaglist.tagCount(); i++) {
-			NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist.getCompoundTagAt(i);
+			NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
 			int j = nbttagcompound1.getByte("Slot") & 0xff;
 			if (j >= 0 && j < cargoItemsCount.length) {
 				cargoItemsCount[j] = ItemStack.loadItemStackFromNBT(nbttagcompound1);

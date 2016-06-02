@@ -87,8 +87,8 @@ public class BlockTCRail extends Block {
 		if (tileEntity != null && tileEntity.isLinkedToRail) {
 			if (world.isAirBlock(tileEntity.linkedX, tileEntity.linkedY, tileEntity.linkedZ)) {
 				// NOTE: func_147480_a = destroyBlock
-				world.func_147480_a(i, j, k, false);
 				world.removeTileEntity(i, j, k);
+				world.func_147480_a(i, j, k, false);
 			}
 		}
 		if (!World.doesBlockHaveSolidTopSurface(world, i, j - 1, k) && world.getBlock(i, j-1, k) != BlockIDs.bridgePillar.block) {

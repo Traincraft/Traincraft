@@ -8,6 +8,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.fluids.FluidRegistry;
 import train.common.Traincraft;
 import train.common.library.EnumTrains;
 import train.common.library.GuiIDs;
@@ -18,7 +19,7 @@ public class EntityTankLava extends LiquidTank {
 	public int freightInventorySize;
 
 	public EntityTankLava(World world) {
-		super(world, 0, 0, EnumTrains.tankCartLava.getTankCapacity(), LiquidManager.LAVA_FILTER);
+		super(world, FluidRegistry.LAVA, 0, EnumTrains.tankCartLava.getTankCapacity(), LiquidManager.LAVA_FILTER);
 		initFreightWater();
 	}
 
