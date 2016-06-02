@@ -55,6 +55,8 @@ public class Traincraft {
 
 	/** Network Channel to send packets on */
 	public static SimpleNetworkWrapper modChannel;
+	public static SimpleNetworkWrapper keyChannel;
+	public static SimpleNetworkWrapper rotationChannel;
 
 	/* Creative tab for Traincraft */
 	public static CreativeTabs tcTab;

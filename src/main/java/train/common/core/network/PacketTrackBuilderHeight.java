@@ -15,7 +15,6 @@ public class PacketTrackBuilderHeight implements IMessage {
     public PacketTrackBuilderHeight() {}
 
     public PacketTrackBuilderHeight(int set) {
-
         this.set = set;
     }
 
@@ -35,9 +34,7 @@ public class PacketTrackBuilderHeight implements IMessage {
 
         @Override
         public IMessage onMessage(PacketTrackBuilderHeight message, MessageContext context) {
-
             Entity builderEntity = context.getServerHandler().playerEntity.ridingEntity;
-
 			/* "instanceof" is null-safe, but we check to avoid four unnecessary instanceof checks for when the value is null anyways. */
             if (builderEntity != null) {
 

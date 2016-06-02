@@ -1,5 +1,6 @@
 package train.client.gui;
 
+import cpw.mods.fml.common.network.NetworkRegistry;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.Entity;
@@ -10,8 +11,10 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
+import train.common.Traincraft;
 import train.common.api.AbstractTrains;
 import train.common.core.handlers.PacketHandler;
+import train.common.core.network.PacketTrackBuilderHeight;
 import train.common.entity.rollingStock.EntityTracksBuilder;
 import train.common.inventory.InventoryBuilder;
 import train.common.inventory.InventoryLoco;
@@ -179,8 +182,7 @@ public class GuiBuilder extends GuiContainer {
 			for (int j1 = 0; j1 < lis3.size(); j1++) {
 				Entity entity = (Entity) lis3.get(j1);
 				if (entity instanceof EntityPlayer) {
-					//TODO Packets
-					 PacketHandler.setBuilderPlannedHeight(entity, builder, packet, packetID);
+					Traincraft.modChannel.sendToAllAround(new PacketTrackBuilderHeight(packet), new NetworkRegistry.TargetPoint(builder.worldObj.provider.dimensionId, builder.posX, builder.posY, builder.posZ, 20));
 				}
 			}
 		}

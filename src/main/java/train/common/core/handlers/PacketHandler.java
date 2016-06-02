@@ -32,18 +32,20 @@ public class PacketHandler {
 
 	public static void init(){
 		Traincraft.tcLog.info("Initialize Packets");
-		int packetID = 0;
-		Traincraft.modChannel = NetworkRegistry.INSTANCE.newSimpleChannel(Info.modID);
-		Traincraft.modChannel.registerMessage(PacketKeyPress.Handler.class, PacketKeyPress.class, ++packetID, Side.SERVER);
-		Traincraft.modChannel.registerMessage(PacketRollingStockRotation.Handler.class, PacketRollingStockRotation.class, ++packetID, Side.CLIENT);
-		Traincraft.modChannel.registerMessage(PacketSetJukeboxStreamingUrl.Handler.class, PacketSetJukeboxStreamingUrl.class, ++packetID, Side.SERVER);
-		Traincraft.modChannel.registerMessage(PacketSlotsFilled.Handler.class, PacketSlotsFilled.class, ++packetID, Side.CLIENT);
-		Traincraft.modChannel.registerMessage(PacketParkingBreak.Handler.class, PacketParkingBreak.class, ++packetID, Side.SERVER);
-		Traincraft.modChannel.registerMessage(PacketSetTrainLockedToClient.Handler.class, PacketSetTrainLockedToClient.class, ++packetID, Side.SERVER);
-		Traincraft.modChannel.registerMessage(PacketSetLocoTurnedOn.Handler.class, PacketSetLocoTurnedOn.class, ++packetID, Side.SERVER);
-		Traincraft.modChannel.registerMessage(PacketLantern.Handler.class, PacketLantern.class, ++packetID, Side.SERVER);
-		Traincraft.modChannel.registerMessage(PacketZeppelinRotation.Handler.class, PacketZeppelinRotation.class, ++packetID, Side.SERVER);
-		Traincraft.modChannel.registerMessage(PacketTrackBuilderHeight.Handler.class, PacketTrackBuilderHeight.class, ++packetID, Side.SERVER);
+		Traincraft.modChannel = NetworkRegistry.INSTANCE.newSimpleChannel(Info.channel);
+		Traincraft.keyChannel = NetworkRegistry.INSTANCE.newSimpleChannel(Info.keyChannel);
+		Traincraft.rotationChannel = NetworkRegistry.INSTANCE.newSimpleChannel(Info.rotationChannel);
+
+		Traincraft.keyChannel.registerMessage(PacketKeyPress.Handler.class, PacketKeyPress.class, 1, Side.SERVER);
+		Traincraft.rotationChannel.registerMessage(PacketRollingStockRotation.Handler.class, PacketRollingStockRotation.class, 1, Side.CLIENT);
+		Traincraft.rotationChannel.registerMessage(PacketZeppelinRotation.Handler.class, PacketZeppelinRotation.class, 1, Side.SERVER);
+		Traincraft.modChannel.registerMessage(PacketSetJukeboxStreamingUrl.Handler.class, PacketSetJukeboxStreamingUrl.class, 1, Side.SERVER);
+		Traincraft.modChannel.registerMessage(PacketSlotsFilled.Handler.class, PacketSlotsFilled.class, 2, Side.CLIENT);
+		Traincraft.modChannel.registerMessage(PacketParkingBreak.Handler.class, PacketParkingBreak.class, 3, Side.SERVER);
+		Traincraft.modChannel.registerMessage(PacketSetTrainLockedToClient.Handler.class, PacketSetTrainLockedToClient.class, 4, Side.SERVER);
+		Traincraft.modChannel.registerMessage(PacketSetLocoTurnedOn.Handler.class, PacketSetLocoTurnedOn.class, 5, Side.SERVER);
+		Traincraft.modChannel.registerMessage(PacketLantern.Handler.class, PacketLantern.class, 6, Side.SERVER);
+		Traincraft.modChannel.registerMessage(PacketTrackBuilderHeight.Handler.class, PacketTrackBuilderHeight.class, 7, Side.SERVER);
 	}
 
 	public static IMessage setParkingBrake(Entity player, Entity entity, boolean set, boolean toServer) {
@@ -66,17 +68,6 @@ public class PacketHandler {
 		return packet;
 	}
 
-	public static IMessage setTrainLockedToClient(Entity player, Entity entity, boolean set) {
-		return new PacketSetTrainLockedToClient(set);
-	}
-
-	public static IMessage setBuilderPlannedHeight(Entity player, Entity entity, int set, int packetID) {
-		PacketTrackBuilderHeight packet = new PacketTrackBuilderHeight(set);
-		if (player instanceof EntityPlayerMP) {
-			Traincraft.modChannel.sendToServer(packet);
-		}
-		return packet;
-	}
 
 	public static Packet setBookPage(Entity player, int page, int recipe) {
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();

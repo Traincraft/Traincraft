@@ -246,7 +246,7 @@ public class EntityRotativeDigger extends Entity implements IInventory {
 
 	public void pressKeyClient(int i) {
 
-		Traincraft.modChannel.sendToServer(new PacketKeyPress(i));
+		Traincraft.keyChannel.sendToServer(new PacketKeyPress(i));
 	}
 
 	public void pressKey(int i) {

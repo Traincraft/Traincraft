@@ -226,8 +226,8 @@ public abstract class AbstractZeppelin extends Entity implements IInventory {
 	}
 
 	public void pressKeyClient(int i) {
-
-		Traincraft.modChannel.sendToServer(new PacketKeyPress(i));
+		if (updateTicks % 5 == 0)
+		Traincraft.keyChannel.sendToServer(new PacketKeyPress(i));
 	}
 
 	public void pressKey(int i) {
@@ -618,8 +618,10 @@ public abstract class AbstractZeppelin extends Entity implements IInventory {
 		}
 		this.rotationYaw = (float) ((double) this.rotationYaw + d12);
 		this.setRotation(this.rotationYaw, this.rotationPitch);
-		//TODO Packets
-		Traincraft.modChannel.sendToAllAround(new PacketZeppelinRotation(rotationYaw, roll), new NetworkRegistry.TargetPoint(worldObj.provider.dimensionId, posX, posY, posZ, 400D));
+		if (updateTicks % 10 == 0) {
+			Traincraft.rotationChannel.sendToAllAround(new PacketZeppelinRotation(rotationYaw, roll), new NetworkRegistry.TargetPoint(worldObj.provider.dimensionId, posX, posY, posZ, 400D));
+			updateTicks=0;
+		}
 	}
 
 	@Override

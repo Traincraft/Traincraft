@@ -39,7 +39,6 @@ public class PacketZeppelinRotation implements IMessage {
 
         @Override
         public IMessage onMessage(PacketZeppelinRotation message, MessageContext context) {
-
             Entity zeppEntity = context.getServerHandler().playerEntity.ridingEntity;
 
 			/* "instanceof" is null-safe, but we check to avoid four unnecessary instanceof checks for when the value is null anyways. */

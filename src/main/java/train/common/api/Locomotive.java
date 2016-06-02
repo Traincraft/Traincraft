@@ -13,6 +13,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import org.lwjgl.input.Keyboard;
+import train.common.core.network.PacketSetTrainLockedToClient;
 import train.common.library.EnumSounds;
 import train.common.Traincraft;
 import train.common.core.HandleMaxAttachedCarts;
@@ -87,20 +88,20 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 		super(world);
 		setFuelConsumption(0);
 		inventorySize = numCargoSlots + numCargoSlots2 + numCargoSlots1;
-		dataWatcher.addObject(2, new Integer((int) 0));
+		dataWatcher.addObject(2, 0);
 		this.setDefaultMass(0);
 		this.setCustomSpeed(getMaxSpeed());
-		dataWatcher.addObject(3, new String(destination));
-		dataWatcher.addObject(22, new String(locoState));
-		dataWatcher.addObject(24, new Integer(fuelTrain));
-		dataWatcher.addObject(25, new Integer((int) convertSpeed(Math.sqrt(Math.abs(motionX * motionX) + Math.abs(motionZ * motionZ)))));//convertSpeed((Math.abs(this.motionX) + Math.abs(this.motionZ))
-		dataWatcher.addObject(26, new String(castToString(currentNumCartsPulled)));
-		dataWatcher.addObject(27, new String(castToString(currentMassPulled)));
-		dataWatcher.addObject(28, new String(castToString(Math.round(currentSpeedSlowDown))));
-		dataWatcher.addObject(29, new String(castToString(currentAccelSlowDown)));
-		dataWatcher.addObject(30, new String(castToString(currentBrakeSlowDown)));
-		dataWatcher.addObject(31, new String(castToString(currentFuelConsumptionChange)));
-		dataWatcher.addObject(15, new String(castToString(Math.round((getCustomSpeed() * 3.6)))));
+		dataWatcher.addObject(3, destination);
+		dataWatcher.addObject(22, locoState);
+		dataWatcher.addObject(24, fuelTrain);
+		dataWatcher.addObject(25, (int) convertSpeed(Math.sqrt(Math.abs(motionX * motionX) + Math.abs(motionZ * motionZ))));//convertSpeed((Math.abs(this.motionX) + Math.abs(this.motionZ))
+		dataWatcher.addObject(26, castToString(currentNumCartsPulled));
+		dataWatcher.addObject(27, castToString(currentMassPulled));
+		dataWatcher.addObject(28, castToString(Math.round(currentSpeedSlowDown)));
+		dataWatcher.addObject(29, castToString(currentAccelSlowDown));
+		dataWatcher.addObject(30, castToString(currentBrakeSlowDown));
+		dataWatcher.addObject(31, castToString(currentFuelConsumptionChange));
+		dataWatcher.addObject(15, castToString(Math.round((getCustomSpeed() * 3.6))));
 		setAccel(0);
 		setBrake(0);
 		this.entityCollisionReduction = 0.99F;
@@ -318,7 +319,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 	public void keyHandlerFromPacket(int i) {
 		if (lastUpdateTick == updateTicks) { return; }
 		if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer) {
-			Traincraft.modChannel.sendToAllAround(PacketHandler.setTrainLockedToClient(riddenByEntity, this, locked), new TargetPoint(worldObj.provider.dimensionId, (int) posX, (int) posY, (int) posZ, 5));
+			Traincraft.modChannel.sendToAllAround(new PacketSetTrainLockedToClient(locked), new TargetPoint(worldObj.provider.dimensionId, (int) posX, (int) posY, (int) posZ, 5));
 		}
 		if (this.getTrainLockedFromPacket()) {
 			if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer && !((EntityPlayer) this.riddenByEntity).getDisplayName().toLowerCase().equals(this.trainOwner.toLowerCase())) { return; }
@@ -346,7 +347,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 			motionX *= brake;
 			motionZ *= brake;
 		}
-		if (i == 10 && (updateTicks > lastUpdateTick + 5)) {
+		if (i == 10 && (updateTicks % 10 ==0)) {
 			int currentSpeed = (int) (convertSpeed(Math.sqrt(Math.abs(motionX * motionX) + Math.abs(motionZ * motionZ))));
 			//System.out.println(parkingBrake + ":" + currentSpeed +" side "+ side);
 			if (currentSpeed <= 10) {
@@ -358,18 +359,6 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 				}
 				Traincraft.modChannel.sendToAllAround(PacketHandler.setParkingBrake(riddenByEntity, this, parkingBrake, false), new TargetPoint(worldObj.provider.dimensionId, posX, posY, posZ, 5));
 			}
-		}
-		lastUpdateTick = updateTicks;
-	}
-
-	/**
-	 * Key handling system, just sends a packet
-	 * 
-	 * @param i
-	 */
-	public void pressKeyLoco(int i) {
-		if (updateTicks % 50 == 0) {
-			Traincraft.modChannel.sendToServer(new PacketKeyPress(i));
 		}
 	}
 
@@ -443,21 +432,21 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 				if (Class.forName("org.lwjgl.input.Keyboard") != null && Keyboard.isCreated()) {
 					//System.out.println(Keyboard.getEventKey());
 					if (Keyboard.isKeyDown(KEY_ACC)) {
-						pressKeyLoco(4);
+						pressKeyTrain(4);
 					}
 					if (Keyboard.isKeyDown(KEY_DEC)) {
-						pressKeyLoco(5);
+						pressKeyTrain(5);
 					}
 
 					if (Keyboard.isKeyDown(KEY_INV)) {
-						pressKeyLoco(7);
+						pressKeyTrain(7);
 
 					}
 					if (Keyboard.isKeyDown(KEY_HORN)) {
-						pressKeyLoco(8);
+						pressKeyTrain(8);
 					}
 					if (Keyboard.isKeyDown(KEY_BRAKE)) {
-						pressKeyLoco(10);
+						pressKeyTrain(10);
 					}
 				}
 			}
@@ -471,9 +460,9 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 		pressKeyClient();
 		if (!worldObj.isRemote) {
 			if (updateTicks % 50 == 0) {
-				Traincraft.modChannel.sendToAllAround(PacketHandler.setParkingBrake(riddenByEntity, this, parkingBrake, false), new TargetPoint(worldObj.provider.dimensionId, posX, posY, posZ, 5));
-				 //PacketHandler.sendPacketToClients(PacketHandler.setParkingBrake(riddenByEntity, this, parkingBrake, false), worldObj, (int) posX, (int) posY, (int) posZ, 50);
+				Traincraft.modChannel.sendToAllAround(PacketHandler.setParkingBrake(riddenByEntity, this, parkingBrake, false), new TargetPoint(worldObj.provider.dimensionId, posX, posY, posZ, 50));
 				this.setLocoTurnedOn(isLocoTurnedOn, false, true,500);//sending to client
+				updateTicks=0;
 			}
 
 			if (updateTicks % 20 == 0) maxAttached.PullPhysic(this);
@@ -603,8 +592,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 					FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().sendChatMsg(new ChatComponentText(((EntityPlayer) this.lastEntityRider).getDisplayName() + " blew " + this.trainOwner + "'s locomotive"));
 					FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().sendChatMsg(new ChatComponentText(((EntityPlayer) this.lastEntityRider).getDisplayName() + " blew " + this.trainOwner + "'s locomotive"));
 				}
-				if (!worldObj.isRemote) statsEventHandler.trainExplode(this.uniqueID, this.trainName, this.trainType, this.trainCreator, new String((int) posX + ";" + (int) posY + ";" + (int) posZ));
-				// if (!worldObj.isRemote)PacketHandler.sendPacketToClients(PacketHandler.sendStatsToServer(7,this.uniqueID, this.trainName, this.trainType, this.trainOwner,"", (int) posX, (int) posY, (int) posZ),this.worldObj, (int)posX,(int)posY,(int)posZ, 12.0D);
+				if (!worldObj.isRemote) {statsEventHandler.trainExplode(this.uniqueID, this.trainName, this.trainType, this.trainCreator, (int) posX + ";" + (int) posY + ";" + (int) posZ);}
 			}
 		}
 

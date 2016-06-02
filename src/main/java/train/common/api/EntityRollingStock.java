@@ -55,6 +55,7 @@ import org.lwjgl.input.Keyboard;
 
 import train.client.core.handlers.SoundUpdaterRollingStock;
 import train.common.core.handlers.*;
+import train.common.core.network.PacketSetTrainLockedToClient;
 import train.common.entity.rollingStock.EntityTracksBuilder;
 import train.common.library.EnumTrains;
 import train.common.Traincraft;
@@ -205,9 +206,9 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 	}
 
 	public void initRollingStock(World world) {
-		dataWatcher.addObject(20, Integer.valueOf((int) 0));//heat
-		dataWatcher.addObject(14, new Integer(0));
-		dataWatcher.addObject(21, new Integer(0));
+		dataWatcher.addObject(20, 0);//heat
+		dataWatcher.addObject(14, 0);
+		dataWatcher.addObject(21, 0);
 
 		field_856_i = false;
 		preventEntitySpawning = true;
@@ -324,10 +325,10 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 
 	@Override
 	protected void entityInit() {
-		dataWatcher.addObject(16, new Byte((byte) 0));
-		dataWatcher.addObject(17, new Integer(0));
-		dataWatcher.addObject(18, new Integer(1));
-		dataWatcher.addObject(19, new Float(0.0F));
+		dataWatcher.addObject(16, (byte) 0);
+		dataWatcher.addObject(17, 0);
+		dataWatcher.addObject(18, 1);
+		dataWatcher.addObject(19, 0.0F);
 	}
 
 	@Override
@@ -515,8 +516,8 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 	}
 
 	public void pressKeyTrain(int i) {
-
-		Traincraft.modChannel.sendToServer(new PacketKeyPress(i));
+		if(updateTicks % 5 !=0) {return;}
+			Traincraft.keyChannel.sendToServer(new PacketKeyPress(i));
 	}
 
 	public void pressKeyClient() {
@@ -529,7 +530,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 
 	/**
 	 * gets packet from server and distribute for GUI handles motion
-	 * 
+	 *
 	 * @param i
 	 */
 	public void keyHandlerFromPacket(int i) {
@@ -643,27 +644,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 
 	@Override
 	public void onUpdate() {
-		//if(side.isClient())System.out.println("client "+ posY);
-		//if(side.isServer())System.out.println("Rolling server "+ posY);
-
-		//		if (!this.hasSpawnedBogie && this.trainSpec.getBogieUtilityPositions() != null) {
-		//			for (int i = 0; i < this.trainSpec.getBogieUtilityPositions().length; i++) {
-		//				//System.out.println(i + " :i shift: " + this.trainSpec.getBogieUtilityPositions()[i]);
-		//				if (bogieUtility[i] == null) {
-		//					this.bogieShift[i] = this.trainSpec.getBogieUtilityPositions()[i];
-		//					double rads = this.serverRealRotation * 3.141592653589793D / 180.0D;
-		//					double pitchRads = this.renderPitch * 3.141592653589793D / 180.0D;
-		//					this.bogieUtility[i] = new EntityBogieUtility(worldObj, (posX - Math.cos(rads) * this.bogieShift[i]), posY + ((Math.tan(pitchRads) * -this.bogieShift[i]) + getMountedYOffset()), (posZ - Math.sin(rads) * this.bogieShift[i]), this, this.ID, i, this.bogieShift[i]);
-		//					//if(!worldObj.isRemote)System.out.println("ID: "+this.getID());
-		//					if (!worldObj.isRemote && bogieUtility[i] != null) worldObj.spawnEntityInWorld(bogieUtility[i]);
-		//					this.needsBogieUpdate = true;
-		//				}
-		//				this.hasSpawnedBogie = true;
-		//			}
-		//		}
-
-		pressKeyClient();
-		//super.onUpdate();
 
 		if (addedToChunk && !this.hasSpawnedBogie && this.trainSpec.getBogieLocoPositions() != null) {
 			for (int i = 0; i < this.trainSpec.getBogieLocoPositions().length; i++) {
@@ -680,7 +660,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				this.hasSpawnedBogie = true;
 			}
 		}
-
+		//super.onUpdate();
 		if (getRollingAmplitude() > 0) {
 			setRollingAmplitude(getRollingAmplitude() - 1);
 		}
@@ -984,7 +964,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		}
 
 		if (shouldServerSetPosYOnClient) {
-			Traincraft.modChannel.sendToAllAround(new PacketRollingStockRotation(this, (int) (anglePitch * 60), shouldServerSetPosYOnClient), new TargetPoint(worldObj.provider.dimensionId, posX, posY, posZ, 300.0D));
+			Traincraft.rotationChannel.sendToAllAround(new PacketRollingStockRotation(this, (int) (anglePitch * 60), shouldServerSetPosYOnClient), new TargetPoint(worldObj.provider.dimensionId, posX, posY, posZ, 300.0D));
 		}
 		this.prevAnglePitch = anglePitch;
 		previousServerRealRotation2 = serverRealRotation;
@@ -1686,7 +1666,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 
 		if (!worldObj.isRemote) {
 			//System.out.println(this.uniqueID);
-			 Traincraft.modChannel.sendToAllAround(PacketHandler.setTrainLockedToClient(entityplayer, this, locked), new TargetPoint(worldObj.provider.dimensionId, (int) posX, (int) posY, (int) posZ, 15));
+			 Traincraft.modChannel.sendToAllAround(new PacketSetTrainLockedToClient(locked), new TargetPoint(worldObj.provider.dimensionId, (int) posX, (int) posY, (int) posZ, 15));
 		}
 		playerEntity = entityplayer;
 		itemstack = entityplayer.inventory.getCurrentItem();
