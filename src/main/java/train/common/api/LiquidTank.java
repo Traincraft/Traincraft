@@ -15,7 +15,7 @@ public class LiquidTank extends EntityRollingStock implements IFluidHandler, ISi
 	private int capacity;
 	protected ItemStack cargoItems[];
 	private int update = 8;
-	private StandardTank theTank;
+	private FluidTank theTank;
 	private IFluidTank[] tankArray = new IFluidTank[1];
 
 	/**
@@ -41,15 +41,10 @@ public class LiquidTank extends EntityRollingStock implements IFluidHandler, ISi
 		super(world);
 		this.liquid = liquid;
 		this.capacity = capacity;
-		if(filter == null)
-			this.theTank = LiquidManager.getInstance().new StandardTank(capacity);
-		if(filter != null)
-			this.theTank = LiquidManager.getInstance().new FilteredTank(capacity, filter);
-		if(filter != null && reverseSort)
-			this.theTank = LiquidManager.getInstance().new ReverseFilteredTank(capacity, filter);
+		this.theTank = new FluidTank(liquid, capacity);
 		tankArray[0] = theTank;
-		dataWatcher.addObject(4, new Integer(0));
-		dataWatcher.addObject(22, new String(""));
+		dataWatcher.addObject(4, 0);
+		dataWatcher.addObject(22, "");
 
 	}
 
@@ -65,7 +60,7 @@ public class LiquidTank extends EntityRollingStock implements IFluidHandler, ISi
 		return (this.dataWatcher.getWatchableObjectString(22));
 	}
 
-	public StandardTank getTank() {
+	public FluidTank getTank() {
 		return theTank;
 	}
 
@@ -88,7 +83,7 @@ public class LiquidTank extends EntityRollingStock implements IFluidHandler, ISi
 			return;
 		if (theTank != null && theTank.getFluid() != null) {
 			this.dataWatcher.updateObject(18, theTank.getFluid().amount);
-			this.dataWatcher.updateObject(4, theTank.getFluid());
+			this.dataWatcher.updateObject(4, theTank.getFluid().getFluidID());
 			if (theTank.getFluid().getFluid() != null)
 				this.dataWatcher.updateObject(22, theTank.getFluid().getFluid().getName());
 			handleMass();

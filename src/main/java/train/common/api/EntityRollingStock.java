@@ -318,8 +318,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		mountedOffset = offset;
 	}
 
-	public void setYFromServer(double posYServer, boolean shouldSetPosY) {
-		this.shouldServerSetPosYOnClient = shouldSetPosY;
+	public void setYFromServer(double posYServer) {
 		this.posYFromServer = posYServer;
 	}
 
@@ -421,7 +420,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 						dropCartAsItem();
 					}
 				}
-				statsEventHandler.trainDestroy(this.uniqueID, this.trainName, this.trainType, this.trainCreator, ((EntityPlayer) damagesource.getEntity()).getDisplayName(), new String(posX + ";" + posY + ";" + posZ));
+				statsEventHandler.trainDestroy(this.uniqueID, this.trainName, this.trainType, this.trainCreator, ((EntityPlayer) damagesource.getEntity()).getDisplayName(), posX + ";" + posY + ";" + posZ);
 			}
 		}
 		return true;
@@ -774,17 +773,16 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		 * cartLinked2 will be updated accordingly
 		 */
 		if (addedToChunk && ((this.cartLinked1 == null && this.Link1 != 0) || (this.cartLinked2 == null && this.Link2 != 0))) {
-			AxisAlignedBB box2 = null;
-			box2 = boundingBox.expand(15, 15, 15);
+			AxisAlignedBB box2 = boundingBox.expand(15, 15, 15);
 			List lis = worldObj.getEntitiesWithinAABBExcludingEntity(this, box2);
 			if (lis != null && lis.size() > 0) {
 				for (int j1 = 0; j1 < lis.size(); j1++) {
 					Entity entity = (Entity) lis.get(j1);
-					if (entity instanceof AbstractTrains) {
-						if (((AbstractTrains) entity).uniqueID == this.Link1) {
+					if (entity instanceof EntityRollingStock) {
+						if (((EntityRollingStock) entity).uniqueID == this.Link1) {
 							this.cartLinked1 = (EntityRollingStock) entity;
 						}
-						else if (((AbstractTrains) entity).uniqueID == this.Link2) {
+						else if (((EntityRollingStock) entity).uniqueID == this.Link2) {
 							this.cartLinked2 = (EntityRollingStock) entity;
 						}
 					}
@@ -956,15 +954,12 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			rollingServerPitch = tempPitch2;
 		}
 		//System.out.println(updateTicks);
-		if (updateTicks % 20 == 0 ^ updateTicks > 420) {
+		if (updateTicks % 10 == 0) {
 			shouldServerSetPosYOnClient = true;
 		}
-		else if (shouldServerSetPosYOnClient && updateTicks > 420) {
-			shouldServerSetPosYOnClient = false;
-		}
-
 		if (shouldServerSetPosYOnClient) {
-			Traincraft.rotationChannel.sendToAllAround(new PacketRollingStockRotation(this, (int) (anglePitch * 60), shouldServerSetPosYOnClient), new TargetPoint(worldObj.provider.dimensionId, posX, posY, posZ, 300.0D));
+			Traincraft.rotationChannel.sendToAllAround(new PacketRollingStockRotation(this, (int) (anglePitch * 60)), new TargetPoint(worldObj.provider.dimensionId, posX, posY, posZ, 300.0D));
+			shouldServerSetPosYOnClient = false;
 		}
 		this.prevAnglePitch = anglePitch;
 		previousServerRealRotation2 = serverRealRotation;
@@ -1187,7 +1182,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		else if (l == BlockIDs.tcRail.block) {
 			//applyDragAndPushForces();
 			limitSpeedOnTCRail(i, j, k);
-			//if(worldObj.getBlockTileEntity(i,j,k)==null || !(worldObj.getBlockTileEntity(i,j,k) instanceof TileTCRail))return;
+			//if(worldObj.getTileEntity(i,j,k)==null || !(worldObj.getTileEntity(i,j,k) instanceof TileTCRail))return;
 			TileTCRail tile = (TileTCRail) worldObj.getTileEntity(i, j, k);
 
 			//System.out.println(tile.getType());
@@ -1666,7 +1661,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 
 		if (!worldObj.isRemote) {
 			//System.out.println(this.uniqueID);
-			 Traincraft.modChannel.sendToAllAround(new PacketSetTrainLockedToClient(locked), new TargetPoint(worldObj.provider.dimensionId, (int) posX, (int) posY, (int) posZ, 15));
+			 Traincraft.modChannel.sendToAllAround(new PacketSetTrainLockedToClient(locked, this), new TargetPoint(worldObj.provider.dimensionId, (int) posX, (int) posY, (int) posZ, 15));
 		}
 		playerEntity = entityplayer;
 		itemstack = entityplayer.inventory.getCurrentItem();

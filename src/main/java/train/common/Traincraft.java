@@ -39,7 +39,6 @@ import cpw.mods.fml.common.registry.VillagerRegistry;
 import cpw.mods.fml.relauncher.Side;
 
 @Mod(modid = Info.modID, name = Info.modName, version = Info.modVersion)
-//@NetworkMod(clientSideRequired = true, serverSideRequired = true, versionBounds = "[" + Info.modVersion + "]", channels = { Info.channel }, packetHandler = PacketHandler.class, connectionHandler = KeyServerHandler.class)
 public class Traincraft {
 
 	/* TrainCraft instance */

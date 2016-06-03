@@ -319,7 +319,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 	public void keyHandlerFromPacket(int i) {
 		if (lastUpdateTick == updateTicks) { return; }
 		if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer) {
-			Traincraft.modChannel.sendToAllAround(new PacketSetTrainLockedToClient(locked), new TargetPoint(worldObj.provider.dimensionId, (int) posX, (int) posY, (int) posZ, 5));
+			Traincraft.modChannel.sendToAllAround(new PacketSetTrainLockedToClient(locked, this), new TargetPoint(worldObj.provider.dimensionId, (int) posX, (int) posY, (int) posZ, 5));
 		}
 		if (this.getTrainLockedFromPacket()) {
 			if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer && !((EntityPlayer) this.riddenByEntity).getDisplayName().toLowerCase().equals(this.trainOwner.toLowerCase())) { return; }

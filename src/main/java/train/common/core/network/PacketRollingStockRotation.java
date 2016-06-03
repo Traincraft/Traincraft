@@ -21,11 +21,10 @@ public class PacketRollingStockRotation implements IMessage {
 	int anglePitch;
 	int posY;
 	boolean isInReverse;
-	boolean shouldSetPosY;
 
 	public PacketRollingStockRotation() {}
 
-	public PacketRollingStockRotation(EntityRollingStock entity, int anglePitch, boolean shouldSetPosY) {
+	public PacketRollingStockRotation(EntityRollingStock entity, int anglePitch) {
 
 		this.entityID = entity.getEntityId();
 		this.rotationYawServer = (int) entity.rotationYaw; // Don't even ASK ME why we do this. Probably an attempt to reduce Packet size, but at what cost of precision..?
@@ -33,7 +32,6 @@ public class PacketRollingStockRotation implements IMessage {
 		this.anglePitch = anglePitch;
 		this.posY = (int) (entity.posY * 1000000);
 		this.isInReverse = entity.isServerInReverse;
-		this.shouldSetPosY = shouldSetPosY;
 	}
 
 	@Override
@@ -45,7 +43,6 @@ public class PacketRollingStockRotation implements IMessage {
 		this.anglePitch = bbuf.readInt();
 		this.posY = bbuf.readInt();
 		this.isInReverse = bbuf.readBoolean();
-		this.shouldSetPosY = bbuf.readBoolean();
 	}
 
 	@Override
@@ -57,7 +54,6 @@ public class PacketRollingStockRotation implements IMessage {
 		bbuf.writeInt(this.anglePitch);
 		bbuf.writeInt(this.posY);
 		bbuf.writeBoolean(this.isInReverse);
-		bbuf.writeBoolean(this.shouldSetPosY);
 	}
 
 	public static class Handler implements IMessageHandler<PacketRollingStockRotation, IMessage> {
@@ -74,7 +70,7 @@ public class PacketRollingStockRotation implements IMessage {
 				rollingStock.rotationYawClientReal = message.realRotation;
 				rollingStock.anglePitchClient = message.anglePitch;
 				rollingStock.isClientInReverse = message.isInReverse;
-				rollingStock.setYFromServer((double) message.posY / 1000000, message.shouldSetPosY);
+				rollingStock.setYFromServer((double) message.posY / 1000000);
 			}
 
 			return null;

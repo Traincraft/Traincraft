@@ -587,7 +587,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 	}
 
 	public void sendTrainLockedPacket(EntityPlayer entity, boolean locked) {
-		Traincraft.modChannel.sendToServer(new PacketSetTrainLockedToClient(locked));
+		Traincraft.modChannel.sendToServer(new PacketSetTrainLockedToClient(locked, this));
 	}
 
 	/** Locking for passengers, flat, caboose, jukebox,workcart */

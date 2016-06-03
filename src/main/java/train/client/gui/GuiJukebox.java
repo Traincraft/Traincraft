@@ -217,18 +217,18 @@ public class GuiJukebox extends GuiScreen {
 						this.jukebox.streamURL = this.streamTextBox.getText();
 					}
 
-					Traincraft.modChannel.sendTo(new PacketSetJukeboxStreamingUrl(this.jukebox, this.jukebox.streamURL, true), (EntityPlayerMP) this.player);
+					//Traincraft.modChannel.sendTo(new PacketSetJukeboxStreamingUrl(this.jukebox, this.jukebox.streamURL, true), (EntityPlayerMP) this.player);
 					jukebox.startStream();
 				}
 				else {
 
-					Traincraft.modChannel.sendTo(new PacketSetJukeboxStreamingUrl(this.jukebox, this.jukebox.streamURL, false), (EntityPlayerMP) this.player);
+					//Traincraft.modChannel.sendTo(new PacketSetJukeboxStreamingUrl(this.jukebox, this.jukebox.streamURL, false), (EntityPlayerMP) this.player);
 					jukebox.stopStream();
 				}
 			}
 			else if (jukebox.isPlaying) {
 
-				Traincraft.modChannel.sendTo(new PacketSetJukeboxStreamingUrl(this.jukebox, this.jukebox.streamURL, false), (EntityPlayerMP) this.player);
+				//Traincraft.modChannel.sendTo(new PacketSetJukeboxStreamingUrl(this.jukebox, this.jukebox.streamURL, false), (EntityPlayerMP) this.player);
 				jukebox.stopStream();
 			}
 		}
