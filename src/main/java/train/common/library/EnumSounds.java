@@ -1,6 +1,32 @@
 package train.common.library;
 
-import train.common.entity.rollingStock.*;
+import train.common.entity.rollingStock.EntityLocoDieselCD742;
+import train.common.entity.rollingStock.EntityLocoDieselChME3;
+import train.common.entity.rollingStock.EntityLocoDieselGP7Red;
+import train.common.entity.rollingStock.EntityLocoDieselKof_DB;
+import train.common.entity.rollingStock.EntityLocoDieselSD40;
+import train.common.entity.rollingStock.EntityLocoDieselSD70;
+import train.common.entity.rollingStock.EntityLocoDieselShunter;
+import train.common.entity.rollingStock.EntityLocoDieselV60_DB;
+import train.common.entity.rollingStock.EntityLocoElectricBR_E69;
+import train.common.entity.rollingStock.EntityLocoElectricHighSpeedZeroED;
+import train.common.entity.rollingStock.EntityLocoElectricMinetrain;
+import train.common.entity.rollingStock.EntityLocoElectricNewHighSpeed;
+import train.common.entity.rollingStock.EntityLocoElectricTramNY;
+import train.common.entity.rollingStock.EntityLocoElectricTramWood;
+import train.common.entity.rollingStock.EntityLocoElectricVL10;
+import train.common.entity.rollingStock.EntityLocoSteam4_4_0;
+import train.common.entity.rollingStock.EntityLocoSteamAdler;
+import train.common.entity.rollingStock.EntityLocoSteamBR01_DB;
+import train.common.entity.rollingStock.EntityLocoSteamBR80_DB;
+import train.common.entity.rollingStock.EntityLocoSteamC62Class;
+import train.common.entity.rollingStock.EntityLocoSteamCherepanov;
+import train.common.entity.rollingStock.EntityLocoSteamEr_Ussr;
+import train.common.entity.rollingStock.EntityLocoSteamForneyRed;
+import train.common.entity.rollingStock.EntityLocoSteamHeavy;
+import train.common.entity.rollingStock.EntityLocoSteamMogulBlue;
+import train.common.entity.rollingStock.EntityLocoSteamShay;
+import train.common.entity.rollingStock.EntityLocoSteamSmall;
 
 public enum EnumSounds {
 
@@ -18,7 +44,8 @@ public enum EnumSounds {
 	locoSteamSmall(EntityLocoSteamSmall.class, "steam_horn", 0.5F, "steam_run", 0.2F, 20, "steam_run", 0.2F, 20, true),
 	locoSteamShay(EntityLocoSteamShay.class, "shay_horn", 0.8F, "steam_run", 0.2F, 20, "steam_run", 0.2F, 20, true),
 	locoSteamClass62(EntityLocoSteamC62Class.class, "class62_horn", 0.8F, "steam_run", 0.2F, 20, "steam_run", 0.2F, 20, true),
-	locoSteamAdler(EntityLocoSteamAdler.class, "adler_horn", 0.8F, "adler_run", 0.2F, 20, "adler_run", 0.2F, 20, true),
+	locoSteamAdler(EntityLocoSteamAdler.class, "adler_whistle", 0.8F, "adler_run", 0.2F, 20, "adler_run", 0.2F, 20,
+			true),
 
 	locoVL10(EntityLocoElectricVL10.class, "vl10_horn", 0.8F, "vl10_idle", 0.6F, 50, "vl10_idle", 0.6F, 50, false),
 	locoBR_E69(EntityLocoElectricBR_E69.class, "eu07_horn", 0.8F, "vl10_idle", 0.6F, 50, "vl10_idle", 0.6F, 50, false),
@@ -28,7 +55,8 @@ public enum EnumSounds {
 	locoTramWood(EntityLocoElectricTramWood.class, "tram_horn", 1F, "vl10_idle", 0.6F, 50, "vl10_idle", 0.6F, 50, false),
 	locoSpeedGrey(EntityLocoElectricNewHighSpeed.class, "high_speed_horn", 0.8F, "vl10_idle", 0.6F, 50, "vl10_idle", 0.6F, 50, false),
 
-	locoCD742(EntityLocoDieselCD742.class, "cd742_horn", 0.8F, "cd742_engine_slow", 0.65F, 40, "cd742_engine", 0.65F, 40, false),
+	locoCD742(EntityLocoDieselCD742.class, "742_horn", 0.8F, "742_motor_slow", 0.65F, 40, "742_motor", 0.65F, 40,
+			false),
 	locoChME3(EntityLocoDieselChME3.class, "chme3_horn", 0.8F, "chme3_idle", 0.65F, 40, "chme3_idle", 0.65F, 40, false),
 	locoGP7Red(EntityLocoDieselGP7Red.class, "gp_horn", 0.8F, "chme3_idle", 0.65F, 40, "chme3_idle", 0.65F, 40, false),
 	locoKof_DB(EntityLocoDieselKof_DB.class, "chme3_horn", 0.8F, "chme3_idle", 0.65F, 40, "chme3_idle", 0.65F, 40, false),
