@@ -618,10 +618,10 @@ public abstract class AbstractZeppelin extends Entity implements IInventory {
 		}
 		this.rotationYaw = (float) ((double) this.rotationYaw + d12);
 		this.setRotation(this.rotationYaw, this.rotationPitch);
-//		if (updateTicks % 10 == 0) {
+		if (updateTicks % 10 == 0) {
 //			Traincraft.rotationChannel.sendToAllAround(new PacketZeppelinRotation(this, rotationYaw, roll), new NetworkRegistry.TargetPoint(worldObj.provider.dimensionId, posX, posY, posZ, 400D));
-//			updateTicks=0;
-//		}
+			updateTicks=0;
+		}
 	}
 
 	@Override
