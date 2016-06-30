@@ -82,7 +82,7 @@ public abstract class AbstractZeppelin extends Entity implements IInventory {
 	protected double velocityY;
 	@SideOnly(Side.CLIENT)
 	protected double velocityZ;
-	public double rotationYawClient;
+//	public double rotationYawClient;
 	protected double updateTicks;
 	public float pitch = 0F;
 	public float roll = 0F;
@@ -227,7 +227,7 @@ public abstract class AbstractZeppelin extends Entity implements IInventory {
 
 	public void pressKeyClient(int i) {
 		if (updateTicks % 5 == 0)
-		Traincraft.keyChannel.sendToServer(new PacketKeyPress(i));
+			Traincraft.keyChannel.sendToServer(new PacketKeyPress(i));
 	}
 
 	public void pressKey(int i) {
@@ -357,7 +357,7 @@ public abstract class AbstractZeppelin extends Entity implements IInventory {
 
 	/**
 	 * Used to setup more passengers seats!
-	 * 
+	 *
 	 * @param x
 	 * @param y
 	 * @param z
@@ -500,7 +500,7 @@ public abstract class AbstractZeppelin extends Entity implements IInventory {
 				var8 = this.posY + (this.boatY - this.posY) / (double) this.boatPosRotationIncrements;
 				var26 = this.posZ + (this.boatZ - this.posZ) / (double) this.boatPosRotationIncrements;
 				var12 = MathHelper.wrapAngleTo180_double(this.boatYaw - (double) this.rotationYaw);
-				rotationYaw = (float) rotationYawClient;
+				this.rotationYaw = (float)((double)this.rotationYaw + var12 / (double)this.boatPosRotationIncrements);
 				this.rotationPitch = (float) ((double) this.rotationPitch + (this.boatPitch - (double) this.rotationPitch) / (double) this.boatPosRotationIncrements);
 				--this.boatPosRotationIncrements;
 				this.setPosition(var6, var8, var26);
@@ -619,7 +619,7 @@ public abstract class AbstractZeppelin extends Entity implements IInventory {
 		this.rotationYaw = (float) ((double) this.rotationYaw + d12);
 		this.setRotation(this.rotationYaw, this.rotationPitch);
 		if (updateTicks % 10 == 0) {
-			Traincraft.rotationChannel.sendToAllAround(new PacketZeppelinRotation(this, rotationYaw, roll), new NetworkRegistry.TargetPoint(worldObj.provider.dimensionId, posX, posY, posZ, 400D));
+//			Traincraft.rotationChannel.sendToAllAround(new PacketZeppelinRotation(this, rotationYaw, roll), new NetworkRegistry.TargetPoint(worldObj.provider.dimensionId, posX, posY, posZ, 400D));
 			updateTicks=0;
 		}
 	}
