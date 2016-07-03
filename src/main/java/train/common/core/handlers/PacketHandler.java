@@ -38,7 +38,6 @@ public class PacketHandler {
 
 		Traincraft.keyChannel.registerMessage(PacketKeyPress.Handler.class, PacketKeyPress.class, 1, Side.SERVER);
 		Traincraft.rotationChannel.registerMessage(PacketRollingStockRotation.Handler.class, PacketRollingStockRotation.class, 1, Side.CLIENT);
-		Traincraft.rotationChannel.registerMessage(PacketZeppelinRotation.Handler.class, PacketZeppelinRotation.class, 2, Side.CLIENT);
 		//Traincraft.modChannel.registerMessage(PacketSetJukeboxStreamingUrl.Handler.class, PacketSetJukeboxStreamingUrl.class, 1, Side.SERVER);
 		Traincraft.modChannel.registerMessage(PacketSlotsFilled.Handler.class, PacketSlotsFilled.class, 2, Side.CLIENT);
 		Traincraft.modChannel.registerMessage(PacketParkingBreak.Handler.class, PacketParkingBreak.class, 3, Side.SERVER); //small leak, should be client side?
