@@ -660,6 +660,21 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			}
 		}
 		//super.onUpdate();
+		
+		/**
+		 * Set the uniqueID if the entity doesn't have one.
+		 */
+		if (!worldObj.isRemote && this.uniqueID == -1) {
+			if (FMLCommonHandler.instance().getMinecraftServerInstance() != null) {
+				TraincraftSaveHandler.createFile(FMLCommonHandler.instance().getMinecraftServerInstance());
+				int readID = TraincraftSaveHandler.readInt(FMLCommonHandler.instance().getMinecraftServerInstance(), "numberOfTrains:");
+				int newID = setNewUniqueID(readID);
+				TraincraftSaveHandler.writeValue(FMLCommonHandler.instance().getMinecraftServerInstance(), "numberOfTrains:", "" + newID);
+				statsEventHandler.trainPlace(newID, this.trainName, this.trainType, this.trainOwner, this.trainOwner, (int) posX + ";" + (int) posY + ";" + (int) posZ);
+				//System.out.println("Train is missing an ID, adding new one for "+this.trainName+" "+this.uniqueID);
+			}
+		}
+		
 		if (getRollingAmplitude() > 0) {
 			setRollingAmplitude(getRollingAmplitude() - 1);
 		}
