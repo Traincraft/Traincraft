@@ -2,6 +2,11 @@ package train.common.api;
 
 import java.util.List;
 
+import com.mojang.authlib.GameProfile;
+
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import mods.railcraft.api.carts.IMinecart;
 import mods.railcraft.api.carts.IRoutableCart;
 import net.minecraft.block.Block;
@@ -17,15 +22,10 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import train.common.items.ItemTCRail;
+import train.common.items.ItemTCRail.TrackTypes;
 import train.common.library.BlockIDs;
 import train.common.tile.TileTCRail;
 import train.common.tile.TileTCRailGag;
-
-import com.mojang.authlib.GameProfile;
-
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableCart {
 
@@ -236,7 +236,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 
 	protected double limitForce(double force) {
 
-		return Math.copySign(Math.abs(Math.min(Math.abs((double) force), 6.0D)), (double) force);
+		return Math.copySign(Math.abs(Math.min(Math.abs(force), 6.0D)), force);
 	}
 
 	@Override
@@ -516,7 +516,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		//if(Math.abs(motionX)>Math.abs(motionZ))System.out.println("X");
 		//if(Math.abs(motionZ)>Math.abs(motionX))System.out.println("Z");
 
-		if ((MathHelper.floor_double((double) (this.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3) % 2 == 0) {
+		if ((MathHelper.floor_double(this.rotationYaw * 4.0F / 360.0F + 0.5D) & 3) % 2 == 0) {
 
 			double norm = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 
@@ -654,58 +654,70 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		motionZ = vz2;
 	}
 
-	private boolean shouldIgnoreSwitch(TileTCRail tile, int x, int y, int z, int meta) {
-
-		if (tile != null && (ItemTCRail.TrackTypes.MEDIUM_RIGHT_TURN.getLabel().equals(tile.getType()) || ItemTCRail.TrackTypes.MEDIUM_LEFT_TURN.getLabel().equals(tile.getType())) && tile.canTypeBeModifiedBySwitch) {
-
-			if (meta >= 0 && meta <= 3) {
-
-				// TODO Re-activate if needed.
-				//moveOnTCStraight(x, y, z, tile.xCoord, tile.yCoord, tile.zCoord, meta);
-				tile.setType(ItemTCRail.TrackTypes.SMALL_STRAIGHT.getLabel());
-
-				TileEntity tile2 = null;
-
-				switch (meta) {
-
-					case 0:
-						if (this.motionZ < 0.0D && Math.abs(this.motionX) < 0.01D) {
-
-							tile2 = this.worldObj.getTileEntity(x, y, z - 1);
-						}
-						break;
-
-					case 1:
-						if (Math.abs(this.motionZ) < 0.01D && this.motionX > 0.0D) {
-
-							tile2 = this.worldObj.getTileEntity(x + 1, y, z);
-						}
-						break;
-
-					case 2:
-						if (this.motionZ > 0.0D && Math.abs(this.motionX) < 0.01D) {
-
-							tile2 = this.worldObj.getTileEntity(x, y, z + 1);
-						}
-						break;
-
-					case 3:
-						if (Math.abs(this.motionZ) < 0.01D && this.motionX < 0.0D) {
-
-							tile2 = this.worldObj.getTileEntity(x - 1, y, z);
-						}
-						break;
+	private boolean shouldIgnoreSwitch(TileTCRail tile, int i, int j, int k, int meta) {
+		if (tile != null
+				&& (tile.getType().equals(TrackTypes.MEDIUM_RIGHT_TURN.getLabel())
+						|| tile.getType().equals(TrackTypes.MEDIUM_LEFT_TURN.getLabel())
+						|| tile.getType().equals(TrackTypes.LARGE_LEFT_TURN.getLabel())
+						|| tile.getType().equals(TrackTypes.LARGE_RIGHT_TURN.getLabel()))
+				&& tile.canTypeBeModifiedBySwitch) {
+			if (meta == 2) {
+				if (motionZ > 0 && Math.abs(motionX) < 0.01) {
+					double cx = tile.xCoord;
+					double cy = tile.yCoord;
+					double cz = tile.zCoord;
+					// moveOnTCStraight(i, j, k, cx, cy, cz, meta);
+					tile.setType(TrackTypes.SMALL_STRAIGHT.getLabel());
+					TileEntity tile2 = worldObj.getTileEntity(i, j, k + 1);
+					if (tile2 != null && tile2 instanceof TileTCRail) {
+						((TileTCRail) tile2).setSwitchState(false, true);
+					}
+					return true;
 				}
-
-				if (tile2 instanceof TileTCRail) {
-
-					((TileTCRail) tile2).setSwitchState(false, true);
+			}
+			if (meta == 0) {
+				if (motionZ < 0 && Math.abs(motionX) < 0.01) {
+					double cx = tile.xCoord;
+					double cy = tile.yCoord;
+					double cz = tile.zCoord;
+					// moveOnTCStraight(i, j, k, cx, cy, cz, meta);
+					tile.setType(TrackTypes.SMALL_STRAIGHT.getLabel());
+					TileEntity tile2 = worldObj.getTileEntity(i, j, k - 1);
+					if (tile2 != null && tile2 instanceof TileTCRail) {
+						((TileTCRail) tile2).setSwitchState(false, true);
+					}
+					return true;
 				}
-
-				return true;
+			}
+			if (meta == 1) {
+				if (Math.abs(motionZ) < 0.01 && motionX > 0) {
+					double cx = tile.xCoord;
+					double cy = tile.yCoord;
+					double cz = tile.zCoord;
+					// moveOnTCStraight(i, j, k, cx, cy, cz, meta);
+					tile.setType(TrackTypes.SMALL_STRAIGHT.getLabel());
+					TileEntity tile2 = worldObj.getTileEntity(i + 1, j, k);
+					if (tile2 != null && tile2 instanceof TileTCRail) {
+						((TileTCRail) tile2).setSwitchState(false, true);
+					}
+					return true;
+				}
+			}
+			if (meta == 3) {
+				if (Math.abs(motionZ) < 0.01 && motionX < 0) {
+					double cx = tile.xCoord;
+					double cy = tile.yCoord;
+					double cz = tile.zCoord;
+					// moveOnTCStraight(i, j, k, cx, cy, cz, meta);
+					tile.setType(TrackTypes.SMALL_STRAIGHT.getLabel());
+					TileEntity tile2 = worldObj.getTileEntity(i - 1, j, k);
+					if (tile2 != null && tile2 instanceof TileTCRail) {
+						((TileTCRail) tile2).setSwitchState(false, true);
+					}
+					return true;
+				}
 			}
 		}
-
 		return false;
 	}
 
