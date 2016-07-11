@@ -13,7 +13,7 @@ Here you will find the source code for the **Unofficial Traincraft 1.7.10 Port**
 - Licensing
 
 ##Join the Discussion!
-If you wish to contact the original developers, you can send an email to spitfire4466@gmail.com <br/> If you'd like to join the chat, head over to our [Public Discord chat](https://discord.gg/0zzHVjy4UIrSyExM). <br/> You can also check out our [Trello page](https://trello.com/b/hyrgs4WK/traincraft-17) to see our current goals.
+If you wish to contact the original developers, you can send an email to spitfire4466@gmail.com <br/> If you'd like to join the chat, head over to our [Public Discord chat](https://discord.gg/0zzHVjy4UIrSyExM).<br/> And be sure to check out the issues tab.
 ## Official Links
 * Main Site and Downloads: http://www.traincraft-mod.com
 * Blog and Forums: http://blog.meansoft.si
@@ -39,7 +39,7 @@ The traincraft project welcomes contributions from anyone, provided they have si
 
 Regarding new features/behavior changes, please submit a new Suggestion to the issue tracker before you write any code. This helps keep everything organized, saves time, effort, and reduces negative experiences all around when a change turns out to be controversial.
 
-Setting up the project was made easy with the setup.bat file.<br/>
+Setting up the project was made easy with the setup.bat file (doesn't always work for eclipse, blame forge).<br/>
 Otherwise this project will follow standard Forge conventions. See [here](http://www.minecraftforge.net/wiki/Installation/Source)<br/>
 After you finish the tutorial or setup, if it has not already been defined, you must manually define the root path of your JDK installation folder, and the location of your :ForgeBin:<br/>
 You must also import the required API libraries for the related mods if it is not done automatically (ic2, Buildcraft, railcraft, etc).
