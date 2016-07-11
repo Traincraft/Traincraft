@@ -47,27 +47,6 @@ public class PacketHandler {
 		Traincraft.modChannel.registerMessage(PacketTrackBuilderHeight.Handler.class, PacketTrackBuilderHeight.class, 7, Side.SERVER);
 	}
 
-	public static IMessage setParkingBrake(Entity player, Entity entity, boolean set, boolean toServer) {
-		PacketParkingBreak parking = new PacketParkingBreak(set);
-		if (toServer) {
-			if (player instanceof EntityClientPlayerMP) {
-				Traincraft.modChannel.sendToServer(parking);
-			}
-		}
-		return parking;
-	}
-
-	public static IMessage setLocoTurnedOn(Entity player, Entity entity, boolean set, boolean toServer) {
-		PacketSetLocoTurnedOn packet = new PacketSetLocoTurnedOn(set);
-		if (toServer) {
-			if (player instanceof EntityClientPlayerMP) {
-				Traincraft.modChannel.sendToServer(packet);
-			}
-		}
-		return packet;
-	}
-
-
 	public static Packet setBookPage(Entity player, int page, int recipe) {
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		DataOutputStream dos = new DataOutputStream(bos);

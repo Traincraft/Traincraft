@@ -13,14 +13,12 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import org.lwjgl.input.Keyboard;
-import train.common.core.network.PacketSetTrainLockedToClient;
+import train.common.core.network.*;
 import train.common.library.EnumSounds;
 import train.common.Traincraft;
 import train.common.core.HandleMaxAttachedCarts;
 import train.common.core.handlers.ConfigHandler;
 import train.common.core.handlers.PacketHandler;
-import train.common.core.network.PacketKeyPress;
-import train.common.core.network.PacketSlotsFilled;
 import train.common.library.Info;
 
 public abstract class Locomotive extends EntityRollingStock implements IInventory {
@@ -278,11 +276,13 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 		super.writeEntityToNBT(nbttagcompound);
 		nbttagcompound.setBoolean("canBeAdjusted", canBeAdjusted);
 		nbttagcompound.setBoolean("canBePulled", canBePulled);
-		nbttagcompound.setInteger("overheatLevel", (int) getOverheatLevel());
+		nbttagcompound.setInteger("overheatLevel",  getOverheatLevel());
 		nbttagcompound.setString("lastRider", lastRider);
 		nbttagcompound.setString("destination", destination);
-		nbttagcompound.setBoolean("parkingBrake", this.getParkingBrakeFromPacket());
-		if(!(this instanceof SteamTrain))nbttagcompound.setBoolean("isLocoTurnedOn", isLocoTurnedOn);
+		nbttagcompound.setBoolean("parkingBrake", parkingBrake);
+		if(!(this instanceof SteamTrain)){
+			nbttagcompound.setBoolean("isLocoTurnedOn", isLocoTurnedOn);
+		}
 	}
 
 	@Override
@@ -293,8 +293,10 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 		setOverheatLevel(nbttagcompound.getInteger("overheatLevel"));
 		lastRider = nbttagcompound.getString("lastRider");
 		destination = nbttagcompound.getString("destination");
-		this.setParkingBrakeFromPacket(nbttagcompound.getBoolean("parkingBrake"));
-		if(!(this instanceof SteamTrain))isLocoTurnedOn = nbttagcompound.getBoolean("isLocoTurnedOn");
+		this.parkingBrake = nbttagcompound.getBoolean("parkingBrake");
+		if(!(this instanceof SteamTrain)) {
+			isLocoTurnedOn = nbttagcompound.getBoolean("isLocoTurnedOn");
+		}
 	}
 
 	/**
@@ -357,7 +359,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 				else {
 					setParkingBrakeFromPacket(true);
 				}
-				Traincraft.modChannel.sendToAllAround(PacketHandler.setParkingBrake(riddenByEntity, this, parkingBrake, false), new TargetPoint(worldObj.provider.dimensionId, posX, posY, posZ, 5));
+				Traincraft.modChannel.sendToAllAround(new PacketParkingBreak(false), new TargetPoint(worldObj.provider.dimensionId, posX, posY, posZ, 5));
 			}
 		}
 	}
@@ -460,7 +462,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 		pressKeyClient();
 		if (!worldObj.isRemote) {
 			if (updateTicks % 50 == 0) {
-				Traincraft.modChannel.sendToAllAround(PacketHandler.setParkingBrake(riddenByEntity, this, parkingBrake, false), new TargetPoint(worldObj.provider.dimensionId, posX, posY, posZ, 50));
+				Traincraft.modChannel.sendToAllAround(new PacketParkingBreak(false), new TargetPoint(worldObj.provider.dimensionId, posX, posY, posZ, 50));
 				this.setLocoTurnedOn(isLocoTurnedOn, false, true,500);//sending to client
 				updateTicks=0;
 			}
@@ -663,7 +665,8 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 	}
 
 	public void sendParkingBrakePacket(boolean packet) {
-		PacketHandler.setParkingBrake(this.riddenByEntity, this, packet, true);
+		parkingBrake = packet;
+		Traincraft.modChannel.sendToServer(new PacketParkingBreak(packet));
 	}
 
 	/**
@@ -758,10 +761,10 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 	public void setLocoTurnedOn(boolean set, boolean toServer, boolean toClient, double distance) {
 		this.isLocoTurnedOn = set;
 		if (toServer) {
-			PacketHandler.setLocoTurnedOn(this.riddenByEntity, this, set, true);
+			Traincraft.modChannel.sendToServer(new PacketSetLocoTurnedOn(true));
 		}
 		if (toClient) {
-			Traincraft.modChannel.sendToAllAround(PacketHandler.setLocoTurnedOn(riddenByEntity, this, set, false), new TargetPoint(worldObj.provider.dimensionId, (int) posX, (int) posY, (int) posZ, distance));
+			Traincraft.modChannel.sendToAllAround(new PacketParkingBreak(false), new TargetPoint(worldObj.provider.dimensionId, (int) posX, (int) posY, (int) posZ, distance));
 		}
 	}
 
