@@ -27,10 +27,9 @@ public class DistilRecipes {
 	private DistilRecipes() {
 		smeltingList = new HashMap();
 
-		//TODO test if copper works also
 		if (ConfigHandler.ORE_GEN) {
-			addSmelting(/* new ItemStack(BlockIDs.OreTC.blockID, 1, 1) */BlockIDs.oreTC.blockID, new ItemStack(ItemIDs.diesel.item, 2), 0.5F, 1, new ItemStack(ItemIDs.rawPlastic.item, 1));
-			//addSmelting(/*new ItemStack(BlockIDs.OreTC.blockID, 1, 2)*/BlockIDs.OreTC.blockID, new ItemStack(ItemIDs.diesel.item, 2), 0.5F, 1, new ItemStack(ItemIDs.rawPlastic.item, 1));
+			//Prevent copper to be distilled is set in TileEntitydistil.
+			addSmelting(Item.getIdFromItem(Item.getItemFromBlock(BlockIDs.oreTC.block)), new ItemStack(ItemIDs.diesel.item, 2), 0.5F, 1, new ItemStack(ItemIDs.rawPlastic.item, 1));
 		}
 		addSmelting(Item.getIdFromItem(Items.reeds), new ItemStack(ItemIDs.diesel.item), 0.2F, 4, new ItemStack(ItemIDs.rawPlastic.item, 1));
 		addSmelting(Block.getIdFromBlock(Blocks.leaves), new ItemStack(ItemIDs.diesel.item), 0.2F, 6, new ItemStack(ItemIDs.rawPlastic.item, 2));
