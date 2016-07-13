@@ -10,6 +10,7 @@ package train.common.core.handlers;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.oredict.OreDictionary;
@@ -263,7 +264,8 @@ public class RecipeHandler {
 		
 		/* Smelting recipes */
 		// NOTE: func_151393_a = addSmelting
-		FurnaceRecipes.smelting().func_151393_a(BlockIDs.oreTC.block, OreDictionary.getOres("ingotCopper").get(0), 0.7f);
+		//FurnaceRecipes.smelting().func_151393_a(BlockIDs.oreTC.block, OreDictionary.getOres("ingotCopper").get(0), 0.7f);
+		GameRegistry.addSmelting(new ItemStack(Item.getItemFromBlock(BlockIDs.oreTC.block), 0), OreDictionary.getOres("ingotCopper").get(0), 0.7f);
 	}
 
 	public static void addDictRecipe(ItemStack stack, Object... obj) {
