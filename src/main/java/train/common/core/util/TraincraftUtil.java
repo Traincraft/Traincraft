@@ -21,5 +21,9 @@ public class TraincraftUtil{
         }
         return null;
     }
+    
+    public static boolean itemStackMatches(ItemStack item1, ItemStack item2){
+    	return (item1.getItem() == item2.getItem()) && (item1.getItemDamage() == item2.getItemDamage());
+    }
 
 }

@@ -12,8 +12,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
-import train.common.recipes.OpenHearthFurnaceRecipes;
 import train.common.blocks.BlockOpenHearthFurnace;
+import train.common.inventory.TrainCraftingManager;
 import train.common.library.BlockIDs;
 import train.common.library.ItemIDs;
 
@@ -63,7 +63,7 @@ public class TileEntityOpenHearthFurnace extends TileTraincraft{
 	public void updateEntity() {
 		boolean flag = furnaceBurnTime > 0;
 		boolean flag1 = false;
-		cookDuration = OpenHearthFurnaceRecipes.smelting().getCookTime(this.slots[0], this.slots[1]);
+		cookDuration = TrainCraftingManager.instance.getHearthFurnaceRecipeDuration(this.slots[0], this.slots[1]);
 		if (furnaceBurnTime > 0) {
 			furnaceBurnTime--;
 		}
@@ -139,16 +139,16 @@ public class TileEntityOpenHearthFurnace extends TileTraincraft{
 		if(this.slots[1] == null){//second input slot
 			return false;
 		}
-		ItemStack itemstack = OpenHearthFurnaceRecipes.smelting().getSmeltingResultFromItem1(Item.getIdFromItem(this.slots[0].getItem()));
-		//second input slot
-		return OpenHearthFurnaceRecipes.smelting().areItemPartOfRecipe(this.slots[0].copy(), this.slots[1].copy()) && (this.slots[3] == null || this.slots[3].isItemEqual(itemstack) && this.slots[3].stackSize < itemstack.getMaxStackSize());
+		ItemStack itemstack = TrainCraftingManager.instance.getHearthFurnaceRecipeResult(this.slots[0], this.slots[1]);
+
+		return (itemstack != null) && (this.slots[3] == null || this.slots[3].isItemEqual(itemstack) && this.slots[3].stackSize < itemstack.getMaxStackSize());
 	}
 
 	public void smeltItem() {
 		if (!canSmelt()) {
 			return;
 		}
-		ItemStack itemstack = OpenHearthFurnaceRecipes.smelting().getSmeltingResultFromItem1(Item.getIdFromItem(this.slots[0].getItem()));
+		ItemStack itemstack = TrainCraftingManager.instance.getHearthFurnaceRecipeResult(this.slots[0], this.slots[1]);
 		if (this.slots[3] == null) {
 			this.slots[3] = itemstack.copy();
 

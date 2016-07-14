@@ -265,6 +265,13 @@ public class RecipeHandler {
 		/* Smelting recipes */
 		// NOTE: func_151393_a = addSmelting
 		//FurnaceRecipes.smelting().func_151393_a(BlockIDs.oreTC.block, OreDictionary.getOres("ingotCopper").get(0), 0.7f);
+	}
+	
+	public static void initSmeltingRecipes(){
+		/* OpenHearthFurnace recipes */
+		TrainCraftingManager.instance.addHearthFurnaceRecipe(new ItemStack(Items.iron_ingot), new ItemStack(ItemIDs.graphite.item), new ItemStack(ItemIDs.steel.item), 2F, 1000);
+		
+		/* Vanilla Furnace recipes */
 		GameRegistry.addSmelting(new ItemStack(Item.getItemFromBlock(BlockIDs.oreTC.block), 0), OreDictionary.getOres("ingotCopper").get(0), 0.7f);
 	}
 
