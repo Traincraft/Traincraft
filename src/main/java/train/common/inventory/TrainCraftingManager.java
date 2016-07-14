@@ -6,6 +6,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import train.common.core.interfaces.ITCRecipe;
+import train.common.recipes.OpenHearthFurnaceRecipe;
 import train.common.recipes.ShapedTrainRecipes;
 import train.common.recipes.ShapelessTrainRecipe;
 
@@ -23,6 +24,11 @@ public class TrainCraftingManager {
 	
 	private final ArrayList<ShapedTrainRecipes> shapedRecipes = new ArrayList<ShapedTrainRecipes>();
 
+	/** Recipes for openHearthFurnace */
+	private final HashMap<Integer, ArrayList<Integer>> hearthFurnaceMap = new HashMap();
+	private final ArrayList<OpenHearthFurnaceRecipe> hearthFurnaceRecipes = new ArrayList<OpenHearthFurnaceRecipe>();
+	private final HashMap<Integer, Float> hearthFurnaceXpMap = new HashMap();
+	
 	public static final TrainCraftingManager getInstance() {
 		return instance;
 	}
@@ -166,5 +172,87 @@ public class TrainCraftingManager {
 	
 	public List<ShapedTrainRecipes> getShapedRecipes() {
         return Collections.unmodifiableList(shapedRecipes);
+	}
+	
+	public void addHearthFurnaceRecipe(ItemStack item1, ItemStack item2, ItemStack output, float xp, int cooktime){
+		if(getHearthFurnaceRecipe(item1, item2, true) != null){
+			return;
+		}
+		
+		int id1 = Item.getIdFromItem(item1.getItem());
+		int id2 = Item.getIdFromItem(item2.getItem());
+		
+		hearthFurnaceRecipes.add(new OpenHearthFurnaceRecipe(item1, item2, output, cooktime));
+		int recipeID = hearthFurnaceRecipes.size()-1;
+		
+		addIDtoHearthFurnaceMap(id1, recipeID);
+		addIDtoHearthFurnaceMap(id2, recipeID);
+		
+		this.hearthFurnaceXpMap.put(Item.getIdFromItem(output.getItem()), xp);
+	}
+	
+	public void addIDtoHearthFurnaceMap(int itemID, int recipeID){
+		ArrayList<Integer> list = hearthFurnaceMap.remove(itemID);
+		if(list == null){
+			list = new ArrayList<Integer>();
+		}
+		list.add(recipeID);
+		hearthFurnaceMap.put(itemID, list);
+	}
+		
+	public OpenHearthFurnaceRecipe getHearthFurnaceRecipe(ItemStack item1, ItemStack item2, boolean onAdd){
+		if(item1 == null || item2 == null)
+			return null;
+		
+		int id1 = Item.getIdFromItem(item1.getItem());
+		int id2 = Item.getIdFromItem(item2.getItem());
+		
+		ArrayList<Integer> recipes = hearthFurnaceMap.get(id1);
+		if(recipes == null)
+			return null;
+		
+		for(int recipeID : recipes){
+			if(hearthFurnaceRecipes.get(recipeID).matches(new ItemStack[]{item1, item2})){
+				return hearthFurnaceRecipes.get(recipeID);
+			}
+		}
+		
+		if(!onAdd){
+			return null;
+		}
+		
+		recipes = hearthFurnaceMap.get(id2);
+		for(int recipeID : recipes){
+			if(hearthFurnaceRecipes.get(recipeID).matches(new ItemStack[]{item1, item2})){
+				return hearthFurnaceRecipes.get(recipeID);
+			}
+		}
+		
+		return null;
+	}
+	
+	public int getHearthFurnaceRecipeDuration(ItemStack item1, ItemStack item2){
+		OpenHearthFurnaceRecipe recipe = getHearthFurnaceRecipe(item1, item2, false);
+		if(recipe != null)
+			return recipe.getCooktime();
+		return 600;
+	}
+	
+	public ItemStack getHearthFurnaceRecipeResult(ItemStack item1, ItemStack item2){
+		OpenHearthFurnaceRecipe recipe = getHearthFurnaceRecipe(item1, item2, false);
+		if(recipe != null)
+			return recipe.getCraftingResult();
+		return null;
+	}
+	
+	public float getHearthFurnaceRecipeExperience(ItemStack output){
+		Object out = this.hearthFurnaceXpMap.get(Item.getIdFromItem(output.getItem()));
+		if(out != null)
+			return (Float) out;
+		return 0;
+	}
+	
+	public ArrayList<OpenHearthFurnaceRecipe> getHearthFurnaceRecipeList(){
+		return hearthFurnaceRecipes;
 	}
 }

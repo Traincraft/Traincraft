@@ -125,6 +125,7 @@ public class Traincraft {
 		tcLog.info("Initialize Recipes");
 		RecipeHandler.initBlockRecipes();
 		RecipeHandler.initItemRecipes();
+		RecipeHandler.initSmeltingRecipes();
 		AssemblyTableRecipes.recipes();
 
 		/* Register the liquids */

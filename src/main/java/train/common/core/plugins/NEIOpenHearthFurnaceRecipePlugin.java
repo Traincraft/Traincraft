@@ -11,7 +11,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.tileentity.TileEntityFurnace;
 import train.client.gui.GuiOpenHearthFurnace;
-import train.common.recipes.OpenHearthFurnaceRecipes;
+import train.common.inventory.TrainCraftingManager;
+import train.common.recipes.OpenHearthFurnaceRecipe;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -119,13 +120,10 @@ public class NEIOpenHearthFurnaceRecipePlugin extends ShapedRecipeHandler {
 	@Override
 	public void loadCraftingRecipes(String outputId, Object... results) {
 		if (outputId.equals("open hearth furnace") && getClass() == NEIOpenHearthFurnaceRecipePlugin.class) {
-			HashMap<Integer, ItemStack> recipes = (HashMap<Integer, ItemStack>) OpenHearthFurnaceRecipes.smelting().getSmeltingList();
-			HashMap<Integer, Integer> recipesIngredient = (HashMap<Integer, Integer>) OpenHearthFurnaceRecipes.smelting().getSmeltingList2();
-
-			for (Entry<Integer, ItemStack> recipe : recipes.entrySet()) {
-				ItemStack item = recipe.getValue();
-				ItemStack item2 = new ItemStack(Item.getItemById(recipesIngredient.get(recipe.getKey())), 1, -1);
-				arecipes.add(getShape(new ItemStack(Item.getItemById(recipe.getKey()), 1, -1), item2, item));
+			for (OpenHearthFurnaceRecipe recipe : TrainCraftingManager.instance.getHearthFurnaceRecipeList()) {
+				ItemStack[] items = recipe.getRecipe();
+				ItemStack output = recipe.getCraftingResult();
+				arecipes.add(getShape(items[0], items[1], output));
 			}
 		}
 		else {
@@ -135,14 +133,11 @@ public class NEIOpenHearthFurnaceRecipePlugin extends ShapedRecipeHandler {
 
 	@Override
 	public void loadCraftingRecipes(ItemStack result) {
-		HashMap<Integer, ItemStack> recipes = (HashMap<Integer, ItemStack>) OpenHearthFurnaceRecipes.smelting().getSmeltingList();
-		HashMap<Integer, Integer> recipesIngredient = (HashMap<Integer, Integer>) OpenHearthFurnaceRecipes.smelting().getSmeltingList2();
-
-		for (Entry<Integer, ItemStack> recipe : recipes.entrySet()) {
-			ItemStack item = recipe.getValue();
+		for (OpenHearthFurnaceRecipe recipe : TrainCraftingManager.instance.getHearthFurnaceRecipeList()) {
+			ItemStack item = recipe.getCraftingResult();
 			if (NEIServerUtils.areStacksSameType(item, result)) {
-				ItemStack item2 = new ItemStack(Item.getItemById(recipesIngredient.get(recipe.getKey())), 1, -1);
-				arecipes.add(getShape(new ItemStack(Item.getItemById(recipe.getKey()), 1, -1), item2, result));
+				ItemStack[] items = recipe.getRecipe();
+				arecipes.add(getShape(items[0], items[1], result));
 			}
 		}
 
@@ -160,14 +155,11 @@ public class NEIOpenHearthFurnaceRecipePlugin extends ShapedRecipeHandler {
 
 	@Override
 	public void loadUsageRecipes(ItemStack ingredient) {
-		HashMap<Integer, ItemStack> recipes = (HashMap<Integer, ItemStack>) OpenHearthFurnaceRecipes.smelting().getSmeltingList();
-		HashMap<Integer, Integer> recipesIngredient = (HashMap<Integer, Integer>) OpenHearthFurnaceRecipes.smelting().getSmeltingList2();
-
-		for (Entry<Integer, ItemStack> recipe : recipes.entrySet()) {
-			ItemStack item = recipe.getValue();
-			if (ingredient.getItem() == Item.getItemById(recipe.getKey())) {
-				ItemStack item2 = new ItemStack(Item.getItemById(recipesIngredient.get(recipe.getKey())), 1, -1);
-				arecipes.add(getShape(ingredient, item2, item));
+		for (OpenHearthFurnaceRecipe recipe : TrainCraftingManager.instance.getHearthFurnaceRecipeList()) {
+			ItemStack item = recipe.getCraftingResult();
+			ItemStack[] items = recipe.getRecipe();
+			if (ingredient.getItem() == items[0].getItem() || ingredient.getItem() == items[1].getItem()) {
+				arecipes.add(getShape(items[0], items[1], item));
 			}
 		}
 	}

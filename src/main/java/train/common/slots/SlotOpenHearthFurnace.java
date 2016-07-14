@@ -8,7 +8,7 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
-import train.common.recipes.OpenHearthFurnaceRecipes;
+import train.common.inventory.TrainCraftingManager;
 import train.common.library.AchievementIDs;
 import train.common.library.ItemIDs;
 
@@ -66,7 +66,7 @@ public class SlotOpenHearthFurnace extends Slot {
 
 		if (!this.thePlayer.worldObj.isRemote) {
 			int var2 = this.amount;
-			float var3 = OpenHearthFurnaceRecipes.smelting().getExperience(Item.getIdFromItem(itemstack.getItem()));
+			float var3 = TrainCraftingManager.instance.getHearthFurnaceRecipeExperience(itemstack);
 			int var4;
 
 			if (var3 == 0.0F) {
