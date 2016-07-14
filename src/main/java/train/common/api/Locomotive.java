@@ -2,6 +2,8 @@ package train.common.api;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
+import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
+import io.netty.buffer.ByteBuf;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -21,7 +23,7 @@ import train.common.core.handlers.ConfigHandler;
 import train.common.core.handlers.PacketHandler;
 import train.common.library.Info;
 
-public abstract class Locomotive extends EntityRollingStock implements IInventory {
+public abstract class Locomotive extends EntityRollingStock implements IInventory, IEntityAdditionalSpawnData {
 	public int inventorySize;
 	public double speedDivider = 3.6;
 	protected ItemStack locoInvent[];
@@ -114,6 +116,20 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 			}
 		}
 		catch (ClassNotFoundException e) {}
+	}
+
+	/**
+	 * this is basically NBT for entity spawn, to keep data between client and server in sync because some data is not automatically shared.
+	 */
+	@Override
+	public void readSpawnData(ByteBuf additionalData) {
+		isBraking = additionalData.readBoolean();
+		isLocoTurnedOn = additionalData.readBoolean();
+	}
+	@Override
+	public void writeSpawnData(ByteBuf buffer) {
+		buffer.writeBoolean(isBraking);
+		buffer.writeBoolean(isLocoTurnedOn);
 	}
 
 	private String castToString(double str) {
