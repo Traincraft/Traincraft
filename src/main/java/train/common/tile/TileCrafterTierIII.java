@@ -262,8 +262,21 @@ public class TileCrafterTierIII extends TileEntity implements IInventory, ITier 
 	public boolean hasCustomInventoryName() {return false;}
 
 	@Override
-	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
-		return true;
+	public boolean isItemValidForSlot(int i, ItemStack stack) {
+		if(i>17)
+			return true;
+		if(i>9)
+			return false;
+		
+		List<TierRecipe> recipeList = TierRecipeManager.getInstance().getTierRecipeList(this.Tier);
+		for(TierRecipe recipe : recipeList){
+			ItemStack stack2 = recipe.getInput().get(i);
+			if (stack2 != null && TierRecipe.areItemsIdentical(stack, stack2)) {
+				return true;
+			}
+		}
+		
+		return false;
 	}
 	
 	@Override
