@@ -46,7 +46,7 @@ public class BlockStopper extends BlockContainer {
 
 	@Override
 	public int getRenderType() {
-		return RenderingRegistry.getNextAvailableRenderId();
+		return -1; //RenderingRegistry.getNextAvailableRenderId();
 	}
 
 	@Override
@@ -56,7 +56,7 @@ public class BlockStopper extends BlockContainer {
 
 	@Override
 	public boolean canPlaceBlockAt(World world, int x, int y, int z) {
-		if (world.isSideSolid(x, y, z, UP)) {
+		if (world.isSideSolid(x, y-1, z, UP)) {
 			return true;
 		}
 		else {
@@ -99,7 +99,7 @@ public class BlockStopper extends BlockContainer {
 
 	@Override
 	public TileEntity createNewTileEntity(World world, int meta) {
-		return new TileStopper();
+		return new TileStopper(meta);
 	}
 
 	@Override
