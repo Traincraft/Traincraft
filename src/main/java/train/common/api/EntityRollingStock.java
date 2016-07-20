@@ -897,17 +897,13 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 
 		float anglePitch = 0;
 		if (bogieLoco[0] != null) {
-			float dx = (float) (bogieLoco[0].posX - this.posX);
-			float dz = (float) (bogieLoco[0].posZ - this.posZ);
-			float angle = (float) Math.toDegrees(Math.atan2(dz, dx)) - 90F;
-			angle = MathHelper.wrapAngleTo180_float(angle);
-			serverRealRotation = angle;
+
+			serverRealRotation =MathHelper.wrapAngleTo180_float((float) Math.toDegrees(Math.atan2((float)(bogieLoco[0].posZ - this.posZ), (float)(bogieLoco[0].posX - this.posX))) + 90F);
 
 			double d = bogieLoco[0].posX - posX;
 			double d1 = bogieLoco[0].posZ - posZ;
-			double d2 = MathHelper.sqrt_double((d * d) + (d1 * d1));
 
-			anglePitch = (float) Math.atan(((bogieLoco[0].posY - posY)) / d2);//1.043749988079071
+			anglePitch = (float) Math.atan(((bogieLoco[0].posY - posY)) / MathHelper.sqrt_double((d * d) + (d1 * d1)));//1.043749988079071
 			serverRealPitch = anglePitch;
 		}
 		else {
