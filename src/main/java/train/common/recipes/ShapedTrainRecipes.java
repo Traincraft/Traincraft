@@ -14,6 +14,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
 import train.common.core.interfaces.ITCRecipe;
+import train.common.core.util.TraincraftUtil;
 
 public class ShapedTrainRecipes implements ITCRecipe {
 	/** How many horizontal slots this recipe is wide. */
@@ -83,8 +84,7 @@ public class ShapedTrainRecipes implements ITCRecipe {
 					slots[i] = false;
 					continue;
 				}
-				if (var9.getItem() != var10.getItem() || var9.getItemDamage() != var10.getItemDamage() || var9.stackSize > var10.stackSize) {
-					//System.out.println(var9.getDisplayName() + " : " + var10.getDisplayName());
+				if(!TraincraftUtil.itemStackMatches(var9, var10) || var9.stackSize > var10.stackSize ){
 					slots[i] = false;
 					continue;
 				}
