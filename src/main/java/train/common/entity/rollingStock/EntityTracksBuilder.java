@@ -186,7 +186,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 					fuelTrain += 300;
 					decrStackInInvent(0, 1, 1);
 				}
-				if (BuilderInvent[0] != null && BuilderInvent[0].isItemEqual(PluginRailcraft.RailcraftParts.INGOT_STEEL.stack) && getFuel() + 800 < maxFuel) {
+				if (BuilderInvent[0] != null && PluginRailcraft.RailcraftParts.INGOT_STEEL.stack != null && BuilderInvent[0].isItemEqual(PluginRailcraft.RailcraftParts.INGOT_STEEL.stack) && getFuel() + 800 < maxFuel) {
 					fuelTrain += 800;
 					decrStackInInvent(0, 1, 1);
 				}
