@@ -898,7 +898,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		float anglePitch = 0;
 		if (bogieLoco[0] != null) {
 
-			serverRealRotation =MathHelper.wrapAngleTo180_float((float) Math.toDegrees(Math.atan2((float)(bogieLoco[0].posZ - this.posZ), (float)(bogieLoco[0].posX - this.posX))) + 90F);
+			serverRealRotation = MathHelper.wrapAngleTo180_float((float) Math.toDegrees(Math.atan2((float)(bogieLoco[0].posZ - this.posZ), (float)(bogieLoco[0].posX - this.posX))) - 90F);
 
 			double d = bogieLoco[0].posX - posX;
 			double d1 = bogieLoco[0].posZ - posZ;
@@ -965,7 +965,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			rollingServerPitch = tempPitch2;
 		}
 		//System.out.println(updateTicks);
-		if (updateTicks % 10 == 0) {
+		if (updateTicks % 2 == 0) {
 			shouldServerSetPosYOnClient = true;
 		}
 		if (shouldServerSetPosYOnClient) {
@@ -1026,7 +1026,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		this.dataWatcher.updateObject(21, (int) (motionZ * 100));
 	}
 
-	protected void updateOnTrack(int i, int j, int k, Block l) {
+	private void updateOnTrack(int i, int j, int k, Block l) {
 		if (canUseRail() && BlockRailBase.func_150051_a(l)) {
 			Vec3 vec3d = func_514_g(posX, posY, posZ);
 			int i1 = ((BlockRailBase) l).getBasicRailMetadata(worldObj, this, i, j, k);
@@ -1035,10 +1035,8 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			boolean flag = false;
 			boolean flag1 = false;
 			if (l == Blocks.golden_rail) {
-				if (true) {
-					flag = (worldObj.getBlockMetadata(i, j, k) & 8) != 0;
-					flag1 = !flag;
-				}
+				flag = (worldObj.getBlockMetadata(i, j, k) & 8) != 0;
+				flag1 = !flag;
 				if (i1 == 8) {
 					i1 = 0;
 				}
@@ -1096,16 +1094,14 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			else {
 				double d22 = posX - d18;
 				double d24 = posZ - d19;
-				double d26 = (d22 * d9 + d24 * d10) * 2D;
-				d17 = d26;
-				double derailSpeed = 0.46;
+				d17 = (d22 * d9 + d24 * d10) * 2D;
 				//System.out.println(d13);
 				/**
 				 * Handles derail
 				 */
-				if (this instanceof Locomotive && d13 > derailSpeed && i1 >= 6) {
+				if (this instanceof Locomotive && d13 > 0.0694444444D && i1 > 5) {
 					if (d9 > 0 && d10 < 0) {
-						d10 *= 0;
+						d10 = 0;
 						d9 += 2;
 					}
 					else if (d9 < 0 && d10 > 0) {

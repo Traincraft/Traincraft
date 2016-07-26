@@ -1,6 +1,6 @@
 package train.common.items;
 
-import buildcraft.api.tools.IToolWrench;
+import cpw.mods.fml.common.Optional;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -12,8 +12,8 @@ import train.common.Traincraft;
 import train.common.library.ItemIDs;
 
 import java.util.List;
-
-public class ItemWrench extends ItemPart implements IToolWrench{
+@Optional.Interface(iface = "buildcraft.api.tools.IToolWrench", modid = "BuildCraft|Core")
+public class ItemWrench extends ItemPart implements buildcraft.api.tools.IToolWrench{
 
 	public ItemWrench() {
 		super(ItemIDs.composite_wrench.iconName);
@@ -30,25 +30,24 @@ public class ItemWrench extends ItemPart implements IToolWrench{
 		}
 		return false;
 	}
-
-
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
-		par3List.add("\u00a77" + "Works same as a BC wrench.");
+		par3List.add("\u00a77" + "Works same as a BuildCraft wrench.");
 		par3List.add("\u00a77" + "Use it to change lantern color.");
 		par3List.add("\u00a77" + "Use it to lock/unlock certain carts (passenger)");
 		par3List.add("\u00a77" + "Use it to remove locked trains (OP only)");
 	}
 
+	@Optional.Method(modid = "BuildCraft|Core")
 	@Override
 	public boolean canWrench(EntityPlayer player, int x, int y, int z) {
 		return true;
 	}
 
+	@Optional.Method(modid = "BuildCraft|Core")
 	@Override
-	public void wrenchUsed(EntityPlayer player, int x, int y, int z) {
-	}
+	public void wrenchUsed(EntityPlayer player, int x, int y, int z) {}
 
 	@Override
 	public boolean doesSneakBypassUse(World world, int x, int y, int z, EntityPlayer player) {
