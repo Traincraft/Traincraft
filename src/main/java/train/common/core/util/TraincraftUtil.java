@@ -2,6 +2,7 @@ package train.common.core.util;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 
 
 public class TraincraftUtil{
@@ -23,7 +24,10 @@ public class TraincraftUtil{
     }
     
     public static boolean itemStackMatches(ItemStack item1, ItemStack item2){
-    	return (item1.getItem() == item2.getItem()) && (item1.getItemDamage() == item2.getItemDamage());
+    	return (item1.getItem() == item2.getItem()) && 
+    			(item1.getItemDamage() == item2.getItemDamage() 
+    				|| item1.getItemDamage() == OreDictionary.WILDCARD_VALUE
+    				|| item2.getItemDamage() == OreDictionary.WILDCARD_VALUE);
     }
 
 }

@@ -120,7 +120,7 @@ public class TrainCraftingManager {
 	}
 
 	public ItemStack func_82787_a(IInventory inv, World world) {
-		int var2 = 0;
+		int occupedSlot = 0;
 		ItemStack var3 = null;
 		ItemStack var4 = null;
 		int var5;
@@ -129,18 +129,18 @@ public class TrainCraftingManager {
 			ItemStack var6 = inv.getStackInSlot(var5);
 
 			if (var6 != null) {
-				if (var2 == 0) {
+				if (occupedSlot == 0) {
 					var3 = var6;
 				}
 
-				if (var2 == 1) {
+				if (occupedSlot == 1) {
 					var4 = var6;
 				}
-				++var2;
+				++occupedSlot;
 			}
 		}
 
-		if (var2 == 2 && var3.getItem() == var4.getItem() && var3.stackSize == 1 && var4.stackSize == 1 && var3.getItem().isRepairable()) {
+		if (occupedSlot == 2 && var3.getItem() == var4.getItem() && var3.stackSize == 1 && var4.stackSize == 1 && var3.getItem().isRepairable()) {
 			Item var11 = var3.getItem();
 			int var10 = var11.getMaxDamage() - var3.getItemDamageForDisplay();
 			int var7 = var11.getMaxDamage() - var4.getItemDamageForDisplay();
@@ -154,9 +154,9 @@ public class TrainCraftingManager {
 		}
 		else {
 			for (var5 = 0; var5 < this.recipes.size(); ++var5) {
-				ITCRecipe var12 = (ITCRecipe) this.recipes.get(var5);
-				if (var12.matches(inv, world)) {
-					return var12.getCraftingResult(inv);
+				ITCRecipe recipe = (ITCRecipe) this.recipes.get(var5);
+				if (recipe.matches(inv, world)) {
+					return recipe.getCraftingResult(inv);
 				}
 			}
 			return null;
