@@ -10,17 +10,23 @@ import cpw.mods.fml.relauncher.SideOnly;
 import mods.railcraft.api.carts.IMinecart;
 import mods.railcraft.api.carts.IRoutableCart;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockRail;
 import net.minecraft.block.BlockRailBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.minecart.MinecartUpdateEvent;
 import train.common.items.ItemTCRail;
 import train.common.items.ItemTCRail.TrackTypes;
 import train.common.library.BlockIDs;
@@ -39,6 +45,23 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 	protected int bogieIndex;
 	public double bogieShift;
 	protected Side side;
+	
+
+	private boolean isInReverse;
+	private int turnProgress;
+    private double minecartX;
+    private double minecartY;
+    private double minecartZ;
+    private double minecartYaw;
+    private double minecartPitch;
+    @SideOnly(Side.CLIENT)
+    private double velocityX;
+    @SideOnly(Side.CLIENT)
+    private double velocityY;
+    @SideOnly(Side.CLIENT)
+    private double velocityZ;
+    
+    public boolean updateAsRt = false;
 
 
 	public EntityBogie(World world) {
@@ -222,6 +245,21 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 			entityMainTrain.motionZ = 0;
 		}
 		}*/
+		if(!this.isOnRail() && (this.entityMainTrain.motionX != 0 || this.entityMainTrain.motionZ != 0)){
+			this.isDerail = true;
+		}
+	}
+	
+	public boolean isDerail = false;
+	public boolean isOnRail(){
+		if(isDerail)
+			return false;
+		
+		int i = MathHelper.floor_double(this.posX);
+		int j = MathHelper.floor_double(this.posY);
+		int k = MathHelper.floor_double(this.posZ);
+		Block block = this.worldObj.getBlock(i, j, k);
+		return (BlockRailBase.func_150051_a(block) || block == BlockIDs.tcRail.block || block == BlockIDs.tcRailGag.block);
 	}
 
 	protected double spring() {
@@ -341,7 +379,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 
 	@Override
 	protected void func_145821_a(int x, int y, int z, double maxSpeed, double slopeAdjustment, Block block, int railMeta) {
-
+		//super.func_145821_a(x, y, z, maxSpeed, slopeAdjustment, block, railMeta);
 		super.func_145821_a(x, y, z, this.getMaxCartSpeedOnRail(), slopeAdjustment, block, railMeta);
 	}
 	/**
@@ -351,15 +389,15 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 	public void onUpdate(){
 
 		//super.onUpdate(); // XXX I'll just assume that this is not supposed to be there. Why would you run Vanilla update code, only to run your own code afterwards to do basically the same..?
-
+		
 		this.setCurrentCartSpeedCapOnRail(1.8F);
 		this.setMaxSpeedAirLateral(1.8F);
 
-		if (!this.worldObj.isRemote) {
-
-			this.prevPosX = this.posX;
-			this.prevPosY = this.posY;
-			this.prevPosZ = this.posZ;
+		if (!this.worldObj.isRemote || true) {
+			
+			//this.prevPosX = this.posX;
+			//this.prevPosY = this.posY;
+			//this.prevPosZ = this.posZ;
 
 			int i = MathHelper.floor_double(this.posX);
 			int j = MathHelper.floor_double(this.posY);
@@ -367,23 +405,41 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 			Block block = this.worldObj.getBlock(i, j - 1, k);
 
 			if (BlockRailBase.func_150051_a(block) || block == BlockIDs.tcRail.block || block == BlockIDs.tcRailGag.block) {
-
 				j--;
 			}
 			else {
-
 				block = this.worldObj.getBlock(i, j, k);
 			}
 
 			if (BlockRailBase.func_150051_a(block)) {
-
 				super.onUpdate();
 			}
 			else {
+				
+		        if (this.worldObj.isRemote)
+		        {
+		            if (this.turnProgress > 0)
+		            {
+		                double d6 = this.posX + (this.minecartX - this.posX) / (double)this.turnProgress;
+		                double d7 = this.posY + (this.minecartY - this.posY) / (double)this.turnProgress;
+		                double d1 = this.posZ + (this.minecartZ - this.posZ) / (double)this.turnProgress;
+		                double d3 = MathHelper.wrapAngleTo180_double(this.minecartYaw - (double)this.rotationYaw);
+		                this.rotationYaw = (float)((double)this.rotationYaw + d3 / (double)this.turnProgress);
+		                this.rotationPitch = (float)((double)this.rotationPitch + (this.minecartPitch - (double)this.rotationPitch) / (double)this.turnProgress);
+		                --this.turnProgress;
+		                this.setPosition(d6, d7, d1);
+		                this.setRotation(this.rotationYaw, this.rotationPitch);
+		            }
+		            else
+		            {
+		                this.setPosition(this.posX, this.posY, this.posZ);
+		                this.setRotation(this.rotationYaw, this.rotationPitch);
+		            }
+		        }
 
 				TileEntity tileEntity = this.worldObj.getTileEntity(i, j, k);
 				TileTCRail tileRail;
-
+				
 				if (block == BlockIDs.tcRailGag.block) {
 
 					if (tileEntity instanceof TileTCRailGag) {
@@ -479,7 +535,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 			}
 		}
 	}
-
+	
 	protected void moveOnTCStraight(int i, int j, int k, double cx, double cy, double cz, int meta){
 
 		this.posY = j + 0.2D;
@@ -761,4 +817,19 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 
 		return  this.entityMainTrain.getOwner();
 	}
+	
+    @SideOnly(Side.CLIENT)
+    public void setPositionAndRotation2(double p_70056_1_, double p_70056_3_, double p_70056_5_, float p_70056_7_, float p_70056_8_, int p_70056_9_)
+    {
+    	super.setPositionAndRotation2(p_70056_1_, p_70056_3_, p_70056_5_, p_70056_7_, p_70056_8_, p_70056_9_);
+        this.minecartX = p_70056_1_;
+        this.minecartY = p_70056_3_;
+        this.minecartZ = p_70056_5_;
+        this.minecartYaw = (double)p_70056_7_;
+        this.minecartPitch = (double)p_70056_8_;
+        this.turnProgress = p_70056_9_ + 2;
+        this.motionX = this.velocityX;
+        this.motionY = this.velocityY;
+        this.motionZ = this.velocityZ;
+    }
 }

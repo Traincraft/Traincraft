@@ -183,6 +183,8 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 	public double posYFromServer;
 	public boolean shouldServerSetPosYOnClient = true;
 	public int clientTicks = 0;
+	
+	public double derailSpeed = 0.46;
 
 	public EntityRollingStock(World world) {
 		super(world);
@@ -640,7 +642,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		this.motionY = this.rollingVelocityY;
 		this.motionZ = this.rollingVelocityZ;
 	}
-
+	
 	@Override
 	public void onUpdate() {
 
@@ -659,6 +661,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				this.hasSpawnedBogie = true;
 			}
 		}
+		
 		//super.onUpdate();
 		
 		/**
@@ -898,8 +901,12 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		float anglePitch = 0;
 		if (bogieLoco[0] != null) {
 
-			serverRealRotation = MathHelper.wrapAngleTo180_float((float) Math.toDegrees(Math.atan2((float)(bogieLoco[0].posZ - this.posZ), (float)(bogieLoco[0].posX - this.posX))) - 90F);
-
+			float dx = (float) (bogieLoco[0].posX - this.posX);
+			float dz = (float) (bogieLoco[0].posZ - this.posZ);
+			float angle = (float) Math.toDegrees(Math.atan2(dz, dx)) - 90F;
+			angle = MathHelper.wrapAngleTo180_float(angle);
+			serverRealRotation = angle;
+			
 			double d = bogieLoco[0].posX - posX;
 			double d1 = bogieLoco[0].posZ - posZ;
 
@@ -1094,12 +1101,22 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			else {
 				double d22 = posX - d18;
 				double d24 = posZ - d19;
-				d17 = (d22 * d9 + d24 * d10) * 2D;
+				double d26 = (d22 * d9 + d24 * d10) * 2D;
+				d17 = d26;
+				//double derailSpeed = 0;//0.46;
 				//System.out.println(d13);
+				for(int loco = 0; loco<this.bogieLoco.length; loco++){
+					if(bogieLoco[loco] == null)
+						break;
+					if(!bogieLoco[loco].isOnRail()){
+						derailSpeed = 0;
+						break;
+					}
+				}
 				/**
 				 * Handles derail
 				 */
-				if (this instanceof Locomotive && d13 > 0.0694444444D && i1 > 5) {
+				if (this instanceof Locomotive && d13 > derailSpeed && i1 >= 6) {
 					if (d9 > 0 && d10 < 0) {
 						d10 = 0;
 						d9 += 2;
@@ -1194,13 +1211,31 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 
 			//System.out.println(tile.getType());
 			if (ItemTCRail.isTCTurnTrack(tile)) {
-				double r = tile.r;
-				double cx = tile.cx;
-				double cy = tile.cy;
-				double cz = tile.cz;
-				int meta = tile.getBlockMetadata();
-				shouldIgnoreSwitch(tile, i, j, k, meta);
-				moveOnTC90TurnRail(i, j, k, r, cx, cy, cz, tile.getType(), meta);
+				
+				for(int loco = 0; loco<this.bogieLoco.length; loco++){
+					if(bogieLoco[loco] == null)
+						break;
+					if(!bogieLoco[loco].isOnRail()){
+						derailSpeed = 0;
+						break;
+					}
+				}
+				if(derailSpeed == 0){
+					int meta = tile.getBlockMetadata();
+					double cx = tile.xCoord;
+					double cy = tile.yCoord;
+					double cz = tile.zCoord;
+					moveOnTCStraight(i, j, k, cx, cy, cz, (meta+1)%4);
+				}
+				else{
+					double r = tile.r;
+					double cx = tile.cx;
+					double cy = tile.cy;
+					double cz = tile.cz;
+					int meta = tile.getBlockMetadata();
+					shouldIgnoreSwitch(tile, i, j, k, meta);
+					moveOnTC90TurnRail(i, j, k, r, cx, cy, cz, tile.getType(), meta);
+				}
 			}
 			if (ItemTCRail.isTCStraightTrack(tile)) {
 				int meta = tile.getBlockMetadata();
