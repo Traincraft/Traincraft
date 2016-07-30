@@ -169,8 +169,10 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		/*System.out.println("rotation "+serverRealRotation);
 		System.out.println(this.posZ +" Z "+  bogieZ1);
 		System.out.println(this.posX +" X "+  bogieX1);
-		System.out.println(this.posX +" X "+  bogieX1);*/
-		this.setPosition(bogieX1, this.posY, bogieZ1);
+		/*System.out.println(this.posX +" X "+  bogieX1);*/
+		this.motionX = (bogieX1 - this.posX);
+		this.motionZ = (bogieZ1 - this.posZ);
+		//this.setPosition(bogieX1, this.posY, bogieZ1);
 
 
 		//		double d = entityMainTrain.posX - this.posX;
@@ -246,6 +248,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		}
 		}*/
 		if(!this.isOnRail() && (this.entityMainTrain.motionX != 0 || this.entityMainTrain.motionZ != 0)){
+			//this.setPosition(prevX, this.posY, prevZ);
 			this.isDerail = true;
 		}
 	}
@@ -258,6 +261,9 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		int i = MathHelper.floor_double(this.posX);
 		int j = MathHelper.floor_double(this.posY);
 		int k = MathHelper.floor_double(this.posZ);
+		
+		if(this.worldObj.isAirBlock(i, j, k))
+			j--;
 		Block block = this.worldObj.getBlock(i, j, k);
 		return (BlockRailBase.func_150051_a(block) || block == BlockIDs.tcRail.block || block == BlockIDs.tcRailGag.block);
 	}
@@ -393,11 +399,11 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		this.setCurrentCartSpeedCapOnRail(1.8F);
 		this.setMaxSpeedAirLateral(1.8F);
 
-		if (!this.worldObj.isRemote || true) {
+		//if (!this.worldObj.isRemote || true) {
 			
-			//this.prevPosX = this.posX;
-			//this.prevPosY = this.posY;
-			//this.prevPosZ = this.posZ;
+			this.prevPosX = this.posX;
+			this.prevPosY = this.posY;
+			this.prevPosZ = this.posZ;
 
 			int i = MathHelper.floor_double(this.posX);
 			int j = MathHelper.floor_double(this.posY);
@@ -436,62 +442,64 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		                this.setRotation(this.rotationYaw, this.rotationPitch);
 		            }
 		        }
-
-				TileEntity tileEntity = this.worldObj.getTileEntity(i, j, k);
-				TileTCRail tileRail;
+		        else{
+		        	TileEntity tileEntity = this.worldObj.getTileEntity(i, j, k);
+		        	TileTCRail tileRail;
 				
-				if (block == BlockIDs.tcRailGag.block) {
+					if (block == BlockIDs.tcRailGag.block) {
 
-					if (tileEntity instanceof TileTCRailGag) {
+						if (tileEntity instanceof TileTCRailGag) {
 
-						TileTCRailGag tileGag = (TileTCRailGag) tileEntity;
-						tileEntity = this.worldObj.getTileEntity(tileGag.originX, tileGag.originY, tileGag.originZ);
+							TileTCRailGag tileGag = (TileTCRailGag) tileEntity;
+							tileEntity = this.worldObj.getTileEntity(tileGag.originX, tileGag.originY, tileGag.originZ);
+						}
+						else {
+
+							return;
+						}
+					}
+
+					if (tileEntity instanceof TileTCRail) {
+
+						tileRail = (TileTCRail) tileEntity;
 					}
 					else {
 
 						return;
 					}
-				}
 
-				if (tileEntity instanceof TileTCRail) {
+					//applyDragAndPushForces();
+					limitSpeedOnTCRail(i, j, k);
 
-					tileRail = (TileTCRail) tileEntity;
-				}
-				else {
+					if (ItemTCRail.isTCTurnTrack(tileRail)) {
 
-					return;
-				}
+						int meta = tileRail.getBlockMetadata();
 
-				//applyDragAndPushForces();
-				limitSpeedOnTCRail(i, j, k);
+						System.out.println("pass " + i + " " + k);
+						shouldIgnoreSwitch(tileRail, i, j, k, meta);
+						moveOnTC90TurnRail(i, j, k, tileRail.r, tileRail.cx, tileRail.cy, tileRail.cz, tileRail.getType(), meta);
+					}
 
-				if (ItemTCRail.isTCTurnTrack(tileRail)) {
+					if (ItemTCRail.isTCStraightTrack(tileRail)) {
 
-					int meta = tileRail.getBlockMetadata();
+						moveOnTCStraight(i, j, k, tileRail.xCoord, tileRail.yCoord, tileRail.zCoord, tileRail.getBlockMetadata());
+					}
 
-					shouldIgnoreSwitch(tileRail, i, j, k, meta);
-					moveOnTC90TurnRail(i, j, k, tileRail.r, tileRail.cx, tileRail.cy, tileRail.cz, tileRail.getType(), meta);
-				}
+					if (ItemTCRail.isTCTwoWaysCrossingTrack(tileRail)) {
 
-				if (ItemTCRail.isTCStraightTrack(tileRail)) {
+						moveOnTCTwoWaysCrossing(i, j, k, tileRail.xCoord, tileRail.yCoord, tileRail.zCoord, tileRail.getBlockMetadata());
+					}
 
-					moveOnTCStraight(i, j, k, tileRail.xCoord, tileRail.yCoord, tileRail.zCoord, tileRail.getBlockMetadata());
-				}
+					if (ItemTCRail.isTCSlopeTrack(tileRail)) {
 
-				if (ItemTCRail.isTCTwoWaysCrossingTrack(tileRail)) {
-
-					moveOnTCTwoWaysCrossing(i, j, k, tileRail.xCoord, tileRail.yCoord, tileRail.zCoord, tileRail.getBlockMetadata());
-				}
-
-				if (ItemTCRail.isTCSlopeTrack(tileRail)) {
-
-					moveOnTCSlope(i, j, k, tileRail.xCoord, tileRail.yCoord, tileRail.zCoord, tileRail.slopeAngle, tileRail.slopeHeight, tileRail.slopeLength, tileRail.getBlockMetadata());
-				}
+						moveOnTCSlope(i, j, k, tileRail.xCoord, tileRail.yCoord, tileRail.zCoord, tileRail.slopeAngle, tileRail.slopeHeight, tileRail.slopeLength, tileRail.getBlockMetadata());
+					}
+		        }
 			}
 
 			this.func_145775_I();
 			this.rotationPitch = 0.0F;
-		}
+		//}
 
 		if (this instanceof EntityBogieUtility) {
 
@@ -523,7 +531,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 
 				Entity entity;
 
-				for(int i = 0; i < list.size(); ++i) {
+				for(i = 0; i < list.size(); ++i) {
 
 					entity = (Entity) list.get(i);
 
@@ -563,7 +571,6 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 	}
 
 	protected void moveOnTCTwoWaysCrossing(int i, int j, int k, double cx, double cy, double cz, int meta){
-
 		this.posY = j + 0.2D;
 
 		//System.out.println(l);
@@ -572,7 +579,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		//if(Math.abs(motionX)>Math.abs(motionZ))System.out.println("X");
 		//if(Math.abs(motionZ)>Math.abs(motionX))System.out.println("Z");
 
-		if ((MathHelper.floor_double(this.rotationYaw * 4.0F / 360.0F + 0.5D) & 3) % 2 == 0) {
+		if (!((MathHelper.floor_double(this.rotationYaw * 4.0F / 360.0F + 0.5D) & 3) % 2 == 0)) {
 
 			double norm = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 

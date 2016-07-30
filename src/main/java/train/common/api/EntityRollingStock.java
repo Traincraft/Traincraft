@@ -435,10 +435,8 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		setRollingAmplitude(10);
 		setDamage(getDamage() + getDamage() * 10);
 	}
-
-	@Override
-	public void setDead() {
-		super.setDead();
+	
+	public void unLink(){
 		if (this.isAttached) {
 			if (this.cartLinked1 != null) {
 				if (cartLinked1.Link1 == this.uniqueID) {
@@ -469,6 +467,12 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				}
 			}
 		}
+	}
+
+	@Override
+	public void setDead() {
+		super.setDead();
+		this.unLink();
 		if (train != null) {
 			if (train.getTrains() != null) {
 				for (int i2 = 0; i2 < train.getTrains().size(); i2++) {
@@ -1110,6 +1114,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 						break;
 					if(!bogieLoco[loco].isOnRail()){
 						derailSpeed = 0;
+						this.unLink();
 						break;
 					}
 				}
@@ -1221,6 +1226,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 					}
 				}
 				if(derailSpeed == 0){
+					this.unLink();
 					int meta = tile.getBlockMetadata();
 					double cx = tile.xCoord;
 					double cy = tile.yCoord;
