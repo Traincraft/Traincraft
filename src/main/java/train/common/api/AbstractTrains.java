@@ -220,10 +220,12 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		//if(this instanceof Locomotive)System.out.println("I'm alive. Remote: " + worldObj.isRemote);
 		if (!worldObj.isRemote && this.uniqueID == -1) {
 			if (FMLCommonHandler.instance().getMinecraftServerInstance() != null) {
-				TraincraftSaveHandler.createFile(FMLCommonHandler.instance().getMinecraftServerInstance());
-				int readID = TraincraftSaveHandler.readInt(FMLCommonHandler.instance().getMinecraftServerInstance(), "numberOfTrains:");
+				//TraincraftSaveHandler.createFile(FMLCommonHandler.instance().getMinecraftServerInstance());
+				//int readID = TraincraftSaveHandler.readInt(FMLCommonHandler.instance().getMinecraftServerInstance(), "numberOfTrains:");
+				//TraincraftSaveHandler seems to not work, may cause uniqueID bug.
+				int readID = -1;
 				int newID = setNewUniqueID(readID);
-				TraincraftSaveHandler.writeValue(FMLCommonHandler.instance().getMinecraftServerInstance(), "numberOfTrains:", "" + newID);
+				//TraincraftSaveHandler.writeValue(FMLCommonHandler.instance().getMinecraftServerInstance(), "numberOfTrains:", "" + newID);
 				statsEventHandler.trainPlace(newID, this.trainName, this.trainType, this.trainOwner, this.trainOwner, (int) posX + ";" + (int) posY + ";" + (int) posZ);
 				//System.out.println("Train is missing an ID, adding new one for "+this.trainName+" "+this.uniqueID);
 			}
@@ -320,6 +322,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		oldChunkCoordZ = this.chunkCoordZ;
 	}
 	public int setNewUniqueID(int numberOfTrains) {
+		System.out.println(numberOfTrains);
 		if (numberOfTrains <= 0) {
 			numberOfTrains = uniqueIDs++;
 		}
@@ -328,7 +331,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		}
 		this.uniqueID = numberOfTrains;
 		getEntityData().setInteger("uniqueID", numberOfTrains);
-		//System.out.println("setting new ID "+uniqueID);
+		System.out.println("setting new ID "+uniqueID);
 		return numberOfTrains;
 	}
 

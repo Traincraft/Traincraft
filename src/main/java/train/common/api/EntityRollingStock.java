@@ -673,10 +673,15 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		 */
 		if (!worldObj.isRemote && this.uniqueID == -1) {
 			if (FMLCommonHandler.instance().getMinecraftServerInstance() != null) {
-				TraincraftSaveHandler.createFile(FMLCommonHandler.instance().getMinecraftServerInstance());
-				int readID = TraincraftSaveHandler.readInt(FMLCommonHandler.instance().getMinecraftServerInstance(), "numberOfTrains:");
+				//TraincraftSaveHandler.createFile(FMLCommonHandler.instance().getMinecraftServerInstance());
+				//int readID = TraincraftSaveHandler.readInt(FMLCommonHandler.instance().getMinecraftServerInstance(), "numberOfTrains:");
+				//int newID = setNewUniqueID(readID);
+				
+					//TraincraftSaveHandler seems to not work, may cause uniqueID bug.
+				int readID = -1;
 				int newID = setNewUniqueID(readID);
-				TraincraftSaveHandler.writeValue(FMLCommonHandler.instance().getMinecraftServerInstance(), "numberOfTrains:", "" + newID);
+				
+				//TraincraftSaveHandler.writeValue(FMLCommonHandler.instance().getMinecraftServerInstance(), "numberOfTrains:", "" + newID);
 				statsEventHandler.trainPlace(newID, this.trainName, this.trainType, this.trainOwner, this.trainOwner, (int) posX + ";" + (int) posY + ";" + (int) posZ);
 				//System.out.println("Train is missing an ID, adding new one for "+this.trainName+" "+this.uniqueID);
 			}
@@ -797,6 +802,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		if (addedToChunk && ((this.cartLinked1 == null && this.Link1 != 0) || (this.cartLinked2 == null && this.Link2 != 0))) {
 			AxisAlignedBB box2 = boundingBox.expand(15, 15, 15);
 			List lis = worldObj.getEntitiesWithinAABBExcludingEntity(this, box2);
+			//System.out.println("link " + this.uniqueID + " " + this + " to " + this.Link1 + " " + this.Link2);
 			if (lis != null && lis.size() > 0) {
 				for (int j1 = 0; j1 < lis.size(); j1++) {
 					Entity entity = (Entity) lis.get(j1);
