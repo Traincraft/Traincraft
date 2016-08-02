@@ -5,6 +5,8 @@ import static mods.railcraft.api.tracks.RailTools.isRailBlockAt;
 import java.util.ArrayList;
 import java.util.List;
 
+import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
+import io.netty.buffer.ByteBuf;
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.api.carts.ILinkableCart;
 import mods.railcraft.api.core.items.IToolCrowbar;
@@ -78,7 +80,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class EntityRollingStock extends AbstractTrains implements ILinkableCart {
+public class EntityRollingStock extends AbstractTrains implements ILinkableCart, IEntityAdditionalSpawnData {
 	public int fuelTrain;
 	//protected static final int matrix[][][] = { { { 0, 0, -1 }, { 0, 0, 1 } }, { { -1, 0, 0 }, { 1, 0, 0 } }, { { -1, -1, 0 }, { 1, 0, 0 } }, { { -1, 0, 0 }, { 1, -1, 0 } }, { { 0, 0, -1 }, { 0, -1, 1 } }, { { 0, -1, -1 }, { 0, 0, 1 } }, { { 0, 0, 1 }, { 1, 0, 0 } }, { { 0, 0, 1 }, { -1, 0, 0 } }, { { 0, 0, -1 }, { -1, 0, 0 } }, { { 0, 0, -1 }, { 1, 0, 0 } } };
 
@@ -176,8 +178,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 	public EntityBogie[] bogieLoco = new EntityBogie[10];
 	public EntityBogieUtility[] bogieUtility = new EntityBogieUtility[10];
 	private boolean hasSpawnedBogie = false;
-	private double prevD6;
-	private double prevD7;
 	public float prevAnglePitch;
 	private double mountedOffset = -0.5;
 	public double posYFromServer;
@@ -259,7 +259,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		this.rotationCos = 1F;
 		this.rotationSin = 0F;
 		this.needsBogieUpdate = false;
-		this.setCollisionHandler(null);
+		setCollisionHandler(null);
 		//this.boundingBox.offset(0, 0.5, 0);
 	}
 
@@ -272,6 +272,18 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			dataWatcher.updateObject(11, uniqueID);
 			if (trainCreator != null && trainCreator.length() > 0) dataWatcher.updateObject(13, trainCreator);
 		}
+	}
+
+	/**
+	 * this is basically NBT for entity spawn, to keep data between client and server in sync because some data is not automatically shared.
+	 */
+	@Override
+	public void readSpawnData(ByteBuf additionalData) {
+		isBraking = additionalData.readBoolean();
+	}
+	@Override
+	public void writeSpawnData(ByteBuf buffer) {
+		buffer.writeBoolean(isBraking);
 	}
 
 	public String getTrainName() {
@@ -896,8 +908,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		updateTicks++;
 		d6 = prevPosX - posX;
 		d7 = prevPosZ - posZ;
-		prevD6 = d6;
-		prevD7 = d7;
 		prevRotationYaw = rotationYaw;
 		//System.out.println("before "+rotationYaw +" "+prevRotationYaw);
 		this.rotationPitch = 0.0F;
@@ -1720,7 +1730,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 
 		if (!worldObj.isRemote) {
 			//System.out.println(this.uniqueID);
-			 Traincraft.modChannel.sendToAllAround(new PacketSetTrainLockedToClient(locked, this), new TargetPoint(worldObj.provider.dimensionId, (int) posX, (int) posY, (int) posZ, 15));
+			 Traincraft.lockChannel.sendToAllAround(new PacketSetTrainLockedToClient(locked, this), new TargetPoint(worldObj.provider.dimensionId, (int) posX, (int) posY, (int) posZ, 15));
 		}
 		playerEntity = entityplayer;
 		itemstack = entityplayer.inventory.getCurrentItem();

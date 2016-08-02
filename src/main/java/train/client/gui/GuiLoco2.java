@@ -8,7 +8,9 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
+import train.common.Traincraft;
 import train.common.api.*;
+import train.common.core.network.PacketParkingBreak;
 import train.common.inventory.InventoryLoco;
 import train.common.library.Info;
 
@@ -39,7 +41,7 @@ public class GuiLoco2 extends GuiContainer {
 	public void initGui() {
 		super.initGui();
 		buttonList.clear();
-		if (!loco.parkingBrake) {
+		if (!loco.getParkingBrakeFromPacket()) {
 			if (loco instanceof SteamTrain) {
 				textureX = 41;
 				textureY = 13;
@@ -56,7 +58,7 @@ public class GuiLoco2 extends GuiContainer {
 			buttonPosY = -13;
 			buttonList.add(new GuiCustomButton(2, ((width - xSize) / 2) + buttonPosX - 12, ((height - ySize) / 2) + buttonPosY, textureSizeX, textureSizeY, "", texture, textureX, textureY));//Brake: Off
 		}
-		else if (loco.parkingBrake) {
+		else {
 			if (loco instanceof SteamTrain) {
 				textureX = 0;
 				textureY = 13;
@@ -94,15 +96,17 @@ public class GuiLoco2 extends GuiContainer {
 	@Override
 	protected void actionPerformed(GuiButton guibutton) {
 		if (guibutton.id == 2) {
-			if ((!loco.getParkingBrakeFromPacket()) && loco.getSpeed() < 10) {
-				loco.sendParkingBrakePacket(true);
-				loco.parkingBrake = true;
+			if ((!loco.parkingBrake) && loco.getSpeed() < 10) {
+				Traincraft.brakeChannel.sendToServer(new PacketParkingBreak(true, loco.getEntityId()));
+				loco.parkingBrake=true;
+				loco.isBraking=true;
 				guibutton.displayString = "Brake: On";
 				this.initGui();
 			}
 			else if (loco.getSpeed() < 10) {
-				loco.sendParkingBrakePacket(false);
-				loco.parkingBrake = false;
+				Traincraft.brakeChannel.sendToServer(new PacketParkingBreak(false, loco.getEntityId()));
+				loco.parkingBrake=false;
+				loco.isBraking=false;
 				guibutton.displayString = "Brake: Off";
 				this.initGui();
 			}

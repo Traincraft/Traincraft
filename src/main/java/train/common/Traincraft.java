@@ -57,6 +57,13 @@ public class Traincraft {
 	public static SimpleNetworkWrapper keyChannel;
 	public static SimpleNetworkWrapper rotationChannel;
 
+
+	public static SimpleNetworkWrapper slotschannel;
+	public static SimpleNetworkWrapper ignitionChannel;
+	public static SimpleNetworkWrapper brakeChannel;
+	public static SimpleNetworkWrapper lockChannel;
+	public static SimpleNetworkWrapper builderChannel;
+
 	/* Creative tab for Traincraft */
 	public static CreativeTabs tcTab;
 

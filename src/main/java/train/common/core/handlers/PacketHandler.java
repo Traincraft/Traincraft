@@ -36,15 +36,24 @@ public class PacketHandler {
 		Traincraft.keyChannel = NetworkRegistry.INSTANCE.newSimpleChannel(Info.keyChannel);
 		Traincraft.rotationChannel = NetworkRegistry.INSTANCE.newSimpleChannel(Info.rotationChannel);
 
+
+		Traincraft.slotschannel = NetworkRegistry.INSTANCE.newSimpleChannel("slots");
+		Traincraft.ignitionChannel = NetworkRegistry.INSTANCE.newSimpleChannel("ignition");
+		Traincraft.brakeChannel = NetworkRegistry.INSTANCE.newSimpleChannel("brake");
+		Traincraft.lockChannel = NetworkRegistry.INSTANCE.newSimpleChannel("lock");
+		Traincraft.builderChannel = NetworkRegistry.INSTANCE.newSimpleChannel("builder");
+
+
+
 		Traincraft.keyChannel.registerMessage(PacketKeyPress.Handler.class, PacketKeyPress.class, 1, Side.SERVER);
 		Traincraft.rotationChannel.registerMessage(PacketRollingStockRotation.Handler.class, PacketRollingStockRotation.class, 1, Side.CLIENT);
 		//Traincraft.modChannel.registerMessage(PacketSetJukeboxStreamingUrl.Handler.class, PacketSetJukeboxStreamingUrl.class, 1, Side.SERVER);
-		Traincraft.modChannel.registerMessage(PacketSlotsFilled.Handler.class, PacketSlotsFilled.class, 2, Side.CLIENT);
-		Traincraft.modChannel.registerMessage(PacketParkingBreak.Handler.class, PacketParkingBreak.class, 3, Side.SERVER); //small leak, should be client side?
-		Traincraft.modChannel.registerMessage(PacketSetTrainLockedToClient.Handler.class, PacketSetTrainLockedToClient.class, 4, Side.CLIENT);
-		Traincraft.modChannel.registerMessage(PacketSetLocoTurnedOn.Handler.class, PacketSetLocoTurnedOn.class, 5, Side.SERVER); //small leak, should be client side?
-		Traincraft.modChannel.registerMessage(PacketLantern.Handler.class, PacketLantern.class, 6, Side.SERVER);
-		Traincraft.modChannel.registerMessage(PacketTrackBuilderHeight.Handler.class, PacketTrackBuilderHeight.class, 7, Side.SERVER);
+		Traincraft.slotschannel.registerMessage(PacketSlotsFilled.Handler.class, PacketSlotsFilled.class, 1, Side.CLIENT);
+		Traincraft.brakeChannel.registerMessage(PacketParkingBreak.Handler.class, PacketParkingBreak.class, 1, Side.SERVER);
+		Traincraft.lockChannel.registerMessage(PacketSetTrainLockedToClient.Handler.class, PacketSetTrainLockedToClient.class, 1, Side.CLIENT);
+		Traincraft.ignitionChannel.registerMessage(PacketSetLocoTurnedOn.Handler.class, PacketSetLocoTurnedOn.class, 1, Side.SERVER);
+		Traincraft.modChannel.registerMessage(PacketLantern.Handler.class, PacketLantern.class, 1, Side.SERVER);
+		Traincraft.builderChannel.registerMessage(PacketTrackBuilderHeight.Handler.class, PacketTrackBuilderHeight.class, 1, Side.CLIENT);
 	}
 
 	public static Packet setBookPage(Entity player, int page, int recipe) {

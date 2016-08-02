@@ -8,8 +8,10 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
+import train.common.Traincraft;
 import train.common.api.Locomotive;
 import train.common.api.SteamTrain;
+import train.common.core.network.PacketParkingBreak;
 import train.common.inventory.InventoryForney;
 import train.common.inventory.InventoryLoco;
 import train.common.library.Info;
@@ -91,13 +93,13 @@ public class GuiForney extends GuiContainer {
 	protected void actionPerformed(GuiButton guibutton) {
 		if (guibutton.id == 2) {
 			if ((!loco.getParkingBrakeFromPacket()) && loco.getSpeed() < 10) {
-				loco.sendParkingBrakePacket(true);
+				Traincraft.brakeChannel.sendToServer(new PacketParkingBreak(true, loco.getEntityId()));
 				loco.parkingBrake = true;
 				guibutton.displayString = "Brake: On";
 				this.initGui();
 			}
 			else if (loco.getSpeed() < 10) {
-				loco.sendParkingBrakePacket(false);
+				Traincraft.brakeChannel.sendToServer(new PacketParkingBreak(false, loco.getEntityId()));
 				loco.parkingBrake = false;
 				guibutton.displayString = "Brake: Off";
 				this.initGui();

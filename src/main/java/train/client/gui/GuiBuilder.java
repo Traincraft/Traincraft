@@ -43,10 +43,10 @@ public class GuiBuilder extends GuiContainer {
 	public void initGui() {
 		super.initGui();
 		buttonList.clear();
-		if (((EntityTracksBuilder) builder).getFollowTracks() == 1) {
+		if ((builder).getFollowTracks() == 1) {
 			buttonList.add(new GuiButton(1, ((width - xSize) / 2) + 3, ((height - ySize) / 2) - 20, 80, 20, StatCollector.translateToLocal("builder.follow.name")));
 		}
-		if (((EntityTracksBuilder) builder).getFollowTracks() == 0) {
+		if ((builder).getFollowTracks() == 0) {
 			buttonList.add(new GuiButton(1, ((width - xSize) / 2) + 3, ((height - ySize) / 2) - 20, 80, 20, StatCollector.translateToLocal("builder.remove.name")));
 		}
 		buttonList.add(new GuiButton(2, ((width - xSize) / 2) + 85, ((height - ySize) / 2) - 40, 30, 20, StatCollector.translateToLocal("builder.up.name")));
@@ -54,7 +54,7 @@ public class GuiBuilder extends GuiContainer {
 
 		int var1 = (this.width - xSize) / 2;
 		int var2 = (this.height - ySize) / 2;
-		if (!((AbstractTrains) builder).locked) {
+		if (!(builder).locked) {
 			this.buttonList.add(this.buttonLock = new GuiButton(4, var1 + 3, var2 - 30, 51, 10, StatCollector.translateToLocal("train.unlocked.name")));
 		}
 		else {
@@ -71,7 +71,7 @@ public class GuiBuilder extends GuiContainer {
 		fontRendererObj.drawString("yet", 4, 180, 0x404040);
 
 		fontRendererObj.drawString(StatCollector.translateToLocal("builder.currElev.name") + ": " + (int) builder.currentHeight, 120, -25, 0xFFFFFF);
-		fontRendererObj.drawString(StatCollector.translateToLocal("builder.reqElev.name") + ": " + (int) builder.getPlannedHeight(), 120, -10, 0xFFFFFF);
+		fontRendererObj.drawString(StatCollector.translateToLocal("builder.reqElev.name") + ": " + builder.getPlannedHeight(), 120, -10, 0xFFFFFF);
 		if (intersectsWith(i, j)) {
 			drawCreativeTabHoveringText("When a builder is locked,", i, j);
 		}
@@ -80,52 +80,52 @@ public class GuiBuilder extends GuiContainer {
 	@Override
 	protected void actionPerformed(GuiButton guibutton) {
 		if (guibutton.id == 1) {
-			if (((EntityTracksBuilder) builder).getFollowTracks() == 1) {
-				sendPacket(0, 4);
+			if ((builder).getFollowTracks() == 1) {
+				sendPacket(0, builder.getEntityId());
 				guibutton.displayString = StatCollector.translateToLocal("builder.remove.name");
 			}
 			else {
-				sendPacket(1, 4);
+				sendPacket(1, builder.getEntityId());
 				guibutton.displayString = StatCollector.translateToLocal("builder.follow.name");
 			}
 		}
 		if (guibutton.id == 2) {
-			sendPacket(1, 3);
+			sendPacket(1, builder.getEntityId());
 		}
 		if (guibutton.id == 3) {
-			sendPacket(-1, 3);
+			sendPacket(-1, builder.getEntityId());
 		}
 
 		if (guibutton.id == 4) {
-			if (player != null && player instanceof EntityPlayer && player.getCommandSenderName().toLowerCase().equals(((AbstractTrains) builder).trainOwner.toLowerCase())) {
-				if ((!((AbstractTrains) builder).locked)) {
-					AxisAlignedBB box = ((EntityTracksBuilder) builder).boundingBox.expand(5, 5, 5);
-					List lis3 = ((EntityTracksBuilder) builder).worldObj.getEntitiesWithinAABBExcludingEntity(builder, box);
+			if (player != null && player.getCommandSenderName().toLowerCase().equals((builder).trainOwner.toLowerCase())) {
+				if ((!(builder).locked)) {
+					AxisAlignedBB box = (builder).boundingBox.expand(5, 5, 5);
+					List lis3 = (builder).worldObj.getEntitiesWithinAABBExcludingEntity(builder, box);
 					if (lis3 != null && lis3.size() > 0) {
 						for (int j1 = 0; j1 < lis3.size(); j1++) {
 							Entity entity = (Entity) lis3.get(j1);
 							if (entity instanceof EntityPlayer) {
-								((AbstractTrains) builder).sendTrainLockedPacket((EntityPlayer) entity, true);
+								(builder).sendTrainLockedPacket((EntityPlayer) entity, true);
 							}
 						}
 					}
 
-					((AbstractTrains) builder).locked = true;
+					(builder).locked = true;
 					guibutton.displayString = StatCollector.translateToLocal("train.locked.name");
 					this.initGui();
 				}
 				else {
-					AxisAlignedBB box = ((EntityTracksBuilder) builder).boundingBox.expand(5, 5, 5);
-					List lis3 = ((EntityTracksBuilder) builder).worldObj.getEntitiesWithinAABBExcludingEntity(builder, box);
+					AxisAlignedBB box = (builder).boundingBox.expand(5, 5, 5);
+					List lis3 = (builder).worldObj.getEntitiesWithinAABBExcludingEntity(builder, box);
 					if (lis3 != null && lis3.size() > 0) {
 						for (int j1 = 0; j1 < lis3.size(); j1++) {
 							Entity entity = (Entity) lis3.get(j1);
 							if (entity instanceof EntityPlayer) {
-								((AbstractTrains) builder).sendTrainLockedPacket((EntityPlayer) entity, false);
+								(builder).sendTrainLockedPacket((EntityPlayer) entity, false);
 							}
 						}
 					}
-					((AbstractTrains) builder).locked = false;
+					(builder).locked = false;
 					guibutton.displayString = StatCollector.translateToLocal("train.unlocked.name");
 					this.initGui();
 				}
@@ -141,9 +141,9 @@ public class GuiBuilder extends GuiContainer {
 		int j = (width - xSize) / 2;
 		int k = (height - ySize) / 2;
 		String state = "";
-		if (((AbstractTrains) builder).locked)
+		if ((builder).locked)
 			state = "Locked";
-		if (!((AbstractTrains) builder).locked)
+		if (!(builder).locked)
 			state = "Unlocked";
 
 		int textWidth = fontRendererObj.getStringWidth("the GUI, change speed, destroy it.");
@@ -163,7 +163,7 @@ public class GuiBuilder extends GuiContainer {
 		fontRendererObj.drawStringWithShadow("only its owner can open", startX, startY + 10, -1);
 		fontRendererObj.drawStringWithShadow("the GUI and destroy it.", startX, startY + 20, -1);
 		fontRendererObj.drawStringWithShadow("Current state: " + state, startX, startY + 30, -1);
-		fontRendererObj.drawStringWithShadow("Owner: " + ((AbstractTrains) builder).trainOwner.trim(), startX, startY + 40, -1);
+		fontRendererObj.drawStringWithShadow("Owner: " + (builder).trainOwner.trim(), startX, startY + 40, -1);
 	}
 
 	public boolean intersectsWith(int mouseX, int mouseY) {
@@ -176,13 +176,13 @@ public class GuiBuilder extends GuiContainer {
 	}
 
 	private void sendPacket(int packet, int packetID) {
-		AxisAlignedBB box = ((EntityTracksBuilder) builder).boundingBox.expand(5, 5, 5);
-		List lis3 = ((EntityTracksBuilder) builder).worldObj.getEntitiesWithinAABBExcludingEntity(builder, box);
+		AxisAlignedBB box = (builder).boundingBox.expand(5, 5, 5);
+		List lis3 = (builder).worldObj.getEntitiesWithinAABBExcludingEntity(builder, box);
 		if (lis3 != null && lis3.size() > 0) {
 			for (int j1 = 0; j1 < lis3.size(); j1++) {
 				Entity entity = (Entity) lis3.get(j1);
 				if (entity instanceof EntityPlayer) {
-					Traincraft.modChannel.sendToAllAround(new PacketTrackBuilderHeight(packet), new NetworkRegistry.TargetPoint(builder.worldObj.provider.dimensionId, builder.posX, builder.posY, builder.posZ, 20));
+					Traincraft.builderChannel.sendToAllAround(new PacketTrackBuilderHeight(packet, packetID), new NetworkRegistry.TargetPoint(builder.worldObj.provider.dimensionId, builder.posX, builder.posY, builder.posZ, 20));
 				}
 			}
 		}

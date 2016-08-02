@@ -23,7 +23,7 @@ import train.common.core.handlers.ConfigHandler;
 import train.common.core.handlers.PacketHandler;
 import train.common.library.Info;
 
-public abstract class Locomotive extends EntityRollingStock implements IInventory, IEntityAdditionalSpawnData {
+public abstract class Locomotive extends EntityRollingStock implements IInventory {
 	public int inventorySize;
 	public double speedDivider = 3.6;
 	protected ItemStack locoInvent[];
@@ -123,13 +123,15 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 	 */
 	@Override
 	public void readSpawnData(ByteBuf additionalData) {
-		isBraking = additionalData.readBoolean();
+		super.readSpawnData(additionalData);
 		isLocoTurnedOn = additionalData.readBoolean();
+		parkingBrake = additionalData.readBoolean();
 	}
 	@Override
 	public void writeSpawnData(ByteBuf buffer) {
-		buffer.writeBoolean(isBraking);
+		super.writeSpawnData(buffer);
 		buffer.writeBoolean(isLocoTurnedOn);
+		buffer.writeBoolean(parkingBrake);
 	}
 
 	private String castToString(double str) {
@@ -337,7 +339,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 	public void keyHandlerFromPacket(int i) {
 		if (lastUpdateTick == updateTicks) { return; }
 		if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer) {
-			Traincraft.modChannel.sendToAllAround(new PacketSetTrainLockedToClient(locked, this), new TargetPoint(worldObj.provider.dimensionId, (int) posX, (int) posY, (int) posZ, 5));
+			Traincraft.lockChannel.sendToAllAround(new PacketSetTrainLockedToClient(locked, this), new TargetPoint(worldObj.provider.dimensionId, (int) posX, (int) posY, (int) posZ, 5));
 		}
 		if (this.getTrainLockedFromPacket()) {
 			if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer && !((EntityPlayer) this.riddenByEntity).getDisplayName().toLowerCase().equals(this.trainOwner.toLowerCase())) { return; }
@@ -375,7 +377,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 				else {
 					setParkingBrakeFromPacket(true);
 				}
-				Traincraft.modChannel.sendToAllAround(new PacketParkingBreak(false), new TargetPoint(worldObj.provider.dimensionId, posX, posY, posZ, 5));
+				Traincraft.brakeChannel.sendToAllAround(new PacketParkingBreak(false, this.getEntityId()), new TargetPoint(worldObj.provider.dimensionId, posX, posY, posZ, 5));
 			}
 		}
 	}
@@ -478,7 +480,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 		pressKeyClient();
 		if (!worldObj.isRemote) {
 			if (updateTicks % 50 == 0) {
-				Traincraft.modChannel.sendToAllAround(new PacketParkingBreak(false), new TargetPoint(worldObj.provider.dimensionId, posX, posY, posZ, 50));
+				Traincraft.brakeChannel.sendToAllAround(new PacketParkingBreak(false, this.getEntityId()), new TargetPoint(worldObj.provider.dimensionId, posX, posY, posZ, 50));
 				this.setLocoTurnedOn(isLocoTurnedOn, false, true,500);//sending to client
 				updateTicks=0;
 			}
@@ -498,7 +500,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 					}
 				}
 
-				Traincraft.modChannel.sendToAllAround(new PacketSlotsFilled(this, slotsFilled), new TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
+				Traincraft.slotschannel.sendToAllAround(new PacketSlotsFilled(this, slotsFilled), new TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
 			}
 			/**
 			 * Fuel consumption
@@ -680,11 +682,6 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 		return parkingBrake;
 	}
 
-	public void sendParkingBrakePacket(boolean packet) {
-		parkingBrake = packet;
-		Traincraft.modChannel.sendToServer(new PacketParkingBreak(packet));
-	}
-
 	/**
 	 * Added for SMP
 	 * 
@@ -777,10 +774,10 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 	public void setLocoTurnedOn(boolean set, boolean toServer, boolean toClient, double distance) {
 		this.isLocoTurnedOn = set;
 		if (toServer) {
-			Traincraft.modChannel.sendToServer(new PacketSetLocoTurnedOn(true));
+			Traincraft.ignitionChannel.sendToServer(new PacketSetLocoTurnedOn(true));
 		}
 		if (toClient) {
-			Traincraft.modChannel.sendToAllAround(new PacketParkingBreak(false), new TargetPoint(worldObj.provider.dimensionId, (int) posX, (int) posY, (int) posZ, distance));
+			Traincraft.brakeChannel.sendToAllAround(new PacketParkingBreak(false, this.getEntityId()), new TargetPoint(worldObj.provider.dimensionId, (int) posX, (int) posY, (int) posZ, distance));
 		}
 	}
 
@@ -966,7 +963,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 				}
 			}
 
-			Traincraft.modChannel.sendToAllAround(new PacketSlotsFilled(this, slotsFilled), new TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
+			Traincraft.slotschannel.sendToAllAround(new PacketSlotsFilled(this, slotsFilled), new TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
 		}
 	}
 
