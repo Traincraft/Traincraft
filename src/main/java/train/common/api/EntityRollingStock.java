@@ -466,6 +466,9 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 					//System.out.println("clear cartLinked2 link2");
 				}
 			}
+			this.cartLinked1 = null;
+			this.cartLinked2 = null;
+			this.isAttached = false;
 		}
 	}
 
