@@ -183,6 +183,8 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 	public double posYFromServer;
 	public boolean shouldServerSetPosYOnClient = true;
 	public int clientTicks = 0;
+	
+	public double derailSpeed = 0.46;
 
 	public EntityRollingStock(World world) {
 		super(world);
@@ -433,10 +435,8 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		setRollingAmplitude(10);
 		setDamage(getDamage() + getDamage() * 10);
 	}
-
-	@Override
-	public void setDead() {
-		super.setDead();
+	
+	public void unLink(){
 		if (this.isAttached) {
 			if (this.cartLinked1 != null) {
 				if (cartLinked1.Link1 == this.uniqueID) {
@@ -466,7 +466,16 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 					//System.out.println("clear cartLinked2 link2");
 				}
 			}
+			this.cartLinked1 = null;
+			this.cartLinked2 = null;
+			this.isAttached = false;
 		}
+	}
+
+	@Override
+	public void setDead() {
+		super.setDead();
+		this.unLink();
 		if (train != null) {
 			if (train.getTrains() != null) {
 				for (int i2 = 0; i2 < train.getTrains().size(); i2++) {
@@ -640,7 +649,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		this.motionY = this.rollingVelocityY;
 		this.motionZ = this.rollingVelocityZ;
 	}
-
+	
 	@Override
 	public void onUpdate() {
 
@@ -659,6 +668,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				this.hasSpawnedBogie = true;
 			}
 		}
+		
 		//super.onUpdate();
 		
 		/**
@@ -666,10 +676,15 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		 */
 		if (!worldObj.isRemote && this.uniqueID == -1) {
 			if (FMLCommonHandler.instance().getMinecraftServerInstance() != null) {
-				TraincraftSaveHandler.createFile(FMLCommonHandler.instance().getMinecraftServerInstance());
-				int readID = TraincraftSaveHandler.readInt(FMLCommonHandler.instance().getMinecraftServerInstance(), "numberOfTrains:");
+				//TraincraftSaveHandler.createFile(FMLCommonHandler.instance().getMinecraftServerInstance());
+				//int readID = TraincraftSaveHandler.readInt(FMLCommonHandler.instance().getMinecraftServerInstance(), "numberOfTrains:");
+				//int newID = setNewUniqueID(readID);
+				
+					//TraincraftSaveHandler seems to not work, may cause uniqueID bug.
+				int readID = -1;
 				int newID = setNewUniqueID(readID);
-				TraincraftSaveHandler.writeValue(FMLCommonHandler.instance().getMinecraftServerInstance(), "numberOfTrains:", "" + newID);
+				
+				//TraincraftSaveHandler.writeValue(FMLCommonHandler.instance().getMinecraftServerInstance(), "numberOfTrains:", "" + newID);
 				statsEventHandler.trainPlace(newID, this.trainName, this.trainType, this.trainOwner, this.trainOwner, (int) posX + ";" + (int) posY + ";" + (int) posZ);
 				//System.out.println("Train is missing an ID, adding new one for "+this.trainName+" "+this.uniqueID);
 			}
@@ -790,6 +805,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		if (addedToChunk && ((this.cartLinked1 == null && this.Link1 != 0) || (this.cartLinked2 == null && this.Link2 != 0))) {
 			AxisAlignedBB box2 = boundingBox.expand(15, 15, 15);
 			List lis = worldObj.getEntitiesWithinAABBExcludingEntity(this, box2);
+			//System.out.println("link " + this.uniqueID + " " + this + " to " + this.Link1 + " " + this.Link2);
 			if (lis != null && lis.size() > 0) {
 				for (int j1 = 0; j1 < lis.size(); j1++) {
 					Entity entity = (Entity) lis.get(j1);
@@ -898,8 +914,12 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		float anglePitch = 0;
 		if (bogieLoco[0] != null) {
 
-			serverRealRotation = MathHelper.wrapAngleTo180_float((float) Math.toDegrees(Math.atan2((float)(bogieLoco[0].posZ - this.posZ), (float)(bogieLoco[0].posX - this.posX))) - 90F);
-
+			float dx = (float) (bogieLoco[0].posX - this.posX);
+			float dz = (float) (bogieLoco[0].posZ - this.posZ);
+			float angle = (float) Math.toDegrees(Math.atan2(dz, dx)) - 90F;
+			angle = MathHelper.wrapAngleTo180_float(angle);
+			serverRealRotation = angle;
+			
 			double d = bogieLoco[0].posX - posX;
 			double d1 = bogieLoco[0].posZ - posZ;
 
@@ -1094,12 +1114,23 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			else {
 				double d22 = posX - d18;
 				double d24 = posZ - d19;
-				d17 = (d22 * d9 + d24 * d10) * 2D;
+				double d26 = (d22 * d9 + d24 * d10) * 2D;
+				d17 = d26;
+				//double derailSpeed = 0;//0.46;
 				//System.out.println(d13);
+				for(int loco = 0; loco<this.bogieLoco.length; loco++){
+					if(bogieLoco[loco] == null)
+						break;
+					if(!bogieLoco[loco].isOnRail()){
+						derailSpeed = 0;
+						this.unLink();
+						break;
+					}
+				}
 				/**
 				 * Handles derail
 				 */
-				if (this instanceof Locomotive && d13 > 0.0694444444D && i1 > 5) {
+				if (this instanceof Locomotive && d13 > derailSpeed && i1 >= 6) {
 					if (d9 > 0 && d10 < 0) {
 						d10 = 0;
 						d9 += 2;
@@ -1194,13 +1225,32 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 
 			//System.out.println(tile.getType());
 			if (ItemTCRail.isTCTurnTrack(tile)) {
-				double r = tile.r;
-				double cx = tile.cx;
-				double cy = tile.cy;
-				double cz = tile.cz;
-				int meta = tile.getBlockMetadata();
-				shouldIgnoreSwitch(tile, i, j, k, meta);
-				moveOnTC90TurnRail(i, j, k, r, cx, cy, cz, tile.getType(), meta);
+				
+				for(int loco = 0; loco<this.bogieLoco.length; loco++){
+					if(bogieLoco[loco] == null)
+						break;
+					if(!bogieLoco[loco].isOnRail()){
+						derailSpeed = 0;
+						break;
+					}
+				}
+				if(derailSpeed == 0){
+					this.unLink();
+					int meta = tile.getBlockMetadata();
+					double cx = tile.xCoord;
+					double cy = tile.yCoord;
+					double cz = tile.zCoord;
+					moveOnTCStraight(i, j, k, cx, cy, cz, (meta+1)%4);
+				}
+				else{
+					double r = tile.r;
+					double cx = tile.cx;
+					double cy = tile.cy;
+					double cz = tile.cz;
+					int meta = tile.getBlockMetadata();
+					shouldIgnoreSwitch(tile, i, j, k, meta);
+					moveOnTC90TurnRail(i, j, k, r, cx, cy, cz, tile.getType(), meta);
+				}
 			}
 			if (ItemTCRail.isTCStraightTrack(tile)) {
 				int meta = tile.getBlockMetadata();

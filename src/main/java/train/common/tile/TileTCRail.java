@@ -87,7 +87,7 @@ public class TileTCRail extends TileEntity {
 	}
 
 	public void setType(String type) {
-
+		worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 		this.type = type;
 	}
 
