@@ -10,7 +10,7 @@ Here you will find the source code for the **Unofficial Traincraft 1.7.10 Port**
 - What is this fork?
 - Why did Mrbrutal opensource Traincraft?
 - Contributing
-- Licensing
+- <b>Licensing and rules, READ THIS PART ESPECIALLY</b>
 
 ##Join the Discussion!
 If you wish to contact the original developers, you can send an email to spitfire4466@gmail.com <br/> If you'd like to join the chat, head over to our [Public Discord chat](https://discord.gg/0zzHVjy4UIrSyExM).<br/> And be sure to check out the issues tab.
@@ -26,8 +26,8 @@ Traincraft is a [Minecraft](https://minecraft.net/) mod built using [Minecraft F
 Traincraft alters the looks of and adds new functionality to various aspects of the game. It adds over 80 trains, wagons, and other vehicles as well as a new railway system with curved tracks and slopes.<br/>Traincraft was originally created by **Spitfire4466**, then jointly developed with **Mrbrutal**, and subsequently maintained by **Mrbrutal**. *This fork is maintained by several devs, including **EternalBlueFLame**.* 
 Traincraft has had well over **1,000,000 downloads** and has been in development since Minecraft 1.2.5.
 
-##Ooh, what's this fork?
-This specific fork is maintained by **EternalBlueFlame** and is intended to port and cleanup Traincraft from 1.6.4 to 1.7.10. The overarching purpose of this fork is to contribute to the overall Traincraft project by bringing it to newer Minecraft versions.<br/>This branch is an unofficial derivative until otherwise stated by **Mrbrutal** and or **Spitfire4466**.
+##what's this fork?
+This specific fork is maintained by **EternalBlueFlame** and is intended to be a community made port and cleanup of Traincraft from 1.6.4 to 1.7.10. The overall purpose of this fork is to contribute to the Traincraft project by bringing it to newer Minecraft versions.<br/>This branch is an unofficial derivative until otherwise stated by **Mrbrutal** and or **Spitfire4466**.
 
 **Mrbrutal** and **Spitfire4466** still maintain full rights and project lead in this fork.<br/><br/> **This fork has a number of issues, defined in the issues tab, which our current development group is unable to fix, development is ceased until someone can fix these issues.**
 
@@ -46,3 +46,6 @@ You must also import the required API libraries for the related mods if it is no
 
 ##License
 Traincraft is licensed under a custom usage license tailored specifically for the project. It can be read [here](https://github.com/Mrbrutal/Traincraft-164/blob/master/LICENSE.md).
+
+<h3>Official builds will be provided by us when we reach stable periods in development, we do this to prevent server/save corruption for users which is especially likely with what, and how much, needs to undergo changing in TC.
+<br/><u>DO NOT</u> distribute builds of the mod, jenkens, modpack, github, or otherwise. We do not care how impatient you are. If you're that impatient, learn forge and java, and help us fix this stuff so we can release faster.</h3>
