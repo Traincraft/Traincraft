@@ -32,7 +32,7 @@ archivesBaseName = "tc"
 
 minecraft {
     version = "1.7.10-10.13.4.1614-1.7.10"
-    runDir = "eclipse"
+    runDir = "run"
     replaceIn "Info.java"
     replace "@VERSION1@", config.modVersion.toString()
 }
