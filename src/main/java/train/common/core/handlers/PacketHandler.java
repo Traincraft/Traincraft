@@ -50,7 +50,7 @@ public class PacketHandler {
 		//Traincraft.modChannel.registerMessage(PacketSetJukeboxStreamingUrl.Handler.class, PacketSetJukeboxStreamingUrl.class, 1, Side.SERVER);
 		Traincraft.slotschannel.registerMessage(PacketSlotsFilled.Handler.class, PacketSlotsFilled.class, 1, Side.CLIENT);
 		Traincraft.brakeChannel.registerMessage(PacketParkingBreak.Handler.class, PacketParkingBreak.class, 1, Side.SERVER);
-		Traincraft.lockChannel.registerMessage(PacketSetTrainLockedToClient.Handler.class, PacketSetTrainLockedToClient.class, 1, Side.CLIENT);
+		Traincraft.lockChannel.registerMessage(PacketSetTrainLockedToClient.Handler.class, PacketSetTrainLockedToClient.class, 1, Side.SERVER);
 		Traincraft.ignitionChannel.registerMessage(PacketSetLocoTurnedOn.Handler.class, PacketSetLocoTurnedOn.class, 1, Side.SERVER);
 		Traincraft.modChannel.registerMessage(PacketLantern.Handler.class, PacketLantern.class, 1, Side.SERVER);
 		Traincraft.builderChannel.registerMessage(PacketTrackBuilderHeight.Handler.class, PacketTrackBuilderHeight.class, 1, Side.CLIENT);

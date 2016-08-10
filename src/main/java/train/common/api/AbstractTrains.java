@@ -2,6 +2,8 @@ package train.common.api;
 
 import buildcraft.api.tools.IToolWrench;
 import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
+import io.netty.buffer.ByteBuf;
 import mods.railcraft.api.carts.IMinecart;
 import mods.railcraft.api.carts.IRoutableCart;
 import net.minecraft.entity.item.EntityMinecart;
@@ -19,7 +21,6 @@ import net.minecraftforge.common.ForgeChunkManager.Ticket;
 import net.minecraftforge.common.ForgeChunkManager.Type;
 import train.common.Traincraft;
 import train.common.core.handlers.*;
-import train.common.core.network.PacketSetTrainLockedToClient;
 import train.common.items.ItemChunkLoaderActivator;
 import train.common.items.ItemRollingStock;
 import train.common.library.EnumTrains;
@@ -27,7 +28,7 @@ import train.common.library.EnumTrains;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbstractTrains extends EntityMinecart implements IMinecart, IRoutableCart {
+public abstract class AbstractTrains extends EntityMinecart implements IMinecart, IRoutableCart, IEntityAdditionalSpawnData {
 
 	/**
 	 * The color of the current rollingstock -1 if default
@@ -90,6 +91,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 	 * The owner of the train: The user who spawned it
 	 */
 	public String trainOwner = "";
+	public int ownerBytes=0;
 
 	public String getTrainOwner() {
 		return trainOwner;
@@ -177,6 +179,19 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		this(world);
 		this.setPosition(x, y, z);
 	}
+
+	/**
+	 * this is basically NBT for entity spawn, to keep data between client and server in sync because some data is not automatically shared.
+	 */
+	@Override
+	public void readSpawnData(ByteBuf additionalData) {
+		locked = additionalData.readBoolean();
+	}
+	@Override
+	public void writeSpawnData(ByteBuf buffer) {
+		buffer.writeBoolean(locked);
+	}
+
 
 	public abstract boolean isLocomotive();
 
@@ -571,26 +586,14 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 	 */
 	public void setTrainLockedFromPacket(boolean set) {
 		//System.out.println(worldObj.isRemote+" "+set);
-		locked = set;
-	}
-
-	/**
-	 * Lock packet and owner
-	 */
-	public void setTrainLockedFromPacket(boolean set, String owner) {
-		locked = set;
-		trainOwner = owner;
+		this.locked = set;
 	}
 
 	/**
 	 * Lock packet
 	 */
 	public boolean getTrainLockedFromPacket() {
-		return locked;
-	}
-
-	public void sendTrainLockedPacket(EntityPlayer entity, boolean locked) {
-		Traincraft.lockChannel.sendToServer(new PacketSetTrainLockedToClient(locked, this));
+		return this.locked;
 	}
 
 	/** Locking for passengers, flat, caboose, jukebox,workcart */
@@ -601,7 +604,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 					locked = false;
 					entityplayer.addChatMessage(new ChatComponentText("unlocked"));
 				}
-				else if (!locked) {
+				else {
 					locked = true;
 					entityplayer.addChatMessage(new ChatComponentText("locked"));
 				}

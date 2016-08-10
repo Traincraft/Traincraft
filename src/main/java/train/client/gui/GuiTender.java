@@ -10,9 +10,11 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
+import train.common.Traincraft;
 import train.common.api.AbstractTrains;
 import train.common.api.LiquidManager;
 import train.common.api.Tender;
+import train.common.core.network.PacketSetTrainLockedToClient;
 import train.common.inventory.InventoryTender;
 import train.common.library.Info;
 
@@ -48,7 +50,7 @@ public class GuiTender extends GuiContainer {
 	@Override
 	protected void actionPerformed(GuiButton guibutton) {
 		if (guibutton.id == 3) {
-			if(player!=null && player instanceof EntityPlayer && player.getCommandSenderName().toLowerCase().equals(((AbstractTrains) tender).trainOwner.toLowerCase())){
+			if(player!=null && player instanceof EntityPlayer && player.getCommandSenderName().toLowerCase().equals(((AbstractTrains) tender).getTrainOwner().toLowerCase())){
 				if ((!((AbstractTrains) tender).locked)){
 					AxisAlignedBB box = ((Tender) tender).boundingBox.expand(5, 5, 5);
 					List lis3 = ((Tender) tender).worldObj.getEntitiesWithinAABBExcludingEntity(tender, box);
@@ -56,7 +58,7 @@ public class GuiTender extends GuiContainer {
 						for (int j1 = 0; j1 < lis3.size(); j1++) {
 							Entity entity = (Entity) lis3.get(j1);
 							if (entity instanceof EntityPlayer) {
-								((AbstractTrains) tender).sendTrainLockedPacket((EntityPlayer) entity,true);
+								Traincraft.lockChannel.sendToServer(new PacketSetTrainLockedToClient(true, entity.getEntityId()));
 							}
 						}
 					}
@@ -70,7 +72,7 @@ public class GuiTender extends GuiContainer {
 						for (int j1 = 0; j1 < lis3.size(); j1++) {
 							Entity entity = (Entity) lis3.get(j1);
 							if (entity instanceof EntityPlayer) {
-								((AbstractTrains) tender).sendTrainLockedPacket((EntityPlayer) entity,false);
+								Traincraft.lockChannel.sendToServer(new PacketSetTrainLockedToClient(false, entity.getEntityId()));
 							}
 						}
 					}
@@ -135,7 +137,7 @@ public class GuiTender extends GuiContainer {
 		fontRendererObj.drawStringWithShadow("only its owner can open", startX, startY + 10, -1);
 		fontRendererObj.drawStringWithShadow("the GUI and destroy it.", startX, startY + 20, -1);
 		fontRendererObj.drawStringWithShadow("Current state: "+state, startX, startY+30, -1);
-		fontRendererObj.drawStringWithShadow("Owner: "+((AbstractTrains) tender).trainOwner.trim(), startX, startY+40, -1);
+		fontRendererObj.drawStringWithShadow("Owner: "+((AbstractTrains) tender).getTrainOwner().trim(), startX, startY+40, -1);
 	}
 	public boolean intersectsWith(int mouseX, int mouseY) {
 		//System.out.println(mouseX+" "+mouseY);

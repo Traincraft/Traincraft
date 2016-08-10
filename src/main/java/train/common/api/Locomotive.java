@@ -339,10 +339,10 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 	public void keyHandlerFromPacket(int i) {
 		if (lastUpdateTick == updateTicks) { return; }
 		if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer) {
-			Traincraft.lockChannel.sendToAllAround(new PacketSetTrainLockedToClient(locked, this), new TargetPoint(worldObj.provider.dimensionId, (int) posX, (int) posY, (int) posZ, 5));
+			Traincraft.lockChannel.sendToAllAround(new PacketSetTrainLockedToClient(getTrainLockedFromPacket(), this.getEntityId()), new TargetPoint(worldObj.provider.dimensionId, (int) posX, (int) posY, (int) posZ, 5));
 		}
 		if (this.getTrainLockedFromPacket()) {
-			if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer && !((EntityPlayer) this.riddenByEntity).getDisplayName().toLowerCase().equals(this.trainOwner.toLowerCase())) { return; }
+			if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer && !((EntityPlayer) this.riddenByEntity).getDisplayName().toLowerCase().equals(this.getTrainOwner().toLowerCase())) { return; }
 		}
 		pressKey(i);
 		//System.out.println(i);
@@ -609,8 +609,8 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 					this.setDead();
 				}
 				if (!worldObj.isRemote && FMLCommonHandler.instance().getMinecraftServerInstance() != null && this.lastEntityRider != null && this.lastEntityRider instanceof EntityPlayer) {
-					FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().sendChatMsg(new ChatComponentText(((EntityPlayer) this.lastEntityRider).getDisplayName() + " blew " + this.trainOwner + "'s locomotive"));
-					FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().sendChatMsg(new ChatComponentText(((EntityPlayer) this.lastEntityRider).getDisplayName() + " blew " + this.trainOwner + "'s locomotive"));
+					FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().sendChatMsg(new ChatComponentText(((EntityPlayer) this.lastEntityRider).getDisplayName() + " blew " + this.getTrainOwner() + "'s locomotive"));
+					FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().sendChatMsg(new ChatComponentText(((EntityPlayer) this.lastEntityRider).getDisplayName() + " blew " + this.getTrainOwner() + "'s locomotive"));
 				}
 				if (!worldObj.isRemote) {statsEventHandler.trainExplode(this.uniqueID, this.trainName, this.trainType, this.trainCreator, (int) posX + ";" + (int) posY + ";" + (int) posZ);}
 			}
@@ -634,8 +634,8 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 			//System.out.println();
 			if (this.worldObj.handleMaterialAcceleration(this.boundingBox.expand(0.0D, -0.2000000059604645D, 0.0D).contract(0.001D, 0.001D, 0.001D), Material.water, this) && this.updateTicks % 4 == 0) {
 				if (!hasDrowned && !worldObj.isRemote && FMLCommonHandler.instance().getMinecraftServerInstance() != null && this.lastEntityRider != null && this.lastEntityRider instanceof EntityPlayer) {
-					FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().sendChatMsg(new ChatComponentText(((EntityPlayer) this.lastEntityRider).getDisplayName() + " drowned " + this.trainOwner + "'s locomotive"));
-					FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().sendChatMsg(new ChatComponentText(((EntityPlayer) this.lastEntityRider).getDisplayName() + " drowned " + this.trainOwner + "'s locomotive"));
+					FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().sendChatMsg(new ChatComponentText(((EntityPlayer) this.lastEntityRider).getDisplayName() + " drowned " + this.getTrainOwner() + "'s locomotive"));
+					FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().sendChatMsg(new ChatComponentText(((EntityPlayer) this.lastEntityRider).getDisplayName() + " drowned " + this.getTrainOwner() + "'s locomotive"));
 				}
 				//this.attackEntityFrom(DamageSource.generic, 100);
 				((Locomotive) this).setCustomSpeed(0);// set speed to normal

@@ -80,7 +80,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class EntityRollingStock extends AbstractTrains implements ILinkableCart, IEntityAdditionalSpawnData {
+public class EntityRollingStock extends AbstractTrains implements ILinkableCart {
 	public int fuelTrain;
 	//protected static final int matrix[][][] = { { { 0, 0, -1 }, { 0, 0, 1 } }, { { -1, 0, 0 }, { 1, 0, 0 } }, { { -1, -1, 0 }, { 1, 0, 0 } }, { { -1, 0, 0 }, { 1, -1, 0 } }, { { 0, 0, -1 }, { 0, -1, 1 } }, { { 0, -1, -1 }, { 0, 0, 1 } }, { { 0, 0, 1 }, { 1, 0, 0 } }, { { 0, 0, 1 }, { -1, 0, 0 } }, { { 0, 0, -1 }, { -1, 0, 0 } }, { { 0, 0, -1 }, { 1, 0, 0 } } };
 
@@ -280,10 +280,12 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart,
 	@Override
 	public void readSpawnData(ByteBuf additionalData) {
 		isBraking = additionalData.readBoolean();
+		setTrainLockedFromPacket(additionalData.readBoolean());
 	}
 	@Override
 	public void writeSpawnData(ByteBuf buffer) {
 		buffer.writeBoolean(isBraking);
+		buffer.writeBoolean(getTrainLockedFromPacket());
 	}
 
 	public String getTrainName() {
@@ -1730,7 +1732,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart,
 
 		if (!worldObj.isRemote) {
 			//System.out.println(this.uniqueID);
-			 Traincraft.lockChannel.sendToAllAround(new PacketSetTrainLockedToClient(locked, this), new TargetPoint(worldObj.provider.dimensionId, (int) posX, (int) posY, (int) posZ, 15));
+			Traincraft.lockChannel.sendToAllAround(new PacketSetTrainLockedToClient(getTrainLockedFromPacket(), this.getEntityId()), new TargetPoint(worldObj.provider.dimensionId, (int) posX, (int) posY, (int) posZ, 15));
 		}
 		playerEntity = entityplayer;
 		itemstack = entityplayer.inventory.getCurrentItem();

@@ -12,8 +12,10 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import org.lwjgl.opengl.GL11;
 import train.client.core.helpers.FluidRenderHelper;
+import train.common.Traincraft;
 import train.common.api.AbstractTrains;
 import train.common.api.LiquidTank;
+import train.common.core.network.PacketSetTrainLockedToClient;
 import train.common.inventory.InventoryLiquid;
 import train.common.inventory.InventoryLoco;
 import train.common.library.Info;
@@ -57,7 +59,7 @@ public class GuiLiquid extends GuiContainer {
 		buttonList.clear();
 		int var1 = (this.width-xSize) / 2;
 		int var2 = (this.height-ySize) / 2;
-		if (!((AbstractTrains) liquid).locked) {
+		if (!((AbstractTrains) liquid).getTrainLockedFromPacket()) {
 			this.buttonList.add(this.buttonLock = new GuiButton(3, var1 + 124, var2 - 10, 51, 10, "Unlocked"));
 		}else{
 			this.buttonList.add(this.buttonLock = new GuiButton(3, var1 + 130, var2 - 10, 43, 10, "Locked"));
@@ -66,19 +68,19 @@ public class GuiLiquid extends GuiContainer {
 	@Override
 	protected void actionPerformed(GuiButton guibutton) {
 		if (guibutton.id == 3) {
-			if(player!=null && player instanceof EntityPlayer && player.getCommandSenderName().toLowerCase().equals(((AbstractTrains) liquid).trainOwner.toLowerCase())){
-				if ((!((AbstractTrains) liquid).locked)){
+			if(player!=null && player instanceof EntityPlayer && player.getCommandSenderName().toLowerCase().equals(((AbstractTrains) liquid).getTrainOwner().toLowerCase())){
+				if ((!((AbstractTrains) liquid).getTrainLockedFromPacket())){
 					AxisAlignedBB box = ((LiquidTank) liquid).boundingBox.expand(5, 5, 5);
 					List lis3 = ((LiquidTank) liquid).worldObj.getEntitiesWithinAABBExcludingEntity(liquid, box);
 					if (lis3 != null && lis3.size() > 0) {
 						for (int j1 = 0; j1 < lis3.size(); j1++) {
 							Entity entity = (Entity) lis3.get(j1);
 							if (entity instanceof EntityPlayer) {
-								((AbstractTrains) liquid).sendTrainLockedPacket((EntityPlayer) entity,true);
+								Traincraft.lockChannel.sendToServer(new PacketSetTrainLockedToClient(true, entity.getEntityId()));
 							}
 						}
 					}
-					((AbstractTrains) liquid).locked=true;
+					((AbstractTrains) liquid).setTrainLockedFromPacket(true);
 					guibutton.displayString = "Locked";
 					this.initGui();
 				}else{
@@ -88,7 +90,7 @@ public class GuiLiquid extends GuiContainer {
 						for (int j1 = 0; j1 < lis3.size(); j1++) {
 							Entity entity = (Entity) lis3.get(j1);
 							if (entity instanceof EntityPlayer) {
-								((AbstractTrains) liquid).sendTrainLockedPacket((EntityPlayer) entity,false);
+								Traincraft.lockChannel.sendToServer(new PacketSetTrainLockedToClient(false, entity.getEntityId()));
 							}
 						}
 					}
@@ -155,8 +157,11 @@ public class GuiLiquid extends GuiContainer {
 
 		//int liqui = (dieselInventory.getLiquidAmount() * 50) / dieselInventory.getTankCapacity();
 		String state = "";
-		if(((AbstractTrains) liquid).locked)state="Locked";
-		if(!((AbstractTrains) liquid).locked)state="Unlocked";
+		if(((AbstractTrains) liquid).getTrainLockedFromPacket()){
+			state="Locked";
+		} else {
+			state = "Unlocked";
+		}
 		
 		int textWidth = fontRendererObj.getStringWidth("the GUI, change speed, destroy it.");
 		int startX = 90;
@@ -175,7 +180,7 @@ public class GuiLiquid extends GuiContainer {
 		fontRendererObj.drawStringWithShadow("only its owner can open", startX, startY + 10, -1);
 		fontRendererObj.drawStringWithShadow("the GUI and destroy it.", startX, startY + 20, -1);
 		fontRendererObj.drawStringWithShadow("Current state: "+state, startX, startY+30, -1);
-		fontRendererObj.drawStringWithShadow("Owner: "+((AbstractTrains) liquid).trainOwner.trim(), startX, startY+40, -1);
+		fontRendererObj.drawStringWithShadow("Owner: "+((AbstractTrains) liquid).getTrainOwner().trim(), startX, startY+40, -1);
 	}
 	public boolean intersectsWithLockButton(int mouseX, int mouseY) {
 		//System.out.println(mouseX+" "+mouseY);

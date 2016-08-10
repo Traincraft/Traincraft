@@ -6,7 +6,7 @@ import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
-import train.common.api.EntityRollingStock;
+import train.common.api.AbstractTrains;
 
 public class PacketSetTrainLockedToClient implements IMessage {
 
@@ -15,9 +15,9 @@ public class PacketSetTrainLockedToClient implements IMessage {
     int entityID;
     public PacketSetTrainLockedToClient(){}
 
-    public PacketSetTrainLockedToClient(Boolean bool, Entity trainEntity) {
+    public PacketSetTrainLockedToClient(Boolean bool, int trainEntity) {
         this.bool = bool;
-        this.entityID = trainEntity.getEntityId();
+        this.entityID = trainEntity;
     }
 
     @Override
@@ -40,9 +40,9 @@ public class PacketSetTrainLockedToClient implements IMessage {
             Entity TrainEntity = Minecraft.getMinecraft().theWorld.getEntityByID(message.entityID);
 
 			/* "instanceof" is null-safe, but we check to avoid four unnecessary instanceof checks for when the value is null anyways. */
-            if (TrainEntity instanceof EntityRollingStock) {
+            if (TrainEntity instanceof AbstractTrains) {
 
-                    ((EntityRollingStock) TrainEntity).setTrainLockedFromPacket(message.bool);
+                    ((AbstractTrains) TrainEntity).setTrainLockedFromPacket(message.bool);
 
             }
 

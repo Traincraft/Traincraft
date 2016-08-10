@@ -12,6 +12,7 @@ import train.common.Traincraft;
 import train.common.api.Locomotive;
 import train.common.api.SteamTrain;
 import train.common.core.network.PacketParkingBreak;
+import train.common.core.network.PacketSetTrainLockedToClient;
 import train.common.inventory.InventoryForney;
 import train.common.inventory.InventoryLoco;
 import train.common.library.Info;
@@ -81,7 +82,7 @@ public class GuiForney extends GuiContainer {
 		}
 		int var1 = (this.width - xSize) / 2;
 		int var2 = (this.height - ySize) / 2;
-		if (!loco.locked) {
+		if (!loco.getTrainLockedFromPacket()) {
 			this.buttonList.add(this.buttonLock = new GuiButton(3, var1 + 124, var2 - 10, 51, 10, "Unlocked"));
 		}
 		else {
@@ -111,15 +112,15 @@ public class GuiForney extends GuiContainer {
 			//System.out.println(((EntityPlayer)loco.riddenByEntity).getDisplayName().equals(loco.getTrainOwner().trim()));
 
 			if (loco.riddenByEntity != null && loco.riddenByEntity instanceof EntityPlayer && ((EntityPlayer) loco.riddenByEntity).getDisplayName().equals(loco.getTrainOwner())) {
-				if ((!loco.locked)) {
-					loco.sendTrainLockedPacket((EntityPlayer) loco.riddenByEntity, true);
-					loco.locked = true;
+				if ((!loco.getTrainLockedFromPacket())) {
+					Traincraft.lockChannel.sendToServer(new PacketSetTrainLockedToClient(true, loco.getEntityId()));
+					loco.setTrainLockedFromPacket(true);
 					guibutton.displayString = "Locked";
 					this.initGui();
 				}
 				else {
-					loco.sendTrainLockedPacket((EntityPlayer) loco.riddenByEntity, false);
-					loco.locked = false;
+					Traincraft.lockChannel.sendToServer(new PacketSetTrainLockedToClient(false, loco.getEntityId()));
+					loco.setTrainLockedFromPacket(false);
 					guibutton.displayString = "UnLocked";
 					this.initGui();
 				}
@@ -137,10 +138,11 @@ public class GuiForney extends GuiContainer {
 
 		//int liqui = (dieselInventory.getLiquidAmount() * 50) / dieselInventory.getTankCapacity();
 		String state = "";
-		if (loco.locked)
+		if (loco.getTrainLockedFromPacket()) {
 			state = "Locked";
-		if (!loco.locked)
+		} else {
 			state = "Unlocked";
+		}
 
 		int textWidth = fontRendererObj.getStringWidth("the GUI, change speed, destroy it.");
 		int startX = 90;

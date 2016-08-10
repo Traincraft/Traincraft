@@ -11,6 +11,7 @@ import org.lwjgl.opengl.GL11;
 import train.common.Traincraft;
 import train.common.api.*;
 import train.common.core.network.PacketParkingBreak;
+import train.common.core.network.PacketSetTrainLockedToClient;
 import train.common.inventory.InventoryLoco;
 import train.common.library.Info;
 
@@ -77,7 +78,7 @@ public class GuiLoco2 extends GuiContainer {
 		}
 		int var1 = (this.width - xSize) / 2;
 		int var2 = (this.height - ySize) / 2;
-		if (!loco.locked) {
+		if (!loco.getTrainLockedFromPacket()) {
 			this.buttonList.add(this.buttonLock = new GuiButton(3, var1 + 108, var2 - 10, 67, 10, "Unlocked"));
 		}
 		else {
@@ -113,15 +114,15 @@ public class GuiLoco2 extends GuiContainer {
 		}
 		if (guibutton.id == 3) {
 			if (loco.riddenByEntity != null && loco.riddenByEntity instanceof EntityPlayer && ((EntityPlayer) loco.riddenByEntity).getDisplayName().equals(loco.getTrainOwner())) {
-				if ((!loco.locked)) {
-					loco.sendTrainLockedPacket((EntityPlayer) loco.riddenByEntity, true);
-					loco.locked = true;
+				if ((!loco.getTrainLockedFromPacket())) {
+					Traincraft.lockChannel.sendToServer(new PacketSetTrainLockedToClient(true, loco.getEntityId()));
+					loco.setTrainLockedFromPacket(true);
 					guibutton.displayString = "Locked";
 					this.initGui();
 				}
 				else {
-					loco.sendTrainLockedPacket((EntityPlayer) loco.riddenByEntity, false);
-					loco.locked = false;
+					Traincraft.lockChannel.sendToServer(new PacketSetTrainLockedToClient(false, loco.getEntityId()));
+					loco.setTrainLockedFromPacket(false);
 					guibutton.displayString = "UnLocked";
 					this.initGui();
 				}
@@ -153,8 +154,11 @@ public class GuiLoco2 extends GuiContainer {
 
 		//int liqui = (dieselInventory.getLiquidAmount() * 50) / dieselInventory.getTankCapacity();
 		String state = "";
-		if (loco.locked) state = "Locked";
-		if (!loco.locked) state = "Unlocked";
+		if (loco.getTrainLockedFromPacket()){
+			state = "Locked";
+		} else {
+			state = "Unlocked";
+		}
 
 		int textWidth = fontRendererObj.getStringWidth("the GUI, change speed, destroy it.");
 		int startX = 90;

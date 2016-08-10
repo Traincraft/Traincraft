@@ -14,6 +14,7 @@ import org.lwjgl.opengl.GL11;
 import train.common.Traincraft;
 import train.common.api.AbstractTrains;
 import train.common.core.handlers.PacketHandler;
+import train.common.core.network.PacketSetTrainLockedToClient;
 import train.common.core.network.PacketTrackBuilderHeight;
 import train.common.entity.rollingStock.EntityTracksBuilder;
 import train.common.inventory.InventoryBuilder;
@@ -54,7 +55,7 @@ public class GuiBuilder extends GuiContainer {
 
 		int var1 = (this.width - xSize) / 2;
 		int var2 = (this.height - ySize) / 2;
-		if (!(builder).locked) {
+		if (!(builder).getTrainLockedFromPacket()) {
 			this.buttonList.add(this.buttonLock = new GuiButton(4, var1 + 3, var2 - 30, 51, 10, StatCollector.translateToLocal("train.unlocked.name")));
 		}
 		else {
@@ -97,15 +98,15 @@ public class GuiBuilder extends GuiContainer {
 		}
 
 		if (guibutton.id == 4) {
-			if (player != null && player.getCommandSenderName().toLowerCase().equals((builder).trainOwner.toLowerCase())) {
-				if ((!(builder).locked)) {
+			if (player != null && player.getCommandSenderName().toLowerCase().equals((builder).getTrainOwner().toLowerCase())) {
+				if ((!(builder).getTrainLockedFromPacket())) {
 					AxisAlignedBB box = (builder).boundingBox.expand(5, 5, 5);
 					List lis3 = (builder).worldObj.getEntitiesWithinAABBExcludingEntity(builder, box);
 					if (lis3 != null && lis3.size() > 0) {
 						for (int j1 = 0; j1 < lis3.size(); j1++) {
 							Entity entity = (Entity) lis3.get(j1);
 							if (entity instanceof EntityPlayer) {
-								(builder).sendTrainLockedPacket((EntityPlayer) entity, true);
+								Traincraft.lockChannel.sendToServer(new PacketSetTrainLockedToClient(true, entity.getEntityId()));
 							}
 						}
 					}
@@ -121,7 +122,7 @@ public class GuiBuilder extends GuiContainer {
 						for (int j1 = 0; j1 < lis3.size(); j1++) {
 							Entity entity = (Entity) lis3.get(j1);
 							if (entity instanceof EntityPlayer) {
-								(builder).sendTrainLockedPacket((EntityPlayer) entity, false);
+								Traincraft.lockChannel.sendToServer(new PacketSetTrainLockedToClient(false, entity.getEntityId()));
 							}
 						}
 					}
@@ -141,9 +142,9 @@ public class GuiBuilder extends GuiContainer {
 		int j = (width - xSize) / 2;
 		int k = (height - ySize) / 2;
 		String state = "";
-		if ((builder).locked)
+		if ((builder).getTrainLockedFromPacket())
 			state = "Locked";
-		if (!(builder).locked)
+		if (!(builder).getTrainLockedFromPacket())
 			state = "Unlocked";
 
 		int textWidth = fontRendererObj.getStringWidth("the GUI, change speed, destroy it.");
@@ -163,7 +164,7 @@ public class GuiBuilder extends GuiContainer {
 		fontRendererObj.drawStringWithShadow("only its owner can open", startX, startY + 10, -1);
 		fontRendererObj.drawStringWithShadow("the GUI and destroy it.", startX, startY + 20, -1);
 		fontRendererObj.drawStringWithShadow("Current state: " + state, startX, startY + 30, -1);
-		fontRendererObj.drawStringWithShadow("Owner: " + (builder).trainOwner.trim(), startX, startY + 40, -1);
+		fontRendererObj.drawStringWithShadow("Owner: " + (builder).getTrainOwner().trim(), startX, startY + 40, -1);
 	}
 
 	public boolean intersectsWith(int mouseX, int mouseY) {
