@@ -9,7 +9,6 @@ import train.common.api.AbstractTrains;
 
 public class PacketSetTrainLockedToClient implements IMessage {
 
-    /** The key that was pressed. */
 	boolean	bool;
 	int		entityID;
     public PacketSetTrainLockedToClient(){}
@@ -38,7 +37,6 @@ public class PacketSetTrainLockedToClient implements IMessage {
 
 			Entity TrainEntity = context.getServerHandler().playerEntity.worldObj.getEntityByID(message.entityID);
 
-			/* "instanceof" is null-safe, but we check to avoid four unnecessary instanceof checks for when the value is null anyways. */
             if (TrainEntity instanceof AbstractTrains) {
 
 				((AbstractTrains) TrainEntity).setTrainLockedFromPacket(message.bool);
