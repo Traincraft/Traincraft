@@ -16,7 +16,7 @@ import train.common.api.ElectricTrain;
 import train.common.api.LiquidManager;
 import train.common.api.Locomotive;
 import train.common.api.SteamTrain;
-import train.common.core.network.PacketParkingBreak;
+import train.common.core.network.PacketParkingBrake;
 import train.common.core.network.PacketSetTrainLockedToClient;
 import train.common.inventory.InventoryLoco;
 import train.common.library.Info;
@@ -104,14 +104,14 @@ public class GuiLoco2 extends GuiContainer {
 	protected void actionPerformed(GuiButton guibutton) {
 		if (guibutton.id == 2) {
 			if ((!loco.parkingBrake) && loco.getSpeed() < 10) {
-				Traincraft.brakeChannel.sendToServer(new PacketParkingBreak(true, loco.getEntityId()));
+				Traincraft.brakeChannel.sendToServer(new PacketParkingBrake(true, loco.getEntityId()));
 				loco.parkingBrake=true;
 				loco.isBraking=true;
 				guibutton.displayString = "Brake: On";
 				this.initGui();
 			}
 			else if (loco.getSpeed() < 10) {
-				Traincraft.brakeChannel.sendToServer(new PacketParkingBreak(false, loco.getEntityId()));
+				Traincraft.brakeChannel.sendToServer(new PacketParkingBrake(false, loco.getEntityId()));
 				loco.parkingBrake=false;
 				loco.isBraking=false;
 				guibutton.displayString = "Brake: Off";

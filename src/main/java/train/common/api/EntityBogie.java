@@ -10,23 +10,17 @@ import cpw.mods.fml.relauncher.SideOnly;
 import mods.railcraft.api.carts.IMinecart;
 import mods.railcraft.api.carts.IRoutableCart;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockRail;
 import net.minecraft.block.BlockRailBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldServer;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.minecart.MinecartUpdateEvent;
 import train.common.items.ItemTCRail;
 import train.common.items.ItemTCRail.TrackTypes;
 import train.common.library.BlockIDs;
@@ -426,12 +420,12 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		        {
 		            if (this.turnProgress > 0)
 		            {
-		                double d6 = this.posX + (this.minecartX - this.posX) / (double)this.turnProgress;
-		                double d7 = this.posY + (this.minecartY - this.posY) / (double)this.turnProgress;
-		                double d1 = this.posZ + (this.minecartZ - this.posZ) / (double)this.turnProgress;
-		                double d3 = MathHelper.wrapAngleTo180_double(this.minecartYaw - (double)this.rotationYaw);
-		                this.rotationYaw = (float)((double)this.rotationYaw + d3 / (double)this.turnProgress);
-		                this.rotationPitch = (float)((double)this.rotationPitch + (this.minecartPitch - (double)this.rotationPitch) / (double)this.turnProgress);
+		                double d6 = this.posX + (this.minecartX - this.posX) / this.turnProgress;
+		                double d7 = this.posY + (this.minecartY - this.posY) / this.turnProgress;
+		                double d1 = this.posZ + (this.minecartZ - this.posZ) / this.turnProgress;
+		                double d3 = MathHelper.wrapAngleTo180_double(this.minecartYaw - this.rotationYaw);
+		                this.rotationYaw = (float)(this.rotationYaw + d3 / this.turnProgress);
+		                this.rotationPitch = (float)(this.rotationPitch + (this.minecartPitch - this.rotationPitch) / this.turnProgress);
 		                --this.turnProgress;
 		                this.setPosition(d6, d7, d1);
 		                this.setRotation(this.rotationYaw, this.rotationPitch);
@@ -824,18 +818,19 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		return  this.entityMainTrain.getOwner();
 	}
 	
-    @SideOnly(Side.CLIENT)
-    public void setPositionAndRotation2(double p_70056_1_, double p_70056_3_, double p_70056_5_, float p_70056_7_, float p_70056_8_, int p_70056_9_)
-    {
-    	super.setPositionAndRotation2(p_70056_1_, p_70056_3_, p_70056_5_, p_70056_7_, p_70056_8_, p_70056_9_);
-        this.minecartX = p_70056_1_;
-        this.minecartY = p_70056_3_;
-        this.minecartZ = p_70056_5_;
-        this.minecartYaw = (double)p_70056_7_;
-        this.minecartPitch = (double)p_70056_8_;
-        this.turnProgress = p_70056_9_ + 2;
-        this.motionX = this.velocityX;
-        this.motionY = this.velocityY;
-        this.motionZ = this.velocityZ;
-    }
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void setPositionAndRotation2(double p_70056_1_, double p_70056_3_, double p_70056_5_, float p_70056_7_,
+			float p_70056_8_, int p_70056_9_) {
+		super.setPositionAndRotation2(p_70056_1_, p_70056_3_, p_70056_5_, p_70056_7_, p_70056_8_, p_70056_9_);
+		this.minecartX = p_70056_1_;
+		this.minecartY = p_70056_3_;
+		this.minecartZ = p_70056_5_;
+		this.minecartYaw = p_70056_7_;
+		this.minecartPitch = p_70056_8_;
+		this.turnProgress = p_70056_9_ + 2;
+		this.motionX = this.velocityX;
+		this.motionY = this.velocityY;
+		this.motionZ = this.velocityZ;
+	}
 }

@@ -377,7 +377,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 				else {
 					setParkingBrakeFromPacket(true);
 				}
-				Traincraft.brakeChannel.sendToAllAround(new PacketParkingBreak(false, this.getEntityId()), new TargetPoint(worldObj.provider.dimensionId, posX, posY, posZ, 5));
+				Traincraft.brakeChannel.sendToAllAround(new PacketParkingBrake(false, this.getEntityId()), new TargetPoint(worldObj.provider.dimensionId, posX, posY, posZ, 5));
 			}
 		}
 	}
@@ -480,7 +480,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 		pressKeyClient();
 		if (!worldObj.isRemote) {
 			if (updateTicks % 50 == 0) {
-				Traincraft.brakeChannel.sendToAllAround(new PacketParkingBreak(false, this.getEntityId()), new TargetPoint(worldObj.provider.dimensionId, posX, posY, posZ, 50));
+				Traincraft.brakeChannel.sendToAllAround(new PacketParkingBrake(false, this.getEntityId()), new TargetPoint(worldObj.provider.dimensionId, posX, posY, posZ, 50));
 				this.setLocoTurnedOn(isLocoTurnedOn, false, true,500);//sending to client
 				updateTicks=0;
 			}
@@ -777,7 +777,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 			Traincraft.ignitionChannel.sendToServer(new PacketSetLocoTurnedOn(true));
 		}
 		if (toClient) {
-			Traincraft.brakeChannel.sendToAllAround(new PacketParkingBreak(false, this.getEntityId()), new TargetPoint(worldObj.provider.dimensionId, (int) posX, (int) posY, (int) posZ, distance));
+			Traincraft.brakeChannel.sendToAllAround(new PacketParkingBrake(false, this.getEntityId()), new TargetPoint(worldObj.provider.dimensionId, (int) posX, (int) posY, (int) posZ, distance));
 		}
 	}
 

@@ -1,5 +1,7 @@
 package train.common.items;
 
+import java.util.List;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -9,12 +11,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import train.common.library.ItemIDs;
 import train.common.library.BlockIDs;
+import train.common.library.ItemIDs;
 import train.common.tile.TileTCRail;
 import train.common.tile.TileTCRailGag;
-
-import java.util.List;
 
 public class ItemTCRail extends ItemPart {
 	private TrackTypes type;
@@ -42,7 +42,7 @@ public class ItemTCRail extends ItemPart {
 		LONG_STRAIGHT("LONG_STRAIGHT", "STRAIGHT", ItemIDs.tcRailLongStraight, "1x6"),
 		MEDIUM_STRAIGHT("MEDIUM_STRAIGHT", "STRAIGHT", ItemIDs.tcRailMediumStraight, "1x3"),
 		SMALL_STRAIGHT("SMALL_STRAIGHT", "STRAIGHT", ItemIDs.tcRailSmallStraight, "1x1"),
-		TWO_WAYS_CROSSING("TWO_WAYS_CROSSING", "CROSSING", ItemIDs.tcRailTwoWaysCrossing, "5x5"),
+		TWO_WAYS_CROSSING("TWO_WAYS_CROSSING", "CROSSING", ItemIDs.tcRailTwoWaysCrossing, "3x3"),
 		LARGE_SLOPE_WOOD("LARGE_SLOPE_WOOD", "SLOPE", ItemIDs.tcRailLargeSlopeWood, "1x6"),
 		LARGE_SLOPE_GRAVEL("LARGE_SLOPE_GRAVEL", "SLOPE", ItemIDs.tcRailLargeSlopeGravel, "1x6"),
 		LARGE_SLOPE_BALLAST("LARGE_SLOPE_BALLAST", "SLOPE", ItemIDs.tcRailLargeSlopeBallast, "1x6");
@@ -253,7 +253,7 @@ public class ItemTCRail extends ItemPart {
 	@Override
 	public boolean onItemUse(ItemStack itemstack, EntityPlayer player, World world, int x, int y, int z, int par7, float par8, float par9, float par10) {
 		if (!world.isRemote) {
-			int l = MathHelper.floor_double((double) (player.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+			int l = MathHelper.floor_double(player.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
 			float yaw = MathHelper.wrapAngleTo180_float(player.rotationYaw);
 			TrackTypes tempType = type;
 			if (type == TrackTypes.LARGE_TURN) {
@@ -831,6 +831,10 @@ public class ItemTCRail extends ItemPart {
 
 					/** Put down straight exit **/
 					putDownSingleRail(world, x + 4, y + 1, z, l, x, y + 1, z, 0, TrackTypes.SMALL_STRAIGHT.getLabel(), true, x + 2, y + 1, z - 1, false, false);
+					
+					/** Put down straight exit **/
+					putDownSingleRail(world, x + 5, y + 1, z, l, x, y + 1, z, 0, TrackTypes.SMALL_STRAIGHT.getLabel(),
+							true, x + 2, y + 1, z - 1, false, false);
 
 					/** Put down straight exit **/
 					putDownSingleRail(world, x + 5, y + 1, z, l, x, y + 1, z, 0, TrackTypes.SMALL_STRAIGHT.getLabel(), true, x + 2, y + 1, z - 1, false, false);
@@ -1387,18 +1391,18 @@ public class ItemTCRail extends ItemPart {
 
 				if (l == 2) {
 					zDisplace = -1;
-					xSideDisplace=1;
-					sideFacing=1;
-				}
-				if (l == 0) {
-					zDisplace = 1;
-					xSideDisplace=1;
+					xSideDisplace = 1;
 					sideFacing=1;
 				}
 				if (l == 3) {
 					xDisplace = 1;
 					zSideDisplace=1;
 					sideFacing=2;
+				}
+				if (l == 0) {
+					zDisplace = 1;
+					xSideDisplace = 1;
+					sideFacing = 1;
 				}
 				if (l == 1) {
 					xDisplace = -1;
@@ -1416,31 +1420,73 @@ public class ItemTCRail extends ItemPart {
 					return false;
 				}
 
-				putDownSingleRail(world, x+(xDisplace*4), y + 1, z+(zDisplace*4), l, x+(xDisplace*4) , y + 1, z+(zDisplace*4), 0, TrackTypes.SMALL_STRAIGHT.getLabel(), true, x+(xDisplace*3), y + 1, z+(zDisplace*3), false, false);
+				/*
+				 * Bottom
+				 */
+				
+				putDownSingleRail(world, x + (xDisplace * 2), y + 1, z + (zDisplace * 2), l, x + (xDisplace * 2), y + 1,
+						z + (zDisplace * 2), 0, TrackTypes.SMALL_STRAIGHT.getLabel(), true, x + (xDisplace * 1), y + 1,
+						z + (zDisplace * 1), false, false);
+				
+				// putDownSingleRail(world, x+(xDisplace*4), y + 1, z+(zDisplace*4), l,
+				// x+(xDisplace*4) , y + 1, z+(zDisplace*4), 0,
+				// TrackTypes.SMALL_STRAIGHT.getLabel(), true, x+(xDisplace*3), y + 1,
+				// z+(zDisplace*3), false, false);
 
-				putDownSingleRail(world, x+(xDisplace*3), y + 1, z+(zDisplace*3), l, x+(xDisplace*3) , y + 1, z+(zDisplace*3), 0, TrackTypes.SMALL_STRAIGHT.getLabel(), true, x+(xDisplace*2), y + 1, z+(zDisplace*2), false, false);
 
-				world.setBlock(x+(xDisplace*2), y + 1, z+(zDisplace*2), BlockIDs.tcRail.block, l, 2);
-				TileTCRail tcRail2 = (TileTCRail) world.getTileEntity(x+(xDisplace*2), y + 1, z+(zDisplace*2));
+
+				world.setBlock(x + (xDisplace * 1), y + 1, z + (zDisplace * 1), BlockIDs.tcRail.block, l, 2);
+				TileTCRail tcRail2 = (TileTCRail) world.getTileEntity(x + (xDisplace * 1), y + 1, z + (zDisplace * 1));
 				tcRail2.setFacing(l);
-				tcRail2.cx = x+(xDisplace*2);
+				tcRail2.cx = x + (xDisplace * 1);
 				tcRail2.cy = y + 1;
-				tcRail2.cz = z+(zDisplace*2);
+				tcRail2.cz = z + (zDisplace * 1);
 				tcRail2.setType(type.getLabel());
 				tcRail2.idDrop = Item.getIdFromItem(ItemIDs.tcRailTwoWaysCrossing.item);
 
-				putDownSingleRail(world, x+(xDisplace*1), y + 1, z+(zDisplace*1), l, x+(xDisplace*1) , y + 1, z+(zDisplace*1), 0, TrackTypes.SMALL_STRAIGHT.getLabel(), true, x+(xDisplace*2), y + 1, z+(zDisplace*2), false, false);
-
-				putDownSingleRail(world, x, y + 1, z, l, x , y + 1, z, 0, TrackTypes.SMALL_STRAIGHT.getLabel(), true, x+(xDisplace*1), y + 1, z+(zDisplace*1), false, false);
+				/*
+				 * Top
+				 */
 				
-				putDownSingleRail(world, x+(xDisplace*2)+(xSideDisplace*1), y + 1, z+(zDisplace*2)+(zSideDisplace*1), sideFacing, x+(xDisplace*2)+(xSideDisplace*1) , y + 1, z+(zDisplace*2)+(zSideDisplace*1), 0, TrackTypes.SMALL_STRAIGHT.getLabel(), true, x+(xDisplace*2), y + 1, z+(zDisplace*2), false, false);
+				// putDownSingleRail(world, x + (xDisplace * 1), y + 1, z + (zDisplace * 1), l, x +
+				// (xDisplace * 1), y + 1,
+				// z + (zDisplace * 1), 0, TrackTypes.SMALL_STRAIGHT.getLabel(), true, x +
+				// (xDisplace * 2), y + 1,
+				// z + (zDisplace * 2), false, false);
 
-				putDownSingleRail(world, x+(xDisplace*2)+(xSideDisplace*2), y + 1, z+(zDisplace*2)+(zSideDisplace*2), sideFacing, x+(xDisplace*2)+(xSideDisplace*2) , y + 1, z+(zDisplace*2)+(zSideDisplace*2), 0, TrackTypes.SMALL_STRAIGHT.getLabel(), true, x+(xDisplace*2)+(xSideDisplace*1), y + 1, z+(zDisplace*2)+(zSideDisplace*1), false, false);
+				putDownSingleRail(world, x, y + 1, z, l, x, y + 1, z, 0, TrackTypes.SMALL_STRAIGHT.getLabel(), true,
+						x + (xDisplace * 1), y + 1, z + (zDisplace * 1), false, false);
+				
+				/*
+				 * Right
+				 */
+				
+				putDownSingleRail(world, x + (xDisplace * 1) + (xSideDisplace * 1), y + 1,
+						z + (zDisplace * 1) + (zSideDisplace * 1), sideFacing,
+						x + (xDisplace * 1) + (xSideDisplace * 1), y + 1, z + (zDisplace * 1) + (zSideDisplace * 1), 0,
+						TrackTypes.SMALL_STRAIGHT.getLabel(), true, x + (xDisplace * 1), y + 1, z + (zDisplace * 1),
+						false, false);
+				
+				// putDownSingleRail(world, x + (xDisplace * 2) + (xSideDisplace * 2), y + 1,
+				// z + (zDisplace * 2) + (zSideDisplace * 2), sideFacing,
+				// x + (xDisplace * 2) + (xSideDisplace * 2), y + 1, z + (zDisplace * 2) +
+				// (zSideDisplace * 2), 0,
+				// TrackTypes.SMALL_STRAIGHT.getLabel(), true, x + (xDisplace * 2) + (xSideDisplace
+				// * 1), y + 1,
+				// z + (zDisplace * 2) + (zSideDisplace * 1), false, false);
+				
+				/*
+				 * Left
+				 */
+				
+				putDownSingleRail(world, x + (xDisplace * 1) - (xSideDisplace * 1), y + 1,
+						z + (zDisplace * 1) - (zSideDisplace * 1), sideFacing,
+						x + (xDisplace * 1) - (xSideDisplace * 1), y + 1, z + (zDisplace * 1) - (zSideDisplace * 1), 0,
+						TrackTypes.SMALL_STRAIGHT.getLabel(), true, x + (xDisplace * 1), y + 1, z + (zDisplace * 1),
+						false, false);
 
-				putDownSingleRail(world, x+(xDisplace*2)-(xSideDisplace*1), y + 1, z+(zDisplace*2)-(zSideDisplace*1), sideFacing, x+(xDisplace*2)-(xSideDisplace*1) , y + 1, z+(zDisplace*2)-(zSideDisplace*1), 0, TrackTypes.SMALL_STRAIGHT.getLabel(), true, x+(xDisplace*2), y + 1, z+(zDisplace*2), false, false);
-
-				putDownSingleRail(world, x+(xDisplace*2)-(xSideDisplace*2), y + 1, z+(zDisplace*2)-(zSideDisplace*2), sideFacing, x+(xDisplace*2)-(xSideDisplace*2) , y + 1, z+(zDisplace*2)-(zSideDisplace*2), 0, TrackTypes.SMALL_STRAIGHT.getLabel(), true, x+(xDisplace*2)-(xSideDisplace*1), y + 1, z+(zDisplace*2)-(zSideDisplace*1), false, false);
-
+//				putDownSingleRail(world, x+(xDisplace*2)-(xSideDisplace*2), y + 1, z+(zDisplace*2)-(zSideDisplace*2), sideFacing, x+(xDisplace*2)-(xSideDisplace*2) , y + 1, z+(zDisplace*2)-(zSideDisplace*2), 0, TrackTypes.SMALL_STRAIGHT.getLabel(), true, x+(xDisplace*2)-(xSideDisplace*1), y + 1, z+(zDisplace*2)-(zSideDisplace*1), false, false);
+				
 				if (!player.capabilities.isCreativeMode) {
 					--itemstack.stackSize;
 				}

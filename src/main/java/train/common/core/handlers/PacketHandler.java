@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2012 Mrbrutal. All rights reserved.
+ * Copyright (c) 20getNetworkID()2 Mrbrutal. All rights reserved.
  * 
  * @name TrainCraft
  * @author Mrbrutal
@@ -7,23 +7,25 @@
 
 package train.common.core.handlers;
 
-import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
-import cpw.mods.fml.relauncher.Side;
-
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
+import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.relauncher.Side;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.Packet;
-import train.common.Traincraft;
-import train.common.core.network.*;
-import train.common.entity.rollingStock.EntityTracksBuilder;
 import train.common.Packet250CustomPayload;
-import train.common.entity.zeppelin.AbstractZeppelin;
+import train.common.Traincraft;
+import train.common.core.network.PacketKeyPress;
+import train.common.core.network.PacketLantern;
+import train.common.core.network.PacketParkingBrake;
+import train.common.core.network.PacketRollingStockRotation;
+import train.common.core.network.PacketSetLocoTurnedOn;
+import train.common.core.network.PacketSetTrainLockedToClient;
+import train.common.core.network.PacketSlotsFilled;
+import train.common.core.network.PacketTrackBuilderHeight;
 import train.common.library.Info;
 
 public class PacketHandler {
@@ -45,17 +47,26 @@ public class PacketHandler {
 
 
 
-		Traincraft.keyChannel.registerMessage(PacketKeyPress.Handler.class, PacketKeyPress.class, 1, Side.SERVER);
-		Traincraft.rotationChannel.registerMessage(PacketRollingStockRotation.Handler.class, PacketRollingStockRotation.class, 1, Side.CLIENT);
-		//Traincraft.modChannel.registerMessage(PacketSetJukeboxStreamingUrl.Handler.class, PacketSetJukeboxStreamingUrl.class, 1, Side.SERVER);
-		Traincraft.slotschannel.registerMessage(PacketSlotsFilled.Handler.class, PacketSlotsFilled.class, 1, Side.CLIENT);
-		Traincraft.brakeChannel.registerMessage(PacketParkingBreak.Handler.class, PacketParkingBreak.class, 1, Side.SERVER);
-		Traincraft.lockChannel.registerMessage(PacketSetTrainLockedToClient.Handler.class, PacketSetTrainLockedToClient.class, 1, Side.SERVER);
-		Traincraft.ignitionChannel.registerMessage(PacketSetLocoTurnedOn.Handler.class, PacketSetLocoTurnedOn.class, 1, Side.SERVER);
-		Traincraft.modChannel.registerMessage(PacketLantern.Handler.class, PacketLantern.class, 1, Side.SERVER);
-		Traincraft.builderChannel.registerMessage(PacketTrackBuilderHeight.Handler.class, PacketTrackBuilderHeight.class, 1, Side.CLIENT);
+		Traincraft.keyChannel.registerMessage(PacketKeyPress.Handler.class, PacketKeyPress.class, 1,
+				Side.SERVER);
+		Traincraft.rotationChannel.registerMessage(PacketRollingStockRotation.Handler.class,
+				PacketRollingStockRotation.class, 2, Side.CLIENT);
+		// Traincraft.modChannel.registerMessage(PacketSetJukeboxStreamingUrl.Handler.class,
+		// PacketSetJukeboxStreamingUrl.class, 1, Side.SERVER);
+		Traincraft.slotschannel.registerMessage(PacketSlotsFilled.Handler.class, PacketSlotsFilled.class,
+				3, Side.CLIENT);
+		Traincraft.brakeChannel.registerMessage(PacketParkingBrake.Handler.class, PacketParkingBrake.class,
+				4, Side.SERVER);
+		Traincraft.lockChannel.registerMessage(PacketSetTrainLockedToClient.Handler.class,
+				PacketSetTrainLockedToClient.class, 5, Side.SERVER);
+		Traincraft.ignitionChannel.registerMessage(PacketSetLocoTurnedOn.Handler.class, PacketSetLocoTurnedOn.class,
+				6, Side.SERVER);
+		Traincraft.modChannel.registerMessage(PacketLantern.Handler.class, PacketLantern.class, 7,
+				Side.SERVER);
+		Traincraft.builderChannel.registerMessage(PacketTrackBuilderHeight.Handler.class,
+				PacketTrackBuilderHeight.class, 8, Side.CLIENT);
 	}
-
+	
 	public static Packet setBookPage(Entity player, int page, int recipe) {
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		DataOutputStream dos = new DataOutputStream(bos);

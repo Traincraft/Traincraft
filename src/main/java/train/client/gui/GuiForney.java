@@ -11,7 +11,7 @@ import org.lwjgl.opengl.GL11;
 import train.common.Traincraft;
 import train.common.api.Locomotive;
 import train.common.api.SteamTrain;
-import train.common.core.network.PacketParkingBreak;
+import train.common.core.network.PacketParkingBrake;
 import train.common.core.network.PacketSetTrainLockedToClient;
 import train.common.inventory.InventoryForney;
 import train.common.inventory.InventoryLoco;
@@ -94,13 +94,13 @@ public class GuiForney extends GuiContainer {
 	protected void actionPerformed(GuiButton guibutton) {
 		if (guibutton.id == 2) {
 			if ((!loco.getParkingBrakeFromPacket()) && loco.getSpeed() < 10) {
-				Traincraft.brakeChannel.sendToServer(new PacketParkingBreak(true, loco.getEntityId()));
+				Traincraft.brakeChannel.sendToServer(new PacketParkingBrake(true, loco.getEntityId()));
 				loco.parkingBrake = true;
 				guibutton.displayString = "Brake: On";
 				this.initGui();
 			}
 			else if (loco.getSpeed() < 10) {
-				Traincraft.brakeChannel.sendToServer(new PacketParkingBreak(false, loco.getEntityId()));
+				Traincraft.brakeChannel.sendToServer(new PacketParkingBrake(false, loco.getEntityId()));
 				loco.parkingBrake = false;
 				guibutton.displayString = "Brake: Off";
 				this.initGui();
