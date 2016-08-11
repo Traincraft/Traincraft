@@ -1,5 +1,9 @@
 package train.common.entity.zeppelin;
 
+import java.util.List;
+
+import org.lwjgl.input.Keyboard;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.material.Material;
@@ -21,13 +25,10 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
-import org.lwjgl.input.Keyboard;
 import train.common.Traincraft;
 import train.common.core.handlers.ConfigHandler;
 import train.common.core.network.PacketKeyPress;
 import train.common.library.GuiIDs;
-
-import java.util.List;
 
 public abstract class AbstractZeppelin extends Entity implements IInventory {
 	protected ItemStack zeppInvent[];
@@ -151,7 +152,7 @@ public abstract class AbstractZeppelin extends Entity implements IInventory {
 			double var6 = MathHelper.abs_max(var2, var4);
 
 			if (var6 >= 0.009999999776482582D) {
-				var6 = (double) MathHelper.sqrt_double(var6);
+				var6 = MathHelper.sqrt_double(var6);
 				var2 /= var6;
 				var4 /= var6;
 				double var8 = 1.0D / var6;
@@ -164,8 +165,8 @@ public abstract class AbstractZeppelin extends Entity implements IInventory {
 				var4 *= var8;
 				var2 *= 0.05000000074505806D;
 				var4 *= 0.05000000074505806D;
-				var2 *= (double) (1.0F - this.entityCollisionReduction);
-				var4 *= (double) (1.0F - this.entityCollisionReduction);
+				var2 *= 1.0F - this.entityCollisionReduction;
+				var4 *= 1.0F - this.entityCollisionReduction;
 				this.addVelocity(-var2, 0.0D, -var4);
 				entity.addVelocity(var2, 0.0D, var4);
 			}
@@ -175,7 +176,7 @@ public abstract class AbstractZeppelin extends Entity implements IInventory {
 
 	public AbstractZeppelin(World world, double d, double d1, double d2) {
 		this(world);
-		setPosition(d, d1 + (double) yOffset, d2);
+		setPosition(d, d1 + yOffset, d2);
 		motionX = 0.0D;
 		motionY = 0.0D;
 		motionZ = 0.0D;
@@ -186,7 +187,7 @@ public abstract class AbstractZeppelin extends Entity implements IInventory {
 
 	@Override
 	public double getMountedYOffset() {
-		return (double) height * 0.0D - 0.30000001192092896D;
+		return height * 0.0D - 0.30000001192092896D;
 	}
 
 	@Override
@@ -211,7 +212,7 @@ public abstract class AbstractZeppelin extends Entity implements IInventory {
 					k = itemstack.stackSize;
 				}
 				itemstack.stackSize -= k;
-				EntityItem entityitem = new EntityItem(worldObj, posX + (double) f, posY + (double) f1, posZ + (double) f2, new ItemStack(itemstack.getItem(), k, itemstack.getItemDamage()));
+				EntityItem entityitem = new EntityItem(worldObj, posX + f, posY + f1, posZ + f2, new ItemStack(itemstack.getItem(), k, itemstack.getItemDamage()));
 				float f3 = 0.05F;
 				entityitem.motionX = (float) rand.nextGaussian() * f3;
 				entityitem.motionY = (float) rand.nextGaussian() * f3 + 0.2F;
@@ -283,19 +284,19 @@ public abstract class AbstractZeppelin extends Entity implements IInventory {
 	}
 
 	public double speedXFromPitch(EntityPlayer player, double var3) {
-		return (double) (-MathHelper.sin((player.rotationYaw) / 180.0F * (float) Math.PI) * var3 * MathHelper.cos(player.rotationPitch / 180.0F * (float) Math.PI) * var3);
+		return -MathHelper.sin((player.rotationYaw) / 180.0F * (float) Math.PI) * var3 * MathHelper.cos(player.rotationPitch / 180.0F * (float) Math.PI) * var3;
 	}
 
 	public double speedZFromPitch(EntityPlayer player, double var3) {
-		return (double) (MathHelper.cos((player.rotationYaw) / 180.0F * (float) Math.PI) * var3 * MathHelper.cos(player.rotationPitch / 180.0F * (float) Math.PI) * var3);
+		return MathHelper.cos((player.rotationYaw) / 180.0F * (float) Math.PI) * var3 * MathHelper.cos(player.rotationPitch / 180.0F * (float) Math.PI) * var3;
 	}
 
 	public double speedXFromPitch(Entity entity, double var3) {
-		return (double) (-MathHelper.sin((entity.rotationYaw + 90) / 180.0F * (float) Math.PI) * var3 * MathHelper.cos(entity.rotationPitch / 180.0F * (float) Math.PI) * var3);
+		return -MathHelper.sin((entity.rotationYaw + 90) / 180.0F * (float) Math.PI) * var3 * MathHelper.cos(entity.rotationPitch / 180.0F * (float) Math.PI) * var3;
 	}
 
 	public double speedZFromPitch(Entity entity, double var3) {
-		return (double) (MathHelper.cos((entity.rotationYaw + 90) / 180.0F * (float) Math.PI) * var3 * MathHelper.cos(entity.rotationPitch / 180.0F * (float) Math.PI) * var3);
+		return MathHelper.cos((entity.rotationYaw + 90) / 180.0F * (float) Math.PI) * var3 * MathHelper.cos(entity.rotationPitch / 180.0F * (float) Math.PI) * var3;
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -334,8 +335,8 @@ public abstract class AbstractZeppelin extends Entity implements IInventory {
 		this.boatX = par1;
 		this.boatY = par3;
 		this.boatZ = par5;
-		this.boatYaw = (double) par7;
-		this.boatPitch = (double) par8;
+		this.boatYaw = par7;
+		this.boatPitch = par8;
 		this.motionX = this.velocityX;
 		this.motionY = this.velocityY;
 		this.motionZ = this.velocityZ;
@@ -384,7 +385,8 @@ public abstract class AbstractZeppelin extends Entity implements IInventory {
 	}
 
 	public void pressKeyClient() {
-		if (riddenByEntity != null && riddenByEntity.ridingEntity != null && riddenByEntity.ridingEntity == this) {
+		if (Traincraft.proxy.getCurrentScreen() == null && riddenByEntity != null && riddenByEntity.ridingEntity != null
+				&& riddenByEntity.ridingEntity == this) {
 			try {
 				if (Class.forName("org.lwjgl.input.Keyboard") != null && Keyboard.isCreated()) {
 					if (Keyboard.isKeyDown(KEY_UP)) {
@@ -446,20 +448,20 @@ public abstract class AbstractZeppelin extends Entity implements IInventory {
 		int i = 5;
 		double d = 0.0D;
 		for (int j = 0; j < i; j++) {
-			double d4 = (boundingBox.minY + ((boundingBox.maxY - boundingBox.minY) * (double) (j + 0)) / (double) i) - 0.125D;
-			double d8 = (boundingBox.minY + ((boundingBox.maxY - boundingBox.minY) * (double) (j + 1)) / (double) i) - 0.125D;
+			double d4 = (boundingBox.minY + ((boundingBox.maxY - boundingBox.minY) * (j + 0)) / i) - 0.125D;
+			double d8 = (boundingBox.minY + ((boundingBox.maxY - boundingBox.minY) * (j + 1)) / i) - 0.125D;
 			AxisAlignedBB axisalignedbb = AxisAlignedBB.getBoundingBox(boundingBox.minX, d4, boundingBox.minZ, boundingBox.maxX, d8, boundingBox.maxZ);
 			if (worldObj.isAABBInMaterial(axisalignedbb, Material.water)) {
-				d += 1.0D / (double) i;
+				d += 1.0D / i;
 			}
 		}
 		double d13;
 		double d11 = Math.sqrt(motionX * motionX + motionZ * motionZ);
 		if (getFuel() > 0) {
-			d13 = Math.cos(((double) rotationYaw * 3.1415926535897931D) / 180D);
-			double d15 = Math.sin(((double) rotationYaw * 3.1415926535897931D) / 180D);
+			d13 = Math.cos((rotationYaw * 3.1415926535897931D) / 180D);
+			double d15 = Math.sin((rotationYaw * 3.1415926535897931D) / 180D);
 			double d18 = rand.nextFloat() * 2.0F - 1.0F;
-			double d20 = (double) (rand.nextInt(2) * 2 - 1) * 0.69999999999999996D;
+			double d20 = (rand.nextInt(2) * 2 - 1) * 0.69999999999999996D;
 			if (rand.nextBoolean()) {
 				double d21 = (posX - d13 * d18 * 0.80000000000000004D) + d15 * d20;
 				double d23 = posZ - d15 * d18 * 0.80000000000000004D - d13 * d20;
@@ -484,8 +486,8 @@ public abstract class AbstractZeppelin extends Entity implements IInventory {
 		double var8;
 
 		if (var24 > 0.26249999999999996D) {
-			var6 = Math.cos((double) this.rotationYaw * Math.PI / 180.0D);
-			var8 = Math.sin((double) this.rotationYaw * Math.PI / 180.0D);
+			var6 = Math.cos(this.rotationYaw * Math.PI / 180.0D);
+			var8 = Math.sin(this.rotationYaw * Math.PI / 180.0D);
 		}
 
 		double var12;
@@ -493,12 +495,12 @@ public abstract class AbstractZeppelin extends Entity implements IInventory {
 
 		if (this.worldObj.isRemote && this.field_70279_a) {
 			if (this.boatPosRotationIncrements > 0) {
-				var6 = this.posX + (this.boatX - this.posX) / (double) this.boatPosRotationIncrements;
-				var8 = this.posY + (this.boatY - this.posY) / (double) this.boatPosRotationIncrements;
-				var26 = this.posZ + (this.boatZ - this.posZ) / (double) this.boatPosRotationIncrements;
-				var12 = MathHelper.wrapAngleTo180_double(this.boatYaw - (double) this.rotationYaw);
-				this.rotationYaw = (float)((double)this.rotationYaw + var12 / (double)this.boatPosRotationIncrements);
-				this.rotationPitch = (float) ((double) this.rotationPitch + (this.boatPitch - (double) this.rotationPitch) / (double) this.boatPosRotationIncrements);
+				var6 = this.posX + (this.boatX - this.posX) / this.boatPosRotationIncrements;
+				var8 = this.posY + (this.boatY - this.posY) / this.boatPosRotationIncrements;
+				var26 = this.posZ + (this.boatZ - this.posZ) / this.boatPosRotationIncrements;
+				var12 = MathHelper.wrapAngleTo180_double(this.boatYaw - this.rotationYaw);
+				this.rotationYaw = (float)(this.rotationYaw + var12 / this.boatPosRotationIncrements);
+				this.rotationPitch = (float) (this.rotationPitch + (this.boatPitch - this.rotationPitch) / this.boatPosRotationIncrements);
 				--this.boatPosRotationIncrements;
 				this.setPosition(var6, var8, var26);
 				this.setRotation(this.rotationYaw, this.rotationPitch);
@@ -524,11 +526,11 @@ public abstract class AbstractZeppelin extends Entity implements IInventory {
 		double d5;
 		double speedMultiplier = 0.07;
 		if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityLivingBase) {
-			d13 = (double) ((EntityLivingBase) this.riddenByEntity).moveForward;
+			d13 = ((EntityLivingBase) this.riddenByEntity).moveForward;
 
 			if (d13 > 0.0D) {
-				d5 = -Math.sin((double) (this.riddenByEntity.rotationYaw * (float) Math.PI / 180.0F));
-				d11 = Math.cos((double) (this.riddenByEntity.rotationYaw * (float) Math.PI / 180.0F));
+				d5 = -Math.sin(this.riddenByEntity.rotationYaw * (float) Math.PI / 180.0F);
+				d11 = Math.cos(this.riddenByEntity.rotationYaw * (float) Math.PI / 180.0F);
 				this.motionX += d5 * speedMultiplier * 0.05000000074505806D;
 				this.motionZ += d11 * speedMultiplier * 0.05000000074505806D;
 			}
@@ -596,15 +598,15 @@ public abstract class AbstractZeppelin extends Entity implements IInventory {
 			riddenByEntity = null;
 		}
 
-		double rot = (double) this.rotationYaw;
+		double rot = this.rotationYaw;
 		double div11 = this.prevPosX - this.posX;
 		double div10 = this.prevPosZ - this.posZ;
 
 		if ((div11 * div11) + (div10 * div10) > 0.001D) {
-			rot = (double) ((float) (Math.atan2(div10, div11) * 180.0D / Math.PI));
+			rot = ((float) (Math.atan2(div10, div11) * 180.0D / Math.PI));
 		}
 
-		double d12 = MathHelper.wrapAngleTo180_double(rot - (double) this.rotationYaw);
+		double d12 = MathHelper.wrapAngleTo180_double(rot - this.rotationYaw);
 
 		if (d12 > 40.0D) {
 			d12 = 40.0D;
@@ -613,7 +615,7 @@ public abstract class AbstractZeppelin extends Entity implements IInventory {
 		if (d12 < -40.0D) {
 			d12 = -40.0D;
 		}
-		this.rotationYaw = (float) ((double) this.rotationYaw + d12);
+		this.rotationYaw = (float) (this.rotationYaw + d12);
 		this.setRotation(this.rotationYaw, this.rotationPitch);
 		if (updateTicks % 10 == 0) {
 //			Traincraft.rotationChannel.sendToAllAround(new PacketZeppelinRotation(this, rotationYaw, roll), new NetworkRegistry.TargetPoint(worldObj.provider.dimensionId, posX, posY, posZ, 400D));
@@ -627,8 +629,8 @@ public abstract class AbstractZeppelin extends Entity implements IInventory {
 			return;
 		}
 		else {
-			double d = Math.cos(((double) rotationYaw * 3.1415926535897931D) / 180D) * 0.60000000000000002D;
-			double d1 = Math.sin(((double) rotationYaw * 3.1415926535897931D) / 180D) * 0.60000000000000002D;
+			double d = Math.cos((rotationYaw * 3.1415926535897931D) / 180D) * 0.60000000000000002D;
+			double d1 = Math.sin((rotationYaw * 3.1415926535897931D) / 180D) * 0.60000000000000002D;
 			riddenByEntity.setPosition(posX + d, posY + getMountedYOffset() + riddenByEntity.getYOffset(), posZ + d1);
 			riddenByEntity.fallDistance = 0F;//no more damages on landing
 			if (riddenByEntity instanceof EntityLiving) {
@@ -664,7 +666,7 @@ public abstract class AbstractZeppelin extends Entity implements IInventory {
 		NBTTagList nbttaglist = nbttagcompound.getTagList("Items", Constants.NBT.TAG_COMPOUND);
 		zeppInvent = new ItemStack[getSizeInventory()];
 		for (int i = 0; i < nbttaglist.tagCount(); i++) {
-			NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist.getCompoundTagAt(i);
+			NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
 			int j = nbttagcompound1.getByte("Slot") & 0xff;
 			if (j >= 0 && j < zeppInvent.length) {
 				zeppInvent[j] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
