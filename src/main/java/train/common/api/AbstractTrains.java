@@ -1,5 +1,8 @@
 package train.common.api;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import buildcraft.api.tools.IToolWrench;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
@@ -20,13 +23,12 @@ import net.minecraftforge.common.ForgeChunkManager;
 import net.minecraftforge.common.ForgeChunkManager.Ticket;
 import net.minecraftforge.common.ForgeChunkManager.Type;
 import train.common.Traincraft;
-import train.common.core.handlers.*;
+import train.common.core.handlers.ConfigHandler;
+import train.common.core.handlers.RollingStockStatsEventHandler;
+import train.common.core.handlers.TrainHandler;
 import train.common.items.ItemChunkLoaderActivator;
 import train.common.items.ItemRollingStock;
 import train.common.library.EnumTrains;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public abstract class AbstractTrains extends EntityMinecart implements IMinecart, IRoutableCart, IEntityAdditionalSpawnData {
 
@@ -302,7 +304,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		
 		//System.out.println("chunk " + this);
 		ArrayList<ChunkCoordIntPair> chunks = new ArrayList<ChunkCoordIntPair>();
-		ChunkCoordIntPair locoChunk = new ChunkCoordIntPair((int)chunkCoordX, (int)chunkCoordZ);
+		ChunkCoordIntPair locoChunk = new ChunkCoordIntPair(chunkCoordX, chunkCoordZ);
 		chunks.add(locoChunk);
 		ForgeChunkManager.forceChunk(ticket, locoChunk);
 		
@@ -317,10 +319,10 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		if (train != null && train.getTrains().size() > 1 && this instanceof Locomotive) {
 			for (int i = 0; i < train.getTrains().size(); i++) {
 				if (train.getTrains().get(i) != null && !train.getTrains().get(i).equals(this)){
-					int pX = (int)train.getTrains().get(i).chunkCoordX;
-					int pZ = (int)train.getTrains().get(i).chunkCoordZ;
-					int oldPX = (int)train.getTrains().get(i).oldChunkCoordX;
-					int oldPZ = (int)train.getTrains().get(i).oldChunkCoordZ;
+					int pX = train.getTrains().get(i).chunkCoordX;
+					int pZ = train.getTrains().get(i).chunkCoordZ;
+					int oldPX = train.getTrains().get(i).oldChunkCoordX;
+					int oldPZ = train.getTrains().get(i).oldChunkCoordZ;
 					ChunkCoordIntPair chunk = new ChunkCoordIntPair(pX, pZ);
 					ForgeChunkManager.forceChunk(ticket, chunk);
 					chunks.add(chunk);
@@ -403,7 +405,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		nbttagcompound.setBoolean("chunkLoadingState", getFlag(7));
 		nbttagcompound.setDouble("trainDistanceTraveled", trainDistanceTraveled);
 		nbttagcompound.setString("theOwner", trainOwner);
-		nbttagcompound.setBoolean("Locked", locked);
+		nbttagcompound.setBoolean("locked", locked);
 		nbttagcompound.setString("theCreator", trainCreator);
 		nbttagcompound.setString("theName", trainName);
 		nbttagcompound.setString("theType", trainType);
@@ -427,7 +429,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		setFlag(7, nbttagcompound.getBoolean("chunkLoadingState"));
 		trainDistanceTraveled = nbttagcompound.getDouble("trainDistanceTraveled");
 		trainOwner = nbttagcompound.getString("theOwner");
-		locked = nbttagcompound.getBoolean("Locked");
+		this.locked = nbttagcompound.getBoolean("locked");
 		setFlag(8, locked);
 		trainCreator = nbttagcompound.getString("theCreator");
 		trainName = nbttagcompound.getString("theName");
@@ -584,17 +586,18 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 	/**
 	 * Lock packet
 	 */
-	public void setTrainLockedFromPacket(boolean set) {
-		//System.out.println(worldObj.isRemote+" "+set);
-		this.locked = set;
+	public boolean getTrainLockedFromPacket() {
+		return locked;
 	}
-
+	
 	/**
 	 * Lock packet
 	 */
-	public boolean getTrainLockedFromPacket() {
-		return this.locked;
+	public void setTrainLockedFromPacket(boolean set) {
+		System.out.println(worldObj.isRemote + " " + set);
+		locked = set;
 	}
+
 
 	/** Locking for passengers, flat, caboose, jukebox,workcart */
 	protected boolean lockThisCart(ItemStack itemstack, EntityPlayer entityplayer) {

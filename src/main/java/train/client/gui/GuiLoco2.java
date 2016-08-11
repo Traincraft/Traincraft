@@ -1,5 +1,7 @@
 package train.client.gui;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.Entity;
@@ -7,9 +9,13 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ResourceLocation;
-import org.lwjgl.opengl.GL11;
 import train.common.Traincraft;
-import train.common.api.*;
+import train.common.api.AbstractTrains;
+import train.common.api.DieselTrain;
+import train.common.api.ElectricTrain;
+import train.common.api.LiquidManager;
+import train.common.api.Locomotive;
+import train.common.api.SteamTrain;
 import train.common.core.network.PacketParkingBreak;
 import train.common.core.network.PacketSetTrainLockedToClient;
 import train.common.inventory.InventoryLoco;
@@ -177,7 +183,8 @@ public class GuiLoco2 extends GuiContainer {
 		fontRendererObj.drawStringWithShadow("only its owner can open", startX, startY + 10, -1);
 		fontRendererObj.drawStringWithShadow("the GUI, change speed, destroy it.", startX, startY + 20, -1);
 		fontRendererObj.drawStringWithShadow("Current state: " + state, startX, startY + 30, -1);
-		fontRendererObj.drawStringWithShadow("Owner: " + ((AbstractTrains) loco).trainOwner.trim(), startX, startY + 40, -1);
+		fontRendererObj.drawStringWithShadow("Owner: " + ((AbstractTrains) loco).getTrainOwner().trim(), startX,
+				startY + 40, -1);
 	}
 
 	public boolean intersectsWith(int mouseX, int mouseY) {
