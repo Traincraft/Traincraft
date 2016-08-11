@@ -1,5 +1,9 @@
 package train.client.gui;
 
+import java.util.List;
+
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.Entity;
@@ -10,7 +14,6 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
-import org.lwjgl.opengl.GL11;
 import train.client.core.helpers.FluidRenderHelper;
 import train.common.Traincraft;
 import train.common.api.AbstractTrains;
@@ -19,8 +22,6 @@ import train.common.core.network.PacketSetTrainLockedToClient;
 import train.common.inventory.InventoryLiquid;
 import train.common.inventory.InventoryLoco;
 import train.common.library.Info;
-
-import java.util.List;
 
 public class GuiLiquid extends GuiContainer {
 
@@ -44,11 +45,11 @@ public class GuiLiquid extends GuiContainer {
 		drawGuiContainerBackgroundLayer(par3, t, g);
 		super.drawScreen(t, g, par3);
 
-		int amount = ((LiquidTank) liquid).getAmount();
-		int liqui = (amount * 50) / ((LiquidTank) liquid).getCapacity();
+		int amount = liquid.getAmount();
+		int liqui = (amount * 50) / liquid.getCapacity();
 
 		if (intersectsWith(t, g)) {
-			drawCreativeTabHoveringText(((LiquidTank) liquid).getLiquidName(), t, g);
+			drawCreativeTabHoveringText(liquid.getLiquidName(), t, g);
 		}
 
 	}
@@ -70,13 +71,14 @@ public class GuiLiquid extends GuiContainer {
 		if (guibutton.id == 3) {
 			if(player!=null && player instanceof EntityPlayer && player.getCommandSenderName().toLowerCase().equals(((AbstractTrains) liquid).getTrainOwner().toLowerCase())){
 				if ((!((AbstractTrains) liquid).getTrainLockedFromPacket())){
-					AxisAlignedBB box = ((LiquidTank) liquid).boundingBox.expand(5, 5, 5);
-					List lis3 = ((LiquidTank) liquid).worldObj.getEntitiesWithinAABBExcludingEntity(liquid, box);
+					AxisAlignedBB box = liquid.boundingBox.expand(5, 5, 5);
+					List lis3 = liquid.worldObj.getEntitiesWithinAABBExcludingEntity(liquid, box);
 					if (lis3 != null && lis3.size() > 0) {
 						for (int j1 = 0; j1 < lis3.size(); j1++) {
 							Entity entity = (Entity) lis3.get(j1);
 							if (entity instanceof EntityPlayer) {
-								Traincraft.lockChannel.sendToServer(new PacketSetTrainLockedToClient(true, entity.getEntityId()));
+								Traincraft.lockChannel
+										.sendToServer(new PacketSetTrainLockedToClient(true, liquid.getEntityId()));
 							}
 						}
 					}
@@ -84,13 +86,14 @@ public class GuiLiquid extends GuiContainer {
 					guibutton.displayString = "Locked";
 					this.initGui();
 				}else{
-					AxisAlignedBB box = ((LiquidTank) liquid).boundingBox.expand(5, 5, 5);
-					List lis3 = ((LiquidTank) liquid).worldObj.getEntitiesWithinAABBExcludingEntity(liquid, box);
+					AxisAlignedBB box = liquid.boundingBox.expand(5, 5, 5);
+					List lis3 = liquid.worldObj.getEntitiesWithinAABBExcludingEntity(liquid, box);
 					if (lis3 != null && lis3.size() > 0) {
 						for (int j1 = 0; j1 < lis3.size(); j1++) {
 							Entity entity = (Entity) lis3.get(j1);
 							if (entity instanceof EntityPlayer) {
-								Traincraft.lockChannel.sendToServer(new PacketSetTrainLockedToClient(false, entity.getEntityId()));
+								Traincraft.lockChannel
+										.sendToServer(new PacketSetTrainLockedToClient(false, liquid.getEntityId()));
 							}
 						}
 					}
@@ -107,8 +110,13 @@ public class GuiLiquid extends GuiContainer {
 	protected void drawCreativeTabHoveringText(String str, int t, int g) {
 		int j = (width - xSize) / 2;
 		int k = (height - ySize) / 2;
-		int liqui = (((LiquidTank) liquid).getAmount() * 50) / ((LiquidTank) liquid).getCapacity();
-		int textWidth = fontRendererObj.getStringWidth(((LiquidTank) liquid).getAmount() + "/" + ((LiquidTank) liquid).getCapacity());
+		int liqui = (liquid.getAmount() * 50) / liquid.getCapacity();
+		
+		String state = "";
+		if (((AbstractTrains) liquid).getTrainLockedFromPacket()) state = "Locked";
+		if (!((AbstractTrains) liquid).getTrainLockedFromPacket()) state = "Unlocked";
+		
+		int textWidth = fontRendererObj.getStringWidth(liquid.getAmount() + "/" + liquid.getCapacity());
 		int startX = t + 14;
 		int startY = g - 12;
 
@@ -125,7 +133,7 @@ public class GuiLiquid extends GuiContainer {
 			fontRendererObj.drawStringWithShadow(str, startX, startY, -1);
 		else
 			fontRendererObj.drawStringWithShadow("Empty", startX, startY, -1);
-		fontRendererObj.drawStringWithShadow(((LiquidTank) liquid).getAmount() + "/" + ((LiquidTank) liquid).getCapacity(), startX, startY + 10, -1);
+		fontRendererObj.drawStringWithShadow(liquid.getAmount() + "/" + liquid.getCapacity(), startX, startY + 10, -1);
 	}
 
 	@Override
@@ -200,10 +208,10 @@ public class GuiLiquid extends GuiContainer {
 		int k = (height - ySize) / 2;
 		drawTexturedModalRect(j, k, 0, 0, xSize, ySize);
 
-		int amount = ((LiquidTank) liquid).getAmount();
-		int l = (amount * 50) / ((LiquidTank) liquid).getCapacity();
+		int amount = liquid.getAmount();
+		int l = (amount * 50) / liquid.getCapacity();
 
-		Fluid theLiquid = FluidRegistry.getFluid(((LiquidTank) liquid).getLiquidName());
+		Fluid theLiquid = FluidRegistry.getFluid(liquid.getLiquidName());
 		/** Don't render anything if the cart is empty */
 		if (theLiquid != null) {
 			/** Protection against missing rendering icon, to avoid NPE */

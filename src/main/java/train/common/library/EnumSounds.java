@@ -30,8 +30,6 @@ import train.common.entity.rollingStock.EntityLocoSteamSmall;
 
 public enum EnumSounds {
 
-	/*chme3_horn("chme3_horn.wav"), chme3_run("chme3_run.wav"), chme3_idle("chme3_idle.wav"), vl10_horn("vl10_horn.wav"), vl10_run("vl10_run.wav"), vl10_idle("vl10_idle.wav"), eu07_horn("eu07_horn.wav"), shunter_horn("shunter_horn.wav"), subway_horn("subway_horn.wav"), gp_horn("gp_horn.wav"), steam_horn("steam_horn.wav"), steam_run("steam_run.wav"), steam_idle("steam_idle.wav") */
-
 	locoCherepanov(EntityLocoSteamCherepanov.class, "steam_horn", 0.8F, "steam_run", 0.2F, 20, "steam_run", 0.2F, 20, true),
 	locoHeavySteam(EntityLocoSteamHeavy.class, "steam_horn", 0.8F, "steam_run", 0.4F, 20, "steam_run", 0.4F, 20, true),
 	locoSteam(EntityLocoSteam4_4_0.class, "american_steam_horn", 0.8F, "steam_run", 0.2F, 20, "steam_run", 0.2F, 20, true),

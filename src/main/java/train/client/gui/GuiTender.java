@@ -1,5 +1,9 @@
 package train.client.gui;
 
+import java.util.List;
+
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.Entity;
@@ -9,7 +13,6 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ResourceLocation;
-import org.lwjgl.opengl.GL11;
 import train.common.Traincraft;
 import train.common.api.AbstractTrains;
 import train.common.api.LiquidManager;
@@ -17,8 +20,6 @@ import train.common.api.Tender;
 import train.common.core.network.PacketSetTrainLockedToClient;
 import train.common.inventory.InventoryTender;
 import train.common.library.Info;
-
-import java.util.List;
 
 public class GuiTender extends GuiContainer {
 
@@ -41,7 +42,7 @@ public class GuiTender extends GuiContainer {
 		buttonList.clear();
 		int var1 = (this.width-xSize) / 2;
 		int var2 = (this.height-ySize) / 2;
-		if (!((AbstractTrains) tender).locked) {
+		if (!((AbstractTrains) tender).getTrainLockedFromPacket()) {
 			this.buttonList.add(this.buttonLock = new GuiButton(3, var1 + 124, var2 - 10, 51, 10, "Unlocked"));
 		}else{
 			this.buttonList.add(this.buttonLock = new GuiButton(3, var1 + 130, var2 - 10, 43, 10, "Locked"));
@@ -51,32 +52,34 @@ public class GuiTender extends GuiContainer {
 	protected void actionPerformed(GuiButton guibutton) {
 		if (guibutton.id == 3) {
 			if(player!=null && player instanceof EntityPlayer && player.getCommandSenderName().toLowerCase().equals(((AbstractTrains) tender).getTrainOwner().toLowerCase())){
-				if ((!((AbstractTrains) tender).locked)){
-					AxisAlignedBB box = ((Tender) tender).boundingBox.expand(5, 5, 5);
-					List lis3 = ((Tender) tender).worldObj.getEntitiesWithinAABBExcludingEntity(tender, box);
+				if ((!((AbstractTrains) tender).getTrainLockedFromPacket())) {
+					AxisAlignedBB box = tender.boundingBox.expand(5, 5, 5);
+					List lis3 = tender.worldObj.getEntitiesWithinAABBExcludingEntity(tender, box);
 					if (lis3 != null && lis3.size() > 0) {
 						for (int j1 = 0; j1 < lis3.size(); j1++) {
 							Entity entity = (Entity) lis3.get(j1);
 							if (entity instanceof EntityPlayer) {
-								Traincraft.lockChannel.sendToServer(new PacketSetTrainLockedToClient(true, entity.getEntityId()));
+								Traincraft.lockChannel
+										.sendToServer(new PacketSetTrainLockedToClient(true, tender.getEntityId()));
 							}
 						}
 					}
-					((AbstractTrains) tender).locked=true;
+					((AbstractTrains) tender).setTrainLockedFromPacket(true);
 					guibutton.displayString = "Locked";
 					this.initGui();
 				}else{
-					AxisAlignedBB box = ((Tender) tender).boundingBox.expand(5, 5, 5);
-					List lis3 = ((Tender) tender).worldObj.getEntitiesWithinAABBExcludingEntity(tender, box);
+					AxisAlignedBB box = tender.boundingBox.expand(5, 5, 5);
+					List lis3 = tender.worldObj.getEntitiesWithinAABBExcludingEntity(tender, box);
 					if (lis3 != null && lis3.size() > 0) {
 						for (int j1 = 0; j1 < lis3.size(); j1++) {
 							Entity entity = (Entity) lis3.get(j1);
 							if (entity instanceof EntityPlayer) {
-								Traincraft.lockChannel.sendToServer(new PacketSetTrainLockedToClient(false, entity.getEntityId()));
+								Traincraft.lockChannel
+										.sendToServer(new PacketSetTrainLockedToClient(false, tender.getEntityId()));
 							}
 						}
 					}
-					((AbstractTrains) tender).locked=false;
+					((AbstractTrains) tender).setTrainLockedFromPacket(false);
 					guibutton.displayString = "UnLocked";
 					this.initGui();
 				}
@@ -117,8 +120,8 @@ public class GuiTender extends GuiContainer {
 
 		//int liqui = (dieselInventory.getLiquidAmount() * 50) / dieselInventory.getTankCapacity();
 		String state = "";
-		if(((AbstractTrains) tender).locked)state="Locked";
-		if(!((AbstractTrains) tender).locked)state="Unlocked";
+		if (((AbstractTrains) tender).getTrainLockedFromPacket()) state = "Locked";
+		if (!((AbstractTrains) tender).getTrainLockedFromPacket()) state = "Unlocked";
 		
 		int textWidth = fontRendererObj.getStringWidth("the GUI, change speed, destroy it.");
 		int startX = 90;
@@ -159,10 +162,10 @@ public class GuiTender extends GuiContainer {
 		drawTexturedModalRect(j, k, 0, 0, xSize, ySize);
 
 		if (tender instanceof Tender) {
-			int load = (((Tender) tender).getWater());
-			int lo = Math.abs(((load * 50) / (((Tender) tender).getCartTankCapacity())));
+			int load = (tender.getWater());
+			int lo = Math.abs(((load * 50) / (tender.getCartTankCapacity())));
 
-			if (((Tender) tender).getLiquidItemID() == LiquidManager.WATER_FILTER.getFluidID()) {
+			if (tender.getLiquidItemID() == LiquidManager.WATER_FILTER.getFluidID()) {
 
 				drawTexturedModalRect(j + 143, (k + 69) - lo, 190, 69 - lo, 18, lo);
 			}
