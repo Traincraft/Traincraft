@@ -2030,16 +2030,23 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				if ((par1Entity instanceof AbstractTrains && d2 <= ((AbstractTrains) par1Entity).getLinkageDistance((EntityMinecart) par1Entity) * 0.7 && d2 >= 9.999999747378752E-5D) || (par1Entity instanceof EntityBogie && ((EntityBogie) par1Entity).entityMainTrain != null && d2 <= ((EntityBogie) par1Entity).entityMainTrain.getLinkageDistance((EntityMinecart) par1Entity) * 0.7 && d2 >= 9.999999747378752E-5D) || (!(par1Entity instanceof AbstractTrains) && d2 >= 9.999999747378752E-5D))// >= 9.999999747378752E-5D)
 				{
 					d2 = (double) MathHelper.sqrt_double(d2);
-					d0 /= d2;
-					d1 /= d2;
-					double d3 = 1.0D / d2;
-
-					if (d3 > 1.0D) {
-						d3 = 1.0D;
+					if (d0 != 0) {
+						d0 /= d2;
+					} else {
+						d2=0;
+					}
+					if (d1 != 0) {
+						d1 /= d2;
+					} else {
+						d2=0;
 					}
 
-					d0 *= d3;
-					d1 *= d3;
+					if (d2 > 1.0D) {
+						d2 = 1.0D;
+					}
+
+					d0 *= d2;
+					d1 *= d2;
 					d0 *= 0.10000000149011612D;
 					d1 *= 0.10000000149011612D;
 					d0 *= (double) (1.0F - this.entityCollisionReduction);
@@ -2115,8 +2122,8 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 						}
 						else {
 							//System.out.println("3 "+par1Entity +"     "+ this);
-							d7 /= 2.5D;
-							d8 /= 2.5D;
+							d7 *= 0.4D;
+							d8 *= 0.4D;
 
 							if (par1Entity instanceof EntityBogie || par1Entity instanceof Locomotive) {
 								d7 *= -1;//-3
@@ -2138,8 +2145,8 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 							if (par1Entity instanceof EntityBogie) {
 								//d7/=3;
 								//d8/=3;
-								d7 *= -1;
-								d8 *= -1;
+								d7 *= 0.333333333333;
+								d8 *= 0.333333333333;
 							}
 							if (par1Entity instanceof EntityRollingStock && ((EntityRollingStock) par1Entity).bogieUtility[0] != null && ((EntityRollingStock) par1Entity).bogieUtility[1] != null) {
 								((EntityRollingStock) par1Entity).bogieUtility[0].motionX *= 0.20000000298023224D;
@@ -2188,18 +2195,14 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 							if (movingobjectposition != null) {
 								vec3d5 = Vec3.createVectorHelper(movingobjectposition.hitVec.xCoord, movingobjectposition.hitVec.yCoord, movingobjectposition.hitVec.zCoord);
 							}
-							if (par1Entity != null && par1Entity instanceof EntityPlayer) {
-								movingobjectposition = new MovingObjectPosition(par1Entity);
-							}
-							if (movingobjectposition != null) {
-								if (movingobjectposition.entityHit != null) {
-									float f1 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
-									float f7 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
-									//movingobjectposition.entityHit.setVelocity(-par1Entity.motionX, 0, -par1Entity.motionZ);
-									//movingobjectposition.entityHit.addVelocity(-((par1Entity.motionX * (double) (Math.abs(this.motionX+0.01)) * 2.60000002384185791D)) / (double) f7, 0.00000000000000001D, -(((par1Entity.motionZ * (double) (Math.abs(this.motionZ+0.01)) * 2.60000002384185791D)) / (double) f7));
-									//movingobjectposition.entityHit.addVelocity(-((Math.abs(this.motionX) * (double) 1 * 0.0260000002384185791D)) / (double) f7, 0.00000000000000001D, -(((Math.abs(this.motionZ) * (double) 1 * 0.0260000002384185791D)) / (double) f7));
-									par1Entity.velocityChanged = true;
-								}
+							movingobjectposition = new MovingObjectPosition(par1Entity);
+							if (movingobjectposition.entityHit != null) {
+								float f1 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
+								float f7 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
+								//movingobjectposition.entityHit.setVelocity(-par1Entity.motionX, 0, -par1Entity.motionZ);
+								//movingobjectposition.entityHit.addVelocity(-((par1Entity.motionX * (double) (Math.abs(this.motionX+0.01)) * 2.60000002384185791D)) / (double) f7, 0.00000000000000001D, -(((par1Entity.motionZ * (double) (Math.abs(this.motionZ+0.01)) * 2.60000002384185791D)) / (double) f7));
+								//movingobjectposition.entityHit.addVelocity(-((Math.abs(this.motionX) * (double) 1 * 0.0260000002384185791D)) / (double) f7, 0.00000000000000001D, -(((Math.abs(this.motionZ) * (double) 1 * 0.0260000002384185791D)) / (double) f7));
+								par1Entity.velocityChanged = true;
 							}
 						}
 
@@ -2269,8 +2272,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 	 */
 	@Override
 	public float getLinkageDistance(EntityMinecart cart) {
-		float dist = this.getOptimalDistance(cart) + 2.4F;
-		return dist;
+		return 2.4F;
 	}
 
 	/**
@@ -2279,6 +2281,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 	 * linked carts. The LinkageManager will attempt to maintain this distance
 	 * between linked carts at all times. Default =
 	 * LinkageManager.OPTIMAL_DISTANCE
+	 * ETERNAL's NOTE: because this is forcing the value of EntityMinecart, it's actually a call to the super but using this instance. Not actually an infinate look like compiler thinks.
 	 * 
 	 * @param cart
 	 *            The cart that you are linked with.
@@ -2286,8 +2289,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 	 */
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		float dist = this.getOptimalDistance(cart);
-		return dist;
+		return this.getOptimalDistance(cart);
 	}
 
 	/**

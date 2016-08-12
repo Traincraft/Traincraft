@@ -483,13 +483,15 @@ public class LinkHandler {
 	 */
 	public float getOptimalDistance(Entity cart1, Entity cart2) {
 		float dist = 0.0F;
-		if ((cart1 instanceof AbstractTrains))
+		if ((cart1 instanceof AbstractTrains)) {
 			dist += ((AbstractTrains) cart1).getOptimalDistance((EntityMinecart) cart2);
+		}
 		else {
 			dist += 0.78F;
 		}
-		if ((cart2 instanceof AbstractTrains))
+		if ((cart2 instanceof AbstractTrains)) {
 			dist += ((AbstractTrains) cart2).getOptimalDistance((EntityMinecart) cart1);
+		}
 		else {
 			dist += 0.78F;
 		}
