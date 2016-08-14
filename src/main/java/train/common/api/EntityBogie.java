@@ -480,7 +480,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 
 					if (ItemTCRail.isTCTwoWaysCrossingTrack(tileRail)) {
 
-						moveOnTCTwoWaysCrossing(i, j, k, tileRail.xCoord, tileRail.yCoord, tileRail.zCoord, tileRail.getBlockMetadata());
+					moveOnTCTwoWaysCrossing();
 					}
 
 					if (ItemTCRail.isTCSlopeTrack(tileRail)) {
@@ -564,12 +564,12 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		}
 	}
 
-	protected void moveOnTCTwoWaysCrossing(int i, int j, int k, double cx, double cy, double cz, int meta){
-		this.posY = j + 0.2D;
+	protected void moveOnTCTwoWaysCrossing() {
 		/*
-		 * Nitro-Note: Do we need all those shitty motionX and Z + setPosition things?
+		 * Nitro-Note: Do we need all those shitty motionX and Z + setPosition things? We don't even
+		 * need something to parse to this function.
 		 */
-		
+		// this.posY = j + 0.2D;
 		//System.out.println(l);
 		//if(l==2||l==0)moveEntity(motionX, 0.0D, 0.0D);
 		//if(l==1||l==3)moveEntity(0.0D, 0.0D, motionZ);
