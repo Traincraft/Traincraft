@@ -539,14 +539,15 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 	
 	protected void moveOnTCStraight(int i, int j, int k, double cx, double cy, double cz, int meta){
 		/*
-		 * Nitro-Note: Do we need all those shitty motionX and Z + setPosition things?
+		 * Nitro-Note: Do we need all those shitty motionX and Z?
+		 * Nitro-Note 2: setPosition is to make a great look when Train placed down. :)
 		 */
 		this.posY = j + 0.2D;
 		double norm = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 		if (meta % 2 == 0) {
 
 
-			// this.setPosition(cx + 0.5D, this.posY + this.yOffset, this.posZ);
+			this.setPosition(cx + 0.5D, this.posY + this.yOffset, this.posZ);
 			this.moveEntity(0.0D, 0.0D, Math.copySign(norm, this.motionZ));
 
 			// this.motionX = 0.0D;
@@ -556,7 +557,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 
 			// double norm = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 
-			// this.setPosition(this.posX, this.posY + this.yOffset, cz + 0.5D);
+			this.setPosition(this.posX, this.posY + this.yOffset, cz + 0.5D);
 			this.moveEntity(Math.copySign(norm, this.motionX), 0.0D, 0.0D);
 
 			// this.motionX = Math.copySign(norm, this.motionX);
@@ -566,8 +567,9 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 
 	protected void moveOnTCTwoWaysCrossing() {
 		/*
-		 * Nitro-Note: Do we need all those shitty motionX and Z + setPosition things? We don't even
-		 * need something to parse to this function.
+		 * Nitro-Note: Do we need all those shitty motionX and Z? We don't even
+		 * need something to parse to this function. setPosition is superflous since you can't place
+		 * trains down on 2 way crossings.
 		 */
 		// this.posY = j + 0.2D;
 		//System.out.println(l);
