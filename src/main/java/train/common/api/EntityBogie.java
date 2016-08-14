@@ -538,59 +538,63 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 	}
 	
 	protected void moveOnTCStraight(int i, int j, int k, double cx, double cy, double cz, int meta){
-
+		/*
+		 * Nitro-Note: Do we need all those shitty motionX and Z + setPosition things?
+		 */
 		this.posY = j + 0.2D;
-
+		double norm = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 		if (meta % 2 == 0) {
 
-			double norm = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 
-			this.setPosition(cx + 0.5D, this.posY + this.yOffset, this.posZ);
-			this.moveEntity(0.0D, 0.0D, Math.copySign(Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ), this.motionZ));
+			// this.setPosition(cx + 0.5D, this.posY + this.yOffset, this.posZ);
+			this.moveEntity(0.0D, 0.0D, Math.copySign(norm, this.motionZ));
 
-			this.motionX = 0.0D;
-			this.motionZ = Math.copySign(norm, this.motionZ);
+			// this.motionX = 0.0D;
+			// this.motionZ = Math.copySign(norm, this.motionZ);
 		}
 		else {
 
-			double norm = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
+			// double norm = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 
-			this.setPosition(this.posX, this.posY + this.yOffset, cz + 0.5D);
+			// this.setPosition(this.posX, this.posY + this.yOffset, cz + 0.5D);
 			this.moveEntity(Math.copySign(norm, this.motionX), 0.0D, 0.0D);
 
-			this.motionX = Math.copySign(norm, this.motionX);
-			this.motionZ = 0.0D;
+			// this.motionX = Math.copySign(norm, this.motionX);
+			// this.motionZ = 0.0D;
 		}
 	}
 
 	protected void moveOnTCTwoWaysCrossing(int i, int j, int k, double cx, double cy, double cz, int meta){
 		this.posY = j + 0.2D;
-
+		/*
+		 * Nitro-Note: Do we need all those shitty motionX and Z + setPosition things?
+		 */
+		
 		//System.out.println(l);
 		//if(l==2||l==0)moveEntity(motionX, 0.0D, 0.0D);
 		//if(l==1||l==3)moveEntity(0.0D, 0.0D, motionZ);
 		//if(Math.abs(motionX)>Math.abs(motionZ))System.out.println("X");
 		//if(Math.abs(motionZ)>Math.abs(motionX))System.out.println("Z");
+		
+		double norm = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
+		
+		if (Math.abs(motionZ) > Math.abs(motionX)) {
 
-		if (!((MathHelper.floor_double(this.rotationYaw * 4.0F / 360.0F + 0.5D) & 3) % 2 == 0)) {
-
-			double norm = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
-
-			this.setPosition(this.posX, this.posY + this.yOffset, cz + 0.5);
-			this.moveEntity(Math.copySign(norm, this.motionX), 0.0D, 0.0D);
-
-			this.motionX = Math.copySign(norm, this.motionX);
-			this.motionZ = 0.0D;
-		}
-		else {
-
-			double norm = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
-
-			this.setPosition(cx + 0.5D, this.posY + this.yOffset, this.posZ);
+			// this.setPosition(this.posX, this.posY + this.yOffset, cz + 0.5D);
 			this.moveEntity(0.0D, 0.0D, Math.copySign(norm, this.motionZ));
 
-			this.motionX = 0.0D;
-			this.motionZ = Math.copySign(norm, this.motionZ);
+			// this.motionX = 0.0D;
+			// this.motionZ = Math.copySign(norm, this.motionZ);
+		}
+		else {
+			
+			// double norm = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
+			
+			// this.setPosition(cx + 0.5D, this.posY + this.yOffset, this.posZ);
+			this.moveEntity(Math.copySign(norm, this.motionX), 0.0D, 0.0D);
+
+			// this.motionX = Math.copySign(norm, this.motionX);
+			// this.motionZ = 0.0D;
 		}
 
 	}

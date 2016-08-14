@@ -836,9 +836,6 @@ public class ItemTCRail extends ItemPart {
 					putDownSingleRail(world, x + 5, y + 1, z, l, x, y + 1, z, 0, TrackTypes.SMALL_STRAIGHT.getLabel(),
 							true, x + 2, y + 1, z - 1, false, false);
 
-					/** Put down straight exit **/
-					putDownSingleRail(world, x + 5, y + 1, z, l, x, y + 1, z, 0, TrackTypes.SMALL_STRAIGHT.getLabel(), true, x + 2, y + 1, z - 1, false, false);
-
 				}
 				if (!player.capabilities.isCreativeMode) {
 					--itemstack.stackSize;
