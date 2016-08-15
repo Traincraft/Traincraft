@@ -133,16 +133,17 @@ public abstract class Tender extends Freight implements IFluidHandler {
 				tender.tenderItems[i] = itemstack1;
 				return;
 			}
-			else if (tender.tenderItems[i] != null && tender.tenderItems[i].getItem() == itemstack1.getItem() && itemstack1.isStackable() && (!itemstack1.getHasSubtypes() || tender.tenderItems[i].getItemDamage() == itemstack1.getItemDamage()) && ItemStack.areItemStackTagsEqual(tender.tenderItems[i], itemstack1)) {
+			else if (tender.tenderItems[i] != null && tender.tenderItems[i].getItem() == itemstack1.getItem() && itemstack1.isStackable() &&
+					(!itemstack1.getHasSubtypes() || tender.tenderItems[i].getItemDamage() == itemstack1.getItemDamage()) && ItemStack.areItemStackTagsEqual(tender.tenderItems[i], itemstack1)) {
 				int var9 = tender.tenderItems[i].stackSize + itemstack1.stackSize;
-				if (var9 <= itemstack1.getMaxStackSize()) {
+				if (var9 <= tender.tenderItems[i].getMaxStackSize()) {
 					tender.tenderItems[i].stackSize = var9;
-
+					return;
 				}
-				else if (tender.tenderItems[i].stackSize < itemstack1.getMaxStackSize()) {
+				else if (tender.tenderItems[i].stackSize < tender.tenderItems[i].getMaxStackSize()) {
 					tender.tenderItems[i].stackSize += 1;
+					return;
 				}
-				return;
 			}
 			else if (i == tender.tenderItems.length - 1) {
 				dropItem(itemstack1.getItem(), 1);
