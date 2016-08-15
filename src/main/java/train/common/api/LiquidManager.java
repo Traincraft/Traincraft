@@ -13,7 +13,12 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fluids.*;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidContainerRegistry;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidTank;
+import net.minecraftforge.fluids.IFluidTank;
 import train.common.blocks.BlockTraincraftFluid;
 import train.common.items.ItemBlockFluid;
 import train.common.library.BlockIDs;
@@ -121,10 +126,6 @@ public class LiquidManager {
 		if (fuel != null)
 			fuels[3] = new FluidStack(fuel, 1);
 		return fuels;
-	}
-
-	public boolean isBucket(ItemStack stack) {
-		return FluidContainerRegistry.isBucket(stack);
 	}
 
 	public boolean isContainer(ItemStack stack) {
