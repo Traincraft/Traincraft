@@ -154,7 +154,7 @@ public class TileEntityDistil extends TileTraincraft implements IFluidHandler {
 
 				if (this.updateTicks % 8 == 0) {
 
-					ItemStack result = LiquidManager.getInstance().processContainer(this, 2, theTank, slots[2], 0);
+					ItemStack result = LiquidManager.getInstance().processContainer(this, 2, theTank, slots[2]);
 
 					if (result != null && placeInInvent(result, 4, false)) {
 

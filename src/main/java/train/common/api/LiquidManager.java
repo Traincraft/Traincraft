@@ -187,7 +187,7 @@ public class LiquidManager {
 		return null;
 	}
 
-	public ItemStack processContainer(IInventory inventory, int inventoryIndex, FluidTank tank, ItemStack itemstack, int tankIndex) {
+	public ItemStack processContainer(IInventory inventory, int inventoryIndex, FluidTank tank, ItemStack itemstack) {
 		FluidStack bucketLiquid = getFluidInContainer(itemstack);
 		ItemStack emptyItem = itemstack.getItem().getContainerItem(itemstack);
 		if ((bucketLiquid != null)) {

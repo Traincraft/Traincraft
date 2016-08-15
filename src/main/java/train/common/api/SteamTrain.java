@@ -159,7 +159,7 @@ public abstract class SteamTrain extends Locomotive implements IFluidHandler {
 			return;
 		this.update += 1;
 		if (this.update % 8 == 0 && itemstack != null) {
-			ItemStack result = LiquidManager.getInstance().processContainer(this, 1, theTank, itemstack, 0); //'this' needs to be the loco inventory, but that's not an inventory it's a Itemstack[]
+			ItemStack result = LiquidManager.getInstance().processContainer(this, 1, theTank, itemstack); //'this' needs to be the loco inventory, but that's not an inventory it's a Itemstack[]
 			if (result != null) {
 				placeInInvent(result, loco);
 				decrStackSize(1, 1);

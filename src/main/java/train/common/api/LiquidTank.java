@@ -101,25 +101,26 @@ public class LiquidTank extends EntityRollingStock implements IFluidHandler, ISi
 
 	public ItemStack checkInvent(ItemStack itemstack) {
 		ItemStack result = null;
-		if (worldObj.isRemote)
+		if (worldObj.isRemote) {
 			return itemstack;
+		}
 		this.update += 1;
 		if (this.update % 8 == 0 && itemstack != null) {
 			ItemStack emptyItem = itemstack.getItem().getContainerItem(itemstack);
 			if(cargoItems[1] == null) {
-				result = LiquidManager.getInstance().processContainer(this, 0, theTank, itemstack, 0);
+				result = LiquidManager.getInstance().processContainer(this, 0, theTank, itemstack);
 			}
 			else if(emptyItem != null) {
 				if(cargoItems[1] != null && emptyItem.getItem() == cargoItems[1].getItem()) {
     				if(cargoItems[1].stackSize+1 < cargoItems[1].getMaxStackSize()) {
-    					result = LiquidManager.getInstance().processContainer(this, 0, theTank, itemstack, 0);
+    					result = LiquidManager.getInstance().processContainer(this, 0, theTank, itemstack);
     				}
 				}
 			}
 			else {
 				if(cargoItems[1] != null && itemstack.getItem() == cargoItems[1].getItem()) {
     				if(cargoItems[1].stackSize+1 <= cargoItems[1].getMaxStackSize()) {
-    					result = LiquidManager.getInstance().processContainer(this, 0, theTank, itemstack, 0);
+    					result = LiquidManager.getInstance().processContainer(this, 0, theTank, itemstack);
     				}
 				}
 			}
