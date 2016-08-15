@@ -18,7 +18,7 @@ import train.common.library.GuiIDs;
 public class EntityTankWagon extends LiquidTank {
 	public int freightInventorySize;
 	public EntityTankWagon(World world) {
-		super(world, FluidRegistry.WATER, 0, EnumTrains.tankWagonYellow.getTankCapacity(), LiquidManager.LAVA_FILTER, true);
+		super(world, 0, EnumTrains.tankWagonYellow.getTankCapacity());
 		initFreightWater();
 	}
 

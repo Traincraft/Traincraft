@@ -10,13 +10,13 @@ import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
 import train.common.api.LiquidManager.StandardTank;
 
+import javax.annotation.Nullable;
+
 public class LiquidTank extends EntityRollingStock implements IFluidHandler, ISidedInventory {
-	private FluidStack liquid;
 	private int capacity;
 	protected ItemStack cargoItems[];
 	private int update = 8;
 	private FluidTank theTank;
-	private IFluidTank[] tankArray = new IFluidTank[1];
 
 	/**
 	 * 
@@ -26,23 +26,16 @@ public class LiquidTank extends EntityRollingStock implements IFluidHandler, ISi
 	 * @param capacity
 	 */
 	public LiquidTank(World world, Fluid fluid, int quantity, int capacity) {
-		this(new FluidStack(fluid, quantity), capacity, world, null, false);
+			this(new FluidStack(fluid, quantity), capacity, world);
+	}
+	public LiquidTank(World world, int quantity, int capacity) {
+		this(null, capacity,world);
 	}
 
-	public LiquidTank(World world, Fluid fluid, int quantity, int capacity, FluidStack filter) {
-		this(new FluidStack(fluid, quantity), capacity, world, filter, false);
-	}
-	
-	public LiquidTank(World world, Fluid fluid, int quantity, int capacity, FluidStack filter, boolean reverseSort) {
-		this(new FluidStack(fluid, quantity), capacity, world, filter, reverseSort);
-	}
-
-	private LiquidTank(FluidStack liquid, int capacity, World world, FluidStack filter, boolean reverseSort) {
+	private LiquidTank(@Nullable FluidStack liquid, int capacity, World world) {
 		super(world);
-		this.liquid = liquid;
 		this.capacity = capacity;
 		this.theTank = new FluidTank(liquid, capacity);
-		tankArray[0] = theTank;
 		dataWatcher.addObject(4, 0);
 		dataWatcher.addObject(22, "");
 
@@ -143,8 +136,8 @@ public class LiquidTank extends EntityRollingStock implements IFluidHandler, ISi
 		return itemstack;
 	}
 
-	public void setLiquid(FluidStack liquid) {
-		this.liquid = liquid;
+	public void setLiquid(FluidTank liquid) {
+		this.theTank = liquid;
 	}
 
 	public void setCapacity(int capacity) {
