@@ -7,9 +7,9 @@
 
 package train.common.api.crafting;
 
-import net.minecraft.item.ItemStack;
-
 import java.util.List;
+
+import net.minecraft.item.ItemStack;
 
 public interface ITierRecipe {
 
@@ -23,6 +23,7 @@ public interface ITierRecipe {
 
 	public abstract ItemStack getRecipeIn(int slot);
 
+	@SuppressWarnings("rawtypes")
 	public abstract List getInput();
 
 	public abstract int toDecrease(int slot);

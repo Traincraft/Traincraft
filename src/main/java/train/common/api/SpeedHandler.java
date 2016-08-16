@@ -7,10 +7,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import train.common.core.handlers.ConfigHandler;
-import train.common.entity.rollingStock.EntityLocoElectricHighSpeedZeroED;
-import train.common.entity.rollingStock.EntityLocoElectricNewHighSpeed;
-import train.common.entity.rollingStock.EntityLocoElectricTramNY;
-import train.common.entity.rollingStock.EntityLocoElectricVL10;
 
 public class SpeedHandler {
 
@@ -36,19 +32,6 @@ public class SpeedHandler {
 	}
 
 	/**
-	 * just testing if the train is over a highspeed rail
-	 * 
-	 * @param entity
-	 * @return
-	 */
-	private boolean isSpeedRail(Entity entity) {
-		int i = MathHelper.floor_double(entity.posX);
-		int j = MathHelper.floor_double(entity.posY);
-		int k = MathHelper.floor_double(entity.posZ);
-		return this.isSpeedRailAt(entity.worldObj, i, j, k);
-	}
-
-	/**
 	 * 
 	 * @param world
 	 * @param i
@@ -66,21 +49,14 @@ public class SpeedHandler {
 		return tile != null && tile.getClass().getName() == "IRailSpeed";
 	}
 
-	/**
-	 * Only some locomotives can go faster on railcraft H.S. rails
-	 */
-	private boolean canGoFaster(Entity entity) {
-		return entity instanceof EntityLocoElectricNewHighSpeed || entity instanceof EntityLocoElectricHighSpeedZeroED || entity instanceof EntityLocoElectricTramNY || entity instanceof EntityLocoElectricVL10;
-	}
-
 	public double speedXFromPitch(EntityPlayer player, double var3) {
 		//System.out.println("X Y: " + player.rotationYaw + " |P: " + player.rotationPitch + " |Sin: " + (-MathHelper.sin(player.rotationYaw / 180.0F * (float) Math.PI)) + " |Cos: " + (MathHelper.cos(player.rotationPitch / 180.0F * (float) Math.PI)));
-		return (double) (-MathHelper.sin(player.rotationYaw / 180.0F * (float) Math.PI) * var3 * MathHelper.cos(player.rotationPitch / 180.0F * (float) Math.PI) * var3);
+		return -MathHelper.sin(player.rotationYaw / 180.0F * (float) Math.PI) * var3 * MathHelper.cos(player.rotationPitch / 180.0F * (float) Math.PI) * var3;
 	}
 
 	public double speedZFromPitch(EntityPlayer player, double var3) {
 		//System.out.println("Z Y: " + player.rotationYaw + " |P: " + player.rotationPitch + " |Sin: " + (-MathHelper.sin(player.rotationYaw / 180.0F * (float) Math.PI)) + " |Cos: " + (MathHelper.cos(player.rotationPitch / 180.0F * (float) Math.PI)));
-		return (double) (MathHelper.cos(player.rotationYaw / 180.0F * (float) Math.PI) * var3 * MathHelper.cos(player.rotationPitch / 180.0F * (float) Math.PI) * var3);
+		return MathHelper.cos(player.rotationYaw / 180.0F * (float) Math.PI) * var3 * MathHelper.cos(player.rotationPitch / 180.0F * (float) Math.PI) * var3;
 	}
 
 	/**

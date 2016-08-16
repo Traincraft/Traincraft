@@ -1,11 +1,14 @@
 package train.common.api;
 
-import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraftforge.fluids.*;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidTankInfo;
+import net.minecraftforge.fluids.IFluidHandler;
+import net.minecraftforge.fluids.IFluidTank;
 import train.common.api.LiquidManager.StandardTank;
 
 public abstract class Tender extends Freight implements IFluidHandler {
@@ -18,8 +21,6 @@ public abstract class Tender extends Freight implements IFluidHandler {
 	private int update = 8;
 	private StandardTank theTank;
 	private IFluidTank[] tankArray = new IFluidTank[1];
-	private FluidStack liquid;
-
 	/**
 	 * 
 	 * @param world
@@ -37,7 +38,6 @@ public abstract class Tender extends Freight implements IFluidHandler {
 
 	private Tender(FluidStack fluid, int capacity, World world, FluidStack filter) {
 		super(world);
-		this.liquid = fluid;
 		this.maxTank = capacity;
 		if (filter == null)
 			this.theTank = LiquidManager.getInstance().new StandardTank(capacity);
@@ -157,7 +157,7 @@ public abstract class Tender extends Freight implements IFluidHandler {
 			return;
 		this.update += 1;
 		if (this.update % 8 == 0 && itemstack != null) {
-			ItemStack result = LiquidManager.getInstance().processContainer((IInventory) this, 0, theTank, itemstack);
+			ItemStack result = LiquidManager.getInstance().processContainer(this, 0, theTank, itemstack);
 			if (result != null) {
 				placeInInvent(result, tender);
 				//decrStackSize(0, 1);
@@ -216,7 +216,6 @@ public abstract class Tender extends Freight implements IFluidHandler {
 	}
 	
 	public void setLiquid(FluidStack liquid) {
-		this.liquid = liquid;
 	}
 
 	public void setCapacity(int capacity) {

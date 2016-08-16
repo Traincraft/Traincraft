@@ -1,5 +1,7 @@
 package train.common.api;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
@@ -7,10 +9,11 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraftforge.fluids.*;
-import train.common.api.LiquidManager.StandardTank;
-
-import javax.annotation.Nullable;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidTank;
+import net.minecraftforge.fluids.FluidTankInfo;
+import net.minecraftforge.fluids.IFluidHandler;
 
 public class LiquidTank extends EntityRollingStock implements IFluidHandler, ISidedInventory {
 	private int capacity;
@@ -149,28 +152,31 @@ public class LiquidTank extends EntityRollingStock implements IFluidHandler, ISi
 		return this.capacity;
 	}
 
-	private int placeInSpecialInvent(ItemStack itemstack1, int i, boolean doAdd) {
-		if (cargoItems[i] == null) {
-			if (doAdd)
-				cargoItems[i] = itemstack1;
-			return itemstack1.stackSize;
-		}
-		else if (cargoItems[i] != null && cargoItems[i].getItem() == itemstack1.getItem() && itemstack1.isStackable() && (!itemstack1.getHasSubtypes() || cargoItems[i].getItemDamage() == itemstack1.getItemDamage()) && ItemStack.areItemStackTagsEqual(cargoItems[i], itemstack1)) {
-
-			int var9 = cargoItems[i].stackSize + itemstack1.stackSize;
-			if (var9 <= itemstack1.getMaxStackSize()) {
-				if (doAdd)
-					cargoItems[i].stackSize = var9;
-				return var9;
-			}
-			else if (cargoItems[i].stackSize < itemstack1.getMaxStackSize()) {
-				if (doAdd)
-					cargoItems[i].stackSize = cargoItems[i].getMaxStackSize();
-				return Math.abs(cargoItems[i].getMaxStackSize() - cargoItems[i].stackSize - itemstack1.stackSize);
-			}
-		}
-		return itemstack1.stackSize;
-	}
+	// private int placeInSpecialInvent(ItemStack itemstack1, int i, boolean doAdd) {
+	// if (cargoItems[i] == null) {
+	// if (doAdd)
+	// cargoItems[i] = itemstack1;
+	// return itemstack1.stackSize;
+	// }
+	// else if (cargoItems[i] != null && cargoItems[i].getItem() == itemstack1.getItem() &&
+	// itemstack1.isStackable() && (!itemstack1.getHasSubtypes() || cargoItems[i].getItemDamage() ==
+	// itemstack1.getItemDamage()) && ItemStack.areItemStackTagsEqual(cargoItems[i], itemstack1)) {
+	//
+	// int var9 = cargoItems[i].stackSize + itemstack1.stackSize;
+	// if (var9 <= itemstack1.getMaxStackSize()) {
+	// if (doAdd)
+	// cargoItems[i].stackSize = var9;
+	// return var9;
+	// }
+	// else if (cargoItems[i].stackSize < itemstack1.getMaxStackSize()) {
+	// if (doAdd)
+	// cargoItems[i].stackSize = cargoItems[i].getMaxStackSize();
+	// return Math.abs(cargoItems[i].getMaxStackSize() - cargoItems[i].stackSize -
+	// itemstack1.stackSize);
+	// }
+	// }
+	// return itemstack1.stackSize;
+	// }
 
 	//TODO Fix ISided Inventory buildcraft support
 	/*
