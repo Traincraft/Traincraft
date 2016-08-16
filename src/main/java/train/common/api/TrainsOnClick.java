@@ -23,31 +23,31 @@ public class TrainsOnClick {
 				}
 				return true;
 			}
-			if (!((AbstractTrains) train).isAttaching) {
-				((AbstractTrains) train).isAttaching = true;
+			if (!train.isAttaching) {
+				train.isAttaching = true;
 				playerEntity.addChatMessage(new ChatComponentText("Attaching mode on for: " + ((EntityRollingStock) train).getTrainName()));
 				itemstack.damageItem(1, playerEntity);
 
 			}
 			else {
 				playerEntity.addChatMessage(new ChatComponentText("Reset, click again to couple new cart to this one"));
-				((AbstractTrains) train).Link1 = -1;
-				((AbstractTrains) train).Link2 = -1;
-				if(((AbstractTrains) train).cartLinked1!=null && ((AbstractTrains) train).cartLinked1.Link1==((AbstractTrains) train).getUniqueTrainID())((AbstractTrains) train).cartLinked1.Link1=-1;
-				if(((AbstractTrains) train).cartLinked1!=null && ((AbstractTrains) train).cartLinked1.Link2==((AbstractTrains) train).getUniqueTrainID())((AbstractTrains) train).cartLinked1.Link2=-1;
-				if(((AbstractTrains) train).cartLinked2!=null && ((AbstractTrains) train).cartLinked2.Link1==((AbstractTrains) train).getUniqueTrainID())((AbstractTrains) train).cartLinked2.Link1=-1;
-				if(((AbstractTrains) train).cartLinked2!=null && ((AbstractTrains) train).cartLinked2.Link2==((AbstractTrains) train).getUniqueTrainID())((AbstractTrains) train).cartLinked2.Link2=-1;
+				train.Link1 = -1;
+				train.Link2 = -1;
+				if(train.cartLinked1!=null && train.cartLinked1.Link1==train.getUniqueTrainID())train.cartLinked1.Link1=-1;
+				if(train.cartLinked1!=null && train.cartLinked1.Link2==train.getUniqueTrainID())train.cartLinked1.Link2=-1;
+				if(train.cartLinked2!=null && train.cartLinked2.Link1==train.getUniqueTrainID())train.cartLinked2.Link1=-1;
+				if(train.cartLinked2!=null && train.cartLinked2.Link2==train.getUniqueTrainID())train.cartLinked2.Link2=-1;
 				
-				if(((AbstractTrains) train).cartLinked1!=null && ((AbstractTrains) train).cartLinked1.cartLinked1!=null &&((AbstractTrains) train).cartLinked1.cartLinked1.equals(train))((AbstractTrains) train).cartLinked1.cartLinked1=null;
-				if(((AbstractTrains) train).cartLinked1!=null && ((AbstractTrains) train).cartLinked1.cartLinked2!=null &&((AbstractTrains) train).cartLinked1.cartLinked2.equals(train))((AbstractTrains) train).cartLinked1.cartLinked2=null;
-				if(((AbstractTrains) train).cartLinked2!=null && ((AbstractTrains) train).cartLinked2.cartLinked2!=null &&((AbstractTrains) train).cartLinked2.cartLinked2.equals(train))((AbstractTrains) train).cartLinked2.cartLinked2=null;
-				if(((AbstractTrains) train).cartLinked2!=null && ((AbstractTrains) train).cartLinked2.cartLinked1!=null &&((AbstractTrains) train).cartLinked2.cartLinked1.equals(train))((AbstractTrains) train).cartLinked2.cartLinked1=null;
+				if(train.cartLinked1!=null && train.cartLinked1.cartLinked1!=null &&train.cartLinked1.cartLinked1.equals(train))train.cartLinked1.cartLinked1=null;
+				if(train.cartLinked1!=null && train.cartLinked1.cartLinked2!=null &&train.cartLinked1.cartLinked2.equals(train))train.cartLinked1.cartLinked2=null;
+				if(train.cartLinked2!=null && train.cartLinked2.cartLinked2!=null &&train.cartLinked2.cartLinked2.equals(train))train.cartLinked2.cartLinked2=null;
+				if(train.cartLinked2!=null && train.cartLinked2.cartLinked1!=null &&train.cartLinked2.cartLinked1.equals(train))train.cartLinked2.cartLinked1=null;
 				
 				
-				((AbstractTrains) train).cartLinked1 = null;
-				((AbstractTrains) train).cartLinked2 = null;
-				((AbstractTrains) train).isAttaching = false;
-				((AbstractTrains) train).isAttached = false;
+				train.cartLinked1 = null;
+				train.cartLinked2 = null;
+				train.isAttaching = false;
+				train.isAttached = false;
 
 				if (((EntityRollingStock) train).train != null) {
 					((EntityRollingStock) train).train.resetTrain();
@@ -56,7 +56,7 @@ public class TrainsOnClick {
 				
 				if (((EntityRollingStock) train).train != null && ((EntityRollingStock) train).train.getTrains().size() <= 1) {
 					/** no more @RollingStocks in the train then remove the train object from the global list */
-					((EntityRollingStock) train).allTrains.remove(((EntityRollingStock) train).train);
+					EntityRollingStock.allTrains.remove(((EntityRollingStock) train).train);
 					//System.out.println("Train is destroyed, remove it from the global array");
 				}
 			}

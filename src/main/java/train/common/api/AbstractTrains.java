@@ -36,8 +36,6 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 	 * The color of the current rollingstock -1 if default
 	 */
 	protected int color;
-	/** Railcraft integration */
-	private float trainSpeed = 1.2f;
 	public boolean isAttached = false;
 	public boolean isAttaching = false;
 	public int ID;
@@ -149,7 +147,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		statsEventHandler = new RollingStockStatsEventHandler(this);
 		color = -1;
 		dataWatcher.addObject(12, color);
-		acceptedColors = new ArrayList();
+		acceptedColors = new ArrayList<Integer>();
 		if (!world.isRemote) ID = ++numberOfTrains;
 		dataWatcher.addObject(5, ID);
 		dataWatcher.addObject(6, trainType);
@@ -168,7 +166,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 				trainSpec = trains;
 				if (trains.getColors() != null) {
 					for (int i = 0; i < trains.getColors().length; i++) {
-						this.acceptedColors.add(this.getColorFromString(trains.getColors()[i]));
+						this.acceptedColors.add(AbstractTrains.getColorFromString(trains.getColors()[i]));
 					}
 				}
 				this.setSize((float) trainSpec.getWidth(), (float) trainSpec.getHeight());
@@ -412,7 +410,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		nbttagcompound.setInteger("uniqueID", uniqueID);
 		//nbttagcompound.setInteger("uniqueIDs",uniqueIDs);
 		
-		nbttagcompound.setInteger("numberOfTrains", this.numberOfTrains);
+		nbttagcompound.setInteger("numberOfTrains", AbstractTrains.numberOfTrains);
 		nbttagcompound.setInteger("ID", this.ID);
 		nbttagcompound.setBoolean("isAttached", this.isAttached);
 		nbttagcompound.setBoolean("linked", this.linked);

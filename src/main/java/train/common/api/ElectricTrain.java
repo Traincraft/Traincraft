@@ -10,9 +10,6 @@ public abstract class ElectricTrain extends Locomotive {
 	private boolean Ignite;
 	private boolean hasUranium;
 	private int reduceExplosionChance;
-	private long lastTotalEnergyConducted;
-	private int tour;
-
 	public int maxEnergy = 10000;
 
 	private int redstoneEnergy = 2000;
@@ -30,8 +27,6 @@ public abstract class ElectricTrain extends Locomotive {
 		reduceExplosionChance = 1000;
 		Ignite = false;
 		timeSinceIgnited = 0;
-		lastTotalEnergyConducted = 0;
-		tour = 0;
 	}
 	@Override
 	public void onUpdate() {

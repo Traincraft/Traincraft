@@ -103,7 +103,8 @@ public class LiquidManager {
 	public boolean isDieselLocoFuel(ItemStack stack) {
 		FluidStack[] multiFilter;
 		FluidStack bucketLiquid = getFluidInContainer(stack);
-		multiFilter = LiquidManager.getInstance().dieselFilter();
+		LiquidManager.getInstance();
+		multiFilter = LiquidManager.dieselFilter();
 		if (multiFilter != null) {
 			for(FluidStack aMultiFilter : multiFilter){
 				if(aMultiFilter != null && bucketLiquid != null && aMultiFilter.isFluidEqual(bucketLiquid))

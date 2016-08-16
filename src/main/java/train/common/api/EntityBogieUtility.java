@@ -1,5 +1,7 @@
 package train.common.api;
 
+import java.util.List;
+
 import mods.railcraft.api.carts.IMinecart;
 import mods.railcraft.api.carts.IRoutableCart;
 import net.minecraft.entity.Entity;
@@ -8,8 +10,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
-
-import java.util.List;
 
 public class EntityBogieUtility extends EntityBogie implements IMinecart, IRoutableCart{
 
@@ -26,7 +26,7 @@ public class EntityBogieUtility extends EntityBogie implements IMinecart, IRouta
 		}else{
 			setSize(0.98F, 1.98F);
 		}
-		this.setCollisionHandler(null);
+		EntityBogieUtility.setCollisionHandler(null);
 		//yOffset = 0;
 	}
 	public EntityBogieUtility(World world, double d, double d1, double d2,EntityRollingStock mainTrain,int id,int index, double bogieShift) {
@@ -55,7 +55,7 @@ public class EntityBogieUtility extends EntityBogie implements IMinecart, IRouta
 			if(this.entityMainTrain==null){
 				AxisAlignedBB box2 = null;
 				box2 = boundingBox.expand(20, 20, 20);
-				List lis = worldObj.getEntitiesWithinAABBExcludingEntity(this, box2);
+				@SuppressWarnings("rawtypes") List lis = worldObj.getEntitiesWithinAABBExcludingEntity(this, box2);
 
 				if (lis != null && lis.size() > 0) {
 
@@ -86,7 +86,7 @@ public class EntityBogieUtility extends EntityBogie implements IMinecart, IRouta
 				box = boundingBox.expand(0.2D, 0.0D, 0.2D);
 			}
 
-			List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, box);
+			@SuppressWarnings("rawtypes") List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, box);
 
 			if (list != null && !list.isEmpty())
 			{

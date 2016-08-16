@@ -7,9 +7,9 @@
 
 package train.common.api.crafting;
 
-import net.minecraft.item.ItemStack;
-
 import java.util.List;
+
+import net.minecraft.item.ItemStack;
 
 public abstract interface ITierCraftingManager {
 
@@ -25,8 +25,10 @@ public abstract interface ITierCraftingManager {
 
 	public abstract ITierRecipe getTierRecipe(int tier, ItemStack output);
 
+	@SuppressWarnings("rawtypes")
 	public abstract List getRecipeList();
 
+	@SuppressWarnings("rawtypes")
 	public abstract List getTierRecipeList(int tier);
 
 	public abstract int getRecipeSize();

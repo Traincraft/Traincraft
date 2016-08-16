@@ -715,10 +715,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			setDamage(getDamage() - 1);
 		}
 
-		int a = MathHelper.floor_double(posX);
-		int b = MathHelper.floor_double(posY);
-		int c = MathHelper.floor_double(posZ);
-
 		isBraking = false;
 
 		if (Traincraft.proxy.getCurrentScreen() == null && riddenByEntity != null && riddenByEntity.ridingEntity != null && riddenByEntity.ridingEntity == this) {
@@ -787,9 +783,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				double var45 = this.posX + (this.rollingX - this.posX) / this.rollingturnProgress;
 				double var46 = this.posY + (this.rollingY - this.posY) / this.rollingturnProgress;
 				double var5 = this.posZ + (this.rollingZ - this.posZ) / this.rollingturnProgress;
-				double var7 = MathHelper.wrapAngleTo180_double(this.rollingYaw - this.rotationYaw);
-				//if(var7>0)rotationYaw-=var7;
-				//if(var7<0)rotationYaw+=Math.abs(var7);
 				rotationYaw = (float) rotationYawClient;
 				this.rotationPitch = (float) (this.rotationPitch + (this.rollingPitch - this.rotationPitch) / this.rollingturnProgress);
 				--this.rollingturnProgress;
@@ -822,7 +815,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		 */
 		if (addedToChunk && ((this.cartLinked1 == null && this.Link1 != 0) || (this.cartLinked2 == null && this.Link2 != 0))) {
 			AxisAlignedBB box2 = boundingBox.expand(15, 15, 15);
-			List lis = worldObj.getEntitiesWithinAABBExcludingEntity(this, box2);
+			@SuppressWarnings("rawtypes") List lis = worldObj.getEntitiesWithinAABBExcludingEntity(this, box2);
 			//System.out.println("link " + this.uniqueID + " " + this + " to " + this.Link1 + " " + this.Link2);
 			if (lis != null && lis.size() > 0) {
 				for (int j1 = 0; j1 < lis.size(); j1++) {
@@ -905,8 +898,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		if (isRailBlockAt(worldObj, i, j - 1, k) || worldObj.getBlock(i, j - 1, k) == BlockIDs.tcRail.block || worldObj.getBlock(i, j - 1, k) == BlockIDs.tcRailGag.block) {
 			j--;
 		}
-
-		double d4 = 0.0078125D;
+		
 		Block l = worldObj.getBlock(i, j, k);
 
 		updateOnTrack(i, j, k, l);
@@ -1020,7 +1012,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			box = boundingBox.expand(0.2D, 0.0D, 0.2D);
 		}
 
-		List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, box);
+		@SuppressWarnings("rawtypes") List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, box);
 
 		if (list != null && !list.isEmpty()) {
 			for (int j1 = 0; j1 < list.size(); ++j1) {
@@ -1338,10 +1330,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		if (tile != null && (tile.getType().equals(TrackTypes.MEDIUM_RIGHT_TURN.getLabel()) || tile.getType().equals(TrackTypes.MEDIUM_LEFT_TURN.getLabel()) || tile.getType().equals(TrackTypes.LARGE_LEFT_TURN.getLabel()) || tile.getType().equals(TrackTypes.LARGE_RIGHT_TURN.getLabel())) && tile.canTypeBeModifiedBySwitch) {
 			if (meta == 2) {
 				if (motionZ > 0 && Math.abs(motionX) < 0.01) {
-					double cx = tile.xCoord;
-					double cy = tile.yCoord;
-					double cz = tile.zCoord;
-					//moveOnTCStraight(i, j, k, cx, cy, cz, meta);
 					tile.setType(TrackTypes.SMALL_STRAIGHT.getLabel());
 					TileEntity tile2 = worldObj.getTileEntity(i, j, k + 1);
 					if (tile2 != null && tile2 instanceof TileTCRail) {
@@ -1352,10 +1340,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			}
 			if (meta == 0) {
 				if (motionZ < 0 && Math.abs(motionX) < 0.01) {
-					double cx = tile.xCoord;
-					double cy = tile.yCoord;
-					double cz = tile.zCoord;
-					//moveOnTCStraight(i, j, k, cx, cy, cz, meta);
 					tile.setType(TrackTypes.SMALL_STRAIGHT.getLabel());
 					TileEntity tile2 = worldObj.getTileEntity(i, j, k - 1);
 					if (tile2 != null && tile2 instanceof TileTCRail) {
@@ -1366,10 +1350,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			}
 			if (meta == 1) {
 				if (Math.abs(motionZ) < 0.01 && motionX > 0) {
-					double cx = tile.xCoord;
-					double cy = tile.yCoord;
-					double cz = tile.zCoord;
-					//moveOnTCStraight(i, j, k, cx, cy, cz, meta);
 					tile.setType(TrackTypes.SMALL_STRAIGHT.getLabel());
 					TileEntity tile2 = worldObj.getTileEntity(i + 1, j, k);
 					if (tile2 != null && tile2 instanceof TileTCRail) {
@@ -1380,10 +1360,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			}
 			if (meta == 3) {
 				if (Math.abs(motionZ) < 0.01 && motionX < 0) {
-					double cx = tile.xCoord;
-					double cy = tile.yCoord;
-					double cz = tile.zCoord;
-					//moveOnTCStraight(i, j, k, cx, cy, cz, meta);
 					tile.setType(TrackTypes.SMALL_STRAIGHT.getLabel());
 					TileEntity tile2 = worldObj.getTileEntity(i - 1, j, k);
 					if (tile2 != null && tile2 instanceof TileTCRail) {
@@ -1570,12 +1546,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 	}
 
 	public void limitSpeedOnTCRail(int i, int j, int k) {
-		Block id = worldObj.getBlock(i, j, k);
-		/*
-		 * if (!BlockRailBase.isRailBlock(id)) { return; } railMaxSpeed =
-		 * ((BlockRailBase) Block.blocksList[id]).getRailMaxSpeed(worldObj,
-		 * this, i, j, k);
-		 */
 		railMaxSpeed = 3;
 		maxSpeed = Math.min(railMaxSpeed, getMaxCartSpeedOnRail());
 		maxSpeed = (float) speedhandler.handleSpeed(railMaxSpeed, maxSpeed, this);
@@ -2201,8 +2171,10 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 							}
 							movingobjectposition = new MovingObjectPosition(par1Entity);
 							if (movingobjectposition.entityHit != null) {
-								float f1 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
-								float f7 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
+								// float f1 = MathHelper.sqrt_double(this.motionX * this.motionX +
+								// this.motionY * this.motionY + this.motionZ * this.motionZ);
+								// float f7 = MathHelper.sqrt_double(this.motionX * this.motionX +
+								// this.motionZ * this.motionZ);
 								//movingobjectposition.entityHit.setVelocity(-par1Entity.motionX, 0, -par1Entity.motionZ);
 								//movingobjectposition.entityHit.addVelocity(-((par1Entity.motionX * (double) (Math.abs(this.motionX+0.01)) * 2.60000002384185791D)) / (double) f7, 0.00000000000000001D, -(((par1Entity.motionZ * (double) (Math.abs(this.motionZ+0.01)) * 2.60000002384185791D)) / (double) f7));
 								//movingobjectposition.entityHit.addVelocity(-((Math.abs(this.motionX) * (double) 1 * 0.0260000002384185791D)) / (double) f7, 0.00000000000000001D, -(((Math.abs(this.motionZ) * (double) 1 * 0.0260000002384185791D)) / (double) f7));

@@ -1,8 +1,9 @@
 package train.common.api;
 
+import org.lwjgl.input.Keyboard;
+
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
-import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -14,13 +15,14 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import org.lwjgl.input.Keyboard;
-import train.common.core.network.*;
-import train.common.library.EnumSounds;
 import train.common.Traincraft;
 import train.common.core.HandleMaxAttachedCarts;
 import train.common.core.handlers.ConfigHandler;
-import train.common.core.handlers.PacketHandler;
+import train.common.core.network.PacketParkingBrake;
+import train.common.core.network.PacketSetLocoTurnedOn;
+import train.common.core.network.PacketSetTrainLockedToClient;
+import train.common.core.network.PacketSlotsFilled;
+import train.common.library.EnumSounds;
 import train.common.library.Info;
 
 public abstract class Locomotive extends EntityRollingStock implements IInventory {
@@ -171,7 +173,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 	}
 
 	protected int getCurrentMaxSpeed() {
-		return (int) (dataWatcher.getWatchableObjectInt(2));
+		return (dataWatcher.getWatchableObjectInt(2));
 	}
 
 	protected void setCurrentMaxSpeed(int maxSpeed) {
@@ -352,7 +354,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 		if (i == 4) {
 			if (getFuel() > 0 && this.isLocoTurnedOn() && rand.nextInt(4) == 0 && !worldObj.isRemote) {
 				if (riddenByEntity != null && riddenByEntity instanceof EntityPlayer) {
-					int dir = MathHelper.floor_double((double) ((((EntityPlayer) riddenByEntity).rotationYaw * 4F) / 360F) + 0.5D) & 3;
+					int dir = MathHelper.floor_double((((EntityPlayer) riddenByEntity).rotationYaw * 4F) / 360F + 0.5D) & 3;
 					if (dir == 2) motionZ -= 0.01 * this.accelerate;
 
 					if (dir == 1) motionX -= 0.01 * this.accelerate;
@@ -505,7 +507,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 			/**
 			 * Fuel consumption
 			 */
-			int consumption = ((Locomotive) this).getFuelConsumption();
+			int consumption = this.getFuelConsumption();
 			if (this instanceof DieselTrain) consumption /= 5;
 			if (fuelUpdateTicks >= consumption) {
 				fuelUpdateTicks = 0;
@@ -538,26 +540,26 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 						double speed = Math.sqrt(motionX * motionX + motionZ * motionZ);
 						if (speed > -0.001D && speed < 0.01D && soundPosition == 0) {
 							worldObj.playSoundAtEntity(this, Info.resourceLocation + ":" + sounds.getIdleString(), sounds.getIdleVolume(), 0.001F);
-							soundPosition = (int) sounds.getIdleSoundLenght();
+							soundPosition = sounds.getIdleSoundLenght();
 						}
 						if (sounds.getSoundChangeWithSpeed()) {
 							if (speed > 0.01D && speed < 0.06D && soundPosition == 0) {
 								worldObj.playSoundAtEntity(this, Info.resourceLocation + ":" + sounds.getRunString(), sounds.getRunVolume(), 0.1F);
-								soundPosition = (int) sounds.getRunSoundLenght();
+								soundPosition = sounds.getRunSoundLenght();
 							}
 							else if (speed > 0.06D && speed < 0.2D && soundPosition == 0) {
 								worldObj.playSoundAtEntity(this, Info.resourceLocation + ":" + sounds.getRunString(), sounds.getRunVolume(), 0.4F);
-								soundPosition = (int) sounds.getRunSoundLenght() / 2;
+								soundPosition = sounds.getRunSoundLenght() / 2;
 							}
 							else if (speed > 0.2D && soundPosition == 0) {
 								worldObj.playSoundAtEntity(this, Info.resourceLocation + ":" + sounds.getRunString(), sounds.getRunVolume(), 0.5F);
-								soundPosition = (int) sounds.getRunSoundLenght() / 3;
+								soundPosition = sounds.getRunSoundLenght() / 3;
 							}
 						}
 						else {
 							if (speed > 0.01D && soundPosition == 0) {
 								worldObj.playSoundAtEntity(this, Info.resourceLocation + ":" + sounds.getRunString(), sounds.getRunVolume(), 0.4F);
-								soundPosition = (int) sounds.getRunSoundLenght();
+								soundPosition = sounds.getRunSoundLenght();
 							}
 						}
 						if (soundPosition > 0) {
@@ -594,9 +596,9 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 		}
 		if (getState() == "broken") {
 			setFire(8);
-			((Locomotive) this).setCustomSpeed(0);// set speed to normal
-			((Locomotive) this).setAccel(0.000001);// simulate a break down
-			((Locomotive) this).setBrake(1);
+			this.setCustomSpeed(0);// set speed to normal
+			this.setAccel(0.000001);// simulate a break down
+			this.setBrake(1);
 			this.motionX *= 0.97;// slowly slows down
 			this.motionZ *= 0.97;
 			worldObj.spawnParticle("largesmoke", posX, posY + 0.3, posZ, 0.0D, 0.0D, 0.0D);
@@ -638,9 +640,9 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 					FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().sendChatMsg(new ChatComponentText(((EntityPlayer) this.lastEntityRider).getDisplayName() + " drowned " + this.getTrainOwner() + "'s locomotive"));
 				}
 				//this.attackEntityFrom(DamageSource.generic, 100);
-				((Locomotive) this).setCustomSpeed(0);// set speed to normal
-				((Locomotive) this).setAccel(0.000001);// simulate a break down
-				((Locomotive) this).setBrake(1);
+				this.setCustomSpeed(0);// set speed to normal
+				this.setAccel(0.000001);// simulate a break down
+				this.setBrake(1);
 				this.motionX *= 0.97;// slowly slows down
 				this.motionZ *= 0.97;
 				this.fuelTrain = 0;
@@ -785,27 +787,30 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 		return this.isLocoTurnedOn;
 	}
 
-	private int placeInSpecialInvent(ItemStack itemstack1, int i, boolean doAdd) {
-		if (locoInvent[i] == null) {
-			if (doAdd) locoInvent[i] = itemstack1;
-			return itemstack1.stackSize;
-		}
-		else if (locoInvent[i] != null && locoInvent[i] == itemstack1 && itemstack1.isStackable() && (!itemstack1.getHasSubtypes() || locoInvent[i].getItemDamage() == itemstack1.getItemDamage()) && ItemStack.areItemStackTagsEqual(locoInvent[i], itemstack1)) {
-
-			int var9 = locoInvent[i].stackSize + itemstack1.stackSize;
-			if (var9 <= itemstack1.getMaxStackSize()) {
-				if (doAdd) locoInvent[i].stackSize = var9;
-				return var9;
-			}
-			else if (locoInvent[i].stackSize < itemstack1.getMaxStackSize()) {
-				if (doAdd) locoInvent[i].stackSize = locoInvent[i].getMaxStackSize();
-				return Math.abs(locoInvent[i].getMaxStackSize() - locoInvent[i].stackSize - itemstack1.stackSize);
-
-			}
-		}
-		return itemstack1.stackSize;
-
-	}
+	// private int placeInSpecialInvent(ItemStack itemstack1, int i, boolean doAdd) {
+	// if (locoInvent[i] == null) {
+	// if (doAdd) locoInvent[i] = itemstack1;
+	// return itemstack1.stackSize;
+	// }
+	// else if (locoInvent[i] != null && locoInvent[i] == itemstack1 && itemstack1.isStackable() &&
+	// (!itemstack1.getHasSubtypes() || locoInvent[i].getItemDamage() == itemstack1.getItemDamage())
+	// && ItemStack.areItemStackTagsEqual(locoInvent[i], itemstack1)) {
+	//
+	// int var9 = locoInvent[i].stackSize + itemstack1.stackSize;
+	// if (var9 <= itemstack1.getMaxStackSize()) {
+	// if (doAdd) locoInvent[i].stackSize = var9;
+	// return var9;
+	// }
+	// else if (locoInvent[i].stackSize < itemstack1.getMaxStackSize()) {
+	// if (doAdd) locoInvent[i].stackSize = locoInvent[i].getMaxStackSize();
+	// return Math.abs(locoInvent[i].getMaxStackSize() - locoInvent[i].stackSize -
+	// itemstack1.stackSize);
+	//
+	// }
+	// }
+	// return itemstack1.stackSize;
+	//
+	// }
 
 
 	//TODO Fix ISided Inventory buildcraft support
