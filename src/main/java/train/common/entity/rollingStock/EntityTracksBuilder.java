@@ -25,6 +25,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.Constants;
 import train.common.Traincraft;
 import train.common.api.EntityRollingStock;
 import train.common.api.Freight;
@@ -250,7 +251,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 		followTracks = nbttagcompound.getBoolean("followTracks");
 		trackfuel = nbttagcompound.getShort("Trackfuel");
 		fuelTrain = nbttagcompound.getShort("fuel");
-		NBTTagList nbttaglist = nbttagcompound.getTagList("Items", 0);
+		NBTTagList nbttaglist = nbttagcompound.getTagList("Items", Constants.NBT.TAG_COMPOUND);
 		BuilderInvent = new ItemStack[getSizeInventory()];
 		for (int i = 0; i < nbttaglist.tagCount(); i++) {
 			NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
