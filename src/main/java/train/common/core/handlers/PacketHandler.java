@@ -25,6 +25,7 @@ import train.common.core.network.PacketRollingStockRotation;
 import train.common.core.network.PacketSetLocoTurnedOn;
 import train.common.core.network.PacketSetTrainLockedToClient;
 import train.common.core.network.PacketSlotsFilled;
+import train.common.core.network.PacketTrackBuilderFollow;
 import train.common.core.network.PacketTrackBuilderHeight;
 import train.common.library.Info;
 
@@ -65,6 +66,8 @@ public class PacketHandler {
 				Side.SERVER);
 		Traincraft.builderChannel.registerMessage(PacketTrackBuilderHeight.Handler.class,
 				PacketTrackBuilderHeight.class, 8, Side.SERVER);
+		Traincraft.builderChannel.registerMessage(PacketTrackBuilderFollow.Handler.class,
+				PacketTrackBuilderFollow.class, 9, Side.SERVER);
 	}
 	
 	public static Packet setBookPage(Entity player, int page, int recipe) {
