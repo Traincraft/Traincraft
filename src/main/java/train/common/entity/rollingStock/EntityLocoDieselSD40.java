@@ -27,7 +27,7 @@ public class EntityLocoDieselSD40 extends DieselTrain {
 
 	public EntityLocoDieselSD40(World world, double d, double d1, double d2) {
 		this(world);
-		setPosition(d, d1 + (double) yOffset, d2);
+		setPosition(d, d1 + yOffset, d2);
 		motionX = 0.0D;
 		motionY = 0.0D;
 		motionZ = 0.0D;
@@ -38,7 +38,7 @@ public class EntityLocoDieselSD40 extends DieselTrain {
 
 	@Override
 	public void updateRiderPosition() {
-		double pitchRads = this.anglePitchClient * 3.141592653589793D / 180.0D;
+		double pitchRads = this.anglePitchClient * Math.PI / 180.0D;
 		
 		double distance = 2.1;
 		double yOffset = 0.4;
@@ -52,7 +52,9 @@ public class EntityLocoDieselSD40 extends DieselTrain {
 			anglePitchClient = serverRealPitch*60;
 		}
 		//System.out.println("sin "+rotationSin1 + " cos " +rotationCos1);
-		float pitch = (float) (posY + ((Math.tan(pitchRads)*distance)+getMountedYOffset()) + riddenByEntity.getYOffset() + yOffset);
+		// float pitch = (float) (posY + ((Math.tan(pitchRads)*distance)+getMountedYOffset()) +
+		// riddenByEntity.getYOffset() + yOffset);
+		float pitch = (float) (posY + getMountedYOffset() + riddenByEntity.getYOffset() + yOffset);
 		double bogieX1 = (this.posX + (rotationCos1 * distance));
 		double bogieZ1 = (this.posZ + (rotationSin1* distance));
 		
@@ -92,7 +94,7 @@ public class EntityLocoDieselSD40 extends DieselTrain {
 					j = itemstack.stackSize;
 				}
 				itemstack.stackSize -= j;
-				EntityItem entityitem = new EntityItem(worldObj, posX + (double) f, posY + (double) f1, posZ + (double) f2, new ItemStack(itemstack.getItem(), j, itemstack.getItemDamage()));
+				EntityItem entityitem = new EntityItem(worldObj, posX + f, posY + f1, posZ + f2, new ItemStack(itemstack.getItem(), j, itemstack.getItemDamage()));
 				float f3 = 0.05F;
 				entityitem.motionX = (float) rand.nextGaussian() * f3;
 				entityitem.motionY = (float) rand.nextGaussian() * f3 + 0.2F;
@@ -144,7 +146,7 @@ public class EntityLocoDieselSD40 extends DieselTrain {
 		NBTTagList nbttaglist = nbttagcompound.getTagList("Items", Constants.NBT.TAG_COMPOUND);
 		locoInvent = new ItemStack[getSizeInventory()];
 		for (int i = 0; i < nbttaglist.tagCount(); i++) {
-			NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist.getCompoundTagAt(i);
+			NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
 			int j = nbttagcompound1.getByte("Slot") & 0xff;
 			if (j >= 0 && j < locoInvent.length) {
 				locoInvent[j] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
