@@ -15,6 +15,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import train.common.Traincraft;
 import train.common.core.network.PacketSetTrainLockedToClient;
+import train.common.core.network.PacketTrackBuilderFollow;
 import train.common.core.network.PacketTrackBuilderHeight;
 import train.common.entity.rollingStock.EntityTracksBuilder;
 import train.common.inventory.InventoryBuilder;
@@ -80,11 +81,11 @@ public class GuiBuilder extends GuiContainer {
 	protected void actionPerformed(GuiButton guibutton) {
 		if (guibutton.id == 1) {
 			if ((builder).getFollowTracks() == 1) {
-				sendPacket(0, builder.getEntityId());
+				sendFollow(0, builder.getEntityId());
 				guibutton.displayString = StatCollector.translateToLocal("builder.remove.name");
 			}
 			else {
-				sendPacket(1, builder.getEntityId());
+				sendFollow(1, builder.getEntityId());
 				guibutton.displayString = StatCollector.translateToLocal("builder.follow.name");
 			}
 		}
@@ -99,7 +100,7 @@ public class GuiBuilder extends GuiContainer {
 			if (player != null && player.getCommandSenderName().toLowerCase().equals((builder).getTrainOwner().toLowerCase())) {
 				if ((!(builder).getTrainLockedFromPacket())) {
 					AxisAlignedBB box = (builder).boundingBox.expand(5, 5, 5);
-					List lis3 = (builder).worldObj.getEntitiesWithinAABBExcludingEntity(builder, box);
+					List<?> lis3 = (builder).worldObj.getEntitiesWithinAABBExcludingEntity(builder, box);
 					if (lis3 != null && lis3.size() > 0) {
 						for (int j1 = 0; j1 < lis3.size(); j1++) {
 							Entity entity = (Entity) lis3.get(j1);
@@ -115,7 +116,7 @@ public class GuiBuilder extends GuiContainer {
 				}
 				else {
 					AxisAlignedBB box = (builder).boundingBox.expand(5, 5, 5);
-					List lis3 = (builder).worldObj.getEntitiesWithinAABBExcludingEntity(builder, box);
+					List<?> lis3 = (builder).worldObj.getEntitiesWithinAABBExcludingEntity(builder, box);
 					if (lis3 != null && lis3.size() > 0) {
 						for (int j1 = 0; j1 < lis3.size(); j1++) {
 							Entity entity = (Entity) lis3.get(j1);
@@ -176,12 +177,25 @@ public class GuiBuilder extends GuiContainer {
 
 	private void sendPacket(int packet, int packetID) {
 		AxisAlignedBB box = (builder).boundingBox.expand(5, 5, 5);
-		List lis3 = (builder).worldObj.getEntitiesWithinAABBExcludingEntity(builder, box);
+		List<?> lis3 = (builder).worldObj.getEntitiesWithinAABBExcludingEntity(builder, box);
 		if (lis3 != null && lis3.size() > 0) {
 			for (int j1 = 0; j1 < lis3.size(); j1++) {
 				Entity entity = (Entity) lis3.get(j1);
 				if (entity instanceof EntityPlayer) {
 					Traincraft.builderChannel.sendToServer(new PacketTrackBuilderHeight(packet, packetID));
+				}
+			}
+		}
+	}
+	
+	private void sendFollow(int packet, int packetID) {
+		AxisAlignedBB box = (builder).boundingBox.expand(5, 5, 5);
+		List<?> lis3 = (builder).worldObj.getEntitiesWithinAABBExcludingEntity(builder, box);
+		if (lis3 != null && lis3.size() > 0) {
+			for (int j1 = 0; j1 < lis3.size(); j1++) {
+				Entity entity = (Entity) lis3.get(j1);
+				if (entity instanceof EntityPlayer) {
+					Traincraft.builderChannel.sendToServer(new PacketTrackBuilderFollow(packet, packetID));
 				}
 			}
 		}
