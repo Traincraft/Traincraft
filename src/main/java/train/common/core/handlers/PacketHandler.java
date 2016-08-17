@@ -64,7 +64,7 @@ public class PacketHandler {
 		Traincraft.modChannel.registerMessage(PacketLantern.Handler.class, PacketLantern.class, 7,
 				Side.SERVER);
 		Traincraft.builderChannel.registerMessage(PacketTrackBuilderHeight.Handler.class,
-				PacketTrackBuilderHeight.class, 8, Side.CLIENT);
+				PacketTrackBuilderHeight.class, 8, Side.SERVER);
 	}
 	
 	public static Packet setBookPage(Entity player, int page, int recipe) {
