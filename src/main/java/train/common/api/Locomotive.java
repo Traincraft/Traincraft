@@ -341,7 +341,8 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 	public void keyHandlerFromPacket(int i) {
 		if (lastUpdateTick == updateTicks) { return; }
 		if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer) {
-			Traincraft.lockChannel.sendToAllAround(new PacketSetTrainLockedToClient(getTrainLockedFromPacket(), this.getEntityId()), new TargetPoint(worldObj.provider.dimensionId, (int) posX, (int) posY, (int) posZ, 5));
+			Traincraft.lockChannel.sendToServer(
+					new PacketSetTrainLockedToClient(getTrainLockedFromPacket(), this.getEntityId()));
 		}
 		if (this.getTrainLockedFromPacket()) {
 			if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer && !((EntityPlayer) this.riddenByEntity).getDisplayName().toLowerCase().equals(this.getTrainOwner().toLowerCase())) { return; }
@@ -379,7 +380,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 				else {
 					setParkingBrakeFromPacket(true);
 				}
-				Traincraft.brakeChannel.sendToAllAround(new PacketParkingBrake(false, this.getEntityId()), new TargetPoint(worldObj.provider.dimensionId, posX, posY, posZ, 5));
+				Traincraft.brakeChannel.sendToServer(new PacketParkingBrake(false, this.getEntityId()));
 			}
 		}
 	}

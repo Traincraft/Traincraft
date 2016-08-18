@@ -30,7 +30,6 @@ public class EntityLocoElectricVL10 extends ElectricTrain {
 	@Override
 	public void updateRiderPosition() {
 		double pitchRads = this.anglePitchClient * Math.PI / 180.0D;
-		System.out.println(pitchRads);
 		double distance = 2.3;
 		double yOffset = 0.43;
 		float rotationCos1 = (float) Math.cos(Math.toRadians(this.renderYaw + 90));
