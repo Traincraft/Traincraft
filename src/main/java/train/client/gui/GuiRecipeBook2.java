@@ -1,5 +1,10 @@
 package train.client.gui;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.lwjgl.opengl.GL11;
+
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -15,7 +20,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
-import org.lwjgl.opengl.GL11;
 import train.client.core.handlers.RecipeBookHandler;
 import train.client.render.ItemRenderBook;
 import train.common.core.handlers.PacketHandler;
@@ -23,14 +27,11 @@ import train.common.core.managers.TierRecipe;
 import train.common.core.managers.TierRecipeManager;
 import train.common.inventory.TrainCraftingManager;
 import train.common.items.ItemRollingStock;
+import train.common.library.BlockIDs;
 import train.common.library.Info;
 import train.common.library.ItemIDs;
-import train.common.library.BlockIDs;
 import train.common.recipes.ShapedTrainRecipes;
 import train.common.recipes.ShapelessTrainRecipe;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @SideOnly(Side.CLIENT)
 public class GuiRecipeBook2 extends GuiScreen {
@@ -723,7 +724,7 @@ public class GuiRecipeBook2 extends GuiScreen {
 			renderItem.renderItemIntoGUI(ftRender, this.mc.renderEngine, output, var5 + 432, var6 + 177);
 		String name = "";
 		if (output != null && output.getItem() instanceof ItemRollingStock)
-			name = ((ItemRollingStock) output.getItem()).getTrainName();
+			name = output.getDisplayName();
 		if (side.equals("left"))
 			ftRender.drawString(name, var5 - var9 + this.bookImageWidth - 55, var6 + 56, 0xffffff);
 		if (side.equals("right"))
