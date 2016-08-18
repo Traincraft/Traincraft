@@ -592,7 +592,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 	 * Lock packet
 	 */
 	public void setTrainLockedFromPacket(boolean set) {
-		System.out.println(worldObj.isRemote + " " + set);
+		// System.out.println(worldObj.isRemote + " " + set);
 		locked = set;
 	}
 
