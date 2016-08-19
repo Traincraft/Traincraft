@@ -71,7 +71,7 @@ public class SpeedHandler {
 		}
 		speed /= 10;// converted in minecraft speed
 		if (entity instanceof Locomotive && speed > 0.695D && ((Locomotive) entity).isAttached) {
-			double max = 0.695D;// max speed when carts are attached
+			double max = 0.912D;// max speed when carts are attached
 			return max;
 		}
 		return speed;
