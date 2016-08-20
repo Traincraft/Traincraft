@@ -937,7 +937,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		else {
 			float rotation = rotationYaw;
 
-			float delta = MathHelper.wrapAngleTo180_float(this.rotationYaw - this.previousServerRealRotation); //Math.abs(this.rotationYaw - this.previousServerRealRotation);
+			float delta = MathHelper.wrapAngleTo180_float(this.rotationYaw + this.previousServerRealRotation); //Math.abs(this.rotationYaw - this.previousServerRealRotation);
 
 			this.previousServerRealRotation = this.rotationYaw;
 
