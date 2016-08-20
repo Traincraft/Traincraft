@@ -337,7 +337,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		oldChunkCoordZ = this.chunkCoordZ;
 	}
 	public int setNewUniqueID(int numberOfTrains) {
-		System.out.println(numberOfTrains);
+		// System.out.println(numberOfTrains);
 		if (numberOfTrains <= 0) {
 			numberOfTrains = uniqueIDs++;
 		}

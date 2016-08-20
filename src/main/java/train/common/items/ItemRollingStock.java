@@ -1,6 +1,9 @@
 package train.common.items;
 
+import java.util.List;
+
 import com.mojang.authlib.GameProfile;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mods.railcraft.api.carts.CartTools;
@@ -20,18 +23,22 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import train.common.Traincraft;
-import train.common.api.*;
+import train.common.api.AbstractTrains;
+import train.common.api.DieselTrain;
+import train.common.api.ElectricTrain;
+import train.common.api.EntityRollingStock;
+import train.common.api.Locomotive;
+import train.common.api.SteamTrain;
+import train.common.api.Tender;
+import train.common.core.handlers.ConfigHandler;
 import train.common.core.handlers.RollingStockStatsEventHandler;
 import train.common.entity.rollingStock.EntityTracksBuilder;
-import train.common.library.EnumTrains;
-import train.common.core.handlers.ConfigHandler;
 import train.common.items.ItemTCRail.TrackTypes;
 import train.common.library.BlockIDs;
+import train.common.library.EnumTrains;
 import train.common.library.Info;
 import train.common.tile.TileTCRail;
 import train.common.tile.TileTCRailGag;
-
-import java.util.List;
 
 public class ItemRollingStock extends ItemMinecart implements IMinecart, IMinecartItem {
 
@@ -205,7 +212,7 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 		EntityRollingStock rollingStock = null;
 		for(EnumTrains train : EnumTrains.values()){
 			if(train.getItem() == itemstack.getItem()){
-				rollingStock = (EntityRollingStock) train.getEntity(world, (float) i + 0.5F, (float) j + 0.5F, (float) k + 0.5F);
+				rollingStock = (EntityRollingStock) train.getEntity(world, i + 0.5F, j + 0.5F, k + 0.5F);
 				if(train.getColors()!=null){
 					if(rollingStock != null){
 						rollingStock.setColor(AbstractTrains.getColorFromString(train.getColors()[0]));
@@ -226,12 +233,12 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 				int meta = world.getBlockMetadata(i, j, k);
 				//System.out.println(meta);
 				if (player != null)
-					dir = MathHelper.floor_double((double) ((player.rotationYaw * 4F) / 360F) + 0.5D) & 3;
+					dir = MathHelper.floor_double((player.rotationYaw * 4F) / 360F + 0.5D) & 3;
 				//180 = 3 = EAST
 				//0 = 0 = SOUTH
 				//90 = 1 = WEST
 				// -180 = 2 = NORTH
-				//System.out.println(meta + " " +dir);
+				System.out.println("Direction: " + dir + " Meta: " + meta);
 				if (dir == 2) {
 					rollingStock.rotationYaw = 0;
 					if(meta==0){
@@ -263,7 +270,7 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 					if(meta==1){
 						rollingStock.serverRealRotation = 180;
 					}else{
-						rollingStock.serverRealRotation = 90;
+						rollingStock.serverRealRotation = -90;
 					}
 					if(world.getBlock(i, j, k)==BlockIDs.tcRail.block || world.getBlock(i, j, k)==BlockIDs.tcRailGag.block){
 						if(meta==1 || meta == 3){
@@ -289,13 +296,13 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 					if(meta == 0){
 						rollingStock.serverRealRotation = 90;
 					}else{
-						rollingStock.serverRealRotation = 180;
+						rollingStock.serverRealRotation = 0;
 					}
 					if(world.getBlock(i, j, k)==BlockIDs.tcRail.block || world.getBlock(i, j, k)==BlockIDs.tcRailGag.block){
 						if(meta==0 || meta == 2){
 							rollingStock.rotationYaw = -90;
 						}else{
-							rollingStock.rotationYaw = 0;
+							rollingStock.rotationYaw = 180;
 						}
 					}
 					if(rollingStock instanceof Locomotive){
@@ -336,6 +343,9 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 						}
 					}
 				}
+				
+				System.out.println("ServerRealRotation: " + rollingStock.serverRealRotation + " RotationYaw: "
+						+ rollingStock.rotationYaw);
 
 				rollingStock.trainType = ((ItemRollingStock) itemstack.getItem()).getTrainType();
 				rollingStock.trainName = ((ItemRollingStock) itemstack.getItem()).getItemStackDisplayName(itemstack);
@@ -367,8 +377,10 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 				if (ConfigHandler.SHOW_POSSIBLE_COLORS && rollingStock.acceptedColors != null && rollingStock.acceptedColors.size() > 0) {
 					String concatColors = ": ";
 					for (int t = 0; t < rollingStock.acceptedColors.size(); t++) {
-						if (!rollingStock.getColorAsString(rollingStock.acceptedColors.get(t)).equals("Empty") && !rollingStock.getColorAsString(rollingStock.acceptedColors.get(t)).equals("Full"))
-							concatColors = concatColors.concat(rollingStock.getColorAsString(rollingStock.acceptedColors.get(t)) + ", ");
+						if (!AbstractTrains.getColorAsString(rollingStock.acceptedColors.get(t)).equals("Empty")
+								&& !AbstractTrains.getColorAsString(rollingStock.acceptedColors.get(t)).equals("Full"))
+							concatColors = concatColors
+									.concat(AbstractTrains.getColorAsString(rollingStock.acceptedColors.get(t)) + ", ");
 					}
 					if (concatColors.length() > 4) {
 						if (player != null) {
@@ -379,7 +391,7 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 				}
 				world.spawnEntityInWorld(rollingStock);
 				if (player != null)
-					statsEvent.trainPlace(rollingStock.getUniqueTrainID(), ((ItemRollingStock) itemstack.getItem()).getItemStackDisplayName(itemstack), ((ItemRollingStock) itemstack.getItem()).getTrainType(), trainCreator, player.getDisplayName(), new String((int) i + ";" + (int) j + ";" + (int) k));
+					statsEvent.trainPlace(rollingStock.getUniqueTrainID(), ((ItemRollingStock) itemstack.getItem()).getItemStackDisplayName(itemstack), ((ItemRollingStock) itemstack.getItem()).getTrainType(), trainCreator, player.getDisplayName(), new String(i + ";" + j + ";" + k));
 			}
 			--itemstack.stackSize;
 		}
