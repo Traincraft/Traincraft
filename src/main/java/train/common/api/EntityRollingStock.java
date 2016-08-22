@@ -937,11 +937,11 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		else {
 			float rotation = rotationYaw;
 
-			float delta = MathHelper.wrapAngleTo180_float(this.rotationYaw + this.previousServerRealRotation); //Math.abs(this.rotationYaw - this.previousServerRealRotation);
+			float delta = MathHelper.wrapAngleTo180_float(this.rotationYaw - this.previousServerRealRotation); //Math.abs(this.rotationYaw - this.previousServerRealRotation);
 
 			this.previousServerRealRotation = this.rotationYaw;
 
-			if (delta < -170.0F || delta >= 170.0F) { // if (delta > 170.0F || delta < 190.0F) {
+			if (delta < 190.0F || delta > 180.0F) { // if (delta > 170.0F || delta < 190.0F) {
 
 				this.rotationYaw += 180.0F;
 				this.isServerInReverse = !this.isServerInReverse;
