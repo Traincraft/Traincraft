@@ -292,7 +292,7 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 					}
 				}
 				if (dir == 0) {
-					rollingStock.rotationYaw = -180;
+					rollingStock.rotationYaw = -178.5F;
 					if(meta == 0){
 						rollingStock.serverRealRotation = 90;
 					}else{
@@ -302,7 +302,7 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 						if(meta==0 || meta == 2){
 							rollingStock.rotationYaw = -90;
 						}else{
-							rollingStock.rotationYaw = 180;
+							rollingStock.rotationYaw = 178.5F;
 						}
 					}
 					if(rollingStock instanceof Locomotive){
@@ -318,7 +318,7 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 					}
 				}
 				if (dir == 3) {
-					rollingStock.rotationYaw = 180;
+					rollingStock.rotationYaw = 178.5F;
 					if(meta==1){
 						rollingStock.serverRealRotation = 0;
 					}else{
@@ -326,8 +326,8 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 					}
 					if(world.getBlock(i, j, k)==BlockIDs.tcRail.block || world.getBlock(i, j, k)==BlockIDs.tcRailGag.block){
 						if(meta==1 || meta == 3){
-							rollingStock.rotationYaw = 180;
-						}else{
+							rollingStock.rotationYaw = 178.5F;
+						} else {
 							rollingStock.rotationYaw = 90;
 						}
 					}
