@@ -1,6 +1,5 @@
 package train.common.blocks;
 
-import buildcraft.api.tools.IToolWrench;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -11,6 +10,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import train.common.Traincraft;
+import train.common.items.ItemWrench;
 import train.common.library.GuiIDs;
 import train.common.library.Info;
 import train.common.tile.TileLantern;
@@ -76,7 +76,7 @@ public class BlockLantern extends Block {
 		if (player.isSneaking()) {
 			return false;
 		}
-		if(player!=null && player.getCurrentEquippedItem()!=null && player.getCurrentEquippedItem().getItem() instanceof IToolWrench)
+		if(player!=null && player.getCurrentEquippedItem()!=null && player.getCurrentEquippedItem().getItem() instanceof ItemWrench)
 		if (te != null && te instanceof TileLantern) {
 			player.openGui(Traincraft.instance, GuiIDs.LANTERN, world, i, j, k);
 		}

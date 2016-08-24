@@ -3,7 +3,6 @@ package train.common.api;
 import java.util.ArrayList;
 import java.util.List;
 
-import buildcraft.api.tools.IToolWrench;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import io.netty.buffer.ByteBuf;
@@ -28,6 +27,7 @@ import train.common.core.handlers.RollingStockStatsEventHandler;
 import train.common.core.handlers.TrainHandler;
 import train.common.items.ItemChunkLoaderActivator;
 import train.common.items.ItemRollingStock;
+import train.common.items.ItemWrench;
 import train.common.library.EnumTrains;
 
 public abstract class AbstractTrains extends EntityMinecart implements IMinecart, IRoutableCart, IEntityAdditionalSpawnData {
@@ -599,7 +599,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 
 	/** Locking for passengers, flat, caboose, jukebox,workcart */
 	protected boolean lockThisCart(ItemStack itemstack, EntityPlayer entityplayer) {
-		if (itemstack != null && itemstack.getItem() instanceof IToolWrench) {
+		if (itemstack != null && itemstack.getItem() instanceof ItemWrench) {
 			if (entityplayer.getDisplayName().equals(this.trainOwner)) {
 				if (locked) {
 					locked = false;
@@ -625,7 +625,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 	protected boolean canBeDestroyedByPlayer(DamageSource damagesource) {
 		if (this.getTrainLockedFromPacket()) {
 			if (damagesource.getEntity() instanceof EntityPlayer) {
-				if ((damagesource.getEntity() instanceof EntityPlayerMP) && MinecraftServer.getServer() != null && MinecraftServer.getServer().getConfigurationManager() != null && MinecraftServer.getServer().getConfigurationManager().func_152596_g(((EntityPlayer) damagesource.getEntity()).getGameProfile()) && ((EntityPlayer) damagesource.getEntity()).inventory.getCurrentItem() != null && ((EntityPlayer) damagesource.getEntity()).inventory.getCurrentItem().getItem() instanceof IToolWrench) {
+				if ((damagesource.getEntity() instanceof EntityPlayerMP) && MinecraftServer.getServer() != null && MinecraftServer.getServer().getConfigurationManager() != null && MinecraftServer.getServer().getConfigurationManager().func_152596_g(((EntityPlayer) damagesource.getEntity()).getGameProfile()) && ((EntityPlayer) damagesource.getEntity()).inventory.getCurrentItem() != null && ((EntityPlayer) damagesource.getEntity()).inventory.getCurrentItem().getItem() instanceof ItemWrench) {
 
 					((EntityPlayer) damagesource.getEntity()).addChatMessage(new ChatComponentText("Removing the train using OP permission"));
 				}
