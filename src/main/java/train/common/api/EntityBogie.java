@@ -601,25 +601,6 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 	}
 	protected void moveOnTCSlope(int i, int j, int k, double cx, double cy, double cz, double slopeAngle, double slopeHeight, double slopeLength, int meta) {
 
-		if (Math.abs(this.motionX) > 0.3D) {
-
-			this.motionX = Math.copySign(0.3D, this.motionX);
-
-			if (this.entityMainTrain != null) {
-
-				this.entityMainTrain.motionX = Math.copySign(0.3D, this.entityMainTrain.motionX);
-			}
-		}
-
-		if (Math.abs(this.motionZ) > 0.3D) {
-
-			this.motionZ = Math.copySign(0.3D, this.motionZ);
-
-			if (this.entityMainTrain != null) {
-
-				this.entityMainTrain.motionZ = Math.copySign(0.3D, this.entityMainTrain.motionZ);
-			}
-		}
 
 		this.posY = j + 0.2D;
 

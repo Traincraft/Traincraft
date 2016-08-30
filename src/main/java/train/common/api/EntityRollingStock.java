@@ -1407,10 +1407,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 	}
 
 	protected void moveOnTCSlope(int i, int j, int k, double cx, double cy, double cz, double slopeAngle, double slopeHeight, double slopeLength, int meta) {
-		//double currentHeight = posY;
-		if (Math.abs(motionX) > 0.3) motionX = Math.copySign(0.3, motionX);
-		if (Math.abs(motionZ) > 0.3) motionZ = Math.copySign(0.3, motionZ);
-		//System.out.println(motionX +" "+motionZ);
 
 		posY = j + 0.2;
 		if (meta == 2 || meta == 0) {
