@@ -1409,6 +1409,10 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 	protected void moveOnTCSlope(int i, int j, int k, double cx, double cy, double cz, double slopeAngle, double slopeHeight, double slopeLength, int meta) {
 
 		posY = j + 0.2;
+		
+		//TODO this was a 1.6.4 mask for a glitch where the speed will switch to 0 when going too fast on a slope.
+		if (Math.abs(motionX) > 0.3) {motionX = Math.copySign(0.3, motionX);}
+		if (Math.abs(motionZ) > 0.3) {motionZ = Math.copySign(0.3, motionZ);}
 		if (meta == 2 || meta == 0) {
 			if (meta == 2) cz += 1;
 

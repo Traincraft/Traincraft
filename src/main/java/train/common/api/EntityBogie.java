@@ -407,8 +407,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 
 			if (BlockRailBase.func_150051_a(block) || block == BlockIDs.tcRail.block || block == BlockIDs.tcRailGag.block) {
 				j--;
-			}
-			else {
+			} else {
 				block = this.worldObj.getBlock(i, j, k);
 			}
 
@@ -440,7 +439,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		        else{
 		        	TileEntity tileEntity = this.worldObj.getTileEntity(i, j, k);
 		        	TileTCRail tileRail;
-				
+
 					if (block == BlockIDs.tcRailGag.block) {
 
 						if (tileEntity instanceof TileTCRailGag) {
@@ -474,17 +473,17 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 						moveOnTC90TurnRail(i, j, k, tileRail.r, tileRail.cx, tileRail.cy, tileRail.cz, tileRail.getType(), meta);
 					}
 
-					if (ItemTCRail.isTCStraightTrack(tileRail)) {
+					else if (ItemTCRail.isTCStraightTrack(tileRail)) {
 
 						moveOnTCStraight(i, j, k, tileRail.xCoord, tileRail.yCoord, tileRail.zCoord, tileRail.getBlockMetadata());
 					}
 
-					if (ItemTCRail.isTCTwoWaysCrossingTrack(tileRail)) {
+					else if (ItemTCRail.isTCTwoWaysCrossingTrack(tileRail)) {
 
 					moveOnTCTwoWaysCrossing();
 					}
 
-					if (ItemTCRail.isTCSlopeTrack(tileRail)) {
+					else if (ItemTCRail.isTCSlopeTrack(tileRail)) {
 
 						moveOnTCSlope(i, j, k, tileRail.xCoord, tileRail.yCoord, tileRail.zCoord, tileRail.slopeAngle, tileRail.slopeHeight, tileRail.slopeLength, tileRail.getBlockMetadata());
 					}
@@ -603,13 +602,24 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 	}
 	protected void moveOnTCSlope(int i, int j, int k, double cx, double cy, double cz, double slopeAngle, double slopeHeight, double slopeLength, int meta) {
 
-
+		//TODO this was a 1.6.4 mask for a glitch where the speed will switch to 0 when going too fast on a slope.
+		if (Math.abs(this.motionX) > 0.3D) {
+					this.motionX = Math.copySign(0.3D, this.motionX);
+					if (this.entityMainTrain != null) {
+						this.entityMainTrain.motionX = Math.copySign(0.3D, this.entityMainTrain.motionX);
+				}
+			}
+				if (Math.abs(this.motionZ) > 0.3D) {
+					this.motionZ = Math.copySign(0.3D, this.motionZ);
+					if (this.entityMainTrain != null) {
+						this.entityMainTrain.motionZ = Math.copySign(0.3D, this.entityMainTrain.motionZ);
+				}
+			}
 		this.posY = j + 0.2D;
 
 		if (meta == 2 || meta == 0) {
 
 			if (meta == 2) {
-
 				cz += 1;
 			}
 
