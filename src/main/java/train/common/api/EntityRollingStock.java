@@ -2475,8 +2475,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 
 	/**
 	 * Returns the carts max speed. Carts going faster than 1.1 cause issues
-	 * with chunk loading. Carts cant traverse slopes or corners at greater than
-	 * 0.5 - 0.6. This value is compared with the rails max speed to determine
+	 * with chunk loading. This value is compared with the rails max speed to determine
 	 * the carts current max speed. A normal rails max speed is 0.4.
 	 * 
 	 * @return Carts max speed.
