@@ -231,14 +231,13 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 
 				int dir = 0;
 				int meta = world.getBlockMetadata(i, j, k);
-				//System.out.println(meta);
 				if (player != null)
 					dir = MathHelper.floor_double((player.rotationYaw * 4F) / 360F + 0.5D) & 3;
 				//180 = 3 = EAST
 				//0 = 0 = SOUTH
 				//90 = 1 = WEST
 				// -180 = 2 = NORTH
-				System.out.println("Direction: " + dir + " Meta: " + meta);
+				// System.out.println("Direction: " + dir + " Meta: " + meta);
 				if (dir == 2) {
 					rollingStock.rotationYaw = 0;
 					if(meta==0){
@@ -344,8 +343,9 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 					}
 				}
 				
-				System.out.println("ServerRealRotation: " + rollingStock.serverRealRotation + " RotationYaw: "
-						+ rollingStock.rotationYaw);
+				// System.out.println("ServerRealRotation: " + rollingStock.serverRealRotation + "
+				// RotationYaw: "
+				// + rollingStock.rotationYaw);
 
 				rollingStock.trainType = ((ItemRollingStock) itemstack.getItem()).getTrainType();
 				rollingStock.trainName = ((ItemRollingStock) itemstack.getItem()).getItemStackDisplayName(itemstack);

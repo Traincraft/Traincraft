@@ -346,7 +346,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		}
 		this.uniqueID = numberOfTrains;
 		getEntityData().setInteger("uniqueID", numberOfTrains);
-		System.out.println("setting new ID "+uniqueID);
+		// System.out.println("setting new ID "+uniqueID);
 		return numberOfTrains;
 	}
 
