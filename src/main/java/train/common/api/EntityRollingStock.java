@@ -1710,7 +1710,8 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 
 		if (!worldObj.isRemote) {
 			//System.out.println(this.uniqueID);
-			Traincraft.lockChannel.sendToAllAround(new PacketSetTrainLockedToClient(getTrainLockedFromPacket(), this.getEntityId()), new TargetPoint(worldObj.provider.dimensionId, (int) posX, (int) posY, (int) posZ, 15));
+			Traincraft.lockChannel
+					.sendToServer(new PacketSetTrainLockedToClient(getTrainLockedFromPacket(), this.getEntityId()));
 		}
 		playerEntity = entityplayer;
 		itemstack = entityplayer.inventory.getCurrentItem();
