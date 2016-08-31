@@ -91,7 +91,7 @@ public class GuiLoco2 extends GuiContainer {
 			this.buttonList.add(this.buttonLock = new GuiButton(3, var1 + 108, var2 - 10, 67, 10, "Locked"));
 		}
 		if (!(loco instanceof SteamTrain)) {
-			if (loco.isLocoTurnedOn()) {
+			if (loco.isLocoTurnedOn() == true) {
 				this.buttonList.add(this.buttonLock = new GuiButton(4, var1 + 108, var2 - 22, 67, 12, "Stop Engine"));
 			}
 			else {
@@ -138,16 +138,25 @@ public class GuiLoco2 extends GuiContainer {
 			}
 		}
 		if (guibutton.id == 4) {
-			if (loco.isLocoTurnedOn()) {
+			if (loco.isLocoTurnedOn() == true) {
 				if(loco.getSpeed() <= 1){
-					loco.setLocoTurnedOn(false, true, false,10);
+					loco.setLocoTurnedOn(false);
+					loco.isLocoTurnedOn = false;
 					guibutton.displayString = "Start Engine";
+					/**
+					 * We implemented Auto ParkingBrake since Brutal tried to did it in the Locomotive API when you turn off the damn Train
+					 */
+					Traincraft.brakeChannel.sendToServer(new PacketParkingBrake(true, loco.getEntityId()));
+					loco.parkingBrake = true;
+					loco.isBraking = true;
+					this.initGui();
 				}else{
 					((EntityPlayer)loco.riddenByEntity).addChatMessage(new ChatComponentText("Stop before turning it Off!"));
 				}
 			}
 			else {
-				loco.setLocoTurnedOn(true, true, false,10);
+				loco.setLocoTurnedOn(true);
+				loco.isLocoTurnedOn = true;
 				guibutton.displayString = "Stop Engine";
 			}
 		}

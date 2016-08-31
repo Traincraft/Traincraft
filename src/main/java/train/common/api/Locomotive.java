@@ -50,7 +50,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 	protected boolean canCheckInvent = true;
 	private int slotsFilled = 0;
 	private int fuelUpdateTicks = 0;
-	private boolean isLocoTurnedOn = false;
+	public boolean					isLocoTurnedOn					= false;
 
 	/**
 	 * state of the loco
@@ -300,7 +300,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 		nbttagcompound.setString("lastRider", lastRider);
 		nbttagcompound.setString("destination", destination);
 		nbttagcompound.setBoolean("parkingBrake", parkingBrake);
-		if(!(this instanceof SteamTrain)){
+		if (!(this instanceof SteamTrain)) {
 			nbttagcompound.setBoolean("isLocoTurnedOn", isLocoTurnedOn);
 		}
 	}
@@ -314,7 +314,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 		lastRider = nbttagcompound.getString("lastRider");
 		destination = nbttagcompound.getString("destination");
 		this.parkingBrake = nbttagcompound.getBoolean("parkingBrake");
-		if(!(this instanceof SteamTrain)) {
+		if (!(this instanceof SteamTrain)) {
 			isLocoTurnedOn = nbttagcompound.getBoolean("isLocoTurnedOn");
 		}
 	}
@@ -483,8 +483,9 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 		pressKeyClient();
 		if (!worldObj.isRemote) {
 			if (updateTicks % 50 == 0) {
-				Traincraft.brakeChannel.sendToAllAround(new PacketParkingBrake(false, this.getEntityId()), new TargetPoint(worldObj.provider.dimensionId, posX, posY, posZ, 50));
-				this.setLocoTurnedOn(isLocoTurnedOn, false, true,500);//sending to client
+				Traincraft.brakeChannel
+						.sendToServer(new PacketParkingBrake(getParkingBrakeFromPacket(), this.getEntityId()));
+				setLocoTurnedOn(isLocoTurnedOn());// sending to client
 				updateTicks=0;
 			}
 
@@ -771,21 +772,15 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 		}
 	}
 	public void setLocoTurnedOnFromPacket(boolean set) {
-		this.isLocoTurnedOn = set;
+		isLocoTurnedOn = set;
 	}
 
-	public void setLocoTurnedOn(boolean set, boolean toServer, boolean toClient, double distance) {
-		this.isLocoTurnedOn = set;
-		if (toServer) {
-			Traincraft.ignitionChannel.sendToServer(new PacketSetLocoTurnedOn(true));
-		}
-		if (toClient) {
-			Traincraft.brakeChannel.sendToAllAround(new PacketParkingBrake(false, this.getEntityId()), new TargetPoint(worldObj.provider.dimensionId, (int) posX, (int) posY, (int) posZ, distance));
-		}
+	public void setLocoTurnedOn(boolean set) {
+		Traincraft.ignitionChannel.sendToServer(new PacketSetLocoTurnedOn(set));
 	}
 
 	public boolean isLocoTurnedOn() {
-		return this.isLocoTurnedOn;
+		return isLocoTurnedOn;
 	}
 
 	// private int placeInSpecialInvent(ItemStack itemstack1, int i, boolean doAdd) {
