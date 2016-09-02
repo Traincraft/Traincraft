@@ -1,7 +1,7 @@
 package train.client.gui;
 
-import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
+import org.lwjgl.input.Keyboard;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
@@ -9,8 +9,6 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.tileentity.TileEntity;
-import org.lwjgl.input.Keyboard;
 import train.common.Traincraft;
 import train.common.core.network.PacketLantern;
 import train.common.tile.TileLantern;
@@ -63,9 +61,8 @@ public class GuiLantern extends GuiScreen {
 					colorString = colorString.substring(0, 6);//remove additionnal characters
 					if(colorString.length()==6 &&tryParse(colorString)!=null){//if parse is possible (if string can be converted to an int)
 						int color = tryParse(colorString);//parse the string as a 16 int	
-						//Packet packet = this.getTEPClient(lanternBlock, color);//send packet to server
-						//this.mc.getNetHandler().addToSendQueue(packet);
-						Traincraft.modChannel.sendToServer(getTEPClient(lanternBlock, color));
+						Traincraft.modChannel.sendToServer(new PacketLantern(color, lanternBlock.xCoord,
+								lanternBlock.yCoord, lanternBlock.zCoord));
 						Minecraft.getMinecraft().renderGlobal.markBlockForRenderUpdate(lanternBlock.xCoord, lanternBlock.yCoord, lanternBlock.zCoord); //TODO marks block as dirty, but it's only actually re-renders when chunk is loaded, but we need the re-render after it has been changed.
 					}
 				}
@@ -86,19 +83,6 @@ public class GuiLantern extends GuiScreen {
 		} catch (NumberFormatException e) {
 			return null;
 		}
-	}
-	
-	public static IMessage getTEPClient(TileEntity te, int color) {
-		PacketLantern packet = null;
-			if (te != null && te instanceof TileLantern) {
-				TileLantern tem = (TileLantern) te;
-				packet = new PacketLantern(color, tem.xCoord, tem.yCoord, tem.zCoord);
-
-				Traincraft.modChannel.sendToAllAround(packet, new NetworkRegistry.TargetPoint(te.getWorldObj().provider.dimensionId, te.xCoord, te.yCoord, te.zCoord, 150));
-			}
-
-		return packet;
-
 	}
 	
 	/**

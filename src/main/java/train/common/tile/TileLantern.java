@@ -2,6 +2,7 @@ package train.common.tile;
 
 import java.util.Random;
 
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
@@ -21,7 +22,7 @@ public class TileLantern extends TileEntity {
 
 		super.readFromNBT(nbt);
 
-		this.randomColor = nbt.getInteger("randomColor");
+		randomColor = nbt.getInteger("randomColor");
 	}
 
 	@Override
@@ -29,7 +30,7 @@ public class TileLantern extends TileEntity {
 
 		super.writeToNBT(nbt);
 
-		nbt.setInteger("randomColor", this.randomColor);
+		nbt.setInteger("randomColor", randomColor);
 	}
 
 	@Override
@@ -64,6 +65,18 @@ public class TileLantern extends TileEntity {
 		if (oldColor != randomColor){
 			oldColor = randomColor;
 			this.markDirty();
+			this.syncTileEntity();
+		}
+	}
+	
+	public void syncTileEntity() {
+		for (Object o : this.worldObj.playerEntities) {
+			if (o instanceof EntityPlayerMP) {
+				EntityPlayerMP player = (EntityPlayerMP) o;
+				if (player.getDistance(xCoord, yCoord, zCoord) <= 64) {
+					player.playerNetServerHandler.sendPacket(this.getDescriptionPacket());
+				}
+			}
 		}
 	}
 
