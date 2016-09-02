@@ -487,6 +487,8 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 				Traincraft.ignitionChannel.sendToServer(new PacketSetLocoTurnedOn(isLocoTurnedOn));// sending to client
 				updateTicks=0;
 			}
+		}
+		if (!worldObj.isRemote) {
 
 			if (updateTicks % 20 == 0) maxAttached.PullPhysic(this);
 			/**

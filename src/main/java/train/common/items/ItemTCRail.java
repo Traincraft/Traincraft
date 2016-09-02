@@ -959,8 +959,10 @@ public class ItemTCRail extends ItemPart {
 						return false;
 				}
 				if (l == 0) {
-					int[] xArray = { x + 0, x + 0, x + 0, x - 1, x + 0, x - 1, x + 0, x - 1, x - 2, x - 1, x - 2, x - 2, x - 3, x - 3, x - 4, x - 5, x - 5, x - 5, x - 6, x - 6, x - 7, x - 7, x - 8, x - 9 };
-					int[] zArray = { z + 0, z + 1, z + 2, z + 2, z + 3, z + 3, z + 4, z + 4, z + 4, z + 5, z + 5, z + 6, z + 6, z + 7, z + 7, z + 7, z + 8, z + 9, z + 8, z + 9, z + 8, z + 9, z + 9, z + 9 };
+					int[] xArray = { x + 0, x + 0, x + 0, x - 1, x + 0, x - 1, x + 0, x - 1, x - 2, x - 1, x - 2, x - 2,
+							x - 3, x - 3, x - 4, x - 5, x - 4, x - 5, x - 5, x - 6, x - 6, x - 7, x - 7, x - 8, x - 9 };
+					int[] zArray = { z + 0, z + 1, z + 2, z + 2, z + 3, z + 3, z + 4, z + 4, z + 4, z + 5, z + 5, z + 6,
+							z + 6, z + 7, z + 7, z + 7, z + 8, z + 8, z + 9, z + 8, z + 9, z + 8, z + 9, z + 9, z + 9 };
 					if (!putDownTurn(world, false, x, y, z, xArray, zArray, l, false, 1, x - 10, z + 10, 9.5, x - 9, y + 1, z, TrackTypes.VERY_LARGE_RIGHT_TURN.getLabel(), Item.getIdFromItem(ItemIDs.tcRailVeryLargeTurn.item)))
 						return false;
 				}
@@ -1409,13 +1411,16 @@ public class ItemTCRail extends ItemPart {
 					sideFacing=2;
 				}
 
-				if (!canPlaceTrack(world, x + xDisplace, y + 1, z + zDisplace) || !canPlaceTrack(world, x+(xDisplace*2), y + 1, z + (zDisplace*2)) || !canPlaceTrack(world, x+(xDisplace*3), y + 1, z + (zDisplace*3)) || !canPlaceTrack(world, x+(xDisplace*4), y + 1, z + (zDisplace*4))) {
+				if (!canPlaceTrack(world, x + xDisplace, y + 1, z + zDisplace)
+						|| !canPlaceTrack(world, x + (xDisplace * 2), y + 1, z + (zDisplace * 2))) {
 					return false;
 				}
-				if (!canPlaceTrack(world, x+(xDisplace*2)+(xSideDisplace*1), y + 1, z + (zDisplace*2)+(zSideDisplace*1)) || !canPlaceTrack(world, x+(xDisplace*2)+(xSideDisplace*2), y + 1, z + (zDisplace*2)+(zSideDisplace*2))) {
+				if (!canPlaceTrack(world, x + (xDisplace * 2) + (xSideDisplace * 1), y + 1,
+						z + (zDisplace * 2) + (zSideDisplace * 1))) {
 					return false;
 				}
-				if (!canPlaceTrack(world, x+(xDisplace*2)-(xSideDisplace*1), y + 1, z + (zDisplace*2)-(zSideDisplace*1)) || !canPlaceTrack(world, x+(xDisplace*2)-(xSideDisplace*2), y + 1, z + (zDisplace*2)-(zSideDisplace*2))) {
+				if (!canPlaceTrack(world, x + (xDisplace * 2) - (xSideDisplace * 1), y + 1,
+						z + (zDisplace * 2) - (zSideDisplace * 1))) {
 					return false;
 				}
 

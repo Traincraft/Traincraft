@@ -142,7 +142,7 @@ public class GuiLoco2 extends GuiContainer {
 			if (loco.isLocoTurnedOn() == true) {
 				if(loco.getSpeed() <= 1){
 					Traincraft.ignitionChannel.sendToServer(new PacketSetLocoTurnedOn(false));
-					loco.setLocoTurnedOnFromPacket(false);
+					loco.isLocoTurnedOn = false;
 					guibutton.displayString = "Start Engine";
 					/**
 					 * We implemented Auto ParkingBrake since Brutal tried to did it in the Locomotive API when you turn off the damn Train
@@ -158,7 +158,7 @@ public class GuiLoco2 extends GuiContainer {
 			else {
 				Traincraft.ignitionChannel.sendToServer(new PacketSetLocoTurnedOn(true));
 				;
-				loco.setLocoTurnedOnFromPacket(true);
+				loco.isLocoTurnedOn = true;
 				guibutton.displayString = "Stop Engine";
 			}
 		}
