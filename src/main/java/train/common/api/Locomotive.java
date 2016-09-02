@@ -20,7 +20,6 @@ import train.common.core.HandleMaxAttachedCarts;
 import train.common.core.handlers.ConfigHandler;
 import train.common.core.network.PacketParkingBrake;
 import train.common.core.network.PacketSetLocoTurnedOn;
-import train.common.core.network.PacketSetTrainLockedToClient;
 import train.common.core.network.PacketSlotsFilled;
 import train.common.library.EnumSounds;
 import train.common.library.Info;
@@ -340,10 +339,10 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 	@Override
 	public void keyHandlerFromPacket(int i) {
 		if (lastUpdateTick == updateTicks) { return; }
-		if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer) {
-			Traincraft.lockChannel.sendToServer(
-					new PacketSetTrainLockedToClient(getTrainLockedFromPacket(), this.getEntityId()));
-		}
+		// if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer) {
+		// Traincraft.lockChannel.sendToServer(
+		// new PacketSetTrainLockedToClient(getTrainLockedFromPacket(), this.getEntityId()));
+		// }
 		if (this.getTrainLockedFromPacket()) {
 			if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer && !((EntityPlayer) this.riddenByEntity).getDisplayName().toLowerCase().equals(this.getTrainOwner().toLowerCase())) { return; }
 		}
@@ -481,11 +480,11 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 	@Override
 	public void onUpdate() {
 		pressKeyClient();
-		if (!worldObj.isRemote) {
+		if (worldObj.isRemote) {
 			if (updateTicks % 50 == 0) {
 				Traincraft.brakeChannel
 						.sendToServer(new PacketParkingBrake(getParkingBrakeFromPacket(), this.getEntityId()));
-				setLocoTurnedOn(isLocoTurnedOn());// sending to client
+				Traincraft.ignitionChannel.sendToServer(new PacketSetLocoTurnedOn(isLocoTurnedOn));// sending to client
 				updateTicks=0;
 			}
 
@@ -773,10 +772,6 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 	}
 	public void setLocoTurnedOnFromPacket(boolean set) {
 		isLocoTurnedOn = set;
-	}
-
-	public void setLocoTurnedOn(boolean set) {
-		Traincraft.ignitionChannel.sendToServer(new PacketSetLocoTurnedOn(set));
 	}
 
 	public boolean isLocoTurnedOn() {

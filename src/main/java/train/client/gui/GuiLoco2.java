@@ -17,6 +17,7 @@ import train.common.api.LiquidManager;
 import train.common.api.Locomotive;
 import train.common.api.SteamTrain;
 import train.common.core.network.PacketParkingBrake;
+import train.common.core.network.PacketSetLocoTurnedOn;
 import train.common.core.network.PacketSetTrainLockedToClient;
 import train.common.inventory.InventoryLoco;
 import train.common.library.Info;
@@ -140,8 +141,8 @@ public class GuiLoco2 extends GuiContainer {
 		if (guibutton.id == 4) {
 			if (loco.isLocoTurnedOn() == true) {
 				if(loco.getSpeed() <= 1){
-					loco.setLocoTurnedOn(false);
-					loco.isLocoTurnedOn = false;
+					Traincraft.ignitionChannel.sendToServer(new PacketSetLocoTurnedOn(false));
+					loco.setLocoTurnedOnFromPacket(false);
 					guibutton.displayString = "Start Engine";
 					/**
 					 * We implemented Auto ParkingBrake since Brutal tried to did it in the Locomotive API when you turn off the damn Train
@@ -155,8 +156,9 @@ public class GuiLoco2 extends GuiContainer {
 				}
 			}
 			else {
-				loco.setLocoTurnedOn(true);
-				loco.isLocoTurnedOn = true;
+				Traincraft.ignitionChannel.sendToServer(new PacketSetLocoTurnedOn(true));
+				;
+				loco.setLocoTurnedOnFromPacket(true);
 				guibutton.displayString = "Stop Engine";
 			}
 		}

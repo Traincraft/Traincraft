@@ -1708,7 +1708,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 	public boolean interactFirst(EntityPlayer entityplayer) {
 		if (super.interactFirst(entityplayer)) return true;
 
-		if (!worldObj.isRemote) {
+		if (worldObj.isRemote) {
 			//System.out.println(this.uniqueID);
 			Traincraft.lockChannel
 					.sendToServer(new PacketSetTrainLockedToClient(getTrainLockedFromPacket(), this.getEntityId()));
