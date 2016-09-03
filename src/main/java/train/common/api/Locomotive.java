@@ -18,8 +18,6 @@ import net.minecraft.world.World;
 import train.common.Traincraft;
 import train.common.core.HandleMaxAttachedCarts;
 import train.common.core.handlers.ConfigHandler;
-import train.common.core.network.PacketParkingBrake;
-import train.common.core.network.PacketSetLocoTurnedOn;
 import train.common.core.network.PacketSlotsFilled;
 import train.common.library.EnumSounds;
 import train.common.library.Info;
@@ -113,7 +111,6 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 				KEY_DEC = ConfigHandler.Key_Dec;
 				KEY_INV = ConfigHandler.Key_Invent;
 				KEY_HORN = ConfigHandler.Key_Horn;
-				KEY_BRAKE = ConfigHandler.Key_Brake;
 			}
 		}
 		catch (ClassNotFoundException e) {}
@@ -369,19 +366,6 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 			motionX *= brake;
 			motionZ *= brake;
 		}
-		if (i == 10 && (updateTicks % 10 ==0)) {
-			int currentSpeed = (int) (convertSpeed(Math.sqrt(Math.abs(motionX * motionX) + Math.abs(motionZ * motionZ))));
-			//System.out.println(parkingBrake + ":" + currentSpeed +" side "+ side);
-			if (currentSpeed <= 10) {
-				if (getParkingBrakeFromPacket()) {
-					setParkingBrakeFromPacket(false);
-				}
-				else {
-					setParkingBrakeFromPacket(true);
-				}
-				Traincraft.brakeChannel.sendToServer(new PacketParkingBrake(false, this.getEntityId()));
-			}
-		}
 	}
 
 	/**
@@ -467,9 +451,6 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 					if (Keyboard.isKeyDown(KEY_HORN)) {
 						pressKeyTrain(8);
 					}
-					if (Keyboard.isKeyDown(KEY_BRAKE)) {
-						pressKeyTrain(10);
-					}
 				}
 			}
 			catch (ClassNotFoundException e) {}
@@ -480,14 +461,15 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 	@Override
 	public void onUpdate() {
 		pressKeyClient();
-		if (worldObj.isRemote) {
-			if (updateTicks % 50 == 0) {
-				Traincraft.brakeChannel
-						.sendToServer(new PacketParkingBrake(getParkingBrakeFromPacket(), this.getEntityId()));
-				Traincraft.ignitionChannel.sendToServer(new PacketSetLocoTurnedOn(isLocoTurnedOn));// sending to client
-				updateTicks=0;
-			}
-		}
+		// if (worldObj.isRemote) {
+		// if (updateTicks % 50 == 0) {
+		// Traincraft.brakeChannel
+		// .sendToServer(new PacketParkingBrake(parkingBrake, this.getEntityId()));
+		// Traincraft.ignitionChannel.sendToServer(new PacketSetLocoTurnedOn(isLocoTurnedOn));//
+		// sending to client
+		// updateTicks=0;
+		// }
+		// }
 		if (!worldObj.isRemote) {
 
 			if (updateTicks % 20 == 0) maxAttached.PullPhysic(this);

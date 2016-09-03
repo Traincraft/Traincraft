@@ -7,15 +7,15 @@
 
 package train.common.core.handlers;
 
-import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.common.config.Property;
-import train.common.Traincraft;
-import train.common.library.ItemIDs;
-import train.common.library.BlockIDs;
+import static net.minecraftforge.common.config.Configuration.CATEGORY_GENERAL;
 
 import java.io.File;
 
-import static net.minecraftforge.common.config.Configuration.CATEGORY_GENERAL;
+import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.common.config.Property;
+import train.common.Traincraft;
+import train.common.library.BlockIDs;
+import train.common.library.ItemIDs;
 
 public class ConfigHandler {
 
@@ -39,7 +39,7 @@ public class ConfigHandler {
 
 	public static int Key_Acc = 17; // W
 	public static int Key_Dec = 31; // S
-	public static int Key_Left = 30; // W
+	public static int			Key_Left		= 30;		 // A
 	public static int Key_Right = 32; // S
 	public static int Key_Horn = 35; // H
 	public static int Key_Invent = 19; // R
@@ -47,7 +47,6 @@ public class ConfigHandler {
 	public static int Key_Down = 45; // X
 	public static int Key_Idle = 46; // C
 	public static int Key_Furn = 33; // F
-	public static int Key_Brake = 57; // Space
 
 	public static String MYSQL_URL;
 	public static String MYSQL_USER;
