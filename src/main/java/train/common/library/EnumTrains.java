@@ -1,11 +1,90 @@
 package train.common.library;
 
+import java.lang.reflect.InvocationTargetException;
+
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
-import train.common.entity.rollingStock.*;
 import train.common.api.AbstractTrains;
-
-import java.lang.reflect.InvocationTargetException;
+import train.common.entity.rollingStock.EntityBoxCartUS;
+import train.common.entity.rollingStock.EntityCaboose;
+import train.common.entity.rollingStock.EntityCaboose3;
+import train.common.entity.rollingStock.EntityCabooseLogging;
+import train.common.entity.rollingStock.EntityCabooseWorkCart;
+import train.common.entity.rollingStock.EntityFlatCarLogs_DB;
+import train.common.entity.rollingStock.EntityFlatCarRails_DB;
+import train.common.entity.rollingStock.EntityFlatCar_DB;
+import train.common.entity.rollingStock.EntityFlatCart;
+import train.common.entity.rollingStock.EntityFlatCartSU;
+import train.common.entity.rollingStock.EntityFlatCartUS;
+import train.common.entity.rollingStock.EntityFlatCartWoodUS;
+import train.common.entity.rollingStock.EntityFreightCart;
+import train.common.entity.rollingStock.EntityFreightCart2;
+import train.common.entity.rollingStock.EntityFreightCartSmall;
+import train.common.entity.rollingStock.EntityFreightCartUS;
+import train.common.entity.rollingStock.EntityFreightCenterbeam_Empty;
+import train.common.entity.rollingStock.EntityFreightCenterbeam_Wood_1;
+import train.common.entity.rollingStock.EntityFreightCenterbeam_Wood_2;
+import train.common.entity.rollingStock.EntityFreightClosed;
+import train.common.entity.rollingStock.EntityFreightGondola_DB;
+import train.common.entity.rollingStock.EntityFreightGrain;
+import train.common.entity.rollingStock.EntityFreightHopperUS;
+import train.common.entity.rollingStock.EntityFreightMinetrain;
+import train.common.entity.rollingStock.EntityFreightOpen2;
+import train.common.entity.rollingStock.EntityFreightOpenWagon;
+import train.common.entity.rollingStock.EntityFreightTrailer;
+import train.common.entity.rollingStock.EntityFreightWagenDB;
+import train.common.entity.rollingStock.EntityFreightWellcar;
+import train.common.entity.rollingStock.EntityFreightWood;
+import train.common.entity.rollingStock.EntityFreightWood2;
+import train.common.entity.rollingStock.EntityLocoDieselCD742;
+import train.common.entity.rollingStock.EntityLocoDieselChME3;
+import train.common.entity.rollingStock.EntityLocoDieselGP7Red;
+import train.common.entity.rollingStock.EntityLocoDieselKof_DB;
+import train.common.entity.rollingStock.EntityLocoDieselSD40;
+import train.common.entity.rollingStock.EntityLocoDieselSD70;
+import train.common.entity.rollingStock.EntityLocoDieselShunter;
+import train.common.entity.rollingStock.EntityLocoDieselV60_DB;
+import train.common.entity.rollingStock.EntityLocoElectricBR_E69;
+import train.common.entity.rollingStock.EntityLocoElectricHighSpeedZeroED;
+import train.common.entity.rollingStock.EntityLocoElectricMinetrain;
+import train.common.entity.rollingStock.EntityLocoElectricTramNY;
+import train.common.entity.rollingStock.EntityLocoElectricTramWood;
+import train.common.entity.rollingStock.EntityLocoElectricVL10;
+import train.common.entity.rollingStock.EntityLocoSteam4_4_0;
+import train.common.entity.rollingStock.EntityLocoSteamAdler;
+import train.common.entity.rollingStock.EntityLocoSteamBR01_DB;
+import train.common.entity.rollingStock.EntityLocoSteamBR80_DB;
+import train.common.entity.rollingStock.EntityLocoSteamC62Class;
+import train.common.entity.rollingStock.EntityLocoSteamCherepanov;
+import train.common.entity.rollingStock.EntityLocoSteamEr_Ussr;
+import train.common.entity.rollingStock.EntityLocoSteamForneyRed;
+import train.common.entity.rollingStock.EntityLocoSteamMogulBlue;
+import train.common.entity.rollingStock.EntityLocoSteamShay;
+import train.common.entity.rollingStock.EntityLocoSteamSmall;
+import train.common.entity.rollingStock.EntityMailWagen_DB;
+import train.common.entity.rollingStock.EntityPassenger2;
+import train.common.entity.rollingStock.EntityPassenger5;
+import train.common.entity.rollingStock.EntityPassenger7;
+import train.common.entity.rollingStock.EntityPassengerAdler;
+import train.common.entity.rollingStock.EntityPassengerBlue;
+import train.common.entity.rollingStock.EntityPassengerHighSpeedCarZeroED;
+import train.common.entity.rollingStock.EntityPassengerTramNY;
+import train.common.entity.rollingStock.EntityPassenger_1class_DB;
+import train.common.entity.rollingStock.EntityPassenger_2class_DB;
+import train.common.entity.rollingStock.EntityStockCar;
+import train.common.entity.rollingStock.EntityTankLava;
+import train.common.entity.rollingStock.EntityTankWagon;
+import train.common.entity.rollingStock.EntityTankWagon2;
+import train.common.entity.rollingStock.EntityTankWagonUS;
+import train.common.entity.rollingStock.EntityTankWagon_DB;
+import train.common.entity.rollingStock.EntityTender4_4_0;
+import train.common.entity.rollingStock.EntityTenderAdler;
+import train.common.entity.rollingStock.EntityTenderBR01_DB;
+import train.common.entity.rollingStock.EntityTenderC62Class;
+import train.common.entity.rollingStock.EntityTenderEr_Ussr;
+import train.common.entity.rollingStock.EntityTenderSmall;
+import train.common.entity.rollingStock.EntityTracksBuilder;
+import train.common.entity.rollingStock.EntityWorkCart;
 
 public enum EnumTrains {
 	
@@ -60,7 +139,9 @@ public enum EnumTrains {
 	freightGondola_DB("Freight Gondola DB",EntityFreightGondola_DB.class,114,ItemIDs.minecartFreightGondola_DB.item,"train_freight_gondola","freight",3.5,null,18,0.98,0.98,45,new String[] {"Cargo: blocks, vanilla items"}),
 	freightCenterBeam_Empty("Freight Center Beam Empty",EntityFreightCenterbeam_Empty.class, 15,ItemIDs.minecartFreightCenterBeam_Empty.item,"train_freight_empty","freight",0.5,null,18,0.98,1.98,54,new String[] {"Cargo: any"}),
 	freightCenterBeam_Wood1("Freight Center Beam Wood1",EntityFreightCenterbeam_Wood_1.class, 16,ItemIDs.minecartFreightCenterBeam_Wood_1.item,"train_freight_wood_1","freight",3,null,18,0.98,1.98,54,new String[] {"Cargo: wood stuff"}),
-	freightCenterBeam_Wood2("Freight Center Beam Wood2",EntityFreightCenterbeam_Wood_2.class, 17,ItemIDs.minecartFreightCenterBeam_Wood_2.item,"train_freight_wood_2","freight",3,null,18,0.98,1.98,54,new String[] {"Cargo: woof stuff"}),
+	freightCenterBeam_Wood2("Freight Center Beam Wood2", EntityFreightCenterbeam_Wood_2.class, 17,
+			ItemIDs.minecartFreightCenterBeam_Wood_2.item, "train_freight_wood_2", "freight", 3, null, 18, 0.98, 1.98,
+			54, new String[] { "Cargo: wood stuff" }),
 	freightWellcar("Freight Well Car",EntityFreightWellcar.class, 20,ItemIDs.minecartFreightWellcar.item,"train_freight_wellcar","freight",3,new String[] {"Blue","Red","Green","LightGrey","Grey"},18,0.98,1.98,54,new String[] {"Cargo: any"}),
 	freightTrailer("Freight Trailer",EntityFreightTrailer.class, 18,ItemIDs.minecartFreightTrailer.item,"train_freight_trailer","freight",3,new String[] {"Blue","Yellow","LightBlue","Red","Grey"},18,0.98,1.98,54,new String[] {"Cargo: any"}),
 
