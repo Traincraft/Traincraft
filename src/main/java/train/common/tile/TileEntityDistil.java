@@ -31,6 +31,7 @@ public class TileEntityDistil extends TileTraincraft implements IFluidHandler {
 	public int liquidItemID;
 
 	public TileEntityDistil() {
+		//slots 0=input 1=fuel 3=output 2=input canister ?=filled canister
 		super(5, "Distillation tower");
 		distilBurnTime = 0;
 		currentItemBurnTime = 0;
@@ -289,6 +290,7 @@ public class TileEntityDistil extends TileTraincraft implements IFluidHandler {
 		if (slots[0].stackSize <= 0) {
 			slots[0] = null;
 		}
+		this.syncTileEntity();
 	}
 
 	private void outputPlastic(ItemStack plasticStack) {
@@ -363,4 +365,15 @@ public class TileEntityDistil extends TileTraincraft implements IFluidHandler {
 	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
 		return true;
 	}
+
+	@Override
+	public boolean canInsertItem(int slot, ItemStack stack, int side){
+		return side != 0 && slot == 0;
+	}
+
+	@Override
+	public boolean canExtractItem(int slot, ItemStack stack, int side){
+		return side != 1 && slot == 3;
+	}
+
 }
