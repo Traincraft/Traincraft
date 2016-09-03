@@ -34,7 +34,15 @@ public class TileTraincraft extends TileEntity implements ISidedInventory{
 
     @Override
     public int[] getAccessibleSlotsFromSide(int side){
-        return new int[0];
+        if(this.slots.length > 0){
+            int[] theInt = new int[slots.length];
+            for(int i = 0; i < theInt.length; i++){
+                theInt[i] = i;
+            }
+            return theInt;
+        } else {
+            return new int[0];
+        }
     }
 
     @Override
