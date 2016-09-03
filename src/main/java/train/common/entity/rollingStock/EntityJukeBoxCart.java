@@ -13,10 +13,6 @@ import net.minecraft.world.World;
 import train.common.Traincraft;
 import train.common.api.EntityRollingStock;
 import train.common.library.GuiIDs;
-import train.common.library.ItemIDs;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class EntityJukeBoxCart extends EntityRollingStock {
 	
@@ -36,7 +32,7 @@ public class EntityJukeBoxCart extends EntityRollingStock {
 
 	public EntityJukeBoxCart(World world, double d, double d1, double d2) {
 		this(world);
-		setPosition(d, d1 + (double) yOffset, d2);
+		setPosition(d, d1 + yOffset, d2);
 		motionX = 0.0D;
 		motionY = 0.0D;
 		motionZ = 0.0D;
@@ -194,13 +190,15 @@ public class EntityJukeBoxCart extends EntityRollingStock {
 		return true;
 	}
 	
+	// Activate this once we bring back jukebox cart
 
-	@Override
-	public List<ItemStack> getItemsDropped() {
-		List<ItemStack> items = new ArrayList<ItemStack>();
-		items.add(new ItemStack(ItemIDs.minecartJukeBoxCart.item));
-		return items;
-	}
+	//
+	// @Override
+	// public List<ItemStack> getItemsDropped() {
+	// List<ItemStack> items = new ArrayList<ItemStack>();
+	// items.add(new ItemStack(ItemIDs.minecartJukeBoxCart.item));
+	// return items;
+	// }
 
 	@Override
 	public boolean isStorageCart() {

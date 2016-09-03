@@ -22,7 +22,7 @@ public enum AchievementIDs {
 	//heavySteam(new int[] { ItemIDs.minecartHeavySteam.itemID }),//TODO put it back once Heavy Steam is back
 	workCart(new int[] { ItemIDs.minecartWork.itemID, ItemIDs.minecartCabooseWork.itemID }),
 	builder(new int[] { ItemIDs.minecartBuilder.itemID }),
-	jukebox(new int[] { ItemIDs.minecartJukeBoxCart.itemID }),
+	// jukebox(new int[] { ItemIDs.minecartJukeBoxCart.itemID }),
 
 	openHearth(new int[] { BlockIDs.openFurnaceIdle.blockID }),
 	trainWB(new int[] { BlockIDs.trainWorkbench.blockID }),

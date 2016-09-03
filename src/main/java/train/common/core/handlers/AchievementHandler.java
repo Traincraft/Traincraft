@@ -73,7 +73,8 @@ public class AchievementHandler {
 		AchievementIDs.tender.achievement = achievement("tender", 7, 4, ItemIDs.minecartTender.item, AchievementIDs.assemblyTable.achievement);
 		AchievementIDs.workCart.achievement = achievement("workCart", 5, 6, ItemIDs.minecartWork.item, AchievementIDs.assemblyTable.achievement).setSpecial();
 		AchievementIDs.builder.achievement = achievement("builder", 7, 6, ItemIDs.minecartBuilder.item, AchievementIDs.assemblyTable.achievement);
-		AchievementIDs.jukebox.achievement = achievement("jukebox", 5, 8, ItemIDs.minecartJukeBoxCart.item, AchievementIDs.assemblyTable.achievement).setSpecial();
+		// AchievementIDs.jukebox.achievement = achievement("jukebox", 5, 8,
+		// ItemIDs.minecartJukeBoxCart.item, AchievementIDs.assemblyTable.achievement).setSpecial();
 		AchievementIDs.minetrain.achievement = achievement("minetrain", 7, 8, ItemIDs.minecartMineTrain.item, AchievementIDs.assemblyTable.achievement);
 		AchievementIDs.cherepanov.achievement = achievement("cherepanov", 5, 10, ItemIDs.minecartLocoCherepanov.item, AchievementIDs.assemblyTable.achievement);
 		AchievementIDs.mail.achievement = achievement("mail", 7, 10, ItemIDs.minecartMailWagon_DB.item, AchievementIDs.assemblyTable.achievement);
@@ -81,7 +82,24 @@ public class AchievementHandler {
 		AchievementIDs.caboose.achievement = achievement("caboose", 7, 12, ItemIDs.minecartCaboose.item, AchievementIDs.assemblyTable.achievement);
 		AchievementIDs.flatCart.achievement = achievement("flatCart", 5, 14, ItemIDs.minecartFlatCartRail_DB.item, AchievementIDs.assemblyTable.achievement);
 		//TODO put this: AchievementIDs.heavySteam.achievement  back once Heavy Steam is back
-		Achievement ach[] = new Achievement[] { AchievementIDs.steel.achievement, AchievementIDs.stake.achievement, AchievementIDs.dieselFuel.achievement, AchievementIDs.electMotor.achievement, AchievementIDs.dieselEngine.achievement, AchievementIDs.firebox.achievement, AchievementIDs.zeppelin.achievement, AchievementIDs.smallSteam.achievement, AchievementIDs.normalSteam.achievement, AchievementIDs.passenger.achievement, AchievementIDs.freight.achievement, AchievementIDs.liquid.achievement, AchievementIDs.tender.achievement, AchievementIDs.diesel.achievement, AchievementIDs.tram.achievement, AchievementIDs.fast.achievement, AchievementIDs.workCart.achievement, AchievementIDs.builder.achievement, AchievementIDs.jukebox.achievement, AchievementIDs.openHearth.achievement, AchievementIDs.engineer.achievement, AchievementIDs.distilationTower.achievement, AchievementIDs.plastic.achievement, AchievementIDs.fineCopperWire.achievement, AchievementIDs.electronicCircuit.achievement, AchievementIDs.generator.achievement, AchievementIDs.woodenParts.achievement, AchievementIDs.ironParts.achievement, AchievementIDs.steelParts.achievement, AchievementIDs.trainWB.achievement, AchievementIDs.assemblyTable.achievement, AchievementIDs.mail.achievement, AchievementIDs.minetrain.achievement, AchievementIDs.cherepanov.achievement, AchievementIDs.flatCart.achievement, AchievementIDs.stockCar.achievement, AchievementIDs.caboose.achievement };
+		Achievement ach[] = new Achievement[] { AchievementIDs.steel.achievement, AchievementIDs.stake.achievement,
+				AchievementIDs.dieselFuel.achievement, AchievementIDs.electMotor.achievement,
+				AchievementIDs.dieselEngine.achievement, AchievementIDs.firebox.achievement,
+				AchievementIDs.zeppelin.achievement, AchievementIDs.smallSteam.achievement,
+				AchievementIDs.normalSteam.achievement, AchievementIDs.passenger.achievement,
+				AchievementIDs.freight.achievement, AchievementIDs.liquid.achievement,
+				AchievementIDs.tender.achievement, AchievementIDs.diesel.achievement, AchievementIDs.tram.achievement,
+				AchievementIDs.fast.achievement, AchievementIDs.workCart.achievement,
+				AchievementIDs.builder.achievement, AchievementIDs.openHearth.achievement,
+				AchievementIDs.engineer.achievement, AchievementIDs.distilationTower.achievement,
+				AchievementIDs.plastic.achievement, AchievementIDs.fineCopperWire.achievement,
+				AchievementIDs.electronicCircuit.achievement, AchievementIDs.generator.achievement,
+				AchievementIDs.woodenParts.achievement, AchievementIDs.ironParts.achievement,
+				AchievementIDs.steelParts.achievement, AchievementIDs.trainWB.achievement,
+				AchievementIDs.assemblyTable.achievement, AchievementIDs.mail.achievement,
+				AchievementIDs.minetrain.achievement, AchievementIDs.cherepanov.achievement,
+				AchievementIDs.flatCart.achievement, AchievementIDs.stockCar.achievement,
+				AchievementIDs.caboose.achievement };
 
 		tmPage = new AchievementPage("TrainCraft", ach);
 
