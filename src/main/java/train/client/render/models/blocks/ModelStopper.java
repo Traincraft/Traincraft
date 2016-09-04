@@ -7,14 +7,15 @@
 
 package train.client.render.models.blocks;
 
+import org.lwjgl.opengl.GL11;
+
 import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.IModelCustom;
-import org.lwjgl.opengl.GL11;
-import train.common.library.Info;
 import train.client.render.CustomModelRenderer;
+import train.common.library.Info;
 
 public class ModelStopper extends ModelBase {
 	
@@ -90,6 +91,7 @@ public class ModelStopper extends ModelBase {
 				GL11.glRotatef(90.0F, 0.0F, 1.0F, 0.0F);
 			}
 		}
+		
 		box.render(f5);
 		box0.render(f5);
 		box1.render(f5);
@@ -97,20 +99,20 @@ public class ModelStopper extends ModelBase {
 		box2.render(f5);
 		box3.render(f5);
 		box35.render(f5);
-		//box4.render(f5);
+		// box4.render(f5);
 		box5.render(f5);
 		
 		GL11.glPushMatrix();
-		GL11.glTranslatef((float) 0, (float) 0, (float) 0);
+		GL11.glTranslatef(0, 0, 0);
 		GL11.glRotatef(90, 0, 1, 0);
-		FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
+		FMLClientHandler.instance().getClient().renderEngine
+				.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
 		GL11.glColor3f(1, 1, 1);
 		track.renderAll();
 		GL11.glPopMatrix();
 	}
 
 	public void render2(float f5) {
-		track.renderAll();
 		box.render(f5);
 		box0.render(f5);
 		box1.render(f5);
@@ -118,7 +120,11 @@ public class ModelStopper extends ModelBase {
 		box2.render(f5);
 		box3.render(f5);
 		box35.render(f5);
-		//box4.render(f5);
+		// box4.render(f5);
 		box5.render(f5);
+		GL11.glRotatef(90, 0, 1, 0);
+		FMLClientHandler.instance().getClient().renderEngine
+				.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
+		track.renderAll();
 	}
 }
