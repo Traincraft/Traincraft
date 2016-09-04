@@ -164,7 +164,8 @@ public enum EnumTrains {
 	/** Diesel */
 	locoDieselKOF("Loco Diesel KOF DB",EntityLocoDieselKof_DB.class,25,ItemIDs.minecartKof_DB.item, "train_kof","diesel",350,57,0,60,0,170,0.66,0.96,5000,new String[] {"Red","Green","Yellow","Black","Blue"},17,new double[]{-1.6},null,0.98,0.98),
 	locoDieselGP40("Loco Diesel CD742",EntityLocoDieselCD742.class, 62,ItemIDs.minecartCD742.item,"train_gp40","diesel",850,70,0,50,0,250,0.8,0.966,10000,new String[] {"Yellow","White"},15,new double[]{-1.4},null,0.98,1.98),
-	locoDieselChME3("Loco Diesel CME3",EntityLocoDieselChME3.class, 32,ItemIDs.minecartChmE3.item,"train_chme3","diesel",500,95,0,60,0,170,0.66,0.96,5000,null,15,new double[]{-1.2},null,0.98,1.98),
+	locoDieselChME3("Loco Diesel ChME3", EntityLocoDieselChME3.class, 32, ItemIDs.minecartChmE3.item, "train_chme3",
+			"diesel", 500, 95, 0, 60, 0, 170, 0.66, 0.96, 5000, null, 15, new double[] { -1.2 }, null, 0.98, 1.98),
 	locoDieselGP7Red("Loco Diesel GP7",EntityLocoDieselGP7Red.class, 59,ItemIDs.minecartGP7Red.item,"train_gp7","diesel",850,70,0,50,0,200,0.74,0.96,20000,new String[] {"Red","Blue","Black","Yellow"},15,new double[]{-1.4},null,0.98,1.98),
 	locoDieselSD40("Loco Diesel SD40",EntityLocoDieselSD40.class, 21,ItemIDs.minecartLocoSD40.item,"train_sd40","diesel",900,80,0,60,0,200,0.8,0.97,20000,new String[] {"Red","Yellow","Black","Green","Orange","Magenta","Blue"},10,new double[]{-2.3},null,0.98,1.98),
 	locoDieselSD70("Loco Diesel SD70",EntityLocoDieselSD70.class, 113,ItemIDs.minecartLocoSD70.item,"train_sd70","diesel",900,80,0,60,0,200,0.8,0.97,20000,new String[] {"Orange","Yellow","Red","Blue","Magenta","Black"},10,new double[]{-2.3},null,0.98,1.98),
