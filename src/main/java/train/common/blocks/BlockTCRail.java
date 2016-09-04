@@ -71,7 +71,6 @@ public class BlockTCRail extends Block {
 			boolean flag = player instanceof EntityPlayer && player.capabilities.isCreativeMode;
 			if (!flag) {
 				this.dropBlockAsItem(world, i, j, k, new ItemStack(tileEntity.idDrop, 1, 0));
-				System.out.println("Hallo");
 			}
 		}
 		world.removeTileEntity(i, j, k);
