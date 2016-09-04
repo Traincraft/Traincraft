@@ -31,27 +31,20 @@ import si.meansoft.traincraft.FluidRegistry;
 import si.meansoft.traincraft.Traincraft;
 import si.meansoft.traincraft.Util;
 import si.meansoft.traincraft.blocks.BlockRail;
+import si.meansoft.traincraft.fluids.FluidBase;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class ClientProxy extends CommonProxy {
 
-    public static HashMap<BlockRail.Rails, IBakedModel> railModels = new HashMap<>();
-    private static boolean hasBaked = false;
-    public static BlockRendererDispatcher blockRenderer;
-    public static IBakedModel model;
-
     @Override
     public void preInit(FMLPreInitializationEvent event) {
-        this.registerFluidRenderer(FluidRegistry.diesel);
-        OBJLoader.INSTANCE.addDomain("traincraft");
-        B3DLoader.INSTANCE.addDomain("traincraft");
+        for(Fluid fluid : fluids){
+            this.registerFluidRenderer(fluid);
+        }
         for(Map.Entry<ItemStack, ModelResourceLocation> entry : forgeRender.entrySet()){
             this.registerForgeRenderer(entry.getKey(), entry.getValue());
-        }
-        for(Map.Entry<Class<? extends TileEntity>, TileEntitySpecialRenderer> entry : objRender.entrySet()){
-            ClientRegistry.bindTileEntitySpecialRenderer(entry.getKey(), entry.getValue());
         }
     }
 
@@ -63,12 +56,7 @@ public class ClientProxy extends CommonProxy {
         Block block = fluid.getBlock();
         Item item = Item.getItemFromBlock(block);
         final ModelResourceLocation loc = new ModelResourceLocation(new ResourceLocation(Traincraft.MODID, "fluids"), fluid.getName());
-        ItemMeshDefinition mesh = new ItemMeshDefinition(){
-            @Override
-            public ModelResourceLocation getModelLocation(ItemStack stack){
-                return loc;
-            }
-        };
+        ItemMeshDefinition mesh = stack -> loc;
         StateMapperBase mapper = new StateMapperBase(){
             @Override
             protected ModelResourceLocation getModelResourceLocation(IBlockState state){
@@ -79,19 +67,5 @@ public class ClientProxy extends CommonProxy {
         ModelLoader.setCustomMeshDefinition(item, mesh);
         ModelLoader.setCustomStateMapper(block, mapper);
     }
-
-    /*
-    public static void bakeAllModels(){
-        if(!hasBaked){
-            System.out.println("bake");
-            model = Util.getBakedModel(BlockRail.Rails.LONGSTRAIGHT.location);
-            blockRenderer = Minecraft.getMinecraft().getBlockRendererDispatcher();
-            for(BlockRail.Rails rail : BlockRail.Rails.values()){
-                railModels.put(rail, Util.getBakedModel(rail.location));
-            }
-            hasBaked = true;
-        }
-    }
-    */
 
 }

@@ -17,9 +17,10 @@ public class TileEntityInventory extends TileEntityBase implements ISidedInvento
     public ItemStack[] slots;
     public String invName;
 
-    public TileEntityInventory(String invName, int slotAmount){
+    public TileEntityInventory(String name, int slotAmount){
+        super(name);
         slots = new ItemStack[slotAmount];
-        this.invName = invName;
+        this.invName = "Inventory" + name;
     }
 
     @Override

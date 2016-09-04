@@ -3,8 +3,6 @@ package si.meansoft.traincraft;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
-import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.*;
@@ -12,9 +10,8 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import si.meansoft.traincraft.blocks.BlockBase;
 import si.meansoft.traincraft.gen.WorldGen;
-import si.meansoft.traincraft.items.ItemBlockGeneric;
+import si.meansoft.traincraft.items.ItemBlockBase;
 import si.meansoft.traincraft.network.CommonProxy;
 import si.meansoft.traincraft.network.GuiHandler;
 
@@ -43,14 +40,15 @@ public class Traincraft {
         tab = new CreativeTabs("traincraftTab") {
             @Override
             public Item getTabIconItem() {
-                return Item.getItemFromBlock(BlockRegistry.oilSand);
+                return Item.getItemFromBlock(Registry.oilSand);
             }
         };
         logger.info("Register Blocks, Items, ...");
-        BlockRegistry.preInit();
-        ItemRegistry.preInit();
+        Registry.preInit(evt);
+        //BlockRegistry.preInit();
+        //ItemRegistry.preInit();
         FluidRegistry.preInit();
-        TileEntityRegistry.preInit();
+        //TileEntityRegistry.preInit();
         GameRegistry.registerWorldGenerator(new WorldGen(), 10);
         NetworkRegistry.INSTANCE.registerGuiHandler(INSTANCE, new GuiHandler());
         logger.info("Register Renderer!");
@@ -81,7 +79,7 @@ public class Traincraft {
         block.setUnlocalizedName(MODID + ":" + blockName);
         block.setRegistryName(blockName);
         block.setCreativeTab(tab);
-        ItemBlockGeneric itemBlock = new ItemBlockGeneric(block);
+        ItemBlockBase itemBlock = new ItemBlockBase(block);
         GameRegistry.register(block);
         GameRegistry.register(itemBlock);
         if(defaultRender){

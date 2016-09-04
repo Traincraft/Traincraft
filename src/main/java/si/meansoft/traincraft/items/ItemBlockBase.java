@@ -1,21 +1,23 @@
 package si.meansoft.traincraft.items;
 
-import net.minecraft.item.Item;
+import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import si.meansoft.traincraft.IRegistryEntry;
-import si.meansoft.traincraft.Traincraft;
 import si.meansoft.traincraft.network.CommonProxy;
 
 /**
  * @author canitzp
  */
-public class ItemBase extends Item implements IRegistryEntry{
+public class ItemBlockBase extends ItemBlock implements IRegistryEntry{
 
-    private String name;
-
-    public ItemBase(String name, boolean defaultRenderer){
-        this.name = name;
-        this.setCreativeTab(Traincraft.tab);
-        this.setUnlocalizedName(Traincraft.MODID + "." + name);
+    public ItemBlockBase(Block block){
+        super(block);
     }
 
     @Override
@@ -25,7 +27,7 @@ public class ItemBase extends Item implements IRegistryEntry{
 
     @Override
     public String getName(){
-        return this.name;
+        return this.block.getRegistryName().getResourcePath();
     }
 
     @Override
@@ -37,4 +39,5 @@ public class ItemBase extends Item implements IRegistryEntry{
     public void ownRegistry(){
 
     }
+
 }

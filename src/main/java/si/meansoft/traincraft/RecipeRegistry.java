@@ -31,8 +31,8 @@ public class RecipeRegistry {
     }
 
     private static void initDistillRecipes(){
-        DistilleryRecipes.addRecipe(new ItemStack(ItemRegistry.material, 1, ItemMaterial.Materials.PLASTIC.ordinal()), new ItemStack(BlockRegistry.oilSand), new FluidStack(FluidRegistry.diesel, 1000), 50, 200);
-        DistilleryRecipes.addFillingRecipe(new ItemStack(ItemRegistry.material, 2, ItemMaterial.Materials.FUEL_CANISTER_FULL.ordinal()), new ItemStack(ItemRegistry.material, 2, ItemMaterial.Materials.FUEL_CANISTER_EMPTY.ordinal()), new FluidStack(FluidRegistry.diesel, 1000));
+        //DistilleryRecipes.addRecipe(new ItemStack(ItemRegistry.material, 1, ItemMaterial.Materials.PLASTIC.ordinal()), new ItemStack(Registry.oilSand), new FluidStack(FluidRegistry.diesel, 1000), 50, 200);
+        //DistilleryRecipes.addFillingRecipe(new ItemStack(ItemRegistry.material, 2, ItemMaterial.Materials.FUEL_CANISTER_FULL.ordinal()), new ItemStack(ItemRegistry.material, 2, ItemMaterial.Materials.FUEL_CANISTER_EMPTY.ordinal()), new FluidStack(FluidRegistry.diesel, 1000));
     }
 
     private static void initCrafterRecipes(){

@@ -6,6 +6,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import si.meansoft.traincraft.IRegistryEntry;
 import si.meansoft.traincraft.Util;
 import si.meansoft.traincraft.network.CommonProxy;
 
@@ -18,13 +19,7 @@ public class ItemSubtypeBase extends ItemBase{
     public ItemSubtypeBase(String name, Class<? extends Enum> subtypes){
         super(name, false);
         this.subtypes = subtypes;
-
         this.setHasSubtypes(true);
-
-        for(int i = 0; i < this.subtypes.getEnumConstants().length; i++){
-            String modelName = this.getRegistryName()+this.subtypes.getEnumConstants()[i].toString();
-            CommonProxy.addForgeRender(new ItemStack(this, 1, i), new ModelResourceLocation(modelName, "inventory"));
-        }
     }
 
     @Override
@@ -46,6 +41,14 @@ public class ItemSubtypeBase extends ItemBase{
     public void getSubItems(Item item, CreativeTabs tab, List list){
         for(int j = 0; j < this.subtypes.getEnumConstants().length; j++){
             list.add(new ItemStack(this, 1, j));
+        }
+    }
+
+    @Override
+    public void onRegister(IRegistryEntry[] otherEntries){
+        for(int i = 0; i < this.subtypes.getEnumConstants().length; i++){
+            String modelName = this.getRegistryName()+this.subtypes.getEnumConstants()[i].toString();
+            CommonProxy.addForgeRender(new ItemStack(this, 1, i), new ModelResourceLocation(modelName, "inventory"));
         }
     }
 }

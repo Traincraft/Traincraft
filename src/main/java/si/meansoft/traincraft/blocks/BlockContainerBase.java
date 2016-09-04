@@ -18,20 +18,25 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import org.apache.commons.lang3.ArrayUtils;
+import si.meansoft.traincraft.IRegistryEntry;
 import si.meansoft.traincraft.Traincraft;
 import si.meansoft.traincraft.network.CommonProxy;
 import si.meansoft.traincraft.network.GuiHandler;
+import si.meansoft.traincraft.tile.TileEntityBase;
+
+import java.util.Arrays;
 
 /**
  * @author canitzp
  */
 public class BlockContainerBase extends BlockBase implements ITileEntityProvider{
 
-    protected Class<? extends TileEntity> tileClass;
+    protected Class<? extends TileEntityBase> tileClass;
     protected int guiId = -1;
     public static final PropertyDirection FACING = BlockHorizontal.FACING;
 
-    public BlockContainerBase(Material materialIn, String name, Class<? extends TileEntity> tileClass) {
+    public BlockContainerBase(Material materialIn, String name, Class<? extends TileEntityBase> tileClass) {
         super(materialIn, name);
         this.isBlockContainer = true;
         this.tileClass = tileClass;
@@ -61,14 +66,14 @@ public class BlockContainerBase extends BlockBase implements ITileEntityProvider
         worldIn.removeTileEntity(pos);
     }
 
-    public boolean onBlockEventReceived(World worldIn, BlockPos pos, IBlockState state, int eventID, int eventParam) {
-        super.onBlockEventReceived(worldIn, pos, state, eventID, eventParam);
+    public boolean eventReceived(IBlockState state, World worldIn, BlockPos pos, int id, int param){
+        super.eventReceived(state, worldIn, pos, id, param);
         TileEntity tileentity = worldIn.getTileEntity(pos);
-        return tileentity != null && tileentity.receiveClientEvent(eventID, eventParam);
+        return tileentity != null && tileentity.receiveClientEvent(id, param);
     }
 
     @Override
-    public TileEntity createNewTileEntity(World worldIn, int meta) {
+    public TileEntityBase createNewTileEntity(World worldIn, int meta) {
         try {
             return tileClass.newInstance();
         } catch (Exception e) {
@@ -100,5 +105,10 @@ public class BlockContainerBase extends BlockBase implements ITileEntityProvider
     @Override
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
         world.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing().getOpposite()), 2);
+    }
+
+    @Override
+    public IRegistryEntry[] getRegisterElements(){
+        return ArrayUtils.addAll(super.getRegisterElements(), createNewTileEntity(null, 0));
     }
 }

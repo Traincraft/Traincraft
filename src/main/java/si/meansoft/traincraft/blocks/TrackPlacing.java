@@ -115,7 +115,6 @@ public class TrackPlacing {
                     TileEntityRail te = (TileEntityRail) world.getTileEntity(setPos);
                     if(te != null){
                         te.placeTrack(posList, facing);
-                        te.renderRotate(0, 90, 0);
                     }
                 }
                 break;
@@ -144,8 +143,6 @@ public class TrackPlacing {
                     TileEntityRail te = (TileEntityRail) world.getTileEntity(setPos);
                     if(te != null){
                         te.placeTrack(posList, facing);
-                        te.renderRotate(0, 90, 0);
-                        te.renderTranslate(0, 0, 0);
                     }
                 }
                 break;
@@ -191,16 +188,6 @@ public class TrackPlacing {
                                     TileEntityRail te = (TileEntityRail) world.getTileEntity(setPos);
                                     if(te != null){
                                         te.placeTrack(posList, facing);
-                                        if(i == 0){
-                                            te.renderRotate(0, 90, 0);
-                                            te.renderTranslate(-1, 0, 3);
-                                        } else if(i == 4){
-                                            te.renderRotate(0, 90, 0);
-                                            te.renderTranslate(-3, 0, 1);
-                                        } else {
-                                            te.renderOff();
-                                        }
-
                                     }
                                 }
                                 break;
@@ -223,13 +210,6 @@ public class TrackPlacing {
                                     TileEntityRail te = (TileEntityRail) world.getTileEntity(setPos);
                                     if(te != null){
                                         te.placeTrack(posList, facing);
-                                        if(i == 0){
-                                            te.renderTranslate(-1, 0, 3);
-                                        } else if(i == 4){
-                                            te.renderTranslate(-3, 0, 1);
-                                        } else {
-                                            te.renderOff();
-                                        }
                                     }
                                 }
                                 break;
@@ -252,16 +232,6 @@ public class TrackPlacing {
                                     TileEntityRail te = (TileEntityRail) world.getTileEntity(setPos);
                                     if(te != null){
                                         te.placeTrack(posList, facing);
-                                        if(i == 0){
-                                            te.renderRotate(0, -90, 0);
-                                            te.renderTranslate(-1, 0, 3);
-                                        } else if(i == 4){
-                                            te.renderRotate(0, -90, 0);
-                                            te.renderTranslate(-3, 0, 1);
-                                        } else {
-                                            te.renderOff();
-                                        }
-
                                     }
                                 }
                                 break;
@@ -284,15 +254,6 @@ public class TrackPlacing {
                                     TileEntityRail te = (TileEntityRail) world.getTileEntity(setPos);
                                     if(te != null){
                                         te.placeTrack(posList, facing);
-                                        if(i == 0){
-                                            te.renderRotate(0, 180, 0);
-                                            te.renderTranslate(-1, 0, 3);
-                                        } else if(i == 4){
-                                            te.renderRotate(0, 180, 0);
-                                            te.renderTranslate(-3, 0, 1);
-                                        } else {
-                                            te.renderOff();
-                                        }
                                     }
                                 }
                                 break;

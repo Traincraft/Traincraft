@@ -33,7 +33,7 @@ public class TileEntityDistillery extends TileEntityInventory implements ITickab
     private int lastMaxCookTime;
 
     public TileEntityDistillery() {
-        super("InventoryDistillery", 6);
+        super("Distillery", 6);
     }
 
     @Override

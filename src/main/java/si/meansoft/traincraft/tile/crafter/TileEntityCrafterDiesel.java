@@ -5,7 +5,7 @@ import si.meansoft.traincraft.blocks.BlockCrafter;
 public class TileEntityCrafterDiesel extends TileEntityCrafterBase{
 
     public TileEntityCrafterDiesel(){
-        super("crafterDiesel");
+        super("CrafterDiesel");
     }
 
     @Override

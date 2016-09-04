@@ -46,76 +46,19 @@ public class Util {
             if(player instanceof EntityPlayerMP){
                 BlockPos pos = tile.getPos();
                 if(player.getDistance(pos.getX(), pos.getY(), pos.getZ()) <= 64){
-                    ((EntityPlayerMP)player).playerNetServerHandler.sendPacket(tile.getDescriptionPacket());
+                    ((EntityPlayerMP)player).connection.sendPacket(tile.getUpdatePacket());
                 }
             }
         }
     }
 
+    @Deprecated
     public static String firstCharToUpperCase(String string){
         return string.length() >= 1 ? string.substring(0, 1).toUpperCase() + string.substring(1) : string;
     }
 
     public static int getStackSize(ItemStack stack){
         return stack != null ? stack.stackSize : 0;
-    }
-
-    @SideOnly(Side.CLIENT)
-    public static IBakedModel renderObjectFile(IBakedModel currentModel, ResourceLocation objLocation, TileEntity te, float xOffset, float yOffset, float zOffset){
-        if(currentModel != null){
-            RenderHelper.disableStandardItemLighting();
-            GlStateManager.translate(-te.getPos().getX() + xOffset, -te.getPos().getY() + yOffset, -te.getPos().getZ() + zOffset);
-            Minecraft.getMinecraft().getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
-            Tessellator tessy = Tessellator.getInstance();
-            tessy.getBuffer().begin(GL11.GL_QUADS, DefaultVertexFormats.BLOCK);
-            Minecraft.getMinecraft().getBlockRendererDispatcher().getBlockModelRenderer().renderModel(te.getWorld(), currentModel, te.getWorld().getBlockState(te.getPos()), te.getPos(), Tessellator.getInstance().getBuffer(), false);
-            tessy.draw();
-            RenderHelper.enableStandardItemLighting();
-        } else {
-            currentModel = getBakedModel(objLocation);
-            if(currentModel != null){
-                renderObjectFile(currentModel, objLocation, te, xOffset, yOffset, zOffset);
-            }
-        }
-        return currentModel;
-    }
-
-    @SideOnly(Side.CLIENT)
-    public static void renderObjectFile(IBakedModel currentModel, TileEntity te){
-        if(currentModel != null){
-            GlStateManager.translate(-te.getPos().getX(), -te.getPos().getY(), -te.getPos().getZ());
-            Tessellator tessy = Tessellator.getInstance();
-            tessy.getBuffer().begin(GL11.GL_QUADS, DefaultVertexFormats.BLOCK);
-            Minecraft.getMinecraft().getBlockRendererDispatcher().getBlockModelRenderer().renderModel(te.getWorld(), currentModel, te.getWorld().getBlockState(te.getPos()), te.getPos(), Tessellator.getInstance().getBuffer(), false);
-            tessy.draw();
-        }
-    }
-
-    @SideOnly(Side.CLIENT)
-    public static void renderIBakedModel(IBakedModel model, TileEntity tileEntity, VertexBuffer renderer){
-        if(model != null){
-            GlStateManager.translate(-tileEntity.getPos().getX(), -tileEntity.getPos().getY(), -tileEntity.getPos().getZ());
-            ClientProxy.blockRenderer.getBlockModelRenderer().renderModel(MinecraftForgeClient.getRegionRenderCache(tileEntity.getWorld(), tileEntity.getPos()), model, tileEntity.getWorld().getBlockState(tileEntity.getPos()), tileEntity.getPos(), renderer, false);
-        }
-    }
-
-    @SideOnly(Side.CLIENT)
-    public static IBakedModel getBakedModel(ResourceLocation location){
-        try{
-            return ModelLoaderRegistry.getModel(location).bake(TRSRTransformation.identity(), DefaultVertexFormats.ITEM, new Function<ResourceLocation, TextureAtlasSprite>(){
-                @Nullable
-                @Override
-                public TextureAtlasSprite apply(@Nullable ResourceLocation input){
-                    if(input != null){
-                        return Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(input.toString());
-                    }
-                    return null;
-                }
-            });
-        } catch(Exception e){
-            e.printStackTrace();
-        }
-        return null;
     }
 
     public static ItemStack decreaseItemStack(ItemStack toDecrease, ItemStack decreaseValue){

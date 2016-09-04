@@ -28,21 +28,4 @@ public class BlockDistillery extends BlockContainerBase {
         return new BlockStateContainer(this, ACTIVE, FACING);
     }
 
-    @Override
-    public int getMetaFromState(IBlockState state) {
-        return state.getValue(ACTIVE) ? 7 + state.getValue(FACING).getIndex() : state.getValue(FACING).getIndex();
-    }
-
-    @Override
-    public IBlockState getStateFromMeta(int meta) {
-        IBlockState state = getDefaultState();
-        if(meta <= 6){
-            state.withProperty(FACING, EnumFacing.getFront(meta));
-            state.withProperty(ACTIVE, true);
-        } else {
-            state.withProperty(FACING, EnumFacing.getFront(meta - 7));
-            state.withProperty(ACTIVE, false);
-        }
-        return state;
-    }
 }

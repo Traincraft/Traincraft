@@ -4,24 +4,28 @@ import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.oredict.OreDictionary;
+import si.meansoft.traincraft.IRegistryEntry;
 import si.meansoft.traincraft.Traincraft;
 import si.meansoft.traincraft.gen.WorldGen;
+import si.meansoft.traincraft.items.ItemBlockBase;
 import si.meansoft.traincraft.network.CommonProxy;
 
 /**
  * @author canitzp
  */
-public class BlockBase extends Block {
+public class BlockBase extends Block implements IRegistryEntry{
 
-    private Block instance;
+    private String name;
 
     public BlockBase(Material materialIn, String name) {
         super(materialIn);
-        Traincraft.registerBlock(this, name);
-        this.instance = ForgeRegistries.BLOCKS.getValue(getRegistryName());
+        this.setCreativeTab(Traincraft.tab);
+        this.setUnlocalizedName(Traincraft.MODID + "." + name);
+        this.name = name;
     }
 
     /**
@@ -33,12 +37,13 @@ public class BlockBase extends Block {
      * The example values you'll find in the class: 'net.minecraft.world.gen.ChunkProviderSettings'
      */
     public BlockBase generateBlock(Block toSpawnInside, int minY, int maxY, int maxVeinSize, int chanceToSpawn){
-        WorldGen.addBlockToSpawn(this.instance, toSpawnInside, minY, maxY, maxVeinSize, chanceToSpawn);
+        WorldGen.addBlockToSpawn(this, toSpawnInside, minY, maxY, maxVeinSize, chanceToSpawn);
         return this;
     }
 
     public BlockBase addOreDict(String oreDict){
-        OreDictionary.registerOre(oreDict, this.instance);
+        //OreDictionary.registerOre(oreDict, this);
+        CommonProxy.oreDicts.put(this, oreDict);
         return this;
     }
 
@@ -50,6 +55,31 @@ public class BlockBase extends Block {
     public BlockBase setSound(SoundType sound){
         setSoundType(sound);
         return this;
+    }
+
+    @Override
+    public IRegistryEntry[] getRegisterElements(){
+        return new IRegistryEntry[]{this, new ItemBlockBase(this)};
+    }
+
+    @Override
+    public String getName(){
+        return this.name;
+    }
+
+    @Override
+    public void onRegister(IRegistryEntry[] otherEntries){
+        for(IRegistryEntry entry : otherEntries){
+            if(entry instanceof ItemBlock){
+                CommonProxy.addForgeRender((Item) entry);
+                return;
+            }
+        }
+    }
+
+    @Override
+    public void ownRegistry(){
+
     }
 
     public enum ToolEnum{

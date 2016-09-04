@@ -5,7 +5,7 @@ import si.meansoft.traincraft.blocks.BlockCrafter;
 public class TileEntityCrafterSteam extends TileEntityCrafterBase{
 
     public TileEntityCrafterSteam(){
-        super("crafterSteam");
+        super("CrafterSteam");
     }
 
     @Override

@@ -8,16 +8,28 @@ import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import si.meansoft.traincraft.IRegistryEntry;
+import si.meansoft.traincraft.Traincraft;
 import si.meansoft.traincraft.Util;
 
-public class TileEntityBase extends TileEntity{
+import javax.annotation.Nullable;
+
+public class TileEntityBase extends TileEntity implements IRegistryEntry{
+
+    private String name;
+
+    public TileEntityBase(String name){
+        this.name = name;
+    }
 
     public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newState){
         return oldState.getBlock() != newState.getBlock();
     }
 
+    @Nullable
     @Override
-    public final Packet getDescriptionPacket() {
+    public SPacketUpdateTileEntity getUpdatePacket(){
         NBTTagCompound compound = new NBTTagCompound();
         this.writeToNBT(compound, true);
         return new SPacketUpdateTileEntity(getPos(), 0, compound);
@@ -31,9 +43,10 @@ public class TileEntityBase extends TileEntity{
     }
 
     @Override
-    public final void writeToNBT(NBTTagCompound compound){
+    public final NBTTagCompound writeToNBT(NBTTagCompound compound){
         super.writeToNBT(compound);
         this.writeToNBT(compound, false);
+        return compound;
     }
 
     @Override
@@ -52,5 +65,25 @@ public class TileEntityBase extends TileEntity{
 
     public void syncToClient(){
         Util.sendTilePacketToAllAround(this);
+    }
+
+    @Override
+    public IRegistryEntry[] getRegisterElements(){
+        return new IRegistryEntry[]{this};
+    }
+
+    @Override
+    public String getName(){
+        return Traincraft.MODID + this.name;
+    }
+
+    @Override
+    public void onRegister(IRegistryEntry[] otherEntries){
+
+    }
+
+    @Override
+    public void ownRegistry(){
+        GameRegistry.registerTileEntity(this.getClass(), getName());
     }
 }

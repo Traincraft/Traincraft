@@ -18,9 +18,9 @@ public class TileEntityRegistry {
         //Has to be registered with modid as duplicate registry ids will lead into the tile not being registered at all
         GameRegistry.registerTileEntity(TileEntityDistillery.class, Traincraft.MODID + "Distillery");
         GameRegistry.registerTileEntity(TileEntityRail.class, Traincraft.MODID + "Rail");
-        GameRegistry.registerTileEntity(TileEntityCrafterSteam.class, Traincraft.MODID + "CrafterSteam");
-        GameRegistry.registerTileEntity(TileEntityCrafterDiesel.class, Traincraft.MODID + "CrafterDiesel");
-        GameRegistry.registerTileEntity(TileEntityCrafterElectro.class, Traincraft.MODID + "CrafterElectro");
+        //GameRegistry.registerTileEntity(TileEntityCrafterSteam.class, Traincraft.MODID + "CrafterSteam");
+        //GameRegistry.registerTileEntity(TileEntityCrafterDiesel.class, Traincraft.MODID + "CrafterDiesel");
+        //GameRegistry.registerTileEntity(TileEntityCrafterElectro.class, Traincraft.MODID + "CrafterElectro");
         GameRegistry.registerTileEntity(TileEntityHearthFurnace.class, Traincraft.MODID + "HearthFurnace");
         GameRegistry.registerTileEntity(TileEntityWindmill.class, Traincraft.MODID + "Windmill");
     }

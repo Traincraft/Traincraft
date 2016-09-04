@@ -23,21 +23,4 @@ public class BlockHearthFurnace extends BlockContainerBase{
         return new BlockStateContainer(this, BlockDistillery.ACTIVE, FACING);
     }
 
-    @Override
-    public int getMetaFromState(IBlockState state) {
-        return state.getValue(BlockDistillery.ACTIVE) ? 7 + state.getValue(FACING).getIndex() : state.getValue(FACING).getIndex();
-    }
-
-    @Override
-    public IBlockState getStateFromMeta(int meta) {
-        IBlockState state = this.getDefaultState();
-        if(meta <= 6){
-            state.withProperty(FACING, EnumFacing.getFront(meta));
-            state.withProperty(BlockDistillery.ACTIVE, true);
-        } else {
-            state.withProperty(FACING, EnumFacing.getFront(meta - 7));
-            state.withProperty(BlockDistillery.ACTIVE, false);
-        }
-        return state;
-    }
 }

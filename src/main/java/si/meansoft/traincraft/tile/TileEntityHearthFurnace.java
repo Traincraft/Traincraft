@@ -28,7 +28,8 @@ public class TileEntityHearthFurnace extends TileEntityInventory implements ITic
     public static final int OUTPUT_SLOT = 3;
 
     public TileEntityHearthFurnace(){
-        super("hearthFurnace", 4);
+        super("HearthFurnace", 4);
+        System.out.println("create");
     }
 
     @Override

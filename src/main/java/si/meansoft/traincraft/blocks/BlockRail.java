@@ -31,41 +31,13 @@ public class BlockRail extends BlockBase implements ITileEntityProvider{
     public TrackLength length;
     public TrackDirection direction;
     public String nameExtra;
-    public Rails railType;
 
-    public BlockRail(String extraName, TrackLength length, TrackDirection direction, Rails railType) {
+    public BlockRail(String extraName, TrackLength length, TrackDirection direction) {
         super(Material.IRON, "track" + Util.firstCharToUpperCase(length.name) + Util.firstCharToUpperCase(direction.name) + extraName);
-        CommonProxy.addOBJRender(TileEntityRail.class, new TileEntityRail.RailRenderer());
         this.length = length;
         this.direction = direction;
         this.nameExtra = extraName;
-        this.railType = railType;
         this.isBlockContainer = true;
-    }
-
-    public BlockRail(TrackLength length, TrackDirection direction, Rails railType) {
-        this("", length, direction, railType);
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
-        return false;
-    }
-
-    @Override
-    public boolean isBlockNormalCube(IBlockState blockState) {
-        return false;
-    }
-
-    @Override
-    public boolean isOpaqueCube(IBlockState state){
-        return false;
-    }
-
-    @Override
-    public EnumBlockRenderType getRenderType(IBlockState state){
-        return EnumBlockRenderType.INVISIBLE;
     }
 
     @Override
@@ -83,16 +55,16 @@ public class BlockRail extends BlockBase implements ITileEntityProvider{
         super.breakBlock(worldIn, pos, state);
     }
 
-    @Override
-    public boolean onBlockEventReceived(World worldIn, BlockPos pos, IBlockState state, int eventID, int eventParam) {
-        super.onBlockEventReceived(worldIn, pos, state, eventID, eventParam);
+    public boolean eventReceived(IBlockState state, World worldIn, BlockPos pos, int id, int param)
+    {
+        super.eventReceived(state, worldIn, pos, id, param);
         TileEntity tileentity = worldIn.getTileEntity(pos);
-        return tileentity != null && tileentity.receiveClientEvent(eventID, eventParam);
+        return tileentity != null && tileentity.receiveClientEvent(id, param);
     }
 
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta){
-        return new TileEntityRail();
+        return new TileEntityRail("");
     }
 
     public enum TrackDirection{
@@ -115,15 +87,5 @@ public class BlockRail extends BlockBase implements ITileEntityProvider{
             this.lenght = length;
         }
     }
-    @SideOnly(Side.CLIENT)
-    public enum Rails{
-        SHORTSTRAIGHT(new ModelTrackShortStraight(), new ResourceLocation(Traincraft.MODID, "models/block/tracks/modelTrackShortStraight.png"));
-        //SHORTCURVE(new ResourceLocation(Traincraft.MODID, "block/trackShortCurve.obj"));
-        public ModelExtendedBase model;
-        public ResourceLocation modelTexture;
-        Rails(ModelExtendedBase modelBase, ResourceLocation modelTexture){
-            this.model = modelBase;
-            this.modelTexture = modelTexture;
-        }
-    }
+
 }

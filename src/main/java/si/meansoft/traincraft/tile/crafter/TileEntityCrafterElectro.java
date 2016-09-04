@@ -5,7 +5,7 @@ import si.meansoft.traincraft.blocks.BlockCrafter;
 public class TileEntityCrafterElectro extends TileEntityCrafterBase{
 
     public TileEntityCrafterElectro(){
-        super("crafterElectro");
+        super("CrafterElectro");
     }
 
     @Override
