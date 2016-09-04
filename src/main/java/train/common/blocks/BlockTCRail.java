@@ -66,7 +66,7 @@ public class BlockTCRail extends Block {
 			world.func_147480_a(tileEntity.linkedX, tileEntity.linkedY, tileEntity.linkedZ, false);
 			world.removeTileEntity(tileEntity.linkedX, tileEntity.linkedY, tileEntity.linkedZ);
 		}
-		if (tileEntity != null && !world.isRemote) {
+		if (tileEntity != null && (tileEntity.idDrop != null) && !world.isRemote) {
 			EntityPlayer player = Traincraft.proxy.getPlayer();
 			boolean flag = player instanceof EntityPlayer && player.capabilities.isCreativeMode;
 			if (!flag) {
