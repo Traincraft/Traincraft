@@ -1,16 +1,17 @@
 package train.client.gui;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
-import org.lwjgl.opengl.GL11;
-import train.common.recipes.DistilRecipes;
-import train.common.tile.TileEntityDistil;
 import train.common.api.LiquidManager;
 import train.common.containers.ContainerDistil;
 import train.common.library.BlockIDs;
 import train.common.library.Info;
+import train.common.recipes.DistilRecipes;
+import train.common.tile.TileEntityDistil;
 
 public class GuiDistil extends GuiContainer {
 
@@ -55,8 +56,6 @@ public class GuiDistil extends GuiContainer {
 		//drawGuiContainerBackgroundLayer(par3, t, g);
 		//drawGuiContainerForegroundLayer(t, g);
 		super.drawScreen(t, g, par3);
-		int amount = distilInventory.amount;
-		int liqui = (amount * 50) / distilInventory.getTankCapacity();
 		if ((LiquidManager.DIESEL != null && distilInventory.getLiquidItemID() == LiquidManager.DIESEL.getID())) {
 			if (intersectsWith(t, g)) {
 				drawCreativeTabHoveringText("Diesel", t, g);
@@ -71,17 +70,11 @@ public class GuiDistil extends GuiContainer {
 
 	@Override
 	protected void drawCreativeTabHoveringText(String str, int t, int g) {
-		int j = (width - xSize) / 2;
-		int k = (height - ySize) / 2;
-
-		int liqui = (distilInventory.amount * 50) / distilInventory.getTankCapacity();
 		int textWidth = fontRendererObj.getStringWidth(distilInventory.amount + "/" + distilInventory.getTankCapacity());
 		int startX = t + 14;
 		int startY = g - 12;
 
 		int i4 = 0xf0100010;
-		int h = 8;
-		int w = textWidth;
 		drawGradientRect(startX - 3, startY - 4, startX + textWidth + 3, startY + 8 + 4 + 10, i4, i4);
 		drawGradientRect(startX - 4, startY - 3, startX + textWidth + 4, startY + 8 + 3 + 10, i4, i4);
 		int colour1 = 0x505000ff;
