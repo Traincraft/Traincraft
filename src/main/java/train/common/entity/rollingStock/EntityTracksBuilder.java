@@ -1,6 +1,10 @@
 package train.common.entity.rollingStock;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.mojang.authlib.GameProfile;
+
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
 import mods.railcraft.api.tracks.RailTools;
@@ -36,9 +40,6 @@ import train.common.core.plugins.PluginRailcraft;
 import train.common.library.BlockIDs;
 import train.common.library.GuiIDs;
 import train.common.library.ItemIDs;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class EntityTracksBuilder extends EntityRollingStock implements IInventory {
 	protected boolean field_856_i;
@@ -108,15 +109,15 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 		tunnelActive = false;
 		followTracks = true;
 		tracksStack = null;
-		dataWatcher.addObject(24, Integer.valueOf((int) fuelTrain));
-		dataWatcher.addObject(26, Integer.valueOf((int) plannedHeight));
-		dataWatcher.addObject(27, Integer.valueOf((int) 1));
-		dataWatcher.addObject(28, Integer.valueOf((int) 0));
+		dataWatcher.addObject(24, Integer.valueOf(fuelTrain));
+		dataWatcher.addObject(26, Integer.valueOf(plannedHeight));
+		dataWatcher.addObject(27, Integer.valueOf(1));
+		dataWatcher.addObject(28, Integer.valueOf(0));
 	}
 
 	public EntityTracksBuilder(World world, double d, double d1, double d2) {
 		this(world);
-		setPosition(d, d1 + (double) yOffset, d2);
+		setPosition(d, d1 + yOffset, d2);
 		motionX = 0.0D;
 		motionY = 0.0D;
 		motionZ = 0.0D;
@@ -125,7 +126,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 		prevPosZ = d2;
 		currentHeight = posY;
 		plannedHeight = (int) currentHeight;
-		setPlannedHeight((int) plannedHeight);
+		setPlannedHeight(plannedHeight);
 	}
 	
 	@Override
@@ -157,7 +158,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 					j = itemstack.stackSize;
 				}
 				itemstack.stackSize -= j;
-				EntityItem entityitem = new EntityItem(worldObj, posX + (double) f, posY + (double) f1, posZ + (double) f2, new ItemStack(itemstack.getItem(), j, itemstack.getItemDamage()));
+				EntityItem entityitem = new EntityItem(worldObj, posX + f, posY + f1, posZ + f2, new ItemStack(itemstack.getItem(), j, itemstack.getItemDamage()));
 				float f3 = 0.05F;
 				entityitem.motionX = (float) rand.nextGaussian() * f3;
 				entityitem.motionY = (float) rand.nextGaussian() * f3 + 0.2F;
@@ -243,7 +244,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 		pushZ = nbttagcompound.getDouble("PushZ");
 		if (nbttagcompound.getInteger("plannedHeight") < 4) {
 			plannedHeight = (int) currentHeight;
-			setPlannedHeight((int) plannedHeight);
+			setPlannedHeight(plannedHeight);
 		}
 		else {
 			setPlannedHeight(nbttagcompound.getInteger("plannedHeight"));
@@ -745,7 +746,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 	/* Gets the drops of the block then calls blockSpawner */
 	public void getBlockList(World worldObj, int i, int j, int k) {
 		if ((Block.getIdFromBlock(worldObj.getBlock(i, j, k)) != 0)) {
-			ArrayList<ItemStack> stacks = new ArrayList<ItemStack>(TrainModBlockUtil.getItemStackFromBlock(worldObj, (int) i, (int) j, (int) k));//underBlockStack.getItem().getMetadata(underBlockStack.getItemDamage())
+			ArrayList<ItemStack> stacks = new ArrayList<ItemStack>(TrainModBlockUtil.getItemStackFromBlock(worldObj, i, j, k));//underBlockStack.getItem().getMetadata(underBlockStack.getItemDamage())
 			for (ItemStack s : stacks) {
 				if( (BlockRailBase.func_150051_a(Block.getBlockFromItem(s.getItem()))))return;
 				if (Item.getIdFromItem(s.getItem()) != 0 && (s.getItem() != Item.getItemFromBlock(Block.getBlockFromName("glass"))) && (Item.getIdFromItem(s.getItem())) != Item.getIdFromItem(tunnelBlockStack.getItem())) {// && (isBlockInteresting(s))) {// can't spawn rails or air blocks or glass blocks
@@ -906,7 +907,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 		else {
 			rotation = (float) ((Math.atan2(0 - motionX, 0 - motionZ) * 180D) / Math.PI);
 		}
-		int var6 = MathHelper.floor_double((double) (rotation * 4.0F / 360.0F) + 0.5D) & 3;
+		int var6 = MathHelper.floor_double(rotation * 4.0F / 360.0F + 0.5D) & 3;
 		return var6;
 	}
 
@@ -970,7 +971,9 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 		getBlockList(worldObj, i + d, j + hY + 1, k + 1);
 		getBlockList(worldObj, i + d, j + hY + 2, k - 1);
 		getBlockList(worldObj, i + d, j + hY + 2, k + 1);
-		if (((worldObj.getBlock(i + d, j + hY, k - 1) == Blocks.rail) || Block.getIdFromBlock(worldObj.getBlock(i + d, j + hY, k - 1))==BlockIDs.tcRail.blockID || Block.getIdFromBlock(worldObj.getBlock(i + d, j + hY, k - 1))==BlockIDs.tcRailGag.blockID)&& followTracks) {
+		if (((worldObj.getBlock(i + d, j + hY, k - 1) == Blocks.rail)
+				|| (this.worldObj.getBlock(i + d, j + hY, k - 1)) == BlockIDs.tcRail.blockID
+				|| (this.worldObj.getBlock(i + d, j + hY, k - 1)) == BlockIDs.tcRailGag.blockID) && followTracks) {
 		}
 		else {
 			//worldObj.setBlockMetadataWithNotify(i + d, j+ hY, k - 1, 0);
@@ -978,7 +981,9 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 			this.harvestBlock_do(vec);
 		}
 
-		if (((Blocks.rail== worldObj.getBlock(i + d, j + hY, k + 1)) || Block.getIdFromBlock(worldObj.getBlock(i + d, j + hY, k + 1))==BlockIDs.tcRail.blockID || Block.getIdFromBlock(worldObj.getBlock(i + d, j + hY, k + 1))==BlockIDs.tcRailGag.blockID ) && followTracks) {
+		if (((Blocks.rail == worldObj.getBlock(i + d, j + hY, k + 1))
+				|| (this.worldObj.getBlock(i + d, j + hY, k + 1)) == BlockIDs.tcRail.blockID
+				|| (this.worldObj.getBlock(i + d, j + hY, k + 1)) == BlockIDs.tcRailGag.blockID) && followTracks) {
 		}
 		else {
 			//worldObj.setBlockMetadataWithNotify(i + d, j+ hY, k + 1, 0);
@@ -986,7 +991,9 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 			this.harvestBlock_do(vec);
 		}
 
-		if ((Blocks.rail==(worldObj.getBlock(i + d, j + hY, k)) || Block.getIdFromBlock(worldObj.getBlock(i + d, j + hY, k))==BlockIDs.tcRail.blockID || Block.getIdFromBlock(worldObj.getBlock(i + d, j + hY, k))==BlockIDs.tcRailGag.blockID)&& followTracks) {
+		if ((Blocks.rail == (worldObj.getBlock(i + d, j + hY, k))
+				|| (this.worldObj.getBlock(i + d, j + hY, k)) == BlockIDs.tcRail.blockID
+				|| (this.worldObj.getBlock(i + d, j + hY, k)) == BlockIDs.tcRailGag.blockID) && followTracks) {
 		}
 		else {
 			//worldObj.setBlockMetadataWithNotify(i + d, j+ hY, k, 0);
@@ -1139,7 +1146,9 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 		getBlockList(worldObj, i + 1, j + hY + 1, k + d);
 		getBlockList(worldObj, i - 1, j + hY + 2, k + d);
 
-		if (( Blocks.rail==(worldObj.getBlock(i - 1, j + hY, k + d)) || Block.getIdFromBlock(worldObj.getBlock(i - 1, j + hY, k + d))==BlockIDs.tcRail.blockID || Block.getIdFromBlock(worldObj.getBlock(i - 1, j + hY, k + d))==BlockIDs.tcRailGag.blockID) && followTracks) {
+		if ((Blocks.rail == (worldObj.getBlock(i - 1, j + hY, k + d))
+				|| (this.worldObj.getBlock(i - 1, j + hY, k + d)) == BlockIDs.tcRail.blockID
+				|| (this.worldObj.getBlock(i - 1, j + hY, k + d)) == BlockIDs.tcRailGag.blockID) && followTracks) {
 		}
 		else {
 			//worldObj.setBlockMetadataWithNotify(i - 1, j+ hY, k + d, 0, -1);
@@ -1148,7 +1157,9 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 			this.harvestBlock_do(vec);
 		}
 
-		if ((Blocks.rail==(worldObj.getBlock(i + 1, j + hY, k + d)) || Block.getIdFromBlock(worldObj.getBlock(i + 1, j + hY, k + d))==BlockIDs.tcRail.blockID || Block.getIdFromBlock(worldObj.getBlock(i + 1, j + hY, k + d))==BlockIDs.tcRailGag.blockID) && followTracks) {
+		if ((Blocks.rail == (worldObj.getBlock(i + 1, j + hY, k + d))
+				|| (this.worldObj.getBlock(i + 1, j + hY, k + d)) == BlockIDs.tcRail.blockID
+				|| (this.worldObj.getBlock(i + 1, j + hY, k + d)) == BlockIDs.tcRailGag.blockID) && followTracks) {
 		}
 		else {
 			//worldObj.setBlockMetadataWithNotify(i + 1, j+ hY, k + d, 0, -1);
@@ -1157,7 +1168,9 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 			this.harvestBlock_do(vec);
 		}
 
-		if ((Blocks.rail==(worldObj.getBlock(i, j + hY, k + d)) || Block.getIdFromBlock(worldObj.getBlock(i, j + hY, k + d))==BlockIDs.tcRail.blockID || Block.getIdFromBlock(worldObj.getBlock(i, j + hY, k + d))==BlockIDs.tcRailGag.blockID) && followTracks) {
+		if ((Blocks.rail == (worldObj.getBlock(i, j + hY, k + d))
+				|| (this.worldObj.getBlock(i, j + hY, k + d)) == BlockIDs.tcRail.blockID
+				|| (this.worldObj.getBlock(i, j + hY, k + d)) == BlockIDs.tcRailGag.blockID) && followTracks) {
 		}
 		else {
 			//worldObj.setBlockMetadataWithNotify(i, j+ hY, k + d, 0, -1);

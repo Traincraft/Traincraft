@@ -1,6 +1,13 @@
 package train.common.core.plugins;
 
 
+import java.awt.Rectangle;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map.Entry;
+import java.util.TreeSet;
+
 import codechicken.nei.ItemList;
 import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
@@ -16,13 +23,6 @@ import train.client.gui.GuiDistil;
 import train.common.items.ItemBlockOreTC;
 import train.common.library.ItemIDs;
 import train.common.recipes.DistilRecipes;
-
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map.Entry;
-import java.util.TreeSet;
 
 public class NEIDistillationTowerRecipePlugin extends FurnaceRecipeHandler{
 	public class SmeltingPair extends CachedRecipe
@@ -108,12 +108,12 @@ public class NEIDistillationTowerRecipePlugin extends FurnaceRecipeHandler{
     {
         if(outputId.equals("tc distillation tower") && getClass() == NEIDistillationTowerRecipePlugin.class)//don't want subclasses getting a hold of this
         {
-            HashMap<Integer, ItemStack> recipes = (HashMap<Integer, ItemStack>) DistilRecipes.smelting().getSmeltingList();
+			HashMap<Item, ItemStack> recipes = (HashMap<Item, ItemStack>) DistilRecipes.smelting().getSmeltingList();
 
-            for(Entry<Integer, ItemStack> recipe : recipes.entrySet())
+			for (Entry<Item, ItemStack> recipe : recipes.entrySet())
             {
                 ItemStack item = recipe.getValue();
-                ItemStack ingredient = new ItemStack(Item.getItemById(recipe.getKey()), 1, -1);
+				ItemStack ingredient = new ItemStack((recipe.getKey()), 1, -1);
             	if(ingredient!=null && ingredient.getItem() instanceof ItemBlockOreTC){
             		ingredient.setItemDamage(1);
             		arecipes.add(new SmeltingPair(ingredient, item));
@@ -134,14 +134,14 @@ public class NEIDistillationTowerRecipePlugin extends FurnaceRecipeHandler{
     @Override
     public void loadCraftingRecipes(ItemStack result)
     {
-        HashMap<Integer, ItemStack> recipes = (HashMap<Integer, ItemStack>) DistilRecipes.smelting().getSmeltingList();
+		HashMap<Item, ItemStack> recipes = (HashMap<Item, ItemStack>) DistilRecipes.smelting().getSmeltingList();
 
-        for(Entry<Integer, ItemStack> recipe : recipes.entrySet())
+		for (Entry<Item, ItemStack> recipe : recipes.entrySet())
         {
             ItemStack item = recipe.getValue();
             if(NEIServerUtils.areStacksSameType(item, result))
             {
-            	ItemStack ingredient = new ItemStack(Item.getItemById(recipe.getKey()), 1, -1);
+				ItemStack ingredient = new ItemStack((recipe.getKey()), 1, -1);
             	if(ingredient!=null && ingredient.getItem() instanceof ItemBlockOreTC){
             		ingredient.setItemDamage(1);
             		arecipes.add(new SmeltingPair(ingredient, item));
@@ -171,12 +171,12 @@ public class NEIDistillationTowerRecipePlugin extends FurnaceRecipeHandler{
     @Override
     public void loadUsageRecipes(ItemStack ingredient)
     {
-        HashMap<Integer, ItemStack> recipes = (HashMap<Integer, ItemStack>) DistilRecipes.smelting().getSmeltingList();
+		HashMap<Item, ItemStack> recipes = (HashMap<Item, ItemStack>) DistilRecipes.smelting().getSmeltingList();
         
-        for(Entry<Integer, ItemStack> recipe : recipes.entrySet())
+		for (Entry<Item, ItemStack> recipe : recipes.entrySet())
         {
             ItemStack item = recipe.getValue();
-            if(Item.getIdFromItem(ingredient.getItem()) == recipe.getKey())
+			if (ingredient.getItem() == recipe.getKey())
             {
             	if(ingredient!=null && ingredient.getItem() instanceof ItemBlockOreTC){
             		ingredient.setItemDamage(1);

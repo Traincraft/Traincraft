@@ -1,6 +1,8 @@
 package train.common.recipes;
 
-import net.minecraft.block.Block;
+import java.util.HashMap;
+import java.util.Map;
+
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -9,32 +11,33 @@ import train.common.core.handlers.ConfigHandler;
 import train.common.library.BlockIDs;
 import train.common.library.ItemIDs;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class DistilRecipes {
 
 	private static final DistilRecipes smeltingBase = new DistilRecipes();
-	private Map smeltingList;
-	private Map experienceList = new HashMap();
-	private Map plasticChanceList = new HashMap();
-	private Map plasticList = new HashMap();
+	private Map<Item, ItemStack>		smeltingList;
+	private Map<Integer, Float> experienceList = new HashMap<Integer, Float>();
+	private Map<Item, Float> plasticChanceList = new HashMap<Item, Float>();
+	private Map<Item, ItemStack>		plasticList			= new HashMap<Item, ItemStack>();
 
 	public static final DistilRecipes smelting() {
 		return smeltingBase;
 	}
 
 	private DistilRecipes() {
-		smeltingList = new HashMap();
+		smeltingList = new HashMap<Item, ItemStack>();
 
 		if (ConfigHandler.ORE_GEN) {
 			//Prevent copper to be distilled is set in TileEntitydistil.
-			addSmelting(Item.getIdFromItem(Item.getItemFromBlock(BlockIDs.oreTC.block)), new ItemStack(ItemIDs.diesel.item, 2), 0.5F, 1, new ItemStack(ItemIDs.rawPlastic.item, 1));
+			addSmelting(Item.getItemFromBlock(BlockIDs.oreTC.block), new ItemStack(ItemIDs.diesel.item, 2), 0.5F, 1,
+					new ItemStack(ItemIDs.rawPlastic.item, 1));
 		}
-		addSmelting(Item.getIdFromItem(Items.reeds), new ItemStack(ItemIDs.diesel.item), 0.2F, 4, new ItemStack(ItemIDs.rawPlastic.item, 1));
-		addSmelting(Block.getIdFromBlock(Blocks.leaves), new ItemStack(ItemIDs.diesel.item), 0.2F, 6, new ItemStack(ItemIDs.rawPlastic.item, 2));
+		addSmelting(Items.reeds, new ItemStack(ItemIDs.diesel.item), 0.2F, 4,
+				new ItemStack(ItemIDs.rawPlastic.item, 1));
+		addSmelting(Item.getItemFromBlock(Blocks.leaves), new ItemStack(ItemIDs.diesel.item), 0.2F, 6,
+				new ItemStack(ItemIDs.rawPlastic.item, 2));
 		addSmelting(ItemIDs.diesel.itemID, new ItemStack(ItemIDs.refinedFuel.item), 1F, 2, new ItemStack(ItemIDs.rawPlastic.item, 1));
-		addSmelting(Item.getIdFromItem(Items.wheat), new ItemStack(ItemIDs.diesel.item), 0.2F, 4, new ItemStack(ItemIDs.rawPlastic.item, 1));
+		addSmelting(Items.wheat, new ItemStack(ItemIDs.diesel.item), 0.2F, 4,
+				new ItemStack(ItemIDs.rawPlastic.item, 1));
 	}
 
 	/*
@@ -48,34 +51,33 @@ public class DistilRecipes {
 	 * @param plasticChance used as follow: Math.random(plasticChance)==0
 	 * //@param plasticSktack: the plastic output and output size
 	 */
-	public void addSmelting(int i, ItemStack itemstack, float exp, int plasticChance, ItemStack plasticStack) {
-		smeltingList.put(Integer.valueOf(i), itemstack);
-		plasticList.put(Integer.valueOf(i), plasticStack);
+	public void addSmelting(Item itemID, ItemStack itemstack, float exp, int plasticChance, ItemStack plasticStack) {
+		smeltingList.put(itemID, itemstack);
+		plasticList.put(itemID, plasticStack);
 		this.experienceList.put(Integer.valueOf(Item.getIdFromItem(plasticStack.getItem())), Float.valueOf(exp));
-		this.plasticChanceList.put(Integer.valueOf(i), Float.valueOf(plasticChance));
+		this.plasticChanceList.put(itemID, Float.valueOf(plasticChance));
 	}
 
 	public float getExperience(int i) {
-		return this.experienceList.containsKey(Integer.valueOf(i)) ? ((Float) this.experienceList.get(Integer.valueOf(i))).floatValue() : 0.0F;
+		return this.experienceList.containsKey(Integer.valueOf(i)) ? this.experienceList.get(Integer.valueOf(i)).floatValue() : 0.0F;
 	}
 
 	public int getPlasticChance(Item item) {
-		int i = Item.getIdFromItem(item);
-		if (this.plasticChanceList.containsKey(i)) {
-			return (int) ((Float) this.plasticChanceList.get(i)).floatValue();
+		if (this.plasticChanceList.containsKey(item)) {
+			return (int) this.plasticChanceList.get(item).floatValue();
 		}
 		return 0;
 	}
 
-	public ItemStack getSmeltingResult(Item i) {
-		return (ItemStack) smeltingList.get(Item.getIdFromItem(i));
+	public ItemStack getSmeltingResult(Item item) {
+		return smeltingList.get(item);
 	}
 
-	public ItemStack getPlasticResult(Item i) {
-		return (ItemStack) plasticList.get(Item.getIdFromItem(i));
+	public ItemStack getPlasticResult(Item item) {
+		return plasticList.get(item);
 	}
 
-	public Map getSmeltingList() {
+	public Map<Item, ItemStack> getSmeltingList() {
 		return smeltingList;
 	}
 }

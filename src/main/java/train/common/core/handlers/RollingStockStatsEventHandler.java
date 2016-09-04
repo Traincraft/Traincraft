@@ -1,14 +1,15 @@
 package train.common.core.handlers;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.MathHelper;
 import train.common.Traincraft;
 import train.common.api.AbstractTrains;
 import train.common.mysql.mysqlLogger;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class RollingStockStatsEventHandler {
 
@@ -47,7 +48,7 @@ public class RollingStockStatsEventHandler {
 					return;
 				}
 			}
-			plDist.add(new playerDistance(((EntityPlayer) train.riddenByEntity).getDisplayName(), (double) (var7)));
+			plDist.add(new playerDistance(((EntityPlayer) train.riddenByEntity).getDisplayName(), (var7)));
 		}
 	}
 
@@ -139,19 +140,19 @@ public class RollingStockStatsEventHandler {
 	 * @param trainID
 	 * @param trainName
 	 * @param trainType
-	 * @param trainCreator
-	 * //@param posX
-	 * //@param posY
-	 * //@param posZ
+	 * @param uuid
+	 *            //@param posX
+	 *            //@param posY
+	 *            //@param posZ
 	 */
-	public void trainCreate(int trainID, String trainName, String trainType, String trainCreator, String pos) {
+	public void trainCreate(int trainID, String trainName, String trainType, UUID uuid, String pos) {
 		Map<String, String> create = new HashMap<String, String>();
 		if (trainID < 1)
 			return;
 		create.put("uID", new String(castToString(trainID)));
 		create.put("itemID", trainName);
 		create.put("trainType", trainType);
-		create.put("trainCreator", trainCreator);
+		create.put("trainCreator", uuid.toString());
 		create.put("location", pos);
 		if (Traincraft.mysqlLoggerEnabled && ConfigHandler.MYSQL_ENABLE)
 			logger.logEvent("trainCreate", create);

@@ -1,12 +1,13 @@
 package train.common.blocks;
 
+import java.util.Random;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
@@ -20,11 +21,8 @@ import train.common.library.BlockIDs;
 import train.common.library.Info;
 import train.common.tile.TileTCRail;
 
-import java.util.Random;
-
 public class BlockTCRail extends Block {
 	private IIcon texture;
-	private int itemID;
 
 	public BlockTCRail() {
 		super(Material.iron);
@@ -35,6 +33,7 @@ public class BlockTCRail extends Block {
 	/**
 	 * Checks to see if its valid to put this block at the specified coordinates. Args: world, x, y, z
 	 */
+	@Override
 	public boolean canPlaceBlockAt(World par1World, int par2, int par3, int par4) {
 		Block block = par1World.getBlock(par2, par3, par4);
 		return false;
@@ -42,9 +41,9 @@ public class BlockTCRail extends Block {
 
 	@Override
 	public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z, EntityPlayer player)  {
-		TileEntity tileEntity = world.getTileEntity(x, y, z);
-		if (tileEntity instanceof TileTCRail && ((TileTCRail)tileEntity).idDrop != 0) {
-			return new ItemStack(Item.getItemById(((TileTCRail)tileEntity).idDrop), 0);
+		TileTCRail tileEntity = (TileTCRail) world.getTileEntity(x, y, z);
+		if (tileEntity instanceof TileTCRail) {
+			return new ItemStack(tileEntity.idDrop);
 		}
 		return null;
 	}
@@ -67,11 +66,12 @@ public class BlockTCRail extends Block {
 			world.func_147480_a(tileEntity.linkedX, tileEntity.linkedY, tileEntity.linkedZ, false);
 			world.removeTileEntity(tileEntity.linkedX, tileEntity.linkedY, tileEntity.linkedZ);
 		}
-		if (tileEntity != null && tileEntity.idDrop != 0 && !world.isRemote) {
+		if (tileEntity != null && !world.isRemote) {
 			EntityPlayer player = Traincraft.proxy.getPlayer();
-			boolean flag = player instanceof EntityPlayer && ((EntityPlayer)player).capabilities.isCreativeMode;
-			if(!flag) {
-				this.dropBlockAsItem(world, i, j, k, new ItemStack(Item.getItemById(tileEntity.idDrop), 1, 0));
+			boolean flag = player instanceof EntityPlayer && player.capabilities.isCreativeMode;
+			if (!flag) {
+				this.dropBlockAsItem(world, i, j, k, new ItemStack(tileEntity.idDrop, 1, 0));
+				System.out.println("Hallo");
 			}
 		}
 		world.removeTileEntity(i, j, k);
@@ -98,7 +98,6 @@ public class BlockTCRail extends Block {
 		}
 		if (tileEntity != null && !world.isRemote) {
 			boolean flag = world.isBlockIndirectlyGettingPowered(i, j, k);
-			boolean switchState = tileEntity.getSwitchState();
 			if (tileEntity.previousRedstoneState != flag) {
 				tileEntity.changeSwitchState(world, tileEntity, i, j, k);
 				tileEntity.previousRedstoneState = flag;

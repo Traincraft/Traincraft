@@ -1,5 +1,8 @@
 package train.common.blocks;
 
+import java.util.List;
+import java.util.Random;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -16,9 +19,6 @@ import net.minecraft.world.World;
 import train.common.Traincraft;
 import train.common.library.BlockIDs;
 import train.common.library.Info;
-
-import java.util.List;
-import java.util.Random;
 
 public class BlockOreTC extends BlockSand {
 
@@ -59,14 +59,14 @@ public class BlockOreTC extends BlockSand {
 
 	@Override
 	public void onBlockAdded(World world, int x, int y, int z) {
-		if (Block.getIdFromBlock(this) == BlockIDs.oreTC.blockID && world.getBlockMetadata(x, y, z) == 1) {
+		if ((this == BlockIDs.oreTC.blockID) && world.getBlockMetadata(x, y, z) == 1) {
 			world.scheduleBlockUpdate(x, y, z, this, 5);
 		}
 	}
 
 	@Override
 	public void onNeighborBlockChange(World world, int x, int y, int z, Block par5) {
-		if (Block.getIdFromBlock(this) == BlockIDs.oreTC.blockID && world.getBlockMetadata(x, y, z) == 1) {
+		if ((this == BlockIDs.oreTC.blockID) && world.getBlockMetadata(x, y, z) == 1) {
 			if (!world.isRemote) {
 				tryToFall(world, x, y, z);
 				world.scheduleBlockUpdate(x, y, z, this, 5);
@@ -76,7 +76,7 @@ public class BlockOreTC extends BlockSand {
 
 	@Override
 	public void updateTick(World world, int x, int y, int z, Random par5Random) {
-		if (Block.getIdFromBlock(this) == BlockIDs.oreTC.blockID && world.getBlockMetadata(x, y, z) == 1) {
+		if ((this == BlockIDs.oreTC.blockID) && world.getBlockMetadata(x, y, z) == 1) {
 			if (!world.isRemote) {
 				if (Block.getIdFromBlock(world.getBlock(x, y - 1, z)) == 0) {
 					tryToFall(world, x, y, z);
@@ -94,12 +94,13 @@ public class BlockOreTC extends BlockSand {
 					world.setBlock(x, y, z, Blocks.air);
 					for (; canFallBelow(world, x, y - 1, z) && y > 0; y--) {
 						if (y > 0) {
-							world.setBlockMetadataWithNotify(x, y, z, BlockIDs.oreTC.blockID, 1);
+							world.setBlock(x, y, z, BlockIDs.oreTC.blockID);
+							world.setBlockMetadataWithNotify(x, y, z, meta, 3);
 						}
 					}
 				}
 				else {
-					EntityFallingBlock ent = new EntityFallingBlock(world, (double) x + 0.5D, (double) y + 0.5D, (double) z + 0.5D, this, meta);
+					EntityFallingBlock ent = new EntityFallingBlock(world, x + 0.5D, y + 0.5D, z + 0.5D, this, meta);
 					//onStartFalling(ent);
 					world.spawnEntityInWorld(ent);
 				}

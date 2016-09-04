@@ -2,9 +2,9 @@ package train.client.gui;
 
 import org.lwjgl.opengl.GL11;
 
+import net.minecraft.block.Block;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import train.common.api.LiquidManager;
 import train.common.containers.ContainerDistil;
@@ -40,7 +40,9 @@ public class GuiDistil extends GuiContainer {
 			/**
 			 * Stops showing 100% on copper 
 			 */
-			if(Item.getIdFromItem(distilInventory.slots[0].getItem()) == BlockIDs.oreTC.blockID && (distilInventory.slots[0].getItemDamage() != 1 && distilInventory.slots[0].getItemDamage() != 2)){
+			if (Block.getBlockFromItem(distilInventory.slots[0].getItem()) == BlockIDs.oreTC.blockID
+					&& (distilInventory.slots[0].getItemDamage() != 1
+							&& distilInventory.slots[0].getItemDamage() != 2)) {
 				return;
 			}
 			double plasticChance = DistilRecipes.smelting().getPlasticChance(distilInventory.slots[0].getItem());

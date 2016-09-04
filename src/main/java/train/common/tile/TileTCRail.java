@@ -3,8 +3,12 @@ package train.common.tile;
 import java.util.ArrayList;
 import java.util.List;
 
+import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.entity.item.EntityMinecart;
+import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
@@ -13,9 +17,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 import train.common.items.ItemTCRail;
-import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class TileTCRail extends TileEntity {
 
@@ -40,7 +41,7 @@ public class TileTCRail extends TileEntity {
 	private boolean manualOverride = false;
 	private int updateTicks;
 	private int updateTicks2;
-	public int idDrop;
+	public Item		idDrop;
 	float f = 0.125F;
 	public boolean hasRotated = false;
 
@@ -204,7 +205,7 @@ public class TileTCRail extends TileEntity {
 		if (manualOverride) {
 
 			updateTicks++;
-			List list = worldObj.getEntitiesWithinAABB(EntityMinecart.class, AxisAlignedBB.getBoundingBox((double) ((float) xCoord + f), (double) yCoord, (double) ((float) zCoord + f), (double) ((float) (xCoord + 1) - f), (double) ((float) (yCoord + 1) - f), (double) ((float) (zCoord + 1) - f)));
+			List list = worldObj.getEntitiesWithinAABB(EntityMinecart.class, AxisAlignedBB.getBoundingBox(xCoord + f, yCoord, zCoord + f, xCoord + 1 - f, yCoord + 1 - f, zCoord + 1 - f));
 
 			if (updateTicks > 50 && list.isEmpty()) {
 
@@ -320,7 +321,7 @@ public class TileTCRail extends TileEntity {
 		switchActive = nbt.getBoolean("switchActive");
 		canTypeBeModifiedBySwitch = nbt.getBoolean("canTypeBeModifiedBySwitch");
 		manualOverride = nbt.getBoolean("manualOverride");
-		idDrop = nbt.getInteger("idDrop");
+		idDrop = Item.getItemById(nbt.getInteger("idDrop"));
 		hasRotated = nbt.getBoolean("hasRotated");
 		previousRedstoneState = nbt.getBoolean("previousRedstoneState");
 		super.readFromNBT(nbt);
@@ -346,7 +347,7 @@ public class TileTCRail extends TileEntity {
 		nbt.setBoolean("canTypeBeModifiedBySwitch", canTypeBeModifiedBySwitch);
 		nbt.setBoolean("manualOverride", manualOverride);
 		nbt.setBoolean("hasRotated", hasRotated);
-		nbt.setInteger("idDrop", idDrop);
+		nbt.setInteger("idDrop", Item.getIdFromItem(idDrop));
 		nbt.setBoolean("previousRedstoneState", previousRedstoneState);
 		super.writeToNBT(nbt);
 	}

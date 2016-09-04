@@ -7,6 +7,8 @@
 
 package train.common.blocks;
 
+import java.util.Random;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -30,8 +32,6 @@ import train.common.library.GuiIDs;
 import train.common.library.Info;
 import train.common.tile.TileEntityOpenHearthFurnace;
 import train.common.tile.TileHelper;
-
-import java.util.Random;
 
 public class BlockOpenHearthFurnace extends BlockContainer {
 
@@ -115,10 +115,10 @@ public class BlockOpenHearthFurnace extends BlockContainer {
 		keepFurnaceInventory = true;
 
 		if (flag) {
-			world.setBlockMetadataWithNotify(i, j, k, BlockIDs.openFurnaceActive.blockID, 0);
+			world.setBlock(i, j, k, BlockIDs.openFurnaceActive.blockID);
 		}
 		else {
-			world.setBlockMetadataWithNotify(i, j, k, BlockIDs.openFurnaceIdle.blockID, 0);
+			world.setBlock(i, j, k, BlockIDs.openFurnaceIdle.blockID);
 		}
 		keepFurnaceInventory = false;
 		world.setBlockMetadataWithNotify(i, j, k, l, 0);
@@ -170,7 +170,7 @@ public class BlockOpenHearthFurnace extends BlockContainer {
 							i1 = itemstack.stackSize;
 						}
 						itemstack.stackSize -= i1;
-						EntityItem entityitem = new EntityItem(world, (float) i + f, (float) j + f1, (float) k + f2, new ItemStack(itemstack.getItem(), i1, itemstack.getItemDamage()));
+						EntityItem entityitem = new EntityItem(world, i + f, j + f1, k + f2, new ItemStack(itemstack.getItem(), i1, itemstack.getItemDamage()));
 						float f3 = 0.05F;
 						entityitem.motionX = (float) furnaceRand.nextGaussian() * f3;
 						entityitem.motionY = (float) furnaceRand.nextGaussian() * f3 + 0.2F;
@@ -187,7 +187,7 @@ public class BlockOpenHearthFurnace extends BlockContainer {
 	public void onBlockPlacedBy(World world, int i, int j, int k, EntityLivingBase entityliving, ItemStack stack) {
 		TileEntityOpenHearthFurnace te = (TileEntityOpenHearthFurnace) world.getTileEntity(i, j, k);
 		if (te != null) {
-			int dir = MathHelper.floor_double((double) ((entityliving.rotationYaw * 4F) / 360F) + 0.5D) & 3;
+			int dir = MathHelper.floor_double((entityliving.rotationYaw * 4F) / 360F + 0.5D) & 3;
 			te.setFacing(ForgeDirection.getOrientation(dir == 0 ? 2 : dir == 1 ? 5 : dir == 2 ? 3 : 4));
 			world.markBlockForUpdate(i, j, k);
 		}

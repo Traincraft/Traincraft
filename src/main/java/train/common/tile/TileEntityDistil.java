@@ -2,19 +2,24 @@ package train.common.tile;
 
 import java.util.Random;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraftforge.fluids.*;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidContainerRegistry;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidTankInfo;
+import net.minecraftforge.fluids.IFluidHandler;
 import train.common.api.LiquidManager;
 import train.common.api.LiquidManager.StandardTank;
 import train.common.blocks.BlockDistil;
 import train.common.library.BlockIDs;
 import train.common.recipes.DistilRecipes;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class TileEntityDistil extends TileTraincraft implements IFluidHandler {
 
@@ -242,9 +247,11 @@ public class TileEntityDistil extends TileTraincraft implements IFluidHandler {
 		}
 		ItemStack itemstack = DistilRecipes.smelting().getSmeltingResult(slots[0].getItem());
 		if (itemstack == null) {
+			System.out.println("Fuck you");
 			return false;
 		}
-		if (Item.getIdFromItem(slots[0].getItem()) == Item.getIdFromItem(Item.getItemFromBlock(BlockIDs.oreTC.block)) && (slots[0].getItemDamage() != 1 && slots[0].getItemDamage() != 2)) {
+		if (Block.getBlockFromItem(slots[0].getItem()) == BlockIDs.oreTC.block
+				&& (slots[0].getItemDamage() != 1 && slots[0].getItemDamage() != 2)) {
 			return false;
 		}
 		FluidStack resultLiquid = FluidContainerRegistry.getFluidForFilledItem(itemstack);
