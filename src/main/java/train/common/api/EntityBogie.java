@@ -602,19 +602,20 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 	}
 	protected void moveOnTCSlope(int i, int j, int k, double cx, double cy, double cz, double slopeAngle, double slopeHeight, double slopeLength, int meta) {
 
-		//TODO this was a 1.6.4 mask for a glitch where the speed will switch to 0 when going too fast on a slope.
-		if (Math.abs(this.motionX) > 0.3D) {
-					this.motionX = Math.copySign(0.3D, this.motionX);
-					if (this.entityMainTrain != null) {
-						this.entityMainTrain.motionX = Math.copySign(0.3D, this.entityMainTrain.motionX);
-				}
+		// TODO check if we are able to move faster than 196km/h later when we cleaned up
+			// everything.
+		if (Math.abs(this.motionX) > 0.912D) {
+			this.motionX = Math.copySign(0.912D, this.motionX);
+			if (this.entityMainTrain != null) {
+				this.entityMainTrain.motionX = Math.copySign(0.912D, this.entityMainTrain.motionX);
 			}
-				if (Math.abs(this.motionZ) > 0.3D) {
-					this.motionZ = Math.copySign(0.3D, this.motionZ);
-					if (this.entityMainTrain != null) {
-						this.entityMainTrain.motionZ = Math.copySign(0.3D, this.entityMainTrain.motionZ);
-				}
+		}
+		if (Math.abs(this.motionZ) > 0.912D) {
+			this.motionZ = Math.copySign(0.912D, this.motionZ);
+			if (this.entityMainTrain != null) {
+				this.entityMainTrain.motionZ = Math.copySign(0.912D, this.entityMainTrain.motionZ);
 			}
+		}
 		this.posY = j + 0.2D;
 
 		if (meta == 2 || meta == 0) {

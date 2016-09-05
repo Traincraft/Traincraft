@@ -1076,9 +1076,9 @@ public class ItemTCRail extends ItemPart {
 					tcRail.setFacing(l);
 					tcRail.setType(type.getLabel());
 					tcRail.idDrop = idDropped;
-					tcRail.slopeAngle = 0.13;//0.1551;//0.3218;
+					tcRail.slopeAngle = 0.1668;// 0.1551;//0.3218;
 					tcRail.slopeHeight = 1;
-					tcRail.slopeLength = 7;
+					tcRail.slopeLength = 6;
 					world.setBlock(x, y + 1, z - 1, BlockIDs.tcRailGag.block, l, 2);
 					tileGag[0] = (TileTCRailGag) world.getTileEntity(x, y + 1, z - 1);
 					tileGag[0].bbHeight = 0.2f;
@@ -1108,9 +1108,9 @@ public class ItemTCRail extends ItemPart {
 					tcRail.setFacing(l);
 					tcRail.setType(type.getLabel());
 					tcRail.idDrop = idDropped;
-					tcRail.slopeAngle = 0.13;//0.1551;//0.3218;
+					tcRail.slopeAngle = 0.1668;// 0.1551;//0.3218;
 					tcRail.slopeHeight = 1;
-					tcRail.slopeLength = 7;
+					tcRail.slopeLength = 6;
 					world.setBlock(x, y + 1, z + 1, BlockIDs.tcRailGag.block, l, 2);
 					tileGag[0] = (TileTCRailGag) world.getTileEntity(x, y + 1, z + 1);
 					tileGag[0].bbHeight = 0.2f;
@@ -1140,9 +1140,9 @@ public class ItemTCRail extends ItemPart {
 					tcRail.setFacing(l);
 					tcRail.setType(type.getLabel());
 					tcRail.idDrop = idDropped;
-					tcRail.slopeAngle = 0.13;//0.1551;//0.1651;//0.3218;
+					tcRail.slopeAngle = 0.1668;// 0.1551;//0.1651;//0.3218;
 					tcRail.slopeHeight = 1;
-					tcRail.slopeLength = 7;
+					tcRail.slopeLength = 6;
 					world.setBlock(x - 1, y + 1, z, BlockIDs.tcRailGag.block, l, 2);
 					tileGag[0] = (TileTCRailGag) world.getTileEntity(x - 1, y + 1, z);
 					tileGag[0].bbHeight = 0.2f;
@@ -1172,9 +1172,9 @@ public class ItemTCRail extends ItemPart {
 					tcRail.setFacing(l);
 					tcRail.setType(type.getLabel());
 					tcRail.idDrop = idDropped;
-					tcRail.slopeAngle = 0.13;//0.1551;//0.3218;
+					tcRail.slopeAngle = 0.1668;// 0.1551;//0.3218;
 					tcRail.slopeHeight = 1;
-					tcRail.slopeLength = 7;
+					tcRail.slopeLength = 6;
 					world.setBlock(x + 1, y + 1, z, BlockIDs.tcRailGag.block, l, 2);
 					tileGag[0] = (TileTCRailGag) world.getTileEntity(x + 1, y + 1, z);
 					tileGag[0].bbHeight = 0.2f;

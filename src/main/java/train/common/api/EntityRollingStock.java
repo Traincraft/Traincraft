@@ -74,7 +74,6 @@ import train.common.core.network.PacketKeyPress;
 import train.common.core.network.PacketRollingStockRotation;
 import train.common.core.network.PacketSetTrainLockedToClient;
 import train.common.entity.rollingStock.EntityStockCar;
-import train.common.entity.rollingStock.EntityTracksBuilder;
 import train.common.items.ItemTCRail;
 import train.common.items.ItemTCRail.TrackTypes;
 import train.common.library.BlockIDs;
@@ -1410,77 +1409,58 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 
 		posY = j + 0.2;
 		
-		//TODO this was a 1.6.4 mask for a glitch where the speed will switch to 0 when going too fast on a slope.
-		if (Math.abs(motionX) > 0.3) {motionX = Math.copySign(0.3, motionX);}
-		if (Math.abs(motionZ) > 0.3) {motionZ = Math.copySign(0.3, motionZ);}
-		if (meta == 2 || meta == 0) {
-			if (meta == 2) cz += 1;
-
-			double p_corr_x = cx + 0.5;
-			double norm = Math.sqrt(motionX * motionX + motionZ * motionZ);
-			double zPosProgress = Math.abs(cz - posZ);
-			double yPosProgress = Math.tan(slopeAngle * zPosProgress);
-			double newPosY = (j + Math.abs(yPosProgress) + yOffset + 0.2);
-			//if (newPosY > (j + yOffset + slopeHeight+0.2+0.05)) newPosY = (j + yOffset + slopeHeight+0.02+0.05);
-
-			setPosition(p_corr_x, newPosY, posZ);
-			if (!(this instanceof Locomotive) && !(this instanceof EntityTracksBuilder)) {
-				if ((this.posY - this.prevPosY) < 0) {
-					norm *= 1.02;
-				}
-				if ((this.posY - this.prevPosY) > 0) {
-					norm *= 0.98;
-				}
-				if (norm < 0.01) {
-					//System.out.println(motionZ);
-					if ((motionZ) < 0 && meta == 2) {
-						norm = norm += 0.0001;
-						motionZ = Math.copySign(motionZ, 1);
-					}
-					if ((motionZ) > 0 && meta == 0) {
-						norm = norm += 0.0001;
-						motionZ = Math.copySign(motionZ, -1);
-					}
-				}
-			}
-			motionX = 0;
-			motionY = 0;
-			motionZ = Math.copySign(norm, motionZ);
-			moveEntity(0.0D, 0.0D, motionZ);
+		// TODO check if we are able to move faster than 196km/h later when we cleaned up
+		// everything. 196km/h is the Max-Speed with attached carts.
+		if (Math.abs(motionX) > 0.912) {
+			motionX = Math.copySign(0.912, motionX);
 		}
-		if (meta == 1 || meta == 3) {
-			double p_corr_z = cz + 0.5;
-			if (meta == 1) cx += 1;
-			double norm = Math.sqrt(motionX * motionX + motionZ * motionZ);
-			double xPosProgress = Math.abs(cx - posX);
-			double yPosProgress = Math.tan(slopeAngle * xPosProgress);
-			double newPosY = (j + Math.abs(yPosProgress) + yOffset + 0.2);
-			//if (newPosY > (j + yOffset + slopeHeight + 0.2)) newPosY = (j + yOffset + slopeHeight + 0.2);
+		if (Math.abs(motionZ) > 0.912) {
+			motionZ = Math.copySign(0.912, motionZ);
+		}
+		if (meta == 2 || meta == 0) {
 
-			setPosition(posX, newPosY, p_corr_z);
-			if (!(this instanceof Locomotive) && !(this instanceof EntityTracksBuilder)) {
-				if ((this.posY - this.prevPosY) < 0) {
-					norm *= 1.02;
-				}
-				if ((this.posY - this.prevPosY) > 0) {
-					norm *= 0.98;
-				}
-				if (norm < 0.01) {
-					//System.out.println(motionX);
-					if ((motionX) < 0 && meta == 1) {
-						norm = norm += 0.0001;
-						motionX = Math.copySign(motionX, 1);
-					}
-					if ((motionX) > 0 && meta == 3) {
-						norm = norm += 0.0001;
-						motionX = Math.copySign(motionX, -1);
-					}
-				}
+			if (meta == 2) {
+				cz += 1;
 			}
-			motionX = Math.copySign(norm, motionX);
-			motionY = 0;
-			motionZ = 0;
-			moveEntity(motionX, 0.0D, 0.0D);
+			
+			double norm = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
+			double newPosY = (j + Math.abs(Math.tan(slopeAngle * Math.abs(cz - this.posZ))) + this.yOffset + 0.2D);
+			double maxPosY = (j + this.yOffset + 0.25D + slopeHeight);
+			
+			if (newPosY > maxPosY) {
+
+				newPosY = maxPosY;
+			}
+			
+			this.setPosition(cx + 0.5D, newPosY, this.posZ);
+			this.moveEntity(0.0D, 0.0D, Math.copySign(norm, this.motionZ));
+			
+			this.motionX = 0.0D;
+			this.motionY = 0.0D;
+			this.motionZ = Math.copySign(norm, this.motionZ);
+		}
+		else if (meta == 1 || meta == 3) {
+			
+			if (meta == 1) {
+				
+				cx += 1;
+			}
+			
+			double norm = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
+			double newPosY = (j + Math.abs(Math.tan(slopeAngle * Math.abs(cx - this.posX))) + this.yOffset + 0.2D);
+			double maxPosY = (j + this.yOffset + 0.25D + slopeHeight);
+			
+			if (newPosY > maxPosY) {
+
+				newPosY = maxPosY;
+			}
+			
+			this.setPosition(this.posX, newPosY, cz + 0.5D);
+			this.moveEntity(Math.copySign(norm, this.motionX), 0.0D, 0.0D);
+			
+			this.motionX = Math.copySign(norm, this.motionX);
+			this.motionY = 0.0D;
+			this.motionZ = 0.0D;
 		}
 	}
 
