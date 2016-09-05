@@ -1431,9 +1431,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 
 				newPosY = maxPosY;
 			}
-			
-			System.out.print("New PosY: " + newPosY);
-			
 			this.setPosition(cx + 0.5D, newPosY, this.posZ);
 			this.moveEntity(0.0D, 0.0D, Math.copySign(norm, this.motionZ));
 			
@@ -1456,9 +1453,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 
 				newPosY = maxPosY;
 			}
-			
-			System.out.print("New PosY: " + newPosY);
-			
 			this.setPosition(this.posX, newPosY, cz + 0.5D);
 			this.moveEntity(Math.copySign(norm, this.motionX), 0.0D, 0.0D);
 			
