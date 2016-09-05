@@ -226,8 +226,8 @@ public class EntityRotativeDigger extends Entity implements IInventory {
 				if (k > itemstack.stackSize) {
 					k = itemstack.stackSize;
 				}
-				itemstack.stackSize -= k;
-				EntityItem entityitem = new EntityItem(worldObj, posX + f, posY + f1, posZ + f2, new ItemStack(itemstack.getItem(), k, itemstack.getItemDamage()));
+				
+				EntityItem entityitem = new EntityItem(worldObj, posX + f, posY + f1, posZ + f2, itemstack.splitStack(k));
 				float f3 = 0.05F;
 				entityitem.motionX = (float) rand.nextGaussian() * f3;
 				entityitem.motionY = (float) rand.nextGaussian() * f3 + 0.2F;
