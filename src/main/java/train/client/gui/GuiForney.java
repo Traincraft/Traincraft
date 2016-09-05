@@ -133,8 +133,6 @@ public class GuiForney extends GuiContainer {
 
 	@Override
 	protected void drawCreativeTabHoveringText(String str, int t, int g) {
-		int j = (width - xSize) / 2;
-		int k = (height - ySize) / 2;
 
 		//int liqui = (dieselInventory.getLiquidAmount() * 50) / dieselInventory.getTankCapacity();
 		String state = "";
@@ -149,8 +147,6 @@ public class GuiForney extends GuiContainer {
 		int startY = 5;
 
 		int i4 = 0xf0100010;
-		int h = 8;
-		int w = textWidth;
 		drawGradientRect(startX - 3, startY - 4, startX + textWidth + 3, startY + 8 + 4 + 40, i4, i4);
 		drawGradientRect(startX - 4, startY - 3, startX + textWidth + 4, startY + 8 + 3 + 40, i4, i4);
 		int colour1 = 0x505000ff;
@@ -168,10 +164,7 @@ public class GuiForney extends GuiContainer {
 		//System.out.println(mouseX+" "+mouseY);
 		int j = (width - xSize) / 2;
 		int k = (height - ySize) / 2;
-		if (mouseX >= j + 124 && mouseX <= j + 174 && mouseY >= k - 10 && mouseY <= k) {
-			return true;
-		}
-		return false;
+		return (mouseX >= j + 124 && mouseX <= j + 174 && mouseY >= k - 10 && mouseY <= k);
 	}
 
 	@Override

@@ -52,17 +52,17 @@ public class SoundUpdaterRollingStock {
 		this.cartSpeed = MathHelper.sqrt_double(this.theMinecart.getMotionXClient() * this.theMinecart.getMotionXClient() + this.theMinecart.getMotionZClient() * this.theMinecart.getMotionZClient()) / 100;
 		this.isMoving = this.cartSpeed >= 0.01D;
 		//System.out.println(isMoving);
-		if (var2 && !this.riddenByPlayer) {
+		//if (var2 && !this.riddenByPlayer) {
 			//this.theSoundManager.stopEntitySound(this.thePlayer);
-		}
+		//}
 
 		if (this.isDead || !this.flag && this.volume1 == 0.0F && this.volume2 == 0.0F) {
-			if (!var3) {
+			/*if (!var3) {
 				//this.theSoundManager.stopEntitySound(this.theMinecart);
 				if (var2 || this.riddenByPlayer) {
 					//this.theSoundManager.stopEntitySound(this.thePlayer);
 				}
-			}
+			}*/
 			this.flag = true;
 			if (this.isDead) {
 				return;
@@ -93,7 +93,7 @@ public class SoundUpdaterRollingStock {
 			this.soundPitch = 0.0F;
 			this.volume2 = 0.0F;
 		}
-		if (!this.flag) {
+		/*if (!this.flag) {
 			if (this.soundPitch != var6) {
 				//this.theSoundManager.setEntitySoundPitch(this.theMinecart, this.soundPitch);
 			}
@@ -110,7 +110,6 @@ public class SoundUpdaterRollingStock {
 				//this.theSoundManager.updateSoundLocation(this.thePlayer, this.theMinecart);
 			}
 		}
-		/*
 		else {
 			if (this.theSoundManager.isEntitySoundPlaying(this.theMinecart)) {
 				this.theSoundManager.stopEntitySound(this.theMinecart);

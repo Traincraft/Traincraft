@@ -12,12 +12,12 @@ import cpw.mods.fml.relauncher.SideOnly;
 import train.client.gui.GuiCrafterTier;
 import train.common.library.Info;
 
+import static net.minecraft.client.gui.Gui.drawRect;
+
 @SideOnly(Side.CLIENT)
 public class SideTabInfo extends SideTab {
 
 	private int headerColour = 0x192c4f;
-	private int subheaderColour = 0xaaafb8;
-	private int textColour = 0xffffff;
 	private int underColor = 0xa0a0a0;
 	private String[] names;
 
@@ -42,11 +42,11 @@ public class SideTabInfo extends SideTab {
 		fontRenderer.drawString("Slot information", x - 69, y + 8, underColor);
 		fontRenderer.drawString("Slot information", x - 70, y + 8, headerColour);
 
-		gui.drawRect(x - 83, y + 20, -90, 107, 0xff524100);
-		gui.drawRect(x - 82, y + 19, -91, 108, 0xff524100);
+		drawRect(x - 83, y + 20, -90, 107, 0xff524100);
+		drawRect(x - 82, y + 19, -91, 108, 0xff524100);
 
-		gui.drawRect(x - 63, y + 20, -10, 107, 0xff524100);
-		gui.drawRect(x - 62, y + 19, -11, 108, 0xff524100);
+		drawRect(x - 63, y + 20, -10, 107, 0xff524100);
+		drawRect(x - 62, y + 19, -11, 108, 0xff524100);
 
 		for (int i = 0; i < 10; i++) {
 			fontRenderer.drawString(names[i], x - 59, y + 20 + i * 8, underColor);

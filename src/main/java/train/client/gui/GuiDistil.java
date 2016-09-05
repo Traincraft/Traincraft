@@ -112,9 +112,6 @@ public class GuiDistil extends GuiContainer {
 	public boolean intersectsWith(int mouseX, int mouseY) {
 		int j = (width - xSize) / 2;
 		int k = (height - ySize) / 2;
-		if (mouseX >= j + 143 && mouseX <= j + 164 && mouseY >= k + 5 && mouseY <= k + 57) {
-			return true;
-		}
-		return false;
+		return (mouseX >= j + 143 && mouseX <= j + 164 && mouseY >= k + 5 && mouseY <= k + 57);
 	}
 }

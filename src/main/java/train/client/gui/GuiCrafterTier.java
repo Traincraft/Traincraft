@@ -23,6 +23,8 @@ import train.common.containers.ContainerTier;
 
 import java.util.List;
 
+import static train.common.api.AbstractTrains.getColorFromString;
+
 public class GuiCrafterTier extends GuiTraincraft {
 
 	private IInventory tier;
@@ -52,7 +54,7 @@ public class GuiCrafterTier extends GuiTraincraft {
 		super(new ContainerTier(inv, tier), tier);
 
 		this.tier = tier;
-		this.tier1 = (ITier) tier;
+		tier1 = (ITier) tier;
 		recipeList = TierRecipeManager.getInstance().getTierRecipeList(tier1.Tier());
 		recipes = tier1.knownRecipes();
 		ySize = 256;
@@ -93,11 +95,11 @@ public class GuiCrafterTier extends GuiTraincraft {
 
 		borderSlots(recipeList, states);
 		
-		if(!this.isTabRecipeOpen){
+		if(!isTabRecipeOpen){
 			currentRenderTabY=this.START_Y;
 		}
 		/**Render the entity in GUI*/
-		if(currentKnownItem!=null && this.isTabRecipeOpen){
+		if(currentKnownItem!=null && isTabRecipeOpen){
 			if(currentRenderTabY<END_Y)currentRenderTabY++;
 			ticksInGui++;
 			for(int a=0;a<6;a++){
@@ -117,7 +119,7 @@ public class GuiCrafterTier extends GuiTraincraft {
 				RenderHelper.enableGUIStandardItemLighting();
 				Item item = currentKnownItem.getItem();
 				EnumTrains train = EnumTrains.getCurrentTrain(item);
-				if(EnumTrains.getEntityWithItem(item, this.mc.theWorld, 0, 0, 0)!=null && Item.itemRegistry.getNameForObject(item) != Item.itemRegistry.getNameForObject(previousItem)){
+				if(EnumTrains.getEntityWithItem(item, this.mc.theWorld, 0, 0, 0)!=null && !Item.itemRegistry.getNameForObject(item).equals(Item.itemRegistry.getNameForObject(previousItem))){
 					renderEntity = EnumTrains.getEntityWithItem(item, this.mc.theWorld, 0, 0, 0);
 					previousItem = item;
 				}
@@ -125,7 +127,7 @@ public class GuiCrafterTier extends GuiTraincraft {
 					if(color < 0)color = 0;
 					if(ticksInGui % 400 == 0)color++;
 					if(color>train.getColors().length-1)color=0;
-					if(renderEntity!=null)((AbstractTrains)renderEntity).setColor(((AbstractTrains)renderEntity).getColorFromString(train.getColors()[color]));
+					if(renderEntity!=null)((AbstractTrains)renderEntity).setColor(getColorFromString(train.getColors()[color]));
 				}
 				float scale = train.getGuiRenderScale();
 				GL11.glScalef(-scale, scale, scale);

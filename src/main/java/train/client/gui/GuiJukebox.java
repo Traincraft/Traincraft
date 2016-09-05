@@ -71,7 +71,7 @@ public class GuiJukebox extends GuiScreen {
 		Keyboard.enableRepeatEvents(true);
 		int var1 = (this.width - gui_width) / 2;
 		int var2 = (this.height - gui_height) / 2;
-		if (!((AbstractTrains) jukebox).getTrainLockedFromPacket()) {
+		if (!jukebox.getTrainLockedFromPacket()) {
 			this.buttonList.add(this.buttonLock = new GuiButton(3, var1 + gui_width - 350, var2 - 10, 51, 10, "Unlocked"));
 		}
 		else {
@@ -101,8 +101,8 @@ public class GuiJukebox extends GuiScreen {
 		drawSquareSides(gui_width - 16, 16, 2, 2, var5 + 8, var6 + 22 + 26, var7 - 8, var8 - gui_height / 2 - 32 + 36, 10, 0);
 
 		drawTexturedModalRect(var5 + 6, var6 + 6, 20, 0, 7, 10);
-		drawTexturedModalRect(var5 + 13, var6 + 6, 0 + anim / 100, 12, (28 * (gui_width / 28)) / 2, 10);
-		drawTexturedModalRect(var5 + 13 + (28 * (gui_width / 28)) / 2, var6 + 6, 0 + anim / 100, 12, (28 * (gui_width / 28)) / 2, 10);
+		drawTexturedModalRect(var5 + 13, var6 + 6, anim / 100, 12, (28 * (gui_width / 28)) / 2, 10);
+		drawTexturedModalRect(var5 + 13 + (28 * (gui_width / 28)) / 2, var6 + 6, anim / 100, 12, (28 * (gui_width / 28)) / 2, 10);
 		if (jukebox.isPlaying) {
 			anim += 10;
 			if (anim == 2800) {
@@ -166,7 +166,7 @@ public class GuiJukebox extends GuiScreen {
 	public void updateScreen() {
 		streamTextBox.updateCursorCounter();
 		if (jukebox.isInvalid) {
-			mc.displayGuiScreen((GuiScreen) null);
+			mc.displayGuiScreen(null);
 			mc.setIngameFocus();
 		}
 		super.updateScreen();
@@ -249,7 +249,7 @@ public class GuiJukebox extends GuiScreen {
 		}
 
 		if (button.id == 4) {
-			if((Minecraft.getMinecraft().thePlayer != null) && (!((EntityJukeBoxCart) jukebox).isInvalid)){
+			if((Minecraft.getMinecraft().thePlayer != null) && (!jukebox.isInvalid)){
 				if(jukebox.volume<1.0f) {
 					jukebox.volume += 0.1f;
 				}
@@ -257,7 +257,7 @@ public class GuiJukebox extends GuiScreen {
 		}
 
 		if (button.id == 5) {
-			if((Minecraft.getMinecraft().thePlayer != null) && (!((EntityJukeBoxCart) jukebox).isInvalid)){
+			if((Minecraft.getMinecraft().thePlayer != null) && (!jukebox.isInvalid)){
 				if(jukebox.volume>0.0f) {
 					jukebox.volume -= 0.1f;
 				}
@@ -266,33 +266,31 @@ public class GuiJukebox extends GuiScreen {
 
 		if (button.id == 3) {
 			if (player != null && player instanceof EntityPlayer && player.getCommandSenderName().toLowerCase().equals(((AbstractTrains) jukebox).getTrainOwner().toLowerCase())) {
-				if ((!((AbstractTrains) jukebox).getTrainLockedFromPacket())) {
-					AxisAlignedBB box = ((EntityJukeBoxCart) jukebox).boundingBox.expand(5, 5, 5);
-					List lis3 = ((EntityJukeBoxCart) jukebox).worldObj.getEntitiesWithinAABBExcludingEntity(jukebox, box);
+				if ((!jukebox.getTrainLockedFromPacket())) {
+					AxisAlignedBB box = jukebox.boundingBox.expand(5, 5, 5);
+					List lis3 = jukebox.worldObj.getEntitiesWithinAABBExcludingEntity(jukebox, box);
 					if (lis3 != null && lis3.size() > 0) {
-						for (int j1 = 0; j1 < lis3.size(); j1++) {
-							Entity entity = (Entity) lis3.get(j1);
+						for (Object entity : lis3) {
 							if (entity instanceof EntityPlayer) {
 								Traincraft.lockChannel.sendToServer(new PacketSetTrainLockedToClient(true, jukebox.getEntityId()));
 							}
 						}
 					}
-					((AbstractTrains) jukebox).setTrainLockedFromPacket(true);
+					jukebox.setTrainLockedFromPacket(true);
 					button.displayString = "Locked";
 					this.initGui();
 				}
 				else {
-					AxisAlignedBB box = ((EntityJukeBoxCart) jukebox).boundingBox.expand(5, 5, 5);
-					List lis3 = ((EntityJukeBoxCart) jukebox).worldObj.getEntitiesWithinAABBExcludingEntity(jukebox, box);
+					AxisAlignedBB box = jukebox.boundingBox.expand(5, 5, 5);
+					List lis3 = jukebox.worldObj.getEntitiesWithinAABBExcludingEntity(jukebox, box);
 					if (lis3 != null && lis3.size() > 0) {
-						for (int j1 = 0; j1 < lis3.size(); j1++) {
-							Entity entity = (Entity) lis3.get(j1);
+						for (Object entity : lis3) {
 							if (entity instanceof EntityPlayer) {
 								Traincraft.lockChannel.sendToServer(new PacketSetTrainLockedToClient(true, jukebox.getEntityId()));
 							}
 						}
 					}
-					((AbstractTrains) jukebox).locked = false;
+					jukebox.locked = false;
 					button.displayString = "UnLocked";
 					this.initGui();
 				}
@@ -315,7 +313,7 @@ public class GuiJukebox extends GuiScreen {
 
 	protected void drawCreativeTabHoveringText(String str, int t, int g) {
 		String state = "";
-		if (((AbstractTrains) jukebox).getTrainLockedFromPacket()) {
+		if (jukebox.getTrainLockedFromPacket()) {
 			state = "Locked";
 		} else {
 			state = "Unlocked";
@@ -333,16 +331,13 @@ public class GuiJukebox extends GuiScreen {
 						fontRendererObj.drawStringWithShadow("only its owner can open", t + 15, g + 10 - 40, -1);
 						fontRendererObj.drawStringWithShadow("the GUI and destroy it.", t + 15, g + 20 - 40, -1);
 						fontRendererObj.drawStringWithShadow("Current state: " + state, t + 15, g + 30 - 40, -1);
-						fontRendererObj.drawStringWithShadow("Owner: " + ((AbstractTrains) jukebox).getTrainOwner().trim(), t + 15, g + 40 - 40, -1);
+						fontRendererObj.drawStringWithShadow("Owner: " + jukebox.getTrainOwner().trim(), t + 15, g + 40 - 40, -1);
 	}
 
 	public boolean intersectsWith(int mouseX, int mouseY) {
 		int j = (width - gui_width) / 2;
 		int k = (height - gui_height) / 2;
-		if (mouseX >= j + gui_width - 350 && mouseX <= j + gui_width-300 && mouseY >= k - 10 && mouseY <= k) {
-			return true;
-		}
-		return false;
+		return (mouseX >= j + gui_width - 350 && mouseX <= j + gui_width-300 && mouseY >= k - 10 && mouseY <= k);
 	}
 
 	public String takeFirstEntryFromM3U(String m3uurl) {

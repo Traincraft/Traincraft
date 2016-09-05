@@ -47,7 +47,7 @@ public class GuiFreight extends GuiContainer {
 		buttonList.clear();
 		int var1 = (this.width - xSize) / 2;
 		int var2 = (this.height - ySize) / 2;
-		if (!((AbstractTrains) freight).getTrainLockedFromPacket()) {
+		if (!freight.getTrainLockedFromPacket()) {
 			this.buttonList.add(this.buttonLock = new GuiButton(3, var1 + 124, var2 - 10, 51, 10, "Unlocked"));
 		}
 		else {
@@ -58,35 +58,33 @@ public class GuiFreight extends GuiContainer {
 	@Override
 	protected void actionPerformed(GuiButton guibutton) {
 		if (guibutton.id == 3) {
-			if (player != null && player instanceof EntityPlayer && player.getCommandSenderName().toLowerCase().equals(((AbstractTrains) freight).getTrainOwner().toLowerCase())) {
-				if ((!((AbstractTrains) freight).getTrainLockedFromPacket())) {
-					AxisAlignedBB box = ((Freight) freight).boundingBox.expand(5, 5, 5);
-					List lis3 = ((Freight) freight).worldObj.getEntitiesWithinAABBExcludingEntity(freight, box);
+			if (player != null && player.getCommandSenderName().toLowerCase().equals(freight.getTrainOwner().toLowerCase())) {
+				if ((!freight.getTrainLockedFromPacket())) {
+					AxisAlignedBB box = freight.boundingBox.expand(5, 5, 5);
+					List lis3 = freight.worldObj.getEntitiesWithinAABBExcludingEntity(freight, box);
 					if (lis3 != null && lis3.size() > 0) {
-						for (int j1 = 0; j1 < lis3.size(); j1++) {
-							Entity entity = (Entity) lis3.get(j1);
+						for (Object entity : lis3) {
 							if (entity instanceof EntityPlayer) {
 								Traincraft.lockChannel.sendToServer(new PacketSetTrainLockedToClient(true, freight.getEntityId()));
 							}
 						}
 					}
 
-					((AbstractTrains) freight).setTrainLockedFromPacket(true);
+					freight.setTrainLockedFromPacket(true);
 					guibutton.displayString = "Locked";
 					this.initGui();
 				}
 				else {
-					AxisAlignedBB box = ((Freight) freight).boundingBox.expand(5, 5, 5);
-					List lis3 = ((Freight) freight).worldObj.getEntitiesWithinAABBExcludingEntity(freight, box);
+					AxisAlignedBB box = freight.boundingBox.expand(5, 5, 5);
+					List lis3 = freight.worldObj.getEntitiesWithinAABBExcludingEntity(freight, box);
 					if (lis3 != null && lis3.size() > 0) {
-						for (int j1 = 0; j1 < lis3.size(); j1++) {
-							Entity entity = (Entity) lis3.get(j1);
+						for (Object entity : lis3) {
 							if (entity instanceof EntityPlayer) {
 								Traincraft.lockChannel.sendToServer(new PacketSetTrainLockedToClient(false, freight.getEntityId()));
 							}
 						}
 					}
-					((AbstractTrains) freight).locked = false;
+					freight.locked = false;
 					guibutton.displayString = "UnLocked";
 					this.initGui();
 				}
@@ -99,13 +97,11 @@ public class GuiFreight extends GuiContainer {
 
 	@Override
 	protected void drawCreativeTabHoveringText(String str, int t, int g) {
-		int j = (width - xSize) / 2;
-		int k = (height - ySize) / 2;
 
 		String state = "";
-		if (((AbstractTrains) freight).getTrainLockedFromPacket())
+		if (freight.getTrainLockedFromPacket())
 			state = "Locked";
-		if (!((AbstractTrains) freight).getTrainLockedFromPacket())
+		if (!freight.getTrainLockedFromPacket())
 			state = "Unlocked";
 
 		int textWidth = fontRendererObj.getStringWidth("the GUI, change speed, destroy it.");
@@ -113,8 +109,6 @@ public class GuiFreight extends GuiContainer {
 		int startY = 5;
 
 		int i4 = 0xf0100010;
-		int h = 8;
-		int w = textWidth;
 		drawGradientRect(startX - 3, startY - 4, startX + textWidth + 3, startY + 8 + 4 + 40, i4, i4);
 		drawGradientRect(startX - 4, startY - 3, startX + textWidth + 4, startY + 8 + 3 + 40, i4, i4);
 		int colour1 = 0x505000ff;
@@ -125,16 +119,13 @@ public class GuiFreight extends GuiContainer {
 		fontRendererObj.drawStringWithShadow("only its owner can open", startX, startY + 10, -1);
 		fontRendererObj.drawStringWithShadow("the GUI and destroy it.", startX, startY + 20, -1);
 		fontRendererObj.drawStringWithShadow("Current state: " + state, startX, startY + 30, -1);
-		fontRendererObj.drawStringWithShadow("Owner: " + ((AbstractTrains) freight).getTrainOwner().trim(), startX, startY + 40, -1);
+		fontRendererObj.drawStringWithShadow("Owner: " + freight.getTrainOwner().trim(), startX, startY + 40, -1);
 	}
 
 	public boolean intersectsWith(int mouseX, int mouseY) {
 		int j = (width - xSize) / 2;
 		int k = (height - ySize) / 2;
-		if (mouseX >= j + 124 && mouseX <= j + 174 && mouseY >= k - 10 && mouseY <= k) {
-			return true;
-		}
-		return false;
+		return (mouseX >= j + 124 && mouseX <= j + 174 && mouseY >= k - 10 && mouseY <= k);
 	}
 
 	@Override
@@ -142,7 +133,7 @@ public class GuiFreight extends GuiContainer {
 		GL11.glDisable(GL11.GL_LIGHTING);
 		GL11.glDisable(GL11.GL_DEPTH_TEST);
 		
-		fontRendererObj.drawString(((IInventory) freight).getInventoryName(), 60, 6, 0x404040);
+		fontRendererObj.drawString(freight.getInventoryName(), 60, 6, 0x404040);
 		fontRendererObj.drawString("Inventory", 8, (ySize - 96) + 2, 0x404040);
 		
 		GL11.glEnable(GL11.GL_LIGHTING);

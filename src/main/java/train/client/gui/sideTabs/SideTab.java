@@ -33,7 +33,6 @@ public abstract class SideTab {
 	public int currentShiftX = 0;
 	public int currentShiftY = 0;
 
-	protected int limitWidth = 128;
 	protected int maxWidth = 124;
 	protected int minWidth = 24;
 	protected int currentWidth = minWidth;

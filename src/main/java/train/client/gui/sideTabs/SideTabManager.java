@@ -23,7 +23,6 @@ import java.util.ArrayList;
 public class SideTabManager {
 
 	private GuiTraincraft gui;
-	private Minecraft mc;
 	protected ArrayList<SideTab> sideTabLeft = new ArrayList<SideTab>();
 	protected ArrayList<SideTab> sideTabRight = new ArrayList<SideTab>();
 
@@ -31,7 +30,6 @@ public class SideTabManager {
 
 	public SideTabManager(GuiTraincraft gui) {
 		this.gui = gui;
-		this.mc = Traincraft.proxy.getClientInstance();
 	}
 
 	public void add(SideTab tab) {
@@ -67,8 +65,7 @@ public class SideTabManager {
 		int xShift = ((gui.width - 176) / 2);
 		int yShift = ((gui.height - 256) / 2) + 8;
 
-		for (int i = 0; i < sideTabLeft.size(); i++) {
-			SideTab tab = sideTabLeft.get(i);
+		for (SideTab tab : sideTabLeft) {
 			if (!tab.isVisible())
 				continue;
 
@@ -83,8 +80,7 @@ public class SideTabManager {
 		xShift = ((gui.width - 176) / 2) + 176;
 		yShift = ((gui.height - 256) / 2) + 8;
 
-		for (int i = 0; i < sideTabRight.size(); i++) {
-			SideTab tab = sideTabRight.get(i);
+		for (SideTab tab : sideTabRight) {
 			if (!tab.isVisible())
 				continue;
 
@@ -128,7 +124,6 @@ public class SideTabManager {
 
 				int i4 = 0xf0100010;
 				int h = 8;
-				int w = textWidth;
 				gui.drawGradientRect(startX - 3, startY - 4, startX + textWidth + 3, startY + 8 + 4, i4, i4);
 				gui.drawGradientRect(startX - 4, startY - 3, startX + textWidth + 4, startY + 8 + 3, i4, i4);
 				int colour1 = 0x505000ff;
@@ -183,23 +178,19 @@ public class SideTabManager {
 
 	public void handleMouseOver(SideTab tab) {
 		if (tab.side) {
-			if (tab != null) {
-				for (SideTab other : sideTabLeft) {
-					if (other != tab && other.isOpen()) {
-						other.toggleOpen();
-					}
-					tab.toggleOpen();
+			for (SideTab other : sideTabLeft) {
+				if (other != tab && other.isOpen()) {
+					other.toggleOpen();
 				}
+				tab.toggleOpen();
 			}
 		}
 		else {
-			if (tab != null) {
-				for (SideTab other : sideTabRight) {
-					if (other != tab && other.isOpen()) {
-						other.toggleOpen();
-					}
-					tab.toggleOpen();
+			for (SideTab other : sideTabRight) {
+				if (other != tab && other.isOpen()) {
+					other.toggleOpen();
 				}
+				tab.toggleOpen();
 			}
 		}
 	}

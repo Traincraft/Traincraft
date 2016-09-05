@@ -14,7 +14,7 @@ public class GuiFurnaceCart extends GuiContainer {
 	private AbstractWorkCart furnaceInventory;
 
 	public GuiFurnaceCart(InventoryPlayer par1InventoryPlayer, Entity entityminecart) {
-		super(new InventoryWorkCart(par1InventoryPlayer, (AbstractWorkCart) entityminecart));
+		super(new InventoryWorkCart(par1InventoryPlayer, entityminecart));
 		this.furnaceInventory = (AbstractWorkCart) entityminecart;
 	}
 

@@ -132,17 +132,17 @@ public class ClientProxy extends CommonProxy {
 		case GuiIDs.TRAIN_WORKBENCH:
 			return te != null && te instanceof TileTrainWbench ? new GuiTrainCraftingBlock(player.inventory, player.worldObj, (TileTrainWbench) te) : null;
 		case (GuiIDs.LOCO):
-			return riddenByEntity != null && entity != null ? new GuiLoco2(riddenByEntity.inventory, entity) : null;
+			return riddenByEntity != null ? new GuiLoco2(riddenByEntity.inventory, entity) : null;
 		case (GuiIDs.FORNEY):
-			return riddenByEntity != null && entity != null ? new GuiForney(riddenByEntity.inventory, entity) : null;
+			return riddenByEntity != null ? new GuiForney(riddenByEntity.inventory, entity) : null;
 		case (GuiIDs.CRAFTING_CART):
-			return riddenByEntity != null && entity != null ? new GuiCraftingCart(riddenByEntity.inventory, world) : null;
+			return riddenByEntity != null ? new GuiCraftingCart(riddenByEntity.inventory, world) : null;
 		case (GuiIDs.FURNACE_CART):
-			return riddenByEntity != null && entity != null ? new GuiFurnaceCart(riddenByEntity.inventory, entity) : null;
+			return riddenByEntity != null ? new GuiFurnaceCart(riddenByEntity.inventory, entity) : null;
 		case (GuiIDs.ZEPPELIN):
-			return riddenByEntity != null && entity != null ? new GuiZepp(riddenByEntity.inventory, entity) : null;
+			return riddenByEntity != null ? new GuiZepp(riddenByEntity.inventory, entity) : null;
 		case (GuiIDs.DIGGER):
-			return riddenByEntity != null && entity != null ? new GuiBuilder(player, riddenByEntity.inventory, entity) : null;
+			return riddenByEntity != null ? new GuiBuilder(player, riddenByEntity.inventory, entity) : null;
 
 			//Stationary entities while player is not riding. 
 		case (GuiIDs.FREIGHT):

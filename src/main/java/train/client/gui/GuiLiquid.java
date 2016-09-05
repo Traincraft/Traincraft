@@ -45,9 +45,6 @@ public class GuiLiquid extends GuiContainer {
 		drawGuiContainerBackgroundLayer(par3, t, g);
 		super.drawScreen(t, g, par3);
 
-		int amount = liquid.getAmount();
-		int liqui = (amount * 50) / liquid.getCapacity();
-
 		if (intersectsWith(t, g)) {
 			drawCreativeTabHoveringText(liquid.getLiquidName(), t, g);
 		}
@@ -60,7 +57,7 @@ public class GuiLiquid extends GuiContainer {
 		buttonList.clear();
 		int var1 = (this.width-xSize) / 2;
 		int var2 = (this.height-ySize) / 2;
-		if (!((AbstractTrains) liquid).getTrainLockedFromPacket()) {
+		if (!liquid.getTrainLockedFromPacket()) {
 			this.buttonList.add(this.buttonLock = new GuiButton(3, var1 + 124, var2 - 10, 51, 10, "Unlocked"));
 		}else{
 			this.buttonList.add(this.buttonLock = new GuiButton(3, var1 + 130, var2 - 10, 43, 10, "Locked"));
@@ -69,35 +66,33 @@ public class GuiLiquid extends GuiContainer {
 	@Override
 	protected void actionPerformed(GuiButton guibutton) {
 		if (guibutton.id == 3) {
-			if(player!=null && player instanceof EntityPlayer && player.getCommandSenderName().toLowerCase().equals(((AbstractTrains) liquid).getTrainOwner().toLowerCase())){
-				if ((!((AbstractTrains) liquid).getTrainLockedFromPacket())){
+			if(player!=null && player.getCommandSenderName().toLowerCase().equals(((AbstractTrains) liquid).getTrainOwner().toLowerCase())){
+				if ((!liquid.getTrainLockedFromPacket())){
 					AxisAlignedBB box = liquid.boundingBox.expand(5, 5, 5);
 					List lis3 = liquid.worldObj.getEntitiesWithinAABBExcludingEntity(liquid, box);
 					if (lis3 != null && lis3.size() > 0) {
-						for (int j1 = 0; j1 < lis3.size(); j1++) {
-							Entity entity = (Entity) lis3.get(j1);
+						for (Object entity : lis3) {
 							if (entity instanceof EntityPlayer) {
 								Traincraft.lockChannel
 										.sendToServer(new PacketSetTrainLockedToClient(true, liquid.getEntityId()));
 							}
 						}
 					}
-					((AbstractTrains) liquid).setTrainLockedFromPacket(true);
+					liquid.setTrainLockedFromPacket(true);
 					guibutton.displayString = "Locked";
 					this.initGui();
 				}else{
 					AxisAlignedBB box = liquid.boundingBox.expand(5, 5, 5);
 					List lis3 = liquid.worldObj.getEntitiesWithinAABBExcludingEntity(liquid, box);
 					if (lis3 != null && lis3.size() > 0) {
-						for (int j1 = 0; j1 < lis3.size(); j1++) {
-							Entity entity = (Entity) lis3.get(j1);
+						for (Object entity : lis3) {
 							if (entity instanceof EntityPlayer) {
 								Traincraft.lockChannel
 										.sendToServer(new PacketSetTrainLockedToClient(false, liquid.getEntityId()));
 							}
 						}
 					}
-					((AbstractTrains) liquid).locked=false;
+					liquid.locked=false;
 					guibutton.displayString = "UnLocked";
 					this.initGui();
 				}
@@ -108,21 +103,16 @@ public class GuiLiquid extends GuiContainer {
 	}
 	@Override
 	protected void drawCreativeTabHoveringText(String str, int t, int g) {
-		int j = (width - xSize) / 2;
-		int k = (height - ySize) / 2;
-		int liqui = (liquid.getAmount() * 50) / liquid.getCapacity();
 		
 		String state = "";
-		if (((AbstractTrains) liquid).getTrainLockedFromPacket()) state = "Locked";
-		if (!((AbstractTrains) liquid).getTrainLockedFromPacket()) state = "Unlocked";
+		if (liquid.getTrainLockedFromPacket()) {state = "Locked";}
+		if (!liquid.getTrainLockedFromPacket()) {state = "Unlocked";}
 		
 		int textWidth = fontRendererObj.getStringWidth(liquid.getAmount() + "/" + liquid.getCapacity());
 		int startX = t + 14;
 		int startY = g - 12;
 
 		int i4 = 0xf0100010;
-		int h = 8;
-		int w = textWidth;
 		drawGradientRect(startX - 3, startY - 4, startX + textWidth + 3, startY + 8 + 4 + 10, i4, i4);
 		drawGradientRect(startX - 4, startY - 3, startX + textWidth + 4, startY + 8 + 3 + 10, i4, i4);
 		int colour1 = 0x505000ff;
@@ -160,12 +150,10 @@ public class GuiLiquid extends GuiContainer {
 	}
 
 	protected void drawCreativeTabHoveringTextLockButton(String str, int t, int g) {
-		int j = (width - xSize) / 2;
-		int k = (height - ySize) / 2;
 
 		//int liqui = (dieselInventory.getLiquidAmount() * 50) / dieselInventory.getTankCapacity();
 		String state = "";
-		if(((AbstractTrains) liquid).getTrainLockedFromPacket()){
+		if(liquid.getTrainLockedFromPacket()){
 			state="Locked";
 		} else {
 			state = "Unlocked";
@@ -176,8 +164,6 @@ public class GuiLiquid extends GuiContainer {
 		int startY = 5;
 
 		int i4 = 0xf0100010;
-		int h = 8;
-		int w = textWidth;
 		drawGradientRect(startX - 3, startY - 4, startX + textWidth + 3, startY + 8 + 4 + 40, i4, i4);
 		drawGradientRect(startX - 4, startY - 3, startX + textWidth + 4, startY + 8 + 3 + 40, i4, i4);
 		int colour1 = 0x505000ff;
@@ -194,10 +180,7 @@ public class GuiLiquid extends GuiContainer {
 		//System.out.println(mouseX+" "+mouseY);
 		int j = (width - xSize) / 2;
 		int k = (height - ySize) / 2;
-		if (mouseX >= j + 124 && mouseX <= j + 174 && mouseY >= k-10 && mouseY <= k) {
-			return true;
-		}
-		return false;
+		return (mouseX >= j + 124 && mouseX <= j + 174 && mouseY >= k-10 && mouseY <= k);
 	}
 
 	@Override
@@ -240,9 +223,6 @@ public class GuiLiquid extends GuiContainer {
 	public boolean intersectsWith(int mouseX, int mouseY) {
 		int j = (width - xSize) / 2;
 		int k = (height - ySize) / 2;
-		if (mouseX >= j + 57 && mouseX <= j + 123 && mouseY >= k + 16 && mouseY <= k + 68) {
-			return true;
-		}
-		return false;
+		return (mouseX >= j + 57 && mouseX <= j + 123 && mouseY >= k + 16 && mouseY <= k + 68);
 	}
 }

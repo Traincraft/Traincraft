@@ -17,13 +17,13 @@ import train.client.gui.GuiCrafterTier;
 import train.common.core.interfaces.ITier;
 import train.common.library.Info;
 
+import static net.minecraft.client.gui.Gui.drawRect;
+
 @SideOnly(Side.CLIENT)
 public class SideTabSlots extends SideTab {
 
 	protected ITier tile;
 	protected int headerColour = 0xbd9700;
-	protected int subheaderColour = 0xaaafb8;
-	protected int textColour = 0xffffff;
 	protected int[] array;
 
 	public SideTabSlots(ITier tile, GuiCrafterTier gui, boolean side, boolean x, boolean y, int[] array) {
@@ -50,17 +50,17 @@ public class SideTabSlots extends SideTab {
 
 		FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation,Info.guiPrefix + "Icons.png"));
 
-		gui.drawRect(x - 91, y + 30, -4, 135, 0xff02142d);
-		gui.drawRect(x - 90, y + 29, -5, 136, 0xff02142d);
+		drawRect(x - 91, y + 30, -4, 135, 0xff02142d);
+		drawRect(x - 90, y + 29, -5, 136, 0xff02142d);
 
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 
 		for (int i = 0; i < 4; i++) {
 			if (array[i] == 0) {
-				gui.drawTexturedModalRect(x - 86 + i * 28, y + 34, 0 + i * 16, 32, 16, 16);
+				gui.drawTexturedModalRect(x - 86 + i * 28, y + 34, i * 16, 32, 16, 16);
 			}
 			else {
-				gui.drawTexturedModalRect(x - 86 + i * 28, y + 34, 0 + i * 16, 48, 16, 16);
+				gui.drawTexturedModalRect(x - 86 + i * 28, y + 34, i * 16, 48, 16, 16);
 			}
 		}
 		for (int i = 0; i < 4; i++) {

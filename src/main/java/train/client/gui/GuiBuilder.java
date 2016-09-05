@@ -102,10 +102,9 @@ public class GuiBuilder extends GuiContainer {
 					AxisAlignedBB box = (builder).boundingBox.expand(5, 5, 5);
 					List<?> lis3 = (builder).worldObj.getEntitiesWithinAABBExcludingEntity(builder, box);
 					if (lis3 != null && lis3.size() > 0) {
-						for (int j1 = 0; j1 < lis3.size(); j1++) {
-							Entity entity = (Entity) lis3.get(j1);
+						for (Object entity : lis3) {
 							if (entity instanceof EntityPlayer) {
-								Traincraft.lockChannel.sendToServer(new PacketSetTrainLockedToClient(true, entity.getEntityId()));
+								Traincraft.lockChannel.sendToServer(new PacketSetTrainLockedToClient(true, ((EntityPlayer)entity).getEntityId()));
 							}
 						}
 					}
@@ -118,10 +117,9 @@ public class GuiBuilder extends GuiContainer {
 					AxisAlignedBB box = (builder).boundingBox.expand(5, 5, 5);
 					List<?> lis3 = (builder).worldObj.getEntitiesWithinAABBExcludingEntity(builder, box);
 					if (lis3 != null && lis3.size() > 0) {
-						for (int j1 = 0; j1 < lis3.size(); j1++) {
-							Entity entity = (Entity) lis3.get(j1);
+						for (Object entity : lis3) {
 							if (entity instanceof EntityPlayer) {
-								Traincraft.lockChannel.sendToServer(new PacketSetTrainLockedToClient(false, entity.getEntityId()));
+								Traincraft.lockChannel.sendToServer(new PacketSetTrainLockedToClient(false, ((EntityPlayer)entity).getEntityId()));
 							}
 						}
 					}
@@ -138,8 +136,6 @@ public class GuiBuilder extends GuiContainer {
 
 	@Override
 	protected void drawCreativeTabHoveringText(String str, int t, int g) {
-		int j = (width - xSize) / 2;
-		int k = (height - ySize) / 2;
 		String state = "";
 		if ((builder).getTrainLockedFromPacket())
 			state = "Locked";
@@ -151,8 +147,6 @@ public class GuiBuilder extends GuiContainer {
 		int startY = -10;
 
 		int i4 = 0xf0100010;
-		int h = 8;
-		int w = textWidth;
 		drawGradientRect(startX - 3, startY - 4, startX + textWidth + 3, startY + 8 + 4 + 40, i4, i4);
 		drawGradientRect(startX - 4, startY - 3, startX + textWidth + 4, startY + 8 + 3 + 40, i4, i4);
 		int colour1 = 0x505000ff;
@@ -169,18 +163,14 @@ public class GuiBuilder extends GuiContainer {
 	public boolean intersectsWith(int mouseX, int mouseY) {
 		int j = (width - xSize) / 2;
 		int k = (height - ySize) / 2;
-		if (mouseX >= j + 3 && mouseX <= j + 55 && mouseY >= k - 30 && mouseY <= k - 20) {
-			return true;
-		}
-		return false;
+		return (mouseX >= j + 3 && mouseX <= j + 55 && mouseY >= k - 30 && mouseY <= k - 20);
 	}
 
 	private void sendPacket(int packet, int packetID) {
 		AxisAlignedBB box = (builder).boundingBox.expand(5, 5, 5);
 		List<?> lis3 = (builder).worldObj.getEntitiesWithinAABBExcludingEntity(builder, box);
 		if (lis3 != null && lis3.size() > 0) {
-			for (int j1 = 0; j1 < lis3.size(); j1++) {
-				Entity entity = (Entity) lis3.get(j1);
+			for (Object entity : lis3) {
 				if (entity instanceof EntityPlayer) {
 					Traincraft.builderChannel.sendToServer(new PacketTrackBuilderHeight(packet, packetID));
 				}
@@ -192,8 +182,7 @@ public class GuiBuilder extends GuiContainer {
 		AxisAlignedBB box = (builder).boundingBox.expand(5, 5, 5);
 		List<?> lis3 = (builder).worldObj.getEntitiesWithinAABBExcludingEntity(builder, box);
 		if (lis3 != null && lis3.size() > 0) {
-			for (int j1 = 0; j1 < lis3.size(); j1++) {
-				Entity entity = (Entity) lis3.get(j1);
+			for (Object entity : lis3) {
 				if (entity instanceof EntityPlayer) {
 					Traincraft.builderChannel.sendToServer(new PacketTrackBuilderFollow(packet, packetID));
 				}

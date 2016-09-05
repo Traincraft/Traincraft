@@ -17,11 +17,11 @@ public class HolidayHelper extends Thread {
 	private static boolean checkBoth = false;
 	private static boolean isChristmas = false;
 
-	public static boolean isCheckBoth() {
+	private static boolean isCheckBoth() {
 		return checkBoth;
 	}
 
-	public static boolean isChristmas() {
+	private static boolean isChristmas() {
 		return isChristmas;
 	}
 
@@ -34,20 +34,10 @@ public class HolidayHelper extends Thread {
 			int sub = 3;
 			while ((line = reader.readLine()) != null) {
 				if (line.startsWith("CB: ")) {
-					if (line.contains("true")) {
-						checkBoth = true;
-					}
-					else {
-						checkBoth = false;
-					}
+						checkBoth = line.contains("true");
 				}
 				else if (line.startsWith("IC: ")) {
-					if (line.contains("true")) {
-						isChristmas = true;
-					}
-					else {
-						isChristmas = false;
-					}
+						isChristmas = line.contains("true");
 				}
 			}
 			reader.close();

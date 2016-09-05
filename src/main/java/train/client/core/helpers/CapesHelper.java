@@ -22,20 +22,20 @@ import java.util.HashMap;
 
 public class CapesHelper extends Thread {
 	
-	public String username;
+	private String username;
 	public boolean MCCape = true;
 	
-	public boolean isStatic = false;
-    public boolean isAnimated = false;
-    public String staticUrl;
-    public ArrayList<String> animatedFrameUrls;
-    public ResourceLocation staticRL;
-    public ResourceLocation[] animatedFramesRL;
-    public ThreadDownloadImageData staticImage;
-    public ThreadDownloadImageData[] animatedFramesImages;
-    public int currFrame;
-    public long lastFrameTime;
-    public int animInterval = 500;
+	private boolean isStatic = false;
+    private boolean isAnimated = false;
+    private String staticUrl;
+    private ArrayList<String> animatedFrameUrls;
+    private ResourceLocation staticRL;
+    private ResourceLocation[] animatedFramesRL;
+    private ThreadDownloadImageData staticImage;
+    private ThreadDownloadImageData[] animatedFramesImages;
+    private int currFrame;
+    private long lastFrameTime;
+    private int animInterval = 500;
 	
 	public static HashMap<String, CapesHelper> users = new HashMap();
 	public static boolean isLoaded = false;
@@ -72,7 +72,7 @@ public class CapesHelper extends Thread {
         }catch(Exception e) {}
 	}
 
-	public void dlImages() {
+	private void dlImages() {
 		if(isAnimated) {
 			animatedFramesRL = new ResourceLocation[animatedFrameUrls.size()];
 			animatedFramesImages = new ThreadDownloadImageData[animatedFrameUrls.size()];
