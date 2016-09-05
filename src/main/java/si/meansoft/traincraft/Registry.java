@@ -8,10 +8,8 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
 import si.meansoft.traincraft.blocks.*;
+import si.meansoft.traincraft.fluids.FluidBase;
 import si.meansoft.traincraft.items.ItemMaterial;
-import si.meansoft.traincraft.tile.crafter.TileEntityCrafterDiesel;
-import si.meansoft.traincraft.tile.crafter.TileEntityCrafterElectro;
-import si.meansoft.traincraft.tile.crafter.TileEntityCrafterSteam;
 
 /**
  * @author canitzp
@@ -26,11 +24,7 @@ public class Registry{
 
     public static ItemMaterial material;
 
-    //public static FluidBase diesel;
-
-    public static TileEntityCrafterSteam tileCrafterSteam;
-    public static TileEntityCrafterDiesel tileCrafterDiesel;
-    public static TileEntityCrafterElectro tileCrafterElectro;
+    public static FluidBase diesel;
 
     public static void preInit(FMLPreInitializationEvent event){
         //Blocks
@@ -43,12 +37,11 @@ public class Registry{
         //Items
         register(material = new ItemMaterial());
 
-        //TODO register(diesel = new FluidBase("diesel", "blockDiesel", Material.WATER));
+        register(diesel = new FluidBase("diesel", "blockDiesel", Material.WATER));
 
-        //register(tileCrafterSteam = new TileEntityCrafterSteam(), tileCrafterDiesel = new TileEntityCrafterDiesel(), tileCrafterElectro = new TileEntityCrafterElectro());
     }
 
-    private static <T extends IRegistryEntry> T[] register(T... entries){
+    public static <T extends IRegistryEntry> T[] register(T... entries){
         for(T entry : entries){
             for(IRegistryEntry reg : entry.getRegisterElements()){
                 if(reg instanceof IForgeRegistryEntry){

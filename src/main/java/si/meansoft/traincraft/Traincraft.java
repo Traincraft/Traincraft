@@ -45,10 +45,6 @@ public class Traincraft {
         };
         logger.info("Register Blocks, Items, ...");
         Registry.preInit(evt);
-        //BlockRegistry.preInit();
-        //ItemRegistry.preInit();
-        FluidRegistry.preInit();
-        //TileEntityRegistry.preInit();
         GameRegistry.registerWorldGenerator(new WorldGen(), 10);
         NetworkRegistry.INSTANCE.registerGuiHandler(INSTANCE, new GuiHandler());
         logger.info("Register Renderer!");
@@ -69,36 +65,6 @@ public class Traincraft {
         logger.info("[Traincraft] Started PostInitializing");
         proxy.postInit(evt);
         logger.info("[Traincraft] Now you can't stop the trains!");
-    }
-
-    public static void registerBlock(Block block, String blockName){
-        registerBlock(block, blockName, true);
-    }
-
-    public static void registerBlock(Block block, String blockName, boolean defaultRender){
-        block.setUnlocalizedName(MODID + ":" + blockName);
-        block.setRegistryName(blockName);
-        block.setCreativeTab(tab);
-        ItemBlockBase itemBlock = new ItemBlockBase(block);
-        GameRegistry.register(block);
-        GameRegistry.register(itemBlock);
-        if(defaultRender){
-            CommonProxy.addForgeRender(itemBlock);
-        }
-    }
-
-    public static void registerItem(Item item, String itemName){
-        registerItem(item, itemName, true);
-    }
-
-    public static void registerItem(Item item, String itemName, boolean defaultRender){
-        item.setUnlocalizedName(MODID + ":" + itemName);
-        item.setRegistryName(itemName);
-        item.setCreativeTab(tab);
-        GameRegistry.register(item);
-        if(defaultRender){
-            CommonProxy.addForgeRender(item);
-        }
     }
 
 }

@@ -1,11 +1,14 @@
 package si.meansoft.traincraft.fluids;
 
 import net.minecraft.block.material.Material;
+import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import si.meansoft.traincraft.IRegistryEntry;
+import si.meansoft.traincraft.Registry;
 import si.meansoft.traincraft.Traincraft;
+import si.meansoft.traincraft.items.ItemBlockBase;
 import si.meansoft.traincraft.network.CommonProxy;
 
 /**
@@ -37,6 +40,7 @@ public class FluidBase extends Fluid implements IRegistryEntry{
         FluidRegistry.addBucketForFluid(this);
         CommonProxy.addFluid(this);
         this.fluidBlock = new FluidBlockBase(this, this.material);
-        this.fluidBlock.onRegister(new IRegistryEntry[0]);
+        Registry.register(this.fluidBlock, new ItemBlockBase(this.fluidBlock));
+        CommonProxy.addForgeRender(Item.getItemFromBlock(this.fluidBlock));
     }
 }

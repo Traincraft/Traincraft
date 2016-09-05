@@ -4,6 +4,7 @@ import net.minecraft.block.material.Material;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
 import si.meansoft.traincraft.IRegistryEntry;
+import si.meansoft.traincraft.Registry;
 import si.meansoft.traincraft.Traincraft;
 
 /**
@@ -13,7 +14,6 @@ public class FluidBlockBase extends BlockFluidClassic implements IRegistryEntry{
 
     public FluidBlockBase(Fluid fluid, Material material){
         super(fluid, material);
-        setRegistryName(Traincraft.MODID, fluid.getName());
         setUnlocalizedName(Traincraft.MODID + "." + fluid.getName());
     }
 
@@ -35,4 +35,5 @@ public class FluidBlockBase extends BlockFluidClassic implements IRegistryEntry{
     public void ownRegistry(){
 
     }
+
 }

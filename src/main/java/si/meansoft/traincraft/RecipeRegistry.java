@@ -1,5 +1,6 @@
 package si.meansoft.traincraft;
 
+import mezz.jei.ItemRegistry;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
@@ -26,13 +27,13 @@ public class RecipeRegistry {
     }
 
     private static void initShapeless(){
-        ItemStack plasticStack = new ItemStack(ItemRegistry.material, 1, ItemMaterial.Materials.PLASTIC.ordinal());
-        GameRegistry.addShapelessRecipe(new ItemStack(ItemRegistry.material, 2, ItemMaterial.Materials.FUEL_CANISTER_EMPTY.ordinal()), plasticStack.copy(), plasticStack.copy(), plasticStack.copy(), plasticStack.copy());
+        ItemStack plasticStack = new ItemStack(Registry.material, 1, ItemMaterial.Materials.PLASTIC.ordinal());
+        GameRegistry.addShapelessRecipe(new ItemStack(Registry.material, 2, ItemMaterial.Materials.FUEL_CANISTER_EMPTY.ordinal()), plasticStack.copy(), plasticStack.copy(), plasticStack.copy(), plasticStack.copy());
     }
 
     private static void initDistillRecipes(){
-        //DistilleryRecipes.addRecipe(new ItemStack(ItemRegistry.material, 1, ItemMaterial.Materials.PLASTIC.ordinal()), new ItemStack(Registry.oilSand), new FluidStack(FluidRegistry.diesel, 1000), 50, 200);
-        //DistilleryRecipes.addFillingRecipe(new ItemStack(ItemRegistry.material, 2, ItemMaterial.Materials.FUEL_CANISTER_FULL.ordinal()), new ItemStack(ItemRegistry.material, 2, ItemMaterial.Materials.FUEL_CANISTER_EMPTY.ordinal()), new FluidStack(FluidRegistry.diesel, 1000));
+        DistilleryRecipes.addRecipe(new ItemStack(Registry.material, 1, ItemMaterial.Materials.PLASTIC.ordinal()), new ItemStack(Registry.oilSand), new FluidStack(Registry.diesel, 1000), 50, 200);
+        DistilleryRecipes.addFillingRecipe(new ItemStack(Registry.material, 2, ItemMaterial.Materials.FUEL_CANISTER_FULL.ordinal()), new ItemStack(Registry.material, 2, ItemMaterial.Materials.FUEL_CANISTER_EMPTY.ordinal()), new FluidStack(Registry.diesel, 1000));
     }
 
     private static void initCrafterRecipes(){
@@ -40,8 +41,7 @@ public class RecipeRegistry {
     }
 
     private static void initHearthFurnaceRecipes(){
-        HearthFurnaceRecipes.addRecipe(new ItemStack(ItemRegistry.material, 1, ItemMaterial.Materials.GRAPHITE.ordinal()), new ItemStack(Items.IRON_INGOT), new ItemStack(ItemRegistry.material, 1, ItemMaterial.Materials.STEEL_INGOT.ordinal()), 1200);
-
+        HearthFurnaceRecipes.addRecipe(new ItemStack(Registry.material, 1, ItemMaterial.Materials.GRAPHITE.ordinal()), new ItemStack(Items.IRON_INGOT), new ItemStack(Registry.material, 1, ItemMaterial.Materials.STEEL_INGOT.ordinal()), 1200);
     }
 
 }
