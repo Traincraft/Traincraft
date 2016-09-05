@@ -16,7 +16,7 @@ import si.meansoft.traincraft.items.ItemMaterial;
  */
 public class Registry{
 
-    public static BlockBase oilSand;
+    public static BlockBase oilSand, petroleum;
     public static BlockDistillery distillery;
     public static BlockHearthFurnace hearthFurnace;
     public static BlockCrafter crafterSteam, crafterDiesel, crafterIron;
@@ -24,11 +24,12 @@ public class Registry{
 
     public static ItemMaterial material;
 
-    public static FluidBase diesel;
+    public static FluidBase diesel, refinedFuel;
 
     public static void preInit(FMLPreInitializationEvent event){
         //Blocks
         register(oilSand = new BlockBase(Material.SAND, "oilSand").generateBlock(Blocks.SAND, 50, 80, 7, 11).addOreDict("oreOilSand").setHarvestLevel(BlockBase.ToolEnum.SHOVEL, 2).setSound(SoundType.SAND));
+        register(petroleum = new BlockBase(Material.ROCK, "orePetroleum").generateBlock(Blocks.STONE, 20, 70, 5, 9).addOreDict("orePetroleum").setHarvestLevel(BlockBase.ToolEnum.PICKAXE, 2).setSound(SoundType.STONE));
         register(distillery = new BlockDistillery());
         register(hearthFurnace = new BlockHearthFurnace());
         register(crafterSteam = new BlockCrafter(BlockCrafter.CrafterTier.STEAM), crafterDiesel = new BlockCrafter(BlockCrafter.CrafterTier.DIESEL), crafterIron = new BlockCrafter(BlockCrafter.CrafterTier.ELECTRO));
@@ -37,7 +38,8 @@ public class Registry{
         //Items
         register(material = new ItemMaterial());
 
-        register(diesel = new FluidBase("diesel", "blockDiesel", Material.WATER));
+        register(diesel = new FluidBase("diesel", "fluidDiesel", Material.WATER));
+        register(refinedFuel = new FluidBase("refinedFuel", "fluidRefinedFuel", Material.WATER));
 
     }
 

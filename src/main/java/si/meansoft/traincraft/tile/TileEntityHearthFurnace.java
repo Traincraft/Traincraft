@@ -29,7 +29,6 @@ public class TileEntityHearthFurnace extends TileEntityInventory implements ITic
 
     public TileEntityHearthFurnace(){
         super("HearthFurnace", 4);
-        System.out.println("create");
     }
 
     @Override

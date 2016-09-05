@@ -4,6 +4,10 @@
     "diesel": {
       "model": "forge:fluid",
       "custom": { "fluid": "diesel" }
+    },
+    "refinedfuel": {
+      "model": "forge:fluid",
+      "custom": { "fluid": "refinedfuel" }
     }
   }
 }
