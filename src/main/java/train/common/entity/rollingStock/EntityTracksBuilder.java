@@ -972,8 +972,8 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 		getBlockList(worldObj, i + d, j + hY + 2, k - 1);
 		getBlockList(worldObj, i + d, j + hY + 2, k + 1);
 		if (((worldObj.getBlock(i + d, j + hY, k - 1) == Blocks.rail)
-				|| (this.worldObj.getBlock(i + d, j + hY, k - 1)) == BlockIDs.tcRail.blockID
-				|| (this.worldObj.getBlock(i + d, j + hY, k - 1)) == BlockIDs.tcRailGag.blockID) && followTracks) {
+				|| (this.worldObj.getBlock(i + d, j + hY, k - 1)) == BlockIDs.tcRail.block
+				|| (this.worldObj.getBlock(i + d, j + hY, k - 1)) == BlockIDs.tcRailGag.block) && followTracks) {
 		}
 		else {
 			//worldObj.setBlockMetadataWithNotify(i + d, j+ hY, k - 1, 0);
@@ -982,8 +982,8 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 		}
 
 		if (((Blocks.rail == worldObj.getBlock(i + d, j + hY, k + 1))
-				|| (this.worldObj.getBlock(i + d, j + hY, k + 1)) == BlockIDs.tcRail.blockID
-				|| (this.worldObj.getBlock(i + d, j + hY, k + 1)) == BlockIDs.tcRailGag.blockID) && followTracks) {
+				|| (this.worldObj.getBlock(i + d, j + hY, k + 1)) == BlockIDs.tcRail.block
+				|| (this.worldObj.getBlock(i + d, j + hY, k + 1)) == BlockIDs.tcRailGag.block) && followTracks) {
 		}
 		else {
 			//worldObj.setBlockMetadataWithNotify(i + d, j+ hY, k + 1, 0);
@@ -992,8 +992,8 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 		}
 
 		if ((Blocks.rail == (worldObj.getBlock(i + d, j + hY, k))
-				|| (this.worldObj.getBlock(i + d, j + hY, k)) == BlockIDs.tcRail.blockID
-				|| (this.worldObj.getBlock(i + d, j + hY, k)) == BlockIDs.tcRailGag.blockID) && followTracks) {
+				|| (this.worldObj.getBlock(i + d, j + hY, k)) == BlockIDs.tcRail.block
+				|| (this.worldObj.getBlock(i + d, j + hY, k)) == BlockIDs.tcRailGag.block) && followTracks) {
 		}
 		else {
 			//worldObj.setBlockMetadataWithNotify(i + d, j+ hY, k, 0);
@@ -1147,8 +1147,8 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 		getBlockList(worldObj, i - 1, j + hY + 2, k + d);
 
 		if ((Blocks.rail == (worldObj.getBlock(i - 1, j + hY, k + d))
-				|| (this.worldObj.getBlock(i - 1, j + hY, k + d)) == BlockIDs.tcRail.blockID
-				|| (this.worldObj.getBlock(i - 1, j + hY, k + d)) == BlockIDs.tcRailGag.blockID) && followTracks) {
+				|| (this.worldObj.getBlock(i - 1, j + hY, k + d)) == BlockIDs.tcRail.block
+				|| (this.worldObj.getBlock(i - 1, j + hY, k + d)) == BlockIDs.tcRailGag.block) && followTracks) {
 		}
 		else {
 			//worldObj.setBlockMetadataWithNotify(i - 1, j+ hY, k + d, 0, -1);
@@ -1158,8 +1158,8 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 		}
 
 		if ((Blocks.rail == (worldObj.getBlock(i + 1, j + hY, k + d))
-				|| (this.worldObj.getBlock(i + 1, j + hY, k + d)) == BlockIDs.tcRail.blockID
-				|| (this.worldObj.getBlock(i + 1, j + hY, k + d)) == BlockIDs.tcRailGag.blockID) && followTracks) {
+				|| (this.worldObj.getBlock(i + 1, j + hY, k + d)) == BlockIDs.tcRail.block
+				|| (this.worldObj.getBlock(i + 1, j + hY, k + d)) == BlockIDs.tcRailGag.block) && followTracks) {
 		}
 		else {
 			//worldObj.setBlockMetadataWithNotify(i + 1, j+ hY, k + d, 0, -1);
@@ -1169,8 +1169,8 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 		}
 
 		if ((Blocks.rail == (worldObj.getBlock(i, j + hY, k + d))
-				|| (this.worldObj.getBlock(i, j + hY, k + d)) == BlockIDs.tcRail.blockID
-				|| (this.worldObj.getBlock(i, j + hY, k + d)) == BlockIDs.tcRailGag.blockID) && followTracks) {
+				|| (this.worldObj.getBlock(i, j + hY, k + d)) == BlockIDs.tcRail.block
+				|| (this.worldObj.getBlock(i, j + hY, k + d)) == BlockIDs.tcRailGag.block) && followTracks) {
 		}
 		else {
 			//worldObj.setBlockMetadataWithNotify(i, j+ hY, k + d, 0, -1);

@@ -254,8 +254,8 @@ achievement.tc:mail=Pošta
 achievement.tc:mail.desc=Pošta po tirih!
 achievement.tc:stockcar=Živinski vagon
 achievement.tc:stockcar.desc=Pošasti na tirih!
-achievement.tc:flatcart=Raven vagon
-achievement.tc:flatcart.desc=Kot palaèinka!
+achievement.tc:flatCart=Raven vagon
+achievement.tc:flatCart.desc=Kot palaèinka!
 achievement.tc:caboose=Caboose
 achievement.tc:caboose.desc=Zadnji!
 

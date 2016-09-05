@@ -279,8 +279,8 @@ achievement.tc:mail=Mail
 achievement.tc:mail.desc=Mail via rail!
 achievement.tc:stockcar=Stock car
 achievement.tc:stockcar.desc=Mobs on rails!
-achievement.tc:flatcart=Flat cart
-achievement.tc:flatcart.desc=Flat like a pancake!
+achievement.tc:flatCart=Flat cart
+achievement.tc:flatCart.desc=Flat like a pancake!
 achievement.tc:caboose=Caboose
 achievement.tc:caboose.desc=The last one!
 

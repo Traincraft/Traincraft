@@ -7,6 +7,7 @@
 
 package train.common.slots;
 
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -52,8 +53,9 @@ public class SlotTrainCrafting extends Slot {
 		return super.decrStackSize(par1);
 	}
 	@Override
-	public void onPickupFromSlot(EntityPlayer par1EntityPlayer, ItemStack par2ItemStack) {
-		new PlayerEvent.ItemCraftedEvent(par1EntityPlayer, par2ItemStack, craftMatrix);
+	public void onPickupFromSlot(EntityPlayer par1EntityPlayer, ItemStack par2ItemStack)
+	{
+		FMLCommonHandler.instance().firePlayerCraftingEvent(par1EntityPlayer, par2ItemStack, craftMatrix);
 		this.onCrafting(par2ItemStack);
 		for (int var3 = 0; var3 < this.craftMatrix.getSizeInventory(); ++var3) {
 			ItemStack var4 = this.craftMatrix.getStackInSlot(var3);

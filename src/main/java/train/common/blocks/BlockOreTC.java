@@ -59,14 +59,14 @@ public class BlockOreTC extends BlockSand {
 
 	@Override
 	public void onBlockAdded(World world, int x, int y, int z) {
-		if ((this == BlockIDs.oreTC.blockID) && world.getBlockMetadata(x, y, z) == 1) {
+		if ((this == BlockIDs.oreTC.block) && world.getBlockMetadata(x, y, z) == 1) {
 			world.scheduleBlockUpdate(x, y, z, this, 5);
 		}
 	}
 
 	@Override
 	public void onNeighborBlockChange(World world, int x, int y, int z, Block par5) {
-		if ((this == BlockIDs.oreTC.blockID) && world.getBlockMetadata(x, y, z) == 1) {
+		if ((this == BlockIDs.oreTC.block) && world.getBlockMetadata(x, y, z) == 1) {
 			if (!world.isRemote) {
 				tryToFall(world, x, y, z);
 				world.scheduleBlockUpdate(x, y, z, this, 5);
@@ -76,7 +76,7 @@ public class BlockOreTC extends BlockSand {
 
 	@Override
 	public void updateTick(World world, int x, int y, int z, Random par5Random) {
-		if ((this == BlockIDs.oreTC.blockID) && world.getBlockMetadata(x, y, z) == 1) {
+		if ((this == BlockIDs.oreTC.block) && world.getBlockMetadata(x, y, z) == 1) {
 			if (!world.isRemote) {
 				if (Block.getIdFromBlock(world.getBlock(x, y - 1, z)) == 0) {
 					tryToFall(world, x, y, z);
@@ -94,7 +94,7 @@ public class BlockOreTC extends BlockSand {
 					world.setBlock(x, y, z, Blocks.air);
 					for (; canFallBelow(world, x, y - 1, z) && y > 0; y--) {
 						if (y > 0) {
-							world.setBlock(x, y, z, BlockIDs.oreTC.blockID);
+							world.setBlock(x, y, z, BlockIDs.oreTC.block);
 							world.setBlockMetadataWithNotify(x, y, z, meta, 3);
 						}
 					}

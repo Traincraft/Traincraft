@@ -247,7 +247,6 @@ public class TileEntityDistil extends TileTraincraft implements IFluidHandler {
 		}
 		ItemStack itemstack = DistilRecipes.smelting().getSmeltingResult(slots[0].getItem());
 		if (itemstack == null) {
-			System.out.println("Fuck you");
 			return false;
 		}
 		if (Block.getBlockFromItem(slots[0].getItem()) == BlockIDs.oreTC.block
@@ -273,7 +272,8 @@ public class TileEntityDistil extends TileTraincraft implements IFluidHandler {
 			return;
 
 		int used = getTank().fill(resultLiquid, false);
-		if (used >= resultLiquid.amount) {
+		if (used >= resultLiquid.amount)
+		{
 			getTank().fill(resultLiquid, true);
 			if (random.nextInt(plasticChance) == 0)
 				outputPlastic(plasticStack);

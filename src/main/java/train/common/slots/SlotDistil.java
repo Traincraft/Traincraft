@@ -1,5 +1,6 @@
 package train.common.slots;
 
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
@@ -85,6 +86,6 @@ public class SlotDistil extends Slot {
 
 		this.amount = 0;
 
-		new PlayerEvent.ItemSmeltedEvent(thePlayer, itemstack);
+		FMLCommonHandler.instance().firePlayerCraftingEvent(this.thePlayer, itemstack, inventory);
 	}
 }

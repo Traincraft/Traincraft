@@ -19,19 +19,13 @@ public class CraftingHandler
   private RollingStockStatsEventHandler statsEvent = new RollingStockStatsEventHandler();
   
   @SubscribeEvent
-	public void onCrafting(PlayerEvent.ItemCraftedEvent event)
+  public void onCrafting(PlayerEvent.ItemCraftedEvent event)
   {
-		for (AchievementIDs ach : AchievementIDs.values())
-    {
-			Item[] items = ach.getItems();
-      if (items != null) {
-        for (int i = 0; i < items.length; i++) {
-					if (items[i] == event.crafting.getItem()) {
-						event.player.addStat(ach.achievement, 1);
-          }
-        }
+	  for (AchievementIDs ach : AchievementIDs.values())
+	  {
+		  Item[] items = ach.getItems();
+		  if (items != null) for (Item item: items) if (item == event.crafting.getItem()) event.player.addStat(ach.achievement, 1);
       }
-    }
 		if ((event.crafting.getItem() instanceof ItemRollingStock)) {
 			if (!event.player.worldObj.isRemote) {
         if (FMLCommonHandler.instance().getMinecraftServerInstance() != null)

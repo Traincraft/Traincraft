@@ -191,7 +191,6 @@ public enum ItemIDs {
 	tcRailLargeSlopeBallast("ItemTCRail", "item_rail_straight_slope_ballast", 5);
 
 	public Item item;
-	public Item		itemID;
 	public String className;
 	public String iconName;
 
