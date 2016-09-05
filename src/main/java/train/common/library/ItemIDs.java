@@ -186,9 +186,12 @@ public enum ItemIDs {
 	tcRailMediumParallelSwitch("ItemTCRail", "item_rail_switch_parallel", 5),
 
 	tcRailTwoWaysCrossing("ItemTCRail","item_rail_two_ways_crossing",5),
-	tcRailLargeSlopeWood("ItemTCRail", "item_rail_straight_slope_wood", 5),
-	tcRailLargeSlopeGravel("ItemTCRail", "item_rail_straight_slope_gravel", 5),
-	tcRailLargeSlopeBallast("ItemTCRail", "item_rail_straight_slope_ballast", 5);
+	tcRailSlopeWood("ItemTCRail", "item_rail_straight_slope_wood", 5),
+	tcRailSlopeGravel("ItemTCRail", "item_rail_straight_slope_gravel", 5),
+	tcRailSlopeBallast("ItemTCRail", "item_rail_straight_slope_ballast", 5);
+	// tcRailLargeSlopeWood("ItemTCRail", "item_rail_straight_slope_wood", 3),
+	// tcRailLargeSlopeGravel("ItemTCRail", "item_rail_straight_slope_gravel", 3),
+	// tcRailLargeSlopeBallast("ItemTCRail", "item_rail_straight_slope_ballast", 3);
 
 	public Item item;
 	public String className;

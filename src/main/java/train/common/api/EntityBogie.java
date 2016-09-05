@@ -626,7 +626,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 
 			double norm = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 			double newPosY = (j + Math.abs(Math.tan(slopeAngle * Math.abs(cz - this.posZ))) + this.yOffset + 0.2D);
-			double maxPosY = (j + this.yOffset + 0.25D + slopeHeight);
+			double maxPosY = (j + this.yOffset + slopeHeight);
 
 			if (newPosY > maxPosY) {
 
@@ -649,7 +649,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 
 			double norm = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 			double newPosY = (j + Math.abs(Math.tan(slopeAngle * Math.abs(cx - this.posX))) + this.yOffset + 0.2D);
-			double maxPosY = (j + this.yOffset + 0.25D + slopeHeight);
+			double maxPosY = (j + this.yOffset + slopeHeight);
 
 			if (newPosY > maxPosY) {
 

@@ -9,8 +9,8 @@ package train.common.items;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import train.common.Traincraft;
-import train.common.library.ItemIDs;
 import train.common.library.Info;
+import train.common.library.ItemIDs;
 
 public class TCItems {
 
@@ -75,9 +75,15 @@ public class TCItems {
 		ItemIDs.tcRailMediumParallelSwitch.item = new ItemTCRail(ItemTCRail.TrackTypes.MEDIUM_PARALLEL_SWITCH);
 		
 		ItemIDs.tcRailTwoWaysCrossing.item = new ItemTCRail(ItemTCRail.TrackTypes.TWO_WAYS_CROSSING);
-		ItemIDs.tcRailLargeSlopeWood.item = new ItemTCRail(ItemTCRail.TrackTypes.LARGE_SLOPE_WOOD);
-		ItemIDs.tcRailLargeSlopeGravel.item = new ItemTCRail(ItemTCRail.TrackTypes.LARGE_SLOPE_GRAVEL);
-		ItemIDs.tcRailLargeSlopeBallast.item = new ItemTCRail(ItemTCRail.TrackTypes.LARGE_SLOPE_BALLAST);
+		ItemIDs.tcRailSlopeWood.item = new ItemTCRail(ItemTCRail.TrackTypes.SLOPE_WOOD);
+		ItemIDs.tcRailSlopeGravel.item = new ItemTCRail(ItemTCRail.TrackTypes.SLOPE_GRAVEL);
+		ItemIDs.tcRailSlopeBallast.item = new ItemTCRail(ItemTCRail.TrackTypes.SLOPE_BALLAST);
+		// ItemIDs.tcRailLargeSlopeWood.item = new
+		// ItemTCRail(ItemTCRail.TrackTypes.LARGE_SLOPE_WOOD);
+		// ItemIDs.tcRailLargeSlopeGravel.item = new
+		// ItemTCRail(ItemTCRail.TrackTypes.LARGE_SLOPE_GRAVEL);
+		// ItemIDs.tcRailLargeSlopeBallast.item = new
+		// ItemTCRail(ItemTCRail.TrackTypes.LARGE_SLOPE_BALLAST);
 		
 	}
 	

@@ -1425,12 +1425,14 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			
 			double norm = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 			double newPosY = (j + Math.abs(Math.tan(slopeAngle * Math.abs(cz - this.posZ))) + this.yOffset + 0.2D);
-			double maxPosY = (j + this.yOffset + 0.25D + slopeHeight);
+			double maxPosY = (j + this.yOffset + slopeHeight);
 			
 			if (newPosY > maxPosY) {
 
 				newPosY = maxPosY;
 			}
+			
+			System.out.print("New PosY: " + newPosY);
 			
 			this.setPosition(cx + 0.5D, newPosY, this.posZ);
 			this.moveEntity(0.0D, 0.0D, Math.copySign(norm, this.motionZ));
@@ -1448,12 +1450,14 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			
 			double norm = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 			double newPosY = (j + Math.abs(Math.tan(slopeAngle * Math.abs(cx - this.posX))) + this.yOffset + 0.2D);
-			double maxPosY = (j + this.yOffset + 0.25D + slopeHeight);
+			double maxPosY = (j + this.yOffset + slopeHeight);
 			
 			if (newPosY > maxPosY) {
 
 				newPosY = maxPosY;
 			}
+			
+			System.out.print("New PosY: " + newPosY);
 			
 			this.setPosition(this.posX, newPosY, cz + 0.5D);
 			this.moveEntity(Math.copySign(norm, this.motionX), 0.0D, 0.0D);

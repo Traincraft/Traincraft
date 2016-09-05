@@ -7,20 +7,19 @@
 
 package train.common.core.handlers;
 
+import java.util.ArrayList;
+
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import train.common.inventory.TrainCraftingManager;
+import train.common.library.BlockIDs;
 import train.common.library.ItemIDs;
 import train.common.recipes.RecipesArmorDyes;
-import train.common.library.BlockIDs;
-
-import java.util.ArrayList;
 
 public class RecipeHandler {
 	public static void initBlockRecipes() {
@@ -229,7 +228,9 @@ public class RecipeHandler {
 				TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.ironCab.item, 2), new Object[] { "###", "X X", "XXX", Character.valueOf('X'), Items.iron_ingot, Character.valueOf('#'), s1.get(i) });// iron cab
 				TrainCraftingManager.instance.addRecipe(new ItemStack(BlockIDs.stopper.block, 1), new Object[] { "WWW", "I I", "RRR", Character.valueOf('W'), s1.get(i), Character.valueOf('R'), Blocks.rail, Character.valueOf('I'), Items.iron_ingot});// stopper
 				
-				TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailLargeSlopeWood.item, 2), new Object[] {"  S", " SW","SWW", Character.valueOf('S'), ItemIDs.tcRailSmallStraight.item,Character.valueOf('W'), s1.get(i) });// straight slopes
+				TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailSlopeWood.item, 2),
+						new Object[] { "  S", " SW", "SWW", Character.valueOf('S'), ItemIDs.tcRailSmallStraight.item,
+								Character.valueOf('W'), s1.get(i) });// straight slopes
 			}
 		}
 		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailMediumTurn.item, 2), new Object[] {"SS ", "S  ", Character.valueOf('S'), ItemIDs.tcRailSmallStraight.item });// medium turn
@@ -257,8 +258,13 @@ public class RecipeHandler {
 		
 		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailTwoWaysCrossing.item, 4), new Object[] {" S ", "SSS"," S ", Character.valueOf('S'), ItemIDs.tcRailSmallStraight.item });// two ways crossing
 		
-		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailLargeSlopeGravel.item, 2), new Object[] {"  S", " SG","SGG", Character.valueOf('S'), ItemIDs.tcRailSmallStraight.item,Character.valueOf('G'), Blocks.gravel });// straight slopes
-		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailLargeSlopeBallast.item, 2), new Object[] {"  S", " SB","SBB", Character.valueOf('S'), ItemIDs.tcRailSmallStraight.item,Character.valueOf('B'), new ItemStack(BlockIDs.oreTC.block, 1,3) });// straight slopes
+		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailSlopeGravel.item, 2),
+				new Object[] { "  S", " SG", "SGG", Character.valueOf('S'), ItemIDs.tcRailSmallStraight.item,
+						Character.valueOf('G'), Blocks.gravel });// straight slopes
+		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailSlopeBallast.item, 2),
+				new Object[] { "  S", " SB", "SBB", Character.valueOf('S'), ItemIDs.tcRailSmallStraight.item,
+						Character.valueOf('B'), new ItemStack(BlockIDs.oreTC.block, 1, 3) });// straight
+																								// slopes
 		
 		TrainCraftingManager.instance.addRecipe(new ItemStack(BlockIDs.bridgePillar.block, 4), new Object[] {"SSS", "S S","SSS", Character.valueOf('S'), Items.stick});// bridge pillar
 		

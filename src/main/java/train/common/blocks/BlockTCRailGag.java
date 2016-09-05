@@ -1,5 +1,8 @@
 package train.common.blocks;
 
+import java.util.List;
+import java.util.Random;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -20,9 +23,6 @@ import train.common.library.BlockIDs;
 import train.common.library.Info;
 import train.common.tile.TileTCRailGag;
 
-import java.util.List;
-import java.util.Random;
-
 public class BlockTCRailGag extends Block {
 	private IIcon texture;
 	float f = 0.125F;
@@ -36,6 +36,7 @@ public class BlockTCRailGag extends Block {
 	/**
 	 * Checks to see if its valid to put this block at the specified coordinates. Args: world, x, y, z
 	 */
+	@Override
 	public boolean canPlaceBlockAt(World par1World, int par2, int par3, int par4) {
 		Block block = par1World.getBlock(par2, par3, par4);
 		return false;
@@ -141,12 +142,19 @@ public class BlockTCRailGag extends Block {
 	@Override
 	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int i, int j, int k) {
 		TileTCRailGag tileEntity = (TileTCRailGag) world.getTileEntity(i, j, k);
-		if (tileEntity != null && tileEntity.type != null && (tileEntity.type.equals(ItemTCRail.TrackTypes.LARGE_SLOPE_WOOD.getLabel()) || tileEntity.type.equals(ItemTCRail.TrackTypes.LARGE_SLOPE_GRAVEL.getLabel()) || tileEntity.type.equals(ItemTCRail.TrackTypes.LARGE_SLOPE_BALLAST.getLabel()))) {
-			List list = world.getEntitiesWithinAABB(EntityMinecart.class, AxisAlignedBB.getBoundingBox((double) ((float) i - 1.5), (double) j, (double) ((float) k - 1.5), (double) ((float) (i + 1.5)), (double) ((float) (j + 1.5)), (double) ((float) (k + 1.5))));
+		if (tileEntity != null && tileEntity.type != null
+				&& (tileEntity.type.equals(ItemTCRail.TrackTypes.SLOPE_WOOD.getLabel())
+						|| tileEntity.type.equals(ItemTCRail.TrackTypes.SLOPE_GRAVEL.getLabel())
+						|| tileEntity.type.equals(ItemTCRail.TrackTypes.SLOPE_BALLAST.getLabel())
+				// || tileEntity.type.equals(ItemTCRail.TrackTypes.LARGE_SLOPE_WOOD.getLabel())
+				// || tileEntity.type.equals(ItemTCRail.TrackTypes.LARGE_SLOPE_GRAVEL.getLabel())
+				// || tileEntity.type.equals(ItemTCRail.TrackTypes.LARGE_SLOPE_BALLAST.getLabel())
+				)) {
+			List list = world.getEntitiesWithinAABB(EntityMinecart.class, AxisAlignedBB.getBoundingBox(i - 1.5, j, k - 1.5, ((float) (i + 1.5)), ((float) (j + 1.5)), ((float) (k + 1.5))));
 			if (!list.isEmpty()) {
 				return null;
 			}
-			return AxisAlignedBB.getBoundingBox((double) i + this.minX, (double) j + this.minY, (double) k + this.minZ, (double) i + this.maxX, (double) j + tileEntity.bbHeight - 0.2, (double) k + this.maxZ);
+			return AxisAlignedBB.getBoundingBox(i + this.minX, j + this.minY, k + this.minZ, i + this.maxX, (double) j + tileEntity.bbHeight - 0.2, k + this.maxZ);
 		}
 		return null;
 	}
