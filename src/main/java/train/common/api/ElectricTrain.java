@@ -1,7 +1,10 @@
 package train.common.api;
 
+import cofh.api.energy.IEnergyContainerItem;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 public abstract class ElectricTrain extends Locomotive {
@@ -44,21 +47,27 @@ public abstract class ElectricTrain extends Locomotive {
 		if(!this.canCheckInvent)return;
 		
 		/* if the loco has fuel */
-		if (getFuel() < maxEnergy) {
-			if (locoInvent[0] != null && locoInvent[0].getItem() == Items.redstone && ((getFuel() + redstoneEnergy) <= maxEnergy)) {
+		if (getFuel() < maxEnergy && locoInvent[0] != null)
+		{
+			Item item = locoInvent[0].getItem();
+			if (item == Items.redstone && ((getFuel() + redstoneEnergy) <= maxEnergy))
+			{
 				fuelTrain += redstoneEnergy;
 				decrStackSize(0, 1);
 			}
-			/*else if (locoInvent[0] != null && (PluginIndustrialCraft.getItems().containsKey(PluginIndustrialCraft.getNames()[4]) && PluginIndustrialCraft.getItems().containsKey(PluginIndustrialCraft.getNames()[3])) && (locoInvent[0].itemID == PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[4]).itemID)) {
+			else if (item instanceof IEnergyContainerItem)
+			{
+				final double REtoRF = 1; // redstoneEnergy conversion factor to RF e.g. RF = redstoneEnergy * REtoRF
+				final int maxDraw = 200; // maximum amount of redstoneEnergy to draw from the item per tick
+				int draw = MathHelper.floor_double(Math.min(maxDraw, maxEnergy - getFuel()) * REtoRF); // amount of energy to attempt to draw this tick
+				fuelTrain += ((IEnergyContainerItem) item).extractEnergy(locoInvent[0], draw, false);
+			}
+			/*else if ((PluginIndustrialCraft.getItems().containsKey(PluginIndustrialCraft.getNames()[4]) && PluginIndustrialCraft.getItems().containsKey(PluginIndustrialCraft.getNames()[3])) && (item == PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[4]).getItem())) {
 
 				int transfer = ElectricItem.manager.discharge(locoInvent[0], maxEnergy - getFuel(), 2, false, false);
 				fuelTrain = transfer;
 				//System.out.println("Amount: " + transfer + " Fuel: " + getFuel());//TODO debug
 			}*/
-			//else if (locoInvent[0] != null && locoInvent[0].getItem() instanceof IElectricItem) {
-			//	double transfer = ElectricItem.manager.discharge(locoInvent[0], (int)(maxEnergy - getFuel()),3,false,false,false);
-			//	fuelTrain += (int) transfer;// / 100;
-			//}
 		}/* else if (getFuel() <= 0) {// fuel check if (locoInvent[0] != null && (PluginIndustrialCraft.getItems().containsKey(PluginIndustrialCraft.getNames()[20])) && (PluginIndustrialCraft.getItems().containsKey(PluginIndustrialCraft.getNames()[23]))) { if ((locoInvent[0].itemID == PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[20]).itemID)) { hasUranium = true; fuelTrain = maxEnergy; if (!worldObj.isRemote) { decrStackSize(0, 1); } reduceExplosionChance = 1000; for (int u = 1; u < locoInvent.length; u++) {// checks the inventory
 		  * 
 		  * if (locoInvent[u] != null) { if (locoInvent[u].itemID == PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[21]).itemID) { reduceExplosionChance += 10000; if (rand.nextInt(10) == 0 && (!worldObj.isRemote)) { locoInvent[u].setItemDamage(1); } } } } } else if ((locoInvent[0].itemID == PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[23]).itemID)) { hasUranium = true; fuelTrain = 800 + 1000000; // locoInvent[0] = null; if (!worldObj.isRemote) { decrStackSize(0, 1); } reduceExplosionChance = 1000; for (int u = 1; u < locoInvent.length; u++) {// checks the inventory if (locoInvent[u] != null) { if (locoInvent[u].itemID == PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[21]).itemID) { reduceExplosionChance += 10000; if (rand.nextInt(10) == 0 && (!worldObj.isRemote)) { locoInvent[u].setItemDamage(1); } } } } } } } */
