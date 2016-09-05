@@ -234,8 +234,8 @@ achievement.tc:mail=Почта
 achievement.tc:mail.desc=Доставка по рельсам!
 achievement.tc:stockcar=Вагон для животных
 achievement.tc:stockcar.desc=Переселение мобов!
-achievement.tc:flatcart=Платформа
-achievement.tc:flatcart.desc=Плоская как блин!
+achievement.tc:flatCart=Платформа
+achievement.tc:flatCart.desc=Плоская как блин!
 achievement.tc:caboose=Кабуз
 achievement.tc:caboose.desc=Последний!
 

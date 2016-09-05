@@ -1,5 +1,6 @@
 package train.common.slots;
 
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
@@ -59,8 +60,8 @@ public class SlotOpenHearthFurnace extends Slot {
 	@Override
 	protected void onCrafting(ItemStack itemstack) {
 		itemstack.onCrafting(this.thePlayer.worldObj, this.thePlayer, this.amount);
-
-		new PlayerEvent.ItemSmeltedEvent(thePlayer, itemstack);
+		
+		FMLCommonHandler.instance().firePlayerSmeltedEvent(thePlayer, itemstack);
 		if (itemstack.getItem() == ItemIDs.steel.item)
 			thePlayer.addStat(AchievementIDs.steel.achievement, 1);
 

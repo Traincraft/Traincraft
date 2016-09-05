@@ -40,7 +40,7 @@ public class GuiDistil extends GuiContainer {
 			/**
 			 * Stops showing 100% on copper 
 			 */
-			if (Block.getBlockFromItem(distilInventory.slots[0].getItem()) == BlockIDs.oreTC.blockID
+			if (Block.getBlockFromItem(distilInventory.slots[0].getItem()) == BlockIDs.oreTC.block
 					&& (distilInventory.slots[0].getItemDamage() != 1
 							&& distilInventory.slots[0].getItemDamage() != 2)) {
 				return;

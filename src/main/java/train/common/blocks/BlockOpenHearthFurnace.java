@@ -115,10 +115,10 @@ public class BlockOpenHearthFurnace extends BlockContainer {
 		keepFurnaceInventory = true;
 
 		if (flag) {
-			world.setBlock(i, j, k, BlockIDs.openFurnaceActive.blockID);
+			world.setBlock(i, j, k, BlockIDs.openFurnaceActive.block);
 		}
 		else {
-			world.setBlock(i, j, k, BlockIDs.openFurnaceIdle.blockID);
+			world.setBlock(i, j, k, BlockIDs.openFurnaceIdle.block);
 		}
 		keepFurnaceInventory = false;
 		world.setBlockMetadataWithNotify(i, j, k, l, 0);

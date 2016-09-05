@@ -48,7 +48,6 @@ public enum BlockIDs {
 	bridgePillar(false,null);
 
 	public Block block;
-	public Block	blockID;
 	public boolean hasItemBlock;
 	public Class itemBlockClass;
 

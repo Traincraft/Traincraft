@@ -231,8 +231,8 @@ achievement.tc:mail=Courrier
 achievement.tc:mail.desc=Courrier par le rail!
 achievement.tc:stockcar=Wagon bétailler
 achievement.tc:stockcar.desc=Mobs sur les rails!
-achievement.tc:flatcart=Wagon plat
-achievement.tc:flatcart.desc=Plat comme un pancake!
+achievement.tc:flatCart=Wagon plat
+achievement.tc:flatCart.desc=Plat comme un pancake!
 achievement.tc:caboose=Fourgon-frein
 achievement.tc:caboose.desc=Le dernier!
 

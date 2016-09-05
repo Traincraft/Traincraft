@@ -279,8 +279,8 @@ achievement.tc:mail=Pošta
 achievement.tc:mail.desc=Pošta na kolejích!
 achievement.tc:stockcar=Zásobovací vůz
 achievement.tc:stockcar.desc=Mobové na kolejích!
-achievement.tc:flatcart=Plochý vůz
-achievement.tc:flatcart.desc=Plochý jako lívanec!
+achievement.tc:flatCart=Plochý vůz
+achievement.tc:flatCart.desc=Plochý jako lívanec!
 achievement.tc:caboose=Služební vůz
 achievement.tc:caboose.desc=Ten poslední!
 

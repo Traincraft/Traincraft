@@ -278,8 +278,8 @@ achievement.tc:mail=La posta
 achievement.tc:mail.desc=Posta sulle rotaie!
 achievement.tc:stockcar=Il vagone bestiame
 achievement.tc:stockcar.desc=Bestie sulle rotaie!
-achievement.tc:flatcart=il vagone piano
-achievement.tc:flatcart.desc=Piano e in bolla!
+achievement.tc:flatCart=il vagone piano
+achievement.tc:flatCart.desc=Piano e in bolla!
 achievement.tc:caboose=Il vagone di servizio
 achievement.tc:caboose.desc=Gli ultimi saranno i primi!
 

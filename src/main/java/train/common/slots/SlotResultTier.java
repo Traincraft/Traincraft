@@ -1,5 +1,6 @@
 package train.common.slots;
 
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -41,6 +42,6 @@ public class SlotResultTier extends Slot {
 		}
 		this.onCrafting(itemstack);
 		super.onPickupFromSlot(player, itemstack);
-		new PlayerEvent.ItemCraftedEvent(player, itemstack, craftMatrix);
+		FMLCommonHandler.instance().firePlayerCraftingEvent(player, itemstack, craftMatrix);
 	}
 }

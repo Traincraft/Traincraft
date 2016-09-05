@@ -256,8 +256,8 @@ achievement.tc:mail=Post
 achievement.tc:mail.desc=Post per Schine!
 achievement.tc:stockcar=Viehwagen
 achievement.tc:stockcar.desc=Vieh auf Schienen!
-achievement.tc:flatcart=Flachwagen
-achievement.tc:flatcart.desc=Flach wie ein Pfannkuchen!
+achievement.tc:flatCart=Flachwagen
+achievement.tc:flatCart.desc=Flach wie ein Pfannkuchen!
 achievement.tc:caboose=Caboose
 achievement.tc:caboose.desc=Die Letze!
 

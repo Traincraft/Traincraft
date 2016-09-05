@@ -221,7 +221,7 @@ public class ItemTCRail extends ItemPart {
 		tcRail.linkedY = linkedY;
 		tcRail.linkedZ = linkedZ;
 		tcRail.canTypeBeModifiedBySwitch = canTypeBeModifiedBySwitch;
-		if(shouldDrop)tcRail.idDrop = ItemIDs.tcRailSmallStraight.itemID;
+		if(shouldDrop)tcRail.idDrop = ItemIDs.tcRailSmallStraight.item;
 	}
 
 	private String getTrackOrientation(int l, float yaw) {

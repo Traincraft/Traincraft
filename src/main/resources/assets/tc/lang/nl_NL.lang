@@ -231,8 +231,8 @@ achievement.tc:mail=Post
 achievement.tc:mail.desc=Post op het spoor!
 achievement.tc:stockcar=Veewagon
 achievement.tc:stockcar.desc=Het vee op de sporen!
-achievement.tc:flatcart=Platte wagon
-achievement.tc:flatcart.desc=Plat als een pannekoek!
+achievement.tc:flatCart=Platte wagon
+achievement.tc:flatCart.desc=Plat als een pannekoek!
 achievement.tc:caboose=Caboose
 achievement.tc:caboose.desc=Hekkensluiter!
 
