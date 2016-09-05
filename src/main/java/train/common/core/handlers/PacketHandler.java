@@ -22,6 +22,7 @@ import train.common.core.network.PacketKeyPress;
 import train.common.core.network.PacketLantern;
 import train.common.core.network.PacketParkingBrake;
 import train.common.core.network.PacketRollingStockRotation;
+import train.common.core.network.PacketSetJukeboxStreamingUrl;
 import train.common.core.network.PacketSetLocoTurnedOn;
 import train.common.core.network.PacketSetTrainLockedToClient;
 import train.common.core.network.PacketSlotsFilled;
@@ -52,8 +53,8 @@ public class PacketHandler {
 				Side.SERVER);
 		Traincraft.rotationChannel.registerMessage(PacketRollingStockRotation.Handler.class,
 				PacketRollingStockRotation.class, 2, Side.CLIENT);
-		// Traincraft.modChannel.registerMessage(PacketSetJukeboxStreamingUrl.Handler.class,
-		// PacketSetJukeboxStreamingUrl.class, 1, Side.SERVER);
+		 Traincraft.modChannel.registerMessage(PacketSetJukeboxStreamingUrl.Handler.class,
+				PacketSetJukeboxStreamingUrl.class, 1, Side.SERVER);
 		Traincraft.slotschannel.registerMessage(PacketSlotsFilled.Handler.class, PacketSlotsFilled.class,
 				3, Side.CLIENT);
 		Traincraft.brakeChannel.registerMessage(PacketParkingBrake.Handler.class, PacketParkingBrake.class,

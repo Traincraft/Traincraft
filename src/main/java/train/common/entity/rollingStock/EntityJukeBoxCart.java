@@ -3,6 +3,7 @@ package train.common.entity.rollingStock;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -12,6 +13,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import train.common.Traincraft;
 import train.common.api.EntityRollingStock;
+import train.common.core.util.MP3Player;
 import train.common.library.GuiIDs;
 
 public class EntityJukeBoxCart extends EntityRollingStock {
@@ -22,6 +24,7 @@ public class EntityJukeBoxCart extends EntityRollingStock {
 	private boolean streamWasStopped = false;
 	Side side;
 	public float volume = 1.0f;
+	public MP3Player player;
 
 	public EntityJukeBoxCart(World world) {
 		super(world);
@@ -78,7 +81,6 @@ public class EntityJukeBoxCart extends EntityRollingStock {
 	@Override
 	public void onUpdate() {
 		super.onUpdate();
-		updateTicks++;
 		if (!worldObj.isRemote && this.updateTicks % 10 == 0) {
 			this.dataWatcher.updateObject(22, streamURL);
 			if (isPlaying) {
@@ -89,8 +91,7 @@ public class EntityJukeBoxCart extends EntityRollingStock {
 			}
 		}
 		if (side == Side.CLIENT) {
-			//TODO Fix sounds
-			/*
+			
 			if (this.updateTicks % 10 == 0 && !this.isPlaying() && this.dataWatcher.getWatchableObjectInt(23) != 0) {
 				this.streamURL = this.dataWatcher.getWatchableObjectString(22);
 				this.startStream();
@@ -124,7 +125,7 @@ public class EntityJukeBoxCart extends EntityRollingStock {
 					worldObj.spawnParticle("note", (double) posX, (double) posY + 1.2D, (double) posZ, (double) random2 / 24.0D, 0.0D, 0.0D);
 				}
 			}
-			*/
+			
 		}
 	}
 
@@ -146,7 +147,7 @@ public class EntityJukeBoxCart extends EntityRollingStock {
 	}
 
 	public void startStream() {
-		/*
+		
 		if (!this.isPlaying) {
 			this.isPlaying = true;
 			if (side == Side.CLIENT) {
@@ -154,11 +155,11 @@ public class EntityJukeBoxCart extends EntityRollingStock {
 				Traincraft.proxy.playerList.add(this.player);
 			}
 		}
-		*/
+		
 	}
 
 	public void stopStream() {
-		/*
+		
 		if (this.isPlaying) {
 			if (side == Side.CLIENT && this.player != null) {
 				this.player.stop();
@@ -166,7 +167,7 @@ public class EntityJukeBoxCart extends EntityRollingStock {
 			}
 			this.isPlaying = false;
 		}
-		*/
+		
 	}
 
 	public boolean isPlaying() {

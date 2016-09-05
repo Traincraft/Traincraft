@@ -30,12 +30,15 @@ import train.common.inventory.*;
 import train.common.library.GuiIDs;
 import train.common.tile.*;
 import train.common.core.handlers.WorldEvents;
+import train.common.core.util.MP3Player;
 import train.common.entity.digger.EntityRotativeDigger;
 import train.common.entity.zeppelin.AbstractZeppelin;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CommonProxy implements IGuiHandler {
+	public static List<MP3Player> playerList = new ArrayList();
 
 	public void setKeyBinding(String name, int value) {}
 
@@ -232,5 +235,9 @@ public class CommonProxy implements IGuiHandler {
 	
 	public EntityPlayer getPlayer() {
 		return null;
+	}
+
+	public float getJukeboxVolume() {
+		return 0;
 	}
 }

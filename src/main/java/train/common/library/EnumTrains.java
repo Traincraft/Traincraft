@@ -36,6 +36,7 @@ import train.common.entity.rollingStock.EntityFreightWagenDB;
 import train.common.entity.rollingStock.EntityFreightWellcar;
 import train.common.entity.rollingStock.EntityFreightWood;
 import train.common.entity.rollingStock.EntityFreightWood2;
+import train.common.entity.rollingStock.EntityJukeBoxCart;
 import train.common.entity.rollingStock.EntityLocoDieselCD742;
 import train.common.entity.rollingStock.EntityLocoDieselChME3;
 import train.common.entity.rollingStock.EntityLocoDieselGP7Red;
@@ -111,7 +112,7 @@ public enum EnumTrains {
 	workCaboose("Work Caboose",EntityCabooseWorkCart.class, 43,ItemIDs.minecartCabooseWork.item,"train_caboose_work","work",0,0,0.6,0,0,0,0,0,0,null,18,null,null,0.98,1.98),
 	cabooseLogging("Caboose Logging",EntityCabooseLogging.class, 99,ItemIDs.minecartCabooseLogging.item,"train_logging_caboose","work",0,0,0.2,0,0,0,0,0,0,null,18,null,null,0.98,1.98),
 	mailWagen_DB("Mail Wagon DB",EntityMailWagen_DB.class, 105,ItemIDs.minecartMailWagon_DB.item,"train_mail","work",0,0,1,0,0,0,0,0,0,null,18,null,null,0.98,1.98),
-	//jukeBoxCart("JukeBox Cart",EntityJukeBoxCart.class, 42,ItemIDs.minecartJukeBoxCart.item,"train_jukebox","special",0,0,0.2,0,0,0,0,0,0,null,18,null,null,0.98,0.5),
+	jukeBoxCart("JukeBox Cart",EntityJukeBoxCart.class, 42,ItemIDs.minecartJukeBoxCart.item,"train_jukebox","special",0,0,0.2,0,0,0,0,0,0,null,18,null,null,0.98,0.5),
 	flatCartSU("Flat Cart SU",EntityFlatCartSU.class, 60,ItemIDs.minecartFlatCartSU.item,"train_flat_su","flat",0,0,0.2,0,0,0,0,0,0,null,18,null,null,0.98,0.3),
 	flatCartUS("Flat Cart US",EntityFlatCartUS.class, 68,ItemIDs.minecartFlatCartUS.item,"train_flat_us","flat",0,0,0.4,0,0,0,0,0,0,null,18,null,null,0.98,0.3),
 	tracksBuilder("Tracks Builder",EntityTracksBuilder.class, 28,ItemIDs.minecartBuilder.item,"train_builder","special",0,0,0,0,0,0,0,0,0,null,14,null,null,0.98,1.98),

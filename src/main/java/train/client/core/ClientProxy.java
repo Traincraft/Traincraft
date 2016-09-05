@@ -7,6 +7,7 @@ import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Optional;
 import cpw.mods.fml.common.registry.VillagerRegistry;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.audio.SoundCategory;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.Entity;
@@ -262,5 +263,11 @@ public class ClientProxy extends CommonProxy {
 				}
 			}
         }
+	}
+	
+	@Override
+	public float getJukeboxVolume()
+	{
+		return Minecraft.getMinecraft().gameSettings.getSoundLevel(SoundCategory.RECORDS) * Minecraft.getMinecraft().gameSettings.getSoundLevel(SoundCategory.MASTER);
 	}
 }
