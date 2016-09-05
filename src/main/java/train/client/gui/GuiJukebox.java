@@ -1,34 +1,40 @@
 package train.client.gui;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.ResourceLocation;
-import org.lwjgl.input.Keyboard;
-import org.lwjgl.opengl.GL11;
-import train.common.Traincraft;
-import train.common.api.AbstractTrains;
-import train.common.core.network.PacketSetJukeboxStreamingUrl;
-import train.common.core.network.PacketSetTrainLockedToClient;
-import train.common.entity.rollingStock.EntityJukeBoxCart;
-import train.common.library.Info;
-
-import java.awt.*;
+import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Calendar;
 import java.util.List;
+
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.GuiTextField;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.ResourceLocation;
+
+import org.lwjgl.input.Keyboard;
+import org.lwjgl.opengl.GL11;
+
+import train.common.Traincraft;
+import train.common.api.AbstractTrains;
+import train.common.api.Freight;
+import train.common.core.handlers.PacketHandler;
+import train.common.core.network.PacketSetJukeboxStreamingUrl;
+import train.common.core.network.PacketSetTrainLockedToClient;
+import train.common.entity.rollingStock.EntityJukeBoxCart;
+import train.common.library.Info;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class GuiJukebox extends GuiScreen {
 
@@ -45,7 +51,7 @@ public class GuiJukebox extends GuiScreen {
 	private String infoText;
 	private boolean flash;
 	private float volume = 1.0f;
-
+	
 	public GuiJukebox(EntityPlayer player, EntityJukeBoxCart jukebox) {
 		this.jukebox = jukebox;
 		this.player = player;
@@ -71,7 +77,7 @@ public class GuiJukebox extends GuiScreen {
 		Keyboard.enableRepeatEvents(true);
 		int var1 = (this.width - gui_width) / 2;
 		int var2 = (this.height - gui_height) / 2;
-		if (!jukebox.getTrainLockedFromPacket()) {
+		if (!((AbstractTrains) jukebox).locked) {
 			this.buttonList.add(this.buttonLock = new GuiButton(3, var1 + gui_width - 350, var2 - 10, 51, 10, "Unlocked"));
 		}
 		else {
@@ -101,8 +107,8 @@ public class GuiJukebox extends GuiScreen {
 		drawSquareSides(gui_width - 16, 16, 2, 2, var5 + 8, var6 + 22 + 26, var7 - 8, var8 - gui_height / 2 - 32 + 36, 10, 0);
 
 		drawTexturedModalRect(var5 + 6, var6 + 6, 20, 0, 7, 10);
-		drawTexturedModalRect(var5 + 13, var6 + 6, anim / 100, 12, (28 * (gui_width / 28)) / 2, 10);
-		drawTexturedModalRect(var5 + 13 + (28 * (gui_width / 28)) / 2, var6 + 6, anim / 100, 12, (28 * (gui_width / 28)) / 2, 10);
+		drawTexturedModalRect(var5 + 13, var6 + 6, 0 + anim / 100, 12, (28 * (gui_width / 28)) / 2, 10);
+		drawTexturedModalRect(var5 + 13 + (28 * (gui_width / 28)) / 2, var6 + 6, 0 + anim / 100, 12, (28 * (gui_width / 28)) / 2, 10);
 		if (jukebox.isPlaying) {
 			anim += 10;
 			if (anim == 2800) {
@@ -110,9 +116,9 @@ public class GuiJukebox extends GuiScreen {
 			}
 		}
 
-		//fontRendererObj.drawString("Date: " + Calendar.getInstance().get(Calendar.MONTH) + " " + Calendar.getInstance().get(Calendar.DATE), var5 - gui_width / 2, var6 - 30, 0xffffffff);
-
-		if((Minecraft.getMinecraft().thePlayer != null) && (!(jukebox).isInvalid)) {
+		//fontRenderer.drawString("Date: " + Calendar.getInstance().get(Calendar.MONTH) + " " + Calendar.getInstance().get(Calendar.DATE), var5 - gui_width / 2, var6 - 30, 0xffffffff);
+		
+		if((Minecraft.getMinecraft().thePlayer != null) && ((jukebox).player != null) && (!(jukebox).isInvalid)) {
 			fontRendererObj.drawString("Volume: " + (int) Math.ceil(jukebox.volume * 100), width / 2 - 26, height / 2 + 18, 0xff0e0e0e);
 		}
 		else {
@@ -166,7 +172,7 @@ public class GuiJukebox extends GuiScreen {
 	public void updateScreen() {
 		streamTextBox.updateCursorCounter();
 		if (jukebox.isInvalid) {
-			mc.displayGuiScreen(null);
+			mc.displayGuiScreen((GuiScreen) null);
 			mc.setIngameFocus();
 		}
 		super.updateScreen();
@@ -198,38 +204,28 @@ public class GuiJukebox extends GuiScreen {
 
 	@SideOnly(Side.CLIENT)
 	protected void actionPerformed(GuiButton button) {
-
-		if (button.id == 0 && this.player instanceof EntityPlayerMP) {
-
+		if (button.id == 0) {
 			if (streamTextBox.getText() != null && streamTextBox.getText().length() > 0) {
-
-				if (!jukebox.isPlaying()) {
-
+				if ((!jukebox.isPlaying())) {
 					if (this.streamTextBox.getText().toLowerCase().endsWith(".m3u")) {
-
 						this.jukebox.streamURL = takeFirstEntryFromM3U(this.streamTextBox.getText());
 					}
 					else if (this.streamTextBox.getText().toLowerCase().endsWith(".pls")) {
-
 						this.jukebox.streamURL = parsePls(this.streamTextBox.getText());
 					}
 					else {
-
 						this.jukebox.streamURL = this.streamTextBox.getText();
 					}
-
-					//Traincraft.modChannel.sendTo(new PacketSetJukeboxStreamingUrl(this.jukebox, this.jukebox.streamURL, true), (EntityPlayerMP) this.player);
+					Traincraft.modChannel.sendToServer(new PacketSetJukeboxStreamingUrl(this.jukebox, this.jukebox.streamURL, true));
 					jukebox.startStream();
 				}
 				else {
-
-					//Traincraft.modChannel.sendTo(new PacketSetJukeboxStreamingUrl(this.jukebox, this.jukebox.streamURL, false), (EntityPlayerMP) this.player);
+					Traincraft.modChannel.sendToServer(new PacketSetJukeboxStreamingUrl(this.jukebox, this.jukebox.streamURL, false));
 					jukebox.stopStream();
 				}
 			}
-			else if (jukebox.isPlaying) {
-
-				//Traincraft.modChannel.sendTo(new PacketSetJukeboxStreamingUrl(this.jukebox, this.jukebox.streamURL, false), (EntityPlayerMP) this.player);
+			else if (jukebox.isPlaying){
+				Traincraft.modChannel.sendToServer(new PacketSetJukeboxStreamingUrl(this.jukebox, this.jukebox.streamURL, false));
 				jukebox.stopStream();
 			}
 		}
@@ -249,15 +245,15 @@ public class GuiJukebox extends GuiScreen {
 		}
 
 		if (button.id == 4) {
-			if((Minecraft.getMinecraft().thePlayer != null) && (!jukebox.isInvalid)){
+			if((Minecraft.getMinecraft().thePlayer != null) && (((EntityJukeBoxCart) jukebox).player != null) && (!((EntityJukeBoxCart) jukebox).isInvalid)){
 				if(jukebox.volume<1.0f) {
-					jukebox.volume += 0.1f;
+    				jukebox.volume += 0.1f;
 				}
 			}
 		}
 
 		if (button.id == 5) {
-			if((Minecraft.getMinecraft().thePlayer != null) && (!jukebox.isInvalid)){
+			if((Minecraft.getMinecraft().thePlayer != null) && (((EntityJukeBoxCart) jukebox).player != null) && (!((EntityJukeBoxCart) jukebox).isInvalid)){
 				if(jukebox.volume>0.0f) {
 					jukebox.volume -= 0.1f;
 				}
@@ -265,32 +261,34 @@ public class GuiJukebox extends GuiScreen {
 		}
 
 		if (button.id == 3) {
-			if (player != null && player instanceof EntityPlayer && player.getCommandSenderName().toLowerCase().equals(((AbstractTrains) jukebox).getTrainOwner().toLowerCase())) {
-				if ((!jukebox.getTrainLockedFromPacket())) {
-					AxisAlignedBB box = jukebox.boundingBox.expand(5, 5, 5);
-					List lis3 = jukebox.worldObj.getEntitiesWithinAABBExcludingEntity(jukebox, box);
+			if (player != null && player instanceof EntityPlayer && player.getDisplayName().equals(((AbstractTrains) jukebox).getTrainOwner())) {
+				if ((!((AbstractTrains) jukebox).locked)) {
+					AxisAlignedBB box = ((EntityJukeBoxCart) jukebox).boundingBox.expand(5, 5, 5);
+					List lis3 = ((EntityJukeBoxCart) jukebox).worldObj.getEntitiesWithinAABBExcludingEntity(jukebox, box);
 					if (lis3 != null && lis3.size() > 0) {
-						for (Object entity : lis3) {
+						for (int j1 = 0; j1 < lis3.size(); j1++) {
+							Entity entity = (Entity) lis3.get(j1);
 							if (entity instanceof EntityPlayer) {
-								Traincraft.lockChannel.sendToServer(new PacketSetTrainLockedToClient(true, jukebox.getEntityId()));
+								Traincraft.lockChannel.sendToServer(new PacketSetTrainLockedToClient(true, this.jukebox.getEntityId()));
 							}
 						}
 					}
-					jukebox.setTrainLockedFromPacket(true);
+					((AbstractTrains) jukebox).locked = true;
 					button.displayString = "Locked";
 					this.initGui();
 				}
 				else {
-					AxisAlignedBB box = jukebox.boundingBox.expand(5, 5, 5);
-					List lis3 = jukebox.worldObj.getEntitiesWithinAABBExcludingEntity(jukebox, box);
+					AxisAlignedBB box = ((EntityJukeBoxCart) jukebox).boundingBox.expand(5, 5, 5);
+					List lis3 = ((EntityJukeBoxCart) jukebox).worldObj.getEntitiesWithinAABBExcludingEntity(jukebox, box);
 					if (lis3 != null && lis3.size() > 0) {
-						for (Object entity : lis3) {
+						for (int j1 = 0; j1 < lis3.size(); j1++) {
+							Entity entity = (Entity) lis3.get(j1);
 							if (entity instanceof EntityPlayer) {
-								Traincraft.lockChannel.sendToServer(new PacketSetTrainLockedToClient(true, jukebox.getEntityId()));
+								Traincraft.lockChannel.sendToServer(new PacketSetTrainLockedToClient(true, this.jukebox.getEntityId()));
 							}
 						}
 					}
-					jukebox.locked = false;
+					((AbstractTrains) jukebox).locked = false;
 					button.displayString = "UnLocked";
 					this.initGui();
 				}
@@ -313,11 +311,11 @@ public class GuiJukebox extends GuiScreen {
 
 	protected void drawCreativeTabHoveringText(String str, int t, int g) {
 		String state = "";
-		if (jukebox.getTrainLockedFromPacket()) {
+		if (jukebox.locked)
 			state = "Locked";
-		} else {
+		else
 			state = "Unlocked";
-		}
+
 		int textWidth = fontRendererObj.getStringWidth("When a jukebox is unlocked,")+2;
 
 		int i4 = 0xf0100010;
@@ -325,19 +323,22 @@ public class GuiJukebox extends GuiScreen {
 		drawGradientRect(t + 15 - 4, g - 40 - 3, t + textWidth + 4, g + 8 + 3, i4, i4);
 		int colour1 = 0x505000ff;
 		int colour2 = (colour1 & 0xfefefe) >> 1 | colour1 & 0xff000000;
-						drawGradientRect(t + 15 - 3, g - 40 - 3, t + textWidth + 3, g + 8 + 3, colour1, colour2);
-						drawGradientRect(t + 15 - 2, g - 40 - 2, t + textWidth + 2, g + 8 + 2, i4, i4);
-						fontRendererObj.drawStringWithShadow(str, t + 15, g - 40, -1);
-						fontRendererObj.drawStringWithShadow("only its owner can open", t + 15, g + 10 - 40, -1);
-						fontRendererObj.drawStringWithShadow("the GUI and destroy it.", t + 15, g + 20 - 40, -1);
-						fontRendererObj.drawStringWithShadow("Current state: " + state, t + 15, g + 30 - 40, -1);
-						fontRendererObj.drawStringWithShadow("Owner: " + jukebox.getTrainOwner().trim(), t + 15, g + 40 - 40, -1);
+		drawGradientRect(t + 15 - 3, g - 40 - 3, t + textWidth + 3, g + 8 + 3, colour1, colour2);
+		drawGradientRect(t + 15 - 2, g - 40 - 2, t + textWidth + 2, g + 8 + 2, i4, i4);
+		fontRendererObj.drawStringWithShadow(str, t + 15, g - 40, -1);
+		fontRendererObj.drawStringWithShadow("only its owner can open", t + 15, g + 10 - 40, -1);
+		fontRendererObj.drawStringWithShadow("the GUI and destroy it.", t + 15, g + 20 - 40, -1);
+		fontRendererObj.drawStringWithShadow("Current state: " + state, t + 15, g + 30 - 40, -1);
+		fontRendererObj.drawStringWithShadow("Owner: " + jukebox.getTrainOwner(), t + 15, g + 40 - 40, -1);
 	}
 
 	public boolean intersectsWith(int mouseX, int mouseY) {
 		int j = (width - gui_width) / 2;
 		int k = (height - gui_height) / 2;
-		return (mouseX >= j + gui_width - 350 && mouseX <= j + gui_width-300 && mouseY >= k - 10 && mouseY <= k);
+		if (mouseX >= j + gui_width - 350 && mouseX <= j + gui_width-300 && mouseY >= k - 10 && mouseY <= k) {
+			return true;
+		}
+		return false;
 	}
 
 	public String takeFirstEntryFromM3U(String m3uurl) {

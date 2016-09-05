@@ -30,7 +30,7 @@ public class PacketRollingStockRotation implements IMessage {
 		this.rotationYawServer = (int) entity.rotationYaw; // Don't even ASK ME why we do this. Probably an attempt to reduce Packet size, but at what cost of precision..?
 		this.realRotation = (int) entity.serverRealRotation;
 		this.anglePitch = anglePitch;
-		this.posY = (int) (entity.posY * 1000000);
+		this.posY = Float.floatToIntBits((float) entity.posY); // improved accuracy with no usage increase
 		this.isInReverse = entity.isServerInReverse;
 	}
 
@@ -64,7 +64,6 @@ public class PacketRollingStockRotation implements IMessage {
 			Minecraft mc = Minecraft.getMinecraft();
 			if(mc.theWorld != null){
 				Entity entity = mc.theWorld.getEntityByID(message.entityID);
-
 				if (entity instanceof EntityRollingStock) {
 
 					EntityRollingStock rollingStock = (EntityRollingStock) entity;
@@ -72,7 +71,7 @@ public class PacketRollingStockRotation implements IMessage {
 					rollingStock.rotationYawClientReal = message.realRotation;
 					rollingStock.anglePitchClient = message.anglePitch;
 					rollingStock.isClientInReverse = message.isInReverse;
-					rollingStock.setYFromServer((double) message.posY / 1000000);
+					rollingStock.setYFromServer(Float.intBitsToFloat(message.posY));
 				}
 
 			}
