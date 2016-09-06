@@ -1430,11 +1430,11 @@ public class ItemTCRail extends ItemPart {
 					return false;
 				}
 				if (!canPlaceTrack(world, x + (xDisplace * 2) + (xSideDisplace * 1), y + 1,
-						z + (zDisplace * 2) + (zSideDisplace * 1))) {
+						z + (zDisplace) + (zSideDisplace * 1))) {
 					return false;
 				}
 				if (!canPlaceTrack(world, x + (xDisplace * 2) - (xSideDisplace * 1), y + 1,
-						z + (zDisplace * 2) - (zSideDisplace * 1))) {
+						z + (zDisplace) - (zSideDisplace * 1))) {
 					return false;
 				}
 
