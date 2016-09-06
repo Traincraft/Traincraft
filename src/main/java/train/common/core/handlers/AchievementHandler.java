@@ -73,8 +73,8 @@ public class AchievementHandler {
 		AchievementIDs.tender.achievement = achievement("tender", 7, 4, ItemIDs.minecartTender.item, AchievementIDs.assemblyTable.achievement);
 		AchievementIDs.workCart.achievement = achievement("workCart", 5, 6, ItemIDs.minecartWork.item, AchievementIDs.assemblyTable.achievement).setSpecial();
 		AchievementIDs.builder.achievement = achievement("builder", 7, 6, ItemIDs.minecartBuilder.item, AchievementIDs.assemblyTable.achievement);
-		// AchievementIDs.jukebox.achievement = achievement("jukebox", 5, 8,
-		// ItemIDs.minecartJukeBoxCart.item, AchievementIDs.assemblyTable.achievement).setSpecial();
+		AchievementIDs.jukebox.achievement = achievement("jukebox", 5, 8, ItemIDs.minecartJukeBoxCart.item,
+				AchievementIDs.assemblyTable.achievement).setSpecial();
 		AchievementIDs.minetrain.achievement = achievement("minetrain", 7, 8, ItemIDs.minecartMineTrain.item, AchievementIDs.assemblyTable.achievement);
 		AchievementIDs.cherepanov.achievement = achievement("cherepanov", 5, 10, ItemIDs.minecartLocoCherepanov.item, AchievementIDs.assemblyTable.achievement);
 		AchievementIDs.mail.achievement = achievement("mail", 7, 10, ItemIDs.minecartMailWagon_DB.item, AchievementIDs.assemblyTable.achievement);

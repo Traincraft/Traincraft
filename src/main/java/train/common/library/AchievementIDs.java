@@ -43,7 +43,7 @@ public enum AchievementIDs {
 	// Steam is back
 	workCart(new Item[] { ItemIDs.minecartWork.item, ItemIDs.minecartCabooseWork.item }),
 	builder(new Item[] { ItemIDs.minecartBuilder.item }),
-	// jukebox(new Item[] { ItemIDs.minecartJukeBoxCart.item }),
+	jukebox(new Item[] { ItemIDs.minecartJukeBoxCart.item }),
 
 	openHearth(new Item[] { Item.getItemFromBlock(BlockIDs.openFurnaceIdle.block) }),
 	trainWB(new Item[] { Item.getItemFromBlock(BlockIDs.trainWorkbench.block) }),
