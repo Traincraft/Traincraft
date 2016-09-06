@@ -1319,7 +1319,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 						|| tile.getType().equals(TrackTypes.LARGE_LEFT_TURN.getLabel())
 						|| tile.getType().equals(TrackTypes.LARGE_RIGHT_TURN.getLabel()))
 				&& tile.canTypeBeModifiedBySwitch) {
-			System.out.println(serverRealRotation);
 			if (meta == 2) {
 				if (motionZ > 0 && Math.abs(motionX) < 0.01) {
 					tile.setType(TrackTypes.SMALL_STRAIGHT.getLabel());

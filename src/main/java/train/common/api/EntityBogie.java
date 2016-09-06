@@ -716,8 +716,6 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 						|| tile.getType().equals(TrackTypes.LARGE_LEFT_TURN.getLabel())
 						|| tile.getType().equals(TrackTypes.LARGE_RIGHT_TURN.getLabel()))
 				&& tile.canTypeBeModifiedBySwitch) {
-			
-			System.out.println(entityMainTrain.serverRealRotation);
 			if (meta == 2) {
 				if (motionZ > 0 && Math.abs(motionX) < 0.01) {
 					tile.setType(TrackTypes.SMALL_STRAIGHT.getLabel());
