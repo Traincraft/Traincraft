@@ -39,16 +39,6 @@ public abstract class AbstractZeppelin extends Entity implements IInventory {
 	public int fuel;
 	public boolean idle;
 	public boolean altitude;
-	protected static int KEY_ACC;
-	protected static int KEY_DEC;
-	protected static int KEY_TURNLEFT;
-	protected static int KEY_TURNRIGHT;
-	protected static int KEY_UP;
-	protected static int KEY_DOWN;
-
-	protected static int KEY_IDLE;
-	protected static int KEY_INV;
-	protected static int KEY_BOMB;
 
 	public int boatCurrentDamage;
 	public int boatTimeSinceHit;
@@ -94,20 +84,6 @@ public abstract class AbstractZeppelin extends Entity implements IInventory {
 		preventEntitySpawning = true;
 		setSize(2F, 0.8F);
 		yOffset = height / 2.0F;
-		try {
-			if (Class.forName("org.lwjgl.input.Keyboard") != null && Keyboard.isCreated()) {
-				KEY_ACC = ConfigHandler.Key_Acc;
-				KEY_DEC = ConfigHandler.Key_Dec;
-				KEY_INV = ConfigHandler.Key_Invent;
-				KEY_UP = ConfigHandler.Key_Up;
-				KEY_DOWN = ConfigHandler.Key_Down;
-				KEY_IDLE = ConfigHandler.Key_Idle;
-				KEY_BOMB = ConfigHandler.Key_Horn;
-			}
-		}
-		catch (ClassNotFoundException e) {
-			// e.printStackTrace();
-		}
 		numCargoSlots = 3;
 		numCargoSlots1 = 3;
 		numCargoSlots2 = 3;
@@ -384,49 +360,8 @@ public abstract class AbstractZeppelin extends Entity implements IInventory {
 		return this.rotationPitch;
 	}
 
-	public void pressKeyClient() {
-		if (Traincraft.proxy.getCurrentScreen() == null && riddenByEntity != null && riddenByEntity.ridingEntity != null
-				&& riddenByEntity.ridingEntity == this) {
-			try {
-				if (Class.forName("org.lwjgl.input.Keyboard") != null && Keyboard.isCreated()) {
-					if (Keyboard.isKeyDown(KEY_UP)) {
-						pressKeyClient(0);
-					}
-					if (Keyboard.isKeyDown(KEY_TURNLEFT)) {
-						pressKeyClient(1);
-					}
-					if (Keyboard.isKeyDown(KEY_DOWN)) {
-						pressKeyClient(2);
-					}
-					if (Keyboard.isKeyDown(KEY_TURNRIGHT)) {
-						pressKeyClient(3);
-					}
-					if (Keyboard.isKeyDown(KEY_ACC)) {
-						pressKeyClient(4);
-					}
-					if (Keyboard.isKeyDown(KEY_DEC)) {
-						pressKeyClient(5);
-					}
-					if (Keyboard.isKeyDown(KEY_IDLE)) {
-						pressKeyClient(6);
-					}
-					if (Keyboard.isKeyDown(KEY_INV)) {
-						pressKeyClient(7);
-					}
-					if (Keyboard.isKeyDown(KEY_BOMB)) {
-						pressKeyClient(9);
-					}
-				}
-			}
-			catch (ClassNotFoundException e) {
-				// e.printStackTrace();
-			}
-		}
-	}
-
 	@Override
 	public void onUpdate() {
-		pressKeyClient();
 		this.fallDistance = 0F;
 		super.onUpdate();
 		updateTicks++;

@@ -82,7 +82,9 @@ public class Traincraft {
 		tcLog.info("Starting Traincraft " + Info.modVersion + "!");
 		/* Config handler */
 		ConfigHandler.init(new File(event.getModConfigurationDirectory(), Info.modName + ".cfg"));
-		proxy.getKeysFromProperties();
+
+		/* Register the KeyBinding Handler */
+		proxy.registerKeyBindingHandler();
 
 		/* Register Items, Blocks, ... */
 		tcLog.info("Initialize Blocks, Items, ...");

@@ -7,6 +7,7 @@ import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -26,13 +27,6 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 	public int inventorySize;
 	public double speedDivider = 3.6;
 	protected ItemStack locoInvent[];
-	protected int KEY_INV;
-	protected static int KEY_ACC;
-	protected static int KEY_DEC;
-	protected static int KEY_TURNLEFT;
-	protected static int KEY_TURNRIGHT;
-	protected static int KEY_HORN;
-	protected static int KEY_BRAKE;
 	private int soundPosition = 0;
 	public boolean parkingBrake = false;
 	private int whistleDelay = 0;
@@ -105,15 +99,6 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 		setBrake(0);
 		this.entityCollisionReduction = 0.99F;
 		if(this instanceof SteamTrain)isLocoTurnedOn = true;
-		try {
-			if (Class.forName("org.lwjgl.input.Keyboard") != null && Keyboard.isCreated()) {
-				KEY_ACC = ConfigHandler.Key_Acc;
-				KEY_DEC = ConfigHandler.Key_Dec;
-				KEY_INV = ConfigHandler.Key_Invent;
-				KEY_HORN = ConfigHandler.Key_Horn;
-			}
-		}
-		catch (ClassNotFoundException e) {}
 	}
 
 	/**
@@ -348,24 +333,6 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 		if (i == 8 && ConfigHandler.SOUNDS) {
 			soundHorn();
 		}
-		if (i == 4) {
-			if (getFuel() > 0 && this.isLocoTurnedOn() && rand.nextInt(4) == 0 && !worldObj.isRemote) {
-				if (riddenByEntity != null && riddenByEntity instanceof EntityPlayer) {
-					int dir = MathHelper.floor_double((((EntityPlayer) riddenByEntity).rotationYaw * 4F) / 360F + 0.5D) & 3;
-					if (dir == 2) motionZ -= 0.01 * this.accelerate;
-
-					if (dir == 1) motionX -= 0.01 * this.accelerate;
-
-					if (dir == 0) motionZ += 0.01 * this.accelerate;
-
-					if (dir == 3) motionX += 0.01 * this.accelerate;
-				}
-			}
-		}
-		if (i == 5) {
-			motionX *= brake;
-			motionZ *= brake;
-		}
 	}
 
 	/**
@@ -432,35 +399,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 	}
 
 	@Override
-	public void pressKeyClient() {
-		if (Traincraft.proxy.getCurrentScreen() == null && riddenByEntity != null && riddenByEntity.ridingEntity != null && riddenByEntity.ridingEntity == this) {
-			try {
-				if (Class.forName("org.lwjgl.input.Keyboard") != null && Keyboard.isCreated()) {
-					//System.out.println(Keyboard.getEventKey());
-					if (Keyboard.isKeyDown(KEY_ACC)) {
-						pressKeyTrain(4);
-					}
-					if (Keyboard.isKeyDown(KEY_DEC)) {
-						pressKeyTrain(5);
-					}
-
-					if (Keyboard.isKeyDown(KEY_INV)) {
-						pressKeyTrain(7);
-
-					}
-					if (Keyboard.isKeyDown(KEY_HORN)) {
-						pressKeyTrain(8);
-					}
-				}
-			}
-			catch (ClassNotFoundException e) {}
-		}
-
-	}
-
-	@Override
 	public void onUpdate() {
-		pressKeyClient();
 		// if (worldObj.isRemote) {
 		// if (updateTicks % 50 == 0) {
 		// Traincraft.brakeChannel
@@ -471,6 +410,27 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 		// }
 		// }
 		if (!worldObj.isRemote) {
+			if (this.riddenByEntity instanceof EntityLivingBase) {
+				EntityLivingBase entity = (EntityLivingBase) this.riddenByEntity;
+				if (entity.moveForward > 0) {
+					if (getFuel() > 0 && this.isLocoTurnedOn() && rand.nextInt(4) == 0 && !worldObj.isRemote) {
+						if (riddenByEntity != null && riddenByEntity instanceof EntityPlayer) {
+							int dir = MathHelper.floor_double((((EntityPlayer) riddenByEntity).rotationYaw * 4F) / 360F + 0.5D) & 3;
+							if (dir == 2) motionZ -= 0.01 * entity.moveForward * this.accelerate;
+
+							if (dir == 1) motionX -= 0.01 * entity.moveForward * this.accelerate;
+
+							if (dir == 0) motionZ += 0.01 * entity.moveForward * this.accelerate;
+
+							if (dir == 3) motionX += 0.01 * entity.moveForward * this.accelerate;
+						}
+					}
+				}
+				else if (entity.moveForward < 0) {
+					motionX *= -entity.moveForward * brake;
+					motionZ *= -entity.moveForward * brake;
+				}
+			}
 
 			if (updateTicks % 20 == 0) maxAttached.PullPhysic(this);
 			/**

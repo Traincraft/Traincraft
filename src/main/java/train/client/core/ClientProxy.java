@@ -27,6 +27,7 @@ import train.common.entity.zeppelin.EntityZeppelinOneBalloon;
 import train.common.tile.*;
 import train.client.core.handlers.ClientTickHandler;
 import train.client.core.handlers.RecipeBookHandler;
+import train.client.core.handlers.TCKeyHandler;
 import train.client.core.helpers.HolidayHelper;
 import train.common.Traincraft;
 import train.common.api.EntityBogie;
@@ -54,11 +55,6 @@ public class ClientProxy extends CommonProxy {
 		HolidayHelper helper = new HolidayHelper();
 		helper.setDaemon(true);
 		helper.start();
-	}
-
-	@Override
-	public void setKeyBinding(String name, int value) {
-		ClientRegistry.registerKeyBinding(new KeyBinding(name, value, Info.modName));
 	}
 
 	@Override
@@ -166,44 +162,6 @@ public class ClientProxy extends CommonProxy {
 			return null;
 		}
 	}
-	
-	@Override
-	public void getKeysFromProperties() {
-		File f = new File(Minecraft.getMinecraft().mcDataDir + "/options.txt");
-		if (f.exists() && f.isFile()) {
-			BufferedReader br;
-			try {
-				br = new BufferedReader(new FileReader(f));
-				String line = "";
-
-				while ((line = br.readLine()) != null) {
-					try {
-						String[] split = line.split(":");
-						if (split[0].contains("forward")) {
-							ConfigHandler.Key_Acc = Integer.parseInt(split[1]);
-						}
-						if (split[0].contains("back")) {
-							ConfigHandler.Key_Dec = Integer.parseInt(split[1]);
-						}
-						if (split[0].contains("left")) {
-							ConfigHandler.Key_Left = Integer.parseInt(split[1]);
-						}
-						if (split[0].contains("right")) {
-							ConfigHandler.Key_Right = Integer.parseInt(split[1]);
-						}
-					} catch (Exception e) {
-						Traincraft.tcLog.info("Skipping option in options.txt file.");
-					}
-				}
-			} catch (Exception e1) {
-				e1.printStackTrace();
-				Traincraft.tcLog.info("Options.txt file could not be read. Defaulting keys.");
-			}
-		}
-		else {
-			Traincraft.tcLog.info("Options.txt file could not be found. Defaulting keys.");
-		}
-	}
 
 	@Override
 	public int addArmor(String armor) {
@@ -269,5 +227,9 @@ public class ClientProxy extends CommonProxy {
 	public float getJukeboxVolume()
 	{
 		return Minecraft.getMinecraft().gameSettings.getSoundLevel(SoundCategory.RECORDS) * Minecraft.getMinecraft().gameSettings.getSoundLevel(SoundCategory.MASTER);
+	}
+
+	public void registerKeyBindingHandler() {
+		FMLCommonHandler.instance().bus().register(new TCKeyHandler());
 	}
 }

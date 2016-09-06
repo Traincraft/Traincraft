@@ -7,6 +7,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -77,21 +78,6 @@ public class EntityRotativeDigger extends Entity implements IInventory {
 		preventEntitySpawning = true;
 		setSize(1.5F, 0.8F);
 		yOffset = height / 2.0F;
-		try {
-			if (Class.forName("org.lwjgl.input.Keyboard") != null && Keyboard.isCreated()) {
-				KEY_ACC = ConfigHandler.Key_Acc;
-				KEY_DEC = ConfigHandler.Key_Dec;
-				KEY_INV = ConfigHandler.Key_Invent;
-				KEY_UP = ConfigHandler.Key_Up;
-				KEY_DOWN = ConfigHandler.Key_Down;
-				KEY_IDLE = ConfigHandler.Key_Idle;
-				KEY_TURNRIGHT = ConfigHandler.Key_Right;
-				KEY_TURNLEFT = ConfigHandler.Key_Left;
-				KEY_BOMB = Keyboard.getKeyIndex("F");
-			}
-		} catch (ClassNotFoundException e) {
-			// e.printStackTrace();
-		}
 		numCargoSlots = 3;
 		numCargoSlots1 = 3;
 		numCargoSlots2 = 3;
@@ -255,35 +241,6 @@ public class EntityRotativeDigger extends Entity implements IInventory {
 			//TODO there is no GUI for it currently
 			//((EntityPlayer) riddenByEntity).openGui(Traincraft.instance, GuiIDs.DIGGER, worldObj, (int) this.posX, (int) this.posY, (int) this.posZ);
 		}
-		if (i == 4) {
-			if (riddenByEntity != null && riddenByEntity instanceof EntityPlayer) {
-				motionX = motionX + speedXFromPitch((EntityPlayer) riddenByEntity, 0.2) * 0.1;
-				motionZ = motionZ + speedZFromPitch((EntityPlayer) riddenByEntity, 0.2) * 0.1;
-			}
-		}
-
-		if (i == 5) {
-			/* if(pitch<90){ pitch+=4.5; } */
-			if (fuel > 0) {
-				if (riddenByEntity != null && riddenByEntity instanceof EntityPlayer) {
-					motionX = motionX - speedXFromPitch((EntityPlayer) riddenByEntity, 0.2) * 0.1;
-					motionZ = motionZ - speedZFromPitch((EntityPlayer) riddenByEntity, 0.2) * 0.1;
-				}
-			}
-		}
-
-		if (i == 3) {
-			if (fuel > 0) {
-				rotationYaw += 0.5;
-				/* if(riddenByEntity!=null && riddenByEntity instanceof EntityPlayer){ motionX = motionX + speedXFromPitch((EntityPlayer) riddenByEntity,0.1)*0.4; motionZ = motionZ + speedZFromPitch((EntityPlayer) riddenByEntity,0.1)*0.4; } */
-			}
-		}
-		if (i == 1) {
-			if (fuel > 0) {
-				rotationYaw -= 0.5;
-				/* if(riddenByEntity!=null && riddenByEntity instanceof EntityPlayer){ motionX = motionX + speedXFromPitch((EntityPlayer) riddenByEntity,0.1)*0.4; motionZ = motionZ + speedZFromPitch((EntityPlayer) riddenByEntity,0.1)*0.4; } */
-			}
-		}
 		if (i == 9) {
 			if (start == 0) {
 				start = 1;
@@ -373,42 +330,13 @@ public class EntityRotativeDigger extends Entity implements IInventory {
 	@Override
 	public void onUpdate() {
 		super.onUpdate();
-
-		if (riddenByEntity != null && riddenByEntity.ridingEntity != null && riddenByEntity.ridingEntity == this) {
-			try {
-				if (Class.forName("org.lwjgl.input.Keyboard") != null && Keyboard.isCreated()) {
-					if (Keyboard.isKeyDown(KEY_UP)) {
-						pressKeyClient(0);
-					}
-					if (Keyboard.isKeyDown(KEY_DOWN)) {
-						pressKeyClient(2);
-					}
-					if (Keyboard.isKeyDown(KEY_ACC)) {
-						pressKeyClient(4);
-					}
-					if (Keyboard.isKeyDown(KEY_DEC)) {
-						pressKeyClient(5);
-					}
-					if (Keyboard.isKeyDown(KEY_IDLE)) {
-						pressKeyClient(6);
-					}
-					if (Keyboard.isKeyDown(KEY_INV)) {
-						pressKeyClient(7);
-					}
-					if (Keyboard.isKeyDown(KEY_BOMB)) {
-						pressKeyClient(9);
-					}
-					if (Keyboard.isKeyDown(KEY_TURNRIGHT)) {
-						pressKeyClient(3);
-					}
-					if (Keyboard.isKeyDown(KEY_TURNLEFT)) {
-						pressKeyClient(1);
-					}
-				}
-			} catch (ClassNotFoundException e) {
-				// e.printStackTrace();
-			}
+		if (fuel > 0 && riddenByEntity instanceof EntityPlayer) {
+			EntityPlayer player = (EntityPlayer) riddenByEntity;
+			motionX = motionX + player.moveForward * speedXFromPitch(player, 0.2) * 0.1;
+			motionZ = motionZ + player.moveForward * speedZFromPitch(player, 0.2) * 0.1;
+			rotationYaw += player.moveStrafing * .5;
 		}
+		
 		if (riddenByEntity == null) {
 			pitch = 0F;
 		}
