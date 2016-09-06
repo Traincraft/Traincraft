@@ -157,7 +157,8 @@ public class BlockTCRailGag extends Block {
 			if (!list.isEmpty()) {
 				return null;
 			}
-			return AxisAlignedBB.getBoundingBox(i + this.minX, j + this.minY, k + this.minZ, i + this.maxX, (double) j + tileEntity.bbHeight - 0.2, k + this.maxZ);
+			return AxisAlignedBB.getBoundingBox(i + this.minX, j + this.minY, k + this.minZ, i + this.maxX,
+					(double) j + tileEntity.bbHeight, k + this.maxZ);
 		}
 		return null;
 	}
