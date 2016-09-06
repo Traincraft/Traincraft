@@ -1319,6 +1319,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 						|| tile.getType().equals(TrackTypes.LARGE_LEFT_TURN.getLabel())
 						|| tile.getType().equals(TrackTypes.LARGE_RIGHT_TURN.getLabel()))
 				&& tile.canTypeBeModifiedBySwitch) {
+			System.out.println(serverRealRotation);
 			if (meta == 2) {
 				if (motionZ > 0 && Math.abs(motionX) < 0.01) {
 					tile.setType(TrackTypes.SMALL_STRAIGHT.getLabel());
@@ -1327,8 +1328,10 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 					if (tile2 != null && tile2 instanceof TileTCRail) {
 						((TileTCRail) tile2).setSwitchState(false, true);
 					}
-					if (tile3 != null && tile3 instanceof TileTCRail) {
-						((TileTCRail) tile3).setSwitchState(false, true);
+					if (serverRealRotation == -90 || serverRealRotation == -270 || serverRealRotation == -180) {
+						if (tile3 != null && tile3 instanceof TileTCRail) {
+							((TileTCRail) tile3).setSwitchState(false, true);
+						}
 					}
 					return true;
 				}
@@ -1341,8 +1344,10 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 					if (tile2 != null && tile2 instanceof TileTCRail) {
 						((TileTCRail) tile2).setSwitchState(false, true);
 					}
-					if (tile3 != null && tile3 instanceof TileTCRail) {
-						((TileTCRail) tile3).setSwitchState(false, true);
+					if (serverRealRotation == 90 || serverRealRotation == -90) {
+						if (tile3 != null && tile3 instanceof TileTCRail) {
+							((TileTCRail) tile3).setSwitchState(false, true);
+						}
 					}
 					return true;
 				}
@@ -1355,8 +1360,10 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 					if (tile2 != null && tile2 instanceof TileTCRail) {
 						((TileTCRail) tile2).setSwitchState(false, true);
 					}
-					if (tile3 != null && tile3 instanceof TileTCRail) {
-						((TileTCRail) tile3).setSwitchState(false, true);
+					if (serverRealRotation == 180 || serverRealRotation == 0) {
+						if (tile3 != null && tile3 instanceof TileTCRail) {
+							((TileTCRail) tile3).setSwitchState(false, true);
+						}
 					}
 					return true;
 				}
@@ -1369,8 +1376,10 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 					if (tile2 != null && tile2 instanceof TileTCRail) {
 						((TileTCRail) tile2).setSwitchState(false, true);
 					}
-					if (tile3 != null && tile3 instanceof TileTCRail) {
-						((TileTCRail) tile3).setSwitchState(false, true);
+					if (serverRealRotation == 0 || serverRealRotation == -180) {
+						if (tile3 != null && tile3 instanceof TileTCRail) {
+							((TileTCRail) tile3).setSwitchState(false, true);
+						}
 					}
 					return true;
 				}
