@@ -32,6 +32,7 @@ public class ConfigHandler {
 	public static boolean MYSQL_ENABLE;
 	public static int TRAINCRAFT_VILLAGER_ID;
 	public static boolean REAL_TRAIN_SPEED;
+	public static boolean RETROGEN_CHUNKS;
 	public static final String CATEGORY_BLOCK   = "block";
 	public static final String CATEGORY_ITEM    = "item";
 
@@ -64,6 +65,7 @@ public class ConfigHandler {
 			SHOW_POSSIBLE_COLORS_PROP.comment = "This will disable the chat messages telling you the possible colors when spawning new trains and when coloring them with dye";
 			SHOW_POSSIBLE_COLORS = SHOW_POSSIBLE_COLORS_PROP.getBoolean(true);
 			REAL_TRAIN_SPEED = cf.get(CATEGORY_GENERAL, "REAL_TRAIN_SPEED", false).getBoolean(false);
+			RETROGEN_CHUNKS = cf.getBoolean("ENABLE_RETROGEN", CATEGORY_GENERAL, false, "This will generate ores in existing chunks prior to installing Traincraft 5. Do note that if this is off chunks that are loaded will not retrogen later, no matter what.");
 			
 			/* Mysql */
 			Property mysqlEnable = cf.get(CATEGORY_MYSQL, "MYSQL_ENABLE", false);
