@@ -35,93 +35,89 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 	@Override
 	public void renderTileEntityAt(TileEntity var1, double x, double y, double z, float var8) {
 		if(var1 instanceof TileTCRail){
-			if(((TileTCRail)var1).hasModel && ((TileTCRail)var1).getType()!=null && ((TileTCRail)var1).getType().equals(ItemTCRail.TrackTypes.SMALL_STRAIGHT.getLabel())){
-				modelSmallStraight.render((TileTCRail) var1, x, y, z);
-			}
-			if(((TileTCRail)var1).hasModel && ((TileTCRail)var1).getType()!=null && ((TileTCRail)var1).getType().equals(ItemTCRail.TrackTypes.TWO_WAYS_CROSSING.getLabel())){
-				modelTwoWaysCrossing.render((TileTCRail) var1, x, y, z);
-			}
-			if(((TileTCRail)var1).hasModel && ((TileTCRail)var1).getType()!=null && ((TileTCRail)var1).getType().equals(ItemTCRail.TrackTypes.MEDIUM_STRAIGHT.getLabel())){
-				modelMediumStraight.render((TileTCRail) var1, x, y, z);
-			}
 			
-			if (((TileTCRail) var1).hasModel && ((TileTCRail) var1).getType() != null
-					&& ((TileTCRail) var1).getType().equals(ItemTCRail.TrackTypes.SLOPE_WOOD.getLabel())) {
-				modelSlope.render("wood", (TileTCRail) var1, x, y, z);
-			}
-			if (((TileTCRail) var1).hasModel && ((TileTCRail) var1).getType() != null
-					&& ((TileTCRail) var1).getType().equals(ItemTCRail.TrackTypes.SLOPE_GRAVEL.getLabel())) {
-				modelSlope.render("gravel", (TileTCRail) var1, x, y, z);
-			}
-			if (((TileTCRail) var1).hasModel && ((TileTCRail) var1).getType() != null
-					&& ((TileTCRail) var1).getType().equals(ItemTCRail.TrackTypes.SLOPE_BALLAST.getLabel())) {
-				modelSlope.render("ballast", (TileTCRail) var1, x, y, z);
-			}
+			TileTCRail railTile = (TileTCRail) var1;
 			
-			if (((TileTCRail) var1).hasModel && ((TileTCRail) var1).getType() != null
-					&& ((TileTCRail) var1).getType().equals(ItemTCRail.TrackTypes.LARGE_SLOPE_WOOD.getLabel())) {
-				modelLargeSlope.render("wood", (TileTCRail) var1, x, y, z);
-			}
-			if (((TileTCRail) var1).hasModel && ((TileTCRail) var1).getType() != null
-					&& ((TileTCRail) var1).getType().equals(ItemTCRail.TrackTypes.LARGE_SLOPE_GRAVEL.getLabel())) {
-				modelLargeSlope.render("gravel", (TileTCRail) var1, x, y, z);
-			}
-			if (((TileTCRail) var1).hasModel && ((TileTCRail) var1).getType() != null
-					&& ((TileTCRail) var1).getType().equals(ItemTCRail.TrackTypes.LARGE_SLOPE_BALLAST.getLabel())) {
-				modelLargeSlope.render("ballast", (TileTCRail) var1, x, y, z);
-			}
+			if (railTile.hasModel && railTile.getType() != null) {
+				String type = railTile.getType();
+				
+				if (ItemTCRail.TrackTypes.SMALL_STRAIGHT.getLabel().equals(type)) {
+					modelSmallStraight.render((TileTCRail) var1, x, y, z);
+				}
+				if (ItemTCRail.TrackTypes.TWO_WAYS_CROSSING.getLabel().equals(type)) {
+					modelTwoWaysCrossing.render((TileTCRail) var1, x, y, z);
+				}
+				if (ItemTCRail.TrackTypes.MEDIUM_STRAIGHT.getLabel().equals(type)) {
+					modelMediumStraight.render((TileTCRail) var1, x, y, z);
+				}
 			
-			 if (((TileTCRail) var1).hasModel && ((TileTCRail) var1).getType() != null
-			 && ((TileTCRail)
-			 var1).getType().equals(ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_WOOD.getLabel())) {
-			 modelVeryLargeSlope.render("wood", (TileTCRail) var1, x, y, z);
-			 }
-			 if (((TileTCRail) var1).hasModel && ((TileTCRail) var1).getType() != null
-			 && ((TileTCRail)
-			 var1).getType().equals(ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_GRAVEL.getLabel())) {
-			 modelVeryLargeSlope.render("gravel", (TileTCRail) var1, x, y, z);
-			 }
-			 if (((TileTCRail) var1).hasModel && ((TileTCRail) var1).getType() != null &&
-			 ((TileTCRail) var1).getType()
-			 .equals(ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_BALLAST.getLabel())) {
-			 modelVeryLargeSlope.render("ballast", (TileTCRail) var1, x, y, z);
-			}
+				if (ItemTCRail.TrackTypes.SLOPE_WOOD.getLabel().equals(type)) {
+					modelSlope.render("wood", (TileTCRail) var1, x, y, z);
+				}
+				if (ItemTCRail.TrackTypes.SLOPE_GRAVEL.getLabel().equals(type)) {
+					modelSlope.render("gravel", (TileTCRail) var1, x, y, z);
+				}
+				if (ItemTCRail.TrackTypes.SLOPE_BALLAST.getLabel().equals(type)) {
+					modelSlope.render("ballast", (TileTCRail) var1, x, y, z);
+				}
 			
-			if(((TileTCRail)var1).hasModel && ((TileTCRail)var1).getType()!=null && ((TileTCRail)var1).getType().equals(ItemTCRail.TrackTypes.MEDIUM_RIGHT_TURN.getLabel())){
-				modelRightTurn.render("medium",(TileTCRail) var1, x, y, z);
-			}
-			if(((TileTCRail)var1).hasModel && ((TileTCRail)var1).getType()!=null && ((TileTCRail)var1).getType().equals(ItemTCRail.TrackTypes.MEDIUM_LEFT_TURN.getLabel())){
-				modelLeftTurn.render("medium",(TileTCRail) var1, x, y, z);
-			}
-			if(((TileTCRail)var1).hasModel && ((TileTCRail)var1).getType()!=null && ((TileTCRail)var1).getType().equals(ItemTCRail.TrackTypes.LARGE_RIGHT_TURN.getLabel())){
-				modelRightTurn.render("large",(TileTCRail) var1, x, y, z);
-			}
-			if(((TileTCRail)var1).hasModel && ((TileTCRail)var1).getType()!=null && ((TileTCRail)var1).getType().equals(ItemTCRail.TrackTypes.VERY_LARGE_RIGHT_TURN.getLabel())){
-				modelRightTurn.render("very_large",(TileTCRail) var1, x, y, z);
-			}
-			if(((TileTCRail)var1).hasModel && ((TileTCRail)var1).getType()!=null && ((TileTCRail)var1).getType().equals(ItemTCRail.TrackTypes.LARGE_LEFT_TURN.getLabel())){
-				modelLeftTurn.render("large",(TileTCRail) var1, x, y, z);
-			}
-			if(((TileTCRail)var1).hasModel && ((TileTCRail)var1).getType()!=null && ((TileTCRail)var1).getType().equals(ItemTCRail.TrackTypes.VERY_LARGE_LEFT_TURN.getLabel())){
-				modelLeftTurn.render("very_large",(TileTCRail) var1, x, y, z);
-			}
-			if(((TileTCRail)var1).hasModel && ((TileTCRail)var1).getType()!=null && ((TileTCRail)var1).getType().equals(ItemTCRail.TrackTypes.MEDIUM_RIGHT_SWITCH.getLabel())){
-				modelRightSwitchTurn.render("medium",(TileTCRail) var1, x, y, z);
-			}
-			if(((TileTCRail)var1).hasModel && ((TileTCRail)var1).getType()!=null && ((TileTCRail)var1).getType().equals(ItemTCRail.TrackTypes.MEDIUM_LEFT_SWITCH.getLabel())){
-				modelLeftSwitchTurn.render("medium",(TileTCRail) var1, x, y, z);
-			}
-			if(((TileTCRail)var1).hasModel && ((TileTCRail)var1).getType()!=null && ((TileTCRail)var1).getType().equals(ItemTCRail.TrackTypes.LARGE_RIGHT_SWITCH.getLabel())){
-				modelRightSwitchTurn.render("large_90",(TileTCRail) var1, x, y, z);
-			}
-			if(((TileTCRail)var1).hasModel && ((TileTCRail)var1).getType()!=null && ((TileTCRail)var1).getType().equals(ItemTCRail.TrackTypes.LARGE_LEFT_SWITCH.getLabel())){
-				modelLeftSwitchTurn.render("large_90",(TileTCRail) var1, x, y, z);
-			}
-			if(((TileTCRail)var1).hasModel && ((TileTCRail)var1).getType()!=null && ((TileTCRail)var1).getType().equals(ItemTCRail.TrackTypes.MEDIUM_RIGHT_PARALLEL_SWITCH.getLabel())){
-				modelRightSwitchTurn.render("medium_parallel",(TileTCRail) var1, x, y, z);
-			}
-			if(((TileTCRail)var1).hasModel && ((TileTCRail)var1).getType()!=null && ((TileTCRail)var1).getType().equals(ItemTCRail.TrackTypes.MEDIUM_LEFT_PARALLEL_SWITCH.getLabel())){
-				modelLeftSwitchTurn.render("medium_parallel",(TileTCRail) var1, x, y, z);
+				if (ItemTCRail.TrackTypes.LARGE_SLOPE_WOOD.getLabel().equals(type)) {
+					modelLargeSlope.render("wood", (TileTCRail) var1, x, y, z);
+				}
+				if (ItemTCRail.TrackTypes.LARGE_SLOPE_GRAVEL.getLabel().equals(type)) {
+					modelLargeSlope.render("gravel", (TileTCRail) var1, x, y, z);
+				}
+				if (ItemTCRail.TrackTypes.LARGE_SLOPE_BALLAST.getLabel().equals(type)) {
+					modelLargeSlope.render("ballast", (TileTCRail) var1, x, y, z);
+				}
+			
+				if (ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_WOOD.getLabel().equals(type)) {
+					modelVeryLargeSlope.render("wood", (TileTCRail) var1, x, y, z);
+				}
+				if (ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_GRAVEL.getLabel().equals(type)) {
+					modelVeryLargeSlope.render("gravel", (TileTCRail) var1, x, y, z);
+				}
+				if (ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_BALLAST.getLabel().equals(type)) {
+					modelVeryLargeSlope.render("ballast", (TileTCRail) var1, x, y, z);
+				}
+			
+				if (ItemTCRail.TrackTypes.MEDIUM_RIGHT_TURN.getLabel().equals(type)) {
+					modelRightTurn.render("medium", (TileTCRail) var1, x, y, z);
+				}
+				if (ItemTCRail.TrackTypes.MEDIUM_LEFT_TURN.getLabel().equals(type)) {
+					modelLeftTurn.render("medium", (TileTCRail) var1, x, y, z);
+				}
+				if (ItemTCRail.TrackTypes.LARGE_RIGHT_TURN.getLabel().equals(type)) {
+					modelRightTurn.render("large", (TileTCRail) var1, x, y, z);
+				}
+				if (ItemTCRail.TrackTypes.VERY_LARGE_RIGHT_TURN.getLabel().equals(type)) {
+					modelRightTurn.render("very_large", (TileTCRail) var1, x, y, z);
+				}
+				if (ItemTCRail.TrackTypes.LARGE_LEFT_TURN.getLabel().equals(type)) {
+					modelLeftTurn.render("large", (TileTCRail) var1, x, y, z);
+				}
+				if (ItemTCRail.TrackTypes.VERY_LARGE_LEFT_TURN.getLabel().equals(type)) {
+					modelLeftTurn.render("very_large", (TileTCRail) var1, x, y, z);
+				}
+				if (ItemTCRail.TrackTypes.MEDIUM_RIGHT_SWITCH.getLabel().equals(type)) {
+					modelRightSwitchTurn.render("medium", (TileTCRail) var1, x, y, z);
+				}
+				if (ItemTCRail.TrackTypes.MEDIUM_LEFT_SWITCH.getLabel().equals(type)) {
+					modelLeftSwitchTurn.render("medium", (TileTCRail) var1, x, y, z);
+				}
+				if (ItemTCRail.TrackTypes.LARGE_RIGHT_SWITCH.getLabel().equals(type)) {
+					modelRightSwitchTurn.render("large_90", (TileTCRail) var1, x, y, z);
+				}
+				if (ItemTCRail.TrackTypes.LARGE_LEFT_SWITCH.getLabel().equals(type)) {
+					modelLeftSwitchTurn.render("large_90", (TileTCRail) var1, x, y, z);
+				}
+				if (ItemTCRail.TrackTypes.MEDIUM_RIGHT_PARALLEL_SWITCH.getLabel().equals(type)) {
+					modelRightSwitchTurn.render("medium_parallel", (TileTCRail) var1, x, y, z);
+				}
+				if (ItemTCRail.TrackTypes.MEDIUM_LEFT_PARALLEL_SWITCH.getLabel().equals(type)) {
+					modelLeftSwitchTurn.render("medium_parallel", (TileTCRail) var1, x, y, z);
+				}
+				
 			}
 		}
 	}
