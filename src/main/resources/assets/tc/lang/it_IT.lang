@@ -203,9 +203,15 @@ item.tc:tcRailMediumSwitch.name=Deviatoio a 90 gradi medio
 item.tc:tcRailLargeSwitch.name=Deviatoio a 90 gradi grande
 item.tc:tcRailMediumParallelSwitch.name=Deviatoio parallelo medio
 item.tc:tcRailTwoWaysCrossing.name=Incrocio a due vie
-item.tc:tcRailLargeSlopeWood.name=Tratto inclinato (Legno)
-item.tc:tcRailLargeSlopeGravel.name=Tratto inclinato (Ghiaia)
-item.tc:tcRailLargeSlopeBallast.name=Tratto inclinato (Massicciata)
+item.tc:tcRailSlopeWood.name=Tratto inclinato corto (Legno)
+item.tc:tcRailSlopeGravel.name=Tratto inclinato corto (Ghiaia)
+item.tc:tcRailSlopeBallast.name=Tratto inclinato corto (Massicciata)
+item.tc:tcRailLargeSlopeWood.name=Tratto inclinato medio (Legno)
+item.tc:tcRailLargeSlopeGravel.name=Tratto inclinato medio (Ghiaia)
+item.tc:tcRailLargeSlopeBallast.name=Tratto inclinato medio (Massicciata)
+item.tc:tcRailVeryLargeSlopeWood.name=Tratto inclinato lungo (Legno)
+item.tc:tcRailVeryLargeSlopeGravel.name=Tratto inclinato lungo (Ghiaia)
+item.tc:tcRailVeryLargeSlopeBallast.name=Tratto inclinato lungo (Massicciata)
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Gli indumenti dell'ingegnere
@@ -381,3 +387,11 @@ entity.TC.Passenger Green Long.name=Vagone passeggeri
 entity.TC.Passenger Small Black.name=Vagone passeggeri
 entity.TC.Passenger Blue.name=Vagone passeggeri
 entity.TC.Passenger Adler.name=Vagone passeggeri Adler
+
+key.categories.traincraft=Traincraft
+key.traincraft.horn=Segnale
+key.traincraft.inventory=Inventario
+key.traincraft.up=Su
+key.traincraft.down=Giù
+key.traincraft.idle=Attesa
+key.traincraft.furnace=Fornace
