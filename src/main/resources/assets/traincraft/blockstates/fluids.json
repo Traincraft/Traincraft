@@ -8,6 +8,10 @@
     "refinedfuel": {
       "model": "forge:fluid",
       "custom": { "fluid": "refinedfuel" }
+    },
+    "oil": {
+      "model": "forge:fluid",
+      "custom": { "fluid": "oil" }
     }
   }
 }

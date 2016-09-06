@@ -24,7 +24,7 @@ public class Registry{
 
     public static ItemMaterial material;
 
-    public static FluidBase diesel, refinedFuel;
+    public static FluidBase diesel, refinedFuel, oil;
 
     public static void preInit(FMLPreInitializationEvent event){
         //Blocks
@@ -40,6 +40,7 @@ public class Registry{
 
         register(diesel = new FluidBase("diesel", "fluidDiesel", Material.WATER));
         register(refinedFuel = new FluidBase("refinedFuel", "fluidRefinedFuel", Material.WATER));
+        register(oil = new FluidBase("oil", "fluidOil", Material.WATER));
 
     }
 

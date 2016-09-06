@@ -1,6 +1,5 @@
 package si.meansoft.traincraft;
 
-import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.Mod;
@@ -11,7 +10,6 @@ import net.minecraftforge.fml.common.registry.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import si.meansoft.traincraft.gen.WorldGen;
-import si.meansoft.traincraft.items.ItemBlockBase;
 import si.meansoft.traincraft.network.CommonProxy;
 import si.meansoft.traincraft.network.GuiHandler;
 
