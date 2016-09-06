@@ -368,6 +368,7 @@ public class GuiRecipeBook extends GuiScreen {
 				});
 		addPage("Known bugs:\n" +
 				"- Sharp turns are not supported (close 180 turns)\n" +
+				"- Switch-Tracks have some weird glitches\n" +
 				"" +
 				"","","right",new ArrayList<StackToDraw>() {
 					{
