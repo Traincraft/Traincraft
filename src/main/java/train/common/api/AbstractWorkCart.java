@@ -30,40 +30,14 @@ public abstract class AbstractWorkCart extends EntityRollingStock implements IIn
 	public int furnaceBurnTime = 0;
 	public int currentItemBurnTime = 0;
 	public int furnaceCookTime = 0;
-	private static int KEY_INV;
-	private static int KEY_FURN;
 
 	public AbstractWorkCart(World world) {
 		super(world);
-		try {
-			if (Class.forName("org.lwjgl.input.Keyboard") != null && Keyboard.isCreated()) {
-				KEY_FURN = ConfigHandler.Key_Furn;
-				KEY_INV = ConfigHandler.Key_Invent;
-			}
-		} catch (ClassNotFoundException e) {
-		}
 	}
 
 	@Override
 	public void onUpdate() {
-		pressKeyClient();
 		super.onUpdate();
-	}
-	@Override
-	public void pressKeyClient() {
-		if (Traincraft.proxy.getCurrentScreen() == null && riddenByEntity != null && riddenByEntity.ridingEntity != null && riddenByEntity.ridingEntity == this) {
-			try {
-				if (Class.forName("org.lwjgl.input.Keyboard") != null && Keyboard.isCreated()) {
-					if (Keyboard.isKeyDown(KEY_INV)) {
-						pressKeyTrain(7);
-					}
-					if (Keyboard.isKeyDown(KEY_FURN)) {
-						pressKeyTrain(9);
-					}
-				}
-			} catch (ClassNotFoundException e) {
-			}
-		}
 	}
 
 	@Override

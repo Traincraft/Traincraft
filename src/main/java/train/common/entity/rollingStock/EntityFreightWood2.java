@@ -63,8 +63,8 @@ public class EntityFreightWood2 extends Freight implements IInventory {
 				if (j > itemstack.stackSize) {
 					j = itemstack.stackSize;
 				}
-				itemstack.stackSize -= j;
-				EntityItem entityitem = new EntityItem(worldObj, posX + (double) f, posY + (double) f1, posZ + (double) f2, new ItemStack(itemstack.getItem(), j, itemstack.getItemDamage()));
+				
+				EntityItem entityitem = new EntityItem(worldObj, posX + (double) f, posY + (double) f1, posZ + (double) f2, itemstack.splitStack(j));
 				float f3 = 0.05F;
 				entityitem.motionX = (float) rand.nextGaussian() * f3;
 				entityitem.motionY = (float) rand.nextGaussian() * f3 + 0.2F;

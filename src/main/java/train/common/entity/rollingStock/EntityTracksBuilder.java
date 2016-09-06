@@ -157,8 +157,8 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 				if (j > itemstack.stackSize) {
 					j = itemstack.stackSize;
 				}
-				itemstack.stackSize -= j;
-				EntityItem entityitem = new EntityItem(worldObj, posX + f, posY + f1, posZ + f2, new ItemStack(itemstack.getItem(), j, itemstack.getItemDamage()));
+				
+				EntityItem entityitem = new EntityItem(worldObj, posX + f, posY + f1, posZ + f2, itemstack.splitStack(j));
 				float f3 = 0.05F;
 				entityitem.motionX = (float) rand.nextGaussian() * f3;
 				entityitem.motionY = (float) rand.nextGaussian() * f3 + 0.2F;

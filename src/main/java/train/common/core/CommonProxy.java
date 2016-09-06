@@ -196,8 +196,6 @@ public class CommonProxy implements IGuiHandler {
 		return FMLClientHandler.instance().getClient();
 	}
 
-	public void getKeysFromProperties() {}
-
 	public GuiScreen getCurrentScreen() {
 		return null;
 	}
@@ -240,4 +238,6 @@ public class CommonProxy implements IGuiHandler {
 	public float getJukeboxVolume() {
 		return 0;
 	}
+
+	public void registerKeyBindingHandler() {}
 }

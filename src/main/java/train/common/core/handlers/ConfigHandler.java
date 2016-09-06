@@ -35,17 +35,6 @@ public class ConfigHandler {
 	public static final String CATEGORY_BLOCK   = "block";
 	public static final String CATEGORY_ITEM    = "item";
 
-	public static int Key_Acc = 17; // W
-	public static int Key_Dec = 31; // S
-	public static int			Key_Left		= 30;		 // A
-	public static int Key_Right = 32; // S
-	public static int Key_Horn = 35; // H
-	public static int Key_Invent = 19; // R
-	public static int Key_Up = 44; // Y
-	public static int Key_Down = 45; // X
-	public static int Key_Idle = 46; // C
-	public static int Key_Furn = 33; // F
-
 	public static String MYSQL_URL;
 	public static String MYSQL_USER;
 	public static String MYSQL_PASSWORD;
@@ -84,14 +73,6 @@ public class ConfigHandler {
 			MYSQL_URL = cf.get(CATEGORY_MYSQL, "MYSQL_URL", "some url").getString();
 			MYSQL_USER = cf.get(CATEGORY_MYSQL, "MYSQL_USER", "your username").getString();
 			MYSQL_PASSWORD = cf.get(CATEGORY_MYSQL, "MYSQL_PASSWORD", "your password").getString();
-
-			/* Keys */
-			Traincraft.proxy.setKeyBinding("Horn", cf.get(CATEGORY_KEYS, "KEY_HORN", Key_Horn).getInt());
-			Traincraft.proxy.setKeyBinding("Invent", cf.get(CATEGORY_KEYS, "KEY_INVENT", Key_Invent).getInt());
-			Traincraft.proxy.setKeyBinding("Up", cf.get(CATEGORY_KEYS, "KEY_UP", Key_Up).getInt());
-			Traincraft.proxy.setKeyBinding("Down", cf.get(CATEGORY_KEYS, "KEY_DOWN", Key_Down).getInt());
-			Traincraft.proxy.setKeyBinding("Idle", cf.get(CATEGORY_KEYS, "KEY_IDLE", Key_Idle).getInt());
-			Traincraft.proxy.setKeyBinding("Furnace", cf.get(CATEGORY_KEYS, "KEY_FURN", Key_Furn).getInt());
 
 			// /* Blocks */
 			// BlockIDs.assemblyTableI.blockID = cf.get(CATEGORY_BLOCK , "block_assemblytableI",

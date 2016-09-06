@@ -170,7 +170,7 @@ public class BlockOpenHearthFurnace extends BlockContainer {
 							i1 = itemstack.stackSize;
 						}
 						itemstack.stackSize -= i1;
-						EntityItem entityitem = new EntityItem(world, i + f, j + f1, k + f2, new ItemStack(itemstack.getItem(), i1, itemstack.getItemDamage()));
+						EntityItem entityitem = new EntityItem(world, i + f, j + f1, k + f2, itemstack.splitStack(i1));
 						float f3 = 0.05F;
 						entityitem.motionX = (float) furnaceRand.nextGaussian() * f3;
 						entityitem.motionY = (float) furnaceRand.nextGaussian() * f3 + 0.2F;

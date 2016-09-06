@@ -26,6 +26,8 @@ import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.TraincraftEntityHelper;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.monster.EntityCreeper;
@@ -545,13 +547,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			Traincraft.keyChannel.sendToServer(new PacketKeyPress(i));
 	}
 
-	public void pressKeyClient() {
-
-	}
-
-	public void pressKey(int i) {
-
-	}
+	public void pressKey(int i) {}
 
 	/**
 	 * gets packet from server and distribute for GUI handles motion
@@ -716,15 +712,9 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 
 		isBraking = false;
 
-		if (Traincraft.proxy.getCurrentScreen() == null && riddenByEntity != null && riddenByEntity.ridingEntity != null && riddenByEntity.ridingEntity == this) {
-			try {
-				if (Class.forName("org.lwjgl.input.Keyboard") != null && Keyboard.isCreated()) {
-					if (Keyboard.isKeyDown(ConfigHandler.Key_Dec)) {
-						isBraking = true;
-					}
-				}
-			}
-			catch (ClassNotFoundException e) {}
+		if (Traincraft.proxy.getCurrentScreen() == null && riddenByEntity instanceof EntityLivingBase) {
+			EntityLivingBase entity = (EntityLivingBase) riddenByEntity;
+			if (TraincraftEntityHelper.getIsJumping(entity)) isBraking = true;
 		}
 
 		int var2;
