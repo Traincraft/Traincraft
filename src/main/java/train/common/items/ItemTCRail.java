@@ -49,9 +49,9 @@ public class ItemTCRail extends ItemPart {
 		LARGE_SLOPE_WOOD("LARGE_SLOPE_WOOD", "SLOPE", ItemIDs.tcRailLargeSlopeWood, "1x12"),
 		LARGE_SLOPE_GRAVEL("LARGE_SLOPE_GRAVEL", "SLOPE", ItemIDs.tcRailLargeSlopeGravel, "1x12"),
 		LARGE_SLOPE_BALLAST("LARGE_SLOPE_BALLAST", "SLOPE", ItemIDs.tcRailLargeSlopeBallast, "1x12"),
-		VERY_LARGE_SLOPE_WOOD("LARGE_SLOPE_WOOD", "SLOPE", ItemIDs.tcRailVeryLargeSlopeWood, "1x18"),
-		VERY_LARGE_SLOPE_GRAVEL("LARGE_SLOPE_GRAVEL", "SLOPE", ItemIDs.tcRailVeryLargeSlopeGravel, "1x18"),
-		VERY_LARGE_SLOPE_BALLAST("LARGE_SLOPE_BALLAST", "SLOPE", ItemIDs.tcRailVeryLargeSlopeBallast, "1x18");
+		VERY_LARGE_SLOPE_WOOD("VERY_LARGE_SLOPE_WOOD", "SLOPE", ItemIDs.tcRailVeryLargeSlopeWood, "1x18"),
+		VERY_LARGE_SLOPE_GRAVEL("VERY_LARGE_SLOPE_GRAVEL", "SLOPE", ItemIDs.tcRailVeryLargeSlopeGravel, "1x18"),
+		VERY_LARGE_SLOPE_BALLAST("VERY_LARGE_SLOPE_BALLAST", "SLOPE", ItemIDs.tcRailVeryLargeSlopeBallast, "1x18");
 
 		private String label;
 		private String type;
