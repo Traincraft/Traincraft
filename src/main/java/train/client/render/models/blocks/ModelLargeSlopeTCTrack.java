@@ -21,7 +21,7 @@ public class ModelLargeSlopeTCTrack extends ModelBase {
 	public ModelLargeSlopeTCTrack() {
 		modeltrack = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_slope_long.obj"));
 		modelLargeSlopeWood = AdvancedModelLoader
-				.loadModel(new ResourceLocation(Info.modelPrefix + "supports_ballast_long.obj"));
+				.loadModel(new ResourceLocation(Info.modelPrefix + "supports_wood_long.obj"));
 		modelLargeSlopeBallast = AdvancedModelLoader
 				.loadModel(new ResourceLocation(Info.modelPrefix + "supports_ballast_long.obj"));
 	}

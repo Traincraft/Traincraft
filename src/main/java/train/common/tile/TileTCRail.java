@@ -207,11 +207,13 @@ public class TileTCRail extends TileEntity {
 			updateTicks++;
 			List list = worldObj.getEntitiesWithinAABB(EntityMinecart.class, AxisAlignedBB.getBoundingBox(xCoord + f, yCoord, zCoord + f, xCoord + 1 - f, yCoord + 1 - f, zCoord + 1 - f));
 
-			if (updateTicks > 50 && list.isEmpty()) {
+			if (updateTicks > 20 && list.isEmpty()) {
 
 				manualOverride = false;
 				//setSwitchState(false,false);
-				//worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, facingMeta, 2);
+				// worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, facingMeta, 2);
+				System.out.println("X: " + xCoord + " Y: " + yCoord + " Z: " + zCoord);
+				
 				boolean flag = worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord);
 				changeSwitchState(worldObj, this, xCoord, yCoord, zCoord);
 				previousRedstoneState = flag;

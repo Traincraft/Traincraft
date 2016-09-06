@@ -45,12 +45,13 @@ public class ItemTCRail extends ItemPart {
 		TWO_WAYS_CROSSING("TWO_WAYS_CROSSING", "CROSSING", ItemIDs.tcRailTwoWaysCrossing, "3x3"),
 		SLOPE_WOOD("SLOPE_WOOD", "SLOPE", ItemIDs.tcRailSlopeWood, "1x6"),
 		SLOPE_GRAVEL("SLOPE_GRAVEL", "SLOPE", ItemIDs.tcRailSlopeGravel, "1x6"),
-		SLOPE_BALLAST("SLOPE_BALLAST", "SLOPE", ItemIDs.tcRailSlopeBallast, "1x6");
-		// LARGE_SLOPE_WOOD("LARGE_SLOPE_WOOD", "SLOPE", ItemIDs.tcRailLargeSlopeWood, "1x12"),
-		// LARGE_SLOPE_GRAVEL("LARGE_SLOPE_GRAVEL", "SLOPE", ItemIDs.tcRailLargeSlopeGravel,
-		// "1x12"),
-		// LARGE_SLOPE_BALLAST("LARGE_SLOPE_BALLAST", "SLOPE", ItemIDs.tcRailLargeSlopeBallast,
-		// "1x12");
+		SLOPE_BALLAST("SLOPE_BALLAST", "SLOPE", ItemIDs.tcRailSlopeBallast, "1x6"),
+		LARGE_SLOPE_WOOD("LARGE_SLOPE_WOOD", "SLOPE", ItemIDs.tcRailLargeSlopeWood, "1x12"),
+		LARGE_SLOPE_GRAVEL("LARGE_SLOPE_GRAVEL", "SLOPE", ItemIDs.tcRailLargeSlopeGravel, "1x12"),
+		LARGE_SLOPE_BALLAST("LARGE_SLOPE_BALLAST", "SLOPE", ItemIDs.tcRailLargeSlopeBallast, "1x12"),
+		VERY_LARGE_SLOPE_WOOD("LARGE_SLOPE_WOOD", "SLOPE", ItemIDs.tcRailVeryLargeSlopeWood, "1x18"),
+		VERY_LARGE_SLOPE_GRAVEL("LARGE_SLOPE_GRAVEL", "SLOPE", ItemIDs.tcRailVeryLargeSlopeGravel, "1x18"),
+		VERY_LARGE_SLOPE_BALLAST("LARGE_SLOPE_BALLAST", "SLOPE", ItemIDs.tcRailVeryLargeSlopeBallast, "1x18");
 
 		private String label;
 		private String type;
@@ -102,9 +103,12 @@ public class ItemTCRail extends ItemPart {
 		return tile.getType().equals(TrackTypes.SLOPE_WOOD.getLabel())
 				|| tile.getType().equals(TrackTypes.SLOPE_GRAVEL.getLabel())
 				|| tile.getType().equals(TrackTypes.SLOPE_BALLAST.getLabel())
-		// || tile.getType().equals(TrackTypes.LARGE_SLOPE_WOOD.getLabel())
-		// || tile.getType().equals(TrackTypes.LARGE_SLOPE_GRAVEL.getLabel())
-		// || tile.getType().equals(TrackTypes.LARGE_SLOPE_BALLAST.getLabel())
+				|| tile.getType().equals(TrackTypes.LARGE_SLOPE_WOOD.getLabel())
+				|| tile.getType().equals(TrackTypes.LARGE_SLOPE_GRAVEL.getLabel())
+				|| tile.getType().equals(TrackTypes.LARGE_SLOPE_BALLAST.getLabel())
+				|| tile.getType().equals(TrackTypes.VERY_LARGE_SLOPE_WOOD.getLabel())
+				|| tile.getType().equals(TrackTypes.VERY_LARGE_SLOPE_GRAVEL.getLabel())
+				|| tile.getType().equals(TrackTypes.VERY_LARGE_SLOPE_BALLAST.getLabel())
 		;
 	}
 
@@ -1073,8 +1077,9 @@ public class ItemTCRail extends ItemPart {
 				return true;
 			}
 			if (type == TrackTypes.SLOPE_WOOD || type == TrackTypes.SLOPE_GRAVEL || type == TrackTypes.SLOPE_BALLAST
-			// || type == TrackTypes.LARGE_SLOPE_WOOD || type == TrackTypes.LARGE_SLOPE_GRAVEL||
-			// type == TrackTypes.LARGE_SLOPE_BALLAST
+					|| type == TrackTypes.LARGE_SLOPE_WOOD || type == TrackTypes.LARGE_SLOPE_GRAVEL
+					|| type == TrackTypes.LARGE_SLOPE_BALLAST || type == TrackTypes.VERY_LARGE_SLOPE_WOOD
+					|| type == TrackTypes.VERY_LARGE_SLOPE_GRAVEL || type == TrackTypes.VERY_LARGE_SLOPE_BALLAST
 			) {
 				if (!canPlaceTrack(world, x, y + 1, z)) {
 					return false;
@@ -1089,11 +1094,17 @@ public class ItemTCRail extends ItemPart {
 					slopeAngle = 0.1668;
 				}
 				
-				// if (type == TrackTypes.LARGE_SLOPE_WOOD || type == TrackTypes.LARGE_SLOPE_GRAVEL
-				// || type == TrackTypes.LARGE_SLOPE_BALLAST) {
-				// gagEnd = 11;
-				// slopeAngle = 0.0833;
-				// }
+				if (type == TrackTypes.LARGE_SLOPE_WOOD || type == TrackTypes.LARGE_SLOPE_GRAVEL
+						|| type == TrackTypes.LARGE_SLOPE_BALLAST) {
+					gagEnd = 11;
+					slopeAngle = 0.0833;
+				}
+				
+				if (type == TrackTypes.VERY_LARGE_SLOPE_WOOD || type == TrackTypes.VERY_LARGE_SLOPE_GRAVEL
+						|| type == TrackTypes.VERY_LARGE_SLOPE_BALLAST) {
+					gagEnd = 17;
+					slopeAngle = 0.0555;
+				}
 	
 				Item idDropped = this.type.getItem().item;
 				TileTCRailGag[] tileGag = new TileTCRailGag[gagEnd];

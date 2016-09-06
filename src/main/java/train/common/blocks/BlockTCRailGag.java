@@ -146,9 +146,12 @@ public class BlockTCRailGag extends Block {
 				&& (tileEntity.type.equals(ItemTCRail.TrackTypes.SLOPE_WOOD.getLabel())
 						|| tileEntity.type.equals(ItemTCRail.TrackTypes.SLOPE_GRAVEL.getLabel())
 						|| tileEntity.type.equals(ItemTCRail.TrackTypes.SLOPE_BALLAST.getLabel())
-				// || tileEntity.type.equals(ItemTCRail.TrackTypes.LARGE_SLOPE_WOOD.getLabel())
-				// || tileEntity.type.equals(ItemTCRail.TrackTypes.LARGE_SLOPE_GRAVEL.getLabel())
-				// || tileEntity.type.equals(ItemTCRail.TrackTypes.LARGE_SLOPE_BALLAST.getLabel())
+				 || tileEntity.type.equals(ItemTCRail.TrackTypes.LARGE_SLOPE_WOOD.getLabel())
+				 || tileEntity.type.equals(ItemTCRail.TrackTypes.LARGE_SLOPE_GRAVEL.getLabel())
+				 || tileEntity.type.equals(ItemTCRail.TrackTypes.LARGE_SLOPE_BALLAST.getLabel())
+				 || tileEntity.type.equals(ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_WOOD.getLabel())
+				 || tileEntity.type.equals(ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_GRAVEL.getLabel())
+				 || tileEntity.type.equals(ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_BALLAST.getLabel())
 				)) {
 			List list = world.getEntitiesWithinAABB(EntityMinecart.class, AxisAlignedBB.getBoundingBox(i - 1.5, j, k - 1.5, ((float) (i + 1.5)), ((float) (j + 1.5)), ((float) (k + 1.5))));
 			if (!list.isEmpty()) {

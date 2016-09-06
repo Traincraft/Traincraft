@@ -5,8 +5,6 @@ import static mods.railcraft.api.tracks.RailTools.isRailBlockAt;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.lwjgl.input.Keyboard;
-
 import com.mojang.authlib.GameProfile;
 
 import cpw.mods.fml.client.FMLClientHandler;
@@ -1325,8 +1323,12 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				if (motionZ > 0 && Math.abs(motionX) < 0.01) {
 					tile.setType(TrackTypes.SMALL_STRAIGHT.getLabel());
 					TileEntity tile2 = worldObj.getTileEntity(i, j, k - 1);
+					TileEntity tile3 = worldObj.getTileEntity(i, j, k + 1);
 					if (tile2 != null && tile2 instanceof TileTCRail) {
 						((TileTCRail) tile2).setSwitchState(false, true);
+					}
+					if (tile3 != null && tile3 instanceof TileTCRail) {
+						((TileTCRail) tile3).setSwitchState(false, true);
 					}
 					return true;
 				}
@@ -1335,8 +1337,12 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				if (motionZ < 0 && Math.abs(motionX) < 0.01) {
 					tile.setType(TrackTypes.SMALL_STRAIGHT.getLabel());
 					TileEntity tile2 = worldObj.getTileEntity(i, j, k + 1);
+					TileEntity tile3 = worldObj.getTileEntity(i, j, k - 1);
 					if (tile2 != null && tile2 instanceof TileTCRail) {
 						((TileTCRail) tile2).setSwitchState(false, true);
+					}
+					if (tile3 != null && tile3 instanceof TileTCRail) {
+						((TileTCRail) tile3).setSwitchState(false, true);
 					}
 					return true;
 				}
@@ -1345,8 +1351,12 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				if (Math.abs(motionZ) < 0.01 && motionX > 0) {
 					tile.setType(TrackTypes.SMALL_STRAIGHT.getLabel());
 					TileEntity tile2 = worldObj.getTileEntity(i - 1, j, k);
+					TileEntity tile3 = worldObj.getTileEntity(i + 1, j, k);
 					if (tile2 != null && tile2 instanceof TileTCRail) {
 						((TileTCRail) tile2).setSwitchState(false, true);
+					}
+					if (tile3 != null && tile3 instanceof TileTCRail) {
+						((TileTCRail) tile3).setSwitchState(false, true);
 					}
 					return true;
 				}
@@ -1355,8 +1365,12 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				if (Math.abs(motionZ) < 0.01 && motionX < 0) {
 					tile.setType(TrackTypes.SMALL_STRAIGHT.getLabel());
 					TileEntity tile2 = worldObj.getTileEntity(i + 1, j, k);
+					TileEntity tile3 = worldObj.getTileEntity(i - 1, j, k);
 					if (tile2 != null && tile2 instanceof TileTCRail) {
 						((TileTCRail) tile2).setSwitchState(false, true);
+					}
+					if (tile3 != null && tile3 instanceof TileTCRail) {
+						((TileTCRail) tile3).setSwitchState(false, true);
 					}
 					return true;
 				}

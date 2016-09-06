@@ -78,12 +78,12 @@ public class TCItems {
 		ItemIDs.tcRailSlopeWood.item = new ItemTCRail(ItemTCRail.TrackTypes.SLOPE_WOOD);
 		ItemIDs.tcRailSlopeGravel.item = new ItemTCRail(ItemTCRail.TrackTypes.SLOPE_GRAVEL);
 		ItemIDs.tcRailSlopeBallast.item = new ItemTCRail(ItemTCRail.TrackTypes.SLOPE_BALLAST);
-		// ItemIDs.tcRailLargeSlopeWood.item = new
-		// ItemTCRail(ItemTCRail.TrackTypes.LARGE_SLOPE_WOOD);
-		// ItemIDs.tcRailLargeSlopeGravel.item = new
-		// ItemTCRail(ItemTCRail.TrackTypes.LARGE_SLOPE_GRAVEL);
-		// ItemIDs.tcRailLargeSlopeBallast.item = new
-		// ItemTCRail(ItemTCRail.TrackTypes.LARGE_SLOPE_BALLAST);
+		ItemIDs.tcRailLargeSlopeWood.item = new ItemTCRail(ItemTCRail.TrackTypes.LARGE_SLOPE_WOOD);
+		ItemIDs.tcRailLargeSlopeGravel.item = new ItemTCRail(ItemTCRail.TrackTypes.LARGE_SLOPE_GRAVEL);
+		ItemIDs.tcRailLargeSlopeBallast.item = new ItemTCRail(ItemTCRail.TrackTypes.LARGE_SLOPE_BALLAST);
+		ItemIDs.tcRailVeryLargeSlopeWood.item = new ItemTCRail(ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_WOOD);
+		ItemIDs.tcRailVeryLargeSlopeGravel.item = new ItemTCRail(ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_GRAVEL);
+		ItemIDs.tcRailVeryLargeSlopeBallast.item = new ItemTCRail(ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_BALLAST);
 		
 	}
 	
