@@ -1672,7 +1672,8 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 	protected void readEntityFromNBT(NBTTagCompound nbttagcompound) {
 		super.readEntityFromNBT(nbttagcompound);
 		this.speedLimiter = nbttagcompound.getDouble("speedLimiter");
-		this.serverRealRotation = nbttagcompound.getFloat("serverRealRotation");
+		this.serverRealRotation = MathHelper.wrapAngleTo180_float(nbttagcompound.getFloat("serverRealRotation"));
+		if (Math.abs(this.serverRealRotation) > 178.5f) this.serverRealRotation = Math.copySign(178.5f, this.serverRealRotation);
 		//this.hasSpawnedBogie = nbttagcompound.getBoolean("hasSpawnedBogie");
 		this.needsBogieUpdate = nbttagcompound.getBoolean("needsBogieUpdate");
 		this.firstLoad = nbttagcompound.getBoolean("firstLoad");
