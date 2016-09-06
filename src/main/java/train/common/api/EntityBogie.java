@@ -470,10 +470,10 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 						int meta = tileRail.getBlockMetadata();
 
 						shouldIgnoreSwitch(tileRail, i, j, k, meta);
-						moveOnTC90TurnRail(i, j, k, tileRail.r, tileRail.cx, tileRail.cy, tileRail.cz, tileRail.getType(), meta);
+						if (ItemTCRail.isTCTurnTrack(tileRail)) moveOnTC90TurnRail(i, j, k, tileRail.r, tileRail.cx, tileRail.cy, tileRail.cz, tileRail.getType(), meta);
 					}
 
-					else if (ItemTCRail.isTCStraightTrack(tileRail)) {
+					if (ItemTCRail.isTCStraightTrack(tileRail)) {
 
 						moveOnTCStraight(i, j, k, tileRail.xCoord, tileRail.yCoord, tileRail.zCoord, tileRail.getBlockMetadata());
 					}
@@ -723,13 +723,10 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 					TileEntity tile3 = worldObj.getTileEntity(i, j, k + 1);
 					if (tile2 != null && tile2 instanceof TileTCRail) {
 						((TileTCRail) tile2).setSwitchState(false, true);
-						System.out.println("DETECTION?!");
 					}
 					if (tile3 != null && tile3 instanceof TileTCRail) {
 						((TileTCRail) tile3).setSwitchState(false, true);
-						System.out.println("DETECTION?!");
 					}
-					System.out.println("I AM A BOGIE!");
 					return true;
 				}
 			}
@@ -740,13 +737,10 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 					TileEntity tile3 = worldObj.getTileEntity(i, j, k - 1);
 					if (tile2 != null && tile2 instanceof TileTCRail) {
 						((TileTCRail) tile2).setSwitchState(false, true);
-						System.out.println("DETECTION?!");
 					}
 					if (tile3 != null && tile3 instanceof TileTCRail) {
 						((TileTCRail) tile3).setSwitchState(false, true);
-						System.out.println("DETECTION?!");
 					}
-					System.out.println("I AM A BOGIE!");
 					return true;
 				}
 			}
@@ -757,13 +751,10 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 					TileEntity tile3 = worldObj.getTileEntity(i + 1, j, k);
 					if (tile2 != null && tile2 instanceof TileTCRail) {
 						((TileTCRail) tile2).setSwitchState(false, true);
-						System.out.println("DETECTION?!");
 					}
 					if (tile3 != null && tile3 instanceof TileTCRail) {
 						((TileTCRail) tile3).setSwitchState(false, true);
-						System.out.println("DETECTION?!");
 					}
-					System.out.println("I AM A BOGIE!");
 					return true;
 				}
 			}
@@ -774,13 +765,10 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 					TileEntity tile3 = worldObj.getTileEntity(i - 1, j, k);
 					if (tile2 != null && tile2 instanceof TileTCRail) {
 						((TileTCRail) tile2).setSwitchState(false, true);
-						System.out.println("DETECTION?!");
 					}
 					if (tile3 != null && tile3 instanceof TileTCRail) {
 						((TileTCRail) tile3).setSwitchState(false, true);
-						System.out.println("DETECTION?!");
 					}
-					System.out.println("I AM A BOGIE!");
 					return true;
 				}
 			}

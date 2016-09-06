@@ -1243,7 +1243,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 					double cz = tile.cz;
 					int meta = tile.getBlockMetadata();
 					shouldIgnoreSwitch(tile, i, j, k, meta);
-					moveOnTC90TurnRail(i, j, k, r, cx, cy, cz, tile.getType(), meta);
+					if (ItemTCRail.isTCTurnTrack(tile)) moveOnTC90TurnRail(i, j, k, r, cx, cy, cz, tile.getType(), meta);
 				}
 			}
 			if (ItemTCRail.isTCStraightTrack(tile)) {

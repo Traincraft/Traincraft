@@ -56,7 +56,7 @@ public class PacketSetJukeboxStreamingUrl implements IMessage {
 		@Override
 		public IMessage onMessage(PacketSetJukeboxStreamingUrl message, MessageContext context) {
 
-			Entity entity = Minecraft.getMinecraft().theWorld.getEntityByID(message.entityID);
+			Entity entity = context.getServerHandler().playerEntity.worldObj.getEntityByID(message.entityID);
 
 			if (entity instanceof EntityJukeBoxCart) {
 
