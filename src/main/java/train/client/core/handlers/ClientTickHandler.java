@@ -12,6 +12,7 @@ import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.item.ItemStack;
 import train.client.core.helpers.CapesHelper;
 import train.common.Traincraft;
+import train.common.core.util.MP3Player;
 import train.common.library.Info;
 
 public class ClientTickHandler {
@@ -35,6 +36,10 @@ public class ClientTickHandler {
 	}
 
 	private void tickStart(TickEvent event) {
+		if (mc.theWorld == null) { // fixes streaming after exiting a world
+			for (MP3Player player : Traincraft.proxy.playerList) if (player != null) player.stop();
+			Traincraft.proxy.playerList.clear();
+		}
 		if(mc.theWorld != null && mc.theWorld.playerEntities != null) {
 			for (Object p: mc.theWorld.playerEntities) {
 				AbstractClientPlayer player = (AbstractClientPlayer) p;
