@@ -204,9 +204,15 @@ item.tc:tcRailMediumSwitch.name=90 degrees Medium Switch
 item.tc:tcRailLargeSwitch.name=90 degrees Large Switch
 item.tc:tcRailMediumParallelSwitch.name=Parallel Switch
 item.tc:tcRailTwoWaysCrossing.name=Two Ways Crossing
-item.tc:tcRailLargeSlopeWood.name=Slope Track (Wood)
-item.tc:tcRailLargeSlopeGravel.name=Slope Track (Gravel)
-item.tc:tcRailLargeSlopeBallast.name=Slope Track (Ballast)
+item.tc:tcRailSlopeWood.name=Slope Track (Wood)
+item.tc:tcRailSlopeGravel.name=Slope Track (Gravel)
+item.tc:tcRailSlopeBallast.name=Slope Track (Ballast)
+item.tc:tcRailLargeSlopeWood.name=Large Slope Track (Wood)
+item.tc:tcRailLargeSlopeGravel.name=Large Slope Track (Gravel)
+item.tc:tcRailLargeSlopeBallast.name=Large Slope Track (Ballast)
+item.tc:tcRailVeryLargeSlopeWood.name=Very Large Slope Track (Wood)
+item.tc:tcRailVeryLargeSlopeGravel.name=Very Large Slope Track (Gravel)
+item.tc:tcRailVeryLargeSlopeBallast.name=Very Large Slope Track (Ballast)
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes

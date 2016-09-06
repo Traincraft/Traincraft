@@ -85,7 +85,10 @@ public class GuiRecipeBook extends GuiScreen {
 			}
 		});
 
-		addPage("Keys:\n" + "To interact with the trains (e.g. enter/leave, display the inventory) click above the shadow the train is casting on the ground.\n" + "Inside the locomotive press R to open up the GUI: This is where you can put fuel, water, additional cargo, set brakes, etc.\n", "", "left", new ArrayList<StackToDraw>() {
+		addPage("Keys:\n"
+				+ "To interact with the trains (e.g. enter, display the inventory) click above the shadow the train is casting on the ground.\n"
+				+ "Inside the locomotive press R to open up the GUI: This is where you can put fuel, water, additional cargo, set brakes, etc.\n",
+				"", "left", new ArrayList<StackToDraw>() {
 			{
 				add(new StackToDraw(new ItemStack(Items.coal), 60, 160));
 				add(new StackToDraw(new ItemStack(Items.water_bucket), 120, 160));
@@ -104,7 +107,10 @@ public class GuiRecipeBook extends GuiScreen {
 				add(new StackToDraw(new ItemStack(ItemIDs.minecartLocoBR01_DB.item), 140, 145));
 			}
 		});
-		addPage("Zeppelin:\n" + "Right click on the Zeppelin to enter/leave it. \n" + "Inside, press R to open its GUI. \n" + "Use the WASD keys to move the zeppelin around. \n" + "Press once Y to ascend or X to descend, To lock altitude, press C. \n" + "", "", "left", new ArrayList<StackToDraw>() {
+		addPage("Zeppelin:\n" + "Right click on the Zeppelin to enter it. \n" + "Inside, press R to open its GUI. \n"
+				+ "Use the WASD keys to move the zeppelin around. \n"
+				+ "Press once Y to ascend or X to descend, To lock altitude, press C. \n" + "", "", "left",
+				new ArrayList<StackToDraw>() {
 			{
 				add(new StackToDraw(new ItemStack(ItemIDs.airship.item), 20, 16));
 				add(new StackToDraw(new ItemStack(ItemIDs.balloon.item), 170, 16));
@@ -128,7 +134,10 @@ public class GuiRecipeBook extends GuiScreen {
 			}
 		});
 
-		addPage("Electric locomotives need redstone or Re-Batteries, the can also be powered by Electric tracks (requires Universal Electricity).\n" + "\n" + "Heat:\n" + "Heat level is indicated by the heat bar in the HUD.\n" + "Heat level will go to a normal state when the train is fueled but don't forget to put water in steam locomotive or it will overheat very fast.\n", "", "left", new ArrayList<StackToDraw>() {
+		addPage("Electric locomotives need redstone or RF-based energy storages, the can also be powered by Electric tracks.\n"
+				+ "\n" + "Heat:\n" + "Heat level is indicated by the heat bar in the HUD.\n"
+				+ "Heat level will go to a normal state when the train is fueled but don't forget to put water in steam locomotive or it will overheat very fast.\n",
+				"", "left", new ArrayList<StackToDraw>() {
 			{
 				add(new StackToDraw(new ItemStack(ItemIDs.minecartBR_E69.item), 20, 16));
 				add(new StackToDraw(new ItemStack(Items.redstone), 170, 16));
@@ -359,9 +368,6 @@ public class GuiRecipeBook extends GuiScreen {
 				});
 		addPage("Known bugs:\n" +
 				"- Sharp turns are not supported (close 180 turns)\n" +
-				"- Bounding boxes don't fit some trains properly. Sometimes they don't orient properly (generally when the entity is spawned).\n" +
-				"- Attached cart may bounce when stopped on a corner. " +
-				"This is due to the length of some models and because the physics is calculated from the center.\n" +
 				"" +
 				"","","right",new ArrayList<StackToDraw>() {
 					{

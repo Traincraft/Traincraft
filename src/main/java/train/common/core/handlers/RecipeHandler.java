@@ -233,6 +233,39 @@ public class RecipeHandler {
 								Character.valueOf('W'), s1.get(i) });// straight slopes
 			}
 		}
+		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailSlopeGravel.item, 2),
+				new Object[] { "  S", " SG", "SGG", Character.valueOf('S'), ItemIDs.tcRailSmallStraight.item,
+						Character.valueOf('G'), Blocks.gravel });// straight slopes
+		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailSlopeBallast.item, 2),
+				new Object[] { "  S", " SB", "SBB", Character.valueOf('S'), ItemIDs.tcRailSmallStraight.item,
+						Character.valueOf('B'), new ItemStack(BlockIDs.oreTC.block, 1, 3) });
+		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailLargeSlopeWood.item, 1),
+				new Object[] { "   ", "  S", " S ", 'S', ItemIDs.tcRailSlopeWood.item });
+		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailLargeSlopeGravel.item, 1),
+				new Object[] { "   ", "  S", " S ", 'S', ItemIDs.tcRailSlopeGravel.item });
+		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailLargeSlopeBallast.item, 1),
+				new Object[] { "   ", "  S", " S ", 'S', ItemIDs.tcRailSlopeBallast.item });
+		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailVeryLargeSlopeWood.item, 1),
+				new Object[] { "   ", "  S", " S ", 'S', ItemIDs.tcRailLargeSlopeWood.item });
+		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailVeryLargeSlopeGravel.item, 1),
+				new Object[] { "   ", "  S", " S ", 'S', ItemIDs.tcRailLargeSlopeGravel.item });
+		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailVeryLargeSlopeBallast.item, 1),
+				new Object[] { "   ", "  S", " S ", 'S', ItemIDs.tcRailLargeSlopeBallast.item });
+		
+		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailMediumStraight.item, 2),
+				new Object[] { "   ", "S  ", "S  ", Character.valueOf('S'), ItemIDs.tcRailSmallStraight.item });
+		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailMediumStraight.item, 2),
+				new Object[] { "   ", " S ", " S ", Character.valueOf('S'), ItemIDs.tcRailSmallStraight.item });
+		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailMediumStraight.item, 2),
+				new Object[] { "   ", "  S", "  S", Character.valueOf('S'), ItemIDs.tcRailSmallStraight.item });
+		
+		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailLongStraight.item, 3),
+				new Object[] { " S ", " S ", " S ", Character.valueOf('S'), ItemIDs.tcRailSmallStraight.item });
+		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailLongStraight.item, 3),
+				new Object[] { "S  ", "S  ", "S  ", Character.valueOf('S'), ItemIDs.tcRailSmallStraight.item });
+		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailLongStraight.item, 3),
+				new Object[] { "  S", "  S", "  S", Character.valueOf('S'), ItemIDs.tcRailSmallStraight.item });
+		
 		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailMediumTurn.item, 2), new Object[] {"SS ", "S  ", Character.valueOf('S'), ItemIDs.tcRailSmallStraight.item });// medium turn
 		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailMediumTurn.item, 2), new Object[] {"   ","SS ", "S  ", Character.valueOf('S'), ItemIDs.tcRailSmallStraight.item });// medium turn
 		
@@ -243,13 +276,7 @@ public class RecipeHandler {
 		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailMediumStraight.item, 2), new Object[] {" S ", " S ", Character.valueOf('S'), ItemIDs.tcRailSmallStraight.item });// medium straight
 		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailMediumStraight.item, 2), new Object[] {"  S", "  S", Character.valueOf('S'), ItemIDs.tcRailSmallStraight.item });// medium straight
 		
-		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailMediumStraight.item, 2), new Object[] {"   ","S  ", "S  ", Character.valueOf('S'), ItemIDs.tcRailSmallStraight.item });// medium straight
-		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailMediumStraight.item, 2), new Object[] {"   "," S ", " S ", Character.valueOf('S'), ItemIDs.tcRailSmallStraight.item });// medium straight
-		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailMediumStraight.item, 2), new Object[] {"   ","  S", "  S", Character.valueOf('S'), ItemIDs.tcRailSmallStraight.item });// medium straight
-		
-		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailLongStraight.item, 3), new Object[] {" S ", " S "," S ", Character.valueOf('S'), ItemIDs.tcRailSmallStraight.item });// long straight
-		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailLongStraight.item, 3), new Object[] {"S  ", "S  ","S  ", Character.valueOf('S'), ItemIDs.tcRailSmallStraight.item });// long straight
-		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailLongStraight.item, 3), new Object[] {"  S", "  S","  S", Character.valueOf('S'), ItemIDs.tcRailSmallStraight.item });// long straight
+
 		
 		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailMediumSwitch.item, 2), new Object[] {"S  ", "SRS", "S  ", Character.valueOf('S'), ItemIDs.tcRailSmallStraight.item, Character.valueOf('R'), ItemIDs.tcRailMediumTurn.item });// switch
 		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailLargeSwitch.item, 2), new Object[] {"S  ", "SRS", "S  ", Character.valueOf('S'), ItemIDs.tcRailSmallStraight.item, Character.valueOf('R'), ItemIDs.tcRailLargeTurn.item });// switch
@@ -263,8 +290,7 @@ public class RecipeHandler {
 						Character.valueOf('G'), Blocks.gravel });// straight slopes
 		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailSlopeBallast.item, 2),
 				new Object[] { "  S", " SB", "SBB", Character.valueOf('S'), ItemIDs.tcRailSmallStraight.item,
-						Character.valueOf('B'), new ItemStack(BlockIDs.oreTC.block, 1, 3) });// straight
-																								// slopes
+						Character.valueOf('B'), new ItemStack(BlockIDs.oreTC.block, 1, 3) });
 		
 		TrainCraftingManager.instance.addRecipe(new ItemStack(BlockIDs.bridgePillar.block, 4), new Object[] {"SSS", "S S","SSS", Character.valueOf('S'), Items.stick});// bridge pillar
 		

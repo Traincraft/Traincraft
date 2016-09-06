@@ -181,9 +181,15 @@ item.tc:tcRailMediumSwitch.name=Mittlere 90 Grad Weiche
 item.tc:tcRailLargeSwitch.name=Große 90 Grad Weiche
 item.tc:tcRailMediumParallelSwitch.name=Parallel Weiche
 item.tc:tcRailTwoWaysCrossing.name=Kreuzung
-item.tc:tcRailLargeSlopeWood.name=Steigung (Holz)
-item.tc:tcRailLargeSlopeGravel.name=Steigung (Kies)
-item.tc:tcRailLargeSlopeBallast.name=Steigung (Schotter)
+item.tc:tcRailSlopeWood.name=Steigung (Holz)
+item.tc:tcRailSlopeGravel.name=Steigung (Kies)
+item.tc:tcRailSlopeBallast.name=Steigung (Schotter)
+item.tc:tcRailLargeSlopeWood.name=Lange Steigung (Holz)
+item.tc:tcRailLargeSlopeGravel.name=Lange Steigung (Kies)
+item.tc:tcRailLargeSlopeBallast.name=Lange Steigung (Schotter)
+item.tc:tcRailVeryLargeSlopeWood.name=Sehr lange Steigung (Holz)
+item.tc:tcRailVeryLargeSlopeGravel.name=Sehr lange Steigung (Kies)
+item.tc:tcRailVeryLargeSlopeBallast.name=Sehr lange Steigung (Schotter)
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Ingenieurskleidung
