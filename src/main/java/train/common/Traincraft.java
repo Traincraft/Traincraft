@@ -6,6 +6,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraftforge.common.AchievementPage;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.EnumHelper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -76,6 +77,8 @@ public class Traincraft {
 
 	private mysqlLogInterface logMysql = new mysqlLogger();
 	public static boolean mysqlLoggerEnabled;
+	
+	public static WorldGenWorld worldGen;
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
@@ -101,7 +104,13 @@ public class Traincraft {
 		GameRegistry.registerFuelHandler(new FuelHandler());
 		AchievementHandler.load();
 		AchievementPage.registerAchievementPage(AchievementHandler.tmPage);
-		GameRegistry.registerWorldGenerator(new WorldGenWorld(),5);
+		GameRegistry.registerWorldGenerator(worldGen = new WorldGenWorld(),5);
+		
+		//Retrogen Handling
+		RetrogenHandler retroGen = new RetrogenHandler();
+		MinecraftForge.EVENT_BUS.register(retroGen);
+		FMLCommonHandler.instance().bus().register(retroGen);
+		
 		MapGenStructureIO.func_143031_a(ComponentVillageTrainstation.class, "Trainstation");
 
 		/* Other Proxy init */

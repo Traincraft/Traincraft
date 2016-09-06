@@ -15,6 +15,7 @@ import net.minecraft.world.WorldType;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import train.common.core.handlers.ConfigHandler;
+import train.common.core.handlers.RetrogenHandler;
 import train.common.library.BlockIDs;
 
 import java.util.Random;
@@ -23,6 +24,7 @@ public class WorldGenWorld implements IWorldGenerator {
 
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
+		RetrogenHandler.gennedChunks.add(new RetrogenHandler.ChunkData(chunkX, chunkZ, world.provider.dimensionId));
 		if(world.provider.terrainType != WorldType.FLAT){
 
 			if (ConfigHandler.ORE_GEN) {
