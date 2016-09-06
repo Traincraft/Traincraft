@@ -153,16 +153,18 @@ public abstract class DieselTrain extends Locomotive implements IFluidHandler {
 	}
 
 	@Override
-	protected void updateFuelTrain() {
+	protected void updateFuelTrain(int amount) {
 		if (fuelTrain < 0) {
 			motionX *= 0.8;
 			motionZ *= 0.8;
 		}
 		else {
-			if (this.isLocoTurnedOn())
-				fuelTrain--;
+			if (this.isLocoTurnedOn()) {
+				fuelTrain -= amount;
+				if (fuelTrain < 0) fuelTrain = 0;
+			}
 			if (this.isLocoTurnedOn() && getDiesel() > 0) {
-				drain(ForgeDirection.UNKNOWN, 1, true);
+				drain(ForgeDirection.UNKNOWN, amount, true);
 			}
 		}
 	}

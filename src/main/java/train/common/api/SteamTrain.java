@@ -88,8 +88,8 @@ public abstract class SteamTrain extends Locomotive implements IFluidHandler {
 			this.dataWatcher.updateObject(23, 0);
 			this.dataWatcher.updateObject(4, 0);
 		}
-		if (rand.nextInt(getWaterConsumption()) == 0 && getWater() > 0) {
-			drain(ForgeDirection.UNKNOWN, 1, true);
+		if (rand.nextInt(100) == 0 && getWater() > 0) {
+			drain(ForgeDirection.UNKNOWN, getWaterConsumption() / 5, true);
 		}
 	}
 

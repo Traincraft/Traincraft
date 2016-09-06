@@ -454,9 +454,9 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 			 */
 			int consumption = this.getFuelConsumption();
 			if (this instanceof DieselTrain) consumption /= 5;
-			if (fuelUpdateTicks >= consumption) {
+			if (fuelUpdateTicks >= 100) {
 				fuelUpdateTicks = 0;
-				updateFuelTrain();
+				updateFuelTrain(consumption);
 			}
 			fuelUpdateTicks++;
 
@@ -704,14 +704,18 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 
 	/**
 	 * This code applies fuel consumption.
+	 * @param consumption 
 	 */
-	protected void updateFuelTrain() {
+	protected void updateFuelTrain(int consumption) {
 		if (fuelTrain < 0) {
 			motionX *= 0.8;
 			motionZ *= 0.8;
 		}
 		else {
-			if (this.isLocoTurnedOn()) fuelTrain--;
+			if (this.isLocoTurnedOn()) {
+				fuelTrain -= consumption;
+				if (fuelTrain < 0) fuelTrain = 0;
+			}
 		}
 	}
 	public void setLocoTurnedOnFromPacket(boolean set) {
