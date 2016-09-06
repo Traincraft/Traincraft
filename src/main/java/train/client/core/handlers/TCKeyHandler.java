@@ -32,17 +32,17 @@ public class TCKeyHandler
 	public static KeyBinding furnace;
 	public TCKeyHandler()
 	{
-		horn = new KeyBinding("key.tc.horn", Keyboard.KEY_H, "key.categories.traincraft");
+		horn = new KeyBinding("key.traincraft.horn", Keyboard.KEY_H, "key.categories.traincraft");
 		ClientRegistry.registerKeyBinding(horn);
-		inventory = new KeyBinding("key.tc.inventory", Keyboard.KEY_R, "key.categories.traincraft");
+		inventory = new KeyBinding("key.traincraft.inventory", Keyboard.KEY_R, "key.categories.traincraft");
 		ClientRegistry.registerKeyBinding(inventory);
-		up = new KeyBinding("key.tc.up", Keyboard.KEY_Y, "key.categories.traincraft");
+		up = new KeyBinding("key.traincraft.up", Keyboard.KEY_Y, "key.categories.traincraft");
 		ClientRegistry.registerKeyBinding(up);
-		down = new KeyBinding("key.tc.down", Keyboard.KEY_X, "key.categories.traincraft");
+		down = new KeyBinding("key.traincraft.down", Keyboard.KEY_X, "key.categories.traincraft");
 		ClientRegistry.registerKeyBinding(down);
-		idle = new KeyBinding("key.tc.idle", Keyboard.KEY_C, "key.categories.traincraft");
+		idle = new KeyBinding("key.traincraft.idle", Keyboard.KEY_C, "key.categories.traincraft");
 		ClientRegistry.registerKeyBinding(idle);
-		furnace = new KeyBinding("key.tc.furnace", Keyboard.KEY_F, "key.categories.traincraft");
+		furnace = new KeyBinding("key.traincraft.furnace", Keyboard.KEY_F, "key.categories.traincraft");
 		ClientRegistry.registerKeyBinding(furnace);
 	}
 	@SubscribeEvent

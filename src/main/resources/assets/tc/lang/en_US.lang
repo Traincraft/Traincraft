@@ -382,3 +382,11 @@ entity.TC.Passenger Green Long.name=Passenger Car
 entity.TC.Passenger Small Black.name=Passenger Car
 entity.TC.Passenger Blue.name=Passenger Car
 entity.TC.Passenger Adler.name=Adler Passenger Car
+
+key.categories.traincraft=Traincraft
+key.traincraft.horn=Horn
+key.traincraft.inventory=Inventory
+key.traincraft.up=Up
+key.traincraft.down=Down
+key.traincraft.idle=Idle
+key.traincraft.furnace=Furnace
