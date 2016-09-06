@@ -366,3 +366,11 @@ entity.TC.Passenger Green Long.name=Personenwagen
 entity.TC.Passenger Small Black.name=Personenwagen
 entity.TC.Passenger Blue.name=Personenwagen
 entity.TC.Passenger Adler.name=Adler Personenwagen
+
+key.categories.traincraft=Traincraft
+key.traincraft.horn=Horn
+key.traincraft.inventory=Inventar
+key.traincraft.up=Hoch
+key.traincraft.down=Runter
+key.traincraft.idle=abschalten
+key.traincraft.furnace=Ofen
