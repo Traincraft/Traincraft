@@ -18,6 +18,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import org.lwjgl.opengl.GL11;
+
+import static codechicken.lib.gui.GuiDraw.changeTexture;
+import static codechicken.lib.gui.GuiDraw.drawTexturedModalRect;
+import static codechicken.lib.gui.GuiDraw.drawString;
+
 public class NEIAssemblyTableRecipePlugin extends ShapedRecipeHandler {
 	private List<TierRecipe> recipeList = assemblyListCleaner(TierRecipeManager.getInstance().getRecipeList());
 
@@ -208,7 +214,7 @@ public class NEIAssemblyTableRecipePlugin extends ShapedRecipeHandler {
 		return false;
 	}
 
-	/*/
+	
 	public void drawBackground(int recipe) {
 		GL11.glColor4f(1, 1, 1, 1);
 		TierRecipe tierRecipe = null;
@@ -223,7 +229,7 @@ public class NEIAssemblyTableRecipePlugin extends ShapedRecipeHandler {
 			drawString("Tier: " + tierRecipe.getTier(), 0, -11, 0x404040, false);
 		}
 	}
-	/*/
+	
 	@Override
 	public int recipiesPerPage() {
 		return 1;

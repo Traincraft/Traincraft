@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.TreeSet;
 
+import org.lwjgl.opengl.GL11;
+
 import codechicken.nei.ItemList;
 import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
@@ -23,6 +25,9 @@ import train.client.gui.GuiDistil;
 import train.common.items.ItemBlockOreTC;
 import train.common.library.ItemIDs;
 import train.common.recipes.DistilRecipes;
+
+import static codechicken.lib.gui.GuiDraw.changeTexture;
+import static codechicken.lib.gui.GuiDraw.drawTexturedModalRect;
 
 public class NEIDistillationTowerRecipePlugin extends FurnaceRecipeHandler{
 	public class SmeltingPair extends CachedRecipe
@@ -208,14 +213,14 @@ public class NEIDistillationTowerRecipePlugin extends FurnaceRecipeHandler{
         	drawProgressBar(140, 2, 177, 57, 18, 52, 70, 3);
         }
     }
-    /*/
+    
     public void drawBackground(int recipe)
     {
         GL11.glColor4f(1, 1, 1, 1);
         changeTexture(getGuiTexture());
         drawTexturedModalRect(0, 0, 5, 4, 166, 75);
     }
-    /*/
+    
     @Override
     public String getOverlayIdentifier()
     {
