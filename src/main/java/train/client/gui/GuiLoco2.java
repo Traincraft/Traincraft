@@ -292,12 +292,8 @@ public class GuiLoco2 extends GuiContainer {
 		fontRendererObj.drawStringWithShadow("Speed reduction: " + loco.getCurrentSpeedSlowDown(), 1, 30, 0xFFFFFF);
 		fontRendererObj.drawStringWithShadow("Accel reduction: " + loco.getCurrentAccelSlowDown(), 1, 40, 0xFFFFFF);
 		fontRendererObj.drawStringWithShadow("Brake reduction: " + loco.getCurrentBrakeSlowDown(), 1, 50, 0xFFFFFF);
-		if (loco instanceof DieselTrain) {
-			fontRendererObj.drawStringWithShadow("Fuel consumption: 1 every " + (loco.getFuelConsumption() / 5) + " ticks", 1, 60, 0xFFFFFF);
-		}
-		else {
-			fontRendererObj.drawStringWithShadow("Fuel consumption: 1 every " + loco.getFuelConsumption() + " ticks", 1, 60, 0xFFFFFF);
-		}
+		fontRendererObj.drawStringWithShadow("Fuel consumption: " + loco.getFuelConsumption() + " every 5 seconds", 1,
+				60, 0xFFFFFF);
 		fontRendererObj.drawStringWithShadow("Fuel: " + loco.getFuel(), 1, 70, 0xFFFFFF);
 		fontRendererObj.drawStringWithShadow("Power: " + loco.getPower() + " Mhp", 1, 80, 0xFFFFFF);
 		fontRendererObj.drawStringWithShadow("State: " + loco.getState(), 1, 90, 0xFFFFFF);
