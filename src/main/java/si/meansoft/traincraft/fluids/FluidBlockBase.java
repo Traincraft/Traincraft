@@ -4,7 +4,6 @@ import net.minecraft.block.material.Material;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
 import si.meansoft.traincraft.IRegistryEntry;
-import si.meansoft.traincraft.Registry;
 import si.meansoft.traincraft.Traincraft;
 
 /**

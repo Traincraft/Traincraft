@@ -1,14 +1,7 @@
 package si.meansoft.traincraft.tile;
 
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import si.meansoft.traincraft.blocks.BlockRail;
 
 import java.util.ArrayList;
 import java.util.List;

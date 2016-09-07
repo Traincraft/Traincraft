@@ -1,6 +1,5 @@
 package si.meansoft.traincraft;
 
-import mezz.jei.ItemRegistry;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;

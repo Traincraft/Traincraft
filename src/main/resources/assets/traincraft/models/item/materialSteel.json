@@ -2,6 +2,6 @@
     "parent": "item/generated",
     "transform": "forge:default-item",
     "textures": {
-        "layer0": "traincraft:items/materialSteel"
+        "layer0": "traincraft:items/material/steel"
     }
 }

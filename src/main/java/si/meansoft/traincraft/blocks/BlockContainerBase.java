@@ -1,14 +1,12 @@
 package si.meansoft.traincraft.blocks;
 
 import net.minecraft.block.BlockHorizontal;
-import net.minecraft.block.BlockPistonBase;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
@@ -21,11 +19,8 @@ import net.minecraft.world.World;
 import org.apache.commons.lang3.ArrayUtils;
 import si.meansoft.traincraft.IRegistryEntry;
 import si.meansoft.traincraft.Traincraft;
-import si.meansoft.traincraft.network.CommonProxy;
 import si.meansoft.traincraft.network.GuiHandler;
 import si.meansoft.traincraft.tile.TileEntityBase;
-
-import java.util.Arrays;
 
 /**
  * @author canitzp

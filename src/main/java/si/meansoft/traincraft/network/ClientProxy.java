@@ -22,6 +22,9 @@ import si.meansoft.traincraft.Traincraft;
 
 import java.util.Map;
 
+/**
+ * @author canitzp
+ */
 public class ClientProxy extends CommonProxy {
 
     @Override

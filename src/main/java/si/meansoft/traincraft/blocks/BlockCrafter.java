@@ -1,8 +1,8 @@
 package si.meansoft.traincraft.blocks;
 
 import net.minecraft.block.material.Material;
-import si.meansoft.traincraft.container.ContainerCrafter;
 import si.meansoft.traincraft.client.gui.GuiCrafter;
+import si.meansoft.traincraft.container.ContainerCrafter;
 import si.meansoft.traincraft.network.GuiHandler;
 import si.meansoft.traincraft.tile.crafter.TileEntityCrafterBase;
 import si.meansoft.traincraft.tile.crafter.TileEntityCrafterDiesel;

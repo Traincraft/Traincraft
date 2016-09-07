@@ -5,9 +5,6 @@ import si.meansoft.traincraft.tile.TileEntityDistillery;
 import si.meansoft.traincraft.tile.TileEntityHearthFurnace;
 import si.meansoft.traincraft.tile.TileEntityRail;
 import si.meansoft.traincraft.tile.TileEntityWindmill;
-import si.meansoft.traincraft.tile.crafter.TileEntityCrafterDiesel;
-import si.meansoft.traincraft.tile.crafter.TileEntityCrafterElectro;
-import si.meansoft.traincraft.tile.crafter.TileEntityCrafterSteam;
 
 /**
  * @author canitzp

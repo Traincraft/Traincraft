@@ -7,11 +7,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import si.meansoft.traincraft.IRegistryEntry;
-import si.meansoft.traincraft.Util;
 import si.meansoft.traincraft.network.CommonProxy;
 
 import java.util.List;
 
+/**
+ * @author Ellpeck
+ */
 public class ItemSubtypeBase extends ItemBase{
 
     private Class<? extends Enum> subtypes;
@@ -38,7 +40,7 @@ public class ItemSubtypeBase extends ItemBase{
     }
 
     @SideOnly(Side.CLIENT)
-    public void getSubItems(Item item, CreativeTabs tab, List list){
+    public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list){
         for(int j = 0; j < this.subtypes.getEnumConstants().length; j++){
             list.add(new ItemStack(this, 1, j));
         }
