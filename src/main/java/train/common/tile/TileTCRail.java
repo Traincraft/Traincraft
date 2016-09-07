@@ -212,7 +212,7 @@ public class TileTCRail extends TileEntity {
 				manualOverride = false;
 				//setSwitchState(false,false);
 				// worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, facingMeta, 2);
-				
+				// System.out.println("X: " + xCoord + " Y: " + yCoord + " Z: " + zCoord);
 				boolean flag = worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord);
 				changeSwitchState(worldObj, this, xCoord, yCoord, zCoord);
 				previousRedstoneState = flag;

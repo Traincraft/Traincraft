@@ -415,7 +415,6 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 				super.onUpdate();
 			}
 			else {
-				
 		        if (this.worldObj.isRemote)
 		        {
 		            if (this.turnProgress > 0)
@@ -469,8 +468,17 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 
 						int meta = tileRail.getBlockMetadata();
 
-						shouldIgnoreSwitch(tileRail, i, j, k, meta);
-						if (ItemTCRail.isTCTurnTrack(tileRail)) moveOnTC90TurnRail(i, j, k, tileRail.r, tileRail.cx, tileRail.cy, tileRail.cz, tileRail.getType(), meta);
+					if (shouldIgnoreSwitch(tileRail, i, j, k, meta)) {
+						moveOnTCStraight(i, j, k, tileRail.xCoord, tileRail.yCoord, tileRail.zCoord,
+								tileRail.getBlockMetadata());
+					} else {
+						if (ItemTCRail.isTCTurnTrack(tileRail)) moveOnTC90TurnRail(i, j, k, tileRail.r, tileRail.cx,
+								tileRail.cy, tileRail.cz, tileRail.getType(), meta);
+					}
+					
+					// shouldIgnoreSwitch(tileRail, i, j, k, meta);
+					// if (ItemTCRail.isTCTurnTrack(tileRail)) moveOnTC90TurnRail(i, j, k,
+					// tileRail.r, tileRail.cx, tileRail.cy, tileRail.cz, tileRail.getType(), meta);
 					}
 
 					if (ItemTCRail.isTCStraightTrack(tileRail)) {
@@ -708,7 +716,6 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		motionX = vx2;
 		motionZ = vz2;
 	}
-
 	private boolean shouldIgnoreSwitch(TileTCRail tile, int i, int j, int k, int meta) {
 		if (tile != null
 				&& (tile.getType().equals(TrackTypes.MEDIUM_RIGHT_TURN.getLabel())
@@ -718,64 +725,35 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 				&& tile.canTypeBeModifiedBySwitch) {
 			if (meta == 2) {
 				if (motionZ > 0 && Math.abs(motionX) < 0.01) {
-					tile.setType(TrackTypes.SMALL_STRAIGHT.getLabel());
-					TileEntity tile2 = worldObj.getTileEntity(i, j, k - 1);
-					TileEntity tile3 = worldObj.getTileEntity(i, j, k + 1);
+					TileEntity tile2 = worldObj.getTileEntity(i, j, k + 1);
 					if (tile2 != null && tile2 instanceof TileTCRail) {
 						((TileTCRail) tile2).setSwitchState(false, true);
 					}
-					if (entityMainTrain.serverRealRotation == 0) {
-						if (tile3 != null && tile3 instanceof TileTCRail) {
-							((TileTCRail) tile3).setSwitchState(false, true);
-						}
-					}
-					return true;
 				}
 			}
 			if (meta == 0) {
 				if (motionZ < 0 && Math.abs(motionX) < 0.01) {
-					tile.setType(TrackTypes.SMALL_STRAIGHT.getLabel());
-					TileEntity tile2 = worldObj.getTileEntity(i, j, k + 1);
-					TileEntity tile3 = worldObj.getTileEntity(i, j, k - 1);
+					TileEntity tile2 = worldObj.getTileEntity(i, j, k - 1);
 					if (tile2 != null && tile2 instanceof TileTCRail) {
 						((TileTCRail) tile2).setSwitchState(false, true);
-					}
-					if (entityMainTrain.serverRealRotation == -180) {
-						if (tile3 != null && tile3 instanceof TileTCRail) {
-							((TileTCRail) tile3).setSwitchState(false, true);
-						}
 					}
 					return true;
 				}
 			}
 			if (meta == 1) {
 				if (Math.abs(motionZ) < 0.01 && motionX > 0) {
-					tile.setType(TrackTypes.SMALL_STRAIGHT.getLabel());
-					TileEntity tile2 = worldObj.getTileEntity(i - 1, j, k);
-					TileEntity tile3 = worldObj.getTileEntity(i + 1, j, k);
+					TileEntity tile2 = worldObj.getTileEntity(i + 1, j, k);
 					if (tile2 != null && tile2 instanceof TileTCRail) {
 						((TileTCRail) tile2).setSwitchState(false, true);
-					}
-					if (entityMainTrain.serverRealRotation == -90) {
-						if (tile3 != null && tile3 instanceof TileTCRail) {
-							((TileTCRail) tile3).setSwitchState(false, true);
-						}
 					}
 					return true;
 				}
 			}
 			if (meta == 3) {
 				if (Math.abs(motionZ) < 0.01 && motionX < 0) {
-					tile.setType(TrackTypes.SMALL_STRAIGHT.getLabel());
-					TileEntity tile2 = worldObj.getTileEntity(i + 1, j, k);
-					TileEntity tile3 = worldObj.getTileEntity(i - 1, j, k);
+					TileEntity tile2 = worldObj.getTileEntity(i - 1, j, k);
 					if (tile2 != null && tile2 instanceof TileTCRail) {
 						((TileTCRail) tile2).setSwitchState(false, true);
-					}
-					if (entityMainTrain.serverRealRotation == 90) {
-						if (tile3 != null && tile3 instanceof TileTCRail) {
-							((TileTCRail) tile3).setSwitchState(false, true);
-						}
 					}
 					return true;
 				}
@@ -783,6 +761,81 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		}
 		return false;
 	}
+	
+	// private boolean shouldIgnoreSwitch(TileTCRail tile, int i, int j, int k, int meta) {
+	// if (tile != null
+	// && (tile.getType().equals(TrackTypes.MEDIUM_RIGHT_TURN.getLabel())
+	// || tile.getType().equals(TrackTypes.MEDIUM_LEFT_TURN.getLabel())
+	// || tile.getType().equals(TrackTypes.LARGE_LEFT_TURN.getLabel())
+	// || tile.getType().equals(TrackTypes.LARGE_RIGHT_TURN.getLabel()))
+	// && tile.canTypeBeModifiedBySwitch) {
+	// if (meta == 2) {
+	// if (motionZ > 0 && Math.abs(motionX) < 0.01) {
+	// tile.setType(TrackTypes.SMALL_STRAIGHT.getLabel());
+	// TileEntity tile2 = worldObj.getTileEntity(i, j, k - 1);
+	// TileEntity tile3 = worldObj.getTileEntity(i, j, k + 1);
+	// if (tile2 != null && tile2 instanceof TileTCRail) {
+	// ((TileTCRail) tile2).setSwitchState(false, true);
+	// }
+	// if (entityMainTrain.serverRealRotation == 0) {
+	// if (tile3 != null && tile3 instanceof TileTCRail) {
+	// ((TileTCRail) tile3).setSwitchState(false, true);
+	// }
+	// }
+	// return true;
+	// }
+	// }
+	// if (meta == 0) {
+	// if (motionZ < 0 && Math.abs(motionX) < 0.01) {
+	// tile.setType(TrackTypes.SMALL_STRAIGHT.getLabel());
+	// TileEntity tile2 = worldObj.getTileEntity(i, j, k + 1);
+	// TileEntity tile3 = worldObj.getTileEntity(i, j, k - 1);
+	// if (tile2 != null && tile2 instanceof TileTCRail) {
+	// ((TileTCRail) tile2).setSwitchState(false, true);
+	// }
+	// if (entityMainTrain.serverRealRotation == -180) {
+	// if (tile3 != null && tile3 instanceof TileTCRail) {
+	// ((TileTCRail) tile3).setSwitchState(false, true);
+	// }
+	// }
+	// return true;
+	// }
+	// }
+	// if (meta == 1) {
+	// if (Math.abs(motionZ) < 0.01 && motionX > 0) {
+	// tile.setType(TrackTypes.SMALL_STRAIGHT.getLabel());
+	// TileEntity tile2 = worldObj.getTileEntity(i - 1, j, k);
+	// TileEntity tile3 = worldObj.getTileEntity(i + 1, j, k);
+	// if (tile2 != null && tile2 instanceof TileTCRail) {
+	// ((TileTCRail) tile2).setSwitchState(false, true);
+	// }
+	// if (entityMainTrain.serverRealRotation == -90) {
+	// if (tile3 != null && tile3 instanceof TileTCRail) {
+	// ((TileTCRail) tile3).setSwitchState(false, true);
+	// }
+	// }
+	// return true;
+	// }
+	// }
+	// if (meta == 3) {
+	// if (Math.abs(motionZ) < 0.01 && motionX < 0) {
+	// tile.setType(TrackTypes.SMALL_STRAIGHT.getLabel());
+	// TileEntity tile2 = worldObj.getTileEntity(i + 1, j, k);
+	// TileEntity tile3 = worldObj.getTileEntity(i - 1, j, k);
+	// if (tile2 != null && tile2 instanceof TileTCRail) {
+	// ((TileTCRail) tile2).setSwitchState(false, true);
+	// }
+	// if (entityMainTrain.serverRealRotation == 90) {
+	// if (tile3 != null && tile3 instanceof TileTCRail) {
+	// ((TileTCRail) tile3).setSwitchState(false, true);
+	// }
+	// }
+	// return true;
+	// }
+	// }
+	// }
+	// return false;
+	// }
 	public void limitSpeedOnTCRail(int x, int y, int z) {
 
 		/*
