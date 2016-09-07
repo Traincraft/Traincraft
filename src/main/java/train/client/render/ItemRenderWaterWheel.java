@@ -45,7 +45,7 @@ public class ItemRenderWaterWheel implements IItemRenderer {
 			return;
 		}
 		default:
-			return;
+			break;
 		}
 	}
 

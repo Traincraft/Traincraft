@@ -20,42 +20,17 @@ public class RenderCoreTC {
 		Tessellator tessellator = Tessellator.instance;
 		tessellator.startDrawingQuads();
 		tessellator.setBrightness(block.getMixedBrightnessForBlock(world, i, j, k));
-		float f4 = 1.0F;
-		float f5 = 1.0F;
-		if (f5 < f4) {
-			f5 = f4;
-		}
-		tessellator.setColorOpaque_F(f * f5, f * f5, f * f5);
+		tessellator.setColorOpaque_F(f, f, f);
 		//renderBottomFace(block, -0.5D, -0.5D, -0.5D, block.getBlockTextureFromSideAndMetadata(0, meta));
-		f5 = 1.0F;
-		if (f5 < f4) {
-			f5 = f4;
-		}
-		tessellator.setColorOpaque_F(f1 * f5, f1 * f5, f1 * f5);
+		tessellator.setColorOpaque_F(f1, f1, f1);
 		//renderTopFace(block, -0.5D, -0.5D, -0.5D, block.getBlockTextureFromSideAndMetadata(1, meta));
-		f5 = 1.0F;
-		if (f5 < f4) {
-			f5 = f4;
-		}
-		tessellator.setColorOpaque_F(f2 * f5, f2 * f5, f2 * f5);
+		tessellator.setColorOpaque_F(f2, f2, f2);
 		//renderEastFace(block, -0.5D, -0.5D, -0.5D, block.getBlockTextureFromSideAndMetadata(2, meta));
-		f5 = 1.0F;
-		if (f5 < f4) {
-			f5 = f4;
-		}
-		tessellator.setColorOpaque_F(f2 * f5, f2 * f5, f2 * f5);
+		tessellator.setColorOpaque_F(f2, f2, f2);
 		//renderWestFace(block, -0.5D, -0.5D, -0.5D, block.getBlockTextureFromSideAndMetadata(3, meta));
-		f5 = 1.0F;
-		if (f5 < f4) {
-			f5 = f4;
-		}
-		tessellator.setColorOpaque_F(f3 * f5, f3 * f5, f3 * f5);
+		tessellator.setColorOpaque_F(f3, f3, f3);
 		//renderNorthFace(block, -0.5D, -0.5D, -0.5D, block.getBlockTextureFromSideAndMetadata(4, meta));
-		f5 = 1.0F;
-		if (f5 < f4) {
-			f5 = f4;
-		}
-		tessellator.setColorOpaque_F(f3 * f5, f3 * f5, f3 * f5);
+		tessellator.setColorOpaque_F(f3, f3, f3);
 		//renderSouthFace(block, -0.5D, -0.5D, -0.5D, block.getBlockTextureFromSideAndMetadata(5, meta));
 		tessellator.draw();
 	}
@@ -103,7 +78,6 @@ public class RenderCoreTC {
 	public static void renderTopFace(Block block, double d, double d1, double d2, int i) {
 		double blockMinX = block.getBlockBoundsMinX();
 		double blockMaxX = block.getBlockBoundsMaxX();
-		double blockMinY = block.getBlockBoundsMinY();
 		double blockMaxY = block.getBlockBoundsMaxY();
 		double blockMinZ = block.getBlockBoundsMinZ();
 		double blockMaxZ = block.getBlockBoundsMaxZ();
@@ -146,7 +120,6 @@ public class RenderCoreTC {
 		double blockMinY = block.getBlockBoundsMinY();
 		double blockMaxY = block.getBlockBoundsMaxY();
 		double blockMinZ = block.getBlockBoundsMinZ();
-		double blockMaxZ = block.getBlockBoundsMaxZ();
 		Tessellator tessellator = Tessellator.instance;
 
 		int j = (i & 0xf) << 4;
@@ -186,7 +159,6 @@ public class RenderCoreTC {
 		double blockMaxX = block.getBlockBoundsMaxX();
 		double blockMinY = block.getBlockBoundsMinY();
 		double blockMaxY = block.getBlockBoundsMaxY();
-		double blockMinZ = block.getBlockBoundsMinZ();
 		double blockMaxZ = block.getBlockBoundsMaxZ();
 		Tessellator tessellator = Tessellator.instance;
 
@@ -224,7 +196,6 @@ public class RenderCoreTC {
 
 	public static void renderNorthFace(Block block, double d, double d1, double d2, int i) {
 		double blockMinX = block.getBlockBoundsMinX();
-		double blockMaxX = block.getBlockBoundsMaxX();
 		double blockMinY = block.getBlockBoundsMinY();
 		double blockMaxY = block.getBlockBoundsMaxY();
 		double blockMinZ = block.getBlockBoundsMinZ();
@@ -264,7 +235,6 @@ public class RenderCoreTC {
 	}
 
 	public static void renderSouthFace(Block block, double d, double d1, double d2, int i) {
-		double blockMinX = block.getBlockBoundsMinX();
 		double blockMaxX = block.getBlockBoundsMaxX();
 		double blockMinY = block.getBlockBoundsMinY();
 		double blockMaxY = block.getBlockBoundsMaxY();

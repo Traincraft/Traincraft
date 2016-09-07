@@ -92,7 +92,7 @@ public class GuiLoco2 extends GuiContainer {
 			this.buttonList.add(this.buttonLock = new GuiButton(3, var1 + 108, var2 - 10, 67, 10, "Locked"));
 		}
 		if (!(loco instanceof SteamTrain)) {
-			if (loco.isLocoTurnedOn() == true) {
+			if (loco.isLocoTurnedOn()) {
 				this.buttonList.add(this.buttonLock = new GuiButton(4, var1 + 108, var2 - 22, 67, 12, "Stop Engine"));
 			}
 			else {
@@ -139,7 +139,7 @@ public class GuiLoco2 extends GuiContainer {
 			}
 		}
 		if (guibutton.id == 4) {
-			if (loco.isLocoTurnedOn() == true) {
+			if (loco.isLocoTurnedOn()) {
 				if(loco.getSpeed() <= 1){
 					Traincraft.ignitionChannel.sendToServer(new PacketSetLocoTurnedOn(false));
 					loco.isLocoTurnedOn = false;
@@ -157,7 +157,6 @@ public class GuiLoco2 extends GuiContainer {
 			}
 			else {
 				Traincraft.ignitionChannel.sendToServer(new PacketSetLocoTurnedOn(true));
-				;
 				loco.isLocoTurnedOn = true;
 				guibutton.displayString = "Stop Engine";
 			}
@@ -166,8 +165,6 @@ public class GuiLoco2 extends GuiContainer {
 
 	@Override
 	protected void drawCreativeTabHoveringText(String str, int t, int g) {
-		int j = (width - xSize) / 2;
-		int k = (height - ySize) / 2;
 
 		//int liqui = (dieselInventory.getLiquidAmount() * 50) / dieselInventory.getTankCapacity();
 		String state = "";
@@ -182,14 +179,12 @@ public class GuiLoco2 extends GuiContainer {
 		int startY = 5;
 
 		int i4 = 0xf0100010;
-		int h = 8;
-		int w = textWidth;
-		drawGradientRect(startX - 3, startY - 4, startX + textWidth + 3, startY + 8 + 4 + 40, i4, i4);
-		drawGradientRect(startX - 4, startY - 3, startX + textWidth + 4, startY + 8 + 3 + 40, i4, i4);
+		drawGradientRect(startX - 3, startY - 4, startX + textWidth + 3, startY + 52, i4, i4);
+		drawGradientRect(startX - 4, startY - 3, startX + textWidth + 4, startY + 51, i4, i4);
 		int colour1 = 0x505000ff;
 		int colour2 = (colour1 & 0xfefefe) >> 1 | colour1 & 0xff000000;
-		drawGradientRect(startX - 3, startY - 3, startX + textWidth + 3, startY + 8 + 3 + 40, colour1, colour2);
-		drawGradientRect(startX - 2, startY - 2, startX + textWidth + 2, startY + 8 + 2 + 40, i4, i4);
+		drawGradientRect(startX - 3, startY - 3, startX + textWidth + 3, startY + 51, colour1, colour2);
+		drawGradientRect(startX - 2, startY - 2, startX + textWidth + 2, startY + 50, i4, i4);
 		fontRendererObj.drawStringWithShadow(str, startX, startY, -1);
 		fontRendererObj.drawStringWithShadow("only its owner can open", startX, startY + 10, -1);
 		fontRendererObj.drawStringWithShadow("the GUI, change speed, destroy it.", startX, startY + 20, -1);
@@ -202,8 +197,7 @@ public class GuiLoco2 extends GuiContainer {
 		//System.out.println(mouseX+" "+mouseY);
 		int j = (width - xSize) / 2;
 		int k = (height - ySize) / 2;
-		if (mouseX >= j + 124 && mouseX <= j + 174 && mouseY >= k - 10 && mouseY <= k) { return true; }
-		return false;
+		return (mouseX >= j + 124 && mouseX <= j + 174 && mouseY >= k - 10 && mouseY <= k);
 	}
 
 	@Override

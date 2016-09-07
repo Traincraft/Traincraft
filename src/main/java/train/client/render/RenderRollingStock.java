@@ -278,7 +278,6 @@ public class RenderRollingStock extends Render {
 			}
 
 			float x;
-			float y;
 			float z;
 			double speed = 0;
 			if (cart instanceof Locomotive) speed = ((Locomotive) cart).getSpeed();
@@ -287,17 +286,12 @@ public class RenderRollingStock extends Render {
 					x = (float) cart.posX + random.nextFloat() * 0.2F;
 					z = (float) cart.posZ + random.nextFloat() * 0.2F;
 					double yCorrectDown = 0;
-					double xCorrect = 0;
-					double zCorrect = 0;
-					for (int i = 0; i < smokeFX.size(); i++) {
+					for (double[] smoke : smokeFX) {
 						
-						if (pitchRads > 0) yCorrectDown = -Math.tan(pitchRads);
-						if (smokeFX.get(i)[0] > 0) yCorrectDown = Math.tan(-pitchRads);
+						if (pitchRads > 0){ yCorrectDown = -Math.tan(pitchRads);}
+						if (smoke[0] > 0){ yCorrectDown = Math.tan(-pitchRads);}
 
-						xCorrect = Math.cos(rads) * (Math.tan(-pitchRads) * smokeFX.get(i)[1]);
-						zCorrect = Math.sin(rads) * (Math.tan(-pitchRads) * smokeFX.get(i)[1]);
-
-						cart.worldObj.spawnParticle(smokeType, x + Math.cos(rads) * smokeFX.get(i)[0] + xCorrect, cart.posY + smokeFX.get(i)[1] + ((Math.tan(pitchRads) * smokeFX.get(i)[1])) + yCorrectDown, z + Math.sin(rads) * smokeFX.get(i)[0] + zCorrect, spread, Math.abs(spread), spread);
+						cart.worldObj.spawnParticle(smokeType, x + Math.cos(rads) * smoke[0] + (Math.cos(rads) * (Math.tan(-pitchRads) * smoke[1])), cart.posY + smoke[1] + ((Math.tan(pitchRads) * smoke[1])) + yCorrectDown, z + Math.sin(rads) * smoke[0] + (Math.sin(rads) * (Math.tan(-pitchRads) * smoke[1])), spread, Math.abs(spread), spread);
 					}
 				}
 			}
@@ -307,7 +301,6 @@ public class RenderRollingStock extends Render {
 	private void renderExplosionFX(EntityRollingStock cart, float yaw, float pitch, String explosionType, ArrayList<double[]> explosionFX, int explosionFXIterations, boolean hasSmokeOnSlopes) {
 		if(cart instanceof Locomotive && !((Locomotive)cart).isLocoTurnedOn())return;
 		float yawMod = yaw % 360;
-		double rads = yaw * 3.141592653589793D / 180.0D;
 		double pitchRads = pitch * 3.141592653589793D / 180.0D;
 		//if (pitch != 0 && !hasSmokeOnSlopes) { return; }
 		if(Math.abs(pitch)>30)return;
@@ -316,27 +309,27 @@ public class RenderRollingStock extends Render {
 			if (r < (explosionFXIterations * 10)) {
 				for (int j = 0; j < explosionFXIterations; j++) {
 					if (yawMod == 180) {
-						for (int i = 0; i < explosionFX.size(); i++) {
-							cart.worldObj.spawnParticle(explosionType, cart.posX - explosionFX.get(i)[0], cart.posY + explosionFX.get(i)[1] + ((Math.tan(pitchRads)* 4  * -explosionFX.get(i)[1])), cart.posZ + explosionFX.get(i)[2], 0.0D, 0.0D, 0.0D);
-							cart.worldObj.spawnParticle(explosionType, cart.posX - explosionFX.get(i)[0], cart.posY + explosionFX.get(i)[1] + ((Math.tan(pitchRads)* 4  * -explosionFX.get(i)[1])), cart.posZ - explosionFX.get(i)[2], 0.0D, 0.0D, 0.0D);
+						for (double[] explosion : explosionFX) {
+							cart.worldObj.spawnParticle(explosionType, cart.posX - explosion[0], cart.posY + explosion[1] + ((Math.tan(pitchRads)* 4  * -explosion[1])), cart.posZ + explosion[2], 0.0D, 0.0D, 0.0D);
+							cart.worldObj.spawnParticle(explosionType, cart.posX - explosion[0], cart.posY + explosion[1] + ((Math.tan(pitchRads)* 4  * -explosion[1])), cart.posZ - explosion[2], 0.0D, 0.0D, 0.0D);
 						}
 					}
 					else if (yawMod == 90) {
-						for (int i = 0; i < explosionFX.size(); i++) {
-							cart.worldObj.spawnParticle(explosionType, cart.posX + explosionFX.get(i)[2], cart.posY + explosionFX.get(i)[1] + ((Math.tan(pitchRads)*4 * -explosionFX.get(i)[1])), cart.posZ + explosionFX.get(i)[0], 0.0D, 0.0D, 0.0D);
-							cart.worldObj.spawnParticle(explosionType, cart.posX - explosionFX.get(i)[2], cart.posY + explosionFX.get(i)[1] + ((Math.tan(pitchRads)*4 * -explosionFX.get(i)[1])), cart.posZ + explosionFX.get(i)[0], 0.0D, 0.0D, 0.0D);
+						for (double[] explosion : explosionFX) {
+							cart.worldObj.spawnParticle(explosionType, cart.posX + explosion[2], cart.posY + explosion[1] + ((Math.tan(pitchRads)*4 * -explosion[1])), cart.posZ + explosion[0], 0.0D, 0.0D, 0.0D);
+							cart.worldObj.spawnParticle(explosionType, cart.posX - explosion[2], cart.posY + explosion[1] + ((Math.tan(pitchRads)*4 * -explosion[1])), cart.posZ + explosion[0], 0.0D, 0.0D, 0.0D);
 						}
 					}
 					else if (yawMod == 0) {
-						for (int i = 0; i < explosionFX.size(); i++) {
-							cart.worldObj.spawnParticle(explosionType, cart.posX + explosionFX.get(i)[0], cart.posY + explosionFX.get(i)[1] + ((Math.tan(pitchRads)*4 * -explosionFX.get(i)[1])), cart.posZ + explosionFX.get(i)[2], 0.0D, 0.0D, 0.0D);
-							cart.worldObj.spawnParticle(explosionType, cart.posX + explosionFX.get(i)[0], cart.posY + explosionFX.get(i)[1] + ((Math.tan(pitchRads)*4 * -explosionFX.get(i)[1])), cart.posZ - explosionFX.get(i)[2], 0.0D, 0.0D, 0.0D);
+						for (double[] explosion : explosionFX) {
+							cart.worldObj.spawnParticle(explosionType, cart.posX + explosion[0], cart.posY + explosion[1] + ((Math.tan(pitchRads)*4 * -explosion[1])), cart.posZ + explosion[2], 0.0D, 0.0D, 0.0D);
+							cart.worldObj.spawnParticle(explosionType, cart.posX + explosion[0], cart.posY + explosion[1] + ((Math.tan(pitchRads)*4 * -explosion[1])), cart.posZ - explosion[2], 0.0D, 0.0D, 0.0D);
 						}
 					}
 					else if (yawMod == -90) {
-						for (int i = 0; i < explosionFX.size(); i++) {
-							cart.worldObj.spawnParticle(explosionType, cart.posX + explosionFX.get(i)[2], cart.posY + explosionFX.get(i)[1] + ((Math.tan(pitchRads)*4 * -explosionFX.get(i)[1])), cart.posZ - explosionFX.get(i)[0], 0.0D, 0.0D, 0.0D);
-							cart.worldObj.spawnParticle(explosionType, cart.posX - explosionFX.get(i)[2], cart.posY + explosionFX.get(i)[1] + ((Math.tan(pitchRads)*4 * -explosionFX.get(i)[1])), cart.posZ - explosionFX.get(i)[0], 0.0D, 0.0D, 0.0D);
+						for (double[] explosion : explosionFX) {
+							cart.worldObj.spawnParticle(explosionType, cart.posX + explosion[2], cart.posY + explosion[1] + ((Math.tan(pitchRads)*4 * -explosion[1])), cart.posZ - explosion[0], 0.0D, 0.0D, 0.0D);
+							cart.worldObj.spawnParticle(explosionType, cart.posX - explosion[2], cart.posY + explosion[1] + ((Math.tan(pitchRads)*4 * -explosion[1])), cart.posZ - explosion[0], 0.0D, 0.0D, 0.0D);
 						}
 					}
 				}

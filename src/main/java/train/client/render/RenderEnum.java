@@ -265,8 +265,7 @@ public enum RenderEnum {
 
 	/**
 	 * Defines the render @param for a RollingStock
-	 * 
-	 * @param entityClass
+	 *
 	 * @param model ModelBase
 	 * @param texture String
 	 * @param multiTexture boolean
@@ -277,11 +276,9 @@ public enum RenderEnum {
 	 * @param smokeFX ArrayList
 	 * @param explosionType String
 	 * @param explosionFX ArrayList
-	 * @param smokeIterations
-	 * @param explosionFXIterations
 	 * @see RenderRollingStock
 	 */
-	private RenderEnum(Class<? extends EntityRollingStock> entityClass, ModelBase model, String texture, boolean multiTexture, float[] trans, float[] rotate, float[] scale, String smokeType, int smokeIterations, ArrayList<double[]> smokeFX, String explosionType, ArrayList<double[]> explosionFX, int explosionFXIterations, boolean hasSmokeOnSlopes) {
+	RenderEnum(Class<? extends EntityRollingStock> entityClass, ModelBase model, String texture, boolean multiTexture, float[] trans, float[] rotate, float[] scale, String smokeType, int smokeIterations, ArrayList<double[]> smokeFX, String explosionType, ArrayList<double[]> explosionFX, int explosionFXIterations, boolean hasSmokeOnSlopes) {
 		this.entityClass = entityClass;
 		this.model = model;
 		this.texture = texture;

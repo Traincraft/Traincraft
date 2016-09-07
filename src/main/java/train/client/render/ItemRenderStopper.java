@@ -59,7 +59,6 @@ public class ItemRenderStopper implements IItemRenderer {
 	}
 
 	private void renderStopper(float f, float g, float h, float rotation) {
-		Tessellator tesselator = Tessellator.instance;
 		FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation,Info.modelTexPrefix + "buffer.png"));
 		GL11.glPushMatrix(); //start
 		GL11.glTranslatef(f, g, h); //size

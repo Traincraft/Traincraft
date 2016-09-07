@@ -40,9 +40,6 @@ public class GuiRotativeDigger extends GuiContainer {
 			int l = digger.c(12);
 			drawTexturedModalRect(j + 8, (k + 36 + 12) - l, 176, 12 - l, 14, l + 2);
 		}
-		else {
-			//System.out.println("Not fueled.");
-		}
 		for (int i1 = digger.numCargoSlots; i1 < 5; i1++) {
 			drawTexturedModalRect(j + 79 + 18 * i1, k + 17, 190, 0, 18, 18);
 		}

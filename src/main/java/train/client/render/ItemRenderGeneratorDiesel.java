@@ -59,7 +59,6 @@ public class ItemRenderGeneratorDiesel implements IItemRenderer {
 	}
 
 	private void renderGenerator(float f, float g, float h, float rotation) {
-		Tessellator tesselator = Tessellator.instance;
 		FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation,Info.modelTexPrefix + "generator_diesel.png"));
 		GL11.glPushMatrix();
 		GL11.glTranslatef(f, g, h);

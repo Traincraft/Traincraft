@@ -24,12 +24,6 @@ public class ItemRenderBook implements IItemRenderer {
 	
 	public static boolean open = false;
 	
-	int pages = 2000;
-	int w = 0;
-	
-	boolean upp = true;
-	boolean down;
-	
 	public ItemRenderBook() {
 		book1 = new ModelTCBook();
 		book2 = new ModelTCBook();
@@ -101,7 +95,6 @@ public class ItemRenderBook implements IItemRenderer {
 //			down = false;
 //		}
 		//System.out.println(w/10);
-		Tessellator tesselator = Tessellator.instance;
 		FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation,Info.modelTexPrefix + "book2.png"));
 		GL11.glPushMatrix();
 		GL11.glTranslatef(left, up, right);

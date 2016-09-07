@@ -20,18 +20,11 @@ import train.common.api.AbstractTrains;
 import train.common.api.LiquidTank;
 import train.common.core.network.PacketSetTrainLockedToClient;
 import train.common.inventory.InventoryLiquid;
-import train.common.inventory.InventoryLoco;
 import train.common.library.Info;
 
 public class GuiLiquid extends GuiContainer {
 
 	private LiquidTank liquid;
-	private InventoryLoco invLoco;
-
-	private float yaw;
-	private float roll;
-	private boolean rollDown;
-	private GuiButton buttonLock;
 	private EntityPlayer player;
 	
 	public GuiLiquid(EntityPlayer player, InventoryPlayer inventoryplayer, Entity entityminecart) {
@@ -58,9 +51,9 @@ public class GuiLiquid extends GuiContainer {
 		int var1 = (this.width-xSize) / 2;
 		int var2 = (this.height-ySize) / 2;
 		if (!liquid.getTrainLockedFromPacket()) {
-			this.buttonList.add(this.buttonLock = new GuiButton(3, var1 + 124, var2 - 10, 51, 10, "Unlocked"));
+			this.buttonList.add(new GuiButton(3, var1 + 124, var2 - 10, 51, 10, "Unlocked"));
 		}else{
-			this.buttonList.add(this.buttonLock = new GuiButton(3, var1 + 130, var2 - 10, 43, 10, "Locked"));
+			this.buttonList.add(new GuiButton(3, var1 + 130, var2 - 10, 43, 10, "Locked"));
 		}
 	}
 	@Override
@@ -113,12 +106,12 @@ public class GuiLiquid extends GuiContainer {
 		int startY = g - 12;
 
 		int i4 = 0xf0100010;
-		drawGradientRect(startX - 3, startY - 4, startX + textWidth + 3, startY + 8 + 4 + 10, i4, i4);
-		drawGradientRect(startX - 4, startY - 3, startX + textWidth + 4, startY + 8 + 3 + 10, i4, i4);
+		drawGradientRect(startX - 3, startY - 4, startX + textWidth + 3, startY + 22, i4, i4);
+		drawGradientRect(startX - 4, startY - 3, startX + textWidth + 4, startY + 21, i4, i4);
 		int colour1 = 0x505000ff;
 		int colour2 = (colour1 & 0xfefefe) >> 1 | colour1 & 0xff000000;
-		drawGradientRect(startX - 3, startY - 3, startX + textWidth + 3, startY + 8 + 3 + 10, colour1, colour2);
-		drawGradientRect(startX - 2, startY - 2, startX + textWidth + 2, startY + 8 + 2 + 10, i4, i4);
+		drawGradientRect(startX - 3, startY - 3, startX + textWidth + 3, startY + 21, colour1, colour2);
+		drawGradientRect(startX - 2, startY - 2, startX + textWidth + 2, startY + 20, i4, i4);
 		if (str != null && str.length() > 0)
 			fontRendererObj.drawStringWithShadow(str, startX, startY, -1);
 		else
@@ -164,12 +157,12 @@ public class GuiLiquid extends GuiContainer {
 		int startY = 5;
 
 		int i4 = 0xf0100010;
-		drawGradientRect(startX - 3, startY - 4, startX + textWidth + 3, startY + 8 + 4 + 40, i4, i4);
-		drawGradientRect(startX - 4, startY - 3, startX + textWidth + 4, startY + 8 + 3 + 40, i4, i4);
+		drawGradientRect(startX - 3, startY - 4, startX + textWidth + 3, startY + 52, i4, i4);
+		drawGradientRect(startX - 4, startY - 3, startX + textWidth + 4, startY + 51, i4, i4);
 		int colour1 = 0x505000ff;
 		int colour2 = (colour1 & 0xfefefe) >> 1 | colour1 & 0xff000000;
-		drawGradientRect(startX - 3, startY - 3, startX + textWidth + 3, startY + 8 + 3 + 40, colour1, colour2);
-		drawGradientRect(startX - 2, startY - 2, startX + textWidth + 2, startY + 8 + 2 + 40, i4, i4);
+		drawGradientRect(startX - 3, startY - 3, startX + textWidth + 3, startY + 51, colour1, colour2);
+		drawGradientRect(startX - 2, startY - 2, startX + textWidth + 2, startY + 50, i4, i4);
 		fontRendererObj.drawStringWithShadow(str, startX, startY, -1);
 		fontRendererObj.drawStringWithShadow("only its owner can open", startX, startY + 10, -1);
 		fontRendererObj.drawStringWithShadow("the GUI and destroy it.", startX, startY + 20, -1);

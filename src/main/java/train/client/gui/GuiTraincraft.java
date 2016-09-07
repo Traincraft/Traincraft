@@ -112,15 +112,14 @@ public abstract class GuiTraincraft extends GuiContainer {
 
 	protected void borderSlots(List<TierRecipe> recipeList, int[] states) {
 		List cs = inventorySlots.inventorySlots;
-		int state = 0;
 		for (int l = 0; l < cs.size(); l++) {
 			Slot slot = (Slot) cs.get(l);
 			if (slot.slotNumber < 10) {
 				if (slot.getHasStack()) {
 					ItemStack stack = slot.getStack();
-					for (int i = 0; i < recipeList.size(); i++) {
-						if (recipeList.get(i) != null) {
-							List<ItemStack> items = recipeList.get(i).getInput();
+					for (TierRecipe recipe : recipeList) {
+						if (recipe!= null) {
+							List<ItemStack> items = recipe.getInput();
 							ItemStack stack2 = items.get(l);
 							if (stack2 != null) {
 								if (TierRecipe.areItemsIdentical(stack, stack2)) {
@@ -195,8 +194,6 @@ public abstract class GuiTraincraft extends GuiContainer {
 
 	public void drawOverlays(int recipeSize, List<ItemStack> recipes) {
 
-		int j = (width - xSize) / 2;
-		int k = (height - ySize) / 2;
 
 		List<ItemStack> itemStacks = null;
 		if (recipeSize == -1) {

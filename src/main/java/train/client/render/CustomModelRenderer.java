@@ -78,14 +78,14 @@ public class CustomModelRenderer {
 		corners[6] = positiontexturevertex6;
 		corners[7] = positiontexturevertex7;
 		faces[0] = new CustomTexturedQuad(new PositionTextureVertex[] { positiontexturevertex5, positiontexturevertex1, positiontexturevertex2, positiontexturevertex6 }, textureOffsetX + k + i, textureOffsetY + k, textureOffsetX + k + i + k, textureOffsetY + k + j, texWidth, texHeight);
-		faces[1] = new CustomTexturedQuad(new PositionTextureVertex[] { positiontexturevertex, positiontexturevertex4, positiontexturevertex7, positiontexturevertex3 }, textureOffsetX + 0, textureOffsetY + k, textureOffsetX + k, textureOffsetY + k + j, texWidth, texHeight);
-		faces[2] = new CustomTexturedQuad(new PositionTextureVertex[] { positiontexturevertex5, positiontexturevertex4, positiontexturevertex, positiontexturevertex1 }, textureOffsetX + k, textureOffsetY + 0, textureOffsetX + k + i, textureOffsetY + k, texWidth, texHeight);
-		faces[3] = new CustomTexturedQuad(new PositionTextureVertex[] { positiontexturevertex2, positiontexturevertex3, positiontexturevertex7, positiontexturevertex6 }, textureOffsetX + k + i, textureOffsetY + 0, textureOffsetX + k + i + i, textureOffsetY + k, texWidth, texHeight);
+		faces[1] = new CustomTexturedQuad(new PositionTextureVertex[] { positiontexturevertex, positiontexturevertex4, positiontexturevertex7, positiontexturevertex3 }, textureOffsetX, textureOffsetY + k, textureOffsetX + k, textureOffsetY + k + j, texWidth, texHeight);
+		faces[2] = new CustomTexturedQuad(new PositionTextureVertex[] { positiontexturevertex5, positiontexturevertex4, positiontexturevertex, positiontexturevertex1 }, textureOffsetX + k, textureOffsetY, textureOffsetX + k + i, textureOffsetY + k, texWidth, texHeight);
+		faces[3] = new CustomTexturedQuad(new PositionTextureVertex[] { positiontexturevertex2, positiontexturevertex3, positiontexturevertex7, positiontexturevertex6 }, textureOffsetX + k + i, textureOffsetY, textureOffsetX + k + i + i, textureOffsetY + k, texWidth, texHeight);
 		faces[4] = new CustomTexturedQuad(new PositionTextureVertex[] { positiontexturevertex1, positiontexturevertex, positiontexturevertex3, positiontexturevertex2 }, textureOffsetX + k, textureOffsetY + k, textureOffsetX + k + i, textureOffsetY + k + j, texWidth, texHeight);
 		faces[5] = new CustomTexturedQuad(new PositionTextureVertex[] { positiontexturevertex4, positiontexturevertex5, positiontexturevertex6, positiontexturevertex7 }, textureOffsetX + k + i + k, textureOffsetY + k, textureOffsetX + k + i + k + i, textureOffsetY + k + j, texWidth, texHeight);
 		if (mirror) {
-			for (int l = 0; l < faces.length; l++) {
-				faces[l].flipFace();
+			for (CustomTexturedQuad quad : faces) {
+				quad.flipFace();
 			}
 
 		}
@@ -163,8 +163,8 @@ public class CustomModelRenderer {
 		displayList = GLAllocation.generateDisplayLists(1);
 		GL11.glNewList(displayList, 4864 /* GL_COMPILE */);
 		Tessellator tessellator = Tessellator.instance;
-		for (int i = 0; i < faces.length; i++) {
-			faces[i].draw(tessellator, f);
+		for (CustomTexturedQuad quad : faces) {
+			quad.draw(tessellator, f);
 		}
 
 		GL11.glEndList();

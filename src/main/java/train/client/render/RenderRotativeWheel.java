@@ -24,8 +24,6 @@ public class RenderRotativeWheel extends Render {
 
 	}
 
-	private float pitch = 0;
-
 	public void func_157_a(EntityRotativeWheel wheel, double d, double d1, double d2, float f, float f1) {
 		GL11.glPushMatrix();
 		GL11.glTranslatef((float) d, (float) d1, (float) d2);

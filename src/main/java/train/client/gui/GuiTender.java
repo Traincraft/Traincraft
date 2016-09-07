@@ -24,9 +24,6 @@ import train.common.library.Info;
 public class GuiTender extends GuiContainer {
 
 	private Tender tender;
-	private float yaw;
-	private float roll;
-	private boolean rollDown;
 	private EntityPlayer player;
 	private GuiButton buttonLock;
 
@@ -42,7 +39,7 @@ public class GuiTender extends GuiContainer {
 		buttonList.clear();
 		int var1 = (this.width-xSize) / 2;
 		int var2 = (this.height-ySize) / 2;
-		if (!((AbstractTrains) tender).getTrainLockedFromPacket()) {
+		if (!tender.getTrainLockedFromPacket()) {
 			this.buttonList.add(this.buttonLock = new GuiButton(3, var1 + 124, var2 - 10, 51, 10, "Unlocked"));
 		}else{
 			this.buttonList.add(this.buttonLock = new GuiButton(3, var1 + 130, var2 - 10, 43, 10, "Locked"));
@@ -51,35 +48,33 @@ public class GuiTender extends GuiContainer {
 	@Override
 	protected void actionPerformed(GuiButton guibutton) {
 		if (guibutton.id == 3) {
-			if(player!=null && player instanceof EntityPlayer && player.getCommandSenderName().toLowerCase().equals(((AbstractTrains) tender).getTrainOwner().toLowerCase())){
-				if ((!((AbstractTrains) tender).getTrainLockedFromPacket())) {
+			if(player!=null && player.getCommandSenderName().toLowerCase().equals(tender.getTrainOwner().toLowerCase())){
+				if ((!tender.getTrainLockedFromPacket())) {
 					AxisAlignedBB box = tender.boundingBox.expand(5, 5, 5);
 					List lis3 = tender.worldObj.getEntitiesWithinAABBExcludingEntity(tender, box);
 					if (lis3 != null && lis3.size() > 0) {
-						for (int j1 = 0; j1 < lis3.size(); j1++) {
-							Entity entity = (Entity) lis3.get(j1);
+						for (Object entity : lis3) {
 							if (entity instanceof EntityPlayer) {
 								Traincraft.lockChannel
 										.sendToServer(new PacketSetTrainLockedToClient(true, tender.getEntityId()));
 							}
 						}
 					}
-					((AbstractTrains) tender).setTrainLockedFromPacket(true);
+					tender.setTrainLockedFromPacket(true);
 					guibutton.displayString = "Locked";
 					this.initGui();
 				}else{
 					AxisAlignedBB box = tender.boundingBox.expand(5, 5, 5);
 					List lis3 = tender.worldObj.getEntitiesWithinAABBExcludingEntity(tender, box);
 					if (lis3 != null && lis3.size() > 0) {
-						for (int j1 = 0; j1 < lis3.size(); j1++) {
-							Entity entity = (Entity) lis3.get(j1);
+						for (Object entity : lis3) {
 							if (entity instanceof EntityPlayer) {
 								Traincraft.lockChannel
 										.sendToServer(new PacketSetTrainLockedToClient(false, tender.getEntityId()));
 							}
 						}
 					}
-					((AbstractTrains) tender).setTrainLockedFromPacket(false);
+					tender.setTrainLockedFromPacket(false);
 					guibutton.displayString = "UnLocked";
 					this.initGui();
 				}
@@ -94,16 +89,16 @@ public class GuiTender extends GuiContainer {
 		GL11.glDisable(GL11.GL_LIGHTING);
 		GL11.glDisable(GL11.GL_DEPTH_TEST);
 
-		fontRendererObj.drawString(((IInventory) tender).getInventoryName(), 34, 1, 0x000000);
-		fontRendererObj.drawString(((IInventory) tender).getInventoryName(), 36, 3, 0x000000);
-		fontRendererObj.drawString(((IInventory) tender).getInventoryName(), 34, 3, 0x000000);
-		fontRendererObj.drawString(((IInventory) tender).getInventoryName(), 36, 1, 0x000000);
+		fontRendererObj.drawString(tender.getInventoryName(), 34, 1, 0x000000);
+		fontRendererObj.drawString(tender.getInventoryName(), 36, 3, 0x000000);
+		fontRendererObj.drawString(tender.getInventoryName(), 34, 3, 0x000000);
+		fontRendererObj.drawString(tender.getInventoryName(), 36, 1, 0x000000);
 
-		fontRendererObj.drawString(((IInventory) tender).getInventoryName(), 34, 2, 0x000000);
-		fontRendererObj.drawString(((IInventory) tender).getInventoryName(), 36, 2, 0x000000);
-		fontRendererObj.drawString(((IInventory) tender).getInventoryName(), 35, 3, 0x000000);
-		fontRendererObj.drawString(((IInventory) tender).getInventoryName(), 35, 1, 0x000000);
-		fontRendererObj.drawString(((IInventory) tender).getInventoryName(), 35, 2, 0xd3a900);
+		fontRendererObj.drawString(tender.getInventoryName(), 34, 2, 0x000000);
+		fontRendererObj.drawString(tender.getInventoryName(), 36, 2, 0x000000);
+		fontRendererObj.drawString(tender.getInventoryName(), 35, 3, 0x000000);
+		fontRendererObj.drawString(tender.getInventoryName(), 35, 1, 0x000000);
+		fontRendererObj.drawString(tender.getInventoryName(), 35, 2, 0xd3a900);
 
 		GL11.glEnable(GL11.GL_LIGHTING);
 		GL11.glEnable(GL11.GL_DEPTH_TEST);
@@ -115,21 +110,17 @@ public class GuiTender extends GuiContainer {
 	
 	@Override
 	protected void drawCreativeTabHoveringText(String str, int t, int g) {
-		int j = (width - xSize) / 2;
-		int k = (height - ySize) / 2;
 
 		//int liqui = (dieselInventory.getLiquidAmount() * 50) / dieselInventory.getTankCapacity();
 		String state = "";
-		if (((AbstractTrains) tender).getTrainLockedFromPacket()) state = "Locked";
-		if (!((AbstractTrains) tender).getTrainLockedFromPacket()) state = "Unlocked";
+		if (tender.getTrainLockedFromPacket()) state = "Locked";
+		if (!tender.getTrainLockedFromPacket()) state = "Unlocked";
 		
 		int textWidth = fontRendererObj.getStringWidth("the GUI, change speed, destroy it.");
 		int startX = 90;
 		int startY = 5;
 
 		int i4 = 0xf0100010;
-		int h = 8;
-		int w = textWidth;
 		drawGradientRect(startX - 3, startY - 4, startX + textWidth + 3, startY + 8 + 4 + 40, i4, i4);
 		drawGradientRect(startX - 4, startY - 3, startX + textWidth + 4, startY + 8 + 3 + 40, i4, i4);
 		int colour1 = 0x505000ff;
@@ -140,16 +131,13 @@ public class GuiTender extends GuiContainer {
 		fontRendererObj.drawStringWithShadow("only its owner can open", startX, startY + 10, -1);
 		fontRendererObj.drawStringWithShadow("the GUI and destroy it.", startX, startY + 20, -1);
 		fontRendererObj.drawStringWithShadow("Current state: "+state, startX, startY+30, -1);
-		fontRendererObj.drawStringWithShadow("Owner: "+((AbstractTrains) tender).getTrainOwner().trim(), startX, startY+40, -1);
+		fontRendererObj.drawStringWithShadow("Owner: "+tender.getTrainOwner().trim(), startX, startY+40, -1);
 	}
 	public boolean intersectsWith(int mouseX, int mouseY) {
 		//System.out.println(mouseX+" "+mouseY);
 		int j = (width - xSize) / 2;
 		int k = (height - ySize) / 2;
-		if (mouseX >= j + 124 && mouseX <= j + 174 && mouseY >= k-10 && mouseY <= k) {
-			return true;
-		}
-		return false;
+		return  (mouseX >= j + 124 && mouseX <= j + 174 && mouseY >= k-10 && mouseY <= k);
 	}
 
 	@Override
@@ -161,7 +149,7 @@ public class GuiTender extends GuiContainer {
 		int k = (height - ySize) / 2;
 		drawTexturedModalRect(j, k, 0, 0, xSize, ySize);
 
-		if (tender instanceof Tender) {
+		if (tender != null) {
 			int load = (tender.getWater());
 			int lo = Math.abs(((load * 50) / (tender.getCartTankCapacity())));
 

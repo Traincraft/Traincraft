@@ -45,7 +45,7 @@ public class ItemRenderBridgePillar implements IItemRenderer {
 			return;
 		}
 		default:
-			return;
+			break;
 		}
 	}
 

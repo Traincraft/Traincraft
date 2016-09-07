@@ -25,7 +25,7 @@ public class RenderSignal extends TileEntitySpecialRenderer {
 		else {
 			bindTextureByName(Info.trainsPrefix + "signal_suisse_red.png");
 		}*/
-		modelSignal.render(0.0625F, ((TileSignal) var1).getFacing());
+		modelSignal.render(0.0625F, var1.getFacing());
 		GL11.glEnable(GL11.GL_LIGHTING);
 		GL11.glPopMatrix();
 	}
