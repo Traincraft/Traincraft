@@ -66,6 +66,4 @@ public class CustomTexturedQuad {
 	public PositionTextureVertex vertexPositions[];
 	public int nVertices;
 	private boolean invertNormal;
-	private int texWidth;
-	private int texHeight;
 }

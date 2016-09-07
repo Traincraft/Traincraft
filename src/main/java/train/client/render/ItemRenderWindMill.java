@@ -48,7 +48,7 @@ public class ItemRenderWindMill implements IItemRenderer {
 			return;
 		}
 		default:
-			return;
+			break;
 		}
 	}
 

@@ -45,7 +45,7 @@ public class ItemRenderLantern implements IItemRenderer {
 			return;
 		}
 		default:
-			return;
+			break;
 		}
 	}
 

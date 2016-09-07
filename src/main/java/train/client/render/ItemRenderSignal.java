@@ -59,7 +59,6 @@ public class ItemRenderSignal implements IItemRenderer {
 	}
 
 	private void renderSignal(float f, float g, float h, float rotation, float scale) {
-		Tessellator tesselator = Tessellator.instance;
 		FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation,Info.trainsPrefix + "signal_suisse_green.png"));
 		GL11.glPushMatrix(); //start
 		GL11.glTranslatef(f, g, h); //size
