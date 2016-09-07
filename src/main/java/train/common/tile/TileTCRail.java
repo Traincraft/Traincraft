@@ -205,9 +205,10 @@ public class TileTCRail extends TileEntity {
 		if (manualOverride) {
 
 			updateTicks++;
-			List list = worldObj.getEntitiesWithinAABB(EntityMinecart.class, AxisAlignedBB.getBoundingBox(xCoord + f, yCoord, zCoord + f, xCoord + 1 - f, yCoord + 1 - f, zCoord + 1 - f));
-
-			if (updateTicks > 20 && list.isEmpty()) {
+			List list = worldObj.getEntitiesWithinAABB(EntityMinecart.class, AxisAlignedBB.getBoundingBox(xCoord + f,
+					yCoord, zCoord + f, xCoord + 1 - f, yCoord + 1 - f, zCoord + 1 - f));
+			
+			if (updateTicks > 60 && list.isEmpty()) {
 
 				manualOverride = false;
 				//setSwitchState(false,false);
