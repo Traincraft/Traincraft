@@ -710,7 +710,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 
 		isBraking = false;
 
-		if (Traincraft.proxy.getCurrentScreen() == null && riddenByEntity instanceof EntityLivingBase) {
+		if (worldObj.isRemote && Traincraft.proxy.getCurrentScreen() == null && riddenByEntity instanceof EntityLivingBase) {
 			EntityLivingBase entity = (EntityLivingBase) riddenByEntity;
 			if (TraincraftEntityHelper.getIsJumping(entity)) isBraking = true;
 		}
