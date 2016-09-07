@@ -66,14 +66,16 @@ public class LiquidManager {
 		dieselFilter();
 		FuelManager.addBoilerFuel(DIESEL, 60000);
 		FuelManager.addBoilerFuel(REFINED_FUEL, 96000);
-		if(Loader.isModLoaded("BuildCraft|Core")) {addBCFluids();}
+		if (Loader.isModLoaded("BuildCraft|Energy")) {
+			addBCFluids();
+		}
 		MinecraftForge.EVENT_BUS.register(this);
 
 		registerFluidBlock((BlockTraincraftFluid) BlockIDs.diesel.block);
 		registerFluidBlock((BlockTraincraftFluid) BlockIDs.refinedFuel.block);
 	}
 
-	@Optional.Method(modid = "BuildCraft|Core")
+	@Optional.Method(modid = "BuildCraft|Energy")
 	private void addBCFluids(){
 		BuildcraftFuelRegistry.fuel.addFuel(DIESEL, 3, 200000);
 		BuildcraftFuelRegistry.fuel.addFuel(REFINED_FUEL, 6, 100000);
