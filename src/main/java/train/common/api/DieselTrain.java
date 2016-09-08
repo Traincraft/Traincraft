@@ -130,7 +130,6 @@ public abstract class DieselTrain extends Locomotive implements IFluidHandler {
 			ItemStack result = LiquidManager.getInstance().processContainer(this, 0, theTank, itemstack);
 			if (result != null) {
 				placeInInvent(result);
-				decrStackSize(0, 1);
 			}
 		}
 	}
