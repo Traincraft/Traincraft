@@ -6,6 +6,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
+import net.minecraft.block.BlockMushroom;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -128,7 +129,8 @@ public class ItemTCRail extends ItemPart {
 	
 	private boolean canBeReplaced(World world, int x, int y, int z){
 		Block block = world.getBlock(x, y, z);
-		return block == null || block.isReplaceable(world, x, y, z) || block instanceof BlockFlower || block == Blocks.double_plant;
+		return block == null || block.isReplaceable(world, x, y, z) || block instanceof BlockFlower
+				|| block == Blocks.double_plant || block instanceof BlockMushroom;
 	}
 
 	/**
