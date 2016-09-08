@@ -1,7 +1,9 @@
 package train.common.core.util;
 
+import net.minecraft.block.BlockRailBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
 
 
@@ -28,6 +30,10 @@ public class TraincraftUtil{
     			(item1.getItemDamage() == item2.getItemDamage() 
     				|| item1.getItemDamage() == OreDictionary.WILDCARD_VALUE
     				|| item2.getItemDamage() == OreDictionary.WILDCARD_VALUE);
+    }
+
+    public static boolean isRailBlockAt(World world, int x, int y, int z){
+        return world.getBlock(x,y,z) instanceof BlockRailBase; //TODO ZnD Rail Support
     }
 
 }

@@ -32,6 +32,7 @@ import train.common.api.SteamTrain;
 import train.common.api.Tender;
 import train.common.core.handlers.ConfigHandler;
 import train.common.core.handlers.RollingStockStatsEventHandler;
+import train.common.core.util.TraincraftUtil;
 import train.common.entity.rollingStock.EntityTracksBuilder;
 import train.common.items.ItemTCRail.TrackTypes;
 import train.common.library.BlockIDs;
@@ -180,7 +181,7 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 		}
 		if(tileentity!=null && tileentity instanceof TileTCRail){
 			TileTCRail tile = (TileTCRail) tileentity;
-			if(tile!=null && tile.getType().equals(TrackTypes.MEDIUM_STRAIGHT.getLabel())||tile.getType().equals(TrackTypes.SMALL_STRAIGHT.getLabel())){
+			if(tile.getType().equals(TrackTypes.MEDIUM_STRAIGHT.getLabel())||tile.getType().equals(TrackTypes.SMALL_STRAIGHT.getLabel())){
 				this.placeCart(par2EntityPlayer, par1ItemStack, par3World, par4, par5, par6);
 				return true;
 			}
@@ -189,17 +190,15 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 		}else
 		if(tileentity!=null && tileentity instanceof TileTCRailGag){
 			TileTCRailGag tileGag = (TileTCRailGag) tileentity;
-			if(tileGag!=null){
-				TileTCRail tile = (TileTCRail) par3World.getTileEntity(tileGag.originX, tileGag.originY, tileGag.originZ);
-				if(tile!=null && tile.getType().equals(TrackTypes.MEDIUM_STRAIGHT.getLabel())){
-					this.placeCart(par2EntityPlayer, par1ItemStack, par3World, par4, par5, par6);
-					return true;
-				}
-				par2EntityPlayer.addChatMessage(new ChatComponentText("Place me on a straight piece of track !"));
+			TileTCRail tile = (TileTCRail) par3World.getTileEntity(tileGag.originX, tileGag.originY, tileGag.originZ);
+			if(tile!=null && tile.getType().equals(TrackTypes.MEDIUM_STRAIGHT.getLabel())){
+				this.placeCart(par2EntityPlayer, par1ItemStack, par3World, par4, par5, par6);
+				return true;
 			}
+			par2EntityPlayer.addChatMessage(new ChatComponentText("Place me on a straight piece of track !"));
 			return false;
 		}else
-		if (BlockRailBase.func_150051_a(var11) && (meta < 2 || meta > 5)) {
+		if (TraincraftUtil.isRailBlockAt(par3World, par4, par5, par6) && (meta < 2 || meta > 5)) {
 			this.placeCart(par2EntityPlayer, par1ItemStack, par3World, par4, par5, par6);
 			return true;
 		}

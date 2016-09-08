@@ -1,7 +1,5 @@
 package train.common.api;
 
-import static mods.railcraft.api.tracks.RailTools.isRailBlockAt;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -80,6 +78,8 @@ import train.common.library.BlockIDs;
 import train.common.library.EnumTrains;
 import train.common.tile.TileTCRail;
 import train.common.tile.TileTCRailGag;
+
+import static train.common.core.util.TraincraftUtil.isRailBlockAt;
 
 public class EntityRollingStock extends AbstractTrains implements ILinkableCart {
 	public int fuelTrain;
