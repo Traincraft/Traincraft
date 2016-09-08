@@ -24,7 +24,7 @@ public class ItemTCRail extends ItemPart {
 
 	public enum TrackTypes {
 
-		MEDIUM_TURN("MEDIUM_TURN", "TURN", ItemIDs.tcRailMediumTurn, "4x4"),
+		MEDIUM_TURN("MEDIUM_TURN", "TURN", ItemIDs.tcRailMediumTurn, "3x3"),
 		MEDIUM_RIGHT_TURN("MEDIUM_RIGHT_TURN", "TURN", ItemIDs.tcRailMediumTurn, ""),
 		MEDIUM_LEFT_TURN("MEDIUM_LEFT_TURN", "TURN", ItemIDs.tcRailMediumTurn, ""),
 		MEDIUM_SWITCH("MEDIUM_RIGHT_SWITCH", "SWITCH", ItemIDs.tcRailMediumSwitch, "4x4"),
@@ -36,10 +36,10 @@ public class ItemTCRail extends ItemPart {
 		MEDIUM_PARALLEL_SWITCH("MEDIUM_PARALLEL_SWITCH", "SWITCH", ItemIDs.tcRailMediumParallelSwitch, "4x11"),
 		MEDIUM_RIGHT_PARALLEL_SWITCH("MEDIUM_RIGHT_PARALLEL_SWITCH", "SWITCH", ItemIDs.tcRailMediumParallelSwitch, ""),
 		MEDIUM_LEFT_PARALLEL_SWITCH("MEDIUM_LEFT_PARALLEL_SWITCH", "SWITCH", ItemIDs.tcRailMediumParallelSwitch, ""),
-		LARGE_TURN("LARGE_TURN", "TURN", ItemIDs.tcRailLargeTurn, "6x6"),
+		LARGE_TURN("LARGE_TURN", "TURN", ItemIDs.tcRailLargeTurn, "5x5"),
 		LARGE_RIGHT_TURN("LARGE_RIGHT_TURN", "TURN", ItemIDs.tcRailLargeTurn, ""),
 		LARGE_LEFT_TURN("LARGE_LEFT_TURN", "TURN", ItemIDs.tcRailLargeTurn, ""),
-		VERY_LARGE_TURN("VERY_LARGE_TURN", "TURN", ItemIDs.tcRailVeryLargeTurn, "10x10"),
+		VERY_LARGE_TURN("VERY_LARGE_TURN", "TURN", ItemIDs.tcRailVeryLargeTurn, "9x9"),
 		VERY_LARGE_RIGHT_TURN("VERY_LARGE_RIGHT_TURN", "TURN", ItemIDs.tcRailVeryLargeTurn, ""),
 		VERY_LARGE_LEFT_TURN("VERY_LARGE_LEFT_TURN", "TURN", ItemIDs.tcRailVeryLargeTurn, ""),
 		LONG_STRAIGHT("LONG_STRAIGHT", "STRAIGHT", ItemIDs.tcRailLongStraight, "1x6"),
