@@ -21,7 +21,6 @@ public class EntityJukeBoxCart extends EntityRollingStock {
 	public boolean isPlaying = false;
 	public boolean isInvalid = false;
 	public String streamURL = "";
-	private boolean streamWasStopped = false;
 	Side side;
 	public float volume = 1.0f;
 	public MP3Player player;
@@ -73,9 +72,6 @@ public class EntityJukeBoxCart extends EntityRollingStock {
 		this.stopStream();
 		super.setDead();
 		isDead = true;
-		if (side == Side.CLIENT) {
-			String s1 = "entity_" + this.getEntityId();
-		}
 	}
 
 	@Override
@@ -97,21 +93,19 @@ public class EntityJukeBoxCart extends EntityRollingStock {
 				this.startStream();
 			}
 			if ((Minecraft.getMinecraft().thePlayer != null) && (this.player != null) && (!isInvalid)) {
-				float vol = (float) getDistanceSq(Minecraft.getMinecraft().thePlayer.posX, Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ);
+				float vol = (float) getDistanceSq(Minecraft.getMinecraft().thePlayer.posX,
+						Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ);
 				if (vol > 1000.0F) {
 					this.player.setVolume(0.0F);
-				}
-				else {
+				} else {
 					float v2 = 10000.0F / vol / 100.0F;
 					if (v2 > 1.0F) {
 						this.player.setVolume(volume);
-					}
-					else {
-						float v1 = 1.0f-volume;
-						if(v2-v1 > 0) {
-							v2 = v2 -v1;
-						}
-						else {
+					} else {
+						float v1 = 1.0f - volume;
+						if (v2 - v1 > 0) {
+							v2 = v2 - v1;
+						} else {
 							v2 = 0.0f;
 						}
 						this.player.setVolume(v2);
@@ -122,7 +116,7 @@ public class EntityJukeBoxCart extends EntityRollingStock {
 				}
 				if (this.isPlaying && rand.nextInt(5) == 0 && (this.player != null && this.player.isPlaying())) {
 					int random2 = rand.nextInt(24) + 1;
-					worldObj.spawnParticle("note", (double) posX, (double) posY + 1.2D, (double) posZ, (double) random2 / 24.0D, 0.0D, 0.0D);
+					worldObj.spawnParticle("note", posX, posY + 1.2D, posZ, random2 / 24.0D, 0.0D, 0.0D);
 				}
 			}
 			
@@ -146,6 +140,7 @@ public class EntityJukeBoxCart extends EntityRollingStock {
 		stopStream();
 	}
 
+	@SuppressWarnings("static-access")
 	public void startStream() {
 		
 		if (!this.isPlaying) {
@@ -158,6 +153,7 @@ public class EntityJukeBoxCart extends EntityRollingStock {
 		
 	}
 
+	@SuppressWarnings("static-access")
 	public void stopStream() {
 		
 		if (this.isPlaying) {
@@ -190,16 +186,6 @@ public class EntityJukeBoxCart extends EntityRollingStock {
 		entityplayer.openGui(Traincraft.instance, GuiIDs.JUKEBOX, worldObj, this.getEntityId(), -1, (int) this.posZ);
 		return true;
 	}
-	
-	// Activate this once we bring back jukebox cart
-
-	//
-	// @Override
-	// public List<ItemStack> getItemsDropped() {
-	// List<ItemStack> items = new ArrayList<ItemStack>();
-	// items.add(new ItemStack(ItemIDs.minecartJukeBoxCart.item));
-	// return items;
-	// }
 
 	@Override
 	public boolean isStorageCart() {
@@ -229,14 +215,11 @@ public class EntityJukeBoxCart extends EntityRollingStock {
 		super.readEntityFromNBT(nbttagcompound);
 		this.streamURL = nbttagcompound.getString("StreamUrl");
 		this.isPlaying = nbttagcompound.getBoolean("isPlaying");
-		if (!worldObj.isRemote) {
-			this.dataWatcher.updateObject(22, streamURL);
-			if (isPlaying) {
-				this.dataWatcher.updateObject(23, 1);
-			}
-			else {
-				this.dataWatcher.updateObject(23, 0);
-			}
+		this.dataWatcher.updateObject(22, streamURL);
+		if (isPlaying) {
+			this.dataWatcher.updateObject(23, 1);
+		} else {
+			this.dataWatcher.updateObject(23, 0);
 		}
 	}
 }
