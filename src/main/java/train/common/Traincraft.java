@@ -100,6 +100,7 @@ public class Traincraft {
 		EntityHandler.init();
 		proxy.registerTileEntities();
 		proxy.registerSounds();
+		proxy.setHook(); // Moved file needed to run JLayer, we need to set a hook in order to retrieve it
 
 		GameRegistry.registerFuelHandler(new FuelHandler());
 		AchievementHandler.load();

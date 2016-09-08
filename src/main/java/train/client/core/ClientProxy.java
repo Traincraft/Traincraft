@@ -6,6 +6,7 @@ import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Optional;
 import cpw.mods.fml.common.registry.VillagerRegistry;
+import javazoom.jl.decoder.JavaLayerUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.SoundCategory;
 import net.minecraft.client.gui.GuiScreen;
@@ -29,6 +30,7 @@ import train.client.core.handlers.ClientTickHandler;
 import train.client.core.handlers.RecipeBookHandler;
 import train.client.core.handlers.TCKeyHandler;
 import train.client.core.helpers.HolidayHelper;
+import train.client.core.helpers.JLayerHook;
 import train.common.Traincraft;
 import train.common.api.EntityBogie;
 import train.common.api.EntityRollingStock;
@@ -224,12 +226,17 @@ public class ClientProxy extends CommonProxy {
 	}
 	
 	@Override
-	public float getJukeboxVolume()
-	{
+	public float getJukeboxVolume() {
 		return Minecraft.getMinecraft().gameSettings.getSoundLevel(SoundCategory.RECORDS) * Minecraft.getMinecraft().gameSettings.getSoundLevel(SoundCategory.MASTER);
 	}
 
+	@Override
 	public void registerKeyBindingHandler() {
 		FMLCommonHandler.instance().bus().register(new TCKeyHandler());
+	}
+	
+	@Override
+	public void setHook() {
+		JavaLayerUtils.setHook(new JLayerHook(Minecraft.getMinecraft()));
 	}
 }
