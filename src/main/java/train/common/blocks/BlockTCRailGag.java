@@ -142,7 +142,7 @@ public class BlockTCRailGag extends Block {
 	@Override
 	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int i, int j, int k) {
 		TileTCRailGag tileEntity = (TileTCRailGag) world.getTileEntity(i, j, k);
-		if (tileEntity != null && tileEntity.type != null
+		if (tileEntity != null && !tileEntity.type.equals("null")
 				&& (tileEntity.type.equals(ItemTCRail.TrackTypes.SLOPE_WOOD.getLabel())
 						|| tileEntity.type.equals(ItemTCRail.TrackTypes.SLOPE_GRAVEL.getLabel())
 						|| tileEntity.type.equals(ItemTCRail.TrackTypes.SLOPE_BALLAST.getLabel())

@@ -8,6 +8,7 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import cpw.mods.fml.relauncher.Side;
+import train.common.items.ItemTCRail;
 
 public class TileTCRailGag extends TileEntity {
 
@@ -16,7 +17,7 @@ public class TileTCRailGag extends TileEntity {
 	public int originX;
 	public int originY;
 	public int originZ;
-	public String type;
+	public String type = "";
 	public float bbHeight = 0.125f;
 
 	@Override
@@ -38,6 +39,9 @@ public class TileTCRailGag extends TileEntity {
 		nbt.setInteger("originY", originY);
 		nbt.setInteger("originZ", originZ);
 		nbt.setFloat("bbHeight", bbHeight);
+		if (type.equals("") || type == null){
+			type = "null";
+		}
 		nbt.setString("type", type);
 
 		super.writeToNBT(nbt);
