@@ -108,7 +108,7 @@ public class EntityFreightHopperUS extends Freight implements IInventory {
 
 	@Override
 	public String getInventoryName() {
-		return "Grain Hopper";
+		return "Freight Hopper";
 	}
 
 	@Override
