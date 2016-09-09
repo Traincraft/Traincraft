@@ -317,11 +317,6 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 	 */
 	@Override
 	public void keyHandlerFromPacket(int i) {
-		// if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer) {
-		// Traincraft.lockChannel
-		// .sendToServer(new PacketSetTrainLockedToClient(getTrainLockedFromPacket(),
-		// this.getEntityId()));
-		// }
 		if (this.getTrainLockedFromPacket()) {
 			if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer
 					&& !((EntityPlayer) this.riddenByEntity).getDisplayName().toLowerCase()
@@ -330,7 +325,6 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 			}
 		}
 			pressKey(i);
-			// System.out.println(i);
 			if (i == 8 && ConfigHandler.SOUNDS) {
 				soundHorn();
 			}
