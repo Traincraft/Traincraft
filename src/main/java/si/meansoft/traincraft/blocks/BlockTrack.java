@@ -3,10 +3,12 @@ package si.meansoft.traincraft.blocks;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import si.meansoft.traincraft.PropertyExtendedInteger;
+import si.meansoft.traincraft.track.TrackGrid;
 
 import java.util.Arrays;
 
@@ -28,11 +30,16 @@ public class BlockTrack extends BlockBase{
 
     @Override
     public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer){
-        if(meta == -1){
-            //this means that this is a additional track to base track. the base track positions are hitX, hitY, hitZ
-            return super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer).withProperty(BASETRACK_X, (int)hitX).withProperty(BASETRACK_Y, (int)hitY).withProperty(BASETRACK_Z, (int)hitZ);
+        if(!worldIn.isRemote){
+            if(meta == -1){
+                //this means that this is a additional track to base track. the base track positions are hitX, hitY, hitZ
+                return super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer).withProperty(BASETRACK_X, (int)hitX).withProperty(BASETRACK_Y, (int)hitY).withProperty(BASETRACK_Z, (int)hitZ);
+            }
+            //getBlocksToSet(TrackTypes.STRAIGHT_ULTIMATE);
+            for(BlockPos pos1 : TrackGrid.STRAIGHT_SHORT.getPosesToAffect(pos, EnumFacing.WEST)){
+                worldIn.setBlockState(pos1, Blocks.PLANKS.getDefaultState());
+            }
         }
-        getBlocksToSet(TrackTypes.STRAIGHT_ULTIMATE);
         return super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer);
     }
 

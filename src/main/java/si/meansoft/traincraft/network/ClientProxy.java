@@ -17,8 +17,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import si.meansoft.traincraft.Traincraft;
+import si.meansoft.traincraft.client.renderer.TestVecRenderer;
+import si.meansoft.traincraft.tile.TileEntityWindmill;
 
 import java.util.Map;
 
@@ -29,6 +32,7 @@ public class ClientProxy extends CommonProxy {
 
     @Override
     public void preInit(FMLPreInitializationEvent event) {
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityWindmill.class, new TestVecRenderer());
         for(Fluid fluid : fluids){
             this.registerFluidRenderer(fluid);
         }
