@@ -112,10 +112,10 @@ public class RenderRollingStock extends Render {
 		int k = MathHelper.floor_double(cart.posZ);
 
 		// NOTE: func_150049_b_ = isRailBlockAt
-		if (cart!=null && cart.worldObj!=null && (BlockRailBase.func_150049_b_(cart.worldObj, i, j, k) || BlockRailBase.func_150049_b_(cart.worldObj, i, j-1, k) )){
-			cart.setMountedYOffset(-0.3);
-			
-		}else if(cart.posYFromServer != 0){
+		if (cart != null && cart.worldObj != null && (BlockRailBase.func_150049_b_(cart.worldObj, i, j, k)
+				|| BlockRailBase.func_150049_b_(cart.worldObj, i, j - 1, k))) {
+			cart.setMountedYOffset(-0.55);
+		} else if (cart.posYFromServer != 0) {
 			cart.setMountedYOffset(-0.5);
 			GL11.glTranslatef(0f, -0.30f, 0f);
 		}

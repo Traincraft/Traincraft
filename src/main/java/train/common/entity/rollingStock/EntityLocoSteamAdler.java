@@ -9,10 +9,10 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
 import train.common.Traincraft;
+import train.common.api.LiquidManager;
 import train.common.api.SteamTrain;
 import train.common.library.EnumTrains;
 import train.common.library.GuiIDs;
-import train.common.api.LiquidManager;
 
 public class EntityLocoSteamAdler extends SteamTrain {
 	public EntityLocoSteamAdler(World world) {
@@ -27,7 +27,7 @@ public class EntityLocoSteamAdler extends SteamTrain {
 	
 	public EntityLocoSteamAdler(World world, double d, double d1, double d2) {
 		this(world);
-		setPosition(d, d1 + (double) yOffset, d2);
+		setPosition(d, d1 + yOffset, d2);
 		motionX = 0.0D;
 		motionY = 0.0D;
 		motionZ = 0.0D;
@@ -42,7 +42,8 @@ public class EntityLocoSteamAdler extends SteamTrain {
 		double pitchRads = this.anglePitchClient * 3.141592653589793D / 180.0D;
 		float rotationCos1 = (float) Math.cos(Math.toRadians(this.renderYaw + 90));
 		float rotationSin1 = (float) Math.sin(Math.toRadians((this.renderYaw + 90)));
-		float pitch = (float) (posY + ((Math.tan(pitchRads)*distance)+getMountedYOffset()) + riddenByEntity.getYOffset()+0.45);
+		float pitch = (float) (posY + ((Math.tan(pitchRads) * distance) + getMountedYOffset())
+				+ riddenByEntity.getYOffset() + 0.15);
 		double bogieX1 = (this.posX + (rotationCos1 * distance));
 		double bogieZ1 = (this.posZ + (rotationSin1* distance));
 		
@@ -81,7 +82,7 @@ public class EntityLocoSteamAdler extends SteamTrain {
 					j = itemstack.stackSize;
 				}
 				
-				EntityItem entityitem = new EntityItem(worldObj, posX + (double) f, posY + (double) f1, posZ + (double) f2, itemstack.splitStack(j));
+				EntityItem entityitem = new EntityItem(worldObj, posX + f, posY + f1, posZ + f2, itemstack.splitStack(j));
 				float f3 = 0.05F;
 				entityitem.motionX = (float) rand.nextGaussian() * f3;
 				entityitem.motionY = (float) rand.nextGaussian() * f3 + 0.2F;
@@ -129,7 +130,7 @@ public class EntityLocoSteamAdler extends SteamTrain {
 		NBTTagList nbttaglist = nbttagcompound.getTagList("Items", Constants.NBT.TAG_COMPOUND);
 		locoInvent = new ItemStack[getSizeInventory()];
 		for (int i = 0; i < nbttaglist.tagCount(); i++) {
-			NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist.getCompoundTagAt(i);
+			NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
 			int j = nbttagcompound1.getByte("Slot") & 0xff;
 			if (j >= 0 && j < locoInvent.length) {
 				locoInvent[j] = ItemStack.loadItemStackFromNBT(nbttagcompound1);

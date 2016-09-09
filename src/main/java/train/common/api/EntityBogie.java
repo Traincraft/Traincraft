@@ -386,6 +386,10 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 
 			if (BlockRailBase.func_150051_a(block)) {
 				super.onUpdate();
+			if (!worldObj.isRemote) {
+				this.setPosition(this.posX, this.posY + yOffset - 0.3d, this.posZ);
+				// System.out.println("Server Y: " + this.posY);
+			}
 			}
 			else {
 		        if (this.worldObj.isRemote)

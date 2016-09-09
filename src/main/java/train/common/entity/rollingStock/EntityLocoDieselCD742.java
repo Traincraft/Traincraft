@@ -50,7 +50,7 @@ public class EntityLocoDieselCD742 extends DieselTrain {
 		}
 		float pitch = (float) (posY + ((Math.tan(pitchRads) * distance) + getMountedYOffset())
 				+ riddenByEntity.getYOffset() + yOffset);
-		float pitch1 = (float) (posY + getMountedYOffset() + riddenByEntity.getYOffset() + yOffset);
+		float pitch1 = (float) (posY + getMountedYOffset() + riddenByEntity.getYOffset() + yOffset - 0.1F);
 		double bogieX1 = (this.posX + (rotationCos1 * distance));
 		double bogieZ1 = (this.posZ + (rotationSin1* distance));
 		// System.out.println(rotationCos1+" "+rotationSin1);
