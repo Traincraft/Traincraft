@@ -31,7 +31,7 @@ public class LiquidTank extends EntityRollingStock implements IFluidHandler, ISi
 	public LiquidTank(World world, Fluid fluid, int quantity, int capacity) {
 			this(new FluidStack(fluid, quantity), capacity, world);
 	}
-	public LiquidTank(World world, int quantity, int capacity) {
+	public LiquidTank(World world, int capacity) {
 		this(null, capacity,world);
 	}
 
@@ -114,14 +114,14 @@ public class LiquidTank extends EntityRollingStock implements IFluidHandler, ISi
 				result = LiquidManager.getInstance().processContainer(this, 0, theTank, itemstack);
 			}
 			else if(emptyItem != null) {
-				if(cargoItems[1] != null && emptyItem.getItem() == cargoItems[1].getItem()) {
+				if(emptyItem.getItem() == cargoItems[1].getItem()) {
     				if(cargoItems[1].stackSize+1 < cargoItems[1].getMaxStackSize()) {
     					result = LiquidManager.getInstance().processContainer(this, 0, theTank, itemstack);
     				}
 				}
 			}
 			else {
-				if(cargoItems[1] != null && itemstack.getItem() == cargoItems[1].getItem()) {
+				if(itemstack.getItem() == cargoItems[1].getItem()) {
     				if(cargoItems[1].stackSize+1 <= cargoItems[1].getMaxStackSize()) {
     					result = LiquidManager.getInstance().processContainer(this, 0, theTank, itemstack);
     				}

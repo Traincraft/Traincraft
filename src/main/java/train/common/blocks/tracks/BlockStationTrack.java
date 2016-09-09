@@ -34,7 +34,7 @@ public class BlockStationTrack extends BlockTrackLockingBase implements ITrackLo
 		if ((this.delay > 0)) {
 			return getIcon(4+this.mode);
 		}
-		return getIcon(0+this.mode);
+		return getIcon(this.mode);
 	}
 	public Tracks getTrackType() {
 		return Tracks.STATION_TRACK;
@@ -126,7 +126,7 @@ public class BlockStationTrack extends BlockTrackLockingBase implements ITrackLo
 	public void onMinecartPass(EntityMinecart cart) {
 		/*if (!(cart instanceof Locomotive))
 			return;*/
-		if((cart instanceof Locomotive)||(!(cart instanceof AbstractTrains)&&(cart instanceof EntityMinecart))){
+		if((cart instanceof Locomotive)||(!(cart instanceof AbstractTrains)&&(cart != null))){
 
 			checkCart(cart);
 			int meta = this.tileEntity.getBlockMetadata();

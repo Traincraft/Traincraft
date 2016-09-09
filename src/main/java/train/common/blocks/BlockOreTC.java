@@ -23,7 +23,7 @@ public class BlockOreTC extends BlockFalling {
 	private static IIcon texture3;
 	private static IIcon texture4;
 
-	public BlockOreTC(int id) {
+	public BlockOreTC() {
 		super();
 		setCreativeTab(Traincraft.tcTab);
 	}

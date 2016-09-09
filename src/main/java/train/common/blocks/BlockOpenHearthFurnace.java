@@ -46,7 +46,7 @@ public class BlockOpenHearthFurnace extends BlockContainer {
 	private IIcon textureFront_on;
 	private IIcon textureSide;
 
-	protected BlockOpenHearthFurnace(int par2, boolean active) {
+	protected BlockOpenHearthFurnace(boolean active) {
 		super(Material.rock);
 		furnaceRand = new Random();
 		//setRequiresSelfNotify();

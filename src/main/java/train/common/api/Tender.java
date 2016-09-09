@@ -14,9 +14,6 @@ import train.common.api.LiquidManager.StandardTank;
 public abstract class Tender extends Freight implements IFluidHandler {
 
 	public ItemStack tenderItems[];
-	public int liquidId = 0;
-	public int fuelSlot = 1;
-	public int waterSlot = 1;
 	private int maxTank;
 	private int update = 8;
 	private StandardTank theTank;
@@ -88,12 +85,7 @@ public abstract class Tender extends Freight implements IFluidHandler {
 		this.itemInsideCount=0;
 		for (int i = 0; i < getSizeInventory(); i++) {
 			ItemStack itemstack = getStackInSlot(i);
-			if (itemstack == null) {
-				continue;
-			}
-			if (itemstack.stackSize <= 0) {
-				continue;
-			}else{
+			if (itemstack != null && itemstack.stackSize > 0) {
 				this.itemInsideCount+=itemstack.stackSize;
 			}
 		}

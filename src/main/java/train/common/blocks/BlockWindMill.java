@@ -55,7 +55,6 @@ public class BlockWindMill extends Block {
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void randomDisplayTick(World par1World, int par2, int par3, int par4, Random par5Random) {
-		int l = par1World.getBlockMetadata(par2, par3, par4);
 		TileEntity tile = par1World.getTileEntity(par2, par3, par4);
 		if (tile != null && tile instanceof TileWindMill && ((TileWindMill) tile).windClient > 0) {
 			if (par5Random.nextInt(20) == 0) {
@@ -107,10 +106,9 @@ public class BlockWindMill extends Block {
 	 */
 	@Override
 	public void breakBlock(World par1World, int par2, int par3, int par4, Block par5, int par6) {
-		int l = par1World.getBlockMetadata(par2, par3, par4);
 		TileEntity tile = par1World.getTileEntity(par2, par3, par4);
 		if (tile != null && tile instanceof TileWindMill) {
-			((TileWindMill) tile).onChunkUnload();
+			tile.onChunkUnload();
 		}
 		super.breakBlock(par1World, par2, par3, par4, par5, par6);
 	}

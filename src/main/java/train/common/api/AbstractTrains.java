@@ -91,7 +91,6 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 	 * The owner of the train: The user who spawned it
 	 */
 	public String trainOwner = "";
-	public int ownerBytes=0;
 
 	public String getTrainOwner() {
 		return trainOwner;

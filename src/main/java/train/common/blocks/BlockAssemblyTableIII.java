@@ -31,7 +31,7 @@ public class BlockAssemblyTableIII extends BlockContainer {
 	private IIcon textureFront;
 	private IIcon textureSide;
 
-	public BlockAssemblyTableIII(int j, Material material) {
+	public BlockAssemblyTableIII(Material material) {
 		super(material);
 		setCreativeTab(Traincraft.tcTab);
 	}

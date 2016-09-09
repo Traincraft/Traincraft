@@ -22,7 +22,6 @@ public class SheetTextureStitched extends TextureStitchEvent {
 	}
 
 	public static IIcon[] unstitchIcons(IIconRegister iconRegister, String name, int columns, int rows) {
-		TextureMap textureMap = (TextureMap) iconRegister;
 		int numIcons = rows * columns;
 		IIcon[] icons = new IIcon[numIcons];
 		for (int i = 0; i < numIcons; i++) {

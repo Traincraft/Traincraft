@@ -158,10 +158,7 @@ public class LiquidManager {
 	}
 
 	public boolean isFluidEqual(FluidStack L1, FluidStack L2) {
-		if ((L1 == null) || (L2 == null)) {
-			return false;
-		}
-		return L1.isFluidEqual(L2);
+		return !((L1 == null) || (L2 == null)) && L1.isFluidEqual(L2);
 	}
 
 	public ItemStack processContainer(IInventory inventory, IFluidTank tank, ItemStack itemstack, int tankIndex) {
@@ -173,7 +170,7 @@ public class LiquidManager {
 			if (used >= bucketLiquid.amount) {
 				tank.fill(bucketLiquid, true);
 				inventory.decrStackSize(0, 1);
-				return emptyItem;
+				return null;
 			}
 		}
 		else if ((getInstance().isEmptyContainer(itemstack))) {
@@ -282,10 +279,7 @@ public class LiquidManager {
 		}
 
 		public boolean liquidMatchesFilter(FluidStack resource) {
-			if ((resource == null) || (this.filter == null)) {
-				return false;
-			}
-			return this.filter.isFluidEqual(resource);
+			return !((resource == null) || (this.filter == null)) && this.filter.isFluidEqual(resource);
 		}
 	}
 
@@ -333,10 +327,7 @@ public class LiquidManager {
 		}
 
 		public boolean liquidMatchesFilter(FluidStack resource) {
-			if ((resource == null) || (filter == null)) {
-				return false;
-			}
-			return filter.isFluidEqual(resource);
+			return !((resource == null) || (filter == null)) && filter.isFluidEqual(resource);
 		}
 	}
 }

@@ -30,7 +30,7 @@ import java.util.Random;
 
 public class BlockSignal extends BlockContainer {
 
-	public BlockSignal(int j) {
+	public BlockSignal() {
 		super(Material.circuits);
 		this.setLightLevel(1.0F);
 		setBlockBounds(0.2F, 0.0F, 0.2F, 0.8F, 2.6F, 0.8F);
@@ -63,8 +63,7 @@ public class BlockSignal extends BlockContainer {
 
 	@Override
 	public IIcon getIcon(int i, int j) {
-		IIcon icon = null;
-		return icon;
+		return null;
 	}
 
 	public int tickRate() {
@@ -77,7 +76,6 @@ public class BlockSignal extends BlockContainer {
 	}
 
 	public void onBlockPlacedBy(World world, int i, int j, int k, EntityLiving entityliving) {
-		int l = MathHelper.floor_double((double) ((entityliving.rotationYaw * 4F) / 360F) + 0.5D) & 3;
 		TileSignal te = (TileSignal) world.getTileEntity(i, j, k);
 
 		/*
@@ -164,7 +162,6 @@ public class BlockSignal extends BlockContainer {
 	}
 
 	public void updateTick(World world, int i, int j, int k) {
-		int l = world.getBlockMetadata(i, j, k);
 
 		TileSignal te = (TileSignal) world.getTileEntity(i, j, k);
 		if (te == null)

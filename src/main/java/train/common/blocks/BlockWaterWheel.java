@@ -58,10 +58,7 @@ public class BlockWaterWheel extends Block {
 		TileEntity tile = par1World.getTileEntity(par2, par3, par4);
 		if (tile != null && tile instanceof TileWaterWheel && ((TileWaterWheel) tile).getWaterDir() > -1001) {
 			double d0 = (double) ((float) par2 + 0.5F);
-			double d1 = (double) ((float) par3 + 0.7F);
 			double d2 = (double) ((float) par4 + 0.5F);
-			double d3 = 0.2199999988079071D;
-			double d4 = 0.27000001072883606D;
 
 			par1World.spawnParticle("splash", d0, par3 + 1, d2, 0.0D, 0.0D, 0.0D);
 			par1World.spawnParticle("splash", d0, par3, d2, 0.0D, 0.0D, 0.0D);

@@ -27,16 +27,16 @@ public class TCBlocks {
 		BlockIDs.distilActive.block = new BlockDistil(2, true).setHardness(3.5F).setStepSound(Block.soundTypeStone).setLightLevel(0.8F);
 		//BlockIDs.signal.block = new BlockSignal(BlockIDs.signal.blockID, 16).setHardness(1.7F).setStepSound(Block.soundTypeMetal);
 
-		BlockIDs.assemblyTableI.block = new BlockAssemblyTableI(32, Material.wood).setHardness(3.5F).setStepSound(Block.soundTypeWood);
-		BlockIDs.assemblyTableII.block = new BlockAssemblyTableII(48, Material.rock).setHardness(3.5F).setStepSound(Block.soundTypeWood);
-		BlockIDs.assemblyTableIII.block = new BlockAssemblyTableIII(64, Material.rock).setHardness(3.5F).setStepSound(Block.soundTypeWood);
+		BlockIDs.assemblyTableI.block = new BlockAssemblyTableI(Material.wood).setHardness(3.5F).setStepSound(Block.soundTypeWood);
+		BlockIDs.assemblyTableII.block = new BlockAssemblyTableII(Material.rock).setHardness(3.5F).setStepSound(Block.soundTypeWood);
+		BlockIDs.assemblyTableIII.block = new BlockAssemblyTableIII(Material.rock).setHardness(3.5F).setStepSound(Block.soundTypeWood);
 
 		BlockIDs.trainWorkbench.block = new BlockTrainWorkbench(16).setHardness(1.7F).setStepSound(Block.soundTypeWood);
-		BlockIDs.stopper.block = new BlockStopper(16).setHardness(1.7F).setStepSound(Block.soundTypeWood);
+		BlockIDs.stopper.block = new BlockStopper().setHardness(1.7F).setStepSound(Block.soundTypeWood);
 
-		BlockIDs.openFurnaceIdle.block = new BlockOpenHearthFurnace(20, false).setHardness(3.5F).setStepSound(Block.soundTypeStone);
-		BlockIDs.openFurnaceActive.block = new BlockOpenHearthFurnace(20, true).setHardness(3.5F).setStepSound(Block.soundTypeStone);
-		BlockIDs.oreTC.block = new BlockOreTC(0).setHardness(3.0F).setResistance(5F).setStepSound(Block.soundTypeStone);
+		BlockIDs.openFurnaceIdle.block = new BlockOpenHearthFurnace(false).setHardness(3.5F).setStepSound(Block.soundTypeStone);
+		BlockIDs.openFurnaceActive.block = new BlockOpenHearthFurnace(true).setHardness(3.5F).setStepSound(Block.soundTypeStone);
+		BlockIDs.oreTC.block = new BlockOreTC().setHardness(3.0F).setResistance(5F).setStepSound(Block.soundTypeStone);
 
 		BlockIDs.lantern.block = new BlockLantern().setHardness(1.7F).setStepSound(Block.soundTypeMetal).setLightLevel(0.98F);
 		BlockIDs.waterWheel.block = new BlockWaterWheel().setHardness(1.7F).setStepSound(Block.soundTypeWood);

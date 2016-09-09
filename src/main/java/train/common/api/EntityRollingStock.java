@@ -70,7 +70,7 @@ import train.common.tile.TileTCRailGag;
 
 public class EntityRollingStock extends AbstractTrains implements ILinkableCart {
 	public int fuelTrain;
-	//protected static final int matrix[][][] = { { { 0, 0, -1 }, { 0, 0, 1 } }, { { -1, 0, 0 }, { 1, 0, 0 } }, { { -1, -1, 0 }, { 1, 0, 0 } }, { { -1, 0, 0 }, { 1, -1, 0 } }, { { 0, 0, -1 }, { 0, -1, 1 } }, { { 0, -1, -1 }, { 0, 0, 1 } }, { { 0, 0, 1 }, { 1, 0, 0 } }, { { 0, 0, 1 }, { -1, 0, 0 } }, { { 0, 0, -1 }, { -1, 0, 0 } }, { { 0, 0, -1 }, { 1, 0, 0 } } };
+	protected static final int matrix[][][] = { { { 0, 0, -1 }, { 0, 0, 1 } }, { { -1, 0, 0 }, { 1, 0, 0 } }, { { -1, -1, 0 }, { 1, 0, 0 } }, { { -1, 0, 0 }, { 1, -1, 0 } }, { { 0, 0, -1 }, { 0, -1, 1 } }, { { 0, -1, -1 }, { 0, 0, 1 } }, { { 0, 0, 1 }, { 1, 0, 0 } }, { { 0, 0, 1 }, { -1, 0, 0 } }, { { 0, 0, -1 }, { -1, 0, 0 } }, { { 0, 0, -1 }, { 1, 0, 0 } } };
 
 	protected EntityPlayer playerEntity;
 
@@ -1042,10 +1042,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			 adjustSlopeVelocities(i1);
 			
 			
-			 int ai[][] = new int[][][] {{{0, 0, -1}, {0, 0, 1}}, {{ -1, 0, 0}, {1, 0, 0}}, {{ -1,
-			 -1, 0}, {1, 0, 0}}, {{ -1, 0, 0}, {1, -1, 0}}, {{0, 0, -1}, {0, -1, 1}}, {{0, -1,
-			 -1}, {0, 0, 1}}, {{0, 0, 1}, {1, 0, 0}}, {{0, 0, 1}, { -1, 0, 0}}, {{0, 0, -1}, { -1,
-			 0, 0}}, {{0, 0, -1}, {1, 0, 0}}}[i1];
+			 int ai[][] = matrix[i1];
 			 double d9 = ai[1][0] - ai[0][0];
 			 double d10 = ai[1][2] - ai[0][2];
 			 double d11 = Math.sqrt(d9 * d9 + d10 * d10);
@@ -1582,7 +1579,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 					i1 = 1;
 				}
 			}
-			int ai[][] = new int[][][] {{{0, 0, -1}, {0, 0, 1}}, {{ -1, 0, 0}, {1, 0, 0}}, {{ -1, -1, 0}, {1, 0, 0}}, {{ -1, 0, 0}, {1, -1, 0}}, {{0, 0, -1}, {0, -1, 1}}, {{0, -1, -1}, {0, 0, 1}}, {{0, 0, 1}, {1, 0, 0}}, {{0, 0, 1}, { -1, 0, 0}}, {{0, 0, -1}, { -1, 0, 0}}, {{0, 0, -1}, {1, 0, 0}}}[i1];;
+			int ai[][] = matrix[i1];
 			double d3 = 0.0D;
 			double d4 = i + 0.5D + ai[0][0] * 0.5D;
 			double d5 = j + 0.5D + ai[0][1] * 0.5D;
@@ -2591,7 +2588,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				}
 			}
 		}
-		int[][] aint = new int[][][] {{{0, 0, -1}, {0, 0, 1}}, {{ -1, 0, 0}, {1, 0, 0}}, {{ -1, -1, 0}, {1, 0, 0}}, {{ -1, 0, 0}, {1, -1, 0}}, {{0, 0, -1}, {0, -1, 1}}, {{0, -1, -1}, {0, 0, 1}}, {{0, 0, 1}, {1, 0, 0}}, {{0, 0, 1}, { -1, 0, 0}}, {{0, 0, -1}, { -1, 0, 0}}, {{0, 0, -1}, {1, 0, 0}}}[i1];;
+		int[][] aint = matrix[i1];
 		double d4 = aint[1][0] - aint[0][0];
 		double d5 = aint[1][2] - aint[0][2];
 		double d6 = Math.sqrt(d4 * d4 + d5 * d5);
@@ -2642,7 +2639,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		 */
 		if (l == BlockIDs.tcRail.block || l == BlockIDs.tcRailGag.block) {
 			//par3 = (double) j;
-			int[][] aint = new int[][][] {{{0, 0, -1}, {0, 0, 1}}, {{ -1, 0, 0}, {1, 0, 0}}, {{ -1, -1, 0}, {1, 0, 0}}, {{ -1, 0, 0}, {1, -1, 0}}, {{0, 0, -1}, {0, -1, 1}}, {{0, -1, -1}, {0, 0, 1}}, {{0, 0, 1}, {1, 0, 0}}, {{0, 0, 1}, { -1, 0, 0}}, {{0, 0, -1}, { -1, 0, 0}}, {{0, 0, -1}, {1, 0, 0}}}[i1];;
+			int[][] aint = matrix[i1];
 			double d3 = 0.0D;
 			double d4 = i + 0.5D + aint[0][0] * 0.5D;
 			double d6 = k + 0.5D + aint[0][2] * 0.5D;

@@ -35,7 +35,6 @@ public class BlockTCRail extends Block {
 	 */
 	@Override
 	public boolean canPlaceBlockAt(World par1World, int par2, int par3, int par4) {
-		Block block = par1World.getBlock(par2, par3, par4);
 		return false;
 	}
 
@@ -68,7 +67,7 @@ public class BlockTCRail extends Block {
 		}
 		if (tileEntity != null && (tileEntity.idDrop != null) && !world.isRemote) {
 			EntityPlayer player = Traincraft.proxy.getPlayer();
-			boolean flag = player instanceof EntityPlayer && player.capabilities.isCreativeMode;
+			boolean flag = player != null && player.capabilities.isCreativeMode;
 			if (!flag) {
 				this.dropBlockAsItem(world, i, j, k, new ItemStack(tileEntity.idDrop, 1, 0));
 			}

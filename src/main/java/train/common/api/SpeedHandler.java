@@ -42,11 +42,11 @@ public class SpeedHandler {
 	public static boolean isSpeedRailAt(World world, int i, int j, int k) {
 		Block block = world.getBlock(i, j, k);
 		//Block block = Block.blocksList[id];
-		if (block != null && block.getClass().getName() == "IRailSpeed") {
+		if (block != null && block.getClass().getName().equals("IRailSpeed")) {
 			return true;
 		}
 		TileEntity tile = world.getTileEntity(i, j, k);
-		return tile != null && tile.getClass().getName() == "IRailSpeed";
+		return tile != null && tile.getClass().getName().equals("IRailSpeed");
 	}
 
 	public double speedXFromPitch(EntityPlayer player, double var3) {
@@ -70,9 +70,8 @@ public class SpeedHandler {
 			speed /= 6;
 		}
 		speed /= 10;// converted in minecraft speed
-		if (entity instanceof Locomotive && speed > 0.695D && ((Locomotive) entity).isAttached) {
-			double max = 0.912D;// max speed when carts are attached
-			return max;
+		if (speed > 0.695D && ((Locomotive) entity).isAttached) {
+			return 0.912D;// max speed when carts are attached
 		}
 		return speed;
 	}

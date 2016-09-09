@@ -67,8 +67,7 @@ public class BlockLocomotiveSpeedControllerTrack extends TrackBaseTraincraft imp
 	@Override
 	public void onNeighborBlockChange(Block block) {
 		if(this.powered){
-			int input = getWorld().getBlockPowerInput(getX(), getY(), getZ());
-			this.mode = input;
+			this.mode = getWorld().getBlockPowerInput(getX(), getY(), getZ());
 			//System.out.println(input);
 		}
 		super.onNeighborBlockChange(block);
@@ -123,7 +122,7 @@ public class BlockLocomotiveSpeedControllerTrack extends TrackBaseTraincraft imp
 		if(mode>=8 && mode<13)value=3;
 		if(mode>=13 && mode<=15)value=4;
 		
-		return getIcon(0 + value);
+		return getIcon(value);
 	}
 
 	protected void notifyNeighbors() {

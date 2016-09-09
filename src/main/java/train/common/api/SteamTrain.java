@@ -48,12 +48,12 @@ public abstract class SteamTrain extends Locomotive implements IFluidHandler {
 		if (filter != null)
 			this.theTank = LiquidManager.getInstance().new FilteredTank(capacity, filter);
 		tankArray[0] = theTank;
-		dataWatcher.addObject(4, new Integer(0));
+		dataWatcher.addObject(4, 0);
 		numCargoSlots = 3;
 		numCargoSlots1 = 3;
 		numCargoSlots2 = 3;
 		inventorySize = numCargoSlots + numCargoSlots2 + numCargoSlots1 + fuelSlot + waterSlot;//
-		this.dataWatcher.addObject(23, new Integer(0));
+		this.dataWatcher.addObject(23, 0);
 	}
 
 	/**

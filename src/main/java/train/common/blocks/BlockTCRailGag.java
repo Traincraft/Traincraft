@@ -38,7 +38,6 @@ public class BlockTCRailGag extends Block {
 	 */
 	@Override
 	public boolean canPlaceBlockAt(World par1World, int par2, int par3, int par4) {
-		Block block = par1World.getBlock(par2, par3, par4);
 		return false;
 	}
 

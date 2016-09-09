@@ -44,11 +44,10 @@ public class BlockCouplerTrack extends TrackBaseTraincraft implements ITrackPowe
 
 		if (isPowered() && cart instanceof AbstractTrains) {
 			((AbstractTrains) cart).isAttaching = true;
-			if (taggedCart != null)
+			if (taggedCart != null) {
 				((AbstractTrains) taggedCart).isAttaching = true;
-			if (taggedCart != null && taggedCart instanceof AbstractTrains) {
 				LinkHandler lh = new LinkHandler(cart.worldObj);
-				lh.addStake((AbstractTrains) this.taggedCart, (AbstractTrains) cart, false);
+				lh.addStake(this.taggedCart, cart, false);
 			}
 			this.taggedCart = cart;
 		}

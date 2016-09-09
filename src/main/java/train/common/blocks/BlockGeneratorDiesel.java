@@ -132,10 +132,8 @@ public class BlockGeneratorDiesel extends BlockContainer {
 		TileEntity tile = world.getTileEntity(par2, par3, par4);
 		if(tile !=null && tile instanceof TileGeneratorDiesel && ((TileGeneratorDiesel)tile).currentBurnTime > 0){
 			double d0 = (double) ((float) par2 + 0.5F);
-			double d1 = (double) ((float) par3 + 0.7F);
 			double d2 = (double) ((float) par4 + 0.5F);
 			double d3 = 1.67D;
-			double d4 = 0.27000001072883606D;
 			//System.out.println(l+" "+par1World.isRemote);
 			switch(l){
 			case 0:

@@ -29,7 +29,7 @@ public class BlockStopper extends BlockContainer {
 
 	private IIcon texture;
 
-	public BlockStopper(int par2) {
+	public BlockStopper() {
 		super(Material.iron);
 		setCreativeTab(Traincraft.tcTab);
 	}
@@ -56,12 +56,7 @@ public class BlockStopper extends BlockContainer {
 
 	@Override
 	public boolean canPlaceBlockAt(World world, int x, int y, int z) {
-		if (world.isSideSolid(x, y-1, z, UP)) {
-			return true;
-		}
-		else {
-			return false;
-		}
+		return (world.isSideSolid(x, y-1, z, UP));
 	}
 
 	@Override

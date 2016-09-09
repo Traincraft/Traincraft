@@ -16,7 +16,7 @@ import train.common.library.GuiIDs;
 
 public class EntityLocoDieselKof_DB extends DieselTrain {
 	public EntityLocoDieselKof_DB(World world) {
-		super(world, 0, 0, EnumTrains.locoDieselKOF.getTankCapacity(), LiquidManager.getInstance().dieselFilter());
+		super(world, EnumTrains.locoDieselKOF.getTankCapacity(), LiquidManager.dieselFilter());
 		initLoco();
 	}
 
@@ -149,17 +149,14 @@ public class EntityLocoDieselKof_DB extends DieselTrain {
 			if (riddenByEntity != null && (riddenByEntity instanceof EntityPlayer) && riddenByEntity != entityplayer) {
 				return true;
 			}
-			if (!worldObj.isRemote) {
-				entityplayer.mountEntity(this);
-			}
+			entityplayer.mountEntity(this);
 		}
 		return true;
 	}
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		float dist = 0.6F;
-		return (dist);
+		return (0.6F);
 	}
 
 	@Override

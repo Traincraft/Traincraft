@@ -30,7 +30,6 @@ public class BlockDistil extends BlockContainer {
 
 	private final boolean isActive;
 	private static boolean keepDistilInventory = false;
-	public static int sprites[];
 	private Random distilRand;
 
 	private IIcon textureTop;
@@ -133,12 +132,6 @@ public class BlockDistil extends BlockContainer {
 			float var9 = (float) k + 0.5F;
 			float var10 = 0.52F;
 			float var11 = random.nextFloat() * 0.6F - 0.3F;
-			float f3 = 0.009F;
-			double gaussian = random.nextGaussian() * f3;
-			double a = 51;
-			double b = 0;
-			double c = 102;
-			int rand = random.nextInt(5);
 			for (int t = 0; t < 10; t++) {
 
 				world.spawnParticle("mobSpellAmbient", var7, (double) j + 1F, var9, 0, 0, 0);

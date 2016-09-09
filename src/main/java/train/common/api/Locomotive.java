@@ -474,7 +474,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 			this.lastEntityRider = (this.riddenByEntity);
 		}
 
-		if (!this.worldObj.isRemote && this.getParkingBrakeFromPacket() && getState() != "broken") {
+		if (!this.worldObj.isRemote && this.getParkingBrakeFromPacket() && !getState().equals("broken")) {
 			motionX *= 0.0;
 			motionZ *= 0.0;
 		}
@@ -515,31 +515,30 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 				}
 			}
 		}
-		if (getState() == "cold") {
+		if (getState().equals("cold")) {
 			this.extinguish();
 			if (getCurrentMaxSpeed() >= (getMaxSpeed() * 0.6)) {
 				motionX *= 0.0;
 				motionZ *= 0.0;
 			}
 		}
-		if (getState() == "warm") {
+		if (getState().equals("warm")) {
 			this.extinguish();
 			if (getCurrentMaxSpeed() >= (getMaxSpeed() * 0.7)) {
 				motionX *= 0.94;
 				motionZ *= 0.94;
 			}
 		}
-		if (getState() == "hot") {
+		if (getState().equals("hot")) {
 			this.extinguish();
-			if (getCurrentMaxSpeed() <= (getMaxSpeed())) {}
 		}
-		if (getState() == "very hot") {}
-		if (getState() == "too hot") {
+		//if (getState().equals("very hot")) {}
+		if (getState().equals("too hot")) {
 			motionX *= 0.95;
 			motionZ *= 0.95;
 			worldObj.spawnParticle("largesmoke", posX, posY + 0.3, posZ, 0.0D, 0.0D, 0.0D);
 		}
-		if (getState() == "broken") {
+		if (getState().equals("broken")) {
 			setFire(8);
 			this.setCustomSpeed(0);// set speed to normal
 			this.setAccel(0.000001);// simulate a break down
