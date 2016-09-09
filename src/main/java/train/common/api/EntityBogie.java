@@ -53,8 +53,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
     private double velocityY;
     @SideOnly(Side.CLIENT)
     private double velocityZ;
-    
-    public boolean updateAsRt = false;
+
 
 
 	public EntityBogie(World world) {
@@ -116,13 +115,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 
 	@Override
 	public boolean attackEntityFrom(DamageSource damageSource, float f) {
-
-		if (this.entityMainTrain != null) {
-
-			return entityMainTrain.attackEntityFrom(damageSource, f);
-		}
-
-		return false;
+		return (this.entityMainTrain != null && entityMainTrain.attackEntityFrom(damageSource, f));
 	}
 
 	@Override
@@ -246,7 +239,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		}
 	}
 	
-	public boolean isDerail = false;
+	private boolean isDerail = false;
 	public boolean isOnRail(){
 		if(isDerail)
 			return false;
@@ -259,21 +252,6 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 			j--;
 		Block block = this.worldObj.getBlock(i, j, k);
 		return (BlockRailBase.func_150051_a(block) || block == BlockIDs.tcRail.block || block == BlockIDs.tcRailGag.block);
-	}
-
-	protected double spring() {
-
-		return 0.25D; //0.2499999761581421D; // For sanity's sake..
-	}
-
-	protected double damp() {
-
-		return 0.4D; //0.4000000059604645D;
-	}
-
-	protected double limitForce(double force) {
-
-		return Math.copySign(Math.abs(Math.min(Math.abs(force), 6.0D)), force);
 	}
 
 	@Override
@@ -334,12 +312,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 	@Override
 	public boolean setDestination(ItemStack ticket) {
 
-		if (this.entityMainTrain != null) {
-
-			return this.entityMainTrain.setDestination(ticket);
-		}
-
-		return false;
+		return (this.entityMainTrain != null && this.entityMainTrain.setDestination(ticket));
 	}
 
 	@Override
@@ -462,18 +435,16 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 					}
 
 					//applyDragAndPushForces();
-					limitSpeedOnTCRail(i, j, k);
+					limitSpeedOnTCRail();
 
 					if (ItemTCRail.isTCTurnTrack(tileRail)) {
 
 						int meta = tileRail.getBlockMetadata();
 
 					if (shouldIgnoreSwitch(tileRail, i, j, k, meta)) {
-						moveOnTCStraight(i, j, k, tileRail.xCoord, tileRail.yCoord, tileRail.zCoord,
-								tileRail.getBlockMetadata());
+						moveOnTCStraight(j, tileRail.xCoord, tileRail.zCoord, tileRail.getBlockMetadata());
 					} else {
-						if (ItemTCRail.isTCTurnTrack(tileRail)) moveOnTC90TurnRail(i, j, k, tileRail.r, tileRail.cx,
-								tileRail.cy, tileRail.cz, tileRail.getType(), meta);
+						if (ItemTCRail.isTCTurnTrack(tileRail)) moveOnTC90TurnRail(j, tileRail.r, tileRail.cx, tileRail.cz);
 					}
 					
 					// shouldIgnoreSwitch(tileRail, i, j, k, meta);
@@ -483,7 +454,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 
 					if (ItemTCRail.isTCStraightTrack(tileRail)) {
 
-						moveOnTCStraight(i, j, k, tileRail.xCoord, tileRail.yCoord, tileRail.zCoord, tileRail.getBlockMetadata());
+						moveOnTCStraight(j, tileRail.xCoord, tileRail.zCoord, tileRail.getBlockMetadata());
 					}
 
 					else if (ItemTCRail.isTCTwoWaysCrossingTrack(tileRail)) {
@@ -493,7 +464,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 
 					else if (ItemTCRail.isTCSlopeTrack(tileRail)) {
 
-						moveOnTCSlope(i, j, k, tileRail.xCoord, tileRail.yCoord, tileRail.zCoord, tileRail.slopeAngle, tileRail.slopeHeight, tileRail.slopeLength, tileRail.getBlockMetadata());
+						moveOnTCSlope(j, tileRail.xCoord, tileRail.zCoord, tileRail.slopeAngle, tileRail.slopeHeight, tileRail.getBlockMetadata());
 					}
 		        }
 			}
@@ -545,7 +516,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		}
 	}
 	
-	protected void moveOnTCStraight(int i, int j, int k, double cx, double cy, double cz, int meta){
+	private void moveOnTCStraight(int j, double cx, double cz, int meta){
 		/*
 		 * Nitro-Note: Do we need all those shitty motionX and Z?
 		 * Nitro-Note 2: setPosition is to make a great look when Train placed down. :)
@@ -573,7 +544,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		}
 	}
 
-	protected void moveOnTCTwoWaysCrossing() {
+	private void moveOnTCTwoWaysCrossing() {
 		/*
 		 * Nitro-Note: Do we need all those shitty motionX and Z? We don't even
 		 * need something to parse to this function. setPosition is superflous since you can't place
@@ -608,7 +579,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		}
 
 	}
-	protected void moveOnTCSlope(int i, int j, int k, double cx, double cy, double cz, double slopeAngle, double slopeHeight, double slopeLength, int meta) {
+	private void moveOnTCSlope(int j, double cx, double cz, double slopeAngle, double slopeHeight, int meta) {
 
 		// TODO check if we are able to move faster than 196km/h later when we cleaned up
 			// everything.
@@ -673,7 +644,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		}
 	}
 
-	protected void moveOnTC90TurnRail(int i, int j, int k, double r, double cx, double cy, double cz, String type, int meta){
+	private void moveOnTC90TurnRail(int j,double r, double cx, double cz){
 		posY = j + 0.2;
 		double cpx = posX - cx;
 		double cpz = posZ - cz;
@@ -762,7 +733,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		}
 		return false;
 	}
-	public void limitSpeedOnTCRail(int x, int y, int z) {
+	private void limitSpeedOnTCRail() {
 
 		/*
 		Block id = worldObj.getBlock(x, y, z);
