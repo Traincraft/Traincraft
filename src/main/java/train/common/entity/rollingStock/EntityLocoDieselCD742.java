@@ -40,7 +40,7 @@ public class EntityLocoDieselCD742 extends DieselTrain {
 	public void updateRiderPosition() {
 		double pitchRads = this.anglePitchClient * Math.PI / 180.0D;
 		double distance = 0.4;
-		double yOffset = 0.0;
+		double yOffset = -0.1;
 		float rotationCos1 = (float) Math.cos(Math.toRadians(this.renderYaw + 90));
 		float rotationSin1 = (float) Math.sin(Math.toRadians((this.renderYaw + 90)));
 		if(side.isServer()){
@@ -50,7 +50,7 @@ public class EntityLocoDieselCD742 extends DieselTrain {
 		}
 		float pitch = (float) (posY + ((Math.tan(pitchRads) * distance) + getMountedYOffset())
 				+ riddenByEntity.getYOffset() + yOffset);
-		float pitch1 = (float) (posY + getMountedYOffset() + riddenByEntity.getYOffset() + yOffset - 0.1F);
+		float pitch1 = (float) (posY + getMountedYOffset() + riddenByEntity.getYOffset() + yOffset);
 		double bogieX1 = (this.posX + (rotationCos1 * distance));
 		double bogieZ1 = (this.posZ + (rotationSin1* distance));
 		// System.out.println(rotationCos1+" "+rotationSin1);
