@@ -1,7 +1,5 @@
 package train.common.api;
 
-import org.lwjgl.input.Keyboard;
-
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
 import io.netty.buffer.ByteBuf;
@@ -36,7 +34,6 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 	public int numCargoSlots;
 	public int numCargoSlots1;
 	public int numCargoSlots2;
-	private int lastUpdateTick;
 	private boolean hasDrowned = false;
 	protected boolean canCheckInvent = true;
 	private int slotsFilled = 0;
@@ -320,19 +317,23 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 	 */
 	@Override
 	public void keyHandlerFromPacket(int i) {
-		if (lastUpdateTick == updateTicks) { return; }
 		// if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer) {
-		// Traincraft.lockChannel.sendToServer(
-		// new PacketSetTrainLockedToClient(getTrainLockedFromPacket(), this.getEntityId()));
+		// Traincraft.lockChannel
+		// .sendToServer(new PacketSetTrainLockedToClient(getTrainLockedFromPacket(),
+		// this.getEntityId()));
 		// }
 		if (this.getTrainLockedFromPacket()) {
-			if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer && !((EntityPlayer) this.riddenByEntity).getDisplayName().toLowerCase().equals(this.getTrainOwner().toLowerCase())) { return; }
+			if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer
+					&& !((EntityPlayer) this.riddenByEntity).getDisplayName().toLowerCase()
+							.equals(this.getTrainOwner().toLowerCase())) {
+				return;
+			}
 		}
-		pressKey(i);
-		//System.out.println(i);
-		if (i == 8 && ConfigHandler.SOUNDS) {
-			soundHorn();
-		}
+			pressKey(i);
+			// System.out.println(i);
+			if (i == 8 && ConfigHandler.SOUNDS) {
+				soundHorn();
+			}
 	}
 
 	/**
@@ -414,19 +415,23 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 				EntityLivingBase entity = (EntityLivingBase) this.riddenByEntity;
 				if (entity.moveForward > 0) {
 					if (getFuel() > 0 && this.isLocoTurnedOn() && rand.nextInt(4) == 0 && !worldObj.isRemote) {
+						if (this.getTrainLockedFromPacket() && !((EntityPlayer) this.riddenByEntity).getDisplayName()
+								.toLowerCase().equals(this.getTrainOwner().toLowerCase())) {
+							return;
+						}
 						if (riddenByEntity != null && riddenByEntity instanceof EntityPlayer) {
-							int dir = MathHelper.floor_double((((EntityPlayer) riddenByEntity).rotationYaw * 4F) / 360F + 0.5D) & 3;
+							int dir = MathHelper
+									.floor_double((((EntityPlayer) riddenByEntity).rotationYaw * 4F) / 360F + 0.5D) & 3;
 							if (dir == 2) motionZ -= 0.01 * entity.moveForward * this.accelerate;
-
+							
 							if (dir == 1) motionX -= 0.01 * entity.moveForward * this.accelerate;
-
+							
 							if (dir == 0) motionZ += 0.01 * entity.moveForward * this.accelerate;
-
+							
 							if (dir == 3) motionX += 0.01 * entity.moveForward * this.accelerate;
 						}
 					}
-				}
-				else if (entity.moveForward < 0) {
+				} else if (entity.moveForward < 0) {
 					motionX *= -entity.moveForward * brake;
 					motionZ *= -entity.moveForward * brake;
 				}

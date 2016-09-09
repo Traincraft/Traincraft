@@ -57,7 +57,6 @@ import train.common.core.handlers.FuelHandler;
 import train.common.core.handlers.LinkHandler;
 import train.common.core.handlers.TrainHandler;
 import train.common.core.handlers.TrainsDamageSource;
-import train.common.core.network.PacketKeyPress;
 import train.common.core.network.PacketRollingStockRotation;
 import train.common.core.network.PacketSetTrainLockedToClient;
 import train.common.entity.rollingStock.EntityTracksBuilder;
@@ -516,11 +515,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 	@Override
 	public boolean canBeCollidedWith() {
 		return !isDead;
-	}
-
-	public void pressKeyTrain(int i) {
-		if(updateTicks % 5 !=0) {return;}
-			Traincraft.keyChannel.sendToServer(new PacketKeyPress(i));
 	}
 
 	public void pressKey(int i) {}

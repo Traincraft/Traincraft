@@ -13,7 +13,7 @@
   "parent": "",
   "screenshots": [],
   "requiredMods": ["Forge@[10.13.4.1614,)"],
-  "dependencies": ["Forge@[10.13.4.1614,)"],
+  "dependencies": ["Forge@[10.13.4.1614,)", "Railcraft@[9.11.0.0,)"],
   "dependants": [],
   "useDependencyInformation": "true"
 }
