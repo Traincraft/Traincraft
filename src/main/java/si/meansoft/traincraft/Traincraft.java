@@ -52,7 +52,7 @@ public class Traincraft {
         trackTab = new CreativeTabs("traincraftTrackTab"){
             @Override
             public Item getTabIconItem(){
-                return Item.getItemFromBlock(BlockTrack.TrackTypes.STRAIGHT_SINGLE.block);
+                return Item.getItemFromBlock(BlockTrack.TrackTypes.STRAIGHT_SINGLE.getBlock());
             }
         };
         logger.info("[Pre Initializing] Register Blocks, Items, ...");
