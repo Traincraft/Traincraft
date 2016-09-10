@@ -1,18 +1,12 @@
 package si.meansoft.traincraft.tile;
 
 import com.google.common.collect.Lists;
-import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagIntArray;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagLong;
-import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
-import si.meansoft.traincraft.blocks.BlockTrack;
-import si.meansoft.traincraft.track.TrackGrid;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,7 +42,7 @@ public class TileEntityTrack extends TileEntityBase {
         this.aimsLeft = aimsLeft;
     }
 
-    @Override@MethodsReturnNonnullByDefault
+    @Override
     public NBTTagCompound getUpdateTag() {
         NBTTagCompound compound = super.getUpdateTag();
         writeToNBT(compound, true);
@@ -60,7 +54,7 @@ public class TileEntityTrack extends TileEntityBase {
         compound.setInteger("blockIndex", blockIndex);
         compound.setInteger("RailFacing", facing.ordinal());
         compound.setBoolean("aimsLeft", aimsLeft);
-        if (toDestroy !=null /*blockIndex == 0*/) {
+        if (this.defaultTrackPosition == null) {
             NBTTagList nbtTagList = new NBTTagList();
             for (BlockPos b : toDestroy)
                 nbtTagList.appendTag(new NBTTagLong(b.toLong()));

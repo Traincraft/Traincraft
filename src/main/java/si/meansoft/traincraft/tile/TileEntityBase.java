@@ -14,9 +14,7 @@ import si.meansoft.traincraft.Util;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class TileEntityBase extends TileEntity implements IRegistryEntry{
 

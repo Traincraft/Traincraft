@@ -39,7 +39,7 @@ public class ItemBlockTrack extends ItemBlockBase {
                         boolean flipAlongX = track.trackType.isCurve() && track.faceLeft(horizontalFacing, hitX, hitZ);
                         List<BlockPos> settedBlocks = track.placeTrack(worldIn, pos, playerIn, hitX, hitY, hitZ);
                         int blockIndex = 0;
-                        if(stack.stackSize >= settedBlocks.size()){
+                        if(playerIn.isCreative() || stack.stackSize >= settedBlocks.size()){
                             for (BlockPos pos1 : settedBlocks) {
                                 if (placeBlockAt(stack, playerIn, worldIn, pos1, facing, hitX, hitY, hitZ, state)) {
                                     SoundType soundtype = worldIn.getBlockState(pos1).getBlock().getSoundType(worldIn.getBlockState(pos1), worldIn, pos1, playerIn);
