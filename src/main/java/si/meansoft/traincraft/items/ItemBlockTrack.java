@@ -44,6 +44,9 @@ public class ItemBlockTrack extends ItemBlockBase {
                                 SoundType soundtype = worldIn.getBlockState(pos1).getBlock().getSoundType(worldIn.getBlockState(pos1), worldIn, pos1, playerIn);
                                 worldIn.playSound(playerIn, pos1, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
                                 --stack.stackSize;
+                                if(stack.stackSize <= 0){
+                                    stack = null;
+                                }
                                 if (pos1 != pos) {
                                     TileEntityTrack tile = (TileEntityTrack) worldIn.getTileEntity(pos1);
                                     if (tile != null) {
