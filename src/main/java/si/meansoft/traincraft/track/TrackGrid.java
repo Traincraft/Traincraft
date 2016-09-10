@@ -49,7 +49,7 @@ public class TrackGrid {
                     for (int x = 0; x < widthX; ++x) {
                         if (facing == EnumFacing.NORTH && map[z][widthX - 1 - x])
                             poses.add(start.add(x - widthX + 1, y, z - widthZ + 1));
-                        else if (facing == EnumFacing.EAST && map[widthZ - z - 1][widthX - x - 1]) // borken
+                        else if (facing == EnumFacing.EAST && map[widthZ - z - 1][widthX - x - 1])
                             poses.add(start.add(z, y, x - widthX + 1));
                         else if (facing == EnumFacing.SOUTH && map[widthZ - z - 1][x])
                             poses.add(start.add(x, y, z));
@@ -128,15 +128,8 @@ public class TrackGrid {
 
     public static TrackGrid getStraightSlope(int length) {
         TrackBuilder builder = new TrackBuilder(1, length);
-        for (int i = 0; i < length - 1; i++) {
+        for (int i = 0; i < length; i++)
             builder.add(true);
-        }
-        builder.add(false);
-        builder.setY(1);
-        builder.add(true);
-        for (int i = 1; i < length; i++) {
-            builder.add(false);
-        }
         return builder.build();
     }
 

@@ -7,6 +7,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -14,6 +15,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import si.meansoft.traincraft.IRegistryEntry;
 import si.meansoft.traincraft.Registry;
@@ -51,7 +53,29 @@ public class BlockTrack extends BlockContainerBase {
         return new IRegistryEntry[]{this, new ItemBlockTrack(this), createNewTileEntity(null, 0)};
     }
 
-    private boolean faceLeft(EnumFacing facing, float hitX, float hitZ) {
+    @Override
+    public boolean isFullCube(IBlockState state) {
+        return false;
+    }
+
+    @Override
+    public boolean isOpaqueCube(IBlockState state) {
+        return false;
+    }
+
+    @Override
+    public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest) {
+        this.removeTrack(world, pos, !player.isCreative());
+        return super.removedByPlayer(state, world, pos, player, willHarvest);
+    }
+
+    @Override
+    public void onBlockExploded(World world, BlockPos pos, Explosion explosion) {
+        this.removeTrack(world, pos, world.rand.nextInt(3) == 0);
+        super.onBlockExploded(world, pos, explosion);
+    }
+
+    public boolean faceLeft(EnumFacing facing, float hitX, float hitZ) {
         switch (facing) {
             case NORTH:
                 return hitX < 0.5;
@@ -67,29 +91,46 @@ public class BlockTrack extends BlockContainerBase {
 
     public boolean canPlaceTrack(World world, BlockPos pos, EntityLivingBase placer, ItemStack stack, float hitX, float hitY, float hitZ) {
         EnumFacing dir = placer.getHorizontalFacing();
-        for (BlockPos pos1 : this.trackType.grid.getPosesToAffect(pos, dir, faceLeft(dir, hitX, hitZ))) {
+        for (BlockPos pos1 : this.trackType.getGrid().getPosesToAffect(pos, dir, faceLeft(dir, hitX, hitZ))) {
             if (!world.getBlockState(pos1).getBlock().canReplace(world, pos1, dir, stack) || !world.isSideSolid(pos1.down(), EnumFacing.UP)) {
                 if (placer instanceof EntityPlayerMP)
                     ((EntityPlayerMP) placer).addChatMessage(new TextComponentString("Unable to set: " + pos1.toString()));
                 return false;
             }
         }
-
         return true;
     }
 
     public List<BlockPos> placeTrack(World world, BlockPos pos, EntityLivingBase placer, float hitX, float hitY, float hitZ) {
         EnumFacing dir = placer.getHorizontalFacing();
-        List<BlockPos> poses = trackType.grid.getPosesToAffect(pos, dir, trackType.isCurve() && faceLeft(dir, hitX, hitZ));
-        int index = 0;
-        for (BlockPos pos1 : poses) {
-            world.setBlockState(pos1, this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite()));
-            //TODO: blockIndex for curves is just wrong!
-            TileEntityTrack tileEntityTrack = ((TileEntityTrack) world.getTileEntity(pos1));
-            tileEntityTrack.blockIndex = index++;
-            tileEntityTrack.facing = dir;
+//<<<<<<< HEAD
+//        List<BlockPos> poses = trackType.grid.getPosesToAffect(pos, dir, trackType.isCurve() && faceLeft(dir, hitX, hitZ));
+//        int index = 0;
+//        for (BlockPos pos1 : poses) {
+//            world.setBlockState(pos1, this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite()));
+//            //TODO: blockIndex for curves is just wrong!
+//            TileEntityTrack tileEntityTrack = ((TileEntityTrack) world.getTileEntity(pos1));
+//            tileEntityTrack.blockIndex = index++;
+//            tileEntityTrack.facing = dir;
+//=======
+        return trackType.grid.getPosesToAffect(pos, dir, trackType.isCurve() && faceLeft(dir, hitX, hitZ));
+    }
+
+    public void removeTrack(World world, BlockPos pos, boolean dropBlocks) {
+        TileEntityTrack tile = (TileEntityTrack) world.getTileEntity(pos);
+        if (tile != null) {
+            if (tile.defaultTrackPosition != null) {
+                IBlockState state = world.getBlockState(tile.defaultTrackPosition);
+                if (state.getBlock() instanceof BlockTrack) {
+                    ((BlockTrack) state.getBlock()).removeTrack(world, tile.defaultTrackPosition, dropBlocks);
+                }
+            } else if (!tile.toDestroy.isEmpty()) {
+                for (BlockPos pos1 : tile.toDestroy) {
+                    world.destroyBlock(pos1, dropBlocks);
+                }
+                world.destroyBlock(tile.getPos(), dropBlocks);
+            }
         }
-        return poses;
     }
 
     @Override
@@ -97,7 +138,7 @@ public class BlockTrack extends BlockContainerBase {
         if (!worldIn.isRemote) {
             TileEntityTrack tileEntityTrack = (TileEntityTrack) worldIn.getTileEntity(pos);
             System.out.println(tileEntityTrack == null ? "-null-" : "IndexOfTrack:" + tileEntityTrack.blockIndex);
-            return true ;
+            return true;
         }
         return super.onBlockActivated(worldIn, pos, state, playerIn, hand, heldItem, side, hitX, hitY, hitZ);
     }
@@ -107,12 +148,29 @@ public class BlockTrack extends BlockContainerBase {
         if (this.trackType.isSlope()) {
             int slopeLength = this.trackType.getGrid().getBlockCount();
             TileEntityTrack tileEntityTrack = ((TileEntityTrack) worldIn.getTileEntity(pos));
+            if (tileEntityTrack == null) {
+                System.out.println("TileEntity is null");
+                return;
+            }
+            if (tileEntityTrack.getFacing()==null){
+                System.out.println("TileEntity#facing is null");
+                return;
+            }
+
+            if (tileEntityTrack.getFacing()==EnumFacing.DOWN){
+                System.out.println("TileEntity#facing is down");
+                return;
+            }
+
+
+
             int blockIndex = tileEntityTrack.blockIndex;
             double perBlockDiff = 1d / slopeLength, start = blockIndex * perBlockDiff, end = blockIndex * perBlockDiff + perBlockDiff;
 
             //TODO: System for steeper tracks = More than 2 boxes
 
-            switch (tileEntityTrack.facing) {
+
+            switch (tileEntityTrack.getFacing()) {
                 case SOUTH:
                     addCollisionBoxToList(pos, entityBox, collidingBoxes, new AxisAlignedBB(0, 0, 0, 1, start, .5));
                     addCollisionBoxToList(pos, entityBox, collidingBoxes, new AxisAlignedBB(0, 0, .5, 1, end, 1));
@@ -129,6 +187,8 @@ public class BlockTrack extends BlockContainerBase {
                     addCollisionBoxToList(pos, entityBox, collidingBoxes, new AxisAlignedBB(.5, 0, 0, 1, start, 1));
                     addCollisionBoxToList(pos, entityBox, collidingBoxes, new AxisAlignedBB(0, 0, 0, .5, end, 1));
                     break;
+                default:
+                    System.out.println(tileEntityTrack.getFacing()); //Never.
 
             }
 
@@ -151,11 +211,6 @@ public class BlockTrack extends BlockContainerBase {
     public boolean isPassable(IBlockAccess worldIn, BlockPos pos) {
         return true;
     }
-
-    public boolean isFullCube(IBlockState state) {
-        return false;
-    }
-
 
     public enum TrackTypes {
         TEST_TRACK("TestTrack", TrackGrid.getStraightSlope(6), false, true),

@@ -9,6 +9,7 @@ import java.util.List;
 /**
  * @author canitzp
  */
+@Deprecated
 public class TileEntityRail extends TileEntityBase{
 
     public List<BlockPos> harvestPositions = new ArrayList<BlockPos>();
