@@ -25,14 +25,14 @@ public class TileEntityTrack extends TileEntityBase{
     @Override
     public void writeToNBT(NBTTagCompound compound, boolean isForSyncing) {
         compound.setInteger("blockIndex",blockIndex);
-        compound.setByte("facing", (byte) facing.getIndex());
+        compound.setInteger("facing", facing.ordinal());
         super.writeToNBT(compound, isForSyncing);
     }
 
     @Override
     public void readFromNBT(NBTTagCompound compound, boolean isForSyncing) {
         blockIndex = compound.getInteger("blockIndex");
-        facing = EnumFacing.getFront(compound.getByte("facing"));
+        facing = EnumFacing.values()[compound.getInteger("facing")];
         super.readFromNBT(compound, isForSyncing);
     }
 }
