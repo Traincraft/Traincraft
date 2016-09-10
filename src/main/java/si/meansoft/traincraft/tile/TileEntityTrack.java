@@ -60,7 +60,7 @@ public class TileEntityTrack extends TileEntityBase {
         compound.setInteger("blockIndex", blockIndex);
         compound.setInteger("RailFacing", facing.ordinal());
         compound.setBoolean("aimsLeft", aimsLeft);
-        if (blockIndex == 0) {
+        if (toDestroy !=null /*blockIndex == 0*/) {
             NBTTagList nbtTagList = new NBTTagList();
             for (BlockPos b : toDestroy)
                 nbtTagList.appendTag(new NBTTagLong(b.toLong()));
@@ -76,7 +76,7 @@ public class TileEntityTrack extends TileEntityBase {
         blockIndex = compound.getInteger("blockIndex");
         this.facing = EnumFacing.values()[compound.getInteger("RailFacing")];
 
-        if (blockIndex == 0) { //I hold the data
+        if (compound.hasKey("toDestroy")/*blockIndex == 0*/) { //I hold the data
             NBTTagList list = compound.getTagList("toDestroy", 4);
             int l = list.tagCount();
             toDestroy = Lists.newArrayListWithCapacity(l);
