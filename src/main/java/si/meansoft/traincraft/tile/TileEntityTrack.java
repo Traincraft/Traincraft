@@ -70,7 +70,7 @@ public class TileEntityTrack extends TileEntityBase {
         blockIndex = compound.getInteger("blockIndex");
         this.facing = EnumFacing.values()[compound.getInteger("RailFacing")];
 
-        if (compound.hasKey("toDestroy")/*blockIndex == 0*/) { //I hold the data
+        if (compound.hasKey("toDestroy")) {
             NBTTagList list = compound.getTagList("toDestroy", 4);
             int l = list.tagCount();
             toDestroy = Lists.newArrayListWithCapacity(l);

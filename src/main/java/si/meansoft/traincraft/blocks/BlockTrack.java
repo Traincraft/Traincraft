@@ -219,8 +219,8 @@ public class BlockTrack extends BlockContainerBase {
     }
 
     public enum TrackTypes {
-        TEST_TRACK("TestTrack", TrackGrid.getStraightSlope(6), false, true),
-        TEST_CURVE("TestCurve", TrackGrid.getCurve(3), true, false),
+        TEST_TRACK("TestTrack", TrackGrid.getStraightSlope(16), false, true),
+        TEST_CURVE("TestCurve", TrackGrid.getCurve(9), true, false),
         TEST_SLOPE("TestSlope", TrackGrid.getStraightGrid(6), false, true),
 
         STRAIGHT_SINGLE("StraightSingle", TrackGrid.getStraightGrid(1), false, false),
