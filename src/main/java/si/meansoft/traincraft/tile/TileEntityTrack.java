@@ -4,14 +4,18 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author canitzp
  */
 public class TileEntityTrack extends TileEntityBase{
 
     public BlockPos defaultTrackPosition;
+    public List<BlockPos> toDestroy = new ArrayList<>();
 
-    public int blockIndex=-1;
+    public int blockIndex = -1;
     public EnumFacing facing;
 
     public TileEntityTrack(){
@@ -20,6 +24,10 @@ public class TileEntityTrack extends TileEntityBase{
 
     public void create(BlockPos defaultTrackPosition){
         this.defaultTrackPosition = defaultTrackPosition;
+    }
+
+    public void create(List<BlockPos> poses){
+        this.toDestroy = poses;
     }
 
     @Override
