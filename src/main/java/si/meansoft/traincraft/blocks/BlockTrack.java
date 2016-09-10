@@ -36,11 +36,23 @@ public class BlockTrack extends BlockBase{
                 return super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer).withProperty(BASETRACK_X, (int)hitX).withProperty(BASETRACK_Y, (int)hitY).withProperty(BASETRACK_Z, (int)hitZ);
             }
             //getBlocksToSet(TrackTypes.STRAIGHT_ULTIMATE);
-            for(BlockPos pos1 : TrackGrid.STRAIGHT_SHORT.getPosesToAffect(pos, EnumFacing.WEST)){
+            EnumFacing dir = placer.getHorizontalFacing();
+            for(BlockPos pos1 : TrackGrid.STRAIGHT_SHORT.getPosesToAffect(pos, dir, faceLeft(dir, hitX, hitZ))){
                 worldIn.setBlockState(pos1, Blocks.PLANKS.getDefaultState());
             }
         }
         return super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer);
+    }
+
+    //Taken from TrackPlacing#getCurveDirection
+    private boolean faceLeft(EnumFacing facing, float hitX, float hitZ){
+        switch(facing){
+            case NORTH: return hitX < 0.5;
+            case EAST: return hitZ < 0.5 ;
+            case SOUTH: return hitX > 0.5 ;
+            case WEST: return hitZ > 0.5 ;
+        }
+        return false;
     }
 
     //boolean[y-level][x-pos][z-pos] - looks like straight short: {{{true}, {true}}}
