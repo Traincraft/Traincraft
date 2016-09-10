@@ -188,7 +188,7 @@ public class BlockTrack extends BlockContainerBase {
                     addCollisionBoxToList(pos, entityBox, collidingBoxes, new AxisAlignedBB(0, 0, 0, .5, end, 1));
                     break;
                 default:
-                    System.out.println(tileEntityTrack.getFacing());
+                    System.out.println(tileEntityTrack.getFacing()); //Never.
 
             }
 

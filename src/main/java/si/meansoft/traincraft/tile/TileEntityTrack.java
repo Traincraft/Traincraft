@@ -1,6 +1,7 @@
 package si.meansoft.traincraft.tile;
 
 import com.google.common.collect.Lists;
+import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagIntArray;
 import net.minecraft.nbt.NBTTagList;
@@ -47,11 +48,16 @@ public class TileEntityTrack extends TileEntityBase {
         this.aimsLeft = aimsLeft;
     }
 
+    @Override@MethodsReturnNonnullByDefault
+    public NBTTagCompound getUpdateTag() {
+        NBTTagCompound compound = super.getUpdateTag();
+        writeToNBT(compound, true);
+        return compound;
+    }
 
     @Override
     public void writeToNBT(NBTTagCompound compound, boolean isForSyncing) {
         compound.setInteger("blockIndex", blockIndex);
-        System.out.println("Writing " + facing + "/" + facing.ordinal());
         compound.setInteger("RailFacing", facing.ordinal());
         compound.setBoolean("aimsLeft", aimsLeft);
         if (blockIndex == 0) {
@@ -67,24 +73,8 @@ public class TileEntityTrack extends TileEntityBase {
 
     @Override
     public void readFromNBT(NBTTagCompound compound, boolean isForSyncing) {
-        if (!compound.hasKey("blockIndex")) {
-
-            for (String s : compound.getKeySet()){
-                System.out.println(s);
-            }
-
-            System.out.println("No blockIndex" + getPos());
-            blockIndex = -1;
-            facing = EnumFacing.NORTH;
-            return;
-        }
         blockIndex = compound.getInteger("blockIndex");
         this.facing = EnumFacing.values()[compound.getInteger("RailFacing")];
-        System.out.println(getPos());
-
-        if (facing == EnumFacing.DOWN)
-            facing = EnumFacing.NORTH;
-
 
         if (blockIndex == 0) { //I hold the data
             NBTTagList list = compound.getTagList("toDestroy", 4);
@@ -94,22 +84,6 @@ public class TileEntityTrack extends TileEntityBase {
                 toDestroy.add(BlockPos.fromLong(((NBTTagLong) list.get(i)).getLong()));
         } else
             defaultTrackPosition = BlockPos.fromLong(compound.getLong("defaultTrackPosition"));
-
-
-//            System.out.println(facing);
-//            aimsLeft = compound.getBoolean("aimsLeft");
-//            if (this.getWorld()==null)
-//                System.out.println("world");
-//            if (this.getWorld().getBlockState(this.getPos())==null)
-//                System.out.println("state");
-//
-//            if (((BlockTrack) this.getWorld().getBlockState(this.getPos()).getBlock()).trackType==null)
-//                System.out.println("trackType");
-//
-//
-//            toDestroy = ((BlockTrack) this.getWorld().getBlockState(this.getPos()).getBlock()).trackType.getGrid().getPosesToAffect(
-//                    this.getPos(), facing, aimsLeft);
-//            System.out.println(getPos().toString() + " has " + toDestroy.size() +" followers");
 
         super.readFromNBT(compound, isForSyncing);
     }
