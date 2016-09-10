@@ -7,13 +7,10 @@
   "mcversion": "${mcversion}",
   "url": "http://www.traincraft-mod.com",
   "updateUrl": "http://www.traincraft-mod.com/Traincraft/downloads.html",
-  "authorList": ["Mrbrutal, Spitfire4466"],
-  "credits": "The Forge, FML and MCP guys, for making this possible",
+  "authorList": ["canitzp", "Ellpeck", "MisterErwin"],
+  "credits": "Mrbrutal, Spitfire4466",
   "logoFile": "logo.png",
   "screenshots": [],
-  "dependencies": [
-    "MinecraftForge",
-    "MeanCore"
-  ]
+  "dependencies": ["MinecraftForge"]
 }
 ]

@@ -1,5 +1,6 @@
 {
   "__comment": "Designed by - with BDcraft Cubik PRO 0.96 Beta - http://bdcraft.net",
+  "ambientocclusion": false,
   "elements": [
     {
       "__comment": "Track_normal",

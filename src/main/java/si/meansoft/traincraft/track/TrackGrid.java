@@ -89,10 +89,10 @@ public class TrackGrid {
 
     public static TrackGrid getStraightSlope(int length){
         TrackBuilder builder = new TrackBuilder(1, length);
-        for(int i = 0; i < length - 1; i++){
+        builder.add(false);
+        for(int i = 1; i < length; i++){
             builder.add(true);
         }
-        builder.add(false);
         builder.setY(1);
         builder.add(true);
         for(int i = 1; i < length; i++){
