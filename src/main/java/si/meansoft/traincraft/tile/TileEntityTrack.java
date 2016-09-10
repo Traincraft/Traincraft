@@ -1,19 +1,18 @@
 package si.meansoft.traincraft.tile;
 
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 /**
  * @author canitzp
  */
 public class TileEntityTrack extends TileEntityBase{
 
-    public List<BlockPos> toDestroy = new ArrayList<>();
     public BlockPos defaultTrackPosition;
+
+    public int blockIndex=-1;
+    public EnumFacing facing;
 
     public TileEntityTrack(){
         super("Track");
@@ -23,8 +22,17 @@ public class TileEntityTrack extends TileEntityBase{
         this.defaultTrackPosition = defaultTrackPosition;
     }
 
-    public void create(List<BlockPos> poses){
-        this.toDestroy = poses;
+    @Override
+    public void writeToNBT(NBTTagCompound compound, boolean isForSyncing) {
+        compound.setInteger("blockIndex",blockIndex);
+        compound.setByte("facing", (byte) facing.getIndex());
+        super.writeToNBT(compound, isForSyncing);
     }
 
+    @Override
+    public void readFromNBT(NBTTagCompound compound, boolean isForSyncing) {
+        blockIndex = compound.getInteger("blockIndex");
+        facing = EnumFacing.getFront(compound.getByte("facing"));
+        super.readFromNBT(compound, isForSyncing);
+    }
 }
