@@ -79,12 +79,12 @@ public class BlockContainerBase extends BlockBase implements ITileEntityProvider
 
     @Override
     public int getMetaFromState(IBlockState state) {
-        return state.getValue(FACING).getIndex();
+        return state.getValue(FACING).getHorizontalIndex();
     }
 
     @Override
     public IBlockState getStateFromMeta(int meta) {
-        return getDefaultState().withProperty(FACING, EnumFacing.getFront(meta));
+        return getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta));
     }
 
     @Override
@@ -99,7 +99,7 @@ public class BlockContainerBase extends BlockBase implements ITileEntityProvider
 
     @Override
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
-        world.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing().getOpposite()), 2);
+        //world.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing().getOpposite()), 2);
     }
 
     @Override

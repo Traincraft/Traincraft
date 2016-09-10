@@ -14,7 +14,7 @@ public class ItemBase extends Item implements IRegistryEntry{
 
     public ItemBase(String name, boolean defaultRenderer){
         this.name = name;
-        this.setCreativeTab(Traincraft.tab);
+        this.setCreativeTab(Traincraft.generalTab);
         this.setUnlocalizedName(Traincraft.MODID + "." + name);
     }
 

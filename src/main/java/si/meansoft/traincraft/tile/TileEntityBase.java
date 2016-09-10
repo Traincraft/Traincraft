@@ -13,8 +13,14 @@ import si.meansoft.traincraft.Traincraft;
 import si.meansoft.traincraft.Util;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class TileEntityBase extends TileEntity implements IRegistryEntry{
+
+    private static List<Class<? extends TileEntity>> registered = new ArrayList<>();
 
     private String name;
 
@@ -83,6 +89,10 @@ public class TileEntityBase extends TileEntity implements IRegistryEntry{
 
     @Override
     public void ownRegistry(){
-        GameRegistry.registerTileEntity(this.getClass(), getName());
+        if(!registered.contains(this.getClass())){
+            GameRegistry.registerTileEntity(this.getClass(), getName());
+            registered.add(this.getClass());
+            System.out.println(getClass());
+        }
     }
 }

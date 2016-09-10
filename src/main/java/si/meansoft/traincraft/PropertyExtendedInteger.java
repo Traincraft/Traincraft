@@ -30,6 +30,11 @@ public class PropertyExtendedInteger extends PropertyHelper<Integer>{
         }
     }
 
+    private PropertyExtendedInteger(String name, ImmutableSet<Integer> allowedValues){
+        super(name, Integer.class);
+        this.allowedValues = allowedValues;
+    }
+
     @Override
     public Collection<Integer> getAllowedValues(){
         return this.allowedValues;
@@ -69,8 +74,13 @@ public class PropertyExtendedInteger extends PropertyHelper<Integer>{
         return 31 * super.hashCode() + this.allowedValues.hashCode();
     }
 
+    public PropertyExtendedInteger createCopyWithSameValues(String name){
+        return new PropertyExtendedInteger(name, this.allowedValues);
+    }
+
     public static PropertyExtendedInteger create(String name, int min, int max)
     {
         return new PropertyExtendedInteger(name, min, max);
     }
+
 }

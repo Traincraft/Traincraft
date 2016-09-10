@@ -1,50 +1,55 @@
 package si.meansoft.traincraft.blocks;
 
+import jline.internal.Nullable;
+import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.PropertyDirection;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import si.meansoft.traincraft.IRegistryEntry;
 import si.meansoft.traincraft.PropertyExtendedInteger;
+import si.meansoft.traincraft.Registry;
+import si.meansoft.traincraft.Traincraft;
+import si.meansoft.traincraft.items.ItemBlockBase;
+import si.meansoft.traincraft.items.ItemBlockTrack;
+import si.meansoft.traincraft.tile.TileEntityRail;
+import si.meansoft.traincraft.tile.TileEntityTrack;
 import si.meansoft.traincraft.track.TrackGrid;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author canitzp
  */
-public class BlockTrack extends BlockBase{
-
-    public static final PropertyExtendedInteger BASETRACK_X = PropertyExtendedInteger.create("BaseTrackX", -30000, 30000);
-    public static final PropertyExtendedInteger BASETRACK_Y = PropertyExtendedInteger.create("BaseTrackY", -30000, 30000);
-    public static final PropertyExtendedInteger BASETRACK_Z = PropertyExtendedInteger.create("BaseTrackZ", -30000, 30000);
+public class BlockTrack extends BlockContainerBase{
 
     public final TrackTypes trackType;
 
     public BlockTrack(TrackTypes trackType){
-        super(Material.IRON, trackType.name);
+        super(Material.IRON, "track" + trackType.name, TileEntityTrack.class);
+        this.setCreativeTab(Traincraft.trackTab);
         this.trackType = trackType;
     }
 
-    @Override
-    public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer){
-        if(!worldIn.isRemote){
-            if(meta == -1){
-                //this means that this is a additional track to base track. the base track positions are hitX, hitY, hitZ
-                return super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer).withProperty(BASETRACK_X, (int)hitX).withProperty(BASETRACK_Y, (int)hitY).withProperty(BASETRACK_Z, (int)hitZ);
-            }
-            //getBlocksToSet(TrackTypes.STRAIGHT_ULTIMATE);
-            EnumFacing dir = placer.getHorizontalFacing();
-            for(BlockPos pos1 : TrackGrid.STRAIGHT_SHORT.getPosesToAffect(pos, dir, faceLeft(dir, hitX, hitZ))){
-                worldIn.setBlockState(pos1, Blocks.PLANKS.getDefaultState());
-            }
+    public static void registerTracks(){
+        for(TrackTypes track : TrackTypes.values()){
+            Registry.register(track.block = new BlockTrack(track));
         }
-        return super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer);
     }
 
-    //Taken from TrackPlacing#getCurveDirection
+    @Override
+    public IRegistryEntry[] getRegisterElements(){
+        return new IRegistryEntry[]{this, new ItemBlockTrack(this), createNewTileEntity(null, 0)};
+    }
+
     private boolean faceLeft(EnumFacing facing, float hitX, float hitZ){
         switch(facing){
             case NORTH: return hitX < 0.5;
@@ -55,36 +60,44 @@ public class BlockTrack extends BlockBase{
         return false;
     }
 
-    //boolean[y-level][x-pos][z-pos] - looks like straight short: {{{true}, {true}}}
-    public static boolean[][][] getBlocksToSet(TrackTypes trackType){
-        if(trackType.name.startsWith("Straight")){
-            int[] l = trackType.length;
-            boolean[][][] ary = new boolean[1][l[0]-1][1];
-            for(int x = 0; x < (l[0]-1); x++){
-                ary[0][x][0] = true;
+    public boolean canPlaceTrack(World world, BlockPos pos, EntityLivingBase placer, ItemStack stack, float hitX, float hitY, float hitZ){
+            EnumFacing dir = placer.getHorizontalFacing();
+            for(BlockPos pos1 : this.trackType.grid.getPosesToAffect(pos, dir, faceLeft(dir, hitX, hitZ))){
+                System.out.println(world.getBlockState(pos1));
+                if(!world.getBlockState(pos1).getBlock().canReplace(world, pos1, dir, stack) || world.isAirBlock(pos1.down())){
+                    return false;
+                }
             }
-            System.out.println(Arrays.deepToString(ary));
-            return ary;
+
+        return true;
+    }
+
+    public List<BlockPos> placeTrack(World world, BlockPos pos, EntityLivingBase placer, float hitX, float hitY, float hitZ){
+        EnumFacing dir = placer.getHorizontalFacing();
+        List<BlockPos> poses = trackType.grid.getPosesToAffect(pos, dir, faceLeft(dir, hitX, hitZ));
+        for(BlockPos pos1 : poses){
+            //world.setBlockState(pos1, this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite()));
         }
-        //TODO predefined arrays for slopes, switches, etc
-        return null;
+        return poses;
     }
 
     public enum TrackTypes{
-        STRAIGHT_SINGLE("StraightSingle", new int[]{1, 0, 0}),
-        STRAIGHT_SHORT("StraightShort", new int[]{2, 0, 0}),
-        STRAIGHT_MIDDLE("StraightMiddle", new int[]{4, 0, 0}),
-        STRAIGHT_LONG("StraightLong", new int[]{6, 0, 0}),
-        STRAIGHT_EXTREME("StraightExtreme", new int[]{12, 0, 0}),
-        STRAIGHT_ULTIMATE("StraightUltimate", new int[]{18, 0, 0});
+        TEST_TRACK("TestTrack", TrackGrid.getStraightSlope(6)),
+
+        STRAIGHT_SINGLE("StraightSingle", TrackGrid.getStraightGrid(1)),
+        STRAIGHT_SHORT("StraightShort", TrackGrid.getStraightGrid(2)),
+        STRAIGHT_MIDDLE("StraightMiddle", TrackGrid.getStraightGrid(4)),
+        STRAIGHT_LONG("StraightLong", TrackGrid.getStraightGrid(6)),
+        STRAIGHT_EXTREME("StraightExtreme", TrackGrid.getStraightGrid(12)),
+        STRAIGHT_ULTIMATE("StraightUltimate", TrackGrid.getStraightGrid(18));
 
         public String name;
-        //{x, y, z}
-        public int[] length;
+        public TrackGrid grid;
+        public BlockTrack block;
 
-        TrackTypes(String name, int[] length){
+        TrackTypes(String name, TrackGrid grid){
             this.name = name;
-            this.length = length;
+            this.grid = grid;
         }
     }
 

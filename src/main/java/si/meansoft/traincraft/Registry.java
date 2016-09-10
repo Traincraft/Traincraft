@@ -42,7 +42,7 @@ public class Registry{
         register(refinedFuel = new FluidBase("refinedFuel", "fluidRefinedFuel", Material.WATER));
         register(oil = new FluidBase("oil", "fluidOil", Material.WATER));
 
-        register(new BlockTrack(BlockTrack.TrackTypes.STRAIGHT_SHORT));
+        BlockTrack.registerTracks();
     }
 
     public static <T extends IRegistryEntry> T[] register(T... entries){

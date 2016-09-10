@@ -1,9 +1,9 @@
 package si.meansoft.traincraft;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -11,8 +11,8 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import si.meansoft.traincraft.blocks.BlockTrack;
 import si.meansoft.traincraft.gen.WorldGen;
 import si.meansoft.traincraft.network.CommonProxy;
 import si.meansoft.traincraft.network.GuiHandler;
@@ -33,7 +33,7 @@ public class Traincraft {
     public static CommonProxy proxy;
 
     public static Logger logger;
-    public static CreativeTabs tab;
+    public static CreativeTabs generalTab, trackTab;
 
     static{
         FluidRegistry.enableUniversalBucket();
@@ -43,10 +43,16 @@ public class Traincraft {
     public void preInit(FMLPreInitializationEvent event) {
         logger = event.getModLog();
         logger.info("[Pre Initializing] Let the trains out! " + NAME + ": " + VERSION);
-        tab = new CreativeTabs("traincraftTab") {
+        generalTab = new CreativeTabs("traincraftGeneralTab") {
             @Override
             public Item getTabIconItem() {
                 return Item.getItemFromBlock(Registry.oilSand);
+            }
+        };
+        trackTab = new CreativeTabs("traincraftTrackTab"){
+            @Override
+            public Item getTabIconItem(){
+                return Item.getItemFromBlock(BlockTrack.TrackTypes.STRAIGHT_SINGLE.block);
             }
         };
         logger.info("[Pre Initializing] Register Blocks, Items, ...");

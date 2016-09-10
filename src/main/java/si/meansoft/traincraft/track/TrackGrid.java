@@ -14,36 +14,24 @@ import java.util.List;
  */
 public class TrackGrid {
 
-// @canitzp Your old thingy
-//    public static final TrackGrid STRAIGHT_SHORT = new TrackGrid(3, 4)
-//            .add(true, true, false)
-//            .add(false, true, true)
-//            .add(false, false, true)
-//            .add(false, false, true).finish();
-
     /* [X|Z]
      *      0|0 , 1|0 , 2|0
      *      0|1 , 1|1 , 2|1
      */
 
-    //Blame @canitzp as this is not that straight :)
-    public static final TrackGrid STRAIGHT_SHORT = new TrackBuilder(3, 4)
+    public static final TrackGrid TURN_SHORT = new TrackBuilder(3, 3)
             .add(false, true, true)
             .add(true, true, false)
             .add(true, false, false) //First true here is the placed block!
             .build();
 
-    /*
-    A test case to see if the rotation was right.
-    Might want to remove it at some point :)
-    public static final TrackGrid STRAIGHT_SHORT = new TrackBuilder(3, 5)
-            .add(true, true, true)
-            .add(true, false, false)
-            .add(true, false, false)
-            .add(true, false, false)
-            .add(true, false, false) //First true here is the placed block!
+    public static final TrackGrid testGrid = new TrackBuilder(5, 2)
+            .add(true, false, true, false, true)
+            .add(false, true, false, true, false)
+            .setY(1)
+            .add(false, true, false, true, false)
+            .add(true, false, true, false, true)
             .build();
-    */
 
     private final boolean[][][] list;
     private final int widthX, widthZ;
@@ -99,7 +87,6 @@ public class TrackGrid {
         return poses;
     }
 
-
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
@@ -109,6 +96,28 @@ public class TrackGrid {
             stringBuilder.append('\n');
         }
         return stringBuilder.toString();
+    }
+
+    public static TrackGrid getStraightGrid(int length){
+        TrackBuilder builder = new TrackBuilder(1, length);
+        for(int i = 0; i < length; i++){
+            builder.add(true);
+        }
+        return builder.build();
+    }
+
+    public static TrackGrid getStraightSlope(int length){
+        TrackBuilder builder = new TrackBuilder(1, length);
+        for(int i = 0; i < length - 1; i++){
+            builder.add(true);
+        }
+        builder.add(false);
+        builder.setY(1);
+        builder.add(true);
+        for(int i = 1; i < length; i++){
+            builder.add(false);
+        }
+        return builder.build();
     }
 
 

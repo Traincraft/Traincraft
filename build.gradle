@@ -13,6 +13,9 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: 'idea'
 
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
 repositories {
     maven {
         url "http://dvs1.progwml6.com/files/maven"

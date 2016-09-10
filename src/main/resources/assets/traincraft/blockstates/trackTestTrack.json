@@ -1,0 +1,25 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "traincraft:tracks/testTrack",
+    "textures": {
+      "particle": "actuallyadditions:blocks/blockAtomicReconstructor",
+      "down": "#particle",
+      "south": "#particle",
+      "east": "#particle",
+      "west": "#particle",
+      "texture": "traincraft:blocks/blockOilSand"
+    },
+    "transform": "forge:default-block"
+  },
+  "variants": {
+    "normal": [{}],
+    "inventory": [{}],
+    "facing": {
+      "north" : { "y" : 0 },
+      "south" : { "y" : 180 },
+      "west" : { "y" : 270 },
+      "east" : { "y" : 90 }
+    }
+  }
+}
