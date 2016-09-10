@@ -3,12 +3,8 @@
   "defaults": {
     "model": "traincraft:tracks/testTrack",
     "textures": {
-      "particle": "actuallyadditions:blocks/blockAtomicReconstructor",
-      "down": "#particle",
-      "south": "#particle",
-      "east": "#particle",
-      "west": "#particle",
-      "texture": "traincraft:blocks/blockOilSand"
+      "particle": "#texture",
+      "texture": "blocks/planks_oak"
     },
     "transform": "forge:default-block"
   },

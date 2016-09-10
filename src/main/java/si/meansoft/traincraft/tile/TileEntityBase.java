@@ -92,7 +92,6 @@ public class TileEntityBase extends TileEntity implements IRegistryEntry{
         if(!registered.contains(this.getClass())){
             GameRegistry.registerTileEntity(this.getClass(), getName());
             registered.add(this.getClass());
-            System.out.println(getClass());
         }
     }
 }

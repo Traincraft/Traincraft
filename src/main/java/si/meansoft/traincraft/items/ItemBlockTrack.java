@@ -14,6 +14,7 @@ import net.minecraft.world.World;
 import si.meansoft.traincraft.blocks.BlockTrack;
 import si.meansoft.traincraft.tile.TileEntityTrack;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -44,6 +45,14 @@ public class ItemBlockTrack extends ItemBlockBase{
                                     TileEntityTrack tile = (TileEntityTrack) worldIn.getTileEntity(pos1);
                                     if(tile != null){
                                         tile.create(pos);
+                                    }
+                                } else {
+                                    List<BlockPos> toDestroy = new ArrayList<>(settedBlocks);
+                                    System.out.println(pos1);
+                                    toDestroy.remove(pos);
+                                    TileEntityTrack tile = (TileEntityTrack) worldIn.getTileEntity(pos1);
+                                    if(tile != null){
+                                        tile.create(toDestroy);
                                     }
                                 }
                             }
