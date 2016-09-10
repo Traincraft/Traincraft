@@ -20,41 +20,44 @@ import java.util.List;
 /**
  * @author canitzp
  */
-public class ItemBlockTrack extends ItemBlockBase{
+public class ItemBlockTrack extends ItemBlockBase {
 
-    public ItemBlockTrack(Block block){
+    public ItemBlockTrack(Block block) {
         super(block);
     }
 
     @Override
-    public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ){
-        if(this.block instanceof BlockTrack){
+    public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+        if (this.block instanceof BlockTrack) {
             pos = pos.up();
             BlockTrack track = (BlockTrack) this.block;
-            if(track.canPlaceTrack(worldIn, pos, playerIn, stack, hitX, hitY, hitZ)){
-                if(playerIn.canPlayerEdit(pos, facing, stack) && worldIn.canBlockBePlaced(track, pos, false, facing, playerIn, stack)){
+            EnumFacing horizontalFacing = playerIn.getHorizontalFacing();
+            if (track.canPlaceTrack(worldIn, pos, playerIn, stack, hitX, hitY, hitZ)) {
+                if (playerIn.canPlayerEdit(pos, facing, stack) && worldIn.canBlockBePlaced(track, pos, false, facing, playerIn, stack)) {
                     IBlockState state = this.block.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, this.getMetadata(stack), playerIn);
-                    if(state != null){
+                    if (state != null) {
+                        boolean flipAlongX = track.trackType.isCurve() && track.faceLeft(horizontalFacing, hitX, hitZ);
                         List<BlockPos> settedBlocks = track.placeTrack(worldIn, pos, playerIn, hitX, hitY, hitZ);
-                        for(BlockPos pos1 : settedBlocks){
-                            if (placeBlockAt(stack, playerIn, worldIn, pos1, facing, hitX, hitY, hitZ, state)){
+                        int blockIndex = 0;
+                        for (BlockPos pos1 : settedBlocks) {
+                            if (placeBlockAt(stack, playerIn, worldIn, pos1, facing, hitX, hitY, hitZ, state)) {
                                 SoundType soundtype = worldIn.getBlockState(pos1).getBlock().getSoundType(worldIn.getBlockState(pos1), worldIn, pos1, playerIn);
                                 worldIn.playSound(playerIn, pos1, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
                                 --stack.stackSize;
-                                if(pos1 != pos){
+                                if (pos1 != pos) {
                                     TileEntityTrack tile = (TileEntityTrack) worldIn.getTileEntity(pos1);
-                                    if(tile != null){
-                                        tile.create(pos);
+                                    if (tile != null) {
+                                        tile.create(pos, blockIndex, horizontalFacing);
                                     }
                                 } else {
                                     List<BlockPos> toDestroy = new ArrayList<>(settedBlocks);
-                                    System.out.println(pos1);
                                     toDestroy.remove(pos);
                                     TileEntityTrack tile = (TileEntityTrack) worldIn.getTileEntity(pos1);
-                                    if(tile != null){
-                                        tile.create(toDestroy);
+                                    if (tile != null) {
+                                        tile.create(toDestroy, blockIndex, flipAlongX, horizontalFacing);
                                     }
                                 }
+                                blockIndex++;
                             }
                         }
                     }
