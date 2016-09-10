@@ -151,16 +151,15 @@ public class BlockTrack extends BlockContainerBase {
                 System.out.println("TileEntity is null");
                 return;
             }
-            if (tileEntityTrack.getFacing()==null){
+            if (tileEntityTrack.getFacing() == null) {
                 System.out.println("TileEntity#facing is null");
                 return;
             }
 
-            if (tileEntityTrack.getFacing()==EnumFacing.DOWN){
+            if (tileEntityTrack.getFacing() == EnumFacing.DOWN) {
                 System.out.println("TileEntity#facing is down");
                 return;
             }
-
 
 
             int blockIndex = tileEntityTrack.blockIndex;
@@ -198,12 +197,20 @@ public class BlockTrack extends BlockContainerBase {
 
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+        if (trackType.isSlope()) {
+            int slopeLength = this.trackType.getGrid().getBlockCount();
+            TileEntityTrack tileEntityTrack = ((TileEntityTrack) source.getTileEntity(pos));
+            if (tileEntityTrack == null) return FULL_BLOCK_AABB; //Items with NBT data will crash otherwise!
+            int blockIndex = tileEntityTrack.blockIndex;
+            double perBlockDiff = 1d / slopeLength;
+            return new AxisAlignedBB(0, 0, 0, 1, blockIndex * perBlockDiff + perBlockDiff * .5, 1);
+        }
         return FLAT_AABB;
     }
 
     @Override
     public AxisAlignedBB getSelectedBoundingBox(IBlockState state, World worldIn, BlockPos pos) {
-        return FLAT_AABB;
+        return super.getSelectedBoundingBox(state, worldIn, pos);
     }
 
     @Override

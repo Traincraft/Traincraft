@@ -45,18 +45,31 @@ public class TrackGrid {
         for (int y = 0; y < list.length; ++y) {
             boolean[][] map = list[y];
             if (flipAlongX)
-                for (int z = 0; z < widthZ; ++z) {
-                    for (int x = 0; x < widthX; ++x) {
-                        if (facing == EnumFacing.NORTH && map[z][widthX - 1 - x])
-                            poses.add(start.add(x - widthX + 1, y, z - widthZ + 1));
-                        else if (facing == EnumFacing.EAST && map[widthZ - z - 1][widthX - x - 1])
-                            poses.add(start.add(z, y, x - widthX + 1));
-                        else if (facing == EnumFacing.SOUTH && map[widthZ - z - 1][x])
-                            poses.add(start.add(x, y, z));
-                        else if (facing == EnumFacing.WEST && map[z][x])
-                            poses.add(start.add(z - widthZ + 1, y, x));
-
-                    }
+                switch (facing) {
+                    case NORTH:
+                        for (int z = widthZ - 1; z >= 0; z--) //To get the order right
+                            for (int x = widthX - 1; x >= 0; x--)
+                                if (map[z][widthX - 1 - x])
+                                    poses.add(start.add(x - widthX + 1, y, z - widthZ + 1));
+                        break;
+                    case SOUTH:
+                        for (int z = 0; z < widthZ; ++z)
+                            for (int x = 0; x < widthX; x++)
+                                if (map[widthZ - z - 1][x])
+                                    poses.add(start.add(x, y, z));
+                        break;
+                    case EAST:
+                        for (int z = 0; z < widthZ; ++z)
+                            for (int x = widthX-1; x >=0; --x)
+                                if (map[widthZ - z - 1][widthX - x - 1])
+                                    poses.add(start.add(z, y, x - widthX + 1));
+                        break;
+                    case WEST:
+                        for (int z = widthZ - 1; z >= 0; z--) //To get the order right
+                            for (int x = 0; x < widthX; x++)
+                                if (map[z][x])
+                                    poses.add(start.add(z - widthZ + 1, y, x));
+                        break;
                 }
             else
                 switch (facing) {
@@ -68,7 +81,7 @@ public class TrackGrid {
                         break;
                     case SOUTH:
                         for (int z = 0; z < widthZ; ++z)
-                            for (int x = 0; x < widthX; ++x)
+                            for (int x = widthX - 1; x >= 0; x--)
                                 if (map[widthZ - z - 1][widthX - x - 1])
                                     poses.add(start.add(x - widthX + 1, y, z));
                         break;
@@ -80,25 +93,12 @@ public class TrackGrid {
                         break;
                     case WEST:
                         for (int z = widthZ - 1; z >= 0; z--) //To get the order right
-                            for (int x = 0 ; x <widthX; ++x)
+                            for (int x = widthX - 1; x >= 0; x--)
                                 if (map[z][widthX - x - 1])
                                     poses.add(start.add(z - widthZ + 1, y, x - widthX + 1));
                         break;
 
                 }
-//                for (int z = 0; z < widthZ; ++z) {
-//                    for (int x = 0; x < widthX; ++x) {
-//                        if (facing == EnumFacing.NORTH && map[z][x])
-//                            poses.add(start.add(x, y, z - widthZ + 1));
-//                        else if (facing == EnumFacing.EAST && map[widthZ - z - 1][x])
-//                            poses.add(start.add(z, y, x));
-//                        else if (facing == EnumFacing.SOUTH && map[widthZ - z - 1][widthX - x - 1])
-//                            poses.add(start.add(x - widthX + 1, y, z));
-//                        else if (facing == EnumFacing.WEST && map[z][widthX - x - 1])
-//                            poses.add(sta1rt.add(z - widthZ + 1, y, x - widthX + 1));
-//
-//                    }
-//                }
         }
         return poses;
     }
@@ -142,7 +142,8 @@ public class TrackGrid {
      */
     public static TrackGrid getCurve(int radius) {
         boolean[][] data = new boolean[radius][radius];
-        double rad = radius - .5d, radSquared = rad * rad;
+        //The .2 is a random value. .5 causes rad=9 to be wrong. .2 seems to be wrong
+        double rad = radius - .2d, radSquared = rad * rad;
         for (int z = 0; z < radius; z++) {
             for (int x = 0; x < radius; x++) {
                 data[z][x] = TrackBuilder.shouldBeFilledFat(x, z, rad, radSquared);
