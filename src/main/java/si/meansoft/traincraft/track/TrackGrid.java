@@ -14,25 +14,6 @@ import java.util.List;
  */
 public class TrackGrid {
 
-    /* [X|Z]
-     *      0|0 , 1|0 , 2|0
-     *      0|1 , 1|1 , 2|1
-     */
-
-    public static final TrackGrid TURN_SHORT = new TrackBuilder(3, 3)
-            .add(false, true, true)
-            .add(true, true, false)
-            .add(true, false, false) //First true here is the placed block!
-            .build();
-
-    public static final TrackGrid testGrid = new TrackBuilder(5, 2)
-            .add(true, false, true, false, true)
-            .add(false, true, false, true, false)
-            .setY(1)
-            .add(false, true, false, true, false)
-            .add(true, false, true, false, true)
-            .build();
-
     private final boolean[][][] list;
     private final int widthX, widthZ;
 
@@ -92,7 +73,7 @@ public class TrackGrid {
         StringBuilder stringBuilder = new StringBuilder();
         boolean[][] a = list[0];
         for (boolean[] n : a) {
-            for (boolean aN : n) stringBuilder.append(aN ? 1 : 0);
+            for (boolean aN : n) stringBuilder.append(aN ? "X" : "_");
             stringBuilder.append('\n');
         }
         return stringBuilder.toString();
@@ -118,6 +99,23 @@ public class TrackGrid {
             builder.add(false);
         }
         return builder.build();
+    }
+
+    /**
+     * Builds a new curve with the radius @param {radius}. The quarter-circle is the top-left one of a circle,
+     * hollow and "fat".
+     * @param radius The radius
+     * @return the resulting TrackGrid
+     */
+    public static TrackGrid getCurve(int radius) {
+        boolean[][] data = new boolean[radius][radius];
+        double rad = radius-.5d, radSquared = rad*rad;
+        for (int z = 0; z < radius; z++) {
+            for (int x = 0; x < radius; x++) {
+                data[z][x] = TrackBuilder.shouldBeFilledFat(x, z, rad, radSquared);
+            }
+        }
+        return new TrackGrid(radius, radius, new boolean[][][]{data});
     }
 
 
@@ -184,5 +182,28 @@ public class TrackGrid {
             }
             return new TrackGrid(sizeX, sizeZ, ret);
         }
+
+        private static double distanceSquared(double x, double z, int radOffset) {
+            return Math.pow(radOffset - x, 2) + Math.pow(radOffset - z, 2);
+        }
+
+        private static boolean shouldBeFilled(int x, int z, double radius, double radiusSquared) {
+            return distanceSquared(x, z, (int) radius) <= radiusSquared;
+        }
+
+        private static boolean shouldBeFilledFat(int x, int z, double radius, double radiusSquared) {
+            return shouldBeFilled(x, z, radius, radiusSquared) && !(
+                    shouldBeFilled(x + 1, z, radius, radiusSquared) &&
+                            shouldBeFilled(x - 1, z, radius, radiusSquared) &&
+                            shouldBeFilled(x, z + 1, radius, radiusSquared) &&
+                            shouldBeFilled(x, z - 1, radius, radiusSquared) &&
+                            shouldBeFilled(x + 1, z + 1, radius, radiusSquared) &&
+                            shouldBeFilled(x + 1, z - 1, radius, radiusSquared) &&
+                            shouldBeFilled(x - 1, z - 1, radius, radiusSquared) &&
+                            shouldBeFilled(x - 1, z + 1, radius, radiusSquared)
+            );
+        }
     }
+
+
 }
