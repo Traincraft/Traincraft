@@ -33,34 +33,33 @@ public class ItemBlockTrack extends ItemBlockBase {
             BlockTrack track = (BlockTrack) this.block;
             EnumFacing horizontalFacing = playerIn.getHorizontalFacing();
             if (track.canPlaceTrack(worldIn, pos, playerIn, stack, hitX, hitY, hitZ)) {
-                if (playerIn.canPlayerEdit(pos, facing, stack) && worldIn.canBlockBePlaced(track, pos, false, facing, playerIn, stack)) {
+                if (stack.stackSize > 0 && playerIn.canPlayerEdit(pos, facing, stack) && worldIn.canBlockBePlaced(track, pos, false, facing, playerIn, stack)) {
                     IBlockState state = this.block.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, this.getMetadata(stack), playerIn);
                     if (state != null) {
                         boolean flipAlongX = track.trackType.isCurve() && track.faceLeft(horizontalFacing, hitX, hitZ);
                         List<BlockPos> settedBlocks = track.placeTrack(worldIn, pos, playerIn, hitX, hitY, hitZ);
                         int blockIndex = 0;
-                        for (BlockPos pos1 : settedBlocks) {
-                            if (placeBlockAt(stack, playerIn, worldIn, pos1, facing, hitX, hitY, hitZ, state)) {
-                                SoundType soundtype = worldIn.getBlockState(pos1).getBlock().getSoundType(worldIn.getBlockState(pos1), worldIn, pos1, playerIn);
-                                worldIn.playSound(playerIn, pos1, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
-                                --stack.stackSize;
-                                if(stack.stackSize <= 0){
-                                    stack = null;
-                                }
-                                if (pos1 != pos) {
-                                    TileEntityTrack tile = (TileEntityTrack) worldIn.getTileEntity(pos1);
-                                    if (tile != null) {
-                                        tile.create(pos, blockIndex, horizontalFacing);
+                        if(stack.stackSize >= settedBlocks.size()){
+                            for (BlockPos pos1 : settedBlocks) {
+                                if (placeBlockAt(stack, playerIn, worldIn, pos1, facing, hitX, hitY, hitZ, state)) {
+                                    SoundType soundtype = worldIn.getBlockState(pos1).getBlock().getSoundType(worldIn.getBlockState(pos1), worldIn, pos1, playerIn);
+                                    worldIn.playSound(playerIn, pos1, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
+                                    stack.stackSize--;
+                                    if (pos1 != pos) {
+                                        TileEntityTrack tile = (TileEntityTrack) worldIn.getTileEntity(pos1);
+                                        if (tile != null) {
+                                            tile.create(pos, blockIndex, horizontalFacing);
+                                        }
+                                    } else {
+                                        List<BlockPos> toDestroy = new ArrayList<>(settedBlocks);
+                                        toDestroy.remove(pos);
+                                        TileEntityTrack tile = (TileEntityTrack) worldIn.getTileEntity(pos1);
+                                        if (tile != null) {
+                                            tile.create(toDestroy, blockIndex, flipAlongX, horizontalFacing);
+                                        }
                                     }
-                                } else {
-                                    List<BlockPos> toDestroy = new ArrayList<>(settedBlocks);
-                                    toDestroy.remove(pos);
-                                    TileEntityTrack tile = (TileEntityTrack) worldIn.getTileEntity(pos1);
-                                    if (tile != null) {
-                                        tile.create(toDestroy, blockIndex, flipAlongX, horizontalFacing);
-                                    }
+                                    blockIndex++;
                                 }
-                                blockIndex++;
                             }
                         }
                     }
