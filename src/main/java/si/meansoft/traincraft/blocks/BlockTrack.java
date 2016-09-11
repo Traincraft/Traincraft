@@ -22,6 +22,7 @@ import si.meansoft.traincraft.Traincraft;
 import si.meansoft.traincraft.items.ItemBlockTrack;
 import si.meansoft.traincraft.tile.TileEntityTrack;
 import si.meansoft.traincraft.track.TrackGrid;
+import si.meansoft.traincraft.track.TrackPoint;
 
 import java.util.List;
 
@@ -33,7 +34,6 @@ public class BlockTrack extends BlockContainerBase {
     public final TrackTypes trackType;
 
     protected static final AxisAlignedBB FLAT_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.125D, 1.0D);
-
 
     public BlockTrack(TrackTypes trackType) {
         super(Material.IRON, "track" + trackType.getInternName(), TileEntityTrack.class);
@@ -102,16 +102,6 @@ public class BlockTrack extends BlockContainerBase {
 
     public List<BlockPos> placeTrack(World world, BlockPos pos, EntityLivingBase placer, float hitX, float hitY, float hitZ) {
         EnumFacing dir = placer.getHorizontalFacing();
-//<<<<<<< HEAD
-//        List<BlockPos> poses = trackType.grid.getPosesToAffect(pos, dir, trackType.isCurve() && faceLeft(dir, hitX, hitZ));
-//        int index = 0;
-//        for (BlockPos pos1 : poses) {
-//            world.setBlockState(pos1, this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite()));
-//            //TODO: blockIndex for curves is just wrong!
-//            TileEntityTrack tileEntityTrack = ((TileEntityTrack) world.getTileEntity(pos1));
-//            tileEntityTrack.blockIndex = index++;
-//            tileEntityTrack.facing = dir;
-//=======
         return trackType.grid.getPosesToAffect(pos, dir, trackType.isCurve() && faceLeft(dir, hitX, hitZ));
     }
 
@@ -136,7 +126,9 @@ public class BlockTrack extends BlockContainerBase {
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
         if (!worldIn.isRemote) {
             TileEntityTrack tileEntityTrack = (TileEntityTrack) worldIn.getTileEntity(pos);
-            System.out.println(tileEntityTrack == null ? "-null-" : "IndexOfTrack:" + tileEntityTrack.blockIndex);
+            //System.out.println(tileEntityTrack == null ? "-null-" : "IndexOfTrack:" + tileEntityTrack.blockIndex);
+            //System.out.println(tileEntityTrack == null ? "-null-" : );
+            System.out.println("Next position: " + tileEntityTrack.sendRequestToTracks(playerIn.getHorizontalFacing().getOpposite()));
             return true;
         }
         return super.onBlockActivated(worldIn, pos, state, playerIn, hand, heldItem, side, hitX, hitY, hitZ);
@@ -216,6 +208,28 @@ public class BlockTrack extends BlockContainerBase {
     @Override
     public boolean isPassable(IBlockAccess worldIn, BlockPos pos) {
         return true;
+    }
+
+    /**
+     * The method to set the waypoints for this track. If the result is null the cart can't drive over the track.
+     * @param world The world this track is placed in
+     * @param pos The position of this block
+     * @param state The current state for this block
+     * @param blockIndex
+     * @return The exact coordinates packet into a TrackPoint
+     */
+    @Nullable
+    public TrackPoint getWaypoints(World world, BlockPos pos, IBlockState state, int blockIndex){
+        if(this.trackType.isSlope()){
+            double perBlockDiff = 1d / this.trackType.getGrid().getBlockCount();
+            float start = (float) (blockIndex * perBlockDiff);
+            return new TrackPoint(pos).addPoint(0, 8, start * 16, 8);
+        }
+        return blockIndex == 0 ? new TrackPoint(pos).addPoint(0, 8, 1, 8) : null;
+    }
+
+    public boolean canDriveOver(TileEntityTrack thisTrack, TileEntityTrack incomingTrack){
+        return thisTrack.getFacing().equals(incomingTrack.getFacing()) || thisTrack.getFacing().getOpposite().equals(incomingTrack.getFacing());
     }
 
     public enum TrackTypes {

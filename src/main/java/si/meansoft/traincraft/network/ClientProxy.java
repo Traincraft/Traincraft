@@ -18,9 +18,11 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import si.meansoft.traincraft.Traincraft;
 import si.meansoft.traincraft.client.renderer.TestVecRenderer;
+import si.meansoft.traincraft.tile.TileEntityTrack;
 import si.meansoft.traincraft.tile.TileEntityWindmill;
 
 import java.util.Map;
@@ -33,12 +35,18 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void preInit(FMLPreInitializationEvent event) {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityWindmill.class, new TestVecRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTrack.class, new TileEntityTrack.TrackRenderer());
         for(Fluid fluid : fluids){
             this.registerFluidRenderer(fluid);
         }
         for(Map.Entry<ItemStack, ModelResourceLocation> entry : forgeRender.entrySet()){
             this.registerForgeRenderer(entry.getKey(), entry.getValue());
         }
+    }
+
+    @Override
+    public void postInit(FMLPostInitializationEvent event){
+        super.postInit(event);
     }
 
     private void registerForgeRenderer(ItemStack stack, ModelResourceLocation location){
