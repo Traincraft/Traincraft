@@ -1,5 +1,7 @@
 package si.meansoft.traincraft.blocks;
 
+import java.util.List;
+
 import jline.internal.Nullable;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -24,8 +26,6 @@ import si.meansoft.traincraft.items.ItemBlockTrack;
 import si.meansoft.traincraft.tile.TileEntityTrack;
 import si.meansoft.traincraft.track.TrackGrid;
 import si.meansoft.traincraft.track.TrackPoint;
-
-import java.util.List;
 
 /**
  * @author canitzp
@@ -201,7 +201,13 @@ public class BlockTrack extends BlockContainerBase {
             if (tileEntityTrack == null) return FULL_BLOCK_AABB; //Items with NBT data will crash otherwise!
             int blockIndex = tileEntityTrack.blockIndex;
             double perBlockDiff = 1d / slopeLength;
-            return new AxisAlignedBB(0, 0, 0, 1, blockIndex * perBlockDiff + perBlockDiff * .5, 1);
+			// 0.125 is the minimum Bounding-Box-Value for the Tracks. It's identical with
+			// Vanilla-Rails. 1 is the maximal Bounding-Box-Value. If it's planned it can be changed
+			// with an int-Value we decide individually on every Slope. For Slopes that are 2-Blocks
+			// height
+			return new AxisAlignedBB(0, 0, 0, 1,
+					Math.max(0.125, Math.min(1, blockIndex * perBlockDiff + perBlockDiff * .5)), 1);
+			
         }
         return FLAT_AABB;
     }

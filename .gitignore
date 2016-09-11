@@ -1,7 +1,21 @@
-/build
-/Traincraft-5.iws
-/out
-/.gradle
-/run
-/Traincraft-5.ipr
-/Traincraft-5.iml
+# eclipse
+bin
+*.launch
+.settings
+.metadata
+eclipse
+
+# idea
+out
+.idea
+*.iws
+*.iml
+*.ipr
+
+# gradle
+build
+.gradle
+
+# other
+run
+lib
