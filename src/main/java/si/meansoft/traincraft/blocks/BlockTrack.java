@@ -19,6 +19,7 @@ import net.minecraft.world.World;
 import si.meansoft.traincraft.IRegistryEntry;
 import si.meansoft.traincraft.Registry;
 import si.meansoft.traincraft.Traincraft;
+import si.meansoft.traincraft.api.AbstractBlockTrack;
 import si.meansoft.traincraft.items.ItemBlockTrack;
 import si.meansoft.traincraft.tile.TileEntityTrack;
 import si.meansoft.traincraft.track.TrackGrid;
@@ -28,7 +29,9 @@ import java.util.List;
 
 /**
  * @author canitzp
+ * @deprecated use the new AbstractBlockTrack or ITraincraftTrack
  */
+@Deprecated
 public class BlockTrack extends BlockContainerBase {
 
     public final TrackTypes trackType;
@@ -43,7 +46,10 @@ public class BlockTrack extends BlockContainerBase {
 
     public static void registerTracks() {
         for (TrackTypes track : TrackTypes.values()) {
-            Registry.register(track.block = new BlockTrack(track));
+            if(track.getInternName().contains("Straight")){
+                Registry.register(track.block = new BlockTrackStraight(track));
+            } else
+                Registry.register(new BlockTrack(track));
         }
     }
 
@@ -201,11 +207,6 @@ public class BlockTrack extends BlockContainerBase {
     }
 
     @Override
-    public AxisAlignedBB getSelectedBoundingBox(IBlockState state, World worldIn, BlockPos pos) {
-        return super.getSelectedBoundingBox(state, worldIn, pos);
-    }
-
-    @Override
     public boolean isPassable(IBlockAccess worldIn, BlockPos pos) {
         return true;
     }
@@ -246,7 +247,7 @@ public class BlockTrack extends BlockContainerBase {
 
         private final String internName;
         private final TrackGrid grid;
-        protected BlockTrack block;
+        protected AbstractBlockTrack block;
 
         private final boolean isCurve, isSlope;
 
@@ -270,7 +271,7 @@ public class BlockTrack extends BlockContainerBase {
             return grid;
         }
 
-        public BlockTrack getBlock() {
+        public AbstractBlockTrack getBlock() {
             return block;
         }
 

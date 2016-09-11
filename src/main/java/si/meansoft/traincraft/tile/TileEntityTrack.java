@@ -14,7 +14,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import si.meansoft.traincraft.blocks.BlockTrack;
+import si.meansoft.traincraft.api.AbstractBlockTrack;
 import si.meansoft.traincraft.track.TrackPoint;
 
 import java.util.ArrayList;
@@ -56,8 +56,8 @@ public class TileEntityTrack extends TileEntityBase {
     public void getWaypoints(){
         if(this.getWorld() != null){
             IBlockState state = this.getWorld().getBlockState(this.getPos());
-            if(state.getBlock() instanceof BlockTrack){
-                this.waypoints = ((BlockTrack) state.getBlock()).getWaypoints(this.getWorld(), this.getPos(), state, blockIndex);
+            if(state.getBlock() instanceof AbstractBlockTrack){
+                this.waypoints = ((AbstractBlockTrack) state.getBlock()).getWaypoints(this.getWorld(), this.getPos(), state, blockIndex);
             }
         }
     }
@@ -118,33 +118,29 @@ public class TileEntityTrack extends TileEntityBase {
             }
         }
         for(BlockPos pos : poses){
-            if(canDrive(this.worldObj, pos, from)){
+            if(canDrive(this.worldObj, pos)){
                 return pos;
             }
         }
         return getPos();
     }
 
-    private boolean canDrive(World world, BlockPos pos, EnumFacing from){
+    private boolean canDrive(World world, BlockPos pos){
         TileEntity tile = world.getTileEntity(pos);
         if(tile != null && tile instanceof TileEntityTrack){
             IBlockState state = world.getBlockState(this.pos);
-            if(state.getBlock() instanceof BlockTrack){
-                return ((BlockTrack) state.getBlock()).canDriveOver(this, (TileEntityTrack) tile);
+            if(state.getBlock() instanceof AbstractBlockTrack){
+                return ((AbstractBlockTrack) state.getBlock()).canDriveOver(this, (TileEntityTrack) tile);
             }
         }
         return false;
     }
 
     public static class TrackRenderer extends TileEntitySpecialRenderer<TileEntityTrack>{
-        private List<Float[]> cachedWaypoints;
         @Override
         public void renderTileEntityAt(TileEntityTrack te, double x, double y, double z, float partialTicks, int destroyStage){
             super.renderTileEntityAt(te, x, y, z, partialTicks, destroyStage);
-            if(cachedWaypoints == null && te.waypoints != null){
-                cachedWaypoints = te.waypoints.getSortedCoordinates();
-            }
-            if(cachedWaypoints != null){
+            if(te.waypoints != null){
                 Tessellator tessy = Tessellator.getInstance();
                 VertexBuffer buffer = tessy.getBuffer();
                 GlStateManager.pushMatrix();
