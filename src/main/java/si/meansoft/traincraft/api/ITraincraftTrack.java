@@ -5,9 +5,9 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import si.meansoft.traincraft.blocks.BlockTrack;
 import si.meansoft.traincraft.tile.TileEntityTrack;
 import si.meansoft.traincraft.track.TrackPoint;
+import si.meansoft.traincraft.track.TrackType;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -17,11 +17,11 @@ import java.util.List;
  */
 public interface ITraincraftTrack{
 
-    BlockTrack.TrackTypes getTrackType();
+    TrackType getTrackType();
 
-    boolean canPlaceTrack(World world, BlockPos pos, EntityLivingBase placer, ItemStack stack, float hitX, float hitY, float hitZ);
+    boolean canPlaceTrack(World world, BlockPos pos, EntityLivingBase placer, ItemStack stack, float hitX, float hitY, float hitZ, boolean flipAlongX);
 
-    List<BlockPos> getPositionToPlace(World world, BlockPos pos, EntityLivingBase placer, float hitX, float hitY, float hitZ);
+    List<BlockPos> getPositionToPlace(World world, BlockPos pos, EntityLivingBase placer, float hitX, float hitY, float hitZ, boolean flipAlongX);
 
     void removeTrack(World world, BlockPos pos, boolean dropBlocks);
 

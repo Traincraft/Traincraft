@@ -11,7 +11,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import si.meansoft.traincraft.api.AbstractBlockTrack;
+import si.meansoft.traincraft.api.ITraincraftTrack;
 import si.meansoft.traincraft.tile.TileEntityTrack;
 
 import java.util.ArrayList;
@@ -28,16 +28,16 @@ public class ItemBlockTrack extends ItemBlockBase {
 
     @Override
     public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-        if (this.block instanceof AbstractBlockTrack) {
+        if (this.block instanceof ITraincraftTrack) {
             pos = pos.up();
-            AbstractBlockTrack track = (AbstractBlockTrack) this.block;
+            ITraincraftTrack track = (ITraincraftTrack) this.block;
             EnumFacing horizontalFacing = playerIn.getHorizontalFacing();
-            if (track.canPlaceTrack(worldIn, pos, playerIn, stack, hitX, hitY, hitZ)) {
-                if (stack.stackSize > 0 && playerIn.canPlayerEdit(pos, facing, stack) && worldIn.canBlockBePlaced(track, pos, false, facing, playerIn, stack)) {
+            boolean flipAlongX = track.getTrackType().isCurve() && faceLeft(horizontalFacing, hitX, hitZ);
+            if (track.canPlaceTrack(worldIn, pos, playerIn, stack, hitX, hitY, hitZ, flipAlongX)) {
+                if (stack.stackSize > 0 && playerIn.canPlayerEdit(pos, facing, stack) && worldIn.canBlockBePlaced(this.block, pos, false, facing, playerIn, stack)) {
                     IBlockState state = this.block.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, this.getMetadata(stack), playerIn);
                     if (state != null) {
-                        boolean flipAlongX = track.getTrackType().isCurve() && track.faceLeft(horizontalFacing, hitX, hitZ);
-                        List<BlockPos> settedBlocks = track.getPositionToPlace(worldIn, pos, playerIn, hitX, hitY, hitZ);
+                        List<BlockPos> settedBlocks = track.getPositionToPlace(worldIn, pos, playerIn, hitX, hitY, hitZ, flipAlongX);
                         int blockIndex = 0;
                         if(playerIn.isCreative() || stack.stackSize >= settedBlocks.size()){
                             for (BlockPos pos1 : settedBlocks) {
@@ -68,6 +68,20 @@ public class ItemBlockTrack extends ItemBlockBase {
             return EnumActionResult.SUCCESS;
         }
         return EnumActionResult.FAIL;
+    }
+
+    protected boolean faceLeft(EnumFacing facing, float hitX, float hitZ) {
+        switch (facing) {
+            case NORTH:
+                return hitX < 0.5;
+            case EAST:
+                return hitZ < 0.5;
+            case SOUTH:
+                return hitX > 0.5;
+            case WEST:
+                return hitZ > 0.5;
+        }
+        return false;
     }
 
 }

@@ -1,7 +1,6 @@
 package si.meansoft.traincraft.blocks;
 
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import si.meansoft.traincraft.Registry;
@@ -17,23 +16,18 @@ import javax.annotation.Nullable;
 /**
  * @author canitzp
  */
-public class BlockTrackStraight extends AbstractBlockTrack{
+public class BlockTrackCurve extends AbstractBlockTrack{
 
-    public BlockTrackStraight(TrackType type){
+    public BlockTrackCurve(TrackType type){
         super(type, TileEntityTrack.class);
     }
 
     public static void register(){
         for(TrackType type : TrackType.values()){
-            if(type.isStraight()){
-                Registry.register(type.setBlock(new BlockTrackStraight(type)));
+            if(type.isCurve()){
+                Registry.register(type.setBlock(new BlockTrackCurve(type)));
             }
         }
-    }
-
-    @Override
-    protected ItemBlockBase getItemBlock(AbstractBlockTrack track){
-        return new ItemBlockTrack(this);
     }
 
     @Override
@@ -42,8 +36,8 @@ public class BlockTrackStraight extends AbstractBlockTrack{
         if (tile != null) {
             if (tile.defaultTrackPosition != null) {
                 IBlockState state = world.getBlockState(tile.defaultTrackPosition);
-                if (state.getBlock() instanceof BlockTrackStraight) {
-                    ((BlockTrackStraight) state.getBlock()).removeTrack(world, tile.defaultTrackPosition, dropBlocks);
+                if (state.getBlock() instanceof BlockTrackCurve) {
+                    ((BlockTrackCurve) state.getBlock()).removeTrack(world, tile.defaultTrackPosition, dropBlocks);
                 }
             } else if (!tile.toDestroy.isEmpty()) {
                 for (BlockPos pos1 : tile.toDestroy) {
@@ -57,17 +51,18 @@ public class BlockTrackStraight extends AbstractBlockTrack{
     @Nullable
     @Override
     public TrackPoint getWaypoints(World world, BlockPos pos, IBlockState state, int blockIndex){
-        return new TrackPoint(pos).addPoint(0, 8, 1, 8);
+        //TODO
+        return null;
     }
 
     @Override
-    public boolean canDriveOver(TileEntityTrack currentTrack, TileEntityTrack incomingTrack){
-        return currentTrack.getFacing().equals(incomingTrack.getFacing()) || currentTrack.getFacing().getOpposite().equals(incomingTrack.getFacing());
+    public boolean canDriveOver(TileEntityTrack thisTrack, TileEntityTrack incomingTrack){
+        //TODO
+        return true;
     }
 
-    @Nullable
     @Override
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos){
-        return FLAT_AABB;
+    protected ItemBlockBase getItemBlock(AbstractBlockTrack track){
+        return new ItemBlockTrack(this);
     }
 }

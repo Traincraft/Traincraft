@@ -11,10 +11,10 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.apache.logging.log4j.Logger;
-import si.meansoft.traincraft.blocks.BlockTrack;
 import si.meansoft.traincraft.gen.WorldGen;
 import si.meansoft.traincraft.network.CommonProxy;
 import si.meansoft.traincraft.network.GuiHandler;
+import si.meansoft.traincraft.track.TrackType;
 
 @Mod(modid = Traincraft.MODID, name= Traincraft.NAME, version = Traincraft.VERSION)
 public class Traincraft {
@@ -51,7 +51,7 @@ public class Traincraft {
         trackTab = new CreativeTabs("traincraftTrackTab"){
             @Override
             public Item getTabIconItem(){
-                return Item.getItemFromBlock(BlockTrack.TrackTypes.STRAIGHT_SINGLE.getBlock());
+                return Item.getItemFromBlock(TrackType.STRAIGHT_SINGLE.getBlock());
             }
         };
         logger.info("[Pre Initializing] Register Blocks, Items, ...");
