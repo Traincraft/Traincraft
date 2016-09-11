@@ -186,11 +186,11 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 			if (BuilderInvent[0] != null) {
 				if ((FuelHandler.steamFuelLast(BuilderInvent[0])>0) && getFuel() + 300 < maxFuel) {
 					fuelTrain += 300;
-					decrStackInInvent(0, 1, 1);
+					decrStackSize(0, 1);
 				}
 				if (BuilderInvent[0] != null && PluginRailcraft.RailcraftParts.INGOT_STEEL.stack != null && BuilderInvent[0].isItemEqual(PluginRailcraft.RailcraftParts.INGOT_STEEL.stack) && getFuel() + 800 < maxFuel) {
 					fuelTrain += 800;
-					decrStackInInvent(0, 1, 1);
+					decrStackSize(0, 1);
 				}
 				dataWatcher.updateObject(24, fuelTrain);
 			}
@@ -298,8 +298,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 				BuilderInvent[i] = null;
 			}
 			return itemstack1;
-		}
-		else {
+		} else {
 			return null;
 		}
 	}
@@ -522,7 +521,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 		// ItemStack itemDug = (new ItemStack(blockNow, 1, 0));
 		AxisAlignedBB box2 = null;
 		box2 = boundingBox.expand(4.60000000298023224D, 4.60000000298023224D, 4.60000000298023224D);
-		List lis = worldObj.getEntitiesWithinAABBExcludingEntity(this, box2);
+		@SuppressWarnings("rawtypes") List lis = worldObj.getEntitiesWithinAABBExcludingEntity(this, box2);
 
 		if (lis != null && lis.size() > 0) {
 			for (int j1 = 0; j1 < lis.size(); j1++) {
@@ -607,36 +606,6 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 			return true;
 		}
 		return false;
-	}
-
-	/**
-	 * Is the block in the inventory autorized to be put down? This doesn't seem to work properly, So I had another system going
-	 */
-	private boolean isAutorizedBlock(int i) {
-		boolean is = false;
-		if ((!UnAuthorizedBlock(i))) {
-			is = true;
-		}
-		return is;
-	}
-
-	private boolean isOverheadLine(int i) {
-		/* if(InitOverheadLine.lineItem==null){ return false; } return i==InitOverheadLine.lineItem.itemID; */
-		return false;
-	}
-
-	/* Is it a forbidden block? */
-	private boolean UnAuthorizedBlock(int i) {
-		return i == 57 || i == 42 || i == 41 || i == 81 || i == 56 || i == 21 || i == 16 || i == 15 || i == 14 || i == 116 || i == 114 || i == 113 || i == 111 || i == 109 || i == 108 || i == 107 || i == 106 || i == 31 || i == 30 || i == 26 || i == 18 || i == 7 || i == 6 || i == 37 || i == 38 || i == 39 || i == 40 || i == 43 || i == 51 || i == 52 || i == 53 || i == 55 || i == 57 || i == 63 || i == 64 || i == 67 || i == 68 || i == 70 || i == 71 || i == 72 || i == 77 || i == 78 || i == 81 || i == 83 || i == 92 || i == 95 || BuilderOreHandler.isOre(i);
-	}
-
-	private void decrStackInInvent(int slot, int num, int random) {
-		if (random == 1) {
-			decrStackSize(slot, num);
-		}
-		if (rand.nextInt(random) == 0) {
-			decrStackSize(slot, num);
-		}
 	}
 
 	/**
@@ -847,7 +816,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 			// worldObj.getBlockId(i-1,j+3,k) == Block.dirt.blockID || worldObj.getBlockId(i-1,j+3,k) == 8 || worldObj.getBlockId(i-1,j+3,k) == 9 || worldObj.getBlockId(i-1,j+3,k) == 10 || worldObj.getBlockId(i-1,j+3,k) == 11 || worldObj.getBlockId(i-1,j+3,k) == 12 || worldObj.getBlockId(i-1,j+3,k) == 13 || worldObj.getBlockId(i-1,j+3,k) == 1){
 			getBlockList(worldObj, i, j, k);
 			worldObj.setBlock(i, j, k, Block.getBlockFromItem(block.getItem()), block.getItem().getMetadata(block.getItemDamage()), 3);
-			decrStackInInvent(inv, 1, 1);
+			decrStackSize(inv, 1);
 		}
 	}
 
@@ -944,19 +913,6 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 			}
 		}
 		return true;
-	}
-
-	/**
-	 * Gets if we can place a torch on a block.
-	 */
-	private boolean canPlaceTorchOn(World par1World, int par2, int par3, int par4) {
-		if (World.doesBlockHaveSolidTopSurface(par1World,par2, par3, par4)) {
-			return true;
-		}
-		else {
-			int var5 = Block.getIdFromBlock(par1World.getBlock(par2, par3, par4));
-			return (Block.getBlockById(var5) != null && Block.getBlockById(var5).canPlaceTorchOnTop(par1World, par2, par3, par4));
-		}
 	}
 
 	private void digOnXAxis(int i, int j, int k, int d, int iX, int hY) {
@@ -1112,7 +1068,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 			
 			if (upperCenterBlockStack != null && Item.getIdFromItem(upperCenterBlockStack.getItem()) != 0 && worldObj.getBlock(i + iX, j + hY + 4, k) != Block.getBlockFromItem(upperCenterBlockStack.getItem())) {
 				worldObj.setBlock(i + iX, j + hY + 4, k, Block.getBlockFromItem(upperCenterBlockStack.getItem()), upperCenterBlockStack.getItem().getMetadata(upperCenterBlockStack.getItemDamage()), 3);
-				decrStackInInvent(5, 1, 1);
+				decrStackSize(5, 1);
 			}
 			if (upperCenterBlockStack == null)
 				worldObj.setBlock(i + iX, j + hY + 4, k, Blocks.stone);
@@ -1286,7 +1242,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 			if(worldObj.setBlock(i - 1, j + hY - 1, k + kZ, Block.getBlockFromItem(tunnelBlockStack.getItem()), tunnelBlockStack.getItem().getMetadata(tunnelBlockStack.getItemDamage()), 3))decrStackSize(7,1);
 			if (upperCenterBlockStack != null && Item.getIdFromItem(upperCenterBlockStack.getItem()) != 0 && worldObj.getBlock(i, j + hY + 4, k + kZ) != Block.getBlockFromItem(upperCenterBlockStack.getItem())) {
 				worldObj.setBlock(i, j + hY + 4, k + kZ, Block.getBlockFromItem(upperCenterBlockStack.getItem()), upperCenterBlockStack.getItem().getMetadata(upperCenterBlockStack.getItemDamage()), 3);
-				decrStackInInvent(5, 1, 1);
+				decrStackSize(5, 1);
 			}
 			if (upperCenterBlockStack == null)
 				worldObj.setBlock(i, j + hY + 4, k + kZ, Block.getBlockById(1));
@@ -1332,16 +1288,6 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 		int eastDir = 1;
 		int westDir = 3;
 
-		int block1 = 0;
-		int block2 = 0;
-		int block3 = 0;
-		int block4 = 0;
-		int block5 = 0;
-		int block6 = 0;
-		int block7 = 0;
-		int block8 = 0;
-		int block9 = 0;
-
 		//checks the blocks to lay down
 		checkBlock();
 		//checks the tracks in slot 1
@@ -1376,21 +1322,23 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 			if (hY > -1 && underBlockStack != null && worldObj.getBlock(i + iX, j - 1 + hY, k + kZ) != Block.getBlockFromItem(underBlockStack.getItem()) && worldObj.getBlock(i + iX, j - 1 + hY, k + kZ) != Block.getBlockFromItem(tracksStack.getItem())) {
 				getBlockList(worldObj, i + iX, j - 1 + hY, k + kZ);
 				worldObj.setBlock(i + iX, j - 1 + hY, k + kZ, Block.getBlockFromItem(underBlockStack.getItem()), underBlockStack.getItem().getMetadata(underBlockStack.getItemDamage()), 3);
-				decrStackInInvent(3, 1, 1);// decr underblock
+				decrStackSize(3, 1);// decr underblock
 			}
 
 			//builder is going down, different code is required
 			if (hY < 0 && underBlockStack != null && worldObj.getBlock(i, j - 1 + hY, k) != Block.getBlockFromItem(underBlockStack.getItem()) && worldObj.getBlock(i, j - 1 + hY, k) != Block.getBlockFromItem(tracksStack.getItem())) {
 				getBlockList(worldObj, i, j - 1 + hY, k);
 				worldObj.setBlock(i, j - 1 + hY, k, Block.getBlockFromItem(underBlockStack.getItem()), underBlockStack.getItem().getMetadata(underBlockStack.getItemDamage()), 3);// changes the block under the builder
-				decrStackInInvent(3, 1, 1);// decr underblock
+				decrStackSize(3, 1);// decr underblock
 			}
 
 			//placing the block (not the one right under the track but below)
 			if (underBlock2Stack != null && worldObj.getBlock(i + iX, j - 2 + hY, k + kZ) != Block.getBlockFromItem(underBlock2Stack.getItem())) {
 				getBlockList(worldObj, i + iX, j - 2 + hY, k + kZ);
-				worldObj.setBlock(i + iX, j - 2 + hY, k + kZ, Block.getBlockFromItem(underBlock2Stack.getItem()), underBlockStack.getItem().getMetadata(underBlockStack.getItemDamage()), 3);// changes the second block under
-				decrStackInInvent(2, 1, 1);//decr underblock2
+				// changes the second block under the rails
+				worldObj.setBlock(i + iX, j - 2 + hY, k + kZ, Block.getBlockFromItem(underBlock2Stack.getItem()),
+						underBlock2Stack.getItem().getMetadata(underBlock2Stack.getItemDamage()), 3);
+				decrStackSize(2, 1);// decr underblock2
 			}
 
 			int d = 0;
@@ -1433,7 +1381,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 				trackfuel--;
 
 				if (!worldObj.isRemote) {
-					decrStackInInvent(1, 1, 1);
+					decrStackSize(1, 1);
 				}
 				RailTools.placeRailAt(tracksStack.copy(), worldObj, i, j + hY, k);
 			}
@@ -1442,7 +1390,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 				trackfuel--;
 
 				if (!worldObj.isRemote) {
-					decrStackInInvent(1, 1, 1);
+					decrStackSize(1, 1);
 				}
 				RailTools.placeRailAt(tracksStack.copy(), worldObj, i, j + hY, k);
 
@@ -1452,7 +1400,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 				checkForTracks();
 				trackfuel--;
 				if (!worldObj.isRemote) {
-					decrStackInInvent(1, 1, 1);
+					decrStackSize(1, 1);
 				}
 				RailTools.placeRailAt(tracksStack.copy(), worldObj, i + iX, j + hY, k + kZ);
 			}
