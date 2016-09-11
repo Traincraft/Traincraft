@@ -11,6 +11,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.apache.logging.log4j.Logger;
+import si.meansoft.traincraft.events.Events;
 import si.meansoft.traincraft.gen.WorldGen;
 import si.meansoft.traincraft.network.CommonProxy;
 import si.meansoft.traincraft.network.GuiHandler;
@@ -66,6 +67,8 @@ public class Traincraft {
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
         logger.info("[Initializing] Starting phase");
+        logger.info("[Initializing] Adding events");
+        Events.init(event);
         logger.info("[Initializing] Creating recipes");
         RecipeRegistry.init();
         proxy.init(event);

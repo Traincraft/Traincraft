@@ -7,6 +7,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
+import si.meansoft.traincraft.api.TraincraftAPI;
 import si.meansoft.traincraft.blocks.*;
 import si.meansoft.traincraft.fluids.FluidBase;
 import si.meansoft.traincraft.items.ItemMaterial;
@@ -42,9 +43,8 @@ public class Registry{
         register(refinedFuel = new FluidBase("refinedFuel", "fluidRefinedFuel", Material.WATER));
         register(oil = new FluidBase("oil", "fluidOil", Material.WATER));
 
-        BlockTrackStraight.register();
-        BlockTrackSlope.register();
-        BlockTrackCurve.register();
+        TraincraftAPI.addTrackRegister(BlockTrackStraight.class, BlockTrackSlope.class, BlockTrackCurve.class);
+        TraincraftAPI.registerTracks();
     }
 
     public static <T extends IRegistryEntry> T[] register(T... entries){

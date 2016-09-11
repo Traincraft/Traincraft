@@ -2,15 +2,21 @@ package si.meansoft.traincraft.api;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemMinecart;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import si.meansoft.traincraft.IRegistryEntry;
 import si.meansoft.traincraft.Traincraft;
 import si.meansoft.traincraft.blocks.BlockContainerBase;
@@ -65,6 +71,11 @@ public abstract class AbstractBlockTrack extends BlockContainerBase implements I
     }
 
     @Override
+    public void onMinecartDriveOver(World world, BlockPos pos, IBlockState state, EntityMinecart cart, Entity ridingEntity){
+        System.out.println(ridingEntity);
+    }
+
+    @Override
     public boolean isFullCube(IBlockState state) {
         return false;
     }
@@ -75,9 +86,12 @@ public abstract class AbstractBlockTrack extends BlockContainerBase implements I
     }
 
     @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos) {
         return FLAT_AABB;
     }
+
+    @Override
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, World world, BlockPos pos){return FLAT_AABB;}
 
     @Override
     public boolean isPassable(IBlockAccess worldIn, BlockPos pos) {
@@ -96,5 +110,22 @@ public abstract class AbstractBlockTrack extends BlockContainerBase implements I
         super.onBlockExploded(world, pos, explosion);
     }
 
-
+    @Override
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack stack, EnumFacing side, float hitX, float hitY, float hitZ){
+        if(stack != null){
+            if(stack.getItem() == Items.MINECART){
+                if(!world.isRemote){
+                    EntityMinecart.Type minecartType = ReflectionHelper.getPrivateValue(ItemMinecart.class, (ItemMinecart) stack.getItem(), 1);
+                    EntityMinecart cart = EntityMinecart.create(world, (double) pos.getX() + 0.5D, (double) pos.getY() + 0.0625D, (double) pos.getZ() + 0.5D, minecartType);
+                    if(stack.hasDisplayName()){
+                        cart.setCustomNameTag(stack.getDisplayName());
+                    }
+                    world.spawnEntityInWorld(cart);
+                }
+                stack.stackSize--;
+                return true;
+            }
+        }
+        return super.onBlockActivated(world, pos, state, player, hand, stack, side, hitX, hitY, hitZ);
+    }
 }

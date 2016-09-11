@@ -1,7 +1,9 @@
 package si.meansoft.traincraft.api;
 
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -37,5 +39,7 @@ public interface ITraincraftTrack{
     TrackPoint getWaypoints(World world, BlockPos pos, IBlockState state, int blockIndex);
 
     boolean canDriveOver(TileEntityTrack thisTrack, TileEntityTrack incomingTrack);
+
+    void onMinecartDriveOver(World world, BlockPos pos, IBlockState state, EntityMinecart cart, @Nullable Entity ridingEntity);
 
 }

@@ -7,7 +7,7 @@ import si.meansoft.traincraft.api.AbstractBlockTrack;
  */
 public enum TrackType{
 
-    TEST_TRACK("TestTrack", TrackGrid.getStraightSlope(16), false, true),
+    TEST_TRACK("TestTrack", TrackGrid.getStraightSlope(32)),
     TEST_CURVE("TestCurve", TrackGrid.getCurve(9), true, false),
     TEST_SLOPE("TestSlope", TrackGrid.getStraightGrid(6), false, true),
 

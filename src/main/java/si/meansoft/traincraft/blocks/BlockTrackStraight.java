@@ -1,7 +1,6 @@
 package si.meansoft.traincraft.blocks;
 
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import si.meansoft.traincraft.Registry;
@@ -65,9 +64,4 @@ public class BlockTrackStraight extends AbstractBlockTrack{
         return currentTrack.getFacing().equals(incomingTrack.getFacing()) || currentTrack.getFacing().getOpposite().equals(incomingTrack.getFacing());
     }
 
-    @Nullable
-    @Override
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos){
-        return FLAT_AABB;
-    }
 }
