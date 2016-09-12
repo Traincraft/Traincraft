@@ -1,5 +1,9 @@
 package si.meansoft.traincraft.blocks;
 
+import java.util.List;
+
+import javax.annotation.Nullable;
+
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.EnumFacing;
@@ -11,9 +15,6 @@ import si.meansoft.traincraft.Registry;
 import si.meansoft.traincraft.tile.TileEntityTrack;
 import si.meansoft.traincraft.track.TrackPoint;
 import si.meansoft.traincraft.track.TrackType;
-
-import javax.annotation.Nullable;
-import java.util.List;
 
 /**
  * @author canitzp
@@ -32,12 +33,12 @@ public class BlockTrackSlope extends BlockTrackStraight{
         }
     }
 
-    @Nullable
-    @Override
-    public TrackPoint getWaypoints(World world, BlockPos pos, IBlockState state, int blockIndex){
-        float start = (float) (blockIndex * (1d / this.getTrackType().getGrid().getBlockCount()));
-        return new TrackPoint(pos).addPoint(0, 8, start * 16, 8);
-    }
+	@Nullable
+	@Override
+	public TrackPoint getWaypoints(World world, BlockPos pos, IBlockState state, int blockIndex) {
+		float start = (float) (blockIndex * (1d / this.getTrackType().getGrid().getBlockCount()));
+		return new TrackPoint(pos).addPoint(0, 8, Math.max(1, start * 16), 8);
+	}
 
     @Override
     public void addCollisionBoxToList(IBlockState state, World world, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn){
