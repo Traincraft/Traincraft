@@ -56,7 +56,7 @@ public class BlockTrackStraight extends AbstractBlockTrack{
     @Nullable
     @Override
     public TrackPoint getWaypoints(World world, BlockPos pos, IBlockState state, int blockIndex){
-        return new TrackPoint(pos).addPoint(0, 8, 1, 8);
+        return new TrackPoint(pos).addPoint(0, 8, (float) FLAT_AABB.maxY * 16, 8);
     }
 
     @Override

@@ -6,7 +6,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemMinecart;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
@@ -70,9 +69,21 @@ public abstract class AbstractBlockTrack extends BlockContainerBase implements I
         return getTrackType().getGrid().getPosesToAffect(pos, dir, getTrackType().isCurve() && flipAlongX);
     }
 
+    private boolean flag = false;
+
     @Override
     public void onMinecartDriveOver(World world, BlockPos pos, IBlockState state, EntityMinecart cart, Entity ridingEntity){
-        System.out.println(ridingEntity);
+        EnumFacing facing = state.getValue(FACING);
+        BlockPos nextPos = pos.offset(facing.getOpposite());
+        float rot = ridingEntity != null ? ridingEntity.getRotationYawHead() + 90 : cart.rotationYaw;
+        if(!flag && world.getBlockState(nextPos).getBlock() instanceof ITraincraftTrack){
+            cart.moveToBlockPosAndAngles(pos.offset(facing.getOpposite()), rot, cart.rotationPitch);
+            flag = false;
+        } else flag = true;
+        nextPos = pos.offset(facing);
+        if(flag && world.getBlockState(nextPos).getBlock() instanceof ITraincraftTrack){
+            cart.moveToBlockPosAndAngles(pos.offset(facing), rot, cart.rotationPitch);
+        } else flag = false;
     }
 
     @Override
@@ -113,7 +124,7 @@ public abstract class AbstractBlockTrack extends BlockContainerBase implements I
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack stack, EnumFacing side, float hitX, float hitY, float hitZ){
         if(stack != null){
-            if(stack.getItem() == Items.MINECART){
+            if(stack.getItem() instanceof ItemMinecart){
                 if(!world.isRemote){
                     EntityMinecart.Type minecartType = ReflectionHelper.getPrivateValue(ItemMinecart.class, (ItemMinecart) stack.getItem(), 1);
                     EntityMinecart cart = EntityMinecart.create(world, (double) pos.getX() + 0.5D, (double) pos.getY() + 0.0625D, (double) pos.getZ() + 0.5D, minecartType);
