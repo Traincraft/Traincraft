@@ -18,10 +18,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import train.client.core.handlers.RecipeBookHandler;
-import train.common.core.handlers.PacketHandler;
 import train.common.core.managers.TierRecipe;
 import train.common.core.managers.TierRecipeManager;
 import train.common.inventory.TrainCraftingManager;
+import train.common.items.ItemRecipeBook;
 import train.common.items.ItemRollingStock;
 import train.common.library.BlockIDs;
 import train.common.library.Info;
@@ -704,10 +704,11 @@ public class GuiRecipeBook extends GuiScreen {
 
 	@Override
 	public void onGuiClosed() {
-		//TODO Packets
-		 PacketHandler.setBookPage(this.editingPlayer, this.currPage, this.currRecipe);
+		ItemRecipeBook.page = this.currPage;
+		ItemRecipeBook.recipe = this.currRecipe;
 		this.itemstackBook.getTagCompound().setInteger("currPage", this.currPage);
 		this.itemstackBook.getTagCompound().setInteger("currRecipe", this.currRecipe);
+		System.out.println("Page: " + this.currPage + " Recipe: " + this.currRecipe);
 		super.onGuiClosed();
 	}
 
@@ -721,11 +722,5 @@ public class GuiRecipeBook extends GuiScreen {
 		if(par2 == 1 || par2 == this.mc.gameSettings.keyBindInventory.getKeyCode()) {
 			this.mc.thePlayer.closeScreen();
 		}
-		//42 left shift
-		//29 left ctrl
-//		if(par2 == 42) {
-//			this.currPage = 0;
-//			this.updateScreen();
-//		}
 	}
 }

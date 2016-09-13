@@ -1,5 +1,7 @@
 package train.common.items;
 
+import java.util.List;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -12,9 +14,10 @@ import train.common.Traincraft;
 import train.common.library.GuiIDs;
 import train.common.library.Info;
 
-import java.util.List;
-
 public class ItemRecipeBook extends Item {
+	
+	public static int	page	= 0;
+	public static int	recipe	= 0;
 
 	public ItemRecipeBook() {
 		super();
@@ -28,15 +31,21 @@ public class ItemRecipeBook extends Item {
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
 		NBTTagCompound var3 = stack.getTagCompound();
+		System.out.println(var3);
 		if (var3 == null) {
+			System.out.println("AUTSCH!");
 			var3 = new NBTTagCompound();
 			stack.setTagCompound(var3);
-			stack.getTagCompound().setInteger("currPage", 0);
-			stack.getTagCompound().setInteger("currRecipe", 0);
+			stack.getTagCompound().setInteger("currPage", ItemRecipeBook.page);
+			stack.getTagCompound().setInteger("currRecipe", ItemRecipeBook.recipe);
+		}
+		else {
+			stack.getTagCompound().setInteger("currPage", ItemRecipeBook.page);
+			stack.getTagCompound().setInteger("currRecipe", ItemRecipeBook.recipe);
 		}
 		//System.out.println(world.isRemote +" "+stack.getTagCompound().getInteger("currPage"));
-		if (!world.isRemote)
-			return stack;
+		// if (!world.isRemote)
+		// return stack;
 		player.openGui(Traincraft.instance, GuiIDs.RECIPE_BOOK, world, (int) player.posX, (int) player.posY, (int) player.posZ);
 		return stack;
 	}

@@ -157,11 +157,11 @@ public class EntityJukeBoxCart extends EntityRollingStock {
 	public void stopStream() {
 		
 		if (this.isPlaying) {
+			this.isPlaying = false;
 			if (side == Side.CLIENT && this.player != null) {
 				this.player.stop();
 				Traincraft.proxy.playerList.remove(this.player);
 			}
-			this.isPlaying = false;
 		}
 		
 	}

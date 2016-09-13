@@ -7,16 +7,8 @@
 
 package train.common.core.handlers;
 
-import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.relauncher.Side;
-import net.minecraft.client.entity.EntityClientPlayerMP;
-import net.minecraft.entity.Entity;
-import net.minecraft.network.Packet;
-import train.common.Packet250CustomPayload;
 import train.common.Traincraft;
 import train.common.core.network.PacketKeyPress;
 import train.common.core.network.PacketLantern;
@@ -70,26 +62,4 @@ public class PacketHandler {
 		Traincraft.builderChannel.registerMessage(PacketTrackBuilderFollow.Handler.class,
 				PacketTrackBuilderFollow.class, 9, Side.SERVER);
 	}
-	
-	public static Packet setBookPage(Entity player, int page, int recipe) {
-		ByteArrayOutputStream bos = new ByteArrayOutputStream();
-		DataOutputStream dos = new DataOutputStream(bos);
-		try {
-			dos.writeInt(6);
-			dos.writeInt(player.getEntityId());//.getID());
-			dos.writeInt(page);
-			dos.writeInt(recipe);
-		}
-		catch (IOException e) {
-			e.printStackTrace();
-		}
-		Packet250CustomPayload packet = new Packet250CustomPayload(Info.channel, bos.toByteArray());
-		packet.length = bos.size();
-		if (player instanceof EntityClientPlayerMP) {
-			EntityClientPlayerMP playerMP = (EntityClientPlayerMP) player;
-			playerMP.sendQueue.addToSendQueue(packet);
-		}
-		return packet;
-	}
-
 }
