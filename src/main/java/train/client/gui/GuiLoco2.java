@@ -123,13 +123,13 @@ public class GuiLoco2 extends GuiContainer {
 			if (loco.riddenByEntity != null && loco.riddenByEntity instanceof EntityPlayer && ((EntityPlayer) loco.riddenByEntity).getDisplayName().equals(loco.getTrainOwner())) {
 				if ((!loco.getTrainLockedFromPacket())) {
 					Traincraft.lockChannel.sendToServer(new PacketSetTrainLockedToClient(true, loco.getEntityId()));
-					loco.setTrainLockedFromPacket(true);
+					loco.locked = true;
 					guibutton.displayString = "Locked";
 					this.initGui();
 				}
 				else {
 					Traincraft.lockChannel.sendToServer(new PacketSetTrainLockedToClient(false, loco.getEntityId()));
-					loco.setTrainLockedFromPacket(false);
+					loco.locked = false;
 					guibutton.displayString = "UnLocked";
 					this.initGui();
 				}

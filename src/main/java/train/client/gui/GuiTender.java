@@ -9,12 +9,10 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ResourceLocation;
 import train.common.Traincraft;
-import train.common.api.AbstractTrains;
 import train.common.api.LiquidManager;
 import train.common.api.Tender;
 import train.common.core.network.PacketSetTrainLockedToClient;
@@ -60,7 +58,7 @@ public class GuiTender extends GuiContainer {
 							}
 						}
 					}
-					tender.setTrainLockedFromPacket(true);
+					tender.locked = true;
 					guibutton.displayString = "Locked";
 					this.initGui();
 				}else{
@@ -74,7 +72,7 @@ public class GuiTender extends GuiContainer {
 							}
 						}
 					}
-					tender.setTrainLockedFromPacket(false);
+					tender.locked = false;
 					guibutton.displayString = "UnLocked";
 					this.initGui();
 				}

@@ -71,7 +71,7 @@ public class GuiLiquid extends GuiContainer {
 							}
 						}
 					}
-					liquid.setTrainLockedFromPacket(true);
+					liquid.locked = true;
 					guibutton.displayString = "Locked";
 					this.initGui();
 				}else{
@@ -85,7 +85,7 @@ public class GuiLiquid extends GuiContainer {
 							}
 						}
 					}
-					liquid.locked=false;
+					liquid.locked = false;
 					guibutton.displayString = "UnLocked";
 					this.initGui();
 				}

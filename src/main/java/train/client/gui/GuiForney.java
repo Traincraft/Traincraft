@@ -1,5 +1,7 @@
 package train.client.gui;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.Entity;
@@ -7,8 +9,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ResourceLocation;
-import org.lwjgl.opengl.GL11;
 import train.common.Traincraft;
+import train.common.api.LiquidManager;
 import train.common.api.Locomotive;
 import train.common.api.SteamTrain;
 import train.common.core.network.PacketParkingBrake;
@@ -16,7 +18,6 @@ import train.common.core.network.PacketSetTrainLockedToClient;
 import train.common.inventory.InventoryForney;
 import train.common.inventory.InventoryLoco;
 import train.common.library.Info;
-import train.common.api.LiquidManager;
 
 public class GuiForney extends GuiContainer {
 
@@ -114,13 +115,13 @@ public class GuiForney extends GuiContainer {
 			if (loco.riddenByEntity != null && loco.riddenByEntity instanceof EntityPlayer && ((EntityPlayer) loco.riddenByEntity).getDisplayName().equals(loco.getTrainOwner())) {
 				if ((!loco.getTrainLockedFromPacket())) {
 					Traincraft.lockChannel.sendToServer(new PacketSetTrainLockedToClient(true, loco.getEntityId()));
-					loco.setTrainLockedFromPacket(true);
+					loco.locked = true;
 					guibutton.displayString = "Locked";
 					this.initGui();
 				}
 				else {
 					Traincraft.lockChannel.sendToServer(new PacketSetTrainLockedToClient(false, loco.getEntityId()));
-					loco.setTrainLockedFromPacket(false);
+					loco.locked = false;
 					guibutton.displayString = "UnLocked";
 					this.initGui();
 				}

@@ -1,23 +1,22 @@
 package train.client.gui;
 
+import java.util.List;
+
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ResourceLocation;
-import org.lwjgl.opengl.GL11;
 import train.common.Traincraft;
-import train.common.api.AbstractTrains;
 import train.common.api.Freight;
 import train.common.core.network.PacketSetTrainLockedToClient;
 import train.common.inventory.InventoryFreight;
 import train.common.library.Info;
-
-import java.util.List;
 
 public class GuiFreight extends GuiContainer {
 
@@ -70,7 +69,7 @@ public class GuiFreight extends GuiContainer {
 						}
 					}
 
-					freight.setTrainLockedFromPacket(true);
+					freight.locked = true;
 					guibutton.displayString = "Locked";
 					this.initGui();
 				}
