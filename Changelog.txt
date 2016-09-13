@@ -1,0 +1,409 @@
+TC v4.2.1(_001)
+    Core
+        + Added slovenian translation
+        + Rebased resources to assets, models will be done in 1.7
+        + Cleaned up model files
+        + Fixed creative pick-up for tracks
+        + Fixed tracks dropping in creative
+        + Containers now get returned when used to fuel a loco
+        
+    Blocks
+        + Fixed slope models
+        + Train buffer now uses new track
+
+    Trains
+        + Added black color to BR80
+        + Added recipe for Zeppelin
+        + Added new locomotive pack "Adler" (Locomotive, tender, passenger car)
+        + Added CD 742 diesel locomotive
+        + Fixed V60 smoke position
+        + Fixed C62 position on tracks
+        + Doubled fuel consumption for steam trains
+        - Removed heavy tender
+        
+TC v4.2.0(_004)
+    Core
+        + Fixed HUD flickering caused by Waila mod
+        + Items are now registered with GameRegistry. You must load you world using this TC version if you want your items to survive 1.7
+        + Added missing translation for Copper rail and Steel rail
+        + Updated language files
+        + Hid fake tracks in NEI
+        
+    Blocks
+        + Fixed holding tracks not storing speed upon reload
+        + Speed controller track mode can be changed using redstone strength
+        + Fixed Electric track not charging train when stationary
+        + New tracks, new turns, new switches!
+	    + New wooden bridge block
+
+    Trains
+        + Fixed damage taken by the driver when using certain locomotives in tunnels
+        + Tracks builder can now be fueled with same fuels as the steam locomotives
+        + Parking brake can be set using the space key in trains
+	    + Electric and diesel trains can be switched off
+       
+TC v4.1.4(_024)
+    Core
+        + Fixed ID mismatch for liquid blocks
+        + Fixed cape code
+        + Fixed Tier table NPE
+        + Fixed speed controller track
+    Items
+        + Fixed train recipe names in the book
+    Zeppelin
+        + New zeppelin model
+        
+TC v4.1.4(_018)
+    Core
+        + Removed all ModLoader occurrences
+        + Rewritten cape code
+        + Added liquid localizations
+        + Added inventory key to book, exits when pressed
+        + Added inventory key to jukebox, exits when pressed
+        + Localization updates, translators should update their translations
+        + Added holiday checking
+        + Additions to build script
+        + Added NEI integration, now shows all recipes
+        + Fixed key names
+    Trains
+        + Passenger carts, work carts, caboose and flat carts can be locked using the wrench. 
+        + OPs can destroy locked trains by left clicking with a wrench in hand.
+        + Fixed SD70 coupling distance
+        + Fixed Flat cart wood US, GUI wasn't accessible.
+        + Renamed a method to avoid confusion with Entity getUniqueID()
+        + Fixed train name localizations
+        + Jukebox is now a radio stream reader. only .m3u and .pls
+        + Jukebox can be locked from its GUI 
+        + Trains no longer dropped when broken in creative
+        + Trains now show fill amount with render
+        + Trains now have lights (No illumination)
+        + Liquid trains have a separate slot for output now
+        + New textures on some trains
+        + Liquid trains no longer accept lava (only lava car)
+        + Freight trains now have specific inventories
+        + Nerfed inventory space on all freight trains
+        + Tooltip shows accepted cargo and inventory space
+        + Added presents to all flat trains
+        + Added lights to passenger cars
+        + New winter textures on BR80 and BR01
+        + Added ornament to steam locomotives
+     Zeppelin
+        + Rewritten zeppelin controls
+     Items
+        + Fixed some item tooltips that were going out of small screens
+        + Updated wrench tooltip
+        + Fixed book lighting bug
+     Blocks
+        + Added Station track. A track which holds any Traincraft locomotive as well as any minecart.
+        + Added Whistle track. A track which sounds the horn of any passing Traincraft locomotive
+        + Added snowy tracks (vanilla, copper and steel tracks with snowy texture).
+        + Fixed fluid blocks/items now working as proper fluids
+        + Fluids can now be places as blocks
+        + Diesel generator can output IC2 power
+        + Fixed diesel generator bounding box
+        + Added ballast block
+        + Nerfed petroleum ore a bit
+             
+TC v4.1.3(_001)
+    Core
+        + Updated Traincraft to 1.6.4
+        + Fixed broken keys vanilla config read
+        + Added support for localizations
+        + Added default en_us.lang file
+        + Fixed book lighting issue
+        + Fixed village train owner
+
+TC v4.1.2(_002)
+    Core
+        + Fixed NEI crash
+
+TC v4.1.2(_001)
+    Core
+        - Removed shift click funtionality when crafting in assembly tables
+        - Fixed crash with Mystcraft
+	Trains
+        - Fixed unusable buildcraft fuel in diesel loco
+        - Fixed mixed up cabooses (green and red)
+        - A locomotive in the water will be broken and gets destroyed after a small delay
+
+TC v4.1.1(_001)
+    Core
+        + Fixed US tank cart crash
+        + Fixed liquid diesel N.P.E
+        + Updated to IC2 API v2.0.158
+        + New recipes for wind mill and water wheel and changed existing ones
+        + Updated Traincraft guide
+    Blocks
+        + Changed Electric track: Now it has to be powered by a redstone power source. Redstone power is then transmitted 2 (connected) tracks away, frequency has been removed.
+            A powered electric track will build up 1 energy unit every 2 ticks.
+    Trains
+        + Extended the "lock" feature to tank carts, freight, tender and builder. Also a locked train can't be destroyed by explosions or anything else than the owner
+        + Fixed C62 tender not working
+        + Fixed some reversed textures of the SD40
+        + Fixed VL10 sitting position
+        + Fixed Cherepanov smoke
+        + Fixed acceleration/brake madness
+        + Fixed bogie position on spawn, locomotives should have correct bounding boxes right after spawing now
+        + Electric locomotives don't need to heat anymore. They don't have a heat indicator anymore
+        + Fixed steam 4_4_0 which could go too fast at warm state
+        + Fixed some speedometer crazyness, but it still happens at high speed. Seems to be a vanilla bug with high speeds
+        + Fixed some train coupling distances
+        - Train IDs are not shown anymore on the items tooltip
+    NPC
+        + Added new Traincraft villager, he trades all Traincraft items for various prices
+        + Added a train station in villages where the Traincraft villager spawns
+        
+TC v4.1.0()
+    Core
+        + Added dustCoal to OreDictionary and made graphite recipe compatible with OreDictionary
+        + Petroleum and Oil sands can be burned as fuel for furnaces
+        + Added tool tips on stake, Traincraft guide, wrench.
+        + Updated to Railcraft 7.3 API
+        + Massive behind the scene code cleanup to make the mod easier to maintain.
+        ! Store all trains as items before updating or they will be lost!
+        + Added fancy render in Crafting GUI
+        
+    Blocks
+        - Removed old petroleum and oil sands blocks
+        + Fixed the Locomotive speed controller track
+        + Added water wheel (IC2 generator). Connect cables on either sides
+        + Added wind turbine, western looking (IC2 generator). Connect cable on the back
+        + Added diesel generator (buildcraft generator). Model by DAYdiecast
+        + Added tooltips on tracks
+        - Electric track is useless until UE API gets adapted for IC2 experimental
+        
+    Items
+        + Fixed rendered items not rendering when equiped
+        
+    Zeppelin
+        + Rework controls: A,D to go rotate left and right. Y = up, X = down, C = lock altitude
+        
+    Trains
+        + Fixed type of MailWagon from 'freight' to 'work'
+        + Fixed coal not being consumed in attached tenders
+        + Fixed tracks builder not being able to lay down glass blocks
+        + New horns thanks to FriscoWolf
+        + New C62Class steam locomotive. Model by BlockStormTwo
+        + New Shay steam locomotive. Model by DAYdiecast
+        + New Logging caboose (work cart). Model by DAYdiecast
+        + Added a NY Tram passenger cart
+        + Fixed 0-5-0 coupling distance
+        + Carts can be attached together using Railcraft system. But you can't use it on Traincraft locomotives, use Traincraft system.
+        + New turning for all locomotives!
+        + New turning implies a few changes: 
+            you can't spawn trains on slopes or turns anymore
+            also locomotives "can be pulled" option has changed a bit: more info by shift+click with a stake on a loco
+            Don't spawn a long locomotive near a bend or bogie (invisible) will spawn off track. (don't be silly, long train need space!)
+        + New system to lock a locomotive:
+            Only the owner of a locomotive can lock it.
+            The owner is the player who spawned it.
+            To lock a locomotive, use the button in the GUI.
+            When a locomotive is locked, only its owner can change its speed, open the GUI, destroy it, paint it, attach it to other trains.
+        
+TC v4.0.2(_003)
+    Core
+       + Fixed a crash when some Railcraft modules are deactivated
+        
+    Items
+       + Fixed composite helmet not working when riding entity
+       + Added composite wrench (buildcraft wrench equivalent)
+       
+    Blocks
+       + Added a way to manually set the color of lanterns. Right click with a wrench to open a GUI, set the color code from http://www.colorpicker.com/. (Any none HTML color code will be ignored)
+        
+    Trains
+       + Items and liquids inside carts affect the weight of the cart. 1 item = 1 kilo, 1000mb = 1 kilo.
+       + Mobs can't ride passenger carts nor locomotives. They must be put in the stock car
+       + Added new HighSpeed locomotive model (modeler: DAYdiecast)
+       + Added new HighSpeed cart model (modeler: DAYdiecast)
+       + Added new N.Y. subway model (modeler: DAYdiecast)
+        
+TC v4.0.1(_002)
+    Core
+       + Fixed tank cart dropping wrong items (wasn't metadata sensitive)
+       + Fixed Traincraft breaking capes of players
+       + Fixed a new NPE with open hearth furnace
+       + Fixed hearth furnace lava bucket NPE
+	   + Updated to Railcraft 7.2 API
+	   + Updated to IC2 1.115.341 API
+	   - Removed outdated compatibility with IC2 recipes
+	   + Updated Traincraft guide to explain RC Destination compatibility (not 'Color=' compatible). 'Dest:' can be reseted by shift click with a Crowbar
+	   + Updated Traincraft guide to explain new armors capabilities
+	   + Switched to modEntity registration (all train entities will disappear, store them as item before updating)
+	   + Added plastic to OreDictionary ('dustPlastic' same as minefactory reloaded) and made plastic recipes compatible with OreDictionary
+	   + Added OreDictionary steel compatibility in Assembly table recipes
+	   + Added possibility to deactivate specific trains in config file. They can be crafted but not spawned
+        
+    Blocks
+       + Added Lantern using new custom models. Color is randomly picked
+       + Added a recipe for the train buffer
+        
+    Items
+       + Added new train cloth: driver, ticket man
+       + Added new armor: composite suit. Each part of armor has special ability
+       + Added composite materials: reinforced plastic and reinforced plates
+        
+    Trains
+       + Updated horns
+	   + Made locomotives routable thanks to Railcraft API (only routable with routing tracks, no ticket inventory planned)
+	   + Fixed Tracks builder tripling torches on pickup
+	   + Fixed mass of certain cart not loading properly on world reload
+	   + Fixed train handling (total mass, speed reduction,...) to take account of reseted carts (carts reseted using the stake)
+	   + Changed speed reduction calculations when locomotives are attached
+	   + Multiple locomotives in a train will share power, therefore be able to pull more. (total Mhp of a train is not visible, but speed reduction variations can be seen in locomotives GUI)
+	   + Fixed trains not orienting correctly when spawned facing EAST
+	   + Fixed RC dispencer spawning
+
+TC v4.0.0(_035)
+    Core
+       + Fixed hearth furnace smoke NPE on server
+       + Fixed locomotive GUI text not showing
+       + Fixed metadata ores smelting
+       + Fixed achievements crashes
+       + Fixed book crashing when displaying assembly tables recipes
+       + Fixed ArrayIndexOutOfBoundsException with ore multi block.
+       + Fixed book crashing when displaying "Also crafted in: Crafting Table"
+       - Removed some s.o.p-s
+
+TC v4.0.0(_032)
+    Core
+       + Fixed crafting with OreDictionary items
+       + Fixed achievement naming
+       + Fixed ore spawning
+       + Fixed track builder id NPE
+       - Removed texture preloads (Deprecated as of 1.5)
+
+TC v4.0.0(_031)
+    Core
+	+ Updated from 1.4.6 to 1.5.1
+	+ Updated from 1.5.1 to 1.5.2
+	+ Updated all the APIs
+	+ Added support for srg-names
+	+ Added sounds
+	+ Added ability for trains to load chunks
+	+ Rewrote support for other mods
+	+ Added support for UE among other mods (RC, BC, IC2)
+	+ Updated the config file
+	+ Added support to disable sound, ores, trains, chunk loading, colors
+	+ Added support for mysql database logging, optional feature and only works on dedicated servers. check config file for more info.
+	+ Updated world generation for ores
+	+ Rewrote achievements and added custom page
+	+ Updated textures to use icons
+	+ Removed some old unused texture files
+	+ Rewrote train moving/rotating code
+	+ Fixed key handler
+	+ Removed some annoying s.o.p-s
+		
+    Blocks
+	+ Added new ore Copper
+	+ Added new furnace Open Hearth Furnace
+	+ Changed ores to be 1 block
+	+ Old ores available for trade to new ones
+	+ Added train buffer block
+	+ Rewrote most of distil code
+	+ Distil now supports liquids
+	+ Distil also produces plastic
+	+ Updated effects on blocks
+	+ Fixed shapeles crafting
+	+ Added storage slots to assembly tables
+	+ Added liquids for diesel and refined fuel
+	+ Fixed some minor issues with crafting
+	+ Fixed NPE error on assembly tables
+	+ Added liquid tooltips in distil
+		
+    Items
+	+ Added chunk loader item
+	+ Added traincraft book item
+	+ Added various items for train crafting
+	+ Added plastic items
+	+ Updated textures for items
+		
+    Trains
+	+ Updated a lot of old train with new models
+	+ Rewrote most of tracks builder code
+	+ Trains now support chunk loading of 1 chunk arround them
+	+ Trains now orient properly when placed based on player direction
+	+ Fixed coupling distances on some trains
+	+ Fixed some textures on trains
+	+ Added multiple textures for new models
+	+ Fixed the break on trains
+	+ Added ability for locomotives to be pulled
+	+ Fixed the bounding boxes on some trains
+	+ Fixed some minor train rendering issues
+	+ Fixed train interaction with RC
+	+ Added 15 new tracks when railcraft installed
+	+ Fixed using batteries from IC2
+	+ Added information on trains when crafting
+	+ Added better tooltips for trains
+	+ Trains now support liquids from any mod
+	+ Fixed the stack issue in inventory
+	- Removed some old non working models
+		
+    Other
+	+ Fixed item naming
+	+ Added "armor" trainman suit
+	+ Implemented some player specific methods
+	+ Code formatting and refactoring
+	+ Updated mcmod.info file
+
+TC v3.1.13_030
+	+ Rewrote train workbench to be a tile entity (Now keeps items on close)
+	+ Added shapeless recipes for train workbench
+	+ Added missing recipes for trains (15)
+	+ Added an option for steel being in ore dictionary
+	+ Fixed ore spawn rates, ores will no longer go crazy
+	+ Fixed some minor GUI lighting issues
+	+ Fixed Assembly table tooltip (no. of known recipes)
+	+ Fixed camera glitching on trains
+	+ Fixed some rotation problems on trains
+	+ Fixed tracks builder digging down and getting stuck
+	+ Fixed NPE on builder cart on server
+	+ Fixed GUI opening while in chat
+
+TC v3.1.13_010
+	+ Updated to minecraft 1.4.6
+	+ Added recipe discovery system
+	+ Added Side tabs, thanks to SirSengir (Ledgers)
+	+ Added revamped Tier tables
+	+ Fixed some train cornering and going up slopes issues
+	+ Fixed some texturing bugs in train GUI
+	+ Fixed GUI text in all the GUIs
+	+ Fixed doors on Union pacific
+	+ Fixed boiler on 0-5-0 ussr
+	+ Fixed some additional mod recipes
+	+ Fixed some recipes
+	- Removed helicopter (bugged)
+	- Removed plane (bugged)
+	- Removed dead code files
+
+TC v3.1.12_014
+	+ Fixed SMP issues (Due to client-side methods being called on server)
+	+ Minor texture updates
+	+ Helicopter now spawnable and usable in game
+	+ Fixed the Achievements loading
+	+ Fixed the achievements showing in game (No proper names, due to no Localization support yet)
+	+ Fixed steel smelting, now works and also adds xp
+
+TC v3.1.12_009
+	+ Mod code rewritten for 1.3.2+ versions. (Proper SMP support, Forge compatibility)
+	+ Updated the mod for (1.4, 1.4.1, 1.4.2, 1.4.4, 1.4.5, 1.4.5b).
+	+ Cleaned classes, and rebased into new packages.
+	- Removed dead or unused code.
+	+ Mod is now built into a .jar file for convenience
+	+ Implemented new config file, no more weird stuff happening.
+	+ Block IDs and Item IDs are now auto assigned. No more ID conflicts
+	+ Added extra files for forge (mcmod.info, logo, version file).
+	+ Keys for extra functions now changeable in-game in the key config menu.
+	+ Mod now has a custom creative tab for all mod items/blocks.
+	+ Mod now has a custom page in-game for achievements.
+	+ Updated some textures (They will get even better in the future).
+	+ Rewritten blocks code. Now faster and easier to implement new blocks.
+	+ Rewritten items code. Now faster and easier to implement new items.
+	+ Rewritten achievements code. Now faster and easier to implement new achievements.
+	+ Entities now use forge IDs.
+	+ Rewritten world spawning for ores. Ores now spawn properly.
+	+ Oil sands ore now falls like sand.
+	+ Updated and fixed GUIs on blocks.
+	+ Rewrote most of distil code (New textures, block, ...).
+	+ Rewritten most of the recipes, getting rid of all modLoader code.
+	+ Restored IC2 and Railcraft additions.

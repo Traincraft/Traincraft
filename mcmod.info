@@ -1,0 +1,17 @@
+[
+{
+  "modid": "TC",
+  "name": "Traincraft",
+  "description": "A mod that adds over 80 trains and other vehicles to the game.",
+  "version": "@VERSION@",
+  "mcversion": "1.6.3/1.6.4",
+  "logoFile": "Logo.png",
+  "url": "http://www.minecraftforum.net/topic/270332-",
+  "updateUrl": "",
+  "authors": ["\u00a74Spitfire4466", "Mrbrutal", "DAYdiecast"],
+  "credits": "Created by Spitfire4466 & Mrbrutal",
+  "parent": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

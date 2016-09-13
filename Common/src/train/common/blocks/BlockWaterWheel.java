@@ -1,0 +1,136 @@
+package src.train.common.blocks;
+
+import java.util.List;
+import java.util.Random;
+
+import buildcraft.api.tools.IToolWrench;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import src.train.common.Traincraft;
+import src.train.common.library.GuiIDs;
+import src.train.common.library.Info;
+import src.train.common.tile.TileLantern;
+import src.train.common.tile.TileWaterWheel;
+import src.train.common.tile.TileWindMill;
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.Icon;
+import net.minecraft.util.MathHelper;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
+
+public class BlockWaterWheel extends Block {
+	private Icon texture;
+
+	public BlockWaterWheel(int id) {
+		super(id, Material.wood);
+		setCreativeTab(Traincraft.tcTab);
+		this.setTickRandomly(true);
+		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1F, 1F, 1F);
+	}
+
+	@Override
+	public boolean hasTileEntity(int metadata) {
+		return true;
+	}
+
+	@Override
+	public boolean renderAsNormalBlock() {
+		return false;
+	}
+
+	@Override
+	public boolean isOpaqueCube() {
+		return false;
+	}
+
+	@Override
+	public TileEntity createTileEntity(World world, int metadata) {
+		return new TileWaterWheel();
+	}
+
+	@Override
+	public int getRenderType() {
+		return -1;
+	}
+
+	@SideOnly(Side.CLIENT)
+	@Override
+	public void randomDisplayTick(World par1World, int par2, int par3, int par4, Random par5Random) {
+		int l = par1World.getBlockMetadata(par2, par3, par4);
+		TileEntity tile = par1World.getBlockTileEntity(par2, par3, par4);
+		if (tile != null && tile instanceof TileWaterWheel && ((TileWaterWheel) tile).getWaterDir() > -1001) {
+			double d0 = (double) ((float) par2 + 0.5F);
+			double d1 = (double) ((float) par3 + 0.7F);
+			double d2 = (double) ((float) par4 + 0.5F);
+			double d3 = 0.2199999988079071D;
+			double d4 = 0.27000001072883606D;
+
+			par1World.spawnParticle("splash", d0, par3 + 1, d2, 0.0D, 0.0D, 0.0D);
+			par1World.spawnParticle("splash", d0, par3, d2, 0.0D, 0.0D, 0.0D);
+			if (par5Random.nextInt(20) == 0) {
+				par1World.playSound(par2, par3, par4, "liquid.water", par5Random.nextFloat() * 0.25F + 0.75F, par5Random.nextFloat() * 1F + 0.1F, true);
+			}
+		}
+	}
+
+	/**
+	 * Called when the block is placed in the world.
+	 */
+	@Override
+	public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLiving, ItemStack par6ItemStack) {
+		int l = MathHelper.floor_double((double) (par5EntityLiving.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+		int i1 = par1World.getBlockMetadata(par2, par3, par4) >> 2;
+		++l;
+		l %= 4;
+
+		if (l == 0) {
+			par1World.setBlockMetadataWithNotify(par2, par3, par4, 2 | i1 << 2, 2);
+		}
+
+		if (l == 1) {
+			par1World.setBlockMetadataWithNotify(par2, par3, par4, 3 | i1 << 2, 2);
+		}
+
+		if (l == 2) {
+			par1World.setBlockMetadataWithNotify(par2, par3, par4, 0 | i1 << 2, 2);
+		}
+
+		if (l == 3) {
+			par1World.setBlockMetadataWithNotify(par2, par3, par4, 1 | i1 << 2, 2);
+		}
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void registerIcons(IconRegister iconRegister) {
+		texture = iconRegister.registerIcon(Info.modID.toLowerCase() + ":water_wheel");
+	}
+
+	@Override
+	public Icon getIcon(int i, int j) {
+		return texture;
+	}
+
+	/**
+	 * ejects contained items into the world, and notifies neighbours of an update, as appropriate
+	 */
+	@Override
+	public void breakBlock(World par1World, int par2, int par3, int par4, int par5, int par6) {
+		int l = par1World.getBlockMetadata(par2, par3, par4);
+		TileEntity tile = par1World.getBlockTileEntity(par2, par3, par4);
+		if (tile != null && tile instanceof TileWaterWheel) {
+			((TileWaterWheel) tile).onChunkUnload();
+		}
+		super.breakBlock(par1World, par2, par3, par4, par5, par6);
+	}
+}

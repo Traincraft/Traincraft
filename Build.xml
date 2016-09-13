@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="Traincraft" basedir="." default="all">
+
+	<!-- Author -->
+	<property name="modname"            value="Traincraft" />
+	
+	<!-- Description of the mod -->
+	<description>Trains mod for Minecraft.</description>
+
+	<!-- Author -->
+	<property name="author"            value="Mrbrutal" />
+
+	<!-- ".zip" or ".jar" as the dist file extension -->
+	<property name="filetype"          value="jar" />
+	
+	<!-- Main directory -->
+	<property name="main.dir"           location="../../" />
+	
+	<!-- MCP main directory -->
+	<property name="mcp.dir"           location="${main.dir}/MCP/forge/mcp" />
+
+	<!-- MCP eclipse directory -->
+	<property name="mcp.ecl"           location="${main.dir}/Project/Trains" />
+
+	<!-- Dist directory -->
+	<property name="dist.dir"          location="${main.dir}/Builds/dist" />
+
+	<!-- Build directory -->
+	<property name="build.dir"         location="${main.dir}/Builds/build" />
+	
+	<!-- Deploy directory -->
+	<property name="deploy.dir"         location="${main.dir}/TrainMod" />
+	
+	<!-- SRC directories -->
+	<property name="srcCommon.dir"     location="${mcp.dir}/src/minecraft/src/train/common" />
+	<property name="srcClient.dir"     location="${mcp.dir}/src/minecraft/src/train/client" />
+	<property name="resources.dir"     location="${mcp.ecl}/resources/src/train/resources" />
+	
+	<property name="python2" location="${mcp.dir}/runtime/bin/python/python_mcp.exe" />
+
+	
+	<!-- ############################################################### -->
+	
+	<!-- Set up the environment -->
+	<target name="SetUp">
+		<echo message="${main.dir}" />
+		<echo message="${mcp.dir}" />
+		<tstamp>
+			<format pattern="dd_MM_yy-HHmmss" property="timestamp" />
+			<format pattern="HHmmss" property="ts" />
+		</tstamp>
+		
+		<property environment="env" />
+		<property file="build.properties" />
+		
+		<condition property="python.exe" value="${mcp.dir}/runtime/bin/python/python_mcp" else="python">
+			<os family="Windows" />
+		</condition>
+		<echo message="SetUp target completed succesfully!" />
+	</target>
+
+	<!-- Get version from python script -->
+	<target name="GetVer" depends="SetUp">
+		<exec executable="${python.exe}" dir="${mcp.ecl}/" failonerror="true">
+			<arg value="${mcp.ecl}/CalcVersion.py" />
+		</exec>
+		
+		<property file="tmver.properties" />
+	    <property name="version.major" value="${tm.build.major.number}" />
+	    <property name="version.minor" value="${tm.build.minor.number}" />
+	    <property name="version.rev" value="${tm.build.revision.number}" />
+	    <property name="version.sub" value="${tm.build.subversion.number}" />
+		<property name="version.forge" value="${tm.build.forgeversion}" />
+		<property name="version.mcp" value="${tm.build.mcpversion}" />
+	    <property name="version.minecraft" value="${tm.build.mcclientversion}" />
+	    <property name="version" value="${version.major}.${version.minor}.${version.rev}" /><!-- _${version.sub} -->
+		<property name="build.number" value="${tm.build.major.number}.${tm.build.minor.number}.${tm.build.revision.number}_${tm.build.subversion.number}" />
+		<echo message="${version} Build of TrainMod" />
+		<echo message="GetVer target completed succesfully!" />
+	</target>
+
+	<!-- Prepare sources -->
+	<target name="PreInit" description="Prepare and copy SRC">
+		<echo message="Cleaning old sources" />
+		<!--delete dir="${mcp.dir}/src/common/src" /-->
+		<delete dir="${mcp.dir}/src/minecraft/src" verbose="true"/>
+		<delete dir="${mcp.dir}/src/minecraft/javazoom" verbose="true"/>
+
+		<echo message="Creating src folders" />
+		<mkdir dir="${srcCommon.dir}" />
+		<mkdir dir="${srcClient.dir}" />
+		<mkdir dir="${mcp.dir}/src/minecraft/javazoom" />
+
+		<echo message="Copying sources to MCP/src" />
+		<copy todir="${srcCommon.dir}" verbose="true">
+			<fileset dir="${mcp.ecl}/common/src/train/common" />
+		</copy>
+		<copy todir="${mcp.dir}/src/minecraft/javazoom" verbose="true">
+            <fileset dir="${mcp.ecl}/Resources/javazoom" />
+        </copy>
+		<replace dir="${mcp.dir}/src/minecraft/src/train" token="@VERSION@" value="${version}" />
+		<replace dir="${mcp.dir}/src/minecraft/src/train" token="@VERSION1@" value="${build.number}" />
+		<copy todir="${srcClient.dir}" verbose="true">
+			<fileset dir="${mcp.ecl}/client/src/train/client" />
+		</copy>
+		<echo message="PreInit target completed succesfully!" />
+	</target>
+
+	<!-- Prepare the folder structure for build and dist -->
+	<target name="Init" description="Initialize build environment">
+		<echo message="Cleaning old build and dist, MCP reobf directories" />
+		<delete dir="${build.dir}" />
+		<delete dir="${dist.dir}" />
+		<delete dir="${mcp.dir}/reobf" />
+
+		<echo message="Creating build and dist dirs" />
+		<mkdir dir="${build.dir}" />
+		<mkdir dir="${dist.dir}" />
+		<echo message="Init target completed succesfully!" />
+	</target>
+
+	<!-- Prepare build folder for copying files over -->
+	<target name="PostInit" description="Initialize build environment">
+		<mkdir dir="${build.dir}/src/train" />
+		<echo message="PostInit target completed succesfully!" />		
+	</target>
+
+	<!-- Recompile the sources -->
+	<target name="recompile" description="MCP recompile" >
+		<exec executable="${python2}" dir="${mcp.dir}">
+			<arg value="runtime/recompile.py"/>
+			<arg value="%*"/>
+		</exec>
+		<echo message="Recompile target completed succesfully!" />
+	</target>
+
+	<!-- Reobfuscate the sources -->
+	<!--target name="reobfuscate" description="MCP reobfuscate">
+		<exec executable="${python2}" dir="${mcp.dir}">
+			<arg value="runtime/reobfuscate_.py"/>
+			<arg value="%*"/>
+		</exec>
+		<echo message="Reobfuscate target completed succesfully!" />
+	</target-->
+	
+	<target name="reobfuscate" description="MCP reobfuscate">
+        <exec dir="${mcp.dir}" executable="cmd" osfamily="windows">
+            <arg line="/c reobfuscate_srg.bat" />
+        </exec>
+		<echo message="Reobfuscate target completed succesfully!" />
+    </target>
+
+	<!-- Stage all the required files to the build folder -->
+	<target name="stage" description="Stage resources into build directory">
+		<copy todir="${build.dir}">
+			<fileset dir="${mcp.ecl}">
+				<include name="**/mcmod.info" />
+				<include name="**/tmver.properties" />
+				<include name="**/pack.mcmeta" />
+				<include name="**/Logo.png" />
+			</fileset>
+		</copy>
+		<replace dir="${build.dir}" token="@VERSION@" value="${version}" />
+		<copy todir="${build.dir}/src/train/common" failonerror="true">
+			<fileset dir="${mcp.dir}/reobf/minecraft/src/train/common"/>
+		</copy>
+		<copy todir="${build.dir}/src/train/Resources" failonerror="true">
+			  <fileset dir="${resources.dir}">
+			  	<exclude name="**/.git/"/>
+			  	<exclude name="**/.gitignore"/>
+			  	<exclude name="**/Readme.md"/>
+			  </fileset>
+		</copy>
+		<copy todir="${build.dir}/javazoom" failonerror="true">
+              <fileset dir="${mcp.dir}/reobf/minecraft/javazoom" />
+        </copy>
+		<copy file="${mcp.ecl}/Resources/javazoom/jl/decoder/sfd.ser" todir="${build.dir}/javazoom/jl/decoder" failonerror="true"/>
+		<copy todir="${build.dir}/assets/tc" failonerror="true">
+              <fileset dir="${mcp.ecl}/resources/assets/tc" />
+        </copy>
+		<copy todir="${build.dir}/src/train/client" failonerror="true">
+			<fileset dir="${mcp.dir}/reobf/minecraft/src/train/client"/>
+		</copy>
+		<copy todir="${build.dir}/buildcraft" failonerror="true">
+			  <fileset dir="${mcp.dir}/reobf/minecraft/buildcraft"/>
+		</copy>
+		<copy todir="${build.dir}/ic2" failonerror="true">
+              <fileset dir="${mcp.dir}/reobf/minecraft/ic2"/>
+        </copy>
+		<!--copy todir="${build.dir}/forestryCustom" failonerror="true">
+              <fileset dir="${mcp.dir}/reobf/minecraft/forestryCustom"/>
+        </copy-->
+		<!--copy todir="${build.dir}/universalelectricity" failonerror="true">
+		      <fileset dir="${mcp.dir}/reobf/minecraft/universalelectricity"/>
+		</copy-->
+		<copy todir="${build.dir}/mods" failonerror="true">
+              <fileset dir="${mcp.dir}/reobf/minecraft/mods"/>
+        </copy>
+		<echo message="stage target completed succesfully!" />
+	</target>
+
+	<!-- Make the final .zip/.jar file -->
+	<target name="jarzip" description="Jar (or zip) the project's dist output">
+		<mkdir dir="${dist.dir}" />
+		<jar destfile="${dist.dir}/${ant.project.name}-${build.number}.${filetype}" duplicate="preserve" index="true" manifestencoding="UTF-8">
+			<manifest>
+				<attribute name="Built-By" value="MCP (http://mcp.ocean-labs.de)"/>
+				<attribute name="Implementation-Vendor" value="${author}"/>
+				<attribute name="Implementation-Title" value="${ant.project.name}"/>
+				<attribute name="Implementation-Version" value="${version}"/>
+			</manifest>
+			<fileset dir="${build.dir}" />
+		</jar>
+	</target>
+	
+	<!-- Copy the final .zip/.jar file -->
+	<target name="final" description="Copy .zip/.jar file to the appropriate folder">
+		<property name="jarname" value="${ant.project.name}-${build.number}" />
+	    <copy file="${dist.dir}/${jarname}.${filetype}" tofile="${deploy.dir}/${jarname}(${timestamp}).${filetype}" failonerror="false" verbose="true" />
+		<delete dir="${mcp.dir}/src/minecraft/src" verbose="true" />
+		<delete dir="${mcp.dir}/src/minecraft/javazoom" verbose="true" />
+	</target>
+
+	<target name="all" description="Perform all tasks for a build" depends="GetVer, PreInit, Init, PostInit, recompile, reobfuscate, stage, jarzip, final">
+		<!-- GetVer, PreInit, Init, PostInit, recompile, reobfuscate, stage, jarzip, final -->
+		<echo message="Build of TrainMod Completed!" />
+	</target>
+
+</project>

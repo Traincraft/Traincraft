@@ -26,10 +26,6 @@ An issue system or website will be provided in due time. Possibly, we might just
 
 ## Contributing
 
-Traincraft Project welcomes contributions from anyone, provided they have signed the Contributor Licensing Agreement (CLA) found [here](https://cla-assistant.io/Mrbrutal/Traincraft).
-
-Signing the CLA is simple, just follow the link, and hit the "I Agree" button and you are good to go.
-
 Regarding new features/behavior changes, please submit a Suggestion Issue to the Tracker before you write a single line of code. Keeping everyone on the same page saves time and effort and reduces negative experiences all around when a change turns out to be controversial.
 
 For now, the focus should be on updating the mod to the 1.7.x and 1.8.x branches, before adding any new features. Those will be added when the rewrite version is being done.
