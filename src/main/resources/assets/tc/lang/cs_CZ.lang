@@ -389,6 +389,8 @@ entity.TC.Passenger Small Black.name=Osobní vagón
 entity.TC.Passenger Blue.name=Osobní vagón
 entity.TC.Passenger Adler.name=Adler (Osobní vagón)
 
+description.villager.profession.tc.station_chief=Vedoucí stanice
+
 key.categories.traincraft=Traincraft
 key.traincraft.horn=Troubení
 key.traincraft.inventory=Inventář
