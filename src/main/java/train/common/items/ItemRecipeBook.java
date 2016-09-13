@@ -31,9 +31,7 @@ public class ItemRecipeBook extends Item {
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
 		NBTTagCompound var3 = stack.getTagCompound();
-		System.out.println(var3);
 		if (var3 == null) {
-			System.out.println("AUTSCH!");
 			var3 = new NBTTagCompound();
 			stack.setTagCompound(var3);
 			stack.getTagCompound().setInteger("currPage", ItemRecipeBook.page);
@@ -43,9 +41,6 @@ public class ItemRecipeBook extends Item {
 			stack.getTagCompound().setInteger("currPage", ItemRecipeBook.page);
 			stack.getTagCompound().setInteger("currRecipe", ItemRecipeBook.recipe);
 		}
-		//System.out.println(world.isRemote +" "+stack.getTagCompound().getInteger("currPage"));
-		// if (!world.isRemote)
-		// return stack;
 		player.openGui(Traincraft.instance, GuiIDs.RECIPE_BOOK, world, (int) player.posX, (int) player.posY, (int) player.posZ);
 		return stack;
 	}

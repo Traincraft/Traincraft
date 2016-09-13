@@ -708,7 +708,6 @@ public class GuiRecipeBook extends GuiScreen {
 		ItemRecipeBook.recipe = this.currRecipe;
 		this.itemstackBook.getTagCompound().setInteger("currPage", this.currPage);
 		this.itemstackBook.getTagCompound().setInteger("currRecipe", this.currRecipe);
-		System.out.println("Page: " + this.currPage + " Recipe: " + this.currRecipe);
 		super.onGuiClosed();
 	}
 
