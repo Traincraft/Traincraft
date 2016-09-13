@@ -1,8 +1,7 @@
 # Traincraft - A mod for Minecraft
 
 Here you will find the source code for the **Traincraft 1.7.10 Port**.<br/>
-**Don't ask for release dates or beta builds. Unless you are a developer you should get your builds from [curse](https://minecraft.curseforge.com/projects/traincraft) **
-**Regarding new features/behavior changes, or if you have found any bugs, please submit a new issue to the issue tracker for it, or add your findings to an existing issue if someone else has already made one. This helps keep everything organized while saving time and effort.**
+**Don't ask for release dates or beta builds. Unless you are a developer you should get your builds from [curse](https://minecraft.curseforge.com/projects/traincraft). <br/>Regarding new features/behavior changes, or if you have found any bugs, please submit a new issue to the issue tracker for it, or add your findings to an existing issue if someone else has already made one. This helps keep everything organized while saving time and effort.**
 
 ##Index
 - Join the Discussion!
