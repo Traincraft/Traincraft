@@ -389,6 +389,8 @@ entity.TC.Passenger Small Black.name=Passenger Car
 entity.TC.Passenger Blue.name=Passenger Car
 entity.TC.Passenger Adler.name=Adler Passenger Car
 
+description.villager.profession.tc.station_chief=Station Chief
+
 key.categories.traincraft=Traincraft
 key.traincraft.horn=Horn
 key.traincraft.inventory=Inventory
