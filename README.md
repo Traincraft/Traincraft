@@ -36,6 +36,7 @@ This specific fork is maintained by **EternalBlueFlame** and is intended to be a
 
 ##Contributing
 The traincraft project welcomes contributions from anyone, provided they have signed the Contributor Licensing Agreement (CLA) found [here](https://cla-assistant.io/Mrbrutal/Traincraft).
+If your IDE asks for a deobfuscator you can find it in C:\Users\[USERNAME]\.gradle\caches\minecraft\net\minecraftforge\forge\1.7.10-10.13.4.1558-1.7.10\unpacked\conf
 
 Regarding new features/behavior changes, please submit a new Suggestion to the issue tracker before you write any code. This helps keep everything organized, saves time, effort, and reduces negative experiences all around when a change turns out to be controversial.
 
