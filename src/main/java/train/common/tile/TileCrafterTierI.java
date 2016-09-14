@@ -1,5 +1,9 @@
 package train.common.tile;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
@@ -16,17 +20,13 @@ import train.common.core.managers.TierRecipe;
 import train.common.core.managers.TierRecipeManager;
 import train.common.library.Info;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
 public class TileCrafterTierI extends TileEntity implements IInventory, ITier {
 	private Random rand;
 	private ItemStack[] crafterInventory;
 
 	private ForgeDirection facing;
 	private final int Tier = 1;
-	private static List<ItemStack> resultList;
+	private List<ItemStack>			resultList;
 	private static List<ItemStack> knownRecipes = new ArrayList<ItemStack>();
 	private static int[] slotSelected;
 
@@ -47,6 +47,7 @@ public class TileCrafterTierI extends TileEntity implements IInventory, ITier {
 		return crafterInventory[i];
 	}
 
+	@Override
 	public List<ItemStack> getResultList() {
 		return resultList;
 	}
