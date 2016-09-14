@@ -27,6 +27,10 @@ repositories {
         name = "ic2"
         url = "http://maven.ic2.player.to/"
     }
+    ivy {
+        name = "Railcraft"
+        artifactPattern "http://www.railcraft.info/ivy/com.headlamp-games/Railcraft/[revision]/[module]_1.10.2-[revision]-[classifier].[ext]"
+    }
 }
 
 ext.configFile = file "build.properties"
@@ -55,6 +59,7 @@ dependencies {
     deobfCompile "mezz.jei:jei_" + config.minecraftVersion.toString() + ":" + config.jeiVersion.toString()
     deobfCompile "net.darkhax.tesla:Tesla:" + config.minecraftVersion.toString() + "-" + config.teslaVersion.toString()
     deobfCompile "net.industrial-craft:industrialcraft-2:" + config.ic2Version.toString() + ":api"
+    compile name: "Railcraft", version: config.railcraftVersion.toString(), classifier: "dev"
 }
 
 processResources {
