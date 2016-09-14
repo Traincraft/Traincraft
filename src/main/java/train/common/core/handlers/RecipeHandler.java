@@ -206,6 +206,10 @@ public class RecipeHandler {
 						TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.propeller.item, 2), new Object[] { " # ", "#X#", " # ", Character.valueOf('#'), s1.get(i), Character.valueOf('X'), Items.iron_ingot });// Propeller
 						
 						TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailSmallStraight.item, 32), new Object[] { "I I", "SPS", "I I", Character.valueOf('P'), s1.get(i), Character.valueOf('I'), Items.iron_ingot, Character.valueOf('S'), steel.get(t) });// small straight track
+						TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailSmallRoadCrossing.item, 32),
+								new Object[] { "I I", "SPS", "I I", Character.valueOf('P'),
+										new ItemStack(Blocks.stained_hardened_clay, 1, 15), Character.valueOf('I'),
+										Items.iron_ingot, Character.valueOf('S'), steel.get(t) });
 					}
 				}
 				if (s2 != null && s2.size() >= 0) {

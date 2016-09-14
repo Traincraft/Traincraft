@@ -181,7 +181,9 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 		}
 		if(tileentity!=null && tileentity instanceof TileTCRail){
 			TileTCRail tile = (TileTCRail) tileentity;
-			if(tile.getType().equals(TrackTypes.MEDIUM_STRAIGHT.getLabel())||tile.getType().equals(TrackTypes.SMALL_STRAIGHT.getLabel())){
+			if (tile.getType().equals(TrackTypes.MEDIUM_STRAIGHT.getLabel())
+					|| tile.getType().equals(TrackTypes.SMALL_STRAIGHT.getLabel())
+					|| tile.getType().equals(TrackTypes.SMALL_ROAD_CROSSING.getLabel())) {
 				this.placeCart(par2EntityPlayer, par1ItemStack, par3World, par4, par5, par6);
 				return true;
 			}

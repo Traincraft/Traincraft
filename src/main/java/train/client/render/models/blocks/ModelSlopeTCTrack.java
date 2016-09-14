@@ -18,7 +18,6 @@ public class ModelSlopeTCTrack extends ModelBase {
 	private IModelCustom	modeltrack;
 	private IModelCustom	modelSlopeWood;
 	private IModelCustom	modelSlopeBallast;
-	private String			type	= "";
 	
 	public ModelSlopeTCTrack() {
 		modeltrack = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_slope.obj"));

@@ -42,7 +42,10 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 				String type = railTile.getType();
 				
 				if (ItemTCRail.TrackTypes.SMALL_STRAIGHT.getLabel().equals(type)) {
-					modelSmallStraight.render(railTile, x, y, z);
+					modelSmallStraight.render("straight", railTile, x, y, z);
+				}
+				if (ItemTCRail.TrackTypes.SMALL_ROAD_CROSSING.getLabel().equals(type)) {
+					modelSmallStraight.render("crossing", railTile, x, y, z);
 				}
 				else if (ItemTCRail.TrackTypes.TWO_WAYS_CROSSING.getLabel().equals(type)) {
 					modelTwoWaysCrossing.render(railTile, x, y, z);
