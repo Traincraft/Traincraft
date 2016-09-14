@@ -20,6 +20,13 @@ repositories {
     maven {
         url "http://dvs1.progwml6.com/files/maven"
     }
+    maven {
+        url 'http://maven.epoxide.xyz'
+    }
+    maven {
+        name = "ic2"
+        url = "http://maven.ic2.player.to/"
+    }
 }
 
 ext.configFile = file "build.properties"
@@ -46,6 +53,8 @@ minecraft {
 
 dependencies {
     deobfCompile "mezz.jei:jei_" + config.minecraftVersion.toString() + ":" + config.jeiVersion.toString()
+    deobfCompile "net.darkhax.tesla:Tesla:" + config.minecraftVersion.toString() + "-" + config.teslaVersion.toString()
+    deobfCompile "net.industrial-craft:industrialcraft-2:" + config.ic2Version.toString() + ":api"
 }
 
 processResources {

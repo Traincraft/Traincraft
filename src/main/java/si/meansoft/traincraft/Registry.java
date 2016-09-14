@@ -22,6 +22,7 @@ public class Registry{
     public static BlockHearthFurnace hearthFurnace;
     public static BlockCrafter crafterSteam, crafterDiesel, crafterIron;
     public static BlockWindmill windmill;
+    public static BlockDieselGenerator dieselGenerator;
 
     public static ItemMaterial material;
 
@@ -35,6 +36,7 @@ public class Registry{
         register(hearthFurnace = new BlockHearthFurnace());
         register(crafterSteam = new BlockCrafter(BlockCrafter.CrafterTier.STEAM), crafterDiesel = new BlockCrafter(BlockCrafter.CrafterTier.DIESEL), crafterIron = new BlockCrafter(BlockCrafter.CrafterTier.ELECTRO));
         register(windmill = new BlockWindmill());
+        register(dieselGenerator = new BlockDieselGenerator());
 
         //Items
         register(material = new ItemMaterial());
