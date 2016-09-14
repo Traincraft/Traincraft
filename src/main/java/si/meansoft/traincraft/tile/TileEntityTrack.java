@@ -14,6 +14,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import si.meansoft.traincraft.Util;
 import si.meansoft.traincraft.api.AbstractBlockTrack;
 import si.meansoft.traincraft.track.TrackPoint;
 
@@ -65,12 +66,13 @@ public class TileEntityTrack extends TileEntityBase {
     @Override
     public NBTTagCompound getUpdateTag() {
         NBTTagCompound compound = super.getUpdateTag();
-        writeToNBT(compound, true);
+        writeToNBT(compound, Util.NBTType.SYNC);
         return compound;
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound compound, boolean isForSyncing) {
+    public void writeToNBT(NBTTagCompound compound, Util.NBTType type) {
+        super.writeToNBT(compound, type);
         compound.setInteger("blockIndex", blockIndex);
         compound.setInteger("RailFacing", facing.ordinal());
         compound.setBoolean("aimsLeft", aimsLeft);
@@ -78,7 +80,6 @@ public class TileEntityTrack extends TileEntityBase {
             NBTTagList nbtTagList = new NBTTagList();
             for (BlockPos b : toDestroy)
                 nbtTagList.appendTag(new NBTTagLong(b.toLong()));
-
             compound.setTag("toDestroy", nbtTagList);
         } else {
             compound.setTag("defaultTrackPosition", new NBTTagLong(defaultTrackPosition.toLong()));
@@ -86,10 +87,9 @@ public class TileEntityTrack extends TileEntityBase {
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound compound, boolean isForSyncing) {
+    public void readFromNBT(NBTTagCompound compound, Util.NBTType type) {
         blockIndex = compound.getInteger("blockIndex");
         this.facing = EnumFacing.values()[compound.getInteger("RailFacing")];
-
         if (compound.hasKey("toDestroy")) {
             NBTTagList list = compound.getTagList("toDestroy", 4);
             int l = list.tagCount();
@@ -100,7 +100,7 @@ public class TileEntityTrack extends TileEntityBase {
             defaultTrackPosition = BlockPos.fromLong(compound.getLong("defaultTrackPosition"));
 
         this.getWaypoints();
-        super.readFromNBT(compound, isForSyncing);
+        super.readFromNBT(compound, type);
     }
 
     public EnumFacing getFacing() {

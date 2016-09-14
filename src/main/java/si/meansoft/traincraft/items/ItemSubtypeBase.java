@@ -49,7 +49,7 @@ public class ItemSubtypeBase extends ItemBase{
     @Override
     public void onRegister(IRegistryEntry[] otherEntries){
         for(int i = 0; i < this.subtypes.getEnumConstants().length; i++){
-            String modelName = this.getRegistryName()+this.subtypes.getEnumConstants()[i].toString();
+            String modelName = this.getRegisterName()+this.subtypes.getEnumConstants()[i].toString();
             CommonProxy.addForgeRender(new ItemStack(this, 1, i), new ModelResourceLocation(modelName, "inventory"));
         }
     }

@@ -20,7 +20,7 @@ public class ItemBlockBase extends ItemBlock implements IRegistryEntry{
     }
 
     @Override
-    public String getName(){
+    public String getRegisterName(){
         return this.block.getRegistryName().getResourcePath();
     }
 

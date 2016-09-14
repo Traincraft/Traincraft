@@ -51,7 +51,7 @@ public class Registry{
         for(T entry : entries){
             for(IRegistryEntry reg : entry.getRegisterElements()){
                 if(reg instanceof IForgeRegistryEntry){
-                    ((IForgeRegistryEntry) reg).setRegistryName(new ResourceLocation(Traincraft.MODID, reg.getName()));
+                    ((IForgeRegistryEntry) reg).setRegistryName(new ResourceLocation(Traincraft.MODID, reg.getRegisterName()));
                     GameRegistry.register((IForgeRegistryEntry<?>) reg);
                     reg.onRegister(entries);
                 } else {

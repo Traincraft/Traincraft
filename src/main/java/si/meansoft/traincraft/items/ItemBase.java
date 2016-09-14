@@ -24,7 +24,7 @@ public class ItemBase extends Item implements IRegistryEntry{
     }
 
     @Override
-    public String getName(){
+    public String getRegisterName(){
         return this.name;
     }
 

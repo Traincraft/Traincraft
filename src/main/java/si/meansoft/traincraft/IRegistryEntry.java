@@ -7,7 +7,7 @@ public interface IRegistryEntry{
 
     IRegistryEntry[] getRegisterElements();
 
-    String getName();
+    String getRegisterName();
 
     void onRegister(IRegistryEntry[] otherEntries);
 

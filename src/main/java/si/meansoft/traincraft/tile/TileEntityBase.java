@@ -34,35 +34,35 @@ public class TileEntityBase extends TileEntity implements IRegistryEntry{
     @Override
     public SPacketUpdateTileEntity getUpdatePacket(){
         NBTTagCompound compound = new NBTTagCompound();
-        this.writeToNBT(compound, true);
+        this.writeToNBT(compound, Util.NBTType.SYNC);
         return new SPacketUpdateTileEntity(getPos(), 0, compound);
     }
 
     @Override
     public final void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
         if(pkt != null){
-            this.readFromNBT(pkt.getNbtCompound(), true);
+            this.readFromNBT(pkt.getNbtCompound(), Util.NBTType.SYNC);
         }
     }
 
     @Override
     public final NBTTagCompound writeToNBT(NBTTagCompound compound){
         super.writeToNBT(compound);
-        this.writeToNBT(compound, false);
+        this.writeToNBT(compound, Util.NBTType.SAVE);
         return compound;
     }
 
     @Override
     public final void readFromNBT(NBTTagCompound compound){
         super.readFromNBT(compound);
-        this.readFromNBT(compound, false);
+        this.readFromNBT(compound, Util.NBTType.SAVE);
     }
 
-    public void writeToNBT(NBTTagCompound compound, boolean isForSyncing){
+    public void writeToNBT(NBTTagCompound compound, Util.NBTType type){
 
     }
 
-    public void readFromNBT(NBTTagCompound compound, boolean isForSyncing){
+    public void readFromNBT(NBTTagCompound compound, Util.NBTType type){
 
     }
 
@@ -76,7 +76,7 @@ public class TileEntityBase extends TileEntity implements IRegistryEntry{
     }
 
     @Override
-    public String getName(){
+    public String getRegisterName(){
         return Traincraft.MODID + this.name;
     }
 
@@ -88,7 +88,7 @@ public class TileEntityBase extends TileEntity implements IRegistryEntry{
     @Override
     public void ownRegistry(){
         if(!registered.contains(this.getClass())){
-            GameRegistry.registerTileEntity(this.getClass(), getName());
+            GameRegistry.registerTileEntity(this.getClass(), getRegisterName());
             registered.add(this.getClass());
         }
     }

@@ -22,7 +22,7 @@ public class FluidBlockBase extends BlockFluidClassic implements IRegistryEntry{
     }
 
     @Override
-    public String getName(){
+    public String getRegisterName(){
         return this.fluidName;
     }
 

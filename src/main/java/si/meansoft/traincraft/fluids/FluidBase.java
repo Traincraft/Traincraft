@@ -30,6 +30,11 @@ public class FluidBase extends Fluid implements IRegistryEntry{
     }
 
     @Override
+    public String getRegisterName(){
+        return this.getName();
+    }
+
+    @Override
     public void onRegister(IRegistryEntry[] otherEntries){
 
     }

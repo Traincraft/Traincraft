@@ -45,4 +45,16 @@ public class Util {
         return toDecrease == null ? decreaseValue : null;
     }
 
+    public enum NBTType{
+        SYNC,
+        SAVE;
+
+        public boolean sync(){
+            return this == SYNC;
+        }
+        public boolean save(){
+            return this == SAVE;
+        }
+    }
+
 }

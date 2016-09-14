@@ -60,7 +60,7 @@ public class BlockBase extends Block implements IRegistryEntry{
     }
 
     @Override
-    public String getName(){
+    public String getRegisterName(){
         return this.name;
     }
 

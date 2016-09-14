@@ -5,6 +5,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.ITickable;
+import si.meansoft.traincraft.Util;
 import si.meansoft.traincraft.api.recipes.HearthFurnaceRecipes;
 import si.meansoft.traincraft.api.recipes.HearthFurnaceRecipes.Recipe;
 import si.meansoft.traincraft.blocks.BlockDistillery;
@@ -155,9 +156,8 @@ public class TileEntityHearthFurnace extends TileEntityInventory implements ITic
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound compound, boolean isForSyncing){
-        super.writeToNBT(compound, isForSyncing);
-
+    public void writeToNBT(NBTTagCompound compound, Util.NBTType type){
+        super.writeToNBT(compound, type);
         compound.setInteger("FuelTime", this.fuelTime);
         compound.setInteger("MaxFuelTime", this.maxFuelTime);
         compound.setInteger("ProcessTime", this.processTime);
@@ -165,9 +165,8 @@ public class TileEntityHearthFurnace extends TileEntityInventory implements ITic
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound compound, boolean isForSyncing){
-        super.readFromNBT(compound, isForSyncing);
-
+    public void readFromNBT(NBTTagCompound compound, Util.NBTType type){
+        super.readFromNBT(compound, type);
         this.fuelTime = compound.getInteger("FuelTime");
         this.maxFuelTime = compound.getInteger("MaxFuelTime");
         this.processTime = compound.getInteger("ProcessTime");

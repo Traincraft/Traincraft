@@ -154,29 +154,27 @@ public class TileEntityDistillery extends TileEntityInventory implements ITickab
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound compound, boolean isForSyncing) {
-        super.readFromNBT(compound, isForSyncing);
-
+    public void readFromNBT(NBTTagCompound compound, Util.NBTType type) {
+        super.readFromNBT(compound, type);
         this.tank.readFromNBT(compound);
         this.currentCookTime = compound.getInteger("currentCookTime");
         this.currentBurn = compound.getInteger("currentBurnTime");
         this.maxBurnTime = compound.getInteger("maxBurnTime");
         this.maxCookTime = compound.getInteger("maxCookTime");
-        if(!isForSyncing && this.isCooking()){
+        if(type.save() && this.isCooking()){
             this.currentBurnStack = ItemStack.loadItemStackFromNBT(compound);
         }
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound compound, boolean isForSyncing) {
-        super.writeToNBT(compound, isForSyncing);
-
+    public void writeToNBT(NBTTagCompound compound, Util.NBTType type) {
+        super.writeToNBT(compound, type);
         this.tank.writeToNBT(compound);
         compound.setInteger("currentCookTime", this.currentCookTime);
         compound.setInteger("currentBurnTime", this.currentBurn);
         compound.setInteger("maxBurnTime", this.maxBurnTime);
         compound.setInteger("maxCookTime", this.maxCookTime);
-        if(!isForSyncing && this.currentBurnStack != null){
+        if(type.save() && this.currentBurnStack != null){
             this.currentBurnStack.writeToNBT(compound);
         }
     }
