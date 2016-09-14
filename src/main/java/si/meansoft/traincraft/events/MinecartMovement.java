@@ -33,7 +33,7 @@ public class MinecartMovement{
     public static void onMinecartInit(EntityEvent.EntityConstructing event){
         Entity entity = event.getEntity();
         if(entity instanceof EntityMinecart){
-            entity.getDataManager().register(Util.TEST, false);
+            //entity.getDataManager().register(Util.TEST, false);
         }
     }
 

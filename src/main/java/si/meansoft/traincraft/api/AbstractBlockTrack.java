@@ -1,5 +1,7 @@
 package si.meansoft.traincraft.api;
 
+import mods.railcraft.common.carts.IRailcraftCartContainer;
+import mods.railcraft.common.carts.ItemCart;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -15,14 +17,18 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
+import si.meansoft.traincraft.Compat;
 import si.meansoft.traincraft.IRegistryEntry;
 import si.meansoft.traincraft.Traincraft;
 import si.meansoft.traincraft.blocks.BlockContainerBase;
+import si.meansoft.traincraft.compat.RailcraftUtil;
 import si.meansoft.traincraft.items.ItemBlockBase;
 import si.meansoft.traincraft.tile.TileEntityTrack;
 import si.meansoft.traincraft.track.TrackType;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -76,13 +82,15 @@ public abstract class AbstractBlockTrack extends BlockContainerBase implements I
         EnumFacing facing = state.getValue(FACING);
         BlockPos nextPos = pos.offset(facing.getOpposite());
         float rot = ridingEntity != null ? ridingEntity.getRotationYawHead() + 90 : cart.rotationYaw;
+        System.out.println(cart.rotationYaw);
+        cart.rotationYaw = 90;
         if(!flag && world.getBlockState(nextPos).getBlock() instanceof ITraincraftTrack){
-            cart.moveToBlockPosAndAngles(pos.offset(facing.getOpposite()), rot, cart.rotationPitch);
+            //cart.moveToBlockPosAndAngles(pos.offset(facing.getOpposite()), rot, cart.rotationPitch);
             flag = false;
         } else flag = true;
         nextPos = pos.offset(facing);
         if(flag && world.getBlockState(nextPos).getBlock() instanceof ITraincraftTrack){
-            cart.moveToBlockPosAndAngles(pos.offset(facing), rot, cart.rotationPitch);
+            //cart.moveToBlockPosAndAngles(pos.offset(facing), rot, cart.rotationPitch);
         } else flag = false;
     }
 
@@ -124,19 +132,32 @@ public abstract class AbstractBlockTrack extends BlockContainerBase implements I
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack stack, EnumFacing side, float hitX, float hitY, float hitZ){
         if(stack != null){
+            if(Compat.isRailcraftLoaded && stack.getItem() instanceof ItemCart){
+                if(!world.isRemote){
+                    processRailcraftItem(stack, player, pos);
+                }
+                if(!player.isCreative()) stack.stackSize--;
+                return true;
+            }
             if(stack.getItem() instanceof ItemMinecart){
                 if(!world.isRemote){
                     EntityMinecart.Type minecartType = ReflectionHelper.getPrivateValue(ItemMinecart.class, (ItemMinecart) stack.getItem(), 1);
+                    System.out.println(Arrays.toString(EntityMinecart.Type.values()));
                     EntityMinecart cart = EntityMinecart.create(world, (double) pos.getX() + 0.5D, (double) pos.getY() + 0.0625D, (double) pos.getZ() + 0.5D, minecartType);
                     if(stack.hasDisplayName()){
                         cart.setCustomNameTag(stack.getDisplayName());
                     }
                     world.spawnEntityInWorld(cart);
                 }
-                stack.stackSize--;
+                if(!player.isCreative()) stack.stackSize--;
                 return true;
             }
         }
         return super.onBlockActivated(world, pos, state, player, hand, stack, side, hitX, hitY, hitZ);
+    }
+
+    @Optional.Method(modid = "railcraft")
+    private void processRailcraftItem(ItemStack stack, EntityPlayer player, BlockPos pos){
+        RailcraftUtil.placeRailcraftCart(((ItemCart)stack.getItem()).getCartType(), player, stack, player.getEntityWorld(), pos);
     }
 }

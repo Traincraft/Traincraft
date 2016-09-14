@@ -8,5 +8,6 @@ import net.minecraftforge.fml.common.Loader;
 public class Compat{
 
     public static boolean isTeslaLoaded = Loader.isModLoaded("tesla");
+    public static boolean isRailcraftLoaded = Loader.isModLoaded("railcraft");
 
 }
