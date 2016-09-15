@@ -190,6 +190,7 @@ item.tc:tcRailLargeSlopeBallast.name=Lange Steigung (Schotter)
 item.tc:tcRailVeryLargeSlopeWood.name=Sehr lange Steigung (Holz)
 item.tc:tcRailVeryLargeSlopeGravel.name=Sehr lange Steigung (Kies)
 item.tc:tcRailVeryLargeSlopeBallast.name=Sehr lange Steigung (Schotter)
+item.tc:tcRailSmallRoadCrossing.name=Bahnübergang
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Ingenieurskleidung
