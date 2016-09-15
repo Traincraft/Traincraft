@@ -98,11 +98,6 @@ public class BlockContainerBase extends BlockBase implements ITileEntityProvider
     }
 
     @Override
-    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
-        //world.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing().getOpposite()), 2);
-    }
-
-    @Override
     public IRegistryEntry[] getRegisterElements(){
         return ArrayUtils.addAll(super.getRegisterElements(), createNewTileEntity(null, 0));
     }

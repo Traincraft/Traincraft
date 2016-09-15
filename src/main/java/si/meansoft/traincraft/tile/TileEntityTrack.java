@@ -52,15 +52,23 @@ public class TileEntityTrack extends TileEntityBase {
         this.facing = enumFacing;
         this.aimsLeft = aimsLeft;
         this.getWaypoints();
+        this.setRendering();
     }
 
     public void getWaypoints(){
-        if(this.getWorld() != null){
-            IBlockState state = this.getWorld().getBlockState(this.getPos());
-            if(state.getBlock() instanceof AbstractBlockTrack){
-                this.waypoints = ((AbstractBlockTrack) state.getBlock()).getWaypoints(this.getWorld(), this.getPos(), state, blockIndex);
-            }
-        }
+        this.waypoints = this.getBlock().getWaypoints(this.getWorld(), this.getPos(), this.getState(), this.blockIndex);
+    }
+
+    private void setRendering(){
+        getBlock().setRendering(this, true);
+    }
+
+    private AbstractBlockTrack getBlock(){
+        return (AbstractBlockTrack) this.getState().getBlock();
+    }
+
+    private IBlockState getState(){
+        return this.getWorld().getBlockState(this.getPos());
     }
 
     @Override

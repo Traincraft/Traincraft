@@ -16,6 +16,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -34,6 +35,7 @@ public class ClientProxy extends CommonProxy {
 
     @Override
     public void preInit(FMLPreInitializationEvent event) {
+        OBJLoader.INSTANCE.addDomain(Traincraft.MODID);
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityWindmill.class, new TestVecRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTrack.class, new TileEntityTrack.TrackRenderer());
         for(Fluid fluid : fluids){

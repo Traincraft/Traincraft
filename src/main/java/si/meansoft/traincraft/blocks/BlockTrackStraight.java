@@ -36,6 +36,11 @@ public class BlockTrackStraight extends AbstractBlockTrack{
     }
 
     @Override
+    protected boolean shouldRenderDefault(){
+        return true;
+    }
+
+    @Override
     public void removeTrack(World world, BlockPos pos, boolean dropBlocks){
         TileEntityTrack tile = (TileEntityTrack) world.getTileEntity(pos);
         if (tile != null) {

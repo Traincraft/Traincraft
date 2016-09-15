@@ -1,8 +1,9 @@
 package si.meansoft.traincraft.api;
 
-import mods.railcraft.common.carts.IRailcraftCartContainer;
 import mods.railcraft.common.carts.ItemCart;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.PropertyBool;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -10,6 +11,8 @@ import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemMinecart;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -39,11 +42,13 @@ public abstract class AbstractBlockTrack extends BlockContainerBase implements I
     private TrackType type;
 
     protected static final AxisAlignedBB FLAT_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.125D, 1.0D);
+    public static final PropertyBool SHOULD_RENDER = PropertyBool.create("should_render");
 
     public AbstractBlockTrack(TrackType type, Class<? extends TileEntityTrack> tileClass){
         super(Material.IRON, "track" + type.getInternName(), tileClass);
         this.setCreativeTab(Traincraft.trackTab);
         this.type = type;
+        this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(SHOULD_RENDER, shouldRenderDefault()));
     }
 
     @Override
@@ -52,6 +57,10 @@ public abstract class AbstractBlockTrack extends BlockContainerBase implements I
     }
 
     protected abstract ItemBlockBase getItemBlock(AbstractBlockTrack track);
+
+    protected boolean shouldRenderDefault(){
+        return false;
+    }
 
     @Override
     public TrackType getTrackType(){
@@ -92,6 +101,16 @@ public abstract class AbstractBlockTrack extends BlockContainerBase implements I
         if(flag && world.getBlockState(nextPos).getBlock() instanceof ITraincraftTrack){
             //cart.moveToBlockPosAndAngles(pos.offset(facing), rot, cart.rotationPitch);
         } else flag = false;
+    }
+
+    @Override
+    public EnumBlockRenderType getRenderType(IBlockState state){
+        return (state.getValue(SHOULD_RENDER) || shouldRenderDefault()) ? EnumBlockRenderType.MODEL : EnumBlockRenderType.INVISIBLE;
+    }
+
+    @Override
+    protected BlockStateContainer createBlockState(){
+        return new BlockStateContainer(this, FACING, SHOULD_RENDER);
     }
 
     @Override
@@ -160,4 +179,12 @@ public abstract class AbstractBlockTrack extends BlockContainerBase implements I
     private void processRailcraftItem(ItemStack stack, EntityPlayer player, BlockPos pos){
         RailcraftUtil.placeRailcraftCart(((ItemCart)stack.getItem()).getCartType(), player, stack, player.getEntityWorld(), pos);
     }
+
+    public void setRendering(TileEntity tile, boolean shouldRender){
+        if(!shouldRenderDefault() && tile != null && tile.getWorld() != null){
+            IBlockState state = tile.getWorld().getBlockState(tile.getPos()).withProperty(SHOULD_RENDER, shouldRender);
+            tile.getWorld().setBlockState(tile.getPos(), state, 2);
+        }
+    }
+
 }
