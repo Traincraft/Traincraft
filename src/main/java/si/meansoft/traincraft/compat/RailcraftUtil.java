@@ -23,10 +23,8 @@ public class RailcraftUtil{
             if(cartStack.hasDisplayName()) {
                 cart.setCustomNameTag(cartStack.getDisplayName());
             }
-
             CartToolsAPI.setCartOwner(cart, owner);
             world.spawnEntityInWorld(cart);
-
         }
     }
 

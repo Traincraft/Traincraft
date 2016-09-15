@@ -1,8 +1,10 @@
 package si.meansoft.traincraft.tile;
 
+import cofh.api.energy.IEnergyHandler;
 import ic2.api.tile.IEnergyStorage;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.EnergyStorage;
 import net.minecraftforge.fml.common.Optional;
 import si.meansoft.traincraft.Compat;
@@ -12,7 +14,7 @@ import si.meansoft.traincraft.TeslaWrapper;
  * @author canitzp
  */
 @Optional.Interface(modid = "IC2", iface = "ic2.api.tile.IEnergyStorage")
-public class TileEntityEnergy extends TileEntityInventory implements IEnergyStorage{
+public class TileEntityEnergy extends TileEntityInventory implements IEnergyStorage, IEnergyHandler{
 
     public static final int EU_TO_RF_CONVERSION_RATE = 4;
 
@@ -68,12 +70,31 @@ public class TileEntityEnergy extends TileEntityInventory implements IEnergyStor
     }
 
     @Override
+    public int getEnergyStored(EnumFacing enumFacing){
+        return this.getStoredEnergy();
+    }
+
+    @Override
+    public int getMaxEnergyStored(EnumFacing enumFacing){
+        return this.getCapacity();
+    }
+
+    @Override
+    public boolean canConnectEnergy(EnumFacing enumFacing){
+        return true;
+    }
+
+    @Override
     public <T> T getCapability(Capability<T> capability, EnumFacing facing){
         if(Compat.isTeslaLoaded){
             T cap = TeslaWrapper.getFromCapability(this.storage, capability);
             if(cap != null){
                 return cap;
             }
+        }
+        if(capability == CapabilityEnergy.ENERGY){
+            T cap = (T) new EnergyStorage(this.storage.getMaxEnergyStored(), this.maxTransfer);
+            return cap;
         }
         return super.getCapability(capability, facing);
     }
@@ -94,5 +115,6 @@ public class TileEntityEnergy extends TileEntityInventory implements IEnergyStor
     public int getStoredEnergy(){
         return this.storage.getEnergyStored();
     }
+
 
 }
