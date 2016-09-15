@@ -8,6 +8,9 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.wrapper.SidedInvWrapper;
 import si.meansoft.traincraft.Util;
 
 /**
@@ -17,11 +20,15 @@ public class TileEntityInventory extends TileEntityBase implements ISidedInvento
 
     public ItemStack[] slots;
     public String invName;
+    public SidedInvWrapper[] invWrappers = new SidedInvWrapper[6];
 
     public TileEntityInventory(String name, int slotAmount){
         super(name);
         slots = new ItemStack[slotAmount];
         this.invName = "Inventory" + name;
+        for(EnumFacing side : EnumFacing.values()){
+            this.invWrappers[side.getIndex()] = new SidedInvWrapper(this, side);
+        }
     }
 
     @Override
@@ -208,5 +215,18 @@ public class TileEntityInventory extends TileEntityBase implements ISidedInvento
             }
         }
         return -1;
+    }
+
+    @Override
+    public <T> T getCapability(Capability<T> capability, EnumFacing facing){
+        if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY){
+            return (T) this.invWrappers[facing.getIndex()];
+        }
+        return super.getCapability(capability, facing);
+    }
+
+    @Override
+    public boolean hasCapability(Capability<?> capability, EnumFacing facing){
+        return this.getCapability(capability, facing) != null;
     }
 }

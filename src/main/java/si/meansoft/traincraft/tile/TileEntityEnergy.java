@@ -27,62 +27,80 @@ public class TileEntityEnergy extends TileEntityInventory implements IEnergyStor
         this.storage = new EnergyStorage(capacity, maxTransfer);
     }
 
+    /**
+     * Only implementation. DO NOT USE!
+     */
+
+    @Deprecated /* Use getStoredEnergy() if you handle everything except EU */
     @Optional.Method(modid = "IC2")
     @Override
     public int getStored(){
-        return storage.getEnergyStored() / EU_TO_RF_CONVERSION_RATE;
+        return this.getStoredEnergy() / EU_TO_RF_CONVERSION_RATE;
     }
 
+    @Deprecated /* Not used */
     @Optional.Method(modid = "IC2")
     @Override
     public void setStored(int energy){
     }
 
+    @Deprecated /* Use receiveEnergy(int energy, boolean simulate) if you handle everything except EU */
     @Optional.Method(modid = "IC2")
     @Override
     public int addEnergy(int energy){
-        this.storage.receiveEnergy(energy / EU_TO_RF_CONVERSION_RATE, false);
-        return this.storage.getEnergyStored() / EU_TO_RF_CONVERSION_RATE;
+        this.receiveEnergy(energy / EU_TO_RF_CONVERSION_RATE, false);
+        return this.getStoredEnergy() / EU_TO_RF_CONVERSION_RATE;
     }
 
+    @Deprecated /* Use getMaxEnergy() if you handle everything except EU */
     @Optional.Method(modid = "IC2")
     @Override
     public int getCapacity(){
-        return this.storage.getMaxEnergyStored() / EU_TO_RF_CONVERSION_RATE;
+        return this.getMaxEnergy() / EU_TO_RF_CONVERSION_RATE;
     }
 
+    @Deprecated /* Use getMaxTransfer() if you handle everything except EU */
     @Optional.Method(modid = "IC2")
     @Override
     public int getOutput(){
-        return this.maxTransfer / EU_TO_RF_CONVERSION_RATE;
+        return this.getMaxTransfer() / EU_TO_RF_CONVERSION_RATE;
     }
 
+    @Deprecated
     @Optional.Method(modid = "IC2")
     @Override
     public double getOutputEnergyUnitsPerTick(){
         return getOutput();
     }
 
+    @Deprecated
     @Optional.Method(modid = "IC2")
     @Override
     public boolean isTeleporterCompatible(EnumFacing enumFacing){
         return false;
     }
 
+    @Deprecated /* Use getStoredEnergy() instead */
     @Override
     public int getEnergyStored(EnumFacing enumFacing){
         return this.getStoredEnergy();
     }
 
+    @Deprecated /* Use getMaxEnergy() instead */
     @Override
     public int getMaxEnergyStored(EnumFacing enumFacing){
-        return this.getCapacity();
+        return this.getMaxEnergy();
     }
 
+    @Deprecated
     @Override
     public boolean canConnectEnergy(EnumFacing enumFacing){
         return true;
     }
+
+    /**
+     * Now usable Methods
+     */
 
     @Override
     public <T> T getCapability(Capability<T> capability, EnumFacing facing){
@@ -93,8 +111,7 @@ public class TileEntityEnergy extends TileEntityInventory implements IEnergyStor
             }
         }
         if(capability == CapabilityEnergy.ENERGY){
-            T cap = (T) new EnergyStorage(this.storage.getMaxEnergyStored(), this.maxTransfer);
-            return cap;
+            return (T) this.storage;
         }
         return super.getCapability(capability, facing);
     }
@@ -116,5 +133,12 @@ public class TileEntityEnergy extends TileEntityInventory implements IEnergyStor
         return this.storage.getEnergyStored();
     }
 
+    public int getMaxEnergy(){
+        return this.storage.getMaxEnergyStored();
+    }
+
+    public int getMaxTransfer(){
+        return this.maxTransfer;
+    }
 
 }

@@ -4,7 +4,7 @@
     "model": "traincraft:tracks/testTrack",
     "textures": {
       "particle": "#texture",
-      "texture": "blocks/planks_oak"
+      "texture": "traincraft:blocks/track_normal"
     },
     "transform": "forge:default-block"
   },
