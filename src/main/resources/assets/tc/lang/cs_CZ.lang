@@ -213,6 +213,7 @@ item.tc:tcRailLargeSlopeBallast.name=Dlouhá stoupající kolej (balast)
 item.tc:tcRailVeryLargeSlopeWood.name=Velmi dlouhá stoupající kolej (dřevo)
 item.tc:tcRailVeryLargeSlopeGravel.name=Velmi dlouhá stoupající kolej (štěrk)
 item.tc:tcRailVeryLargeSlopeBallast.name=Velmi dlouhá stoupající kolej (balast)
+item.tc:tcRailSmallRoadCrossing.name=Železniční přejezd
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Inženýrské oblečení

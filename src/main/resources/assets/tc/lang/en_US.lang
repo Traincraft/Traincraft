@@ -213,6 +213,7 @@ item.tc:tcRailLargeSlopeBallast.name=Large Slope Track (Ballast)
 item.tc:tcRailVeryLargeSlopeWood.name=Very Large Slope Track (Wood)
 item.tc:tcRailVeryLargeSlopeGravel.name=Very Large Slope Track (Gravel)
 item.tc:tcRailVeryLargeSlopeBallast.name=Very Large Slope Track (Ballast)
+item.tc:tcRailSmallRoadCrossing.name=RailRoad Crossing
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
