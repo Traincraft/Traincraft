@@ -232,24 +232,19 @@ public class RecipeHandler {
 				TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.ironCab.item, 2), new Object[] { "###", "X X", "XXX", Character.valueOf('X'), Items.iron_ingot, Character.valueOf('#'), s1.get(i) });// iron cab
 				TrainCraftingManager.instance.addRecipe(new ItemStack(BlockIDs.stopper.block, 1), new Object[] { "WWW", "I I", "RRR", Character.valueOf('W'), s1.get(i), Character.valueOf('R'), Blocks.rail, Character.valueOf('I'), Items.iron_ingot});// stopper
 				// Short Wood Slope
-				ItemStack s1Stack = s1.get(i);
-				s1Stack.stackSize = 2;
 				TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailSlopeWood.item, 1),
-						new Object[] { "  S", " SW", "SWW", Character.valueOf('S'),
-								new ItemStack(ItemIDs.tcRailSmallStraight.item, 2), Character.valueOf('W'),
-								s1Stack });
+						new Object[] { " MW", "MWW", "WWW", Character.valueOf('M'), ItemIDs.tcRailMediumStraight.item,
+								Character.valueOf('W'), s1.get(i) });
 			}
 		}
 		// Short Slope Gravel
 		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailSlopeGravel.item, 1),
-				new Object[] { "  S", " SG", "SGG", Character.valueOf('S'),
-						new ItemStack(ItemIDs.tcRailSmallStraight.item, 2), Character.valueOf('G'),
-						new ItemStack(Blocks.gravel, 2) });
+				new Object[] { " MG", "MGG", "GGG", Character.valueOf('M'), ItemIDs.tcRailMediumStraight.item,
+						Character.valueOf('G'), Blocks.gravel });
 		// Short Slope Ballast
 		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailSlopeBallast.item, 1),
-				new Object[] { "  S", " SB", "SBB", Character.valueOf('S'),
-						new ItemStack(ItemIDs.tcRailSmallStraight.item, 2), Character.valueOf('B'),
-						new ItemStack(BlockIDs.oreTC.block, 2, 3) });
+				new Object[] { " MB", "MBB", "BBB", Character.valueOf('M'), ItemIDs.tcRailMediumStraight.item,
+						Character.valueOf('B'), new ItemStack(BlockIDs.oreTC.block, 1, 3) });
 		// Large Slope Wood
 		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailLargeSlopeWood.item, 1),
 				new Object[] { "   ", "  S", " S ", 'S', ItemIDs.tcRailSlopeWood.item });
@@ -261,13 +256,13 @@ public class RecipeHandler {
 				new Object[] { "   ", "  S", " S ", 'S', ItemIDs.tcRailSlopeBallast.item });
 		// VeryLarge Slope Wood
 		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailVeryLargeSlopeWood.item, 1),
-				new Object[] { "   ", "  S", " S ", 'S', ItemIDs.tcRailLargeSlopeWood.item });
+				new Object[] { "  S", " S ", "S  ", 'S', ItemIDs.tcRailSlopeWood.item });
 		// VeryLarge Slope Gravel
 		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailVeryLargeSlopeGravel.item, 1),
-				new Object[] { "   ", "  S", " S ", 'S', ItemIDs.tcRailLargeSlopeGravel.item });
+				new Object[] { "  S", " S ", "S  ", 'S', ItemIDs.tcRailSlopeGravel.item });
 		// VeryLarge Slope Ballast
 		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailVeryLargeSlopeBallast.item, 1),
-				new Object[] { "   ", "  S", " S ", 'S', ItemIDs.tcRailLargeSlopeBallast.item });
+				new Object[] { "  S", " S ", "S  ", 'S', ItemIDs.tcRailSlopeBallast.item });
 		
 		// Medium Straight (3 Recipes? Really?)
 		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailMediumStraight.item, 1),
