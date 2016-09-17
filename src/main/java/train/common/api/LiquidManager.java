@@ -77,8 +77,8 @@ public class LiquidManager {
 
 	@Optional.Method(modid = "BuildCraft|Energy")
 	private void addBCFluids(){
-		BuildcraftFuelRegistry.fuel.addFuel(DIESEL, 3, 200000);
-		BuildcraftFuelRegistry.fuel.addFuel(REFINED_FUEL, 6, 100000);
+		BuildcraftFuelRegistry.fuel.addFuel(DIESEL, 30, 200000);
+		BuildcraftFuelRegistry.fuel.addFuel(REFINED_FUEL, 60, 100000);
 	}
 
 	@SubscribeEvent
