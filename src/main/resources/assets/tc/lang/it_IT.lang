@@ -2,7 +2,7 @@
 <!-- ## Only replace the words on the right side of "=" ## -->
 <!-- ## Save the file the same way this file was saved but replace "de_DE" with appropriate language name ## -->
 
-<!-- ## Blocks ## -->
+<!-- ## BLOCKS ## -->
 tile.tc:oreTC.copperOre.name=Minerale di bronzo
 tile.tc:oreTC.oilSands.name=Sabbia bituminosa
 tile.tc:oreTC.petroleum.name=Petrolio
@@ -26,7 +26,7 @@ fluid.tc:diesel.name=Carburante diesel
 fluid.tc:refinedfuel.name=Carburante raffinato
 tile.tc:bridgePillar.name=Pilone del ponte
 
-<!-- ## Railcraft items ## -->
+<!-- ## RAILCRAFT ITEMS ## -->
 tile.tc.track.detector.freight.name=Binario rilevatore vagone merci
 tile.tc.track.detector.passenger.name=Binario rilevatore vagone passeggeri
 tile.tc.track.detector.loco.name=Binario rilevatore locomotiva
@@ -48,7 +48,7 @@ tile.tc.track.coupler.name=Binario di aggancio
 tile.tc.track.speed.loco.name=Binario velocità per locomotiva
 tile.tc.track.steel.name=Binario di acciaio
 
-<!-- ## Items ## -->
+<!-- ## ITEMS ## -->
 item.tc:diesel.name=(Pieno) Tanica di carburante diesel
 item.tc:stake.name=Barra meccanica
 item.tc:steeldust.name=Polvere di acciaio
@@ -212,8 +212,9 @@ item.tc:tcRailLargeSlopeBallast.name=Tratto inclinato medio (Massicciata)
 item.tc:tcRailVeryLargeSlopeWood.name=Tratto inclinato lungo (Legno)
 item.tc:tcRailVeryLargeSlopeGravel.name=Tratto inclinato lungo (Ghiaia)
 item.tc:tcRailVeryLargeSlopeBallast.name=Tratto inclinato lungo (Massicciata)
+item.tc:tcRailSmallRoadCrossing.name=Passaggio a livello piccolo
 
-<!-- ## Achievements ## -->
+<!-- ## ACHIEVEMENTS ## -->
 achievement.tc:engineer=Gli indumenti dell'ingegnere
 achievement.tc:engineer.desc=Un autentico ferroviere!
 achievement.tc:openHearth=La fornace a cielo scoperto
@@ -297,6 +298,7 @@ builder.down.name=Scendi
 builder.currElev.name=Altitudine corrente
 builder.reqElev.name=Altitudine richiesta
 
+<!-- ## TRAIN OWNER ## -->
 train.owner.name=Non sei tu il proprietario!
 train.locked.name=Bloccato
 train.unlocked.name=Sbloccato
@@ -388,6 +390,10 @@ entity.TC.Passenger Small Black.name=Vagone passeggeri
 entity.TC.Passenger Blue.name=Vagone passeggeri
 entity.TC.Passenger Adler.name=Vagone passeggeri Adler
 
+<!-- ## VILLAGER ## -->
+description.villager.profession.tc.station_chief=Capostazione
+
+<!-- ## KEY ## -->
 key.categories.traincraft=Traincraft
 key.traincraft.horn=Segnale
 key.traincraft.inventory=Inventario
