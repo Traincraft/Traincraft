@@ -65,10 +65,6 @@ public class HandleOverheating {
 				entity.overheatLevel++;
 			}
 
-			/**
-			 * Only over heats in hard mode
-			 */
-			if (entity.worldObj.difficultySetting.getDifficultyId() >= 2) {
 				/**
 				 * train is breaking, increment a delayer break won't overheat too quickly
 				 */
@@ -113,7 +109,6 @@ public class HandleOverheating {
 						entity.overheatLevel--;
 					}
 				}
-			}
 
 			if (entity.overheatLevel < entity.getAverageOverheat() - (overheatRatio(17, entity))) {
 				((Locomotive) entity).setState("cold");
@@ -134,6 +129,7 @@ public class HandleOverheating {
 			}
 			if (entity.overheatLevel > entity.getAverageOverheat() + (overheatRatio(24, entity))) {
 				((Locomotive) entity).setState("broken");
+				System.out.println("BROKEN!");
 
 			}
 			entity.setOverheatLevel(entity.overheatLevel);
