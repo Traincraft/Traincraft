@@ -1,22 +1,30 @@
 package train.common.core.plugins;
 
+import java.util.ArrayList;
+
 import cpw.mods.fml.common.registry.GameRegistry;
 import mods.railcraft.api.crafting.RailcraftCraftingManager;
+import mods.railcraft.common.core.RailcraftConfig;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+import train.common.Traincraft;
 import train.common.core.util.TraincraftUtil;
 import train.common.library.ItemIDs;
 import train.common.library.Tracks;
 
-import java.util.ArrayList;
-
 public class PluginRailcraft {
 
 	public static void init(){
-		registerRecipes();
+		if (!RailcraftConfig.useOldRecipes()) {
+			registerRecipes();
+			Traincraft.tcLog.info("Enabled Traincraft additional tracks for Railcraft");
+		} else {
+			Traincraft.tcLog.info(
+					"You've enabled vanilla rail recipes in Railcraft. Disable them to get Traincraft additional tracks");
+		}
 	}
 
 	private static void registerRecipes(){
