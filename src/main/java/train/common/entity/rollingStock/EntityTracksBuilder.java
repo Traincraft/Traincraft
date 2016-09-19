@@ -200,7 +200,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 		int i = MathHelper.floor_double(posX);
 		int j = MathHelper.floor_double(posY);
 		int k = MathHelper.floor_double(posZ);
-
+		
 		if (canDigg()) {
 			updateState(true);
 			this.digBuilder(i, j, k);
@@ -1277,18 +1277,23 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 			else {
 				return;
 			}
-
+			System.out.println(hY);
 			//builder is going flat or up
-			if (hY > -1 && underBlockStack != null && worldObj.getBlock(i + iX, j - 1 + hY, k + kZ) != Block.getBlockFromItem(underBlockStack.getItem()) && worldObj.getBlock(i + iX, j - 1 + hY, k + kZ) != Block.getBlockFromItem(tracksStack.getItem())) {
-				getBlockList(worldObj, i + iX, j - 1 + hY, k + kZ);
-				worldObj.setBlock(i + iX, j - 1 + hY, k + kZ, Block.getBlockFromItem(underBlockStack.getItem()), underBlockStack.getItem().getMetadata(underBlockStack.getItemDamage()), 3);
+			if (hY > -1 && underBlockStack != null
+					&& worldObj.getBlock(i, j - 1 + hY, k) != Block.getBlockFromItem(underBlockStack.getItem())
+					&& worldObj.getBlock(i, j - 1 + hY, k) != Block.getBlockFromItem(tracksStack.getItem())) {
+				getBlockList(worldObj, i, j - 1, k);
+				worldObj.setBlock(i, j - 1 + hY, k, Block.getBlockFromItem(underBlockStack.getItem()),
+						underBlockStack.getItem().getMetadata(underBlockStack.getItemDamage()), 3);
 				decrStackSize(3, 1);// decr underblock
 			}
 
 			//builder is going down, different code is required
 			 else if (hY < 0 && underBlockStack != null && worldObj.getBlock(i, j - 1 + hY, k) != Block.getBlockFromItem(underBlockStack.getItem()) && worldObj.getBlock(i, j - 1 + hY, k) != Block.getBlockFromItem(tracksStack.getItem())) {
 				getBlockList(worldObj, i, j - 1 + hY, k);
-				worldObj.setBlock(i, j - 1 + hY, k, Block.getBlockFromItem(underBlockStack.getItem()), underBlockStack.getItem().getMetadata(underBlockStack.getItemDamage()), 3);// changes the block under the builder
+				worldObj.setBlock(i, j - 2, k, Block.getBlockFromItem(underBlockStack.getItem()),
+						underBlockStack.getItem().getMetadata(underBlockStack.getItemDamage()), 3);
+				// changes the block under the builder
 				decrStackSize(3, 1);// decr underblock
 			}
 
@@ -1353,8 +1358,6 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 					decrStackSize(1, 1);
 				}
 				RailTools.placeRailAt(tracksStack.copy(), worldObj, i, j + hY, k);
-
-				// builder goes up
 			}
 			else if (hY > 0 && (Blocks.rail!=worldObj.getBlock(i + iX, j + hY, k + kZ)) && Blocks.rail!=worldObj.getBlock(i + iX, j + hY + 1, k + kZ) && Blocks.rail!=worldObj.getBlock(i + iX, j, k + kZ) && Blocks.rail!=worldObj.getBlock(i, j + hY, k) && Blocks.rail!=worldObj.getBlock(i, j - hY, k) && Blocks.rail.canPlaceBlockAt(worldObj, i + iX, j + hY, k + kZ)) {
 				checkForTracks();
