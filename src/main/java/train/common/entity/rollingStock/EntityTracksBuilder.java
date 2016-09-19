@@ -125,7 +125,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 		prevPosY = d1;
 		prevPosZ = d2;
 		currentHeight = posY;
-		plannedHeight = (int) currentHeight;
+		plannedHeight = (int) currentHeight - 1;
 		setPlannedHeight(plannedHeight);
 	}
 	
