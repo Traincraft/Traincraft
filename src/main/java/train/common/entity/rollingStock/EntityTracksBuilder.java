@@ -947,6 +947,10 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 		this.harvestBlock_do(Vec3.createVectorHelper(i + d, j + hY + 1, k + 1));
 		this.harvestBlock_do(Vec3.createVectorHelper(i + d, j + hY + 2, k - 1));
 
+		this.harvestBlock_do(Vec3.createVectorHelper(i + d, j + hY + 3, k + 1));
+		this.harvestBlock_do(Vec3.createVectorHelper(i + d, j + hY + 3, k - 1));
+		this.harvestBlock_do(Vec3.createVectorHelper(i + d, j + hY + 3, k));
+
 		if (tunnelActive) {// puts dirt then glass (default) in a tunnel shape for underwater tunnel
 
 			getBlockList(worldObj, i + (3 * iX), j + hY + 3, k);
@@ -1107,6 +1111,10 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 		this.harvestBlock_do(Vec3.createVectorHelper(i + 1, j + hY + 2, k + d));
 		this.harvestBlock_do(Vec3.createVectorHelper(i + 1, j + hY + 1, k + d));
 		this.harvestBlock_do(Vec3.createVectorHelper(i - 1, j + hY + 2, k + d));
+
+		this.harvestBlock_do(Vec3.createVectorHelper(i + 1, j + hY + 3, k + d));
+		this.harvestBlock_do(Vec3.createVectorHelper(i - 1, j + hY + 3, k + d));
+		this.harvestBlock_do(Vec3.createVectorHelper(i, j + hY + 3, k + d));
 
 		if (tunnelActive) {
 			getBlockList(worldObj, i, j + hY + 3, k + (3 * kZ));
