@@ -22,9 +22,7 @@ public class TrainModCore {
 			while (scanner.hasNextLine()) {
 				String line = scanner.nextLine().trim();
 				
-				// line, not scanner.
-				if (line.equals("B:useAltRecipes=true")) // tag in the txt to locate position
-				{
+				if (line.equals("B:useAltRecipes=true")) {
 					rcVanillaRecipes = true;
 				} else if (line.equals("B:useAltRecipes=false")) {
 					rcVanillaRecipes = false;
