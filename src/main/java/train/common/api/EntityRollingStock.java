@@ -16,7 +16,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 import io.netty.buffer.ByteBuf;
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.api.carts.ILinkableCart;
-import mods.railcraft.api.core.items.IToolCrowbar;
 import mods.railcraft.api.tracks.RailTools;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRailBase;
@@ -61,6 +60,7 @@ import train.common.core.network.PacketRollingStockRotation;
 import train.common.entity.rollingStock.EntityTracksBuilder;
 import train.common.items.ItemTCRail;
 import train.common.items.ItemTCRail.TrackTypes;
+import train.common.items.ItemWrench;
 import train.common.library.BlockIDs;
 import train.common.library.EnumTrains;
 import train.common.tile.TileTCRail;
@@ -1658,7 +1658,8 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 
 		}
 
-		if (itemstack != null && itemstack.getItem() instanceof IToolCrowbar && this instanceof Locomotive && entityplayer.isSneaking() && !worldObj.isRemote) {
+		if (itemstack != null && itemstack.getItem() instanceof ItemWrench && this instanceof Locomotive
+				&& entityplayer.isSneaking() && !worldObj.isRemote) {
 			destination = "";
 			entityplayer.addChatMessage(new ChatComponentText("Destination reset"));
 			return true;

@@ -6,7 +6,6 @@ import com.mojang.authlib.GameProfile;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.api.carts.IMinecart;
 import mods.railcraft.api.core.items.IMinecartItem;
 import net.minecraft.block.Block;
@@ -352,7 +351,6 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 				rollingStock.trainName = ((ItemRollingStock) itemstack.getItem()).getItemStackDisplayName(itemstack);
 				if (player != null){
 					rollingStock.trainOwner = player.getDisplayName();
-					CartTools.setCartOwner(rollingStock, player);//set the owner for RC compatibility
 				}
 				rollingStock.mass = getMass();
 

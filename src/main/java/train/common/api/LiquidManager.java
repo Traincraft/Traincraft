@@ -64,8 +64,9 @@ public class LiquidManager {
 		FluidContainerRegistry.registerFluidContainer(DIESEL, new ItemStack(ItemIDs.diesel.item), new ItemStack(ItemIDs.emptyCanister.item));
 		FluidContainerRegistry.registerFluidContainer(REFINED_FUEL, new ItemStack(ItemIDs.refinedFuel.item), new ItemStack(ItemIDs.emptyCanister.item));
 		dieselFilter();
-		FuelManager.addBoilerFuel(DIESEL, 60000);
-		FuelManager.addBoilerFuel(REFINED_FUEL, 96000);
+		if (Loader.isModLoaded("Railcraft")) {
+			addRCFluids();
+		}
 		if (Loader.isModLoaded("BuildCraft|Energy")) {
 			addBCFluids();
 		}
@@ -81,6 +82,12 @@ public class LiquidManager {
 		BuildcraftFuelRegistry.fuel.addFuel(REFINED_FUEL, 60, 100000);
 	}
 
+	@Optional.Method(modid = "Railcraft")
+	private void addRCFluids() {
+		FuelManager.addBoilerFuel(DIESEL, 60000);
+		FuelManager.addBoilerFuel(REFINED_FUEL, 96000);
+	}
+	
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
 	public void textureHook(TextureStitchEvent.Post event) {

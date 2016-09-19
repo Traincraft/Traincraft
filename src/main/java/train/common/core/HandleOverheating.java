@@ -116,12 +116,10 @@ public class HandleOverheating {
 			if (entity.overheatLevel < entity.getAverageOverheat() - (overheatRatio(4, entity)) && entity.overheatLevel > entity.getAverageOverheat() - (overheatRatio(17, entity))) {
 				((Locomotive) entity).setState("warm");
 			}
-
 			if (entity.overheatLevel > entity.getAverageOverheat() - (overheatRatio(4, entity)) && entity.overheatLevel < entity.getAverageOverheat() + (overheatRatio(12, entity))) {
 				((Locomotive) entity).setState("hot");
 			}
 			if (entity.overheatLevel > entity.getAverageOverheat() + (overheatRatio(12, entity))) {
-
 				((Locomotive) entity).setState("very hot");
 			}
 			if (entity.overheatLevel > entity.getAverageOverheat() + (overheatRatio(17, entity))) {
@@ -129,8 +127,6 @@ public class HandleOverheating {
 			}
 			if (entity.overheatLevel > entity.getAverageOverheat() + (overheatRatio(24, entity))) {
 				((Locomotive) entity).setState("broken");
-				System.out.println("BROKEN!");
-
 			}
 			entity.setOverheatLevel(entity.overheatLevel);
 		}

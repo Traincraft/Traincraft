@@ -7,7 +7,8 @@
 
 package train.common.blocks;
 
-import cpw.mods.fml.client.registry.RenderingRegistry;
+import static net.minecraftforge.common.util.ForgeDirection.UP;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockContainer;
@@ -20,10 +21,8 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import train.common.Traincraft;
-import train.common.tile.TileStopper;
 import train.common.library.Info;
-
-import static net.minecraftforge.common.util.ForgeDirection.UP;
+import train.common.tile.TileStopper;
 
 public class BlockStopper extends BlockContainer {
 
@@ -62,7 +61,7 @@ public class BlockStopper extends BlockContainer {
 	@Override
 	public void onBlockPlacedBy(World world, int par2, int par3, int par4, EntityLivingBase living, ItemStack stack) {
 		TileStopper te = (TileStopper) world.getTileEntity(par2, par3, par4);
-		int var6 = MathHelper.floor_double((double) (living.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+		int var6 = MathHelper.floor_double(living.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
 		int var7 = world.getBlockMetadata(par2, par3, par4) >> 2;
 		++var6;
 		var6 %= 4;
