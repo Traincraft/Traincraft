@@ -1277,9 +1277,8 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 			else {
 				return;
 			}
-			System.out.println(hY);
-			//builder is going flat or up
-			if (hY > -1 && underBlockStack != null
+			// builder is going flat
+			if (hY == 0 && underBlockStack != null
 					&& worldObj.getBlock(i, j - 1 + hY, k) != Block.getBlockFromItem(underBlockStack.getItem())
 					&& worldObj.getBlock(i, j - 1 + hY, k) != Block.getBlockFromItem(tracksStack.getItem())) {
 				getBlockList(worldObj, i, j - 1, k);
@@ -1287,13 +1286,22 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 						underBlockStack.getItem().getMetadata(underBlockStack.getItemDamage()), 3);
 				decrStackSize(3, 1);// decr underblock
 			}
+			// builder is going up
+			if (hY > 0 && underBlockStack != null
+					&& worldObj.getBlock(i + iX, j - 1 + hY, k + kZ) != Block
+							.getBlockFromItem(underBlockStack.getItem())
+					&& worldObj.getBlock(i + iX, j - 1 + hY, k + kZ) != Block.getBlockFromItem(tracksStack.getItem())) {
+				getBlockList(worldObj, i + iX, j - 1, k + kZ);
+				worldObj.setBlock(i + iX, j - 1 + hY, k + kZ, Block.getBlockFromItem(underBlockStack.getItem()),
+						underBlockStack.getItem().getMetadata(underBlockStack.getItemDamage()), 3);
+				decrStackSize(3, 1);// decr underblock
+			}
 
-			//builder is going down, different code is required
+			// builder is going down
 			 else if (hY < 0 && underBlockStack != null && worldObj.getBlock(i, j - 1 + hY, k) != Block.getBlockFromItem(underBlockStack.getItem()) && worldObj.getBlock(i, j - 1 + hY, k) != Block.getBlockFromItem(tracksStack.getItem())) {
 				getBlockList(worldObj, i, j - 1 + hY, k);
 				worldObj.setBlock(i, j - 2, k, Block.getBlockFromItem(underBlockStack.getItem()),
 						underBlockStack.getItem().getMetadata(underBlockStack.getItemDamage()), 3);
-				// changes the block under the builder
 				decrStackSize(3, 1);// decr underblock
 			}
 
