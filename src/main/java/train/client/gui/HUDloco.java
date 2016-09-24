@@ -1,15 +1,16 @@
 package train.client.gui;
 
+import org.lwjgl.opengl.GL11;
+
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import org.lwjgl.opengl.GL11;
+import train.common.api.DieselTrain;
 import train.common.api.Locomotive;
 import train.common.api.SteamTrain;
-import train.common.api.DieselTrain;
 import train.common.library.Info;
 
 public class HUDloco extends GuiScreen {
@@ -20,16 +21,16 @@ public class HUDloco extends GuiScreen {
 	@SubscribeEvent
 	public void onGameRender(RenderGameOverlayEvent.Post event){
 		if (game != null && game.thePlayer != null && game.thePlayer.ridingEntity != null && game.thePlayer.ridingEntity instanceof Locomotive && Minecraft.isGuiEnabled() && game.currentScreen == null) {
-			renderSkillHUD(event, (Locomotive) game.thePlayer.ridingEntity);
+			renderSkillHUD((Locomotive) game.thePlayer.ridingEntity);
 		} else {
 			this.game = this.mc = Minecraft.getMinecraft();
 			this.fontRendererObj = this.game.fontRenderer;
 		}
 	}
 
-	public void renderSkillHUD(RenderGameOverlayEvent event, Locomotive rcCar) {
-		windowWidth = event.resolution.getScaledWidth();
-		windowHeight = event.resolution.getScaledWidth() - 150;
+	public void renderSkillHUD(Locomotive rcCar) {
+		windowWidth = Minecraft.getMinecraft().displayWidth;
+		windowHeight = Minecraft.getMinecraft().displayHeight - 200;
 		renderBG(rcCar);
 		/**
 		 * Steam Train have water
@@ -62,7 +63,7 @@ public class HUDloco extends GuiScreen {
 		else {
 			game.renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation,Info.guiPrefix + "locohud.png"));
 		}
-		drawTexturedModalRect(0, (windowHeight / 2), 0, 150, 137, 90);
+		drawTexturedModalRect(10, (windowHeight / 2), 0, 150, 137, 90);
 		GL11.glDisable(32826);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		GL11.glDisable(3042);
@@ -81,12 +82,13 @@ public class HUDloco extends GuiScreen {
 		GL11.glEnable(3042 /* GL_BLEND */);
 		GL11.glEnable(32826);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		fontRendererObj.drawStringWithShadow("Speed:", 96, (windowHeight / 2) + 7 + (h), 0xFFFFFF);
-		fontRendererObj.drawStringWithShadow("  " + ((int) Math.abs(((float) (speed)))) + "", 96, (windowHeight / 2) + 18 + (h), 0xFFFFFF);
-		fontRendererObj.drawStringWithShadow(" " + "Km/h", 96, (windowHeight / 2) + 29 + (h), 0xFFFFFF);
+		fontRendererObj.drawStringWithShadow("Speed:", 106, (windowHeight / 2) + 7 + (h), 0xFFFFFF);
+		fontRendererObj.drawStringWithShadow("  " + ((int) Math.abs(((float) (speed)))) + "", 106,
+				(windowHeight / 2) + 18 + (h), 0xFFFFFF);
+		fontRendererObj.drawStringWithShadow(" " + "Km/h", 106, (windowHeight / 2) + 29 + (h), 0xFFFFFF);
 
 		if (loco.canOverheat()) {
-			fontRendererObj.drawStringWithShadow("State: " + ((Locomotive) loco).getState(), 40, (windowHeight / 2) + 80, 0xFFFFFF);
+			fontRendererObj.drawStringWithShadow("State: " + loco.getState(), 50, (windowHeight / 2) + 80, 0xFFFFFF);
 		}
 		GL11.glDisable(32826);
 		GL11.glDisable(3042 /* GL_BLEND */);
@@ -133,10 +135,10 @@ public class HUDloco extends GuiScreen {
 		 * Things are slightly different in Steam HUD
 		 */
 		if (!(loco instanceof SteamTrain)) {
-			drawTexturedModalRect(18, (windowHeight / 2) + 11, 148, 150 + l, 7, t);// l max = 70
+			drawTexturedModalRect(28, (windowHeight / 2) + 11, 148, 150 + l, 7, t);// l max = 70
 		}
 		else {
-			drawTexturedModalRect(24, (windowHeight / 2) + 17, 154, 170 + l, 9, t);// l max = 70
+			drawTexturedModalRect(34, (windowHeight / 2) + 17, 154, 170 + l, 9, t);// l max = 70
 		}
 		// fontRendererObj.drawStringWithShadow("Fuel:", 4, (windowHeight/2)+1, 0xFFFFFF);
 		GL11.glDisable(32826);
@@ -161,7 +163,7 @@ public class HUDloco extends GuiScreen {
 		GL11.glEnable(3042 /* GL_BLEND */);
 		GL11.glEnable(32826);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		drawTexturedModalRect(60, (windowHeight / 2) + 17, 190, 169 + l_Scaled, 6, t);// l max = 49
+		drawTexturedModalRect(70, (windowHeight / 2) + 17, 190, 169 + l_Scaled, 6, t);// l max = 49
 		GL11.glDisable(32826);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		GL11.glDisable(3042 /* GL_BLEND */);
@@ -196,10 +198,10 @@ public class HUDloco extends GuiScreen {
 		 * Things are slightly different in Steam HUD
 		 */
 		if (!(loco instanceof SteamTrain)) {
-			drawTexturedModalRect(65, (windowHeight / 2) + 37 - ((int) speedScaled) + (20), 163, 150, 30, 5);// l max = 70
+			drawTexturedModalRect(75, (windowHeight / 2) + 37 - ((int) speedScaled) + (20), 163, 150, 30, 5);
 		}
 		else {
-			drawTexturedModalRect(74, (windowHeight / 2) + 37 - ((int) speedScaled) + (20), 177, 149, 16, 8);// l max = 70
+			drawTexturedModalRect(84, (windowHeight / 2) + 37 - ((int) speedScaled) + (20), 177, 149, 16, 8);
 		}
 		GL11.glDisable(32826);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
@@ -235,11 +237,10 @@ public class HUDloco extends GuiScreen {
 		 * Things are slightly different in Steam HUD render overheat arrow black bar for steam train
 		 */
 		if (!(loco instanceof SteamTrain)) {
-			drawTexturedModalRect(48, (windowHeight / 2) + 37 - ((int) overheatScaled) + (20), 169, 158, 23, 5);//
-
+			drawTexturedModalRect(58, (windowHeight / 2) + 37 - ((int) overheatScaled) + (20), 169, 158, 23, 5);
 		}
 		else {
-			drawTexturedModalRect(46, (windowHeight / 2) + 17, 176, (int) (169 + overheatScaled), 5, t);// l max = 49
+			drawTexturedModalRect(56, (windowHeight / 2) + 17, 176, (int) (169 + overheatScaled), 5, t);
 		}
 		GL11.glDisable(32826);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
