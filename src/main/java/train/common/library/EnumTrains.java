@@ -176,7 +176,7 @@ public enum EnumTrains {
 	locoDieselV60_DB("Loco Diesel V60 DB",EntityLocoDieselV60_DB.class, 49,ItemIDs.minecartV60_DB.item,"train_v60","diesel",500,80,0,60,0,170,0.66,0.96,8000,new String[] {"Red","Green","Yellow","Cyan"},15,new double[]{-1.3},null,0.98,1.98),
 
 	/** Electric */
-	locoElectricVL10("Loco Electric VL10", EntityLocoElectricVL10.class, 46, ItemIDs.minecartVL10.item, "train_vl10", "electric", 700, 150, 0, 8, 0, 400, 1.1, 0.956, 0, null, 14, new double[] { -2.5 }, null, 0.98, 1.98),
+	locoElectricVL10("Loco Electric VL10", EntityLocoElectricVL10.class, 46, ItemIDs.minecartVL10.item, "train_vl10", "electric", 700, 150, 0, 8, 0, 400, 1.1, 0.956, 0, null, 14, new double[] { -2.3 }, null, 0.98, 1.98),
 	locoElectricBR_E69("Loco Electric BR_E69",EntityLocoElectricBR_E69.class, 7,ItemIDs.minecartBR_E69.item,"train_bre69","electric",400,50,0,5,0,400,0.9,0.946,0,new String[] {"Green","Red","Black","Grey"},18,null,null,0.98,1.98),
 	locoElectricMineTrain("Loco Electric Minetrain",EntityLocoElectricMinetrain.class,75,ItemIDs.minecartLocoMineTrain.item,"train_mine_train","electric",500,40,0,80,0,160,0.5,0.97,0,null,18,new double[]{-1},null,0.98,0.98),
 	locoElectricSpeedZeroED("Loco Electric High Speed ZeroED", EntityLocoElectricHighSpeedZeroED.class, 12,
