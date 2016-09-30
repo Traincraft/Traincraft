@@ -24,8 +24,6 @@ import train.common.library.Info;
 
 public class PacketHandler {
 
-	protected RollingStockStatsEventHandler statsEventHandler = new RollingStockStatsEventHandler();
-
 	public static void init(){
 		Traincraft.tcLog.info("Initialize Packets");
 		Traincraft.modChannel = NetworkRegistry.INSTANCE.newSimpleChannel(Info.channel);

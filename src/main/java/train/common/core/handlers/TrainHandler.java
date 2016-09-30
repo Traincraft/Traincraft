@@ -14,7 +14,7 @@ public class TrainHandler {
 
 	public TrainHandler(EntityRollingStock rolling) {
 		this.rolling = rolling;
-		addRollingStock((EntityRollingStock) rolling);
+		addRollingStock(rolling);
 		rolling.allTrains.add(this);
 	}
 
@@ -27,13 +27,13 @@ public class TrainHandler {
 		if (rolling instanceof Locomotive) {
 			trainPower += ((Locomotive) rolling).getPower();
 		}
-		train.add((EntityRollingStock) rolling);
-		((EntityRollingStock) rolling).train = this;
+		train.add(rolling);
+		(rolling).train = this;
 		//System.out.println("added "+rolling);
 		if (rolling.cartLinked1 != null)
-			addRollingStock(((EntityRollingStock) rolling.cartLinked1));
+			addRollingStock((rolling.cartLinked1));
 		if (rolling.cartLinked2 != null)
-			addRollingStock(((EntityRollingStock) rolling.cartLinked2));
+			addRollingStock((rolling.cartLinked2));
 	}
 
 	public void resetTrain() {

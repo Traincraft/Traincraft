@@ -16,7 +16,6 @@ import train.common.library.AchievementIDs;
 
 public class CraftingHandler
 {
-  private RollingStockStatsEventHandler statsEvent = new RollingStockStatsEventHandler();
   
   @SubscribeEvent
   public void onCrafting(PlayerEvent.ItemCraftedEvent event)
@@ -34,11 +33,7 @@ public class CraftingHandler
           TraincraftSaveHandler.createFile(FMLCommonHandler.instance().getMinecraftServerInstance());
           int readID = TraincraftSaveHandler.readInt(FMLCommonHandler.instance().getMinecraftServerInstance(), "numberOfTrains:");
           int newID = stock.setNewUniqueID(event.crafting, event.player, readID);
-          TraincraftSaveHandler.writeValue(FMLCommonHandler.instance().getMinecraftServerInstance(), "numberOfTrains:", new String("" + newID));
-					this.statsEvent.trainCreate(event.crafting.getTagCompound().getInteger("uniqueID"),
-							((ItemRollingStock) event.crafting.getItem()).getTrainName(), stock.getTrainType(),
-							event.player.getGameProfile().getId(), new String((int) event.player.posX + ";"
-									+ (int) event.player.posY + ";" + (int) event.player.posZ));
+          TraincraftSaveHandler.writeValue(FMLCommonHandler.instance().getMinecraftServerInstance(), "numberOfTrains:", "" + newID);
         }
       }
     }

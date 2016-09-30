@@ -18,7 +18,6 @@ import train.common.core.handlers.FuelHandler;
 
 public abstract class SteamTrain extends Locomotive implements IFluidHandler {
 
-	protected int waterConsumption = 200;
 	public int fuelSlot = 1;
 	public int waterSlot = 1;
 	protected int maxTank;
@@ -43,10 +42,11 @@ public abstract class SteamTrain extends Locomotive implements IFluidHandler {
 	private SteamTrain(int capacity, World world, FluidStack filter) {
 		super(world);
 		this.maxTank = capacity;
-		if (filter == null)
+		if (filter == null) {
 			this.theTank = LiquidManager.getInstance().new StandardTank(capacity);
-		if (filter != null)
+		} else {
 			this.theTank = LiquidManager.getInstance().new FilteredTank(capacity, filter);
+		}
 		tankArray[0] = theTank;
 		dataWatcher.addObject(4, 0);
 		numCargoSlots = 3;
@@ -189,8 +189,8 @@ public abstract class SteamTrain extends Locomotive implements IFluidHandler {
 		}
 		@SuppressWarnings("rawtypes") List lis3 = worldObj.getEntitiesWithinAABBExcludingEntity(this, box3);
 		if (lis3 != null && lis3.size() > 0) {
-			for (int j1 = 0; j1 < lis3.size(); j1++) {
-				Entity entity = (Entity) lis3.get(j1);
+			for (Object j1 : lis3) {
+				Entity entity = (Entity) j1;
 				if ((entity instanceof Tender) && (isAttached || isLinked())) {
 					for (int h = 0; h < ((Tender) entity).tenderItems.length; h++) {
 						if (((Tender) entity).tenderItems[h] != null && FuelHandler.steamFuelLast(((Tender) entity).tenderItems[h]) != 0) {

@@ -27,37 +27,17 @@ public class ItemHandler {
 			if (entity instanceof Freight) {
 				return handleFreight(entity, itemstack);
 			} else if (entity instanceof DieselTrain) {
-				return handleDiesel(entity, itemstack);
+				return false;
 			} else if (entity instanceof ElectricTrain) {
-				return handleElectric(entity, itemstack);
+				return false;
 			} else if (entity instanceof SteamTrain) {
-				return handleSteam(entity, itemstack);
+				return false;
 			} else if (entity instanceof Tender) {
-				return handleTender(entity, itemstack);
+				return false;
 			} else {
-				return handleOther(entity, itemstack);
+				return false;
 			}
 		}
-		return false;
-	}
-
-	public static boolean handleOther(Entity entity, ItemStack itemstack) {
-		return false;
-	}
-
-	public static boolean handleTender(Entity entity, ItemStack itemstack) {
-		return false;
-	}
-
-	public static boolean handleSteam(Entity entity, ItemStack itemstack) {
-		return false;
-	}
-
-	public static boolean handleElectric(Entity entity, ItemStack itemstack) {
-		return false;
-	}
-
-	public static boolean handleDiesel(Entity entity, ItemStack itemstack) {
 		return false;
 	}
 

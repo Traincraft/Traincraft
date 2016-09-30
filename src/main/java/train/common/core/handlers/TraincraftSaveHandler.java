@@ -49,7 +49,6 @@ public class TraincraftSaveHandler {
 					}
 					else {
 						reader.close();
-						continue;
 					}
 				}
 			}
@@ -96,8 +95,8 @@ public class TraincraftSaveHandler {
 					bw.write(name + value + "\n");
 				}
 				else {
-					for (int i = 0; i < content.size(); i++) {
-						bw.write(content.get(i) + "\n");
+					for (String item : content) {
+						bw.write(item + "\n");
 					}
 				}
 

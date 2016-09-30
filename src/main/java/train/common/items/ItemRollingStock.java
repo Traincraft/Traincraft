@@ -46,7 +46,6 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 	private String trainName;
 	private String trainCreator;
 	private int trainColor = -1;
-	private RollingStockStatsEventHandler statsEvent = new RollingStockStatsEventHandler();
 
 	public ItemRollingStock(String iconName) {
 		super(1);
@@ -389,8 +388,6 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 					}
 				}
 				world.spawnEntityInWorld(rollingStock);
-				if (player != null)
-					statsEvent.trainPlace(rollingStock.getUniqueTrainID(), ((ItemRollingStock) itemstack.getItem()).getItemStackDisplayName(itemstack), ((ItemRollingStock) itemstack.getItem()).getTrainType(), trainCreator, player.getDisplayName(), new String(i + ";" + j + ";" + k));
 			}
 			--itemstack.stackSize;
 		}

@@ -12,7 +12,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import train.common.core.TrainModCore;
 import train.common.core.handlers.*;
-import train.common.core.network.*;
 import train.common.generation.ComponentVillageTrainstation;
 import train.common.api.LiquidManager;
 import train.common.blocks.TCBlocks;
@@ -21,8 +20,6 @@ import train.common.core.CreativeTabTraincraft;
 import train.common.generation.WorldGenWorld;
 import train.common.items.TCItems;
 import train.common.library.Info;
-import train.common.mysql.mysqlLogInterface;
-import train.common.mysql.mysqlLogger;
 import train.common.recipes.AssemblyTableRecipes;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
@@ -37,7 +34,6 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.VillagerRegistry;
-import cpw.mods.fml.relauncher.Side;
 
 @Mod(modid = Info.modID, name = Info.modName, version = Info.modVersion)
 public class Traincraft {
@@ -75,8 +71,6 @@ public class Traincraft {
 	public static int trainCloth;
 	public static int trainCompositeSuit;
 
-	private mysqlLogInterface logMysql = new mysqlLogger();
-	public static boolean mysqlLoggerEnabled;
 	
 	public static WorldGenWorld worldGen;
 
@@ -153,10 +147,6 @@ public class Traincraft {
 
 		/* Liquid FX */
 		proxy.registerTextureFX();
-
-		/* Try to load mysql */
-		if (ConfigHandler.MYSQL_ENABLE)
-			mysqlLoggerEnabled = logMysql.enableLogger();
 
 		/*Trainman Villager*/
 		tcLog.info("Initialize Station Chief Villager");

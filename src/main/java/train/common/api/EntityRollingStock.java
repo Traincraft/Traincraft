@@ -404,18 +404,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				if (riddenByEntity != null) {
 					riddenByEntity.mountEntity(this);
 				}
-				/**
-				 * Destroy IPassenger since they don't extend Freight or
-				 * Locomotive and don't have a proper attackEntityFrom() method
-				 */
-				if (this instanceof IPassenger) {
-					this.setDead();
-					boolean flag = damagesource.getEntity() instanceof EntityPlayer && ((EntityPlayer) damagesource.getEntity()).capabilities.isCreativeMode;
-					if (!flag) {
-						dropCartAsItem();
-					}
-				}
-				statsEventHandler.trainDestroy(this.uniqueID, this.trainName, this.trainType, this.trainCreator, ((EntityPlayer) damagesource.getEntity()).getDisplayName(), posX + ";" + posY + ";" + posZ);
 			}
 		}
 		return true;
@@ -667,7 +655,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				int newID = setNewUniqueID(readID);
 				
 				//TraincraftSaveHandler.writeValue(FMLCommonHandler.instance().getMinecraftServerInstance(), "numberOfTrains:", "" + newID);
-				statsEventHandler.trainPlace(newID, this.trainName, this.trainType, this.trainOwner, this.trainOwner, (int) posX + ";" + (int) posY + ";" + (int) posZ);
 				//System.out.println("Train is missing an ID, adding new one for "+this.trainName+" "+this.uniqueID);
 			}
 		}
@@ -1689,9 +1676,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 						this.setColor(itemstack.getItemDamage());
 						itemstack.stackSize--;
 
-						if (!worldObj.isRemote){
-							statsEventHandler.trainPaint(this.uniqueID, trainName, trainType, this.trainCreator, entityplayer.getDisplayName(), getColorAsString(itemstack.getItemDamage()), posX + ";" + posY + ";" + posZ);
-						}
 						//if (!worldObj.isRemote)PacketHandler.sendPacketToClients(PacketHandler.sendStatsToServer(10,this.uniqueID,trainName ,trainType, this.trainOwner, this.getColorAsString(itemstack.getItemDamage()), (int)posX, (int)posY, (int)posZ),this.worldObj, (int)posX,(int)posY,(int)posZ, 12.0D);
 
 						return true;

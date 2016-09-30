@@ -557,7 +557,6 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 					FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().sendChatMsg(new ChatComponentText(((EntityPlayer) this.lastEntityRider).getDisplayName() + " blew " + this.getTrainOwner() + "'s locomotive"));
 					FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().sendChatMsg(new ChatComponentText(((EntityPlayer) this.lastEntityRider).getDisplayName() + " blew " + this.getTrainOwner() + "'s locomotive"));
 				}
-				if (!worldObj.isRemote) {statsEventHandler.trainExplode(this.uniqueID, this.trainName, this.trainType, this.trainCreator, (int) posX + ";" + (int) posY + ";" + (int) posZ);}
 			}
 		}
 
