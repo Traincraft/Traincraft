@@ -14,16 +14,17 @@ import train.common.entity.zeppelin.AbstractZeppelin;
 
 public class RenderZeppelins extends Render {
 
-	protected ModelBase modelZeppelinTwoBalloons;
-	protected ModelBase modelZeppelinOneBalloon;
+	private static final ModelBase modelZeppelinTwoBalloons = new ModelZeppelinTwoBalloons();
+	private static final ModelBase modelZeppelinOneBalloon = new ModelZeppelinOneBalloon();
+
+	private static final ResourceLocation oneBalloon = new ResourceLocation(Info.resourceLocation, Info.zeppelinTexturePrefix + "zeppelin_one_balloon.png");
+	private static final ResourceLocation twoBalloon = new ResourceLocation(Info.resourceLocation, Info.zeppelinTexturePrefix + "zeppelin_two_balloons.png");
 
 	public RenderZeppelins() {
 		shadowSize = 0.5F;
-		modelZeppelinTwoBalloons = new ModelZeppelinTwoBalloons();
-		modelZeppelinOneBalloon = new ModelZeppelinOneBalloon();
 	}
 
-	public void func_157_a(AbstractZeppelin entityzepplin, double d, double d1, double d2, float f, float f1) {
+	private void func_157_a(AbstractZeppelin entityzepplin, double d, double d1, double d2, float f, float f1) {
 		GL11.glPushMatrix();
 		GL11.glTranslatef((float) d, (float) d1, (float) d2);
 		GL11.glRotatef(90F - f, 0.0F, 1.0F, 0.0F);
@@ -86,8 +87,9 @@ public class RenderZeppelins extends Render {
 	@Override
 	protected ResourceLocation getEntityTexture(Entity entity) {
 		if(entity instanceof EntityZeppelinOneBalloon){
-			return new ResourceLocation(Info.resourceLocation, Info.zeppelinTexturePrefix + "zeppelin_one_balloon.png");
+			return oneBalloon;
+		} else {
+			return twoBalloon;
 		}
-		return new ResourceLocation(Info.resourceLocation, Info.zeppelinTexturePrefix + "zeppelin_two_balloons.png");
 	}
 }

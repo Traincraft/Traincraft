@@ -11,12 +11,13 @@ import train.common.entity.digger.EntityRotativeDigger;
 
 public class RenderRotativeDigger extends Render {
 
+	private static final ModelBase modelRotaryExcavator = new ModelRotaryExcavator();
+
 	public RenderRotativeDigger() {
 		shadowSize = 0.5F;
-		modelRotaryExcavator = new ModelRotaryExcavator();
 	}
 
-	public void func_157_a(EntityRotativeDigger digger, double d, double d1, double d2, float f, float f1) {
+	private void func_157_a(EntityRotativeDigger digger, double d, double d1, double d2, float f, float f1) {
 		GL11.glPushMatrix();
 		GL11.glTranslatef((float) d, (float) d1, (float) d2);
 		GL11.glRotatef(90F - f, 0.0F, 1.0F, 0.0F);
@@ -49,7 +50,6 @@ public class RenderRotativeDigger extends Render {
 		func_157_a((EntityRotativeDigger) entity, d, d1, d2, f, f1);
 	}
 
-	protected ModelBase modelRotaryExcavator;
 
 	@Override
 	protected ResourceLocation getEntityTexture(Entity entity) {

@@ -18,25 +18,22 @@ import train.common.library.Info;
 
 public class RenderGeneratorDiesel extends TileEntitySpecialRenderer {
 
-	public ModelGeneratorDiesel modelGenerator;
-	private static float scale = (float) (1.0 / 16.0);
+	private static final ModelGeneratorDiesel modelGenerator = new ModelGeneratorDiesel((float) (1.0 / 16.0));
+	private static final ResourceLocation texture = new ResourceLocation(Info.resourceLocation,Info.modelTexPrefix + "generator_diesel.png");
 
 	public RenderGeneratorDiesel() {
-		modelGenerator = new ModelGeneratorDiesel(scale);
 	}
 
 	public void render(TileEntity var1, double x, double y, double z) {
 		GL11.glPushMatrix();
-		GL11.glDisable(GL11.GL_LIGHTING);
 
 		GL11.glTranslated(x, y, z);
-		FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation,Info.modelTexPrefix + "generator_diesel.png"));
+		FMLClientHandler.instance().getClient().renderEngine.bindTexture(texture);
 
 		//System.out.println(((TileStopper) var1).getFacing());
 		GL11.glTranslatef(0.5F, 0.0F, 0.5F);
 		modelGenerator.render(0.0625F, ((TileGeneratorDiesel) var1).getFacing());
 
-		GL11.glEnable(GL11.GL_LIGHTING);
 		GL11.glPopMatrix();
 	}
 

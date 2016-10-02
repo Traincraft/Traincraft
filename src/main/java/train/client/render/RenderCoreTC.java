@@ -13,25 +13,10 @@ import net.minecraft.world.World;
 
 public class RenderCoreTC {
 	public static void renderBlockFalling(Block block, int meta, World world, int i, int j, int k) {
-		float f = 0.5F;
-		float f1 = 1.0F;
-		float f2 = 0.8F;
-		float f3 = 0.6F;
 		Tessellator tessellator = Tessellator.instance;
 		tessellator.startDrawingQuads();
 		tessellator.setBrightness(block.getMixedBrightnessForBlock(world, i, j, k));
-		tessellator.setColorOpaque_F(f, f, f);
-		//renderBottomFace(block, -0.5D, -0.5D, -0.5D, block.getBlockTextureFromSideAndMetadata(0, meta));
-		tessellator.setColorOpaque_F(f1, f1, f1);
-		//renderTopFace(block, -0.5D, -0.5D, -0.5D, block.getBlockTextureFromSideAndMetadata(1, meta));
-		tessellator.setColorOpaque_F(f2, f2, f2);
-		//renderEastFace(block, -0.5D, -0.5D, -0.5D, block.getBlockTextureFromSideAndMetadata(2, meta));
-		tessellator.setColorOpaque_F(f2, f2, f2);
-		//renderWestFace(block, -0.5D, -0.5D, -0.5D, block.getBlockTextureFromSideAndMetadata(3, meta));
-		tessellator.setColorOpaque_F(f3, f3, f3);
-		//renderNorthFace(block, -0.5D, -0.5D, -0.5D, block.getBlockTextureFromSideAndMetadata(4, meta));
-		tessellator.setColorOpaque_F(f3, f3, f3);
-		//renderSouthFace(block, -0.5D, -0.5D, -0.5D, block.getBlockTextureFromSideAndMetadata(5, meta));
+		tessellator.setColorOpaque_F(0.6F, 0.6F, 0.6F);
 		tessellator.draw();
 	}
 
@@ -39,7 +24,6 @@ public class RenderCoreTC {
 		double blockMinX = block.getBlockBoundsMinX();
 		double blockMaxX = block.getBlockBoundsMaxX();
 		double blockMinY = block.getBlockBoundsMinY();
-		double blockMaxY = block.getBlockBoundsMaxY();
 		double blockMinZ = block.getBlockBoundsMinZ();
 		double blockMaxZ = block.getBlockBoundsMaxZ();
 		Tessellator tessellator = Tessellator.instance;
@@ -58,21 +42,11 @@ public class RenderCoreTC {
 			d5 = ((float) k + 0.0F) / 256F;
 			d6 = ((float) k + 15.99F) / 256F;
 		}
-		double d7 = d4;
-		double d8 = d3;
-		double d9 = d5;
-		double d10 = d6;
 
-		double d11 = d + blockMinX;
-		double d12 = d + blockMaxX;
-		double d13 = d1 + blockMinY;
-		double d14 = d2 + blockMinZ;
-		double d15 = d2 + blockMaxZ;
-
-		tessellator.addVertexWithUV(d11, d13, d15, d8, d10);
-		tessellator.addVertexWithUV(d11, d13, d14, d3, d5);
-		tessellator.addVertexWithUV(d12, d13, d14, d7, d9);
-		tessellator.addVertexWithUV(d12, d13, d15, d4, d6);
+		tessellator.addVertexWithUV(d + blockMinX, d1 + blockMinY, d2 + blockMaxZ, d3, d6);
+		tessellator.addVertexWithUV(d + blockMinX, d1 + blockMinY, d2 + blockMinZ, d3, d5);
+		tessellator.addVertexWithUV(d + blockMaxX, d1 + blockMinY, d2 + blockMinZ, d4, d5);
+		tessellator.addVertexWithUV(d + blockMaxX, d1 + blockMinY, d2 + blockMaxZ, d4, d6);
 	}
 
 	public static void renderTopFace(Block block, double d, double d1, double d2, int i) {
@@ -97,21 +71,11 @@ public class RenderCoreTC {
 			d5 = ((float) k + 0.0F) / 256F;
 			d6 = ((float) k + 15.99F) / 256F;
 		}
-		double d7 = d4;
-		double d8 = d3;
-		double d9 = d5;
-		double d10 = d6;
 
-		double d11 = d + blockMinX;
-		double d12 = d + blockMaxX;
-		double d13 = d1 + blockMaxY;
-		double d14 = d2 + blockMinZ;
-		double d15 = d2 + blockMaxZ;
-
-		tessellator.addVertexWithUV(d12, d13, d15, d4, d6);
-		tessellator.addVertexWithUV(d12, d13, d14, d7, d9);
-		tessellator.addVertexWithUV(d11, d13, d14, d3, d5);
-		tessellator.addVertexWithUV(d11, d13, d15, d8, d10);
+		tessellator.addVertexWithUV(d + blockMaxX, d1 + blockMaxY, d2 + blockMaxZ, d4, d6);
+		tessellator.addVertexWithUV(d + blockMaxX, d1 + blockMaxY, d2 + blockMinZ, d4, d5);
+		tessellator.addVertexWithUV(d + blockMinX, d1 + blockMaxY, d2 + blockMinZ, d3, d5);
+		tessellator.addVertexWithUV(d + blockMinX, d1 + blockMaxY, d2 + blockMaxZ, d3, d6);
 	}
 
 	public static void renderEastFace(Block block, double d, double d1, double d2, int i) {
@@ -137,21 +101,11 @@ public class RenderCoreTC {
 			d5 = ((float) k + 0.0F) / 256F;
 			d6 = ((float) k + 15.99F) / 256F;
 		}
-		double d8 = d4;
-		double d9 = d3;
-		double d10 = d5;
-		double d11 = d6;
 
-		double d12 = d + blockMinX;
-		double d13 = d + blockMaxX;
-		double d14 = d1 + blockMinY;
-		double d15 = d1 + blockMaxY;
-		double d16 = d2 + blockMinZ;
-
-		tessellator.addVertexWithUV(d12, d15, d16, d8, d10);
-		tessellator.addVertexWithUV(d13, d15, d16, d3, d5);
-		tessellator.addVertexWithUV(d13, d14, d16, d9, d11);
-		tessellator.addVertexWithUV(d12, d14, d16, d4, d6);
+		tessellator.addVertexWithUV(d + blockMinX, d1 + blockMaxY, d2 + blockMinZ, d4, d5);
+		tessellator.addVertexWithUV(d + blockMaxX, d1 + blockMaxY, d2 + blockMinZ, d3, d5);
+		tessellator.addVertexWithUV(d + blockMaxX, d1 + blockMinY, d2 + blockMinZ, d3, d6);
+		tessellator.addVertexWithUV(d + blockMinX, d1 + blockMinY, d2 + blockMinZ, d4, d6);
 	}
 
 	public static void renderWestFace(Block block, double d, double d1, double d2, int i) {
@@ -177,21 +131,11 @@ public class RenderCoreTC {
 			d5 = ((float) k + 0.0F) / 256F;
 			d6 = ((float) k + 15.99F) / 256F;
 		}
-		double d8 = d4;
-		double d9 = d3;
-		double d10 = d5;
-		double d11 = d6;
 
-		double d12 = d + blockMinX;
-		double d13 = d + blockMaxX;
-		double d14 = d1 + blockMinY;
-		double d15 = d1 + blockMaxY;
-		double d16 = d2 + blockMaxZ;
-
-		tessellator.addVertexWithUV(d12, d15, d16, d3, d5);
-		tessellator.addVertexWithUV(d12, d14, d16, d9, d11);
-		tessellator.addVertexWithUV(d13, d14, d16, d4, d6);
-		tessellator.addVertexWithUV(d13, d15, d16, d8, d10);
+		tessellator.addVertexWithUV(d + blockMinX, d1 + blockMaxY, d2 + blockMaxZ, d3, d5);
+		tessellator.addVertexWithUV(d + blockMinX, d1 + blockMinY, d2 + blockMaxZ, d3, d6);
+		tessellator.addVertexWithUV(d + blockMaxX, d1 + blockMinY, d2 + blockMaxZ, d4, d6);
+		tessellator.addVertexWithUV(d + blockMaxX, d1 + blockMaxY, d2 + blockMaxZ, d4, d5);
 	}
 
 	public static void renderNorthFace(Block block, double d, double d1, double d2, int i) {
@@ -217,21 +161,11 @@ public class RenderCoreTC {
 			d5 = ((float) k + 0.0F) / 256F;
 			d6 = ((float) k + 15.99F) / 256F;
 		}
-		double d8 = d4;
-		double d9 = d3;
-		double d10 = d5;
-		double d11 = d6;
 
-		double d12 = d + blockMinX;
-		double d13 = d1 + blockMinY;
-		double d14 = d1 + blockMaxY;
-		double d15 = d2 + blockMinZ;
-		double d16 = d2 + blockMaxZ;
-
-		tessellator.addVertexWithUV(d12, d14, d16, d8, d10);
-		tessellator.addVertexWithUV(d12, d14, d15, d3, d5);
-		tessellator.addVertexWithUV(d12, d13, d15, d9, d11);
-		tessellator.addVertexWithUV(d12, d13, d16, d4, d6);
+		tessellator.addVertexWithUV(d + blockMinX, d1 + blockMaxY, d2 + blockMaxZ, d4, d5);
+		tessellator.addVertexWithUV(d + blockMinX, d1 + blockMaxY, d2 + blockMinZ, d3, d5);
+		tessellator.addVertexWithUV(d + blockMinX, d1 + blockMinY, d2 + blockMinZ, d3, d6);
+		tessellator.addVertexWithUV(d + blockMinX, d1 + blockMinY, d2 + blockMaxZ, d4, d6);
 	}
 
 	public static void renderSouthFace(Block block, double d, double d1, double d2, int i) {
@@ -257,20 +191,10 @@ public class RenderCoreTC {
 			d5 = ((float) k + 0.0F) / 256F;
 			d6 = ((float) k + 15.99F) / 256F;
 		}
-		double d8 = d4;
-		double d9 = d3;
-		double d10 = d5;
-		double d11 = d6;
 
-		double d12 = d + blockMaxX;
-		double d13 = d1 + blockMinY;
-		double d14 = d1 + blockMaxY;
-		double d15 = d2 + blockMinZ;
-		double d16 = d2 + blockMaxZ;
-
-		tessellator.addVertexWithUV(d12, d13, d16, d9, d11);
-		tessellator.addVertexWithUV(d12, d13, d15, d4, d6);
-		tessellator.addVertexWithUV(d12, d14, d15, d8, d10);
-		tessellator.addVertexWithUV(d12, d14, d16, d3, d5);
+		tessellator.addVertexWithUV(d + blockMaxX, d1 + blockMinY, d2 + blockMaxZ, d3, d6);
+		tessellator.addVertexWithUV(d + blockMaxX, d1 + blockMinY, d2 + blockMinZ, d4, d6);
+		tessellator.addVertexWithUV(d + blockMaxX, d1 + blockMaxY, d2 + blockMinZ, d4, d5);
+		tessellator.addVertexWithUV(d + blockMaxX, d1 + blockMaxY, d2 + blockMaxZ, d3, d5);
 	}
 }

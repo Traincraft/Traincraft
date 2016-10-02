@@ -11,13 +11,11 @@ import train.common.entity.EntityLasersLines;
 
 public class RenderLasersLines extends Render {
 	/** instance of ModelBoat for rendering */
-	protected ModelBase modelBoat;
-	protected ModelBase model = new ModelBase() {};
+	private static final ModelBase model = new ModelBase() {};
 	private ModelRenderer box;
 
 	public RenderLasersLines() {
 		this.shadowSize = 0.5F;
-		this.modelBoat = new ModelBoat();
 		box = new ModelRenderer(model, 0, 0);
 		box.addBox(0, -0.5F, -0.5F, 16, 1, 1);
 		box.rotationPointX = 0;
@@ -29,24 +27,21 @@ public class RenderLasersLines extends Render {
 	 * The render method used in RenderBoat that renders the boat model.
 	 */
 	public void renderLasersLines(EntityLasersLines en, double x, double y, double z, float f, float f1) {
-		if (en.hidden)
+		if (en.hidden ^ en.isDead) {
 			return;
-		if (en.isDead)
-			return;
+		}
 
 		GL11.glPushMatrix();
-		GL11.glDisable(2896 /* GL_LIGHTING */);
 		GL11.glTranslated(x, y, z);
 		GL11.glRotatef((float) en.angleZ, 0, 1, 0);
 		GL11.glRotatef((float) en.angleY, 0, 0, 1);
 
 		//en.getTexture();
 		//loadTexture(en.getTexture());
-		float factor = (float) (1.0 / 16.0);
 		float lasti = 0;
 
 		for (float i = 0; i <= en.renderSize - 1; ++i) {
-			getBox(en).render(factor);
+			getBox(en).render(1.0F / 16.0F);
 			GL11.glTranslated(1, 0, 0);
 			lasti = i;
 		}

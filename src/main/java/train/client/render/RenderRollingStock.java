@@ -129,7 +129,6 @@ public class RenderRollingStock extends Render {
 			//System.out.println("rotationYawBogie "+rotationYawBogie+" oldYaw "+cart.oldClientYaw+" tempYaw "+(Math.abs(tempYaw)/10));
 			//System.out.println(Math.abs(cart.oldClientYaw-rotationYawBogie));
 			if(Math.abs(cart.oldClientYaw-rotationYawBogie)>170){
-				newYaw = rotationYawBogie;
 				cart.oldClientYaw = rotationYawBogie;
 			}
 			if (cart.oldClientYaw != rotationYawBogie && Math.abs(cart.oldClientYaw-rotationYawBogie)>(Math.abs(tempYaw)/10)) {
@@ -165,7 +164,6 @@ public class RenderRollingStock extends Render {
 				//System.out.println("rotationYawBogie "+rotationYawBogie+" oldYaw "+cart.oldClientYaw+" tempYaw "+(Math.abs(tempYaw)/10));
 				//System.out.println(Math.abs(cart.oldClientYaw-rotationYawBogie));
 				if(Math.abs(cart.oldClientYaw-rotationYaw)>170){
-					newYaw = rotationYaw;
 					cart.oldClientYaw = rotationYaw;
 				}
 				if (cart.oldClientYaw != rotationYaw && Math.abs(cart.oldClientYaw-rotationYaw)>(Math.abs(tempYaw)/10)) {
@@ -257,14 +255,17 @@ public class RenderRollingStock extends Render {
 	}
 
 	private ResourceLocation getResourceFile(String texture, boolean multiTexture, EntityRollingStock cart) {
-		if (multiTexture) return new ResourceLocation(Info.resourceLocation, Info.trainsPrefix + texture + cart.getColorAsString() + ".png");
-		return new ResourceLocation(Info.resourceLocation, Info.trainsPrefix + texture + ".png");
+		if (multiTexture) {
+			return new ResourceLocation(Info.resourceLocation, Info.trainsPrefix + texture + cart.getColorAsString() + ".png");
+		} else {
+			return new ResourceLocation(Info.resourceLocation, Info.trainsPrefix + texture + ".png");
+		}
 	}
 
 	private void renderSmokeFX(EntityRollingStock cart, float yaw, float pitch, String smokeType, ArrayList<double[]> smokeFX, int smokeIterations, float time, boolean hasSmokeOnSlopes) {
-		if(cart instanceof Locomotive && !((Locomotive)cart).isLocoTurnedOn())return;
-		double rads = yaw * 3.141592653589793D / 180.0D;
-		double pitchRads = pitch * 3.141592653589793D / 180.0D;
+		if(cart instanceof Locomotive && !((Locomotive)cart).isLocoTurnedOn()){return;}
+		double rads = Math.toDegrees(yaw);
+		double pitchRads = Math.toDegrees(pitch);
 		if(Math.abs(pitch)>30)return;
 		//if (pitch != 0 && !hasSmokeOnSlopes) { return; }
 		if ((cart instanceof Locomotive && ((Locomotive) cart).getFuel() > 0) || (cart instanceof EntityTracksBuilder && ((EntityTracksBuilder) cart).getFuel() > 0)) {
@@ -301,7 +302,7 @@ public class RenderRollingStock extends Render {
 	private void renderExplosionFX(EntityRollingStock cart, float yaw, float pitch, String explosionType, ArrayList<double[]> explosionFX, int explosionFXIterations, boolean hasSmokeOnSlopes) {
 		if(cart instanceof Locomotive && !((Locomotive)cart).isLocoTurnedOn())return;
 		float yawMod = yaw % 360;
-		double pitchRads = pitch * 3.141592653589793D / 180.0D;
+		double pitchRads = Math.toDegrees(pitch);
 		//if (pitch != 0 && !hasSmokeOnSlopes) { return; }
 		if(Math.abs(pitch)>30)return;
 		if (cart instanceof Locomotive && ((Locomotive) cart).getFuel() > 0) {

@@ -24,9 +24,9 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 	private ModelRightSwitchTCTrack modelRightSwitchTurn = new ModelRightSwitchTCTrack();
 	private ModelLeftSwitchTCTrack modelLeftSwitchTurn = new ModelLeftSwitchTCTrack();
 	private ModelTwoWaysCrossingTCTrack modelTwoWaysCrossing = new ModelTwoWaysCrossingTCTrack();
-	private ModelSlopeTCTrack			modelSlope				= new ModelSlopeTCTrack();
+	private ModelSlopeTCTrack modelSlope = new ModelSlopeTCTrack();
 	private ModelLargeSlopeTCTrack modelLargeSlope = new ModelLargeSlopeTCTrack();
-	private ModelVeryLargeSlopeTCTrack	modelVeryLargeSlope		= new ModelVeryLargeSlopeTCTrack();
+	private ModelVeryLargeSlopeTCTrack	modelVeryLargeSlope = new ModelVeryLargeSlopeTCTrack();
 
 	public RenderTCRail() {
 		

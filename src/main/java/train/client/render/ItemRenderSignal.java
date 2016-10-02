@@ -18,10 +18,10 @@ import train.common.library.Info;
 
 public class ItemRenderSignal implements IItemRenderer {
 
-	private ModelBlockSignal signal;
+	private static final ModelBlockSignal signal = new ModelBlockSignal(1F);
+	private static final ResourceLocation texture = new ResourceLocation(Info.resourceLocation,Info.trainsPrefix + "signal_suisse_green.png");
 
 	public ItemRenderSignal() {
-		signal = new ModelBlockSignal(1.0f);
 	}
 
 	@Override
@@ -59,7 +59,7 @@ public class ItemRenderSignal implements IItemRenderer {
 	}
 
 	private void renderSignal(float f, float g, float h, float rotation, float scale) {
-		FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation,Info.trainsPrefix + "signal_suisse_green.png"));
+		FMLClientHandler.instance().getClient().renderEngine.bindTexture(texture);
 		GL11.glPushMatrix(); //start
 		GL11.glTranslatef(f, g, h); //size
 		GL11.glRotatef(rotation, f, g, h);

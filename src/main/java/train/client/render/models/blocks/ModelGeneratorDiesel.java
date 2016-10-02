@@ -40,8 +40,6 @@ public class ModelGeneratorDiesel extends ModelBase {
 	public CustomModelRenderer box9;
 
 
-	private float scale;
-
 	public ModelGeneratorDiesel(float scale) {
 		box = new CustomModelRenderer(1, 46, 64, 64);
 		box.addBox(0F, 0F, 0F, 1, 2, 16,scale);

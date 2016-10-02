@@ -9,10 +9,10 @@ import train.client.render.models.blocks.ModelLantern;
 import train.common.library.Info;
 
 public class ItemRenderLantern implements IItemRenderer {
-	private ModelLantern modelLantern;
+	private static final ModelLantern modelLantern= new ModelLantern();
+	private static final ResourceLocation texture = new ResourceLocation(Info.resourceLocation,Info.modelTexPrefix + "lantern_uv_draw_2.png");
 
 	public ItemRenderLantern() {
-		modelLantern = new ModelLantern();
 	}
 
 	@Override
@@ -55,15 +55,12 @@ public class ItemRenderLantern implements IItemRenderer {
 
 		GL11.glTranslatef(x, y, z);
 		GL11.glScalef(scale, scale, scale);
-		GL11.glRotatef(180f, 0f, 1f, 0f);
 
-		FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation,Info.modelTexPrefix + "lantern_uv_draw_2.png"));
-		int j = 0x4f4e4a;
-		float f1 = 1.0F;
-		float f2 = (float) (j >> 16 & 255) / 255.0F;
-		float f3 = (float) (j >> 8 & 255) / 255.0F;
-		float f4 = (float) (j & 255) / 255.0F;
-		GL11.glColor3f(f1 * f2, f1 * f3, f1 * f4);
+		FMLClientHandler.instance().getClient().renderEngine.bindTexture(texture);
+		float f2 = (float) (0x4f4e4a >> 16 & 255) / 255.0F;
+		float f3 = (float) (0x4f4e4a >> 8 & 255) / 255.0F;
+		float f4 = (float) (0x4f4e4a & 255) / 255.0F;
+		GL11.glColor3f(f2, f3, f4);
 
 		modelLantern.render();
 

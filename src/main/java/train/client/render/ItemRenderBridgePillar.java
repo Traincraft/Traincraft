@@ -9,10 +9,10 @@ import train.client.render.models.blocks.ModelBridgePillar;
 import train.common.library.Info;
 
 public class ItemRenderBridgePillar implements IItemRenderer {
-	private ModelBridgePillar modelBridgePillar;
+	private static final ModelBridgePillar modelBridgePillar = new ModelBridgePillar();
+	private static final ResourceLocation texture = new ResourceLocation(Info.resourceLocation,Info.modelTexPrefix + "track_slope.png");
 
 	public ItemRenderBridgePillar() {
-		modelBridgePillar = new ModelBridgePillar();
 	}
 
 	@Override
@@ -29,19 +29,19 @@ public class ItemRenderBridgePillar implements IItemRenderer {
 	public void renderItem(ItemRenderType type, ItemStack item, Object... data) {
 		switch (type) {
 		case ENTITY: {
-			renderBridgePillar(0f, 0f, 0f, 1f);
+			renderBridgePillar(0f, 0f, 0f);
 			return;
 		}
 		case EQUIPPED: {
-			renderBridgePillar(0.2f, 1f, 1f, 1f);
+			renderBridgePillar(0.2f, 1f, 1f);
 			return;
 		}
 		case EQUIPPED_FIRST_PERSON: {
-			renderBridgePillar(0.2f, 1f, 1f, 1f);
+			renderBridgePillar(0.2f, 1f, 1f);
 			return;
 		}
 		case INVENTORY: {
-			renderBridgePillar(0f, -0.5f, 0f, 1f);
+			renderBridgePillar(0f, -0.5f, 0f);
 			return;
 		}
 		default:
@@ -49,19 +49,14 @@ public class ItemRenderBridgePillar implements IItemRenderer {
 		}
 	}
 
-	private void renderBridgePillar(float x, float y, float z, float scale) {
+	private void renderBridgePillar(float x, float y, float z) {
 		GL11.glPushMatrix();
-		GL11.glDisable(GL11.GL_LIGHTING);
 
 		GL11.glTranslatef(x, y, z);
-		GL11.glScalef(scale, scale, scale);
-		GL11.glRotatef(180f, 0f, 1f, 0f);
 
-		FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation,Info.modelTexPrefix + "track_slope.png"));
+		FMLClientHandler.instance().getClient().renderEngine.bindTexture(texture);
 
 		modelBridgePillar.render();
-
-		GL11.glEnable(GL11.GL_LIGHTING);
 		GL11.glPopMatrix();
 	}
 }

@@ -8,9 +8,9 @@ import train.client.render.models.ModelLines;
  * @author Spitfire4466 <trains-and-zeppelin.wikispaces.com>
  */
 public class TileLinesRenderer extends TileEntitySpecialRenderer {
+	private static final ModelLines model = new ModelLines();
 
 	public TileLinesRenderer() {
-		model = new ModelLines();
 	}
 
 	/* public void renderAModelAt(TileEntityElectricConverter tile, double d, double d1, double d2, float f) { int i = 0;
@@ -25,6 +25,5 @@ public class TileLinesRenderer extends TileEntitySpecialRenderer {
 		// renderAModelAt((TileEntityElectricConverter)tileentity, d, d1, d2, f);
 	}
 
-	private ModelLines model;
 
 }

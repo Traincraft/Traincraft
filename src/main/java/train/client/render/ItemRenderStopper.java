@@ -17,11 +17,10 @@ import train.client.render.models.blocks.ModelStopper;
 import train.common.library.Info;
 
 public class ItemRenderStopper implements IItemRenderer {
-
-	private ModelStopper stopper;
+	private static final ResourceLocation texture = new ResourceLocation(Info.resourceLocation,Info.modelTexPrefix + "buffer.png");
+	private static final ModelStopper stopper = new ModelStopper(1F);
 
 	public ItemRenderStopper() {
-		stopper = new ModelStopper(1.0f);
 	}
 
 	@Override
@@ -59,7 +58,7 @@ public class ItemRenderStopper implements IItemRenderer {
 	}
 
 	private void renderStopper(float f, float g, float h, float rotation) {
-		FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation,Info.modelTexPrefix + "buffer.png"));
+		FMLClientHandler.instance().getClient().renderEngine.bindTexture(texture);
 		GL11.glPushMatrix(); //start
 		GL11.glTranslatef(f, g, h); //size
 		GL11.glRotatef(rotation, f, g, h);

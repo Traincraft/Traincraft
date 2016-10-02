@@ -31,7 +31,6 @@ public class ModelStopper extends ModelBase {
 	public CustomModelRenderer box4;
 	public CustomModelRenderer box5;
 
-	private float scale;
 
 	public ModelStopper(float scale) {
 

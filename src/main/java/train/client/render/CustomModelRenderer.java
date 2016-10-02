@@ -7,7 +7,6 @@ import org.lwjgl.opengl.GL11;
 
 public class CustomModelRenderer {
 
-	private PositionTextureVertex corners[];
 	private CustomTexturedQuad faces[];
 	private int textureOffsetX;
 	private int textureOffsetY;
@@ -20,20 +19,13 @@ public class CustomModelRenderer {
 	private boolean compiled;
 	private int displayList;
 	public boolean mirror;
-	public boolean showModel;
-	public boolean field_1402_i;
 	private int texWidth;
 	private int texHeight;
-	public float rotationPointX;
-    public float rotationPointY;
-    public float rotationPointZ;
 
 	public CustomModelRenderer(int i, int j, int w, int h) {
 		compiled = false;
 		displayList = 0;
 		mirror = false;
-		showModel = true;
-		field_1402_i = false;
 		textureOffsetX = i;
 		textureOffsetY = j;
 		texWidth = w;
@@ -45,7 +37,6 @@ public class CustomModelRenderer {
 	}
 
 	public void addBox(float f, float f1, float f2, int i, int j, int k, float f3) {
-		corners = new PositionTextureVertex[8];
 		faces = new CustomTexturedQuad[6];
 		float f4 = f + (float) i;
 		float f5 = f1 + (float) j;
@@ -69,14 +60,6 @@ public class CustomModelRenderer {
 		PositionTextureVertex positiontexturevertex5 = new PositionTextureVertex(f4, f1, f6, 0.0F, 8F);
 		PositionTextureVertex positiontexturevertex6 = new PositionTextureVertex(f4, f5, f6, 8F, 8F);
 		PositionTextureVertex positiontexturevertex7 = new PositionTextureVertex(f, f5, f6, 8F, 0.0F);
-		corners[0] = positiontexturevertex;
-		corners[1] = positiontexturevertex1;
-		corners[2] = positiontexturevertex2;
-		corners[3] = positiontexturevertex3;
-		corners[4] = positiontexturevertex4;
-		corners[5] = positiontexturevertex5;
-		corners[6] = positiontexturevertex6;
-		corners[7] = positiontexturevertex7;
 		faces[0] = new CustomTexturedQuad(new PositionTextureVertex[] { positiontexturevertex5, positiontexturevertex1, positiontexturevertex2, positiontexturevertex6 }, textureOffsetX + k + i, textureOffsetY + k, textureOffsetX + k + i + k, textureOffsetY + k + j, texWidth, texHeight);
 		faces[1] = new CustomTexturedQuad(new PositionTextureVertex[] { positiontexturevertex, positiontexturevertex4, positiontexturevertex7, positiontexturevertex3 }, textureOffsetX, textureOffsetY + k, textureOffsetX + k, textureOffsetY + k + j, texWidth, texHeight);
 		faces[2] = new CustomTexturedQuad(new PositionTextureVertex[] { positiontexturevertex5, positiontexturevertex4, positiontexturevertex, positiontexturevertex1 }, textureOffsetX + k, textureOffsetY, textureOffsetX + k + i, textureOffsetY + k, texWidth, texHeight);
@@ -98,12 +81,6 @@ public class CustomModelRenderer {
 	}
 
 	public void render(float f) {
-		if (field_1402_i) {
-			return;
-		}
-		if (!showModel) {
-			return;
-		}
 		if (!compiled) {
 			compileDisplayList(f);
 		}
@@ -133,12 +110,6 @@ public class CustomModelRenderer {
 	}
 
 	public void postRender(float f) {
-		if (field_1402_i) {
-			return;
-		}
-		if (!showModel) {
-			return;
-		}
 		if (!compiled) {
 			compileDisplayList(f);
 		}
@@ -162,18 +133,11 @@ public class CustomModelRenderer {
 	private void compileDisplayList(float f) {
 		displayList = GLAllocation.generateDisplayLists(1);
 		GL11.glNewList(displayList, 4864 /* GL_COMPILE */);
-		Tessellator tessellator = Tessellator.instance;
 		for (CustomTexturedQuad quad : faces) {
-			quad.draw(tessellator, f);
+			quad.draw(Tessellator.instance, f);
 		}
 
 		GL11.glEndList();
 		compiled = true;
-	}
-
-	public void setRotationPoint(float par1, float par2, float par3) {
-		this.rotationPointX = par1;
-		this.rotationPointY = par2;
-		this.rotationPointZ = par3;
 	}
 }

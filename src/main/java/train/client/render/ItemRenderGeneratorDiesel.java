@@ -8,7 +8,6 @@
 package train.client.render;
 
 import cpw.mods.fml.client.FMLClientHandler;
-import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
@@ -18,10 +17,11 @@ import train.client.render.models.blocks.ModelGeneratorDiesel;
 
 public class ItemRenderGeneratorDiesel implements IItemRenderer {
 
-	private ModelGeneratorDiesel generator;
+	private static final ModelGeneratorDiesel generator = new ModelGeneratorDiesel(1F);
+	private static final ResourceLocation texture = new ResourceLocation(Info.resourceLocation,Info.modelTexPrefix + "generator_diesel.png");
 
 	public ItemRenderGeneratorDiesel() {
-		generator = new ModelGeneratorDiesel(1.0f);
+
 	}
 
 	@Override
@@ -38,19 +38,19 @@ public class ItemRenderGeneratorDiesel implements IItemRenderer {
 	public void renderItem(ItemRenderType type, ItemStack item, Object... data) {
 		switch (type) {
 		case ENTITY: {
-			renderGenerator(0.0F, 0F, 0.0F, 0.0F);
+			renderGenerator(0.0F, 0F, 0.0F);
 			break;
 		}
 		case EQUIPPED: {
-			renderGenerator(0F, 0.1F, 0F, 180.0F);
+			renderGenerator(0F, 0.1F, 0F);
 			break;
 		}
 		case EQUIPPED_FIRST_PERSON: {
-			renderGenerator(0F, 0.1F, 0F, 180.0F);
+			renderGenerator(0F, 0.1F, 0F);
 			return;
 		}
 		case INVENTORY: {
-			renderGenerator(0.5F, -0.1F, 0.5F, 0.0F);
+			renderGenerator(0.5F, -0.1F, 0.5F);
 			break;
 		}
 		default:
@@ -58,11 +58,10 @@ public class ItemRenderGeneratorDiesel implements IItemRenderer {
 		}
 	}
 
-	private void renderGenerator(float f, float g, float h, float rotation) {
-		FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation,Info.modelTexPrefix + "generator_diesel.png"));
+	private void renderGenerator(float f, float g, float h) {
+		FMLClientHandler.instance().getClient().renderEngine.bindTexture(texture);
 		GL11.glPushMatrix();
 		GL11.glTranslatef(f, g, h);
-		//GL11.glRotatef(rotation, f, g, h);
 		GL11.glScalef(0.7F, 0.7F, 0.7F);
 		generator.render2(0.0625F);
 		GL11.glPopMatrix();
