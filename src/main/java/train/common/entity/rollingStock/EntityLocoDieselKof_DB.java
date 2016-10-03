@@ -14,6 +14,8 @@ import train.common.api.LiquidManager;
 import train.common.library.EnumTrains;
 import train.common.library.GuiIDs;
 
+import java.util.ArrayList;
+
 public class EntityLocoDieselKof_DB extends DieselTrain {
 	public EntityLocoDieselKof_DB(World world) {
 		super(world, EnumTrains.locoDieselKOF.getTankCapacity(), LiquidManager.dieselFilter());
@@ -22,7 +24,11 @@ public class EntityLocoDieselKof_DB extends DieselTrain {
 
 	public void initLoco() {
 		fuelTrain = 0;
-		locoInvent = new ItemStack[inventorySize];
+		if(locoInvent.size()<inventorySize){
+			for (int i =0; i< inventorySize; i++){
+				locoInvent.add(null);
+			}
+		}
 		this.acceptedColors.add(this.getColorFromString("Red"));
 		this.acceptedColors.add(this.getColorFromString("Green"));
 		this.acceptedColors.add(this.getColorFromString("Yellow"));
@@ -94,7 +100,7 @@ public class EntityLocoDieselKof_DB extends DieselTrain {
 		if (worldObj.isRemote) {
 			return;
 		}
-		checkInvent(locoInvent[0]);
+		checkInvent(locoInvent.get(0));
 	}
 
 	@Override
@@ -103,11 +109,11 @@ public class EntityLocoDieselKof_DB extends DieselTrain {
 
 		nbttagcompound.setShort("fuelTrain", (short) fuelTrain);
 		NBTTagList nbttaglist = new NBTTagList();
-		for (int i = 0; i < locoInvent.length; i++) {
-			if (locoInvent[i] != null) {
+		for (int i = 0; i < locoInvent.size(); i++) {
+			if (locoInvent.get(i) != null) {
 				NBTTagCompound nbttagcompound1 = new NBTTagCompound();
 				nbttagcompound1.setByte("Slot", (byte) i);
-				locoInvent[i].writeToNBT(nbttagcompound1);
+				locoInvent.get(i).writeToNBT(nbttagcompound1);
 				nbttaglist.appendTag(nbttagcompound1);
 			}
 		}
@@ -120,12 +126,12 @@ public class EntityLocoDieselKof_DB extends DieselTrain {
 
 		fuelTrain = nbttagcompound.getShort("fuelTrain");
 		NBTTagList nbttaglist = nbttagcompound.getTagList("Items", Constants.NBT.TAG_COMPOUND);
-		locoInvent = new ItemStack[getSizeInventory()];
+		locoInvent = new ArrayList<ItemStack>();
 		for (int i = 0; i < nbttaglist.tagCount(); i++) {
 			NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
 			int j = nbttagcompound1.getByte("Slot") & 0xff;
-			if (j >= 0 && j < locoInvent.length) {
-				locoInvent[j] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
+			if (j >= 0 && j < getSizeInventory()) {
+				locoInvent.add(ItemStack.loadItemStackFromNBT(nbttagcompound1));
 			}
 		}
 	}

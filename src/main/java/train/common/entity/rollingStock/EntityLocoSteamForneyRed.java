@@ -14,6 +14,8 @@ import train.common.api.SteamTrain;
 import train.common.library.EnumTrains;
 import train.common.library.GuiIDs;
 
+import java.util.ArrayList;
+
 public class EntityLocoSteamForneyRed extends SteamTrain {
 	public EntityLocoSteamForneyRed(World world) {
 		super(world,  EnumTrains.locoSteamForney.getTankCapacity(), LiquidManager.WATER_FILTER);
@@ -23,7 +25,11 @@ public class EntityLocoSteamForneyRed extends SteamTrain {
 	public void initLocoSteam() {
 		fuelTrain = 0;
 		this.inventorySize = 17;
-		locoInvent = new ItemStack[inventorySize];
+		if(locoInvent.size()<inventorySize){
+			for (int i =0; i< inventorySize; i++){
+				locoInvent.add(null);
+			}
+		}
 	}
 	public EntityLocoSteamForneyRed(World world, double d, double d1, double d2) {
 		this(world);
@@ -88,19 +94,19 @@ public class EntityLocoSteamForneyRed extends SteamTrain {
 		if (worldObj.isRemote) {
 			return;
 		}
-		checkInvent(locoInvent[0], locoInvent[1], this);
-		for (int h = 0; h < this.locoInvent.length; h++) {
-			if (this.locoInvent[h] != null && steamFuelLast(this.locoInvent[h]) != 0) {
+		checkInvent(locoInvent.get(1), locoInvent.get(1), this);
+		for (int h = 0; h < this.locoInvent.size(); h++) {
+			if (this.locoInvent.get(h) != null && steamFuelLast(this.locoInvent.get(h)) != 0) {
 				if (fuelTrain <= 0 && !worldObj.isRemote) {
-					fuelTrain = steamFuelLast(this.locoInvent[h]);
+					fuelTrain = steamFuelLast(this.locoInvent.get(h));
 					if (!worldObj.isRemote) {
 						this.decrStackSize(h, 1);
 					}
 				}
 			}
-			else if (this.locoInvent[h] != null && steamFuelLast(this.locoInvent[h]) != 0) {
+			else if (this.locoInvent.get(h) != null && steamFuelLast(this.locoInvent.get(h)) != 0) {
 				if (fuelTrain <= 0 && !worldObj.isRemote) {
-					fuelTrain = steamFuelLast(this.locoInvent[h]);
+					fuelTrain = steamFuelLast(this.locoInvent.get(h));
 					if (!worldObj.isRemote) {
 						this.decrStackSize(h, 1);
 					}
@@ -115,11 +121,11 @@ public class EntityLocoSteamForneyRed extends SteamTrain {
 
 		nbttagcompound.setShort("fuelTrain", (short) fuelTrain);
 		NBTTagList nbttaglist = new NBTTagList();
-		for (int i = 0; i < locoInvent.length; i++) {
-			if (locoInvent[i] != null) {
+		for (int i = 0; i < locoInvent.size(); i++) {
+			if (locoInvent.get(i) != null) {
 				NBTTagCompound nbttagcompound1 = new NBTTagCompound();
 				nbttagcompound1.setByte("Slot", (byte) i);
-				locoInvent[i].writeToNBT(nbttagcompound1);
+				locoInvent.get(i).writeToNBT(nbttagcompound1);
 				nbttaglist.appendTag(nbttagcompound1);
 			}
 		}
@@ -132,12 +138,12 @@ public class EntityLocoSteamForneyRed extends SteamTrain {
 
 		fuelTrain = nbttagcompound.getShort("fuelTrain");
 		NBTTagList nbttaglist = nbttagcompound.getTagList("Items", Constants.NBT.TAG_COMPOUND);
-		locoInvent = new ItemStack[getSizeInventory()];
+		locoInvent = new ArrayList<ItemStack>();
 		for (int i = 0; i < nbttaglist.tagCount(); i++) {
-			NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist.getCompoundTagAt(i);
+			NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
 			int j = nbttagcompound1.getByte("Slot") & 0xff;
-			if (j >= 0 && j < locoInvent.length) {
-				locoInvent[j] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
+			if (j >= 0 && j < getSizeInventory()) {
+				locoInvent.add(ItemStack.loadItemStackFromNBT(nbttagcompound1));
 			}
 		}
 	}
@@ -160,17 +166,13 @@ public class EntityLocoSteamForneyRed extends SteamTrain {
 			if (riddenByEntity != null && (riddenByEntity instanceof EntityPlayer) && riddenByEntity != entityplayer) {
 				return true;
 			}
-			if (!worldObj.isRemote) {
-				entityplayer.mountEntity(this);
-			}
+			entityplayer.mountEntity(this);
 		}
 		return true;
 	}
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		float dist = 1.5F;
-
-		return (dist);
+		return 1.5F;
 	}
 
 	@Override
