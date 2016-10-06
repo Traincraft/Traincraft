@@ -8,6 +8,7 @@ import net.minecraft.world.World;
 import train.common.core.interfaces.ITCRecipe;
 import train.common.items.ItemTCArmor;
 
+import java.util.ArrayList;
 
 public class RecipesArmorDyes implements ITCRecipe {
 
@@ -15,7 +16,7 @@ public class RecipesArmorDyes implements ITCRecipe {
 	@Override
 	public boolean matches(IInventory par1InventoryCrafting, World par2World) {
 		ItemStack itemstack = null;
-		Boolean isEmpty = true;
+		ArrayList arraylist = new ArrayList();
 
 		for (int i = 0; i < par1InventoryCrafting.getSizeInventory(); ++i) {
 			ItemStack itemstack1 = par1InventoryCrafting.getStackInSlot(i);
@@ -35,12 +36,12 @@ public class RecipesArmorDyes implements ITCRecipe {
 						return false;
 					}
 
-					isEmpty = false;
+					arraylist.add(itemstack1);
 				}
 			}
 		}
 
-		return itemstack != null && !isEmpty;
+		return itemstack != null && !arraylist.isEmpty();
 	}
 
 	//Returns an Item that is the result of this recipe

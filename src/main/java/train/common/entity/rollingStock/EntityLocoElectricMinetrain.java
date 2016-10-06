@@ -12,8 +12,6 @@ import train.common.api.ElectricTrain;
 import train.common.Traincraft;
 import train.common.library.GuiIDs;
 
-import java.util.ArrayList;
-
 public class EntityLocoElectricMinetrain extends ElectricTrain {
 	public EntityLocoElectricMinetrain(World world) {
 		super(world);
@@ -83,11 +81,11 @@ public class EntityLocoElectricMinetrain extends ElectricTrain {
 
 		nbttagcompound.setShort("fuelTrain", (short) fuelTrain);
 		NBTTagList nbttaglist = new NBTTagList();
-		for (int i = 0; i < locoInvent.size(); i++) {
-			if (locoInvent.get(i) != null) {
+		for (int i = 0; i < locoInvent.length; i++) {
+			if (locoInvent[i] != null) {
 				NBTTagCompound nbttagcompound1 = new NBTTagCompound();
 				nbttagcompound1.setByte("Slot", (byte) i);
-				locoInvent.get(i).writeToNBT(nbttagcompound1);
+				locoInvent[i].writeToNBT(nbttagcompound1);
 				nbttaglist.appendTag(nbttagcompound1);
 			}
 		}
@@ -100,12 +98,12 @@ public class EntityLocoElectricMinetrain extends ElectricTrain {
 
 		fuelTrain = nbttagcompound.getShort("fuelTrain");
 		NBTTagList nbttaglist = nbttagcompound.getTagList("Items", Constants.NBT.TAG_COMPOUND);
-		locoInvent = new ArrayList<ItemStack>();
+		locoInvent = new ItemStack[getSizeInventory()];
 		for (int i = 0; i < nbttaglist.tagCount(); i++) {
-			NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
+			NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist.getCompoundTagAt(i);
 			int j = nbttagcompound1.getByte("Slot") & 0xff;
-			if (j >= 0 && j < getSizeInventory()) {
-				locoInvent.add(ItemStack.loadItemStackFromNBT(nbttagcompound1));
+			if (j >= 0 && j < locoInvent.length) {
+				locoInvent[j] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
 			}
 		}
 	}
@@ -130,13 +128,16 @@ public class EntityLocoElectricMinetrain extends ElectricTrain {
 			if (riddenByEntity != null && (riddenByEntity instanceof EntityPlayer) && riddenByEntity != entityplayer) {
 				return true;
 			}
-			entityplayer.mountEntity(this);
+			if (!worldObj.isRemote) {
+				entityplayer.mountEntity(this);
+			}
 		}
 		return true;
 	}
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return 0.53F;
+		float dist = 0.53F;
+		return (dist);
 	}
 
 	@Override

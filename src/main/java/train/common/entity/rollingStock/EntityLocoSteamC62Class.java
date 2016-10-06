@@ -14,8 +14,6 @@ import train.common.api.SteamTrain;
 import train.common.library.EnumTrains;
 import train.common.library.GuiIDs;
 
-import java.util.ArrayList;
-
 public class EntityLocoSteamC62Class extends SteamTrain {
 	public EntityLocoSteamC62Class(World world) {
 		super(world, EnumTrains.locoSteamC62Class.getTankCapacity(), LiquidManager.WATER_FILTER);
@@ -24,11 +22,7 @@ public class EntityLocoSteamC62Class extends SteamTrain {
 
 	public void initLocoSteam() {
 		fuelTrain = 0;
-		if(locoInvent.size()<inventorySize){
-			for (int i =0; i< inventorySize; i++){
-				locoInvent.add(null);
-			}
-		}
+		locoInvent = new ItemStack[inventorySize];
 	}
 
 	public EntityLocoSteamC62Class(World world, double d, double d1, double d2) {
@@ -100,7 +94,7 @@ public class EntityLocoSteamC62Class extends SteamTrain {
 		if (worldObj.isRemote) {
 			return;
 		}
-		checkInvent(locoInvent.get(0), locoInvent.get(0), this);
+		checkInvent(locoInvent[0], locoInvent[1], this);
 	}
 
 	@Override
@@ -109,11 +103,11 @@ public class EntityLocoSteamC62Class extends SteamTrain {
 
 		nbttagcompound.setShort("fuelTrain", (short) fuelTrain);
 		NBTTagList nbttaglist = new NBTTagList();
-		for (int i = 0; i < locoInvent.size(); i++) {
-			if (locoInvent.get(i) != null) {
+		for (int i = 0; i < locoInvent.length; i++) {
+			if (locoInvent[i] != null) {
 				NBTTagCompound nbttagcompound1 = new NBTTagCompound();
 				nbttagcompound1.setByte("Slot", (byte) i);
-				locoInvent.get(i).writeToNBT(nbttagcompound1);
+				locoInvent[i].writeToNBT(nbttagcompound1);
 				nbttaglist.appendTag(nbttagcompound1);
 			}
 		}
@@ -126,12 +120,12 @@ public class EntityLocoSteamC62Class extends SteamTrain {
 
 		fuelTrain = nbttagcompound.getShort("fuelTrain");
 		NBTTagList nbttaglist = nbttagcompound.getTagList("Items", Constants.NBT.TAG_COMPOUND);
-		locoInvent = new ArrayList<ItemStack>();
+		locoInvent = new ItemStack[getSizeInventory()];
 		for (int i = 0; i < nbttaglist.tagCount(); i++) {
 			NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
 			int j = nbttagcompound1.getByte("Slot") & 0xff;
-			if (j >= 0 && j < getSizeInventory()) {
-				locoInvent.add(ItemStack.loadItemStackFromNBT(nbttagcompound1));
+			if (j >= 0 && j < locoInvent.length) {
+				locoInvent[j] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
 			}
 		}
 	}
@@ -155,7 +149,9 @@ public class EntityLocoSteamC62Class extends SteamTrain {
 			if (riddenByEntity != null && (riddenByEntity instanceof EntityPlayer) && riddenByEntity != entityplayer) {
 				return true;
 			}
-			entityplayer.mountEntity(this);
+			if (!worldObj.isRemote) {
+				entityplayer.mountEntity(this);
+			}
 		}
 		return true;
 	}

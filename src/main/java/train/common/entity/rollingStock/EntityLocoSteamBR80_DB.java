@@ -14,8 +14,6 @@ import train.common.api.SteamTrain;
 import train.common.library.EnumTrains;
 import train.common.library.GuiIDs;
 
-import java.util.ArrayList;
-
 public class EntityLocoSteamBR80_DB extends SteamTrain {
 	public EntityLocoSteamBR80_DB(World world) {
 		super(world, EnumTrains.locoSteamBR80.getTankCapacity(), LiquidManager.WATER_FILTER);
@@ -24,11 +22,7 @@ public class EntityLocoSteamBR80_DB extends SteamTrain {
 
 	public void initLocoSteam() {
 		fuelTrain = 0;
-		if(locoInvent.size()<inventorySize){
-			for (int i =0; i< inventorySize; i++){
-				locoInvent.add(null);
-			}
-		}
+		locoInvent = new ItemStack[inventorySize];
 	}
 	public EntityLocoSteamBR80_DB(World world, double d, double d1, double d2) {
 		this(world);
@@ -108,7 +102,7 @@ public class EntityLocoSteamBR80_DB extends SteamTrain {
 
 	@Override
 	public void onUpdate() {
-		checkInvent(locoInvent.get(0), locoInvent.get(1), this);
+		checkInvent(locoInvent[0], locoInvent[1], this);
 		super.onUpdate();
 	}
 
@@ -118,11 +112,11 @@ public class EntityLocoSteamBR80_DB extends SteamTrain {
 
 		nbttagcompound.setShort("fuelTrain", (short) fuelTrain);
 		NBTTagList nbttaglist = new NBTTagList();
-		for (int i = 0; i < locoInvent.size(); i++) {
-			if (locoInvent.get(i) != null) {
+		for (int i = 0; i < locoInvent.length; i++) {
+			if (locoInvent[i] != null) {
 				NBTTagCompound nbttagcompound1 = new NBTTagCompound();
 				nbttagcompound1.setByte("Slot", (byte) i);
-				locoInvent.get(i).writeToNBT(nbttagcompound1);
+				locoInvent[i].writeToNBT(nbttagcompound1);
 				nbttaglist.appendTag(nbttagcompound1);
 			}
 		}
@@ -135,12 +129,12 @@ public class EntityLocoSteamBR80_DB extends SteamTrain {
 
 		fuelTrain = nbttagcompound.getShort("fuelTrain");
 		NBTTagList nbttaglist = nbttagcompound.getTagList("Items", Constants.NBT.TAG_COMPOUND);
-		locoInvent = new ArrayList<ItemStack>();
+		locoInvent = new ItemStack[getSizeInventory()];
 		for (int i = 0; i < nbttaglist.tagCount(); i++) {
 			NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
 			int j = nbttagcompound1.getByte("Slot") & 0xff;
-			if (j >= 0 && j < getSizeInventory()) {
-				locoInvent.add(ItemStack.loadItemStackFromNBT(nbttagcompound1));
+			if (j >= 0 && j < locoInvent.length) {
+				locoInvent[j] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
 			}
 		}
 	}
@@ -172,7 +166,8 @@ public class EntityLocoSteamBR80_DB extends SteamTrain {
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return 1.1F;
+		float dist = 1.1F;
+		return (dist);
 	}
 
 	@Override

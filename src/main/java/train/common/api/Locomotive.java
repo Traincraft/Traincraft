@@ -21,12 +21,10 @@ import train.common.core.network.PacketSlotsFilled;
 import train.common.library.EnumSounds;
 import train.common.library.Info;
 
-import java.util.List;
-
 public abstract class Locomotive extends EntityRollingStock implements IInventory {
 	public int inventorySize;
 	public double speedDivider = 3.6;
-	protected List<ItemStack> locoInvent;
+	protected ItemStack locoInvent[];
 	private int soundPosition = 0;
 	public boolean parkingBrake = false;
 	private int whistleDelay = 0;
@@ -40,7 +38,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 	protected boolean canCheckInvent = true;
 	private int slotsFilled = 0;
 	private int fuelUpdateTicks = 0;
-	public boolean isLocoTurnedOn = false;
+	public boolean					isLocoTurnedOn					= false;
 
 	/**
 	 * state of the loco
@@ -840,14 +838,14 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 	/* IInventory implements */
 	@Override
 	public ItemStack getStackInSlot(int i) {
-		return locoInvent.get(i);
+		return locoInvent[i];
 	}
 
 	@Override
 	public ItemStack getStackInSlotOnClosing(int par1) {
-		if (this.locoInvent.get(par1) != null) {
-			ItemStack var2 = this.locoInvent.get(par1);
-			this.locoInvent.set(par1, null);
+		if (this.locoInvent[par1] != null) {
+			ItemStack var2 = this.locoInvent[par1];
+			this.locoInvent[par1] = null;
 			return var2;
 		}
 		else {
@@ -857,15 +855,15 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 
 	@Override
 	public ItemStack decrStackSize(int i, int j) {
-		if (locoInvent.get(i) != null) {
-			if (locoInvent.get(i).stackSize <= j) {
-				ItemStack itemstack = locoInvent.get(i);
-				locoInvent.set(i, null);
+		if (locoInvent[i] != null) {
+			if (locoInvent[i].stackSize <= j) {
+				ItemStack itemstack = locoInvent[i];
+				locoInvent[i] = null;
 				return itemstack;
 			}
-			ItemStack itemstack1 = locoInvent.get(i).splitStack(j);
-			if (locoInvent.get(i).stackSize == 0) {
-				locoInvent.set(i, null);
+			ItemStack itemstack1 = locoInvent[i].splitStack(j);
+			if (locoInvent[i].stackSize == 0) {
+				locoInvent[i] = null;
 			}
 			return itemstack1;
 
@@ -877,7 +875,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 
 	@Override
 	public void setInventorySlotContents(int i, ItemStack itemstack) {
-		locoInvent.set(i, itemstack);
+		locoInvent[i] = itemstack;
 		if (itemstack != null && itemstack.stackSize > getInventoryStackLimit()) {
 			itemstack.stackSize = getInventoryStackLimit();
 		}

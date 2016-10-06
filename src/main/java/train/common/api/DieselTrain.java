@@ -99,30 +99,30 @@ public abstract class DieselTrain extends Locomotive implements IFluidHandler {
 	}
 
 	private void placeInInvent(ItemStack itemstack1) {
-		for (int i = 1; i < locoInvent.size(); i++) {
-			if (locoInvent.get(i) == null) {
-				locoInvent.set(i,itemstack1);
+		for (int i = 1; i < locoInvent.length; i++) {
+			if (locoInvent[i] == null) {
+				locoInvent[i] = itemstack1;
 				return;
 			}
-			else if (locoInvent.get(i) != null && locoInvent.get(i).getItem() == itemstack1.getItem() && itemstack1.isStackable() && (!itemstack1.getHasSubtypes() || locoInvent.get(i).getItemDamage() == itemstack1.getItemDamage()) && ItemStack.areItemStackTagsEqual(locoInvent.get(i), itemstack1)) {
-				int var9 = locoInvent.get(i).stackSize + itemstack1.stackSize;
+			else if (locoInvent[i] != null && locoInvent[i].getItem() == itemstack1.getItem() && itemstack1.isStackable() && (!itemstack1.getHasSubtypes() || locoInvent[i].getItemDamage() == itemstack1.getItemDamage()) && ItemStack.areItemStackTagsEqual(locoInvent[i], itemstack1)) {
+				int var9 = locoInvent[i].stackSize + itemstack1.stackSize;
 				if (var9 <= itemstack1.getMaxStackSize()) {
-					locoInvent.get(i).stackSize = var9;
+					locoInvent[i].stackSize = var9;
 
 				}
-				else if (locoInvent.get(i).stackSize < itemstack1.getMaxStackSize()) {
-					locoInvent.get(i).stackSize += 1;
+				else if (locoInvent[i].stackSize < itemstack1.getMaxStackSize()) {
+					locoInvent[i].stackSize += 1;
 				}
 				return;
 			}
-			else if (i == locoInvent.size() - 1) {
+			else if (i == locoInvent.length - 1) {
 				dropItem(itemstack1.getItem(), 1);
 				return;
 			}
 		}
 	}
 
-	private void liquidInSlot(ItemStack itemstack) {
+	public void liquidInSlot(ItemStack itemstack) {
 		if (worldObj.isRemote)
 			return;
 		this.update += 1;

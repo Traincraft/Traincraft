@@ -25,11 +25,7 @@ public abstract class ElectricTrain extends Locomotive {
 		numCargoSlots1 = 5;
 		numCargoSlots2 = 5;
 		inventorySize = numCargoSlots + numCargoSlots2 + numCargoSlots1 + 1;
-		if(locoInvent.size()<inventorySize){
-			for (int i =0; i< inventorySize; i++){
-				locoInvent.add(null);
-			}
-		}
+		locoInvent = new ItemStack[inventorySize];
 		hasUranium = false;
 		reduceExplosionChance = 1000;
 		Ignite = false;
@@ -51,9 +47,9 @@ public abstract class ElectricTrain extends Locomotive {
 		if(!this.canCheckInvent)return;
 		
 		/* if the loco has fuel */
-		if (getFuel() < maxEnergy && locoInvent.get(0) != null)
+		if (getFuel() < maxEnergy && locoInvent[0] != null)
 		{
-			Item item = locoInvent.get(0).getItem();
+			Item item = locoInvent[0].getItem();
 			if (item == Items.redstone && ((getFuel() + redstoneEnergy) <= maxEnergy))
 			{
 				fuelTrain += redstoneEnergy;
@@ -65,7 +61,7 @@ public abstract class ElectricTrain extends Locomotive {
 				final double REtoRF = 1 / RFtoRE; // redstoneEnergy conversion factor to RF e.g. RF = redstoneEnergy * REtoRF
 				final int maxDraw = 200; // maximum amount of redstoneEnergy to draw from the item per tick
 				int draw = MathHelper.floor_double(Math.min(maxDraw, maxEnergy - getFuel()) * REtoRF); // amount of energy to attempt to draw this tick
-				fuelTrain += ((IEnergyContainerItem) item).extractEnergy(locoInvent.get(0), draw, false) * RFtoRE;
+				fuelTrain += ((IEnergyContainerItem) item).extractEnergy(locoInvent[0], draw, false) * RFtoRE;
 			}
 			/*else if ((PluginIndustrialCraft.getItems().containsKey(PluginIndustrialCraft.getNames()[4]) && PluginIndustrialCraft.getItems().containsKey(PluginIndustrialCraft.getNames()[3])) && (item == PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[4]).getItem())) {
 
