@@ -24,10 +24,8 @@ public class LinkHandler {
 	/* coupling cart stuff */
 	public void handleStake(Entity entityOne, AxisAlignedBB customBoundingBox) {
 
-		AxisAlignedBB box2 = null;
-		double length = 5;
 
-		box2 = customBoundingBox.expand(15, 5, 15);
+		AxisAlignedBB box2 = customBoundingBox.expand(15, 5, 15);
 
 		List lis = worldObj.getEntitiesWithinAABBExcludingEntity(entityOne, box2);
 		if(((EntityRollingStock)entityOne).bogieLoco[0]!=null){
@@ -46,10 +44,10 @@ public class LinkHandler {
 				/**
 				 * first testing if the link can be emptied
 				 */
-				if (entityOne instanceof AbstractTrains && entity instanceof AbstractTrains && ((EntityRollingStock)entityOne).updateTicks%10==0) {
+				//if (entityOne instanceof AbstractTrains && entity instanceof AbstractTrains && ((EntityRollingStock)entityOne).updateTicks%10==0) {
 					//doesLink1StillExist(entityOne, lis);
 					//doesLink2StillExist(entityOne, lis);
-				}
+				//}
 
 				if (entity != entityOne.riddenByEntity && (entity instanceof AbstractTrains) &&  (entityOne instanceof AbstractTrains) && ((AbstractTrains) entityOne).isAttaching && ((AbstractTrains) entity).isAttaching) {
 					addStake(entity, entityOne, true);
@@ -217,8 +215,6 @@ public class LinkHandler {
 
 				double d=0;
 				double d1=0;
-				double vecX=0;
-				double vecZ=0;
 
 				if(((EntityRollingStock) cart1).bogieLoco[0]!=null || ((EntityRollingStock) cart2).bogieLoco[0]!=null){
 
@@ -309,8 +305,6 @@ public class LinkHandler {
 
 					d = distancesX[minIndex];
 					d1 = distancesZ[minIndex];
-					vecX=d;
-					vecZ=d1;
 
 				}else if(((EntityRollingStock) cart1).bogieUtility[0]!=null || ((EntityRollingStock) cart2).bogieUtility[0]!=null){
 
@@ -371,15 +365,11 @@ public class LinkHandler {
 
 					}
 
-					vecX=d;
-					vecZ=d1;
 
 
 				}else{
 					d = ((AbstractTrains) cart1).posX - ((AbstractTrains) cart2).posX;
 					d1 = ((AbstractTrains) cart1).posZ - ((AbstractTrains) cart2).posZ;
-					vecX = ((AbstractTrains) cart1).posX - ((AbstractTrains) cart2).posX;
-					vecZ = ((AbstractTrains) cart1).posZ - ((AbstractTrains) cart2).posZ;
 				}
 				double d2 = MathHelper.sqrt_double((d * d) + (d1 * d1));
 				//System.out.println(d2);
@@ -516,9 +506,6 @@ public class LinkHandler {
 		return !RailTools.isCartLockedDown((EntityMinecart) cart1);
 	}
 
-	private int indexPickedX;
-	private int indexPickedZ;
-	private boolean picked = false;
 	/**
 	 * Handles the cart coupling physics
 	 */

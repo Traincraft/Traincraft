@@ -39,7 +39,7 @@ public class TileTCRailGag extends TileEntity {
 		nbt.setInteger("originY", originY);
 		nbt.setInteger("originZ", originZ);
 		nbt.setFloat("bbHeight", bbHeight);
-		if (type.equals("") || type == null){
+		if (type.equals("")){
 			type = "null";
 		}
 		nbt.setString("type", type);

@@ -32,15 +32,15 @@ public class InventoryLoco extends Container {
 			addSlotToContainer(specialSlots.new SlotLiquid((IInventory) entityminecart, 1, 32, 53));
 			i = 2;
 		}
-		for (int j = 0; j < ((Locomotive) loco).numCargoSlots; j++) {
+		for (int j = 0; j < loco.numCargoSlots; j++) {
 			addSlotToContainer(new Slot((IInventory) entityminecart, i, 80 + j * 18, 18));
 			i++;
 		}
-		for (int k = 0; k < ((Locomotive) loco).numCargoSlots1; k++) {
+		for (int k = 0; k < loco.numCargoSlots1; k++) {
 			addSlotToContainer(new Slot((IInventory) entityminecart, i, 80 + k * 18, 36));
 			i++;
 		}
-		for (int l = 0; l < ((Locomotive) loco).numCargoSlots2; l++) {
+		for (int l = 0; l < loco.numCargoSlots2; l++) {
 			addSlotToContainer(new Slot((IInventory) entityminecart, i, 80 + l * 18, 54));
 			i++;
 		}
@@ -56,10 +56,7 @@ public class InventoryLoco extends Container {
 
 	@Override
 	public boolean canInteractWith(EntityPlayer var1) {
-		if (loco.isDead) {
-			return false;
-		}
-		return true;
+		return !loco.isDead;
 	}
 
 	@Override

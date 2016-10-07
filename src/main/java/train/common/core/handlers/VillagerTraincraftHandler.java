@@ -80,7 +80,7 @@ public class VillagerTraincraftHandler implements IVillageCreationHandler,IVilla
 	@Override
 	public StructureVillagePieces.PieceWeight getVillagePieceWeight(Random random,
 																	int size) {
-		 return new StructureVillagePieces.PieceWeight(ComponentVillageTrainstation.class, 15, MathHelper.getRandomIntegerInRange(random, 0 + size, 1 + size));
+		 return new StructureVillagePieces.PieceWeight(ComponentVillageTrainstation.class, 15, MathHelper.getRandomIntegerInRange(random, size, 1 + size));
 	}
 	@Override
 	public Class<?> getComponentClass() {

@@ -96,7 +96,7 @@ public class EntityTankWagon2 extends LiquidTank {
 		NBTTagList nbttaglist = nbttagcompound.getTagList("Items", Constants.NBT.TAG_COMPOUND);
 		cargoItems = new ItemStack[getSizeInventory()];
 		for (int i = 0; i < nbttaglist.tagCount(); i++) {
-			NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist.getCompoundTagAt(i);
+			NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
 			int j = nbttagcompound1.getByte("Slot") & 0xff;
 			if (j >= 0 && j < cargoItems.length) {
 				cargoItems[j] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
@@ -126,10 +126,7 @@ public class EntityTankWagon2 extends LiquidTank {
 
 	@Override
 	public boolean isUseableByPlayer(EntityPlayer entityplayer) {
-		if (isDead) {
-			return false;
-		}
-		return entityplayer.getDistanceSqToEntity(this) <= 64D;
+		return!isDead && entityplayer.getDistanceSqToEntity(this) <= 64D;
 	}
 	@Override
 	public boolean isStorageCart() {
@@ -137,7 +134,6 @@ public class EntityTankWagon2 extends LiquidTank {
 	}
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		float dist = 1.54F;
-		return dist;
+		return 1.54F;
 	}
 }

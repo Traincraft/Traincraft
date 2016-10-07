@@ -130,7 +130,6 @@ public class ItemTCCompositeSuit extends ItemTCArmor {
 		 */
 		ItemStack armorPants = player.inventory.armorItemInSlot(1);
 		if(armorPants!=null && armorPants.getItem() instanceof ItemTCCompositeSuit){
-			ItemTCCompositeSuit itemarmor = (ItemTCCompositeSuit)armorPants.getItem();
 			if(player.isBurning()){
 				player.extinguish();
 				if(updateTicks%5==0)armorPants.damageItem(1, player);

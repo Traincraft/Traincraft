@@ -55,10 +55,7 @@ public class EntityStockCar extends EntityRollingStock implements IPassenger {
 	}
 	@Override
 	public boolean isUseableByPlayer(EntityPlayer entityplayer) {
-		if (isDead) {
-			return false;
-		}
-		return entityplayer.getDistanceSqToEntity(this) <= 64D;
+		return !isDead && entityplayer.getDistanceSqToEntity(this) <= 64D;
 	}
 
 	@Override
@@ -78,7 +75,6 @@ public class EntityStockCar extends EntityRollingStock implements IPassenger {
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		float dist = 0.1F;
-		return (dist + 1.3F);
+		return 1.4F;
 	}
 }

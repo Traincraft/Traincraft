@@ -15,8 +15,6 @@ public class GuiIDs {
 	public static final int CRAFTER_TIER_III = 96;
 	public static final int TRAIN_WORKBENCH = 90;
 	public static final int FORNEY = 91;
-	public static final int HELICOPTER = 92;
-	public static final int PLANE = 93;
 	public static final int DIGGER = 94;
 	public static final int OPEN_HEARTH_FURNACE = 97;
 	public static final int RECIPE_BOOK = 98;

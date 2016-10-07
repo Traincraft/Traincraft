@@ -35,27 +35,27 @@ public class HandleOverheating {
 			/**
 			 * speed is low, overheat goes down to normal
 			 */
-			if ((locoActualSpeed <= 0 + 0.05) && !entity.isBraking && entity.overheatLevel > entity.getAverageOverheat() && (entity.worldObj.rand.nextInt(10) == 0) && ((Locomotive) entity).getState() != "broken") {
+			if ((locoActualSpeed <= 0 + 0.05) && !entity.isBraking && entity.overheatLevel > entity.getAverageOverheat() && (entity.worldObj.rand.nextInt(10) == 0) && !((Locomotive) entity).getState().equals("broken")) {
 				entity.overheatLevel--;
 			}
 			/**
 			 * speed is low, overheat goes down to normal
 			 */
-			if ((locoActualSpeed <= 0 + 0.10) && !entity.isBraking && entity.overheatLevel > entity.getAverageOverheat() && (entity.worldObj.rand.nextInt(10) == 0) && ((Locomotive) entity).getState() != "broken") {
+			if ((locoActualSpeed <= 0 + 0.10) && !entity.isBraking && entity.overheatLevel > entity.getAverageOverheat() && (entity.worldObj.rand.nextInt(10) == 0) && !((Locomotive) entity).getState().equals("broken")) {
 				entity.overheatLevel--;
 
 			}
 			/**
 			 * fuel is empty, heat level goes down
 			 */
-			if (entity.fuelTrain < 1 && entity.overheatLevel > 0 && (entity.worldObj.rand.nextInt(10) == 0) && ((Locomotive) entity).getState() != "broken") {
+			if (entity.fuelTrain < 1 && entity.overheatLevel > 0 && (entity.worldObj.rand.nextInt(10) == 0) && !((Locomotive) entity).getState().equals("broken")) {
 				entity.overheatLevel--;
 
 			}
 			/**
 			 * Heat goes down with time
 			 */
-			if ((entity.overheatLevel > (entity.getOverheatTime() + 30) / 2) && (entity.worldObj.rand.nextInt(30) == 0) && ((Locomotive) entity).getState() != "broken") {
+			if ((entity.overheatLevel > (entity.getOverheatTime() + 30) / 2) && (entity.worldObj.rand.nextInt(30) == 0) && !((Locomotive) entity).getState().equals("broken")) {
 				entity.overheatLevel--;
 			}
 			/**
@@ -105,7 +105,7 @@ public class HandleOverheating {
 						}
 					}
 					int maxWaterLevel = ((SteamTrain) entity).getCartTankCapacity();
-					if ((waterLevel > maxWaterLevel - (maxWaterLevel / 2)) && entity.overheatLevel > entity.getAverageOverheat() && ((Locomotive) entity).getState() != "broken") {
+					if ((waterLevel > maxWaterLevel - (maxWaterLevel / 2)) && entity.overheatLevel > entity.getAverageOverheat() && !((Locomotive) entity).getState().equals("broken")) {
 						entity.overheatLevel--;
 					}
 				}

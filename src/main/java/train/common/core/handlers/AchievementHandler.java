@@ -37,7 +37,7 @@ public class AchievementHandler {
 	}
 
 	public static void load() {
-		AchievementIDs.trainWB.achievement = achievement("trainWB", 0, 0, BlockIDs.trainWorkbench.block, (Achievement) null);
+		AchievementIDs.trainWB.achievement = achievement("trainWB", 0, 0, BlockIDs.trainWorkbench.block, null);
 		AchievementIDs.woodenParts.achievement = achievement("woodenParts", -2, 2, ItemIDs.woodenBogie.item, AchievementIDs.trainWB.achievement);
 		AchievementIDs.ironParts.achievement = achievement("ironParts", 0, 2, ItemIDs.ironBogie.item, AchievementIDs.trainWB.achievement);
 		AchievementIDs.steelParts.achievement = achievement("steelParts", 2, 2, ItemIDs.bogie.item, AchievementIDs.trainWB.achievement);
@@ -48,13 +48,13 @@ public class AchievementHandler {
 		//AchievementIDs.heavySteam.achievement = achievement("heavySteam", 2, 6, ItemIDs.minecartHeavySteam.stack, AchievementIDs.firebox.achievement);
 		//TODO put it back once Heavy Steam is back
 
-		AchievementIDs.openHearth.achievement = achievement("openHearth", -4, 0, BlockIDs.openFurnaceActive.block, (Achievement) null);
+		AchievementIDs.openHearth.achievement = achievement("openHearth", -4, 0, BlockIDs.openFurnaceActive.block, null);
 		AchievementIDs.steel.achievement = achievement("steel", -4, 2, ItemIDs.steel.item, AchievementIDs.openHearth.achievement);
 		AchievementIDs.stake.achievement = achievement("stake", -4, 4, ItemIDs.stake.item, AchievementIDs.steel.achievement);
 		AchievementIDs.dieselEngine.achievement = achievement("dieselEngine", -6, 4, ItemIDs.dieselengine.item, AchievementIDs.steel.achievement);
 		AchievementIDs.diesel.achievement = achievement("dieselLoco", -6, 6, ItemIDs.minecartCD742.item, AchievementIDs.dieselEngine.achievement);
 
-		AchievementIDs.distilationTower.achievement = achievement("distilationTower", -10, 0, BlockIDs.distilActive.block, (Achievement) null);
+		AchievementIDs.distilationTower.achievement = achievement("distilationTower", -10, 0, BlockIDs.distilActive.block,null);
 		AchievementIDs.dieselFuel.achievement = achievement("dieselFuel", -8, 2, ItemIDs.diesel.item, AchievementIDs.distilationTower.achievement);
 		AchievementIDs.plastic.achievement = achievement("plastic", -12, 2, ItemIDs.rawPlastic.item, AchievementIDs.distilationTower.achievement);
 		AchievementIDs.fineCopperWire.achievement = achievement("fineCopperWire", -12, 4, ItemIDs.copperWireFine.item, AchievementIDs.plastic.achievement);
@@ -64,9 +64,9 @@ public class AchievementHandler {
 		AchievementIDs.tram.achievement = achievement("tram", -12, 10, ItemIDs.minecartTramWood.item, AchievementIDs.electMotor.achievement);
 		AchievementIDs.fast.achievement = achievement("fast", -8, 10, ItemIDs.minecartVL10.item, AchievementIDs.electMotor.achievement);
 
-		AchievementIDs.engineer.achievement = achievement("engineer", -2, -2, ItemIDs.overalls.item, (Achievement) null);
+		AchievementIDs.engineer.achievement = achievement("engineer", -2, -2, ItemIDs.overalls.item, null);
 
-		AchievementIDs.assemblyTable.achievement = achievement("assemblyTable", 6, 0, BlockIDs.assemblyTableI.block, (Achievement) null);
+		AchievementIDs.assemblyTable.achievement = achievement("assemblyTable", 6, 0, BlockIDs.assemblyTableI.block, null);
 		AchievementIDs.passenger.achievement = achievement("passenger", 5, 2, ItemIDs.minecartPassenger2.item, AchievementIDs.assemblyTable.achievement);
 		AchievementIDs.freight.achievement = achievement("freight", 7, 2, ItemIDs.minecartChest.item, AchievementIDs.assemblyTable.achievement);
 		AchievementIDs.liquid.achievement = achievement("liquid", 5, 4, ItemIDs.minecartWatertransp.item, AchievementIDs.assemblyTable.achievement);

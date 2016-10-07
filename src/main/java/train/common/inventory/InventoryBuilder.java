@@ -85,10 +85,7 @@ public class InventoryBuilder extends Container {
 
 	@Override
 	public boolean canInteractWith(EntityPlayer entityplayer) {
-		if (loco.isDead) {
-			return false;
-		}
-		return true;
+		return !loco.isDead;
 	}
 
 	@Override
@@ -120,6 +117,4 @@ public class InventoryBuilder extends Container {
 	private EntityTracksBuilder loco;
 	private InventoryPlayer player;
 	private int inventorySize;
-	private int width;
-	private int height;
 }

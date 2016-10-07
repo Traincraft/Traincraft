@@ -114,16 +114,12 @@ public class TileEntityOpenHearthFurnace extends TileTraincraft{
 
 	@SideOnly(Side.CLIENT)
 	private void smoke(World world, int i, int j, int k, Random random) {
-		ForgeDirection side = this.getFacing();
 		float var7 = (float) i + 0.5F;
-		float var8 = (float) j + 0.0F + random.nextFloat() * 6.0F / 16.0F;
 		float var9 = (float) k + 0.5F;
-		float var10 = 0.52F;
-		float var11 = random.nextFloat() * 0.6F - 0.3F;
 		float f3 = 0.009F;
 		double gaussian = random.nextGaussian() * f3;
 		for (int t = 0; t < 50; t++) {
-			world.spawnParticle("smoke", var7, (double) j + 1.2F, var9, (double) gaussian, (double) gaussian * 0.002F, (double) gaussian);
+			world.spawnParticle("smoke", var7, (double) j + 1.2F, var9, gaussian, gaussian * 0.002F, gaussian);
 		}
 		world.spawnParticle("flame", var7, (double) j + 1.03F, var9, 0, 0, 0);
 		world.spawnParticle("flame", var7 + 0.06, (double) j + 1.03F, var9 + 0.06, 0, 0, 0);

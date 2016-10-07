@@ -36,7 +36,7 @@ public class HandleMaxAttachedCarts {
 		double totalMass = 0;
 		if (((EntityRollingStock) cart1).train != null && ((EntityRollingStock) cart1).train.getTrains().size() != 0) {
 			for (int j1 = 0; j1 < ((EntityRollingStock) cart1).train.getTrains().size(); j1++) {
-				AbstractTrains entity = (AbstractTrains) ((EntityRollingStock) cart1).train.getTrains().get(j1);
+				AbstractTrains entity = ((EntityRollingStock) cart1).train.getTrains().get(j1);
 				totalMass += entity.mass;
 			}
 			((Locomotive) cart1).currentNumCartsPulled = ((EntityRollingStock) cart1).train.getTrains().size() - 1;

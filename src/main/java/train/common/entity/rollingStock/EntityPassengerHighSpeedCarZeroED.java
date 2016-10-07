@@ -71,7 +71,6 @@ public class EntityPassengerHighSpeedCarZeroED extends EntityRollingStock implem
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		float dist = 2.17F;
-		return (dist);
+		return 2.17F;
 	}
 }

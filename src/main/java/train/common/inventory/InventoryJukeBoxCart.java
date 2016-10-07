@@ -10,7 +10,6 @@ public class InventoryJukeBoxCart extends Container {
 
 	private EntityJukeBoxCart jukebox;
 	private InventoryPlayer player;
-	private int inventorySize;
 
 	public InventoryJukeBoxCart(InventoryPlayer iinventory, EntityRollingStock entityminecart) {
 		player = iinventory;
@@ -19,9 +18,6 @@ public class InventoryJukeBoxCart extends Container {
 
 	@Override
 	public boolean canInteractWith(EntityPlayer var1) {
-		if (jukebox.isDead) {
-			return false;
-		}
-		return true;
+		return !jukebox.isDead;
 	}
 }

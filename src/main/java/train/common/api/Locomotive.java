@@ -38,7 +38,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 	protected boolean canCheckInvent = true;
 	private int slotsFilled = 0;
 	private int fuelUpdateTicks = 0;
-	public boolean					isLocoTurnedOn					= false;
+	public boolean isLocoTurnedOn = false;
 
 	/**
 	 * state of the loco

@@ -80,10 +80,7 @@ public class InventoryWorkCart extends Container {
 
 	@Override
 	public boolean canInteractWith(EntityPlayer par1EntityPlayer) {
-		if (furnace.isDead) {
-			return false;
-		}
-		return true;
+		return !furnace.isDead;
 	}
 
 	@Override
@@ -126,7 +123,7 @@ public class InventoryWorkCart extends Container {
 				return null;
 			}
 			if (var5.stackSize == 0) {
-				var4.putStack((ItemStack) null);
+				var4.putStack(null);
 			}
 			else {
 				var4.onSlotChanged();

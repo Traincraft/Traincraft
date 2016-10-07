@@ -33,8 +33,6 @@ public class ConfigHandler {
 	public static int TRAINCRAFT_VILLAGER_ID;
 	public static boolean REAL_TRAIN_SPEED;
 	public static boolean RETROGEN_CHUNKS;
-	public static final String CATEGORY_BLOCK   = "block";
-	public static final String CATEGORY_ITEM    = "item";
 
 	public static String MYSQL_URL;
 	public static String MYSQL_USER;

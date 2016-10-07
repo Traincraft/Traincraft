@@ -68,7 +68,6 @@ public class EntityCaboose3 extends EntityRollingStock implements IPassenger {
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		float dist = 1.3F;
-		return dist;
+		return 1.3F;
 	}
 }

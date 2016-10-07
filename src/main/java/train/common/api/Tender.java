@@ -41,8 +41,8 @@ public abstract class Tender extends Freight implements IFluidHandler {
 		if (filter != null)
 			this.theTank = LiquidManager.getInstance().new FilteredTank(capacity, filter);
 		tankArray[0] = theTank;
-		dataWatcher.addObject(4, new Integer(0));
-		this.dataWatcher.addObject(23, new Integer(0));
+		dataWatcher.addObject(4, 0);
+		this.dataWatcher.addObject(23, 0);
 	}
 	@Override
 	public abstract int getSizeInventory();

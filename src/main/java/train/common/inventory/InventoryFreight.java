@@ -22,7 +22,7 @@ public class InventoryFreight extends Container {
 		int i = (height - 4) * 18;
 		for (int j = 0; j < height; j++) {
 			for (int i1 = 0; i1 < 9; i1++) {
-				addSlotToContainer(new SlotFreight((IInventory) entityminecart, i1 + j * 9, 8 + i1 * 18, 18 + j * 18));
+				addSlotToContainer(new SlotFreight(entityminecart, i1 + j * 9, 8 + i1 * 18, 18 + j * 18));
 			}
 		}
 		for (int i1 = 0; i1 < 3; i1++) {
@@ -37,10 +37,7 @@ public class InventoryFreight extends Container {
 
 	@Override
 	public boolean canInteractWith(EntityPlayer entityplayer) {
-		if (freight.isDead) {
-			return false;
-		}
-		return true;
+		return !freight.isDead;
 	}
 
 	@Override
@@ -90,7 +87,7 @@ public class InventoryFreight extends Container {
 				if (var8 != null && var8.getItem() == par1ItemStack.getItem() && (!par1ItemStack.getHasSubtypes() || par1ItemStack.getItemDamage() == var8.getItemDamage()) && ItemStack.areItemStackTagsEqual(par1ItemStack, var8)) {
 					int var9 = var8.stackSize + par1ItemStack.stackSize;
 					int maxSize = par1ItemStack.getMaxStackSize();//default is item max stack size
-					if (bool == false) {//if items are transfered to the freight inventory, otherwise use normal max size
+					if (!bool) {//if items are transfered to the freight inventory, otherwise use normal max size
 						if (par1ItemStack.getMaxStackSize() < inv.getInventoryStackLimit())
 							maxSize = par1ItemStack.getMaxStackSize();//if maxStack size is lower than inventory's max then use maxStackSize of the item
 						if (par1ItemStack.getMaxStackSize() >= inv.getInventoryStackLimit())

@@ -90,7 +90,6 @@ public class EntityPassengerBlue extends EntityRollingStock implements IPassenge
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		float dist = 0.1F;
-		return (dist + 2.1F);
+		return 2.2F;
 	}
 }

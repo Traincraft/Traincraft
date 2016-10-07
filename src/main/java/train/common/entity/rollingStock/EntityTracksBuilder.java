@@ -513,9 +513,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 		boolean hasBeenPlaced = false;
 		boolean noFreight = true;
 		// ItemStack itemDug = (new ItemStack(blockNow, 1, 0));
-		AxisAlignedBB box2 = null;
-		box2 = boundingBox.expand(4.60000000298023224D, 4.60000000298023224D, 4.60000000298023224D);
-		@SuppressWarnings("rawtypes") List lis = worldObj.getEntitiesWithinAABBExcludingEntity(this, box2);
+		@SuppressWarnings("rawtypes") List lis = worldObj.getEntitiesWithinAABBExcludingEntity(this, boundingBox.expand(4.60000000298023224D, 4.60000000298023224D, 4.60000000298023224D));
 
 		if (lis != null && lis.size() > 0) {
 			for (int j1 = 0; j1 < lis.size(); j1++) {
@@ -757,10 +755,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 	 * @return is not harvested
 	 */
 	private boolean shouldIgnoreBlockForHarvesting(Vec3 pos, int id) {
-		if (id == 0 || Block.getBlockById(id) == null || id == Block.getIdFromBlock(Blocks.bedrock) || id == Block.getIdFromBlock(Blocks.fire) || id == Block.getIdFromBlock(Blocks.portal) || id == Block.getIdFromBlock(Blocks.end_portal) || Block.getBlockById(id) instanceof BlockLiquid || id == 55 || id == 70 || id == 72) {
-			return true;
-		}
-		return false;
+		return(id == 0 || Block.getBlockById(id) == null || id == Block.getIdFromBlock(Blocks.bedrock) || id == Block.getIdFromBlock(Blocks.fire) || id == Block.getIdFromBlock(Blocks.portal) || id == Block.getIdFromBlock(Blocks.end_portal) || Block.getBlockById(id) instanceof BlockLiquid || id == 55 || id == 70 || id == 72);
 	}
 	/**
 	 * Spawn breaking particles for blockparticles

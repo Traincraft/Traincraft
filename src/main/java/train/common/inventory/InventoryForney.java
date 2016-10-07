@@ -93,9 +93,6 @@ public class InventoryForney extends Container {
 
 	@Override
 	public boolean canInteractWith(EntityPlayer var1) {
-		if (loco.isDead) {
-			return false;
-		}
-		return true;
+		return !loco.isDead;
 	}
 }

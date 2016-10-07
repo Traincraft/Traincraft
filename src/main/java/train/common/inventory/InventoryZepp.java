@@ -99,7 +99,7 @@ public class InventoryZepp extends Container {
 					int var9 = var8.stackSize + par1ItemStack.stackSize;
 
 					int maxSize = par1ItemStack.getMaxStackSize();//default is item max stack size
-					if (bool == false) {//if items are transfered to the freight inventory, otherwise use normal max size
+					if (!bool) {//if items are transfered to the freight inventory, otherwise use normal max size
 						if (par1ItemStack.getMaxStackSize() < zepp.getInventoryStackLimit()) maxSize = par1ItemStack.getMaxStackSize();//if maxStack size is lower than inventory's max then use maxStackSize of the item
 						if (par1ItemStack.getMaxStackSize() >= zepp.getInventoryStackLimit()) maxSize = zepp.getInventoryStackLimit();//otherwise use maxStackSize of the inventory
 					}

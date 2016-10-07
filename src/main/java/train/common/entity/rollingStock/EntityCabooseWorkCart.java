@@ -134,10 +134,7 @@ public class EntityCabooseWorkCart extends AbstractWorkCart implements IInventor
 
 	@Override
 	public boolean isUseableByPlayer(EntityPlayer entityplayer) {
-		if (isDead) {
-			return false;
-		}
-		return entityplayer.getDistanceSqToEntity(this) <= 124D;
+		return !isDead &&entityplayer.getDistanceSqToEntity(this) <= 124D;
 	}
 
 	@Override

@@ -63,7 +63,7 @@ public class ShapedTrainRecipes implements ITCRecipe {
 		checkMatch(inventory, true);
 
 		for (int i = 0; i < slots.length; i++) {
-			if (slots[i] == false) {
+			if (!slots[i]) {
 				return false;
 			}
 		}
@@ -79,7 +79,7 @@ public class ShapedTrainRecipes implements ITCRecipe {
 			ItemStack var10 = inventory.getStackInSlot(i);
 
 			if (var10 != null || var9 != null) {
-				if (var10 == null && var9 != null || var10 != null && var9 == null) {
+				if (var10 == null || var9 == null) {
 					//System.out.println(var9.getDisplayName() + " : " + var10.getDisplayName());
 					slots[i] = false;
 					continue;

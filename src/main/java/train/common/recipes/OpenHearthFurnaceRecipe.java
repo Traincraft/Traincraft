@@ -28,17 +28,13 @@ public class OpenHearthFurnaceRecipe{
 	private final int cookTime;
 	
 	public boolean matches(ItemStack[] var1) {
-		if(var1.length < this.getRecipeSize())
+		if(var1.length < this.getRecipeSize()) {
 			return false;
-	
+		}
 		if(TraincraftUtil.itemStackMatches(var1[0], ingredient1) && TraincraftUtil.itemStackMatches(var1[1], ingredient2)){
 			return true;
 		}
-		if(TraincraftUtil.itemStackMatches(var1[1], ingredient1) && TraincraftUtil.itemStackMatches(var1[0], ingredient2)){
-			return true;
-		}
-		
-		return false;
+		return(TraincraftUtil.itemStackMatches(var1[1], ingredient1) && TraincraftUtil.itemStackMatches(var1[0], ingredient2));
 	}
 
 	public ItemStack getCraftingResult() {

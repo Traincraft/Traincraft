@@ -21,14 +21,14 @@ public class EntityJukeBoxCart extends EntityRollingStock {
 	public boolean isPlaying = false;
 	public boolean isInvalid = false;
 	public String streamURL = "";
-	Side side;
+	private Side side;
 	public float volume = 1.0f;
 	public MP3Player player;
 
 	public EntityJukeBoxCart(World world) {
 		super(world);
-		dataWatcher.addObject(22, new String(streamURL));
-		dataWatcher.addObject(23, new Integer(0));
+		dataWatcher.addObject(22, streamURL);
+		dataWatcher.addObject(23, 0);
 		side = FMLCommonHandler.instance().getEffectiveSide();
 	}
 
@@ -172,7 +172,7 @@ public class EntityJukeBoxCart extends EntityRollingStock {
 
 	@Override
 	public boolean interactFirst(EntityPlayer entityplayer) {
-		ItemStack var2 = entityplayer.inventory.getCurrentItem();
+		//ItemStack var2 = entityplayer.inventory.getCurrentItem();
 		playerEntity = entityplayer;
 		if ((super.interactFirst(entityplayer))) {
 			return false;
@@ -199,8 +199,7 @@ public class EntityJukeBoxCart extends EntityRollingStock {
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		float dist = 1.85F;
-		return (dist);
+		return 1.85F;
 	}
 
 	@Override

@@ -89,8 +89,7 @@ public class CommonProxy implements IGuiHandler {
 	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
 		TileEntity te = world.getTileEntity(x, y, z);
 		EntityPlayer riddenByEntity = null;
-		Entity entity = null;
-		entity = player.ridingEntity;
+		Entity entity = player.ridingEntity;
 
 		if (player.ridingEntity != null) {
 			riddenByEntity = (EntityPlayer) entity.riddenByEntity;
@@ -117,17 +116,17 @@ public class CommonProxy implements IGuiHandler {
 		case (GuiIDs.TRAIN_WORKBENCH):
 			return te != null && te instanceof TileTrainWbench ? new ContainerTrainWorkbench(player.inventory, player.worldObj, (TileTrainWbench) te) : null;
 		case (GuiIDs.LOCO):
-			return riddenByEntity != null && entity != null ? new InventoryLoco(riddenByEntity.inventory, (EntityRollingStock) entity) : null;
+			return riddenByEntity != null ? new InventoryLoco(riddenByEntity.inventory, (EntityRollingStock) entity) : null;
 		case (GuiIDs.FORNEY):
-			return riddenByEntity != null && entity != null ? new InventoryForney(player.inventory, (EntityRollingStock) entity) : null;
+			return riddenByEntity != null ? new InventoryForney(player.inventory, (EntityRollingStock) entity) : null;
 		case (GuiIDs.CRAFTING_CART):
 			return new ContainerWorkbenchCart(player.inventory, player.worldObj);
 		case (GuiIDs.FURNACE_CART):
-			return riddenByEntity != null && entity != null ? new InventoryWorkCart(player.inventory, entity) : null;
+			return riddenByEntity != null ? new InventoryWorkCart(player.inventory, entity) : null;
 		case (GuiIDs.ZEPPELIN):
-			return riddenByEntity != null && entity != null ? new InventoryZepp(player.inventory, (AbstractZeppelin) entity) : null;
+			return riddenByEntity != null ? new InventoryZepp(player.inventory, (AbstractZeppelin) entity) : null;
 		case (GuiIDs.DIGGER):
-			return riddenByEntity != null && entity != null ? new InventoryRotativeDigger(player.inventory, (EntityRotativeDigger) entity) : null;
+			return riddenByEntity != null  ? new InventoryRotativeDigger(player.inventory, (EntityRotativeDigger) entity) : null;
 
 			/* Stationary entities while player is not riding. */
 		case (GuiIDs.FREIGHT):
@@ -183,7 +182,7 @@ public class CommonProxy implements IGuiHandler {
 
 	public static Entity getEntity(World world, int entityId) {
 		if ((world != null) && (world instanceof WorldServer)) {
-			return ((WorldServer) world).getEntityByID(entityId);
+			return world.getEntityByID(entityId);
 		}
 		return null;
 	}
@@ -213,11 +212,9 @@ public class CommonProxy implements IGuiHandler {
 	public void registerVillagerSkin(int villagerId, String textureName) {}
 	
 	public static void killAllStreams() {
-		/*
 		for (MP3Player p : playerList) {
 			p.stop();
 		}
-		*/
 	}
 	
 	public static boolean checkJukeboxEntity(World world, int id) {

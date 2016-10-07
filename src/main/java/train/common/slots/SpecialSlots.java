@@ -37,9 +37,7 @@ public class SpecialSlots extends Slot {
 		
 		@Override
 		public boolean isItemValid(ItemStack itemstack) {
-			if (LiquidManager.getInstance().isContainer(itemstack))
-				return true;
-			return false;
+			return LiquidManager.getInstance().isContainer(itemstack);
 		}
 	}
 

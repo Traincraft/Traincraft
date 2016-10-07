@@ -77,14 +77,16 @@ public class EntityMailWagen_DB extends AbstractWorkCart implements IInventory {
 
 	@Override
 	public void pressKey(int i) {
-		if(locked && riddenByEntity != null && riddenByEntity instanceof EntityPlayer&& !((EntityPlayer)riddenByEntity).getDisplayName().toLowerCase().equals(this.trainOwner.toLowerCase())){
-			return;
-		}
-		if (i == 7) {
-			((EntityPlayer) riddenByEntity).openGui(Traincraft.instance, GuiIDs.CRAFTING_CART, worldObj, (int) this.posX, (int) this.posY, (int) this.posZ);
-		}
-		if (i == 9) {
-			((EntityPlayer) riddenByEntity).openGui(Traincraft.instance, GuiIDs.FURNACE_CART, worldObj, (int) this.posX, (int) this.posY, (int) this.posZ);
+		if (riddenByEntity != null && riddenByEntity instanceof EntityPlayer) {
+			if (locked && !((EntityPlayer) riddenByEntity).getDisplayName().toLowerCase().equals(this.trainOwner.toLowerCase())) {
+				return;
+			}
+			if (i == 7) {
+				((EntityPlayer) riddenByEntity).openGui(Traincraft.instance, GuiIDs.CRAFTING_CART, worldObj, (int) this.posX, (int) this.posY, (int) this.posZ);
+			}
+			if (i == 9) {
+				((EntityPlayer) riddenByEntity).openGui(Traincraft.instance, GuiIDs.FURNACE_CART, worldObj, (int) this.posX, (int) this.posY, (int) this.posZ);
+			}
 		}
 	}
 
@@ -124,16 +126,12 @@ public class EntityMailWagen_DB extends AbstractWorkCart implements IInventory {
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		float dist = 1.84F;
-		return (dist);
+		return 1.84F;
 	}
 
 	@Override
 	public boolean isUseableByPlayer(EntityPlayer entityplayer) {
-		if (isDead) {
-			return false;
-		}
-		return entityplayer.getDistanceSqToEntity(this) <= 124D;
+		return !isDead && entityplayer.getDistanceSqToEntity(this) <= 124D;
 	}
 
 	@Override

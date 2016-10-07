@@ -12,9 +12,6 @@ public class ContainerWorkbenchCart extends Container {
 	public InventoryCrafting craftMatrix = new InventoryCrafting(this, 3, 3);
 	public IInventory craftResult = new InventoryCraftResult();
 	private World worldObj;
-	private double posX;
-	private double posY;
-	private double posZ;
 
 	public ContainerWorkbenchCart(InventoryPlayer par1InventoryPlayer, World par2World) {
 		this.worldObj = par2World;
@@ -106,7 +103,7 @@ public class ContainerWorkbenchCart extends Container {
 			}
 
 			if (var4.stackSize == 0) {
-				var3.putStack((ItemStack) null);
+				var3.putStack(null);
 			}
 			else {
 				var3.onSlotChanged();

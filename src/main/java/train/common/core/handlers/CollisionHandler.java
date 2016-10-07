@@ -31,7 +31,6 @@ public class CollisionHandler {
 
 	public void handleCollisions(Entity entityOne, AxisAlignedBB boundingBox) {
 		AxisAlignedBB box = null;
-		AxisAlignedBB boxSmall = null;
 		/* Box is expanded depending of direction */
 		if (entityOne.rotationYaw == -90 || entityOne.rotationYaw == 90) {
 			box = boundingBox.expand(0.4, 1, 1);
@@ -45,13 +44,12 @@ public class CollisionHandler {
 		/**
 		 * A smaller BB is needed otherwise the entity will get sucked back as soon as it unmounts this does not affect collisions with player or other carts. Only collisions with mobs
 		 */
-		boxSmall = boundingBox.expand(-0.5, -0.5, -0.5);
-		List listRide = worldObj.getEntitiesWithinAABBExcludingEntity((Entity) entityOne, boxSmall);
+		List listRide = worldObj.getEntitiesWithinAABBExcludingEntity(entityOne, boundingBox.expand(-0.5, -0.5, -0.5));
 		if (listRide != null && listRide.size() > 0) {
 			for (int j1 = 0; j1 < listRide.size(); j1++) {
 				Entity entity = (Entity) listRide.get(j1);
 				if (!(entity instanceof EntityLasersLines) && !entity.noClip) {
-					if (entity != entity.riddenByEntity && !(unAutorizedMob(entity, entityOne)) && (entity instanceof EntityLiving) && !(entity instanceof EntityPlayer)) {
+					if (entity != entity.riddenByEntity && !(unAutorizedMob(entity, entityOne)) && (entity instanceof EntityLiving)) {
 						applyRideEntity(entity, entityOne);
 					}
 				}
@@ -66,7 +64,7 @@ public class CollisionHandler {
 		else {
 			box = boundingBox.expand(2, 0, 2);
 		}
-		List listLiving = worldObj.getEntitiesWithinAABBExcludingEntity((Entity) entityOne, box);
+		List listLiving = worldObj.getEntitiesWithinAABBExcludingEntity(entityOne, box);
 		if (listLiving != null && listLiving.size() > 0) {
 
 			for (int j1 = 0; j1 < listLiving.size(); j1++) {
@@ -74,7 +72,7 @@ public class CollisionHandler {
 
 				if (!(entity instanceof EntityLasersLines) && !entity.noClip) {
 
-					if (entity != entity.riddenByEntity && (entity instanceof EntityLiving) && (entity.getClass().getName() != "EntityLittleMaid") && (unAutorizedMob(entity, entityOne) && !(entity instanceof EntityPlayer))) {
+					if (entity != entity.riddenByEntity && (entity instanceof EntityLiving) && (!entity.getClass().getName().equals("EntityLittleMaid")) && (unAutorizedMob(entity, entityOne))) {
 
 						applyCollisionLiving(entity, entityOne);
 						// applyEntityCollision(entity, entityOne);
@@ -153,17 +151,12 @@ public class CollisionHandler {
 					d1 *= d3;
 					d0 *= 0.10000000149011612D;
 					d1 *= 0.10000000149011612D;
-					d0 *= (double) (1.0F - 0.6);
-					d1 *= (double) (1.0F - 0.6);
+					d0 *= 0.4D;
+					d1 *= 0.4D;
 					d0 *= 0.5D;
 					d1 *= 0.5D;
 
 					if (par1Entity instanceof EntityMinecart) {
-						double d4 = par1Entity.posX - entityOne.posX;
-						double d5 = par1Entity.posZ - entityOne.posZ;
-						Vec3 vec3 = Vec3.createVectorHelper(d4, 0.0D, d5).normalize();
-						Vec3 vec31 = Vec3.createVectorHelper((double) MathHelper.cos(entityOne.rotationYaw * (float) Math.PI / 180.0F), 0.0D, (double) MathHelper.sin(entityOne.rotationYaw * (float) Math.PI / 180.0F)).normalize();
-						double d6 = Math.abs(vec3.dotProduct(vec31));
 
 						/*
 						 * if (d6 < 0.800000011920929D) { return; } */
@@ -233,8 +226,8 @@ public class CollisionHandler {
 					var4 *= var8;
 					var2 *= 0.10000000149011612D;
 					var4 *= 0.10000000149011612D;
-					var2 *= (double) (1.0F - 0.6);
-					var4 *= (double) (1.0F - 0.6);
+					var2 *= 0.4D;
+					var4 *= 0.4D;
 					var2 *= 0.5D;
 					var4 *= 0.5D;
 
@@ -282,18 +275,12 @@ public class CollisionHandler {
 							entityOne.addVelocity(-var2, 0.0D, -var4);
 						if(entity instanceof EntityPlayer){
 
-							Vec3 vec3d4 = Vec3.createVectorHelper(entityOne.posX, entityOne.posY, entityOne.posZ);
-							Vec3 vec3d5 = Vec3.createVectorHelper(entityOne.posX + entityOne.motionX, entityOne.posY + entityOne.motionY, entityOne.posZ + entityOne.motionZ);
-							MovingObjectPosition movingobjectposition = worldObj.rayTraceBlocks(vec3d4, vec3d5, false);
-							if (movingobjectposition != null) {
-								vec3d5 = Vec3.createVectorHelper(movingobjectposition.hitVec.xCoord, movingobjectposition.hitVec.yCoord, movingobjectposition.hitVec.zCoord);
-							}
+							MovingObjectPosition movingobjectposition = worldObj.rayTraceBlocks(Vec3.createVectorHelper(entityOne.posX, entityOne.posY, entityOne.posZ), Vec3.createVectorHelper(entityOne.posX + entityOne.motionX, entityOne.posY + entityOne.motionY, entityOne.posZ + entityOne.motionZ), false);
 							if (entity != null && entity instanceof EntityPlayer) {
 								movingobjectposition = new MovingObjectPosition(entity);
 							}
 							if (movingobjectposition != null) {
 								if (movingobjectposition.entityHit != null) {
-									float f1 = MathHelper.sqrt_double(entityOne.motionX * entityOne.motionX + entityOne.motionY * entityOne.motionY + entityOne.motionZ * entityOne.motionZ);
 									float f7 = MathHelper.sqrt_double(entityOne.motionX * entityOne.motionX + entityOne.motionZ * entityOne.motionZ);
 									movingobjectposition.entityHit.addVelocity(-((entityOne.motionX * (double) 1 * 0.0060000002384185791D)) / (double) f7, 0.00000000000000001D, -(((entityOne.motionZ * (double) 1 * 0.0060000002384185791D)) / (double) f7));
 									entity.velocityChanged = true;
@@ -371,9 +358,6 @@ public class CollisionHandler {
 				Vec3 vec3d4 = Vec3.createVectorHelper(entityOne.posX, entityOne.posY, entityOne.posZ);
 				Vec3 vec3d5 = Vec3.createVectorHelper(entityOne.posX + entityOne.motionX, entityOne.posY + entityOne.motionY, entityOne.posZ + entityOne.motionZ);
 				MovingObjectPosition movingobjectposition = worldObj.rayTraceBlocks(vec3d4, vec3d5, false);
-				if (movingobjectposition != null) {
-					vec3d5 = Vec3.createVectorHelper(movingobjectposition.hitVec.xCoord, movingobjectposition.hitVec.yCoord, movingobjectposition.hitVec.zCoord);
-				}
 
 				if (entity != null) {
 					movingobjectposition = new MovingObjectPosition(entity);
@@ -406,13 +390,11 @@ public class CollisionHandler {
 						}
 						int j1 = (int) Math.ceil((double) (f1) * damage);
 
-						DamageSource damagesource = null;
 						
 						if (unAutorizedMob(movingobjectposition.entityHit, entityOne) || ((entity instanceof EntityPlayer || entityOne instanceof EntityPlayer)) && ((f1 * 3.6) > 60))// (movingobjectposition.entityHit instanceof EntityCreature) && !(movingobjectposition.entityHit instanceof EntityWolf))
 						{
 
-							damagesource = TrainsDamageSource.ranOver;//DamageSource.causeMobDamage((EntityLiving) entity);
-							entity.attackEntityFrom(damagesource, j1);
+							entity.attackEntityFrom(TrainsDamageSource.ranOver, j1);//DamageSource.causeMobDamage((EntityLiving) entity);
 								if (f7 > 0.0F) {
 									movingobjectposition.entityHit.addVelocity((entityOne.motionX * (double) 2 * 0.60000002384185791D) / (double) f7, 0.10000000000000001D, (entityOne.motionZ * (double) 2 * 0.60000002384185791D) / (double) f7);
 									entity.velocityChanged = true;
@@ -465,14 +447,6 @@ public class CollisionHandler {
 			d1 *= 0.5D;
 
 			if (entity instanceof AbstractTrains) {
-				double d4 = entity.posX - entityOne.posX;
-				double d5 = entity.posZ - entityOne.posZ;
-				Vec3 vec3d = Vec3.createVectorHelper(d4, 0.0D, d5).normalize();
-				Vec3 vec3d1 = Vec3.createVectorHelper(MathHelper.cos((entityOne.rotationYaw * 3.141593F) / 180F), 0.0D, MathHelper.sin((entityOne.rotationYaw * 3.141593F) / 180F)).normalize();
-				double d6 = Math.abs(vec3d.dotProduct(vec3d1));
-
-				double d7 = entity.motionX + entityOne.motionX;
-				double d8 = entity.motionZ + entityOne.motionZ;
 				if (((AbstractTrains) entity).isLocomotive() && !((AbstractTrains) entityOne).isLocomotive()) {
 
 					entityOne.motionX = 0;
@@ -508,13 +482,11 @@ public class CollisionHandler {
 					entityOne.motionZ *= 0.98999998807907104D;
 
 				}
-				else {
-					d7 /= 2D;
-					d8 /= 2D;
+				//else {
 
 					// entityOne.addVelocity(entityOne.motionX+(d*5), 0.0D, entityOne.motionZ+(d*5)); //addVelocity(d7 - d, 0.0D, d8 - d1);
 
-				}
+				//}
 			}
 
 			// System.out.println("debug");
@@ -564,8 +536,6 @@ public class CollisionHandler {
 
 				}
 
-				double d7 = entity.motionX + entityOne.motionX;
-				double d8 = entity.motionZ + entityOne.motionZ;
 				if (!((AbstractTrains) entityOne).isLocomotive()) {
 
 					entityOne.motionX = 0;
@@ -593,9 +563,6 @@ public class CollisionHandler {
 
 				}
 				else {
-					d7 /= 2D;
-					d8 /= 2D;
-
 					entityOne.addVelocity(entityOne.motionX + (d * 5), 0.0D, entityOne.motionZ + (d * 5));
 
 				}

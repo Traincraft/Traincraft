@@ -51,15 +51,15 @@ public class DistilRecipes {
 	 * @param plasticChance used as follow: Math.random(plasticChance)==0
 	 * //@param plasticSktack: the plastic output and output size
 	 */
-	public void addSmelting(Item itemID, ItemStack itemstack, float exp, int plasticChance, ItemStack plasticStack) {
+	public void addSmelting(Item itemID, ItemStack itemstack, float exp, float plasticChance, ItemStack plasticStack) {
 		smeltingList.put(itemID, itemstack);
 		plasticList.put(itemID, plasticStack);
-		this.experienceList.put(Integer.valueOf(Item.getIdFromItem(plasticStack.getItem())), Float.valueOf(exp));
-		this.plasticChanceList.put(itemID, Float.valueOf(plasticChance));
+		this.experienceList.put(Item.getIdFromItem(plasticStack.getItem()), exp);
+		this.plasticChanceList.put(itemID, plasticChance);
 	}
 
 	public float getExperience(int i) {
-		return this.experienceList.containsKey(Integer.valueOf(i)) ? this.experienceList.get(Integer.valueOf(i)).floatValue() : 0.0F;
+		return this.experienceList.containsKey(i) ? this.experienceList.get(i) : 0.0F;
 	}
 
 	public int getPlasticChance(Item item) {

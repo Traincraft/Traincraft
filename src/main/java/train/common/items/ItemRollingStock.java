@@ -77,7 +77,6 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
 		if (par1ItemStack.hasTagCompound()) {
 			NBTTagCompound var5 = par1ItemStack.getTagCompound();
-			int id = var5.getInteger("uniqueID");
 			trainCreator = var5.getString("trainCreator");
 			/*if (id > 0)
 				par3List.add("\u00a77" + "ID: " + id);*/
@@ -170,7 +169,6 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 
 	@Override
 	public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, World par3World, int par4, int par5, int par6, int par7, float par8, float par9, float par10) {
-		Block var11 = par3World.getBlock(par4, par5, par6);
 		int meta = par3World.getBlockMetadata(par4, par5, par6);
 		TileEntity tileentity = par3World.getTileEntity(par4, par5, par6);
 		//System.out.println(meta);
@@ -219,7 +217,7 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 				}
 			}
 		}
-		if (rollingStock != null && rollingStock instanceof EntityRollingStock) {
+		if (rollingStock != null) {
 			if (!world.isRemote) {
 
 				if((rollingStock instanceof SteamTrain && !ConfigHandler.ENABLE_STEAM) || (rollingStock instanceof ElectricTrain && !ConfigHandler.ENABLE_ELECTRIC) || (rollingStock instanceof DieselTrain && !ConfigHandler.ENABLE_DIESEL) || (rollingStock instanceof EntityTracksBuilder && !ConfigHandler.ENABLE_BUILDER) ||(rollingStock instanceof Tender && !ConfigHandler.ENABLE_TENDER)){
@@ -347,7 +345,7 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 				// + rollingStock.rotationYaw);
 
 				rollingStock.trainType = ((ItemRollingStock) itemstack.getItem()).getTrainType();
-				rollingStock.trainName = ((ItemRollingStock) itemstack.getItem()).getItemStackDisplayName(itemstack);
+				rollingStock.trainName = (itemstack.getItem()).getItemStackDisplayName(itemstack);
 				if (player != null){
 					rollingStock.trainOwner = player.getDisplayName();
 				}
@@ -368,9 +366,9 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 					rollingStock.trainCreator = trainCreator;
 				}
 				if (player != null)
-					rollingStock.setInformation(((ItemRollingStock) itemstack.getItem()).getTrainType(), player.getDisplayName(), trainCreator, ((ItemRollingStock) itemstack.getItem()).getItemStackDisplayName(itemstack), uniID);
+					rollingStock.setInformation(((ItemRollingStock) itemstack.getItem()).getTrainType(), player.getDisplayName(), trainCreator, (itemstack.getItem()).getItemStackDisplayName(itemstack), uniID);
 				if (player == null)
-					rollingStock.setInformation(((ItemRollingStock) itemstack.getItem()).getTrainType(), "", trainCreator, ((ItemRollingStock) itemstack.getItem()).getItemStackDisplayName(itemstack), uniID);
+					rollingStock.setInformation(((ItemRollingStock) itemstack.getItem()).getTrainType(), "", trainCreator, (itemstack.getItem()).getItemStackDisplayName(itemstack), uniID);
 
 				if (ConfigHandler.SHOW_POSSIBLE_COLORS && rollingStock.acceptedColors != null && rollingStock.acceptedColors.size() > 0) {
 					String concatColors = ": ";

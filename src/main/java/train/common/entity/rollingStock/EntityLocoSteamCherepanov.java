@@ -139,17 +139,14 @@ public class EntityLocoSteamCherepanov extends SteamTrain {
 			if (riddenByEntity != null && (riddenByEntity instanceof EntityPlayer) && riddenByEntity != entityplayer) {
 				return true;
 			}
-			if (!worldObj.isRemote) {
-				entityplayer.mountEntity(this);
-			}
+			entityplayer.mountEntity(this);
 		}
 		return true;
 	}
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		float dist = 0.5F;
-		return (dist);
+		return 0.5F;
 	}
 
 	@Override

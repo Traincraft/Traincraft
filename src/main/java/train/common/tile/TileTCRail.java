@@ -147,28 +147,23 @@ public class TileTCRail extends TileEntity {
 
 				int meta = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
 				TileEntity tile1 = null;
-				TileEntity tile2 = null;
 
 				switch (meta) {
 
 				case 0:
 					tile1 = worldObj.getTileEntity(xCoord, yCoord, zCoord - 1);
-					tile2 = worldObj.getTileEntity(xCoord, yCoord, zCoord - 2);
 					break;
 
 				case 1:
 					tile1 = worldObj.getTileEntity(xCoord + 1, yCoord, zCoord);
-					tile2 = worldObj.getTileEntity(xCoord + 2, yCoord, zCoord);
 					break;
 
 				case 2:
 					tile1 = worldObj.getTileEntity(xCoord, yCoord, zCoord + 1);
-					tile2 = worldObj.getTileEntity(xCoord, yCoord, zCoord + 2);
 					break;
 
 				case 3:
 					tile1 = worldObj.getTileEntity(xCoord - 1, yCoord, zCoord);
-					tile2 = worldObj.getTileEntity(xCoord - 2, yCoord, zCoord);
 					break;
 				}
 

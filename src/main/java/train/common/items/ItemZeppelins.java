@@ -42,10 +42,9 @@ public class ItemZeppelins extends Item {
 		float f5 = -MathHelper.cos(-f1 * 0.01745329F);
 		float f6 = MathHelper.sin(-f1 * 0.01745329F);
 		float f7 = f4 * f5;
-		float f8 = f6;
 		float f9 = f3 * f5;
 		double d3 = 5D;
-		Vec3 vec3d1 = vec3d.addVector((double) f7 * d3, (double) f8 * d3, (double) f9 * d3);
+		Vec3 vec3d1 = vec3d.addVector((double) f7 * d3, (double) f6 * d3, (double) f9 * d3);
 		MovingObjectPosition movingobjectposition = world.rayTraceBlocks(vec3d, vec3d1, true);
 		if (movingobjectposition == null) { return itemstack; }
 		if (!world.isRemote && !ConfigHandler.ENABLE_ZEPPELIN) {

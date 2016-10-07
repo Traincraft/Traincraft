@@ -100,7 +100,7 @@ public class EntityLocoElectricMinetrain extends ElectricTrain {
 		NBTTagList nbttaglist = nbttagcompound.getTagList("Items", Constants.NBT.TAG_COMPOUND);
 		locoInvent = new ItemStack[getSizeInventory()];
 		for (int i = 0; i < nbttaglist.tagCount(); i++) {
-			NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist.getCompoundTagAt(i);
+			NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
 			int j = nbttagcompound1.getByte("Slot") & 0xff;
 			if (j >= 0 && j < locoInvent.length) {
 				locoInvent[j] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
@@ -128,16 +128,13 @@ public class EntityLocoElectricMinetrain extends ElectricTrain {
 			if (riddenByEntity != null && (riddenByEntity instanceof EntityPlayer) && riddenByEntity != entityplayer) {
 				return true;
 			}
-			if (!worldObj.isRemote) {
-				entityplayer.mountEntity(this);
-			}
+			entityplayer.mountEntity(this);
 		}
 		return true;
 	}
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		float dist = 0.53F;
-		return (dist);
+		return 0.53F;
 	}
 
 	@Override

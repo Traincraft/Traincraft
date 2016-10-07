@@ -149,9 +149,7 @@ public class EntityLocoSteamC62Class extends SteamTrain {
 			if (riddenByEntity != null && (riddenByEntity instanceof EntityPlayer) && riddenByEntity != entityplayer) {
 				return true;
 			}
-			if (!worldObj.isRemote) {
-				entityplayer.mountEntity(this);
-			}
+			entityplayer.mountEntity(this);
 		}
 		return true;
 	}

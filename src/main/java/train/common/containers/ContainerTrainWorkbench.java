@@ -17,9 +17,6 @@ public class ContainerTrainWorkbench extends Container {
 	public IInventory craftMatrix;
 	public static IInventory craftResult = new InventoryCraftResult();
 	private World worldObj;
-	private int posX;
-	private int posY;
-	private int posZ;
 
 	public ContainerTrainWorkbench(InventoryPlayer invPlayer, World world, IInventory te) {
 		this.worldObj = world;
@@ -98,7 +95,7 @@ public class ContainerTrainWorkbench extends Container {
 			}
 
 			if (var4.stackSize == 0) {
-				var3.putStack((ItemStack) null);
+				var3.putStack(null);
 			}
 			else {
 				var3.onSlotChanged();

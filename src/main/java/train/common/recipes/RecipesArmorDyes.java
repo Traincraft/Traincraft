@@ -16,7 +16,7 @@ public class RecipesArmorDyes implements ITCRecipe {
 	@Override
 	public boolean matches(IInventory par1InventoryCrafting, World par2World) {
 		ItemStack itemstack = null;
-		ArrayList arraylist = new ArrayList();
+		boolean isEmpty = true;
 
 		for (int i = 0; i < par1InventoryCrafting.getSizeInventory(); ++i) {
 			ItemStack itemstack1 = par1InventoryCrafting.getStackInSlot(i);
@@ -36,12 +36,12 @@ public class RecipesArmorDyes implements ITCRecipe {
 						return false;
 					}
 
-					arraylist.add(itemstack1);
+					isEmpty = false;
 				}
 			}
 		}
 
-		return itemstack != null && !arraylist.isEmpty();
+		return itemstack != null && !isEmpty;
 	}
 
 	//Returns an Item that is the result of this recipe

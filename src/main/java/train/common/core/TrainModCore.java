@@ -30,8 +30,6 @@ public class TrainModCore {
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-		} catch (@SuppressWarnings("hiding") IOException f) {
-			f.printStackTrace();
 		}
 	}
 

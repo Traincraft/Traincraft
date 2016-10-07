@@ -42,7 +42,7 @@ public class TrainCraftingManager {
 		int var6 = 0;
 
 		if (obj[var4] instanceof String[]) {
-			String[] var7 = (String[]) ((String[]) obj[var4++]);
+			String[] var7 = (String[]) obj[var4++];
 
 			for (int var8 = 0; var8 < var7.length; ++var8) {
 				String var9 = var7[var8];
@@ -83,8 +83,8 @@ public class TrainCraftingManager {
 		for (int var16 = 0; var16 < var5 * var6; ++var16) {
 			char var10 = var3.charAt(var16);
 
-			if (var12.containsKey(Character.valueOf(var10))) {
-				var15[var16] = ((ItemStack) var12.get(Character.valueOf(var10))).copy();
+			if (var12.containsKey(var10)) {
+				var15[var16] = ((ItemStack) var12.get(var10)).copy();
 			}
 			else {
 				var15[var16] = null;
@@ -97,23 +97,20 @@ public class TrainCraftingManager {
 
 	public void addShapelessRecipe(ItemStack par1ItemStack, Object... obj) {
 		ArrayList var3 = new ArrayList();
-		Object[] var4 = obj;
-		int var5 = obj.length;
 
-		for (int var6 = 0; var6 < var5; ++var6) {
-			Object var7 = var4[var6];
+		for (Object tempobj : obj) {
 
-			if (var7 instanceof ItemStack) {
-				var3.add(((ItemStack) var7).copy());
+			if (tempobj instanceof ItemStack) {
+				var3.add(((ItemStack) tempobj).copy());
 			}
-			else if (var7 instanceof Item) {
-				var3.add(new ItemStack((Item) var7));
+			else if (tempobj instanceof Item) {
+				var3.add(new ItemStack((Item) tempobj));
 			}
 			else {
-				if (!(var7 instanceof Block)) {
+				if (!(tempobj instanceof Block)) {
 					throw new RuntimeException("Invalid shapeless recipy!");
 				}
-				var3.add(new ItemStack((Block) var7));
+				var3.add(new ItemStack((Block) tempobj));
 			}
 		}
 		this.recipes.add(new ShapelessTrainRecipe(par1ItemStack, var3));

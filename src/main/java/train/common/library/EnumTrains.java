@@ -466,8 +466,7 @@ public enum EnumTrains {
 		if(item==null)return null;
 		for (EnumTrains trains : EnumTrains.values()) {
 			if(trains!=null && trains.getItem()!=null && trains.getItem() == item){
-				AbstractTrains train = trains.getEntity(world, x, y, z);
-				return train;
+				return trains.getEntity(world, x, y, z);
 			}
 		}
 		return null;

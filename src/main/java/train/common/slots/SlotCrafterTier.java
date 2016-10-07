@@ -8,7 +8,6 @@ import net.minecraft.item.ItemStack;
 public class SlotCrafterTier extends Slot {
 
 	private EntityPlayer thePlayer;
-	private int i;
 
 	public SlotCrafterTier(EntityPlayer entityplayer, IInventory iinventory, int i, int j, int k) {
 		super(iinventory, i, j, k);
