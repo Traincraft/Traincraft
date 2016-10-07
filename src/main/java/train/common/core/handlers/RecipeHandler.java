@@ -180,10 +180,6 @@ public class RecipeHandler {
 						TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.steelcab.item, 2), new Object[] { "###", "X X", "XXX", Character.valueOf('X'), steel.get(t), Character.valueOf('#'), s1.get(i) });// Steel cab
 						TrainCraftingManager.instance.addRecipe(new ItemStack(BlockIDs.distilIdle.block, 1), new Object[] { "###", "#F#", "###", Character.valueOf('#'), steel.get(t), Character.valueOf('F'), ItemIDs.firebox.item });
 						TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.transformer.item, 1), new Object[] { "# #", "XEX", "###", Character.valueOf('#'), steel.get(t), Character.valueOf('E'), ItemIDs.electronicCircuit.item, Character.valueOf('X'), Items.redstone });// transformer
-						TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.minecartLocoMineTrain.item, 1), new Object[] { "X#X", "XXX", Character.valueOf('X'), steel.get(t), Character.valueOf('#'), ItemIDs.electmotor.item });
-						TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.minecartLocoMineTrain.item, 1), new Object[] { "   ", "X#X", "XXX", Character.valueOf('X'), steel.get(t), Character.valueOf('#'), ItemIDs.electmotor.item });
-						TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.minecartMineTrain.item, 1), new Object[] { "X#X", "XXX", Character.valueOf('X'), steel.get(t), Character.valueOf('#'), Blocks.chest });
-						TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.minecartMineTrain.item, 1), new Object[] { "   ", "X#X", "XXX", Character.valueOf('X'), steel.get(t), Character.valueOf('#'), Blocks.chest });
 
 						TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.boiler.item, 2), new Object[] { "###", "XXX", "###", Character.valueOf('#'), steel.get(t), Character.valueOf('X'), Items.water_bucket });// Boiler 
 						TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.firebox.item, 2), new Object[] { "###", "#X#", "###", Character.valueOf('#'), steel.get(t), Character.valueOf('X'), Items.flint_and_steel });// Firebox 
