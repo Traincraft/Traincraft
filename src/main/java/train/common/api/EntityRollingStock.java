@@ -391,7 +391,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		if (worldObj.isRemote || isDead) { return true; }
 		if (damagesource.getEntity() instanceof EntityPlayer) {
 			if(this instanceof IPassenger){
-				if(canBeDestroyedByPlayer(damagesource))return false;
+				if (canBeDestroyedByPlayer(damagesource)) return false;
 			}
 			setRollingDirection(-getRollingDirection());
 			setRollingAmplitude(10);
@@ -403,6 +403,18 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			if (getDamage() > 40) {
 				if (riddenByEntity != null) {
 					riddenByEntity.mountEntity(this);
+				}
+				/**
+				 * Destroy IPassenger since they don't extend Freight or
+				 * Locomotive and don't have a proper attackEntityFrom() method
+				 */
+				if (this instanceof IPassenger) {
+					this.setDead();
+					boolean flag = damagesource.getEntity() instanceof EntityPlayer
+							&& ((EntityPlayer) damagesource.getEntity()).capabilities.isCreativeMode;
+					if (!flag) {
+						dropCartAsItem();
+					}
 				}
 			}
 		}
