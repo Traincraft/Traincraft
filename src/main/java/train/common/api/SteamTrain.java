@@ -74,7 +74,7 @@ public abstract class SteamTrain extends Locomotive implements IFluidHandler {
 		/**
 		 * so the client side knows the water amount
 		 */
-		if (worldObj.isRemote)
+		if (worldObj.isRemote ^ !getIsFuelled())
 			return;
 		if (theTank != null && theTank.getFluid() != null) {
 			this.dataWatcher.updateObject(23, theTank.getFluid().amount);

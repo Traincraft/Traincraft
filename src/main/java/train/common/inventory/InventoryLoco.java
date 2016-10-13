@@ -61,18 +61,16 @@ public class InventoryLoco extends Container {
 
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer player, int i) {
-		ItemStack itemstack = null;
 		Slot slot = (Slot) inventorySlots.get(i);
 		if (slot != null && slot.getHasStack()) {
 			ItemStack itemstack1 = slot.getStack();
-			itemstack = itemstack1.copy();
 			if (i < inventorySize) {
 				if (!mergeItemStack(itemstack1, inventorySize, inventorySlots.size(), true)) {
 					return null;
 				}
 			}
 			else if (i > inventorySize) {
-				if (FuelHandler.steamFuelLast(itemstack) > 0 || LiquidManager.getInstance().isDieselLocoFuel(itemstack) || (itemstack.getItem() == Items.redstone)) {
+				if (FuelHandler.steamFuelLast(itemstack1) > 0 || LiquidManager.getInstance().isDieselLocoFuel(itemstack1) || (itemstack1.getItem() == Items.redstone)) {
 					if (!mergeItemStack(itemstack1, 0, 1, false)) {
 						return null;
 					}
@@ -95,7 +93,9 @@ public class InventoryLoco extends Container {
 			else {
 				slot.onSlotChanged();
 			}
+			return itemstack1;
+		} else {
+			return null;
 		}
-		return itemstack;
 	}
 }

@@ -44,35 +44,6 @@ public class EntityFreightWagenDB extends Freight implements IInventory {
 	public void setDead() {
 		super.setDead();
 		isDead = true;
-		if (worldObj.isRemote) {
-			return;
-		}
-		label2: for (int i = 0; i < getSizeInventory(); i++) {
-			ItemStack itemstack = getStackInSlot(i);
-			if (itemstack == null) {
-				continue;
-			}
-			float f = rand.nextFloat() * 0.8F + 0.1F;
-			float f1 = rand.nextFloat() * 0.8F + 0.1F;
-			float f2 = rand.nextFloat() * 0.8F + 0.1F;
-			do {
-				if (itemstack.stackSize <= 0) {
-					continue label2;
-				}
-				int j = rand.nextInt(21) + 10;
-				if (j > itemstack.stackSize) {
-					j = itemstack.stackSize;
-				}
-				
-				EntityItem entityitem = new EntityItem(worldObj, posX + (double) f, posY + (double) f1, posZ + (double) f2, itemstack.splitStack(j));
-				float f3 = 0.05F;
-				entityitem.motionX = (float) rand.nextGaussian() * f3;
-				entityitem.motionY = (float) rand.nextGaussian() * f3 + 0.2F;
-				entityitem.motionZ = (float) rand.nextGaussian() * f3;
-				worldObj.spawnEntityInWorld(entityitem);
-			} while (true);
-		}
-		isDead = true;
 	}
 
 	@Override

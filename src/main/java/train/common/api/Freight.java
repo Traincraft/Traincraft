@@ -148,13 +148,7 @@ public abstract class Freight extends EntityRollingStock implements IInventory {
 		this.itemInsideCount = 0;
 		for (int i = 0; i < getSizeInventory(); i++) {
 			ItemStack itemstack = getStackInSlot(i);
-			if (itemstack == null) {
-				continue;
-			}
-			if (itemstack.stackSize <= 0) {
-				continue;
-			}
-			else {
+			if (itemstack != null && itemstack.stackSize > 0) {
 				this.itemInsideCount += itemstack.stackSize;
 			}
 		}
