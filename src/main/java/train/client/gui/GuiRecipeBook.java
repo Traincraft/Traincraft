@@ -340,7 +340,7 @@ public class GuiRecipeBook extends GuiScreen {
 						add(new StackToDraw(new ItemStack(ItemIDs.hat_driver_paintable.item, 1, 4), 170, 16));
 					}
 				});
-		addPage("Known bugs:\n- Sharp turns are not supported (close 180 turns)\n- When coming backwards from the Curve of a switch too slow Switchstate can be false\n","","left",new ArrayList<StackToDraw>() {
+		addPage("Known bugs:\n- Sharp turns are not supported (close 180 turns)\n- When coming backwards from the Curve of a switch too slow Switchstate can be false\n- Track layer won't dig down (New to 1.7.10)","","left",new ArrayList<StackToDraw>() {
 					{
 						add(new StackToDraw(new ItemStack(Items.skull, 1, 4), 20, 16));
 						add(new StackToDraw(new ItemStack(Items.skull, 1, 4), 170, 16));

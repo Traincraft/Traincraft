@@ -18,10 +18,10 @@ public class SlotFreight extends Slot {
 	public static Freight freight;
 	public static IInventory inventory;
 
-	public SlotFreight(IInventory inv, int par2, int par3, int par4) {
+	public SlotFreight(IInventory inventory, int par2, int par3, int par4) {
 		super(inventory, par2, par3, par4);
-		freight = (Freight) inventory;
-		inventory = inv;
+		this.freight = (Freight) inventory;
+		this.inventory = inventory;
 	}
 	
 	@Override

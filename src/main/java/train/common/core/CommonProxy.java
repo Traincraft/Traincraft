@@ -18,8 +18,6 @@ import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.ForgeChunkManager;
 import net.minecraftforge.common.ForgeChunkManager.Ticket;
 import net.minecraftforge.common.MinecraftForge;
-import train.client.core.handlers.ClientTickHandler;
-import train.client.gui.HUDloco;
 import train.common.Traincraft;
 import train.common.api.*;
 import train.common.containers.*;
@@ -38,7 +36,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CommonProxy implements IGuiHandler {
-	public static List<MP3Player> playerList = new ArrayList();
+	public static List<MP3Player> playerList = new ArrayList<MP3Player>();
 
 	public void setKeyBinding(String name, int value) {}
 
@@ -50,14 +48,6 @@ public class CommonProxy implements IGuiHandler {
 
 		registerEvent(worldEvents);
 		registerEvent(chunkEvents);
-
-		if (event.getSide() == Side.CLIENT){
-			ClientTickHandler tickHandler = new ClientTickHandler();
-			HUDloco huDloco = new HUDloco();
-
-			registerEvent(tickHandler);
-			registerEvent(huDloco);
-		}
 
 	}
 
@@ -218,10 +208,7 @@ public class CommonProxy implements IGuiHandler {
 	}
 	
 	public static boolean checkJukeboxEntity(World world, int id) {
-		if (world.getEntityByID(id)!=null) {
-			return true;
-		}
-		return false;
+		return  world.getEntityByID(id)!=null;
 	}
 	
 	public void isHoliday() {}

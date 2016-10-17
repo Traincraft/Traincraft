@@ -19,7 +19,7 @@ public class HUDloco extends GuiScreen {
 	private int windowWidth, windowHeight;
 
 	@SubscribeEvent
-	public void onGameRender(RenderGameOverlayEvent.Post event){
+	public void onGameRender(RenderGameOverlayEvent.Text event){
 		if (game != null && game.thePlayer != null && game.thePlayer.ridingEntity != null && game.thePlayer.ridingEntity instanceof Locomotive && Minecraft.isGuiEnabled() && game.currentScreen == null) {
 			renderSkillHUD(event, (Locomotive) game.thePlayer.ridingEntity);
 		} else {
@@ -54,9 +54,6 @@ public class HUDloco extends GuiScreen {
 		GL11.glEnable(3042);
 		GL11.glEnable(32826);
 		this.zLevel = -90.0F;
-		RenderHelper.enableStandardItemLighting();
-		RenderHelper.disableStandardItemLighting();
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		if (rcCar instanceof SteamTrain) {
 			game.renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation,Info.guiPrefix + "loco_hud_steam.png"));
 		}
@@ -65,7 +62,6 @@ public class HUDloco extends GuiScreen {
 		}
 		drawTexturedModalRect(10, windowHeight, 0, 150, 137, 90);
 		GL11.glDisable(32826);
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		GL11.glDisable(3042);
 	}
 
@@ -81,24 +77,21 @@ public class HUDloco extends GuiScreen {
 		}
 		GL11.glEnable(3042 /* GL_BLEND */);
 		GL11.glEnable(32826);
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		fontRendererObj.drawStringWithShadow("Speed:", 106, windowHeight + 7 + (h), 0xFFFFFF);
-		fontRendererObj.drawStringWithShadow("  " + ((int) Math.abs(((float) (speed)))) + "", 106,
+		fontRendererObj.drawStringWithShadow((int) Math.abs(((float) (speed))) + "", 106,
 				windowHeight + 18 + (h), 0xFFFFFF);
-		fontRendererObj.drawStringWithShadow(" " + "Km/h", 106, windowHeight + 29 + (h), 0xFFFFFF);
+		fontRendererObj.drawStringWithShadow("Km/h", 106, windowHeight + 29 + (h), 0xFFFFFF);
 
 		if (loco.canOverheat()) {
 			fontRendererObj.drawStringWithShadow("State: " + loco.getState(), 50, windowHeight + 80, 0xFFFFFF);
 		}
 		GL11.glDisable(32826);
 		GL11.glDisable(3042 /* GL_BLEND */);
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 	}
 
 	private void renderFuelBar(Locomotive loco) {
 		GL11.glEnable(3042 /* GL_BLEND */);
 		GL11.glEnable(32826);
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		int l;
 		/**
 		 * So that the content of the tank is renderer and not the fuel currently burned
@@ -143,7 +136,6 @@ public class HUDloco extends GuiScreen {
 		// fontRendererObj.drawStringWithShadow("Fuel:", 4, (windowHeight/2)+1, 0xFFFFFF);
 		GL11.glDisable(32826);
 		GL11.glDisable(3042 /* GL_BLEND */);
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 	}
 
 	private void renderWaterBar(Locomotive loco) {
@@ -162,10 +154,8 @@ public class HUDloco extends GuiScreen {
 
 		GL11.glEnable(3042 /* GL_BLEND */);
 		GL11.glEnable(32826);
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		drawTexturedModalRect(70, windowHeight + 17, 190, 169 + l_Scaled, 6, t);// l max = 49
 		GL11.glDisable(32826);
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		GL11.glDisable(3042 /* GL_BLEND */);
 		if (l <= 1 && loco.getIsFuelled()) {
 			this.drawGradientRect(0, 0, windowWidth, windowHeight, 1615855616, -1602211792);
@@ -176,7 +166,6 @@ public class HUDloco extends GuiScreen {
 		double speed = loco.getSpeed();
 		GL11.glEnable(3042);
 		GL11.glEnable(32826);
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 
 		/**
 		 * SteamTrain have different HUD
@@ -204,7 +193,6 @@ public class HUDloco extends GuiScreen {
 			drawTexturedModalRect(84, windowHeight + 37 - ((int) speedScaled) + (20), 177, 149, 16, 8);
 		}
 		GL11.glDisable(32826);
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		GL11.glDisable(3042);
 	}
 
@@ -216,7 +204,6 @@ public class HUDloco extends GuiScreen {
 		// fontRendererObj.drawStringWithShadow("Heat:", 33, (windowHeight/2)+1, 0xFFFFFF);
 		GL11.glEnable(3042 /* GL_BLEND */);
 		GL11.glEnable(32826);
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 
 		/**
 		 * Steam Train have different HUD
@@ -243,7 +230,6 @@ public class HUDloco extends GuiScreen {
 			drawTexturedModalRect(56, windowHeight + 17, 176, (int) (169 + overheatScaled), 5, t);
 		}
 		GL11.glDisable(32826);
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		GL11.glDisable(3042 /* GL_BLEND */);
 	}
 

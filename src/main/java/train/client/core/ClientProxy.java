@@ -5,6 +5,7 @@ import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Optional;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.VillagerRegistry;
 import javazoom.jl.decoder.JavaLayerUtils;
 import net.minecraft.client.Minecraft;
@@ -57,6 +58,16 @@ public class ClientProxy extends CommonProxy {
 		HolidayHelper helper = new HolidayHelper();
 		helper.setDaemon(true);
 		helper.start();
+	}
+
+	@Override
+	public void registerEvents(FMLPreInitializationEvent event){
+		super.registerEvents(event);
+		ClientTickHandler tickHandler = new ClientTickHandler();
+		HUDloco huDloco = new HUDloco();
+
+		registerEvent(tickHandler);
+		registerEvent(huDloco);
 	}
 
 	@Override

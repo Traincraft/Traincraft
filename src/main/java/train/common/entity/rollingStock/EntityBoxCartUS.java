@@ -1,6 +1,5 @@
 package train.common.entity.rollingStock;
 
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -16,7 +15,6 @@ import train.common.library.GuiIDs;
 public class EntityBoxCartUS extends Freight implements IInventory {
 	public int freightInventorySize;
 	public int numFreightSlots;
-	private EntityPlayer playerEntity;
 
 	public EntityBoxCartUS(World world) {
 		super(world);
@@ -94,7 +92,6 @@ public class EntityBoxCartUS extends Freight implements IInventory {
 
 	@Override
 	public boolean interactFirst(EntityPlayer entityplayer) {
-		playerEntity = entityplayer;
 		if ((super.interactFirst(entityplayer))) {
 			return false;
 		}
