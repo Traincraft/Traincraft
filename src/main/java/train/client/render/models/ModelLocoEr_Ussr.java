@@ -1,10 +1,11 @@
 package train.client.render.models;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
-import org.lwjgl.opengl.GL11;
-import train.client.core.helpers.HolidayHelper;
+import train.client.core.ClientProxy;
 import train.client.render.CustomModelRenderer;
 import train.client.render.models.blocks.ModelRing;
 
@@ -561,7 +562,7 @@ public class ModelLocoEr_Ussr extends ModelBase {
 		box9.render(f5);
 		Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
 		
-		if(HolidayHelper.isHoliday()) {	
+		if (ClientProxy.isHoliday()) {
 			GL11.glPushMatrix();
 			GL11.glTranslatef(-3.08f, 1.3f, 0);
 			GL11.glRotatef(180, 0, 1, 0);

@@ -1,5 +1,11 @@
 package train.client.core;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.Calendar;
+
+import org.apache.logging.log4j.Level;
+
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -11,7 +17,6 @@ import javazoom.jl.decoder.JavaLayerUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.SoundCategory;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -21,43 +26,86 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
-import org.apache.logging.log4j.Level;
-import train.client.gui.*;
-import train.client.render.*;
-import train.common.entity.digger.EntityRotativeWheel;
-import train.common.entity.zeppelin.EntityZeppelinOneBalloon;
-import train.common.tile.*;
 import train.client.core.handlers.ClientTickHandler;
 import train.client.core.handlers.RecipeBookHandler;
 import train.client.core.handlers.TCKeyHandler;
-import train.client.core.helpers.HolidayHelper;
 import train.client.core.helpers.JLayerHook;
+import train.client.gui.GuiBuilder;
+import train.client.gui.GuiCrafterTier;
+import train.client.gui.GuiCraftingCart;
+import train.client.gui.GuiDistil;
+import train.client.gui.GuiForney;
+import train.client.gui.GuiFreight;
+import train.client.gui.GuiFurnaceCart;
+import train.client.gui.GuiGeneratorDiesel;
+import train.client.gui.GuiJukebox;
+import train.client.gui.GuiLantern;
+import train.client.gui.GuiLiquid;
+import train.client.gui.GuiLoco2;
+import train.client.gui.GuiOpenHearthFurnace;
+import train.client.gui.GuiRecipeBook;
+import train.client.gui.GuiTender;
+import train.client.gui.GuiTrainCraftingBlock;
+import train.client.gui.GuiZepp;
+import train.client.gui.HUDloco;
+import train.client.render.ItemRenderBridgePillar;
+import train.client.render.ItemRenderGeneratorDiesel;
+import train.client.render.ItemRenderLantern;
+import train.client.render.ItemRenderSignal;
+import train.client.render.ItemRenderStopper;
+import train.client.render.ItemRenderWaterWheel;
+import train.client.render.ItemRenderWindMill;
+import train.client.render.RenderBogie;
+import train.client.render.RenderBridgePillar;
+import train.client.render.RenderGeneratorDiesel;
+import train.client.render.RenderLantern;
+import train.client.render.RenderRollingStock;
+import train.client.render.RenderRotativeDigger;
+import train.client.render.RenderRotativeWheel;
+import train.client.render.RenderSignal;
+import train.client.render.RenderStopper;
+import train.client.render.RenderTCRail;
+import train.client.render.RenderWaterWheel;
+import train.client.render.RenderWindMill;
+import train.client.render.RenderZeppelins;
 import train.common.Traincraft;
 import train.common.api.EntityBogie;
 import train.common.api.EntityRollingStock;
 import train.common.core.CommonProxy;
 import train.common.core.Traincraft_EventSounds;
-import train.common.core.handlers.ConfigHandler;
 import train.common.entity.digger.EntityRotativeDigger;
+import train.common.entity.digger.EntityRotativeWheel;
 import train.common.entity.rollingStock.EntityJukeBoxCart;
+import train.common.entity.zeppelin.EntityZeppelinOneBalloon;
 import train.common.entity.zeppelin.EntityZeppelinTwoBalloons;
 import train.common.library.BlockIDs;
 import train.common.library.GuiIDs;
 import train.common.library.Info;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
+import train.common.tile.TileBridgePillar;
+import train.common.tile.TileCrafterTierI;
+import train.common.tile.TileCrafterTierII;
+import train.common.tile.TileCrafterTierIII;
+import train.common.tile.TileEntityDistil;
+import train.common.tile.TileEntityOpenHearthFurnace;
+import train.common.tile.TileGeneratorDiesel;
+import train.common.tile.TileLantern;
+import train.common.tile.TileSignal;
+import train.common.tile.TileStopper;
+import train.common.tile.TileTCRail;
+import train.common.tile.TileTrainWbench;
+import train.common.tile.TileWaterWheel;
+import train.common.tile.TileWindMill;
 
 public class ClientProxy extends CommonProxy {
 
-	@Override
-	public void isHoliday() {
-		HolidayHelper helper = new HolidayHelper();
-		helper.setDaemon(true);
-		helper.start();
+	public static boolean isHoliday() {
+		Calendar cal = Calendar.getInstance();
+		if (cal.get(Calendar.MONTH) == Calendar.DECEMBER
+				&& (cal.get(Calendar.DATE) >= 5 && cal.get(Calendar.DATE) <= 31)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	@Override

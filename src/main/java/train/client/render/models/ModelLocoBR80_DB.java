@@ -1,14 +1,15 @@
 package train.client.render.models;
 
+import org.lwjgl.opengl.GL11;
+
 import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
-import org.lwjgl.opengl.GL11;
-import train.client.core.helpers.HolidayHelper;
-import train.client.render.models.blocks.ModelRing;
+import train.client.core.ClientProxy;
 import train.client.render.CustomModelRenderer;
+import train.client.render.models.blocks.ModelRing;
 import train.common.library.Info;
 
 public class ModelLocoBR80_DB extends ModelBase {
@@ -442,10 +443,10 @@ public class ModelLocoBR80_DB extends ModelBase {
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
 		long now = System.nanoTime();
 		int elapsed = (int) ((now - lastframe) / (1000 * 1000));
-		dig -= (float) elapsed / 500.0f;
+		dig -= elapsed / 500.0f;
 		lastframe = now;
 		
-		if(HolidayHelper.isHoliday()) {
+		if (ClientProxy.isHoliday()) {
 			FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/locoBR80_DB_winter.png"));
 		}
 		
@@ -545,7 +546,7 @@ public class ModelLocoBR80_DB extends ModelBase {
 			}
 		}
 		
-		if(HolidayHelper.isHoliday()) {	
+		if (ClientProxy.isHoliday()) {
 			GL11.glPushMatrix();
 			GL11.glTranslatef(-1.4f, 1.2f, 0);
 			GL11.glRotatef(180, 0, 1, 0);

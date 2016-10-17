@@ -1,12 +1,13 @@
 package train.client.render.models;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
-import org.lwjgl.opengl.GL11;
-import train.client.core.helpers.HolidayHelper;
-import train.client.render.models.blocks.ModelRing;
+import train.client.core.ClientProxy;
 import train.client.render.CustomModelRenderer;
+import train.client.render.models.blocks.ModelRing;
 
 public class ModelLocoC62Class extends ModelBase {
 	
@@ -550,7 +551,7 @@ public class ModelLocoC62Class extends ModelBase {
 		box46.render(f5);
 		Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
 		
-		if(HolidayHelper.isHoliday()) {
+		if (ClientProxy.isHoliday()) {
 			GL11.glPushMatrix();
 			GL11.glTranslatef(-5.70f, 1.35f, 0);
 			GL11.glRotatef(180, 0, 1, 0);

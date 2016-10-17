@@ -1,12 +1,15 @@
 package train.common.core;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.google.common.collect.Lists;
+
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.relauncher.Side;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.Entity;
@@ -19,21 +22,51 @@ import net.minecraftforge.common.ForgeChunkManager;
 import net.minecraftforge.common.ForgeChunkManager.Ticket;
 import net.minecraftforge.common.MinecraftForge;
 import train.common.Traincraft;
-import train.common.api.*;
-import train.common.containers.*;
+import train.common.api.AbstractTrains;
+import train.common.api.EntityRollingStock;
+import train.common.api.Freight;
+import train.common.api.LiquidTank;
+import train.common.api.Tender;
+import train.common.containers.ContainerDistil;
+import train.common.containers.ContainerGeneratorDiesel;
+import train.common.containers.ContainerOpenHearthFurnace;
+import train.common.containers.ContainerTier;
+import train.common.containers.ContainerTrainWorkbench;
+import train.common.containers.ContainerWorkbenchCart;
 import train.common.core.handlers.ChunkEvents;
-import train.common.entity.rollingStock.EntityJukeBoxCart;
-import train.common.entity.rollingStock.EntityTracksBuilder;
-import train.common.inventory.*;
-import train.common.library.GuiIDs;
-import train.common.tile.*;
 import train.common.core.handlers.WorldEvents;
 import train.common.core.util.MP3Player;
 import train.common.entity.digger.EntityRotativeDigger;
+import train.common.entity.rollingStock.EntityJukeBoxCart;
+import train.common.entity.rollingStock.EntityTracksBuilder;
 import train.common.entity.zeppelin.AbstractZeppelin;
-
-import java.util.ArrayList;
-import java.util.List;
+import train.common.inventory.InventoryBuilder;
+import train.common.inventory.InventoryForney;
+import train.common.inventory.InventoryFreight;
+import train.common.inventory.InventoryJukeBoxCart;
+import train.common.inventory.InventoryLiquid;
+import train.common.inventory.InventoryLoco;
+import train.common.inventory.InventoryRotativeDigger;
+import train.common.inventory.InventoryTender;
+import train.common.inventory.InventoryWorkCart;
+import train.common.inventory.InventoryZepp;
+import train.common.library.GuiIDs;
+import train.common.tile.TileBook;
+import train.common.tile.TileBridgePillar;
+import train.common.tile.TileCrafterTierI;
+import train.common.tile.TileCrafterTierII;
+import train.common.tile.TileCrafterTierIII;
+import train.common.tile.TileEntityDistil;
+import train.common.tile.TileEntityOpenHearthFurnace;
+import train.common.tile.TileGeneratorDiesel;
+import train.common.tile.TileLantern;
+import train.common.tile.TileSignal;
+import train.common.tile.TileStopper;
+import train.common.tile.TileTCRail;
+import train.common.tile.TileTCRailGag;
+import train.common.tile.TileTrainWbench;
+import train.common.tile.TileWaterWheel;
+import train.common.tile.TileWindMill;
 
 public class CommonProxy implements IGuiHandler {
 	public static List<MP3Player> playerList = new ArrayList<MP3Player>();
@@ -210,8 +243,6 @@ public class CommonProxy implements IGuiHandler {
 	public static boolean checkJukeboxEntity(World world, int id) {
 		return  world.getEntityByID(id)!=null;
 	}
-	
-	public void isHoliday() {}
 
 	public void doNEICheck(ItemStack stack) {}
 	

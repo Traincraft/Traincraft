@@ -1,11 +1,12 @@
 package train.client.render.models;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
-import org.lwjgl.opengl.GL11;
-import train.client.core.helpers.HolidayHelper;
-import train.client.render.models.blocks.ModelPresent;
+import train.client.core.ClientProxy;
 import train.client.render.CustomModelRenderer;
+import train.client.render.models.blocks.ModelPresent;
 
 public class ModelFlatCarSU extends ModelBase {
 	
@@ -92,7 +93,7 @@ public class ModelFlatCarSU extends ModelBase {
 		box7.render(f5);
 		box9.render(f5);
 		
-		if(HolidayHelper.isHoliday()) {
+		if (ClientProxy.isHoliday()) {
 			//big
     		GL11.glPushMatrix();
     		GL11.glTranslatef(0.4f, 0.86f, 0);

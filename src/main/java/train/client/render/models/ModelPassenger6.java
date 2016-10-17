@@ -1,9 +1,10 @@
 package train.client.render.models;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
-import org.lwjgl.opengl.GL11;
-import train.client.core.helpers.HolidayHelper;
+import train.client.core.ClientProxy;
 import train.client.render.CustomModelRenderer;
 import train.client.render.models.blocks.ModelLights;
 
@@ -658,7 +659,7 @@ public class ModelPassenger6 extends ModelBase {
 		box93.render(f5);
 		box94.render(f5);
 		
-		if(HolidayHelper.isHoliday()) {
+		if (ClientProxy.isHoliday()) {
 			GL11.glPushMatrix();
 			GL11.glTranslatef(-1.12f, 0.8f, -0.72f);
 			lights.render(5);

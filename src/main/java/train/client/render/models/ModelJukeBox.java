@@ -1,9 +1,10 @@
 package train.client.render.models;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
-import org.lwjgl.opengl.GL11;
-import train.client.core.helpers.HolidayHelper;
+import train.client.core.ClientProxy;
 import train.client.render.CustomModelRenderer;
 import train.client.render.models.blocks.ModelLights;
 
@@ -264,7 +265,7 @@ public class ModelJukeBox extends ModelBase {
 		box8.render(f5);
 		box9.render(f5);
 		
-		if(HolidayHelper.isHoliday()) {	
+		if (ClientProxy.isHoliday()) {
 			GL11.glPushMatrix();
 			GL11.glTranslatef(-1.1f, 0.6f, -0.72f);
 			lights.render(5);
