@@ -7,14 +7,15 @@
 
 package train.client.render;
 
+import org.lwjgl.opengl.GL11;
+
 import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
-import org.lwjgl.opengl.GL11;
-import train.common.tile.TileGeneratorDiesel;
 import train.client.render.models.blocks.ModelGeneratorDiesel;
 import train.common.library.Info;
+import train.common.tile.TileGeneratorDiesel;
 
 public class RenderGeneratorDiesel extends TileEntitySpecialRenderer {
 

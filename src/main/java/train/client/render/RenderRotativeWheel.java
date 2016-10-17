@@ -1,13 +1,14 @@
 package train.client.render;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
-import org.lwjgl.opengl.GL11;
-import train.common.entity.digger.EntityRotativeWheel;
 import train.client.render.models.ModelRotaryExcavator_Wheel;
 import train.common.entity.digger.EntityRotativeDigger;
+import train.common.entity.digger.EntityRotativeWheel;
 
 public class RenderRotativeWheel extends Render {
 
