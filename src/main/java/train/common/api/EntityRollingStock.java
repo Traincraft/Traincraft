@@ -389,7 +389,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 	@Override
 	public boolean attackEntityFrom(DamageSource damagesource, float i) {
 		if (worldObj.isRemote || isDead) { return true; }
-		if (damagesource.getEntity() instanceof EntityPlayer) {
+		if (damagesource.getEntity() instanceof EntityPlayer && !damagesource.isProjectile()) {
 			if(this instanceof IPassenger){
 				if (canBeDestroyedByPlayer(damagesource)) return false;
 			}
@@ -410,9 +410,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				 */
 				if (this instanceof IPassenger) {
 					this.setDead();
-					boolean flag = damagesource.getEntity() instanceof EntityPlayer
-							&& ((EntityPlayer) damagesource.getEntity()).capabilities.isCreativeMode;
-					if (!flag) {
+					if (damagesource.getEntity() instanceof EntityPlayer) {
 						dropCartAsItem();
 					}
 				}

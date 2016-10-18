@@ -34,8 +34,7 @@ public abstract class Freight extends EntityRollingStock implements IInventory {
 				riddenByEntity.mountEntity(this);
 			}
 			this.setDead();
-			boolean flag = damagesource.getEntity() instanceof EntityPlayer && ((EntityPlayer)damagesource.getEntity()).capabilities.isCreativeMode;
-			if(!flag) {
+			if(damagesource.getEntity() instanceof EntityPlayer) {
 				dropCartAsItem();
 			}
 		}
@@ -183,5 +182,15 @@ public abstract class Freight extends EntityRollingStock implements IInventory {
 			}
 		}
 		this.dataWatcher.updateObject(22, slotsFilled);
+	}
+
+	@Override
+	public void dropCartAsItem(){
+		super.dropCartAsItem();
+		for(ItemStack stack : cargoItems){
+			if (stack != null) {
+				entityDropItem(stack, 0);
+			}
+		}
 	}
 }

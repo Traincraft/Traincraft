@@ -817,12 +817,21 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 				riddenByEntity.mountEntity(this);
 			}
 			this.setDead();
-			boolean flag = damagesource.getEntity() instanceof EntityPlayer && ((EntityPlayer) damagesource.getEntity()).capabilities.isCreativeMode;
-			if (!flag) {
+			if (damagesource.getEntity() instanceof EntityPlayer) {
 				dropCartAsItem();
 			}
 		}
 		return true;
+	}
+
+	@Override
+	public void dropCartAsItem(){
+		super.dropCartAsItem();
+		for(ItemStack stack : locoInvent){
+			if (stack != null) {
+				entityDropItem(stack, 0);
+			}
+		}
 	}
 
 	/** RC routing integration */
