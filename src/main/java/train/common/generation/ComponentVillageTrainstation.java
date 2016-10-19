@@ -1,5 +1,8 @@
 package train.common.generation;
 
+import java.util.List;
+import java.util.Random;
+
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
@@ -8,9 +11,6 @@ import net.minecraft.world.gen.structure.StructureVillagePieces;
 import train.common.api.EntityRollingStock;
 import train.common.entity.rollingStock.*;
 import train.common.library.BlockIDs;
-
-import java.util.List;
-import java.util.Random;
 
 public class ComponentVillageTrainstation extends StructureVillagePieces.Village {
 

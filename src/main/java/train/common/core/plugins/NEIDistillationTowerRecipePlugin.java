@@ -1,6 +1,9 @@
 package train.common.core.plugins;
 
 
+import static codechicken.lib.gui.GuiDraw.changeTexture;
+import static codechicken.lib.gui.GuiDraw.drawTexturedModalRect;
+
 import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,9 +28,6 @@ import train.client.gui.GuiDistil;
 import train.common.items.ItemBlockOreTC;
 import train.common.library.ItemIDs;
 import train.common.recipes.DistilRecipes;
-
-import static codechicken.lib.gui.GuiDraw.changeTexture;
-import static codechicken.lib.gui.GuiDraw.drawTexturedModalRect;
 
 public class NEIDistillationTowerRecipePlugin extends FurnaceRecipeHandler{
 	public class SmeltingPair extends CachedRecipe

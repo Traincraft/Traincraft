@@ -1,5 +1,7 @@
 package train.common.core.handlers;
 
+import java.util.List;
+
 import mods.railcraft.api.tracks.RailTools;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityMinecart;
@@ -10,8 +12,6 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import train.common.api.AbstractTrains;
 import train.common.api.EntityRollingStock;
-
-import java.util.List;
 
 public class LinkHandler {
 

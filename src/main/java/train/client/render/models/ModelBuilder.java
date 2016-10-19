@@ -4,8 +4,8 @@ import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
-import train.common.entity.rollingStock.EntityTracksBuilder;
 import train.client.render.CustomModelRenderer;
+import train.common.entity.rollingStock.EntityTracksBuilder;
 import train.common.library.Info;
 
 public class ModelBuilder extends ModelBase {

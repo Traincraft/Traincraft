@@ -5,6 +5,10 @@
  */
 package train.common.blocks.tracks;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+
 import cpw.mods.fml.common.FMLCommonHandler;
 import mods.railcraft.api.core.items.IToolCrowbar;
 import mods.railcraft.api.tracks.ITrackPowered;
@@ -18,10 +22,6 @@ import net.minecraft.util.IIcon;
 import train.common.api.ElectricTrain;
 import train.common.api.EntityRollingStock;
 import train.common.library.Tracks;
-
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
 
 public class BlockEnergyTrack extends TrackBaseTraincraft implements ITrackPowered{
 	private byte delay = 0;

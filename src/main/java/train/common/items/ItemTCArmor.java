@@ -16,8 +16,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
 import train.common.Traincraft;
-import train.common.library.ItemIDs;
 import train.common.library.Info;
+import train.common.library.ItemIDs;
 
 public class ItemTCArmor extends ItemArmor {
 	public int color;

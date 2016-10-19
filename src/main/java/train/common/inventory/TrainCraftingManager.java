@@ -1,5 +1,10 @@
 package train.common.inventory;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
@@ -9,11 +14,6 @@ import train.common.core.interfaces.ITCRecipe;
 import train.common.recipes.OpenHearthFurnaceRecipe;
 import train.common.recipes.ShapedTrainRecipes;
 import train.common.recipes.ShapelessTrainRecipe;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
 
 public class TrainCraftingManager {
 	/** The static instance of this class */

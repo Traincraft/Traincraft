@@ -7,17 +7,18 @@
 
 package train.client.gui.sideTabs;
 
+import static net.minecraft.client.gui.Gui.drawRect;
+
+import org.lwjgl.opengl.GL11;
+
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.util.ResourceLocation;
-import org.lwjgl.opengl.GL11;
 import train.client.gui.GuiCrafterTier;
 import train.common.core.interfaces.ITier;
 import train.common.library.Info;
-
-import static net.minecraft.client.gui.Gui.drawRect;
 
 @SideOnly(Side.CLIENT)
 public class SideTabSlots extends SideTab {

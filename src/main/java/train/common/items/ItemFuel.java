@@ -1,9 +1,9 @@
 package train.common.items;
 
+import java.util.ArrayList;
+
 import net.minecraft.item.Item;
 import train.common.Traincraft;
-
-import java.util.ArrayList;
 
 //Keeping this class for future uses. It is not used at the moment
 public class ItemFuel extends Item {

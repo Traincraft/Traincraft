@@ -2,8 +2,8 @@ package train.client.render.models;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
-import train.common.entity.zeppelin.EntityZeppelinOneBalloon;
 import train.client.render.CustomModelRenderer;
+import train.common.entity.zeppelin.EntityZeppelinOneBalloon;
 
 public class ModelZeppelinOneBalloon extends ModelBase {
 	public float propel1 = 0.4188790204786391F;

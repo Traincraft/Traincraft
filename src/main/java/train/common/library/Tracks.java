@@ -6,18 +6,21 @@
  */
 package train.common.library;
 
+import static train.common.core.plugins.PluginRailcraft.RailcraftParts.RAILBED_STONE;
+import static train.common.core.plugins.PluginRailcraft.RailcraftParts.RAILBED_WOOD;
+import static train.common.core.plugins.PluginRailcraft.RailcraftParts.RAIL_ADVANCED;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import mods.railcraft.api.tracks.TrackRegistry;
 import mods.railcraft.api.tracks.TrackSpec;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import train.common.blocks.tracks.*;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import static train.common.core.plugins.PluginRailcraft.RailcraftParts.*;
+import train.common.core.plugins.PluginRailcraft;
 
 public enum Tracks{
 

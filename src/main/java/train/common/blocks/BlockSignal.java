@@ -1,5 +1,7 @@
 package train.common.blocks;
 
+import java.util.Random;
+
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
@@ -15,8 +17,6 @@ import net.minecraft.world.World;
 import train.common.Traincraft;
 import train.common.library.ItemIDs;
 import train.common.tile.TileSignal;
-
-import java.util.Random;
 
 /*
  I propose a simple x-bit identifier in the following format:

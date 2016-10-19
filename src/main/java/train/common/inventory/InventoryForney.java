@@ -8,9 +8,9 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import train.common.api.EntityRollingStock;
+import train.common.api.LiquidManager;
 import train.common.api.Locomotive;
 import train.common.api.SteamTrain;
-import train.common.api.LiquidManager;
 import train.common.core.handlers.FuelHandler;
 
 public class InventoryForney extends Container {

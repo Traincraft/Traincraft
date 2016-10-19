@@ -9,11 +9,7 @@ package train.common.library;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
-import train.common.items.ItemBlockFluid;
-import train.common.items.ItemBlockGeneratorDiesel;
-import train.common.items.ItemBlockGeneratorWaterWheel;
-import train.common.items.ItemBlockGeneratorWindMill;
-import train.common.items.ItemBlockOreTC;
+import train.common.items.*;
 
 public enum BlockIDs {
 

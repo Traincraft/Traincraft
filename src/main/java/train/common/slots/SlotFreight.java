@@ -10,8 +10,8 @@ package train.common.slots;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import train.common.core.handlers.ItemHandler;
 import train.common.api.Freight;
+import train.common.core.handlers.ItemHandler;
 
 public class SlotFreight extends Slot {
 	

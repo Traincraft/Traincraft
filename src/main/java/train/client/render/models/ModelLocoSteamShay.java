@@ -1,11 +1,12 @@
 package train.client.render.models;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
-import org.lwjgl.opengl.GL11;
-import train.common.entity.rollingStock.EntityLocoSteamShay;
 import train.client.render.CustomModelRenderer;
+import train.common.entity.rollingStock.EntityLocoSteamShay;
 
 public class ModelLocoSteamShay extends ModelBase {
 

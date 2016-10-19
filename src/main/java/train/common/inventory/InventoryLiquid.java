@@ -7,10 +7,10 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import train.common.api.EntityRollingStock;
-import train.common.slots.SlotPickup;
-import train.common.slots.SpecialSlots;
 import train.common.api.LiquidManager;
 import train.common.api.LiquidTank;
+import train.common.slots.SlotPickup;
+import train.common.slots.SpecialSlots;
 
 public class InventoryLiquid extends Container {
 

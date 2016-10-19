@@ -7,6 +7,8 @@
 
 package train.common.generation;
 
+import java.util.Random;
+
 import cpw.mods.fml.common.IWorldGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -17,8 +19,6 @@ import net.minecraft.world.gen.feature.WorldGenMinable;
 import train.common.core.handlers.ConfigHandler;
 import train.common.core.handlers.RetrogenHandler;
 import train.common.library.BlockIDs;
-
-import java.util.Random;
 
 public class WorldGenWorld implements IWorldGenerator {
 

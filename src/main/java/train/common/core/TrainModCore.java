@@ -3,7 +3,6 @@ package train.common.core;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Scanner;
 
 import cpw.mods.fml.common.Loader;

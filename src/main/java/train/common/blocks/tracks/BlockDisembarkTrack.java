@@ -3,17 +3,17 @@
  */
 package train.common.blocks.tracks;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+
 import mods.railcraft.api.tracks.ITrackEmitter;
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
-import train.common.library.Tracks;
 import train.common.entity.rollingStock.EntityStockCar;
-
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
+import train.common.library.Tracks;
 
 public class BlockDisembarkTrack extends TrackBaseTraincraft implements ITrackEmitter {
 	private byte delay = 0;

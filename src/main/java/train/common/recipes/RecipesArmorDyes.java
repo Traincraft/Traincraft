@@ -8,8 +8,6 @@ import net.minecraft.world.World;
 import train.common.core.interfaces.ITCRecipe;
 import train.common.items.ItemTCArmor;
 
-import java.util.ArrayList;
-
 public class RecipesArmorDyes implements ITCRecipe {
 
 	// Used to check if a recipe matches current crafting inventory

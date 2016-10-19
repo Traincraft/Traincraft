@@ -1,22 +1,25 @@
 package train.common.core.handlers;
 
+import java.util.List;
+import java.util.Random;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.monster.*;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.*;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.minecart.MinecartCollisionEvent;
+import train.common.api.AbstractTrains;
 import train.common.api.Locomotive;
 import train.common.entity.EntityLasersLines;
-import train.common.api.AbstractTrains;
 import train.common.entity.rollingStock.EntityStockCar;
-
-import java.util.List;
-import java.util.Random;
 
 public class CollisionHandler {
 

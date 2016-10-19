@@ -1,5 +1,7 @@
 package train.common.core.handlers;
 
+import java.util.Arrays;
+
 import cpw.mods.fml.common.IFuelHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
@@ -9,8 +11,6 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import train.common.library.BlockIDs;
-
-import java.util.Arrays;
 
 public class FuelHandler implements IFuelHandler {
 

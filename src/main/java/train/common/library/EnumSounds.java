@@ -1,32 +1,6 @@
 package train.common.library;
 
-import train.common.entity.rollingStock.EntityLocoDieselCD742;
-import train.common.entity.rollingStock.EntityLocoDieselChME3;
-import train.common.entity.rollingStock.EntityLocoDieselGP7Red;
-import train.common.entity.rollingStock.EntityLocoDieselKof_DB;
-import train.common.entity.rollingStock.EntityLocoDieselSD40;
-import train.common.entity.rollingStock.EntityLocoDieselSD70;
-import train.common.entity.rollingStock.EntityLocoDieselShunter;
-import train.common.entity.rollingStock.EntityLocoDieselV60_DB;
-import train.common.entity.rollingStock.EntityLocoElectricBR_E69;
-import train.common.entity.rollingStock.EntityLocoElectricHighSpeedZeroED;
-import train.common.entity.rollingStock.EntityLocoElectricMinetrain;
-import train.common.entity.rollingStock.EntityLocoElectricNewHighSpeed;
-import train.common.entity.rollingStock.EntityLocoElectricTramNY;
-import train.common.entity.rollingStock.EntityLocoElectricTramWood;
-import train.common.entity.rollingStock.EntityLocoElectricVL10;
-import train.common.entity.rollingStock.EntityLocoSteam4_4_0;
-import train.common.entity.rollingStock.EntityLocoSteamAdler;
-import train.common.entity.rollingStock.EntityLocoSteamBR01_DB;
-import train.common.entity.rollingStock.EntityLocoSteamBR80_DB;
-import train.common.entity.rollingStock.EntityLocoSteamC62Class;
-import train.common.entity.rollingStock.EntityLocoSteamCherepanov;
-import train.common.entity.rollingStock.EntityLocoSteamEr_Ussr;
-import train.common.entity.rollingStock.EntityLocoSteamForneyRed;
-import train.common.entity.rollingStock.EntityLocoSteamHeavy;
-import train.common.entity.rollingStock.EntityLocoSteamMogulBlue;
-import train.common.entity.rollingStock.EntityLocoSteamShay;
-import train.common.entity.rollingStock.EntityLocoSteamSmall;
+import train.common.entity.rollingStock.*;
 
 public enum EnumSounds {
 

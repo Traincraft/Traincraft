@@ -1,17 +1,7 @@
 package train.common.recipes;
 
-import net.minecraft.init.Items;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
 import train.common.core.util.TraincraftUtil;
-import train.common.library.ItemIDs;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.Map;
 
 public class OpenHearthFurnaceRecipe{
 

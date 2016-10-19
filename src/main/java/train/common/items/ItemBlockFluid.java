@@ -2,7 +2,6 @@ package train.common.items;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
 import train.common.blocks.BlockTraincraftFluid;
 
 public class ItemBlockFluid extends ItemBlock{

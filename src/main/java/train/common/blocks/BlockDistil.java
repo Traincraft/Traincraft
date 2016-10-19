@@ -1,5 +1,7 @@
 package train.common.blocks;
 
+import java.util.Random;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -18,13 +20,11 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import train.common.Traincraft;
-import train.common.tile.TileEntityDistil;
 import train.common.library.BlockIDs;
 import train.common.library.GuiIDs;
 import train.common.library.Info;
+import train.common.tile.TileEntityDistil;
 import train.common.tile.TileHelper;
-
-import java.util.Random;
 
 public class BlockDistil extends BlockContainer {
 

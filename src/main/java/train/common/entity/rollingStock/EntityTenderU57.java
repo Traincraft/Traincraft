@@ -1,6 +1,5 @@
 package train.common.entity.rollingStock;
 
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -11,9 +10,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fluids.FluidRegistry;
 import train.common.Traincraft;
+import train.common.api.LiquidManager;
 import train.common.api.Tender;
 import train.common.library.GuiIDs;
-import train.common.api.LiquidManager;
 
 public class EntityTenderU57 extends Tender implements IInventory {
 	public int freightInventorySize;

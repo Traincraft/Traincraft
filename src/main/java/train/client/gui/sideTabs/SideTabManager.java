@@ -7,17 +7,16 @@
 
 package train.client.gui.sideTabs;
 
+import java.util.ArrayList;
+
+import org.lwjgl.opengl.GL11;
+
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
-import org.lwjgl.opengl.GL11;
-import train.common.Traincraft;
 import train.client.core.helpers.SessionHelper;
 import train.client.gui.GuiTraincraft;
-
-import java.util.ArrayList;
 
 @SideOnly(Side.CLIENT)
 public class SideTabManager {

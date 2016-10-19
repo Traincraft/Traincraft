@@ -7,15 +7,15 @@
 
 package train.common.recipes;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
 import train.common.core.interfaces.ITCRecipe;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 
 public class ShapelessTrainRecipe implements ITCRecipe {
 	/** Is the ItemStack that you get when craft the recipe. */

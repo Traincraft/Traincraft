@@ -7,6 +7,8 @@
 
 package train.client.render.models.blocks;
 
+import org.lwjgl.opengl.GL11;
+
 import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
@@ -15,7 +17,6 @@ import net.minecraft.client.settings.GameSettings;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.IModelCustom;
-import org.lwjgl.opengl.GL11;
 import train.common.library.Info;
 import train.common.tile.TileBook;
 

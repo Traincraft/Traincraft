@@ -1,12 +1,10 @@
 package train.common.core.handlers;
 
+import java.util.Random;
+
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
-import cpw.mods.fml.relauncher.Side;
 import net.minecraft.world.World;
-
-import java.util.EnumSet;
-import java.util.Random;
 
 public class WorldEvents{
 	private int windTicker = 0;

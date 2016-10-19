@@ -7,12 +7,12 @@
 
 package train.client.gui.sideTabs;
 
+import static net.minecraft.client.gui.Gui.drawRect;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import train.client.gui.GuiCrafterTier;
 import train.common.library.Info;
-
-import static net.minecraft.client.gui.Gui.drawRect;
 
 @SideOnly(Side.CLIENT)
 public class SideTabInfo extends SideTab {

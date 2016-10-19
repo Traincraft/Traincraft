@@ -7,8 +7,8 @@ package train.common.blocks.tracks;
 
 import mods.railcraft.api.tracks.ITrackEmitter;
 import net.minecraft.entity.item.EntityMinecart;
-import train.common.library.Tracks;
 import train.common.api.LiquidTank;
+import train.common.library.Tracks;
 
 public class BlockDetectorTankCartsTrack extends BlockDetectorTrack implements ITrackEmitter {
 
