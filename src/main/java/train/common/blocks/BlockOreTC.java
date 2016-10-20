@@ -7,6 +7,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
+import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -24,7 +25,7 @@ public class BlockOreTC extends BlockFalling {
 	private static IIcon texture4;
 
 	public BlockOreTC() {
-		super();
+		super(Material.rock);
 		setCreativeTab(Traincraft.tcTab);
 	}
 

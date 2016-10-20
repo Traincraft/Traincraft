@@ -36,7 +36,7 @@ public class TCBlocks {
 
 		BlockIDs.openFurnaceIdle.block = new BlockOpenHearthFurnace(false).setHardness(3.5F).setStepSound(Block.soundTypeStone);
 		BlockIDs.openFurnaceActive.block = new BlockOpenHearthFurnace(true).setHardness(3.5F).setStepSound(Block.soundTypeStone);
-		BlockIDs.oreTC.block = new BlockOreTC().setHardness(1.0F).setResistance(5F).setStepSound(Block.soundTypeStone);
+		BlockIDs.oreTC.block = new BlockOreTC().setHardness(3.0F).setResistance(5F).setStepSound(Block.soundTypeStone);
 
 		BlockIDs.lantern.block = new BlockLantern().setHardness(1.7F).setStepSound(Block.soundTypeMetal).setLightLevel(0.98F);
 		BlockIDs.waterWheel.block = new BlockWaterWheel().setHardness(1.7F).setStepSound(Block.soundTypeWood);
@@ -72,6 +72,7 @@ public class TCBlocks {
 		BlockIDs.waterWheel.block.setHarvestLevel("axe", 0);
 		BlockIDs.windMill.block.setHarvestLevel("axe", 0);
 		BlockIDs.bridgePillar.block.setHarvestLevel("axe", 0);
+		BlockIDs.oreTC.block.setHarvestLevel("pickaxe", 1);
 
 		Blocks.rail.setHarvestLevel("ItemStacked", 0);
 		Blocks.detector_rail.setHarvestLevel("ItemStacked", 0);
