@@ -1,6 +1,5 @@
 # Blender v2.67 (sub 0) OBJ File: 'lantern.blend'
 # www.blender.org
-mtllib lantern.mtl
 o Cube
 v 0.263872 -0.966752 -0.258284
 v 0.263872 -0.966752 -0.286046

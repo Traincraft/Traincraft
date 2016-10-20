@@ -42,39 +42,12 @@ public class TileTCRail extends TileEntity {
 	private int updateTicks;
 	private int updateTicks2;
 	public Item		idDrop;
-	float f = 0.125F;
+	private static final float f = 0.125F;
 	public boolean hasRotated = false;
 
 	public TileTCRail() {
 		if(this.worldObj != null)
 			facingMeta = this.getBlockMetadata();
-	}
-
-	@SideOnly(Side.CLIENT)
-	@Override
-	public double getMaxRenderDistanceSquared() {
-
-		if (FMLClientHandler.instance() != null && FMLClientHandler.instance().getClient() != null) {
-
-			GameSettings gameSettings = FMLClientHandler.instance().getClient().gameSettings;
-
-			if (gameSettings != null) {
-
-				switch (gameSettings.renderDistanceChunks) {
-
-				case 0:
-					return 30000.0D;
-
-				case 1:
-					return 15900.0D;
-
-				case 2:
-					return 4000.0D;
-				}
-			}
-		}
-
-		return 4096.0;
 	}
 
 	public int getFacing() {
@@ -141,60 +114,57 @@ public class TileTCRail extends TileEntity {
 			}
 		}*/
 
-		if (updateTicks2 % 10 == 0) {
+		if (updateTicks2 % 10 == 0 && canTypeBeModifiedBySwitch) {
+			updateTicks2 =0;
+			int meta = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
+			TileEntity tile1 = null;
 
-			if (canTypeBeModifiedBySwitch) {
+			switch (meta) {
 
-				int meta = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
-				TileEntity tile1 = null;
+			case 0:
+				tile1 = worldObj.getTileEntity(xCoord, yCoord, zCoord - 1);
+				break;
 
-				switch (meta) {
+			case 1:
+				tile1 = worldObj.getTileEntity(xCoord + 1, yCoord, zCoord);
+				break;
 
-				case 0:
-					tile1 = worldObj.getTileEntity(xCoord, yCoord, zCoord - 1);
-					break;
+			case 2:
+				tile1 = worldObj.getTileEntity(xCoord, yCoord, zCoord + 1);
+				break;
 
-				case 1:
-					tile1 = worldObj.getTileEntity(xCoord + 1, yCoord, zCoord);
-					break;
-
-				case 2:
-					tile1 = worldObj.getTileEntity(xCoord, yCoord, zCoord + 1);
-					break;
-
-				case 3:
-					tile1 = worldObj.getTileEntity(xCoord - 1, yCoord, zCoord);
-					break;
-				}
-
-				if (tile1 instanceof TileTCRail && ItemTCRail.isTCSwitch((TileTCRail) tile1)) {
-
-					TileTCRail tileSwitch = (TileTCRail) tile1;
-					boolean flag1 = worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord);
-					boolean flag2 = worldObj.isBlockIndirectlyGettingPowered(tileSwitch.xCoord, tileSwitch.yCoord, tileSwitch.zCoord);
-
-					if (tileSwitch.previousRedstoneState != flag1 && !flag2) {
-
-						tileSwitch.changeSwitchState(worldObj, tile1, tile1.xCoord, tile1.yCoord, tile1.zCoord);
-						tileSwitch.previousRedstoneState = flag1;
-					}
-				}
-				/*
-				 * if (tile2 != null && tile2 instanceof TileTCRail &&
-				 * ItemTCRail.isTCSwitch((TileTCRail) tile2)) { TileTCRail
-				 * tileSwitch = (TileTCRail) tile2; boolean flag1 =
-				 * worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord,
-				 * zCoord); boolean flag2 =
-				 * worldObj.isBlockIndirectlyGettingPowered(tileSwitch.xCoord,
-				 * tileSwitch.yCoord, tileSwitch.zCoord);
-				 * //System.out.println(flag2+" flag2"); //boolean switchState2
-				 * = tileSwitch.getSwitchState(); if
-				 * (tileSwitch.previousRedstoneState != flag1 && !flag2) {
-				 * tileSwitch.changeSwitchState(worldObj, tile2, tile2.xCoord,
-				 * tile2.yCoord, tile2.zCoord); tileSwitch.previousRedstoneState
-				 * = flag1; } }
-				 */
+			case 3:
+				tile1 = worldObj.getTileEntity(xCoord - 1, yCoord, zCoord);
+				break;
 			}
+
+			if (tile1 instanceof TileTCRail && ItemTCRail.isTCSwitch((TileTCRail) tile1)) {
+
+				TileTCRail tileSwitch = (TileTCRail) tile1;
+				boolean flag1 = worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord);
+				boolean flag2 = worldObj.isBlockIndirectlyGettingPowered(tileSwitch.xCoord, tileSwitch.yCoord, tileSwitch.zCoord);
+
+				if (tileSwitch.previousRedstoneState != flag1 && !flag2) {
+
+					tileSwitch.changeSwitchState(worldObj, tile1, tile1.xCoord, tile1.yCoord, tile1.zCoord);
+					tileSwitch.previousRedstoneState = flag1;
+				}
+			}
+			/*
+			 * if (tile2 != null && tile2 instanceof TileTCRail &&
+			 * ItemTCRail.isTCSwitch((TileTCRail) tile2)) { TileTCRail
+			 * tileSwitch = (TileTCRail) tile2; boolean flag1 =
+			 * worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord,
+			 * zCoord); boolean flag2 =
+			 * worldObj.isBlockIndirectlyGettingPowered(tileSwitch.xCoord,
+			 * tileSwitch.yCoord, tileSwitch.zCoord);
+			 * //System.out.println(flag2+" flag2"); //boolean switchState2
+			 * = tileSwitch.getSwitchState(); if
+			 * (tileSwitch.previousRedstoneState != flag1 && !flag2) {
+			 * tileSwitch.changeSwitchState(worldObj, tile2, tile2.xCoord,
+			 * tile2.yCoord, tile2.zCoord); tileSwitch.previousRedstoneState
+			 * = flag1; } }
+			 */
 		}
 
 		if (manualOverride) {
@@ -287,7 +257,6 @@ public class TileTCRail extends TileEntity {
 	}
 
 	public void setSwitchState(boolean state, boolean manualOverride) {
-
 		this.switchActive = state;
 		this.manualOverride = manualOverride;
 
