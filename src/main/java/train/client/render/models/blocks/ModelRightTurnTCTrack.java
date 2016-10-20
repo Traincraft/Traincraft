@@ -46,7 +46,7 @@ public class ModelRightTurnTCTrack extends ModelBase {
 		FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
 		GL11.glColor3f(1, 1, 1);
 		//GL11.glScalef(0.5f, 0.5f, 0.5f);
-		int facing = tcRail.getWorldObj().getBlockMetadata((int) tcRail.xCoord, (int) tcRail.yCoord, (int) tcRail.zCoord);
+		int facing = tcRail.getWorldObj().getBlockMetadata(tcRail.xCoord, tcRail.yCoord, tcRail.zCoord);
 
 		if (facing == 3) {
 			if(type.equals("very_large"))

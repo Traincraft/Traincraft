@@ -24,7 +24,7 @@ public class ModelTwoWaysCrossingTCTrack extends ModelBase {
 		modelTwoWaysCrossing.renderAll();
 	}
 
-	public void render(TileTCRail tcRail, double x, double y, double z) {
+	public void render(double x, double y, double z) {
 		// Push a blank matrix onto the stack
 		GL11.glPushMatrix();
 
@@ -35,7 +35,6 @@ public class ModelTwoWaysCrossingTCTrack extends ModelBase {
 		FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
 		GL11.glColor3f(1, 1, 1);
 		//GL11.glScalef(0.5f, 0.5f, 0.5f);
-		int facing = tcRail.getWorldObj().getBlockMetadata((int) tcRail.xCoord, (int) tcRail.yCoord, (int) tcRail.zCoord);
 
 		this.render();
 		// Pop this matrix from the stack.

@@ -17,7 +17,6 @@ public class ModelLargeSlopeTCTrack extends ModelBase {
 	private IModelCustom modeltrack;
 	private IModelCustom modelLargeSlopeWood;
 	private IModelCustom modelLargeSlopeBallast;
-	private String type = "";
 	public ModelLargeSlopeTCTrack() {
 		modeltrack = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_slope_long.obj"));
 		modelLargeSlopeWood = AdvancedModelLoader

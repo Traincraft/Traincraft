@@ -26,7 +26,7 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 	@Override
 	public void renderTileEntityAt(TileEntity var1, double x, double y, double z, float var8) {
 		if(var1 instanceof TileTCRail){
-			
+
 			TileTCRail railTile = (TileTCRail) var1;
 			
 			if (railTile.hasModel && railTile.getType() != null) {
@@ -39,7 +39,7 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 					modelSmallStraight.render("crossing", railTile, x, y, z);
 				}
 				else if (ItemTCRail.TrackTypes.TWO_WAYS_CROSSING.getLabel().equals(type)) {
-					modelTwoWaysCrossing.render(railTile, x, y, z);
+					modelTwoWaysCrossing.render(x, y, z);
 				}
 				else if (ItemTCRail.TrackTypes.MEDIUM_STRAIGHT.getLabel().equals(type)) {
 					modelMediumStraight.render(railTile, x, y, z);

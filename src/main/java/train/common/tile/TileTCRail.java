@@ -3,10 +3,6 @@ package train.common.tile;
 import java.util.ArrayList;
 import java.util.List;
 
-import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.settings.GameSettings;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
@@ -44,6 +40,7 @@ public class TileTCRail extends TileEntity {
 	public Item		idDrop;
 	private static final float f = 0.125F;
 	public boolean hasRotated = false;
+	private int isLeftFlag = -5;
 
 	public TileTCRail() {
 		if(this.worldObj != null)
@@ -89,7 +86,9 @@ public class TileTCRail extends TileEntity {
 			return;
 		}
 
-		updateTicks2++;
+		if(canTypeBeModifiedBySwitch) {
+			updateTicks2++;
+		}
 
 		/*if (updateTicks2 % 20 == 0 && !isLinkedToRail && getType() != null && getType().equals(TrackTypes.SMALL_STRAIGHT.getLabel()) && !hasRotated) {
 			TileEntity tileNorth = worldObj.getBlockTileEntity(xCoord, yCoord, zCoord - 1);
@@ -114,7 +113,7 @@ public class TileTCRail extends TileEntity {
 			}
 		}*/
 
-		if (updateTicks2 % 10 == 0 && canTypeBeModifiedBySwitch) {
+		if (updateTicks2 % 11 == 0) {
 			updateTicks2 =0;
 			int meta = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
 			TileEntity tile1 = null;
@@ -183,17 +182,24 @@ public class TileTCRail extends TileEntity {
 				changeSwitchState(worldObj, this, xCoord, yCoord, zCoord);
 				previousRedstoneState = flag;
 				setSwitchState(flag, false);
+				updateTicks=0;
 			}
 		}
 
-		if (!getSwitchState()) {
+		if (!getSwitchState() && updateTicks2 % 5 ==0) {
 
 			/* Right-handed switch types create a value of 1, left-handed switch types a value of type -1. If neither cases match, value is set to 0. */
-			int isLeftFlag = (ItemTCRail.TrackTypes.MEDIUM_RIGHT_SWITCH.getLabel().equals(type) || ItemTCRail.TrackTypes.LARGE_RIGHT_SWITCH.getLabel().equals(type) || ItemTCRail.TrackTypes.MEDIUM_RIGHT_PARALLEL_SWITCH.getLabel().equals(type)) ? 1 :
-				(ItemTCRail.TrackTypes.MEDIUM_LEFT_SWITCH.getLabel().equals(type) || ItemTCRail.TrackTypes.LARGE_LEFT_SWITCH.getLabel().equals(type) || ItemTCRail.TrackTypes.MEDIUM_LEFT_PARALLEL_SWITCH.getLabel().equals(type)) ? -1 : 0;
+			if (isLeftFlag == -5) {
+				if (ItemTCRail.TrackTypes.MEDIUM_RIGHT_SWITCH.getLabel().equals(type) || ItemTCRail.TrackTypes.LARGE_RIGHT_SWITCH.getLabel().equals(type) || ItemTCRail.TrackTypes.MEDIUM_RIGHT_PARALLEL_SWITCH.getLabel().equals(type)){
+					isLeftFlag =1;
+				} else if (ItemTCRail.TrackTypes.MEDIUM_LEFT_SWITCH.getLabel().equals(type) || ItemTCRail.TrackTypes.LARGE_LEFT_SWITCH.getLabel().equals(type) || ItemTCRail.TrackTypes.MEDIUM_LEFT_PARALLEL_SWITCH.getLabel().equals(type)){
+					isLeftFlag = -1;
+				} else {
+					isLeftFlag=0;
+				}
+			}
 
 			if (isLeftFlag != 0) {
-
 				List list;
 
 				switch (facingMeta) {
