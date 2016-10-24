@@ -40,8 +40,6 @@ import train.common.library.GuiIDs;
 import train.common.library.ItemIDs;
 
 public class EntityTracksBuilder extends EntityRollingStock implements IInventory {
-	protected boolean field_856_i;
-	public int minecartType;
 	public ItemStack item;
 	private ItemStack BuilderInvent[];
 
@@ -126,7 +124,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 		plannedHeight = (int) currentHeight - 1;
 		setPlannedHeight(plannedHeight);
 	}
-	
+
 	@Override
 	public int getInventoryStackLimit() {
 		return 64;
@@ -169,7 +167,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 		int i = MathHelper.floor_double(posX);
 		int j = MathHelper.floor_double(posY);
 		int k = MathHelper.floor_double(posZ);
-		
+
 		if (canDigg()) {
 			updateState(true);
 			this.digBuilder(i, j, k);
@@ -571,7 +569,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 
 	/**
 	 * checks the slots around the Track Builder drawing (in builder'gui)
-	 * 
+	 *
 	 */
 	private void checkBlock() {
 		underBlock2Stack = null;
@@ -690,7 +688,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 
 	/**
 	 * Perform block harvesting, drop the stack, remove block and play sound.
-	 * 
+	 *
 	 * @param pos
 	 */
 	private void harvestBlock_do(Vec3 pos) {
@@ -718,7 +716,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 
 	/**
 	 * Check if block is unharvestable
-	 * 
+	 *
 	 * @param pos
 	 * @param id block id
 	 * @return is not harvested
@@ -728,7 +726,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 	}
 	/**
 	 * Spawn breaking particles for blockparticles
-	 * 
+	 *
 	 * @param pos position
 	 * @param block_index index of the block in mining list
 	 */
@@ -824,7 +822,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 
 	/**
 	 * north = 0 west = 3 east = 1 south = 2
-	 * 
+	 *
 	 * @return orientation
 	 */
 	private int getFacing() {
@@ -847,7 +845,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 		}
 		return 0;
 	}
-	
+
 	@Override
 	public boolean attackEntityFrom(DamageSource damagesource, float i) {
 		if (worldObj.isRemote) {
@@ -997,7 +995,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 			worldObj.setBlockToAir(i + iX, j + hY + 3, k + 1);//removes excess of glass
 			worldObj.setBlockToAir(i + iX, j + hY + 3, k - 1);
 			worldObj.setBlockToAir(i + iX, j + hY + 3, k);
-			
+
 			if(worldObj.setBlock(i + iX, j + hY + 4, k + 1, Block.getBlockFromItem(tunnelBlockStack.getItem()), tunnelBlockStack.getItem().getMetadata(tunnelBlockStack.getItemDamage()), 3))decrStackSize(7,1);
 			if(worldObj.setBlock(i + iX, j + hY + 4, k - 1, Block.getBlockFromItem(tunnelBlockStack.getItem()), tunnelBlockStack.getItem().getMetadata(tunnelBlockStack.getItemDamage()), 3))decrStackSize(7,1);
 			if(worldObj.setBlock(i + iX, j + hY + 4, k + 2, Block.getBlockFromItem(tunnelBlockStack.getItem()), tunnelBlockStack.getItem().getMetadata(tunnelBlockStack.getItemDamage()), 3))decrStackSize(7,1);
@@ -1010,7 +1008,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 			if(worldObj.setBlock(i + iX, j + hY, k - 2, Block.getBlockFromItem(tunnelBlockStack.getItem()), tunnelBlockStack.getItem().getMetadata(tunnelBlockStack.getItemDamage()), 3))decrStackSize(7,1);
 			if(worldObj.setBlock(i + iX, j + hY - 1, k + 1, Block.getBlockFromItem(tunnelBlockStack.getItem()), tunnelBlockStack.getItem().getMetadata(tunnelBlockStack.getItemDamage()), 3))decrStackSize(7,1);
 			if(worldObj.setBlock(i + iX, j + hY - 1, k - 1, Block.getBlockFromItem(tunnelBlockStack.getItem()), tunnelBlockStack.getItem().getMetadata(tunnelBlockStack.getItemDamage()), 3))decrStackSize(7,1);
-			
+
 			if (upperCenterBlockStack != null && Item.getIdFromItem(upperCenterBlockStack.getItem()) != 0 && worldObj.getBlock(i + iX, j + hY + 4, k) != Block.getBlockFromItem(upperCenterBlockStack.getItem())) {
 				worldObj.setBlock(i + iX, j + hY + 4, k, Block.getBlockFromItem(upperCenterBlockStack.getItem()), upperCenterBlockStack.getItem().getMetadata(upperCenterBlockStack.getItemDamage()), 3);
 				decrStackSize(5, 1);
@@ -1270,10 +1268,21 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 			}
 
 			// builder is going down
-			 else if (hY < 0 && underBlockStack != null && worldObj.getBlock(i, j - 1 + hY, k) != Block.getBlockFromItem(underBlockStack.getItem()) && worldObj.getBlock(i, j - 1 + hY, k) != Block.getBlockFromItem(tracksStack.getItem())) {
+			 else if (hY < 0 && underBlockStack != null
+					&& worldObj.getBlock(i, j - 1 + hY, k) != Block
+						.getBlockFromItem(underBlockStack.getItem())
+					&& worldObj.getBlock(i, j - 1 + hY, k) != Block.getBlockFromItem(tracksStack.getItem())) {
 				getBlockList(worldObj, i, j - 1 + hY, k);
 				worldObj.setBlock(i, j - 2, k, Block.getBlockFromItem(underBlockStack.getItem()),
 						underBlockStack.getItem().getMetadata(underBlockStack.getItemDamage()), 3);
+
+				worldObj.setBlock(i+1, j - 1, k, Blocks.air,
+						underBlockStack.getItem().getMetadata(underBlockStack.getItemDamage()), 3);
+				worldObj.setBlock(i-1, j - 1, k, Blocks.air,
+						underBlockStack.getItem().getMetadata(underBlockStack.getItemDamage()), 3);
+				worldObj.setBlock(i, j - 1, k, Blocks.air,
+						underBlockStack.getItem().getMetadata(underBlockStack.getItemDamage()), 3);
+
 				decrStackSize(3, 1);// decr underblock
 			}
 
@@ -1307,7 +1316,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 				putRoof(i + 1, j + 3 + roofYOffset + hY, k + kZ, 6, worldObj, upperBlock1Stack);
 				d = kZ;
 			}
-			//when tunnel is active, blocks are dug further in front to let space for glass 
+			//when tunnel is active, blocks are dug further in front to let space for glass
 			if (tunnelActive) {
 				d = 3 * d;
 			}
