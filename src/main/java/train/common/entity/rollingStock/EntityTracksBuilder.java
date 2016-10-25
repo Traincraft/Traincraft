@@ -870,330 +870,6 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 		return true;
 	}
 
-	private void digOnXAxis(int i, int j, int k, int d, int iX, int hY) {
-
-		getBlockList(worldObj, i + d, j + hY, k);
-		getBlockList(worldObj, i + d, j + hY + 1, k);
-		getBlockList(worldObj, i + d, j + hY + 2, k);
-		getBlockList(worldObj, i + d, j + hY, k - 1);
-		getBlockList(worldObj, i + d, j + hY, k + 1);
-		getBlockList(worldObj, i + d, j + hY + 1, k - 1);
-		getBlockList(worldObj, i + d, j + hY + 1, k + 1);
-		getBlockList(worldObj, i + d, j + hY + 2, k - 1);
-		getBlockList(worldObj, i + d, j + hY + 2, k + 1);
-		if (!((worldObj.getBlock(i + d, j + hY, k - 1) == Blocks.rail)
-				|| (this.worldObj.getBlock(i + d, j + hY, k - 1)) == BlockIDs.tcRail.block
-				|| (this.worldObj.getBlock(i + d, j + hY, k - 1)) == BlockIDs.tcRailGag.block) && followTracks) {
-			//worldObj.setBlockMetadataWithNotify(i + d, j+ hY, k - 1, 0);
-			this.harvestBlock_do(Vec3.createVectorHelper(i + d, j + hY, k - 1));
-		}
-
-		if (!((Blocks.rail == worldObj.getBlock(i + d, j + hY, k + 1))
-				|| (this.worldObj.getBlock(i + d, j + hY, k + 1)) == BlockIDs.tcRail.block
-				|| (this.worldObj.getBlock(i + d, j + hY, k + 1)) == BlockIDs.tcRailGag.block) && followTracks) {
-			//worldObj.setBlockMetadataWithNotify(i + d, j+ hY, k + 1, 0);
-			this.harvestBlock_do(Vec3.createVectorHelper(i + d, j + hY, k + 1));
-		}
-
-		if (!(Blocks.rail == (worldObj.getBlock(i + d, j + hY, k))
-				|| (this.worldObj.getBlock(i + d, j + hY, k)) == BlockIDs.tcRail.block
-				|| (this.worldObj.getBlock(i + d, j + hY, k)) == BlockIDs.tcRailGag.block) && followTracks) {
-			//worldObj.setBlockMetadataWithNotify(i + d, j+ hY, k, 0);
-			this.harvestBlock_do(Vec3.createVectorHelper(i + d, j + hY, k));
-		}
-
-		this.harvestBlock_do(Vec3.createVectorHelper(i + d, j + hY + 1, k));
-		this.harvestBlock_do(Vec3.createVectorHelper(i + d, j + hY + 2, k));
-		this.harvestBlock_do(Vec3.createVectorHelper(i + d, j + hY + 1, k - 1));
-		this.harvestBlock_do(Vec3.createVectorHelper(i + d, j + hY + 2, k + 1));
-		this.harvestBlock_do(Vec3.createVectorHelper(i + d, j + hY + 1, k + 1));
-		this.harvestBlock_do(Vec3.createVectorHelper(i + d, j + hY + 2, k - 1));
-
-		this.harvestBlock_do(Vec3.createVectorHelper(i + d, j + hY + 3, k + 1));
-		this.harvestBlock_do(Vec3.createVectorHelper(i + d, j + hY + 3, k - 1));
-		this.harvestBlock_do(Vec3.createVectorHelper(i + d, j + hY + 3, k));
-
-		if (tunnelActive) {// puts dirt then glass (default) in a tunnel shape for underwater tunnel
-
-			getBlockList(worldObj, i + (3 * iX), j + hY + 3, k);
-			worldObj.setBlockToAir(i + (3 * iX), j + hY + 3, k);
-			getBlockList(worldObj, i + (3 * iX), j + hY + 1, k);
-			worldObj.setBlockToAir(i + (3 * iX), j + hY + 1, k);
-			getBlockList(worldObj, i + (3 * iX), j + hY + 2, k);
-			worldObj.setBlockToAir(i + (3 * iX), j + hY + 2, k);
-			getBlockList(worldObj, i + (3 * iX), j + hY + 1, k - 1);
-			worldObj.setBlockToAir(i + (3 * iX), j + hY + 1, k - 1);
-			getBlockList(worldObj, i + (3 * iX), j + hY + 1, k + 1);
-			worldObj.setBlockToAir(i + (3 * iX), j + hY + 1, k + 1);
-			getBlockList(worldObj, i + (3 * iX), j + hY + 2, k + 1);
-			worldObj.setBlockToAir(i + (3 * iX), j + hY + 2, k + 1);
-			getBlockList(worldObj, i + (3 * iX), j + hY + 2, k - 1);
-			worldObj.setBlockToAir(i + (3 * iX), j + hY + 2, k - 1);
-			getBlockList(worldObj, i + (3 * iX), j + hY + 3, k + 1);
-			worldObj.setBlockToAir(i + (3 * iX), j + hY + 3, k + 1);
-			getBlockList(worldObj, i + (3 * iX), j + hY + 3, k - 1);
-			worldObj.setBlockToAir(i + (3 * iX), j + hY + 3, k - 1);
-			getBlockList(worldObj, i + (3 * iX), j + hY + 3, k + 2);
-			worldObj.setBlockToAir(i + (3 * iX), j + hY + 3, k + 2);
-			getBlockList(worldObj, i + (3 * iX), j + hY + 3, k - 2);
-			worldObj.setBlockToAir(i + (3 * iX), j + hY + 3, k - 2);
-			getBlockList(worldObj, i + (3 * iX), j + hY + 2, k + 2);
-			worldObj.setBlockToAir(i + (3 * iX), j + hY + 2, k + 2);
-			getBlockList(worldObj, i + (3 * iX), j + hY + 2, k - 2);
-			worldObj.setBlockToAir(i + (3 * iX), j + hY + 2, k - 2);
-			getBlockList(worldObj, i + (3 * iX), j + hY + 1, k + 2);
-			worldObj.setBlockToAir(i + (3 * iX), j + hY + 1, k + 2);
-			getBlockList(worldObj, i + (3 * iX), j + hY + 1, k - 2);
-			worldObj.setBlockToAir(i + (3 * iX), j + hY + 1, k - 2);
-			getBlockList(worldObj, i + (3 * iX), j + hY, k + 2);
-			worldObj.setBlockToAir(i + (3 * iX), j + hY, k + 2);
-			getBlockList(worldObj, i + (3 * iX), j + hY, k - 2);
-			worldObj.setBlockToAir(i + (3 * iX), j + hY, k - 2);
-			getBlockList(worldObj, i + (3 * iX), j + hY, k + 1);
-			worldObj.setBlockToAir(i + (3 * iX), j + hY, k + 1);
-			getBlockList(worldObj, i + (3 * iX), j + hY, k - 1);
-			worldObj.setBlockToAir(i + (3 * iX), j + hY, k - 1);
-
-			getBlockList(worldObj, i + (3 * iX), j + hY + 3, k + 2);
-			worldObj.setBlockToAir(i + (3 * iX), j + hY + 3, k + 2);
-			getBlockList(worldObj, i + (3 * iX), j + hY + 3, k - 2);
-			worldObj.setBlockToAir(i + (3 * iX), j + hY + 3, k - 2);
-
-			getBlockList(worldObj, i + 2 * iX, j + hY + 4, k + 1);
-			worldObj.setBlockToAir(i + 2 * iX, j + hY + 4, k + 1);
-			getBlockList(worldObj, i + 2 * iX, j + hY + 4, k - 1);
-			worldObj.setBlockToAir(i + 2 * iX, j + hY + 4, k - 1);
-			getBlockList(worldObj, i + 2 * iX, j + hY + 4, k);
-			worldObj.setBlockToAir(i + 2 * iX, j + hY + 4, k);
-			getBlockList(worldObj, i + 2 * iX, j + hY + 4, k + 2);
-			worldObj.setBlockToAir(i + 2 * iX, j + hY + 4, k + 2);
-			getBlockList(worldObj, i + 2 * iX, j + hY + 4, k - 2);
-			worldObj.setBlockToAir(i + 2 * iX, j + hY + 4, k - 2);
-
-			worldObj.setBlock(i + (2 * iX), j + hY + 3, k, Block.getBlockFromName("glass"));
-			worldObj.setBlock(i + (2 * iX), j + hY + 1, k, Block.getBlockFromName("glass"));
-			worldObj.setBlock(i + (2 * iX), j + hY + 2, k, Block.getBlockFromName("glass"));
-			worldObj.setBlock(i + (2 * iX), j + hY + 1, k - 1, Block.getBlockFromName("glass"));
-			worldObj.setBlock(i + (2 * iX), j + hY + 1, k + 1, Block.getBlockFromName("glass"));
-			worldObj.setBlock(i + (2 * iX), j + hY + 2, k + 1, Block.getBlockFromName("glass"));
-			worldObj.setBlock(i + (2 * iX), j + hY + 2, k - 1, Block.getBlockFromName("glass"));
-
-			worldObj.setBlock(i + (2 * iX), j + hY + 3, k + 1, Block.getBlockFromName("glass"));
-			worldObj.setBlock(i + (2 * iX), j + hY + 3, k - 1, Block.getBlockFromName("glass"));
-			worldObj.setBlock(i + (2 * iX), j + hY + 3, k + 2, Block.getBlockFromItem(tunnelBlockStack.getItem()), tunnelBlockStack.getItem().getMetadata(tunnelBlockStack.getItemDamage()), 3);
-			worldObj.setBlock(i + (2 * iX), j + hY + 3, k - 2, Block.getBlockFromItem(tunnelBlockStack.getItem()), tunnelBlockStack.getItem().getMetadata(tunnelBlockStack.getItemDamage()), 3);
-			worldObj.setBlock(i + (2 * iX), j + hY + 2, k + 2, Block.getBlockFromName("glass"));
-			worldObj.setBlock(i + (2 * iX), j + hY + 2, k - 2, Block.getBlockFromName("glass"));
-			worldObj.setBlock(i + (2 * iX), j + hY + 1, k + 2, Block.getBlockFromName("glass"));
-			worldObj.setBlock(i + (2 * iX), j + hY + 1, k - 2, Block.getBlockFromName("glass"));
-			worldObj.setBlock(i + (2 * iX), j + hY, k + 2, Block.getBlockFromName("glass"));
-			worldObj.setBlock(i + (2 * iX), j + hY, k - 2, Block.getBlockFromName("glass"));
-			worldObj.setBlock(i + (2 * iX), j + hY, k + 1, Block.getBlockFromName("glass"));
-			worldObj.setBlock(i + (2 * iX), j + hY, k - 1, Block.getBlockFromName("glass"));
-			// worldObj.setBlock(i,j,k,Block.getBlockFromName("glass"));
-
-			worldObj.setBlockToAir(i + iX, j + hY + 3, k + 1);//removes excess of glass
-			worldObj.setBlockToAir(i + iX, j + hY + 3, k - 1);
-			worldObj.setBlockToAir(i + iX, j + hY + 3, k);
-
-			if(worldObj.setBlock(i + iX, j + hY + 4, k + 1, Block.getBlockFromItem(tunnelBlockStack.getItem()), tunnelBlockStack.getItem().getMetadata(tunnelBlockStack.getItemDamage()), 3))decrStackSize(7,1);
-			if(worldObj.setBlock(i + iX, j + hY + 4, k - 1, Block.getBlockFromItem(tunnelBlockStack.getItem()), tunnelBlockStack.getItem().getMetadata(tunnelBlockStack.getItemDamage()), 3))decrStackSize(7,1);
-			if(worldObj.setBlock(i + iX, j + hY + 4, k + 2, Block.getBlockFromItem(tunnelBlockStack.getItem()), tunnelBlockStack.getItem().getMetadata(tunnelBlockStack.getItemDamage()), 3))decrStackSize(7,1);
-			if(worldObj.setBlock(i + iX, j + hY + 4, k - 2, Block.getBlockFromItem(tunnelBlockStack.getItem()), tunnelBlockStack.getItem().getMetadata(tunnelBlockStack.getItemDamage()), 3))decrStackSize(7,1);
-			if(worldObj.setBlock(i + iX, j + hY + 2, k + 2, Block.getBlockFromItem(tunnelBlockStack.getItem()), tunnelBlockStack.getItem().getMetadata(tunnelBlockStack.getItemDamage()), 3))decrStackSize(7,1);
-			if(worldObj.setBlock(i + iX, j + hY + 2, k - 2, Block.getBlockFromItem(tunnelBlockStack.getItem()), tunnelBlockStack.getItem().getMetadata(tunnelBlockStack.getItemDamage()), 3))decrStackSize(7,1);
-			if(worldObj.setBlock(i + iX, j + hY + 1, k + 2, Block.getBlockFromItem(tunnelBlockStack.getItem()), tunnelBlockStack.getItem().getMetadata(tunnelBlockStack.getItemDamage()), 3))decrStackSize(7,1);
-			if(worldObj.setBlock(i + iX, j + hY + 1, k - 2, Block.getBlockFromItem(tunnelBlockStack.getItem()), tunnelBlockStack.getItem().getMetadata(tunnelBlockStack.getItemDamage()), 3))decrStackSize(7,1);
-			if(worldObj.setBlock(i + iX, j + hY, k + 2, Block.getBlockFromItem(tunnelBlockStack.getItem()), tunnelBlockStack.getItem().getMetadata(tunnelBlockStack.getItemDamage()), 3))decrStackSize(7,1);
-			if(worldObj.setBlock(i + iX, j + hY, k - 2, Block.getBlockFromItem(tunnelBlockStack.getItem()), tunnelBlockStack.getItem().getMetadata(tunnelBlockStack.getItemDamage()), 3))decrStackSize(7,1);
-			if(worldObj.setBlock(i + iX, j + hY - 1, k + 1, Block.getBlockFromItem(tunnelBlockStack.getItem()), tunnelBlockStack.getItem().getMetadata(tunnelBlockStack.getItemDamage()), 3))decrStackSize(7,1);
-			if(worldObj.setBlock(i + iX, j + hY - 1, k - 1, Block.getBlockFromItem(tunnelBlockStack.getItem()), tunnelBlockStack.getItem().getMetadata(tunnelBlockStack.getItemDamage()), 3))decrStackSize(7,1);
-
-			if (upperCenterBlockStack != null && Item.getIdFromItem(upperCenterBlockStack.getItem()) != 0 && worldObj.getBlock(i + iX, j + hY + 4, k) != Block.getBlockFromItem(upperCenterBlockStack.getItem())) {
-				worldObj.setBlock(i + iX, j + hY + 4, k, Block.getBlockFromItem(upperCenterBlockStack.getItem()), upperCenterBlockStack.getItem().getMetadata(upperCenterBlockStack.getItemDamage()), 3);
-				decrStackSize(5, 1);
-			}
-			if (upperCenterBlockStack == null)
-				worldObj.setBlock(i + iX, j + hY + 4, k, Blocks.stone);
-			worldObj.setBlockToAir(i + iX, j + hY, k - 1);
-			worldObj.setBlockToAir(i + iX, j + hY, k + 1);
-			worldObj.setBlockToAir(i + iX, j + hY + 1, k);
-			worldObj.setBlockToAir(i + iX, j + hY + 2, k);
-
-			if (hY < 0 && !  (Blocks.rail== worldObj.getBlock(i + iX, j + hY, k))) {//code is different when going down
-				worldObj.setBlockToAir(i + iX, j + hY, k);
-			}
-			else {
-				worldObj.setBlockToAir(i + (2 * iX), j + hY, k);//-2 or it constantly removes tracks
-			}
-			worldObj.setBlockToAir(i + iX, j + hY + 1, k - 1);
-			worldObj.setBlockToAir(i + iX, j + hY + 2, k + 1);
-			worldObj.setBlockToAir(i + iX, j + hY + 1, k + 1);
-			worldObj.setBlockToAir(i + iX, j + hY + 2, k - 1);
-		}
-	}
-
-	private void digOnZAxis(int i, int j, int k, int d, int kZ, int hY) {
-		getBlockList(worldObj, i, j + hY, k + d);
-		getBlockList(worldObj, i, j + hY + 1, k + d);
-		getBlockList(worldObj, i, j + hY + 2, k + d);
-		getBlockList(worldObj, i - 1, j + hY, k + d);
-		getBlockList(worldObj, i + 1, j + hY, k + d);
-		getBlockList(worldObj, i - 1, j + hY + 1, k + d);
-		getBlockList(worldObj, i + 1, j + hY + 2, k + d);
-		getBlockList(worldObj, i + 1, j + hY + 1, k + d);
-		getBlockList(worldObj, i - 1, j + hY + 2, k + d);
-
-		if (!(Blocks.rail == (worldObj.getBlock(i - 1, j + hY, k + d))
-				|| (this.worldObj.getBlock(i - 1, j + hY, k + d)) == BlockIDs.tcRail.block
-				|| (this.worldObj.getBlock(i - 1, j + hY, k + d)) == BlockIDs.tcRailGag.block) && followTracks) {
-			//worldObj.setBlockMetadataWithNotify(i - 1, j+ hY, k + d, 0, -1);
-			worldObj.setBlock(i - 1, j + hY, k + d, Blocks.air);
-			this.harvestBlock_do(Vec3.createVectorHelper(i - 1, j + hY, k + d));
-		}
-
-		if (!(Blocks.rail == (worldObj.getBlock(i + 1, j + hY, k + d))
-				|| (this.worldObj.getBlock(i + 1, j + hY, k + d)) == BlockIDs.tcRail.block
-				|| (this.worldObj.getBlock(i + 1, j + hY, k + d)) == BlockIDs.tcRailGag.block) && followTracks) {
-			//worldObj.setBlockMetadataWithNotify(i + 1, j+ hY, k + d, 0, -1);
-			worldObj.setBlock(i + 1, j + hY, k + d, Blocks.air);
-			this.harvestBlock_do(Vec3.createVectorHelper(i + 1, j + hY, k + d));
-		}
-
-		if (!(Blocks.rail == (worldObj.getBlock(i, j + hY, k + d))
-				|| (this.worldObj.getBlock(i, j + hY, k + d)) == BlockIDs.tcRail.block
-				|| (this.worldObj.getBlock(i, j + hY, k + d)) == BlockIDs.tcRailGag.block) && followTracks) {
-			//worldObj.setBlockMetadataWithNotify(i, j+ hY, k + d, 0, -1);
-			worldObj.setBlock(i, j + hY, k + d, Blocks.air);
-			this.harvestBlock_do(Vec3.createVectorHelper(i, j + hY, k + d));
-		}
-		this.harvestBlock_do(Vec3.createVectorHelper(i, j + hY + 1, k + d));
-		this.harvestBlock_do(Vec3.createVectorHelper(i, j + hY + 2, k + d));
-		this.harvestBlock_do(Vec3.createVectorHelper(i - 1, j + hY + 1, k + d));
-		this.harvestBlock_do(Vec3.createVectorHelper(i + 1, j + hY + 2, k + d));
-		this.harvestBlock_do(Vec3.createVectorHelper(i + 1, j + hY + 1, k + d));
-		this.harvestBlock_do(Vec3.createVectorHelper(i - 1, j + hY + 2, k + d));
-
-		this.harvestBlock_do(Vec3.createVectorHelper(i + 1, j + hY + 3, k + d));
-		this.harvestBlock_do(Vec3.createVectorHelper(i - 1, j + hY + 3, k + d));
-		this.harvestBlock_do(Vec3.createVectorHelper(i, j + hY + 3, k + d));
-
-		if (tunnelActive) {
-			getBlockList(worldObj, i, j + hY + 3, k + (3 * kZ));
-			worldObj.setBlockToAir(i, j + hY + 3, k + (3 * kZ));
-			getBlockList(worldObj, i, j + hY + 1, k + (3 * kZ));
-			worldObj.setBlockToAir(i, j + hY + 1, k + (3 * kZ));
-			getBlockList(worldObj, i, j + hY + 2, k + (3 * kZ));
-			worldObj.setBlockToAir(i, j + hY + 2, k + (3 * kZ));
-			getBlockList(worldObj, i - 1, j + hY + 1, k + (3 * kZ));
-			worldObj.setBlockToAir(i - 1, j + hY + 1, k + (3 * kZ));
-			getBlockList(worldObj, i + 1, j + hY + 1, k + (3 * kZ));
-			worldObj.setBlockToAir(i + 1, j + hY + 1, k + (3 * kZ));
-			getBlockList(worldObj, i + 1, j + hY + 2, k + (3 * kZ));
-			worldObj.setBlockToAir(i + 1, j + hY + 2, k + (3 * kZ));
-			getBlockList(worldObj, i - 1, j + hY + 2, k + (3 * kZ));
-			worldObj.setBlockToAir(i - 1, j + hY + 2, k + (3 * kZ));
-			getBlockList(worldObj, i + 1, j + hY + 3, k + (3 * kZ));
-			worldObj.setBlockToAir(i + 1, j + hY + 3, k + (3 * kZ));
-			getBlockList(worldObj, i - 1, j + hY + 3, k + (3 * kZ));
-			worldObj.setBlockToAir(i - 1, j + hY + 3, k + (3 * kZ));
-			getBlockList(worldObj, i + 2, j + hY + 3, k + (3 * kZ));
-			worldObj.setBlockToAir(i + 2, j + hY + 3, k + (3 * kZ));
-			getBlockList(worldObj, i - 2, j + hY + 3, k + (3 * kZ));
-			worldObj.setBlockToAir(i - 2, j + hY + 3, k + (3 * kZ));
-			getBlockList(worldObj, i + 2, j + hY + 2, k + (3 * kZ));
-			worldObj.setBlockToAir(i + 2, j + hY + 2, k + (3 * kZ));
-			getBlockList(worldObj, i - 2, j + hY + 2, k + (3 * kZ));
-			worldObj.setBlockToAir(i - 2, j + hY + 2, k + (3 * kZ));
-			getBlockList(worldObj, i + 2, j + hY + 1, k + (3 * kZ));
-			worldObj.setBlockToAir(i + 2, j + hY + 1, k + (3 * kZ));
-			getBlockList(worldObj, i - 2, j + hY + 1, k + (3 * kZ));
-			worldObj.setBlockToAir(i - 2, j + hY + 1, k + (3 * kZ));
-			getBlockList(worldObj, i + 2, j + hY, k + (3 * kZ));
-			worldObj.setBlockToAir(i + 2, j + hY, k + (3 * kZ));
-			getBlockList(worldObj, i - 2, j + hY, k + (3 * kZ));
-			worldObj.setBlockToAir(i - 2, j + hY, k + (3 * kZ));
-			getBlockList(worldObj, i + 1, j + hY, k + (3 * kZ));
-			worldObj.setBlockToAir(i + 1, j + hY, k + (3 * kZ));
-			getBlockList(worldObj, i - 1, j + hY, k + (3 * kZ));
-			worldObj.setBlockToAir(i - 1, j + hY, k + (3 * kZ));
-
-			getBlockList(worldObj, i + 2, j + hY + 3, k + (3 * kZ));
-			worldObj.setBlockToAir(i + 2, j + hY + 3, k + (3 * kZ));
-			getBlockList(worldObj, i - 2, j + hY + 3, k + (3 * kZ));
-			worldObj.setBlockToAir(i - 2, j + hY + 3, k + (3 * kZ));
-
-			getBlockList(worldObj, i + 1, j + hY + 4, k + 2 * kZ);
-			worldObj.setBlockToAir(i + 1, j + hY + 4, k + 2 * kZ);
-			getBlockList(worldObj, i - 1, j + hY + 4, k + 2 * kZ);
-			worldObj.setBlockToAir(i - 1, j + hY + 4, k + 2 * kZ);
-			getBlockList(worldObj, i, j + hY + 4, k + 2 * kZ);
-			worldObj.setBlockToAir(i, j + hY + 4, k + 2 * kZ);
-			getBlockList(worldObj, i + 2, j + hY + 4, k + 2 * kZ);
-			worldObj.setBlockToAir(i + 2, j + hY + 4, k + 2 * kZ);
-			getBlockList(worldObj, i - 2, j + hY + 4, k + 2 * kZ);
-			worldObj.setBlockToAir(i - 2, j + hY + 4, k + 2 * kZ);
-
-			worldObj.setBlock(i, j + hY + 3, k + (2 * kZ), Block.getBlockFromName("glass"));
-			worldObj.setBlock(i, j + hY + 1, k + (2 * kZ), Block.getBlockFromName("glass"));
-			worldObj.setBlock(i, j + hY + 2, k + (2 * kZ), Block.getBlockFromName("glass"));
-			worldObj.setBlock(i - 1, j + hY + 1, k + (2 * kZ), Block.getBlockFromName("glass"));
-			worldObj.setBlock(i + 1, j + hY + 1, k + (2 * kZ), Block.getBlockFromName("glass"));
-			worldObj.setBlock(i + 1, j + hY + 2, k + (2 * kZ), Block.getBlockFromName("glass"));
-			worldObj.setBlock(i - 1, j + hY + 2, k + (2 * kZ), Block.getBlockFromName("glass"));
-			worldObj.setBlock(i + 1, j + hY + 3, k + (2 * kZ), Block.getBlockFromName("glass"));
-			worldObj.setBlock(i - 1, j + hY + 3, k + (2 * kZ), Block.getBlockFromName("glass"));
-			worldObj.setBlock(i + 2, j + hY + 3, k + (2 * kZ), Block.getBlockFromItem(tunnelBlockStack.getItem()), tunnelBlockStack.getItem().getMetadata(tunnelBlockStack.getItemDamage()), 3);
-			worldObj.setBlock(i - 2, j + hY + 3, k + (2 * kZ), Block.getBlockFromItem(tunnelBlockStack.getItem()), tunnelBlockStack.getItem().getMetadata(tunnelBlockStack.getItemDamage()), 3);
-			worldObj.setBlock(i + 2, j + hY + 2, k + (2 * kZ), Block.getBlockFromName("glass"));
-			worldObj.setBlock(i - 2, j + hY + 2, k + (2 * kZ), Block.getBlockFromName("glass"));
-			worldObj.setBlock(i + 2, j + hY + 1, k + (2 * kZ), Block.getBlockFromName("glass"));
-			worldObj.setBlock(i - 2, j + hY + 1, k + (2 * kZ), Block.getBlockFromName("glass"));
-			worldObj.setBlock(i + 2, j + hY, k + (2 * kZ), Block.getBlockFromName("glass"));
-			worldObj.setBlock(i - 2, j + hY, k + (2 * kZ), Block.getBlockFromName("glass"));
-			worldObj.setBlock(i + 1, j + hY, k + (2 * kZ), Block.getBlockFromName("glass"));
-			worldObj.setBlock(i - 1, j + hY, k + (2 * kZ), Block.getBlockFromName("glass"));
-
-			// tunnel
-			worldObj.setBlockToAir(i + 1, j + hY + 3, k + kZ);
-			worldObj.setBlockToAir(i - 1, j + hY + 3, k + kZ);
-			worldObj.setBlockToAir(i, j + hY + 3, k + kZ);
-
-			if(worldObj.setBlock(i + 1, j + hY + 4, k + kZ, Block.getBlockFromItem(tunnelBlockStack.getItem()), tunnelBlockStack.getItem().getMetadata(tunnelBlockStack.getItemDamage()), 3))decrStackSize(7,1);
-			if(worldObj.setBlock(i - 1, j + hY + 4, k + kZ, Block.getBlockFromItem(tunnelBlockStack.getItem()), tunnelBlockStack.getItem().getMetadata(tunnelBlockStack.getItemDamage()), 3))decrStackSize(7,1);
-			if(worldObj.setBlock(i + 2, j + hY + 4, k + kZ, Block.getBlockFromItem(tunnelBlockStack.getItem()), tunnelBlockStack.getItem().getMetadata(tunnelBlockStack.getItemDamage()), 3))decrStackSize(7,1);
-			if(worldObj.setBlock(i - 2, j + hY + 4, k + kZ, Block.getBlockFromItem(tunnelBlockStack.getItem()), tunnelBlockStack.getItem().getMetadata(tunnelBlockStack.getItemDamage()), 3))decrStackSize(7,1);
-			if(worldObj.setBlock(i + 2, j + hY + 2, k + kZ, Block.getBlockFromItem(tunnelBlockStack.getItem()), tunnelBlockStack.getItem().getMetadata(tunnelBlockStack.getItemDamage()), 3))decrStackSize(7,1);
-			if(worldObj.setBlock(i - 2, j + hY + 2, k + kZ, Block.getBlockFromItem(tunnelBlockStack.getItem()), tunnelBlockStack.getItem().getMetadata(tunnelBlockStack.getItemDamage()), 3))decrStackSize(7,1);
-			if(worldObj.setBlock(i + 2, j + hY + 1, k + kZ, Block.getBlockFromItem(tunnelBlockStack.getItem()), tunnelBlockStack.getItem().getMetadata(tunnelBlockStack.getItemDamage()), 3))decrStackSize(7,1);
-			if(worldObj.setBlock(i - 2, j + hY + 1, k + kZ, Block.getBlockFromItem(tunnelBlockStack.getItem()), tunnelBlockStack.getItem().getMetadata(tunnelBlockStack.getItemDamage()), 3))decrStackSize(7,1);
-			if(worldObj.setBlock(i + 2, j + hY, k + kZ, Block.getBlockFromItem(tunnelBlockStack.getItem()), tunnelBlockStack.getItem().getMetadata(tunnelBlockStack.getItemDamage()), 3))decrStackSize(7,1);
-			if(worldObj.setBlock(i - 2, j + hY, k + kZ, Block.getBlockFromItem(tunnelBlockStack.getItem()), tunnelBlockStack.getItem().getMetadata(tunnelBlockStack.getItemDamage()), 3))decrStackSize(7,1);
-			if(worldObj.setBlock(i + 1, j + hY - 1, k + kZ, Block.getBlockFromItem(tunnelBlockStack.getItem()), tunnelBlockStack.getItem().getMetadata(tunnelBlockStack.getItemDamage()), 3))decrStackSize(7,1);
-			if(worldObj.setBlock(i - 1, j + hY - 1, k + kZ, Block.getBlockFromItem(tunnelBlockStack.getItem()), tunnelBlockStack.getItem().getMetadata(tunnelBlockStack.getItemDamage()), 3))decrStackSize(7,1);
-			if (upperCenterBlockStack != null && Item.getIdFromItem(upperCenterBlockStack.getItem()) != 0 && worldObj.getBlock(i, j + hY + 4, k + kZ) != Block.getBlockFromItem(upperCenterBlockStack.getItem())) {
-				worldObj.setBlock(i, j + hY + 4, k + kZ, Block.getBlockFromItem(upperCenterBlockStack.getItem()), upperCenterBlockStack.getItem().getMetadata(upperCenterBlockStack.getItemDamage()), 3);
-				decrStackSize(5, 1);
-			}
-			if (upperCenterBlockStack == null)
-				worldObj.setBlock(i, j + hY + 4, k + kZ, Block.getBlockById(1));
-			worldObj.setBlockToAir(i - 1, j + hY, k + kZ);
-			worldObj.setBlockToAir(i + 1, j + hY, k + kZ);
-			if (hY < 0 && !(Blocks.rail==(worldObj.getBlock(i, j + hY, k + kZ)))) {
-				worldObj.setBlockToAir(i, j + hY, k + kZ);
-			}
-			else {
-				worldObj.setBlockToAir(i, j + hY, k + (2 * kZ));
-			}
-			worldObj.setBlockToAir(i, j + hY + 1, k + kZ);
-			worldObj.setBlockToAir(i, j + hY + 2, k + kZ);
-			worldObj.setBlockToAir(i - 1, j + hY + 1, k + kZ);
-			worldObj.setBlockToAir(i + 1, j + hY + 2, k + kZ);
-			worldObj.setBlockToAir(i + 1, j + hY + 1, k + kZ);
-			worldObj.setBlockToAir(i - 1, j + hY + 2, k + kZ);
-		}
-	}
-
 	/**
 	 * This handles the Builder's digging process
 	 */
@@ -1205,19 +881,6 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 		int iX = 0;
 		/** +1/-1 on Z axis, used to know where to dig */
 		int kZ = 0;
-		/** +1/-1 on Y axis (up/down) */
-
-		int north = Block.getIdFromBlock(worldObj.getBlock(i + 1, j, k));
-		int south = Block.getIdFromBlock(worldObj.getBlock(i - 1, j, k));
-		int east = Block.getIdFromBlock(worldObj.getBlock(i, j, k + 1));
-		int west = Block.getIdFromBlock(worldObj.getBlock(i, j, k - 1));
-
-		//directions to compare with getFacing()
-		int northDir = 0;
-		int southDir = 2;
-		int eastDir = 1;
-		int westDir = 3;
-
 		//checks the blocks to lay down
 		checkBlock();
 		//checks the tracks in slot 1
@@ -1228,25 +891,52 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 		int hY = checkForHeight();
 
 		if (trackfuel >= 1) {// is fueled
-			if (north != Block.getIdFromBlock(Block.getBlockFromName("bedrock")) && motionX > 0 && getFacing() == southDir) {
-				iX = 1;//dug blocks are (i+iX,j,k)
+			if (getFacing() == 1) {
+				iX = 0;
+				kZ = -1;
+			}
+			else if (getFacing() == 2) {
+				iX = 1;
 				kZ = 0;
 			}
-			else if (south != Block.getIdFromBlock(Block.getBlockFromName("bedrock")) && motionX < 0 && getFacing() == northDir) {
-				iX = -1;//dug blocks are (i-iX,j,k)
+			else if (getFacing() == 3) {
+				iX = 0;
+				kZ = 1;
+			}
+			else if (getFacing() == 0) {
+				iX = -1;
 				kZ = 0;
-			}
-			else if (west != Block.getIdFromBlock(Block.getBlockFromName("bedrock")) && motionZ < 0 && getFacing() == eastDir) {
-				kZ = -1;//dug blocks are (i,j,k-1)
-				iX = 0;
-			}
-			else if (east != Block.getIdFromBlock(Block.getBlockFromName("bedrock")) && motionZ > 0 && getFacing() == westDir) {
-				kZ = 1;//dug blocks are (i,j,k+1)
-				iX = 0;
 			}
 			else {
 				return;
 			}
+			
+			// We should dig first before we place anything.
+			
+			int roofYOffset = 0;
+			if (hY != 0) {
+				roofYOffset = 1;
+			}
+			// if the builder is digging on x axis
+			if (iX != 0) {
+				// if there is gravel, sand, water, lava,... in the ceiling then change the block
+				putRoof(i + iX, j + 4 + roofYOffset + hY, k, 5, worldObj, upperCenterBlockStack);
+				putRoof(i + iX, j + 4 + roofYOffset + hY, k - 1, 4, worldObj, upperBlockStack);
+				putRoof(i + iX, j + 4 + roofYOffset + hY, k + 1, 6, worldObj, upperBlock1Stack);
+				
+				// if the builder is digging on z axis
+			} else if (kZ != 0) {
+				putRoof(i, j + 4 + roofYOffset + hY, k + kZ, 5, worldObj, upperCenterBlockStack);
+				putRoof(i - 1, j + 4 + roofYOffset + hY, k + kZ, 4, worldObj, upperBlockStack);
+				putRoof(i + 1, j + 4 + roofYOffset + hY, k + kZ, 6, worldObj, upperBlock1Stack);
+			}
+			// if the builder is digging on x axis
+			if (iX != 0) {
+				digAwayXAxis(i, j, k, iX, hY);
+			} else if (kZ != 0) {
+				digAwayZAxis(i, j, k, kZ, hY);
+			}
+			
 			// builder is going flat
 			if (hY == 0 && underBlockStack != null
 					&& worldObj.getBlock(i, j - 1 + hY, k) != Block.getBlockFromItem(underBlockStack.getItem())
@@ -1275,15 +965,15 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 				getBlockList(worldObj, i, j - 1 + hY, k);
 				worldObj.setBlock(i, j - 2, k, Block.getBlockFromItem(underBlockStack.getItem()),
 						underBlockStack.getItem().getMetadata(underBlockStack.getItemDamage()), 3);
-
-				worldObj.setBlock(i+1, j - 1, k, Blocks.air,
-						underBlockStack.getItem().getMetadata(underBlockStack.getItemDamage()), 3);
-				worldObj.setBlock(i-1, j - 1, k, Blocks.air,
-						underBlockStack.getItem().getMetadata(underBlockStack.getItemDamage()), 3);
-				worldObj.setBlock(i, j - 1, k, Blocks.air,
-						underBlockStack.getItem().getMetadata(underBlockStack.getItemDamage()), 3);
-
 				decrStackSize(3, 1);// decr underblock
+				
+				// this is only working here. whatever...
+				getBlockList(worldObj, i, j + hY, k);
+				getBlockList(worldObj, i + 1, j + hY, k);
+				getBlockList(worldObj, i - 1, j + hY, k);
+				this.harvestBlock_do(Vec3.createVectorHelper(i, j + hY, k));
+				this.harvestBlock_do(Vec3.createVectorHelper(i + 1, j + hY, k));
+				this.harvestBlock_do(Vec3.createVectorHelper(i - 1, j + hY, k));
 			}
 
 			//placing the block (not the one right under the track but below)
@@ -1295,38 +985,6 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 				decrStackSize(2, 1);// decr underblock2
 			}
 
-			int d = 0;
-			int roofYOffset = 0;
-			if (hY != 0) {
-				roofYOffset = 1;
-			}
-			//if the builder is digging on x axis
-			if (iX != 0) {
-				// if there is gravel, sand, water, lava,... in the ceiling then change the block
-				putRoof(i + iX, j + 3 + roofYOffset + hY, k, 5, worldObj, upperCenterBlockStack);
-				putRoof(i + iX, j + 3 + roofYOffset + hY, k - 1, 4, worldObj, upperBlockStack);
-				putRoof(i + iX, j + 3 + roofYOffset + hY, k + 1, 6, worldObj, upperBlock1Stack);
-				d = iX;
-
-				//if the builder is digging on z axis
-			}
-			else if (kZ != 0) {
-				putRoof(i, j + 3 + roofYOffset + hY, k + kZ, 5, worldObj, upperCenterBlockStack);
-				putRoof(i - 1, j + 3 + roofYOffset + hY, k + kZ, 4, worldObj, upperBlockStack);
-				putRoof(i + 1, j + 3 + roofYOffset + hY, k + kZ, 6, worldObj, upperBlock1Stack);
-				d = kZ;
-			}
-			//when tunnel is active, blocks are dug further in front to let space for glass
-			if (tunnelActive) {
-				d = 3 * d;
-			}
-			//if the builder is digging on x axis
-			if (iX != 0) {
-				digOnXAxis(i, j, k, d, iX, hY);
-			}
-			else if (kZ != 0) {
-				digOnZAxis(i, j, k, d, kZ, hY);
-			}
 
 			//torchPlacer(i, j, k, iX, kZ);
 
@@ -1355,6 +1013,185 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 					decrStackSize(1, 1);
 				}
 				RailTools.placeRailAt(tracksStack.copy(), worldObj, i + iX, j + hY, k + kZ);
+			}
+		}
+	}
+	
+	private void digAwayXAxis(int i, int j, int k, int iX, int hY) {
+		for (int a = 0; a <= 3; a++) {
+			getBlockList(worldObj, i + iX, j + hY + a, k);
+			getBlockList(worldObj, i + iX, j + hY + a, k + 1);
+			getBlockList(worldObj, i + iX, j + hY + a, k - 1);
+		}
+		if (!((worldObj.getBlock(i + iX, j + hY, k - 1) == Blocks.rail)
+				|| (worldObj.getBlock(i + iX, j + hY, k - 1)) == BlockIDs.tcRail.block
+				|| (worldObj.getBlock(i + iX, j + hY, k - 1)) == BlockIDs.tcRailGag.block) && followTracks) {
+			worldObj.setBlock(i + iX, j + hY, k - 1, Blocks.air);
+			this.harvestBlock_do(Vec3.createVectorHelper(i - 1, j + hY, k - 1));
+		}
+		if (!((worldObj.getBlock(i + iX, j + hY, k + 1) == Blocks.rail)
+				|| (worldObj.getBlock(i + iX, j + hY, k + 1)) == BlockIDs.tcRail.block
+				|| (worldObj.getBlock(i + iX, j + hY, k + 1)) == BlockIDs.tcRailGag.block) && followTracks) {
+			worldObj.setBlock(i + iX, j + hY, k + 1, Blocks.air);
+			this.harvestBlock_do(Vec3.createVectorHelper(i + 1, j + hY, k + 1));
+		}
+		if (!((worldObj.getBlock(i + iX, j + hY, k) == Blocks.rail)
+				|| (worldObj.getBlock(i + iX, j + hY, k)) == BlockIDs.tcRail.block
+				|| (worldObj.getBlock(i + iX, j + hY, k)) == BlockIDs.tcRailGag.block) && followTracks) {
+			worldObj.setBlock(i + iX, j + hY, k, Blocks.air);
+			this.harvestBlock_do(Vec3.createVectorHelper(i + iX, j + hY, k));
+		}
+		for (int b = 1; b <= 3; b++) {
+			this.harvestBlock_do(Vec3.createVectorHelper(i + iX, j + hY + b, k));
+			this.harvestBlock_do(Vec3.createVectorHelper(i + iX, j + hY + b, k + 1));
+			this.harvestBlock_do(Vec3.createVectorHelper(i + iX, j + hY + b, k - 1));
+		}
+		if (tunnelActive) {
+			for (int c = 0; c <= 3; c++) {
+				getBlockList(worldObj, i + iX, j + hY + c, k - 2);
+				getBlockList(worldObj, i + iX, j + hY + c, k + 2);
+				if (worldObj.getBlock(i + iX, j + hY + c, k - 2) != Block
+						.getBlockFromItem(tunnelBlockStack.getItem())) {
+					this.harvestBlock_do(Vec3.createVectorHelper(i + iX, j + hY + c, k - 2));
+					worldObj.setBlock(i + iX, j + hY + c, k - 2, Block.getBlockFromItem(tunnelBlockStack.getItem()),
+							tunnelBlockStack.getItem().getMetadata(tunnelBlockStack.getItemDamage()), 3);
+				}
+				if (worldObj.getBlock(i + iX, j + hY + c, k + 2) != Block
+						.getBlockFromItem(tunnelBlockStack.getItem())) {
+					this.harvestBlock_do(Vec3.createVectorHelper(i + iX, j + hY + c, k + 2));
+					worldObj.setBlock(i + iX, j + hY + c, k + 2, Block.getBlockFromItem(tunnelBlockStack.getItem()),
+							tunnelBlockStack.getItem().getMetadata(tunnelBlockStack.getItemDamage()), 3);
+				}
+			}
+			if (upperCenterBlockStack != null) {
+				if (worldObj.getBlock(i + iX, j + hY + 4, k) == Block.getBlockFromItem(upperCenterBlockStack.getItem())
+						&& worldObj.getBlockMetadata(i + iX, j + hY + 4, k) == upperCenterBlockStack.getItem()
+								.getMetadata(upperCenterBlockStack.getItemDamage())) {
+					return;
+				} else {
+					getBlockList(worldObj, i + iX, j + hY + 4, k);
+					this.harvestBlock_do(Vec3.createVectorHelper(i + iX, j + hY + 4, k));
+					worldObj.setBlock(i + iX, j + hY + 4, k, Block.getBlockFromItem(upperCenterBlockStack.getItem()),
+							upperCenterBlockStack.getItem().getMetadata(upperCenterBlockStack.getItemDamage()), 3);
+					decrStackSize(5, 1);
+				}
+			}
+			if (upperBlockStack != null) {
+				if (worldObj.getBlock(i + iX, j + hY + 4, k - 1) == Block.getBlockFromItem(upperBlockStack.getItem())
+						&& worldObj.getBlockMetadata(i + iX, j + hY + 4, k - 1) == upperBlockStack.getItem()
+								.getMetadata(upperBlockStack.getItemDamage())) {
+					return;
+				} else {
+					getBlockList(worldObj, i + iX, j + hY + 4, k - 1);
+					this.harvestBlock_do(Vec3.createVectorHelper(i + iX, j + hY + 4, k - 1));
+					worldObj.setBlock(i + iX, j + hY + 4, k - 1, Block.getBlockFromItem(upperBlockStack.getItem()),
+							upperBlockStack.getItem().getMetadata(upperBlockStack.getItemDamage()), 3);
+					decrStackSize(4, 1);
+				}
+			}
+			if (upperBlock1Stack != null) {
+				if (worldObj.getBlock(i + iX, j + hY + 4, k + 1) == Block.getBlockFromItem(upperBlock1Stack.getItem())
+						&& worldObj.getBlockMetadata(i + iX, j + hY + 4, k + 1) == upperBlock1Stack.getItem()
+								.getMetadata(upperBlock1Stack.getItemDamage())) {
+					return;
+				} else {
+					getBlockList(worldObj, i + iX, j + hY + 4, k + 1);
+					this.harvestBlock_do(Vec3.createVectorHelper(i + iX, j + hY + 4, k + k + 1));
+					worldObj.setBlock(i + iX, j + hY + 4, k + 1, Block.getBlockFromItem(upperBlock1Stack.getItem()),
+							upperBlock1Stack.getItem().getMetadata(upperBlock1Stack.getItemDamage()), 3);
+					decrStackSize(6, 1);
+				}
+			}
+		}
+	}
+	
+	private void digAwayZAxis(int i, int j, int k, int kZ, int hY) {
+		
+		for (int a = 0; a <= 3; a++) {
+			getBlockList(worldObj, i, j + hY + a, k + kZ);
+			getBlockList(worldObj, i - 1, j + hY + a, k + kZ);
+			getBlockList(worldObj, i + 1, j + hY + a, k + kZ);
+		}
+		if (!((worldObj.getBlock(i - 1, j + hY, k + kZ) == Blocks.rail)
+				|| (worldObj.getBlock(i - 1, j + hY, k + kZ)) == BlockIDs.tcRail.block
+				|| (worldObj.getBlock(i - 1, j + hY, k + kZ)) == BlockIDs.tcRailGag.block) && followTracks) {
+			worldObj.setBlock(i - 1, j + hY, k + kZ, Blocks.air);
+			this.harvestBlock_do(Vec3.createVectorHelper(i - 1, j + hY, k + kZ));
+		}
+		if (!((worldObj.getBlock(i + 1, j + hY, k + kZ) == Blocks.rail)
+				|| (worldObj.getBlock(i + 1, j + hY, k + kZ)) == BlockIDs.tcRail.block
+				|| (worldObj.getBlock(i + 1, j + hY, k + kZ)) == BlockIDs.tcRailGag.block) && followTracks) {
+			worldObj.setBlock(i + 1, j + hY, k + kZ, Blocks.air);
+			this.harvestBlock_do(Vec3.createVectorHelper(i + 1, j + hY, k + kZ));
+		}
+		if (!((worldObj.getBlock(i, j + hY, k + kZ) == Blocks.rail)
+				|| (worldObj.getBlock(i, j + hY, k + kZ)) == BlockIDs.tcRail.block
+				|| (worldObj.getBlock(i, j + hY, k + kZ)) == BlockIDs.tcRailGag.block) && followTracks) {
+			worldObj.setBlock(i, j + hY, k + kZ, Blocks.air);
+			this.harvestBlock_do(Vec3.createVectorHelper(i, j + hY, k + kZ));
+		}
+		for (int b = 1; b <= 3; b++) {
+			this.harvestBlock_do(Vec3.createVectorHelper(i, j + hY + b, k + kZ));
+			this.harvestBlock_do(Vec3.createVectorHelper(i + 1, j + hY + b, k + kZ));
+			this.harvestBlock_do(Vec3.createVectorHelper(i - 1, j + hY + b, k + kZ));
+		}
+		if (tunnelActive) {
+			for (int c = 0; c <= 3; c++) {
+				getBlockList(worldObj, i - 2, j + hY + c, k + kZ);
+				getBlockList(worldObj, i + 2, j + hY + c, k + kZ);
+				if (worldObj.getBlock(i - 2, j + hY + c, k + kZ) != Block
+						.getBlockFromItem(tunnelBlockStack.getItem())) {
+					this.harvestBlock_do(Vec3.createVectorHelper(i - 2, j + hY + c, k + kZ));
+					worldObj.setBlock(i - 2, j + hY + c, k + kZ,
+							Block.getBlockFromItem(tunnelBlockStack.getItem()),
+							tunnelBlockStack.getItem().getMetadata(tunnelBlockStack.getItemDamage()), 3);
+				}
+				if (worldObj.getBlock(i + 2, j + hY + c, k + kZ) != Block
+						.getBlockFromItem(tunnelBlockStack.getItem())) {
+					this.harvestBlock_do(Vec3.createVectorHelper(i + 2, j + hY + c, k + kZ));
+					worldObj.setBlock(i + 2, j + hY + c, k + kZ,
+							Block.getBlockFromItem(tunnelBlockStack.getItem()),
+							tunnelBlockStack.getItem().getMetadata(tunnelBlockStack.getItemDamage()), 3);
+				}
+			}
+			if (upperCenterBlockStack != null) {
+				if (worldObj.getBlock(i, j + hY + 4, k + kZ) == Block.getBlockFromItem(upperCenterBlockStack.getItem())
+						&& worldObj.getBlockMetadata(i, j + hY + 4, k + kZ) == upperCenterBlockStack.getItem()
+								.getMetadata(upperCenterBlockStack.getItemDamage())) {
+					return;
+				} else {
+					getBlockList(worldObj, i, j + hY + 4, k + kZ);
+					this.harvestBlock_do(Vec3.createVectorHelper(i, j + hY + 4, k + kZ));
+					worldObj.setBlock(i, j + hY + 4, k + kZ, Block.getBlockFromItem(upperCenterBlockStack.getItem()),
+							upperCenterBlockStack.getItem().getMetadata(upperCenterBlockStack.getItemDamage()), 3);
+					decrStackSize(5, 1);
+				}
+			}
+			if (upperBlockStack != null) {
+				if (worldObj.getBlock(i - 1, j + hY + 4, k + kZ) == Block.getBlockFromItem(upperBlockStack.getItem())
+						&& worldObj.getBlockMetadata(i - 1, j + hY + 4, k + kZ) == upperBlockStack.getItem()
+								.getMetadata(upperBlockStack.getItemDamage())) {
+					return;
+				} else {
+					getBlockList(worldObj, i - 1, j + hY + 4, k + kZ);
+					this.harvestBlock_do(Vec3.createVectorHelper(i - 1, j + hY + 4, k + kZ));
+					worldObj.setBlock(i - 1, j + hY + 4, k + kZ, Block.getBlockFromItem(upperBlockStack.getItem()),
+							upperBlockStack.getItem().getMetadata(upperBlockStack.getItemDamage()), 3);
+					decrStackSize(4, 1);
+				}
+			}
+			if (upperBlock1Stack != null) {
+				if (worldObj.getBlock(i + 1, j + hY + 4, k + kZ) == Block.getBlockFromItem(upperBlock1Stack.getItem())
+						&& worldObj.getBlockMetadata(i + 1, j + hY + 4, k + kZ) == upperBlock1Stack.getItem()
+								.getMetadata(upperBlock1Stack.getItemDamage())) {
+					return;
+				} else {
+					getBlockList(worldObj, i + 1, j + hY + 4, k + kZ);
+					this.harvestBlock_do(Vec3.createVectorHelper(i + 1, j + hY + 4, k + kZ));
+					worldObj.setBlock(i + 1, j + hY + 4, k + kZ, Block.getBlockFromItem(upperBlock1Stack.getItem()),
+							upperBlock1Stack.getItem().getMetadata(upperBlock1Stack.getItemDamage()), 3);
+					decrStackSize(6, 1);
+				}
 			}
 		}
 	}
