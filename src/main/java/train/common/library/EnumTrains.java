@@ -74,7 +74,7 @@ public enum EnumTrains {
 	tankWagonYellow("Tank Wagon Yellow",EntityTankWagon.class, 39,ItemIDs.minecartTankWagon.item,"train_tank_us","tank",0,0,6,0,0,0,0,0,40000,null,18,null,null,0.98,1.98,new String[] {"Capacity: 40000mb"}),
 
 	/** Tenders */
-	tenderSmall("Tender Small Black",EntityTenderSmall.class, 4,ItemIDs.minecartTender.item,"train_tender","tender",0,0,0.1,0,0,0,0,0,5000,null,18,null,null,0.98,0.98,new String[] {"Water capacity: 5000mb"}),
+	tenderSmall("Tender Small Black",EntityTenderSmall.class, 4,ItemIDs.minecartTender.item,"train_tender","tender",0,0,0.1,0,0,0,0,0,5000,new String[]{"Red","Black"},18,null,null,0.98,0.98,new String[] {"Water capacity: 5000mb"}),
 	//tenderHeavy("Tender Heavy",EntityTenderHeavy.class, 34,ItemIDs.minecartTenderHeavy.item,"train_tender_heavy","tender",0,0,2,0,0,0,0,0,14000,null,18,null,null,0.98,1.98,new String[] {"Water capacity: 14000mb"}),
 	tender4_4_0("Tender 4-4-0 Red",EntityTender4_4_0.class, 83,ItemIDs.minecartSteamRedTender.item,"train_tender_steam","tender",0,0,0.2,0,0,0,0,0,8000,new String[] {"Black","White","Brown","Blue","Green","Red"},18,null,null,0.98,0.98,new String[] {"Water capacity: 8000mb"}),
 	tenderBR01("Tender BR01",EntityTenderBR01_DB.class, 103,ItemIDs.minecartTenderBR01_DB.item,"train_tender_br01","tender",0,0,0.5,0,0,0,0,0,20000,null,18,null,null,0.98,1.98,new String[] {"Water capacity: 20000mb"}),
