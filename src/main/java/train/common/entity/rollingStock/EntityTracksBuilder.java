@@ -621,7 +621,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 				}
 			}
 		}
-		if (BuilderInvent[7] != null && canBeTunnel(BuilderInvent[7]) && BuilderInvent[7].stackSize>=12) {//&& isAutorizedBlock(BuilderInvent[7].itemID) && (BuilderInvent[7].itemID < 500)) {
+		if (BuilderInvent[7] != null && canBeTunnel(BuilderInvent[7])) {
 			//tunnelBlock = BuilderInvent[7].itemID;
 			tunnelBlockStack = BuilderInvent[7].copy();
 			tunnelActive = true;
@@ -1054,17 +1054,25 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 			for (int c = 0; c <= 3; c++) {
 				getBlockList(worldObj, i + iX, j + hY + c, k - 2);
 				getBlockList(worldObj, i + iX, j + hY + c, k + 2);
-				if (worldObj.getBlock(i + iX, j + hY + c, k - 2) != Block
-						.getBlockFromItem(tunnelBlockStack.getItem())) {
+				if (worldObj.getBlock(i + iX, j + hY + c, k - 2) == Block.getBlockFromItem(tunnelBlockStack.getItem())
+						&& worldObj.getBlockMetadata(i + iX, j + hY + c, k - 2) == tunnelBlockStack.getItem()
+								.getMetadata(tunnelBlockStack.getItemDamage())) {
+					return;
+				} else {
 					this.harvestBlock_do(Vec3.createVectorHelper(i + iX, j + hY + c, k - 2));
 					worldObj.setBlock(i + iX, j + hY + c, k - 2, Block.getBlockFromItem(tunnelBlockStack.getItem()),
 							tunnelBlockStack.getItem().getMetadata(tunnelBlockStack.getItemDamage()), 3);
+					decrStackSize(7, 1);
 				}
-				if (worldObj.getBlock(i + iX, j + hY + c, k + 2) != Block
-						.getBlockFromItem(tunnelBlockStack.getItem())) {
+				if (worldObj.getBlock(i + iX, j + hY + c, k + 2) == Block.getBlockFromItem(tunnelBlockStack.getItem())
+						&& worldObj.getBlockMetadata(i + iX, j + hY + c, k + 2) == tunnelBlockStack.getItem()
+								.getMetadata(tunnelBlockStack.getItemDamage())) {
+					return;
+				} else {
 					this.harvestBlock_do(Vec3.createVectorHelper(i + iX, j + hY + c, k + 2));
 					worldObj.setBlock(i + iX, j + hY + c, k + 2, Block.getBlockFromItem(tunnelBlockStack.getItem()),
 							tunnelBlockStack.getItem().getMetadata(tunnelBlockStack.getItemDamage()), 3);
+					decrStackSize(7, 1);
 				}
 			}
 			if (upperCenterBlockStack != null) {
@@ -1143,19 +1151,27 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 			for (int c = 0; c <= 3; c++) {
 				getBlockList(worldObj, i - 2, j + hY + c, k + kZ);
 				getBlockList(worldObj, i + 2, j + hY + c, k + kZ);
-				if (worldObj.getBlock(i - 2, j + hY + c, k + kZ) != Block
-						.getBlockFromItem(tunnelBlockStack.getItem())) {
+				if (worldObj.getBlock(i - 2, j + hY + c, k + kZ) == Block.getBlockFromItem(tunnelBlockStack.getItem())
+						&& worldObj.getBlockMetadata(i - 2, j + hY + c, k + kZ) == tunnelBlockStack.getItem()
+								.getMetadata(tunnelBlockStack.getItemDamage())) {
+					return;
+				} else {
 					this.harvestBlock_do(Vec3.createVectorHelper(i - 2, j + hY + c, k + kZ));
 					worldObj.setBlock(i - 2, j + hY + c, k + kZ,
 							Block.getBlockFromItem(tunnelBlockStack.getItem()),
 							tunnelBlockStack.getItem().getMetadata(tunnelBlockStack.getItemDamage()), 3);
+					decrStackSize(7, 1);
 				}
-				if (worldObj.getBlock(i + 2, j + hY + c, k + kZ) != Block
-						.getBlockFromItem(tunnelBlockStack.getItem())) {
+				if (worldObj.getBlock(i + 2, j + hY + c, k + kZ) == Block.getBlockFromItem(tunnelBlockStack.getItem())
+						&& worldObj.getBlockMetadata(i + 2, j + hY + c, k + kZ) == tunnelBlockStack.getItem()
+								.getMetadata(tunnelBlockStack.getItemDamage())) {
+					return;
+				} else {
 					this.harvestBlock_do(Vec3.createVectorHelper(i + 2, j + hY + c, k + kZ));
 					worldObj.setBlock(i + 2, j + hY + c, k + kZ,
 							Block.getBlockFromItem(tunnelBlockStack.getItem()),
 							tunnelBlockStack.getItem().getMetadata(tunnelBlockStack.getItemDamage()), 3);
+					decrStackSize(7, 1);
 				}
 			}
 			if (upperCenterBlockStack != null) {
