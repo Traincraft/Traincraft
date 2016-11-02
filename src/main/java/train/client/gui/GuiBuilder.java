@@ -25,7 +25,6 @@ import train.common.library.Info;
 public class GuiBuilder extends GuiContainer {
 
 	private EntityTracksBuilder builder;
-	private InventoryLoco invLoco;
 	private int requestedHeight;
 	private EntityPlayer player;
 	private GuiButton buttonLock;

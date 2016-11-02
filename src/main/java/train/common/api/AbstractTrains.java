@@ -8,6 +8,7 @@ import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import io.netty.buffer.ByteBuf;
 import mods.railcraft.api.carts.IMinecart;
 import mods.railcraft.api.carts.IRoutableCart;
+import net.minecraft.entity.EntityList;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -16,6 +17,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.ChunkCoordIntPair;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeChunkManager;
@@ -668,4 +670,16 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		if (nbt == null) { return ""; }
 		return nbt.getString("dest");
 	}
+
+
+	@Override
+	public String getCommandSenderName(){
+		String s = EntityList.getEntityString(this);
+		if (s == null) {
+			s = "generic";
+		}
+
+		return StatCollector.translateToLocal("entity." + s + ".name");
+	}
+
 }

@@ -124,16 +124,16 @@ public class GuiLiquid extends GuiContainer {
 		GL11.glDisable(GL11.GL_LIGHTING);
 		GL11.glDisable(GL11.GL_DEPTH_TEST);
 
-		fontRendererObj.drawString(liquid.getInventoryName(), 65, 1, 0x000000);
-		fontRendererObj.drawString(liquid.getInventoryName(), 65, 3, 0x000000);
-		fontRendererObj.drawString(liquid.getInventoryName(), 63, 1, 0x000000);
-		fontRendererObj.drawString(liquid.getInventoryName(), 63, 3, 0x000000);
+		fontRendererObj.drawString(liquid.getCommandSenderName(), 65, 1, 0x000000);
+		fontRendererObj.drawString(liquid.getCommandSenderName(), 65, 3, 0x000000);
+		fontRendererObj.drawString(liquid.getCommandSenderName(), 63, 1, 0x000000);
+		fontRendererObj.drawString(liquid.getCommandSenderName(), 63, 3, 0x000000);
 
-		fontRendererObj.drawString(liquid.getInventoryName(), 65, 2, 0x000000);
-		fontRendererObj.drawString(liquid.getInventoryName(), 63, 2, 0x000000);
-		fontRendererObj.drawString(liquid.getInventoryName(), 64, 1, 0x000000);
-		fontRendererObj.drawString(liquid.getInventoryName(), 64, 3, 0x000000);
-		fontRendererObj.drawString(liquid.getInventoryName(), 64, 2, 0xd3a900);
+		fontRendererObj.drawString(liquid.getCommandSenderName(), 65, 2, 0x000000);
+		fontRendererObj.drawString(liquid.getCommandSenderName(), 63, 2, 0x000000);
+		fontRendererObj.drawString(liquid.getCommandSenderName(), 64, 1, 0x000000);
+		fontRendererObj.drawString(liquid.getCommandSenderName(), 64, 3, 0x000000);
+		fontRendererObj.drawString(liquid.getCommandSenderName(), 64, 2, 0xd3a900);
 
 		GL11.glEnable(GL11.GL_LIGHTING);
 		GL11.glEnable(GL11.GL_DEPTH_TEST);

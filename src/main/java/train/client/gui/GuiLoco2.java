@@ -30,10 +30,6 @@ public class GuiLoco2 extends GuiContainer {
 	private GuiButton buttonLock;
 
 	private Locomotive loco;
-	private InventoryLoco invLoco;
-	private float yaw;
-	private float roll;
-	private boolean rollDown;
 
 	public GuiLoco2(InventoryPlayer inventoryplayer, Entity entityminecart) {
 		super(new InventoryLoco(inventoryplayer, (Locomotive) entityminecart));
@@ -184,7 +180,7 @@ public class GuiLoco2 extends GuiContainer {
 		fontRendererObj.drawStringWithShadow("only its owner can open", startX, startY + 10, -1);
 		fontRendererObj.drawStringWithShadow("the GUI, change speed, destroy it.", startX, startY + 20, -1);
 		fontRendererObj.drawStringWithShadow("Current state: " + state, startX, startY + 30, -1);
-		fontRendererObj.drawStringWithShadow("Owner: " + ((AbstractTrains) loco).getTrainOwner().trim(), startX,
+		fontRendererObj.drawStringWithShadow("Owner: " + loco.getTrainOwner().trim(), startX,
 				startY + 40, -1);
 	}
 

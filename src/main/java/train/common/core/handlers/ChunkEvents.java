@@ -8,6 +8,7 @@ import com.google.common.collect.LinkedListMultimap;
 import com.google.common.collect.ListMultimap;
 import com.google.common.eventbus.Subscribe;
 
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.ChunkCoordIntPair;
 import net.minecraft.world.World;
@@ -20,7 +21,7 @@ import train.common.api.Locomotive;
 
 public class ChunkEvents implements ForgeChunkManager.LoadingCallback, ForgeChunkManager.PlayerOrderedLoadingCallback {
 
-	@Subscribe
+	@SubscribeEvent
 	public void entityEnteredChunk(EntityEvent.EnteringChunk var1) {
 		Entity var2 = var1.entity;
 		//System.out.println("entered "+var2);
