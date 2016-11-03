@@ -863,7 +863,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 			}
 			this.setDead();
 			if(damagesource.getEntity() instanceof EntityPlayer) {
-				dropCartAsItem();
+				dropCartAsItem(((EntityPlayer)damagesource.getEntity()).capabilities.isCreativeMode);
 				for(ItemStack stack : BuilderInvent){
 					if (stack != null) {
 						entityDropItem(stack, 0);

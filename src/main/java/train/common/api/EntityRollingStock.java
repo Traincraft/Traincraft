@@ -146,8 +146,8 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 	public double bogieShift[] = new double[10];
 	public boolean needsBogieUpdate;
 	private boolean firstLoad = true;
-	public EntityBogie[] bogieLoco = new EntityBogie[10];
-	public EntityBogieUtility[] bogieUtility = new EntityBogieUtility[10];
+	public EntityBogie[] bogieLoco = new EntityBogie[1];
+	public EntityBogieUtility[] bogieUtility = new EntityBogieUtility[1];
 	private boolean hasSpawnedBogie = false;
 	public float prevAnglePitch;
 	private double mountedOffset = -0.5;
@@ -397,7 +397,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				if (this instanceof IPassenger) {
 					this.setDead();
 					if (damagesource.getEntity() instanceof EntityPlayer) {
-						dropCartAsItem();
+						dropCartAsItem(((EntityPlayer)damagesource.getEntity()).capabilities.isCreativeMode);
 					}
 				}
 			}
@@ -627,6 +627,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 					double rads = this.serverRealRotation * 3.141592653589793D / 180.0D;
 					double pitchRads = this.renderPitch * 3.141592653589793D / 180.0D;
 					this.bogieLoco[i] = new EntityBogie(worldObj, (posX - Math.cos(rads) * this.bogieShift[i]), posY + ((Math.tan(pitchRads) * -this.bogieShift[i]) + getMountedYOffset()), (posZ - Math.sin(rads) * this.bogieShift[i]), this, this.uniqueID, i, this.bogieShift[i]);
+
 					//if(!worldObj.isRemote)System.out.println("ID: "+this.getID());
 					if (!worldObj.isRemote && bogieLoco[i] != null) worldObj.spawnEntityInWorld(bogieLoco[i]);
 					this.needsBogieUpdate = true;

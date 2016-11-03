@@ -554,10 +554,12 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		return -1;
 	}
 
-	public void dropCartAsItem() {
-		for (ItemStack item : getItemsDropped()) {
-			setUniqueIDToItem(item);
-			entityDropItem(item, 0);
+	public void dropCartAsItem(boolean isCreative) {
+		if (!isCreative) {
+			for (ItemStack item : getItemsDropped()) {
+				setUniqueIDToItem(item);
+				entityDropItem(item, 0);
+			}
 		}
 	}
 

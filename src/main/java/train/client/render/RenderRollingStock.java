@@ -264,8 +264,8 @@ public class RenderRollingStock extends Render {
 
 	private void renderSmokeFX(EntityRollingStock cart, float yaw, float pitch, String smokeType, ArrayList<double[]> smokeFX, int smokeIterations, float time, boolean hasSmokeOnSlopes) {
 		if(cart instanceof Locomotive && !((Locomotive)cart).isLocoTurnedOn()){return;}
-		double rads = Math.toDegrees(yaw);
-		double pitchRads = Math.toDegrees(pitch);
+		double rads = yaw * 3.141592653589793D / 180.0D;
+		double pitchRads = pitch * 3.141592653589793D / 180.0D;
 		if(Math.abs(pitch)>30)return;
 		//if (pitch != 0 && !hasSmokeOnSlopes) { return; }
 		if ((cart instanceof Locomotive && ((Locomotive) cart).getFuel() > 0) || (cart instanceof EntityTracksBuilder && ((EntityTracksBuilder) cart).getFuel() > 0)) {
