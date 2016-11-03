@@ -77,9 +77,9 @@ public class HUDloco extends GuiScreen {
 		GL11.glEnable(3042 /* GL_BLEND */);
 		GL11.glEnable(32826);
 		fontRendererObj.drawStringWithShadow("Speed:", 106, windowHeight + 7 + (h), 0xFFFFFF);
-		fontRendererObj.drawStringWithShadow((int) Math.abs(((float) (speed))) + "", 106,
+		fontRendererObj.drawStringWithShadow("  " + (int) Math.abs(((float) (speed))), 106,
 				windowHeight + 18 + (h), 0xFFFFFF);
-		fontRendererObj.drawStringWithShadow("Km/h", 106, windowHeight + 29 + (h), 0xFFFFFF);
+		fontRendererObj.drawStringWithShadow(" Km/h", 106, windowHeight + 29 + (h), 0xFFFFFF);
 
 		if (loco.canOverheat()) {
 			fontRendererObj.drawStringWithShadow("State: " + loco.getState(), 50, windowHeight + 80, 0xFFFFFF);
@@ -156,8 +156,9 @@ public class HUDloco extends GuiScreen {
 		drawTexturedModalRect(70, windowHeight + 17, 190, 169 + l_Scaled, 6, t);// l max = 49
 		GL11.glDisable(32826);
 		GL11.glDisable(3042 /* GL_BLEND */);
+		/* this is for the red overlay if you don't put water into steam trains */
 		if (l <= 1 && loco.getIsFuelled()) {
-			this.drawGradientRect(0, 0, windowWidth, windowHeight, 1615855616, -1602211792);
+			this.drawGradientRect(0, 0, windowWidth, windowHeight + 100, 1615855616, -1602211792);
 		}
 	}
 
