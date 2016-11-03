@@ -158,7 +158,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		dataWatcher.addObject(10, numberOfTrains);
 		dataWatcher.addObject(11, uniqueID);
 		dataWatcher.addObject(13, trainCreator);
-		if(!ConfigHandler.CHUNK_LOADING)shouldChunkLoad=false;
+		shouldChunkLoad=ConfigHandler.CHUNK_LOADING;
 		this.setFlag(7, shouldChunkLoad);
 		
 		for (EnumTrains trains : EnumTrains.values()) {
@@ -232,7 +232,9 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 
 	@Override
 	public void onUpdate() {
-		super.onUpdate();
+		if (!(this instanceof EntityRollingStock)) {
+			super.onUpdate();
+		}
 		//if(this instanceof Locomotive)System.out.println("I'm alive. Remote: " + worldObj.isRemote);
 		if (!worldObj.isRemote && this.uniqueID == -1) {
 			if (FMLCommonHandler.instance().getMinecraftServerInstance() != null) {
@@ -250,8 +252,10 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		if (shouldChunkLoad){
 			if (!worldObj.isRemote) {
 				if (chunkTicket == null) {
-					chunkTicket = ForgeChunkManager.requestTicket(Traincraft.instance, worldObj, Type.NORMAL);
+					chunkTicket = ForgeChunkManager.requestTicket(Traincraft.instance, worldObj, Type.ENTITY);
+					chunkTicket.bindEntity(this);
 					chunkForced = false;
+					//System.out.println("assigned Ticket");
 				}
 				if (chunkTicket == null) {
 					if (playerEntity != null && !this.chunkLoadErrorDisplayed) {
@@ -262,9 +266,10 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 				}
 				else if(!chunkForced){
 					chunkTicket.getModData().setInteger("locoID", this.ID);
-					ForgeChunkManager.forceChunk(chunkTicket, new ChunkCoordIntPair((int) posX >> 4, (int) posZ >> 4));
+					ForgeChunkManager.forceChunk(chunkTicket, new ChunkCoordIntPair((int) (posX * 0.0625F), (int) (posZ  * 0.0625F)));
 					forceChunkLoading(chunkTicket);
 					chunkForced = true;
+					//System.out.println("forced chunk");
 				}
 			}
 		}
@@ -294,7 +299,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 	public Ticket getChunkTicket(){
 		return this.chunkTicket;
 	}
-	
+
 	public void forceChunkLoading(Ticket ticket) {
 		if (chunkTicket == null) {
 			chunkTicket = ticket;

@@ -636,7 +636,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			}
 		}
 		
-		//super.onUpdate();
+		super.onUpdate();
 		
 		/**
 		 * Set the uniqueID if the entity doesn't have one.

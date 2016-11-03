@@ -6,7 +6,6 @@ import java.util.Set;
 
 import com.google.common.collect.LinkedListMultimap;
 import com.google.common.collect.ListMultimap;
-import com.google.common.eventbus.Subscribe;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.entity.Entity;
@@ -23,33 +22,35 @@ public class ChunkEvents implements ForgeChunkManager.LoadingCallback, ForgeChun
 
 	@SubscribeEvent
 	public void entityEnteredChunk(EntityEvent.EnteringChunk var1) {
-		Entity var2 = var1.entity;
-		//System.out.println("entered "+var2);
-		if (var2 instanceof AbstractTrains) {
-			if (!var2.worldObj.isRemote) {
-				AbstractTrains stock = (AbstractTrains) var2;
-				Ticket ticket = stock.getChunkTicket();
-				//System.out.println(stock+" "+stock.shouldChunkLoad);
-				if(ticket!=null && stock.shouldChunkLoad)stock.forceChunkLoading(ticket);
-			}
-		}
-		if (var2 instanceof EntityBogie) {
-			if (!var2.worldObj.isRemote) {
-				if(((EntityBogie) var2).entityMainTrain!=null){
-					AbstractTrains stock = ((EntityBogie) var2).entityMainTrain;
+		if (var1.entity instanceof AbstractTrains || var1.entity instanceof EntityBogie) {
+			Entity var2 = var1.entity;
+			//System.out.println("entered " + var2);
+			if (var2 instanceof AbstractTrains) {
+				if (!var2.worldObj.isRemote) {
+					AbstractTrains stock = (AbstractTrains) var2;
 					Ticket ticket = stock.getChunkTicket();
-					if(ticket!=null && stock.shouldChunkLoad)stock.forceChunkLoading(ticket);
+					//System.out.println(stock + " " + stock.shouldChunkLoad);
+					if (ticket != null && stock.shouldChunkLoad) stock.forceChunkLoading(ticket);
 				}
 			}
-		}
-		if(var2 instanceof AbstractTrains && !(var2 instanceof Locomotive)){
-			AbstractTrains stock = (AbstractTrains) var2;
-			if (stock.train != null && stock.train.getTrains().size() > 1){
-				for (int i = 0; i < stock.train.getTrains().size(); i++) {
-					if(stock.train.getTrains().get(i)!=null && stock.train.getTrains().get(i) instanceof Locomotive){
-						Locomotive loco = (Locomotive) stock.train.getTrains().get(i);
-						Ticket ticket = loco.getChunkTicket();
-						if(ticket!=null && loco.shouldChunkLoad)loco.forceChunkLoading(ticket);
+			if (var2 instanceof EntityBogie) {
+				if (!var2.worldObj.isRemote) {
+					if (((EntityBogie) var2).entityMainTrain != null) {
+						AbstractTrains stock = ((EntityBogie) var2).entityMainTrain;
+						Ticket ticket = stock.getChunkTicket();
+						if (ticket != null && stock.shouldChunkLoad) stock.forceChunkLoading(ticket);
+					}
+				}
+			}
+			if (var2 instanceof AbstractTrains && !(var2 instanceof Locomotive)) {
+				AbstractTrains stock = (AbstractTrains) var2;
+				if (stock.train != null && stock.train.getTrains().size() > 1) {
+					for (int i = 0; i < stock.train.getTrains().size(); i++) {
+						if (stock.train.getTrains().get(i) != null && stock.train.getTrains().get(i) instanceof Locomotive) {
+							Locomotive loco = (Locomotive) stock.train.getTrains().get(i);
+							Ticket ticket = loco.getChunkTicket();
+							if (ticket != null && loco.shouldChunkLoad) loco.forceChunkLoading(ticket);
+						}
 					}
 				}
 			}

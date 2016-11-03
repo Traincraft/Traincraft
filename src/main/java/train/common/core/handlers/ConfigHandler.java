@@ -29,17 +29,11 @@ public class ConfigHandler {
 	public static boolean ENABLE_TENDER;
 	public static boolean CHUNK_LOADING;
 	public static boolean SHOW_POSSIBLE_COLORS;
-	public static boolean MYSQL_ENABLE;
 	public static int TRAINCRAFT_VILLAGER_ID;
 	public static boolean REAL_TRAIN_SPEED;
 	public static boolean RETROGEN_CHUNKS;
 
-	public static String MYSQL_URL;
-	public static String MYSQL_USER;
-	public static String MYSQL_PASSWORD;
 
-	private final static String CATEGORY_KEYS = "Keys";
-	private final static String CATEGORY_MYSQL = "MYSQL";
 
 	public static void init(File configFile) {
 		Configuration cf = new Configuration(configFile);
@@ -64,15 +58,7 @@ public class ConfigHandler {
 			SHOW_POSSIBLE_COLORS = SHOW_POSSIBLE_COLORS_PROP.getBoolean(true);
 			REAL_TRAIN_SPEED = cf.get(CATEGORY_GENERAL, "REAL_TRAIN_SPEED", false).getBoolean(false);
 			RETROGEN_CHUNKS = cf.getBoolean("ENABLE_RETROGEN", CATEGORY_GENERAL, false, "This will generate ores in existing chunks prior to installing Traincraft 5. Do note that if this is off chunks that are loaded will not retrogen later, no matter what.");
-			
-			/* Mysql */
-			Property mysqlEnable = cf.get(CATEGORY_MYSQL, "MYSQL_ENABLE", false);
-			mysqlEnable.comment = "MySQL logger is ment to log train place, destroy, color, create and explode events to your local MYSQL server. \n" + "This will NOT send any information elsewhere. \n" + "Logged events can be used on webpage (if you know how to program in PhP or any other WEB scripting language) \n" + "to track history of every train or just track, who has done something recently. \n" + "This ONLY works on dedicated servers, ONLY the OWNER of the SERVER must setup the url, the username and password for his mysql server where stats will be sent \n" + "That means this system DOESN'T have access to ANY of the CLIENT informations \n" + "The url will be handled like so in the code: String url ='jdbc:mysql://' +ConfigHandler.MYSQL_URL; \n" + "If you have questions about this code please contact \n" + "Spitfire4466 and/or DragonBornSR (author of the mysql part and owner of thesociety.eu Traincraft server: http://forum.thesociety.eu)";
 
-			MYSQL_ENABLE = mysqlEnable.getBoolean(false);
-			MYSQL_URL = cf.get(CATEGORY_MYSQL, "MYSQL_URL", "some url").getString();
-			MYSQL_USER = cf.get(CATEGORY_MYSQL, "MYSQL_USER", "your username").getString();
-			MYSQL_PASSWORD = cf.get(CATEGORY_MYSQL, "MYSQL_PASSWORD", "your password").getString();
 
 			// /* Blocks */
 			// BlockIDs.assemblyTableI.blockID = cf.get(CATEGORY_BLOCK , "block_assemblytableI",
