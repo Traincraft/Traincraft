@@ -34,16 +34,6 @@ public class CollisionHandler {
 
 	public void handleCollisions(Entity entityOne, AxisAlignedBB boundingBox) {
 		AxisAlignedBB box = null;
-		/* Box is expanded depending of direction */
-		if (entityOne.rotationYaw == -90 || entityOne.rotationYaw == 90) {
-			box = boundingBox.expand(0.4, 1, 1);
-		}
-		else if (entityOne.rotationYaw == 180 || entityOne.rotationYaw == 0) {
-			box = boundingBox.expand(1, 1, 0.4);
-		}
-		else {
-			box = boundingBox.expand(1, 1, 1);
-		}
 		/**
 		 * A smaller BB is needed otherwise the entity will get sucked back as soon as it unmounts this does not affect collisions with player or other carts. Only collisions with mobs
 		 */
@@ -93,7 +83,7 @@ public class CollisionHandler {
 		}
 		//box = boundingBox.expand(2, 2, 2);
 
-		List list = worldObj.getEntitiesWithinAABBExcludingEntity((Entity) entityOne, box);
+		List list = worldObj.getEntitiesWithinAABBExcludingEntity(entityOne, box);
 		if (list != null && list.size() > 0) {
 
 			for (int j1 = 0; j1 < list.size(); j1++) {
