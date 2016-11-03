@@ -27,6 +27,7 @@ import train.common.Traincraft;
 import train.common.core.handlers.ConfigHandler;
 import train.common.core.handlers.RollingStockStatsEventHandler;
 import train.common.core.handlers.TrainHandler;
+import train.common.core.handlers.TraincraftSaveHandler;
 import train.common.items.ItemChunkLoaderActivator;
 import train.common.items.ItemRollingStock;
 import train.common.items.ItemWrench;
@@ -160,7 +161,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		dataWatcher.addObject(13, trainCreator);
 		shouldChunkLoad=ConfigHandler.CHUNK_LOADING;
 		this.setFlag(7, shouldChunkLoad);
-		
+
 		for (EnumTrains trains : EnumTrains.values()) {
 			if (trains.getEntityClass().equals(this.getClass())) {
 				this.setDefaultMass(trains.getMass());
@@ -225,7 +226,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 	public abstract float getOptimalDistance(EntityMinecart cart2);
 
 	public abstract List<ItemStack> getItemsDropped();
-	
+
 	public int getUniqueTrainID(){
 		return uniqueID;
 	}
@@ -235,15 +236,14 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		if (!(this instanceof EntityRollingStock)) {
 			super.onUpdate();
 		}
+
 		//if(this instanceof Locomotive)System.out.println("I'm alive. Remote: " + worldObj.isRemote);
 		if (!worldObj.isRemote && this.uniqueID == -1) {
 			if (FMLCommonHandler.instance().getMinecraftServerInstance() != null) {
-				//TraincraftSaveHandler.createFile(FMLCommonHandler.instance().getMinecraftServerInstance());
-				//int readID = TraincraftSaveHandler.readInt(FMLCommonHandler.instance().getMinecraftServerInstance(), "numberOfTrains:");
-				//TraincraftSaveHandler seems to not work, may cause uniqueID bug.
-				int readID = -1;
+				TraincraftSaveHandler.createFile(FMLCommonHandler.instance().getMinecraftServerInstance());
+				int readID = TraincraftSaveHandler.readInt(FMLCommonHandler.instance().getMinecraftServerInstance(), "numberOfTrains:");
 				int newID = setNewUniqueID(readID);
-				//TraincraftSaveHandler.writeValue(FMLCommonHandler.instance().getMinecraftServerInstance(), "numberOfTrains:", "" + newID);
+				TraincraftSaveHandler.writeValue(FMLCommonHandler.instance().getMinecraftServerInstance(), "numberOfTrains:", new String("" + newID));
 				//System.out.println("Train is missing an ID, adding new one for "+this.trainName+" "+this.uniqueID);
 			}
 		}
@@ -252,10 +252,8 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		if (shouldChunkLoad){
 			if (!worldObj.isRemote) {
 				if (chunkTicket == null) {
-					chunkTicket = ForgeChunkManager.requestTicket(Traincraft.instance, worldObj, Type.ENTITY);
-					chunkTicket.bindEntity(this);
+					chunkTicket = ForgeChunkManager.requestTicket(Traincraft.instance, worldObj, Type.NORMAL);
 					chunkForced = false;
-					//System.out.println("assigned Ticket");
 				}
 				if (chunkTicket == null) {
 					if (playerEntity != null && !this.chunkLoadErrorDisplayed) {
@@ -266,10 +264,9 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 				}
 				else if(!chunkForced){
 					chunkTicket.getModData().setInteger("locoID", this.ID);
-					ForgeChunkManager.forceChunk(chunkTicket, new ChunkCoordIntPair((int) (posX * 0.0625F), (int) (posZ  * 0.0625F)));
+					ForgeChunkManager.forceChunk(chunkTicket, new ChunkCoordIntPair((int) posX >> 4, (int) posZ >> 4));
 					forceChunkLoading(chunkTicket);
 					chunkForced = true;
-					//System.out.println("forced chunk");
 				}
 			}
 		}
@@ -295,7 +292,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 	public void setDead() {
 		ForgeChunkManager.releaseTicket(chunkTicket);
 	}
-	
+
 	public Ticket getChunkTicket(){
 		return this.chunkTicket;
 	}
@@ -304,21 +301,21 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		if (chunkTicket == null) {
 			chunkTicket = ticket;
 		}
-		
+
 		//System.out.println("chunk " + this);
 		ArrayList<ChunkCoordIntPair> chunks = new ArrayList<ChunkCoordIntPair>();
 		ChunkCoordIntPair locoChunk = new ChunkCoordIntPair(chunkCoordX, chunkCoordZ);
 		chunks.add(locoChunk);
 		ForgeChunkManager.forceChunk(ticket, locoChunk);
-		
+
 		ChunkCoordIntPair oldChunk = new ChunkCoordIntPair(oldChunkCoordX, oldChunkCoordZ);
 		oldChunks.add(oldChunk);
-		
+
 		for (int i = 0; i < oldChunks.size(); i++) {
 			ForgeChunkManager.unforceChunk(chunkTicket, oldChunks.get(i));
 			oldChunks.clear();
 		}
-		
+
 		if (train != null && train.getTrains().size() > 1 && this instanceof Locomotive) {
 			for (int i = 0; i < train.getTrains().size(); i++) {
 				if (train.getTrains().get(i) != null && !train.getTrains().get(i).equals(this)){
@@ -381,7 +378,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 
 	/**
 	 * set the color of the rollingstock
-	 * 
+	 *
 	 * @see ItemRollingStock
 	 * @param color
 	 */
@@ -414,7 +411,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		nbttagcompound.setString("theType", trainType);
 		nbttagcompound.setInteger("uniqueID", uniqueID);
 		//nbttagcompound.setInteger("uniqueIDs",uniqueIDs);
-		
+
 		nbttagcompound.setInteger("numberOfTrains", AbstractTrains.numberOfTrains);
 		nbttagcompound.setInteger("ID", this.ID);
 		nbttagcompound.setBoolean("isAttached", this.isAttached);
@@ -440,7 +437,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		uniqueID = nbttagcompound.getInteger("uniqueID");
 		//uniqueIDs = nbttagcompound.getInteger("uniqueIDs");
 		((EntityRollingStock) this).setInformation(trainType, trainOwner, trainCreator, trainName, uniqueID);
-		
+
 		ID = nbttagcompound.getInteger("ID");
 		numberOfTrains = nbttagcompound.getInteger("numberOfTrains");
 		isAttached = nbttagcompound.getBoolean("isAttached");
@@ -594,7 +591,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 	public boolean getTrainLockedFromPacket() {
 		return locked;
 	}
-	
+
 	/**
 	 * Lock packet
 	 */
