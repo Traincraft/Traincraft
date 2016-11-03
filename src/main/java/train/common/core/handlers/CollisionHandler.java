@@ -90,7 +90,7 @@ public class CollisionHandler {
 				Entity entity = (Entity) list.get(j1);
 				if (!(entity instanceof EntityLasersLines) && !entity.noClip && !(entity instanceof EntityLiving) && !(entityOne instanceof EntityLiving)) {
 
-					if (entity != entity.riddenByEntity && entity.canBePushed() && (entityOne instanceof AbstractTrains) && (entity instanceof AbstractTrains) && !((AbstractTrains) entityOne).isAttached && !((AbstractTrains) entity).isAttached) {
+					if (entity != entity.riddenByEntity && entity.canBePushed() && (entityOne instanceof AbstractTrains) && (entity instanceof AbstractTrains) && !((AbstractTrains) entityOne).isAttached) {
 
 						//applyCollision3(entity, entityOne);
 						applyEntityCollisionVanilla(entity, (EntityMinecart) entityOne);
