@@ -93,7 +93,7 @@ public class EntityJukeBoxCart extends EntityRollingStock {
 			if ((Minecraft.getMinecraft().thePlayer != null) && (this.player != null) && (!isInvalid)) {
 				float vol = (float) getDistanceSq(Minecraft.getMinecraft().thePlayer.posX,
 						Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ);
-				if (vol > 1000.0F) {
+				if (vol >= 1000.0F) {
 					this.player.setVolume(0.0F);
 				} else {
 					float v2 = 10000.0F / vol / 100.0F;
