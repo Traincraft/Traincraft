@@ -105,6 +105,13 @@ public class CollisionHandler {
 						return;
 						// MinecraftForge.EVENT_BUS.post(new MinecartCollisionEvent((EntityMinecart)entityOne, entity));
 					}
+					else if (entity != entity.riddenByEntity && entity.canBePushed() && (entity instanceof EntityMinecart) && (entity instanceof AbstractTrains) && (entityOne instanceof AbstractTrains)) {
+
+						//applyCollision2(entity, entityOne);
+						applyEntityCollisionVanilla(entity, (EntityMinecart) entityOne);
+						return;
+						// MinecraftForge.EVENT_BUS.post(new MinecartCollisionEvent((EntityMinecart)entityOne, entity));
+					}
 				}
 
 			}
