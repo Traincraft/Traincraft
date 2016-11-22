@@ -20,7 +20,7 @@ public class FluidBase extends Fluid implements IRegistryEntry{
     public FluidBlockBase fluidBlock;
 
     public FluidBase(String fluidName, String textureName, Material material){
-        super(fluidName, new ResourceLocation(Traincraft.MODID, "fluids/" + textureName + "Still"), new ResourceLocation(Traincraft.MODID, "fluids/" + textureName + "Flowing"));
+        super(fluidName, new ResourceLocation(Traincraft.MODID, "fluids/" + textureName + "_still"), new ResourceLocation(Traincraft.MODID, "fluids/" + textureName + "_flowing"));
         this.material = material;
     }
 

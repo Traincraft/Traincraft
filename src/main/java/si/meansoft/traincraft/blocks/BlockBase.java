@@ -21,7 +21,7 @@ public class BlockBase extends Block implements IRegistryEntry{
     public BlockBase(Material materialIn, String name) {
         super(materialIn);
         this.setCreativeTab(Traincraft.generalTab);
-        this.setUnlocalizedName(Traincraft.MODID + "." + name);
+        this.setUnlocalizedName(Traincraft.MODID + ":" + name);
         this.name = name;
     }
 

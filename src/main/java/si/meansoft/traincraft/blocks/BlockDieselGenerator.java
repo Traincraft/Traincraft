@@ -9,7 +9,7 @@ import si.meansoft.traincraft.tile.TileEntityDieselGenerator;
 public class BlockDieselGenerator extends BlockContainerBase{
 
     public BlockDieselGenerator(){
-        super(Material.IRON, "generatorDiesel", TileEntityDieselGenerator.class);
+        super(Material.IRON, "generator_diesel", TileEntityDieselGenerator.class);
     }
 
 }

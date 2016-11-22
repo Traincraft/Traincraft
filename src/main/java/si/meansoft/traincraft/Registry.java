@@ -30,8 +30,8 @@ public class Registry{
 
     public static void preInit(FMLPreInitializationEvent event){
         //Blocks
-        register(oilSand = new BlockBase(Material.SAND, "oilSand").generateBlock(Blocks.SAND, 50, 80, 7, 11).addOreDict("oreOilSand").setHarvestLevel(BlockBase.ToolEnum.SHOVEL, 2).setSound(SoundType.SAND));
-        register(petroleum = new BlockBase(Material.ROCK, "orePetroleum").generateBlock(Blocks.STONE, 20, 70, 5, 9).addOreDict("orePetroleum").setHarvestLevel(BlockBase.ToolEnum.PICKAXE, 2).setSound(SoundType.STONE));
+        register(oilSand = new BlockBase(Material.SAND, "oil_Sand").generateBlock(Blocks.SAND, 50, 80, 7, 11).addOreDict("oreOilSand").setHarvestLevel(BlockBase.ToolEnum.SHOVEL, 2).setSound(SoundType.SAND));
+        register(petroleum = new BlockBase(Material.ROCK, "ore_petroleum").generateBlock(Blocks.STONE, 20, 70, 5, 9).addOreDict("orePetroleum").setHarvestLevel(BlockBase.ToolEnum.PICKAXE, 2).setSound(SoundType.STONE));
         register(distillery = new BlockDistillery());
         register(hearthFurnace = new BlockHearthFurnace());
         register(crafterSteam = new BlockCrafter(BlockCrafter.CrafterTier.STEAM), crafterDiesel = new BlockCrafter(BlockCrafter.CrafterTier.DIESEL), crafterIron = new BlockCrafter(BlockCrafter.CrafterTier.ELECTRO));
@@ -41,9 +41,10 @@ public class Registry{
         //Items
         register(material = new ItemMaterial());
 
-        register(diesel = new FluidBase("diesel", "fluidDiesel", Material.WATER));
-        register(refinedFuel = new FluidBase("refinedFuel", "fluidRefinedFuel", Material.WATER));
-        register(oil = new FluidBase("oil", "fluidOil", Material.WATER));
+        //Fluids
+        register(diesel = new FluidBase("diesel", "fluid_diesel", Material.WATER));
+        register(refinedFuel = new FluidBase("refined_fuel", "fluid_refined_fuel", Material.WATER));
+        register(oil = new FluidBase("oil", "fluid_oil", Material.WATER));
 
         TraincraftAPI.addTrackRegister(BlockTrackStraight.class, BlockTrackSlope.class, BlockTrackCurve.class);
         TraincraftAPI.registerTracks();

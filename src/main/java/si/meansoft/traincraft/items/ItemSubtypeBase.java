@@ -4,6 +4,7 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import si.meansoft.traincraft.IRegistryEntry;
@@ -40,7 +41,8 @@ public class ItemSubtypeBase extends ItemBase{
     }
 
     @SideOnly(Side.CLIENT)
-    public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list){
+    @Override
+    public void getSubItems(Item item, CreativeTabs tab, NonNullList<ItemStack> list){
         for(int j = 0; j < this.subtypes.getEnumConstants().length; j++){
             list.add(new ItemStack(this, 1, j));
         }
@@ -49,7 +51,7 @@ public class ItemSubtypeBase extends ItemBase{
     @Override
     public void onRegister(IRegistryEntry[] otherEntries){
         for(int i = 0; i < this.subtypes.getEnumConstants().length; i++){
-            String modelName = this.getRegistryName()+this.subtypes.getEnumConstants()[i].toString();
+            String modelName = this.getRegistryName() + "_" + this.subtypes.getEnumConstants()[i].toString();
             CommonProxy.addForgeRender(new ItemStack(this, 1, i), new ModelResourceLocation(modelName, "inventory"));
         }
     }

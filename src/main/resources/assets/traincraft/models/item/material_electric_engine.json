@@ -2,6 +2,6 @@
     "parent": "item/generated",
     "transform": "forge:default-item",
     "textures": {
-        "layer0": "traincraft:items/material/electricEngine"
+        "layer0": "traincraft:items/material/electric_engine"
     }
 }

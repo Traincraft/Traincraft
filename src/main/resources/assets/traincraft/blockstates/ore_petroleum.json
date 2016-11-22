@@ -2,7 +2,7 @@
   "forge_marker": 1,
   "defaults": {
     "textures": {
-      "all": "traincraft:blocks/blockOilSand"
+      "all": "traincraft:blocks/ore_petroleum"
     },
     "model": "cube_all",
     "transform": "forge:default-block"

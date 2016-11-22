@@ -7,16 +7,16 @@ import si.meansoft.traincraft.api.AbstractBlockTrack;
  */
 public enum TrackType{
 
-    TEST_TRACK("TestTrack", TrackGrid.getStraightSlope(32)),
-    TEST_CURVE("TestCurve", TrackGrid.getCurve(9), true, false),
-    TEST_SLOPE("TestSlope", TrackGrid.getStraightGrid(6), false, true),
+    TEST_TRACK("test_track", TrackGrid.getStraightSlope(32)),
+    TEST_CURVE("test_curve", TrackGrid.getCurve(9), true, false),
+    TEST_SLOPE("test_slope", TrackGrid.getStraightGrid(6), false, true),
 
-    STRAIGHT_SINGLE("StraightSingle", TrackGrid.getStraightGrid(1)),
-    STRAIGHT_SHORT("StraightShort", TrackGrid.getStraightGrid(2)),
-    STRAIGHT_MIDDLE("StraightMiddle", TrackGrid.getStraightGrid(4)),
-    STRAIGHT_LONG("StraightLong", TrackGrid.getStraightGrid(6)),
-    STRAIGHT_EXTREME("StraightExtreme", TrackGrid.getStraightGrid(12)),
-    STRAIGHT_ULTIMATE("StraightUltimate", TrackGrid.getStraightGrid(18));
+    STRAIGHT_SINGLE("straight_single", TrackGrid.getStraightGrid(1)),
+    STRAIGHT_SHORT("straight_short", TrackGrid.getStraightGrid(2)),
+    STRAIGHT_MIDDLE("straight_middle", TrackGrid.getStraightGrid(4)),
+    STRAIGHT_LONG("straight_long", TrackGrid.getStraightGrid(6)),
+    STRAIGHT_EXTREME("straight_extreme", TrackGrid.getStraightGrid(12)),
+    STRAIGHT_ULTIMATE("straight_ultimate", TrackGrid.getStraightGrid(18));
 
     private final String internName;
     private final TrackGrid grid;

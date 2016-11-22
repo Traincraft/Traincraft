@@ -46,7 +46,7 @@ public class DistilleryRecipes {
     }
 
     public static class RecipeHandler {
-        public ItemStack outputStack;
+        public ItemStack outputStack = ItemStack.EMPTY;
         public FluidStack outputFluid;
         public float outputExp;
         public int burnTime;

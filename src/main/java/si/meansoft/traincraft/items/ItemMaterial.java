@@ -1,5 +1,7 @@
 package si.meansoft.traincraft.items;
 
+import java.util.Locale;
+
 /**
  * @author Ellpeck
  */
@@ -11,49 +13,50 @@ public class ItemMaterial extends ItemSubtypeBase{
 
     public enum Materials{
 
-        GRAPHITE("Graphite"),
-        PLASTIC("Plastic"),
-        COAL_DUST("CoalDust"),
-        BALLOON("Balloon"),
-        PROPELLER("Propeller"),
-        PISTON("Piston"),
-        CAMSHAFT("Camshaft"),
-        CYLINDER("Cylinder"),
-        SEATS("Seats"),
-        TRANSFORMER("Transformer"),
-        CONTROLS("Controls"),
-        TRANSMITION("Transmition"),
-        GENERATOR("Generator"),
-        ELECTRONIC_CIRCUIT("ElectronicCircuit"),
-        STEAM_ENGINE("SteamEngine"),
-        DIESEL_ENGINE("DieselEngine"),
-        ELECTRIC_ENGINE("ElectricEngine"),
-        FUEL_CANISTER_EMPTY("FuelCanisterEmpty"),
-        FUEL_CANISTER_FULL("FuelCanisterFull"),
-        WOODEN_BOGIE("WoodenBogie"),
-        WOODEN_CAB("WoodenCab"),
-        WOODEN_FRAME("WoodenFrame"),
-        IRON_BOGIE("IronBogie"),
-        IRON_BOILER("IronBoiler"),
-        IRON_CAB("IronCab"),
-        IRON_CHIMNEY("IronChimney"),
-        IRON_FRAME("IronFrame"),
-        IRON_FIREBOX("IronFirebox"),
-        STEEL_INGOT("Steel"),
-        STEEL_DUST("SteelDust"),
-        STEEL_BOGIE("SteelBogie"),
-        STEEL_BOILER("SteelBoiler"),
-        STEEL_CAB("SteelCab"),
-        STEEL_CHIMNEY("SteelChimney"),
-        STEEL_FRAME("SteelFrame"),
-        STEEL_FIREBOX("SteelFirebox");
+        GRAPHITE(),
+        PLASTIC(),
+        COAL_DUST(),
+        BALLOON(),
+        PROPELLER(),
+        PISTON(),
+        CAMSHAFT(),
+        CYLINDER(),
+        SEATS(),
+        TRANSFORMER(),
+        CONTROLS(),
+        TRANSMITION(),
+        GENERATOR(),
+        ELECTRONIC_CIRCUIT(),
+        STEAM_ENGINE(),
+        DIESEL_ENGINE(),
+        ELECTRIC_ENGINE(),
+        FUEL_CANISTER_EMPTY(),
+        FUEL_CANISTER_FULL(),
+        WOODEN_BOGIE(),
+        WOODEN_CAB(),
+        WOODEN_FRAME(),
+        IRON_BOGIE(),
+        IRON_BOILER(),
+        IRON_CAB(),
+        IRON_CHIMNEY(),
+        IRON_FRAME(),
+        IRON_FIREBOX(),
+        STEEL_INGOT(),
+        STEEL_DUST(),
+        STEEL_BOGIE(),
+        STEEL_BOILER(),
+        STEEL_CAB(),
+        STEEL_CHIMNEY(),
+        STEEL_FRAME(),
+        STEEL_FIREBOX();
 
 
-        public String name;
+        public String name = name().toLowerCase(Locale.ROOT);
 
         Materials(String name){
             this.name = name;
         }
+        Materials(){}
 
         public String toString(){
             return this.name;

@@ -1,7 +1,7 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "traincraft:tracks/testTrack",
+    "model": "traincraft:tracks/test_track",
     "textures": {
       "particle": "#texture",
       "texture": "traincraft:blocks/track_normal"

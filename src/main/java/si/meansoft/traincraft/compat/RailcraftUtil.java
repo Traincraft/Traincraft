@@ -24,7 +24,7 @@ public class RailcraftUtil{
                 cart.setCustomNameTag(cartStack.getDisplayName());
             }
             CartToolsAPI.setCartOwner(cart, owner);
-            world.spawnEntityInWorld(cart);
+            world.spawnEntity(cart);
         }
     }
 

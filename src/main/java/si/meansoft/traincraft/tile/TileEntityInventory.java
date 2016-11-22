@@ -61,41 +61,46 @@ public class TileEntityInventory extends TileEntityBase implements ISidedInvento
     }
 
     @Override
+    public boolean isEmpty() {
+        return false;
+    }
+
+    @Override
     public ItemStack getStackInSlot(int index) {
-        return this.slots[index];
+        return this.slots[index] != null ? this.slots[index] : ItemStack.EMPTY;
     }
 
     @Override
     public ItemStack decrStackSize(int index, int count) {
-        if(slots[index] != null){
+        if(slots[index] != ItemStack.EMPTY){
             ItemStack stackAt;
-            if(slots[index].stackSize <= count){
+            if(slots[index].getCount() <= count){
                 stackAt = slots[index];
-                slots[index] = null;
+                slots[index] = ItemStack.EMPTY;
                 this.markDirty();
                 return stackAt;
             }
             else{
                 stackAt = slots[index].splitStack(count);
-                if(slots[index].stackSize == 0){
-                    slots[index] = null;
+                if(slots[index].getCount() == 0){
+                    slots[index] = ItemStack.EMPTY;
                 }
                 this.markDirty();
                 return stackAt;
             }
         }
-        return null;
+        return  ItemStack.EMPTY;
     }
 
     public void incrStackSize(int index, int count) {
-        if(slots[index] != null) {
-            this.setInventorySlotContents(index, new ItemStack(slots[index].getItem(), slots[index].stackSize + count, slots[index].getItemDamage()));
+        if(slots[index] != ItemStack.EMPTY) {
+            this.setInventorySlotContents(index, new ItemStack(slots[index].getItem(), slots[index].getCount() + count, slots[index].getItemDamage()));
         }
     }
 
     @Override
     public ItemStack removeStackFromSlot(int index) {
-        return this.slots[index] = null;
+        return this.slots[index] = ItemStack.EMPTY;
     }
 
 
@@ -112,8 +117,8 @@ public class TileEntityInventory extends TileEntityBase implements ISidedInvento
 
 
     @Override
-    public boolean isUseableByPlayer(EntityPlayer player) {
-        return player.getDistanceSq(this.getPos().getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D) <= 64 && !this.isInvalid() && this.worldObj.getTileEntity(this.pos) == this;
+    public boolean isUsableByPlayer(EntityPlayer player) {
+        return player.getDistanceSq(this.getPos().getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D) <= 64 && !this.isInvalid() && this.world.getTileEntity(this.pos) == this;
     }
 
     @Override
@@ -174,13 +179,13 @@ public class TileEntityInventory extends TileEntityBase implements ISidedInvento
     @Override
     public void writeToNBT(NBTTagCompound compound, Util.NBTType type) {
         if(type.save()){
-            if(this.slots.length > 0){
+            if(this.getSizeInventory() > 0){
                 NBTTagList tagList = new NBTTagList();
-                for(int currentIndex = 0; currentIndex < slots.length; currentIndex++){
+                for(int currentIndex = 0; currentIndex < this.getSizeInventory(); currentIndex++){
                     NBTTagCompound tagCompound = new NBTTagCompound();
                     tagCompound.setByte("Slot", (byte)currentIndex);
-                    if(slots[currentIndex] != null){
-                        slots[currentIndex].writeToNBT(tagCompound);
+                    if(this.getStackInSlot(currentIndex) != ItemStack.EMPTY){
+                        this.getStackInSlot(currentIndex).writeToNBT(tagCompound);
                     }
                     tagList.appendTag(tagCompound);
                 }
@@ -194,13 +199,13 @@ public class TileEntityInventory extends TileEntityBase implements ISidedInvento
     public void readFromNBT(NBTTagCompound compound, Util.NBTType type) {
         super.readFromNBT(compound, type);
         if(type.save()){
-            if(this.slots.length > 0){
+            if(this.getSizeInventory() > 0){
                 NBTTagList tagList = compound.getTagList("Items", 10);
                 for(int i = 0; i < tagList.tagCount(); i++){
                     NBTTagCompound tagCompound = tagList.getCompoundTagAt(i);
                     byte slotIndex = tagCompound.getByte("Slot");
-                    if(slotIndex >= 0 && slotIndex < slots.length){
-                        slots[slotIndex] = ItemStack.loadItemStackFromNBT(tagCompound);
+                    if(slotIndex >= 0 && slotIndex < this.getSizeInventory()){
+                        slots[slotIndex] = new ItemStack(tagCompound);
                     }
                 }
             }
@@ -210,7 +215,7 @@ public class TileEntityInventory extends TileEntityBase implements ISidedInvento
     public int getNextFreeSlot(int slotIDMin, int slotIDMax){
         for(int i = slotIDMin; i <= slotIDMax; i++){
             ItemStack stack = getStackInSlot(i);
-            if(stack == null){
+            if(stack == ItemStack.EMPTY){
                 return i;
             }
         }

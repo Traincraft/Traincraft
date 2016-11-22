@@ -18,6 +18,8 @@ import javax.annotation.Nullable;
  */
 public class BlockTrackStraight extends AbstractBlockTrack{
 
+    public static BlockTrackStraight block;
+
     public BlockTrackStraight(TrackType type){
         super(type, TileEntityTrack.class);
     }
@@ -25,7 +27,7 @@ public class BlockTrackStraight extends AbstractBlockTrack{
     public static void register(){
         for(TrackType type : TrackType.values()){
             if(type.isStraight()){
-                Registry.register(type.setBlock(new BlockTrackStraight(type)));
+                Registry.register(block = type.setBlock(new BlockTrackStraight(type)));
             }
         }
     }

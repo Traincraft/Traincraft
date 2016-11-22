@@ -45,7 +45,7 @@ public abstract class AbstractBlockTrack extends BlockContainerBase implements I
     public static final PropertyBool SHOULD_RENDER = PropertyBool.create("should_render");
 
     public AbstractBlockTrack(TrackType type, Class<? extends TileEntityTrack> tileClass){
-        super(Material.IRON, "track" + type.getInternName(), tileClass);
+        super(Material.IRON, "track_" + type.getInternName(), tileClass);
         this.setCreativeTab(Traincraft.trackTab);
         this.type = type;
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(SHOULD_RENDER, shouldRenderDefault()));
@@ -71,7 +71,7 @@ public abstract class AbstractBlockTrack extends BlockContainerBase implements I
     public boolean canPlaceTrack(World world, BlockPos pos, EntityLivingBase placer, ItemStack stack, float hitX, float hitY, float hitZ, boolean flipAlongX){
         EnumFacing dir = placer.getHorizontalFacing();
         for (BlockPos pos1 : getTrackType().getGrid().getPosesToAffect(pos, dir, flipAlongX)) {
-            if (!world.getBlockState(pos1).getBlock().canReplace(world, pos1, dir, stack) || !world.isSideSolid(pos1.down(), EnumFacing.UP)) {
+            if (!world.getBlockState(pos1).getBlock().isReplaceable(world, pos1) || !world.isSideSolid(pos1.down(), EnumFacing.UP)) {
                 return false;
             }
         }
@@ -129,7 +129,7 @@ public abstract class AbstractBlockTrack extends BlockContainerBase implements I
     }
 
     @Override
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, World world, BlockPos pos){return FLAT_AABB;}
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos){return FLAT_AABB;}
 
     @Override
     public boolean isPassable(IBlockAccess worldIn, BlockPos pos) {
@@ -149,13 +149,14 @@ public abstract class AbstractBlockTrack extends BlockContainerBase implements I
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack stack, EnumFacing side, float hitX, float hitY, float hitZ){
-        if(stack != null){
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ){
+        ItemStack stack = player.getHeldItem(hand);
+        if(stack != ItemStack.EMPTY){
             if(Compat.isRailcraftLoaded && stack.getItem() instanceof ItemCart){
                 if(!world.isRemote){
                     processRailcraftItem(stack, player, pos);
                 }
-                if(!player.isCreative()) stack.stackSize--;
+                if(!player.isCreative()) stack.setCount(stack.getCount() - 1);
                 return true;
             }
             if(stack.getItem() instanceof ItemMinecart){
@@ -166,13 +167,13 @@ public abstract class AbstractBlockTrack extends BlockContainerBase implements I
                     if(stack.hasDisplayName()){
                         cart.setCustomNameTag(stack.getDisplayName());
                     }
-                    world.spawnEntityInWorld(cart);
+                    world.spawnEntity(cart);
                 }
-                if(!player.isCreative()) stack.stackSize--;
+                if(!player.isCreative()) stack.setCount(stack.getCount() - 1);
                 return true;
             }
         }
-        return super.onBlockActivated(world, pos, state, player, hand, stack, side, hitX, hitY, hitZ);
+        return super.onBlockActivated(world, pos, state, player, hand, side, hitX, hitY, hitZ);
     }
 
     @Optional.Method(modid = "railcraft")

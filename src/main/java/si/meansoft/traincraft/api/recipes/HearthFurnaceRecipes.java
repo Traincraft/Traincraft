@@ -16,7 +16,7 @@ public class HearthFurnaceRecipes{
     public static Recipe getRecipeForInput(ItemStack firstInput, ItemStack secondInput){
         for(Recipe recipe : recipes){
             if(ItemStack.areItemsEqual(firstInput, recipe.firstInput) && ItemStack.areItemsEqual(secondInput, recipe.secondInput)){
-                if(firstInput.stackSize >= recipe.firstInput.stackSize && secondInput.stackSize >= recipe.secondInput.stackSize){
+                if(firstInput.getCount() >= recipe.firstInput.getCount() && secondInput.getCount() >= recipe.secondInput.getCount()){
                     return recipe;
                 }
             }
@@ -26,9 +26,9 @@ public class HearthFurnaceRecipes{
 
     public static class Recipe{
 
-        public ItemStack firstInput;
-        public ItemStack secondInput;
-        public ItemStack output;
+        public ItemStack firstInput = ItemStack.EMPTY;
+        public ItemStack secondInput = ItemStack.EMPTY;
+        public ItemStack output = ItemStack.EMPTY;
         public int processTime;
 
         public Recipe(ItemStack firstInput, ItemStack secondInput, ItemStack output, int processTime){

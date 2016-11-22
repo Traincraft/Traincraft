@@ -16,6 +16,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import si.meansoft.traincraft.Util;
 import si.meansoft.traincraft.api.AbstractBlockTrack;
+import si.meansoft.traincraft.blocks.BlockTrackStraight;
 import si.meansoft.traincraft.track.TrackPoint;
 
 import java.util.ArrayList;
@@ -53,6 +54,7 @@ public class TileEntityTrack extends TileEntityBase {
         this.aimsLeft = aimsLeft;
         this.getWaypoints();
         this.setRendering();
+        System.out.println(this.waypoints);
     }
 
     public void getWaypoints(){
@@ -68,7 +70,10 @@ public class TileEntityTrack extends TileEntityBase {
     }
 
     private IBlockState getState(){
-        return this.getWorld().getBlockState(this.getPos());
+        if(this.getWorld() != null){
+            return this.getWorld().getBlockState(this.getPos());
+        }
+        return BlockTrackStraight.block.getDefaultState();
     }
 
     @Override
@@ -126,7 +131,7 @@ public class TileEntityTrack extends TileEntityBase {
             }
         }
         for(BlockPos pos : poses){
-            if(canDrive(this.worldObj, pos)){
+            if(canDrive(this.world, pos)){
                 return pos;
             }
         }

@@ -25,7 +25,7 @@ public class TileEntityDistillery extends TileEntityInventory implements ITickab
 
     public FluidTank tank = new FluidTank(16000);
     public int currentBurn = 0, currentCookTime = 0, maxBurnTime = 0, maxCookTime = 0;
-    public ItemStack currentBurnStack = null;
+    public ItemStack currentBurnStack = ItemStack.EMPTY;
 
     private int lastCurrentBurn;
     private int lastCurrentCookTime;
@@ -63,7 +63,7 @@ public class TileEntityDistillery extends TileEntityInventory implements ITickab
      */
     @Override
     public void update() {
-        if(!this.worldObj.isRemote){
+        if(!this.getWorld().isRemote){
             boolean wasBurning = this.isBurning();
 
             ItemStack input = this.getStackInSlot(0);
@@ -74,7 +74,7 @@ public class TileEntityDistillery extends TileEntityInventory implements ITickab
             //TODO Fix this breaking when reloading the world because the recipe doesn't get saved properly
             if(recipe != null){
                 //Burn
-                if((fuel != null || this.currentBurnStack != null || this.currentBurn > 0)){
+                if((fuel != ItemStack.EMPTY || this.currentBurnStack != ItemStack.EMPTY || this.currentBurn > 0)){
                     if(currentBurn <= 0 && !this.isTankFull()){
                         this.decrStackSize(1, 1);
                         this.currentBurn = this.maxBurnTime = TileEntityFurnace.getItemBurnTime(fuel);
@@ -92,19 +92,19 @@ public class TileEntityDistillery extends TileEntityInventory implements ITickab
                     }
                 } else {
                     if (this.currentCookTime == 1 && this.isBurning()) {
-                        if (output == null) {
-                            if(this.currentBurnStack != null)
+                        if (output == ItemStack.EMPTY) {
+                            if(this.currentBurnStack != ItemStack.EMPTY)
                                 this.setInventorySlotContents(4, this.currentBurnStack.copy());
                             if(recipe.outputFluid != null){
                                 this.tank.fill(recipe.outputFluid.copy(), true);
                             }
-                            this.currentBurnStack = null;
+                            this.currentBurnStack = ItemStack.EMPTY;
                             this.currentCookTime--;
                             dropXP(getWorld(), getPos(), recipe.outputExp);
                         } else if (output.isItemEqual(this.currentBurnStack)) {
-                            if (output.copy().stackSize + this.currentBurnStack.copy().stackSize <= this.getInventoryStackLimit()) {
-                                this.incrStackSize(4, this.currentBurnStack.copy().stackSize);
-                                this.currentBurnStack = null;
+                            if (output.copy().getCount() + this.currentBurnStack.copy().getCount() <= this.getInventoryStackLimit()) {
+                                this.incrStackSize(4, this.currentBurnStack.copy().getCount());
+                                this.currentBurnStack = ItemStack.EMPTY;
                                 this.currentCookTime--;
                                 if(recipe.outputFluid != null){
                                     this.tank.fill(recipe.outputFluid.copy(), true);
@@ -129,10 +129,10 @@ public class TileEntityDistillery extends TileEntityInventory implements ITickab
             //Filling Recipes:
             ItemStack fillingInput = getStackInSlot(2);
             ItemStack currentFillingOutputSlot = getStackInSlot(3);
-            if(currentFillingOutputSlot == null || (ItemStack.areItemStacksEqual(fillingInput, currentFillingOutputSlot) && fillingInput.stackSize + currentFillingOutputSlot.stackSize <= getInventoryStackLimit())){
+            if(currentFillingOutputSlot == ItemStack.EMPTY || (ItemStack.areItemStacksEqual(fillingInput, currentFillingOutputSlot) && fillingInput.getCount() + currentFillingOutputSlot.getCount() <= getInventoryStackLimit())){
                 Pair<ItemStack, FluidStack> outputFilling = DistilleryRecipes.getFillingOutput(fillingInput, this.tank.getFluid());
                 if(outputFilling != null){
-                    if((ItemStack.areItemStacksEqual(currentFillingOutputSlot, outputFilling.getKey()) || currentFillingOutputSlot == null) && (FluidStack.areFluidStackTagsEqual(this.tank.getFluid(), outputFilling.getValue()))){
+                    if((ItemStack.areItemStacksEqual(currentFillingOutputSlot, outputFilling.getKey()) || currentFillingOutputSlot == ItemStack.EMPTY) && (FluidStack.areFluidStackTagsEqual(this.tank.getFluid(), outputFilling.getValue()))){
                         setInventorySlotContents(3, Util.decreaseItemStack(currentFillingOutputSlot, outputFilling.getKey()));
                     }
                 }
@@ -162,7 +162,7 @@ public class TileEntityDistillery extends TileEntityInventory implements ITickab
         this.maxBurnTime = compound.getInteger("maxBurnTime");
         this.maxCookTime = compound.getInteger("maxCookTime");
         if(type.save() && this.isCooking()){
-            this.currentBurnStack = ItemStack.loadItemStackFromNBT(compound);
+            this.currentBurnStack = new ItemStack(compound);
         }
     }
 
@@ -174,7 +174,7 @@ public class TileEntityDistillery extends TileEntityInventory implements ITickab
         compound.setInteger("currentBurnTime", this.currentBurn);
         compound.setInteger("maxBurnTime", this.maxBurnTime);
         compound.setInteger("maxCookTime", this.maxCookTime);
-        if(type.save() && this.currentBurnStack != null){
+        if(type.save() && this.currentBurnStack != ItemStack.EMPTY){
             this.currentBurnStack.writeToNBT(compound);
         }
     }
@@ -192,8 +192,8 @@ public class TileEntityDistillery extends TileEntityInventory implements ITickab
                 i = 0;
             }
             else if (xp < 1.0F) {
-                int j = MathHelper.floor_float((float)i * xp);
-                if (j < MathHelper.ceiling_float_int((float)i * xp) && Math.random() < (double)((float)i * xp - (float)j)) {
+                int j = MathHelper.floor((float)i * xp);
+                if (j < MathHelper.ceil((float)i * xp) && Math.random() < (double)((float)i * xp - (float)j)) {
                     ++j;
                 }
                 i = j;
@@ -202,7 +202,7 @@ public class TileEntityDistillery extends TileEntityInventory implements ITickab
             while (i > 0) {
                 int k = EntityXPOrb.getXPSplit(i);
                 i -= k;
-                world.spawnEntityInWorld(new EntityXPOrb(world, pos.getX(), pos.getY() + 0.5D, pos.getZ() + 0.5D, k));
+                world.spawnEntity(new EntityXPOrb(world, pos.getX(), pos.getY() + 0.5D, pos.getZ() + 0.5D, k));
             }
         }
     }

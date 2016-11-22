@@ -34,14 +34,14 @@ public class TileEntityHearthFurnace extends TileEntityInventory implements ITic
 
     @Override
     public void update(){
-        if(!this.worldObj.isRemote){
+        if(!this.getWorld().isRemote){
             boolean lastIsBurning = this.fuelTime > 0;
 
             this.doFuelBurning();
 
             if(lastIsBurning != this.fuelTime > 0){
-                IBlockState state = this.worldObj.getBlockState(pos);
-                this.worldObj.setBlockState(pos, state.getBlock().getDefaultState().withProperty(BlockDistillery.ACTIVE, this.fuelTime > 0).withProperty(BlockDistillery.FACING, state.getValue(BlockDistillery.FACING)), 3);
+                IBlockState state = this.getWorld().getBlockState(pos);
+                this.getWorld().setBlockState(pos, state.getBlock().getDefaultState().withProperty(BlockDistillery.ACTIVE, this.fuelTime > 0).withProperty(BlockDistillery.FACING, state.getValue(BlockDistillery.FACING)), 3);
             }
 
             if(this.fuelTime > 0 && this.canProcess()){
@@ -85,22 +85,19 @@ public class TileEntityHearthFurnace extends TileEntityInventory implements ITic
 
     private void process(){
         Recipe recipe = this.getRecipeForInputs();
-        if(recipe != null && recipe.output != null){
-            if(this.slots[OUTPUT_SLOT] == null){
+        if(recipe != null && recipe.output != ItemStack.EMPTY){
+            if(this.slots[OUTPUT_SLOT] == ItemStack.EMPTY){
                 this.slots[OUTPUT_SLOT] = recipe.output.copy();
+            } else if(ItemStack.areItemsEqual(this.slots[OUTPUT_SLOT], recipe.output)){
+                this.slots[OUTPUT_SLOT].grow(recipe.output.getCount());
             }
-            else if(ItemStack.areItemsEqual(this.slots[OUTPUT_SLOT], recipe.output)){
-                this.slots[OUTPUT_SLOT].stackSize += recipe.output.stackSize;
+            this.slots[LEFT_INPUT_SLOT].shrink(recipe.firstInput.getCount());
+            if(this.slots[LEFT_INPUT_SLOT].getCount() <= 0){
+                this.slots[LEFT_INPUT_SLOT] = ItemStack.EMPTY;
             }
-
-            this.slots[LEFT_INPUT_SLOT].stackSize -= recipe.firstInput.stackSize;
-            if(this.slots[LEFT_INPUT_SLOT].stackSize <= 0){
-                this.slots[LEFT_INPUT_SLOT] = null;
-            }
-
-            this.slots[RIGHT_INPUT_SLOT].stackSize -= recipe.secondInput.stackSize;
-            if(this.slots[RIGHT_INPUT_SLOT].stackSize <= 0){
-                this.slots[RIGHT_INPUT_SLOT] = null;
+            this.slots[RIGHT_INPUT_SLOT].shrink(recipe.secondInput.getCount());
+            if(this.slots[RIGHT_INPUT_SLOT].getCount() <= 0){
+                this.slots[RIGHT_INPUT_SLOT] = ItemStack.EMPTY;
             }
         }
     }
@@ -114,12 +111,12 @@ public class TileEntityHearthFurnace extends TileEntityInventory implements ITic
         }
 
         if(this.fuelTime <= 0){
-            if(this.slots[FUEL_SLOT] != null && this.canProcess()){
+            if(this.slots[FUEL_SLOT] != ItemStack.EMPTY && this.canProcess()){
                 int burnTime = TileEntityFurnace.getItemBurnTime(this.slots[FUEL_SLOT]);
                 if(burnTime > 0){
-                    this.slots[FUEL_SLOT].stackSize--;
-                    if(this.slots[FUEL_SLOT].stackSize <= 0){
-                        this.slots[FUEL_SLOT] = null;
+                    this.slots[FUEL_SLOT].shrink(1);
+                    if(this.slots[FUEL_SLOT].getCount() <= 0){
+                        this.slots[FUEL_SLOT] = ItemStack.EMPTY;
                     }
 
                     this.fuelTime = burnTime;
@@ -132,12 +129,12 @@ public class TileEntityHearthFurnace extends TileEntityInventory implements ITic
     private boolean canProcess(){
         Recipe recipe = this.getRecipeForInputs();
         if(recipe != null){
-            if(recipe.output != null){
-                if(this.slots[OUTPUT_SLOT] == null){
+            if(recipe.output != ItemStack.EMPTY){
+                if(this.slots[OUTPUT_SLOT] == ItemStack.EMPTY){
                     return true;
                 }
                 else if(ItemStack.areItemsEqual(this.slots[OUTPUT_SLOT], recipe.output)){
-                    return this.slots[OUTPUT_SLOT].stackSize+recipe.output.stackSize <= recipe.output.getMaxStackSize();
+                    return this.slots[OUTPUT_SLOT].getCount() + recipe.output.getCount() <= recipe.output.getMaxStackSize();
                 }
             }
         }
@@ -145,9 +142,9 @@ public class TileEntityHearthFurnace extends TileEntityInventory implements ITic
     }
 
     private Recipe getRecipeForInputs(){
-        ItemStack leftInput = this.slots[LEFT_INPUT_SLOT];
-        ItemStack rightInput = this.slots[RIGHT_INPUT_SLOT];
-        if(leftInput != null && rightInput != null){
+        ItemStack leftInput = this.getStackInSlot(LEFT_INPUT_SLOT);
+        ItemStack rightInput = this.getStackInSlot(RIGHT_INPUT_SLOT);
+        if(leftInput != ItemStack.EMPTY && rightInput != ItemStack.EMPTY){
             return HearthFurnaceRecipes.getRecipeForInput(leftInput, rightInput);
         }
         else{

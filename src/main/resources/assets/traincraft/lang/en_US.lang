@@ -1,6 +1,7 @@
 #Some special things:
-itemGroup.traincraftTab=Traincraft
+itemGroup.traincraft_track_tab=Traincraft Tracks
+itemGroup.traincraft_general_tab=Traincraft
 
 
 #Blocks:
-tile.traincraft.oilSand.name=Oil Sand
+tile.traincraft.oil_sand.name=Oil Sand

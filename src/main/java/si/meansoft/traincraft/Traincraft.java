@@ -3,6 +3,7 @@ package si.meansoft.traincraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -12,6 +13,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.apache.logging.log4j.Logger;
+import si.meansoft.traincraft.blocks.BlockTrackStraight;
 import si.meansoft.traincraft.events.Events;
 import si.meansoft.traincraft.gen.WorldGen;
 import si.meansoft.traincraft.network.CommonProxy;
@@ -43,16 +45,16 @@ public class Traincraft {
     public void preInit(FMLPreInitializationEvent event) {
         logger = event.getModLog();
         logger.info("[Pre Initializing] Let the trains out! " + NAME + ": " + VERSION);
-        generalTab = new CreativeTabs("traincraftGeneralTab") {
+        generalTab = new CreativeTabs("traincraft_general_tab") {
             @Override
-            public Item getTabIconItem() {
-                return Item.getItemFromBlock(Registry.oilSand);
+            public ItemStack getTabIconItem() {
+                return new ItemStack(Registry.oilSand);
             }
         };
-        trackTab = new CreativeTabs("traincraftTrackTab"){
+        trackTab = new CreativeTabs("traincraft_track_tab"){
             @Override
-            public Item getTabIconItem(){
-                return Items.APPLE;
+            public ItemStack getTabIconItem(){
+                return new ItemStack(BlockTrackStraight.block);
             }
         };
         logger.info("[Pre Initializing] Register Blocks, Items, ...");

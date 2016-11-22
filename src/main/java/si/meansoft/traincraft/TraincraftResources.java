@@ -7,11 +7,11 @@ import net.minecraft.util.ResourceLocation;
  */
 public enum TraincraftResources {
 
-    GUI_DISTILLERY("guiDistillery"),
-    GUI_CRAFTERSTEAM("guiCrafterSteam"),
-    GUI_CRAFTERDIESEL("guiCrafterDiesel"),
-    GUI_CRAFTERELECTRO("guiCrafterElectro"),
-    GUI_HEARTH_FURNACE("guiHearthFurnace");
+    GUI_DISTILLERY("gui_distillery"),
+    GUI_CRAFTERSTEAM("gui_crafter_steam"),
+    GUI_CRAFTERDIESEL("gui_crafter_diesel"),
+    GUI_CRAFTERELECTRO("gui_crafter_electro"),
+    GUI_HEARTH_FURNACE("gui_hearth_furnace");
 
     String name, textureName;
     TraincraftResources(String name) {

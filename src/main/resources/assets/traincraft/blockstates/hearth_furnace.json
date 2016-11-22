@@ -2,11 +2,11 @@
   "forge_marker": 1,
   "defaults": {
     "textures": {
-      "particle": "traincraft:blocks/blockHearthFurnaceBottom",
-      "up": "traincraft:blocks/blockHearthFurnaceOffTop",
+      "particle": "traincraft:blocks/hearth_furnace_bottom",
+      "up": "traincraft:blocks/hearth_furnace_off_top",
       "down": "#particle",
-      "north": "traincraft:blocks/blockHearthFurnaceOffFront",
-      "east": "traincraft:blocks/blockHearthFurnaceSide",
+      "north": "traincraft:blocks/hearth_furnace_off_front",
+      "east": "traincraft:blocks/hearth_furnace_side",
       "west": "#east",
       "south": "#east"
     },
@@ -23,8 +23,8 @@
     "active" : {
       "true" : {
         "textures" : {
-          "north" : "traincraft:blocks/blockHearthFurnaceOnFront",
-          "up" : "traincraft:blocks/blockHearthFurnaceOnTop"
+          "north" : "traincraft:blocks/hearth_furnace_on_front",
+          "up" : "traincraft:blocks/hearth_furnace_on_top"
         }
       },
       "false" :  {}

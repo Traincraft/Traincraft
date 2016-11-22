@@ -1,21 +1,23 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "traincraft:tracks/testTrack",
-    "textures": {
-      "particle": "#texture",
-      "texture": "traincraft:blocks/track_normal"
-    },
-    "transform": "forge:default-block"
+    //"custom": { "flip-v": true },
+    "model": "traincraft:tracks/test_curve.obj"
   },
   "variants": {
-    "normal": [{}],
+    "normal": [{
+
+    }],
     "inventory": [{}],
     "facing": {
       "north" : { "y" : 0 },
       "south" : { "y" : 180 },
       "west" : { "y" : 270 },
       "east" : { "y" : 90 }
+    },
+    "should_render": {
+      "true" : {},
+      "false" : {}
     }
   }
 }

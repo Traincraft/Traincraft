@@ -15,8 +15,6 @@ import net.minecraft.util.math.BlockPos;
  */
 public class Util {
 
-    public static final DataParameter<Boolean> TEST = EntityDataManager.createKey(EntityMinecart.class, DataSerializers.BOOLEAN);
-
     public static void sendTilePacketToAllAround(TileEntity tile){
         for(EntityPlayer player : tile.getWorld().playerEntities){
             if(player instanceof EntityPlayerMP){
@@ -29,20 +27,20 @@ public class Util {
     }
 
     public static int getStackSize(ItemStack stack){
-        return stack != null ? stack.stackSize : 0;
+        return stack != null ? stack.getCount() : 0;
     }
 
     public static ItemStack decreaseItemStack(ItemStack toDecrease, ItemStack decreaseValue){
         if(ItemStack.areItemStacksEqual(toDecrease, decreaseValue)){
-            int i = toDecrease.copy().stackSize - decreaseValue.copy().stackSize;
+            int i = toDecrease.copy().getCount() - decreaseValue.copy().getCount();
             if(i > 0){
-                toDecrease.stackSize -= decreaseValue.stackSize;
+                toDecrease.setCount(toDecrease.getCount() - decreaseValue.getCount());
             } else if(i <= 0){
-                toDecrease = null;
+                toDecrease = ItemStack.EMPTY;
             }
             return toDecrease;
         }
-        return toDecrease == null ? decreaseValue : null;
+        return toDecrease;
     }
 
     public enum NBTType{

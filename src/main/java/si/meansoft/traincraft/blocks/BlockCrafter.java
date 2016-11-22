@@ -23,9 +23,9 @@ public class BlockCrafter extends BlockContainerBase {
     }
 
     public enum CrafterTier{
-        STEAM("crafterSteam", GuiHandler.CRAFTERSTEAM, TileEntityCrafterSteam.class),
-        DIESEL("crafterDiesel", GuiHandler.CRAFTERDIESEL, TileEntityCrafterDiesel.class),
-        ELECTRO("crafterElectro", GuiHandler.CRAFTERELECTRO, TileEntityCrafterElectro.class);
+        STEAM("crafter_steam", GuiHandler.CRAFTERSTEAM, TileEntityCrafterSteam.class),
+        DIESEL("crafter_diesel", GuiHandler.CRAFTERDIESEL, TileEntityCrafterDiesel.class),
+        ELECTRO("crafter_electro", GuiHandler.CRAFTERELECTRO, TileEntityCrafterElectro.class);
         public String name;
         public int guiID;
         public Class<? extends TileEntityCrafterBase> tileClass;

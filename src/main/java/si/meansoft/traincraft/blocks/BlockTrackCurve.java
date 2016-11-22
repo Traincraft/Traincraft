@@ -48,11 +48,16 @@ public class BlockTrackCurve extends AbstractBlockTrack{
         }
     }
 
+    @Override
+    protected boolean shouldRenderDefault() {
+        return true;
+    }
+
     @Nullable
     @Override
     public TrackPoint getWaypoints(World world, BlockPos pos, IBlockState state, int blockIndex){
         //TODO
-        return null;
+        return BlockTrackStraight.block.getWaypoints(world, pos, state, blockIndex);
     }
 
     @Override
