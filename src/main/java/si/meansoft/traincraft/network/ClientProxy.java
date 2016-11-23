@@ -1,4 +1,13 @@
 /*
+ * This file ("ClientProxy.java") is part of the Traincraft mod for Minecraft.
+ * It is created by all persons that are listed with @author below.
+ * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/LICENSE.MD)
+ * You can find the source code at https://github.com/Traincraft/Traincraft
+ *
+ * © 2011-2016
+ */
+
+/*
  * Copyright (c) 2014 Mrbrutal. All rights reserved.
  * Do not modify or redistribute without written permission.
  *

@@ -1,8 +1,13 @@
+/*
+ * This file ("BlockTrackSlope.java") is part of the Traincraft mod for Minecraft.
+ * It is created by all persons that are listed with @author below.
+ * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/LICENSE.MD)
+ * You can find the source code at https://github.com/Traincraft/Traincraft
+ *
+ * © 2011-2016
+ */
+
 package si.meansoft.traincraft.blocks;
-
-import java.util.List;
-
-import javax.annotation.Nullable;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -15,6 +20,9 @@ import si.meansoft.traincraft.Registry;
 import si.meansoft.traincraft.tile.TileEntityTrack;
 import si.meansoft.traincraft.track.TrackPoint;
 import si.meansoft.traincraft.track.TrackType;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 /**
  * @author canitzp

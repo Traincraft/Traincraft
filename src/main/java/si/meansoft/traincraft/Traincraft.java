@@ -1,8 +1,15 @@
+/*
+ * This file ("Traincraft.java") is part of the Traincraft mod for Minecraft.
+ * It is created by all persons that are listed with @author below.
+ * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/LICENSE.MD)
+ * You can find the source code at https://github.com/Traincraft/Traincraft
+ *
+ * © 2011-2016
+ */
+
 package si.meansoft.traincraft;
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;

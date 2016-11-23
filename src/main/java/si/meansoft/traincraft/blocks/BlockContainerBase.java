@@ -1,3 +1,12 @@
+/*
+ * This file ("BlockContainerBase.java") is part of the Traincraft mod for Minecraft.
+ * It is created by all persons that are listed with @author below.
+ * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/LICENSE.MD)
+ * You can find the source code at https://github.com/Traincraft/Traincraft
+ *
+ * © 2011-2016
+ */
+
 package si.meansoft.traincraft.blocks;
 
 import net.minecraft.block.BlockHorizontal;
@@ -10,7 +19,6 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;

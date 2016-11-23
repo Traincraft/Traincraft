@@ -1,3 +1,12 @@
+/*
+ * This file ("ItemSubtypeBase.java") is part of the Traincraft mod for Minecraft.
+ * It is created by all persons that are listed with @author below.
+ * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/LICENSE.MD)
+ * You can find the source code at https://github.com/Traincraft/Traincraft
+ *
+ * © 2011-2016
+ */
+
 package si.meansoft.traincraft.items;
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -9,8 +18,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import si.meansoft.traincraft.IRegistryEntry;
 import si.meansoft.traincraft.network.CommonProxy;
-
-import java.util.List;
 
 /**
  * @author Ellpeck
