@@ -1,7 +1,7 @@
 /*
  * This file ("AbstractBlockTrack.java") is part of the Traincraft mod for Minecraft.
  * It is created by all persons that are listed with @author below.
- * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/LICENSE.MD)
+ * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
  * You can find the source code at https://github.com/Traincraft/Traincraft
  *
  * © 2011-2016
@@ -40,7 +40,6 @@ import si.meansoft.traincraft.items.ItemBlockBase;
 import si.meansoft.traincraft.tile.TileEntityTrack;
 import si.meansoft.traincraft.track.TrackType;
 
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -98,10 +97,19 @@ public abstract class AbstractBlockTrack extends BlockContainerBase implements I
     @Override
     public void onMinecartDriveOver(World world, BlockPos pos, IBlockState state, EntityMinecart cart, Entity ridingEntity){
         EnumFacing facing = state.getValue(FACING);
-        BlockPos nextPos = pos.offset(facing.getOpposite());
+        TileEntityTrack tileTrack = (TileEntityTrack) world.getTileEntity(pos);
+        BlockPos nextPosition = tileTrack.sendRequestToTracks(cart.getAdjustedHorizontalFacing());
+        if(!nextPosition.equals(pos)){
+            cart.moveToBlockPosAndAngles(nextPosition, cart.rotationYaw, cart.rotationPitch);
+        }
+        if(ridingEntity != null){
+            //cart.rotationYaw = ridingEntity.getRotationYawHead() % 360;
+        }
+        cart.rotationYaw = 0; //TODO get rotation between to positions
+
+
+        /*
         float rot = ridingEntity != null ? ridingEntity.getRotationYawHead() + 90 : cart.rotationYaw;
-        System.out.println(cart.rotationYaw);
-        cart.rotationYaw = 90;
         if(!flag && world.getBlockState(nextPos).getBlock() instanceof ITraincraftTrack){
             //cart.moveToBlockPosAndAngles(pos.offset(facing.getOpposite()), rot, cart.rotationPitch);
             flag = false;
@@ -110,6 +118,7 @@ public abstract class AbstractBlockTrack extends BlockContainerBase implements I
         if(flag && world.getBlockState(nextPos).getBlock() instanceof ITraincraftTrack){
             //cart.moveToBlockPosAndAngles(pos.offset(facing), rot, cart.rotationPitch);
         } else flag = false;
+        */
     }
 
     @Override
@@ -171,7 +180,6 @@ public abstract class AbstractBlockTrack extends BlockContainerBase implements I
             if(stack.getItem() instanceof ItemMinecart){
                 if(!world.isRemote){
                     EntityMinecart.Type minecartType = ReflectionHelper.getPrivateValue(ItemMinecart.class, (ItemMinecart) stack.getItem(), 1);
-                    System.out.println(Arrays.toString(EntityMinecart.Type.values()));
                     EntityMinecart cart = EntityMinecart.create(world, (double) pos.getX() + 0.5D, (double) pos.getY() + 0.0625D, (double) pos.getZ() + 0.5D, minecartType);
                     if(stack.hasDisplayName()){
                         cart.setCustomNameTag(stack.getDisplayName());

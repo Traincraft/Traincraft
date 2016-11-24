@@ -1,7 +1,7 @@
 /*
  * This file ("Util.java") is part of the Traincraft mod for Minecraft.
  * It is created by all persons that are listed with @author below.
- * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/LICENSE.MD)
+ * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
  * You can find the source code at https://github.com/Traincraft/Traincraft
  *
  * © 2011-2016
@@ -31,15 +31,11 @@ public class Util {
         }
     }
 
-    public static int getStackSize(ItemStack stack){
-        return stack != null ? stack.getCount() : 0;
-    }
-
     public static ItemStack decreaseItemStack(ItemStack toDecrease, ItemStack decreaseValue){
         if(ItemStack.areItemStacksEqual(toDecrease, decreaseValue)){
             int i = toDecrease.copy().getCount() - decreaseValue.copy().getCount();
             if(i > 0){
-                toDecrease.setCount(toDecrease.getCount() - decreaseValue.getCount());
+                toDecrease.shrink(decreaseValue.getCount());
             } else if(i <= 0){
                 toDecrease = ItemStack.EMPTY;
             }

@@ -1,7 +1,7 @@
 /*
  * This file ("CrafterRecipes.java") is part of the Traincraft mod for Minecraft.
  * It is created by all persons that are listed with @author below.
- * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/LICENSE.MD)
+ * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
  * You can find the source code at https://github.com/Traincraft/Traincraft
  *
  * © 2011-2016
@@ -10,7 +10,6 @@
 package si.meansoft.traincraft.api.recipes;
 
 import net.minecraft.item.ItemStack;
-import si.meansoft.traincraft.Util;
 import si.meansoft.traincraft.tile.crafter.TileEntityCrafterBase;
 
 import java.util.HashMap;
@@ -37,7 +36,7 @@ public class CrafterRecipes{
         ItemStack output = getSteamOutput(recipeHandler);
         if(output != null){
             for(int i = 0; i < recipeHandler.inputs.length; i++){
-                tileEntity.decrStackSize(i+16, Util.getStackSize(recipeHandler.inputs[i]));
+                tileEntity.decrStackSize(i+16, recipeHandler.inputs[i].getCount());
             }
 
             tileEntity.setInventorySlotContents(tileEntity.getNextFreeSlot(8, 8+7), output.copy());
@@ -57,7 +56,7 @@ public class CrafterRecipes{
         ItemStack output = getDieselOutput(recipeHandler);
         if(output != null){
             for(int i = 0; i < recipeHandler.inputs.length; i++){
-                tileEntity.decrStackSize(i+16, Util.getStackSize(recipeHandler.inputs[i]));
+                tileEntity.decrStackSize(i+16, recipeHandler.inputs[i].getCount());
             }
 
             tileEntity.setInventorySlotContents(tileEntity.getNextFreeSlot(8, 8+7), output.copy());
@@ -77,7 +76,7 @@ public class CrafterRecipes{
         ItemStack output = getElectroOutput(recipeHandler);
         if(output != null){
             for(int i = 0; i < recipeHandler.inputs.length; i++){
-                tileEntity.decrStackSize(i+16, Util.getStackSize(recipeHandler.inputs[i]));
+                tileEntity.decrStackSize(i+16, recipeHandler.inputs[i].getCount());
             }
 
             tileEntity.setInventorySlotContents(tileEntity.getNextFreeSlot(8, 8+7), output.copy());

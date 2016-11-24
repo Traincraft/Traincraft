@@ -1,7 +1,7 @@
 /*
  * This file ("MinecartMovement.java") is part of the Traincraft mod for Minecraft.
  * It is created by all persons that are listed with @author below.
- * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/LICENSE.MD)
+ * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
  * You can find the source code at https://github.com/Traincraft/Traincraft
  *
  * © 2011-2016
@@ -25,7 +25,7 @@ import si.meansoft.traincraft.api.ITraincraftTrack;
 public class MinecartMovement{
 
     @SubscribeEvent
-    public static void onMinecraftTick(MinecartUpdateEvent event){
+    public void onMinecraftTick(MinecartUpdateEvent event){
         EntityMinecart cart = event.getMinecart();
         World world = cart.getEntityWorld();
         BlockPos cartPos = event.getPos();
@@ -38,7 +38,7 @@ public class MinecartMovement{
     }
 
     @SubscribeEvent
-    public static void onMinecartInit(EntityEvent.EntityConstructing event){
+    public void onMinecartInit(EntityEvent.EntityConstructing event){
         Entity entity = event.getEntity();
         if(entity instanceof EntityMinecart){
             //entity.getDataManager().register(Util.TEST, false);
