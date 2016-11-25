@@ -19,6 +19,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
 import org.apache.logging.log4j.Logger;
 import si.meansoft.traincraft.blocks.BlockTrackStraight;
 import si.meansoft.traincraft.events.Events;
@@ -44,12 +45,15 @@ public class Traincraft {
     public static Logger logger;
     public static CreativeTabs generalTab, trackTab;
 
+    public static Side loadedSide;
+
     static{
         FluidRegistry.enableUniversalBucket();
     }
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
+        loadedSide = event.getSide();
         logger = event.getModLog();
         logger.info("[Pre Initializing] Let the trains out! " + NAME + ": " + VERSION);
         generalTab = new CreativeTabs("traincraft_general_tab") {

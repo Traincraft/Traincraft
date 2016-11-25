@@ -20,6 +20,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import si.meansoft.traincraft.api.AbstractBlockTrack;
 import si.meansoft.traincraft.api.ITraincraftTrack;
 import si.meansoft.traincraft.tile.TileEntityTrack;
 
@@ -67,6 +68,7 @@ public class ItemBlockTrack extends ItemBlockBase {
                                         if (tile != null) {
                                             tile.create(toDestroy, blockIndex, flipAlongX, horizontalFacing);
                                         }
+                                        placeBlockAt(stack, playerIn, worldIn, pos1, facing, hitX, hitY, hitZ, state.withProperty(AbstractBlockTrack.SHOULD_RENDER, true));
                                     }
                                     blockIndex++;
                                 }
@@ -90,6 +92,19 @@ public class ItemBlockTrack extends ItemBlockBase {
                 return hitX > 0.5;
             case WEST:
                 return hitZ > 0.5;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean placeBlockAt(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ, IBlockState newState) {
+        if(world.setBlockState(pos, newState, 3)){
+            IBlockState state = world.getBlockState(pos);
+            if (state.getBlock() == this.block) {
+                setTileEntityNBT(world, player, pos, stack);
+                this.block.onBlockPlacedBy(world, pos, state, player, stack);
+            }
+            return true;
         }
         return false;
     }

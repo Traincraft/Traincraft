@@ -9,6 +9,9 @@
 
 package si.meansoft.traincraft;
 
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 /**
  * @author canitzp
  */
@@ -21,5 +24,8 @@ public interface IRegistryEntry{
     void onRegister(IRegistryEntry[] otherEntries);
 
     void ownRegistry();
+
+    @SideOnly(Side.CLIENT)
+    default void loadClientSide(){}
 
 }

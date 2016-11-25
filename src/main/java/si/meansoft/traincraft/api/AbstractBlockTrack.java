@@ -92,8 +92,6 @@ public abstract class AbstractBlockTrack extends BlockContainerBase implements I
         return getTrackType().getGrid().getPosesToAffect(pos, dir, getTrackType().isCurve() && flipAlongX);
     }
 
-    private boolean flag = false;
-
     @Override
     public void onMinecartDriveOver(World world, BlockPos pos, IBlockState state, EntityMinecart cart, Entity ridingEntity){
         EnumFacing facing = state.getValue(FACING);
@@ -106,23 +104,17 @@ public abstract class AbstractBlockTrack extends BlockContainerBase implements I
             //cart.rotationYaw = ridingEntity.getRotationYawHead() % 360;
         }
         cart.rotationYaw = 0; //TODO get rotation between to positions
+    }
 
-
-        /*
-        float rot = ridingEntity != null ? ridingEntity.getRotationYawHead() + 90 : cart.rotationYaw;
-        if(!flag && world.getBlockState(nextPos).getBlock() instanceof ITraincraftTrack){
-            //cart.moveToBlockPosAndAngles(pos.offset(facing.getOpposite()), rot, cart.rotationPitch);
-            flag = false;
-        } else flag = true;
-        nextPos = pos.offset(facing);
-        if(flag && world.getBlockState(nextPos).getBlock() instanceof ITraincraftTrack){
-            //cart.moveToBlockPosAndAngles(pos.offset(facing), rot, cart.rotationPitch);
-        } else flag = false;
-        */
+    @Override
+    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+        System.out.println(state);
+        return super.getActualState(state, worldIn, pos);
     }
 
     @Override
     public EnumBlockRenderType getRenderType(IBlockState state){
+        System.out.println(state);
         return (state.getValue(SHOULD_RENDER) || shouldRenderDefault()) ? EnumBlockRenderType.MODEL : EnumBlockRenderType.INVISIBLE;
     }
 
@@ -152,6 +144,26 @@ public abstract class AbstractBlockTrack extends BlockContainerBase implements I
     @Override
     public boolean isPassable(IBlockAccess worldIn, BlockPos pos) {
         return true;
+    }
+
+    @Override
+    public int getMetaFromState(IBlockState state) {
+        int meta = 0;
+        meta = meta | state.getValue(FACING).getIndex();
+        if (state.getValue(SHOULD_RENDER)) {
+            meta |= 8;
+        }
+        return meta;
+    }
+
+    @Override
+    public IBlockState getStateFromMeta(int meta) {
+        return this.getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta)).withProperty(SHOULD_RENDER, (meta & 8) > 0);
+    }
+
+    @Override
+    public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand) {
+        return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite()).withProperty(SHOULD_RENDER, shouldRenderDefault());
     }
 
     @Override
@@ -199,9 +211,13 @@ public abstract class AbstractBlockTrack extends BlockContainerBase implements I
     }
 
     public void setRendering(TileEntity tile, boolean shouldRender){
+        System.out.println("1:" + shouldRender);
         if(!shouldRenderDefault() && tile != null && tile.getWorld() != null){
-            IBlockState state = tile.getWorld().getBlockState(tile.getPos()).withProperty(SHOULD_RENDER, shouldRender);
-            tile.getWorld().setBlockState(tile.getPos(), state, 2);
+            World world = tile.getWorld();
+            if(!world.isRemote){
+                System.out.println("2:" + shouldRender);
+                world.setBlockState(tile.getPos(), world.getBlockState(tile.getPos()).withProperty(SHOULD_RENDER, shouldRender), 2);
+            }
         }
     }
 

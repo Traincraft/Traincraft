@@ -62,8 +62,7 @@ public class TileEntityTrack extends TileEntityBase {
         this.facing = enumFacing;
         this.aimsLeft = aimsLeft;
         this.getWaypoints();
-        this.setRendering();
-        System.out.println(this.waypoints);
+        //this.setRendering();
     }
 
     public void getWaypoints(){
