@@ -22,8 +22,13 @@ public class TestTrainModel extends TrainModel<Registry.test> {
 
     @Override
     public void initParts() {
-        this.addBody(0, 0, 0, 0, 0, 16, 2, 48);
-        this.addWheel(0, 0, 0, 0, 0, 1, 5, 5);
+        this.addBody(0, 0, 0, 0, 0, 10, 2, 40);
+        this.addBody(0, 2, 0, 0, 0, 10, 16, 1);
+        this.addWheel(-0.5F, 0, 0, 0, 0, 1, 5, 5);
+        this.addWheel(-0.5F, 0, 35, 0, 0, 1, 5, 5);
+        this.addWheel(-10.5F, 0, 0, 0, 0, 1, 5, 5);
+        this.addWheel(-10.5F, 0, 35, 0, 0, 1, 5, 5);
+        //this.addPart(-10.5F, 0, 35, 0, 0, PredefinedTrainShapes.WHEEL_5X5);
     }
 
     /* test BoxCartUS

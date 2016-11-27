@@ -48,7 +48,7 @@ public class TrainRenderer<T extends TrainBase> extends Render<T> implements IRe
     @Override
     public void doRender(T entity, double x, double y, double z, float entityYaw, float partialTicks) {
         GlStateManager.pushMatrix();
-        GlStateManager.translate(x - 0.5F + model.getXOffset(), y + model.getYOffset(), z - 0.5F + model.getZOffset());
+        GlStateManager.translate(x - model.getMaxWidth() / 2 + model.getXOffset(), y + model.getYOffset() + model.getWheelHeight(), z - model.getMaxDepth() / 2 + model.getZOffset());
         this.bindEntityTexture(entity);
         this.model.render();
         GlStateManager.popMatrix();
@@ -56,7 +56,7 @@ public class TrainRenderer<T extends TrainBase> extends Render<T> implements IRe
 
     @Override
     public void onResourceManagerReload(IResourceManager resourceManager) {
-        this.model.reinitParts();
+        this.model.reInitParts();
         this.dirty = true;
     }
 }

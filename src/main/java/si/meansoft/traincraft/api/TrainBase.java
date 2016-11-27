@@ -9,24 +9,27 @@
 
 package si.meansoft.traincraft.api;
 
+import com.google.common.collect.Lists;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityMinecart;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import si.meansoft.traincraft.Util;
 import si.meansoft.traincraft.client.models.TrainModel;
 import si.meansoft.traincraft.client.models.TrainModelRenderer;
 
 import javax.annotation.Nullable;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -43,7 +46,7 @@ public abstract class TrainBase extends Entity{
     /** Train related variables*/
     public UUID owner;
     public boolean isLocked = false;
-    public HashMap<Seat, EntityLivingBase> seats = new HashMap<>();
+    private static List<Seat> seats = Lists.newArrayList(new Seat(0, 0));
 
     public TrainBase(World world, String name){
         super(world);
@@ -68,40 +71,53 @@ public abstract class TrainBase extends Entity{
     @Override
     public void onEntityUpdate() {
         super.onEntityUpdate();
+        //this.move(MoverType.SELF, this.posX, this.posY, this.posZ + 0.01D);
+        //this.setLocationAndAngles(this.posX, this.posY, this.posZ + 0.01D, this.rotationYaw, this.rotationPitch);
         for(TrainPart<? extends TrainBase> part : this.trainParts){
             part.setLocationAndAngles(this.posX + part.getxOffset(), this.posY + part.getyOffset(), this.posZ + part.getzOffset(), this.rotationYaw, this.rotationPitch);
         }
     }
 
     @Override
+    public boolean processInitialInteract(EntityPlayer player, EnumHand hand) {
+        if(!player.getEntityWorld().isRemote && !player.isSneaking()){
+            player.startRiding(this);
+        }
+        return super.processInitialInteract(player, hand);
+    }
+
+    @Override
+    protected boolean canFitPassenger(Entity passenger) {
+        for(Seat seat : seats){
+            if(!seat.isOccupied()){
+                System.out.println("true");
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
     public void addPassenger(Entity passenger) {
         if(passenger instanceof EntityLivingBase){
-            Seat seat = null;
-            for(Map.Entry<Seat, EntityLivingBase> entry : seats.entrySet()){
-                if(entry.getValue() == null){
-                    seat = entry.getKey();
-                    break;
+            for(Seat seat : seats){
+                if(!seat.isOccupied()){
+                    seat.entityEnter((EntityLivingBase) passenger);
+                    return;
                 }
             }
-            if(seat != null){
-                seats.put(seat, (EntityLivingBase) passenger);
-            } else {
-                System.out.println("No space for you :(");
-            }
+            passenger.sendMessage(new TextComponentString("No space for you :("));
         }
     }
 
     @Override
     public void removePassenger(Entity passenger) {
         if(passenger instanceof EntityLivingBase){
-            Seat seat = null;
-            for(Map.Entry<Seat, EntityLivingBase> entry : seats.entrySet()){
-                if(entry.getValue().equals(passenger)){
-                    seat = entry.getKey();
+            for(Seat seat1 : seats){
+                if(passenger.equals(seat1.entity)){
+                    seat1.entityEnter(null);
+                    return;
                 }
-            }
-            if(seat != null){
-                seats.put(seat, null);
             }
         }
     }
@@ -121,7 +137,7 @@ public abstract class TrainBase extends Entity{
     @Override
     @Nullable
     public AxisAlignedBB getCollisionBox(Entity entityIn) {
-        return entityIn.canBePushed() ? this.getEntityBoundingBox() : null;
+        return null;//entityIn.canBePushed() ? this.getEntityBoundingBox() : null;
     }
 
     @Override
@@ -131,7 +147,7 @@ public abstract class TrainBase extends Entity{
 
     @Nullable
     public AxisAlignedBB getCollisionBoundingBox() {
-        return this.getEntityBoundingBox();
+        return null;
     }
 
     @Nullable
@@ -142,6 +158,8 @@ public abstract class TrainBase extends Entity{
 
     public void processModelChanges(TrainModel<? extends TrainBase> model){
         System.out.println("Process");
+        float max = Math.max(model.getMaxWidth(), model.getMaxDepth());
+        this.setSize(max + max/4, model.getMaxHeight() + model.getWheelHeight());
         this.trainParts.clear();
         for(TrainModelRenderer renderer : model.getPartWheels()){
             this.trainParts.add(new TrainPart<>(this, TrainPart.TrainParts.WHEEL, renderer, model));
@@ -156,10 +174,6 @@ public abstract class TrainBase extends Entity{
 
     protected abstract void readNBT(NBTTagCompound nbt, Util.NBTType type);
 
-    private void addSeat(float xOffset, float yOffset){
-        this.seats.put(new Seat(xOffset, yOffset), null);
-    }
-
     public void setDamage(float damage) {
         this.dataManager.set(DAMAGE, damage);
     }
@@ -169,8 +183,9 @@ public abstract class TrainBase extends Entity{
     }
 
     public static class Seat{
+        private EntityLivingBase entity;
         private float xOffset = 0;
-        private float yOffset= 0;
+        private float yOffset = 0;
         public Seat(float xOffset, float yOffset){
             this.xOffset = xOffset;
             this.yOffset = yOffset;
@@ -181,6 +196,16 @@ public abstract class TrainBase extends Entity{
 
         public float getYOffset() {
             return yOffset;
+        }
+
+        public void entityEnter(EntityLivingBase entity){
+            this.entity = entity;
+        }
+        public EntityLivingBase getSitting(){
+            return this.entity;
+        }
+        public boolean isOccupied(){
+            return getSitting() != null;
         }
     }
 

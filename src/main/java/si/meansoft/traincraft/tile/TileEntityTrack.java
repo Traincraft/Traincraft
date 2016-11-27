@@ -128,6 +128,11 @@ public class TileEntityTrack extends TileEntityBase {
         return facing;
     }
 
+    /* new tactic
+        2*4*
+        1*<
+        3*5*
+     */
     public BlockPos sendRequestToTracks(EnumFacing from){
         if(from.getHorizontalIndex() == -1){
             return getPos();

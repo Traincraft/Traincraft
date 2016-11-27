@@ -38,16 +38,13 @@ public class TrainPart<T extends TrainBase> extends Entity{
         super(train.getEntityWorld());
         this.train = train;
         this.part = part;
-        float width = renderer.getWidth() / 16.0F;
+        float width = renderer.getMaxWidth() / 16.0F;
         float height = renderer.getHeight() / 16.0F;
-        this.setSize(renderer.getMaxWidth() / 16, height);
+        this.setSize(width, height);
 
-        this.xOffset = renderer.offsetX - 0.5F - width / 2.0F;// + renderer.getWidth() / 16.0F;
-        this.zOffset = renderer.offsetZ - 0.5F - width / 2.0F;
-
-        //this.xOffset = renderer.offsetX + model.getXOffset() - renderer.getWidth() / 2.0F / 16.0F - renderer.getWidth()/2;
-        this.yOffset = renderer.offsetY + model.getYOffset() - height;
-        //this.zOffset = renderer.offsetZ + model.getZOffset() - renderer.getWidth() / 2.0F / 16.0F - renderer.getDepth() /16;^
+        this.xOffset = -renderer.getOffX() / 16 - model.getMaxWidth() / 2 + (renderer.getWidth() / 16) / 2;
+        this.yOffset = renderer.getOffY() / 16 - model.getMaxHeight() / 2 + (renderer.getHeight() / 16) / 2 + model.getWheelHeight();
+        this.zOffset = renderer.getOffZ() / 16 - model.getMaxDepth() / 2 + (renderer.getDepth() / 16) /2;
     }
 
     @Override

@@ -17,7 +17,7 @@ import net.minecraft.client.model.ModelRenderer;
  */
 public class TrainModelRenderer extends ModelRenderer {
 
-    private float width, height, depth;
+    private float width, height, depth, offX, offY, offZ, morePartsWidth, morePartsHeight, morePartsDepth;
 
     public TrainModelRenderer(ModelBase model, String boxNameIn) {
         super(model, boxNameIn);
@@ -38,34 +38,89 @@ public class TrainModelRenderer extends ModelRenderer {
         return this;
     }
 
+    public TrainModelRenderer setTextureOffset(int x, int y){
+        super.setTextureOffset(x, y);
+        return this;
+    }
+
     @Override
     public ModelRenderer addBox(String partName, float offX, float offY, float offZ, int width, int height, int depth) {
-        setWidthAndHeight(width, height, depth);
+        this.offX = offX;
+        this.offY = offY;
+        this.offZ = offZ;
+        this.width = width;
+        this.height = height;
+        this.depth = depth;
+        if(this.morePartsWidth < offX + width){
+            this.morePartsWidth = offX + width;
+        }
+        if(this.morePartsHeight < offY + height){
+            this.morePartsHeight = offY + height;
+        }
+        if(this.morePartsDepth < offZ + depth){
+            this.morePartsDepth = offZ + depth;
+        }
         return super.addBox(partName, offX, offY, offZ, width, height, depth);
     }
 
     @Override
     public ModelRenderer addBox(float offX, float offY, float offZ, int width, int height, int depth) {
-        setWidthAndHeight(width, height, depth);
+        this.offX = offX;
+        this.offY = offY;
+        this.offZ = offZ;
+        this.width = width;
+        this.height = height;
+        this.depth = depth;
+        if(this.morePartsWidth < offX + width){
+            this.morePartsWidth = offX + width;
+        }
+        if(this.morePartsHeight < offY + height){
+            this.morePartsHeight = offY + height;
+        }
+        if(this.morePartsDepth < offZ + depth){
+            this.morePartsDepth = offZ + depth;
+        }
         return super.addBox(offX, offY, offZ, width, height, depth);
     }
 
     @Override
     public ModelRenderer addBox(float offX, float offY, float offZ, int width, int height, int depth, boolean mirrored) {
-        setWidthAndHeight(width, height, depth);
+        this.offX = offX;
+        this.offY = offY;
+        this.offZ = offZ;
+        this.width = width;
+        this.height = height;
+        this.depth = depth;
+        if(this.morePartsWidth < offX + width){
+            this.morePartsWidth = offX + width;
+        }
+        if(this.morePartsHeight < offY + height){
+            this.morePartsHeight = offY + height;
+        }
+        if(this.morePartsDepth < offZ + depth){
+            this.morePartsDepth = offZ + depth;
+        }
         return super.addBox(offX, offY, offZ, width, height, depth, mirrored);
     }
 
     @Override
     public void addBox(float offX, float offY, float offZ, int width, int height, int depth, float scaleFactor) {
-        setWidthAndHeight(width, height, depth);
-        super.addBox(offX, offY, offZ, width, height, depth, scaleFactor);
-    }
-
-    private void setWidthAndHeight(float width, float height, float depth){
+        this.offX = offX;
+        this.offY = offY;
+        this.offZ = offZ;
         this.width = width;
         this.height = height;
         this.depth = depth;
+        if(this.morePartsWidth < offX + width){
+            this.morePartsWidth = offX + width;
+        }
+        if(this.morePartsHeight < offY + height){
+            this.morePartsHeight = offY + height;
+        }
+        if(this.morePartsDepth < offZ + depth){
+            this.morePartsDepth = offZ + depth;
+        }
+        super.addBox(offX, offY, offZ, width, height, depth, scaleFactor);
     }
 
     public float getMaxWidth(){
@@ -84,4 +139,27 @@ public class TrainModelRenderer extends ModelRenderer {
         return this.depth;
     }
 
+    public float getOffX() {
+        return offX;
+    }
+
+    public float getOffY() {
+        return offY;
+    }
+
+    public float getOffZ() {
+        return offZ;
+    }
+
+    public float getMorePartsWidth() {
+        return morePartsWidth;
+    }
+
+    public float getMorePartsHeight() {
+        return morePartsHeight;
+    }
+
+    public float getMorePartsDepth() {
+        return morePartsDepth;
+    }
 }

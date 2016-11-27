@@ -35,7 +35,7 @@ public abstract class TrainModel<T extends TrainBase> extends ModelBase{
         initParts();
     }
 
-    public void reinitParts(){
+    public void reInitParts(){
         this.partWheels.clear();
         this.partBody.clear();
         initParts();
@@ -66,6 +66,17 @@ public abstract class TrainModel<T extends TrainBase> extends ModelBase{
         renderer.addBox(offX, offY, offZ, width, height, depth);
         renderer.setTextureSize(this.textureSize, this.textureSize);
         renderer.setRotationAngle(0, 0, (float) Math.PI);
+        this.partWheels.add(renderer);
+        return renderer;
+    }
+
+    protected TrainModelRenderer addPart(float offsetX, float offsetY, float offsetZ, int textureX, int textureY, PredefinedTrainShapes shape){
+        TrainModelRenderer renderer = new TrainModelRenderer(this, textureX, textureY);
+        for(PredefinedTrainShapes.Part part : shape.getPart()){
+            renderer.addBox(offsetX + part.offsetX, offsetY + part.offsetY, offsetZ + part.offsetZ, part.width, part.height, part.depth);
+        }
+        renderer.setTextureSize(this.textureSize, this.textureSize);
+        renderer.setRotationAngle(shape.getRotationX(), shape.getRotationY(), shape.getRotationZ());
         this.partWheels.add(renderer);
         return renderer;
     }
@@ -108,6 +119,46 @@ public abstract class TrainModel<T extends TrainBase> extends ModelBase{
 
     public NonNullList<TrainModelRenderer> getPartWheels() {
         return partWheels;
+    }
+
+    public float getMaxWidth(){
+        float width = 0;
+        for(TrainModelRenderer renderer : getAllRenderer()){
+            if(width < renderer.getMorePartsWidth()){
+                width = renderer.getMorePartsWidth();
+            }
+        }
+        return width / 16;
+    }
+
+    public float getMaxHeight(){
+        float height = 0;
+        for(TrainModelRenderer renderer : getAllRenderer()){
+            if(height < renderer.getMorePartsHeight()){
+                height = renderer.getMorePartsHeight();
+            }
+        }
+        return height / 16;
+    }
+
+    public float getMaxDepth(){
+        float depth = 0;
+        for(TrainModelRenderer renderer : getAllRenderer()){
+            if(depth < renderer.getMorePartsDepth()){
+                depth = renderer.getMorePartsDepth();
+            }
+        }
+        return depth / 16;
+    }
+
+    public float getWheelHeight(){
+        float height = 0;
+        for(TrainModelRenderer renderer : partWheels){
+            if(height < renderer.getMorePartsHeight()){
+                height = renderer.getMorePartsHeight();
+            }
+        }
+        return height / 16;
     }
 
 }

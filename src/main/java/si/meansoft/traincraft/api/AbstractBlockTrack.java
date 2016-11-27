@@ -108,13 +108,11 @@ public abstract class AbstractBlockTrack extends BlockContainerBase implements I
 
     @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
-        System.out.println(state);
         return super.getActualState(state, worldIn, pos);
     }
 
     @Override
     public EnumBlockRenderType getRenderType(IBlockState state){
-        System.out.println(state);
         return (state.getValue(SHOULD_RENDER) || shouldRenderDefault()) ? EnumBlockRenderType.MODEL : EnumBlockRenderType.INVISIBLE;
     }
 

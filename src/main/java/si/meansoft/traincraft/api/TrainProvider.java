@@ -27,9 +27,9 @@ public class TrainProvider<T extends TrainBase> implements IRegistryEntry {
 
     private Class<T> trainClass;
     private String trainName;
-    private TrainModel trainModel;
+    private TrainModel<T> trainModel;
 
-    public TrainProvider(Class<T> trainClass, String trainName, TrainModel model){
+    public TrainProvider(Class<T> trainClass, String trainName, TrainModel<T> model){
         this.trainClass = trainClass;
         this.trainName = trainName;
         this.trainModel = model;
