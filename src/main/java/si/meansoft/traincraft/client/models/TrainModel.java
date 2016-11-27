@@ -17,6 +17,8 @@ import net.minecraft.util.ResourceLocation;
 import si.meansoft.traincraft.api.TrainBase;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author canitzp
@@ -63,6 +65,7 @@ public abstract class TrainModel<T extends TrainBase> extends ModelBase{
         TrainModelRenderer renderer = new TrainModelRenderer(this, textureOffsetX, textureOffsetY);
         renderer.addBox(offX, offY, offZ, width, height, depth);
         renderer.setTextureSize(this.textureSize, this.textureSize);
+        renderer.setRotationAngle(0, 0, (float) Math.PI);
         this.partWheels.add(renderer);
         return renderer;
     }
@@ -91,4 +94,20 @@ public abstract class TrainModel<T extends TrainBase> extends ModelBase{
     public ResourceLocation getTexture(T train){
         return TextureMap.LOCATION_MISSING_TEXTURE;
     }
+
+    public List<TrainModelRenderer> getAllRenderer(){
+        List<TrainModelRenderer> list = new ArrayList<>();
+        list.addAll(this.partBody);
+        list.addAll(this.partWheels);
+        return list;
+    }
+
+    public NonNullList<TrainModelRenderer> getPartBody() {
+        return partBody;
+    }
+
+    public NonNullList<TrainModelRenderer> getPartWheels() {
+        return partWheels;
+    }
+
 }

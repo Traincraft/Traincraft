@@ -22,8 +22,12 @@ public class TestTrainModel extends TrainModel<Registry.test> {
 
     @Override
     public void initParts() {
-        //to test this is copied from BoxCartUS
-        this.addBody(13, 1, -7, 10, 1, 4, 3, 3);
+        this.addBody(0, 0, 0, 0, 0, 16, 2, 48);
+        this.addWheel(0, 0, 0, 0, 0, 1, 5, 5);
+    }
+
+    /* test BoxCartUS
+    this.addBody(13, 1, -7, 10, 1, 4, 3, 3);
         this.addBody(-23, 32, -9, 0, 34, 46, 2, 9).setRotationAngle(-0.15707963267948966F, 0, 0);
         this.addBody(23, 6, -2, 7, 2, 7, 3, 4);
         this.addBody(-12, 2, -5, 0, 0, 2, 2, 10);
@@ -49,6 +53,6 @@ public class TestTrainModel extends TrainModel<Registry.test> {
         this.addBody(-24, 35, -2, 1, 25, 48, 1, 4);
         this.addBody(13, 1, 4, 6, 2, 4, 3, 3);
         this.addBody(11, 4, -4, 0, 0, 10, 2, 8);
-    }
+     */
 
 }

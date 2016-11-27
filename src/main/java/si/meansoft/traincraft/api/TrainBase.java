@@ -9,7 +9,6 @@
 
 package si.meansoft.traincraft.api;
 
-import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityMinecart;
@@ -18,9 +17,12 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 import si.meansoft.traincraft.Util;
+import si.meansoft.traincraft.client.models.TrainModel;
+import si.meansoft.traincraft.client.models.TrainModelRenderer;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;
@@ -36,18 +38,16 @@ public abstract class TrainBase extends Entity{
     /** Internal variables */
     protected final String name;
     private static final DataParameter<Float> DAMAGE = EntityDataManager.<Float>createKey(EntityMinecart.class, DataSerializers.FLOAT);
-
+    private NonNullList<TrainPart<? extends TrainBase>> trainParts = NonNullList.create();
 
     /** Train related variables*/
     public UUID owner;
     public boolean isLocked = false;
     public HashMap<Seat, EntityLivingBase> seats = new HashMap<>();
 
-
     public TrainBase(World world, String name){
         super(world);
         this.name = name;
-        this.setEntityBoundingBox(Block.FULL_BLOCK_AABB);
     }
 
     @Override
@@ -63,6 +63,14 @@ public abstract class TrainBase extends Entity{
     @Override
     protected final void writeEntityToNBT(NBTTagCompound nbt){
         this.writeNBT(nbt, Util.NBTType.SAVE);
+    }
+
+    @Override
+    public void onEntityUpdate() {
+        super.onEntityUpdate();
+        for(TrainPart<? extends TrainBase> part : this.trainParts){
+            part.setLocationAndAngles(this.posX + part.getxOffset(), this.posY + part.getyOffset(), this.posZ + part.getzOffset(), this.rotationYaw, this.rotationPitch);
+        }
     }
 
     @Override
@@ -105,17 +113,15 @@ public abstract class TrainBase extends Entity{
             if(this.getDamage() >= 40.0F){
                 this.setDead();
             }
-            System.out.println(this.getDamage());
             return true;
         }
-
         return super.attackEntityFrom(source, amount);
     }
 
     @Override
     @Nullable
     public AxisAlignedBB getCollisionBox(Entity entityIn) {
-        return entityIn.canBePushed() ? entityIn.getEntityBoundingBox() : null;
+        return entityIn.canBePushed() ? this.getEntityBoundingBox() : null;
     }
 
     @Override
@@ -126,6 +132,24 @@ public abstract class TrainBase extends Entity{
     @Nullable
     public AxisAlignedBB getCollisionBoundingBox() {
         return this.getEntityBoundingBox();
+    }
+
+    @Nullable
+    @Override
+    public Entity[] getParts() {
+        return this.trainParts.toArray(new Entity[]{});
+    }
+
+    public void processModelChanges(TrainModel<? extends TrainBase> model){
+        System.out.println("Process");
+        this.trainParts.clear();
+        for(TrainModelRenderer renderer : model.getPartWheels()){
+            this.trainParts.add(new TrainPart<>(this, TrainPart.TrainParts.WHEEL, renderer, model));
+        }
+    }
+
+    public boolean attackTrainPart(TrainPart<? extends TrainBase> trainPart, TrainPart.TrainParts part, DamageSource source, float damage){
+        return false;
     }
 
     protected abstract void writeNBT(NBTTagCompound nbt, Util.NBTType type);

@@ -27,7 +27,7 @@ public class TrainRenderer<T extends TrainBase> extends Render<T> implements IRe
 
     private TrainModel<T> model;
     private ResourceLocation loc;
-    private boolean dirtyLoc;
+    private boolean dirty = true;
 
     public TrainRenderer(RenderManager renderManager, TrainModel<T> model) {
         super(renderManager);
@@ -37,7 +37,12 @@ public class TrainRenderer<T extends TrainBase> extends Render<T> implements IRe
     @Nullable
     @Override
     protected ResourceLocation getEntityTexture(T entity) {
-        return this.loc == null || this.dirtyLoc ? this.model.getTexture(entity) : this.loc;
+        if(this.dirty){
+            this.dirty = false;
+            entity.processModelChanges(this.model);
+            return this.loc = this.model.getTexture(entity);
+        }
+        return this.loc;
     }
 
     @Override
@@ -52,6 +57,6 @@ public class TrainRenderer<T extends TrainBase> extends Render<T> implements IRe
     @Override
     public void onResourceManagerReload(IResourceManager resourceManager) {
         this.model.reinitParts();
-        this.dirtyLoc = true;
+        this.dirty = true;
     }
 }
