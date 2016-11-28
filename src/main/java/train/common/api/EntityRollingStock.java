@@ -24,6 +24,7 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.monster.EntityCreeper;
+import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemDye;
@@ -401,6 +402,13 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 					}
 				}
 			}
+		}
+		/**
+		 * Minecarts don't despawn when destroyed by Monsters
+		 * We now drop the item if a Creeper or a Skeleton attacks the train
+		 */
+		if (damagesource.getEntity() instanceof EntityCreeper || damagesource.getEntity() instanceof EntitySkeleton) {
+			dropCartAsItem(false);
 		}
 		return true;
 	}
