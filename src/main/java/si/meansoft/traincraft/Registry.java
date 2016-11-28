@@ -9,23 +9,20 @@
 
 package si.meansoft.traincraft;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
-import si.meansoft.traincraft.api.TrainBase;
 import si.meansoft.traincraft.api.TrainProvider;
 import si.meansoft.traincraft.api.TraincraftAPI;
 import si.meansoft.traincraft.blocks.*;
-import si.meansoft.traincraft.client.models.TestTrainModel;
 import si.meansoft.traincraft.fluids.FluidBase;
 import si.meansoft.traincraft.items.ItemMaterial;
+import si.meansoft.traincraft.trains.museumTrain.MuseumSteamTrain;
+import si.meansoft.traincraft.trains.museumTrain.MuseumSteamTrainModel;
 
 /**
  * @author canitzp
@@ -66,7 +63,7 @@ public class Registry{
         TraincraftAPI.addTrackRegister(BlockTrackStraight.class, BlockTrackSlope.class, BlockTrackCurve.class);
         TraincraftAPI.registerTracks();
 
-        register(new TrainProvider<>(test.class, "testTrain", new TestTrainModel()));
+        register(TrainProvider.create(MuseumSteamTrain.class, "museumTrain", new MuseumSteamTrainModel()));
     }
 
     public static <T extends IRegistryEntry> T[] register(T... entries){
@@ -85,25 +82,6 @@ public class Registry{
             }
         }
         return entries;
-    }
-
-
-    public static class test extends TrainBase{
-
-        public test(World world) {
-            super(world, "testTrain");
-            this.setEntityBoundingBox(Block.FULL_BLOCK_AABB);
-        }
-
-        @Override
-        protected void writeNBT(NBTTagCompound nbt, Util.NBTType type) {
-
-        }
-
-        @Override
-        protected void readNBT(NBTTagCompound nbt, Util.NBTType type) {
-
-        }
     }
 
 }

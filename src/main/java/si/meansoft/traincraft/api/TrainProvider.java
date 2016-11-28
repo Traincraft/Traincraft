@@ -20,19 +20,25 @@ import si.meansoft.traincraft.Traincraft;
 import si.meansoft.traincraft.client.models.TrainModel;
 import si.meansoft.traincraft.client.renderer.TrainRenderer;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @author canitzp
  */
 public class TrainProvider<T extends TrainBase> implements IRegistryEntry {
 
+    public static final Map<String, TrainModel<? extends TrainBase>> modelMap = new HashMap<>();
+
     private Class<T> trainClass;
     private String trainName;
     private TrainModel<T> trainModel;
 
-    public TrainProvider(Class<T> trainClass, String trainName, TrainModel<T> model){
+    private TrainProvider(Class<T> trainClass, String trainName, TrainModel<T> model){
         this.trainClass = trainClass;
         this.trainName = trainName;
         this.trainModel = model;
+        modelMap.put(trainName, model);
     }
 
     @Override
@@ -62,7 +68,10 @@ public class TrainProvider<T extends TrainBase> implements IRegistryEntry {
             ((IReloadableResourceManager) Minecraft.getMinecraft().getResourceManager()).registerReloadListener(renderer);
             return renderer;
         });
+    }
 
+    public static <T extends TrainBase> TrainProvider<T> create(Class<T> clazz, String name, TrainModel<T> model){
+        return new TrainProvider<>(clazz, name, model);
     }
 
 }

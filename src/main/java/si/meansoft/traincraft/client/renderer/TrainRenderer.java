@@ -39,7 +39,7 @@ public class TrainRenderer<T extends TrainBase> extends Render<T> implements IRe
     protected ResourceLocation getEntityTexture(T entity) {
         if(this.dirty){
             this.dirty = false;
-            entity.processModelChanges(this.model);
+            //entity.processModelChanges(this.model);
             return this.loc = this.model.getTexture(entity);
         }
         return this.loc;

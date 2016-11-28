@@ -9,12 +9,12 @@
 
 package si.meansoft.traincraft.client.models;
 
-import si.meansoft.traincraft.Registry;
+import si.meansoft.traincraft.api.TrainBase;
 
 /**
  * @author canitzp
  */
-public class TestTrainModel extends TrainModel<Registry.test> {
+public class TestTrainModel<T extends TrainBase> extends TrainModel<T> {
 
     public TestTrainModel() {
         super(128);

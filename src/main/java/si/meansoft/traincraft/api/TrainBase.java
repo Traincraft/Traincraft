@@ -9,9 +9,8 @@
 
 package si.meansoft.traincraft.api;
 
-import com.google.common.collect.Lists;
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -20,15 +19,14 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import si.meansoft.traincraft.Util;
 import si.meansoft.traincraft.client.models.TrainModel;
 import si.meansoft.traincraft.client.models.TrainModelRenderer;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -39,24 +37,33 @@ import java.util.UUID;
 public abstract class TrainBase extends Entity{
 
     /** Internal variables */
-    protected final String name;
+    protected String name;
     private static final DataParameter<Float> DAMAGE = EntityDataManager.<Float>createKey(EntityMinecart.class, DataSerializers.FLOAT);
-    private NonNullList<TrainPart<? extends TrainBase>> trainParts = NonNullList.create();
+    private ArrayList<TrainPart<? extends TrainBase>> trainParts = new ArrayList<>();
 
     /** Train related variables*/
     public UUID owner;
     public boolean isLocked = false;
-    private static List<Seat> seats = Lists.newArrayList(new Seat(0, 0));
 
     public TrainBase(World world, String name){
-        super(world);
+        this(world);
         this.name = name;
+        this.processModelChanges(TrainProvider.modelMap.get(name));
     }
+
+    private TrainBase(World world){
+        super(world);
+    }
+
+    @Override
+    public abstract double getMountedYOffset();
 
     @Override
     protected void entityInit(){
         this.dataManager.register(DAMAGE, 0.0F);
     }
+
+    protected abstract List<TrainPart<? extends TrainBase>> initParts(TrainModel<? extends TrainBase> model);
 
     @Override
     protected final void readEntityFromNBT(NBTTagCompound nbt){
@@ -70,54 +77,12 @@ public abstract class TrainBase extends Entity{
 
     @Override
     public void onEntityUpdate() {
-        super.onEntityUpdate();
+        //super.onEntityUpdate();
         //this.move(MoverType.SELF, this.posX, this.posY, this.posZ + 0.01D);
         //this.setLocationAndAngles(this.posX, this.posY, this.posZ + 0.01D, this.rotationYaw, this.rotationPitch);
-        for(TrainPart<? extends TrainBase> part : this.trainParts){
-            part.setLocationAndAngles(this.posX + part.getxOffset(), this.posY + part.getyOffset(), this.posZ + part.getzOffset(), this.rotationYaw, this.rotationPitch);
-        }
-    }
-
-    @Override
-    public boolean processInitialInteract(EntityPlayer player, EnumHand hand) {
-        if(!player.getEntityWorld().isRemote && !player.isSneaking()){
-            player.startRiding(this);
-        }
-        return super.processInitialInteract(player, hand);
-    }
-
-    @Override
-    protected boolean canFitPassenger(Entity passenger) {
-        for(Seat seat : seats){
-            if(!seat.isOccupied()){
-                System.out.println("true");
-                return true;
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public void addPassenger(Entity passenger) {
-        if(passenger instanceof EntityLivingBase){
-            for(Seat seat : seats){
-                if(!seat.isOccupied()){
-                    seat.entityEnter((EntityLivingBase) passenger);
-                    return;
-                }
-            }
-            passenger.sendMessage(new TextComponentString("No space for you :("));
-        }
-    }
-
-    @Override
-    public void removePassenger(Entity passenger) {
-        if(passenger instanceof EntityLivingBase){
-            for(Seat seat1 : seats){
-                if(passenger.equals(seat1.entity)){
-                    seat1.entityEnter(null);
-                    return;
-                }
+        if(!this.world.isRemote){
+            for(TrainPart<? extends TrainBase> part : this.trainParts){
+                part.setLocationAndAngles(this.posX + part.getxOffset(), this.posY + part.getyOffset(), this.posZ + part.getzOffset(), this.rotationYaw, this.rotationPitch);
             }
         }
     }
@@ -137,17 +102,17 @@ public abstract class TrainBase extends Entity{
     @Override
     @Nullable
     public AxisAlignedBB getCollisionBox(Entity entityIn) {
-        return null;//entityIn.canBePushed() ? this.getEntityBoundingBox() : null;
+        return Block.NULL_AABB;//entityIn.canBePushed() ? this.getEntityBoundingBox() : null;
     }
 
     @Override
     public boolean canBeCollidedWith() {
-        return true;
+        return false;
     }
 
     @Nullable
     public AxisAlignedBB getCollisionBoundingBox() {
-        return null;
+        return Block.NULL_AABB;
     }
 
     @Nullable
@@ -161,12 +126,31 @@ public abstract class TrainBase extends Entity{
         float max = Math.max(model.getMaxWidth(), model.getMaxDepth());
         this.setSize(max + max/4, model.getMaxHeight() + model.getWheelHeight());
         this.trainParts.clear();
+        this.trainParts.addAll(this.initParts(model));
         for(TrainModelRenderer renderer : model.getPartWheels()){
             this.trainParts.add(new TrainPart<>(this, TrainPart.TrainParts.WHEEL, renderer, model));
+        }
+        for(TrainPart<? extends TrainBase> part : this.trainParts){
+            //TODO send TrainPart update Packet to the client!
         }
     }
 
     public boolean attackTrainPart(TrainPart<? extends TrainBase> trainPart, TrainPart.TrainParts part, DamageSource source, float damage){
+        return false;
+    }
+
+    public boolean processInitialInteractPart(TrainPart<? extends TrainBase> trainPart, TrainPart.TrainParts part, EntityPlayer player, EnumHand hand){
+        World world = player.getEntityWorld();
+        if(!world.isRemote){
+            switch (part){
+                case SEET:{
+                    if(!player.isSneaking()){
+                        trainPart.startRiding(player);
+                    }
+                    break;
+                }
+            }
+        }
         return false;
     }
 
@@ -180,33 +164,6 @@ public abstract class TrainBase extends Entity{
 
     public float getDamage() {
         return this.dataManager.get(DAMAGE);
-    }
-
-    public static class Seat{
-        private EntityLivingBase entity;
-        private float xOffset = 0;
-        private float yOffset = 0;
-        public Seat(float xOffset, float yOffset){
-            this.xOffset = xOffset;
-            this.yOffset = yOffset;
-        }
-        public float getXOffset() {
-            return xOffset;
-        }
-
-        public float getYOffset() {
-            return yOffset;
-        }
-
-        public void entityEnter(EntityLivingBase entity){
-            this.entity = entity;
-        }
-        public EntityLivingBase getSitting(){
-            return this.entity;
-        }
-        public boolean isOccupied(){
-            return getSitting() != null;
-        }
     }
 
 }

@@ -10,8 +10,10 @@
 package si.meansoft.traincraft.api;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumHand;
 import si.meansoft.traincraft.client.models.TrainModel;
 import si.meansoft.traincraft.client.models.TrainModelRenderer;
 
@@ -24,14 +26,14 @@ public class TrainPart<T extends TrainBase> extends Entity{
     private final TrainParts part;
     private float xOffset, yOffset, zOffset;
 
-    public TrainPart(T train, TrainParts part, float width, float height, float xOffset, float yOffset, float zOffset) {
+    public TrainPart(T train, TrainParts part, float width, float height, float xOffset, float yOffset, float zOffset, TrainModel<? extends TrainBase> model) {
         super(train.getEntityWorld());
         this.train = train;
         this.part = part;
-        this.setSize(width, height);
-        this.xOffset = xOffset;
-        this.yOffset = yOffset;
-        this.zOffset = zOffset;
+        this.setSize(width / 16, height / 16);
+        this.xOffset = xOffset / 16 - model.getMaxWidth() / 2;
+        this.yOffset = yOffset / 16 - model.getMaxHeight() / 2;
+        this.zOffset = zOffset / 16 - model.getMaxDepth() / 2;
     }
 
     public TrainPart(T train, TrainParts part, TrainModelRenderer renderer, TrainModel<? extends TrainBase> model){
@@ -63,6 +65,11 @@ public class TrainPart<T extends TrainBase> extends Entity{
     }
 
     @Override
+    public boolean processInitialInteract(EntityPlayer player, EnumHand hand) {
+        return this.train.processInitialInteractPart(this, this.part, player, hand);
+    }
+
+    @Override
     public boolean attackEntityFrom(DamageSource source, float amount) {
         return !this.isEntityInvulnerable(source) && this.train.attackTrainPart(this, this.part, source, amount);
     }
@@ -70,6 +77,16 @@ public class TrainPart<T extends TrainBase> extends Entity{
     @Override
     public boolean isEntityEqual(Entity entityIn) {
         return this == entityIn || this.train == entityIn;
+    }
+
+    @Override
+    public double getMountedYOffset() {
+        return this.train.getMountedYOffset();
+    }
+
+    @Override
+    protected boolean canBeRidden(Entity entityIn) {
+        return this.part.equals(TrainParts.SEET);
     }
 
     public float getxOffset() {
@@ -85,7 +102,8 @@ public class TrainPart<T extends TrainBase> extends Entity{
     }
 
     public enum TrainParts{
-        WHEEL
+        WHEEL,
+        SEET
     }
 
 }
