@@ -1017,6 +1017,15 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			 i1 = 1;
 			 }
 			 }
+
+			if (l == Blocks.detector_rail){
+				worldObj.setBlockMetadataWithNotify(i, j, k, meta | 8, 3);
+				worldObj.notifyBlocksOfNeighborChange(i, j, k, l);
+				worldObj.notifyBlocksOfNeighborChange(i, j - 1, k, l);
+				worldObj.markBlockRangeForRenderUpdate(i, j, k, i, j, k);
+				worldObj.scheduleBlockUpdate(i, j, k, l, l.tickRate(worldObj));
+			}
+
 			 if (i1 >= 2 && i1 <= 5) {
 			 posY = (j + 1);
 			 }
