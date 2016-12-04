@@ -32,7 +32,7 @@ Signing the CLA is simple, just follow the link, and hit the "I Agree" button an
 
 Regarding new features/behavior changes, please submit a Suggestion Issue to the Tracker before you write a single line of code. Keeping everyone on the same page saves time and effort and reduces negative experiences all around when a change turns out to be controversial.
 
-For now, the focus should be on updating the mod to the 1.7.x and 1.8.x branches, before adding any new features. Those will be added when the rewrite version is being done.
+For now, the focus should be on updating the mod to the 1.7.x and 1.11.x (master) branches, before adding any new features. Those will be added when the rewrite version is being done.
 
 ## Building
 
