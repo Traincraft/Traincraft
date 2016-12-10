@@ -287,7 +287,12 @@ public class TileTCRail extends TileEntity {
 		linkedX = nbt.getInteger("linkedX");
 		linkedY = nbt.getInteger("linkedY");
 		linkedZ = nbt.getInteger("linkedZ");
-		type = nbt.getString("type");
+		String tempType = nbt.getString("type");
+		if (tempType != null) {
+			type = tempType;
+		} else {
+			type = ItemTCRail.TrackTypes.SMALL_STRAIGHT.getLabel();
+		}
 		isLinkedToRail = nbt.getBoolean("isLinkedToRail");
 		hasModel = nbt.getBoolean("hasModel");
 		switchActive = nbt.getBoolean("switchActive");
@@ -312,7 +317,9 @@ public class TileTCRail extends TileEntity {
 		nbt.setInteger("linkedX", linkedX);
 		nbt.setInteger("linkedY", linkedY);
 		nbt.setInteger("linkedZ", linkedZ);
-		if (type != null) nbt.setString("type", type);
+		if (type != null) {
+			nbt.setString("type", type);
+		}
 		nbt.setBoolean("isLinkedToRail", isLinkedToRail);
 		nbt.setBoolean("hasModel", hasModel);
 		nbt.setBoolean("switchActive", switchActive);

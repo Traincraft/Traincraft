@@ -340,7 +340,8 @@ public class GuiRecipeBook extends GuiScreen {
 						add(new StackToDraw(new ItemStack(ItemIDs.hat_driver_paintable.item, 1, 4), 170, 16));
 					}
 				});
-		addPage("Known bugs:\n- Sharp turns are not supported (close 180 turns)\n- When coming backwards from the Curve of a switch too slow Switchstate can be false","","left",new ArrayList<StackToDraw>() {
+		addPage("Known bugs:\n- Sharp turns are not supported (close 180 turns)\n- When coming backwards from the Curve of a switch too slow Switchstate can be false\n- Jukebox Volume incorrect after rejoin/restart\n- Don't use 4 TC Slopes in a row!\n- TC Slopes won't work above about y=160 ",
+				"", "left", new ArrayList<StackToDraw>() {
 					{
 						add(new StackToDraw(new ItemStack(Items.skull, 1, 4), 20, 16));
 						add(new StackToDraw(new ItemStack(Items.skull, 1, 4), 170, 16));

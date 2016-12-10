@@ -24,6 +24,7 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.monster.EntityCreeper;
+import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemDye;
@@ -146,8 +147,8 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 	public double bogieShift[] = new double[10];
 	public boolean needsBogieUpdate;
 	private boolean firstLoad = true;
-	public EntityBogie[] bogieLoco = new EntityBogie[10];
-	public EntityBogieUtility[] bogieUtility = new EntityBogieUtility[10];
+	public EntityBogie[] bogieLoco = new EntityBogie[1];
+	public EntityBogieUtility[] bogieUtility = new EntityBogieUtility[1];
 	private boolean hasSpawnedBogie = false;
 	public float prevAnglePitch;
 	private double mountedOffset = -0.5;
@@ -397,10 +398,17 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				if (this instanceof IPassenger) {
 					this.setDead();
 					if (damagesource.getEntity() instanceof EntityPlayer) {
-						dropCartAsItem();
+						dropCartAsItem(((EntityPlayer)damagesource.getEntity()).capabilities.isCreativeMode);
 					}
 				}
 			}
+		}
+		/**
+		 * Minecarts don't despawn when destroyed by Monsters
+		 * We now drop the item if a Creeper or a Skeleton attacks the train
+		 */
+		if (damagesource.getEntity() instanceof EntityCreeper || damagesource.getEntity() instanceof EntitySkeleton) {
+			dropCartAsItem(false);
 		}
 		return true;
 	}
@@ -627,6 +635,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 					double rads = this.serverRealRotation * 3.141592653589793D / 180.0D;
 					double pitchRads = this.renderPitch * 3.141592653589793D / 180.0D;
 					this.bogieLoco[i] = new EntityBogie(worldObj, (posX - Math.cos(rads) * this.bogieShift[i]), posY + ((Math.tan(pitchRads) * -this.bogieShift[i]) + getMountedYOffset()), (posZ - Math.sin(rads) * this.bogieShift[i]), this, this.uniqueID, i, this.bogieShift[i]);
+
 					//if(!worldObj.isRemote)System.out.println("ID: "+this.getID());
 					if (!worldObj.isRemote && bogieLoco[i] != null) worldObj.spawnEntityInWorld(bogieLoco[i]);
 					this.needsBogieUpdate = true;
@@ -635,7 +644,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			}
 		}
 		
-		//super.onUpdate();
+		super.onUpdate();
 		
 		/**
 		 * Set the uniqueID if the entity doesn't have one.
@@ -968,10 +977,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		handleTrain();
 		handleOverheating.HandleHeatLevel(this);
 		linkhandler.handleStake(this, boundingBox);
-		if (this.bogieLoco[0] == null && this.bogieUtility[0] == null) {
-			collisionhandler.handleCollisions(this, boundingBox);
-		}
-		//collisionhandler.handleCollisions(this, boundingBox);
+		collisionhandler.handleCollisions(this, boundingBox);
 		this.func_145775_I();
 		MinecraftForge.EVENT_BUS.post(new MinecartUpdateEvent(this, i, j, k));
 		//setBoundingBoxSmall(posX, posY, posZ, 0.98F, 0.7F);
@@ -1011,6 +1017,15 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			 i1 = 1;
 			 }
 			 }
+
+			if (l == Blocks.detector_rail){
+				worldObj.setBlockMetadataWithNotify(i, j, k, meta | 8, 3);
+				worldObj.notifyBlocksOfNeighborChange(i, j, k, l);
+				worldObj.notifyBlocksOfNeighborChange(i, j - 1, k, l);
+				worldObj.markBlockRangeForRenderUpdate(i, j, k, i, j, k);
+				worldObj.scheduleBlockUpdate(i, j, k, l, l.tickRate(worldObj));
+			}
+
 			 if (i1 >= 2 && i1 <= 5) {
 			 posY = (j + 1);
 			 }

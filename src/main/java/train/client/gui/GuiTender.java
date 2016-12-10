@@ -87,16 +87,16 @@ public class GuiTender extends GuiContainer {
 		GL11.glDisable(GL11.GL_LIGHTING);
 		GL11.glDisable(GL11.GL_DEPTH_TEST);
 
-		fontRendererObj.drawString(tender.getInventoryName(), 34, 1, 0x000000);
-		fontRendererObj.drawString(tender.getInventoryName(), 36, 3, 0x000000);
-		fontRendererObj.drawString(tender.getInventoryName(), 34, 3, 0x000000);
-		fontRendererObj.drawString(tender.getInventoryName(), 36, 1, 0x000000);
+		fontRendererObj.drawString(tender.getCommandSenderName(), 34, 1, 0x000000);
+		fontRendererObj.drawString(tender.getCommandSenderName(), 36, 3, 0x000000);
+		fontRendererObj.drawString(tender.getCommandSenderName(), 34, 3, 0x000000);
+		fontRendererObj.drawString(tender.getCommandSenderName(), 36, 1, 0x000000);
 
-		fontRendererObj.drawString(tender.getInventoryName(), 34, 2, 0x000000);
-		fontRendererObj.drawString(tender.getInventoryName(), 36, 2, 0x000000);
-		fontRendererObj.drawString(tender.getInventoryName(), 35, 3, 0x000000);
-		fontRendererObj.drawString(tender.getInventoryName(), 35, 1, 0x000000);
-		fontRendererObj.drawString(tender.getInventoryName(), 35, 2, 0xd3a900);
+		fontRendererObj.drawString(tender.getCommandSenderName(), 34, 2, 0x000000);
+		fontRendererObj.drawString(tender.getCommandSenderName(), 36, 2, 0x000000);
+		fontRendererObj.drawString(tender.getCommandSenderName(), 35, 3, 0x000000);
+		fontRendererObj.drawString(tender.getCommandSenderName(), 35, 1, 0x000000);
+		fontRendererObj.drawString(tender.getCommandSenderName(), 35, 2, 0xd3a900);
 
 		GL11.glEnable(GL11.GL_LIGHTING);
 		GL11.glEnable(GL11.GL_DEPTH_TEST);

@@ -314,9 +314,8 @@ public class LiquidTank extends EntityRollingStock implements IFluidHandler, ISi
 				riddenByEntity.mountEntity(this);
 			}
 			this.setDead();
-			boolean flag = damagesource.getEntity() instanceof EntityPlayer && ((EntityPlayer) damagesource.getEntity()).capabilities.isCreativeMode;
-			if (!flag) {
-				dropCartAsItem();
+			if (damagesource.getEntity() instanceof EntityPlayer) {
+				dropCartAsItem(((EntityPlayer)damagesource.getEntity()).capabilities.isCreativeMode);
 			}
 		}
 		return true;

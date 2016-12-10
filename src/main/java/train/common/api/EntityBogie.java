@@ -39,7 +39,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 	protected int bogieIndex;
 	public double bogieShift;
 	protected Side side;
-	
+
 
 	private int turnProgress;
     private double minecartX;

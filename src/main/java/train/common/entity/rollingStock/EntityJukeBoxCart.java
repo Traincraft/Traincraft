@@ -58,9 +58,8 @@ public class EntityJukeBoxCart extends EntityRollingStock {
 				riddenByEntity.mountEntity(this);
 			}
 			this.setDead();
-			boolean flag = damagesource.getEntity() instanceof EntityPlayer && ((EntityPlayer)damagesource.getEntity()).capabilities.isCreativeMode;
-			if(!flag) {
-				dropCartAsItem();
+			if(damagesource.getEntity() instanceof EntityPlayer) {
+				dropCartAsItem(((EntityPlayer)damagesource.getEntity()).capabilities.isCreativeMode);
 			}
 		}
 		return true;
@@ -94,7 +93,7 @@ public class EntityJukeBoxCart extends EntityRollingStock {
 			if ((Minecraft.getMinecraft().thePlayer != null) && (this.player != null) && (!isInvalid)) {
 				float vol = (float) getDistanceSq(Minecraft.getMinecraft().thePlayer.posX,
 						Minecraft.getMinecraft().thePlayer.posY, Minecraft.getMinecraft().thePlayer.posZ);
-				if (vol > 1000.0F) {
+				if (vol >= 1000.0F) {
 					this.player.setVolume(0.0F);
 				} else {
 					float v2 = 10000.0F / vol / 100.0F;
