@@ -59,7 +59,7 @@ dependencies {
     deobfCompile "mezz.jei:jei_" + config.minecraftVersion.toString() + ":" + config.jeiVersion.toString()
     deobfCompile "net.darkhax.tesla:Tesla:" + config.minecraftVersion.toString() + "-" + config.teslaVersion.toString()
     deobfCompile "net.industrial-craft:industrialcraft-2:" + config.ic2Version.toString() + ":api"
-    compile name: "Railcraft", version: config.railcraftVersion.toString(), classifier: "dev"
+    provided name: "Railcraft", version: config.railcraftVersion.toString(), classifier: "dev"
 }
 
 processResources {

@@ -1,6 +1,6 @@
 /*
  * This file ("MinecartMovement.java") is part of the Traincraft mod for Minecraft.
- * It is created by all persons that are listed with @author below.
+ * It is created by all people that are listed with @author below.
  * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
  * You can find the source code at https://github.com/Traincraft/Traincraft
  *
@@ -16,12 +16,14 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.minecart.MinecartUpdateEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import si.meansoft.traincraft.api.ITraincraftTrack;
 
 /**
  * @author canitzp
  */
+@Mod.EventBusSubscriber
 public class MinecartMovement{
 
     @SubscribeEvent

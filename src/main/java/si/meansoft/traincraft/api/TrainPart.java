@@ -1,6 +1,6 @@
 /*
  * This file ("TrainPart.java") is part of the Traincraft mod for Minecraft.
- * It is created by all persons that are listed with @author below.
+ * It is created by all people that are listed with @author below.
  * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
  * You can find the source code at https://github.com/Traincraft/Traincraft
  *
@@ -89,6 +89,11 @@ public class TrainPart<T extends TrainBase> extends Entity{
         return this.part.equals(TrainParts.SEET);
     }
 
+    @Override
+    public boolean canBeCollidedWith() {
+        return true;
+    }
+
     public float getxOffset() {
         return xOffset;
     }
@@ -102,6 +107,7 @@ public class TrainPart<T extends TrainBase> extends Entity{
     }
 
     public enum TrainParts{
+        MAIN,
         WHEEL,
         SEET
     }

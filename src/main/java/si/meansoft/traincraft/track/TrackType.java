@@ -1,6 +1,6 @@
 /*
  * This file ("TrackType.java") is part of the Traincraft mod for Minecraft.
- * It is created by all persons that are listed with @author below.
+ * It is created by all people that are listed with @author below.
  * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
  * You can find the source code at https://github.com/Traincraft/Traincraft
  *
@@ -17,7 +17,7 @@ import si.meansoft.traincraft.api.AbstractBlockTrack;
 public enum TrackType{
 
     TEST_TRACK("test_track", TrackGrid.getStraightSlope(32)),
-    TEST_CURVE("test_curve", TrackGrid.getCurve(1), true, false),
+    TEST_CURVE("test_curve", TrackGrid.getCurve(3), true, false),
     TEST_SLOPE("test_slope", TrackGrid.getStraightGrid(6), false, true),
 
     STRAIGHT_SINGLE("straight_single", TrackGrid.getStraightGrid(1)),

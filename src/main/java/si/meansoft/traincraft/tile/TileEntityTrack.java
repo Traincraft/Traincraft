@@ -1,6 +1,6 @@
 /*
  * This file ("TileEntityTrack.java") is part of the Traincraft mod for Minecraft.
- * It is created by all persons that are listed with @author below.
+ * It is created by all people that are listed with @author below.
  * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
  * You can find the source code at https://github.com/Traincraft/Traincraft
  *
@@ -53,7 +53,7 @@ public class TileEntityTrack extends TileEntityBase {
         this.defaultTrackPosition = defaultTrackPosition;
         this.blockIndex = blockIndex;
         this.facing = enumFacing;
-        this.getWaypoints();
+        //this.initBlock();
     }
 
     public void create(List<BlockPos> poses, int blockIndex, boolean aimsLeft, EnumFacing enumFacing) {
@@ -61,27 +61,16 @@ public class TileEntityTrack extends TileEntityBase {
         this.blockIndex = blockIndex;
         this.facing = enumFacing;
         this.aimsLeft = aimsLeft;
-        this.getWaypoints();
-        //this.setRendering();
+        this.initBlock();
     }
 
-    public void getWaypoints(){
-        this.waypoints = this.getBlock().getWaypoints(this.getWorld(), this.getPos(), this.getState(), this.blockIndex);
-    }
-
-    private void setRendering(){
-        getBlock().setRendering(this, true);
-    }
-
-    private AbstractBlockTrack getBlock(){
-        return (AbstractBlockTrack) this.getState().getBlock();
-    }
-
-    private IBlockState getState(){
-        if(this.getWorld() != null){
-            return this.getWorld().getBlockState(this.getPos());
+    private void initBlock(){
+        if(this.world != null){
+            IBlockState state = this.world.getBlockState(this.getPos());
+            AbstractBlockTrack track = (AbstractBlockTrack) state.getBlock();
+            this.waypoints = track.getWaypoints(this.getWorld(), this.getPos(), state, this.blockIndex);
+            track.placeTileEntity(this.world, this.pos, state, this, this.blockIndex, this.facing);
         }
-        return BlockTrackStraight.block.getDefaultState();
     }
 
     @Override
@@ -120,7 +109,7 @@ public class TileEntityTrack extends TileEntityBase {
         } else
             defaultTrackPosition = BlockPos.fromLong(compound.getLong("defaultTrackPosition"));
 
-        this.getWaypoints();
+        initBlock();
         super.readFromNBT(compound, type);
     }
 
@@ -134,24 +123,49 @@ public class TileEntityTrack extends TileEntityBase {
         3*5*
      */
     public BlockPos sendRequestToTracks(EnumFacing from){
+        //if it is no horizontal direction
         if(from.getHorizontalIndex() == -1){
             return getPos();
         }
-        List<BlockPos> poses = new ArrayList<>();
+        //if it is a straight waypoint line
+        BlockPos mainPos = this.pos.offset(from.getOpposite());
+        if(!canDrive(mainPos)){
+            //east
+            mainPos = this.pos.east();
+            if(!canDrive(mainPos)){
+                //west
+                mainPos = this.pos.west();
+                if(!canDrive(mainPos)){
+                    //south
+                    mainPos = this.pos.south();
+                    if(!canDrive(mainPos)){
+                        //north
+                        mainPos = this.pos.north();
+                        if(!canDrive(mainPos)){
+                            mainPos = this.pos;
+                        }
+                    }
+                }
+            }
+        }
+
+        /*
         for(EnumFacing side : EnumFacing.HORIZONTALS){
             if(side != from){
                 poses.add(this.pos.offset(side));
             }
         }
         for(BlockPos pos : poses){
-            if(canDrive(this.world, pos)){
+            if(canDrive(pos)){
                 return pos;
             }
         }
-        return getPos();
+        */
+        //System.out.println(from);
+        return mainPos;
     }
 
-    private boolean canDrive(World world, BlockPos pos){
+    private boolean canDrive(BlockPos pos){
         TileEntity tile = world.getTileEntity(pos);
         if(tile != null && tile instanceof TileEntityTrack){
             IBlockState state = world.getBlockState(this.pos);

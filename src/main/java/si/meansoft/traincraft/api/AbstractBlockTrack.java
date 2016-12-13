@@ -1,6 +1,6 @@
 /*
  * This file ("AbstractBlockTrack.java") is part of the Traincraft mod for Minecraft.
- * It is created by all persons that are listed with @author below.
+ * It is created by all people that are listed with @author below.
  * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
  * You can find the source code at https://github.com/Traincraft/Traincraft
  *
@@ -14,6 +14,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityMinecart;
@@ -94,25 +95,21 @@ public abstract class AbstractBlockTrack extends BlockContainerBase implements I
 
     @Override
     public void onMinecartDriveOver(World world, BlockPos pos, IBlockState state, EntityMinecart cart, Entity ridingEntity){
-        EnumFacing facing = state.getValue(FACING);
+        EnumFacing facing = cart.getAdjustedHorizontalFacing();
         TileEntityTrack tileTrack = (TileEntityTrack) world.getTileEntity(pos);
-        BlockPos nextPosition = tileTrack.sendRequestToTracks(cart.getAdjustedHorizontalFacing());
+        BlockPos nextPosition = tileTrack.sendRequestToTracks(facing);
         if(!nextPosition.equals(pos)){
-            cart.moveToBlockPosAndAngles(nextPosition, cart.rotationYaw, cart.rotationPitch);
+            cart.moveToBlockPosAndAngles(nextPosition, facing.getHorizontalAngle(), cart.rotationPitch);
         }
         if(ridingEntity != null){
             //cart.rotationYaw = ridingEntity.getRotationYawHead() % 360;
         }
-        cart.rotationYaw = 0; //TODO get rotation between to positions
-    }
-
-    @Override
-    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
-        return super.getActualState(state, worldIn, pos);
+        //cart.rotationYaw = 0; //TODO get rotation between to positions
     }
 
     @Override
     public EnumBlockRenderType getRenderType(IBlockState state){
+        System.out.println(state.getValue(SHOULD_RENDER));
         return (state.getValue(SHOULD_RENDER) || shouldRenderDefault()) ? EnumBlockRenderType.MODEL : EnumBlockRenderType.INVISIBLE;
     }
 
@@ -156,7 +153,8 @@ public abstract class AbstractBlockTrack extends BlockContainerBase implements I
 
     @Override
     public IBlockState getStateFromMeta(int meta) {
-        return this.getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta)).withProperty(SHOULD_RENDER, (meta & 8) > 0);
+        IBlockState state = this.getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta)).withProperty(SHOULD_RENDER, (meta & 8) > 0);
+        return state;
     }
 
     @Override
@@ -208,15 +206,9 @@ public abstract class AbstractBlockTrack extends BlockContainerBase implements I
         RailcraftUtil.placeRailcraftCart(((ItemCart)stack.getItem()).getCartType(), player, stack, player.getEntityWorld(), pos);
     }
 
-    public void setRendering(TileEntity tile, boolean shouldRender){
-        System.out.println("1:" + shouldRender);
-        if(!shouldRenderDefault() && tile != null && tile.getWorld() != null){
-            World world = tile.getWorld();
-            if(!world.isRemote){
-                System.out.println("2:" + shouldRender);
-                world.setBlockState(tile.getPos(), world.getBlockState(tile.getPos()).withProperty(SHOULD_RENDER, shouldRender), 2);
-            }
-        }
+    public void placeTileEntity(World world, BlockPos pos, IBlockState state, TileEntityTrack tile, int blockIndex, EnumFacing direction){
+        System.out.println(blockIndex);
+        world.setBlockState(tile.getPos(), world.getBlockState(tile.getPos()).withProperty(SHOULD_RENDER, true), world.isRemote ? 11 : 3);
     }
 
 }

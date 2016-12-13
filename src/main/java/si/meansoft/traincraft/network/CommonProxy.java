@@ -1,6 +1,6 @@
 /*
  * This file ("CommonProxy.java") is part of the Traincraft mod for Minecraft.
- * It is created by all persons that are listed with @author below.
+ * It is created by all people that are listed with @author below.
  * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
  * You can find the source code at https://github.com/Traincraft/Traincraft
  *
@@ -24,10 +24,13 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.oredict.OreDictionary;
 import si.meansoft.traincraft.Traincraft;
 import si.meansoft.traincraft.blocks.BlockBase;
+import si.meansoft.traincraft.network.packets.PacketUpdateBlockState;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -48,6 +51,7 @@ public class CommonProxy {
 
     public void init(FMLInitializationEvent event){
         wrapper = NetworkRegistry.INSTANCE.newSimpleChannel(Traincraft.MODID);
+        //wrapper.registerMessage(new PacketUpdateBlockState<>(), PacketUpdateBlockState.class, 0, Side.CLIENT);
     }
 
     public void postInit(FMLPostInitializationEvent event){

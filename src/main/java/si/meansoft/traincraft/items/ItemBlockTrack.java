@@ -1,6 +1,6 @@
 /*
  * This file ("ItemBlockTrack.java") is part of the Traincraft mod for Minecraft.
- * It is created by all persons that are listed with @author below.
+ * It is created by all people that are listed with @author below.
  * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
  * You can find the source code at https://github.com/Traincraft/Traincraft
  *
@@ -98,9 +98,10 @@ public class ItemBlockTrack extends ItemBlockBase {
 
     @Override
     public boolean placeBlockAt(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ, IBlockState newState) {
-        if(world.setBlockState(pos, newState, 3)){
+        if(world.setBlockState(pos, newState, world.isRemote ? 11 : 3)){
             IBlockState state = world.getBlockState(pos);
             if (state.getBlock() == this.block) {
+                System.out.println("set " + state.getValue(AbstractBlockTrack.SHOULD_RENDER));
                 setTileEntityNBT(world, player, pos, stack);
                 this.block.onBlockPlacedBy(world, pos, state, player, stack);
             }

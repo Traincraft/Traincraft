@@ -1,6 +1,6 @@
 /*
  * This file ("Registry.java") is part of the Traincraft mod for Minecraft.
- * It is created by all persons that are listed with @author below.
+ * It is created by all people that are listed with @author below.
  * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
  * You can find the source code at https://github.com/Traincraft/Traincraft
  *
@@ -49,8 +49,8 @@ public class Registry{
         register(distillery = new BlockDistillery());
         register(hearthFurnace = new BlockHearthFurnace());
         register(crafterSteam = new BlockCrafter(BlockCrafter.CrafterTier.STEAM), crafterDiesel = new BlockCrafter(BlockCrafter.CrafterTier.DIESEL), crafterIron = new BlockCrafter(BlockCrafter.CrafterTier.ELECTRO));
-        register(windmill = new BlockWindmill());
-        register(dieselGenerator = new BlockDieselGenerator());
+        //register(windmill = new BlockWindmill());
+        //register(dieselGenerator = new BlockDieselGenerator());
 
         //Items
         register(material = new ItemMaterial());
@@ -63,7 +63,7 @@ public class Registry{
         TraincraftAPI.addTrackRegister(BlockTrackStraight.class, BlockTrackSlope.class, BlockTrackCurve.class);
         TraincraftAPI.registerTracks();
 
-        register(TrainProvider.create(MuseumSteamTrain.class, "museumTrain", new MuseumSteamTrainModel()));
+        //register(TrainProvider.create(MuseumSteamTrain.class, "museumTrain", new MuseumSteamTrainModel()));
     }
 
     public static <T extends IRegistryEntry> T[] register(T... entries){

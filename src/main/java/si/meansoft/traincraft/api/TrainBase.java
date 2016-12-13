@@ -1,6 +1,6 @@
 /*
  * This file ("TrainBase.java") is part of the Traincraft mod for Minecraft.
- * It is created by all persons that are listed with @author below.
+ * It is created by all people that are listed with @author below.
  * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
  * You can find the source code at https://github.com/Traincraft/Traincraft
  *
@@ -18,6 +18,7 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
@@ -77,26 +78,21 @@ public abstract class TrainBase extends Entity{
 
     @Override
     public void onEntityUpdate() {
-        //super.onEntityUpdate();
-        //this.move(MoverType.SELF, this.posX, this.posY, this.posZ + 0.01D);
-        //this.setLocationAndAngles(this.posX, this.posY, this.posZ + 0.01D, this.rotationYaw, this.rotationPitch);
+        super.onEntityUpdate();
+        this.rotationYaw++;
+        this.rotationPitch++;
+        for(TrainPart<? extends TrainBase> part : this.trainParts){
+            part.setLocationAndAngles(this.posX + part.getxOffset(), this.posY + part.getyOffset(), this.posZ + part.getzOffset(), this.rotationYaw, this.rotationPitch);
+        }
+        //this.setEntityBoundingBox(rotate(this.getEntityBoundingBox(), (int) this.rotationYaw, EnumFacing.Axis.Y));
         if(!this.world.isRemote){
-            for(TrainPart<? extends TrainBase> part : this.trainParts){
-                part.setLocationAndAngles(this.posX + part.getxOffset(), this.posY + part.getyOffset(), this.posZ + part.getzOffset(), this.rotationYaw, this.rotationPitch);
-            }
+
         }
     }
 
     @Override
     public boolean attackEntityFrom(DamageSource source, float amount) {
-        if(!this.world.isRemote){
-            this.setDamage(getDamage() + amount * 10.0F);
-            if(this.getDamage() >= 40.0F){
-                this.setDead();
-            }
-            return true;
-        }
-        return super.attackEntityFrom(source, amount);
+        return this.attackTrainPart(null, TrainPart.TrainParts.MAIN, source, amount);
     }
 
     @Override
@@ -113,6 +109,11 @@ public abstract class TrainBase extends Entity{
     @Nullable
     public AxisAlignedBB getCollisionBoundingBox() {
         return Block.NULL_AABB;
+    }
+
+    @Override
+    public boolean processInitialInteract(EntityPlayer player, EnumHand hand) {
+        return this.processInitialInteractPart(null, TrainPart.TrainParts.MAIN, player, hand);
     }
 
     @Nullable
@@ -132,11 +133,19 @@ public abstract class TrainBase extends Entity{
         }
         for(TrainPart<? extends TrainBase> part : this.trainParts){
             //TODO send TrainPart update Packet to the client!
+            //CommonProxy.wrapper.sendToAll(new PacketUpdateBlockState(part));
         }
     }
 
-    public boolean attackTrainPart(TrainPart<? extends TrainBase> trainPart, TrainPart.TrainParts part, DamageSource source, float damage){
-        return false;
+    public boolean attackTrainPart(TrainPart<? extends TrainBase> trainPart, TrainPart.TrainParts part, DamageSource source, float amount){
+        if(!this.world.isRemote){
+            this.setDamage(getDamage() + amount * 10.0F);
+            if(this.getDamage() >= 40.0F){
+                this.setDead();
+            }
+            return true;
+        }
+        return super.attackEntityFrom(source, amount);
     }
 
     public boolean processInitialInteractPart(TrainPart<? extends TrainBase> trainPart, TrainPart.TrainParts part, EntityPlayer player, EnumHand hand){
@@ -145,7 +154,8 @@ public abstract class TrainBase extends Entity{
             switch (part){
                 case SEET:{
                     if(!player.isSneaking()){
-                        trainPart.startRiding(player);
+                        player.startRiding(trainPart);
+                        return true;
                     }
                     break;
                 }
@@ -165,5 +175,62 @@ public abstract class TrainBase extends Entity{
     public float getDamage() {
         return this.dataManager.get(DAMAGE);
     }
+
+    /**
+     * Rotates the {@link AxisAlignedBB} around the axis based on the specified angle.<br>
+     *
+     * @param aabb the aabb
+     * @param angle the angle
+     * @param axis the axis
+     * @return the axis aligned bb
+     */
+    private static int[] cos = { 1, 0, -1, 0 };
+    private static int[] sin = { 0, 1, 0, -1 };
+    public static AxisAlignedBB rotate(AxisAlignedBB aabb, int angle, EnumFacing.Axis axis)
+    {
+        if (aabb == null || angle == 0 || axis == null)
+            return aabb;
+
+        int a = -angle & 3;
+        int s = sin[a];
+        int c = cos[a];
+
+        aabb = aabb.offset(-0.5F, -0.5F, -0.5F);
+
+        double minX = aabb.minX;
+        double minY = aabb.minY;
+        double minZ = aabb.minZ;
+        double maxX = aabb.maxX;
+        double maxY = aabb.maxY;
+        double maxZ = aabb.maxZ;
+
+        if (axis == EnumFacing.Axis.X)
+        {
+            minY = (aabb.minY * c) - (aabb.minZ * s);
+            maxY = (aabb.maxY * c) - (aabb.maxZ * s);
+            minZ = (aabb.minY * s) + (aabb.minZ * c);
+            maxZ = (aabb.maxY * s) + (aabb.maxZ * c);
+
+        }
+        if (axis == EnumFacing.Axis.Y)
+        {
+            minX = (aabb.minX * c) - (aabb.minZ * s);
+            maxX = (aabb.maxX * c) - (aabb.maxZ * s);
+            minZ = (aabb.minX * s) + (aabb.minZ * c);
+            maxZ = (aabb.maxX * s) + (aabb.maxZ * c);
+        }
+
+        if (axis == EnumFacing.Axis.Z)
+        {
+            minX = (aabb.minX * c) - (aabb.minY * s);
+            maxX = (aabb.maxX * c) - (aabb.maxY * s);
+            minY = (aabb.minX * s) + (aabb.minY * c);
+            maxY = (aabb.maxX * s) + (aabb.maxY * c);
+        }
+
+        aabb = new AxisAlignedBB(minX + 0.5F, minY + 0.5F, minZ + 0.5F, maxX + 0.5F, maxY + 0.5F, maxZ + 0.5F);
+        return aabb;
+    }
+
 
 }

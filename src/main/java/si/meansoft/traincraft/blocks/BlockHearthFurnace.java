@@ -1,6 +1,6 @@
 /*
  * This file ("BlockHearthFurnace.java") is part of the Traincraft mod for Minecraft.
- * It is created by all persons that are listed with @author below.
+ * It is created by all people that are listed with @author below.
  * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
  * You can find the source code at https://github.com/Traincraft/Traincraft
  *
@@ -17,6 +17,9 @@ import si.meansoft.traincraft.container.ContainerHearthFurnace;
 import si.meansoft.traincraft.network.GuiHandler;
 import si.meansoft.traincraft.tile.TileEntityHearthFurnace;
 
+/**
+ * @author Ellpeck
+ */
 public class BlockHearthFurnace extends BlockContainerBase{
 
     public BlockHearthFurnace(){

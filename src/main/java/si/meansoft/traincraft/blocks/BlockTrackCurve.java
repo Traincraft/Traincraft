@@ -1,6 +1,6 @@
 /*
  * This file ("BlockTrackCurve.java") is part of the Traincraft mod for Minecraft.
- * It is created by all persons that are listed with @author below.
+ * It is created by all people that are listed with @author below.
  * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
  * You can find the source code at https://github.com/Traincraft/Traincraft
  *
@@ -74,4 +74,10 @@ public class BlockTrackCurve extends AbstractBlockTrack{
     protected ItemBlockBase getItemBlock(AbstractBlockTrack track){
         return new ItemBlockTrack(this);
     }
+
+    @Override
+    protected boolean shouldRenderDefault(){
+        return false;
+    }
+
 }

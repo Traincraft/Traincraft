@@ -1,6 +1,6 @@
 /*
  * This file ("MuseumSteamTrain.java") is part of the Traincraft mod for Minecraft.
- * It is created by all persons that are listed with @author below.
+ * It is created by all people that are listed with @author below.
  * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
  * You can find the source code at https://github.com/Traincraft/Traincraft
  *
@@ -36,7 +36,7 @@ public class MuseumSteamTrain extends TrainBase {
     @Override
     protected List<TrainPart<? extends TrainBase>> initParts(TrainModel<? extends TrainBase> model) {
         List<TrainPart<? extends TrainBase>> parts = new ArrayList<>();
-        parts.add(new TrainPart<TrainBase>(this, TrainPart.TrainParts.SEET, 14, 14, 7.5F, 4, 0, model));
+        parts.add(new TrainPart<TrainBase>(this, TrainPart.TrainParts.SEET, 14, 14, 8, 20, 8, model));
         return parts;
     }
 
