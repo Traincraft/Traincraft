@@ -165,8 +165,6 @@ public class CollisionHandler {
 						double d8 = par1Entity.motionZ + entityOne.motionZ;
 
 						if (((EntityMinecart) par1Entity).isPoweredCart() && !entityOne.isPoweredCart()) {
-							entityOne.motionX *= 0.20000000298023224D;
-							entityOne.motionZ *= 0.20000000298023224D;
 							entityOne.addVelocity(par1Entity.motionX - d0, 0.0D, par1Entity.motionZ - d1);
 							par1Entity.motionX *= 0.949999988079071D;
 							par1Entity.motionZ *= 0.949999988079071D;
@@ -175,15 +173,11 @@ public class CollisionHandler {
 							par1Entity.motionX *= 0.20000000298023224D;
 							par1Entity.motionZ *= 0.20000000298023224D;
 							par1Entity.addVelocity(entityOne.motionX + d0, 0.0D, entityOne.motionZ + d1);
-							entityOne.motionX *= 0.949999988079071D;
-							entityOne.motionZ *= 0.949999988079071D;
 						}
 						else {
 							//System.out.println(par1Entity);
 							d7 /= 2.0D;
 							d8 /= 2.0D;
-							entityOne.motionX *= 0.02000000298023224D;
-							entityOne.motionZ *= 0.02000000298023224D;
 							entityOne.addVelocity(d7 - d0 / 2, 0.0D, d8 - d1 / 2);
 							par1Entity.motionX *= 0.02000000298023224D;
 							par1Entity.motionZ *= 0.02000000298023224D;
