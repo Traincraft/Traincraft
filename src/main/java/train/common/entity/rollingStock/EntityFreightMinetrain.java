@@ -93,7 +93,7 @@ public class EntityFreightMinetrain extends Freight implements IInventory {
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return 0.63F;
+		return -1F;
 	}
 
 	@Override

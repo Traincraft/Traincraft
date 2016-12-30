@@ -75,6 +75,6 @@ public class EntityPassengerAdler extends EntityRollingStock implements IPasseng
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return 1.2F;
+		return 1.05F;
 	}
 }
