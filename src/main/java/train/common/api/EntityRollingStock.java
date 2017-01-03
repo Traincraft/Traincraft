@@ -1257,30 +1257,32 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			//if(worldObj.getBlockTileEntity(i,j,k)==null || !(worldObj.getBlockTileEntity(i,j,k) instanceof TileTCRailGag))return;
 			TileTCRailGag tileGag = (TileTCRailGag) worldObj.getTileEntity(i, j, k);
 			//if(worldObj.getBlockTileEntity(tileGag.originX, tileGag.originY, tileGag.originZ)==null || !(worldObj.getBlockTileEntity(tileGag.originX, tileGag.originY, tileGag.originZ) instanceof TileTCRail))return;
-			TileTCRail tile = (TileTCRail) worldObj.getTileEntity(tileGag.originX, tileGag.originY, tileGag.originZ);
-			//System.out.println(tile.getType());
-			if (ItemTCRail.isTCTurnTrack(tile)) {
-				double r = tile.r;
-				double cx = tile.cx;
-				double cy = tile.cy;
-				double cz = tile.cz;
-				int meta = tile.getBlockMetadata();
-				moveOnTC90TurnRail(i, j, k, r, cx, cy, cz, tile.getType(), meta);
-			}
-			if (ItemTCRail.isTCStraightTrack(tile)) {
-				int meta = tile.getBlockMetadata();
-				double cx = tile.xCoord;
-				double cy = tile.yCoord;
-				double cz = tile.zCoord;
-				moveOnTCStraight(i, j, k, cx, cy, cz, meta);
-			}
-			if (ItemTCRail.isTCSlopeTrack(tile)) {
-				int meta = tile.getBlockMetadata();
-				double cx = tile.xCoord;
-				double cz = tile.zCoord;
-				double slopeAngle = tile.slopeAngle;
-				double slopeHeight = tile.slopeHeight;
-				moveOnTCSlope(j, cx, cz, slopeAngle, slopeHeight, meta);
+			if (worldObj.getTileEntity(tileGag.originX, tileGag.originY, tileGag.originZ) instanceof TileTCRail) {
+				TileTCRail tile = (TileTCRail) worldObj.getTileEntity(tileGag.originX, tileGag.originY, tileGag.originZ);
+				//System.out.println(tile.getType());
+				if (ItemTCRail.isTCTurnTrack(tile)) {
+					double r = tile.r;
+					double cx = tile.cx;
+					double cy = tile.cy;
+					double cz = tile.cz;
+					int meta = tile.getBlockMetadata();
+					moveOnTC90TurnRail(i, j, k, r, cx, cy, cz, tile.getType(), meta);
+				}
+				if (ItemTCRail.isTCStraightTrack(tile)) {
+					int meta = tile.getBlockMetadata();
+					double cx = tile.xCoord;
+					double cy = tile.yCoord;
+					double cz = tile.zCoord;
+					moveOnTCStraight(i, j, k, cx, cy, cz, meta);
+				}
+				if (ItemTCRail.isTCSlopeTrack(tile)) {
+					int meta = tile.getBlockMetadata();
+					double cx = tile.xCoord;
+					double cz = tile.zCoord;
+					double slopeAngle = tile.slopeAngle;
+					double slopeHeight = tile.slopeHeight;
+					moveOnTCSlope(j, cx, cz, slopeAngle, slopeHeight, meta);
+				}
 			}
 		}
 		else {
