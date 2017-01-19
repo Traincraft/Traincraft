@@ -15,7 +15,7 @@ import train.common.slots.SlotTrainCrafting;
 public class ContainerTrainWorkbench extends Container {
 
 	public IInventory craftMatrix;
-	public static IInventory craftResult = new InventoryCraftResult();
+	public IInventory craftResult = new InventoryCraftResult();
 	private World worldObj;
 
 	public ContainerTrainWorkbench(InventoryPlayer invPlayer, World world, IInventory te) {
