@@ -9,7 +9,6 @@
 
 package si.meansoft.traincraft.tile;
 
-import cofh.api.energy.IEnergyHandler;
 import ic2.api.tile.IEnergyStorage;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
@@ -23,7 +22,7 @@ import si.meansoft.traincraft.TeslaWrapper;
  * @author canitzp
  */
 @Optional.Interface(modid = "IC2", iface = "ic2.api.tile.IEnergyStorage")
-public class TileEntityEnergy extends TileEntityInventory implements IEnergyStorage, IEnergyHandler{
+public class TileEntityEnergy extends TileEntityInventory implements IEnergyStorage{
 
     public static final int EU_TO_RF_CONVERSION_RATE = 4;
 
@@ -89,23 +88,6 @@ public class TileEntityEnergy extends TileEntityInventory implements IEnergyStor
         return false;
     }
 
-    @Deprecated /* Use getStoredEnergy() instead */
-    @Override
-    public int getEnergyStored(EnumFacing enumFacing){
-        return this.getStoredEnergy();
-    }
-
-    @Deprecated /* Use getMaxEnergy() instead */
-    @Override
-    public int getMaxEnergyStored(EnumFacing enumFacing){
-        return this.getMaxEnergy();
-    }
-
-    @Deprecated
-    @Override
-    public boolean canConnectEnergy(EnumFacing enumFacing){
-        return true;
-    }
 
     /**
      * Now usable Methods

@@ -80,13 +80,24 @@ public abstract class TrainBase extends Entity{
     public void onEntityUpdate() {
         super.onEntityUpdate();
         this.rotationYaw++;
-        this.rotationPitch++;
-        for(TrainPart<? extends TrainBase> part : this.trainParts){
-            part.setLocationAndAngles(this.posX + part.getxOffset(), this.posY + part.getyOffset(), this.posZ + part.getzOffset(), this.rotationYaw, this.rotationPitch);
-        }
-        //this.setEntityBoundingBox(rotate(this.getEntityBoundingBox(), (int) this.rotationYaw, EnumFacing.Axis.Y));
-        if(!this.world.isRemote){
+        //this.rotationPitch++;
 
+        if(this.rotationYaw >= 359){
+            this.rotationYaw -= 360;
+        }
+
+        float radius = 8;
+        double offX = Math.floor((Math.sin(Math.toRadians(this.rotationYaw)) * radius)) / 16;
+        double offZ = Math.floor((-Math.cos(Math.toRadians(this.rotationYaw)) * radius)) / 16;
+
+
+        //this.setEntityBoundingBox(rotate(this.getEntityBoundingBox(), (int) this.rotationYaw, EnumFacing.Axis.Y));
+        if(this.world.isRemote){
+            for(TrainPart<? extends TrainBase> part : this.trainParts){
+                //,  + (Math.sin(this.rotationYaw / 12) * radius) / 16
+                System.out.println(offZ);
+                part.setLocationAndAngles(this.posX + part.getxOffset() + offX, this.posY + part.getyOffset(), this.posZ + part.getzOffset() + offZ, this.rotationYaw, this.rotationPitch);
+            }
         }
     }
 
@@ -98,7 +109,7 @@ public abstract class TrainBase extends Entity{
     @Override
     @Nullable
     public AxisAlignedBB getCollisionBox(Entity entityIn) {
-        return Block.NULL_AABB;//entityIn.canBePushed() ? this.getEntityBoundingBox() : null;
+        return Block.NULL_AABB;
     }
 
     @Override
@@ -149,6 +160,8 @@ public abstract class TrainBase extends Entity{
     }
 
     public boolean processInitialInteractPart(TrainPart<? extends TrainBase> trainPart, TrainPart.TrainParts part, EntityPlayer player, EnumHand hand){
+        this.rotationYaw += 45;
+        System.out.println(this.rotationYaw);
         World world = player.getEntityWorld();
         if(!world.isRemote){
             switch (part){
@@ -175,62 +188,5 @@ public abstract class TrainBase extends Entity{
     public float getDamage() {
         return this.dataManager.get(DAMAGE);
     }
-
-    /**
-     * Rotates the {@link AxisAlignedBB} around the axis based on the specified angle.<br>
-     *
-     * @param aabb the aabb
-     * @param angle the angle
-     * @param axis the axis
-     * @return the axis aligned bb
-     */
-    private static int[] cos = { 1, 0, -1, 0 };
-    private static int[] sin = { 0, 1, 0, -1 };
-    public static AxisAlignedBB rotate(AxisAlignedBB aabb, int angle, EnumFacing.Axis axis)
-    {
-        if (aabb == null || angle == 0 || axis == null)
-            return aabb;
-
-        int a = -angle & 3;
-        int s = sin[a];
-        int c = cos[a];
-
-        aabb = aabb.offset(-0.5F, -0.5F, -0.5F);
-
-        double minX = aabb.minX;
-        double minY = aabb.minY;
-        double minZ = aabb.minZ;
-        double maxX = aabb.maxX;
-        double maxY = aabb.maxY;
-        double maxZ = aabb.maxZ;
-
-        if (axis == EnumFacing.Axis.X)
-        {
-            minY = (aabb.minY * c) - (aabb.minZ * s);
-            maxY = (aabb.maxY * c) - (aabb.maxZ * s);
-            minZ = (aabb.minY * s) + (aabb.minZ * c);
-            maxZ = (aabb.maxY * s) + (aabb.maxZ * c);
-
-        }
-        if (axis == EnumFacing.Axis.Y)
-        {
-            minX = (aabb.minX * c) - (aabb.minZ * s);
-            maxX = (aabb.maxX * c) - (aabb.maxZ * s);
-            minZ = (aabb.minX * s) + (aabb.minZ * c);
-            maxZ = (aabb.maxX * s) + (aabb.maxZ * c);
-        }
-
-        if (axis == EnumFacing.Axis.Z)
-        {
-            minX = (aabb.minX * c) - (aabb.minY * s);
-            maxX = (aabb.maxX * c) - (aabb.maxY * s);
-            minY = (aabb.minX * s) + (aabb.minY * c);
-            maxY = (aabb.maxX * s) + (aabb.maxY * c);
-        }
-
-        aabb = new AxisAlignedBB(minX + 0.5F, minY + 0.5F, minZ + 0.5F, maxX + 0.5F, maxY + 0.5F, maxZ + 0.5F);
-        return aabb;
-    }
-
 
 }

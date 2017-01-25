@@ -49,7 +49,7 @@ public class BlockTrackSlope extends BlockTrackStraight{
 	}
 
     @Override
-    public void addCollisionBoxToList(IBlockState state, World world, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn){
+    public void addCollisionBoxToList(IBlockState state, World world, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean p_185477_7_){
         EnumFacing facing = state.getValue(FACING);
         if(facing.getHorizontalIndex() != -1){
             TileEntityTrack tile = (TileEntityTrack) world.getTileEntity(pos);
@@ -78,7 +78,7 @@ public class BlockTrackSlope extends BlockTrackStraight{
                 return;
             }
         }
-        super.addCollisionBoxToList(state, world, pos, entityBox, collidingBoxes, entityIn);
+        super.addCollisionBoxToList(state, world, pos, entityBox, collidingBoxes, entityIn, p_185477_7_);
     }
 
     @Override

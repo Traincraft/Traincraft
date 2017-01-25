@@ -63,7 +63,7 @@ public class Registry{
         TraincraftAPI.addTrackRegister(BlockTrackStraight.class, BlockTrackSlope.class, BlockTrackCurve.class);
         TraincraftAPI.registerTracks();
 
-        //register(TrainProvider.create(MuseumSteamTrain.class, "museumTrain", new MuseumSteamTrainModel()));
+        register(TrainProvider.create(MuseumSteamTrain.class, "museumTrain", new MuseumSteamTrainModel()));
     }
 
     public static <T extends IRegistryEntry> T[] register(T... entries){

@@ -33,41 +33,34 @@ repositories {
     }
 }
 
-ext.configFile = file "build.properties"
-configFile.withReader {
-    def prop = new Properties()
-    prop.load(it)
-    project.ext.config = new ConfigSlurper().parse prop
-}
-
-version = config.modVersion
+version = project.modVersion.toString()
 group= "si.meansoft.traincraft"
 archivesBaseName = "Traincraft"
 
 minecraft {
-    version = config.forgeVersion
+    version = project.minecraftVersion.toString() + "-" + project.forgeVersion.toString()
     runDir = "run"
-    mappings = config.mappings.toString()
+    mappings = project.mappings.toString()
     makeObfSourceJar = false
     useDepAts = true
     replaceIn "Traincraft.java"
-    replace "@MODNAME@", config.modName.toString()
-    replace "@VERSION@", config.modVersion.toString()
+    replace "@MODNAME@", project.modName.toString()
+    replace "@VERSION@", project.modVersion.toString()
 }
 
 dependencies {
-    deobfCompile "mezz.jei:jei_" + config.minecraftVersion.toString() + ":" + config.jeiVersion.toString()
-    deobfCompile "net.darkhax.tesla:Tesla:" + config.minecraftVersion.toString() + "-" + config.teslaVersion.toString()
-    deobfCompile "net.industrial-craft:industrialcraft-2:" + config.ic2Version.toString() + ":api"
-    provided name: "Railcraft", version: config.railcraftVersion.toString(), classifier: "dev"
+    deobfCompile "mezz.jei:jei_" + project.minecraftVersion.toString() + ":" + project.jeiVersion.toString()
+    deobfCompile "net.darkhax.tesla:Tesla:1.11-" + project.teslaVersion.toString()
+    compileOnly "net.industrial-craft:industrialcraft-2:" + project.ic2Version.toString() + ":api"
+    compileOnly name: "Railcraft", version: project.railcraftVersion.toString(), classifier: "dev"
 }
 
 processResources {
-    inputs.property "version", config.modVersion
-    inputs.property "mcversion", config.minecraftVersion
+    inputs.property "version", project.modVersion
+    inputs.property "mcversion", project.minecraftVersion
     from(sourceSets.main.resources.srcDirs) {
         include 'mcmod.info'
-        expand 'version':config.modVersion, 'mcversion':config.minecraftVersion
+        expand 'version':project.modVersion, 'mcversion':project.minecraftVersion
     }
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'

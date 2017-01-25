@@ -36,7 +36,8 @@ public class MuseumSteamTrain extends TrainBase {
     @Override
     protected List<TrainPart<? extends TrainBase>> initParts(TrainModel<? extends TrainBase> model) {
         List<TrainPart<? extends TrainBase>> parts = new ArrayList<>();
-        parts.add(new TrainPart<TrainBase>(this, TrainPart.TrainParts.SEET, 14, 14, 8, 20, 8, model));
+        // 8, 20, 8
+        parts.add(new TrainPart<TrainBase>(this, TrainPart.TrainParts.SEET, 14, 14, 8, 20, 16, model));
         return parts;
     }
 

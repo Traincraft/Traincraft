@@ -50,9 +50,10 @@ public class TrainRenderer<T extends TrainBase> extends Render<T> implements IRe
     public void doRender(T entity, double x, double y, double z, float entityYaw, float partialTicks) {
         GlStateManager.pushMatrix();
         GlStateManager.translate(x, y, z);
-        GlStateManager.rotate(entity.rotationYaw, 0, 1, 0);
+        GlStateManager.rotate(-entity.rotationYaw, 0, 1, 0);
         GlStateManager.rotate(entity.rotationPitch, 1, 0, 0);
-        GlStateManager.translate(-model.getMaxWidth() / 2 + model.getXOffset(), -model.getYOffset() + model.getWheelHeight(), -model.getMaxDepth() / 2 + model.getZOffset());
+        System.out.println(Math.round((-model.getMaxWidth() / 2 + model.getXOffset()) * 10.0F) / 10.0F);
+        GlStateManager.translate(Math.round((-model.getMaxWidth() / 2 + model.getXOffset()) * 10.0F) / 10.0F, -model.getYOffset() + model.getWheelHeight(), -model.getMaxDepth() / 2 + model.getZOffset());
         this.bindEntityTexture(entity);
         this.model.render();
         GlStateManager.popMatrix();
@@ -64,39 +65,4 @@ public class TrainRenderer<T extends TrainBase> extends Render<T> implements IRe
         this.dirty = true;
     }
 
-    public static final float radianF = (float) Math.PI / 180.0f;
-    public static float[] rotatePoint(float[] f, float pitch, float yaw, float roll) {
-        float cos;
-        float sin;
-        float[] xyz = new float[]{f[0],f[1],f[2]};
-
-        if (pitch != 0.0F) {
-            pitch *= radianF;
-            cos = MathHelper.cos(pitch);
-            sin = MathHelper.sin(pitch);
-
-            xyz[0] = (f[1] * sin) + (f[0] * cos);
-            xyz[1] = (f[1] * cos) - (f[0] * sin);
-        }
-
-        if (yaw != 0.0F) {
-            yaw *= radianF;
-            cos = MathHelper.cos(yaw);
-            sin = MathHelper.sin(yaw);
-
-            xyz[0] = (f[0] * cos) - (f[2] * sin);
-            xyz[2] = (f[0] * sin) + (f[2] * cos);
-        }
-
-        if (roll != 0.0F) {
-            roll *=  radianF;
-            cos = MathHelper.cos(roll);
-            sin = MathHelper.sin(roll);
-
-            xyz[1] = (f[2] * cos) - (f[1] * sin);
-            xyz[2] = (f[2] * sin) + (f[1] * cos);
-        }
-
-        return xyz;
-    }
 }
