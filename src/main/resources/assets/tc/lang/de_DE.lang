@@ -22,7 +22,7 @@ tile.tc:assemblyTableII.name=Montage Bank II
 tile.tc:assemblyTableIII.name=Montage Bank III
 tile.tc:tcRail.name=Traincraft Gleis
 tile.tc:tcRailGag.name=Traincraft Gleis
-fluid.tc:diesel.name=Dieselkraftstoff
+fluid.tc:fluid.diesel.name=Dieselkraftstoff
 fluid.tc:refinedfuel.name=Rafinierter Kraftstoff
 tile.tc:bridgePillar.name=Brückenpfeiler
 

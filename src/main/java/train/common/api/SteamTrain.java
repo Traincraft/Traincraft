@@ -70,11 +70,15 @@ public abstract class SteamTrain extends Locomotive implements IFluidHandler {
 		/**
 		 * so the client side knows the water amount
 		 */
-		if (worldObj.isRemote ^ !getIsFuelled())
+		if (worldObj.isRemote) {
 			return;
+		}
 		if (theTank != null && theTank.getFluid() != null) {
 			this.dataWatcher.updateObject(23, theTank.getFluid().amount);
 			this.dataWatcher.updateObject(4, theTank.getFluid().getFluidID());
+		}
+
+		if (theTank != null && theTank.getFluid() != null && getIsFuelled()) {
 			if (theTank.getFluid().amount <= 1) {
 				motionX *= 0.94;
 				motionZ *= 0.94;
@@ -84,7 +88,7 @@ public abstract class SteamTrain extends Locomotive implements IFluidHandler {
 			this.dataWatcher.updateObject(23, 0);
 			this.dataWatcher.updateObject(4, 0);
 		}
-		if (rand.nextInt(100) == 0 && getWater() > 0) {
+		if (rand.nextInt(100) == 0 && getWater() > 0 && getIsFuelled()) {
 			drain(ForgeDirection.UNKNOWN, getWaterConsumption() / 5, true);
 		}
 	}
