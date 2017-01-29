@@ -22,7 +22,7 @@ tile.tc:assemblyTableII.name=Sestavljalna miza II
 tile.tc:assemblyTableIII.name=Sestavljalna miza III
 tile.tc:tcRail.name=Traincraft tirnice
 tile.tc:tcRailGag.name=Traincraft tirnice
-fluid.tc:diesel.name=Dizelsko gorivo
+fluid.tc:fluid.diesel.name=Dizelsko gorivo
 fluid.tc:refinedfuel.name=Refinirano gorivo
 tile.tc:bridgePillar.name=Podpornik mostu
 

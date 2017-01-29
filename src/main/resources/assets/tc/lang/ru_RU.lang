@@ -20,7 +20,7 @@ tile.tc:distilIdle.name=Ректификационная колонна
 tile.tc:assemblyTableI.name=Сборочный стол I уровня
 tile.tc:assemblyTableII.name=Сборочный стол II уровня
 tile.tc:assemblyTableIII.name=Сборочный стол III уровня
-fluid.tc:diesel.name=Дизельное топливо
+fluid.tc:fluid.diesel.name=Дизельное топливо
 fluid.tc:refinedfuel.name=Бензин
 
 <!-- ## Предметы ## -->

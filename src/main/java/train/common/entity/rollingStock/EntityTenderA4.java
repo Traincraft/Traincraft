@@ -8,23 +8,32 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.fluids.FluidRegistry;
 import train.common.Traincraft;
-import train.common.api.Freight;
+import train.common.api.LiquidManager;
+import train.common.api.Tender;
+import train.common.library.EnumTrains;
 import train.common.library.GuiIDs;
 
-public class EntityFreightMinetrain extends Freight implements IInventory {
+public class EntityTenderA4 extends Tender implements IInventory {
 	public int freightInventorySize;
-	public EntityFreightMinetrain(World world) {
-		super(world);
-		initFreightCart();
+	public EntityTenderA4(World world) {
+		super(world, FluidRegistry.WATER, 0, EnumTrains.tenderA4.getTankCapacity(), LiquidManager.WATER_FILTER);
+		initFreightTender();
 	}
 
-	public void initFreightCart() {
-		if(trainSpec!=null)freightInventorySize = trainSpec.getCargoCapacity();
-		cargoItems = new ItemStack[freightInventorySize];
+	public void initFreightTender() {
+		freightInventorySize = 16;
+		tenderItems = new ItemStack[freightInventorySize];
+		this.setDefaultMass(0.2);
+		this.acceptedColors.add(this.getColorFromString("Black"));
+		this.acceptedColors.add(this.getColorFromString("White"));
+		this.acceptedColors.add(this.getColorFromString("Yellow"));
+		this.acceptedColors.add(this.getColorFromString("Blue"));
+		this.acceptedColors.add(this.getColorFromString("Green"));
 	}
 
-	public EntityFreightMinetrain(World world, double d, double d1, double d2) {
+	public EntityTenderA4(World world, double d, double d1, double d2) {
 		this(world);
 		setPosition(d, d1 + (double) yOffset, d2);
 		motionX = 0.0D;
@@ -42,15 +51,21 @@ public class EntityFreightMinetrain extends Freight implements IInventory {
 	}
 
 	@Override
+	public void onUpdate() {
+		super.onUpdate();
+		checkInvent(tenderItems[0], this);
+	}
+
+	@Override
 	protected void writeEntityToNBT(NBTTagCompound nbttagcompound) {
 		super.writeEntityToNBT(nbttagcompound);
-		
+
 		NBTTagList nbttaglist = new NBTTagList();
-		for (int i = 0; i < cargoItems.length; i++) {
-			if (cargoItems[i] != null) {
+		for (int i = 0; i < tenderItems.length; i++) {
+			if (tenderItems[i] != null) {
 				NBTTagCompound nbttagcompound1 = new NBTTagCompound();
 				nbttagcompound1.setByte("Slot", (byte) i);
-				cargoItems[i].writeToNBT(nbttagcompound1);
+				tenderItems[i].writeToNBT(nbttagcompound1);
 				nbttaglist.appendTag(nbttagcompound1);
 			}
 		}
@@ -62,18 +77,18 @@ public class EntityFreightMinetrain extends Freight implements IInventory {
 		super.readEntityFromNBT(nbttagcompound);
 
 		NBTTagList nbttaglist = nbttagcompound.getTagList("Items", Constants.NBT.TAG_COMPOUND);
-		cargoItems = new ItemStack[getSizeInventory()];
+		tenderItems = new ItemStack[getSizeInventory()];
 		for (int i = 0; i < nbttaglist.tagCount(); i++) {
 			NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
 			int j = nbttagcompound1.getByte("Slot") & 0xff;
-			if (j >= 0 && j < cargoItems.length) {
-				cargoItems[j] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
+			if (j >= 0 && j < tenderItems.length) {
+				tenderItems[j] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
 			}
 		}
 	}
 	@Override
 	public String getInventoryName() {
-		return "Minecart";
+		return "Tender";
 	}
 
 	@Override
@@ -87,13 +102,15 @@ public class EntityFreightMinetrain extends Freight implements IInventory {
 		if ((super.interactFirst(entityplayer))) {
 			return false;
 		}
-		entityplayer.openGui(Traincraft.instance, GuiIDs.FREIGHT, worldObj, this.getEntityId(), -1, (int) this.posZ);
+		if (!this.worldObj.isRemote) {
+			entityplayer.openGui(Traincraft.instance, GuiIDs.TENDER, worldObj, this.getEntityId(), -1, (int) this.posZ);
+		}
 		return true;
 	}
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return -1F;
+		return 1.1F;
 	}
 
 	@Override
