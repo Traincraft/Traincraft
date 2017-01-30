@@ -22,7 +22,7 @@ tile.tc:assemblyTableII.name=Assembly Table II
 tile.tc:assemblyTableIII.name=Assembly Table III
 tile.tc:tcRail.name=Traincraft Rail
 tile.tc:tcRailGag.name=Traincraft Rail
-fluid.tc:diesel.name=Diesel Fuel
+fluid.tc:fluid.diesel.name=Diesel Fuel
 fluid.tc:refinedfuel.name=Refined Fuel
 tile.tc:bridgePillar.name=Bridge Pillar
 
@@ -214,6 +214,8 @@ item.tc:tcRailVeryLargeSlopeWood.name=Very Large Slope Track (Wood)
 item.tc:tcRailVeryLargeSlopeGravel.name=Very Large Slope Track (Gravel)
 item.tc:tcRailVeryLargeSlopeBallast.name=Very Large Slope Track (Ballast)
 item.tc:tcRailSmallRoadCrossing.name=RailRoad Crossing
+item.tc:minecartLocoA4Mallard.name=A4 Mallard
+item.tc:minecartLocoA4MallardTender.name=A4 Mallard Tender
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -389,6 +391,8 @@ entity.tc.Passenger Green Long.name=Passenger Car
 entity.tc.Passenger Small Black.name=Passenger Car
 entity.tc.Passenger Blue.name=Passenger Car
 entity.tc.Passenger Adler.name=Adler Passenger Car
+entity.tc.Loco Steam A4 Mallard.name=A4 Mallard
+entity.tc.Tender A4 Mallard.name=A4 Mallard Tender
 
 description.villager.profession.tc.station_chief=Station Chief
 

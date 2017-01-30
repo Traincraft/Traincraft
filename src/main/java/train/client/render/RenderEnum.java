@@ -246,7 +246,17 @@ public enum RenderEnum {
 		{
 			add(new double[] { 1.6D, -0.4D, 0.8D });
 		}
-	}, 2, true);
+	}, 2, true),
+	locoSteamA4Mallard(EntityLocoSteamMallardA4.class, new ModelA4Locomotive(), "locoA4_UK_", true, new float[] { -0.8F, 1.05F, 0F }, new float[] { 180F, -90F, 0F }, null, "smoke", 20, new ArrayList<double[]>() {
+		{
+					add(new double[] { 2.3D, 1.1D, 0.0D });
+		}
+	}, "explode", new ArrayList<double[]>() {
+		{
+			add(new double[] { 1.6D, -0.4D, 0.8D });
+		}
+	}, 2, true),
+	locoSteamA4Tender(EntityTenderA4.class, new ModelTenderA4(), "locoA4_UK_", true, new float[] { 0.0F, -0.44F, 0.0F }, new float[] { 0F, 90F, 0F }, null, "", 0, null, "", null, 0, false);
 
 	private Class entityClass;
 	private ModelBase model;

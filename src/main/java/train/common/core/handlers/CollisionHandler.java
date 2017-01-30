@@ -17,6 +17,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.minecart.MinecartCollisionEvent;
 import train.common.api.AbstractTrains;
+import train.common.api.EntityRollingStock;
 import train.common.api.Locomotive;
 import train.common.entity.EntityLasersLines;
 import train.common.entity.rollingStock.EntityStockCar;
@@ -105,7 +106,7 @@ public class CollisionHandler {
 						return;
 						// MinecraftForge.EVENT_BUS.post(new MinecartCollisionEvent((EntityMinecart)entityOne, entity));
 					}
-					else if (entity != entity.riddenByEntity && entity.canBePushed() && (entity instanceof EntityMinecart) && (entity instanceof AbstractTrains) && (entityOne instanceof AbstractTrains)) {
+					else if (entity != entity.riddenByEntity && entity.canBePushed() && (entity instanceof AbstractTrains) && (entityOne instanceof AbstractTrains) && !(entity == ((EntityRollingStock)entityOne).cartLinked1) && !(entity == ((EntityRollingStock)entityOne).cartLinked2)) {
 
 						//applyCollision2(entity, entityOne);
 						applyEntityCollisionVanilla(entity, (EntityMinecart) entityOne);
@@ -390,7 +391,7 @@ public class CollisionHandler {
 						}
 						int j1 = (int) Math.ceil((double) (f1) * damage);
 
-						
+
 						if (unAutorizedMob(movingobjectposition.entityHit, entityOne) || ((entity instanceof EntityPlayer || entityOne instanceof EntityPlayer)) && ((f1 * 3.6) > 60))// (movingobjectposition.entityHit instanceof EntityCreature) && !(movingobjectposition.entityHit instanceof EntityWolf))
 						{
 

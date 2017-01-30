@@ -471,7 +471,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		case 13:
 			return "Magenta";
 		case 10:
-			return "LightGreen";
+			return "Lime";
 		case 11:
 			return "Yellow";
 		case 12:
@@ -514,7 +514,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		case 13:
 			return "Magenta";
 		case 10:
-			return "LightGreen";
+			return "Lime";
 		case 11:
 			return "Yellow";
 		case 12:
@@ -545,7 +545,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		if (color.equals("LightGrey")) return 7;
 		if (color.equals("Grey")) return 8;
 		if (color.equals("Magenta")) return 13;
-		if (color.equals("LightGreen")) return 10;
+		if (color.equals("Lime")) return 10;
 		if (color.equals("Yellow")) return 11;
 		if (color.equals("LightBlue")) return 12;
 		if (color.equals("Pink")) return 9;

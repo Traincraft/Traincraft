@@ -22,7 +22,7 @@ tile.tc:assemblyTableII.name=Tavolo di assemblaggio II
 tile.tc:assemblyTableIII.name=Tavolo di assemblaggio III
 tile.tc:tcRail.name=Binario di Traincraft
 tile.tc:tcRailGag.name=Binario di Traincraft
-fluid.tc:diesel.name=Carburante diesel
+fluid.tc:fluid.diesel.name=Carburante diesel
 fluid.tc:refinedfuel.name=Carburante raffinato
 tile.tc:bridgePillar.name=Pilone del ponte
 

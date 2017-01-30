@@ -22,7 +22,7 @@ tile.tc:assemblyTableII.name=Montážní stůl II
 tile.tc:assemblyTableIII.name=Montážní stůl III
 tile.tc:tcRail.name=Kolej Trainu
 tile.tc:tcRailGag.name=Kolej Trainu
-fluid.tc:diesel.name=Dieselové palivo
+fluid.tc:fluid.diesel.name=Dieselové palivo
 fluid.tc:refinedfuel.name=Rafinované palivo
 tile.tc:bridgePillar.name=Mostní pilíř
 
@@ -214,6 +214,8 @@ item.tc:tcRailVeryLargeSlopeWood.name=Velmi dlouhá stoupající kolej (dřevo)
 item.tc:tcRailVeryLargeSlopeGravel.name=Velmi dlouhá stoupající kolej (štěrk)
 item.tc:tcRailVeryLargeSlopeBallast.name=Velmi dlouhá stoupající kolej (balast)
 item.tc:tcRailSmallRoadCrossing.name=Železniční přejezd
+item.tc:minecartLocoA4Mallard.name=A4 Mallard
+item.tc:minecartLocoA4MallardTender.name=A4 Mallard tendr
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Inženýrské oblečení
@@ -389,6 +391,8 @@ entity.tc.Passenger Green Long.name=Osobní vagón
 entity.tc.Passenger Small Black.name=Osobní vagón
 entity.tc.Passenger Blue.name=Osobní vagón
 entity.tc.Passenger Adler.name=Adler (Osobní vagón)
+entity.tc.Loco Steam A4 Mallard.name=A4 Mallard
++entity.tc.Tender A4 Mallard.name=A4 Mallard tendr
 
 description.villager.profession.tc.station_chief=Vedoucí stanice
 
