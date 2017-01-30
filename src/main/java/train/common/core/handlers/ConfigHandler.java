@@ -32,7 +32,7 @@ public class ConfigHandler {
 	public static int TRAINCRAFT_VILLAGER_ID;
 	public static boolean REAL_TRAIN_SPEED;
 	public static boolean RETROGEN_CHUNKS;
-	public static boolean	MAKE_MODPACKS_BETTER;
+	public static boolean	MAKE_MODPACKS_GREAT_AGAIN;
 
 
 
@@ -59,7 +59,7 @@ public class ConfigHandler {
 			SHOW_POSSIBLE_COLORS = SHOW_POSSIBLE_COLORS_PROP.getBoolean(true);
 			REAL_TRAIN_SPEED = cf.get(CATEGORY_GENERAL, "REAL_TRAIN_SPEED", false).getBoolean(false);
 			RETROGEN_CHUNKS = cf.getBoolean("ENABLE_RETROGEN", CATEGORY_GENERAL, false, "This will generate ores in existing chunks prior to installing Traincraft 5. Do note that if this is off chunks that are loaded will not retrogen later, no matter what.");
-			MAKE_MODPACKS_BETTER = cf.getBoolean("BETTER_MODPACKS", CATEGORY_GENERAL, false,
+			MAKE_MODPACKS_GREAT_AGAIN = cf.getBoolean("MAKE_MODPACKS_GREAT_AGAIN", CATEGORY_GENERAL, false,
 					"This will disable some of Traincrafts easier recipes to balance Modpacks");
 
 
