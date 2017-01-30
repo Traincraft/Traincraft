@@ -249,7 +249,7 @@ public enum RenderEnum {
 	}, 2, true),
 	locoSteamA4Mallard(EntityLocoSteamMallardA4.class, new ModelA4Locomotive(), "locoA4_UK_", true, new float[] { -0.8F, 1.05F, 0F }, new float[] { 180F, -90F, 0F }, null, "smoke", 20, new ArrayList<double[]>() {
 		{
-			add(new double[] { 1.80D, 1.2D, 0.0D });
+					add(new double[] { 2.3D, 1.1D, 0.0D });
 		}
 	}, "explode", new ArrayList<double[]>() {
 		{

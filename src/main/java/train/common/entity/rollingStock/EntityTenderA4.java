@@ -28,14 +28,14 @@ public class EntityTenderA4 extends Tender implements IInventory {
 		this.setDefaultMass(0.2);
 		this.acceptedColors.add(this.getColorFromString("Black"));
 		this.acceptedColors.add(this.getColorFromString("White"));
-		this.acceptedColors.add(this.getColorFromString("Yellow"));
+		this.acceptedColors.add(this.getColorFromString("Lime"));
 		this.acceptedColors.add(this.getColorFromString("Blue"));
 		this.acceptedColors.add(this.getColorFromString("Green"));
 	}
 
 	public EntityTenderA4(World world, double d, double d1, double d2) {
 		this(world);
-		setPosition(d, d1 + (double) yOffset, d2);
+		setPosition(d, d1 + yOffset, d2);
 		motionX = 0.0D;
 		motionY = 0.0D;
 		motionZ = 0.0D;
@@ -110,7 +110,7 @@ public class EntityTenderA4 extends Tender implements IInventory {
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return 1.1F;
+		return 1.15F;
 	}
 
 	@Override

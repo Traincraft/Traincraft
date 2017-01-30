@@ -471,7 +471,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		case 13:
 			return "Magenta";
 		case 10:
-			return "LightGreen";
+			return "Lime";
 		case 11:
 			return "Yellow";
 		case 12:
@@ -514,7 +514,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		case 13:
 			return "Magenta";
 		case 10:
-			return "LightGreen";
+			return "Lime";
 		case 11:
 			return "Yellow";
 		case 12:
