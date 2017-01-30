@@ -518,6 +518,9 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 				}
 			}
 		}
+		if (posX == 0 && posZ == 0) {
+			worldObj.removeEntity(this);
+		}
 	}
 	
 	private void moveOnTCStraight(int j, double cx, double cz, int meta){

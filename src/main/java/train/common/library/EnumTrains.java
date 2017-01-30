@@ -113,7 +113,7 @@ public enum EnumTrains {
 
 	/** Steam */
 	locoSteamA4("Loco Steam A4 Mallard", EntityLocoSteamMallardA4.class, 53, ItemIDs.minecartLocoA4Mallard.item,
-			"train_loco_a4_mallard", "steam", 810, 140, 0, 60, 150, 160, 0.8, 0.97, 10000,
+			"train_loco_a4_mallard", "steam", 810, 140, 0, 60, 150, 160, 0.65, 0.97, 10000,
 			new String[] { "Blue", "Lime", "Black", "Green", "White" }, 7,
 			new double[] { -2.5 }, null, 0.98, 1.98),
 	locoSteamCherepanov("Loco Steam Cherepanov",EntityLocoSteamCherepanov.class, 74,ItemIDs.minecartLocoCherepanov.item,"train_cherpanov","steam",150,30,0,40,120,120,0.3D,0.98D,3000,null,18,new double[]{-1.7},null,0.98,0.98),

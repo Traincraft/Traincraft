@@ -126,7 +126,7 @@ public class EntityLocoSteamMallardA4 extends SteamTrain {
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return (0.6F);
+		return (0.7F);
 	}
 
 	@Override
