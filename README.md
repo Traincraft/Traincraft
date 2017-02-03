@@ -2,6 +2,8 @@
 
 Here you will find the source code for the **Official Traincraft Project**.
 
+This repository is only for release versions. Pull requests should be sent to the repository at https://github.com/EternalBlueFlame/Traincraft-5.
+
 
 ## What is Traincraft?
 
