@@ -48,6 +48,3 @@ You must also import the required API libraries for the related mods if it is no
 
 ##License
 Traincraft is licensed under a custom usage license tailored specifically for the project. It can be read [here](https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md).
-
-<h3>Official builds will be provided by us when we reach stable periods in development, we do this to prevent server/save corruption for users which is especially likely with what, and how much, needs to undergo changing in TC.
-<br/><u>DO NOT</u> distribute builds of the mod, jenkens, modpack, github, or otherwise. We do not care how impatient you are. If you're that impatient, learn forge and java, and help us fix this stuff so we can release faster.</h3>
