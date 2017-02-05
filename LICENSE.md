@@ -29,6 +29,8 @@ derived from Traincraft. They should however follow the terms of this License ag
 
 * Any alteration of the .jar file or any files within.
 
+* Sell our items and blocks on your server shops for real money.
+
 ## Definitions
 
 * All source code files are claimed by Traincraft to 100%. Where model/image/sound assets are excluded and belong to the creator (100%).
