@@ -24,7 +24,7 @@ derived from Traincraft. They should however follow the terms of this License ag
 
 * Upload the single .jar file (Redistribute) of Traincraft to any kind of webserver/webside, except if bundled within a public/private modpack.
 
-* Copy or use the asset files in any derivative or outside/forked project. Assets include images, models, textures, sound file, 
+* Copy or use the asset files in any derivative or outside/forked project (this includes websites and any graphics that are not for entertainment purposes like gameplays, tutorials and so on). Assets include images, models, textures, sound file, 
   and any other library/file not covered by Traincraft ownership.
 
 * Any alteration of the .jar file or any files within.
