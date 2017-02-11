@@ -148,7 +148,7 @@ public class RecipeHandler {
 		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.ironFirebox.item, 2), new Object[] { "###", "#X#", "###", Character.valueOf('#'), Items.iron_ingot, Character.valueOf('X'), Items.flint_and_steel });// iron Firebox  
 		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.ironChimney.item, 2), new Object[] { "# #", "# #", "# #", Character.valueOf('#'), Items.iron_ingot });
 		
-		if (ConfigHandler.MAKE_MODPACKS_GREAT_AGAIN) {
+		if (!ConfigHandler.MAKE_MODPACKS_GREAT_AGAIN) {
 			TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.coaldust.item, 4),
 					new Object[] { "###", "   ", "   ", Character.valueOf('#'), Items.coal });
 			TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.coaldust.item, 4),
