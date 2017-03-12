@@ -376,7 +376,9 @@ public class TileEntityDistil extends TileTraincraft implements IFluidHandler {
 
 	@Override
 	public boolean canInsertItem(int slot, ItemStack stack, int side){
-		return side != 0 && slot == 0;
+		if(side == 0) return false;          // bottom is extract only
+		else if(side == 1) return slot == 0; // insert input into top
+		else return slot == 1;               // insert fuel into sides
 	}
 
 	@Override
