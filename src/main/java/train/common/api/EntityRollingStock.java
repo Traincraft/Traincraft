@@ -403,13 +403,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				}
 			}
 		}
-		/**
-		 * Minecarts don't despawn when destroyed by Monsters
-		 * We now drop the item if a Creeper or a Skeleton attacks the train
-		 */
-		if (damagesource.getEntity() instanceof EntityCreeper) {
-			dropCartAsItem(false);
-		}
 		return true;
 	}
 
