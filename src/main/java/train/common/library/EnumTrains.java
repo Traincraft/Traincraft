@@ -91,8 +91,8 @@ public enum EnumTrains {
 	locoDieselChME3("Loco Diesel ChME3", EntityLocoDieselChME3.class, 32, ItemIDs.minecartChmE3.item, "train_chme3",
 			"diesel", 500, 95, 0, 60, 0, 170, 0.66, 0.96, 5000, null, 15, new double[] { -1.2 }, null, 0.98, 1.98),
 	locoDieselGP7Red("Loco Diesel GP7",EntityLocoDieselGP7Red.class, 59,ItemIDs.minecartGP7Red.item,"train_gp7","diesel",850,70,0,50,0,200,0.74,0.96,20000,new String[] {"Red","Blue","Black","Yellow"},15,new double[]{-1.4},null,0.98,1.98),
-	locoDieselSD40("Loco Diesel SD40",EntityLocoDieselSD40.class, 21,ItemIDs.minecartLocoSD40.item,"train_sd40","diesel",900,80,0,60,0,200,0.8,0.97,20000,new String[] {"Red","Yellow","Black","Green","Orange","Magenta","Blue"},10,new double[]{-2.3},null,0.98,1.98),
-	locoDieselSD70("Loco Diesel SD70",EntityLocoDieselSD70.class, 113,ItemIDs.minecartLocoSD70.item,"train_sd70","diesel",900,80,0,60,0,200,0.8,0.97,20000,new String[] {"Orange","Yellow","Red","Blue","Magenta","Black"},10,new double[]{-2.3},null,0.98,1.98),
+	locoDieselSD40("Loco Diesel SD40",EntityLocoDieselSD40.class, 21,ItemIDs.minecartLocoSD40.item,"train_sd40","diesel",800,80,0,60,0,200,0.8,0.97,20000,new String[] {"Red","Yellow","Black","Green","Orange","Magenta","Blue"},10,new double[]{-2.3},null,0.98,1.98),
+	locoDieselSD70("Loco Diesel SD70",EntityLocoDieselSD70.class, 113,ItemIDs.minecartLocoSD70.item,"train_sd70","diesel",900,90,0,60,0,200,0.8,0.97,20000,new String[] {"Orange","Yellow","Red","Blue","Magenta","Black"},10,new double[]{-2.3},null,0.98,1.98),
 	locoDieselShunter("Loco Diesel Shunter", EntityLocoDieselShunter.class, 11, ItemIDs.minecartShunter.item,
 			"train_shunter", "diesel", 800, 70, 0, 70, 0, 260, 0.6, 0.94, 8000,
 			new String[] { "Blue", "Green", "Red", "Black" }, 14, new double[] { -2.58 }, null, 0.98, 1.98),
@@ -113,7 +113,7 @@ public enum EnumTrains {
 
 	/** Steam */
 	locoSteamA4("Loco Steam A4 Mallard", EntityLocoSteamMallardA4.class, 53, ItemIDs.minecartLocoA4Mallard.item,
-			"train_loco_a4_mallard", "steam", 810, 140, 0, 60, 150, 160, 0.65, 0.97, 10000,
+			"train_loco_a4_mallard", "steam", 639, 140, 0, 60, 150, 160, 0.65, 0.97, 10000,
 			new String[] { "Blue", "Lime", "Black", "Green", "White" }, 7,
 			new double[] { -2.5 }, null, 0.98, 1.98),
 	locoSteamCherepanov("Loco Steam Cherepanov",EntityLocoSteamCherepanov.class, 74,ItemIDs.minecartLocoCherepanov.item,"train_cherpanov","steam",150,30,0,40,120,120,0.3D,0.98D,3000,null,18,new double[]{-1.7},null,0.98,0.98),

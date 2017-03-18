@@ -67,7 +67,7 @@ public class TileEntityDistil extends TileTraincraft implements IFluidHandler {
 	@Override
 	public void readFromNBT(NBTTagCompound nbtTag, boolean forSyncing) {
 		super.readFromNBT(nbtTag, forSyncing);
-		facing = ForgeDirection.getOrientation(nbtTag.getByte("Orientation"));
+		facing = ForgeDirection.getOrientation(nbtTag.getInteger("Orientation"));
 		distilBurnTime = nbtTag.getShort("BurnTime");
 		distilCookTime = nbtTag.getShort("CookTime");
 		currentItemBurnTime = nbtTag.getShort("CurrentItemBurn");
@@ -83,7 +83,7 @@ public class TileEntityDistil extends TileTraincraft implements IFluidHandler {
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound nbtTag, boolean forSyncing) {
 		super.writeToNBT(nbtTag, forSyncing);
-		nbtTag.setByte("Orientation", (byte) facing.ordinal());
+		nbtTag.setInteger("Orientation", getFacing().ordinal());
 		nbtTag.setShort("BurnTime", (short) distilBurnTime);
 		nbtTag.setShort("CookTime", (short) distilCookTime);
 		nbtTag.setInteger("Amount", this.amount);
@@ -312,7 +312,9 @@ public class TileEntityDistil extends TileTraincraft implements IFluidHandler {
 	}
 
 	public ForgeDirection getFacing() {
-		if(facing!=null)return this.facing;
+		if(facing!=null){
+			return this.facing;
+		}
 		return ForgeDirection.NORTH;
 	}
 

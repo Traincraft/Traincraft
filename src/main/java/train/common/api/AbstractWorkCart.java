@@ -314,7 +314,9 @@ public abstract class AbstractWorkCart extends EntityRollingStock implements IIn
 		if (worldObj.isRemote) {
 			return true;
 		}
-		if(this.canBeDestroyedByPlayer(damagesource))return false;
+		if(this.canBeDestroyedByPlayer(damagesource) || damagesource.getEntity() == null){
+			return false;
+		}
 		super.attackEntityFrom(damagesource, i);
 		setRollingDirection(-getRollingDirection());
 		setRollingAmplitude(10);
@@ -326,6 +328,11 @@ public abstract class AbstractWorkCart extends EntityRollingStock implements IIn
 			}
 			this.setDead();
 			if(damagesource.getEntity() instanceof EntityPlayer) {
+				for(ItemStack stack : furnaceItemStacks){
+					if (stack != null) {
+						dropItem(stack.getItem(), stack.stackSize);
+					}
+				}
 				dropCartAsItem(((EntityPlayer)damagesource.getEntity()).capabilities.isCreativeMode);
 			}
 		}
