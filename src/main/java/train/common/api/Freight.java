@@ -187,7 +187,7 @@ public abstract class Freight extends EntityRollingStock implements IInventory {
 	@Override
 	public void dropCartAsItem(boolean isCreative){
 		super.dropCartAsItem(isCreative);
-		if (! (this instanceof Tender)) {
+		if (! (this instanceof Tender) && cargoItems != null) {
 			for (ItemStack stack : cargoItems) {
 				if (stack != null) {
 					entityDropItem(stack, 0);
