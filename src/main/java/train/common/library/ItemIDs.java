@@ -140,6 +140,10 @@ public enum ItemIDs {
 	minecartFreightWellcar("ItemRollingStock", "train_freight_wellcar", 5),
 	minecartKof_DB("ItemRollingStock", "train_kof", 10),
 	minecartV60_DB("ItemRollingStock", "train_v60", 10),
+	minecartKonstaln("ItemRollingStock", "train_konstaln", 7),
+	minecartKonstal105n("ItemRollingStock", "train_konstal105na", 7),
+	minecartKonstalnPassenger("ItemRollingStock", "train_konstaln_passenger", 5),
+	minecartKonstal105nPassenger("ItemRollingStock", "train_konstal105na_passenger", 5),
 
 	hat_ticketMan_paintable("ItemTCArmor", "armor_ticket_man_hat", 1),
 	pants_ticketMan_paintable("ItemTCArmor", "armor_ticket_man_pants", 1),

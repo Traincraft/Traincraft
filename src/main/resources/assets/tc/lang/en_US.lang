@@ -216,6 +216,10 @@ item.tc:tcRailVeryLargeSlopeBallast.name=Very Large Slope Track (Ballast)
 item.tc:tcRailSmallRoadCrossing.name=RailRoad Crossing
 item.tc:minecartLocoA4Mallard.name=A4 Mallard
 item.tc:minecartLocoA4MallardTender.name=A4 Mallard Tender
+item.tc:minecartKonstaln.name=Konstal N
+item.tc:minecartKonstal105n.name=Konstal 105 Na
+item.tc:minecartKonstalnPassenger.name=Konstal N Passenger Car
+item.tc:minecartKonstal105nPassenger.name=Konstal 105 Na Passenger Car
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes

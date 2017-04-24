@@ -111,6 +111,19 @@ public enum EnumTrains {
 			"train_tram_ny", "electric", 400, 65, 0, 10, 0, 170, 0.7, 0.965, 0, null, 18, new double[] { -3 }, null,
 			0.98, 1.98),
 
+	locoElectricTramKonstalN("Loco Electric Konstal N",EntityLocoElectricTramKonstalN.class, 61,ItemIDs.minecartKonstaln.item, "KonstaN","electric",
+			300, /*MHP*/ 55, /*max speed*/ 0, /*mass*/ 10, /*fuel consumption*/ 0, /*water consumption*/ 140, /*heating time*/ 0.6,/*acceleration rate*/
+			0.965,/*brake rate*/ 0,/*tank capacity*/ new String[] {"Blue","Red"},/*colors*/ 14, /*GUI Render Scale*/ new double[]{-2}, /*Bogie positions*/ null,/*bogie utility positions*/
+			0.98,/*width*/ 1.98/*height*/),
+	passengerTramKonstalN("Loco Electric Konstal N Passenger",EntityPassengerTramKonstalN.class, 56,ItemIDs.minecartKonstalnPassenger.item, "KonstaN","passenger",
+			0,0,1.3,0,0,0,0,0,0,new String[] {"Blue","Red"},18, null,null,0.98,1.98),
+	locoElectricTramKonstal105N("Loco Electric Konstal 105 Na",EntityLocoElectricTramKonstal105N.class, 57,ItemIDs.minecartKonstal105n.item, "Konsta105Na","electric",
+			300, /*MHP*/ 60, /*max speed*/ 0, /*mass*/ 10, /*fuel consumption*/ 0, /*water consumption*/ 140, /*heating time*/ 0.5,/*acceleration rate*/
+			0.965,/*brake rate*/ 0,/*tank capacity*/ new String[] {"Green", "Blue","Red"},/*colors*/ 14, /*GUI Render Scale*/ new double[]{-2}, /*Bogie positions*/ null,/*bogie utility positions*/
+			0.98,/*width*/ 1.98/*height*/),
+	passengerTramKonstal105N("Loco Electric Konstal 105 Na Passenger",EntityPassengerTramKonstal105N.class, 58,ItemIDs.minecartKonstal105nPassenger.item, "Konsta105Na","passenger",
+			0,0,1.3,0,0,0,0,0,0,new String[] {"Green","Blue","Red"},18, null,null,0.98,1.98),
+
 	/** Steam */
 	locoSteamA4("Loco Steam A4 Mallard", EntityLocoSteamMallardA4.class, 53, ItemIDs.minecartLocoA4Mallard.item,
 			"train_loco_a4_mallard", "steam", 639, 140, 0, 60, 150, 160, 0.65, 0.97, 10000,
@@ -163,7 +176,7 @@ public enum EnumTrains {
 	 * 
 	 * @param internalName : Only used by EntityRegistry
 	 * @param entityClass
-	 * @param entityID: Current free IDs: 55,56,57,58,61,63,64,65,78,79,80,81,82,89,90,91,92,94
+	 * @param entityID: Current free IDs: 63,64,65,78,79,80,81,82,89,90,91,92,94
 	 * @param item
 	 * @param itemIconName currently unused
 	 * @param trainType: "steam", "diesel", "freight", "passenger", "special", "flat", "electric"

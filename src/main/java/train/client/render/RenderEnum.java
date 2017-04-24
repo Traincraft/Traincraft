@@ -138,6 +138,11 @@ public enum RenderEnum {
 	locoTramYellow(EntityLocoElectricTramWood.class, new ModelTram(), "tram", false, new float[] { -0.8F, -0.44F, 0.0F }, null, null, "", 0, null, "", null, 0, false),
 	locoTramNY(EntityLocoElectricTramNY.class, new ModelTramNY(), "locoTramNY", false, new float[] { -1.5F, -0.44F, 0.0F }, null, null, "", 0, null, "", null, 0, false),
 
+	locoTramKonstalN(EntityLocoElectricTramKonstalN.class, new KonstalN(), "KonstalN_", true, new float[] { -0.8F, -0.44F, 0.0F }, null, null, "", 0, null, "", null, 0, false),
+	locoTramKonstal105N(EntityLocoElectricTramKonstal105N.class, new Konstal105Na(), "Konstal105Na_", true, new float[] { -0.8F, -0.44F, 0.0F }, null, null, "", 0, null, "", null, 0, false),
+	locoTramKonstalNPassenger(EntityPassengerTramKonstalN.class, new KonstalN(), "KonstalN_", true, new float[] { -0.8F, -0.44F, 0.0F }, null, null, "", 0, null, "", null, 0, false),
+	locoTramKonstal105NPassenger(EntityPassengerTramKonstal105N.class, new Konstal105Na(), "Konstal105Na_", true, new float[] { -0.8F, -0.44F, 0.0F }, null, null, "", 0, null, "", null, 0, false),
+
 	/** Steam */
 	locoCherepanov(EntityLocoSteamCherepanov.class, new ModelLocoCherepanov(), "locoCherepanov", false, new float[] { -0.875F, -0.47F, 0.0F }, new float[] { 0, 180, 0 }, null, "largesmoke", 3, new ArrayList<double[]>() {
 		{
