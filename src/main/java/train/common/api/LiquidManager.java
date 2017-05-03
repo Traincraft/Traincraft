@@ -31,6 +31,7 @@ public class LiquidManager {
 	public static Fluid creosoteOil;
 	public static Fluid biomass;
 	public static Fluid biofuel;
+	public static Fluid bioethanol;
 	public static Fluid seedoil;
 	public static Fluid honey;
 	public static Fluid juice;
@@ -98,7 +99,8 @@ public class LiquidManager {
 		fuel = FluidRegistry.getFluid("fuel");
 		creosoteOil = FluidRegistry.getFluid("creosote oil");
 		biomass = FluidRegistry.getFluid("biomass");
-		biofuel = FluidRegistry.getFluid("bioethanol");
+		bioethanol = FluidRegistry.getFluid("bioethanol");
+		biofuel = FluidRegistry.getFluid("biofuel");
 		seedoil = FluidRegistry.getFluid("seedoil");
 		honey = FluidRegistry.getFluid("honey");
 		juice = FluidRegistry.getFluid("juice");
@@ -130,6 +132,8 @@ public class LiquidManager {
 			fuels[2] = new FluidStack(biofuel, 1);
 		if (fuel != null)
 			fuels[3] = new FluidStack(fuel, 1);
+		if (bioethanol != null)
+			fuels[2] = new FluidStack(bioethanol, 1);
 		return fuels;
 	}
 

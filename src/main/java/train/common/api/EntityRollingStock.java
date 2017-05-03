@@ -385,10 +385,12 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				 * Destroy IPassenger since they don't extend Freight or
 				 * Locomotive and don't have a proper attackEntityFrom() method
 				 */
-				if (this instanceof IPassenger) {
+				if (!(this instanceof Locomotive)) {
 					this.setDead();
 					if (damagesource.getEntity() instanceof EntityPlayer) {
 						dropCartAsItem(((EntityPlayer)damagesource.getEntity()).capabilities.isCreativeMode);
+					} else {
+						dropCartAsItem(false);
 					}
 				}
 			}
@@ -1092,7 +1094,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			 posX = d18 + d9 * d17;
 			 posZ = d19 + d10 * d17;
 			setPosition(posX, posY + yOffset + 0.35, posZ);
-			
+
 			 moveMinecartOnRail(i, j, k, 0.0D);
 			
 			 if (ai[0][1] != 0 && MathHelper.floor_double(posX) - i == ai[0][0] &&
@@ -1252,7 +1254,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			}
 		}
 		else {
-			moveMinecartOffRail(i, j, k);
+			super.onUpdate();
 		}
 
 	}

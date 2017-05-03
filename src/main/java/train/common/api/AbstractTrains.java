@@ -228,9 +228,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 
 	@Override
 	public void onUpdate() {
-		if (!(this instanceof EntityRollingStock)) {
 			super.onUpdate();
-		}
 
 		//if(this instanceof Locomotive)System.out.println("I'm alive. Remote: " + worldObj.isRemote);
 		if (!worldObj.isRemote && this.uniqueID == -1) {

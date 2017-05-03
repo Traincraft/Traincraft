@@ -442,7 +442,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 						tileRail = (TileTCRail) tileEntity;
 					}
 					else {
-
+						super.onUpdate();
 						return;
 					}
 
