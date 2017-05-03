@@ -226,10 +226,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		return uniqueID;
 	}
 
-	@Override
-	public void onUpdate() {
-			super.onUpdate();
-
+	public void manageChunkLoading(){
 		//if(this instanceof Locomotive)System.out.println("I'm alive. Remote: " + worldObj.isRemote);
 		if (!worldObj.isRemote && this.uniqueID == -1) {
 			if (FMLCommonHandler.instance().getMinecraftServerInstance() != null) {
@@ -246,6 +243,14 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 			if(this.chunkTicket == null) {
 				this.requestTicket();
 			}
+		}
+	}
+
+	@Override
+	public void onUpdate() {
+			super.onUpdate();
+		if(!(this instanceof EntityRollingStock)) {
+			manageChunkLoading();
 		}
 		/*
 		 * if (worldObj.isRemote) { if (this.getFlag(6)) { if (this.chunks !=

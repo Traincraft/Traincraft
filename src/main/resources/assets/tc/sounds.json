@@ -27,5 +27,8 @@
   "v60_horn": {"category": "master", "sounds": [{"name": "v60_horn","stream": false}]},
   "vl10_horn": {"category": "master", "sounds": [{"name": "vl10_horn","stream": false}]},
   "vl10_idle": {"category": "master", "sounds": [{"name": "vl10_idle","stream": false}]},
-  "vl10_run": {"category": "master", "sounds": [{"name": "vl10_run","stream": false}]}
+  "vl10_run": {"category": "master", "sounds": [{"name": "vl10_run","stream": false}]},
+  "mg_horn": {"category": "master", "sounds": [{"name": "mg_horn","stream": false}]},
+  "mg_run": {"category": "master", "sounds": [{"name": "mg_run","stream": false}]},
+  "mg_idle": {"category": "master", "sounds": [{"name": "mg_idle","stream": false}]}
 }

@@ -466,10 +466,8 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			allTrains.remove(train);
 		}
 		if (this.bogieLoco != null) {
-			if (bogieLoco != null) {
-				bogieLoco.setDead();
-				bogieLoco.isDead = true;
-			}
+			bogieLoco.setDead();
+			bogieLoco.isDead = true;
 		}
 		if (this.bogieUtility != null) {
 			for (EntityBogieUtility bogieUtil : bogieUtility) {
@@ -618,13 +616,13 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 					this.bogieLoco = new EntityBogie(worldObj, (posX - Math.cos(rads) * this.bogieShift), posY + ((Math.tan(pitchRads) * -this.bogieShift) + getMountedYOffset()), (posZ - Math.sin(rads) * this.bogieShift), this, this.uniqueID, 0, this.bogieShift);
 
 					//if(!worldObj.isRemote)System.out.println("ID: "+this.getID());
-					if (!worldObj.isRemote && bogieLoco != null) worldObj.spawnEntityInWorld(bogieLoco);
+					if (!worldObj.isRemote) worldObj.spawnEntityInWorld(bogieLoco);
 					this.needsBogieUpdate = true;
 				}
 				this.hasSpawnedBogie = true;
 		}
 		
-		super.onUpdate();
+		super.manageChunkLoading();
 		
 		/**
 		 * Set the uniqueID if the entity doesn't have one.
@@ -1254,6 +1252,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			}
 		}
 		else {
+			//moveMinecartOffRail(i,j,k);
 			super.onUpdate();
 		}
 
