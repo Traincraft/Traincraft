@@ -26,8 +26,9 @@ public enum EnumSounds {
 	locoHighSpeed(EntityLocoElectricHighSpeedZeroED.class, "high_speed_horn", 0.8F, "vl10_idle", 0.6F, 50, "vl10_idle", 0.6F, 50, false),
 	locoSubwayNY(EntityLocoElectricTramNY.class, "subway_horn", 1F, "vl10_idle", 0.6F, 50, "vl10_idle", 0.6F, 50, false),
 	locoTramWood(EntityLocoElectricTramWood.class, "tram_horn", 1F, "vl10_idle", 0.6F, 50, "vl10_idle", 0.6F, 50, false),
-	locoTramKonstalN(EntityLocoElectricTramKonstal105N.class, "tram_horn", 1F, "vl10_idle", 0.6F, 50, "vl10_idle", 0.6F, 50, false),
-	locoTramKonstal105N(EntityLocoElectricTramKonstalN.class, "tram_horn", 1F, "vl10_idle", 0.6F, 50, "vl10_idle", 0.6F, 50, false),
+	locoIC4_DSB_FG(PassengerIC4_DSB_FG.class, "mg_horn", 1F, "mg_run", 0.6F, 50, "mg_idle", 0.6F, 50, true),
+	locoIC4_DSB_FH(PassengerIC4_DSB_FG.class, "mg_horn", 1F, "mg_run", 0.6F, 50, "mg_idle", 0.6F, 50, true),
+	locoIC4_DSB_MG(PassengerIC4_DSB_FG.class, "mg_horn", 1F, "mg_run", 0.6F, 50, "mg_idle", 0.6F, 50, true),
 	locoSpeedGrey(EntityLocoElectricNewHighSpeed.class, "high_speed_horn", 0.8F, "vl10_idle", 0.6F, 50, "vl10_idle", 0.6F, 50, false),
 
 	locoCD742(EntityLocoDieselCD742.class, "742_horn", 0.8F, "742_motor_slow", 0.65F, 40, "742_motor", 0.65F, 40,

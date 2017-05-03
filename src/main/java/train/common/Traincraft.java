@@ -164,7 +164,6 @@ public class Traincraft {
 	public void postInit(FMLPostInitializationEvent evt) {
 		tcLog.info("Start to PostInitialize");
 		tcLog.info("Register ChunkHandler");
-		proxy.registerChunkHandler(instance);
 
 		tcLog.info("Activation Mod Compatibility");
 		TrainModCore.ModsLoaded();

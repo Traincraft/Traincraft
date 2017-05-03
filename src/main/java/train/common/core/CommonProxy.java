@@ -19,7 +19,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.ForgeChunkManager;
-import net.minecraftforge.common.ForgeChunkManager.Ticket;
 import net.minecraftforge.common.MinecraftForge;
 import train.common.Traincraft;
 import train.common.api.*;
@@ -48,6 +47,7 @@ public class CommonProxy implements IGuiHandler {
 
 		registerEvent(worldEvents);
 		registerEvent(chunkEvents);
+		ForgeChunkManager.setForcedChunkLoadingCallback(Traincraft.instance, chunkEvents);
 
 	}
 
@@ -132,36 +132,6 @@ public class CommonProxy implements IGuiHandler {
 			return entity1 != null && entity1 instanceof LiquidTank ? new InventoryLiquid(player.inventory, (LiquidTank) entity1) : null;
 		default:
 			return null;
-		}
-	}
-	public void registerChunkHandler(Traincraft instance){
-		ForgeChunkManager.setForcedChunkLoadingCallback(instance, new locoChunkloadCallback());
-	}
-	
-	public class locoChunkloadCallback implements ForgeChunkManager.OrderedLoadingCallback {
-
-		@Override
-		public void ticketsLoaded(List<Ticket> tickets, World world) {
-			for (Ticket ticket : tickets) {
-				int locoID = ticket.getModData().getInteger("locoID");
-				Entity entity = world.getEntityByID(locoID);
-				if(entity!=null && entity instanceof AbstractTrains){
-					((AbstractTrains)entity).forceChunkLoading(ticket);
-				}
-			}
-		}
-
-		@Override
-		public List<Ticket> ticketsLoaded(List<Ticket> tickets, World world, int maxTicketCount) {
-			List<Ticket> validTickets = Lists.newArrayList();
-			for (Ticket ticket : tickets) {
-				int locoID = ticket.getModData().getInteger("locoID");
-				Entity entity = world.getEntityByID(locoID);
-				if(entity!=null && entity instanceof AbstractTrains){
-					validTickets.add(ticket);
-				}
-			}
-			return validTickets;
 		}
 	}
 	

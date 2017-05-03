@@ -1,5 +1,6 @@
 package train.common.api;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.mojang.authlib.GameProfile;
@@ -20,7 +21,10 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
+import net.minecraft.world.ChunkCoordIntPair;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeChunkManager;
+import train.common.Traincraft;
 import train.common.items.ItemTCRail;
 import train.common.items.ItemTCRail.TrackTypes;
 import train.common.library.BlockIDs;
@@ -53,6 +57,8 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
     private double velocityY;
     @SideOnly(Side.CLIENT)
     private double velocityZ;
+	private ForgeChunkManager.Ticket chunkTicket;
+	private List<ChunkCoordIntPair> chunks;
 
 
 
@@ -361,7 +367,9 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 	 */
 	@Override
 	public void onUpdate(){
-
+		if(this.chunkTicket == null) {
+			this.requestTicket();
+		}
 		//super.onUpdate(); // XXX I'll just assume that this is not supposed to be there. Why would you run Vanilla update code, only to run your own code afterwards to do basically the same..?
 		
 		this.setCurrentCartSpeedCapOnRail(1.8F);
@@ -795,5 +803,44 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		this.motionX = this.velocityX;
 		this.motionY = this.velocityY;
 		this.motionZ = this.velocityZ;
+	}
+
+
+	public void setTicket(ForgeChunkManager.Ticket ticket){
+		this.chunkTicket = ticket;
+	}
+
+	public void forceChunkLoading(int xChunk, int zChunk) {
+		if(this.chunkTicket != null) {
+			this.collectNearbyChunks(xChunk, zChunk);
+			//force the chunks around to load
+			for(ChunkCoordIntPair chunk : chunks) {
+				ForgeChunkManager.forceChunk(this.chunkTicket, chunk);
+				ForgeChunkManager.reorderChunk(this.chunkTicket, chunk);
+			}
+		}
+	}
+
+	public void collectNearbyChunks(int xChunk, int zChunk) {
+		chunks = new ArrayList<ChunkCoordIntPair>();
+		for(int x = xChunk - 2; x <= xChunk + 2; ++x) {
+			for(int z = zChunk - 2; z <= zChunk + 2; ++z) {
+				chunks.add(new ChunkCoordIntPair(x, z));
+			}
+		}
+	}
+
+	private boolean requestTicket() {
+		ForgeChunkManager.Ticket chunkTicket = ForgeChunkManager.requestTicket(Traincraft.instance, worldObj , ForgeChunkManager.Type.ENTITY);
+		if(chunkTicket != null) {
+			chunkTicket.getModData().setInteger("bogieID", this.getEntityId());
+			chunkTicket.setChunkListDepth(25);
+			chunkTicket.bindEntity(this);
+			this.setTicket(chunkTicket);
+			this.forceChunkLoading(chunkCoordX, chunkCoordZ);
+			return true;
+		}
+
+		return false;
 	}
 }
