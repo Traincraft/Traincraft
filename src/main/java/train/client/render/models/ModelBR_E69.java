@@ -5,7 +5,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
 import train.client.render.CustomModelRenderer;
 
-public class ModelEU07 extends ModelBase {
+public class ModelBR_E69 extends ModelBase {
 
 	public CustomModelRenderer box;
 	public CustomModelRenderer box0;
@@ -74,7 +74,7 @@ public class ModelEU07 extends ModelBase {
 	public CustomModelRenderer box8;
 	public CustomModelRenderer box9;
 
-	public ModelEU07() {
+	public ModelBR_E69() {
 		box = new CustomModelRenderer(3, 117, 256, 128);
 		box.addBox(0F, 0F, 0F, 6, 3, 3);
 		box.setPosition(4F, 5F, 7F);

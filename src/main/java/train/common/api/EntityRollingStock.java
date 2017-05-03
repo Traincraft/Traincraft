@@ -1080,9 +1080,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			 if (FMLCommonHandler.instance().getMinecraftServerInstance() != null &&
 			 this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer) {
 			 FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().sendChatMsg(new
-						ChatComponentText(((EntityPlayer) this.riddenByEntity).getDisplayName() + " erailed"
-								+ this.trainOwner + "'s locomotive"));
-			 FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().sendChatMsg(new
 						ChatComponentText(((EntityPlayer) this.riddenByEntity).getDisplayName() + "derailed"
 								+ this.trainOwner + "'s locomotive"));
 			 }
