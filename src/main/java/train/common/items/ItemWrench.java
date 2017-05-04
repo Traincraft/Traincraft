@@ -1,7 +1,5 @@
 package train.common.items;
 
-import java.util.List;
-
 import cpw.mods.fml.common.Optional;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -12,6 +10,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import train.common.Traincraft;
 import train.common.library.ItemIDs;
+
+import java.util.List;
 @Optional.Interface(iface = "buildcraft.api.tools.IToolWrench", modid = "BuildCraft|Core")
 public class ItemWrench extends ItemPart implements buildcraft.api.tools.IToolWrench{
 

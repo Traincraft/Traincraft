@@ -1,10 +1,5 @@
 package train.common.core.plugins;
 
-import java.awt.Rectangle;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
 import codechicken.nei.NEIClientUtils;
 import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.ShapedRecipeHandler;
@@ -17,6 +12,11 @@ import train.client.gui.GuiTrainCraftingBlock;
 import train.common.inventory.TrainCraftingManager;
 import train.common.recipes.ShapedTrainRecipes;
 import train.common.recipes.ShapelessTrainRecipe;
+
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class NEITraincraftWorkbenchRecipePlugin extends ShapedRecipeHandler {
 	private List<ShapedTrainRecipes> recipeListWB = workbenchListCleaner(TrainCraftingManager.getInstance().getShapedRecipes());

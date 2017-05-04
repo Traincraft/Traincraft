@@ -7,8 +7,6 @@
 
 package train.common.blocks;
 
-import java.util.Random;
-
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -27,6 +25,8 @@ import train.common.Traincraft;
 import train.common.library.GuiIDs;
 import train.common.library.Info;
 import train.common.tile.TileGeneratorDiesel;
+
+import java.util.Random;
 
 public class BlockGeneratorDiesel extends BlockContainer {
 

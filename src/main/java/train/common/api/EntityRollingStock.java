@@ -1,12 +1,6 @@
 package train.common.api;
 
-import static train.common.core.util.TraincraftUtil.isRailBlockAt;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import com.mojang.authlib.GameProfile;
-
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
@@ -24,7 +18,6 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.monster.EntityCreeper;
-import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemDye;
@@ -33,8 +26,10 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
+import net.minecraft.world.ChunkCoordIntPair;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
+import net.minecraftforge.common.ForgeChunkManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.minecart.MinecartCollisionEvent;
 import net.minecraftforge.event.entity.minecart.MinecartInteractEvent;
@@ -52,6 +47,11 @@ import train.common.library.BlockIDs;
 import train.common.library.EnumTrains;
 import train.common.tile.TileTCRail;
 import train.common.tile.TileTCRailGag;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static train.common.core.util.TraincraftUtil.isRailBlockAt;
 
 public class EntityRollingStock extends AbstractTrains implements ILinkableCart {
 	public int fuelTrain;
@@ -142,7 +142,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 	private boolean needsBogieUpdate;
 	private boolean firstLoad = true;
 	public EntityBogie bogieLoco = null;
-	public EntityBogieUtility[] bogieUtility = new EntityBogieUtility[1];
 	private boolean hasSpawnedBogie = false;
 	private double mountedOffset = -0.5;
 	public double posYFromServer;
@@ -468,14 +467,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		if (this.bogieLoco != null) {
 			bogieLoco.setDead();
 			bogieLoco.isDead = true;
-		}
-		if (this.bogieUtility != null) {
-			for (EntityBogieUtility bogieUtil : bogieUtility) {
-				if (bogieUtil != null) {
-					bogieUtil.setDead();
-					bogieUtil.isDead = true;
-				}
-			}
 		}
 		isDead = true;
 		Side side = FMLCommonHandler.instance().getEffectiveSide();
@@ -811,11 +802,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				if (bogieLoco != null) {
 					bogieLoco.updateDistance();
 				}
-			for (EntityBogieUtility bog : this.bogieUtility) {
-				if (bog != null) {
-					bog.updateDistance();
-				}
-			}
 		}
 
 		if (isRailBlockAt(worldObj, i, j - 1, k) || worldObj.getBlock(i, j - 1, k) == BlockIDs.tcRail.block || worldObj.getBlock(i, j - 1, k) == BlockIDs.tcRailGag.block) {
@@ -1697,27 +1683,15 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 	public void applyEntityCollision(Entity par1Entity) {
 		//System.out.println(par1Entity +" " +this.bogieLoco +" "+this.bogieUtility[0]);
 		//if(par1Entity instanceof EntityPlayer)return;
-		if (this.bogieLoco == null && this.bogieUtility[0] == null) return;
+		if (this.bogieLoco == null) return;
 
 		if (par1Entity == this) return;
 		if (par1Entity instanceof EntityBogie) {
 			if (((EntityBogie) par1Entity).entityMainTrainID == this.uniqueID) return;
 		}
-		if (this.bogieLoco != null) {
-				if (par1Entity == bogieLoco){ return;}
-		}
+		if (par1Entity == bogieLoco){ return;}
 		if (par1Entity instanceof EntityRollingStock && ((EntityRollingStock) par1Entity).bogieLoco != null) {
 				if (par1Entity == ((EntityRollingStock) par1Entity).bogieLoco) return;
-		}
-		if (this.bogieUtility[0] != null) {
-			for (EntityBogieUtility bogieUtil : this.bogieUtility) {
-				if (par1Entity == bogieUtil){ return;}
-			}
-		}
-		if (par1Entity instanceof EntityRollingStock && ((EntityRollingStock) par1Entity).bogieUtility[0] != null) {
-			for (int i = 0; i < ((EntityRollingStock) par1Entity).bogieUtility.length; i++) {
-				if (par1Entity == ((EntityRollingStock) par1Entity).bogieUtility[i]) return;
-			}
 		}
 
 		MinecraftForge.EVENT_BUS.post(new MinecartCollisionEvent(this, par1Entity));
@@ -1814,62 +1788,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 						d0 = distancesX[minIndex];
 						d1 = distancesZ[minIndex];
 					}
-					else if (((EntityRollingStock) par1Entity).bogieUtility[0] != null || this.bogieUtility[0] != null) {
-
-						if (((EntityRollingStock) par1Entity).bogieUtility[0] != null && this.bogieUtility[0] == null) {
-							distancesX[0] = ((AbstractTrains) par1Entity).posX - this.posX;
-							distancesZ[0] = ((AbstractTrains) par1Entity).posZ - this.posZ;
-							euclidian[0] = MathHelper.sqrt_double((distancesX[0] * distancesX[0]) + (distancesZ[0] * distancesZ[0]));
-							distancesX[1] = ((EntityRollingStock) par1Entity).bogieUtility[0].posX - this.posX;
-							distancesZ[1] = ((EntityRollingStock) par1Entity).bogieUtility[0].posZ - this.posZ;
-							euclidian[1] = MathHelper.sqrt_double((distancesX[1] * distancesX[1]) + (distancesZ[1] * distancesZ[1]));
-							distancesX[2] = 100;
-							distancesZ[2] = 100;
-							euclidian[2] = MathHelper.sqrt_double((distancesX[2] * distancesX[2]) + (distancesZ[2] * distancesZ[2]));
-							distancesX[3] = 100;
-							distancesZ[3] = 100;
-							euclidian[3] = MathHelper.sqrt_double((distancesX[3] * distancesX[3]) + (distancesZ[3] * distancesZ[3]));
-						}
-						else if (((EntityRollingStock) par1Entity).bogieUtility[0] == null && this.bogieUtility[0] != null) {
-							distancesX[0] = ((AbstractTrains) par1Entity).posX - this.posX;
-							distancesZ[0] = ((AbstractTrains) par1Entity).posZ - this.posZ;
-							euclidian[0] = MathHelper.sqrt_double((distancesX[0] * distancesX[0]) + (distancesZ[0] * distancesZ[0]));
-							distancesX[1] = ((AbstractTrains) par1Entity).posX - this.bogieUtility[0].posX;
-							distancesZ[1] = ((AbstractTrains) par1Entity).posZ - this.bogieUtility[0].posZ;
-							euclidian[1] = MathHelper.sqrt_double((distancesX[1] * distancesX[1]) + (distancesZ[1] * distancesZ[1]));
-							distancesX[2] = 100;
-							distancesZ[2] = 100;
-							euclidian[2] = MathHelper.sqrt_double((distancesX[2] * distancesX[2]) + (distancesZ[2] * distancesZ[2]));
-							distancesX[3] = 100;
-							distancesZ[3] = 100;
-							euclidian[3] = MathHelper.sqrt_double((distancesX[3] * distancesX[3]) + (distancesZ[3] * distancesZ[3]));
-						}
-						else {
-							distancesX[0] = ((AbstractTrains) par1Entity).posX - this.posX;
-							distancesZ[0] = ((AbstractTrains) par1Entity).posZ - this.posZ;
-							euclidian[0] = MathHelper.sqrt_double((distancesX[0] * distancesX[0]) + (distancesZ[0] * distancesZ[0]));
-							distancesX[1] = ((EntityRollingStock) par1Entity).bogieUtility[0].posX - this.posX;
-							distancesZ[1] = ((EntityRollingStock) par1Entity).bogieUtility[0].posZ - this.posZ;
-							euclidian[1] = MathHelper.sqrt_double((distancesX[1] * distancesX[1]) + (distancesZ[1] * distancesZ[1]));
-							distancesX[2] = ((AbstractTrains) par1Entity).posX - this.bogieUtility[0].posX;
-							distancesZ[2] = ((AbstractTrains) par1Entity).posZ - this.bogieUtility[0].posZ;
-							euclidian[2] = MathHelper.sqrt_double((distancesX[2] * distancesX[2]) + (distancesZ[2] * distancesZ[2]));
-							distancesX[3] = ((EntityRollingStock) par1Entity).bogieUtility[0].posX - this.bogieUtility[0].posX;
-							distancesZ[3] = ((EntityRollingStock) par1Entity).bogieUtility[0].posZ - this.bogieUtility[0].posZ;
-							euclidian[3] = MathHelper.sqrt_double((distancesX[3] * distancesX[3]) + (distancesZ[3] * distancesZ[3]));
-						}
-						double min = euclidian[0];
-						int minIndex = 0;
-						for (int k = 0; k < euclidian.length; k++) {
-							if (Math.abs(euclidian[k]) < Math.abs(min)) {
-								min = euclidian[k];
-								minIndex = k;
-							}
-						}
-						d0 = distancesX[minIndex];
-						d1 = distancesZ[minIndex];
-					}
-
 				}
 				double d2 = d0 * d0 + d1 * d1;
 
@@ -1915,19 +1833,10 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 
 						if ((par1Entity instanceof Locomotive && !isPoweredCart()) || (((EntityMinecart) par1Entity).isPoweredCart()) && !isPoweredCart()) {
 							//System.out.println("1 "+par1Entity +"     "+ this);
-							if (this.bogieUtility[0] != null && this.bogieUtility[1] != null) {
-								this.bogieUtility[0].motionX *= 0.20000000298023224D;
-								this.bogieUtility[0].motionZ *= 0.20000000298023224D;
-								this.bogieUtility[0].addVelocity(par1Entity.motionX - d0, 0.0D, par1Entity.motionZ - d1);
-								this.bogieUtility[1].motionX *= 0.20000000298023224D;
-								this.bogieUtility[1].motionZ *= 0.20000000298023224D;
-								this.bogieUtility[1].addVelocity(par1Entity.motionX - d0, 0.0D, par1Entity.motionZ - d1);
-							}
-							else {
-								this.motionX *= 0.20000000298023224D;
-								this.motionZ *= 0.20000000298023224D;
-								this.addVelocity(par1Entity.motionX - d0, 0.0D, par1Entity.motionZ - d1);
-							}
+
+							this.motionX *= 0.20000000298023224D;
+							this.motionZ *= 0.20000000298023224D;
+							this.addVelocity(par1Entity.motionX - d0, 0.0D, par1Entity.motionZ - d1);
 							if (!(par1Entity instanceof Locomotive)) {
 								par1Entity.motionX *= 0.949999988079071D;
 								par1Entity.motionZ *= 0.949999988079071D;
@@ -1944,15 +1853,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 									this.motionZ *= 0;
 									((EntityBogie) par1Entity).entityMainTrain.motionX *= 0;
 									((EntityBogie) par1Entity).entityMainTrain.motionZ *= 0;
-								}
-
-								if (par1Entity instanceof EntityBogieUtility && this.bogieUtility[0] != null && this.bogieUtility[1] != null) {
-									this.bogieUtility[0].motionX *= 0.2;
-									this.bogieUtility[0].motionZ *= 0.2;
-									this.bogieUtility[0].addVelocity(this.motionX + d0 * 3, 0.0D, this.motionZ + d1 * 3);
-									this.bogieUtility[1].motionX *= 0.2;
-									this.bogieUtility[1].motionZ *= 0.2;
-									this.bogieUtility[1].addVelocity(this.motionX + d0 * 3, 0.0D, this.motionZ + d1 * 3);
 								}
 							}
 							else {
@@ -1975,38 +1875,21 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 								d7 *= -1;//-3
 								d8 *= -1;//-3
 							}
-							if (this.bogieUtility[0] != null && this.bogieUtility[1] != null) {
-								this.bogieUtility[0].motionX *= 0.20000000298023224D;
-								this.bogieUtility[0].motionZ *= 0.20000000298023224D;
-								this.bogieUtility[0].addVelocity(d7 - d0, 0.0D, d8 - d1);
-								this.bogieUtility[1].motionX *= 0.20000000298023224D;
-								this.bogieUtility[1].motionZ *= 0.20000000298023224D;
-								this.bogieUtility[1].addVelocity(d7 - d0, 0.0D, d8 - d1);
-							}
-							else {
-								this.motionX *= 0.20000000298023224D;
-								this.motionZ *= 0.20000000298023224D;
-								this.addVelocity(d7 - d0, 0.0D, d8 - d1);
-							}
+
+							this.motionX *= 0.20000000298023224D;
+							this.motionZ *= 0.20000000298023224D;
+							this.addVelocity(d7 - d0, 0.0D, d8 - d1);
 							if (par1Entity instanceof EntityBogie) {
 								//d7/=3;
 								//d8/=3;
 								d7 *= 0.333333333333;
 								d8 *= 0.333333333333;
 							}
-							if (par1Entity instanceof EntityRollingStock && ((EntityRollingStock) par1Entity).bogieUtility[0] != null && ((EntityRollingStock) par1Entity).bogieUtility[1] != null) {
-								((EntityRollingStock) par1Entity).bogieUtility[0].motionX *= 0.20000000298023224D;
-								((EntityRollingStock) par1Entity).bogieUtility[0].motionZ *= 0.20000000298023224D;
-								((EntityRollingStock) par1Entity).bogieUtility[0].addVelocity(d7 + d0, 0.0D, d8 + d1);
-								((EntityRollingStock) par1Entity).bogieUtility[1].motionX *= 0.20000000298023224D;
-								((EntityRollingStock) par1Entity).bogieUtility[1].motionZ *= 0.20000000298023224D;
-								((EntityRollingStock) par1Entity).bogieUtility[1].addVelocity(d7 + d0, 0.0D, d8 + d1);
-							}
-							else {
-								par1Entity.motionX *= 0.20000000298023224D;
-								par1Entity.motionZ *= 0.20000000298023224D;
-								par1Entity.addVelocity(d7 + d0, 0.0D, d8 + d1);
-							}
+
+							par1Entity.motionX *= 0.20000000298023224D;
+							par1Entity.motionZ *= 0.20000000298023224D;
+							par1Entity.addVelocity(d7 + d0, 0.0D, d8 + d1);
+
 						}
 					}
 					else {
@@ -2017,7 +1900,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 						else if ((par1Entity instanceof EntityBogie)) {
 							this.addVelocity(-d0, 0.0D, -d1);
 						}/*
-						 * else if(par1Entity instanceof EntityBogieUtility){
+						 * else if(par1Entity instanceof EntityBogie){
 						 * par1Entity.addVelocity(-d0, 0.0D, -d1);
 						 * 
 						 * }
@@ -2610,5 +2493,51 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		else {
 			return null;
 		}
+	}
+
+
+	public void setTicket(ForgeChunkManager.Ticket ticket){
+		this.chunkTicket = ticket;
+	}
+
+	public void forceChunkLoading(int xChunk, int zChunk, int bogieChunkX, int bogieChunkZ) {
+		if(this.chunkTicket != null) {
+			this.collectNearbyChunks(xChunk, zChunk, bogieChunkX, bogieChunkZ);
+			//force the chunks around to load
+			for(ChunkCoordIntPair chunk : chunks) {
+				ForgeChunkManager.forceChunk(this.chunkTicket, chunk);
+				ForgeChunkManager.reorderChunk(this.chunkTicket, chunk);
+			}
+		}
+	}
+
+	public void collectNearbyChunks(int xChunk, int zChunk, int bogieChunkX, int bogieChunkZ) {
+		chunks = new ArrayList<ChunkCoordIntPair>();
+		for(int x = xChunk - 2; x <= xChunk + 2; ++x) {
+			for(int z = zChunk - 2; z <= zChunk + 2; ++z) {
+				chunks.add(new ChunkCoordIntPair(x, z));
+			}
+		}
+		if(bogieChunkX == xChunk){return;}
+		for(int x = bogieChunkX - 2; x <= bogieChunkX + 2; ++x) {
+			for(int z = bogieChunkZ - 2; z <= bogieChunkZ + 2; ++z) {
+				chunks.add(new ChunkCoordIntPair(x, z));
+			}
+		}
+	}
+
+	@Override
+	public boolean requestTicket() {
+		ForgeChunkManager.Ticket chunkTicket = ForgeChunkManager.requestTicket(Traincraft.instance, worldObj , ForgeChunkManager.Type.ENTITY);
+		if(chunkTicket != null) {
+			chunkTicket.getModData().setInteger("bogieID", this.getEntityId());
+			chunkTicket.setChunkListDepth(25);
+			chunkTicket.bindEntity(this);
+			this.setTicket(chunkTicket);
+			this.forceChunkLoading(chunkCoordX, chunkCoordZ, bogieLoco!=null?bogieLoco.chunkCoordX:chunkCoordX, bogieLoco!=null?bogieLoco.chunkCoordZ:chunkCoordZ);
+			return true;
+		}
+
+		return false;
 	}
 }

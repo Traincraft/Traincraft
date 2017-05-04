@@ -1,7 +1,5 @@
 package train.common.api;
 
-import javax.annotation.Nullable;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
@@ -10,6 +8,8 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
+
+import javax.annotation.Nullable;
 
 public class LiquidTank extends EntityRollingStock implements IFluidHandler, ISidedInventory {
 	private int capacity;

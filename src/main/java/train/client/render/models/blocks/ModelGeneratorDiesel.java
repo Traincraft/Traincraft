@@ -7,9 +7,8 @@
 
 package train.client.render.models.blocks;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.model.ModelBase;
+import org.lwjgl.opengl.GL11;
 import train.client.render.CustomModelRenderer;
 
 public class ModelGeneratorDiesel extends ModelBase {

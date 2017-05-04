@@ -1,7 +1,5 @@
 package train.common.api;
 
-import java.util.List;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -11,6 +9,8 @@ import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
 import train.common.api.LiquidManager.StandardTank;
 import train.common.core.handlers.FuelHandler;
+
+import java.util.List;
 
 public abstract class SteamTrain extends Locomotive implements IFluidHandler {
 

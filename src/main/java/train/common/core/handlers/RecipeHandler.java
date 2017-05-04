@@ -7,8 +7,6 @@
 
 package train.common.core.handlers;
 
-import java.util.ArrayList;
-
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -20,6 +18,8 @@ import train.common.inventory.TrainCraftingManager;
 import train.common.library.BlockIDs;
 import train.common.library.ItemIDs;
 import train.common.recipes.RecipesArmorDyes;
+
+import java.util.ArrayList;
 
 public class RecipeHandler {
 	public static void initBlockRecipes() {

@@ -1,11 +1,10 @@
 package train.client.gui;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
+import org.lwjgl.opengl.GL11;
 import train.common.entity.digger.EntityRotativeDigger;
 import train.common.inventory.InventoryRotativeDigger;
 import train.common.library.Info;

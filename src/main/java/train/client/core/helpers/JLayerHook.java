@@ -1,12 +1,12 @@
 package train.client.core.helpers;
 
-import java.io.IOException;
-import java.io.InputStream;
-
 import javazoom.jl.decoder.JavaLayerHook;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
 import train.common.library.Info;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 public class JLayerHook implements JavaLayerHook {
 	private final Minecraft mc;

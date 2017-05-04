@@ -1,11 +1,5 @@
 package train.client.gui;
 
-import static train.common.api.AbstractTrains.getColorFromString;
-
-import java.util.List;
-
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
@@ -14,6 +8,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import org.lwjgl.opengl.GL11;
 import train.client.gui.sideTabs.SideTabInfo;
 import train.client.gui.sideTabs.SideTabRecipes;
 import train.client.gui.sideTabs.SideTabSlots;
@@ -25,6 +20,10 @@ import train.common.core.managers.TierRecipeManager;
 import train.common.library.EnumTrains;
 import train.common.library.Info;
 import train.common.library.ItemIDs;
+
+import java.util.List;
+
+import static train.common.api.AbstractTrains.getColorFromString;
 
 public class GuiCrafterTier extends GuiTraincraft {
 

@@ -1,7 +1,5 @@
 package train.common.tile;
 
-import java.util.Random;
-
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -18,6 +16,8 @@ import train.common.blocks.BlockOpenHearthFurnace;
 import train.common.inventory.TrainCraftingManager;
 import train.common.library.BlockIDs;
 import train.common.library.ItemIDs;
+
+import java.util.Random;
 
 public class TileEntityOpenHearthFurnace extends TileTraincraft{
 

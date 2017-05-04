@@ -1,8 +1,5 @@
 package train.common.api;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import io.netty.buffer.ByteBuf;
@@ -22,7 +19,6 @@ import net.minecraft.world.ChunkCoordIntPair;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeChunkManager;
 import net.minecraftforge.common.ForgeChunkManager.Ticket;
-import net.minecraftforge.common.ForgeChunkManager.Type;
 import train.common.Traincraft;
 import train.common.core.handlers.ConfigHandler;
 import train.common.core.handlers.RollingStockStatsEventHandler;
@@ -32,6 +28,9 @@ import train.common.items.ItemChunkLoaderActivator;
 import train.common.items.ItemRollingStock;
 import train.common.items.ItemWrench;
 import train.common.library.EnumTrains;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class AbstractTrains extends EntityMinecart implements IMinecart, IRoutableCart, IEntityAdditionalSpawnData {
 
@@ -51,11 +50,11 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 	public EntityRollingStock cartLinked2;
 	public int clearLinkTimer = 0;
 	//private Set chunks;
-	private Ticket chunkTicket;
+	protected Ticket chunkTicket;
 	protected float renderYaw;
 	protected float renderPitch;
 	public TrainHandler train;
-	private ArrayList<ChunkCoordIntPair> chunks = new ArrayList<ChunkCoordIntPair>();
+	protected ArrayList<ChunkCoordIntPair> chunks = new ArrayList<ChunkCoordIntPair>();
 	public boolean shouldChunkLoad = true;
 	/**
 	 * A reference to EnumTrains containing all spec for this specific train
@@ -648,7 +647,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		}
 	}
 
-	private boolean requestTicket() {
+	public boolean requestTicket() {
 		ForgeChunkManager.Ticket chunkTicket = ForgeChunkManager.requestTicket(Traincraft.instance, worldObj , ForgeChunkManager.Type.ENTITY);
 		if(chunkTicket != null) {
 			chunkTicket.getModData().setInteger("bogieID", this.getEntityId());

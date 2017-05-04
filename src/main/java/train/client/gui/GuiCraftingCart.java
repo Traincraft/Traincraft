@@ -1,12 +1,11 @@
 package train.client.gui;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
+import org.lwjgl.opengl.GL11;
 import train.common.containers.ContainerWorkbenchCart;
 import train.common.library.Info;
 

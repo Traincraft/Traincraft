@@ -1,7 +1,5 @@
 package train.client.gui;
 
-import org.lwjgl.input.Keyboard;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
@@ -9,6 +7,7 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.entity.player.EntityPlayer;
+import org.lwjgl.input.Keyboard;
 import train.common.Traincraft;
 import train.common.core.network.PacketLantern;
 import train.common.tile.TileLantern;

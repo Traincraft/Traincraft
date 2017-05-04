@@ -1,7 +1,5 @@
 package train.common.blocks;
 
-import java.util.Random;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -20,6 +18,8 @@ import train.common.items.ItemWrench;
 import train.common.library.BlockIDs;
 import train.common.library.Info;
 import train.common.tile.TileTCRail;
+
+import java.util.Random;
 
 public class BlockTCRail extends Block {
 	private IIcon texture;

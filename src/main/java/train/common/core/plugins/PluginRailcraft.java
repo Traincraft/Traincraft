@@ -1,7 +1,5 @@
 package train.common.core.plugins;
 
-import java.util.ArrayList;
-
 import cpw.mods.fml.common.registry.GameRegistry;
 import mods.railcraft.api.crafting.RailcraftCraftingManager;
 import net.minecraft.init.Blocks;
@@ -12,6 +10,8 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 import train.common.core.util.TraincraftUtil;
 import train.common.library.ItemIDs;
 import train.common.library.Tracks;
+
+import java.util.ArrayList;
 
 public class PluginRailcraft {
 

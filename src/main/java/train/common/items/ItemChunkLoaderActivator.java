@@ -1,7 +1,5 @@
 package train.common.items;
 
-import java.util.List;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -10,6 +8,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import train.common.Traincraft;
 import train.common.library.Info;
+
+import java.util.List;
 
 public class ItemChunkLoaderActivator extends Item {
 

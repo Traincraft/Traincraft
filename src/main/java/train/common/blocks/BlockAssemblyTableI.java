@@ -1,7 +1,5 @@
 package train.common.blocks;
 
-import java.util.Random;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -23,6 +21,8 @@ import train.common.library.GuiIDs;
 import train.common.library.Info;
 import train.common.tile.TileCrafterTierI;
 import train.common.tile.TileHelper;
+
+import java.util.Random;
 
 public class BlockAssemblyTableI extends BlockContainer {
 

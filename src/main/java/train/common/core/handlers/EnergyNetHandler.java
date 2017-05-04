@@ -1,8 +1,8 @@
 package train.common.core.handlers;
 
-import java.util.ArrayList;
-
 import train.common.blocks.tracks.BlockEnergyTrack;
+
+import java.util.ArrayList;
 
 public class EnergyNetHandler {
 	private BlockEnergyTrack block;

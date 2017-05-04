@@ -7,8 +7,6 @@
 
 package train.common.core.handlers;
 
-import java.util.ArrayList;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRailBase;
 import net.minecraft.entity.Entity;
@@ -19,6 +17,8 @@ import net.minecraftforge.oredict.OreDictionary;
 import train.common.api.*;
 import train.common.entity.rollingStock.*;
 import train.common.items.ItemTCRail;
+
+import java.util.ArrayList;
 
 public class ItemHandler {
 	

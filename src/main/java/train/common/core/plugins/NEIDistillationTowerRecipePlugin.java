@@ -1,18 +1,6 @@
 package train.common.core.plugins;
 
 
-import static codechicken.lib.gui.GuiDraw.changeTexture;
-import static codechicken.lib.gui.GuiDraw.drawTexturedModalRect;
-
-import java.awt.Rectangle;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map.Entry;
-import java.util.TreeSet;
-
-import org.lwjgl.opengl.GL11;
-
 import codechicken.nei.ItemList;
 import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
@@ -24,10 +12,21 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityFurnace;
+import org.lwjgl.opengl.GL11;
 import train.client.gui.GuiDistil;
 import train.common.items.ItemBlockOreTC;
 import train.common.library.ItemIDs;
 import train.common.recipes.DistilRecipes;
+
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map.Entry;
+import java.util.TreeSet;
+
+import static codechicken.lib.gui.GuiDraw.changeTexture;
+import static codechicken.lib.gui.GuiDraw.drawTexturedModalRect;
 
 public class NEIDistillationTowerRecipePlugin extends FurnaceRecipeHandler{
 	public class SmeltingPair extends CachedRecipe

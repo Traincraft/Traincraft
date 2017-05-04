@@ -1,9 +1,6 @@
 package train.common.tile;
 
 
-import java.util.ArrayList;
-import java.util.Random;
-
 import cofh.api.energy.IEnergyProvider;
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
@@ -15,6 +12,9 @@ import net.minecraftforge.common.util.ForgeDirection;
 import train.common.core.TrainModBlockUtil;
 import train.common.core.handlers.WorldEvents;
 import train.common.core.util.Energy;
+
+import java.util.ArrayList;
+import java.util.Random;
 
 public class TileWindMill extends Energy implements IEnergyProvider {
 	private int facingMeta;

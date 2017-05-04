@@ -1,7 +1,5 @@
 package train.common.blocks;
 
-import java.util.Random;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -16,6 +14,8 @@ import net.minecraft.world.World;
 import train.common.Traincraft;
 import train.common.library.Info;
 import train.common.tile.TileWaterWheel;
+
+import java.util.Random;
 
 public class BlockWaterWheel extends Block {
 	private IIcon texture;

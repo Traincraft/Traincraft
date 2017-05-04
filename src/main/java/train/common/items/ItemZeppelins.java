@@ -1,7 +1,5 @@
 package train.common.items;
 
-import java.util.List;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -18,6 +16,8 @@ import train.common.core.handlers.ConfigHandler;
 import train.common.entity.zeppelin.EntityZeppelinOneBalloon;
 import train.common.entity.zeppelin.EntityZeppelinTwoBalloons;
 import train.common.library.Info;
+
+import java.util.List;
 
 public class ItemZeppelins extends Item {
 	private int type;

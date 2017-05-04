@@ -1,10 +1,10 @@
 package train.common.core.handlers;
 
-import java.util.ArrayList;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.MathHelper;
 import train.common.api.AbstractTrains;
+
+import java.util.ArrayList;
 
 public class RollingStockStatsEventHandler {
 

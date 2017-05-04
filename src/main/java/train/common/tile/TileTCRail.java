@@ -1,8 +1,5 @@
 package train.common.tile;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
@@ -13,6 +10,9 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 import train.common.items.ItemTCRail;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TileTCRail extends TileEntity {
 

@@ -7,13 +7,13 @@
 
 package train.common.core.handlers;
 
-import static net.minecraftforge.common.config.Configuration.CATEGORY_GENERAL;
-
-import java.io.File;
-
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 import train.common.Traincraft;
+
+import java.io.File;
+
+import static net.minecraftforge.common.config.Configuration.CATEGORY_GENERAL;
 
 public class ConfigHandler {
 
