@@ -80,15 +80,12 @@ public class TileTCRail extends TileEntity {
 
 	@Override
 	public void updateEntity() {
-
-		if (worldObj.isRemote) {
+		if (worldObj.isRemote || !canTypeBeModifiedBySwitch) {
 
 			return;
 		}
 
-		if(canTypeBeModifiedBySwitch) {
-			updateTicks2++;
-		}
+		updateTicks2++;
 
 		/*if (updateTicks2 % 20 == 0 && !isLinkedToRail && getType() != null && getType().equals(TrackTypes.SMALL_STRAIGHT.getLabel()) && !hasRotated) {
 			TileEntity tileNorth = worldObj.getBlockTileEntity(xCoord, yCoord, zCoord - 1);

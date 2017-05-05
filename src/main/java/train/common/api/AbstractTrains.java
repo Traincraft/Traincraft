@@ -54,7 +54,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 	protected float renderYaw;
 	protected float renderPitch;
 	public TrainHandler train;
-	protected ArrayList<ChunkCoordIntPair> chunks = new ArrayList<ChunkCoordIntPair>();
+	public List<ChunkCoordIntPair> loadedChunks = new ArrayList<ChunkCoordIntPair>();
 	public boolean shouldChunkLoad = true;
 	/**
 	 * A reference to EnumTrains containing all spec for this specific train
@@ -626,39 +626,17 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 	public void setTicket(ForgeChunkManager.Ticket ticket){
 		this.chunkTicket = ticket;
 	}
-
-	public void forceChunkLoading(int xChunk, int zChunk) {
-		if(this.chunkTicket != null) {
-			this.collectNearbyChunks(xChunk, zChunk);
-			//force the chunks around to load
-			for(ChunkCoordIntPair chunk : chunks) {
-				ForgeChunkManager.forceChunk(this.chunkTicket, chunk);
-				ForgeChunkManager.reorderChunk(this.chunkTicket, chunk);
-			}
-		}
+	public ForgeChunkManager.Ticket getTicket(){
+		return this.chunkTicket;
 	}
 
-	public void collectNearbyChunks(int xChunk, int zChunk) {
-		chunks = new ArrayList<ChunkCoordIntPair>();
-		for(int x = xChunk - 2; x <= xChunk + 2; ++x) {
-			for(int z = zChunk - 2; z <= zChunk + 2; ++z) {
-				chunks.add(new ChunkCoordIntPair(x, z));
-			}
-		}
-	}
-
-	public boolean requestTicket() {
+	public void requestTicket() {
 		ForgeChunkManager.Ticket chunkTicket = ForgeChunkManager.requestTicket(Traincraft.instance, worldObj , ForgeChunkManager.Type.ENTITY);
 		if(chunkTicket != null) {
-			chunkTicket.getModData().setInteger("bogieID", this.getEntityId());
 			chunkTicket.setChunkListDepth(25);
 			chunkTicket.bindEntity(this);
 			this.setTicket(chunkTicket);
-			this.forceChunkLoading(chunkCoordX, chunkCoordZ);
-			return true;
 		}
-
-		return false;
 	}
 
 }

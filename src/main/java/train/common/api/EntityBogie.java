@@ -247,8 +247,9 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		int j = MathHelper.floor_double(this.posY);
 		int k = MathHelper.floor_double(this.posZ);
 		
-		if(this.worldObj.isAirBlock(i, j, k))
+		if(this.worldObj.isAirBlock(i, j, k)) {
 			j--;
+		}
 		Block block = this.worldObj.getBlock(i, j, k);
 		return (BlockRailBase.func_150051_a(block) || block == BlockIDs.tcRail.block || block == BlockIDs.tcRailGag.block);
 	}
@@ -379,6 +380,10 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 			if (BlockRailBase.func_150051_a(block) || block == BlockIDs.tcRail.block || block == BlockIDs.tcRailGag.block) {
 				j--;
 			} else {
+				Block block2 = this.worldObj.getBlock(i, j + 1, k);
+				if(BlockRailBase.func_150051_a(block2) || block2 == BlockIDs.tcRail.block || block2 == BlockIDs.tcRailGag.block){
+					j++;
+				}
 				block = this.worldObj.getBlock(i, j, k);
 			}
 
@@ -605,8 +610,8 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 			}
 
 			double norm = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
-			double newPosY = (j + Math.abs(Math.tan(slopeAngle * Math.abs(cz - this.posZ))) + this.yOffset + 0.2D);
-			double maxPosY = (j + this.yOffset + slopeHeight);
+			double newPosY = (j + Math.abs(Math.tan(slopeAngle * Math.abs(cz - this.posZ))) + this.yOffset);
+			double maxPosY = (j + this.yOffset + slopeHeight+1);
 
 			if (newPosY > maxPosY) {
 
@@ -628,8 +633,8 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 			}
 
 			double norm = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
-			double newPosY = (j + Math.abs(Math.tan(slopeAngle * Math.abs(cx - this.posX))) + this.yOffset + 0.2D);
-			double maxPosY = (j + this.yOffset + slopeHeight);
+			double newPosY = (j + Math.abs(Math.tan(slopeAngle * Math.abs(cx - this.posX))) + this.yOffset);
+			double maxPosY = (j + this.yOffset + slopeHeight+1);
 
 			if (newPosY > maxPosY) {
 

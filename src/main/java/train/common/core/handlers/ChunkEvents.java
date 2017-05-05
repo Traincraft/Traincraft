@@ -1,8 +1,8 @@
 package train.common.core.handlers;
 
-import com.google.common.collect.LinkedListMultimap;
 import com.google.common.collect.ListMultimap;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import net.minecraft.world.ChunkCoordIntPair;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeChunkManager;
 import net.minecraftforge.common.ForgeChunkManager.Ticket;
@@ -14,73 +14,86 @@ import train.common.api.EntityRollingStock;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * <h1>Chunkloading manager</h1>
+ * This is a modified chunkloading manager from TiM. Changed to suit TC's use.
+ * @author Eternal Blue Flame
+ */
 public class ChunkEvents implements ForgeChunkManager.LoadingCallback, ForgeChunkManager.OrderedLoadingCallback, ForgeChunkManager.PlayerOrderedLoadingCallback {
+
 
 	@SuppressWarnings("unused")
 	@SubscribeEvent
 	public void entityEnteredChunk(EntityEvent.EnteringChunk event) {
-		if (event.entity instanceof EntityBogie) {
-			if (((EntityBogie) event.entity).entityMainTrain == null){
-				return;
-			}
-			if(!event.entity.worldObj.isRemote) {
-				((EntityBogie)event.entity).entityMainTrain.forceChunkLoading(((EntityBogie)event.entity).entityMainTrain.chunkCoordX, ((EntityBogie)event.entity).entityMainTrain.chunkCoordZ, event.newChunkX, event.newChunkZ);
-			} else {
-				((EntityBogie)event.entity).entityMainTrain.collectNearbyChunks(((EntityBogie)event.entity).entityMainTrain.chunkCoordX, ((EntityBogie)event.entity).entityMainTrain.chunkCoordZ,event.newChunkX, event.newChunkZ);
-			}
-			return;
-		} else if (event.entity instanceof EntityRollingStock){
-			if(!event.entity.worldObj.isRemote) {
-				((EntityRollingStock)event.entity).forceChunkLoading(event.newChunkX, event.newChunkZ,
-						((EntityRollingStock)event.entity).bogieLoco!=null?((EntityRollingStock)event.entity).bogieLoco.chunkCoordX:((EntityRollingStock)event.entity).chunkCoordX,
-						((EntityRollingStock)event.entity).bogieLoco!=null?((EntityRollingStock)event.entity).bogieLoco.chunkCoordZ:((EntityRollingStock)event.entity).chunkCoordZ);
-			} else {
-				((EntityRollingStock)event.entity).collectNearbyChunks(event.newChunkX, event.newChunkZ,
-						((EntityRollingStock)event.entity).bogieLoco!=null?((EntityRollingStock)event.entity).bogieLoco.chunkCoordX:((EntityRollingStock)event.entity).chunkCoordX,
-						((EntityRollingStock)event.entity).bogieLoco!=null?((EntityRollingStock)event.entity).bogieLoco.chunkCoordZ:((EntityRollingStock)event.entity).chunkCoordZ);
-			}
-			return;
+		if(event.entity instanceof AbstractTrains && !event.entity.worldObj.isRemote) {
+			forceChunkLoading(((AbstractTrains) event.entity), event.newChunkX, event.newChunkZ);
+		} else 	if(event.entity instanceof EntityBogie && !event.entity.worldObj.isRemote) {
+			forceChunkLoading(((EntityBogie)event.entity).entityMainTrain, event.newChunkX, event.newChunkZ);
 		}
-
-		if(event.entity instanceof AbstractTrains) {
-			if(!event.entity.worldObj.isRemote) {
-				((AbstractTrains)event.entity).forceChunkLoading(event.newChunkX, event.newChunkZ);
-			} else {
-				((AbstractTrains)event.entity).collectNearbyChunks(event.newChunkX, event.newChunkZ);
-			}
-		}
-
 	}
 
+	private static void forceChunkLoading(AbstractTrains transport, int newChunkX, int newChunkZ) {
+		if(transport != null && transport.getTicket() != null) {
+			List<ChunkCoordIntPair> newChunks = new ArrayList<ChunkCoordIntPair>();
 
-	public void ticketsLoaded(List<Ticket> tickets, World world) {
-
-		for(Ticket ticket : tickets) {
-			if(!ticket.isPlayerTicket()) {
-				if(ticket.getEntity() instanceof AbstractTrains) {
-					AbstractTrains train = (AbstractTrains)ticket.getEntity();
-					train.setTicket(ticket);
-					train.forceChunkLoading(train.chunkCoordX, train.chunkCoordZ);
+			for(int x = newChunkX - 1; x <= newChunkX + 1; ++x) {
+				for(int z = newChunkZ - 1; z <= newChunkZ + 1; ++z) {
+					newChunks.add(new ChunkCoordIntPair(x, z));
 				}
 			}
-		}
 
+			ChunkCoordIntPair pair = null;
+			if(transport instanceof EntityRollingStock && ((EntityRollingStock)transport).bogieLoco != null){
+				EntityBogie bogie = ((EntityRollingStock)transport).bogieLoco;
+				for(int x = bogie.chunkCoordX - 1; x <= bogie.chunkCoordX + 1; ++x) {
+					for(int z = bogie.chunkCoordZ - 1; z <= bogie.chunkCoordZ + 1; ++z) {
+						pair = new ChunkCoordIntPair(x, z);
+						if (!newChunks.contains(pair) && newChunks.size() < transport.getTicket().getMaxChunkListDepth()) {
+							newChunks.add(pair);
+						}
+					}
+				}
+			}
+
+			for(ChunkCoordIntPair chunk : newChunks) {
+				if(!transport.loadedChunks.contains(chunk)) {
+					ForgeChunkManager.forceChunk(transport.getTicket(), chunk);
+					ForgeChunkManager.reorderChunk(transport.getTicket(), chunk);
+				}
+			}
+
+			for (ChunkCoordIntPair oldChunk : transport.loadedChunks){
+				if(!newChunks.contains(oldChunk)){
+					ForgeChunkManager.unforceChunk(transport.getTicket(), oldChunk);
+				}
+			}
+
+			transport.loadedChunks = newChunks;
+		}
+	}
+
+	public void ticketsLoaded(List<Ticket> tickets, World world) {
+		for(Ticket ticket : tickets) {
+			if(!ticket.isPlayerTicket() && ticket.getEntity() instanceof AbstractTrains) {
+				AbstractTrains train = (AbstractTrains)ticket.getEntity();
+				train.setTicket(ticket);
+				forceChunkLoading(train, train.chunkCoordX, train.chunkCoordZ);
+			}
+		}
 	}
 
 	public List<Ticket> ticketsLoaded(List<Ticket> tickets, World world, int maxTicketCount) {
-		List<Ticket> bogieTickets = new ArrayList<Ticket>();
+		List<Ticket> ticketList = new ArrayList<Ticket>();
 		for(Ticket ticket : tickets){
-			if(ticket.getEntity() instanceof EntityBogie) {
-				bogieTickets.add(ticket);
-			} else if(ticket.getEntity() instanceof AbstractTrains) {
-				bogieTickets.add(ticket);
+			if(ticket.getEntity() instanceof AbstractTrains) {
+				ticketList.add(ticket);
 			}
 		}
 
-		return bogieTickets;
+		return ticketList;
 	}
 
 	public ListMultimap<String, Ticket> playerTicketsLoaded(ListMultimap<String, Ticket> tickets, World world) {
-		return LinkedListMultimap.create();
+		return tickets;
 	}
 }

@@ -214,7 +214,7 @@ public class TileEntityOpenHearthFurnace extends TileTraincraft{
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt, boolean forSyncing){
 		super.writeToNBT(nbt, forSyncing);
-		nbt.setByte("Orientation", (byte) facing.ordinal());
+		nbt.setByte("Orientation", (byte) getFacing().ordinal());
 		nbt.setShort("BurnTime", (short) furnaceBurnTime);
 		nbt.setShort("CookTime", (short) furnaceCookTime);
 		nbt.setShort("ItemBurnTime", (short) currentItemBurnTime);
