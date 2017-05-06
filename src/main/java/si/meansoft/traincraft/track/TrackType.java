@@ -4,7 +4,7 @@
  * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
  * You can find the source code at https://github.com/Traincraft/Traincraft
  *
- * © 2011-2016
+ * © 2011-2017
  */
 
 package si.meansoft.traincraft.track;
@@ -14,7 +14,7 @@ import si.meansoft.traincraft.api.AbstractBlockTrack;
 /**
  * @author canitzp
  */
-public enum TrackType{
+public enum TrackType {
 
     TEST_TRACK("test_track", TrackGrid.getStraightSlope(32)),
     TEST_CURVE("test_curve", TrackGrid.getCurve(3), true, false),
@@ -56,7 +56,7 @@ public enum TrackType{
         return block;
     }
 
-    public <T extends AbstractBlockTrack> T setBlock(T track){
+    public <T extends AbstractBlockTrack> T setBlock(T track) {
         this.block = track;
         return track;
     }
@@ -69,7 +69,7 @@ public enum TrackType{
         return isSlope;
     }
 
-    public boolean isStraight(){
+    public boolean isStraight() {
         return !isSlope && !isCurve;
     }
 

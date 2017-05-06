@@ -4,14 +4,7 @@
  * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
  * You can find the source code at https://github.com/Traincraft/Traincraft
  *
- * © 2011-2016
- */
-
-/*
- * Copyright (c) 2014 Mrbrutal. All rights reserved.
- * Do not modify or redistribute without written permission.
- *
- * @author Mrbrutal
+ * © 2011-2017
  */
 
 package si.meansoft.traincraft.network;
@@ -47,31 +40,31 @@ public class ClientProxy extends CommonProxy {
         OBJLoader.INSTANCE.addDomain(Traincraft.MODID);
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityWindmill.class, new TestVecRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTrack.class, new TileEntityTrack.TrackRenderer());
-        for(Fluid fluid : fluids){
+        for (Fluid fluid : fluids) {
             this.registerFluidRenderer(fluid);
         }
-        for(Map.Entry<ItemStack, ModelResourceLocation> entry : forgeRender.entrySet()){
+        for (Map.Entry<ItemStack, ModelResourceLocation> entry : forgeRender.entrySet()) {
             this.registerForgeRenderer(entry.getKey(), entry.getValue());
         }
     }
 
     @Override
-    public void postInit(FMLPostInitializationEvent event){
+    public void postInit(FMLPostInitializationEvent event) {
         super.postInit(event);
     }
 
-    private void registerForgeRenderer(ItemStack stack, ModelResourceLocation location){
+    private void registerForgeRenderer(ItemStack stack, ModelResourceLocation location) {
         ModelLoader.setCustomModelResourceLocation(stack.getItem(), stack.getItemDamage(), location);
     }
 
-    private void registerFluidRenderer(Fluid fluid){
+    private void registerFluidRenderer(Fluid fluid) {
         Block block = fluid.getBlock();
         Item item = Item.getItemFromBlock(block);
         final ModelResourceLocation loc = new ModelResourceLocation(new ResourceLocation(Traincraft.MODID, "fluids"), fluid.getName());
         ItemMeshDefinition mesh = stack -> loc;
-        StateMapperBase mapper = new StateMapperBase(){
+        StateMapperBase mapper = new StateMapperBase() {
             @Override
-            protected ModelResourceLocation getModelResourceLocation(IBlockState state){
+            protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
                 return loc;
             }
         };

@@ -4,7 +4,7 @@
  * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
  * You can find the source code at https://github.com/Traincraft/Traincraft
  *
- * © 2011-2016
+ * © 2011-2017
  */
 
 package si.meansoft.traincraft;
@@ -15,7 +15,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 /**
  * @author canitzp
  */
-public interface IRegistryEntry{
+public interface IRegistryEntry {
 
     IRegistryEntry[] getRegisterElements();
 
@@ -26,6 +26,7 @@ public interface IRegistryEntry{
     void ownRegistry();
 
     @SideOnly(Side.CLIENT)
-    default void loadClientSide(){}
+    default void loadClientSide() {
+    }
 
 }

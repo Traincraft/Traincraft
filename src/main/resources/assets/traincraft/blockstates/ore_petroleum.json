@@ -6,9 +6,13 @@
     },
     "model": "cube_all",
     "transform": "forge:default-block"
-    },
+  },
   "variants": {
-    "normal": [{}],
-    "inventory": [{}]
+    "normal": [
+      {}
+    ],
+    "inventory": [
+      {}
+    ]
   }
 }

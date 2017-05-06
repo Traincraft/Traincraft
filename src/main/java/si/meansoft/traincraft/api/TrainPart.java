@@ -4,7 +4,7 @@
  * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
  * You can find the source code at https://github.com/Traincraft/Traincraft
  *
- * © 2011-2016
+ * © 2011-2017
  */
 
 package si.meansoft.traincraft.api;
@@ -20,7 +20,7 @@ import si.meansoft.traincraft.client.models.TrainModelRenderer;
 /**
  * @author canitzp
  */
-public class TrainPart<T extends TrainBase> extends Entity{
+public class TrainPart<T extends TrainBase> extends Entity {
 
     private final T train;
     private final TrainParts part;
@@ -36,7 +36,7 @@ public class TrainPart<T extends TrainBase> extends Entity{
         this.zOffset = zOffset / 16 - model.getMaxDepth() / 2;
     }
 
-    public TrainPart(T train, TrainParts part, TrainModelRenderer renderer, TrainModel<? extends TrainBase> model){
+    public TrainPart(T train, TrainParts part, TrainModelRenderer renderer, TrainModel<? extends TrainBase> model) {
         super(train.getEntityWorld());
         this.train = train;
         this.part = part;
@@ -46,7 +46,7 @@ public class TrainPart<T extends TrainBase> extends Entity{
 
         this.xOffset = -renderer.getOffX() / 16 - model.getMaxWidth() / 2 + (renderer.getWidth() / 16) / 2;
         this.yOffset = renderer.getOffY() / 16 - model.getMaxHeight() / 2 + (renderer.getHeight() / 16) / 2 + model.getWheelHeight();
-        this.zOffset = renderer.getOffZ() / 16 - model.getMaxDepth() / 2 + (renderer.getDepth() / 16) /2;
+        this.zOffset = renderer.getOffZ() / 16 - model.getMaxDepth() / 2 + (renderer.getDepth() / 16) / 2;
     }
 
     @Override
@@ -64,7 +64,7 @@ public class TrainPart<T extends TrainBase> extends Entity{
 
     }
 
-    @Override
+    //@Override
     public boolean processInitialInteract(EntityPlayer player, EnumHand hand) {
         return this.train.processInitialInteractPart(this, this.part, player, hand);
     }
@@ -106,7 +106,7 @@ public class TrainPart<T extends TrainBase> extends Entity{
         return zOffset;
     }
 
-    public enum TrainParts{
+    public enum TrainParts {
         MAIN,
         WHEEL,
         SEET

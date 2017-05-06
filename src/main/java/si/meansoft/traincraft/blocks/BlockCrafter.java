@@ -4,7 +4,7 @@
  * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
  * You can find the source code at https://github.com/Traincraft/Traincraft
  *
- * © 2011-2016
+ * © 2011-2017
  */
 
 package si.meansoft.traincraft.blocks;
@@ -31,13 +31,14 @@ public class BlockCrafter extends BlockContainerBase {
         addGuiContainer(tier.guiID, GuiCrafter.class, ContainerCrafter.class);
     }
 
-    public enum CrafterTier{
+    public enum CrafterTier {
         STEAM("crafter_steam", GuiHandler.CRAFTERSTEAM, TileEntityCrafterSteam.class),
         DIESEL("crafter_diesel", GuiHandler.CRAFTERDIESEL, TileEntityCrafterDiesel.class),
         ELECTRO("crafter_electro", GuiHandler.CRAFTERELECTRO, TileEntityCrafterElectro.class);
         public String name;
         public int guiID;
         public Class<? extends TileEntityCrafterBase> tileClass;
+
         CrafterTier(String name, int guiID, Class<? extends TileEntityCrafterBase> tileClass) {
             this.name = name;
             this.guiID = guiID;

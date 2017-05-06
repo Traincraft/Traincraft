@@ -4,7 +4,7 @@
  * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
  * You can find the source code at https://github.com/Traincraft/Traincraft
  *
- * © 2011-2016
+ * © 2011-2017
  */
 
 package si.meansoft.traincraft.events;
@@ -24,25 +24,25 @@ import si.meansoft.traincraft.api.ITraincraftTrack;
  * @author canitzp
  */
 @Mod.EventBusSubscriber
-public class MinecartMovement{
+public class MinecartMovement {
 
     @SubscribeEvent
-    public void onMinecraftTick(MinecartUpdateEvent event){
+    public void onMinecraftTick(MinecartUpdateEvent event) {
         EntityMinecart cart = event.getMinecart();
         World world = cart.getEntityWorld();
         BlockPos cartPos = event.getPos();
-        if(!cart.isDead){
+        if (!cart.isDead) {
             IBlockState cartBlockState = world.getBlockState(cartPos);
-            if(cartBlockState.getBlock() instanceof ITraincraftTrack){
+            if (cartBlockState.getBlock() instanceof ITraincraftTrack) {
                 ((ITraincraftTrack) cartBlockState.getBlock()).onMinecartDriveOver(world, cartPos, cartBlockState, cart, cart.getPassengers().isEmpty() ? null : cart.getPassengers().get(0));
             }
         }
     }
 
     @SubscribeEvent
-    public void onMinecartInit(EntityEvent.EntityConstructing event){
+    public void onMinecartInit(EntityEvent.EntityConstructing event) {
         Entity entity = event.getEntity();
-        if(entity instanceof EntityMinecart){
+        if (entity instanceof EntityMinecart) {
             //entity.getDataManager().register(Util.TEST, false);
         }
     }

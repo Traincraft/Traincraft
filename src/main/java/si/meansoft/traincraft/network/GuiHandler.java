@@ -4,7 +4,7 @@
  * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
  * You can find the source code at https://github.com/Traincraft/Traincraft
  *
- * © 2011-2016
+ * © 2011-2017
  */
 
 package si.meansoft.traincraft.network;
@@ -29,12 +29,12 @@ public class GuiHandler implements IGuiHandler {
     public static final int HEARTH_FURNACE = 5;
     public static HashMap<Integer, Pair<Class<? extends GuiContainer>, Class<? extends Container>>> guiConMap = new HashMap<Integer, Pair<Class<? extends GuiContainer>, Class<? extends Container>>>();
 
-    public static void addGuiContainerDepend(int id, Class<? extends GuiContainer> gui, Class<? extends Container> container){
+    public static void addGuiContainerDepend(int id, Class<? extends GuiContainer> gui, Class<? extends Container> container) {
         guiConMap.put(id, Pair.of(gui, container));
     }
 
-    public static GuiContainer getGui(int id, EntityPlayer player, TileEntity tile){
-        if(guiConMap.containsKey(id)){
+    public static GuiContainer getGui(int id, EntityPlayer player, TileEntity tile) {
+        if (guiConMap.containsKey(id)) {
             try {
                 Container c = getContainer(id, player, tile);
                 return guiConMap.get(id).getKey().getConstructor(Container.class, EntityPlayer.class, TileEntity.class).newInstance(c, player, tile);
@@ -45,8 +45,8 @@ public class GuiHandler implements IGuiHandler {
         return null;
     }
 
-    public static Container getContainer(int id, EntityPlayer player, TileEntity tile){
-        if(guiConMap.containsKey(id)){
+    public static Container getContainer(int id, EntityPlayer player, TileEntity tile) {
+        if (guiConMap.containsKey(id)) {
             try {
                 return guiConMap.get(id).getValue().getConstructor(EntityPlayer.class, TileEntity.class).newInstance(player, tile);
             } catch (Exception e) {

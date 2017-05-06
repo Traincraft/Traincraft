@@ -4,7 +4,7 @@
  * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
  * You can find the source code at https://github.com/Traincraft/Traincraft
  *
- * © 2011-2016
+ * © 2011-2017
  */
 
 package si.meansoft.traincraft.api;
@@ -20,18 +20,18 @@ import java.util.List;
 /**
  * @author canitzp
  */
-public class TraincraftAPI{
+public class TraincraftAPI {
 
     public static final Logger apiLogger = LogManager.getLogger(Traincraft.NAME + "API");
 
     private static List<Class> trackRegisterClasses = new ArrayList<>();
 
-    public static void addTrackRegister(Class c){
-        if(!trackRegisterClasses.contains(c)){
-            try{
+    public static void addTrackRegister(Class c) {
+        if (!trackRegisterClasses.contains(c)) {
+            try {
                 c.getDeclaredMethod("register");
                 trackRegisterClasses.add(c);
-            } catch(NoSuchMethodException e){
+            } catch (NoSuchMethodException e) {
                 apiLogger.error("The Class '" + c.getName() + "' hasn't a method called 'register' without arguments!");
             }
         } else {
@@ -39,17 +39,17 @@ public class TraincraftAPI{
         }
     }
 
-    public static void addTrackRegister(Class... classes){
-        for(Class c : classes){
+    public static void addTrackRegister(Class... classes) {
+        for (Class c : classes) {
             addTrackRegister(c);
         }
     }
 
-    public static void registerTracks(){
-        for(Class c : trackRegisterClasses){
-            try{
+    public static void registerTracks() {
+        for (Class c : trackRegisterClasses) {
+            try {
                 c.getDeclaredMethod("register").invoke(null);
-            } catch(IllegalAccessException | InvocationTargetException | NoSuchMethodException e){
+            } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
                 apiLogger.error("There was a exception while registering the tracks!", e);
             }
         }

@@ -4,7 +4,7 @@
  * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
  * You can find the source code at https://github.com/Traincraft/Traincraft
  *
- * © 2011-2016
+ * © 2011-2017
  */
 
 package si.meansoft.traincraft.track;
@@ -69,7 +69,7 @@ public class TrackGrid {
                         break;
                     case EAST:
                         for (int z = 0; z < widthZ; ++z)
-                            for (int x = widthX-1; x >=0; --x)
+                            for (int x = widthX - 1; x >= 0; --x)
                                 if (map[widthZ - z - 1][widthX - x - 1])
                                     poses.add(start.add(z, y, x - widthX + 1));
                         break;

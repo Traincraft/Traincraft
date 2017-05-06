@@ -4,7 +4,7 @@
  * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
  * You can find the source code at https://github.com/Traincraft/Traincraft
  *
- * © 2011-2016
+ * © 2011-2017
  */
 
 package si.meansoft.traincraft.api;
@@ -26,7 +26,7 @@ import java.util.List;
 /**
  * @author canitzp
  */
-public interface ITraincraftTrack{
+public interface ITraincraftTrack {
 
     TrackType getTrackType();
 
@@ -38,9 +38,10 @@ public interface ITraincraftTrack{
 
     /**
      * The method to set the waypoints for this track. If the result is null the cart can't drive over the track.
-     * @param world The world this track is placed in
-     * @param pos The position of this block
-     * @param state The current state for this block
+     *
+     * @param world      The world this track is placed in
+     * @param pos        The position of this block
+     * @param state      The current state for this block
      * @param blockIndex The index of the track
      * @return The exact coordinates packet into a TrackPoint
      */

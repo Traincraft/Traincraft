@@ -4,12 +4,13 @@
  * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
  * You can find the source code at https://github.com/Traincraft/Traincraft
  *
- * © 2011-2016
+ * © 2011-2017
  */
 
 package si.meansoft.traincraft;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
@@ -29,7 +30,7 @@ import si.meansoft.traincraft.network.GuiHandler;
 /**
  * @author canitzp
  */
-@Mod(modid = Traincraft.MODID, name= Traincraft.NAME, version = Traincraft.VERSION)
+@Mod(modid = Traincraft.MODID, name = Traincraft.NAME, version = Traincraft.VERSION)
 public class Traincraft {
 
     public static final String MODID = "traincraft";
@@ -49,7 +50,7 @@ public class Traincraft {
 
     public static Side loadedSide;
 
-    static{
+    static {
         /*
          * To initialize the buckets for fluids, if we don't call this, we haven't buckets
          * and this has to be called before preInit
@@ -66,14 +67,24 @@ public class Traincraft {
         // Creating the two creative tabs for Traincraft. One for bLocks and items and the second for the rails
         generalTab = new CreativeTabs("traincraft_general_tab") {
             @Override
-            public ItemStack getTabIconItem() {
+            public ItemStack getIconItemStack() {
                 return new ItemStack(Registry.oilSand);
             }
-        };
-        trackTab = new CreativeTabs("traincraft_track_tab"){
+
             @Override
-            public ItemStack getTabIconItem(){
+            public Item getTabIconItem() {
+                return null;
+            }
+        };
+        trackTab = new CreativeTabs("traincraft_track_tab") {
+            @Override
+            public ItemStack getIconItemStack() {
                 return new ItemStack(BlockTrackStraight.block);
+            }
+
+            @Override
+            public Item getTabIconItem() {
+                return null;
             }
         };
         logger.info("[Pre Initializing] Register Blocks, Items, ...");

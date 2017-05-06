@@ -4,7 +4,7 @@
  * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
  * You can find the source code at https://github.com/Traincraft/Traincraft
  *
- * © 2011-2016
+ * © 2011-2017
  */
 
 package si.meansoft.traincraft.api;
@@ -14,14 +14,12 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemMinecart;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -37,6 +35,7 @@ import si.meansoft.traincraft.IRegistryEntry;
 import si.meansoft.traincraft.Traincraft;
 import si.meansoft.traincraft.blocks.BlockContainerBase;
 import si.meansoft.traincraft.compat.RailcraftUtil;
+import si.meansoft.traincraft.compat.VanillaUtil;
 import si.meansoft.traincraft.items.ItemBlockBase;
 import si.meansoft.traincraft.tile.TileEntityTrack;
 import si.meansoft.traincraft.track.TrackType;
@@ -46,14 +45,14 @@ import java.util.List;
 /**
  * @author canitzp
  */
-public abstract class AbstractBlockTrack extends BlockContainerBase implements ITraincraftTrack{
+public abstract class AbstractBlockTrack extends BlockContainerBase implements ITraincraftTrack {
 
     private TrackType type;
 
     protected static final AxisAlignedBB FLAT_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.125D, 1.0D);
     public static final PropertyBool SHOULD_RENDER = PropertyBool.create("should_render");
 
-    public AbstractBlockTrack(TrackType type, Class<? extends TileEntityTrack> tileClass){
+    public AbstractBlockTrack(TrackType type, Class<? extends TileEntityTrack> tileClass) {
         super(Material.IRON, "track_" + type.getInternName(), tileClass);
         this.setCreativeTab(Traincraft.trackTab);
         this.type = type;
@@ -67,17 +66,17 @@ public abstract class AbstractBlockTrack extends BlockContainerBase implements I
 
     protected abstract ItemBlockBase getItemBlock(AbstractBlockTrack track);
 
-    protected boolean shouldRenderDefault(){
+    protected boolean shouldRenderDefault() {
         return false;
     }
 
     @Override
-    public TrackType getTrackType(){
+    public TrackType getTrackType() {
         return this.type;
     }
 
     @Override
-    public boolean canPlaceTrack(World world, BlockPos pos, EntityLivingBase placer, ItemStack stack, float hitX, float hitY, float hitZ, boolean flipAlongX){
+    public boolean canPlaceTrack(World world, BlockPos pos, EntityLivingBase placer, ItemStack stack, float hitX, float hitY, float hitZ, boolean flipAlongX) {
         EnumFacing dir = placer.getHorizontalFacing();
         for (BlockPos pos1 : getTrackType().getGrid().getPosesToAffect(pos, dir, flipAlongX)) {
             if (!world.getBlockState(pos1).getBlock().isReplaceable(world, pos1) || !world.isSideSolid(pos1.down(), EnumFacing.UP)) {
@@ -88,33 +87,33 @@ public abstract class AbstractBlockTrack extends BlockContainerBase implements I
     }
 
     @Override
-    public List<BlockPos> getPositionToPlace(World world, BlockPos pos, EntityLivingBase placer, float hitX, float hitY, float hitZ, boolean flipAlongX){
+    public List<BlockPos> getPositionToPlace(World world, BlockPos pos, EntityLivingBase placer, float hitX, float hitY, float hitZ, boolean flipAlongX) {
         EnumFacing dir = placer.getHorizontalFacing();
         return getTrackType().getGrid().getPosesToAffect(pos, dir, getTrackType().isCurve() && flipAlongX);
     }
 
     @Override
-    public void onMinecartDriveOver(World world, BlockPos pos, IBlockState state, EntityMinecart cart, Entity ridingEntity){
+    public void onMinecartDriveOver(World world, BlockPos pos, IBlockState state, EntityMinecart cart, Entity ridingEntity) {
         EnumFacing facing = cart.getAdjustedHorizontalFacing();
         TileEntityTrack tileTrack = (TileEntityTrack) world.getTileEntity(pos);
         BlockPos nextPosition = tileTrack.sendRequestToTracks(facing);
-        if(!nextPosition.equals(pos)){
+        if (!nextPosition.equals(pos)) {
             cart.moveToBlockPosAndAngles(nextPosition, facing.getHorizontalAngle(), cart.rotationPitch);
         }
-        if(ridingEntity != null){
+        if (ridingEntity != null) {
             //cart.rotationYaw = ridingEntity.getRotationYawHead() % 360;
         }
         //cart.rotationYaw = 0; //TODO get rotation between to positions
     }
 
     @Override
-    public EnumBlockRenderType getRenderType(IBlockState state){
+    public EnumBlockRenderType getRenderType(IBlockState state) {
         System.out.println(state.getValue(SHOULD_RENDER));
         return (state.getValue(SHOULD_RENDER) || shouldRenderDefault()) ? EnumBlockRenderType.MODEL : EnumBlockRenderType.INVISIBLE;
     }
 
     @Override
-    protected BlockStateContainer createBlockState(){
+    protected BlockStateContainer createBlockState() {
         return new BlockStateContainer(this, FACING, SHOULD_RENDER);
     }
 
@@ -133,8 +132,10 @@ public abstract class AbstractBlockTrack extends BlockContainerBase implements I
         return FLAT_AABB;
     }
 
-    @Override
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos){return FLAT_AABB;}
+    //@Override
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
+        return FLAT_AABB;
+    }
 
     @Override
     public boolean isPassable(IBlockAccess worldIn, BlockPos pos) {
@@ -158,7 +159,7 @@ public abstract class AbstractBlockTrack extends BlockContainerBase implements I
     }
 
     @Override
-    public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand) {
+    public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, ItemStack stack) {
         return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite()).withProperty(SHOULD_RENDER, shouldRenderDefault());
     }
 
@@ -175,38 +176,42 @@ public abstract class AbstractBlockTrack extends BlockContainerBase implements I
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ){
-        ItemStack stack = player.getHeldItem(hand);
-        if(stack != ItemStack.EMPTY){
-            if(Compat.isRailcraftLoaded && stack.getItem() instanceof ItemCart){
-                if(!world.isRemote){
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack stack, EnumFacing side, float hitX, float hitY, float hitZ) {
+        //ItemStack stack = player.getHeldItem(hand);
+        if (stack != VanillaUtil.getEmpty()) {
+            if (Compat.isRailcraftLoaded && stack.getItem() instanceof ItemCart) {
+                if (!world.isRemote) {
                     processRailcraftItem(stack, player, pos);
                 }
-                if(!player.isCreative()) stack.setCount(stack.getCount() - 1);
+                if (!player.isCreative()) {
+                    VanillaUtil.decreaseStack(stack, 1);
+                }
                 return true;
             }
-            if(stack.getItem() instanceof ItemMinecart){
-                if(!world.isRemote){
+            if (stack.getItem() instanceof ItemMinecart) {
+                if (!world.isRemote) {
                     EntityMinecart.Type minecartType = ReflectionHelper.getPrivateValue(ItemMinecart.class, (ItemMinecart) stack.getItem(), 1);
                     EntityMinecart cart = EntityMinecart.create(world, (double) pos.getX() + 0.5D, (double) pos.getY() + 0.0625D, (double) pos.getZ() + 0.5D, minecartType);
-                    if(stack.hasDisplayName()){
+                    if (stack.hasDisplayName()) {
                         cart.setCustomNameTag(stack.getDisplayName());
                     }
                     world.spawnEntity(cart);
                 }
-                if(!player.isCreative()) stack.setCount(stack.getCount() - 1);
+                if (!player.isCreative()) {
+                    VanillaUtil.decreaseStack(stack, 1);
+                }
                 return true;
             }
         }
-        return super.onBlockActivated(world, pos, state, player, hand, side, hitX, hitY, hitZ);
+        return super.onBlockActivated(world, pos, state, player, hand, stack, side, hitX, hitY, hitZ);
     }
 
     @Optional.Method(modid = "railcraft")
-    private void processRailcraftItem(ItemStack stack, EntityPlayer player, BlockPos pos){
-        RailcraftUtil.placeRailcraftCart(((ItemCart)stack.getItem()).getCartType(), player, stack, player.getEntityWorld(), pos);
+    private void processRailcraftItem(ItemStack stack, EntityPlayer player, BlockPos pos) {
+        RailcraftUtil.placeRailcraftCart(((ItemCart) stack.getItem()).getCartType(), player, stack, player.getEntityWorld(), pos);
     }
 
-    public void placeTileEntity(World world, BlockPos pos, IBlockState state, TileEntityTrack tile, int blockIndex, EnumFacing direction){
+    public void placeTileEntity(World world, BlockPos pos, IBlockState state, TileEntityTrack tile, int blockIndex, EnumFacing direction) {
         System.out.println(blockIndex);
         world.setBlockState(tile.getPos(), world.getBlockState(tile.getPos()).withProperty(SHOULD_RENDER, true), world.isRemote ? 11 : 3);
     }

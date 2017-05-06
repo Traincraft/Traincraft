@@ -4,7 +4,7 @@
  * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
  * You can find the source code at https://github.com/Traincraft/Traincraft
  *
- * © 2011-2016
+ * © 2011-2017
  */
 
 package si.meansoft.traincraft.client.renderer;
@@ -19,10 +19,10 @@ import si.meansoft.traincraft.tile.TileEntityWindmill;
 /**
  * @author canitzp
  */
-public class TestVecRenderer extends TileEntitySpecialRenderer<TileEntityWindmill>{
+public class TestVecRenderer extends TileEntitySpecialRenderer<TileEntityWindmill> {
 
     @Override
-    public void renderTileEntityAt(TileEntityWindmill te, double x, double y, double z, float partialTicks, int destroyStage){
+    public void renderTileEntityAt(TileEntityWindmill te, double x, double y, double z, float partialTicks, int destroyStage) {
         VertexBuffer buffer = Tessellator.getInstance().getBuffer();
         //GlStateManager.pushAttrib();
         GlStateManager.pushMatrix();

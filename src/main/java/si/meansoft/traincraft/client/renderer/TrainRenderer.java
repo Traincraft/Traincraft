@@ -4,7 +4,7 @@
  * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
  * You can find the source code at https://github.com/Traincraft/Traincraft
  *
- * © 2011-2016
+ * © 2011-2017
  */
 
 package si.meansoft.traincraft.client.renderer;
@@ -15,7 +15,6 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.client.resources.IResourceManagerReloadListener;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
 import si.meansoft.traincraft.api.TrainBase;
 import si.meansoft.traincraft.client.models.TrainModel;
 
@@ -24,7 +23,7 @@ import javax.annotation.Nullable;
 /**
  * @author canitzp
  */
-public class TrainRenderer<T extends TrainBase> extends Render<T> implements IResourceManagerReloadListener{
+public class TrainRenderer<T extends TrainBase> extends Render<T> implements IResourceManagerReloadListener {
 
     private TrainModel<T> model;
     private ResourceLocation loc;
@@ -38,7 +37,7 @@ public class TrainRenderer<T extends TrainBase> extends Render<T> implements IRe
     @Nullable
     @Override
     protected ResourceLocation getEntityTexture(T entity) {
-        if(this.dirty){
+        if (this.dirty) {
             this.dirty = false;
             //entity.processModelChanges(this.model);
             return this.loc = this.model.getTexture(entity);

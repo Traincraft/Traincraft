@@ -4,7 +4,7 @@
  * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
  * You can find the source code at https://github.com/Traincraft/Traincraft
  *
- * © 2011-2016
+ * © 2011-2017
  */
 
 package si.meansoft.traincraft.container;
@@ -20,24 +20,24 @@ import si.meansoft.traincraft.tile.TileEntityInventory;
  */
 public class ContainerCrafter extends Container {
 
-    public ContainerCrafter(EntityPlayer player, TileEntity tileEntity){
+    public ContainerCrafter(EntityPlayer player, TileEntity tileEntity) {
         TileEntityInventory crafter = (TileEntityInventory) tileEntity;
-        for(int j = 0; j < 3; ++j) {
-            for(int k = 0; k < 9; ++k) {
+        for (int j = 0; j < 3; ++j) {
+            for (int k = 0; k < 9; ++k) {
                 this.addSlotToContainer(new Slot(player.inventory, k + j * 9 + 9, 8 + k * 18, 172 + j * 18));
             }
         }
-        for(int j = 0; j < 9; ++j) {
+        for (int j = 0; j < 9; ++j) {
             this.addSlotToContainer(new Slot(player.inventory, j, 8 + j * 18, 230));
         }
 
-        for(int i = 0; i < 4; i++){
-            for(int j = 0; j < 2 ; j++){
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 2; j++) {
                 addSlotToContainer(new Slot(crafter, i + j * 4, 8 + i * 18, 126 + j * 18));
             }
         }
-        for(int i = 0; i < 4; i++){
-            for(int j = 0; j < 2 ; j++){
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 2; j++) {
                 addSlotToContainer(new Slot(crafter, i + j * 4 + 8, 92 + i * 18, 126 + j * 18));
             }
         }

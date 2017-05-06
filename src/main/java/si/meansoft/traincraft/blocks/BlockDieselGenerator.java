@@ -4,7 +4,7 @@
  * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
  * You can find the source code at https://github.com/Traincraft/Traincraft
  *
- * © 2011-2016
+ * © 2011-2017
  */
 
 package si.meansoft.traincraft.blocks;
@@ -15,9 +15,9 @@ import si.meansoft.traincraft.tile.TileEntityDieselGenerator;
 /**
  * @author canitzp
  */
-public class BlockDieselGenerator extends BlockContainerBase{
+public class BlockDieselGenerator extends BlockContainerBase {
 
-    public BlockDieselGenerator(){
+    public BlockDieselGenerator() {
         super(Material.IRON, "generator_diesel", TileEntityDieselGenerator.class);
     }
 

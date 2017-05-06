@@ -1,16 +1,20 @@
 [
-{
-  "modid": "traincraft",
-  "name": "Traincraft",
-  "description": "Traincraft a mod for minecraft",
-  "version": "${version}",
-  "mcversion": "${mcversion}",
-  "url": "http://www.traincraft-mod.com",
-  "updateUrl": "http://www.traincraft-mod.com/Traincraft/downloads.html",
-  "authorList": ["canitzp", "Ellpeck", "MisterErwin"],
-  "credits": "Mrbrutal, Spitfire4466",
-  "logoFile": "logo.png",
-  "screenshots": [],
-  "dependencies": ["MinecraftForge"]
-}
+  {
+    "modid": "traincraft",
+    "name": "Traincraft",
+    "description": "Traincraft a mod for minecraft",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "url": "http://www.traincraft-mod.com",
+    "updateUrl": "http://www.traincraft-mod.com/Traincraft/downloads.html",
+    "authorList": [
+      "canitzp",
+      "EthernalBlueFlame",
+      "NitroxydeX"
+    ],
+    "credits": "Owner: Mrbrutal, Spitfire4466   Authors: canitzp, EthernalBlueFlame, NitroxydeX",
+    "logoFile": "logo.png",
+    "screenshots": [],
+    "dependencies": []
+  }
 ]

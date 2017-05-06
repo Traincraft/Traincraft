@@ -4,7 +4,7 @@
  * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
  * You can find the source code at https://github.com/Traincraft/Traincraft
  *
- * © 2011-2016
+ * © 2011-2017
  */
 
 package si.meansoft.traincraft.container;
@@ -27,32 +27,42 @@ public class ContainerDistillery extends Container {
     public TileEntityDistillery distillery;
     public Slot input;
 
-    public ContainerDistillery(EntityPlayer player, TileEntity distillery){
+    public ContainerDistillery(EntityPlayer player, TileEntity distillery) {
         this.player = player;
         this.distillery = (TileEntityDistillery) distillery;
-        for(int j = 0; j < 3; ++j) {
-            for(int k = 0; k < 9; ++k) {
+        for (int j = 0; j < 3; ++j) {
+            for (int k = 0; k < 9; ++k) {
                 this.addSlotToContainer(new Slot(player.inventory, k + j * 9 + 9, 8 + k * 18, 84 + j * 18));
             }
         }
-        for(int j = 0; j < 9; ++j) {
+        for (int j = 0; j < 9; ++j) {
             this.addSlotToContainer(new Slot(player.inventory, j, 8 + j * 18, 142));
         }
-        addSlotToContainer(this.input = new Slot(this.distillery, 0, 56, 17){
+        addSlotToContainer(this.input = new Slot(this.distillery, 0, 56, 17) {
             @Override
             public boolean isItemValid(ItemStack stack) {
                 return DistilleryRecipes.isStackInput(stack);
             }
         });
-        addSlotToContainer(new Slot(this.distillery, 1, 56, 53){
+        addSlotToContainer(new Slot(this.distillery, 1, 56, 53) {
             @Override
             public boolean isItemValid(ItemStack stack) {
                 return TileEntityFurnace.isItemFuel(stack);
             }
         });
         addSlotToContainer(new Slot(this.distillery, 2, 123, 8));
-        addSlotToContainer(new Slot(this.distillery, 3, 123, 33){@Override public boolean isItemValid(ItemStack stack) {return false;}});
-        addSlotToContainer(new Slot(this.distillery, 4, 116, 60){@Override public boolean isItemValid(ItemStack stack) {return false;}});
+        addSlotToContainer(new Slot(this.distillery, 3, 123, 33) {
+            @Override
+            public boolean isItemValid(ItemStack stack) {
+                return false;
+            }
+        });
+        addSlotToContainer(new Slot(this.distillery, 4, 116, 60) {
+            @Override
+            public boolean isItemValid(ItemStack stack) {
+                return false;
+            }
+        });
     }
 
     @Override
@@ -61,32 +71,40 @@ public class ContainerDistillery extends Container {
     }
 
     @Override
-    public ItemStack transferStackInSlot(EntityPlayer playerIn, int index) {
-        Slot slot = this.inventorySlots.get(index);
-        if(slot != null && slot.getHasStack()){
-            ItemStack stack = slot.getStack();
-            ItemStack copy = stack.copy();
-            if(index < 36){
-                if(!this.input.getHasStack() || (ItemStack.areItemStacksEqual(stack, this.input.getStack()) && (this.input.getStack().getCount() + stack.getCount() <= stack.getMaxStackSize()))){
-                    if(DistilleryRecipes.isStackInput(stack)){
-                        if(!mergeItemStack(stack, 0, 0, false)){
-                            return ItemStack.EMPTY;
+    public ItemStack transferStackInSlot(EntityPlayer player, int slot) {
+        final int inventoryStart = 27;
+        final int inventoryEnd = inventoryStart + 26;
+        final int hotbarStart = inventoryEnd + 1;
+        final int hotbarEnd = hotbarStart + 8;
+        Slot theSlot = inventorySlots.get(slot);
+        if (theSlot != null && theSlot.getHasStack()) {
+            ItemStack newStack = theSlot.getStack();
+            ItemStack currentStack = newStack.copy();
+            if (slot >= inventoryStart) {
+                if (!mergeItemStack(newStack, 0, 4, false)) {
+                    if (slot >= inventoryStart && slot <= inventoryEnd) {
+                        if (!mergeItemStack(newStack, hotbarStart, hotbarEnd + 1, false)) {
+                            return null;
                         }
+                    } else if (slot >= inventoryEnd + 1 && slot < hotbarEnd + 1 && !mergeItemStack(newStack, inventoryStart, inventoryEnd + 1, false)) {
+                        return null;
                     }
                 }
+            } else if (!mergeItemStack(newStack, inventoryStart, hotbarEnd, false)) {
+                return null;
             }
-            if (copy.isEmpty()) {
-                slot.putStack(ItemStack.EMPTY);
+            if (newStack.stackSize == 0) {
+                theSlot.putStack(null);
+            } else {
+                theSlot.onSlotChanged();
             }
-            else {
-                slot.onSlotChanged();
+            if (newStack.stackSize == currentStack.stackSize) {
+                return null;
             }
-            if (copy.getCount() == copy.getCount()) {
-                return ItemStack.EMPTY;
-            }
-            slot.onTake(playerIn, copy);
+            theSlot.func_82870_a(player, newStack);
+            return currentStack;
         }
-        return ItemStack.EMPTY;
+        return null;
     }
 
 }

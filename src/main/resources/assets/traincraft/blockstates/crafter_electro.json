@@ -3,7 +3,7 @@
   "defaults": {
     "textures": {
       "particle": "#north",
-      "up": "traincraft:blocks/crafter_electro_Top",
+      "up": "traincraft:blocks/crafter_electro_top",
       "down": "traincraft:blocks/crafter_electro_bottom",
       "north": "traincraft:blocks/crafter_electro_front",
       "east": "traincraft:blocks/crafter_electro_side",
@@ -15,12 +15,24 @@
   },
   "variants": {
     "facing": {
-      "north" : { "y" : 0 },
-      "south" : { "y" : 180 },
-      "west" : { "y" : 270 },
-      "east" : { "y" : 90 }
+      "north": {
+        "y": 0
+      },
+      "south": {
+        "y": 180
+      },
+      "west": {
+        "y": 270
+      },
+      "east": {
+        "y": 90
+      }
     },
-    "normal": [{}],
-    "inventory": [{}]
+    "normal": [
+      {}
+    ],
+    "inventory": [
+      {}
+    ]
   }
 }

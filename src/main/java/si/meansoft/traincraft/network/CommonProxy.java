@@ -4,14 +4,7 @@
  * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
  * You can find the source code at https://github.com/Traincraft/Traincraft
  *
- * © 2011-2016
- */
-
-/*
- * Copyright (c) 2014 Mrbrutal. All rights reserved.
- * Do not modify or redistribute without written permission.
- *
- * @author Mrbrutal
+ * © 2011-2017
  */
 
 package si.meansoft.traincraft.network;
@@ -24,13 +17,10 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
-import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.oredict.OreDictionary;
 import si.meansoft.traincraft.Traincraft;
 import si.meansoft.traincraft.blocks.BlockBase;
-import si.meansoft.traincraft.network.packets.PacketUpdateBlockState;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -47,31 +37,32 @@ public class CommonProxy {
     public static SimpleNetworkWrapper wrapper;
     public static Map<BlockBase, String> oreDicts = new HashMap<>();
 
-    public void preInit(FMLPreInitializationEvent event){}
+    public void preInit(FMLPreInitializationEvent event) {
+    }
 
-    public void init(FMLInitializationEvent event){
+    public void init(FMLInitializationEvent event) {
         wrapper = NetworkRegistry.INSTANCE.newSimpleChannel(Traincraft.MODID);
         //wrapper.registerMessage(new PacketUpdateBlockState<>(), PacketUpdateBlockState.class, 0, Side.CLIENT);
     }
 
-    public void postInit(FMLPostInitializationEvent event){
-        for(Map.Entry<BlockBase, String> entry : oreDicts.entrySet()){
+    public void postInit(FMLPostInitializationEvent event) {
+        for (Map.Entry<BlockBase, String> entry : oreDicts.entrySet()) {
             Item itemBlock = Item.getItemFromBlock(entry.getKey());
-            if(itemBlock != null){
+            if (itemBlock != null) {
                 OreDictionary.registerOre(entry.getValue(), itemBlock);
             }
         }
     }
 
-    public static void addForgeRender(Item item){
+    public static void addForgeRender(Item item) {
         forgeRender.put(new ItemStack(item), new ModelResourceLocation(item.getRegistryName(), "inventory"));
     }
 
-    public static void addForgeRender(ItemStack stack, ModelResourceLocation location){
+    public static void addForgeRender(ItemStack stack, ModelResourceLocation location) {
         forgeRender.put(stack, location);
     }
 
-    public static void addFluid(Fluid fluid){
+    public static void addFluid(Fluid fluid) {
         fluids.add(fluid);
     }
 

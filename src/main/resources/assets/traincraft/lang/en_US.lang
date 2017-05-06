@@ -4,4 +4,4 @@ itemGroup.traincraft_general_tab=Traincraft
 
 
 #Blocks:
-tile.traincraft.oil_sand.name=Oil Sand
+tile.traincraft:oil_sand.name=Oil Sand

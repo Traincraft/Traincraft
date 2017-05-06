@@ -3,15 +3,21 @@
   "variants": {
     "diesel": {
       "model": "forge:fluid",
-      "custom": { "fluid": "diesel" }
+      "custom": {
+        "fluid": "diesel"
+      }
     },
     "refined_fuel": {
       "model": "forge:fluid",
-      "custom": { "fluid": "refined_fuel" }
+      "custom": {
+        "fluid": "refined_fuel"
+      }
     },
     "oil": {
       "model": "forge:fluid",
-      "custom": { "fluid": "oil" }
+      "custom": {
+        "fluid": "oil"
+      }
     }
   }
 }

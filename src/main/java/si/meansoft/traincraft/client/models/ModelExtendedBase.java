@@ -4,7 +4,7 @@
  * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
  * You can find the source code at https://github.com/Traincraft/Traincraft
  *
- * © 2011-2016
+ * © 2011-2017
  */
 
 package si.meansoft.traincraft.client.models;
@@ -14,9 +14,9 @@ import net.minecraft.client.model.ModelBase;
 /**
  * @author canitzp
  */
-public abstract class ModelExtendedBase extends ModelBase{
+public abstract class ModelExtendedBase extends ModelBase {
 
-    public ModelExtendedBase(){
+    public ModelExtendedBase() {
     }
 
     public abstract void render(float scale);

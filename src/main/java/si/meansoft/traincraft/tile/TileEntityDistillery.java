@@ -4,7 +4,7 @@
  * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
  * You can find the source code at https://github.com/Traincraft/Traincraft
  *
- * © 2011-2016
+ * © 2011-2017
  */
 
 package si.meansoft.traincraft.tile;
@@ -26,6 +26,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import si.meansoft.traincraft.Util;
 import si.meansoft.traincraft.api.recipes.DistilleryRecipes;
 import si.meansoft.traincraft.blocks.BlockDistillery;
+import si.meansoft.traincraft.compat.VanillaUtil;
 
 /**
  * @author canitzp
@@ -34,7 +35,7 @@ public class TileEntityDistillery extends TileEntityInventory implements ITickab
 
     public FluidTank tank = new FluidTank(16000);
     public int currentBurn = 0, currentCookTime = 0, maxBurnTime = 0, maxCookTime = 0;
-    public ItemStack currentBurnStack = ItemStack.EMPTY;
+    public ItemStack currentBurnStack = VanillaUtil.getEmpty();
 
     private int lastCurrentBurn;
     private int lastCurrentCookTime;
@@ -55,15 +56,15 @@ public class TileEntityDistillery extends TileEntityInventory implements ITickab
         return index != 0 && index != 1 && index != 2 && direction == EnumFacing.DOWN;
     }
 
-    public boolean isBurning(){
+    public boolean isBurning() {
         return currentBurn > 0;
     }
 
-    public boolean isCooking(){
+    public boolean isCooking() {
         return currentCookTime > 0;
     }
 
-    private boolean isTankFull(){
+    private boolean isTankFull() {
         return this.tank.getFluidAmount() >= this.tank.getCapacity();
     }
 
@@ -72,7 +73,7 @@ public class TileEntityDistillery extends TileEntityInventory implements ITickab
      */
     @Override
     public void update() {
-        if(!this.getWorld().isRemote){
+        if (!this.getWorld().isRemote) {
             boolean wasBurning = this.isBurning();
 
             ItemStack input = this.getStackInSlot(0);
@@ -81,10 +82,10 @@ public class TileEntityDistillery extends TileEntityInventory implements ITickab
             DistilleryRecipes.RecipeHandler recipe = DistilleryRecipes.getRecipe(input);
 
             //TODO Fix this breaking when reloading the world because the recipe doesn't get saved properly
-            if(recipe != null){
+            if (recipe != null) {
                 //Burn
-                if((fuel != ItemStack.EMPTY || this.currentBurnStack != ItemStack.EMPTY || this.currentBurn > 0)){
-                    if(currentBurn <= 0 && !this.isTankFull()){
+                if ((fuel != VanillaUtil.getEmpty() || this.currentBurnStack != VanillaUtil.getEmpty() || this.currentBurn > 0)) {
+                    if (currentBurn <= 0 && !this.isTankFull()) {
                         this.decrStackSize(1, 1);
                         this.currentBurn = this.maxBurnTime = TileEntityFurnace.getItemBurnTime(fuel);
                     } else {
@@ -101,28 +102,28 @@ public class TileEntityDistillery extends TileEntityInventory implements ITickab
                     }
                 } else {
                     if (this.currentCookTime == 1 && this.isBurning()) {
-                        if (output == ItemStack.EMPTY) {
-                            if(this.currentBurnStack != ItemStack.EMPTY)
+                        if (output == VanillaUtil.getEmpty()) {
+                            if (this.currentBurnStack != VanillaUtil.getEmpty())
                                 this.setInventorySlotContents(4, this.currentBurnStack.copy());
-                            if(recipe.outputFluid != null){
+                            if (recipe.outputFluid != null) {
                                 this.tank.fill(recipe.outputFluid.copy(), true);
                             }
-                            this.currentBurnStack = ItemStack.EMPTY;
+                            this.currentBurnStack = VanillaUtil.getEmpty();
                             this.currentCookTime--;
                             dropXP(getWorld(), getPos(), recipe.outputExp);
                         } else if (output.isItemEqual(this.currentBurnStack)) {
-                            if (output.copy().getCount() + this.currentBurnStack.copy().getCount() <= this.getInventoryStackLimit()) {
-                                this.incrStackSize(4, this.currentBurnStack.copy().getCount());
-                                this.currentBurnStack = ItemStack.EMPTY;
+                            if (VanillaUtil.getCount(output.copy()) + VanillaUtil.getCount(this.currentBurnStack.copy()) <= this.getInventoryStackLimit()) {
+                                this.incrStackSize(4, VanillaUtil.getCount(this.currentBurnStack.copy()));
+                                this.currentBurnStack = VanillaUtil.getEmpty();
                                 this.currentCookTime--;
-                                if(recipe.outputFluid != null){
+                                if (recipe.outputFluid != null) {
                                     this.tank.fill(recipe.outputFluid.copy(), true);
                                 }
                                 dropXP(getWorld(), getPos(), recipe.outputExp);
                             }
                         }
                         this.markDirty();
-                    } else if(this.isBurning()) {
+                    } else if (this.isBurning()) {
                         this.currentCookTime--;
                     } else {
                         this.currentCookTime++;
@@ -130,7 +131,7 @@ public class TileEntityDistillery extends TileEntityInventory implements ITickab
                 }
             } else {
                 //Burn
-                if(this.currentBurn > 0){
+                if (this.currentBurn > 0) {
                     this.currentBurn--;
                 }
             }
@@ -138,20 +139,20 @@ public class TileEntityDistillery extends TileEntityInventory implements ITickab
             //Filling Recipes:
             ItemStack fillingInput = getStackInSlot(2);
             ItemStack currentFillingOutputSlot = getStackInSlot(3);
-            if(currentFillingOutputSlot == ItemStack.EMPTY || (ItemStack.areItemStacksEqual(fillingInput, currentFillingOutputSlot) && fillingInput.getCount() + currentFillingOutputSlot.getCount() <= getInventoryStackLimit())){
+            if (currentFillingOutputSlot == VanillaUtil.getEmpty() || (ItemStack.areItemStacksEqual(fillingInput, currentFillingOutputSlot) && VanillaUtil.getCount(fillingInput) + VanillaUtil.getCount(currentFillingOutputSlot) <= getInventoryStackLimit())) {
                 Pair<ItemStack, FluidStack> outputFilling = DistilleryRecipes.getFillingOutput(fillingInput, this.tank.getFluid());
-                if(outputFilling != null){
-                    if((ItemStack.areItemStacksEqual(currentFillingOutputSlot, outputFilling.getKey()) || currentFillingOutputSlot == ItemStack.EMPTY) && (FluidStack.areFluidStackTagsEqual(this.tank.getFluid(), outputFilling.getValue()))){
+                if (outputFilling != null) {
+                    if ((ItemStack.areItemStacksEqual(currentFillingOutputSlot, outputFilling.getKey()) || currentFillingOutputSlot == VanillaUtil.getEmpty()) && (FluidStack.areFluidStackTagsEqual(this.tank.getFluid(), outputFilling.getValue()))) {
                         setInventorySlotContents(3, Util.decreaseItemStack(currentFillingOutputSlot, outputFilling.getKey()));
                     }
                 }
             }
 
-            if(wasBurning != this.isBurning()){
+            if (wasBurning != this.isBurning()) {
                 setState(this.isBurning(), BlockDistillery.ACTIVE, getWorld(), getPos());
             }
 
-            if(this.maxBurnTime != this.lastMaxBurnTime || this.maxCookTime != this.lastMaxCookTime || this.currentCookTime != this.lastCurrentCookTime || this.currentBurn != this.lastCurrentBurn){
+            if (this.maxBurnTime != this.lastMaxBurnTime || this.maxCookTime != this.lastMaxCookTime || this.currentCookTime != this.lastCurrentCookTime || this.currentBurn != this.lastCurrentBurn) {
                 this.lastCurrentBurn = this.currentBurn;
                 this.lastMaxBurnTime = this.maxBurnTime;
                 this.lastMaxCookTime = this.maxCookTime;
@@ -170,8 +171,8 @@ public class TileEntityDistillery extends TileEntityInventory implements ITickab
         this.currentBurn = compound.getInteger("currentBurnTime");
         this.maxBurnTime = compound.getInteger("maxBurnTime");
         this.maxCookTime = compound.getInteger("maxCookTime");
-        if(type.save() && this.isCooking()){
-            this.currentBurnStack = new ItemStack(compound);
+        if (type.save() && this.isCooking()) {
+            this.currentBurnStack = VanillaUtil.newStack(compound);
         }
     }
 
@@ -183,26 +184,25 @@ public class TileEntityDistillery extends TileEntityInventory implements ITickab
         compound.setInteger("currentBurnTime", this.currentBurn);
         compound.setInteger("maxBurnTime", this.maxBurnTime);
         compound.setInteger("maxCookTime", this.maxCookTime);
-        if(type.save() && this.currentBurnStack != ItemStack.EMPTY){
+        if (type.save() && this.currentBurnStack != VanillaUtil.getEmpty()) {
             this.currentBurnStack.writeToNBT(compound);
         }
     }
 
-    public static void setState(boolean active, PropertyBool property, World world, BlockPos pos){
+    public static void setState(boolean active, PropertyBool property, World world, BlockPos pos) {
         IBlockState iblockstate = world.getBlockState(pos);
         world.setBlockState(pos, iblockstate.getBlock().getDefaultState().withProperty(property, active).withProperty(BlockDistillery.FACING, iblockstate.getValue(BlockDistillery.FACING)), 3);
     }
 
-    public static void dropXP(World world, BlockPos pos, float xp){
+    public static void dropXP(World world, BlockPos pos, float xp) {
         if (!world.isRemote) {
             int i = 1;
 
             if (xp == 0.0F) {
                 i = 0;
-            }
-            else if (xp < 1.0F) {
-                int j = MathHelper.floor((float)i * xp);
-                if (j < MathHelper.ceil((float)i * xp) && Math.random() < (double)((float)i * xp - (float)j)) {
+            } else if (xp < 1.0F) {
+                int j = MathHelper.floor((float) i * xp);
+                if (j < MathHelper.ceil((float) i * xp) && Math.random() < (double) ((float) i * xp - (float) j)) {
                     ++j;
                 }
                 i = j;

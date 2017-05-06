@@ -4,7 +4,7 @@
  * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
  * You can find the source code at https://github.com/Traincraft/Traincraft
  *
- * © 2011-2016
+ * © 2011-2017
  */
 
 package si.meansoft.traincraft.network.packets;
@@ -31,9 +31,10 @@ public class PacketUpdateBlockState<T extends Comparable<T>> implements IMessage
     private BlockPos blockPos;
     private String property, propertyName;
 
-    public PacketUpdateBlockState(){}
+    public PacketUpdateBlockState() {
+    }
 
-    public PacketUpdateBlockState(IBlockState state, BlockPos pos, IProperty<T> property){
+    public PacketUpdateBlockState(IBlockState state, BlockPos pos, IProperty<T> property) {
         this.blockPos = pos;
         this.property = property.getName(state.getValue(property));
         this.propertyName = property.getName();
@@ -59,13 +60,13 @@ public class PacketUpdateBlockState<T extends Comparable<T>> implements IMessage
     @Override
     public IMessage onMessage(PacketUpdateBlockState<T> message, MessageContext ctx) {
         World world = Minecraft.getMinecraft().world;
-        if(world != null){
+        if (world != null) {
             IBlockState state = world.getBlockState(message.blockPos);
-            for(IProperty<?> property : state.getPropertyKeys()){
-                if(property.getName().equals(message.propertyName)){
+            for (IProperty<?> property : state.getPropertyKeys()) {
+                if (property.getName().equals(message.propertyName)) {
                     IProperty<T> prop = (IProperty<T>) property;
                     Optional<T> optional = prop.parseValue(message.property);
-                    if(optional.isPresent()){
+                    if (optional.isPresent()) {
                         state.withProperty(prop, optional.get());
                     }
                 }

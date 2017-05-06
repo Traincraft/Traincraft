@@ -4,7 +4,7 @@
  * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
  * You can find the source code at https://github.com/Traincraft/Traincraft
  *
- * © 2011-2016
+ * © 2011-2017
  */
 
 package si.meansoft.traincraft;
@@ -27,7 +27,7 @@ import si.meansoft.traincraft.trains.museumTrain.MuseumSteamTrainModel;
 /**
  * @author canitzp
  */
-public class Registry{
+public class Registry {
 
     public static int entityIds = 0;
 
@@ -42,9 +42,9 @@ public class Registry{
 
     public static FluidBase diesel, refinedFuel, oil;
 
-    public static void preInit(FMLPreInitializationEvent event){
+    public static void preInit(FMLPreInitializationEvent event) {
         //Blocks
-        register(oilSand = new BlockBase(Material.SAND, "oil_Sand").generateBlock(Blocks.SAND, 50, 80, 7, 11).addOreDict("oreOilSand").setHarvestLevel(BlockBase.ToolEnum.SHOVEL, 2).setSound(SoundType.SAND));
+        register(oilSand = new BlockBase(Material.SAND, "oil_sand").generateBlock(Blocks.SAND, 50, 80, 12, 3).addOreDict("oreOilSand").setHarvestLevel(BlockBase.ToolEnum.SHOVEL, 2).setSound(SoundType.SAND));
         register(petroleum = new BlockBase(Material.ROCK, "ore_petroleum").generateBlock(Blocks.STONE, 20, 70, 5, 9).addOreDict("orePetroleum").setHarvestLevel(BlockBase.ToolEnum.PICKAXE, 2).setSound(SoundType.STONE));
         register(distillery = new BlockDistillery());
         register(hearthFurnace = new BlockHearthFurnace());
@@ -63,20 +63,20 @@ public class Registry{
         TraincraftAPI.addTrackRegister(BlockTrackStraight.class, BlockTrackSlope.class, BlockTrackCurve.class);
         TraincraftAPI.registerTracks();
 
-        register(TrainProvider.create(MuseumSteamTrain.class, "museumTrain", new MuseumSteamTrainModel()));
+        //register(TrainProvider.create(MuseumSteamTrain.class, "museumTrain", new MuseumSteamTrainModel()));
     }
 
-    public static <T extends IRegistryEntry> T[] register(T... entries){
-        for(T entry : entries){
-            for(IRegistryEntry reg : entry.getRegisterElements()){
-                if(reg instanceof IForgeRegistryEntry){
+    public static <T extends IRegistryEntry> T[] register(T... entries) {
+        for (T entry : entries) {
+            for (IRegistryEntry reg : entry.getRegisterElements()) {
+                if (reg instanceof IForgeRegistryEntry) {
                     ((IForgeRegistryEntry) reg).setRegistryName(new ResourceLocation(Traincraft.MODID, reg.getRegisterName()));
                     GameRegistry.register((IForgeRegistryEntry<?>) reg);
                     reg.onRegister(entries);
                 } else {
                     reg.ownRegistry();
                 }
-                if(Traincraft.loadedSide.isClient()){
+                if (Traincraft.loadedSide.isClient()) {
                     reg.loadClientSide();
                 }
             }

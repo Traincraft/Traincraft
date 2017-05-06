@@ -4,7 +4,7 @@
  * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
  * You can find the source code at https://github.com/Traincraft/Traincraft
  *
- * © 2011-2016
+ * © 2011-2017
  */
 
 package si.meansoft.traincraft.blocks;
@@ -17,14 +17,14 @@ import si.meansoft.traincraft.tile.TileEntityWindmill;
 /**
  * @author canitzp
  */
-public class BlockWindmill extends BlockContainerBase{
+public class BlockWindmill extends BlockContainerBase {
 
-    public BlockWindmill(){
+    public BlockWindmill() {
         super(Material.IRON, "windmill", TileEntityWindmill.class);
     }
 
     @Override
-    public EnumBlockRenderType getRenderType(IBlockState state){
+    public EnumBlockRenderType getRenderType(IBlockState state) {
         return EnumBlockRenderType.ENTITYBLOCK_ANIMATED;
     }
 }

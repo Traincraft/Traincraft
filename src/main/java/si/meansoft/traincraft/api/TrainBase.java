@@ -4,7 +4,7 @@
  * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
  * You can find the source code at https://github.com/Traincraft/Traincraft
  *
- * © 2011-2016
+ * © 2011-2017
  */
 
 package si.meansoft.traincraft.api;
@@ -18,7 +18,6 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
@@ -33,26 +32,30 @@ import java.util.UUID;
 
 /**
  * @author canitzp
- * Notes: may use IEntityAdditionalSpawnData
+ *         Notes: may use IEntityAdditionalSpawnData
  */
-public abstract class TrainBase extends Entity{
+public abstract class TrainBase extends Entity {
 
-    /** Internal variables */
+    /**
+     * Internal variables
+     */
     protected String name;
     private static final DataParameter<Float> DAMAGE = EntityDataManager.<Float>createKey(EntityMinecart.class, DataSerializers.FLOAT);
     private ArrayList<TrainPart<? extends TrainBase>> trainParts = new ArrayList<>();
 
-    /** Train related variables*/
+    /**
+     * Train related variables
+     */
     public UUID owner;
     public boolean isLocked = false;
 
-    public TrainBase(World world, String name){
+    public TrainBase(World world, String name) {
         this(world);
         this.name = name;
         this.processModelChanges(TrainProvider.modelMap.get(name));
     }
 
-    private TrainBase(World world){
+    private TrainBase(World world) {
         super(world);
     }
 
@@ -60,19 +63,19 @@ public abstract class TrainBase extends Entity{
     public abstract double getMountedYOffset();
 
     @Override
-    protected void entityInit(){
+    protected void entityInit() {
         this.dataManager.register(DAMAGE, 0.0F);
     }
 
     protected abstract List<TrainPart<? extends TrainBase>> initParts(TrainModel<? extends TrainBase> model);
 
     @Override
-    protected final void readEntityFromNBT(NBTTagCompound nbt){
+    protected final void readEntityFromNBT(NBTTagCompound nbt) {
         this.readNBT(nbt, Util.NBTType.SAVE);
     }
 
     @Override
-    protected final void writeEntityToNBT(NBTTagCompound nbt){
+    protected final void writeEntityToNBT(NBTTagCompound nbt) {
         this.writeNBT(nbt, Util.NBTType.SAVE);
     }
 
@@ -82,7 +85,7 @@ public abstract class TrainBase extends Entity{
         this.rotationYaw++;
         //this.rotationPitch++;
 
-        if(this.rotationYaw >= 359){
+        if (this.rotationYaw >= 359) {
             this.rotationYaw -= 360;
         }
 
@@ -92,8 +95,8 @@ public abstract class TrainBase extends Entity{
 
 
         //this.setEntityBoundingBox(rotate(this.getEntityBoundingBox(), (int) this.rotationYaw, EnumFacing.Axis.Y));
-        if(this.world.isRemote){
-            for(TrainPart<? extends TrainBase> part : this.trainParts){
+        if (this.world.isRemote) {
+            for (TrainPart<? extends TrainBase> part : this.trainParts) {
                 //,  + (Math.sin(this.rotationYaw / 12) * radius) / 16
                 System.out.println(offZ);
                 part.setLocationAndAngles(this.posX + part.getxOffset() + offX, this.posY + part.getyOffset(), this.posZ + part.getzOffset() + offZ, this.rotationYaw, this.rotationPitch);
@@ -122,7 +125,7 @@ public abstract class TrainBase extends Entity{
         return Block.NULL_AABB;
     }
 
-    @Override
+    //@Override
     public boolean processInitialInteract(EntityPlayer player, EnumHand hand) {
         return this.processInitialInteractPart(null, TrainPart.TrainParts.MAIN, player, hand);
     }
@@ -133,25 +136,25 @@ public abstract class TrainBase extends Entity{
         return this.trainParts.toArray(new Entity[]{});
     }
 
-    public void processModelChanges(TrainModel<? extends TrainBase> model){
+    public void processModelChanges(TrainModel<? extends TrainBase> model) {
         System.out.println("Process");
         float max = Math.max(model.getMaxWidth(), model.getMaxDepth());
-        this.setSize(max + max/4, model.getMaxHeight() + model.getWheelHeight());
+        this.setSize(max + max / 4, model.getMaxHeight() + model.getWheelHeight());
         this.trainParts.clear();
         this.trainParts.addAll(this.initParts(model));
-        for(TrainModelRenderer renderer : model.getPartWheels()){
+        for (TrainModelRenderer renderer : model.getPartWheels()) {
             this.trainParts.add(new TrainPart<>(this, TrainPart.TrainParts.WHEEL, renderer, model));
         }
-        for(TrainPart<? extends TrainBase> part : this.trainParts){
+        for (TrainPart<? extends TrainBase> part : this.trainParts) {
             //TODO send TrainPart update Packet to the client!
             //CommonProxy.wrapper.sendToAll(new PacketUpdateBlockState(part));
         }
     }
 
-    public boolean attackTrainPart(TrainPart<? extends TrainBase> trainPart, TrainPart.TrainParts part, DamageSource source, float amount){
-        if(!this.world.isRemote){
+    public boolean attackTrainPart(TrainPart<? extends TrainBase> trainPart, TrainPart.TrainParts part, DamageSource source, float amount) {
+        if (!this.world.isRemote) {
             this.setDamage(getDamage() + amount * 10.0F);
-            if(this.getDamage() >= 40.0F){
+            if (this.getDamage() >= 40.0F) {
                 this.setDead();
             }
             return true;
@@ -159,14 +162,14 @@ public abstract class TrainBase extends Entity{
         return super.attackEntityFrom(source, amount);
     }
 
-    public boolean processInitialInteractPart(TrainPart<? extends TrainBase> trainPart, TrainPart.TrainParts part, EntityPlayer player, EnumHand hand){
+    public boolean processInitialInteractPart(TrainPart<? extends TrainBase> trainPart, TrainPart.TrainParts part, EntityPlayer player, EnumHand hand) {
         this.rotationYaw += 45;
         System.out.println(this.rotationYaw);
         World world = player.getEntityWorld();
-        if(!world.isRemote){
-            switch (part){
-                case SEET:{
-                    if(!player.isSneaking()){
+        if (!world.isRemote) {
+            switch (part) {
+                case SEET: {
+                    if (!player.isSneaking()) {
                         player.startRiding(trainPart);
                         return true;
                     }

@@ -4,7 +4,7 @@
  * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
  * You can find the source code at https://github.com/Traincraft/Traincraft
  *
- * © 2011-2016
+ * © 2011-2017
  */
 
 package si.meansoft.traincraft.client.models;
@@ -31,14 +31,14 @@ public class TrainModelRenderer extends ModelRenderer {
         super(model, texOffX, texOffY);
     }
 
-    public TrainModelRenderer setRotationAngle(float x, float y, float z){
+    public TrainModelRenderer setRotationAngle(float x, float y, float z) {
         this.rotateAngleX = x;
         this.rotateAngleY = y;
         this.rotateAngleZ = z;
         return this;
     }
 
-    public TrainModelRenderer setTextureOffset(int x, int y){
+    public TrainModelRenderer setTextureOffset(int x, int y) {
         super.setTextureOffset(x, y);
         return this;
     }
@@ -51,13 +51,13 @@ public class TrainModelRenderer extends ModelRenderer {
         this.width = width;
         this.height = height;
         this.depth = depth;
-        if(this.morePartsWidth < offX + width){
+        if (this.morePartsWidth < offX + width) {
             this.morePartsWidth = offX + width;
         }
-        if(this.morePartsHeight < offY + height){
+        if (this.morePartsHeight < offY + height) {
             this.morePartsHeight = offY + height;
         }
-        if(this.morePartsDepth < offZ + depth){
+        if (this.morePartsDepth < offZ + depth) {
             this.morePartsDepth = offZ + depth;
         }
         return super.addBox(partName, offX, offY, offZ, width, height, depth);
@@ -71,13 +71,13 @@ public class TrainModelRenderer extends ModelRenderer {
         this.width = width;
         this.height = height;
         this.depth = depth;
-        if(this.morePartsWidth < offX + width){
+        if (this.morePartsWidth < offX + width) {
             this.morePartsWidth = offX + width;
         }
-        if(this.morePartsHeight < offY + height){
+        if (this.morePartsHeight < offY + height) {
             this.morePartsHeight = offY + height;
         }
-        if(this.morePartsDepth < offZ + depth){
+        if (this.morePartsDepth < offZ + depth) {
             this.morePartsDepth = offZ + depth;
         }
         return super.addBox(offX, offY, offZ, width, height, depth);
@@ -91,13 +91,13 @@ public class TrainModelRenderer extends ModelRenderer {
         this.width = width;
         this.height = height;
         this.depth = depth;
-        if(this.morePartsWidth < offX + width){
+        if (this.morePartsWidth < offX + width) {
             this.morePartsWidth = offX + width;
         }
-        if(this.morePartsHeight < offY + height){
+        if (this.morePartsHeight < offY + height) {
             this.morePartsHeight = offY + height;
         }
-        if(this.morePartsDepth < offZ + depth){
+        if (this.morePartsDepth < offZ + depth) {
             this.morePartsDepth = offZ + depth;
         }
         return super.addBox(offX, offY, offZ, width, height, depth, mirrored);
@@ -111,23 +111,23 @@ public class TrainModelRenderer extends ModelRenderer {
         this.width = width;
         this.height = height;
         this.depth = depth;
-        if(this.morePartsWidth < offX + width){
+        if (this.morePartsWidth < offX + width) {
             this.morePartsWidth = offX + width;
         }
-        if(this.morePartsHeight < offY + height){
+        if (this.morePartsHeight < offY + height) {
             this.morePartsHeight = offY + height;
         }
-        if(this.morePartsDepth < offZ + depth){
+        if (this.morePartsDepth < offZ + depth) {
             this.morePartsDepth = offZ + depth;
         }
         super.addBox(offX, offY, offZ, width, height, depth, scaleFactor);
     }
 
-    public float getMaxWidth(){
+    public float getMaxWidth() {
         return Math.max(width, depth);
     }
 
-    public float getWidth(){
+    public float getWidth() {
         return this.width;
     }
 

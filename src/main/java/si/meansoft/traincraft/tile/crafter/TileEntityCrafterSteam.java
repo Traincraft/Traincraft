@@ -4,21 +4,21 @@
  * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
  * You can find the source code at https://github.com/Traincraft/Traincraft
  *
- * © 2011-2016
+ * © 2011-2017
  */
 
 package si.meansoft.traincraft.tile.crafter;
 
 import si.meansoft.traincraft.blocks.BlockCrafter;
 
-public class TileEntityCrafterSteam extends TileEntityCrafterBase{
+public class TileEntityCrafterSteam extends TileEntityCrafterBase {
 
-    public TileEntityCrafterSteam(){
+    public TileEntityCrafterSteam() {
         super("CrafterSteam");
     }
 
     @Override
-    public BlockCrafter.CrafterTier getTier(){
+    public BlockCrafter.CrafterTier getTier() {
         return BlockCrafter.CrafterTier.STEAM;
     }
 }

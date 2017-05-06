@@ -4,7 +4,7 @@
  * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
  * You can find the source code at https://github.com/Traincraft/Traincraft
  *
- * © 2011-2016
+ * © 2011-2017
  */
 
 package si.meansoft.traincraft.tile;
@@ -14,14 +14,14 @@ import net.minecraft.util.ITickable;
 /**
  * @author canitzp
  */
-public class TileEntityDieselGenerator extends TileEntityEnergy implements ITickable{
+public class TileEntityDieselGenerator extends TileEntityEnergy implements ITickable {
 
-    public TileEntityDieselGenerator(){
+    public TileEntityDieselGenerator() {
         super("DieselGenerator", 1, 30000, 5000);
     }
 
     @Override
-    public void update(){
+    public void update() {
         this.receiveEnergy(1, false);
         System.out.println("" + this.getStoredEnergy());
     }

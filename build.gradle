@@ -29,7 +29,7 @@ repositories {
     }
     ivy {
         name = "Railcraft"
-        artifactPattern "http://www.railcraft.info/ivy/com.headlamp-games/Railcraft/[revision]/[module]_1.10.2-[revision]-[classifier].[ext]"
+        artifactPattern "http://www.railcraft.info/ivy/com.headlamp-games/Railcraft/[revision]/[module]_" + project.minecraftVersion.toString() + "-[revision]-[classifier].[ext]"
     }
 }
 
@@ -50,7 +50,7 @@ minecraft {
 
 dependencies {
     deobfCompile "mezz.jei:jei_" + project.minecraftVersion.toString() + ":" + project.jeiVersion.toString()
-    deobfCompile "net.darkhax.tesla:Tesla:1.11-" + project.teslaVersion.toString()
+    deobfCompile "net.darkhax.tesla:Tesla:1.10.2-" + project.teslaVersion.toString()
     compileOnly "net.industrial-craft:industrialcraft-2:" + project.ic2Version.toString() + ":api"
     compileOnly name: "Railcraft", version: project.railcraftVersion.toString(), classifier: "dev"
 }

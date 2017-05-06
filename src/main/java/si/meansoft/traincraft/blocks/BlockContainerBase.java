@@ -4,7 +4,7 @@
  * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
  * You can find the source code at https://github.com/Traincraft/Traincraft
  *
- * © 2011-2016
+ * © 2011-2017
  */
 
 package si.meansoft.traincraft.blocks;
@@ -19,6 +19,7 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -33,7 +34,7 @@ import si.meansoft.traincraft.tile.TileEntityBase;
 /**
  * @author canitzp
  */
-public class BlockContainerBase extends BlockBase implements ITileEntityProvider{
+public class BlockContainerBase extends BlockBase implements ITileEntityProvider {
 
     protected Class<? extends TileEntityBase> tileClass;
     protected int guiId = -1;
@@ -46,21 +47,21 @@ public class BlockContainerBase extends BlockBase implements ITileEntityProvider
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
     }
 
-    public BlockContainerBase addGuiContainer(int id, Class<? extends GuiContainer> gui, Class<? extends Container> con){
+    public BlockContainerBase addGuiContainer(int id, Class<? extends GuiContainer> gui, Class<? extends Container> con) {
         GuiHandler.addGuiContainerDepend(id, gui, con);
         this.guiId = id;
         return this;
     }
 
     @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
-        if(guiId >= 0){
-            if(!worldIn.isRemote){
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, ItemStack stack, EnumFacing side, float hitX, float hitY, float hitZ) {
+        if (guiId >= 0) {
+            if (!worldIn.isRemote) {
                 playerIn.openGui(Traincraft.INSTANCE, guiId, worldIn, pos.getX(), pos.getY(), pos.getZ());
             }
             return true;
         } else {
-            return super.onBlockActivated(worldIn, pos, state, playerIn, hand, side, hitX, hitY, hitZ);
+            return super.onBlockActivated(worldIn, pos, state, playerIn, hand, stack, side, hitX, hitY, hitZ);
         }
     }
 
@@ -69,7 +70,7 @@ public class BlockContainerBase extends BlockBase implements ITileEntityProvider
         worldIn.removeTileEntity(pos);
     }
 
-    public boolean eventReceived(IBlockState state, World worldIn, BlockPos pos, int id, int param){
+    public boolean eventReceived(IBlockState state, World worldIn, BlockPos pos, int id, int param) {
         super.eventReceived(state, worldIn, pos, id, param);
         TileEntity tileentity = worldIn.getTileEntity(pos);
         return tileentity != null && tileentity.receiveClientEvent(id, param);
@@ -101,12 +102,12 @@ public class BlockContainerBase extends BlockBase implements ITileEntityProvider
     }
 
     @Override
-    public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand) {
+    public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, ItemStack stack) {
         return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite());
     }
 
     @Override
-    public IRegistryEntry[] getRegisterElements(){
+    public IRegistryEntry[] getRegisterElements() {
         return ArrayUtils.addAll(super.getRegisterElements(), createNewTileEntity(null, 0));
     }
 }

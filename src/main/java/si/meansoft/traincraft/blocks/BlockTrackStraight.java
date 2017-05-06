@@ -4,7 +4,7 @@
  * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
  * You can find the source code at https://github.com/Traincraft/Traincraft
  *
- * © 2011-2016
+ * © 2011-2017
  */
 
 package si.meansoft.traincraft.blocks;
@@ -25,34 +25,34 @@ import javax.annotation.Nullable;
 /**
  * @author canitzp
  */
-public class BlockTrackStraight extends AbstractBlockTrack{
+public class BlockTrackStraight extends AbstractBlockTrack {
 
     public static BlockTrackStraight block;
 
-    public BlockTrackStraight(TrackType type){
+    public BlockTrackStraight(TrackType type) {
         super(type, TileEntityTrack.class);
     }
 
-    public static void register(){
-        for(TrackType type : TrackType.values()){
-            if(type.isStraight()){
+    public static void register() {
+        for (TrackType type : TrackType.values()) {
+            if (type.isStraight()) {
                 Registry.register(block = type.setBlock(new BlockTrackStraight(type)));
             }
         }
     }
 
     @Override
-    protected ItemBlockBase getItemBlock(AbstractBlockTrack track){
+    protected ItemBlockBase getItemBlock(AbstractBlockTrack track) {
         return new ItemBlockTrack(this);
     }
 
     @Override
-    protected boolean shouldRenderDefault(){
+    protected boolean shouldRenderDefault() {
         return true;
     }
 
     @Override
-    public void removeTrack(World world, BlockPos pos, boolean dropBlocks){
+    public void removeTrack(World world, BlockPos pos, boolean dropBlocks) {
         TileEntityTrack tile = (TileEntityTrack) world.getTileEntity(pos);
         if (tile != null) {
             if (tile.defaultTrackPosition != null) {
@@ -71,12 +71,12 @@ public class BlockTrackStraight extends AbstractBlockTrack{
 
     @Nullable
     @Override
-    public TrackPoint getWaypoints(World world, BlockPos pos, IBlockState state, int blockIndex){
+    public TrackPoint getWaypoints(World world, BlockPos pos, IBlockState state, int blockIndex) {
         return new TrackPoint(pos).addPoint(0, 8, (float) FLAT_AABB.maxY * 16, 8);
     }
 
     @Override
-    public boolean canDriveOver(TileEntityTrack currentTrack, TileEntityTrack incomingTrack){
+    public boolean canDriveOver(TileEntityTrack currentTrack, TileEntityTrack incomingTrack) {
         return currentTrack.getFacing().equals(incomingTrack.getFacing()) || currentTrack.getFacing().getOpposite().equals(incomingTrack.getFacing());
     }
 

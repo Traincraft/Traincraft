@@ -4,7 +4,7 @@
  * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
  * You can find the source code at https://github.com/Traincraft/Traincraft
  *
- * © 2011-2016
+ * © 2011-2017
  */
 
 package si.meansoft.traincraft.blocks;
@@ -25,22 +25,22 @@ import javax.annotation.Nullable;
 /**
  * @author canitzp
  */
-public class BlockTrackCurve extends AbstractBlockTrack{
+public class BlockTrackCurve extends AbstractBlockTrack {
 
-    public BlockTrackCurve(TrackType type){
+    public BlockTrackCurve(TrackType type) {
         super(type, TileEntityTrack.class);
     }
 
-    public static void register(){
-        for(TrackType type : TrackType.values()){
-            if(type.isCurve()){
+    public static void register() {
+        for (TrackType type : TrackType.values()) {
+            if (type.isCurve()) {
                 Registry.register(type.setBlock(new BlockTrackCurve(type)));
             }
         }
     }
 
     @Override
-    public void removeTrack(World world, BlockPos pos, boolean dropBlocks){
+    public void removeTrack(World world, BlockPos pos, boolean dropBlocks) {
         TileEntityTrack tile = (TileEntityTrack) world.getTileEntity(pos);
         if (tile != null) {
             if (tile.defaultTrackPosition != null) {
@@ -59,24 +59,24 @@ public class BlockTrackCurve extends AbstractBlockTrack{
 
     @Nullable
     @Override
-    public TrackPoint getWaypoints(World world, BlockPos pos, IBlockState state, int blockIndex){
+    public TrackPoint getWaypoints(World world, BlockPos pos, IBlockState state, int blockIndex) {
         //TODO
         return BlockTrackStraight.block.getWaypoints(world, pos, state, blockIndex);
     }
 
     @Override
-    public boolean canDriveOver(TileEntityTrack thisTrack, TileEntityTrack incomingTrack){
+    public boolean canDriveOver(TileEntityTrack thisTrack, TileEntityTrack incomingTrack) {
         //TODO
         return true;
     }
 
     @Override
-    protected ItemBlockBase getItemBlock(AbstractBlockTrack track){
+    protected ItemBlockBase getItemBlock(AbstractBlockTrack track) {
         return new ItemBlockTrack(this);
     }
 
     @Override
-    protected boolean shouldRenderDefault(){
+    protected boolean shouldRenderDefault() {
         return false;
     }
 

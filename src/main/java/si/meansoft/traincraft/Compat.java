@@ -4,7 +4,7 @@
  * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
  * You can find the source code at https://github.com/Traincraft/Traincraft
  *
- * © 2011-2016
+ * © 2011-2017
  */
 
 package si.meansoft.traincraft;
@@ -14,7 +14,7 @@ import net.minecraftforge.fml.common.Loader;
 /**
  * @author canitzp
  */
-public class Compat{
+public class Compat {
 
     public static boolean isTeslaLoaded = Loader.isModLoaded("tesla");
     public static boolean isRailcraftLoaded = Loader.isModLoaded("railcraft");

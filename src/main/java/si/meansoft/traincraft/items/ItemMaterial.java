@@ -4,7 +4,7 @@
  * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
  * You can find the source code at https://github.com/Traincraft/Traincraft
  *
- * © 2011-2016
+ * © 2011-2017
  */
 
 package si.meansoft.traincraft.items;
@@ -14,13 +14,13 @@ import java.util.Locale;
 /**
  * @author Ellpeck
  */
-public class ItemMaterial extends ItemSubtypeBase{
+public class ItemMaterial extends ItemSubtypeBase {
 
-    public ItemMaterial(){
+    public ItemMaterial() {
         super("material", Materials.class);
     }
 
-    public enum Materials{
+    public enum Materials {
 
         GRAPHITE(),
         PLASTIC(),
@@ -62,12 +62,14 @@ public class ItemMaterial extends ItemSubtypeBase{
 
         public String name = name().toLowerCase(Locale.ROOT);
 
-        Materials(String name){
+        Materials(String name) {
             this.name = name;
         }
-        Materials(){}
 
-        public String toString(){
+        Materials() {
+        }
+
+        public String toString() {
             return this.name;
         }
 

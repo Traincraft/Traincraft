@@ -4,7 +4,7 @@
  * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
  * You can find the source code at https://github.com/Traincraft/Traincraft
  *
- * © 2011-2016
+ * © 2011-2017
  */
 
 package si.meansoft.traincraft.blocks;
@@ -20,12 +20,11 @@ import si.meansoft.traincraft.tile.TileEntityHearthFurnace;
 /**
  * @author Ellpeck
  */
-public class BlockHearthFurnace extends BlockContainerBase{
+public class BlockHearthFurnace extends BlockContainerBase {
 
-    public BlockHearthFurnace(){
+    public BlockHearthFurnace() {
         super(Material.ROCK, "hearth_furnace", TileEntityHearthFurnace.class);
         this.addGuiContainer(GuiHandler.HEARTH_FURNACE, GuiHearthFurnace.class, ContainerHearthFurnace.class);
-
         this.setDefaultState(this.getBlockState().getBaseState().withProperty(BlockDistillery.ACTIVE, false).withProperty(FACING, EnumFacing.NORTH));
     }
 

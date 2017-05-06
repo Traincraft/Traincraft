@@ -4,7 +4,7 @@
  * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
  * You can find the source code at https://github.com/Traincraft/Traincraft
  *
- * © 2011-2016
+ * © 2011-2017
  */
 
 package si.meansoft.traincraft.tile;
@@ -22,10 +22,8 @@ import net.minecraft.nbt.NBTTagLong;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import si.meansoft.traincraft.Util;
 import si.meansoft.traincraft.api.AbstractBlockTrack;
-import si.meansoft.traincraft.blocks.BlockTrackStraight;
 import si.meansoft.traincraft.track.TrackPoint;
 
 import java.util.ArrayList;
@@ -64,8 +62,8 @@ public class TileEntityTrack extends TileEntityBase {
         this.initBlock();
     }
 
-    private void initBlock(){
-        if(this.world != null){
+    private void initBlock() {
+        if (this.world != null) {
             IBlockState state = this.world.getBlockState(this.getPos());
             AbstractBlockTrack track = (AbstractBlockTrack) state.getBlock();
             this.waypoints = track.getWaypoints(this.getWorld(), this.getPos(), state, this.blockIndex);
@@ -122,26 +120,26 @@ public class TileEntityTrack extends TileEntityBase {
         1*<
         3*5*
      */
-    public BlockPos sendRequestToTracks(EnumFacing from){
+    public BlockPos sendRequestToTracks(EnumFacing from) {
         //if it is no horizontal direction
-        if(from.getHorizontalIndex() == -1){
+        if (from.getHorizontalIndex() == -1) {
             return getPos();
         }
         //if it is a straight waypoint line
         BlockPos mainPos = this.pos.offset(from.getOpposite());
-        if(!canDrive(mainPos)){
+        if (!canDrive(mainPos)) {
             //east
             mainPos = this.pos.east();
-            if(!canDrive(mainPos)){
+            if (!canDrive(mainPos)) {
                 //west
                 mainPos = this.pos.west();
-                if(!canDrive(mainPos)){
+                if (!canDrive(mainPos)) {
                     //south
                     mainPos = this.pos.south();
-                    if(!canDrive(mainPos)){
+                    if (!canDrive(mainPos)) {
                         //north
                         mainPos = this.pos.north();
-                        if(!canDrive(mainPos)){
+                        if (!canDrive(mainPos)) {
                             mainPos = this.pos;
                         }
                     }
@@ -165,29 +163,29 @@ public class TileEntityTrack extends TileEntityBase {
         return mainPos;
     }
 
-    private boolean canDrive(BlockPos pos){
+    private boolean canDrive(BlockPos pos) {
         TileEntity tile = world.getTileEntity(pos);
-        if(tile != null && tile instanceof TileEntityTrack){
+        if (tile != null && tile instanceof TileEntityTrack) {
             IBlockState state = world.getBlockState(this.pos);
-            if(state.getBlock() instanceof AbstractBlockTrack){
+            if (state.getBlock() instanceof AbstractBlockTrack) {
                 return ((AbstractBlockTrack) state.getBlock()).canDriveOver(this, (TileEntityTrack) tile);
             }
         }
         return false;
     }
 
-    public static class TrackRenderer extends TileEntitySpecialRenderer<TileEntityTrack>{
+    public static class TrackRenderer extends TileEntitySpecialRenderer<TileEntityTrack> {
         @Override
-        public void renderTileEntityAt(TileEntityTrack te, double x, double y, double z, float partialTicks, int destroyStage){
+        public void renderTileEntityAt(TileEntityTrack te, double x, double y, double z, float partialTicks, int destroyStage) {
             super.renderTileEntityAt(te, x, y, z, partialTicks, destroyStage);
-            if(te.waypoints != null){
+            if (te.waypoints != null) {
                 Tessellator tessy = Tessellator.getInstance();
                 VertexBuffer buffer = tessy.getBuffer();
                 GlStateManager.pushMatrix();
                 GlStateManager.disableTexture2D();
                 GlStateManager.disableBlend();
                 buffer.begin(1, DefaultVertexFormats.POSITION_COLOR);
-                for(Float[] floats : te.waypoints.getSortedCoordinates()){
+                for (Float[] floats : te.waypoints.getSortedCoordinates()) {
                     buffer.pos(x + (floats[0] / 16), y + (floats[1] / 16), z + (floats[2] / 16)).color(1.0F, 0.5F, 0.5F, 1F).endVertex();
                     buffer.pos(x + (floats[0] / 16), y + 1 + (floats[1] / 16), z + (floats[2] / 16)).color(1.0F, 0.5F, 0.5F, 1F).endVertex();
                 }

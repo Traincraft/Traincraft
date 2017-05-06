@@ -4,19 +4,15 @@
  * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
  * You can find the source code at https://github.com/Traincraft/Traincraft
  *
- * © 2011-2016
+ * © 2011-2017
  */
 
 package si.meansoft.traincraft.api;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.IReloadableResourceManager;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
-import net.minecraftforge.fml.common.registry.EntityRegistry;
 import si.meansoft.traincraft.IRegistryEntry;
-import si.meansoft.traincraft.Registry;
-import si.meansoft.traincraft.Traincraft;
 import si.meansoft.traincraft.client.models.TrainModel;
 import si.meansoft.traincraft.client.renderer.TrainRenderer;
 
@@ -34,7 +30,7 @@ public class TrainProvider<T extends TrainBase> implements IRegistryEntry {
     private String trainName;
     private TrainModel<T> trainModel;
 
-    private TrainProvider(Class<T> trainClass, String trainName, TrainModel<T> model){
+    private TrainProvider(Class<T> trainClass, String trainName, TrainModel<T> model) {
         this.trainClass = trainClass;
         this.trainName = trainName;
         this.trainModel = model;
@@ -58,7 +54,7 @@ public class TrainProvider<T extends TrainBase> implements IRegistryEntry {
 
     @Override
     public void ownRegistry() {
-        EntityRegistry.registerModEntity(new ResourceLocation(Traincraft.MODID, this.getRegisterName()), this.trainClass, this.getRegisterName(), Registry.entityIds++, Traincraft.INSTANCE, 64, 1, true);
+        //EntityRegistry.registerModEntity(new ResourceLocation(Traincraft.MODID, this.getRegisterName()), this.trainClass, this.getRegisterName(), Registry.entityIds++, Traincraft.INSTANCE, 64, 1, true);
     }
 
     @Override
@@ -70,7 +66,7 @@ public class TrainProvider<T extends TrainBase> implements IRegistryEntry {
         });
     }
 
-    public static <T extends TrainBase> TrainProvider<T> create(Class<T> clazz, String name, TrainModel<T> model){
+    public static <T extends TrainBase> TrainProvider<T> create(Class<T> clazz, String name, TrainModel<T> model) {
         return new TrainProvider<>(clazz, name, model);
     }
 

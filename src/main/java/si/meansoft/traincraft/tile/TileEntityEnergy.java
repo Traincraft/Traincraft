@@ -4,7 +4,7 @@
  * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
  * You can find the source code at https://github.com/Traincraft/Traincraft
  *
- * © 2011-2016
+ * © 2011-2017
  */
 
 package si.meansoft.traincraft.tile;
@@ -22,14 +22,14 @@ import si.meansoft.traincraft.TeslaWrapper;
  * @author canitzp
  */
 @Optional.Interface(modid = "IC2", iface = "ic2.api.tile.IEnergyStorage")
-public class TileEntityEnergy extends TileEntityInventory implements IEnergyStorage{
+public class TileEntityEnergy extends TileEntityInventory implements IEnergyStorage {
 
     public static final int EU_TO_RF_CONVERSION_RATE = 4;
 
     private EnergyStorage storage;
     private int maxTransfer;
 
-    public TileEntityEnergy(String name, int slotAmount, int capacity, int maxTransfer){
+    public TileEntityEnergy(String name, int slotAmount, int capacity, int maxTransfer) {
         super(name, slotAmount);
         this.maxTransfer = maxTransfer;
         this.storage = new EnergyStorage(capacity, maxTransfer);
@@ -42,20 +42,20 @@ public class TileEntityEnergy extends TileEntityInventory implements IEnergyStor
     @Deprecated /* Use getStoredEnergy() if you handle everything except EU */
     @Optional.Method(modid = "IC2")
     @Override
-    public int getStored(){
+    public int getStored() {
         return this.getStoredEnergy() / EU_TO_RF_CONVERSION_RATE;
     }
 
     @Deprecated /* Not used */
     @Optional.Method(modid = "IC2")
     @Override
-    public void setStored(int energy){
+    public void setStored(int energy) {
     }
 
     @Deprecated /* Use receiveEnergy(int energy, boolean simulate) if you handle everything except EU */
     @Optional.Method(modid = "IC2")
     @Override
-    public int addEnergy(int energy){
+    public int addEnergy(int energy) {
         this.receiveEnergy(energy / EU_TO_RF_CONVERSION_RATE, false);
         return this.getStoredEnergy() / EU_TO_RF_CONVERSION_RATE;
     }
@@ -63,28 +63,28 @@ public class TileEntityEnergy extends TileEntityInventory implements IEnergyStor
     @Deprecated /* Use getMaxEnergy() if you handle everything except EU */
     @Optional.Method(modid = "IC2")
     @Override
-    public int getCapacity(){
+    public int getCapacity() {
         return this.getMaxEnergy() / EU_TO_RF_CONVERSION_RATE;
     }
 
     @Deprecated /* Use getMaxTransfer() if you handle everything except EU */
     @Optional.Method(modid = "IC2")
     @Override
-    public int getOutput(){
+    public int getOutput() {
         return this.getMaxTransfer() / EU_TO_RF_CONVERSION_RATE;
     }
 
     @Deprecated
     @Optional.Method(modid = "IC2")
     @Override
-    public double getOutputEnergyUnitsPerTick(){
+    public double getOutputEnergyUnitsPerTick() {
         return getOutput();
     }
 
     @Deprecated
     @Optional.Method(modid = "IC2")
     @Override
-    public boolean isTeleporterCompatible(EnumFacing enumFacing){
+    public boolean isTeleporterCompatible(EnumFacing enumFacing) {
         return false;
     }
 
@@ -94,41 +94,41 @@ public class TileEntityEnergy extends TileEntityInventory implements IEnergyStor
      */
 
     @Override
-    public <T> T getCapability(Capability<T> capability, EnumFacing facing){
-        if(Compat.isTeslaLoaded){
+    public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
+        if (Compat.isTeslaLoaded) {
             T cap = TeslaWrapper.getFromCapability(this.storage, capability);
-            if(cap != null){
+            if (cap != null) {
                 return cap;
             }
         }
-        if(capability == CapabilityEnergy.ENERGY){
+        if (capability == CapabilityEnergy.ENERGY) {
             return (T) this.storage;
         }
         return super.getCapability(capability, facing);
     }
 
     @Override
-    public boolean hasCapability(Capability<?> capability, EnumFacing facing){
+    public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
         return this.getCapability(capability, facing) != null;
     }
 
-    public int receiveEnergy(int energy, boolean simulated){
+    public int receiveEnergy(int energy, boolean simulated) {
         return this.storage.receiveEnergy(energy, simulated);
     }
 
-    public int extractEnergy(int energy, boolean simulated){
+    public int extractEnergy(int energy, boolean simulated) {
         return this.storage.extractEnergy(energy, simulated);
     }
 
-    public int getStoredEnergy(){
+    public int getStoredEnergy() {
         return this.storage.getEnergyStored();
     }
 
-    public int getMaxEnergy(){
+    public int getMaxEnergy() {
         return this.storage.getMaxEnergyStored();
     }
 
-    public int getMaxTransfer(){
+    public int getMaxTransfer() {
         return this.maxTransfer;
     }
 

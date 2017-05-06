@@ -4,7 +4,7 @@
  * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
  * You can find the source code at https://github.com/Traincraft/Traincraft
  *
- * © 2011-2016
+ * © 2011-2017
  */
 
 package si.meansoft.traincraft.blocks;
@@ -23,7 +23,7 @@ import si.meansoft.traincraft.network.CommonProxy;
 /**
  * @author canitzp
  */
-public class BlockBase extends Block implements IRegistryEntry{
+public class BlockBase extends Block implements IRegistryEntry {
 
     private String name;
 
@@ -36,47 +36,47 @@ public class BlockBase extends Block implements IRegistryEntry{
 
     /**
      * @param toSpawnInside The Block it'll spawn inside. e.g.: Coal='net.minecraft.init.Blocks.stone'
-     * @param minY The minimal height for the Block to spawn. e.g.: Coal=0
-     * @param maxY The maximal height for the Block to spawn. e.g.: Coal=128
-     * @param maxVeinSize The maximal amount of Blocks at one place. e.g.: Coal=17
+     * @param minY          The minimal height for the Block to spawn. e.g.: Coal=0
+     * @param maxY          The maximal height for the Block to spawn. e.g.: Coal=128
+     * @param maxVeinSize   The maximal amount of Blocks at one place. e.g.: Coal=17
      * @param chanceToSpawn The Chance to spawn the Block. e.g.: Coal=20
-     * The example values you'll find in the class: 'net.minecraft.world.gen.ChunkProviderSettings'
+     *                      The example values you'll find in the class: 'net.minecraft.world.gen.ChunkProviderSettings'
      */
-    public BlockBase generateBlock(Block toSpawnInside, int minY, int maxY, int maxVeinSize, int chanceToSpawn){
+    public BlockBase generateBlock(Block toSpawnInside, int minY, int maxY, int maxVeinSize, int chanceToSpawn) {
         WorldGen.addBlockToSpawn(this, toSpawnInside, minY, maxY, maxVeinSize, chanceToSpawn);
         return this;
     }
 
-    public BlockBase addOreDict(String oreDict){
+    public BlockBase addOreDict(String oreDict) {
         //OreDictionary.registerOre(oreDict, this);
         CommonProxy.oreDicts.put(this, oreDict);
         return this;
     }
 
-    public BlockBase setHarvestLevel(ToolEnum tool, int hardness){
+    public BlockBase setHarvestLevel(ToolEnum tool, int hardness) {
         setHarvestLevel(tool.tool, hardness);
         return this;
     }
 
-    public BlockBase setSound(SoundType sound){
+    public BlockBase setSound(SoundType sound) {
         setSoundType(sound);
         return this;
     }
 
     @Override
-    public IRegistryEntry[] getRegisterElements(){
+    public IRegistryEntry[] getRegisterElements() {
         return new IRegistryEntry[]{this, new ItemBlockBase(this)};
     }
 
     @Override
-    public String getRegisterName(){
+    public String getRegisterName() {
         return this.name;
     }
 
     @Override
-    public void onRegister(IRegistryEntry[] otherEntries){
-        for(IRegistryEntry entry : otherEntries){
-            if(entry instanceof ItemBlock){
+    public void onRegister(IRegistryEntry[] otherEntries) {
+        for (IRegistryEntry entry : otherEntries) {
+            if (entry instanceof ItemBlock) {
                 CommonProxy.addForgeRender((Item) entry);
                 return;
             }
@@ -84,15 +84,16 @@ public class BlockBase extends Block implements IRegistryEntry{
     }
 
     @Override
-    public void ownRegistry(){
+    public void ownRegistry() {
 
     }
 
-    public enum ToolEnum{
+    public enum ToolEnum {
         PICKAXE("pickaxe"),
         AXE("axe"),
         SHOVEL("shovel");
         public String tool;
+
         ToolEnum(String tool) {
             this.tool = tool;
         }

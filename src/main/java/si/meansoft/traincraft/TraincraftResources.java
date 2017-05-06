@@ -4,7 +4,7 @@
  * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
  * You can find the source code at https://github.com/Traincraft/Traincraft
  *
- * © 2011-2016
+ * © 2011-2017
  */
 
 package si.meansoft.traincraft;
@@ -23,11 +23,12 @@ public enum TraincraftResources {
     GUI_HEARTH_FURNACE("gui_hearth_furnace");
 
     String name, textureName;
+
     TraincraftResources(String name) {
         this.name = name;
     }
 
-    public ResourceLocation newGuiLocation(){
+    public ResourceLocation newGuiLocation() {
         return new ResourceLocation(Traincraft.MODID, "textures/gui/" + name + ".png");
     }
 
