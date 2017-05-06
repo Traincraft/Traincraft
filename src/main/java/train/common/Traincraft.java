@@ -1,10 +1,5 @@
 package train.common;
 
-import java.io.File;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -24,6 +19,8 @@ import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraftforge.common.AchievementPage;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.EnumHelper;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import train.common.api.LiquidManager;
 import train.common.blocks.TCBlocks;
 import train.common.core.CommonProxy;
@@ -35,6 +32,8 @@ import train.common.generation.WorldGenWorld;
 import train.common.items.TCItems;
 import train.common.library.Info;
 import train.common.recipes.AssemblyTableRecipes;
+
+import java.io.File;
 
 @Mod(modid = Info.modID, name = Info.modName, version = Info.modVersion)
 public class Traincraft {
@@ -65,9 +64,9 @@ public class Traincraft {
 	/* Creative tab for Traincraft */
 	public static CreativeTabs tcTab;
 
-	public ArmorMaterial armor = EnumHelper.addArmorMaterial("Armor", 5, new int[] { 1, 3, 2, 1 }, 25);
-	public ArmorMaterial armorCloth = EnumHelper.addArmorMaterial("TCcloth", 5, new int[] {1, 2, 1, 1}, 25);
-	public ArmorMaterial armorCompositeSuit = EnumHelper.addArmorMaterial("TCsuit", 70, new int[] {1, 3, 2, 1}, 50);
+	public ArmorMaterial armor = EnumHelper.addArmorMaterial("Armor", 5, new int[] { 1, 2, 2, 1 }, 25);
+	public ArmorMaterial armorCloth = EnumHelper.addArmorMaterial("TCcloth", 5, new int[] {1, 2, 2, 1}, 25);
+	public ArmorMaterial armorCompositeSuit = EnumHelper.addArmorMaterial("TCsuit", 70, new int[] {1, 3, 3, 1}, 50);
 	public static int trainArmor;
 	public static int trainCloth;
 	public static int trainCompositeSuit;
@@ -164,7 +163,6 @@ public class Traincraft {
 	public void postInit(FMLPostInitializationEvent evt) {
 		tcLog.info("Start to PostInitialize");
 		tcLog.info("Register ChunkHandler");
-		proxy.registerChunkHandler(instance);
 
 		tcLog.info("Activation Mod Compatibility");
 		TrainModCore.ModsLoaded();

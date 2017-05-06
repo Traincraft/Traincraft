@@ -1,7 +1,5 @@
 package train.client.gui;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.Entity;
@@ -9,6 +7,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ResourceLocation;
+import org.lwjgl.opengl.GL11;
 import train.common.Traincraft;
 import train.common.api.LiquidManager;
 import train.common.api.Locomotive;
@@ -16,7 +15,6 @@ import train.common.api.SteamTrain;
 import train.common.core.network.PacketParkingBrake;
 import train.common.core.network.PacketSetTrainLockedToClient;
 import train.common.inventory.InventoryForney;
-import train.common.inventory.InventoryLoco;
 import train.common.library.Info;
 
 public class GuiForney extends GuiContainer {

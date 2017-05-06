@@ -7,9 +7,9 @@
 
 package train.common.api.crafting;
 
-import java.util.List;
-
 import net.minecraft.item.ItemStack;
+
+import java.util.List;
 
 public abstract interface ITierCraftingManager {
 

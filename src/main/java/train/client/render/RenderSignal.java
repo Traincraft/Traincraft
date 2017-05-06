@@ -1,9 +1,8 @@
 package train.client.render;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
+import org.lwjgl.opengl.GL11;
 import train.client.render.models.blocks.ModelBlockSignal;
 import train.common.tile.TileSignal;
 

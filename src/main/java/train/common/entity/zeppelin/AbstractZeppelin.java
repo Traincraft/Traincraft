@@ -1,7 +1,5 @@
 package train.common.entity.zeppelin;
 
-import java.util.List;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.material.Material;
@@ -28,6 +26,8 @@ import train.common.Traincraft;
 import train.common.core.handlers.ConfigHandler;
 import train.common.core.network.PacketKeyPress;
 import train.common.library.GuiIDs;
+
+import java.util.List;
 
 public abstract class AbstractZeppelin extends Entity implements IInventory {
 	protected ItemStack zeppInvent[];

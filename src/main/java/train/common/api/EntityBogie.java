@@ -248,8 +248,9 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		int j = MathHelper.floor_double(this.posY);
 		int k = MathHelper.floor_double(this.posZ);
 		
-		if(this.worldObj.isAirBlock(i, j, k))
+		if(this.worldObj.isAirBlock(i, j, k)) {
 			j--;
+		}
 		Block block = this.worldObj.getBlock(i, j, k);
 		return (BlockRailBase.func_150051_a(block) || block == BlockIDs.tcRail.block || block == BlockIDs.tcRailGag.block);
 	}
@@ -361,7 +362,6 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 	 */
 	@Override
 	public void onUpdate(){
-
 		//super.onUpdate(); // XXX I'll just assume that this is not supposed to be there. Why would you run Vanilla update code, only to run your own code afterwards to do basically the same..?
 		
 		this.setCurrentCartSpeedCapOnRail(1.8F);
@@ -381,6 +381,10 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 			if (BlockRailBase.func_150051_a(block) || block == BlockIDs.tcRail.block || block == BlockIDs.tcRailGag.block) {
 				j--;
 			} else {
+				Block block2 = this.worldObj.getBlock(i, j + 1, k);
+				if(BlockRailBase.func_150051_a(block2) || block2 == BlockIDs.tcRail.block || block2 == BlockIDs.tcRailGag.block){
+					j++;
+				}
 				block = this.worldObj.getBlock(i, j, k);
 			}
 
@@ -434,7 +438,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 						tileRail = (TileTCRail) tileEntity;
 					}
 					else {
-
+						super.onUpdate();
 						return;
 					}
 
@@ -477,16 +481,12 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 			this.rotationPitch = 0.0F;
 		//}
 
-		if (this instanceof EntityBogieUtility) {
-
-			return;
-		}
-
 		if (!this.worldObj.isRemote) {
 
 			if(this.entityMainTrain == null) {
 
 				this.setDead();
+				worldObj.removeEntity(this);
 			}
 
 			AxisAlignedBB axisAlignedBB;
@@ -588,22 +588,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 	}
 	private void moveOnTCSlope(int j, double cx, double cz, double slopeAngle, double slopeHeight, int meta) {
 
-		// TODO check if we are able to move faster than 196km/h later when we cleaned up
-			// everything.
-		if (Math.abs(this.motionX) > 0.912D) {
-			this.motionX = Math.copySign(0.912D, this.motionX);
-			if (this.entityMainTrain != null) {
-				this.entityMainTrain.motionX = Math.copySign(0.912D, this.entityMainTrain.motionX);
-			}
-		}
-		if (Math.abs(this.motionZ) > 0.912D) {
-			this.motionZ = Math.copySign(0.912D, this.motionZ);
-			if (this.entityMainTrain != null) {
-				this.entityMainTrain.motionZ = Math.copySign(0.912D, this.entityMainTrain.motionZ);
-			}
-		}
-		this.posY = j + 0.2D;
-
+		// posY = j + 2.5;
 		if (meta == 2 || meta == 0) {
 
 			if (meta == 2) {
@@ -611,40 +596,23 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 			}
 
 			double norm = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
-			double newPosY = (j + Math.abs(Math.tan(slopeAngle * Math.abs(cz - this.posZ))) + this.yOffset + 0.2D);
-			double maxPosY = (j + this.yOffset + slopeHeight);
-
-			if (newPosY > maxPosY) {
-
-				newPosY = maxPosY;
-			}
-
+			double newPosY = Math.abs(j + (Math.tan(slopeAngle * Math.abs(cz - this.posZ))) + this.yOffset + 0.3);
 			this.setPosition(cx + 0.5D, newPosY, this.posZ);
 			this.moveEntity(0.0D, 0.0D, Math.copySign(norm, this.motionZ));
 
 			this.motionX = 0.0D;
 			this.motionY = 0.0D;
 			this.motionZ = Math.copySign(norm, this.motionZ);
-		}
-		else if (meta == 1 || meta == 3) {
-
+		} else if (meta == 1 || meta == 3) {
 			if (meta == 1) {
-
 				cx += 1;
 			}
 
 			double norm = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
-			double newPosY = (j + Math.abs(Math.tan(slopeAngle * Math.abs(cx - this.posX))) + this.yOffset + 0.2D);
-			double maxPosY = (j + this.yOffset + slopeHeight);
-
-			if (newPosY > maxPosY) {
-
-				newPosY = maxPosY;
-			}
-
+			double newPosY = (j + (Math.tan(slopeAngle * Math.abs(cx - this.posX))) + this.yOffset + 0.3);
 			this.setPosition(this.posX, newPosY, cz + 0.5D);
 			this.moveEntity(Math.copySign(norm, this.motionX), 0.0D, 0.0D);
-
+			
 			this.motionX = Math.copySign(norm, this.motionX);
 			this.motionY = 0.0D;
 			this.motionZ = 0.0D;

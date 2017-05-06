@@ -7,12 +7,11 @@
 
 package train.client.render;
 
-import org.lwjgl.opengl.GL11;
-
 import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
+import org.lwjgl.opengl.GL11;
 import train.client.render.models.blocks.ModelStopper;
 import train.common.library.Info;
 import train.common.tile.TileStopper;

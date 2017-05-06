@@ -819,6 +819,8 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 			this.setDead();
 			if (damagesource.getEntity() instanceof EntityPlayer) {
 				dropCartAsItem(((EntityPlayer)damagesource.getEntity()).capabilities.isCreativeMode);
+			} else {
+				dropCartAsItem(false);
 			}
 		}
 		return true;

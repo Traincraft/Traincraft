@@ -1,7 +1,5 @@
 package train.common.core.util;
 
-import java.util.Arrays;
-
 import cofh.api.energy.EnergyStorage;
 import cofh.api.energy.IEnergyProvider;
 import cofh.api.energy.IEnergyReceiver;
@@ -10,6 +8,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import train.common.tile.TileTraincraft;
+
+import java.util.Arrays;
 
 public class Energy extends TileTraincraft implements IEnergyProvider {
 	public EnergyStorage energy = new EnergyStorage(3000,80); //core energy value the first value is max storage and the second is transfer max.

@@ -1,9 +1,5 @@
 package train.common.core.plugins;
 
-import java.awt.Rectangle;
-import java.util.ArrayList;
-import java.util.List;
-
 import codechicken.nei.ItemList;
 import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
@@ -16,6 +12,10 @@ import net.minecraft.tileentity.TileEntityFurnace;
 import train.client.gui.GuiOpenHearthFurnace;
 import train.common.inventory.TrainCraftingManager;
 import train.common.recipes.OpenHearthFurnaceRecipe;
+
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class NEIOpenHearthFurnaceRecipePlugin extends ShapedRecipeHandler {
 	CachedShapedRecipe getShape(ItemStack ingredient1, ItemStack ingredient2, ItemStack result) {

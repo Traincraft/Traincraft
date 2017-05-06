@@ -1,8 +1,5 @@
 package train.common.api;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import io.netty.buffer.ByteBuf;
@@ -22,7 +19,6 @@ import net.minecraft.world.ChunkCoordIntPair;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeChunkManager;
 import net.minecraftforge.common.ForgeChunkManager.Ticket;
-import net.minecraftforge.common.ForgeChunkManager.Type;
 import train.common.Traincraft;
 import train.common.core.handlers.ConfigHandler;
 import train.common.core.handlers.RollingStockStatsEventHandler;
@@ -32,6 +28,9 @@ import train.common.items.ItemChunkLoaderActivator;
 import train.common.items.ItemRollingStock;
 import train.common.items.ItemWrench;
 import train.common.library.EnumTrains;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class AbstractTrains extends EntityMinecart implements IMinecart, IRoutableCart, IEntityAdditionalSpawnData {
 
@@ -51,16 +50,11 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 	public EntityRollingStock cartLinked2;
 	public int clearLinkTimer = 0;
 	//private Set chunks;
-	private Ticket chunkTicket;
-	private boolean chunkLoadErrorDisplayed = false;
-	private boolean chunkLoadMsgDisplayed = false;
+	protected Ticket chunkTicket;
 	protected float renderYaw;
 	protected float renderPitch;
 	public TrainHandler train;
-	protected int oldChunkCoordX;
-	protected int oldChunkCoordZ;
-	private ArrayList<ChunkCoordIntPair> oldChunks = new ArrayList<ChunkCoordIntPair>();
-	private boolean chunkForced = false;
+	public List<ChunkCoordIntPair> loadedChunks = new ArrayList<ChunkCoordIntPair>();
 	public boolean shouldChunkLoad = true;
 	/**
 	 * A reference to EnumTrains containing all spec for this specific train
@@ -231,12 +225,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		return uniqueID;
 	}
 
-	@Override
-	public void onUpdate() {
-		if (!(this instanceof EntityRollingStock)) {
-			super.onUpdate();
-		}
-
+	public void manageChunkLoading(){
 		//if(this instanceof Locomotive)System.out.println("I'm alive. Remote: " + worldObj.isRemote);
 		if (!worldObj.isRemote && this.uniqueID == -1) {
 			if (FMLCommonHandler.instance().getMinecraftServerInstance() != null) {
@@ -250,25 +239,17 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		shouldChunkLoad = getFlag(7);
 		statsEventHandler.trainDistance();
 		if (shouldChunkLoad){
-			if (!worldObj.isRemote) {
-				if (chunkTicket == null) {
-					chunkTicket = ForgeChunkManager.requestTicket(Traincraft.instance, worldObj, Type.NORMAL);
-					chunkForced = false;
-				}
-				if (chunkTicket == null) {
-					if (playerEntity != null && !this.chunkLoadErrorDisplayed) {
-						chunkLoadErrorDisplayed = true;
-						FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().sendChatMsg(new ChatComponentText(String.format("[TRAINCRAFT] The locomotive at %d, %d, %d will not load chunk because there are no more chunkloaders available", (int)posX, (int)posY, (int)posZ)));
-					}
-					chunkForced = false;
-				}
-				else if(!chunkForced){
-					chunkTicket.getModData().setInteger("locoID", this.ID);
-					ForgeChunkManager.forceChunk(chunkTicket, new ChunkCoordIntPair((int) posX >> 4, (int) posZ >> 4));
-					forceChunkLoading(chunkTicket);
-					chunkForced = true;
-				}
+			if(this.chunkTicket == null) {
+				this.requestTicket();
 			}
+		}
+	}
+
+	@Override
+	public void onUpdate() {
+			super.onUpdate();
+		if(!(this instanceof EntityRollingStock)) {
+			manageChunkLoading();
 		}
 		/*
 		 * if (worldObj.isRemote) { if (this.getFlag(6)) { if (this.chunks !=
@@ -293,51 +274,6 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		ForgeChunkManager.releaseTicket(chunkTicket);
 	}
 
-	public Ticket getChunkTicket(){
-		return this.chunkTicket;
-	}
-
-	public void forceChunkLoading(Ticket ticket) {
-		if (chunkTicket == null) {
-			chunkTicket = ticket;
-		}
-
-		//System.out.println("chunk " + this);
-		ArrayList<ChunkCoordIntPair> chunks = new ArrayList<ChunkCoordIntPair>();
-		ChunkCoordIntPair locoChunk = new ChunkCoordIntPair(chunkCoordX, chunkCoordZ);
-		chunks.add(locoChunk);
-		ForgeChunkManager.forceChunk(ticket, locoChunk);
-
-		ChunkCoordIntPair oldChunk = new ChunkCoordIntPair(oldChunkCoordX, oldChunkCoordZ);
-		oldChunks.add(oldChunk);
-
-		for (int i = 0; i < oldChunks.size(); i++) {
-			ForgeChunkManager.unforceChunk(chunkTicket, oldChunks.get(i));
-			oldChunks.clear();
-		}
-
-		if (train != null && train.getTrains().size() > 1 && this instanceof Locomotive) {
-			for (int i = 0; i < train.getTrains().size(); i++) {
-				if (train.getTrains().get(i) != null && !train.getTrains().get(i).equals(this)){
-					int pX = train.getTrains().get(i).chunkCoordX;
-					int pZ = train.getTrains().get(i).chunkCoordZ;
-					int oldPX = train.getTrains().get(i).oldChunkCoordX;
-					int oldPZ = train.getTrains().get(i).oldChunkCoordZ;
-					ChunkCoordIntPair chunk = new ChunkCoordIntPair(pX, pZ);
-					ForgeChunkManager.forceChunk(ticket, chunk);
-					chunks.add(chunk);
-					ChunkCoordIntPair oldChunkRemote = new ChunkCoordIntPair(oldPX, oldPZ);
-					oldChunks.add(oldChunkRemote);
-				}
-			}
-		}
-		if (this.playerEntity != null && !this.chunkLoadMsgDisplayed) {
-			this.chunkLoadMsgDisplayed = true;
-			FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().sendChatMsg(new ChatComponentText(String.format("[TRAINCRAFT] The locomotive at %d %d %d will keep chunks loaded for herself and %d carts", (int)posX, (int)posY, (int)posZ, chunks.size()-1)));
-		}
-		oldChunkCoordX = this.chunkCoordX;
-		oldChunkCoordZ = this.chunkCoordZ;
-	}
 	public int setNewUniqueID(int numberOfTrains) {
 		// System.out.println(numberOfTrains);
 		if (numberOfTrains <= 0) {
@@ -362,7 +298,6 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 					this.setFlag(7, false);
 					entityplayer.addChatMessage(new ChatComponentText("Stop loading chunks"));
 					ForgeChunkManager.releaseTicket(chunkTicket);
-					chunkForced = false;
 					chunkTicket = null;
 				}
 				else if (!getFlag(7)) {
@@ -684,6 +619,24 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		}
 
 		return StatCollector.translateToLocal("entity." + s + ".name");
+	}
+
+
+
+	public void setTicket(ForgeChunkManager.Ticket ticket){
+		this.chunkTicket = ticket;
+	}
+	public ForgeChunkManager.Ticket getTicket(){
+		return this.chunkTicket;
+	}
+
+	public void requestTicket() {
+		ForgeChunkManager.Ticket chunkTicket = ForgeChunkManager.requestTicket(Traincraft.instance, worldObj , ForgeChunkManager.Type.ENTITY);
+		if(chunkTicket != null) {
+			chunkTicket.setChunkListDepth(25);
+			chunkTicket.bindEntity(this);
+			this.setTicket(chunkTicket);
+		}
 	}
 
 }

@@ -1,10 +1,5 @@
 package train.client.render;
 
-import java.util.ArrayList;
-import java.util.Random;
-
-import org.lwjgl.opengl.GL11;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockRailBase;
@@ -13,10 +8,14 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Vec3;
+import org.lwjgl.opengl.GL11;
 import train.common.api.EntityRollingStock;
 import train.common.api.Locomotive;
 import train.common.entity.rollingStock.EntityTracksBuilder;
 import train.common.library.Info;
+
+import java.util.ArrayList;
+import java.util.Random;
 
 @SideOnly(Side.CLIENT)
 public class RenderRollingStock extends Render {
@@ -119,7 +118,7 @@ public class RenderRollingStock extends Render {
 			cart.setMountedYOffset(-0.5);
 			GL11.glTranslatef(0f, -0.30f, 0f);
 		}
-		if (cart.bogieLoco[0] != null) {// || cart.bogieUtility[0]!=null){
+		if (cart.bogieLoco != null) {// || cart.bogieUtility[0]!=null){
 			//GL11.glRotatef((float)(90-cart.rotationYawClientReal), 0.0F, 1.0F, 0.0F);
 			if (cart.oldClientYaw == 0) cart.oldClientYaw = cart.rotationYawClientReal;
 
@@ -183,7 +182,7 @@ public class RenderRollingStock extends Render {
 		//if(cart.bogie!=null)cart.worldObj.spawnParticle("reddust", cart.bogie.posX, cart.bogie.posY, cart.bogie.posZ, 0.1, 0.4, 0.1);
 
 		//GL11.glRotatef(180.0F - yaw, 0.0F, 1.0F, 0.0F);
-		if (cart.bogieLoco[0] != null) {// || cart.bogieUtility[0]!=null){
+		if (cart.bogieLoco != null) {// || cart.bogieUtility[0]!=null){
 			GL11.glRotatef((float) -cart.anglePitchClient, 0.0F, 0.0F, 1.0F);
 		}
 		else {
@@ -233,7 +232,7 @@ public class RenderRollingStock extends Render {
 				renders.getModel().render(cart, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
 
 				if (renders.hasSmoke()) {
-					if (cart.bogieLoco[0] != null) {// || cart.bogieUtility[0]!=null){
+					if (cart.bogieLoco != null) {// || cart.bogieUtility[0]!=null){
 						renderSmokeFX(cart, 90 + cart.rotationYawClientReal, (float) cart.anglePitchClient, renders.getSmokeType(), renders.getSmokeFX(), renders.getSmokeIterations(), time, renders.hasSmokeOnSlopes());
 					}
 					else {
@@ -241,7 +240,7 @@ public class RenderRollingStock extends Render {
 					}
 				}
 				if (renders.hasExplosion()) {
-					if (cart.bogieLoco[0] != null) {// || cart.bogieUtility[0]!=null){
+					if (cart.bogieLoco != null) {// || cart.bogieUtility[0]!=null){
 						renderExplosionFX(cart, 90 + cart.rotationYawClientReal, (float) cart.anglePitchClient, renders.getExplosionType(), renders.getExplosionFX(), renders.getExplosionFXIterations(), renders.hasSmokeOnSlopes());
 					}
 					else {

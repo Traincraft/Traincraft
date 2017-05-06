@@ -1,11 +1,5 @@
 package train.client.core;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.Calendar;
-
-import org.apache.logging.log4j.Level;
-
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -26,6 +20,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
+import org.apache.logging.log4j.Level;
 import train.client.core.handlers.ClientTickHandler;
 import train.client.core.handlers.RecipeBookHandler;
 import train.client.core.handlers.TCKeyHandler;
@@ -46,6 +41,10 @@ import train.common.library.BlockIDs;
 import train.common.library.GuiIDs;
 import train.common.library.Info;
 import train.common.tile.*;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.Calendar;
 
 public class ClientProxy extends CommonProxy {
 

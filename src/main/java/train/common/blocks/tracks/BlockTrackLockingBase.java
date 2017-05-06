@@ -1,9 +1,5 @@
 package train.common.blocks.tracks;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-
 import mods.railcraft.api.events.CartLockdownEvent.Lock;
 import mods.railcraft.api.events.CartLockdownEvent.Release;
 import mods.railcraft.api.tracks.ITrackLockdown;
@@ -12,6 +8,10 @@ import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.common.MinecraftForge;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 
 public abstract class BlockTrackLockingBase extends TrackBaseTraincraft implements ITrackLockdown, ITrackPowered {
 	protected static double START_BOOST = 0.0004D;

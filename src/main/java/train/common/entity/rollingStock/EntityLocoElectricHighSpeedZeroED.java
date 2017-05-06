@@ -126,17 +126,14 @@ public class EntityLocoElectricHighSpeedZeroED extends ElectricTrain {
 			if (riddenByEntity != null && (riddenByEntity instanceof EntityPlayer) && riddenByEntity != entityplayer) {
 				return true;
 			}
-			if (!worldObj.isRemote) {
-				entityplayer.mountEntity(this);
-			}
+			entityplayer.mountEntity(this);
 		}
 		return true;
 	}
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		float dist = 0.56F;
-		return dist;
+		return 0.56F;
 	}
 
 	@Override

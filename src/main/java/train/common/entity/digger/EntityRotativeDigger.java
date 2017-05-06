@@ -1,7 +1,5 @@
 package train.common.entity.digger;
 
-import java.util.List;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -26,6 +24,8 @@ import train.common.Traincraft;
 import train.common.core.handlers.ConfigHandler;
 import train.common.core.network.PacketKeyPress;
 import train.common.library.ItemIDs;
+
+import java.util.List;
 
 public class EntityRotativeDigger extends Entity implements IInventory {
 

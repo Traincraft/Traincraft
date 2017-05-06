@@ -1,7 +1,5 @@
 package train.common.tile;
 
-import java.util.Random;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -16,6 +14,8 @@ import train.common.api.LiquidManager.StandardTank;
 import train.common.blocks.BlockDistil;
 import train.common.library.BlockIDs;
 import train.common.recipes.DistilRecipes;
+
+import java.util.Random;
 
 public class TileEntityDistil extends TileTraincraft implements IFluidHandler {
 

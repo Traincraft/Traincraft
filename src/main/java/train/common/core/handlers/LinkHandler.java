@@ -1,7 +1,5 @@
 package train.common.core.handlers;
 
-import java.util.List;
-
 import mods.railcraft.api.tracks.RailTools;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityMinecart;
@@ -12,6 +10,8 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import train.common.api.AbstractTrains;
 import train.common.api.EntityRollingStock;
+
+import java.util.List;
 
 public class LinkHandler {
 
@@ -28,8 +28,8 @@ public class LinkHandler {
 		AxisAlignedBB box2 = customBoundingBox.expand(15, 5, 15);
 
 		List lis = worldObj.getEntitiesWithinAABBExcludingEntity(entityOne, box2);
-		if(((EntityRollingStock)entityOne).bogieLoco[0]!=null){
-			List listBogie = worldObj.getEntitiesWithinAABBExcludingEntity(entityOne, ((EntityRollingStock)entityOne).bogieLoco[0].boundingBox.expand(7, 5, 7));
+		if(((EntityRollingStock)entityOne).bogieLoco!=null){
+			List listBogie = worldObj.getEntitiesWithinAABBExcludingEntity(entityOne, ((EntityRollingStock)entityOne).bogieLoco.boundingBox.expand(7, 5, 7));
 			for(int i = 0; i < listBogie.size();i++ ){
 				lis.add(listBogie.get(i));
 			}
@@ -216,31 +216,15 @@ public class LinkHandler {
 				double d=0;
 				double d1=0;
 
-				if(((EntityRollingStock) cart1).bogieLoco[0]!=null || ((EntityRollingStock) cart2).bogieLoco[0]!=null){
+				if(((EntityRollingStock) cart1).bogieLoco!=null || ((EntityRollingStock) cart2).bogieLoco!=null){
 
-					if(((EntityRollingStock) cart1).bogieLoco[0]!=null && ((EntityRollingStock) cart2).bogieLoco[0]==null){
+					if(((EntityRollingStock) cart1).bogieLoco!=null && ((EntityRollingStock) cart2).bogieLoco==null){
 						distancesX[0] = ((AbstractTrains) cart1).posX - ((AbstractTrains) cart2).posX ;
 						distancesZ[0] = ((AbstractTrains) cart1).posZ - ((AbstractTrains) cart2).posZ ;
 
-						distancesX[1] = ((EntityRollingStock) cart1).bogieLoco[0].posX - ((AbstractTrains) cart2).posX ;
-						distancesZ[1] = ((EntityRollingStock) cart1).bogieLoco[0].posZ - ((AbstractTrains) cart2).posZ ;
+						distancesX[1] = ((EntityRollingStock) cart1).bogieLoco.posX - ((AbstractTrains) cart2).posX ;
+						distancesZ[1] = ((EntityRollingStock) cart1).bogieLoco.posZ - ((AbstractTrains) cart2).posZ ;
 
-						if(((EntityRollingStock) cart2).bogieUtility[0]!=null && ((EntityRollingStock) cart1).bogieUtility[0]==null){
-							double shift2 = ((EntityRollingStock) cart2).bogieUtility[0].bogieShift/2;
-
-							float rotationCos2 = (float) Math.cos(Math
-									.toRadians(((EntityRollingStock) cart2).serverRealRotation + 90));
-							float rotationSin2 = (float) Math.sin(Math
-									.toRadians(((EntityRollingStock) cart2).serverRealRotation + 90));
-
-							double bogieX2 = (cart2.posX - (rotationCos2 * shift2));
-							double bogieZ2 = (cart2.posZ - (rotationSin2* shift2));
-
-							distancesX[0] = ((AbstractTrains) cart1).posX - bogieX2 ;
-							distancesZ[0] = ((AbstractTrains) cart1).posZ - bogieZ2 ;
-							distancesX[1] = ((EntityRollingStock) cart1).bogieLoco[0].posX - bogieX2;
-							distancesZ[1] = ((EntityRollingStock) cart1).bogieLoco[0].posZ - bogieZ2;
-						}
 						distancesX[2] = 100;
 						distancesZ[2] = 100;
 						distancesX[3] = 100;
@@ -249,28 +233,12 @@ public class LinkHandler {
 							euclidian[i] = MathHelper.sqrt_double((distancesX[i] * distancesX[i]) + (distancesZ[i] * distancesZ[i]));
 						}
 
-					}else if(((EntityRollingStock) cart1).bogieLoco[0]==null && ((EntityRollingStock) cart2).bogieLoco[0]!=null){	
+					}else if(((EntityRollingStock) cart1).bogieLoco==null && ((EntityRollingStock) cart2).bogieLoco!=null){
 						distancesX[0] = ((AbstractTrains) cart1).posX - ((AbstractTrains) cart2).posX ;
 						distancesZ[0] = ((AbstractTrains) cart1).posZ - ((AbstractTrains) cart2).posZ ;
-						distancesX[1] = ((AbstractTrains) cart1).posX - ((EntityRollingStock) cart2).bogieLoco[0].posX ;
-						distancesZ[1] = ((AbstractTrains) cart1).posZ - ((EntityRollingStock) cart2).bogieLoco[0].posZ ;
+						distancesX[1] = ((AbstractTrains) cart1).posX - ((EntityRollingStock) cart2).bogieLoco.posX ;
+						distancesZ[1] = ((AbstractTrains) cart1).posZ - ((EntityRollingStock) cart2).bogieLoco.posZ ;
 
-						if(((EntityRollingStock) cart1).bogieUtility[0]!=null && ((EntityRollingStock) cart2).bogieUtility[0]==null){
-							double shift1 = ((EntityRollingStock) cart1).bogieUtility[0].bogieShift/2;
-
-							float rotationCos1 = (float) Math.cos(Math
-									.toRadians(((EntityRollingStock) cart1).serverRealRotation + 90));
-							float rotationSin1 = (float) Math.sin(Math
-									.toRadians(((EntityRollingStock) cart1).serverRealRotation + 90));
-
-							double bogieX1 = (cart1.posX - (rotationCos1 * shift1));
-							double bogieZ1 = (cart1.posZ - (rotationSin1* shift1));
-
-							distancesX[0] = bogieX1 - ((AbstractTrains) cart2).posX;
-							distancesZ[0] = bogieZ1 - ((AbstractTrains) cart2).posZ;
-							distancesX[1] = bogieX1 - ((EntityRollingStock) cart2).bogieLoco[0].posX;
-							distancesZ[1] = bogieZ1 - ((EntityRollingStock) cart2).bogieLoco[0].posZ;
-						}
 						distancesX[2] = 100;
 						distancesZ[2] = 100;
 						distancesX[3] = 100;
@@ -282,12 +250,12 @@ public class LinkHandler {
 					}else{
 						distancesX[0] = ((AbstractTrains) cart1).posX - ((AbstractTrains) cart2).posX ;
 						distancesZ[0] = ((AbstractTrains) cart1).posZ - ((AbstractTrains) cart2).posZ ;
-						distancesX[1] = ((EntityRollingStock) cart1).bogieLoco[0].posX - ((AbstractTrains) cart2).posX ;
-						distancesZ[1] = ((EntityRollingStock) cart1).bogieLoco[0].posZ - ((AbstractTrains) cart2).posZ ;
-						distancesX[2] = ((AbstractTrains) cart1).posX - ((EntityRollingStock) cart2).bogieLoco[0].posX ;
-						distancesZ[2] = ((AbstractTrains) cart1).posZ - ((EntityRollingStock) cart2).bogieLoco[0].posZ ;
-						distancesX[3] = ((EntityRollingStock) cart1).bogieLoco[0].posX - ((EntityRollingStock) cart2).bogieLoco[0].posX ;
-						distancesZ[3] = ((EntityRollingStock) cart1).bogieLoco[0].posZ - ((EntityRollingStock) cart2).bogieLoco[0].posZ ;
+						distancesX[1] = ((EntityRollingStock) cart1).bogieLoco.posX - ((AbstractTrains) cart2).posX ;
+						distancesZ[1] = ((EntityRollingStock) cart1).bogieLoco.posZ - ((AbstractTrains) cart2).posZ ;
+						distancesX[2] = ((AbstractTrains) cart1).posX - ((EntityRollingStock) cart2).bogieLoco.posX ;
+						distancesZ[2] = ((AbstractTrains) cart1).posZ - ((EntityRollingStock) cart2).bogieLoco.posZ ;
+						distancesX[3] = ((EntityRollingStock) cart1).bogieLoco.posX - ((EntityRollingStock) cart2).bogieLoco.posX ;
+						distancesZ[3] = ((EntityRollingStock) cart1).bogieLoco.posZ - ((EntityRollingStock) cart2).bogieLoco.posZ ;
 
 						for(int i = 0; i< distancesX.length;i++){
 							euclidian[i] = MathHelper.sqrt_double((distancesX[i] * distancesX[i]) + (distancesZ[i] * distancesZ[i]));
@@ -305,67 +273,6 @@ public class LinkHandler {
 
 					d = distancesX[minIndex];
 					d1 = distancesZ[minIndex];
-
-				}else if(((EntityRollingStock) cart1).bogieUtility[0]!=null || ((EntityRollingStock) cart2).bogieUtility[0]!=null){
-
-					if(((EntityRollingStock) cart1).bogieUtility[0]!=null && ((EntityRollingStock) cart2).bogieUtility[0]==null){
-						double shift1 = ((EntityRollingStock) cart1).bogieUtility[0].bogieShift/2;
-
-						float rotationCos1 = (float) Math.cos(Math
-								.toRadians(((EntityRollingStock) cart1).serverRealRotation + 90));
-						float rotationSin1 = (float) Math.sin(Math
-								.toRadians(((EntityRollingStock) cart1).serverRealRotation + 90));
-
-						double bogieX1 = (cart1.posX - (rotationCos1 * shift1));
-						double bogieZ1 = (cart1.posZ - (rotationSin1* shift1));
-
-						d = bogieX1 - ((AbstractTrains) cart2).posX ;
-						d1 = bogieZ1 - ((AbstractTrains) cart2).posZ ;
-
-
-
-					}else if(((EntityRollingStock) cart1).bogieUtility[0]==null && ((EntityRollingStock) cart2).bogieUtility[0]!=null){
-
-						double shift2 = ((EntityRollingStock) cart2).bogieUtility[0].bogieShift/2;
-
-						float rotationCos2 = (float) Math.cos(Math
-								.toRadians(((EntityRollingStock) cart2).serverRealRotation + 90));
-						float rotationSin2 = (float) Math.sin(Math
-								.toRadians(((EntityRollingStock) cart2).serverRealRotation + 90));
-
-						double bogieX2 = (cart2.posX - (rotationCos2 * shift2));
-						double bogieZ2 = (cart2.posZ - (rotationSin2 * shift2));
-
-						d = ((AbstractTrains) cart1).posX - bogieX2 ;
-						d1 = ((AbstractTrains) cart1).posZ - bogieZ2 ;
-					}else{
-
-
-						double shift1 = ((EntityRollingStock) cart1).bogieUtility[0].bogieShift/2;
-						double shift2 = ((EntityRollingStock) cart2).bogieUtility[0].bogieShift/2;
-
-						float rotationCos2 = (float) Math.cos(Math
-								.toRadians(((EntityRollingStock) cart2).serverRealRotation + 90));
-						float rotationSin2 = (float) Math.sin(Math
-								.toRadians(((EntityRollingStock) cart2).serverRealRotation + 90));
-
-						float rotationCos1 = (float) Math.cos(Math
-								.toRadians(((EntityRollingStock) cart1).serverRealRotation + 90));
-						float rotationSin1 = (float) Math.sin(Math
-								.toRadians(((EntityRollingStock) cart1).serverRealRotation + 90));
-
-						double bogieX1 = (cart1.posX - (rotationCos1 * shift1));
-						double bogieZ1 = (cart1.posZ - (rotationSin1* shift1));
-
-						double bogieX2 = (cart2.posX - (rotationCos2 * shift2));
-						double bogieZ2 = (cart2.posZ - (rotationSin2 * shift2));
-
-						d = bogieX1 - bogieX2 ;
-						d1 = bogieZ1 - bogieZ2 ;
-
-					}
-
-
 
 				}else{
 					d = ((AbstractTrains) cart1).posX - ((AbstractTrains) cart2).posX;
@@ -530,14 +437,14 @@ public class LinkHandler {
 			double vecZ=0;
 			int minIndex=0;
 
-			if(((EntityRollingStock) cart1).bogieLoco[0]!=null || ((EntityRollingStock) cart2).bogieLoco[0]!=null){
+			if(((EntityRollingStock) cart1).bogieLoco!=null || ((EntityRollingStock) cart2).bogieLoco!=null){
 
-				if(((EntityRollingStock) cart1).bogieLoco[0]!=null && ((EntityRollingStock) cart2).bogieLoco[0]==null){
+				if(((EntityRollingStock) cart1).bogieLoco!=null && ((EntityRollingStock) cart2).bogieLoco==null){
 					distancesX[0] = ((AbstractTrains) cart1).posX - ((AbstractTrains) cart2).posX ;
 					distancesZ[0] = ((AbstractTrains) cart1).posZ - ((AbstractTrains) cart2).posZ ;
 
-					distancesX[1] = ((EntityRollingStock) cart1).bogieLoco[0].posX - ((AbstractTrains) cart2).posX ;
-					distancesZ[1] = ((EntityRollingStock) cart1).bogieLoco[0].posZ - ((AbstractTrains) cart2).posZ ;
+					distancesX[1] = ((EntityRollingStock) cart1).bogieLoco.posX - ((AbstractTrains) cart2).posX ;
+					distancesZ[1] = ((EntityRollingStock) cart1).bogieLoco.posZ - ((AbstractTrains) cart2).posZ ;
 
 					distancesX[2] = 100;
 					distancesZ[2] = 100;
@@ -547,11 +454,11 @@ public class LinkHandler {
 						euclidian[i] = MathHelper.sqrt_double((distancesX[i] * distancesX[i]) + (distancesZ[i] * distancesZ[i]));
 					}
 
-				}else if(((EntityRollingStock) cart1).bogieLoco[0]==null && ((EntityRollingStock) cart2).bogieLoco[0]!=null){	
+				}else if(((EntityRollingStock) cart1).bogieLoco==null && ((EntityRollingStock) cart2).bogieLoco!=null){
 					distancesX[0] = ((AbstractTrains) cart1).posX - ((AbstractTrains) cart2).posX ;
 					distancesZ[0] = ((AbstractTrains) cart1).posZ - ((AbstractTrains) cart2).posZ ;
-					distancesX[1] = ((AbstractTrains) cart1).posX - ((EntityRollingStock) cart2).bogieLoco[0].posX ;
-					distancesZ[1] = ((AbstractTrains) cart1).posZ - ((EntityRollingStock) cart2).bogieLoco[0].posZ ;
+					distancesX[1] = ((AbstractTrains) cart1).posX - ((EntityRollingStock) cart2).bogieLoco.posX ;
+					distancesZ[1] = ((AbstractTrains) cart1).posZ - ((EntityRollingStock) cart2).bogieLoco.posZ ;
 
 					distancesX[2] = 100;
 					distancesZ[2] = 100;
@@ -564,12 +471,12 @@ public class LinkHandler {
 				}else{
 					distancesX[0] = ((AbstractTrains) cart1).posX - ((AbstractTrains) cart2).posX ;
 					distancesZ[0] = ((AbstractTrains) cart1).posZ - ((AbstractTrains) cart2).posZ ;
-					distancesX[1] = ((EntityRollingStock) cart1).bogieLoco[0].posX - ((AbstractTrains) cart2).posX ;
-					distancesZ[1] = ((EntityRollingStock) cart1).bogieLoco[0].posZ - ((AbstractTrains) cart2).posZ ;
-					distancesX[2] = ((AbstractTrains) cart1).posX - ((EntityRollingStock) cart2).bogieLoco[0].posX ;
-					distancesZ[2] = ((AbstractTrains) cart1).posZ - ((EntityRollingStock) cart2).bogieLoco[0].posZ ;
-					distancesX[3] = ((EntityRollingStock) cart1).bogieLoco[0].posX - ((EntityRollingStock) cart2).bogieLoco[0].posX ;
-					distancesZ[3] = ((EntityRollingStock) cart1).bogieLoco[0].posZ - ((EntityRollingStock) cart2).bogieLoco[0].posZ ;
+					distancesX[1] = ((EntityRollingStock) cart1).bogieLoco.posX - ((AbstractTrains) cart2).posX ;
+					distancesZ[1] = ((EntityRollingStock) cart1).bogieLoco.posZ - ((AbstractTrains) cart2).posZ ;
+					distancesX[2] = ((AbstractTrains) cart1).posX - ((EntityRollingStock) cart2).bogieLoco.posX ;
+					distancesZ[2] = ((AbstractTrains) cart1).posZ - ((EntityRollingStock) cart2).bogieLoco.posZ ;
+					distancesX[3] = ((EntityRollingStock) cart1).bogieLoco.posX - ((EntityRollingStock) cart2).bogieLoco.posX ;
+					distancesZ[3] = ((EntityRollingStock) cart1).bogieLoco.posZ - ((EntityRollingStock) cart2).bogieLoco.posZ ;
 
 					for(int i = 0; i< distancesX.length;i++){
 						euclidian[i] = MathHelper.sqrt_double((distancesX[i] * distancesX[i]) + (distancesZ[i] * distancesZ[i]));

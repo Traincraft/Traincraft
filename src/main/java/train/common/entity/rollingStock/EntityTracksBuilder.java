@@ -1,10 +1,6 @@
 package train.common.entity.rollingStock;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.mojang.authlib.GameProfile;
-
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
 import mods.railcraft.api.tracks.RailTools;
@@ -38,6 +34,9 @@ import train.common.core.plugins.PluginRailcraft;
 import train.common.library.BlockIDs;
 import train.common.library.GuiIDs;
 import train.common.library.ItemIDs;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class EntityTracksBuilder extends EntityRollingStock implements IInventory {
 	public ItemStack item;

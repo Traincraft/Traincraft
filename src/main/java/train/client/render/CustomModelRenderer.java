@@ -1,10 +1,9 @@
 package train.client.render;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.model.PositionTextureVertex;
 import net.minecraft.client.renderer.GLAllocation;
 import net.minecraft.client.renderer.Tessellator;
+import org.lwjgl.opengl.GL11;
 
 public class CustomModelRenderer {
 

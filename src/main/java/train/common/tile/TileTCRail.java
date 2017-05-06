@@ -80,15 +80,12 @@ public class TileTCRail extends TileEntity {
 
 	@Override
 	public void updateEntity() {
-
-		if (worldObj.isRemote) {
+		if (worldObj.isRemote || !canTypeBeModifiedBySwitch) {
 
 			return;
 		}
 
-		if(canTypeBeModifiedBySwitch) {
-			updateTicks2++;
-		}
+		updateTicks2++;
 
 		/*if (updateTicks2 % 20 == 0 && !isLinkedToRail && getType() != null && getType().equals(TrackTypes.SMALL_STRAIGHT.getLabel()) && !hasRotated) {
 			TileEntity tileNorth = worldObj.getBlockTileEntity(xCoord, yCoord, zCoord - 1);
@@ -292,6 +289,26 @@ public class TileTCRail extends TileEntity {
 			type = tempType;
 		} else {
 			type = ItemTCRail.TrackTypes.SMALL_STRAIGHT.getLabel();
+		}
+		/**
+		 * Hacky TC Code to fix already placed slopes
+		 */
+		if (type.equals(ItemTCRail.TrackTypes.SLOPE_WOOD.getLabel())
+				|| type.equals(ItemTCRail.TrackTypes.SLOPE_GRAVEL.getLabel())
+				|| type.equals(ItemTCRail.TrackTypes.SLOPE_BALLAST.getLabel())) {
+			slopeAngle = 0.13;
+		}
+		
+		if (type.equals(ItemTCRail.TrackTypes.LARGE_SLOPE_WOOD.getLabel())
+				|| type.equals(ItemTCRail.TrackTypes.LARGE_SLOPE_GRAVEL.getLabel())
+				|| type.equals(ItemTCRail.TrackTypes.LARGE_SLOPE_BALLAST.getLabel())) {
+			slopeAngle = 0.0666;
+		}
+		
+		if (type.equals(ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_WOOD.getLabel())
+				|| type.equals(ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_GRAVEL.getLabel())
+				|| type.equals(ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_BALLAST.getLabel())) {
+			slopeAngle = 0.0444;
 		}
 		isLinkedToRail = nbt.getBoolean("isLinkedToRail");
 		hasModel = nbt.getBoolean("hasModel");

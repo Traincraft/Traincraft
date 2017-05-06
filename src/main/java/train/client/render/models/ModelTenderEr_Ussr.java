@@ -1,9 +1,8 @@
 package train.client.render.models;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
+import org.lwjgl.opengl.GL11;
 import train.client.render.CustomModelRenderer;
 import train.common.api.Freight;
 

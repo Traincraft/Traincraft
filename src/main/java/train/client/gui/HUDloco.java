@@ -1,12 +1,11 @@
 package train.client.gui;
 
-import org.lwjgl.opengl.GL11;
-
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import org.lwjgl.opengl.GL11;
 import train.common.api.DieselTrain;
 import train.common.api.Locomotive;
 import train.common.api.SteamTrain;

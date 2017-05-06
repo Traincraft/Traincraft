@@ -1,12 +1,12 @@
 package train.common.core.handlers;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TrainsDamageSource extends DamageSource {
 

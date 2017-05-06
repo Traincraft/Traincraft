@@ -7,8 +7,6 @@
 
 package train.common.core.handlers;
 
-import java.util.ArrayList;
-
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -20,6 +18,8 @@ import train.common.inventory.TrainCraftingManager;
 import train.common.library.BlockIDs;
 import train.common.library.ItemIDs;
 import train.common.recipes.RecipesArmorDyes;
+
+import java.util.ArrayList;
 
 public class RecipeHandler {
 	public static void initBlockRecipes() {
@@ -205,12 +205,9 @@ public class RecipeHandler {
 						TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.camshaft.item, 3), new Object[] { "   ", "   ", "###", Character.valueOf('#'), steel.get(t) });// camshaft
 						TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.cylinder.item, 3), new Object[] { "# #", "# #", "###", Character.valueOf('#'), steel.get(t) });// cylinder 
 						TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.propeller.item, 2), new Object[] { " # ", "#X#", " # ", Character.valueOf('#'), s1.get(i), Character.valueOf('X'), Items.iron_ingot });// Propeller
-						
-						TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailSmallStraight.item, 32), new Object[] { "I I", "SPS", "I I", Character.valueOf('P'), s1.get(i), Character.valueOf('I'), Items.iron_ingot, Character.valueOf('S'), steel.get(t) });// small straight track
-						TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailSmallRoadCrossing.item, 32),
-								new Object[] { "I I", "SPS", "I I", Character.valueOf('P'),
-										new ItemStack(Blocks.stained_hardened_clay, 1, 15), Character.valueOf('I'),
-										Items.iron_ingot, Character.valueOf('S'), steel.get(t) });
+
+						TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailSmallStraight.item, 16), new Object[] { "I I", "IPI", "I I", Character.valueOf('P'), s1.get(i), Character.valueOf('I'), steel.get(t) });// small straight track
+						TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailSmallRoadCrossing.item, 16), new Object[] { "I I", "IPI", "I I", Character.valueOf('P'), new ItemStack(Blocks.stained_hardened_clay, 1, 15), Character.valueOf('I'), steel.get(t)});
 					}
 				}
 				if (s2 != null && s2.size() >= 0) {
@@ -238,6 +235,10 @@ public class RecipeHandler {
 								Character.valueOf('W'), s1.get(i) });
 			}
 		}
+		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailSmallStraight.item, 1), new Object[] { "   ", " R ", "   ", Character.valueOf('R'), Item.getItemFromBlock(Blocks.rail)});// small straight track
+		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailSmallRoadCrossing.item, 1), new Object[] { "   ", "SRS", "   ", Character.valueOf('S'), new ItemStack(Blocks.stained_hardened_clay, 1, 15), Character.valueOf('R'), Item.getItemFromBlock(Blocks.rail) });
+		TrainCraftingManager.instance.addRecipe(new ItemStack(Item.getItemFromBlock(Blocks.rail), 1), new Object[] { "   ", " R ", "   ", Character.valueOf('R'), ItemIDs.tcRailSmallStraight.item});
+		TrainCraftingManager.instance.addRecipe(new ItemStack(Item.getItemFromBlock(Blocks.rail), 1), new Object[] { "   ", " R ", "   ", Character.valueOf('R'), ItemIDs.tcRailSmallRoadCrossing.item});
 		// Short Slope Gravel
 		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailSlopeGravel.item, 1),
 				new Object[] { " MG", "MGG", "GGG", Character.valueOf('M'), ItemIDs.tcRailMediumStraight.item,
