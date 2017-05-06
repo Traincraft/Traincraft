@@ -206,10 +206,10 @@ public class RecipeHandler {
 						TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.cylinder.item, 3), new Object[] { "# #", "# #", "###", Character.valueOf('#'), steel.get(t) });// cylinder 
 						TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.propeller.item, 2), new Object[] { " # ", "#X#", " # ", Character.valueOf('#'), s1.get(i), Character.valueOf('X'), Items.iron_ingot });// Propeller
 
-						TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailSmallStraight.item, 16), new Object[] { "I I", "IPI", "I I", Character.valueOf('P'), s1.get(i), Character.valueOf('I'), steel.get(t) });// small straight track
 						TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailSmallRoadCrossing.item, 16), new Object[] { "I I", "IPI", "I I", Character.valueOf('P'), new ItemStack(Blocks.stained_hardened_clay, 1, 15), Character.valueOf('I'), steel.get(t)});
 					}
 				}
+				TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailSmallStraight.item, 16), new Object[] { "I I", "IPI", "I I", Character.valueOf('P'), s1.get(i), Character.valueOf('I'), Items.iron_ingot });// small straight track
 				if (s2 != null && s2.size() >= 0) {
 					for (int j = 0; j < s2.size(); j++) {
 						/* Water Wheel */
