@@ -1,6 +1,9 @@
 package train.common.api;
 
+import java.util.List;
+
 import com.mojang.authlib.GameProfile;
+
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -23,8 +26,6 @@ import train.common.items.ItemTCRail.TrackTypes;
 import train.common.library.BlockIDs;
 import train.common.tile.TileTCRail;
 import train.common.tile.TileTCRailGag;
-
-import java.util.List;
 
 public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableCart {
 
@@ -587,22 +588,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 	}
 	private void moveOnTCSlope(int j, double cx, double cz, double slopeAngle, double slopeHeight, int meta) {
 
-		// TODO check if we are able to move faster than 196km/h later when we cleaned up
-			// everything.
-		if (Math.abs(this.motionX) > 0.912D) {
-			this.motionX = Math.copySign(0.912D, this.motionX);
-			if (this.entityMainTrain != null) {
-				this.entityMainTrain.motionX = Math.copySign(0.912D, this.entityMainTrain.motionX);
-			}
-		}
-		if (Math.abs(this.motionZ) > 0.912D) {
-			this.motionZ = Math.copySign(0.912D, this.motionZ);
-			if (this.entityMainTrain != null) {
-				this.entityMainTrain.motionZ = Math.copySign(0.912D, this.entityMainTrain.motionZ);
-			}
-		}
-		this.posY = j + 0.2D;
-
+		// posY = j + 2.5;
 		if (meta == 2 || meta == 0) {
 
 			if (meta == 2) {
@@ -610,40 +596,23 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 			}
 
 			double norm = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
-			double newPosY = (j + Math.abs(Math.tan(slopeAngle * Math.abs(cz - this.posZ))) + this.yOffset);
-			double maxPosY = (j + this.yOffset + slopeHeight+1);
-
-			if (newPosY > maxPosY) {
-
-				newPosY = maxPosY;
-			}
-
+			double newPosY = Math.abs(j + (Math.tan(slopeAngle * Math.abs(cz - this.posZ))) + this.yOffset + 0.3);
 			this.setPosition(cx + 0.5D, newPosY, this.posZ);
 			this.moveEntity(0.0D, 0.0D, Math.copySign(norm, this.motionZ));
 
 			this.motionX = 0.0D;
 			this.motionY = 0.0D;
 			this.motionZ = Math.copySign(norm, this.motionZ);
-		}
-		else if (meta == 1 || meta == 3) {
-
+		} else if (meta == 1 || meta == 3) {
 			if (meta == 1) {
-
 				cx += 1;
 			}
 
 			double norm = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
-			double newPosY = (j + Math.abs(Math.tan(slopeAngle * Math.abs(cx - this.posX))) + this.yOffset);
-			double maxPosY = (j + this.yOffset + slopeHeight+1);
-
-			if (newPosY > maxPosY) {
-
-				newPosY = maxPosY;
-			}
-
+			double newPosY = (j + (Math.tan(slopeAngle * Math.abs(cx - this.posX))) + this.yOffset + 0.3);
 			this.setPosition(this.posX, newPosY, cz + 0.5D);
 			this.moveEntity(Math.copySign(norm, this.motionX), 0.0D, 0.0D);
-
+			
 			this.motionX = Math.copySign(norm, this.motionX);
 			this.motionY = 0.0D;
 			this.motionZ = 0.0D;

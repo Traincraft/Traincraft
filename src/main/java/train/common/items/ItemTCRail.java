@@ -1,5 +1,7 @@
 package train.common.items;
 
+import java.util.List;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -16,8 +18,6 @@ import train.common.library.BlockIDs;
 import train.common.library.ItemIDs;
 import train.common.tile.TileTCRail;
 import train.common.tile.TileTCRailGag;
-
-import java.util.List;
 
 public class ItemTCRail extends ItemPart {
 	private TrackTypes type;
@@ -1110,23 +1110,26 @@ public class ItemTCRail extends ItemPart {
 	
 				int gagEnd = 0;
 				double slopeAngle = 0;
-				
+				/**
+				 * Explanation: normally you would devide 100 by (gagEnd+1) but this seems to be
+				 * against TCs own brain. you need to devide 100 by (gagEnd+1)
+				 **/
 				if (type == TrackTypes.SLOPE_WOOD || type == TrackTypes.SLOPE_GRAVEL
 						|| type == TrackTypes.SLOPE_BALLAST) {
 					gagEnd = 5;
-					slopeAngle = 0.1668;
+					slopeAngle = 0.13;
 				}
 				
 				if (type == TrackTypes.LARGE_SLOPE_WOOD || type == TrackTypes.LARGE_SLOPE_GRAVEL
 						|| type == TrackTypes.LARGE_SLOPE_BALLAST) {
 					gagEnd = 11;
-					slopeAngle = 0.0833;
+					slopeAngle = 0.0666;
 				}
 				
 				if (type == TrackTypes.VERY_LARGE_SLOPE_WOOD || type == TrackTypes.VERY_LARGE_SLOPE_GRAVEL
 						|| type == TrackTypes.VERY_LARGE_SLOPE_BALLAST) {
 					gagEnd = 17;
-					slopeAngle = 0.0555;
+					slopeAngle = 0.0444;
 				}
 	
 				Item idDropped = this.type.getItem().item;
@@ -1161,7 +1164,7 @@ public class ItemTCRail extends ItemPart {
 				tcRail.idDrop = idDropped;
 				tcRail.slopeHeight = 1;
 				tcRail.slopeAngle = slopeAngle;
-				tcRail.slopeLength = gagEnd;
+				tcRail.slopeLength = gagEnd + 1;
 				for (int i2 = 1; i2 <= gagEnd; i2++) {
 					if (l == 2) {
 						placeTrack(world,x, y + 1, z - i2, BlockIDs.tcRailGag.block, l);

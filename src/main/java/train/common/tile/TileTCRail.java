@@ -1,5 +1,8 @@
 package train.common.tile;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
@@ -10,9 +13,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 import train.common.items.ItemTCRail;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class TileTCRail extends TileEntity {
 
@@ -289,6 +289,26 @@ public class TileTCRail extends TileEntity {
 			type = tempType;
 		} else {
 			type = ItemTCRail.TrackTypes.SMALL_STRAIGHT.getLabel();
+		}
+		/**
+		 * Hacky TC Code to fix already placed slopes
+		 */
+		if (type.equals(ItemTCRail.TrackTypes.SLOPE_WOOD.getLabel())
+				|| type.equals(ItemTCRail.TrackTypes.SLOPE_GRAVEL.getLabel())
+				|| type.equals(ItemTCRail.TrackTypes.SLOPE_BALLAST.getLabel())) {
+			slopeAngle = 0.13;
+		}
+		
+		if (type.equals(ItemTCRail.TrackTypes.LARGE_SLOPE_WOOD.getLabel())
+				|| type.equals(ItemTCRail.TrackTypes.LARGE_SLOPE_GRAVEL.getLabel())
+				|| type.equals(ItemTCRail.TrackTypes.LARGE_SLOPE_BALLAST.getLabel())) {
+			slopeAngle = 0.0666;
+		}
+		
+		if (type.equals(ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_WOOD.getLabel())
+				|| type.equals(ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_GRAVEL.getLabel())
+				|| type.equals(ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_BALLAST.getLabel())) {
+			slopeAngle = 0.0444;
 		}
 		isLinkedToRail = nbt.getBoolean("isLinkedToRail");
 		hasModel = nbt.getBoolean("hasModel");
