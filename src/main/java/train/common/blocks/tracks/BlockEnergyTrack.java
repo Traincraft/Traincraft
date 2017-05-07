@@ -18,15 +18,19 @@ import net.minecraft.util.IIcon;
 import train.common.api.ElectricTrain;
 import train.common.api.EntityRollingStock;
 import train.common.library.Tracks;
+import cofh.api.energy.IEnergyHandler;
+import cofh.api.energy.IEnergyProvider;
+import cofh.api.energy.IEnergyReceiver;
+import net.minecraftforge.common.util.ForgeDirection;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-public class BlockEnergyTrack extends TrackBaseTraincraft implements ITrackPowered{
+public class BlockEnergyTrack extends TrackBaseTraincraft implements ITrackPowered, IEnergyHandler, IEnergyReceiver {
 	private byte delay = 0;
 	public double energy = 0;
-	public int maxEnergy = 1000;
+	public int maxEnergy = 2000;
 	public int maxInput = 1000;
 	public int output = 500;
 	private int transmitDistance=2;
@@ -62,10 +66,18 @@ public class BlockEnergyTrack extends TrackBaseTraincraft implements ITrackPower
 			return;
 		}
 		updateTicks++;
+        /*
 		if (isPowered() && updateTicks % 2==0) {
 			if(this.getEnergy()<this.getMaxEnergy())
 				this.energy++;
 		}
+        */
+        if(this.updateTicks % 10 == 0) {
+           if(this.maxEnergy > this.energy)
+             if(this.getWorld().getTileEntity(this.getX(),this.getY()-1, this.getZ()) instanceof IEnergyProvider) {
+                this.receiveEnergy(ForgeDirection.UP,((IEnergyProvider)this.getWorld().getTileEntity(this.getX(),this.getY()-1, this.getZ())).extractEnergy(ForgeDirection.UP,100,false),false);
+             }
+        }
 		if (updateTicks % 50 == 0)
 			markBlockNeedsUpdate();
 	}
@@ -104,7 +116,7 @@ public class BlockEnergyTrack extends TrackBaseTraincraft implements ITrackPower
 		
 		if ((current != null) && ((current.getItem() instanceof IToolCrowbar))) {
 			IToolCrowbar crowbar = (IToolCrowbar) current.getItem();
-			player.addChatMessage(new ChatComponentText("stored: " + ((int)this.energy) + "/"+(int)this.getMaxEnergy()+" EU"));
+			player.addChatMessage(new ChatComponentText("stored: " + ((int)this.energy) + "/"+(int)this.getMaxEnergy()+" RF"));
 			markBlockNeedsUpdate();
 			crowbar.onWhack(player, current, getX(), getY(), getZ());
 			sendUpdateToClient();
@@ -180,4 +192,62 @@ public class BlockEnergyTrack extends TrackBaseTraincraft implements ITrackPower
 		this.energy = (int) Math.max(Math.min(joules, getMaxEnergy()), 0.0D);
 	}
 	
+ 
+    /* ------------------------------------------------------------------------------------
+     * -                                IEnergyHandler                                    -
+     * ------------------------------------------------------------------------------------ 
+ 
+                            TheBlueCrystal Addition to receive real RF Power
+     */
+ 
+    public boolean canConnectEnergy(ForgeDirection from)
+    {
+        return true;
+    }
+ 
+    public int receiveEnergy(ForgeDirection dir, int ammount, boolean simulate)
+    {
+        if(this.maxEnergy > this.energy)
+        {
+            if(this.maxEnergy-this.energy >= ammount)
+            {
+                 if(!simulate) this.energy += (double)ammount;
+                 return ammount;
+            }
+            else
+            {
+                 int div = (int) (this.maxEnergy - this.energy);
+                 if(!simulate) this.energy = this.maxEnergy;
+                 return div;
+            }
+        }
+        else
+        return 0;
+    }
+ 
+    public int extractEnergy(ForgeDirection dir, int ammount, boolean simulate)
+    {
+        if(this.energy >= ammount)
+        {
+            if(!simulate) this.energy -= ammount;
+            return ammount;
+        }
+        else
+        {
+            int div = (int) this.energy;
+            if(!simulate) this.energy = 0.0D;
+            return div;
+        }
+    }
+ 
+    public int getEnergyStored(ForgeDirection dir)
+    {
+        return (int) this.energy;
+    }
+ 
+    public int getMaxEnergyStored(ForgeDirection dir)
+    {
+        return this.maxEnergy;
+    }
+ 
 }
