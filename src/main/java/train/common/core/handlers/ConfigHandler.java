@@ -30,6 +30,7 @@ public class ConfigHandler {
 	public static boolean CHUNK_LOADING;
 	public static boolean SHOW_POSSIBLE_COLORS;
 	public static int TRAINCRAFT_VILLAGER_ID;
+	public static int WINDMILL_CHECK_RADIUS;
 	public static boolean REAL_TRAIN_SPEED;
 	public static boolean RETROGEN_CHUNKS;
 	public static boolean	MAKE_MODPACKS_GREAT_AGAIN;
@@ -61,7 +62,7 @@ public class ConfigHandler {
 			RETROGEN_CHUNKS = cf.getBoolean("ENABLE_RETROGEN", CATEGORY_GENERAL, false, "This will generate ores in existing chunks prior to installing Traincraft 5. Do note that if this is off chunks that are loaded will not retrogen later, no matter what.");
 			MAKE_MODPACKS_GREAT_AGAIN = cf.getBoolean("MAKE_MODPACKS_GREAT_AGAIN", CATEGORY_GENERAL, false,
 					"This will disable some of Traincrafts easier recipes to balance Modpacks");
-
+            WINDMILL_CHECK_RADIUS = getInt("WINDMILL_CHECK_RADIUS", CATEGORY_GENERAL, 1, -1, 10, "This sets the radius for the can-see-the-sky-check area around the windmill. 0=only location of windmill, 1=3x3, 2=5x5 etc. Use -1 to turn of this check completely. DEFAULT: 1");
 
 			// /* Blocks */
 			// BlockIDs.assemblyTableI.blockID = cf.get(CATEGORY_BLOCK , "block_assemblytableI",
