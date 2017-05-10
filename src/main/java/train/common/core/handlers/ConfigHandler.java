@@ -62,61 +62,8 @@ public class ConfigHandler {
 			RETROGEN_CHUNKS = cf.getBoolean("ENABLE_RETROGEN", CATEGORY_GENERAL, false, "This will generate ores in existing chunks prior to installing Traincraft 5. Do note that if this is off chunks that are loaded will not retrogen later, no matter what.");
 			MAKE_MODPACKS_GREAT_AGAIN = cf.getBoolean("MAKE_MODPACKS_GREAT_AGAIN", CATEGORY_GENERAL, false,
 					"This will disable some of Traincrafts easier recipes to balance Modpacks");
-            WINDMILL_CHECK_RADIUS = getInt("WINDMILL_CHECK_RADIUS", CATEGORY_GENERAL, 1, -1, 10, "This sets the radius for the can-see-the-sky-check area around the windmill. 0=only location of windmill, 1=3x3, 2=5x5 etc. Use -1 to turn of this check completely. DEFAULT: 1");
-
-			// /* Blocks */
-			// BlockIDs.assemblyTableI.blockID = cf.get(CATEGORY_BLOCK , "block_assemblytableI",
-			// 350).getInt(350);
-			// BlockIDs.assemblyTableII.blockID = cf.get(CATEGORY_BLOCK, "block_assemblytableII",
-			// 351).getInt(351);
-			// BlockIDs.assemblyTableIII.blockID = cf.get(CATEGORY_BLOCK, "block_assemblytableIII",
-			// 352).getInt(352);
-			//
-			// BlockIDs.distilIdle.blockID = cf.get(CATEGORY_BLOCK, "block_distil",
-			// 353).getInt(353);
-			// BlockIDs.distilActive.blockID = cf.get(CATEGORY_BLOCK, "block_distil_active",
-			// 354).getInt(354);
-			// //BlockIDs.signal.blockID = cf.get(CATEGORY_BLOCK, "block_active_signal",
-			// 362).getInt(362);
-			//
-			// BlockIDs.trainWorkbench.blockID = cf.get(CATEGORY_BLOCK, "block_train_workbench",
-			// 361).getInt(361);
-			// BlockIDs.stopper.blockID = cf.get(CATEGORY_BLOCK, "block_train_buffer",
-			// 362).getInt(362);
-			//
-			// BlockIDs.oreTC.blockID = cf.get(CATEGORY_BLOCK, "block_traincraft_ores", 365, "TC
-			// Ores generation (Copper)").getInt(365);
-			//
-			// BlockIDs.openFurnaceIdle.blockID = cf.get(CATEGORY_BLOCK, "block_open_furnace",
-			// 363).getInt(363);
-			// BlockIDs.openFurnaceActive.blockID = cf.get(CATEGORY_BLOCK,
-			// "block_open_furnace_active", 364).getInt(364);
-			// BlockIDs.lantern.blockID = cf.get(CATEGORY_BLOCK, "block_lantern", 365).getInt(365);
-			// BlockIDs.waterWheel.blockID = cf.get(CATEGORY_BLOCK, "block_water_wheel",
-			// 366).getInt(366);
-			// BlockIDs.windMill.blockID = cf.get(CATEGORY_BLOCK, "block_wind_mill",
-			// 367).getInt(367);
-			// BlockIDs.generatorDiesel.blockID = cf.get(CATEGORY_BLOCK, "block_diesel_generator",
-			// 368).getInt(368);
-			//
-			// BlockIDs.diesel.blockID = cf.get(CATEGORY_BLOCK, "block_diesel", 369).getInt(369);
-			// BlockIDs.refinedFuel.blockID = cf.get(CATEGORY_BLOCK, "block_refinedFuel",
-			// 370).getInt(370);
-			//
-			// BlockIDs.tcRailGag.blockID = cf.get(CATEGORY_BLOCK, "block_rail_gag",
-			// 371).getInt(371);
-			// BlockIDs.tcRail.blockID = cf.get(CATEGORY_BLOCK, "block_tc_rail", 372).getInt(372);
-			// BlockIDs.bridgePillar.blockID = cf.get(CATEGORY_BLOCK, "block_tc_bridge_pillar",
-			// 373).getInt(373);
-			// //BlockIDs.book.blockID = cf.get(CATEGORY_BLOCK, "block_book", 371).getInt(371);
-			//
-			// /* Items */
-			// int id = 29000;
-			// for (ItemIDs items : ItemIDs.values()) {
-			// items.itemID = cf.get(CATEGORY_ITEM, "item_" + items.name(), id).getInt(id);
-			// id++;
-			// }
-			
+            WINDMILL_CHECK_RADIUS = cf.getInt("WINDMILL_CHECK_RADIUS", CATEGORY_GENERAL, 1, -1, 10, "This sets the radius for the can-see-the-sky-check area around the windmill. 0=only location of windmill, 1=3x3, 2=5x5 etc. Use -1 to turn of this check completely. DEFAULT: 1");
+		
 		} catch (Exception e) {
 			Traincraft.tcLog.fatal("Traincraft had a problem loading its configuration\n" + e);
 		} finally {
