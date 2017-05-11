@@ -41,9 +41,11 @@ public class RecipeHandler {
 		addDictRecipe(new ItemStack(BlockIDs.distilIdle.block, 1),  "###", "#F#", "###", Character.valueOf('#'), "ingotSteel", Character.valueOf('F'), ItemIDs.firebox.item );
 
 		/* Open Hearth Furnace */
-		GameRegistry.addRecipe(new ItemStack(BlockIDs.openFurnaceIdle.block, 1), "#L#", "#B#", "#I#",
-				Character.valueOf('#'), Blocks.nether_brick, Character.valueOf('L'), Items.lava_bucket,
-				Character.valueOf('B'), Items.bucket, Character.valueOf('I'), Blocks.iron_block);
+		if (!ConfigHandler.MAKE_MODPACKS_GREAT_AGAIN) {
+			GameRegistry.addRecipe(new ItemStack(BlockIDs.openFurnaceIdle.block, 1), "#L#", "#B#", "#I#",
+					Character.valueOf('#'), Blocks.nether_brick, Character.valueOf('L'), Items.lava_bucket,
+					Character.valueOf('B'), Items.bucket, Character.valueOf('I'), Blocks.iron_block);
+		}
 
 		/* Lantern */
 		GameRegistry.addRecipe(new ItemStack(BlockIDs.lantern.block, 4),  "III", "PTP", "III", Character.valueOf('I'), Items.iron_ingot, Character.valueOf('P'), Blocks.glass_pane, Character.valueOf('T'),Blocks.torch );
