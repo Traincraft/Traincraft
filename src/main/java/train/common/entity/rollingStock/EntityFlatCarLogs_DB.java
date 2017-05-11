@@ -19,7 +19,6 @@ import java.util.List;
 public class EntityFlatCarLogs_DB extends Freight implements IInventory {
 	public int freightInventorySize;
 	public int numFreightSlots;
-	private EntityPlayer playerEntity;
 
 	public EntityFlatCarLogs_DB(World world) {
 		super(world);

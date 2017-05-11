@@ -16,6 +16,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.StatCollector;
@@ -361,12 +362,10 @@ public abstract class AbstractZeppelin extends Entity implements IInventory {
 				worldObj.spawnParticle("largesmoke", d22, posY - 0.125D, d24, motionX, motionY, motionZ);
 			}
 		}
-		if (getFuel() <= 0) {
-			if (zeppInvent[0] != null && zeppInvent[0].getItem() == Items.coal) {
-				fuel = 1000;
-				this.dataWatcher.updateObject(20, fuel);
-				decrStackSize(0, 1);
-			}
+		if (zeppInvent[0] != null && TileEntityFurnace.getItemBurnTime(zeppInvent[0]) + fuel < 1000) {
+			fuel += TileEntityFurnace.getItemBurnTime(zeppInvent[0]);
+			this.dataWatcher.updateObject(20, fuel);
+			decrStackSize(0, 1);
 		}
 
 		double var6;

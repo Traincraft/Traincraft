@@ -9,12 +9,10 @@ import train.common.entity.zeppelin.AbstractZeppelin;
 
 public class InventoryZepp extends Container {
 	private AbstractZeppelin zepp;
-	private InventoryPlayer player;
 	private int inventorySize;
 
 	public InventoryZepp(InventoryPlayer iinventory, AbstractZeppelin entityzepp) {
 		inventorySize = 10;
-		player = iinventory;
 		zepp = entityzepp;
 		addSlotToContainer(new Slot(entityzepp, 0, 8, 53));
 		int i = 1;

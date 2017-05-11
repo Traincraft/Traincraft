@@ -26,11 +26,9 @@ public class DistilRecipes {
 	private DistilRecipes() {
 		smeltingList = new HashMap<Item, ItemStack>();
 
-		if (ConfigHandler.ORE_GEN) {
-			//Prevent copper to be distilled is set in TileEntitydistil.
-			addSmelting(Item.getItemFromBlock(BlockIDs.oreTC.block), new ItemStack(ItemIDs.diesel.item, 2), 0.5F, 1,
-					new ItemStack(ItemIDs.rawPlastic.item, 1));
-		}
+		//Prevent copper to be distilled is set in TileEntitydistil.
+		addSmelting(Item.getItemFromBlock(BlockIDs.oreTC.block), new ItemStack(ItemIDs.diesel.item, 2), 0.5F, 1,
+				new ItemStack(ItemIDs.rawPlastic.item, 1));
 		addSmelting(Items.reeds, new ItemStack(ItemIDs.diesel.item), 0.2F, 4,
 				new ItemStack(ItemIDs.rawPlastic.item, 1));
 		addSmelting(Item.getItemFromBlock(Blocks.leaves), new ItemStack(ItemIDs.diesel.item), 0.2F, 6,
