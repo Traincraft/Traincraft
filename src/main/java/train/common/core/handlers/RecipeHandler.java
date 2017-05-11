@@ -7,6 +7,8 @@
 
 package train.common.core.handlers;
 
+import java.util.ArrayList;
+
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -18,8 +20,6 @@ import train.common.inventory.TrainCraftingManager;
 import train.common.library.BlockIDs;
 import train.common.library.ItemIDs;
 import train.common.recipes.RecipesArmorDyes;
-
-import java.util.ArrayList;
 
 public class RecipeHandler {
 
@@ -41,7 +41,9 @@ public class RecipeHandler {
 		addDictRecipe(new ItemStack(BlockIDs.distilIdle.block, 1),  "###", "#F#", "###", Character.valueOf('#'), "ingotSteel", Character.valueOf('F'), ItemIDs.firebox.item );
 
 		/* Open Hearth Furnace */
-		GameRegistry.addRecipe(new ItemStack(BlockIDs.openFurnaceIdle.block, 1),  "#L#", "#B#", "#I#", Character.valueOf('#'), Blocks.nether_brick, Character.valueOf('L'), Items.lava_bucket, Character.valueOf('B'), Items.bucket, Character.valueOf('I'), Blocks.iron_block );
+		GameRegistry.addRecipe(new ItemStack(BlockIDs.openFurnaceIdle.block, 1), "#L#", "#B#", "#I#",
+				Character.valueOf('#'), Blocks.nether_brick, Character.valueOf('L'), Items.lava_bucket,
+				Character.valueOf('B'), Items.bucket, Character.valueOf('I'), Blocks.iron_block);
 
 		/* Lantern */
 		GameRegistry.addRecipe(new ItemStack(BlockIDs.lantern.block, 4),  "III", "PTP", "III", Character.valueOf('I'), Items.iron_ingot, Character.valueOf('P'), Blocks.glass_pane, Character.valueOf('T'),Blocks.torch );
@@ -309,7 +311,10 @@ public class RecipeHandler {
 	
 	public static void initSmeltingRecipes(){
 		/* OpenHearthFurnace recipes */
-		TrainCraftingManager.instance.addHearthFurnaceRecipe(new ItemStack(Items.iron_ingot), new ItemStack(ItemIDs.graphite.item), new ItemStack(ItemIDs.steel.item), 2F, 1000);
+		if (!ConfigHandler.MAKE_MODPACKS_GREAT_AGAIN) {
+			TrainCraftingManager.instance.addHearthFurnaceRecipe(new ItemStack(Items.iron_ingot),
+					new ItemStack(ItemIDs.graphite.item), new ItemStack(ItemIDs.steel.item), 2F, 1000);
+		}
 		
 		/* Vanilla Furnace recipes */
 		GameRegistry.addSmelting(new ItemStack(Item.getItemFromBlock(BlockIDs.oreTC.block), 0), OreDictionary.getOres("ingotCopper").get(0), 0.7f);
