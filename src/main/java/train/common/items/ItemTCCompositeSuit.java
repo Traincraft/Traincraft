@@ -86,29 +86,53 @@ public class ItemTCCompositeSuit extends ItemTCArmor {
 				PotionEffect blindness = player.getActivePotionEffect(Potion.blindness);
 				PotionEffect confusion = player.getActivePotionEffect(Potion.confusion);
 				if(poison!=null){
-					player.removePotionEffect(poison.getPotionID());
-					armorHelmet.damageItem(5, player);
+					if (armorHelmet.getMaxDamage()-armorHelmet.getItemDamage()>5) {
+						player.removePotionEffect(poison.getPotionID());
+						armorHelmet.damageItem(5, player);
+					} else {
+						armorHelmet.damageItem(armorHelmet.getMaxDamage()-armorHelmet.getItemDamage(), player);
+					}
 				}
 				if(wither!=null){
-					player.removePotionEffect(wither.getPotionID());
-					armorHelmet.damageItem(5, player);
+					if (armorHelmet.getMaxDamage()-armorHelmet.getItemDamage()>5) {
+						player.removePotionEffect(wither.getPotionID());
+						armorHelmet.damageItem(5, player);
+					} else {
+						armorHelmet.damageItem(armorHelmet.getMaxDamage()-armorHelmet.getItemDamage(), player);
+					}
 				}
 				if(blindness!=null){
-					player.removePotionEffect(blindness.getPotionID());
-					armorHelmet.damageItem(5, player);
+					if (armorHelmet.getMaxDamage()-armorHelmet.getItemDamage()>5) {
+						player.removePotionEffect(blindness.getPotionID());
+						armorHelmet.damageItem(5, player);
+					} else {
+						armorHelmet.damageItem(armorHelmet.getMaxDamage()-armorHelmet.getItemDamage(), player);
+					}
 				}
 				if(confusion!=null){
-					player.removePotionEffect(confusion.getPotionID());
-					armorHelmet.damageItem(5, player);
+					if (armorHelmet.getMaxDamage()-armorHelmet.getItemDamage()>5) {
+						player.removePotionEffect(confusion.getPotionID());
+						armorHelmet.damageItem(5, player);
+					} else {
+						armorHelmet.damageItem(armorHelmet.getMaxDamage()-armorHelmet.getItemDamage(), player);
+					}
 				}
 				if(player.isInWater() && player.getActivePotionEffect(Potion.waterBreathing)==null){
-					player.addPotionEffect(new PotionEffect(Potion.waterBreathing.id, 10 * 20, 0));
-					armorHelmet.damageItem(5, player);
+					if (armorHelmet.getMaxDamage()-armorHelmet.getItemDamage()>1) {
+						player.addPotionEffect(new PotionEffect(Potion.waterBreathing.id, 10 * 20, 0));
+						armorHelmet.damageItem(1, player);
+					} else {
+						armorHelmet.damageItem(armorHelmet.getMaxDamage()-armorHelmet.getItemDamage(), player);
+					}
 				}
 				//System.out.println(world.getBlockLightValue((int)player.posX, (int)player.posY+(int)player.getEyeHeight(), (int)player.posZ) +" "+world.isAirBlock((int)player.posX, (int)player.posY+(int)player.getEyeHeight(), (int)player.posZ) +" "+world.isAnyLiquid(player.boundingBox));
 				if(!world.isRemote && world.getBlockLightValue((int)player.posX, (int)player.posY+(int)player.getEyeHeight(), (int)player.posZ)<=4 && (world.isAirBlock((int)player.posX, (int)player.posY+(int)player.getEyeHeight(), (int)player.posZ)||world.isAnyLiquid(player.boundingBox)) && player.getActivePotionEffect(Potion.nightVision)==null){
+					if (armorHelmet.getMaxDamage()-armorHelmet.getItemDamage()>1) {
 						player.addPotionEffect(new PotionEffect(Potion.nightVision.id, 10 * 20, 0));
 						armorHelmet.damageItem(1, player);
+					} else {
+						armorHelmet.damageItem(armorHelmet.getMaxDamage()-armorHelmet.getItemDamage(), player);
+					}
 				}
 			}
 		}
@@ -120,8 +144,12 @@ public class ItemTCCompositeSuit extends ItemTCArmor {
 			ItemTCCompositeSuit itemarmor = (ItemTCCompositeSuit)armorChest.getItem();
 			if(itemarmor.getArmorMaterial() == Traincraft.instance.armorCompositeSuit){
 				if(player.getHealth()<player.getMaxHealth() && updateTicks%100==0){
-					player.heal(1);
-					armorChest.damageItem(1, player);
+					if (armorChest.getMaxDamage()-armorChest.getItemDamage()>1) {
+						player.heal(1);
+						armorChest.damageItem(1, player);
+					} else {
+						armorChest.damageItem(armorChest.getMaxDamage()-armorChest.getItemDamage(), player);
+					}
 				}
 			}
 		}
@@ -131,8 +159,12 @@ public class ItemTCCompositeSuit extends ItemTCArmor {
 		ItemStack armorPants = player.inventory.armorItemInSlot(1);
 		if(armorPants!=null && armorPants.getItem() instanceof ItemTCCompositeSuit){
 			if(player.isBurning()){
-				player.extinguish();
-				if(updateTicks%5==0)armorPants.damageItem(1, player);
+				if (armorChest.getMaxDamage()-armorChest.getItemDamage()>1) {
+					player.extinguish();
+					armorChest.damageItem(1, player);
+				} else {
+					armorChest.damageItem(armorChest.getMaxDamage()-armorChest.getItemDamage(), player);
+				}
 			}
 			/*if(itemarmor.getArmorMaterial() == Traincraft.instance.armorCompositeSuit && armorPants.isItemEnchantable()){
 				armorPants.addEnchantment(Enchantment.fireProtection, 3);
@@ -153,8 +185,12 @@ public class ItemTCCompositeSuit extends ItemTCArmor {
 			if(armor!=null && armor.getItem() instanceof ItemTCArmor){
 				ItemTCArmor itemarmor = (ItemTCArmor)armor.getItem();
 				if(itemarmor.getArmorMaterial() == Traincraft.instance.armorCompositeSuit){
-					event.entity.motionY+=0.05;
-					armor.damageItem(10, player);
+					if (armor.getMaxDamage()-armor.getItemDamage()>5) {
+						event.entity.motionY+=0.05;
+						armor.damageItem(5, player);
+					} else {
+						armor.damageItem(armor.getMaxDamage()-armor.getItemDamage(), player);
+					}
 				}
 			}
 		}
@@ -172,9 +208,14 @@ public class ItemTCCompositeSuit extends ItemTCArmor {
 			if(armor!=null && armor.getItem() instanceof ItemTCCompositeSuit){
 				ItemTCCompositeSuit itemarmor = (ItemTCCompositeSuit)armor.getItem();
 				if(itemarmor.getArmorMaterial() == Traincraft.instance.armorCompositeSuit){
-					int fallDamage = (int)event.distance-3;
-					if(fallDamage>0)armor.damageItem(10, player);
-					event.setCanceled(true);
+					if(event.distance-3>0){
+						if (armor.getMaxDamage()-armor.getItemDamage()>5) {
+							armor.damageItem(5, player);
+							event.setCanceled(true);
+						} else {
+							armor.damageItem(armor.getMaxDamage()-armor.getItemDamage(), player);
+						}
+					}
 				}
 			}
 		}
