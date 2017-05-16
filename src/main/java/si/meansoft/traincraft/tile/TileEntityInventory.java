@@ -1,3 +1,12 @@
+/*
+ * This file ("TileEntityInventory.java") is part of the Traincraft mod for Minecraft.
+ * It is created by all people that are listed with @author below.
+ * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
+ * You can find the source code at https://github.com/Traincraft/Traincraft
+ *
+ * © 2011-2017
+ */
+
 package si.meansoft.traincraft.tile;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -8,6 +17,11 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.wrapper.SidedInvWrapper;
+import si.meansoft.traincraft.Util;
+import si.meansoft.traincraft.compat.VanillaUtil;
 
 /**
  * @author canitzp
@@ -16,22 +30,26 @@ public class TileEntityInventory extends TileEntityBase implements ISidedInvento
 
     public ItemStack[] slots;
     public String invName;
+    public SidedInvWrapper[] invWrappers = new SidedInvWrapper[6];
 
-    public TileEntityInventory(String invName, int slotAmount){
+    public TileEntityInventory(String name, int slotAmount) {
+        super(name);
         slots = new ItemStack[slotAmount];
-        this.invName = invName;
+        this.invName = "Inventory" + name;
+        for (EnumFacing side : EnumFacing.values()) {
+            this.invWrappers[side.getIndex()] = new SidedInvWrapper(this, side);
+        }
     }
 
     @Override
     public int[] getSlotsForFace(EnumFacing side) {
-        if(this.slots.length > 0){
+        if (this.slots.length > 0) {
             int[] theInt = new int[slots.length];
-            for(int i = 0; i < theInt.length; i++){
+            for (int i = 0; i < theInt.length; i++) {
                 theInt[i] = i;
             }
             return theInt;
-        }
-        else{
+        } else {
             return new int[0];
         }
     }
@@ -51,48 +69,52 @@ public class TileEntityInventory extends TileEntityBase implements ISidedInvento
         return slots.length;
     }
 
+    //@Override
+    public boolean isEmpty() {
+        return false;
+    }
+
     @Override
     public ItemStack getStackInSlot(int index) {
-        return this.slots[index];
+        return this.slots[index] != null ? this.slots[index] : VanillaUtil.getEmpty();
     }
 
     @Override
     public ItemStack decrStackSize(int index, int count) {
-        if(slots[index] != null){
+        if (VanillaUtil.isEmpty(slots[index])) {
             ItemStack stackAt;
-            if(slots[index].stackSize <= count){
+            if (VanillaUtil.getCount(slots[index]) <= count) {
                 stackAt = slots[index];
-                slots[index] = null;
+                slots[index] = VanillaUtil.getEmpty();
                 this.markDirty();
                 return stackAt;
-            }
-            else{
+            } else {
                 stackAt = slots[index].splitStack(count);
-                if(slots[index].stackSize == 0){
-                    slots[index] = null;
+                if (VanillaUtil.getCount(slots[index]) == 0) {
+                    slots[index] = VanillaUtil.getEmpty();
                 }
                 this.markDirty();
                 return stackAt;
             }
         }
-        return null;
+        return VanillaUtil.getEmpty();
     }
 
     public void incrStackSize(int index, int count) {
-        if(slots[index] != null) {
-            this.setInventorySlotContents(index, new ItemStack(slots[index].getItem(), slots[index].stackSize + count, slots[index].getItemDamage()));
+        if (slots[index] != VanillaUtil.getEmpty()) {
+            this.setInventorySlotContents(index, new ItemStack(slots[index].getItem(), VanillaUtil.getCount(slots[index]) + count, slots[index].getItemDamage()));
         }
     }
 
     @Override
     public ItemStack removeStackFromSlot(int index) {
-        return this.slots[index] = null;
+        return this.slots[index] = VanillaUtil.getEmpty();
     }
 
 
     @Override
     public void setInventorySlotContents(int index, ItemStack stack) {
-        if(index >= 0 && index <= this.slots.length)
+        if (index >= 0 && index <= this.slots.length)
             this.slots[index] = stack;
     }
 
@@ -103,8 +125,8 @@ public class TileEntityInventory extends TileEntityBase implements ISidedInvento
 
 
     @Override
-    public boolean isUseableByPlayer(EntityPlayer player) {
-        return player.getDistanceSq(this.getPos().getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D) <= 64 && !this.isInvalid() && this.worldObj.getTileEntity(this.pos) == this;
+    public boolean isUsableByPlayer(EntityPlayer player) {
+        return player.getDistanceSq(this.getPos().getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D) <= 64 && !this.isInvalid() && this.world.getTileEntity(this.pos) == this;
     }
 
     @Override
@@ -143,6 +165,11 @@ public class TileEntityInventory extends TileEntityBase implements ISidedInvento
     }
 
     @Override
+    public String getRegisterName() {
+        return this.invName;
+    }
+
+    @Override
     public String getName() {
         return this.invName;
     }
@@ -158,48 +185,61 @@ public class TileEntityInventory extends TileEntityBase implements ISidedInvento
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound compound, boolean isForSyncing) {
-        if(!isForSyncing){
-            if(this.slots.length > 0){
+    public void writeToNBT(NBTTagCompound compound, Util.NBTType type) {
+        if (type.save()) {
+            if (this.getSizeInventory() > 0) {
                 NBTTagList tagList = new NBTTagList();
-                for(int currentIndex = 0; currentIndex < slots.length; currentIndex++){
+                for (int currentIndex = 0; currentIndex < this.getSizeInventory(); currentIndex++) {
                     NBTTagCompound tagCompound = new NBTTagCompound();
-                    tagCompound.setByte("Slot", (byte)currentIndex);
-                    if(slots[currentIndex] != null){
-                        slots[currentIndex].writeToNBT(tagCompound);
+                    tagCompound.setByte("Slot", (byte) currentIndex);
+                    if (this.getStackInSlot(currentIndex) != VanillaUtil.getEmpty()) {
+                        this.getStackInSlot(currentIndex).writeToNBT(tagCompound);
                     }
                     tagList.appendTag(tagCompound);
                 }
                 compound.setTag("Items", tagList);
             }
         }
-        super.writeToNBT(compound, isForSyncing);
+        super.writeToNBT(compound, type);
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound compound, boolean isForSyncing) {
-        super.readFromNBT(compound, isForSyncing);
-        if(!isForSyncing){
-            if(this.slots.length > 0){
+    public void readFromNBT(NBTTagCompound compound, Util.NBTType type) {
+        super.readFromNBT(compound, type);
+        if (type.save()) {
+            if (this.getSizeInventory() > 0) {
                 NBTTagList tagList = compound.getTagList("Items", 10);
-                for(int i = 0; i < tagList.tagCount(); i++){
+                for (int i = 0; i < tagList.tagCount(); i++) {
                     NBTTagCompound tagCompound = tagList.getCompoundTagAt(i);
                     byte slotIndex = tagCompound.getByte("Slot");
-                    if(slotIndex >= 0 && slotIndex < slots.length){
-                        slots[slotIndex] = ItemStack.loadItemStackFromNBT(tagCompound);
+                    if (slotIndex >= 0 && slotIndex < this.getSizeInventory()) {
+                        slots[slotIndex] = VanillaUtil.newStack(tagCompound);
                     }
                 }
             }
         }
     }
 
-    public int getNextFreeSlot(int slotIDMin, int slotIDMax){
-        for(int i = slotIDMin; i <= slotIDMax; i++){
+    public int getNextFreeSlot(int slotIDMin, int slotIDMax) {
+        for (int i = slotIDMin; i <= slotIDMax; i++) {
             ItemStack stack = getStackInSlot(i);
-            if(stack == null){
+            if (stack == VanillaUtil.getEmpty()) {
                 return i;
             }
         }
         return -1;
+    }
+
+    @Override
+    public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
+        if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+            return (T) this.invWrappers[facing.getIndex()];
+        }
+        return super.getCapability(capability, facing);
+    }
+
+    @Override
+    public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
+        return this.getCapability(capability, facing) != null;
     }
 }

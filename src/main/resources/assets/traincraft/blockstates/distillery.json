@@ -2,33 +2,45 @@
   "forge_marker": 1,
   "defaults": {
     "textures": {
-      "particle": "traincraft:blocks/distilTop",
-      "up": "traincraft:blocks/distilTop",
-      "down": "traincraft:blocks/distilBottom",
-      "north": "traincraft:blocks/distilFrontOff",
-      "east": "traincraft:blocks/distilSide",
-      "west": "traincraft:blocks/distilSide",
-      "south": "traincraft:blocks/distilSide"
+      "particle": "traincraft:blocks/distil_top",
+      "up": "traincraft:blocks/distil_top",
+      "down": "traincraft:blocks/distil_bottom",
+      "north": "traincraft:blocks/distil_front_off",
+      "east": "traincraft:blocks/distil_side",
+      "west": "traincraft:blocks/distil_side",
+      "south": "traincraft:blocks/distil_side"
     },
     "model": "cube",
     "transform": "forge:default-block"
   },
   "variants": {
     "facing": {
-      "north" : { "y" : 0 },
-      "south" : { "y" : 180 },
-      "west" : { "y" : 270 },
-      "east" : { "y" : 90 }
+      "north": {
+        "y": 0
+      },
+      "south": {
+        "y": 180
+      },
+      "west": {
+        "y": 270
+      },
+      "east": {
+        "y": 90
+      }
     },
-    "active" : {
-      "true" : {
-        "textures" : {
-          "north" : "traincraft:blocks/distilFrontOn"
+    "active": {
+      "true": {
+        "textures": {
+          "north": "traincraft:blocks/distil_front_on"
         }
       },
-      "false" :  {}
+      "false": {}
     },
-    "normal": [{}],
-    "inventory": [{}]
+    "normal": [
+      {}
+    ],
+    "inventory": [
+      {}
+    ]
   }
 }

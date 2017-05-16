@@ -1,3 +1,12 @@
+/*
+ * This file ("TileEntityCrafterBase.java") is part of the Traincraft mod for Minecraft.
+ * It is created by all people that are listed with @author below.
+ * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
+ * You can find the source code at https://github.com/Traincraft/Traincraft
+ *
+ * © 2011-2017
+ */
+
 package si.meansoft.traincraft.tile.crafter;
 
 import net.minecraft.util.ITickable;
@@ -9,25 +18,25 @@ import si.meansoft.traincraft.tile.TileEntityInventory;
 /**
  * @author canitzp
  */
-public abstract class TileEntityCrafterBase extends TileEntityInventory implements ITickable{
+public abstract class TileEntityCrafterBase extends TileEntityInventory implements ITickable {
 
-    public TileEntityCrafterBase(String name){
+    public TileEntityCrafterBase(String name) {
         super(name, 26);
     }
 
     @Override
-    public void update(){
+    public void update() {
         Recipe recipe = new Recipe(getStackInSlot(16), getStackInSlot(17), getStackInSlot(18), getStackInSlot(19), getStackInSlot(20), getStackInSlot(21), getStackInSlot(22), getStackInSlot(23), getStackInSlot(24), getStackInSlot(25));
-        switch(this.getTier()){
-            case STEAM:{
+        switch (this.getTier()) {
+            case STEAM: {
                 CrafterRecipes.craftSteam(this, recipe);
                 break;
             }
-            case DIESEL:{
+            case DIESEL: {
                 CrafterRecipes.craftDiesel(this, recipe);
                 break;
             }
-            case ELECTRO:{
+            case ELECTRO: {
                 CrafterRecipes.craftElectro(this, recipe);
                 break;
             }

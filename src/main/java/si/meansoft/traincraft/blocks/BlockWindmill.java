@@ -1,59 +1,30 @@
+/*
+ * This file ("BlockWindmill.java") is part of the Traincraft mod for Minecraft.
+ * It is created by all people that are listed with @author below.
+ * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
+ * You can find the source code at https://github.com/Traincraft/Traincraft
+ *
+ * © 2011-2017
+ */
+
 package si.meansoft.traincraft.blocks;
 
-import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import si.meansoft.traincraft.network.CommonProxy;
+import net.minecraft.util.EnumBlockRenderType;
 import si.meansoft.traincraft.tile.TileEntityWindmill;
 
 /**
  * @author canitzp
  */
-public class BlockWindmill extends BlockBase implements ITileEntityProvider{
+public class BlockWindmill extends BlockContainerBase {
 
-    public BlockWindmill(){
-        super(Material.IRON, "windmill");
-        CommonProxy.addOBJRender(TileEntityWindmill.class, new TileEntityWindmill.WindmillRenderer());
+    public BlockWindmill() {
+        super(Material.IRON, "windmill", TileEntityWindmill.class);
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
-    public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
-        return false;
-    }
-
-    @Override
-    public boolean isBlockNormalCube(IBlockState blockState) {
-        return false;
-    }
-
-    @Override
-    public boolean isOpaqueCube(IBlockState state){
-        return false;
-    }
-
-    @Override
-    public IBlockState onBlockPlaced(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer){
-        if(!world.isRemote){
-            world.setBlockState(pos, getDefaultState(), 2);
-            TileEntityWindmill te = (TileEntityWindmill) world.getTileEntity(pos);
-            if(te != null){
-                te.placeWindmill(placer.getHorizontalFacing());
-            }
-        }
-        return null;
-    }
-
-    @Override
-    public TileEntity createNewTileEntity(World worldIn, int meta){
-        return new TileEntityWindmill();
+    public EnumBlockRenderType getRenderType(IBlockState state) {
+        return EnumBlockRenderType.ENTITYBLOCK_ANIMATED;
     }
 }

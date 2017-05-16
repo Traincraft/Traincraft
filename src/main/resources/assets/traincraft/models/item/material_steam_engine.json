@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "transform": "forge:default-item",
+  "textures": {
+    "layer0": "traincraft:items/material/steam_engine"
+  }
+}

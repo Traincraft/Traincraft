@@ -1,3 +1,12 @@
+/*
+ * This file ("GuiCrafter.java") is part of the Traincraft mod for Minecraft.
+ * It is created by all people that are listed with @author below.
+ * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
+ * You can find the source code at https://github.com/Traincraft/Traincraft
+ *
+ * © 2011-2017
+ */
+
 package si.meansoft.traincraft.client.gui;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -20,10 +29,16 @@ public class GuiCrafter extends GuiContainer {
         super(container);
         this.xSize = 176;
         this.ySize = 254;
-        switch(((TileEntityCrafterBase)crafter).getTier()){
-            case STEAM: guiLoc = TraincraftResources.GUI_CRAFTERSTEAM.newGuiLocation(); break;
-            case DIESEL: guiLoc = TraincraftResources.GUI_CRAFTERDIESEL.newGuiLocation(); break;
-            case ELECTRO: guiLoc = TraincraftResources.GUI_CRAFTERELECTRO.newGuiLocation(); break;
+        switch (((TileEntityCrafterBase) crafter).getTier()) {
+            case STEAM:
+                guiLoc = TraincraftResources.GUI_CRAFTERSTEAM.newGuiLocation();
+                break;
+            case DIESEL:
+                guiLoc = TraincraftResources.GUI_CRAFTERDIESEL.newGuiLocation();
+                break;
+            case ELECTRO:
+                guiLoc = TraincraftResources.GUI_CRAFTERELECTRO.newGuiLocation();
+                break;
         }
     }
 

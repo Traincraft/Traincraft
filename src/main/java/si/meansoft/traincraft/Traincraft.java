@@ -1,24 +1,36 @@
+/*
+ * This file ("Traincraft.java") is part of the Traincraft mod for Minecraft.
+ * It is created by all people that are listed with @author below.
+ * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
+ * You can find the source code at https://github.com/Traincraft/Traincraft
+ *
+ * © 2011-2017
+ */
+
 package si.meansoft.traincraft;
 
-import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
-import net.minecraftforge.client.model.obj.OBJLoader;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.*;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
-import net.minecraftforge.fml.common.registry.*;
-import org.apache.logging.log4j.LogManager;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
 import org.apache.logging.log4j.Logger;
-import si.meansoft.traincraft.blocks.BlockBase;
+import si.meansoft.traincraft.blocks.BlockTrackStraight;
 import si.meansoft.traincraft.gen.WorldGen;
-import si.meansoft.traincraft.items.ItemBlockGeneric;
 import si.meansoft.traincraft.network.CommonProxy;
 import si.meansoft.traincraft.network.GuiHandler;
 
-@Mod(modid = Traincraft.MODID, name= Traincraft.NAME, version = Traincraft.VERSION)
+/**
+ * @author canitzp
+ */
+@Mod(modid = Traincraft.MODID, name = Traincraft.NAME, version = Traincraft.VERSION)
 public class Traincraft {
 
     public static final String MODID = "traincraft";
@@ -26,81 +38,78 @@ public class Traincraft {
     public static final String VERSION = "@VERSION@";
     public static final String CLIENTPROXY = "si.meansoft.traincraft.network.ClientProxy";
     public static final String COMMONPROXY = "si.meansoft.traincraft.network.CommonProxy";
+
     @Mod.Instance(Traincraft.MODID)
     public static Traincraft INSTANCE;
+
     @SidedProxy(clientSide = Traincraft.CLIENTPROXY, serverSide = Traincraft.COMMONPROXY)
     public static CommonProxy proxy;
-    public static Logger logger = LogManager.getLogger(NAME);
-    public static CreativeTabs tab;
 
-    static{
-        net.minecraftforge.fluids.FluidRegistry.enableUniversalBucket();
+    public static Logger logger;
+    public static CreativeTabs generalTab, trackTab;
+
+    public static Side loadedSide;
+
+    static {
+        /*
+         * To initialize the buckets for fluids, if we don't call this, we haven't buckets
+         * and this has to be called before preInit
+         */
+        FluidRegistry.enableUniversalBucket();
     }
 
     @Mod.EventHandler
-    public void preInit(FMLPreInitializationEvent evt) {
-        logger.info("[Traincraft] Let the trains out! " + NAME + ": " + VERSION + "!");
-        tab = new CreativeTabs("traincraftTab") {
+    public void preInit(FMLPreInitializationEvent event) {
+        // Get the current side, instead of calling a forge method every time. Better for performance.
+        loadedSide = event.getSide();
+        logger = event.getModLog();
+        logger.info("[Pre Initializing] Let the trains out! " + NAME + ": " + VERSION);
+        // Creating the two creative tabs for Traincraft. One for bLocks and items and the second for the rails
+        generalTab = new CreativeTabs("traincraft_general_tab") {
+            @Override
+            public ItemStack getIconItemStack() {
+                return new ItemStack(Registry.oilSand);
+            }
+
             @Override
             public Item getTabIconItem() {
-                return Item.getItemFromBlock(BlockRegistry.oilSand);
+                return null;
             }
         };
-        logger.info("Register Blocks, Items, ...");
-        BlockRegistry.preInit();
-        ItemRegistry.preInit();
-        FluidRegistry.preInit();
-        TileEntityRegistry.preInit();
+        trackTab = new CreativeTabs("traincraft_track_tab") {
+            @Override
+            public ItemStack getIconItemStack() {
+                return new ItemStack(BlockTrackStraight.block);
+            }
+
+            @Override
+            public Item getTabIconItem() {
+                return null;
+            }
+        };
+        logger.info("[Pre Initializing] Register Blocks, Items, ...");
+        Registry.preInit(event);
         GameRegistry.registerWorldGenerator(new WorldGen(), 10);
         NetworkRegistry.INSTANCE.registerGuiHandler(INSTANCE, new GuiHandler());
-        logger.info("Register Renderer!");
-        proxy.preInit(evt);
-        logger.info("[Traincraft] Finished PreInitializing!");
+        logger.info("[Pre Initializing] Register Renderer");
+        proxy.preInit(event);
+        logger.info("[Pre Initializing] Finished this phase");
     }
 
     @Mod.EventHandler
-    public void init(FMLInitializationEvent evt) {
-        logger.info("[Traincraft] Started Initializing");
+    public void init(FMLInitializationEvent event) {
+        logger.info("[Initializing] Starting phase");
+        logger.info("[Initializing] Creating recipes");
         RecipeRegistry.init();
-        proxy.init(evt);
-        logger.info("[Traincraft] Finished Initializing");
+        proxy.init(event);
+        logger.info("[Initializing] Finished phase");
     }
 
     @Mod.EventHandler
-    public void postInit(FMLPostInitializationEvent evt) {
-        logger.info("[Traincraft] Started PostInitializing");
-        proxy.postInit(evt);
-        logger.info("[Traincraft] Now you can't stop the trains!");
-    }
-
-    public static void registerBlock(Block block, String blockName){
-        registerBlock(block, blockName, true);
-    }
-
-    public static void registerBlock(Block block, String blockName, boolean defaultRender){
-        block.setUnlocalizedName(MODID + ":" + blockName);
-        block.setRegistryName(blockName);
-        block.setCreativeTab(tab);
-        ItemBlockGeneric itemBlock = new ItemBlockGeneric(block);
-        GameRegistry.register(block);
-        GameRegistry.register(itemBlock);
-        if(defaultRender){
-            CommonProxy.addForgeRender(itemBlock);
-        }
-    }
-
-    public static void registerItem(Item item, String itemName){
-        registerItem(item, itemName, true);
-    }
-
-    public static void registerItem(Item item, String itemName, boolean defaultRender){
-        item.setUnlocalizedName(MODID + ":" + itemName);
-        item.setRegistryName(itemName);
-        item.setCreativeTab(tab);
-        GameRegistry.register(item);
-        if(defaultRender){
-            CommonProxy.addForgeRender(item);
-        }
+    public void postInit(FMLPostInitializationEvent event) {
+        logger.info("[Post Initializing] Starting phase");
+        proxy.postInit(event);
+        logger.info("[Post Initializing] Nothing can stop the trains!");
     }
 
 }

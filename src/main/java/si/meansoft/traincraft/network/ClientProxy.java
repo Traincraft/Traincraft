@@ -1,77 +1,70 @@
 /*
- * Copyright (c) 2014 Mrbrutal. All rights reserved.
- * Do not modify or redistribute without written permission.
+ * This file ("ClientProxy.java") is part of the Traincraft mod for Minecraft.
+ * It is created by all people that are listed with @author below.
+ * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
+ * You can find the source code at https://github.com/Traincraft/Traincraft
  *
- * @author Mrbrutal
+ * © 2011-2017
  */
 
 package si.meansoft.traincraft.network;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.BlockRendererDispatcher;
 import net.minecraft.client.renderer.ItemMeshDefinition;
-import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.client.model.ModelLoaderRegistry;
-import net.minecraftforge.client.model.b3d.B3DLoader;
 import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import si.meansoft.traincraft.FluidRegistry;
 import si.meansoft.traincraft.Traincraft;
-import si.meansoft.traincraft.Util;
-import si.meansoft.traincraft.blocks.BlockRail;
+import si.meansoft.traincraft.client.renderer.TestVecRenderer;
+import si.meansoft.traincraft.tile.TileEntityTrack;
+import si.meansoft.traincraft.tile.TileEntityWindmill;
 
-import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author canitzp
+ */
 public class ClientProxy extends CommonProxy {
-
-    public static HashMap<BlockRail.Rails, IBakedModel> railModels = new HashMap<>();
-    private static boolean hasBaked = false;
-    public static BlockRendererDispatcher blockRenderer;
-    public static IBakedModel model;
 
     @Override
     public void preInit(FMLPreInitializationEvent event) {
-        this.registerFluidRenderer(FluidRegistry.diesel);
-        OBJLoader.INSTANCE.addDomain("traincraft");
-        B3DLoader.INSTANCE.addDomain("traincraft");
-        for(Map.Entry<ItemStack, ModelResourceLocation> entry : forgeRender.entrySet()){
-            this.registerForgeRenderer(entry.getKey(), entry.getValue());
+        OBJLoader.INSTANCE.addDomain(Traincraft.MODID);
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityWindmill.class, new TestVecRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTrack.class, new TileEntityTrack.TrackRenderer());
+        for (Fluid fluid : fluids) {
+            this.registerFluidRenderer(fluid);
         }
-        for(Map.Entry<Class<? extends TileEntity>, TileEntitySpecialRenderer> entry : objRender.entrySet()){
-            ClientRegistry.bindTileEntitySpecialRenderer(entry.getKey(), entry.getValue());
+        for (Map.Entry<ItemStack, ModelResourceLocation> entry : forgeRender.entrySet()) {
+            this.registerForgeRenderer(entry.getKey(), entry.getValue());
         }
     }
 
-    private void registerForgeRenderer(ItemStack stack, ModelResourceLocation location){
+    @Override
+    public void postInit(FMLPostInitializationEvent event) {
+        super.postInit(event);
+    }
+
+    private void registerForgeRenderer(ItemStack stack, ModelResourceLocation location) {
         ModelLoader.setCustomModelResourceLocation(stack.getItem(), stack.getItemDamage(), location);
     }
 
-    private void registerFluidRenderer(Fluid fluid){
+    private void registerFluidRenderer(Fluid fluid) {
         Block block = fluid.getBlock();
         Item item = Item.getItemFromBlock(block);
         final ModelResourceLocation loc = new ModelResourceLocation(new ResourceLocation(Traincraft.MODID, "fluids"), fluid.getName());
-        ItemMeshDefinition mesh = new ItemMeshDefinition(){
+        ItemMeshDefinition mesh = stack -> loc;
+        StateMapperBase mapper = new StateMapperBase() {
             @Override
-            public ModelResourceLocation getModelLocation(ItemStack stack){
-                return loc;
-            }
-        };
-        StateMapperBase mapper = new StateMapperBase(){
-            @Override
-            protected ModelResourceLocation getModelResourceLocation(IBlockState state){
+            protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
                 return loc;
             }
         };
@@ -79,19 +72,5 @@ public class ClientProxy extends CommonProxy {
         ModelLoader.setCustomMeshDefinition(item, mesh);
         ModelLoader.setCustomStateMapper(block, mapper);
     }
-
-    /*
-    public static void bakeAllModels(){
-        if(!hasBaked){
-            System.out.println("bake");
-            model = Util.getBakedModel(BlockRail.Rails.LONGSTRAIGHT.location);
-            blockRenderer = Minecraft.getMinecraft().getBlockRendererDispatcher();
-            for(BlockRail.Rails rail : BlockRail.Rails.values()){
-                railModels.put(rail, Util.getBakedModel(rail.location));
-            }
-            hasBaked = true;
-        }
-    }
-    */
 
 }

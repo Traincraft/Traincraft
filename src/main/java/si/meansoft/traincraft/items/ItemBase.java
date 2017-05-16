@@ -1,19 +1,49 @@
+/*
+ * This file ("ItemBase.java") is part of the Traincraft mod for Minecraft.
+ * It is created by all people that are listed with @author below.
+ * It is distributed under the Traincraft License (https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md)
+ * You can find the source code at https://github.com/Traincraft/Traincraft
+ *
+ * © 2011-2017
+ */
+
 package si.meansoft.traincraft.items;
 
 import net.minecraft.item.Item;
+import si.meansoft.traincraft.IRegistryEntry;
 import si.meansoft.traincraft.Traincraft;
+import si.meansoft.traincraft.network.CommonProxy;
 
 /**
  * @author canitzp
  */
-public class ItemBase extends Item{
+public class ItemBase extends Item implements IRegistryEntry {
 
-    public ItemBase(String name){
-        this(name, true);
+    private String name;
+
+    public ItemBase(String name, boolean defaultRenderer) {
+        this.name = name;
+        this.setCreativeTab(Traincraft.generalTab);
+        this.setUnlocalizedName(Traincraft.MODID + "." + name);
     }
 
-    public ItemBase(String name, boolean defaultRenderer){
-        Traincraft.registerItem(this, name, defaultRenderer);
+    @Override
+    public IRegistryEntry[] getRegisterElements() {
+        return new IRegistryEntry[]{this};
     }
 
+    @Override
+    public String getRegisterName() {
+        return this.name;
+    }
+
+    @Override
+    public void onRegister(IRegistryEntry[] otherEntries) {
+        CommonProxy.addForgeRender(this);
+    }
+
+    @Override
+    public void ownRegistry() {
+
+    }
 }
