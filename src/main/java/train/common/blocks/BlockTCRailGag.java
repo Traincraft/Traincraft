@@ -18,6 +18,7 @@ import train.common.Traincraft;
 import train.common.items.ItemTCRail;
 import train.common.library.BlockIDs;
 import train.common.library.Info;
+import train.common.tile.TileTCRail;
 import train.common.tile.TileTCRailGag;
 
 import java.util.List;
@@ -67,9 +68,9 @@ public class BlockTCRailGag extends Block {
 	
 	@Override
 	public void onNeighborBlockChange(World world, int i, int j, int k, Block par5) {
-		TileTCRailGag tileEntity = (TileTCRailGag) world.getTileEntity(i, j, k);
-		if (tileEntity != null) {
-			if (world.isAirBlock(tileEntity.originX, tileEntity.originY, tileEntity.originZ)) {
+		TileEntity tileEntity = world.getTileEntity(i, j, k);
+		if (tileEntity instanceof TileTCRailGag) {
+			if (world.isAirBlock(((TileTCRailGag)tileEntity).originX, ((TileTCRailGag)tileEntity).originY, ((TileTCRailGag)tileEntity).originZ)) {
 				// NOTE: func_147480_a = destroyBlock
 				world.func_147480_a(i, j, k, false);
 				world.removeTileEntity(i, j, k);
