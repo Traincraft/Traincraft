@@ -337,7 +337,6 @@ public class CollisionHandler {
 
 		double d2 = MathHelper.abs_max(d, d1);
 
-		if (d2 <= 0.7D) {
 			d2 = MathHelper.sqrt_double(d2);
 			d /= d2;
 			d1 /= d2;
@@ -408,10 +407,8 @@ public class CollisionHandler {
 								}
 							
 						}
-						//						}
 
 					}
-				}
 			}
 
 		}
