@@ -14,6 +14,8 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import train.client.core.ClientProxy;
+import train.client.core.handlers.TCKeyHandler;
 import train.common.Traincraft;
 import train.common.core.HandleMaxAttachedCarts;
 import train.common.core.handlers.ConfigHandler;
@@ -407,7 +409,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 		if (!worldObj.isRemote) {
 			if (this.riddenByEntity instanceof EntityLivingBase) {
 				EntityLivingBase entity = (EntityLivingBase) this.riddenByEntity;
-				if (entity.moveForward > 0) {
+				if (TCKeyHandler.forwards.getIsKeyPressed() || TCKeyHandler.backwards.getIsKeyPressed()) {
 					if (getFuel() > 0 && this.isLocoTurnedOn() && rand.nextInt(4) == 0 && !worldObj.isRemote) {
 						if (this.getTrainLockedFromPacket() && !((EntityPlayer) this.riddenByEntity).getDisplayName()
 								.toLowerCase().equals(this.getTrainOwner().toLowerCase())) {
@@ -416,18 +418,36 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 						if (riddenByEntity != null && riddenByEntity instanceof EntityPlayer) {
 							int dir = MathHelper
 									.floor_double((((EntityPlayer) riddenByEntity).rotationYaw * 4F) / 360F + 0.5D) & 3;
-							if (dir == 2) motionZ -= 0.01 * entity.moveForward * this.accelerate;
-							
-							if (dir == 1) motionX -= 0.01 * entity.moveForward * this.accelerate;
-							
-							if (dir == 0) motionZ += 0.01 * entity.moveForward * this.accelerate;
-							
-							if (dir == 3) motionX += 0.01 * entity.moveForward * this.accelerate;
+							if (dir == 2){
+								if (TCKeyHandler.forwards.getIsKeyPressed()) {
+									motionZ -= 0.0075 * this.accelerate;
+								} else {
+									motionZ += 0.0075 * this.accelerate;
+								}
+							} else if (dir == 0){
+								if (TCKeyHandler.forwards.getIsKeyPressed()) {
+									motionZ += 0.0075 * this.accelerate;
+								} else {
+									motionZ -= 0.0075 * this.accelerate;
+								}
+							} else if (dir == 1){
+								if (TCKeyHandler.forwards.getIsKeyPressed()) {
+									motionX -= 0.0075 * this.accelerate;
+								} else {
+									motionX += 0.0075 * this.accelerate;
+								}
+							} else if (dir == 3){
+								if (TCKeyHandler.forwards.getIsKeyPressed()) {
+									motionX += 0.0075 * this.accelerate;
+								} else {
+									motionX -= 0.0075 * this.accelerate;
+								}
+							}
 						}
 					}
-				} else if (entity.moveForward < 0) {
-					motionX *= -entity.moveForward * brake;
-					motionZ *= -entity.moveForward * brake;
+				} else if (TCKeyHandler.brake.getIsKeyPressed()) {
+					motionX *= brake *0.01;
+					motionZ *= brake *0.01;
 				}
 			}
 

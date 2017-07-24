@@ -14,6 +14,9 @@ public class TCKeyHandler
 	public static KeyBinding inventory;
 	public static KeyBinding up;
 	public static KeyBinding down;
+	public static KeyBinding forwards;
+	public static KeyBinding backwards;
+	public static KeyBinding brake;
 	public static KeyBinding idle;
 	public static KeyBinding furnace;
 	public TCKeyHandler()
@@ -30,19 +33,26 @@ public class TCKeyHandler
 		ClientRegistry.registerKeyBinding(idle);
 		furnace = new KeyBinding("key.traincraft.furnace", Keyboard.KEY_F, "key.categories.traincraft");
 		ClientRegistry.registerKeyBinding(furnace);
+
+
+		forwards = new KeyBinding("key.traincraft.forwards", Keyboard.KEY_U, "key.categories.traincraft");
+		ClientRegistry.registerKeyBinding(forwards);
+		backwards = new KeyBinding("key.traincraft.backwards", Keyboard.KEY_J, "key.categories.traincraft");
+		ClientRegistry.registerKeyBinding(backwards);
+		brake = new KeyBinding("key.traincraft.brake", Keyboard.KEY_SPACE, "key.categories.traincraft");
+		ClientRegistry.registerKeyBinding(brake);
 	}
 	@SubscribeEvent
-	public void onKeyInput(InputEvent.KeyInputEvent event)
-	{
-		if (up.getIsKeyPressed()) sendKeyControlsPacket(0);
-		if (down.getIsKeyPressed()) sendKeyControlsPacket(2);
-		if (idle.isPressed()) sendKeyControlsPacket(6);
-		if (inventory.isPressed()) sendKeyControlsPacket(7);
-		if (horn.isPressed()) sendKeyControlsPacket(8);
-		if (furnace.isPressed()) sendKeyControlsPacket(9);
+	public void onKeyInput(InputEvent.KeyInputEvent event) {
+		if (up.getIsKeyPressed()){sendKeyControlsPacket(0);}
+		if (down.getIsKeyPressed()){ sendKeyControlsPacket(2);}
+		if (idle.isPressed()){ sendKeyControlsPacket(6);}
+		if (inventory.isPressed()){ sendKeyControlsPacket(7);}
+		if (horn.isPressed()){ sendKeyControlsPacket(8);}
+		if (furnace.isPressed()){ sendKeyControlsPacket(9);}
 	}
 	
-	public static void sendKeyControlsPacket(int key)
+	private static void sendKeyControlsPacket(int key)
 	{
 		Traincraft.keyChannel.sendToServer(new PacketKeyPress(key));
 	}
