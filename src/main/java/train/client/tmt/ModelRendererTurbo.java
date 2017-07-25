@@ -882,13 +882,13 @@ public class ModelRendererTurbo extends ModelRenderer {
 
     public void postRender(float worldScale) {}
     
-    private void callDisplayList() {
+    public void callDisplayList() {
         for(int displayList : displayListArray){
             GL11.glCallList(displayList);
         }
     }
 
-    private void compileDisplayList(float worldScale) {
+    public void compileDisplayList(float worldScale) {
         Iterator<List<TexturedPolygon>> itr = textureGroup.values().iterator();
         displayListArray = new int[textureGroup.size()];
         for(int i = 0; itr.hasNext(); i++) {
@@ -909,12 +909,12 @@ public class ModelRendererTurbo extends ModelRenderer {
 
     private PositionTextureVertex vertices[] = new PositionTextureVertex[0];
     private TexturedPolygon faces[] = new TexturedPolygon[0];
-    private int textureOffsetX;
-    private int textureOffsetY;
-    private boolean compiled = false;
+    public int textureOffsetX;
+    public int textureOffsetY;
+    public boolean compiled = false;
     private int displayListArray[];
     private Map<String, TransformGroupBone> transformGroup = new HashMap<String, TransformGroupBone>();
-    private Map<String, List<TexturedPolygon>> textureGroup = new HashMap<String, List<TexturedPolygon>>();
+    public Map<String, List<TexturedPolygon>> textureGroup = new HashMap<String, List<TexturedPolygon>>();
     private TransformGroupBone currentGroup;
     private List<TexturedPolygon> currentTextureGroup;
     public boolean mirror = true;

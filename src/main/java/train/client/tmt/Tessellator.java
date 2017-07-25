@@ -14,7 +14,6 @@ import org.lwjgl.opengl.GL11;
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
-import java.nio.ShortBuffer;
 import java.util.Arrays;
 
 @SideOnly(Side.CLIENT)
@@ -51,8 +50,8 @@ public class Tessellator {
 			GL11.glPushMatrix();
 			GL11.glDisable(GL11.GL_LIGHTING);
 			GL11.glEnable(GL11.GL_BLEND);
-			GL11.glEnable(GL11.GL_ALPHA_TEST);
 			GL11.glEnable(GL11.GL_CULL_FACE);
+			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 			while (o < verts){
 				vtc = Math.min(verts - o, 0x200000 >> 5);
 				ibuf.clear(); ibuf.put(rb, o * 10, vtc * 10); bbuf.position(0); bbuf.limit(vtc * 40); o += vtc;
@@ -90,7 +89,6 @@ public class Tessellator {
 				rbs = 0; rb = null;
 			}
 			GL11.glDisable(GL11.GL_CULL_FACE);
-			GL11.glDisable(GL11.GL_ALPHA_TEST);
 			GL11.glDisable(GL11.GL_BLEND);
 			GL11.glEnable(GL11.GL_LIGHTING);
 
@@ -164,7 +162,7 @@ public class Tessellator {
 		if(i > 255){i = 255;} if(j > 255){j = 255;} if(k > 255){k = 255;} if(l > 255){l = 255;}
 		if(i < 0){i = 0;} if(j < 0){j = 0;} if(k < 0){k = 0;} if (l < 0){l = 0;}
 		hc = true;
-    }
+	}
 
 	public void disableColor() {
 		hc = false;
@@ -187,5 +185,5 @@ public class Tessellator {
 		}
 
 	}
-	
+
 }

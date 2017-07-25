@@ -2,6 +2,7 @@ package train.client.render;
 
 import net.minecraft.client.model.ModelBase;
 import train.client.render.models.*;
+import train.common.api.AbstractTrains;
 import train.common.api.EntityRollingStock;
 import train.common.entity.rollingStock.*;
 
@@ -261,7 +262,7 @@ public enum RenderEnum {
 	}, 2, true),
 	locoSteamA4Tender(EntityTenderA4.class, new ModelTenderA4(), "locoA4_UK_", true, new float[] { 0.0F, -0.44F, 0.0F }, new float[] { 0F, 90F, 0F }, null, "", 0, null, "", null, 0, false);
 
-	private Class entityClass;
+	private Class<? extends AbstractTrains> entityClass;
 	private ModelBase model;
 	private String texture;
 	private boolean multiTexture;
@@ -308,7 +309,7 @@ public enum RenderEnum {
 		this.hasSmokeOnSlopes = hasSmokeOnSlopes;
 	}
 
-	public Class getEntityClass() {
+	public Class<? extends AbstractTrains> getEntityClass() {
 		return entityClass;
 	}
 

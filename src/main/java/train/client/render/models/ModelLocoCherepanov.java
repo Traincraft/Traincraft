@@ -1,6 +1,6 @@
 package train.client.render.models;
 
-import net.minecraft.client.model.ModelBase;
+import train.client.tmt.ModelBase;
 import net.minecraft.entity.Entity;
 import train.client.render.CustomModelRenderer;
 import train.common.core.handlers.ConfigHandler;
@@ -8,183 +8,183 @@ import train.common.core.handlers.ConfigHandler;
 public class ModelLocoCherepanov extends ModelBase {
 
 	public ModelLocoCherepanov() {
-		box = new CustomModelRenderer(1, 7, 128, 64);
+		box = new CustomModelRenderer(this, 1, 7, 128, 64);
 		box.addBox(0F, 0F, 0F, 4, 2, 2);
 		box.setPosition(-21F, 6F, -1F);
 
-		box0 = new CustomModelRenderer(26, 51, 128, 64);
+		box0 = new CustomModelRenderer(this, 26, 51, 128, 64);
 		box0.addBox(0F, 0F, 0F, 34, 2, 10);
 		box0.setPosition(-17F, 6F, -5F);
 
-		box1 = new CustomModelRenderer(1, 52, 128, 64);
+		box1 = new CustomModelRenderer(this, 1, 52, 128, 64);
 		box1.addBox(0F, 0F, 0F, 10, 10, 1);
 		box1.setPosition(5F, 0F, -6F);
 
-		box10 = new CustomModelRenderer(58, 44, 128, 64);
+		box10 = new CustomModelRenderer(this, 58, 44, 128, 64);
 		box10.addBox(0F, 0F, 0F, 7, 3, 3);
 		box10.setPosition(15F, 17F, -2F);
 		box10.rotateAngleX = -3.9793506945470716F;
 		box10.rotateAngleY = -3.141592653589793F;
 
-		box11 = new CustomModelRenderer(1, 37, 128, 64);
+		box11 = new CustomModelRenderer(this, 1, 37, 128, 64);
 		box11.addBox(0F, 0F, 0F, 7, 4, 10);
 		box11.setPosition(-10F, 8F, -5F);
 
-		box12 = new CustomModelRenderer(37, 44, 128, 64);
+		box12 = new CustomModelRenderer(this, 37, 44, 128, 64);
 		box12.addBox(0F, 0F, 0F, 7, 3, 3);
 		box12.setPosition(-10F, 12F, -5F);
 		box12.rotateAngleX = -6.056292504420323F;
 
-		box13 = new CustomModelRenderer(58, 44, 128, 64);
+		box13 = new CustomModelRenderer(this, 58, 44, 128, 64);
 		box13.addBox(0F, 0F, 0F, 7, 3, 3);
 		box13.setPosition(-3F, 17F, -2F);
 		box13.rotateAngleX = -3.9793506945470716F;
 		box13.rotateAngleY = -3.141592653589793F;
 
-		box14 = new CustomModelRenderer(79, 40, 128, 64);
+		box14 = new CustomModelRenderer(this, 79, 40, 128, 64);
 		box14.addBox(0F, 0F, 0F, 7, 6, 4);
 		box14.setPosition(-10F, 11F, -2F);
 
-		box15 = new CustomModelRenderer(58, 44, 128, 64);
+		box15 = new CustomModelRenderer(this, 58, 44, 128, 64);
 		box15.addBox(0F, 0F, 0F, 7, 3, 3);
 		box15.setPosition(-10F, 17F, 2F);
 		box15.rotateAngleX = -3.9793506945470716F;
 
-		box16 = new CustomModelRenderer(37, 44, 128, 64);
+		box16 = new CustomModelRenderer(this, 37, 44, 128, 64);
 		box16.addBox(0F, 0F, 0F, 7, 3, 3);
 		box16.setPosition(-3F, 12F, 5F);
 		box16.rotateAngleX = -6.056292504420323F;
 		box16.rotateAngleY = -3.141592653589793F;
 
-		box17 = new CustomModelRenderer(76, 31, 128, 64);
+		box17 = new CustomModelRenderer(this, 76, 31, 128, 64);
 		box17.addBox(0F, 0F, 0F, 11, 4, 1);
 		box17.setPosition(8F, 16F, -2F);
 		box17.rotateAngleX = -3.839724354387525F;
 		box17.rotateAngleY = -3.141592653589793F;
 
-		box18 = new CustomModelRenderer(27, 37, 128, 64);
+		box18 = new CustomModelRenderer(this, 27, 37, 128, 64);
 		box18.addBox(0F, 0F, 0F, 11, 5, 1);
 		box18.setPosition(-3F, 8F, -4F);
 		box18.rotateAngleX = -0.10471975511965978F;
 
-		box19 = new CustomModelRenderer(27, 37, 128, 64);
+		box19 = new CustomModelRenderer(this, 27, 37, 128, 64);
 		box19.addBox(0F, 0F, 0F, 11, 5, 1);
 		box19.setPosition(8F, 8F, 4F);
 		box19.rotateAngleX = -0.10471975511965978F;
 		box19.rotateAngleY = -3.141592653589793F;
 
-		box2 = new CustomModelRenderer(0, 0, 128, 64);
+		box2 = new CustomModelRenderer(this, 0, 0, 128, 64);
 		box2.addBox(0F, 0F, 0F, 2, 2, 10);
 		box2.setPosition(9F, 4F, -5F);
 
-		box20 = new CustomModelRenderer(76, 31, 128, 64);
+		box20 = new CustomModelRenderer(this, 76, 31, 128, 64);
 		box20.addBox(0F, 0F, 0F, 11, 4, 1);
 		box20.setPosition(-3F, 16F, 2F);
 		box20.rotateAngleX = -3.839724354387525F;
 
-		box21 = new CustomModelRenderer(115, 39, 128, 64);
+		box21 = new CustomModelRenderer(this, 115, 39, 128, 64);
 		box21.addBox(0F, 0F, 0F, 3, 21, 3);
 		box21.setPosition(9F, 17F, 0F);
 		box21.rotateAngleY = -5.497787143782138F;
 
-		box22 = new CustomModelRenderer(98, 33, 128, 64);
+		box22 = new CustomModelRenderer(this, 98, 33, 128, 64);
 		box22.addBox(0F, 0F, 0F, 4, 2, 4);
 		box22.setPosition(8F, 38F, 0F);
 		box22.rotateAngleY = -5.497787143782138F;
 
-		box23 = new CustomModelRenderer(1, 52, 128, 64);
+		box23 = new CustomModelRenderer(this, 1, 52, 128, 64);
 		box23.addBox(0F, 0F, 0F, 10, 10, 1);
 		box23.setPosition(-8F, 0F, -6F);
 
-		box24 = new CustomModelRenderer(1, 52, 128, 64);
+		box24 = new CustomModelRenderer(this, 1, 52, 128, 64);
 		box24.addBox(0F, 0F, 0F, 10, 10, 1);
 		box24.setPosition(5F, 0F, 5F);
 
-		box25 = new CustomModelRenderer(1, 52, 128, 64);
+		box25 = new CustomModelRenderer(this, 1, 52, 128, 64);
 		box25.addBox(0F, 0F, 0F, 10, 10, 1);
 		box25.setPosition(-8F, 0F, 5F);
 
-		box26 = new CustomModelRenderer(1, 17, 128, 64);
+		box26 = new CustomModelRenderer(this, 1, 17, 128, 64);
 		box26.addBox(0F, 0F, 0F, 2, 7, 2);
 		box26.setPosition(-1F, 16F, -1F);
 
-		box27 = new CustomModelRenderer(114, 31, 128, 64);
+		box27 = new CustomModelRenderer(this, 114, 31, 128, 64);
 		box27.addBox(0F, 0F, 0F, 3, 1, 4);
 		box27.setPosition(3F, 16F, -2F);
 
-		box28 = new CustomModelRenderer(50, 24, 128, 64);
+		box28 = new CustomModelRenderer(this, 50, 24, 128, 64);
 		box28.addBox(0F, 0F, 0F, 2, 2, 10);
 		box28.setPosition(15F, 8F, -5F);
 
-		box29 = new CustomModelRenderer(35, 22, 128, 64);
+		box29 = new CustomModelRenderer(this, 35, 22, 128, 64);
 		box29.addBox(0F, 0F, 0F, 3, 10, 4);
 		box29.setPosition(13F, 8F, -2F);
 
-		box3 = new CustomModelRenderer(79, 40, 128, 64);
+		box3 = new CustomModelRenderer(this, 79, 40, 128, 64);
 		box3.addBox(0F, 0F, 0F, 7, 6, 4);
 		box3.setPosition(8F, 11F, -2F);
 
-		box30 = new CustomModelRenderer(25, 0, 128, 64);
+		box30 = new CustomModelRenderer(this, 25, 0, 128, 64);
 		box30.addBox(0F, 0F, 0F, 27, 9, 12);
 		box30.setPosition(-11F, 8F, -6F);
 
-		box31 = new CustomModelRenderer(100, 0, 128, 64);
+		box31 = new CustomModelRenderer(this, 100, 0, 128, 64);
 		box31.addBox(0F, 0F, 0F, 6, 4, 8);
 		box31.setPosition(-9F, 6F, -4F);
 		box31.rotateAngleZ = -0.5061454830783556F;
 
-		box32 = new CustomModelRenderer(100, 0, 128, 64);
+		box32 = new CustomModelRenderer(this, 100, 0, 128, 64);
 		box32.addBox(0F, 0F, 0F, 6, 4, 8);
 		box32.setPosition(16F, 6F, 4F);
 		box32.rotateAngleY = 3.141592653589793F;
 		box32.rotateAngleZ = 0.5061454830783556F;
 
-		box33 = new CustomModelRenderer(118, 16, 128, 64);
+		box33 = new CustomModelRenderer(this, 118, 16, 128, 64);
 		box33.addBox(0F, 0F, 0F, 2, 3, 2);
 		box33.setPosition(1F, 8F, 5F);
 		box33.rotateAngleX = -0.3490658503988659F;
 		box33.rotateAngleY = -3.141592653589793F;
 
-		box34 = new CustomModelRenderer(118, 16, 128, 64);
+		box34 = new CustomModelRenderer(this, 118, 16, 128, 64);
 		box34.addBox(0F, 0F, 0F, 2, 3, 2);
 		box34.setPosition(-1F, 8F, -5F);
 		box34.rotateAngleX = -0.3490658503988659F;
 
-		box35 = new CustomModelRenderer(97, 13, 128, 64);
+		box35 = new CustomModelRenderer(this, 97, 13, 128, 64);
 		box35.addBox(0F, 0F, 0F, 5, 2, 10);
 		box35.setPosition(1F, 8F, -5F);
 
-		box36 = new CustomModelRenderer(0, 0, 128, 64);
+		box36 = new CustomModelRenderer(this, 0, 0, 128, 64);
 		box36.addBox(0F, 0F, 0F, 2, 2, 10);
 		box36.setPosition(-4F, 4F, -5F);
 
-		box37 = new CustomModelRenderer(3, 30, 128, 64);
+		box37 = new CustomModelRenderer(this, 3, 30, 128, 64);
 		box37.addBox(0F, 0F, 0F, 7, 6, 0);
 		box37.setPosition(-17F, 8F, -5F);
 
-		box4 = new CustomModelRenderer(1, 37, 128, 64);
+		box4 = new CustomModelRenderer(this, 1, 37, 128, 64);
 		box4.addBox(0F, 0F, 0F, 7, 4, 10);
 		box4.setPosition(8F, 8F, -5F);
 
-		box5 = new CustomModelRenderer(52, 38, 128, 64);
+		box5 = new CustomModelRenderer(this, 52, 38, 128, 64);
 		box5.addBox(0F, 0F, 0F, 11, 1, 4);
 		box5.setPosition(-3F, 15F, -2F);
 
-		box6 = new CustomModelRenderer(37, 44, 128, 64);
+		box6 = new CustomModelRenderer(this, 37, 44, 128, 64);
 		box6.addBox(0F, 0F, 0F, 7, 3, 3);
 		box6.setPosition(8F, 12F, -5F);
 		box6.rotateAngleX = -6.056292504420323F;
 
-		box7 = new CustomModelRenderer(3, 30, 128, 64);
+		box7 = new CustomModelRenderer(this, 3, 30, 128, 64);
 		box7.addBox(0F, 0F, 0F, 7, 6, 0);
 		box7.setPosition(-17F, 8F, 5F);
 
-		box8 = new CustomModelRenderer(58, 44, 128, 64);
+		box8 = new CustomModelRenderer(this, 58, 44, 128, 64);
 		box8.addBox(0F, 0F, 0F, 7, 3, 3);
 		box8.setPosition(8F, 17F, 2F);
 		box8.rotateAngleX = -3.9793506945470716F;
 
-		box9 = new CustomModelRenderer(37, 44, 128, 64);
+		box9 = new CustomModelRenderer(this, 37, 44, 128, 64);
 		box9.addBox(0F, 0F, 0F, 7, 3, 3);
 		box9.setPosition(15F, 12F, 5F);
 		box9.rotateAngleX = -6.056292504420323F;
