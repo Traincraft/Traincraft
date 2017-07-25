@@ -446,8 +446,8 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 						}
 					}
 				} else if (TCKeyHandler.brake.getIsKeyPressed()) {
-					motionX *= brake *0.01;
-					motionZ *= brake *0.01;
+					motionX *= brake;
+					motionZ *= brake;
 				}
 			}
 

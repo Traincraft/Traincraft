@@ -39,7 +39,7 @@ public class TCKeyHandler
 		ClientRegistry.registerKeyBinding(forwards);
 		backwards = new KeyBinding("key.traincraft.backwards", Keyboard.KEY_J, "key.categories.traincraft");
 		ClientRegistry.registerKeyBinding(backwards);
-		brake = new KeyBinding("key.traincraft.brake", Keyboard.KEY_SPACE, "key.categories.traincraft");
+		brake = new KeyBinding("key.traincraft.brake", Keyboard.KEY_L, "key.categories.traincraft");
 		ClientRegistry.registerKeyBinding(brake);
 	}
 	@SubscribeEvent
