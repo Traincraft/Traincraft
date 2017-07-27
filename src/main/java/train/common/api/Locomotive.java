@@ -14,11 +14,13 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import org.lwjgl.input.Keyboard;
 import train.client.core.ClientProxy;
 import train.client.core.handlers.TCKeyHandler;
 import train.common.Traincraft;
 import train.common.core.HandleMaxAttachedCarts;
 import train.common.core.handlers.ConfigHandler;
+import train.common.core.network.PacketKeyPress;
 import train.common.core.network.PacketSlotsFilled;
 import train.common.library.EnumSounds;
 import train.common.library.Info;
@@ -41,6 +43,9 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 	private int slotsFilled = 0;
 	private int fuelUpdateTicks = 0;
 	public boolean isLocoTurnedOn = false;
+	private boolean forwardPressed = false;
+	private boolean backwardPressed = false;
+	private boolean brakePressed = false;
 
 	/**
 	 * state of the loco
@@ -330,6 +335,24 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 			if (i == 8 && ConfigHandler.SOUNDS) {
 				soundHorn();
 			}
+			if (i == 5){
+				forwardPressed = true;
+			}
+			if (i == 6){
+				backwardPressed = true;
+			}
+			if (i == 12){
+				brakePressed = true;
+			}
+			if (i == 13){
+				forwardPressed = false;
+			}
+			if (i == 14){
+				backwardPressed = false;
+			}
+			if (i == 15){
+				brakePressed = false;
+			}
 	}
 
 	/**
@@ -397,6 +420,32 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 
 	@Override
 	public void onUpdate() {
+
+		if (worldObj.isRemote && ticksExisted %2 ==0){
+			if (Keyboard.isKeyDown(TCKeyHandler.forwards.getKeyCode()) && ! forwardPressed){
+				Traincraft.keyChannel.sendToServer(new PacketKeyPress(5));
+				forwardPressed = true;
+			} else if (!Keyboard.isKeyDown(TCKeyHandler.forwards.getKeyCode()) && forwardPressed){
+				Traincraft.keyChannel.sendToServer(new PacketKeyPress(13));
+				forwardPressed = false;
+			}
+			if (Keyboard.isKeyDown(TCKeyHandler.backwards.getKeyCode()) && ! backwardPressed){
+				Traincraft.keyChannel.sendToServer(new PacketKeyPress(6));
+				backwardPressed = true;
+			} else if (!Keyboard.isKeyDown(TCKeyHandler.backwards.getKeyCode()) && backwardPressed){
+				Traincraft.keyChannel.sendToServer(new PacketKeyPress(14));
+				backwardPressed = false;
+			}
+			if (Keyboard.isKeyDown(TCKeyHandler.brake.getKeyCode()) && ! brakePressed){
+				Traincraft.keyChannel.sendToServer(new PacketKeyPress(12));
+				brakePressed = true;
+			} else if (!Keyboard.isKeyDown(TCKeyHandler.brake.getKeyCode()) && brakePressed){
+				Traincraft.keyChannel.sendToServer(new PacketKeyPress(15));
+				brakePressed = false;
+			}
+
+		}
+
 		// if (worldObj.isRemote) {
 		// if (updateTicks % 50 == 0) {
 		// Traincraft.brakeChannel
@@ -408,8 +457,8 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 		// }
 		if (!worldObj.isRemote) {
 			if (this.riddenByEntity instanceof EntityLivingBase) {
-				EntityLivingBase entity = (EntityLivingBase) this.riddenByEntity;
-				if (TCKeyHandler.forwards.getIsKeyPressed() || TCKeyHandler.backwards.getIsKeyPressed()) {
+				//EntityLivingBase entity = (EntityLivingBase) this.riddenByEntity;
+				if (forwardPressed || backwardPressed) {
 					if (getFuel() > 0 && this.isLocoTurnedOn() && rand.nextInt(4) == 0 && !worldObj.isRemote) {
 						if (this.getTrainLockedFromPacket() && !((EntityPlayer) this.riddenByEntity).getDisplayName()
 								.toLowerCase().equals(this.getTrainOwner().toLowerCase())) {
@@ -419,25 +468,25 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 							int dir = MathHelper
 									.floor_double((((EntityPlayer) riddenByEntity).rotationYaw * 4F) / 360F + 0.5D) & 3;
 							if (dir == 2){
-								if (TCKeyHandler.forwards.getIsKeyPressed()) {
+								if (forwardPressed) {
 									motionZ -= 0.0075 * this.accelerate;
 								} else {
 									motionZ += 0.0075 * this.accelerate;
 								}
 							} else if (dir == 0){
-								if (TCKeyHandler.forwards.getIsKeyPressed()) {
+								if (forwardPressed) {
 									motionZ += 0.0075 * this.accelerate;
 								} else {
 									motionZ -= 0.0075 * this.accelerate;
 								}
 							} else if (dir == 1){
-								if (TCKeyHandler.forwards.getIsKeyPressed()) {
+								if (forwardPressed) {
 									motionX -= 0.0075 * this.accelerate;
 								} else {
 									motionX += 0.0075 * this.accelerate;
 								}
 							} else if (dir == 3){
-								if (TCKeyHandler.forwards.getIsKeyPressed()) {
+								if (forwardPressed) {
 									motionX += 0.0075 * this.accelerate;
 								} else {
 									motionX -= 0.0075 * this.accelerate;
@@ -445,7 +494,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 							}
 						}
 					}
-				} else if (TCKeyHandler.brake.getIsKeyPressed()) {
+				} else if (brakePressed) {
 					motionX *= brake;
 					motionZ *= brake;
 				}
