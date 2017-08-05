@@ -29,6 +29,7 @@ public class ConfigHandler {
 	public static boolean ENABLE_TENDER;
 	public static boolean CHUNK_LOADING;
 	public static boolean SHOW_POSSIBLE_COLORS;
+	public static boolean ENERGYTRACK_USES_RF;
 	public static int TRAINCRAFT_VILLAGER_ID;
 	public static int WINDMILL_CHECK_RADIUS;
 	public static boolean REAL_TRAIN_SPEED;
@@ -59,6 +60,7 @@ public class ConfigHandler {
 			SHOW_POSSIBLE_COLORS_PROP.comment = "This will disable the chat messages telling you the possible colors when spawning new trains and when coloring them with dye";
 			SHOW_POSSIBLE_COLORS = SHOW_POSSIBLE_COLORS_PROP.getBoolean(true);
 			REAL_TRAIN_SPEED = cf.get(CATEGORY_GENERAL, "REAL_TRAIN_SPEED", false).getBoolean(false);
+			ENERGYTRACK_USES_RF = cf.getBoolean("ENERGYTRACK_USES_RF", CATEGORY_GENERAL, true, "Here you can define, if electric tracks should be powered by redstone (false) or use 'real' RF-power (true) [Default: true]");
 			RETROGEN_CHUNKS = cf.getBoolean("ENABLE_RETROGEN", CATEGORY_GENERAL, false, "This will generate ores in existing chunks prior to installing Traincraft 5. Do note that if this is off chunks that are loaded will not retrogen later, no matter what.");
 			MAKE_MODPACKS_GREAT_AGAIN = cf.getBoolean("MAKE_MODPACKS_GREAT_AGAIN", CATEGORY_GENERAL, false,
 					"This will disable some of Traincrafts easier recipes to balance Modpacks");
