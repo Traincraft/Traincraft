@@ -77,7 +77,7 @@ public enum EnumTrains {
 
 	/** Tenders */
 	tenderSmall("Tender Small Black",EntityTenderSmall.class, 4,ItemIDs.minecartTender.item,"tender",0,0,0.1,0,0,0,0,0,5000,new String[]{"Black","Red","Blue","Green","Yellow"},18,0,0.98,0.98,new String[] {"Water capacity: 5000mb"}),
-	//tenderHeavy("Tender Heavy",EntityTenderHeavy.class, 34,ItemIDs.minecartTenderHeavy.item,"train_tender_heavy","tender",0,0,2,0,0,0,0,0,14000,null,18,null,null,0.98,1.98,new String[] {"Water capacity: 14000mb"}),
+	tenderHeavy("Tender Heavy",EntityTenderHeavy.class, 34,ItemIDs.minecartTenderHeavy.item,"tender",0,0,2,0,0,0,0,0,14000,null,18,0,0.98,1.98,new String[] {"Water capacity: 14000mb"}),
 	tender4_4_0("Tender 4-4-0 Red",EntityTender4_4_0.class, 83,ItemIDs.minecartSteamRedTender.item,"tender",0,0,0.2,0,0,0,0,0,8000,new String[] {"Black","White","Brown","Blue","Green","Red"},18,0,0.98,0.98,new String[] {"Water capacity: 8000mb"}),
 	tenderA4("Tender A4 Mallard", EntityTenderA4.class, 54, ItemIDs.minecartLocoA4MallardTender.item,
 			"tender", 0, 0, 0.2, 0, 0, 0, 0, 0, 6000, new String[] { "Blue", "Lime", "Black", "Green", "White" }, 18,

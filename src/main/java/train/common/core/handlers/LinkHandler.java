@@ -28,7 +28,7 @@ public class LinkHandler {
 		AxisAlignedBB box2 = customBoundingBox.expand(15, 5, 15);
 
 		List lis = worldObj.getEntitiesWithinAABBExcludingEntity(entityOne, box2);
-		if(((EntityRollingStock)entityOne).bogieLoco!=null){
+		if((entityOne instanceof EntityRollingStock) && ((EntityRollingStock)entityOne).bogieLoco!=null){
 			List listBogie = worldObj.getEntitiesWithinAABBExcludingEntity(entityOne, ((EntityRollingStock)entityOne).bogieLoco.boundingBox.expand(7, 5, 7));
 			for(int i = 0; i < listBogie.size();i++ ){
 				lis.add(listBogie.get(i));
@@ -57,11 +57,13 @@ public class LinkHandler {
 
 		}
 
-		if (((AbstractTrains) entityOne).cartLinked1 != null) {
-			StakePhysic(((AbstractTrains) entityOne).cartLinked1, entityOne,1);
-		}
-		if (((AbstractTrains) entityOne).cartLinked2 != null) {
-			StakePhysic(((AbstractTrains) entityOne).cartLinked2, entityOne,2);
+		if (entityOne instanceof AbstractTrains) {
+			if (((AbstractTrains) entityOne).cartLinked1 != null) {
+				StakePhysic(((AbstractTrains) entityOne).cartLinked1, entityOne, 1);
+			}
+			if (((AbstractTrains) entityOne).cartLinked2 != null) {
+				StakePhysic(((AbstractTrains) entityOne).cartLinked2, entityOne, 2);
+			}
 		}
 	}
 
@@ -154,10 +156,12 @@ public class LinkHandler {
 	 * @param entity
 	 */
 	private void freeLink1(Entity entity) {
-		((AbstractTrains) entity).Link1 = 0;
-		((AbstractTrains) entity).cartLinked1 = null;
-		((EntityRollingStock) entity).RollingStock.clear();
-		// System.out.println("free link1 "+entity);
+		if (entity instanceof EntityRollingStock) {
+			((AbstractTrains) entity).Link1 = 0;
+			((AbstractTrains) entity).cartLinked1 = null;
+			((EntityRollingStock) entity).RollingStock.clear();
+			// System.out.println("free link1 "+entity);
+		}
 
 	}
 
@@ -167,10 +171,12 @@ public class LinkHandler {
 	 * @param entity
 	 */
 	private void freeLink2(Entity entity) {
-		((AbstractTrains) entity).Link2 = 0;
-		((AbstractTrains) entity).cartLinked2 = null;
-		((EntityRollingStock) entity).RollingStock.clear();
-		// System.out.println("free link2 "+entity);
+		if (entity instanceof EntityRollingStock) {
+			((AbstractTrains) entity).Link2 = 0;
+			((AbstractTrains) entity).cartLinked2 = null;
+			((EntityRollingStock) entity).RollingStock.clear();
+			// System.out.println("free link2 "+entity);
+		}
 	}
 
 	/**
@@ -202,12 +208,12 @@ public class LinkHandler {
 	 * Attaching to colliding carts
 	 */
 	public void addStake(Entity cart1, Entity cart2, boolean byPlayer) {
-		distanceBehindCart = ((AbstractTrains) cart1).getLinkageDistance((EntityMinecart) cart1);
 		if (worldObj.isRemote) {
 			return;
 		}
-		if (((AbstractTrains) cart2).isAttaching && (((AbstractTrains) cart1).isAttaching)) {
-			if (cart1 instanceof AbstractTrains) {
+		if (cart1 instanceof EntityRollingStock && cart2 instanceof EntityRollingStock) {
+			distanceBehindCart = ((AbstractTrains) cart1).getLinkageDistance((EntityMinecart) cart1);
+			if (((AbstractTrains) cart2).isAttaching && (((AbstractTrains) cart1).isAttaching)) {
 
 				double distancesX[] = new double[4];
 				double distancesZ[] = new double[4];
@@ -327,12 +333,12 @@ public class LinkHandler {
 					((AbstractTrains) cart1).isAttached = true;
 
 					if (((AbstractTrains) cart2).cartLinked1 != null && ((AbstractTrains) cart2).cartLinked1.train != null) {
-						((AbstractTrains) cart2).cartLinked1.allTrains.remove(((AbstractTrains) cart2).cartLinked1.train);
+						EntityRollingStock.allTrains.remove(((AbstractTrains) cart2).cartLinked1.train);
 						((AbstractTrains) cart2).cartLinked1.train.getTrains().clear();
 						//System.out.println("clearing linked 1");
 					}
 					if (((AbstractTrains) cart2).cartLinked2 != null && ((AbstractTrains) cart2).cartLinked2.train != null) {
-						((AbstractTrains) cart2).cartLinked2.allTrains.remove(((AbstractTrains) cart2).cartLinked2.train);
+						EntityRollingStock.allTrains.remove(((AbstractTrains) cart2).cartLinked2.train);
 						((AbstractTrains) cart2).cartLinked2.train.getTrains().clear();
 						//System.out.println("clearing linked 2");
 					}
@@ -355,6 +361,9 @@ public class LinkHandler {
 	 * @return
 	 */
 	public boolean areLinked(Entity cart1, Entity cart2) {
+		if (!(cart1 instanceof AbstractTrains) || !(cart2 instanceof AbstractTrains)){
+			return false;
+		}
 		// Debug purpose
 		/* System.out.println("cart1.getID() "+ ((AbstractTrains)cart1).getID()); System.out.println("cart2.getID() "+ ((AbstractTrains)cart2).getID()); System.out.println("cart1 link1 " + ((AbstractTrains)cart1).Link1); System.out.println("cart1 link2 " + ((AbstractTrains)cart1).Link2); System.out.println("cart2 link1 " + ((AbstractTrains)cart2).Link1); System.out.println("cart2 link2 " + ((AbstractTrains)cart2).Link2); */
 		/**
@@ -417,11 +426,11 @@ public class LinkHandler {
 	 * Handles the cart coupling physics
 	 */
 	private void StakePhysic(Entity cart1, Entity cart2, int linkIndex) {
-		if (cart1 instanceof AbstractTrains && cart2 instanceof AbstractTrains && ((AbstractTrains) cart2).isAttached && ((AbstractTrains) cart1).isAttached && areLinked(cart2, cart1)) {
+		if (worldObj.isRemote) {
+			return;
+		}
+		if (cart1 instanceof EntityRollingStock && cart2 instanceof EntityRollingStock && ((AbstractTrains) cart2).isAttached && ((AbstractTrains) cart1).isAttached && areLinked(cart2, cart1)) {
 
-			if (worldObj.isRemote) {
-				return;
-			}
 
 			boolean adj1 = canCartBeAdjustedBy(cart1, cart2);
 			boolean adj2 = canCartBeAdjustedBy(cart2, cart1);
@@ -575,9 +584,9 @@ public class LinkHandler {
 	}
 
 	private double limitForce(double force) {
-		return Math.copySign(Math.abs(Math.min(Math.abs((double) force), 6.0D)), (double) force);
+		return Math.copySign(Math.abs(Math.min(Math.abs(force), 6.0D)), force);
 	}
 	private double limitForce(double force, double max) {
-		return Math.copySign(Math.abs(Math.min(Math.abs((double) force), max)), (double) force);
+		return Math.copySign(Math.abs(Math.min(Math.abs(force), max)),  force);
 	}
 }

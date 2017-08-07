@@ -925,8 +925,9 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		@SuppressWarnings("rawtypes") List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, box);
 
 		if (list != null && !list.isEmpty()) {
-			for (int j1 = 0; j1 < list.size(); ++j1) {
-				Entity entity = (Entity) list.get(j1);
+			Entity entity;
+			for (Object obj : list) {
+				entity = (Entity) obj;
 
 				if (entity != this.riddenByEntity && entity.canBePushed() && entity instanceof EntityMinecart) {
 					entity.applyEntityCollision(this);
