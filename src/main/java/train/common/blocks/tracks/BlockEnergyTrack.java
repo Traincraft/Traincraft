@@ -6,18 +6,21 @@
 package train.common.blocks.tracks;
 
 import cpw.mods.fml.common.FMLCommonHandler;
+import mods.railcraft.common.blocks.tracks.TileTrack;
 import mods.railcraft.api.core.items.IToolCrowbar;
 import mods.railcraft.api.tracks.ITrackPowered;
 import net.minecraft.block.Block;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IIcon;
+import train.common.library.Tracks;
 import train.common.api.ElectricTrain;
 import train.common.api.EntityRollingStock;
-import train.common.library.Tracks;
+import train.common.core.handlers.ConfigHandler;
 import cofh.api.energy.IEnergyHandler;
 import cofh.api.energy.IEnergyProvider;
 import cofh.api.energy.IEnergyReceiver;
@@ -39,6 +42,7 @@ public class BlockEnergyTrack extends TrackBaseTraincraft implements ITrackPower
 	private Block thisBlock;
 	private int updateTicks = 0;
 	protected boolean powered = false;
+    private static ForgeDirection[] dirMap = new ForgeDirection[] {ForgeDirection.WEST, ForgeDirection.EAST, ForgeDirection.NORTH, ForgeDirection.SOUTH}; 
 	
 	public BlockEnergyTrack() {
 		this.speedController = SpeedControllerSteel.getInstance();
@@ -66,18 +70,72 @@ public class BlockEnergyTrack extends TrackBaseTraincraft implements ITrackPower
 			return;
 		}
 		updateTicks++;
-        /*
-		if (isPowered() && updateTicks % 2==0) {
-			if(this.getEnergy()<this.getMaxEnergy())
-				this.energy++;
+
+        if(!ConfigHandler.ENERGYTRACK_USES_RF)
+        {
+		    if (isPowered() && updateTicks % 2==0) {
+			    if(this.getEnergy()<this.getMaxEnergy())
+				    this.energy++;
+		    }
+		    
+            if (updateTicks % 50 == 0)
+			    markBlockNeedsUpdate();
+
+            return;
 		}
-        */
-        if(this.updateTicks % 10 == 0) {
+
+        if(this.updateTicks % 10 == 0)
+        {
            if(this.maxEnergy > this.energy)
-             if(this.getWorld().getTileEntity(this.getX(),this.getY()-1, this.getZ()) instanceof IEnergyProvider) {
+             if(this.getWorld().getTileEntity(this.getX(),this.getY()-1, this.getZ()) instanceof IEnergyProvider)
+             {
                 this.receiveEnergy(ForgeDirection.UP,((IEnergyProvider)this.getWorld().getTileEntity(this.getX(),this.getY()-1, this.getZ())).extractEnergy(ForgeDirection.UP,100,false),false);
              }
+           int x=this.getX();
+           int y=this.getY();
+           int z=this.getZ();
+           int ener1 = 0;
+           int ener2 = 0;
+           for(int[] pos : new int[][] {{x-1,z,1},{x+1,z,0},{x,z-1,3},{x,z+1,2}})
+             if(this.maxEnergy > this.energy)
+             {
+               if(this.getWorld().getTileEntity(pos[0],y, pos[1]) instanceof IEnergyProvider)
+                 ener1 = ((IEnergyProvider)this.getWorld().getTileEntity(pos[0], y, pos[1])).extractEnergy(dirMap[pos[2]],100,false);
+               if(this.getWorld().getTileEntity(pos[0],y-1, pos[1]) instanceof IEnergyProvider)
+                 ener2 = ((IEnergyProvider)this.getWorld().getTileEntity(pos[0], y-1, pos[1])).extractEnergy(dirMap[pos[2]],100,false);
+               this.receiveEnergy(ForgeDirection.UP,ener1+ener2,false);
+             }
+             else break;
+
+           for(int[] pos : new int[][] {{x-1,z},{x+1,z},{x,z-1},{x,z+1}})
+           {
+               TileEntity te = (TileEntity)(this.getWorld().getTileEntity(pos[0],y, pos[1]));
+               if(te != null && te instanceof TileTrack && ((TileTrack)te).getTrackInstance() instanceof BlockEnergyTrack)
+                 if((int)((BlockEnergyTrack)((TileTrack)te).getTrackInstance()).energy - (int) this.energy > 1)
+                 {
+                    double diff = (((BlockEnergyTrack)((TileTrack)te).getTrackInstance()).energy - this.energy) / 2.0;
+                    this.energy += diff;
+                    ((BlockEnergyTrack)((TileTrack)te).getTrackInstance()).energy -= diff;
+                 }
+               te = (TileEntity)(this.getWorld().getTileEntity(pos[0],y-1, pos[1]));
+               if(te != null && te instanceof TileTrack && ((TileTrack)te).getTrackInstance() instanceof BlockEnergyTrack)
+                 if((int)((BlockEnergyTrack)((TileTrack)te).getTrackInstance()).energy - (int) this.energy > 1)
+                 {
+                    double diff = (((BlockEnergyTrack)((TileTrack)te).getTrackInstance()).energy - this.energy) / 2.0;
+                    this.energy += diff;
+                    ((BlockEnergyTrack)((TileTrack)te).getTrackInstance()).energy -= diff;
+                 }
+               te = (TileEntity)(this.getWorld().getTileEntity(pos[0],y+1, pos[1]));
+               if(te != null && te instanceof TileTrack && ((TileTrack)te).getTrackInstance() instanceof BlockEnergyTrack)
+                 if((int)((BlockEnergyTrack)((TileTrack)te).getTrackInstance()).energy - (int) this.energy > 1)
+                 {
+                    double diff = (((BlockEnergyTrack)((TileTrack)te).getTrackInstance()).energy - this.energy) / 2.0;
+                    this.energy += diff;
+                    ((BlockEnergyTrack)((TileTrack)te).getTrackInstance()).energy -= diff;
+                 }
+           }          
         }
+
 		if (updateTicks % 50 == 0)
 			markBlockNeedsUpdate();
 	}
