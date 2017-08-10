@@ -6,7 +6,7 @@
 package train.common.blocks.tracks;
 
 import cpw.mods.fml.common.FMLCommonHandler;
-import mods.railcraft.common.blocks.tracks.TileTrack;
+import mods.railcraft.api.tracks.ITrackTile;
 import mods.railcraft.api.core.items.IToolCrowbar;
 import mods.railcraft.api.tracks.ITrackPowered;
 import net.minecraft.block.Block;
@@ -110,28 +110,28 @@ public class BlockEnergyTrack extends TrackBaseTraincraft implements ITrackPower
            for(int[] pos : new int[][] {{x-1,z},{x+1,z},{x,z-1},{x,z+1}})
            {
                TileEntity te = (TileEntity)(this.getWorld().getTileEntity(pos[0],y, pos[1]));
-               if(te != null && te instanceof TileTrack && ((TileTrack)te).getTrackInstance() instanceof BlockEnergyTrack)
-                 if((int)((BlockEnergyTrack)((TileTrack)te).getTrackInstance()).energy - (int) this.energy > 1)
+               if(te != null && te instanceof ITrackTile && ((ITrackTile)te).getTrackInstance() instanceof BlockEnergyTrack)
+                 if((int)((BlockEnergyTrack)((ITrackTile)te).getTrackInstance()).energy - (int) this.energy > 1)
                  {
-                    double diff = (((BlockEnergyTrack)((TileTrack)te).getTrackInstance()).energy - this.energy) / 2.0;
+                    double diff = (((BlockEnergyTrack)((ITrackTile)te).getTrackInstance()).energy - this.energy) / 2.0;
                     this.energy += diff;
-                    ((BlockEnergyTrack)((TileTrack)te).getTrackInstance()).energy -= diff;
+                    ((BlockEnergyTrack)((ITrackTile)te).getTrackInstance()).energy -= diff;
                  }
                te = (TileEntity)(this.getWorld().getTileEntity(pos[0],y-1, pos[1]));
-               if(te != null && te instanceof TileTrack && ((TileTrack)te).getTrackInstance() instanceof BlockEnergyTrack)
-                 if((int)((BlockEnergyTrack)((TileTrack)te).getTrackInstance()).energy - (int) this.energy > 1)
+               if(te != null && te instanceof ITrackTile && ((ITrackTile)te).getTrackInstance() instanceof BlockEnergyTrack)
+                 if((int)((BlockEnergyTrack)((ITrackTile)te).getTrackInstance()).energy - (int) this.energy > 1)
                  {
-                    double diff = (((BlockEnergyTrack)((TileTrack)te).getTrackInstance()).energy - this.energy) / 2.0;
+                    double diff = (((BlockEnergyTrack)((ITrackTile)te).getTrackInstance()).energy - this.energy) / 2.0;
                     this.energy += diff;
-                    ((BlockEnergyTrack)((TileTrack)te).getTrackInstance()).energy -= diff;
+                    ((BlockEnergyTrack)((ITrackTile)te).getTrackInstance()).energy -= diff;
                  }
                te = (TileEntity)(this.getWorld().getTileEntity(pos[0],y+1, pos[1]));
-               if(te != null && te instanceof TileTrack && ((TileTrack)te).getTrackInstance() instanceof BlockEnergyTrack)
-                 if((int)((BlockEnergyTrack)((TileTrack)te).getTrackInstance()).energy - (int) this.energy > 1)
+               if(te != null && te instanceof ITrackTile && ((ITrackTile)te).getTrackInstance() instanceof BlockEnergyTrack)
+                 if((int)((BlockEnergyTrack)((ITrackTile)te).getTrackInstance()).energy - (int) this.energy > 1)
                  {
-                    double diff = (((BlockEnergyTrack)((TileTrack)te).getTrackInstance()).energy - this.energy) / 2.0;
+                    double diff = (((BlockEnergyTrack)((ITrackTile)te).getTrackInstance()).energy - this.energy) / 2.0;
                     this.energy += diff;
-                    ((BlockEnergyTrack)((TileTrack)te).getTrackInstance()).energy -= diff;
+                    ((BlockEnergyTrack)((ITrackTile)te).getTrackInstance()).energy -= diff;
                  }
            }          
         }
