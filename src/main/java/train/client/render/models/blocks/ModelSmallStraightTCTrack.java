@@ -45,7 +45,8 @@ public class ModelSmallStraightTCTrack extends ModelBase {
 		}
 		if (type.equals("crossing")) {
 			FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_roadcrossing.png"));
-		}		GL11.glColor3f(1, 1, 1);
+		}		
+		GL11.glColor3f(1, 1, 1);
 		//GL11.glScalef(0.5f, 0.5f, 0.5f);
 		int facing = tcRail.getWorldObj().getBlockMetadata(tcRail.xCoord, tcRail.yCoord, tcRail.zCoord);
 
