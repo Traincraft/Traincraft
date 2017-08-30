@@ -182,6 +182,8 @@ public enum ItemIDs {
 	tcRailMediumStraight("ItemTCRail", "item_rail_straight_medium", 5),
 	tcRailLongStraight("ItemTCRail", "item_rail_straight_large", 5),
 	tcRailSmallRoadCrossing("ItemTCRail", "item_rail_small_road_crossing", 5),
+	tcRailSmallRoadCrossing1("ItemTCRail", "item_rail_small_road_crossing_1", 5),
+	tcRailSmallRoadCrossing2("ItemTCRail", "item_rail_small_road_crossing_2", 5),
 
 	tcRailMediumTurn("ItemTCRail", "item_rail_turn_medium", 5),
 	tcRailLargeTurn("ItemTCRail", "item_rail_turn_large", 5),

@@ -9,6 +9,7 @@ import train.common.tile.TileTCRail;
 public class RenderTCRail extends TileEntitySpecialRenderer {
 
 	private ModelSmallStraightTCTrack modelSmallStraight = new ModelSmallStraightTCTrack();
+	private ModelSmallStraightTCTrack modelRoadCrossing = new ModelSmallStraightTCTrack();
 	private ModelMediumStraightTCTrack modelMediumStraight = new ModelMediumStraightTCTrack();
 	private ModelRightTurnTCTrack modelRightTurn = new ModelRightTurnTCTrack();
 	private ModelLeftTurnTCTrack modelLeftTurn = new ModelLeftTurnTCTrack();
@@ -36,7 +37,13 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 					modelSmallStraight.render("straight", railTile, x, y, z);
 				}
 				if (ItemTCRail.TrackTypes.SMALL_ROAD_CROSSING.getLabel().equals(type)) {
-					modelSmallStraight.render("crossing", railTile, x, y, z);
+					modelRoadCrossing.render("crossing", railTile, x, y, z);
+				}
+				if (ItemTCRail.TrackTypes.SMALL_ROAD_CROSSING_1.getLabel().equals(type)) {
+					modelRoadCrossing.render("crossing1", railTile, x, y, z);
+				}
+				if (ItemTCRail.TrackTypes.SMALL_ROAD_CROSSING_2.getLabel().equals(type)) {
+					modelRoadCrossing.render("crossing2", railTile, x, y, z);
 				}
 				else if (ItemTCRail.TrackTypes.TWO_WAYS_CROSSING.getLabel().equals(type)) {
 					modelTwoWaysCrossing.render(x, y, z);
