@@ -35,15 +35,18 @@ public class BlockDetectorAllLocomotiveTrack extends BlockDetectorTrack implemen
 			IToolCrowbar crowbar = (IToolCrowbar) current.getItem();
 			if (crowbar.canWhack(player, current, getX(), getY(), getZ())) {
 				this.ThingToSet += 3;
-				if (ThingToSet > 6)ThingToSet = 0;
+				if (ThingToSet > 9)ThingToSet = 0;
 				if (ThingToSet == 0) {
-					player.addChatMessage(new ChatComponentText("Now set to emit a signal on all Electric Trains"));	
+					player.addChatMessage(new ChatComponentText("Now set to emit a signal on all electric trains"));	
 				}
 				if (ThingToSet == 3) {
-					player.addChatMessage(new ChatComponentText("Now set to emit a signal on all Diesel Trains"));
+					player.addChatMessage(new ChatComponentText("Now set to emit a signal on all diesel trains"));
 				}
 				if (ThingToSet == 6) {
-					player.addChatMessage(new ChatComponentText("Now set to emit a signal on all Steam Trains"));
+					player.addChatMessage(new ChatComponentText("Now set to emit a signal on all steam trains"));
+				}
+				if (ThingToSet == 9) {
+						player.addChatMessage(new ChatComponentText("Now set to emit a signal on all trains"));
 				}
 				crowbar.onWhack(player, current, getX(), getY(), getZ());
 				sendUpdateToClient();
@@ -69,6 +72,11 @@ public class BlockDetectorAllLocomotiveTrack extends BlockDetectorTrack implemen
 		}
 			if (ThingToSet == 6) {
 				if ( cart instanceof SteamTrain) {
+					setTrackPowering();	
+				}
+			}
+		if (ThingToSet == 9) {
+				if ( cart instanceof Locomotive) {
 					setTrackPowering();	
 				}
 			}
