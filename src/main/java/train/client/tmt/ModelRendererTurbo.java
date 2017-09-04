@@ -861,11 +861,11 @@ public class ModelRendererTurbo extends ModelRenderer {
         GL11.glTranslatef(rotationPointX * worldScale, rotationPointY * worldScale, rotationPointZ * worldScale);
 
         if(invertYZ){
-            GL11.glRotatef(rotateAngleZ * degreesF, 0.0F, 0.0F, 1.0F);
+            GL11.glRotatef(-rotateAngleZ * degreesF, 0.0F, 0.0F, 1.0F);
             GL11.glRotatef(-rotateAngleY * degreesF, 0.0F, 1.0F, 0.0F);
         } else{
             GL11.glRotatef(-rotateAngleY * degreesF, 0.0F, 1.0F, 0.0F);
-            GL11.glRotatef(rotateAngleZ * degreesF, 0.0F, 0.0F, 1.0F);
+            GL11.glRotatef(-rotateAngleZ * degreesF, 0.0F, 0.0F, 1.0F);
         }
         GL11.glRotatef(rotateAngleX * degreesF, 1.0F, 0.0F, 0.0F);
         callDisplayList();

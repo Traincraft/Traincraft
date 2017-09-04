@@ -89,6 +89,7 @@ public enum ItemIDs {
 	minecartTankWagon("ItemRollingStock", "train_tank_us", 5),
 	minecartJukeBoxCart("ItemRollingStock", "train_jukebox", 10),
 	minecartStockCar("ItemRollingStock", "train_stock", 10),
+	minecartDRWGStockCar("ItemRollingStock", "train_stock_drwg", 10),
 	minecartCabooseWork("ItemRollingStock", "train_caboose_work", 3),
 	minecartPassenger5("ItemRollingStock", "train_passenger_2", 2),
 	minecartTankWagon2("ItemRollingStock", "train_tank_blue", 5),

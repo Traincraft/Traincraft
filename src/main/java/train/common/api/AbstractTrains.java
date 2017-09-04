@@ -19,6 +19,7 @@ import net.minecraft.world.ChunkCoordIntPair;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeChunkManager;
 import net.minecraftforge.common.ForgeChunkManager.Ticket;
+import train.client.render.RenderEnum;
 import train.common.Traincraft;
 import train.common.core.handlers.ConfigHandler;
 import train.common.core.handlers.RollingStockStatsEventHandler;
@@ -122,6 +123,11 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 	 * supposed to store the last ID given;
 	 */
 	public static int uniqueIDs = 1;
+
+	/**
+	 * cached value for the render data so we don't have to iterate the enum every frame.
+	 */
+	public RenderEnum renderData = null;
 
 	/**
 	 * The distance this train has traveled

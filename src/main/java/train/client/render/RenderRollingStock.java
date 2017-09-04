@@ -9,6 +9,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Vec3;
 import org.lwjgl.opengl.GL11;
+import train.common.api.AbstractTrains;
 import train.common.api.EntityRollingStock;
 import train.common.api.Locomotive;
 import train.common.entity.rollingStock.EntityTracksBuilder;
@@ -216,36 +217,45 @@ public class RenderRollingStock extends Render {
 			angle = Math.copySign(angle, cart.getRollingDirection());
 			GL11.glRotatef(angle, 1.0F, 0.0F, 0.0F);
 		}
-		for (RenderEnum renders : RenderEnum.values()) {
-			if (renders.getEntityClass() != null && renders.getEntityClass().equals(cart.getClass())) {
-				//loadTexture(getTextureFile(renders.getTexture(), renders.getIsMultiTextured(), cart));
-				bindEntityTexture(cart);
-				GL11.glTranslatef(renders.getTrans()[0], renders.getTrans()[1], renders.getTrans()[2]);
-				if (renders.getRotate() != null) {
-					GL11.glRotatef(renders.getRotate()[0], 1.0F, 0.0F, 0.0F);
-					GL11.glRotatef(renders.getRotate()[1], 0.0F, 1.0F, 0.0F);
-					GL11.glRotatef(renders.getRotate()[2], 0.0F, 0.0F, 1.0F);
-				}
-				if (renders.getScale() != null) {
-					GL11.glScalef(renders.getScale()[0], renders.getScale()[1], renders.getScale()[2]);
-				}
-				renders.getModel().render(cart, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
 
-				if (renders.hasSmoke()) {
-					if (cart.bogieLoco != null) {// || cart.bogieUtility[0]!=null){
-						renderSmokeFX(cart, 90 + cart.rotationYawClientReal, (float) cart.anglePitchClient, renders.getSmokeType(), renders.getSmokeFX(), renders.getSmokeIterations(), time, renders.hasSmokeOnSlopes());
-					}
-					else {
-						renderSmokeFX(cart, (yaw), pitch, renders.getSmokeType(), renders.getSmokeFX(), renders.getSmokeIterations(), time, renders.hasSmokeOnSlopes());
-					}
+		if (cart.renderData == null){
+			for (RenderEnum renders : RenderEnum.values()) {
+				if (renders.getEntityClass() != null && renders.getEntityClass().equals(cart.getClass())) {
+					cart.renderData = renders;
 				}
-				if (renders.hasExplosion()) {
-					if (cart.bogieLoco != null) {// || cart.bogieUtility[0]!=null){
-						renderExplosionFX(cart, 90 + cart.rotationYawClientReal, (float) cart.anglePitchClient, renders.getExplosionType(), renders.getExplosionFX(), renders.getExplosionFXIterations(), renders.hasSmokeOnSlopes());
-					}
-					else {
-						renderExplosionFX(cart, yaw, pitch, renders.getExplosionType(), renders.getExplosionFX(), renders.getExplosionFXIterations(), renders.hasSmokeOnSlopes());
-					}
+			}
+		}
+
+		if (cart.renderData != null) {
+			//loadTexture(getTextureFile(renders.getTexture(), renders.getIsMultiTextured(), cart));
+			bindEntityTexture(cart);
+			GL11.glTranslatef(cart.renderData.getTrans()[0], cart.renderData.getTrans()[1], cart.renderData.getTrans()[2]);
+			if (cart.renderData.getRotate() != null) {
+				GL11.glRotatef(cart.renderData.getRotate()[0], 1.0F, 0.0F, 0.0F);
+				GL11.glRotatef(cart.renderData.getRotate()[1], 0.0F, 1.0F, 0.0F);
+				GL11.glRotatef(cart.renderData.getRotate()[2], 0.0F, 0.0F, 1.0F);
+			}
+			if (cart.renderData.getScale() != null) {
+				GL11.glScalef(cart.renderData.getScale()[0], cart.renderData.getScale()[1], cart.renderData.getScale()[2]);
+			}
+			cart.renderData.getModel().render(cart, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
+
+			if (cart.renderData.hasSmoke()) {
+				if (cart.bogieLoco != null) {// || cart.bogieUtility[0]!=null){
+					renderSmokeFX(cart, 90 + cart.rotationYawClientReal, (float) cart.anglePitchClient,
+							cart.renderData.getSmokeType(), cart.renderData.getSmokeFX(), cart.renderData.getSmokeIterations(), time, cart.renderData.hasSmokeOnSlopes());
+				}
+				else {
+					renderSmokeFX(cart, (yaw), pitch, cart.renderData.getSmokeType(), cart.renderData.getSmokeFX(), cart.renderData.getSmokeIterations(), time, cart.renderData.hasSmokeOnSlopes());
+				}
+			}
+			if (cart.renderData.hasExplosion()) {
+				if (cart.bogieLoco != null) {// || cart.bogieUtility[0]!=null){
+					renderExplosionFX(cart, 90 + cart.rotationYawClientReal, (float) cart.anglePitchClient, cart.renderData.getExplosionType(),
+							cart.renderData.getExplosionFX(), cart.renderData.getExplosionFXIterations(), cart.renderData.hasSmokeOnSlopes());
+				}
+				else {
+					renderExplosionFX(cart, yaw, pitch, cart.renderData.getExplosionType(), cart.renderData.getExplosionFX(), cart.renderData.getExplosionFXIterations(), cart.renderData.hasSmokeOnSlopes());
 				}
 			}
 		}
@@ -344,8 +354,18 @@ public class RenderRollingStock extends Render {
 
 	@Override
 	protected ResourceLocation getEntityTexture(Entity entity) {
-		for (RenderEnum renders : RenderEnum.values()) {
-			if (renders.getEntityClass() != null && renders.getEntityClass().equals(entity.getClass())) { return getResourceFile(renders.getTexture(), renders.getIsMultiTextured(), (EntityRollingStock) entity); }
+		if (entity instanceof EntityRollingStock){
+			EntityRollingStock transport = (EntityRollingStock) entity;
+			if (transport.renderData == null){
+				for (RenderEnum renders : RenderEnum.values()) {
+					if (renders.getEntityClass() != null && renders.getEntityClass().equals(entity.getClass())) {
+						((AbstractTrains) entity).renderData = renders;
+						return getResourceFile(renders.getTexture(), renders.getIsMultiTextured(), (EntityRollingStock) entity);
+					}
+				}
+			} else {
+				return getResourceFile(transport.renderData.getTexture(), transport.renderData.getIsMultiTextured(), transport);
+			}
 		}
 		return null;
 	}
