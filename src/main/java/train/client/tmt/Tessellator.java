@@ -4,17 +4,24 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GLAllocation;
-import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.texture.ITextureObject;
 import net.minecraft.client.renderer.texture.SimpleTexture;
 import net.minecraft.client.renderer.texture.TextureUtil;
 import net.minecraft.util.ResourceLocation;
+import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.URL;
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import java.util.Arrays;
+
+import static org.lwjgl.opengl.GL11.GL_TEXTURE_2D;
 
 @SideOnly(Side.CLIENT)
 public class Tessellator {
@@ -162,28 +169,80 @@ public class Tessellator {
 		if(i > 255){i = 255;} if(j > 255){j = 255;} if(k > 255){k = 255;} if(l > 255){l = 255;}
 		if(i < 0){i = 0;} if(j < 0){j = 0;} if(k < 0){k = 0;} if (l < 0){l = 0;}
 		hc = true;
-	}
+    }
 
 	public void disableColor() {
 		hc = false;
 	}
 
+
+
 	public static void bindTexture(ResourceLocation textureURI) {
-		ITextureObject object;
-		if (textureURI != null) {
-			object = Minecraft.getMinecraft().getTextureManager().getTexture(textureURI);
-			if (object == null) {
-				object = new SimpleTexture(textureURI);
-				Minecraft.getMinecraft().getTextureManager().loadTexture(textureURI, object);
-			}
-		} else {
-			object = TextureUtil.missingTexture;
-		}
-
-		if (GL11.glGetInteger(GL11.GL_TEXTURE_BINDING_2D) != object.getGlTextureId()) {
-			GL11.glBindTexture(GL11.GL_TEXTURE_2D, object.getGlTextureId());
-		}
-
+		new threadedTextureLoader(textureURI).run();
 	}
 
+	public static class threadedTextureLoader implements Runnable{
+		private final ResourceLocation textureURI;
+		public threadedTextureLoader(ResourceLocation texture){
+			textureURI = texture;
+		}
+		@Override
+		public void run() {
+			ITextureObject object;
+			if (textureURI != null) {
+				object = Minecraft.getMinecraft().getTextureManager().getTexture(textureURI);
+				if (object == null) {
+					object = new SimpleTexture(textureURI);
+					Minecraft.getMinecraft().getTextureManager().loadTexture(textureURI, object);
+				}
+			} else {
+				object = TextureUtil.missingTexture;
+			}
+
+			if (GL11.glGetInteger(GL11.GL_TEXTURE_BINDING_2D) != object.getGlTextureId()) {
+				GL11.glBindTexture(GL_TEXTURE_2D, object.getGlTextureId());
+			}
+		}
+	}
+
+	/**EXPERIMENTAL CODE
+	 * this is an experimental texture loader for external files, use should be
+	 * @param file "images/image.png"
+	 */
+	private void loadExternalTexture(String file) {
+		IntBuffer i = BufferUtils.createIntBuffer(1);
+		GL11.glGenTextures(i);
+		int id =  i.get(0);
+		GL11.glBindTexture(GL11.GL_TEXTURE_2D, id);
+		try {
+			//get the image file
+			URL url = this.getClass().getResource( file);
+			BufferedImage image = ImageIO.read(url);
+			ByteBuffer imageData = loadTexture(image);
+			//set the currently bound texture to the image we loaded
+			GL11.glTexImage2D(GL11.GL_TEXTURE_2D,0,GL11.GL_RGBA, image.getWidth(),image.getHeight(),0,GL11.GL_RGBA,GL11.GL_UNSIGNED_BYTE,imageData);
+			//add extra effects, and define filtering
+			GL11.glTexParameteri(GL11.GL_TEXTURE_2D,GL11.GL_TEXTURE_MAG_FILTER,GL11.GL_NEAREST);
+			GL11.glTexParameteri(GL11.GL_TEXTURE_2D,GL11.GL_TEXTURE_MIN_FILTER,GL11.GL_NEAREST);
+			GL11.glTexEnvi(GL11.GL_TEXTURE_ENV, GL11.GL_TEXTURE_ENV_MODE, GL11.GL_MODULATE);
+		} catch (IOException e){
+			System.out.println("Failed to load image " + file);
+		}
+	}
+	/**EXPERIMENTAL CODE
+	 * this is an experimental texture loader for external files, do not call this directly, instead use
+	 * @see #loadExternalTexture(String)
+	 */
+	protected ByteBuffer loadTexture(BufferedImage image) {
+		BufferedImage img = new BufferedImage(image.getWidth(),image.getHeight(),image.getColorModel().getNumComponents() == 3? BufferedImage.TYPE_3BYTE_BGR: BufferedImage.TYPE_4BYTE_ABGR);
+		Graphics2D g = img.createGraphics();
+		g.scale(1,-1);
+		g.drawImage(image, 0, -image.getHeight(), null);
+		byte[] data = new byte[image.getColorModel().getNumComponents() * image.getWidth() * image.getHeight()];
+		img.getRaster().getDataElements(0, 0, image.getWidth(), image.getHeight(), data);
+		ByteBuffer pixels = BufferUtils.createByteBuffer(data.length);
+		pixels.put(data).rewind();
+		return pixels;
+	}
+	
 }

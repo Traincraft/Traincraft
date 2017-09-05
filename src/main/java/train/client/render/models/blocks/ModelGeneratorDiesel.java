@@ -7,9 +7,9 @@
 
 package train.client.render.models.blocks;
 
-import train.client.tmt.ModelBase;
 import org.lwjgl.opengl.GL11;
 import train.client.render.CustomModelRenderer;
+import train.client.tmt.ModelBase;
 
 public class ModelGeneratorDiesel extends ModelBase {
 

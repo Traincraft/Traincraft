@@ -9,7 +9,6 @@ public class ModelBase extends net.minecraft.client.model.ModelBase {
 
 	public ModelRendererTurbo baseModel[] = new ModelRendererTurbo[0];
 
-	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
 		for(ModelRendererTurbo mrt : baseModel){
 			mrt.render(f5);
@@ -22,9 +21,6 @@ public class ModelBase extends net.minecraft.client.model.ModelBase {
 	}
 	
 	public static void render(ModelRendererTurbo[] part){
-		if (part.length ==0){
-			return;
-		}
 		for(ModelRendererTurbo mrt : part){
 			mrt.render();
 		}

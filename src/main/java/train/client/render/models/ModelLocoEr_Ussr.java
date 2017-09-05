@@ -1,12 +1,12 @@
 package train.client.render.models;
 
 import net.minecraft.client.Minecraft;
-import train.client.tmt.ModelBase;
 import net.minecraft.entity.Entity;
 import org.lwjgl.opengl.GL11;
 import train.client.core.ClientProxy;
 import train.client.render.CustomModelRenderer;
 import train.client.render.models.blocks.ModelRing;
+import train.client.tmt.ModelBase;
 
 public class ModelLocoEr_Ussr extends ModelBase {
 

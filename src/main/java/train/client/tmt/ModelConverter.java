@@ -27,8 +27,7 @@ public class ModelConverter extends ModelBase {
 	public ModelRendererTurbo trailerModel[] = new ModelRendererTurbo[0];
 	public ModelRendererTurbo steeringWheelModel[] = new ModelRendererTurbo[0];
 
-	@Override
-	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5){
+	public void render(){
 		render(bodyModel);
 		render(model);
 		render(bodyDoorCloseModel);
@@ -46,6 +45,11 @@ public class ModelConverter extends ModelBase {
 		render(leftTrackWheelModels);
 		render(trailerModel);
 		render(steeringWheelModel);
+	}
+
+	@Override
+	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5){
+		render();
 	}
 
 	public void flipAll(){

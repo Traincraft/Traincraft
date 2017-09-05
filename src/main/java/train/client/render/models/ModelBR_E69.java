@@ -1,9 +1,9 @@
 package train.client.render.models;
 
 import net.minecraft.client.Minecraft;
-import train.client.tmt.ModelBase;
 import net.minecraft.entity.Entity;
 import train.client.render.CustomModelRenderer;
+import train.client.tmt.ModelBase;
 
 public class ModelBR_E69 extends ModelBase {
 

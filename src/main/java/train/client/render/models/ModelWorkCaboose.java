@@ -1,8 +1,8 @@
 package train.client.render.models;
 
-import train.client.tmt.ModelBase;
 import net.minecraft.entity.Entity;
 import train.client.render.CustomModelRenderer;
+import train.client.tmt.ModelBase;
 import train.common.core.handlers.ConfigHandler;
 
 public class ModelWorkCaboose extends ModelBase {

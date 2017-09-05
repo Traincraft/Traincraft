@@ -1,9 +1,9 @@
 package train.client.render.models;
 
-import train.client.tmt.ModelBase;
 import net.minecraft.entity.Entity;
 import org.lwjgl.opengl.GL11;
 import train.client.render.CustomModelRenderer;
+import train.client.tmt.ModelBase;
 import train.common.api.Freight;
 
 public class ModelTenderEr_Ussr extends ModelBase {

@@ -1,12 +1,13 @@
 package train.client.render.models;
 
-import train.client.tmt.ModelBase;
 import net.minecraft.entity.Entity;
+import train.client.tmt.ModelBase;
 import train.client.tmt.ModelRendererTurbo;
 
 public class ModelTenderHeavy extends ModelBase
 {
 	private static final int textureX = 128;
+
 	private static final int textureY = 256;
 
 	public ModelTenderHeavy()

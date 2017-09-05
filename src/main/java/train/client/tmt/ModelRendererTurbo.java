@@ -1,6 +1,5 @@
 package train.client.tmt;
 
-
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.model.PositionTextureVertex;
 import net.minecraft.client.model.TexturedQuad;
@@ -8,6 +7,7 @@ import net.minecraft.client.renderer.GLAllocation;
 import org.lwjgl.opengl.GL11;
 
 import java.util.*;
+
 /**
  * An extension to the ModelRenderer class that contains various new methods to make your models.
  * <br /><br />
@@ -20,6 +20,7 @@ import java.util.*;
  * This version of TMT has been heavily modified by Eternal Blue Flame and does not reflect the quality or features of any other version.
  * Models made for other versions of TMT may not work with this version, and models made for this version may not work in other versions.
  * Shape3D is not supported in this version, use Shape Boxes instead.
+ * The shape's name is used by the Model Animators for various functionality, there are specific pre-defined names to use for said features
  */
 public class ModelRendererTurbo extends ModelRenderer {
 
@@ -80,6 +81,7 @@ public class ModelRendererTurbo extends ModelRenderer {
      * Creates a new ModelRenderTurbo object with a name. It requires the coordinates of the
      * position of the texture, but also allows you to specify the width and height
      * of the texture, allowing you to use bigger textures instead.
+     * It also requires a string to define the name of the box, this is used for animation
      * @param modelbase the shape.
      * @param textureX the texture left position
      * @param textureY the texture top position
@@ -184,8 +186,22 @@ public class ModelRendererTurbo extends ModelRenderer {
      * @param d the depth of the shape, used in determining the texture
      */
     public void addRectShape(float[] v, float[] v1, float[] v2, float[] v3, float[] v4, float[] v5, float[] v6, float[] v7, float w, float h, float d) {
-    	PositionTextureVertex[] verts = new PositionTextureVertex[8];
-        TexturedPolygon[] poly = new TexturedPolygon[6];
+        //check which sides should be rendered.
+        boolean showZ= w!=0;
+        boolean showY= h!=0;
+        boolean showX= d!=0;
+
+        //small edit to prevent depth errors
+        if (w ==0){
+            w=0.001f;
+        } else if (h ==0){
+            h=0.001f;
+        } else if (d ==0){
+            d=0.001f;
+        }
+
+        PositionTextureVertex[] verts = new PositionTextureVertex[8];
+        TexturedPolygon[] poly = new TexturedPolygon[(showX?2:0) + (showY?2:0) +(showZ?2:0)];
         verts[0] = new PositionTextureVertex(v[0], v[1], v[2], 0.0F, 0.0F);
         verts[1] = new PositionTextureVertex(v1[0], v1[1], v1[2], 0.0F, 8F);
         verts[2] = new PositionTextureVertex(v2[0], v2[1], v2[2], 8F, 8F);
@@ -194,24 +210,39 @@ public class ModelRendererTurbo extends ModelRenderer {
         verts[5] = new PositionTextureVertex(v5[0], v5[1], v5[2], 0.0F, 8F);
         verts[6] = new PositionTextureVertex(v6[0], v6[1], v6[2], 8F, 8F);
         verts[7] = new PositionTextureVertex(v7[0], v7[1], v7[2], 8F, 0.0F);
-        poly[0] = addPolygonReturn(new PositionTextureVertex[] {
-                verts[5], verts[1], verts[2], verts[6]
-        }, textureOffsetX + d + w, textureOffsetY + d, textureOffsetX + d + w + d, textureOffsetY + d + h);
-        poly[1] = addPolygonReturn(new PositionTextureVertex[] {
-                verts[0], verts[4], verts[7], verts[3]
-        }, textureOffsetX, textureOffsetY + d, textureOffsetX + d, textureOffsetY + d + h);
-        poly[2] = addPolygonReturn(new PositionTextureVertex[] {
-                verts[5], verts[4], verts[0], verts[1]
-        }, textureOffsetX + d, textureOffsetY, textureOffsetX + d + w, textureOffsetY + d);
-        poly[3] = addPolygonReturn(new PositionTextureVertex[] {
-                verts[2], verts[3], verts[7], verts[6]
-        }, textureOffsetX + d + w, textureOffsetY, textureOffsetX + d + w + w, textureOffsetY + d);
-        poly[4] = addPolygonReturn(new PositionTextureVertex[] {
-                verts[1], verts[0], verts[3], verts[2]
-        }, textureOffsetX + d, textureOffsetY + d, textureOffsetX + d + w, textureOffsetY + d + h);
-        poly[5] = addPolygonReturn(new PositionTextureVertex[] {
-                verts[4], verts[5], verts[6], verts[7]
-        }, textureOffsetX + d + w + d, textureOffsetY + d, textureOffsetX + d + w + d + w, textureOffsetY + d + h);
+
+        int normal =0;
+
+        if(showX) {
+            poly[normal] = addPolygonReturn(new PositionTextureVertex[]{
+                    verts[5], verts[1], verts[2], verts[6]
+            }, textureOffsetX + d + w, textureOffsetY + d, textureOffsetX + d + w + d, textureOffsetY + d + h);
+            normal++;
+            poly[normal] = addPolygonReturn(new PositionTextureVertex[]{
+                    verts[0], verts[4], verts[7], verts[3]
+            }, textureOffsetX, textureOffsetY + d, textureOffsetX + d, textureOffsetY + d + h);
+            normal++;
+        }
+        if(showY) {
+            poly[normal] = addPolygonReturn(new PositionTextureVertex[]{
+                    verts[5], verts[4], verts[0], verts[1]
+            }, textureOffsetX + d, textureOffsetY, textureOffsetX + d + w, textureOffsetY + d);
+            normal++;
+            poly[normal] = addPolygonReturn(new PositionTextureVertex[]{
+                    verts[2], verts[3], verts[7], verts[6]
+            }, textureOffsetX + d + w, textureOffsetY, textureOffsetX + d + w + w, textureOffsetY + d);
+            normal++;
+        }
+        if(showZ) {
+            poly[normal] = addPolygonReturn(new PositionTextureVertex[]{
+                    verts[1], verts[0], verts[3], verts[2]
+            }, textureOffsetX + d, textureOffsetY + d, textureOffsetX + d + w, textureOffsetY + d + h);
+            normal++;
+            poly[normal] = addPolygonReturn(new PositionTextureVertex[]{
+                    verts[4], verts[5], verts[6], verts[7]
+            }, textureOffsetX + d + w + d, textureOffsetY + d, textureOffsetX + d + w + d + w, textureOffsetY + d + h);
+        }
+
         if(mirror ^ flip) {
             for(TexturedPolygon polygon : poly) {
             	polygon.flipFace();
@@ -252,15 +283,6 @@ public class ModelRendererTurbo extends ModelRenderer {
      * @param scale unused, only remains for reference purposes. It's supposed to define overall scale, but never got a value besides 1, and never seemed to be used by the editing software.
      */
     public void addBox(float x, float y, float z, float w, float h, float d, float expansion, float scale) {
-        //small edit to prevent depth errors
-        if (w ==0){
-            w=0.001f;
-        } else if (h ==0){
-            h=0.001f;
-        } else if (d ==0){
-            d=0.001f;
-        }
-
         xScale = w * 0.065f;
         yScale = h * 0.065f;
         zScale = d * 0.065f;
@@ -861,11 +883,11 @@ public class ModelRendererTurbo extends ModelRenderer {
         GL11.glTranslatef(rotationPointX * worldScale, rotationPointY * worldScale, rotationPointZ * worldScale);
 
         if(invertYZ){
-            GL11.glRotatef(-rotateAngleZ * degreesF, 0.0F, 0.0F, 1.0F);
+            GL11.glRotatef(rotateAngleZ * degreesF, 0.0F, 0.0F, 1.0F);
             GL11.glRotatef(-rotateAngleY * degreesF, 0.0F, 1.0F, 0.0F);
         } else{
             GL11.glRotatef(-rotateAngleY * degreesF, 0.0F, 1.0F, 0.0F);
-            GL11.glRotatef(-rotateAngleZ * degreesF, 0.0F, 0.0F, 1.0F);
+            GL11.glRotatef(rotateAngleZ * degreesF, 0.0F, 0.0F, 1.0F);
         }
         GL11.glRotatef(rotateAngleX * degreesF, 1.0F, 0.0F, 0.0F);
         callDisplayList();
@@ -917,8 +939,8 @@ public class ModelRendererTurbo extends ModelRenderer {
     public Map<String, List<TexturedPolygon>> textureGroup = new HashMap<String, List<TexturedPolygon>>();
     private TransformGroupBone currentGroup;
     private List<TexturedPolygon> currentTextureGroup;
-    public boolean mirror = true;
-    public boolean flip = true;
+    public boolean mirror = false;
+    public boolean flip = false;
     public boolean showModel = true;
     //ETERNAL EDIT: removed field_1402_i, use ShowModel instead.
     //ETERNAL EDIT: removed forcedRecompile, just use compiled
