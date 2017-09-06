@@ -13,9 +13,9 @@ import train.common.api.SteamTrain;
 import train.common.library.EnumTrains;
 import train.common.library.GuiIDs;
 
-public class EntityLocoSteamAlice0_4_0 extends SteamTrain {
-	public EntityLocoSteamAlice0_4_0(World world) {
-		super(world, EnumTrains.locoSteamAlice.getTankCapacity(), LiquidManager.WATER_FILTER);
+public class EntityLocoSteamClimax extends SteamTrain {
+	public EntityLocoSteamClimax(World world) {
+		super(world, EnumTrains.locoSteamShay.getTankCapacity(), LiquidManager.WATER_FILTER);
 		initLocoSteam();
 	}
 
@@ -24,7 +24,7 @@ public class EntityLocoSteamAlice0_4_0 extends SteamTrain {
 		locoInvent = new ItemStack[inventorySize];
 	}
 
-	public EntityLocoSteamAlice0_4_0(World world, double d, double d1, double d2) {
+	public EntityLocoSteamClimax(World world, double d, double d1, double d2) {
 		this(world);
 		setPosition(d, d1 + (double) yOffset, d2);
 		motionX = 0.0D;
@@ -36,11 +36,11 @@ public class EntityLocoSteamAlice0_4_0 extends SteamTrain {
 	}
 
 	@Override
-	public void updateRiderPosition() {
-		riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset() + 0.65, posZ);// default
-	}
-	@Override
 	public boolean shouldRiderSit(){return false;}
+	@Override
+	public void updateRiderPosition() {
+		riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset()+0.6F, posZ);// default
+	}
 
 	@Override
 	public void setDead() {
@@ -101,9 +101,10 @@ public class EntityLocoSteamAlice0_4_0 extends SteamTrain {
 	public int getSizeInventory() {
 		return inventorySize;
 	}
+
 	@Override
 	public String getInventoryName() {
-		return "Steam Locomotive";
+		return "Shay";
 	}
 
 	@Override
@@ -123,7 +124,7 @@ public class EntityLocoSteamAlice0_4_0 extends SteamTrain {
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return 0.9F;
+		return 1.5F;
 	}
 
 	@Override

@@ -1,3 +1,11 @@
+//This File was created with the Minecraft-SMP Modelling Toolbox 2.3.0.0
+// Copyright (C) 2017 Minecraft-SMP.de
+// This file is for Flan's Flying Mod Version 4.0.x+
+
+// Model:
+// Model Creator:
+// Created on:31.08.2017 - 09:50:57
+// Last changed on: 31.08.2017 - 09:50:57
 package train.client.render;
 
 import net.minecraft.entity.Entity;

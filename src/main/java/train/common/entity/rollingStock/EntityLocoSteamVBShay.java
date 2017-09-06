@@ -37,7 +37,7 @@ public class EntityLocoSteamVBShay extends SteamTrain {
 
 	@Override
 	public void updateRiderPosition() {
-		riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset() + 0.45, posZ);// default
+		riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset() + 0.65, posZ);// default
 	}
 	@Override
 	public boolean shouldRiderSit(){return false;}
@@ -123,7 +123,7 @@ public class EntityLocoSteamVBShay extends SteamTrain {
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return 0.6F;
+		return 2.275F;
 	}
 
 	@Override

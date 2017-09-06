@@ -117,7 +117,6 @@ public enum EnumTrains {
 	locoElectricTramNY("Loco Electric Tram NY", EntityLocoElectricTramNY.class, 23, ItemIDs.minecartNYTram.item,
 			 "electric", 400, 65, 0, 10, 0, 170, 0.7, 0.965, 0, null, 18, -3 ,
 			0.98, 1.98),
-	//passengerShortGreen("Passenger Short Green",EntityPassenger7.class, 86,ItemIDs.minecartPassenger7.item,"passenger",0,0,0.5,0,0,0,0,0,0,null,18,0,0.98,1.98),
 
 	/** Steam */
 	locoSteamA4("Loco Steam A4 Mallard", EntityLocoSteamMallardA4.class, 53, ItemIDs.minecartLocoA4Mallard.item, "steam", 639, 140, 0, 60, 150, 160, 0.65, 0.97, 10000, new String[] { "Blue", "Lime", "Black", "Green", "White" }, 7, -2.5 , 0.98, 1.98),
@@ -137,12 +136,15 @@ public enum EnumTrains {
 	locoSteamForney("Loco Steam Forney",EntityLocoSteamForneyRed.class, 97,ItemIDs.minecartLocoForneyRed.item,"steam",600,70,0,60,160,130,0.44,0.968,8000,new String[] {"Red","Grey","Yellow","Brown","Blue","Green"},15,-1.35,0.98,1.98),
 	locoSteamMogul("Loco Steam Mogul",EntityLocoSteamMogulBlue.class, 93,ItemIDs.minecartLocomogulBlue.item,"steam",500,65,0,50,180,180,0.56,0.967,5000,new String[] {"Blue","Black","Brown","Green","Red","White"},15,-2.2,0.98,1.98),
 	locoSteamShay("Loco Steam Shay",EntityLocoSteamShay.class, 100,ItemIDs.minecartLocoSteamShay.item,"steam",250,50,0,50,160,130,0.5,0.968,4000,null,15,-1.5,0.98,1.98),
-	locoSteamVBShay("Loco Steam VB Shay",EntityLocoSteamVBShay.class, 82,ItemIDs.minecartLocoSteamVBShay.item,"steam",250,50,0,50,160,130,0.5,0.968,4000,null,15,-0.5,0.98,1.98),
-	locoSteamAlice("Loco Steam Alice",EntityLocoSteamAlice0_4_0.class, 81,ItemIDs.minecartLocoSteamAlice.item,"steam",200,45,0,60,160,300,0.5,0.968,4000,null,15,-2,0.98,1.98),
-	locoSteamGLYN("Loco Steam glyn",EntityLocoSteamGLYN042T.class, 80,ItemIDs.minecartLocoSteamGLYN.item,"steam",200,45,0,60,160,300,0.5,0.968,4000,null,15,-2.5,0.98,1.98),
-	locoSteam262T("Loco Steam 262T",EntityLocoSteam262T.class, 89,ItemIDs.minecartLocoSteam262T.item,"steam",200,45,0,60,160,300,0.5,0.968,4000,null,15,-3,0.98,1.98),
+	locoSteamVBShay("Loco Steam VB Shay",EntityLocoSteamVBShay.class, 82,ItemIDs.minecartLocoSteamVBShay.item,"steam",250,20,0,40,140,100,0.5,0.968,3000,null,15,-0.5,0.98,1.98),
+	locoSteamClimax("Loco Steam Climax",EntityLocoSteamClimax.class, 92,ItemIDs.minecartLocoSteamClimax.item,"steam",250,40,0,50,160,130,0.5,0.968,4000,null,15,-1.5,0.98,1.98),
+	locoSteamAlice("Loco Steam Alice",EntityLocoSteamAlice0_4_0.class, 81,ItemIDs.minecartLocoSteamAlice.item,"steam",200,20,0,60,160,200,0.5,0.968,3750,null,15,-2,0.98,1.98),
+	locoSteamGLYN("Loco Steam glyn",EntityLocoSteamGLYN042T.class, 80,ItemIDs.minecartLocoSteamGLYN.item,"steam",200,20,0,60,160,200,0.45,0.968,3750,null,15,-2.5,0.98,1.98),
+	locoSteam262T("Loco Steam 262T",EntityLocoSteam262T.class, 89,ItemIDs.minecartLocoSteam262T.item,"steam",300,45,0,60,160,300,0.5,0.968,4250,null,15,-3,0.98,1.98),
+	locoSteam040VB("Loco Steam 040VB",EntityLocoSteam040VB.class, 91,ItemIDs.minecartLocoSteam040vb.item,"steam",200,20,0,40,120,200,0.5,0.968,2500,null,15,-1.1,0.98,1.98),
 	locoSteamAdler("Loco Steam Adler",EntityLocoSteamAdler.class, 98,ItemIDs.minecartLocoSteamAdler.item,"steam",200,45,0,60,160,300,0.5,0.968,3000,null,15,-1.5,0.98,1.98);
 
+//String trainType,int MHP,int maxSpeed, double mass, int fuelConsumption, int waterConsumption, int heatingTime, double accelerationRate, double brakeRate, int tankCapacity, String[] colors,
 	
 	private String internalName;
 	private Class entityClass;
@@ -170,7 +172,7 @@ public enum EnumTrains {
 	 * 
 	 * @param internalName : Only used by EntityRegistry
 	 * @param entityClass
-	 * @param entityID: Current free IDs: 91,92,94+
+	 * @param entityID: Current free IDs: 94, 116+
 	 * @param item
 	 * @param trainType: "steam", "diesel", "freight", "passenger", "special", "flat", "electric"
 	 * @param MHP: power of the locomotive

@@ -106,7 +106,7 @@ public class EntityBoxCartPRR extends Freight implements IInventory {
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return 1.56F;
+		return 3.05F;
 	}
 
 	@Override

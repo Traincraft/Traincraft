@@ -9,9 +9,6 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Vec3;
 import org.lwjgl.opengl.GL11;
-import train.client.tmt.ModelRendererTurbo;
-import train.client.tmt.Tessellator;
-import train.common.api.AbstractTrains;
 import train.common.api.EntityRollingStock;
 import train.common.api.Locomotive;
 import train.common.entity.rollingStock.EntityTracksBuilder;
@@ -33,13 +30,13 @@ public class RenderRollingStock extends Render {
 	 * Renders the Minecart.
 	 */
 	public void renderTheMinecart(EntityRollingStock cart, double x, double y, double z, float yaw, float time) {
+		GL11.glPushMatrix();
 		long var10 = cart.getEntityId() * 493286711L;
 		var10 = var10 * var10 * 4392167121L + var10 * 98761L;
 		float var12 = (((var10 >> 16 & 7L) + 0.5F) / 8.0F - 0.5F) * 0.004F;
 		float var13 = (((var10 >> 20 & 7L) + 0.5F) / 8.0F - 0.5F) * 0.004F;
 		float var14 = (((var10 >> 24 & 7L) + 0.5F) / 8.0F - 0.5F) * 0.004F;
-		double trans[] = new double[]{var12, var13, var14};
-		//GL11.glTranslatef(var12, var13, var14);
+		GL11.glTranslatef(var12, var13, var14);
 		double var15 = cart.lastTickPosX + (cart.posX - cart.lastTickPosX) * time;
 		double var17 = cart.lastTickPosY + (cart.posY - cart.lastTickPosY) * time;
 		double var19 = cart.lastTickPosZ + (cart.posZ - cart.lastTickPosZ) * time;
@@ -108,31 +105,19 @@ public class RenderRollingStock extends Render {
 		//System.out.println(Math.abs(yaw - serverYaw));
 		//System.out.println("yaw after "+yaw+" server yaw after "+serverYaw);
 
-		if (cart.renderData == null){
-			for (RenderEnum renders : RenderEnum.values()) {
-				if (renders.getEntityClass() != null && renders.getEntityClass().equals(cart.getClass())) {
-					cart.renderData = renders;
-				}
-			}
-		}
-
+		GL11.glTranslatef((float) x, (float) y, (float) z);
 		int i = MathHelper.floor_double(cart.posX);
 		int j = MathHelper.floor_double(cart.posY);
 		int k = MathHelper.floor_double(cart.posZ);
-		if (cart.renderData != null && cart.renderData.getTrans() != null){
-			trans[0]+= cart.renderData.getTrans()[0];
-			trans[1]+= cart.renderData.getTrans()[1];
-			trans[2]+= cart.renderData.getTrans()[2];
-		}
+
 		// NOTE: func_150049_b_ = isRailBlockAt
 		if (cart != null && cart.worldObj != null && (BlockRailBase.func_150049_b_(cart.worldObj, i, j, k)
 				|| BlockRailBase.func_150049_b_(cart.worldObj, i, j - 1, k))) {
 			cart.setMountedYOffset(-0.55);
 		} else if (cart.posYFromServer != 0) {
-			trans[2]-=0.3;
 			cart.setMountedYOffset(-0.5);
+			GL11.glTranslatef(0f, -0.30f, 0f);
 		}
-		double[] rotate = new double[]{0,0,0};
 		if (cart.bogieLoco != null) {// || cart.bogieUtility[0]!=null){
 			//GL11.glRotatef((float)(90-cart.rotationYawClientReal), 0.0F, 1.0F, 0.0F);
 			if (cart.oldClientYaw == 0) cart.oldClientYaw = cart.rotationYawClientReal;
@@ -155,8 +140,7 @@ public class RenderRollingStock extends Render {
 			}
 			//System.out.println("newYaw "+newYaw);
 			//System.out.println(90 - cart.rotationYawClientReal);
-			//GL11.glRotatef((90.0f-newYaw), 0.0F, 1.0F, 0.0F);
-			rotate[1] += (90.0f-newYaw);
+			GL11.glRotatef((90.0f-newYaw), 0.0F, 1.0F, 0.0F);
 			cart.setRenderYaw(newYaw);
 			cart.setRenderPitch(pitch);
 		}
@@ -167,8 +151,7 @@ public class RenderRollingStock extends Render {
 					yaw+=180;
 					pitch = -pitch;
 				}
-				//GL11.glRotatef(180.0F - yaw, 0.0F, 1.0F, 0.0F);
-				rotate[1] +=180.0F - yaw;
+				GL11.glRotatef(180.0F - yaw, 0.0F, 1.0F, 0.0F);
 				cart.setRenderYaw(yaw);
 				cart.setRenderPitch(pitch);
 			}else{
@@ -190,19 +173,17 @@ public class RenderRollingStock extends Render {
 					newYaw = rotationYaw;
 					cart.oldClientYaw = rotationYaw;
 				}
-				//GL11.glRotatef((90.0f-(newYaw+90.0f)), 0.0F, 1.0F, 0.0F);
-				rotate[1] += (90.0f-(newYaw+90.0f));
+				GL11.glRotatef((90.0f-(newYaw+90.0f)), 0.0F, 1.0F, 0.0F);
 				cart.setRenderYaw(yaw);
 				cart.setRenderPitch(pitch);
 			}
 		}
-		
+
 		//if(cart.bogie!=null)cart.worldObj.spawnParticle("reddust", cart.bogie.posX, cart.bogie.posY, cart.bogie.posZ, 0.1, 0.4, 0.1);
 
 		//GL11.glRotatef(180.0F - yaw, 0.0F, 1.0F, 0.0F);
 		if (cart.bogieLoco != null) {// || cart.bogieUtility[0]!=null){
-			//GL11.glRotatef((float) -cart.anglePitchClient, 0.0F, 0.0F, 1.0F);
-			rotate[2] +=-cart.anglePitchClient;
+			GL11.glRotatef((float) -cart.anglePitchClient, 0.0F, 0.0F, 1.0F);
 		}
 		else {
 			if(renderYVect != null){
@@ -216,12 +197,10 @@ public class RenderRollingStock extends Render {
 				if(cart.isClientInReverse && (cart.rotationYawClientReal<-265 && cart.rotationYawClientReal>-275 )){
 					pitch=-pitch;
 				}
-				//GL11.glRotatef(pitch, 0.0F, 0.0F, 1.0F);
-				rotate[2] +=pitch;
+				GL11.glRotatef(pitch, 0.0F, 0.0F, 1.0F);
 			}
 			else{
-				//GL11.glRotatef(-pitch, 0.0F, 0.0F, 1.0F);
-				rotate[2] +=-pitch;
+				GL11.glRotatef(-pitch, 0.0F, 0.0F, 1.0F);
 			}
 		}
 		float var28 = cart.getRollingAmplitude() - time;
@@ -235,53 +214,43 @@ public class RenderRollingStock extends Render {
 			float angle = MathHelper.sin(var28) * var28 * var30 / 10.0F;
 			angle = Math.min(angle, 0.8F);
 			angle = Math.copySign(angle, cart.getRollingDirection());
-			//GL11.glRotatef(angle, 1.0F, 0.0F, 0.0F);
-			rotate[0]+=angle;
+			GL11.glRotatef(angle, 1.0F, 0.0F, 0.0F);
+		}
+		for (RenderEnum renders : RenderEnum.values()) {
+			if (renders.getEntityClass() != null && renders.getEntityClass().equals(cart.getClass())) {
+				//loadTexture(getTextureFile(renders.getTexture(), renders.getIsMultiTextured(), cart));
+				bindEntityTexture(cart);
+				GL11.glTranslatef(renders.getTrans()[0], renders.getTrans()[1], renders.getTrans()[2]);
+				if (renders.getRotate() != null) {
+					GL11.glRotatef(renders.getRotate()[0], 1.0F, 0.0F, 0.0F);
+					GL11.glRotatef(renders.getRotate()[1], 0.0F, 1.0F, 0.0F);
+					GL11.glRotatef(renders.getRotate()[2], 0.0F, 0.0F, 1.0F);
+				}
+				if (renders.getScale() != null) {
+					GL11.glScalef(renders.getScale()[0], renders.getScale()[1], renders.getScale()[2]);
+				}
+				renders.getModel().render(cart, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
+
+				if (renders.hasSmoke()) {
+					if (cart.bogieLoco != null) {// || cart.bogieUtility[0]!=null){
+						renderSmokeFX(cart, 90 + cart.rotationYawClientReal, (float) cart.anglePitchClient, renders.getSmokeType(), renders.getSmokeFX(), renders.getSmokeIterations(), time, renders.hasSmokeOnSlopes());
+					}
+					else {
+						renderSmokeFX(cart, (yaw), pitch, renders.getSmokeType(), renders.getSmokeFX(), renders.getSmokeIterations(), time, renders.hasSmokeOnSlopes());
+					}
+				}
+				if (renders.hasExplosion()) {
+					if (cart.bogieLoco != null) {// || cart.bogieUtility[0]!=null){
+						renderExplosionFX(cart, 90 + cart.rotationYawClientReal, (float) cart.anglePitchClient, renders.getExplosionType(), renders.getExplosionFX(), renders.getExplosionFXIterations(), renders.hasSmokeOnSlopes());
+					}
+					else {
+						renderExplosionFX(cart, yaw, pitch, renders.getExplosionType(), renders.getExplosionFX(), renders.getExplosionFXIterations(), renders.hasSmokeOnSlopes());
+					}
+				}
+			}
 		}
 
-		if (cart.renderData != null) {
-			GL11.glPushMatrix();
-			//loadTexture(getTextureFile(renders.getTexture(), renders.getIsMultiTextured(), cart));
-			//bindEntityTexture(cart);
-			//GL11.glTranslatef(cart.renderData.getTrans()[0], cart.renderData.getTrans()[1], cart.renderData.getTrans()[2]);
-			GL11.glTranslated(x + trans[0], y + trans[1], z + trans[2]);
-			if (cart.renderData.getRotate() != null) {
-				GL11.glRotatef((float) (cart.renderData.getRotate()[0] + rotate[0]), 1.0F, 0.0F, 0.0F);
-				GL11.glRotatef((float) (cart.renderData.getRotate()[1] + rotate[1]), 0.0F, 1.0F, 0.0F);
-				GL11.glRotatef((float) (cart.renderData.getRotate()[2] + rotate[2]), 0.0F, 0.0F, 1.0F);
-			} else {
-				GL11.glRotatef((float)rotate[0], 1.0F, 0.0F, 0.0F);
-				GL11.glRotatef((float)rotate[1], 0.0F, 1.0F, 0.0F);
-				GL11.glRotatef((float)rotate[2], 0.0F, 0.0F, 1.0F);
-			}
-			if (cart.renderData.getScale() != null) {
-				GL11.glScalef(cart.renderData.getScale()[0], cart.renderData.getScale()[1], cart.renderData.getScale()[2]);
-			}
-
-			Tessellator.bindTexture(getEntityTexture(cart));
-			cart.renderData.getModel().render(cart,0,0,0,0,0,0.0625f);
-
-			if (cart.renderData.hasSmoke()) {
-				if (cart.bogieLoco != null) {// || cart.bogieUtility[0]!=null){
-					renderSmokeFX(cart, 90 + cart.rotationYawClientReal, (float) cart.anglePitchClient,
-							cart.renderData.getSmokeType(), cart.renderData.getSmokeFX(), cart.renderData.getSmokeIterations(), time, cart.renderData.hasSmokeOnSlopes());
-				}
-				else {
-					renderSmokeFX(cart, (yaw), pitch, cart.renderData.getSmokeType(), cart.renderData.getSmokeFX(), cart.renderData.getSmokeIterations(), time, cart.renderData.hasSmokeOnSlopes());
-				}
-			}
-			if (cart.renderData.hasExplosion()) {
-				if (cart.bogieLoco != null) {// || cart.bogieUtility[0]!=null){
-					renderExplosionFX(cart, 90 + cart.rotationYawClientReal, (float) cart.anglePitchClient, cart.renderData.getExplosionType(),
-							cart.renderData.getExplosionFX(), cart.renderData.getExplosionFXIterations(), cart.renderData.hasSmokeOnSlopes());
-				}
-				else {
-					renderExplosionFX(cart, yaw, pitch, cart.renderData.getExplosionType(), cart.renderData.getExplosionFX(), cart.renderData.getExplosionFXIterations(), cart.renderData.hasSmokeOnSlopes());
-				}
-			}
-			GL11.glPopMatrix();
-		}
-
+		GL11.glPopMatrix();
 	}
 
 	private ResourceLocation getResourceFile(String texture, boolean multiTexture, EntityRollingStock cart) {
@@ -318,7 +287,7 @@ public class RenderRollingStock extends Render {
 					z = (float) cart.posZ + random.nextFloat() * 0.2F;
 					double yCorrectDown = 0;
 					for (double[] smoke : smokeFX) {
-						
+
 						if (pitchRads > 0){ yCorrectDown = -Math.tan(pitchRads);}
 						if (smoke[0] > 0){ yCorrectDown = Math.tan(-pitchRads);}
 
@@ -375,18 +344,8 @@ public class RenderRollingStock extends Render {
 
 	@Override
 	protected ResourceLocation getEntityTexture(Entity entity) {
-		if (entity instanceof EntityRollingStock){
-			EntityRollingStock transport = (EntityRollingStock) entity;
-			if (transport.renderData == null){
-				for (RenderEnum renders : RenderEnum.values()) {
-					if (renders.getEntityClass() != null && renders.getEntityClass().equals(entity.getClass())) {
-						((AbstractTrains) entity).renderData = renders;
-						return getResourceFile(renders.getTexture(), renders.getIsMultiTextured(), (EntityRollingStock) entity);
-					}
-				}
-			} else {
-				return getResourceFile(transport.renderData.getTexture(), transport.renderData.getIsMultiTextured(), transport);
-			}
+		for (RenderEnum renders : RenderEnum.values()) {
+			if (renders.getEntityClass() != null && renders.getEntityClass().equals(entity.getClass())) { return getResourceFile(renders.getTexture(), renders.getIsMultiTextured(), (EntityRollingStock) entity); }
 		}
 		return null;
 	}

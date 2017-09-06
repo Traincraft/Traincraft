@@ -97,29 +97,29 @@ public class ModelDRWGStockCar extends ModelBase
 
 		drwgstockcarModel[13].addBox(0F, 0F, 0F, 2, 2, 20, 0F); // Box 34
 		drwgstockcarModel[13].setRotationPoint(-8.5F, -5F, -9.5F);
-		drwgstockcarModel[13].rotateAngleZ = 1.57079633F;
+		drwgstockcarModel[13].rotateAngleZ = -1.57079633F;
 
 		drwgstockcarModel[14].addBox(0F, 0F, 0F, 2, 46, 1, 0F); // Box 36
 		drwgstockcarModel[14].setRotationPoint(-7F, -5F, 9F);
-		drwgstockcarModel[14].rotateAngleZ = 1.57079633F;
+		drwgstockcarModel[14].rotateAngleZ = -1.57079633F;
 
 		drwgstockcarModel[15].addBox(0F, 0F, 0F, 51, 1, 4, 0F); // Walkway
 		drwgstockcarModel[15].setRotationPoint(-9.5F, -31.6F, -1.5F);
 
 		drwgstockcarModel[16].addBox(0F, 0F, 0F, 2, 46, 1, 0F); // Box 38
 		drwgstockcarModel[16].setRotationPoint(-7F, -5F, -9F);
-		drwgstockcarModel[16].rotateAngleZ = 1.57079633F;
+		drwgstockcarModel[16].rotateAngleZ = -1.57079633F;
 
 		drwgstockcarModel[17].addBox(0F, 0F, 0F, 1, 1, 17, 0F); // Box 39
 		drwgstockcarModel[17].setRotationPoint(39F, -6F, -8F);
-		drwgstockcarModel[17].rotateAngleZ = 1.57079633F;
+		drwgstockcarModel[17].rotateAngleZ = -1.57079633F;
 
 		drwgstockcarModel[18].addBox(0F, 0F, 0F, 1, 23, 17, 0F); // Box 40
 		drwgstockcarModel[18].setRotationPoint(39F, -30F, -8F);
 
 		drwgstockcarModel[19].addBox(0F, 0F, 0F, 2, 2, 20, 0F); // Box 45
 		drwgstockcarModel[19].setRotationPoint(38.5F, -5F, -9.5F);
-		drwgstockcarModel[19].rotateAngleZ = 1.57079633F;
+		drwgstockcarModel[19].rotateAngleZ = -1.57079633F;
 
 		drwgstockcarModel[20].addBox(0F, 0F, 0F, 49, 23, 1, 0F); // Wall Left
 		drwgstockcarModel[20].setRotationPoint(-8.5F, -30F, -9F);
@@ -132,7 +132,7 @@ public class ModelDRWGStockCar extends ModelBase
 
 		drwgstockcarModel[23].addBox(0F, 0F, 0F, 1, 23, 17, 0F); // End 1
 		drwgstockcarModel[23].setRotationPoint(-8.5F, -7F, 9F);
-		drwgstockcarModel[23].rotateAngleX = 3.14159265F;
+		drwgstockcarModel[23].rotateAngleX = -3.14159265F;
 
 		drwgstockcarModel[24].addBox(0F, 0F, 0F, 54, 2, 3, 0F); // Box 75
 		drwgstockcarModel[24].setRotationPoint(-11.5F, -7F, -1F);
@@ -158,7 +158,7 @@ public class ModelDRWGStockCar extends ModelBase
 
 		drwgstockcarModel[31].addBox(0F, 0F, 0F, 1, 45, 17, 0F); // Box 82
 		drwgstockcarModel[31].setRotationPoint(-6F, -6.5F, -8F);
-		drwgstockcarModel[31].rotateAngleZ = 1.57079633F;
+		drwgstockcarModel[31].rotateAngleZ = -1.57079633F;
 
 		drwgstockcarModel[32].addShapeBox(0F, 0F, -9F, 50, 1, 9, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 34
 		drwgstockcarModel[32].setRotationPoint(-9F, -31F, 10F);

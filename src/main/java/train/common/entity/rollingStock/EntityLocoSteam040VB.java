@@ -13,9 +13,9 @@ import train.common.api.SteamTrain;
 import train.common.library.EnumTrains;
 import train.common.library.GuiIDs;
 
-public class EntityLocoSteamAlice0_4_0 extends SteamTrain {
-	public EntityLocoSteamAlice0_4_0(World world) {
-		super(world, EnumTrains.locoSteamAlice.getTankCapacity(), LiquidManager.WATER_FILTER);
+public class EntityLocoSteam040VB extends SteamTrain {
+	public EntityLocoSteam040VB(World world) {
+		super(world, EnumTrains.locoSteam040VB.getTankCapacity(), LiquidManager.WATER_FILTER);
 		initLocoSteam();
 	}
 
@@ -24,9 +24,9 @@ public class EntityLocoSteamAlice0_4_0 extends SteamTrain {
 		locoInvent = new ItemStack[inventorySize];
 	}
 
-	public EntityLocoSteamAlice0_4_0(World world, double d, double d1, double d2) {
+	public EntityLocoSteam040VB(World world, double d, double d1, double d2) {
 		this(world);
-		setPosition(d, d1 + (double) yOffset, d2);
+		setPosition(d, d1 + yOffset, d2);
 		motionX = 0.0D;
 		motionY = 0.0D;
 		motionZ = 0.0D;
@@ -36,11 +36,11 @@ public class EntityLocoSteamAlice0_4_0 extends SteamTrain {
 	}
 
 	@Override
-	public void updateRiderPosition() {
-		riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset() + 0.65, posZ);// default
-	}
-	@Override
 	public boolean shouldRiderSit(){return false;}
+	@Override
+	public void updateRiderPosition() {
+		riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset() + 0.65, posZ);
+	}
 
 	@Override
 	public void setDead() {
@@ -57,11 +57,8 @@ public class EntityLocoSteamAlice0_4_0 extends SteamTrain {
 
 	@Override
 	public void onUpdate() {
-		super.onUpdate();
-		if (worldObj.isRemote) {
-			return;
-		}
 		checkInvent(locoInvent[0], locoInvent[1], this);
+		super.onUpdate();
 	}
 
 	@Override
@@ -101,6 +98,7 @@ public class EntityLocoSteamAlice0_4_0 extends SteamTrain {
 	public int getSizeInventory() {
 		return inventorySize;
 	}
+
 	@Override
 	public String getInventoryName() {
 		return "Steam Locomotive";
@@ -123,7 +121,7 @@ public class EntityLocoSteamAlice0_4_0 extends SteamTrain {
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return 0.9F;
+		return 0.75F;
 	}
 
 	@Override

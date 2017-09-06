@@ -99,7 +99,7 @@ public class EntityCabooseLoggingPRR extends AbstractWorkCart implements IInvent
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return 1.0F;
+		return 2.2F;
 	}
 
 	@Override
