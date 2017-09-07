@@ -3,7 +3,7 @@
 // This file is for Flan's Flying Mod Version 4.0.x+
 
 // Model:
-// Model Creator:
+// Model Creator: Larky2k
 // Created on:24.08.2017 - 23:47:04
 // Last changed on: 24.08.2017 - 23:47:04
 

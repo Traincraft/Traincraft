@@ -3,7 +3,7 @@
 // This file is for Flan's Flying Mod Version 4.0.x+
 
 // Model: D&RGW Stock Car 
-// Model Creator:
+// Model Creator: Thomas4peyton
 // Created on:05.08.2017 - 12:29:54
 // Last changed on: 05.08.2017 - 12:29:54
 

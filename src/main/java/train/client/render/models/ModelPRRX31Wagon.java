@@ -4,7 +4,7 @@ package train.client.render.models;
 // This file is for Flan's Flying Mod Version 4.0.x+
 
 // Model: PRR X31a Wagon Top
-// Model Creator:
+// Model Creator: Mr. Rail
 // Created on:20.08.2017 - 10:25:49
 // Last changed on: 20.08.2017 - 10:25:49
 

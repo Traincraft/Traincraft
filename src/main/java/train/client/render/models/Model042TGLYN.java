@@ -4,7 +4,7 @@ package train.client.render.models;
 // This file is for Flan's Flying Mod Version 4.0.x+
 
 // Model:
-// Model Creator:
+// Model Creator: Larky2k
 // Created on:25.08.2017 - 21:12:31
 // Last changed on: 25.08.2017 - 21:12:31
 
