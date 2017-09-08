@@ -1612,6 +1612,9 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 	@Override
 	public boolean interactFirst(EntityPlayer entityplayer) {
 		if (super.interactFirst(entityplayer)) return true;
+		if (entityplayer.ridingEntity == this){
+			return false;
+		}
 
 		playerEntity = entityplayer;
 		ItemStack itemstack = entityplayer.inventory.getCurrentItem();

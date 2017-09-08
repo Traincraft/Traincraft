@@ -200,10 +200,10 @@ public class GuiJukebox extends GuiScreen {
 		if (button.id == 0) {
 			if (streamTextBox.getText() != null && streamTextBox.getText().length() > 0) {
 				if ((!jukebox.isPlaying())) {
-					if (this.streamTextBox.getText().toLowerCase().endsWith(".m3u")) {
+					if (this.streamTextBox.getText().toLowerCase().contains(".m3u")) {
 						this.jukebox.streamURL = takeFirstEntryFromM3U(this.streamTextBox.getText());
 					}
-					else if (this.streamTextBox.getText().toLowerCase().endsWith(".pls")) {
+					else if (this.streamTextBox.getText().toLowerCase().contains(".pls")) {
 						this.jukebox.streamURL = parsePls(this.streamTextBox.getText());
 					}
 					else {

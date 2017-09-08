@@ -22,6 +22,12 @@ public enum EnumTrains {
 	//passengerDBOriental("pass_DB_oriental",EntityPassengerDBOriental.class, 56,ItemIDs.minecartPassengerDBOriental.item,"train_tram_ny","passenger",0,0,1,0,0,0,0,0,0,null,18,null,null,0.98,1.98),
 	passengerIC4_DSB_FG("Passenger IC4 DSB FG",PassengerIC4_DSB_FG.class, 61,ItemIDs.minecartIC4_DSB_FG.item,"passenger",0,0,0.5,0,0,0,0,0,0,null,10,0,0.98,1.98),
 	passengerIC4_DSB_FH("Passenger IC4 DSB FH",PassengerIC4_DSB_FH.class, 56,ItemIDs.minecartIC4_DSB_FH.item,"passenger",0,0,0.5,0,0,0,0,0,0,null,10,0,0.98,1.98),
+	passengerICE1_Class1("Passenger ICE 1st Class",EntityPassengerICE_1class.class, 117,ItemIDs.minecartICE1_1stClass.item,"passenger",0,0,0.5,0,0,0,0,0,0,null,10,0,0.98,1.98),
+	passengerICE1_Class2("Passenger ICE 1st Class",EntityPassengerICE_2class.class, 118,ItemIDs.minecartICE1_2ndClass.item,"passenger",0,0,0.5,0,0,0,0,0,0,null,10,0,0.98,1.98),
+	passengerICE1_Restaurant("Passenger ICE 1st Class",EntityPassengerICE_Restaurant.class, 119,ItemIDs.minecartICE1_Restaurant.item,"passenger",0,0,0.5,0,0,0,0,0,0,null,10,0,0.98,1.98),
+	passengerGS4("Passenger GS4",EntityPassengerGS4.class, 120,ItemIDs.minecartGS4_Passenger.item,"passenger",0,0,0.5,0,0,0,0,0,0,null,10,0,0.98,1.98),
+	passengerGS4Observatory("Passenger GS4 Observatory",EntityPassengerGS4_Observatory.class, 121,ItemIDs.minecartGS4_Observatory.item,"passenger",0,0,0.5,0,0,0,0,0,0,null,10,0,0.98,1.98),
+	passengerGS4_Tail("Passenger GS4 Tail",EntityPassengerGS4_Tail.class, 122,ItemIDs.minecartGS4_Tail.item,"passenger",0,0,0.5,0,0,0,0,0,0,null,10,0,0.98,1.98),
 	
 	/** Caboose */
 	cabooseRed("Caboose Red",EntityCaboose.class, 85,ItemIDs.minecartCaboose.item,"caboose",0,0,0.5,0,0,0,0,0,0,null,18,0,0.98,1.98),
@@ -63,6 +69,8 @@ public enum EnumTrains {
 	freightWagen_DB("Freight Wagon DB",EntityFreightWagenDB.class, 104,ItemIDs.minecartFreightWagon_DB.item,"freight",4,null,18,0.98,1.98, 54,new String[] {"Cargo: any"}),
 	flatCarRails_DB("Freight Flat Cart Rails DB",EntityFlatCarRails_DB.class, 108,ItemIDs.minecartFlatCartRail_DB.item,"freight",5,null,18,0.98,0.98, 36,new String[] {"Cargo: only rails"}),
 	flatCarLogs_DB("Freight Flat Cart Logs DB",EntityFlatCarLogs_DB.class,110,ItemIDs.minecartFlatCartLogs_DB.item,"freight",4,null,18,0.98,0.98,45,new String[] {"Cargo: only logs"}),
+	slateWagon("Freight Slate Wagon",EntityFreightSlateWagon.class,126,ItemIDs.minecartSlateWagon.item,"freight",4,null,18,0.98,0.98,38,new String[] {"Cargo: only stone and ores"}),
+	freightCartGS4("Freight Cart GS4 Baggage",EntityFreightGS4_Baggage.class, 124,ItemIDs.minecartGS4_Baggage.item,"freight",1,null,18,0.98,0.98,45,new String[] {"Cargo: any"}),
 	freightGondola_DB("Freight Gondola DB",EntityFreightGondola_DB.class,114,ItemIDs.minecartFreightGondola_DB.item,"freight",3.5,null,18,0.98,0.98,45,new String[] {"Cargo: blocks, vanilla items"}),
 	freightCenterBeam_Empty("Freight Center Beam Empty",EntityFreightCenterbeam_Empty.class, 15,ItemIDs.minecartFreightCenterBeam_Empty.item,"freight",0.5,null,18,0.98,1.98,54,new String[] {"Cargo: any"}),
 	freightCenterBeam_Wood1("Freight Center Beam Wood1",EntityFreightCenterbeam_Wood_1.class, 16,ItemIDs.minecartFreightCenterBeam_Wood_1.item,"freight",3,null,18,0.98,1.98,54,new String[] {"Cargo: wood stuff"}),
@@ -82,6 +90,7 @@ public enum EnumTrains {
 	/** Tenders */
 	tenderSmall("Tender Small Black",EntityTenderSmall.class, 4,ItemIDs.minecartTender.item,"tender",0,0,0.1,0,0,0,0,0,5000,new String[]{"Black","Red","Blue","Green","Yellow"},18,0,0.98,0.98,new String[] {"Water capacity: 5000mb"}),
 	tenderHeavy("Tender Heavy",EntityTenderHeavy.class, 34,ItemIDs.minecartTenderHeavy.item,"tender",0,0,2,0,0,0,0,0,14000,null,18,0,0.98,1.98,new String[] {"Water capacity: 14000mb"}),
+	tenderGS4("Tender GS4",EntityTenderGS4.class, 125,ItemIDs.minecartGS4_Tender.item,"tender",0,0,2,0,0,0,0,0,18000,null,18,0,0.98,1.98,new String[] {"Water capacity: 18000mb"}),
 	tender4_4_0("Tender 4-4-0 Red",EntityTender4_4_0.class, 83,ItemIDs.minecartSteamRedTender.item,"tender",0,0,0.2,0,0,0,0,0,8000,new String[] {"Black","White","Brown","Blue","Green","Red"},18,0,0.98,0.98,new String[] {"Water capacity: 8000mb"}),
 	tenderA4("Tender A4 Mallard", EntityTenderA4.class, 54, ItemIDs.minecartLocoA4MallardTender.item,
 			"tender", 0, 0, 0.2, 0, 0, 0, 0, 0, 6000, new String[] { "Blue", "Lime", "Black", "Green", "White" }, 18,
@@ -104,6 +113,7 @@ public enum EnumTrains {
 			new String[] { "Blue", "Green", "Red", "Black" }, 14,  -2.58,  0.98, 1.98),
 	locoDieselV60_DB("Loco Diesel V60 DB",EntityLocoDieselV60_DB.class, 49,ItemIDs.minecartV60_DB.item,"diesel",500,80,0,60,0,170,0.66,0.96,8000,new String[] {"Red","Green","Yellow","Cyan"},15,-1.3,0.98,1.98),
 	locoDieselIC4_DSB_MG("Loco Diesel IC4 DSB MG",EntityLocoDieselIC4_DSB_MG.class, 57,ItemIDs.minecartIC4_DSB_MG.item,"diesel",900,200,0,60,0,200,0.8,0.97,20000,new String[] {"White","Red"},10,-6,0.98,1.98),
+	locoDieselMILW_H1044("Loco Diesel MILW H10-44",EntityLocoDieselMILW_H1044.class, 123,ItemIDs.minecartMILW_H1044.item,"diesel",500,80,0,60,0,170,0.66,0.96,8000,null,15,-3,0.98,1.98),
 
 	/** Electric */
 	locoElectricVL10("Loco Electric VL10", EntityLocoElectricVL10.class, 46, ItemIDs.minecartVL10.item, "electric", 700, 150, 0, 8, 0, 400, 1.1, 0.956, 0, null, 14,  -2.3 , 0.98, 1.98),
@@ -112,6 +122,7 @@ public enum EnumTrains {
 	locoElectricSpeedZeroED("Loco Electric High Speed ZeroED", EntityLocoElectricHighSpeedZeroED.class, 12,
 			ItemIDs.minecartLocoHighSpeedZeroED.item, "electric", 700, 237, 0, 3, 0,
 			230, 1.4, 0.98, 0, null, 13,  -3.4 ,  0.98, 1.98),
+	locoElectricICE1("Loco Electric ICE 1", EntityLocoElectricICE1.class, 116, ItemIDs.minecartICE1_Loco.item, "electric", 740, 280, 0, 4, 0, 250, 1.5, 0.98, 0, null, 13,  -5,  0.98, 1.98),
 	//locoSpeedGrey("Loco High Speed",EntityLocoElectricNewHighSpeedLoco.class, 36,null,null,0.98,0.98),
 	locoElectricTramYellow("Loco Electric Yellow Wood Tram",EntityLocoElectricTramWood.class, 24,ItemIDs.minecartTramWood.item,"electric",300,55,0,10,0,140,0.5,0.965,0,null,14,-2,0.98,1.98),
 	locoElectricTramNY("Loco Electric Tram NY", EntityLocoElectricTramNY.class, 23, ItemIDs.minecartNYTram.item,
@@ -129,19 +140,20 @@ public enum EnumTrains {
 			 "steam", 500, 129, 0, 60, 180, 160, 0.7, 0.97, 10000, null, 7,
 			 -5.66 , 0.98, 1.98),
 	locoSteamBR01_DB("Loco Steam BR01", EntityLocoSteamBR01_DB.class, 101, ItemIDs.minecartLocoBR01_DB.item,
-			 "steam", 700, 120, 0, 60, 200, 300, 0.6, 0.97, 10000, null, 10,  -3.7 ,
+			"steam", 700, 120, 0, 60, 200, 300, 0.6, 0.97, 10000, null, 10,  -3.7 ,
 			0.98, 1.98),
+	locoSteamGS4("Loco Steam GS4", EntityLocoSteamGS4.class, 94, ItemIDs.minecartGS4_Loco.item, "steam", 800, 170, 0, 60, 350, 450, 0.6, 0.95, 88000, null, 10,  -5.5 , 0.98, 1.98),
 	locoSteamEr_USSR("Loco Steam ER_USSR", EntityLocoSteamEr_Ussr.class, 8, ItemIDs.minecartLocoEr.item,
 			"steam", 800, 80, 0, 80, 100, 200, 0.35, 0.975, 10000, null, 10, -3.7 , 0.98, 1.98),
 	locoSteamForney("Loco Steam Forney",EntityLocoSteamForneyRed.class, 97,ItemIDs.minecartLocoForneyRed.item,"steam",600,70,0,60,160,130,0.44,0.968,8000,new String[] {"Red","Grey","Yellow","Brown","Blue","Green"},15,-1.35,0.98,1.98),
 	locoSteamMogul("Loco Steam Mogul",EntityLocoSteamMogulBlue.class, 93,ItemIDs.minecartLocomogulBlue.item,"steam",500,65,0,50,180,180,0.56,0.967,5000,new String[] {"Blue","Black","Brown","Green","Red","White"},15,-2.2,0.98,1.98),
 	locoSteamShay("Loco Steam Shay",EntityLocoSteamShay.class, 100,ItemIDs.minecartLocoSteamShay.item,"steam",250,50,0,50,160,130,0.5,0.968,4000,null,15,-1.5,0.98,1.98),
-	locoSteamVBShay("Loco Steam VB Shay",EntityLocoSteamVBShay.class, 82,ItemIDs.minecartLocoSteamVBShay.item,"steam",250,20,0,40,140,100,0.5,0.968,3000,null,15,-0.5,0.98,1.98),
-	locoSteamClimax("Loco Steam Climax",EntityLocoSteamClimax.class, 92,ItemIDs.minecartLocoSteamClimax.item,"steam",250,40,0,50,160,130,0.5,0.968,4000,null,15,-1.5,0.98,1.98),
-	locoSteamAlice("Loco Steam Alice",EntityLocoSteamAlice0_4_0.class, 81,ItemIDs.minecartLocoSteamAlice.item,"steam",200,20,0,60,160,200,0.5,0.968,3750,null,15,-2,0.98,1.98),
-	locoSteamGLYN("Loco Steam glyn",EntityLocoSteamGLYN042T.class, 80,ItemIDs.minecartLocoSteamGLYN.item,"steam",200,20,0,60,160,200,0.45,0.968,3750,null,15,-2.5,0.98,1.98),
-	locoSteam262T("Loco Steam 262T",EntityLocoSteam262T.class, 89,ItemIDs.minecartLocoSteam262T.item,"steam",300,45,0,60,160,300,0.5,0.968,4250,null,15,-3,0.98,1.98),
-	locoSteam040VB("Loco Steam 040VB",EntityLocoSteam040VB.class, 91,ItemIDs.minecartLocoSteam040vb.item,"steam",200,20,0,40,120,200,0.5,0.968,2500,null,15,-1.1,0.98,1.98),
+	locoSteamVBShay("Loco Steam VB Shay",EntityLocoSteamVBShay.class, 82,ItemIDs.minecartLocoSteamVBShay.item,"steam",250,32,0,40,140,100,0.5,0.968,3000,null,15,-0.5,0.98,1.98),
+	locoSteamClimax("Loco Steam Climax",EntityLocoSteamClimax.class, 92,ItemIDs.minecartLocoSteamClimax.item,"steam",250,45,0,50,160,130,0.5,0.968,4000,null,15,-1.5,0.98,1.98),
+	locoSteamAlice("Loco Steam Alice",EntityLocoSteamAlice0_4_0.class, 81,ItemIDs.minecartLocoSteamAlice.item,"steam",200,32,0,60,160,200,0.5,0.968,3750,null,15,-2,0.98,1.98),
+	locoSteamGLYN("Loco Steam glyn",EntityLocoSteamGLYN042T.class, 80,ItemIDs.minecartLocoSteamGLYN.item,"steam",200,32,0,60,160,200,0.45,0.968,3750,null,15,-2.5,0.98,1.98),
+	locoSteam262T("Loco Steam 262T",EntityLocoSteam262T.class, 89,ItemIDs.minecartLocoSteam262T.item,"steam",300,70,0,60,160,300,0.5,0.968,4250,null,15,-3,0.98,1.98),
+	locoSteam040VB("Loco Steam 040VB",EntityLocoSteam040VB.class, 91,ItemIDs.minecartLocoSteam040vb.item,"steam",200,32,0,40,120,200,0.5,0.968,2500,null,15,-1.1,0.98,1.98),
 	locoSteamAdler("Loco Steam Adler",EntityLocoSteamAdler.class, 98,ItemIDs.minecartLocoSteamAdler.item,"steam",200,45,0,60,160,300,0.5,0.968,3000,null,15,-1.5,0.98,1.98);
 
 //String trainType,int MHP,int maxSpeed, double mass, int fuelConsumption, int waterConsumption, int heatingTime, double accelerationRate, double brakeRate, int tankCapacity, String[] colors,
@@ -172,7 +184,7 @@ public enum EnumTrains {
 	 * 
 	 * @param internalName : Only used by EntityRegistry
 	 * @param entityClass
-	 * @param entityID: Current free IDs: 94, 116+
+	 * @param entityID: Current free IDs: 127+
 	 * @param item
 	 * @param trainType: "steam", "diesel", "freight", "passenger", "special", "flat", "electric"
 	 * @param MHP: power of the locomotive

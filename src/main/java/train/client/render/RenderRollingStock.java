@@ -220,7 +220,9 @@ public class RenderRollingStock extends Render {
 			if (renders.getEntityClass() != null && renders.getEntityClass().equals(cart.getClass())) {
 				//loadTexture(getTextureFile(renders.getTexture(), renders.getIsMultiTextured(), cart));
 				bindEntityTexture(cart);
-				GL11.glTranslatef(renders.getTrans()[0], renders.getTrans()[1], renders.getTrans()[2]);
+				if (renders.getTrans() != null) {
+					GL11.glTranslatef(renders.getTrans()[0], renders.getTrans()[1], renders.getTrans()[2]);
+				}
 				if (renders.getRotate() != null) {
 					GL11.glRotatef(renders.getRotate()[0], 1.0F, 0.0F, 0.0F);
 					GL11.glRotatef(renders.getRotate()[1], 0.0F, 1.0F, 0.0F);

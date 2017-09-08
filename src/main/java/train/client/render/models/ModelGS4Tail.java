@@ -394,9 +394,9 @@ public class ModelGS4Tail extends ModelBase
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
-        for(int i = 0; i < 69; i++)
+        for(ModelRendererTurbo m : gs4tailModel)
         {
-            gs4tailModel[i].render(f5);
+            m.render(f5);
         }
     }
 

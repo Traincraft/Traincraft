@@ -1,11 +1,14 @@
 package train.common.api;
 
-import cofh.api.energy.IEnergyContainerItem;
+import cofh.api.energy.*;
+import net.minecraft.block.Block;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
 
 public abstract class ElectricTrain extends Locomotive {
 
@@ -57,11 +60,8 @@ public abstract class ElectricTrain extends Locomotive {
 			}
 			else if (item instanceof IEnergyContainerItem)
 			{
-				final double RFtoRE = 10; // redstoneEnergy conversion factor to RF e.g. RF = redstoneEnergy * REtoRF
-				final double REtoRF = 1 / RFtoRE; // redstoneEnergy conversion factor to RF e.g. RF = redstoneEnergy * REtoRF
-				final int maxDraw = 200; // maximum amount of redstoneEnergy to draw from the item per tick
-				int draw = MathHelper.floor_double(Math.min(maxDraw, maxEnergy - getFuel()) * REtoRF); // amount of energy to attempt to draw this tick
-				fuelTrain += ((IEnergyContainerItem) item).extractEnergy(locoInvent[0], draw, false) * RFtoRE;
+				int draw = MathHelper.floor_double(Math.min(200, maxEnergy - getFuel()) * 0.1); // amount of energy to attempt to draw this tick
+				fuelTrain += ((IEnergyContainerItem) item).extractEnergy(locoInvent[0], draw, false) * 10;
 			}
 			/*else if ((PluginIndustrialCraft.getItems().containsKey(PluginIndustrialCraft.getNames()[4]) && PluginIndustrialCraft.getItems().containsKey(PluginIndustrialCraft.getNames()[3])) && (item == PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[4]).getItem())) {
 
@@ -72,6 +72,36 @@ public abstract class ElectricTrain extends Locomotive {
 		}/* else if (getFuel() <= 0) {// fuel check if (locoInvent[0] != null && (PluginIndustrialCraft.getItems().containsKey(PluginIndustrialCraft.getNames()[20])) && (PluginIndustrialCraft.getItems().containsKey(PluginIndustrialCraft.getNames()[23]))) { if ((locoInvent[0].itemID == PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[20]).itemID)) { hasUranium = true; fuelTrain = maxEnergy; if (!worldObj.isRemote) { decrStackSize(0, 1); } reduceExplosionChance = 1000; for (int u = 1; u < locoInvent.length; u++) {// checks the inventory
 		  * 
 		  * if (locoInvent[u] != null) { if (locoInvent[u].itemID == PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[21]).itemID) { reduceExplosionChance += 10000; if (rand.nextInt(10) == 0 && (!worldObj.isRemote)) { locoInvent[u].setItemDamage(1); } } } } } else if ((locoInvent[0].itemID == PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[23]).itemID)) { hasUranium = true; fuelTrain = 800 + 1000000; // locoInvent[0] = null; if (!worldObj.isRemote) { decrStackSize(0, 1); } reduceExplosionChance = 1000; for (int u = 1; u < locoInvent.length; u++) {// checks the inventory if (locoInvent[u] != null) { if (locoInvent[u].itemID == PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[21]).itemID) { reduceExplosionChance += 10000; if (rand.nextInt(10) == 0 && (!worldObj.isRemote)) { locoInvent[u].setItemDamage(1); } } } } } } } */
+
+		TileEntity bottom = worldObj.getTileEntity(MathHelper.floor_double(posX), MathHelper.floor_double(posY-1),MathHelper.floor_double(posZ));
+		TileEntity top = worldObj.getTileEntity(MathHelper.floor_double(posX), MathHelper.floor_double(posY+3),MathHelper.floor_double(posZ));
+
+		if(top instanceof IEnergyHandler){
+			int draw =0;
+			for(ForgeDirection direction : ForgeDirection.VALID_DIRECTIONS){
+				if (draw != 0){
+					break;
+				}
+				int max = ((IEnergyHandler) top).getEnergyStored(direction);
+				if (max >0) {
+					draw = ((IEnergyHandler) top).receiveEnergy(direction, Math.max( -MathHelper.floor_double(Math.min(200, maxEnergy - getFuel()) * 0.1), -max), false);
+				}
+			}
+			fuelTrain += -draw;
+		}
+		if (bottom instanceof IEnergyHandler){
+			int draw =0;
+			for(ForgeDirection direction : ForgeDirection.VALID_DIRECTIONS){
+				if (draw != 0){
+					break;
+				}
+				int max = ((IEnergyHandler) bottom).getEnergyStored(direction);
+				if (max >0) {
+					draw = ((IEnergyHandler) bottom).receiveEnergy(direction, Math.max( -MathHelper.floor_double(Math.min(200, maxEnergy - getFuel()) * 0.1), -max), false);
+				}
+			}
+			fuelTrain += -draw;
+		}
 	}
 	@Override
 	protected void updateFuelTrain(int amount) {

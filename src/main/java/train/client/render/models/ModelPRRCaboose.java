@@ -183,464 +183,463 @@ public class ModelPRRCaboose extends ModelBase
         prrcabooseModel[152] = new ModelRendererTurbo(this, 380, 111, textureX, textureY); // Box 211
 
         prrcabooseModel[0].addBox(0F, 0F, 0F, 68, 1, 19, 0F); // Box 2
-        prrcabooseModel[0].setRotationPoint(-26F, -8F, -9.5F);
+        prrcabooseModel[0].setRotationPoint(-34F, -8F, -9.5F);
 
         prrcabooseModel[1].addShapeBox(0F, 0F, 0F, 1, 16, 1, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 37
-        prrcabooseModel[1].setRotationPoint(-19F, -23F, -10.5F);
+        prrcabooseModel[1].setRotationPoint(-27F, -23F, -10.5F);
 
         prrcabooseModel[2].addShapeBox(0F, 0F, 0F, 1, 16, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F); // Box 38
-        prrcabooseModel[2].setRotationPoint(-19F, -23F, 9.5F);
+        prrcabooseModel[2].setRotationPoint(-27F, -23F, 9.5F);
 
         prrcabooseModel[3].addShapeBox(0F, 0F, 0F, 1, 16, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F); // Box 39
-        prrcabooseModel[3].setRotationPoint(34F, -23F, 9.5F);
+        prrcabooseModel[3].setRotationPoint(26F, -23F, 9.5F);
 
         prrcabooseModel[4].addShapeBox(0F, 0F, 0F, 1, 16, 1, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 40
-        prrcabooseModel[4].setRotationPoint(34F, -23F, -10.5F);
+        prrcabooseModel[4].setRotationPoint(26F, -23F, -10.5F);
 
         prrcabooseModel[5].addShapeBox(0F, 0F, 0F, 66, 1, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F); // Box 41
-        prrcabooseModel[5].setRotationPoint(-25F, -22.5F, -11F);
+        prrcabooseModel[5].setRotationPoint(-33F, -22.5F, -11F);
 
         prrcabooseModel[6].addShapeBox(0F, 0F, 0F, 68, 1, 1, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 1F, 0F, 0F, 1F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F); // Box 43
-        prrcabooseModel[6].setRotationPoint(-26F, -23.5F, -11F);
+        prrcabooseModel[6].setRotationPoint(-34F, -23.5F, -11F);
 
         prrcabooseModel[7].addShapeBox(0F, 0F, 0F, 22, 1, 16, 0F, 0F, 0F, -5F, 0F, 0F, -5F, 0F, 0F, -5F, 0F, 0F, -5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 44
-        prrcabooseModel[7].setRotationPoint(-26F, -25.5F, -8F);
+        prrcabooseModel[7].setRotationPoint(-34F, -25.5F, -8F);
 
         prrcabooseModel[8].addShapeBox(0F, 0F, 0F, 22, 1, 2, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 1F, 0F, 0F, 1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F); // Box 45
-        prrcabooseModel[8].setRotationPoint(-26F, -24.5F, -10F);
+        prrcabooseModel[8].setRotationPoint(-34F, -24.5F, -10F);
 
         prrcabooseModel[9].addShapeBox(0F, 0F, 0F, 22, 1, 16, 0F, 0F, 0F, -5F, 0F, 0F, -5F, 0F, 0F, -5F, 0F, 0F, -5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 51
-        prrcabooseModel[9].setRotationPoint(20F, -25.5F, -8F);
+        prrcabooseModel[9].setRotationPoint(12F, -25.5F, -8F);
 
         prrcabooseModel[10].addShapeBox(0F, 0F, 0F, 22, 1, 2, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 1F, 0F, 0F, 1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F); // Box 52
-        prrcabooseModel[10].setRotationPoint(20F, -24.5F, -10F);
+        prrcabooseModel[10].setRotationPoint(12F, -24.5F, -10F);
 
         prrcabooseModel[11].addShapeBox(0F, 0F, 0F, 22, 1, 2, 0F, 0F, 0F, 1F, 0F, 0F, 1F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 53
-        prrcabooseModel[11].setRotationPoint(-26F, -24.5F, 8F);
+        prrcabooseModel[11].setRotationPoint(-34F, -24.5F, 8F);
 
         prrcabooseModel[12].addShapeBox(0F, 0F, 0F, 68, 1, 1, 0F, 0F, 0F, 1F, 0F, 0F, 1F, 0F, 0F, -1F, 0F, 0F, -1F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F); // Box 54
-        prrcabooseModel[12].setRotationPoint(-26F, -23.5F, 10F);
+        prrcabooseModel[12].setRotationPoint(-34F, -23.5F, 10F);
 
         prrcabooseModel[13].addShapeBox(0F, 0F, 0F, 66, 1, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F); // Box 55
-        prrcabooseModel[13].setRotationPoint(-25F, -22.5F, 10F);
+        prrcabooseModel[13].setRotationPoint(-33F, -22.5F, 10F);
 
         prrcabooseModel[14].addShapeBox(0F, 0F, 0F, 22, 1, 2, 0F, 0F, 0F, 1F, 0F, 0F, 1F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 56
-        prrcabooseModel[14].setRotationPoint(20F, -24.5F, 8F);
+        prrcabooseModel[14].setRotationPoint(12F, -24.5F, 8F);
 
         prrcabooseModel[15].addShapeBox(0F, 0F, 0F, 3, 6, 6, 0F, -2F, 0F, 0F, -1F, -1F, 0F, -1F, -1F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F); // Box 57
-        prrcabooseModel[15].setRotationPoint(-5F, -30.5F, -3F);
+        prrcabooseModel[15].setRotationPoint(-13F, -30.5F, -3F);
 
         prrcabooseModel[16].addShapeBox(0F, 0F, 0F, 3, 6, 6, 0F, -1F, -1F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, -1F, -1F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F); // Box 58
-        prrcabooseModel[16].setRotationPoint(18F, -30.5F, -3F);
+        prrcabooseModel[16].setRotationPoint(10F, -30.5F, -3F);
 
         prrcabooseModel[17].addShapeBox(0F, 0F, 0F, 22, 1, 16, 0F, 0F, 0F, -5F, 0F, 0F, -5F, 0F, 0F, -5F, 0F, 0F, -5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 59
-        prrcabooseModel[17].setRotationPoint(-3F, -30.5F, -8F);
+        prrcabooseModel[17].setRotationPoint(-11F, -30.5F, -8F);
 
         prrcabooseModel[18].addShapeBox(0F, 0F, 0F, 22, 1, 1, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 1F, 0F, 0F, 1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 60
-        prrcabooseModel[18].setRotationPoint(-3F, -29.5F, -9F);
+        prrcabooseModel[18].setRotationPoint(-11F, -29.5F, -9F);
 
         prrcabooseModel[19].addShapeBox(0F, 0F, 0F, 4, 5, 1, 0F, -2F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, -1F, 0F, 0F); // Box 70
-        prrcabooseModel[19].setRotationPoint(-5F, -28.5F, -10F);
+        prrcabooseModel[19].setRotationPoint(-13F, -28.5F, -10F);
 
         prrcabooseModel[20].addShapeBox(0F, 0F, 0F, 4, 5, 1, 0F, 0F, 0F, -1F, -2F, 0F, -1F, -2F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -2F, 0F, 0F); // Box 71
-        prrcabooseModel[20].setRotationPoint(17F, -28.5F, -10F);
+        prrcabooseModel[20].setRotationPoint(9F, -28.5F, -10F);
 
         prrcabooseModel[21].addShapeBox(0F, 0F, 0F, 4, 5, 1, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, -2F, 0F, -1F, -1F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F); // Box 72
-        prrcabooseModel[21].setRotationPoint(-5F, -28.5F, 9F);
+        prrcabooseModel[21].setRotationPoint(-13F, -28.5F, 9F);
 
         prrcabooseModel[22].addShapeBox(0F, 0F, 0F, 22, 1, 1, 0F, 0F, 0F, 1F, 0F, 0F, 1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 73
-        prrcabooseModel[22].setRotationPoint(-3F, -29.5F, 8F);
+        prrcabooseModel[22].setRotationPoint(-11F, -29.5F, 8F);
 
         prrcabooseModel[23].addShapeBox(0F, 0F, 0F, 4, 5, 1, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, -1F, 0F, 0F, -1F, -2F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F); // Box 77
-        prrcabooseModel[23].setRotationPoint(17F, -28.5F, 9F);
+        prrcabooseModel[23].setRotationPoint(9F, -28.5F, 9F);
 
         prrcabooseModel[24].addShapeBox(0F, 0F, 0F, 3, 6, 2, 0F, -2F, 0F, 0F, -1F, 0F, 0F, -1F, -1F, -1F, -2F, -1F, -1F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, -1F, 0F, 0F, 0F); // Box 80
-        prrcabooseModel[24].setRotationPoint(-5F, -29.5F, 8F);
+        prrcabooseModel[24].setRotationPoint(-13F, -29.5F, 8F);
 
         prrcabooseModel[25].addShapeBox(0F, 0F, 0F, 3, 6, 2, 0F, -1F, 0F, 0F, -2F, 0F, 0F, -2F, -1F, -1F, -1F, -1F, -1F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, -1F); // Box 81
-        prrcabooseModel[25].setRotationPoint(18F, -29.5F, 8F);
+        prrcabooseModel[25].setRotationPoint(10F, -29.5F, 8F);
 
         prrcabooseModel[26].addShapeBox(0F, 0F, 0F, 3, 6, 2, 0F, -1F, -1F, -1F, -2F, -1F, -1F, -2F, 0F, 0F, -1F, 0F, 0F, -2F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F); // Box 82
-        prrcabooseModel[26].setRotationPoint(18F, -29.5F, -10F);
+        prrcabooseModel[26].setRotationPoint(10F, -29.5F, -10F);
 
         prrcabooseModel[27].addShapeBox(0F, 0F, 0F, 3, 6, 2, 0F, -2F, -1F, -1F, -1F, -1F, -1F, -1F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, -1F, -2F, 0F, 0F, 0F, 0F, 0F); // Box 83
-        prrcabooseModel[27].setRotationPoint(-5F, -29.5F, -10F);
+        prrcabooseModel[27].setRotationPoint(-13F, -29.5F, -10F);
 
         prrcabooseModel[28].addShapeBox(0F, 0F, 0F, 0, 1, 19, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 101
-        prrcabooseModel[28].setRotationPoint(-19F, -24.5F, -9.5F);
+        prrcabooseModel[28].setRotationPoint(-27F, -24.5F, -9.5F);
 
         prrcabooseModel[29].addBox(0F, 0F, 0F, 1, 14, 1, 0F); // Box 102
-        prrcabooseModel[29].setRotationPoint(-19.25F, -21.5F, 2F);
+        prrcabooseModel[29].setRotationPoint(-27.25F, -21.5F, 2F);
 
         prrcabooseModel[30].addBox(0F, 0F, 0F, 1, 14, 1, 0F); // Box 103
-        prrcabooseModel[30].setRotationPoint(-19.25F, -21.5F, -3F);
+        prrcabooseModel[30].setRotationPoint(-27.25F, -21.5F, -3F);
 
         prrcabooseModel[31].addBox(0F, 0F, 0F, 1, 1, 4, 0F); // Box 105
-        prrcabooseModel[31].setRotationPoint(-19.25F, -21.5F, -2F);
+        prrcabooseModel[31].setRotationPoint(-27.25F, -21.5F, -2F);
 
         prrcabooseModel[32].addShapeBox(0F, 0F, 0F, 0, 1, 19, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 130
-        prrcabooseModel[32].setRotationPoint(35F, -24.5F, -9.5F);
+        prrcabooseModel[32].setRotationPoint(27F, -24.5F, -9.5F);
 
         prrcabooseModel[33].addShapeBox(0F, 0F, 0F, 5, 5, 1, 0F, 0F, 0F, 1F, 0F, 0F, 1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 110
-        prrcabooseModel[33].setRotationPoint(4.5F, -28.5F, 9F);
+        prrcabooseModel[33].setRotationPoint(-3.5F, -28.5F, 9F);
 
         prrcabooseModel[34].addShapeBox(0F, 0F, 0F, 5, 5, 1, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 1F, 0F, 0F, 1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 111
-        prrcabooseModel[34].setRotationPoint(4.5F, -28.5F, -10F);
+        prrcabooseModel[34].setRotationPoint(-3.5F, -28.5F, -10F);
 
         prrcabooseModel[35].addShapeBox(0F, 0F, 0F, 104, 30, 0, 0F, -26F, -7F, 0F, -26F, -7F, 0F, -26F, -7F, 0F, -26F, -7F, 0F, -26F, -7F, 0F, -26F, -7F, 0F, -26F, -7F, 0F, -26F, -7F, 0F); // Box 112
-        prrcabooseModel[35].setRotationPoint(-44F, -29.5F, 10.5F);
+        prrcabooseModel[35].setRotationPoint(-52F, -29.5F, 10.5F);
 
         prrcabooseModel[36].addShapeBox(0F, 0F, 0F, 104, 30, 0, 0F, -26F, -7F, 0F, -26F, -7F, 0F, -26F, -7F, 0F, -26F, -7F, 0F, -26F, -7F, 0F, -26F, -7F, 0F, -26F, -7F, 0F, -26F, -7F, 0F); // Box 113
-        prrcabooseModel[36].setRotationPoint(-44F, -29.5F, -10.5F);
+        prrcabooseModel[36].setRotationPoint(-52F, -29.5F, -10.5F);
 
         prrcabooseModel[37].addBox(0F, 0F, 0F, 22, 1, 1, 0F); // Box 114
-        prrcabooseModel[37].setRotationPoint(-3F, -28.5F, -9F);
+        prrcabooseModel[37].setRotationPoint(-11F, -28.5F, -9F);
 
         prrcabooseModel[38].addBox(0F, 0F, 0F, 22, 1, 1, 0F); // Box 115
-        prrcabooseModel[38].setRotationPoint(-3F, -28.5F, 8F);
+        prrcabooseModel[38].setRotationPoint(-11F, -28.5F, 8F);
 
         prrcabooseModel[39].addBox(0F, 0F, 0F, 1, 14, 1, 0F); // Box 116
-        prrcabooseModel[39].setRotationPoint(34.25F, -21.5F, -3F);
+        prrcabooseModel[39].setRotationPoint(26.25F, -21.5F, -3F);
 
         prrcabooseModel[40].addBox(0F, 0F, 0F, 1, 14, 1, 0F); // Box 117
-        prrcabooseModel[40].setRotationPoint(34.25F, -21.5F, 2F);
+        prrcabooseModel[40].setRotationPoint(26.25F, -21.5F, 2F);
 
         prrcabooseModel[41].addBox(0F, 0F, 0F, 1, 1, 4, 0F); // Box 118
-        prrcabooseModel[41].setRotationPoint(34.25F, -21.5F, -2F);
+        prrcabooseModel[41].setRotationPoint(26.25F, -21.5F, -2F);
 
         prrcabooseModel[42].addShapeBox(0F, 0F, 0F, 0, 32, 37, 0F, 0F, -8F, -9F, 0F, -8F, -9F, 0F, -8F, -9F, 0F, -8F, -9F, 0F, -8F, -9F, 0F, -8F, -9F, 0F, -8F, -9F, 0F, -8F, -9F); // Box 120
-        prrcabooseModel[42].setRotationPoint(-19F, -31.5F, -18.5F);
+        prrcabooseModel[42].setRotationPoint(-27F, -31.5F, -18.5F);
 
         prrcabooseModel[43].addShapeBox(0F, 0F, 0F, 0, 32, 37, 0F, 0F, -8F, -9F, 0F, -8F, -9F, 0F, -8F, -9F, 0F, -8F, -9F, 0F, -8F, -9F, 0F, -8F, -9F, 0F, -8F, -9F, 0F, -8F, -9F); // Box 122
-        prrcabooseModel[43].setRotationPoint(35F, -31.5F, -18.5F);
+        prrcabooseModel[43].setRotationPoint(27F, -31.5F, -18.5F);
 
         prrcabooseModel[44].addBox(0F, 0F, 0F, 1, 16, 1, 0F); // Box 46
-        prrcabooseModel[44].setRotationPoint(-25.75F, -24F, -9F);
+        prrcabooseModel[44].setRotationPoint(-33.75F, -24F, -9F);
 
         prrcabooseModel[45].addBox(0F, 0F, 0F, 1, 16, 1, 0F); // Box 47
-        prrcabooseModel[45].setRotationPoint(-25.75F, -24F, 8F);
+        prrcabooseModel[45].setRotationPoint(-33.75F, -24F, 8F);
 
         prrcabooseModel[46].addBox(0F, 0F, 0F, 1, 17, 1, 0F); // Box 48
-        prrcabooseModel[46].setRotationPoint(-25.75F, -24.5F, 2F);
+        prrcabooseModel[46].setRotationPoint(-33.75F, -24.5F, 2F);
 
         prrcabooseModel[47].addBox(0F, 0F, 0F, 1, 17, 1, 0F); // Box 49
-        prrcabooseModel[47].setRotationPoint(-25.75F, -24.5F, -3F);
+        prrcabooseModel[47].setRotationPoint(-33.75F, -24.5F, -3F);
 
         prrcabooseModel[48].addBox(0F, 0F, 0F, 1, 1, 16, 0F); // Box 50
-        prrcabooseModel[48].setRotationPoint(-25.75F, -13F, -8F);
+        prrcabooseModel[48].setRotationPoint(-33.75F, -13F, -8F);
 
         prrcabooseModel[49].addBox(0F, 0F, 0F, 1, 1, 16, 0F); // Box 53
-        prrcabooseModel[49].setRotationPoint(-25.75F, -16.5F, -8F);
+        prrcabooseModel[49].setRotationPoint(-33.75F, -16.5F, -8F);
 
         prrcabooseModel[50].addBox(0F, 0F, 0F, 0, 17, 4, 0F); // Box 56
-        prrcabooseModel[50].setRotationPoint(-26.25F, -24F, 4.5F);
+        prrcabooseModel[50].setRotationPoint(-34.25F, -24F, 4.5F);
 
         prrcabooseModel[51].addBox(0F, 0F, 0F, 1, 16, 1, 0F); // Box 57
-        prrcabooseModel[51].setRotationPoint(40.75F, -24F, -9F);
+        prrcabooseModel[51].setRotationPoint(32.75F, -24F, -9F);
 
         prrcabooseModel[52].addBox(0F, 0F, 0F, 1, 17, 1, 0F); // Box 58
-        prrcabooseModel[52].setRotationPoint(40.75F, -24.5F, -3F);
+        prrcabooseModel[52].setRotationPoint(32.75F, -24.5F, -3F);
 
         prrcabooseModel[53].addBox(0F, 0F, 0F, 1, 17, 1, 0F); // Box 59
-        prrcabooseModel[53].setRotationPoint(40.75F, -24.5F, 2F);
+        prrcabooseModel[53].setRotationPoint(32.75F, -24.5F, 2F);
 
         prrcabooseModel[54].addBox(0F, 0F, 0F, 1, 16, 1, 0F); // Box 60
-        prrcabooseModel[54].setRotationPoint(40.75F, -24F, 8F);
+        prrcabooseModel[54].setRotationPoint(32.75F, -24F, 8F);
 
         prrcabooseModel[55].addBox(0F, 0F, 0F, 1, 1, 16, 0F); // Box 64
-        prrcabooseModel[55].setRotationPoint(40.75F, -13F, -8F);
+        prrcabooseModel[55].setRotationPoint(32.75F, -13F, -8F);
 
         prrcabooseModel[56].addBox(0F, 0F, 0F, 1, 1, 16, 0F); // Box 66
-        prrcabooseModel[56].setRotationPoint(40.75F, -16.5F, -8F);
+        prrcabooseModel[56].setRotationPoint(32.75F, -16.5F, -8F);
 
         prrcabooseModel[57].addBox(0F, 0F, 0F, 0, 17, 4, 0F); // Box 67
-        prrcabooseModel[57].setRotationPoint(42.75F, -24F, -8.5F);
+        prrcabooseModel[57].setRotationPoint(34.75F, -24F, -8.5F);
 
         prrcabooseModel[58].addBox(0F, 0F, 0F, 22, 0, 4, 0F); // Box 68
-        prrcabooseModel[58].setRotationPoint(21F, -26F, -2F);
+        prrcabooseModel[58].setRotationPoint(13F, -26F, -2F);
 
         prrcabooseModel[59].addBox(0F, 0F, 0F, 22, 0, 4, 0F); // Box 69
-        prrcabooseModel[59].setRotationPoint(-27F, -26F, -2F);
+        prrcabooseModel[59].setRotationPoint(-35F, -26F, -2F);
 
         prrcabooseModel[60].addShapeBox(0F, 0F, 0F, 4, 0, 9, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 2F, 0F, 0F, 2F, 0F); // Box 70
-        prrcabooseModel[60].setRotationPoint(-25F, -26F, 2F);
+        prrcabooseModel[60].setRotationPoint(-33F, -26F, 2F);
 
         prrcabooseModel[61].addShapeBox(0F, 0F, 0F, 4, 0, 9, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 2F, 0F, 0F, 2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 71
-        prrcabooseModel[61].setRotationPoint(37F, -26F, -11F);
+        prrcabooseModel[61].setRotationPoint(29F, -26F, -11F);
 
         prrcabooseModel[62].addBox(0F, 0F, 0F, 3, 2, 0, 0F); // Box 72
-        prrcabooseModel[62].setRotationPoint(-24F, -7F, -8.5F);
+        prrcabooseModel[62].setRotationPoint(-32F, -7F, -8.5F);
 
         prrcabooseModel[63].addBox(0F, 0F, 0F, 3, 0, 1, 0F); // Box 73
-        prrcabooseModel[63].setRotationPoint(-24F, -5F, -9.5F);
+        prrcabooseModel[63].setRotationPoint(-32F, -5F, -9.5F);
 
         prrcabooseModel[64].addBox(0F, 0F, 0F, 0, 2, 1, 0F); // Box 74
-        prrcabooseModel[64].setRotationPoint(-24F, -7F, -9.5F);
+        prrcabooseModel[64].setRotationPoint(-32F, -7F, -9.5F);
 
         prrcabooseModel[65].addBox(0F, 0F, 0F, 0, 2, 1, 0F); // Box 75
-        prrcabooseModel[65].setRotationPoint(-21F, -7F, -9.5F);
+        prrcabooseModel[65].setRotationPoint(-29F, -7F, -9.5F);
 
         prrcabooseModel[66].addShapeBox(0F, 0F, 0F, 5, 2, 0, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 76
-        prrcabooseModel[66].setRotationPoint(-25F, -5F, -8.5F);
+        prrcabooseModel[66].setRotationPoint(-33F, -5F, -8.5F);
 
         prrcabooseModel[67].addShapeBox(0F, 0F, 0F, 0, 2, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 1F, 0F, 0F, 1F, 0F, 0F, -1F, 0F, 0F); // Box 77
-        prrcabooseModel[67].setRotationPoint(-21F, -5F, -9.5F);
+        prrcabooseModel[67].setRotationPoint(-29F, -5F, -9.5F);
 
         prrcabooseModel[68].addShapeBox(0F, 0F, 0F, 0, 2, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 1F, 0F, 0F); // Box 78
-        prrcabooseModel[68].setRotationPoint(-24F, -5F, -9.5F);
+        prrcabooseModel[68].setRotationPoint(-32F, -5F, -9.5F);
 
         prrcabooseModel[69].addBox(0F, 0F, 0F, 5, 0, 2, 0F); // Box 79
-        prrcabooseModel[69].setRotationPoint(-25F, -3F, -10F);
+        prrcabooseModel[69].setRotationPoint(-33F, -3F, -10F);
 
         prrcabooseModel[70].addBox(0F, 0F, 0F, 3, 2, 0, 0F); // Box 80
-        prrcabooseModel[70].setRotationPoint(-24F, -7F, 8.5F);
+        prrcabooseModel[70].setRotationPoint(-32F, -7F, 8.5F);
 
         prrcabooseModel[71].addBox(0F, 0F, 0F, 0, 2, 1, 0F); // Box 81
-        prrcabooseModel[71].setRotationPoint(-24F, -7F, 8.5F);
+        prrcabooseModel[71].setRotationPoint(-32F, -7F, 8.5F);
 
         prrcabooseModel[72].addBox(0F, 0F, 0F, 0, 2, 1, 0F); // Box 82
-        prrcabooseModel[72].setRotationPoint(-21F, -7F, 8.5F);
+        prrcabooseModel[72].setRotationPoint(-29F, -7F, 8.5F);
 
         prrcabooseModel[73].addBox(0F, 0F, 0F, 3, 0, 1, 0F); // Box 83
-        prrcabooseModel[73].setRotationPoint(-24F, -5F, 8.5F);
+        prrcabooseModel[73].setRotationPoint(-32F, -5F, 8.5F);
 
         prrcabooseModel[74].addShapeBox(0F, 0F, 0F, 5, 2, 0, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 84
-        prrcabooseModel[74].setRotationPoint(-25F, -5F, 8.5F);
+        prrcabooseModel[74].setRotationPoint(-33F, -5F, 8.5F);
 
         prrcabooseModel[75].addShapeBox(0F, 0F, 0F, 0, 2, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 1F, 0F, 0F); // Box 85
-        prrcabooseModel[75].setRotationPoint(-24F, -5F, 8.5F);
+        prrcabooseModel[75].setRotationPoint(-32F, -5F, 8.5F);
 
         prrcabooseModel[76].addShapeBox(0F, 0F, 0F, 0, 2, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 1F, 0F, 0F, 1F, 0F, 0F, -1F, 0F, 0F); // Box 86
-        prrcabooseModel[76].setRotationPoint(-21F, -5F, 8.5F);
+        prrcabooseModel[76].setRotationPoint(-29F, -5F, 8.5F);
 
         prrcabooseModel[77].addBox(0F, 0F, 0F, 5, 0, 2, 0F); // Box 87
-        prrcabooseModel[77].setRotationPoint(-25F, -3F, 8F);
+        prrcabooseModel[77].setRotationPoint(-33F, -3F, 8F);
 
         prrcabooseModel[78].addBox(0F, 0F, 0F, 3, 2, 0, 0F); // Box 88
-        prrcabooseModel[78].setRotationPoint(37F, -7F, -8.5F);
+        prrcabooseModel[78].setRotationPoint(29F, -7F, -8.5F);
 
         prrcabooseModel[79].addBox(0F, 0F, 0F, 0, 2, 1, 0F); // Box 89
-        prrcabooseModel[79].setRotationPoint(37F, -7F, -9.5F);
+        prrcabooseModel[79].setRotationPoint(29F, -7F, -9.5F);
 
         prrcabooseModel[80].addBox(0F, 0F, 0F, 0, 2, 1, 0F); // Box 90
-        prrcabooseModel[80].setRotationPoint(40F, -7F, -9.5F);
+        prrcabooseModel[80].setRotationPoint(32F, -7F, -9.5F);
 
         prrcabooseModel[81].addBox(0F, 0F, 0F, 3, 0, 1, 0F); // Box 91
-        prrcabooseModel[81].setRotationPoint(37F, -5F, -9.5F);
+        prrcabooseModel[81].setRotationPoint(29F, -5F, -9.5F);
 
         prrcabooseModel[82].addShapeBox(0F, 0F, 0F, 5, 2, 0, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 92
-        prrcabooseModel[82].setRotationPoint(36F, -5F, -8.5F);
+        prrcabooseModel[82].setRotationPoint(28F, -5F, -8.5F);
 
         prrcabooseModel[83].addShapeBox(0F, 0F, 0F, 0, 2, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 1F, 0F, 0F); // Box 93
-        prrcabooseModel[83].setRotationPoint(37F, -5F, -9.5F);
+        prrcabooseModel[83].setRotationPoint(29F, -5F, -9.5F);
 
         prrcabooseModel[84].addShapeBox(0F, 0F, 0F, 0, 2, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 1F, 0F, 0F, 1F, 0F, 0F, -1F, 0F, 0F); // Box 94
-        prrcabooseModel[84].setRotationPoint(40F, -5F, -9.5F);
+        prrcabooseModel[84].setRotationPoint(32F, -5F, -9.5F);
 
         prrcabooseModel[85].addBox(0F, 0F, 0F, 5, 0, 2, 0F); // Box 95
-        prrcabooseModel[85].setRotationPoint(36F, -3F, -10F);
+        prrcabooseModel[85].setRotationPoint(28F, -3F, -10F);
 
         prrcabooseModel[86].addBox(0F, 0F, 0F, 5, 0, 2, 0F); // Box 96
-        prrcabooseModel[86].setRotationPoint(36F, -3F, 8F);
+        prrcabooseModel[86].setRotationPoint(28F, -3F, 8F);
 
         prrcabooseModel[87].addShapeBox(0F, 0F, 0F, 0, 2, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 1F, 0F, 0F, 1F, 0F, 0F, -1F, 0F, 0F); // Box 97
-        prrcabooseModel[87].setRotationPoint(40F, -5F, 8.5F);
+        prrcabooseModel[87].setRotationPoint(32F, -5F, 8.5F);
 
         prrcabooseModel[88].addBox(0F, 0F, 0F, 0, 2, 1, 0F); // Box 98
-        prrcabooseModel[88].setRotationPoint(40F, -7F, 8.5F);
+        prrcabooseModel[88].setRotationPoint(32F, -7F, 8.5F);
 
         prrcabooseModel[89].addShapeBox(0F, 0F, 0F, 5, 2, 0, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 99
-        prrcabooseModel[89].setRotationPoint(36F, -5F, 8.5F);
+        prrcabooseModel[89].setRotationPoint(28F, -5F, 8.5F);
 
         prrcabooseModel[90].addBox(0F, 0F, 0F, 3, 2, 0, 0F); // Box 100
-        prrcabooseModel[90].setRotationPoint(37F, -7F, 8.5F);
+        prrcabooseModel[90].setRotationPoint(29F, -7F, 8.5F);
 
         prrcabooseModel[91].addBox(0F, 0F, 0F, 3, 0, 1, 0F); // Box 101
-        prrcabooseModel[91].setRotationPoint(37F, -5F, 8.5F);
+        prrcabooseModel[91].setRotationPoint(29F, -5F, 8.5F);
 
         prrcabooseModel[92].addShapeBox(0F, 0F, 0F, 0, 2, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 1F, 0F, 0F); // Box 102
-        prrcabooseModel[92].setRotationPoint(37F, -5F, 8.5F);
+        prrcabooseModel[92].setRotationPoint(29F, -5F, 8.5F);
 
         prrcabooseModel[93].addBox(0F, 0F, 0F, 0, 2, 1, 0F); // Box 103
-        prrcabooseModel[93].setRotationPoint(37F, -7F, 8.5F);
+        prrcabooseModel[93].setRotationPoint(29F, -7F, 8.5F);
 
         prrcabooseModel[94].addBox(0F, 0F, 0F, 68, 2, 3, 0F); // Box 151
-        prrcabooseModel[94].setRotationPoint(-26F, -7F, -1.5F);
+        prrcabooseModel[94].setRotationPoint(-34F, -7F, -1.5F);
 
         prrcabooseModel[95].addShapeBox(0F, 0F, 0F, 3, 1, 9, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F); // Box 152
-        prrcabooseModel[95].setRotationPoint(-15F, -6.5F, 1.5F);
+        prrcabooseModel[95].setRotationPoint(-23F, -6.5F, 1.5F);
 
         prrcabooseModel[96].addShapeBox(0F, 0F, 0F, 3, 1, 9, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 153
-        prrcabooseModel[96].setRotationPoint(-15F, -6.5F, -10.5F);
+        prrcabooseModel[96].setRotationPoint(-23F, -6.5F, -10.5F);
 
         prrcabooseModel[97].addShapeBox(0F, 0F, 0F, 3, 1, 9, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 154
-        prrcabooseModel[97].setRotationPoint(28F, -6.5F, -10.5F);
+        prrcabooseModel[97].setRotationPoint(20F, -6.5F, -10.5F);
 
         prrcabooseModel[98].addShapeBox(0F, 0F, 0F, 3, 1, 9, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F); // Box 155
-        prrcabooseModel[98].setRotationPoint(28F, -6.5F, 1.5F);
+        prrcabooseModel[98].setRotationPoint(20F, -6.5F, 1.5F);
 
         prrcabooseModel[99].addBox(0F, 0F, 0F, 52, 0, 21, 0F); // Box 156
-        prrcabooseModel[99].setRotationPoint(-18F, -6.5F, -10.5F);
+        prrcabooseModel[99].setRotationPoint(-26F, -6.5F, -10.5F);
 
         prrcabooseModel[100].addBox(0F, 0F, 0F, 0, 1, 21, 0F); // Box 157
-        prrcabooseModel[100].setRotationPoint(-18F, -7.5F, -10.5F);
+        prrcabooseModel[100].setRotationPoint(-26F, -7.5F, -10.5F);
 
         prrcabooseModel[101].addBox(0F, 0F, 0F, 0, 1, 21, 0F); // Box 158
-        prrcabooseModel[101].setRotationPoint(34F, -7.5F, -10.5F);
+        prrcabooseModel[101].setRotationPoint(26F, -7.5F, -10.5F);
 
         prrcabooseModel[102].addShapeBox(0F, 0F, 0F, 2, 1, 9, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 159
-        prrcabooseModel[102].setRotationPoint(16F, -6.5F, -10.5F);
+        prrcabooseModel[102].setRotationPoint(8F, -6.5F, -10.5F);
 
         prrcabooseModel[103].addShapeBox(0F, 0F, 0F, 2, 1, 9, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 160
-        prrcabooseModel[103].setRotationPoint(-2F, -6.5F, -10.5F);
+        prrcabooseModel[103].setRotationPoint(-10F, -6.5F, -10.5F);
 
         prrcabooseModel[104].addShapeBox(0F, 0F, 0F, 2, 1, 9, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F); // Box 161
-        prrcabooseModel[104].setRotationPoint(-2F, -6.5F, 1.5F);
+        prrcabooseModel[104].setRotationPoint(-10F, -6.5F, 1.5F);
 
         prrcabooseModel[105].addShapeBox(0F, 0F, 0F, 2, 1, 9, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F); // Box 162
-        prrcabooseModel[105].setRotationPoint(16F, -6.5F, 1.5F);
+        prrcabooseModel[105].setRotationPoint(8F, -6.5F, 1.5F);
 
         prrcabooseModel[106].addBox(0F, 0F, 0F, 3, 1, 3, 0F); // Box 163
-        prrcabooseModel[106].setRotationPoint(1F, -5.5F, -6.5F);
+        prrcabooseModel[106].setRotationPoint(-7F, -5.5F, -6.5F);
 
         prrcabooseModel[107].addShapeBox(0F, 0F, 0F, 3, 1, 3, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 164
-        prrcabooseModel[107].setRotationPoint(1F, -6.5F, -6.5F);
+        prrcabooseModel[107].setRotationPoint(-7F, -6.5F, -6.5F);
 
         prrcabooseModel[108].addShapeBox(0F, 0F, 0F, 3, 1, 3, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F); // Box 165
-        prrcabooseModel[108].setRotationPoint(1F, -4.5F, -6.5F);
+        prrcabooseModel[108].setRotationPoint(-7F, -4.5F, -6.5F);
 
         prrcabooseModel[109].addShapeBox(0F, 0F, 0F, 1, 1, 3, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, -1F, -1F, 0F, -1F, -1F, 0F, 0F, -1F); // Box 166
-        prrcabooseModel[109].setRotationPoint(4F, -4.5F, -6.5F);
+        prrcabooseModel[109].setRotationPoint(-4F, -4.5F, -6.5F);
 
         prrcabooseModel[110].addShapeBox(0F, 0F, 0F, 1, 1, 3, 0F, 0F, 0F, -1F, 0F, -1F, -1F, 0F, -1F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F); // Box 167
-        prrcabooseModel[110].setRotationPoint(4F, -6.5F, -6.5F);
+        prrcabooseModel[110].setRotationPoint(-4F, -6.5F, -6.5F);
 
         prrcabooseModel[111].addShapeBox(0F, 0F, 0F, 1, 1, 3, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F); // Box 168
-        prrcabooseModel[111].setRotationPoint(4F, -5.5F, -6.5F);
+        prrcabooseModel[111].setRotationPoint(-4F, -5.5F, -6.5F);
 
         prrcabooseModel[112].addShapeBox(0F, 0F, 0F, 5, 1, 3, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 169
-        prrcabooseModel[112].setRotationPoint(10F, -6.5F, -9.5F);
+        prrcabooseModel[112].setRotationPoint(2F, -6.5F, -9.5F);
 
         prrcabooseModel[113].addShapeBox(0F, 0F, 0F, 5, 1, 3, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F); // Box 170
-        prrcabooseModel[113].setRotationPoint(10F, -4.5F, -9.5F);
+        prrcabooseModel[113].setRotationPoint(2F, -4.5F, -9.5F);
 
         prrcabooseModel[114].addBox(0F, 0F, 0F, 5, 1, 3, 0F); // Box 171
-        prrcabooseModel[114].setRotationPoint(10F, -5.5F, -9.5F);
+        prrcabooseModel[114].setRotationPoint(2F, -5.5F, -9.5F);
 
         prrcabooseModel[115].addShapeBox(0F, 0F, 0F, 1, 1, 4, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F); // Box 172
-        prrcabooseModel[115].setRotationPoint(12F, -4F, -10F);
+        prrcabooseModel[115].setRotationPoint(4F, -4F, -10F);
 
         prrcabooseModel[116].addBox(0F, 0F, 0F, 1, 3, 4, 0F); // Box 173
-        prrcabooseModel[116].setRotationPoint(12F, -7F, -10F);
+        prrcabooseModel[116].setRotationPoint(4F, -7F, -10F);
 
         prrcabooseModel[117].addBox(0F, 0F, 0F, 6, 3, 3, 0F); // Box 174
-        prrcabooseModel[117].setRotationPoint(5F, -7F, 6F);
+        prrcabooseModel[117].setRotationPoint(-3F, -7F, 6F);
 
         prrcabooseModel[118].addBox(0F, 0F, 0F, 72, 2, 2, 0F); // Box 175
-        prrcabooseModel[118].setRotationPoint(-28F, -7.5F, -1F);
+        prrcabooseModel[118].setRotationPoint(-36F, -7.5F, -1F);
 
         prrcabooseModel[119].addShapeBox(0F, 0F, 0F, 3, 6, 5, 0F, -2F, 0F, 0F, -1F, 0F, 0F, -1F, -1F, 0F, -2F, -1F, 0F, 0F, 0F, 0F, -3F, 0F, 0F, -3F, 1F, 0F, 0F, 1F, 0F); // Box 176
-        prrcabooseModel[119].setRotationPoint(-5F, -30.5F, 3F);
+        prrcabooseModel[119].setRotationPoint(-13F, -30.5F, 3F);
 
         prrcabooseModel[120].addShapeBox(0F, 0F, 0F, 3, 6, 5, 0F, -2F, -1F, 0F, -1F, -1F, 0F, -1F, 0F, 0F, -2F, 0F, 0F, 0F, 1F, 0F, -3F, 1F, 0F, -3F, 0F, 0F, 0F, 0F, 0F); // Box 177
-        prrcabooseModel[120].setRotationPoint(-5F, -30.5F, -8F);
+        prrcabooseModel[120].setRotationPoint(-13F, -30.5F, -8F);
 
         prrcabooseModel[121].addShapeBox(0F, 0F, 0F, 3, 6, 5, 0F, -1F, -1F, 0F, -2F, -1F, 0F, -2F, 0F, 0F, -1F, 0F, 0F, -3F, 1F, 0F, 0F, 1F, 0F, 0F, 0F, 0F, -3F, 0F, 0F); // Box 178
-        prrcabooseModel[121].setRotationPoint(18F, -30.5F, -8F);
+        prrcabooseModel[121].setRotationPoint(10F, -30.5F, -8F);
 
         prrcabooseModel[122].addShapeBox(0F, 0F, 0F, 3, 6, 5, 0F, -1F, 0F, 0F, -2F, 0F, 0F, -2F, -1F, 0F, -1F, -1F, 0F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 1F, 0F, -3F, 1F, 0F); // Box 179
-        prrcabooseModel[122].setRotationPoint(18F, -30.5F, 3F);
+        prrcabooseModel[122].setRotationPoint(10F, -30.5F, 3F);
 
         prrcabooseModel[123].addShapeBox(0F, 0F, 0F, 22, 5, 0, 0F, -2F, 0F, -1F, -2F, 0F, -1F, -2F, 0F, 1F, -2F, 0F, 1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 180
-        prrcabooseModel[123].setRotationPoint(-3F, -28.5F, -9.5F);
+        prrcabooseModel[123].setRotationPoint(-11F, -28.5F, -9.5F);
 
         prrcabooseModel[124].addShapeBox(0F, 0F, 0F, 22, 5, 0, 0F, -2F, 0F, 1F, -2F, 0F, 1F, -2F, 0F, -1F, -2F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 181
-        prrcabooseModel[124].setRotationPoint(-3F, -28.5F, 9.5F);
+        prrcabooseModel[124].setRotationPoint(-11F, -28.5F, 9.5F);
 
         prrcabooseModel[125].addBox(0F, 0F, 0F, 21, 3, 0, 0F); // Box 182
-        prrcabooseModel[125].setRotationPoint(21F, -31F, 7F);
+        prrcabooseModel[125].setRotationPoint(13F, -31F, 7F);
 
         prrcabooseModel[126].addBox(0F, 0F, 0F, 47, 3, 0, 0F); // Box 183
-        prrcabooseModel[126].setRotationPoint(-26F, -31F, -7F);
+        prrcabooseModel[126].setRotationPoint(-34F, -31F, -7F);
 
         prrcabooseModel[127].addBox(0F, 0F, 0F, 47, 0, 1, 0F); // Box 184
-        prrcabooseModel[127].setRotationPoint(-26F, -30.5F, -7.5F);
+        prrcabooseModel[127].setRotationPoint(-34F, -30.5F, -7.5F);
 
         prrcabooseModel[128].addBox(0F, 0F, 0F, 21, 0, 1, 0F); // Box 185
-        prrcabooseModel[128].setRotationPoint(21F, -30.5F, 6.5F);
+        prrcabooseModel[128].setRotationPoint(13F, -30.5F, 6.5F);
 
         prrcabooseModel[129].addShapeBox(0F, 0F, 0F, 21, 4, 0, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 1F, 0F, 0F, 1F); // Box 186
-        prrcabooseModel[129].setRotationPoint(21F, -28F, 7F);
+        prrcabooseModel[129].setRotationPoint(13F, -28F, 7F);
 
         prrcabooseModel[130].addShapeBox(0F, 0F, 0F, 21, 3, 0, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 1F, 0F, 0F, 1F, 0F, 0F, -1F, 0F, 0F, -1F); // Box 187
-        prrcabooseModel[130].setRotationPoint(21F, -28F, 7F);
+        prrcabooseModel[130].setRotationPoint(13F, -28F, 7F);
 
         prrcabooseModel[131].addShapeBox(0F, 0F, 0F, 23, 3, 0, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 1F, 0F, 0F, 1F); // Box 188
-        prrcabooseModel[131].setRotationPoint(-26F, -28F, -7F);
+        prrcabooseModel[131].setRotationPoint(-34F, -28F, -7F);
 
         prrcabooseModel[132].addShapeBox(0F, 0F, 0F, 23, 4, 0, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 1F, 0F, 0F, 1F, 0F, 0F, -1F, 0F, 0F, -1F); // Box 189
-        prrcabooseModel[132].setRotationPoint(-26F, -28F, -7F);
+        prrcabooseModel[132].setRotationPoint(-34F, -28F, -7F);
 
         prrcabooseModel[133].addShapeBox(0F, 0F, 0F, 3, 1, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F); // Box 190
-        prrcabooseModel[133].setRotationPoint(-9F, -26.5F, 5.5F);
+        prrcabooseModel[133].setRotationPoint(-17F, -26.5F, 5.5F);
 
         prrcabooseModel[134].addShapeBox(0F, 0F, 0F, 3, 1, 1, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 191
-        prrcabooseModel[134].setRotationPoint(-9F, -28.5F, 5.5F);
+        prrcabooseModel[134].setRotationPoint(-17F, -28.5F, 5.5F);
 
         prrcabooseModel[135].addBox(0F, 0F, 0F, 3, 1, 1, 0F); // Box 192
-        prrcabooseModel[135].setRotationPoint(-9F, -27.5F, 5.5F);
+        prrcabooseModel[135].setRotationPoint(-17F, -27.5F, 5.5F);
 
         prrcabooseModel[136].addBox(0F, 0F, 0F, 3, 1, 1, 0F); // Box 193
-        prrcabooseModel[136].setRotationPoint(-13.5F, -27.5F, 5.5F);
+        prrcabooseModel[136].setRotationPoint(-21.5F, -27.5F, 5.5F);
 
         prrcabooseModel[137].addShapeBox(0F, 0F, 0F, 3, 1, 1, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 194
-        prrcabooseModel[137].setRotationPoint(-13.5F, -28.5F, 5.5F);
+        prrcabooseModel[137].setRotationPoint(-21.5F, -28.5F, 5.5F);
 
         prrcabooseModel[138].addShapeBox(0F, 0F, 0F, 3, 1, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F); // Box 195
-        prrcabooseModel[138].setRotationPoint(-13.5F, -26.5F, 5.5F);
+        prrcabooseModel[138].setRotationPoint(-21.5F, -26.5F, 5.5F);
 
         prrcabooseModel[139].addBox(0F, 0F, 0F, 1, 1, 2, 0F); // Box 196
-        prrcabooseModel[139].setRotationPoint(-12.5F, -27.5F, 5F);
+        prrcabooseModel[139].setRotationPoint(-20.5F, -27.5F, 5F);
 
         prrcabooseModel[140].addBox(0F, 0F, 0F, 1, 1, 2, 0F); // Box 197
-        prrcabooseModel[140].setRotationPoint(-8F, -27.5F, 5F);
+        prrcabooseModel[140].setRotationPoint(-16F, -27.5F, 5F);
 
         prrcabooseModel[141].addBox(0F, 0F, 0F, 2, 2, 0, 0F); // Box 198
-        prrcabooseModel[141].setRotationPoint(-8.5F, -26.5F, 6F);
+        prrcabooseModel[141].setRotationPoint(-16.5F, -26.5F, 6F);
 
         prrcabooseModel[142].addBox(0F, 0F, 0F, 2, 2, 0, 0F); // Box 199
-        prrcabooseModel[142].setRotationPoint(-13F, -26.5F, 6F);
+        prrcabooseModel[142].setRotationPoint(-21F, -26.5F, 6F);
 
         prrcabooseModel[143].addBox(0F, 0F, 0F, 52, 0, 1, 0F); // Box 197
-        prrcabooseModel[143].setRotationPoint(-18F, -8F, -10.5F);
+        prrcabooseModel[143].setRotationPoint(-26F, -8F, -10.5F);
 
         prrcabooseModel[144].addBox(0F, 0F, 0F, 52, 0, 1, 0F); // Box 198
-        prrcabooseModel[144].setRotationPoint(-18F, -8F, 9.5F);
+        prrcabooseModel[144].setRotationPoint(-26F, -8F, 9.5F);
 
         prrcabooseModel[145].addBox(0F, 0F, 0F, 1, 1, 4, 0F); // Box 199
-        prrcabooseModel[145].setRotationPoint(22F, -26F, -2F);
+        prrcabooseModel[145].setRotationPoint(14F, -26F, -2F);
 
         prrcabooseModel[146].addBox(0F, 0F, 0F, 1, 1, 4, 0F); // Box 200
-        prrcabooseModel[146].setRotationPoint(40F, -26F, -2F);
+        prrcabooseModel[146].setRotationPoint(32F, -26F, -2F);
 
         prrcabooseModel[147].addBox(0F, 0F, 0F, 1, 1, 4, 0F); // Box 201
-        prrcabooseModel[147].setRotationPoint(-7F, -26F, -2F);
+        prrcabooseModel[147].setRotationPoint(-15F, -26F, -2F);
 
         prrcabooseModel[148].addBox(0F, 0F, 0F, 1, 1, 4, 0F); // Box 202
-        prrcabooseModel[148].setRotationPoint(-25F, -26F, -2F);
+        prrcabooseModel[148].setRotationPoint(-33F, -26F, -2F);
 
         prrcabooseModel[149].addBox(0F, 0F, 0F, 1, 1, 4, 0F); // Box 208
-        prrcabooseModel[149].setRotationPoint(-16F, -26F, -2F);
+        prrcabooseModel[149].setRotationPoint(-24F, -26F, -2F);
 
         prrcabooseModel[150].addBox(0F, 0F, 0F, 1, 1, 4, 0F); // Box 209
-        prrcabooseModel[150].setRotationPoint(31F, -26F, -2F);
+        prrcabooseModel[150].setRotationPoint(23F, -26F, -2F);
 
         prrcabooseModel[151].addBox(0F, 0F, 0F, 4, 1, 0, 0F); // Box 210
-        prrcabooseModel[151].setRotationPoint(-25F, -24.4F, 9F);
+        prrcabooseModel[151].setRotationPoint(-33F, -24.4F, 9F);
 
         prrcabooseModel[152].addBox(0F, 0F, 0F, 4, 1, 0, 0F); // Box 211
-        prrcabooseModel[152].setRotationPoint(37F, -24.4F, -9F);
-
+        prrcabooseModel[152].setRotationPoint(29F, -24.4F, -9F);
 
     }
 
@@ -651,15 +650,13 @@ public class ModelPRRCaboose extends ModelBase
             prrcabooseModel[i].render(f5);
         }
 
-
-
         Tessellator.bindTexture(new ResourceLocation(Info.modID, "textures/trains/Bettendorf_trucks.png"));
         GL11.glPushMatrix();
-        GL11.glTranslated(1,0,0);
+        GL11.glTranslated(1.25,0,0);
         trucks.render(entity,f,f1,f2,f3,f4,f5);
         GL11.glPopMatrix();
         GL11.glPushMatrix();
-        GL11.glTranslated(-1,0,0);
+        GL11.glTranslated(-1.25,0,0);
         trucks.render(entity,f,f1,f2,f3,f4,f5);
         GL11.glPopMatrix();
     }

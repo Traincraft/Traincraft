@@ -92,11 +92,11 @@ public class ModelGS4Loco extends ModelBase
         gs4locoModel[69] = new ModelRendererTurbo(this, 1, 161, textureX, textureY); // 170
         gs4locoModel[70] = new ModelRendererTurbo(this, 145, 161, textureX, textureY); // 171
         gs4locoModel[71] = new ModelRendererTurbo(this, 289, 161, textureX, textureY); // 172
-        gs4locoModel[72] = new ModelRendererTurbo(this, 1, 177, textureX, textureY); // 173
+        gs4locoModel[72] = new ModelRendererTurbo(this, 289, 161, textureX, textureY); // 173
         gs4locoModel[73] = new ModelRendererTurbo(this, 153, 17, textureX, textureY); // 174
         gs4locoModel[74] = new ModelRendererTurbo(this, 185, 17, textureX, textureY); // 175
         gs4locoModel[75] = new ModelRendererTurbo(this, 233, 17, textureX, textureY); // 176
-        gs4locoModel[76] = new ModelRendererTurbo(this, 281, 17, textureX, textureY); // 177
+        gs4locoModel[76] = new ModelRendererTurbo(this, 153, 17, textureX, textureY); // 177
         gs4locoModel[77] = new ModelRendererTurbo(this, 1, 25, textureX, textureY); // 178
         gs4locoModel[78] = new ModelRendererTurbo(this, 257, 33, textureX, textureY); // 179
         gs4locoModel[79] = new ModelRendererTurbo(this, 1, 121, textureX, textureY); // 180
@@ -175,22 +175,22 @@ public class ModelGS4Loco extends ModelBase
         gs4locoModel[152] = new ModelRendererTurbo(this, 89, 222, textureX, textureY); // 1153
 
         gs4locoModel[0].addShapeBox(0F, 0F, 0F, 3, 2, 0, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // 101
-        gs4locoModel[0].setRotationPoint(-96F, -9F, -8F);
+        gs4locoModel[0].setRotationPoint(-96F, -9F, -8.01F);
 
         gs4locoModel[1].addShapeBox(0F, 0F, 0F, 7, 8, 0, 0F, -4F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -4F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // 102
-        gs4locoModel[1].setRotationPoint(-100F, -7F, -8F);
+        gs4locoModel[1].setRotationPoint(-100F, -7F, -8.01F);
 
         gs4locoModel[2].addShapeBox(0F, 0F, 0F, 8, 2, 0, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, 0F, 0F, 0F); // 103
-        gs4locoModel[2].setRotationPoint(-101F, 1F, -8F);
+        gs4locoModel[2].setRotationPoint(-101F, 1F, -8.01F);
 
         gs4locoModel[3].addShapeBox(0F, 0F, 0F, 7, 8, 0, 0F, -4F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -4F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // 104
-        gs4locoModel[3].setRotationPoint(-100F, -7F, 8F);
+        gs4locoModel[3].setRotationPoint(-100F, -7F, 8.01F);
 
         gs4locoModel[4].addShapeBox(0F, 0F, 0F, 8, 2, 0, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, 0F, 0F, 0F); // 105
-        gs4locoModel[4].setRotationPoint(-101F, 1F, 8F);
+        gs4locoModel[4].setRotationPoint(-101F, 1F, 8.01F);
 
         gs4locoModel[5].addShapeBox(0F, 0F, 0F, 13, 10, 0, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -4F, 0F, 0F, -4F, 0F, 0F, 0F, 0F); // 106
-        gs4locoModel[5].setRotationPoint(-93F, -9F, -8F);
+        gs4locoModel[5].setRotationPoint(-93F, -9F, -8.01F);
 
         gs4locoModel[6].addShapeBox(0F, 0F, 0F, 8, 2, 0, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, 0F, 0F, 0F); // 107
         gs4locoModel[6].setRotationPoint(-101F, 1F, -11F);
@@ -220,7 +220,7 @@ public class ModelGS4Loco extends ModelBase
         gs4locoModel[14].setRotationPoint(-101F, 1F, 11F);
 
         gs4locoModel[15].addShapeBox(0F, 0F, 0F, 13, 10, 0, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -4F, 0F, 0F, -4F, 0F, 0F, 0F, 0F); // 116
-        gs4locoModel[15].setRotationPoint(-93F, -9F, 8F);
+        gs4locoModel[15].setRotationPoint(-93F, -9F, 8.01F);
 
         gs4locoModel[16].addBox(0F, 0F, 0F, 2, 1, 22, 0F); // 117
         gs4locoModel[16].setRotationPoint(-103F, 7F, -11F);
@@ -241,7 +241,7 @@ public class ModelGS4Loco extends ModelBase
         gs4locoModel[21].setRotationPoint(-103F, 3F, -11F);
 
         gs4locoModel[22].addShapeBox(0F, 0F, 0F, 3, 2, 0, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // 123
-        gs4locoModel[22].setRotationPoint(-96F, -9F, 8F);
+        gs4locoModel[22].setRotationPoint(-96F, -9F, 8.01F);
 
         gs4locoModel[23].addShapeBox(0F, 0F, 0F, 2, 1, 4, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F); // 124
         gs4locoModel[23].setRotationPoint(-105F, 7F, 7F);
@@ -389,13 +389,13 @@ public class ModelGS4Loco extends ModelBase
         gs4locoModel[70].setRotationPoint(-80F, -11F, -11F);
 
         gs4locoModel[71].addBox(0F, 0F, 0F, 71, 8, 0, 0F); // 172
-        gs4locoModel[71].setRotationPoint(-80F, -11F, -8F);
+        gs4locoModel[71].setRotationPoint(-80F, -11F, -8.01F);
 
         gs4locoModel[72].addBox(0F, 0F, 0F, 71, 8, 0, 0F); // 173
-        gs4locoModel[72].setRotationPoint(-80F, -11F, 8F);
+        gs4locoModel[72].setRotationPoint(-80F, -11F, 8.01F);
 
         gs4locoModel[73].addBox(0F, 0F, 0F, 12, 2, 0, 0F); // 174
-        gs4locoModel[73].setRotationPoint(-92F, -11F, -8F);
+        gs4locoModel[73].setRotationPoint(-92F, -11F, -8.01F);
 
         gs4locoModel[74].addBox(0F, 0F, 0F, 12, 2, 0, 0F); // 175
         gs4locoModel[74].setRotationPoint(-92F, -11F, -11F);
@@ -404,7 +404,7 @@ public class ModelGS4Loco extends ModelBase
         gs4locoModel[75].setRotationPoint(-92F, -11F, 11F);
 
         gs4locoModel[76].addBox(0F, 0F, 0F, 12, 2, 0, 0F); // 177
-        gs4locoModel[76].setRotationPoint(-92F, -11F, 8F);
+        gs4locoModel[76].setRotationPoint(-92F, -11F, 8.01F);
 
         gs4locoModel[77].addBox(0F, 0F, 0F, 2, 4, 4, 0F); // 178
         gs4locoModel[77].setRotationPoint(-100F, -15F, -2F);
@@ -553,10 +553,10 @@ public class ModelGS4Loco extends ModelBase
         gs4locoModel[124].setRotationPoint(-95F, -11F, 11F);
 
         gs4locoModel[125].addShapeBox(0F, 0F, 0F, 3, 2, 0, 0F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // 1126
-        gs4locoModel[125].setRotationPoint(-95F, -11F, -8F);
+        gs4locoModel[125].setRotationPoint(-95F, -11F, -8.01F);
 
         gs4locoModel[126].addShapeBox(0F, 0F, 0F, 3, 2, 0, 0F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // 1127
-        gs4locoModel[126].setRotationPoint(-95F, -11F, 8F);
+        gs4locoModel[126].setRotationPoint(-95F, -11F, 8.01F);
 
         gs4locoModel[127].addBox(0F, 0F, 0F, 12, 12, 0, 0F); // 1128
         gs4locoModel[127].setRotationPoint(-51F, -2F, 6F);
