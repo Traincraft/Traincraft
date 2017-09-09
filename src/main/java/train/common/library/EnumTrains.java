@@ -10,7 +10,7 @@ import train.common.entity.rollingStock.*;
 public enum EnumTrains {
 	
 	/** Passengers */
-	passengerCartBlue("Passenger Blue",EntityPassengerBlue.class, 48,ItemIDs.minecartPassengerBlue.item,"passenger",0,0,0.9,0,0,0,0,0,0,new String[] {"Blue","Red","Green"},18, 0,0.98,1.98),
+	passengerCartBlue("Passenger Blue",EntityPassengerBlue.class, 48,ItemIDs.minecartPassengerBlue.item,"passenger",0,0,0.9,0,0,0,0,0,0,new String[] {"Blue","Red","Green", "White"},18, 0,0.98,1.98),
 	passengerCartBlackSmall("Passenger Small Black",EntityPassenger2.class, 27,ItemIDs.minecartPassenger2.item,"passenger",0,0,0.1,0,0,0,0,0,0,null,18,0,0.98,1.98),
 	passengerLongGreen("Passenger Green Long",EntityPassenger5.class, 45,ItemIDs.minecartPassenger5.item,"passenger",0,0,0.6,0,0,0,0,0,0,new String[]{"Green", "Yellow"},18,0,0.98,1.98),
 	passengerShortGreen("Passenger Short Green",EntityPassenger7.class, 86,ItemIDs.minecartPassenger7.item,"passenger",0,0,0.5,0,0,0,0,0,0,null,18,0,0.98,1.98),
@@ -50,8 +50,8 @@ public enum EnumTrains {
 	flatCartUS("Flat Cart US",EntityFlatCartUS.class, 68,ItemIDs.minecartFlatCartUS.item,"flat",0,0,0.4,0,0,0,0,0,0,null,18,0,0.98,0.3),
 	tracksBuilder("Tracks Builder",EntityTracksBuilder.class, 28,ItemIDs.minecartBuilder.item,"special",0,0,0,0,0,0,0,0,0,null,14,0,0.98,1.98),
 	flatCar_DB("Flat Cart DB",EntityFlatCar_DB.class, 109,ItemIDs.minecartFlatCart_DB.item,"flat",0,0,0.2,0,0,0,0,0,0,null,18,0,0.98,0.3),
-	//BUnitEMDF7("EMD F7 B Unit",EntityStockCar.class, 131,ItemIDs.minecartStockCar.item,"special",0,0,-8,0,0,0,0,0,0,null,18,0,0.98,1.98),
-	//BUnitEMDF3("EMD F3 B Unit",EntityStockCar.class, 132,ItemIDs.minecartStockCar.item,"special",0,0,-6,0,0,0,0,0,0,null,18,0,0.98,1.98),
+	BUnitEMDF7("EMD F7 B Unit",EntityBUnitEMDF7.class, 129,ItemIDs.minecartLocoEMDF7B.item,"b-unit",0,0,-8,0,0,0,0,0,0,null,18,0,0.98,1.98),
+	BUnitEMDF3("EMD F3 B Unit",EntityBUnitEMDF3.class, 130,ItemIDs.minecartLocoEMDF3B.item,"b-unit",0,0,-8,0,0,0,0,0,0,null,18,0,0.98,1.98),
 
 	/** Freight */
 	freightCartRed("Freight Cart Red",EntityFreightCart2.class, 41,ItemIDs.minecartFreightCart2.item,"freight",3,null,18,0.98,1.98,36,new String[] {"Cargo: any"}),
@@ -119,10 +119,8 @@ public enum EnumTrains {
 	locoDieselV60_DB("Loco Diesel V60 DB",EntityLocoDieselV60_DB.class, 49,ItemIDs.minecartV60_DB.item,"diesel",500,80,0,60,0,170,0.66,0.96,8000,new String[] {"Red","Green","Yellow","Cyan"},15,-1.3,0.98,1.98),
 	locoDieselIC4_DSB_MG("Loco Diesel IC4 DSB MG",EntityLocoDieselIC4_DSB_MG.class, 57,ItemIDs.minecartIC4_DSB_MG.item,"diesel",900,200,0,60,0,200,0.8,0.97,20000,new String[] {"White","Red"},10,-6,0.98,1.98),
 	locoDieselMILW_H1044("Loco Diesel MILW H10-44",EntityLocoDieselMILW_H1044.class, 123,ItemIDs.minecartMILW_H1044.item,"diesel",500,80,0,60,0,170,0.66,0.96,8000,null,15,-3,0.98,1.98),
-	//locoDieselEMDF7("Loco Diesel EMD F-7",EntityLocoDieselSD70.class, 127,ItemIDs.minecartLocoSD70.item,"diesel",900,90,0,60,0,200,0.8,0.97,20000,null,10,-2.3,0.98,1.98),
-	//locoDieselEMDF7L("Loco Diesel EMD F-7 Single Lamp",EntityLocoDieselSD70.class, 128,ItemIDs.minecartLocoSD70.item,"diesel",900,90,0,60,0,200,0.8,0.97,20000,null,10,-2.3,0.98,1.98),
-	//locoDieselEMDF7P("Loco Diesel EMDF7 (Pennsylvania)",EntityLocoDieselSD70.class, 129,ItemIDs.minecartLocoSD70.item,"diesel",900,90,0,60,0,200,0.8,0.97,20000,null,10,-2.3,0.98,1.98),
-	//locoDieselEMDF3("Loco Diesel EMD F-3",EntityLocoDieselSD70.class, 130,ItemIDs.minecartLocoSD70.item,"diesel",900,90,0,60,0,200,0.8,0.97,20000,null,10,-2.3,0.98,1.98),
+	locoDieselEMDF7("Loco Diesel EMD F-7",EntityLocoDieselEMDF7.class, 127,ItemIDs.minecartLocoEMDF7.item,"diesel",1100,105,0,50,0,200,0.8,0.97,12000,null,10,-2.3,0.98,1.98),
+	locoDieselEMDF3("Loco Diesel EMD F-3",EntityLocoDieselEMDF3.class, 128,ItemIDs.minecartLocoEMDF3.item,"diesel",1100,103,0,55,0,200,0.8,0.97,12000,null,10,-2.3,0.98,1.98),
 
 	/** Electric */
 	locoElectricVL10("Loco Electric VL10", EntityLocoElectricVL10.class, 46, ItemIDs.minecartVL10.item, "electric", 700, 150, 0, 8, 0, 400, 1.1, 0.956, 0, null, 14,  -2.3 , 0.98, 1.98),
@@ -193,7 +191,7 @@ public enum EnumTrains {
 	 * 
 	 * @param internalName : Only used by EntityRegistry
 	 * @param entityClass
-	 * @param entityID: Current free IDs: 133+
+	 * @param entityID: Current free IDs: 131+
 	 * @param item
 	 * @param trainType: "steam", "diesel", "freight", "passenger", "special", "flat", "electric"
 	 * @param MHP: power of the locomotive

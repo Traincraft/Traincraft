@@ -6,7 +6,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
 import train.common.api.LiquidManager.StandardTank;
-import train.common.entity.rollingStock.EntityBUnitEMDF3;
 import train.common.entity.rollingStock.EntityBUnitEMDF7;
 
 public abstract class DieselTrain extends Locomotive implements IFluidHandler {
@@ -157,7 +156,7 @@ public abstract class DieselTrain extends Locomotive implements IFluidHandler {
 		}
 		else {
 			if (this.isLocoTurnedOn()) {
-				if(linked && (cartLinked1 instanceof EntityBUnitEMDF3 || cartLinked1 instanceof EntityBUnitEMDF7 || cartLinked2 instanceof EntityBUnitEMDF3 || cartLinked2 instanceof EntityBUnitEMDF7)){
+				if(linked && (cartLinked1 instanceof EntityBUnitEMDF7 || cartLinked2 instanceof EntityBUnitEMDF7)){
 					amount *=1.5;
 				}
 

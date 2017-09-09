@@ -15,7 +15,7 @@ import train.common.library.GuiIDs;
 
 public class EntityLocoDieselEMDF3 extends DieselTrain {
 	public EntityLocoDieselEMDF3(World world) {
-		super(world, EnumTrains.locoDieselSD70.getTankCapacity(), LiquidManager.dieselFilter());
+		super(world, EnumTrains.locoDieselEMDF3.getTankCapacity(), LiquidManager.dieselFilter());
 		initLoco();
 	}
 
@@ -38,7 +38,7 @@ public class EntityLocoDieselEMDF3 extends DieselTrain {
 	@Override
 	public void updateRiderPosition() {
 		double pitchRads = this.anglePitchClient * Math.PI / 180.0D;
-		double distance = 2.3;
+		double distance = 2.15;
 		double yOffset = 0.3;
 		float rotationCos1 = (float) Math.cos(Math.toRadians(this.renderYaw + 90));
 		float rotationSin1 = (float) Math.sin(Math.toRadians((this.renderYaw + 90)));

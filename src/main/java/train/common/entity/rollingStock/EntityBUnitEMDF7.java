@@ -7,7 +7,7 @@ import net.minecraft.world.World;
 import train.common.api.EntityRollingStock;
 import train.common.api.IPassenger;
 
-public class EntityBUnitEMDF7 extends EntityRollingStock {
+public class EntityBUnitEMDF7 extends EntityRollingStock implements IPassenger {
 	public EntityBUnitEMDF7(World world) {
 		super(world);
 	}
@@ -40,22 +40,11 @@ public class EntityBUnitEMDF7 extends EntityRollingStock {
 		if ((super.interactFirst(entityplayer))) {
 			return false;
 		}
-		if (!worldObj.isRemote) {
-			ItemStack itemstack = entityplayer.inventory.getCurrentItem();
-			if(lockThisCart(itemstack, entityplayer))return true;
-		}
-		if (!worldObj.isRemote) {
-			if (riddenByEntity != null) {
-				riddenByEntity.mountEntity(this);
-				riddenByEntity.ridingEntity = null;
-				return true;
-			}
-		}
 		return true;
 	}
 	@Override
 	public boolean isUseableByPlayer(EntityPlayer entityplayer) {
-		return !isDead && entityplayer.getDistanceSqToEntity(this) <= 64D;
+		return false;
 	}
 
 	@Override
@@ -72,7 +61,6 @@ public class EntityBUnitEMDF7 extends EntityRollingStock {
 	public boolean isPoweredCart() {
 		return false;
 	}
-
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
 		return 1.45F;

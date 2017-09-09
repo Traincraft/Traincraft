@@ -374,6 +374,9 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			setBeenAttacked();
 			if (damagesource.getEntity() instanceof EntityPlayer && ((EntityPlayer) damagesource.getEntity()).capabilities.isCreativeMode) {
 				this.setDamage(1000);
+				if (((EntityPlayer) damagesource.getEntity()).canCommandSenderUseCommand(2,"")) {
+					((EntityPlayer) damagesource.getEntity()).addChatComponentMessage(new ChatComponentText("Operator removed train owned by " + getTrainOwner()));
+				}
 			}
 			setDamage(getDamage() + i * 10);
 			if (getDamage() > 40) {

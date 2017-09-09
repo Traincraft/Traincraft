@@ -243,6 +243,10 @@ item.tc:minecartGS4_Tender.name=GS4 Daylight Tender
 item.tc:minecartGS4_Locomotive.name=GS4 Daylight
 item.tc:minecartICE1_1stClass.name=ICE 1st Class Passenger
 item.tc:minecartGS4_Tail.name=GS4 Daylight Passenger Tail
+item.tc:minecartLocoEMDF7.name=EMD F7
+item.tc:minecartLocoEMDF3.name=EMD F3
+item.tc:minecartLocoEMDF7B.name=EMD F7 B-unit
+item.tc:minecartLocoEMDF3B.name=EMD F3 B-unit
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
