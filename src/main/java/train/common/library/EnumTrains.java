@@ -1,11 +1,11 @@
 package train.common.library;
 
+import java.lang.reflect.InvocationTargetException;
+
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
 import train.common.api.AbstractTrains;
 import train.common.entity.rollingStock.*;
-
-import java.lang.reflect.InvocationTargetException;
 
 public enum EnumTrains {
 	
@@ -22,9 +22,12 @@ public enum EnumTrains {
 	//passengerDBOriental("pass_DB_oriental",EntityPassengerDBOriental.class, 56,ItemIDs.minecartPassengerDBOriental.item,"train_tram_ny","passenger",0,0,1,0,0,0,0,0,0,null,18,null,null,0.98,1.98),
 	passengerIC4_DSB_FG("Passenger IC4 DSB FG",PassengerIC4_DSB_FG.class, 61,ItemIDs.minecartIC4_DSB_FG.item,"passenger",0,0,0.5,0,0,0,0,0,0,null,10,0,0.98,1.98),
 	passengerIC4_DSB_FH("Passenger IC4 DSB FH",PassengerIC4_DSB_FH.class, 56,ItemIDs.minecartIC4_DSB_FH.item,"passenger",0,0,0.5,0,0,0,0,0,0,null,10,0,0.98,1.98),
-	passengerICE1_Class1("Passenger ICE 1st Class",EntityPassengerICE_1class.class, 117,ItemIDs.minecartICE1_1stClass.item,"passenger",0,0,0.5,0,0,0,0,0,0,null,10,0,0.98,1.98),
-	passengerICE1_Class2("Passenger ICE 1st Class",EntityPassengerICE_2class.class, 118,ItemIDs.minecartICE1_2ndClass.item,"passenger",0,0,0.5,0,0,0,0,0,0,null,10,0,0.98,1.98),
-	passengerICE1_Restaurant("Passenger ICE 1st Class",EntityPassengerICE_Restaurant.class, 119,ItemIDs.minecartICE1_Restaurant.item,"passenger",0,0,0.5,0,0,0,0,0,0,null,10,0,0.98,1.98),
+	passengerICE1_Class1("Passenger ICE 1st Class", EntityPassengerICE_1class.class, 117,
+			ItemIDs.minecartICE1_1stClass.item, "passenger", 0, 0, 0.5, 0, 0, 0, 0, 0, 0, null, 10, 0, 0.98, 1.98),
+	passengerICE1_Class2("Passenger ICE 2nd Class", EntityPassengerICE_2class.class, 118,
+			ItemIDs.minecartICE1_2ndClass.item, "passenger", 0, 0, 0.5, 0, 0, 0, 0, 0, 0, null, 10, 0, 0.98, 1.98),
+	passengerICE1_Restaurant("ICE Restaurant", EntityPassengerICE_Restaurant.class, 119,
+			ItemIDs.minecartICE1_Restaurant.item, "passenger", 0, 0, 0.5, 0, 0, 0, 0, 0, 0, null, 10, 0, 0.98, 1.98),
 	passengerGS4("Passenger GS4",EntityPassengerGS4.class, 120,ItemIDs.minecartGS4_Passenger.item,"passenger",0,0,0.5,0,0,0,0,0,0,null,10,0,0.98,1.98),
 	passengerGS4Observatory("Passenger GS4 Observatory",EntityPassengerGS4_Observatory.class, 121,ItemIDs.minecartGS4_Observatory.item,"passenger",0,0,0.5,0,0,0,0,0,0,null,10,0,0.98,1.98),
 	passengerGS4_Tail("Passenger GS4 Tail",EntityPassengerGS4_Tail.class, 122,ItemIDs.minecartGS4_Tail.item,"passenger",0,0,0.5,0,0,0,0,0,0,null,10,0,0.98,1.98),
