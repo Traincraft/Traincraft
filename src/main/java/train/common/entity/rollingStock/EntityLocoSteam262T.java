@@ -26,7 +26,7 @@ public class EntityLocoSteam262T extends SteamTrain {
 
 	public EntityLocoSteam262T(World world, double d, double d1, double d2) {
 		this(world);
-		setPosition(d, d1 + (double) yOffset, d2);
+		setPosition(d, d1 + yOffset, d2);
 		motionX = 0.0D;
 		motionY = 0.0D;
 		motionZ = 0.0D;
@@ -103,7 +103,7 @@ public class EntityLocoSteam262T extends SteamTrain {
 	}
 	@Override
 	public String getInventoryName() {
-		return "Steam Locomotive";
+		return "2-6-2T";
 	}
 
 	@Override

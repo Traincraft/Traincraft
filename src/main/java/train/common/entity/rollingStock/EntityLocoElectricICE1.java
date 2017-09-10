@@ -113,7 +113,7 @@ public class EntityLocoElectricICE1 extends ElectricTrain {
 	}
 	@Override
 	public String getInventoryName() {
-		return "High Speed";
+		return "ICB 1";
 	}
 
 	@Override
