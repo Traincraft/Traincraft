@@ -63,7 +63,7 @@ public enum RenderEnum {
 	freightHopperUS(EntityFreightHopperUS.class, new ModelFreightHopper(), "freightHopperUS", true, new float[] { 0.0F, -0.47F, 0.0F }, null, null, "", 0, null, "", null, 0, false),
 	flatCartWoodUS(EntityFlatCartWoodUS.class, new ModelFlatCarWoodUS(), "flatCartWoodUS", false, new float[] { 0.0F, -0.47F, 0.0F }, null, null, "", 0, null, "", null, 0, false),
 	freightCartUS(EntityFreightCartUS.class, new ModelFreightCartUS(), "freightCartUS", false, new float[] { 0.0F, -0.47F, 0.0F }, null, null, "", 0, null, "", null, 0, false),
-	freightBoxCartUS(EntityBoxCartUS.class, new ModelBoxCartUS(), "boxCartUS", false, new float[] { 0.0F, -0.45F, 0.0F }, null, null, "", 0, null, "", null, 0, false),
+	freightBoxCartUS(EntityBoxCartUS.class, new ModelBoxCartUS(), "boxCartUS_", true, new float[] { 0.0F, -0.45F, 0.0F }, null, null, "", 0, null, "", null, 0, false),
 	freightBoxCartPRR(EntityBoxCartPRR.class, new ModelPRRX31Wagon(), "PRR_X31a", false, new float[] { 0.0F, -0.4F, 0.0F }, new float[]{0,180,180}, null, "", 0, null, "", null, 0, false),
 	freightTGNG(EntityFreightGTNG.class, new ModelGTNG(), "GTNGOreWagon", false, new float[] { 0.0F, 0.2F, 0.0F }, new float[]{0,0,180}, new float[]{0.9f,1f,0.9f}, "", 0, null, "", null, 0, false),
 	freightCartSmall(EntityFreightCartSmall.class, new ModelSmallFreightCart(), "freightCartSmall", false, new float[] { 0.0F, -0.20F, 0.0F }, null, null, "", 0, null, "", null, 0, false),
@@ -151,20 +151,20 @@ public enum RenderEnum {
 			add(new double[] { 4D, 1.64D, 0D });
 		}
 	}, "", null, 0, false),
-	locoEMDF7(EntityLocoDieselEMDF7.class, new ModelEMDF7(), "emdf7", false, null, new float[] { 0F, 180F, 180F }, new float[]{0.9f,1f,0.9f}, "smoke", 4, new ArrayList<double[]>() {
+	locoEMDF7(EntityLocoDieselEMDF7.class, new ModelEMDF7(), "emdf7_", true, new float[]{0,0.18f,0}, new float[] { 0F, 180F, 180F }, new float[]{0.9f,1f,0.9f}, "smoke", 4, new ArrayList<double[]>() {
 		{
 			add(new double[] { 0.7D, 1.64D, 0.0D });
 			add(new double[] { 2.7D, 1.64D, 0.0D });
 		}
 	}, "", null, 0, false),
-	locoEMDF3(EntityLocoDieselEMDF7.class, new ModelEMDF7(), "emdf3", false, null, new float[] { 0F, 180F, 180F }, new float[]{0.9f,1f,0.9f}, "smoke", 4, new ArrayList<double[]>() {
+	locoEMDF3(EntityLocoDieselEMDF3.class, new ModelEMDF3(), "emdf3", false, new float[]{0,0.18f,0}, new float[] { 0F, 180F, 180F }, new float[]{0.9f,1f,0.9f}, "smoke", 4, new ArrayList<double[]>() {
 		{
 			add(new double[] { 0.7D, 1.64D, 0.0D });
 			add(new double[] { 2.7D, 1.64D, 0.0D });
 		}
 	}, "", null, 0, false),
-	locoEMDF7b(EntityBUnitEMDF7.class, new ModelEMDF7B(), "emdf7b", false, null, new float[] { 0F, 180F, 180F }, new float[]{0.9f,1f,0.9f}, "", 4, null, "", null, 0, false),
-	locoEMDF3b(EntityBUnitEMDF3.class, new ModelEMDF3B(), "emdf3b", false, null, new float[] { 0F, 180F, 180F }, new float[]{0.9f,1f,0.9f}, "", 4, null, "", null, 0, false),
+	locoEMDF7b(EntityBUnitEMDF7.class, new ModelEMDF7B(), "emdf7b_", true, new float[]{0,0.18f,0}, new float[] { 0F, 180F, 180F }, new float[]{0.9f,1f,0.9f}, "", 4, null, "", null, 0, false),
+	locoEMDF3b(EntityBUnitEMDF3.class, new ModelEMDF3B(), "emdf3b", false, new float[]{0,0.18f,0}, new float[] { 0F, 180F, 180F }, new float[]{0.9f,1f,0.9f}, "", 4, null, "", null, 0, false),
 
 	/** Electric */
 	locoVL10(EntityLocoElectricVL10.class, new ModelVL10(), "vl10", false, new float[] { -1.2F, -0.47F, 0.0F }, null, null, "", 0, null, "", null, 0, false),

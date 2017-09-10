@@ -9,8 +9,12 @@
 package train.client.render.models;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.util.ResourceLocation;
+import org.lwjgl.opengl.GL11;
 import train.client.tmt.ModelBase;
 import train.client.tmt.ModelRendererTurbo;
+import train.client.tmt.Tessellator;
+import train.common.library.Info;
 
 public class ModelEMDF3B extends ModelBase
 {
@@ -551,7 +555,7 @@ public class ModelEMDF3B extends ModelBase
 
 
     }
-
+    private ModelBloombergTrucks trucks = new ModelBloombergTrucks();
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
@@ -559,6 +563,17 @@ public class ModelEMDF3B extends ModelBase
         {
             emdf3bModel[i].render(f5);
         }
+        Tessellator.bindTexture(new ResourceLocation(Info.modID, "textures/trains/Blomberg_b_trucks.png"));
+        GL11.glPushMatrix();
+        GL11.glTranslated(-1.5,0.6,0);
+        GL11.glScalef(0.9F, 0.9F, 0.9F);
+        trucks.render(entity,f,f1,f2,f3,f4,f5);
+        GL11.glPopMatrix();
+        GL11.glPushMatrix();
+        GL11.glTranslated(1.55,0.6,0);
+        GL11.glScalef(0.9F, 0.9F, 0.9F);
+        trucks.render(entity,f,f1,f2,f3,f4,f5);
+        GL11.glPopMatrix();
     }
 
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5)
