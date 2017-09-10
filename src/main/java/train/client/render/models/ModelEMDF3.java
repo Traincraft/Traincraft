@@ -1011,7 +1011,7 @@ public class ModelEMDF3 extends ModelBase
         trucks.render(entity,f,f1,f2,f3,f4,f5);
         GL11.glPopMatrix();
         GL11.glPushMatrix();
-        GL11.glTranslated(0.55,0.6,0);
+        GL11.glTranslated(0.5,0.6,0);
         GL11.glScalef(0.9F, 0.9F, 0.9F);
         trucks.render(entity,f,f1,f2,f3,f4,f5);
         GL11.glPopMatrix();

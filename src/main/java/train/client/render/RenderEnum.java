@@ -153,14 +153,14 @@ public enum RenderEnum {
 	}, "", null, 0, false),
 	locoEMDF7(EntityLocoDieselEMDF7.class, new ModelEMDF7(), "emdf7_", true, new float[]{0,0.18f,0}, new float[] { 0F, 180F, 180F }, new float[]{0.9f,1f,0.9f}, "smoke", 4, new ArrayList<double[]>() {
 		{
-			add(new double[] { 0.7D, 1.64D, 0.0D });
-			add(new double[] { 2.7D, 1.64D, 0.0D });
+			add(new double[] { -0.3D, 1.55D, 0.0D });
+			add(new double[] { 0.25D, 1.55D, 0.0D });
 		}
 	}, "", null, 0, false),
 	locoEMDF3(EntityLocoDieselEMDF3.class, new ModelEMDF3(), "emdf3", false, new float[]{0,0.18f,0}, new float[] { 0F, 180F, 180F }, new float[]{0.9f,1f,0.9f}, "smoke", 4, new ArrayList<double[]>() {
 		{
-			add(new double[] { 0.7D, 1.64D, 0.0D });
-			add(new double[] { 2.7D, 1.64D, 0.0D });
+			add(new double[] { -0.3D, 1.55D, 0.0D });
+			add(new double[] { 0.4D, 1.55D, 0.0D });
 		}
 	}, "", null, 0, false),
 	locoEMDF7b(EntityBUnitEMDF7.class, new ModelEMDF7B(), "emdf7b_", true, new float[]{0,0.18f,0}, new float[] { 0F, 180F, 180F }, new float[]{0.9f,1f,0.9f}, "", 4, null, "", null, 0, false),
