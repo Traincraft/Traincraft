@@ -94,7 +94,9 @@ public enum EnumTrains {
 	tenderA4("Tender A4 Mallard", EntityTenderA4.class, 54, ItemIDs.minecartLocoA4MallardTender.item,"tender", 0, 0, 0.2, 0, 0, 0, 0, 0, 6000, new String[] { "Blue", "Lime", "Black", "Green", "White" }, 18,0, 0.98, 0.98, new String[] { "Water capacity: 6000mb" }),
 	tenderBR01("Tender BR01",EntityTenderBR01_DB.class, 103,ItemIDs.minecartTenderBR01_DB.item,"tender",0,0,0.5,0,0,0,0,0,20000,null,18,0,0.98,1.98,new String[] {"Water capacity: 20000mb"}),
 	tenderEr_Ussr("Tender ER_USSR",EntityTenderEr_Ussr.class, 9,ItemIDs.minecartTenderEr.item,"tender",0,0,2,0,0,0,0,0,16000,null,18,0,0.98,1.98,new String[] {"Water capacity: 16000mb"}),
-	tenderC62Class("Tender C62Class",EntityTenderC62Class.class, 119,ItemIDs.minecartTenderC62Class.item,"tender",0,0,0.5,0,0,0,0,0,14000,new String[] {"Red","Black"},18,0,0.98,1.98,new String[] {"Water capacity: 14000mb"}),
+	tenderC62Class("Tender C62Class", EntityTenderC62Class.class, 119, ItemIDs.minecartTenderC62Class.item, "tender", 0,
+			0, 0.5, 0, 0, 0, 0, 0, 14000, new String[] { "Black", "Red" }, 18, 0, 0.98, 1.98,
+			new String[] { "Water capacity: 14000mb" }),
 	tenderAdler("Tender Adler",EntityTenderAdler.class, 96,ItemIDs.minecartTenderAdler.item,"tender",0,0,0.5,0,0,0,0,0,4000,null,18,0,0.98,1.98,new String[] {"Water capacity: 4000mb"}),
 
 	/** Diesel */
