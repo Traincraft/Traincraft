@@ -100,7 +100,7 @@ public class EntityLocoSteamGS4 extends SteamTrain {
 	}
 	@Override
 	public String getInventoryName() {
-		return "BR01";
+		return "Daylight";
 	}
 
 	@Override

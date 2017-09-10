@@ -20,7 +20,8 @@ public class ModelPRRX31Wagon extends ModelBase
 {
     int textureX = 512;
     int textureY = 512;
-    private ModelBettendorf_Trucks trucks = new ModelBettendorf_Trucks();
+    private ModelBettendorf_Trucks fronttrucks = new ModelBettendorf_Trucks();
+    private ModelBettendorf_Trucks backtrucks = new ModelBettendorf_Trucks();
 
     public ModelPRRX31Wagon()
     {
@@ -694,11 +695,11 @@ public class ModelPRRX31Wagon extends ModelBase
         Tessellator.bindTexture(new ResourceLocation(Info.modID, "textures/trains/Bettendorf_trucks.png"));
         GL11.glPushMatrix();
         GL11.glTranslated(1.75,0,0);
-        trucks.render(entity,f,f1,f2,f3,f4,f5);
+        fronttrucks.render(entity,f,f1,f2,f3,f4,f5);
         GL11.glPopMatrix();
         GL11.glPushMatrix();
         GL11.glTranslated(-1.75,0,0);
-        trucks.render(entity,f,f1,f2,f3,f4,f5);
+        backtrucks.render(entity,f,f1,f2,f3,f4,f5);
         GL11.glPopMatrix();
     }
 

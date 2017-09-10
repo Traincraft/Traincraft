@@ -193,11 +193,11 @@ public class ModelRendererTurbo extends ModelRenderer {
 
         //small edit to prevent depth errors
         if (w ==0){
-            w=0.001f;
+            w=0.01f;
         } else if (h ==0){
-            h=0.001f;
+            h=0.01f;
         } else if (d ==0){
-            d=0.001f;
+            d=0.01f;
         }
 
         PositionTextureVertex[] verts = new PositionTextureVertex[8];
@@ -283,6 +283,14 @@ public class ModelRendererTurbo extends ModelRenderer {
      * @param scale unused, only remains for reference purposes. It's supposed to define overall scale, but never got a value besides 1, and never seemed to be used by the editing software.
      */
     public void addBox(float x, float y, float z, float w, float h, float d, float expansion, float scale) {
+        //small edit to prevent depth errors
+        if (w ==0){
+            w=0.01f;
+        } else if (h ==0){
+            h=0.1f;
+        } else if (d ==0){
+            d=0.01f;
+        }
         xScale = w * 0.065f;
         yScale = h * 0.065f;
         zScale = d * 0.065f;

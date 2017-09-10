@@ -57,7 +57,7 @@ public class Tessellator {
 			GL11.glPushMatrix();
 			GL11.glDisable(GL11.GL_LIGHTING);
 			GL11.glEnable(GL11.GL_BLEND);
-			GL11.glEnable(GL11.GL_CULL_FACE);
+			GL11.glDisable(GL11.GL_CULL_FACE);
 			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 			while (o < verts){
 				vtc = Math.min(verts - o, 0x200000 >> 5);
@@ -95,7 +95,7 @@ public class Tessellator {
 			if(rbs > 0x20000/*131072*/ && rbi < (rbs << 3)){
 				rbs = 0; rb = null;
 			}
-			GL11.glDisable(GL11.GL_CULL_FACE);
+			GL11.glEnable(GL11.GL_CULL_FACE);
 			GL11.glDisable(GL11.GL_BLEND);
 			GL11.glEnable(GL11.GL_LIGHTING);
 

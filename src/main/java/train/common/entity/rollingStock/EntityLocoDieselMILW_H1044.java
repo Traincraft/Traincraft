@@ -101,7 +101,7 @@ public class EntityLocoDieselMILW_H1044 extends DieselTrain {
 	}
 	@Override
 	public String getInventoryName() {
-		return "V60";
+		return "MILW H10-44";
 	}
 
 	@Override

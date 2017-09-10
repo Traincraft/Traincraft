@@ -104,7 +104,7 @@ public class EntityLocoSteamClimax extends SteamTrain {
 
 	@Override
 	public String getInventoryName() {
-		return "Shay";
+		return "Steam Locomotive";
 	}
 
 	@Override
