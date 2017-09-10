@@ -187,18 +187,9 @@ public class ModelRendererTurbo extends ModelRenderer {
      */
     public void addRectShape(float[] v, float[] v1, float[] v2, float[] v3, float[] v4, float[] v5, float[] v6, float[] v7, float w, float h, float d) {
         //check which sides should be rendered.
-        boolean showZ= w!=0;
-        boolean showY= h!=0;
-        boolean showX= d!=0;
-
-        //small edit to prevent depth errors
-        if (w ==0){
-            w=0.01f;
-        } else if (h ==0){
-            h=0.01f;
-        } else if (d ==0){
-            d=0.01f;
-        }
+        boolean showZ= w!=0.01;
+        boolean showY= h!=0.01;
+        boolean showX= d!=0.01;
 
         PositionTextureVertex[] verts = new PositionTextureVertex[8];
         TexturedPolygon[] poly = new TexturedPolygon[(showX?2:0) + (showY?2:0) +(showZ?2:0)];
@@ -1113,9 +1104,23 @@ public class ModelRendererTurbo extends ModelRenderer {
 	private static final float pi = (float) Math.PI;
 
 	public void addShapeBox(float x, float y, float z, int w, int h, int d, float scale, float x0, float y0, float z0, float x1, float y1, float z1, float x2, float y2, float z2, float x3, float y3, float z3, float x4, float y4, float z4, float x5, float y5, float z5, float x6, float y6, float z6, float x7, float y7, float z7){
-		float f4 = x + w + scale;
-        float f5 = y + h + scale;
-        float f6 = z + d + scale;
+
+	    float w2 = w;
+        float h2 = h;
+        float d2 = d;
+
+        //small edit to prevent depth errors
+        if (w2 ==0){
+            w2=0.01f;
+        } else if (h2 ==0){
+            h2=0.01f;
+        } else if (d ==0){
+            d2=0.01f;
+        }
+
+		float f4 = x + w2 + scale;
+        float f5 = y + h2 + scale;
+        float f6 = z + d2 + scale;
 		x -= scale; y -= scale; z -= scale;
 		if(mirror){
 			float f7 = f4;
@@ -1130,6 +1135,6 @@ public class ModelRendererTurbo extends ModelRenderer {
 		float[] v5 = {f4 + x2, y  - y2, f6 + z2};
 		float[] v6 = {f4 + x6, f5 + y6, f6 + z6};
 		float[] v7 = {x  - x7, f5 + y7, f6 + z7};
-		addRectShape(v, v1, v2, v3, v4, v5, v6, v7, w, h, d);
+		addRectShape(v, v1, v2, v3, v4, v5, v6, v7, w2, h2, d2);
 	}
 }

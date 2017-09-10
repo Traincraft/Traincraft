@@ -160,11 +160,11 @@ public class ModelGTNG extends ModelBase {
 
         gtngModel[12].addBox(0F, 0F, 0F, 4, 0, 1, 0F); // Box 12
         gtngModel[12].setRotationPoint(-31F, 6F, 6F);
-        gtngModel[12].rotateAngleZ = 0.71558499F;
+        gtngModel[12].rotateAngleZ = -0.71558499F;
 
         gtngModel[13].addBox(0F, 0F, 0F, 4, 0, 1, 0F); // Box 13
         gtngModel[13].setRotationPoint(-12F, 6F, 6F);
-        gtngModel[13].rotateAngleZ = 2.42600766F;
+        gtngModel[13].rotateAngleZ = -2.42600766F;
 
         gtngModel[14].addBox(0F, 0F, 0F, 3, 0, 1, 0F); // Box 14
         gtngModel[14].setRotationPoint(-15F, 6F, 6F);
@@ -177,7 +177,7 @@ public class ModelGTNG extends ModelBase {
 
         gtngModel[17].addBox(0F, 0F, 0F, 4, 0, 1, 0F); // Box 17
         gtngModel[17].setRotationPoint(-31F, 6F, -7F);
-        gtngModel[17].rotateAngleZ = 0.71558499F;
+        gtngModel[17].rotateAngleZ = -0.71558499F;
 
         gtngModel[18].addBox(0F, 0F, 0F, 3, 3, 1, 0F); // Box 18
         gtngModel[18].setRotationPoint(-28F, 6F, -7F);
@@ -196,7 +196,7 @@ public class ModelGTNG extends ModelBase {
 
         gtngModel[23].addBox(0F, 0F, 0F, 4, 0, 1, 0F); // Box 23
         gtngModel[23].setRotationPoint(-12F, 6F, -7F);
-        gtngModel[23].rotateAngleZ = 2.42600766F;
+        gtngModel[23].rotateAngleZ = -2.42600766F;
 
         gtngModel[24].addBox(0F, 0F, 0F, 3, 3, 1, 0F); // Box 24
         gtngModel[24].setRotationPoint(-18F, 6F, -7F);
@@ -278,11 +278,11 @@ public class ModelGTNG extends ModelBase {
 
         gtngModel[50].addBox(0F, 0F, 0F, 18, 1, 18, 0F); // Box 50
         gtngModel[50].setRotationPoint(-22F, -4.9F, -9F);
-        gtngModel[50].rotateAngleZ = 0.52359878F;
+        gtngModel[50].rotateAngleZ = -0.52359878F;
 
         gtngModel[51].addBox(0F, 0F, 0F, 18, 1, 18, 0F); // Box 51
         gtngModel[51].setRotationPoint(7F, 4F, -9F);
-        gtngModel[51].rotateAngleZ = -0.54105207F;
+        gtngModel[51].rotateAngleZ = 0.54105207F;
 
         gtngModel[52].addShapeBox(0F, 0F, 0F, 3, 5, 1, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 52
         gtngModel[52].setRotationPoint(-23F, -4F, 2F);
@@ -313,7 +313,7 @@ public class ModelGTNG extends ModelBase {
 
         gtngModel[61].addBox(0F, 0F, 0F, 4, 0, 1, 0F); // Box 62
         gtngModel[61].setRotationPoint(11F, 6F, -7F);
-        gtngModel[61].rotateAngleZ = 0.71558499F;
+        gtngModel[61].rotateAngleZ = -0.71558499F;
 
         gtngModel[62].addBox(0F, 0F, 0F, 3, 4, 1, 0F); // Box 63
         gtngModel[62].setRotationPoint(19F, 5F, -7F);
@@ -326,7 +326,7 @@ public class ModelGTNG extends ModelBase {
 
         gtngModel[65].addBox(0F, 0F, 0F, 4, 0, 1, 0F); // Box 66
         gtngModel[65].setRotationPoint(30F, 6F, -7F);
-        gtngModel[65].rotateAngleZ = 2.42600766F;
+        gtngModel[65].rotateAngleZ = -2.42600766F;
 
         gtngModel[66].addBox(0F, 0F, 0F, 3, 0, 1, 0F); // Box 67
         gtngModel[66].setRotationPoint(27F, 6F, -7F);
@@ -414,7 +414,7 @@ public class ModelGTNG extends ModelBase {
 
         gtngModel[94].addBox(0F, 0F, 0F, 4, 0, 1, 0F); // Box 95
         gtngModel[94].setRotationPoint(11F, 6F, 6F);
-        gtngModel[94].rotateAngleZ = 0.71558499F;
+        gtngModel[94].rotateAngleZ = -0.71558499F;
 
         gtngModel[95].addBox(0F, 0F, 0F, 13, 0, 1, 0F); // Box 96
         gtngModel[95].setRotationPoint(14F, 9F, 6F);
@@ -427,7 +427,7 @@ public class ModelGTNG extends ModelBase {
 
         gtngModel[98].addBox(0F, 0F, 0F, 4, 0, 1, 0F); // Box 99
         gtngModel[98].setRotationPoint(30F, 6F, 6F);
-        gtngModel[98].rotateAngleZ = 2.42600766F;
+        gtngModel[98].rotateAngleZ = -2.42600766F;
 
         gtngModel[99].addBox(0F, 0F, 0F, 3, 0, 1, 0F); // Box 100
         gtngModel[99].setRotationPoint(27F, 6F, 6F);

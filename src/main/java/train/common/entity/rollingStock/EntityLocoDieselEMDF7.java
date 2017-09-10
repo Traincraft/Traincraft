@@ -148,7 +148,7 @@ public class EntityLocoDieselEMDF7 extends DieselTrain {
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return (1.2F);
+		return (0.9F);
 	}
 	@Override
 	public boolean canBeAdjusted(EntityMinecart cart) {

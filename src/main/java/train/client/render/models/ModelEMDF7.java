@@ -1030,13 +1030,14 @@ public class ModelEMDF7 extends ModelBase
             emdf7Model[i].render(f5);
         }
 
-        Tessellator.bindTexture(new ResourceLocation(Info.modID, "textures/trains/Blomberg_b_trucks.png"));
         GL11.glPushMatrix();
+        Tessellator.bindTexture(new ResourceLocation(Info.modID, "textures/trains/Blomberg_b_trucks.png"));
         GL11.glTranslated(-2.5,0.6,0);
         GL11.glScalef(0.9F, 0.9F, 0.9F);
         fronttrucks.render(entity,f,f1,f2,f3,f4,f5);
         GL11.glPopMatrix();
         GL11.glPushMatrix();
+        Tessellator.bindTexture(new ResourceLocation(Info.modID, "textures/trains/Blomberg_b_trucks.png"));
         GL11.glTranslated(0.55,0.6,0);
         GL11.glScalef(0.9F, 0.9F, 0.9F);
         backtrucks.render(entity,f,f1,f2,f3,f4,f5);

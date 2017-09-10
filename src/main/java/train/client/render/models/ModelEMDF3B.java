@@ -555,7 +555,8 @@ public class ModelEMDF3B extends ModelBase
 
 
     }
-    private ModelBloombergTrucks trucks = new ModelBloombergTrucks();
+    private ModelBloombergTrucks fronttrucks = new ModelBloombergTrucks();
+    private ModelBloombergTrucks backtrucks = new ModelBloombergTrucks();
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
@@ -563,16 +564,17 @@ public class ModelEMDF3B extends ModelBase
         {
             emdf3bModel[i].render(f5);
         }
-        Tessellator.bindTexture(new ResourceLocation(Info.modID, "textures/trains/Blomberg_b_trucks.png"));
         GL11.glPushMatrix();
+        Tessellator.bindTexture(new ResourceLocation(Info.modID, "textures/trains/Blomberg_b_trucks.png"));
         GL11.glTranslated(-1.5,0.6,0);
         GL11.glScalef(0.9F, 0.9F, 0.9F);
-        trucks.render(entity,f,f1,f2,f3,f4,f5);
+        fronttrucks.render(entity,f,f1,f2,f3,f4,f5);
         GL11.glPopMatrix();
         GL11.glPushMatrix();
+        Tessellator.bindTexture(new ResourceLocation(Info.modID, "textures/trains/Blomberg_b_trucks.png"));
         GL11.glTranslated(1.55,0.6,0);
         GL11.glScalef(0.9F, 0.9F, 0.9F);
-        trucks.render(entity,f,f1,f2,f3,f4,f5);
+        backtrucks.render(entity,f,f1,f2,f3,f4,f5);
         GL11.glPopMatrix();
     }
 

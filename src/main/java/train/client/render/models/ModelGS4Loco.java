@@ -310,7 +310,7 @@ public class ModelGS4Loco extends ModelBase
 
         gs4locoModel[45].addBox(0F, 0F, 0F, 10, 1, 20, 0F); // 147
         gs4locoModel[45].setRotationPoint(-4F, 7F, -10F);
-        gs4locoModel[45].rotateAngleZ = 1.97222205F;
+        gs4locoModel[45].rotateAngleZ = -1.97222205F;
 
         gs4locoModel[46].addBox(0F, 0F, 0F, 20, 6, 18, 0F); // 148
         gs4locoModel[46].setRotationPoint(-9F, -3F, -9F);
@@ -527,7 +527,7 @@ public class ModelGS4Loco extends ModelBase
 
         gs4locoModel[117].addBox(0F, 0F, 0F, 1, 5, 1, 0F); // 1119
         gs4locoModel[117].setRotationPoint(-60F, 1F, -8F);
-        gs4locoModel[117].rotateAngleZ = 0.48869219F;
+        gs4locoModel[117].rotateAngleZ = -0.48869219F;
 
         gs4locoModel[118].addShapeBox(0F, 0F, 0F, 23, 7, 1, 0F, 0F, 0F, 0F, 0F, -6F, 0F, 0F, -6F, 0F, 0F, 0F, 0F, 0F, -6F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -6F, 0F); // 1120
         gs4locoModel[118].setRotationPoint(-71F, 1F, 7F);
@@ -540,7 +540,7 @@ public class ModelGS4Loco extends ModelBase
 
         gs4locoModel[121].addBox(0F, 0F, 0F, 1, 5, 1, 0F); // 1123
         gs4locoModel[121].setRotationPoint(-60F, 1F, 7F);
-        gs4locoModel[121].rotateAngleZ = 0.48869219F;
+        gs4locoModel[121].rotateAngleZ = -0.48869219F;
 
         gs4locoModel[122].addShapeBox(0F, 0F, 0F, 3, 2, 0, 0F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // 1124
         gs4locoModel[122].setRotationPoint(-95F, -11F, -11F);

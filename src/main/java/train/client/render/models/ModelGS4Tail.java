@@ -114,280 +114,280 @@ public class ModelGS4Tail extends ModelBase
         gs4tailModel[91] = new ModelRendererTurbo(this, 56, 220, textureX, textureY); // 92
 
         gs4tailModel[0].addBox(0F, 0F, 0F, 3, 26, 1, 0F); // 01
-        gs4tailModel[0].setRotationPoint(-53F, -23F, 10F);
+        gs4tailModel[0].setRotationPoint(-54F, -28F, 10F);
 
         gs4tailModel[1].addBox(0F, 0F, 0F, 6, 14, 1, 0F); // 02
-        gs4tailModel[1].setRotationPoint(-50F, -11F, 10F);
+        gs4tailModel[1].setRotationPoint(-51F, -16F, 10F);
 
         gs4tailModel[2].addBox(0F, 0F, 0F, 6, 5, 1, 0F); // 03
-        gs4tailModel[2].setRotationPoint(-50F, -23F, 10F);
+        gs4tailModel[2].setRotationPoint(-51F, -28F, 10F);
 
         gs4tailModel[3].addBox(0F, 0F, 0F, 3, 26, 1, 0F); // 04
-        gs4tailModel[3].setRotationPoint(-44F, -23F, 10F);
+        gs4tailModel[3].setRotationPoint(-45F, -28F, 10F);
 
         gs4tailModel[4].addBox(0F, 0F, 0F, 84, 14, 1, 0F); // 05
-        gs4tailModel[4].setRotationPoint(-41F, -11F, 10F);
+        gs4tailModel[4].setRotationPoint(-42F, -16F, 10F);
 
         gs4tailModel[5].addBox(0F, 0F, 0F, 84, 5, 1, 0F); // 06
-        gs4tailModel[5].setRotationPoint(-41F, -23F, 10F);
+        gs4tailModel[5].setRotationPoint(-42F, -28F, 10F);
 
         gs4tailModel[6].addBox(0F, 0F, 0F, 3, 7, 1, 0F); // 07
-        gs4tailModel[6].setRotationPoint(-26F, -18F, 10F);
+        gs4tailModel[6].setRotationPoint(-27F, -23F, 10F);
 
         gs4tailModel[7].addBox(0F, 0F, 0F, 1, 26, 20, 0F); // 08
-        gs4tailModel[7].setRotationPoint(-53F, -23F, -10F);
+        gs4tailModel[7].setRotationPoint(-54F, -28F, -10F);
 
         gs4tailModel[8].addShapeBox(0F, 0F, 0F, 81, 3, 5, 0F, 0F, 0F, -5F, 0F, 0F, -5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // 09
-        gs4tailModel[8].setRotationPoint(-53F, -26F, -11F);
+        gs4tailModel[8].setRotationPoint(-54F, -31F, -11F);
 
         gs4tailModel[9].addShapeBox(0F, 0F, 0F, 81, 1, 5, 0F, 0F, 0F, -5F, 0F, 0F, -5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // 10
-        gs4tailModel[9].setRotationPoint(-53F, -27F, -6F);
+        gs4tailModel[9].setRotationPoint(-54F, -32F, -6F);
 
         gs4tailModel[10].addShapeBox(0F, 0F, 0F, 81, 3, 17, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -5F, 0F, 0F, -5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // 11
-        gs4tailModel[10].setRotationPoint(-53F, -26F, -6F);
+        gs4tailModel[10].setRotationPoint(-54F, -31F, -6F);
 
         gs4tailModel[11].addShapeBox(0F, 0F, 0F, 81, 1, 7, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -5F, 0F, 0F, -5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // 12
-        gs4tailModel[11].setRotationPoint(-53F, -27F, -1F);
+        gs4tailModel[11].setRotationPoint(-54F, -32F, -1F);
 
         gs4tailModel[12].addBox(0F, 0F, 0F, 6, 4, 22, 0F); // 13
-        gs4tailModel[12].setRotationPoint(-53F, 4F, -11F);
+        gs4tailModel[12].setRotationPoint(-54F, -1F, -11F);
 
         gs4tailModel[13].addShapeBox(0F, 0F, 0F, 5, 4, 22, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, 0F, 0F, 0F); // 14
-        gs4tailModel[13].setRotationPoint(-47F, 4F, -11F);
+        gs4tailModel[13].setRotationPoint(-48F, -1F, -11F);
 
         gs4tailModel[14].addShapeBox(0F, 0F, 0F, 5, 4, 22, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F); // 15
-        gs4tailModel[14].setRotationPoint(44F, 4F, -11F);
+        gs4tailModel[14].setRotationPoint(43F, -1F, -11F);
 
         gs4tailModel[15].addShapeBox(0F, 0F, 0F, 3, 4, 22, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, 0F, 0F, 0F); // 16
-        gs4tailModel[15].setRotationPoint(17F, 4F, -11F);
+        gs4tailModel[15].setRotationPoint(16F, -1F, -11F);
 
         gs4tailModel[16].addShapeBox(0F, 0F, 0F, 35, 4, 22, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F); // 17
-        gs4tailModel[16].setRotationPoint(-18F, 4F, -11F);
+        gs4tailModel[16].setRotationPoint(-19F, -1F, -11F);
 
         gs4tailModel[17].addBox(0F, 0F, 0F, 24, 4, 12, 0F); // 18
-        gs4tailModel[17].setRotationPoint(-42F, 3F, -6F);
+        gs4tailModel[17].setRotationPoint(-43F, -2F, -6F);
 
         gs4tailModel[18].addBox(0F, 0F, 0F, 20, 2, 14, 0F); // 19
-        gs4tailModel[18].setRotationPoint(-40F, 6F, -7F);
+        gs4tailModel[18].setRotationPoint(-41F, 1F, -7F);
 
         gs4tailModel[19].addBox(0F, 0F, 0F, 20, 2, 14, 0F); // 20
-        gs4tailModel[19].setRotationPoint(22F, 6F, -7F);
+        gs4tailModel[19].setRotationPoint(21F, 1F, -7F);
 
         gs4tailModel[20].addBox(0F, 0F, 0F, 24, 4, 12, 0F); // 21
-        gs4tailModel[20].setRotationPoint(20F, 3F, -6F);
+        gs4tailModel[20].setRotationPoint(19F, -2F, -6F);
 
         gs4tailModel[21].addBox(0F, 0F, 0F, 3, 3, 3, 0F); // 22
-        gs4tailModel[21].setRotationPoint(-56F, 2F, -1F);
+        gs4tailModel[21].setRotationPoint(-57F, -3F, -1F);
 
         gs4tailModel[22].addBox(0F, 0F, 0F, 8, 6, 11, 0F); // 23
-        gs4tailModel[22].setRotationPoint(-42F, -3F, -1F);
+        gs4tailModel[22].setRotationPoint(-43F, -8F, -1F);
 
         gs4tailModel[23].addShapeBox(0F, 0F, 0F, 2, 11, 11, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F); // 24
-        gs4tailModel[23].setRotationPoint(-43F, -14F, -1F);
+        gs4tailModel[23].setRotationPoint(-44F, -19F, -1F);
 
         gs4tailModel[24].addBox(0F, 0F, 0F, 8, 6, 11, 0F); // 25
-        gs4tailModel[24].setRotationPoint(29F, -3F, -1F);
+        gs4tailModel[24].setRotationPoint(28F, -8F, -1F);
 
         gs4tailModel[25].addShapeBox(0F, 0F, 0F, 2, 11, 11, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F); // 26
-        gs4tailModel[25].setRotationPoint(28F, -14F, -1F);
+        gs4tailModel[25].setRotationPoint(27F, -19F, -1F);
 
         gs4tailModel[26].addBox(0F, 0F, 0F, 3, 26, 1, 0F); // 27
-        gs4tailModel[26].setRotationPoint(-53F, -23F, -11F);
+        gs4tailModel[26].setRotationPoint(-54F, -28F, -11F);
 
         gs4tailModel[27].addBox(0F, 0F, 0F, 6, 14, 1, 0F); // 28
-        gs4tailModel[27].setRotationPoint(-50F, -11F, -11F);
+        gs4tailModel[27].setRotationPoint(-51F, -16F, -11F);
 
         gs4tailModel[28].addBox(0F, 0F, 0F, 6, 5, 1, 0F); // 29
-        gs4tailModel[28].setRotationPoint(-50F, -23F, -11F);
+        gs4tailModel[28].setRotationPoint(-51F, -28F, -11F);
 
         gs4tailModel[29].addBox(0F, 0F, 0F, 3, 26, 1, 0F); // 30
-        gs4tailModel[29].setRotationPoint(-44F, -23F, -11F);
+        gs4tailModel[29].setRotationPoint(-45F, -28F, -11F);
 
         gs4tailModel[30].addBox(0F, 0F, 0F, 84, 14, 1, 0F); // 31
-        gs4tailModel[30].setRotationPoint(-41F, -11F, -11F);
+        gs4tailModel[30].setRotationPoint(-42F, -16F, -11F);
 
         gs4tailModel[31].addBox(0F, 0F, 0F, 84, 5, 1, 0F); // 32
-        gs4tailModel[31].setRotationPoint(-41F, -23F, -11F);
+        gs4tailModel[31].setRotationPoint(-42F, -28F, -11F);
 
         gs4tailModel[32].addBox(0F, 0F, 0F, 3, 7, 1, 0F); // 33
-        gs4tailModel[32].setRotationPoint(10F, -18F, -11F);
+        gs4tailModel[32].setRotationPoint(9F, -23F, -11F);
 
         gs4tailModel[33].addBox(0F, 0F, 0F, 102, 1, 22, 0F); // 34
-        gs4tailModel[33].setRotationPoint(-53F, 3F, -11F);
+        gs4tailModel[33].setRotationPoint(-54F, -2F, -11F);
 
         gs4tailModel[34].addBox(0F, 0F, 0F, 6, 6, 0, 0F); // 35
-        gs4tailModel[34].setRotationPoint(38F, 4F, 7F);
+        gs4tailModel[34].setRotationPoint(37F, -1F, 7F);
 
         gs4tailModel[35].addBox(0F, 0F, 0F, 6, 6, 0, 0F); // 36
-        gs4tailModel[35].setRotationPoint(20F, 4F, -7F);
+        gs4tailModel[35].setRotationPoint(19F, -1F, -7F);
 
         gs4tailModel[36].addBox(0F, 0F, 0F, 6, 6, 0, 0F); // 37
-        gs4tailModel[36].setRotationPoint(38F, 4F, -7F);
+        gs4tailModel[36].setRotationPoint(37F, -1F, -7F);
 
         gs4tailModel[37].addBox(0F, 0F, 0F, 6, 6, 0, 0F); // 38
-        gs4tailModel[37].setRotationPoint(20F, 4F, 7F);
+        gs4tailModel[37].setRotationPoint(19F, -1F, 7F);
 
         gs4tailModel[38].addBox(0F, 0F, 0F, 6, 6, 0, 0F); // 39
-        gs4tailModel[38].setRotationPoint(-24F, 4F, 7F);
+        gs4tailModel[38].setRotationPoint(-25F, -1F, 7F);
 
         gs4tailModel[39].addBox(0F, 0F, 0F, 6, 6, 0, 0F); // 40
-        gs4tailModel[39].setRotationPoint(-42F, 4F, -7F);
+        gs4tailModel[39].setRotationPoint(-43F, -1F, -7F);
 
         gs4tailModel[40].addBox(0F, 0F, 0F, 6, 6, 0, 0F); // 41
-        gs4tailModel[40].setRotationPoint(-24F, 4F, -7F);
+        gs4tailModel[40].setRotationPoint(-25F, -1F, -7F);
 
         gs4tailModel[41].addBox(0F, 0F, 0F, 6, 6, 0, 0F); // 42
-        gs4tailModel[41].setRotationPoint(-42F, 4F, 7F);
+        gs4tailModel[41].setRotationPoint(-43F, -1F, 7F);
 
         gs4tailModel[42].addShapeBox(0F, 0F, 0F, 21, 3, 5, 0F, 0F, 0F, -5F, 0F, 0F, -5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // 43
-        gs4tailModel[42].setRotationPoint(28F, -26F, -11F);
+        gs4tailModel[42].setRotationPoint(27F, -31F, -11F);
 
         gs4tailModel[43].addShapeBox(0F, 0F, 0F, 27, 1, 5, 0F, 0F, 0F, -5F, 0F, 0F, -5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // 44
-        gs4tailModel[43].setRotationPoint(28F, -27F, -6F);
+        gs4tailModel[43].setRotationPoint(27F, -32F, -6F);
 
         gs4tailModel[44].addShapeBox(0F, 0F, 0F, 21, 3, 17, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -5F, 0F, 0F, -5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // 45
-        gs4tailModel[44].setRotationPoint(28F, -26F, -6F);
+        gs4tailModel[44].setRotationPoint(27F, -31F, -6F);
 
         gs4tailModel[45].addShapeBox(0F, 0F, 0F, 27, 1, 7, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -5F, 0F, 0F, -5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // 46
-        gs4tailModel[45].setRotationPoint(28F, -27F, -1F);
+        gs4tailModel[45].setRotationPoint(27F, -32F, -1F);
 
         gs4tailModel[46].addBox(0F, 0F, 0F, 3, 7, 1, 0F); // 47
-        gs4tailModel[46].setRotationPoint(-9F, -18F, 10F);
+        gs4tailModel[46].setRotationPoint(-10F, -23F, 10F);
 
         gs4tailModel[47].addBox(0F, 0F, 0F, 3, 7, 1, 0F); // 48
-        gs4tailModel[47].setRotationPoint(10F, -18F, 10F);
+        gs4tailModel[47].setRotationPoint(9F, -23F, 10F);
 
         gs4tailModel[48].addBox(0F, 0F, 0F, 3, 7, 1, 0F); // 49
-        gs4tailModel[48].setRotationPoint(26F, -18F, 10F);
+        gs4tailModel[48].setRotationPoint(25F, -23F, 10F);
 
         gs4tailModel[49].addBox(0F, 0F, 0F, 3, 7, 1, 0F); // 50
-        gs4tailModel[49].setRotationPoint(27F, -18F, -11F);
+        gs4tailModel[49].setRotationPoint(26F, -23F, -11F);
 
         gs4tailModel[50].addBox(0F, 0F, 0F, 3, 7, 1, 0F); // 51
-        gs4tailModel[50].setRotationPoint(-26F, -18F, -11F);
+        gs4tailModel[50].setRotationPoint(-27F, -23F, -11F);
 
         gs4tailModel[51].addBox(0F, 0F, 0F, 3, 7, 1, 0F); // 52
-        gs4tailModel[51].setRotationPoint(-9F, -18F, -11F);
+        gs4tailModel[51].setRotationPoint(-10F, -23F, -11F);
 
         gs4tailModel[52].addBox(0F, 0F, 0F, 8, 6, 11, 0F); // 53
-        gs4tailModel[52].setRotationPoint(-23F, -3F, -1F);
+        gs4tailModel[52].setRotationPoint(-24F, -8F, -1F);
 
         gs4tailModel[53].addShapeBox(0F, 0F, 0F, 2, 11, 11, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F); // 54
-        gs4tailModel[53].setRotationPoint(-24F, -14F, -1F);
+        gs4tailModel[53].setRotationPoint(-25F, -19F, -1F);
 
         gs4tailModel[54].addBox(0F, 0F, 0F, 8, 6, 11, 0F); // 55
-        gs4tailModel[54].setRotationPoint(-6F, -3F, -1F);
+        gs4tailModel[54].setRotationPoint(-7F, -8F, -1F);
 
         gs4tailModel[55].addShapeBox(0F, 0F, 0F, 2, 11, 11, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F); // 56
-        gs4tailModel[55].setRotationPoint(-7F, -14F, -1F);
+        gs4tailModel[55].setRotationPoint(-8F, -19F, -1F);
 
         gs4tailModel[56].addBox(0F, 0F, 0F, 8, 6, 11, 0F); // 57
-        gs4tailModel[56].setRotationPoint(13F, -3F, -1F);
+        gs4tailModel[56].setRotationPoint(12F, -8F, -1F);
 
         gs4tailModel[57].addShapeBox(0F, 0F, 0F, 2, 11, 11, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F); // 58
-        gs4tailModel[57].setRotationPoint(12F, -14F, -1F);
+        gs4tailModel[57].setRotationPoint(11F, -19F, -1F);
 
         gs4tailModel[58].addShapeBox(0F, 0F, 0F, 6, 5, 22, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F); // 59
-        gs4tailModel[58].setRotationPoint(49F, 3F, -11F);
+        gs4tailModel[58].setRotationPoint(48F, -2F, -11F);
 
         gs4tailModel[59].addShapeBox(0F, 0F, 0F, 5, 5, 20, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, 0F); // 60
-        gs4tailModel[59].setRotationPoint(55F, 3F, -10F);
+        gs4tailModel[59].setRotationPoint(54F, -2F, -10F);
 
         gs4tailModel[60].addShapeBox(0F, 0F, 0F, 4, 5, 14, 0F, 0F, 0F, 0F, 0F, 0F, -5F, 0F, 0F, -5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -5F, 0F, 0F, -5F, 0F, 0F, 0F); // 61
-        gs4tailModel[60].setRotationPoint(60F, 3F, -7F);
+        gs4tailModel[60].setRotationPoint(59F, -2F, -7F);
 
         gs4tailModel[61].addBox(0F, 0F, 0F, 6, 26, 1, 0F); // 62
-        gs4tailModel[61].setRotationPoint(43F, -23F, -11F);
+        gs4tailModel[61].setRotationPoint(42F, -28F, -11F);
 
         gs4tailModel[62].addBox(0F, 0F, 0F, 6, 26, 1, 0F); // 63
-        gs4tailModel[62].setRotationPoint(43F, -23F, 10F);
+        gs4tailModel[62].setRotationPoint(42F, -28F, 10F);
 
         gs4tailModel[63].addShapeBox(0F, 0F, 0F, 6, 14, 1, 0F, 0F, 0F, 0F, 0F, 0F, 1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 1F, 0F, 0F, -1F, 0F, 0F, 0F); // 64
-        gs4tailModel[63].setRotationPoint(49F, -11F, 10F);
+        gs4tailModel[63].setRotationPoint(48F, -16F, 10F);
 
         gs4tailModel[64].addShapeBox(0F, 0F, 0F, 5, 14, 1, 0F, 0F, 0F, 0F, 0F, 0F, 3F, 0F, 0F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 3F, 0F, 0F, -3F, 0F, 0F, 0F); // 65
-        gs4tailModel[64].setRotationPoint(55F, -11F, 9F);
+        gs4tailModel[64].setRotationPoint(54F, -16F, 9F);
 
         gs4tailModel[65].addShapeBox(0F, 0F, 0F, 4, 14, 1, 0F, 0F, 0F, 0F, 0F, 0F, 5F, 0F, 0F, -5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 5F, 0F, 0F, -5F, 0F, 0F, 0F); // 66
-        gs4tailModel[65].setRotationPoint(60F, -11F, 6F);
+        gs4tailModel[65].setRotationPoint(59F, -16F, 6F);
 
         gs4tailModel[66].addShapeBox(0F, 0F, 0F, 4, 5, 14, 0F, 0F, 0F, 0F, 0F, 0F, -5F, 0F, 0F, -5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -5F, 0F, 0F, -5F, 0F, 0F, 0F); // 67
-        gs4tailModel[66].setRotationPoint(60F, 3F, -7F);
+        gs4tailModel[66].setRotationPoint(59F, -2F, -7F);
 
         gs4tailModel[67].addShapeBox(0F, 0F, 0F, 6, 14, 1, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 1F, 0F, 0F, 0F); // 68
-        gs4tailModel[67].setRotationPoint(49F, -11F, -11F);
+        gs4tailModel[67].setRotationPoint(48F, -16F, -11F);
 
         gs4tailModel[68].addShapeBox(0F, 0F, 0F, 5, 14, 1, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F, 3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F, 3F, 0F, 0F, 0F); // 69
-        gs4tailModel[68].setRotationPoint(55F, -11F, -10F);
+        gs4tailModel[68].setRotationPoint(54F, -16F, -10F);
 
         gs4tailModel[69].addShapeBox(0F, 0F, 0F, 4, 14, 1, 0F, 0F, 0F, 0F, 0F, 0F, -5F, 0F, 0F, 5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -5F, 0F, 0F, 5F, 0F, 0F, 0F); // 70
-        gs4tailModel[69].setRotationPoint(60F, -11F, -7F);
+        gs4tailModel[69].setRotationPoint(59F, -16F, -7F);
 
         gs4tailModel[70].addShapeBox(0F, 0F, 0F, 4, 7, 1, 0F, 0F, 0F, 0F, 0F, 0F, -5F, 0F, 0F, 4F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -5F, 0F, 0F, 4F, 0F, 0F, 0F); // 71
-        gs4tailModel[70].setRotationPoint(60F, -18F, -7F);
+        gs4tailModel[70].setRotationPoint(59F, -23F, -7F);
 
         gs4tailModel[71].addShapeBox(0F, 0F, 0F, 4, 7, 1, 0F, 0F, 0F, 0F, 0F, 0F, 4F, 0F, 0F, -5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 4F, 0F, 0F, -5F, 0F, 0F, 0F); // 72
-        gs4tailModel[71].setRotationPoint(60F, -18F, 6F);
+        gs4tailModel[71].setRotationPoint(59F, -23F, 6F);
 
         gs4tailModel[72].addShapeBox(0F, 0F, 0F, 6, 5, 1, 0F, 0F, 0F, 0F, 0F, 0F, 1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 1F, 0F, 0F, -1F, 0F, 0F, 0F); // 73
-        gs4tailModel[72].setRotationPoint(49F, -23F, 10F);
+        gs4tailModel[72].setRotationPoint(48F, -28F, 10F);
 
         gs4tailModel[73].addShapeBox(0F, 0F, 0F, 5, 5, 1, 0F, 0F, 0F, 0F, 0F, 0F, 3F, 0F, 0F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 3F, 0F, 0F, -3F, 0F, 0F, 0F); // 74
-        gs4tailModel[73].setRotationPoint(55F, -23F, 9F);
+        gs4tailModel[73].setRotationPoint(54F, -28F, 9F);
 
         gs4tailModel[74].addShapeBox(0F, 0F, 0F, 4, 5, 1, 0F, 0F, 0F, 0F, 0F, 0F, 5F, 0F, 0F, -5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 5F, 0F, 0F, -5F, 0F, 0F, 0F); // 75
-        gs4tailModel[74].setRotationPoint(60F, -23F, 6F);
+        gs4tailModel[74].setRotationPoint(59F, -28F, 6F);
 
         gs4tailModel[75].addShapeBox(0F, 0F, 0F, 6, 5, 1, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 1F, 0F, 0F, 0F); // 76
-        gs4tailModel[75].setRotationPoint(49F, -23F, -11F);
+        gs4tailModel[75].setRotationPoint(48F, -28F, -11F);
 
         gs4tailModel[76].addShapeBox(0F, 0F, 0F, 5, 5, 1, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F, 3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F, 3F, 0F, 0F, 0F); // 77
-        gs4tailModel[76].setRotationPoint(55F, -23F, -10F);
+        gs4tailModel[76].setRotationPoint(54F, -28F, -10F);
 
         gs4tailModel[77].addShapeBox(0F, 0F, 0F, 4, 5, 1, 0F, 0F, 0F, 0F, 0F, 0F, -5F, 0F, 0F, 5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -5F, 0F, 0F, 5F, 0F, 0F, 0F); // 78
-        gs4tailModel[77].setRotationPoint(60F, -23F, -7F);
+        gs4tailModel[77].setRotationPoint(59F, -28F, -7F);
 
         gs4tailModel[78].addShapeBox(0F, 0F, 0F, 6, 3, 5, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -5F, 0F, 0F, -5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F); // 79
-        gs4tailModel[78].setRotationPoint(49F, -26F, 6F);
+        gs4tailModel[78].setRotationPoint(48F, -31F, 6F);
 
         gs4tailModel[79].addShapeBox(0F, 0F, 0F, 5, 3, 5, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -5F, 0F, 0F, -4F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F, 0F); // 80
-        gs4tailModel[79].setRotationPoint(55F, -26F, 5F);
+        gs4tailModel[79].setRotationPoint(54F, -31F, 5F);
 
         gs4tailModel[80].addShapeBox(0F, 0F, 0F, 4, 3, 7, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, -5F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -5F, 0F, 0F, 0F); // 81
-        gs4tailModel[80].setRotationPoint(60F, -26F, 0F);
+        gs4tailModel[80].setRotationPoint(59F, -31F, 0F);
 
         gs4tailModel[81].addShapeBox(0F, 0F, 0F, 6, 3, 5, 0F, 0F, 0F, -5F, 0F, 0F, -5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F); // 82
-        gs4tailModel[81].setRotationPoint(49F, -26F, -11F);
+        gs4tailModel[81].setRotationPoint(48F, -31F, -11F);
 
         gs4tailModel[82].addShapeBox(0F, 0F, 0F, 5, 3, 5, 0F, 0F, 0F, -4F, 0F, 0F, -5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F, 0F, 0F, 0F, 0F); // 83
-        gs4tailModel[82].setRotationPoint(55F, -26F, -10F);
+        gs4tailModel[82].setRotationPoint(54F, -31F, -10F);
 
         gs4tailModel[83].addShapeBox(0F, 0F, 0F, 4, 3, 7, 0F, 0F, 0F, -2F, -2F, 0F, -5F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -5F, 0F, 0F, 0F, 0F, 0F, 0F); // 84
-        gs4tailModel[83].setRotationPoint(60F, -26F, -7F);
+        gs4tailModel[83].setRotationPoint(59F, -31F, -7F);
 
         gs4tailModel[84].addShapeBox(0F, 0F, 0F, 7, 1, 5, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, -5F, 0F, 0F, -5F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, -1F, 0F, 0F, 0F); // 85
-        gs4tailModel[84].setRotationPoint(55F, -27F, 1F);
+        gs4tailModel[84].setRotationPoint(54F, -32F, 1F);
 
         gs4tailModel[85].addShapeBox(0F, 0F, 0F, 7, 1, 5, 0F, 0F, 0F, -5F, -2F, 0F, -5F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F); // 86
-        gs4tailModel[85].setRotationPoint(55F, -27F, -6F);
+        gs4tailModel[85].setRotationPoint(54F, -32F, -6F);
 
         gs4tailModel[86].addShapeBox(0F, 0F, 0F, 27, 1, 5, 0F, 0F, 0F, -5F, 0F, 0F, -5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // 87
-        gs4tailModel[86].setRotationPoint(28F, -27F, -6F);
+        gs4tailModel[86].setRotationPoint(27F, -32F, -6F);
 
         gs4tailModel[87].addShapeBox(0F, 0F, 0F, 27, 1, 5, 0F, 0F, 0F, -5F, 0F, 0F, -5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // 88
-        gs4tailModel[87].setRotationPoint(28F, -27F, -6F);
+        gs4tailModel[87].setRotationPoint(27F, -32F, -6F);
 
         gs4tailModel[88].addShapeBox(0F, 0F, 0F, 9, 3, 2, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // 89
-        gs4tailModel[88].setRotationPoint(55F, -27F, -1F);
+        gs4tailModel[88].setRotationPoint(54F, -32F, -1F);
 
         gs4tailModel[89].addShapeBox(0F, 0F, 0F, 0, 5, 2, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // 90
-        gs4tailModel[89].setRotationPoint(64F, -23F, -1F);
+        gs4tailModel[89].setRotationPoint(63F, -28F, -1F);
 
         gs4tailModel[90].addShapeBox(0F, 0F, 0F, 0, 14, 2, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // 91
-        gs4tailModel[90].setRotationPoint(64F, -11F, -1F);
+        gs4tailModel[90].setRotationPoint(63F, -16F, -1F);
 
         gs4tailModel[91].addShapeBox(0F, 0F, 0F, 11, 1, 12, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // 92
-        gs4tailModel[91].setRotationPoint(49F, -24F, -6F);
+        gs4tailModel[91].setRotationPoint(48F, -29F, -6F);
 
     }
 

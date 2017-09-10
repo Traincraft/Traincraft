@@ -63,6 +63,6 @@ public class EntityBUnitEMDF7 extends EntityRollingStock implements IPassenger {
 	}
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return 1.45F;
+		return 2.3F;
 	}
 }

@@ -110,268 +110,268 @@ public class ModelGS4Observatory extends ModelBase
         gs4observatoryModel[87] = new ModelRendererTurbo(this, 473, 41, textureX, textureY); // 33
 
         gs4observatoryModel[0].addBox(0F, 0F, 0F, 3, 26, 1, 0F); // 01
-        gs4observatoryModel[0].setRotationPoint(-54F, -24F, 10F);
+        gs4observatoryModel[0].setRotationPoint(-53F, -28F, 10F);
 
         gs4observatoryModel[1].addBox(0F, 0F, 0F, 6, 14, 1, 0F); // 02
-        gs4observatoryModel[1].setRotationPoint(-51F, -12F, 10F);
+        gs4observatoryModel[1].setRotationPoint(-50F, -16F, 10F);
 
         gs4observatoryModel[2].addBox(0F, 0F, 0F, 6, 5, 1, 0F); // 03
-        gs4observatoryModel[2].setRotationPoint(-51F, -24F, 10F);
+        gs4observatoryModel[2].setRotationPoint(-50F, -28F, 10F);
 
         gs4observatoryModel[3].addBox(0F, 0F, 0F, 3, 26, 1, 0F); // 04
-        gs4observatoryModel[3].setRotationPoint(-45F, -24F, 10F);
+        gs4observatoryModel[3].setRotationPoint(-44F, -28F, 10F);
 
         gs4observatoryModel[4].addBox(0F, 0F, 0F, 84, 14, 1, 0F); // 05
-        gs4observatoryModel[4].setRotationPoint(-42F, -12F, 10F);
+        gs4observatoryModel[4].setRotationPoint(-41F, -16F, 10F);
 
         gs4observatoryModel[5].addBox(0F, 0F, 0F, 84, 5, 1, 0F); // 06
-        gs4observatoryModel[5].setRotationPoint(-42F, -24F, 10F);
+        gs4observatoryModel[5].setRotationPoint(-41F, -28F, 10F);
 
         gs4observatoryModel[6].addBox(0F, 0F, 0F, 3, 7, 1, 0F); // 07
-        gs4observatoryModel[6].setRotationPoint(-27F, -19F, 10F);
+        gs4observatoryModel[6].setRotationPoint(-26F, -23F, 10F);
 
         gs4observatoryModel[7].addBox(0F, 0F, 0F, 3, 26, 1, 0F); // 08
-        gs4observatoryModel[7].setRotationPoint(42F, -24F, 10F);
+        gs4observatoryModel[7].setRotationPoint(43F, -28F, 10F);
 
         gs4observatoryModel[8].addBox(0F, 0F, 0F, 6, 5, 1, 0F); // 09
-        gs4observatoryModel[8].setRotationPoint(45F, -24F, 10F);
+        gs4observatoryModel[8].setRotationPoint(46F, -28F, 10F);
 
         gs4observatoryModel[9].addBox(0F, 0F, 0F, 3, 26, 1, 0F); // 10
-        gs4observatoryModel[9].setRotationPoint(51F, -24F, 10F);
+        gs4observatoryModel[9].setRotationPoint(52F, -28F, 10F);
 
         gs4observatoryModel[10].addBox(0F, 0F, 0F, 6, 14, 1, 0F); // 11
-        gs4observatoryModel[10].setRotationPoint(45F, -12F, 10F);
+        gs4observatoryModel[10].setRotationPoint(46F, -16F, 10F);
 
         gs4observatoryModel[11].addBox(0F, 0F, 0F, 1, 26, 20, 0F); // 12
-        gs4observatoryModel[11].setRotationPoint(-54F, -24F, -10F);
+        gs4observatoryModel[11].setRotationPoint(-53F, -28F, -10F);
 
         gs4observatoryModel[12].addBox(0F, 0F, 0F, 1, 26, 20, 0F); // 13
-        gs4observatoryModel[12].setRotationPoint(53F, -24F, -10F);
+        gs4observatoryModel[12].setRotationPoint(54F, -28F, -10F);
 
         gs4observatoryModel[13].addShapeBox(0F, 0F, 0F, 29, 3, 5, 0F, 0F, 0F, -5F, 0F, 0F, -5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // 14
-        gs4observatoryModel[13].setRotationPoint(-54F, -27F, -11F);
+        gs4observatoryModel[13].setRotationPoint(-53F, -31F, -11F);
 
         gs4observatoryModel[14].addShapeBox(0F, 0F, 0F, 29, 1, 5, 0F, 0F, 0F, -5F, 0F, 0F, -5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // 15
-        gs4observatoryModel[14].setRotationPoint(-54F, -28F, -6F);
+        gs4observatoryModel[14].setRotationPoint(-53F, -32F, -6F);
 
         gs4observatoryModel[15].addShapeBox(0F, 0F, 0F, 29, 3, 17, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -5F, 0F, 0F, -5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // 16
-        gs4observatoryModel[15].setRotationPoint(-54F, -27F, -6F);
+        gs4observatoryModel[15].setRotationPoint(-53F, -31F, -6F);
 
         gs4observatoryModel[16].addShapeBox(0F, 0F, 0F, 29, 1, 7, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -5F, 0F, 0F, -5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // 17
-        gs4observatoryModel[16].setRotationPoint(-54F, -28F, -1F);
+        gs4observatoryModel[16].setRotationPoint(-53F, -32F, -1F);
 
         gs4observatoryModel[17].addBox(0F, 0F, 0F, 6, 5, 22, 0F); // 18
-        gs4observatoryModel[17].setRotationPoint(-54F, 3F, -11F);
+        gs4observatoryModel[17].setRotationPoint(-53F, -1F, -11F);
 
         gs4observatoryModel[18].addShapeBox(0F, 0F, 0F, 5, 5, 22, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, 0F, 0F, 0F); // 19
-        gs4observatoryModel[18].setRotationPoint(-48F, 3F, -11F);
+        gs4observatoryModel[18].setRotationPoint(-47F, -1F, -11F);
 
         gs4observatoryModel[19].addBox(0F, 0F, 0F, 6, 5, 22, 0F); // 20
-        gs4observatoryModel[19].setRotationPoint(48F, 3F, -11F);
+        gs4observatoryModel[19].setRotationPoint(49F, -1F, -11F);
 
         gs4observatoryModel[20].addShapeBox(0F, 0F, 0F, 5, 5, 22, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F); // 21
-        gs4observatoryModel[20].setRotationPoint(43F, 3F, -11F);
+        gs4observatoryModel[20].setRotationPoint(44F, -1F, -11F);
 
         gs4observatoryModel[21].addShapeBox(0F, 0F, 0F, 3, 5, 22, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, 0F, 0F, 0F); // 22
-        gs4observatoryModel[21].setRotationPoint(16F, 3F, -11F);
+        gs4observatoryModel[21].setRotationPoint(17F, -1F, -11F);
 
         gs4observatoryModel[22].addShapeBox(0F, 0F, 0F, 35, 5, 22, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F); // 23
-        gs4observatoryModel[22].setRotationPoint(-19F, 3F, -11F);
+        gs4observatoryModel[22].setRotationPoint(-18F, -1F, -11F);
 
         gs4observatoryModel[23].addBox(0F, 0F, 0F, 24, 4, 12, 0F); // 24
-        gs4observatoryModel[23].setRotationPoint(-43F, 3F, -6F);
+        gs4observatoryModel[23].setRotationPoint(-42F, -1F, -6F);
 
         gs4observatoryModel[24].addBox(0F, 0F, 0F, 20, 2, 14, 0F); // 25
-        gs4observatoryModel[24].setRotationPoint(-41F, 6F, -7F);
+        gs4observatoryModel[24].setRotationPoint(-40F, 2F, -7F);
 
         gs4observatoryModel[25].addBox(0F, 0F, 0F, 20, 2, 14, 0F); // 26
-        gs4observatoryModel[25].setRotationPoint(21F, 6F, -7F);
+        gs4observatoryModel[25].setRotationPoint(22F, 2F, -7F);
 
         gs4observatoryModel[26].addBox(0F, 0F, 0F, 24, 4, 12, 0F); // 27
-        gs4observatoryModel[26].setRotationPoint(19F, 3F, -6F);
+        gs4observatoryModel[26].setRotationPoint(20F, -1F, -6F);
 
         gs4observatoryModel[27].addBox(0F, 0F, 0F, 3, 3, 3, 0F); // 28
-        gs4observatoryModel[27].setRotationPoint(54F, 1F, -1F);
+        gs4observatoryModel[27].setRotationPoint(55F, -3F, -1F);
 
         gs4observatoryModel[28].addBox(0F, 0F, 0F, 3, 3, 3, 0F); // 29
-        gs4observatoryModel[28].setRotationPoint(-57F, 1F, -1F);
+        gs4observatoryModel[28].setRotationPoint(-56F, -3F, -1F);
 
         gs4observatoryModel[29].addBox(0F, 0F, 0F, 8, 6, 11, 0F); // 32
-        gs4observatoryModel[29].setRotationPoint(35F, -4F, -1F);
+        gs4observatoryModel[29].setRotationPoint(36F, -8F, -1F);
 
         gs4observatoryModel[30].addShapeBox(0F, 0F, 0F, 2, 11, 11, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F); // 33
-        gs4observatoryModel[30].setRotationPoint(42F, -15F, -1F);
+        gs4observatoryModel[30].setRotationPoint(43F, -19F, -1F);
 
         gs4observatoryModel[31].addBox(0F, 0F, 0F, 3, 26, 1, 0F); // 34
-        gs4observatoryModel[31].setRotationPoint(-54F, -24F, -11F);
+        gs4observatoryModel[31].setRotationPoint(-53F, -28F, -11F);
 
         gs4observatoryModel[32].addBox(0F, 0F, 0F, 6, 14, 1, 0F); // 35
-        gs4observatoryModel[32].setRotationPoint(-51F, -12F, -11F);
+        gs4observatoryModel[32].setRotationPoint(-50F, -16F, -11F);
 
         gs4observatoryModel[33].addBox(0F, 0F, 0F, 6, 5, 1, 0F); // 36
-        gs4observatoryModel[33].setRotationPoint(-51F, -24F, -11F);
+        gs4observatoryModel[33].setRotationPoint(-50F, -28F, -11F);
 
         gs4observatoryModel[34].addBox(0F, 0F, 0F, 3, 26, 1, 0F); // 37
-        gs4observatoryModel[34].setRotationPoint(-45F, -24F, -11F);
+        gs4observatoryModel[34].setRotationPoint(-44F, -28F, -11F);
 
         gs4observatoryModel[35].addBox(0F, 0F, 0F, 84, 14, 1, 0F); // 38
-        gs4observatoryModel[35].setRotationPoint(-42F, -12F, -11F);
+        gs4observatoryModel[35].setRotationPoint(-41F, -16F, -11F);
 
         gs4observatoryModel[36].addBox(0F, 0F, 0F, 84, 5, 1, 0F); // 39
-        gs4observatoryModel[36].setRotationPoint(-42F, -24F, -11F);
+        gs4observatoryModel[36].setRotationPoint(-41F, -28F, -11F);
 
         gs4observatoryModel[37].addBox(0F, 0F, 0F, 3, 7, 1, 0F); // 40
-        gs4observatoryModel[37].setRotationPoint(9F, -19F, -11F);
+        gs4observatoryModel[37].setRotationPoint(10F, -23F, -11F);
 
         gs4observatoryModel[38].addBox(0F, 0F, 0F, 3, 26, 1, 0F); // 41
-        gs4observatoryModel[38].setRotationPoint(42F, -24F, -11F);
+        gs4observatoryModel[38].setRotationPoint(43F, -28F, -11F);
 
         gs4observatoryModel[39].addBox(0F, 0F, 0F, 6, 5, 1, 0F); // 42
-        gs4observatoryModel[39].setRotationPoint(45F, -24F, -11F);
+        gs4observatoryModel[39].setRotationPoint(46F, -28F, -11F);
 
         gs4observatoryModel[40].addBox(0F, 0F, 0F, 3, 26, 1, 0F); // 43
-        gs4observatoryModel[40].setRotationPoint(51F, -24F, -11F);
+        gs4observatoryModel[40].setRotationPoint(52F, -28F, -11F);
 
         gs4observatoryModel[41].addBox(0F, 0F, 0F, 6, 14, 1, 0F); // 44
-        gs4observatoryModel[41].setRotationPoint(45F, -12F, -11F);
+        gs4observatoryModel[41].setRotationPoint(46F, -16F, -11F);
 
         gs4observatoryModel[42].addBox(0F, 0F, 0F, 108, 1, 22, 0F); // 45
-        gs4observatoryModel[42].setRotationPoint(-54F, 2F, -11F);
+        gs4observatoryModel[42].setRotationPoint(-53F, -2F, -11F);
 
         gs4observatoryModel[43].addBox(0F, 0F, 0F, 6, 6, 0, 0F); // 46
-        gs4observatoryModel[43].setRotationPoint(37F, 4F, 7F);
+        gs4observatoryModel[43].setRotationPoint(38F, 0F, 7F);
 
         gs4observatoryModel[44].addBox(0F, 0F, 0F, 6, 6, 0, 0F); // 47
-        gs4observatoryModel[44].setRotationPoint(19F, 4F, -7F);
+        gs4observatoryModel[44].setRotationPoint(20F, 0F, -7F);
 
         gs4observatoryModel[45].addBox(0F, 0F, 0F, 6, 6, 0, 0F); // 48
-        gs4observatoryModel[45].setRotationPoint(37F, 4F, -7F);
+        gs4observatoryModel[45].setRotationPoint(38F, 0F, -7F);
 
         gs4observatoryModel[46].addBox(0F, 0F, 0F, 6, 6, 0, 0F); // 49
-        gs4observatoryModel[46].setRotationPoint(19F, 4F, 7F);
+        gs4observatoryModel[46].setRotationPoint(20F, 0F, 7F);
 
         gs4observatoryModel[47].addBox(0F, 0F, 0F, 6, 6, 0, 0F); // 50
-        gs4observatoryModel[47].setRotationPoint(-25F, 4F, 7F);
+        gs4observatoryModel[47].setRotationPoint(-24F, 0F, 7F);
 
         gs4observatoryModel[48].addBox(0F, 0F, 0F, 6, 6, 0, 0F); // 51
-        gs4observatoryModel[48].setRotationPoint(-43F, 4F, -7F);
+        gs4observatoryModel[48].setRotationPoint(-42F, 0F, -7F);
 
         gs4observatoryModel[49].addBox(0F, 0F, 0F, 6, 6, 0, 0F); // 52
-        gs4observatoryModel[49].setRotationPoint(-25F, 4F, -7F);
+        gs4observatoryModel[49].setRotationPoint(-24F, 0F, -7F);
 
         gs4observatoryModel[50].addBox(0F, 0F, 0F, 6, 6, 0, 0F); // 53
-        gs4observatoryModel[50].setRotationPoint(-43F, 4F, 7F);
+        gs4observatoryModel[50].setRotationPoint(-42F, 0F, 7F);
 
         gs4observatoryModel[51].addShapeBox(0F, 0F, 0F, 28, 3, 5, 0F, 0F, 0F, -5F, 0F, 0F, -5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // 54
-        gs4observatoryModel[51].setRotationPoint(26F, -27F, -11F);
+        gs4observatoryModel[51].setRotationPoint(27F, -31F, -11F);
 
         gs4observatoryModel[52].addShapeBox(0F, 0F, 0F, 28, 1, 5, 0F, 0F, 0F, -5F, 0F, 0F, -5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // 55
-        gs4observatoryModel[52].setRotationPoint(26F, -28F, -6F);
+        gs4observatoryModel[52].setRotationPoint(27F, -32F, -6F);
 
         gs4observatoryModel[53].addShapeBox(0F, 0F, 0F, 28, 3, 17, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -5F, 0F, 0F, -5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // 56
-        gs4observatoryModel[53].setRotationPoint(26F, -27F, -6F);
+        gs4observatoryModel[53].setRotationPoint(27F, -31F, -6F);
 
         gs4observatoryModel[54].addShapeBox(0F, 0F, 0F, 28, 1, 7, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -5F, 0F, 0F, -5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // 57
-        gs4observatoryModel[54].setRotationPoint(26F, -28F, -1F);
+        gs4observatoryModel[54].setRotationPoint(27F, -32F, -1F);
 
         gs4observatoryModel[55].addBox(0F, 0F, 0F, 3, 7, 1, 0F); // 58
-        gs4observatoryModel[55].setRotationPoint(-10F, -19F, 10F);
+        gs4observatoryModel[55].setRotationPoint(-9F, -23F, 10F);
 
         gs4observatoryModel[56].addBox(0F, 0F, 0F, 3, 7, 1, 0F); // 59
-        gs4observatoryModel[56].setRotationPoint(9F, -19F, 10F);
+        gs4observatoryModel[56].setRotationPoint(10F, -23F, 10F);
 
         gs4observatoryModel[57].addBox(0F, 0F, 0F, 3, 7, 1, 0F); // 60
-        gs4observatoryModel[57].setRotationPoint(25F, -19F, 10F);
+        gs4observatoryModel[57].setRotationPoint(26F, -23F, 10F);
 
         gs4observatoryModel[58].addBox(0F, 0F, 0F, 3, 7, 1, 0F); // 61
-        gs4observatoryModel[58].setRotationPoint(26F, -19F, -11F);
+        gs4observatoryModel[58].setRotationPoint(27F, -23F, -11F);
 
         gs4observatoryModel[59].addBox(0F, 0F, 0F, 3, 7, 1, 0F); // 62
-        gs4observatoryModel[59].setRotationPoint(-27F, -19F, -11F);
+        gs4observatoryModel[59].setRotationPoint(-26F, -23F, -11F);
 
         gs4observatoryModel[60].addBox(0F, 0F, 0F, 3, 7, 1, 0F); // 63
-        gs4observatoryModel[60].setRotationPoint(-10F, -19F, -11F);
+        gs4observatoryModel[60].setRotationPoint(-9F, -23F, -11F);
 
         gs4observatoryModel[61].addBox(0F, 0F, 0F, 53, 2, 1, 0F); // 70
-        gs4observatoryModel[61].setRotationPoint(-26F, -26F, -11F);
+        gs4observatoryModel[61].setRotationPoint(-25F, -30F, -11F);
 
         gs4observatoryModel[62].addBox(0F, 0F, 0F, 53, 2, 1, 0F); // 71
-        gs4observatoryModel[62].setRotationPoint(-26F, -26F, 10F);
+        gs4observatoryModel[62].setRotationPoint(-25F, -30F, 10F);
 
         gs4observatoryModel[63].addBox(0F, 0F, 0F, 1, 2, 20, 0F); // 72
-        gs4observatoryModel[63].setRotationPoint(-26F, -26F, -10F);
+        gs4observatoryModel[63].setRotationPoint(-25F, -30F, -10F);
 
         gs4observatoryModel[64].addBox(0F, 0F, 0F, 1, 2, 20, 0F); // 73
-        gs4observatoryModel[64].setRotationPoint(26F, -26F, -10F);
+        gs4observatoryModel[64].setRotationPoint(27F, -30F, -10F);
 
         gs4observatoryModel[65].addShapeBox(0F, 0F, 0F, 1, 6, 6, 0F, 0F, 0F, 1F, 0F, 0F, 1F, 0F, 0F, -6F, 0F, 0F, -6F, 0F, 0F, -5F, 0F, 0F, -5F, 0F, 0F, 0F, 0F, 0F, 0F); // 74
-        gs4observatoryModel[65].setRotationPoint(-18F, -32F, 5F);
+        gs4observatoryModel[65].setRotationPoint(-17F, -36F, 5F);
 
         gs4observatoryModel[66].addShapeBox(0F, 0F, 0F, 1, 6, 6, 0F, 0F, 0F, 1F, 0F, 0F, 1F, 0F, 0F, -6F, 0F, 0F, -6F, 0F, 0F, -5F, 0F, 0F, -5F, 0F, 0F, 0F, 0F, 0F, 0F); // 75
-        gs4observatoryModel[66].setRotationPoint(0F, -32F, 5F);
+        gs4observatoryModel[66].setRotationPoint(1F, -36F, 5F);
 
         gs4observatoryModel[67].addShapeBox(0F, 0F, 0F, 1, 6, 6, 0F, 0F, 0F, 1F, 0F, 0F, 1F, 0F, 0F, -6F, 0F, 0F, -6F, 0F, 0F, -5F, 0F, 0F, -5F, 0F, 0F, 0F, 0F, 0F, 0F); // 76
-        gs4observatoryModel[67].setRotationPoint(18F, -32F, 5F);
+        gs4observatoryModel[67].setRotationPoint(19F, -36F, 5F);
 
         gs4observatoryModel[68].addShapeBox(0F, 0F, 0F, 1, 6, 6, 0F, 0F, 0F, -6F, 0F, 0F, -6F, 0F, 0F, 1F, 0F, 0F, 1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -5F, 0F, 0F, -5F); // 77
-        gs4observatoryModel[68].setRotationPoint(-18F, -32F, -11F);
+        gs4observatoryModel[68].setRotationPoint(-17F, -36F, -11F);
 
         gs4observatoryModel[69].addShapeBox(0F, 0F, 0F, 1, 6, 6, 0F, 0F, 0F, -6F, 0F, 0F, -6F, 0F, 0F, 1F, 0F, 0F, 1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -5F, 0F, 0F, -5F); // 78
-        gs4observatoryModel[69].setRotationPoint(0F, -32F, -11F);
+        gs4observatoryModel[69].setRotationPoint(1F, -36F, -11F);
 
         gs4observatoryModel[70].addShapeBox(0F, 0F, 0F, 1, 6, 6, 0F, 0F, 0F, -6F, 0F, 0F, -6F, 0F, 0F, 1F, 0F, 0F, 1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -5F, 0F, 0F, -5F); // 79
-        gs4observatoryModel[70].setRotationPoint(18F, -32F, -11F);
+        gs4observatoryModel[70].setRotationPoint(19F, -36F, -11F);
 
         gs4observatoryModel[71].addShapeBox(0F, 0F, 0F, 6, 7, 2, 0F, 0F, 0F, 0F, -5F, 0F, 0F, -5F, 0F, 0F, 0F, 0F, 0F, -5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -5F, 0F, 0F); // 80
-        gs4observatoryModel[71].setRotationPoint(21F, -33F, -1F);
+        gs4observatoryModel[71].setRotationPoint(22F, -37F, -1F);
 
         gs4observatoryModel[72].addShapeBox(0F, 0F, 0F, 6, 7, 2, 0F, -5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -5F, 0F, 0F, 0F, 0F, 0F, -5F, 0F, 0F, -5F, 0F, 0F, 0F, 0F, 0F); // 81
-        gs4observatoryModel[72].setRotationPoint(-26F, -33F, -1F);
+        gs4observatoryModel[72].setRotationPoint(-25F, -37F, -1F);
 
         gs4observatoryModel[73].addShapeBox(0F, 0F, 0F, 1, 1, 4, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, -4F, 0F, 0F, -4F, 0F, 0F, 1F, 0F, 0F, 1F); // 82
-        gs4observatoryModel[73].setRotationPoint(-18F, -33F, 0F);
+        gs4observatoryModel[73].setRotationPoint(-17F, -37F, 0F);
 
         gs4observatoryModel[74].addShapeBox(0F, 0F, 0F, 1, 1, 4, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, -4F, 0F, 0F, -4F, 0F, 0F, 1F, 0F, 0F, 1F); // 83
-        gs4observatoryModel[74].setRotationPoint(0F, -33F, 0F);
+        gs4observatoryModel[74].setRotationPoint(1F, -37F, 0F);
 
         gs4observatoryModel[75].addShapeBox(0F, 0F, 0F, 1, 1, 4, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, -4F, 0F, 0F, -4F, 0F, 0F, 1F, 0F, 0F, 1F); // 84
-        gs4observatoryModel[75].setRotationPoint(18F, -33F, 0F);
+        gs4observatoryModel[75].setRotationPoint(19F, -37F, 0F);
 
         gs4observatoryModel[76].addShapeBox(0F, 0F, 0F, 1, 1, 4, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 1F, 0F, 0F, 1F, 0F, 0F, -4F, 0F, 0F, -4F); // 85
-        gs4observatoryModel[76].setRotationPoint(-18F, -33F, -4F);
+        gs4observatoryModel[76].setRotationPoint(-17F, -37F, -4F);
 
         gs4observatoryModel[77].addShapeBox(0F, 0F, 0F, 1, 1, 4, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 1F, 0F, 0F, 1F, 0F, 0F, -4F, 0F, 0F, -4F); // 86
-        gs4observatoryModel[77].setRotationPoint(0F, -33F, -4F);
+        gs4observatoryModel[77].setRotationPoint(1F, -37F, -4F);
 
         gs4observatoryModel[78].addShapeBox(0F, 0F, 0F, 1, 1, 4, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 1F, 0F, 0F, 1F, 0F, 0F, -4F, 0F, 0F, -4F); // 87
-        gs4observatoryModel[78].setRotationPoint(18F, -33F, -4F);
+        gs4observatoryModel[78].setRotationPoint(19F, -37F, -4F);
 
         gs4observatoryModel[79].addBox(0F, 0F, 0F, 41, 0, 2, 0F); // 88
-        gs4observatoryModel[79].setRotationPoint(-20F, -33F, -1F);
+        gs4observatoryModel[79].setRotationPoint(-19F, -37F, -1F);
 
         gs4observatoryModel[80].addBox(0F, 0F, 0F, 8, 6, 11, 0F); // 32
-        gs4observatoryModel[80].setRotationPoint(18F, -4F, -1F);
+        gs4observatoryModel[80].setRotationPoint(19F, -8F, -1F);
 
         gs4observatoryModel[81].addShapeBox(0F, 0F, 0F, 2, 11, 11, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F); // 33
-        gs4observatoryModel[81].setRotationPoint(25F, -15F, -1F);
+        gs4observatoryModel[81].setRotationPoint(26F, -19F, -1F);
 
         gs4observatoryModel[82].addBox(0F, 0F, 0F, 8, 6, 11, 0F); // 32
-        gs4observatoryModel[82].setRotationPoint(2F, -4F, -1F);
+        gs4observatoryModel[82].setRotationPoint(3F, -8F, -1F);
 
         gs4observatoryModel[83].addShapeBox(0F, 0F, 0F, 2, 11, 11, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F); // 33
-        gs4observatoryModel[83].setRotationPoint(9F, -15F, -1F);
+        gs4observatoryModel[83].setRotationPoint(10F, -19F, -1F);
 
         gs4observatoryModel[84].addBox(0F, 0F, 0F, 8, 6, 11, 0F); // 32
-        gs4observatoryModel[84].setRotationPoint(-17F, -4F, -1F);
+        gs4observatoryModel[84].setRotationPoint(-16F, -8F, -1F);
 
         gs4observatoryModel[85].addShapeBox(0F, 0F, 0F, 2, 11, 11, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F); // 33
-        gs4observatoryModel[85].setRotationPoint(-10F, -15F, -1F);
+        gs4observatoryModel[85].setRotationPoint(-9F, -19F, -1F);
 
         gs4observatoryModel[86].addBox(0F, 0F, 0F, 8, 6, 11, 0F); // 32
-        gs4observatoryModel[86].setRotationPoint(-34F, -4F, -1F);
+        gs4observatoryModel[86].setRotationPoint(-33F, -8F, -1F);
 
         gs4observatoryModel[87].addShapeBox(0F, 0F, 0F, 2, 11, 11, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F); // 33
-        gs4observatoryModel[87].setRotationPoint(-27F, -15F, -1F);
+        gs4observatoryModel[87].setRotationPoint(-26F, -19F, -1F);
 
 
     }

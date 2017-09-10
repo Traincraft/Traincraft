@@ -394,26 +394,23 @@ public class ModelMILW_H1044 extends ModelBase
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
 
-        GL11.glPushMatrix();
-        GL11.glScalef(1.3F, 1.3F, 1.3F);
-
         for(ModelRendererTurbo m : milw_1044Model)
         {
             m.render(f5);
         }
 
-        Tessellator.bindTexture(new ResourceLocation(Info.modID, "textures/trains/MILW_H1044_bogie.png"));
         GL11.glPushMatrix();
+        Tessellator.bindTexture(new ResourceLocation(Info.modID, "textures/trains/MILW_H1044_bogie.png"));
         GL11.glTranslated(-3.5,0.4,0);
         GL11.glScalef(0.8F, 1.3F, 0.8F);
         fronttrucks.render(entity,f,f1,f2,f3,f4,f5);
         GL11.glPopMatrix();
+
         GL11.glPushMatrix();
-        GL11.glTranslated(-0.76,4,0);
+        Tessellator.bindTexture(new ResourceLocation(Info.modID, "textures/trains/MILW_H1044_bogie.png"));
+        GL11.glTranslated(-0.65,0.4,0);
         GL11.glScalef(0.8F, 1.3F, 0.8F);
         backtrucks.render(entity,f,f1,f2,f3,f4,f5);
-        GL11.glPopMatrix();
-
         GL11.glPopMatrix();
     }
 

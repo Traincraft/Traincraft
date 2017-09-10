@@ -351,11 +351,11 @@ public class ModelLocoClimax extends ModelBase
 
         lococlimaxModel[8].addBox(0F, 0F, 0F, 4, 0, 1, 0F); // Box 8
         lococlimaxModel[8].setRotationPoint(-50F, 6F, -7F);
-        lococlimaxModel[8].rotateAngleZ = -0.83775804F;
+        lococlimaxModel[8].rotateAngleZ = 0.83775804F;
 
         lococlimaxModel[9].addBox(0F, 0F, 0F, 4, 0, 1, 0F); // Box 9
         lococlimaxModel[9].setRotationPoint(-33F, 6F, -7F);
-        lococlimaxModel[9].rotateAngleZ = -2.30383461F;
+        lococlimaxModel[9].rotateAngleZ = 2.30383461F;
 
         lococlimaxModel[10].addBox(0F, 0F, 0F, 3, 4, 1, 0F); // Box 10
         lococlimaxModel[10].setRotationPoint(-43F, 5F, -7F);
@@ -368,7 +368,7 @@ public class ModelLocoClimax extends ModelBase
 
         lococlimaxModel[13].addBox(0F, 0F, 0F, 4, 0, 1, 0F); // Box 13
         lococlimaxModel[13].setRotationPoint(-50F, 6F, 6F);
-        lococlimaxModel[13].rotateAngleZ = -0.83775804F;
+        lococlimaxModel[13].rotateAngleZ = 0.83775804F;
 
         lococlimaxModel[14].addBox(0F, 0F, 0F, 13, 0, 1, 0F); // Box 14
         lococlimaxModel[14].setRotationPoint(-48F, 9F, 6F);
@@ -381,7 +381,7 @@ public class ModelLocoClimax extends ModelBase
 
         lococlimaxModel[17].addBox(0F, 0F, 0F, 4, 0, 1, 0F); // Box 17
         lococlimaxModel[17].setRotationPoint(-33F, 6F, 6F);
-        lococlimaxModel[17].rotateAngleZ = -2.30383461F;
+        lococlimaxModel[17].rotateAngleZ = 2.30383461F;
 
         lococlimaxModel[18].addBox(0F, 0F, 0F, 1, 1, 12, 0F); // Box 18
         lococlimaxModel[18].setRotationPoint(-47F, 7F, -6F);
@@ -430,11 +430,11 @@ public class ModelLocoClimax extends ModelBase
 
         lococlimaxModel[33].addBox(0F, 0F, 0F, 4, 0, 1, 0F); // Box 33
         lococlimaxModel[33].setRotationPoint(1F, 6F, -7F);
-        lococlimaxModel[33].rotateAngleZ = -0.83775804F;
+        lococlimaxModel[33].rotateAngleZ = 0.83775804F;
 
         lococlimaxModel[34].addBox(0F, 0F, 0F, 4, 0, 1, 0F); // Box 34
         lococlimaxModel[34].setRotationPoint(18F, 6F, -7F);
-        lococlimaxModel[34].rotateAngleZ = -2.30383461F;
+        lococlimaxModel[34].rotateAngleZ = 2.30383461F;
 
         lococlimaxModel[35].addBox(0F, 0F, 0F, 3, 4, 1, 0F); // Box 35
         lococlimaxModel[35].setRotationPoint(8F, 5F, -7F);
@@ -447,7 +447,7 @@ public class ModelLocoClimax extends ModelBase
 
         lococlimaxModel[38].addBox(0F, 0F, 0F, 4, 0, 1, 0F); // Box 38
         lococlimaxModel[38].setRotationPoint(1F, 6F, 6F);
-        lococlimaxModel[38].rotateAngleZ = -0.83775804F;
+        lococlimaxModel[38].rotateAngleZ = 0.83775804F;
 
         lococlimaxModel[39].addBox(0F, 0F, 0F, 13, 0, 1, 0F); // Box 39
         lococlimaxModel[39].setRotationPoint(3F, 9F, 6F);
@@ -460,7 +460,7 @@ public class ModelLocoClimax extends ModelBase
 
         lococlimaxModel[42].addBox(0F, 0F, 0F, 4, 0, 1, 0F); // Box 42
         lococlimaxModel[42].setRotationPoint(18F, 6F, 6F);
-        lococlimaxModel[42].rotateAngleZ = -2.30383461F;
+        lococlimaxModel[42].rotateAngleZ = 2.30383461F;
 
         lococlimaxModel[43].addBox(0F, 0F, 0F, 1, 1, 12, 0F); // Box 43
         lococlimaxModel[43].setRotationPoint(4F, 7F, -6F);
@@ -827,14 +827,14 @@ public class ModelLocoClimax extends ModelBase
 
         lococlimaxModel[164].addBox(0F, 0F, 0F, 13, 1, 1, 0F); // Box 165
         lococlimaxModel[164].setRotationPoint(-49F, 2F, -7F);
-        lococlimaxModel[164].rotateAngleZ = 0.66322512F;
+        lococlimaxModel[164].rotateAngleZ = -0.66322512F;
 
         lococlimaxModel[165].addBox(0F, 0F, 0F, 1, 1, 1, 0F); // Box 166
         lococlimaxModel[165].setRotationPoint(-38.75F, -6F, 6F);
 
         lococlimaxModel[166].addBox(0F, 0F, 0F, 13, 1, 1, 0F); // Box 167
         lococlimaxModel[166].setRotationPoint(-49F, 2F, 6F);
-        lococlimaxModel[166].rotateAngleZ = 0.66322512F;
+        lococlimaxModel[166].rotateAngleZ = -0.66322512F;
 
         lococlimaxModel[167].addBox(0F, 0F, 0F, 1, 1, 1, 0F); // Box 168
         lococlimaxModel[167].setRotationPoint(-49F, 2F, 6F);
@@ -850,11 +850,11 @@ public class ModelLocoClimax extends ModelBase
 
         lococlimaxModel[171].addBox(0F, 0F, 0F, 4, 3, 5, 0F); // Box 172
         lococlimaxModel[171].setRotationPoint(-37F, -6F, -11F);
-        lococlimaxModel[171].rotateAngleZ = -0.43633231F;
+        lococlimaxModel[171].rotateAngleZ = 0.43633231F;
 
         lococlimaxModel[172].addBox(0F, 0F, 0F, 10, 3, 3, 0F); // Box 173
         lococlimaxModel[172].setRotationPoint(-37F, -6F, -11F);
-        lococlimaxModel[172].rotateAngleZ = -0.43633231F;
+        lococlimaxModel[172].rotateAngleZ = 0.43633231F;
 
         lococlimaxModel[173].addBox(0F, 0F, 0F, 3, 1, 1, 0F); // Box 174
         lococlimaxModel[173].setRotationPoint(-18F, 4F, -9F);
@@ -873,7 +873,7 @@ public class ModelLocoClimax extends ModelBase
 
         lococlimaxModel[178].addBox(0F, 0F, 0F, 20, 1, 1, 0F); // Box 179
         lococlimaxModel[178].setRotationPoint(-34F, -3.5F, -10F);
-        lococlimaxModel[178].rotateAngleZ = -0.43633231F;
+        lococlimaxModel[178].rotateAngleZ = 0.43633231F;
 
         lococlimaxModel[179].addBox(0F, 0F, 0F, 3, 3, 1, 0F); // Box 180
         lococlimaxModel[179].setRotationPoint(-18F, 5F, 8F);
@@ -892,15 +892,15 @@ public class ModelLocoClimax extends ModelBase
 
         lococlimaxModel[184].addBox(0F, 0F, 0F, 21, 1, 1, 0F); // Box 185
         lococlimaxModel[184].setRotationPoint(-34F, -3.5F, 9F);
-        lococlimaxModel[184].rotateAngleZ = -0.52359878F;
+        lococlimaxModel[184].rotateAngleZ = 0.52359878F;
 
         lococlimaxModel[185].addBox(0F, 0F, 0F, 10, 3, 3, 0F); // Box 186
         lococlimaxModel[185].setRotationPoint(-37F, -6F, 8F);
-        lococlimaxModel[185].rotateAngleZ = -0.43633231F;
+        lococlimaxModel[185].rotateAngleZ = 0.43633231F;
 
         lococlimaxModel[186].addBox(0F, 0F, 0F, 4, 3, 5, 0F); // Box 187
         lococlimaxModel[186].setRotationPoint(-37F, -6F, 6F);
-        lococlimaxModel[186].rotateAngleZ = -0.43633231F;
+        lococlimaxModel[186].rotateAngleZ = 0.43633231F;
 
         lococlimaxModel[187].addBox(0F, 0F, 0F, 13, 12, 1, 0F); // Box 188
         lococlimaxModel[187].setRotationPoint(7F, -9F, -11F);
@@ -1042,7 +1042,7 @@ public class ModelLocoClimax extends ModelBase
 
         lococlimaxModel[233].addBox(0F, 0F, 0F, 5, 1, 1, 0F); // Box 234
         lococlimaxModel[233].setRotationPoint(-25.6F, -5F, -7F);
-        lococlimaxModel[233].rotateAngleZ = 0.64577182F;
+        lococlimaxModel[233].rotateAngleZ = -0.64577182F;
 
         lococlimaxModel[234].addBox(0F, 0F, 0F, 1, 7, 1, 0F); // Box 235
         lococlimaxModel[234].setRotationPoint(-16F, -19F, -0.5F);
@@ -1058,15 +1058,15 @@ public class ModelLocoClimax extends ModelBase
 
         lococlimaxModel[238].addFlexTrapezoid(0F, 0F, 1F, 1, 1, 4, 0F, 0.00F, 0.00F, 1.00F, 1.00F, 1.00F, 1.00F, ModelRendererTurbo.MR_TOP); // Box 239
         lococlimaxModel[238].setRotationPoint(-16F, -13F, 3F);
-        lococlimaxModel[238].rotateAngleX = -0.78539816F;
+        lococlimaxModel[238].rotateAngleX = 0.78539816F;
 
         lococlimaxModel[239].addShapeBox(0F, 0F, 0F, 1, 6, 1, 0F, 0F, -0.2F, 0F, 0F, -0.2F, 0F, 0F, -0.2F, 0.2F, 0F, -0.2F, 0.2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0.2F, 0F, 0F, 0.2F); // Box 240
         lococlimaxModel[239].setRotationPoint(-16F, -9F, 6F);
 
         lococlimaxModel[240].addFlexTrapezoid(0F, 0F, 1F, 1, 1, 4, 0F, 0.00F, 0.00F, 1.00F, 1.00F, 1.00F, 1.00F, ModelRendererTurbo.MR_TOP); // Box 241
         lococlimaxModel[240].setRotationPoint(-15F, -13F, -3F);
-        lococlimaxModel[240].rotateAngleX = -0.78539816F;
-        lococlimaxModel[240].rotateAngleY = -3.14159265F;
+        lococlimaxModel[240].rotateAngleX = 0.78539816F;
+        lococlimaxModel[240].rotateAngleY = 3.14159265F;
 
         lococlimaxModel[241].addShapeBox(0F, 0F, 0F, 1, 6, 1, 0F, 0F, -0.2F, 0.2F, 0F, -0.2F, 0.2F, 0F, -0.2F, 0F, 0F, -0.2F, 0F, 0F, 0F, 0.2F, 0F, 0F, 0.2F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 242
         lococlimaxModel[241].setRotationPoint(-16F, -9F, -7F);
