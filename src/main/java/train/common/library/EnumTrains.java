@@ -24,7 +24,8 @@ public enum EnumTrains {
 	passengerIC4_DSB_FH("Passenger IC4 DSB FH",PassengerIC4_DSB_FH.class, 56,ItemIDs.minecartIC4_DSB_FH.item,"passenger",0,0,0.5,0,0,0,0,0,0,null,10,0,0.98,1.98),
 	passengerICE1_Class1("Passenger ICE 1st Class", EntityPassengerICE_1class.class, 117,ItemIDs.minecartICE1_1stClass.item, "passenger", 0, 0, 0.5, 0, 0, 0, 0, 0, 0, null, 10, 0, 0.98, 1.98),
 	passengerICE1_Class2("Passenger ICE 2nd Class", EntityPassengerICE_2class.class, 118,ItemIDs.minecartICE1_2ndClass.item, "passenger", 0, 0, 0.5, 0, 0, 0, 0, 0, 0, null, 10, 0, 0.98, 1.98),
-	passengerICE1_Restaurant("ICE Restaurant", EntityPassengerICE_Restaurant.class, 119,ItemIDs.minecartICE1_Restaurant.item, "passenger", 0, 0, 0.5, 0, 0, 0, 0, 0, 0, null, 10, 0, 0.98, 1.98),
+	passengerICE1_Restaurant("ICE Restaurant", EntityPassengerICE_Restaurant.class, 73,
+			ItemIDs.minecartICE1_Restaurant.item, "passenger", 0, 0, 0.5, 0, 0, 0, 0, 0, 0, null, 10, 0, 0.98, 1.98),
 	passengerGS4("Passenger GS4",EntityPassengerGS4.class, 120,ItemIDs.minecartGS4_Passenger.item,"passenger",0,0,0.5,0,0,0,0,0,0,null,10,0,0.98,1.98),
 	passengerGS4Observatory("Passenger GS4 Observatory",EntityPassengerGS4_Observatory.class, 121,ItemIDs.minecartGS4_Observatory.item,"passenger",0,0,0.5,0,0,0,0,0,0,null,10,0,0.98,1.98),
 	passengerGS4_Tail("Passenger GS4 Tail",EntityPassengerGS4_Tail.class, 122,ItemIDs.minecartGS4_Tail.item,"passenger",0,0,0.5,0,0,0,0,0,0,null,10,0,0.98,1.98),
@@ -88,7 +89,9 @@ public enum EnumTrains {
 
 	/** Tenders */
 	tenderSmall("Tender Small Black",EntityTenderSmall.class, 4,ItemIDs.minecartTender.item,"tender",0,0,0.1,0,0,0,0,0,5000,new String[]{"Black","Red","Blue","Green","Yellow"},18,0,0.98,0.98,new String[] {"Water capacity: 5000mb"}),
-	tenderHeavy("Tender Heavy",EntityTenderHeavy.class, 34,ItemIDs.minecartTenderHeavy.item,"tender",0,0,2,0,0,0,0,0,14000,null,18,0,0.98,1.98,new String[] {"Water capacity: 14000mb"}),
+	// tenderHeavy("Tender Heavy",EntityTenderHeavy.class,
+	// 34,ItemIDs.minecartTenderHeavy.item,"tender",0,0,2,0,0,0,0,0,14000,null,18,0,0.98,1.98,new
+	// String[] {"Water capacity: 14000mb"}),
 	tenderGS4("Tender GS4",EntityTenderGS4.class, 125,ItemIDs.minecartGS4_Tender.item,"tender",0,0,2,0,0,0,0,0,18000,null,18,0,0.98,1.98,new String[] {"Water capacity: 18000mb"}),
 	tender4_4_0("Tender 4-4-0 Red",EntityTender4_4_0.class, 83,ItemIDs.minecartSteamRedTender.item,"tender",0,0,0.2,0,0,0,0,0,8000,new String[] {"Black","White","Brown","Blue","Green","Red"},18,0,0.98,0.98,new String[] {"Water capacity: 8000mb"}),
 	tenderA4("Tender A4 Mallard", EntityTenderA4.class, 54, ItemIDs.minecartLocoA4MallardTender.item,"tender", 0, 0, 0.2, 0, 0, 0, 0, 0, 6000, new String[] { "Blue", "Lime", "Black", "Green", "White" }, 18,0, 0.98, 0.98, new String[] { "Water capacity: 6000mb" }),
@@ -130,7 +133,9 @@ public enum EnumTrains {
 	locoSteam4_4_0("Loco Steam 4-4-0",EntityLocoSteam4_4_0.class, 13,ItemIDs.minecartPower.item,"steam",400,50,0,40,160,190,0.65,0.95,5000,new String[] {"Red","White","Blue","Brown","Green","Black"},16,-2,0.98,1.98),
 	locoSteamSmall("Loco Steam Small",EntityLocoSteamSmall.class, 19, ItemIDs.minecartLoco3.item, "steam",250,45,0,140,140,160,0.5D,0.968D,5000,new String[] {"Blue","Red","Green","Yellow","Black"},18,-1.7,0.98,0.98),
 	//locoHeavySteam("Loco Steam Heavy",EntityLocoHeavySteam.class, 33,,"train_steam_heavy",null,0.98,0.98),//removed
-	locoSteamC62Class("Loco Steam C62Class", EntityLocoSteamC62Class.class, 14, ItemIDs.minecartLocoC62Class.item,"steam", 500, 129, 0, 60, 180, 160, 0.7, 0.97, 10000, new String[] {"Red","Black"}, 7,-5.66 , 0.98, 1.98),
+	locoSteamC62Class("Loco Steam C62Class", EntityLocoSteamC62Class.class, 14, ItemIDs.minecartLocoC62Class.item,
+			"steam", 500, 129, 0, 60, 180, 160, 0.7, 0.97, 10000, new String[] { "Black", "Red" }, 7, -5.66, 0.98,
+			1.98),
 	locoSteamBR01_DB("Loco Steam BR01", EntityLocoSteamBR01_DB.class, 101, ItemIDs.minecartLocoBR01_DB.item,"steam", 700, 120, 0, 60, 200, 300, 0.6, 0.97, 10000, null, 10,  -3.7 ,0.98, 1.98),
 	locoSteamGS4("Loco Steam GS4", EntityLocoSteamGS4.class, 94, ItemIDs.minecartGS4_Loco.item, "steam", 800, 170, 0, 60, 350, 450, 0.6, 0.95, 88000, null, 10, -5.5 , 0.98, 1.98),
 	locoSteamEr_USSR("Loco Steam ER_USSR", EntityLocoSteamEr_Ussr.class, 8, ItemIDs.minecartLocoEr.item,"steam", 800, 80, 0, 80, 100, 200, 0.35, 0.975, 10000, null, 10, -3.7 , 0.98, 1.98),
