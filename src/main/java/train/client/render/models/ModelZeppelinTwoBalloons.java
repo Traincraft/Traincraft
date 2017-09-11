@@ -1,8 +1,8 @@
 package train.client.render.models;
 
-import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
 import train.client.render.CustomModelRenderer;
+import train.client.tmt.ModelBase;
 import train.common.core.handlers.ConfigHandler;
 import train.common.entity.zeppelin.EntityZeppelinTwoBalloons;
 
@@ -15,30 +15,30 @@ public class ModelZeppelinTwoBalloons extends ModelBase {
 		lastframe = System.nanoTime();
 		helice = 0.0F;
 
-		zepSides[2] = new CustomModelRenderer(5, 127, 512, 256);
-		zepSides[11] = new CustomModelRenderer(24, 137, 512, 256);
-		zepSides[22] = new CustomModelRenderer(246, 17, 512, 256);
-		zepSides[19] = new CustomModelRenderer(103, 144, 512, 256);
-		zepSides[0] = new CustomModelRenderer(1, 71, 512, 256);
-		zepSides[13] = new CustomModelRenderer(4, 116, 512, 256);
-		zepSides[21] = new CustomModelRenderer(394, 133, 512, 256);
-		zepSides[9] = new CustomModelRenderer(2, 42, 512, 256);
-		zepSides[7] = new CustomModelRenderer(133, 2, 512, 256);
-		zepSides[14] = new CustomModelRenderer(104, 83, 512, 256);
-		zepSides[20] = new CustomModelRenderer(103, 144, 512, 256);
-		zepSides[5] = new CustomModelRenderer(104, 131, 512, 256);
-		zepSides[10] = new CustomModelRenderer(100, 99, 512, 256);
-		zepSides[23] = new CustomModelRenderer(1, 72, 512, 256);
-		zepSides[18] = new CustomModelRenderer(105, 82, 512, 256);
-		zepSides[12] = new CustomModelRenderer(4, 116, 512, 256);
-		zepSides[3] = new CustomModelRenderer(5, 127, 512, 256);
-		zepSides[16] = new CustomModelRenderer(4, 116, 512, 256);
-		zepSides[6] = new CustomModelRenderer(133, 2, 512, 256);
-		zepSides[4] = new CustomModelRenderer(101, 130, 512, 256);
-		zepSides[8] = new CustomModelRenderer(98, 87, 512, 256);
-		zepSides[15] = new CustomModelRenderer(4, 116, 512, 256);
-		zepSides[1] = new CustomModelRenderer(1, 79, 512, 256);
-		zepSides[17] = new CustomModelRenderer(246, 17, 512, 256);
+		zepSides[2] = new CustomModelRenderer(this, 5, 127, 512, 256);
+		zepSides[11] = new CustomModelRenderer(this, 24, 137, 512, 256);
+		zepSides[22] = new CustomModelRenderer(this, 246, 17, 512, 256);
+		zepSides[19] = new CustomModelRenderer(this, 103, 144, 512, 256);
+		zepSides[0] = new CustomModelRenderer(this, 1, 71, 512, 256);
+		zepSides[13] = new CustomModelRenderer(this, 4, 116, 512, 256);
+		zepSides[21] = new CustomModelRenderer(this, 394, 133, 512, 256);
+		zepSides[9] = new CustomModelRenderer(this, 2, 42, 512, 256);
+		zepSides[7] = new CustomModelRenderer(this, 133, 2, 512, 256);
+		zepSides[14] = new CustomModelRenderer(this, 104, 83, 512, 256);
+		zepSides[20] = new CustomModelRenderer(this, 103, 144, 512, 256);
+		zepSides[5] = new CustomModelRenderer(this, 104, 131, 512, 256);
+		zepSides[10] = new CustomModelRenderer(this, 100, 99, 512, 256);
+		zepSides[23] = new CustomModelRenderer(this, 1, 72, 512, 256);
+		zepSides[18] = new CustomModelRenderer(this, 105, 82, 512, 256);
+		zepSides[12] = new CustomModelRenderer(this, 4, 116, 512, 256);
+		zepSides[3] = new CustomModelRenderer(this, 5, 127, 512, 256);
+		zepSides[16] = new CustomModelRenderer(this, 4, 116, 512, 256);
+		zepSides[6] = new CustomModelRenderer(this, 133, 2, 512, 256);
+		zepSides[4] = new CustomModelRenderer(this, 101, 130, 512, 256);
+		zepSides[8] = new CustomModelRenderer(this, 98, 87, 512, 256);
+		zepSides[15] = new CustomModelRenderer(this, 4, 116, 512, 256);
+		zepSides[1] = new CustomModelRenderer(this, 1, 79, 512, 256);
+		zepSides[17] = new CustomModelRenderer(this, 246, 17, 512, 256);
 
 		zepSides[2].addBox(0F, 0F, 0F, 32, 4, 4, 0.0F);
 		zepSides[2].setPosition(10F, 1F, -1F);

@@ -374,6 +374,9 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			setBeenAttacked();
 			if (damagesource.getEntity() instanceof EntityPlayer && ((EntityPlayer) damagesource.getEntity()).capabilities.isCreativeMode) {
 				this.setDamage(1000);
+				if (((EntityPlayer) damagesource.getEntity()).canCommandSenderUseCommand(2,"")) {
+					((EntityPlayer) damagesource.getEntity()).addChatComponentMessage(new ChatComponentText("Operator removed train owned by " + getTrainOwner()));
+				}
 			}
 			setDamage(getDamage() + i * 10);
 			if (getDamage() > 40) {
@@ -384,7 +387,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				 * Destroy IPassenger since they don't extend Freight or
 				 * Locomotive and don't have a proper attackEntityFrom() method
 				 */
-				if (!(this instanceof Locomotive)) {
+				if (this instanceof IPassenger) {
 					this.setDead();
 					if (damagesource.getEntity() instanceof EntityPlayer) {
 						dropCartAsItem(((EntityPlayer)damagesource.getEntity()).capabilities.isCreativeMode);
@@ -925,8 +928,9 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		@SuppressWarnings("rawtypes") List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, box);
 
 		if (list != null && !list.isEmpty()) {
-			for (int j1 = 0; j1 < list.size(); ++j1) {
-				Entity entity = (Entity) list.get(j1);
+			Entity entity;
+			for (Object obj : list) {
+				entity = (Entity) obj;
 
 				if (entity != this.riddenByEntity && entity.canBePushed() && entity instanceof EntityMinecart) {
 					entity.applyEntityCollision(this);
@@ -1611,6 +1615,9 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 	@Override
 	public boolean interactFirst(EntityPlayer entityplayer) {
 		if (super.interactFirst(entityplayer)) return true;
+		if (entityplayer.ridingEntity == this){
+			return false;
+		}
 
 		playerEntity = entityplayer;
 		ItemStack itemstack = entityplayer.inventory.getCurrentItem();

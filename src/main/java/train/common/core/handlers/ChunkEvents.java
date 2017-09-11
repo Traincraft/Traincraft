@@ -27,31 +27,15 @@ public class ChunkEvents implements ForgeChunkManager.LoadingCallback, ForgeChun
 	public void entityEnteredChunk(EntityEvent.EnteringChunk event) {
 		if(event.entity instanceof AbstractTrains && !event.entity.worldObj.isRemote) {
 			forceChunkLoading(((AbstractTrains) event.entity), event.newChunkX, event.newChunkZ);
-		} else 	if(event.entity instanceof EntityBogie && !event.entity.worldObj.isRemote) {
-			forceChunkLoading(((EntityBogie)event.entity).entityMainTrain, event.newChunkX, event.newChunkZ);
 		}
 	}
 
 	private static void forceChunkLoading(AbstractTrains transport, int newChunkX, int newChunkZ) {
 		if(transport != null && transport.getTicket() != null) {
 			List<ChunkCoordIntPair> newChunks = new ArrayList<ChunkCoordIntPair>();
-
-			for(int x = newChunkX - 1; x <= newChunkX + 1; ++x) {
-				for(int z = newChunkZ - 1; z <= newChunkZ + 1; ++z) {
+			for(int x = newChunkX - 2; x <= newChunkX + 2; ++x) {
+				for(int z = newChunkZ - 2; z <= newChunkZ + 2; ++z) {
 					newChunks.add(new ChunkCoordIntPair(x, z));
-				}
-			}
-
-			ChunkCoordIntPair pair = null;
-			if(transport instanceof EntityRollingStock && ((EntityRollingStock)transport).bogieLoco != null){
-				EntityBogie bogie = ((EntityRollingStock)transport).bogieLoco;
-				for(int x = bogie.chunkCoordX - 1; x <= bogie.chunkCoordX + 1; ++x) {
-					for(int z = bogie.chunkCoordZ - 1; z <= bogie.chunkCoordZ + 1; ++z) {
-						pair = new ChunkCoordIntPair(x, z);
-						if (!newChunks.contains(pair) && newChunks.size() < transport.getTicket().getMaxChunkListDepth()) {
-							newChunks.add(pair);
-						}
-					}
 				}
 			}
 

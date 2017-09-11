@@ -46,6 +46,8 @@ public class ItemTCRail extends ItemPart {
 		MEDIUM_STRAIGHT("MEDIUM_STRAIGHT", "STRAIGHT", ItemIDs.tcRailMediumStraight, "1x3"),
 		SMALL_STRAIGHT("SMALL_STRAIGHT", "STRAIGHT", ItemIDs.tcRailSmallStraight, "1x1"),
 		SMALL_ROAD_CROSSING("SMALL_ROAD_CROSSING", "STRAIGHT", ItemIDs.tcRailSmallRoadCrossing, "1x1"),
+		SMALL_ROAD_CROSSING_1("SMALL_ROAD_CROSSING_1", "STRAIGHT", ItemIDs.tcRailSmallRoadCrossing1, "1x1"),
+		SMALL_ROAD_CROSSING_2("SMALL_ROAD_CROSSING_2", "STRAIGHT", ItemIDs.tcRailSmallRoadCrossing2, "1x1"),
 		TWO_WAYS_CROSSING("TWO_WAYS_CROSSING", "CROSSING", ItemIDs.tcRailTwoWaysCrossing, "3x3"),
 		SLOPE_WOOD("SLOPE_WOOD", "SLOPE", ItemIDs.tcRailSlopeWood, "1x6"),
 		SLOPE_GRAVEL("SLOPE_GRAVEL", "SLOPE", ItemIDs.tcRailSlopeGravel, "1x6"),
@@ -101,7 +103,9 @@ public class ItemTCRail extends ItemPart {
 				|| tile.getType().equals(TrackTypes.MEDIUM_STRAIGHT.getLabel())
 				|| tile.getType().equals(TrackTypes.LONG_STRAIGHT.getLabel())
 				|| tile.getType().equals(TrackTypes.SMALL_STRAIGHT.getLabel())
-				|| tile.getType().equals(TrackTypes.SMALL_ROAD_CROSSING.getLabel());
+				|| tile.getType().equals(TrackTypes.SMALL_ROAD_CROSSING.getLabel())
+				|| tile.getType().equals(TrackTypes.SMALL_ROAD_CROSSING_1.getLabel())
+				|| tile.getType().equals(TrackTypes.SMALL_ROAD_CROSSING_2.getLabel());
 	}
 
 	public static boolean isTCTwoWaysCrossingTrack(TileTCRail tile) {
@@ -1399,7 +1403,7 @@ public class ItemTCRail extends ItemPart {
 				}
 				return true;
 			}
-			if (type == TrackTypes.SMALL_STRAIGHT || type == TrackTypes.SMALL_ROAD_CROSSING) {
+			if (type == TrackTypes.SMALL_STRAIGHT || type == TrackTypes.SMALL_ROAD_CROSSING || type == TrackTypes.SMALL_ROAD_CROSSING_1 || type == TrackTypes.SMALL_ROAD_CROSSING_2) {
 				if (!canPlaceTrack(world, x, y + 1, z)) {
 					return false;
 				}
@@ -1965,3 +1969,4 @@ public class ItemTCRail extends ItemPart {
 		par3List.add("\u00a77" + type.getTooltip());
 	}
 }
+

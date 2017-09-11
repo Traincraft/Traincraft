@@ -1,8 +1,8 @@
 package train.client.render.models;
 
-import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
 import train.client.render.CustomModelRenderer;
+import train.client.tmt.ModelBase;
 import train.common.core.handlers.ConfigHandler;
 
 public class ModelLoco3 extends ModelBase {
@@ -10,25 +10,25 @@ public class ModelLoco3 extends ModelBase {
 	public ModelLoco3() {
 		sideModels = new CustomModelRenderer[19];
 
-		sideModels[0] = new CustomModelRenderer(0, 0, 128, 128);
-		sideModels[1] = new CustomModelRenderer(43, 112, 128, 128);
-		sideModels[2] = new CustomModelRenderer(64, 0, 128, 128);
-		sideModels[3] = new CustomModelRenderer(0, 103, 128, 128);
-		sideModels[4] = new CustomModelRenderer(60, 42, 128, 128);
-		sideModels[5] = new CustomModelRenderer(18, 68, 128, 128);
-		sideModels[6] = new CustomModelRenderer(0, 24, 128, 128);
-		sideModels[7] = new CustomModelRenderer(0, 68, 128, 128);
-		sideModels[8] = new CustomModelRenderer(0, 24, 128, 128);
-		sideModels[9] = new CustomModelRenderer(88, 26, 128, 128);
-		sideModels[10] = new CustomModelRenderer(0, 12, 128, 128);
-		sideModels[11] = new CustomModelRenderer(88, 57, 128, 128);
-		sideModels[12] = new CustomModelRenderer(0, 40, 128, 128);
-		sideModels[13] = new CustomModelRenderer(0, 40, 128, 128);
-		sideModels[14] = new CustomModelRenderer(39, 0, 128, 128);
-		sideModels[15] = new CustomModelRenderer(60, 42, 128, 128);
-		sideModels[16] = new CustomModelRenderer(60, 94, 128, 128);
-		sideModels[17] = new CustomModelRenderer(7, 59, 128, 128);
-		sideModels[18] = new CustomModelRenderer(0, 37, 128, 128);
+		sideModels[0] = new CustomModelRenderer(this, 0, 0, 128, 128);
+		sideModels[1] = new CustomModelRenderer(this, 43, 112, 128, 128);
+		sideModels[2] = new CustomModelRenderer(this, 64, 0, 128, 128);
+		sideModels[3] = new CustomModelRenderer(this, 0, 103, 128, 128);
+		sideModels[4] = new CustomModelRenderer(this, 60, 42, 128, 128);
+		sideModels[5] = new CustomModelRenderer(this, 18, 68, 128, 128);
+		sideModels[6] = new CustomModelRenderer(this, 0, 24, 128, 128);
+		sideModels[7] = new CustomModelRenderer(this, 0, 68, 128, 128);
+		sideModels[8] = new CustomModelRenderer(this, 0, 24, 128, 128);
+		sideModels[9] = new CustomModelRenderer(this, 88, 26, 128, 128);
+		sideModels[10] = new CustomModelRenderer(this, 0, 12, 128, 128);
+		sideModels[11] = new CustomModelRenderer(this, 88, 57, 128, 128);
+		sideModels[12] = new CustomModelRenderer(this, 0, 40, 128, 128);
+		sideModels[13] = new CustomModelRenderer(this, 0, 40, 128, 128);
+		sideModels[14] = new CustomModelRenderer(this, 39, 0, 128, 128);
+		sideModels[15] = new CustomModelRenderer(this, 60, 42, 128, 128);
+		sideModels[16] = new CustomModelRenderer(this, 60, 94, 128, 128);
+		sideModels[17] = new CustomModelRenderer(this, 7, 59, 128, 128);
+		sideModels[18] = new CustomModelRenderer(this, 0, 37, 128, 128);
 
 		sideModels[0].addBox(0F, 0F, 0F, 6, 4, 8, 0.0F);
 		sideModels[0].setPosition(-3F, 8F, 8F);

@@ -190,7 +190,9 @@ item.tc:tcRailLargeSlopeBallast.name=Lange Steigung (Schotter)
 item.tc:tcRailVeryLargeSlopeWood.name=Sehr lange Steigung (Holz)
 item.tc:tcRailVeryLargeSlopeGravel.name=Sehr lange Steigung (Kies)
 item.tc:tcRailVeryLargeSlopeBallast.name=Sehr lange Steigung (Schotter)
-item.tc:tcRailSmallRoadCrossing.name=Bahnübergang
+item.tc:tcRailSmallRoadCrossing.name=Bahnübergang (Schwarz Asphalt)
+item.tc:tcRailSmallRoadCrossing1.name=Bahnübergang (Sauber Asphalt)
+item.tc:tcRailSmallRoadCrossing2.name=Bahnübergang (Hellgrau Asphalt)
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Ingenieurskleidung
@@ -377,3 +379,4 @@ key.traincraft.up=Hoch
 key.traincraft.down=Runter
 key.traincraft.idle=abschalten
 key.traincraft.furnace=Ofen
+

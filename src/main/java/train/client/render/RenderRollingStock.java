@@ -178,7 +178,7 @@ public class RenderRollingStock extends Render {
 				cart.setRenderPitch(pitch);
 			}
 		}
-		
+
 		//if(cart.bogie!=null)cart.worldObj.spawnParticle("reddust", cart.bogie.posX, cart.bogie.posY, cart.bogie.posZ, 0.1, 0.4, 0.1);
 
 		//GL11.glRotatef(180.0F - yaw, 0.0F, 1.0F, 0.0F);
@@ -220,7 +220,9 @@ public class RenderRollingStock extends Render {
 			if (renders.getEntityClass() != null && renders.getEntityClass().equals(cart.getClass())) {
 				//loadTexture(getTextureFile(renders.getTexture(), renders.getIsMultiTextured(), cart));
 				bindEntityTexture(cart);
-				GL11.glTranslatef(renders.getTrans()[0], renders.getTrans()[1], renders.getTrans()[2]);
+				if (renders.getTrans() != null) {
+					GL11.glTranslatef(renders.getTrans()[0], renders.getTrans()[1], renders.getTrans()[2]);
+				}
 				if (renders.getRotate() != null) {
 					GL11.glRotatef(renders.getRotate()[0], 1.0F, 0.0F, 0.0F);
 					GL11.glRotatef(renders.getRotate()[1], 0.0F, 1.0F, 0.0F);
@@ -287,7 +289,7 @@ public class RenderRollingStock extends Render {
 					z = (float) cart.posZ + random.nextFloat() * 0.2F;
 					double yCorrectDown = 0;
 					for (double[] smoke : smokeFX) {
-						
+
 						if (pitchRads > 0){ yCorrectDown = -Math.tan(pitchRads);}
 						if (smoke[0] > 0){ yCorrectDown = Math.tan(-pitchRads);}
 

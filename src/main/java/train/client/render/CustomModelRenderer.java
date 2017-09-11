@@ -1,143 +1,100 @@
 package train.client.render;
 
-import net.minecraft.client.model.PositionTextureVertex;
-import net.minecraft.client.renderer.GLAllocation;
-import net.minecraft.client.renderer.Tessellator;
+
 import org.lwjgl.opengl.GL11;
+import train.client.tmt.*;
 
-public class CustomModelRenderer {
+public class CustomModelRenderer extends ModelRendererTurbo {
 
-	private CustomTexturedQuad faces[];
-	private int textureOffsetX;
-	private int textureOffsetY;
-	public float offsetX;
-	public float offsetY;
-	public float offsetZ;
-	public float rotateAngleX;
-	public float rotateAngleY;
-	public float rotateAngleZ;
-	private boolean compiled;
-	private int displayList;
-	public boolean mirror;
-	private int texWidth;
-	private int texHeight;
+	private TexturedPolygon faces[];
 
-	public CustomModelRenderer(int i, int j, int w, int h) {
-		compiled = false;
-		displayList = 0;
-		mirror = false;
-		textureOffsetX = i;
-		textureOffsetY = j;
-		texWidth = w;
-		texHeight = h;
+	public CustomModelRenderer(ModelBase m, int i, int j, int w, int h) {
+		super(m,i,j,w,h);
 	}
 
-	public void addBox(float f, float f1, float f2, int i, int j, int k) {
-		addBox(f, f1, f2, i, j, k, 0.0F);
+	@Override
+	public ModelRendererTurbo addBox(float f, float f1, float f2, int i, int j, int k) {
+		addBox(f, f1, f2, i, j, k, 0.0f);
+		return this;
 	}
 
+	//for some odd reason the boxes seem inside out normally, so it's likely the values are reversed
+	@Override
 	public void addBox(float f, float f1, float f2, int i, int j, int k, float f3) {
-		faces = new CustomTexturedQuad[6];
-		float f4 = f + (float) i;
-		float f5 = f1 + (float) j;
-		float f6 = f2 + (float) k;
+		faces = new TexturedPolygon[6];
+		float f4 = f + i +f3;
+		float f5 = f1 + j +f3;
+		float f6 = f2 + k +f3;
 		f -= f3;
 		f1 -= f3;
 		f2 -= f3;
-		f4 += f3;
-		f5 += f3;
-		f6 += f3;
-		if (mirror) {
-			float f7 = f4;
-			f4 = f;
-			f = f7;
-		}
-		PositionTextureVertex positiontexturevertex = new PositionTextureVertex(f, f1, f2, 0.0F, 0.0F);
-		PositionTextureVertex positiontexturevertex1 = new PositionTextureVertex(f4, f1, f2, 0.0F, 8F);
-		PositionTextureVertex positiontexturevertex2 = new PositionTextureVertex(f4, f5, f2, 8F, 8F);
-		PositionTextureVertex positiontexturevertex3 = new PositionTextureVertex(f, f5, f2, 8F, 0.0F);
-		PositionTextureVertex positiontexturevertex4 = new PositionTextureVertex(f, f1, f6, 0.0F, 0.0F);
-		PositionTextureVertex positiontexturevertex5 = new PositionTextureVertex(f4, f1, f6, 0.0F, 8F);
-		PositionTextureVertex positiontexturevertex6 = new PositionTextureVertex(f4, f5, f6, 8F, 8F);
-		PositionTextureVertex positiontexturevertex7 = new PositionTextureVertex(f, f5, f6, 8F, 0.0F);
-		faces[0] = new CustomTexturedQuad(new PositionTextureVertex[] { positiontexturevertex5, positiontexturevertex1, positiontexturevertex2, positiontexturevertex6 }, textureOffsetX + k + i, textureOffsetY + k, textureOffsetX + k + i + k, textureOffsetY + k + j, texWidth, texHeight);
-		faces[1] = new CustomTexturedQuad(new PositionTextureVertex[] { positiontexturevertex, positiontexturevertex4, positiontexturevertex7, positiontexturevertex3 }, textureOffsetX, textureOffsetY + k, textureOffsetX + k, textureOffsetY + k + j, texWidth, texHeight);
-		faces[2] = new CustomTexturedQuad(new PositionTextureVertex[] { positiontexturevertex5, positiontexturevertex4, positiontexturevertex, positiontexturevertex1 }, textureOffsetX + k, textureOffsetY, textureOffsetX + k + i, textureOffsetY + k, texWidth, texHeight);
-		faces[3] = new CustomTexturedQuad(new PositionTextureVertex[] { positiontexturevertex2, positiontexturevertex3, positiontexturevertex7, positiontexturevertex6 }, textureOffsetX + k + i, textureOffsetY, textureOffsetX + k + i + i, textureOffsetY + k, texWidth, texHeight);
-		faces[4] = new CustomTexturedQuad(new PositionTextureVertex[] { positiontexturevertex1, positiontexturevertex, positiontexturevertex3, positiontexturevertex2 }, textureOffsetX + k, textureOffsetY + k, textureOffsetX + k + i, textureOffsetY + k + j, texWidth, texHeight);
-		faces[5] = new CustomTexturedQuad(new PositionTextureVertex[] { positiontexturevertex4, positiontexturevertex5, positiontexturevertex6, positiontexturevertex7 }, textureOffsetX + k + i + k, textureOffsetY + k, textureOffsetX + k + i + k + i, textureOffsetY + k + j, texWidth, texHeight);
-		if (mirror) {
-			for (CustomTexturedQuad quad : faces) {
-				quad.flipFace();
-			}
+		PositionTransformVertex PositionTransformVertex = new PositionTransformVertex(f, f1, f2, 0.0F, 0.0F);
+		PositionTransformVertex PositionTransformVertex1 = new PositionTransformVertex(f4, f1, f2, 0.0F, 8F);
+		PositionTransformVertex PositionTransformVertex2 = new PositionTransformVertex(f4, f5, f2, 8F, 8F);
+		PositionTransformVertex PositionTransformVertex3 = new PositionTransformVertex(f, f5, f2, 8F, 0.0F);
+		PositionTransformVertex PositionTransformVertex4 = new PositionTransformVertex(f, f1, f6, 0.0F, 0.0F);
+		PositionTransformVertex PositionTransformVertex5 = new PositionTransformVertex(f4, f1, f6, 0.0F, 8F);
+		PositionTransformVertex PositionTransformVertex6 = new PositionTransformVertex(f4, f5, f6, 8F, 8F);
+		PositionTransformVertex PositionTransformVertex7 = new PositionTransformVertex(f, f5, f6, 8F, 0.0F);
+		faces[0] = generateFaces(new PositionTransformVertex[] { PositionTransformVertex5, PositionTransformVertex1, PositionTransformVertex2, PositionTransformVertex6 }, textureOffsetX + k + i, textureOffsetY + k, textureOffsetX + k + i + k, textureOffsetY + k + j, textureWidth, textureHeight);
+		faces[1] = generateFaces(new PositionTransformVertex[] { PositionTransformVertex, PositionTransformVertex4, PositionTransformVertex7, PositionTransformVertex3 }, textureOffsetX, textureOffsetY + k, textureOffsetX + k, textureOffsetY + k + j, textureWidth, textureHeight);
+		faces[2] = generateFaces(new PositionTransformVertex[] { PositionTransformVertex5, PositionTransformVertex4, PositionTransformVertex, PositionTransformVertex1 }, textureOffsetX + k, textureOffsetY, textureOffsetX + k + i, textureOffsetY + k, textureWidth, textureHeight);
+		faces[3] = generateFaces(new PositionTransformVertex[] { PositionTransformVertex2, PositionTransformVertex3, PositionTransformVertex7, PositionTransformVertex6 }, textureOffsetX + k + i, textureOffsetY, textureOffsetX + k + i + i, textureOffsetY + k, textureWidth, textureHeight);
+		faces[4] = generateFaces(new PositionTransformVertex[] { PositionTransformVertex1, PositionTransformVertex, PositionTransformVertex3, PositionTransformVertex2 }, textureOffsetX + k, textureOffsetY + k, textureOffsetX + k + i, textureOffsetY + k + j, textureWidth, textureHeight);
+		faces[5] = generateFaces(new PositionTransformVertex[] { PositionTransformVertex4, PositionTransformVertex5, PositionTransformVertex6, PositionTransformVertex7 }, textureOffsetX + k + i + k, textureOffsetY + k, textureOffsetX + k + i + k + i, textureOffsetY + k + j, textureWidth, textureHeight);
 
-		}
+		textureGroup.get("0").clear();
+		textureGroup.get("0").add(faces[0]);
+		textureGroup.get("0").add(faces[1]);
+		textureGroup.get("0").add(faces[2]);
+		textureGroup.get("0").add(faces[3]);
+		textureGroup.get("0").add(faces[4]);
+		textureGroup.get("0").add(faces[5]);
+
 	}
 
-	public void setPosition(float f, float f1, float f2) {
-		offsetX = f;
-		offsetY = f1;
-		offsetZ = f2;
+
+	private static TexturedPolygon generateFaces(PositionTransformVertex aPositionTransformVertex[], int i, int j, int k, int l, float textureWidth, float textureHeight) {
+		aPositionTransformVertex[0] = new PositionTransformVertex(aPositionTransformVertex[0], (float) k / textureWidth - 0.0015625F, (float) j / textureHeight + 0.003125F);
+		aPositionTransformVertex[1] = new PositionTransformVertex(aPositionTransformVertex[1],(float) i / textureWidth + 0.0015625F, (float) j / textureHeight + 0.003125F);
+		aPositionTransformVertex[2] = new PositionTransformVertex(aPositionTransformVertex[2],(float) i / textureWidth + 0.0015625F, (float) l / textureHeight - 0.003125F);
+		aPositionTransformVertex[3] = new PositionTransformVertex(aPositionTransformVertex[3],(float) k / textureWidth - 0.0015625F, (float) l / textureHeight - 0.003125F);
+		return new TexturedPolygon(aPositionTransformVertex);
 	}
 
-	public void render(float f) {
-		if (!compiled) {
-			compileDisplayList(f);
+	//same as super, but old models have inverse Y rotations and I don't even understand the Z rotation
+	public void render(float worldScale, boolean invertYZ) {
+
+		if(!showModel) {
+			return;
+		}
+		if(!compiled) {
+			compileDisplayList(worldScale);
+			return;
 		}
 		if (rotateAngleX != 0.0F || rotateAngleY != 0.0F || rotateAngleZ != 0.0F) {
 			GL11.glPushMatrix();
-			GL11.glTranslatef(offsetX * f, offsetY * f, offsetZ * f);
+			GL11.glTranslatef(rotationPointX * worldScale, rotationPointY * worldScale, rotationPointZ *worldScale);
 			if (rotateAngleZ != 0.0F) {
-				GL11.glRotatef(rotateAngleZ * 57.29578F, 0.0F, 0.0F, 1.0F);
+				GL11.glRotatef(rotateAngleZ * degreesF, 0.0F, 0.0F, 1.0F);
 			}
 			if (rotateAngleY != 0.0F) {
-				GL11.glRotatef(rotateAngleY * 57.29578F, 0.0F, 1.0F, 0.0F);
+				GL11.glRotatef(rotateAngleY * degreesF, 0.0F, 1.0F, 0.0F);
 			}
 			if (rotateAngleX != 0.0F) {
-				GL11.glRotatef(rotateAngleX * 57.29578F, 1.0F, 0.0F, 0.0F);
+				GL11.glRotatef(rotateAngleX * degreesF, 1.0F, 0.0F, 0.0F);
 			}
-			GL11.glCallList(displayList);
+			callDisplayList();
 			GL11.glPopMatrix();
 		}
-		else if (offsetX != 0.0F || offsetY != 0.0F || offsetZ != 0.0F) {
-			GL11.glTranslatef(offsetX * f, offsetY * f, offsetZ * f);
-			GL11.glCallList(displayList);
-			GL11.glTranslatef(-offsetX * f, -offsetY * f, -offsetZ * f);
+		else if (rotationPointX != 0.0F || rotationPointY != 0.0F || rotationPointZ != 0.0F) {
+			GL11.glTranslatef(rotationPointX * worldScale, rotationPointY * worldScale, rotationPointZ * worldScale);
+			callDisplayList();
+			GL11.glTranslatef(-rotationPointX * worldScale, -rotationPointY * worldScale, -rotationPointZ * worldScale);
 		}
 		else {
-			GL11.glCallList(displayList);
+			callDisplayList();
 		}
 	}
 
-	public void postRender(float f) {
-		if (!compiled) {
-			compileDisplayList(f);
-		}
-		if (rotateAngleX != 0.0F || rotateAngleY != 0.0F || rotateAngleZ != 0.0F) {
-			GL11.glTranslatef(offsetX * f, offsetY * f, offsetZ * f);
-			if (rotateAngleZ != 0.0F) {
-				GL11.glRotatef(rotateAngleZ * 57.29578F, 0.0F, 0.0F, 1.0F);
-			}
-			if (rotateAngleY != 0.0F) {
-				GL11.glRotatef(rotateAngleY * 57.29578F, 0.0F, 1.0F, 0.0F);
-			}
-			if (rotateAngleX != 0.0F) {
-				GL11.glRotatef(rotateAngleX * 57.29578F, 1.0F, 0.0F, 0.0F);
-			}
-		}
-		else if (offsetX != 0.0F || offsetY != 0.0F || offsetZ != 0.0F) {
-			GL11.glTranslatef(offsetX * f, offsetY * f, offsetZ * f);
-		}
-	}
-
-	private void compileDisplayList(float f) {
-		displayList = GLAllocation.generateDisplayLists(1);
-		GL11.glNewList(displayList, 4864 /* GL_COMPILE */);
-		for (CustomTexturedQuad quad : faces) {
-			quad.draw(Tessellator.instance, f);
-		}
-
-		GL11.glEndList();
-		compiled = true;
-	}
 }

@@ -1,30 +1,30 @@
 package train.client.render.models;
 
-import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
 import train.client.render.CustomModelRenderer;
+import train.client.tmt.ModelBase;
 import train.common.core.handlers.ConfigHandler;
 
 public class ModelRotaryExcavator_Wheel extends ModelBase {
-	public float wheel1 = 0.4188790204786391F;
-	private long lastframe;
-	private float wheel;
-	private int l;
+	//public float wheel1 = 0.4188790204786391F;
+	//private long lastframe;
+	//private float wheel;
+	//private int l;
 
 	public ModelRotaryExcavator_Wheel() {
-		box4 = new CustomModelRenderer(60, 26, 128, 64);
-		box3 = new CustomModelRenderer(59, 23, 128, 64);
-		box1 = new CustomModelRenderer(56, 9, 128, 64);
-		box13 = new CustomModelRenderer(59, 23, 128, 64);
-		box10 = new CustomModelRenderer(54, 3, 128, 64);
-		box12 = new CustomModelRenderer(58, 14, 128, 64);
-		box11 = new CustomModelRenderer(56, 9, 128, 64);
-		box = new CustomModelRenderer(60, 26, 128, 64);
-		box6 = new CustomModelRenderer(54, 3, 128, 64);
-		box5 = new CustomModelRenderer(4, 29, 128, 64);
-		box0 = new CustomModelRenderer(54, 3, 128, 64);
-		box2 = new CustomModelRenderer(58, 14, 128, 64);
-		box7 = new CustomModelRenderer(54, 3, 128, 64);
+		box4 = new CustomModelRenderer(this, 60, 26, 128, 64);
+		box3 = new CustomModelRenderer(this, 59, 23, 128, 64);
+		box1 = new CustomModelRenderer(this, 56, 9, 128, 64);
+		box13 = new CustomModelRenderer(this, 59, 23, 128, 64);
+		box10 = new CustomModelRenderer(this, 54, 3, 128, 64);
+		box12 = new CustomModelRenderer(this, 58, 14, 128, 64);
+		box11 = new CustomModelRenderer(this, 56, 9, 128, 64);
+		box = new CustomModelRenderer(this, 60, 26, 128, 64);
+		box6 = new CustomModelRenderer(this, 54, 3, 128, 64);
+		box5 = new CustomModelRenderer(this, 4, 29, 128, 64);
+		box0 = new CustomModelRenderer(this, 54, 3, 128, 64);
+		box2 = new CustomModelRenderer(this, 58, 14, 128, 64);
+		box7 = new CustomModelRenderer(this, 54, 3, 128, 64);
 
 		box4.addBox(-2F, -4F, -4F, 9, 8, 8);
 		box4.setPosition(-4F, 0F, 0F);

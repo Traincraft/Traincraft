@@ -1,10 +1,11 @@
 package train.client.core.handlers;
 
+import org.lwjgl.input.Keyboard;
+
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.InputEvent;
 import net.minecraft.client.settings.KeyBinding;
-import org.lwjgl.input.Keyboard;
 import train.common.Traincraft;
 import train.common.core.network.PacketKeyPress;
 
@@ -30,19 +31,19 @@ public class TCKeyHandler
 		ClientRegistry.registerKeyBinding(idle);
 		furnace = new KeyBinding("key.traincraft.furnace", Keyboard.KEY_F, "key.categories.traincraft");
 		ClientRegistry.registerKeyBinding(furnace);
+
 	}
 	@SubscribeEvent
-	public void onKeyInput(InputEvent.KeyInputEvent event)
-	{
-		if (up.getIsKeyPressed()) sendKeyControlsPacket(0);
-		if (down.getIsKeyPressed()) sendKeyControlsPacket(2);
-		if (idle.isPressed()) sendKeyControlsPacket(6);
-		if (inventory.isPressed()) sendKeyControlsPacket(7);
-		if (horn.isPressed()) sendKeyControlsPacket(8);
-		if (furnace.isPressed()) sendKeyControlsPacket(9);
+	public void onKeyInput(InputEvent.KeyInputEvent event) {
+		if (up.getIsKeyPressed()){sendKeyControlsPacket(0);}
+		if (down.getIsKeyPressed()){ sendKeyControlsPacket(2);}
+		if (idle.isPressed()){ sendKeyControlsPacket(6);}
+		if (inventory.isPressed()){ sendKeyControlsPacket(7);}
+		if (horn.isPressed()){ sendKeyControlsPacket(8);}
+		if (furnace.isPressed()){ sendKeyControlsPacket(9);}
 	}
 	
-	public static void sendKeyControlsPacket(int key)
+	private static void sendKeyControlsPacket(int key)
 	{
 		Traincraft.keyChannel.sendToServer(new PacketKeyPress(key));
 	}

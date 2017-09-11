@@ -9,6 +9,7 @@ package train.common.core.handlers;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRailBase;
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -22,9 +23,6 @@ import java.util.ArrayList;
 
 public class ItemHandler {
 	
-	private static final ArrayList<ItemStack> planks = OreDictionary.getOres("plankWood");
-	private static final ArrayList<ItemStack> logs = OreDictionary.getOres("logWood");
-
 	public static boolean handleItems(Entity entity, ItemStack itemstack) {
 		if (itemstack != null) {
 			if (entity instanceof Freight) {
@@ -45,65 +43,36 @@ public class ItemHandler {
 	}
 
 	public static boolean handleFreight(Entity entity, ItemStack itemstack) {
+		int logWood = OreDictionary.getOreID("logWood");
+		int plankWood = OreDictionary.getOreID("plankWood");
+		if(itemstack == null) {
+			return false;
+		}
 		Block block = Block.getBlockFromItem(itemstack.getItem());
 		if (block == null) {
 			return false;
 		}
-		if (entity instanceof EntityBoxCartUS || entity instanceof EntityFreightCart
-				|| entity instanceof EntityFreightCart2 || entity instanceof EntityFreightCartSmall
-				|| entity instanceof EntityFreightCenterbeam_Empty || entity instanceof EntityFreightTrailer
-				|| entity instanceof EntityFreightWagenDB || entity instanceof EntityFreightWellcar) {
-			return true;
-		}
 		if (entity instanceof EntityFlatCarLogs_DB || entity instanceof EntityFreightWood
 				|| entity instanceof EntityFreightWood2) {
-			for (ItemStack log : logs) {
-				if (block == Block.getBlockFromItem(log.getItem())) {
-					return true;
-				}
-			}
+			return OreDictionary.getOreID(itemstack) == logWood;
 		}
-		if (entity instanceof EntityFlatCartWoodUS) {
-			for (ItemStack plank : planks) {
-				if (block == Block.getBlockFromItem(plank.getItem())) {
-					return true;
-				}
-			}
+		else if (entity instanceof EntityFlatCartWoodUS) {
+			return OreDictionary.getOreID(itemstack) == plankWood;
 		}
-		if (entity instanceof EntityFreightCenterbeam_Wood_1 || entity instanceof EntityFreightCenterbeam_Wood_2) {
-			for (ItemStack log : logs) {
-				if (block == Block.getBlockFromItem(log.getItem())) {
-					return true;
-				}
-			}
-			for (ItemStack plank : planks) {
-				if (block == Block.getBlockFromItem(plank.getItem())) {
-					return true;
-				}
-			}
+		else if (entity instanceof EntityFreightCenterbeam_Wood_1 || entity instanceof EntityFreightCenterbeam_Wood_2) {
+            int isid = OreDictionary.getOreID(itemstack);
+			return isid == plankWood || isid == logWood;
 		}
-		if (entity instanceof EntityFreightOpenWagon || entity instanceof EntityFreightCartUS
+		else if (entity instanceof EntityFreightOpenWagon || entity instanceof EntityFreightCartUS
 				|| entity instanceof EntityFreightClosed || entity instanceof EntityFreightGondola_DB
 				|| entity instanceof EntityFreightOpen2 || entity instanceof EntityFreightHopperUS) {
-			for (ItemStack log : logs) {
-				if (block == Block.getBlockFromItem(log.getItem())) {
-					return false;
-				}
-			}
-			for (ItemStack plank : planks) {
-				if (block == Block.getBlockFromItem(plank.getItem())) {
-					return false;
-				}
-			}
-			return true;
+            int isid = OreDictionary.getOreID(itemstack);
+			return !(isid == plankWood || isid == logWood);
 		}
-		if (entity instanceof EntityFlatCarRails_DB) {
-			if (block instanceof BlockRailBase) {
-				return true;
-			}
-			return itemstack.getItem() instanceof ItemTCRail;
+		else if (entity instanceof EntityFlatCarRails_DB) {
+			return block instanceof BlockRailBase || itemstack.getItem() instanceof ItemTCRail;
 		}
-		if (entity instanceof EntityFreightGrain) {
+		else if (entity instanceof EntityFreightGrain) {
 			Item item = itemstack.getItem();
 			if (item == Items.wheat || item == Items.wheat_seeds || item == Items.melon_seeds
 					|| item == Items.pumpkin_seeds) {
@@ -111,25 +80,21 @@ public class ItemHandler {
 			}
 			return cropStuff(itemstack);
 		}
-		if (entity instanceof EntityFreightMinetrain) {
+		else if (entity instanceof EntityFreightMinetrain) {
 				return block.isOpaqueCube();
 		}
-		return false;
+		else if (entity instanceof EntityFreightSlateWagon){
+			return block.getMaterial() == Material.rock;
+		}
+		else {
+			return true;
+		}
 	}
 
 	private static boolean cropStuff(ItemStack itemstack) {
 		String[] names = new String[] { "cropCorn", "cropRice", "seedRice", "seedCorn", "listAllseed" };
 		for (String name: names) {
-			if (isDict(name, itemstack)) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	private static boolean isDict(String name, ItemStack itemstack) {
-		for (ItemStack item : OreDictionary.getOres(name)) {
-			if (itemstack.isItemEqual(item)) {
+			if (OreDictionary.getOreID(name) == OreDictionary.getOreID(itemstack)) {
 				return true;
 			}
 		}

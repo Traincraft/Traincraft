@@ -1,5 +1,9 @@
 package train.common.tile;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
@@ -15,10 +19,6 @@ import train.common.core.interfaces.ITier;
 import train.common.core.managers.TierRecipe;
 import train.common.core.managers.TierRecipeManager;
 import train.common.library.Info;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 public class TileCrafterTierIII extends TileEntity implements IInventory, ITier {
 	private Random rand;
@@ -167,8 +167,10 @@ public class TileCrafterTierIII extends TileEntity implements IInventory, ITier 
 		for (int j = 0; j < recipes.size(); j++) {
 			ItemStack stack = recipes.get(j).hasComponents(crafterInventory);
 			if (stack != null) {
-				resultList.add(stack);
-				crafterInventory[count + 10] = new ItemStack(stack.getItem(), 1, 0);
+				if ((count + 10) < crafterInventory.length) {
+					resultList.add(stack);
+					crafterInventory[count + 10] = new ItemStack(stack.getItem(), 1, 0);
+				}
 				count++;
 			}
 		}

@@ -15,12 +15,11 @@ import train.common.tile.TileTCRail;
 public class ModelSmallStraightTCTrack extends ModelBase {
 	
 	private IModelCustom modelSmallStraight;
-	private IModelCustom	modelRoadCrossing;
+	private IModelCustom modelRoadCrossing;
 
 	public ModelSmallStraightTCTrack() {
 		modelSmallStraight = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_normal.obj"));
-		modelRoadCrossing = AdvancedModelLoader
-				.loadModel(new ResourceLocation(Info.modelPrefix + "track_roadcrossing.obj"));
+		modelRoadCrossing = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_roadcrossing.obj"));
 	}
 
 	public void render(String type) {
@@ -28,6 +27,12 @@ public class ModelSmallStraightTCTrack extends ModelBase {
 			modelSmallStraight.renderAll();
 		}
 		if (type.equals("crossing")) {
+			modelRoadCrossing.renderAll();
+		}
+		if (type.equals("crossing1")) {
+			modelRoadCrossing.renderAll();
+		}
+		if (type.equals("crossing2")) {
 			modelRoadCrossing.renderAll();
 		}
 	}
@@ -40,7 +45,18 @@ public class ModelSmallStraightTCTrack extends ModelBase {
 		GL11.glTranslatef((float) x + 0.5f, (float) y, (float) z + 0.5f);
 
 		// Bind the texture, so that OpenGL properly textures our block.
-		FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
+		if (type.equals("straight")) {
+ 			FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
+		}
+		if (type.equals("crossing")) {
+			FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_roadcrossing.png"));
+		}		
+		if (type.equals("crossing1")) {
+			FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_roadcrossing_1.png"));
+		}		
+		if (type.equals("crossing2")) {
+			FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_roadcrossing_2.png"));
+		}		
 		GL11.glColor3f(1, 1, 1);
 		//GL11.glScalef(0.5f, 0.5f, 0.5f);
 		int facing = tcRail.getWorldObj().getBlockMetadata(tcRail.xCoord, tcRail.yCoord, tcRail.zCoord);

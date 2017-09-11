@@ -12,10 +12,10 @@
 
 package train.client.render.models;
 
-import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import org.lwjgl.opengl.GL11;
+import train.client.tmt.ModelBase;
 
 public class ModelA4Locomotive extends ModelBase
 {

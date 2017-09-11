@@ -6,27 +6,34 @@
 package train.common.blocks.tracks;
 
 import cpw.mods.fml.common.FMLCommonHandler;
+import mods.railcraft.api.tracks.ITrackTile;
 import mods.railcraft.api.core.items.IToolCrowbar;
 import mods.railcraft.api.tracks.ITrackPowered;
 import net.minecraft.block.Block;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IIcon;
+import train.common.library.Tracks;
 import train.common.api.ElectricTrain;
 import train.common.api.EntityRollingStock;
-import train.common.library.Tracks;
+import train.common.core.handlers.ConfigHandler;
+import cofh.api.energy.IEnergyHandler;
+import cofh.api.energy.IEnergyProvider;
+import cofh.api.energy.IEnergyReceiver;
+import net.minecraftforge.common.util.ForgeDirection;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-public class BlockEnergyTrack extends TrackBaseTraincraft implements ITrackPowered{
+public class BlockEnergyTrack extends TrackBaseTraincraft implements ITrackPowered, IEnergyHandler, IEnergyReceiver {
 	private byte delay = 0;
 	public double energy = 0;
-	public int maxEnergy = 1000;
+	public int maxEnergy = 2000;
 	public int maxInput = 1000;
 	public int output = 500;
 	private int transmitDistance=2;
@@ -35,6 +42,7 @@ public class BlockEnergyTrack extends TrackBaseTraincraft implements ITrackPower
 	private Block thisBlock;
 	private int updateTicks = 0;
 	protected boolean powered = false;
+    private static ForgeDirection[] dirMap = new ForgeDirection[] {ForgeDirection.WEST, ForgeDirection.EAST, ForgeDirection.NORTH, ForgeDirection.SOUTH}; 
 	
 	public BlockEnergyTrack() {
 		this.speedController = SpeedControllerSteel.getInstance();
@@ -62,10 +70,72 @@ public class BlockEnergyTrack extends TrackBaseTraincraft implements ITrackPower
 			return;
 		}
 		updateTicks++;
-		if (isPowered() && updateTicks % 2==0) {
-			if(this.getEnergy()<this.getMaxEnergy())
-				this.energy++;
+
+        if(!ConfigHandler.ENERGYTRACK_USES_RF)
+        {
+		    if (isPowered() && updateTicks % 2==0) {
+			    if(this.getEnergy()<this.getMaxEnergy())
+				    this.energy++;
+		    }
+		    
+            if (updateTicks % 50 == 0)
+			    markBlockNeedsUpdate();
+
+            return;
 		}
+
+        if(this.updateTicks % 10 == 0)
+        {
+           if(this.maxEnergy > this.energy)
+             if(this.getWorld().getTileEntity(this.getX(),this.getY()-1, this.getZ()) instanceof IEnergyProvider)
+             {
+                this.receiveEnergy(ForgeDirection.UP,((IEnergyProvider)this.getWorld().getTileEntity(this.getX(),this.getY()-1, this.getZ())).extractEnergy(ForgeDirection.UP,100,false),false);
+             }
+           int x=this.getX();
+           int y=this.getY();
+           int z=this.getZ();
+           int ener1 = 0;
+           int ener2 = 0;
+           for(int[] pos : new int[][] {{x-1,z,1},{x+1,z,0},{x,z-1,3},{x,z+1,2}})
+             if(this.maxEnergy > this.energy)
+             {
+               if(this.getWorld().getTileEntity(pos[0],y, pos[1]) instanceof IEnergyProvider)
+                 ener1 = ((IEnergyProvider)this.getWorld().getTileEntity(pos[0], y, pos[1])).extractEnergy(dirMap[pos[2]],100,false);
+               if(this.getWorld().getTileEntity(pos[0],y-1, pos[1]) instanceof IEnergyProvider)
+                 ener2 = ((IEnergyProvider)this.getWorld().getTileEntity(pos[0], y-1, pos[1])).extractEnergy(dirMap[pos[2]],100,false);
+               this.receiveEnergy(ForgeDirection.UP,ener1+ener2,false);
+             }
+             else break;
+
+           for(int[] pos : new int[][] {{x-1,z},{x+1,z},{x,z-1},{x,z+1}})
+           {
+               TileEntity te = (TileEntity)(this.getWorld().getTileEntity(pos[0],y, pos[1]));
+               if(te != null && te instanceof ITrackTile && ((ITrackTile)te).getTrackInstance() instanceof BlockEnergyTrack)
+                 if((int)((BlockEnergyTrack)((ITrackTile)te).getTrackInstance()).energy - (int) this.energy > 1)
+                 {
+                    double diff = (((BlockEnergyTrack)((ITrackTile)te).getTrackInstance()).energy - this.energy) / 2.0;
+                    this.energy += diff;
+                    ((BlockEnergyTrack)((ITrackTile)te).getTrackInstance()).energy -= diff;
+                 }
+               te = (TileEntity)(this.getWorld().getTileEntity(pos[0],y-1, pos[1]));
+               if(te != null && te instanceof ITrackTile && ((ITrackTile)te).getTrackInstance() instanceof BlockEnergyTrack)
+                 if((int)((BlockEnergyTrack)((ITrackTile)te).getTrackInstance()).energy - (int) this.energy > 1)
+                 {
+                    double diff = (((BlockEnergyTrack)((ITrackTile)te).getTrackInstance()).energy - this.energy) / 2.0;
+                    this.energy += diff;
+                    ((BlockEnergyTrack)((ITrackTile)te).getTrackInstance()).energy -= diff;
+                 }
+               te = (TileEntity)(this.getWorld().getTileEntity(pos[0],y+1, pos[1]));
+               if(te != null && te instanceof ITrackTile && ((ITrackTile)te).getTrackInstance() instanceof BlockEnergyTrack)
+                 if((int)((BlockEnergyTrack)((ITrackTile)te).getTrackInstance()).energy - (int) this.energy > 1)
+                 {
+                    double diff = (((BlockEnergyTrack)((ITrackTile)te).getTrackInstance()).energy - this.energy) / 2.0;
+                    this.energy += diff;
+                    ((BlockEnergyTrack)((ITrackTile)te).getTrackInstance()).energy -= diff;
+                 }
+           }          
+        }
+
 		if (updateTicks % 50 == 0)
 			markBlockNeedsUpdate();
 	}
@@ -104,7 +174,7 @@ public class BlockEnergyTrack extends TrackBaseTraincraft implements ITrackPower
 		
 		if ((current != null) && ((current.getItem() instanceof IToolCrowbar))) {
 			IToolCrowbar crowbar = (IToolCrowbar) current.getItem();
-			player.addChatMessage(new ChatComponentText("stored: " + ((int)this.energy) + "/"+(int)this.getMaxEnergy()+" EU"));
+			player.addChatMessage(new ChatComponentText("stored: " + ((int)this.energy) + "/"+(int)this.getMaxEnergy()+" RF"));
 			markBlockNeedsUpdate();
 			crowbar.onWhack(player, current, getX(), getY(), getZ());
 			sendUpdateToClient();
@@ -180,4 +250,62 @@ public class BlockEnergyTrack extends TrackBaseTraincraft implements ITrackPower
 		this.energy = (int) Math.max(Math.min(joules, getMaxEnergy()), 0.0D);
 	}
 	
+ 
+    /* ------------------------------------------------------------------------------------
+     * -                                IEnergyHandler                                    -
+     * ------------------------------------------------------------------------------------ 
+ 
+                            TheBlueCrystal Addition to receive real RF Power
+     */
+ 
+    public boolean canConnectEnergy(ForgeDirection from)
+    {
+        return true;
+    }
+ 
+    public int receiveEnergy(ForgeDirection dir, int ammount, boolean simulate)
+    {
+        if(this.maxEnergy > this.energy)
+        {
+            if(this.maxEnergy-this.energy >= ammount)
+            {
+                 if(!simulate) this.energy += (double)ammount;
+                 return ammount;
+            }
+            else
+            {
+                 int div = (int) (this.maxEnergy - this.energy);
+                 if(!simulate) this.energy = this.maxEnergy;
+                 return div;
+            }
+        }
+        else
+        return 0;
+    }
+ 
+    public int extractEnergy(ForgeDirection dir, int ammount, boolean simulate)
+    {
+        if(this.energy >= ammount)
+        {
+            if(!simulate) this.energy -= ammount;
+            return ammount;
+        }
+        else
+        {
+            int div = (int) this.energy;
+            if(!simulate) this.energy = 0.0D;
+            return div;
+        }
+    }
+ 
+    public int getEnergyStored(ForgeDirection dir)
+    {
+        return (int) this.energy;
+    }
+ 
+    public int getMaxEnergyStored(ForgeDirection dir)
+    {
+        return this.maxEnergy;
+    }
+ 
 }

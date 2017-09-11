@@ -1,9 +1,9 @@
 package train.client.render.models.blocks;
 
-import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
 import org.lwjgl.opengl.GL11;
 import train.client.render.CustomModelRenderer;
+import train.client.tmt.ModelBase;
 
 public class ModelBlockSignal extends ModelBase {
 	public CustomModelRenderer box;
@@ -11,15 +11,15 @@ public class ModelBlockSignal extends ModelBase {
 	public CustomModelRenderer box1;
 
 	public ModelBlockSignal(float scale) {
-		box = new CustomModelRenderer(77, 17, 128, 64);
+		box = new CustomModelRenderer(this, 77, 17, 128, 64);
 		box.addBox(0F, 0F, 0F, 4, 41, 2, scale);
 		box.setPosition(-2F, 0F, -1F);
 
-		box0 = new CustomModelRenderer(39, 44, 128, 64);
+		box0 = new CustomModelRenderer(this, 39, 44, 128, 64);
 		box0.addBox(0F, 0F, 0F, 12, 12, 2, scale);
 		box0.setPosition(-6F, 12F, -3F);
 
-		box1 = new CustomModelRenderer(43, 20, 128, 64);
+		box1 = new CustomModelRenderer(this, 43, 20, 128, 64);
 		box1.addBox(0F, 0F, 0F, 6, 17, 2, scale);
 		box1.setPosition(-3F, 25F, -3F);
 
