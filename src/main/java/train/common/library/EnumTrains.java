@@ -48,8 +48,10 @@ public enum EnumTrains {
 	flatCartUS("Flat Cart US",EntityFlatCartUS.class, 68,ItemIDs.minecartFlatCartUS.item,"flat",0,0,0.4,0,0,0,0,0,0,null,18,0,0.98,0.3),
 	tracksBuilder("Tracks Builder",EntityTracksBuilder.class, 28,ItemIDs.minecartBuilder.item,"special",0,0,0,0,0,0,0,0,0,null,14,0,0.98,1.98),
 	flatCar_DB("Flat Cart DB",EntityFlatCar_DB.class, 109,ItemIDs.minecartFlatCart_DB.item,"flat",0,0,0.2,0,0,0,0,0,0,null,18,0,0.98,0.3),
-	BUnitEMDF7("EMD F7 B Unit",EntityBUnitEMDF7.class, 129,ItemIDs.minecartLocoEMDF7B.item,"b-unit",0,0,-8,0,0,0,0,0,0,new String[]{"Grey", "Black"},18,0,0.98,1.98),
-	BUnitEMDF3("EMD F3 B Unit",EntityBUnitEMDF3.class, 130,ItemIDs.minecartLocoEMDF3B.item,"b-unit",0,0,-8,0,0,0,0,0,0,null,18,0,0.98,1.98),
+	BUnitEMDF7("EMD F7 B Unit", EntityBUnitEMDF7.class, 129, ItemIDs.minecartLocoEMDF7B.item, "b-unit", 0, 0, 0.8, 0, 0,
+			0, 0, 0, 0, new String[] { "Grey", "Black" }, 18, 0, 0.98, 1.98),
+	BUnitEMDF3("EMD F3 B Unit", EntityBUnitEMDF3.class, 130, ItemIDs.minecartLocoEMDF3B.item, "b-unit", 0, 0, 0.8, 0, 0,
+			0, 0, 0, 0, null, 18, 0, 0.98, 1.98),
 
 	/** Freight */
 	freightCartRed("Freight Cart Red",EntityFreightCart2.class, 41,ItemIDs.minecartFreightCart2.item,"freight",3,null,18,0.98,1.98,36,new String[] {"Cargo: any"}),

@@ -11,7 +11,8 @@ import train.common.core.handlers.ConfigHandler;
 public class SpeedHandler {
 
 	public double handleSpeed(double railMaxSpeed, float maxSpeed, Entity entity) {
-		//System.out.println(railMaxSpeed);
+		// System.out.println("Rail: " + railMaxSpeed);
+		// System.out.println("Max: " + maxSpeed);
 		if (railMaxSpeed >= 0.4 && railMaxSpeed <= 0.45 && entity instanceof Locomotive) {
 			return convertSpeed(entity);
 		}
@@ -70,7 +71,7 @@ public class SpeedHandler {
 			speed /= 6;
 		}
 		speed /= 10;// converted in minecraft speed
-		if (speed > 0.695D && ((Locomotive) entity).isAttached) {
+		if (speed > 0.912D && ((Locomotive) entity).isAttached) {
 			return 0.912D;// max speed when carts are attached
 		}
 		return speed;
