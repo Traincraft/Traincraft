@@ -114,7 +114,7 @@ public enum EnumTrains {
 	locoDieselShunter("Loco Diesel Shunter", EntityLocoDieselShunter.class, 11, ItemIDs.minecartShunter.item,"diesel", 800, 70, 0, 70, 0, 260, 0.6, 0.94, 8000,new String[] { "Blue", "Green", "Red", "Black" }, 14,  -2.58,  0.98, 1.98),
 	locoDieselV60_DB("Loco Diesel V60 DB",EntityLocoDieselV60_DB.class, 49,ItemIDs.minecartV60_DB.item,"diesel",500,80,0,60,0,170,0.66,0.96,8000,new String[] {"Red","Green","Yellow","Cyan"},15,-1.3,0.98,1.98),
 	locoDieselIC4_DSB_MG("Loco Diesel IC4 DSB MG",EntityLocoDieselIC4_DSB_MG.class, 57,ItemIDs.minecartIC4_DSB_MG.item,"diesel",900,200,0,60,0,200,0.8,0.97,20000,new String[] {"White","Red"},10,-6,0.98,1.98),
-	locoDieselMILW_H1044("Loco Diesel MILW H10-44",EntityLocoDieselMILW_H1044.class, 123,ItemIDs.minecartMILW_H1044.item,"diesel",500,80,0,60,0,170,0.66,0.96,8000,null,15,-3,0.98,1.98),
+	locoDieselMILW_H1044("Loco Diesel MILW H10-44",EntityLocoDieselMILW_H1044.class, 123,ItemIDs.minecartMILW_H1044.item,"diesel",500,80,0,60,0,170,0.66,0.96,8000,null,15,-4.4,0.98,1.98),
 	locoDieselEMDF7("Loco Diesel EMD F-7", EntityLocoDieselEMDF7.class, 127, ItemIDs.minecartLocoEMDF7.item, "diesel",
 			1100, 164, 0, 50, 0, 200, 0.8, 0.97, 12000, new String[] { "Grey", "Black" }, 10, -2.3, 0.98, 1.98),
 	locoDieselEMDF3("Loco Diesel EMD F-3", EntityLocoDieselEMDF3.class, 128, ItemIDs.minecartLocoEMDF3.item, "diesel",
