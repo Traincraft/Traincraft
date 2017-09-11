@@ -14,7 +14,7 @@ import train.common.library.ItemIDs;
 public class AssemblyTableRecipes {
 
 	//private static ItemStack ingotSteel = new ItemStack(ItemIDs.steel.item);
-	private static final ArrayList<ItemStack> ingotIron = OreDictionary.getOres("iron_ingot");
+	private static final ArrayList<ItemStack>	ingotIron		= OreDictionary.getOres("ingotIron");
 	private static final ArrayList<ItemStack> s1 = OreDictionary.getOres("plankWood");
 	private static final ArrayList<ItemStack> s2 = OreDictionary.getOres("logWood");
 	private static final ArrayList<ItemStack> ingotSteel = OreDictionary.getOres("ingotSteel");
