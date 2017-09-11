@@ -70,7 +70,7 @@ public enum AchievementIDs {
 	mail(new Item[] { ItemIDs.minecartMailWagon_DB.item }),
 	caboose(new Item[] { ItemIDs.minecartCaboose.item, ItemIDs.minecartCaboose3.item,
 			ItemIDs.minecartCabooseWork.item }),
-	stockCar(new Item[] { ItemIDs.minecartStockCar.item }),
+	stockCar(new Item[] { ItemIDs.minecartStockCar.item, ItemIDs.minecartDRWGStockCar.item }),
 	distilationTower(new Item[] { Item.getItemFromBlock(BlockIDs.distilIdle.block) });
 
 	public Achievement	achievement;
