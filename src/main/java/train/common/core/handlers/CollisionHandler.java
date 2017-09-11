@@ -345,6 +345,7 @@ public class CollisionHandler {
 
 		double d2 = MathHelper.abs_max(d, d1);
 
+		if (d2 <= 0.7D && !(entityOne instanceof EntityPlayer)) {
 			d2 = MathHelper.sqrt_double(d2);
 			d /= d2;
 			d1 /= d2;
@@ -384,7 +385,7 @@ public class CollisionHandler {
 							if (f7 == 0) {
 
 								movingobjectposition.entityHit.addVelocity(d / 1.5, 0.0D, d1 / 1.5);
-								
+
 								entity.velocityChanged = true;
 								return;
 							}
@@ -403,20 +404,21 @@ public class CollisionHandler {
 						{
 
 							entity.attackEntityFrom(TrainsDamageSource.ranOver, j1);//DamageSource.causeMobDamage((EntityLiving) entity);
-								if (f7 > 0.0F) {
-									movingobjectposition.entityHit.addVelocity((entityOne.motionX * 2 * 0.60000002384185791D) / f7, 0.10000000000000001D, (entityOne.motionZ * 2 * 0.60000002384185791D) / f7);
-									entity.velocityChanged = true;
-								}
+							if (f7 > 0.0F) {
+								movingobjectposition.entityHit.addVelocity((entityOne.motionX * 2 * 0.60000002384185791D) / f7, 0.10000000000000001D, (entityOne.motionZ * 2 * 0.60000002384185791D) / f7);
+								entity.velocityChanged = true;
+							}
 
-								//worldObj.playSoundAtEntity(entityOne, "damage.fallsmall", 1.0F, 1.2F / (rand.nextFloat() * 0.2F + 0.9F));
-								entityOne.playSound("damage.fallsmall", 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
-								for (int var9 = 0; var9 < 4; ++var9) {
-									entity.worldObj.spawnParticle("crit", entity.posX + entity.motionX * var9 / 4.0D, entity.posY + entity.motionY * var9 / 4.0D, entity.posZ + entity.motionZ * var9 / 4.0D, -entity.motionX, -entity.motionY + 0.2D, -entity.motionZ);
-								}
-							
+							//worldObj.playSoundAtEntity(entityOne, "damage.fallsmall", 1.0F, 1.2F / (rand.nextFloat() * 0.2F + 0.9F));
+							entityOne.playSound("damage.fallsmall", 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
+							for (int var9 = 0; var9 < 4; ++var9) {
+								entity.worldObj.spawnParticle("crit", entity.posX + entity.motionX * var9 / 4.0D, entity.posY + entity.motionY * var9 / 4.0D, entity.posZ + entity.motionZ * var9 / 4.0D, -entity.motionX, -entity.motionY + 0.2D, -entity.motionZ);
+							}
+
 						}
 
 					}
+				}
 			}
 
 		}
