@@ -242,552 +242,552 @@ public class ModelLocoAlice040 extends ModelBase {
 																							 // 170
 
 		locoalice040Model[0].addBox(0F, 0F, 0F, 7, 7, 0, 0F); // Box 0
-		locoalice040Model[0].setRotationPoint(0F, 3F, 6F);
+		locoalice040Model[0].setRotationPoint(-32F, 3F, 6F);
 
 		locoalice040Model[1].addBox(0F, 0F, 0F, 7, 7, 0, 0F); // Box 1
-		locoalice040Model[1].setRotationPoint(14F, 3F, 6F);
+		locoalice040Model[1].setRotationPoint(-18F, 3F, 6F);
 
 		locoalice040Model[2].addBox(0F, 0F, 0F, 7, 7, 0, 0F); // Box 2
-		locoalice040Model[2].setRotationPoint(14F, 3F, -6F);
+		locoalice040Model[2].setRotationPoint(-18F, 3F, -6F);
 
 		locoalice040Model[3].addBox(0F, 0F, 0F, 7, 7, 0, 0F); // Box 3
-		locoalice040Model[3].setRotationPoint(0F, 3F, -6F);
+		locoalice040Model[3].setRotationPoint(-32F, 3F, -6F);
 
 		locoalice040Model[4].addShapeBox(0F, 0F, 0F, 52, 5, 12, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 4
-		locoalice040Model[4].setRotationPoint(-14F, 2F, -6F);
+		locoalice040Model[4].setRotationPoint(-46F, 2F, -6F);
 
 		locoalice040Model[5].addBox(0F, 0F, 0F, 52, 1, 22, 0F); // Box 5
-		locoalice040Model[5].setRotationPoint(-14F, 1F, -11F);
+		locoalice040Model[5].setRotationPoint(-46F, 1F, -11F);
 
 		locoalice040Model[6].addBox(0F, 0F, 0F, 1, 7, 22, 0F); // Box 6
-		locoalice040Model[6].setRotationPoint(-15F, 1F, -11F);
+		locoalice040Model[6].setRotationPoint(-47F, 1F, -11F);
 
 		locoalice040Model[7].addBox(0F, 0F, 0F, 3, 3, 3, 0F); // Box 7
-		locoalice040Model[7].setRotationPoint(-18F, 2F, 4F);
+		locoalice040Model[7].setRotationPoint(-50F, 2F, 4F);
 
 		locoalice040Model[8].addBox(0F, 0F, 0F, 3, 3, 3, 0F); // Box 8
-		locoalice040Model[8].setRotationPoint(-18F, 2F, -7F);
+		locoalice040Model[8].setRotationPoint(-50F, 2F, -7F);
 
 		locoalice040Model[9].addBox(0F, 0F, 0F, 4, 3, 3, 0F); // Box 9
-		locoalice040Model[9].setRotationPoint(39F, 2F, -7F);
+		locoalice040Model[9].setRotationPoint(7F, 2F, -7F);
 
 		locoalice040Model[10].addBox(0F, 0F, 0F, 1, 7, 22, 0F); // Box 10
-		locoalice040Model[10].setRotationPoint(38F, 1F, -11F);
+		locoalice040Model[10].setRotationPoint(6F, 1F, -11F);
 
 		locoalice040Model[11].addBox(0F, 0F, 0F, 4, 3, 3, 0F); // Box 11
-		locoalice040Model[11].setRotationPoint(39F, 2F, 4F);
+		locoalice040Model[11].setRotationPoint(7F, 2F, 4F);
 
 		locoalice040Model[12].addBox(0F, 1F, 0F, 8, 6, 14, 0F); // Box 12
-		locoalice040Model[12].setRotationPoint(-11F, -6F, -7F);
+		locoalice040Model[12].setRotationPoint(-43F, -6F, -7F);
 
 		locoalice040Model[13].addBox(0F, 0F, 0F, 2, 15, 2, 0F); // Box 18
-		locoalice040Model[13].setRotationPoint(-8F, -26F, -1F);
+		locoalice040Model[13].setRotationPoint(-40F, -26F, -1F);
 
 		locoalice040Model[14].addBox(0F, 0F, 0F, 24, 6, 14, 0F); // Box 20
-		locoalice040Model[14].setRotationPoint(-3F, -8F, -7F);
+		locoalice040Model[14].setRotationPoint(-35F, -8F, -7F);
 
 		locoalice040Model[15].addBox(0F, 0F, 0F, 1, 12, 2, 0F); // Box 21
-		locoalice040Model[15].setRotationPoint(21F, -11F, -9F);
+		locoalice040Model[15].setRotationPoint(-11F, -11F, -9F);
 
 		locoalice040Model[16].addShapeBox(0F, 0F, 0F, 2, 12, 2, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F,
 				-2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 22
-		locoalice040Model[16].setRotationPoint(21F, -11F, -11F);
+		locoalice040Model[16].setRotationPoint(-11F, -11F, -11F);
 
 		locoalice040Model[17].addShapeBox(0F, 0F, 0F, 2, 12, 2, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, 0F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F); // Box 23
-		locoalice040Model[17].setRotationPoint(21F, -11F, 9F);
+		locoalice040Model[17].setRotationPoint(-11F, -11F, 9F);
 
 		locoalice040Model[18].addBox(0F, 0F, 0F, 1, 12, 2, 0F); // Box 24
-		locoalice040Model[18].setRotationPoint(21F, -11F, 7F);
+		locoalice040Model[18].setRotationPoint(-11F, -11F, 7F);
 
 		locoalice040Model[19].addBox(0F, 0F, 0F, 1, 12, 22, 0F); // Box 25
-		locoalice040Model[19].setRotationPoint(39F, -11F, -11F);
+		locoalice040Model[19].setRotationPoint(7F, -11F, -11F);
 
 		locoalice040Model[20].addBox(0F, 0F, 0F, 10, 12, 1, 0F); // Box 26
-		locoalice040Model[20].setRotationPoint(23F, -11F, -11F);
+		locoalice040Model[20].setRotationPoint(-9F, -11F, -11F);
 
 		locoalice040Model[21].addBox(0F, 0F, 0F, 10, 12, 1, 0F); // Box 27
-		locoalice040Model[21].setRotationPoint(23F, -11F, 10F);
+		locoalice040Model[21].setRotationPoint(-9F, -11F, 10F);
 
 		locoalice040Model[22].addShapeBox(0F, 0F, 0F, 24, 3, 14, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 29
-		locoalice040Model[22].setRotationPoint(-3F, -11F, -7F);
+		locoalice040Model[22].setRotationPoint(-35F, -11F, -7F);
 
 		locoalice040Model[23].addShapeBox(0F, 0F, 0F, 24, 2, 12, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, -2F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 30
-		locoalice040Model[23].setRotationPoint(-3F, -13F, -6F);
+		locoalice040Model[23].setRotationPoint(-35F, -13F, -6F);
 
 		locoalice040Model[24].addShapeBox(0F, 0F, 0F, 24, 1, 8, 0F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, -3F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 31
-		locoalice040Model[24].setRotationPoint(-3F, -14F, -4F);
+		locoalice040Model[24].setRotationPoint(-35F, -14F, -4F);
 
 		locoalice040Model[25].addShapeBox(0F, -2F, 0F, 8, 3, 14, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 35
-		locoalice040Model[25].setRotationPoint(-11F, -6F, -7F);
+		locoalice040Model[25].setRotationPoint(-43F, -6F, -7F);
 
 		locoalice040Model[26].addShapeBox(0F, 0F, 0F, 8, 2, 12, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, -2F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 36
-		locoalice040Model[26].setRotationPoint(-11F, -10F, -6F);
+		locoalice040Model[26].setRotationPoint(-43F, -10F, -6F);
 
 		locoalice040Model[27].addShapeBox(0F, 0F, 0F, 8, 1, 8, 0F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, -3F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 37
-		locoalice040Model[27].setRotationPoint(-11F, -11F, -4F);
+		locoalice040Model[27].setRotationPoint(-43F, -11F, -4F);
 
 		locoalice040Model[28].addShapeBox(0F, 0F, 0F, 3, 2, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F); // Box 38
-		locoalice040Model[28].setRotationPoint(0F, -1F, 5F);
+		locoalice040Model[28].setRotationPoint(-32F, -1F, 5F);
 
 		locoalice040Model[29].addShapeBox(0F, 0F, 0F, 3, 2, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F,
 				0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, 0F, 0F, 0F); // Box 39
-		locoalice040Model[29].setRotationPoint(4F, -1F, 5F);
+		locoalice040Model[29].setRotationPoint(-28F, -1F, 5F);
 
 		locoalice040Model[30].addBox(0F, 0F, 0F, 1, 2, 1, 0F); // Box 40
-		locoalice040Model[30].setRotationPoint(3F, -1F, 5F);
+		locoalice040Model[30].setRotationPoint(-29F, -1F, 5F);
 
 		locoalice040Model[31].addBox(0F, 0F, 0F, 24, 3, 10, 0F); // Box 41
-		locoalice040Model[31].setRotationPoint(-3F, -2F, -5F);
+		locoalice040Model[31].setRotationPoint(-35F, -2F, -5F);
 
 		locoalice040Model[32].addShapeBox(0F, 0F, 0F, 3, 2, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F,
 				0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, 0F, 0F, 0F); // Box 42
-		locoalice040Model[32].setRotationPoint(17F, -1F, 5F);
+		locoalice040Model[32].setRotationPoint(-15F, -1F, 5F);
 
 		locoalice040Model[33].addBox(0F, 0F, 0F, 1, 2, 1, 0F); // Box 43
-		locoalice040Model[33].setRotationPoint(16F, -1F, 5F);
+		locoalice040Model[33].setRotationPoint(-16F, -1F, 5F);
 
 		locoalice040Model[34].addShapeBox(0F, 0F, 0F, 3, 2, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F); // Box 44
-		locoalice040Model[34].setRotationPoint(13F, -1F, 5F);
+		locoalice040Model[34].setRotationPoint(-19F, -1F, 5F);
 
 		locoalice040Model[35].addBox(0F, 0F, 0F, 8, 11, 14, 0F); // Box 45
-		locoalice040Model[35].setRotationPoint(21F, -10F, -7F);
+		locoalice040Model[35].setRotationPoint(-11F, -10F, -7F);
 
 		locoalice040Model[36].addShapeBox(0F, 0F, 0F, 8, 1, 14, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 46
-		locoalice040Model[36].setRotationPoint(21F, -11F, -7F);
+		locoalice040Model[36].setRotationPoint(-11F, -11F, -7F);
 
 		locoalice040Model[37].addShapeBox(0F, 0F, 0F, 8, 1, 12, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, -2F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 47
-		locoalice040Model[37].setRotationPoint(21F, -12F, -6F);
+		locoalice040Model[37].setRotationPoint(-11F, -12F, -6F);
 
 		locoalice040Model[38].addShapeBox(0F, 0F, 0F, 8, 1, 8, 0F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, -3F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 48
-		locoalice040Model[38].setRotationPoint(21F, -13F, -4F);
+		locoalice040Model[38].setRotationPoint(-11F, -13F, -4F);
 
 		locoalice040Model[39].addBox(0F, 0F, 0F, 2, 2, 2, 0F); // Box 49
-		locoalice040Model[39].setRotationPoint(24F, -15F, -1F);
+		locoalice040Model[39].setRotationPoint(-8F, -15F, -1F);
 
 		locoalice040Model[40].addShapeBox(0F, 0F, 0F, 2, 2, 1, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 50
-		locoalice040Model[40].setRotationPoint(24F, -14F, -3F);
+		locoalice040Model[40].setRotationPoint(-8F, -14F, -3F);
 
 		locoalice040Model[41].addShapeBox(0F, 0F, 0F, 2, 3, 1, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 51
-		locoalice040Model[41].setRotationPoint(24F, -15F, -2F);
+		locoalice040Model[41].setRotationPoint(-8F, -15F, -2F);
 
 		locoalice040Model[42].addShapeBox(0F, 0F, 0F, 2, 3, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 52
-		locoalice040Model[42].setRotationPoint(24F, -15F, 1F);
+		locoalice040Model[42].setRotationPoint(-8F, -15F, 1F);
 
 		locoalice040Model[43].addShapeBox(0F, 0F, 0F, 2, 2, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 53
-		locoalice040Model[43].setRotationPoint(24F, -14F, 2F);
+		locoalice040Model[43].setRotationPoint(-8F, -14F, 2F);
 
 		locoalice040Model[44].addShapeBox(0F, 0F, 0F, 1, 2, 2, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 54
-		locoalice040Model[44].setRotationPoint(27F, -14F, -1F);
+		locoalice040Model[44].setRotationPoint(-5F, -14F, -1F);
 
 		locoalice040Model[45].addShapeBox(0F, 0F, 0F, 1, 2, 2, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 56
-		locoalice040Model[45].setRotationPoint(26F, -15F, -1F);
+		locoalice040Model[45].setRotationPoint(-6F, -15F, -1F);
 
 		locoalice040Model[46].addShapeBox(0F, 0F, 0F, 1, 2, 2, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 57
-		locoalice040Model[46].setRotationPoint(23F, -15F, -1F);
+		locoalice040Model[46].setRotationPoint(-9F, -15F, -1F);
 
 		locoalice040Model[47].addShapeBox(0F, 0F, 0F, 1, 2, 2, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 58
-		locoalice040Model[47].setRotationPoint(22F, -14F, -1F);
+		locoalice040Model[47].setRotationPoint(-10F, -14F, -1F);
 
 		locoalice040Model[48].addShapeBox(0F, 0F, 0F, 1, 3, 1, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -2F, 0F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 60
-		locoalice040Model[48].setRotationPoint(23F, -15F, 1F);
+		locoalice040Model[48].setRotationPoint(-9F, -15F, 1F);
 
 		locoalice040Model[49].addShapeBox(0F, 0F, 0F, 1, 3, 1, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -2F, 0F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 61
-		locoalice040Model[49].setRotationPoint(22F, -14F, 1F);
+		locoalice040Model[49].setRotationPoint(-10F, -14F, 1F);
 
 		locoalice040Model[50].addShapeBox(0F, 0F, 0F, 1, 3, 1, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 62
-		locoalice040Model[50].setRotationPoint(23F, -14F, 2F);
+		locoalice040Model[50].setRotationPoint(-9F, -14F, 2F);
 
 		locoalice040Model[51].addShapeBox(0F, 0F, 0F, 1, 3, 1, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 63
-		locoalice040Model[51].setRotationPoint(23F, -14F, 2F);
+		locoalice040Model[51].setRotationPoint(-9F, -14F, 2F);
 
 		locoalice040Model[52].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -2F, 0F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 64
-		locoalice040Model[52].setRotationPoint(22F, -13F, 2F);
+		locoalice040Model[52].setRotationPoint(-10F, -13F, 2F);
 
 		locoalice040Model[53].addShapeBox(0F, 0F, 0F, 1, 3, 1, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -2F, 0F, 0F, -1F, 0F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 65
-		locoalice040Model[53].setRotationPoint(26F, -15F, 1F);
+		locoalice040Model[53].setRotationPoint(-6F, -15F, 1F);
 
 		locoalice040Model[54].addShapeBox(0F, 0F, 0F, 1, 3, 1, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, -1F, 0F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 66
-		locoalice040Model[54].setRotationPoint(27F, -14F, 1F);
+		locoalice040Model[54].setRotationPoint(-5F, -14F, 1F);
 
 		locoalice040Model[55].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -2F, 0F, 0F, -1F, 0F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 67
-		locoalice040Model[55].setRotationPoint(27F, -13F, 2F);
+		locoalice040Model[55].setRotationPoint(-5F, -13F, 2F);
 
 		locoalice040Model[56].addShapeBox(0F, 0F, 0F, 1, 3, 1, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -2F, 0F, 0F, -2F, 0F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 68
-		locoalice040Model[56].setRotationPoint(26F, -14F, 2F);
+		locoalice040Model[56].setRotationPoint(-6F, -14F, 2F);
 
 		locoalice040Model[57].addShapeBox(0F, 0F, 0F, 1, 3, 1, 0F, 0F, -1F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 69
-		locoalice040Model[57].setRotationPoint(27F, -14F, -2F);
+		locoalice040Model[57].setRotationPoint(-5F, -14F, -2F);
 
 		locoalice040Model[58].addShapeBox(0F, 0F, 0F, 1, 3, 1, 0F, 0F, -1F, 0F, 0F, -2F, 0F, 0F, -1F, 0F, 0F, 0F, 0F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 70
-		locoalice040Model[58].setRotationPoint(26F, -15F, -2F);
+		locoalice040Model[58].setRotationPoint(-6F, -15F, -2F);
 
 		locoalice040Model[59].addShapeBox(0F, 0F, 0F, 1, 3, 1, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, -1F, 0F, 0F, 0F, 0F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 71
-		locoalice040Model[59].setRotationPoint(26F, -14F, -3F);
+		locoalice040Model[59].setRotationPoint(-6F, -14F, -3F);
 
 		locoalice040Model[60].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -1F, 0F, 0F, -2F, 0F, 0F, -1F, 0F, 0F, 0F, 0F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 72
-		locoalice040Model[60].setRotationPoint(27F, -13F, -3F);
+		locoalice040Model[60].setRotationPoint(-5F, -13F, -3F);
 
 		locoalice040Model[61].addShapeBox(0F, 0F, 0F, 1, 3, 1, 0F, 0F, -2F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, -2F, 0F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 73
-		locoalice040Model[61].setRotationPoint(22F, -14F, -2F);
+		locoalice040Model[61].setRotationPoint(-10F, -14F, -2F);
 
 		locoalice040Model[62].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -2F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, -1F, 0F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 74
-		locoalice040Model[62].setRotationPoint(22F, -13F, -3F);
+		locoalice040Model[62].setRotationPoint(-10F, -13F, -3F);
 
 		locoalice040Model[63].addShapeBox(0F, 0F, 0F, 1, 3, 1, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, -1F, 0F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 75
-		locoalice040Model[63].setRotationPoint(23F, -14F, -3F);
+		locoalice040Model[63].setRotationPoint(-9F, -14F, -3F);
 
 		locoalice040Model[64].addShapeBox(0F, 0F, 0F, 1, 3, 1, 0F, 0F, -2F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, -1F, 0F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 76
-		locoalice040Model[64].setRotationPoint(23F, -15F, -2F);
+		locoalice040Model[64].setRotationPoint(-9F, -15F, -2F);
 
 		locoalice040Model[65].addBox(0F, 0F, 0F, 1, 3, 1, 0F); // Box 77
-		locoalice040Model[65].setRotationPoint(24F, -18F, 0F);
+		locoalice040Model[65].setRotationPoint(-8F, -18F, 0F);
 
 		locoalice040Model[66].addBox(0F, 0F, 0F, 1, 3, 1, 0F); // Box 78
-		locoalice040Model[66].setRotationPoint(25F, -18F, -1F);
+		locoalice040Model[66].setRotationPoint(-7F, -18F, -1F);
 
 		locoalice040Model[67].addBox(0F, 0F, 0F, 0, 2, 1, 0F); // Box 79
-		locoalice040Model[67].setRotationPoint(20F, -1F, 5F);
+		locoalice040Model[67].setRotationPoint(-12F, -1F, 5F);
 
 		locoalice040Model[68].addBox(0F, 0F, 0F, 0, 2, 1, 0F); // Box 80
-		locoalice040Model[68].setRotationPoint(13F, -1F, 5F);
+		locoalice040Model[68].setRotationPoint(-19F, -1F, 5F);
 
 		locoalice040Model[69].addBox(0F, 0F, 0F, 0, 2, 1, 0F); // Box 81
-		locoalice040Model[69].setRotationPoint(0F, -1F, 5F);
+		locoalice040Model[69].setRotationPoint(-32F, -1F, 5F);
 
 		locoalice040Model[70].addBox(0F, 0F, 0F, 0, 2, 1, 0F); // Box 82
-		locoalice040Model[70].setRotationPoint(7F, -1F, 5F);
+		locoalice040Model[70].setRotationPoint(-25F, -1F, 5F);
 
 		locoalice040Model[71].addBox(0F, 0F, 0F, 0, 2, 1, 0F); // Box 83
-		locoalice040Model[71].setRotationPoint(20F, -1F, -6F);
+		locoalice040Model[71].setRotationPoint(-12F, -1F, -6F);
 
 		locoalice040Model[72].addShapeBox(0F, 0F, 0F, 3, 2, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F,
 				0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, 0F, 0F, 0F); // Box 84
-		locoalice040Model[72].setRotationPoint(17F, -1F, -6F);
+		locoalice040Model[72].setRotationPoint(-15F, -1F, -6F);
 
 		locoalice040Model[73].addBox(0F, 0F, 0F, 1, 2, 1, 0F); // Box 85
-		locoalice040Model[73].setRotationPoint(16F, -1F, -6F);
+		locoalice040Model[73].setRotationPoint(-16F, -1F, -6F);
 
 		locoalice040Model[74].addShapeBox(0F, 0F, 0F, 3, 2, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F); // Box 86
-		locoalice040Model[74].setRotationPoint(13F, -1F, -6F);
+		locoalice040Model[74].setRotationPoint(-19F, -1F, -6F);
 
 		locoalice040Model[75].addBox(0F, 0F, 0F, 0, 2, 1, 0F); // Box 87
-		locoalice040Model[75].setRotationPoint(13F, -1F, -6F);
+		locoalice040Model[75].setRotationPoint(-19F, -1F, -6F);
 
 		locoalice040Model[76].addBox(0F, 0F, 0F, 0, 2, 1, 0F); // Box 88
-		locoalice040Model[76].setRotationPoint(7F, -1F, -6F);
+		locoalice040Model[76].setRotationPoint(-25F, -1F, -6F);
 
 		locoalice040Model[77].addShapeBox(0F, 0F, 0F, 3, 2, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F,
 				0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, 0F, 0F, 0F); // Box 89
-		locoalice040Model[77].setRotationPoint(4F, -1F, -6F);
+		locoalice040Model[77].setRotationPoint(-28F, -1F, -6F);
 
 		locoalice040Model[78].addBox(0F, 0F, 0F, 1, 2, 1, 0F); // Box 90
-		locoalice040Model[78].setRotationPoint(3F, -1F, -6F);
+		locoalice040Model[78].setRotationPoint(-29F, -1F, -6F);
 
 		locoalice040Model[79].addShapeBox(0F, 0F, 0F, 3, 2, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F); // Box 91
-		locoalice040Model[79].setRotationPoint(0F, -1F, -6F);
+		locoalice040Model[79].setRotationPoint(-32F, -1F, -6F);
 
 		locoalice040Model[80].addBox(0F, 0F, 0F, 0, 2, 1, 0F); // Box 92
-		locoalice040Model[80].setRotationPoint(0F, -1F, -6F);
+		locoalice040Model[80].setRotationPoint(-32F, -1F, -6F);
 
 		locoalice040Model[81].addShapeBox(0F, 0F, 0F, 1, 1, 2, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F); // Box 93
-		locoalice040Model[81].setRotationPoint(-9F, -26F, -1F);
+		locoalice040Model[81].setRotationPoint(-41F, -26F, -1F);
 
 		locoalice040Model[82].addShapeBox(0F, 0F, 0F, 1, 1, 2, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F,
 				0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F); // Box 94
-		locoalice040Model[82].setRotationPoint(-6F, -26F, -1F);
+		locoalice040Model[82].setRotationPoint(-38F, -26F, -1F);
 
 		locoalice040Model[83].addShapeBox(0F, 0F, 0F, 2, 1, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F); // Box 95
-		locoalice040Model[83].setRotationPoint(-8F, -26F, 1F);
+		locoalice040Model[83].setRotationPoint(-40F, -26F, 1F);
 
 		locoalice040Model[84].addShapeBox(0F, 0F, 0F, 2, 1, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F,
 				0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 96
-		locoalice040Model[84].setRotationPoint(-8F, -26F, -2F);
+		locoalice040Model[84].setRotationPoint(-40F, -26F, -2F);
 
 		locoalice040Model[85].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F,
 				0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, -1F, 0F, 0F); // Box 100
-		locoalice040Model[85].setRotationPoint(-9F, -26F, -2F);
+		locoalice040Model[85].setRotationPoint(-41F, -26F, -2F);
 
 		locoalice040Model[86].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F,
 				0F, -1F, -1F, 0F, -1F, -1F, 0F, 0F, 0F, 0F, 0F); // Box 101
-		locoalice040Model[86].setRotationPoint(-6F, -26F, -2F);
+		locoalice040Model[86].setRotationPoint(-38F, -26F, -2F);
 
 		locoalice040Model[87].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F,
 				0F, 0F, -1F, 0F, 0F, -1F, 0F, -1F, 0F, 0F, -1F); // Box 102
-		locoalice040Model[87].setRotationPoint(-6F, -26F, 1F);
+		locoalice040Model[87].setRotationPoint(-38F, -26F, 1F);
 
 		locoalice040Model[88].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, -1F, 0F, -1F); // Box 103
-		locoalice040Model[88].setRotationPoint(-9F, -26F, 1F);
+		locoalice040Model[88].setRotationPoint(-41F, -26F, 1F);
 
 		locoalice040Model[89].addBox(0F, 0F, 0F, 30, 1, 1, 0F); // Box 104
-		locoalice040Model[89].setRotationPoint(-9F, -2F, -8F);
+		locoalice040Model[89].setRotationPoint(-41F, -2F, -8F);
 
 		locoalice040Model[90].addBox(0F, 0F, 0F, 2, 1, 2, 0F); // Box 108
-		locoalice040Model[90].setRotationPoint(8F, -15F, -1F);
+		locoalice040Model[90].setRotationPoint(-24F, -15F, -1F);
 
 		locoalice040Model[91].addShapeBox(0F, 0F, 0F, 2, 2, 1, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 109
-		locoalice040Model[91].setRotationPoint(8F, -15F, -2F);
+		locoalice040Model[91].setRotationPoint(-24F, -15F, -2F);
 
 		locoalice040Model[92].addShapeBox(0F, 0F, 0F, 2, 2, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 110
-		locoalice040Model[92].setRotationPoint(8F, -15F, 1F);
+		locoalice040Model[92].setRotationPoint(-24F, -15F, 1F);
 
 		locoalice040Model[93].addShapeBox(0F, 0F, 0F, 1, 1, 2, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 111
-		locoalice040Model[93].setRotationPoint(7F, -15F, -1F);
+		locoalice040Model[93].setRotationPoint(-25F, -15F, -1F);
 
 		locoalice040Model[94].addShapeBox(0F, 0F, 0F, 1, 1, 2, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 112
-		locoalice040Model[94].setRotationPoint(10F, -15F, -1F);
+		locoalice040Model[94].setRotationPoint(-22F, -15F, -1F);
 
 		locoalice040Model[95].addShapeBox(0F, 0F, 0F, 1, 2, 1, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -2F, 0F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 113
-		locoalice040Model[95].setRotationPoint(7F, -15F, 1F);
+		locoalice040Model[95].setRotationPoint(-25F, -15F, 1F);
 
 		locoalice040Model[96].addShapeBox(0F, 0F, 0F, 1, 2, 1, 0F, 0F, -2F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, -1F, 0F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 114
-		locoalice040Model[96].setRotationPoint(7F, -15F, -2F);
+		locoalice040Model[96].setRotationPoint(-25F, -15F, -2F);
 
 		locoalice040Model[97].addShapeBox(0F, 0F, 0F, 1, 2, 1, 0F, 0F, -1F, 0F, 0F, -2F, 0F, 0F, -1F, 0F, 0F, 0F, 0F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 115
-		locoalice040Model[97].setRotationPoint(10F, -15F, -2F);
+		locoalice040Model[97].setRotationPoint(-22F, -15F, -2F);
 
 		locoalice040Model[98].addShapeBox(0F, 0F, 0F, 1, 2, 1, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -2F, 0F, 0F, -1F, 0F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 116
-		locoalice040Model[98].setRotationPoint(10F, -15F, 1F);
+		locoalice040Model[98].setRotationPoint(-22F, -15F, 1F);
 
 		locoalice040Model[99].addBox(0F, 0F, 0F, 5, 10, 3, 0F); // Box 117
-		locoalice040Model[99].setRotationPoint(22F, -9F, -10F);
+		locoalice040Model[99].setRotationPoint(-10F, -9F, -10F);
 
 		locoalice040Model[100].addBox(0F, 0F, 0F, 5, 1, 1, 0F); // Box 118
-		locoalice040Model[100].setRotationPoint(18F, 0F, 7F);
+		locoalice040Model[100].setRotationPoint(-14F, 0F, 7F);
 
 		locoalice040Model[101].addBox(0F, 0F, 0F, 5, 1, 1, 0F); // Box 119
-		locoalice040Model[101].setRotationPoint(18F, -2F, 7F);
+		locoalice040Model[101].setRotationPoint(-14F, -2F, 7F);
 
 		locoalice040Model[102].addBox(0F, 0F, 0F, 1, 3, 1, 0F); // Box 120
-		locoalice040Model[102].setRotationPoint(17F, -2F, 7F);
+		locoalice040Model[102].setRotationPoint(-15F, -2F, 7F);
 
 		locoalice040Model[103].addBox(0F, 0F, 0F, 1, 6, 1, 0F); // Box 121
-		locoalice040Model[103].setRotationPoint(19F, -2F, 9F);
+		locoalice040Model[103].setRotationPoint(-13F, -2F, 9F);
 
 		locoalice040Model[104].addBox(0F, 0F, 0F, 1, 1, 4, 0F); // Box 122
-		locoalice040Model[104].setRotationPoint(19F, -2F, 5F);
+		locoalice040Model[104].setRotationPoint(-13F, -2F, 5F);
 
 		locoalice040Model[105].addBox(0F, 0F, 0F, 1, 2, 4, 0F); // Box 123
-		locoalice040Model[105].setRotationPoint(-12F, -2F, -2F);
+		locoalice040Model[105].setRotationPoint(-44F, -2F, -2F);
 
 		locoalice040Model[106].addBox(0F, 0F, 0F, 1, 4, 4, 0F); // Box 124
-		locoalice040Model[106].setRotationPoint(-12F, -6F, -2F);
+		locoalice040Model[106].setRotationPoint(-44F, -6F, -2F);
 
 		locoalice040Model[107].addBox(0F, 0F, 0F, 1, 2, 4, 0F); // Box 125
-		locoalice040Model[107].setRotationPoint(-12F, -8F, -2F);
+		locoalice040Model[107].setRotationPoint(-44F, -8F, -2F);
 
 		locoalice040Model[108].addBox(0F, 0F, 0F, 1, 4, 2, 0F); // Box 126
-		locoalice040Model[108].setRotationPoint(-12F, -6F, -4F);
+		locoalice040Model[108].setRotationPoint(-44F, -6F, -4F);
 
 		locoalice040Model[109].addBox(0F, 0F, 0F, 1, 4, 2, 0F); // Box 127
-		locoalice040Model[109].setRotationPoint(-12F, -6F, 2F);
+		locoalice040Model[109].setRotationPoint(-44F, -6F, 2F);
 
 		locoalice040Model[110].addShapeBox(0F, 0F, 0F, 1, 2, 2, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 128
-		locoalice040Model[110].setRotationPoint(-12F, -8F, 2F);
+		locoalice040Model[110].setRotationPoint(-44F, -8F, 2F);
 
 		locoalice040Model[111].addShapeBox(0F, 0F, 0F, 1, 2, 2, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 129
-		locoalice040Model[111].setRotationPoint(-12F, -8F, -4F);
+		locoalice040Model[111].setRotationPoint(-44F, -8F, -4F);
 
 		locoalice040Model[112].addShapeBox(0F, 0F, 0F, 1, 2, 2, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F,
 				0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 130
-		locoalice040Model[112].setRotationPoint(-12F, -2F, -4F);
+		locoalice040Model[112].setRotationPoint(-44F, -2F, -4F);
 
 		locoalice040Model[113].addShapeBox(0F, 0F, 0F, 1, 2, 2, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F); // Box 131
-		locoalice040Model[113].setRotationPoint(-12F, -2F, 2F);
+		locoalice040Model[113].setRotationPoint(-44F, -2F, 2F);
 
 		locoalice040Model[114].addBox(0F, 0F, 0F, 1, 2, 2, 0F); // Box 132
-		locoalice040Model[114].setRotationPoint(-13F, -5F, -1F);
+		locoalice040Model[114].setRotationPoint(-45F, -5F, -1F);
 
 		locoalice040Model[115].addBox(0F, 0F, 0F, 1, 1, 2, 0F); // Box 133
-		locoalice040Model[115].setRotationPoint(-13F, -6F, -4F);
+		locoalice040Model[115].setRotationPoint(-45F, -6F, -4F);
 
 		locoalice040Model[116].addBox(0F, 0F, 0F, 1, 1, 2, 0F); // Box 134
-		locoalice040Model[116].setRotationPoint(-13F, -3F, -4F);
+		locoalice040Model[116].setRotationPoint(-45F, -3F, -4F);
 
 		locoalice040Model[117].addBox(0F, 0F, 0F, 1, 1, 1, 0F); // Box 135
-		locoalice040Model[117].setRotationPoint(-12F, -3F, -5F);
+		locoalice040Model[117].setRotationPoint(-44F, -3F, -5F);
 
 		locoalice040Model[118].addBox(0F, 0F, 0F, 1, 1, 1, 0F); // Box 136
-		locoalice040Model[118].setRotationPoint(-12F, -6F, -5F);
+		locoalice040Model[118].setRotationPoint(-44F, -6F, -5F);
 
 		locoalice040Model[119].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F,
 				-1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 137
-		locoalice040Model[119].setRotationPoint(-13F, -6F, -5F);
+		locoalice040Model[119].setRotationPoint(-45F, -6F, -5F);
 
 		locoalice040Model[120].addShapeBox(0F, 0F, -8F, 1, 1, 1, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F,
 				-1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 138
-		locoalice040Model[120].setRotationPoint(-13F, -3F, 3F);
+		locoalice040Model[120].setRotationPoint(-45F, -3F, 3F);
 
 		locoalice040Model[121].addBox(0F, 0F, 0F, 2, 11, 2, 0F); // Box 139
-		locoalice040Model[121].setRotationPoint(27F, -10F, 8F);
+		locoalice040Model[121].setRotationPoint(-5F, -10F, 8F);
 
 		locoalice040Model[122].addBox(0F, 0F, 0F, 1, 2, 1, 0F); // Box 140
-		locoalice040Model[122].setRotationPoint(27F, -12F, 9F);
+		locoalice040Model[122].setRotationPoint(-5F, -12F, 9F);
 
 		locoalice040Model[123].addBox(0F, 0F, 0F, 3, 1, 1, 0F); // Box 141
-		locoalice040Model[123].setRotationPoint(27F, -13F, 9F);
+		locoalice040Model[123].setRotationPoint(-5F, -13F, 9F);
 
 		locoalice040Model[124].addBox(0F, 0F, 0F, 1, 1, 1, 0F); // Box 142
-		locoalice040Model[124].setRotationPoint(29F, -14F, 9F);
+		locoalice040Model[124].setRotationPoint(-3F, -14F, 9F);
 
 		locoalice040Model[125].addBox(0F, 0F, 0F, 1, 10, 1, 0F); // Box 143
-		locoalice040Model[125].setRotationPoint(29F, -8F, -5F);
+		locoalice040Model[125].setRotationPoint(-3F, -8F, -5F);
 
 		locoalice040Model[126].addBox(0F, 0F, 0F, 1, 10, 1, 0F); // Box 144
-		locoalice040Model[126].setRotationPoint(29F, -8F, 4F);
+		locoalice040Model[126].setRotationPoint(-3F, -8F, 4F);
 
 		locoalice040Model[127].addShapeBox(0F, 0F, 0F, 1, 1, 22, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 145
-		locoalice040Model[127].setRotationPoint(38F, 0F, -11F);
+		locoalice040Model[127].setRotationPoint(6F, 0F, -11F);
 
 		locoalice040Model[128].addShapeBox(0F, 0F, 0F, 3, 3, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F,
 				0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F); // Box 146
-		locoalice040Model[128].setRotationPoint(2F, 5F, -7F);
+		locoalice040Model[128].setRotationPoint(-30F, 5F, -7F);
 
 		locoalice040Model[129].addShapeBox(0F, 0F, 0F, 3, 3, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F,
 				0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F); // Box 147
-		locoalice040Model[129].setRotationPoint(16F, 5F, -7F);
+		locoalice040Model[129].setRotationPoint(-16F, 5F, -7F);
 
 		locoalice040Model[130].addShapeBox(0F, 0F, 0F, 3, 3, 1, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 148
-		locoalice040Model[130].setRotationPoint(16F, 5F, 6F);
+		locoalice040Model[130].setRotationPoint(-16F, 5F, 6F);
 
 		locoalice040Model[131].addShapeBox(0F, 0F, 0F, 3, 3, 1, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 149
-		locoalice040Model[131].setRotationPoint(2F, 5F, 6F);
+		locoalice040Model[131].setRotationPoint(-30F, 5F, 6F);
 
 		locoalice040Model[132].addBox(0F, 0F, 0F, 15, 1, 0, 0F); // Box 150
-		locoalice040Model[132].setRotationPoint(3F, 7F, -7F);
+		locoalice040Model[132].setRotationPoint(-29F, 7F, -7F);
 
 		locoalice040Model[133].addBox(0F, 0F, 0F, 6, 3, 3, 0F); // Box 151
-		locoalice040Model[133].setRotationPoint(-12F, 2F, -9F);
-		locoalice040Model[133].rotateAngleZ = 0.10471976F;
+		locoalice040Model[133].setRotationPoint(-44F, 2F, -9F);
+		locoalice040Model[133].rotateAngleZ = -0.10471976F;
 
 		locoalice040Model[134].addBox(-8F, 0F, 0F, 25, 1, 1, 0F); // Box 152
-		locoalice040Model[134].setRotationPoint(1F, 5F, -8F);
-		locoalice040Model[134].rotateAngleZ = 0.13962634F;
+		locoalice040Model[134].setRotationPoint(-31F, 5F, -8F);
+		locoalice040Model[134].rotateAngleZ = -0.13962634F;
 
 		locoalice040Model[135].addBox(0F, 0F, 0F, 11, 3, 3, 0F); // Box 153
-		locoalice040Model[135].setRotationPoint(-12F, 2F, -9F);
-		locoalice040Model[135].rotateAngleZ = 0.10471976F;
+		locoalice040Model[135].setRotationPoint(-44F, 2F, -9F);
+		locoalice040Model[135].rotateAngleZ = -0.10471976F;
 
 		locoalice040Model[136].addBox(-9F, 1F, 0F, 20, 1, 1, 0F); // Box 154
-		locoalice040Model[136].setRotationPoint(7F, 4F, 7F);
-		locoalice040Model[136].rotateAngleZ = 0.05235988F;
+		locoalice040Model[136].setRotationPoint(-25F, 4F, 7F);
+		locoalice040Model[136].rotateAngleZ = -0.05235988F;
 
 		locoalice040Model[137].addBox(0F, 0F, 0F, 6, 3, 3, 0F); // Box 155
-		locoalice040Model[137].setRotationPoint(-12F, 2F, 6F);
-		locoalice040Model[137].rotateAngleZ = 0.10471976F;
+		locoalice040Model[137].setRotationPoint(-44F, 2F, 6F);
+		locoalice040Model[137].rotateAngleZ = -0.10471976F;
 
 		locoalice040Model[138].addBox(0F, 0F, 0F, 11, 3, 3, 0F); // Box 156
-		locoalice040Model[138].setRotationPoint(-12F, 2F, 6F);
-		locoalice040Model[138].rotateAngleZ = 0.10471976F;
+		locoalice040Model[138].setRotationPoint(-44F, 2F, 6F);
+		locoalice040Model[138].rotateAngleZ = -0.10471976F;
 
 		locoalice040Model[139].addBox(0F, 0F, 0F, 15, 1, 0, 0F); // Box 157
-		locoalice040Model[139].setRotationPoint(3F, 5F, 7F);
+		locoalice040Model[139].setRotationPoint(-29F, 5F, 7F);
 
 		locoalice040Model[140].addShapeBox(0F, 0F, 0F, 2, 2, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 158
-		locoalice040Model[140].setRotationPoint(-8F, -12F, 1F);
+		locoalice040Model[140].setRotationPoint(-40F, -12F, 1F);
 
 		locoalice040Model[141].addShapeBox(0F, 0F, 0F, 2, 2, 1, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 159
-		locoalice040Model[141].setRotationPoint(-8F, -12F, -2F);
+		locoalice040Model[141].setRotationPoint(-40F, -12F, -2F);
 
 		locoalice040Model[142].addShapeBox(0F, 0F, 0F, 1, 1, 2, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 160
-		locoalice040Model[142].setRotationPoint(-9F, -12F, -1F);
+		locoalice040Model[142].setRotationPoint(-41F, -12F, -1F);
 
 		locoalice040Model[143].addShapeBox(0F, 0F, 0F, 1, 1, 2, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 161
-		locoalice040Model[143].setRotationPoint(-6F, -12F, -1F);
+		locoalice040Model[143].setRotationPoint(-38F, -12F, -1F);
 
 		locoalice040Model[144].addShapeBox(0F, 0F, 0F, 1, 2, 1, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -2F, 0F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 162
-		locoalice040Model[144].setRotationPoint(-9F, -12F, 1F);
+		locoalice040Model[144].setRotationPoint(-41F, -12F, 1F);
 
 		locoalice040Model[145].addShapeBox(0F, 0F, 0F, 1, 2, 1, 0F, 0F, -2F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, -1F, 0F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 163
-		locoalice040Model[145].setRotationPoint(-9F, -12F, -2F);
+		locoalice040Model[145].setRotationPoint(-41F, -12F, -2F);
 
 		locoalice040Model[146].addShapeBox(0F, 0F, 0F, 1, 2, 1, 0F, 0F, -1F, 0F, 0F, -2F, 0F, 0F, -1F, 0F, 0F, 0F, 0F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 164
-		locoalice040Model[146].setRotationPoint(-6F, -12F, -2F);
+		locoalice040Model[146].setRotationPoint(-38F, -12F, -2F);
 
 		locoalice040Model[147].addShapeBox(0F, 0F, 0F, 1, 2, 1, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -2F, 0F, 0F, -1F, 0F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 165
-		locoalice040Model[147].setRotationPoint(-6F, -12F, 1F);
+		locoalice040Model[147].setRotationPoint(-38F, -12F, 1F);
 
 		locoalice040Model[148].addShapeBox(0F, 0F, 0F, 2, 1, 1, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 166
-		locoalice040Model[148].setRotationPoint(-13F, 0F, -6F);
+		locoalice040Model[148].setRotationPoint(-45F, 0F, -6F);
 
 		locoalice040Model[149].addShapeBox(0F, 0F, 0F, 2, 1, 1, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 167
-		locoalice040Model[149].setRotationPoint(-13F, 0F, 5F);
+		locoalice040Model[149].setRotationPoint(-45F, 0F, 5F);
 
 		locoalice040Model[150].addBox(0F, 0F, 0F, 6, 1, 1, 0F); // Box 168
-		locoalice040Model[150].setRotationPoint(-7F, 4F, 7F);
-		locoalice040Model[150].rotateAngleZ = 0.10471976F;
+		locoalice040Model[150].setRotationPoint(-39F, 4F, 7F);
+		locoalice040Model[150].rotateAngleZ = -0.10471976F;
 
 		locoalice040Model[151].addBox(0F, 0F, 0F, 1, 3, 1, 0F); // Box 169
-		locoalice040Model[151].setRotationPoint(21F, -11F, 6F);
+		locoalice040Model[151].setRotationPoint(-11F, -11F, 6F);
 
 		locoalice040Model[152].addBox(0F, 0F, 0F, 1, 3, 1, 0F); // Box 170
-		locoalice040Model[152].setRotationPoint(21F, -11F, -7F);
+		locoalice040Model[152].setRotationPoint(-11F, -11F, -7F);
 
         }
 
