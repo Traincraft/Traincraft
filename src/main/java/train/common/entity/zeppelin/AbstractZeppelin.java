@@ -25,6 +25,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
 import train.common.Traincraft;
 import train.common.core.handlers.ConfigHandler;
+import train.common.core.handlers.FuelHandler;
 import train.common.core.network.PacketKeyPress;
 import train.common.library.GuiIDs;
 
@@ -362,7 +363,9 @@ public abstract class AbstractZeppelin extends Entity implements IInventory {
 				worldObj.spawnParticle("largesmoke", d22, posY - 0.125D, d24, motionX, motionY, motionZ);
 			}
 		}
-		if (zeppInvent[0] != null && TileEntityFurnace.getItemBurnTime(zeppInvent[0]) + fuel < 1000) {
+		float burn = FuelHandler.steamFuelLast(zeppInvent[0])*0.05f;
+
+		if (zeppInvent[0] != null && burn >0 && burn + fuel < 1000) {
 			fuel += TileEntityFurnace.getItemBurnTime(zeppInvent[0]);
 			this.dataWatcher.updateObject(20, fuel);
 			decrStackSize(0, 1);
