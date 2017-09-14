@@ -15,7 +15,7 @@ public class EntityPassengerICE_Restaurant extends EntityRollingStock implements
 
 	public EntityPassengerICE_Restaurant(World world, double d, double d1, double d2) {
 		this(world);
-		setPosition(d, d1 + (double) yOffset, d2);
+		setPosition(d, d1 + yOffset, d2);
 		motionX = 0.0D;
 		motionY = 0.0D;
 		motionZ = 0.0D;
@@ -38,7 +38,7 @@ public class EntityPassengerICE_Restaurant extends EntityRollingStock implements
 		double distance = 1.3;
 		riddenByEntity.setPosition(posX - Math.cos(rads)*distance, posY + (Math.tan(pitchRads)*-distance)+( getMountedYOffset() + riddenByEntity.getYOffset() + 0.2F), posZ - Math.sin(rads)*distance);
 		*/
-		riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset() + 0.2, posZ);
+		riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset() + -0.1, posZ);
 	}
 
 	@Override
