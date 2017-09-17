@@ -8,18 +8,12 @@ import net.minecraft.client.renderer.texture.ITextureObject;
 import net.minecraft.client.renderer.texture.SimpleTexture;
 import net.minecraft.client.renderer.texture.TextureUtil;
 import net.minecraft.util.ResourceLocation;
-import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
+import train.common.core.handlers.ConfigHandler;
 
-import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.net.URL;
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
-import java.util.Arrays;
 
 import static org.lwjgl.opengl.GL11.GL_TEXTURE_2D;
 
@@ -134,7 +128,7 @@ public class Tessellator {
 			object = TextureUtil.missingTexture;
 		}
 
-		if (GL11.glGetInteger(GL11.GL_TEXTURE_BINDING_2D) != object.getGlTextureId()) {
+		if (GL11.glGetInteger(GL11.GL_TEXTURE_BINDING_2D) != object.getGlTextureId() || ConfigHandler.FORCE_TEXTURE_BINDING) {
 			GL11.glBindTexture(GL_TEXTURE_2D, object.getGlTextureId());
 		}
 	}
