@@ -266,7 +266,7 @@ public class NEIAssemblyTableRecipePlugin extends ShapedRecipeHandler {
 		ArrayList outputList = new ArrayList();
 		ArrayList cleanedList = new ArrayList();
 		for (int i = 0; i < recipeList.size(); i++) {
-			ItemStack output = ((TierRecipe) recipeList.get(i)).getOutput();
+			//ItemStack output = ((TierRecipe) recipeList.get(i)).getOutput();
 			if (outputList != null) {
 				if (!outputList.contains(Item.getIdFromItem(((TierRecipe) recipeList.get(i)).getOutput().getItem()))) {
 					cleanedList.add(recipeList.get(i));
