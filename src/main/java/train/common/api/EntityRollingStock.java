@@ -303,6 +303,9 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 	@Override
 	protected void entityInit() {
 		dataWatcher.addObject(16, (byte) 0);
+		dataWatcher.addObject(17, 0);
+		dataWatcher.addObject(18, 1);
+		dataWatcher.addObject(19, 0.0F);
 	}
 
 	@Override
@@ -632,7 +635,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				//System.out.println("Train is missing an ID, adding new one for "+this.trainName+" "+this.uniqueID);
 			}
 		}
-		
+
 		if (getRollingAmplitude() > 0) {
 			setRollingAmplitude(getRollingAmplitude() - 1);
 		}

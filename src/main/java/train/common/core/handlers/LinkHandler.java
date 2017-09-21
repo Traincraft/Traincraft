@@ -26,15 +26,15 @@ public class LinkHandler {
 
 
 		if (entityOne.isAttaching) {
-
 			List lis = worldObj.getEntitiesWithinAABBExcludingEntity(entityOne, customBoundingBox.expand(15, 5, 15));
-			if(entityOne.bogieLoco!=null){
-				lis.addAll(worldObj.getEntitiesWithinAABBExcludingEntity(entityOne, ((EntityRollingStock)entityOne).bogieLoco.boundingBox.expand(7, 5, 7)));
+			if (entityOne.bogieLoco != null) {
+				lis.addAll(worldObj.getEntitiesWithinAABBExcludingEntity(entityOne, ((EntityRollingStock) entityOne).bogieLoco.boundingBox.expand(7, 5, 7)));
 			}
-				if(lis != null && lis.size() > 0 ){
 
-				for (int j1 = 0; j1 < lis.size(); j1++) {
-					Entity entity = (Entity) lis.get(j1);
+
+			if (lis != null && lis.size() > 0) {
+				for (Object ent : lis) {
+					Entity entity = (Entity) ent;
 
 					/**
 					 * first testing if the link can be emptied
@@ -47,18 +47,18 @@ public class LinkHandler {
 					if (entity != entityOne.riddenByEntity && (entity instanceof EntityRollingStock) && ((EntityRollingStock) entity).isAttaching) {
 						addStake((EntityRollingStock) entity, entityOne, true);
 					}
+
 				}
 
 			}
-
 		}
 
-		if (entityOne.cartLinked1 != null) {
-			StakePhysic(entityOne.cartLinked1, entityOne, 1);
-		}
-		if (entityOne.cartLinked2 != null) {
-			StakePhysic(entityOne.cartLinked2, entityOne, 2);
-		}
+			if ( entityOne.cartLinked1 != null) {
+				StakePhysic(entityOne.cartLinked1, entityOne, 1);
+			}
+			if (entityOne.cartLinked2 != null) {
+				StakePhysic(entityOne.cartLinked2, entityOne, 2);
+			}
 	}
 
 	/**
@@ -205,9 +205,8 @@ public class LinkHandler {
 		if (worldObj.isRemote) {
 			return;
 		}
-		if (cart1 != null && cart2 != null) {
-			distanceBehindCart = cart1.getLinkageDistance(cart1);
-			if (cart2.isAttaching && (cart1.isAttaching)) {
+			distanceBehindCart = cart1.getLinkageDistance((EntityMinecart) cart1);
+			if (cart2.isAttaching && cart1.isAttaching) {
 
 				double distancesX[] = new double[4];
 				double distancesZ[] = new double[4];
@@ -296,10 +295,10 @@ public class LinkHandler {
 						//System.out.println(cart1.Link2+" 2 "+cart2.getUniqueTrainID());
 					}
 					if (cart1.cartLinked1 == null) {
-						cart1.cartLinked1 = (EntityRollingStock) cart2;
+						cart1.cartLinked1 = cart2;
 					}
 					else if (cart1.cartLinked2 == null) {
-						cart1.cartLinked2 = (EntityRollingStock) cart2;
+						cart1.cartLinked2 = cart2;
 					}
 
 					if (cart2.Link1 == 0 || cart2.Link1 == -1) {
@@ -310,13 +309,18 @@ public class LinkHandler {
 					}
 
 					if (cart2.cartLinked1 == null) {
-						cart2.cartLinked1 = (EntityRollingStock) cart1;
+						cart2.cartLinked1 = cart1;
 					}
 					else if (cart2.cartLinked2 == null) {
-						cart2.cartLinked2 = (EntityRollingStock) cart1;
+						cart2.cartLinked2 = cart1;
 					}
 
+					cart2.isAttached = true;
+
 					cart2.isAttaching = false;
+
+					cart1.isAttaching = false;
+
 
 					cart1.isAttached = true;
 
@@ -338,7 +342,6 @@ public class LinkHandler {
 					}
 				}
 			}
-		}
 	}
 
 	/**
@@ -348,8 +351,8 @@ public class LinkHandler {
 	 * @param cart2
 	 * @return
 	 */
-	public boolean areLinked(EntityRollingStock cart1, EntityRollingStock cart2) {
-		if (!(cart1 != null) || !(cart2 != null)){
+	public boolean areLinked(Entity cart1, Entity cart2) {
+		if (!(cart1 instanceof AbstractTrains) || !(cart2 instanceof AbstractTrains)){
 			return false;
 		}
 		// Debug purpose
@@ -357,7 +360,8 @@ public class LinkHandler {
 		/**
 		 * testing if the ID of the cart1 is registered as attached to the cart2 same with cart2 attached to cart1
 		 */
-		return ((cart2.getUniqueTrainID() == cart1.Link1) || (cart2.getUniqueTrainID() == cart1.Link2)) || ((cart1.getUniqueTrainID() == cart2.Link1) || (cart1.getUniqueTrainID() == cart2.Link2));
+		return ((((AbstractTrains) cart2).getUniqueTrainID() == ((AbstractTrains) cart1).Link1) || (((AbstractTrains) cart2).getUniqueTrainID() == ((AbstractTrains) cart1).Link2)) ||
+				((((AbstractTrains) cart1).getUniqueTrainID() == ((AbstractTrains) cart2).Link1) || (((AbstractTrains) cart1).getUniqueTrainID() == ((AbstractTrains) cart2).Link2));
 	}
 
 	/**
@@ -367,20 +371,10 @@ public class LinkHandler {
 	 * @param cart2
 	 * @return
 	 */
-	public float getOptimalDistance(EntityRollingStock cart1, EntityRollingStock cart2) {
+	public float getOptimalDistance(AbstractTrains cart1, AbstractTrains cart2) {
 		float dist = 0.0F;
-		if ((cart1 != null)) {
 			dist += cart1.getOptimalDistance((EntityMinecart) cart2);
-		}
-		else {
-			dist += 0.78F;
-		}
-		if ((cart2 != null)) {
 			dist += cart2.getOptimalDistance((EntityMinecart) cart1);
-		}
-		else {
-			dist += 0.78F;
-		}
 		return dist;
 	}
 
@@ -391,15 +385,15 @@ public class LinkHandler {
 	 * @param cart2
 	 * @return
 	 */
-	private boolean canCartBeAdjustedBy(EntityRollingStock cart1, EntityRollingStock cart2) {
+	private boolean canCartBeAdjustedBy(Entity cart1, Entity cart2) {
 		if (cart1 == cart2) {
 			return false;
 		}
 		// System.out.println("cart "+cart1+"  cart adjusted "+((EntityRollingStock)cart1).canBeAdjusted((EntityMinecart)cart2));
-		if (((cart1 != null)) && (!cart1.canBeAdjusted(cart2))) {
+		if (((cart1 instanceof EntityRollingStock)) && (!((EntityRollingStock) cart1).canBeAdjusted((EntityMinecart) cart2))) {
 			return false;
 		}
-		return !RailTools.isCartLockedDown(cart1);
+		return !RailTools.isCartLockedDown((EntityMinecart) cart1);
 	}
 
 	/**
@@ -409,7 +403,7 @@ public class LinkHandler {
 		if (worldObj.isRemote) {
 			return;
 		}
-		if (cart1 !=null && cart2 !=null && cart2.isAttached && cart1.isAttached && areLinked(cart2, cart1)) {
+		if (cart2.isAttached && cart1.isAttached && areLinked(cart2, cart1)) {
 
 
 			boolean adj1 = canCartBeAdjustedBy(cart1, cart2);
@@ -518,16 +512,12 @@ public class LinkHandler {
 			double unitX = vecX / vecNorm;
 			double unitZ = vecZ / vecNorm;
 
-			float optDist = getOptimalDistance(cart1, cart2);
-			double stretch = d2 - optDist;
+			double stretch = d2 -getOptimalDistance(cart1, cart2);
 			//System.out.println("stretch "+stretch);
 
-			double div = 0.2499999761581421D;
-			double springX = div * stretch * vecX * -1;
-			double springZ = div * stretch * vecZ * -1;
+			double springX = limitForce(0.2499999761581421D * stretch * vecX * -1);
+			double springZ = limitForce(0.2499999761581421D * stretch * vecZ * -1);
 
-			springX = limitForce(springX);
-			springZ = limitForce(springZ);
 
 
 			if (adj1) {
@@ -541,10 +531,8 @@ public class LinkHandler {
 
 			double dot = (cart1.motionX - cart2.motionX) * unitX + (cart1.motionZ - cart2.motionZ) * unitZ;
 
-
 			double dampX = limitForce(0.4000000059604645D * dot * unitX * -1);// 0.4
 			double dampZ = limitForce(0.4000000059604645D * dot * unitZ * -1);
-
 
 			if (adj1) {
 				cart1.motionX += dampX;
