@@ -1,5 +1,6 @@
 package train.common.api;
 
+import net.minecraft.client.Minecraft;
 import org.lwjgl.input.Keyboard;
 
 import cpw.mods.fml.client.FMLClientHandler;
@@ -421,7 +422,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 	@Override
 	public void onUpdate() {
 
-		if (worldObj.isRemote && ticksExisted %2 ==0){
+		if (worldObj.isRemote && ticksExisted %2 ==0 && !Minecraft.getMinecraft().ingameGUI.getChatGUI().getChatOpen()){
 			if (Keyboard.isKeyDown(FMLClientHandler.instance().getClient().gameSettings.keyBindForward.getKeyCode())
 					&& !forwardPressed) {
 				Traincraft.keyChannel.sendToServer(new PacketKeyPress(5));
