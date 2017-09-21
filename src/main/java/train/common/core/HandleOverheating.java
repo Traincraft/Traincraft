@@ -29,7 +29,6 @@ public class HandleOverheating {
 		entity.overheatLevel = entity.getOverheatLevel();
 
 		if (entity instanceof Locomotive && entity.canOverheat()) {
-			double locoMaxSpeed = entity.convertSpeed(entity);
 			double locoActualSpeed = MathHelper.sqrt_double(entity.motionX * entity.motionX + entity.motionZ * entity.motionZ);
 
 			/**
@@ -90,7 +89,7 @@ public class HandleOverheating {
 				/**
 				 * train is climbing, overheat goes up 0.05 = 10km/h 0.1 = 21km/h
 				 */
-				if (entity.isClimbing && (locoActualSpeed >= locoMaxSpeed - 0.05) && (entity.worldObj.rand.nextInt(10) == 0)) {
+				if (entity.isClimbing && (locoActualSpeed >= entity.convertSpeed((Locomotive) entity) - 0.05) && (entity.worldObj.rand.nextInt(10) == 0)) {
 					//entity.overheatLevel++;
 				}
 

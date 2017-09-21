@@ -11,6 +11,7 @@ import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
 import train.common.api.AbstractTrains;
+import train.common.api.EntityRollingStock;
 import train.common.core.handlers.LinkHandler;
 import train.common.library.Tracks;
 
@@ -42,12 +43,12 @@ public class BlockCouplerTrack extends TrackBaseTraincraft implements ITrackPowe
 			this.taggedCart = cart;
 		}
 
-		if (isPowered() && cart instanceof AbstractTrains) {
-			((AbstractTrains) cart).isAttaching = true;
-			if (taggedCart != null) {
-				((AbstractTrains) taggedCart).isAttaching = true;
+		if (isPowered() && cart instanceof EntityRollingStock) {
+			((EntityRollingStock) cart).isAttaching = true;
+			if (taggedCart instanceof EntityRollingStock) {
+				((EntityRollingStock) taggedCart).isAttaching = true;
 				LinkHandler lh = new LinkHandler(cart.worldObj);
-				lh.addStake(this.taggedCart, cart, false);
+				lh.addStake((EntityRollingStock) this.taggedCart, (EntityRollingStock) cart, false);
 			}
 			this.taggedCart = cart;
 		}
