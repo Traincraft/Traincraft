@@ -14,6 +14,8 @@ import train.common.core.handlers.ConfigHandler;
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.lwjgl.opengl.GL11.GL_TEXTURE_2D;
 
@@ -115,17 +117,23 @@ public class Tessellator {
 	}
 
 
+	public static Map<ResourceLocation, ITextureObject> cachedTextures = new HashMap<ResourceLocation, ITextureObject>();
 
 	public static void bindTexture(ResourceLocation textureURI) {
 		ITextureObject object;
-		if (textureURI != null) {
-			object = Minecraft.getMinecraft().getTextureManager().getTexture(textureURI);
-			if (object == null) {
-				object = new SimpleTexture(textureURI);
-				Minecraft.getMinecraft().getTextureManager().loadTexture(textureURI, object);
-			}
+		if (cachedTextures.containsKey(textureURI)){
+			object = cachedTextures.get(textureURI);
 		} else {
-			object = TextureUtil.missingTexture;
+			if (textureURI != null) {
+				object = Minecraft.getMinecraft().getTextureManager().getTexture(textureURI);
+				if (object == null) {
+					object = new SimpleTexture(textureURI);
+					Minecraft.getMinecraft().getTextureManager().loadTexture(textureURI, object);
+				}
+			} else {
+				object = TextureUtil.missingTexture;
+			}
+			cachedTextures.put(textureURI, object);
 		}
 
 		if (GL11.glGetInteger(GL11.GL_TEXTURE_BINDING_2D) != object.getGlTextureId() || ConfigHandler.FORCE_TEXTURE_BINDING) {
