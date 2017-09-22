@@ -86,7 +86,7 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 			par3List.add("\u00a77" + "Type: " + getTrainType());
 		if (power > 0)
 			par3List.add("\u00a77" + "Power: " + power +" Mhp");
-		if (mass > 0)
+		if (mass != 0)
 			par3List.add("\u00a77" + "Mass: " + (mass * 10));
 		if (maxSpeed > 0)
 			par3List.add("\u00a77" + "Max Speed: " + maxSpeed);
