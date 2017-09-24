@@ -1,5 +1,7 @@
 package train.common.api;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
@@ -8,8 +10,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
-
-import javax.annotation.Nullable;
+import train.common.entity.rollingStock.EntityTankLava;
 
 public class LiquidTank extends EntityRollingStock implements IFluidHandler, ISidedInventory {
 	private int capacity;
@@ -107,7 +108,71 @@ public class LiquidTank extends EntityRollingStock implements IFluidHandler, ISi
 		if (this.update % 8 == 0 && itemstack != null) {
 			ItemStack emptyItem = itemstack.getItem().getContainerItem(itemstack);
 			if(cargoItems[1] == null) {
-				result = LiquidManager.getInstance().processContainer(this, 0, theTank, itemstack);
+				if (theTank.getFluidAmount() == 0) {
+				if (LiquidManager.getInstance().containsFluid(itemstack, FluidRegistry.getFluidStack("lava", 0))
+						|| LiquidManager.getInstance().containsFluid(itemstack,
+								FluidRegistry.getFluidStack("enderium.molten", 0))
+						|| LiquidManager.getInstance().containsFluid(itemstack,
+								FluidRegistry.getFluidStack("silver.molten", 0))
+						|| LiquidManager.getInstance().containsFluid(itemstack,
+								FluidRegistry.getFluidStack("iron.molten", 0))
+						|| LiquidManager.getInstance().containsFluid(itemstack,
+								FluidRegistry.getFluidStack("cobalt.molten", 0))
+						|| LiquidManager.getInstance().containsFluid(itemstack,
+								FluidRegistry.getFluidStack("invar.molten", 0))
+						|| LiquidManager.getInstance().containsFluid(itemstack,
+								FluidRegistry.getFluidStack("manyullyn.molten", 0))
+						|| LiquidManager.getInstance().containsFluid(itemstack,
+								FluidRegistry.getFluidStack("mithril.molten", 0))
+						|| LiquidManager.getInstance().containsFluid(itemstack,
+								FluidRegistry.getFluidStack("tin.molten", 0))
+						|| LiquidManager.getInstance().containsFluid(itemstack,
+								FluidRegistry.getFluidStack("steel.molten", 0))
+						|| LiquidManager.getInstance().containsFluid(itemstack,
+								FluidRegistry.getFluidStack("platinum.molten", 0))
+						|| LiquidManager.getInstance().containsFluid(itemstack,
+								FluidRegistry.getFluidStack("pigiron.molten", 0))
+						|| LiquidManager.getInstance().containsFluid(itemstack,
+								FluidRegistry.getFluidStack("lead.molten", 0))
+						|| LiquidManager.getInstance().containsFluid(itemstack,
+								FluidRegistry.getFluidStack("alumite.molten", 0))
+						|| LiquidManager.getInstance().containsFluid(itemstack,
+								FluidRegistry.getFluidStack("nickel.molten", 0))
+						|| LiquidManager.getInstance().containsFluid(itemstack,
+								FluidRegistry.getFluidStack("bronze.molten", 0))
+						|| LiquidManager.getInstance().containsFluid(itemstack,
+								FluidRegistry.getFluidStack("glass.molten", 0))
+						|| LiquidManager.getInstance().containsFluid(itemstack,
+								FluidRegistry.getFluidStack("obsidian.molten", 0))
+						|| LiquidManager.getInstance().containsFluid(itemstack,
+								FluidRegistry.getFluidStack("lumium.molten", 0))
+						|| LiquidManager.getInstance().containsFluid(itemstack,
+								FluidRegistry.getFluidStack("aluminum.molten", 0))
+						|| LiquidManager.getInstance().containsFluid(itemstack,
+								FluidRegistry.getFluidStack("electrum.molten", 0))
+						|| LiquidManager.getInstance().containsFluid(itemstack,
+								FluidRegistry.getFluidStack("signalum.molten", 0))
+						|| LiquidManager.getInstance().containsFluid(itemstack,
+								FluidRegistry.getFluidStack("aluminumbrass.molten", 0))
+						|| LiquidManager.getInstance().containsFluid(itemstack,
+								FluidRegistry.getFluidStack("gold.molten", 0))
+						|| LiquidManager.getInstance().containsFluid(itemstack,
+								FluidRegistry.getFluidStack("coppter.molten", 0))
+						|| LiquidManager.getInstance().containsFluid(itemstack,
+								FluidRegistry.getFluidStack("ardite.molten", 0))) {
+				if (this instanceof EntityTankLava) {
+						result = LiquidManager.getInstance().processContainer(this, 0, theTank, itemstack);
+					}
+				}
+				else {
+					if (!(this instanceof EntityTankLava)) {
+						result = LiquidManager.getInstance().processContainer(this, 0, theTank, itemstack);
+					}
+				}
+				}
+				else {
+					result = LiquidManager.getInstance().processContainer(this, 0, theTank, itemstack);
+				}
 			}
 			else if(emptyItem != null) {
 				if(emptyItem.getItem() == cargoItems[1].getItem()) {
