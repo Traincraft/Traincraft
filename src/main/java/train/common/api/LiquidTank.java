@@ -109,79 +109,30 @@ public class LiquidTank extends EntityRollingStock implements IFluidHandler, ISi
 			ItemStack emptyItem = itemstack.getItem().getContainerItem(itemstack);
 			if(cargoItems[1] == null) {
 				if (theTank.getFluidAmount() == 0) {
-				if (LiquidManager.getInstance().containsFluid(itemstack, FluidRegistry.getFluidStack("lava", 0))
-						|| LiquidManager.getInstance().containsFluid(itemstack,
-								FluidRegistry.getFluidStack("enderium.molten", 0))
-						|| LiquidManager.getInstance().containsFluid(itemstack,
-								FluidRegistry.getFluidStack("silver.molten", 0))
-						|| LiquidManager.getInstance().containsFluid(itemstack,
-								FluidRegistry.getFluidStack("iron.molten", 0))
-						|| LiquidManager.getInstance().containsFluid(itemstack,
-								FluidRegistry.getFluidStack("cobalt.molten", 0))
-						|| LiquidManager.getInstance().containsFluid(itemstack,
-								FluidRegistry.getFluidStack("invar.molten", 0))
-						|| LiquidManager.getInstance().containsFluid(itemstack,
-								FluidRegistry.getFluidStack("manyullyn.molten", 0))
-						|| LiquidManager.getInstance().containsFluid(itemstack,
-								FluidRegistry.getFluidStack("mithril.molten", 0))
-						|| LiquidManager.getInstance().containsFluid(itemstack,
-								FluidRegistry.getFluidStack("tin.molten", 0))
-						|| LiquidManager.getInstance().containsFluid(itemstack,
-								FluidRegistry.getFluidStack("steel.molten", 0))
-						|| LiquidManager.getInstance().containsFluid(itemstack,
-								FluidRegistry.getFluidStack("platinum.molten", 0))
-						|| LiquidManager.getInstance().containsFluid(itemstack,
-								FluidRegistry.getFluidStack("pigiron.molten", 0))
-						|| LiquidManager.getInstance().containsFluid(itemstack,
-								FluidRegistry.getFluidStack("lead.molten", 0))
-						|| LiquidManager.getInstance().containsFluid(itemstack,
-								FluidRegistry.getFluidStack("alumite.molten", 0))
-						|| LiquidManager.getInstance().containsFluid(itemstack,
-								FluidRegistry.getFluidStack("nickel.molten", 0))
-						|| LiquidManager.getInstance().containsFluid(itemstack,
-								FluidRegistry.getFluidStack("bronze.molten", 0))
-						|| LiquidManager.getInstance().containsFluid(itemstack,
-								FluidRegistry.getFluidStack("glass.molten", 0))
-						|| LiquidManager.getInstance().containsFluid(itemstack,
-								FluidRegistry.getFluidStack("obsidian.molten", 0))
-						|| LiquidManager.getInstance().containsFluid(itemstack,
-								FluidRegistry.getFluidStack("lumium.molten", 0))
-						|| LiquidManager.getInstance().containsFluid(itemstack,
-								FluidRegistry.getFluidStack("aluminum.molten", 0))
-						|| LiquidManager.getInstance().containsFluid(itemstack,
-								FluidRegistry.getFluidStack("electrum.molten", 0))
-						|| LiquidManager.getInstance().containsFluid(itemstack,
-								FluidRegistry.getFluidStack("signalum.molten", 0))
-						|| LiquidManager.getInstance().containsFluid(itemstack,
-								FluidRegistry.getFluidStack("aluminumbrass.molten", 0))
-						|| LiquidManager.getInstance().containsFluid(itemstack,
-								FluidRegistry.getFluidStack("gold.molten", 0))
-						|| LiquidManager.getInstance().containsFluid(itemstack,
-								FluidRegistry.getFluidStack("coppter.molten", 0))
-						|| LiquidManager.getInstance().containsFluid(itemstack,
-								FluidRegistry.getFluidStack("ardite.molten", 0))) {
-				if (this instanceof EntityTankLava) {
-						result = LiquidManager.getInstance().processContainer(this, 0, theTank, itemstack);
+					for (String temp : EntityTankLava.lavaCartFluids) {
+						if (LiquidManager.getInstance().containsFluid(itemstack,
+								FluidRegistry.getFluidStack(temp, 0))) {
+							if (this instanceof EntityTankLava) {
+								result = LiquidManager.getInstance().processContainer(this, 0, theTank, itemstack);
+								break;
+							}
+						} else {
+							if (!(this instanceof EntityTankLava)) {
+								result = LiquidManager.getInstance().processContainer(this, 0, theTank, itemstack);
+								break;
+							}
+						}
 					}
-				}
-				else {
-					if (!(this instanceof EntityTankLava)) {
-						result = LiquidManager.getInstance().processContainer(this, 0, theTank, itemstack);
-					}
-				}
-				}
-				else {
+				} else {
 					result = LiquidManager.getInstance().processContainer(this, 0, theTank, itemstack);
 				}
-			}
-			else if(emptyItem != null) {
+			} else if (emptyItem != null) {
 				if(emptyItem.getItem() == cargoItems[1].getItem()) {
     				if(cargoItems[1].stackSize+1 < cargoItems[1].getMaxStackSize()) {
     					result = LiquidManager.getInstance().processContainer(this, 0, theTank, itemstack);
     				}
 				}
-			}
-			else {
+			} else {
 				if(itemstack.getItem() == cargoItems[1].getItem()) {
     				if(cargoItems[1].stackSize+1 <= cargoItems[1].getMaxStackSize()) {
     					result = LiquidManager.getInstance().processContainer(this, 0, theTank, itemstack);

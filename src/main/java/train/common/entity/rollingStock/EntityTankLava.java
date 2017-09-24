@@ -1,5 +1,8 @@
 package train.common.entity.rollingStock;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -7,7 +10,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
-import net.minecraftforge.fluids.FluidRegistry;
 import train.common.Traincraft;
 import train.common.api.LiquidTank;
 import train.common.library.EnumTrains;
@@ -15,20 +17,51 @@ import train.common.library.GuiIDs;
 
 public class EntityTankLava extends LiquidTank {
 	public int freightInventorySize;
+	
+	public static List<String>	lavaCartFluids	= new ArrayList<String>();
 
 	public EntityTankLava(World world) {
 		super(world, EnumTrains.tankCartLava.getTankCapacity());
 		initFreightWater();
+		initFluids();
 	}
 
 	public void initFreightWater() {
 		freightInventorySize = 2;
 		cargoItems = new ItemStack[freightInventorySize];
 	}
+	
+	public void initFluids(){
+		lavaCartFluids.add("lava");
+		lavaCartFluids.add("silver.molten");
+		lavaCartFluids.add("iron.molten");
+		lavaCartFluids.add("cobalt.molten");
+		lavaCartFluids.add("invar.molten");
+		lavaCartFluids.add("manyullyn.molten");
+		lavaCartFluids.add("mithril.molten");
+		lavaCartFluids.add("tin.molten");
+		lavaCartFluids.add("steel.molten");
+		lavaCartFluids.add("platinum.molten");
+		lavaCartFluids.add("pigiron.molten");
+		lavaCartFluids.add("lead.molten");
+		lavaCartFluids.add("alumite.molten");
+		lavaCartFluids.add("nickel.molten");
+		lavaCartFluids.add("bronze.molten");
+		lavaCartFluids.add("glass.molten");
+		lavaCartFluids.add("obsidian.molten");
+		lavaCartFluids.add("lumium.molten");
+		lavaCartFluids.add("aluminum.molten");
+		lavaCartFluids.add("electrum.molten");
+		lavaCartFluids.add("signalum.molten");
+		lavaCartFluids.add("aluminumbrass.molten");
+		lavaCartFluids.add("gold.molten");
+		lavaCartFluids.add("copper.molten");
+		lavaCartFluids.add("ardite.molten");
+	}
 
 	public EntityTankLava(World world, double d, double d1, double d2) {
 		this(world);
-		setPosition(d, d1 + (double) yOffset, d2);
+		setPosition(d, d1 + yOffset, d2);
 		motionX = 0.0D;
 		motionY = 0.0D;
 		motionZ = 0.0D;
