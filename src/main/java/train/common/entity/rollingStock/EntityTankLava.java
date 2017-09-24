@@ -17,7 +17,7 @@ public class EntityTankLava extends LiquidTank {
 	public int freightInventorySize;
 
 	public EntityTankLava(World world) {
-		super(world, FluidRegistry.LAVA, 0, EnumTrains.tankCartLava.getTankCapacity());
+		super(world, EnumTrains.tankCartLava.getTankCapacity());
 		initFreightWater();
 	}
 
