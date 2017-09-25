@@ -159,11 +159,11 @@ public class ItemTCCompositeSuit extends ItemTCArmor {
 		ItemStack armorPants = player.inventory.armorItemInSlot(1);
 		if(armorPants!=null && armorPants.getItem() instanceof ItemTCCompositeSuit){
 			if(player.isBurning()){
-				if (armorChest.getMaxDamage()-armorChest.getItemDamage()>1) {
+				if (armorPants.getMaxDamage()-armorPants.getItemDamage()>1) {
 					player.extinguish();
-					armorChest.damageItem(1, player);
+					armorPants.damageItem(1, player);
 				} else {
-					armorChest.damageItem(armorChest.getMaxDamage()-armorChest.getItemDamage(), player);
+					armorPants.damageItem(armorPants.getMaxDamage()-armorPants.getItemDamage(), player);
 				}
 			}
 			/*if(itemarmor.getArmorMaterial() == Traincraft.instance.armorCompositeSuit && armorPants.isItemEnchantable()){
