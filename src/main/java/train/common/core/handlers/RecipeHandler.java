@@ -24,6 +24,7 @@ import train.common.recipes.RecipesArmorDyes;
 public class RecipeHandler {
 
 	private static final ArrayList<ItemStack> steel = OreDictionary.getOres("ingotSteel");
+	private static final ArrayList<ItemStack> iron = OreDictionary.getOres("ingotIron");
 	private static final ArrayList<ItemStack> planks = OreDictionary.getOres("plankWood");
 	private static final ArrayList<ItemStack> logs = OreDictionary.getOres("logWood");
 	private static final ArrayList<ItemStack> plastics = OreDictionary.getOres("dustPlastic");
@@ -208,11 +209,14 @@ public class RecipeHandler {
 				TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.cylinder.item, 3),  "# #", "# #", "###", Character.valueOf('#'), steelItem );// cylinder
 				TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.propeller.item, 2),  " # ", "#X#", " # ", Character.valueOf('#'), plankItem, Character.valueOf('X'), Items.iron_ingot );// Propeller
 
-				TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailSmallRoadCrossing.item, 16),  "I I", "IPI", "I I", Character.valueOf('P'), new ItemStack(Blocks.stained_hardened_clay, 1, 15), Character.valueOf('I'), steelItem);
-				TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailSmallRoadCrossing1.item, 16),  "I I", "IPI", "I I", Character.valueOf('P'), new ItemStack(Blocks.stained_hardened_clay, 1, 7), Character.valueOf('I'), steelItem);
-				TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailSmallRoadCrossing2.item, 16),  "I I", "IPI", "I I", Character.valueOf('P'), new ItemStack(Blocks.stained_hardened_clay, 1, 3), Character.valueOf('I'), steelItem);
 			}
-			TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailSmallStraight.item, 16),  "I I", "IPI", "I I", Character.valueOf('P'), plankItem, Character.valueOf('I'), Items.iron_ingot );// small straight track
+			for (ItemStack ironItem : iron) {
+				TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailSmallStraight.item, 16), "I I", "IPI", "I I", Character.valueOf('P'), plankItem, Character.valueOf('I'), ironItem);// small straight track
+
+				TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailSmallRoadCrossing.item, 16), "I I", "IPI", "I I", Character.valueOf('P'), new ItemStack(Blocks.stained_hardened_clay, 1, 15), Character.valueOf('I'), ironItem);
+				TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailSmallRoadCrossing1.item, 16), "I I", "IPI", "I I", Character.valueOf('P'), new ItemStack(Blocks.stained_hardened_clay, 1, 7), Character.valueOf('I'), ironItem);
+				TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailSmallRoadCrossing2.item, 16), "I I", "IPI", "I I", Character.valueOf('P'), new ItemStack(Blocks.stained_hardened_clay, 1, 3), Character.valueOf('I'), ironItem);
+			}
 			for (ItemStack logStack :logs) {
 				/* Water Wheel */
 				TrainCraftingManager.instance.addRecipe(new ItemStack(BlockIDs.waterWheel.block, 1),  " P ", "PGP", " P ", Character.valueOf('P'), logStack,Character.valueOf('G'), ItemIDs.generator.item);
