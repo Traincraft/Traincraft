@@ -109,17 +109,19 @@ public class LiquidTank extends EntityRollingStock implements IFluidHandler, ISi
 			ItemStack emptyItem = itemstack.getItem().getContainerItem(itemstack);
 			if(cargoItems[1] == null) {
 				if (theTank.getFluidAmount() == 0) {
-					for (String temp : EntityTankLava.lavaCartFluids) {
+					for (Fluid fluid : FluidRegistry.getRegisteredFluids().values()) {
 						if (LiquidManager.getInstance().containsFluid(itemstack,
-								FluidRegistry.getFluidStack(temp, 0))) {
-							if (this instanceof EntityTankLava) {
-								result = LiquidManager.getInstance().processContainer(this, 0, theTank, itemstack);
-								break;
-							}
-						} else {
-							if (!(this instanceof EntityTankLava)) {
-								result = LiquidManager.getInstance().processContainer(this, 0, theTank, itemstack);
-								break;
+								FluidRegistry.getFluidStack(FluidRegistry.getFluidName(fluid), 0))) {
+							if (fluid.getTemperature() < 1000) {
+								if (!(this instanceof EntityTankLava)) {
+									result = LiquidManager.getInstance().processContainer(this, 0, theTank, itemstack);
+									break;
+								}
+							} else {
+								if (this instanceof EntityTankLava) {
+									result = LiquidManager.getInstance().processContainer(this, 0, theTank, itemstack);
+									break;
+								}
 							}
 						}
 					}
