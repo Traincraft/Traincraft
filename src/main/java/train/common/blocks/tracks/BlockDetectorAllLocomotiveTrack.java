@@ -42,16 +42,16 @@ public class BlockDetectorAllLocomotiveTrack extends BlockDetectorTrack implemen
 }
 					case 3: {
 						player.addChatMessage(new ChatComponentText("Now set to emit a signal on all diesel trains"));
-						break
+						break;
 					}
 						
 					case 6: {
 						player.addChatMessage(new ChatComponentText("Now set to emit a signal on all steam trains"));
-						break
+						break;
 					}
 					case 9:{
 							player.addChatMessage(new ChatComponentText("Now set to emit a signal on all trains"));
-					break
+					break;
 					}
 				}
 				this.ThingToSet += 3;
@@ -74,16 +74,16 @@ setTrackPowering();
 }
 					case 3: {
 					setTrackPowering();
-						break
+						break;
 					}
 						
 					case 6: {
 					setTrackPowering();
-						break
+						break;
 					}
 					case 9:{
 							setTrackPowering();
-					break
+					break;
 					}
 				}
 		
