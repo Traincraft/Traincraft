@@ -34,20 +34,28 @@ public class BlockDetectorAllLocomotiveTrack extends BlockDetectorTrack implemen
 		if ((current != null) && ((current.getItem() instanceof IToolCrowbar))) {
 			IToolCrowbar crowbar = (IToolCrowbar) current.getItem();
 			if (crowbar.canWhack(player, current, getX(), getY(), getZ())) {
+					this.ThingToSet += 3;
+				switch(this.ThingToSet) {
+					case 0:{
+  player.addChatMessage(new ChatComponentText("Now set to emit a signal on all electric trains"));
+    break;//<---this
+}
+					case 3: {
+						player.addChatMessage(new ChatComponentText("Now set to emit a signal on all diesel trains"));
+						break
+					}
+						
+					case 6: {
+						player.addChatMessage(new ChatComponentText("Now set to emit a signal on all steam trains"));
+						break
+					}
+					case 9:{
+							player.addChatMessage(new ChatComponentText("Now set to emit a signal on all trains"));
+					break
+					}
+				}
 				this.ThingToSet += 3;
-				if (ThingToSet > 9)ThingToSet = 0;
-				if (ThingToSet == 0) {
-					player.addChatMessage(new ChatComponentText("Now set to emit a signal on all electric trains"));	
-				}
-				if (ThingToSet == 3) {
-					player.addChatMessage(new ChatComponentText("Now set to emit a signal on all diesel trains"));
-				}
-				if (ThingToSet == 6) {
-					player.addChatMessage(new ChatComponentText("Now set to emit a signal on all steam trains"));
-				}
-				if (ThingToSet == 9) {
-						player.addChatMessage(new ChatComponentText("Now set to emit a signal on all trains"));
-				}
+				
 				crowbar.onWhack(player, current, getX(), getY(), getZ());
 				sendUpdateToClient();
 				return true;
@@ -58,28 +66,27 @@ public class BlockDetectorAllLocomotiveTrack extends BlockDetectorTrack implemen
 	
 	@Override
 	public void onMinecartPass(EntityMinecart cart) {
-		if (ThingToSet == 0) {
-		if (cart instanceof ElectricTrain) {
-			EntityPlayer entityplayer = cart.worldObj.getClosestPlayerToEntity(cart, 20);//
-			setTrackPowering();
 		
-		}
-	}
-		if (ThingToSet == 3) {
-			if (cart instanceof DieselTrain) {
-				setTrackPowering();
-			}
-		}
-			if (ThingToSet == 6) {
-				if ( cart instanceof SteamTrain) {
-					setTrackPowering();	
+		switch(this.ThingToSet) {
+					case 0:{
+setTrackPowering();
+    break;//<---this
+}
+					case 3: {
+					setTrackPowering();
+						break
+					}
+						
+					case 6: {
+					setTrackPowering();
+						break
+					}
+					case 9:{
+							setTrackPowering();
+					break
+					}
 				}
-			}
-		if (ThingToSet == 9) {
-				if ( cart instanceof Locomotive) {
-					setTrackPowering();	
-				}
-			}
+		
 		}
 	}
 
