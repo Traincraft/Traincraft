@@ -24,7 +24,7 @@ public class OreHandler {
 
 		OreDictionary.registerOre("ingotSteel", new ItemStack(ItemIDs.steel.item));
 		
-		OreDictionary.registerOre("dustPlastic", new ItemStack(ItemIDs.rawPlastic.item));
+		OreDictionary.registerOre("itemPlastic", new ItemStack(ItemIDs.rawPlastic.item));
 		
 		OreDictionary.registerOre("dustCoal", new ItemStack(ItemIDs.coaldust.item));
 	}
