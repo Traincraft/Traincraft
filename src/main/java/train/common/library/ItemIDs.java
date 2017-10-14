@@ -193,6 +193,7 @@ public enum ItemIDs {
 	minecartLocoSteamGLYN("ItemRollingStock", "train_glyn", 3),
 	minecartLocoSteam262T("ItemRollingStock", "train_262t", 3),
 	minecartLocoSteam040vb("ItemRollingStock", "train_040VB", 3),
+	minecartLocoBR101("ItemRollingStock", "train_br101", 3),
 	minecartTenderAdler("ItemRollingStock", "train_tender_adler", 1),
 	minecartPassengerAdler("ItemRollingStock", "train_passenger_adler", 2),
 
