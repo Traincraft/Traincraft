@@ -247,6 +247,10 @@ item.tc:minecartLocoEMDF7.name=EMD F7
 item.tc:minecartLocoEMDF3.name=EMD F3
 item.tc:minecartLocoEMDF7B.name=EMD F7 B-unit
 item.tc:minecartLocoEMDF3B.name=EMD F3 B-unit
+item.tc:minecartLocoBR185.name=BR 185
+item.tc:minecartLocoClass85.name=Class 85
+item.tc:minecartLocoEWSClass66.name=EWS Class 66
+item.tc:minecartLocoDeltic.name=Deltic
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -453,6 +457,12 @@ entity.tc.Loco Diesel EMD F-7.name=EMD F7
 entity.tc.Loco Diesel EMD F-3.name=EMD F3
 entity.tc.EMD F7 B Unit.name=EMD F7 B-unit
 entity.tc.EMD F3 B Unit.name=EMD F3 B-unit
+entity.tc.Loco Electric BR 185.name=BR 185
+entity.tc.Loco Electric Class 85.name=Class 85
+entity.tc.Loco Electric EWS Class 66.name=EWS Class 66
+entity.tc.Loco Electric Deltic.name=Deltic
+entity.tc.Tender Coranation Class A4.name=Coranation Class A4 Tender
+entity.tc.Loco Steam Coranation Class A4.name=Coranation Class A4
 
 description.villager.profession.tc.station_chief=Station Chief
 

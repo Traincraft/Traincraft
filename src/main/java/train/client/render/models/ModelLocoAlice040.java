@@ -242,16 +242,16 @@ public class ModelLocoAlice040 extends ModelBase {
 																							 // 170
 
 		locoalice040Model[0].addBox(0F, 0F, 0F, 7, 7, 0, 0F); // Box 0
-		locoalice040Model[0].setRotationPoint(-32F, 3F, 6F);
+		locoalice040Model[0].setRotationPoint(-32F, 3F, 6.01F);
 
 		locoalice040Model[1].addBox(0F, 0F, 0F, 7, 7, 0, 0F); // Box 1
-		locoalice040Model[1].setRotationPoint(-18F, 3F, 6F);
+		locoalice040Model[1].setRotationPoint(-18F, 3F, 6.01F);
 
 		locoalice040Model[2].addBox(0F, 0F, 0F, 7, 7, 0, 0F); // Box 2
-		locoalice040Model[2].setRotationPoint(-18F, 3F, -6F);
+		locoalice040Model[2].setRotationPoint(-18F, 3F, -6.01F);
 
 		locoalice040Model[3].addBox(0F, 0F, 0F, 7, 7, 0, 0F); // Box 3
-		locoalice040Model[3].setRotationPoint(-32F, 3F, -6F);
+		locoalice040Model[3].setRotationPoint(-32F, 3F, -6.01F);
 
 		locoalice040Model[4].addShapeBox(0F, 0F, 0F, 52, 5, 12, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F,
 				0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 4
@@ -784,10 +784,10 @@ public class ModelLocoAlice040 extends ModelBase {
 		locoalice040Model[150].rotateAngleZ = -0.10471976F;
 
 		locoalice040Model[151].addBox(0F, 0F, 0F, 1, 3, 1, 0F); // Box 169
-		locoalice040Model[151].setRotationPoint(-11F, -11F, 6F);
+		locoalice040Model[151].setRotationPoint(-11.01F, -11F, 6F);
 
 		locoalice040Model[152].addBox(0F, 0F, 0F, 1, 3, 1, 0F); // Box 170
-		locoalice040Model[152].setRotationPoint(-11F, -11F, -7F);
+		locoalice040Model[152].setRotationPoint(-11.01F, -11F, -7F);
 
         }
 

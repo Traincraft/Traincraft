@@ -1058,14 +1058,14 @@ public class ModelLocoClimax extends ModelBase
 
         lococlimaxModel[238].addFlexTrapezoid(0F, 0F, 1F, 1, 1, 4, 0F, 0.00F, 0.00F, 1.00F, 1.00F, 1.00F, 1.00F, ModelRendererTurbo.MR_TOP); // Box 239
         lococlimaxModel[238].setRotationPoint(-16F, -13F, 3F);
-        lococlimaxModel[238].rotateAngleX = 0.78539816F;
+        lococlimaxModel[238].rotateAngleX = -0.78539816F;
 
         lococlimaxModel[239].addShapeBox(0F, 0F, 0F, 1, 6, 1, 0F, 0F, -0.2F, 0F, 0F, -0.2F, 0F, 0F, -0.2F, 0.2F, 0F, -0.2F, 0.2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0.2F, 0F, 0F, 0.2F); // Box 240
         lococlimaxModel[239].setRotationPoint(-16F, -9F, 6F);
 
         lococlimaxModel[240].addFlexTrapezoid(0F, 0F, 1F, 1, 1, 4, 0F, 0.00F, 0.00F, 1.00F, 1.00F, 1.00F, 1.00F, ModelRendererTurbo.MR_TOP); // Box 241
         lococlimaxModel[240].setRotationPoint(-15F, -13F, -3F);
-        lococlimaxModel[240].rotateAngleX = 0.78539816F;
+        lococlimaxModel[240].rotateAngleX = -0.78539816F;
         lococlimaxModel[240].rotateAngleY = 3.14159265F;
 
         lococlimaxModel[241].addShapeBox(0F, 0F, 0F, 1, 6, 1, 0F, 0F, -0.2F, 0.2F, 0F, -0.2F, 0.2F, 0F, -0.2F, 0F, 0F, -0.2F, 0F, 0F, 0F, 0.2F, 0F, 0F, 0.2F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 242

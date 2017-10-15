@@ -11,12 +11,12 @@ import train.common.Traincraft;
 import train.common.api.ElectricTrain;
 import train.common.library.GuiIDs;
 
-public class EntityLocoElectricBR101 extends ElectricTrain {
-	public EntityLocoElectricBR101(World world) {
+public class EntityLocoElectricDeltic extends ElectricTrain {
+	public EntityLocoElectricDeltic(World world) {
 		super(world);
 	}
 
-	public EntityLocoElectricBR101(World world, double d, double d1, double d2) {
+	public EntityLocoElectricDeltic(World world, double d, double d1, double d2) {
 		this(world);
 		setPosition(d, d1 + yOffset, d2);
 		motionX = 0.0D;
@@ -31,7 +31,7 @@ public class EntityLocoElectricBR101 extends ElectricTrain {
 	public void updateRiderPosition() {
 		double pitchRads = this.anglePitchClient * Math.PI / 180.0D;
 		double distance = 4.5;
-		double yOffset = 0.2;
+		double yOffset = 0.55;
 		float rotationCos1 = (float) Math.cos(Math.toRadians(this.renderYaw + 90));
 		float rotationSin1 = (float) Math.sin(Math.toRadians((this.renderYaw + 90)));
 		if (side.isServer()) {
@@ -133,7 +133,7 @@ public class EntityLocoElectricBR101 extends ElectricTrain {
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return 0.56F;
+		return 1.5F;
 	}
 
 	@Override

@@ -53,9 +53,6 @@ public class Tessellator {
 		if(drawing){
 			drawing = false;
 			GL11.glPushMatrix();
-			GL11.glDisable(GL11.GL_LIGHTING);
-			GL11.glEnable(GL11.GL_BLEND);
-			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 			GL11.glEnable(GL11.GL_CULL_FACE);
 				ibuf.clear();
 				ibuf.put(rb, 0, 40);
@@ -82,9 +79,6 @@ public class Tessellator {
 					GL11.glDisableClientState(GL11.GL_NORMAL_ARRAY);
 				}
 			}
-			GL11.glDisable(GL11.GL_CULL_FACE);
-			GL11.glDisable(GL11.GL_BLEND);
-			GL11.glEnable(GL11.GL_LIGHTING);
 
 			GL11.glPopMatrix();
 	}
