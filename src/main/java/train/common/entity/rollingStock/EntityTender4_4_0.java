@@ -25,7 +25,6 @@ public class EntityTender4_4_0 extends Tender implements IInventory {
 	public void initFreightTender() {
 		freightInventorySize = 16;
 		tenderItems = new ItemStack[freightInventorySize];
-		this.setDefaultMass(0.2);
 	}
 
 	public EntityTender4_4_0(World world, double d, double d1, double d2) {

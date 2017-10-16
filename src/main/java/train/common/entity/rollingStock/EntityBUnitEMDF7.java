@@ -10,8 +10,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.util.ForgeDirection;
 import train.common.Traincraft;
-import train.common.api.EntityRollingStock;
-import train.common.api.IPassenger;
 import train.common.api.LiquidManager;
 import train.common.api.LiquidTank;
 import train.common.library.EnumTrains;
@@ -27,7 +25,7 @@ public class EntityBUnitEMDF7 extends LiquidTank {
 
 	public EntityBUnitEMDF7(World world, double d, double d1, double d2) {
 		this(world);
-		setPosition(d, d1 + (double) yOffset, d2);
+		setPosition(d, d1 + yOffset, d2);
 		motionX = 0.0D;
 		motionY = 0.0D;
 		motionZ = 0.0D;
@@ -50,14 +48,14 @@ public class EntityBUnitEMDF7 extends LiquidTank {
 			return;
 		}
 		if (getAmount() > 0) {
-			setColor(getColorFromString("Full"));
+			// setColor(getColorFromString("Full"));
 			setDefaultMass(-8);
 			if(MathHelper.floor_double(Math.abs(posX+posZ))> lastPos && ticksExisted %10==0){
 				drain(ForgeDirection.UNKNOWN, 12,true);
 				lastPos = MathHelper.floor_double(Math.abs(posX+posZ));
 			}
 		} else if (getAmount() <= 0) {
-			setColor(getColorFromString("Empty"));
+			// setColor(getColorFromString("Empty"));
 			setDefaultMass(0);
 		}
 	}

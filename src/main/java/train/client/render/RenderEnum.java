@@ -199,11 +199,11 @@ public enum RenderEnum {
 	}, 2, true),
 	locoCoranationClass(EntityLocoSteamCoranationClass.class, new ModelCoranationClass(), "CoranationClass", false, new float[] { -3.8F, 0.2F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "largesmoke", 3, new ArrayList<double[]>() {
 		{
-			add(new double[] { 1.4D, 2.2D, 0.0D });
+					add(new double[] { 4.7D, 2.0D, 0.0D });
 		}
 	}, "explode", new ArrayList<double[]>() {
 		{
-			add(new double[] { 0.875D, 0.2D, 0.2D });
+					add(new double[] { 0.875D, 0.15D, 0.2D });
 		}
 	}, 2, true),
 	locoBR80(EntityLocoSteamBR80_DB.class, new ModelLocoBR80_DB(), "locoBR80_DB_", true, new float[] { -0.75F, -0.44F, 0.0F }, null, null, "largesmoke", 3, new ArrayList<double[]>() {
