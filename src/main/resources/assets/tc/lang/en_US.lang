@@ -462,7 +462,7 @@ entity.tc.EMD F3 B Unit.name=EMD F3 B-unit
 entity.tc.Loco Electric BR 185.name=BR 185
 entity.tc.Loco Electric Class 85.name=Class 85
 entity.tc.Loco Electric EWS Class 66.name=EWS Class 66
-entity.tc.Loco Electric Deltic.name=Deltic
+entity.tc.Loco Diesel Deltic.name=Deltic
 entity.tc.Tender Coranation Class.name=Coranation Class Tender
 entity.tc.Loco Steam Coranation Class.name=Coranation Class
 

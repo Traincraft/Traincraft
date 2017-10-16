@@ -13,12 +13,12 @@ import net.minecraft.entity.Entity;
 import train.client.tmt.ModelBase;
 import train.client.tmt.ModelRendererTurbo;
 
-public class ModelClass85_Bogie extends ModelBase
+public class ModelDeiticBogie extends ModelBase
 {
 	int textureX = 512;
 	int textureY = 64;
 
-	public ModelClass85_Bogie()
+	public ModelDeiticBogie()
 	{
 		class85_bogieModel = new ModelRendererTurbo[34];
 		class85_bogieModel[0] = new ModelRendererTurbo(this, 1, 1, textureX, textureY); // Box 0

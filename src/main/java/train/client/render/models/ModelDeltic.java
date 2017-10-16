@@ -820,8 +820,8 @@ public class ModelDeltic extends ModelBase
 
 
 	}
-	private ModelClass85_Bogie fronttrucks = new ModelClass85_Bogie();
-	private ModelClass85_Bogie backtrucks = new ModelClass85_Bogie();
+	private ModelDeltic_Bogie fronttrucks = new ModelDeltic_Bogie();
+	private ModelDeltic_Bogie backtrucks = new ModelDeltic_Bogie();
 
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
@@ -839,13 +839,13 @@ public class ModelDeltic extends ModelBase
 		}
 
 		GL11.glPushMatrix();
-		Tessellator.bindTexture(new ResourceLocation(Info.modID, "textures/trains/Class85_Bogie.png"));
+		Tessellator.bindTexture(new ResourceLocation(Info.modID, "textures/trains/deltic_bogie.png"));
 		GL11.glTranslated(0, 0.25, -2.9);
 		fronttrucks.render(entity,f,f1,f2,f3,f4,f5);
 		GL11.glPopMatrix();
 
 		GL11.glPushMatrix();
-		Tessellator.bindTexture(new ResourceLocation(Info.modID, "textures/trains/Class85_Bogie.png"));
+		Tessellator.bindTexture(new ResourceLocation(Info.modID, "textures/trains/deltic_bogie.png"));
 		GL11.glTranslated(0, 0.25, 1.9);
 		backtrucks.render(entity,f,f1,f2,f3,f4,f5);
 		GL11.glPopMatrix();

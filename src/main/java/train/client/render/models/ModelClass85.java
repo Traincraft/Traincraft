@@ -831,8 +831,8 @@ public class ModelClass85 extends ModelBase
 
 
 	}
-	private ModelClass85_Bogie fronttrucks = new ModelClass85_Bogie();
-	private ModelClass85_Bogie backtrucks = new ModelClass85_Bogie();
+	private ModelDeiticBogie fronttrucks = new ModelDeiticBogie();
+	private ModelDeiticBogie backtrucks = new ModelDeiticBogie();
 
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)

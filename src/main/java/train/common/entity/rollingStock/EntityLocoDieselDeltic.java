@@ -8,15 +8,23 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
 import train.common.Traincraft;
-import train.common.api.ElectricTrain;
+import train.common.api.DieselTrain;
+import train.common.api.LiquidManager;
+import train.common.library.EnumTrains;
 import train.common.library.GuiIDs;
 
-public class EntityLocoElectricDeltic extends ElectricTrain {
-	public EntityLocoElectricDeltic(World world) {
-		super(world);
+public class EntityLocoDieselDeltic extends DieselTrain {
+	public EntityLocoDieselDeltic(World world) {
+		super(world, EnumTrains.locoDieselDeltic.getTankCapacity(), LiquidManager.dieselFilter());
+		initLoco();
 	}
 
-	public EntityLocoElectricDeltic(World world, double d, double d1, double d2) {
+	public void initLoco() {
+		fuelTrain = 0;
+		locoInvent = new ItemStack[inventorySize];
+	}
+
+	public EntityLocoDieselDeltic(World world, double d, double d1, double d2) {
 		this(world);
 		setPosition(d, d1 + yOffset, d2);
 		motionX = 0.0D;

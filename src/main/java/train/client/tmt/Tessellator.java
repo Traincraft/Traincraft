@@ -123,11 +123,12 @@ public class Tessellator {
 				if (object == null) {
 					object = new SimpleTexture(textureURI);
 					Minecraft.getMinecraft().getTextureManager().loadTexture(textureURI, object);
+				} else {
+					cachedTextures.put(textureURI, object);
 				}
 			} else {
 				object = TextureUtil.missingTexture;
 			}
-			cachedTextures.put(textureURI, object);
 		}
 
 		if (GL11.glGetInteger(GL11.GL_TEXTURE_BINDING_2D) != object.getGlTextureId() || ConfigHandler.FORCE_TEXTURE_BINDING) {
