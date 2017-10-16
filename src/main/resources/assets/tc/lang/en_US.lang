@@ -251,6 +251,8 @@ item.tc:minecartLocoBR185.name=BR 185
 item.tc:minecartLocoClass85.name=Class 85
 item.tc:minecartLocoEWSClass66.name=EWS Class 66
 item.tc:minecartLocoDeltic.name=Deltic
+item.tc:minecartLocoCoranationClass.name=Coranation Class
+item.tc:minecartLocoCoranationClassTender.name=Coranation Class Tender
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes

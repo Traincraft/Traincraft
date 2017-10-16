@@ -97,7 +97,9 @@ public enum EnumTrains {
 	 34,ItemIDs.minecartTenderHeavy.item,"tender",0,0,2,0,0,0,0,0,14000,null,18,0,0.98,1.98,new
 	 String[] {"Water capacity: 14000mb"}),
 	tenderGS4("Tender GS4",EntityTenderGS4.class, 125,ItemIDs.minecartGS4_Tender.item,"tender",0,0,2,0,0,0,0,0,18000,new String[]{"Orange", "Blue"},18,0,0.98,1.98,new String[] {"Water capacity: 18000mb"}),
-	tender4_4_0("Tender 4-4-0 Red",EntityTender4_4_0.class, 83,ItemIDs.minecartSteamRedTender.item,"tender",0,0,0.2,0,0,0,0,0,8000,new String[] {"Black","White","Brown","Blue","Green","Red", "Purple"},18,0,0.98,0.98,new String[] {"Water capacity: 8000mb"}),
+	tender4_4_0("Tender 4-4-0", EntityTender4_4_0.class, 83, ItemIDs.minecartSteamRedTender.item, "tender", 0, 0, 0.2,
+			0, 0, 0, 0, 0, 8000, new String[] { "Black", "White", "Brown", "Blue", "Green", "Red", "Purple" }, 18, 0,
+			0.98, 0.98, new String[] { "Water capacity: 8000mb" }),
 	tenderA4("Tender A4 Mallard", EntityTenderA4.class, 54, ItemIDs.minecartLocoA4MallardTender.item,"tender, Unfinished, Creative Only", 0, 0, 0.2, 0, 0, 0, 0, 0, 6000, new String[] { "Blue", "Lime", "Black", "Green", "White" }, 18,0, 0.98, 0.98, new String[] { "Water capacity: 6000mb" }),
 	tenderBR01("Tender BR01",EntityTenderBR01_DB.class, 103,ItemIDs.minecartTenderBR01_DB.item,"tender",0,0,0.5,0,0,0,0,0,20000,null,18,0,0.98,1.98,new String[] {"Water capacity: 20000mb"}),
 	tenderCoranationClass("Tender Coranation Class",EntityTenderCoranationClass.class, 136,ItemIDs.minecartLocoCoranationClassTender.item,"tender",0,0,0.5,0,0,0,0,0,20000,null,18,0,0.98,1.98,new String[] {"Water capacity: 20000mb"}),
@@ -122,7 +124,9 @@ public enum EnumTrains {
 			1520, 166, 0, 50, 0, 200, 0.8, 0.97, 12000, new String[] { "Grey", "Black" }, 10, -2.4, 0.98, 1.98),
 	locoDieselEMDF3("Loco Diesel EMD F-3", EntityLocoDieselEMDF3.class, 128, ItemIDs.minecartLocoEMDF3.item, "diesel",
 			1100, 169, 0, 55, 0, 200, 0.8, 0.97, 12000, null, 10, -2.25, 0.98, 1.98),
-	locoDieselEWSClass66("Loco Electric EWS Class 66", EntityLocoDieselClass66.class, 134, ItemIDs.minecartLocoEWSClass66.item,"diesel", 400, 121, 0, 10, 0, 170, 0.7, 0.965, 0, new String[]{"Pink", "Green"}, 18, -6 ,0.98, 1.98),
+	locoDieselEWSClass66("Loco Electric EWS Class 66", EntityLocoDieselClass66.class, 134,
+			ItemIDs.minecartLocoEWSClass66.item, "diesel", 400, 121, 0, 10, 0, 170, 0.7, 0.965, 6400,
+			new String[] { "Pink", "Green" }, 18, -6, 0.98, 1.98),
 
 	/** Electric */
 	locoElectricVL10("Loco Electric VL10", EntityLocoElectricVL10.class, 46, ItemIDs.minecartVL10.item, "electric", 700, 150, 0, 8, 0, 400, 1.1, 0.956, 0, null, 14,  -2.3 , 0.98, 1.98),

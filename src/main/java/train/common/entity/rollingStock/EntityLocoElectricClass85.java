@@ -31,7 +31,7 @@ public class EntityLocoElectricClass85 extends ElectricTrain {
 	public void updateRiderPosition() {
 		double pitchRads = this.anglePitchClient * Math.PI / 180.0D;
 		double distance = 4.75;
-		double yOffset = 0.2;
+		double yOffset = 0.35;
 		float rotationCos1 = (float) Math.cos(Math.toRadians(this.renderYaw + 90));
 		float rotationSin1 = (float) Math.sin(Math.toRadians((this.renderYaw + 90)));
 		if (side.isServer()) {
@@ -113,7 +113,7 @@ public class EntityLocoElectricClass85 extends ElectricTrain {
 	}
 	@Override
 	public String getInventoryName() {
-		return "ICB 1";
+		return "Class 85";
 	}
 
 	@Override

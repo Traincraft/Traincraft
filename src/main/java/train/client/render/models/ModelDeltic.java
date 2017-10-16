@@ -9,10 +9,11 @@
 
 package train.client.render.models;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
-import org.lwjgl.opengl.GL11;
 import train.client.tmt.ModelBase;
 import train.client.tmt.ModelRendererTurbo;
 import train.client.tmt.Tessellator;
@@ -839,13 +840,13 @@ public class ModelDeltic extends ModelBase
 
 		GL11.glPushMatrix();
 		Tessellator.bindTexture(new ResourceLocation(Info.modID, "textures/trains/Class85_Bogie.png"));
-		GL11.glTranslated(0,0.2,-2.9);
+		GL11.glTranslated(0, 0.25, -2.9);
 		fronttrucks.render(entity,f,f1,f2,f3,f4,f5);
 		GL11.glPopMatrix();
 
 		GL11.glPushMatrix();
 		Tessellator.bindTexture(new ResourceLocation(Info.modID, "textures/trains/Class85_Bogie.png"));
-		GL11.glTranslated(0,0.2,1.9);
+		GL11.glTranslated(0, 0.25, 1.9);
 		backtrucks.render(entity,f,f1,f2,f3,f4,f5);
 		GL11.glPopMatrix();
 	}

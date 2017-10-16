@@ -1,16 +1,9 @@
 package train.client.render.models;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.RenderBlocks;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.entity.Entity;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidRegistry;
 import org.lwjgl.opengl.GL11;
-import train.client.core.helpers.FluidRenderHelper;
+
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.Entity;
 import train.client.render.CustomModelRenderer;
 import train.client.tmt.ModelBase;
 import train.common.api.LiquidTank;
@@ -454,7 +447,7 @@ public class ModelWatertransp extends ModelBase {
 		//lava	
 		//Fluid theLiquid = FluidRegistry.getFluid(((LiquidTank)entity).getLiquidName());
 		GL11.glPushMatrix();
-		if(((LiquidTank) entity).getFluid() != null) {
+		if ((((LiquidTank) entity).getAmount()) != 0) {
 			GL11.glTranslatef(0.0f, ((((LiquidTank)entity).getAmount()/1000)*0.03f)+0.0f, 0.0f);
     		Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
     		box58.render(f5);
