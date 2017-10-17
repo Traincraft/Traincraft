@@ -34,7 +34,10 @@ public class ConfigHandler {
 	public static int WINDMILL_CHECK_RADIUS;
 	public static boolean REAL_TRAIN_SPEED;
 	public static boolean RETROGEN_CHUNKS;
-	public static boolean	MAKE_MODPACKS_GREAT_AGAIN;
+	public static boolean MAKE_MODPACKS_GREAT_AGAIN;
+	public static boolean FORCE_TEXTURE_BINDING;
+	public static boolean DISABLE_NEI_RECIPES;
+	public static boolean DISABLE_TRAIN_WORKBENCH;
 
 
 
@@ -65,7 +68,11 @@ public class ConfigHandler {
 			MAKE_MODPACKS_GREAT_AGAIN = cf.getBoolean("MAKE_MODPACKS_GREAT_AGAIN", CATEGORY_GENERAL, false,
 					"This will disable some of Traincrafts easier recipes to balance Modpacks");
             WINDMILL_CHECK_RADIUS = cf.getInt("WINDMILL_CHECK_RADIUS", CATEGORY_GENERAL, 1, -1, 10, "This sets the radius for the can-see-the-sky-check area around the windmill. 0=only location of windmill, 1=3x3, 2=5x5 etc. Use -1 to turn of this check completely. DEFAULT: 1");
-		
+			FORCE_TEXTURE_BINDING = cf.get(CATEGORY_GENERAL, "Force_Texture_Binding", true, "Enable this if trains and rollingstock are using block/item textures").getBoolean(true);
+			FORCE_TEXTURE_BINDING = cf.get(CATEGORY_GENERAL, "Force_Texture_Binding", true, "Enable this if trains and rollingstock are using block/item textures").getBoolean(false);
+			DISABLE_NEI_RECIPES = cf.get(CATEGORY_GENERAL, "DISABLE_NEI_RECIPES", false, "disables our system of registering recipes with NEI, enable this if you have your own crafting system").getBoolean(false);
+			DISABLE_TRAIN_WORKBENCH = cf.get(CATEGORY_GENERAL, "DISABLE_TRAIN_WORKBENCH", false, "disables the train workbench, for those of you who want to use a custom part builder").getBoolean(false);
+
 		} catch (Exception e) {
 			Traincraft.tcLog.fatal("Traincraft had a problem loading its configuration\n" + e);
 		} finally {

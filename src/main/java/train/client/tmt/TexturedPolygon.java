@@ -56,7 +56,14 @@ public class TexturedPolygon extends TexturedQuad {
             tessellator.addVertexWithUV((float) positionTexturevertex.vector3D.xCoord * f, (float) positionTexturevertex.vector3D.yCoord * f, (float) positionTexturevertex.vector3D.zCoord * f, (float)positionTexturevertex.texturePositionX, (float)positionTexturevertex.texturePositionY);
         }
 
+		GL11.glDisable(GL11.GL_LIGHTING);
+		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
         tessellator.draw();
+
+		GL11.glDisable(GL11.GL_CULL_FACE);
+		GL11.glDisable(GL11.GL_BLEND);
+		GL11.glEnable(GL11.GL_LIGHTING);
     }
 
     private int[] normals = new int[0];

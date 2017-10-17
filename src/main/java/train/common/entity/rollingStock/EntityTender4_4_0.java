@@ -25,18 +25,11 @@ public class EntityTender4_4_0 extends Tender implements IInventory {
 	public void initFreightTender() {
 		freightInventorySize = 16;
 		tenderItems = new ItemStack[freightInventorySize];
-		this.setDefaultMass(0.2);
-		this.acceptedColors.add(this.getColorFromString("Black"));
-		this.acceptedColors.add(this.getColorFromString("White"));
-		this.acceptedColors.add(this.getColorFromString("Brown"));
-		this.acceptedColors.add(this.getColorFromString("Blue"));
-		this.acceptedColors.add(this.getColorFromString("Green"));
-		this.acceptedColors.add(this.getColorFromString("Red"));
 	}
 
 	public EntityTender4_4_0(World world, double d, double d1, double d2) {
 		this(world);
-		setPosition(d, d1 + (double) yOffset, d2);
+		setPosition(d, d1 + yOffset, d2);
 		motionX = 0.0D;
 		motionY = 0.0D;
 		motionZ = 0.0D;

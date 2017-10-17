@@ -1,8 +1,10 @@
 package train.common.core.handlers;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.PlayerEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import net.minecraft.world.World;
+import train.common.api.AbstractTrains;
 
 import java.util.Random;
 
@@ -36,6 +38,14 @@ public class WorldEvents{
 		}
 		if (rand.nextInt(100) <= downChance) {
 			windStrength -= 1;
+		}
+	}
+
+	@SubscribeEvent
+	@SuppressWarnings("unused")
+	public void playerQuitEvent(PlayerEvent.PlayerLoggedOutEvent event){
+		if (event.player.ridingEntity instanceof AbstractTrains){
+			event.player.dismountEntity(event.player.ridingEntity);
 		}
 	}
 }

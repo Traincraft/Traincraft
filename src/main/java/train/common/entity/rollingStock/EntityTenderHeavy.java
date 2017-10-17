@@ -25,8 +25,6 @@ public class EntityTenderHeavy extends Tender implements IInventory {
 	public void initFreightTender() {
 		freightInventorySize = 16;
 		tenderItems = new ItemStack[freightInventorySize];
-		this.setDefaultMass(0.2);
-		this.acceptedColors.add(this.getColorFromString("Black"));
 	}
 
 	public EntityTenderHeavy(World world, double d, double d1, double d2) {

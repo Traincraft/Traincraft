@@ -1,5 +1,6 @@
 package train.client.core.handlers;
 
+import net.minecraft.client.Minecraft;
 import org.lwjgl.input.Keyboard;
 
 import cpw.mods.fml.client.registry.ClientRegistry;
@@ -35,12 +36,26 @@ public class TCKeyHandler
 	}
 	@SubscribeEvent
 	public void onKeyInput(InputEvent.KeyInputEvent event) {
-		if (up.getIsKeyPressed()){sendKeyControlsPacket(0);}
-		if (down.getIsKeyPressed()){ sendKeyControlsPacket(2);}
-		if (idle.isPressed()){ sendKeyControlsPacket(6);}
-		if (inventory.isPressed()){ sendKeyControlsPacket(7);}
-		if (horn.isPressed()){ sendKeyControlsPacket(8);}
-		if (furnace.isPressed()){ sendKeyControlsPacket(9);}
+		if(!Minecraft.getMinecraft().ingameGUI.getChatGUI().getChatOpen()) {
+			if (up.getIsKeyPressed()) {
+				sendKeyControlsPacket(0);
+			}
+			if (down.getIsKeyPressed()) {
+				sendKeyControlsPacket(2);
+			}
+			if (idle.isPressed()) {
+				sendKeyControlsPacket(6);
+			}
+			if (inventory.isPressed()) {
+				sendKeyControlsPacket(7);
+			}
+			if (horn.isPressed()) {
+				sendKeyControlsPacket(8);
+			}
+			if (furnace.isPressed()) {
+				sendKeyControlsPacket(9);
+			}
+		}
 	}
 	
 	private static void sendKeyControlsPacket(int key)

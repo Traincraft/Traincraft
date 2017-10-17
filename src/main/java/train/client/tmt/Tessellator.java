@@ -8,18 +8,14 @@ import net.minecraft.client.renderer.texture.ITextureObject;
 import net.minecraft.client.renderer.texture.SimpleTexture;
 import net.minecraft.client.renderer.texture.TextureUtil;
 import net.minecraft.util.ResourceLocation;
-import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
+import train.common.core.handlers.ConfigHandler;
 
-import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.net.URL;
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
-import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.lwjgl.opengl.GL11.GL_TEXTURE_2D;
 
@@ -57,9 +53,6 @@ public class Tessellator {
 		if(drawing){
 			drawing = false;
 			GL11.glPushMatrix();
-			GL11.glDisable(GL11.GL_LIGHTING);
-			GL11.glEnable(GL11.GL_BLEND);
-			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 			GL11.glEnable(GL11.GL_CULL_FACE);
 				ibuf.clear();
 				ibuf.put(rb, 0, 40);
@@ -86,9 +79,6 @@ public class Tessellator {
 					GL11.glDisableClientState(GL11.GL_NORMAL_ARRAY);
 				}
 			}
-			GL11.glDisable(GL11.GL_CULL_FACE);
-			GL11.glDisable(GL11.GL_BLEND);
-			GL11.glEnable(GL11.GL_LIGHTING);
 
 			GL11.glPopMatrix();
 	}
@@ -121,20 +111,27 @@ public class Tessellator {
 	}
 
 
+	public static Map<ResourceLocation, ITextureObject> cachedTextures = new HashMap<ResourceLocation, ITextureObject>();
 
 	public static void bindTexture(ResourceLocation textureURI) {
 		ITextureObject object;
-		if (textureURI != null) {
-			object = Minecraft.getMinecraft().getTextureManager().getTexture(textureURI);
-			if (object == null) {
-				object = new SimpleTexture(textureURI);
-				Minecraft.getMinecraft().getTextureManager().loadTexture(textureURI, object);
-			}
+		if (cachedTextures.containsKey(textureURI)){
+			object = cachedTextures.get(textureURI);
 		} else {
-			object = TextureUtil.missingTexture;
+			if (textureURI != null) {
+				object = Minecraft.getMinecraft().getTextureManager().getTexture(textureURI);
+				if (object == null) {
+					object = new SimpleTexture(textureURI);
+					Minecraft.getMinecraft().getTextureManager().loadTexture(textureURI, object);
+				} else {
+					cachedTextures.put(textureURI, object);
+				}
+			} else {
+				object = TextureUtil.missingTexture;
+			}
 		}
 
-		if (GL11.glGetInteger(GL11.GL_TEXTURE_BINDING_2D) != object.getGlTextureId()) {
+		if (GL11.glGetInteger(GL11.GL_TEXTURE_BINDING_2D) != object.getGlTextureId() || ConfigHandler.FORCE_TEXTURE_BINDING) {
 			GL11.glBindTexture(GL_TEXTURE_2D, object.getGlTextureId());
 		}
 	}

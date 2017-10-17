@@ -1,5 +1,18 @@
 package train.client.gui;
 
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.List;
+
+import org.lwjgl.input.Keyboard;
+import org.lwjgl.opengl.GL11;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
@@ -10,24 +23,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ResourceLocation;
-import org.lwjgl.input.Keyboard;
-import org.lwjgl.opengl.GL11;
 import train.common.Traincraft;
 import train.common.api.AbstractTrains;
 import train.common.core.network.PacketSetJukeboxStreamingUrl;
 import train.common.core.network.PacketSetTrainLockedToClient;
 import train.common.entity.rollingStock.EntityJukeBoxCart;
 import train.common.library.Info;
-
-import java.awt.*;
-import java.awt.datatransfer.Clipboard;
-import java.awt.datatransfer.DataFlavor;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
-import java.util.List;
 
 public class GuiJukebox extends GuiScreen {
 
@@ -42,8 +43,6 @@ public class GuiJukebox extends GuiScreen {
 	private int gui_inner_height;
 	private int anim = 0;
 	private String infoText;
-	private boolean flash;
-	private float volume = 1.0f;
 	
 	public GuiJukebox(EntityPlayer player, EntityJukeBoxCart jukebox) {
 		this.jukebox = jukebox;
@@ -195,6 +194,7 @@ public class GuiJukebox extends GuiScreen {
 		super.mouseClicked(par1, par2, par3);
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	protected void actionPerformed(GuiButton button) {
 		if (button.id == 0) {
@@ -238,7 +238,7 @@ public class GuiJukebox extends GuiScreen {
 		}
 
 		if (button.id == 4) {
-			if((Minecraft.getMinecraft().thePlayer != null) && (((EntityJukeBoxCart) jukebox).player != null) && (!((EntityJukeBoxCart) jukebox).isInvalid)){
+			if((Minecraft.getMinecraft().thePlayer != null) && (jukebox.player != null) && (!jukebox.isInvalid)){
 				if(jukebox.volume<1.0f) {
     				jukebox.volume += 0.1f;
 				}
@@ -246,7 +246,7 @@ public class GuiJukebox extends GuiScreen {
 		}
 
 		if (button.id == 5) {
-			if((Minecraft.getMinecraft().thePlayer != null) && (((EntityJukeBoxCart) jukebox).player != null) && (!((EntityJukeBoxCart) jukebox).isInvalid)){
+			if((Minecraft.getMinecraft().thePlayer != null) && (jukebox.player != null) && (!jukebox.isInvalid)){
 				if(jukebox.volume>0.0f) {
 					jukebox.volume -= 0.1f;
 				}
@@ -256,8 +256,8 @@ public class GuiJukebox extends GuiScreen {
 		if (button.id == 3) {
 			if (player != null && player instanceof EntityPlayer && player.getDisplayName().equals(((AbstractTrains) jukebox).getTrainOwner())) {
 				if ((!((AbstractTrains) jukebox).locked)) {
-					AxisAlignedBB box = ((EntityJukeBoxCart) jukebox).boundingBox.expand(5, 5, 5);
-					List lis3 = ((EntityJukeBoxCart) jukebox).worldObj.getEntitiesWithinAABBExcludingEntity(jukebox, box);
+					AxisAlignedBB box = jukebox.boundingBox.expand(5, 5, 5);
+					List lis3 = jukebox.worldObj.getEntitiesWithinAABBExcludingEntity(jukebox, box);
 					if (lis3 != null && lis3.size() > 0) {
 						for (int j1 = 0; j1 < lis3.size(); j1++) {
 							Entity entity = (Entity) lis3.get(j1);
@@ -271,8 +271,8 @@ public class GuiJukebox extends GuiScreen {
 					this.initGui();
 				}
 				else {
-					AxisAlignedBB box = ((EntityJukeBoxCart) jukebox).boundingBox.expand(5, 5, 5);
-					List lis3 = ((EntityJukeBoxCart) jukebox).worldObj.getEntitiesWithinAABBExcludingEntity(jukebox, box);
+					AxisAlignedBB box = jukebox.boundingBox.expand(5, 5, 5);
+					List lis3 = jukebox.worldObj.getEntitiesWithinAABBExcludingEntity(jukebox, box);
 					if (lis3 != null && lis3.size() > 0) {
 						for (int j1 = 0; j1 < lis3.size(); j1++) {
 							Entity entity = (Entity) lis3.get(j1);
@@ -302,6 +302,7 @@ public class GuiJukebox extends GuiScreen {
 		return false;
 	}
 
+	@Override
 	protected void drawCreativeTabHoveringText(String str, int t, int g) {
 		String state = "";
 		if (jukebox.locked)

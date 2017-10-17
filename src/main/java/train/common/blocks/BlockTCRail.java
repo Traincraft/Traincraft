@@ -67,8 +67,7 @@ public class BlockTCRail extends Block {
 		}
 		if (tileEntity != null && (tileEntity.idDrop != null) && !world.isRemote) {
 			EntityPlayer player = Traincraft.proxy.getPlayer();
-			boolean flag = player != null && player.capabilities.isCreativeMode;
-			if (!flag) {
+			if (!(player != null && player.capabilities.isCreativeMode)) {
 				this.dropBlockAsItem(world, i, j, k, new ItemStack(tileEntity.idDrop, 1, 0));
 			}
 		}
