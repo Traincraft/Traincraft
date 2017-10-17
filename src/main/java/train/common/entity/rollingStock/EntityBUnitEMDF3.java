@@ -9,10 +9,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraftforge.fluids.FluidRegistry;
 import train.common.Traincraft;
-import train.common.api.EntityRollingStock;
-import train.common.api.IPassenger;
 import train.common.api.LiquidManager;
 import train.common.api.LiquidTank;
 import train.common.library.EnumTrains;
@@ -54,7 +51,7 @@ public class EntityBUnitEMDF3 extends LiquidTank {
 		if (getAmount() > 0) {
 			setColor(getColorFromString("Full"));
 			setDefaultMass(-8);
-			if(MathHelper.floor_double(Math.abs(posX+posZ))> lastPos && ticksExisted %10==0){
+			if (MathHelper.floor_double(Math.abs(posX + posZ)) != lastPos && ticksExisted % 40 == 0) {
 				drain(ForgeDirection.UNKNOWN, 12,true);
 				lastPos = MathHelper.floor_double(Math.abs(posX+posZ));
 			}

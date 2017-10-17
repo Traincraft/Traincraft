@@ -50,7 +50,7 @@ public class EntityBUnitEMDF7 extends LiquidTank {
 		if (getAmount() > 0) {
 			// setColor(getColorFromString("Full"));
 			setDefaultMass(-8);
-			if(MathHelper.floor_double(Math.abs(posX+posZ))> lastPos && ticksExisted %10==0){
+			if (MathHelper.floor_double(Math.abs(posX + posZ)) != lastPos && ticksExisted % 40 == 0) {
 				drain(ForgeDirection.UNKNOWN, 12,true);
 				lastPos = MathHelper.floor_double(Math.abs(posX+posZ));
 			}
