@@ -1,7 +1,7 @@
 /**
  * A track that detects all instance of Locomotive
  * 
- * @author Spitfire4466(Edited by PeachMaster)
+ * @author Spitfire4466(Edited by NitroxydeX)
  */
 package train.common.blocks.tracks;
 
