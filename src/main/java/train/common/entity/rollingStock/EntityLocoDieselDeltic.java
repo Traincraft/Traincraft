@@ -81,6 +81,12 @@ public class EntityLocoDieselDeltic extends DieselTrain {
 			((EntityPlayer) riddenByEntity).openGui(Traincraft.instance, GuiIDs.LOCO, worldObj, (int) this.posX, (int) this.posY, (int) this.posZ);
 		}
 	}
+	
+	@Override
+	public void onUpdate() {
+		checkInvent(locoInvent[0]);
+		super.onUpdate();
+	}
 
 	@Override
 	protected void writeEntityToNBT(NBTTagCompound nbttagcompound) {

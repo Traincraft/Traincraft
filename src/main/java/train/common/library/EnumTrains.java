@@ -128,7 +128,8 @@ public enum EnumTrains {
 	locoDieselEWSClass66("Loco Electric EWS Class 66", EntityLocoDieselClass66.class, 134,
 			ItemIDs.minecartLocoEWSClass66.item, "diesel", 400, 121, 0, 10, 0, 170, 0.7, 0.965, 6400,
 			new String[] { "Pink", "Green" }, 18, -6, 0.98, 1.98),
-	locoDieselDeltic("Loco Diesel Deltic", EntityLocoDieselDeltic.class, 133, ItemIDs.minecartLocoDeltic.item,"electric", 874, 160, 0, 10, 0, 170, 0.7, 0.965, 6400, null, 18, -5 ,0.98, 1.98),
+	locoDieselDeltic("Loco Diesel Deltic", EntityLocoDieselDeltic.class, 133, ItemIDs.minecartLocoDeltic.item, "diesel",
+			874, 160, 0, 10, 0, 170, 0.7, 0.965, 6400, null, 18, -5, 0.98, 1.98),
 
 	/** Electric */
 	locoElectricVL10("Loco Electric VL10", EntityLocoElectricVL10.class, 46, ItemIDs.minecartVL10.item, "electric", 6250, 100, 0, 8, 0, 400, 1.1, 0.956, 0, null, 14, -2.3, 0.98, 1.98),
