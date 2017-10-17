@@ -672,7 +672,7 @@ public class ModelCoranationClass extends ModelBase
 
 		coranationclassModel[65].addBox(0F, 0F, 0F, 22, 1, 1, 0F);
 		coranationclassModel[65].setRotationPoint(-9.15F, 3.5F, -8.5F);
-		coranationclassModel[65].rotateAngleZ = 0.18325957F;
+		coranationclassModel[65].rotateAngleZ = -0.18325957F;
 
 		coranationclassModel[66].addBox(0F, 0F, 0F, 8, 1, 1, 0F);
 		coranationclassModel[66].setRotationPoint(-17F, 3.5F, -8.5F);
