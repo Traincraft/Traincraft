@@ -27,7 +27,7 @@ public class RecipeHandler {
 	private static final ArrayList<ItemStack> iron = OreDictionary.getOres("ingotIron");
 	private static final ArrayList<ItemStack> planks = OreDictionary.getOres("plankWood");
 	private static final ArrayList<ItemStack> logs = OreDictionary.getOres("logWood");
-	private static final ArrayList<ItemStack> plastics = OreDictionary.getOres("dustPlastic");
+	private static final ArrayList<ItemStack>	plastics	= OreDictionary.getOres("itemPlastic");
 	private static final ArrayList<ItemStack> copper = OreDictionary.getOres("ingotCopper");
 	private static final ArrayList<ItemStack> dustCoal = OreDictionary.getOres("dustCoal");
 
