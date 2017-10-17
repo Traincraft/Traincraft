@@ -31,7 +31,7 @@ public class EntityTenderCoranationClass extends Tender implements IInventory {
 
 	public EntityTenderCoranationClass(World world, double d, double d1, double d2) {
 		this(world);
-		setPosition(d, d1 + (double) yOffset, d2);
+		setPosition(d, d1 + yOffset, d2);
 		motionX = 0.0D;
 		motionY = 0.0D;
 		motionZ = 0.0D;
@@ -84,7 +84,7 @@ public class EntityTenderCoranationClass extends Tender implements IInventory {
 	}
 	@Override
 	public String getInventoryName() {
-		return "BR01's Tender";
+		return "Coronation Tender";
 	}
 
 	@Override
