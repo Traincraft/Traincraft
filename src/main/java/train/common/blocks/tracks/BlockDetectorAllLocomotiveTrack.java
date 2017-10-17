@@ -34,14 +34,12 @@ public class BlockDetectorAllLocomotiveTrack extends BlockDetectorTrack implemen
 	public void readFromNBT(NBTTagCompound nbttagcompound) {
 		super.readFromNBT(nbttagcompound);
 		this.ThingToSet = nbttagcompound.getInteger("state");
-		System.out.println("ReadNBT");
 	}
 	
 	@Override
 	public void writeToNBT(NBTTagCompound nbttagcompound) {
 		super.writeToNBT(nbttagcompound);
 		nbttagcompound.setInteger("state", this.ThingToSet);
-		System.out.println("WriteNBT");
 	}
 	
 	@Override
@@ -49,7 +47,6 @@ public class BlockDetectorAllLocomotiveTrack extends BlockDetectorTrack implemen
 		super.readPacketData(data);
 		this.ThingToSet = data.readInt();
 		markBlockNeedsUpdate();
-		System.out.println("ReadData");
 	}
 	
 	@Override
@@ -57,7 +54,6 @@ public class BlockDetectorAllLocomotiveTrack extends BlockDetectorTrack implemen
 		super.writePacketData(data);
 		
 		data.writeInt(this.ThingToSet);
-		System.out.println("WriteData");
 	}
 	
 	@Override
