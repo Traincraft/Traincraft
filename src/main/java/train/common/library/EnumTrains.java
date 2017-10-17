@@ -131,14 +131,16 @@ public enum EnumTrains {
 	locoDieselDeltic("Loco Diesel Deltic", EntityLocoDieselDeltic.class, 133, ItemIDs.minecartLocoDeltic.item,"electric", 874, 160, 0, 10, 0, 170, 0.7, 0.965, 6400, null, 18, -5 ,0.98, 1.98),
 
 	/** Electric */
-	locoElectricVL10("Loco Electric VL10", EntityLocoElectricVL10.class, 46, ItemIDs.minecartVL10.item, "electric", 700, 150, 0, 8, 0, 400, 1.1, 0.956, 0, null, 14,  -2.3 , 0.98, 1.98),
+	locoElectricVL10("Loco Electric VL10", EntityLocoElectricVL10.class, 46, ItemIDs.minecartVL10.item, "electric", 6250, 100, 0, 8, 0, 400, 1.1, 0.956, 0, null, 14, -2.3, 0.98, 1.98),
 	locoElectricBR_E69("Loco Electric BR_E69",EntityLocoElectricBR_E69.class, 7,ItemIDs.minecartBR_E69.item,"electric",400,50,0,5,0,400,0.9,0.946,0,new String[] {"Green","Red","Black","Grey"},18,0,0.98,1.98),
 	locoElectricMineTrain("Loco Electric Minetrain",EntityLocoElectricMinetrain.class,75,ItemIDs.minecartLocoMineTrain.item,"electric",500,40,0,80,0,160,0.5,0.97,0,null,18,-1,0.98,0.98),
 	locoElectricSpeedZeroED("Loco Electric High Speed ZeroED", EntityLocoElectricHighSpeedZeroED.class, 12,ItemIDs.minecartLocoHighSpeedZeroED.item, "electric", 700, 237, 0, 3, 0,230, 1.4, 0.98, 0, null, 13,  -3.4 ,  0.98, 1.98),
-	locoElectricICE1("Loco Electric ICE 1", EntityLocoElectricICE1.class, 116, ItemIDs.minecartICE1_Loco.item, "electric", 740, 280, 0, 4, 0, 250, 1.5, 0.98, 0, null, 13,  -5,  0.98, 1.98),
+	locoElectricICE1("Loco Electric ICE 1", EntityLocoElectricICE1.class, 116, ItemIDs.minecartICE1_Loco.item,
+			"electric", 13080, 280, 0, 4, 0, 250, 1.5, 0.98, 0, null, 13, -5, 0.98, 1.98),
 	//locoSpeedGrey("Loco High Speed",EntityLocoElectricNewHighSpeedLoco.class, 36,null,null,0.98,0.98),
 	locoElectricTramYellow("Loco Electric Yellow Wood Tram",EntityLocoElectricTramWood.class, 24,ItemIDs.minecartTramWood.item,"electric",300,55,0,10,0,140,0.5,0.965,0,null,14,-2,0.98,1.98),
-	locoElectricTramNY("Loco Electric Tram NY", EntityLocoElectricTramNY.class, 23, ItemIDs.minecartNYTram.item,"electric", 400, 65, 0, 10, 0, 170, 0.7, 0.965, 0, null, 18, -3 ,0.98, 1.98),
+	locoElectricTramNY("Loco Electric Tram NY", EntityLocoElectricTramNY.class, 23, ItemIDs.minecartNYTram.item,
+			"electric", 149, 89, 0, 10, 0, 170, 0.7, 0.965, 0, null, 18, -3, 0.98, 1.98),
 	locoElectricBR185("Loco Electric BR 185", EntityLocoElectricBR185.class, 131, ItemIDs.minecartLocoBR185.item,"electric", 300, 220, 0, 10, 0, 170, 0.7, 0.965, 0, null, 18, -5 ,0.98, 1.98),
 	locoElectricClass85("Loco Electric Class 85", EntityLocoElectricClass85.class, 132, ItemIDs.minecartLocoClass85.item,"electric", 874, 160, 0, 10, 0, 170, 0.7, 0.965, 0, null, 18, -5 ,0.98, 1.98),
 
