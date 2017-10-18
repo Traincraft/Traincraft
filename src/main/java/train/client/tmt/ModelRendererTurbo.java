@@ -1022,7 +1022,9 @@ public class ModelRendererTurbo extends ModelRenderer {
             return;
         }
         if(!compiled) {
+            GL11.glPushMatrix();
             compileDisplayList(worldScale);
+            GL11.glPopMatrix();
             return;
         }
         GL11.glPushMatrix();
