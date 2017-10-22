@@ -33,7 +33,7 @@ public class GuiCrafterTier extends GuiTraincraft {
 	private static int[] states = new int[10];
 	public static int[] slotStates = new int[8];
 	public static int recipeSize = 0;
-	public static List<ItemStack> recipes;
+	public static List<Item> recipes;
 	public static List<TierRecipe> recipeList;
 
 	public static boolean isShow = false;
@@ -43,7 +43,7 @@ public class GuiCrafterTier extends GuiTraincraft {
 	private float yaw;
 	private float roll;
 	private boolean rollDown;
-	public ItemStack currentKnownItem=null;
+	public Item currentKnownItem=null;
 	private int ticksInGui=0;
 	private Item previousItem;
 	private Entity renderEntity;
@@ -118,7 +118,7 @@ public class GuiCrafterTier extends GuiTraincraft {
 				GL11.glTranslatef(guiLeft-70, this.guiTop+170, 100);
 
 				RenderHelper.enableGUIStandardItemLighting();
-				Item item = currentKnownItem.getItem();
+				Item item = currentKnownItem;
 				EnumTrains train = EnumTrains.getCurrentTrain(item);
 				if(EnumTrains.getEntityWithItem(item, this.mc.theWorld, 0, 0, 0)!=null && !Item.itemRegistry.getNameForObject(item).equals(Item.itemRegistry.getNameForObject(previousItem))){
 					renderEntity = EnumTrains.getEntityWithItem(item, this.mc.theWorld, 0, 0, 0);
