@@ -196,7 +196,7 @@ public class TileCrafterTierI extends TileEntity implements IInventory, ITier {
 		int count = 0;
 		for (TierRecipe recipe : recipes) {
 			ItemStack stack = recipe.hasComponents(crafterInventory);
-			if (stack != null && !resultList.contains(stack.getItem()) && (count + 10) < crafterInventory.length) {
+			if (stack != null && !resultList.contains(stack.getItem()) && (count + 10) < crafterInventory.length - 8) {
 				resultList.add(stack.getItem());
 				crafterInventory[count + 10] = new ItemStack(stack.getItem(), 1, 0);
 				count++;
@@ -252,14 +252,6 @@ public class TileCrafterTierI extends TileEntity implements IInventory, ITier {
 		return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, nbt);
 	}
 
-	private boolean listContains(List<ItemStack> list, Item stack) {
-		for (int i = 0; i < list.size(); i++) {
-			if (Item.getIdFromItem(list.get(i).getItem()) == Item.getIdFromItem(stack)) {
-				return true;
-			}
-		}
-		return false;
-	}
 	private boolean listContainsItem(List<Item> list, Item stack) {
 		for (int i = 0; i < list.size(); i++) {
 			if (Item.getIdFromItem(list.get(i)) == Item.getIdFromItem(stack)) {
