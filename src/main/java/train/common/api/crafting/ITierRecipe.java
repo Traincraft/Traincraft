@@ -7,21 +7,15 @@
 
 package train.common.api.crafting;
 
-import net.minecraft.item.ItemStack;
-
 import java.util.List;
+
+import net.minecraft.item.ItemStack;
 
 public interface ITierRecipe {
 
 	public abstract int getTier();
 
-	public abstract int getOutputSize();
-
 	public abstract ItemStack getOutput();
-
-	public abstract String getRecipeName();
-
-	public abstract ItemStack getRecipeIn(int slot);
 
 	@SuppressWarnings("rawtypes")
 	public abstract List getInput();
