@@ -4,7 +4,9 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import net.minecraft.world.World;
+import net.minecraftforge.event.world.ChunkEvent;
 import train.common.api.AbstractTrains;
+import train.common.entity.rollingStock.EntityJukeBoxCart;
 
 import java.util.Random;
 
@@ -46,6 +48,15 @@ public class WorldEvents{
 	public void playerQuitEvent(PlayerEvent.PlayerLoggedOutEvent event){
 		if (event.player.ridingEntity instanceof AbstractTrains){
 			event.player.dismountEntity(event.player.ridingEntity);
+		}
+	}
+
+	@SubscribeEvent
+	public void chunkUnloadEvent(ChunkEvent.Unload event){
+		for(Object o : event.getChunk().entityLists){
+			if (o instanceof EntityJukeBoxCart){
+				((EntityJukeBoxCart) o).player.setVolume(0);
+			}
 		}
 	}
 }

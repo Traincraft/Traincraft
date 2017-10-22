@@ -146,6 +146,7 @@ public class EntityJukeBoxCart extends EntityRollingStock {
 			this.isPlaying = true;
 			if (side == Side.CLIENT) {
 				this.player = new MP3Player(this.streamURL, this.worldObj, this.getEntityId());
+				player.setVolume(0);
 				Traincraft.proxy.playerList.add(this.player);
 			}
 		}
