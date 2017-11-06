@@ -1,6 +1,5 @@
 package train.common.api;
 
-import net.minecraft.client.Minecraft;
 import org.lwjgl.input.Keyboard;
 
 import cpw.mods.fml.client.FMLClientHandler;
@@ -8,6 +7,7 @@ import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -332,28 +332,28 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 				return;
 			}
 		}
-			pressKey(i);
-			if (i == 8 && ConfigHandler.SOUNDS) {
-				soundHorn();
-			}
-			if (i == 5){
-				forwardPressed = true;
-			}
-			if (i == 6){
-				backwardPressed = true;
-			}
-			if (i == 12){
-				brakePressed = true;
-			}
-			if (i == 13){
-				forwardPressed = false;
-			}
-			if (i == 14){
-				backwardPressed = false;
-			}
-			if (i == 15){
-				brakePressed = false;
-			}
+		pressKey(i);
+		if (i == 8 && ConfigHandler.SOUNDS) {
+			soundHorn();
+		}
+		if (i == 4) {
+			forwardPressed = true;
+		}
+		if (i == 5) {
+			backwardPressed = true;
+		}
+		if (i == 12) {
+			brakePressed = true;
+		}
+		if (i == 13) {
+			forwardPressed = false;
+		}
+		if (i == 14) {
+			backwardPressed = false;
+		}
+		if (i == 15) {
+			brakePressed = false;
+		}
 	}
 
 	/**
@@ -425,7 +425,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 		if (worldObj.isRemote && ticksExisted %2 ==0 && !Minecraft.getMinecraft().ingameGUI.getChatGUI().getChatOpen()){
 			if (Keyboard.isKeyDown(FMLClientHandler.instance().getClient().gameSettings.keyBindForward.getKeyCode())
 					&& !forwardPressed) {
-				Traincraft.keyChannel.sendToServer(new PacketKeyPress(5));
+				Traincraft.keyChannel.sendToServer(new PacketKeyPress(4));
 				forwardPressed = true;
 			} else if (!Keyboard
 					.isKeyDown(FMLClientHandler.instance().getClient().gameSettings.keyBindForward.getKeyCode())
@@ -435,7 +435,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 			}
 			if (Keyboard.isKeyDown(FMLClientHandler.instance().getClient().gameSettings.keyBindBack.getKeyCode())
 					&& !backwardPressed) {
-				Traincraft.keyChannel.sendToServer(new PacketKeyPress(6));
+				Traincraft.keyChannel.sendToServer(new PacketKeyPress(5));
 				backwardPressed = true;
 			} else if (!Keyboard
 					.isKeyDown(FMLClientHandler.instance().getClient().gameSettings.keyBindBack.getKeyCode())
