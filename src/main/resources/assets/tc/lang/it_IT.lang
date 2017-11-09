@@ -2,7 +2,7 @@
 <!-- ## Only replace the words on the right side of "=" ## -->
 <!-- ## Save the file the same way this file was saved but replace "de_DE" with appropriate language name ## -->
 
-<!-- ## BLOCKS ## -->
+<!-- ## BLOCK ## -->
 tile.tc:oreTC.copperOre.name=Minerale di bronzo
 tile.tc:oreTC.oilSands.name=Sabbia bituminosa
 tile.tc:oreTC.petroleum.name=Petrolio
@@ -26,7 +26,7 @@ fluid.tc:fluid.diesel.name=Carburante diesel
 fluid.tc:refinedfuel.name=Carburante raffinato
 tile.tc:bridgePillar.name=Pilone del ponte
 
-<!-- ## RAILCRAFT ITEMS ## -->
+<!-- ## RAILCRAFT ITEM ## -->
 tile.tc.track.detector.freight.name=Binario rilevatore vagone merci
 tile.tc.track.detector.passenger.name=Binario rilevatore vagone passeggeri
 tile.tc.track.detector.loco.name=Binario rilevatore locomotiva
@@ -48,7 +48,7 @@ tile.tc.track.coupler.name=Binario di aggancio
 tile.tc.track.speed.loco.name=Binario velocità per locomotiva
 tile.tc.track.steel.name=Binario di acciaio
 
-<!-- ## ITEMS ## -->
+<!-- ## ITEM ## -->
 item.tc:diesel.name=(Pieno) Tanica di carburante diesel
 item.tc:stake.name=Barra meccanica
 item.tc:steeldust.name=Polvere di acciaio
@@ -181,7 +181,7 @@ item.tc:composite_wrench.name=Chiave inglese composita
 item.tc:minecartPassengerHighSpeedCarZeroED.name=Vagone treno ad alta velocita'
 item.tc:minecartNYTram.name=Locomotiva N.Y. Metro'
 item.tc:minecartLocoHighSpeedZeroED.name=Locomotiva treno ad alta velocita'
-item.tc:minecartLocoC62Class.name=Locomotiva Classe C62 (JNR)
+item.tc:minecartLocoC62Class.name=Locomotiva classe C62 (JNR)
 item.tc:minecartTenderC62Class.name=Vagone di scorta C62 (JNR)
 item.tc:minecartLocoSteamShay.name=Locomotiva Shay (US)
 item.tc:minecartLocoSteamAdler.name=Locomotiva Adler
@@ -246,8 +246,14 @@ item.tc:minecartLocoEMDF7.name=Locomotiva EMD F7
 item.tc:minecartLocoEMDF3.name=Locomotiva EMD F3
 item.tc:minecartLocoEMDF7B.name=Locomotiva ausiliaria EMD F7
 item.tc:minecartLocoEMDF3B.name=Locomotiva ausiliaria EMD F3
+item.tc:minecartLocoBR185.name=Locomotiva BR 185
+item.tc:minecartLocoClass85.name=Locomotiva classe 85
+item.tc:minecartLocoEWSClass66.name=Locomotiva EWS classe 66
+item.tc:minecartLocoDeltic.name=Locomotiva Deltic
+item.tc:minecartLocoCoranationClass.name=Locomotiva classe Coronation
+item.tc:minecartLocoCoranationClassTender.name=Vagone di scorta Coronation
 
-<!-- ## ACHIEVEMENTS ## -->
+<!-- ## ACHIEVEMENT ## -->
 achievement.tc:engineer=Gli indumenti dell'ingegnere
 achievement.tc:engineer.desc=Un autentico ferroviere!
 achievement.tc:openHearth=La fornace a cielo scoperto
@@ -345,7 +351,7 @@ entity.tc.Loco Steam Cherepanov.name=Locomotiva Cherepanov (SU)
 entity.tc.Loco Steam BR80.name=Locomotiva BR 80 (DB)
 entity.tc.Loco Steam 4-4-0.name=Locomotiva 4-4-0 (US)
 entity.tc.Loco Steam Small.name=Locomotiva a vapore piccola
-entity.tc.Loco Steam C62Class.name=Locomotiva Classe C62 (JNR)
+entity.tc.Loco Steam C62Class.name=Locomotiva classe C62 (JNR)
 entity.tc.Loco Steam ER_USSR.name=Locomotiva USSR 0-5-0 (SU)
 entity.tc.Loco Steam Forney.name=Locomotiva Forney (US)
 entity.tc.Loco Steam Mogul.name=Locomotiva Mogul (US)
@@ -453,6 +459,12 @@ entity.tc.Loco Diesel EMD F-7.name=Locomotiva EMD F7
 entity.tc.Loco Diesel EMD F-3.name=Locomotiva EMD F3
 entity.tc.EMD F7 B Unit.name=Locomotiva ausiliaria EMD F7
 entity.tc.EMD F3 B Unit.name=Locomotiva ausiliaria EMD F3
+entity.tc.Loco Electric BR 185.name=Locomotiva BR 185
+entity.tc.Loco Electric Class 85.name=Locomotiva classe 85
+entity.tc.Loco Electric EWS Class 66.name=Locomotiva EWS classe 66
+entity.tc.Loco Diesel Deltic.name=Locomotiva Deltic
+entity.tc.Tender Coranation Class.name=Vagone di scorta Coronation
+entity.tc.Loco Steam Coranation Class.name=Locomotiva classe Coronation
 
 <!-- ## VILLAGER ## -->
 description.villager.profession.tc.station_chief=Capostazione
