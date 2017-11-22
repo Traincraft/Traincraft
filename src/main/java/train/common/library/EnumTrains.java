@@ -131,6 +131,8 @@ public enum EnumTrains {
 			new String[] { "Pink", "Green" }, 18, -6, 0.98, 1.98),
 	locoDieselDeltic("Loco Diesel Deltic", EntityLocoDieselDeltic.class, 133, ItemIDs.minecartLocoDeltic.item, "diesel",
 			1673, 161, 0, 10, 0, 170, 0.7, 0.965, 6400, null, 18, -5, 0.98, 1.98),
+	locoDieselDD35A("Loco Diesel DD35A", EntityLocoDieselDD35A.class, 137, ItemIDs.minecartLocoDD35A.item, "diesel",
+			1689, 144, 0, 10, 0, 170, 0.7, 0.965, 6850, null, 18, -4.75, 0.98, 1.98),
 
 	/** Electric */
 	locoElectricVL10("Loco Electric VL10", EntityLocoElectricVL10.class, 46, ItemIDs.minecartVL10.item, "electric", 6250, 100, 0, 8, 0, 400, 1.1, 0.956, 0, null, 14, -2.3, 0.98, 1.98),
@@ -204,7 +206,7 @@ public enum EnumTrains {
 	 * 
 	 * @param internalName : Only used by EntityRegistry
 	 * @param entityClass
-	 * @param entityID: Current free IDs: 137+
+	 * @param entityID: Current free IDs: 138+
 	 * @param item
 	 * @param trainType: "steam", "diesel", "freight", "passenger", "special", "flat", "electric"
 	 * @param MHP: power of the locomotive
