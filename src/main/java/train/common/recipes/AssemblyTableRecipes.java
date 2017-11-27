@@ -1,7 +1,5 @@
 package train.common.recipes;
 
-import java.util.ArrayList;
-
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -10,6 +8,8 @@ import net.minecraftforge.oredict.OreDictionary;
 import train.common.api.crafting.ITierCraftingManager;
 import train.common.core.managers.TierRecipeManager;
 import train.common.library.ItemIDs;
+
+import java.util.ArrayList;
 
 public class AssemblyTableRecipes {
 

@@ -8,8 +8,6 @@ import net.minecraftforge.common.ForgeChunkManager;
 import net.minecraftforge.common.ForgeChunkManager.Ticket;
 import net.minecraftforge.event.entity.EntityEvent;
 import train.common.api.AbstractTrains;
-import train.common.api.EntityBogie;
-import train.common.api.EntityRollingStock;
 
 import java.util.ArrayList;
 import java.util.List;

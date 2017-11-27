@@ -1,8 +1,5 @@
 package train.common.core.handlers;
 
-import java.util.List;
-import java.util.Random;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.item.EntityMinecart;
@@ -22,6 +19,9 @@ import train.common.api.Locomotive;
 import train.common.entity.EntityLasersLines;
 import train.common.entity.rollingStock.EntityStockCar;
 import train.common.entity.rollingStock.EntityStockCarDRWG;
+
+import java.util.List;
+import java.util.Random;
 
 public class CollisionHandler {
 

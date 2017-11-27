@@ -10,14 +10,11 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
-import train.common.blocks.BlockWindMill;
-import train.common.core.TrainModBlockUtil;
+import train.common.core.handlers.ConfigHandler;
 import train.common.core.handlers.WorldEvents;
 import train.common.core.util.Energy;
-import train.common.core.handlers.ConfigHandler;
 import train.common.library.BlockIDs;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 public class TileWindMill extends Energy implements IEnergyProvider {

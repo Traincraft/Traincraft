@@ -9,11 +9,10 @@
 
 package train.client.render.models;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
+import org.lwjgl.opengl.GL11;
 import train.client.tmt.ModelBase;
 import train.client.tmt.ModelRendererTurbo;
 import train.client.tmt.Tessellator;

@@ -1,12 +1,11 @@
 package train.client.core.handlers;
 
-import net.minecraft.client.Minecraft;
-import org.lwjgl.input.Keyboard;
-
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.InputEvent;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
+import org.lwjgl.input.Keyboard;
 import train.common.Traincraft;
 import train.common.core.network.PacketKeyPress;
 

@@ -1,12 +1,12 @@
 package train.client.render;
 
-import java.util.ArrayList;
-
 import train.client.render.models.*;
 import train.client.tmt.ModelBase;
 import train.common.api.AbstractTrains;
 import train.common.api.EntityRollingStock;
 import train.common.entity.rollingStock.*;
+
+import java.util.ArrayList;
 
 public enum RenderEnum {
 

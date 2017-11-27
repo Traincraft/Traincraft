@@ -5,10 +5,6 @@
  */
 package train.common.blocks.tracks;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-
 import mods.railcraft.api.core.items.IToolCrowbar;
 import mods.railcraft.api.tracks.ITrackEmitter;
 import net.minecraft.entity.item.EntityMinecart;
@@ -21,6 +17,10 @@ import train.common.api.ElectricTrain;
 import train.common.api.Locomotive;
 import train.common.api.SteamTrain;
 import train.common.library.Tracks;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 
 public class BlockDetectorAllLocomotiveTrack extends BlockDetectorTrack implements ITrackEmitter {
 	

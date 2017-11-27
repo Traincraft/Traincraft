@@ -19,8 +19,6 @@ import train.common.api.*;
 import train.common.entity.rollingStock.*;
 import train.common.items.ItemTCRail;
 
-import java.util.ArrayList;
-
 public class ItemHandler {
 	
 	public static boolean handleItems(Entity entity, ItemStack itemstack) {

@@ -18,7 +18,6 @@ import train.common.Traincraft;
 import train.common.items.ItemTCRail;
 import train.common.library.BlockIDs;
 import train.common.library.Info;
-import train.common.tile.TileTCRail;
 import train.common.tile.TileTCRailGag;
 
 import java.util.List;

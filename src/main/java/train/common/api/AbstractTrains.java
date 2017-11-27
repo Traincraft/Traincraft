@@ -171,7 +171,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 						this.acceptedColors.add(AbstractTrains.getColorFromString(trains.getColors()[i]));
 					}
 				}
-				this.setSize((float) trainSpec.getWidth(), (float) trainSpec.getHeight());
+				this.setSize(0.98f, 1.98f);
 				this.setMinecartName(trainSpec.name());
 			}
 		}

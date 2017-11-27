@@ -2,7 +2,10 @@ package train.client.render;
 
 
 import org.lwjgl.opengl.GL11;
-import train.client.tmt.*;
+import train.client.tmt.ModelBase;
+import train.client.tmt.ModelRendererTurbo;
+import train.client.tmt.PositionTransformVertex;
+import train.client.tmt.TexturedPolygon;
 
 public class CustomModelRenderer extends ModelRendererTurbo {
 

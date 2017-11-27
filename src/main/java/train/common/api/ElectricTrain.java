@@ -1,7 +1,7 @@
 package train.common.api;
 
-import cofh.api.energy.*;
-import net.minecraft.block.Block;
+import cofh.api.energy.IEnergyContainerItem;
+import cofh.api.energy.IEnergyHandler;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

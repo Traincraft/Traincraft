@@ -248,10 +248,9 @@ public enum ItemIDs {
 	public int amountForEmerald;
 
 	/**
-	 * @param languageName
 	 * @param classMethodName
 	 * @param iconName
-	 * @param amount for one emerald. For ItemRollingStock, it is the price for one train
+	 * @param amountForEmerald for one emerald. For ItemRollingStock, it is the price for one train
 	 */
 	ItemIDs(String classMethodName, String iconName, int amountForEmerald) {
 		this.className = classMethodName;

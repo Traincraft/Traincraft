@@ -23,9 +23,13 @@ public class EntityHandler {
 		EntityRegistry.registerModEntity(EntityZeppelinTwoBalloons.class, "zeppelin", EntityIds.ZEPPELIN, Traincraft.instance, 512, 1, true);//zepplin
 		EntityRegistry.registerModEntity(EntityBogie.class, "Entity Front Bogie", EntityIds.LOCOMOTIVE_BOGIE, Traincraft.instance, 512, 1, true);//front bogie
 		EntityRegistry.registerModEntity(EntityZeppelinOneBalloon.class, "zeppelin big", EntityIds.ZEPPELIN_BIG, Traincraft.instance, 512, 1, true);//zepplin big
-		
+		int trainID= 32;
 		for(EnumTrains trains : EnumTrains.values()){
-			EntityRegistry.registerModEntity(trains.getEntityClass(), trains.getInternalName(), trains.getEntityID(), Traincraft.instance, 512, 1, true);
+			EntityRegistry.registerModEntity(trains.getEntityClass(), trains.getInternalName(), trainID, Traincraft.instance, 512, 1, true);
+			trainID++;
+			if(trainID== 112 || trainID==51){
+				trainID++;
+			}
 		}
 	}
 
