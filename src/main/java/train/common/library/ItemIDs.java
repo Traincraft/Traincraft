@@ -135,6 +135,7 @@ public enum ItemIDs {
 	minecartLocoEMDF3("ItemRollingStock", "train_emdf3", 10),
 	minecartLocoEMDF7B("ItemRollingStock", "train_emdf7b", 10),
 	minecartLocoEMDF3B("ItemRollingStock", "train_emdf3b", 10),
+	minecartLocoDD35B("ItemRollingStock", "train_dd35b", 10),
 	//minecartRotativeDigger("ItemRotativeDigger","train_",10),
 	minecartLocoEr("ItemRollingStock", "train_ussr", 10),
 	minecartTenderEr("ItemRollingStock", "train_tender_ussr", 4),

@@ -54,6 +54,9 @@ public enum EnumTrains {
 	BUnitEMDF3("EMD F3 B Unit", EntityBUnitEMDF3.class, 130, ItemIDs.minecartLocoEMDF3B.item, "b-unit", 0, 0, -8, 0,
 			0,
 			0, 0, 0, 12000, null, 18, 0, 0.98, 1.98),
+	BUnitDD35("DD35 B Unit", EntityBUnitDD35.class, 138, ItemIDs.minecartLocoDD35B.item, "b-unit", 0, 0, -8, 0,
+			0,
+			0, 0, 0, 12000, null, 18, 0, 0.98, 1.98),
 
 	/** Freight */
 	freightCartRed("Freight Cart Red",EntityFreightCart2.class, 41,ItemIDs.minecartFreightCart2.item,"freight",3,null,18,0.98,1.98,36,new String[] {"Cargo: any"}),
@@ -206,7 +209,7 @@ public enum EnumTrains {
 	 * 
 	 * @param internalName : Only used by EntityRegistry
 	 * @param entityClass
-	 * @param entityID: Current free IDs: 138+
+	 * @param entityID: Current free IDs: 139+
 	 * @param item
 	 * @param trainType: "steam", "diesel", "freight", "passenger", "special", "flat", "electric"
 	 * @param MHP: power of the locomotive

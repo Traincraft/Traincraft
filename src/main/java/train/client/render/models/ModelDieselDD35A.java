@@ -3,7 +3,7 @@
 // This file is for Flan's Flying Mod Version 4.0.x+
 
 // Model: 
-// Model Creator: gevoo
+// Model Creator: ApocTheWanderer
 // Created on:15.11.2017 - 19:11:37
 // Last changed on: 15.11.2017 - 19:11:37
 
