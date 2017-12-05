@@ -73,34 +73,29 @@ public abstract class ElectricTrain extends Locomotive {
 		  * 
 		  * if (locoInvent[u] != null) { if (locoInvent[u].itemID == PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[21]).itemID) { reduceExplosionChance += 10000; if (rand.nextInt(10) == 0 && (!worldObj.isRemote)) { locoInvent[u].setItemDamage(1); } } } } } else if ((locoInvent[0].itemID == PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[23]).itemID)) { hasUranium = true; fuelTrain = 800 + 1000000; // locoInvent[0] = null; if (!worldObj.isRemote) { decrStackSize(0, 1); } reduceExplosionChance = 1000; for (int u = 1; u < locoInvent.length; u++) {// checks the inventory if (locoInvent[u] != null) { if (locoInvent[u].itemID == PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[21]).itemID) { reduceExplosionChance += 10000; if (rand.nextInt(10) == 0 && (!worldObj.isRemote)) { locoInvent[u].setItemDamage(1); } } } } } } } */
 
-		TileEntity bottom = worldObj.getTileEntity(MathHelper.floor_double(posX), MathHelper.floor_double(posY-1),MathHelper.floor_double(posZ));
-		TileEntity top = worldObj.getTileEntity(MathHelper.floor_double(posX), MathHelper.floor_double(posY+3),MathHelper.floor_double(posZ));
+		TileEntity[] blocksToCheck = {worldObj.getTileEntity(MathHelper.floor_double(posX), MathHelper.floor_double(posY-1),MathHelper.floor_double(posZ)),
+				worldObj.getTileEntity(MathHelper.floor_double(posX), MathHelper.floor_double(posY+2),MathHelper.floor_double(posZ)),
+				worldObj.getTileEntity(MathHelper.floor_double(posX), MathHelper.floor_double(posY+3),MathHelper.floor_double(posZ)),
+				worldObj.getTileEntity(MathHelper.floor_double(posX), MathHelper.floor_double(posY+4),MathHelper.floor_double(posZ))
+		};
 
-		if(top instanceof IEnergyHandler){
-			int draw =0;
-			for(ForgeDirection direction : ForgeDirection.VALID_DIRECTIONS){
-				if (draw != 0){
-					break;
+		int draw = 0;
+		for (TileEntity block : blocksToCheck) {
+			if (block instanceof IEnergyHandler) {
+				for (ForgeDirection direction : ForgeDirection.VALID_DIRECTIONS) {
+					if (draw != 0) {
+						break;
+					}
+					int max = ((IEnergyHandler) block).getEnergyStored(direction);
+					if (max > 0) {
+						draw = ((IEnergyHandler) block).receiveEnergy(direction, Math.max(-MathHelper.floor_double(Math.min(200, maxEnergy - getFuel()) * 0.1), -max), false);
+					}
 				}
-				int max = ((IEnergyHandler) top).getEnergyStored(direction);
-				if (max >0) {
-					draw = ((IEnergyHandler) top).receiveEnergy(direction, Math.max( -MathHelper.floor_double(Math.min(200, maxEnergy - getFuel()) * 0.1), -max), false);
-				}
+				fuelTrain += -draw;
 			}
-			fuelTrain += -draw;
-		}
-		if (bottom instanceof IEnergyHandler){
-			int draw =0;
-			for(ForgeDirection direction : ForgeDirection.VALID_DIRECTIONS){
-				if (draw != 0){
-					break;
-				}
-				int max = ((IEnergyHandler) bottom).getEnergyStored(direction);
-				if (max >0) {
-					draw = ((IEnergyHandler) bottom).receiveEnergy(direction, Math.max( -MathHelper.floor_double(Math.min(200, maxEnergy - getFuel()) * 0.1), -max), false);
-				}
+			if (draw != 0) {
+				break;
 			}
-			fuelTrain += -draw;
 		}
 	}
 	@Override

@@ -1,11 +1,12 @@
-package train.client.tmt;
+package tmt;
 
 import net.minecraft.entity.Entity;
 
 /**
- * Converts flans models to our version of ModelRendererTurbo, which doesn't use the sme animation methods.
- */
-public class ModelConverter extends ModelBase {
+* Converter to use Flansmod-Type vehicle models.
+* @Author Ferdinand Calo' (FEX___96)
+*/
+public class ModelConverter extends Model<Object> {
 	
 	public ModelRendererTurbo bodyModel[] = new ModelRendererTurbo[0];
 	public ModelRendererTurbo model[] = new ModelRendererTurbo[0];
@@ -26,7 +27,7 @@ public class ModelConverter extends ModelBase {
 	public ModelRendererTurbo leftTrackWheelModels[] = new ModelRendererTurbo[0];
 	public ModelRendererTurbo trailerModel[] = new ModelRendererTurbo[0];
 	public ModelRendererTurbo steeringWheelModel[] = new ModelRendererTurbo[0];
-
+	
 	public void render(){
 		render(bodyModel);
 		render(model);
@@ -48,33 +49,8 @@ public class ModelConverter extends ModelBase {
 	}
 
 	@Override
-	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5){
+	public void render(Object type, Entity ent){
 		render();
-	}
-
-	public void flipAll(){
-		flip(bodyModel);
-		flip(model);
-		flip(bodyDoorOpenModel);
-		flip(bodyDoorCloseModel);
-		flip(turretModel);
-		flip(barrelModel);
-		flip(frontWheelModel);
-		flip(backWheelModel);
-		flip(leftFrontWheelModel);
-		flip(rightFrontWheelModel);
-		flip(leftBackWheelModel);
-		flip(rightBackWheelModel);
-		flip(rightTrackModel);
-		flip(leftTrackModel);
-		flip(rightTrackWheelModels);
-		flip(leftTrackWheelModels);
-		flip(trailerModel);
-		flip(steeringWheelModel);
-	}
-	
-	private void flip(ModelRendererTurbo[] bodyModel2) {
-		// TODO Auto-generated method stub
 	}
 
 	public void translateAll(float x, float y, float z){
@@ -97,4 +73,55 @@ public class ModelConverter extends ModelBase {
 		translate(trailerModel, x, y, z);
 		translate(steeringWheelModel, x, y, z);
 	}
+
+	@Override
+	public void rotateAll(float x, float y, float z){
+		rotate(bodyModel, x, y, z);
+		rotate(model, x, y, z);
+		rotate(bodyDoorOpenModel, x, y, z);
+		rotate(bodyDoorCloseModel, x, y, z);
+		rotate(turretModel, x, y, z);
+		rotate(barrelModel, x, y, z);
+		rotate(frontWheelModel, x, y, z);
+		rotate(backWheelModel, x, y, z);
+		rotate(leftFrontWheelModel, x, y, z);
+		rotate(rightFrontWheelModel, x, y, z);
+		rotate(leftBackWheelModel, x, y, z);
+		rotate(rightBackWheelModel, x, y, z);
+		rotate(rightTrackModel, x, y, z);
+		rotate(leftTrackModel, x, y, z);
+		rotate(rightTrackWheelModels, x, y, z);
+		rotate(leftTrackWheelModels, x, y, z);
+		rotate(trailerModel, x, y, z);
+		rotate(steeringWheelModel, x, y, z);
+	}
+	
+	public void flipAll(){
+		flip(bodyModel);
+		flip(model);
+		flip(bodyDoorOpenModel);
+		flip(bodyDoorCloseModel);
+		flip(turretModel);
+		flip(barrelModel);
+		flip(frontWheelModel);
+		flip(backWheelModel);
+		flip(leftFrontWheelModel);
+		flip(rightFrontWheelModel);
+		flip(leftBackWheelModel);
+		flip(rightBackWheelModel);
+		flip(rightTrackModel);
+		flip(leftTrackModel);
+		flip(rightTrackWheelModels);
+		flip(leftTrackWheelModels);
+		flip(trailerModel);
+		flip(steeringWheelModel);
+	}
+	
+	private void flip(ModelRendererTurbo[] model) {
+		for(ModelRendererTurbo sub : model){
+			sub.doMirror(false, true, true);
+			sub.setRotationPoint(sub.rotationPointX, -sub.rotationPointY, -sub.rotationPointZ);
+		}
+	}
+	
 }

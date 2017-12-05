@@ -13,7 +13,7 @@ import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.IModelCustom;
 import org.lwjgl.opengl.GL11;
 import train.client.render.CustomModelRenderer;
-import train.client.tmt.ModelBase;
+import tmt.ModelBase;
 import train.common.library.Info;
 
 public class ModelStopper extends ModelBase {

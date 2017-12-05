@@ -1,10 +1,10 @@
 package train.client;
 
 
-import train.client.tmt.ModelBase;
-import train.client.tmt.ModelRendererTurbo;
-import train.client.tmt.PositionTransformVertex;
-import train.client.tmt.TexturedPolygon;
+import tmt.ModelBase;
+import tmt.ModelRendererTurbo;
+import tmt.PositionTransformVertex;
+import tmt.TexturedPolygon;
 
 /**
  * <h2>Techne model render</h2>
@@ -52,20 +52,20 @@ public class TechneModelRenderer extends ModelRendererTurbo {
         faces[4] = generateFaces(new PositionTransformVertex[] { PositionTransformVertex1, PositionTransformVertex, PositionTransformVertex3, PositionTransformVertex2 }, textureOffsetX + k, textureOffsetY + k, textureOffsetX + k + i, textureOffsetY + k + j, textureWidth, textureHeight);
         faces[5] = generateFaces(new PositionTransformVertex[] { PositionTransformVertex4, PositionTransformVertex5, PositionTransformVertex6, PositionTransformVertex7 }, textureOffsetX + k + i + k, textureOffsetY + k, textureOffsetX + k + i + k + i, textureOffsetY + k + j, textureWidth, textureHeight);
 
-        textureGroup.get("0").clear();
-        textureGroup.get("0").add(faces[0]);
-        textureGroup.get("0").add(faces[1]);
-        textureGroup.get("0").add(faces[2]);
-        textureGroup.get("0").add(faces[3]);
-        textureGroup.get("0").add(faces[4]);
-        textureGroup.get("0").add(faces[5]);
+        textureGroup.get("0").poly.clear();
+        textureGroup.get("0").addPoly(faces[0]);
+        textureGroup.get("0").addPoly(faces[1]);
+        textureGroup.get("0").addPoly(faces[2]);
+        textureGroup.get("0").addPoly(faces[3]);
+        textureGroup.get("0").addPoly(faces[4]);
+        textureGroup.get("0").addPoly(faces[5]);
 
     }
     private static TexturedPolygon generateFaces(PositionTransformVertex aPositionTransformVertex[], int i, int j, int k, int l, float textureWidth, float textureHeight) {
-        aPositionTransformVertex[0] = new PositionTransformVertex(aPositionTransformVertex[0], (float) k / textureWidth - 0.0015625F, (float) j / textureHeight + 0.003125F);
-        aPositionTransformVertex[1] = new PositionTransformVertex(aPositionTransformVertex[1],(float) i / textureWidth + 0.0015625F, (float) j / textureHeight + 0.003125F);
-        aPositionTransformVertex[2] = new PositionTransformVertex(aPositionTransformVertex[2],(float) i / textureWidth + 0.0015625F, (float) l / textureHeight - 0.003125F);
-        aPositionTransformVertex[3] = new PositionTransformVertex(aPositionTransformVertex[3],(float) k / textureWidth - 0.0015625F, (float) l / textureHeight - 0.003125F);
+        aPositionTransformVertex[0] = new PositionTransformVertex(aPositionTransformVertex[0].vector3F, (float) k / textureWidth - 0.0015625F, (float) j / textureHeight + 0.003125F);
+        aPositionTransformVertex[1] = new PositionTransformVertex(aPositionTransformVertex[1].vector3F,(float) i / textureWidth + 0.0015625F, (float) j / textureHeight + 0.003125F);
+        aPositionTransformVertex[2] = new PositionTransformVertex(aPositionTransformVertex[2].vector3F,(float) i / textureWidth + 0.0015625F, (float) l / textureHeight - 0.003125F);
+        aPositionTransformVertex[3] = new PositionTransformVertex(aPositionTransformVertex[3].vector3F,(float) k / textureWidth - 0.0015625F, (float) l / textureHeight - 0.003125F);
         return new TexturedPolygon(aPositionTransformVertex);
     }
 

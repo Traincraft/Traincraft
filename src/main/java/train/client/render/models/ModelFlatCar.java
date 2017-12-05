@@ -5,7 +5,7 @@ import org.lwjgl.opengl.GL11;
 import train.client.core.ClientProxy;
 import train.client.render.CustomModelRenderer;
 import train.client.render.models.blocks.ModelPresent;
-import train.client.tmt.ModelBase;
+import tmt.ModelBase;
 
 public class ModelFlatCar extends ModelBase {
 	

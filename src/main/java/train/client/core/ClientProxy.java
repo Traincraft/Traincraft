@@ -50,12 +50,7 @@ public class ClientProxy extends CommonProxy {
 
 	public static boolean isHoliday() {
 		Calendar cal = Calendar.getInstance();
-		if (cal.get(Calendar.MONTH) == Calendar.DECEMBER
-				&& (cal.get(Calendar.DATE) >= 5 && cal.get(Calendar.DATE) <= 31)) {
-			return true;
-		} else {
-			return false;
-		}
+		return(cal.get(Calendar.MONTH) == Calendar.DECEMBER || cal.get(Calendar.MONTH) == Calendar.JANUARY);
 	}
 
 	@Override

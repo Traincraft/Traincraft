@@ -3,7 +3,7 @@ package train.client.render.models;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import train.client.render.CustomModelRenderer;
-import train.client.tmt.ModelBase;
+import tmt.ModelBase;
 
 public class ModelTram extends ModelBase {
 

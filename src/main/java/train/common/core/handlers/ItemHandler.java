@@ -51,7 +51,7 @@ public class ItemHandler {
 			return false;
 		}
 		if (entity instanceof EntityFlatCarLogs_DB || entity instanceof EntityFreightWood
-				|| entity instanceof EntityFreightWood2) {
+				|| entity instanceof EntityFreightWood2 || entity instanceof EntityFreightRhBWood) {
 			return OreDictionary.getOreID(itemstack) == logWood;
 		}
 		else if (entity instanceof EntityFlatCartWoodUS) {
@@ -63,7 +63,7 @@ public class ItemHandler {
 		}
 		else if (entity instanceof EntityFreightOpenWagon || entity instanceof EntityFreightCartUS
 				|| entity instanceof EntityFreightClosed || entity instanceof EntityFreightGondola_DB
-				|| entity instanceof EntityFreightOpen2 || entity instanceof EntityFreightHopperUS) {
+				|| entity instanceof EntityFreightOpen2 || entity instanceof EntityFreightHopperUS || entity instanceof EntityFreight100TonHopper) {
             int isid = OreDictionary.getOreID(itemstack);
 			return !(isid == plankWood || isid == logWood);
 		}
@@ -83,6 +83,9 @@ public class ItemHandler {
 		}
 		else if (entity instanceof EntityFreightSlateWagon){
 			return block.getMaterial() == Material.rock;
+		}
+		else if (entity instanceof EntityFreightIceWagon){
+			return block.getMaterial() == Material.ice || block.getMaterial() == Material.packedIce;
 		}
 		else {
 			return true;

@@ -230,6 +230,9 @@ public class AssemblyTableRecipes {
 				cm.addRecipe(3,new ItemStack(Items.coal,2), new ItemStack(ItemIDs.bogie.item,2),new ItemStack(ItemIDs.steelframe.item,1), null,null, null,null, null,null, dye,new ItemStack(ItemIDs.minecartGS4_Tender.item,1), 1);
 				cm.addRecipe(3,null, new ItemStack(ItemIDs.bogie.item,2),new ItemStack(ItemIDs.steelframe.item,1), null,null, null,null, null,new ItemStack(Blocks.chest,1), dye,new ItemStack(ItemIDs.minecartGS4_Baggage.item,1), 1);
 				cm.addRecipe(3,null, new ItemStack(ItemIDs.bogie.item,4),new ItemStack(ItemIDs.steelframe.item,1), null,new ItemStack(ItemIDs.steelchimney.item,1), new ItemStack(ItemIDs.steelcab.item,1),new ItemStack(ItemIDs.boiler.item,4), new ItemStack(ItemIDs.firebox.item,1),null, dye,new ItemStack(ItemIDs.minecartGS4_Loco.item,1), 1);
+
+				cm.addRecipe(3,null, new ItemStack(ItemIDs.bogie.item,8),new ItemStack(ItemIDs.steelframe.item,3), new ItemStack(k.getItem(), 2),new ItemStack(ItemIDs.steelchimney.item,2), new ItemStack(ItemIDs.steelcab.item,1),new ItemStack(ItemIDs.electmotor.item,8), new ItemStack(ItemIDs.dieselengine.item,11),new ItemStack(ItemIDs.generator.item,4), dye,new ItemStack(ItemIDs.minecartLocoDD35B.item,1), 1);
+				cm.addRecipe(3,new ItemStack(ItemIDs.controls.item, 2), new ItemStack(ItemIDs.bogie.item,8),new ItemStack(ItemIDs.steelframe.item,3), new ItemStack(k.getItem(), 2),new ItemStack(ItemIDs.steelchimney.item,2), new ItemStack(ItemIDs.steelcab.item,1),new ItemStack(ItemIDs.electmotor.item,8), new ItemStack(ItemIDs.dieselengine.item,11),new ItemStack(ItemIDs.generator.item,4), dye,new ItemStack(ItemIDs.minecartLocoDD35A.item,1), 1);
 			}
 
 			for (ItemStack dye : dyeWhite) {
