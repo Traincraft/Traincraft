@@ -659,15 +659,14 @@ public class ModelEWSClass66 extends ModelBase
 			}
 		}
 
+		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/Class66Bogie.png"));
 		GL11.glPushMatrix();
-		Tessellator.bindTexture(new ResourceLocation(Info.modID, "textures/trains/Class66Bogie.png"));
 		GL11.glTranslated(0,0.3,-2.6);
 		GL11.glScalef(0.8f,0.8f,0.8f);
 		fronttrucks.render(entity,f,f1,f2,f3,f4,f5);
 		GL11.glPopMatrix();
 
 		GL11.glPushMatrix();
-		Tessellator.bindTexture(new ResourceLocation(Info.modID, "textures/trains/Class66Bogie.png"));
 		GL11.glTranslated(0,0.3,2.1);
 		GL11.glScalef(0.8f,0.8f,0.8f);
 		backtrucks.render(entity,f,f1,f2,f3,f4,f5);

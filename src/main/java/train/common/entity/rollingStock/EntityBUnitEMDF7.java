@@ -49,14 +49,14 @@ public class EntityBUnitEMDF7 extends LiquidTank {
 		}
 		if (getAmount() > 0) {
 			// setColor(getColorFromString("Full"));
-			setDefaultMass(-8);
+			setDefaultMass(-EnumTrains.BUnitEMDF7.getMass());
 			if (MathHelper.floor_double(Math.abs(posX + posZ)) != lastPos && ticksExisted % 40 == 0) {
 				drain(ForgeDirection.UNKNOWN, 12,true);
 				lastPos = MathHelper.floor_double(Math.abs(posX+posZ));
 			}
 		} else if (getAmount() <= 0) {
 			// setColor(getColorFromString("Empty"));
-			setDefaultMass(0);
+			setDefaultMass(EnumTrains.BUnitEMDF7.getMass());
 		}
 	}
 

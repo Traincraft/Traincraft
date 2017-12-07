@@ -253,6 +253,13 @@ item.tc:minecartLocoEWSClass66.name=EWS Class 66
 item.tc:minecartLocoDeltic.name=Deltic
 item.tc:minecartLocoCoranationClass.name=Coronation Class
 item.tc:minecartLocoCoranationClassTender.name=Coronation Class Tender
+item.tc:minecartFreight100TonHopper.name=100 Ton Hopper
+item.tc:minecartFreightRhBWood.name= RhB Logcar
+item.tc:minecartRhB_De.name=RhB De
+item.tc:minecartRhB_Te.name=RhB Te
+item.tc:minecartIceWagon.name=Ice Wagon
+item.tc:minecartLocoDD35A.name=DD35
+item.tc:minecartLocoDD35B.name=DD35 B-unit
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -465,6 +472,13 @@ entity.tc.Loco Electric EWS Class 66.name=EWS Class 66
 entity.tc.Loco Diesel Deltic.name=Deltic
 entity.tc.Tender Coranation Class.name=Coronation Class Tender
 entity.tc.Loco Steam Coranation Class.name=Coronation Class
+entity.tc.Freight 100 Ton Hopper.name=100 Ton Hopper
+entity.tc.Freight Flat RhB Logcar.name= RhB Logcar
+entity.tc.Loco Electric RhB De.name=RhB De
+entity.tc.Loco Electric RhB Te.name=RhB Te
+entity.tc.Freight Ice Wagon.name=Ice Wagon
+entity.tc.Loco Diesel DD35A.name=DD35
+entity.tc.DD35 B unit.name=DD35 B-unit
 
 description.villager.profession.tc.station_chief=Station Chief
 

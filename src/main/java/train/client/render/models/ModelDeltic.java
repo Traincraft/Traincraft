@@ -837,14 +837,13 @@ public class ModelDeltic extends ModelBase
 			}
 		}
 
+		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/deltic_bogie.png"));
 		GL11.glPushMatrix();
-		Tessellator.bindTexture(new ResourceLocation(Info.modID, "textures/trains/deltic_bogie.png"));
 		GL11.glTranslated(0.06, 0.25, -2.9);
 		fronttrucks.render(entity,f,f1,f2,f3,f4,f5);
 		GL11.glPopMatrix();
 
 		GL11.glPushMatrix();
-		Tessellator.bindTexture(new ResourceLocation(Info.modID, "textures/trains/deltic_bogie.png"));
 		GL11.glTranslated(0.06, 0.25, 1.9);
 		backtrucks.render(entity,f,f1,f2,f3,f4,f5);
 		GL11.glPopMatrix();

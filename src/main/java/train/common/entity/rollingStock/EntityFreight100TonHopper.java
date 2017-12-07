@@ -100,7 +100,7 @@ public class EntityFreight100TonHopper extends Freight implements IInventory {
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return 1.8F;
+		return 2.9F;
 	}
 
 	@Override
