@@ -54,7 +54,7 @@ public enum EnumTrains {
 	BUnitEMDF3("EMD F3 B Unit", EntityBUnitEMDF3.class, ItemIDs.minecartLocoEMDF3B.item, "b-unit", 0, 0, 8, 0,
 			0,
 			0, 0, 0, 12000, null, 18, 0, new String[]{"Reduces weight carried by 8 tons when fueled"}),
-	//BUnitDD35("DD35 B Unit", EntityBUnitDD35.class, ItemIDs.minecartLocoDD35B.item, "b-unit", 0, 0, 10, 0, 0, 0, 0, 0, 12000, null, 18, 0, new String[]{"Reduces weight carried by 10 tons when fueled"}),
+	BUnitDD35("DD35 B Unit", EntityBUnitDD35.class, ItemIDs.minecartLocoDD35B.item, "b-unit", 0, 0, 10, 0, 0, 0, 0, 0, 12000, null, 18, 0, new String[]{"Reduces weight carried by 10 tons when fueled"}),
 
 	/** Freight */
 	freightCartRed("Freight Cart Red",EntityFreightCart2.class, ItemIDs.minecartFreightCart2.item,"freight",3,null,18,36,new String[] {"Cargo: any"}),
@@ -135,7 +135,7 @@ public enum EnumTrains {
 			new String[] { "Pink", "Green" }, 18, -6),
 	locoDieselDeltic("Loco Diesel Deltic", EntityLocoDieselDeltic.class, ItemIDs.minecartLocoDeltic.item, "diesel",
 			3344, 161, 0, 10, 0, 170, 0.7, 0.965, 6400, null, 18, -5),
-	//locoDieselDD35A("Loco Diesel DD35A", EntityLocoDieselDD35A.class, ItemIDs.minecartLocoDD35A.item, "diesel", 1689, 144, 0, 10, 0, 170, 0.7, 0.965, 6850, null, 18, -4.75),
+	locoDieselDD35A("Loco Diesel DD35A", EntityLocoDieselDD35A.class, ItemIDs.minecartLocoDD35A.item, "diesel", 1689, 144, 0, 10, 0, 170, 0.7, 0.965, 6850, null, 18, -4.75),
 
 
 	/** Electric */

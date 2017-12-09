@@ -171,6 +171,8 @@ public enum RenderEnum {
 	}, "", null, 0, false),
 	locoEMDF7b(EntityBUnitEMDF7.class, new ModelEMDF7B(), "emdf7b_", true, new float[]{0,0.12f,0}, new float[] { 0F, 180F, 180F }, new float[]{0.9f,1f,0.9f}, "", 4, null, "", null, 0, false),
 	locoEMDF3b(EntityBUnitEMDF3.class, new ModelEMDF3B(), "emdf3b", false, new float[]{0,0.12f,0}, new float[] { 0F, 180F, 180F }, new float[]{0.9f,1f,0.9f}, "", 4, null, "", null, 0, false),
+	DD35b(EntityBUnitDD35.class, new ModelDD35B(), "dd35b", false, new float[]{0,0.12f,0}, new float[] { 0F, 180F, 180F }, new float[]{0.9f,1f,0.9f}, "", 4, null, "", null, 0, false),
+	locoDieselDD35A(EntityLocoDieselDD35A.class, new ModelDD35A(), "dd35a", false, new float[]{0,0.12f,0}, new float[] { 0F, 180F, 180F }, new float[]{0.9f,1f,0.9f}, "", 4, null, "", null, 0, false),
 
 	/** Electric */
 	locoVL10(EntityLocoElectricVL10.class, new ModelVL10(), "vl10", false, new float[] { -1.2F, -0.47F, 0.0F }, null, null, "", 0, null, "", null, 0, false),
