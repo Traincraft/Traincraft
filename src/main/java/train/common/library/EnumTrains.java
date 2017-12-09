@@ -54,9 +54,7 @@ public enum EnumTrains {
 	BUnitEMDF3("EMD F3 B Unit", EntityBUnitEMDF3.class, ItemIDs.minecartLocoEMDF3B.item, "b-unit", 0, 0, 8, 0,
 			0,
 			0, 0, 0, 12000, null, 18, 0, new String[]{"Reduces weight carried by 8 tons when fueled"}),
-	BUnitDD35("DD35 B Unit", EntityBUnitDD35.class, ItemIDs.minecartLocoDD35B.item, "b-unit", 0, 0, 10, 0,
-			0,
-			0, 0, 0, 12000, null, 18, 0, new String[]{"Reduces weight carried by 10 tons when fueled"}),
+	//BUnitDD35("DD35 B Unit", EntityBUnitDD35.class, ItemIDs.minecartLocoDD35B.item, "b-unit", 0, 0, 10, 0, 0, 0, 0, 0, 12000, null, 18, 0, new String[]{"Reduces weight carried by 10 tons when fueled"}),
 
 	/** Freight */
 	freightCartRed("Freight Cart Red",EntityFreightCart2.class, ItemIDs.minecartFreightCart2.item,"freight",3,null,18,36,new String[] {"Cargo: any"}),
@@ -74,7 +72,6 @@ public enum EnumTrains {
 	freightMinetrain("Freight Minecart Yellow",EntityFreightMinetrain.class, ItemIDs.minecartMineTrain.item,"freight",0.5,null,18, 18,new String[] {"Cargo: opaque blocks"}),
 	freightGTNG("Freight GTNG Ore Wagon",EntityFreightGTNG.class, ItemIDs.minecartFreightGTNG.item,"freight",0.5,null,18, 18,new String[] {"Cargo: opaque blocks"}),
 	flatCartWoodLogs("Freight Flat Logs",EntityFreightWood2.class, ItemIDs.minecartFreightWood2.item,"freight",3,null,18,18,new String[] {"Cargo: only logs"}),
-	flatCartRhBLogs("Freight Flat RhB Logcar",EntityFreightRhBWood.class, ItemIDs.minecartFreightRhBWood.item,"freight",3,null,18,27,new String[] {"Cargo: only logs"}),
 	freightClosedRedBrown("Freight Cart Closed RedBrown",EntityFreightClosed.class, ItemIDs.minecartFreightClosed.item,"freight",2.5,null,18,36,new String[] {"Cargo: any"}),
 	freightOpenRedBrown("Freight Open RedBrown",EntityFreightOpen2.class, ItemIDs.minecartFreightOpen2.item,"freight",5,null,18,21,new String[] {"Cargo: any"}),
 	freightWagen_DB("Freight Wagon DB",EntityFreightWagenDB.class,ItemIDs.minecartFreightWagon_DB.item,"freight",4,null,18, 54,new String[] {"Cargo: any"}),
@@ -138,8 +135,8 @@ public enum EnumTrains {
 			new String[] { "Pink", "Green" }, 18, -6),
 	locoDieselDeltic("Loco Diesel Deltic", EntityLocoDieselDeltic.class, ItemIDs.minecartLocoDeltic.item, "diesel",
 			3344, 161, 0, 10, 0, 170, 0.7, 0.965, 6400, null, 18, -5),
-	locoDieselDD35A("Loco Diesel DD35A", EntityLocoDieselDD35A.class, ItemIDs.minecartLocoDD35A.item, "diesel",
-			1689, 144, 0, 10, 0, 170, 0.7, 0.965, 6850, null, 18, -4.75),
+	//locoDieselDD35A("Loco Diesel DD35A", EntityLocoDieselDD35A.class, ItemIDs.minecartLocoDD35A.item, "diesel", 1689, 144, 0, 10, 0, 170, 0.7, 0.965, 6850, null, 18, -4.75),
+
 
 	/** Electric */
 	locoElectricVL10("Loco Electric VL10", EntityLocoElectricVL10.class,  ItemIDs.minecartVL10.item, "electric", 6250, 100, 0, 8, 0, 400, 1.1, 0.956, 0, null, 14, -2.3),
@@ -150,8 +147,6 @@ public enum EnumTrains {
 			"electric", 13080, 280, 0, 4, 0, 250, 1.5, 0.98, 0, null, 13, -5),
 	//locoSpeedGrey("Loco High Speed",EntityLocoElectricNewHighSpeedLoco.class, null,null),
 	locoElectricTramYellow("Loco Electric Yellow Wood Tram",EntityLocoElectricTramWood.class, ItemIDs.minecartTramWood.item,"electric",300,55,0,10,0,140,0.5,0.965,0,null,14,-2),
-	locoElectricRhB_De("Loco Electric RhB De",EntityLocoElectricRhB_De.class, ItemIDs.minecartRhB_De.item,"electric",211,45,0,10,0,140,0.5,0.965,0,null,14,-1.5),
-	locoElectricRhB_Te("Loco Electric RhB Te",EntityLocoElectricRhB_Te.class, ItemIDs.minecartRhB_Te.item,"electric",227,55,0,10,0,140,0.5,0.965,0,null,14,-1.5),
 	locoElectricTramNY("Loco Electric Tram NY", EntityLocoElectricTramNY.class,  ItemIDs.minecartNYTram.item,
 			"electric", 149, 89, 0, 10, 0, 170, 0.7, 0.965, 0, null, 18, -3),
 	locoElectricBR185("Loco Electric BR 185", EntityLocoElectricBR185.class, ItemIDs.minecartLocoBR185.item,

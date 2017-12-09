@@ -51,7 +51,7 @@ public class ItemHandler {
 			return false;
 		}
 		if (entity instanceof EntityFlatCarLogs_DB || entity instanceof EntityFreightWood
-				|| entity instanceof EntityFreightWood2 || entity instanceof EntityFreightRhBWood) {
+				|| entity instanceof EntityFreightWood2) {
 			return OreDictionary.getOreID(itemstack) == logWood;
 		}
 		else if (entity instanceof EntityFlatCartWoodUS) {
