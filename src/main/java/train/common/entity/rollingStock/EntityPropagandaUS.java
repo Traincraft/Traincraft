@@ -90,6 +90,6 @@ public class EntityPropagandaUS extends EntityRollingStock {
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return 1.85F;
+		return 3.7F;
 	}
 }

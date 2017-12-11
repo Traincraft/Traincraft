@@ -112,12 +112,12 @@ public class ModelPropagandaCar extends ModelBase
 		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/freighttruckm.png"));
 
 		GL11.glPushMatrix();
-		GL11.glTranslated(-3.5,-0.1,-0.575);
+		GL11.glTranslated(-3.5,0,-0.27);
 		fronttrucks.render(entity,f,f1,f2,f3,f4,f5);
 		GL11.glPopMatrix();
 
 		GL11.glPushMatrix();
-		GL11.glTranslated(1,-0.1,-0.575);
+		GL11.glTranslated(1,0,-0.27);
 		backtrucks.render(entity,f,f1,f2,f3,f4,f5);
 		GL11.glPopMatrix();
 	}
