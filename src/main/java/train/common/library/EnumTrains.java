@@ -140,6 +140,7 @@ public enum EnumTrains {
 	locoDieselDeltic("Loco Diesel Deltic", EntityLocoDieselDeltic.class, ItemIDs.minecartLocoDeltic.item, "diesel",
 			3344, 161, 0, 10, 0, 170, 0.7, 0.965, 6400, null, 18, -5),
 	locoDieselDD35A("Loco Diesel DD35A", EntityLocoDieselDD35A.class, ItemIDs.minecartLocoDD35A.item, "diesel", 1689, 144, 0, 10, 0, 170, 0.7, 0.965, 6850, null, 18, -4.75),
+	locoDieselSnowPlow("Loco Diesel Snow Plow", EntityLocoDieselSnowPlow.class, ItemIDs.minecartLocoSnowPlow.item, "diesel", 200, 20, 0, 10, 0, 170, 0.7, 0.965, 6850, null, 18, -4.75),
 
 
 	/** Electric */
