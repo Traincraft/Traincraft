@@ -13,24 +13,24 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
 import train.common.Traincraft;
-import train.common.api.DieselTrain;
 import train.common.api.LiquidManager;
+import train.common.api.SteamTrain;
 import train.common.core.FakePlayer;
 import train.common.library.EnumTrains;
 import train.common.library.GuiIDs;
 
-public class EntityLocoDieselSnowPlow extends DieselTrain {
-	public EntityLocoDieselSnowPlow(World world) {
-		super(world, EnumTrains.locoDieselSD70.getTankCapacity(), LiquidManager.dieselFilter());
-		initLoco();
+public class EntityLocoSteamSnowPlow extends SteamTrain {
+	public EntityLocoSteamSnowPlow(World world) {
+		super(world, EnumTrains.locoSteamSnowPlow.getTankCapacity(), LiquidManager.WATER_FILTER);
+		initLocoSteam();
 	}
 
-	public void initLoco() {
+	public void initLocoSteam() {
 		fuelTrain = 0;
 		locoInvent = new ItemStack[inventorySize];
 	}
 
-	public EntityLocoDieselSnowPlow(World world, double d, double d1, double d2) {
+	public EntityLocoSteamSnowPlow(World world, double d, double d1, double d2) {
 		this(world);
 		setPosition(d, d1 + yOffset, d2);
 		motionX = 0.0D;
@@ -97,8 +97,11 @@ public class EntityLocoDieselSnowPlow extends DieselTrain {
 	private static final float radianF = (float) Math.PI / 180.0f;
 	@Override
 	public void onUpdate() {
-		checkInvent(locoInvent[0]);
 		super.onUpdate();
+		if (worldObj.isRemote) {
+			return;
+		}
+		checkInvent(locoInvent[0], locoInvent[1], this);
 		if (fakePlayer == null){
 			 fakePlayer = new FakePlayer(worldObj);
 		}
@@ -233,7 +236,7 @@ public class EntityLocoDieselSnowPlow extends DieselTrain {
 
 	@Override
 	public String getInventoryName() {
-		return "SD70";
+		return "Steam Snow Plow";
 	}
 
 	@Override
