@@ -44,7 +44,7 @@ public class EntityLocoSteamSnowPlow extends SteamTrain {
 	@Override
 	public void updateRiderPosition() {
 		double pitchRads = this.anglePitchClient * Math.PI / 180.0D;
-		double distance = 2.3;
+		double distance = 0.7;
 		double yOffset = 0.3;
 		float rotationCos1 = (float) Math.cos(Math.toRadians(this.renderYaw + 90));
 		float rotationSin1 = (float) Math.sin(Math.toRadians((this.renderYaw + 90)));
@@ -256,7 +256,7 @@ public class EntityLocoSteamSnowPlow extends SteamTrain {
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return (0.2F);
+		return (0.7F);
 	}
 	@Override
 	public boolean canBeAdjusted(EntityMinecart cart) {

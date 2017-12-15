@@ -86,6 +86,7 @@ public class ModelBase extends Model<Object> {
 				turbo.rotateAngleZ = -turbo.rotateAngleZ + 3.14159f;
 			} else {
 				turbo.rotateAngleZ = -turbo.rotateAngleZ;
+				turbo.rotateAngleY = -turbo.rotateAngleY;
 			}
 		}
 	}

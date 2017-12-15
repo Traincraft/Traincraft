@@ -157,20 +157,20 @@ public enum RenderEnum {
 			add(new double[] { 4D, 1.64D, 0D });
 		}
 	}, "", null, 0, false),
-	locoEMDF7(EntityLocoDieselEMDF7.class, new ModelEMDF7(), "emdf7_", true, new float[]{0,0.12f,0}, new float[] { 0F, 180F, 180F }, new float[]{0.9f,1f,0.9f}, "smoke", 4, new ArrayList<double[]>() {
+	locoEMDF7(EntityLocoDieselEMDF7.class, new ModelEMDF7(), "emdf7_", true, new float[]{-2.2f,0.12f,0}, new float[] { 0F, 180F, 180F }, new float[]{0.9f,1f,0.9f}, "smoke", 4, new ArrayList<double[]>() {
 		{
 					add(new double[] { 0.3D, 1.55D, 0.0D });
 					add(new double[] { 1.0D, 1.55D, 0.0D });
 		}
 	}, "", null, 0, false),
-	locoEMDF3(EntityLocoDieselEMDF3.class, new ModelEMDF3(), "emdf3", false, new float[]{0,0.12f,0}, new float[] { 0F, 180F, 180F }, new float[]{0.9f,1f,0.9f}, "smoke", 4, new ArrayList<double[]>() {
+	locoEMDF3(EntityLocoDieselEMDF3.class, new ModelEMDF7(), "emdf3", false, new float[]{-2.2f,0.12f,0}, new float[] { 0F, 180F, 180F }, new float[]{0.9f,1f,0.9f}, "smoke", 4, new ArrayList<double[]>() {
 		{
 					add(new double[] { 0.2D, 1.55D, 0.0D });
 					add(new double[] { 0.85D, 1.55D, 0.0D });
 		}
 	}, "", null, 0, false),
 	locoEMDF7b(EntityBUnitEMDF7.class, new ModelEMDF7B(), "emdf7b_", true, new float[]{0,0.12f,0}, new float[] { 0F, 180F, 180F }, new float[]{0.9f,1f,0.9f}, "", 4, null, "", null, 0, false),
-	locoEMDF3b(EntityBUnitEMDF3.class, new ModelEMDF3B(), "emdf3b", false, new float[]{0,0.12f,0}, new float[] { 0F, 180F, 180F }, new float[]{0.9f,1f,0.9f}, "", 4, null, "", null, 0, false),
+	locoEMDF3b(EntityBUnitEMDF3.class, new ModelEMDF7B(), "emdf3b", false, new float[]{0,0.12f,0}, new float[] { 0F, 180F, 180F }, new float[]{0.9f,1f,0.9f}, "", 4, null, "", null, 0, false),
 	DD35b(EntityBUnitDD35.class, new ModelDD35B(), "dd35b", false, new float[]{0,0.12f,0}, new float[] { 0F, 180F, 180F }, new float[]{0.9f,1f,0.9f}, "", 4, null, "", null, 0, false),
 	locoDieselDD35A(EntityLocoDieselDD35A.class, new ModelDD35A(), "dd35a", false, new float[]{0,0.12f,0}, new float[] { 0F, 180F, 180F }, new float[]{0.9f,1f,0.9f}, "", 4, null, "", null, 0, false),
 
@@ -387,7 +387,7 @@ public enum RenderEnum {
 	PropagandaJapan(EntityPropagandaJapan.class, new ModelPropagandaCar(), "propaganda_Japan_", true, new float[] { 1.1F, 0.2F, -0.1F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	PropagandaUSSR(EntityPropagandaUSSR.class, new ModelPropagandaCar(), "propaganda_USSR_", true, new float[] { 1.1F, 0.2F, -0.1F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	PropagandaBritain(EntityPropagandaBritain.class, new ModelPropagandaCar(), "propaganda_Britain_", true, new float[] { 1.1F, 0.2F, -0.1F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
-	SnowPlow(EntityLocoSteamSnowPlow.class, new ModelSnowPlow(), "snowplow", false, new float[] { 0F, 0F, 0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false);
+	SnowPlow(EntityLocoSteamSnowPlow.class, new ModelSnowPlow(), "train_snowplow", false, new float[] { -2F, 0.2F, 0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false);
 
 	private Class<? extends AbstractTrains> entityClass;
 	private ModelBase model;

@@ -10,8 +10,12 @@
 package train.client.render.models;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.util.ResourceLocation;
+import org.lwjgl.opengl.GL11;
 import tmt.ModelBase;
 import tmt.ModelRendererTurbo;
+import tmt.Tessellator;
+import train.common.library.Info;
 
 public class ModelSnowPlow extends ModelBase
 {
@@ -506,6 +510,9 @@ public class ModelSnowPlow extends ModelBase
 
 	}
 
+	private ModelFreightTruckM fronttrucks = new ModelFreightTruckM();
+	private ModelFreightTruckM backtrucks = new ModelFreightTruckM();
+
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
@@ -513,6 +520,17 @@ public class ModelSnowPlow extends ModelBase
 		{
 			snowplowModel[i].render(f5);
 		}
+		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/freighttruckm.png"));
+
+		GL11.glPushMatrix();
+		GL11.glTranslated(-2.15,0,-0.2);
+		fronttrucks.render(entity,f,f1,f2,f3,f4,f5);
+		GL11.glPopMatrix();
+
+		GL11.glPushMatrix();
+		GL11.glTranslated(1,0,-0.2);
+		backtrucks.render(entity,f,f1,f2,f3,f4,f5);
+		GL11.glPopMatrix();
 	}
 
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5)

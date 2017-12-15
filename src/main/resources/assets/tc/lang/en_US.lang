@@ -260,6 +260,11 @@ item.tc:minecartRhB_Te.name=RhB Te
 item.tc:minecartIceWagon.name=Ice Wagon
 item.tc:minecartLocoDD35A.name=DD35
 item.tc:minecartLocoDD35B.name=DD35 B-unit
+item.tc:minecartPropagandaUs.name=Propaganda cart (USA)
+item.tc:minecartPropagandaUSSR.name=Propaganda cart (USSR)
+item.tc:minecartPropagandaBritish.name=Propaganda cart (Britain)
+item.tc:minecartPropagandaJapan.name=Propaganda cart (Japan)
+item.tc:minecartLocoSnowPlow.name=Snow Plow
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -479,6 +484,11 @@ entity.tc.Loco Electric RhB Te.name=RhB Te
 entity.tc.Freight Ice Wagon.name=Ice Wagon
 entity.tc.Loco Diesel DD35A.name=DD35
 entity.tc.DD35 B unit.name=DD35 B-unit
+entity.tc.Propaganda USA.name=Propaganda cart (USA)
+entity.tc.Propaganda USSR.name=Propaganda cart (USSR)
+entity.tc.Propaganda Britain.name=Propaganda cart (Britain)
+entity.tc.Propaganda Japan.name=Propaganda cart (Japan)
+entity.tc.Loco Steam Snow Plow.name=Snow Plow
 
 description.villager.profession.tc.station_chief=Station Chief
 
