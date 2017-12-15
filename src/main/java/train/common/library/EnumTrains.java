@@ -1,11 +1,11 @@
 package train.common.library;
 
+import java.lang.reflect.InvocationTargetException;
+
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
 import train.common.api.AbstractTrains;
 import train.common.entity.rollingStock.*;
-
-import java.lang.reflect.InvocationTargetException;
 
 public enum EnumTrains {
 	
@@ -50,11 +50,13 @@ public enum EnumTrains {
 	flatCar_DB("Flat Cart DB",EntityFlatCar_DB.class,ItemIDs.minecartFlatCart_DB.item,"flat",0,0,0.2,0,0,0,0,0,0,null,18,0),
 	BUnitEMDF7("EMD F7 B Unit", EntityBUnitEMDF7.class, ItemIDs.minecartLocoEMDF7B.item, "b-unit", 0, 0, 8, 0,
 			0,
-			0, 0, 0, 12000, new String[] { "Grey", "Black" }, 18, 0, new String[]{"Reduces weight carried by 8 tons when fueled"}),
+			0, 0, 0, 12000, new String[] { "Grey", "Black" }, 18, 0,
+			new String[] { "Reduces weight carried by 80 tons when fueled" }),
 	BUnitEMDF3("EMD F3 B Unit", EntityBUnitEMDF3.class, ItemIDs.minecartLocoEMDF3B.item, "b-unit", 0, 0, 8, 0,
 			0,
-			0, 0, 0, 12000, null, 18, 0, new String[]{"Reduces weight carried by 8 tons when fueled"}),
-	BUnitDD35("DD35 B Unit", EntityBUnitDD35.class, ItemIDs.minecartLocoDD35B.item, "b-unit", 0, 0, 10, 0, 0, 0, 0, 0, 12000, null, 18, 0, new String[]{"Reduces weight carried by 10 tons when fueled"}),
+			0, 0, 0, 12000, null, 18, 0, new String[] { "Reduces weight carried by 80 tons when fueled" }),
+	BUnitDD35("DD35 B Unit", EntityBUnitDD35.class, ItemIDs.minecartLocoDD35B.item, "b-unit", 0, 0, 10, 0, 0, 0, 0, 0,
+			12000, null, 18, 0, new String[] { "Reduces weight carried by 100 tons when fueled" }),
 	propagandaUs("Propaganda USA",EntityPropagandaUS.class, ItemIDs.minecartPropagandaUs.item,"decorative",0,0,0,0,0,0,0,0,0,new String[]{"Blue", "White", "Red"},14,0),
 	propagandaUSSR("Propaganda USSR",EntityPropagandaUSSR.class, ItemIDs.minecartPropagandaUSSR.item,"decorative",0,0,0,0,0,0,0,0,0,new String[]{"Blue", "White", "Red"},14,0),
 	propagandaJapan("Propaganda Japan",EntityPropagandaJapan.class, ItemIDs.minecartPropagandaJapan.item,"decorative",0,0,0,0,0,0,0,0,0,new String[]{"Red", "White", "Yellow"},14,0),

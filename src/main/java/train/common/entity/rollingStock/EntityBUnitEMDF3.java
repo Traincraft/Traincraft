@@ -34,7 +34,6 @@ public class EntityBUnitEMDF3 extends LiquidTank {
 		prevPosZ = d2;
 	}
 
-
 	@Override
 	public void setDead() {
 		super.setDead();

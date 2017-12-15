@@ -181,479 +181,478 @@ public class ModelDD35A extends ModelBase
 		dd35aModel[157] = new ModelRendererTurbo(this, 44, 129, textureX, textureY); // Box 165
 
 		dd35aModel[0].addBox(0F, 0F, -1F, 8, 2, 2, 0F); // Box 5
-		dd35aModel[0].setRotationPoint(-24F, 1F, 0F);
+		dd35aModel[0].setRotationPoint(-112F, 1F, 0F);
 
 		dd35aModel[1].addBox(0F, 0F, -1F, 8, 2, 2, 0F); // Box 7
-		dd35aModel[1].setRotationPoint(104F, 1F, 0F);
+		dd35aModel[1].setRotationPoint(16F, 1F, 0F);
 
 		dd35aModel[2].addBox(0F, 0F, 0F, 48, 23, 10, 0F); // Box 11
-		dd35aModel[2].setRotationPoint(6F, -25F, -5F);
+		dd35aModel[2].setRotationPoint(-82F, -25F, -5F);
 
 		dd35aModel[3].addBox(0F, 0F, 0F, 122, 2, 4, 0F); // Box 31
-		dd35aModel[3].setRotationPoint(-17F, -2F, -9F);
+		dd35aModel[3].setRotationPoint(-105F, -2F, -9F);
 
 		dd35aModel[4].addBox(0F, 0F, -5F, 128, 4, 10, 0F); // Box 33
-		dd35aModel[4].setRotationPoint(-20F, -2F, 0F);
+		dd35aModel[4].setRotationPoint(-108F, -2F, 0F);
 
 		dd35aModel[5].addBox(0F, 0F, 0F, 122, 2, 4, 0F); // Box 34
-		dd35aModel[5].setRotationPoint(-17F, -2F, 5F);
+		dd35aModel[5].setRotationPoint(-105F, -2F, 5F);
 
 		dd35aModel[6].addShapeBox(0F, 0F, -1F, 2, 2, 2, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 35
-		dd35aModel[6].setRotationPoint(-22F, -2F, 0F);
+		dd35aModel[6].setRotationPoint(-110F, -2F, 0F);
 
 		dd35aModel[7].addShapeBox(0F, 0F, 0F, 2, 2, 6, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F); // Box 36
-		dd35aModel[7].setRotationPoint(-22F, -2F, 1F);
+		dd35aModel[7].setRotationPoint(-110F, -2F, 1F);
 
 		dd35aModel[8].addShapeBox(0F, 0F, 0F, 2, 2, 6, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 38
-		dd35aModel[8].setRotationPoint(-22F, -2F, -7F);
+		dd35aModel[8].setRotationPoint(-110F, -2F, -7F);
 
 		dd35aModel[9].addShapeBox(0F, 0F, 0F, 2, 2, 6, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F); // Box 58
-		dd35aModel[9].setRotationPoint(108F, -2F, 1F);
+		dd35aModel[9].setRotationPoint(20F, -2F, 1F);
 
 		dd35aModel[10].addShapeBox(0F, 0F, -1F, 2, 2, 2, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 59
-		dd35aModel[10].setRotationPoint(108F, -2F, 0F);
+		dd35aModel[10].setRotationPoint(20F, -2F, 0F);
 
 		dd35aModel[11].addShapeBox(0F, 0F, 0F, 2, 2, 6, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 60
-		dd35aModel[11].setRotationPoint(108F, -2F, -7F);
+		dd35aModel[11].setRotationPoint(20F, -2F, -7F);
 
 		dd35aModel[12].addBox(0F, 0F, 0F, 1, 7, 4, 0F); // Box 61
-		dd35aModel[12].setRotationPoint(-17F, 0F, -9F);
+		dd35aModel[12].setRotationPoint(-105F, 0F, -9F);
 
 		dd35aModel[13].addBox(0F, 0F, 0F, 1, 7, 4, 0F); // Box 62
-		dd35aModel[13].setRotationPoint(-17F, 0F, 5F);
+		dd35aModel[13].setRotationPoint(-105F, 0F, 5F);
 
 		dd35aModel[14].addBox(0F, 0F, 0F, 1, 7, 4, 0F); // Box 63
-		dd35aModel[14].setRotationPoint(104F, 0F, 5F);
+		dd35aModel[14].setRotationPoint(16F, 0F, 5F);
 
 		dd35aModel[15].addBox(0F, 0F, 0F, 1, 7, 4, 0F); // Box 64
-		dd35aModel[15].setRotationPoint(104F, 0F, -9F);
+		dd35aModel[15].setRotationPoint(16F, 0F, -9F);
 
 		dd35aModel[16].addBox(0F, 0F, 0F, 3, 0, 3, 0F); // Box 65
-		dd35aModel[16].setRotationPoint(-20F, 3F, -8F);
+		dd35aModel[16].setRotationPoint(-108F, 3F, -8F);
 
 		dd35aModel[17].addBox(0F, 0F, 0F, 3, 0, 3, 0F); // Box 66
-		dd35aModel[17].setRotationPoint(-20F, 7F, -8F);
+		dd35aModel[17].setRotationPoint(-108F, 7F, -8F);
 
 		dd35aModel[18].addBox(0F, 0F, 0F, 3, 0, 3, 0F); // Box 68
-		dd35aModel[18].setRotationPoint(-20F, 3F, 5F);
+		dd35aModel[18].setRotationPoint(-108F, 3F, 5F);
 
 		dd35aModel[19].addBox(0F, 0F, 0F, 3, 0, 3, 0F); // Box 69
-		dd35aModel[19].setRotationPoint(-20F, 7F, 5F);
+		dd35aModel[19].setRotationPoint(-108F, 7F, 5F);
 
 		dd35aModel[20].addBox(0F, 0F, 0F, 3, 0, 3, 0F); // Box 70
-		dd35aModel[20].setRotationPoint(105F, 3F, 5F);
+		dd35aModel[20].setRotationPoint(17F, 3F, 5F);
 
 		dd35aModel[21].addBox(0F, 0F, 0F, 3, 0, 3, 0F); // Box 71
-		dd35aModel[21].setRotationPoint(105F, 7F, 5F);
+		dd35aModel[21].setRotationPoint(17F, 7F, 5F);
 
 		dd35aModel[22].addBox(0F, 0F, 0F, 3, 0, 3, 0F); // Box 72
-		dd35aModel[22].setRotationPoint(105F, 7F, -8F);
+		dd35aModel[22].setRotationPoint(17F, 7F, -8F);
 
 		dd35aModel[23].addBox(0F, 0F, 0F, 3, 0, 3, 0F); // Box 73
-		dd35aModel[23].setRotationPoint(105F, 3F, -8F);
+		dd35aModel[23].setRotationPoint(17F, 3F, -8F);
 
 		dd35aModel[24].addBox(0F, 0F, 0F, 99, 13, 0, 0F); // Box 66
-		dd35aModel[24].setRotationPoint(6F, -15F, 9F);
+		dd35aModel[24].setRotationPoint(-82F, -15F, 9F);
 
 		dd35aModel[25].addBox(0F, 0F, 0F, 99, 13, 0, 0F); // Box 67
-		dd35aModel[25].setRotationPoint(6F, -15F, -9F);
+		dd35aModel[25].setRotationPoint(-82F, -15F, -9F);
 
 		dd35aModel[26].addBox(0F, 0F, -9F, 50, 3, 18, 0F); // Box 76
-		dd35aModel[26].setRotationPoint(19F, 1F, 0F);
+		dd35aModel[26].setRotationPoint(-69F, 1F, 0F);
 
 		dd35aModel[27].addBox(0F, 0F, 0F, 1, 2, 18, 0F); // Box 81
-		dd35aModel[27].setRotationPoint(86F, 0F, -9F);
+		dd35aModel[27].setRotationPoint(-2F, 0F, -9F);
 
 		dd35aModel[28].addBox(0F, 0F, 0F, 1, 2, 18, 0F); // Box 82
-		dd35aModel[28].setRotationPoint(69F, 0F, -9F);
+		dd35aModel[28].setRotationPoint(-19F, 0F, -9F);
 
 		dd35aModel[29].addBox(0F, 0F, 0F, 1, 2, 18, 0F); // Box 83
-		dd35aModel[29].setRotationPoint(18F, 0F, -9F);
+		dd35aModel[29].setRotationPoint(-70F, 0F, -9F);
 
 		dd35aModel[30].addBox(0F, 0F, 0F, 1, 2, 18, 0F); // Box 84
-		dd35aModel[30].setRotationPoint(1F, 0F, -9F);
+		dd35aModel[30].setRotationPoint(-87F, 0F, -9F);
 
 		dd35aModel[31].addShapeBox(0F, 0F, -9F, 50, 4, 18, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, -3F); // Box 85
-		dd35aModel[31].setRotationPoint(19F, 4F, 0F);
+		dd35aModel[31].setRotationPoint(-69F, 4F, 0F);
 
 		dd35aModel[32].addBox(0F, 0F, -7F, 1, 2, 14, 0F); // Box 87
-		dd35aModel[32].setRotationPoint(-15F, 4F, 0F);
+		dd35aModel[32].setRotationPoint(-103F, 4F, 0F);
 
 		dd35aModel[33].addBox(0F, 0F, -7F, 1, 2, 14, 0F); // Box 88
-		dd35aModel[33].setRotationPoint(17F, 4F, 0F);
+		dd35aModel[33].setRotationPoint(-71F, 4F, 0F);
 
 		dd35aModel[34].addBox(0F, 0F, -5F, 29, 3, 10, 0F); // Box 91
-		dd35aModel[34].setRotationPoint(-13F, 2F, 0F);
+		dd35aModel[34].setRotationPoint(-101F, 2F, 0F);
 
 		dd35aModel[35].addBox(0F, 0F, -8F, 1, 1, 16, 0F); // Box 92
-		dd35aModel[35].setRotationPoint(5F, 6F, 0F);
+		dd35aModel[35].setRotationPoint(-83F, 6F, 0F);
 
 		dd35aModel[36].addBox(0F, 0F, -8F, 1, 1, 16, 0F); // Box 93
-		dd35aModel[36].setRotationPoint(-3F, 6F, 0F);
+		dd35aModel[36].setRotationPoint(-91F, 6F, 0F);
 
 		dd35aModel[37].addBox(0F, 0F, -8F, 1, 1, 16, 0F); // Box 94
-		dd35aModel[37].setRotationPoint(-11F, 6F, 0F);
+		dd35aModel[37].setRotationPoint(-99F, 6F, 0F);
 
 		dd35aModel[38].addBox(0F, 0F, 0F, 33, 4, 0, 0F); // Box 118
-		dd35aModel[38].setRotationPoint(-15F, 3F, -7.01F);
+		dd35aModel[38].setRotationPoint(-103F, 3F, -7.01F);
 
 		dd35aModel[39].addBox(0F, 0F, 0F, 33, 4, 0, 0F); // Box 119
-		dd35aModel[39].setRotationPoint(-15F, 3F, 7.01F);
+		dd35aModel[39].setRotationPoint(-103F, 3F, 7.01F);
 
 		dd35aModel[40].addBox(0F, 0F, 0F, 7, 7, 0, 0F); // Box 123
-		dd35aModel[40].setRotationPoint(2F, 3F, -6F);
+		dd35aModel[40].setRotationPoint(-86F, 3F, -6F);
 
 		dd35aModel[41].addBox(0F, 0F, 0F, 7, 7, 0, 0F); // Box 124
-		dd35aModel[41].setRotationPoint(-6F, 3F, -6F);
+		dd35aModel[41].setRotationPoint(-94F, 3F, -6F);
 
 		dd35aModel[42].addBox(0F, 0F, 0F, 7, 7, 0, 0F); // Box 125
-		dd35aModel[42].setRotationPoint(-14F, 3F, -6F);
+		dd35aModel[42].setRotationPoint(-102F, 3F, -6F);
 
 		dd35aModel[43].addBox(0F, 0F, 0F, 7, 7, 0, 0F); // Box 126
-		dd35aModel[43].setRotationPoint(2F, 3F, 6F);
+		dd35aModel[43].setRotationPoint(-86F, 3F, 6F);
 
 		dd35aModel[44].addBox(0F, 0F, 0F, 7, 7, 0, 0F); // Box 127
-		dd35aModel[44].setRotationPoint(-6F, 3F, 6F);
+		dd35aModel[44].setRotationPoint(-94F, 3F, 6F);
 
 		dd35aModel[45].addBox(0F, 0F, 0F, 7, 7, 0, 0F); // Box 128
-		dd35aModel[45].setRotationPoint(-14F, 3F, 6F);
+		dd35aModel[45].setRotationPoint(-102F, 3F, 6F);
 
 		dd35aModel[46].addBox(0F, 0F, 0F, 7, 7, 0, 0F); // Box 159
-		dd35aModel[46].setRotationPoint(10F, 3F, 6F);
+		dd35aModel[46].setRotationPoint(-78F, 3F, 6F);
 
 		dd35aModel[47].addBox(0F, 0F, -8F, 1, 1, 16, 0F); // Box 160
-		dd35aModel[47].setRotationPoint(13F, 6F, 0F);
+		dd35aModel[47].setRotationPoint(-75F, 6F, 0F);
 
 		dd35aModel[48].addBox(0F, 0F, 0F, 7, 7, 0, 0F); // Box 161
-		dd35aModel[48].setRotationPoint(10F, 3F, -6F);
+		dd35aModel[48].setRotationPoint(-78F, 3F, -6F);
 
 		dd35aModel[49].addBox(0F, 0F, 0F, 48, 23, 10, 0F); // Box 162
-		dd35aModel[49].setRotationPoint(58F, -25F, -5F);
+		dd35aModel[49].setRotationPoint(-30F, -25F, -5F);
 
 		dd35aModel[50].addBox(0F, 0F, 0F, 4, 5, 10, 0F); // Box 163
-		dd35aModel[50].setRotationPoint(54F, -25F, -5F);
+		dd35aModel[50].setRotationPoint(-34F, -25F, -5F);
 
 		dd35aModel[51].addBox(0F, 0F, 0F, 6, 1, 6, 0F); // Box 164
-		dd35aModel[51].setRotationPoint(47.35F, -27F, -3F);
+		dd35aModel[51].setRotationPoint(-40.65F, -27F, -3F);
 
 		dd35aModel[52].addBox(0F, 0F, 0F, 6, 1, 6, 0F); // Box 165
-		dd35aModel[52].setRotationPoint(40.5F, -27F, -3F);
+		dd35aModel[52].setRotationPoint(-47.5F, -27F, -3F);
 
 		dd35aModel[53].addBox(0F, 0F, 0F, 4, 1, 4, 0F); // Box 166
-		dd35aModel[53].setRotationPoint(35.7F, -27F, -2F);
+		dd35aModel[53].setRotationPoint(-52.3F, -27F, -2F);
 
 		dd35aModel[54].addBox(0F, 0F, 0F, 4, 1, 4, 0F); // Box 167
-		dd35aModel[54].setRotationPoint(72.3F, -27F, -2F);
+		dd35aModel[54].setRotationPoint(-15.7F, -27F, -2F);
 
 		dd35aModel[55].addBox(0F, 0F, 0F, 6, 1, 6, 0F); // Box 168
-		dd35aModel[55].setRotationPoint(65.5F, -27F, -3F);
+		dd35aModel[55].setRotationPoint(-22.5F, -27F, -3F);
 
 		dd35aModel[56].addBox(0F, 0F, 0F, 6, 1, 6, 0F); // Box 169
-		dd35aModel[56].setRotationPoint(58.85F, -27F, -3F);
+		dd35aModel[56].setRotationPoint(-29.15F, -27F, -3F);
 
 		dd35aModel[57].addBox(0F, 0F, 0F, 6, 1, 6, 0F); // Box 170
-		dd35aModel[57].setRotationPoint(23F, -26F, -3F);
+		dd35aModel[57].setRotationPoint(-65F, -26F, -3F);
 
 		dd35aModel[58].addBox(0F, 0F, 0F, 6, 1, 6, 0F); // Box 171
-		dd35aModel[58].setRotationPoint(86F, -26F, -3F);
+		dd35aModel[58].setRotationPoint(-2F, -26F, -3F);
 
 		dd35aModel[59].addShapeBox(0F, 0F, 0F, 71, 2, 2, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 174
-		dd35aModel[59].setRotationPoint(22F, -25F, 5F);
+		dd35aModel[59].setRotationPoint(-66F, -25F, 5F);
 
 		dd35aModel[60].addShapeBox(0F, 0F, 0F, 3, 2, 2, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -2F); // Box 175
-		dd35aModel[60].setRotationPoint(19F, -25F, 5F);
+		dd35aModel[60].setRotationPoint(-69F, -25F, 5F);
 
 		dd35aModel[61].addShapeBox(0F, 0F, 0F, 3, 1, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0.5F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F); // Box 177
-		dd35aModel[61].setRotationPoint(19F, -23F, 5F);
+		dd35aModel[61].setRotationPoint(-69F, -23F, 5F);
 
 		dd35aModel[62].addShapeBox(0F, 0F, 0F, 71, 1, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0.5F, 0F, 0F, 0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F); // Box 178
-		dd35aModel[62].setRotationPoint(22F, -23F, 5F);
+		dd35aModel[62].setRotationPoint(-66F, -23F, 5F);
 
 		dd35aModel[63].addBox(0F, 0F, 0F, 2, 1, 6, 0F); // Box 181
-		dd35aModel[63].setRotationPoint(18F, -26F, -3F);
+		dd35aModel[63].setRotationPoint(-70F, -26F, -3F);
 
 		dd35aModel[64].addBox(0F, 0F, 0F, 2, 1, 6, 0F); // Box 182
-		dd35aModel[64].setRotationPoint(95F, -26F, -3F);
+		dd35aModel[64].setRotationPoint(7F, -26F, -3F);
 
 		dd35aModel[65].addShapeBox(0F, 0F, 0F, 3, 1, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F); // Box 187
-		dd35aModel[65].setRotationPoint(93F, -23F, 5F);
+		dd35aModel[65].setRotationPoint(5F, -23F, 5F);
 
 		dd35aModel[66].addShapeBox(0F, 0F, 0F, 3, 2, 2, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -0.5F); // Box 188
-		dd35aModel[66].setRotationPoint(93F, -25F, 5F);
+		dd35aModel[66].setRotationPoint(5F, -25F, 5F);
 
 		dd35aModel[67].addShapeBox(0F, 0F, 0F, 71, 2, 2, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 189
-		dd35aModel[67].setRotationPoint(22F, -25F, -7F);
+		dd35aModel[67].setRotationPoint(-66F, -25F, -7F);
 
 		dd35aModel[68].addShapeBox(0F, 0F, 0F, 71, 1, 1, 0F, 0F, 0F, 0.5F, 0F, 0F, 0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 192
-		dd35aModel[68].setRotationPoint(22F, -23F, -6F);
+		dd35aModel[68].setRotationPoint(-66F, -23F, -6F);
 
 		dd35aModel[69].addShapeBox(0F, 0F, 0F, 3, 1, 1, 0F, 0F, 0F, -1F, 0F, 0F, 0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 193
-		dd35aModel[69].setRotationPoint(19F, -23F, -6F);
+		dd35aModel[69].setRotationPoint(-69F, -23F, -6F);
 
 		dd35aModel[70].addShapeBox(0F, 0F, 0F, 3, 2, 2, 0F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 194
-		dd35aModel[70].setRotationPoint(19F, -25F, -7F);
+		dd35aModel[70].setRotationPoint(-69F, -25F, -7F);
 
 		dd35aModel[71].addShapeBox(0F, 0F, 0F, 3, 2, 2, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 196
-		dd35aModel[71].setRotationPoint(93F, -25F, -7F);
+		dd35aModel[71].setRotationPoint(5F, -25F, -7F);
 
 		dd35aModel[72].addShapeBox(0F, 0F, 0F, 3, 1, 1, 0F, 0F, 0F, 0.5F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 197
-		dd35aModel[72].setRotationPoint(93F, -23F, -6F);
+		dd35aModel[72].setRotationPoint(5F, -23F, -6F);
 
 		dd35aModel[73].addShapeBox(0F, 0F, -7F, 46, 1, 14, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 119
-		dd35aModel[73].setRotationPoint(33F, -26F, 0F);
+		dd35aModel[73].setRotationPoint(-55F, -26F, 0F);
 
 		dd35aModel[74].addBox(0F, 0F, 0F, 33, 4, 0, 0F); // Box 120
-		dd35aModel[74].setRotationPoint(70F, 3F, 7.01F);
+		dd35aModel[74].setRotationPoint(-18F, 3F, 7.01F);
 
 		dd35aModel[75].addBox(0F, 0F, -8F, 1, 1, 16, 0F); // Box 121
-		dd35aModel[75].setRotationPoint(90F, 6F, 0F);
+		dd35aModel[75].setRotationPoint(2F, 6F, 0F);
 
 		dd35aModel[76].addBox(0F, 0F, 0F, 7, 7, 0, 0F); // Box 122
-		dd35aModel[76].setRotationPoint(95F, 3F, 6F);
+		dd35aModel[76].setRotationPoint(7F, 3F, 6F);
 
 		dd35aModel[77].addBox(0F, 0F, 0F, 7, 7, 0, 0F); // Box 123
-		dd35aModel[77].setRotationPoint(87F, 3F, 6F);
+		dd35aModel[77].setRotationPoint(-1F, 3F, 6F);
 
 		dd35aModel[78].addBox(0F, 0F, 0F, 7, 7, 0, 0F); // Box 124
-		dd35aModel[78].setRotationPoint(79F, 3F, 6F);
+		dd35aModel[78].setRotationPoint(-9F, 3F, 6F);
 
 		dd35aModel[79].addBox(0F, 0F, -8F, 1, 1, 16, 0F); // Box 125
-		dd35aModel[79].setRotationPoint(82F, 6F, 0F);
+		dd35aModel[79].setRotationPoint(-6F, 6F, 0F);
 
 		dd35aModel[80].addBox(0F, 0F, 0F, 7, 7, 0, 0F); // Box 126
-		dd35aModel[80].setRotationPoint(71F, 3F, 6F);
+		dd35aModel[80].setRotationPoint(-17F, 3F, 6F);
 
 		dd35aModel[81].addBox(0F, 0F, -8F, 1, 1, 16, 0F); // Box 127
-		dd35aModel[81].setRotationPoint(74F, 6F, 0F);
+		dd35aModel[81].setRotationPoint(-14F, 6F, 0F);
 
 		dd35aModel[82].addBox(0F, 0F, -8F, 1, 1, 16, 0F); // Box 128
-		dd35aModel[82].setRotationPoint(98F, 6F, 0F);
+		dd35aModel[82].setRotationPoint(10F, 6F, 0F);
 
 		dd35aModel[83].addBox(0F, 0F, -7F, 1, 2, 14, 0F); // Box 129
-		dd35aModel[83].setRotationPoint(70F, 4F, 0F);
+		dd35aModel[83].setRotationPoint(-18F, 4F, 0F);
 
 		dd35aModel[84].addBox(0F, 0F, -7F, 1, 2, 14, 0F); // Box 130
-		dd35aModel[84].setRotationPoint(102F, 4F, 0F);
+		dd35aModel[84].setRotationPoint(14F, 4F, 0F);
 
 		dd35aModel[85].addBox(0F, 0F, -5F, 29, 3, 10, 0F); // Box 131
-		dd35aModel[85].setRotationPoint(72F, 2F, 0F);
+		dd35aModel[85].setRotationPoint(-16F, 2F, 0F);
 
 		dd35aModel[86].addBox(0F, 0F, 0F, 33, 4, 0, 0F); // Box 132
-		dd35aModel[86].setRotationPoint(70F, 3F, -7.01F);
+		dd35aModel[86].setRotationPoint(-18F, 3F, -7.01F);
 
 		dd35aModel[87].addBox(0F, 0F, 0F, 7, 7, 0, 0F); // Box 133
-		dd35aModel[87].setRotationPoint(71F, 3F, -6F);
+		dd35aModel[87].setRotationPoint(-17F, 3F, -6F);
 
 		dd35aModel[88].addBox(0F, 0F, 0F, 7, 7, 0, 0F); // Box 134
-		dd35aModel[88].setRotationPoint(79F, 3F, -6F);
+		dd35aModel[88].setRotationPoint(-9F, 3F, -6F);
 
 		dd35aModel[89].addBox(0F, 0F, 0F, 7, 7, 0, 0F); // Box 135
-		dd35aModel[89].setRotationPoint(87F, 3F, -6F);
+		dd35aModel[89].setRotationPoint(-1F, 3F, -6F);
 
 		dd35aModel[90].addBox(0F, 0F, 0F, 7, 7, 0, 0F); // Box 136
-		dd35aModel[90].setRotationPoint(95F, 3F, -6F);
+		dd35aModel[90].setRotationPoint(7F, 3F, -6F);
 
 		dd35aModel[91].addBox(0F, 0F, 0F, 2, 1, 18, 0F); // Box 138
-		dd35aModel[91].setRotationPoint(44F, 0F, -9F);
+		dd35aModel[91].setRotationPoint(-44F, 0F, -9F);
 
 		dd35aModel[92].addShapeBox(0F, 0F, 0F, 2, 15, 5, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F); // Box 139
-		dd35aModel[92].setRotationPoint(-18F, -17F, 0F);
+		dd35aModel[92].setRotationPoint(-106F, -17F, 0F);
 
 		dd35aModel[93].addBox(0F, 0F, -5F, 11, 15, 10, 0F); // Box 140
-		dd35aModel[93].setRotationPoint(-16F, -17F, 0F);
+		dd35aModel[93].setRotationPoint(-104F, -17F, 0F);
 
 		dd35aModel[94].addShapeBox(0F, 0F, 0F, 2, 15, 5, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 141
-		dd35aModel[94].setRotationPoint(-18F, -17F, -5F);
+		dd35aModel[94].setRotationPoint(-106F, -17F, -5F);
 
 		dd35aModel[95].addBox(0F, 0F, 0F, 6, 13, 0, 0F); // Box 143
-		dd35aModel[95].setRotationPoint(-17F, -15F, 9F);
+		dd35aModel[95].setRotationPoint(-105F, -15F, 9F);
 
 		dd35aModel[96].addBox(0F, 0F, 0F, 5, 6, 4, 0F); // Box 145
-		dd35aModel[96].setRotationPoint(-11F, -8F, 5F);
+		dd35aModel[96].setRotationPoint(-99F, -8F, 5F);
 
 		dd35aModel[97].addBox(0F, 0F, 0F, 4, 6, 4, 0F); // Box 146
-		dd35aModel[97].setRotationPoint(6F, -8F, 5F);
+		dd35aModel[97].setRotationPoint(-82F, -8F, 5F);
 
 		dd35aModel[98].addBox(0F, 0F, 0F, 12, 13, 1, 0F); // Box 147
-		dd35aModel[98].setRotationPoint(-6F, -15F, 8F);
+		dd35aModel[98].setRotationPoint(-94F, -15F, 8F);
 
 		dd35aModel[99].addBox(0F, 0F, 0F, 12, 13, 1, 0F); // Box 148
-		dd35aModel[99].setRotationPoint(-6F, -15F, -9F);
+		dd35aModel[99].setRotationPoint(-94F, -15F, -9F);
 
 		dd35aModel[100].addBox(0F, 0F, 0F, 4, 6, 4, 0F); // Box 149
-		dd35aModel[100].setRotationPoint(6F, -8F, -9F);
+		dd35aModel[100].setRotationPoint(-82F, -8F, -9F);
 
 		dd35aModel[101].addBox(0F, 0F, 0F, 5, 6, 4, 0F); // Box 150
-		dd35aModel[101].setRotationPoint(-11F, -8F, -9F);
+		dd35aModel[101].setRotationPoint(-99F, -8F, -9F);
 
 		dd35aModel[102].addBox(0F, 0F, 0F, 1, 12, 3, 0F); // Box 151
-		dd35aModel[102].setRotationPoint(-6F, -14F, 5F);
+		dd35aModel[102].setRotationPoint(-94F, -14F, 5F);
 
 		dd35aModel[103].addBox(0F, 0F, 0F, 1, 12, 3, 0F); // Box 152
-		dd35aModel[103].setRotationPoint(-6F, -14F, -8F);
+		dd35aModel[103].setRotationPoint(-94F, -14F, -8F);
 
 		dd35aModel[104].addBox(0F, 0F, -6F, 1, 22, 12, 0F); // Box 153
-		dd35aModel[104].setRotationPoint(5F, -24F, 0F);
+		dd35aModel[104].setRotationPoint(-83F, -24F, 0F);
 
 		dd35aModel[105].addBox(0F, 0F, 0F, 1, 12, 2, 0F); // Box 154
-		dd35aModel[105].setRotationPoint(5F, -14F, 6F);
+		dd35aModel[105].setRotationPoint(-83F, -14F, 6F);
 
 		dd35aModel[106].addBox(0F, 0F, 0F, 1, 12, 2, 0F); // Box 155
-		dd35aModel[106].setRotationPoint(5F, -14F, -8F);
+		dd35aModel[106].setRotationPoint(-83F, -14F, -8F);
 
 		dd35aModel[107].addBox(0F, 0F, 0F, 0, 7, 2, 0F); // Box 156
-		dd35aModel[107].setRotationPoint(5.5F, -21F, 6F);
+		dd35aModel[107].setRotationPoint(-82.5F, -21F, 6F);
 
 		dd35aModel[108].addBox(0F, 0F, 0F, 0, 7, 2, 0F); // Box 157
-		dd35aModel[108].setRotationPoint(5.5F, -21F, -8F);
+		dd35aModel[108].setRotationPoint(-82.5F, -21F, -8F);
 
 		dd35aModel[109].addBox(0F, 0F, 0F, 2, 6, 1, 0F); // Box 158
-		dd35aModel[109].setRotationPoint(-6F, -21F, -9F);
+		dd35aModel[109].setRotationPoint(-94F, -21F, -9F);
 
 		dd35aModel[110].addBox(0F, 0F, 0F, 2, 6, 1, 0F); // Box 159
-		dd35aModel[110].setRotationPoint(4F, -21F, -9F);
+		dd35aModel[110].setRotationPoint(-84F, -21F, -9F);
 
 		dd35aModel[111].addBox(0F, 0F, 0F, 1, 6, 1, 0F); // Box 160
-		dd35aModel[111].setRotationPoint(-0.5F, -21F, -9F);
+		dd35aModel[111].setRotationPoint(-88.5F, -21F, -9F);
 
 		dd35aModel[112].addBox(0F, 0F, 0F, 1, 6, 1, 0F); // Box 161
-		dd35aModel[112].setRotationPoint(-0.5F, -21F, 8F);
+		dd35aModel[112].setRotationPoint(-88.5F, -21F, 8F);
 
 		dd35aModel[113].addBox(0F, 0F, 0F, 2, 6, 1, 0F); // Box 162
-		dd35aModel[113].setRotationPoint(-6F, -21F, 8F);
+		dd35aModel[113].setRotationPoint(-94F, -21F, 8F);
 
 		dd35aModel[114].addBox(0F, 0F, 0F, 2, 6, 1, 0F); // Box 163
-		dd35aModel[114].setRotationPoint(4F, -21F, 8F);
+		dd35aModel[114].setRotationPoint(-84F, -21F, 8F);
 
 		dd35aModel[115].addBox(0F, 0F, 0F, 8, 6, 0, 0F); // Box 164
-		dd35aModel[115].setRotationPoint(-4F, -21F, 8.5F);
+		dd35aModel[115].setRotationPoint(-92F, -21F, 8.5F);
 
 		dd35aModel[116].addBox(0F, 0F, 0F, 8, 6, 0, 0F); // Box 165
-		dd35aModel[116].setRotationPoint(-4F, -21F, -8.5F);
+		dd35aModel[116].setRotationPoint(-92F, -21F, -8.5F);
 
 		dd35aModel[117].addBox(0F, 0F, 0F, 1, 7, 1, 0F); // Box 166
-		dd35aModel[117].setRotationPoint(-6F, -21F, 5F);
+		dd35aModel[117].setRotationPoint(-94F, -21F, 5F);
 
 		dd35aModel[118].addBox(0F, 0F, 0F, 0, 7, 2, 0F); // Box 167
-		dd35aModel[118].setRotationPoint(-5.5F, -21F, 6F);
+		dd35aModel[118].setRotationPoint(-93.5F, -21F, 6F);
 
 		dd35aModel[119].addBox(0F, 0F, 0F, 0, 7, 2, 0F); // Box 168
-		dd35aModel[119].setRotationPoint(-5.5F, -21F, -8F);
+		dd35aModel[119].setRotationPoint(-93.5F, -21F, -8F);
 
 		dd35aModel[120].addBox(0F, 0F, 0F, 1, 7, 1, 0F); // Box 169
-		dd35aModel[120].setRotationPoint(-6F, -21F, -6F);
+		dd35aModel[120].setRotationPoint(-94F, -21F, -6F);
 
 		dd35aModel[121].addShapeBox(0F, 0F, 0F, 10, 2, 1, 0F, 0F, -0.25F, 0F, 0F, -0.25F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 170
-		dd35aModel[121].setRotationPoint(-5F, -23F, 8F);
+		dd35aModel[121].setRotationPoint(-93F, -23F, 8F);
 
 		dd35aModel[122].addBox(0F, 0F, -6F, 1, 3, 12, 0F); // Box 172
-		dd35aModel[122].setRotationPoint(-6F, -24F, 0F);
+		dd35aModel[122].setRotationPoint(-94F, -24F, 0F);
 
 		dd35aModel[123].addBox(0F, 0F, -1F, 1, 4, 2, 0F); // Box 173
-		dd35aModel[123].setRotationPoint(-6F, -21F, 0F);
+		dd35aModel[123].setRotationPoint(-94F, -21F, 0F);
 
 		dd35aModel[124].addBox(0F, 0F, -6F, 0, 4, 12, 0F); // Box 174
-		dd35aModel[124].setRotationPoint(-5.5F, -21F, 0F);
+		dd35aModel[124].setRotationPoint(-93.5F, -21F, 0F);
 
 		dd35aModel[125].addShapeBox(0F, 0F, 0F, 1, 2, 3, 0F, 0F, 1F, 0F, 0F, 1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 175
-		dd35aModel[125].setRotationPoint(-6F, -23F, 6F);
+		dd35aModel[125].setRotationPoint(-94F, -23F, 6F);
 
 		dd35aModel[126].addBox(0F, 0F, -6F, 12, 1, 12, 0F); // Box 179
-		dd35aModel[126].setRotationPoint(-6F, -25F, 0F);
+		dd35aModel[126].setRotationPoint(-94F, -25F, 0F);
 
 		dd35aModel[127].addBox(0F, 0F, -1F, 4, 3, 2, 0F); // Box 180
-		dd35aModel[127].setRotationPoint(-10F, -25F, 0F);
+		dd35aModel[127].setRotationPoint(-98F, -25F, 0F);
 
 		dd35aModel[128].addShapeBox(0F, 0F, 0F, 3, 3, 5, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F); // Box 181
-		dd35aModel[128].setRotationPoint(-9F, -25F, 1F);
+		dd35aModel[128].setRotationPoint(-97F, -25F, 1F);
 
 		dd35aModel[129].addShapeBox(0F, 0F, 0F, 3, 3, 5, 0F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 182
-		dd35aModel[129].setRotationPoint(-9F, -25F, -6F);
+		dd35aModel[129].setRotationPoint(-97F, -25F, -6F);
 
 		dd35aModel[130].addShapeBox(0F, 0F, 0F, 12, 3, 3, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 183
-		dd35aModel[130].setRotationPoint(-6F, -25F, 6F);
+		dd35aModel[130].setRotationPoint(-94F, -25F, 6F);
 
 		dd35aModel[131].addShapeBox(0F, 0F, 0F, 1, 2, 3, 0F, 0F, 1F, 0F, 0F, 1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 184
-		dd35aModel[131].setRotationPoint(5F, -23F, 6F);
+		dd35aModel[131].setRotationPoint(-83F, -23F, 6F);
 
 		dd35aModel[132].addShapeBox(0F, 0F, 0F, 10, 2, 1, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -0.25F, 0F, 0F, -0.25F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 185
-		dd35aModel[132].setRotationPoint(-5F, -23F, -9F);
+		dd35aModel[132].setRotationPoint(-93F, -23F, -9F);
 
 		dd35aModel[133].addShapeBox(0F, 0F, 0F, 1, 2, 3, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 1F, 0F, 0F, 1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 186
-		dd35aModel[133].setRotationPoint(5F, -23F, -9F);
+		dd35aModel[133].setRotationPoint(-83F, -23F, -9F);
 
 		dd35aModel[134].addShapeBox(0F, 0F, 0F, 12, 3, 3, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F); // Box 187
-		dd35aModel[134].setRotationPoint(-6F, -25F, -9F);
+		dd35aModel[134].setRotationPoint(-94F, -25F, -9F);
 
 		dd35aModel[135].addShapeBox(0F, 0F, 0F, 1, 2, 3, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 1F, 0F, 0F, 1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 188
-		dd35aModel[135].setRotationPoint(-6F, -23F, -9F);
+		dd35aModel[135].setRotationPoint(-94F, -23F, -9F);
 
 		dd35aModel[136].addBox(0F, 0F, -4F, 1, 6, 8, 0F); // Box 189
-		dd35aModel[136].setRotationPoint(-5F, -17F, 0F);
+		dd35aModel[136].setRotationPoint(-93F, -17F, 0F);
 
 		dd35aModel[137].addBox(0F, 0F, 0F, 5, 1, 0, 0F); // Box 190
-		dd35aModel[137].setRotationPoint(-11F, -15F, 9F);
+		dd35aModel[137].setRotationPoint(-99F, -15F, 9F);
 
 		dd35aModel[138].addBox(0F, 0F, 0F, 6, 13, 0, 0F); // Box 191
-		dd35aModel[138].setRotationPoint(-17F, -15F, -9F);
+		dd35aModel[138].setRotationPoint(-105F, -15F, -9F);
 
 		dd35aModel[139].addBox(0F, 0F, 0F, 5, 1, 0, 0F); // Box 192
-		dd35aModel[139].setRotationPoint(-11F, -15F, -9F);
+		dd35aModel[139].setRotationPoint(-99F, -15F, -9F);
 
 		dd35aModel[140].addBox(0F, 0F, 0F, 4, 1, 1, 0F); // Box 193
-		dd35aModel[140].setRotationPoint(35F, -28F, 5F);
+		dd35aModel[140].setRotationPoint(-53F, -28F, 5F);
 
 		dd35aModel[141].addBox(0F, 0F, 0F, 4, 1, 1, 0F); // Box 194
-		dd35aModel[141].setRotationPoint(34F, -28F, 3F);
+		dd35aModel[141].setRotationPoint(-54F, -28F, 3F);
 
 		dd35aModel[142].addBox(0F, 0F, 0F, 1, 1, 3, 0F); // Box 195
-		dd35aModel[142].setRotationPoint(36F, -27F, 3F);
+		dd35aModel[142].setRotationPoint(-52F, -27F, 3F);
 
 		dd35aModel[143].addBox(0F, 0F, 0F, 5, 11, 1, 0F); // Box 201
-		dd35aModel[143].setRotationPoint(99F, -13F, 5F);
+		dd35aModel[143].setRotationPoint(11F, -13F, 5F);
 
 		dd35aModel[144].addShapeBox(0F, 0F, 0F, 5, 3, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1.5F, 0F, 0F, -1.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 202
-		dd35aModel[144].setRotationPoint(99F, -16F, 5F);
+		dd35aModel[144].setRotationPoint(11F, -16F, 5F);
 
 		dd35aModel[145].addShapeBox(0F, 0F, 0F, 1, 2, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 162
-		dd35aModel[145].setRotationPoint(-4F, -27F, -0.5F);
+		dd35aModel[145].setRotationPoint(-92F, -27F, -0.5F);
 
 		dd35aModel[146].addShapeBox(0F, 0F, 0F, 2, 1, 1, 0F, 0.3F, -0.5F, 0.1F, -1F, -0.5F, 0.1F, -1F, -0.5F, 0.1F, 0.3F, -0.5F, 0.1F, 0.3F, 0F, 0.1F, -1F, 0F, 0.1F, -1F, 0F, 0.1F, 0.3F, 0F, 0.1F); // Box 165
-		dd35aModel[146].setRotationPoint(-3.82F, -26F, -0.5F);
+		dd35aModel[146].setRotationPoint(-91.82F, -26F, -0.5F);
 
 		dd35aModel[147].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -0.4F, 0F, 0F, -0.4F, 0F, 0F, -0.4F, 0F, 0F, -0.4F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 166
-		dd35aModel[147].setRotationPoint(-12F, -18F, 1F);
+		dd35aModel[147].setRotationPoint(-100F, -18F, 1F);
 
 		dd35aModel[148].addBox(0F, 0F, -1.5F, 1, 2, 3, 0F); // Box 164
-		dd35aModel[148].setRotationPoint(106F, -24F, 0F);
+		dd35aModel[148].setRotationPoint(18F, -24F, 0F);
 
 		dd35aModel[149].addBox(0F, 0F, -9F, 0, 20, 18, 0F); // Box 165
-		dd35aModel[149].setRotationPoint(-20.01F, -11F, 0F);
+		dd35aModel[149].setRotationPoint(-108.01F, -11F, 0F);
 
 		dd35aModel[150].addBox(0F, 0F, -9F, 0, 20, 18, 0F); // Box 166
-		dd35aModel[150].setRotationPoint(108.01F, -11F, 0F);
+		dd35aModel[150].setRotationPoint(20.01F, -11F, 0F);
 
 		dd35aModel[151].addBox(0F, 0F, 0F, 4, 7, 0, 0F); // Box 167
-		dd35aModel[151].setRotationPoint(14F, 0F, 9F);
+		dd35aModel[151].setRotationPoint(-74F, 0F, 9F);
 
 		dd35aModel[152].addBox(0F, 0F, 0F, 4, 7, 0, 0F); // Box 168
-		dd35aModel[152].setRotationPoint(14F, 0F, -9F);
+		dd35aModel[152].setRotationPoint(-74F, 0F, -9F);
 
 		dd35aModel[153].addBox(0F, 0F, 0F, 4, 1, 1, 0F); // Box 161
-		dd35aModel[153].setRotationPoint(73F, -28F, -6F);
+		dd35aModel[153].setRotationPoint(-15F, -28F, -6F);
 
 		dd35aModel[154].addBox(0F, 0F, 0F, 1, 1, 3, 0F); // Box 162
-		dd35aModel[154].setRotationPoint(75F, -27F, -6F);
+		dd35aModel[154].setRotationPoint(-13F, -27F, -6F);
 
 		dd35aModel[155].addBox(0F, 0F, 0F, 4, 1, 1, 0F); // Box 163
-		dd35aModel[155].setRotationPoint(74F, -28F, -4F);
+		dd35aModel[155].setRotationPoint(-14F, -28F, -4F);
 
 		dd35aModel[156].addShapeBox(0F, 0F, -3F, 9, 1, 6, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 164
-		dd35aModel[156].setRotationPoint(8F, -26F, 0F);
+		dd35aModel[156].setRotationPoint(-80F, -26F, 0F);
 
 		dd35aModel[157].addShapeBox(0F, 0F, -3F, 7, 1, 6, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 165
-		dd35aModel[157].setRotationPoint(98F, -26F, 0F);
-
+		dd35aModel[157].setRotationPoint(10F, -26F, 0F);
 
 	}
 

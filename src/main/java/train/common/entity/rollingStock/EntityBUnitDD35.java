@@ -54,6 +54,7 @@ public class EntityBUnitDD35 extends LiquidTank {
 				drain(ForgeDirection.UNKNOWN, 12,true);
 				lastPos = MathHelper.floor_double(Math.abs(posX+posZ));
 			}
+			
 		} else if (getAmount() <= 0) {
 			// setColor(getColorFromString("Empty"));
 			setDefaultMass(EnumTrains.BUnitDD35.getMass());
@@ -97,7 +98,7 @@ public class EntityBUnitDD35 extends LiquidTank {
 
 	@Override
 	public String getInventoryName() {
-		return "Lava Tank cart";
+		return "DD35 B-Unit";
 	}
 
 	@Override
