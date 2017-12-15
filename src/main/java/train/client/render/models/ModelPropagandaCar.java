@@ -9,9 +9,10 @@
 
 package train.client.render.models;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
-import org.lwjgl.opengl.GL11;
 import tmt.ModelBase;
 import tmt.ModelRendererTurbo;
 import tmt.Tessellator;
@@ -112,12 +113,12 @@ public class ModelPropagandaCar extends ModelBase
 		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/freighttruckm.png"));
 
 		GL11.glPushMatrix();
-		GL11.glTranslated(-3.5,0,-0.27);
+		GL11.glTranslated(-4.5, 0, -0.27);
 		fronttrucks.render(entity,f,f1,f2,f3,f4,f5);
 		GL11.glPopMatrix();
 
 		GL11.glPushMatrix();
-		GL11.glTranslated(1,0,-0.27);
+		GL11.glTranslated(0.9, 0, -0.27);
 		backtrucks.render(entity,f,f1,f2,f3,f4,f5);
 		GL11.glPopMatrix();
 	}

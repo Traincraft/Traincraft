@@ -1,19 +1,11 @@
 package train.common.entity.rollingStock;
 
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
-import train.common.Traincraft;
 import train.common.api.EntityRollingStock;
-import train.common.core.util.MP3Player;
-import train.common.library.GuiIDs;
 
 public class EntityPropagandaUS extends EntityRollingStock {
 
