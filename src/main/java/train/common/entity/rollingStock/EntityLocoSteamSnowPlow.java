@@ -88,11 +88,12 @@ public class EntityLocoSteamSnowPlow extends SteamTrain {
 		}
 	}
 
-	private static final double[][] blockpos = {{4,0,1},{4,0,-1}};
+	private static final double[][]	blockpos	= { { -4, 0, 1 }, { -4, 0, -1 } };
 	private double[] point1;
 	private double[] point2;
 	private Block b;
 	private FakePlayer fakePlayer = null;
+	private int						blockMeta;
 
 	private static final float radianF = (float) Math.PI / 180.0f;
 	@Override
@@ -109,8 +110,10 @@ public class EntityLocoSteamSnowPlow extends SteamTrain {
 		point1 = rotateVec3(blockpos[0], getPitch(), getYaw());
 		point1[0] += posX;point1[1] += posY;point1[2] += posZ;
 		b = worldObj.getBlock(MathHelper.floor_double(point1[0]),MathHelper.floor_double(point1[1]),MathHelper.floor_double(point1[2]));
+		blockMeta = worldObj.getBlockMetadata(MathHelper.floor_double(point1[0]), MathHelper.floor_double(point1[1]),
+				MathHelper.floor_double(point1[2]));
 
-		if((b == Blocks.snow || b == Blocks.snow_layer) &&  b.canHarvestBlock(fakePlayer, -1)){
+		if ((b == Blocks.snow || b == Blocks.snow_layer) && b.canHarvestBlock(fakePlayer, blockMeta)) {
 			worldObj.setBlockToAir(MathHelper.floor_double(point1[0]),MathHelper.floor_double(point1[1]),MathHelper.floor_double(point1[2]));
 			int snowballs =9;
 			for(ItemStack s : locoInvent){
@@ -143,8 +146,10 @@ public class EntityLocoSteamSnowPlow extends SteamTrain {
 		point2 = rotateVec3(blockpos[1], getPitch(), getYaw());
 		point2[0] += posX;point2[1] += posY;point2[2] += posZ;
 		b = worldObj.getBlock(MathHelper.floor_double(point2[0]),MathHelper.floor_double(point2[1]),MathHelper.floor_double(point2[2]));
+		blockMeta = worldObj.getBlockMetadata(MathHelper.floor_double(point2[0]), MathHelper.floor_double(point2[1]),
+				MathHelper.floor_double(point2[2]));
 
-		if((b == Blocks.snow || b == Blocks.snow_layer) &&  b.canHarvestBlock(fakePlayer, -1)){
+		if((b == Blocks.snow || b == Blocks.snow_layer) && b.canHarvestBlock(fakePlayer, blockMeta)){
 			worldObj.setBlockToAir(MathHelper.floor_double(point2[0]),MathHelper.floor_double(point2[1]),MathHelper.floor_double(point2[2]));
 			int snowballs =9;
 			for(ItemStack s : locoInvent){
