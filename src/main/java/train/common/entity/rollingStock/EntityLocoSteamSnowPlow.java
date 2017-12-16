@@ -95,21 +95,25 @@ public class EntityLocoSteamSnowPlow extends SteamTrain {
 	private double[] point2;
 	private Block b;
 	private FakePlayer fakePlayer = null;
-	private int						blockMeta;
+	private int blockMeta;
+	private int rotation =0;
 
 	private static final float radianF = (float) Math.PI / 180.0f;
 	@Override
 	public void onUpdate() {
 		super.onUpdate();
-		if (worldObj.isRemote) {
+		if (worldObj.isRemote || bogieLoco==null) {
 			return;
 		}
 		checkInvent(locoInvent[0], locoInvent[1], this);
 		if (fakePlayer == null){
 			 fakePlayer = new FakePlayer(worldObj);
 		}
+		rotation = MathHelper.floor_double(Math.toDegrees(Math.atan2(
+				bogieLoco.posZ - posZ,
+				bogieLoco.posX - posX)));
 
-		point1 = rotateVec3(blockpos[0], getPitch(), getYaw());
+		point1 = rotateVec3(blockpos[0], getPitch(), rotation);
 		point1[0] += posX;point1[1] += posY;point1[2] += posZ;
 		b = worldObj.getBlock(MathHelper.floor_double(point1[0]),MathHelper.floor_double(point1[1]),MathHelper.floor_double(point1[2]));
 		blockMeta = worldObj.getBlockMetadata(MathHelper.floor_double(point1[0]), MathHelper.floor_double(point1[1]),
@@ -118,10 +122,10 @@ public class EntityLocoSteamSnowPlow extends SteamTrain {
 		if ((b == Blocks.snow || b == Blocks.snow_layer) && b.canHarvestBlock(fakePlayer, blockMeta)) {
 			worldObj.setBlockToAir(MathHelper.floor_double(point1[0]),MathHelper.floor_double(point1[1]),MathHelper.floor_double(point1[2]));
 			int snowballs = new Random().nextInt(9);
-			for(int i=0; i<locoInvent.length; i++){
+			for(int i=2; i<locoInvent.length && snowballs>0; i++){
 				if (locoInvent[i] == null){
 					locoInvent[i] = new ItemStack(Items.snowball, 9);
-				} else if (locoInvent[i].stackSize < locoInvent[i].getMaxStackSize()){
+				} else if (locoInvent[i].getItem() == Items.snowball && locoInvent[i].stackSize < Items.snowball.getItemStackLimit()){
 					while (locoInvent[i].stackSize < locoInvent[i].getMaxStackSize() && snowballs >0){
 						locoInvent[i].stackSize++;
 						snowballs--;
@@ -145,7 +149,7 @@ public class EntityLocoSteamSnowPlow extends SteamTrain {
 		}
 
 
-		point2 = rotateVec3(blockpos[1], getPitch(), getYaw());
+		point2 = rotateVec3(blockpos[1], getPitch(), rotation);
 		point2[0] += posX;point2[1] += posY;point2[2] += posZ;
 		b = worldObj.getBlock(MathHelper.floor_double(point2[0]),MathHelper.floor_double(point2[1]),MathHelper.floor_double(point2[2]));
 		blockMeta = worldObj.getBlockMetadata(MathHelper.floor_double(point2[0]), MathHelper.floor_double(point2[1]),
@@ -154,10 +158,10 @@ public class EntityLocoSteamSnowPlow extends SteamTrain {
 		if((b == Blocks.snow || b == Blocks.snow_layer) && b.canHarvestBlock(fakePlayer, blockMeta)){
 			worldObj.setBlockToAir(MathHelper.floor_double(point2[0]),MathHelper.floor_double(point2[1]),MathHelper.floor_double(point2[2]));
 			int snowballs = new Random().nextInt(9);
-			for(int i=0; i<locoInvent.length; i++){
+			for(int i=2; i<locoInvent.length && snowballs>0; i++){
 				if (locoInvent[i] == null){
 					locoInvent[i] = new ItemStack(Items.snowball, 9);
-				} else if (locoInvent[i].stackSize < locoInvent[i].getMaxStackSize()){
+				} else if (locoInvent[i].getItem() == Items.snowball && locoInvent[i].stackSize < Items.snowball.getItemStackLimit()){
 					while (locoInvent[i].stackSize < locoInvent[i].getMaxStackSize() && snowballs >0){
 						locoInvent[i].stackSize++;
 						snowballs--;
