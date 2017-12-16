@@ -6,6 +6,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
 import train.common.api.LiquidManager.StandardTank;
+import train.common.entity.rollingStock.EntityBUnitDD35;
 import train.common.entity.rollingStock.EntityBUnitEMDF3;
 import train.common.entity.rollingStock.EntityBUnitEMDF7;
 
@@ -155,9 +156,9 @@ public abstract class DieselTrain extends Locomotive implements IFluidHandler {
 			motionX *= 0.8;
 			motionZ *= 0.8;
 		}
-		else {
+		else if (fuelTrain+100 < maxTank) {
 			FluidStack drain = null;
-			if(cartLinked1 instanceof LiquidTank && !(cartLinked1 instanceof EntityBUnitEMDF7) && !(cartLinked1 instanceof EntityBUnitEMDF3)){
+			if(cartLinked1 instanceof LiquidTank && !(cartLinked1 instanceof EntityBUnitEMDF7) && !(cartLinked1 instanceof EntityBUnitEMDF3) && !(cartLinked1 instanceof EntityBUnitDD35)){
 				if (getFluid() == null) {
 					drain = ((LiquidTank) cartLinked1).drain(ForgeDirection.UNKNOWN, new FluidStack(LiquidManager.DIESEL, 100), true);
 					if (drain == null){
@@ -168,7 +169,7 @@ public abstract class DieselTrain extends Locomotive implements IFluidHandler {
 				} else {
 					drain = ((LiquidTank) cartLinked1).drain(ForgeDirection.UNKNOWN, new FluidStack(LiquidManager.REFINED_FUEL, 100), true);
 				}
-			} else if (cartLinked2 instanceof LiquidTank && !(cartLinked2 instanceof EntityBUnitEMDF7) && !(cartLinked2 instanceof EntityBUnitEMDF3)){
+			} else if (cartLinked2 instanceof LiquidTank && !(cartLinked2 instanceof EntityBUnitEMDF7) && !(cartLinked2 instanceof EntityBUnitEMDF3) && !(cartLinked1 instanceof EntityBUnitDD35)){
 				if (getFluid() == null) {
 					drain = ((LiquidTank) cartLinked2).drain(ForgeDirection.UNKNOWN, new FluidStack(LiquidManager.DIESEL, 100), true);
 					if (drain == null){
