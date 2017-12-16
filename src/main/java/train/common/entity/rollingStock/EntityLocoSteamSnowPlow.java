@@ -19,6 +19,8 @@ import train.common.core.FakePlayer;
 import train.common.library.EnumTrains;
 import train.common.library.GuiIDs;
 
+import java.util.Random;
+
 public class EntityLocoSteamSnowPlow extends SteamTrain {
 	public EntityLocoSteamSnowPlow(World world) {
 		super(world, EnumTrains.locoSteamSnowPlow.getTankCapacity(), LiquidManager.WATER_FILTER);
@@ -115,13 +117,13 @@ public class EntityLocoSteamSnowPlow extends SteamTrain {
 
 		if ((b == Blocks.snow || b == Blocks.snow_layer) && b.canHarvestBlock(fakePlayer, blockMeta)) {
 			worldObj.setBlockToAir(MathHelper.floor_double(point1[0]),MathHelper.floor_double(point1[1]),MathHelper.floor_double(point1[2]));
-			int snowballs =9;
-			for(ItemStack s : locoInvent){
-				if (s == null){
-					s = new ItemStack(Items.snowball, 9);
-				} else if (s.stackSize < s.getMaxStackSize()){
-					while (s.stackSize < s.getMaxStackSize() && snowballs >0){
-						s.stackSize++;
+			int snowballs = new Random().nextInt(9);
+			for(int i=0; i<locoInvent.length; i++){
+				if (locoInvent[i] == null){
+					locoInvent[i] = new ItemStack(Items.snowball, 9);
+				} else if (locoInvent[i].stackSize < locoInvent[i].getMaxStackSize()){
+					while (locoInvent[i].stackSize < locoInvent[i].getMaxStackSize() && snowballs >0){
+						locoInvent[i].stackSize++;
 						snowballs--;
 					}
 				}
@@ -151,13 +153,13 @@ public class EntityLocoSteamSnowPlow extends SteamTrain {
 
 		if((b == Blocks.snow || b == Blocks.snow_layer) && b.canHarvestBlock(fakePlayer, blockMeta)){
 			worldObj.setBlockToAir(MathHelper.floor_double(point2[0]),MathHelper.floor_double(point2[1]),MathHelper.floor_double(point2[2]));
-			int snowballs =9;
-			for(ItemStack s : locoInvent){
-				if (s == null){
-					s = new ItemStack(Items.snowball, 9);
-				} else if (s.stackSize < s.getMaxStackSize()){
-					while (s.stackSize < s.getMaxStackSize() && snowballs >0){
-						s.stackSize++;
+			int snowballs = new Random().nextInt(9);
+			for(int i=0; i<locoInvent.length; i++){
+				if (locoInvent[i] == null){
+					locoInvent[i] = new ItemStack(Items.snowball, 9);
+				} else if (locoInvent[i].stackSize < locoInvent[i].getMaxStackSize()){
+					while (locoInvent[i].stackSize < locoInvent[i].getMaxStackSize() && snowballs >0){
+						locoInvent[i].stackSize++;
 						snowballs--;
 					}
 				}
