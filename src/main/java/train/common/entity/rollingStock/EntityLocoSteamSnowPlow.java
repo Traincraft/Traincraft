@@ -1,5 +1,7 @@
 package train.common.entity.rollingStock;
 
+import java.util.Random;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityMinecart;
@@ -18,8 +20,6 @@ import train.common.api.SteamTrain;
 import train.common.core.FakePlayer;
 import train.common.library.EnumTrains;
 import train.common.library.GuiIDs;
-
-import java.util.Random;
 
 public class EntityLocoSteamSnowPlow extends SteamTrain {
 	public EntityLocoSteamSnowPlow(World world) {
@@ -90,7 +90,7 @@ public class EntityLocoSteamSnowPlow extends SteamTrain {
 		}
 	}
 
-	private static final double[][]	blockpos	= { { -4, 0, 1 }, { -4, 0, -1 } };
+	private static final double[][]	blockpos	= { { 4, 0, 1 }, { 4, 0, -1 } };
 	private double[] point1;
 	private double[] point2;
 	private Block b;
@@ -124,7 +124,8 @@ public class EntityLocoSteamSnowPlow extends SteamTrain {
 			int snowballs = new Random().nextInt(9);
 			for(int i=2; i<locoInvent.length && snowballs>0; i++){
 				if (locoInvent[i] == null){
-					locoInvent[i] = new ItemStack(Items.snowball, 9);
+					locoInvent[i] = new ItemStack(Items.snowball, snowballs);
+					snowballs--;
 				} else if (locoInvent[i].getItem() == Items.snowball && locoInvent[i].stackSize < Items.snowball.getItemStackLimit()){
 					while (locoInvent[i].stackSize < locoInvent[i].getMaxStackSize() && snowballs >0){
 						locoInvent[i].stackSize++;
@@ -160,7 +161,8 @@ public class EntityLocoSteamSnowPlow extends SteamTrain {
 			int snowballs = new Random().nextInt(9);
 			for(int i=2; i<locoInvent.length && snowballs>0; i++){
 				if (locoInvent[i] == null){
-					locoInvent[i] = new ItemStack(Items.snowball, 9);
+					locoInvent[i] = new ItemStack(Items.snowball, snowballs);
+					snowballs--;
 				} else if (locoInvent[i].getItem() == Items.snowball && locoInvent[i].stackSize < Items.snowball.getItemStackLimit()){
 					while (locoInvent[i].stackSize < locoInvent[i].getMaxStackSize() && snowballs >0){
 						locoInvent[i].stackSize++;
