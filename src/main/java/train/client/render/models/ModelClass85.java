@@ -829,6 +829,8 @@ public class ModelClass85 extends ModelBase
 		class85Model[192].addBox(0F, 0F, 0F, 16, 16, 51, 0F); // Box 200
 		class85Model[192].setRotationPoint(-8.5F, -10F, -19F);
 
+		fixRotations(class85Model);
+
 
 	}
 	private ModelDeiticBogie fronttrucks = new ModelDeiticBogie();
