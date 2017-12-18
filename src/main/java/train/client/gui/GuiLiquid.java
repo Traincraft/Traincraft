@@ -100,7 +100,8 @@ public class GuiLiquid extends GuiContainer {
 		if (liquid.getTrainLockedFromPacket()) {state = "Locked";}
 		if (!liquid.getTrainLockedFromPacket()) {state = "Unlocked";}
 		
-		int textWidth = fontRendererObj.getStringWidth(liquid.getAmount() + "/" + liquid.getCapacity());
+		int textWidth = Math.max(fontRendererObj.getStringWidth(liquid.getAmount() + "/" + liquid.getCapacity()),
+				(str != null && str.length() > 0)?fontRendererObj.getStringWidth(str):0);
 		int startX = t + 14;
 		int startY = g - 12;
 
@@ -111,10 +112,12 @@ public class GuiLiquid extends GuiContainer {
 		int colour2 = (colour1 & 0xfefefe) >> 1 | colour1 & 0xff000000;
 		drawGradientRect(startX - 3, startY - 3, startX + textWidth + 3, startY + 21, colour1, colour2);
 		drawGradientRect(startX - 2, startY - 2, startX + textWidth + 2, startY + 20, i4, i4);
-		if (str != null && str.length() > 0)
+		if (str != null && str.length() > 0) {
 			fontRendererObj.drawStringWithShadow(str, startX, startY, -1);
-		else
+		}
+		else {
 			fontRendererObj.drawStringWithShadow("Empty", startX, startY, -1);
+		}
 		fontRendererObj.drawStringWithShadow(liquid.getAmount() + "/" + liquid.getCapacity(), startX, startY + 10, -1);
 	}
 

@@ -16,7 +16,6 @@ public abstract class DieselTrain extends Locomotive implements IFluidHandler {
 	private int maxTank = 7 * 1000;
 	private int update = 8;
 	private StandardTank theTank;
-	private IFluidTank[] tankArray = new IFluidTank[1];
 
 	public DieselTrain(World world, int capacity) {
 		this(capacity, world, null, null);
@@ -39,7 +38,6 @@ public abstract class DieselTrain extends Locomotive implements IFluidHandler {
 			this.theTank = LiquidManager.getInstance().new FilteredTank(capacity, filter);
 		if (multiFilter != null)
 			this.theTank = LiquidManager.getInstance().new FilteredTank(capacity, multiFilter);
-		tankArray[0] = theTank;
 		dataWatcher.addObject(4, 0);
 		numCargoSlots = 3;
 		numCargoSlots1 = 3;
@@ -156,7 +154,7 @@ public abstract class DieselTrain extends Locomotive implements IFluidHandler {
 			motionX *= 0.8;
 			motionZ *= 0.8;
 		}
-		else if (fuelTrain+100 < maxTank) {
+		if (fuelTrain+100 < maxTank) {
 			FluidStack drain = null;
 			if(cartLinked1 instanceof LiquidTank && !(cartLinked1 instanceof EntityBUnitEMDF7) && !(cartLinked1 instanceof EntityBUnitEMDF3) && !(cartLinked1 instanceof EntityBUnitDD35)){
 				if (getFluid() == null) {
