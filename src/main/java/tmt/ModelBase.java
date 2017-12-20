@@ -76,19 +76,5 @@ public class ModelBase extends Model<Object> {
 		rotate(r8, x, y, z);
 		rotate(r9, x, y, z);
 	}
-
-
-	public void fixRotations(ModelRendererTurbo[] geometry){
-		for(ModelRendererTurbo turbo : geometry){
-			if(turbo.isShape) {
-				turbo.rotateAngleY = -turbo.rotateAngleY;
-				turbo.rotateAngleX = -turbo.rotateAngleX;
-				turbo.rotateAngleZ = -turbo.rotateAngleZ + 3.14159f;
-			} else {
-				turbo.rotateAngleZ = -turbo.rotateAngleZ;
-				turbo.rotateAngleY = -turbo.rotateAngleY;
-			}
-		}
-	}
 	
 }
