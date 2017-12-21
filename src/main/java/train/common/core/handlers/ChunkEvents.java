@@ -31,14 +31,14 @@ public class ChunkEvents implements ForgeChunkManager.LoadingCallback, ForgeChun
 	private static void forceChunkLoading(AbstractTrains transport, int newChunkX, int newChunkZ) {
 		if(transport != null && transport.getTicket() != null) {
 			List<ChunkCoordIntPair> newChunks = new ArrayList<ChunkCoordIntPair>();
-			for(int x = newChunkX - 2; x <= newChunkX + 2; ++x) {
-				for(int z = newChunkZ - 2; z <= newChunkZ + 2; ++z) {
+			for(int x = newChunkX - 1; x <= newChunkX + 1; ++x) {
+				for(int z = newChunkZ - 1; z <= newChunkZ + 1; ++z) {
 					newChunks.add(new ChunkCoordIntPair(x, z));
 				}
 			}
 
 			for(ChunkCoordIntPair chunk : newChunks) {
-				if(!transport.loadedChunks.contains(chunk)) {
+				if(!transport.loadedChunks.contains(chunk) && !transport.worldObj.getChunkFromChunkCoords(chunk.chunkXPos, chunk.chunkZPos).isChunkLoaded) {
 					ForgeChunkManager.forceChunk(transport.getTicket(), chunk);
 					ForgeChunkManager.reorderChunk(transport.getTicket(), chunk);
 				}

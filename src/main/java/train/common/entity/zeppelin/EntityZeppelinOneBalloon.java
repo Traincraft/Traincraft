@@ -36,7 +36,7 @@ public class EntityZeppelinOneBalloon extends AbstractZeppelin{
 		}
 		setBeenAttacked();
 		if (boatCurrentDamage > 40) {
-			if (!(((EntityPlayer) damagesource.getEntity()).capabilities.isCreativeMode)) {
+			if (damagesource.getEntity() instanceof EntityPlayer && !(((EntityPlayer) damagesource.getEntity()).capabilities.isCreativeMode)) {
 				dropItem(ItemIDs.zeppelin.item, 1);
 			}
 			setDead();
