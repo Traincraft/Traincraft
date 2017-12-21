@@ -162,6 +162,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		shouldChunkLoad=ConfigHandler.CHUNK_LOADING;
 		this.setFlag(7, shouldChunkLoad);
 
+
 		for (EnumTrains trains : EnumTrains.values()) {
 			if (trains.getEntityClass().equals(this.getClass())) {
 				this.setDefaultMass(trains.getMass());
@@ -173,6 +174,8 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 				}
 				this.setSize(0.98f, 1.98f);
 				this.setMinecartName(trainSpec.name());
+
+				break;
 			}
 		}
 	}

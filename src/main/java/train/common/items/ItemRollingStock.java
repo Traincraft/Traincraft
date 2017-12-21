@@ -208,6 +208,8 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 						rollingStock.setColor(AbstractTrains.getColorFromString(train.getColors()[0]));
 					}
 				}
+
+				break;
 			}
 		}
 		if (rollingStock != null) {
