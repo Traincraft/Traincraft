@@ -8,13 +8,18 @@ import net.minecraft.client.renderer.texture.ITextureObject;
 import net.minecraft.client.renderer.texture.SimpleTexture;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
+import train.common.Traincraft;
+import train.common.core.CommonProxy;
 import train.common.core.handlers.ConfigHandler;
 
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import java.util.Arrays;
+import java.util.List;
 
+import static org.lwjgl.opengl.ARBBufferObject.glBindBufferARB;
+import static org.lwjgl.opengl.ARBPixelBufferObject.GL_PIXEL_UNPACK_BUFFER_ARB;
 import static org.lwjgl.opengl.GL11.GL_TEXTURE_2D;
 
 /**
@@ -52,7 +57,7 @@ public class Tessellator{
 
 	public int draw(){
 		if(drawing){
-			GL11.glDisable(GL11.GL_LIGHTING);
+			//GL11.glDisable(GL11.GL_LIGHTING);
 			drawing = false; int o = 0;
 			while(o < verts){
 				vtc = Math.min(verts - o, 0x200000 >> 5);
@@ -84,7 +89,7 @@ public class Tessellator{
 			}
 			reset();
 		}
-		GL11.glEnable(GL11.GL_LIGHTING);
+		//GL11.glEnable(GL11.GL_LIGHTING);
 
 		return 0;
 	}
@@ -147,7 +152,7 @@ public class Tessellator{
 	 * @param textureURI
 	 */
 	public static void bindTexture(ResourceLocation textureURI) {
-		if(ConfigHandler.FORCE_TEXTURE_BINDING){
+		if (ConfigHandler.FORCE_TEXTURE_BINDING) {
 			Minecraft.getMinecraft().renderEngine.bindTexture(textureURI);
 		} else {
 			ITextureObject object = Minecraft.getMinecraft().getTextureManager().getTexture(textureURI);

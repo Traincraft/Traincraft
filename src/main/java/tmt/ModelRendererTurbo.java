@@ -307,9 +307,9 @@ public class ModelRendererTurbo extends ModelRenderer {
      * @param scale
      */
     public void addBox(float x, float y, float z, float w, float h, float d, float expansion, float scale){
-    	if(w ==0){ w=0.01F; }
-    	if(h ==0){ h=0.01F; }
-    	if(d ==0){ d=0.01F; }
+    	if(w ==0){ w=0.0001F; }
+    	if(h ==0){ h=0.0001F; }
+    	if(d ==0){ d=0.0001F; }
     	
         xScale = w * scale;
         yScale = h * scale;
@@ -1758,16 +1758,18 @@ public class ModelRendererTurbo extends ModelRenderer {
 
     //ETERNAL: changed w/h/d to floats for better support of the custom render on the rails.
 	public void addShapeBox(float x, float y, float z, float w, float h, float d, float scale, float x0, float y0, float z0, float x1, float y1, float z1, float x2, float y2, float z2, float x3, float y3, float z3, float x4, float y4, float z4, float x5, float y5, float z5, float x6, float y6, float z6, float x7, float y7, float z7){
+        w+=0.0001F;
+        h+=0.0001F;
+        d+=0.0001F;
 		float f4 = x + w, f5 = y + h, f6 = z + d;
 		x -= scale; y -= scale; z -= scale;
 		f4 += scale; f5 += scale; f6 += scale;
 		if(mirror){
 			float f7 = f4; f4 = x; x = f7;
 		}
-		float[] v  = {x  - x0, y  - y0, z  - z0}, v1 = {f4 + x1, y  - y1, z  - z1}, v2 = {f4 + x5, f5 + y5, z  - z5};
-		float[] v3 = {x  - x4, f5 + y4, z  - z4}, v4 = {x  - x3, y  - y3, f6 + z3}, v5 = {f4 + x2, y  - y2, f6 + z2};
-		float[] v6 = {f4 + x6, f5 + y6, f6 + z6}, v7 = {x  - x7, f5 + y7, f6 + z7};
-		addRectShape(v, v1, v2, v3, v4, v5, v6, v7, w, h, d);
+
+		float[][] v  = {{x  - x0, y  - y0, z  - z0}, {f4 + x1, y  - y1, z  - z1},{f4 + x5, f5 + y5, z  - z5}, {x  - x4, f5 + y4, z  - z4}, {x  - x3, y  - y3, f6 + z3}, {f4 + x2, y  - y2, f6 + z2},{f4 + x6, f5 + y6, f6 + z6}, {x  - x7, f5 + y7, f6 + z7}};
+		addRectShape(v[0], v[1], v[2], v[3], v[4], v[5], v[6], v[7], w, h, d);
 	}
 	
 	public final void setOldRotationOrder(boolean bool){
@@ -1779,6 +1781,26 @@ public class ModelRendererTurbo extends ModelRenderer {
 		return str == null || str.equals("") ? alt : str;
 		
 	}
+
+	public static void filterGeometry(float size, float... params ){
+	    int param=0;
+	    boolean wasChanged = false;
+	    for(int i=0; i<params.length; i++){
+	        if (params[i]==-size){
+	            System.out.println(params[i]);
+                params[i]+=0.001f;
+	            System.out.println("resized");
+	            wasChanged=true;
+	            break;
+            } else {
+                param++;
+            }
+        }
+        if (wasChanged) {
+            System.out.println(params[param]);
+        }
+
+    }
 	
 	@Override
 	public String toString(){

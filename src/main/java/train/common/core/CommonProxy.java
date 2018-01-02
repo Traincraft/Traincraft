@@ -37,6 +37,7 @@ import java.util.List;
 
 public class CommonProxy implements IGuiHandler {
 	public static List<MP3Player> playerList = new ArrayList<MP3Player>();
+	public static boolean debug = false;
 
 	public void setKeyBinding(String name, int value) {}
 

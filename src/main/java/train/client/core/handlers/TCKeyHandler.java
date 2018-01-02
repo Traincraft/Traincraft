@@ -1,5 +1,6 @@
 package train.client.core.handlers;
 
+import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.InputEvent;
@@ -53,6 +54,10 @@ public class TCKeyHandler
 			}
 			if (furnace.isPressed()) {
 				sendKeyControlsPacket(9);
+			}
+
+			if (FMLClientHandler.instance().getClient().gameSettings.keyBindSneak.isPressed() && Keyboard.isKeyDown(Keyboard.KEY_F3)){
+				sendKeyControlsPacket(404);
 			}
 		}
 	}
