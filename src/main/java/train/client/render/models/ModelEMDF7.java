@@ -24,7 +24,7 @@ public class ModelEMDF7 extends ModelBase
 
 	public ModelEMDF7()
 	{
-		emdf7Model = new ModelRendererTurbo[172];
+		emdf7Model = new ModelRendererTurbo[176];
 		emdf7Model[0] = new ModelRendererTurbo(this, 1, 1, textureX, textureY); // Box 001
 		emdf7Model[1] = new ModelRendererTurbo(this, 1, 25, textureX, textureY); // Box 002
 		emdf7Model[2] = new ModelRendererTurbo(this, 153, 1, textureX, textureY); // Box 003
@@ -189,14 +189,18 @@ public class ModelEMDF7 extends ModelBase
 		emdf7Model[161] = new ModelRendererTurbo(this, 201, 177, textureX, textureY); // Box 167
 		emdf7Model[162] = new ModelRendererTurbo(this, 177, 97, textureX, textureY); // Box 168
 		emdf7Model[163] = new ModelRendererTurbo(this, 17, 17, textureX, textureY); // Box 169
-		emdf7Model[164] = new ModelRendererTurbo(this, 145, 97, textureX, textureY, "lamp"); // Box 164 lamp
-		emdf7Model[165] = new ModelRendererTurbo(this, 241, 9, textureX, textureY, "lamp"); // Box 165 lamp
-		emdf7Model[166] = new ModelRendererTurbo(this, 249, 105, textureX, textureY, "lamp"); // Box 166 lamp
-		emdf7Model[167] = new ModelRendererTurbo(this, 81, 113, textureX, textureY, "lamp"); // Box 167 lamp
-		emdf7Model[168] = new ModelRendererTurbo(this, 81, 113, textureX, textureY, "lamp"); // Box 168 lamp
-		emdf7Model[169] = new ModelRendererTurbo(this, 241, 9, textureX, textureY, "lamp"); // Box 169 lamp
-		emdf7Model[170] = new ModelRendererTurbo(this, 249, 105, textureX, textureY, "lamp"); // Box 170 lamp
-		emdf7Model[171] = new ModelRendererTurbo(this, 145, 97, textureX, textureY, "lamp"); // Box 171 lamp
+		emdf7Model[164] = new ModelRendererTurbo(this, 214, 190, textureX, textureY, "lamp"); // Box 164 lamp
+		emdf7Model[165] = new ModelRendererTurbo(this, 214, 190, textureX, textureY, "lamp"); // Box 165 lamp
+		emdf7Model[166] = new ModelRendererTurbo(this, 214, 190, textureX, textureY, "lamp"); // Box 166 lamp
+		emdf7Model[167] = new ModelRendererTurbo(this, 214, 190, textureX, textureY, "lamp"); // Box 167 lamp
+		emdf7Model[168] = new ModelRendererTurbo(this, 214, 190, textureX, textureY, "lamp"); // Box 168 lamp
+		emdf7Model[169] = new ModelRendererTurbo(this, 214, 190, textureX, textureY, "lamp"); // Box 169 lamp
+		emdf7Model[170] = new ModelRendererTurbo(this, 214, 190, textureX, textureY, "lamp"); // Box 170 lamp
+		emdf7Model[171] = new ModelRendererTurbo(this, 214, 190, textureX, textureY, "lamp"); // Box 171 lamp
+		emdf7Model[172] = new ModelRendererTurbo(this, 234, 200, textureX, textureY); // Box 173
+		emdf7Model[173] = new ModelRendererTurbo(this, 218, 200, textureX, textureY); // Box 176
+		emdf7Model[174] = new ModelRendererTurbo(this, 218, 194, textureX, textureY); // Box 177
+		emdf7Model[175] = new ModelRendererTurbo(this, 234, 194, textureX, textureY); // Box 178
 
 		emdf7Model[0].addBox(0F, 0F, 0F, 62, 1, 22, 0F); // Box 001
 		emdf7Model[0].setRotationPoint(-8F, 1F, -11F);
@@ -656,7 +660,7 @@ public class ModelEMDF7 extends ModelBase
 		emdf7Model[147].rotateAngleY = -0.13962634F;
 		emdf7Model[147].rotateAngleZ = -0.43633231F;
 
-		emdf7Model[148].addBox(0F, 0F, 0F, 0, 0, 0, 0F); // Box 235
+		emdf7Model[148].addBox(0F, 0F, 0F, 1, 6, 8, 0F); // Box 235
 		emdf7Model[148].setRotationPoint(-7F, -15F, -4F);
 
 		emdf7Model[149].addShapeBox(0F, 0F, 0F, 58, 2, 2, 0F, 0F, -0.5F, 0F, 0.5F, -0.5F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1.9F, 2F, 1F, -1.9F, 2F, -0.5F, -0.25F, 2F, 0F, -0.25F, 2F); // Box 155
@@ -730,7 +734,18 @@ public class ModelEMDF7 extends ModelBase
 		emdf7Model[171].addShapeBox(0F, 0F, 0F, 0, 2, 2, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 171 lamp
 		emdf7Model[171].setRotationPoint(-23.01F, -9F, 0F);
 
-		fixRotation(emdf7Model, false, true, true);
+		emdf7Model[172].addShapeBox(0F, 0F, 0F, 3, 1, 3, 0F, 0F, 0F, 0F, -0.75F, 0F, -0.75F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.75F, 0F, -0.75F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 173
+		emdf7Model[172].setRotationPoint(15F, -25.75F, -3F);
+
+		emdf7Model[173].addShapeBox(0F, 0F, 0F, 3, 1, 3, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.75F, 0F, -0.75F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.75F, 0F, -0.75F, 0F, 0F, 0F); // Box 176
+		emdf7Model[173].setRotationPoint(15F, -25.75F, 0F);
+
+		emdf7Model[174].addShapeBox(0F, 0F, 0F, 3, 1, 3, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.75F, 0F, -0.75F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.75F, 0F, -0.75F); // Box 177
+		emdf7Model[174].setRotationPoint(12F, -25.75F, 0F);
+
+		emdf7Model[175].addShapeBox(0F, 0F, 0F, 3, 1, 3, 0F, -0.75F, 0F, -0.75F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.75F, 0F, -0.75F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 178
+		emdf7Model[175].setRotationPoint(12F, -25.75F, -3F);
+		fixRotation(emdf7Model, true, true, true);
 
 	}
 
@@ -739,7 +754,7 @@ public class ModelEMDF7 extends ModelBase
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
-		for (int i = 0; i < 172; i++)
+		for (int i = 0; i < 176; i++)
         {
         	if (emdf7Model[i].boxName != null && emdf7Model[i].boxName.equals("lamp")) {
 				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
@@ -750,14 +765,13 @@ public class ModelEMDF7 extends ModelBase
 			}
         }
 
+		Tessellator.bindTexture(new ResourceLocation(Info.modID, "textures/trains/Blomberg_b_trucks.png"));
         GL11.glPushMatrix();
-        Tessellator.bindTexture(new ResourceLocation(Info.modID, "textures/trains/Blomberg_b_trucks.png"));
 		GL11.glTranslated(2.9, 0, 0);
         GL11.glScalef(0.9F, 0.9F, 0.9F);
         fronttrucks.render(entity,f,f1,f2,f3,f4,f5);
         GL11.glPopMatrix();
         GL11.glPushMatrix();
-        Tessellator.bindTexture(new ResourceLocation(Info.modID, "textures/trains/Blomberg_b_trucks.png"));
 		GL11.glTranslated(-0.4, 0, 0);
 		GL11.glScalef(0.9F, 0.9F, 0.9F);
         backtrucks.render(entity,f,f1,f2,f3,f4,f5);
