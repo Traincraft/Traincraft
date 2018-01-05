@@ -68,6 +68,7 @@ public class CommonProxy implements IGuiHandler {
 		GameRegistry.registerTileEntity(TileStopper.class, "TileStopper");
 		GameRegistry.registerTileEntity(TileSignal.class, "TileSignal");
 		GameRegistry.registerTileEntity(TileLantern.class, "tileLantern");
+		GameRegistry.registerTileEntity(TileSwitchStand.class, "tileSwitchStand");
 		GameRegistry.registerTileEntity(TileWaterWheel.class, "tileWaterWheel");
 		GameRegistry.registerTileEntity(TileWindMill.class, "tileWindMill");
 		GameRegistry.registerTileEntity(TileGeneratorDiesel.class, "tileGeneratorDiesel");

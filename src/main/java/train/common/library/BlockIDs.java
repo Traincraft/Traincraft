@@ -31,6 +31,7 @@ public enum BlockIDs {
 	openFurnaceActive(false, null),
 	oreTC(true, ItemBlockOreTC.class),
 	lantern(false, null),
+	switchStand(false, null),
 	waterWheel(true, ItemBlockGeneratorWaterWheel.class),
 	windMill(true, ItemBlockGeneratorWindMill.class),
 	generatorDiesel(true, ItemBlockGeneratorDiesel.class),

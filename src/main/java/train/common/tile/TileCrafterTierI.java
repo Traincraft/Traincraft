@@ -196,7 +196,6 @@ public class TileCrafterTierI extends TileEntity implements IInventory, ITier {
 		int count = 0;
 		for (TierRecipe recipe : recipes) {
 			ItemStack stack = recipe.hasComponents(crafterInventory);
-			System.out.println(crafterInventory.length + "tier 1");
 			if (stack != null && !resultList.contains(stack.getItem()) && (count + 10) < crafterInventory.length - 8) {
 				resultList.add(stack.getItem());
 				crafterInventory[count + 10] = stack;
