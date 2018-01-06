@@ -16,11 +16,11 @@ import tmt.ModelRendererTurbo;
 public class ModelSwitchStandOn extends ModelBase
 {
 	int textureX = 256;
-	int textureY = 256;
+	int textureY = 32;
 
 	public ModelSwitchStandOn()
 	{
-		switchstandonModel = new ModelRendererTurbo[34];
+		switchstandonModel = new ModelRendererTurbo[37];
 		switchstandonModel[0] = new ModelRendererTurbo(this, 1, 1, textureX, textureY); // Box 0
 		switchstandonModel[1] = new ModelRendererTurbo(this, 9, 1, textureX, textureY); // Box 1
 		switchstandonModel[2] = new ModelRendererTurbo(this, 17, 1, textureX, textureY); // Box 15
@@ -55,6 +55,9 @@ public class ModelSwitchStandOn extends ModelBase
 		switchstandonModel[31] = new ModelRendererTurbo(this, 225, 7, textureX, textureY); // Box 64
 		switchstandonModel[32] = new ModelRendererTurbo(this, 89, 9, textureX, textureY); // Box 65
 		switchstandonModel[33] = new ModelRendererTurbo(this, 12, 23, textureX, textureY); // Box 34
+		switchstandonModel[34] = new ModelRendererTurbo(this, 12, 23, textureX, textureY); // Box 34
+		switchstandonModel[35] = new ModelRendererTurbo(this, 12, 23, textureX, textureY); // Box 35
+		switchstandonModel[36] = new ModelRendererTurbo(this, 50, 19, textureX, textureY); // Box 36
 
 		switchstandonModel[0].addBox(0F, 0F, 0F, 1, 32, 1, 0F); // Box 0
 		switchstandonModel[0].setRotationPoint(-0.5F, -21F, -0.5F);
@@ -179,13 +182,23 @@ public class ModelSwitchStandOn extends ModelBase
 		switchstandonModel[33].addShapeBox(0F, 0F, 0F, 5, 3, 1, 0F, -2.5F, 0F, 0F, -2.5F, 0F, 0F, -2.5F, 0F, -0.5F, -2.5F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 34
 		switchstandonModel[33].setRotationPoint(-2.5F, -11F, 0.25F);
 
+		switchstandonModel[34].addShapeBox(0F, 0F, 0F, 5, 3, 1, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, -2.5F, 0F, -0.5F, -2.5F, 0F, -0.5F, -2.5F, 0F, 0F, -2.5F, 0F, 0F); // Box 34
+		switchstandonModel[34].setRotationPoint(-2.5F, -8F, -1.25F);
+
+		switchstandonModel[35].addShapeBox(0F, 0F, 0F, 5, 3, 1, 0F, -2.5F, 0F, -0.5F, -2.5F, 0F, -0.5F, -2.5F, 0F, 0F, -2.5F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 35
+		switchstandonModel[35].setRotationPoint(-2.5F, -11F, -1.25F);
+
+		switchstandonModel[36].addShapeBox(0F, 0F, 0F, 1, 5, 5, 0F, -0.2F, 0F, 0F, -0.2F, 0F, 0F, -0.2F, 0F, 0F, -0.2F, 0F, 0F, -0.2F, 0F, 0F, -0.2F, 0F, 0F, -0.2F, 0F, 0F, -0.2F, 0F, 0F); // Box 36
+		switchstandonModel[36].setRotationPoint(0F, -19F, -2.5F);
+
+		fixRotation(switchstandonModel, false, true, true);
 
 	}
 
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
-		for(int i = 0; i < 34; i++)
+		for(int i = 0; i < 37; i++)
 		{
 			switchstandonModel[i].render(f5);
 		}

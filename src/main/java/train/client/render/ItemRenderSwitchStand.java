@@ -5,12 +5,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
+import tmt.Tessellator;
 import train.client.render.models.ModelSwitchStandOn;
 import train.common.library.Info;
 
 public class ItemRenderSwitchStand implements IItemRenderer {
 	private static final ModelSwitchStandOn modeSwitch = new ModelSwitchStandOn();
-	private static final ResourceLocation texture = new ResourceLocation(Info.resourceLocation,Info.modelTexPrefix + "switchStand_uv_draw_2.png");
+	private static final ResourceLocation texture = new ResourceLocation(Info.resourceLocation,Info.modelTexPrefix + "switchStand_uv_draw_1.png");
 
 	public ItemRenderSwitchStand() {
 	}
@@ -58,7 +59,7 @@ public class ItemRenderSwitchStand implements IItemRenderer {
 		GL11.glRotated(180,0,0,1);
 		GL11.glRotated(180,0,1,0);
 
-		FMLClientHandler.instance().getClient().renderEngine.bindTexture(texture);
+		Tessellator.bindTexture(texture);
 
 		modeSwitch.render(null,0,0,0,0,0,0.0625f);
 
