@@ -3,7 +3,10 @@ package train.common.core.handlers;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.world.World;
+import net.minecraftforge.event.entity.EntityStruckByLightningEvent;
 import net.minecraftforge.event.world.ChunkEvent;
 import train.common.api.AbstractTrains;
 import train.common.entity.rollingStock.EntityJukeBoxCart;
@@ -32,7 +35,7 @@ public class WorldEvents{
 		if (windStrength > 20) {
 			upChance -= windStrength - 20;
 		}
-		if (windStrength < 10) {
+		else if (windStrength < 10) {
 			downChance -= 10 - windStrength;
 		}
 		if (rand.nextInt(100) <= upChance) {
@@ -57,6 +60,14 @@ public class WorldEvents{
 			if (o instanceof EntityJukeBoxCart){
 				((EntityJukeBoxCart) o).player.setVolume(0);
 			}
+		}
+	}
+
+	@SubscribeEvent
+	@SuppressWarnings("unused")
+	public void EntityStruckByLightningEvent(EntityStruckByLightningEvent event) {
+		if (event.entity instanceof AbstractTrains){
+			event.setCanceled(true);
 		}
 	}
 }

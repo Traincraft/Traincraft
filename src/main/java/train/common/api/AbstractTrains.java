@@ -41,7 +41,6 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 	protected int color;
 	public boolean isAttached = false;
 	public boolean isAttaching = false;
-	public int ID;
 	public static int numberOfTrains;
 	public EntityPlayer playerEntity;
 	public double Link1;
@@ -150,8 +149,6 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		color = -1;
 		dataWatcher.addObject(12, color);
 		acceptedColors = new ArrayList<Integer>();
-		if (!world.isRemote) ID = ++numberOfTrains;
-		dataWatcher.addObject(5, ID);
 		dataWatcher.addObject(6, trainType);
 		dataWatcher.addObject(7, trainOwner);
 		dataWatcher.addObject(8, trainDestroyer);
@@ -357,11 +354,10 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		//nbttagcompound.setInteger("uniqueIDs",uniqueIDs);
 
 		nbttagcompound.setInteger("numberOfTrains", AbstractTrains.numberOfTrains);
-		nbttagcompound.setInteger("ID", this.ID);
 		nbttagcompound.setBoolean("isAttached", this.isAttached);
 		nbttagcompound.setBoolean("linked", this.linked);
-		nbttagcompound.setDouble("motionX", motionX);
-		nbttagcompound.setDouble("motionZ", motionZ);
+		//nbttagcompound.setDouble("motionX", motionX);
+		//nbttagcompound.setDouble("motionZ", motionZ);
 		nbttagcompound.setDouble("Link1", Link1);
 		nbttagcompound.setDouble("Link2", Link2);
 	}
@@ -382,7 +378,6 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		//uniqueIDs = nbttagcompound.getInteger("uniqueIDs");
 		((EntityRollingStock) this).setInformation(trainType, trainOwner, trainCreator, trainName, uniqueID);
 
-		ID = nbttagcompound.getInteger("ID");
 		numberOfTrains = nbttagcompound.getInteger("numberOfTrains");
 		isAttached = nbttagcompound.getBoolean("isAttached");
 		linked = nbttagcompound.getBoolean("linked");

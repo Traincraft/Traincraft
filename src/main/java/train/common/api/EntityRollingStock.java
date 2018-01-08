@@ -224,7 +224,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 
 	public void setInformation(String trainType, String trainOwner, String trainCreator, String trainName, int uniqueID) {
 		if (!worldObj.isRemote) {
-			dataWatcher.updateObject(5, ID);
 			dataWatcher.updateObject(6, trainType);
 			dataWatcher.updateObject(7, trainOwner);
 			dataWatcher.updateObject(9, trainName);
