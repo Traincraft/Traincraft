@@ -144,6 +144,7 @@ public enum ItemIDs {
 	//minecartRotativeDigger("ItemRotativeDigger","train_",10),
 	minecartLocoEr("ItemRollingStock", "train_ussr", 10),
 	minecartTenderEr("ItemRollingStock", "train_tender_ussr", 4),
+	minecartLocoC41("ItemRollingStock", "train_c41", 6),
 	//minecartLocoU57("ItemRollingStock","train_",10),
 	//minecartTenderU57("ItemRollingStock","train_",10),
 	//minecartLocoSD40("ItemRollingStock","train_",10),

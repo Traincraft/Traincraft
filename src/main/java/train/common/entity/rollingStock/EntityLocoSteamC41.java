@@ -13,9 +13,9 @@ import train.common.api.SteamTrain;
 import train.common.library.EnumTrains;
 import train.common.library.GuiIDs;
 
-public class EntityLocoSteamPannier extends SteamTrain {
-	public EntityLocoSteamPannier(World world) {
-		super(world, EnumTrains.locoSteamPannier.getTankCapacity(), LiquidManager.WATER_FILTER);
+public class EntityLocoSteamC41 extends SteamTrain {
+	public EntityLocoSteamC41(World world) {
+		super(world, EnumTrains.locoSteamC41.getTankCapacity(), LiquidManager.WATER_FILTER);
 		initLocoSteam();
 	}
 
@@ -24,9 +24,9 @@ public class EntityLocoSteamPannier extends SteamTrain {
 		locoInvent = new ItemStack[inventorySize];
 	}
 
-	public EntityLocoSteamPannier(World world, double d, double d1, double d2) {
+	public EntityLocoSteamC41(World world, double d, double d1, double d2) {
 		this(world);
-		setPosition(d, d1 + yOffset, d2);
+		setPosition(d, d1 + (double) yOffset, d2);
 		motionX = 0.0D;
 		motionY = 0.0D;
 		motionZ = 0.0D;
@@ -36,10 +36,8 @@ public class EntityLocoSteamPannier extends SteamTrain {
 	}
 
 	@Override
-	public boolean shouldRiderSit(){return false;}
-	@Override
 	public void updateRiderPosition() {
-		riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset()+0.3F, posZ);// default
+		riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset() + 0.1F, posZ);
 	}
 
 	@Override
@@ -67,7 +65,7 @@ public class EntityLocoSteamPannier extends SteamTrain {
 	@Override
 	protected void writeEntityToNBT(NBTTagCompound nbttagcompound) {
 		super.writeEntityToNBT(nbttagcompound);
-
+		
 		nbttagcompound.setShort("fuelTrain", (short) fuelTrain);
 		NBTTagList nbttaglist = new NBTTagList();
 		for (int i = 0; i < locoInvent.length; i++) {
@@ -84,7 +82,7 @@ public class EntityLocoSteamPannier extends SteamTrain {
 	@Override
 	protected void readEntityFromNBT(NBTTagCompound nbttagcompound) {
 		super.readEntityFromNBT(nbttagcompound);
-
+		
 		fuelTrain = nbttagcompound.getShort("fuelTrain");
 		NBTTagList nbttaglist = nbttagcompound.getTagList("Items", Constants.NBT.TAG_COMPOUND);
 		locoInvent = new ItemStack[getSizeInventory()];
@@ -104,7 +102,7 @@ public class EntityLocoSteamPannier extends SteamTrain {
 
 	@Override
 	public String getInventoryName() {
-		return "4-0-4 Climax";
+		return "USSR 0-5-0";
 	}
 
 	@Override
@@ -124,7 +122,7 @@ public class EntityLocoSteamPannier extends SteamTrain {
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return 1F;
+		return 0.65F;
 	}
 
 	@Override
