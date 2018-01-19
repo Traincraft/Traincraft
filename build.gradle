@@ -45,18 +45,18 @@ repositories {
 }
 
 dependencies {
-    repositories {
+    /*repositories {
         ivy {
             name "BuildCraft"
             artifactPattern "http://www.mod-buildcraft.com/releases/BuildCraft/[revision]/[module]-[revision](-[classifier]).[ext]"
         }
-    }
+    }*/
     // you may put jars on which you depend on in ./libs
     // or you may define them like so..
     //compile "some.group:artifact:version:classifier"
     //compile "some.group:artifact:version"
 	
-    compile name: "buildcraft", version: "7.1.16", classifier: "dev"
+    //compile name: "buildcraft", version: "7.1.16", classifier: "dev"
     compile "codechicken:CodeChickenLib:1.7.10-1.1.3.138:dev"
     compile "codechicken:CodeChickenCore:1.7.10-1.0.7.46:dev"
     compile "codechicken:NotEnoughItems:1.7.10-1.0.5.110:dev"
