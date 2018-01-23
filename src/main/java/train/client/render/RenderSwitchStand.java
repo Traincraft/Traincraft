@@ -21,6 +21,7 @@ public class RenderSwitchStand extends TileEntitySpecialRenderer {
 		GL11.glPushMatrix();
 		GL11.glTranslated(x+0.5,y+0.6,z+0.5);
 		GL11.glRotated(180,0,1,0);
+		boolean skipRender = false;
 
 		switch (((TileSwitchStand)tileEntity).getFacing()){
 			case NORTH:{
@@ -44,15 +45,21 @@ public class RenderSwitchStand extends TileEntitySpecialRenderer {
 			case WEST:{
 				GL11.glRotated(180,0,0,1);
 				GL11.glTranslated(-0.125,0,0);
+				break;
+			}
+			default:{
+				skipRender = true;
 			}
 		}
 
-		if (tileEntity.getWorldObj().getBlock(tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord).isProvidingWeakPower(tileEntity.getWorldObj(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord,0) >0){
-			Tessellator.bindTexture(texture);
-			modelSwitch.render(null,0,0,0,0,0,0.0625f);
-		} else {
-			Tessellator.bindTexture(texture2);
-			modelSwitch2.render(null,0,0,0,0,0,0.0625f);
+		if (!skipRender) {
+			if (tileEntity.getWorldObj().getBlock(tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord).isProvidingWeakPower(tileEntity.getWorldObj(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord, 0) > 0) {
+				Tessellator.bindTexture(texture);
+				modelSwitch.render(null, 0, 0, 0, 0, 0, 0.0625f);
+			} else {
+				Tessellator.bindTexture(texture2);
+				modelSwitch2.render(null, 0, 0, 0, 0, 0, 0.0625f);
+			}
 		}
 		GL11.glPopMatrix();
 	}

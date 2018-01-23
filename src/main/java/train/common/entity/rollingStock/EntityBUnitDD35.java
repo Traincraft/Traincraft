@@ -109,7 +109,9 @@ public class EntityBUnitDD35 extends LiquidTank implements IFluidHandler {
 
 
 		nbttagcompound.setTag("Items", nbttaglist);
-		new FluidStack(theTank.getFluid(), this.dataWatcher.getWatchableObjectInt(18)).writeToNBT(nbttagcompound);
+		if (theTank !=null && theTank.getFluid() != null) {
+			new FluidStack(theTank.getFluid(), this.dataWatcher.getWatchableObjectInt(18)).writeToNBT(nbttagcompound);
+		}
 	}
 
 	@Override
@@ -124,7 +126,9 @@ public class EntityBUnitDD35 extends LiquidTank implements IFluidHandler {
 				cargoItems[j] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
 			}
 		}
-		fill(ForgeDirection.UNKNOWN, FluidStack.loadFluidStackFromNBT(nbttagcompound), true);
+		if (nbttagcompound.hasKey("FluidName")) {
+			fill(ForgeDirection.UNKNOWN, FluidStack.loadFluidStackFromNBT(nbttagcompound), true);
+		}
 
 	}
 

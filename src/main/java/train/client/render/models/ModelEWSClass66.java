@@ -173,7 +173,7 @@ public class ModelEWSClass66 extends ModelBase
 
 		ewsclass66Model[1].addBox(0F, 0F, 0F, 2, 20, 110, 0F); // 03
 		ewsclass66Model[1].setRotationPoint(10F, 8F, -51F);
-		ewsclass66Model[1].rotateAngleZ = 1.57079633F;
+		ewsclass66Model[1].rotateAngleZ = -1.57079633F;
 
 		ewsclass66Model[2].addShapeBox(0F, 0F, 0F, 20, 1, 1, 0F, 0F, 0F, 1F, 0F, 0F, 1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 1F, 0F, 0F, 1F, 0F, 0F, 0F, 0F, 0F, 0F); // 04
 		ewsclass66Model[2].setRotationPoint(-10F, -2F, 60F);
@@ -640,7 +640,7 @@ public class ModelEWSClass66 extends ModelBase
 		ewsclass66Model[140].addShapeBox(0F, 0F, 0F, 1, 20, 108, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -20F, 0F, 0F, -20F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -20F, 0F, 0F, -20F); // Box 143
 		ewsclass66Model[140].setRotationPoint(9F, -12F, -40F);
 
-		fixRotation(ewsclass66Model, true, true, true);
+		fixRotation(ewsclass66Model, false, true, true);
 
 	}
 	private ModelEWSClass66_Bogie fronttrucks = new ModelEWSClass66_Bogie();

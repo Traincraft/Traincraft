@@ -65,7 +65,7 @@ public class TileSwitchStand extends TileTraincraft {
         if(facing!=null){
             return this.facing;
         }
-        return ForgeDirection.NORTH;
+        return ForgeDirection.UNKNOWN;
     }
 
 

@@ -32,12 +32,11 @@ public class HandleMaxAttachedCarts {
 	/**
 	 * handles the physic for the locomotive speed, acceleration, brake and fuel consumption depending of the carts attached to it
 	 */
-	public void PullPhysic(Locomotive cart1) {
+	public static void PullPhysic(Locomotive cart1) {
 		double totalMass = 0;
 		if (( cart1).train != null && ( cart1).train.getTrains().size() != 0) {
 			for (int j1 = 0; j1 < ( cart1).train.getTrains().size(); j1++) {
-				AbstractTrains entity = ( cart1).train.getTrains().get(j1);
-				totalMass += entity.mass;
+				totalMass += ( cart1).train.getTrains().get(j1).mass;
 			}
 			(cart1).currentNumCartsPulled = (cart1).train.getTrains().size() - 1;
 			( cart1).currentMassPulled = Math.round(totalMass * 10);
@@ -50,6 +49,9 @@ public class HandleMaxAttachedCarts {
 		/**
 		 * Speed is scaled by the mass of carts pulled and the power of the locomotive Power is converted before this calculation MaxSpeed-=exp((Power*Mass)/2)
 		 */
+		if(totalMass<0){
+			totalMass=0;
+		}
 
 		double power = 0;
 		if ((cart1).train != null && (cart1).train.getTrains().size() != 0 && ( cart1).train.getTrains().size()>1){
@@ -63,17 +65,17 @@ public class HandleMaxAttachedCarts {
 			//power = ((Locomotive) cart1).getPower();//((EntityRollingStock) cart1).train.getTrainPower();
 			double maxSpeed = ( cart1).getMaxSpeed();// reset speed and get default
 
-			maxSpeed -= (totalMass/(power/400));
+			maxSpeed -= totalMass==0?0:(totalMass/(power/400));
 			if (maxSpeed > 0) {// if maxSpeed=0 then default is used: not good here! and we don't want negative speed
 				( cart1).setCustomSpeed(maxSpeed);
 			}else{
 				(cart1).setCustomSpeed(0.1);
 			}
-			(cart1).currentSpeedSlowDown = (totalMass/(power/400));
+			(cart1).currentSpeedSlowDown = totalMass==0?0:(totalMass/(power/400));
 			//System.out.println("mass "+totalMass +" power "+power +" "+cart1 );
 			
 		}else if (( cart1).train == null || ( cart1).train.getTrains().size() < 2) {
-			double maxSpeed = ((Locomotive) cart1).getMaxSpeed();
+			double maxSpeed = (cart1).getMaxSpeed();
 			( cart1).setCustomSpeed(maxSpeed);
 			(cart1).currentSpeedSlowDown = 0;
 		}
@@ -81,10 +83,12 @@ public class HandleMaxAttachedCarts {
 		/**
 		 * acceleration is scaled by the mass of carts pulled and the power of the locomotive Power is converted and scaled before this calculation accelerate-=ScaledPower*Mass
 		 */
-		double scaledPower = (totalMass/(power/200));//(power*totalMass)/(power*6);//scalePower(power);
+		double scaledPower = totalMass==0?0:(totalMass/(power/200));//(power*totalMass)/(power*6);//scalePower(power);
 		scaledPower = scalePower(scaledPower);
-		double accelerate = ((Locomotive) cart1).setAccel(0);// reset acceleration and get default
-		if((power * totalMass)>0)accelerate -= (scaledPower * totalMass * 1.13);
+		double accelerate = (cart1).setAccel(0);// reset acceleration and get default
+		if((power * totalMass)>0){
+			accelerate -= (scaledPower * totalMass * 1.13);
+		}
 		if (accelerate > 0) {// if accelerate=0 then default is used: not good here! and we don't want negative acceleration
 			( cart1).setAccel(accelerate);
 		}
@@ -151,7 +155,10 @@ public class HandleMaxAttachedCarts {
 	 * 
 	 * @return
 	 */
-	private double scalePower(double power) {
+	private static double scalePower(double power) {
+		if (power ==0){
+			return 0;
+		}
 		power /= 1000;
 		power *= 0.8;
 		return power;
