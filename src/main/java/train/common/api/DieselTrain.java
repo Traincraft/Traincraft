@@ -2,6 +2,7 @@ package train.common.api;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
@@ -32,12 +33,13 @@ public abstract class DieselTrain extends Locomotive implements IFluidHandler {
 	private DieselTrain(int capacity, World world, FluidStack filter, FluidStack[] multiFilter) {
 		super(world);
 		this.maxTank = capacity;
-		if (filter == null && multiFilter == null)
+		if (filter == null && multiFilter == null) {
 			this.theTank = LiquidManager.getInstance().new StandardTank(capacity);
-		if (filter != null)
+		}if (filter != null) {
 			this.theTank = LiquidManager.getInstance().new FilteredTank(capacity, filter);
-		if (multiFilter != null)
+		}if (multiFilter != null) {
 			this.theTank = LiquidManager.getInstance().new FilteredTank(capacity, multiFilter);
+		}
 		dataWatcher.addObject(4, 0);
 		numCargoSlots = 3;
 		numCargoSlots1 = 3;
@@ -49,19 +51,18 @@ public abstract class DieselTrain extends Locomotive implements IFluidHandler {
 	@Override
 	public void onUpdate() {
 		super.onUpdate();
-		if (worldObj.isRemote)
-			return;
-		if (theTank != null && theTank.getFluid() != null) {
-			this.dataWatcher.updateObject(23, theTank.getFluid().amount);
-			this.dataWatcher.updateObject(4, theTank.getFluid().getFluidID());
-			if (theTank.getFluid().amount <= 1) {
-				motionX *= 0.94;
-				motionZ *= 0.94;
+		if (!worldObj.isRemote && isLocoTurnedOn() && ticksExisted %5 ==0) {
+			if (drain(ForgeDirection.UNKNOWN, MathHelper.floor_double((getSpeed()<1?1:getSpeed()) /10), true) != null) {
+				this.dataWatcher.updateObject(23, theTank.getFluid().amount);
+				this.dataWatcher.updateObject(4, theTank.getFluid().getFluidID());
+				if (theTank.getFluid().amount <= 1) {
+					motionX *= 0.94;
+					motionZ *= 0.94;
+				}
+			} else if (theTank != null && theTank.getFluid() == null) {
+				this.dataWatcher.updateObject(23, 0);
+				this.dataWatcher.updateObject(4, 0);
 			}
-		}
-		else if (theTank != null && theTank.getFluid() == null) {
-			this.dataWatcher.updateObject(23, 0);
-			this.dataWatcher.updateObject(4, 0);
 		}
 	}
 
@@ -217,7 +218,7 @@ public abstract class DieselTrain extends Locomotive implements IFluidHandler {
 
 	@Override
 	public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain) {
-		return theTank.drain(maxDrain, doDrain);
+		return theTank ==null? null:theTank.drain(maxDrain, doDrain);
 	}
 
 	@Override
