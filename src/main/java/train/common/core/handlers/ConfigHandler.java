@@ -38,7 +38,7 @@ public class ConfigHandler {
 	public static boolean FORCE_TEXTURE_BINDING;
 	public static boolean DISABLE_NEI_RECIPES;
 	public static boolean DISABLE_TRAIN_WORKBENCH;
-	public static boolean ENABLE_SHADER_SUPPORT;
+	public static boolean ENABLE_WAGON_REMOVAL_NOTICES;
 
 
 
@@ -73,7 +73,7 @@ public class ConfigHandler {
 			FORCE_TEXTURE_BINDING = cf.get(CATEGORY_GENERAL, "Force_Texture_Binding", true, "Enable this if trains and rollingstock are using block/item textures").getBoolean(false);
 			DISABLE_NEI_RECIPES = cf.get(CATEGORY_GENERAL, "DISABLE_NEI_RECIPES", false, "disables our system of registering recipes with NEI, enable this if you have your own crafting system").getBoolean(false);
 			DISABLE_TRAIN_WORKBENCH = cf.get(CATEGORY_GENERAL, "DISABLE_TRAIN_WORKBENCH", false, "disables the train workbench, for those of you who want to use a custom part builder").getBoolean(false);
-			ENABLE_SHADER_SUPPORT = cf.get(CATEGORY_GENERAL, "ENABLE_SHADER_SUPPORT", false, "enables GL based lighting on trains and rails for shaders and lighting mods that use more advanced systems than vanilla MC.").getBoolean(false);
+			ENABLE_WAGON_REMOVAL_NOTICES = cf.get(CATEGORY_GENERAL, "ENABLE_WAGON_REMOVAL_NOTICES", true, "When OP and creative mode, tells you the owner of the train or rollingstock you just removed").getBoolean(true);
 
 		} catch (Exception e) {
 			Traincraft.tcLog.fatal("Traincraft had a problem loading its configuration\n" + e);

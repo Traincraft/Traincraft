@@ -51,8 +51,8 @@ public abstract class DieselTrain extends Locomotive implements IFluidHandler {
 	@Override
 	public void onUpdate() {
 		super.onUpdate();
-		if (!worldObj.isRemote && isLocoTurnedOn() && ticksExisted %5 ==0) {
-			if (drain(ForgeDirection.UNKNOWN, MathHelper.floor_double((getSpeed()<1?1:getSpeed()) /10), true) != null) {
+		if (worldObj.isRemote && isLocoTurnedOn()) {
+			if (drain(ForgeDirection.UNKNOWN, 1, false) != null) {
 				this.dataWatcher.updateObject(23, theTank.getFluid().amount);
 				this.dataWatcher.updateObject(4, theTank.getFluid().getFluidID());
 				if (theTank.getFluid().amount <= 1) {
@@ -151,11 +151,10 @@ public abstract class DieselTrain extends Locomotive implements IFluidHandler {
 
 	@Override
 	protected void updateFuelTrain(int amount) {
-		if (fuelTrain < 0) {
+		if (fuelTrain < 1) {
 			motionX *= 0.8;
 			motionZ *= 0.8;
-		}
-		if (fuelTrain+100 < maxTank) {
+		} else if (fuelTrain+100 < maxTank) {
 			FluidStack drain = null;
 			if(cartLinked1 instanceof LiquidTank && !(cartLinked1 instanceof EntityBUnitEMDF7) && !(cartLinked1 instanceof EntityBUnitEMDF3) && !(cartLinked1 instanceof EntityBUnitDD35)){
 				if (getFluid() == null) {
@@ -183,13 +182,14 @@ public abstract class DieselTrain extends Locomotive implements IFluidHandler {
 			if (drain != null){
 				fill(ForgeDirection.UNKNOWN, drain, true);
 			}
-			if (this.isLocoTurnedOn()) {
-				fuelTrain -= amount;
-				if (fuelTrain < 0) {
-					fuelTrain = 0;
-				} else {
-					drain(ForgeDirection.UNKNOWN, amount, true);
-				}
+		}
+
+		if (fuelTrain >1 && this.isLocoTurnedOn()) {
+			fuelTrain -= amount;
+			if (fuelTrain < 0) {
+				fuelTrain = 0;
+			} else {
+				drain(ForgeDirection.UNKNOWN, amount, true);
 			}
 		}
 	}
