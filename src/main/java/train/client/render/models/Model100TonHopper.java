@@ -15,7 +15,6 @@ import org.lwjgl.opengl.GL11;
 import tmt.ModelBase;
 import tmt.ModelRendererTurbo;
 import tmt.Tessellator;
-import train.common.Traincraft;
 import train.common.library.Info;
 
 public class Model100TonHopper extends ModelBase

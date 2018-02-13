@@ -1,7 +1,5 @@
 package train.common.core;
 
-import net.minecraft.entity.Entity;
-import train.common.api.AbstractTrains;
 import train.common.api.EntityRollingStock;
 import train.common.api.Locomotive;
 

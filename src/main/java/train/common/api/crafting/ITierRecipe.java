@@ -18,7 +18,7 @@ public interface ITierRecipe {
 	public abstract ItemStack getOutput();
 
 	@SuppressWarnings("rawtypes")
-	public abstract List getInput();
+	public abstract List<ItemStack> getInput();
 
 	public abstract int toDecrease(int slot);
 }

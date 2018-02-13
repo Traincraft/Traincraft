@@ -2,8 +2,8 @@ package train.client.render.models.blocks;
 
 import net.minecraft.entity.Entity;
 import org.lwjgl.opengl.GL11;
-import train.client.render.CustomModelRenderer;
 import tmt.ModelBase;
+import train.client.render.CustomModelRenderer;
 
 public class ModelBlockSignal extends ModelBase {
 	public CustomModelRenderer box;
