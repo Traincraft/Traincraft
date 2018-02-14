@@ -16,6 +16,8 @@ import train.common.core.network.PacketSetTrainLockedToClient;
 import train.common.inventory.InventoryLoco;
 import train.common.library.Info;
 
+import java.util.Collections;
+
 public class GuiLoco2 extends GuiContainer {
 
 
@@ -215,6 +217,27 @@ public class GuiLoco2 extends GuiContainer {
 	}
 
 	@Override
+	public void drawScreen(int mouseX, int mouseY, float par3){
+		super.drawScreen(mouseX, mouseY,par3);
+		if(loco instanceof SteamTrain){
+			int j = (width - xSize) / 2;
+			int k = (height - ySize) / 2;
+			if (mouseX>j+143 && mouseX<j+161 && mouseY>k+18 && mouseY<k+68){
+				drawHoveringText(Collections.singletonList("Water: " + (((SteamTrain) loco).getWater()) + "mb / " + (((SteamTrain) loco).getCartTankCapacity()) +"mb"),
+						mouseX, mouseY, fontRendererObj);
+			}
+		} else 	if(loco instanceof DieselTrain){
+			int j = (width - xSize) / 2;
+			int k = (height - ySize) / 2;
+			if (mouseX>j+143 && mouseX<j+161 && mouseY>k+18 && mouseY<k+68){
+				drawHoveringText(Collections.singletonList("Fuel: " +
+								(((DieselTrain) loco).getDiesel()) + "mb / " + (((DieselTrain) loco).getCartTankCapacity()) +"mb"),
+						mouseX, mouseY, fontRendererObj);
+			}
+		}
+	}
+
+	@Override
 	protected void drawGuiContainerBackgroundLayer(float f, int t, int g) {
 		String i = Info.guiPrefix + "gui_loco.png";
 
@@ -276,7 +299,7 @@ public class GuiLoco2 extends GuiContainer {
 		fontRendererObj.drawStringWithShadow("Speed reduction: " + loco.getCurrentSpeedSlowDown(), 1, 30, 0xFFFFFF);
 		fontRendererObj.drawStringWithShadow("Accel reduction: " + loco.getCurrentAccelSlowDown(), 1, 40, 0xFFFFFF);
 		fontRendererObj.drawStringWithShadow("Brake reduction: " + loco.getCurrentBrakeSlowDown(), 1, 50, 0xFFFFFF);
-		fontRendererObj.drawStringWithShadow("Fuel consumption: " + loco.getFuelConsumption() + " every 5 seconds", 1,
+		fontRendererObj.drawStringWithShadow("Fuel consumption: " + (loco.getFuelConsumption() *0.2) + "mb/s", 1,
 				60, 0xFFFFFF);
 		fontRendererObj.drawStringWithShadow("Fuel: " + loco.getFuel(), 1, 70, 0xFFFFFF);
 		fontRendererObj.drawStringWithShadow("Power: " + loco.getPower() + " Mhp", 1, 80, 0xFFFFFF);

@@ -53,23 +53,21 @@ public abstract class DieselTrain extends Locomotive implements IFluidHandler {
 	@Override
 	public void onUpdate() {
 		super.onUpdate();
-		if (worldObj.isRemote && isLocoTurnedOn()) {
-			if (drain(ForgeDirection.UNKNOWN, 1, false) != null) {
-				this.dataWatcher.updateObject(23, theTank.getFluid().amount);
-				this.dataWatcher.updateObject(4, theTank.getFluid().getFluidID());
+		if (!worldObj.isRemote && isLocoTurnedOn()) {
+			if (theTank.getFluidAmount() >0) {
+				this.dataWatcher.updateObject(23, theTank.getFluidAmount());
+				fuelTrain = theTank.getFluidAmount();
+				this.dataWatcher.updateObject(4, theTank.getFluid()!=null?theTank.getFluid().getFluidID():0);
 				if (theTank.getFluid().amount <= 1) {
 					motionX *= 0.94;
 					motionZ *= 0.94;
 				}
-			} else if (theTank != null && theTank.getFluid() == null) {
-				this.dataWatcher.updateObject(23, 0);
-				this.dataWatcher.updateObject(4, 0);
 			}
 		}
 	}
 
 	public int getDiesel() {
-		return (this.dataWatcher.getWatchableObjectInt(23));
+		return getFuel()==0?(this.dataWatcher.getWatchableObjectInt(23)):getFuel();
 	}
 
 	public int getLiquidItemID() {
@@ -127,7 +125,7 @@ public abstract class DieselTrain extends Locomotive implements IFluidHandler {
 			return;
 		this.update += 1;
 		if (this.update % 8 == 0 && itemstack != null) {
-			ItemStack result = LiquidManager.getInstance().processContainer(this, 0, theTank, itemstack);
+			ItemStack result = LiquidManager.getInstance().processContainer(this, 0, this, itemstack);
 			if (result != null) {
 				placeInInvent(result);
 			}

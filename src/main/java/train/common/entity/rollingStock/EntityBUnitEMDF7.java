@@ -160,7 +160,7 @@ public class EntityBUnitEMDF7 extends LiquidTank  implements IFluidHandler {
 			return;
 		this.update += 1;
 		if (this.update % 8 == 0 && itemstack != null) {
-			ItemStack result = LiquidManager.getInstance().processContainer(this, 0, theTank, itemstack);
+			ItemStack result = LiquidManager.getInstance().processContainer(this, 0, this, itemstack);
 			if (result != null) {
 				placeInInvent(result);
 			}

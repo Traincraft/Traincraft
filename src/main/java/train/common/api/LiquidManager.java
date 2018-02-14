@@ -13,6 +13,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
 import train.common.blocks.BlockTraincraftFluid;
 import train.common.items.ItemBlockFluid;
@@ -194,24 +195,25 @@ public class LiquidManager {
 		return null;
 	}
 
-	public ItemStack processContainer(IInventory inventory, int inventoryIndex, FluidTank tank, ItemStack itemstack) {
+	public ItemStack processContainer(IInventory inventory, int inventoryIndex, IFluidHandler tank, ItemStack itemstack) {
 		FluidStack bucketLiquid = getFluidInContainer(itemstack);
 		ItemStack emptyItem = itemstack.getItem().getContainerItem(itemstack);
 		if ((bucketLiquid != null)) {
-			int used = tank.fill(bucketLiquid, false);
+			int used = tank.fill(ForgeDirection.UNKNOWN,bucketLiquid, false);
+			System.out.println("used was " + used + " but the bucket ammount is " + bucketLiquid.amount);
 			if (used >= bucketLiquid.amount) {
-				tank.fill(bucketLiquid, true);
+				tank.fill(ForgeDirection.UNKNOWN,bucketLiquid, true);
 				inventory.decrStackSize(inventoryIndex, 1);
 				return emptyItem;
 			}
 		}
 		else if ((getInstance().isEmptyContainer(itemstack))) {
-			ItemStack filled = getInstance().fillFluidContainer(tank.getFluid(), itemstack);
+			ItemStack filled = getInstance().fillFluidContainer(tank.drain(ForgeDirection.UNKNOWN,1000,false), itemstack);
 			if ((filled != null)) {
 				FluidStack liquid = getFluidInContainer(filled);
-				FluidStack drain = tank.drain(liquid.amount, false);
+				FluidStack drain = tank.drain(ForgeDirection.UNKNOWN,liquid.amount, false);
 				if ((drain != null) && (drain.amount > 0)) {
-					tank.drain(liquid.amount, true);
+					tank.drain(ForgeDirection.UNKNOWN,liquid.amount, true);
 					inventory.decrStackSize(inventoryIndex, 1);
 					return filled;
 				}
