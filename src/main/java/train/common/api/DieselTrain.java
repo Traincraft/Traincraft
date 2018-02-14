@@ -48,6 +48,7 @@ public abstract class DieselTrain extends Locomotive implements IFluidHandler {
 		numCargoSlots2 = 3;
 		inventorySize = numCargoSlots + numCargoSlots2 + numCargoSlots1 + fuelSlot;
 		this.dataWatcher.addObject(23, 0);
+		this.dataWatcher.addObject(5, "");
 	}
 
 	@Override
@@ -58,6 +59,7 @@ public abstract class DieselTrain extends Locomotive implements IFluidHandler {
 				this.dataWatcher.updateObject(23, theTank.getFluidAmount());
 				fuelTrain = theTank.getFluidAmount();
 				this.dataWatcher.updateObject(4, theTank.getFluid()!=null?theTank.getFluid().getFluidID():0);
+				this.dataWatcher.updateObject(5, theTank.getFluid().getUnlocalizedName());
 				if (theTank.getFluid().amount <= 1) {
 					motionX *= 0.94;
 					motionZ *= 0.94;
@@ -69,6 +71,7 @@ public abstract class DieselTrain extends Locomotive implements IFluidHandler {
 	public int getDiesel() {
 		return getFuel()==0?(this.dataWatcher.getWatchableObjectInt(23)):getFuel();
 	}
+	public String getLiquidName(){ return  this.dataWatcher.getWatchableObjectString(5);}
 
 	public int getLiquidItemID() {
 		return (this.dataWatcher.getWatchableObjectInt(4));

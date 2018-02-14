@@ -23,7 +23,7 @@ tile.tc:assemblyTableIII.name=Mesa de Montagem III
 tile.tc:tcRail.name=Trilho Traincraft
 tile.tc:tcRailGag.name=Trilho Traincraft
 fluid.tc:fluid.diesel.name=Óleo Diesel
-fluid.tc:refinedfuel.name=Combustível Refinado
+fluid.tc:fluid.refinedfuel.name=Combustível Refinado
 tile.tc:bridgePillar.name=Pilar de Ponte
 
 

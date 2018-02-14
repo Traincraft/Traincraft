@@ -262,6 +262,6 @@ public class EntityBUnitDD35 extends LiquidTank implements IFluidHandler {
 
 	@Override
 	public String getLiquidName(){
-		return FluidRegistry.getFluid(this.dataWatcher.getWatchableObjectInt(4))!=null?FluidRegistry.getFluid(this.dataWatcher.getWatchableObjectInt(4)).getName():null;
+		return FluidRegistry.getFluid(this.dataWatcher.getWatchableObjectInt(4))!=null?FluidRegistry.getFluid(this.dataWatcher.getWatchableObjectInt(4)).getUnlocalizedName():null;
 	}
 }

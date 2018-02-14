@@ -23,7 +23,7 @@ tile.tc:assemblyTableIII.name=Assembly Table III
 tile.tc:tcRail.name=Traincraft Rail
 tile.tc:tcRailGag.name=Traincraft Rail
 fluid.tc:fluid.diesel.name=Diesel Fuel
-fluid.tc:refinedfuel.name=Refined Fuel
+fluid.tc:fluid.refinedfuel.name=Refined Fuel
 tile.tc:bridgePillar.name=Bridge Pillar
 tile.tc:switchStand.name=High Star Switch Stand
 

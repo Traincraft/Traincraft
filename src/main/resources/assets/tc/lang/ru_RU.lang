@@ -21,7 +21,7 @@ tile.tc:assemblyTableI.name=Сборочный стол I уровня
 tile.tc:assemblyTableII.name=Сборочный стол II уровня
 tile.tc:assemblyTableIII.name=Сборочный стол III уровня
 fluid.tc:fluid.diesel.name=Дизельное топливо
-fluid.tc:refinedfuel.name=Бензин
+fluid.tc:fluid.refinedfuel.name=Бензин
 
 <!-- ## Предметы ## -->
 item.tc:diesel.name=Канистра с дизельным топливом

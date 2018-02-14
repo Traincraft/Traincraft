@@ -5,8 +5,10 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
 import train.common.Traincraft;
 import train.common.api.*;
@@ -230,9 +232,15 @@ public class GuiLoco2 extends GuiContainer {
 			int j = (width - xSize) / 2;
 			int k = (height - ySize) / 2;
 			if (mouseX>j+143 && mouseX<j+161 && mouseY>k+18 && mouseY<k+68){
-				drawHoveringText(Collections.singletonList("Fuel: " +
-								(((DieselTrain) loco).getDiesel()) + "mb / " + (((DieselTrain) loco).getCartTankCapacity()) +"mb"),
-						mouseX, mouseY, fontRendererObj);
+				if (((DieselTrain) loco).getDiesel()!=0){
+					drawHoveringText(Collections.singletonList(StatCollector.translateToLocal("fluid.tc:"+((DieselTrain) loco).getLiquidName()) + " " +
+									((DieselTrain) loco).getDiesel() +"mb / " + (((DieselTrain) loco).getCartTankCapacity()) + "mb"),
+							mouseX, mouseY, fontRendererObj);
+				}else {
+					drawHoveringText(Collections.singletonList("Fuel: " +
+									"0mb / " + (((DieselTrain) loco).getCartTankCapacity()) + "mb"),
+							mouseX, mouseY, fontRendererObj);
+				}
 			}
 		}
 	}

@@ -23,7 +23,7 @@ tile.tc:assemblyTableIII.name=Montážní stůl III
 tile.tc:tcRail.name=Kolej Trainu
 tile.tc:tcRailGag.name=Kolej Trainu
 fluid.tc:fluid.diesel.name=Dieselové palivo
-fluid.tc:refinedfuel.name=Rafinované palivo
+fluid.tc:fluid.refinedfuel.name=Rafinované palivo
 tile.tc:bridgePillar.name=Mostní pilíř
 
 

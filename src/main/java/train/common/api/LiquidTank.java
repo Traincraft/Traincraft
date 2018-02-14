@@ -78,7 +78,7 @@ public class LiquidTank extends EntityRollingStock implements IFluidHandler, ISi
 			this.dataWatcher.updateObject(18, theTank.getFluid().amount);
 			this.dataWatcher.updateObject(4, theTank.getFluid().getFluidID());
 			if (theTank.getFluid().getFluid() != null)
-				this.dataWatcher.updateObject(22, theTank.getFluid().getFluid().getName());
+				this.dataWatcher.updateObject(22, theTank.getFluid().getFluid().getUnlocalizedName());
 			handleMass();
 		}
 		else if (theTank != null && theTank.getFluid() == null) {

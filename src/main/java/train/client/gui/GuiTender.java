@@ -16,6 +16,7 @@ import train.common.core.network.PacketSetTrainLockedToClient;
 import train.common.inventory.InventoryTender;
 import train.common.library.Info;
 
+import java.util.Collections;
 import java.util.List;
 
 public class GuiTender extends GuiContainer {
@@ -135,6 +136,17 @@ public class GuiTender extends GuiContainer {
 		int j = (width - xSize) / 2;
 		int k = (height - ySize) / 2;
 		return  (mouseX >= j + 124 && mouseX <= j + 174 && mouseY >= k-10 && mouseY <= k);
+	}
+
+	@Override
+	public void drawScreen(int mouseX, int mouseY, float par3){
+		super.drawScreen(mouseX, mouseY,par3);
+		int j = (width - xSize) / 2;
+		int k = (height - ySize) / 2;
+		if (mouseX>j+143 && mouseX<j+161 && mouseY>k+18 && mouseY<k+68){
+			drawHoveringText(Collections.singletonList("Water: " + (tender.getWater()) + "mb / " + (tender.getCartTankCapacity()) +"mb"),
+					mouseX, mouseY, fontRendererObj);
+		}
 	}
 
 	@Override

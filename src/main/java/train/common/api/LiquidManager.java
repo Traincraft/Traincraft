@@ -200,7 +200,6 @@ public class LiquidManager {
 		ItemStack emptyItem = itemstack.getItem().getContainerItem(itemstack);
 		if ((bucketLiquid != null)) {
 			int used = tank.fill(ForgeDirection.UNKNOWN,bucketLiquid, false);
-			System.out.println("used was " + used + " but the bucket ammount is " + bucketLiquid.amount);
 			if (used >= bucketLiquid.amount) {
 				tank.fill(ForgeDirection.UNKNOWN,bucketLiquid, true);
 				inventory.decrStackSize(inventoryIndex, 1);
