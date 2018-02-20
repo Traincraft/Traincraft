@@ -1417,7 +1417,7 @@ public class ModelLocoC41 extends ModelBase
 		lococ41Model[342].addBox(0F, 0F, 0F, 2, 1, 2, 0F); // Box 342
 		lococ41Model[342].setRotationPoint(-60F, 4F, -1F);
 
-
+		fixRotation(lococ41Model, false, true, true);
 	}
 
 	@Override
