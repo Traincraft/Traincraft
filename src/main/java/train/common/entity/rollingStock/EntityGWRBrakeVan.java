@@ -26,7 +26,7 @@ public class EntityGWRBrakeVan extends EntityRollingStock implements IPassenger 
 	@Override
 	public void updateRiderPosition() {
 		double pitchRads = this.anglePitchClient * Math.PI / 180.0D;
-		double distance = -2;
+		double distance = 1;
 		double yOffset = 0.6;
 		float rotationCos1 = (float) Math.cos(Math.toRadians(this.renderYaw));
 		float rotationSin1 = (float) Math.sin(Math.toRadians((this.renderYaw)));
@@ -97,6 +97,6 @@ public class EntityGWRBrakeVan extends EntityRollingStock implements IPassenger 
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return 1.3F;
+		return 3.4F;
 	}
 }

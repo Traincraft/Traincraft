@@ -110,6 +110,6 @@ public class EntityTankWagonThreeDome extends LiquidTank {
 	}
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return 1.6F;
+		return 2.7F;
 	}
 }
