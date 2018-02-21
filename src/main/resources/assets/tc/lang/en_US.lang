@@ -266,6 +266,11 @@ item.tc:minecartPropagandaUSSR.name=Propaganda cart (USSR)
 item.tc:minecartPropagandaBritish.name=Propaganda cart (Britain)
 item.tc:minecartPropagandaJapan.name=Propaganda cart (Japan)
 item.tc:minecartLocoSnowPlow.name=Snow Plow
+item.tc:minecartLocoC41.name=C41
+item.tc:minecartLocoC41T.name=C41T
+item.tc:minecartTenderC41.name=C41 Tender
+item.tc:minecartTankWagonThreeDome.name=Three Dome Tanker
+item.tc:minecartGWRBrakeVan.name=GWR Toad BrakeVan
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -490,6 +495,11 @@ entity.tc.Propaganda USSR.name=Propaganda cart (USSR)
 entity.tc.Propaganda Britain.name=Propaganda cart (Britain)
 entity.tc.Propaganda Japan.name=Propaganda cart (Japan)
 entity.tc.Loco Steam Snow Plow.name=Snow Plow
+entity.tc.Loco Steam C41.name=C41
+entity.tc.Loco Steam C41T.name=C41T
+entity.tc.Tender C41.name=C41 Tender
+entity.tc.Tank Wagon Three Dome.name=Three Dome Tanker
+entity.tc.GWR Toad Brake Van.name=GWR Toad Brake Van
 
 description.villager.profession.tc.station_chief=Station Chief
 
