@@ -271,6 +271,7 @@ item.tc:minecartLocoC41T.name=C41T
 item.tc:minecartTenderC41.name=C41 Tender
 item.tc:minecartTankWagonThreeDome.name=Three Dome Tanker
 item.tc:minecartGWRBrakeVan.name=GWR Toad BrakeVan
+item.tc:minecartLocoSteamPannier.name= 0-6-0 Pannier
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -500,6 +501,7 @@ entity.tc.Loco Steam C41T.name=C41T
 entity.tc.Tender C41.name=C41 Tender
 entity.tc.Tank Wagon Three Dome.name=Three Dome Tanker
 entity.tc.GWR Toad Brake Van.name=GWR Toad Brake Van
+entity.tc.Loco Steam Pannier.name= 0-6-0 Pannier
 
 description.villager.profession.tc.station_chief=Station Chief
 
