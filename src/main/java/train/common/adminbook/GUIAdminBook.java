@@ -141,7 +141,15 @@ public class GUIAdminBook extends GuiScreen {
         if(!isTrainPage) {
             int index=0;
             for (int i = 6 * page; i < 6+(6*page) && i<list.length-1; i++) {//only show 6 entries per page
-                this.buttonList.add(new GuiButton(i+3, guiLeft-70, guiTop+20 +(index*18), 150, 20, list[i].equals("")?"Back":list[i]));
+                this.buttonList.add(new GuiButton(i+3, guiLeft-80, guiTop+20 +(index*18), 140, 20,
+                        list[i].equals("")?"Back":
+                                list[i].contains("_")?
+                                list[i].substring(list[i].indexOf("~")+1,list[i].lastIndexOf("_")):
+                list[i]));
+                if (list[i].contains("_")) {
+                    this.buttonList.add(new GuiButton(i + 3, guiLeft + 70, guiTop + 20 + (index * 18), 220, 20,
+                            list[i].substring(list[i].lastIndexOf("_")+1, list[i].indexOf(".txt"))));
+                }
                 index++;
             }
             if(list.length-6-(page*6)>6){
@@ -171,7 +179,7 @@ public class GUIAdminBook extends GuiScreen {
         super.drawScreen(mouseX, mouseY, par3);
 
         if(isTrainPage){
-            for (int i = 2+(6 * page); i < Math.min(list.length, 10); i++) {//only show 6 entries per page
+            for (int i = 2+(6 * page); i < Math.min(list.length, 9); i++) {//only show 6 entries per page
                 drawTextOutlined(fontRendererObj,  list[(page*i)+i],  guiLeft-70, guiTop-16 +(i*16), 16777215);
             }
             drawTextOutlined(fontRendererObj, I18n.format("container.inventory", new Object()),  guiLeft+80, guiTop+10, 16777215);

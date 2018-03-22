@@ -10,7 +10,7 @@ import java.lang.reflect.InvocationTargetException;
 public enum EnumTrains {
 	
 	/** Passengers */
-	passengerCartBlue("Passenger Blue",EntityPassengerBlue.class, ItemIDs.minecartPassengerBlue.item,"passenger",0,0,0.9,0,0,0,0,0,0,new String[] {"Blue","Red","Green", "White", "Black"},18, 0),
+	passengerCartBlue("Passenger Blue",EntityPassengerBlue.class, ItemIDs.minecartPassengerBlue.item,"passenger",0,0,0.9,0,0,0,0,0,0,new String[] {"Blue","Red","Green", "White", "Black", "Cyan"},18, 0),
 	passengerCartBlackSmall("Passenger Small Black",EntityPassenger2.class, ItemIDs.minecartPassenger2.item,"passenger",0,0,0.1,0,0,0,0,0,0,null,18,0),
 	passengerLongGreen("Passenger Green Long",EntityPassenger5.class, ItemIDs.minecartPassenger5.item,"passenger",0,0,0.6,0,0,0,0,0,0,new String[]{"Green", "Yellow"},18,0),
 	passengerShortGreen("Passenger Short Green",EntityPassenger7.class, ItemIDs.minecartPassenger7.item,"passenger",0,0,0.5,0,0,0,0,0,0,null,18,0),
@@ -29,7 +29,11 @@ public enum EnumTrains {
 	passengerGS4("Passenger GS4",EntityPassengerGS4.class,ItemIDs.minecartGS4_Passenger.item,"passenger, Model missing, we'll have a new and improved one for 015",0,0,0.5,0,0,0,0,0,0,new String[]{"Orange", "White", "Yellow"},10,0),
 	passengerGS4Observatory("Passenger GS4 Observatory",EntityPassengerGS4_Observatory.class,ItemIDs.minecartGS4_Observatory.item,"passenger, Model missing, we'll have a new and improved one for 015",0,0,0.5,0,0,0,0,0,0,new String[]{"Orange", "White", "Yellow"},10,0),
 	passengerGS4_Tail("Passenger GS4 Tail",EntityPassengerGS4_Tail.class,ItemIDs.minecartGS4_Tail.item,"passenger, Model missing, we'll have a new and improved one for 015",0,0,0.5,0,0,0,0,0,0,new String[]{"Orange", "White", "Yellow"},10,0),
-	
+
+	//passengerDenverRioGrange("Passenger Denver Rio Grande", EntityPassengerDenverRioGrande.class,ItemIDs.minecartDenverRioGrandePassenger.item, "passenger", 0, 0, 0.5, 0, 0, 0, 0, 0, 0, null, 10, 0),
+	//passengerDenverRioGrandeCombo("Passenger Denver Rio Grande Combo", EntityPassengerDenverRioGrandeCombo.class,ItemIDs.minecartDenverRioGrandeCombo.item, "passenger", 0, 0, 0.5, 0, 0, 0, 0, 0, 0, null, 10, 0),
+
+
 	/** Caboose */
 	cabooseRed("Caboose Red",EntityCaboose.class, ItemIDs.minecartCaboose.item,"caboose",0,0,0.5,0,0,0,0,0,0,null,18,0),
 	cabooseBlack("Caboose Black",EntityCaboose3.class, ItemIDs.minecartCaboose3.item,"caboose",0,0,0.5,0,0,0,0,0,0,null,18,0),
@@ -51,7 +55,7 @@ public enum EnumTrains {
 	flatCar_DB("Flat Cart DB",EntityFlatCar_DB.class,ItemIDs.minecartFlatCart_DB.item,"flat",0,0,0.2,0,0,0,0,0,0,null,18,0),
 	BUnitEMDF7("EMD F7 B Unit", EntityBUnitEMDF7.class, ItemIDs.minecartLocoEMDF7B.item, "b-unit", 0, 0, 5, 0,
 			0,
-			0, 0, 0, 12000, new String[] { "Grey", "Black" }, 18, 0,
+			0, 0, 0, 12000, null, 18, 0,
 			new String[] { "Reduces weight carried by 50 tons when fueled" }),
 	BUnitEMDF3("EMD F3 B Unit", EntityBUnitEMDF3.class, ItemIDs.minecartLocoEMDF3B.item, "b-unit", 0, 0, 5, 0,
 			0,
@@ -94,9 +98,10 @@ public enum EnumTrains {
 	freightCenterBeam_Empty("Freight Center Beam Empty",EntityFreightCenterbeam_Empty.class, ItemIDs.minecartFreightCenterBeam_Empty.item,"freight",0.5,null,18,54,new String[] {"Cargo: any"}),
 	freightCenterBeam_Wood1("Freight Center Beam Wood1",EntityFreightCenterbeam_Wood_1.class, ItemIDs.minecartFreightCenterBeam_Wood_1.item,"freight",3,null,18,54,new String[] {"Cargo: wood stuff"}),
 	freightCenterBeam_Wood2("Freight Center Beam Wood2", EntityFreightCenterbeam_Wood_2.class, ItemIDs.minecartFreightCenterBeam_Wood_2.item, "freight", 3, null, 18,54, new String[] { "Cargo: wood stuff" }),
-	freightWellcar("Freight Well Car",EntityFreightWellcar.class, ItemIDs.minecartFreightWellcar.item,"freight",3,new String[] {"Blue","Red","Green","LightGrey","Grey", "Yellow"},18,54,new String[] {"Cargo: any"}),
-	//freightWellcar("Freight Well Car",EntityFreightWellcar.class, ItemIDs.minecartFreightWellcar.item,"freight",3,new String[] {"Blue","Red","Green","Black","Grey"},18,54,new String[] {"Cargo: any"}),
+	//freightWellcar("Freight Well Car",EntityFreightWellcar.class, ItemIDs.minecartFreightWellcar.item,"freight",3,new String[] {"Blue","Red","Green","LightGrey","Grey", "Yellow"},18,54,new String[] {"Cargo: any"}),
+	freightWellcar("Freight Well Car",EntityFreightWellcar.class, ItemIDs.minecartFreightWellcar.item,"freight",3,new String[] {"Blue","Red","Green","Black","Grey"},18,54,new String[] {"Cargo: any"}),
 	freightTrailer("Freight Trailer",EntityFreightTrailer.class, ItemIDs.minecartFreightTrailer.item,"freight",3,new String[] {"Blue","Yellow","LightBlue","Red","Grey"},18,54,new String[] {"Cargo: any"}),
+	//freightDenverRioGrange("Denver Rio Grande Baggage", EntityFreightDenverRioGrande.class,ItemIDs.minecartDenverRioGrandeBaggage.item, "freight",0.5,null,18,54,new String[] {"Cargo: any"}),
 
 	/** Tanks **/
 	tankWagon_DB("Tank Wagon DB",EntityTankWagon_DB.class,ItemIDs.minecartTankWagon_DB.item,"tank",0,0,6,0,0,0,0,0,50000,null,18,0,new String[] {"Capacity: 50000mb"}),
@@ -128,9 +133,9 @@ public enum EnumTrains {
 	/** Diesel */
 	locoDieselKOF("Loco Diesel KOF DB",EntityLocoDieselKof_DB.class,ItemIDs.minecartKof_DB.item, "diesel",243,45,0,60,0,170,0.66,0.96,5000,new String[] {"Red","Green","Yellow","Black","Blue"},17,-1.6),
 	locoDieselGP40("Loco Diesel CD742", EntityLocoDieselCD742.class,  ItemIDs.minecartCD742.item, "diesel", 1200, 90,
-			0, 50, 0, 250, 0.8, 0.966, 10000, new String[] { "Yellow", "White" }, 15, -2.5),
+			0, 50, 0, 250, 0.8, 0.966, 10000, new String[] { "Yellow", "White", "Blue" }, 15, -2.5),
 	locoDieselChME3("Loco Diesel ChME3", EntityLocoDieselChME3.class,  ItemIDs.minecartChmE3.item,"diesel", 1318, 95, 0, 60, 0, 170, 0.66, 0.96, 5000, null, 15,  -1.2),
-	locoDieselGP7Red("Loco Diesel GP7",EntityLocoDieselGP7Red.class, ItemIDs.minecartGP7Red.item,"diesel",1520,112,0,50,0,200,0.74,0.96,20000,new String[] {"Red","Blue","Black","Yellow", "Grey", "Cyan", "Pink", "Orange"},15,-1.4),
+	locoDieselGP7Red("Loco Diesel GP7",EntityLocoDieselGP7Red.class, ItemIDs.minecartGP7Red.item,"diesel",1520,112,0,50,0,200,0.74,0.96,20000,new String[] {"Red","Blue","Black","Yellow", "Grey", "Cyan", "Pink", "Orange", "Green", "White"},15,-1.4),
 	locoDieselSD40("Loco Diesel SD40",EntityLocoDieselSD40.class, ItemIDs.minecartLocoSD40.item,"diesel",3041,134,0,60,0,200,0.8,0.97,20000,new String[] {"Red","Yellow","Black","Green","Orange","Magenta","Blue"},10,-2.3),
 	locoDieselSD70("Loco Diesel SD70",EntityLocoDieselSD70.class, ItemIDs.minecartLocoSD70.item,"diesel",4055,112,0,60,0,200,0.8,0.97,20000,new String[] {"Orange","Yellow","Red","Blue","Magenta","Black", "Pink"},10,-2.3),
 	locoDieselShunter("Loco Diesel Shunter", EntityLocoDieselShunter.class,  ItemIDs.minecartShunter.item,"diesel", 354, 32, 0, 70, 0, 260, 0.6, 0.94, 8000,new String[] { "Blue", "Green", "Red", "Black" }, 14,  -2.58),
@@ -138,7 +143,7 @@ public enum EnumTrains {
 	locoDieselIC4_DSB_MG("Loco Diesel IC4 DSB MG",EntityLocoDieselIC4_DSB_MG.class, ItemIDs.minecartIC4_DSB_MG.item,"diesel",760,200,0,60,0,200,0.8,0.97,20000,new String[] {"White","Red"},10,-6, new String[]{"Unfinished, Creative Only"}),
 	locoDieselMILW_H1044("Loco Diesel MILW H10-44",EntityLocoDieselMILW_H1044.class,ItemIDs.minecartMILW_H1044.item,"diesel",1013,97,0,60,0,170,0.66,0.96,8000,null,15,-4.4),
 	locoDieselEMDF7("Loco Diesel EMD F-7", EntityLocoDieselEMDF7.class, ItemIDs.minecartLocoEMDF7.item, "diesel",
-			1520, 169, 0, 50, 0, 200, 0.8, 0.97, 12000, new String[] { "Grey", "Black" }, 10, -2.4),
+			1520, 169, 0, 50, 0, 200, 0.8, 0.97, 12000,null, 10, -2.4),
 	locoDieselEMDF3("Loco Diesel EMD F-3", EntityLocoDieselEMDF3.class, ItemIDs.minecartLocoEMDF3.item, "diesel",
 			1520, 166, 0, 55, 0, 200, 0.8, 0.97, 12000, new String[]{"Yellow", "Black"}, 10, -2.25),
 	locoDieselEWSClass66("Loco Electric EWS Class 66", EntityLocoDieselClass66.class,
@@ -147,6 +152,7 @@ public enum EnumTrains {
 	locoDieselDeltic("Loco Diesel Deltic", EntityLocoDieselDeltic.class, ItemIDs.minecartLocoDeltic.item, "diesel",
 			3344, 161, 0, 10, 0, 170, 0.7, 0.965, 6400, null, 18, -5),
 	locoDieselDD35A("Loco Diesel DD35A", EntityLocoDieselDD35A.class, ItemIDs.minecartLocoDD35A.item, "diesel", 5069, 144, 0, 10, 0, 170, 0.7, 0.965, 6850, null, 18, -4.75),
+	//locoDiesel44TonSwitcher("GE 44-ton Diesel switcher", EntityLocoDiesel44TonSwitcher.class, ItemIDs.minecartLoco44TonSwitcher.item, "diesel", 400, 32, 0, 10, 0, 170, 0.7, 0.965, 6850, null, 18, -4.75),
 
 
 	/** Electric */

@@ -76,8 +76,8 @@ public class ModelWellcar extends ModelBase
 
 
 	}
-	private ModelFreightTruckM fronttrucks = new ModelFreightTruckM();
-	private ModelFreightTruckM backtrucks = new ModelFreightTruckM();
+	private ModelWellcarBogie fronttrucks = new ModelWellcarBogie();
+	private ModelWellcarBogie backtrucks = new ModelWellcarBogie();
 
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
@@ -86,15 +86,15 @@ public class ModelWellcar extends ModelBase
 		{
 			wellcarModel[i].render(f5);
 		}
-		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/freighttruckm.png"));
+		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/wellcar_bogie.png"));
 
 		GL11.glPushMatrix();
-		GL11.glTranslated(-1.6,-0.0,-0.175);
+		GL11.glTranslated(-1.4,0.1,-0.375);
 		fronttrucks.render(entity,f,f1,f2,f3,f4,f5);
 		GL11.glPopMatrix();
 
 		GL11.glPushMatrix();
-		GL11.glTranslated(0.2,-0.0,-0.175);
+		GL11.glTranslated(1.2,0.1,-0.375);
 		backtrucks.render(entity,f,f1,f2,f3,f4,f5);
 		GL11.glPopMatrix();
 	}
