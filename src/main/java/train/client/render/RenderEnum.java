@@ -222,7 +222,7 @@ public enum RenderEnum {
 			add(new double[] { 2.575D, 0.05D, 0.65D });
 		}
 	}, 2, true),
-	locoC41(EntityLocoSteamC41.class, new ModelLocoC41(), "locoC41", false, new float[] { 0.05F, 0.1F, 0.0F }, new float[] { 0, 180, 180 }, new float[]{0.9f,0.9f,0.9f}, "largesmoke", 3, new ArrayList<double[]>() {
+	locoC41(EntityLocoSteamC41.class, new ModelLocoC41(), "locoC41", false, new float[] { -3.05F, -0.5F, 0.0F }, new float[] { 0, 180, 180 }, new float[]{1f,1f,1f}, "largesmoke", 3, new ArrayList<double[]>() {
 		{
 			add(new double[] { 2.75D, 1.2D, 0.4D });
 		}
@@ -267,7 +267,7 @@ public enum RenderEnum {
 			add(new double[] { 1.56D, -0.2D, 0.8D });
 		}
 	}, 4, true),
-	locoSteamSmall(EntityLocoSteamSmall.class, new ModelLoco3(), "loco3_", true, new float[] { -0.99F, -0.7F, 0.0F }, new float[] { 0F, -90F, 0F }, new float[] { 0.8F, 0.8F, 0.8F }, "smoke", 20, new ArrayList<double[]>() {
+	locoSteamSmall(EntityLocoSteamSmall.class, new ModelLoco3(), "loco3_", true, new float[] { -0.99F, -0.5F, 0.0F }, new float[] { 0F, -90F, 0F }, new float[] { 0.8F, 0.8F, 0.8F }, "smoke", 20, new ArrayList<double[]>() {
 		{
 			add(new double[] { 1.69D, 1.25D, 0.0D });
 		}

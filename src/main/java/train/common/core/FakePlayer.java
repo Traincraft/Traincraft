@@ -37,7 +37,6 @@ public class FakePlayer extends EntityPlayer {
 		inventory = new InventoryPlayer(this);
 		inventory.currentItem = 0;
 		inventory.setInventorySlotContents(0, new ItemStack(Items.diamond_pickaxe, 1, 0));
-		foodStats = new FoodStats();
 		flyToggleTimer = 0;
 		// score = 0;
 		boolean isSwinging = false; // Maybe spawnForced ??

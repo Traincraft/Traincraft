@@ -195,4 +195,7 @@ public abstract class Freight extends EntityRollingStock implements IInventory {
 			}
 		}
 	}
+
+	@Override
+	public ItemStack[] getInventory(){return cargoItems;}
 }

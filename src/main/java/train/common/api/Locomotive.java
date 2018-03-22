@@ -1009,4 +1009,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 	public int getInventoryStackLimit() {
 		return 64;
 	}
+
+	@Override
+	public ItemStack[] getInventory(){return locoInvent;}
 }

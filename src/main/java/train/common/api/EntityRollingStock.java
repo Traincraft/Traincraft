@@ -34,6 +34,7 @@ import net.minecraftforge.event.entity.minecart.MinecartInteractEvent;
 import net.minecraftforge.event.entity.minecart.MinecartUpdateEvent;
 import train.client.core.handlers.SoundUpdaterRollingStock;
 import train.common.Traincraft;
+import train.common.adminbook.ServerLogger;
 import train.common.core.HandleOverheating;
 import train.common.core.handlers.*;
 import train.common.core.network.PacketRollingStockRotation;
@@ -124,11 +125,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 	 * each ticks: numLaps++ used for fuel consumption rate
 	 */
 	private int numLaps;
-	/**
-	 * each ticks: numLaps++ used to clear train list when loco is not attached
-	 * anymore
-	 */
-	public int numLaps2;
 
 	private int ticksSinceHeld = 0;
 	private boolean cartLocked = false;
@@ -946,9 +942,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		MinecraftForge.EVENT_BUS.post(new MinecartUpdateEvent(this, i, j, k));
 		//setBoundingBoxSmall(posX, posY, posZ, 0.98F, 0.7F);
 		numLaps++;
-		numLaps2++;
 		if ((this instanceof Locomotive) && (this.Link1 == 0) && (this.Link2 == 0) && numLaps > 700) {
-			numLaps2 = 0;
 			this.RollingStock.clear();
 		}
 
@@ -960,6 +954,9 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		}
 		this.dataWatcher.updateObject(14, (int) (motionX * 100));
 		this.dataWatcher.updateObject(21, (int) (motionZ * 100));
+		if (updateTicks%120==0){
+			ServerLogger.writeWagonToFolder(this);
+		}
 	}
 
 	private void updateOnTrack(int i, int j, int k, Block l) {
@@ -2516,4 +2513,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			return null;
 		}
 	}
+
+	public ItemStack[] getInventory(){return null;}
 }

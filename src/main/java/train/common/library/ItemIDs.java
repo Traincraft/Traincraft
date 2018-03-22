@@ -63,6 +63,7 @@ public enum ItemIDs {
 	copperRail("ItemTrain", "item_rail_copper", 1),
 	steelRail("ItemTrain", "item_rail_steel", 1),
 	recipeBook("ItemRecipeBook", "item_book_blue", 1),
+	adminBook("ItemAdminBook", "item_book_blue", 0),
 
 	minecartWork("ItemRollingStock", "train_work", 4),
 	minecartTender("ItemRollingStock", "train_tender", 4),
