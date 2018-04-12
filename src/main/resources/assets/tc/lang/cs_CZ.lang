@@ -233,7 +233,7 @@ item.tc:minecartFreightGTNG.name=Otevřený vagón (GTNG)
 item.tc:minecartLocoSteamClimax.name=4-0-4 Climax
 item.tc:minecartLocoSteam040vb.name=0-4-0 Vertikální kotel
 item.tc:minecartGS4_Passenger.name=GS4 Daylight osobní vůz
-item.tc:minecartGS4_Observatory.name=GS4 Daylight vyhlídkový vůz
+
 item.tc:minecartSlateWagon.name=Břidlicový vagón
 item.tc:minecartICE1_Restaurant.name=ICB Restaurační vůz
 item.tc:minecartICE1_Loco.name=ICB
@@ -463,7 +463,7 @@ entity.tc.Freight GTNG Ore Wagon.name=Otevřený vagón (GTNG)
 entity.tc.Loco Steam Climax.name=4-0-4 Třída B
 entity.tc.Loco Steam 040VB.name=0-4-0 Vertikální kotel
 entity.tc.Passenger GS4.name=GS4 Daylight Osobní
-entity.tc.Passenger GS4 Observatory.name=GS4 Daylight Vyhlídkový
+
 entity.tc.Freight Slate Wagon.name=Břidlicový vagón
 entity.tc.ICE Restaurant.name=ICB Restaurační
 entity.tc.Loco Electric ICE 1.name=ICB

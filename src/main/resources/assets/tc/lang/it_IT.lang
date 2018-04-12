@@ -232,7 +232,7 @@ item.tc:minecartFreightGTNG.name=Vagone merci scoperto GTNG
 item.tc:minecartLocoSteamClimax.name=Locomotiva 4-0-4 Climax
 item.tc:minecartLocoSteam040vb.name=Locomotiva a caldaia verticale 0-4-0
 item.tc:minecartGS4_Passenger.name=Vagone passeggeri GS4
-item.tc:minecartGS4_Observatory.name=Vagone osservatorio GS4
+
 item.tc:minecartSlateWagon.name=Vagone per ardesia
 item.tc:minecartICE1_Restaurant.name=Vagone ristorante ICE
 item.tc:minecartICE1_Loco.name=Locomotiva ICE
@@ -457,7 +457,7 @@ entity.tc.Freight GTNG Ore Wagon.name=Vagone scoperto GTNG
 entity.tc.Loco Steam Climax.name=Locomotiva 4-0-4 Climax
 entity.tc.Loco Steam 040VB.name=Locomotiva a caldaia verticale 0-4-0
 entity.tc.Passenger GS4.name=Vagone passeggeri GS4
-entity.tc.Passenger GS4 Observatory.name=Vagone osservatorio GS4
+
 entity.tc.Freight Slate Wagon.name=Vagone per ardesia
 entity.tc.ICE Restaurant.name=Vagone ristorante ICE
 entity.tc.Loco Electric ICE 1.name=Locomotiva ICE

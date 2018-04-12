@@ -1156,23 +1156,15 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				}
 				if(derailSpeed == 0){
 					this.unLink();
-					int meta = tile.getBlockMetadata();
-					double cx = tile.xCoord;
-					double cy = tile.yCoord;
-					double cz = tile.zCoord;
-					moveOnTCStraight(i, j, k, cx, cy, cz, (meta+1)%4);
+					moveOnTCStraight(i, j, k, tile.xCoord, tile.zCoord, (tile.getBlockMetadata()+1)%4);
 				}
 				else{
-					double r = tile.r;
-					double cx = tile.cx;
-					double cy = tile.cy;
-					double cz = tile.cz;
 					int meta = tile.getBlockMetadata();
 					if (shouldIgnoreSwitch(tile, i, j, k, meta)) {
-						moveOnTCStraight(i, j, k, tile.xCoord, tile.yCoord, tile.zCoord, tile.getBlockMetadata());
+						moveOnTCStraight(i, j, k, tile.xCoord, tile.zCoord, meta);
 					} else {
 						if (ItemTCRail.isTCTurnTrack(tile))
-							moveOnTC90TurnRail(i, j, k, r, cx, cy, cz, tile.getType(), meta);
+							moveOnTC90TurnRail(i, j, k, tile.r, tile.cx, tile.cz);
 					}
 					// shouldIgnoreSwitch(tile, i, j, k, meta);
 					// if (ItemTCRail.isTCTurnTrack(tile)) moveOnTC90TurnRail(i, j, k, r, cx, cy,
@@ -1180,26 +1172,13 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				}
 			}
 			if (ItemTCRail.isTCStraightTrack(tile)) {
-				int meta = tile.getBlockMetadata();
-				double cx = tile.xCoord;
-				double cy = tile.yCoord;
-				double cz = tile.zCoord;
-				moveOnTCStraight(i, j, k, cx, cy, cz, meta);
+				moveOnTCStraight(i, j, k, tile.xCoord, tile.zCoord, tile.getBlockMetadata());
 			}
 			if (ItemTCRail.isTCSlopeTrack(tile)) {
-				int meta = tile.getBlockMetadata();
-				double cx = tile.xCoord;
-				double cz = tile.zCoord;
-				double slopeAngle = tile.slopeAngle;
-				double slopeHeight = tile.slopeHeight;
-				moveOnTCSlope( j, cx, cz, slopeAngle, slopeHeight, meta);
+				moveOnTCSlope( j, tile.xCoord, tile.zCoord, tile.slopeAngle, tile.slopeHeight, tile.getBlockMetadata());
 			}
 			if (ItemTCRail.isTCTwoWaysCrossingTrack(tile)) {
-				int meta = tile.getBlockMetadata();
-				double cx = tile.xCoord;
-				double cy = tile.yCoord;
-				double cz = tile.zCoord;
-				moveOnTCTwoWaysCrossing(i, j, k, cx, cy, cz, meta);
+				moveOnTCTwoWaysCrossing(i, j, k, tile.xCoord, tile.yCoord, tile.zCoord, tile.getBlockMetadata());
 			}
 
 		}
@@ -1213,19 +1192,10 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				TileTCRail tile = (TileTCRail) worldObj.getTileEntity(tileGag.originX, tileGag.originY, tileGag.originZ);
 				//System.out.println(tile.getType());
 				if (ItemTCRail.isTCTurnTrack(tile)) {
-					double r = tile.r;
-					double cx = tile.cx;
-					double cy = tile.cy;
-					double cz = tile.cz;
-					int meta = tile.getBlockMetadata();
-					moveOnTC90TurnRail(i, j, k, r, cx, cy, cz, tile.getType(), meta);
+					moveOnTC90TurnRail(i, j, k, tile.r, tile.cx, tile.cz);
 				}
 				if (ItemTCRail.isTCStraightTrack(tile)) {
-					int meta = tile.getBlockMetadata();
-					double cx = tile.xCoord;
-					double cy = tile.yCoord;
-					double cz = tile.zCoord;
-					moveOnTCStraight(i, j, k, cx, cy, cz, meta);
+					moveOnTCStraight(i, j, k, tile.xCoord, tile.zCoord, tile.getBlockMetadata());
 				}
 				if (ItemTCRail.isTCSlopeTrack(tile)) {
 					int meta = tile.getBlockMetadata();
@@ -1293,13 +1263,12 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		return false;
 	}
 	
-	private void moveOnTCStraight(int i, int j, int k, double cx, double cy, double cz, int meta) {
+	private void moveOnTCStraight(int i, int j, int k, double cx, double cz, int meta) {
 		posY = j + 0.2;
 		if (meta == 2 || meta == 0) {
-			double p_corr_x = cx + 0.5;
 			double norm = Math.sqrt(motionX * motionX + motionZ * motionZ);
 
-			setPosition(p_corr_x, posY + yOffset, posZ);
+			setPosition(cx + 0.5, posY + yOffset, posZ);
 			//setPosition(posX, posY + yOffset, posZ);
 
 			motionX = 0;
@@ -1309,13 +1278,11 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			//System.out.println("straight z "+Math.copySign(norm, motionZ));
 		}
 		if (meta == 1 || meta == 3) {
-			double p_corr_z = cz + 0.5;
-			double norm = Math.sqrt(motionX * motionX + motionZ * motionZ);
 
-			setPosition(posX, posY + yOffset, p_corr_z);
+			setPosition(posX, posY + yOffset, cz + 0.5);
 			//setPosition(posX, posY + yOffset, posZ);
 
-			motionX = Math.copySign(norm, motionX);
+			motionX = Math.copySign(Math.sqrt(motionX * motionX + motionZ * motionZ), motionX);
 			motionZ = 0;
 			moveEntity(motionX, 0.0D, 0.0D);
 
@@ -1332,8 +1299,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			}
 
 			double norm = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
-			double newPosY = Math.abs(j + (Math.tan(slopeAngle * Math.abs(cz - this.posZ))) + this.yOffset +0.3);
-			this.setPosition(cx + 0.5D, newPosY, this.posZ);
+			this.setPosition(cx + 0.5D,  Math.abs(j + (Math.tan(slopeAngle * Math.abs(cz - this.posZ))) + this.yOffset +0.3), this.posZ);
 			this.moveEntity(0.0D, 0.0D, Math.copySign(norm, this.motionZ));
 
 			if (!(this instanceof Locomotive) && !(this instanceof EntityTracksBuilder)) {
@@ -1345,11 +1311,11 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				if (norm < 0.01) {
 					//System.out.println(motionZ);
 					if ((motionZ) < 0 && meta == 2) {
-						norm = norm += 0.0001;
+						norm += 0.0001;
 						motionZ = Math.copySign(motionZ, 1);
 					}
 					if ((motionZ) > 0 && meta == 0) {
-						norm = norm += 0.0001;
+						norm += 0.0001;
 						motionZ = Math.copySign(motionZ, -1);
 					}
 				}
@@ -1365,8 +1331,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			}
 
 			double norm = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
-			double newPosY = (j + (Math.tan(slopeAngle * Math.abs(cx - this.posX))) + this.yOffset+0.3);
-			this.setPosition(this.posX, newPosY, cz + 0.5D);
+			this.setPosition(this.posX, (j + (Math.tan(slopeAngle * Math.abs(cx - this.posX))) + this.yOffset+0.3), cz + 0.5D);
 			this.moveEntity(Math.copySign(norm, this.motionX), 0.0D, 0.0D);
 			if (!(this instanceof Locomotive) && !(this instanceof EntityTracksBuilder)) {
 				if ((this.posY - this.prevPosY) < 0) {
@@ -1377,11 +1342,11 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				if (norm < 0.01) {
 					//System.out.println(motionX);
 					if ((motionX) < 0 && meta == 1) {
-						norm = norm += 0.0001;
+						norm += 0.0001;
 						motionX = Math.copySign(motionX, 1);
 					}
 					if ((motionX) > 0 && meta == 3) {
-						norm = norm += 0.0001;
+						norm += 0.0001;
 						motionX = Math.copySign(motionX, -1);
 					}
 				}
@@ -1392,7 +1357,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		}
 	}
 
-	protected void moveOnTC90TurnRail(int i, int j, int k, double r, double cx, double cy, double cz, String type, int meta) {
+	protected void moveOnTC90TurnRail(int i, int j, int k, double r, double cx, double cz) {
 		//System.out.println("curve");
 		posY = j + 0.2;
 		double cpx = posX - cx;
@@ -1407,30 +1372,15 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		double vx2 = -norm_cpz * vnorm;//-v
 		double vz2 = norm_cpx * vnorm;//u
 
-		double px2 = posX + motionX * 2;
-		double pz2 = posZ + motionZ * 2;
-
-		double px2_cx = px2 - cx;
-		double pz2_cz = pz2 - cz;
+		double px2_cx = (posX + motionX * 2) - cx;
+		double pz2_cz = (posZ + motionZ * 2) - cz;
 
 		double p2_c_norm = Math.sqrt((px2_cx * px2_cx) + (pz2_cz * pz2_cz));
 
-		double px2_cx_norm = px2_cx / p2_c_norm;
-		double pz2_cz_norm = pz2_cz / p2_c_norm;
+		vx2 = Math.copySign(vx2, (cx + ((px2_cx / p2_c_norm) * r)) - posX);
+		vz2 = Math.copySign(vz2, (cz + ((pz2_cz / p2_c_norm) * r)) - posZ);
 
-		double px3 = cx + (px2_cx_norm * r);
-		double pz3 = cz + (pz2_cz_norm * r);
-
-		double signX = px3 - posX;
-		double signZ = pz3 - posZ;
-
-		vx2 = Math.copySign(vx2, signX);
-		vz2 = Math.copySign(vz2, signZ);
-
-		double p_corr_x = cx + ((cpx / cp_norm) * r);
-		double p_corr_z = cz + ((cpz / cp_norm) * r);
-
-		setPosition(p_corr_x, posY + yOffset, p_corr_z);
+		setPosition(cx + ((cpx / cp_norm) * r), posY + yOffset, cz + ((cpz / cp_norm) * r));
 
 		moveEntity(vx2, 0.0D, vz2);
 
@@ -1445,14 +1395,21 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		if (!(this instanceof Locomotive)) {
 			int l = MathHelper.floor_double(serverRealRotation * 4.0F / 360.0F + 0.5D) & 3;
 			//System.out.println(l);
-			if (l == 2 || l == 0) moveEntity(motionX, 0.0D, 0.0D);
-			if (l == 1 || l == 3) moveEntity(0.0D, 0.0D, motionZ);
+			if (l == 2 || l == 0){
+				moveEntity(motionX, 0.0D, 0.0D);
+			} else if (l == 1 || l == 3){
+				moveEntity(0.0D, 0.0D, motionZ);
+			}
 		}
 		else {
 			int l = MathHelper.floor_double(rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
 			//System.out.println(l);
-			if (l == 2 || l == 0) moveEntity(motionX, 0.0D, 0.0D);
-			if (l == 1 || l == 3) moveEntity(0.0D, 0.0D, motionZ);
+			if (l == 2 || l == 0){
+				moveEntity(motionX, 0.0D, 0.0D);
+			}
+			else if (l == 1 || l == 3){
+				moveEntity(0.0D, 0.0D, motionZ);
+			}
 			//moveEntity(motionX, 0.0D, motionZ);
 		}
 	}

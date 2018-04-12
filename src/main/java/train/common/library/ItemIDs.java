@@ -222,6 +222,11 @@ public enum ItemIDs {
 	minecartTenderAdler("ItemRollingStock", "train_tender_adler", 1),
 	minecartPassengerAdler("ItemRollingStock", "train_passenger_adler", 2),
 
+	minecartPassengerRheingold("ItemRollingStock", "train_passenger_rheingold", 5),
+	minecartPassengerRheingoldDining1("ItemRollingStock", "train_passenger_rheingolddining1", 5),
+	minecartPassengerRheingoldDining2("ItemRollingStock", "train_passenger_rheingolddining2", 5),
+	minecartPassengerRheingoldPanorama("ItemRollingStock", "train_passenger_rheingoldpanorama", 5),
+
 	minecartCabooseLogging("ItemRollingStock", "train_logging_caboose", 1),
 	minecartCabooseLoggingPRR("ItemRollingStock", "train_prr_caboose", 1),
 	minecartPassengerTramNY("ItemRollingStock", "train_tram_ny", 3),

@@ -7,13 +7,13 @@ import net.minecraft.world.World;
 import train.common.api.EntityRollingStock;
 import train.common.api.IPassenger;
 
-public class EntityPassengerGS4_Observatory extends EntityRollingStock implements IPassenger {
+public class EntityPassengerRheingoldPanorama extends EntityRollingStock implements IPassenger {
 
-	public EntityPassengerGS4_Observatory(World world) {
+	public EntityPassengerRheingoldPanorama(World world) {
 		super(world);
 	}
 
-	public EntityPassengerGS4_Observatory(World world, double d, double d1, double d2) {
+	public EntityPassengerRheingoldPanorama(World world, double d, double d1, double d2) {
 		this(world);
 		setPosition(d, d1 + yOffset, d2);
 		motionX = 0.0D;
@@ -83,6 +83,6 @@ public class EntityPassengerGS4_Observatory extends EntityRollingStock implement
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return 3.1F;
+		return 3.45F;
 	}
 }
