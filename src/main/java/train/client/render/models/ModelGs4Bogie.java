@@ -7,13 +7,11 @@
 // Created on:29.03.2018 - 20:17:08
 // Last changed on: 29.03.2018 - 20:17:08
 
-package com.flansmod.client.model.YourPackage;
+package train.client.render.models;
 
-import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
-import com.flansmod.client.tmt.ModelRendererTurbo;
-import com.flansmod.client.tmt.Coord2D;
-import com.flansmod.client.tmt.Shape2D;
+import tmt.ModelBase;
+import tmt.ModelRendererTurbo;
 
 public class ModelGs4Bogie extends ModelBase
 {

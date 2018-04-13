@@ -10,8 +10,12 @@
 package train.client.render.models;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.util.ResourceLocation;
+import org.lwjgl.opengl.GL11;
 import tmt.ModelBase;
 import tmt.ModelRendererTurbo;
+import tmt.Tessellator;
+import train.common.library.Info;
 
 public class ModelRheingoldPassenger extends ModelBase
 {
@@ -480,6 +484,7 @@ public class ModelRheingoldPassenger extends ModelBase
 
 
 	}
+	private ModelDeiticBogie bogie1 = new ModelDeiticBogie();
 
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
@@ -488,6 +493,21 @@ public class ModelRheingoldPassenger extends ModelBase
 		{
 			rheingoldpassengerModel[i].render(f5);
 		}
+
+		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/Class85_Bogie.png"));
+		GL11.glPushMatrix();
+		GL11.glTranslated(-3.2,-0.32,0);
+		GL11.glScaled(0.7,0.7,0.9);
+		GL11.glRotated(90,0,1,0);
+		bogie1.render(entity,f,f1,f2,f3,f4,f5);
+		GL11.glPopMatrix();
+
+		GL11.glPushMatrix();
+		GL11.glTranslated(2.7,-0.32,0);
+		GL11.glScaled(0.7,0.7,0.9);
+		GL11.glRotated(90,0,1,0);
+		bogie1.render(entity,f,f1,f2,f3,f4,f5);
+		GL11.glPopMatrix();
 	}
 
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5)
