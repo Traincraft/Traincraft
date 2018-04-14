@@ -102,7 +102,7 @@ public enum ItemIDs {
 	minecartBoxCartUS("ItemRollingStock", "train_box_us", 4),
 	minecartBoxCartPRR("ItemRollingStock", "train_box_prr", 4),
 	minecartFreightHopperUS("ItemRollingStock", "train_hopper_us", 6),
-	//minecartFreight100TonHopper("ItemRollingStock", "train_100_ton_hopper", 8),
+	minecartFreight100TonHopper("ItemRollingStock", "train_100_ton_hopper", 8),
 	minecartTankWagonUS("ItemRollingStock", "train_tank_us_2", 8),
 	minecartTankWagonThreeDome("ItemRollingStock", "train_tank_three_dome", 7),
 	minecartFlatCartWoodUS("ItemRollingStock", "train_flat_wood", 3),
