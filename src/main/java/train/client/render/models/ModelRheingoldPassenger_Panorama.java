@@ -645,7 +645,7 @@ public class ModelRheingoldPassenger_Panorama extends ModelBase
 		GL11.glPopMatrix();
 
 		GL11.glPushMatrix();
-		GL11.glTranslated(2.6,-0.32,0);
+		GL11.glTranslated(2.5,-0.32,0);
 		GL11.glScaled(0.7,0.7,0.9);
 		GL11.glRotated(90,0,1,0);
 		bogie1.render(entity,f,f1,f2,f3,f4,f5);

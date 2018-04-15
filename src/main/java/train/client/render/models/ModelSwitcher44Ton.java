@@ -1074,7 +1074,7 @@ public class ModelSwitcher44Ton extends ModelBase
 		shunter44tonModel[260].addShapeBox(0F, 0F, 0F, 1, 17, 14, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 1F, 0F, 0F); // Box 261
 		shunter44tonModel[260].setRotationPoint(14F, -15F, 7F);
 		shunter44tonModel[260].rotateAngleY = -3.14159265F;
-
+		fixRotation(shunter44tonModel, false, true, true);
 
 	}
 

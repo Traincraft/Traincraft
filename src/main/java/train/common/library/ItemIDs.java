@@ -164,6 +164,7 @@ public enum ItemIDs {
 	minecartFreightGTNG("ItemRollingStock", "freight_gtng", 5),
 	minecartKof_DB("ItemRollingStock", "train_kof", 10),
 	minecartV60_DB("ItemRollingStock", "train_v60", 10),
+	minecartE10_DB("ItemRollingStock", "train_e10db", 10),
 	minecartIC4_DSB_FG("ItemRollingStock", "train_ic4_dsb_fg", 10),
 	minecartIC4_DSB_FH("ItemRollingStock", "train_ic4_dsb_fh", 10),
 	minecartIC4_DSB_MG("ItemRollingStock", "train_ic4_dsb_mg", 10),
@@ -229,6 +230,11 @@ public enum ItemIDs {
 	minecartPassengerRheingoldDining1("ItemRollingStock", "train_passenger_rheingolddining1", 5),
 	minecartPassengerRheingoldDining2("ItemRollingStock", "train_passenger_rheingolddining2", 5),
 	minecartPassengerRheingoldPanorama("ItemRollingStock", "train_passenger_rheingoldpanorama", 5),
+
+	minecartPassengerMILW("ItemRollingStock", "train_passenger_milw", 5),
+	minecartPassengerMILWTail("ItemRollingStock", "train_passenger_milw_tail", 5),
+	minecartBaggageMILW("ItemRollingStock", "train_baggage_milw", 5),
+	//minecartPassengerMILWDiner("ItemRollingStock", "train_passenger_milw_diner", 5),
 
 	minecartCabooseLogging("ItemRollingStock", "train_logging_caboose", 1),
 	minecartCabooseLoggingPRR("ItemRollingStock", "train_prr_caboose", 1),

@@ -447,14 +447,14 @@ public class ModelRheingoldPassenger_Dining1 extends ModelBase
 
 		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/Class85_Bogie.png"));
 		GL11.glPushMatrix();
-		GL11.glTranslated(-3.2,-0.32,0);
+		GL11.glTranslated(-3.3,-0.32,0);
 		GL11.glScaled(0.7,0.7,0.9);
 		GL11.glRotated(90,0,1,0);
 		bogie1.render(entity,f,f1,f2,f3,f4,f5);
 		GL11.glPopMatrix();
 
 		GL11.glPushMatrix();
-		GL11.glTranslated(2.7,-0.32,0);
+		GL11.glTranslated(2.6,-0.32,0);
 		GL11.glScaled(0.7,0.7,0.9);
 		GL11.glRotated(90,0,1,0);
 		bogie1.render(entity,f,f1,f2,f3,f4,f5);
