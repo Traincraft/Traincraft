@@ -1977,7 +1977,7 @@ public class ModelDRGCombo extends ModelBase
 		drgcomboModel[477].addShapeBox(0F, 0F, 0F, 1, 1, 12, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F); // Box 488
 		drgcomboModel[477].setRotationPoint(28F, 6F, -6F);
 
-
+		fixRotation(drgcomboModel, false, true, true);
 	}
 
 	@Override

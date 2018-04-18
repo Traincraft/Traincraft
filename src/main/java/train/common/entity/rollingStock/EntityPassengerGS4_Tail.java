@@ -38,7 +38,37 @@ public class EntityPassengerGS4_Tail extends EntityRollingStock implements IPass
 		double distance = 1.3;
 		riddenByEntity.setPosition(posX - Math.cos(rads)*distance, posY + (Math.tan(pitchRads)*-distance)+( getMountedYOffset() + riddenByEntity.getYOffset() + 0.2F), posZ - Math.sin(rads)*distance);
 		*/
-		riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset() + 0.4, posZ);
+		double pitchRads = this.anglePitchClient * Math.PI / 180.0D;
+		double distance = -0.5;
+		double yOffset = 0;
+		float rotationCos1 = (float) Math.cos(Math.toRadians(this.renderYaw + 0));
+		float rotationSin1 = (float) Math.sin(Math.toRadians((this.renderYaw + 0)));
+		if (side.isServer()) {
+			rotationCos1 = (float) Math.cos(Math.toRadians(this.serverRealRotation + 0));
+			rotationSin1 = (float) Math.sin(Math.toRadians((this.serverRealRotation + 0)));
+			anglePitchClient = serverRealPitch * 60;
+		}
+		float pitch = (float) (posY + ((Math.tan(pitchRads) * distance) + getMountedYOffset())
+				+ riddenByEntity.getYOffset() + yOffset);
+		float pitch1 = (float) (posY + getMountedYOffset() + riddenByEntity.getYOffset() + yOffset);
+		double bogieX1 = (this.posX + (rotationCos1 * distance));
+		double bogieZ1 = (this.posZ + (rotationSin1 * distance));
+		// System.out.println(rotationCos1+" "+rotationSin1);
+		if (anglePitchClient > 20 && rotationCos1 == 1) {
+			bogieX1 -= pitchRads * 2;
+			pitch -= pitchRads * 1.2;
+		}
+		if (anglePitchClient > 20 && rotationSin1 == 1) {
+			bogieZ1 -= pitchRads * 2;
+			pitch -= pitchRads * 1.2;
+		}
+		double rads = this.rotationYawClientReal-90 * 3.141592653589793D / 180.0D;
+		if (pitchRads == 0.0) {
+			riddenByEntity.setPosition(bogieX1- (Math.cos(rads)*-0.05), pitch1+ (Math.tan(this.anglePitchClient * 3.141592653589793D / 180.0D)*0.05), bogieZ1- (Math.sin(rads)*-0.05));
+		}
+		else if (pitchRads > -1.01 && pitchRads < 1.01) {
+			riddenByEntity.setPosition(bogieX1- (Math.cos(rads)*-0.05), pitch+ (Math.tan(this.anglePitchClient * 3.141592653589793D / 180.0D)*0.05), bogieZ1- (Math.sin(rads)*-0.05));
+		}
 	}
 
 	@Override

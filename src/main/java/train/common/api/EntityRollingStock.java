@@ -21,6 +21,7 @@ import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemDye;
+import net.minecraft.item.ItemRedstone;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
@@ -1628,10 +1629,13 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 					for (int t = 0; t < this.acceptedColors.size(); t++) {
 						concatColors = concatColors.concat(getColorAsString(this.acceptedColors.get(t)) + ", ");
 					}
-					entityplayer.addChatMessage(new ChatComponentText("Possible colors" + concatColors));
+					entityplayer.addChatMessage(new ChatComponentText("Possible colors" + concatColors + ", redstone"));
 					entityplayer.addChatMessage(new ChatComponentText("To paint, click me with the right dye"));
 					return true;
 				}
+			}
+			else if (itemstack != null && itemstack.getItem() instanceof ItemRedstone){
+				this.setColor(420);
 			}
 			else if (this.acceptedColors != null && this.acceptedColors.size() == 0) {
 				entityplayer.addChatMessage(new ChatComponentText("No other colors available"));

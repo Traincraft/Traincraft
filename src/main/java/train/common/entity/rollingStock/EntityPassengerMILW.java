@@ -33,12 +33,12 @@ public class EntityPassengerMILW extends EntityRollingStock implements IPassenge
 			//System.out.println(worldObj.isRemote+ " "+(posX - dX) +" " + (posZ - dZ));
 			//riddenByEntity.setPosition(posX - dX, posY + getMountedYOffset() + riddenByEntity.getYOffset() + 0.2, posZ-dZ);	
 		//}
-		/*double rads = this.rotationYawClientReal-90 * 3.141592653589793D / 180.0D;
-		double pitchRads = this.anglePitchClient * 3.141592653589793D / 180.0D;
-		double distance = 1.3;
-		riddenByEntity.setPosition(posX - Math.cos(rads)*distance, posY + (Math.tan(pitchRads)*-distance)+( getMountedYOffset() + riddenByEntity.getYOffset() + 0.2F), posZ - Math.sin(rads)*distance);
-		*/
-		riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset() + 0.2, posZ);
+		double rads = this.rotationYawClientReal-90 * 3.141592653589793D / 180.0D;
+		//double pitchRads = this.anglePitchClient * 3.141592653589793D / 180.0D;
+		//double distance = -0.2;
+		riddenByEntity.setPosition(posX - Math.cos(rads)*-0.2, posY + (Math.tan(this.anglePitchClient * 3.141592653589793D / 180.0D)*0.2)+( getMountedYOffset() + riddenByEntity.getYOffset() + 0.2F), posZ - Math.sin(rads)*-0.2);
+
+		//riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset() + 0.2, posZ);
 	}
 
 	@Override

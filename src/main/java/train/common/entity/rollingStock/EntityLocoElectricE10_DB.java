@@ -8,25 +8,17 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
 import train.common.Traincraft;
-import train.common.api.LiquidManager;
-import train.common.api.SteamTrain;
-import train.common.library.EnumTrains;
+import train.common.api.ElectricTrain;
 import train.common.library.GuiIDs;
 
-public class EntityLocoSteamC41 extends SteamTrain {
-	public EntityLocoSteamC41(World world) {
-		super(world, EnumTrains.locoSteamC41.getTankCapacity(), LiquidManager.WATER_FILTER);
-		initLocoSteam();
+public class EntityLocoElectricE10_DB extends ElectricTrain {
+	public EntityLocoElectricE10_DB(World world) {
+		super(world);
 	}
 
-	public void initLocoSteam() {
-		fuelTrain = 0;
-		locoInvent = new ItemStack[inventorySize];
-	}
-
-	public EntityLocoSteamC41(World world, double d, double d1, double d2) {
+	public EntityLocoElectricE10_DB(World world, double d, double d1, double d2) {
 		this(world);
-		setPosition(d, d1 + (double) yOffset, d2);
+		setPosition(d, d1 + yOffset, d2);
 		motionX = 0.0D;
 		motionY = 0.0D;
 		motionZ = 0.0D;
@@ -38,28 +30,28 @@ public class EntityLocoSteamC41 extends SteamTrain {
 	@Override
 	public void updateRiderPosition() {
 		double pitchRads = this.anglePitchClient * Math.PI / 180.0D;
-		double distance = -0.2;
-		double yOffset = 0.3;
+		double distance = 4.75;
+		double yOffset = 0.35;
 		float rotationCos1 = (float) Math.cos(Math.toRadians(this.renderYaw + 90));
 		float rotationSin1 = (float) Math.sin(Math.toRadians((this.renderYaw + 90)));
-		if(side.isServer()){
+		if (side.isServer()) {
 			rotationCos1 = (float) Math.cos(Math.toRadians(this.serverRealRotation + 90));
 			rotationSin1 = (float) Math.sin(Math.toRadians((this.serverRealRotation + 90)));
-			anglePitchClient = serverRealPitch*60;
+			anglePitchClient = serverRealPitch * 60;
 		}
 		float pitch = (float) (posY + ((Math.tan(pitchRads) * distance) + getMountedYOffset())
 				+ riddenByEntity.getYOffset() + yOffset);
 		float pitch1 = (float) (posY + getMountedYOffset() + riddenByEntity.getYOffset() + yOffset);
 		double bogieX1 = (this.posX + (rotationCos1 * distance));
-		double bogieZ1 = (this.posZ + (rotationSin1* distance));
+		double bogieZ1 = (this.posZ + (rotationSin1 * distance));
 		// System.out.println(rotationCos1+" "+rotationSin1);
-		if(anglePitchClient>20 && rotationCos1 == 1){
+		if (anglePitchClient > 20 && rotationCos1 == 1) {
 			bogieX1 -= pitchRads * 2;
-			pitch-=pitchRads*1.2;
+			pitch -= pitchRads * 1.2;
 		}
-		if(anglePitchClient>20 && rotationSin1 == 1){
+		if (anglePitchClient > 20 && rotationSin1 == 1) {
 			bogieZ1 -= pitchRads * 2;
-			pitch-=pitchRads*1.2;
+			pitch -= pitchRads * 1.2;
 		}
 		if (pitchRads == 0.0) {
 			riddenByEntity.setPosition(bogieX1, pitch1, bogieZ1);
@@ -83,18 +75,9 @@ public class EntityLocoSteamC41 extends SteamTrain {
 	}
 
 	@Override
-	public void onUpdate() {
-		super.onUpdate();
-		if (worldObj.isRemote) {
-			return;
-		}
-		checkInvent(locoInvent[0], locoInvent[1], this);
-	}
-
-	@Override
 	protected void writeEntityToNBT(NBTTagCompound nbttagcompound) {
 		super.writeEntityToNBT(nbttagcompound);
-		
+
 		nbttagcompound.setShort("fuelTrain", (short) fuelTrain);
 		NBTTagList nbttaglist = new NBTTagList();
 		for (int i = 0; i < locoInvent.length; i++) {
@@ -111,7 +94,7 @@ public class EntityLocoSteamC41 extends SteamTrain {
 	@Override
 	protected void readEntityFromNBT(NBTTagCompound nbttagcompound) {
 		super.readEntityFromNBT(nbttagcompound);
-		
+
 		fuelTrain = nbttagcompound.getShort("fuelTrain");
 		NBTTagList nbttaglist = nbttagcompound.getTagList("Items", Constants.NBT.TAG_COMPOUND);
 		locoInvent = new ItemStack[getSizeInventory()];
@@ -128,10 +111,9 @@ public class EntityLocoSteamC41 extends SteamTrain {
 	public int getSizeInventory() {
 		return inventorySize;
 	}
-
 	@Override
 	public String getInventoryName() {
-		return "C41";
+		return "Class 85";
 	}
 
 	@Override
@@ -151,14 +133,13 @@ public class EntityLocoSteamC41 extends SteamTrain {
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return 0.65F;
+		return 0.56F;
 	}
 
 	@Override
 	public boolean canBeAdjusted(EntityMinecart cart) {
 		return canBeAdjusted;
 	}
-
 	@Override
 	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
 		return true;

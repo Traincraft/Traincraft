@@ -1827,6 +1827,7 @@ public class ModelDRGPassenger extends ModelBase
 		drgpassengerModel[443].addShapeBox(0F, 0F, 0F, 1, 1, 12, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F); // Box 454
 		drgpassengerModel[443].setRotationPoint(27F, 6F, -6F);
 
+		fixRotation(drgpassengerModel, false, true, true);
 
 	}
 

@@ -596,6 +596,7 @@ public class ModelMILWPassenger extends ModelBase
 		passengermilwModel[141].addShapeBox(0F, 0F, 0F, 1, 1, 16, 0F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 156
 		passengermilwModel[141].setRotationPoint(48F, -21F, -8F);
 
+		fixRotation(passengermilwModel, false, true, true);
 
 	}
 

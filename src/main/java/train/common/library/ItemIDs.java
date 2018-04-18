@@ -235,6 +235,8 @@ public enum ItemIDs {
 	minecartPassengerMILWTail("ItemRollingStock", "train_passenger_milw_tail", 5),
 	minecartBaggageMILW("ItemRollingStock", "train_baggage_milw", 5),
 	//minecartPassengerMILWDiner("ItemRollingStock", "train_passenger_milw_diner", 5),
+	minecartLocoMILWClassA("ItemRollingStock", "train_milw_class_a", 7),
+	minecartMILWTender("ItemRollingStock", "train_milw_tender", 5),
 
 	minecartCabooseLogging("ItemRollingStock", "train_logging_caboose", 1),
 	minecartCabooseLoggingPRR("ItemRollingStock", "train_prr_caboose", 1),

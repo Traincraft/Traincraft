@@ -1915,7 +1915,7 @@ public class ModelDRGBaggage extends ModelBase
 		drgbaggageModel[452].addBox(0F, 0F, 0F, 5, 2, 6, 0F); // Box 463
 		drgbaggageModel[452].setRotationPoint(-36F, 3F, -3F);
 
-
+		fixRotation(drgbaggageModel, false, true, true);
 	}
 
 	@Override
