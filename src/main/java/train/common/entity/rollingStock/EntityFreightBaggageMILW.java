@@ -106,7 +106,7 @@ public class EntityFreightBaggageMILW extends Freight implements IInventory {
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return 3.05F;
+		return 2.7F;
 	}
 
 	@Override

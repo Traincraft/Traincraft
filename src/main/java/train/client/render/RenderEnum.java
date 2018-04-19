@@ -446,7 +446,7 @@ public enum RenderEnum {
 		}
 	}, "explode", new ArrayList<double[]>() {
 		{
-			add(new double[] { 1.8D, -0.4D, 0.8D });
+			add(new double[] { 2.8D, -0.4D, 0.8D });
 		}
 	}, 2, true),
 	locoSteamA4Mallard(EntityLocoSteamMallardA4.class, new ModelA4Locomotive(), "locoA4_UK_", true, new float[] {-3.0F, 0.2F, 0F }, new float[] { 0F, 180F, 180F }, new float[]{0.975f,0.975f,0.975f}, "largesmoke", 20, new ArrayList<double[]>() {
@@ -455,7 +455,7 @@ public enum RenderEnum {
 		}
 	}, "explode", new ArrayList<double[]>() {
 		{
-			add(new double[] { 4.5D, -0.4D, 0.8D });
+			add(new double[] { 4.9D, -0.4D, 0.8D });
 		}
 	}, 2, true),
 	locoSteamMILWClassA(EntityLocoSteamMILWClassA.class, new ModelMILWClassA(), "locoMILW_ClassA", false, new float[] {0.0F, 0.2F, 0F }, new float[] { 0F, 180F, 180F }, new float[]{0.975f,0.975f,0.975f}, "largesmoke", 20, new ArrayList<double[]>() {

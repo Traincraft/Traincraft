@@ -71,6 +71,6 @@ public class EntityBulkheadFlatCart extends EntityRollingStock implements IPasse
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return 1.4F;
+		return 2.3F;
 	}
 }

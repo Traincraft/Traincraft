@@ -151,7 +151,7 @@ public class EntityLocoDiesel44TonSwitcher extends DieselTrain {
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return (1.2F);
+		return (1.0F);
 	}
 
 	@Override

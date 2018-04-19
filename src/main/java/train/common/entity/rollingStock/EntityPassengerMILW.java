@@ -83,6 +83,6 @@ public class EntityPassengerMILW extends EntityRollingStock implements IPassenge
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return 3.1F;
+		return 2.7F;
 	}
 }
