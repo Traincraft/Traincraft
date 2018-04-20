@@ -86,7 +86,7 @@ public enum EnumTrains {
 	freight100TonHopper("Freight 100 Ton Hopper",EntityFreight100TonHopper.class, ItemIDs.minecartFreight100TonHopper.item,"freight",4,new String[]{"Red", "White", "Black", "Blue", "Grey"},18, 36, new String[] {"Cargo: blocks"}),
 	flatCartWoodUS("Freight Flat Cart Wood US",EntityFlatCartWoodUS.class, ItemIDs.minecartFlatCartWoodUS.item,"freight",3,null,18, 27,new String[] {"Cargo: only planks"}),
 	bulkheadFlatCartWood("Freight Bulkhead Flat Cart",EntityBulkheadFlatCart.class, ItemIDs.minecartBulkheadFlatCart.item,"freight",3,new String[]{"Brown", "Yellow", "Green"},18, 27,new String[] {"Cargo: only planks"}),
-	freightCartUS("Freight Cart US",EntityFreightCartUS.class, ItemIDs.minecartFreightCartUS.item,"freight",3.5,null,18,36,new String[] {"Cargo: blocks, vanilla items"}),
+	freightCartUS("Freight Cart US",EntityFreightCartUS.class, ItemIDs.minecartFreightCartUS.item,"freight",3.5,new String[]{"Brown", "Yellow"},18,36,new String[] {"Cargo: blocks, vanilla items"}),
 	freightBoxCartUS("Freight Box Cart US",EntityBoxCartUS.class, ItemIDs.minecartBoxCartUS.item,"freight",2,new String[]{"Brown", "Yellow", "Blue", "Orange"},18,45,new String[] {"Cargo: any"}),
 	freightBoxCartPRR("Freight Box Cart PRR",EntityBoxCartPRR.class, ItemIDs.minecartBoxCartPRR.item,"freight",2,null,18,45,new String[] {"Cargo: any"}),
 	freightCartSmall("Freight Cart Small",EntityFreightCartSmall.class, ItemIDs.minecartFreightCartSmall.item,"freight",1,null,18,36,new String[] {"Cargo: any"}),
@@ -112,6 +112,7 @@ public enum EnumTrains {
 	freightTrailer("Freight Trailer",EntityFreightTrailer.class, ItemIDs.minecartFreightTrailer.item,"freight",3,new String[] {"Blue","Yellow","LightBlue","Red","Grey"},18,54,new String[] {"Cargo: any"}),
 	freightDenverRioGrange("Denver Rio Grande Baggage", EntityFreightDenverRioGrande.class,ItemIDs.minecartDenverRioGrandeBaggage.item, "freight",0.5,null,18,54,new String[] {"Cargo: any"}),
 	freightMILWBaggage("MILW Baggage", EntityFreightBaggageMILW.class,ItemIDs.minecartBaggageMILW.item, "freight",0.5,null,18,54,new String[] {"Cargo: any"}),
+	freightheavyweight("Heavyweight Freight Car", EntityFreightHeavyweight.class,ItemIDs.minecartHeavyweight.item, "freight",0.5,null,18,54,new String[] {"Cargo: any"}),
 
 	/** Tanks **/
 	tankWagon_DB("Tank Wagon DB",EntityTankWagon_DB.class,ItemIDs.minecartTankWagon_DB.item,"tank",0,0,6,0,0,0,0,0,50000,new String[]{"Blue", "Green"},18,0,new String[] {"Capacity: 50000mb"}),
@@ -147,7 +148,7 @@ public enum EnumTrains {
 	locoDieselGP40("Loco Diesel CD742", EntityLocoDieselCD742.class,  ItemIDs.minecartCD742.item, "diesel", 1200, 90,
 			0, 50, 0, 250, 0.8, 0.966, 10000, new String[] { "Yellow", "White", "Blue", "Orange", "LightBlue" }, 15, -2.5),
 	locoDieselChME3("Loco Diesel ChME3", EntityLocoDieselChME3.class,  ItemIDs.minecartChmE3.item,"diesel", 1318, 95, 0, 60, 0, 170, 0.66, 0.96, 5000, null, 15,  -1.2),
-	locoDieselGP7Red("Loco Diesel GP7",EntityLocoDieselGP7Red.class, ItemIDs.minecartGP7Red.item,"diesel",1520,112,0,50,0,200,0.74,0.96,20000,new String[] {"Red","Blue","Black","Yellow", "Grey", "Cyan", "Pink", "LightGrey", "Green", "White", "LightBlue", "LimeGreen", "Brown", "Purple"},15,-1.4),
+	locoDieselGP7Red("Loco Diesel GP7",EntityLocoDieselGP7Red.class, ItemIDs.minecartGP7Red.item,"diesel",1520,112,0,50,0,200,0.74,0.96,20000,new String[] {"Red","Blue","Black","Yellow", "Magenta", "Cyan", "Pink", "LightGrey", "Green", "White", "LightBlue", "Lime", "Brown", "Purple"},15,-1.4),
 	locoDieselSD40("Loco Diesel SD40",EntityLocoDieselSD40.class, ItemIDs.minecartLocoSD40.item,"diesel",3041,134,0,60,0,200,0.8,0.97,20000,new String[] {"Red","Yellow","Black","Green","Orange","Magenta","Blue"},10,-2.3),
 	locoDieselSD70("Loco Diesel SD70",EntityLocoDieselSD70.class, ItemIDs.minecartLocoSD70.item,"diesel",4055,112,0,60,0,200,0.8,0.97,20000,new String[] {"Orange","Yellow","Red","Blue","Magenta","Black", "Pink"},10,-2.3),
 	locoDieselShunter("Loco Diesel Shunter", EntityLocoDieselShunter.class,  ItemIDs.minecartShunter.item,"diesel", 354, 32, 0, 70, 0, 260, 0.6, 0.94, 8000,new String[] { "Blue", "Green", "Red", "Black" }, 14,  -2.58),

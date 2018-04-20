@@ -114,6 +114,6 @@ public class EntityPassengerMILWTail extends EntityRollingStock implements IPass
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return 3.1F;
+		return 2.9F;
 	}
 }

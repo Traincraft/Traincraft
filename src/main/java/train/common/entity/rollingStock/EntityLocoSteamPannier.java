@@ -104,7 +104,7 @@ public class EntityLocoSteamPannier extends SteamTrain {
 
 	@Override
 	public String getInventoryName() {
-		return "4-0-4 Climax";
+		return "0-6-0 Pannier";
 	}
 
 	@Override

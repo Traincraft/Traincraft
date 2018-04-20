@@ -12,11 +12,11 @@ import train.common.Traincraft;
 import train.common.api.Freight;
 import train.common.library.GuiIDs;
 
-public class EntityFreightBaggageMILW extends Freight implements IInventory {
+public class EntityFreightHeavyweight extends Freight implements IInventory {
 	public int freightInventorySize;
 	public int numFreightSlots;
 
-	public EntityFreightBaggageMILW(World world) {
+	public EntityFreightHeavyweight(World world) {
 		super(world);
 		initFreightCart();
 	}
@@ -27,7 +27,7 @@ public class EntityFreightBaggageMILW extends Freight implements IInventory {
 		cargoItems = new ItemStack[freightInventorySize];
 	}
 
-	public EntityFreightBaggageMILW(World world, double d, double d1, double d2) {
+	public EntityFreightHeavyweight(World world, double d, double d1, double d2) {
 		this(world);
 		setPosition(d, d1 + (double) yOffset, d2);
 		motionX = 0.0D;

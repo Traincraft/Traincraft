@@ -131,7 +131,7 @@ public class EntityLocoDiesel44TonSwitcher extends DieselTrain {
 
 	@Override
 	public String getInventoryName() {
-		return "44 Ton Switcher";
+		return "GE 44 Ton Switcher";
 	}
 
 	@Override
