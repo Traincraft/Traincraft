@@ -10,8 +10,12 @@
 package train.client.render.models;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.util.ResourceLocation;
+import org.lwjgl.opengl.GL11;
 import tmt.ModelBase;
 import tmt.ModelRendererTurbo;
+import tmt.Tessellator;
+import train.common.library.Info;
 
 public class ModelE10DB extends ModelBase
 {
@@ -617,6 +621,7 @@ public class ModelE10DB extends ModelBase
 
 	}
 
+	private ModelDeiticBogie trucks = new ModelDeiticBogie();
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
@@ -624,6 +629,21 @@ public class ModelE10DB extends ModelBase
 		{
 			e10dbModel[i].render(f5);
 		}
+
+		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/Class85_Bogie.png"));
+		GL11.glPushMatrix();
+		GL11.glTranslated(-2.6,-0.05,0);
+		GL11.glScalef(0.8f,0.8f,0.8f);
+		GL11.glRotated(90f,0,1,0);
+		trucks.render(entity,f,f1,f2,f3,f4,f5);
+		GL11.glPopMatrix();
+
+		GL11.glPushMatrix();
+		GL11.glTranslated(1,-0.05,0);
+		GL11.glScalef(0.8f,0.8f,0.8f);
+		GL11.glRotated(90f,0,1,0);
+		trucks.render(entity,f,f1,f2,f3,f4,f5);
+		GL11.glPopMatrix();
 	}
 
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5)

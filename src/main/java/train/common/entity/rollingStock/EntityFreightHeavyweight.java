@@ -82,7 +82,7 @@ public class EntityFreightHeavyweight extends Freight implements IInventory {
 
 	@Override
 	public String getInventoryName() {
-		return "Freight cart";
+		return "Heavyweight Mailcar";
 	}
 
 	@Override
@@ -106,7 +106,7 @@ public class EntityFreightHeavyweight extends Freight implements IInventory {
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return 2.65F;
+		return 3.2F;
 	}
 
 	@Override

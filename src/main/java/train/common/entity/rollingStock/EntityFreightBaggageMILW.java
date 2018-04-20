@@ -82,7 +82,7 @@ public class EntityFreightBaggageMILW extends Freight implements IInventory {
 
 	@Override
 	public String getInventoryName() {
-		return "Freight cart";
+		return "MILW Baggage";
 	}
 
 	@Override

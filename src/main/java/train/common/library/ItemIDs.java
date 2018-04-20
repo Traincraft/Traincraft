@@ -162,7 +162,7 @@ public enum ItemIDs {
 	minecartFreightTrailer("ItemRollingStock", "train_freight_trailer", 5),
 	minecartFreightWellcar("ItemRollingStock", "train_freight_wellcar", 5),
 	minecartFreightGTNG("ItemRollingStock", "freight_gtng", 5),
-	minecartHeavyweight("ItemRollingStock", "heavyweight_mailcar", 5),
+	minecartHeavyweightMailcar("ItemRollingStock", "heavyweight_mailcar", 5),
 	minecartKof_DB("ItemRollingStock", "train_kof", 10),
 	minecartV60_DB("ItemRollingStock", "train_v60", 10),
 	minecartE10_DB("ItemRollingStock", "train_e10db", 10),

@@ -112,7 +112,7 @@ public enum EnumTrains {
 	freightTrailer("Freight Trailer",EntityFreightTrailer.class, ItemIDs.minecartFreightTrailer.item,"freight",3,new String[] {"Blue","Yellow","LightBlue","Red","Grey"},18,54,new String[] {"Cargo: any"}),
 	freightDenverRioGrange("Denver Rio Grande Baggage", EntityFreightDenverRioGrande.class,ItemIDs.minecartDenverRioGrandeBaggage.item, "freight",0.5,null,18,54,new String[] {"Cargo: any"}),
 	freightMILWBaggage("MILW Baggage", EntityFreightBaggageMILW.class,ItemIDs.minecartBaggageMILW.item, "freight",0.5,null,18,54,new String[] {"Cargo: any"}),
-	freightheavyweight("Heavyweight Freight Car", EntityFreightHeavyweight.class,ItemIDs.minecartHeavyweight.item, "freight",0.5,null,18,54,new String[] {"Cargo: any"}),
+	freightheavyweight("Heavyweight Freight Car", EntityFreightHeavyweight.class,ItemIDs.minecartHeavyweightMailcar.item, "freight",0.5,null,18,54,new String[] {"Cargo: any"}),
 
 	/** Tanks **/
 	tankWagon_DB("Tank Wagon DB",EntityTankWagon_DB.class,ItemIDs.minecartTankWagon_DB.item,"tank",0,0,6,0,0,0,0,0,50000,new String[]{"Blue", "Green"},18,0,new String[] {"Capacity: 50000mb"}),
@@ -181,7 +181,7 @@ public enum EnumTrains {
 			"electric", 149, 89, 0, 10, 0, 170, 0.7, 0.965, 0, null, 18, -3),
 	locoElectricBR185("Loco Electric BR 185", EntityLocoElectricBR185.class, ItemIDs.minecartLocoBR185.item,
 			"electric", 7604, 140, 0, 10, 0, 170, 0.7, 0.965, 0, new String[]{"Red", "Blue", "Magenta", "Cyan", "Grey", "LightBlue", "LightGrey", "Orange", "Pink", "Purple", "White", "Yellow"}, 18, -5),
-	locoDieselE10DB("Loco Diesel E10 DB",EntityLocoElectricE10_DB.class, ItemIDs.minecartE10_DB.item,"electric",5069,150,0,60,0,170,0.66,0.96,8000,new String[] {"Blue","Red", "Grey"},15,-3.6),
+	locoDieselE10DB("Loco Electric E10 DB",EntityLocoElectricE10_DB.class, ItemIDs.minecartE10_DB.item,"electric",5069,150,0,60,0,170,0.66,0.96,8000,new String[] {"Blue","Red", "Grey"},15,-3.6),
 	locoElectricClass85("Loco Electric Class 85", EntityLocoElectricClass85.class,
 			ItemIDs.minecartLocoClass85.item, "electric", 3156, 160, 0, 10, 0, 170, 0.7, 0.965, 0, null, 18, -5),
 

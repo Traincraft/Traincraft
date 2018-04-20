@@ -478,6 +478,8 @@ public class ModelBulkheadFlat extends ModelBase
 
 	}
 
+	private ModelWellcarBogie trucks = new ModelWellcarBogie();
+
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
@@ -485,6 +487,18 @@ public class ModelBulkheadFlat extends ModelBase
 		{
 			bulkheadflatModel[i].render(f5);
 		}
+		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/wellcar_bogie.png"));
+		GL11.glPushMatrix();
+		GL11.glTranslated(-1.8,0.2,-0.35);
+		GL11.glScalef(1.1f,1.1f,0.8f);
+		trucks.render(entity,f,f1,f2,f3,f4,f5);
+		GL11.glPopMatrix();
+
+		GL11.glPushMatrix();
+		GL11.glTranslated(1.6,0.2,-0.35);
+		GL11.glScalef(1.1f,1.1f,0.8f);
+		trucks.render(entity,f,f1,f2,f3,f4,f5);
+		GL11.glPopMatrix();
 	}
 
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5)
