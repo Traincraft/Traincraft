@@ -1629,7 +1629,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 					for (int t = 0; t < this.acceptedColors.size(); t++) {
 						concatColors = concatColors.concat(getColorAsString(this.acceptedColors.get(t)) + ", ");
 					}
-					entityplayer.addChatMessage(new ChatComponentText("Possible colors" + concatColors + ", redstone"));
+					entityplayer.addChatMessage(new ChatComponentText("Possible colors" + concatColors));
 					entityplayer.addChatMessage(new ChatComponentText("To paint, click me with the right dye"));
 					return true;
 				}
