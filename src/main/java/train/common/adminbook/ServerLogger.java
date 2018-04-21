@@ -79,6 +79,7 @@ public class ServerLogger {
             }
             sb.append("\n</xmlRoot>");//seemingly unnecessary new line added to the end, linux needs this sometimes.
             fileoutputstream.write(sb.toString().getBytes());
+            fileoutputstream.close();
         } catch (Exception e){
             //apparently we don't have permission, so, nevermind.
             e.printStackTrace();

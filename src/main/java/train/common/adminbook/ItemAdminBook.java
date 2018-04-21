@@ -6,7 +6,6 @@ import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import io.netty.buffer.ByteBuf;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -205,8 +204,10 @@ public class ItemAdminBook extends Item {
                                     }
                                 }
                             } else if (event==2){
-                                if (new File(DimensionManager.getCurrentSaveRootDirectory().getAbsolutePath() + "\\traincraft\\" + message.id).exists()) {
-                                    new File(DimensionManager.getCurrentSaveRootDirectory().getAbsolutePath() + "\\traincraft\\" + message.id).delete();
+                                System.out.println(DimensionManager.getCurrentSaveRootDirectory().getAbsolutePath() + "\\traincraft\\" + message.id);
+                                File deleteme = new File(DimensionManager.getCurrentSaveRootDirectory().getAbsolutePath() + "\\traincraft\\" + message.id);
+                                if (deleteme.exists()) {
+                                    deleteme.delete();
                                 }
                             }
                         } catch (Exception e){}
@@ -299,16 +300,12 @@ public class ItemAdminBook extends Item {
         public static class Handler implements IMessageHandler<PacketAdminBook, IMessage> {
             @Override
             public IMessage onMessage(PacketAdminBook message, MessageContext context) {
-                Minecraft.getMinecraft().displayGuiScreen(new GUIAdminBook(message.datacsv));
+                Traincraft.proxy.openadmingui(message.datacsv);
 
                 return null;
             }
 
         }
-
-
-
-
     }
 
 }

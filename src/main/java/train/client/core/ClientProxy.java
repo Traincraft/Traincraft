@@ -28,6 +28,7 @@ import train.client.core.helpers.JLayerHook;
 import train.client.gui.*;
 import train.client.render.*;
 import train.common.Traincraft;
+import train.common.adminbook.GUIAdminBook;
 import train.common.api.EntityBogie;
 import train.common.api.EntityRollingStock;
 import train.common.core.CommonProxy;
@@ -235,6 +236,11 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public float getJukeboxVolume() {
 		return Minecraft.getMinecraft().gameSettings.getSoundLevel(SoundCategory.RECORDS) * Minecraft.getMinecraft().gameSettings.getSoundLevel(SoundCategory.MASTER);
+	}
+
+	@Override
+	public void openadmingui(String data){
+		Minecraft.getMinecraft().displayGuiScreen(new GUIAdminBook(data));
 	}
 
 	@Override

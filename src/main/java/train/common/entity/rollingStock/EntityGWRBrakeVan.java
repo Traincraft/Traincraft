@@ -7,8 +7,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import train.common.Traincraft;
 import train.common.api.AbstractWorkCart;
-import train.common.api.EntityRollingStock;
-import train.common.api.IPassenger;
 import train.common.library.GuiIDs;
 
 public class EntityGWRBrakeVan extends AbstractWorkCart implements IInventory {

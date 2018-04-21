@@ -20,7 +20,6 @@ import train.common.core.network.PacketSetTrainLockedToClient;
 import train.common.inventory.InventoryLiquid;
 import train.common.library.Info;
 
-import java.util.Collections;
 import java.util.List;
 
 public class GuiLiquid extends GuiContainer {

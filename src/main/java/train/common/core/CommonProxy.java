@@ -179,6 +179,8 @@ public class CommonProxy implements IGuiHandler {
 			p.stop();
 		}
 	}
+
+	public void openadmingui(String data){}
 	
 	public static boolean checkJukeboxEntity(World world, int id) {
 		return  world.getEntityByID(id)!=null;

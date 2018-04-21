@@ -10,12 +10,8 @@
 package train.client.render.models;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.util.ResourceLocation;
-import org.lwjgl.opengl.GL11;
 import tmt.ModelBase;
 import tmt.ModelRendererTurbo;
-import tmt.Tessellator;
-import train.common.library.Info;
 
 public class ModelHeavyweight extends ModelBase
 {
