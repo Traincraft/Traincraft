@@ -9,6 +9,7 @@
 
 package train.client.render.models;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import tmt.ModelBase;
 import tmt.ModelRendererTurbo;
@@ -216,7 +217,7 @@ public class ModelLocoC41T extends ModelBase
 		lococ41tModel[192] = new ModelRendererTurbo(this, 183, 118, textureX, textureY); // Box 352
 		lococ41tModel[193] = new ModelRendererTurbo(this, 141, 121, textureX, textureY); // Box 353
 		lococ41tModel[194] = new ModelRendererTurbo(this, 150, 121, textureX, textureY); // Box 354
-		lococ41tModel[195] = new ModelRendererTurbo(this, 194, 103, textureX, textureY); // Box 356
+		lococ41tModel[195] = new ModelRendererTurbo(this, 194, 103, textureX, textureY, "lamp"); // Box 356
 		lococ41tModel[196] = new ModelRendererTurbo(this, 196, 103, textureX, textureY); // Box 357
 		lococ41tModel[197] = new ModelRendererTurbo(this, 195, 103, textureX, textureY); // Box 359
 		lococ41tModel[198] = new ModelRendererTurbo(this, 195, 104, textureX, textureY); // Box 361
@@ -410,7 +411,7 @@ public class ModelLocoC41T extends ModelBase
 		lococ41tModel[386] = new ModelRendererTurbo(this, 402, 105, textureX, textureY); // Box 450
 		lococ41tModel[387] = new ModelRendererTurbo(this, 402, 105, textureX, textureY); // Box 451
 		lococ41tModel[388] = new ModelRendererTurbo(this, 402, 105, textureX, textureY); // Box 452
-		lococ41tModel[389] = new ModelRendererTurbo(this, 341, 97, textureX, textureY); // Box 453
+		lococ41tModel[389] = new ModelRendererTurbo(this, 341, 97, textureX, textureY, "lamp"); // Box 453
 		lococ41tModel[390] = new ModelRendererTurbo(this, 390, 113, textureX, textureY); // Box 454
 		lococ41tModel[391] = new ModelRendererTurbo(this, 390, 113, textureX, textureY); // Box 455
 		lococ41tModel[392] = new ModelRendererTurbo(this, 32, 2, textureX, textureY); // Box 437
@@ -1881,7 +1882,14 @@ public class ModelLocoC41T extends ModelBase
 	{
 		for(int i = 0; i < 454; i++)
 		{
-			lococ41tModel[i].render(f5);
+			if(lococ41tModel[i].boxName!= null && lococ41tModel[i].boxName.equals("lamp")){
+				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+				lococ41tModel[i].render(f5);
+				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+
+			} else {
+				lococ41tModel[i].render(f5);
+			}
 		}
 	}
 

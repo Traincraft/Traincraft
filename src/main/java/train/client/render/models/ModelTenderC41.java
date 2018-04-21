@@ -9,6 +9,7 @@
 
 package train.client.render.models;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import tmt.ModelBase;
 import tmt.ModelRendererTurbo;
@@ -124,7 +125,7 @@ public class ModelTenderC41 extends ModelBase
 		tenderc41Model[100] = new ModelRendererTurbo(this, 65, 9, textureX, textureY); // Box 100
 		tenderc41Model[101] = new ModelRendererTurbo(this, 210, 29, textureX, textureY); // Box 101
 		tenderc41Model[102] = new ModelRendererTurbo(this, 210, 28, textureX, textureY); // Box 102
-		tenderc41Model[103] = new ModelRendererTurbo(this, 318, 25, textureX, textureY); // Box 356
+		tenderc41Model[103] = new ModelRendererTurbo(this, 318, 25, textureX, textureY, "lamp"); // Box 356
 		tenderc41Model[104] = new ModelRendererTurbo(this, 319, 21, textureX, textureY); // Box 357
 		tenderc41Model[105] = new ModelRendererTurbo(this, 319, 21, textureX, textureY); // Box 359
 		tenderc41Model[106] = new ModelRendererTurbo(this, 319, 22, textureX, textureY); // Box 361
@@ -490,7 +491,15 @@ public class ModelTenderC41 extends ModelBase
 	{
 		for(int i = 0; i < 114; i++)
 		{
-			tenderc41Model[i].render(f5);
+
+			if(tenderc41Model[i].boxName!= null && tenderc41Model[i].boxName.equals("lamp")){
+				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+				tenderc41Model[i].render(f5);
+				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+
+			} else {
+				tenderc41Model[i].render(f5);
+			}
 		}
 	}
 

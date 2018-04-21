@@ -9,6 +9,7 @@
 
 package train.client.render.models;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import tmt.ModelBase;
 import tmt.ModelRendererTurbo;
@@ -130,8 +131,8 @@ public class ModelDD35B extends ModelBase
 		dd35bModel[106] = new ModelRendererTurbo(this, 345, 81, textureX, textureY); // Box 139
 		dd35bModel[107] = new ModelRendererTurbo(this, 361, 81, textureX, textureY); // Box 140
 		dd35bModel[108] = new ModelRendererTurbo(this, 377, 81, textureX, textureY); // Box 141
-		dd35bModel[109] = new ModelRendererTurbo(this, 449, 25, textureX, textureY); // Box 116
-		dd35bModel[110] = new ModelRendererTurbo(this, 497, 25, textureX, textureY); // Box 117
+		dd35bModel[109] = new ModelRendererTurbo(this, 449, 25, textureX, textureY, "lamp"); // Box 116
+		dd35bModel[110] = new ModelRendererTurbo(this, 497, 25, textureX, textureY, "lamp"); // Box 117
 		dd35bModel[111] = new ModelRendererTurbo(this, 1, 89, textureX, textureY); // Box 118
 		dd35bModel[112] = new ModelRendererTurbo(this, 28, 17, textureX, textureY); // Box 112
 		dd35bModel[113] = new ModelRendererTurbo(this, 37, 7, textureX, textureY); // Box 113
@@ -494,7 +495,14 @@ public class ModelDD35B extends ModelBase
 	{
 		for(int i = 0; i < 116; i++)
 		{
-			dd35bModel[i].render(f5);
+			if(dd35bModel[i].boxName!= null && dd35bModel[i].boxName.equals("lamp")){
+				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+				dd35bModel[i].render(f5);
+				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+
+			} else {
+				dd35bModel[i].render(f5);
+			}
 		}
 	}
 

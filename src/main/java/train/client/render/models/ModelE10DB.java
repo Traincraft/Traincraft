@@ -9,6 +9,7 @@
 
 package train.client.render.models;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
@@ -41,10 +42,10 @@ public class ModelE10DB extends ModelBase
 		e10dbModel[13] = new ModelRendererTurbo(this, 1, 81, textureX, textureY); // Box 27
 		e10dbModel[14] = new ModelRendererTurbo(this, 105, 1, textureX, textureY); // Box 30
 		e10dbModel[15] = new ModelRendererTurbo(this, 105, 1, textureX, textureY); // Box 34
-		e10dbModel[16] = new ModelRendererTurbo(this, 121, 1, textureX, textureY); // Box 35
-		e10dbModel[17] = new ModelRendererTurbo(this, 129, 1, textureX, textureY); // Box 36
-		e10dbModel[18] = new ModelRendererTurbo(this, 137, 1, textureX, textureY); // Box 37
-		e10dbModel[19] = new ModelRendererTurbo(this, 145, 1, textureX, textureY); // Box 38
+		e10dbModel[16] = new ModelRendererTurbo(this, 121, 1, textureX, textureY, "lamp"); // Box 35
+		e10dbModel[17] = new ModelRendererTurbo(this, 129, 1, textureX, textureY, "lamp"); // Box 36
+		e10dbModel[18] = new ModelRendererTurbo(this, 137, 1, textureX, textureY, "lamp"); // Box 37
+		e10dbModel[19] = new ModelRendererTurbo(this, 145, 1, textureX, textureY, "lamp"); // Box 38
 		e10dbModel[20] = new ModelRendererTurbo(this, 153, 57, textureX, textureY); // Box 39
 		e10dbModel[21] = new ModelRendererTurbo(this, 1, 113, textureX, textureY); // Box 41
 		e10dbModel[22] = new ModelRendererTurbo(this, 153, 1, textureX, textureY); // Box 42
@@ -55,10 +56,10 @@ public class ModelE10DB extends ModelBase
 		e10dbModel[27] = new ModelRendererTurbo(this, 177, 1, textureX, textureY); // Box 55
 		e10dbModel[28] = new ModelRendererTurbo(this, 185, 1, textureX, textureY); // Box 56
 		e10dbModel[29] = new ModelRendererTurbo(this, 193, 1, textureX, textureY); // Box 57
-		e10dbModel[30] = new ModelRendererTurbo(this, 201, 1, textureX, textureY); // Box 58
-		e10dbModel[31] = new ModelRendererTurbo(this, 209, 1, textureX, textureY); // Box 59
-		e10dbModel[32] = new ModelRendererTurbo(this, 217, 1, textureX, textureY); // Box 60
-		e10dbModel[33] = new ModelRendererTurbo(this, 233, 1, textureX, textureY); // Box 61
+		e10dbModel[30] = new ModelRendererTurbo(this, 201, 1, textureX, textureY, "lamp"); // Box 58
+		e10dbModel[31] = new ModelRendererTurbo(this, 209, 1, textureX, textureY, "lamp"); // Box 59
+		e10dbModel[32] = new ModelRendererTurbo(this, 217, 1, textureX, textureY, "lamp"); // Box 60
+		e10dbModel[33] = new ModelRendererTurbo(this, 233, 1, textureX, textureY, "lamp"); // Box 61
 		e10dbModel[34] = new ModelRendererTurbo(this, 185, 137, textureX, textureY); // Box 50
 		e10dbModel[35] = new ModelRendererTurbo(this, 1, 145, textureX, textureY); // Box 51
 		e10dbModel[36] = new ModelRendererTurbo(this, 76, 206, textureX, textureY); // Box 53
@@ -627,7 +628,14 @@ public class ModelE10DB extends ModelBase
 	{
 		for(int i = 0; i < 135; i++)
 		{
-			e10dbModel[i].render(f5);
+			if(e10dbModel[i].boxName!= null && e10dbModel[i].boxName.equals("lamp")){
+				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+				e10dbModel[i].render(f5);
+				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+
+			} else {
+				e10dbModel[i].render(f5);
+			}
 		}
 
 		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/Class85_Bogie.png"));

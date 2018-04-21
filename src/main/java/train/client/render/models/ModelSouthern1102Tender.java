@@ -9,6 +9,7 @@
 
 package train.client.render.models;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import tmt.ModelBase;
 import tmt.ModelRendererTurbo;
@@ -94,7 +95,7 @@ public class ModelSouthern1102Tender extends ModelBase
 		southern1102tenderModel[70] = new ModelRendererTurbo(this, 65, 9, textureX, textureY); // Box 92
 		southern1102tenderModel[71] = new ModelRendererTurbo(this, 65, 9, textureX, textureY); // Box 93
 		southern1102tenderModel[72] = new ModelRendererTurbo(this, 210, 29, textureX, textureY); // Box 101
-		southern1102tenderModel[73] = new ModelRendererTurbo(this, 318, 25, textureX, textureY); // Box 356
+		southern1102tenderModel[73] = new ModelRendererTurbo(this, 318, 25, textureX, textureY, "lamp"); // Box 356
 		southern1102tenderModel[74] = new ModelRendererTurbo(this, 319, 21, textureX, textureY); // Box 357
 		southern1102tenderModel[75] = new ModelRendererTurbo(this, 319, 21, textureX, textureY); // Box 359
 		southern1102tenderModel[76] = new ModelRendererTurbo(this, 319, 22, textureX, textureY); // Box 361
@@ -109,8 +110,8 @@ public class ModelSouthern1102Tender extends ModelBase
 		southern1102tenderModel[85] = new ModelRendererTurbo(this, 449, 1, textureX, textureY); // Box 115
 		southern1102tenderModel[86] = new ModelRendererTurbo(this, 497, 1, textureX, textureY); // Box 116
 		southern1102tenderModel[87] = new ModelRendererTurbo(this, 449, 1, textureX, textureY); // Box 117
-		southern1102tenderModel[88] = new ModelRendererTurbo(this, 1, 9, textureX, textureY); // Box 118
-		southern1102tenderModel[89] = new ModelRendererTurbo(this, 1, 9, textureX, textureY); // Box 119
+		southern1102tenderModel[88] = new ModelRendererTurbo(this, 1, 9, textureX, textureY, "lamp"); // Box 118
+		southern1102tenderModel[89] = new ModelRendererTurbo(this, 1, 9, textureX, textureY, "lamp"); // Box 119
 		southern1102tenderModel[90] = new ModelRendererTurbo(this, 41, 9, textureX, textureY); // Box 120
 
 		southern1102tenderModel[0].addBox(1F, 0F, 0F, 6, 6, 0, 0F); // Box 135
@@ -397,7 +398,14 @@ public class ModelSouthern1102Tender extends ModelBase
 	{
 		for(int i = 0; i < 91; i++)
 		{
-			southern1102tenderModel[i].render(f5);
+			if(southern1102tenderModel[i].boxName!= null && southern1102tenderModel[i].boxName.equals("lamp")){
+				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+				southern1102tenderModel[i].render(f5);
+				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+
+			} else {
+				southern1102tenderModel[i].render(f5);
+			}
 		}
 	}
 

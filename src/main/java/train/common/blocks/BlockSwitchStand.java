@@ -5,10 +5,12 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
@@ -18,6 +20,7 @@ import train.common.Traincraft;
 import train.common.library.Info;
 import train.common.tile.TileSwitchStand;
 
+import java.util.List;
 import java.util.Random;
 
 public class BlockSwitchStand extends Block {
@@ -28,6 +31,11 @@ public class BlockSwitchStand extends Block {
 		setCreativeTab(Traincraft.tcTab);
 		this.setTickRandomly(true);
 		//this.setBlockBounds(0.5F , 0.0F, 0.5F , 0.5F ,  2.0F, 0.5F);
+	}
+
+	@Override
+	public void addCollisionBoxesToList(World p_149743_1_, int p_149743_2_, int p_149743_3_, int p_149743_4_, AxisAlignedBB p_149743_5_, List p_149743_6_, Entity p_149743_7_)
+	{
 	}
 
 	@Override

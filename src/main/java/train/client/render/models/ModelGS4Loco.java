@@ -9,6 +9,7 @@
 
 package train.client.render.models;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import tmt.ModelBase;
 import tmt.ModelRendererTurbo;
@@ -138,10 +139,10 @@ public class ModelGS4Loco extends ModelBase
 		gs4locoModel[114] = new ModelRendererTurbo(this, 65, 1, textureX, textureY); // Box 126
 		gs4locoModel[115] = new ModelRendererTurbo(this, 137, 17, textureX, textureY); // Box 127
 		gs4locoModel[116] = new ModelRendererTurbo(this, 209, 33, textureX, textureY); // Box 128
-		gs4locoModel[117] = new ModelRendererTurbo(this, 49, 1, textureX, textureY); // Box 118
-		gs4locoModel[118] = new ModelRendererTurbo(this, 81, 1, textureX, textureY); // Box 119
-		gs4locoModel[119] = new ModelRendererTurbo(this, 41, 1, textureX, textureY); // Box 120
-		gs4locoModel[120] = new ModelRendererTurbo(this, 137, 1, textureX, textureY); // Box 121
+		gs4locoModel[117] = new ModelRendererTurbo(this, 49, 1, textureX, textureY, "lamp"); // Box 118
+		gs4locoModel[118] = new ModelRendererTurbo(this, 81, 1, textureX, textureY, "lamp"); // Box 119
+		gs4locoModel[119] = new ModelRendererTurbo(this, 41, 1, textureX, textureY, "lamp"); // Box 120
+		gs4locoModel[120] = new ModelRendererTurbo(this, 137, 1, textureX, textureY, "lamp"); // Box 121
 		gs4locoModel[121] = new ModelRendererTurbo(this, 1, 162, textureX, textureY); // Box 122
 		gs4locoModel[122] = new ModelRendererTurbo(this, 209, 161, textureX, textureY); // Box 123
 		gs4locoModel[123] = new ModelRendererTurbo(this, 161, 1, textureX, textureY); // Box 124
@@ -554,7 +555,15 @@ public class ModelGS4Loco extends ModelBase
 	{
 		for(int i = 0; i < 129; i++)
 		{
-			gs4locoModel[i].render(f5);
+
+			if(gs4locoModel[i].boxName!= null && gs4locoModel[i].boxName.equals("lamp")){
+				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+				gs4locoModel[i].render(f5);
+				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+
+			} else {
+				gs4locoModel[i].render(f5);
+			}
 		}
 	}
 

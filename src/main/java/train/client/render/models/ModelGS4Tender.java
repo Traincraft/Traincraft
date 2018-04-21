@@ -9,6 +9,7 @@
 
 package train.client.render.models;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
@@ -42,7 +43,7 @@ public class ModelGS4Tender extends ModelBase
 		gs4tenderModel[14] = new ModelRendererTurbo(this, 497, 9, textureX, textureY); // Box 36 NOCULL
 		gs4tenderModel[15] = new ModelRendererTurbo(this, 1, 17, textureX, textureY); // Box 15
 		gs4tenderModel[16] = new ModelRendererTurbo(this, 353, 15, textureX, textureY); // Box 16
-		gs4tenderModel[17] = new ModelRendererTurbo(this, 14, 2, textureX, textureY); // Box 24
+		gs4tenderModel[17] = new ModelRendererTurbo(this, 14, 2, textureX, textureY, "lamp"); // Box 24
 		gs4tenderModel[18] = new ModelRendererTurbo(this, 217, 43, textureX, textureY); // Box 21
 
 		gs4tenderModel[0].addBox(0F, 0F, 0F, 80, 25, 22, 0F); // Box 01
@@ -114,7 +115,15 @@ public class ModelGS4Tender extends ModelBase
 	{
 		for(int i = 0; i < 19; i++)
 		{
-			gs4tenderModel[i].render(f5);
+
+			if(gs4tenderModel[i].boxName!= null && gs4tenderModel[i].boxName.equals("lamp")){
+				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+				gs4tenderModel[i].render(f5);
+				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+
+			} else {
+				gs4tenderModel[i].render(f5);
+			}
 		}
 
 

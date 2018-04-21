@@ -9,6 +9,7 @@
 
 package train.client.render.models;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import org.lwjgl.opengl.GL11;
 import tmt.ModelBase;
@@ -107,7 +108,7 @@ public class ModelDD35A extends ModelBase
 		dd35aModel[82] = new ModelRendererTurbo(this, 105, 73, textureX, textureY); // Box 124
 		dd35aModel[83] = new ModelRendererTurbo(this, 449, 89, textureX, textureY); // Box 125
 		dd35aModel[84] = new ModelRendererTurbo(this, 121, 73, textureX, textureY); // Box 126
-		dd35aModel[85] = new ModelRendererTurbo(this, 113, 97, textureX, textureY); // Box 127
+		dd35aModel[85] = new ModelRendererTurbo(this, 113, 97, textureX, textureY, "lamp"); // Box 127
 		dd35aModel[86] = new ModelRendererTurbo(this, 257, 97, textureX, textureY); // Box 128
 		dd35aModel[87] = new ModelRendererTurbo(this, 73, 73, textureX, textureY); // Box 129
 		dd35aModel[88] = new ModelRendererTurbo(this, 431, 87, textureX, textureY); // Box 130
@@ -154,8 +155,8 @@ public class ModelDD35A extends ModelBase
 		dd35aModel[129] = new ModelRendererTurbo(this, 361, 57, textureX, textureY); // Box 175
 		dd35aModel[130] = new ModelRendererTurbo(this, 441, 113, textureX, textureY); // Box 179
 		dd35aModel[131] = new ModelRendererTurbo(this, 113, 97, textureX, textureY); // Box 180
-		dd35aModel[132] = new ModelRendererTurbo(this, 241, 113, textureX, textureY); // Box 181
-		dd35aModel[133] = new ModelRendererTurbo(this, 321, 113, textureX, textureY); // Box 182
+		dd35aModel[132] = new ModelRendererTurbo(this, 241, 113, textureX, textureY, "lamp"); // Box 181
+		dd35aModel[133] = new ModelRendererTurbo(this, 321, 113, textureX, textureY, "lamp"); // Box 182
 		dd35aModel[134] = new ModelRendererTurbo(this, 409, 113, textureX, textureY); // Box 183
 		dd35aModel[135] = new ModelRendererTurbo(this, 33, 81, textureX, textureY); // Box 184
 		dd35aModel[136] = new ModelRendererTurbo(this, 337, 113, textureX, textureY); // Box 185
@@ -175,10 +176,10 @@ public class ModelDD35A extends ModelBase
 		dd35aModel[150] = new ModelRendererTurbo(this, 473, 1, textureX, textureY); // Box 200
 		dd35aModel[151] = new ModelRendererTurbo(this, 281, 121, textureX, textureY); // Box 201
 		dd35aModel[152] = new ModelRendererTurbo(this, 297, 121, textureX, textureY); // Box 202
-		dd35aModel[153] = new ModelRendererTurbo(this, 1, 9, textureX, textureY); // Box 162
+		dd35aModel[153] = new ModelRendererTurbo(this, 1, 9, textureX, textureY, "lamp"); // Box 162
 		dd35aModel[154] = new ModelRendererTurbo(this, 505, 9, textureX, textureY); // Box 165
 		dd35aModel[155] = new ModelRendererTurbo(this, 33, 25, textureX, textureY); // Box 166
-		dd35aModel[156] = new ModelRendererTurbo(this, 1, 113, textureX, textureY); // Box 164
+		dd35aModel[156] = new ModelRendererTurbo(this, 1, 113, textureX, textureY, "lamp"); // Box 164
 		dd35aModel[157] = new ModelRendererTurbo(this, 241, 121, textureX, textureY); // Box 165
 		dd35aModel[158] = new ModelRendererTurbo(this, 297, 121, textureX, textureY); // Box 166
 		dd35aModel[159] = new ModelRendererTurbo(this, 409, 121, textureX, textureY); // Box 167
@@ -711,7 +712,14 @@ public class ModelDD35A extends ModelBase
 	{
 		for(int i = 0; i < 170; i++)
 		{
-			dd35aModel[i].render(f5);
+			if(dd35aModel[i].boxName!= null && dd35aModel[i].boxName.equals("lamp")){
+				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+				dd35aModel[i].render(f5);
+				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+
+			} else {
+				dd35aModel[i].render(f5);
+			}
 		}
 	}
 

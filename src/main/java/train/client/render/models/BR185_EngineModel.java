@@ -9,6 +9,7 @@
 
 package train.client.render.models;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
@@ -179,16 +180,16 @@ public class BR185_EngineModel extends ModelBase
 		br185_enginemodelModel[151] = new ModelRendererTurbo(this, 161, 169, textureX, textureY); // Box 190
 		br185_enginemodelModel[152] = new ModelRendererTurbo(this, 33, 193, textureX, textureY); // Box 191
 		br185_enginemodelModel[153] = new ModelRendererTurbo(this, 1, 161, textureX, textureY); // Box 192
-		br185_enginemodelModel[154] = new ModelRendererTurbo(this, 105, 65, textureX, textureY); // Box 171
-		br185_enginemodelModel[155] = new ModelRendererTurbo(this, 217, 65, textureX, textureY); // Box 174
-		br185_enginemodelModel[156] = new ModelRendererTurbo(this, 153, 73, textureX, textureY); // Box 175
-		br185_enginemodelModel[157] = new ModelRendererTurbo(this, 169, 73, textureX, textureY); // Box 176
-		br185_enginemodelModel[158] = new ModelRendererTurbo(this, 177, 73, textureX, textureY); // Box 177
-		br185_enginemodelModel[159] = new ModelRendererTurbo(this, 81, 81, textureX, textureY); // Box 178
-		br185_enginemodelModel[160] = new ModelRendererTurbo(this, 113, 81, textureX, textureY); // Box 179
-		br185_enginemodelModel[161] = new ModelRendererTurbo(this, 129, 81, textureX, textureY); // Box 180
-		br185_enginemodelModel[162] = new ModelRendererTurbo(this, 137, 81, textureX, textureY); // Box 181
-		br185_enginemodelModel[163] = new ModelRendererTurbo(this, 193, 81, textureX, textureY); // Box 182
+		br185_enginemodelModel[154] = new ModelRendererTurbo(this, 105, 65, textureX, textureY, "lamp"); // Box 171
+		br185_enginemodelModel[155] = new ModelRendererTurbo(this, 217, 65, textureX, textureY, "lamp"); // Box 174
+		br185_enginemodelModel[156] = new ModelRendererTurbo(this, 153, 73, textureX, textureY, "lamp"); // Box 175
+		br185_enginemodelModel[157] = new ModelRendererTurbo(this, 169, 73, textureX, textureY, "lamp"); // Box 176
+		br185_enginemodelModel[158] = new ModelRendererTurbo(this, 177, 73, textureX, textureY, "lamp"); // Box 177
+		br185_enginemodelModel[159] = new ModelRendererTurbo(this, 81, 81, textureX, textureY, "lamp"); // Box 178
+		br185_enginemodelModel[160] = new ModelRendererTurbo(this, 113, 81, textureX, textureY, "lamp"); // Box 179
+		br185_enginemodelModel[161] = new ModelRendererTurbo(this, 129, 81, textureX, textureY, "lamp"); // Box 180
+		br185_enginemodelModel[162] = new ModelRendererTurbo(this, 137, 81, textureX, textureY, "lamp"); // Box 181
+		br185_enginemodelModel[163] = new ModelRendererTurbo(this, 193, 81, textureX, textureY, "lamp"); // Box 182
 		br185_enginemodelModel[164] = new ModelRendererTurbo(this, 225, 137, textureX, textureY); // Box 178
 		br185_enginemodelModel[165] = new ModelRendererTurbo(this, 232, 162, textureX, textureY); // Box 179
 		br185_enginemodelModel[166] = new ModelRendererTurbo(this, 232, 171, textureX, textureY); // Box 180
@@ -719,7 +720,15 @@ public class BR185_EngineModel extends ModelBase
 	{
 		for(int i = 0; i < 171; i++)
 		{
-			br185_enginemodelModel[i].render(f5);
+
+			if(br185_enginemodelModel[i].boxName!= null && br185_enginemodelModel[i].boxName.equals("lamp")){
+				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+				br185_enginemodelModel[i].render(f5);
+				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+
+			} else {
+				br185_enginemodelModel[i].render(f5);
+			}
 		}
 		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/Class85_Bogie.png"));
 		GL11.glPushMatrix();

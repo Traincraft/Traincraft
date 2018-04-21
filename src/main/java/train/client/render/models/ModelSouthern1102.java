@@ -9,6 +9,7 @@
 
 package train.client.render.models;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import tmt.ModelBase;
 import tmt.ModelRendererTurbo;
@@ -199,7 +200,7 @@ public class ModelSouthern1102 extends ModelBase
 		southern1102Model[175] = new ModelRendererTurbo(this, 309, 88, textureX, textureY); // Box 340
 		southern1102Model[176] = new ModelRendererTurbo(this, 309, 84, textureX, textureY); // Box 341
 		southern1102Model[177] = new ModelRendererTurbo(this, 309, 88, textureX, textureY); // Box 342
-		southern1102Model[178] = new ModelRendererTurbo(this, 194, 103, textureX, textureY); // Box 356
+		southern1102Model[178] = new ModelRendererTurbo(this, 194, 103, textureX, textureY, "lamp"); // Box 356
 		southern1102Model[179] = new ModelRendererTurbo(this, 194, 103, textureX, textureY); // Box 357
 		southern1102Model[180] = new ModelRendererTurbo(this, 194, 103, textureX, textureY); // Box 359
 		southern1102Model[181] = new ModelRendererTurbo(this, 194, 103, textureX, textureY); // Box 361
@@ -346,7 +347,7 @@ public class ModelSouthern1102 extends ModelBase
 		southern1102Model[322] = new ModelRendererTurbo(this, 402, 105, textureX, textureY); // Box 450
 		southern1102Model[323] = new ModelRendererTurbo(this, 402, 105, textureX, textureY); // Box 451
 		southern1102Model[324] = new ModelRendererTurbo(this, 402, 105, textureX, textureY); // Box 452
-		southern1102Model[325] = new ModelRendererTurbo(this, 341, 97, textureX, textureY); // Box 453
+		southern1102Model[325] = new ModelRendererTurbo(this, 341, 97, textureX, textureY, "lamp"); // Box 453
 		southern1102Model[326] = new ModelRendererTurbo(this, 390, 113, textureX, textureY); // Box 454
 		southern1102Model[327] = new ModelRendererTurbo(this, 390, 113, textureX, textureY); // Box 455
 		southern1102Model[328] = new ModelRendererTurbo(this, 32, 2, textureX, textureY); // Box 439
@@ -451,8 +452,8 @@ public class ModelSouthern1102 extends ModelBase
 		southern1102Model[427] = new ModelRendererTurbo(this, 335, 12, textureX, textureY); // Box 433
 		southern1102Model[428] = new ModelRendererTurbo(this, 335, 12, textureX, textureY); // Box 434
 		southern1102Model[429] = new ModelRendererTurbo(this, 335, 12, textureX, textureY); // Box 435
-		southern1102Model[430] = new ModelRendererTurbo(this, 194, 111, textureX, textureY); // Box 436
-		southern1102Model[431] = new ModelRendererTurbo(this, 194, 111, textureX, textureY); // Box 437
+		southern1102Model[430] = new ModelRendererTurbo(this, 194, 111, textureX, textureY, "lamp"); // Box 436
+		southern1102Model[431] = new ModelRendererTurbo(this, 194, 111, textureX, textureY, "lamp"); // Box 437
 		southern1102Model[432] = new ModelRendererTurbo(this, 302, 7, textureX, textureY); // Box 435
 		southern1102Model[433] = new ModelRendererTurbo(this, 276, 16, textureX, textureY); // Box 436
 		southern1102Model[434] = new ModelRendererTurbo(this, 276, 35, textureX, textureY); // Box 437
@@ -1876,7 +1877,14 @@ public class ModelSouthern1102 extends ModelBase
 	{
 		for(int i = 0; i < 446; i++)
 		{
-			southern1102Model[i].render(f5);
+			if(southern1102Model[i].boxName!= null && southern1102Model[i].boxName.equals("lamp")){
+				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+				southern1102Model[i].render(f5);
+				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+
+			} else {
+				southern1102Model[i].render(f5);
+			}
 		}
 	}
 

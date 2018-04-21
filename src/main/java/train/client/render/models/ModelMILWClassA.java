@@ -9,6 +9,7 @@
 
 package train.client.render.models;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import tmt.ModelBase;
 import tmt.ModelRendererTurbo;
@@ -152,8 +153,8 @@ public class ModelMILWClassA extends ModelBase
 		milwclassaModel[128] = new ModelRendererTurbo(this, 433, 89, textureX, textureY); // Box 170
 		milwclassaModel[129] = new ModelRendererTurbo(this, 65, 113, textureX, textureY); // Box 171
 		milwclassaModel[130] = new ModelRendererTurbo(this, 169, 113, textureX, textureY); // Box 172
-		milwclassaModel[131] = new ModelRendererTurbo(this, 497, 25, textureX, textureY); // Box 173
-		milwclassaModel[132] = new ModelRendererTurbo(this, 225, 97, textureX, textureY); // Box 174
+		milwclassaModel[131] = new ModelRendererTurbo(this, 497, 25, textureX, textureY, "lamp"); // Box 173
+		milwclassaModel[132] = new ModelRendererTurbo(this, 225, 97, textureX, textureY, "lamp"); // Box 174
 		milwclassaModel[133] = new ModelRendererTurbo(this, 449, 97, textureX, textureY); // Box 175
 		milwclassaModel[134] = new ModelRendererTurbo(this, 481, 97, textureX, textureY); // Box 177
 		milwclassaModel[135] = new ModelRendererTurbo(this, 193, 113, textureX, textureY); // Box 178
@@ -171,8 +172,8 @@ public class ModelMILWClassA extends ModelBase
 		milwclassaModel[147] = new ModelRendererTurbo(this, 49, 113, textureX, textureY); // Box 190
 		milwclassaModel[148] = new ModelRendererTurbo(this, 145, 113, textureX, textureY); // Box 191
 		milwclassaModel[149] = new ModelRendererTurbo(this, 153, 113, textureX, textureY); // Box 191
-		milwclassaModel[150] = new ModelRendererTurbo(this, 417, 113, textureX, textureY); // Box 192
-		milwclassaModel[151] = new ModelRendererTurbo(this, 433, 113, textureX, textureY); // Box 193
+		milwclassaModel[150] = new ModelRendererTurbo(this, 417, 113, textureX, textureY, "lamp"); // Box 192
+		milwclassaModel[151] = new ModelRendererTurbo(this, 433, 113, textureX, textureY, "lamp"); // Box 193
 		milwclassaModel[152] = new ModelRendererTurbo(this, 441, 113, textureX, textureY); // Box 194
 		milwclassaModel[153] = new ModelRendererTurbo(this, 1, 121, textureX, textureY); // Box 195
 		milwclassaModel[154] = new ModelRendererTurbo(this, 49, 113, textureX, textureY); // Box 194
@@ -840,7 +841,14 @@ public class ModelMILWClassA extends ModelBase
 	{
 		for(int i = 0; i < 201; i++)
 		{
-			milwclassaModel[i].render(f5);
+			if(milwclassaModel[i].boxName!= null && milwclassaModel[i].boxName.equals("lamp")){
+				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+				milwclassaModel[i].render(f5);
+				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+
+			} else {
+				milwclassaModel[i].render(f5);
+			}
 		}
 	}
 

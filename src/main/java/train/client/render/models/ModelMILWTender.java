@@ -9,6 +9,7 @@
 
 package train.client.render.models;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import tmt.ModelBase;
 import tmt.ModelRendererTurbo;
@@ -147,10 +148,10 @@ public class ModelMILWTender extends ModelBase
 		milwtenderModel[123] = new ModelRendererTurbo(this, 361, 65, textureX, textureY); // Box 171
 		milwtenderModel[124] = new ModelRendererTurbo(this, 377, 65, textureX, textureY); // Box 172
 		milwtenderModel[125] = new ModelRendererTurbo(this, 409, 65, textureX, textureY); // Box 173
-		milwtenderModel[126] = new ModelRendererTurbo(this, 432, 64, textureX, textureY); // Box 131
-		milwtenderModel[127] = new ModelRendererTurbo(this, 432, 64, textureX, textureY); // Box 135
-		milwtenderModel[128] = new ModelRendererTurbo(this, 432, 64, textureX, textureY); // Box 136
-		milwtenderModel[129] = new ModelRendererTurbo(this, 432, 64, textureX, textureY); // Box 137
+		milwtenderModel[126] = new ModelRendererTurbo(this, 432, 64, textureX, textureY, "lamp"); // Box 131
+		milwtenderModel[127] = new ModelRendererTurbo(this, 432, 64, textureX, textureY, "lamp"); // Box 135
+		milwtenderModel[128] = new ModelRendererTurbo(this, 432, 64, textureX, textureY, "lamp"); // Box 136
+		milwtenderModel[129] = new ModelRendererTurbo(this, 432, 64, textureX, textureY, "lamp"); // Box 137
 		milwtenderModel[130] = new ModelRendererTurbo(this, 445, 65, textureX, textureY); // Box 134
 		milwtenderModel[131] = new ModelRendererTurbo(this, 445, 65, textureX, textureY); // Box 135
 		milwtenderModel[132] = new ModelRendererTurbo(this, 445, 65, textureX, textureY); // Box 139
@@ -616,7 +617,14 @@ public class ModelMILWTender extends ModelBase
 	{
 		for(int i = 0; i < 145; i++)
 		{
-			milwtenderModel[i].render(f5);
+			if(milwtenderModel[i].boxName!= null && milwtenderModel[i].boxName.equals("lamp")){
+				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+				milwtenderModel[i].render(f5);
+				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+
+			} else {
+				milwtenderModel[i].render(f5);
+			}
 		}
 	}
 

@@ -9,6 +9,7 @@
 
 package train.client.render.models;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import tmt.ModelBase;
 import tmt.ModelRendererTurbo;
@@ -251,8 +252,8 @@ public class ModelSwitcher44Ton extends ModelBase
 		shunter44tonModel[227] = new ModelRendererTurbo(this, 129, 89, textureX, textureY); // Box 227
 		shunter44tonModel[228] = new ModelRendererTurbo(this, 145, 89, textureX, textureY); // Box 228
 		shunter44tonModel[229] = new ModelRendererTurbo(this, 161, 89, textureX, textureY); // Box 229
-		shunter44tonModel[230] = new ModelRendererTurbo(this, 425, 25, textureX, textureY); // Box 230
-		shunter44tonModel[231] = new ModelRendererTurbo(this, 177, 89, textureX, textureY); // Box 231
+		shunter44tonModel[230] = new ModelRendererTurbo(this, 425, 25, textureX, textureY, "lamp"); // Box 230
+		shunter44tonModel[231] = new ModelRendererTurbo(this, 177, 89, textureX, textureY, "lamp"); // Box 231
 		shunter44tonModel[232] = new ModelRendererTurbo(this, 233, 89, textureX, textureY); // Box 232
 		shunter44tonModel[233] = new ModelRendererTurbo(this, 113, 89, textureX, textureY); // Box 233
 		shunter44tonModel[234] = new ModelRendererTurbo(this, 313, 89, textureX, textureY); // Box 234
@@ -1083,7 +1084,14 @@ public class ModelSwitcher44Ton extends ModelBase
 	{
 		for(int i = 0; i < 261; i++)
 		{
-			shunter44tonModel[i].render(f5);
+			if(shunter44tonModel[i].boxName!= null && shunter44tonModel[i].boxName.equals("lamp")){
+				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+				shunter44tonModel[i].render(f5);
+				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+
+			} else {
+				shunter44tonModel[i].render(f5);
+			}
 		}
 	}
 

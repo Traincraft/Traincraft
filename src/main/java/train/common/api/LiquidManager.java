@@ -9,6 +9,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mods.railcraft.api.fuel.FuelManager;
 import net.minecraft.block.material.Material;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.TextureStitchEvent;
@@ -202,6 +203,9 @@ public class LiquidManager {
 			int used = tank.fill(ForgeDirection.UNKNOWN,bucketLiquid, false);
 			if (used >= bucketLiquid.amount) {
 				tank.fill(ForgeDirection.UNKNOWN,bucketLiquid, true);
+				if (itemstack.getItem() == Items.potionitem){
+					return new ItemStack(Items.glass_bottle, 1);
+				}
 				inventory.decrStackSize(inventoryIndex, 1);
 				return emptyItem;
 			}
