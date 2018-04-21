@@ -45,9 +45,9 @@ public enum EnumTrains {
 	/** Caboose */
 	cabooseRed("Caboose Red",EntityCaboose.class, ItemIDs.minecartCaboose.item,"caboose",0,0,0.5,0,0,0,0,0,0,null,18,0),
 	cabooseBlack("Caboose Black",EntityCaboose3.class, ItemIDs.minecartCaboose3.item,"caboose",0,0,0.5,0,0,0,0,0,0,null,18,0),
-	GWRBrakeVan("GWR Toad Brake Van",EntityGWRBrakeVan.class, ItemIDs.minecartGWRBrakeVan.item,"caboose",0,0,0.7,0,0,0,0,0,0,null,18,0),
 
 	/** Specials **/
+	GWRBrakeVan("GWR Toad Brake Van",EntityGWRBrakeVan.class, ItemIDs.minecartGWRBrakeVan.item,"work",0,0,0.7,0,0,0,0,0,0,null,18,0),
 	stockCar("Stock Cart",EntityStockCar.class, ItemIDs.minecartStockCar.item,"special",0,0,2,0,0,0,0,0,0,new String [] {"Blue", "Red", "Yellow", "White"},18,0),
 	drwgStockCar("DRWG Stock Cart",EntityStockCarDRWG.class, ItemIDs.minecartDRWGStockCar.item,"special",0,0,2,0,0,0,0,0,0,null,18,0),
 	workCart("Work Cart Yellow",EntityWorkCart.class,ItemIDs.minecartWork.item,"work",0,0,0.7,0,0,0,0,0,0,null,18,0),
@@ -165,7 +165,7 @@ public enum EnumTrains {
 	locoDieselDeltic("Loco Diesel Deltic", EntityLocoDieselDeltic.class, ItemIDs.minecartLocoDeltic.item, "diesel",
 			3344, 161, 0, 10, 0, 170, 0.7, 0.965, 6400, null, 18, -5),
 	locoDieselDD35A("Loco Diesel DD35A", EntityLocoDieselDD35A.class, ItemIDs.minecartLocoDD35A.item, "diesel", 5069, 144, 0, 10, 0, 170, 0.7, 0.965, 6850, null, 18, -4.75),
-	locoDiesel44TonSwitcher("GE 44-ton Diesel switcher", EntityLocoDiesel44TonSwitcher.class, ItemIDs.minecartLoco44TonSwitcher.item, "diesel", 400, 32, 0, 10, 0, 170, 0.7, 0.965, 6850, null, 18, -4.75),
+	locoDiesel44TonSwitcher("GE 44-ton Diesel switcher", EntityLocoDiesel44TonSwitcher.class, ItemIDs.minecartLoco44TonSwitcher.item, "diesel", 400, 32, 0, 10, 0, 170, 0.7, 0.965, 6850, null, 18, -2.75),
 
 
 	/** Electric */
