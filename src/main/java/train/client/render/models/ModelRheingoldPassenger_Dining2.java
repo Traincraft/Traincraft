@@ -540,7 +540,7 @@ public class ModelRheingoldPassenger_Dining2 extends ModelBase
 		rheingoldpassenger_dining2Model[120].addShapeBox(0F, 0F, 0F, 3, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 99
 		rheingoldpassenger_dining2Model[120].setRotationPoint(-17F, -18.5F, -3F);
 
-
+		fixRotation(rheingoldpassenger_dining2Model, false, true, true);
 	}
 
 	private ModelDeiticBogie bogie1 = new ModelDeiticBogie();

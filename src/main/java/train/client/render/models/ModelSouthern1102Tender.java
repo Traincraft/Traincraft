@@ -115,28 +115,28 @@ public class ModelSouthern1102Tender extends ModelBase
 		southern1102tenderModel[90] = new ModelRendererTurbo(this, 41, 9, textureX, textureY); // Box 120
 
 		southern1102tenderModel[0].addBox(1F, 0F, 0F, 6, 6, 0, 0F); // Box 135
-		southern1102tenderModel[0].setRotationPoint(-19F, 4F, -5F);
+		southern1102tenderModel[0].setRotationPoint(-19.5F, 4F, -5F);
 
 		southern1102tenderModel[1].addBox(1F, 0F, 0F, 6, 6, 0, 0F); // Box 137
-		southern1102tenderModel[1].setRotationPoint(-10F, 4F, -5F);
+		southern1102tenderModel[1].setRotationPoint(-10.5F, 4F, -5F);
 
 		southern1102tenderModel[2].addBox(1F, 0F, 0F, 6, 6, 0, 0F); // Box 138
-		southern1102tenderModel[2].setRotationPoint(3F, 4F, -5F);
+		southern1102tenderModel[2].setRotationPoint(2.5F, 4F, -5F);
 
 		southern1102tenderModel[3].addBox(1F, 0F, 0F, 6, 6, 0, 0F); // Box 139
-		southern1102tenderModel[3].setRotationPoint(12F, 4F, -5F);
+		southern1102tenderModel[3].setRotationPoint(11.5F, 4F, -5F);
 
 		southern1102tenderModel[4].addBox(1F, 0F, 0F, 6, 6, 0, 0F); // Box 140
-		southern1102tenderModel[4].setRotationPoint(12F, 4F, 5F);
+		southern1102tenderModel[4].setRotationPoint(11.5F, 4F, 5F);
 
 		southern1102tenderModel[5].addBox(1F, 0F, 0F, 6, 6, 0, 0F); // Box 141
-		southern1102tenderModel[5].setRotationPoint(3F, 4F, 5F);
+		southern1102tenderModel[5].setRotationPoint(2.5F, 4F, 5F);
 
 		southern1102tenderModel[6].addBox(1F, 0F, 0F, 6, 6, 0, 0F); // Box 142
-		southern1102tenderModel[6].setRotationPoint(-10F, 4F, 5F);
+		southern1102tenderModel[6].setRotationPoint(-10.5F, 4F, 5F);
 
 		southern1102tenderModel[7].addBox(1F, 0F, 0F, 6, 6, 0, 0F); // Box 143
-		southern1102tenderModel[7].setRotationPoint(-19F, 4F, 5F);
+		southern1102tenderModel[7].setRotationPoint(-19.5F, 4F, 5F);
 
 		southern1102tenderModel[8].addShapeBox(0F, 0F, 0F, 45, 1, 20, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 145
 		southern1102tenderModel[8].setRotationPoint(-23F, 3F, -10F);
