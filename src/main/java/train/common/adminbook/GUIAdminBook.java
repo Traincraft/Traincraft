@@ -140,13 +140,13 @@ public class GUIAdminBook extends GuiScreen {
 
         if(!isTrainPage) {
             int index=0;
-            for (int i = 6 * page; i < 6+(6*page) && i<list.length-1; i++) {//only show 6 entries per page
+            for (int i = 6 * page; i < 6+(6*page) && i<list.length; i++) {//only show 6 entries per page
                 this.buttonList.add(new GuiButton(i+3, guiLeft-80, guiTop+20 +(index*18), 140, 20,
                         list[i].equals("")?"Back":
                                 list[i].contains("_")?
                                 list[i].substring(list[i].indexOf("~")+1,list[i].lastIndexOf("_")).replace("minecart",""):
                 list[i]));
-                if (list[i].contains("_")) {
+                if (list[i].lastIndexOf("_")>0 && list[i].indexOf(".txt")>0) {
                     this.buttonList.add(new GuiButton(i + 3, guiLeft + 70, guiTop + 20 + (index * 18), 220, 20,
                             list[i].substring(list[i].lastIndexOf("_")+1, list[i].indexOf(".txt"))));
                 }
