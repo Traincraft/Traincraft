@@ -82,7 +82,7 @@ public class EntityFreightDenverRioGrande extends Freight implements IInventory 
 
 	@Override
 	public String getInventoryName() {
-		return "Freight cart";
+		return "DRG Baggage";
 	}
 
 	@Override
@@ -106,7 +106,7 @@ public class EntityFreightDenverRioGrande extends Freight implements IInventory 
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return 3.05F;
+		return 3.15F;
 	}
 
 	@Override

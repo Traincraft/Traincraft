@@ -83,6 +83,6 @@ public class EntityPassengerDenverRioGrandeCombo extends EntityRollingStock impl
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return 3.1F;
+		return 3.15F;
 	}
 }

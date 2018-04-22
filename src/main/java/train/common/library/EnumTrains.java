@@ -71,10 +71,10 @@ public enum EnumTrains {
 			new String[] { "Reduces weight carried by 50 tons when fueled" }),
 	BUnitDD35("DD35 B Unit", EntityBUnitDD35.class, ItemIDs.minecartLocoDD35B.item, "b-unit", 0, 0, 8, 0, 0, 0, 0, 0,
 			12000, null, 18, 0, new String[] { "Reduces weight carried by 80 tons when fueled" }),
-	propagandaUs("Propaganda USA",EntityPropagandaUS.class, ItemIDs.minecartPropagandaUs.item,"decorative",1,0,0,0,0,0,0,0,0,new String[]{"Blue", "White", "Red"},14,0),
-	propagandaUSSR("Propaganda USSR",EntityPropagandaUSSR.class, ItemIDs.minecartPropagandaUSSR.item,"decorative",1,0,0,0,0,0,0,0,0,new String[]{"Blue", "White", "Red"},14,0),
-	propagandaJapan("Propaganda Japan",EntityPropagandaJapan.class, ItemIDs.minecartPropagandaJapan.item,"decorative",1,0,0,0,0,0,0,0,0,new String[]{"Red", "White", "Yellow"},14,0),
-	propagandaBritain("Propaganda Britain",EntityPropagandaBritain.class, ItemIDs.minecartPropagandaBritish.item,"decorative",1,0,0,0,0,0,0,0,0,new String[]{"Blue", "White", "Yellow"},14,0),
+	propagandaUs("Propaganda USA",EntityPropagandaUS.class, ItemIDs.minecartPropagandaUs.item,"decorative",0,0,0.1,0,0,0,0,0,0,new String[]{"Blue", "White", "Red"},14,0),
+	propagandaUSSR("Propaganda USSR",EntityPropagandaUSSR.class, ItemIDs.minecartPropagandaUSSR.item,"decorative",0,0,0.1,0,0,0,0,0,0,new String[]{"Blue", "White", "Red"},14,0),
+	propagandaJapan("Propaganda Japan",EntityPropagandaJapan.class, ItemIDs.minecartPropagandaJapan.item,"decorative",0,0,0.1,0,0,0,0,0,0,new String[]{"Red", "White", "Yellow"},14,0),
+	propagandaBritain("Propaganda Britain",EntityPropagandaBritain.class, ItemIDs.minecartPropagandaBritish.item,"decorative",0,0,0.1,0,0,0,0,0,0,new String[]{"Blue", "White", "Yellow"},14,0),
 
 	/** Freight */
 	freightCartRed("Freight Cart Red",EntityFreightCart2.class, ItemIDs.minecartFreightCart2.item,"freight",3,null,18,36,new String[] {"Cargo: any"}),

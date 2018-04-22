@@ -202,7 +202,7 @@ public class BlockSwitchStand extends Block {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister iconRegister) {
-		texture = iconRegister.registerIcon(Info.modID.toLowerCase() + ":switchstand");
+		texture = iconRegister.registerIcon(Info.modID.toLowerCase() + ":assembly_1_bottom");
 	}
 
 	@Override

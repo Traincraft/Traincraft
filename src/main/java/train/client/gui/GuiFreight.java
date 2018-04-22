@@ -131,7 +131,7 @@ public class GuiFreight extends GuiContainer {
 		GL11.glDisable(GL11.GL_LIGHTING);
 		GL11.glDisable(GL11.GL_DEPTH_TEST);
 		
-		fontRendererObj.drawString(freight.getCommandSenderName(), 60, 6, 0x404040);
+		fontRendererObj.drawString(freight.getCommandSenderName(), 10, 6, 0x404040);
 		fontRendererObj.drawString("Inventory", 8, (ySize - 96) + 2, 0x404040);
 		
 		GL11.glEnable(GL11.GL_LIGHTING);

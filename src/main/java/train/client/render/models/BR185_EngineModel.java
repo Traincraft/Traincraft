@@ -730,15 +730,15 @@ public class BR185_EngineModel extends ModelBase
 				br185_enginemodelModel[i].render(f5);
 			}
 		}
-		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/Class85_Bogie.png"));
+		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/BR185_Bogie.png"));
 		GL11.glPushMatrix();
-		GL11.glTranslated(-1.8,0.1,0);
+		GL11.glTranslated(-1.5,0.3,0);
 		GL11.glScalef(0.8f,0.8f,0.8f);
 		trucks.render(entity,f,f1,f2,f3,f4,f5);
 		GL11.glPopMatrix();
 
 		GL11.glPushMatrix();
-		GL11.glTranslated(1.7,0.1,0);
+		GL11.glTranslated(0.7,0.3,0);
 		GL11.glScalef(0.8f,0.8f,0.8f);
 		trucks.render(entity,f,f1,f2,f3,f4,f5);
 		GL11.glPopMatrix();

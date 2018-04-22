@@ -72,6 +72,8 @@ public class RecipeHandler {
 		/* Recipe book */
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.recipeBook.item, 1),  "TTT", "TBT", "TTT", Character.valueOf('T'), Blocks.rail, Character.valueOf('B'), Items.book );
 
+		addDictRecipe(new ItemStack(BlockIDs.switchStand.block, 1),  " W ", " I ", " R ", Character.valueOf('W'), Blocks.lever, Character.valueOf('R'), Items.stick, Character.valueOf('I'), Items.iron_ingot);
+
 		/*Buffer*/
 		addDictRecipe(new ItemStack(BlockIDs.stopper.block, 1),  "WWW", "I I", "RRR", Character.valueOf('W'), "plankWood", Character.valueOf('R'), Blocks.rail, Character.valueOf('I'), Items.iron_ingot);
 		

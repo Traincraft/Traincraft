@@ -253,7 +253,7 @@ public enum RenderEnum {
 	}, 2, true),
 	locoC41(EntityLocoSteamC41.class, new ModelLocoC41(), "locoC41", false, new float[] { -0.0F, 0.15F, 0.0F }, new float[] { 0, 180, 180 }, null, "largesmoke", 3, new ArrayList<double[]>() {
 		{
-			add(new double[] { 3.5D, 1.2D, 0.4D });
+			add(new double[] { 3.65D, 1.6D, 0.4D });
 		}
 	}, "explode", new ArrayList<double[]>() {
 		{
@@ -262,7 +262,7 @@ public enum RenderEnum {
 	}, 2, true),
 	locoSouthern1102(EntityLocoSteamSouthern1102.class, new ModelSouthern1102(), "Southern1102", false, new float[] { -0.0F, 0.15F, 0.0F }, new float[] { 0, 180, 180 }, new float[]{1f,1f,1f}, "largesmoke", 3, new ArrayList<double[]>() {
 		{
-			add(new double[] { 3.5D, 1.2D, 0.4D });
+			add(new double[] { 3.65D, 1.6D, 0.4D });
 		}
 	}, "explode", new ArrayList<double[]>() {
 		{
@@ -271,7 +271,7 @@ public enum RenderEnum {
 	}, 2, true),
 	locoC41T(EntityLocoSteamC41T.class, new ModelLocoC41T(), "locoC41t", false, new float[] { 0.05F, 0.15F, 0.0F }, new float[] { 0, 180, 180 }, null, "largesmoke", 3, new ArrayList<double[]>() {
 		{
-			add(new double[] { 3.5D, 1.2D, 0.4D });
+			add(new double[] { 3.65D, 1.6D, 0.4D });
 		}
 	}, "explode", new ArrayList<double[]>() {
 		{
@@ -461,11 +461,11 @@ public enum RenderEnum {
 	}, 2, true),
 	locoSteamMILWClassA(EntityLocoSteamMILWClassA.class, new ModelMILWClassA(), "locoMILW_ClassA", false, new float[] {0.0F, 0.1F, 0F }, new float[] { 0F, 180F, 180F }, new float[]{0.9f,0.9f,0.9f}, "largesmoke", 20, new ArrayList<double[]>() {
 		{
-			add(new double[] { 4.8D, 1.6D, 0.0D });
+			add(new double[] { 4.3D, 1.3D, 0.0D });
 		}
 	}, "explode", new ArrayList<double[]>() {
 		{
-			add(new double[] { 4.5D, -0.4D, 0.8D });
+			add(new double[] { 4.2D, -0.4D, 0.8D });
 		}
 	}, 2, true),
 	locoSteamA4Tender(EntityTenderA4.class, new ModelTenderA4(), "tenderA4_UK_", true, new float[] { -0.2F, 0.2F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
