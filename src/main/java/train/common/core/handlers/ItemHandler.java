@@ -55,7 +55,7 @@ public class ItemHandler {
 				|| entity instanceof EntityFreightWood2) {
 			return OreDictionary.getOreID(itemstack) == logWood;
 		}
-		else if (entity instanceof EntityFlatCartWoodUS) {
+		else if (entity instanceof EntityFlatCartWoodUS || entity instanceof EntityBulkheadFlatCart) {
 			return OreDictionary.getOreID(itemstack) == plankWood || OreDictionary.getOreID(itemstack) == slabWood;
 		}
 		else if (entity instanceof EntityFreightCenterbeam_Wood_1 || entity instanceof EntityFreightCenterbeam_Wood_2) {
