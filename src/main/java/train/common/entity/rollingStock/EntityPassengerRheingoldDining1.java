@@ -36,8 +36,8 @@ public class EntityPassengerRheingoldDining1 extends AbstractWorkCart implements
 	@Override
 	public void updateRiderPosition() {
 		double pitchRads = this.anglePitchClient * Math.PI / 180.0D;
-		double distance = 1;
-		double yOffset = -0.1;
+		double distance = -1;
+		double yOffset = -0.0;
 		float rotationCos1 = (float) Math.cos(Math.toRadians(this.renderYaw + 0));
 		float rotationSin1 = (float) Math.sin(Math.toRadians((this.renderYaw + 0)));
 		if (side.isServer()) {
@@ -61,10 +61,10 @@ public class EntityPassengerRheingoldDining1 extends AbstractWorkCart implements
 		}
 		double rads = this.rotationYawClientReal-90 * 3.141592653589793D / 180.0D;
 		if (pitchRads == 0.0) {
-			riddenByEntity.setPosition(bogieX1- (Math.cos(rads)*-0.3), pitch1+ (Math.tan(this.anglePitchClient * 3.141592653589793D / 180.0D)*0.3), bogieZ1- (Math.sin(rads)*-0.3));
+			riddenByEntity.setPosition(bogieX1- (Math.cos(rads)*-0.0), pitch1+ (Math.tan(this.anglePitchClient * 3.141592653589793D / 180.0D)*0.3), bogieZ1- (Math.sin(rads)*-0.0));
 		}
 		else if (pitchRads > -1.01 && pitchRads < 1.01) {
-			riddenByEntity.setPosition(bogieX1- (Math.cos(rads)*-0.3), pitch+ (Math.tan(this.anglePitchClient * 3.141592653589793D / 180.0D)*0.3), bogieZ1- (Math.sin(rads)*-0.3));
+			riddenByEntity.setPosition(bogieX1- (Math.cos(rads)*-0.0), pitch+ (Math.tan(this.anglePitchClient * 3.141592653589793D / 180.0D)*0.3), bogieZ1- (Math.sin(rads)*-0.0));
 		}
 	}
 

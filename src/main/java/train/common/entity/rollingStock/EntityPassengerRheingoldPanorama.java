@@ -64,10 +64,10 @@ public class EntityPassengerRheingoldPanorama extends EntityRollingStock impleme
 		}
 		double rads = this.rotationYawClientReal-90 * 3.141592653589793D / 180.0D;
 		if (pitchRads == 0.0) {
-			riddenByEntity.setPosition(bogieX1- (Math.cos(rads)*-0.15), pitch1+ (Math.tan(this.anglePitchClient * 3.141592653589793D / 180.0D)*0.15), bogieZ1- (Math.sin(rads)*-0.15));
+			riddenByEntity.setPosition(bogieX1- (Math.cos(rads)*-0.0), pitch1+ (Math.tan(this.anglePitchClient * 3.141592653589793D / 180.0D)*0.15), bogieZ1- (Math.sin(rads)*-0.0));
 		}
 		else if (pitchRads > -1.01 && pitchRads < 1.01) {
-			riddenByEntity.setPosition(bogieX1- (Math.cos(rads)*-0.15), pitch+ (Math.tan(this.anglePitchClient * 3.141592653589793D / 180.0D)*0.15), bogieZ1- (Math.sin(rads)*-0.15));
+			riddenByEntity.setPosition(bogieX1- (Math.cos(rads)*-0.0), pitch+ (Math.tan(this.anglePitchClient * 3.141592653589793D / 180.0D)*0.15), bogieZ1- (Math.sin(rads)*-0.0));
 		}
 	}
 
