@@ -144,7 +144,7 @@ public class GUIAdminBook extends GuiScreen {
                 this.buttonList.add(new GuiButton(i+3, guiLeft-80, guiTop+20 +(index*18), 140, 20,
                         list[i].equals("")?"Back":
                                 list[i].contains("_")?
-                                list[i].substring(list[i].indexOf("~")+1,list[i].lastIndexOf("_")):
+                                list[i].substring(list[i].indexOf("~")+1,list[i].lastIndexOf("_")).replace("minecart",""):
                 list[i]));
                 if (list[i].contains("_")) {
                     this.buttonList.add(new GuiButton(i + 3, guiLeft + 70, guiTop + 20 + (index * 18), 220, 20,
@@ -152,7 +152,7 @@ public class GUIAdminBook extends GuiScreen {
                 }
                 index++;
             }
-            if(list.length-6-(page*6)>6){
+            if(list.length-6-(page*6)>0){
                 //draw next
                 this.buttonList.add(new GuiButton(2, guiLeft-70, guiTop+140 , 70, 20, "next page"));
             }

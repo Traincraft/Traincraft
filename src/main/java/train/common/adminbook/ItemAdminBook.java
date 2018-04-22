@@ -7,6 +7,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -53,46 +54,33 @@ public class ItemAdminBook extends Item {
         stringList.add("- Lock or unlock trains/rollingstock");
     }
     @Override
-    public boolean onItemUse(ItemStack itemStack, EntityPlayer playerEntity, World worldObj, int posX, int posY, int posZ, int blockSide, float pointToRayX, float pointToRayY, float pointToRayZ) {
-
-        if(worldObj.isRemote){
-            return true;//checks if player is OP.
-        } else if (!playerEntity.canCommandSenderUseCommand(2, "")){
-            return false;
-        }
-
-        Vec3 v = playerEntity.getLookVec().normalize();
-        for(float i = 0.5f;i<4;i+=0.5f){
-            AxisAlignedBB aabb = AxisAlignedBB.getBoundingBox(playerEntity.posX + (v.xCoord * i),
-                    playerEntity.posY + (v.yCoord * i), playerEntity.posZ + (v.zCoord * i),
-                    playerEntity.posX + (v.xCoord * i), playerEntity.posY + (v.yCoord * i),
-                    playerEntity.posZ + (v.zCoord * i));
-            List list = worldObj.getEntitiesWithinAABB(EntityRollingStock.class, aabb);
-            if(list.iterator().hasNext()){
-                EntityRollingStock transport = (EntityRollingStock) list.get(0);
-                transport.locked = !transport.locked;
-                playerEntity.addChatMessage(new ChatComponentText(transport.getTrainOwner() +"'s transport is now " + (transport.locked?"Locked":"Unlocked")));
-                //TrainsInMotion.keyChannel.sendTo(new PacketAdminBook(0, transport.getEntityId(), ""), (EntityPlayerMP) playerEntity);
-                return true;
+    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
+        try {
+            if (world.isRemote) {
+                return stack;
+            } else if (!player.canCommandSenderUseCommand(2, "")) {
+                return stack;
             }
-        }
 
-        if(new File(DimensionManager.getCurrentSaveRootDirectory().getAbsolutePath() + "/traincraft/").exists()) {
-            //if player wasin't looking at a train
-            StringBuilder sb = new StringBuilder();
-            for (File f : new File(DimensionManager.getCurrentSaveRootDirectory().getAbsolutePath() + "/traincraft/").listFiles()) {
-                if(f.isDirectory() && f.list()!=null && f.list().length>0) {
-                    sb.append(f.getName());
-                    sb.append(",");
+            if (new File(DimensionManager.getCurrentSaveRootDirectory().getAbsolutePath() + "/traincraft/").exists()) {
+                //if player wasin't looking at a train
+                StringBuilder sb = new StringBuilder();
+                for (File f : new File(DimensionManager.getCurrentSaveRootDirectory().getAbsolutePath() + "/traincraft/").listFiles()) {
+                    if (f.isDirectory() && f.list() != null && f.list().length > 0) {
+                        sb.append(f.getName());
+                        sb.append(",");
+                    }
                 }
+                //wrong player or something....?
+                Traincraft.keyChannel.sendTo(new PacketAdminBook(1, -1, sb.toString()), (EntityPlayerMP) player);
+                return stack;
+            } else {
+                return stack;
             }
-            //wrong player or something....?
-            Traincraft.keyChannel.sendTo(new PacketAdminBook(1, -1, sb.toString()), (EntityPlayerMP) playerEntity);
-            return true;
-        } else {
-            return false;
+        } catch (Exception e){
+            e.printStackTrace();
         }
-
+        return super.onItemRightClick(stack, world, player);
     }
 
 

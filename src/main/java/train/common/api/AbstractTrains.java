@@ -21,6 +21,7 @@ import net.minecraftforge.common.ForgeChunkManager;
 import net.minecraftforge.common.ForgeChunkManager.Ticket;
 import train.client.render.RenderEnum;
 import train.common.Traincraft;
+import train.common.adminbook.ItemAdminBook;
 import train.common.core.handlers.ConfigHandler;
 import train.common.core.handlers.RollingStockStatsEventHandler;
 import train.common.core.handlers.TrainHandler;
@@ -312,6 +313,8 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 				}
 				itemstack.damageItem(1, entityplayer);
 				return true;
+			} else if(lockThisCart(itemstack, entityplayer)) {
+				return true;
 			}
 		}
 		return false;
@@ -542,8 +545,8 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 
 	/** Locking for passengers, flat, caboose, jukebox,workcart */
 	protected boolean lockThisCart(ItemStack itemstack, EntityPlayer entityplayer) {
-		if (itemstack != null && itemstack.getItem() instanceof ItemWrench) {
-			if (entityplayer.getDisplayName().equals(this.trainOwner)) {
+		if (itemstack != null && (itemstack.getItem() instanceof ItemWrench || itemstack.getItem() instanceof ItemAdminBook)) {
+			if (entityplayer.getDisplayName().equals(this.trainOwner) || entityplayer.canCommandSenderUseCommand(2, "")) {
 				if (locked) {
 					locked = false;
 					entityplayer.addChatMessage(new ChatComponentText("unlocked"));

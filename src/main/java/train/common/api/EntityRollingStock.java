@@ -39,12 +39,14 @@ import train.common.adminbook.ServerLogger;
 import train.common.core.HandleOverheating;
 import train.common.core.handlers.*;
 import train.common.core.network.PacketRollingStockRotation;
+import train.common.core.network.PacketSetTrainLockedToClient;
 import train.common.entity.rollingStock.EntityTracksBuilder;
 import train.common.items.ItemTCRail;
 import train.common.items.ItemTCRail.TrackTypes;
 import train.common.items.ItemWrench;
 import train.common.library.BlockIDs;
 import train.common.library.EnumTrains;
+import train.common.library.ItemIDs;
 import train.common.tile.TileTCRail;
 import train.common.tile.TileTCRailGag;
 
@@ -1633,9 +1635,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 					entityplayer.addChatMessage(new ChatComponentText("To paint, click me with the right dye"));
 					return true;
 				}
-			}
-			else if (itemstack != null && itemstack.getItem() instanceof ItemRedstone){
-				this.setColor(420);
 			}
 			else if (this.acceptedColors != null && this.acceptedColors.size() == 0) {
 				entityplayer.addChatMessage(new ChatComponentText("No other colors available"));
