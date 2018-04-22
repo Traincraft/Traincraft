@@ -36,7 +36,7 @@ public class EntityPassengerRheingoldDining2  extends AbstractWorkCart implement
 	@Override
 	public void updateRiderPosition() {
 		double pitchRads = this.anglePitchClient * Math.PI / 180.0D;
-		double distance = -0.8;
+		double distance = -0.5;
 		double yOffset = -0.3;
 		float rotationCos1 = (float) Math.cos(Math.toRadians(this.renderYaw + 0));
 		float rotationSin1 = (float) Math.sin(Math.toRadians((this.renderYaw + 0)));

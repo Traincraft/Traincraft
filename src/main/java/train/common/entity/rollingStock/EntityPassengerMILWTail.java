@@ -45,7 +45,7 @@ public class EntityPassengerMILWTail extends EntityRollingStock implements IPass
 		}
 		float pitch = (float) (posY + ((Math.tan(pitchRads) * distance) + getMountedYOffset())
 				+ riddenByEntity.getYOffset() + yOffset);
-		float pitch1 = (float) (posY + getMountedYOffset() + riddenByEntity.getYOffset() + yOffset);
+		float pitch1 = (float) (posY + getMountedYOffset() + riddenByEntity.getYOffset() + yOffset-0.1);
 		double bogieX1 = (this.posX + (rotationCos1 * distance));
 		double bogieZ1 = (this.posZ + (rotationSin1 * distance));
 		// System.out.println(rotationCos1+" "+rotationSin1);
@@ -59,10 +59,10 @@ public class EntityPassengerMILWTail extends EntityRollingStock implements IPass
 		}
 		double rads = this.rotationYawClientReal-90 * 3.141592653589793D / 180.0D;
 		if (pitchRads == 0.0) {
-			riddenByEntity.setPosition(bogieX1- (Math.cos(rads)*-0.6), pitch1+ (Math.tan(this.anglePitchClient * 3.141592653589793D / 180.0D)*0.6), bogieZ1- (Math.sin(rads)*-0.6));
+			riddenByEntity.setPosition(bogieX1- (Math.cos(rads)*-0.4), pitch1+ (Math.tan(this.anglePitchClient * 3.141592653589793D / 180.0D)*0.4), bogieZ1- (Math.sin(rads)*-0.4));
 		}
 		else if (pitchRads > -1.01 && pitchRads < 1.01) {
-			riddenByEntity.setPosition(bogieX1- (Math.cos(rads)*-0.6), pitch+ (Math.tan(this.anglePitchClient * 3.141592653589793D / 180.0D)*0.6), bogieZ1- (Math.sin(rads)*-0.6));
+			riddenByEntity.setPosition(bogieX1- (Math.cos(rads)*-0.4), pitch+ (Math.tan(this.anglePitchClient * 3.141592653589793D / 180.0D)*0.4), bogieZ1- (Math.sin(rads)*-0.4));
 		}
 
 		//double pitchRads = this.anglePitchClient * 3.141592653589793D / 180.0D;
