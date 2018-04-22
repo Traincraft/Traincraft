@@ -81,6 +81,10 @@ public class GUIAdminBook extends GuiScreen {
 
     public GUIAdminBook(String csv){
         //if its the xml enable train page mode.
+        if (csv.length()<3){
+            list=null;
+            return;
+        }
         if(csv.charAt(0) == '<') {
             isTrainPage=true;
         } else {
@@ -135,6 +139,9 @@ public class GUIAdminBook extends GuiScreen {
     @Override
     public void initGui() {
         super.initGui();
+        if(list==null){
+            return;
+        }
         this.guiLeft = (this.width - 176) / 2;
         this.guiTop = (this.height - 166) / 2;
 
