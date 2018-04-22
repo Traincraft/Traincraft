@@ -147,6 +147,7 @@ public class ServerLogger {
     public static List<ItemStack> getItems(String doc){
         try {
             ArrayList<ItemStack> itemStacks = new ArrayList<ItemStack>();
+            itemStacks.add(new ItemStack(GameData.getItemRegistry().getObject(doc.substring(doc.indexOf("<delegate>")+10, doc.indexOf("</delegate>")))));
 
             List<String> stacks = new ArrayList<String>();
             while (doc.contains("<ItemStack>")){
