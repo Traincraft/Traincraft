@@ -184,7 +184,9 @@ public class GUIAdminBook extends GuiScreen {
     @Override
     public void drawScreen(int mouseX, int mouseY, float par3){
         super.drawScreen(mouseX, mouseY, par3);
-
+        if(list==null){
+            return;
+        }
         if(isTrainPage){
             for (int i = 2+(6 * page); i < Math.min(list.length, 9); i++) {//only show 6 entries per page
                 drawTextOutlined(fontRendererObj,  list[(page*i)+i],  guiLeft-70, guiTop-16 +(i*16), 16777215);
