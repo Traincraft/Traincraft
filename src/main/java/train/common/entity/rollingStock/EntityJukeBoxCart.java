@@ -97,7 +97,7 @@ public class EntityJukeBoxCart extends EntityRollingStock {
 					this.player.setVolume(0.0F);
 				} else {
 					float v2 = 10000.0F / vol / 100.0F;
-					System.out.println(vol);
+//					System.out.println(vol);
 					if (v2 > 1.0F) {
 						this.player.setVolume(volume);
 					} else {
