@@ -1,10 +1,13 @@
 package train.common.core.util;
 
 import net.minecraft.block.BlockRailBase;
+import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
+import train.common.api.AbstractTrains;
 
 
 public class TraincraftUtil{
@@ -33,7 +36,32 @@ public class TraincraftUtil{
     }
 
     public static boolean isRailBlockAt(World world, int x, int y, int z){
-        return world.getBlock(x,y,z) instanceof BlockRailBase; //TODO ZnD Rail Support
+        return world.getBlock(x,y,z) instanceof BlockRailBase;
     }
 
+    private static final float radianF = (float) Math.PI / 180.0f;
+    public static void updateRider(Entity rider, AbstractTrains transport, double pitch, float yaw, double xOffset, double yOffset, double zOffset) {
+        double cos;
+        double sin;
+        double x=0,y=0,z=0;
+        //pitch
+        if (pitch != 0.0) {
+            pitch *= radianF;
+            cos = Math.cos(pitch);
+            sin = Math.sin(pitch);
+
+            x = (xOffset * cos);
+            y = (xOffset * sin);
+        }
+        //yaw
+        if (yaw != 0.0F) {
+            yaw *= radianF;
+            cos = MathHelper.cos(yaw);
+            sin = MathHelper.sin(yaw);
+
+            x = (xOffset * cos) - (zOffset * sin);
+            z = (xOffset * sin) + (zOffset * cos);
+        }
+        rider.setPosition(transport.posX + x, transport.posY + rider.getMountedYOffset() + transport.getMountedYOffset()+yOffset, transport.posZ+z);
+    }
 }

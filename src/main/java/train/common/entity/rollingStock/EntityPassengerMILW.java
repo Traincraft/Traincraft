@@ -3,9 +3,12 @@ package train.common.entity.rollingStock;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import tmt.Vec3d;
 import train.common.api.EntityRollingStock;
 import train.common.api.IPassenger;
+import train.common.core.util.TraincraftUtil;
 
 public class EntityPassengerMILW extends EntityRollingStock implements IPassenger {
 
@@ -25,20 +28,7 @@ public class EntityPassengerMILW extends EntityRollingStock implements IPassenge
 	}
 	@Override
 	public void updateRiderPosition() {
-		//if(this.bogie[0]!=null){
-			/*double dX = this.posX - this.bogie[0].posX;
-			double dZ = this.posZ - this.bogie[0].posZ;
-			dX/=2;
-			dZ/=2;*/
-			//System.out.println(worldObj.isRemote+ " "+(posX - dX) +" " + (posZ - dZ));
-			//riddenByEntity.setPosition(posX - dX, posY + getMountedYOffset() + riddenByEntity.getYOffset() + 0.2, posZ-dZ);	
-		//}
-		double rads = this.rotationYawClientReal-90 * 3.141592653589793D / 180.0D;
-		//double pitchRads = this.anglePitchClient * 3.141592653589793D / 180.0D;
-		//double distance = -0.2;
-		riddenByEntity.setPosition(posX - Math.cos(rads)*-0.0, posY + (Math.tan(this.anglePitchClient * 3.141592653589793D / 180.0D)*0.2)+( getMountedYOffset() + riddenByEntity.getYOffset() + -0.10F), posZ - Math.sin(rads)*-0.0);
-
-		//riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset() + 0.2, posZ);
+		TraincraftUtil.updateRider(riddenByEntity, this, anglePitchClient, rotationYawClientReal, 0.1, -0.2,-0.1);
 	}
 
 	@Override

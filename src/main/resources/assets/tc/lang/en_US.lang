@@ -283,7 +283,7 @@ item.tc:minecartPassengerRheingoldPanorama.name=Rheingold Panorama
 item.tc:minecartBulkheadFlatCart.name=Bulkhead Flat Cart
 item.tc:minecartLocoSouthern1102.name=Southern 1102
 item.tc:minecartTenderSouthern1102.name=Southern 1102 Tender
-item.tc:minecartE10_DB.name=E10.2 (DB)
+item.tc:minecartE10_DB.name=E10 (DB)
 item.tc:minecartPassengerMILW.name=Hiawatha 1935 MILW Passenger
 item.tc:minecartPassengerMILWTail.name=Hiawatha 1935 MILW Bevertail
 item.tc:minecartBaggageMILW.name=Hiawatha 1935 MILW Baggage
@@ -530,12 +530,12 @@ entity.tc.Rheingold Panorama.name=Rheingold Panorama
 entity.tc.Freight Bulkhead Flat Cart.name=Bulkhead Flat Cart
 entity.tc.Loco Steam Southern 1102.name=Southern 1102
 entity.tc.Tender Southern1102.name=Southern 1102 Tender
-entity.tc.Loco Electric E10 DB.name=E10.2 (DB)
-entity.tc.Passenger MILW.name=1935 MILW Passenger
-entity.tc.Passenger MILW Tail.name=1935 MILW Bevertail
-entity.tc.MILW Baggage.name=1935 MILW Baggage
-entity.tc.Loco Steam MILW Class A.name=1935 Class A MILW
-entity.tc.MILW Tender.name=1935 MILW Tender
+entity.tc.Loco Electric E10 DB.name=E10 (DB)
+entity.tc.Passenger MILW.name=Hiawatha 1935 MILW Passenger
+entity.tc.Passenger MILW Tail.name=Hiawatha 1935 MILW Bevertail
+entity.tc.MILW Baggage.name=Hiawatha 1935 MILW Baggage
+entity.tc.Loco Steam MILW Class A.name=Hiawatha 1935 Class A MILW
+entity.tc.MILW Tender.name=Hiawatha 1935 MILW Tender
 
 description.villager.profession.tc.station_chief=Station Chief
 

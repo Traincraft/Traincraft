@@ -6,6 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import train.common.api.EntityRollingStock;
 import train.common.api.IPassenger;
+import train.common.core.util.TraincraftUtil;
 
 public class EntityPassengerMILWTail extends EntityRollingStock implements IPassenger {
 
@@ -25,8 +26,7 @@ public class EntityPassengerMILWTail extends EntityRollingStock implements IPass
 	}
 	@Override
 	public void updateRiderPosition() {
-		double rads = this.rotationYawClientReal-90 * 3.141592653589793D / 180.0D;
-		riddenByEntity.setPosition(posX - Math.cos(rads)*-0.0, posY + (Math.tan(this.anglePitchClient * 3.141592653589793D / 180.0D)*0.2)+( getMountedYOffset() + riddenByEntity.getYOffset() + -0.05F), posZ - Math.sin(rads)*-0.0);
+		TraincraftUtil.updateRider(riddenByEntity, this, anglePitchClient, rotationYawClientReal, -0.6, -0.3,-0.3);
 	}
 
 	@Override

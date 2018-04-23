@@ -327,6 +327,9 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 	 * @param color
 	 */
 	public void setColor(int color) {
+		if (color==-1 && EnumTrains.getCurrentTrain(getCartItem().getItem()).getColors()!=null){
+			color = getColorFromString(EnumTrains.getCurrentTrain(getCartItem().getItem()).getColors()[0]);
+		}
 		dataWatcher.updateObject(12, color);
 	}
 
