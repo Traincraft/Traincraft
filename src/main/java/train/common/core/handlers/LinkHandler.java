@@ -373,8 +373,8 @@ public class LinkHandler {
 	 */
 	public float getOptimalDistance(AbstractTrains cart1, AbstractTrains cart2) {
 		float dist = 0.0F;
-			dist += cart1.getOptimalDistance((EntityMinecart) cart2);
-			dist += cart2.getOptimalDistance((EntityMinecart) cart1);
+			dist += cart1.getOptimalDistance(cart2);
+			dist += cart2.getOptimalDistance(cart1);
 		return dist;
 	}
 
@@ -400,7 +400,7 @@ public class LinkHandler {
 	 * Handles the cart coupling physics
 	 */
 	private void StakePhysic(EntityRollingStock cart1, EntityRollingStock cart2, int linkIndex) {
-		if (worldObj.isRemote) {
+		if (worldObj.isRemote || cart1.updateTicks<5 || cart2.updateTicks<5) {
 			return;
 		}
 		if (cart2.isAttached && cart1.isAttached && areLinked(cart2, cart1)) {
