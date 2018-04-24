@@ -23,7 +23,7 @@ public class EntityFreightBaggageMILW extends Freight implements IInventory {
 
 	public void initFreightCart() {
 		numFreightSlots = 9;
-		freightInventorySize = 45;
+		freightInventorySize = trainSpec.getCargoCapacity();
 		cargoItems = new ItemStack[freightInventorySize];
 	}
 

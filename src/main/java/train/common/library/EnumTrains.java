@@ -95,7 +95,7 @@ public enum EnumTrains {
 	flatCartWoodLogs("Freight Flat Logs",EntityFreightWood2.class, ItemIDs.minecartFreightWood2.item,"freight",3,null,18,18,new String[] {"Cargo: only logs"}),
 	freightClosedRedBrown("Freight Cart Closed RedBrown",EntityFreightClosed.class, ItemIDs.minecartFreightClosed.item,"freight",2.5,null,18,36,new String[] {"Cargo: any"}),
 	freightOpenRedBrown("Freight Open RedBrown",EntityFreightOpen2.class, ItemIDs.minecartFreightOpen2.item,"freight",5,null,18,21,new String[] {"Cargo: any"}),
-	freightWagen_DB("Freight Wagon DB",EntityFreightWagenDB.class,ItemIDs.minecartFreightWagon_DB.item,"freight",4,new String[] {"Red","Green", "Yellow"},18, 54,new String[] {"Cargo: any"}),
+	freightWagen_DB("Freight Wagon DB",EntityFreightWagenDB.class,ItemIDs.minecartFreightWagon_DB.item,"freight",4,new String[] {"Red","Green", "Yellow"},18,54,new String[] {"Cargo: any"}),
 	flatCarRails_DB("Freight Flat Cart Rails DB",EntityFlatCarRails_DB.class,ItemIDs.minecartFlatCartRail_DB.item,"freight",5,new String[] {"Red","Green"},18, 36,new String[] {"Cargo: only rails"}),
 	flatCarLogs_DB("Freight Flat Cart Logs DB",EntityFlatCarLogs_DB.class,ItemIDs.minecartFlatCartLogs_DB.item,"freight",4,new String[] {"Red","Green"},18,45,new String[] {"Cargo: only logs"}),
 	slateWagon("Freight Slate Wagon", EntityFreightSlateWagon.class, ItemIDs.minecartSlateWagon.item, "freight",
