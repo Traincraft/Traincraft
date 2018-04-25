@@ -37,6 +37,9 @@ public class EntityFlatCart extends EntityRollingStock implements IPassenger {
 
 	@Override
 	public boolean interactFirst(EntityPlayer entityplayer) {
+		if (riddenByEntity == entityplayer){
+			return false;
+		}
 		playerEntity = entityplayer;
 		if ((super.interactFirst(entityplayer))) {
 			return false;
