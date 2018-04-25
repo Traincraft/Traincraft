@@ -1,5 +1,6 @@
 package train.client.gui;
 
+import cpw.mods.fml.common.registry.GameData;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.Entity;
@@ -40,7 +41,7 @@ public class GuiLiquid extends GuiContainer {
 
 		if (intersectsWith(t, g)) {
 			if (liquid.getLiquidName()!= null && !liquid.getLiquidName().equals("")) {
-				drawCreativeTabHoveringText(StatCollector.translateToLocal("fluid.tc:"+liquid.getLiquidName()) + ": " + liquid.getAmount() + "mb/" + liquid.getCapacity() + "mb", t, g);
+				drawCreativeTabHoveringText(StatCollector.translateToLocal(liquid.getLiquidName()) + ": " + liquid.getAmount() + "mb/" + liquid.getCapacity() + "mb", t, g);
 			} else {
 				drawCreativeTabHoveringText( "0mb/" + liquid.getCapacity() + "mb", t, g);
 			}
@@ -148,7 +149,7 @@ public class GuiLiquid extends GuiContainer {
 		fontRendererObj.drawStringWithShadow("only its owner can open", startX, startY + 10, -1);
 		fontRendererObj.drawStringWithShadow("the GUI and destroy it.", startX, startY + 20, -1);
 		fontRendererObj.drawStringWithShadow("Current state: "+state, startX, startY+30, -1);
-		fontRendererObj.drawStringWithShadow("Owner: "+((AbstractTrains) liquid).getTrainOwner().trim(), startX, startY+40, -1);
+		fontRendererObj.drawStringWithShadow("Owner: "+(liquid).getTrainOwner().trim(), startX, startY+40, -1);
 	}
 	public boolean intersectsWithLockButton(int mouseX, int mouseY) {
 		//System.out.println(mouseX+" "+mouseY);
@@ -165,10 +166,10 @@ public class GuiLiquid extends GuiContainer {
 		int k = (height - ySize) / 2;
 		drawTexturedModalRect(j, k, 0, 0, xSize, ySize);
 
-		int amount = liquid.getAmount();
-		int l = (amount * 50) / liquid.getCapacity();
 
-		Fluid theLiquid = FluidRegistry.getFluid(liquid.getLiquidName());
+		int l = (liquid.getAmount() * 50) / liquid.getCapacity();
+
+		Fluid theLiquid = FluidRegistry.getFluid(liquid.getLiquidItemID());
 		/** Don't render anything if the cart is empty */
 		if (theLiquid != null) {
 			/** Protection against missing rendering icon, to avoid NPE */
