@@ -26,6 +26,13 @@ fluid.tc:fluid.diesel.name=Dizelsko gorivo
 fluid.tc:fluid.refinedfuel.name=Refinirano gorivo
 tile.tc:bridgePillar.name=Podpornik mostu
 
+<!-- ## Fluids ## -->
+fluid.diesel.name=Dizelsko gorivo
+fluid.refinedfuel.name=Refinirano gorivo
+
+fluid.tile.water=Voda
+fluid.tile.lava=Lava
+
 <!-- ## Items ## -->
 item.tc:diesel.name=(Poln) Dizelski kontejner
 item.tc:stake.name=Palica

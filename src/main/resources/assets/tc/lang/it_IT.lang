@@ -27,6 +27,14 @@ fluid.tc:fluid.refinedfuel.name=Carburante raffinato
 tile.tc:bridgePillar.name=Pilone del ponte
 tile.tc:switchStand.name=Supporto del deviatore a stella
 
+<!-- ## Fluids ## -->
+fluid.diesel.name=Carburante diesel
+fluid.refinedfuel.name=Carburante raffinato
+
+fluid.tile.water=Acqua
+fluid.tile.lava=Lava
+
+
 <!-- ## RAILCRAFT ITEM ## -->
 tile.tc.track.detector.freight.name=Binario rilevatore vagone merci
 tile.tc.track.detector.passenger.name=Binario rilevatore vagone passeggeri

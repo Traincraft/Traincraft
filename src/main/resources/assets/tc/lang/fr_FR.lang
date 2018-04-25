@@ -20,6 +20,13 @@ tile.tc:assemblyTableI.name=Table d'assemblage I
 tile.tc:assemblyTableII.name=Table d'assemblage II
 tile.tc:assemblyTableIII.name=Table d'assemblage III
 
+<!-- ## Fluids ## -->
+fluid.diesel.name=Bidon de diesel
+fluid.refinedfuel.name=Bidon d'essence
+
+fluid.tile.water=Eau
+fluid.tile.lava=Lave
+
 <!-- ## Items ## -->
 item.tc:diesel.name=Bidon de diesel
 item.tc:stake.name=Coupleur

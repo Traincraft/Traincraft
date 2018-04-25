@@ -26,6 +26,13 @@ fluid.tc:fluid.diesel.name=Dieselkraftstoff
 fluid.tc:fluid.refinedfuel.name=Rafinierter Kraftstoff
 tile.tc:bridgePillar.name=Brückenpfeiler
 
+<!-- ## Fluids ## -->
+fluid.diesel.name=Dieselkraftstoff
+fluid.refinedfuel.name=Rafinierter Kraftstoff
+
+fluid.tile.water=Wasser
+fluid.tile.lava=Lava
+
 <!-- ## Items ## -->
 item.tc:diesel.name=(Gefüllter) Dieselkanister
 item.tc:stake.name=Kupplung

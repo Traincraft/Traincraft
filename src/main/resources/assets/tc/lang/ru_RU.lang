@@ -23,6 +23,13 @@ tile.tc:assemblyTableIII.name=Сборочный стол III уровня
 fluid.tc:fluid.diesel.name=Дизельное топливо
 fluid.tc:fluid.refinedfuel.name=Бензин
 
+<!-- ## Fluids ## -->
+fluid.diesel.name=Дизельное топливо
+fluid.refinedfuel.name=Бензин
+
+fluid.tile.water=вода
+fluid.tile.lava=лава
+
 <!-- ## Предметы ## -->
 item.tc:diesel.name=Канистра с дизельным топливом
 item.tc:stake.name=Ключ сцепщика

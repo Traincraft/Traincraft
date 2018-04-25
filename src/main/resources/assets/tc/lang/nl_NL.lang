@@ -27,6 +27,13 @@ fluid.tc:fluid.refinedfuel.name=Gerafineerde Brandstof
 tile.tc:bridgePillar.name=Brug Pilaar
 tile.tc:switchStand.name=Hoge Ster Switch Stand
 
+<!-- ## Fluids ## -->
+fluid.diesel.name=Diesel Brandstof
+fluid.refinedfuel.name=Gerafineerde Brandstof
+
+fluid.tile.water=Water
+fluid.tile.lava=Lava
+
 
 <!-- ## Railcraft items ## -->
 tile.tc.track.detector.freight.name=Vracht Wagon Detecteer Spoor

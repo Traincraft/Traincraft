@@ -27,6 +27,12 @@ fluid.tc:fluid.refinedfuel.name=Rafinované palivo
 tile.tc:bridgePillar.name=Mostní pilíř
 tile.tc:switchStand.name=Vysoká stojanová vyhýbka
 
+<!-- ## Fluids ## -->
+fluid.diesel.name=Dieselové palivo
+fluid.refinedfuel.name=Rafinované palivo
+
+fluid.tile.water=Voda
+fluid.tile.lava=Láva
 
 <!-- ## Railcraft items ## -->
 tile.tc.track.detector.freight.name=Trať s detektorem nákladních vagónů

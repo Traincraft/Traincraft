@@ -27,6 +27,13 @@ fluid.tc:fluid.refinedfuel.name=Przetworzone paliwo
 tile.tc:bridgePillar.name=Filar mostu
 tile.tc:switchStand.name=Podstawa przełącznika
 
+<!-- ## Fluids ## -->
+fluid.diesel.name=Olej napędowy
+fluid.refinedfuel.name=Przetworzone paliwo
+
+fluid.tile.water=Woda
+fluid.tile.lava=Lawa
+
 
 <!-- ## Railcraft items ## -->
 tile.tc.track.detector.freight.name=Detektor pojazdu frachtowego

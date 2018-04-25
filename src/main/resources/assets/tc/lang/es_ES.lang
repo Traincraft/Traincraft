@@ -21,13 +21,18 @@ tile.tc:assemblyTableII.name=Mesa de ensamblaje II
 tile.tc:assemblyTableIII.name=Mesa de ensamblaje III 
 tile.tc:tcRail.name=Vía 
 Traincraft tile.tc:tcRailGag.name=Vía Traincraft  
-fluid.tc:fluid.diesel.name=Gasoil
- 
-fluid.tc:fluid.refinedfuel.name=Fuel 
+fluid.tc:fluid.diesel.name=Gasoil 
+fluid.tc:fluid.refinedfuel.name=Fuel
+tile.tc:bridgePillar.name=Pilar de puente
+tile.tc:switchStand.name=Palanca de conmutador
 
-tile.tc:bridgePillar.name=Pilar de puente 
+<!-- ## Fluids ## -->
+fluid.diesel.name=Gasoil
+fluid.refinedfuel.name=Fuel
 
-tile.tc:switchStand.name=Palanca de conmutador 
+fluid.tile.water=Agua
+fluid.tile.lava=Lava
+
 <!-- ## Railcraft items ## --> 
 tile.tc.track.detector.freight.name=Vía detectora de vagones de carga
  

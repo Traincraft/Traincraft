@@ -26,6 +26,13 @@ fluid.tc:fluid.diesel.name=Óleo Diesel
 fluid.tc:fluid.refinedfuel.name=Combustível Refinado
 tile.tc:bridgePillar.name=Pilar de Ponte
 
+<!-- ## Fluids ## -->
+fluid.diesel.name=Ólep Fuel
+fluid.refinedfuel.name=Combustível Refinado
+
+fluid.tile.water=Agua
+fluid.tile.lava=Lava
+
 
 <!-- ## Railcraft items ## -->
 tile.tc.track.detector.freight.name=Trilho Detector de Carrinho de Carga
