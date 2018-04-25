@@ -8,14 +8,19 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+
+import java.util.List;
+
 import org.lwjgl.input.Keyboard;
 import train.common.Traincraft;
 import train.common.core.HandleMaxAttachedCarts;
@@ -414,6 +419,16 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 			if (sounds.getEntityClass() != null && sounds.getEntityClass().equals(this.getClass()) && whistleDelay == 0) {
 				worldObj.playSoundAtEntity(this, Info.resourceLocation + ":" + sounds.getHornString(), sounds.getHornVolume(), 1.0F);
 				whistleDelay = 65;
+			}
+		}
+		List entities = worldObj.getEntitiesWithinAABB(EntityAnimal.class, AxisAlignedBB.getBoundingBox(
+															this.posX-20,this.posY-5,this.posZ-20,
+															this.posX+20,this.posY+5,this.posZ+20));
+		
+		for(Object e : entities) {
+			if(e instanceof EntityAnimal) {
+				((EntityAnimal) e).setTarget(this);
+				((EntityAnimal) e).getNavigator().setPath(null, 0);
 			}
 		}
 	}
