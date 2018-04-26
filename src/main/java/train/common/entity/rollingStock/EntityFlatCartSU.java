@@ -30,6 +30,12 @@ public class EntityFlatCartSU extends EntityRollingStock implements IPassenger {
 	}
 
 	@Override
+	public void onUpdate(){
+		super.onUpdate();
+		boundingBox.maxY-=1;
+	}
+
+	@Override
 	public void setDead() {
 		super.setDead();
 		isDead = true;
