@@ -154,10 +154,11 @@ public class ItemAdminBook extends Item {
                     message.id = message.id.substring(2, message.id.length());
                     event=2;
                 }
-                if (new File(DimensionManager.getCurrentSaveRootDirectory().getAbsolutePath() + "\\traincraft\\" + message.id).exists()) {
+                File f = new File(DimensionManager.getCurrentSaveRootDirectory().getAbsolutePath() + "\\traincraft\\" + message.id);
+                if (f.exists()) {
                     //if player wasin't looking at a train
                     StringBuilder sb = new StringBuilder();
-                    if (!new File(DimensionManager.getCurrentSaveRootDirectory().getAbsolutePath() + "\\traincraft\\" + message.id).isDirectory()){
+                    if (!f.isDirectory()){
                         try {
                             if(event==0) {
                                 sb.append("<");
@@ -207,10 +208,8 @@ public class ItemAdminBook extends Item {
                                     }
                                 }
                             } else if (event==2){
-                                System.out.println(DimensionManager.getCurrentSaveRootDirectory().getAbsolutePath() + "\\traincraft\\" + message.id);
-                                File deleteme = new File(DimensionManager.getCurrentSaveRootDirectory().getAbsolutePath() + "\\traincraft\\" + message.id);
-                                if (deleteme.exists()) {
-                                    deleteme.delete();
+                                if (f.exists()) {
+                                    f.delete();
                                 }
                             }
                         } catch (Exception e){}
@@ -218,15 +217,15 @@ public class ItemAdminBook extends Item {
                         if(!message.id.equals("")) {
                             sb.append(",");
                         }
-                        File[] folder = new File(DimensionManager.getCurrentSaveRootDirectory().getAbsolutePath() + "/traincraft/" + message.id+"/").listFiles();
+                        File[] folder = f.listFiles();
                         if (folder !=null) {
-                            for (File f : folder) {
-                                if (f != null) {
+                            for (File file : folder) {
+                                if (file != null) {
                                     sb.append(message.id);
                                     if(!message.id.equals("")) {
                                         sb.append("\\");
                                     }
-                                    sb.append(f.getName());
+                                    sb.append(file.getName());
                                     sb.append(",");
                                 }
                             }

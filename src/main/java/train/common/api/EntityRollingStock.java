@@ -1576,6 +1576,10 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			return false;
 		}
 
+		if(lockThisCart(entityplayer.inventory.getCurrentItem(), entityplayer)){
+			return true;
+		}
+
 		playerEntity = entityplayer;
 		ItemStack itemstack = entityplayer.inventory.getCurrentItem();
 
