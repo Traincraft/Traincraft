@@ -385,6 +385,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				 */
 				if (this instanceof IPassenger) {
 					this.setDead();
+					ServerLogger.deleteWagon(this);
 					if (damagesource.getEntity() instanceof EntityPlayer) {
 						dropCartAsItem(((EntityPlayer)damagesource.getEntity()).capabilities.isCreativeMode);
 					} else {

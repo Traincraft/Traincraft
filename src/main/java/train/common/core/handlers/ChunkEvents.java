@@ -38,7 +38,7 @@ public class ChunkEvents implements ForgeChunkManager.LoadingCallback, ForgeChun
 			}
 
 			for(ChunkCoordIntPair chunk : newChunks) {
-				if(!transport.loadedChunks.contains(chunk) && !transport.worldObj.getChunkFromChunkCoords(chunk.chunkXPos, chunk.chunkZPos).isChunkLoaded) {
+				if(!transport.loadedChunks.contains(chunk)) {
 					ForgeChunkManager.forceChunk(transport.getTicket(), chunk);
 					ForgeChunkManager.reorderChunk(transport.getTicket(), chunk);
 				}

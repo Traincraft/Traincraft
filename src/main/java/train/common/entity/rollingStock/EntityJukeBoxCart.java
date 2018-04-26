@@ -11,6 +11,7 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import train.common.Traincraft;
+import train.common.adminbook.ServerLogger;
 import train.common.api.EntityRollingStock;
 import train.common.core.util.MP3Player;
 import train.common.library.GuiIDs;
@@ -58,6 +59,7 @@ public class EntityJukeBoxCart extends EntityRollingStock {
 				riddenByEntity.mountEntity(this);
 			}
 			this.setDead();
+			ServerLogger.deleteWagon(this);
 			if(damagesource.getEntity() instanceof EntityPlayer) {
 				dropCartAsItem(((EntityPlayer)damagesource.getEntity()).capabilities.isCreativeMode);
 			}

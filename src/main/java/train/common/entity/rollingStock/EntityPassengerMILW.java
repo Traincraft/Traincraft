@@ -28,7 +28,7 @@ public class EntityPassengerMILW extends EntityRollingStock implements IPassenge
 	}
 	@Override
 	public void updateRiderPosition() {
-		TraincraftUtil.updateRider(riddenByEntity, this, anglePitchClient, rotationYawClientReal, 0.1, -0.2,-0.1);
+		TraincraftUtil.updateRider(riddenByEntity, this, (float)(worldObj.isRemote?anglePitchClient:serverRealPitch), worldObj.isRemote?rotationYawClientReal:rotationYaw, 0.1, -0.2,-0.1);
 	}
 
 	@Override

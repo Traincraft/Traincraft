@@ -40,15 +40,15 @@ public class TraincraftUtil{
     }
 
     private static final float radianF = (float) Math.PI / 180.0f;
-    public static void updateRider(Entity rider, AbstractTrains transport, double pitch, float yaw, double xOffset, double yOffset, double zOffset) {
+    public static void updateRider(Entity rider, AbstractTrains transport, float pitch, float yaw, double xOffset, double yOffset, double zOffset) {
         double cos;
         double sin;
         double x=0,y=0,z=0;
         //pitch
         if (pitch != 0.0) {
             pitch *= radianF;
-            cos = Math.cos(pitch);
-            sin = Math.sin(pitch);
+            cos = MathHelper.cos(pitch);
+            sin = MathHelper.sin(pitch);
 
             x = (xOffset * cos);
             y = (xOffset * sin);

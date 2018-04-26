@@ -54,11 +54,11 @@ public class RenderSwitchStand extends TileEntitySpecialRenderer {
 
 		if (!skipRender) {
 			if (tileEntity.getWorldObj().getBlock(tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord).isProvidingWeakPower(tileEntity.getWorldObj(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord, 0) > 0) {
-				Tessellator.bindTexture(texture);
-				modelSwitch.render(null, 0, 0, 0, 0, 0, 0.0625f);
-			} else {
 				Tessellator.bindTexture(texture2);
 				modelSwitch2.render(null, 0, 0, 0, 0, 0, 0.0625f);
+			} else {
+				Tessellator.bindTexture(texture);
+				modelSwitch.render(null, 0, 0, 0, 0, 0, 0.0625f);
 			}
 		}
 		GL11.glPopMatrix();

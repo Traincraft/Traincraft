@@ -8,6 +8,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
+import train.common.adminbook.ServerLogger;
 import train.common.entity.rollingStock.EntityTankLava;
 
 import javax.annotation.Nullable;
@@ -332,6 +333,7 @@ public class LiquidTank extends EntityRollingStock implements IFluidHandler, ISi
 				riddenByEntity.mountEntity(this);
 			}
 			this.setDead();
+			ServerLogger.deleteWagon(this);
 			if (damagesource.getEntity() instanceof EntityPlayer) {
 				dropCartAsItem(((EntityPlayer)damagesource.getEntity()).capabilities.isCreativeMode);
 			}

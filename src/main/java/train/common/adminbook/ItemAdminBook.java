@@ -27,6 +27,8 @@ import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -65,14 +67,18 @@ public class ItemAdminBook extends Item {
             if (new File(DimensionManager.getCurrentSaveRootDirectory().getAbsolutePath() + "/traincraft/").exists()) {
                 //if player wasin't looking at a train
                 StringBuilder sb = new StringBuilder();
-                for (File f : new File(DimensionManager.getCurrentSaveRootDirectory().getAbsolutePath() + "/traincraft/").listFiles()) {
-                    if (f.isDirectory() && f.list() != null && f.list().length > 0) {
-                        sb.append(f.getName());
-                        sb.append(",");
+                File[] list = new File(DimensionManager.getCurrentSaveRootDirectory().getAbsolutePath() + "/traincraft/").listFiles();
+                if (list!=null) {
+                    Arrays.sort(list, new compareFile());
+                    for (File f : list) {
+                        if (f.isDirectory() && f.list() != null && f.list().length > 0) {
+                            sb.append(f.getName());
+                            sb.append(",");
+                        }
                     }
+                    //wrong player or something....?
+                    Traincraft.keyChannel.sendTo(new PacketAdminBook(1, -1, sb.toString()), (EntityPlayerMP) player);
                 }
-                //wrong player or something....?
-                Traincraft.keyChannel.sendTo(new PacketAdminBook(1, -1, sb.toString()), (EntityPlayerMP) player);
                 return stack;
             } else {
                 return stack;
@@ -82,6 +88,15 @@ public class ItemAdminBook extends Item {
         }
         return super.onItemRightClick(stack, world, player);
     }
+
+
+    class compareFile implements Comparator<File> {
+        // Overriding the compare method to sort the age
+        public int compare(File d, File d1) {
+            return d.getName().compareTo(d1.getName());
+        }
+    }
+
 
 
     @Override

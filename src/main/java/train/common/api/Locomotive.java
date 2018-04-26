@@ -23,6 +23,7 @@ import java.util.List;
 
 import org.lwjgl.input.Keyboard;
 import train.common.Traincraft;
+import train.common.adminbook.ServerLogger;
 import train.common.core.HandleMaxAttachedCarts;
 import train.common.core.handlers.ConfigHandler;
 import train.common.core.network.PacketKeyPress;
@@ -910,6 +911,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 				riddenByEntity.mountEntity(this);
 			}
 			this.setDead();
+			ServerLogger.deleteWagon(this);
 			if (damagesource.getEntity() instanceof EntityPlayer) {
 				dropCartAsItem(((EntityPlayer)damagesource.getEntity()).capabilities.isCreativeMode);
 			} else {
