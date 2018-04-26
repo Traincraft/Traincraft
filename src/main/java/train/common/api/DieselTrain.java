@@ -54,12 +54,14 @@ public abstract class DieselTrain extends Locomotive implements IFluidHandler {
 	@Override
 	public void onUpdate() {
 		super.onUpdate();
-		if (!worldObj.isRemote && isLocoTurnedOn()) {
-			if (theTank.getFluidAmount() >0) {
+		if (!worldObj.isRemote) {
+			if (theTank.getFluidAmount() != this.dataWatcher.getWatchableObjectInt(23)){
 				this.dataWatcher.updateObject(23, theTank.getFluidAmount());
 				fuelTrain = theTank.getFluidAmount();
 				this.dataWatcher.updateObject(4, theTank.getFluid()!=null?theTank.getFluid().getFluidID():0);
 				this.dataWatcher.updateObject(5, theTank.getFluid().getUnlocalizedName());
+			}
+			if (isLocoTurnedOn() && theTank.getFluidAmount() >0) {
 				if (theTank.getFluid().amount <= 1) {
 					motionX *= 0.94;
 					motionZ *= 0.94;

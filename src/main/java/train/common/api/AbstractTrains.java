@@ -5,6 +5,8 @@ import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import io.netty.buffer.ByteBuf;
 import mods.railcraft.api.carts.IMinecart;
 import mods.railcraft.api.carts.IRoutableCart;
+import net.minecraft.client.multiplayer.PlayerControllerMP;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,6 +14,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.StatCollector;
@@ -183,6 +186,14 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		this.setPosition(x, y, z);
 	}
 
+	@Override
+	public AxisAlignedBB getCollisionBox(Entity p_70114_1_) {
+		if(riddenByEntity!=p_70114_1_){
+			return super.getCollisionBox(p_70114_1_);
+		} else {
+			return null;
+		}
+	}
 	/**
 	 * this is basically NBT for entity spawn, to keep data between client and server in sync because some data is not automatically shared.
 	 */

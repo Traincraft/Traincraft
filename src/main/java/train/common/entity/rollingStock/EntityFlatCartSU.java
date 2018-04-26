@@ -41,6 +41,9 @@ public class EntityFlatCartSU extends EntityRollingStock implements IPassenger {
 		if ((super.interactFirst(entityplayer))) {
 			return false;
 		}
+		if (entityplayer.ridingEntity == this){
+			return false;
+		}
 		if (!worldObj.isRemote) {
 			ItemStack itemstack = entityplayer.inventory.getCurrentItem();
 			if(lockThisCart(itemstack, entityplayer))return true;

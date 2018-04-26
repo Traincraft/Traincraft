@@ -1,10 +1,12 @@
 package train.common.adminbook;
 
 import cpw.mods.fml.common.registry.GameData;
+import net.minecraft.client.Minecraft;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.FluidContainerRegistry;
@@ -30,6 +32,11 @@ public class ServerLogger {
 
     //run this on server side when inventory opens or player mounts, maybe other common but not constant events.
     public static void writeWagonToFolder(EntityRollingStock wagon){
+        if(wagon.worldObj.isRemote){
+            return;
+        } else if (MinecraftServer.getServer().isSinglePlayer()) {
+            return;
+        }
         try {
             //make a stringbuilder to build the filename, faster than string+string+string+string etc. MUCH faster.
             StringBuilder sb = new StringBuilder();
