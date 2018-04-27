@@ -28,13 +28,12 @@ public class LinkHandler {
 		if (entityOne.isAttaching) {
 			List lis = worldObj.getEntitiesWithinAABBExcludingEntity(entityOne, customBoundingBox.expand(15, 5, 15));
 			if (entityOne.bogieLoco != null) {
-				lis.addAll(worldObj.getEntitiesWithinAABBExcludingEntity(entityOne, ((EntityRollingStock) entityOne).bogieLoco.boundingBox.expand(7, 5, 7)));
+				lis.addAll(worldObj.getEntitiesWithinAABBExcludingEntity(entityOne, entityOne.bogieLoco.boundingBox.expand(7, 5, 7)));
 			}
 
 
 			if (lis != null && lis.size() > 0) {
 				for (Object ent : lis) {
-					Entity entity = (Entity) ent;
 
 					/**
 					 * first testing if the link can be emptied
@@ -44,8 +43,8 @@ public class LinkHandler {
 					//doesLink2StillExist(entityOne, lis);
 					//}
 
-					if (entity != entityOne.riddenByEntity && (entity instanceof EntityRollingStock) && ((EntityRollingStock) entity).isAttaching) {
-						addStake((EntityRollingStock) entity, entityOne, true);
+					if (ent instanceof EntityRollingStock && ((EntityRollingStock) ent).isAttaching) {
+						addStake((EntityRollingStock) ent, entityOne, true);
 					}
 
 				}
