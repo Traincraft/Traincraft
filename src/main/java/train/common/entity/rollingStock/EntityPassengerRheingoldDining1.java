@@ -106,7 +106,7 @@ public class EntityPassengerRheingoldDining1 extends AbstractWorkCart implements
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return 3.45F;
+		return 3.425F;
 	}
 
 	@Override

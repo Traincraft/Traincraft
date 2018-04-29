@@ -199,7 +199,8 @@ public class ModelEWSClass66 extends ModelBase
 		ewsclass66Model[8].rotateAngleX = -0.20943951F;
 
 		ewsclass66Model[9].addShapeBox(0F, 0F, 0F, 1, 10, 10, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // 11
-		ewsclass66Model[9].setRotationPoint(-10F, -2F, 48F);
+		ewsclass66Model[9].setRotationPoint(-9F, -2F, 58F);
+		ewsclass66Model[9].rotateAngleY = -3.14159265F;
 
 		ewsclass66Model[10].addShapeBox(0F, 0F, 0F, 1, 10, 10, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // 12
 		ewsclass66Model[10].setRotationPoint(9F, -2F, 48F);
@@ -289,7 +290,8 @@ public class ModelEWSClass66 extends ModelBase
 		ewsclass66Model[37].setRotationPoint(8F, -8F, 60F);
 
 		ewsclass66Model[38].addShapeBox(0F, 0F, 0F, 1, 10, 10, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // 43
-		ewsclass66Model[38].setRotationPoint(-10F, -2F, -50F);
+		ewsclass66Model[38].setRotationPoint(-9F, -2F, -40F);
+		ewsclass66Model[38].rotateAngleY = -3.14159265F;
 
 		ewsclass66Model[39].addShapeBox(0F, 0F, 0F, 20, 9, 1, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 2F, 0F, 0F, 2F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, 2F, 0F, 0F, 2F); // 44
 		ewsclass66Model[39].setRotationPoint(-10F, -1F, -54F);

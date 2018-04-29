@@ -36,7 +36,7 @@ public class EntityPassengerRheingoldDining2  extends AbstractWorkCart implement
 
 	@Override
 	public void updateRiderPosition() {
-		TraincraftUtil.updateRider(riddenByEntity, this, (float)(worldObj.isRemote?anglePitchClient:serverRealPitch), worldObj.isRemote?rotationYawClientReal:rotationYaw, 0.2, -0.5,-0.1);
+		TraincraftUtil.updateRider(riddenByEntity, this, (float)(worldObj.isRemote?anglePitchClient:serverRealPitch), worldObj.isRemote?rotationYawClientReal:rotationYaw, 0.2, 0,-0.1);
 	}
 
 	@Override
@@ -106,7 +106,7 @@ public class EntityPassengerRheingoldDining2  extends AbstractWorkCart implement
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return 3.45F;
+		return 3.5F;
 	}
 
 	@Override
