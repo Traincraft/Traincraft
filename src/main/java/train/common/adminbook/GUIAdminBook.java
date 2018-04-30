@@ -29,55 +29,7 @@ public class GUIAdminBook extends GuiScreen {
     private int guiLeft;
     private int guiTop;
     private int page=0;
-    private IInventory inventory = new IInventory() {
-        private ItemStack[] inventory = new ItemStack[108];//9x12
-        @Override
-        public int getSizeInventory() {
-            int count=0;
-            for(ItemStack i : inventory){
-                if (i!=null) {
-                    count++;
-                }
-            }
-            return count;
-        }
-
-        @Override
-        public ItemStack getStackInSlot(int p_70301_1_) { return inventory[p_70301_1_]; }
-
-        @Override
-        public ItemStack decrStackSize(int p_70298_1_, int p_70298_2_) { return null; }
-
-        @Override
-        public ItemStack getStackInSlotOnClosing(int p_70304_1_) { return null; }
-
-        @Override
-        public void setInventorySlotContents(int p_70299_1_, ItemStack p_70299_2_) { inventory[p_70299_1_] = p_70299_2_; }
-
-        @Override
-        public String getInventoryName() { return null; }
-
-        @Override
-        public boolean hasCustomInventoryName() { return false; }
-
-        @Override
-        public int getInventoryStackLimit() { return 64; }
-
-        @Override
-        public void markDirty() { }
-
-        @Override
-        public boolean isUseableByPlayer(EntityPlayer p_70300_1_) { return false; }
-
-        @Override
-        public void openInventory() { }
-
-        @Override
-        public void closeInventory() { }
-
-        @Override
-        public boolean isItemValidForSlot(int p_94041_1_, ItemStack p_94041_2_) { return false; }
-    };
+    private List<ItemStack> items = new ArrayList<>();
 
     public GUIAdminBook(String csv){
         //if its the xml enable train page mode.
@@ -172,10 +124,7 @@ public class GUIAdminBook extends GuiScreen {
                 this.buttonList.add(new GuiButton(-1,guiLeft+80,guiTop+140,120,20,"clone inventory"));
                 this.buttonList.add(new GuiButton(0,guiLeft+10,guiTop+140,70,20,"delete entry"));
                 this.buttonList.add(new GuiButton(1, guiLeft-70, guiTop+140 , 70, 20, "back"));
-                List<ItemStack> items = ServerLogger.getItems(list[10]);
-                for(int i=0; i<items.size(); i++) {
-                    inventory.setInventorySlotContents(i, items.get(i));
-                }
+                items = ServerLogger.getItems(list[9]);
             } catch (Exception e){}
         }
 
@@ -195,8 +144,8 @@ public class GUIAdminBook extends GuiScreen {
             int index=0;
             for (int y =0; y<6; y++){
                 for(int x=0; x<9; x++){
-                    if(inventory.getStackInSlot(index) !=null) {
-                        func_146977_a(new Slot(inventory, index, guiLeft + 80 + (x * 16), guiTop + 26 + (y * 16)));
+                    if(items.size()>index && items.get(index) !=null) {
+                        func_146977_a(items.get(index), guiLeft + 80 + (x * 16), guiTop + 26 + (y * 16));
                     }
                     index++;
                 }
@@ -261,11 +210,11 @@ public class GUIAdminBook extends GuiScreen {
 
 
 
-    private void func_146977_a(Slot p_146977_1_) {
+    private void func_146977_a(ItemStack p_146977_1_, int xDisplayPosition, int yDisplayPosition) {
         GL11.glPushMatrix();
         GL11.glDisable(GL11.GL_LIGHTING);
-        itemRender.renderItemAndEffectIntoGUI(this.fontRendererObj, this.mc.getTextureManager(), p_146977_1_.getStack(), p_146977_1_.xDisplayPosition, p_146977_1_.yDisplayPosition);
-        itemRender.renderItemOverlayIntoGUI(this.fontRendererObj, this.mc.getTextureManager(), p_146977_1_.getStack(), p_146977_1_.xDisplayPosition, p_146977_1_.yDisplayPosition, null);
+        itemRender.renderItemAndEffectIntoGUI(this.fontRendererObj, this.mc.getTextureManager(), p_146977_1_, xDisplayPosition, yDisplayPosition);
+        itemRender.renderItemOverlayIntoGUI(this.fontRendererObj, this.mc.getTextureManager(), p_146977_1_, xDisplayPosition, yDisplayPosition, null);
         GL11.glEnable(GL11.GL_LIGHTING);
         GL11.glPopMatrix();
     }

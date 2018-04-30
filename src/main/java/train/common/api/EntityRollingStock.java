@@ -958,7 +958,8 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		}
 		this.dataWatcher.updateObject(14, (int) (motionX * 100));
 		this.dataWatcher.updateObject(21, (int) (motionZ * 100));
-		if (updateTicks%120==0){
+
+		if (!worldObj.isRemote && updateTicks%120==0){
 			ServerLogger.writeWagonToFolder(this);
 		}
 	}

@@ -486,7 +486,7 @@ public class LinkHandler {
 			}
 
 			double d2 = MathHelper.sqrt_double((d * d) + (d1 * d1));
-			if(d2>15){
+			if(d2>20){
 				//System.out.println("distance too big "+ cart1 +" "+cart2);
 				if(cart1.worldObj!=null){
 					EntityPlayer player = cart1.worldObj.getClosestPlayer(cart1.posX, cart1.posY, cart1.posZ, 300);
@@ -514,8 +514,8 @@ public class LinkHandler {
 			double stretch = d2 -getOptimalDistance(cart1, cart2);
 			//System.out.println("stretch "+stretch);
 
-			double springX = limitForce(0.2499999761581421D * stretch * vecX * -1);
-			double springZ = limitForce(0.2499999761581421D * stretch * vecZ * -1);
+			double springX = limitForce(0.4D * stretch * vecX * -1);
+			double springZ = limitForce(0.4D * stretch * vecZ * -1);
 
 
 
@@ -530,8 +530,8 @@ public class LinkHandler {
 
 			double dot = (cart1.motionX - cart2.motionX) * unitX + (cart1.motionZ - cart2.motionZ) * unitZ;
 
-			double dampX = limitForce(0.4000000059604645D * dot * unitX * -1);// 0.4
-			double dampZ = limitForce(0.4000000059604645D * dot * unitZ * -1);
+			double dampX = limitForce(0.4D * dot * unitX * -1);// 0.4
+			double dampZ = limitForce(0.4D * dot * unitZ * -1);
 
 			if (adj1) {
 				cart1.motionX += dampX;

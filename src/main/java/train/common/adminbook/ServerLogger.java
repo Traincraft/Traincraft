@@ -89,7 +89,7 @@ public class ServerLogger {
             fileoutputstream.close();
         } catch (Exception e){
             //apparently we don't have permission, so, nevermind.
-            e.printStackTrace();
+
         }
     }
 
@@ -109,7 +109,7 @@ public class ServerLogger {
             if (f.exists() && !f.isDirectory()) {
                 f.delete();
             }
-        } catch (Exception e){e.printStackTrace();}//if it fails there was nothing to delete, so same result
+        } catch (Exception e){}//if it fails there was nothing to delete, so same result
     }
 
 
@@ -172,7 +172,6 @@ public class ServerLogger {
             return itemStacks;
 
         } catch (Exception e){
-            e.printStackTrace();
             return new ArrayList<ItemStack>();
         }
     }
@@ -189,7 +188,6 @@ public class ServerLogger {
 
             return stack;
         } catch (Exception e){
-            e.printStackTrace();
             return null;
         }
     }
