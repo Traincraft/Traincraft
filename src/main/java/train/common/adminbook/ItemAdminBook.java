@@ -237,6 +237,7 @@ public class ItemAdminBook extends Item {
                     for (WorldServer world : DimensionManager.getWorlds()) {
                         if (world.getEntityByID(message.player) != null) {
                             Traincraft.keyChannel.sendTo(new PacketAdminBook(1, -1, sb.toString()), (EntityPlayerMP) world.getEntityByID(message.player));
+                            return null;
                         }
                     }
                 }

@@ -216,7 +216,6 @@ public class RenderRollingStock extends Render {
 		for (RenderEnum renders : RenderEnum.values()) {
 			if (renders.getEntityClass() != null && renders.getEntityClass().equals(cart.getClass())) {
 				//loadTexture(getTextureFile(renders.getTexture(), renders.getIsMultiTextured(), cart));
-				Tessellator.bindTexture(getTexture(cart));
 				if (renders.getTrans() != null) {
 					GL11.glTranslatef(renders.getTrans()[0], renders.getTrans()[1], renders.getTrans()[2]);
 				}
@@ -228,6 +227,7 @@ public class RenderRollingStock extends Render {
 				if (renders.getScale() != null) {
 					GL11.glScalef(renders.getScale()[0], renders.getScale()[1], renders.getScale()[2]);
 				}
+				Tessellator.bindTexture(getTexture(cart));
 				renders.getModel().render(cart, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
 
 				if (renders.hasSmoke()) {
