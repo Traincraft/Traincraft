@@ -959,7 +959,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		this.dataWatcher.updateObject(14, (int) (motionX * 100));
 		this.dataWatcher.updateObject(21, (int) (motionZ * 100));
 
-		if (!worldObj.isRemote && updateTicks%120==0){
+		if (ConfigHandler.ENABLE_LOGGING && !worldObj.isRemote && updateTicks%120==0){
 			ServerLogger.writeWagonToFolder(this);
 		}
 	}
@@ -1542,8 +1542,9 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		super.writeEntityToNBT(nbttagcompound);
 		nbttagcompound.setDouble("speedLimiter", this.speedLimiter);
 		nbttagcompound.setFloat("serverRealRotation", this.serverRealRotation);
+		nbttagcompound.setFloat("yawRotation", this.rotationYaw);
 		//nbttagcompound.setBoolean("hasSpawnedBogie", this.hasSpawnedBogie);
-		nbttagcompound.setBoolean("needsBogieUpdate", this.needsBogieUpdate);
+		//nbttagcompound.setBoolean("needsBogieUpdate", this.needsBogieUpdate);
 		nbttagcompound.setBoolean("firstLoad", this.firstLoad);
 		nbttagcompound.setFloat("rotation", this.rotation);
 		nbttagcompound.setBoolean("brake", isBraking);
@@ -1554,9 +1555,13 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		super.readEntityFromNBT(nbttagcompound);
 		this.speedLimiter = nbttagcompound.getDouble("speedLimiter");
 		this.serverRealRotation = nbttagcompound.getFloat("serverRealRotation");
+
+		if (nbttagcompound.hasKey("yawRotation")){
+			rotationYaw = nbttagcompound.getFloat("yawRotation");
+		}
 		//if (Math.abs(this.serverRealRotation) > 178.5f) this.serverRealRotation = Math.copySign(178.5f, this.serverRealRotation);
 		//this.hasSpawnedBogie = nbttagcompound.getBoolean("hasSpawnedBogie");
-		this.needsBogieUpdate = nbttagcompound.getBoolean("needsBogieUpdate");
+		//this.needsBogieUpdate = nbttagcompound.getBoolean("needsBogieUpdate");
 		this.firstLoad = nbttagcompound.getBoolean("firstLoad");
 		this.rotation = nbttagcompound.getFloat("rotation");
 		this.isBraking = nbttagcompound.getBoolean("brake");

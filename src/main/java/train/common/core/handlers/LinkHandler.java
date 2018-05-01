@@ -545,7 +545,7 @@ public class LinkHandler {
 	}
 
 	private double limitForce(double force) {
-		return Math.copySign(Math.abs(Math.min(Math.abs(force), 6.0D)), force);
+		return Math.copySign(Math.abs(Math.min(Math.abs(force), 14.0D)), force);
 	}
 	private double limitForce(double force, double max) {
 		return Math.copySign(Math.abs(Math.min(Math.abs(force), max)),  force);

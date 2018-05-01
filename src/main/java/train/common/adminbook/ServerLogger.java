@@ -32,11 +32,6 @@ public class ServerLogger {
 
     //run this on server side when inventory opens or player mounts, maybe other common but not constant events.
     public static void writeWagonToFolder(EntityRollingStock wagon){
-        if(wagon.worldObj.isRemote){
-            return;
-        } else if (MinecraftServer.getServer().isSinglePlayer()) {
-            return;
-        }
         try {
             //make a stringbuilder to build the filename, faster than string+string+string+string etc. MUCH faster.
             StringBuilder sb = new StringBuilder();

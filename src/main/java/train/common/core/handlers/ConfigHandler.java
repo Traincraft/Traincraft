@@ -39,6 +39,7 @@ public class ConfigHandler {
 	public static boolean DISABLE_NEI_RECIPES;
 	public static boolean DISABLE_TRAIN_WORKBENCH;
 	public static boolean ENABLE_WAGON_REMOVAL_NOTICES;
+	public static boolean ENABLE_LOGGING;
 
 
 
@@ -74,6 +75,7 @@ public class ConfigHandler {
 			DISABLE_NEI_RECIPES = cf.get(CATEGORY_GENERAL, "DISABLE_NEI_RECIPES", true, "disables our system of registering recipes with NEI, there are a number of issues registering our recipes with NEI, enable at your own risk").getBoolean(true);
 			DISABLE_TRAIN_WORKBENCH = cf.get(CATEGORY_GENERAL, "DISABLE_TRAIN_WORKBENCH", false, "disables the train workbench, for those of you who want to use a custom part builder").getBoolean(false);
 			ENABLE_WAGON_REMOVAL_NOTICES = cf.get(CATEGORY_GENERAL, "ENABLE_WAGON_REMOVAL_NOTICES", true, "When OP and creative mode, tells you the owner of the train or rollingstock you just removed").getBoolean(true);
+			ENABLE_LOGGING = cf.get(CATEGORY_GENERAL, "ENABLE_TRANSPORT_LOGGING", true, "Logs the data for trains and rollingstock, turning this off will improve performance but break the admin book").getBoolean(true);
 
 		} catch (Exception e) {
 			Traincraft.tcLog.fatal("Traincraft had a problem loading its configuration\n" + e);

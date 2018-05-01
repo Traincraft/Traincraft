@@ -29,7 +29,7 @@ public class GUIAdminBook extends GuiScreen {
     private int guiLeft;
     private int guiTop;
     private int page=0;
-    private List<ItemStack> items = new ArrayList<>();
+    private List<ItemStack> items = new ArrayList<ItemStack>();
 
     public GUIAdminBook(String csv){
         //if its the xml enable train page mode.
