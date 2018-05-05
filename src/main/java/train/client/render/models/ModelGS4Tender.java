@@ -129,12 +129,12 @@ public class ModelGS4Tender extends ModelBase
 
 		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/GS4_tender_bogie.png"));
 		GL11.glPushMatrix();
-		GL11.glTranslated(-1.8,0.0,0);
+		GL11.glTranslated(-1.8,0.0,-0.1);
 		bogie1.render(entity,f,f1,f2,f3,f4,f5);
 		GL11.glPopMatrix();
 
 		GL11.glPushMatrix();
-		GL11.glTranslated(1.7,0.0,0);
+		GL11.glTranslated(1.7,0.0,-0.1);
 		GL11.glRotated(180,0,1,0);
 		bogie1.render(entity,f,f1,f2,f3,f4,f5);
 		GL11.glPopMatrix();
