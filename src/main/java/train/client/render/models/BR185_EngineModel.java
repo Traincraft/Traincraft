@@ -733,13 +733,13 @@ public class BR185_EngineModel extends ModelBase
 		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/BR185_Bogie.png"));
 		GL11.glPushMatrix();
 		GL11.glTranslated(-1.5,0.3,0);
-		GL11.glScalef(0.8f,0.8f,0.8f);
+		GL11.glScalef(0.9f,0.9f,0.8f);
 		trucks.render(entity,f,f1,f2,f3,f4,f5);
 		GL11.glPopMatrix();
 
 		GL11.glPushMatrix();
 		GL11.glTranslated(0.7,0.3,0);
-		GL11.glScalef(0.8f,0.8f,0.8f);
+		GL11.glScalef(0.9f,0.9f,0.8f);
 		trucks.render(entity,f,f1,f2,f3,f4,f5);
 		GL11.glPopMatrix();
 	}
