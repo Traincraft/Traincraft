@@ -9,9 +9,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
 import train.common.Traincraft;
-import train.common.api.EntityRollingStock;
 import train.common.api.Freight;
-import train.common.api.IPassenger;
 import train.common.library.GuiIDs;
 
 public class EntityBulkheadFlatCart extends Freight implements IInventory {

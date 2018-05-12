@@ -18,9 +18,6 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-
-import java.util.List;
-
 import org.lwjgl.input.Keyboard;
 import train.common.Traincraft;
 import train.common.adminbook.ServerLogger;
@@ -30,6 +27,8 @@ import train.common.core.network.PacketKeyPress;
 import train.common.core.network.PacketSlotsFilled;
 import train.common.library.EnumSounds;
 import train.common.library.Info;
+
+import java.util.List;
 
 public abstract class Locomotive extends EntityRollingStock implements IInventory {
 	public int inventorySize;

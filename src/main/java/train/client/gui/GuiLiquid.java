@@ -1,6 +1,5 @@
 package train.client.gui;
 
-import cpw.mods.fml.common.registry.GameData;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.Entity;
