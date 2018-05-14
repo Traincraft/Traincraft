@@ -156,7 +156,7 @@ public abstract class DieselTrain extends Locomotive implements IFluidHandler {
 
 	@Override
 	protected void updateFuelTrain(int amount) {
-		if (fuelTrain < 1) {
+		if (!this.isLocoTurnedOn()) {
 			motionX *= 0.8;
 			motionZ *= 0.8;
 		} else if (fuelTrain+100 < maxTank) {
@@ -193,6 +193,8 @@ public abstract class DieselTrain extends Locomotive implements IFluidHandler {
 			fuelTrain -= amount;
 			if (fuelTrain < 0) {
 				fuelTrain = 0;
+				drain(ForgeDirection.UNKNOWN, amount, true);
+				setLocoTurnedOnFromPacket(false);
 			} else {
 				drain(ForgeDirection.UNKNOWN, amount, true);
 			}

@@ -641,14 +641,14 @@ public class ModelE10DB extends ModelBase
 		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/Class85_Bogie.png"));
 		GL11.glPushMatrix();
 		GL11.glTranslated(-2.6,-0.05,0);
-		GL11.glScalef(0.8f,0.8f,0.8f);
+		GL11.glScalef(0.8f,0.8f,1.025f);
 		GL11.glRotated(90f,0,1,0);
 		trucks.render(entity,f,f1,f2,f3,f4,f5);
 		GL11.glPopMatrix();
 
 		GL11.glPushMatrix();
 		GL11.glTranslated(1,-0.05,0);
-		GL11.glScalef(0.8f,0.8f,0.8f);
+		GL11.glScalef(0.8f,0.8f,1.025f);
 		GL11.glRotated(90f,0,1,0);
 		trucks.render(entity,f,f1,f2,f3,f4,f5);
 		GL11.glPopMatrix();
