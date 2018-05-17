@@ -392,7 +392,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		trainType = nbttagcompound.getString("theType");
 		uniqueID = nbttagcompound.getInteger("uniqueID");
 		//uniqueIDs = nbttagcompound.getInteger("uniqueIDs");
-		((EntityRollingStock) this).setInformation(trainType, trainOwner, trainCreator, trainName, uniqueID);
+		setInformation(trainType, trainOwner, trainCreator, trainName, uniqueID);
 
 		numberOfTrains = nbttagcompound.getInteger("numberOfTrains");
 		isAttached = nbttagcompound.getBoolean("isAttached");
@@ -401,6 +401,17 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		//motionZ = nbttagcompound.getDouble("motionZ");
 		Link1 = nbttagcompound.getDouble("Link1");
 		Link2 = nbttagcompound.getDouble("Link2");
+	}
+
+
+	public void setInformation(String trainType, String trainOwner, String trainCreator, String trainName, int uniqueID) {
+		if (!worldObj.isRemote) {
+			dataWatcher.updateObject(6, trainType);
+			dataWatcher.updateObject(7, trainOwner);
+			dataWatcher.updateObject(9, trainName);
+			dataWatcher.updateObject(11, uniqueID);
+			if (trainCreator != null && trainCreator.length() > 0){ dataWatcher.updateObject(13, trainCreator);}
+		}
 	}
 
 	public static String getColorAsString(int i) {

@@ -59,6 +59,7 @@ public class WorldEvents{
 	public void playerQuitEvent(PlayerEvent.PlayerLoggedOutEvent event){
 		if (event.player.ridingEntity instanceof AbstractTrains){
 			event.player.dismountEntity(event.player.ridingEntity);
+			event.player.ridingEntity = null;
 		}
 	}
 

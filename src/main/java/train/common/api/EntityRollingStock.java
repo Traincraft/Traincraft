@@ -218,15 +218,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		//this.boundingBox.offset(0, 0.5, 0);
 	}
 
-	public void setInformation(String trainType, String trainOwner, String trainCreator, String trainName, int uniqueID) {
-		if (!worldObj.isRemote) {
-			dataWatcher.updateObject(6, trainType);
-			dataWatcher.updateObject(7, trainOwner);
-			dataWatcher.updateObject(9, trainName);
-			dataWatcher.updateObject(11, uniqueID);
-			if (trainCreator != null && trainCreator.length() > 0){ dataWatcher.updateObject(13, trainCreator);}
-		}
-	}
 
 	/**
 	 * this is basically NBT for entity spawn, to keep data between client and server in sync because some data is not automatically shared.
