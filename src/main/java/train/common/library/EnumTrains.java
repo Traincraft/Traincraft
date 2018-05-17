@@ -83,7 +83,7 @@ public enum EnumTrains {
 	freightHopper("Freight Hopper Green",EntityFreightGrain.class, ItemIDs.minecartGrain.item,"freight",4,null,18, 36,new String[] {"Cargo: wheat, seeds"}),
 	freightOpenWagon("Freight Open Wagon",EntityFreightOpenWagon.class,ItemIDs.minecartOpenWagon.item,"freight",2,null,18,36,new String[] {"Cargo: blocks, vanilla items"}),//"train_hopper" for open wagon => weird
 	freightHopperUS("Freight Hopper US",EntityFreightHopperUS.class, ItemIDs.minecartFreightHopperUS.item,"freight",4,new String [] {"Brown","Grey", "Blue", "Red"},18, 27, new String[] {"Cargo: blocks"}),
-	freight100TonHopper("Freight 100 Ton Hopper",EntityFreight100TonHopper.class, ItemIDs.minecartFreight100TonHopper.item,"freight",4,new String[]{"Red", "Black", "Blue", "Grey"},18, 36, new String[] {"Cargo: blocks"}),
+	freight100TonHopper("Freight 100 Ton Hopper",EntityFreight100TonHopper.class, ItemIDs.minecartFreight100TonHopper.item,"freight",4,new String[]{"Red", "Black", "Blue", "Grey"},18, 54, new String[] {"Cargo: blocks"}),
 	flatCartWoodUS("Freight Flat Cart Wood US",EntityFlatCartWoodUS.class, ItemIDs.minecartFlatCartWoodUS.item,"freight",3,null,18, 27,new String[] {"Cargo: only planks"}),
 	bulkheadFlatCartWood("Freight Bulkhead Flat Cart",EntityBulkheadFlatCart.class, ItemIDs.minecartBulkheadFlatCart.item,"freight",3,new String[]{"Brown", "Yellow", "Green"},18, 27,new String[] {"Cargo: only planks"}),
 	freightCartUS("Freight Cart US",EntityFreightCartUS.class, ItemIDs.minecartFreightCartUS.item,"freight",3.5,new String[]{"Brown", "Yellow"},18,36,new String[] {"Cargo: blocks, vanilla items"}),
