@@ -23,6 +23,8 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
@@ -356,7 +358,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			setRollingDirection(-getRollingDirection());
 			setRollingAmplitude(10);
 			setBeenAttacked();
-			if (damagesource.getEntity() instanceof EntityPlayer && ((EntityPlayer) damagesource.getEntity()).capabilities.isCreativeMode) {
+			if (((EntityPlayer) damagesource.getEntity()).capabilities.isCreativeMode) {
 				this.setDamage(1000);
 				if (ConfigHandler.ENABLE_WAGON_REMOVAL_NOTICES && ((EntityPlayer) damagesource.getEntity()).canCommandSenderUseCommand(2,"")) {
 					((EntityPlayer) damagesource.getEntity()).addChatComponentMessage(new ChatComponentText("Operator removed train owned by " + getTrainOwner()));
@@ -374,11 +376,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				if (this instanceof IPassenger) {
 					this.setDead();
 					ServerLogger.deleteWagon(this);
-					if (damagesource.getEntity() instanceof EntityPlayer) {
-						dropCartAsItem(((EntityPlayer)damagesource.getEntity()).capabilities.isCreativeMode);
-					} else {
-						dropCartAsItem(false);
-					}
+					dropCartAsItem(((EntityPlayer)damagesource.getEntity()).capabilities.isCreativeMode);
 				}
 			}
 		}
@@ -613,12 +611,15 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				//int newID = setNewUniqueID(readID);
 				
 					//TraincraftSaveHandler seems to not work, may cause uniqueID bug.
-				int readID = -1;
-				int newID = setNewUniqueID(readID);
+				setNewUniqueID(this.getEntityId());
 				
 				//TraincraftSaveHandler.writeValue(FMLCommonHandler.instance().getMinecraftServerInstance(), "numberOfTrains:", "" + newID);
 				//System.out.println("Train is missing an ID, adding new one for "+this.trainName+" "+this.uniqueID);
 			}
+		}
+
+		if (riddenByEntity instanceof EntityPlayer){
+			((EntityPlayer) riddenByEntity).addPotionEffect(new PotionEffect(Potion.resistance.id, 20, 5, true));
 		}
 
 		if (getRollingAmplitude() > 0) {

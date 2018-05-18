@@ -246,10 +246,11 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		//if(this instanceof Locomotive)System.out.println("I'm alive. Remote: " + worldObj.isRemote);
 		if (!worldObj.isRemote && this.uniqueID == -1) {
 			if (FMLCommonHandler.instance().getMinecraftServerInstance() != null) {
-				TraincraftSaveHandler.createFile(FMLCommonHandler.instance().getMinecraftServerInstance());
-				int readID = TraincraftSaveHandler.readInt(FMLCommonHandler.instance().getMinecraftServerInstance(), "numberOfTrains:");
-				int newID = setNewUniqueID(readID);
-				TraincraftSaveHandler.writeValue(FMLCommonHandler.instance().getMinecraftServerInstance(), "numberOfTrains:", new String("" + newID));
+				//TraincraftSaveHandler.createFile(FMLCommonHandler.instance().getMinecraftServerInstance());
+				//int readID = TraincraftSaveHandler.readInt(FMLCommonHandler.instance().getMinecraftServerInstance(), "numberOfTrains:");
+				//int newID = setNewUniqueID(readID);
+				setNewUniqueID(this.getEntityId());
+				//TraincraftSaveHandler.writeValue(FMLCommonHandler.instance().getMinecraftServerInstance(), "numberOfTrains:", new String("" + newID));
 				//System.out.println("Train is missing an ID, adding new one for "+this.trainName+" "+this.uniqueID);
 			}
 		}
@@ -264,7 +265,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 
 	@Override
 	public void onUpdate() {
-			super.onUpdate();
+		super.onUpdate();
 		if(!(this instanceof EntityRollingStock)) {
 			manageChunkLoading();
 		}
