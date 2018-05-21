@@ -91,7 +91,13 @@ public class ServerLogger {
         StringBuilder sb = new StringBuilder();
         sb.append(DimensionManager.getCurrentSaveRootDirectory().getAbsolutePath());
         sb.append("/traincraft/");
-        sb.append(wagon.getOwner().getName()==null || wagon.getOwner().getName().equals("")?"Unknown_Player": wagon.getOwner().getName());
+        if(wagon.getOwner() != null && wagon.getOwner().getName()!=null && !wagon.getOwner().getName().equals("")){
+            sb.append(wagon.getOwner().getName());
+        } else if (wagon.getTrainOwner() !=null && !wagon.getTrainOwner().equals("")){
+            sb.append(wagon.getTrainOwner());
+        } else {
+         sb.append("Unknown_Player");
+        }
         sb.append("/");
         sb.append(wagon.getCartItem().getUnlocalizedName());
         sb.append("_");
