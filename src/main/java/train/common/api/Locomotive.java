@@ -51,7 +51,15 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 	private boolean forwardPressed = false;
 	private boolean backwardPressed = false;
 	private boolean brakePressed = false;
-
+	
+        //TrainAdditions support here 
+        public String speedLimit = "0";
+        public String signalAspect = "off";
+	public String trainID = "0";
+	public String trainLevel = "1";
+	//TrainAdditions support ends here
+	
+	
 	/**
 	 * state of the loco
 	 */
