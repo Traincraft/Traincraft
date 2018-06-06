@@ -34,7 +34,6 @@ public class Tessellator{
 	private boolean ht = false, in = false, drawing = false;
 	public static Tessellator INSTANCE = new Tessellator();
 	private static FloatBuffer fbuf = bbuf.asFloatBuffer();
-	//private static ShortBuffer sbuf = bbuf.asShortBuffer();
 	private static IntBuffer ibuf = bbuf.asIntBuffer();
 	private float u, v, w, x, y, z;
 	private int[] rb;
@@ -52,6 +51,7 @@ public class Tessellator{
 			drawing = true; dm = i;
 			in = ht = false;
 			reset();
+			GL11.glColor4f(255, 255, 255, 255);
 		}
 	}
 
