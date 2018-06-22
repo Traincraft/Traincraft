@@ -29,6 +29,7 @@ import train.common.adminbook.ServerLogger;
 import train.common.api.EntityRollingStock;
 import train.common.api.Freight;
 import train.common.blocks.BlockTCRail;
+import train.common.blocks.BlockTCRailGag;
 import train.common.core.TrainModBlockUtil;
 import train.common.core.handlers.BuilderOreHandler;
 import train.common.core.handlers.FuelHandler;
@@ -37,6 +38,7 @@ import train.common.items.ItemTCRail;
 import train.common.library.BlockIDs;
 import train.common.library.GuiIDs;
 import train.common.library.ItemIDs;
+import train.common.tile.TileTCRail;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -1024,8 +1026,8 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 
 			//torchPlacer(i, j, k, iX, kZ);
 
-			if (hY == 0 && !BlockRailBase.func_150051_a(worldObj.getBlock(i, j + hY, k)) && !BlockRailBase.func_150051_a(worldObj.getBlock(i, j, k)) && Blocks.rail.canPlaceBlockAt(worldObj, i, j + hY, k)
-					&& !(worldObj.getBlock(i, j+hY, k) instanceof BlockTCRail)&& !(worldObj.getBlock(i, j, k) instanceof BlockTCRail)) {
+			if (hY == 0 && !BlockRailBase.func_150051_a(worldObj.getBlock(i, j, k)) && Blocks.rail.canPlaceBlockAt(worldObj, i, j, k)
+					&& !(worldObj.getBlock(i, j, k) instanceof BlockTCRail) && !(worldObj.getBlock(i, j, k) instanceof BlockTCRailGag) ) {
 				checkForTracks();
 				trackfuel--;
 
