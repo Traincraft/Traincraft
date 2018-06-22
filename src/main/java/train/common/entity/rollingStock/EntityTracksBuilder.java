@@ -28,10 +28,12 @@ import train.common.Traincraft;
 import train.common.adminbook.ServerLogger;
 import train.common.api.EntityRollingStock;
 import train.common.api.Freight;
+import train.common.blocks.BlockTCRail;
 import train.common.core.TrainModBlockUtil;
 import train.common.core.handlers.BuilderOreHandler;
 import train.common.core.handlers.FuelHandler;
 import train.common.core.plugins.PluginRailcraft;
+import train.common.items.ItemTCRail;
 import train.common.library.BlockIDs;
 import train.common.library.GuiIDs;
 import train.common.library.ItemIDs;
@@ -171,13 +173,42 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 		if (canDigg()) {
 			updateState(true);
 			this.digBuilder(i, j, k);
+			pushX=pushZ=0.2;
+			applyDragAndPushForces();
 		}
 		else {
 			updateState(false);
 			this.motionX = 0;
 			this.motionZ = 0;
 		}
+
+		if (getInventory() != null && ticksExisted%4==0){
+			Freight link;
+			if(cartLinked1 instanceof Freight && cartLinked1.getInventory() !=null) {
+				link = (Freight) cartLinked1;
+
+			} else if (cartLinked2 instanceof Freight && cartLinked2.getInventory() !=null) {
+				link = (Freight) cartLinked2;
+			} else {
+				return;
+			}
+			for (int index = 1; index < 11; index++) {
+				if (getInventory()[index] != null && getInventory()[index].getItem() != null && getInventory()[index].stackSize < getInventory()[index].getMaxStackSize()) {
+
+					for (int f=0; f<link.getInventory().length;f++) {
+						if (link.getInventory()[f] != null && link.getInventory()[f].getItem() == getInventory()[index].getItem()){
+							link.decrStackSize(f,1);
+							getInventory()[index].stackSize++;
+							break;
+						}
+					}
+				}
+			}
+		}
 	}
+
+	@Override
+	public ItemStack[] getInventory(){return BuilderInvent;}
 
 	private boolean canDigg() {
 		return (checkForBallast() && checkForTracks() && getFuel() > 0);
@@ -294,8 +325,8 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 		}
 
 		entityplayer.openGui(Traincraft.instance, GuiIDs.BUILDER, worldObj, this.getEntityId(), -1, (int) this.posZ);
-		pushZ = (posZ - entityplayer.posZ);
-		pushX = (posX - entityplayer.posX);
+		pushZ = 0.2;
+		pushX = 0.2;
 		applyDragAndPushForces();
 		return true;
 	}
@@ -993,14 +1024,15 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 
 			//torchPlacer(i, j, k, iX, kZ);
 
-			if (hY == 0 && !BlockRailBase.func_150051_a(worldObj.getBlock(i, j + hY, k)) && !BlockRailBase.func_150051_a(worldObj.getBlock(i, j, k)) && Blocks.rail.canPlaceBlockAt(worldObj, i, j + hY, k)) {
+			if (hY == 0 && !BlockRailBase.func_150051_a(worldObj.getBlock(i, j + hY, k)) && !BlockRailBase.func_150051_a(worldObj.getBlock(i, j, k)) && Blocks.rail.canPlaceBlockAt(worldObj, i, j + hY, k)
+					&& !(worldObj.getBlock(i, j+hY, k) instanceof BlockTCRail)&& !(worldObj.getBlock(i, j, k) instanceof BlockTCRail)) {
 				checkForTracks();
 				trackfuel--;
 
 				if (!worldObj.isRemote) {
 					decrStackSize(1, 1);
 				}
-				RailTools.placeRailAt(tracksStack.copy(), worldObj, i, j + hY, k);
+				RailTools.placeRailAt(this, tracksStack.copy(), worldObj, i, j + hY, k);
 			}
 			else if (hY < 0 && Block.getIdFromBlock(worldObj.getBlock(i, j + hY, k)) == 0 && Block.getIdFromBlock(worldObj.getBlock(i, j + hY - 1, k)) != 0 && Blocks.rail.canPlaceBlockAt(worldObj, i, j + hY, k)) {
 				checkForTracks();
@@ -1009,7 +1041,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 				if (!worldObj.isRemote) {
 					decrStackSize(1, 1);
 				}
-				RailTools.placeRailAt(tracksStack.copy(), worldObj, i, j + hY, k);
+				RailTools.placeRailAt(this, tracksStack.copy(), worldObj, i, j + hY, k);
 			}
 			else if (hY > 0 && (Blocks.rail!=worldObj.getBlock(i + iX, j + hY, k + kZ)) && Blocks.rail!=worldObj.getBlock(i + iX, j + hY + 1, k + kZ) && Blocks.rail!=worldObj.getBlock(i + iX, j, k + kZ) && Blocks.rail!=worldObj.getBlock(i, j + hY, k) && Blocks.rail!=worldObj.getBlock(i, j - hY, k) && Blocks.rail.canPlaceBlockAt(worldObj, i + iX, j + hY, k + kZ)) {
 				checkForTracks();
@@ -1017,7 +1049,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 				if (!worldObj.isRemote) {
 					decrStackSize(1, 1);
 				}
-				RailTools.placeRailAt(tracksStack.copy(), worldObj, i + iX, j + hY, k + kZ);
+				RailTools.placeRailAt(this, tracksStack.copy(), worldObj, i + iX, j + hY, k + kZ);
 			}
 		}
 	}

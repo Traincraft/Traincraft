@@ -297,8 +297,8 @@ public class ItemTCRail extends ItemPart {
 				y--;
 			}
 			
-			int l = MathHelper.floor_double(player.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
-			float yaw = MathHelper.wrapAngleTo180_float(player.rotationYaw);
+			int l = MathHelper.floor_double((player!=null?player.rotationYaw:par10) * 4.0F / 360.0F + 0.5D) & 3;
+			float yaw = MathHelper.wrapAngleTo180_float(player!=null?player.rotationYaw:par10);
 			TrackTypes tempType = type;
 			if (type == TrackTypes.LARGE_TURN) {
 				if (getTrackOrientation(l, yaw).equals("right")) {
@@ -381,7 +381,7 @@ public class ItemTCRail extends ItemPart {
 						return false;
 				}
 
-				if (!player.capabilities.isCreativeMode) {
+				if (player==null || !player.capabilities.isCreativeMode) {
 					--itemstack.stackSize;
 				}
 				return true;
@@ -418,7 +418,7 @@ public class ItemTCRail extends ItemPart {
 						return false;
 				}
 
-				if (!player.capabilities.isCreativeMode) {
+				if (player==null || !player.capabilities.isCreativeMode) {
 					--itemstack.stackSize;
 				}
 				return true;
@@ -529,7 +529,7 @@ public class ItemTCRail extends ItemPart {
 
 				}
 
-				if (!player.capabilities.isCreativeMode) {
+				if (player==null || !player.capabilities.isCreativeMode) {
 					--itemstack.stackSize;
 				}
 				return true;
@@ -638,7 +638,7 @@ public class ItemTCRail extends ItemPart {
 					putDownSingleRail(world, x + 3, y + 1, z, l, x, y + 1, z, 0, TrackTypes.SMALL_STRAIGHT.getLabel(), true, x + 2, y + 1, z - 1, false, false);
 
 				}
-				if (!player.capabilities.isCreativeMode) {
+				if (player ==null || !player.capabilities.isCreativeMode) {
 					--itemstack.stackSize;
 				}
 				return true;
@@ -770,7 +770,7 @@ public class ItemTCRail extends ItemPart {
 
 				}
 
-				if (!player.capabilities.isCreativeMode) {
+				if (player ==null || !player.capabilities.isCreativeMode) {
 					--itemstack.stackSize;
 				}
 				return true;
@@ -905,7 +905,7 @@ public class ItemTCRail extends ItemPart {
 							true, x + 2, y + 1, z - 1, false, false);
 
 				}
-				if (!player.capabilities.isCreativeMode) {
+				if (player ==null || !player.capabilities.isCreativeMode) {
 					--itemstack.stackSize;
 				}
 				return true;
@@ -929,7 +929,7 @@ public class ItemTCRail extends ItemPart {
 					if (!parallelRightSwitchEast(world, x, y, z, l, tempType))
 						return false;
 				}
-				if (!player.capabilities.isCreativeMode) {
+				if (player ==null || !player.capabilities.isCreativeMode) {
 					--itemstack.stackSize;
 				}
 				return true;
@@ -951,7 +951,7 @@ public class ItemTCRail extends ItemPart {
 					if (!parallelLeftSwitchEast(world, x, y, z, l, tempType))
 						return false;
 				}
-				if (!player.capabilities.isCreativeMode) {
+				if (player ==null || !player.capabilities.isCreativeMode) {
 					--itemstack.stackSize;
 				}
 				return true;
@@ -987,7 +987,7 @@ public class ItemTCRail extends ItemPart {
 						return false;
 				}
 
-				if (!player.capabilities.isCreativeMode) {
+				if (player ==null || !player.capabilities.isCreativeMode) {
 					--itemstack.stackSize;
 				}
 				return true;
@@ -1021,7 +1021,7 @@ public class ItemTCRail extends ItemPart {
 							z - 4, TrackTypes.LARGE_LEFT_TURN.getLabel(), ItemIDs.tcRailLargeTurn.item))
 						return false;
 				}
-				if (!player.capabilities.isCreativeMode) {
+				if (player ==null || !player.capabilities.isCreativeMode) {
 					--itemstack.stackSize;
 				}
 				return true;
@@ -1061,7 +1061,7 @@ public class ItemTCRail extends ItemPart {
 						return false;
 				}
 
-				if (!player.capabilities.isCreativeMode) {
+				if (player ==null || !player.capabilities.isCreativeMode) {
 					--itemstack.stackSize;
 				}
 				return true;
@@ -1098,7 +1098,7 @@ public class ItemTCRail extends ItemPart {
 							z - 9, TrackTypes.VERY_LARGE_LEFT_TURN.getLabel(), ItemIDs.tcRailVeryLargeTurn.item))
 						return false;
 				}
-				if (!player.capabilities.isCreativeMode) {
+				if (player ==null || !player.capabilities.isCreativeMode) {
 					--itemstack.stackSize;
 				}
 				return true;
@@ -1192,7 +1192,7 @@ public class ItemTCRail extends ItemPart {
 					}
 				}
 				for (int i = 0; i < tileGag.length; i++) {
-					if (tileGag[i] == null) {
+					if (player != null && tileGag[i] == null) {
 						player.addChatMessage(new ChatComponentText(
 								"There was a problem when placing the track. Possibly too many tracks around"));
 						return false;
@@ -1202,7 +1202,7 @@ public class ItemTCRail extends ItemPart {
 					tileGag[i].originZ = z;
 					tileGag[i].type = type.getLabel();
 				}
-				if (!player.capabilities.isCreativeMode) {
+				if (player ==null || !player.capabilities.isCreativeMode) {
 					--itemstack.stackSize;
 				}
 				return true;
@@ -1389,7 +1389,7 @@ public class ItemTCRail extends ItemPart {
 				}
 				
 				for (int i = 0; i < tileGag.length; i++) {
-					if (tileGag[i] == null) {
+					if (player !=null && tileGag[i] == null) {
 						player.addChatMessage(new ChatComponentText("There was a problem when placing the track. Possibly too many tracks around"));
 						return false;
 					}
@@ -1398,7 +1398,7 @@ public class ItemTCRail extends ItemPart {
 					tileGag[i].originZ = z;
 					tileGag[i].type = TrackTypes.MEDIUM_STRAIGHT.getLabel();
 				}
-				if (!player.capabilities.isCreativeMode) {
+				if (player ==null || !player.capabilities.isCreativeMode) {
 					--itemstack.stackSize;
 				}
 				return true;
@@ -1416,7 +1416,7 @@ public class ItemTCRail extends ItemPart {
 				tcRail.setType(type.getLabel());
 				tcRail.idDrop = this.type.getItem().item;
 
-				if (!player.capabilities.isCreativeMode) {
+				if (player ==null || !player.capabilities.isCreativeMode) {
 					--itemstack.stackSize;
 				}
 				return true;
@@ -1533,7 +1533,7 @@ public class ItemTCRail extends ItemPart {
 
 //				putDownSingleRail(world, x+(xDisplace*2)-(xSideDisplace*2), y + 1, z+(zDisplace*2)-(zSideDisplace*2), sideFacing, x+(xDisplace*2)-(xSideDisplace*2) , y + 1, z+(zDisplace*2)-(zSideDisplace*2), 0, TrackTypes.SMALL_STRAIGHT.getLabel(), true, x+(xDisplace*2)-(xSideDisplace*1), y + 1, z+(zDisplace*2)-(zSideDisplace*1), false, false);
 				
-				if (!player.capabilities.isCreativeMode) {
+				if (player ==null || !player.capabilities.isCreativeMode) {
 					--itemstack.stackSize;
 				}
 				return true;

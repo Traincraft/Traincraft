@@ -107,7 +107,7 @@ public class ModelDD35A extends ModelBase
 		dd35aModel[82] = new ModelRendererTurbo(this, 105, 73, textureX, textureY); // Box 124
 		dd35aModel[83] = new ModelRendererTurbo(this, 449, 89, textureX, textureY); // Box 125
 		dd35aModel[84] = new ModelRendererTurbo(this, 121, 73, textureX, textureY); // Box 126
-		dd35aModel[85] = new ModelRendererTurbo(this, 113, 97, textureX, textureY, "lamp"); // Box 127
+		dd35aModel[85] = new ModelRendererTurbo(this, 113, 97, textureX, textureY); // Box 127
 		dd35aModel[86] = new ModelRendererTurbo(this, 257, 97, textureX, textureY); // Box 128
 		dd35aModel[87] = new ModelRendererTurbo(this, 73, 73, textureX, textureY); // Box 129
 		dd35aModel[88] = new ModelRendererTurbo(this, 431, 87, textureX, textureY); // Box 130
@@ -153,7 +153,7 @@ public class ModelDD35A extends ModelBase
 		dd35aModel[128] = new ModelRendererTurbo(this, 233, 113, textureX, textureY); // Box 174
 		dd35aModel[129] = new ModelRendererTurbo(this, 361, 57, textureX, textureY); // Box 175
 		dd35aModel[130] = new ModelRendererTurbo(this, 441, 113, textureX, textureY); // Box 179
-		dd35aModel[131] = new ModelRendererTurbo(this, 113, 97, textureX, textureY); // Box 180
+		dd35aModel[131] = new ModelRendererTurbo(this, 113, 97, textureX, textureY, "lamp"); // Box 180
 		dd35aModel[132] = new ModelRendererTurbo(this, 241, 113, textureX, textureY, "lamp"); // Box 181
 		dd35aModel[133] = new ModelRendererTurbo(this, 321, 113, textureX, textureY, "lamp"); // Box 182
 		dd35aModel[134] = new ModelRendererTurbo(this, 409, 113, textureX, textureY); // Box 183
