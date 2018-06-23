@@ -158,8 +158,7 @@ public enum RenderEnum {
 	}, "", null, 0, false),
 	locoSD40(EntityLocoDieselSD40.class, new ModelSD40(), "locoSD40_", true, new float[] { -1.2F, -0.47F, 0.0F }, new float[] { 180F, 90F, 0F }, new float[] { -1F, -1F, 1F }, "smoke", 5, new ArrayList<double[]>() {
 		{
-			add(new double[] { -0.1D, 1.4D, 0.0D });
-			add(new double[] { 0.6D, 1.4D, 0.0D });
+			add(new double[] { 1.55D, 1.4D, 0.0D });
 		}
 	}, "", null, 0, false),
 	locoSD70(EntityLocoDieselSD70.class, new ModelSD70(), "locoSD70_", true, new float[] { -1.2F, -0.44F, 0.0F }, new float[] { 0F, 90F, 0F }, null, "smoke", 5, new ArrayList<double[]>() {
@@ -179,7 +178,7 @@ public enum RenderEnum {
 			add(new double[] { 0.7D, 1.64D, 0.0D });
 		}
 	}, "", null, 0, false),
-	locoMILW_H1044(EntityLocoDieselMILW_H1044.class, new ModelMILW_H1044(), "MILW_H1044", false, new float[]{0,-0.14f,0}, new float[] { 0F, 180F, 180F }, new float[]{0.9f,1f,0.9f}, "largesmoke", 4, new ArrayList<double[]>() {
+	locoMILW_H1044(EntityLocoDieselMILW_H1044.class, new ModelMILW_H1044(), "MILW_H1044", false, new float[]{0,0.14f,0}, new float[] { 0F, 180F, 180F }, new float[]{0.9f,1f,0.9f}, "largesmoke", 4, new ArrayList<double[]>() {
 		{
 			add(new double[] { 3.9D, 1.64D, 0D });
 		}

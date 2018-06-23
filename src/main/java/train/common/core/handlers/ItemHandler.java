@@ -11,6 +11,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockRailBase;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemSeeds;
@@ -45,6 +46,7 @@ public class ItemHandler {
 		int logWood = OreDictionary.getOreID("logWood");
 		int plankWood = OreDictionary.getOreID("plankWood");
 		int slabWood =  OreDictionary.getOreID("slabWood");
+		int stairWood = OreDictionary.getOreID("stairWood");
 		if(itemstack == null) {
 			return false;
 		}
@@ -52,24 +54,15 @@ public class ItemHandler {
 		if (block == null) {
 			return false;
 		}
-		if (entity instanceof EntityFlatCarLogs_DB || entity instanceof EntityFreightWood
-				|| entity instanceof EntityFreightWood2) {
-			int isid = OreDictionary.getOreID(itemstack);
-			return isid == plankWood || isid == logWood || isid == slabWood;
-		}
-		else if (entity instanceof EntityFlatCartWoodUS || entity instanceof EntityBulkheadFlatCart) {
-			int isid = OreDictionary.getOreID(itemstack);
-			return isid == plankWood || isid == logWood || isid == slabWood;
-		}
-		else if (entity instanceof EntityFreightCenterbeam_Wood_1 || entity instanceof EntityFreightCenterbeam_Wood_2) {
+		if (entity instanceof EntityFreightCenterbeam_Wood_1 || entity instanceof EntityFreightCenterbeam_Wood_2 ||
+				entity instanceof EntityFlatCartWoodUS || entity instanceof EntityBulkheadFlatCart || entity instanceof EntityFlatCarLogs_DB ||
+				entity instanceof EntityFreightWood || entity instanceof EntityFreightWood2 ||
+				entity instanceof EntityFreightOpenWagon || entity instanceof EntityFreightCartUS ||
+				entity instanceof EntityFreightClosed || entity instanceof EntityFreightGondola_DB ||
+				entity instanceof EntityFreightOpen2 || entity instanceof EntityFreightHopperUS) {
             int isid = OreDictionary.getOreID(itemstack);
-			return isid == plankWood || isid == logWood || isid == slabWood;
-		}
-		else if (entity instanceof EntityFreightOpenWagon || entity instanceof EntityFreightCartUS
-				|| entity instanceof EntityFreightClosed || entity instanceof EntityFreightGondola_DB
-				|| entity instanceof EntityFreightOpen2 || entity instanceof EntityFreightHopperUS || entity instanceof EntityFreight100TonHopper) {
-            int isid = OreDictionary.getOreID(itemstack);
-			return !(isid == plankWood || isid == logWood || isid == slabWood);
+			return isid == plankWood || isid == logWood || isid == slabWood || isid == stairWood ||
+					itemstack.getItem() == Item.getItemFromBlock(Blocks.ladder) || itemstack.getItem() == Item.getItemFromBlock(Blocks.fence) || itemstack.getItem() == Item.getItemFromBlock(Blocks.fence_gate);
 		}
 		else if (entity instanceof EntityFlatCarRails_DB) {
 			return block instanceof BlockRailBase || itemstack.getItem() instanceof ItemTCRail;
