@@ -765,17 +765,15 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 	 */
 	private void playMiningEffect(Vec3 pos, int block_index) {
 		miningTickCounter++;
-		int id = Block.getIdFromBlock(worldObj.getBlock((int) pos.xCoord, (int) pos.yCoord, (int) pos.zCoord));
-		Block block = Block.getBlockById(id);
 
-		if (!FMLCommonHandler.instance().getMinecraftServerInstance().isDedicatedServer()) {
+		if (!FMLCommonHandler.instance().getMinecraftServerInstance().isDedicatedServer() && pos != null) {
+			int id = Block.getIdFromBlock(worldObj.getBlock((int) pos.xCoord, (int) pos.yCoord, (int) pos.zCoord));
+			Block block = Block.getBlockById(id);
 			if (miningTickCounter % 8 == 0 && block != null && !worldObj.isRemote && Minecraft.getMinecraft() != null) {
 				this.worldObj.playSound((int) pos.xCoord + 0.5F, (int) pos.yCoord + 0.5F, (int) pos.zCoord + 0.5F, block.stepSound.getBreakSound(), 1.0F, block.stepSound.getPitch() * 0.5F, true);
 			}
-			if (miningTickCounter % 8 == 0 && block_index != 0 && block != null && pos != null) {
-				if (FMLClientHandler.instance().getClient() != null) {
-					FMLClientHandler.instance().getClient().effectRenderer.addBlockHitEffects((int) pos.xCoord, (int) pos.yCoord, (int) pos.zCoord, block_index < 4 ? getSideFromYaw() : (block_index < 6 ? 1 : 0));
-				}
+			if (miningTickCounter % 8 == 0 && block_index != 0 && block != null && FMLClientHandler.instance().getClient() != null) {
+				FMLClientHandler.instance().getClient().effectRenderer.addBlockHitEffects((int) pos.xCoord, (int) pos.yCoord, (int) pos.zCoord, block_index < 4 ? getSideFromYaw() : (block_index < 6 ? 1 : 0));
 			}
 		}
 	}
