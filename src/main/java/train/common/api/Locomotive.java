@@ -57,6 +57,13 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
         public String signalAspect = "off";
 	public String trainID = "0";
 	public String trainLevel = "1";
+	public int mtcStatus = 0;
+	public int mtcType = 1;
+	public int atoStatus = 0;
+	public int blocksFromStopPoint = 0;
+	public Double xFromStopPoint = 0.0;
+	public Double yFromStopPoint = 0.0;
+	public Double zFromStopPoint = 0.0;
 	//TrainAdditions support ends here
 	
 	
