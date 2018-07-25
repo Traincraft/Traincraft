@@ -2,6 +2,7 @@ package train.common.api;
 
 import cofh.api.energy.IEnergyContainerItem;
 import cofh.api.energy.IEnergyHandler;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -14,11 +15,9 @@ public abstract class ElectricTrain extends Locomotive {
 
 	private int timeSinceIgnited;
 	private boolean Ignite;
-	private boolean hasUranium;
+	//private boolean hasUranium;
 	private int reduceExplosionChance;
-	public int maxEnergy = 10000;
-
-	private int redstoneEnergy = 2000;
+	public int maxEnergy = 20000;
 
 	public ElectricTrain(World world) {
 		super(world);
@@ -29,7 +28,7 @@ public abstract class ElectricTrain extends Locomotive {
 		numCargoSlots2 = 5;
 		inventorySize = numCargoSlots + numCargoSlots2 + numCargoSlots1 + 1;
 		locoInvent = new ItemStack[inventorySize];
-		hasUranium = false;
+		//hasUranium = false;
 		reduceExplosionChance = 1000;
 		Ignite = false;
 		timeSinceIgnited = 0;
@@ -53,12 +52,16 @@ public abstract class ElectricTrain extends Locomotive {
 		if (getFuel() < maxEnergy && locoInvent[0] != null)
 		{
 			Item item = locoInvent[0].getItem();
-			if (item == Items.redstone && ((getFuel() + redstoneEnergy) <= maxEnergy))
+			if (item == Items.redstone && ((getFuel() + 2000) <= maxEnergy))
 			{
-				fuelTrain += redstoneEnergy;
+				fuelTrain += 2000;
 				decrStackSize(0, 1);
-			}
-			else if (item instanceof IEnergyContainerItem)
+			} else if (item == Item.getItemFromBlock(Blocks.redstone_block) && (getFuel() + (18000)) <= maxEnergy)
+			{
+				fuelTrain += 18000;
+				decrStackSize(0, 1);
+
+			}else if (item instanceof IEnergyContainerItem)
 			{
 				int draw = MathHelper.floor_double(Math.min(200, maxEnergy - getFuel()) * 0.1); // amount of energy to attempt to draw this tick
 				fuelTrain += ((IEnergyContainerItem) item).extractEnergy(locoInvent[0], draw, false) * 10;
@@ -102,7 +105,7 @@ public abstract class ElectricTrain extends Locomotive {
 	protected void updateFuelTrain(int amount) {
 		reduceExplosionChance = 1000;
 		if (fuelTrain < 0) {
-			hasUranium = false;
+			//hasUranium = false;
 			motionX *= 0.8;
 			motionZ *= 0.8;
 		}
@@ -112,16 +115,16 @@ public abstract class ElectricTrain extends Locomotive {
 				if (fuelTrain < 0) fuelTrain = 0;
 			}
 		}
-		if (hasUranium && (rand.nextInt(reduceExplosionChance) == 0) && (!Ignite)) {// fuse
+		/*if (hasUranium && (rand.nextInt(reduceExplosionChance) == 0) && (!Ignite)) {// fuse
 			Ignite = true;
 			setFire(8);
 			worldObj.playSoundAtEntity(this, "random.fuse", 1.0F, 0.5F);
-		}
+		}*/
 		if (Ignite && timeSinceIgnited == 100) {
 			worldObj.createExplosion(this, posX, posY, posZ, 200F, true);
 			// ConfigHandler2.logger.fine("Train has exploded");
 			Ignite = false;
-			hasUranium = false;
+			//hasUranium = false;
 			isDead = true;
 		}
 	}
