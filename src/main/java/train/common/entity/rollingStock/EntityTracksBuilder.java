@@ -34,11 +34,9 @@ import train.common.core.TrainModBlockUtil;
 import train.common.core.handlers.BuilderOreHandler;
 import train.common.core.handlers.FuelHandler;
 import train.common.core.plugins.PluginRailcraft;
-import train.common.items.ItemTCRail;
 import train.common.library.BlockIDs;
 import train.common.library.GuiIDs;
 import train.common.library.ItemIDs;
-import train.common.tile.TileTCRail;
 
 import java.util.ArrayList;
 import java.util.List;
