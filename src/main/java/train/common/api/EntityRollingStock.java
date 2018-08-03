@@ -1267,7 +1267,10 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 
 			motionX = 0;
 			motionZ = Math.copySign(norm, motionZ);
-			moveEntity(0.0D, 0.0D, motionZ);
+			this.boundingBox.offset(0, 0 , Math.copySign(norm, this.motionZ));
+			this.posX = (this.boundingBox.minX + this.boundingBox.maxX) / 2.0D;
+			this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
+			this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) / 2.0D;
 
 			//System.out.println("straight z "+Math.copySign(norm, motionZ));
 		}
@@ -1278,7 +1281,10 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 
 			motionX = Math.copySign(Math.sqrt(motionX * motionX + motionZ * motionZ), motionX);
 			motionZ = 0;
-			moveEntity(motionX, 0.0D, 0.0D);
+			this.boundingBox.offset(motionX, 0 , 0);
+			this.posX = (this.boundingBox.minX + this.boundingBox.maxX) / 2.0D;
+			this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
+			this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) / 2.0D;
 
 			//System.out.println("straight x "+Math.copySign(norm, motionX));
 		}
@@ -1294,7 +1300,10 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 
 			double norm = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 			this.setPosition(cx + 0.5D,  Math.abs(j + (Math.tan(slopeAngle * Math.abs(cz - this.posZ))) + this.yOffset +0.3), this.posZ);
-			this.moveEntity(0.0D, 0.0D, Math.copySign(norm, this.motionZ));
+			this.boundingBox.offset(0, 0 , Math.copySign(norm, this.motionZ));
+			this.posX = (this.boundingBox.minX + this.boundingBox.maxX) / 2.0D;
+			this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
+			this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) / 2.0D;
 
 			if (!(this instanceof Locomotive) && !(this instanceof EntityTracksBuilder)) {
 				if ((this.posY - this.prevPosY) < 0) {
@@ -1326,7 +1335,11 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 
 			double norm = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 			this.setPosition(this.posX, (j + (Math.tan(slopeAngle * Math.abs(cx - this.posX))) + this.yOffset+0.3), cz + 0.5D);
-			this.moveEntity(Math.copySign(norm, this.motionX), 0.0D, 0.0D);
+			this.boundingBox.offset(Math.copySign(norm, this.motionX), 0 ,0);
+			this.posX = (this.boundingBox.minX + this.boundingBox.maxX) / 2.0D;
+			this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
+			this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) / 2.0D;
+
 			if (!(this instanceof Locomotive) && !(this instanceof EntityTracksBuilder)) {
 				if ((this.posY - this.prevPosY) < 0) {
 					norm *= 1.02;

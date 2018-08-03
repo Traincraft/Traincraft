@@ -533,7 +533,10 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 
 
 			this.setPosition(cx + 0.5D, this.posY + this.yOffset, this.posZ);
-			this.moveEntity(0.0D, 0.0D, Math.copySign(norm, this.motionZ));
+			this.boundingBox.offset(0, 0 , Math.copySign(norm, this.motionZ));
+			this.posX = (this.boundingBox.minX + this.boundingBox.maxX) / 2.0D;
+			this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
+			this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) / 2.0D;
 
 			// this.motionX = 0.0D;
 			// this.motionZ = Math.copySign(norm, this.motionZ);
@@ -543,7 +546,10 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 			// double norm = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 
 			this.setPosition(this.posX, this.posY + this.yOffset, cz + 0.5D);
-			this.moveEntity(Math.copySign(norm, this.motionX), 0.0D, 0.0D);
+			this.boundingBox.offset(Math.copySign(norm, this.motionX), 0 , 0);
+			this.posX = (this.boundingBox.minX + this.boundingBox.maxX) / 2.0D;
+			this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
+			this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) / 2.0D;
 
 			// this.motionX = Math.copySign(norm, this.motionX);
 			// this.motionZ = 0.0D;
@@ -597,7 +603,11 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 			double norm = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 			double newPosY = Math.abs(j + (Math.tan(slopeAngle * Math.abs(cz - this.posZ))) + this.yOffset + 0.3);
 			this.setPosition(cx + 0.5D, newPosY, this.posZ);
-			this.moveEntity(0.0D, 0.0D, Math.copySign(norm, this.motionZ));
+
+			this.boundingBox.offset(0, 0 , Math.copySign(norm, this.motionZ));
+			this.posX = (this.boundingBox.minX + this.boundingBox.maxX) / 2.0D;
+			this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
+			this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) / 2.0D;
 
 			this.motionX = 0.0D;
 			this.motionY = 0.0D;
@@ -610,8 +620,12 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 			double norm = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 			double newPosY = (j + (Math.tan(slopeAngle * Math.abs(cx - this.posX))) + this.yOffset + 0.3);
 			this.setPosition(this.posX, newPosY, cz + 0.5D);
-			this.moveEntity(Math.copySign(norm, this.motionX), 0.0D, 0.0D);
-			
+
+			this.boundingBox.offset(Math.copySign(norm, this.motionX), 0 ,0);
+			this.posX = (this.boundingBox.minX + this.boundingBox.maxX) / 2.0D;
+			this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
+			this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) / 2.0D;
+
 			this.motionX = Math.copySign(norm, this.motionX);
 			this.motionY = 0.0D;
 			this.motionZ = 0.0D;
