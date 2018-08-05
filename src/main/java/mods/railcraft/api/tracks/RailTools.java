@@ -54,22 +54,6 @@ public abstract class RailTools {
      * @see ITrackItem
      */
     public static boolean placeRailAt(EntityTracksBuilder builder, ItemStack stack, World world, int i, int j, int k) {
-        if (stack == null)
-            return false;
-        if (stack.getItem() instanceof ITrackItem)
-            return ((ITrackItem) stack.getItem()).placeTrack(stack.copy(), world, i, j, k);
-        if (stack.getItem() instanceof ItemBlock) {
-            Block block = ((ItemBlock) stack.getItem()).field_150939_a;
-            if (BlockRailBase.func_150051_a(block)) {
-                boolean success = world.setBlock(i, j, k, block);
-                if (success)
-                    world.playSoundEffect((float) i + 0.5F, (float) j + 0.5F, (float) k + 0.5F, block.stepSound.func_150496_b(), (block.stepSound.getVolume() + 1.0F) / 2.0F, block.stepSound.getPitch() * 0.8F);
-                return success;
-            }
-        } if (stack.getItem() instanceof ItemTCRail){
-            ItemTCRail rail = (ItemTCRail) stack.getItem();
-            return  (rail.onItemUse(stack, null, world, i, j, k, 0,0,0, builder.rotationYaw+90));
-        }
         return false;
     }
 
