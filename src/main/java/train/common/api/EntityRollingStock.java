@@ -12,6 +12,8 @@ import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.api.carts.ILinkableCart;
 import mods.railcraft.api.tracks.RailTools;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockAir;
+import net.minecraft.block.BlockRail;
 import net.minecraft.block.BlockRailBase;
 import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.entity.*;
@@ -37,6 +39,8 @@ import net.minecraftforge.event.entity.minecart.MinecartUpdateEvent;
 import train.client.core.handlers.SoundUpdaterRollingStock;
 import train.common.Traincraft;
 import train.common.adminbook.ServerLogger;
+import train.common.blocks.BlockTCRail;
+import train.common.blocks.BlockTCRailGag;
 import train.common.core.HandleOverheating;
 import train.common.core.handlers.*;
 import train.common.core.network.PacketRollingStockRotation;
@@ -1256,7 +1260,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		}
 		return false;
 	}
-	
+
 	private void moveOnTCStraight(int i, int j, int k, double cx, double cz, int meta) {
 		posY = j + 0.2;
 		if (meta == 2 || meta == 0) {
@@ -1268,6 +1272,13 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			motionX = 0;
 			motionZ = Math.copySign(norm, motionZ);
 			this.boundingBox.offset(0, 0 , Math.copySign(norm, this.motionZ));
+
+			List boxes = worldObj.getCollidingBoundingBoxes(this, boundingBox);
+			for(Object b : boxes){
+				if(!(b instanceof BlockRailBase) && !(b instanceof BlockTCRail) && !(b instanceof BlockTCRailGag) && !(b instanceof BlockAir)){
+					return;
+				}
+			}
 			this.posX = (this.boundingBox.minX + this.boundingBox.maxX) / 2.0D;
 			this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
 			this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) / 2.0D;
@@ -1282,6 +1293,13 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			motionX = Math.copySign(Math.sqrt(motionX * motionX + motionZ * motionZ), motionX);
 			motionZ = 0;
 			this.boundingBox.offset(motionX, 0 , 0);
+
+			List boxes = worldObj.getCollidingBoundingBoxes(this, boundingBox);
+			for(Object b : boxes){
+				if(!(b instanceof BlockRailBase) && !(b instanceof BlockTCRail) && !(b instanceof BlockTCRailGag) && !(b instanceof BlockAir)){
+					return;
+				}
+			}
 			this.posX = (this.boundingBox.minX + this.boundingBox.maxX) / 2.0D;
 			this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
 			this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) / 2.0D;

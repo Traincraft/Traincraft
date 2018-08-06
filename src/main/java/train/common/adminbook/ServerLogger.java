@@ -10,6 +10,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
+import train.common.Traincraft;
 import train.common.api.EntityRollingStock;
 import train.common.api.LiquidTank;
 
@@ -33,7 +34,7 @@ public class ServerLogger {
         try {
             //make a stringbuilder to build the filename, faster than string+string+string+string etc. MUCH faster.
             StringBuilder sb = new StringBuilder();
-            sb.append(DimensionManager.getCurrentSaveRootDirectory().getAbsolutePath());
+            sb.append(Traincraft.configDirectory.getAbsolutePath());
             sb.append("/traincraft/");
             if (!new File(sb.toString()).exists()){
                 new File(sb.toString()).mkdir();
@@ -89,7 +90,7 @@ public class ServerLogger {
     //run this on attack entity event if the entity dies
     public static void deleteWagon(EntityRollingStock wagon){
         StringBuilder sb = new StringBuilder();
-        sb.append(DimensionManager.getCurrentSaveRootDirectory().getAbsolutePath());
+        sb.append(Traincraft.configDirectory.getAbsolutePath());
         sb.append("/traincraft/");
         if(wagon.getOwner() != null && wagon.getOwner().getName()!=null && !wagon.getOwner().getName().equals("")){
             sb.append(wagon.getOwner().getName());

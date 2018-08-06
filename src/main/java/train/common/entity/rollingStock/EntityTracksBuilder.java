@@ -175,7 +175,6 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 		if (canDigg()) {
 			updateState(true);
 			this.digBuilder(i, j, k);
-			pushX=pushZ=0.2;
 			applyDragAndPushForces();
 		}
 		else {
@@ -327,8 +326,8 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 		}
 
 		entityplayer.openGui(Traincraft.instance, GuiIDs.BUILDER, worldObj, this.getEntityId(), -1, (int) this.posZ);
-		pushZ = 0.2;
-		pushX = 0.2;
+		pushZ = (posZ - entityplayer.posZ);
+		pushX = (posX - entityplayer.posX);
 		applyDragAndPushForces();
 		return true;
 	}
@@ -868,6 +867,9 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 
 	/** Compares the currentHeight with given height in GUI */
 	private int checkForHeight() {
+		if(tracksStack!=null && tracksStack.getItem() instanceof ItemTCRail){
+			return 0;
+		}
 		if ((int) currentHeight < getPlannedHeight()) {
 			return 1;
 		}

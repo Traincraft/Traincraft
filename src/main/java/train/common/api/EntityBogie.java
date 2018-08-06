@@ -7,6 +7,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import mods.railcraft.api.carts.IMinecart;
 import mods.railcraft.api.carts.IRoutableCart;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockAir;
 import net.minecraft.block.BlockRailBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityMinecart;
@@ -18,6 +19,8 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import train.common.blocks.BlockTCRail;
+import train.common.blocks.BlockTCRailGag;
 import train.common.items.ItemTCRail;
 import train.common.items.ItemTCRail.TrackTypes;
 import train.common.library.BlockIDs;
@@ -393,8 +396,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 				this.setPosition(this.posX, this.posY + yOffset - 0.3d, this.posZ);
 				// System.out.println("Server Y: " + this.posY);
 			}
-			}
-			else {
+			} else {
 		        if (this.worldObj.isRemote)
 		        {
 		            if (this.turnProgress > 0)
@@ -521,38 +523,51 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 			worldObj.removeEntity(this);
 		}
 	}
-	
-	private void moveOnTCStraight(int j, double cx, double cz, int meta){
-		/*
-		 * Nitro-Note: Do we need all those shitty motionX and Z?
-		 * Nitro-Note 2: setPosition is to make a great look when Train placed down. :)
-		 */
-		this.posY = j + 0.2D;
-		double norm = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
-		if (meta % 2 == 0) {
 
+	private void moveOnTCStraight(int j, double cx, double cz, int meta) {
+		posY = j + 0.2;
+		if (meta == 2 || meta == 0) {
+			double norm = Math.sqrt(motionX * motionX + motionZ * motionZ);
 
-			this.setPosition(cx + 0.5D, this.posY + this.yOffset, this.posZ);
+			setPosition(cx + 0.5, posY + yOffset, posZ);
+			//setPosition(posX, posY + yOffset, posZ);
+
+			motionX = 0;
+			motionZ = Math.copySign(norm, motionZ);
 			this.boundingBox.offset(0, 0 , Math.copySign(norm, this.motionZ));
+
+			List boxes = worldObj.getCollidingBoundingBoxes(this, boundingBox);
+			for(Object b : boxes){
+				if(!(b instanceof BlockRailBase) && !(b instanceof BlockTCRail) && !(b instanceof BlockTCRailGag) && !(b instanceof BlockAir)){
+					return;
+				}
+			}
 			this.posX = (this.boundingBox.minX + this.boundingBox.maxX) / 2.0D;
 			this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
 			this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) / 2.0D;
 
-			// this.motionX = 0.0D;
-			// this.motionZ = Math.copySign(norm, this.motionZ);
+			//System.out.println("straight z "+Math.copySign(norm, motionZ));
 		}
-		else {
+		if (meta == 1 || meta == 3) {
 
-			// double norm = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
+			setPosition(posX, posY + yOffset, cz + 0.5);
+			//setPosition(posX, posY + yOffset, posZ);
 
-			this.setPosition(this.posX, this.posY + this.yOffset, cz + 0.5D);
-			this.boundingBox.offset(Math.copySign(norm, this.motionX), 0 , 0);
+			motionX = Math.copySign(Math.sqrt(motionX * motionX + motionZ * motionZ), motionX);
+			motionZ = 0;
+			this.boundingBox.offset(motionX, 0 , 0);
+
+			List boxes = worldObj.getCollidingBoundingBoxes(this, boundingBox);
+			for(Object b : boxes){
+				if(!(b instanceof BlockRailBase) && !(b instanceof BlockTCRail) && !(b instanceof BlockTCRailGag) && !(b instanceof BlockAir)){
+					return;
+				}
+			}
 			this.posX = (this.boundingBox.minX + this.boundingBox.maxX) / 2.0D;
 			this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
 			this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) / 2.0D;
 
-			// this.motionX = Math.copySign(norm, this.motionX);
-			// this.motionZ = 0.0D;
+			//System.out.println("straight x "+Math.copySign(norm, motionX));
 		}
 	}
 

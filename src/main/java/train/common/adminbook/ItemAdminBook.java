@@ -59,10 +59,10 @@ public class ItemAdminBook extends Item {
                 return stack;
             }
 
-            if (new File(DimensionManager.getCurrentSaveRootDirectory().getAbsolutePath() + "/traincraft/").exists()) {
+            if (new File(Traincraft.configDirectory.getAbsolutePath() + "/traincraft/").exists()) {
                 //if player wasin't looking at a train
                 StringBuilder sb = new StringBuilder();
-                File[] list = new File(DimensionManager.getCurrentSaveRootDirectory().getAbsolutePath() + "/traincraft/").listFiles();
+                File[] list = new File(Traincraft.configDirectory.getAbsolutePath() + "/traincraft/").listFiles();
                 if (list!=null) {
                     Arrays.sort(list, new compareFile());
                     for (File f : list) {
@@ -149,7 +149,7 @@ public class ItemAdminBook extends Item {
                     message.id = message.id.substring(2, message.id.length());
                     event=2;
                 }
-                File f = new File(DimensionManager.getCurrentSaveRootDirectory().getAbsolutePath() + "\\traincraft\\" + message.id);
+                File f = new File(Traincraft.configDirectory.getAbsolutePath() + "\\traincraft\\" + message.id);
                 if (f.exists()) {
                     //if player wasin't looking at a train
                     StringBuilder sb = new StringBuilder();
@@ -161,7 +161,7 @@ public class ItemAdminBook extends Item {
                                 sb.append(",");
                                 sb.append(message.id.substring(0, message.id.indexOf("\\") + 1));
                                 sb.append(",");
-                                String document = new String(Files.readAllBytes(Paths.get(DimensionManager.getCurrentSaveRootDirectory().getAbsolutePath() + "\\traincraft\\" + message.id)), "UTF-8");
+                                String document = new String(Files.readAllBytes(Paths.get(Traincraft.configDirectory.getAbsolutePath() + "\\traincraft\\" + message.id)), "UTF-8");
                                 sb.append("Delegate:,");
                                 sb.append(document.substring(document.indexOf("<delegate>") + 10, document.indexOf("</delegate>")));
                                 sb.append(",UUID:,");
@@ -187,7 +187,7 @@ public class ItemAdminBook extends Item {
                                 for (WorldServer world : DimensionManager.getWorlds()) {
                                     if (world.getEntityByID(message.player) != null) {
                                         EntityPlayerMP p = (EntityPlayerMP) world.getEntityByID(message.player);
-                                        List<ItemStack> items = ServerLogger.getItems(new String(Files.readAllBytes(Paths.get(DimensionManager.getCurrentSaveRootDirectory().getAbsolutePath() + "\\traincraft\\" + message.id)), "UTF-8"));
+                                        List<ItemStack> items = ServerLogger.getItems(new String(Files.readAllBytes(Paths.get(Traincraft.configDirectory.getAbsolutePath() + "\\traincraft\\" + message.id)), "UTF-8"));
                                         for (ItemStack i : items){
                                             if (i.stackSize != 0 && i.getItem() != null)
                                             {

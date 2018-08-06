@@ -60,6 +60,7 @@ public class Traincraft {
 	public static SimpleNetworkWrapper brakeChannel;
 	public static SimpleNetworkWrapper lockChannel;
 	public static SimpleNetworkWrapper builderChannel;
+	public static File configDirectory;
 
 	/* Creative tab for Traincraft */
 	public static CreativeTabs tcTab;
@@ -78,6 +79,7 @@ public class Traincraft {
 	public void preInit(FMLPreInitializationEvent event) {
 		tcLog.info("Starting Traincraft " + Info.modVersion + "!");
 		/* Config handler */
+		configDirectory= event.getModConfigurationDirectory();
 		ConfigHandler.init(new File(event.getModConfigurationDirectory(), Info.modName + ".cfg"));
 
 		/* Register the KeyBinding Handler */
