@@ -9,6 +9,7 @@ import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.EntityStruckByLightningEvent;
 import net.minecraftforge.event.world.ChunkEvent;
 import train.common.api.AbstractTrains;
+import train.common.api.Locomotive;
 import train.common.entity.ai.EntityAIFearHorn;
 import train.common.entity.rollingStock.EntityJukeBoxCart;
 
@@ -58,6 +59,10 @@ public class WorldEvents{
 	@SuppressWarnings("unused")
 	public void playerQuitEvent(PlayerEvent.PlayerLoggedOutEvent event){
 		if (event.player.ridingEntity instanceof AbstractTrains){
+			if (event.player.ridingEntity instanceof Locomotive) {
+				((Locomotive) event.player.ridingEntity).isBraking=true;
+				((Locomotive) event.player.ridingEntity).parkingBrake=true;
+			}
 			event.player.dismountEntity(event.player.ridingEntity);
 			event.player.ridingEntity = null;
 		}

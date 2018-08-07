@@ -19,7 +19,7 @@ public enum EnumTrains {
 	passengerHighSpeedZeroED("Passenger High Speed Zero ED",EntityPassengerHighSpeedCarZeroED.class, ItemIDs.minecartPassengerHighSpeedCarZeroED.item,"passenger",0,0,2,0,0,0,0,0,0,null,18,0),
 	passengerTramNY("Passenger Tram NY",EntityPassengerTramNY.class, ItemIDs.minecartPassengerTramNY.item,"passenger",0,0,1,0,0,0,0,0,0,null,18,0),
 	passengerAdler("Passenger Adler",EntityPassengerAdler.class, ItemIDs.minecartPassengerAdler.item,"passenger",0,0,1,0,0,0,0,0,0,null,18,0),
-	//passengerDBOriental("pass_DB_oriental",EntityPassengerDBOriental.class, ItemIDs.minecartPassengerDBOriental.item,"train_tram_ny","passenger",0,0,1,0,0,0,0,0,0,null,18,null,null),
+	passengerDBOriental("Passenger DB oriental",EntityPassengerDBOriental.class, ItemIDs.minecartPassengerDBOriental.item,"passenger",0,0,2,0,0,0,0,0,0,null,18,0),
 	passengerIC4_DSB_FG("Passenger IC4 DSB FG",PassengerIC4_DSB_FG.class, ItemIDs.minecartIC4_DSB_FG.item,"passenger",0,0,0.5,0,0,0,0,0,0,null,10,0, new String[]{"Unfinished, Creative Only"}),
 	passengerIC4_DSB_FH("Passenger IC4 DSB FH",PassengerIC4_DSB_FH.class, ItemIDs.minecartIC4_DSB_FH.item,"passenger",0,0,0.5,0,0,0,0,0,0,null,10,0, new String[]{"Unfinished, Creative Only"}),
 	passengerICE1_Class1("Passenger ICE 1st Class", EntityPassengerICE_1class.class,ItemIDs.minecartICE1_1stClass.item, "passenger", 0, 0, 0.5, 0, 0, 0, 0, 0, 0, null, 10, 0),

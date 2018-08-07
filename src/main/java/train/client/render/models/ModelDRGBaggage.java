@@ -20,7 +20,7 @@ public class ModelDRGBaggage extends ModelBase
 
 	public ModelDRGBaggage()
 	{
-		drgbaggageModel = new ModelRendererTurbo[453];
+		drgbaggageModel = new ModelRendererTurbo[493];
 		drgbaggageModel[0] = new ModelRendererTurbo(this, 1, 1, textureX, textureY); // Box 0
 		drgbaggageModel[1] = new ModelRendererTurbo(this, 17, 1, textureX, textureY); // Box 2
 		drgbaggageModel[2] = new ModelRendererTurbo(this, 17, 1, textureX, textureY); // Box 3
@@ -474,6 +474,46 @@ public class ModelDRGBaggage extends ModelBase
 		drgbaggageModel[450] = new ModelRendererTurbo(this, 217, 73, textureX, textureY); // Box 461
 		drgbaggageModel[451] = new ModelRendererTurbo(this, 281, 73, textureX, textureY); // Box 462
 		drgbaggageModel[452] = new ModelRendererTurbo(this, 129, 49, textureX, textureY); // Box 463
+		drgbaggageModel[453] = new ModelRendererTurbo(this, 113, 145, textureX, textureY); // Box 453
+		drgbaggageModel[454] = new ModelRendererTurbo(this, 113, 145, textureX, textureY); // Box 454
+		drgbaggageModel[455] = new ModelRendererTurbo(this, 113, 145, textureX, textureY); // Box 455
+		drgbaggageModel[456] = new ModelRendererTurbo(this, 113, 145, textureX, textureY); // Box 456
+		drgbaggageModel[457] = new ModelRendererTurbo(this, 113, 145, textureX, textureY); // Box 457
+		drgbaggageModel[458] = new ModelRendererTurbo(this, 113, 145, textureX, textureY); // Box 458
+		drgbaggageModel[459] = new ModelRendererTurbo(this, 113, 145, textureX, textureY); // Box 459
+		drgbaggageModel[460] = new ModelRendererTurbo(this, 113, 145, textureX, textureY); // Box 460
+		drgbaggageModel[461] = new ModelRendererTurbo(this, 113, 145, textureX, textureY); // Box 461
+		drgbaggageModel[462] = new ModelRendererTurbo(this, 113, 145, textureX, textureY); // Box 462
+		drgbaggageModel[463] = new ModelRendererTurbo(this, 113, 145, textureX, textureY); // Box 463
+		drgbaggageModel[464] = new ModelRendererTurbo(this, 113, 145, textureX, textureY); // Box 464
+		drgbaggageModel[465] = new ModelRendererTurbo(this, 113, 145, textureX, textureY); // Box 465
+		drgbaggageModel[466] = new ModelRendererTurbo(this, 113, 145, textureX, textureY); // Box 466
+		drgbaggageModel[467] = new ModelRendererTurbo(this, 113, 145, textureX, textureY); // Box 467
+		drgbaggageModel[468] = new ModelRendererTurbo(this, 113, 145, textureX, textureY); // Box 468
+		drgbaggageModel[469] = new ModelRendererTurbo(this, 113, 145, textureX, textureY); // Box 469
+		drgbaggageModel[470] = new ModelRendererTurbo(this, 113, 145, textureX, textureY); // Box 470
+		drgbaggageModel[471] = new ModelRendererTurbo(this, 113, 145, textureX, textureY); // Box 471
+		drgbaggageModel[472] = new ModelRendererTurbo(this, 113, 145, textureX, textureY); // Box 472
+		drgbaggageModel[473] = new ModelRendererTurbo(this, 113, 145, textureX, textureY); // Box 473
+		drgbaggageModel[474] = new ModelRendererTurbo(this, 113, 145, textureX, textureY); // Box 474
+		drgbaggageModel[475] = new ModelRendererTurbo(this, 113, 145, textureX, textureY); // Box 475
+		drgbaggageModel[476] = new ModelRendererTurbo(this, 113, 145, textureX, textureY); // Box 476
+		drgbaggageModel[477] = new ModelRendererTurbo(this, 492, 242, textureX, textureY); // Box 515
+		drgbaggageModel[478] = new ModelRendererTurbo(this, 464, 247, textureX, textureY); // Box 517
+		drgbaggageModel[479] = new ModelRendererTurbo(this, 492, 246, textureX, textureY); // Box 520
+		drgbaggageModel[480] = new ModelRendererTurbo(this, 475, 235, textureX, textureY); // Box 525
+		drgbaggageModel[481] = new ModelRendererTurbo(this, 484, 240, textureX, textureY); // Box 527
+		drgbaggageModel[482] = new ModelRendererTurbo(this, 484, 237, textureX, textureY); // Box 528
+		drgbaggageModel[483] = new ModelRendererTurbo(this, 484, 246, textureX, textureY); // Box 529
+		drgbaggageModel[484] = new ModelRendererTurbo(this, 484, 243, textureX, textureY); // Box 530
+		drgbaggageModel[485] = new ModelRendererTurbo(this, 475, 235, textureX, textureY); // Box 477
+		drgbaggageModel[486] = new ModelRendererTurbo(this, 484, 240, textureX, textureY); // Box 478
+		drgbaggageModel[487] = new ModelRendererTurbo(this, 484, 243, textureX, textureY); // Box 479
+		drgbaggageModel[488] = new ModelRendererTurbo(this, 484, 246, textureX, textureY); // Box 480
+		drgbaggageModel[489] = new ModelRendererTurbo(this, 492, 246, textureX, textureY); // Box 481
+		drgbaggageModel[490] = new ModelRendererTurbo(this, 492, 242, textureX, textureY); // Box 482
+		drgbaggageModel[491] = new ModelRendererTurbo(this, 464, 247, textureX, textureY); // Box 483
+		drgbaggageModel[492] = new ModelRendererTurbo(this, 484, 237, textureX, textureY); // Box 484
 
 		drgbaggageModel[0].addBox(0F, 0F, 0F, 6, 6, 0, 0F); // Box 0
 		drgbaggageModel[0].setRotationPoint(36F, 4F, -5F);
@@ -893,17 +933,17 @@ public class ModelDRGBaggage extends ModelBase
 		drgbaggageModel[134].addBox(0F, 0F, 0F, 13, 3, 3, 0F); // Box 199
 		drgbaggageModel[134].setRotationPoint(8F, 3F, 2F);
 
-		drgbaggageModel[135].addBox(0F, 0F, 0F, 4, 1, 2, 0F); // Box 214
-		drgbaggageModel[135].setRotationPoint(-57F, 4F, -1F);
+		drgbaggageModel[135].addShapeBox(0F, 0F, 0F, 4, 1, 2, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 1F, 0F, 0F, 1F, 0F, 0F, 1F, 0F, 0F, 1F, 0F); // Box 214
+		drgbaggageModel[135].setRotationPoint(-58F, 4F, -1F);
 
-		drgbaggageModel[136].addShapeBox(0F, 0F, 0F, 1, 2, 2, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F); // Box 215
-		drgbaggageModel[136].setRotationPoint(-53F, 3F, -1F);
+		drgbaggageModel[136].addShapeBox(0F, 0F, 0F, 1, 2, 2, 0F, 0F, 0F, 0F, 1F, 0F, 0F, 1F, 0F, 0F, 0F, 0F, 0F, 0F, 1F, 0F, 1F, -1F, 0F, 1F, -1F, 0F, 0F, 1F, 0F); // Box 215
+		drgbaggageModel[136].setRotationPoint(-54F, 3F, -1F);
 
-		drgbaggageModel[137].addShapeBox(0F, 0F, 0F, 1, 2, 2, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F); // Box 216
-		drgbaggageModel[137].setRotationPoint(52F, 3F, -1F);
+		drgbaggageModel[137].addShapeBox(0F, 0F, 0F, 1, 2, 2, 0F, 1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 1F, 0F, 0F, 1F, -1F, 0F, 0F, 1F, 0F, 0F, 1F, 0F, 1F, -1F, 0F); // Box 216
+		drgbaggageModel[137].setRotationPoint(53F, 3F, -1F);
 
-		drgbaggageModel[138].addBox(0F, 0F, 0F, 4, 1, 2, 0F); // Box 217
-		drgbaggageModel[138].setRotationPoint(53F, 4F, -1F);
+		drgbaggageModel[138].addShapeBox(0F, 0F, 0F, 4, 1, 2, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 1F, 0F, 0F, 1F, 0F, 0F, 1F, 0F, 0F, 1F, 0F); // Box 217
+		drgbaggageModel[138].setRotationPoint(54F, 4F, -1F);
 
 		drgbaggageModel[139].addBox(0F, 0F, 0F, 1, 1, 1, 0F); // Box 218
 		drgbaggageModel[139].setRotationPoint(-54F, -9F, 5F);
@@ -1347,34 +1387,34 @@ public class ModelDRGBaggage extends ModelBase
 		drgbaggageModel[282].setRotationPoint(-6.5F, 1F, -9.75F);
 
 		drgbaggageModel[283].addShapeBox(0F, 0F, 0F, 1, 8, 1, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, -0.5F, -0.5F); // Box 427
-		drgbaggageModel[283].setRotationPoint(-45.5F, -7.5F, 8F);
+		drgbaggageModel[283].setRotationPoint(-46F, -7.5F, 8F);
 
 		drgbaggageModel[284].addShapeBox(0F, 0F, 0F, 1, 8, 1, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, -0.5F, -0.5F); // Box 428
-		drgbaggageModel[284].setRotationPoint(-45.5F, -7.5F, -8.5F);
+		drgbaggageModel[284].setRotationPoint(-46F, -7.5F, -8.5F);
 
 		drgbaggageModel[285].addShapeBox(0F, 0F, 0F, 1, 8, 1, 0F, 0F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, 0F, -0.5F); // Box 429
-		drgbaggageModel[285].setRotationPoint(45F, -7.5F, -8.5F);
+		drgbaggageModel[285].setRotationPoint(45.5F, -7.5F, -8.5F);
 
 		drgbaggageModel[286].addShapeBox(0F, 0F, 0F, 1, 8, 1, 0F, 0F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, 0F, -0.5F); // Box 430
-		drgbaggageModel[286].setRotationPoint(45F, -7.5F, 8F);
+		drgbaggageModel[286].setRotationPoint(45.5F, -7.5F, 8F);
 
 		drgbaggageModel[287].addShapeBox(0F, 0F, 0F, 1, 8, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F); // Box 431
-		drgbaggageModel[287].setRotationPoint(-7.5F, -7.5F, 10F);
+		drgbaggageModel[287].setRotationPoint(-7.5F, -7.5F, 10.5F);
 
 		drgbaggageModel[288].addShapeBox(0F, 0F, 0F, 1, 8, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F); // Box 432
-		drgbaggageModel[288].setRotationPoint(7F, -7.5F, 10F);
+		drgbaggageModel[288].setRotationPoint(7F, -7.5F, 10.5F);
 
 		drgbaggageModel[289].addShapeBox(0F, 0F, 0F, 1, 8, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 433
-		drgbaggageModel[289].setRotationPoint(-7.5F, -7.5F, -10.5F);
+		drgbaggageModel[289].setRotationPoint(-7.5F, -7.5F, -11F);
 
 		drgbaggageModel[290].addShapeBox(0F, 0F, 0F, 1, 8, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 434
-		drgbaggageModel[290].setRotationPoint(7F, -7.5F, -10.5F);
+		drgbaggageModel[290].setRotationPoint(7F, -7.5F, -11F);
 
 		drgbaggageModel[291].addShapeBox(0F, 0F, 0F, 1, 8, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 435
-		drgbaggageModel[291].setRotationPoint(-39F, -7.5F, -10.5F);
+		drgbaggageModel[291].setRotationPoint(-39F, -7.5F, -11F);
 
 		drgbaggageModel[292].addShapeBox(0F, 0F, 0F, 1, 8, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F); // Box 436
-		drgbaggageModel[292].setRotationPoint(-39F, -7.5F, 10F);
+		drgbaggageModel[292].setRotationPoint(-39F, -7.5F, 10.5F);
 
 		drgbaggageModel[293].addBox(0F, 0F, 0F, 0, 2, 2, 0F); // Box 437
 		drgbaggageModel[293].setRotationPoint(34F, -5.75F, 6F);
@@ -1435,10 +1475,10 @@ public class ModelDRGBaggage extends ModelBase
 		drgbaggageModel[310].setRotationPoint(33.75F, -24F, 0F);
 
 		drgbaggageModel[311].addShapeBox(0F, 0F, 0F, 1, 8, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 463
-		drgbaggageModel[311].setRotationPoint(38.5F, -7.5F, -10.5F);
+		drgbaggageModel[311].setRotationPoint(38.5F, -7.5F, -11F);
 
 		drgbaggageModel[312].addShapeBox(0F, 0F, 0F, 1, 8, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F); // Box 464
-		drgbaggageModel[312].setRotationPoint(38.5F, -7.5F, 10F);
+		drgbaggageModel[312].setRotationPoint(38.5F, -7.5F, 10.5F);
 
 		drgbaggageModel[313].addShapeBox(0F, 0F, 0F, 13, 3, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 465
 		drgbaggageModel[313].setRotationPoint(-6.5F, -20F, -10F);
@@ -1915,13 +1955,134 @@ public class ModelDRGBaggage extends ModelBase
 		drgbaggageModel[452].addBox(0F, 0F, 0F, 5, 2, 6, 0F); // Box 463
 		drgbaggageModel[452].setRotationPoint(-36F, 3F, -3F);
 
+		drgbaggageModel[453].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 453
+		drgbaggageModel[453].setRotationPoint(38.5F, -8F, 10F);
+
+		drgbaggageModel[454].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 454
+		drgbaggageModel[454].setRotationPoint(38.5F, -0.5F, 10F);
+
+		drgbaggageModel[455].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 455
+		drgbaggageModel[455].setRotationPoint(7F, -0.5F, 10F);
+
+		drgbaggageModel[456].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 456
+		drgbaggageModel[456].setRotationPoint(7F, -8F, 10F);
+
+		drgbaggageModel[457].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 457
+		drgbaggageModel[457].setRotationPoint(-7.5F, -0.5F, 10F);
+
+		drgbaggageModel[458].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 458
+		drgbaggageModel[458].setRotationPoint(-7.5F, -8F, 10F);
+
+		drgbaggageModel[459].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 459
+		drgbaggageModel[459].setRotationPoint(-39F, -0.5F, 10F);
+
+		drgbaggageModel[460].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 460
+		drgbaggageModel[460].setRotationPoint(-39F, -8F, 10F);
+
+		drgbaggageModel[461].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 461
+		drgbaggageModel[461].setRotationPoint(-39F, -0.5F, -10.5F);
+
+		drgbaggageModel[462].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 462
+		drgbaggageModel[462].setRotationPoint(-39F, -8F, -10.5F);
+
+		drgbaggageModel[463].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 463
+		drgbaggageModel[463].setRotationPoint(-7.5F, -8F, -10.5F);
+
+		drgbaggageModel[464].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 464
+		drgbaggageModel[464].setRotationPoint(-7.5F, -0.5F, -10.5F);
+
+		drgbaggageModel[465].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 465
+		drgbaggageModel[465].setRotationPoint(7F, -0.5F, -10.5F);
+
+		drgbaggageModel[466].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 466
+		drgbaggageModel[466].setRotationPoint(7F, -8F, -10.5F);
+
+		drgbaggageModel[467].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 467
+		drgbaggageModel[467].setRotationPoint(38.5F, -8F, -10.5F);
+
+		drgbaggageModel[468].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 468
+		drgbaggageModel[468].setRotationPoint(38.5F, -0.5F, -10.5F);
+
+		drgbaggageModel[469].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 469
+		drgbaggageModel[469].setRotationPoint(45F, -0.5F, -8.5F);
+
+		drgbaggageModel[470].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 470
+		drgbaggageModel[470].setRotationPoint(45F, -8F, -8.5F);
+
+		drgbaggageModel[471].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 471
+		drgbaggageModel[471].setRotationPoint(45F, -8F, 8F);
+
+		drgbaggageModel[472].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 472
+		drgbaggageModel[472].setRotationPoint(45F, -0.5F, 8F);
+
+		drgbaggageModel[473].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 473
+		drgbaggageModel[473].setRotationPoint(-45.5F, -8F, 8F);
+
+		drgbaggageModel[474].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 474
+		drgbaggageModel[474].setRotationPoint(-45.5F, -0.5F, 8F);
+
+		drgbaggageModel[475].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 475
+		drgbaggageModel[475].setRotationPoint(-45.5F, -8F, -8.5F);
+
+		drgbaggageModel[476].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 476
+		drgbaggageModel[476].setRotationPoint(-45.5F, -0.5F, -8.5F);
+
+		drgbaggageModel[477].addShapeBox(0F, 0F, 0F, 1, 2, 1, 0F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F); // Box 515
+		drgbaggageModel[477].setRotationPoint(-57F, 4F, 0.5F);
+
+		drgbaggageModel[478].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, 0F, -0.3F, -0.5F, 0F, -0.3F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, -0.4F, -0.5F, -0.5F, -0.4F, -0.5F, -0.5F, -0.1F, 0F, -0.5F, -0.1F); // Box 517
+		drgbaggageModel[478].setRotationPoint(-57F, 6F, 0.6F);
+
+		drgbaggageModel[479].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, -0.5F, -0.5F, -0.5F, 1F, -0.5F, -0.5F, 1F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 1F, 0F, -0.5F, 1F, 0F, 0F, 0F, 0F, 0F); // Box 520
+		drgbaggageModel[479].setRotationPoint(-57F, 3F, 0.5F);
+
+		drgbaggageModel[480].addShapeBox(0F, 1F, 0F, 1, 1, 14, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F); // Box 525
+		drgbaggageModel[480].setRotationPoint(-56.5F, 2F, -7F);
+
+		drgbaggageModel[481].addShapeBox(0F, 1F, 0F, 1, 1, 1, 0F, 0F, -1F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, 0F, 0F, -1F, 0F, -1.5F, 0F, -0.5F, 1F, -0.5F, -0.5F, 1F, -0.5F, 0F, -1.5F, 0F, 0F); // Box 527
+		drgbaggageModel[481].setRotationPoint(-56.5F, 1F, 6F);
+
+		drgbaggageModel[482].addShapeBox(0F, 1F, 0F, 1, 1, 1, 0F, 0F, -1F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, 0F, 0F, -1F, 0F, -1.5F, 0F, -0.5F, 1F, -0.5F, -0.5F, 1F, -0.5F, 0F, -1.5F, 0F, 0F); // Box 528
+		drgbaggageModel[482].setRotationPoint(-56.5F, 1F, -7.5F);
+
+		drgbaggageModel[483].addShapeBox(0F, 1F, 0F, 1, 1, 1, 0F, 0F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F); // Box 529
+		drgbaggageModel[483].setRotationPoint(-56.5F, 2F, -0.75F);
+
+		drgbaggageModel[484].addShapeBox(0F, 1F, 0F, 1, 1, 1, 0F, 0.5F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, 0F, 0.5F, -0.5F, 0F, 0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0.5F, 0F, 0F); // Box 530
+		drgbaggageModel[484].setRotationPoint(-55.5F, 1.5F, -0.75F);
+
+		drgbaggageModel[485].addShapeBox(0F, 1F, 0F, 1, 1, 14, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F); // Box 477
+		drgbaggageModel[485].setRotationPoint(56F, 2F, -7F);
+
+		drgbaggageModel[486].addShapeBox(0F, 1F, 0F, 1, 1, 1, 0F, -0.5F, -0.5F, -0.5F, 0F, -1F, -0.5F, 0F, -1F, 0F, -0.5F, -0.5F, 0F, 1F, -0.5F, -0.5F, -1.5F, 0F, -0.5F, -1.5F, 0F, 0F, 1F, -0.5F, 0F); // Box 478
+		drgbaggageModel[486].setRotationPoint(55.5F, 1F, 6F);
+
+		drgbaggageModel[487].addShapeBox(0F, 1F, 0F, 1, 1, 1, 0F, 0.5F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, 0F, 0.5F, -0.5F, 0F, 0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0.5F, 0F, 0F); // Box 479
+		drgbaggageModel[487].setRotationPoint(55.5F, 1.5F, -0.75F);
+
+		drgbaggageModel[488].addShapeBox(0F, 1F, 0F, 1, 1, 1, 0F, 0F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F); // Box 480
+		drgbaggageModel[488].setRotationPoint(56F, 2F, -0.75F);
+
+		drgbaggageModel[489].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 1F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, 0F, 1F, -0.5F, 0F, 1F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 1F, 0F, 0F); // Box 481
+		drgbaggageModel[489].setRotationPoint(56F, 3F, 0.5F);
+
+		drgbaggageModel[490].addShapeBox(0F, 0F, 0F, 1, 2, 1, 0F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F); // Box 482
+		drgbaggageModel[490].setRotationPoint(56.5F, 4F, 0.5F);
+
+		drgbaggageModel[491].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, 0F, -0.3F, -0.5F, 0F, -0.3F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, -0.4F, -0.5F, -0.5F, -0.4F, -0.5F, -0.5F, -0.1F, 0F, -0.5F, -0.1F); // Box 483
+		drgbaggageModel[491].setRotationPoint(56.5F, 6F, 0.6F);
+
+		drgbaggageModel[492].addShapeBox(0F, 1F, 0F, 1, 1, 1, 0F, -0.5F, -0.5F, -0.5F, 0F, -1F, -0.5F, 0F, -1F, 0F, -0.5F, -0.5F, 0F, 1F, -0.5F, -0.5F, -1.5F, 0F, -0.5F, -1.5F, 0F, 0F, 1F, -0.5F, 0F); // Box 484
+		drgbaggageModel[492].setRotationPoint(55.5F, 1F, -7.5F);
+
 		fixRotation(drgbaggageModel, false, true, true);
+
 	}
 
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
-		for(int i = 0; i < 453; i++)
+		for(int i = 0; i < 493; i++)
 		{
 			drgbaggageModel[i].render(f5);
 		}

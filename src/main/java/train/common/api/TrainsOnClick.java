@@ -1,5 +1,6 @@
 package train.common.api;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
@@ -8,7 +9,9 @@ import train.common.library.ItemIDs;
 
 public class TrainsOnClick {
 	public boolean onClickWithStake(AbstractTrains train, ItemStack itemstack, EntityPlayer playerEntity, World world) {
-		if (itemstack != null && itemstack.getItem() == ItemIDs.stake.item && !world.isRemote && train.getTrainOwner().equals(playerEntity.getDisplayName())) {
+		System.out.println(train.getTrainOwner());
+		if (itemstack != null && itemstack.getItem() == ItemIDs.stake.item && !world.isRemote &&
+				(Minecraft.getMinecraft().isSingleplayer() || train.getTrainOwner().equals(playerEntity.getDisplayName()) || train.getTrainOwner().equals("") || train.getTrainOwner()==null)) {
 			if (playerEntity.isSneaking() && train instanceof Locomotive) {
 				if (!train.canBeAdjusted(train)) {
 					playerEntity.addChatMessage(new ChatComponentText(((EntityRollingStock) train).getTrainName() + " can be pulled, don't forget to fuel it!"));

@@ -242,8 +242,8 @@ public enum ItemIDs {
 	minecartCabooseLogging("ItemRollingStock", "train_logging_caboose", 1),
 	minecartCabooseLoggingPRR("ItemRollingStock", "train_prr_caboose", 1),
 	minecartPassengerTramNY("ItemRollingStock", "train_tram_ny", 3),
-	//TODO Needs icon
-	//minecartPassengerDBOriental("ItemRollingStock", "train_tram_ny", 2),
+
+	minecartPassengerDBOriental("ItemRollingStock", "train_passenger_orient", 2),
 	minecartLocoSD40("ItemRollingStock", "train_sd40", 10),
 	zeppelin("ItemZeppelin", "item_zeppelin_one_balloon", 1),
 

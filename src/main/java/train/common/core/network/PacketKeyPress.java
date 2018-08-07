@@ -79,12 +79,12 @@ public class PacketKeyPress implements IMessage {
 				}
 			}
 
-			if (message.key == 404){
+			/*if (message.key == 404){
 				CommonProxy.debug = CommonProxy.debug;
 				if (Minecraft.getMinecraft().theWorld != null) {
 					System.out.println(Minecraft.getMinecraft().theWorld.isRemote);
 				}
-			}
+			}*/
 			return null;
 		}
 	}

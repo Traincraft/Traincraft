@@ -20,7 +20,7 @@ public class ModelDRGCombo extends ModelBase
 
 	public ModelDRGCombo()
 	{
-		drgcomboModel = new ModelRendererTurbo[478];
+		drgcomboModel = new ModelRendererTurbo[559];
 		drgcomboModel[0] = new ModelRendererTurbo(this, 1, 1, textureX, textureY); // Box 0
 		drgcomboModel[1] = new ModelRendererTurbo(this, 17, 1, textureX, textureY); // Box 2
 		drgcomboModel[2] = new ModelRendererTurbo(this, 17, 1, textureX, textureY); // Box 3
@@ -284,221 +284,302 @@ public class ModelDRGCombo extends ModelBase
 		drgcomboModel[260] = new ModelRendererTurbo(this, 65, 129, textureX, textureY); // Box 420
 		drgcomboModel[261] = new ModelRendererTurbo(this, 81, 129, textureX, textureY); // Box 421
 		drgcomboModel[262] = new ModelRendererTurbo(this, 89, 129, textureX, textureY); // Box 422
-		drgcomboModel[263] = new ModelRendererTurbo(this, 97, 129, textureX, textureY); // Box 423
-		drgcomboModel[264] = new ModelRendererTurbo(this, 121, 129, textureX, textureY); // Box 424
-		drgcomboModel[265] = new ModelRendererTurbo(this, 129, 129, textureX, textureY); // Box 425
-		drgcomboModel[266] = new ModelRendererTurbo(this, 145, 129, textureX, textureY); // Box 397
-		drgcomboModel[267] = new ModelRendererTurbo(this, 153, 129, textureX, textureY); // Box 398
-		drgcomboModel[268] = new ModelRendererTurbo(this, 161, 129, textureX, textureY); // Box 362
-		drgcomboModel[269] = new ModelRendererTurbo(this, 193, 129, textureX, textureY); // Box 363
-		drgcomboModel[270] = new ModelRendererTurbo(this, 97, 129, textureX, textureY); // Box 364
-		drgcomboModel[271] = new ModelRendererTurbo(this, 209, 129, textureX, textureY); // Box 365
-		drgcomboModel[272] = new ModelRendererTurbo(this, 113, 129, textureX, textureY); // Box 366
-		drgcomboModel[273] = new ModelRendererTurbo(this, 225, 129, textureX, textureY); // Box 354
-		drgcomboModel[274] = new ModelRendererTurbo(this, 241, 129, textureX, textureY); // Box 355
-		drgcomboModel[275] = new ModelRendererTurbo(this, 249, 129, textureX, textureY); // Box 356
-		drgcomboModel[276] = new ModelRendererTurbo(this, 257, 129, textureX, textureY); // Box 357
-		drgcomboModel[277] = new ModelRendererTurbo(this, 265, 129, textureX, textureY); // Box 358
-		drgcomboModel[278] = new ModelRendererTurbo(this, 289, 129, textureX, textureY); // Box 359
-		drgcomboModel[279] = new ModelRendererTurbo(this, 313, 129, textureX, textureY); // Box 360
-		drgcomboModel[280] = new ModelRendererTurbo(this, 321, 129, textureX, textureY); // Box 361
-		drgcomboModel[281] = new ModelRendererTurbo(this, 337, 129, textureX, textureY); // Box 362
-		drgcomboModel[282] = new ModelRendererTurbo(this, 345, 129, textureX, textureY); // Box 363
-		drgcomboModel[283] = new ModelRendererTurbo(this, 361, 129, textureX, textureY); // Box 436
-		drgcomboModel[284] = new ModelRendererTurbo(this, 361, 137, textureX, textureY); // Box 437
-		drgcomboModel[285] = new ModelRendererTurbo(this, 1, 145, textureX, textureY); // Box 438
-		drgcomboModel[286] = new ModelRendererTurbo(this, 345, 145, textureX, textureY); // Box 439
-		drgcomboModel[287] = new ModelRendererTurbo(this, 1, 153, textureX, textureY); // Box 440
-		drgcomboModel[288] = new ModelRendererTurbo(this, 121, 153, textureX, textureY); // Box 441
-		drgcomboModel[289] = new ModelRendererTurbo(this, 241, 65, textureX, textureY); // Box 442
-		drgcomboModel[290] = new ModelRendererTurbo(this, 281, 129, textureX, textureY); // Box 443
-		drgcomboModel[291] = new ModelRendererTurbo(this, 473, 129, textureX, textureY); // Box 444
-		drgcomboModel[292] = new ModelRendererTurbo(this, 489, 129, textureX, textureY); // Box 445
-		drgcomboModel[293] = new ModelRendererTurbo(this, 65, 137, textureX, textureY); // Box 446
-		drgcomboModel[294] = new ModelRendererTurbo(this, 81, 137, textureX, textureY); // Box 447
-		drgcomboModel[295] = new ModelRendererTurbo(this, 113, 137, textureX, textureY); // Box 448
-		drgcomboModel[296] = new ModelRendererTurbo(this, 129, 137, textureX, textureY); // Box 452
-		drgcomboModel[297] = new ModelRendererTurbo(this, 161, 137, textureX, textureY); // Box 454
-		drgcomboModel[298] = new ModelRendererTurbo(this, 177, 137, textureX, textureY); // Box 455
-		drgcomboModel[299] = new ModelRendererTurbo(this, 193, 137, textureX, textureY); // Box 456
-		drgcomboModel[300] = new ModelRendererTurbo(this, 209, 137, textureX, textureY); // Box 457
-		drgcomboModel[301] = new ModelRendererTurbo(this, 257, 137, textureX, textureY); // Box 458
-		drgcomboModel[302] = new ModelRendererTurbo(this, 281, 137, textureX, textureY); // Box 459
-		drgcomboModel[303] = new ModelRendererTurbo(this, 473, 129, textureX, textureY); // Box 463
-		drgcomboModel[304] = new ModelRendererTurbo(this, 297, 137, textureX, textureY); // Box 464
-		drgcomboModel[305] = new ModelRendererTurbo(this, 241, 145, textureX, textureY); // Box 465
-		drgcomboModel[306] = new ModelRendererTurbo(this, 257, 145, textureX, textureY); // Box 467
-		drgcomboModel[307] = new ModelRendererTurbo(this, 113, 145, textureX, textureY); // Box 470
-		drgcomboModel[308] = new ModelRendererTurbo(this, 137, 145, textureX, textureY); // Box 473
-		drgcomboModel[309] = new ModelRendererTurbo(this, 505, 137, textureX, textureY); // Box 474
-		drgcomboModel[310] = new ModelRendererTurbo(this, 273, 145, textureX, textureY); // Box 482
-		drgcomboModel[311] = new ModelRendererTurbo(this, 313, 153, textureX, textureY); // Box 483
-		drgcomboModel[312] = new ModelRendererTurbo(this, 73, 137, textureX, textureY); // Box 484
-		drgcomboModel[313] = new ModelRendererTurbo(this, 129, 145, textureX, textureY); // Box 485
-		drgcomboModel[314] = new ModelRendererTurbo(this, 137, 137, textureX, textureY); // Box 486
-		drgcomboModel[315] = new ModelRendererTurbo(this, 153, 145, textureX, textureY); // Box 487
-		drgcomboModel[316] = new ModelRendererTurbo(this, 449, 145, textureX, textureY); // Box 488
-		drgcomboModel[317] = new ModelRendererTurbo(this, 361, 153, textureX, textureY); // Box 489
-		drgcomboModel[318] = new ModelRendererTurbo(this, 169, 137, textureX, textureY); // Box 490
-		drgcomboModel[319] = new ModelRendererTurbo(this, 177, 145, textureX, textureY); // Box 491
-		drgcomboModel[320] = new ModelRendererTurbo(this, 185, 137, textureX, textureY); // Box 492
-		drgcomboModel[321] = new ModelRendererTurbo(this, 193, 145, textureX, textureY); // Box 493
-		drgcomboModel[322] = new ModelRendererTurbo(this, 409, 153, textureX, textureY); // Box 494
-		drgcomboModel[323] = new ModelRendererTurbo(this, 1, 161, textureX, textureY); // Box 495
-		drgcomboModel[324] = new ModelRendererTurbo(this, 201, 137, textureX, textureY); // Box 496
-		drgcomboModel[325] = new ModelRendererTurbo(this, 265, 145, textureX, textureY); // Box 497
-		drgcomboModel[326] = new ModelRendererTurbo(this, 489, 137, textureX, textureY); // Box 498
-		drgcomboModel[327] = new ModelRendererTurbo(this, 433, 153, textureX, textureY); // Box 499
-		drgcomboModel[328] = new ModelRendererTurbo(this, 353, 153, textureX, textureY); // Box 392
-		drgcomboModel[329] = new ModelRendererTurbo(this, 225, 129, textureX, textureY); // Box 393
-		drgcomboModel[330] = new ModelRendererTurbo(this, 401, 153, textureX, textureY); // Box 394
-		drgcomboModel[331] = new ModelRendererTurbo(this, 289, 129, textureX, textureY); // Box 395
-		drgcomboModel[332] = new ModelRendererTurbo(this, 473, 153, textureX, textureY); // Box 396
-		drgcomboModel[333] = new ModelRendererTurbo(this, 41, 161, textureX, textureY); // Box 397
-		drgcomboModel[334] = new ModelRendererTurbo(this, 305, 129, textureX, textureY); // Box 398
-		drgcomboModel[335] = new ModelRendererTurbo(this, 73, 161, textureX, textureY); // Box 399
-		drgcomboModel[336] = new ModelRendererTurbo(this, 321, 129, textureX, textureY); // Box 400
-		drgcomboModel[337] = new ModelRendererTurbo(this, 89, 161, textureX, textureY); // Box 401
-		drgcomboModel[338] = new ModelRendererTurbo(this, 105, 161, textureX, textureY); // Box 402
-		drgcomboModel[339] = new ModelRendererTurbo(this, 137, 161, textureX, textureY); // Box 403
-		drgcomboModel[340] = new ModelRendererTurbo(this, 345, 129, textureX, textureY); // Box 404
-		drgcomboModel[341] = new ModelRendererTurbo(this, 153, 161, textureX, textureY); // Box 405
-		drgcomboModel[342] = new ModelRendererTurbo(this, 497, 129, textureX, textureY); // Box 406
-		drgcomboModel[343] = new ModelRendererTurbo(this, 169, 161, textureX, textureY); // Box 407
-		drgcomboModel[344] = new ModelRendererTurbo(this, 217, 137, textureX, textureY); // Box 408
-		drgcomboModel[345] = new ModelRendererTurbo(this, 201, 161, textureX, textureY); // Box 409
-		drgcomboModel[346] = new ModelRendererTurbo(this, 217, 161, textureX, textureY); // Box 410
-		drgcomboModel[347] = new ModelRendererTurbo(this, 217, 145, textureX, textureY); // Box 411
-		drgcomboModel[348] = new ModelRendererTurbo(this, 481, 161, textureX, textureY); // Box 412
-		drgcomboModel[349] = new ModelRendererTurbo(this, 257, 145, textureX, textureY); // Box 413
-		drgcomboModel[350] = new ModelRendererTurbo(this, 305, 161, textureX, textureY); // Box 414
-		drgcomboModel[351] = new ModelRendererTurbo(this, 281, 145, textureX, textureY); // Box 415
-		drgcomboModel[352] = new ModelRendererTurbo(this, 353, 161, textureX, textureY); // Box 416
-		drgcomboModel[353] = new ModelRendererTurbo(this, 41, 169, textureX, textureY); // Box 417
-		drgcomboModel[354] = new ModelRendererTurbo(this, 417, 73, textureX, textureY); // Box 417
-		drgcomboModel[355] = new ModelRendererTurbo(this, 281, 113, textureX, textureY); // Box 418
-		drgcomboModel[356] = new ModelRendererTurbo(this, 65, 169, textureX, textureY); // Box 404
-		drgcomboModel[357] = new ModelRendererTurbo(this, 81, 169, textureX, textureY); // Box 405
-		drgcomboModel[358] = new ModelRendererTurbo(this, 233, 161, textureX, textureY); // Box 406
-		drgcomboModel[359] = new ModelRendererTurbo(this, 441, 161, textureX, textureY); // Box 407
-		drgcomboModel[360] = new ModelRendererTurbo(this, 97, 169, textureX, textureY); // Box 416
-		drgcomboModel[361] = new ModelRendererTurbo(this, 121, 169, textureX, textureY); // Box 417
-		drgcomboModel[362] = new ModelRendererTurbo(this, 73, 129, textureX, textureY); // Box 380
-		drgcomboModel[363] = new ModelRendererTurbo(this, 145, 169, textureX, textureY); // Box 381
-		drgcomboModel[364] = new ModelRendererTurbo(this, 161, 169, textureX, textureY); // Box 382
-		drgcomboModel[365] = new ModelRendererTurbo(this, 105, 169, textureX, textureY); // Box 384
-		drgcomboModel[366] = new ModelRendererTurbo(this, 177, 169, textureX, textureY); // Box 387
-		drgcomboModel[367] = new ModelRendererTurbo(this, 305, 169, textureX, textureY); // Box 388
-		drgcomboModel[368] = new ModelRendererTurbo(this, 337, 169, textureX, textureY); // Box 389
-		drgcomboModel[369] = new ModelRendererTurbo(this, 209, 169, textureX, textureY); // Box 390
-		drgcomboModel[370] = new ModelRendererTurbo(this, 217, 169, textureX, textureY); // Box 391
-		drgcomboModel[371] = new ModelRendererTurbo(this, 369, 169, textureX, textureY); // Box 392
-		drgcomboModel[372] = new ModelRendererTurbo(this, 481, 169, textureX, textureY); // Box 394
-		drgcomboModel[373] = new ModelRendererTurbo(this, 369, 153, textureX, textureY); // Box 395
-		drgcomboModel[374] = new ModelRendererTurbo(this, 417, 153, textureX, textureY); // Box 396
-		drgcomboModel[375] = new ModelRendererTurbo(this, 249, 169, textureX, textureY); // Box 397
-		drgcomboModel[376] = new ModelRendererTurbo(this, 1, 177, textureX, textureY); // Box 398
-		drgcomboModel[377] = new ModelRendererTurbo(this, 25, 177, textureX, textureY); // Box 399
-		drgcomboModel[378] = new ModelRendererTurbo(this, 265, 169, textureX, textureY); // Box 400
-		drgcomboModel[379] = new ModelRendererTurbo(this, 1, 161, textureX, textureY); // Box 401
-		drgcomboModel[380] = new ModelRendererTurbo(this, 225, 169, textureX, textureY); // Box 402
-		drgcomboModel[381] = new ModelRendererTurbo(this, 401, 169, textureX, textureY); // Box 403
-		drgcomboModel[382] = new ModelRendererTurbo(this, 57, 177, textureX, textureY); // Box 404
-		drgcomboModel[383] = new ModelRendererTurbo(this, 281, 177, textureX, textureY); // Box 405
-		drgcomboModel[384] = new ModelRendererTurbo(this, 273, 153, textureX, textureY); // Box 406
-		drgcomboModel[385] = new ModelRendererTurbo(this, 401, 161, textureX, textureY); // Box 407
-		drgcomboModel[386] = new ModelRendererTurbo(this, 137, 169, textureX, textureY); // Box 408
-		drgcomboModel[387] = new ModelRendererTurbo(this, 17, 177, textureX, textureY); // Box 409
-		drgcomboModel[388] = new ModelRendererTurbo(this, 313, 177, textureX, textureY); // Box 410
-		drgcomboModel[389] = new ModelRendererTurbo(this, 329, 177, textureX, textureY); // Box 411
-		drgcomboModel[390] = new ModelRendererTurbo(this, 337, 177, textureX, textureY); // Box 412
-		drgcomboModel[391] = new ModelRendererTurbo(this, 441, 177, textureX, textureY); // Box 413
-		drgcomboModel[392] = new ModelRendererTurbo(this, 465, 177, textureX, textureY); // Box 414
-		drgcomboModel[393] = new ModelRendererTurbo(this, 233, 177, textureX, textureY); // Box 415
-		drgcomboModel[394] = new ModelRendererTurbo(this, 113, 153, textureX, textureY); // Box 416
-		drgcomboModel[395] = new ModelRendererTurbo(this, 457, 153, textureX, textureY); // Box 418
-		drgcomboModel[396] = new ModelRendererTurbo(this, 9, 161, textureX, textureY); // Box 419
-		drgcomboModel[397] = new ModelRendererTurbo(this, 137, 129, textureX, textureY); // Box 420
-		drgcomboModel[398] = new ModelRendererTurbo(this, 265, 129, textureX, textureY); // Box 421
-		drgcomboModel[399] = new ModelRendererTurbo(this, 297, 145, textureX, textureY); // Box 422
-		drgcomboModel[400] = new ModelRendererTurbo(this, 321, 161, textureX, textureY); // Box 423
-		drgcomboModel[401] = new ModelRendererTurbo(this, 369, 161, textureX, textureY); // Box 424
-		drgcomboModel[402] = new ModelRendererTurbo(this, 417, 161, textureX, textureY); // Box 425
-		drgcomboModel[403] = new ModelRendererTurbo(this, 433, 161, textureX, textureY); // Box 426
-		drgcomboModel[404] = new ModelRendererTurbo(this, 9, 169, textureX, textureY); // Box 427
-		drgcomboModel[405] = new ModelRendererTurbo(this, 489, 177, textureX, textureY); // Box 428
-		drgcomboModel[406] = new ModelRendererTurbo(this, 1, 185, textureX, textureY); // Box 429
-		drgcomboModel[407] = new ModelRendererTurbo(this, 137, 177, textureX, textureY); // Box 430
-		drgcomboModel[408] = new ModelRendererTurbo(this, 25, 185, textureX, textureY); // Box 431
-		drgcomboModel[409] = new ModelRendererTurbo(this, 361, 177, textureX, textureY); // Box 432
-		drgcomboModel[410] = new ModelRendererTurbo(this, 249, 185, textureX, textureY); // Box 433
-		drgcomboModel[411] = new ModelRendererTurbo(this, 97, 169, textureX, textureY); // Box 434
-		drgcomboModel[412] = new ModelRendererTurbo(this, 281, 185, textureX, textureY); // Box 435
-		drgcomboModel[413] = new ModelRendererTurbo(this, 121, 169, textureX, textureY); // Box 436
-		drgcomboModel[414] = new ModelRendererTurbo(this, 97, 185, textureX, textureY); // Box 437
-		drgcomboModel[415] = new ModelRendererTurbo(this, 369, 185, textureX, textureY); // Box 438
-		drgcomboModel[416] = new ModelRendererTurbo(this, 161, 185, textureX, textureY); // Box 427
-		drgcomboModel[417] = new ModelRendererTurbo(this, 169, 185, textureX, textureY); // Box 428
-		drgcomboModel[418] = new ModelRendererTurbo(this, 225, 185, textureX, textureY); // Box 429
-		drgcomboModel[419] = new ModelRendererTurbo(this, 313, 185, textureX, textureY); // Box 430
-		drgcomboModel[420] = new ModelRendererTurbo(this, 321, 185, textureX, textureY); // Box 431
-		drgcomboModel[421] = new ModelRendererTurbo(this, 329, 185, textureX, textureY); // Box 432
-		drgcomboModel[422] = new ModelRendererTurbo(this, 401, 185, textureX, textureY); // Box 433
-		drgcomboModel[423] = new ModelRendererTurbo(this, 409, 185, textureX, textureY); // Box 434
-		drgcomboModel[424] = new ModelRendererTurbo(this, 417, 185, textureX, textureY); // Box 435
-		drgcomboModel[425] = new ModelRendererTurbo(this, 425, 185, textureX, textureY); // Box 436
-		drgcomboModel[426] = new ModelRendererTurbo(this, 81, 169, textureX, textureY); // Box 437
-		drgcomboModel[427] = new ModelRendererTurbo(this, 457, 177, textureX, textureY); // Box 438
-		drgcomboModel[428] = new ModelRendererTurbo(this, 385, 57, textureX, textureY); // Box 440
-		drgcomboModel[429] = new ModelRendererTurbo(this, 241, 177, textureX, textureY); // Box 440
-		drgcomboModel[430] = new ModelRendererTurbo(this, 305, 177, textureX, textureY); // Box 441
-		drgcomboModel[431] = new ModelRendererTurbo(this, 457, 185, textureX, textureY); // Box 442
-		drgcomboModel[432] = new ModelRendererTurbo(this, 473, 185, textureX, textureY); // Box 443
-		drgcomboModel[433] = new ModelRendererTurbo(this, 489, 185, textureX, textureY); // Box 444
-		drgcomboModel[434] = new ModelRendererTurbo(this, 81, 193, textureX, textureY); // Box 445
-		drgcomboModel[435] = new ModelRendererTurbo(this, 353, 177, textureX, textureY); // Box 446
-		drgcomboModel[436] = new ModelRendererTurbo(this, 481, 177, textureX, textureY); // Box 447
-		drgcomboModel[437] = new ModelRendererTurbo(this, 129, 185, textureX, textureY); // Box 452
-		drgcomboModel[438] = new ModelRendererTurbo(this, 273, 185, textureX, textureY); // Box 453
-		drgcomboModel[439] = new ModelRendererTurbo(this, 105, 193, textureX, textureY); // Box 455
-		drgcomboModel[440] = new ModelRendererTurbo(this, 121, 193, textureX, textureY); // Box 457
-		drgcomboModel[441] = new ModelRendererTurbo(this, 177, 193, textureX, textureY); // Box 458
-		drgcomboModel[442] = new ModelRendererTurbo(this, 129, 193, textureX, textureY); // Box 427
-		drgcomboModel[443] = new ModelRendererTurbo(this, 161, 169, textureX, textureY); // Box 432
-		drgcomboModel[444] = new ModelRendererTurbo(this, 185, 193, textureX, textureY); // Box 453
-		drgcomboModel[445] = new ModelRendererTurbo(this, 1, 177, textureX, textureY); // Box 454
-		drgcomboModel[446] = new ModelRendererTurbo(this, 201, 193, textureX, textureY); // Box 455
-		drgcomboModel[447] = new ModelRendererTurbo(this, 489, 177, textureX, textureY); // Box 456
-		drgcomboModel[448] = new ModelRendererTurbo(this, 233, 193, textureX, textureY); // Box 457
-		drgcomboModel[449] = new ModelRendererTurbo(this, 505, 177, textureX, textureY); // Box 458
-		drgcomboModel[450] = new ModelRendererTurbo(this, 249, 193, textureX, textureY); // Box 459
-		drgcomboModel[451] = new ModelRendererTurbo(this, 17, 185, textureX, textureY); // Box 460
-		drgcomboModel[452] = new ModelRendererTurbo(this, 217, 193, textureX, textureY); // Box 463
-		drgcomboModel[453] = new ModelRendererTurbo(this, 265, 193, textureX, textureY); // Box 464
-		drgcomboModel[454] = new ModelRendererTurbo(this, 281, 193, textureX, textureY); // Box 465
-		drgcomboModel[455] = new ModelRendererTurbo(this, 25, 65, textureX, textureY); // Box 466
-		drgcomboModel[456] = new ModelRendererTurbo(this, 297, 193, textureX, textureY); // Box 467
-		drgcomboModel[457] = new ModelRendererTurbo(this, 329, 193, textureX, textureY); // Box 468
-		drgcomboModel[458] = new ModelRendererTurbo(this, 377, 190, textureX, textureY); // Box 469
-		drgcomboModel[459] = new ModelRendererTurbo(this, 370, 189, textureX, textureY); // Box 471
-		drgcomboModel[460] = new ModelRendererTurbo(this, 370, 189, textureX, textureY); // Box 472
-		drgcomboModel[461] = new ModelRendererTurbo(this, 370, 189, textureX, textureY); // Box 473
-		drgcomboModel[462] = new ModelRendererTurbo(this, 370, 189, textureX, textureY); // Box 474
-		drgcomboModel[463] = new ModelRendererTurbo(this, 377, 190, textureX, textureY); // Box 475
-		drgcomboModel[464] = new ModelRendererTurbo(this, 370, 189, textureX, textureY); // Box 476
-		drgcomboModel[465] = new ModelRendererTurbo(this, 370, 189, textureX, textureY); // Box 477
-		drgcomboModel[466] = new ModelRendererTurbo(this, 377, 190, textureX, textureY); // Box 478
-		drgcomboModel[467] = new ModelRendererTurbo(this, 301, 81, textureX, textureY); // Box 478
-		drgcomboModel[468] = new ModelRendererTurbo(this, 241, 81, textureX, textureY); // Box 479
-		drgcomboModel[469] = new ModelRendererTurbo(this, 257, 81, textureX, textureY); // Box 480
-		drgcomboModel[470] = new ModelRendererTurbo(this, 209, 89, textureX, textureY); // Box 481
-		drgcomboModel[471] = new ModelRendererTurbo(this, 169, 89, textureX, textureY); // Box 482
-		drgcomboModel[472] = new ModelRendererTurbo(this, 137, 89, textureX, textureY); // Box 483
-		drgcomboModel[473] = new ModelRendererTurbo(this, 471, 81, textureX, textureY); // Box 484
-		drgcomboModel[474] = new ModelRendererTurbo(this, 471, 81, textureX, textureY); // Box 485
-		drgcomboModel[475] = new ModelRendererTurbo(this, 377, 81, textureX, textureY); // Box 486
-		drgcomboModel[476] = new ModelRendererTurbo(this, 441, 81, textureX, textureY); // Box 487
-		drgcomboModel[477] = new ModelRendererTurbo(this, 345, 81, textureX, textureY); // Box 488
+		drgcomboModel[263] = new ModelRendererTurbo(this, 121, 129, textureX, textureY); // Box 424
+		drgcomboModel[264] = new ModelRendererTurbo(this, 129, 129, textureX, textureY); // Box 425
+		drgcomboModel[265] = new ModelRendererTurbo(this, 145, 129, textureX, textureY); // Box 397
+		drgcomboModel[266] = new ModelRendererTurbo(this, 153, 129, textureX, textureY); // Box 398
+		drgcomboModel[267] = new ModelRendererTurbo(this, 161, 129, textureX, textureY); // Box 362
+		drgcomboModel[268] = new ModelRendererTurbo(this, 193, 129, textureX, textureY); // Box 363
+		drgcomboModel[269] = new ModelRendererTurbo(this, 97, 129, textureX, textureY); // Box 364
+		drgcomboModel[270] = new ModelRendererTurbo(this, 209, 129, textureX, textureY); // Box 365
+		drgcomboModel[271] = new ModelRendererTurbo(this, 113, 129, textureX, textureY); // Box 366
+		drgcomboModel[272] = new ModelRendererTurbo(this, 257, 129, textureX, textureY); // Box 357
+		drgcomboModel[273] = new ModelRendererTurbo(this, 289, 129, textureX, textureY); // Box 359
+		drgcomboModel[274] = new ModelRendererTurbo(this, 313, 129, textureX, textureY); // Box 360
+		drgcomboModel[275] = new ModelRendererTurbo(this, 321, 129, textureX, textureY); // Box 361
+		drgcomboModel[276] = new ModelRendererTurbo(this, 337, 129, textureX, textureY); // Box 362
+		drgcomboModel[277] = new ModelRendererTurbo(this, 345, 129, textureX, textureY); // Box 363
+		drgcomboModel[278] = new ModelRendererTurbo(this, 361, 129, textureX, textureY); // Box 436
+		drgcomboModel[279] = new ModelRendererTurbo(this, 361, 137, textureX, textureY); // Box 437
+		drgcomboModel[280] = new ModelRendererTurbo(this, 1, 145, textureX, textureY); // Box 438
+		drgcomboModel[281] = new ModelRendererTurbo(this, 345, 145, textureX, textureY); // Box 439
+		drgcomboModel[282] = new ModelRendererTurbo(this, 1, 153, textureX, textureY); // Box 440
+		drgcomboModel[283] = new ModelRendererTurbo(this, 121, 153, textureX, textureY); // Box 441
+		drgcomboModel[284] = new ModelRendererTurbo(this, 241, 65, textureX, textureY); // Box 442
+		drgcomboModel[285] = new ModelRendererTurbo(this, 281, 129, textureX, textureY); // Box 443
+		drgcomboModel[286] = new ModelRendererTurbo(this, 473, 129, textureX, textureY); // Box 444
+		drgcomboModel[287] = new ModelRendererTurbo(this, 489, 129, textureX, textureY); // Box 445
+		drgcomboModel[288] = new ModelRendererTurbo(this, 65, 137, textureX, textureY); // Box 446
+		drgcomboModel[289] = new ModelRendererTurbo(this, 81, 137, textureX, textureY); // Box 447
+		drgcomboModel[290] = new ModelRendererTurbo(this, 113, 137, textureX, textureY); // Box 448
+		drgcomboModel[291] = new ModelRendererTurbo(this, 129, 137, textureX, textureY); // Box 452
+		drgcomboModel[292] = new ModelRendererTurbo(this, 161, 137, textureX, textureY); // Box 454
+		drgcomboModel[293] = new ModelRendererTurbo(this, 177, 137, textureX, textureY); // Box 455
+		drgcomboModel[294] = new ModelRendererTurbo(this, 193, 137, textureX, textureY); // Box 456
+		drgcomboModel[295] = new ModelRendererTurbo(this, 209, 137, textureX, textureY); // Box 457
+		drgcomboModel[296] = new ModelRendererTurbo(this, 257, 137, textureX, textureY); // Box 458
+		drgcomboModel[297] = new ModelRendererTurbo(this, 281, 137, textureX, textureY); // Box 459
+		drgcomboModel[298] = new ModelRendererTurbo(this, 473, 129, textureX, textureY); // Box 463
+		drgcomboModel[299] = new ModelRendererTurbo(this, 297, 137, textureX, textureY); // Box 464
+		drgcomboModel[300] = new ModelRendererTurbo(this, 241, 145, textureX, textureY); // Box 465
+		drgcomboModel[301] = new ModelRendererTurbo(this, 257, 145, textureX, textureY); // Box 467
+		drgcomboModel[302] = new ModelRendererTurbo(this, 113, 145, textureX, textureY); // Box 470
+		drgcomboModel[303] = new ModelRendererTurbo(this, 137, 145, textureX, textureY); // Box 473
+		drgcomboModel[304] = new ModelRendererTurbo(this, 505, 137, textureX, textureY); // Box 474
+		drgcomboModel[305] = new ModelRendererTurbo(this, 73, 137, textureX, textureY); // Box 484
+		drgcomboModel[306] = new ModelRendererTurbo(this, 129, 145, textureX, textureY); // Box 485
+		drgcomboModel[307] = new ModelRendererTurbo(this, 137, 137, textureX, textureY); // Box 486
+		drgcomboModel[308] = new ModelRendererTurbo(this, 153, 145, textureX, textureY); // Box 487
+		drgcomboModel[309] = new ModelRendererTurbo(this, 169, 137, textureX, textureY); // Box 490
+		drgcomboModel[310] = new ModelRendererTurbo(this, 177, 145, textureX, textureY); // Box 491
+		drgcomboModel[311] = new ModelRendererTurbo(this, 185, 137, textureX, textureY); // Box 492
+		drgcomboModel[312] = new ModelRendererTurbo(this, 193, 145, textureX, textureY); // Box 493
+		drgcomboModel[313] = new ModelRendererTurbo(this, 201, 137, textureX, textureY); // Box 496
+		drgcomboModel[314] = new ModelRendererTurbo(this, 265, 145, textureX, textureY); // Box 497
+		drgcomboModel[315] = new ModelRendererTurbo(this, 489, 137, textureX, textureY); // Box 498
+		drgcomboModel[316] = new ModelRendererTurbo(this, 433, 153, textureX, textureY); // Box 499
+		drgcomboModel[317] = new ModelRendererTurbo(this, 353, 153, textureX, textureY); // Box 392
+		drgcomboModel[318] = new ModelRendererTurbo(this, 225, 129, textureX, textureY); // Box 393
+		drgcomboModel[319] = new ModelRendererTurbo(this, 401, 153, textureX, textureY); // Box 394
+		drgcomboModel[320] = new ModelRendererTurbo(this, 289, 129, textureX, textureY); // Box 395
+		drgcomboModel[321] = new ModelRendererTurbo(this, 473, 153, textureX, textureY); // Box 396
+		drgcomboModel[322] = new ModelRendererTurbo(this, 41, 161, textureX, textureY); // Box 397
+		drgcomboModel[323] = new ModelRendererTurbo(this, 305, 129, textureX, textureY); // Box 398
+		drgcomboModel[324] = new ModelRendererTurbo(this, 73, 161, textureX, textureY); // Box 399
+		drgcomboModel[325] = new ModelRendererTurbo(this, 321, 129, textureX, textureY); // Box 400
+		drgcomboModel[326] = new ModelRendererTurbo(this, 89, 161, textureX, textureY); // Box 401
+		drgcomboModel[327] = new ModelRendererTurbo(this, 105, 161, textureX, textureY); // Box 402
+		drgcomboModel[328] = new ModelRendererTurbo(this, 137, 161, textureX, textureY); // Box 403
+		drgcomboModel[329] = new ModelRendererTurbo(this, 345, 129, textureX, textureY); // Box 404
+		drgcomboModel[330] = new ModelRendererTurbo(this, 153, 161, textureX, textureY); // Box 405
+		drgcomboModel[331] = new ModelRendererTurbo(this, 497, 129, textureX, textureY); // Box 406
+		drgcomboModel[332] = new ModelRendererTurbo(this, 169, 161, textureX, textureY); // Box 407
+		drgcomboModel[333] = new ModelRendererTurbo(this, 217, 137, textureX, textureY); // Box 408
+		drgcomboModel[334] = new ModelRendererTurbo(this, 201, 161, textureX, textureY); // Box 409
+		drgcomboModel[335] = new ModelRendererTurbo(this, 217, 161, textureX, textureY); // Box 410
+		drgcomboModel[336] = new ModelRendererTurbo(this, 217, 145, textureX, textureY); // Box 411
+		drgcomboModel[337] = new ModelRendererTurbo(this, 481, 161, textureX, textureY); // Box 412
+		drgcomboModel[338] = new ModelRendererTurbo(this, 257, 145, textureX, textureY); // Box 413
+		drgcomboModel[339] = new ModelRendererTurbo(this, 305, 161, textureX, textureY); // Box 414
+		drgcomboModel[340] = new ModelRendererTurbo(this, 281, 145, textureX, textureY); // Box 415
+		drgcomboModel[341] = new ModelRendererTurbo(this, 353, 161, textureX, textureY); // Box 416
+		drgcomboModel[342] = new ModelRendererTurbo(this, 41, 169, textureX, textureY); // Box 417
+		drgcomboModel[343] = new ModelRendererTurbo(this, 65, 169, textureX, textureY); // Box 404
+		drgcomboModel[344] = new ModelRendererTurbo(this, 81, 169, textureX, textureY); // Box 405
+		drgcomboModel[345] = new ModelRendererTurbo(this, 233, 161, textureX, textureY); // Box 406
+		drgcomboModel[346] = new ModelRendererTurbo(this, 441, 161, textureX, textureY); // Box 407
+		drgcomboModel[347] = new ModelRendererTurbo(this, 97, 169, textureX, textureY); // Box 416
+		drgcomboModel[348] = new ModelRendererTurbo(this, 121, 169, textureX, textureY); // Box 417
+		drgcomboModel[349] = new ModelRendererTurbo(this, 73, 129, textureX, textureY); // Box 380
+		drgcomboModel[350] = new ModelRendererTurbo(this, 145, 169, textureX, textureY); // Box 381
+		drgcomboModel[351] = new ModelRendererTurbo(this, 161, 169, textureX, textureY); // Box 382
+		drgcomboModel[352] = new ModelRendererTurbo(this, 105, 169, textureX, textureY); // Box 384
+		drgcomboModel[353] = new ModelRendererTurbo(this, 177, 169, textureX, textureY); // Box 387
+		drgcomboModel[354] = new ModelRendererTurbo(this, 305, 169, textureX, textureY); // Box 388
+		drgcomboModel[355] = new ModelRendererTurbo(this, 337, 169, textureX, textureY); // Box 389
+		drgcomboModel[356] = new ModelRendererTurbo(this, 209, 169, textureX, textureY); // Box 390
+		drgcomboModel[357] = new ModelRendererTurbo(this, 217, 169, textureX, textureY); // Box 391
+		drgcomboModel[358] = new ModelRendererTurbo(this, 369, 169, textureX, textureY); // Box 392
+		drgcomboModel[359] = new ModelRendererTurbo(this, 481, 169, textureX, textureY); // Box 394
+		drgcomboModel[360] = new ModelRendererTurbo(this, 369, 153, textureX, textureY); // Box 395
+		drgcomboModel[361] = new ModelRendererTurbo(this, 417, 153, textureX, textureY); // Box 396
+		drgcomboModel[362] = new ModelRendererTurbo(this, 249, 169, textureX, textureY); // Box 397
+		drgcomboModel[363] = new ModelRendererTurbo(this, 1, 177, textureX, textureY); // Box 398
+		drgcomboModel[364] = new ModelRendererTurbo(this, 25, 177, textureX, textureY); // Box 399
+		drgcomboModel[365] = new ModelRendererTurbo(this, 265, 169, textureX, textureY); // Box 400
+		drgcomboModel[366] = new ModelRendererTurbo(this, 1, 161, textureX, textureY); // Box 401
+		drgcomboModel[367] = new ModelRendererTurbo(this, 225, 169, textureX, textureY); // Box 402
+		drgcomboModel[368] = new ModelRendererTurbo(this, 401, 169, textureX, textureY); // Box 403
+		drgcomboModel[369] = new ModelRendererTurbo(this, 57, 177, textureX, textureY); // Box 404
+		drgcomboModel[370] = new ModelRendererTurbo(this, 281, 177, textureX, textureY); // Box 405
+		drgcomboModel[371] = new ModelRendererTurbo(this, 273, 153, textureX, textureY); // Box 406
+		drgcomboModel[372] = new ModelRendererTurbo(this, 401, 161, textureX, textureY); // Box 407
+		drgcomboModel[373] = new ModelRendererTurbo(this, 137, 169, textureX, textureY); // Box 408
+		drgcomboModel[374] = new ModelRendererTurbo(this, 17, 177, textureX, textureY); // Box 409
+		drgcomboModel[375] = new ModelRendererTurbo(this, 313, 177, textureX, textureY); // Box 410
+		drgcomboModel[376] = new ModelRendererTurbo(this, 329, 177, textureX, textureY); // Box 411
+		drgcomboModel[377] = new ModelRendererTurbo(this, 337, 177, textureX, textureY); // Box 412
+		drgcomboModel[378] = new ModelRendererTurbo(this, 441, 177, textureX, textureY); // Box 413
+		drgcomboModel[379] = new ModelRendererTurbo(this, 465, 177, textureX, textureY); // Box 414
+		drgcomboModel[380] = new ModelRendererTurbo(this, 233, 177, textureX, textureY); // Box 415
+		drgcomboModel[381] = new ModelRendererTurbo(this, 113, 153, textureX, textureY); // Box 416
+		drgcomboModel[382] = new ModelRendererTurbo(this, 457, 153, textureX, textureY); // Box 418
+		drgcomboModel[383] = new ModelRendererTurbo(this, 9, 161, textureX, textureY); // Box 419
+		drgcomboModel[384] = new ModelRendererTurbo(this, 137, 129, textureX, textureY); // Box 420
+		drgcomboModel[385] = new ModelRendererTurbo(this, 265, 129, textureX, textureY); // Box 421
+		drgcomboModel[386] = new ModelRendererTurbo(this, 297, 145, textureX, textureY); // Box 422
+		drgcomboModel[387] = new ModelRendererTurbo(this, 321, 161, textureX, textureY); // Box 423
+		drgcomboModel[388] = new ModelRendererTurbo(this, 369, 161, textureX, textureY); // Box 424
+		drgcomboModel[389] = new ModelRendererTurbo(this, 417, 161, textureX, textureY); // Box 425
+		drgcomboModel[390] = new ModelRendererTurbo(this, 433, 161, textureX, textureY); // Box 426
+		drgcomboModel[391] = new ModelRendererTurbo(this, 9, 169, textureX, textureY); // Box 427
+		drgcomboModel[392] = new ModelRendererTurbo(this, 489, 177, textureX, textureY); // Box 428
+		drgcomboModel[393] = new ModelRendererTurbo(this, 1, 185, textureX, textureY); // Box 429
+		drgcomboModel[394] = new ModelRendererTurbo(this, 137, 177, textureX, textureY); // Box 430
+		drgcomboModel[395] = new ModelRendererTurbo(this, 25, 185, textureX, textureY); // Box 431
+		drgcomboModel[396] = new ModelRendererTurbo(this, 361, 177, textureX, textureY); // Box 432
+		drgcomboModel[397] = new ModelRendererTurbo(this, 249, 185, textureX, textureY); // Box 433
+		drgcomboModel[398] = new ModelRendererTurbo(this, 97, 169, textureX, textureY); // Box 434
+		drgcomboModel[399] = new ModelRendererTurbo(this, 281, 185, textureX, textureY); // Box 435
+		drgcomboModel[400] = new ModelRendererTurbo(this, 121, 169, textureX, textureY); // Box 436
+		drgcomboModel[401] = new ModelRendererTurbo(this, 97, 185, textureX, textureY); // Box 437
+		drgcomboModel[402] = new ModelRendererTurbo(this, 369, 185, textureX, textureY); // Box 438
+		drgcomboModel[403] = new ModelRendererTurbo(this, 161, 185, textureX, textureY); // Box 427
+		drgcomboModel[404] = new ModelRendererTurbo(this, 169, 185, textureX, textureY); // Box 428
+		drgcomboModel[405] = new ModelRendererTurbo(this, 225, 185, textureX, textureY); // Box 429
+		drgcomboModel[406] = new ModelRendererTurbo(this, 313, 185, textureX, textureY); // Box 430
+		drgcomboModel[407] = new ModelRendererTurbo(this, 321, 185, textureX, textureY); // Box 431
+		drgcomboModel[408] = new ModelRendererTurbo(this, 329, 185, textureX, textureY); // Box 432
+		drgcomboModel[409] = new ModelRendererTurbo(this, 401, 185, textureX, textureY); // Box 433
+		drgcomboModel[410] = new ModelRendererTurbo(this, 409, 185, textureX, textureY); // Box 434
+		drgcomboModel[411] = new ModelRendererTurbo(this, 417, 185, textureX, textureY); // Box 435
+		drgcomboModel[412] = new ModelRendererTurbo(this, 425, 185, textureX, textureY); // Box 436
+		drgcomboModel[413] = new ModelRendererTurbo(this, 81, 169, textureX, textureY); // Box 437
+		drgcomboModel[414] = new ModelRendererTurbo(this, 457, 177, textureX, textureY); // Box 438
+		drgcomboModel[415] = new ModelRendererTurbo(this, 385, 57, textureX, textureY); // Box 440
+		drgcomboModel[416] = new ModelRendererTurbo(this, 241, 177, textureX, textureY); // Box 440
+		drgcomboModel[417] = new ModelRendererTurbo(this, 305, 177, textureX, textureY); // Box 441
+		drgcomboModel[418] = new ModelRendererTurbo(this, 457, 185, textureX, textureY); // Box 442
+		drgcomboModel[419] = new ModelRendererTurbo(this, 473, 185, textureX, textureY); // Box 443
+		drgcomboModel[420] = new ModelRendererTurbo(this, 489, 185, textureX, textureY); // Box 444
+		drgcomboModel[421] = new ModelRendererTurbo(this, 81, 193, textureX, textureY); // Box 445
+		drgcomboModel[422] = new ModelRendererTurbo(this, 353, 177, textureX, textureY); // Box 446
+		drgcomboModel[423] = new ModelRendererTurbo(this, 481, 177, textureX, textureY); // Box 447
+		drgcomboModel[424] = new ModelRendererTurbo(this, 129, 185, textureX, textureY); // Box 452
+		drgcomboModel[425] = new ModelRendererTurbo(this, 273, 185, textureX, textureY); // Box 453
+		drgcomboModel[426] = new ModelRendererTurbo(this, 105, 193, textureX, textureY); // Box 455
+		drgcomboModel[427] = new ModelRendererTurbo(this, 121, 193, textureX, textureY); // Box 457
+		drgcomboModel[428] = new ModelRendererTurbo(this, 177, 193, textureX, textureY); // Box 458
+		drgcomboModel[429] = new ModelRendererTurbo(this, 129, 193, textureX, textureY); // Box 427
+		drgcomboModel[430] = new ModelRendererTurbo(this, 161, 169, textureX, textureY); // Box 432
+		drgcomboModel[431] = new ModelRendererTurbo(this, 185, 193, textureX, textureY); // Box 453
+		drgcomboModel[432] = new ModelRendererTurbo(this, 1, 177, textureX, textureY); // Box 454
+		drgcomboModel[433] = new ModelRendererTurbo(this, 201, 193, textureX, textureY); // Box 455
+		drgcomboModel[434] = new ModelRendererTurbo(this, 489, 177, textureX, textureY); // Box 456
+		drgcomboModel[435] = new ModelRendererTurbo(this, 233, 193, textureX, textureY); // Box 457
+		drgcomboModel[436] = new ModelRendererTurbo(this, 505, 177, textureX, textureY); // Box 458
+		drgcomboModel[437] = new ModelRendererTurbo(this, 249, 193, textureX, textureY); // Box 459
+		drgcomboModel[438] = new ModelRendererTurbo(this, 17, 185, textureX, textureY); // Box 460
+		drgcomboModel[439] = new ModelRendererTurbo(this, 217, 193, textureX, textureY); // Box 463
+		drgcomboModel[440] = new ModelRendererTurbo(this, 265, 193, textureX, textureY); // Box 464
+		drgcomboModel[441] = new ModelRendererTurbo(this, 281, 193, textureX, textureY); // Box 465
+		drgcomboModel[442] = new ModelRendererTurbo(this, 25, 65, textureX, textureY); // Box 466
+		drgcomboModel[443] = new ModelRendererTurbo(this, 297, 193, textureX, textureY); // Box 467
+		drgcomboModel[444] = new ModelRendererTurbo(this, 329, 193, textureX, textureY); // Box 468
+		drgcomboModel[445] = new ModelRendererTurbo(this, 377, 190, textureX, textureY); // Box 469
+		drgcomboModel[446] = new ModelRendererTurbo(this, 370, 189, textureX, textureY); // Box 471
+		drgcomboModel[447] = new ModelRendererTurbo(this, 370, 189, textureX, textureY); // Box 472
+		drgcomboModel[448] = new ModelRendererTurbo(this, 370, 189, textureX, textureY); // Box 473
+		drgcomboModel[449] = new ModelRendererTurbo(this, 370, 189, textureX, textureY); // Box 474
+		drgcomboModel[450] = new ModelRendererTurbo(this, 377, 190, textureX, textureY); // Box 475
+		drgcomboModel[451] = new ModelRendererTurbo(this, 301, 81, textureX, textureY); // Box 478
+		drgcomboModel[452] = new ModelRendererTurbo(this, 241, 81, textureX, textureY); // Box 479
+		drgcomboModel[453] = new ModelRendererTurbo(this, 257, 81, textureX, textureY); // Box 480
+		drgcomboModel[454] = new ModelRendererTurbo(this, 209, 89, textureX, textureY); // Box 481
+		drgcomboModel[455] = new ModelRendererTurbo(this, 169, 89, textureX, textureY); // Box 482
+		drgcomboModel[456] = new ModelRendererTurbo(this, 137, 89, textureX, textureY); // Box 483
+		drgcomboModel[457] = new ModelRendererTurbo(this, 471, 81, textureX, textureY); // Box 484
+		drgcomboModel[458] = new ModelRendererTurbo(this, 471, 81, textureX, textureY); // Box 485
+		drgcomboModel[459] = new ModelRendererTurbo(this, 377, 81, textureX, textureY); // Box 486
+		drgcomboModel[460] = new ModelRendererTurbo(this, 441, 81, textureX, textureY); // Box 487
+		drgcomboModel[461] = new ModelRendererTurbo(this, 345, 81, textureX, textureY); // Box 488
+		drgcomboModel[462] = new ModelRendererTurbo(this, 492, 242, textureX, textureY); // Box 515
+		drgcomboModel[463] = new ModelRendererTurbo(this, 464, 247, textureX, textureY); // Box 517
+		drgcomboModel[464] = new ModelRendererTurbo(this, 492, 246, textureX, textureY); // Box 520
+		drgcomboModel[465] = new ModelRendererTurbo(this, 475, 235, textureX, textureY); // Box 525
+		drgcomboModel[466] = new ModelRendererTurbo(this, 484, 240, textureX, textureY); // Box 527
+		drgcomboModel[467] = new ModelRendererTurbo(this, 484, 237, textureX, textureY); // Box 528
+		drgcomboModel[468] = new ModelRendererTurbo(this, 484, 246, textureX, textureY); // Box 529
+		drgcomboModel[469] = new ModelRendererTurbo(this, 484, 243, textureX, textureY); // Box 530
+		drgcomboModel[470] = new ModelRendererTurbo(this, 475, 235, textureX, textureY); // Box 477
+		drgcomboModel[471] = new ModelRendererTurbo(this, 484, 240, textureX, textureY); // Box 478
+		drgcomboModel[472] = new ModelRendererTurbo(this, 484, 243, textureX, textureY); // Box 479
+		drgcomboModel[473] = new ModelRendererTurbo(this, 484, 246, textureX, textureY); // Box 480
+		drgcomboModel[474] = new ModelRendererTurbo(this, 492, 246, textureX, textureY); // Box 481
+		drgcomboModel[475] = new ModelRendererTurbo(this, 492, 242, textureX, textureY); // Box 482
+		drgcomboModel[476] = new ModelRendererTurbo(this, 464, 247, textureX, textureY); // Box 483
+		drgcomboModel[477] = new ModelRendererTurbo(this, 484, 237, textureX, textureY); // Box 484
+		drgcomboModel[478] = new ModelRendererTurbo(this, 417, 185, textureX, textureY); // Box 478
+		drgcomboModel[479] = new ModelRendererTurbo(this, 417, 185, textureX, textureY); // Box 479
+		drgcomboModel[480] = new ModelRendererTurbo(this, 417, 185, textureX, textureY); // Box 480
+		drgcomboModel[481] = new ModelRendererTurbo(this, 417, 185, textureX, textureY); // Box 481
+		drgcomboModel[482] = new ModelRendererTurbo(this, 417, 185, textureX, textureY); // Box 482
+		drgcomboModel[483] = new ModelRendererTurbo(this, 417, 185, textureX, textureY); // Box 483
+		drgcomboModel[484] = new ModelRendererTurbo(this, 417, 185, textureX, textureY); // Box 484
+		drgcomboModel[485] = new ModelRendererTurbo(this, 417, 185, textureX, textureY); // Box 485
+		drgcomboModel[486] = new ModelRendererTurbo(this, 417, 185, textureX, textureY); // Box 486
+		drgcomboModel[487] = new ModelRendererTurbo(this, 417, 185, textureX, textureY); // Box 487
+		drgcomboModel[488] = new ModelRendererTurbo(this, 417, 185, textureX, textureY); // Box 488
+		drgcomboModel[489] = new ModelRendererTurbo(this, 417, 185, textureX, textureY); // Box 489
+		drgcomboModel[490] = new ModelRendererTurbo(this, 417, 185, textureX, textureY); // Box 490
+		drgcomboModel[491] = new ModelRendererTurbo(this, 417, 185, textureX, textureY); // Box 491
+		drgcomboModel[492] = new ModelRendererTurbo(this, 417, 185, textureX, textureY); // Box 492
+		drgcomboModel[493] = new ModelRendererTurbo(this, 417, 185, textureX, textureY); // Box 493
+		drgcomboModel[494] = new ModelRendererTurbo(this, 417, 185, textureX, textureY); // Box 494
+		drgcomboModel[495] = new ModelRendererTurbo(this, 417, 185, textureX, textureY); // Box 495
+		drgcomboModel[496] = new ModelRendererTurbo(this, 417, 185, textureX, textureY); // Box 496
+		drgcomboModel[497] = new ModelRendererTurbo(this, 417, 185, textureX, textureY); // Box 497
+		drgcomboModel[498] = new ModelRendererTurbo(this, -8, 226, textureX, textureY); // Box 476
+		drgcomboModel[499] = new ModelRendererTurbo(this, 1, 226, textureX, textureY); // Box 477
+		drgcomboModel[500] = new ModelRendererTurbo(this, 0, 241, textureX, textureY); // Box 489
+		drgcomboModel[501] = new ModelRendererTurbo(this, 0, 241, textureX, textureY); // Box 490
+		drgcomboModel[502] = new ModelRendererTurbo(this, 0, 241, textureX, textureY); // Box 491
+		drgcomboModel[503] = new ModelRendererTurbo(this, 0, 241, textureX, textureY); // Box 493
+		drgcomboModel[504] = new ModelRendererTurbo(this, 0, 241, textureX, textureY); // Box 494
+		drgcomboModel[505] = new ModelRendererTurbo(this, 0, 241, textureX, textureY); // Box 495
+		drgcomboModel[506] = new ModelRendererTurbo(this, 0, 241, textureX, textureY); // Box 496
+		drgcomboModel[507] = new ModelRendererTurbo(this, 0, 241, textureX, textureY); // Box 497
+		drgcomboModel[508] = new ModelRendererTurbo(this, 0, 241, textureX, textureY); // Box 498
+		drgcomboModel[509] = new ModelRendererTurbo(this, 0, 241, textureX, textureY); // Box 499
+		drgcomboModel[510] = new ModelRendererTurbo(this, 0, 241, textureX, textureY); // Box 500
+		drgcomboModel[511] = new ModelRendererTurbo(this, 0, 241, textureX, textureY); // Box 501
+		drgcomboModel[512] = new ModelRendererTurbo(this, 0, 241, textureX, textureY); // Box 502
+		drgcomboModel[513] = new ModelRendererTurbo(this, 0, 241, textureX, textureY); // Box 507
+		drgcomboModel[514] = new ModelRendererTurbo(this, 0, 241, textureX, textureY); // Box 508
+		drgcomboModel[515] = new ModelRendererTurbo(this, 0, 241, textureX, textureY); // Box 514
+		drgcomboModel[516] = new ModelRendererTurbo(this, -8, 226, textureX, textureY); // Box 515
+		drgcomboModel[517] = new ModelRendererTurbo(this, 0, 241, textureX, textureY); // Box 516
+		drgcomboModel[518] = new ModelRendererTurbo(this, 0, 241, textureX, textureY); // Box 517
+		drgcomboModel[519] = new ModelRendererTurbo(this, 0, 241, textureX, textureY); // Box 518
+		drgcomboModel[520] = new ModelRendererTurbo(this, 0, 241, textureX, textureY); // Box 519
+		drgcomboModel[521] = new ModelRendererTurbo(this, 0, 241, textureX, textureY); // Box 520
+		drgcomboModel[522] = new ModelRendererTurbo(this, 0, 241, textureX, textureY); // Box 521
+		drgcomboModel[523] = new ModelRendererTurbo(this, 0, 241, textureX, textureY); // Box 522
+		drgcomboModel[524] = new ModelRendererTurbo(this, 1, 226, textureX, textureY); // Box 523
+		drgcomboModel[525] = new ModelRendererTurbo(this, 0, 241, textureX, textureY); // Box 524
+		drgcomboModel[526] = new ModelRendererTurbo(this, 0, 241, textureX, textureY); // Box 525
+		drgcomboModel[527] = new ModelRendererTurbo(this, 0, 241, textureX, textureY); // Box 526
+		drgcomboModel[528] = new ModelRendererTurbo(this, 0, 241, textureX, textureY); // Box 527
+		drgcomboModel[529] = new ModelRendererTurbo(this, 0, 241, textureX, textureY); // Box 528
+		drgcomboModel[530] = new ModelRendererTurbo(this, 0, 241, textureX, textureY); // Box 529
+		drgcomboModel[531] = new ModelRendererTurbo(this, 0, 241, textureX, textureY); // Box 530
+		drgcomboModel[532] = new ModelRendererTurbo(this, 0, 241, textureX, textureY); // Box 548
+		drgcomboModel[533] = new ModelRendererTurbo(this, 0, 241, textureX, textureY); // Box 549
+		drgcomboModel[534] = new ModelRendererTurbo(this, 0, 241, textureX, textureY); // Box 550
+		drgcomboModel[535] = new ModelRendererTurbo(this, 0, 241, textureX, textureY); // Box 551
+		drgcomboModel[536] = new ModelRendererTurbo(this, 0, 241, textureX, textureY); // Box 552
+		drgcomboModel[537] = new ModelRendererTurbo(this, 0, 241, textureX, textureY); // Box 553
+		drgcomboModel[538] = new ModelRendererTurbo(this, 0, 241, textureX, textureY); // Box 554
+		drgcomboModel[539] = new ModelRendererTurbo(this, -8, 226, textureX, textureY); // Box 555
+		drgcomboModel[540] = new ModelRendererTurbo(this, 0, 241, textureX, textureY); // Box 556
+		drgcomboModel[541] = new ModelRendererTurbo(this, 0, 241, textureX, textureY); // Box 557
+		drgcomboModel[542] = new ModelRendererTurbo(this, 0, 241, textureX, textureY); // Box 558
+		drgcomboModel[543] = new ModelRendererTurbo(this, 0, 241, textureX, textureY); // Box 559
+		drgcomboModel[544] = new ModelRendererTurbo(this, 0, 241, textureX, textureY); // Box 560
+		drgcomboModel[545] = new ModelRendererTurbo(this, 0, 241, textureX, textureY); // Box 561
+		drgcomboModel[546] = new ModelRendererTurbo(this, 0, 241, textureX, textureY); // Box 562
+		drgcomboModel[547] = new ModelRendererTurbo(this, 0, 241, textureX, textureY); // Box 563
+		drgcomboModel[548] = new ModelRendererTurbo(this, 1, 226, textureX, textureY); // Box 564
+		drgcomboModel[549] = new ModelRendererTurbo(this, 417, 73, textureX, textureY); // Box 559
+		drgcomboModel[550] = new ModelRendererTurbo(this, 337, 129, textureX, textureY); // Box 560
+		drgcomboModel[551] = new ModelRendererTurbo(this, 345, 129, textureX, textureY); // Box 561
+		drgcomboModel[552] = new ModelRendererTurbo(this, 377, 190, textureX, textureY); // Box 562
+		drgcomboModel[553] = new ModelRendererTurbo(this, 370, 189, textureX, textureY); // Box 563
+		drgcomboModel[554] = new ModelRendererTurbo(this, 370, 189, textureX, textureY); // Box 564
+		drgcomboModel[555] = new ModelRendererTurbo(this, 313, 129, textureX, textureY); // Box 565
+		drgcomboModel[556] = new ModelRendererTurbo(this, 417, 73, textureX, textureY); // Box 566
+		drgcomboModel[557] = new ModelRendererTurbo(this, 289, 129, textureX, textureY); // Box 567
+		drgcomboModel[558] = new ModelRendererTurbo(this, 225, 129, textureX, textureY); // Box 568
 
 		drgcomboModel[0].addBox(0F, 0F, 0F, 6, 6, 0, 0F); // Box 0
 		drgcomboModel[0].setRotationPoint(37F, 4F, -5F);
@@ -963,17 +1044,17 @@ public class ModelDRGCombo extends ModelBase
 		drgcomboModel[149].addBox(0F, 0F, 0F, 13, 3, 3, 0F); // Box 199
 		drgcomboModel[149].setRotationPoint(9F, 3F, 2F);
 
-		drgcomboModel[150].addBox(0F, 0F, 0F, 4, 1, 2, 0F); // Box 214
-		drgcomboModel[150].setRotationPoint(-56F, 4F, -1F);
+		drgcomboModel[150].addShapeBox(0F, 0F, 0F, 4, 1, 2, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 1F, 0F, 0F, 1F, 0F, 0F, 1F, 0F, 0F, 1F, 0F); // Box 214
+		drgcomboModel[150].setRotationPoint(-57F, 4F, -1F);
 
-		drgcomboModel[151].addShapeBox(0F, 0F, 0F, 1, 2, 2, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F); // Box 215
-		drgcomboModel[151].setRotationPoint(-52F, 3F, -1F);
+		drgcomboModel[151].addShapeBox(0F, 0F, 0F, 1, 2, 2, 0F, 0F, 0F, 0F, 1F, 0F, 0F, 1F, 0F, 0F, 0F, 0F, 0F, 0F, 1F, 0F, 1F, -1F, 0F, 1F, -1F, 0F, 0F, 1F, 0F); // Box 215
+		drgcomboModel[151].setRotationPoint(-53F, 3F, -1F);
 
-		drgcomboModel[152].addShapeBox(0F, 0F, 0F, 1, 2, 2, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F); // Box 216
-		drgcomboModel[152].setRotationPoint(53F, 3F, -1F);
+		drgcomboModel[152].addShapeBox(0F, 0F, 0F, 1, 2, 2, 0F, 1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 1F, 0F, 0F, 1F, -1F, 0F, 0F, 1F, 0F, 0F, 1F, 0F, 1F, -1F, 0F); // Box 216
+		drgcomboModel[152].setRotationPoint(54F, 3F, -1F);
 
-		drgcomboModel[153].addBox(0F, 0F, 0F, 4, 1, 2, 0F); // Box 217
-		drgcomboModel[153].setRotationPoint(54F, 4F, -1F);
+		drgcomboModel[153].addShapeBox(0F, 0F, 0F, 4, 1, 2, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 1F, 0F, 0F, 1F, 0F, 0F, 1F, 0F, 0F, 1F, 0F); // Box 217
+		drgcomboModel[153].setRotationPoint(55F, 4F, -1F);
 
 		drgcomboModel[154].addBox(0F, 0F, 0F, 1, 1, 1, 0F); // Box 218
 		drgcomboModel[154].setRotationPoint(-53F, -9F, 5F);
@@ -1304,686 +1385,963 @@ public class ModelDRGCombo extends ModelBase
 		drgcomboModel[262].addShapeBox(0F, 0F, 0F, 1, 8, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 422
 		drgcomboModel[262].setRotationPoint(-43.5F, -16.5F, -7F);
 
-		drgcomboModel[263].addShapeBox(0F, 0F, 0F, 1, 1, 7, 0F, 0F, -0.5F, -1F, -0.5F, -0.5F, -1F, -0.5F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -1F, -0.5F, 0F, -1F, -0.5F, 0F, 0F, 0F, 0F, 0F); // Box 423
-		drgcomboModel[263].setRotationPoint(-43.75F, -17.5F, -4F);
+		drgcomboModel[263].addShapeBox(0F, 0F, 0F, 1, 8, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 424
+		drgcomboModel[263].setRotationPoint(-43.5F, -16.5F, -5.5F);
 
-		drgcomboModel[264].addShapeBox(0F, 0F, 0F, 1, 8, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 424
-		drgcomboModel[264].setRotationPoint(-43.5F, -16.5F, -5.5F);
+		drgcomboModel[264].addShapeBox(0F, 0F, 0F, 1, 1, 3, 0F, 0F, -0.5F, -1F, -0.5F, -0.5F, -1F, -0.5F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -1F, -0.5F, 0F, -1F, -0.5F, 0F, 0F, 0F, 0F, 0F); // Box 425
+		drgcomboModel[264].setRotationPoint(-43.5F, -9F, -8F);
 
-		drgcomboModel[265].addShapeBox(0F, 0F, 0F, 1, 1, 3, 0F, 0F, -0.5F, -1F, -0.5F, -0.5F, -1F, -0.5F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -1F, -0.5F, 0F, -1F, -0.5F, 0F, 0F, 0F, 0F, 0F); // Box 425
-		drgcomboModel[265].setRotationPoint(-43.5F, -9F, -8F);
+		drgcomboModel[265].addBox(0F, 0F, 0F, 1, 7, 1, 0F); // Box 397
+		drgcomboModel[265].setRotationPoint(-53F, -5F, -0.5F);
 
-		drgcomboModel[266].addBox(0F, 0F, 0F, 1, 7, 1, 0F); // Box 397
-		drgcomboModel[266].setRotationPoint(-53F, -5F, -0.5F);
+		drgcomboModel[266].addBox(0F, 0F, 0F, 1, 7, 1, 0F); // Box 398
+		drgcomboModel[266].setRotationPoint(54F, -5F, -0.5F);
 
-		drgcomboModel[267].addBox(0F, 0F, 0F, 1, 7, 1, 0F); // Box 398
-		drgcomboModel[267].setRotationPoint(54F, -5F, -0.5F);
+		drgcomboModel[267].addShapeBox(0F, 0F, 0F, 11, 3, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 362
+		drgcomboModel[267].setRotationPoint(-30F, -24F, -7F);
 
-		drgcomboModel[268].addShapeBox(0F, 0F, 0F, 11, 3, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 362
-		drgcomboModel[268].setRotationPoint(-30F, -24F, -7F);
+		drgcomboModel[268].addShapeBox(0F, 0F, 0F, 6, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 363
+		drgcomboModel[268].setRotationPoint(-36F, -22F, -6.5F);
 
-		drgcomboModel[269].addShapeBox(0F, 0F, 0F, 6, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 363
-		drgcomboModel[269].setRotationPoint(-36F, -22F, -6.5F);
+		drgcomboModel[269].addShapeBox(0F, 0F, 0F, 1, 2, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 364
+		drgcomboModel[269].setRotationPoint(-36F, -23.5F, -6.5F);
 
-		drgcomboModel[270].addShapeBox(0F, 0F, 0F, 1, 2, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 364
-		drgcomboModel[270].setRotationPoint(-36F, -23.5F, -6.5F);
+		drgcomboModel[270].addShapeBox(0F, 0F, 0F, 6, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 365
+		drgcomboModel[270].setRotationPoint(-36F, -24F, -6.5F);
 
-		drgcomboModel[271].addShapeBox(0F, 0F, 0F, 6, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 365
-		drgcomboModel[271].setRotationPoint(-36F, -24F, -6.5F);
+		drgcomboModel[271].addShapeBox(0F, 0F, 0F, 1, 2, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 366
+		drgcomboModel[271].setRotationPoint(-30.5F, -23.5F, -6.5F);
 
-		drgcomboModel[272].addShapeBox(0F, 0F, 0F, 1, 2, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 366
-		drgcomboModel[272].setRotationPoint(-30.5F, -23.5F, -6.5F);
+		drgcomboModel[272].addShapeBox(0F, 0F, 0F, 1, 1, 3, 0F, 0F, -0.5F, -1F, -0.5F, -0.5F, -1F, -0.5F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -1F, -0.5F, 0F, -1F, -0.5F, 0F, 0F, 0F, 0F, 0F); // Box 357
+		drgcomboModel[272].setRotationPoint(-43.5F, -17.5F, -8F);
 
-		drgcomboModel[273].addShapeBox(0F, 0F, 0F, 1, 11, 6, 0F, 0F, -0.5F, -1F, -0.5F, -0.5F, -1F, -0.5F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -1F, -0.5F, 0F, -1F, -0.5F, 0F, 0F, 0F, 0F, 0F); // Box 354
-		drgcomboModel[273].setRotationPoint(-43.75F, -9.5F, -3.5F);
+		drgcomboModel[273].addShapeBox(0F, 18.5F, -1F, 1, 1, 7, 0F, 0F, -0.5F, -1F, -0.5F, -0.5F, -1F, -0.5F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -1F, -0.5F, 0F, -1F, -0.5F, 0F, 0F, 0F, 0F, 0F); // Box 359
+		drgcomboModel[273].setRotationPoint(45.25F, -17.5F, -3F);
 
-		drgcomboModel[274].addShapeBox(0F, 0F, 0F, 1, 18, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 355
-		drgcomboModel[274].setRotationPoint(-43.75F, -16.5F, 2.5F);
+		drgcomboModel[274].addShapeBox(0F, 1F, 5.5F, 1, 18, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 360
+		drgcomboModel[274].setRotationPoint(45.25F, -17.5F, -3F);
 
-		drgcomboModel[275].addShapeBox(0F, 0F, 0F, 1, 18, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 356
-		drgcomboModel[275].setRotationPoint(-43.75F, -16.5F, -3F);
+		drgcomboModel[275].addShapeBox(0F, 8F, -0.5F, 1, 11, 6, 0F, 0F, -0.5F, -1F, -0.5F, -0.5F, -1F, -0.5F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -1F, -0.5F, 0F, -1F, -0.5F, 0F, 0F, 0F, 0F, 0F); // Box 361
+		drgcomboModel[275].setRotationPoint(45.25F, -17.5F, -3F);
 
-		drgcomboModel[276].addShapeBox(0F, 0F, 0F, 1, 1, 3, 0F, 0F, -0.5F, -1F, -0.5F, -0.5F, -1F, -0.5F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -1F, -0.5F, 0F, -1F, -0.5F, 0F, 0F, 0F, 0F, 0F); // Box 357
-		drgcomboModel[276].setRotationPoint(-43.5F, -17.5F, -8F);
+		drgcomboModel[276].addShapeBox(0F, 0.5F, 0F, 1, 18, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 362
+		drgcomboModel[276].setRotationPoint(45.25F, -17F, -3F);
 
-		drgcomboModel[277].addShapeBox(0F, 0F, 0F, 1, 1, 7, 0F, 0F, -0.5F, -1F, -0.5F, -0.5F, -1F, -0.5F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -1F, -0.5F, 0F, -1F, -0.5F, 0F, 0F, 0F, 0F, 0F); // Box 358
-		drgcomboModel[277].setRotationPoint(-43.75F, 1F, -4F);
+		drgcomboModel[277].addShapeBox(0F, 0F, -1F, 1, 1, 7, 0F, 0F, -0.5F, -1F, -0.5F, -0.5F, -1F, -0.5F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -1F, -0.5F, 0F, -1F, -0.5F, 0F, 0F, 0F, 0F, 0F); // Box 363
+		drgcomboModel[277].setRotationPoint(45.25F, -17.5F, -3F);
 
-		drgcomboModel[278].addShapeBox(0F, 0F, 0F, 1, 1, 7, 0F, 0F, -0.5F, -1F, -0.5F, -0.5F, -1F, -0.5F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -1F, -0.5F, 0F, -1F, -0.5F, 0F, 0F, 0F, 0F, 0F); // Box 359
-		drgcomboModel[278].setRotationPoint(45.25F, 1F, -4F);
+		drgcomboModel[278].addShapeBox(0F, 0F, 0F, 56, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 436
+		drgcomboModel[278].setRotationPoint(-43F, -18F, -6.5F);
 
-		drgcomboModel[279].addShapeBox(0F, 0F, 0F, 1, 18, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 360
-		drgcomboModel[279].setRotationPoint(45.25F, -16.5F, -3F);
+		drgcomboModel[279].addShapeBox(0F, 0F, 0F, 56, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 437
+		drgcomboModel[279].setRotationPoint(-43F, -18F, -7.5F);
 
-		drgcomboModel[280].addShapeBox(0F, 0F, 0F, 1, 11, 6, 0F, 0F, -0.5F, -1F, -0.5F, -0.5F, -1F, -0.5F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -1F, -0.5F, 0F, -1F, -0.5F, 0F, 0F, 0F, 0F, 0F); // Box 361
-		drgcomboModel[280].setRotationPoint(45.25F, -9.5F, -3.5F);
+		drgcomboModel[280].addShapeBox(0F, 0F, 0F, 56, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 438
+		drgcomboModel[280].setRotationPoint(-43F, -18F, -8.5F);
 
-		drgcomboModel[281].addShapeBox(0F, 0F, 0F, 1, 18, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 362
-		drgcomboModel[281].setRotationPoint(45.25F, -16.5F, 2.5F);
+		drgcomboModel[281].addShapeBox(0F, 0F, 0F, 56, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 439
+		drgcomboModel[281].setRotationPoint(-43F, -18F, 8F);
 
-		drgcomboModel[282].addShapeBox(0F, 0F, 0F, 1, 1, 7, 0F, 0F, -0.5F, -1F, -0.5F, -0.5F, -1F, -0.5F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -1F, -0.5F, 0F, -1F, -0.5F, 0F, 0F, 0F, 0F, 0F); // Box 363
-		drgcomboModel[282].setRotationPoint(45.25F, -17.5F, -4F);
+		drgcomboModel[282].addShapeBox(0F, 0F, 0F, 56, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 440
+		drgcomboModel[282].setRotationPoint(-43F, -18F, 7F);
 
-		drgcomboModel[283].addShapeBox(0F, 0F, 0F, 56, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 436
-		drgcomboModel[283].setRotationPoint(-43F, -18F, -6.5F);
+		drgcomboModel[283].addShapeBox(0F, 0F, 0F, 56, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 441
+		drgcomboModel[283].setRotationPoint(-43F, -18F, 6F);
 
-		drgcomboModel[284].addShapeBox(0F, 0F, 0F, 56, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 437
-		drgcomboModel[284].setRotationPoint(-43F, -18F, -7.5F);
+		drgcomboModel[284].addShapeBox(0F, 0F, 0F, 1, 1, 4, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -1F, 0F, 0F, -1F); // Box 442
+		drgcomboModel[284].setRotationPoint(-41F, -17.5F, -9.5F);
 
-		drgcomboModel[285].addShapeBox(0F, 0F, 0F, 56, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 438
-		drgcomboModel[285].setRotationPoint(-43F, -18F, -8.5F);
+		drgcomboModel[285].addShapeBox(0F, 0F, 0F, 1, 1, 4, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -1F, 0F, 0F, -1F); // Box 443
+		drgcomboModel[285].setRotationPoint(-33.3F, -17.5F, -9.5F);
 
-		drgcomboModel[286].addShapeBox(0F, 0F, 0F, 56, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 439
-		drgcomboModel[286].setRotationPoint(-43F, -18F, 8F);
+		drgcomboModel[286].addShapeBox(0F, 0F, 0F, 1, 1, 4, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -1F, 0F, 0F, -1F); // Box 444
+		drgcomboModel[286].setRotationPoint(-24.3F, -17.5F, -9.5F);
 
-		drgcomboModel[287].addShapeBox(0F, 0F, 0F, 56, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 440
-		drgcomboModel[287].setRotationPoint(-43F, -18F, 7F);
+		drgcomboModel[287].addShapeBox(0F, 0F, 0F, 1, 1, 4, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -1F, 0F, 0F, -1F); // Box 445
+		drgcomboModel[287].setRotationPoint(-15.3F, -17.5F, -9.5F);
 
-		drgcomboModel[288].addShapeBox(0F, 0F, 0F, 56, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 441
-		drgcomboModel[288].setRotationPoint(-43F, -18F, 6F);
+		drgcomboModel[288].addShapeBox(0F, 0F, 0F, 1, 1, 4, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -1F, 0F, 0F, -1F); // Box 446
+		drgcomboModel[288].setRotationPoint(-6.3F, -17.5F, -9.5F);
 
-		drgcomboModel[289].addShapeBox(0F, 0F, 0F, 1, 1, 4, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -1F, 0F, 0F, -1F); // Box 442
-		drgcomboModel[289].setRotationPoint(-41F, -17.5F, -9.5F);
+		drgcomboModel[289].addShapeBox(0F, 0F, 0F, 1, 1, 4, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -1F, 0F, 0F, -1F); // Box 447
+		drgcomboModel[289].setRotationPoint(2.7F, -17.5F, -9.5F);
 
-		drgcomboModel[290].addShapeBox(0F, 0F, 0F, 1, 1, 4, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -1F, 0F, 0F, -1F); // Box 443
-		drgcomboModel[290].setRotationPoint(-33.3F, -17.5F, -9.5F);
+		drgcomboModel[290].addShapeBox(0F, 0F, 0F, 1, 1, 4, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -1F, 0F, 0F, -1F); // Box 448
+		drgcomboModel[290].setRotationPoint(11.7F, -17.5F, -9.5F);
 
-		drgcomboModel[291].addShapeBox(0F, 0F, 0F, 1, 1, 4, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -1F, 0F, 0F, -1F); // Box 444
-		drgcomboModel[291].setRotationPoint(-24.3F, -17.5F, -9.5F);
+		drgcomboModel[291].addShapeBox(0F, 0F, 0F, 1, 1, 4, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -1F, 0F, 0F, -1F); // Box 452
+		drgcomboModel[291].setRotationPoint(-41F, -17.5F, 9.5F);
+		drgcomboModel[291].rotateAngleY = -3.14159265F;
 
-		drgcomboModel[292].addShapeBox(0F, 0F, 0F, 1, 1, 4, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -1F, 0F, 0F, -1F); // Box 445
-		drgcomboModel[292].setRotationPoint(-15.3F, -17.5F, -9.5F);
+		drgcomboModel[292].addShapeBox(0F, 0F, 0F, 1, 1, 4, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -1F, 0F, 0F, -1F); // Box 454
+		drgcomboModel[292].setRotationPoint(-32.7F, -17.5F, 9.5F);
+		drgcomboModel[292].rotateAngleY = -3.14159265F;
 
-		drgcomboModel[293].addShapeBox(0F, 0F, 0F, 1, 1, 4, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -1F, 0F, 0F, -1F); // Box 446
-		drgcomboModel[293].setRotationPoint(-6.3F, -17.5F, -9.5F);
+		drgcomboModel[293].addShapeBox(0F, 0F, 0F, 1, 1, 4, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -1F, 0F, 0F, -1F); // Box 455
+		drgcomboModel[293].setRotationPoint(-23.7F, -17.5F, 9.5F);
+		drgcomboModel[293].rotateAngleY = -3.14159265F;
 
-		drgcomboModel[294].addShapeBox(0F, 0F, 0F, 1, 1, 4, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -1F, 0F, 0F, -1F); // Box 447
-		drgcomboModel[294].setRotationPoint(2.7F, -17.5F, -9.5F);
+		drgcomboModel[294].addShapeBox(0F, 0F, 0F, 1, 1, 4, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -1F, 0F, 0F, -1F); // Box 456
+		drgcomboModel[294].setRotationPoint(-14.7F, -17.5F, 9.5F);
+		drgcomboModel[294].rotateAngleY = -3.14159265F;
 
-		drgcomboModel[295].addShapeBox(0F, 0F, 0F, 1, 1, 4, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -1F, 0F, 0F, -1F); // Box 448
-		drgcomboModel[295].setRotationPoint(11.7F, -17.5F, -9.5F);
+		drgcomboModel[295].addShapeBox(0F, 0F, 0F, 1, 1, 4, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -1F, 0F, 0F, -1F); // Box 457
+		drgcomboModel[295].setRotationPoint(-5.7F, -17.5F, 9.5F);
+		drgcomboModel[295].rotateAngleY = -3.14159265F;
 
-		drgcomboModel[296].addShapeBox(0F, 0F, 0F, 1, 1, 4, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -1F, 0F, 0F, -1F); // Box 452
-		drgcomboModel[296].setRotationPoint(-41F, -17.5F, 9.5F);
+		drgcomboModel[296].addShapeBox(0F, 0F, 0F, 1, 1, 4, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -1F, 0F, 0F, -1F); // Box 458
+		drgcomboModel[296].setRotationPoint(3.3F, -17.5F, 9.5F);
 		drgcomboModel[296].rotateAngleY = -3.14159265F;
 
-		drgcomboModel[297].addShapeBox(0F, 0F, 0F, 1, 1, 4, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -1F, 0F, 0F, -1F); // Box 454
-		drgcomboModel[297].setRotationPoint(-32.7F, -17.5F, 9.5F);
+		drgcomboModel[297].addShapeBox(0F, 0F, 0F, 1, 1, 4, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -1F, 0F, 0F, -1F); // Box 459
+		drgcomboModel[297].setRotationPoint(12.3F, -17.5F, 9.5F);
 		drgcomboModel[297].rotateAngleY = -3.14159265F;
 
-		drgcomboModel[298].addShapeBox(0F, 0F, 0F, 1, 1, 4, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -1F, 0F, 0F, -1F); // Box 455
-		drgcomboModel[298].setRotationPoint(-23.7F, -17.5F, 9.5F);
-		drgcomboModel[298].rotateAngleY = -3.14159265F;
+		drgcomboModel[298].addShapeBox(0F, 0F, 0F, 1, 4, 12, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 463
+		drgcomboModel[298].setRotationPoint(-44F, -24F, -6F);
 
-		drgcomboModel[299].addShapeBox(0F, 0F, 0F, 1, 1, 4, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -1F, 0F, 0F, -1F); // Box 456
-		drgcomboModel[299].setRotationPoint(-14.7F, -17.5F, 9.5F);
-		drgcomboModel[299].rotateAngleY = -3.14159265F;
+		drgcomboModel[299].addShapeBox(0F, 0F, 0F, 1, 4, 12, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 464
+		drgcomboModel[299].setRotationPoint(45F, -24F, -6F);
 
-		drgcomboModel[300].addShapeBox(0F, 0F, 0F, 1, 1, 4, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -1F, 0F, 0F, -1F); // Box 457
-		drgcomboModel[300].setRotationPoint(-5.7F, -17.5F, 9.5F);
-		drgcomboModel[300].rotateAngleY = -3.14159265F;
+		drgcomboModel[300].addBox(0F, 0F, 0F, 1, 22, 5, 0F); // Box 465
+		drgcomboModel[300].setRotationPoint(39F, -20F, 4F);
 
-		drgcomboModel[301].addShapeBox(0F, 0F, 0F, 1, 1, 4, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -1F, 0F, 0F, -1F); // Box 458
-		drgcomboModel[301].setRotationPoint(3.3F, -17.5F, 9.5F);
-		drgcomboModel[301].rotateAngleY = -3.14159265F;
+		drgcomboModel[301].addBox(0F, 0F, 0F, 1, 22, 5, 0F); // Box 467
+		drgcomboModel[301].setRotationPoint(43F, -20F, 4F);
 
-		drgcomboModel[302].addShapeBox(0F, 0F, 0F, 1, 1, 4, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -1F, 0F, 0F, -1F); // Box 459
-		drgcomboModel[302].setRotationPoint(12.3F, -17.5F, 9.5F);
-		drgcomboModel[302].rotateAngleY = -3.14159265F;
+		drgcomboModel[302].addBox(0F, 0F, 0F, 3, 1, 5, 0F); // Box 470
+		drgcomboModel[302].setRotationPoint(40F, -20F, 4F);
 
-		drgcomboModel[303].addShapeBox(0F, 0F, 0F, 1, 4, 12, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 463
-		drgcomboModel[303].setRotationPoint(-44F, -24F, -6F);
+		drgcomboModel[303].addBox(0F, 0F, 0F, 3, 1, 5, 0F); // Box 473
+		drgcomboModel[303].setRotationPoint(40F, 1F, 4F);
 
-		drgcomboModel[304].addShapeBox(0F, 0F, 0F, 1, 4, 12, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 464
-		drgcomboModel[304].setRotationPoint(45F, -24F, -6F);
+		drgcomboModel[304].addBox(0F, 0F, 0F, 3, 20, 0, 0F); // Box 474
+		drgcomboModel[304].setRotationPoint(40F, -19F, 4.1F);
 
-		drgcomboModel[305].addBox(0F, 0F, 0F, 1, 22, 5, 0F); // Box 465
-		drgcomboModel[305].setRotationPoint(39F, -20F, 4F);
+		drgcomboModel[305].addShapeBox(0F, 0F, 0F, 3, 1, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F); // Box 484
+		drgcomboModel[305].setRotationPoint(7F, -1F, -5F);
 
-		drgcomboModel[306].addBox(0F, 0F, 0F, 1, 22, 5, 0F); // Box 467
-		drgcomboModel[306].setRotationPoint(43F, -20F, 4F);
+		drgcomboModel[306].addShapeBox(0F, 0F, 0F, 3, 3, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 485
+		drgcomboModel[306].setRotationPoint(4F, -1F, -5F);
 
-		drgcomboModel[307].addBox(0F, 0F, 0F, 3, 1, 5, 0F); // Box 470
-		drgcomboModel[307].setRotationPoint(40F, -20F, 4F);
+		drgcomboModel[307].addShapeBox(0F, 0F, 0F, 3, 1, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 486
+		drgcomboModel[307].setRotationPoint(1F, -1F, -5F);
 
-		drgcomboModel[308].addBox(0F, 0F, 0F, 3, 1, 5, 0F); // Box 473
-		drgcomboModel[308].setRotationPoint(40F, 1F, 4F);
+		drgcomboModel[308].addShapeBox(0F, 0F, 0F, 9, 1, 2, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F); // Box 487
+		drgcomboModel[308].setRotationPoint(1F, -5.5F, -7F);
 
-		drgcomboModel[309].addBox(0F, 0F, 0F, 3, 20, 0, 0F); // Box 474
-		drgcomboModel[309].setRotationPoint(40F, -19F, 4.1F);
+		drgcomboModel[309].addShapeBox(0F, 0F, 0F, 3, 1, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F); // Box 490
+		drgcomboModel[309].setRotationPoint(-11F, -1F, -5F);
 
-		drgcomboModel[310].addShapeBox(0F, 0F, 0F, 1, 10, 14, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F); // Box 482
-		drgcomboModel[310].setRotationPoint(10.75F, -11F, -5F);
-		drgcomboModel[310].rotateAngleZ = -0.17453293F;
+		drgcomboModel[310].addShapeBox(0F, 0F, 0F, 3, 3, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 491
+		drgcomboModel[310].setRotationPoint(-14F, -1F, -5F);
 
-		drgcomboModel[311].addShapeBox(0F, 0F, 0F, 9, 1, 14, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 483
-		drgcomboModel[311].setRotationPoint(1F, -2F, -5F);
+		drgcomboModel[311].addShapeBox(0F, 0F, 0F, 3, 1, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 492
+		drgcomboModel[311].setRotationPoint(-17F, -1F, -5F);
 
-		drgcomboModel[312].addShapeBox(0F, 0F, 0F, 3, 1, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 484
-		drgcomboModel[312].setRotationPoint(7F, -1F, -5F);
+		drgcomboModel[312].addShapeBox(0F, 0F, 0F, 9, 1, 2, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F); // Box 493
+		drgcomboModel[312].setRotationPoint(-17F, -5.5F, -7F);
 
-		drgcomboModel[313].addShapeBox(0F, 0F, 0F, 3, 3, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 485
-		drgcomboModel[313].setRotationPoint(4F, -1F, -5F);
+		drgcomboModel[313].addShapeBox(0F, 0F, 0F, 3, 1, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F); // Box 496
+		drgcomboModel[313].setRotationPoint(-29F, -1F, -5F);
 
-		drgcomboModel[314].addShapeBox(0F, 0F, 0F, 3, 1, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 486
-		drgcomboModel[314].setRotationPoint(1F, -1F, -5F);
+		drgcomboModel[314].addShapeBox(0F, 0F, 0F, 3, 3, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 497
+		drgcomboModel[314].setRotationPoint(-32F, -1F, -5F);
 
-		drgcomboModel[315].addShapeBox(0F, 0F, 0F, 9, 1, 2, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F); // Box 487
-		drgcomboModel[315].setRotationPoint(1F, -5.5F, -7F);
+		drgcomboModel[315].addShapeBox(0F, 0F, 0F, 3, 1, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 498
+		drgcomboModel[315].setRotationPoint(-35F, -1F, -5F);
 
-		drgcomboModel[316].addShapeBox(0F, 0F, 0F, 1, 10, 14, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F); // Box 488
-		drgcomboModel[316].setRotationPoint(-7.25F, -11F, -5F);
-		drgcomboModel[316].rotateAngleZ = -0.17453293F;
+		drgcomboModel[316].addShapeBox(0F, 0F, 0F, 9, 1, 2, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F); // Box 499
+		drgcomboModel[316].setRotationPoint(-35F, -5.5F, -7F);
 
-		drgcomboModel[317].addShapeBox(0F, 0F, 0F, 9, 1, 14, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 489
-		drgcomboModel[317].setRotationPoint(-17F, -2F, -5F);
+		drgcomboModel[317].addShapeBox(0F, 0F, 0F, 6, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 392
+		drgcomboModel[317].setRotationPoint(-2F, -22F, 6F);
 
-		drgcomboModel[318].addShapeBox(0F, 0F, 0F, 3, 1, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 490
-		drgcomboModel[318].setRotationPoint(-11F, -1F, -5F);
+		drgcomboModel[318].addShapeBox(0F, 0F, 0F, 1, 2, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 393
+		drgcomboModel[318].setRotationPoint(-2F, -23.5F, 6F);
 
-		drgcomboModel[319].addShapeBox(0F, 0F, 0F, 3, 3, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 491
-		drgcomboModel[319].setRotationPoint(-14F, -1F, -5F);
+		drgcomboModel[319].addShapeBox(0F, 0F, 0F, 6, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 394
+		drgcomboModel[319].setRotationPoint(-2F, -24F, 6F);
 
-		drgcomboModel[320].addShapeBox(0F, 0F, 0F, 3, 1, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 492
-		drgcomboModel[320].setRotationPoint(-17F, -1F, -5F);
+		drgcomboModel[320].addShapeBox(0F, 0F, 0F, 1, 2, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 395
+		drgcomboModel[320].setRotationPoint(3.5F, -23.5F, 6F);
 
-		drgcomboModel[321].addShapeBox(0F, 0F, 0F, 9, 1, 2, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F); // Box 493
-		drgcomboModel[321].setRotationPoint(-17F, -5.5F, -7F);
+		drgcomboModel[321].addShapeBox(0F, 0F, 0F, 11, 3, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 396
+		drgcomboModel[321].setRotationPoint(4F, -24F, 6F);
 
-		drgcomboModel[322].addShapeBox(0F, 0F, 0F, 1, 10, 14, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F); // Box 494
-		drgcomboModel[322].setRotationPoint(-25.25F, -11F, -5F);
-		drgcomboModel[322].rotateAngleZ = -0.17453293F;
+		drgcomboModel[322].addShapeBox(0F, 0F, 0F, 11, 3, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 397
+		drgcomboModel[322].setRotationPoint(-13F, -24F, 6F);
 
-		drgcomboModel[323].addShapeBox(0F, 0F, 0F, 9, 1, 14, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 495
-		drgcomboModel[323].setRotationPoint(-35F, -2F, -5F);
+		drgcomboModel[323].addShapeBox(0F, 0F, 0F, 1, 2, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 398
+		drgcomboModel[323].setRotationPoint(-19F, -23.5F, 6F);
 
-		drgcomboModel[324].addShapeBox(0F, 0F, 0F, 3, 1, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 496
-		drgcomboModel[324].setRotationPoint(-29F, -1F, -5F);
+		drgcomboModel[324].addShapeBox(0F, 0F, 0F, 6, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 399
+		drgcomboModel[324].setRotationPoint(-19F, -22F, 6F);
 
-		drgcomboModel[325].addShapeBox(0F, 0F, 0F, 3, 3, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 497
-		drgcomboModel[325].setRotationPoint(-32F, -1F, -5F);
+		drgcomboModel[325].addShapeBox(0F, 0F, 0F, 1, 2, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 400
+		drgcomboModel[325].setRotationPoint(-13.5F, -23.5F, 6F);
 
-		drgcomboModel[326].addShapeBox(0F, 0F, 0F, 3, 1, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 498
-		drgcomboModel[326].setRotationPoint(-35F, -1F, -5F);
+		drgcomboModel[326].addShapeBox(0F, 0F, 0F, 6, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 401
+		drgcomboModel[326].setRotationPoint(-19F, -24F, 6F);
 
-		drgcomboModel[327].addShapeBox(0F, 0F, 0F, 9, 1, 2, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F); // Box 499
-		drgcomboModel[327].setRotationPoint(-35F, -5.5F, -7F);
+		drgcomboModel[327].addShapeBox(0F, 0F, 0F, 11, 3, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 402
+		drgcomboModel[327].setRotationPoint(-30F, -24F, 6F);
 
-		drgcomboModel[328].addShapeBox(0F, 0F, 0F, 6, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 392
-		drgcomboModel[328].setRotationPoint(-2F, -22F, 6F);
+		drgcomboModel[328].addShapeBox(0F, 0F, 0F, 6, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 403
+		drgcomboModel[328].setRotationPoint(-36F, -24F, 6F);
 
-		drgcomboModel[329].addShapeBox(0F, 0F, 0F, 1, 2, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 393
-		drgcomboModel[329].setRotationPoint(-2F, -23.5F, 6F);
+		drgcomboModel[329].addShapeBox(0F, 0F, 0F, 1, 2, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 404
+		drgcomboModel[329].setRotationPoint(-30.5F, -23.5F, 6F);
 
-		drgcomboModel[330].addShapeBox(0F, 0F, 0F, 6, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 394
-		drgcomboModel[330].setRotationPoint(-2F, -24F, 6F);
+		drgcomboModel[330].addShapeBox(0F, 0F, 0F, 6, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 405
+		drgcomboModel[330].setRotationPoint(-36F, -22F, 6F);
 
-		drgcomboModel[331].addShapeBox(0F, 0F, 0F, 1, 2, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 395
-		drgcomboModel[331].setRotationPoint(3.5F, -23.5F, 6F);
+		drgcomboModel[331].addShapeBox(0F, 0F, 0F, 1, 2, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 406
+		drgcomboModel[331].setRotationPoint(-36F, -23.5F, 6F);
 
-		drgcomboModel[332].addShapeBox(0F, 0F, 0F, 11, 3, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 396
-		drgcomboModel[332].setRotationPoint(4F, -24F, 6F);
+		drgcomboModel[332].addShapeBox(0F, 0F, 0F, 13, 3, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 407
+		drgcomboModel[332].setRotationPoint(-49F, -24F, 6F);
 
-		drgcomboModel[333].addShapeBox(0F, 0F, 0F, 11, 3, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 397
-		drgcomboModel[333].setRotationPoint(-13F, -24F, 6F);
+		drgcomboModel[333].addShapeBox(0F, 0F, 0F, 1, 2, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 408
+		drgcomboModel[333].setRotationPoint(15F, -23.5F, 6F);
 
-		drgcomboModel[334].addShapeBox(0F, 0F, 0F, 1, 2, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 398
-		drgcomboModel[334].setRotationPoint(-19F, -23.5F, 6F);
+		drgcomboModel[334].addShapeBox(0F, 0F, 0F, 6, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 409
+		drgcomboModel[334].setRotationPoint(15F, -24F, 6F);
 
-		drgcomboModel[335].addShapeBox(0F, 0F, 0F, 6, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 399
-		drgcomboModel[335].setRotationPoint(-19F, -22F, 6F);
+		drgcomboModel[335].addShapeBox(0F, 0F, 0F, 6, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 410
+		drgcomboModel[335].setRotationPoint(15F, -22F, 6F);
 
-		drgcomboModel[336].addShapeBox(0F, 0F, 0F, 1, 2, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 400
-		drgcomboModel[336].setRotationPoint(-13.5F, -23.5F, 6F);
+		drgcomboModel[336].addShapeBox(0F, 0F, 0F, 1, 2, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 411
+		drgcomboModel[336].setRotationPoint(20.5F, -23.5F, 6F);
 
-		drgcomboModel[337].addShapeBox(0F, 0F, 0F, 6, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 401
-		drgcomboModel[337].setRotationPoint(-19F, -24F, 6F);
+		drgcomboModel[337].addShapeBox(0F, 0F, 0F, 11, 3, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 412
+		drgcomboModel[337].setRotationPoint(21F, -24F, 6F);
 
-		drgcomboModel[338].addShapeBox(0F, 0F, 0F, 11, 3, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 402
-		drgcomboModel[338].setRotationPoint(-30F, -24F, 6F);
+		drgcomboModel[338].addShapeBox(0F, 0F, 0F, 1, 2, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 413
+		drgcomboModel[338].setRotationPoint(37.5F, -23.5F, 6F);
 
-		drgcomboModel[339].addShapeBox(0F, 0F, 0F, 6, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 403
-		drgcomboModel[339].setRotationPoint(-36F, -24F, 6F);
+		drgcomboModel[339].addShapeBox(0F, 0F, 0F, 6, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 414
+		drgcomboModel[339].setRotationPoint(32F, -24F, 6F);
 
-		drgcomboModel[340].addShapeBox(0F, 0F, 0F, 1, 2, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 404
-		drgcomboModel[340].setRotationPoint(-30.5F, -23.5F, 6F);
+		drgcomboModel[340].addShapeBox(0F, 0F, 0F, 1, 2, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 415
+		drgcomboModel[340].setRotationPoint(32F, -23.5F, 6F);
 
-		drgcomboModel[341].addShapeBox(0F, 0F, 0F, 6, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 405
-		drgcomboModel[341].setRotationPoint(-36F, -22F, 6F);
+		drgcomboModel[341].addShapeBox(0F, 0F, 0F, 6, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 416
+		drgcomboModel[341].setRotationPoint(32F, -22F, 6F);
 
-		drgcomboModel[342].addShapeBox(0F, 0F, 0F, 1, 2, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 406
-		drgcomboModel[342].setRotationPoint(-36F, -23.5F, 6F);
+		drgcomboModel[342].addShapeBox(0F, 0F, 0F, 13, 3, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 417
+		drgcomboModel[342].setRotationPoint(38F, -24F, 6F);
 
-		drgcomboModel[343].addShapeBox(0F, 0F, 0F, 13, 3, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 407
-		drgcomboModel[343].setRotationPoint(-49F, -24F, 6F);
+		drgcomboModel[343].addBox(0F, 0F, 0F, 1, 22, 6, 0F); // Box 404
+		drgcomboModel[343].setRotationPoint(13F, -20F, -9F);
 
-		drgcomboModel[344].addShapeBox(0F, 0F, 0F, 1, 2, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 408
-		drgcomboModel[344].setRotationPoint(15F, -23.5F, 6F);
+		drgcomboModel[344].addShapeBox(0F, 0F, 0F, 1, 11, 6, 0F, 0F, -0.5F, -1F, -0.5F, -0.5F, -1F, -0.5F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -1F, -0.5F, 0F, -1F, -0.5F, 0F, 0F, 0F, 0F, 0F); // Box 405
+		drgcomboModel[344].setRotationPoint(13.25F, -9.5F, -3.5F);
 
-		drgcomboModel[345].addShapeBox(0F, 0F, 0F, 6, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 409
-		drgcomboModel[345].setRotationPoint(15F, -24F, 6F);
+		drgcomboModel[345].addShapeBox(0F, 0F, 0F, 1, 18, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 406
+		drgcomboModel[345].setRotationPoint(13.25F, -16.5F, -3F);
 
-		drgcomboModel[346].addShapeBox(0F, 0F, 0F, 6, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 410
-		drgcomboModel[346].setRotationPoint(15F, -22F, 6F);
+		drgcomboModel[346].addShapeBox(0F, 0F, 0F, 1, 18, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 407
+		drgcomboModel[346].setRotationPoint(13.25F, -16.5F, 2.5F);
 
-		drgcomboModel[347].addShapeBox(0F, 0F, 0F, 1, 2, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 411
-		drgcomboModel[347].setRotationPoint(20.5F, -23.5F, 6F);
+		drgcomboModel[347].addShapeBox(0F, 0F, 0F, 1, 1, 7, 0F, 0F, -0.5F, -1F, -0.5F, -0.5F, -1F, -0.5F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -1F, -0.5F, 0F, -1F, -0.5F, 0F, 0F, 0F, 0F, 0F); // Box 416
+		drgcomboModel[347].setRotationPoint(13.25F, -17.5F, -4F);
 
-		drgcomboModel[348].addShapeBox(0F, 0F, 0F, 11, 3, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 412
-		drgcomboModel[348].setRotationPoint(21F, -24F, 6F);
+		drgcomboModel[348].addShapeBox(0F, 0F, 0F, 1, 1, 7, 0F, 0F, -0.5F, -1F, -0.5F, -0.5F, -1F, -0.5F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -1F, -0.5F, 0F, -1F, -0.5F, 0F, 0F, 0F, 0F, 0F); // Box 417
+		drgcomboModel[348].setRotationPoint(13.25F, 1F, -4F);
 
-		drgcomboModel[349].addShapeBox(0F, 0F, 0F, 1, 2, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 413
-		drgcomboModel[349].setRotationPoint(37.5F, -23.5F, 6F);
+		drgcomboModel[349].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 380
+		drgcomboModel[349].setRotationPoint(13F, -8F, 1F);
 
-		drgcomboModel[350].addShapeBox(0F, 0F, 0F, 6, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 414
-		drgcomboModel[350].setRotationPoint(32F, -24F, 6F);
+		drgcomboModel[350].addBox(0F, 0F, 0F, 1, 22, 6, 0F); // Box 381
+		drgcomboModel[350].setRotationPoint(13F, -20F, 3F);
 
-		drgcomboModel[351].addShapeBox(0F, 0F, 0F, 1, 2, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 415
-		drgcomboModel[351].setRotationPoint(32F, -23.5F, 6F);
+		drgcomboModel[351].addBox(0F, 0F, 0F, 1, 3, 6, 0F); // Box 382
+		drgcomboModel[351].setRotationPoint(13F, -20F, -3F);
 
-		drgcomboModel[352].addShapeBox(0F, 0F, 0F, 6, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 416
-		drgcomboModel[352].setRotationPoint(32F, -22F, 6F);
+		drgcomboModel[352].addShapeBox(0F, 0F, 0F, 1, 4, 12, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 384
+		drgcomboModel[352].setRotationPoint(13F, -24F, -6F);
 
-		drgcomboModel[353].addShapeBox(0F, 0F, 0F, 13, 3, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 417
-		drgcomboModel[353].setRotationPoint(38F, -24F, 6F);
+		drgcomboModel[353].addBox(0F, 0F, 0F, 11, 19, 1, 0F); // Box 387
+		drgcomboModel[353].setRotationPoint(10F, -17F, -10F);
 
-		drgcomboModel[354].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 417
-		drgcomboModel[354].setRotationPoint(45F, -8F, 1F);
+		drgcomboModel[354].addShapeBox(0F, 0F, 0F, 13, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 388
+		drgcomboModel[354].setRotationPoint(21F, 1F, 9.25F);
 
-		drgcomboModel[355].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 418
-		drgcomboModel[355].setRotationPoint(-44F, -8F, 1F);
+		drgcomboModel[355].addShapeBox(0F, 0F, 0F, 13, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 389
+		drgcomboModel[355].setRotationPoint(21F, -17.5F, 9.25F);
 
-		drgcomboModel[356].addBox(0F, 0F, 0F, 1, 22, 6, 0F); // Box 404
-		drgcomboModel[356].setRotationPoint(13F, -20F, -9F);
+		drgcomboModel[356].addShapeBox(0F, 0F, 0F, 1, 18, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 390
+		drgcomboModel[356].setRotationPoint(33.5F, -16.5F, 9.25F);
 
-		drgcomboModel[357].addShapeBox(0F, 0F, 0F, 1, 11, 6, 0F, 0F, -0.5F, -1F, -0.5F, -0.5F, -1F, -0.5F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -1F, -0.5F, 0F, -1F, -0.5F, 0F, 0F, 0F, 0F, 0F); // Box 405
-		drgcomboModel[357].setRotationPoint(13.25F, -9.5F, -3.5F);
+		drgcomboModel[357].addShapeBox(0F, 0F, 0F, 1, 18, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 391
+		drgcomboModel[357].setRotationPoint(21F, -16.5F, 9.25F);
 
-		drgcomboModel[358].addShapeBox(0F, 0F, 0F, 1, 18, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 406
-		drgcomboModel[358].setRotationPoint(13.25F, -16.5F, -3F);
+		drgcomboModel[358].addShapeBox(0F, 0F, 0F, 12, 13, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 392
+		drgcomboModel[358].setRotationPoint(21.5F, -11.5F, 9.25F);
 
-		drgcomboModel[359].addShapeBox(0F, 0F, 0F, 1, 18, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 407
-		drgcomboModel[359].setRotationPoint(13.25F, -16.5F, 2.5F);
+		drgcomboModel[359].addShapeBox(0F, 0F, 0F, 12, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 394
+		drgcomboModel[359].setRotationPoint(21.5F, -12F, 9.25F);
 
-		drgcomboModel[360].addShapeBox(0F, 0F, 0F, 1, 1, 7, 0F, 0F, -0.5F, -1F, -0.5F, -0.5F, -1F, -0.5F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -1F, -0.5F, 0F, -1F, -0.5F, 0F, 0F, 0F, 0F, 0F); // Box 416
-		drgcomboModel[360].setRotationPoint(13.25F, -17.5F, -4F);
+		drgcomboModel[360].addShapeBox(0F, 0F, 0F, 1, 5, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 395
+		drgcomboModel[360].setRotationPoint(29.5F, -16.5F, 9.25F);
 
-		drgcomboModel[361].addShapeBox(0F, 0F, 0F, 1, 1, 7, 0F, 0F, -0.5F, -1F, -0.5F, -0.5F, -1F, -0.5F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -1F, -0.5F, 0F, -1F, -0.5F, 0F, 0F, 0F, 0F, 0F); // Box 417
-		drgcomboModel[361].setRotationPoint(13.25F, 1F, -4F);
+		drgcomboModel[361].addShapeBox(0F, 0F, 0F, 1, 5, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 396
+		drgcomboModel[361].setRotationPoint(25F, -16.5F, 9.25F);
 
-		drgcomboModel[362].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 380
-		drgcomboModel[362].setRotationPoint(13F, -8F, 1F);
+		drgcomboModel[362].addBox(0F, 0F, 0F, 1, 10, 5, 0F); // Box 397
+		drgcomboModel[362].setRotationPoint(34F, -8F, 4F);
 
-		drgcomboModel[363].addBox(0F, 0F, 0F, 1, 22, 6, 0F); // Box 381
-		drgcomboModel[363].setRotationPoint(13F, -20F, 3F);
+		drgcomboModel[363].addBox(0F, 0F, 0F, 4, 1, 5, 0F); // Box 398
+		drgcomboModel[363].setRotationPoint(35F, -8F, 4F);
 
-		drgcomboModel[364].addBox(0F, 0F, 0F, 1, 3, 6, 0F); // Box 382
-		drgcomboModel[364].setRotationPoint(13F, -20F, -3F);
+		drgcomboModel[364].addBox(0F, 0F, 0F, 10, 1, 5, 0F); // Box 399
+		drgcomboModel[364].setRotationPoint(35F, -8F, -9F);
 
-		drgcomboModel[365].addShapeBox(0F, 0F, 0F, 1, 4, 12, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 384
-		drgcomboModel[365].setRotationPoint(13F, -24F, -6F);
+		drgcomboModel[365].addBox(0F, 0F, 0F, 1, 10, 5, 0F); // Box 400
+		drgcomboModel[365].setRotationPoint(34F, -8F, -9F);
 
-		drgcomboModel[366].addBox(0F, 0F, 0F, 11, 19, 1, 0F); // Box 387
-		drgcomboModel[366].setRotationPoint(10F, -17F, -10F);
+		drgcomboModel[366].addShapeBox(0F, 0F, 0F, 1, 8, 2, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 401
+		drgcomboModel[366].setRotationPoint(44F, -15.5F, -9F);
 
-		drgcomboModel[367].addShapeBox(0F, 0F, 0F, 13, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 388
-		drgcomboModel[367].setRotationPoint(21F, 1F, 9.25F);
+		drgcomboModel[367].addShapeBox(0F, 0F, 0F, 1, 8, 2, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 402
+		drgcomboModel[367].setRotationPoint(41F, -15.5F, -9F);
 
-		drgcomboModel[368].addShapeBox(0F, 0F, 0F, 13, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 389
-		drgcomboModel[368].setRotationPoint(21F, -17.5F, 9.25F);
+		drgcomboModel[368].addShapeBox(0F, 0F, 0F, 1, 8, 2, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 403
+		drgcomboModel[368].setRotationPoint(38F, -15.5F, -9F);
 
-		drgcomboModel[369].addShapeBox(0F, 0F, 0F, 1, 18, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 390
-		drgcomboModel[369].setRotationPoint(33.5F, -16.5F, 9.25F);
+		drgcomboModel[369].addShapeBox(0F, 0F, 0F, 1, 8, 2, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 404
+		drgcomboModel[369].setRotationPoint(35F, -15.5F, -9F);
 
-		drgcomboModel[370].addShapeBox(0F, 0F, 0F, 1, 18, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 391
-		drgcomboModel[370].setRotationPoint(21F, -16.5F, 9.25F);
+		drgcomboModel[370].addShapeBox(0F, 0F, 0F, 10, 1, 3, 0F, 0F, -0.5F, -1F, -0.5F, -0.5F, -1F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, -1F, -0.5F, 0F, -1F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 405
+		drgcomboModel[370].setRotationPoint(35F, -16.5F, -10F);
 
-		drgcomboModel[371].addShapeBox(0F, 0F, 0F, 12, 13, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 392
-		drgcomboModel[371].setRotationPoint(21.5F, -11.5F, 9.25F);
+		drgcomboModel[371].addShapeBox(0F, 0F, 0F, 3, 1, 3, 0F, 0F, -0.5F, -1F, -0.5F, -0.5F, -1F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, -1F, -0.5F, 0F, -1F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 406
+		drgcomboModel[371].setRotationPoint(35.5F, -14F, -10F);
 
-		drgcomboModel[372].addShapeBox(0F, 0F, 0F, 12, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 394
-		drgcomboModel[372].setRotationPoint(21.5F, -12F, 9.25F);
+		drgcomboModel[372].addShapeBox(0F, 0F, 0F, 3, 1, 3, 0F, 0F, -0.5F, -1F, -0.5F, -0.5F, -1F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, -1F, -0.5F, 0F, -1F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 407
+		drgcomboModel[372].setRotationPoint(35.5F, -11.5F, -10F);
 
-		drgcomboModel[373].addShapeBox(0F, 0F, 0F, 1, 5, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 395
-		drgcomboModel[373].setRotationPoint(29.5F, -16.5F, 9.25F);
+		drgcomboModel[373].addShapeBox(0F, 0F, 0F, 3, 1, 3, 0F, 0F, -0.5F, -1F, -0.5F, -0.5F, -1F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, -1F, -0.5F, 0F, -1F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 408
+		drgcomboModel[373].setRotationPoint(38.5F, -14F, -10F);
 
-		drgcomboModel[374].addShapeBox(0F, 0F, 0F, 1, 5, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 396
-		drgcomboModel[374].setRotationPoint(25F, -16.5F, 9.25F);
+		drgcomboModel[374].addShapeBox(0F, 0F, 0F, 3, 1, 3, 0F, 0F, -0.5F, -1F, -0.5F, -0.5F, -1F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, -1F, -0.5F, 0F, -1F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 409
+		drgcomboModel[374].setRotationPoint(38.5F, -11.5F, -10F);
 
-		drgcomboModel[375].addBox(0F, 0F, 0F, 1, 10, 5, 0F); // Box 397
-		drgcomboModel[375].setRotationPoint(34F, -8F, 4F);
+		drgcomboModel[375].addShapeBox(0F, 0F, 0F, 3, 1, 3, 0F, 0F, -0.5F, -1F, -0.5F, -0.5F, -1F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, -1F, -0.5F, 0F, -1F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 410
+		drgcomboModel[375].setRotationPoint(41.5F, -11.5F, -10F);
 
-		drgcomboModel[376].addBox(0F, 0F, 0F, 4, 1, 5, 0F); // Box 398
-		drgcomboModel[376].setRotationPoint(35F, -8F, 4F);
+		drgcomboModel[376].addShapeBox(0F, 0F, 0F, 3, 1, 3, 0F, 0F, -0.5F, -1F, -0.5F, -0.5F, -1F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, -1F, -0.5F, 0F, -1F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 411
+		drgcomboModel[376].setRotationPoint(41.5F, -14F, -10F);
 
-		drgcomboModel[377].addBox(0F, 0F, 0F, 10, 1, 5, 0F); // Box 399
-		drgcomboModel[377].setRotationPoint(35F, -8F, -9F);
+		drgcomboModel[377].addBox(0F, 0F, 0F, 5, 5, 5, 0F); // Box 412
+		drgcomboModel[377].setRotationPoint(14F, -3F, -9F);
 
-		drgcomboModel[378].addBox(0F, 0F, 0F, 1, 10, 5, 0F); // Box 400
-		drgcomboModel[378].setRotationPoint(34F, -8F, -9F);
+		drgcomboModel[378].addBox(0F, 0F, 0F, 5, 5, 5, 0F); // Box 413
+		drgcomboModel[378].setRotationPoint(16F, -8F, -9F);
+		drgcomboModel[378].rotateAngleY = 0.48869219F;
 
-		drgcomboModel[379].addShapeBox(0F, 0F, 0F, 1, 8, 2, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 401
-		drgcomboModel[379].setRotationPoint(44F, -15.5F, -9F);
+		drgcomboModel[379].addBox(0F, 0F, 0F, 5, 1, 5, 0F); // Box 414
+		drgcomboModel[379].setRotationPoint(14F, -6F, 4F);
 
-		drgcomboModel[380].addShapeBox(0F, 0F, 0F, 1, 8, 2, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 402
-		drgcomboModel[380].setRotationPoint(41F, -15.5F, -9F);
+		drgcomboModel[380].addBox(0F, 0F, 0F, 1, 8, 5, 0F); // Box 415
+		drgcomboModel[380].setRotationPoint(19F, -6F, 4F);
 
-		drgcomboModel[381].addShapeBox(0F, 0F, 0F, 1, 8, 2, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 403
-		drgcomboModel[381].setRotationPoint(38F, -15.5F, -9F);
+		drgcomboModel[381].addBox(0F, 0F, 0F, 1, 1, 3, 0F); // Box 416
+		drgcomboModel[381].setRotationPoint(43F, -9F, -9F);
 
-		drgcomboModel[382].addShapeBox(0F, 0F, 0F, 1, 8, 2, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 404
-		drgcomboModel[382].setRotationPoint(35F, -15.5F, -9F);
+		drgcomboModel[382].addBox(0F, 0F, 0F, 0, 2, 2, 0F); // Box 418
+		drgcomboModel[382].setRotationPoint(38F, -12.75F, -9F);
+		drgcomboModel[382].rotateAngleZ = -0.54105207F;
 
-		drgcomboModel[383].addShapeBox(0F, 0F, 0F, 10, 1, 3, 0F, 0F, -0.5F, -1F, -0.5F, -0.5F, -1F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, -1F, -0.5F, 0F, -1F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 405
-		drgcomboModel[383].setRotationPoint(35F, -16.5F, -10F);
+		drgcomboModel[383].addBox(0F, 0F, 0F, 0, 2, 2, 0F); // Box 419
+		drgcomboModel[383].setRotationPoint(43F, -12.75F, -7F);
+		drgcomboModel[383].rotateAngleY = -3.14159265F;
+		drgcomboModel[383].rotateAngleZ = -0.54105207F;
 
-		drgcomboModel[384].addShapeBox(0F, 0F, 0F, 3, 1, 3, 0F, 0F, -0.5F, -1F, -0.5F, -0.5F, -1F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, -1F, -0.5F, 0F, -1F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 406
-		drgcomboModel[384].setRotationPoint(35.5F, -14F, -10F);
+		drgcomboModel[384].addBox(0F, 0F, 0F, 1, 1, 1, 0F); // Box 420
+		drgcomboModel[384].setRotationPoint(42F, -9F, -9F);
 
-		drgcomboModel[385].addShapeBox(0F, 0F, 0F, 3, 1, 3, 0F, 0F, -0.5F, -1F, -0.5F, -0.5F, -1F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, -1F, -0.5F, 0F, -1F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 407
-		drgcomboModel[385].setRotationPoint(35.5F, -11.5F, -10F);
+		drgcomboModel[385].addBox(0F, 0F, 0F, 1, 1, 1, 0F); // Box 421
+		drgcomboModel[385].setRotationPoint(35.6F, -12F, -9F);
 
-		drgcomboModel[386].addShapeBox(0F, 0F, 0F, 3, 1, 3, 0F, 0F, -0.5F, -1F, -0.5F, -0.5F, -1F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, -1F, -0.5F, 0F, -1F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 408
-		drgcomboModel[386].setRotationPoint(38.5F, -14F, -10F);
+		drgcomboModel[386].addBox(0F, 0F, 0F, 1, 1, 1, 0F); // Box 422
+		drgcomboModel[386].setRotationPoint(39F, -9F, -9F);
+		drgcomboModel[386].rotateAngleY = 0.36651914F;
 
-		drgcomboModel[387].addShapeBox(0F, 0F, 0F, 3, 1, 3, 0F, 0F, -0.5F, -1F, -0.5F, -0.5F, -1F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, -1F, -0.5F, 0F, -1F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 409
-		drgcomboModel[387].setRotationPoint(38.5F, -11.5F, -10F);
+		drgcomboModel[387].addBox(0F, 0F, 0F, 1, 1, 1, 0F); // Box 423
+		drgcomboModel[387].setRotationPoint(39F, -10F, -9F);
 
-		drgcomboModel[388].addShapeBox(0F, 0F, 0F, 3, 1, 3, 0F, 0F, -0.5F, -1F, -0.5F, -0.5F, -1F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, -1F, -0.5F, 0F, -1F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 410
-		drgcomboModel[388].setRotationPoint(41.5F, -11.5F, -10F);
+		drgcomboModel[388].addBox(0F, 0F, 0F, 1, 2, 1, 0F); // Box 424
+		drgcomboModel[388].setRotationPoint(42F, -13F, -9F);
 
-		drgcomboModel[389].addShapeBox(0F, 0F, 0F, 3, 1, 3, 0F, 0F, -0.5F, -1F, -0.5F, -0.5F, -1F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, -1F, -0.5F, 0F, -1F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 411
-		drgcomboModel[389].setRotationPoint(41.5F, -14F, -10F);
+		drgcomboModel[389].addBox(0F, 0F, 0F, 1, 1, 1, 0F); // Box 425
+		drgcomboModel[389].setRotationPoint(39.5F, -14.5F, -9F);
 
-		drgcomboModel[390].addBox(0F, 0F, 0F, 5, 5, 5, 0F); // Box 412
-		drgcomboModel[390].setRotationPoint(14F, -3F, -9F);
+		drgcomboModel[390].addBox(0F, 0F, 0F, 0, 2, 2, 0F); // Box 426
+		drgcomboModel[390].setRotationPoint(42F, -15.25F, -7F);
+		drgcomboModel[390].rotateAngleY = -2.72271363F;
+		drgcomboModel[390].rotateAngleZ = -0.54105207F;
 
-		drgcomboModel[391].addBox(0F, 0F, 0F, 5, 5, 5, 0F); // Box 413
-		drgcomboModel[391].setRotationPoint(16F, -8F, -9F);
-		drgcomboModel[391].rotateAngleY = 0.48869219F;
+		drgcomboModel[391].addBox(0F, 0F, 0F, 0, 2, 2, 0F); // Box 427
+		drgcomboModel[391].setRotationPoint(42F, -15.5F, -7F);
+		drgcomboModel[391].rotateAngleY = -3.14159265F;
 
-		drgcomboModel[392].addBox(0F, 0F, 0F, 5, 1, 5, 0F); // Box 414
-		drgcomboModel[392].setRotationPoint(14F, -6F, 4F);
+		drgcomboModel[392].addBox(0F, 0F, 0F, 4, 1, 5, 0F); // Box 428
+		drgcomboModel[392].setRotationPoint(35F, -4F, 4F);
 
-		drgcomboModel[393].addBox(0F, 0F, 0F, 1, 8, 5, 0F); // Box 415
-		drgcomboModel[393].setRotationPoint(19F, -6F, 4F);
+		drgcomboModel[393].addBox(0F, 0F, 0F, 5, 5, 4, 0F); // Box 429
+		drgcomboModel[393].setRotationPoint(14F, -11F, 5F);
 
-		drgcomboModel[394].addBox(0F, 0F, 0F, 1, 1, 3, 0F); // Box 416
-		drgcomboModel[394].setRotationPoint(43F, -9F, -9F);
+		drgcomboModel[394].addShapeBox(0F, 0F, 0F, 1, 9, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 430
+		drgcomboModel[394].setRotationPoint(17.5F, -20F, 8F);
 
-		drgcomboModel[395].addBox(0F, 0F, 0F, 0, 2, 2, 0F); // Box 418
-		drgcomboModel[395].setRotationPoint(38F, -12.75F, -9F);
-		drgcomboModel[395].rotateAngleZ = -0.54105207F;
+		drgcomboModel[395].addShapeBox(0F, 0F, 0F, 12, 13, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 431
+		drgcomboModel[395].setRotationPoint(21.5F, -11.5F, -9.75F);
 
-		drgcomboModel[396].addBox(0F, 0F, 0F, 0, 2, 2, 0F); // Box 419
-		drgcomboModel[396].setRotationPoint(43F, -12.75F, -7F);
-		drgcomboModel[396].rotateAngleY = -3.14159265F;
-		drgcomboModel[396].rotateAngleZ = -0.54105207F;
+		drgcomboModel[396].addShapeBox(0F, 0F, 0F, 1, 18, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 432
+		drgcomboModel[396].setRotationPoint(33.5F, -16.5F, -9.75F);
 
-		drgcomboModel[397].addBox(0F, 0F, 0F, 1, 1, 1, 0F); // Box 420
-		drgcomboModel[397].setRotationPoint(42F, -9F, -9F);
+		drgcomboModel[397].addShapeBox(0F, 0F, 0F, 12, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 433
+		drgcomboModel[397].setRotationPoint(21.5F, -12F, -9.75F);
 
-		drgcomboModel[398].addBox(0F, 0F, 0F, 1, 1, 1, 0F); // Box 421
-		drgcomboModel[398].setRotationPoint(35.6F, -12F, -9F);
+		drgcomboModel[398].addShapeBox(0F, 0F, 0F, 1, 5, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 434
+		drgcomboModel[398].setRotationPoint(29.5F, -16.5F, -9.75F);
 
-		drgcomboModel[399].addBox(0F, 0F, 0F, 1, 1, 1, 0F); // Box 422
-		drgcomboModel[399].setRotationPoint(39F, -9F, -9F);
-		drgcomboModel[399].rotateAngleY = 0.36651914F;
+		drgcomboModel[399].addShapeBox(0F, 0F, 0F, 13, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 435
+		drgcomboModel[399].setRotationPoint(21F, -17.5F, -9.75F);
 
-		drgcomboModel[400].addBox(0F, 0F, 0F, 1, 1, 1, 0F); // Box 423
-		drgcomboModel[400].setRotationPoint(39F, -10F, -9F);
+		drgcomboModel[400].addShapeBox(0F, 0F, 0F, 1, 5, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 436
+		drgcomboModel[400].setRotationPoint(25F, -16.5F, -9.75F);
 
-		drgcomboModel[401].addBox(0F, 0F, 0F, 1, 2, 1, 0F); // Box 424
-		drgcomboModel[401].setRotationPoint(42F, -13F, -9F);
+		drgcomboModel[401].addShapeBox(0F, 0F, 0F, 1, 18, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 437
+		drgcomboModel[401].setRotationPoint(21F, -16.5F, -9.75F);
 
-		drgcomboModel[402].addBox(0F, 0F, 0F, 1, 1, 1, 0F); // Box 425
-		drgcomboModel[402].setRotationPoint(39.5F, -14.5F, -9F);
+		drgcomboModel[402].addShapeBox(0F, 0F, 0F, 13, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 438
+		drgcomboModel[402].setRotationPoint(21F, 1F, -9.75F);
 
-		drgcomboModel[403].addBox(0F, 0F, 0F, 0, 2, 2, 0F); // Box 426
-		drgcomboModel[403].setRotationPoint(42F, -15.25F, -7F);
-		drgcomboModel[403].rotateAngleY = -2.72271363F;
-		drgcomboModel[403].rotateAngleZ = -0.54105207F;
+		drgcomboModel[403].addShapeBox(0F, 0F, 0F, 1, 8, 1, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, -0.5F, -0.5F); // Box 427
+		drgcomboModel[403].setRotationPoint(-45F, -7.5F, 8F);
 
-		drgcomboModel[404].addBox(0F, 0F, 0F, 0, 2, 2, 0F); // Box 427
-		drgcomboModel[404].setRotationPoint(42F, -15.5F, -7F);
-		drgcomboModel[404].rotateAngleY = -3.14159265F;
+		drgcomboModel[404].addShapeBox(0F, 0F, 0F, 1, 8, 1, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, -0.5F, -0.5F); // Box 428
+		drgcomboModel[404].setRotationPoint(-45F, -7.5F, -8.5F);
 
-		drgcomboModel[405].addBox(0F, 0F, 0F, 4, 1, 5, 0F); // Box 428
-		drgcomboModel[405].setRotationPoint(35F, -4F, 4F);
+		drgcomboModel[405].addShapeBox(0F, 0F, 0F, 1, 8, 1, 0F, 0F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, 0F, -0.5F); // Box 429
+		drgcomboModel[405].setRotationPoint(46.5F, -7.5F, -8.5F);
 
-		drgcomboModel[406].addBox(0F, 0F, 0F, 5, 5, 4, 0F); // Box 429
-		drgcomboModel[406].setRotationPoint(14F, -11F, 5F);
+		drgcomboModel[406].addShapeBox(0F, 0F, 0F, 1, 8, 1, 0F, 0F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, 0F, -0.5F); // Box 430
+		drgcomboModel[406].setRotationPoint(46.5F, -7.5F, 8F);
 
-		drgcomboModel[407].addShapeBox(0F, 0F, 0F, 1, 9, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 430
-		drgcomboModel[407].setRotationPoint(17.5F, -20F, 8F);
+		drgcomboModel[407].addShapeBox(0F, 0F, 0F, 1, 8, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F); // Box 431
+		drgcomboModel[407].setRotationPoint(20F, -7.5F, 10.5F);
 
-		drgcomboModel[408].addShapeBox(0F, 0F, 0F, 12, 13, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 431
-		drgcomboModel[408].setRotationPoint(21.5F, -11.5F, -9.75F);
+		drgcomboModel[408].addShapeBox(0F, 0F, 0F, 1, 8, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F); // Box 432
+		drgcomboModel[408].setRotationPoint(34.5F, -7.5F, 10.5F);
 
-		drgcomboModel[409].addShapeBox(0F, 0F, 0F, 1, 18, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 432
-		drgcomboModel[409].setRotationPoint(33.5F, -16.5F, -9.75F);
+		drgcomboModel[409].addShapeBox(0F, 0F, 0F, 1, 8, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 433
+		drgcomboModel[409].setRotationPoint(20F, -7.5F, -11F);
 
-		drgcomboModel[410].addShapeBox(0F, 0F, 0F, 12, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 433
-		drgcomboModel[410].setRotationPoint(21.5F, -12F, -9.75F);
+		drgcomboModel[410].addShapeBox(0F, 0F, 0F, 1, 8, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 434
+		drgcomboModel[410].setRotationPoint(34.5F, -7.5F, -11F);
 
-		drgcomboModel[411].addShapeBox(0F, 0F, 0F, 1, 5, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 434
-		drgcomboModel[411].setRotationPoint(29.5F, -16.5F, -9.75F);
+		drgcomboModel[411].addShapeBox(0F, 0F, 0F, 1, 8, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 435
+		drgcomboModel[411].setRotationPoint(-38F, -7.5F, -11F);
 
-		drgcomboModel[412].addShapeBox(0F, 0F, 0F, 13, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 435
-		drgcomboModel[412].setRotationPoint(21F, -17.5F, -9.75F);
+		drgcomboModel[412].addShapeBox(0F, 0F, 0F, 1, 8, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F); // Box 436
+		drgcomboModel[412].setRotationPoint(-38F, -7.5F, 10.5F);
 
-		drgcomboModel[413].addShapeBox(0F, 0F, 0F, 1, 5, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 436
-		drgcomboModel[413].setRotationPoint(25F, -16.5F, -9.75F);
+		drgcomboModel[413].addBox(0F, 0F, 0F, 0, 2, 2, 0F); // Box 437
+		drgcomboModel[413].setRotationPoint(35F, -5.75F, 6F);
+		drgcomboModel[413].rotateAngleY = -3.14159265F;
+		drgcomboModel[413].rotateAngleZ = -0.54105207F;
 
-		drgcomboModel[414].addShapeBox(0F, 0F, 0F, 1, 18, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 437
-		drgcomboModel[414].setRotationPoint(21F, -16.5F, -9.75F);
+		drgcomboModel[414].addBox(0F, 0F, 0F, 2, 2, 2, 0F); // Box 438
+		drgcomboModel[414].setRotationPoint(36.5F, -6F, 4F);
+		drgcomboModel[414].rotateAngleY = 0.27925268F;
 
-		drgcomboModel[415].addShapeBox(0F, 0F, 0F, 13, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 438
-		drgcomboModel[415].setRotationPoint(21F, 1F, -9.75F);
+		drgcomboModel[415].addBox(0F, 0F, 0F, 2, 0, 3, 0F); // Box 440
+		drgcomboModel[415].setRotationPoint(36F, -8.02F, 5F);
+		drgcomboModel[415].rotateAngleY = 0.36651914F;
 
-		drgcomboModel[416].addShapeBox(0F, 0F, 0F, 1, 8, 1, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, -0.5F, -0.5F); // Box 427
-		drgcomboModel[416].setRotationPoint(-44.5F, -7.5F, 8F);
+		drgcomboModel[416].addShapeBox(0F, 0F, 0F, 2, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 440
+		drgcomboModel[416].setRotationPoint(14F, -16F, -8.5F);
 
-		drgcomboModel[417].addShapeBox(0F, 0F, 0F, 1, 8, 1, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, -0.5F, -0.5F); // Box 428
-		drgcomboModel[417].setRotationPoint(-44.5F, -7.5F, -8.5F);
+		drgcomboModel[417].addShapeBox(0F, 0F, 0F, 2, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 441
+		drgcomboModel[417].setRotationPoint(14F, -16F, -4.5F);
 
-		drgcomboModel[418].addShapeBox(0F, 0F, 0F, 1, 8, 1, 0F, 0F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, 0F, -0.5F); // Box 429
-		drgcomboModel[418].setRotationPoint(46F, -7.5F, -8.5F);
+		drgcomboModel[418].addShapeBox(0F, 0F, 0F, 1, 1, 6, 0F, -0.5F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F); // Box 442
+		drgcomboModel[418].setRotationPoint(15F, -16.5F, -9F);
 
-		drgcomboModel[419].addShapeBox(0F, 0F, 0F, 1, 8, 1, 0F, 0F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, 0F, -0.5F); // Box 430
-		drgcomboModel[419].setRotationPoint(46F, -7.5F, 8F);
+		drgcomboModel[419].addShapeBox(0F, 0F, 0F, 1, 1, 6, 0F, -0.5F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F); // Box 443
+		drgcomboModel[419].setRotationPoint(14F, -16.5F, -9F);
 
-		drgcomboModel[420].addShapeBox(0F, 0F, 0F, 1, 8, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F); // Box 431
-		drgcomboModel[420].setRotationPoint(20F, -7.5F, 10F);
+		drgcomboModel[420].addShapeBox(0F, 0F, 0F, 1, 1, 6, 0F, -0.5F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F); // Box 444
+		drgcomboModel[420].setRotationPoint(14F, -16.5F, 3.5F);
 
-		drgcomboModel[421].addShapeBox(0F, 0F, 0F, 1, 8, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F); // Box 432
-		drgcomboModel[421].setRotationPoint(34.5F, -7.5F, 10F);
+		drgcomboModel[421].addShapeBox(0F, 0F, 0F, 1, 1, 6, 0F, -0.5F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F); // Box 445
+		drgcomboModel[421].setRotationPoint(15F, -16.5F, 3.5F);
 
-		drgcomboModel[422].addShapeBox(0F, 0F, 0F, 1, 8, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 433
-		drgcomboModel[422].setRotationPoint(20F, -7.5F, -10.5F);
+		drgcomboModel[422].addShapeBox(0F, 0F, 0F, 2, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 446
+		drgcomboModel[422].setRotationPoint(14F, -16F, 4F);
 
-		drgcomboModel[423].addShapeBox(0F, 0F, 0F, 1, 8, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 434
-		drgcomboModel[423].setRotationPoint(34.5F, -7.5F, -10.5F);
+		drgcomboModel[423].addShapeBox(0F, 0F, 0F, 2, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 447
+		drgcomboModel[423].setRotationPoint(14F, -16F, 8F);
 
-		drgcomboModel[424].addShapeBox(0F, 0F, 0F, 1, 8, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 435
-		drgcomboModel[424].setRotationPoint(-38F, -7.5F, -10.5F);
+		drgcomboModel[424].addShapeBox(0F, 0F, 0F, 1, 1, 3, 0F, -0.5F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F); // Box 452
+		drgcomboModel[424].setRotationPoint(34.5F, -14.5F, 6.5F);
 
-		drgcomboModel[425].addShapeBox(0F, 0F, 0F, 1, 8, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F); // Box 436
-		drgcomboModel[425].setRotationPoint(-38F, -7.5F, 10F);
+		drgcomboModel[425].addShapeBox(0F, 0F, 0F, 1, 1, 3, 0F, -0.5F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F); // Box 453
+		drgcomboModel[425].setRotationPoint(36.5F, -14.5F, 6.5F);
 
-		drgcomboModel[426].addBox(0F, 0F, 0F, 0, 2, 2, 0F); // Box 437
-		drgcomboModel[426].setRotationPoint(35F, -5.75F, 6F);
-		drgcomboModel[426].rotateAngleY = -3.14159265F;
-		drgcomboModel[426].rotateAngleZ = -0.54105207F;
+		drgcomboModel[426].addShapeBox(0F, 0F, 0F, 4, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 455
+		drgcomboModel[426].setRotationPoint(34.5F, -15F, 6.5F);
 
-		drgcomboModel[427].addBox(0F, 0F, 0F, 2, 2, 2, 0F); // Box 438
-		drgcomboModel[427].setRotationPoint(36.5F, -6F, 4F);
-		drgcomboModel[427].rotateAngleY = 0.27925268F;
+		drgcomboModel[427].addShapeBox(0F, 0F, 0F, 4, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 457
+		drgcomboModel[427].setRotationPoint(34.5F, -15F, 7.5F);
 
-		drgcomboModel[428].addBox(0F, 0F, 0F, 2, 0, 3, 0F); // Box 440
-		drgcomboModel[428].setRotationPoint(36F, -8.02F, 5F);
-		drgcomboModel[428].rotateAngleY = 0.36651914F;
+		drgcomboModel[428].addShapeBox(0F, 0F, 0F, 4, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 458
+		drgcomboModel[428].setRotationPoint(34.5F, -15F, 8.5F);
 
-		drgcomboModel[429].addShapeBox(0F, 0F, 0F, 2, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 440
-		drgcomboModel[429].setRotationPoint(14F, -16F, -8.5F);
+		drgcomboModel[429].addShapeBox(0F, 0F, 0F, 3, 1, 3, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, -1F, -0.5F, 0F, -1F); // Box 427
+		drgcomboModel[429].setRotationPoint(-34.5F, -23.5F, -1F);
 
-		drgcomboModel[430].addShapeBox(0F, 0F, 0F, 2, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 441
-		drgcomboModel[430].setRotationPoint(14F, -16F, -4.5F);
+		drgcomboModel[430].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 432
+		drgcomboModel[430].setRotationPoint(-33.25F, -24F, 0F);
 
-		drgcomboModel[431].addShapeBox(0F, 0F, 0F, 1, 1, 6, 0F, -0.5F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F); // Box 442
-		drgcomboModel[431].setRotationPoint(15F, -16.5F, -9F);
+		drgcomboModel[431].addShapeBox(0F, 0F, 0F, 3, 1, 3, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, -1F, -0.5F, 0F, -1F); // Box 453
+		drgcomboModel[431].setRotationPoint(-17.5F, -23.5F, -1F);
 
-		drgcomboModel[432].addShapeBox(0F, 0F, 0F, 1, 1, 6, 0F, -0.5F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F); // Box 443
-		drgcomboModel[432].setRotationPoint(14F, -16.5F, -9F);
+		drgcomboModel[432].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 454
+		drgcomboModel[432].setRotationPoint(-16.25F, -24F, 0F);
 
-		drgcomboModel[433].addShapeBox(0F, 0F, 0F, 1, 1, 6, 0F, -0.5F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F); // Box 444
-		drgcomboModel[433].setRotationPoint(14F, -16.5F, 3.5F);
+		drgcomboModel[433].addShapeBox(0F, 0F, 0F, 3, 1, 3, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, -1F, -0.5F, 0F, -1F); // Box 455
+		drgcomboModel[433].setRotationPoint(-0.5F, -23.5F, -1F);
 
-		drgcomboModel[434].addShapeBox(0F, 0F, 0F, 1, 1, 6, 0F, -0.5F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F); // Box 445
-		drgcomboModel[434].setRotationPoint(15F, -16.5F, 3.5F);
+		drgcomboModel[434].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 456
+		drgcomboModel[434].setRotationPoint(0.75F, -24F, 0F);
 
-		drgcomboModel[435].addShapeBox(0F, 0F, 0F, 2, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 446
-		drgcomboModel[435].setRotationPoint(14F, -16F, 4F);
+		drgcomboModel[435].addShapeBox(0F, 0F, 0F, 3, 1, 3, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, -1F, -0.5F, 0F, -1F); // Box 457
+		drgcomboModel[435].setRotationPoint(16.5F, -23.5F, -1F);
 
-		drgcomboModel[436].addShapeBox(0F, 0F, 0F, 2, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 447
-		drgcomboModel[436].setRotationPoint(14F, -16F, 8F);
+		drgcomboModel[436].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 458
+		drgcomboModel[436].setRotationPoint(17.75F, -24F, 0F);
 
-		drgcomboModel[437].addShapeBox(0F, 0F, 0F, 1, 1, 3, 0F, -0.5F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F); // Box 452
-		drgcomboModel[437].setRotationPoint(34.5F, -14.5F, 6.5F);
+		drgcomboModel[437].addShapeBox(0F, 0F, 0F, 3, 1, 3, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, -1F, -0.5F, 0F, -1F); // Box 459
+		drgcomboModel[437].setRotationPoint(33.5F, -23.5F, -1F);
 
-		drgcomboModel[438].addShapeBox(0F, 0F, 0F, 1, 1, 3, 0F, -0.5F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F); // Box 453
-		drgcomboModel[438].setRotationPoint(36.5F, -14.5F, 6.5F);
+		drgcomboModel[438].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 460
+		drgcomboModel[438].setRotationPoint(34.75F, -24F, 0F);
 
-		drgcomboModel[439].addShapeBox(0F, 0F, 0F, 4, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 455
-		drgcomboModel[439].setRotationPoint(34.5F, -15F, 6.5F);
+		drgcomboModel[439].addBox(0F, 0F, 0F, 2, 2, 2, 0F); // Box 463
+		drgcomboModel[439].setRotationPoint(35F, -16.5F, 7F);
+		drgcomboModel[439].rotateAngleY = -0.27925268F;
 
-		drgcomboModel[440].addShapeBox(0F, 0F, 0F, 4, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 457
-		drgcomboModel[440].setRotationPoint(34.5F, -15F, 7.5F);
+		drgcomboModel[440].addBox(0F, 0F, 0F, 2, 2, 2, 0F); // Box 464
+		drgcomboModel[440].setRotationPoint(14F, -18F, 6F);
+		drgcomboModel[440].rotateAngleY = -0.27925268F;
 
-		drgcomboModel[441].addShapeBox(0F, 0F, 0F, 4, 1, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 458
-		drgcomboModel[441].setRotationPoint(34.5F, -15F, 8.5F);
+		drgcomboModel[441].addBox(0F, 0F, 0F, 2, 2, 2, 0F); // Box 465
+		drgcomboModel[441].setRotationPoint(14F, -18F, -7F);
+		drgcomboModel[441].rotateAngleY = 0.19198622F;
 
-		drgcomboModel[442].addShapeBox(0F, 0F, 0F, 3, 1, 3, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, -1F, -0.5F, 0F, -1F); // Box 427
-		drgcomboModel[442].setRotationPoint(-34.5F, -23.5F, -1F);
+		drgcomboModel[442].addBox(0F, 0F, 0F, 2, 0, 3, 0F); // Box 466
+		drgcomboModel[442].setRotationPoint(38F, -8.02F, -8F);
+		drgcomboModel[442].rotateAngleY = 0.36651914F;
 
-		drgcomboModel[443].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 432
-		drgcomboModel[443].setRotationPoint(-33.25F, -24F, 0F);
+		drgcomboModel[443].addBox(0F, 0F, 0F, 2, 2, 2, 0F); // Box 467
+		drgcomboModel[443].setRotationPoint(36.5F, 0F, 4F);
+		drgcomboModel[443].rotateAngleY = 0.4712389F;
 
-		drgcomboModel[444].addShapeBox(0F, 0F, 0F, 3, 1, 3, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, -1F, -0.5F, 0F, -1F); // Box 453
-		drgcomboModel[444].setRotationPoint(-17.5F, -23.5F, -1F);
+		drgcomboModel[444].addBox(0F, 0F, 0F, 5, 5, 5, 0F); // Box 468
+		drgcomboModel[444].setRotationPoint(37.5F, -4F, -9F);
+		drgcomboModel[444].rotateAngleY = 0.27925268F;
 
-		drgcomboModel[445].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 454
-		drgcomboModel[445].setRotationPoint(-16.25F, -24F, 0F);
+		drgcomboModel[445].addShapeBox(0F, 0.5F, -0.5F, 1, 1, 6, 0F, 0F, -0.5F, -1F, -0.5F, -0.5F, -1F, -0.5F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -1F, -0.5F, 0F, -1F, -0.5F, 0F, 0F, 0F, 0F, 0F); // Box 469
+		drgcomboModel[445].setRotationPoint(45.25F, -17.5F, -3F);
 
-		drgcomboModel[446].addShapeBox(0F, 0F, 0F, 3, 1, 3, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, -1F, -0.5F, 0F, -1F); // Box 455
-		drgcomboModel[446].setRotationPoint(-0.5F, -23.5F, -1F);
+		drgcomboModel[446].addShapeBox(0F, 1.5F, 0.5F, 1, 7, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 471
+		drgcomboModel[446].setRotationPoint(45.25F, -17.5F, -3F);
 
-		drgcomboModel[447].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 456
-		drgcomboModel[447].setRotationPoint(0.75F, -24F, 0F);
+		drgcomboModel[447].addShapeBox(0F, 1.5F, 5F, 1, 7, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 472
+		drgcomboModel[447].setRotationPoint(45.25F, -17.5F, -3F);
 
-		drgcomboModel[448].addShapeBox(0F, 0F, 0F, 3, 1, 3, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, -1F, -0.5F, 0F, -1F); // Box 457
-		drgcomboModel[448].setRotationPoint(16.5F, -23.5F, -1F);
+		drgcomboModel[448].addShapeBox(0F, 0F, 0F, 1, 7, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 473
+		drgcomboModel[448].setRotationPoint(13.25F, -16F, -2.5F);
 
-		drgcomboModel[449].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 458
-		drgcomboModel[449].setRotationPoint(17.75F, -24F, 0F);
+		drgcomboModel[449].addShapeBox(0F, 0F, 0F, 1, 7, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 474
+		drgcomboModel[449].setRotationPoint(13.25F, -16F, 2F);
 
-		drgcomboModel[450].addShapeBox(0F, 0F, 0F, 3, 1, 3, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, -1F, -0.5F, 0F, -1F); // Box 459
-		drgcomboModel[450].setRotationPoint(33.5F, -23.5F, -1F);
+		drgcomboModel[450].addShapeBox(0F, 0F, 0F, 1, 1, 6, 0F, 0F, -0.5F, -1F, -0.5F, -0.5F, -1F, -0.5F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -1F, -0.5F, 0F, -1F, -0.5F, 0F, 0F, 0F, 0F, 0F); // Box 475
+		drgcomboModel[450].setRotationPoint(13.25F, -17F, -3.5F);
 
-		drgcomboModel[451].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 460
-		drgcomboModel[451].setRotationPoint(34.75F, -24F, 0F);
+		drgcomboModel[451].addBox(0F, 0F, 0F, 9, 1, 12, 0F); // Box 478
+		drgcomboModel[451].setRotationPoint(30F, 7F, -6F);
 
-		drgcomboModel[452].addBox(0F, 0F, 0F, 2, 2, 2, 0F); // Box 463
-		drgcomboModel[452].setRotationPoint(35F, -16.5F, 7F);
-		drgcomboModel[452].rotateAngleY = -0.27925268F;
+		drgcomboModel[452].addBox(0F, 0F, 0F, 5, 2, 6, 0F); // Box 479
+		drgcomboModel[452].setRotationPoint(32F, 3F, -3F);
 
-		drgcomboModel[453].addBox(0F, 0F, 0F, 2, 2, 2, 0F); // Box 464
-		drgcomboModel[453].setRotationPoint(14F, -18F, 6F);
-		drgcomboModel[453].rotateAngleY = -0.27925268F;
+		drgcomboModel[453].addBox(0F, 0F, 0F, 13, 1, 12, 0F); // Box 480
+		drgcomboModel[453].setRotationPoint(28F, 5F, -6F);
 
-		drgcomboModel[454].addBox(0F, 0F, 0F, 2, 2, 2, 0F); // Box 465
-		drgcomboModel[454].setRotationPoint(14F, -18F, -7F);
-		drgcomboModel[454].rotateAngleY = 0.19198622F;
+		drgcomboModel[454].addShapeBox(0F, 0F, 0F, 1, 1, 12, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F); // Box 481
+		drgcomboModel[454].setRotationPoint(40F, 6F, -6F);
 
-		drgcomboModel[455].addBox(0F, 0F, 0F, 2, 0, 3, 0F); // Box 466
-		drgcomboModel[455].setRotationPoint(38F, -8.02F, -8F);
-		drgcomboModel[455].rotateAngleY = 0.36651914F;
+		drgcomboModel[455].addShapeBox(0F, 0F, 0F, 1, 1, 12, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 482
+		drgcomboModel[455].setRotationPoint(39F, 6F, -6F);
 
-		drgcomboModel[456].addBox(0F, 0F, 0F, 2, 2, 2, 0F); // Box 467
-		drgcomboModel[456].setRotationPoint(36.5F, 0F, 4F);
-		drgcomboModel[456].rotateAngleY = 0.4712389F;
+		drgcomboModel[456].addShapeBox(0F, 0F, 0F, 1, 1, 12, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F); // Box 483
+		drgcomboModel[456].setRotationPoint(39F, 7F, -6F);
 
-		drgcomboModel[457].addBox(0F, 0F, 0F, 5, 5, 5, 0F); // Box 468
-		drgcomboModel[457].setRotationPoint(37.5F, -4F, -9F);
-		drgcomboModel[457].rotateAngleY = 0.27925268F;
+		drgcomboModel[457].addBox(0F, 0F, 0F, 2, 1, 12, 0F); // Box 484
+		drgcomboModel[457].setRotationPoint(36F, 6F, -6F);
 
-		drgcomboModel[458].addShapeBox(0F, 0F, 0F, 1, 1, 6, 0F, 0F, -0.5F, -1F, -0.5F, -0.5F, -1F, -0.5F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -1F, -0.5F, 0F, -1F, -0.5F, 0F, 0F, 0F, 0F, 0F); // Box 469
-		drgcomboModel[458].setRotationPoint(45.25F, -17F, -3.5F);
+		drgcomboModel[458].addBox(0F, 0F, 0F, 2, 1, 12, 0F); // Box 485
+		drgcomboModel[458].setRotationPoint(31F, 6F, -6F);
 
-		drgcomboModel[459].addShapeBox(0F, 0F, 0F, 1, 7, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 471
-		drgcomboModel[459].setRotationPoint(45.25F, -16F, -2.5F);
+		drgcomboModel[459].addShapeBox(0F, 0F, 0F, 1, 1, 12, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 486
+		drgcomboModel[459].setRotationPoint(29F, 6F, -6F);
 
-		drgcomboModel[460].addShapeBox(0F, 0F, 0F, 1, 7, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 472
-		drgcomboModel[460].setRotationPoint(45.25F, -16F, 2F);
+		drgcomboModel[460].addShapeBox(0F, 0F, 0F, 1, 1, 12, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F); // Box 487
+		drgcomboModel[460].setRotationPoint(29F, 7F, -6F);
 
-		drgcomboModel[461].addShapeBox(0F, 0F, 0F, 1, 7, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 473
-		drgcomboModel[461].setRotationPoint(13.25F, -16F, -2.5F);
+		drgcomboModel[461].addShapeBox(0F, 0F, 0F, 1, 1, 12, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F); // Box 488
+		drgcomboModel[461].setRotationPoint(28F, 6F, -6F);
 
-		drgcomboModel[462].addShapeBox(0F, 0F, 0F, 1, 7, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 474
-		drgcomboModel[462].setRotationPoint(13.25F, -16F, 2F);
+		drgcomboModel[462].addShapeBox(0F, 0F, 0F, 1, 2, 1, 0F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F); // Box 515
+		drgcomboModel[462].setRotationPoint(-56F, 4F, 0.5F);
 
-		drgcomboModel[463].addShapeBox(0F, 0F, 0F, 1, 1, 6, 0F, 0F, -0.5F, -1F, -0.5F, -0.5F, -1F, -0.5F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -1F, -0.5F, 0F, -1F, -0.5F, 0F, 0F, 0F, 0F, 0F); // Box 475
-		drgcomboModel[463].setRotationPoint(13.25F, -17F, -3.5F);
+		drgcomboModel[463].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, 0F, -0.3F, -0.5F, 0F, -0.3F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, -0.4F, -0.5F, -0.5F, -0.4F, -0.5F, -0.5F, -0.1F, 0F, -0.5F, -0.1F); // Box 517
+		drgcomboModel[463].setRotationPoint(-56F, 6F, 0.6F);
 
-		drgcomboModel[464].addShapeBox(0F, 0F, 0F, 1, 7, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 476
-		drgcomboModel[464].setRotationPoint(-43.75F, -16F, -2.5F);
+		drgcomboModel[464].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, -0.5F, -0.5F, -0.5F, 1F, -0.5F, -0.5F, 1F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 1F, 0F, -0.5F, 1F, 0F, 0F, 0F, 0F, 0F); // Box 520
+		drgcomboModel[464].setRotationPoint(-56F, 3F, 0.5F);
 
-		drgcomboModel[465].addShapeBox(0F, 0F, 0F, 1, 7, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 477
-		drgcomboModel[465].setRotationPoint(-43.75F, -16F, 2F);
+		drgcomboModel[465].addShapeBox(0F, 1F, 0F, 1, 1, 14, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F); // Box 525
+		drgcomboModel[465].setRotationPoint(-55.5F, 2F, -7F);
 
-		drgcomboModel[466].addShapeBox(0F, 0F, 0F, 1, 1, 6, 0F, 0F, -0.5F, -1F, -0.5F, -0.5F, -1F, -0.5F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -1F, -0.5F, 0F, -1F, -0.5F, 0F, 0F, 0F, 0F, 0F); // Box 478
-		drgcomboModel[466].setRotationPoint(-43.75F, -17F, -3.5F);
+		drgcomboModel[466].addShapeBox(0F, 1F, 0F, 1, 1, 1, 0F, 0F, -1F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, 0F, 0F, -1F, 0F, -1.5F, 0F, -0.5F, 1F, -0.5F, -0.5F, 1F, -0.5F, 0F, -1.5F, 0F, 0F); // Box 527
+		drgcomboModel[466].setRotationPoint(-55.5F, 1F, 6F);
 
-		drgcomboModel[467].addBox(0F, 0F, 0F, 9, 1, 12, 0F); // Box 478
-		drgcomboModel[467].setRotationPoint(30F, 7F, -6F);
+		drgcomboModel[467].addShapeBox(0F, 1F, 0F, 1, 1, 1, 0F, 0F, -1F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, 0F, 0F, -1F, 0F, -1.5F, 0F, -0.5F, 1F, -0.5F, -0.5F, 1F, -0.5F, 0F, -1.5F, 0F, 0F); // Box 528
+		drgcomboModel[467].setRotationPoint(-55.5F, 1F, -7.5F);
 
-		drgcomboModel[468].addBox(0F, 0F, 0F, 5, 2, 6, 0F); // Box 479
-		drgcomboModel[468].setRotationPoint(32F, 3F, -3F);
+		drgcomboModel[468].addShapeBox(0F, 1F, 0F, 1, 1, 1, 0F, 0F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F); // Box 529
+		drgcomboModel[468].setRotationPoint(-55.5F, 2F, -0.75F);
 
-		drgcomboModel[469].addBox(0F, 0F, 0F, 13, 1, 12, 0F); // Box 480
-		drgcomboModel[469].setRotationPoint(28F, 5F, -6F);
+		drgcomboModel[469].addShapeBox(0F, 1F, 0F, 1, 1, 1, 0F, 0.5F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, 0F, 0.5F, -0.5F, 0F, 0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0.5F, 0F, 0F); // Box 530
+		drgcomboModel[469].setRotationPoint(-54.5F, 1.5F, -0.75F);
 
-		drgcomboModel[470].addShapeBox(0F, 0F, 0F, 1, 1, 12, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F); // Box 481
-		drgcomboModel[470].setRotationPoint(40F, 6F, -6F);
+		drgcomboModel[470].addShapeBox(0F, 1F, 0F, 1, 1, 14, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F); // Box 477
+		drgcomboModel[470].setRotationPoint(57F, 2F, -7F);
 
-		drgcomboModel[471].addShapeBox(0F, 0F, 0F, 1, 1, 12, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 482
-		drgcomboModel[471].setRotationPoint(39F, 6F, -6F);
+		drgcomboModel[471].addShapeBox(0F, 1F, 0F, 1, 1, 1, 0F, -0.5F, -0.5F, -0.5F, 0F, -1F, -0.5F, 0F, -1F, 0F, -0.5F, -0.5F, 0F, 1F, -0.5F, -0.5F, -1.5F, 0F, -0.5F, -1.5F, 0F, 0F, 1F, -0.5F, 0F); // Box 478
+		drgcomboModel[471].setRotationPoint(56.5F, 1F, 6F);
 
-		drgcomboModel[472].addShapeBox(0F, 0F, 0F, 1, 1, 12, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F); // Box 483
-		drgcomboModel[472].setRotationPoint(39F, 7F, -6F);
+		drgcomboModel[472].addShapeBox(0F, 1F, 0F, 1, 1, 1, 0F, 0.5F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, 0F, 0.5F, -0.5F, 0F, 0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0.5F, 0F, 0F); // Box 479
+		drgcomboModel[472].setRotationPoint(56.5F, 1.5F, -0.75F);
 
-		drgcomboModel[473].addBox(0F, 0F, 0F, 2, 1, 12, 0F); // Box 484
-		drgcomboModel[473].setRotationPoint(36F, 6F, -6F);
+		drgcomboModel[473].addShapeBox(0F, 1F, 0F, 1, 1, 1, 0F, 0F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F); // Box 480
+		drgcomboModel[473].setRotationPoint(57F, 2F, -0.75F);
 
-		drgcomboModel[474].addBox(0F, 0F, 0F, 2, 1, 12, 0F); // Box 485
-		drgcomboModel[474].setRotationPoint(31F, 6F, -6F);
+		drgcomboModel[474].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 1F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, -0.5F, 0F, 1F, -0.5F, 0F, 1F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 1F, 0F, 0F); // Box 481
+		drgcomboModel[474].setRotationPoint(57F, 3F, 0.5F);
 
-		drgcomboModel[475].addShapeBox(0F, 0F, 0F, 1, 1, 12, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 486
-		drgcomboModel[475].setRotationPoint(29F, 6F, -6F);
+		drgcomboModel[475].addShapeBox(0F, 0F, 0F, 1, 2, 1, 0F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, 0F, 0F); // Box 482
+		drgcomboModel[475].setRotationPoint(57.5F, 4F, 0.5F);
 
-		drgcomboModel[476].addShapeBox(0F, 0F, 0F, 1, 1, 12, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F); // Box 487
-		drgcomboModel[476].setRotationPoint(29F, 7F, -6F);
+		drgcomboModel[476].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, 0F, -0.3F, -0.5F, 0F, -0.3F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, -0.4F, -0.5F, -0.5F, -0.4F, -0.5F, -0.5F, -0.1F, 0F, -0.5F, -0.1F); // Box 483
+		drgcomboModel[476].setRotationPoint(57.5F, 6F, 0.6F);
 
-		drgcomboModel[477].addShapeBox(0F, 0F, 0F, 1, 1, 12, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F); // Box 488
-		drgcomboModel[477].setRotationPoint(28F, 6F, -6F);
+		drgcomboModel[477].addShapeBox(0F, 1F, 0F, 1, 1, 1, 0F, -0.5F, -0.5F, -0.5F, 0F, -1F, -0.5F, 0F, -1F, 0F, -0.5F, -0.5F, 0F, 1F, -0.5F, -0.5F, -1.5F, 0F, -0.5F, -1.5F, 0F, 0F, 1F, -0.5F, 0F); // Box 484
+		drgcomboModel[477].setRotationPoint(56.5F, 1F, -7.5F);
+
+		drgcomboModel[478].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 478
+		drgcomboModel[478].setRotationPoint(-38F, -8F, -10.5F);
+
+		drgcomboModel[479].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 479
+		drgcomboModel[479].setRotationPoint(-38F, -0.5F, -10.5F);
+
+		drgcomboModel[480].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 480
+		drgcomboModel[480].setRotationPoint(20F, -0.5F, -10.5F);
+
+		drgcomboModel[481].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 481
+		drgcomboModel[481].setRotationPoint(20F, -8F, -10.5F);
+
+		drgcomboModel[482].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 482
+		drgcomboModel[482].setRotationPoint(34.5F, -0.5F, -10.5F);
+
+		drgcomboModel[483].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 483
+		drgcomboModel[483].setRotationPoint(34.5F, -8F, -10.5F);
+
+		drgcomboModel[484].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 484
+		drgcomboModel[484].setRotationPoint(34.5F, -0.5F, 10F);
+
+		drgcomboModel[485].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 485
+		drgcomboModel[485].setRotationPoint(34.5F, -8F, 10F);
+
+		drgcomboModel[486].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 486
+		drgcomboModel[486].setRotationPoint(20F, -8F, 10F);
+
+		drgcomboModel[487].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 487
+		drgcomboModel[487].setRotationPoint(20F, -0.5F, 10F);
+
+		drgcomboModel[488].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 488
+		drgcomboModel[488].setRotationPoint(-38F, -0.5F, 10F);
+
+		drgcomboModel[489].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 489
+		drgcomboModel[489].setRotationPoint(-38F, -8F, 10F);
+
+		drgcomboModel[490].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 490
+		drgcomboModel[490].setRotationPoint(-44.5F, -0.5F, 8F);
+
+		drgcomboModel[491].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 491
+		drgcomboModel[491].setRotationPoint(-44.5F, -8F, 8F);
+
+		drgcomboModel[492].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 492
+		drgcomboModel[492].setRotationPoint(-44.5F, -0.5F, -8.5F);
+
+		drgcomboModel[493].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 493
+		drgcomboModel[493].setRotationPoint(-44.5F, -8F, -8.5F);
+
+		drgcomboModel[494].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 494
+		drgcomboModel[494].setRotationPoint(46F, -0.5F, -8.5F);
+
+		drgcomboModel[495].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 495
+		drgcomboModel[495].setRotationPoint(46F, -8F, -8.5F);
+
+		drgcomboModel[496].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 496
+		drgcomboModel[496].setRotationPoint(46F, -0.5F, 8F);
+
+		drgcomboModel[497].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 497
+		drgcomboModel[497].setRotationPoint(46F, -8F, 8F);
+
+		drgcomboModel[498].addBox(0F, 0F, 0F, 8, 0, 14, 0F); // Box 476
+		drgcomboModel[498].setRotationPoint(-17F, -1.5F, -5F);
+
+		drgcomboModel[499].addBox(-0.5F, 0F, 0F, 0, 8, 14, 0F); // Box 477
+		drgcomboModel[499].setRotationPoint(-7.25F, -9F, -5F);
+		drgcomboModel[499].rotateAngleZ = -0.17453293F;
+
+		drgcomboModel[500].addShapeBox(0F, 6F, 0F, 1, 1, 14, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F); // Box 489
+		drgcomboModel[500].setRotationPoint(-8.25F, -9.5F, -4F);
+		drgcomboModel[500].rotateAngleZ = -0.17453293F;
+
+		drgcomboModel[501].addShapeBox(0F, 0F, 0F, 1, 1, 14, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -5.5F, 0F, 0F, -5.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -5.5F, 0F, 0F, -5.5F); // Box 490
+		drgcomboModel[501].setRotationPoint(-17F, -2F, -4F);
+		drgcomboModel[501].rotateAngleY = -1.57079633F;
+
+		drgcomboModel[502].addShapeBox(0F, 0F, 0F, 1, 1, 14, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -6.5F, 0F, 0F, -6.4F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -6.5F, 0F, 0F, -6.4F); // Box 491
+		drgcomboModel[502].setRotationPoint(-8.25F, -9.5F, -4F);
+		drgcomboModel[502].rotateAngleX = -1.57079633F;
+		drgcomboModel[502].rotateAngleZ = -0.17453293F;
+
+		drgcomboModel[503].addShapeBox(0F, 0F, 0F, 1, 1, 14, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F); // Box 493
+		drgcomboModel[503].setRotationPoint(-14F, -2F, -4F);
+
+		drgcomboModel[504].addShapeBox(0F, 0F, 0F, 1, 1, 14, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F); // Box 494
+		drgcomboModel[504].setRotationPoint(-12.5F, -2F, -4F);
+
+		drgcomboModel[505].addShapeBox(0F, 0F, 0F, 1, 1, 14, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F); // Box 495
+		drgcomboModel[505].setRotationPoint(-11F, -2F, -4F);
+
+		drgcomboModel[506].addShapeBox(0F, 0F, 0F, 1, 1, 14, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F); // Box 496
+		drgcomboModel[506].setRotationPoint(-9.5F, -2F, -4F);
+
+		drgcomboModel[507].addShapeBox(0F, 4.5F, 0F, 1, 1, 14, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F); // Box 497
+		drgcomboModel[507].setRotationPoint(-8.25F, -9.5F, -4F);
+		drgcomboModel[507].rotateAngleZ = -0.17453293F;
+
+		drgcomboModel[508].addShapeBox(0F, 3F, 0F, 1, 1, 14, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F); // Box 498
+		drgcomboModel[508].setRotationPoint(-8.25F, -9.5F, -4F);
+		drgcomboModel[508].rotateAngleZ = -0.17453293F;
+
+		drgcomboModel[509].addShapeBox(0F, 1.5F, 0F, 1, 1, 14, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F); // Box 499
+		drgcomboModel[509].setRotationPoint(-8.25F, -9.5F, -4F);
+		drgcomboModel[509].rotateAngleZ = -0.17453293F;
+
+		drgcomboModel[510].addShapeBox(0F, 0F, 0F, 1, 1, 14, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F); // Box 500
+		drgcomboModel[510].setRotationPoint(-8.25F, -9.5F, -4F);
+		drgcomboModel[510].rotateAngleZ = -0.17453293F;
+
+		drgcomboModel[511].addShapeBox(0F, 0F, 0F, 1, 1, 14, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -6.5F, 0F, 0F, -6.4F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -6.5F, 0F, 0F, -6.4F); // Box 501
+		drgcomboModel[511].setRotationPoint(-8.25F, -9.5F, 9F);
+		drgcomboModel[511].rotateAngleX = -1.57079633F;
+		drgcomboModel[511].rotateAngleZ = -0.17453293F;
+
+		drgcomboModel[512].addShapeBox(0F, 0F, 0F, 1, 1, 14, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -5.5F, 0F, 0F, -5.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -5.5F, 0F, 0F, -5.5F); // Box 502
+		drgcomboModel[512].setRotationPoint(-17F, -2F, 9F);
+		drgcomboModel[512].rotateAngleY = -1.57079633F;
+
+		drgcomboModel[513].addShapeBox(0F, 0F, 0F, 1, 1, 14, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F); // Box 507
+		drgcomboModel[513].setRotationPoint(-15.5F, -2F, -4F);
+
+		drgcomboModel[514].addShapeBox(0F, 0F, 0F, 1, 1, 14, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F); // Box 508
+		drgcomboModel[514].setRotationPoint(-17F, -2F, -4F);
+
+		drgcomboModel[515].addShapeBox(0F, 0F, 0F, 1, 1, 14, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F); // Box 514
+		drgcomboModel[515].setRotationPoint(-35F, -2F, -4F);
+
+		drgcomboModel[516].addBox(0F, 0F, 0F, 8, 0, 14, 0F); // Box 515
+		drgcomboModel[516].setRotationPoint(-35F, -1.5F, -5F);
+
+		drgcomboModel[517].addShapeBox(0F, 0F, 0F, 1, 1, 14, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F); // Box 516
+		drgcomboModel[517].setRotationPoint(-33.5F, -2F, -4F);
+
+		drgcomboModel[518].addShapeBox(0F, 0F, 0F, 1, 1, 14, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F); // Box 517
+		drgcomboModel[518].setRotationPoint(-32F, -2F, -4F);
+
+		drgcomboModel[519].addShapeBox(0F, 0F, 0F, 1, 1, 14, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F); // Box 518
+		drgcomboModel[519].setRotationPoint(-30.5F, -2F, -4F);
+
+		drgcomboModel[520].addShapeBox(0F, 0F, 0F, 1, 1, 14, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F); // Box 519
+		drgcomboModel[520].setRotationPoint(-29F, -2F, -4F);
+
+		drgcomboModel[521].addShapeBox(0F, 0F, 0F, 1, 1, 14, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F); // Box 520
+		drgcomboModel[521].setRotationPoint(-27.5F, -2F, -4F);
+
+		drgcomboModel[522].addShapeBox(0F, 0F, 0F, 1, 1, 14, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -5.5F, 0F, 0F, -5.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -5.5F, 0F, 0F, -5.5F); // Box 521
+		drgcomboModel[522].setRotationPoint(-35F, -2F, -4F);
+		drgcomboModel[522].rotateAngleY = -1.57079633F;
+
+		drgcomboModel[523].addShapeBox(0F, 6F, 0F, 1, 1, 14, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F); // Box 522
+		drgcomboModel[523].setRotationPoint(-26.25F, -9.5F, -4F);
+		drgcomboModel[523].rotateAngleZ = -0.17453293F;
+
+		drgcomboModel[524].addBox(-0.5F, 0F, 0F, 0, 8, 14, 0F); // Box 523
+		drgcomboModel[524].setRotationPoint(-25.25F, -9F, -5F);
+		drgcomboModel[524].rotateAngleZ = -0.17453293F;
+
+		drgcomboModel[525].addShapeBox(0F, 4.5F, 0F, 1, 1, 14, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F); // Box 524
+		drgcomboModel[525].setRotationPoint(-26.25F, -9.5F, -4F);
+		drgcomboModel[525].rotateAngleZ = -0.17453293F;
+
+		drgcomboModel[526].addShapeBox(0F, 0F, 0F, 1, 1, 14, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -6.5F, 0F, 0F, -6.4F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -6.5F, 0F, 0F, -6.4F); // Box 525
+		drgcomboModel[526].setRotationPoint(-26.25F, -9.5F, -4F);
+		drgcomboModel[526].rotateAngleX = -1.57079633F;
+		drgcomboModel[526].rotateAngleZ = -0.17453293F;
+
+		drgcomboModel[527].addShapeBox(0F, 0F, 0F, 1, 1, 14, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -6.5F, 0F, 0F, -6.4F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -6.5F, 0F, 0F, -6.4F); // Box 526
+		drgcomboModel[527].setRotationPoint(-26.25F, -9.5F, 9F);
+		drgcomboModel[527].rotateAngleX = -1.57079633F;
+		drgcomboModel[527].rotateAngleZ = -0.17453293F;
+
+		drgcomboModel[528].addShapeBox(0F, 3F, 0F, 1, 1, 14, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F); // Box 527
+		drgcomboModel[528].setRotationPoint(-26.25F, -9.5F, -4F);
+		drgcomboModel[528].rotateAngleZ = -0.17453293F;
+
+		drgcomboModel[529].addShapeBox(0F, 1.5F, 0F, 1, 1, 14, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F); // Box 528
+		drgcomboModel[529].setRotationPoint(-26.25F, -9.5F, -4F);
+		drgcomboModel[529].rotateAngleZ = -0.17453293F;
+
+		drgcomboModel[530].addShapeBox(0F, 0F, 0F, 1, 1, 14, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F); // Box 529
+		drgcomboModel[530].setRotationPoint(-26.25F, -9.5F, -4F);
+		drgcomboModel[530].rotateAngleZ = -0.17453293F;
+
+		drgcomboModel[531].addShapeBox(0F, 0F, 0F, 1, 1, 14, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -5.5F, 0F, 0F, -5.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -5.5F, 0F, 0F, -5.5F); // Box 530
+		drgcomboModel[531].setRotationPoint(-35F, -2F, 9F);
+		drgcomboModel[531].rotateAngleY = -1.57079633F;
+
+		drgcomboModel[532].addShapeBox(0F, 0F, 0F, 1, 1, 14, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F); // Box 548
+		drgcomboModel[532].setRotationPoint(7F, -2F, -4F);
+
+		drgcomboModel[533].addShapeBox(0F, 0F, 0F, 1, 1, 14, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F); // Box 549
+		drgcomboModel[533].setRotationPoint(8.5F, -2F, -4F);
+
+		drgcomboModel[534].addShapeBox(0F, 0F, 0F, 1, 1, 14, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F); // Box 550
+		drgcomboModel[534].setRotationPoint(5.5F, -2F, -4F);
+
+		drgcomboModel[535].addShapeBox(0F, 0F, 0F, 1, 1, 14, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F); // Box 551
+		drgcomboModel[535].setRotationPoint(4F, -2F, -4F);
+
+		drgcomboModel[536].addShapeBox(0F, 0F, 0F, 1, 1, 14, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F); // Box 552
+		drgcomboModel[536].setRotationPoint(2.5F, -2F, -4F);
+
+		drgcomboModel[537].addShapeBox(0F, 0F, 0F, 1, 1, 14, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F); // Box 553
+		drgcomboModel[537].setRotationPoint(1F, -2F, -4F);
+
+		drgcomboModel[538].addShapeBox(0F, 0F, 0F, 1, 1, 14, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -5.5F, 0F, 0F, -5.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -5.5F, 0F, 0F, -5.5F); // Box 554
+		drgcomboModel[538].setRotationPoint(1F, -2F, -4F);
+		drgcomboModel[538].rotateAngleY = -1.57079633F;
+
+		drgcomboModel[539].addBox(0F, 0F, 0F, 8, 0, 14, 0F); // Box 555
+		drgcomboModel[539].setRotationPoint(1F, -1.5F, -5F);
+
+		drgcomboModel[540].addShapeBox(0F, 6F, 0F, 1, 1, 14, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F); // Box 556
+		drgcomboModel[540].setRotationPoint(9.75F, -9.5F, -4F);
+		drgcomboModel[540].rotateAngleZ = -0.17453293F;
+
+		drgcomboModel[541].addShapeBox(0F, 4.5F, 0F, 1, 1, 14, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F); // Box 557
+		drgcomboModel[541].setRotationPoint(9.75F, -9.5F, -4F);
+		drgcomboModel[541].rotateAngleZ = -0.17453293F;
+
+		drgcomboModel[542].addShapeBox(0F, 3F, 0F, 1, 1, 14, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F); // Box 558
+		drgcomboModel[542].setRotationPoint(9.75F, -9.5F, -4F);
+		drgcomboModel[542].rotateAngleZ = -0.17453293F;
+
+		drgcomboModel[543].addShapeBox(0F, 1.5F, 0F, 1, 1, 14, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F); // Box 559
+		drgcomboModel[543].setRotationPoint(9.75F, -9.5F, -4F);
+		drgcomboModel[543].rotateAngleZ = -0.17453293F;
+
+		drgcomboModel[544].addShapeBox(0F, 0F, 0F, 1, 1, 14, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F); // Box 560
+		drgcomboModel[544].setRotationPoint(9.75F, -9.5F, -4F);
+		drgcomboModel[544].rotateAngleZ = -0.17453293F;
+
+		drgcomboModel[545].addShapeBox(0F, 0F, 0F, 1, 1, 14, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -6.5F, 0F, 0F, -6.4F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -6.5F, 0F, 0F, -6.4F); // Box 561
+		drgcomboModel[545].setRotationPoint(9.75F, -9.5F, -4F);
+		drgcomboModel[545].rotateAngleX = -1.57079633F;
+		drgcomboModel[545].rotateAngleZ = -0.17453293F;
+
+		drgcomboModel[546].addShapeBox(0F, 0F, 0F, 1, 1, 14, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -5.5F, 0F, 0F, -5.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -5.5F, 0F, 0F, -5.5F); // Box 562
+		drgcomboModel[546].setRotationPoint(1F, -2F, 9F);
+		drgcomboModel[546].rotateAngleY = -1.57079633F;
+
+		drgcomboModel[547].addShapeBox(0F, 0F, 0F, 1, 1, 14, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -6.5F, 0F, 0F, -6.4F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -6.5F, 0F, 0F, -6.4F); // Box 563
+		drgcomboModel[547].setRotationPoint(9.75F, -9.5F, 9F);
+		drgcomboModel[547].rotateAngleX = -1.57079633F;
+		drgcomboModel[547].rotateAngleZ = -0.17453293F;
+
+		drgcomboModel[548].addBox(-0.5F, 0F, 0F, 0, 8, 14, 0F); // Box 564
+		drgcomboModel[548].setRotationPoint(10.75F, -9F, -5F);
+		drgcomboModel[548].rotateAngleZ = -0.17453293F;
+
+		drgcomboModel[549].addShapeBox(-0.25F, 9F, 4F, 1, 1, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 559
+		drgcomboModel[549].setRotationPoint(45.25F, -17F, -3F);
+
+		drgcomboModel[550].addShapeBox(0F, 0.5F, 0F, 1, 18, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 560
+		drgcomboModel[550].setRotationPoint(-43.75F, -17F, -3F);
+
+		drgcomboModel[551].addShapeBox(0F, 0F, -1F, 1, 1, 7, 0F, 0F, -0.5F, -1F, -0.5F, -0.5F, -1F, -0.5F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -1F, -0.5F, 0F, -1F, -0.5F, 0F, 0F, 0F, 0F, 0F); // Box 561
+		drgcomboModel[551].setRotationPoint(-43.75F, -17.5F, -3F);
+
+		drgcomboModel[552].addShapeBox(0F, 0.5F, -0.5F, 1, 1, 6, 0F, 0F, -0.5F, -1F, -0.5F, -0.5F, -1F, -0.5F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -1F, -0.5F, 0F, -1F, -0.5F, 0F, 0F, 0F, 0F, 0F); // Box 562
+		drgcomboModel[552].setRotationPoint(-43.75F, -17.5F, -3F);
+
+		drgcomboModel[553].addShapeBox(0F, 1.5F, 0.5F, 1, 7, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 563
+		drgcomboModel[553].setRotationPoint(-43.75F, -17.5F, -3F);
+
+		drgcomboModel[554].addShapeBox(0F, 1.5F, 5F, 1, 7, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 564
+		drgcomboModel[554].setRotationPoint(-43.75F, -17.5F, -3F);
+
+		drgcomboModel[555].addShapeBox(0F, 1F, 5.5F, 1, 18, 1, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 565
+		drgcomboModel[555].setRotationPoint(-43.75F, -17.5F, -3F);
+
+		drgcomboModel[556].addShapeBox(-0.25F, 9F, 4F, 1, 1, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 566
+		drgcomboModel[556].setRotationPoint(-43.75F, -17F, -3F);
+
+		drgcomboModel[557].addShapeBox(0F, 18.5F, -1F, 1, 1, 7, 0F, 0F, -0.5F, -1F, -0.5F, -0.5F, -1F, -0.5F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -1F, -0.5F, 0F, -1F, -0.5F, 0F, 0F, 0F, 0F, 0F); // Box 567
+		drgcomboModel[557].setRotationPoint(-43.75F, -17.5F, -3F);
+
+		drgcomboModel[558].addShapeBox(0F, 8F, -0.5F, 1, 11, 6, 0F, 0F, -0.5F, -1F, -0.5F, -0.5F, -1F, -0.5F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -1F, -0.5F, 0F, -1F, -0.5F, 0F, 0F, 0F, 0F, 0F); // Box 568
+		drgcomboModel[558].setRotationPoint(-43.75F, -17.5F, -3F);
 
 		fixRotation(drgcomboModel, false, true, true);
+
 	}
 
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
-		for(int i = 0; i < 478; i++)
+		for(int i = 0; i < 559; i++)
 		{
 			drgcomboModel[i].render(f5);
 		}
