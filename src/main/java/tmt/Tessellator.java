@@ -51,7 +51,7 @@ public class Tessellator{
 			drawing = true; dm = i;
 			in = ht = false;
 			reset();
-			GL11.glColor4f(255, 255, 255, 255);
+			GL11.glColor4f(1f, 1f, 1f, 1f);
 		}
 	}
 

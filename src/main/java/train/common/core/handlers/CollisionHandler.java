@@ -347,6 +347,9 @@ public class CollisionHandler {
 
 		if (d2 <= 0.7D && !(entityOne instanceof EntityPlayer)) {
 			d2 = MathHelper.sqrt_double(d2);
+			if(d2==0){
+				d2=0.1;
+			}
 			d /= d2;
 			d1 /= d2;
 			double d3 = 1.0D / d2;
@@ -384,7 +387,7 @@ public class CollisionHandler {
 						if ((f1 * 3.6) < 35) {//if speed is smaller than 35km/h then don't do any damage but push entities
 							if (f7 == 0) {
 
-								movingobjectposition.entityHit.addVelocity(d / 1.5, 0.0D, d1 / 1.5);
+								movingobjectposition.entityHit.addVelocity(d * 0.666666667, 0.0D, d1 * 0.666666667);
 
 								entity.velocityChanged = true;
 								return;

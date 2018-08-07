@@ -373,13 +373,13 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				if (riddenByEntity != null) {
 					riddenByEntity.mountEntity(this);
 				}
+				ServerLogger.deleteWagon(this);
 				/**
 				 * Destroy IPassenger since they don't extend Freight or
 				 * Locomotive and don't have a proper attackEntityFrom() method
 				 */
 				if (this instanceof IPassenger) {
 					this.setDead();
-					ServerLogger.deleteWagon(this);
 					dropCartAsItem(((EntityPlayer)damagesource.getEntity()).capabilities.isCreativeMode);
 				}
 			}

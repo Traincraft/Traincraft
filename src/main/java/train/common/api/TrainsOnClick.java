@@ -9,7 +9,6 @@ import train.common.library.ItemIDs;
 
 public class TrainsOnClick {
 	public boolean onClickWithStake(AbstractTrains train, ItemStack itemstack, EntityPlayer playerEntity, World world) {
-		System.out.println(train.getTrainOwner());
 		if (itemstack != null && itemstack.getItem() == ItemIDs.stake.item && !world.isRemote &&
 				(Minecraft.getMinecraft().isSingleplayer() || train.getTrainOwner().equals(playerEntity.getDisplayName()) || train.getTrainOwner().equals("") || train.getTrainOwner()==null)) {
 			if (playerEntity.isSneaking() && train instanceof Locomotive) {

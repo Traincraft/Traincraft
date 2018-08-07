@@ -150,7 +150,7 @@ public enum RenderEnum {
 			add(new double[] { 0.5D, 1.6D, 0.0D });
 		}
 	}, "", null, 0, false),
-	loco44tonner(EntityLocoDiesel44TonSwitcher.class, new ModelSwitcher44Ton(), "loco_44tonswitcher", false, new float[] { 0.0F, 0.15F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "smoke", 4, new ArrayList<double[]>() {
+	loco44tonner(EntityLocoDiesel44TonSwitcher.class, new ModelSwitcher44Ton(), "loco_44tonswitcher", false, new float[] { -2.75F, -0.4F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "smoke", 4, new ArrayList<double[]>() {
 		{
 			add(new double[] { 0.6D, 1.5D, 0.0D });
 			add(new double[] { 2D, 1.5D, 0.0D });

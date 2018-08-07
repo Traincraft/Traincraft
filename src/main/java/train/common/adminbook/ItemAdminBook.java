@@ -88,7 +88,7 @@ public class ItemAdminBook extends Item {
     class compareFile implements Comparator<File> {
         // Overriding the compare method to sort the age
         public int compare(File d, File d1) {
-            return d.getName().compareTo(d1.getName());
+            return d.getName().toLowerCase().compareTo(d1.getName().toLowerCase());
         }
     }
 
