@@ -13,7 +13,6 @@ import net.minecraft.entity.Entity;
 import tmt.ModelBase;
 import tmt.ModelRendererTurbo;
 
-
 public class ModelLocoC41 extends ModelBase
 {
 	int textureX = 512;
@@ -21,7 +20,7 @@ public class ModelLocoC41 extends ModelBase
 
 	public ModelLocoC41()
 	{
-		lococ41Model = new ModelRendererTurbo[577];
+		lococ41Model = new ModelRendererTurbo[575];
 		lococ41Model[0] = new ModelRendererTurbo(this, 97, 1, textureX, textureY); // Box 6
 		lococ41Model[1] = new ModelRendererTurbo(this, 146, 1, textureX, textureY); // Box 10
 		lococ41Model[2] = new ModelRendererTurbo(this, 162, 1, textureX, textureY); // Box 11
@@ -596,9 +595,7 @@ public class ModelLocoC41 extends ModelBase
 		lococ41Model[571] = new ModelRendererTurbo(this, 385, 41, textureX, textureY); // Box 571
 		lococ41Model[572] = new ModelRendererTurbo(this, 385, 41, textureX, textureY); // Box 572
 		lococ41Model[573] = new ModelRendererTurbo(this, 353, 33, textureX, textureY); // Box 573
-		lococ41Model[574] = new ModelRendererTurbo(this, 103, 39, textureX, textureY); // Box 574
-		lococ41Model[575] = new ModelRendererTurbo(this, 103, 39, textureX, textureY); // Box 575
-		lococ41Model[576] = new ModelRendererTurbo(this, 176, 120, textureX, textureY); // Box 576
+		lococ41Model[574] = new ModelRendererTurbo(this, 176, 120, textureX, textureY); // Box 576
 
 		lococ41Model[0].addBox(0F, 0F, 0F, 11, 11, 0, 0F); // Box 6
 		lococ41Model[0].setRotationPoint(38F, -12F, -5.01F);
@@ -2410,23 +2407,16 @@ public class ModelLocoC41 extends ModelBase
 		lococ41Model[573].setRotationPoint(-6.5F, -22F, -0.5F);
 		lococ41Model[573].rotateAngleZ = -1.57079633F;
 
-		lococ41Model[574].addBox(0F, 0F, 0F, 9, 4, 0, 0F); // Box 574
-		lococ41Model[574].setRotationPoint(51.5F, -20F, -10.01F);
+		lococ41Model[574].addShapeBox(0F, -1F, 0F, 1, 1, 1, 0F, 0F, -0.2F, -0.2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.2F, -0.2F); // Box 576
+		lococ41Model[574].setRotationPoint(-7.3F, -20F, -5.3F);
 
-		lococ41Model[575].addBox(0F, 0F, 0F, 9, 4, 0, 0F); // Box 575
-		lococ41Model[575].setRotationPoint(51.5F, -20F, 10.01F);
-
-		lococ41Model[576].addShapeBox(0F, -1F, 0F, 1, 1, 1, 0F, 0F, -0.2F, -0.2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.2F, -0.2F); // Box 576
-		lococ41Model[576].setRotationPoint(-7.3F, -20F, -5.3F);
-
-        fixRotation(lococ41Model, false, true, true);
-
+		fixRotation(lococ41Model, false, true, true);
 	}
 
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
-		for(int i = 0; i < 577; i++)
+		for(int i = 0; i < 575; i++)
 		{
 			lococ41Model[i].render(f5);
 		}

@@ -113,7 +113,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 	public int overheatLevel;
 	public int linkageNumber;
 
-	protected Side side;
+	public Side side;
 	@SideOnly(Side.CLIENT)
 	private SoundHandler theSoundManager;
 	@SideOnly(Side.CLIENT)

@@ -20,7 +20,7 @@ public class ModelSouthern1102 extends ModelBase
 
 	public ModelSouthern1102()
 	{
-		southern1102Model = new ModelRendererTurbo[501];
+		southern1102Model = new ModelRendererTurbo[499];
 		southern1102Model[0] = new ModelRendererTurbo(this, 97, 1, textureX, textureY); // Box 6
 		southern1102Model[1] = new ModelRendererTurbo(this, 146, 1, textureX, textureY); // Box 10
 		southern1102Model[2] = new ModelRendererTurbo(this, 162, 1, textureX, textureY); // Box 11
@@ -228,8 +228,8 @@ public class ModelSouthern1102 extends ModelBase
 		southern1102Model[204] = new ModelRendererTurbo(this, 182, 112, textureX, textureY); // Box 401
 		southern1102Model[205] = new ModelRendererTurbo(this, 182, 112, textureX, textureY); // Box 402
 		southern1102Model[206] = new ModelRendererTurbo(this, 182, 112, textureX, textureY); // Box 403
-		southern1102Model[207] = new ModelRendererTurbo(this, 385, 41, textureX, textureY); // Box 404
-		southern1102Model[208] = new ModelRendererTurbo(this, 385, 41, textureX, textureY); // Box 405
+		southern1102Model[207] = new ModelRendererTurbo(this, 448, 80, textureX, textureY); // Box 404
+		southern1102Model[208] = new ModelRendererTurbo(this, 448, 80, textureX, textureY); // Box 405
 		southern1102Model[209] = new ModelRendererTurbo(this, 176, 120, textureX, textureY); // Box 409
 		southern1102Model[210] = new ModelRendererTurbo(this, 176, 120, textureX, textureY); // Box 411
 		southern1102Model[211] = new ModelRendererTurbo(this, 97, 1, textureX, textureY); // Box 402
@@ -499,29 +499,27 @@ public class ModelSouthern1102 extends ModelBase
 		southern1102Model[475] = new ModelRendererTurbo(this, 171, 98, textureX, textureY); // Box 475
 		southern1102Model[476] = new ModelRendererTurbo(this, 171, 98, textureX, textureY); // Box 476
 		southern1102Model[477] = new ModelRendererTurbo(this, 171, 98, textureX, textureY); // Box 477
-		southern1102Model[478] = new ModelRendererTurbo(this, 385, 41, textureX, textureY); // Box 558
-		southern1102Model[479] = new ModelRendererTurbo(this, 385, 41, textureX, textureY); // Box 559
-		southern1102Model[480] = new ModelRendererTurbo(this, 385, 41, textureX, textureY); // Box 560
-		southern1102Model[481] = new ModelRendererTurbo(this, 385, 41, textureX, textureY); // Box 561
-		southern1102Model[482] = new ModelRendererTurbo(this, 385, 41, textureX, textureY); // Box 562
-		southern1102Model[483] = new ModelRendererTurbo(this, 385, 41, textureX, textureY); // Box 563
-		southern1102Model[484] = new ModelRendererTurbo(this, 385, 41, textureX, textureY); // Box 564
-		southern1102Model[485] = new ModelRendererTurbo(this, 385, 41, textureX, textureY); // Box 565
-		southern1102Model[486] = new ModelRendererTurbo(this, 385, 41, textureX, textureY); // Box 570
-		southern1102Model[487] = new ModelRendererTurbo(this, 385, 41, textureX, textureY); // Box 571
-		southern1102Model[488] = new ModelRendererTurbo(this, 385, 41, textureX, textureY); // Box 478
-		southern1102Model[489] = new ModelRendererTurbo(this, 385, 41, textureX, textureY); // Box 479
-		southern1102Model[490] = new ModelRendererTurbo(this, 385, 41, textureX, textureY); // Box 480
-		southern1102Model[491] = new ModelRendererTurbo(this, 385, 41, textureX, textureY); // Box 481
-		southern1102Model[492] = new ModelRendererTurbo(this, 385, 41, textureX, textureY); // Box 482
-		southern1102Model[493] = new ModelRendererTurbo(this, 385, 41, textureX, textureY); // Box 483
-		southern1102Model[494] = new ModelRendererTurbo(this, 385, 41, textureX, textureY); // Box 484
-		southern1102Model[495] = new ModelRendererTurbo(this, 385, 41, textureX, textureY); // Box 485
-		southern1102Model[496] = new ModelRendererTurbo(this, 385, 41, textureX, textureY); // Box 486
-		southern1102Model[497] = new ModelRendererTurbo(this, 385, 41, textureX, textureY); // Box 487
+		southern1102Model[478] = new ModelRendererTurbo(this, 451, 85, textureX, textureY); // Box 558
+		southern1102Model[479] = new ModelRendererTurbo(this, 451, 85, textureX, textureY); // Box 559
+		southern1102Model[480] = new ModelRendererTurbo(this, 451, 85, textureX, textureY); // Box 560
+		southern1102Model[481] = new ModelRendererTurbo(this, 451, 85, textureX, textureY); // Box 561
+		southern1102Model[482] = new ModelRendererTurbo(this, 451, 85, textureX, textureY); // Box 562
+		southern1102Model[483] = new ModelRendererTurbo(this, 451, 85, textureX, textureY); // Box 563
+		southern1102Model[484] = new ModelRendererTurbo(this, 451, 85, textureX, textureY); // Box 564
+		southern1102Model[485] = new ModelRendererTurbo(this, 451, 85, textureX, textureY); // Box 565
+		southern1102Model[486] = new ModelRendererTurbo(this, 451, 85, textureX, textureY); // Box 570
+		southern1102Model[487] = new ModelRendererTurbo(this, 451, 85, textureX, textureY); // Box 571
+		southern1102Model[488] = new ModelRendererTurbo(this, 451, 85, textureX, textureY); // Box 478
+		southern1102Model[489] = new ModelRendererTurbo(this, 451, 85, textureX, textureY); // Box 479
+		southern1102Model[490] = new ModelRendererTurbo(this, 451, 85, textureX, textureY); // Box 480
+		southern1102Model[491] = new ModelRendererTurbo(this, 451, 85, textureX, textureY); // Box 481
+		southern1102Model[492] = new ModelRendererTurbo(this, 451, 85, textureX, textureY); // Box 482
+		southern1102Model[493] = new ModelRendererTurbo(this, 451, 85, textureX, textureY); // Box 483
+		southern1102Model[494] = new ModelRendererTurbo(this, 451, 85, textureX, textureY); // Box 484
+		southern1102Model[495] = new ModelRendererTurbo(this, 451, 85, textureX, textureY); // Box 485
+		southern1102Model[496] = new ModelRendererTurbo(this, 451, 85, textureX, textureY); // Box 486
+		southern1102Model[497] = new ModelRendererTurbo(this, 451, 85, textureX, textureY); // Box 487
 		southern1102Model[498] = new ModelRendererTurbo(this, 353, 33, textureX, textureY); // Box 498
-		southern1102Model[499] = new ModelRendererTurbo(this, 16, 100, textureX, textureY); // Box 499
-		southern1102Model[500] = new ModelRendererTurbo(this, 16, 100, textureX, textureY); // Box 500
 
 		southern1102Model[0].addBox(0F, 0F, 0F, 11, 11, 0, 0F); // Box 6
 		southern1102Model[0].setRotationPoint(40F, -12F, -5.01F);
@@ -2104,20 +2102,14 @@ public class ModelSouthern1102 extends ModelBase
 		southern1102Model[498].setRotationPoint(-6.5F, -21F, -0.5F);
 		southern1102Model[498].rotateAngleZ = -1.57079633F;
 
-		southern1102Model[499].addBox(0F, 0F, 0F, 11, 4, 0, 0F); // Box 499
-		southern1102Model[499].setRotationPoint(50.5F, -20.25F, -10.01F);
-
-		southern1102Model[500].addBox(0F, 0F, 0F, 11, 4, 0, 0F); // Box 500
-		southern1102Model[500].setRotationPoint(50.5F, -20.25F, 10.01F);
 
 		fixRotation(southern1102Model, false, true, true);
-
 	}
 
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
-		for(int i = 0; i < 501; i++)
+		for(int i = 0; i < 499; i++)
 		{
 			southern1102Model[i].render(f5);
 		}

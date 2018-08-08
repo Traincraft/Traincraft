@@ -20,7 +20,7 @@ public class ModelSwitcher44Ton extends ModelBase
 
 	public ModelSwitcher44Ton()
 	{
-		switcher44tonModel = new ModelRendererTurbo[334];
+		switcher44tonModel = new ModelRendererTurbo[326];
 		switcher44tonModel[0] = new ModelRendererTurbo(this, 1, 1, textureX, textureY); // Box 4
 		switcher44tonModel[1] = new ModelRendererTurbo(this, 41, 1, textureX, textureY); // Box 5
 		switcher44tonModel[2] = new ModelRendererTurbo(this, 1, 1, textureX, textureY); // Box 12
@@ -347,14 +347,6 @@ public class ModelSwitcher44Ton extends ModelBase
 		switcher44tonModel[323] = new ModelRendererTurbo(this, 117, 101, textureX, textureY); // Box 322
 		switcher44tonModel[324] = new ModelRendererTurbo(this, 265, 65, textureX, textureY); // Box 326
 		switcher44tonModel[325] = new ModelRendererTurbo(this, 265, 65, textureX, textureY); // Box 327
-		switcher44tonModel[326] = new ModelRendererTurbo(this, 473, 33, textureX, textureY); // Box 326
-		switcher44tonModel[327] = new ModelRendererTurbo(this, 473, 33, textureX, textureY); // Box 327
-		switcher44tonModel[328] = new ModelRendererTurbo(this, 0, 119, textureX, textureY); // Box 328
-		switcher44tonModel[329] = new ModelRendererTurbo(this, 0, 119, textureX, textureY); // Box 329
-		switcher44tonModel[330] = new ModelRendererTurbo(this, 0, 119, textureX, textureY); // Box 330
-		switcher44tonModel[331] = new ModelRendererTurbo(this, 0, 119, textureX, textureY); // Box 331
-		switcher44tonModel[332] = new ModelRendererTurbo(this, 0, 119, textureX, textureY); // Box 332
-		switcher44tonModel[333] = new ModelRendererTurbo(this, 0, 119, textureX, textureY); // Box 333
 
 		switcher44tonModel[0].addBox(0F, 0F, 0F, 2, 2, 16, 0F); // Box 4
 		switcher44tonModel[0].setRotationPoint(-9F, -4F, -8F);
@@ -1348,30 +1340,6 @@ public class ModelSwitcher44Ton extends ModelBase
 		switcher44tonModel[325].addShapeBox(0F, 0F, 0F, 24, 2, 1, 0F, 2F, 0F, 0F, 2F, 0F, 0F, 2F, 0F, 0F, 2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 327
 		switcher44tonModel[325].setRotationPoint(11F, -7F, -11F);
 
-		switcher44tonModel[326].addBox(0F, 0F, 0F, 8, 6, 0, 0F); // Box 326
-		switcher44tonModel[326].setRotationPoint(19F, -18F, 11.01F);
-
-		switcher44tonModel[327].addBox(0F, 0F, 0F, 8, 6, 0, 0F); // Box 327
-		switcher44tonModel[327].setRotationPoint(19F, -18F, -11.01F);
-
-		switcher44tonModel[328].addBox(0F, 0F, 0F, 3, 1, 0, 0F); // Box 328
-		switcher44tonModel[328].setRotationPoint(-8F, -8F, 11.01F);
-
-		switcher44tonModel[329].addBox(0F, 0F, 0F, 3, 1, 0, 0F); // Box 329
-		switcher44tonModel[329].setRotationPoint(8F, -8F, 11.01F);
-
-		switcher44tonModel[330].addBox(0F, 0F, 0F, 3, 1, 0, 0F); // Box 330
-		switcher44tonModel[330].setRotationPoint(51F, -8F, 11.01F);
-
-		switcher44tonModel[331].addBox(0F, 0F, 0F, 3, 1, 0, 0F); // Box 331
-		switcher44tonModel[331].setRotationPoint(51F, -8F, -11.01F);
-
-		switcher44tonModel[332].addBox(0F, 0F, 0F, 3, 1, 0, 0F); // Box 332
-		switcher44tonModel[332].setRotationPoint(-8F, -8F, -11.01F);
-
-		switcher44tonModel[333].addBox(0F, 0F, 0F, 3, 1, 0, 0F); // Box 333
-		switcher44tonModel[333].setRotationPoint(8F, -8F, -11.01F);
-
 
 		fixRotation(switcher44tonModel, false, true, true);
 	}
@@ -1379,7 +1347,7 @@ public class ModelSwitcher44Ton extends ModelBase
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
-		for(int i = 0; i < 334; i++)
+		for(int i = 0; i < 326; i++)
 		{
 			switcher44tonModel[i].render(f5);
 		}

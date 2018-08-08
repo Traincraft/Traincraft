@@ -8,6 +8,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
 import train.common.api.AbstractTrains;
+import train.common.api.EntityRollingStock;
 
 
 public class TraincraftUtil{
@@ -39,29 +40,35 @@ public class TraincraftUtil{
         return world.getBlock(x,y,z) instanceof BlockRailBase;
     }
 
-    private static final float radianF = (float) Math.PI / 180.0f;
-    public static void updateRider(Entity rider, AbstractTrains transport, float pitch, float yaw, double xOffset, double yOffset, double zOffset) {
-        double cos;
-        double sin;
-        double x=0,y=0,z=0;
-        //pitch
-        if (pitch != 0.0) {
-            pitch *= radianF;
-            cos = MathHelper.cos(pitch);
-            sin = MathHelper.sin(pitch);
-
-            x = (xOffset * cos);
-            y = (xOffset * sin);
+    private static final double radian = Math.PI / 180.0;
+    public static void updateRider(Entity rider, EntityRollingStock transport, float p, float yaw, double distance, double yOffset, double zOffset) {
+        double pitchRads = transport.anglePitchClient * radian;
+        float rotationCos1 = (float) Math.cos(Math.toRadians(transport.renderYaw + 90));
+        float rotationSin1 = (float) Math.sin(Math.toRadians((transport.renderYaw + 90)));
+        if (transport.side.isServer()) {
+            rotationCos1 = (float) Math.cos(Math.toRadians(transport.serverRealRotation + 90));
+            rotationSin1 = (float) Math.sin(Math.toRadians((transport.serverRealRotation + 90)));
+            transport.anglePitchClient = transport.serverRealPitch * 60;
         }
-        //yaw
-        if (yaw != 0.0F) {
-            yaw *= radianF;
-            cos = MathHelper.cos(yaw);
-            sin = MathHelper.sin(yaw);
-
-            x = (xOffset * cos) - (zOffset * sin);
-            z = (xOffset * sin) + (zOffset * cos);
+        float pitch = (float) (transport.posY + ((Math.tan(pitchRads) * distance) + transport.getMountedYOffset())
+                + transport.riddenByEntity.getYOffset() + yOffset);
+        float pitch1 = (float) (transport.posY + transport.getMountedYOffset() + transport.riddenByEntity.getYOffset() + yOffset);
+        double bogieX1 = (transport.posX + (rotationCos1 * distance));
+        double bogieZ1 = (transport.posZ + (rotationSin1 * distance));
+        // System.out.println(rotationCos1+" "+rotationSin1);
+        if (transport.anglePitchClient > 20 && rotationCos1 == 1) {
+            bogieX1 -= pitchRads * 2;
+            pitch -= pitchRads * 1.2;
         }
-        rider.setPosition(transport.posX + x, transport.posY + rider.getMountedYOffset() + transport.getMountedYOffset()+yOffset, transport.posZ+z);
+        if (transport.anglePitchClient > 20 && rotationSin1 == 1) {
+            bogieZ1 -= pitchRads * 2;
+            pitch -= pitchRads * 1.2;
+        }
+        if (pitchRads == 0.0) {
+            transport.riddenByEntity.setPosition(bogieX1, pitch1, bogieZ1);
+        }
+        if (pitchRads > -1.01 && pitchRads < 1.01) {
+            transport.riddenByEntity.setPosition(bogieX1, pitch, bogieZ1);
+        }
     }
 }

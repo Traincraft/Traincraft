@@ -53,7 +53,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 	public int clearLinkTimer = 0;
 	//private Set chunks;
 	protected Ticket chunkTicket;
-	protected float renderYaw;
+	public float renderYaw;
 	protected float renderPitch;
 	public TrainHandler train;
 	public List<ChunkCoordIntPair> loadedChunks = new ArrayList<ChunkCoordIntPair>();

@@ -590,8 +590,8 @@ public class ModelTenderC41 extends ModelBase
 		tenderc41Model[140].addShapeBox(0F, 0F, 0F, 1, 2, 1, 0F, -0.5F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -1F, -0.5F, 0F, -1F, -0.5F, 0F, -1F, 0F, -0.5F, -1F, 0F); // Box 142
 		tenderc41Model[140].setRotationPoint(106.5F, -22.5F, 6.5F);
 
-
 		fixRotation(tenderc41Model, false, true, true);
+
 	}
 
 	@Override
