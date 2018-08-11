@@ -149,7 +149,7 @@ public class EntityBUnitDD35 extends LiquidTank implements IFluidHandler {
 				return;
 			}
 			else if (i == cargoItems.length - 1) {
-				dropItem(itemstack1.getItem(), 1);
+				entityDropItem(itemstack1,1);
 				return;
 			}
 		}

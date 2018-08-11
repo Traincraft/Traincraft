@@ -59,7 +59,7 @@ public abstract class DieselTrain extends Locomotive implements IFluidHandler {
 				this.dataWatcher.updateObject(23, theTank.getFluidAmount());
 				fuelTrain = theTank.getFluidAmount();
 				this.dataWatcher.updateObject(4, theTank.getFluid()!=null?theTank.getFluid().getFluidID():0);
-				this.dataWatcher.updateObject(5, theTank.getFluid().getUnlocalizedName());
+				this.dataWatcher.updateObject(5, theTank.getFluid()!=null?theTank.getFluid().getUnlocalizedName():"");
 			}
 			if (isLocoTurnedOn() && theTank.getFluidAmount() >0) {
 				if (theTank.getFluid().amount <= 1) {
@@ -119,7 +119,7 @@ public abstract class DieselTrain extends Locomotive implements IFluidHandler {
 				return;
 			}
 			else if (i == locoInvent.length - 1) {
-				dropItem(itemstack1.getItem(), 1);
+				entityDropItem(itemstack1,1);
 				return;
 			}
 		}

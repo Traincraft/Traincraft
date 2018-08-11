@@ -152,7 +152,7 @@ public abstract class SteamTrain extends Locomotive implements IFluidHandler {
 				}
 			}
 			else if (i == loco.locoInvent.length - 1) {
-				dropItem(itemstack1.getItem(), 1);
+				entityDropItem(itemstack1,1);
 				return;
 			}
 		}

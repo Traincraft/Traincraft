@@ -134,7 +134,7 @@ public abstract class Tender extends Freight implements IFluidHandler {
 				}
 			}
 			else if (i == tender.tenderItems.length - 1) {
-				dropItem(itemstack1.getItem(), 1);
+				entityDropItem(itemstack1,1);
 				return;
 			}
 		}

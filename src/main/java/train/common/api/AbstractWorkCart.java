@@ -332,7 +332,7 @@ public abstract class AbstractWorkCart extends EntityRollingStock implements IIn
 			if(damagesource.getEntity() instanceof EntityPlayer) {
 				for(ItemStack stack : furnaceItemStacks){
 					if (stack != null) {
-						dropItem(stack.getItem(), stack.stackSize);
+						entityDropItem(stack,1);
 					}
 				}
 				dropCartAsItem(((EntityPlayer)damagesource.getEntity()).capabilities.isCreativeMode);
