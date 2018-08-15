@@ -32,7 +32,6 @@ import java.util.List;
 
 public abstract class Locomotive extends EntityRollingStock implements IInventory {
 	public int inventorySize;
-	public double speedDivider = 3.6;
 	protected ItemStack locoInvent[];
 	private int soundPosition = 0;
 	public boolean parkingBrake = false;
@@ -100,7 +99,6 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 	 */
 	public boolean canBePulled = false;
 
-	public HandleMaxAttachedCarts maxAttached = new HandleMaxAttachedCarts();
 
 	public Locomotive(World world) {
 		super(world);
@@ -119,7 +117,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 		dataWatcher.addObject(29, castToString(currentAccelSlowDown));
 		dataWatcher.addObject(30, castToString(currentBrakeSlowDown));
 		dataWatcher.addObject(31, castToString(currentFuelConsumptionChange));
-		dataWatcher.addObject(15, castToString(Math.round((getCustomSpeed() * 3.6))));
+		dataWatcher.addObject(15, Math.round((getCustomSpeed() * 3.6f)));
 		setAccel(0);
 		setBrake(0);
 		this.entityCollisionReduction = 0.99F;
@@ -208,8 +206,16 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 	 * 
 	 * @return double
 	 */
-	public double getMaxSpeed() {
-		if (trainSpec != null) { return trainSpec.getMaxSpeed(); }
+	public float getMaxSpeed() {
+		if (trainSpec != null) {
+			if (currentMassPulled > 1) {
+				float power = (float) currentMassPulled / (((float) trainSpec.getMHP())*0.002f);
+				if (power > 1) {
+					return trainSpec.getMaxSpeed() / (power);
+				}
+			}
+			return trainSpec.getMaxSpeed();
+		}
 		return 50;
 	}
 
@@ -219,8 +225,8 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 	 * 
 	 * @return double
 	 */
-	public double getCustomSpeed() {
-		return getCurrentMaxSpeed() / speedDivider;
+	public float getCustomSpeed() {
+		return getCurrentMaxSpeed() / 3.6f;
 	}
 
 	@Override
@@ -232,6 +238,28 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 	public int getOverheatTime() {
 		if (trainSpec != null) { return trainSpec.getHeatingTime(); }
 		return 0;
+	}
+
+	@Override
+	public void limitSpeedOnTCRail() {
+		maxSpeed = SpeedHandler.handleSpeed(getMaxSpeed(), maxSpeed, this);
+		//System.out.println(maxSpeed);
+		if (this.speedLimiter != 0 && speedWasSet) {
+			//maxSpeed *= this.speedLimiter;
+			adjustSpeed(maxSpeed, speedLimiter);
+		}
+		if (motionX < -maxSpeed) {
+			motionX = -maxSpeed;
+		}
+		if (motionX > maxSpeed) {
+			motionX = maxSpeed;
+		}
+		if (motionZ < -maxSpeed) {
+			motionZ = -maxSpeed;
+		}
+		if (motionZ > maxSpeed) {
+			motionZ = maxSpeed;
+		}
 	}
 
 	/**
@@ -346,7 +374,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 	@Override
 	public void keyHandlerFromPacket(int i) {
 		if (this.getTrainLockedFromPacket()) {
-			if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer
+			if (this.riddenByEntity instanceof EntityPlayer
 					&& !((EntityPlayer) this.riddenByEntity).getDisplayName().toLowerCase()
 							.equals(this.getTrainOwner().toLowerCase())) {
 				return;
@@ -405,8 +433,8 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 		return (this.dataWatcher.getWatchableObjectString(31));
 	}
 
-	public String getCustomSpeedGUI() {
-		return (this.dataWatcher.getWatchableObjectString(15));
+	public Float getCustomSpeedGUI() {
+		return (this.dataWatcher.getWatchableObjectFloat(15));
 	}
 
 	public String getDestinationGUI() {
@@ -422,8 +450,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 		else {
 			speed *= 6;
 		}
-		speed *= 10;
-		speed *= 3.6;
+		speed *= 36;
 		//speed *= 10;// convert in ms
 		//speed *= 6;// applying ratio
 		//speed *= 3.6;// convert in km/h
@@ -504,7 +531,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 								.toLowerCase().equals(this.getTrainOwner().toLowerCase())) {
 							return;
 						}
-						if (riddenByEntity != null && riddenByEntity instanceof EntityPlayer) {
+						if (riddenByEntity instanceof EntityPlayer) {
 							int dir = MathHelper
 									.floor_double((((EntityPlayer) riddenByEntity).rotationYaw * 4F) / 360F + 0.5D) & 3;
 							if (dir == 2){
@@ -540,7 +567,8 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 				}
 			}
 
-			if (updateTicks % 20 == 0) maxAttached.PullPhysic(this);
+
+			if (updateTicks % 20 == 0) HandleMaxAttachedCarts.PullPhysic(this);
 			/**
 			 * Can't use datawatcher here. Locomotives use them all already
 			 * Check inventory The packet never arrives if it is sent when the
@@ -577,7 +605,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 		if (whistleDelay > 0) {
 			whistleDelay--;
 		}
-		if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer) {
+		if (this.riddenByEntity instanceof EntityPlayer) {
 			this.lastRider = ((EntityPlayer) this.riddenByEntity).getDisplayName();
 			this.lastEntityRider = (this.riddenByEntity);
 		}
@@ -662,7 +690,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 					worldObj.createExplosion(this, this.posX, this.posY, this.posZ, 0.5F, false);
 					this.setDead();
 				}
-				if (!worldObj.isRemote && FMLCommonHandler.instance().getMinecraftServerInstance() != null && this.lastEntityRider != null && this.lastEntityRider instanceof EntityPlayer) {
+				if (!worldObj.isRemote && FMLCommonHandler.instance().getMinecraftServerInstance() != null && this.lastEntityRider instanceof EntityPlayer) {
 					FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().sendChatMsg(new ChatComponentText(((EntityPlayer) this.lastEntityRider).getDisplayName() + " blew " + this.getTrainOwner() + "'s locomotive"));
 					FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().sendChatMsg(new ChatComponentText(((EntityPlayer) this.lastEntityRider).getDisplayName() + " blew " + this.getTrainOwner() + "'s locomotive"));
 				}
@@ -683,10 +711,10 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 			dataWatcher.updateObject(29, (castToString((double) (Math.round(currentAccelSlowDown * 1000)) / 1000)));
 			dataWatcher.updateObject(30, (castToString((double) (Math.round(currentBrakeSlowDown * 1000)) / 1000)));
 			dataWatcher.updateObject(31, ("1c/" + castToString((int) (currentFuelConsumptionChange)) + " per tick"));
-			dataWatcher.updateObject(15, castToString((int) (getCustomSpeed() * 3.6)) + " km/h");
+			dataWatcher.updateObject(15, getMaxSpeed());
 			//System.out.println();
 			if (this.worldObj.handleMaterialAcceleration(this.boundingBox.expand(0.0D, -0.2000000059604645D, 0.0D).contract(0.001D, 0.001D, 0.001D), Material.water, this) && this.updateTicks % 4 == 0) {
-				if (!hasDrowned && !worldObj.isRemote && FMLCommonHandler.instance().getMinecraftServerInstance() != null && this.lastEntityRider != null && this.lastEntityRider instanceof EntityPlayer) {
+				if (!hasDrowned && !worldObj.isRemote && FMLCommonHandler.instance().getMinecraftServerInstance() != null && this.lastEntityRider instanceof EntityPlayer) {
 					FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().sendChatMsg(new ChatComponentText(((EntityPlayer) this.lastEntityRider).getDisplayName() + " drowned " + this.getTrainOwner() + "'s locomotive"));
 					FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().sendChatMsg(new ChatComponentText(((EntityPlayer) this.lastEntityRider).getDisplayName() + " drowned " + this.getTrainOwner() + "'s locomotive"));
 				}

@@ -113,7 +113,7 @@ public class GuiLoco2 extends GuiContainer {
 			}
 		}
 		if (guibutton.id == 3) {
-			if (loco.riddenByEntity != null && loco.riddenByEntity instanceof EntityPlayer && ((EntityPlayer) loco.riddenByEntity).getDisplayName().equals(loco.getTrainOwner())) {
+			if (loco.riddenByEntity instanceof EntityPlayer && ((EntityPlayer) loco.riddenByEntity).getDisplayName().equals(loco.getTrainOwner())) {
 				if ((!loco.getTrainLockedFromPacket())) {
 					Traincraft.lockChannel.sendToServer(new PacketSetTrainLockedToClient(true, loco.getEntityId()));
 					loco.locked = true;
@@ -127,7 +127,7 @@ public class GuiLoco2 extends GuiContainer {
 					this.initGui();
 				}
 			}
-			else if (loco.riddenByEntity != null && loco.riddenByEntity instanceof EntityPlayer) {
+			else if (loco.riddenByEntity instanceof EntityPlayer) {
 				((EntityPlayer) loco.riddenByEntity).addChatMessage(new ChatComponentText("You are not the owner"));
 			}
 		}
@@ -312,7 +312,7 @@ public class GuiLoco2 extends GuiContainer {
 		fontRendererObj.drawStringWithShadow("Power: " + loco.getPower() + " Mhp", 1, 80, 0xFFFFFF);
 		fontRendererObj.drawStringWithShadow("State: " + loco.getState(), 1, 90, 0xFFFFFF);
 		fontRendererObj.drawStringWithShadow("Heat level: " + loco.getOverheatLevel(), 1, 100, 0xFFFFFF);
-		fontRendererObj.drawStringWithShadow("Maximum Speed: " + (loco.getCustomSpeedGUI()), 1, 110, 0xFFFFFF);
+		fontRendererObj.drawStringWithShadow("Maximum Speed: " + (loco.getCustomSpeedGUI()) + " km/h", 1, 110, 0xFFFFFF);
 		fontRendererObj.drawStringWithShadow("Destination: " + (loco.getDestinationGUI()), 1, 120, 0xFFFFFF);
 	}
 }

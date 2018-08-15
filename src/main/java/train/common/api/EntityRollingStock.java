@@ -67,8 +67,8 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 	/** Axis aligned bounding box. */
 	private AxisAlignedBB boundingBoxSmall;
 
-	private float maxSpeed;
-	private float railMaxSpeed;
+	public float maxSpeed;
+	public float railMaxSpeed;
 	public double speedLimiter = 1;
 	public boolean speedWasSet = false;
 
@@ -107,7 +107,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 	private CollisionHandler collisionhandler;
 	private LinkHandler linkhandler;
 	private TrainsOnClick trainsOnClick;
-	private SpeedHandler speedhandler;
 	public boolean isBraking;
 	public boolean isClimbing;
 	public int overheatLevel;
@@ -198,7 +197,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		collisionhandler = new CollisionHandler(world);
 		linkhandler = new LinkHandler(world);
 		trainsOnClick = new TrainsOnClick();
-		speedhandler = new SpeedHandler();
 
 		/* Railcraft's stuff */
 		//maxSpeed = defaultMaxSpeedRail;
@@ -1439,23 +1437,18 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		}
 	}
 
-	private void limitSpeedOnTCRail() {
+	public void limitSpeedOnTCRail() {
 		railMaxSpeed = 3;
 		maxSpeed = Math.min(railMaxSpeed, getMaxCartSpeedOnRail());
-		maxSpeed = (float) speedhandler.handleSpeed(railMaxSpeed, maxSpeed, this);
+		maxSpeed = SpeedHandler.handleSpeed(railMaxSpeed, maxSpeed, this);
 		//System.out.println(maxSpeed);
 		if (this.speedLimiter != 0 && speedWasSet) {
 			//maxSpeed *= this.speedLimiter;
 			adjustSpeed(maxSpeed, speedLimiter);
 		}
-		if ((!isLocomotive())) {
-			motionX *= 0.99D;
-			motionZ *= 0.99D;
-		}
-		else {
-			motionX *= 1D;
-			motionZ *= 1D;
-		}
+		motionX *= 0.9D;
+		motionZ *= 0.9D;
+
 		if (motionX < -maxSpeed) {
 			motionX = -maxSpeed;
 		}
@@ -2157,8 +2150,8 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		Block id = worldObj.getBlock(i, j, k);
 		if (!BlockRailBase.func_150051_a(id)) { return; }
 		railMaxSpeed = ((BlockRailBase) id).getRailMaxSpeed(worldObj, this, i, j, k);
-		maxSpeed = Math.min(railMaxSpeed, getMaxCartSpeedOnRail());
-		maxSpeed = (float) speedhandler.handleSpeed(railMaxSpeed, maxSpeed, this);
+		maxSpeed = Math.max(railMaxSpeed, getMaxCartSpeedOnRail());
+		maxSpeed = SpeedHandler.handleSpeed(railMaxSpeed, maxSpeed, this);
 		if (this.speedLimiter != 0 && speedWasSet) {
 			//maxSpeed *= this.speedLimiter;
 			adjustSpeed(maxSpeed, speedLimiter);
@@ -2186,7 +2179,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		moveEntity(motionX, 0.0D, motionZ);
 	}
 
-	private void adjustSpeed(float maxSpeed, double limiter) {
+	public void adjustSpeed(float maxSpeed, double limiter) {
 		float targetSpeed = (float) (maxSpeed * limiter);
 		float targetSpeedX = (float) Math.copySign(targetSpeed, motionX);
 		float targetSpeedZ = (float) Math.copySign(targetSpeed, motionZ);
