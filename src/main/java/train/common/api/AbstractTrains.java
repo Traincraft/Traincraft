@@ -604,7 +604,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 					return true;
 				}
 			}
-			else {
+			else if (!damagesource.isProjectile()) {
 				return true;
 			}
 		}

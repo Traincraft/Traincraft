@@ -56,7 +56,7 @@ public class HandleMaxAttachedCarts {
 			power = (cart1).getPower();
 			for (int i = 0; i < ( cart1).train.getTrains().size(); i++) {
 				EntityRollingStock stock = (cart1).train.getTrains().get(i);
-				if(stock!=null && stock instanceof Locomotive && stock.uniqueID != (cart1).uniqueID){
+				if(stock instanceof Locomotive && stock.uniqueID != (cart1).uniqueID){
 					power += ((Locomotive)stock).getPower();
 				}
 			}
