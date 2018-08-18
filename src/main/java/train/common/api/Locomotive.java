@@ -209,7 +209,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 	public float getMaxSpeed() {
 		if (trainSpec != null) {
 			if (currentMassPulled > 1) {
-				float power = (float) currentMassPulled / (((float) trainSpec.getMHP())*0.002f);
+				float power = (float) currentMassPulled / (((float) trainSpec.getMHP())*0.37f);
 				if (power > 1) {
 					return trainSpec.getMaxSpeed() / (power);
 				}
