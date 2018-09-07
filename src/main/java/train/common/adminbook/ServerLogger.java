@@ -39,14 +39,20 @@ public class ServerLogger {
             if (!new File(sb.toString()).exists()){
                 new File(sb.toString()).mkdir();
             }
-            sb.append(wagon.getTrainOwner().equals("")?"Unknown_Player":wagon.getTrainOwner());
+            if(wagon.getOwner() != null && wagon.getOwner().getName()!=null && !wagon.getOwner().getName().equals("")){
+                sb.append(wagon.getOwner().getName().toLowerCase());
+            } else if (wagon.getTrainOwner() !=null && !wagon.getTrainOwner().equals("")){
+                sb.append(wagon.getTrainOwner().toLowerCase());
+            } else {
+                sb.append("unknown_player");
+            }
             sb.append("/");
             if (!new File(sb.toString()).exists()){
                 new File(sb.toString()).mkdir();
             }
-            sb.append(wagon.getCartItem().getItem().delegate.name().replace(":", "~"));
+            sb.append(wagon.getCartItem().getItem().delegate.name().replace(":", "~").toLowerCase());
             sb.append("_");
-            sb.append(wagon.getUniqueID());
+            sb.append(wagon.getUniqueID().toString().toLowerCase());
             sb.append(".txt");
             //gen the file with the path
             FileOutputStream fileoutputstream = new FileOutputStream(new File(sb.toString()));
@@ -93,16 +99,16 @@ public class ServerLogger {
         sb.append(Traincraft.configDirectory.getAbsolutePath());
         sb.append("/traincraft/");
         if(wagon.getOwner() != null && wagon.getOwner().getName()!=null && !wagon.getOwner().getName().equals("")){
-            sb.append(wagon.getOwner().getName());
+            sb.append(wagon.getOwner().getName().toLowerCase());
         } else if (wagon.getTrainOwner() !=null && !wagon.getTrainOwner().equals("")){
-            sb.append(wagon.getTrainOwner());
+            sb.append(wagon.getTrainOwner().toLowerCase());
         } else {
-         sb.append("Unknown_Player");
+         sb.append("unknown_player");
         }
         sb.append("/");
-        sb.append(wagon.getCartItem().getUnlocalizedName());
+        sb.append(wagon.getCartItem().getItem().delegate.name().replace(":", "~").toLowerCase());
         sb.append("_");
-        sb.append(wagon.getUniqueID());
+        sb.append(wagon.getUniqueID().toString().toLowerCase());
         sb.append(".txt");
         try {
             File f = new File(sb.toString());
