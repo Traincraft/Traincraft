@@ -20,6 +20,7 @@ import train.common.library.ItemIDs;
 import train.common.recipes.RecipesArmorDyes;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class RecipeHandler {
 
@@ -27,10 +28,17 @@ public class RecipeHandler {
 	private static final ArrayList<ItemStack> iron = OreDictionary.getOres("ingotIron");
 	private static final ArrayList<ItemStack> planks = OreDictionary.getOres("plankWood");
 	private static final ArrayList<ItemStack> logs = OreDictionary.getOres("logWood");
-	private static final ArrayList<ItemStack>	plastics	= OreDictionary.getOres("itemPlastic");
+	private static final ArrayList<ItemStack> plastics	= multiNameOreDict("itemPlastic", "dustPlastic");//dustPlastic for MFR support
 	private static final ArrayList<ItemStack> copper = OreDictionary.getOres("ingotCopper");
 	private static final ArrayList<ItemStack> dustCoal = OreDictionary.getOres("dustCoal");
 
+	private static ArrayList<ItemStack> multiNameOreDict(String ... names){
+		ArrayList<ItemStack> entries = new ArrayList<>();
+		for (String name : names){
+			entries.addAll(OreDictionary.getOres(name));
+		}
+		return entries;
+	}
 
 	public static void initBlockRecipes() {
 		TrainCraftingManager.instance.getRecipeList().add(new RecipesArmorDyes());
