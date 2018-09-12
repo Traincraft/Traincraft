@@ -33,7 +33,7 @@ public class RecipeHandler {
 	private static final ArrayList<ItemStack> dustCoal = OreDictionary.getOres("dustCoal");
 
 	private static ArrayList<ItemStack> multiNameOreDict(String ... names){
-		ArrayList<ItemStack> entries = new ArrayList<>();
+		ArrayList<ItemStack> entries = new ArrayList<ItemStack>();
 		for (String name : names){
 			entries.addAll(OreDictionary.getOres(name));
 		}
