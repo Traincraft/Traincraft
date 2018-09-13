@@ -67,9 +67,11 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 	public int channel = 0;
 	public int replyChannel = 0;
 	public int nextSpeedLimit = 0;
+	public Double distanceFromSpeedChange = 0.0;
 	public Double xFromSpeedChange = 0.0;
 	public Double yFromSpeedChange = 0.0;
 	public Double zFromSpeedChange = 0.0;
+	
 	//TrainAdditions support ends here
 	
 	
