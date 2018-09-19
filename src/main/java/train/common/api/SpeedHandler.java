@@ -62,7 +62,7 @@ public class SpeedHandler {
 	 * 
 	 */
 	private static float convertSpeed(Entity entity, float maxSpeed) {
-		float speed = ((Locomotive) entity).getMaxSpeed();// speed is in m/s
+		float speed = ((Locomotive) entity).getMaxSpeed()*0.28f;// speed is in m/s
 		if(ConfigHandler.REAL_TRAIN_SPEED){
 			speed /= 2f;// applying ratio
 		}else{
