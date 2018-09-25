@@ -1,5 +1,6 @@
 package train.common.core.util;
 
+import cpw.mods.fml.common.FMLCommonHandler;
 import net.minecraft.block.BlockRailBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
@@ -42,19 +43,20 @@ public class TraincraftUtil{
 
     private static final double radian = Math.PI / 180.0;
     public static void updateRider(Entity rider, EntityRollingStock transport, float p, float yaw, double distance, double yOffset, double zOffset) {
-        double pitchRads = transport.anglePitchClient * radian;
-        float rotationCos1 = (float) Math.cos(Math.toRadians(transport.renderYaw + 90));
-        float rotationSin1 = (float) Math.sin(Math.toRadians((transport.renderYaw + 90)));
+
+        double pitchRads = p * radian;
+        double rotationCos1 =  Math.cos(Math.toRadians(yaw + 90));
+        double rotationSin1 =  Math.sin(Math.toRadians((yaw + 90)));
         if (transport.side.isServer()) {
-            rotationCos1 = (float) Math.cos(Math.toRadians(transport.serverRealRotation + 90));
-            rotationSin1 = (float) Math.sin(Math.toRadians((transport.serverRealRotation + 90)));
+            rotationCos1 =  Math.cos(Math.toRadians(transport.serverRealRotation + 90));
+            rotationSin1 =  Math.sin(Math.toRadians((transport.serverRealRotation + 90)));
             transport.anglePitchClient = transport.serverRealPitch * 60;
         }
-        float pitch = (float) (transport.posY + ((Math.tan(pitchRads) * distance) + transport.getMountedYOffset())
+        double pitch =  (transport.posY + ((Math.tan(pitchRads) * distance) + transport.getMountedYOffset())
                 + transport.riddenByEntity.getYOffset() + yOffset);
-        float pitch1 = (float) (transport.posY + transport.getMountedYOffset() + transport.riddenByEntity.getYOffset() + yOffset);
+        double pitch1 =  (transport.posY + transport.getMountedYOffset() + transport.riddenByEntity.getYOffset() + yOffset);
         double bogieX1 = (transport.posX + (rotationCos1 * distance));
-        double bogieZ1 = (transport.posZ + (rotationSin1 * distance));
+        double bogieZ1 = (transport.posZ + (rotationSin1 * zOffset));
         // System.out.println(rotationCos1+" "+rotationSin1);
         if (transport.anglePitchClient > 20 && rotationCos1 == 1) {
             bogieX1 -= pitchRads * 2;
@@ -71,4 +73,5 @@ public class TraincraftUtil{
             transport.riddenByEntity.setPosition(bogieX1, pitch, bogieZ1);
         }
     }
+
 }
