@@ -29,6 +29,7 @@ private IModelCustom ring;
 	public void render(int color) {
 		//GL11.glEnable(GL11.GL_LIGHTING);
 		GL11.glPushMatrix();
+		GL11.glColor4f(1, 1, 1, 1);
 		FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "ring.png"));
 		render();
 		GL11.glPopMatrix();
