@@ -181,6 +181,7 @@ public class ComponentVillageTrainstation extends StructureVillagePieces.Village
 
 			cart.setLocationAndAngles(j1 + 0.5D, k1, l1 + 0.5D, 90.0F, 0.0F);
 			cart.setTrainOwner("VillagerJoe");
+			cart.shouldChunkLoad=false;
 			if (rD == 4) {
 				cart.setColor(AbstractTrains.getColorFromString("Blue"));
 			}
