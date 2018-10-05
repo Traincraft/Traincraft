@@ -57,7 +57,6 @@ public class Tessellator{
 
 	public int draw(){
 		if(drawing){
-			GL11.glEnable(GL11.GL_LIGHTING);
 			drawing = false; int o = 0;
 			while(o < verts){
 				vtc = Math.min(verts - o, 0x200000 >> 5);
@@ -89,7 +88,6 @@ public class Tessellator{
 			}
 			reset();
 		}
-		GL11.glDisable(GL11.GL_LIGHTING);
 
 		return 0;
 	}

@@ -40,13 +40,12 @@ public class RenderRollingStock extends Render {
 		double var15 = cart.lastTickPosX + (cart.posX - cart.lastTickPosX) * time;
 		double var17 = cart.lastTickPosY + (cart.posY - cart.lastTickPosY) * time;
 		double var19 = cart.lastTickPosZ + (cart.posZ - cart.lastTickPosZ) * time;
-		double var21 = 0.30000001192092896D;
 		Vec3 var23 = cart.func_70489_a(var15, var17, var19);
 		float pitch = cart.prevRotationPitch + (cart.rotationPitch - cart.prevRotationPitch) * time;
 		Vec3 renderYVect = cart.yVector(var15, var17, var19);//only on TC rails
 		if (var23 != null) {
-			Vec3 var25 = cart.func_70495_a(var15, var17, var19, var21);
-			Vec3 var26 = cart.func_70495_a(var15, var17, var19, -var21);
+			Vec3 var25 = cart.func_70495_a(var15, var17, var19, 0.30000001192092896D);
+			Vec3 var26 = cart.func_70495_a(var15, var17, var19, -0.30000001192092896D);
 
 			if (var25 == null) {
 				var25 = var23;
@@ -68,8 +67,8 @@ public class RenderRollingStock extends Render {
 			}
 
 		}else if (renderYVect != null) {//only on TC rails
-			Vec3 var25 = cart.renderY(var15, var17, var19, var21);
-			Vec3 var26 = cart.renderY(var15, var17, var19, -var21);
+			Vec3 var25 = cart.renderY(var15, var17, var19, 0.30000001192092896D);
+			Vec3 var26 = cart.renderY(var15, var17, var19, -0.30000001192092896D);
 
 			if (var25 == null) {
 				var25 = renderYVect;
@@ -228,7 +227,12 @@ public class RenderRollingStock extends Render {
 					GL11.glScalef(renders.getScale()[0], renders.getScale()[1], renders.getScale()[2]);
 				}
 				Tessellator.bindTexture(getTexture(cart));
+
+				GL11.glEnable(GL11.GL_LIGHTING);
+
 				renders.getModel().render(cart, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
+
+				GL11.glDisable(GL11.GL_LIGHTING);
 
 				if (renders.hasSmoke()) {
 					if (cart.bogieLoco != null) {// || cart.bogieUtility[0]!=null){

@@ -1710,15 +1710,13 @@ public class ModelRendererTurbo extends ModelRenderer {
     		GL11.glCallList(displayList);
     	}
     	else{
-    		TextureManager renderEngine = Minecraft.getMinecraft().renderEngine;
-    		Collection<TextureGroup> textures = textureGroup.values();
-    		Iterator<TextureGroup> itr = textures.iterator();
+    		Iterator<TextureGroup> itr = textureGroup.values().iterator();
     		for(int i = 0; itr.hasNext(); i++){
-    			TextureGroup curTexGroup = (TextureGroup)itr.next();
+    			TextureGroup curTexGroup = itr.next();
     			curTexGroup.loadTexture();
     			GL11.glCallList(displayListArray[i]);
     			if(!defaultTexture.equals("")){
-    				renderEngine.bindTexture(new ResourceLocation("", defaultTexture));
+    				Tessellator.bindTexture(new ResourceLocation("", defaultTexture));
     			}
     		}
     	}
@@ -1728,9 +1726,8 @@ public class ModelRendererTurbo extends ModelRenderer {
     	if(useLegacyCompiler){
     		compileLegacyDisplayList(scale);
     	}
-    	else{    		
-    		Collection<TextureGroup> textures = textureGroup.values();
-    		Iterator<TextureGroup> itr = textures.iterator();
+    	else{
+    		Iterator<TextureGroup> itr = textureGroup.values().iterator();
     		displayListArray = new int[textureGroup.size()];
     		for(int i = 0; itr.hasNext(); i++){
     			displayListArray[i] = GLAllocation.generateDisplayLists(1);
