@@ -134,7 +134,7 @@ item.tc:minecartFlatCart_DB.name=Wagon plat (DB)
 item.tc:minecartFlatCartLogs_DB.name=Wagon de fret (DB)
 item.tc:minecartFreightGondola_DB.name=Wagon de fret (DB)
 item.tc:minecartTankWagon_DB.name=Wagon citerne (DB)
-item.tc:minecartLocoSD70.name=SD70 Union Pacific (US)
+item.tc:minecartLocoSD70.name=SD70M (US)
 item.tc:minecartLocoEr.name=USSR 0-5-0
 item.tc:minecartTenderEr.name=USSR 0-5-0 Tender
 item.tc:minecartFreightCenterBeam_Empty.name=Wagon de fret
@@ -165,7 +165,7 @@ item.tc:minecartTenderC62Class.name=Tender [JNR]
 item.tc:minecartLocoSteamShay.name=Shay (US)
 item.tc:minecartCabooseLogging.name=Fourgon-frein
 item.tc:minecartPassengerTramNY.name=N.Y. métro (passager)
-item.tc:minecartLocoSD40.name=SD40 Santa Fe (U.S.)
+item.tc:minecartLocoSD40.name=SD40-2 (U.S.)
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Habits d'ingénieurs

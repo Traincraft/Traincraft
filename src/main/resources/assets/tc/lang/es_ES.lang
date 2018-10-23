@@ -163,7 +163,7 @@ item.tc:minecartFlatCart_DB.name=Vagón plataforma (DB)
 item.tc:minecartFlatCartLogs_DB.name=Vagón de transporte de madera (DB) 
 item.tc:minecartFreightGondola_DB.name=Vagón abierto (DB) 
 item.tc:minecartTankWagon_DB.name=Vagón cisterna (DB) 
-item.tc:minecartLocoSD70.name=SD70 (EE.UU.) 
+item.tc:minecartLocoSD70.name=SD70M (EE.UU.)
 item.tc:minecartLocoEr.name=USSR 0-5-0 (U.R.S.S.) 
 item.tc:minecartTenderEr.name=Ténder USSR 0-5-0  (U.R.S.S.) 
 item.tc:minecartFreightCenterBeam_Empty.name=Vagón plataforma con viga central 
@@ -187,7 +187,7 @@ item.tc:reinforcedPlates.name=Composite
 item.tc:composite_wrench.name=Llave inglesa compuesta 
 item.tc:minecartPassengerHighSpeedCarZeroED.name=Vagón de pasajeros de alta velocidad 
 item.tc:minecartNYTram.name=Metro N.Y. (EE.UU.) item.tc:minecartLocoHighSpeedZeroED.name=High Locomotora de alta velocidad item.tc:minecartLocoC62Class.name=Serie C62  [JNR] item.tc:minecartTenderC62Class.name=Ténder de la Serie C62  [JNR] item.tc:minecartLocoSteamShay.name=Shay (EE.UU.) item.tc:minecartLocoSteamAdler.name=Adler (R.U.) item.tc:minecartTenderAdler.name=Ténder Adler (R.U.) item.tc:minecartPassengerAdler.name=Vagón de pasajeros Adler (R.U.)
-item.tc:minecartCabooseLogging.name=Furgón de cola item.tc:minecartPassengerTramNY.name= Vagón de pasajeros del metro de N.Y. item.tc:minecartLocoSD40.name=SD40 Santa Fe (US) item.tc:zeppelin.name=Zepelín item.tc:copperRail.name=Fiel de cobre item.tc:steelRail.name=Riel de acero item.tc:tcRailMediumTurn.name=Curva mediana item.tc:tcRailLargeTurn.name=Curva grande item.tc:tcRailVeryLargeTurn.name=Curva más grande item.tc:tcRailLongStraight.name=Vía recta larga item.tc:tcRailMediumStraight.name=Vía recta mediana item.tc:tcRailSmallStraight.name=Vía recta pequeña item.tc:tcRailMediumSwitch.name=Conmutador perpendicular pequeño  
+item.tc:minecartCabooseLogging.name=Furgón de cola item.tc:minecartPassengerTramNY.name= Vagón de pasajeros del metro de N.Y. item.tc:minecartLocoSD40.name=SD40-2 (US) item.tc:zeppelin.name=Zepelín item.tc:copperRail.name=Fiel de cobre item.tc:steelRail.name=Riel de acero item.tc:tcRailMediumTurn.name=Curva mediana item.tc:tcRailLargeTurn.name=Curva grande item.tc:tcRailVeryLargeTurn.name=Curva más grande item.tc:tcRailLongStraight.name=Vía recta larga item.tc:tcRailMediumStraight.name=Vía recta mediana item.tc:tcRailSmallStraight.name=Vía recta pequeña item.tc:tcRailMediumSwitch.name=Conmutador perpendicular pequeño
 item.tc:tcRailLargeSwitch.name=Conmutador perpendicular grande 
 item.tc:tcRailMediumParallelSwitch.name=Conmutador en paralelo 
 i
@@ -368,8 +368,8 @@ entity.tc.Loco Electric BR_E69.name=BR E69
 entity.tc.Loco Electric VL10.name=VL10 (U.R.S.S.) 
 entity.tc.Loco Diesel V60 DB.name=V60 (DB) 
 entity.tc.Loco Diesel Shunter.name=Shunter (R.U.) 
-entity.tc.Loco Diesel SD70.name=EMD SD70 (EE.UU.) 
-entity.tc.Loco Diesel SD40.name=EMD SD40 (EE.UU.) 
+entity.tc.Loco Diesel SD70.name=EMD SD70M (EE.UU.)
+entity.tc.Loco Diesel SD40.name=EMD SD40-2 (EE.UU.)
 entity.tc.Loco Diesel GP7.name=EMD GP7 (EE.UU.) 
 entity.tc.Loco Diesel ChME3.name=ChME3 (U.R.S.S.) 
 entity.tc.Loco Diesel CD742.name=CD 742 (CZ)
