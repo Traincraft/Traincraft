@@ -903,6 +903,9 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			}
 			shouldServerSetPosYOnClient = false;
 		}
+		if(!worldObj.isRemote){
+			anglePitchClient=(anglePitch * 60);
+		}
 
 		//this.setRotation(this.rotationYaw, this.rotationPitch);
 		AxisAlignedBB box;
@@ -1222,7 +1225,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			if (meta == 2) {
 				if (motionZ > 0 && Math.abs(motionX) < 0.01) {
 					TileEntity tile2 = worldObj.getTileEntity(i, j, k + 1);
-					if (tile2 != null && tile2 instanceof TileTCRail) {
+					if (tile2 instanceof TileTCRail) {
 						((TileTCRail) tile2).setSwitchState(false, true);
 					}
 					return true;
@@ -1231,7 +1234,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			if (meta == 0) {
 				if (motionZ < 0 && Math.abs(motionX) < 0.01) {
 					TileEntity tile2 = worldObj.getTileEntity(i, j, k - 1);
-					if (tile2 != null && tile2 instanceof TileTCRail) {
+					if (tile2 instanceof TileTCRail) {
 						((TileTCRail) tile2).setSwitchState(false, true);
 					}
 					return true;
@@ -1240,7 +1243,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			if (meta == 1) {
 				if (Math.abs(motionZ) < 0.01 && motionX > 0) {
 					TileEntity tile2 = worldObj.getTileEntity(i + 1, j, k);
-					if (tile2 != null && tile2 instanceof TileTCRail) {
+					if (tile2 instanceof TileTCRail) {
 						((TileTCRail) tile2).setSwitchState(false, true);
 					}
 					return true;
@@ -1249,7 +1252,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			if (meta == 3) {
 				if (Math.abs(motionZ) < 0.01 && motionX < 0) {
 					TileEntity tile2 = worldObj.getTileEntity(i - 1, j, k);
-					if (tile2 != null && tile2 instanceof TileTCRail) {
+					if (tile2 instanceof TileTCRail) {
 						((TileTCRail) tile2).setSwitchState(false, true);
 					}
 					return true;

@@ -26,7 +26,7 @@ public class EntityPassengerGS4_Observatory extends EntityRollingStock implement
 	}
 	@Override
 	public void updateRiderPosition() {
-		TraincraftUtil.updateRider(riddenByEntity, this, (float)(worldObj.isRemote?anglePitchClient:serverRealPitch), worldObj.isRemote?rotationYawClientReal:rotationYaw, -0.1, 0,-0.1);
+		TraincraftUtil.updateRider(this, (float) anglePitchClient, worldObj.isRemote?rotationYawClientReal:serverRealRotation, 0, 0.15,-0.1);
 	}
 
 	@Override

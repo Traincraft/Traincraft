@@ -36,7 +36,7 @@ public class EntityPassengerRheingoldDining1 extends AbstractWorkCart implements
 
 	@Override
 	public void updateRiderPosition() {
-		TraincraftUtil.updateRider(riddenByEntity, this, (float)(worldObj.isRemote?anglePitchClient:serverRealPitch), worldObj.isRemote?rotationYawClientReal:rotationYaw, -1, -0.2,-0.2);
+		TraincraftUtil.updateRider(this, (float) anglePitchClient, worldObj.isRemote?rotationYawClientReal:serverRealRotation, -0.1, 0,-0.125);
 	}
 
 	@Override

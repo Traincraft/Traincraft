@@ -215,7 +215,7 @@ public class EntityBUnitEMDF3 extends LiquidTank implements IFluidHandler {
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return 2.4F;
+		return 2.2F;
 	}
 
 

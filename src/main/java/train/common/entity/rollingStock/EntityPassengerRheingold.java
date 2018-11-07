@@ -26,7 +26,7 @@ public class EntityPassengerRheingold extends EntityRollingStock implements IPas
 	}
 	@Override
 	public void updateRiderPosition() {
-		TraincraftUtil.updateRider(riddenByEntity, this, (float)(worldObj.isRemote?anglePitchClient:serverRealPitch), worldObj.isRemote?rotationYawClientReal:rotationYaw, -0.4, -0.2,-0.2);
+		TraincraftUtil.updateRider(this, (float) anglePitchClient, worldObj.isRemote?rotationYawClientReal:serverRealRotation, -0.3, 0,-0.125);
 	}
 
 	@Override
