@@ -47,6 +47,27 @@ public class ModelConverter extends ModelBase {
 		render(trailerModel);
 		render(steeringWheelModel);
 	}
+	@Override
+	public void render(Entity entity,float f0, float f1, float f2, float f3, float f4, float scale){
+		render(bodyModel, scale,false);
+		render(model, scale,false);
+		render(bodyDoorCloseModel, scale,false);
+		render(turretModel, scale,false);
+		render(barrelModel, scale,false);
+		render(frontWheelModel, scale,false);
+		render(backWheelModel, scale,false);
+		render(leftFrontWheelModel, scale,false);
+		render(rightFrontWheelModel, scale,false);
+		render(leftBackWheelModel, scale,false);
+		render(rightBackWheelModel, scale,false);
+		render(rightTrackModel, scale,false);
+		render(leftTrackModel, scale,false);
+		render(rightTrackWheelModels, scale,false);
+		render(leftTrackWheelModels, scale,false);
+		render(trailerModel, scale,false);
+		render(steeringWheelModel, scale,false);
+
+	}
 
 	@Override
 	public void render(Object type, Entity ent){
@@ -118,10 +139,10 @@ public class ModelConverter extends ModelBase {
 	}
 	
 	private void flip(ModelRendererTurbo[] model) {
-		for(ModelRendererTurbo sub : model){
-			sub.doMirror(false, true, true);
-			sub.setRotationPoint(sub.rotationPointX, -sub.rotationPointY, -sub.rotationPointZ);
-		}
+		//for(ModelRendererTurbo sub : model){
+		//	sub.doMirror(false, true, true);
+		//	sub.setRotationPoint(sub.rotationPointX, -sub.rotationPointY, -sub.rotationPointZ);
+		//}
 	}
 	
 }

@@ -118,7 +118,7 @@ public enum RenderEnum {
 	tender4_4_0(EntityTender4_4_0.class, new ModelNormalSteamTender(), "4-4-0-loco_tender_", true, new float[] { 0.0F, -0.44F, 0.0F }, new float[] { 0F, 90F, 0F }, null, "", 0, null, "", null, 0, false),
 	tenderBR01(EntityTenderBR01_DB.class, new ModelTenderBR01_DB(), "tenderBR01_DB", false, new float[] { 0.0F, -0.44F, 0.0F }, null, null, "", 0, null, "", null, 0, false),
 	tenderEr_Ussr(EntityTenderEr_Ussr.class, new ModelTenderEr_Ussr(), "tenderEr_Ussr", false, new float[] { 0.06F, -0.44F, 0.0F }, new float[] { 0F, 180F, 0F }, null, "", 0, null, "", null, 0, false),
-	tenderC62Class(EntityTenderC62Class.class, new ModelTenderC62Class(), "c62_class_tender_", true,
+	tenderC62Class(EntityTenderC62Class.class, new ModelC62Tender(), "c62_tender_", true,
 			new float[] { 0.0F, -0.42F, 0.0F }, null, null, "", 0, null, "", null, 0, false),
 	tenderAdler(EntityTenderAdler.class, new ModelTenderAdler(), "tender_adler", false, new float[] { 0.0F, 1.05F, 0.0F }, new float[] { 180F, -90F, 0F }, null, "", 0, null, "", null, 0, false),
 	tenderGS4(EntityTenderGS4.class, new ModelGS4Tender(), "GS4_tender_", true, new float[] { 0.0F, 0.15F, -0.05F },
@@ -322,7 +322,7 @@ public enum RenderEnum {
 			add(new double[] { 3D, -0.2D, 0.8D });
 		}
 	}, 2, true),
-	locoSteamC62Class(EntityLocoSteamC62Class.class, new ModelLocoC62Class(), "c62_class_", true,
+	locoSteamC62Class(EntityLocoSteamC62Class.class, new ModelC62Locomotive(), "c62_engine_", true,
 			new float[] { 0F, -0.44F, 0.0F }, null, null, "largesmoke", 3, new ArrayList<double[]>() {
 		{
 			add(new double[] { 5.1D, 2D, 0.0D });
