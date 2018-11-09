@@ -434,12 +434,10 @@ public class ModelGS4Passenger extends ModelBase
 		}
 		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/GS4_bogie.png"));
 		GL11.glPushMatrix();
-		GL11.glTranslated(-1.95,-0.12,0);
+		GL11.glTranslated(-3.1,0,0);
 		bogie1.render(entity,f,f1,f2,f3,f4,f5);
-		GL11.glPopMatrix();
 
-		GL11.glPushMatrix();
-		GL11.glTranslated(1.8,-0.12,0);
+		GL11.glTranslated(3.7,0,0);
 		bogie1.render(entity,f,f1,f2,f3,f4,f5);
 		GL11.glPopMatrix();
 	}
