@@ -307,9 +307,18 @@ public class ModelRendererTurbo extends ModelRenderer {
      * @param scale
      */
     public void addBox(float x, float y, float z, float w, float h, float d, float expansion, float scale){
-    	if(w ==0){ w=0.0001F; }
-    	if(h ==0){ h=0.0001F; }
-    	if(d ==0){ d=0.0001F; }
+    	if(w <1){
+    	    w=0.1F;
+    	    x-=0.05F;
+    	}
+    	if(h <1){
+    	    h=0.1F;
+            y-=0.05F;
+    	}
+    	if(d <1){
+    	    d=0.1F;
+            z-=0.05F;
+    	}
     	
         xScale = w * scale;
         yScale = h * scale;
@@ -1755,9 +1764,18 @@ public class ModelRendererTurbo extends ModelRenderer {
 
     //ETERNAL: changed w/h/d to floats for better support of the custom render on the rails.
 	public void addShapeBox(float x, float y, float z, float w, float h, float d, float scale, float x0, float y0, float z0, float x1, float y1, float z1, float x2, float y2, float z2, float x3, float y3, float z3, float x4, float y4, float z4, float x5, float y5, float z5, float x6, float y6, float z6, float x7, float y7, float z7){
-        w+=0.0001F;
-        h+=0.0001F;
-        d+=0.0001F;
+        if(w <1){
+            w=0.1F;
+            x-=0.05F;
+        }
+        if(h <1){
+            h=0.1F;
+            y-=0.05F;
+        }
+        if(d <1){
+            d=0.1F;
+            z-=0.05F;
+        }
 		float f4 = x + w, f5 = y + h, f6 = z + d;
 		x -= scale; y -= scale; z -= scale;
 		f4 += scale; f5 += scale; f6 += scale;
