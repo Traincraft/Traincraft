@@ -143,6 +143,8 @@ public class ModelConverter extends ModelBase {
 		//	sub.doMirror(false, true, true);
 		//	sub.setRotationPoint(sub.rotationPointX, -sub.rotationPointY, -sub.rotationPointZ);
 		//}
+
+		fixRotation(model, false, true, true);
 	}
 	
 }
