@@ -170,6 +170,7 @@ public enum ItemIDs {
 	minecartHeavyweightMailcar("ItemRollingStock", "heavyweight_mailcar", 5),
 	minecartKof_DB("ItemRollingStock", "train_kof", 10),
 	minecartV60_DB("ItemRollingStock", "train_v60", 10),
+	minecartLocoCD151("ItemRollingStock", "train_CD151", 3),
 	minecartE10_DB("ItemRollingStock", "train_e10db", 10),
 	minecartIC4_DSB_FG("ItemRollingStock", "train_ic4_dsb_fg", 10),
 	minecartIC4_DSB_FH("ItemRollingStock", "train_ic4_dsb_fh", 10),

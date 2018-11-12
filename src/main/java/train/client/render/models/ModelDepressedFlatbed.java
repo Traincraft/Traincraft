@@ -25,7 +25,7 @@ public class ModelDepressedFlatbed extends ModelConverter //Same as Filename
 
 	public ModelDepressedFlatbed() //Same as Filename
 	{
-		bodyModel = new ModelRendererTurbo[85];
+		bodyModel = new ModelRendererTurbo[13];
 
 		initbodyModel_1();
 
@@ -66,7 +66,7 @@ public class ModelDepressedFlatbed extends ModelConverter //Same as Filename
 		bodyModel[10] = new ModelRendererTurbo(this, 113, 33, textureX, textureY); // Box 88
 		bodyModel[11] = new ModelRendererTurbo(this, 169, 33, textureX, textureY); // Box 89
 		bodyModel[12] = new ModelRendererTurbo(this, 225, 33, textureX, textureY); // Box 90
-		bodyModel[13] = new ModelRendererTurbo(this, 89, 1, textureX, textureY); // Box 314
+		/*bodyModel[13] = new ModelRendererTurbo(this, 89, 1, textureX, textureY); // Box 314
 		bodyModel[14] = new ModelRendererTurbo(this, 89, 1, textureX, textureY); // Box 86
 		bodyModel[15] = new ModelRendererTurbo(this, 89, 1, textureX, textureY); // Box 87
 		bodyModel[16] = new ModelRendererTurbo(this, 89, 1, textureX, textureY); // Box 88
@@ -137,7 +137,7 @@ public class ModelDepressedFlatbed extends ModelConverter //Same as Filename
 		bodyModel[81] = new ModelRendererTurbo(this, 89, 1, textureX, textureY); // Box 153
 		bodyModel[82] = new ModelRendererTurbo(this, 89, 1, textureX, textureY); // Box 154
 		bodyModel[83] = new ModelRendererTurbo(this, 89, 1, textureX, textureY); // Box 155
-		bodyModel[84] = new ModelRendererTurbo(this, 89, 1, textureX, textureY); // Box 156
+		bodyModel[84] = new ModelRendererTurbo(this, 89, 1, textureX, textureY); // Box 156*/
 
 		bodyModel[0].addBox(0F, 0F, 0F, 23, 2, 22, 0F); // Box 2
 		bodyModel[0].setRotationPoint(-51F, 0F, -12.5F);
@@ -178,7 +178,7 @@ public class ModelDepressedFlatbed extends ModelConverter //Same as Filename
 		bodyModel[12].addBox(0F, 0F, 0F, 2, 4, 22, 0F); // Box 90
 		bodyModel[12].setRotationPoint(-53F, 0F, -12.5F);
 
-		bodyModel[13].addBox(0F, 0F, 0F, 6, 6, 6, 0F); // Box 314
+		/*bodyModel[13].addBox(0F, 0F, 0F, 6, 6, 6, 0F); // Box 314
 		bodyModel[13].setRotationPoint(-19F, 0F, -4.5F);
 
 		bodyModel[14].addBox(0F, 0F, 0F, 6, 6, 6, 0F); // Box 86
@@ -392,6 +392,6 @@ public class ModelDepressedFlatbed extends ModelConverter //Same as Filename
 		bodyModel[83].setRotationPoint(-19F, -12F, 1.5F);
 
 		bodyModel[84].addBox(0F, 0F, 0F, 6, 6, 6, 0F); // Box 156
-		bodyModel[84].setRotationPoint(-13F, -12F, 1.5F);
+		bodyModel[84].setRotationPoint(-13F, -12F, 1.5F);*/
 	}
 }

@@ -10,7 +10,7 @@ import java.lang.reflect.InvocationTargetException;
 public enum EnumTrains {
 	
 	/** Passengers */
-	passengerCartBlue("Passenger Blue",EntityPassengerBlue.class, ItemIDs.minecartPassengerBlue.item,"passenger",0,0,1,0,0,0,0,0,0,new String[] {"Blue","Red","Green", "White", "Black", "Cyan"},18, 0),
+	passengerCartBlue("Passenger Blue",EntityPassengerBlue.class, ItemIDs.minecartPassengerBlue.item,"passenger",0,0,1,0,0,0,0,0,0,new String[] {"Blue","Red","Green", "White", "Black", "Cyan", "Orange", "Grey"},18, 0),
 	passengerCartBlackSmall("Passenger Small Black",EntityPassenger2.class, ItemIDs.minecartPassenger2.item,"passenger",0,0,0.5,0,0,0,0,0,0,null,18,0),
 	passengerLongGreen("Passenger Green Long",EntityPassenger5.class, ItemIDs.minecartPassenger5.item,"passenger",0,0,1,0,0,0,0,0,0,new String[]{"Green", "Yellow"},18,0),
 	passengerShortGreen("Passenger Short Green",EntityPassenger7.class, ItemIDs.minecartPassenger7.item,"passenger",0,0,1,0,0,0,0,0,0,null,18,0),
@@ -56,7 +56,7 @@ public enum EnumTrains {
 	workCart("Work Cart Yellow",EntityWorkCart.class,ItemIDs.minecartWork.item,"work",0,0,0.7,0,0,0,0,0,0,null,18,0),
 	flatCart("Flat Cart",EntityFlatCart.class, ItemIDs.minecartFlatCart.item,"flat",0,0,0.2,0,0,0,0,0,0,null,18,0),
 	workCaboose("Work Caboose",EntityCabooseWorkCart.class, ItemIDs.minecartCabooseWork.item,"work",0,0,0.6,0,0,0,0,0,0,null,18,0),
-	cabooseLogging("Caboose Logging",EntityCabooseLogging.class, ItemIDs.minecartCabooseLogging.item,"work",0,0,0.2,0,0,0,0,0,0,null,18,0),
+	cabooseLogging("Caboose Logging",EntityCabooseLogging.class, ItemIDs.minecartCabooseLogging.item,"work",0,0,0.2,0,0,0,0,0,0,new String[]{"Red", "Cyan"},18,0),
 	cabooseLoggingPRR("PRR Caboose Logging",EntityCabooseLoggingPRR.class, ItemIDs.minecartCabooseLoggingPRR.item,"work",0,0,0.2,0,0,0,0,0,0,new String [] {"Red", "Blue", "Green"},18,0),
 	mailWagen_DB("Mail Wagon DB",EntityMailWagen_DB.class,ItemIDs.minecartMailWagon_DB.item,"work",0,0,1,0,0,0,0,0,0,null,18,0),
 	jukeBoxCart("JukeBox Cart",EntityJukeBoxCart.class, ItemIDs.minecartJukeBoxCart.item,"special",0,0,0.2,0,0,0,0,0,0,null,18,0),
@@ -90,7 +90,7 @@ public enum EnumTrains {
 	flatCartWoodUS("Freight Flat Cart Wood US",EntityFlatCartWoodUS.class, ItemIDs.minecartFlatCartWoodUS.item,"freight",3,null,18, 27,new String[] {"Cargo: only planks"}),
 	bulkheadFlatCartWood("Freight Bulkhead Flat Cart",EntityBulkheadFlatCart.class, ItemIDs.minecartBulkheadFlatCart.item,"freight",3,new String[]{"Brown", "Yellow", "Green"},18, 27,new String[] {"Cargo: only planks"}),
 	freightCartUS("Freight Cart US",EntityFreightCartUS.class, ItemIDs.minecartFreightCartUS.item,"freight",3.5,new String[]{"Brown", "Yellow"},18,36,new String[] {"Cargo: blocks, vanilla items"}),
-	freightBoxCartUS("Freight Box Cart US",EntityBoxCartUS.class, ItemIDs.minecartBoxCartUS.item,"freight",2,new String[]{"Brown", "Yellow", "Blue", "Orange"},18,45,new String[] {"Cargo: any"}),
+	freightBoxCartUS("Freight Box Cart US",EntityBoxCartUS.class, ItemIDs.minecartBoxCartUS.item,"freight",2,new String[]{"Brown", "Yellow", "Blue", "Orange", "Green"},18,45,new String[] {"Cargo: any"}),
 	freightBoxCartPRR("Freight Box Cart PRR",EntityBoxCartPRR.class, ItemIDs.minecartBoxCartPRR.item,"freight",2,null,18,45,new String[] {"Cargo: any"}),
 	freightCartSmall("Freight Cart Small",EntityFreightCartSmall.class, ItemIDs.minecartFreightCartSmall.item,"freight",1,null,18,36,new String[] {"Cargo: any"}),
 	freightMinetrain("Freight Minecart Yellow",EntityFreightMinetrain.class, ItemIDs.minecartMineTrain.item,"freight",0.5,null,18, 18,new String[] {"Cargo: opaque blocks"}),
@@ -194,6 +194,8 @@ public enum EnumTrains {
 	locoDieselE10lDB("Loco Electric E10 DB",EntityLocoElectricE10_DB.class, ItemIDs.minecartE10_DB.item,"electric",5069,150,0,8,0,170,0.66,0.96,8000,new String[] {"Blue","Red", "Grey"},15,-3.8),
 	locoElectricClass85("Loco Electric Class 85", EntityLocoElectricClass85.class,
 			ItemIDs.minecartLocoClass85.item, "electric", 3156, 160, 0, 10, 0, 170, 0.7, 0.965, 0, null, 18, -5),
+	locoElectricCD151("Loco Electric CD151", EntityLocoElectricCD151.class, ItemIDs.minecartLocoCD151.item,
+			"electric", 5438, 150, 0, 10, 0, 170, 0.7, 0.965, 6850, null, 18, -4),
 
 	/** Steam */
 	locoSteamA4("Loco Steam A4 Mallard", EntityLocoSteamMallardA4.class,  ItemIDs.minecartLocoA4Mallard.item, "steam", 2200, 203, 0, 60, 200, 160, 0.65, 0.97, 10000, new String[] { "Blue", "Lime", "Black", "Green", "White" }, 7, -5 ),
