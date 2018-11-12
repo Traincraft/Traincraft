@@ -71,6 +71,8 @@ public enum ItemIDs {
 	minecartFreightBamboo("ItemRollingStock", "train_freight_bamboo", 2),
 	minecartTrainBamboo("ItemRollingStock", "train_train_bamboo", 3),
 	minecartPasengerBamboo("ItemRollingStock", "train_passenger_bamboo", 1),
+	minecartFreightGermanPost("ItemRollingStock", "train_freight_german_postnally got in ", 2),
+	minecartFreightDepressedFlatbed("ItemRollingStock", "train_freight_depressed_flatbed", 2),
 	minecartPower("ItemRollingStock", "train_steam_normal", 10),
 	minecartLoco3("ItemRollingStock", "train_steam_small", 7),
 	minecartBuilder("ItemRollingStock", "train_builder", 20),
