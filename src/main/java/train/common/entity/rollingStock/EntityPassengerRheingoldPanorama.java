@@ -71,6 +71,6 @@ public class EntityPassengerRheingoldPanorama extends EntityRollingStock impleme
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return 3.45F;
+		return 3.95F;
 	}
 }

@@ -94,7 +94,7 @@ public class EntityFreightDepressedFlatbed extends Freight implements IInventory
 	}
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return 1.8F;
+		return 3.8F;
 	}
 
 	@Override

@@ -10,7 +10,7 @@ import java.lang.reflect.InvocationTargetException;
 public enum EnumTrains {
 	
 	/** Passengers */
-	passengerCartBlue("Passenger Blue",EntityPassengerBlue.class, ItemIDs.minecartPassengerBlue.item,"passenger",0,0,1,0,0,0,0,0,0,new String[] {"Blue","Red","Green", "White", "Black", "Cyan", "Orange", "Grey"},18, 0),
+	passengerCartBlue("Passenger Blue",EntityPassengerBlue.class, ItemIDs.minecartPassengerBlue.item,"passenger",0,0,1,0,0,0,0,0,0,new String[] {"Blue","Red","Green", "White", "Black", "Cyan", "Orange", "Grey", "lightGrey"},18, 0),
 	passengerCartBlackSmall("Passenger Small Black",EntityPassenger2.class, ItemIDs.minecartPassenger2.item,"passenger",0,0,0.5,0,0,0,0,0,0,null,18,0),
 	passengerLongGreen("Passenger Green Long",EntityPassenger5.class, ItemIDs.minecartPassenger5.item,"passenger",0,0,1,0,0,0,0,0,0,new String[]{"Green", "Yellow"},18,0),
 	passengerShortGreen("Passenger Short Green",EntityPassenger7.class, ItemIDs.minecartPassenger7.item,"passenger",0,0,1,0,0,0,0,0,0,null,18,0),
@@ -90,7 +90,7 @@ public enum EnumTrains {
 	flatCartWoodUS("Freight Flat Cart Wood US",EntityFlatCartWoodUS.class, ItemIDs.minecartFlatCartWoodUS.item,"freight",3,null,18, 27,new String[] {"Cargo: only planks"}),
 	bulkheadFlatCartWood("Freight Bulkhead Flat Cart",EntityBulkheadFlatCart.class, ItemIDs.minecartBulkheadFlatCart.item,"freight",3,new String[]{"Brown", "Yellow", "Green"},18, 27,new String[] {"Cargo: only planks"}),
 	freightCartUS("Freight Cart US",EntityFreightCartUS.class, ItemIDs.minecartFreightCartUS.item,"freight",3.5,new String[]{"Brown", "Yellow"},18,36,new String[] {"Cargo: blocks, vanilla items"}),
-	freightBoxCartUS("Freight Box Cart US",EntityBoxCartUS.class, ItemIDs.minecartBoxCartUS.item,"freight",2,new String[]{"Brown", "Yellow", "Blue", "Orange", "Green"},18,45,new String[] {"Cargo: any"}),
+	freightBoxCartUS("Freight Box Cart US",EntityBoxCartUS.class, ItemIDs.minecartBoxCartUS.item,"freight",2,new String[]{"Red","Blue","Black","Yellow", "Magenta", "Cyan", "Pink", "LightGrey", "Green", "White", "LightBlue", "Lime", "Brown", "Purple", "Orange", "Grey"},18,45,new String[] {"Cargo: any"}),
 	freightBoxCartPRR("Freight Box Cart PRR",EntityBoxCartPRR.class, ItemIDs.minecartBoxCartPRR.item,"freight",2,null,18,45,new String[] {"Cargo: any"}),
 	freightCartSmall("Freight Cart Small",EntityFreightCartSmall.class, ItemIDs.minecartFreightCartSmall.item,"freight",1,null,18,36,new String[] {"Cargo: any"}),
 	freightMinetrain("Freight Minecart Yellow",EntityFreightMinetrain.class, ItemIDs.minecartMineTrain.item,"freight",0.5,null,18, 18,new String[] {"Cargo: opaque blocks"}),
@@ -191,7 +191,8 @@ public enum EnumTrains {
 			"electric", 149, 89, 0, 10, 0, 170, 0.7, 0.965, 0, null, 18, -3),
 	locoElectricBR185("Loco Electric BR 185", EntityLocoElectricBR185.class, ItemIDs.minecartLocoBR185.item,
 			"electric", 7500, 160, 0, 6, 0, 170, 0.7, 0.965, 0, new String[]{"Red", "Blue", "Magenta", "Cyan", "Grey", "LightBlue", "LightGrey", "Orange", "Pink", "Purple", "White", "Yellow"}, 18, -5),
-	locoDieselE10lDB("Loco Electric E10 DB",EntityLocoElectricE10_DB.class, ItemIDs.minecartE10_DB.item,"electric",5069,150,0,8,0,170,0.66,0.96,8000,new String[] {"Blue","Red", "Grey"},15,-3.8),
+	locoDieselE10lDB("Loco Electric E10 DB",EntityLocoElectricE10_DB.class, ItemIDs.minecartE10_DB.item,"electric",5069,150,0,8,0,170,0.66,0.96,8000,new String[] {"Blue","Red", "Grey", "Brown", "Green"},15,-3.8),
+	locoDieselE103("Loco Electric E103",EntityLocoElectricE103.class, ItemIDs.minecartE103.item,"electric",8090,200,0,8,0,170,0.66,0.96,8000,new String[] {"Blue","Red"},15,-3.7),
 	locoElectricClass85("Loco Electric Class 85", EntityLocoElectricClass85.class,
 			ItemIDs.minecartLocoClass85.item, "electric", 3156, 160, 0, 10, 0, 170, 0.7, 0.965, 0, null, 18, -5),
 	locoElectricCD151("Loco Electric CD151", EntityLocoElectricCD151.class, ItemIDs.minecartLocoCD151.item,

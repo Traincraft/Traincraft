@@ -70,6 +70,6 @@ public class EntityPassengerBamboo extends EntityRollingStock implements IPassen
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return 1.45F;
+		return 1.55F;
 	}
 }

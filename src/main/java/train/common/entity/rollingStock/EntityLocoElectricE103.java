@@ -2,32 +2,24 @@ package train.common.entity.rollingStock;
 
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
 import train.common.Traincraft;
-import train.common.api.Freight;
+import train.common.api.ElectricTrain;
+import train.common.core.util.TraincraftUtil;
 import train.common.library.GuiIDs;
 
-public class EntityFreightBamboo extends Freight implements IInventory {
-	public int freightInventorySize;
-
-	public EntityFreightBamboo(World world) {
+public class EntityLocoElectricE103 extends ElectricTrain {
+	public EntityLocoElectricE103(World world) {
 		super(world);
-		initFreightCart();
 	}
 
-	public void initFreightCart() {
-		if(trainSpec!=null)freightInventorySize = trainSpec.getCargoCapacity();
-		cargoItems = new ItemStack[freightInventorySize];
-	}
-
-	public EntityFreightBamboo(World world, double d, double d1, double d2) {
+	public EntityLocoElectricE103(World world, double d, double d1, double d2) {
 		this(world);
-		setPosition(d, d1 + (double) yOffset, d2);
+		setPosition(d, d1 + yOffset, d2);
 		motionX = 0.0D;
 		motionY = 0.0D;
 		motionZ = 0.0D;
@@ -37,21 +29,34 @@ public class EntityFreightBamboo extends Freight implements IInventory {
 	}
 
 	@Override
+	public void updateRiderPosition() {
+		TraincraftUtil.updateRider(this, (float) anglePitchClient, worldObj.isRemote?rotationYawClientReal:serverRealRotation, 0, 0.15,3.75);
+	}
+
+	@Override
 	public void setDead() {
 		super.setDead();
 		isDead = true;
 	}
 
 	@Override
+	public void pressKey(int i) {
+		if (i == 7 && riddenByEntity != null && riddenByEntity instanceof EntityPlayer) {
+			((EntityPlayer) riddenByEntity).openGui(Traincraft.instance, GuiIDs.LOCO, worldObj, (int) this.posX, (int) this.posY, (int) this.posZ);
+		}
+	}
+
+	@Override
 	protected void writeEntityToNBT(NBTTagCompound nbttagcompound) {
 		super.writeEntityToNBT(nbttagcompound);
 
+		nbttagcompound.setShort("fuelTrain", (short) fuelTrain);
 		NBTTagList nbttaglist = new NBTTagList();
-		for (int i = 0; i < cargoItems.length; i++) {
-			if (cargoItems[i] != null) {
+		for (int i = 0; i < locoInvent.length; i++) {
+			if (locoInvent[i] != null) {
 				NBTTagCompound nbttagcompound1 = new NBTTagCompound();
 				nbttagcompound1.setByte("Slot", (byte) i);
-				cargoItems[i].writeToNBT(nbttagcompound1);
+				locoInvent[i].writeToNBT(nbttagcompound1);
 				nbttaglist.appendTag(nbttagcompound1);
 			}
 		}
@@ -62,25 +67,25 @@ public class EntityFreightBamboo extends Freight implements IInventory {
 	protected void readEntityFromNBT(NBTTagCompound nbttagcompound) {
 		super.readEntityFromNBT(nbttagcompound);
 
+		fuelTrain = nbttagcompound.getShort("fuelTrain");
 		NBTTagList nbttaglist = nbttagcompound.getTagList("Items", Constants.NBT.TAG_COMPOUND);
-		cargoItems = new ItemStack[getSizeInventory()];
+		locoInvent = new ItemStack[getSizeInventory()];
 		for (int i = 0; i < nbttaglist.tagCount(); i++) {
 			NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
 			int j = nbttagcompound1.getByte("Slot") & 0xff;
-			if (j >= 0 && j < cargoItems.length) {
-				cargoItems[j] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
+			if (j >= 0 && j < locoInvent.length) {
+				locoInvent[j] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
 			}
 		}
 	}
 
 	@Override
-	public String getInventoryName() {
-		return "Freight cart";
-	}
-
-	@Override
 	public int getSizeInventory() {
-		return freightInventorySize;
+		return inventorySize;
+	}
+	@Override
+	public String getInventoryName() {
+		return "E103";
 	}
 
 	@Override
@@ -89,15 +94,24 @@ public class EntityFreightBamboo extends Freight implements IInventory {
 		if ((super.interactFirst(entityplayer))) {
 			return false;
 		}
-		entityplayer.openGui(Traincraft.instance, GuiIDs.FREIGHT, worldObj, this.getEntityId(), -1, (int) this.posZ);
+		if (!worldObj.isRemote) {
+			if (riddenByEntity != null && (riddenByEntity instanceof EntityPlayer) && riddenByEntity != entityplayer) {
+				return true;
+			}
+			entityplayer.mountEntity(this);
+		}
 		return true;
 	}
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return 1.55F;
+		return 0.3F;
 	}
 
+	@Override
+	public boolean canBeAdjusted(EntityMinecart cart) {
+		return canBeAdjusted;
+	}
 	@Override
 	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
 		return true;
