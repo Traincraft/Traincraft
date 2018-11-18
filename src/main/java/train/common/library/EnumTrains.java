@@ -33,8 +33,8 @@ public enum EnumTrains {
 	passengerDenverRioGrange("Passenger Denver Rio Grande", EntityPassengerDenverRioGrande.class,ItemIDs.minecartDenverRioGrandePassenger.item, "passenger", 0, 0, 1, 0, 0, 0, 0, 0, 0, null, 10, 0),
 	passengerDenverRioGrandeCombo("Passenger Denver Rio Grande Combo", EntityPassengerDenverRioGrandeCombo.class,ItemIDs.minecartDenverRioGrandeCombo.item, "passenger", 0, 0, 1, 0, 0, 0, 0, 0, 0, null, 10, 0),
 
-	passengerRheingold("Passenger Rheingold",EntityPassengerRheingold.class, ItemIDs.minecartPassengerRheingold.item,"passenger",0,0,1,0,0,0,0,0,0,new String[]{"Blue", "Red"},18,0),
-	passengerRheingoldDining1("Rheingold Dining",EntityPassengerRheingoldDining1.class, ItemIDs.minecartPassengerRheingoldDining1.item,"work",0,0,1.5,0,0,0,0,0,0,new String[]{"Blue", "Red"},18,0),
+	passengerRheingold("Passenger Rheingold",EntityPassengerRheingold.class, ItemIDs.minecartPassengerRheingold.item,"passenger",0,0,1,0,0,0,0,0,0,new String[]{"Blue", "Red", "Green"},18,0),
+	passengerRheingoldDining1("Rheingold Dining",EntityPassengerRheingoldDining1.class, ItemIDs.minecartPassengerRheingoldDining1.item,"work",0,0,1.5,0,0,0,0,0,0,new String[]{"Blue", "Red", "Green"},18,0),
 	passengerRheingoldDining2("Rheingold Dining Alternate",EntityPassengerRheingoldDining2.class, ItemIDs.minecartPassengerRheingoldDining2.item,"work",0,0,1.5,0,0,0,0,0,0,new String[]{"Blue", "Red"},18,0),
 	passengerRheingoldPanorama("Rheingold Panorama",EntityPassengerRheingoldPanorama.class, ItemIDs.minecartPassengerRheingoldPanorama.item,"passenger",0,0,1,0,0,0,0,0,0,new String[]{"Blue", "Red"},18,0),
 
@@ -192,7 +192,7 @@ public enum EnumTrains {
 	locoElectricBR185("Loco Electric BR 185", EntityLocoElectricBR185.class, ItemIDs.minecartLocoBR185.item,
 			"electric", 7500, 160, 0, 6, 0, 170, 0.7, 0.965, 0, new String[]{"Red", "Blue", "Magenta", "Cyan", "Grey", "LightBlue", "LightGrey", "Orange", "Pink", "Purple", "White", "Yellow"}, 18, -5),
 	locoDieselE10lDB("Loco Electric E10 DB",EntityLocoElectricE10_DB.class, ItemIDs.minecartE10_DB.item,"electric",5069,150,0,8,0,170,0.66,0.96,8000,new String[] {"Blue","Red", "Grey", "Brown", "Green"},15,-3.8),
-	locoDieselE103("Loco Electric E103",EntityLocoElectricE103.class, ItemIDs.minecartE103.item,"electric",8090,200,0,8,0,170,0.66,0.96,8000,new String[] {"Blue","Red"},15,-3.7),
+	locoDieselE103("Loco Electric E103",EntityLocoElectricE103.class, ItemIDs.minecartE103.item,"electric",8090,200,0,8,0,170,0.66,0.96,8000,new String[] {"Red","Blue"},15,-3.7),
 	locoElectricClass85("Loco Electric Class 85", EntityLocoElectricClass85.class,
 			ItemIDs.minecartLocoClass85.item, "electric", 3156, 160, 0, 10, 0, 170, 0.7, 0.965, 0, null, 18, -5),
 	locoElectricCD151("Loco Electric CD151", EntityLocoElectricCD151.class, ItemIDs.minecartLocoCD151.item,
