@@ -301,6 +301,13 @@ item.tc:minecartLocoMILWClassA.name=Hiawatha 1935 Class A MILW
 item.tc:minecartMILWTender.name=Hiawatha 1935 MILW Tender
 item.tc:minecartHeavyweightMailcar.name=Heavyweight Mailcar
 item.tc:minecartLocoSteamPannier.name=0-6-0 Pannier
+item.tc:minecartE103.name=E103
+item.tc:minecartLocoCD151.name=CD 151
+item.tc:minecartFreightBamboo.name=Bamboo flatcar freight
+item.tc:minecartTrainBamboo.name=Bamboo flatcar engine
+item.tc:minecartPassengerBamboo.name=Bamboo flatcar passenger
+item.tc:minecartFreightDepressedFlatbed.name=Depressed Flatbed
+item.tc:minecartFreightGermanPost.name=German Mailcar
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -549,7 +556,15 @@ entity.tc.Passenger MILW.name=Hiawatha 1935 MILW Passenger
 entity.tc.Passenger MILW Tail.name=Hiawatha 1935 MILW Beavertail
 entity.tc.MILW Baggage.name=Hiawatha 1935 MILW Baggage
 entity.tc.Loco Steam MILW Class A.name=Hiawatha 1935 Class A MILW
-entity.tc.MILW Tender.name=Hiawatha 1935 MILW Tender
+entity.tc.MILW Tender.name=Tender MILW
+entity.tc.Loco Electric E103.name=E103
+entity.tc.Loco Electric CD151.name=CD 151
+entity.tc.Bamboo Flatcar Freight.name=Bamboo flatcar freight
+entity.tc.Bamboo Flatcar Engine.name=Bamboo flatcar engine
+entity.tc.Bamboo Flatcar Passenger.name=Bamboo flatcar passenger
+entity.tc.Freight Depressed Flatcar.name=Depressed Flatbed
+entity.tc.Freight German Post.name=German Mailcar
+
 
 description.villager.profession.tc.station_chief=Station Chief
 
