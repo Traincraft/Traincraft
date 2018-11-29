@@ -74,7 +74,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 	public boolean isDriverOverspeed = false;
 	public boolean overspeedBrakingInProgress = false;
 	public Boolean mtcOverridePressed = false;
-	public Double timeUntilBraking
+	public Double timeUntilBraking = 0.0;
 	public Boolean overspeedOveridePressed = false;
 	
 	//TrainAdditions support ends here
