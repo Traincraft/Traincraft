@@ -22,12 +22,12 @@ public class WorldEvents{
 
 	@SubscribeEvent
 	public void onWorldTick(TickEvent.WorldTickEvent handler){
-		World world = handler.world;
-		if(world.isRemote){
+		if(handler.world.isRemote){
 			if(windTicker % 128 == 0){
 				updateWind();
+				windTicker=0;
 			}
-			windTicker += 1;
+			windTicker++;
 		}
 	}
 

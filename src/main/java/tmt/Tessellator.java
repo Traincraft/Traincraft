@@ -30,7 +30,7 @@ import static org.lwjgl.opengl.GL11.GL_TEXTURE_2D;
 public class Tessellator{
 	
 	private static ByteBuffer bbuf = GLAllocation.createDirectByteBuffer(0x200000 * 4);
-	private int rbs = 0, verts = 0, /*br, c,*/ rbi = 0, /*vertices = 0,*/ dm, n, vtc;
+	private int rbs = 0, verts = 0, /*br, c,*/ rbi = 0, /*vertices = 0,*/ dm, n, vtc, o;
 	private boolean ht = false, in = false, drawing = false;
 	public static Tessellator INSTANCE = new Tessellator();
 	private static FloatBuffer fbuf = bbuf.asFloatBuffer();
@@ -57,7 +57,7 @@ public class Tessellator{
 
 	public int draw(){
 		if(drawing){
-			drawing = false; int o = 0;
+			drawing = false; o = 0;
 			while(o < verts){
 				vtc = Math.min(verts - o, 0x200000 >> 5);
 				ibuf.clear(); ibuf.put(rb, o * 10, vtc * 10); bbuf.position(0); bbuf.limit(vtc * 40); o += vtc;

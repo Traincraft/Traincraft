@@ -46,7 +46,7 @@ public class ModelD51ShortStreamlining extends ModelConverter //Same as Filename
 		GL11.glTranslatef(-0f,0f,0);
 		frontBogie.render();
 		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation,Info.trainsPrefix +"d51_rear_bogie.png"));
-		GL11.glTranslatef(0f,0f,0);
+		GL11.glTranslatef(0f,-0.05f,0);
 		rearBogie.render();
 		GL11.glPopMatrix();
 	}

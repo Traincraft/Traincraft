@@ -43,10 +43,10 @@ public class ModelD51LongStreamlining extends ModelConverter //Same as Filename
 		super.render(entity, f0, f1, f2, f3, f4, scale);
 		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation,Info.trainsPrefix +"d51_front_bogie.png"));
 		GL11.glPushMatrix();
-		GL11.glTranslatef(-0f,0f,0);
+		GL11.glTranslatef(0f,0f,0);
 		frontBogie.render();
 		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation,Info.trainsPrefix +"d51_rear_bogie.png"));
-		GL11.glTranslatef(0f,0f,0);
+		GL11.glTranslatef(0f,-0.05f,0);
 		rearBogie.render();
 		GL11.glPopMatrix();
 	}

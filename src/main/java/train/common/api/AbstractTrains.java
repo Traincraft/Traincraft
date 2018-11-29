@@ -25,7 +25,6 @@ import train.client.render.RenderEnum;
 import train.common.Traincraft;
 import train.common.adminbook.ItemAdminBook;
 import train.common.core.handlers.ConfigHandler;
-import train.common.core.handlers.RollingStockStatsEventHandler;
 import train.common.core.handlers.TrainHandler;
 import train.common.items.ItemChunkLoaderActivator;
 import train.common.items.ItemRollingStock;
@@ -142,12 +141,10 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 	 */
 	public ArrayList<Integer> acceptedColors;
 
-	protected RollingStockStatsEventHandler statsEventHandler;
 
 	public AbstractTrains(World world) {
 		super(world);
 		renderDistanceWeight = 2.0D;
-		statsEventHandler = new RollingStockStatsEventHandler(this);
 		color = -1;
 		dataWatcher.addObject(12, color);
 		acceptedColors = new ArrayList<Integer>();
@@ -254,7 +251,6 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 			}
 		}
 		shouldChunkLoad = getFlag(7);
-		statsEventHandler.trainDistance();
 		if (shouldChunkLoad){
 			if(this.chunkTicket == null) {
 				this.requestTicket();

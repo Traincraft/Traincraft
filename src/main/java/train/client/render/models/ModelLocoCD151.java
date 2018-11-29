@@ -8,9 +8,15 @@
 // Last changed on: 07.07.2018 - 13:59:53
 
 package train.client.render.models; //Path where the model is located
+ import net.minecraft.entity.Entity;
+ import net.minecraft.util.ResourceLocation;
+ import org.lwjgl.opengl.GL11;
  import tmt.ModelConverter;
 import tmt.ModelRendererTurbo;
- public class ModelLocoCD151 extends ModelConverter //Same as Filename
+ import tmt.Tessellator;
+ import train.common.library.Info;
+
+public class ModelLocoCD151 extends ModelConverter //Same as Filename
 {
 	int textureX = 512;
 	int textureY = 256;
@@ -24,6 +30,19 @@ import tmt.ModelRendererTurbo;
 
 
 		flipAll();
+	}
+	//private ModelBogie bogie = new ModelBogie();
+	@Override
+	public void render(Entity entity, float f0, float f1, float f2, float f3, float f4, float scale){
+		super.render(entity, f0, f1, f2, f3, f4, scale);
+		//Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation,Info.trainsPrefix +"cd151_front_bogie.png"));
+		//GL11.glPushMatrix();
+		//GL11.glTranslatef(0f,0f,0);
+		//bogie.render();
+		//Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation,Info.trainsPrefix +"cd151_rear_bogie.png"));
+		//GL11.glTranslatef(0f,-0.05f,0);
+		//bogie.render();
+		//GL11.glPopMatrix();
 	}
 
 	private void initbodyModel_1()
