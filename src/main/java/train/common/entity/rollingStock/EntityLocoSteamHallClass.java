@@ -8,16 +8,23 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
 import train.common.Traincraft;
-import train.common.api.ElectricTrain;
-import train.common.core.util.TraincraftUtil;
+import train.common.api.LiquidManager;
+import train.common.api.SteamTrain;
+import train.common.library.EnumTrains;
 import train.common.library.GuiIDs;
 
-public class EntityLocoElectricCD151 extends ElectricTrain {
-	public EntityLocoElectricCD151(World world) {
-		super(world);
+public class EntityLocoSteamHallClass extends SteamTrain {
+	public EntityLocoSteamHallClass(World world) {
+		super(world, EnumTrains.locosteamHallClass.getTankCapacity(), LiquidManager.WATER_FILTER);
+		initLocoSteam();
 	}
 
-	public EntityLocoElectricCD151(World world, double d, double d1, double d2) {
+	public void initLocoSteam() {
+		fuelTrain = 0;
+		locoInvent = new ItemStack[inventorySize];
+	}
+
+	public EntityLocoSteamHallClass(World world, double d, double d1, double d2) {
 		this(world);
 		setPosition(d, d1 + yOffset, d2);
 		motionX = 0.0D;
@@ -30,7 +37,12 @@ public class EntityLocoElectricCD151 extends ElectricTrain {
 
 	@Override
 	public void updateRiderPosition() {
-		TraincraftUtil.updateRider(this, (float) anglePitchClient, worldObj.isRemote?rotationYawClientReal:serverRealRotation, 0, 0.3,3.75);
+		
+		/*double rads = this.renderYaw * 3.141592653589793D / 180.0D;
+		double pitchRads = this.renderPitch * 3.141592653589793D / 180.0D;
+		riddenByEntity.setPosition(posX - Math.cos(rads)*3, posY + (Math.tan(pitchRads)*-3F)+( getMountedYOffset() + riddenByEntity.getYOffset() + 0.55F), posZ - Math.sin(rads)*3);
+		*/
+		riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset() + 0.325F, posZ);
 	}
 
 	@Override
@@ -44,6 +56,15 @@ public class EntityLocoElectricCD151 extends ElectricTrain {
 		if (i == 7 && riddenByEntity != null && riddenByEntity instanceof EntityPlayer) {
 			((EntityPlayer) riddenByEntity).openGui(Traincraft.instance, GuiIDs.LOCO, worldObj, (int) this.posX, (int) this.posY, (int) this.posZ);
 		}
+	}
+
+	@Override
+	public void onUpdate() {
+		super.onUpdate();
+		if (worldObj.isRemote) {
+			return;
+		}
+		checkInvent(locoInvent[0], locoInvent[1], this);
 	}
 
 	@Override
@@ -73,7 +94,7 @@ public class EntityLocoElectricCD151 extends ElectricTrain {
 		for (int i = 0; i < nbttaglist.tagCount(); i++) {
 			NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
 			int j = nbttagcompound1.getByte("Slot") & 0xff;
-			if (j >= 0 && j < locoInvent.length) {
+			if (j >=0 && j < locoInvent.length) {
 				locoInvent[j] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
 			}
 		}
@@ -85,7 +106,7 @@ public class EntityLocoElectricCD151 extends ElectricTrain {
 	}
 	@Override
 	public String getInventoryName() {
-		return "CD 151";
+		return "Hall Class";
 	}
 
 	@Override
@@ -105,15 +126,13 @@ public class EntityLocoElectricCD151 extends ElectricTrain {
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return 0.3F;
+		return 0.0F;
 	}
 
+
 	@Override
-	public boolean canBeAdjusted(EntityMinecart cart) {
-		return canBeAdjusted;
-	}
+	public boolean canBeAdjusted(EntityMinecart cart) { return canBeAdjusted; }
+
 	@Override
-	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
-		return true;
-	}
+	public boolean isItemValidForSlot(int i, ItemStack itemstack) { return true; }
 }

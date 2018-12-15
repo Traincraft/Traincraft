@@ -308,6 +308,8 @@ item.tc:minecartTrainBamboo.name=Bamboo flatcar engine
 item.tc:minecartPassengerBamboo.name=Bamboo flatcar passenger
 item.tc:minecartFreightDepressedFlatbed.name=Depressed Flatbed
 item.tc:minecartFreightGermanPost.name=German Mailcar
+item.tc:minecart4000GallonTender.name=4000 Gallon Tender
+item.tc:minecartLocoHallClass.name=Hall Class
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -564,7 +566,8 @@ entity.tc.Bamboo Flatcar Engine.name=Bamboo flatcar engine
 entity.tc.Bamboo Flatcar Passenger.name=Bamboo flatcar passenger
 entity.tc.Freight Depressed Flatcar.name=Depressed Flatbed
 entity.tc.Freight German Post.name=German Mailcar
-
+entity.tc.Loco Hall Class.name=Hall Class
+entity.tc.4000GallonTender.name=4000 Gallon Tender
 
 description.villager.profession.tc.station_chief=Station Chief
 

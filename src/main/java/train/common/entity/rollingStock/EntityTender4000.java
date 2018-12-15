@@ -2,22 +2,34 @@ package train.common.entity.rollingStock;
 
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.fluids.FluidRegistry;
 import train.common.Traincraft;
-import train.common.api.ElectricTrain;
-import train.common.core.util.TraincraftUtil;
+import train.common.api.LiquidManager;
+import train.common.api.Tender;
+import train.common.library.EnumTrains;
 import train.common.library.GuiIDs;
 
-public class EntityLocoElectricCD151 extends ElectricTrain {
-	public EntityLocoElectricCD151(World world) {
-		super(world);
+public class EntityTender4000 extends Tender implements IInventory {
+	public int freightInventorySize;
+	public EntityTender4000(World world) {
+		super(world, FluidRegistry.WATER, 0, EnumTrains.tenderGS4.getTankCapacity(), LiquidManager.WATER_FILTER);
+		initFreightTender();
 	}
 
-	public EntityLocoElectricCD151(World world, double d, double d1, double d2) {
+	public void initFreightTender() {
+		freightInventorySize = 16;
+
+		tenderItems = new ItemStack[freightInventorySize];
+		this.setDefaultMass(0.2);
+	}
+
+	public EntityTender4000(World world, double d, double d1, double d2) {
 		this(world);
 		setPosition(d, d1 + yOffset, d2);
 		motionX = 0.0D;
@@ -29,34 +41,27 @@ public class EntityLocoElectricCD151 extends ElectricTrain {
 	}
 
 	@Override
-	public void updateRiderPosition() {
-		TraincraftUtil.updateRider(this, (float) anglePitchClient, worldObj.isRemote?rotationYawClientReal:serverRealRotation, 0, 0.3,3.75);
-	}
-
-	@Override
 	public void setDead() {
 		super.setDead();
 		isDead = true;
 	}
 
 	@Override
-	public void pressKey(int i) {
-		if (i == 7 && riddenByEntity != null && riddenByEntity instanceof EntityPlayer) {
-			((EntityPlayer) riddenByEntity).openGui(Traincraft.instance, GuiIDs.LOCO, worldObj, (int) this.posX, (int) this.posY, (int) this.posZ);
-		}
+	public void onUpdate() {
+		super.onUpdate();
+		checkInvent(tenderItems[0], this);
 	}
 
 	@Override
 	protected void writeEntityToNBT(NBTTagCompound nbttagcompound) {
 		super.writeEntityToNBT(nbttagcompound);
 
-		nbttagcompound.setShort("fuelTrain", (short) fuelTrain);
 		NBTTagList nbttaglist = new NBTTagList();
-		for (int i = 0; i < locoInvent.length; i++) {
-			if (locoInvent[i] != null) {
+		for (int i = 0; i < tenderItems.length; i++) {
+			if (tenderItems[i] != null) {
 				NBTTagCompound nbttagcompound1 = new NBTTagCompound();
 				nbttagcompound1.setByte("Slot", (byte) i);
-				locoInvent[i].writeToNBT(nbttagcompound1);
+				tenderItems[i].writeToNBT(nbttagcompound1);
 				nbttaglist.appendTag(nbttagcompound1);
 			}
 		}
@@ -67,25 +72,24 @@ public class EntityLocoElectricCD151 extends ElectricTrain {
 	protected void readEntityFromNBT(NBTTagCompound nbttagcompound) {
 		super.readEntityFromNBT(nbttagcompound);
 
-		fuelTrain = nbttagcompound.getShort("fuelTrain");
 		NBTTagList nbttaglist = nbttagcompound.getTagList("Items", Constants.NBT.TAG_COMPOUND);
-		locoInvent = new ItemStack[getSizeInventory()];
+		tenderItems = new ItemStack[getSizeInventory()];
 		for (int i = 0; i < nbttaglist.tagCount(); i++) {
 			NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
 			int j = nbttagcompound1.getByte("Slot") & 0xff;
-			if (j >= 0 && j < locoInvent.length) {
-				locoInvent[j] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
+			if (j >= 0 && j < tenderItems.length) {
+				tenderItems[j] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
 			}
 		}
+	}
+	@Override
+	public String getInventoryName() {
+		return "Tender";
 	}
 
 	@Override
 	public int getSizeInventory() {
-		return inventorySize;
-	}
-	@Override
-	public String getInventoryName() {
-		return "CD 151";
+		return freightInventorySize;
 	}
 
 	@Override
@@ -94,24 +98,17 @@ public class EntityLocoElectricCD151 extends ElectricTrain {
 		if ((super.interactFirst(entityplayer))) {
 			return false;
 		}
-		if (!worldObj.isRemote) {
-			if (riddenByEntity != null && (riddenByEntity instanceof EntityPlayer) && riddenByEntity != entityplayer) {
-				return true;
-			}
-			entityplayer.mountEntity(this);
+		if (!this.worldObj.isRemote) {
+			entityplayer.openGui(Traincraft.instance, GuiIDs.TENDER, worldObj, this.getEntityId(), -1, (int) this.posZ);
 		}
 		return true;
 	}
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return 0.3F;
+		return 2.25F;
 	}
 
-	@Override
-	public boolean canBeAdjusted(EntityMinecart cart) {
-		return canBeAdjusted;
-	}
 	@Override
 	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
 		return true;
