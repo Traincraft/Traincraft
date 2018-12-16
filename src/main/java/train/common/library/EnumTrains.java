@@ -115,12 +115,13 @@ public enum EnumTrains {
 			0.5, null, 18, 38, new String[]{"Cargo: only ice"}),
 	freightCartGS4("Freight Cart GS4 Baggage", EntityFreightGS4_Baggage.class, ItemIDs.minecartGS4_Baggage.item, "freight", 1, new String[]{"Orange", "White", "Yellow", "Brown"}, 18, 45, new String[]{"Cargo: any"}),
 	freightGondola_DB("Freight Gondola DB", EntityFreightGondola_DB.class, ItemIDs.minecartFreightGondola_DB.item, "freight", 3.5, new String[]{"Red", "Green"}, 18, 45, new String[]{"Cargo: blocks, vanilla items"}),
+	freightCart_L("Freight Car L", EntityFreightCartL.class, ItemIDs.minecartFreightL.item, "freight", 3.5, null, 18, 45, new String[]{"Cargo: any"}),
 	freightCenterBeam_Empty("Freight Center Beam Empty", EntityFreightCenterbeam_Empty.class, ItemIDs.minecartFreightCenterBeam_Empty.item, "freight", 0.5, null, 18, 54, new String[]{"Cargo: any"}),
 	freightCenterBeam_Wood1("Freight Center Beam Wood1", EntityFreightCenterbeam_Wood_1.class, ItemIDs.minecartFreightCenterBeam_Wood_1.item, "freight", 3, null, 18, 54, new String[]{"Cargo: wood stuff"}),
 	freightCenterBeam_Wood2("Freight Center Beam Wood2", EntityFreightCenterbeam_Wood_2.class, ItemIDs.minecartFreightCenterBeam_Wood_2.item, "freight", 3, null, 18, 54, new String[]{"Cargo: wood stuff"}),
 	//freightWellcar("Freight Well Car",EntityFreightWellcar.class, ItemIDs.minecartFreightWellcar.item,"freight",3,new String[] {"Blue","Red","Green","LightGrey","Grey", "Yellow"},18,54,new String[] {"Cargo: any"}),
 	freightWellcar("Freight Well Car", EntityFreightWellcar.class, ItemIDs.minecartFreightWellcar.item, "freight", 3, new String[]{"Blue", "Red", "Green", "Black", "Grey"}, 18, 54, new String[]{"Cargo: any"}),
-	freightTrailer("Freight Trailer", EntityFreightTrailer.class, ItemIDs.minecartFreightTrailer.item, "freight", 3, new String[]{"Blue", "Yellow", "LightBlue", "Red", "Grey"}, 18, 54, new String[]{"Cargo: any"}),
+	freightTrailer("Freight Trailer", EntityFreightTrailer.class, ItemIDs.minecartFreightTrailer.item, "freight", 3, new String[]{"Blue", "Yellow", "LightBlue", "Red", "Grey", "Green"}, 18, 54, new String[]{"Cargo: any"}),
 	freightDenverRioGrange("Denver Rio Grande Baggage", EntityFreightDenverRioGrande.class, ItemIDs.minecartDenverRioGrandeBaggage.item, "freight", 0.5, null, 18, 54, new String[]{"Cargo: any"}),
 	freightMILWBaggage("MILW Baggage", EntityFreightBaggageMILW.class, ItemIDs.minecartBaggageMILW.item, "freight", 0.5, null, 18, 54, new String[]{"Cargo: any"}),
 	freightheavyweight("Heavyweight Freight Car", EntityFreightHeavyweight.class, ItemIDs.minecartHeavyweightMailcar.item, "freight", 0.5, null, 18, 54, new String[]{"Cargo: any"}),
@@ -189,6 +190,7 @@ public enum EnumTrains {
 	locoDieselDD35A("Loco Diesel DD35A", EntityLocoDieselDD35A.class, ItemIDs.minecartLocoDD35A.item, "diesel", 5000, 90, 0, 10, 0, 170, 0.7, 0.965, 6850, null, 18, -4.75),
 	locoDiesel44TonSwitcher("GE 44-ton Diesel switcher", EntityLocoDiesel44TonSwitcher.class, ItemIDs.minecartLoco44TonSwitcher.item, "diesel", 300, 20, 0, 10, 0, 170, 0.7, 0.965, 6850, null, 18, -2.75),
 	locoDieselBamboo("Bamboo Flatcar Engine", EntityLocoDieselBamboo.class, ItemIDs.minecartTrainBamboo.item, "diesel", 20, 20, 0, 10, 0, 170, 0.7, 0.965, 3000, null, 18, -2),
+	locoDieselWLs40("Loco WLs40", EntityLocoDieselWLs40.class, ItemIDs.minecartLocoWLs40.item, "diesel", 60, 17, 0, 10, 0, 170, 0.7, 0.965, 3000, null, 18, -3),
 
 
 	/** Electric */

@@ -14,9 +14,9 @@ import train.common.core.util.TraincraftUtil;
 import train.common.library.EnumTrains;
 import train.common.library.GuiIDs;
 
-public class EntityLocoDieselSD70 extends DieselTrain {
-	public EntityLocoDieselSD70(World world) {
-		super(world, EnumTrains.locoDieselSD70.getTankCapacity(), LiquidManager.dieselFilter());
+public class EntityLocoDieselWLs40 extends DieselTrain {
+	public EntityLocoDieselWLs40(World world) {
+		super(world, EnumTrains.locoDieselWLs40.getTankCapacity(), LiquidManager.dieselFilter());
 		initLoco();
 	}
 
@@ -25,7 +25,7 @@ public class EntityLocoDieselSD70 extends DieselTrain {
 		locoInvent = new ItemStack[inventorySize];
 	}
 
-	public EntityLocoDieselSD70(World world, double d, double d1, double d2) {
+	public EntityLocoDieselWLs40(World world, double d, double d1, double d2) {
 		this(world);
 		setPosition(d, d1 + yOffset, d2);
 		motionX = 0.0D;
@@ -38,7 +38,7 @@ public class EntityLocoDieselSD70 extends DieselTrain {
 
 	@Override
 	public void updateRiderPosition() {
-		TraincraftUtil.updateRider(this, (float) anglePitchClient, worldObj.isRemote?rotationYawClientReal:serverRealRotation, 0, 0.3,2.3);
+		TraincraftUtil.updateRider(this, (float) anglePitchClient, worldObj.isRemote?rotationYawClientReal:serverRealRotation, 0, 0.5f,0);
 	}
 
 	@Override
@@ -100,7 +100,7 @@ public class EntityLocoDieselSD70 extends DieselTrain {
 
 	@Override
 	public String getInventoryName() {
-		return "SD70";
+		return "WLs40";
 	}
 
 	@Override
@@ -120,7 +120,7 @@ public class EntityLocoDieselSD70 extends DieselTrain {
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return (1.2F);
+		return (1F);
 	}
 	@Override
 	public boolean canBeAdjusted(EntityMinecart cart) {

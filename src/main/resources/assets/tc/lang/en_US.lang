@@ -311,6 +311,8 @@ item.tc:minecartFreightGermanPost.name=German Mailcar
 item.tc:minecart4000GallonTender.name=4000 Gallon Tender
 item.tc:minecartLocoHallClass.name=Hall Class
 item.tc:minecartLocoKingClass.name=King Class
+item.tc:minecartLocoWLs40.name=WLs40
+item.tc:train_freight_l.name=Freight Car L
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -569,6 +571,9 @@ entity.tc.Freight Depressed Flatcar.name=Depressed Flatbed
 entity.tc.Freight German Post.name=German Mailcar
 entity.tc.Loco Hall Class.name=Hall Class
 entity.tc.4000GallonTender.name=4000 Gallon Tender
+entity.tc.Loco King Class.name=King Class
+entity.tc.Loco WLS40.name=WLs40
+entity.tc.Freight Car L.name=Freight Car L
 
 description.villager.profession.tc.station_chief=Station Chief
 
