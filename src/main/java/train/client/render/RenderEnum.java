@@ -500,6 +500,15 @@ public enum RenderEnum {
 			add(new double[] { 4.5D, -0.4D, 0.8D });//steam
 		}
 	}, 2, true),
+	LocoSteamKingClass(EntityLocoSteamKingClass.class, new ModelKingClass(), "King_Class_Locomotive_", true, new float[] {-1.75F, 0.15F, 0.0F },/*position*/  new float[] { 0F, 180F, 180F }, new float[]{0.975f,0.975f,0.975f},/*scale*/ "largesmoke", 20, new ArrayList<double[]>() {
+		{
+			add(new double[] { 4.85D, 1.55D, 0.0D });//smoke
+		}
+	}, "explode", new ArrayList<double[]>() {
+		{
+			add(new double[] { 4.0D, -0.4D, 0.8D });//steam
+		}
+	}, 2, true),
 	locoSteamMILWClassA(EntityLocoSteamMILWClassA.class, new ModelMILWClassA(), "locoMILW_ClassA", false, new float[] {0.0F, 0.1F, 0F }, new float[] { 0F, 180F, 180F }, new float[]{0.9f,0.9f,0.9f}, "largesmoke", 20, new ArrayList<double[]>() {
 		{
 			add(new double[] { 4.3D, 1.3D, 0.0D });

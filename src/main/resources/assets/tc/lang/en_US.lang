@@ -310,6 +310,7 @@ item.tc:minecartFreightDepressedFlatbed.name=Depressed Flatbed
 item.tc:minecartFreightGermanPost.name=German Mailcar
 item.tc:minecart4000GallonTender.name=4000 Gallon Tender
 item.tc:minecartLocoHallClass.name=Hall Class
+item.tc:minecartLocoKingClass.name=King Class
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes

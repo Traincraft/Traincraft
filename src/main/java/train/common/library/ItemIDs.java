@@ -184,6 +184,7 @@ public enum ItemIDs {
 	minecartGS4_Tender("ItemRollingStock", "GS4_tender", 10),
 	minecart4000GallonTender("ItemRollingStock", "4000GallonTender", 10),
 	minecartLocoHallClass("ItemRollingStock", "HallClass", 3),
+	minecartLocoKingClass("ItemRollingStock", "KingClass", 3),
 	minecartLoco44TonSwitcher("ItemRollingStock", "train_44tonner", 10),
 	minecartDenverRioGrandePassenger("ItemRollingStock", "denverriogrande_passenger", 10),
 	minecartDenverRioGrandeCombo("ItemRollingStock", "denverriogrande_combo", 10),
