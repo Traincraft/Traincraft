@@ -298,8 +298,8 @@ item.tc:minecartPassengerRheingoldDining2.name=Rheingold Dining Alternate
 item.tc:minecartPassengerRheingold.name=Rheingold Passenger
 item.tc:minecartPassengerRheingoldPanorama.name=Rheingold Panorama
 item.tc:minecartBulkheadFlatCart.name=Bulkhead Flat Cart
-item.tc:minecartLocoSouthern1102.name=Southern 1102
-item.tc:minecartTenderSouthern1102.name=Southern 1102 Tender
+item.tc:minecartLocoSouthern1102.name=Baldwin 4-6-0
+item.tc:minecartTenderSouthern1102.name=Baldwin 4-6-0 Tender
 item.tc:minecartE10_DB.name=E10 (DB)
 item.tc:minecartPassengerMILW.name=Hiawatha 1935 MILW Passenger
 item.tc:minecartPassengerMILWTail.name=Hiawatha 1935 MILW Beavertail
@@ -315,6 +315,21 @@ item.tc:minecartTrainBamboo.name=Bamboo flatcar engine
 item.tc:minecartPassengerBamboo.name=Bamboo flatcar passenger
 item.tc:minecartFreightDepressedFlatbed.name=Depressed Flatbed
 item.tc:minecartFreightGermanPost.name=German Mailcar
+
+=======
+item.tc:minecart4000GallonTender.name=4000 Gallon Tender
+item.tc:minecartLocoHallClass.name=Hall Class
+item.tc:minecartLocoKingClass.name=King Class
+item.tc:minecartLocoWLs40.name=WLs40
+item.tc:train_freight_l.name=Freight Car L
+item.tc:minecartLocoUSATCUS.name=S100 (US)
+item.tc:minecartLocoUSATCUK.name=S100 (UK)
+item.tc:minecartLocoBerk1225.name=Berkshire 1225
+item.tc:minecartLocoBerk765.name=Berkshire 765
+item.tc:minecarttenderBerk1225.name=Berkshire Tender
+item.tc:minecartLocoFowler.name=Fowler 4F
+item.tc:minecartFowler4FTender.name=Fowler 4F Tender
+
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes

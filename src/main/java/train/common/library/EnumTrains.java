@@ -104,6 +104,7 @@ public enum EnumTrains {
 	slateWagon("Freight Slate Wagon", EntityFreightSlateWagon.class, ItemIDs.minecartSlateWagon.item, "freight",
 			0.5, null, 18, 38, new String[] { "Cargo: only stone and ores" }),
 	iceWagon("Freight Ice Wagon", EntityFreightIceWagon.class, ItemIDs.minecartIceWagon.item, "freight",
+
 			0.5, null, 18, 38, new String[] { "Cargo: only ice" }),
 	freightCartGS4("Freight Cart GS4 Baggage",EntityFreightGS4_Baggage.class,ItemIDs.minecartGS4_Baggage.item,"freight",1,new String[]{"Orange", "White", "Yellow", "Brown"},18,45,new String[] {"Cargo: any"}),
 	freightGondola_DB("Freight Gondola DB",EntityFreightGondola_DB.class,ItemIDs.minecartFreightGondola_DB.item,"freight",3.5,new String[] {"Red","Green"},18,45,new String[] {"Cargo: blocks, vanilla items"}),
@@ -120,6 +121,23 @@ public enum EnumTrains {
 	freightGermanPost("Freight German Post",EntityFreightGermanPost.class, ItemIDs.minecartFreightGermanPost.item,"freight",0.1,new String[]{"Yellow", "Red", "Blue"},18,36,new String[] {"Cargo: non-blocks"}),
 	freightDepressedFlatbed("Freight Depressed Flatcar",EntityFreightDepressedFlatbed.class, ItemIDs.minecartFreightDepressedFlatbed.item,"freight",0.1,null,18,36,new String[] {"Cargo: any"}),
 
+			0.5, null, 18, 38, new String[]{"Cargo: only ice"}),
+	freightCartGS4("Freight Cart GS4 Baggage", EntityFreightGS4_Baggage.class, ItemIDs.minecartGS4_Baggage.item, "freight", 1, new String[]{"Orange", "White", "Yellow", "Brown"}, 18, 45, new String[]{"Cargo: any"}),
+	freightGondola_DB("Freight Gondola DB", EntityFreightGondola_DB.class, ItemIDs.minecartFreightGondola_DB.item, "freight", 3.5, new String[]{"Red", "Green"}, 18, 45, new String[]{"Cargo: blocks, vanilla items"}),
+	freightCenterBeam_Empty("Freight Center Beam Empty", EntityFreightCenterbeam_Empty.class, ItemIDs.minecartFreightCenterBeam_Empty.item, "freight", 0.5, null, 18, 54, new String[]{"Cargo: any"}),
+	freightCenterBeam_Wood1("Freight Center Beam Wood1", EntityFreightCenterbeam_Wood_1.class, ItemIDs.minecartFreightCenterBeam_Wood_1.item, "freight", 3, null, 18, 54, new String[]{"Cargo: wood stuff"}),
+	freightCenterBeam_Wood2("Freight Center Beam Wood2", EntityFreightCenterbeam_Wood_2.class, ItemIDs.minecartFreightCenterBeam_Wood_2.item, "freight", 3, null, 18, 54, new String[]{"Cargo: wood stuff"}),
+	//freightWellcar("Freight Well Car",EntityFreightWellcar.class, ItemIDs.minecartFreightWellcar.item,"freight",3,new String[] {"Blue","Red","Green","LightGrey","Grey", "Yellow"},18,54,new String[] {"Cargo: any"}),
+	freightWellcar("Freight Well Car", EntityFreightWellcar.class, ItemIDs.minecartFreightWellcar.item, "freight", 3, new String[]{"Blue", "Red", "Green", "Black", "Grey"}, 18, 54, new String[]{"Cargo: any"}),
+	freightTrailer("Freight Trailer", EntityFreightTrailer.class, ItemIDs.minecartFreightTrailer.item, "freight", 3, new String[]{"Blue", "Yellow", "LightBlue", "Red", "Grey"}, 18, 54, new String[]{"Cargo: any"}),
+	freightDenverRioGrange("Denver Rio Grande Baggage", EntityFreightDenverRioGrande.class, ItemIDs.minecartDenverRioGrandeBaggage.item, "freight", 0.5, null, 18, 54, new String[]{"Cargo: any"}),
+	freightMILWBaggage("MILW Baggage", EntityFreightBaggageMILW.class, ItemIDs.minecartBaggageMILW.item, "freight", 0.5, null, 18, 54, new String[]{"Cargo: any"}),
+	freightheavyweight("Heavyweight Freight Car", EntityFreightHeavyweight.class, ItemIDs.minecartHeavyweightMailcar.item, "freight", 0.5, null, 18, 54, new String[]{"Cargo: any"}),
+	freightCartBamboo("Bamboo Flatcar Freight", EntityFreightBamboo.class, ItemIDs.minecartFreightBamboo.item, "freight", 0.1, null, 18, 36, new String[]{"Cargo: any"}),
+	freightGermanPost("Freight German Post", EntityFreightGermanPost.class, ItemIDs.minecartFreightGermanPost.item, "freight", 0.1, new String[]{"Yellow", "Red", "Blue"}, 18, 36, new String[]{"Cargo: non-blocks"}),
+	freightDepressedFlatbed("Freight Depressed Flatcar", EntityFreightDepressedFlatbed.class, ItemIDs.minecartFreightDepressedFlatbed.item, "freight", 0.1, null, 18, 36, new String[]{"Cargo: any"}),
+
+
 	/** Tanks **/
 	tankWagon_DB("Tank Wagon DB",EntityTankWagon_DB.class,ItemIDs.minecartTankWagon_DB.item,"tank",0,0,6,0,0,0,0,0,50000,new String[]{"Blue", "Green"},18,0,new String[] {"Capacity: 50000mb"}),
 	tankThreeDome("Tank Wagon Three Dome",EntityTankWagonThreeDome.class, ItemIDs.minecartTankWagonThreeDome.item,"tank",0,0,7.5,0,0,0,0,0,90000,new String[]{"Green", "White"},18,0,new String[] {"Capacity: 90000mb"}),
@@ -128,12 +146,26 @@ public enum EnumTrains {
 	tankCartLava("Tank Lava",EntityTankLava.class, ItemIDs.minecartWatertransp.item,"tank",0,0,5,0,0,0,0,0,30000,new String[] {"Empty","Full"},18,0,new String[] {"Capacity: 30000mb","Only lava"}),
 	tankWagonYellow("Tank Wagon Yellow",EntityTankWagon.class, ItemIDs.minecartTankWagon.item,"tank",0,0,6,0,0,0,0,0,40000,null,18,0,new String[] {"Capacity: 40000mb"}),
 
+
 	/** Tenders */
 	tenderSmall("Tender Small Black",EntityTenderSmall.class, ItemIDs.minecartTender.item,"tender",0,0,0.1,0,0,0,0,0,5000,new String[]{"Black","Red","Blue","Green","Yellow"},18,0,new String[] {"Water capacity: 5000mb"}),
 	 tenderHeavy("Tender Heavy",EntityTenderHeavy.class,
 	 ItemIDs.minecartTenderHeavy.item,"tender",0,0,2,0,0,0,0,0,14000,null,18,0,new
 	 String[] {"Water capacity: 14000mb"}),
 	tenderGS4("Tender GS4",EntityTenderGS4.class, ItemIDs.minecartGS4_Tender.item,"tender",0,0,2,0,0,0,0,0,18000,new String[]{"Orange", "White"},18,0,new String[] {"Water capacity: 18000mb"}),
+
+	/**
+	 * Tenders
+	 */
+	tenderSmall("Tender Small Black", EntityTenderSmall.class, ItemIDs.minecartTender.item, "tender", 0, 0, 0.1, 0, 0, 0, 0, 0, 5000, new String[]{"Black", "Red", "Blue", "Green", "Yellow"}, 18, 0, new String[]{"Water capacity: 5000mb"}),
+	tenderHeavy("Tender Heavy", EntityTenderHeavy.class,
+			ItemIDs.minecartTenderHeavy.item, "tender", 0, 0, 2, 0, 0, 0, 0, 0, 14000, null, 18, 0, new
+			String[]{"Water capacity: 14000mb"}),
+	tenderGS4("Tender GS4", EntityTenderGS4.class, ItemIDs.minecartGS4_Tender.item, "tender", 0, 0, 2, 0, 0, 0, 0, 0, 18000, new String[]{"Orange", "White"}, 18, 0, new String[]{"Water capacity: 18000mb"}),
+	Model4000GallonTender("4000GallonTender",EntityTender4000.class, ItemIDs.minecart4000GallonTender.item,"tender",0,0,2,0,0,0,0,0,15000,new String[]{"Green", "Blue", "Red", "Lime"},18,0,new String[] {"Water capacity: 15000mb"}),
+	ModelFowler4FTender("Fowler 4F Tender",EntityTenderFowler4F.class, ItemIDs.minecartFowler4FTender.item,"tender",0,0,2,0,0,0,0,0,15000, null, 18,0,new String[] {"Water capacity: 15000mb"}),
+	Model225Tender("1225 tender",EntityTenderBerk1225.class, ItemIDs.minecarttenderBerk1225.item,"tender",0,0,2,0,0,0,0,0,15000,new String[]{"Black", "Grey"},18,0,new String[] {"Water capacity: 15000mb"}),
+
 	tender4_4_0("Tender 4-4-0", EntityTender4_4_0.class,  ItemIDs.minecartSteamRedTender.item, "tender", 0, 0, 0.2,
 			0, 0, 0, 0, 0, 8000, new String[] { "Black", "White", "Brown", "Blue", "Green", "Red", "Purple" }, 18, 0,
 			new String[] { "Water capacity: 8000mb" }),
@@ -174,7 +206,7 @@ public enum EnumTrains {
 	locoDieselDeltic("Loco Diesel Deltic", EntityLocoDieselDeltic.class, ItemIDs.minecartLocoDeltic.item, "diesel",
 			3344, 161, 0, 10, 0, 170, 0.7, 0.965, 6400, null, 18, -5),
 	locoDieselDD35A("Loco Diesel DD35A", EntityLocoDieselDD35A.class, ItemIDs.minecartLocoDD35A.item, "diesel", 5000, 90, 0, 10, 0, 170, 0.7, 0.965, 6850, null, 18, -4.75),
-	locoDiesel44TonSwitcher("GE 44-ton Diesel switcher", EntityLocoDiesel44TonSwitcher.class, ItemIDs.minecartLoco44TonSwitcher.item, "diesel", 300, 20, 0, 10, 0, 170, 0.7, 0.965, 6850, null, 18, -2.75),
+	locoDiesel44TonSwitcher("GE 44-ton Diesel switcher", EntityLocoDiesel44TonSwitcher.class, ItemIDs.minecartLoco44TonSwitcher.item, "diesel", 300, 56, 0, 10, 0, 170, 0.7, 0.965, 6850, null, 18, -2.75),
 	locoDieselBamboo("Bamboo Flatcar Engine", EntityLocoDieselBamboo.class, ItemIDs.minecartTrainBamboo.item, "diesel", 20, 20, 0, 10, 0, 170, 0.7, 0.965, 3000, null, 18, -2),
 
 
@@ -200,6 +232,13 @@ public enum EnumTrains {
 
 	/** Steam */
 	locoSteamA4("Loco Steam A4 Mallard", EntityLocoSteamMallardA4.class,  ItemIDs.minecartLocoA4Mallard.item, "steam", 2200, 203, 0, 60, 200, 160, 0.65, 0.97, 10000, new String[] { "Blue", "Lime", "Black", "Green", "White" }, 7, -5 ),
+
+	locosteamHallClass("Loco Hall Class", EntityLocoSteamHallClass.class,  ItemIDs.minecartLocoHallClass.item, "steam", 9567, 164, 0, 60, 200, 160, 0.65, 0.97, 10000, new String[] { "Green", "Red", "Lime" }, 7, -4.25 ),
+	locosteamBerk1225("Loco Berkshire 1225", EntityLocoSteamBerk1225.class,  ItemIDs.minecartLocoBerk1225.item, "steam", 9567, 164, 0, 60, 200, 160, 0.65, 0.97, 10000, null, 7, -4.25 ),
+	locosteamBerk765("Loco Berkshire 765", EntityLocoSteamBerk765.class,  ItemIDs.minecartLocoBerk765.item, "steam", 9567, 164, 0, 60, 200, 160, 0.65, 0.97, 10000, null, 7, -4.25 ),
+	locosteamFowler("Loco Fowler", EntityLocoSteamFowler.class,  ItemIDs.minecartLocoFowler.item, "steam", 9567, 102, 0, 60, 200, 160, 0.65, 0.97, 10000, null, 7, -3.25 ),
+	locosteamKingClass("Loco King Class", EntityLocoSteamKingClass.class,  ItemIDs.minecartLocoKingClass.item, "steam", 9665, 174, 0, 60, 200, 160, 0.65, 0.97, 10000, new String[] { "Green", "Blue", "Lime" }, 7, -4.625 ),
+
 	locoSteamMILW("Loco Steam MILW Class A", EntityLocoSteamMILWClassA.class,  ItemIDs.minecartLocoMILWClassA.item, "steam", 3000, 193, 0, 60, 150, 160, 0.65, 0.97, 10000, null, 7, -4.5 ),
 	locoSteamCherepanov("Loco Steam Cherepanov",EntityLocoSteamCherepanov.class, ItemIDs.minecartLocoCherepanov.item,"steam",150,30,0,40,120,120,0.3D,0.98D,3000,null,18,-1.7),
 	locoSteamBR80("Loco Steam BR80",EntityLocoSteamBR80_DB.class,ItemIDs.minecartLocoBR80_DB.item,"steam",567,45,0,100,130,135,0.45,0.97,7000,new String [] {"Black", "Green"},16,-1.1),
@@ -218,9 +257,11 @@ public enum EnumTrains {
 			-6),
 	locoSteamGS4("Loco Steam GS4", EntityLocoSteamGS4.class,  ItemIDs.minecartGS4_Loco.item, "steam", 5500, 180, 0, 60, 350, 450, 0.6, 0.95, 8800, new String[]{"Orange", "White"}, 10, -6 ),
 	locoSteamEr_USSR("Loco Steam ER_USSR", EntityLocoSteamEr_Ussr.class, ItemIDs.minecartLocoEr.item,"steam", 800, 80, 0, 80, 100, 200, 0.35, 0.975, 10000, null, 10, -3.7 ),
-	locoSteamC41("Loco Steam C41", EntityLocoSteamC41.class, ItemIDs.minecartLocoC41.item,"steam", 800, 80, 0, 80, 100, 200, 0.35, 0.975, 4000, null, 10, -3.4 ),
-	locoSteamSouthern1102("Loco Steam Southern 1102", EntityLocoSteamSouthern1102.class, ItemIDs.minecartLocoSouthern1102.item,"steam", 800, 80, 0, 80, 100, 200, 0.35, 0.975, 10000, null, 10, -3.4 ),
-	locoSteamC41T("Loco Steam C41T", EntityLocoSteamC41T.class, ItemIDs.minecartLocoC41T.item,"steam", 800, 80, 0, 80, 100, 200, 0.35, 0.975, 16000, null, 10, -3.4 ),
+	locoSteamC41("Loco Steam C41", EntityLocoSteamC41.class, ItemIDs.minecartLocoC41.item,"steam", 800, 120, 0, 80, 100, 200, 0.35, 0.975, 4000, null, 10, -3.4 ),
+	locoSteamSouthern1102("Loco Steam Southern 1102", EntityLocoSteamSouthern1102.class, ItemIDs.minecartLocoSouthern1102.item,"steam", 800, 118, 0, 80, 100, 200, 0.35, 0.975, 10000, null, 10, -3.4 ),
+	locoSteamUSATCUS("Loco Steam USATCUS", EntityLocoSteamUSATCUS.class, ItemIDs.minecartLocoUSATCUS.item,"steam", 197, 75, 0, 80, 100, 200, 0.35, 0.975, 10000, null, 10, -2.5 ),
+	locoSteamUSATCUK("Loco Steam USATCUK", EntityLocoSteamUSATCUK.class, ItemIDs.minecartLocoUSATCUK.item,"steam", 197, 75, 0, 80, 100, 200, 0.35, 0.975, 10000, null, 10, -2.5 ),
+	locoSteamC41T("Loco Steam C41T", EntityLocoSteamC41T.class, ItemIDs.minecartLocoC41T.item,"steam", 800, 110, 0, 80, 100, 200, 0.35, 0.975, 16000, null, 10, -3.4 ),
 	locoSteamForney("Loco Steam Forney",EntityLocoSteamForneyRed.class, ItemIDs.minecartLocoForneyRed.item,"steam",600,70,0,60,160,130,0.44,0.968,8000,new String[] {"Red","Grey","Yellow","Brown","Blue","Green"},15,-1.35),
 	locoSteamMogul("Loco Steam Mogul",EntityLocoSteamMogulBlue.class, ItemIDs.minecartLocomogulBlue.item,"steam",500,65,0,50,180,180,0.56,0.967,5000,new String[] {"Blue","Black","Brown","Green","Red","White"},15,-2.2),
 	locoSteamShay("Loco Steam Shay",EntityLocoSteamShay.class, ItemIDs.minecartLocoSteamShay.item,"steam",250,50,0,50,160,130,0.5,0.968,4000,null,15,-1),
