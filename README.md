@@ -22,7 +22,7 @@ If you wish to contact the original developers, MrBrutal can sometimes be found 
 * IRC: #Traincraft on Esper.net - Currently not used
 * Curse For New Downloads: [https://minecraft.curseforge.com/projects/traincraft](https://minecraft.curseforge.com/projects/traincraft)
 * 1.7.10 Forum: [http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/2738593-traincraft](http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/2738593-traincraft)
-* Discord live chat (active) [https://discord.gg/SgpnCnK](https://discord.gg/SgpnCnK)
+* Discord live chat (active) [https://discord.gg/0zzHVjy4UIqVJskM](https://discord.gg/0zzHVjy4UIqVJskM)
 
 ## What is Traincraft?
 Traincraft is a [Minecraft](https://minecraft.net/) mod built using [Minecraft Forge](https://github.com/MinecraftForge).

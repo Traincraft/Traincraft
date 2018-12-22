@@ -59,9 +59,11 @@ public class ClientProxy extends CommonProxy {
 		super.registerEvents(event);
 		ClientTickHandler tickHandler = new ClientTickHandler();
 		HUDloco huDloco = new HUDloco();
+		HUDMTC hudMTC = new HUDMTC();
 
 		registerEvent(tickHandler);
 		registerEvent(huDloco);
+		registerEvent(hudMTC);
 	}
 
 	@Override
@@ -150,6 +152,8 @@ public class ClientProxy extends CommonProxy {
 			return riddenByEntity != null ? new GuiZepp(riddenByEntity.inventory, entity) : null;
 		case (GuiIDs.DIGGER):
 			return riddenByEntity != null ? new GuiBuilder(player, riddenByEntity.inventory, entity) : null;
+		case (GuiIDs.MTC_INFO):
+			return riddenByEntity != null ? new GuiMTCInfo(player) : null;
 
 			//Stationary entities while player is not riding. 
 		case (GuiIDs.FREIGHT):

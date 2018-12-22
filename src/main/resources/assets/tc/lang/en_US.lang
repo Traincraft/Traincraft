@@ -26,6 +26,12 @@ fluid.tc:fluid.diesel.name=Diesel Fuel
 fluid.tc:fluid.refinedfuel.name=Refined Fuel
 tile.tc:bridgePillar.name=Bridge Pillar
 tile.tc:switchStand.name=High Star Switch Stand
+tile.mtcspeedtransmitter.name=MTC Speed Transmitter
+tile.mtcstatustransmitter.name=MTC Status Transmitter
+tile.mtcatostoppointtransmitter.name=MTC ATO Stop Point Transmitter
+tile.mtcstatusreceiver.name=MTC Status Receiver
+tile.mtcdestinationreceiver.name=MTC Destination Receiver
+
 
 <!-- ## Fluids ## -->
 fluid.diesel.name=Diesel Fuel
@@ -55,6 +61,7 @@ tile.tc.track.copper.name=Copper Track
 tile.tc.track.coupler.name=Coupler Track
 tile.tc.track.speed.loco.name=Speed Limiter Track
 tile.tc.track.steel.name=Steel Track
+
 
 <!-- ## Items ## -->
 item.tc:diesel.name=Diesel Canister
@@ -308,11 +315,6 @@ item.tc:minecartTrainBamboo.name=Bamboo flatcar engine
 item.tc:minecartPassengerBamboo.name=Bamboo flatcar passenger
 item.tc:minecartFreightDepressedFlatbed.name=Depressed Flatbed
 item.tc:minecartFreightGermanPost.name=German Mailcar
-item.tc:minecart4000GallonTender.name=4000 Gallon Tender
-item.tc:minecartLocoHallClass.name=Hall Class
-item.tc:minecartLocoKingClass.name=King Class
-item.tc:minecartLocoWLs40.name=WLs40
-item.tc:train_freight_l.name=Freight Car L
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -569,11 +571,7 @@ entity.tc.Bamboo Flatcar Engine.name=Bamboo flatcar engine
 entity.tc.Bamboo Flatcar Passenger.name=Bamboo flatcar passenger
 entity.tc.Freight Depressed Flatcar.name=Depressed Flatbed
 entity.tc.Freight German Post.name=German Mailcar
-entity.tc.Loco Hall Class.name=Hall Class
-entity.tc.4000GallonTender.name=4000 Gallon Tender
-entity.tc.Loco King Class.name=King Class
-entity.tc.Loco WLS40.name=WLs40
-entity.tc.Freight Car L.name=Freight Car L
+
 
 description.villager.profession.tc.station_chief=Station Chief
 
@@ -584,3 +582,7 @@ key.traincraft.up=Up
 key.traincraft.down=Down
 key.traincraft.idle=Idle
 key.traincraft.furnace=Furnace
+key.traincraft.showMTCScreen=Show MTC Screen
+key.traincraft.mtcOverride=Toggle MTC
+key.traincraft.overspeedOverride=Overspeed Override
+key.traincraft.toggleATO=Toggle ATO
