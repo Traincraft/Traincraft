@@ -143,6 +143,7 @@ public enum ItemIDs {
 	minecartPropagandaUSSR("ItemRollingStock", "propaganda_ussr", 2),
 	minecartPropagandaUs("ItemRollingStock", "propaganda_us", 2),
 	minecartFreightGondola_DB("ItemRollingStock", "train_freight_gondola", 3),
+	minecartFreightL("ItemRollingStock", "train_freight_l", 3),
 	minecartTankWagon_DB("ItemRollingStock", "train_tank_db", 6),
 	minecartLocoSD70("ItemRollingStock", "train_sd70", 10),
 	minecartLocoEMDF7("ItemRollingStock", "train_emdf7", 10),
@@ -150,6 +151,7 @@ public enum ItemIDs {
 	minecartLocoEMDF7B("ItemRollingStock", "train_emdf7b", 10),
 	minecartLocoEMDF3B("ItemRollingStock", "train_emdf3b", 10),
 	minecartLocoDD35B("ItemRollingStock", "train_dd35b", 10),
+	minecartLocoWLs40("ItemRollingStock", "train_wls40", 10),
 	//minecartRotativeDigger("ItemRotativeDigger","train_",10),
 	minecartLocoEr("ItemRollingStock", "train_ussr", 10),
 	minecartTenderEr("ItemRollingStock", "train_tender_ussr", 4),
@@ -186,8 +188,6 @@ public enum ItemIDs {
 	minecartGS4_Observatory("ItemRollingStock", "GS4_observatory", 10),
 	minecartGS4_Tail("ItemRollingStock", "GS4_tail", 10),
 	minecartGS4_Tender("ItemRollingStock", "GS4_tender", 10),
-
-=======
 	minecart4000GallonTender("ItemRollingStock", "4000GallonTender", 10),
 	minecarttenderBerk1225("ItemRollingStock", "BerkshireTender", 10),
 	minecartLocoHallClass("ItemRollingStock", "HallClass", 3),
@@ -196,7 +196,6 @@ public enum ItemIDs {
 	minecartLocoFowler("ItemRollingStock", "Fowler 4F", 3),
 	minecartFowler4FTender("ItemRollingStock", "Fowler 4F Tender", 3),
 	minecartLocoKingClass("ItemRollingStock", "KingClass", 3),
-
 	minecartLoco44TonSwitcher("ItemRollingStock", "train_44tonner", 10),
 	minecartDenverRioGrandePassenger("ItemRollingStock", "denverriogrande_passenger", 10),
 	minecartDenverRioGrandeCombo("ItemRollingStock", "denverriogrande_combo", 10),

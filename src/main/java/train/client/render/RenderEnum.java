@@ -534,7 +534,7 @@ public enum RenderEnum {
 		}
 	}, 2, true),
 
-=======
+
 	LocoSteamHallClass(EntityLocoSteamHallClass.class, new ModelHallClass(), "Hall_Class_Locomotive_", true, new float[] {-0.65F, 0.15F, -0.25F },/*position*/  new float[] { 0F, 180F, 180F }, new float[]{1f,1f,1f},/*scale*/ "largesmoke", 20, new ArrayList<double[]>() {
 		{
 			add(new double[] { 4.1D, 1.45D, 0.175D });//smoke

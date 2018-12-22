@@ -23,6 +23,7 @@ public class TileInfoTransmitterMTC extends TileEntity implements IPeripheral {
     //MTC 1 = MTC Start
     //MTC 2 = MTC Warn End
     //MTC 3 = MTC End
+    public int ATOstatus = 0;
 	public boolean activated = false;
     public TileInfoTransmitterMTC() {
         this.world = worldObj;
@@ -33,6 +34,7 @@ public class TileInfoTransmitterMTC extends TileEntity implements IPeripheral {
     public void readFromNBT(NBTTagCompound nbttagcompound) {
         super.readFromNBT(nbttagcompound);
         this.MTCInfo = nbttagcompound.getInteger("mtcInfo");
+        this.ATOstatus = nbttagcompound.getInteger("atoStatus");
         this.activated = nbttagcompound.getBoolean("activated");
     }
 
@@ -41,6 +43,7 @@ public class TileInfoTransmitterMTC extends TileEntity implements IPeripheral {
         super.writeToNBT(nbttagcompound);
 
         nbttagcompound.setInteger("mtcInfo", this.MTCInfo);
+        nbttagcompound.setInteger("atoStatus", this.ATOstatus);
 		nbttagcompound.setBoolean("activated", this.activated);
     }
 
@@ -57,14 +60,17 @@ public class TileInfoTransmitterMTC extends TileEntity implements IPeripheral {
 
                     Locomotive daTrain = (Locomotive) obj;
                     if (daTrain.mtcOverridePressed) { return;}
-                //    daTrain.mtcStatus = MTCInfo;
-                 //   if (daTrain.mtcStatus == 0) {
-                 //       daTrain.speedLimit = "0";
 
-                 //   }
+                    if (daTrain.mtcStatus == 0) {
+                        daTrain.speedLimit = 0;
+                        daTrain.atoStatus = 0;
+                    }
+
 				 if (activated == true) {
                     //ExampleMod.msChannel.sendToAll(new PacketMTC(daTrain.getEntityId(), MTCInfo, 2));
                     Traincraft.mscChannel.sendToAll(new PacketMTC(daTrain.getEntityId(), MTCInfo, 1));
+                     daTrain.mtcStatus = MTCInfo;
+                     daTrain.atoStatus = 0;
                   }
                 }
             }
