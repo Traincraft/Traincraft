@@ -60,12 +60,20 @@ public class TileInfoTransmitterMTC extends TileEntity implements IPeripheral {
 
                     Locomotive daTrain = (Locomotive) obj;
                     if (daTrain.mtcOverridePressed) { return;}
+<<<<<<< HEAD
 
                     if (daTrain.mtcStatus == 0) {
                         daTrain.speedLimit = 0;
                         daTrain.atoStatus = 0;
                     }
 
+=======
+                   daTrain.mtcStatus = MTCInfo;
+                   if (daTrain.mtcStatus == 0) {
+                        daTrain.speedLimit = "0";
+
+                   }
+>>>>>>> origin/1.7
 				 if (activated == true) {
                     //ExampleMod.msChannel.sendToAll(new PacketMTC(daTrain.getEntityId(), MTCInfo, 2));
                     Traincraft.mscChannel.sendToAll(new PacketMTC(daTrain.getEntityId(), MTCInfo, 1));
