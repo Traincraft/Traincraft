@@ -96,7 +96,7 @@ public class TileInfoTransmitterMTC extends TileEntity implements IPeripheral {
 
     @Override
     public String[] getMethodNames() {
-        return new  String[] {"setMTCStatus", "getMTCStatus", "activate", "deactivate"};
+        return new  String[] {"setMTCStatus", "getMTCStatus", "setATOStatus", "getATOStatus", "activate", "deactivate"};
     }
 
     @Override
@@ -108,13 +108,22 @@ public class TileInfoTransmitterMTC extends TileEntity implements IPeripheral {
                 return new Object[] {true};
             } case 1: {
 
-                return new Object[] {MTCInfo};
+                return new Object[]{MTCInfo};
 
-		    } case 2: {
+            } case 2: {
+                if (arguments[0] instanceof Double) {
+                    this.ATOstatus = (int) Math.round(Double.parseDouble(arguments[0].toString()));
+                } else {
+                    return new Object[]{"nil"};
+                }
+                return new Object[]{true};
+            } case 3: {
+                return new Object[]{ATOstatus};
+		    } case 4: {
 			activated = true;
              return new Object[] {true};
 
-		    } case 3: {
+		    } case 5: {
 				activated = false;
 			 return new Object[] {true};
 		    
