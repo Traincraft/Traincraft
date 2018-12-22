@@ -329,6 +329,9 @@ item.tc:minecartLocoBerk765.name=Berkshire 765
 item.tc:minecarttenderBerk1225.name=Berkshire Tender
 item.tc:minecartLocoFowler.name=Fowler 4F
 item.tc:minecartFowler4FTender.name=Fowler 4F Tender
+item.tc:minecartLocoC41_080.name=C41 0-8-0
+item.tc:minecartLocoAlcoSC4.name=Alco SC4
+item.tc:minecartFreightL.name=Freight Car L
 
 
 <!-- ## Achievements ## -->
@@ -587,6 +590,15 @@ entity.tc.Bamboo Flatcar Passenger.name=Bamboo flatcar passenger
 entity.tc.Freight Depressed Flatcar.name=Depressed Flatbed
 entity.tc.Freight German Post.name=German Mailcar
 
+
+=======
+entity.tc.Loco Hall Class.name=Hall Class
+entity.tc.4000GallonTender.name=4000 Gallon Tender
+entity.tc.Loco King Class.name=King Class
+entity.tc.Loco WLS40.name=WLs40
+entity.tc.Freight Car L.name=Freight Car L
+entity.tc.Loco Steam C41 0-8-0.name=C41 0-8-0
+entity.tc.Loco Steam Alco SC4.name=Alco SC4
 
 description.villager.profession.tc.station_chief=Station Chief
 
