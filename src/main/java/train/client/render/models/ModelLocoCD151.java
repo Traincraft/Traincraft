@@ -31,18 +31,17 @@ public class ModelLocoCD151 extends ModelConverter //Same as Filename
 
 		flipAll();
 	}
-	//private ModelBogie bogie = new ModelBogie();
+	private ModelCD151Bogie bogie = new ModelCD151Bogie();
 	@Override
 	public void render(Entity entity, float f0, float f1, float f2, float f3, float f4, float scale){
 		super.render(entity, f0, f1, f2, f3, f4, scale);
-		//Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation,Info.trainsPrefix +"cd151_front_bogie.png"));
-		//GL11.glPushMatrix();
-		//GL11.glTranslatef(0f,0f,0);
-		//bogie.render();
-		//Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation,Info.trainsPrefix +"cd151_rear_bogie.png"));
-		//GL11.glTranslatef(0f,-0.05f,0);
-		//bogie.render();
-		//GL11.glPopMatrix();
+		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation,Info.trainsPrefix +"cd151_front_bogie.png"));
+		GL11.glPushMatrix();
+		GL11.glTranslatef(-2.15f,0.3f,-0.5f);
+		bogie.render(entity, f0, f1, f2, f3, f4, scale);
+		GL11.glTranslatef(3.1f,0f,0);
+		bogie.render(entity, f0, f1, f2, f3, f4, scale);
+		GL11.glPopMatrix();
 	}
 
 	private void initbodyModel_1()

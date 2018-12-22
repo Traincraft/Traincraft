@@ -157,6 +157,8 @@ public enum ItemIDs {
 	minecartTenderEr("ItemRollingStock", "train_tender_ussr", 4),
 	minecartTenderC41("ItemRollingStock", "train_tender_c41", 4),
 	minecartLocoC41("ItemRollingStock", "train_c41", 6),
+	minecartLocoC41_080("ItemRollingStock", "train_c41_080", 6),
+	minecartLocoAlcoSC4("ItemRollingStock", "train_alcosc4", 6),
 	minecartLocoC41T("ItemRollingStock", "train_c41t", 6),
 	minecartLocoSouthern1102("ItemRollingStock", "train_southern1102", 6),
 	minecartTenderSouthern1102("ItemRollingStock", "train_southern1102tender", 3),
