@@ -13,6 +13,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import train.common.library.BlockIDs;
 import train.common.library.Info;
+import train.common.mtc.*;
 
 public class TCBlocks {
 
@@ -48,6 +49,7 @@ public class TCBlocks {
 		BlockIDs.tcRailGag.block = new BlockTCRailGag().setHardness(1.0F).setStepSound(Block.soundTypeMetal).setCreativeTab(null);
 		
 		BlockIDs.bridgePillar.block = new BlockBridgePillar().setHardness(3.5F).setStepSound(Block.soundTypeWood);
+
 
 		//BlockIDs.book.block = new BlockBook(BlockIDs.book.blockID);
 	}

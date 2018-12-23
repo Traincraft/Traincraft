@@ -30,8 +30,11 @@ import train.common.entity.rollingStock.EntityTracksBuilder;
 import train.common.entity.zeppelin.AbstractZeppelin;
 import train.common.inventory.*;
 import train.common.library.GuiIDs;
+import train.common.mtc.*;
 import train.common.tile.*;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -78,6 +81,28 @@ public class CommonProxy implements IGuiHandler {
 		GameRegistry.registerTileEntity(TileBridgePillar.class, "tileTCBridgePillar");
 	}
 
+	public void registerComputerCraftPeripherals() throws ClassNotFoundException {
+		Class computerCraft = Class.forName("dan200.computercraft.ComputerCraft");
+		try {
+			Method computerCraft_registerPeripheralProvider = computerCraft.getMethod("registerPeripheralProvider", new Class[] { Class.forName("dan200.computercraft.api.peripheral.IPeripheralProvider") });
+
+			//Register all CC required blocks
+			computerCraft_registerPeripheralProvider.invoke(null, BlockInfoTransmitterAspect.instance);
+			computerCraft_registerPeripheralProvider.invoke(null, BlockInfoTransmitterSpeed.instance);
+			computerCraft_registerPeripheralProvider.invoke(null, BlockInfoGrabberMTC.instance);
+			computerCraft_registerPeripheralProvider.invoke(null, BlockInfoTransmitterMTC.instance);
+			computerCraft_registerPeripheralProvider.invoke(null, BlockATOTransmitterStopPoint.instance);
+
+		} catch (NoSuchMethodException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			e.printStackTrace();
+		}
+	}
 	@Override
 	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
 		TileEntity te = world.getTileEntity(x, y, z);

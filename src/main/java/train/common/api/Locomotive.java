@@ -13,10 +13,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
 import org.lwjgl.input.Keyboard;
 import train.common.Traincraft;
@@ -27,7 +24,12 @@ import train.common.core.network.PacketKeyPress;
 import train.common.core.network.PacketSlotsFilled;
 import train.common.library.EnumSounds;
 import train.common.library.Info;
+import train.common.mtc.LineWaypoint;
+import train.common.mtc.packets.PacketATO;
+import train.common.mtc.packets.PacketATOSetStopPoint;
+import train.common.mtc.packets.PacketSetSpeed;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Locomotive extends EntityRollingStock implements IInventory {
@@ -51,8 +53,8 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 	private boolean backwardPressed = false;
 	private boolean brakePressed = false;
 	
-        //TrainAdditions support here 
-        public String speedLimit = "0";
+
+        public int speedLimit = 0;
         public String signalAspect = "off";
 	public String trainID = "0";
 	public String trainLevel = "1";
@@ -64,20 +66,21 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 	public Double yFromStopPoint = 0.0;
 	public Double zFromStopPoint = 0.0;
 	public Double distanceFromStopPoint = 0.0;
+	public Double blocksFromSpeedLimitChange = 0.0;
 	public int channel = 0;
 	public int replyChannel = 0;
 	public int nextSpeedLimit = 0;
 	public Double distanceFromSpeedChange = 0.0;
-	public Double xFromSpeedChange = 0.0;
-	public Double yFromSpeedChange = 0.0;
-	public Double zFromSpeedChange = 0.0;
+	public Double xSpeedLimitChange = 0.0;
+	public Double ySpeedLimitChange = 0.0;
+	public Double zSpeedLimitChange = 0.0;
 	public boolean isDriverOverspeed = false;
 	public boolean overspeedBrakingInProgress = false;
 	public Boolean mtcOverridePressed = false;
 	public Double timeUntilBraking = 0.0;
 	public Boolean overspeedOveridePressed = false;
-	
-	//TrainAdditions support ends here
+	public ArrayList<LineWaypoint> lineWaypoints = new ArrayList<LineWaypoint>();
+
 	
 	
 	/**
@@ -131,6 +134,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 		dataWatcher.addObject(30, castToString(currentBrakeSlowDown));
 		dataWatcher.addObject(31, castToString(currentFuelConsumptionChange));
 		dataWatcher.addObject(15, (float)Math.round((getCustomSpeed() * 3.6f)));
+		//dataWatcher.addObject(32, lineWaypoints);
 		setAccel(0);
 		setBrake(0);
 		this.entityCollisionReduction = 0.99F;
@@ -414,6 +418,45 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 		}
 		if (i == 15) {
 			brakePressed = false;
+		}
+		if (i == 16) {
+			if (mtcStatus != 0) {
+				if (atoStatus == 1) {
+					atoStatus = 0;
+				} else {
+					atoStatus = 1;
+				}
+			}
+		}
+		if (i == 17) {
+
+				if (mtcOverridePressed) {
+					mtcOverridePressed = false;
+				} else {
+					mtcOverridePressed = true;
+					this.mtcStatus = 0;
+					this.speedLimit = 0;
+					this.nextSpeedLimit = 0;
+					this.xSpeedLimitChange = 0.0;
+					this.ySpeedLimitChange = 0.0;
+					this.zSpeedLimitChange = 0.0;
+					this.xFromStopPoint = 0.0;
+					this.yFromStopPoint = 0.0;
+					this.zFromStopPoint = 0.0;
+					this.trainLevel = "0";
+				}
+
+
+
+		}
+		if (i == 18) {
+			if (mtcStatus != 0) {
+				if (overspeedOveridePressed ) {
+					overspeedOveridePressed = false;
+				} else {
+					overspeedOveridePressed = true;
+				}
+			}
 		}
 	}
 
@@ -708,7 +751,86 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 				}
 			}
 		}
+		//Minecraft Train Control things.
 
+		if (!worldObj.isRemote) {
+		if(mtcStatus == 1 | mtcStatus == 2) {
+
+			if (getSpeed() > speedLimit) {
+				isDriverOverspeed = true;
+			} else {
+				isDriverOverspeed = false;
+
+			}
+			if (isDriverOverspeed && ticksExisted % 120 == 0 && overspeedBrakingInProgress == false && !overspeedOveridePressed && atoStatus != 1) {
+				//Start braking because the driver is an idiot.
+				overspeedBrakingInProgress = true;
+			}
+			if (overspeedBrakingInProgress == true) {
+				if (atoStatus != 1) { return;}
+				if (getSpeed() < speedLimit && !overspeedOveridePressed) {
+					//Stop overspeed braking.
+					overspeedBrakingInProgress = false;
+					isDriverOverspeed = false;
+				} else if (getSpeed() < speedLimit && overspeedOveridePressed) {
+                    overspeedBrakingInProgress = false;
+                    isDriverOverspeed = false;
+
+				} else {
+
+					motionX *= brake;
+					motionZ *= brake;
+				}
+			}
+
+			distanceFromStopPoint = this.getDistance(this.xFromStopPoint, this.yFromStopPoint, this.zFromStopPoint);
+			distanceFromSpeedChange = this.getDistance(this.xSpeedLimitChange, this.ySpeedLimitChange, this.zSpeedLimitChange);
+
+			if (distanceFromSpeedChange < this.getSpeed() && !(distanceFromSpeedChange < nextSpeedLimit)) {
+				speedLimit = (int) Math.round(distanceFromSpeedChange);
+				Traincraft.itsChannel.sendToAll(new PacketSetSpeed(this.speedLimit, (int)this.posX, (int)this.posY, (int)this.posZ, getEntityId()));
+			}
+			if (distanceFromStopPoint < this.getSpeed() && !(distanceFromStopPoint < nextSpeedLimit)) {
+				speedLimit = (int) Math.round(distanceFromStopPoint);
+				Traincraft.itsChannel.sendToAll(new PacketSetSpeed(this.speedLimit, (int)this.posX, (int)this.posY, (int)this.posZ, getEntityId()));
+			}
+
+			if (this.atoStatus == 1 && !this.parkingBrake) {
+				if (this.speedLimit != 0) {
+					this.parkingBrake = false;
+					//Accelerate to the speed limit
+					if (!(distanceFromStopPoint < this.getSpeed())) {
+						accel(this.speedLimit);
+					}
+				} else {
+					if (distanceFromStopPoint < this.getSpeed()) {
+						//Stop it at a certain point
+						stop(Vec3.createVectorHelper(this.xFromStopPoint, this.yFromStopPoint, this.zFromStopPoint));
+
+					}
+
+				}
+				if (distanceFromSpeedChange < this.getSpeed() && !(this.getSpeed() == this.nextSpeedLimit)) {
+					//Slow it down to the next speed limit
+					slow(this.nextSpeedLimit);
+				}
+				if (isDriverOverspeed) {
+					//The ATO system is speeding somehow, slow it down
+					slow(this.speedLimit);
+				}
+				if(this.distanceFromStopPoint < 3) {
+					this.parkingBrake = true;
+					this.isBraking = true;
+					this.xFromStopPoint = 0.0;
+					this.yFromStopPoint = 0.0;
+					this.zFromStopPoint = 0.0;
+					this.atoStatus = 0;
+				}
+			}
+
+		}
+
+		}
 		super.onUpdate();
 		if (!worldObj.isRemote) {
 			//System.out.println(motionX +" "+motionZ);
@@ -1084,4 +1206,58 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 
 	@Override
 	public ItemStack[] getInventory(){return locoInvent;}
+
+
+	/** For MTC's Automatic Train Operation system */
+	public void accel(Integer desiredSpeed) {
+		if(this.worldObj != null) {
+
+			if (this.getSpeed() != desiredSpeed) {
+				if ((int) this.getSpeed() - 2 <= this.speedLimit) {
+					if (this.riddenByEntity == null) {
+						return;
+					}
+					int dir = MathHelper
+							.floor_double(((this).rotationYaw * 4F) / 360F + 0.5D) & 3;
+					if (dir == 2) {
+
+						this.motionZ -= 0.0075 * this.accelerate;
+
+
+					} else if (dir == 0) {
+
+						this.motionZ += 0.0075 * this.accelerate;
+
+					} else if (dir == 1) {
+
+						this.motionX -= 0.0075 * this.accelerate;
+
+					} else if (dir == 3) {
+
+						this.motionX += 0.0075 * this.accelerate;
+
+					}
+
+				}
+			}
+		}
+	}
+
+	public void slow(Integer desiredSpeed) {
+		this.motionX *= this.brake;
+		motionZ *=this.brake;
+	}
+	public void stop(Vec3 signalPosition) {
+		double currentDistance = Math.copySign(Vec3.createVectorHelper(this.posX, this.posY, this.posZ).distanceTo(signalPosition), 1.0D);
+		double originalDistance;
+		originalDistance=currentDistance;
+		double slowPercentage = 0.5D;
+		if(1.0D - currentDistance != 0.0D && originalDistance != 0.0D) {
+			slowPercentage = currentDistance / this.getSpeed();
+		}
+
+		this.motionX *= slowPercentage;
+		this.motionZ *= slowPercentage;
+
+	}
 }

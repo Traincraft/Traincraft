@@ -13,6 +13,8 @@ import train.common.Traincraft;
 import train.common.adminbook.ItemAdminBook;
 import train.common.core.network.*;
 import train.common.library.Info;
+import train.common.mtc.packets.*;
+import train.common.mtc.packets.handlers.*;
 
 public class PacketHandler {
 
@@ -54,5 +56,21 @@ public class PacketHandler {
 				PacketTrackBuilderHeight.class, 8, Side.SERVER);
 		Traincraft.builderChannel.registerMessage(PacketTrackBuilderFollow.Handler.class,
 				PacketTrackBuilderFollow.class, 9, Side.SERVER);
+
+		Traincraft.itsChannel.registerMessage(PacketSetSpeedHandler.class, PacketSetSpeed.class, 200, Side.CLIENT);
+		Traincraft.itsChannel.registerMessage(PacketSetSpeedHandler.class, PacketSetSpeed.class, 212, Side.SERVER);
+
+		Traincraft.itnsChannel.registerMessage(PacketNextSpeedHandler.class, PacketNextSpeed.class, 211, Side.CLIENT);
+		Traincraft.mtlChannel.registerMessage(PacketMTCLevelUpdateHandler.class,  PacketMTCLevelUpdate.class, 201, Side.SERVER);
+		Traincraft.msChannel.registerMessage(PacketMTChandler.class, PacketMTC.class, 202, Side.SERVER);
+		Traincraft.mscChannel.registerMessage(PacketMTChandler.class, PacketMTC.class, 203, Side.CLIENT);
+		Traincraft.atoChannel.registerMessage(PacketATOHandler.class, PacketATO.class, 205, Side.SERVER);
+		Traincraft.atoDoSlowDownChannel.registerMessage(PacketATODOSlowDownHandler.class, PacketATODoSlowDown.class, 206, Side.SERVER);
+		Traincraft.atoDoAccelChannel.registerMessage(PacketATODoAccelHandler.class, PacketDoAccel.class, 207, Side.SERVER);
+		Traincraft.atoSetStopPoint.registerMessage(PacketATOSetStopPointHandler.class, PacketATOSetStopPoint.class, 208, Side.CLIENT);
+		Traincraft.NCSlowDownChannel.registerMessage(PacketNCSlowDownHandler.class, PacketNCSlowDown.class, 209, Side.SERVER);
+		//Traincraft.ctChannel.registerMessage(PacketWMTCChannelTransmitHandler.class, PacketWMTCChannelTransmit.class, 210, Side.CLIENT);
+		Traincraft.gsfsChannel.registerMessage(PacketGetSomethingFromServerHandler.class, PacketGetSomethingFromServer.class, 213, Side.SERVER);
+		Traincraft.gsfsrChannel.registerMessage(PacketThingFromServerHandler.class, PacketThingFromServer.class, 214, Side.CLIENT);
 	}
 }

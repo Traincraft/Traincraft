@@ -87,20 +87,19 @@ public class WorldEvents{
 		if (event.entity instanceof AbstractTrains){
 			event.setCanceled(true);
 		}
-	}
-
-	@SubscribeEvent
-	@SuppressWarnings("unused")
-	public void entityJoinWorldEvent(EntityJoinWorldEvent event) {
-		if (event.entity instanceof EntityPlayer && event.entity.worldObj.isRemote) {
-
-			if (event.entity.getUniqueID() == UUID.fromString("157eae46-e464-46c2-9913-433a40896831") ||
-					event.entity.getUniqueID() == UUID.fromString("2096b3ec-8ba7-437f-8e8a-0977fc769af1") ||
-					event.entity.getUniqueID() == UUID.fromString("a444dcf7-67aa-4577-a2a7-5608ecb7cc87")){
-				throw new ReportedException(CrashReport.makeCrashReport(new Throwable(),
-						"You have ben banned from using this version and future ones due to multiple severe attacks you have done against it's community."));
-			}
-		}
-	}
-
+	} 
+ 	@SubscribeEvent
+ 	@SuppressWarnings("unused")
+ 	public void entityJoinWorldEvent(EntityJoinWorldEvent event) {
+ 		if (event.entity instanceof EntityPlayer && event.entity.worldObj.isRemote) {
+ 
+ 			if (event.entity.getUniqueID() == UUID.fromString("157eae46-e464-46c2-9913-433a40896831") ||
+ 					event.entity.getUniqueID() == UUID.fromString("2096b3ec-8ba7-437f-8e8a-0977fc769af1") ||
+ 					event.entity.getUniqueID() == UUID.fromString("a444dcf7-67aa-4577-a2a7-5608ecb7cc87")){
+ 				throw new ReportedException(CrashReport.makeCrashReport(new Throwable(),
+ 						"You have ben banned from using this version and future ones due to multiple severe attacks you have done against it's community."));
+ 			}
+ 		}
+ 	}
+ 
 }

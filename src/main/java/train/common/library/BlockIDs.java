@@ -35,7 +35,12 @@ public enum BlockIDs {
 	waterWheel(true, ItemBlockGeneratorWaterWheel.class),
 	windMill(true, ItemBlockGeneratorWindMill.class),
 	generatorDiesel(true, ItemBlockGeneratorDiesel.class),
-	
+	mtcTransmitterSpeed(false, null),
+	mtcTransmitterMTC(false, null),
+	mtcATOStopTransmitter(false, null),
+	mtcReceiverMTC(false, null),
+	mtcReceiverDestination(false, null),
+
 	//Liquids
 	diesel(false, ItemBlockFluid.class),
 	refinedFuel(false, ItemBlockFluid.class),
@@ -43,6 +48,7 @@ public enum BlockIDs {
 	tcRailGag(false,null),
 	tcRail(false,null),
 	bridgePillar(false,null);
+
 
 	public Block block;
 	public boolean hasItemBlock;
