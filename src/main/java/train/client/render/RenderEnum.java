@@ -180,6 +180,11 @@ public enum RenderEnum {
 			add(new double[] { -0.5D, 1.4D, 0.0D });
 		}
 	}, "", null, 0, false),
+	locoWLs40(EntityLocoDieselWLs40.class, new ModelWLs40(), "wls40", false, new float[] { 0F, 0.15F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "smoke", 5, new ArrayList<double[]>() {
+		{
+			add(new double[] { 2.6D, 1.84D, 0.0D });
+		}
+ 	}, "", null, 0, true),
 	locoE10DB(EntityLocoElectricE10_DB.class, new ModelE10DB(), "locoe10_db_", true, new float[] { -2.1F, 0.15F, 0.0F }, new float[] { 0F, 180F, 180F }, new float[]{0.9f,0.9f,0.9f}, "",0,null, "", null, 0, false),
 	locoShunter(EntityLocoDieselShunter.class, new ModelShunter(), "shunter_", true, new float[] { -1.2F, -0.42F, 0.0F }, null, null, "smoke", 5, new ArrayList<double[]>() {
 		{
