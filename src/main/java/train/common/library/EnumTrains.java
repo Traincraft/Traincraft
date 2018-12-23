@@ -262,7 +262,7 @@ public enum EnumTrains {
 	locoSteamSnowPlow("Loco Steam Snow Plow", EntityLocoSteamSnowPlow.class, ItemIDs.minecartLocoSnowPlow.item, "steam, snow plow", 200, 20, 0, 10, 120, 170, 0.7, 0.965, 6850, null, 18, -4.75),;
 
 //String trainType,int MHP,int maxSpeed, double mass, int fuelConsumption, int waterConsumption, int heatingTime, double accelerationRate, double brakeRate, int tankCapacity, String[] colors,
-
+	
 	private String internalName;
 	private Class entityClass;
 	private Item item;
@@ -281,9 +281,9 @@ public enum EnumTrains {
 	private double bogieLocoPosition;
 	private String[] additionnalTooltip;
 	private int cargoCapacity;
-
+	
 	/**
-	 *
+	 * 
 	 * @param internalName : Only used by EntityRegistry
 	 * @param entityClass
 	 * @param item
@@ -318,7 +318,7 @@ public enum EnumTrains {
 		this.guiRenderScale = guiRenderScale;
 		this.bogieLocoPosition = bogieLocoPosition;
 	}
-
+	
 	/**
 	 * Constructor for additionnal tooltips on the item
 	 * @param internalName
@@ -358,7 +358,7 @@ public enum EnumTrains {
 		this.bogieLocoPosition = bogieLocoPositions;
 		this.additionnalTooltip=additionnalTooltip;
 	}
-
+	
 	/**
 	 * Constructor for freight carts
 	 * @param internalName
@@ -384,11 +384,11 @@ public enum EnumTrains {
 		this.additionnalTooltip=additionnalTooltip;
 		this.cargoCapacity = cargoCapacity;
 	}
-
+	
 	public String getInternalName(){
 		return this.internalName;
 	}
-
+	
 	public Item getItem(){
 		return this.item;
 	}
@@ -396,68 +396,68 @@ public enum EnumTrains {
 	public String getTrainType(){
 		return this.trainType;
 	}
-
+	
 	public int getMHP(){
 		return this.MHP;
 	}
-
+	
 	public int getMaxSpeed(){
 		return this.maxSpeed;
 	}
-
+	
 	public double getMass(){
 		return this.mass;
 	}
-
+	
 	public int getFuelConsumption(){
 		return this.fuelConsumption;
 	}
-
+	
 	public int getWaterConsumption(){
 		return this.waterConsumption;
 	}
-
+	
 	public int getHeatingTime(){
 		return this.heatingTime;
 	}
-
+	
 	public double getAccelerationRate(){
 		return this.accelerationRate;
 	}
-
+	
 	public double getBrakeRate(){
 		return this.brakeRate;
 	}
-
+	
 	public int getTankCapacity(){
 		return this.tankCapacity;
 	}
-
+	
 	public String[] getColors(){
 		return this.colors;
 	}
-
+	
 	public double getBogieLocoPosition(){
 		return this.bogieLocoPosition;
 	}
 
-
+	
 	public Class getEntityClass() {
 		return this.entityClass;
 	}
-
+	
 	public int getGuiRenderScale(){
 		return this.guiRenderScale;
 	}
-
+	
 	public String[] getAdditionnalTooltip(){
 		return this.additionnalTooltip;
 	}
-
+	
 	public int getCargoCapacity(){
 		return cargoCapacity;
 	}
-
+	
 	public static EnumTrains getCurrentTrain(Item item){
 		if(item==null)return null;
 		for (EnumTrains trains : EnumTrains.values()) {
@@ -465,9 +465,9 @@ public enum EnumTrains {
 				return trains;
 			}
 		}
-		return null;
+		return null;	
 	}
-
+	
 	public static AbstractTrains getEntityWithItem(Item item, World world, double x, double y, double z){
 		if(item==null)return null;
 		for (EnumTrains trains : EnumTrains.values()) {
@@ -477,7 +477,7 @@ public enum EnumTrains {
 		}
 		return null;
 	}
-
+	
 	public AbstractTrains getEntity(World world){
 		try {
 			return (AbstractTrains) entityClass.getConstructor(World.class).newInstance(world);
@@ -496,7 +496,7 @@ public enum EnumTrains {
 		}
 		return null;
 	}
-
+	
 	public AbstractTrains getEntity(World world, double x, double y, double z){
 		try {
 			return (AbstractTrains) entityClass.getConstructor(World.class,double.class,double.class,double.class).newInstance(world,x,y,z);
