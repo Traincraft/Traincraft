@@ -3,7 +3,10 @@ package train.common.core.handlers;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
+import net.minecraft.crash.CrashReport;
 import net.minecraft.entity.passive.EntityAnimal;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.ReportedException;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.EntityStruckByLightningEvent;
@@ -14,6 +17,7 @@ import train.common.entity.ai.EntityAIFearHorn;
 import train.common.entity.rollingStock.EntityJukeBoxCart;
 
 import java.util.Random;
+import java.util.UUID;
 
 public class WorldEvents{
 	private int windTicker = 0;
@@ -83,5 +87,19 @@ public class WorldEvents{
 		if (event.entity instanceof AbstractTrains){
 			event.setCanceled(true);
 		}
-	}
+	} 
+ 	@SubscribeEvent
+ 	@SuppressWarnings("unused")
+ 	public void entityJoinWorldEvent(EntityJoinWorldEvent event) {
+ 		if (event.entity instanceof EntityPlayer && event.entity.worldObj.isRemote) {
+ 
+ 			if (event.entity.getUniqueID() == UUID.fromString("157eae46-e464-46c2-9913-433a40896831") ||
+ 					event.entity.getUniqueID() == UUID.fromString("2096b3ec-8ba7-437f-8e8a-0977fc769af1") ||
+ 					event.entity.getUniqueID() == UUID.fromString("a444dcf7-67aa-4577-a2a7-5608ecb7cc87")){
+ 				throw new ReportedException(CrashReport.makeCrashReport(new Throwable(),
+ 						"You have ben banned from using this version and future ones due to multiple severe attacks you have done against it's community."));
+ 			}
+ 		}
+ 	}
+ 
 }
