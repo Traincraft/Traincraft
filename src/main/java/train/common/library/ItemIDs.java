@@ -253,7 +253,7 @@ public enum ItemIDs {
 	minecartPassengerAdler("ItemRollingStock", "train_passenger_adler", 2),
 	minecartLocoFOLM1("ItemRollingStock", "train_fol_m1", 10),
 	minecartKClassRailBox("ItemRollingStock", "train_k_class_railbox", 2),
-	minecartLocoLSSP7("ItemRollingStock", "train_llsp7", 4),
+	minecartLocoLSSP7("ItemRollingStock", "train_lssp7", 4),
 	minecartLongCoveredHopper("ItemRollingStock", "train_longcoveredhopper", 3),
 	minecartShortCoveredHopper("ItemRollingStock", "train_shortcoveredhopper", 2),
 
