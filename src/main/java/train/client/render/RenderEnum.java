@@ -111,7 +111,7 @@ public enum RenderEnum {
 	freightKclassrailBox(EntityFreightKClassRailBox.class, new ModelKClassRailBox(), "KClassRailBox", false, new float[] { -1.9F, -0.35F, 1.05F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	freightShortCoveredHopper(EntityFreightShortCoveredHopper.class, new ModelShortCoveredHopper(), "ShortCoveredHopper", false, new float[] { -2.2F, -0.3F, 0.7F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	freightLongCoveredHopper(EntityFreightLongCoveredHopper.class, new ModelLongCoveredHopper(), "LongCoveredHopper", false, new float[] { -1F, -0.2F, 0.65F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
-	freightHeavyweightBoxcar(EntityFreightHeavyweightBaggage.class, new ModelHeavyweightBaggage(), "heavyweightBoxcar", false, new float[] { 0F, 0.25F, -0.05F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	freightHeavyweightBoxcar(EntityFreightHeavyweightBaggage.class, new ModelHeavyweightBaggage(), "heavyweightBoxcar", false, new float[] { 0F, 0.2F, -0.05F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 
 	/** Tanks **/
 	tankWagon_DB(EntityTankWagon_DB.class, new ModelTankWagon_DB(), "tankWagon_DB_", true, new float[] { 0.0F, -0.44F, 0.0F }, null, null, "", 0, null, "", null, 0, false),
@@ -175,9 +175,9 @@ public enum RenderEnum {
 			add(new double[] { 1.55D, 1.4D, 0.0D });
 		}
 	}, "", null, 0, false),
-	locoBP4(EntityLocoDieselBP4.class, new ModelBP4(), "bp4", false, new float[] { -2.2F, -0.2F, 0.6F }, new float[] { 0F, 180F, 0F }, new float[] { -1F, -1F, 1F }, "smoke", 5, new ArrayList<double[]>() {
+	locoBP4(EntityLocoDieselBP4.class, new ModelBP4(), "bp4", false, new float[] { -3.2F, -0.15F, 0.6F }, new float[] { 0F, 180F, 0F }, new float[] { -1F, -1F, 1F }, "smoke", 5, new ArrayList<double[]>() {
 		{
-			add(new double[] { 1.55D, 1.4D, 0.0D });
+			add(new double[] { -0.4D, 1.1D, 0D });
 		}
 	}, "", null, 0, false),
 	locoSD70(EntityLocoDieselSD70.class, new ModelSD70(), "locoSD70_", true, new float[] { -1.2F, -0.44F, 0.0F }, new float[] { 0F, 90F, 0F }, null, "smoke", 5, new ArrayList<double[]>() {
@@ -386,11 +386,12 @@ public enum RenderEnum {
 	}, 2, true),
 	locoSteamLSSP7(EntityLocoSteamLSSP7.class, new ModelLSSP7(), "LSSP7", false, new float[] { -0.9F, -0.2F, 0.8F }, new float[] { 0F, 180F, 180F }, new float[] { 1F, 1F, 1F }, "smoke", 20, new ArrayList<double[]>() {
 		{
-			add(new double[] { 1.69D, 1.25D, 0.0D });
+			add(new double[] { 0.15D, 1.1D, 1D });
 		}
 	}, "explode", new ArrayList<double[]>() {
 		{
-			add(new double[] { 1.6D, -0.4D, 0.8D });
+			add(new double[] { 0.7D, -0.4D, 0.5D });
+			add(new double[] { 0.7D, -0.4D, -0.5D });
 		}
 	}, 2, true),
 	locoHeavySteam(EntityLocoSteamHeavy.class, new ModelHeavySteamLoco(), "heavysteam", false, new float[] { 0F, -0.42F, 0.0F }, null, null, "largesmoke", 3, new ArrayList<double[]>() {
@@ -560,38 +561,38 @@ public enum RenderEnum {
 	}, 2, true),
 	LocoSteamHallClass(EntityLocoSteamHallClass.class, new ModelHallClass(), "Hall_Class_Locomotive_", true, new float[] {-0.65F, 0.15F, -0.25F },/*position*/  new float[] { 0F, 180F, 180F }, new float[]{1f,1f,1f},/*scale*/ "largesmoke", 20, new ArrayList<double[]>() {
 		{
-			add(new double[] { 4.1D, 1.45D, 0.175D });//smoke
+			add(new double[] { 4.4D, 1.45D, 0.175D });//smoke
 		}
 	}, "explode", new ArrayList<double[]>() {
 		{
-			add(new double[] { 4.5D, -0.4D, 0.8D });//steam
+			add(new double[] { 4D, -0.4D, 0.8D });//steam
 		}
 	}, 2, true),
 	LocoSteamKingClass(EntityLocoSteamKingClass.class, new ModelKingClass(), "King_Class_Locomotive_", true, new float[] {-1.75F, 0.15F, 0.0F },/*position*/  new float[] { 0F, 180F, 180F }, new float[]{1f,1f,1f},/*scale*/ "largesmoke", 20, new ArrayList<double[]>() {
 		{
-			add(new double[] { 4.85D, 1.55D, 0.0D });//smoke
+			add(new double[] { 4.95D, 1.55D, 0.0D });//smoke
 		}
 	}, "explode", new ArrayList<double[]>() {
 		{
-			add(new double[] { 4.0D, -0.4D, 0.8D });//steam
+			add(new double[] { 3.6D, -0.4D, 0.8D });//steam
 		}
 	}, 2, true),
 	LocoSteamBerk1225(EntityLocoSteamBerk1225.class, new Model1225(), "Berk1225_Locomotive", false, new float[] {-2.0F, -0.65F, 0.0625F },/*position*/  new float[] { 0F, 0F, 180F }, new float[]{1f,1f,1f},/*scale*/ "largesmoke", 20, new ArrayList<double[]>() {
 		{
-			add(new double[] { 4.85D, 1.55D, 0.0D });//smoke
+			add(new double[] { 4.7D, 1.6D, 0.0D });//smoke
 		}
 	}, "explode", new ArrayList<double[]>() {
 		{
-			add(new double[] { 4.0D, -0.4D, 0.8D });//steam
+			add(new double[] { 4.2D, -0.4D, 0.8D });//steam
 		}
 	}, 2, true),
 	LocoSteamBerk765(EntityLocoSteamBerk765.class, new Model765(), "Berk765_Locomotive", false, new float[] {-2.0F, -0.65F, 0.0625F },/*position*/  new float[] { 0F, 0F, 180F }, new float[]{1f,1f,1f},/*scale*/ "largesmoke", 20, new ArrayList<double[]>() {
 		{
-			add(new double[] { 4.85D, 1.55D, 0.0D });//smoke
+			add(new double[] { 4.7D, 1.55D, 0.0D });//smoke
 		}
 	}, "explode", new ArrayList<double[]>() {
 		{
-			add(new double[] { 4.0D, -0.4D, 0.8D });//steam
+			add(new double[] { 4.2D, -0.4D, 0.8D });//steam
 		}
 	}, 2, true),
 	locoSteamMILWClassA(EntityLocoSteamMILWClassA.class, new ModelMILWClassA(), "locoMILW_ClassA", false, new float[] {0.0F, 0.1F, 0F }, new float[] { 0F, 180F, 180F }, new float[]{0.9f,0.9f,0.9f}, "largesmoke", 20, new ArrayList<double[]>() {
@@ -605,11 +606,11 @@ public enum RenderEnum {
 	}, 2, true),
 	locoSteamFowler(EntityLocoSteamFowler.class, new ModelFowler(), "loco_Fowler", false, new float[] { -3F, -0.51585F, 0.0F }, new float[] { 0F, 180F, 180F }, new float[]{1f,1f,1f}, "largesmoke", 20, new ArrayList<double[]>() {
 		{
-			add(new double[] { 3.1D, 1.5D, 0.0D });
+			add(new double[] { 3.3D, 1.5D, 0.0D });
 		}
 	}, "explode", new ArrayList<double[]>() {
 		{
-			add(new double[] { 2.6D, -0.4D, 0.8D });
+			add(new double[] { 2D, -0.4D, 0D });
 		}
 	}, 2, true),
 	locoSteamA4Tender(EntityTenderA4.class, new ModelTenderA4(), "tenderA4_UK_", true, new float[] { -0.2F, 0.2F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),

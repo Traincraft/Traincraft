@@ -230,7 +230,7 @@ public class ModelShortCoveredHopper extends ModelBase
 		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/wellcar_bogie.png"));
 
 		GL11.glPushMatrix();
-		GL11.glTranslated(0.8,-0.15,0.5);
+		GL11.glTranslated(0.8,-0.15,0.3);
 		bogie.render(entity,f,f1,f2,f3,f4,f5);
 
 		GL11.glTranslated(2.6,0,0);

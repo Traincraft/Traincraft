@@ -361,7 +361,7 @@ public class ModelHeavyweightBaggage extends ModelBase
 		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/HeavyweightBogie.png"));
 
 		GL11.glPushMatrix();
-		GL11.glTranslated(-3.7,0.05,0);
+		GL11.glTranslated(-3.7,-0.025,0);
 		bogie.render(entity,f,f1,f2,f3,f4,f5);
 
 		GL11.glTranslated(7.5,0,0);
