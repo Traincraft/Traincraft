@@ -15,6 +15,7 @@ import org.lwjgl.opengl.GL11;
 import tmt.ModelBase;
 import tmt.ModelRendererTurbo;
 import tmt.Tessellator;
+import train.common.api.AbstractTrains;
 import train.common.library.Info;
 
 public class ModelGS4Tail extends ModelBase
@@ -671,7 +672,11 @@ public class ModelGS4Tail extends ModelBase
 		{
 			gs4tailModel[i].render(f5);
 		}
-		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/GS4_bogie.png"));
+		if(entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor()==2){
+			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/gs4_bogie_red.png"));
+		} else {
+			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/GS4_bogie.png"));
+		}
 
 		GL11.glPushMatrix();
 		GL11.glTranslated(-3.1,0,0);

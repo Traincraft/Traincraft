@@ -107,7 +107,10 @@ public enum RenderEnum {
 	BambooFreightcar(EntityFreightBamboo.class, new ModelBambooTrainCargo(), "bamboo_freight", false, new float[] { 0.1F, 0F, 0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	freightGermanPost(EntityFreightGermanPost.class, new ModelGermanPost(), "german_post_", true, new float[] { -1F, 0.2F, -0.075F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	freightDepressedFlatbed(EntityFreightDepressedFlatbed.class, new ModelDepressedFlatbed(), "depressed_flatbed", false, new float[] { -0.1F, 0.15F, -0.075F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
-	freightCartL(EntityFreightCartL.class, new ModelFreightCarL(), "freightCarL", false, new float[] { 0F, 0F, 0.8F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	freightCartL(EntityFreightCartL.class, new ModelFreightCarL(), "freightCarL", false, new float[] { 0F, 0.2F, 0.7F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	freightKclassrailBox(EntityFreightKClassRailBox.class, new ModelKClassRailBox(), "KClassRailBox", false, new float[] { -1.9F, -0.25F, 1.05F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	freightShortCoveredHopper(EntityFreightShortCoveredHopper.class, new ModelShortCoveredHopper(), "ShortCoveredHopper", false, new float[] { -2.2F, -0.1F, 0.7F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	freightLongCoveredHopper(EntityFreightLongCoveredHopper.class, new ModelLongCoveredHopper(), "LongCoveredHopper", false, new float[] { -1F, -0.1F, 0.65F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 
 	/** Tanks **/
 	tankWagon_DB(EntityTankWagon_DB.class, new ModelTankWagon_DB(), "tankWagon_DB_", true, new float[] { 0.0F, -0.44F, 0.0F }, null, null, "", 0, null, "", null, 0, false),
@@ -226,7 +229,7 @@ public enum RenderEnum {
 		}
 	}, "", null, 0, true),
 	/** Electric */
-	locoCD151(EntityLocoElectricCD151.class, new ModelLocoCD151(), "CD151", false, new float[]{-2,0.18f,0}, new float[] { 0F, 180F, 180F }, new float[]{0.9f,1f,0.9f}, "",0,null, "", null, 0, false),
+	locoCD151(EntityLocoElectricCD151.class, new ModelLocoCD151(), "CD151_", true, new float[]{-2,0.18f,0}, new float[] { 0F, 180F, 180F }, new float[]{0.9f,1f,0.9f}, "",0,null, "", null, 0, false),
 	locoE103(EntityLocoElectricE103.class, new ModelE103(), "E103_", true, new float[]{-2,0.15f,0}, new float[] { 0F, 180F, 180F }, new float[]{0.9f,1f,0.9f}, "",0,null, "", null, 0, false),
 	locoVL10(EntityLocoElectricVL10.class, new ModelVL10(), "vl10", false, new float[] { -1.2F, -0.47F, 0.0F }, null, null, "", 0, null, "", null, 0, false),
 	locoBR_E69(EntityLocoElectricBR_E69.class, new ModelBR_E69(), "locoBR_E69_", true, new float[] { 0.0F, -0.42F, 0.0F }, null, null, "", 0, null, "", null, 0, false),
@@ -248,6 +251,11 @@ public enum RenderEnum {
 		}
 	}, "", null, 0, false),
 	locoEWSClass66(EntityLocoDieselClass66.class, new ModelEWSClass66(), "Class66_", true, new float[] { -3.0F, 0.65F, 0.0F },  new float[] { 0F, 90F, 180F }, null, "largesmoke", 2, new ArrayList<double[]>() {
+		{
+			add(new double[]{0.9D, 1.4D, 0.0D});
+		}
+	}, "", null, 0, false),
+	locoFOL_M1(EntityLocoDieselFOLM1.class, new ModelFOL_M1(), "FOL_M1", false, new float[] { -2.8F, 0.05F, 0.9F },  new float[] { 0F, 180F, 180F }, null, "largesmoke", 2, new ArrayList<double[]>() {
 		{
 			add(new double[]{0.9D, 1.4D, 0.0D});
 		}
@@ -362,6 +370,15 @@ public enum RenderEnum {
 		}
 	}, 4, true),
 	locoSteamSmall(EntityLocoSteamSmall.class, new ModelLoco3(), "loco3_", true, new float[] { -0.99F, -0.5F, 0.0F }, new float[] { 0F, -90F, 0F }, new float[] { 0.8F, 0.8F, 0.8F }, "smoke", 20, new ArrayList<double[]>() {
+		{
+			add(new double[] { 1.69D, 1.25D, 0.0D });
+		}
+	}, "explode", new ArrayList<double[]>() {
+		{
+			add(new double[] { 1.6D, -0.4D, 0.8D });
+		}
+	}, 2, true),
+	locoSteamLSSP7(EntityLocoSteamLSSP7.class, new ModelLSSP7(), "LSSP7", false, new float[] { -0.9F, -0.2F, 0.8F }, new float[] { 0F, 180F, 180F }, new float[] { 1F, 1F, 1F }, "smoke", 20, new ArrayList<double[]>() {
 		{
 			add(new double[] { 1.69D, 1.25D, 0.0D });
 		}
