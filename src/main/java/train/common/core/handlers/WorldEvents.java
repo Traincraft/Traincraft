@@ -6,6 +6,7 @@ import cpw.mods.fml.common.gameevent.TickEvent;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ReportedException;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
@@ -94,12 +95,26 @@ public class WorldEvents{
  		if (event.entity instanceof EntityPlayer && event.entity.worldObj.isRemote) {
  
  			if (event.entity.getUniqueID() == UUID.fromString("157eae46-e464-46c2-9913-433a40896831") ||
- 					event.entity.getUniqueID() == UUID.fromString("2096b3ec-8ba7-437f-8e8a-0977fc769af1") ||
- 					event.entity.getUniqueID() == UUID.fromString("a444dcf7-67aa-4577-a2a7-5608ecb7cc87")){
+ 					event.entity.getUniqueID() == UUID.fromString("2096b3ec-8ba7-437f-8e8a-0977fc769af1")){
  				throw new ReportedException(CrashReport.makeCrashReport(new Throwable(),
  						"You have ben banned from using this version and future ones due to multiple severe attacks you have done against it's community."));
  			}
- 		}
+ 		} else if(event.entity instanceof EntityPlayer && ConfigHandler.FIRST_RUN) {
+			((EntityPlayer)event.entity).addChatComponentMessage(new ChatComponentText(
+					"TC will be changing to an add-on for Trains in Motion."));
+
+			((EntityPlayer)event.entity).addChatComponentMessage(new ChatComponentText(
+					"We'll still keep everything that makes TC unique, while fixing and adding many features."));
+
+			((EntityPlayer)event.entity).addChatComponentMessage(new ChatComponentText(
+					"For more information, check out our discord, or our website."));
+
+			((EntityPlayer)event.entity).addChatComponentMessage(new ChatComponentText(
+					"to see this again, enable \"FIRST RUN\" in your config."));
+			ConfigHandler.FIRST_RUN=false;
+			ConfigHandler.changeFirstLoad();
+
+		}
  	}
  
 }
