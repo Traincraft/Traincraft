@@ -320,6 +320,8 @@ item.tc:minecartShortCoveredHopper.name=Short Closed Hopper
 item.tc:minecartKClassRailBox.name=K Class Rail Box
 item.tc:minecartLongCoveredHopper.name=Long Closed Hopper
 item.tc:minecartLocoFOLM1.name=FOL M1
+item.tc:minecartHeavyweightFreight.name=Heavyweight Baggage
+item.tc:minecartLocoBP4.name=BP4
 
 =======
 item.tc:minecart4000GallonTender.name=4000 Gallon Tender
@@ -599,6 +601,8 @@ entity.tc.Freight Short Covered Hopper.name=Short Closed Hopper
 entity.tc.Freight K Class Rail Box.name=K Class Rail Box
 entity.tc.Freight Long Covered Hopper.name=Long Closed Hopper
 entity.tc.Loco FOL M1.name=FOL M1
+entity.tc.Freight Heavyweight Baggage.name=Heavyweight Baggage
+entity.tc.Loco Diesel BP4.name=BP4
 
 
 =======
