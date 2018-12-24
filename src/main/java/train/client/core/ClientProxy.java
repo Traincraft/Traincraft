@@ -55,15 +55,17 @@ public class ClientProxy extends CommonProxy {
 	}
 
 	@Override
-	public void registerEvents(FMLPreInitializationEvent event){
+	public void registerEvents(FMLPreInitializationEvent event) {
 		super.registerEvents(event);
 		ClientTickHandler tickHandler = new ClientTickHandler();
 		HUDloco huDloco = new HUDloco();
-		HUDMTC hudMTC = new HUDMTC();
+		if (Loader.isModLoaded("ComputerCraft")){
+			HUDMTC hudMTC = new HUDMTC();
+			registerEvent(hudMTC);
+		}
 
 		registerEvent(tickHandler);
 		registerEvent(huDloco);
-		registerEvent(hudMTC);
 	}
 
 	@Override
@@ -153,7 +155,7 @@ public class ClientProxy extends CommonProxy {
 		case (GuiIDs.DIGGER):
 			return riddenByEntity != null ? new GuiBuilder(player, riddenByEntity.inventory, entity) : null;
 		case (GuiIDs.MTC_INFO):
-			return riddenByEntity != null ? new GuiMTCInfo(player) : null;
+			return riddenByEntity != null && Loader.isModLoaded("ComputerCraft") ? new GuiMTCInfo(player) : null;
 
 			//Stationary entities while player is not riding. 
 		case (GuiIDs.FREIGHT):

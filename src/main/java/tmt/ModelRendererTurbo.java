@@ -308,16 +308,16 @@ public class ModelRendererTurbo extends ModelRenderer {
      */
     public void addBox(float x, float y, float z, float w, float h, float d, float expansion, float scale){
     	if(w <1){
-    	    w=0.1F;
-    	    x-=0.05F;
+    	    w=0.01F;
+    	    x-=0.005F;
     	}
     	if(h <1){
-    	    h=0.1F;
-            y-=0.05F;
+    	    h=0.01F;
+            y-=0.005F;
     	}
     	if(d <1){
-    	    d=0.1F;
-            z-=0.05F;
+    	    d=0.01F;
+            z-=0.005F;
     	}
     	
         xScale = w * scale;
@@ -1767,9 +1767,9 @@ public class ModelRendererTurbo extends ModelRenderer {
         w+=0.001F;
         h+=0.001F;
         d+=0.001F;
-        x-=0.005F;
-        y-=0.005F;
-        z-=0.005F;
+        x-=0.0005F;
+        y-=0.0005F;
+        z-=0.0005F;
 		float f4 = x + w, f5 = y + h, f6 = z + d;
 		x -= scale; y -= scale; z -= scale;
 		f4 += scale; f5 += scale; f6 += scale;
