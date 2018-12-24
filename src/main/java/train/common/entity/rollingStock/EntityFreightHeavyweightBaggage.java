@@ -98,7 +98,7 @@ public class EntityFreightHeavyweightBaggage extends Freight implements IInvento
 	}
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return 2F;
+		return 5F;
 	}
 
 	@Override

@@ -10,8 +10,12 @@
 package train.client.render.models;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.util.ResourceLocation;
+import org.lwjgl.opengl.GL11;
 import tmt.ModelBase;
 import tmt.ModelRendererTurbo;
+import tmt.Tessellator;
+import train.common.library.Info;
 
 public class ModelBP4 extends ModelBase
 {
@@ -188,6 +192,7 @@ public class ModelBP4 extends ModelBase
 
 
 	}
+	ModelWellcarBogie bogie = new ModelWellcarBogie();
 
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
@@ -196,6 +201,21 @@ public class ModelBP4 extends ModelBase
 		{
 			bp4Model[i].render(f5);
 		}
+
+
+		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/wellcar_bogie.png"));
+		GL11.glPushMatrix();
+		GL11.glScalef(1.2f,1.2f,1.2f);
+		GL11.glTranslatef(0f,-0.1f,0.225f);
+		bogie.render(entity, f, f1, f2, f3, f4, f5);
+		GL11.glTranslatef(-0.5f,0,0);
+		bogie.render(entity, f, f1, f2, f3, f4, f5);
+
+		GL11.glTranslatef(3.6f,0f,0);
+		bogie.render(entity, f, f1, f2, f3, f4, f5);
+		GL11.glTranslatef(-0.5f,0,0);
+		bogie.render(entity, f, f1, f2, f3, f4, f5);
+		GL11.glPopMatrix();
 	}
 
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5)
