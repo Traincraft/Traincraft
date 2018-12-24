@@ -217,7 +217,7 @@ public class ModelShortCoveredHopper extends ModelBase
 
 	}
 
-	ModelFreightTruckM bogie = new ModelFreightTruckM();
+	ModelWellcarBogie bogie = new ModelWellcarBogie();
 
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
@@ -227,14 +227,13 @@ public class ModelShortCoveredHopper extends ModelBase
 			shortcoveredhopperModel[i].render(f5);
 		}
 
-		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/freighttruckm.png"));
+		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/wellcar_bogie.png"));
 
 		GL11.glPushMatrix();
-		GL11.glTranslated(0.2,-0.2,0.5);
-		GL11.glScalef(0.9f,0.9f,0.9f);
+		GL11.glTranslated(0.8,-0.15,0.5);
 		bogie.render(entity,f,f1,f2,f3,f4,f5);
 
-		GL11.glTranslated(2.9,0,0);
+		GL11.glTranslated(2.6,0,0);
 		bogie.render(entity,f,f1,f2,f3,f4,f5);
 		GL11.glPopMatrix();
 	}
