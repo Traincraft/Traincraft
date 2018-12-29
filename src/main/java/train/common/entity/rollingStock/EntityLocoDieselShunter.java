@@ -98,7 +98,7 @@ public class EntityLocoDieselShunter extends DieselTrain {
 	}
 	@Override
 	public String getInventoryName() {
-		return "Shunter";
+		return "Class 08 Shunter";
 	}
 	@Override
 	public boolean interactFirst(EntityPlayer entityplayer) {

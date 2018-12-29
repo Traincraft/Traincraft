@@ -100,7 +100,7 @@ public class EntityLocoDieselSD70 extends DieselTrain {
 
 	@Override
 	public String getInventoryName() {
-		return "SD70";
+		return "SD70M";
 	}
 
 	@Override
