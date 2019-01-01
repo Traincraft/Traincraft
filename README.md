@@ -13,7 +13,7 @@ Here you will find the source code for the **Traincraft 1.7.10 Port**.<br/>
 - <b>Licensing and rules, READ THIS PART ESPECIALLY</b>
 
 ## Join the Discussion!
-If you wish to contact the original developers, MrBrutal can sometimes be found in the Discord, you can also send an email to spitfire4466@gmail.com <br/> If you'd like to join the live chat, head over to our [Public Discord chat](https://discord.gg/0zzHVjy4UIqVJskM).<br/> And, of course, be sure to check out the issues tab here on GitHub.
+If you wish to contact the original developers, MrBrutal can sometimes be found in the Discord, you can also send an email to spitfire4466@gmail.com <br/> If you'd like to join the live chat, head over to our [Public Discord chat](https://discord.gg/SgpnCnK).<br/> And, of course, be sure to check out the issues tab here on GitHub.
 
 ## Official Links
 * Main Site and Downloads: [http://www.traincraft-mod.com](http://www.traincraft-mod.com)
