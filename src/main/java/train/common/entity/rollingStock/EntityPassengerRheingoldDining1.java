@@ -68,7 +68,7 @@ public class EntityPassengerRheingoldDining1 extends AbstractWorkCart implements
 
 	@Override
 	public String getInventoryName() {
-		return "Rheingold Dining 1";
+		return "Rheingold Dining";
 	}
 
 	@Override

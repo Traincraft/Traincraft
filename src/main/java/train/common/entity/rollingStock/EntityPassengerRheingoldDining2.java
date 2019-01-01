@@ -68,7 +68,7 @@ public class EntityPassengerRheingoldDining2  extends AbstractWorkCart implement
 
 	@Override
 	public String getInventoryName() {
-		return "Rheingold Dining 1";
+		return "Rheingold Dining Pantograph";
 	}
 
 	@Override
@@ -106,7 +106,7 @@ public class EntityPassengerRheingoldDining2  extends AbstractWorkCart implement
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return 3.5F;
+		return 3.9F;
 	}
 
 	@Override

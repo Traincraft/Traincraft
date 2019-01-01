@@ -41,7 +41,7 @@ public class TexturedPolygon {
         else{
         	tessellator.startDrawing(GL11.GL_POLYGON);
         }
-        
+
         if(iNormals.size() == 0){
 	        if(normals.length == 3){
 	        	if(invertNormal){
