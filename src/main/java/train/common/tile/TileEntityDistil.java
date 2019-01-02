@@ -243,7 +243,7 @@ public class TileEntityDistil extends TileTraincraft implements IFluidHandler {
 	}
 
 	private boolean canSmelt() {
-		if (slots[0] == null) {
+		if (slots[0] == null || (slots[3] != null && slots[3].stackSize==64) || (slots[4] != null && slots[4].stackSize==64)) {
 			return false;
 		}
 		ItemStack itemstack = DistilRecipes.smelting().getSmeltingResult(slots[0].getItem());
