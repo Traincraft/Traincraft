@@ -26,6 +26,12 @@ fluid.tc:fluid.diesel.name=Dieselové palivo
 fluid.tc:fluid.refinedfuel.name=Rafinované palivo
 tile.tc:bridgePillar.name=Mostní pilíř
 tile.tc:switchStand.name=Vysoká stojanová vyhýbka
+tile.mtcspeedtransmitter.name=MTC Rychlostní vysílač
+tile.mtcstatustransmitter.name=MTC Statový vysílač
+tile.mtcatostoppointtransmitter.name=MTC ATO Vysílač bodu zastavení
+tile.mtcstatusreceiver.name=MTC Statový přijímač
+tile.mtcdestinationreceiver.name=MTC Cílový přijímač
+
 
 <!-- ## Fluids ## -->
 fluid.diesel.name=Dieselové palivo
@@ -55,6 +61,7 @@ tile.tc.track.copper.name=Měděná trať
 tile.tc.track.coupler.name=Spojovací trať
 tile.tc.track.speed.loco.name=Trať s omezovačem rychlosti
 tile.tc.track.steel.name=Ocelová trať
+
 
 <!-- ## Items ## -->
 item.tc:diesel.name=Dieselový kanistr
@@ -191,15 +198,18 @@ item.tc:composite_wrench.name=Kompozitní klíč
 item.tc:minecartPassengerHighSpeedCarZeroED.name=Vysokorychlostní vagón
 item.tc:minecartNYTram.name=N.Y. Metro
 item.tc:minecartLocoHighSpeedZeroED.name=Vysokorychlostní lokomotiva
-item.tc:minecartLocoC62Class.name=C62 Class [JNR]
+item.tc:minecartLocoC62Class.name=Třída C62 [JNR]
 item.tc:minecartTenderC62Class.name=Tendr [JNR]
-item.tc:minecartLocoSteamShay.name=Shay (US)
+item.tc:minecartTenderD51.name=D51 Tendr [JNR]
+item.tc:minecartLocoD51Short.name=D51 [JNR] (krátké zrychlení)
+item.tc:minecartLocoD51Long.name=D51 [JNR] (dlouhé zrychlení)
+item.tc:minecartLocoSteamShay.name=Kočár (US)
 item.tc:minecartLocoSteamAdler.name=Adler
 item.tc:minecartTenderAdler.name=Adler (Tendr)
 item.tc:minecartPassengerAdler.name=Adler (Osobní vagón)
 item.tc:minecartCabooseLogging.name=Dřevařský služební vůz
 item.tc:minecartPassengerTramNY.name=N.Y. Metro (osobní vagón)
-item.tc:minecartLocoSD40.name=SD40-2 (U.S.)
+item.tc:minecartLocoSD40.name=SD40-2 (US)
 item.tc:zeppelin.name=Zeppelin
 item.tc:copperRail.name=Měděná kolej
 item.tc:steelRail.name=Ocelová kolej
@@ -295,9 +305,41 @@ item.tc:minecartPassengerMILW.name=Hiawatha 1935 MILW (Osobní vagón)
 item.tc:minecartPassengerMILWTail.name=Hiawatha 1935 MILW (Koncový vagón)
 item.tc:minecartBaggageMILW.name=Hiawatha 1935 MILW (Zavazadlový vagón)
 item.tc:minecartLocoMILWClassA.name=Hiawatha 1935 MILW (Třída A)
-item.tc:minecartMILWTender.name=Hiawatha 1935 MILW Tendr
+item.tc:minecartMILWTender.name=Hiawatha 1935 MILW tendr
 item.tc:minecartHeavyweightMailcar.name=Těžkonákladový poštovní vůz
 item.tc:minecartLocoSteamPannier.name= 0-6-0 Pannier
+item.tc:minecartE103.name=E103
+item.tc:minecartLocoCD151.name=ČD 151
+item.tc:minecartFreightBamboo.name=Bambusový nákladní vůz
+item.tc:minecartTrainBamboo.name=Bambusový motorový vůz
+item.tc:minecartPassengerBamboo.name=Bambusový osobní vůz
+item.tc:minecartFreightDepressedFlatbed.name=Lůžkový vůz
+item.tc:minecartFreightGermanPost.name=Německý poštovní vůz
+item.tc:minecartLocoLSSP7.name=LSSP 7
+item.tc:minecartShortCoveredHopper.name=Krátký uzavřený sypač
+item.tc:minecartKClassRailBox.name=Železniční skříň třídy K
+item.tc:minecartLongCoveredHopper.name=Dlouhý uzavřený sypač
+item.tc:minecartLocoFOLM1.name=FOL M1
+item.tc:minecartHeavyweightFreight.name=Vůz pro těžká zavazadla
+item.tc:minecartLocoBP4.name=BP4
+
+
+item.tc:minecart4000GallonTender.name=4000 Galonový tendr
+item.tc:minecartLocoHallClass.name=Třída Hall
+item.tc:minecartLocoKingClass.name=Třída King
+item.tc:minecartLocoWLs40.name=WLs40
+item.tc:train_freight_l.name=Nákladní vůz L
+item.tc:minecartLocoUSATCUS.name=S100 (US)
+item.tc:minecartLocoUSATCUK.name=S100 (UK)
+item.tc:minecartLocoBerk1225.name=Berkshire 1225
+item.tc:minecartLocoBerk765.name=Berkshire 765
+item.tc:minecarttenderBerk1225.name=Berkshire tendr
+item.tc:minecartLocoFowler.name=Fowler 4F
+item.tc:minecartFowler4FTender.name=Fowler 4F tendr
+item.tc:minecartLocoC41_080.name=C41 0-8-0
+item.tc:minecartLocoAlcoSC4.name=Alco SC4
+item.tc:minecartFreightL.name=Nákladní vůz L
+
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Inženýrské oblečení
@@ -397,10 +439,12 @@ entity.tc.Loco Steam BR80.name=BR80 (DB)
 entity.tc.Loco Steam 4-4-0.name=4-4-0 (US)
 entity.tc.Loco Steam Small.name=Malá parní lokomotiva
 entity.tc.Loco Steam C62Class.name=Třída C62 (JNR)
+entity.tc.Loco Steam D51 Short Streamlining.name=D51 (JNR) [krátké zrychlení]
+entity.tc.Loco Steam D51 Long Streamlining.name=D51 (JNR) [dlouhé zrychlení]
 entity.tc.Loco Steam ER_USSR.name=SSSR 0-5-0 (SU)
 entity.tc.Loco Steam Forney.name=Forney (US)
 entity.tc.Loco Steam Mogul.name=Mogul (US)
-entity.tc.Loco Steam Shay.name=Shay (US)
+entity.tc.Loco Steam Shay.name=Kočár (US)
 entity.tc.Loco Steam Adler.name=Adler
 entity.tc.Loco Electric Tram NY.name=Tramvaj NY (US)
 entity.tc.Loco Electric Yellow Wood Tram.name=Dřevěná tramvaj
@@ -417,6 +461,7 @@ entity.tc.Loco Diesel CME3.name=CHME3 (SU)
 entity.tc.Loco Diesel CD742.name=CD 742
 entity.tc.Loco Diesel KOF DB.name=Kof (DB)
 entity.tc.Tender C62Class.name=Tendr třídy C62 (JNR)
+entity.tc.Tender D51.name=D51 tendr (JNR)
 entity.tc.Tender ER_USSR.name=Tendr SSSR 0-5-0 (SU)
 entity.tc.Tender BR01.name=Tendr BR01 (DB)
 entity.tc.Tender 4-4-0 Red.name=Tendr 4-4-0 (US)
@@ -544,6 +589,29 @@ entity.tc.Passenger MILW Tail.name=Hiawatha 1935 MILW (Koncový vagón)
 entity.tc.MILW Baggage.name=Hiawatha 1935 MILW (Zavazadlový vagón)
 entity.tc.Loco Steam MILW Class A.name=Hiawatha 1935 MILW (Třída A)
 entity.tc.MILW Tender.name=Hiawatha 1935 MILW Tendr
+entity.tc.Loco Electric E103.name=E103
+entity.tc.Loco Electric CD151.name=ČD 151
+entity.tc.Bamboo Flatcar Freight.name=Bambusový nákladní vůz
+entity.tc.Bamboo Flatcar Engine.name=Bambusový motorový vůz
+entity.tc.Bamboo Flatcar Passenger.name=Bambusový osobní vůz
+entity.tc.Freight Depressed Flatcar.name=Lůžkový vůz
+entity.tc.Freight German Post.name=Německý poštovní vůz
+entity.tc.Loco Steam LSSP7.name=LSSP 7
+entity.tc.Freight Short Covered Hopper.name=Krátký uzavřený sypač
+entity.tc.Freight K Class Rail Box.name=Železniční skříň třídy K
+entity.tc.Freight Long Covered Hopper.name=Dlouhý uzavřený sypač
+entity.tc.Loco FOL M1.name=FOL M1
+entity.tc.Freight Heavyweight Baggage.name=Vůz pro těžká zavazadla
+entity.tc.Loco Diesel BP4.name=BP4
+
+
+entity.tc.Loco Hall Class.name=Třída Hall
+entity.tc.4000GallonTender.name=4000 Galonový tendr
+entity.tc.Loco King Class.name=Třída King
+entity.tc.Loco WLS40.name=WLs40
+entity.tc.Freight Car L.name=Nákladní vůz L
+entity.tc.Loco Steam C41 0-8-0.name=C41 0-8-0
+entity.tc.Loco Steam Alco SC4.name=Alco SC4
 
 description.villager.profession.tc.station_chief=Vedoucí stanice
 
@@ -554,3 +622,7 @@ key.traincraft.up=Nahoru
 key.traincraft.down=Dolů
 key.traincraft.idle=Stát
 key.traincraft.furnace=Pec
+key.traincraft.showMTCScreen=Zobrazit MTC okno
+key.traincraft.mtcOverride=Přepnout MTC
+key.traincraft.overspeedOverride=Přepnout překročení rychlosti
+key.traincraft.toggleATO=Přepnout ATO
