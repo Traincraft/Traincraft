@@ -109,9 +109,9 @@ public enum RenderEnum {
 	freightDepressedFlatbed(EntityFreightDepressedFlatbed.class, new ModelDepressedFlatbed(), "depressed_flatbed", false, new float[] { -0.1F, 0.15F, -0.075F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	freightCartL(EntityFreightCartL.class, new ModelFreightCarL(), "freightCarL", false, new float[] { 0F, 0.2F, 0.825F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	freightKclassrailBox(EntityFreightKClassRailBox.class, new ModelKClassRailBox(), "KClassRailBox", false, new float[] { -1.9F, -0.35F, 1.05F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
-	freightShortCoveredHopper(EntityFreightShortCoveredHopper.class, new ModelShortCoveredHopper(), "ShortCoveredHopper", false, new float[] { -2.2F, -0.3F, 0.7F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	freightShortCoveredHopper(EntityFreightShortCoveredHopper.class, new ModelShortCoveredHopper(), "ShortCoveredHopper", false, new float[] { -2.2F, -0.2F, 0.7F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	freightLongCoveredHopper(EntityFreightLongCoveredHopper.class, new ModelLongCoveredHopper(), "LongCoveredHopper", false, new float[] { -1F, -0.2F, 0.65F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
-	freightHeavyweightBoxcar(EntityFreightHeavyweightBaggage.class, new ModelHeavyweightBaggage(), "heavyweightBoxcar", false, new float[] { 0F, 0.2F, -0.05F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	freightHeavyweightBoxcar(EntityFreightHeavyweightBaggage.class, new ModelHeavyweightBaggage(), "heavyweightBoxcar", false, new float[] { 0F, 0.1F, -0.05F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	freightASTFAutorack(EntityFreightASTFAutorack.class, new ModelASTFAutorack(), "astf_autorack", false, new float[] { -1F, 0.2F, 0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 
 	/** Tanks **/
@@ -176,11 +176,6 @@ public enum RenderEnum {
 			add(new double[] { 1.55D, 1.4D, 0.0D });
 		}
 	}, "", null, 0, false),
-	locoBP4(EntityLocoDieselBP4.class, new ModelBP4(), "bp4", false, new float[] { -3.2F, -0.15F, 0.6F }, new float[] { 0F, 180F, 0F }, new float[] { -1F, -1F, 1F }, "smoke", 5, new ArrayList<double[]>() {
-		{
-			add(new double[] { -0.4D, 1.1D, 0D });
-		}
-	}, "", null, 0, false),
 	locoSD70(EntityLocoDieselSD70.class, new ModelSD70(), "locoSD70_", true, new float[] { -1.2F, -0.44F, 0.0F }, new float[] { 0F, 90F, 0F }, null, "smoke", 5, new ArrayList<double[]>() {
 		{
 			add(new double[] { -0.5D, 1.4D, 0.0D });
@@ -193,9 +188,9 @@ public enum RenderEnum {
 			add(new double[] { 2.6D, 1.84D, 0.0D });
 		}
 	}, "", null, 0, true),
-	locoWLs40(EntityLocoDieselWLs40.class, new ModelWLs40(), "wls40", false, new float[] { 0F, 0.15F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "smoke", 5, new ArrayList<double[]>() {
+	locoWLs40(EntityLocoDieselWLs40.class, new ModelWLs40(), "wls40", false, new float[] { 0F, 0.1F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "smoke", 5, new ArrayList<double[]>() {
 		{
-			add(new double[] { 2.6D, 1.84D, 0.0D });
+			add(new double[] { 3.1D, 1.45D, 0.0D });
 		}
 	}, "", null, 0, true),
 	locoV60_DB(EntityLocoDieselV60_DB.class, new ModelV60(), "locoV60_DB_", true, new float[] { -0.5F, -0.44F, 0.0F }, null, null, "smoke", 4, new ArrayList<double[]>() {
@@ -252,6 +247,7 @@ public enum RenderEnum {
 	locoIC4MG(EntityLocoDieselIC4_DSB_MG.class, new ModelLocoDieselIC4_DSB_MG(), "IC4_DSB_MG_", true, new float[] { -0.8F, -0.44F, 0.0F }, null, null, "", 0, null, "", null, 0, false),
 	locoBR185(EntityLocoElectricBR185.class, new BR185_EngineModel(), "BR185_Engine_", true, new float[] { -2.0F, 0.1F, 0.0F },  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	locoClass85(EntityLocoElectricClass85.class, new ModelClass85(), "Class85", false, new float[] { -3.0F, 0.65F, 0.0F },  new float[] { 0F, 90F, 180F }, null, "", 0, null, "", null, 0, false),
+	locoBP4(EntityLocoElectricBP4.class, new ModelBP4(), "bp4", false, new float[] { -3.2F, -0.15F, 0.6F }, new float[] { 0F, 180F, 0F }, null, "", 0, null, "", null, 0, false),
 	locoDeltic(EntityLocoDieselDeltic.class, new ModelDeltic(), "Deltic", false, new float[] { -2.25F, 0.8F, 0.0F },  new float[] { 0F, 90F, 180F }, null, "largesmoke", 1, new ArrayList<double[]>() {
 		{
 			add(new double[]{2.4D, 1.6D, 0.4D});
@@ -562,7 +558,7 @@ public enum RenderEnum {
 	}, 2, true),
 	LocoSteamHallClass(EntityLocoSteamHallClass.class, new ModelHallClass(), "Hall_Class_Locomotive_", true, new float[] {-0.65F, 0.15F, -0.25F },/*position*/  new float[] { 0F, 180F, 180F }, new float[]{1f,1f,1f},/*scale*/ "largesmoke", 20, new ArrayList<double[]>() {
 		{
-			add(new double[] { 4.4D, 1.45D, 0.175D });//smoke
+			add(new double[] { 4.35D, 1.5D, 5.3D });//smoke
 		}
 	}, "explode", new ArrayList<double[]>() {
 		{
