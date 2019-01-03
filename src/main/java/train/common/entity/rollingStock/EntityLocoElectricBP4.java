@@ -9,23 +9,18 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
 import train.common.Traincraft;
 import train.common.api.DieselTrain;
+import train.common.api.ElectricTrain;
 import train.common.api.LiquidManager;
 import train.common.core.util.TraincraftUtil;
 import train.common.library.EnumTrains;
 import train.common.library.GuiIDs;
 
-public class EntityLocoDieselBP4 extends DieselTrain {
-	public EntityLocoDieselBP4(World world) {
-		super(world, EnumTrains.locoDieselBP4.getTankCapacity(), LiquidManager.dieselFilter());
-		initLoco();
+public class EntityLocoElectricBP4 extends ElectricTrain {
+	public EntityLocoElectricBP4(World world) {
+		super(world);
 	}
 
-	public void initLoco() {
-		fuelTrain = 0;
-		locoInvent = new ItemStack[inventorySize];
-	}
-
-	public EntityLocoDieselBP4(World world, double d, double d1, double d2) {
+	public EntityLocoElectricBP4(World world, double d, double d1, double d2) {
 		this(world);
 		setPosition(d, d1 + yOffset, d2);
 		motionX = 0.0D;
@@ -52,12 +47,6 @@ public class EntityLocoDieselBP4 extends DieselTrain {
 		if (i == 7 && riddenByEntity != null && riddenByEntity instanceof EntityPlayer) {
 			((EntityPlayer) riddenByEntity).openGui(Traincraft.instance, GuiIDs.LOCO, worldObj, (int) this.posX, (int) this.posY, (int) this.posZ);
 		}
-	}
-
-	@Override
-	public void onUpdate() {
-		checkInvent(locoInvent[0]);
-		super.onUpdate();
 	}
 
 	@Override
@@ -100,7 +89,7 @@ public class EntityLocoDieselBP4 extends DieselTrain {
 
 	@Override
 	public String getInventoryName() {
-		return "SD70";
+		return "BP4";
 	}
 
 	@Override
