@@ -12,6 +12,7 @@ import org.lwjgl.opengl.GL11;
 import tmt.Tessellator;
 import train.common.api.EntityRollingStock;
 import train.common.api.Locomotive;
+import train.common.core.util.TraincraftUtil;
 import train.common.entity.rollingStock.EntityTracksBuilder;
 import train.common.library.Info;
 
@@ -287,16 +288,27 @@ public class RenderRollingStock extends Render {
 			double speed = 0;
 			if (cart instanceof Locomotive) speed = ((Locomotive) cart).getSpeed();
 			if (r < ((smokeIterations * 4) + (speed * 5))) {
+				float yawMod = yaw % 360;
 				for (int j = 0; j < smokeIterations; j++) {
-					x = (float) cart.posX + random.nextFloat() * 0.2F;
-					z = (float) cart.posZ + random.nextFloat() * 0.2F;
-					double yCorrectDown = 0;
-					for (double[] smoke : smokeFX) {
-
-						if (pitchRads > 0){ yCorrectDown = -Math.tan(pitchRads);}
-						if (smoke[0] > 0){ yCorrectDown = Math.tan(-pitchRads);}
-
-						cart.worldObj.spawnParticle(smokeType, x + Math.cos(rads) * smoke[0] + (Math.cos(rads) * (Math.tan(-pitchRads) * smoke[1])), cart.posY + smoke[1] + ((Math.tan(pitchRads) * smoke[1])) + yCorrectDown, z + Math.sin(rads) * smoke[0] + (Math.sin(rads) * (Math.tan(-pitchRads) * smoke[1])), spread, Math.abs(spread), spread);
+					if (yawMod == 180) {
+						for (double[] explosion : smokeFX) {
+							cart.worldObj.spawnParticle(smokeType, cart.posX - explosion[0], cart.posY + explosion[1] + ((Math.tan(pitchRads)* 4  * -explosion[1])), cart.posZ + explosion[2], 0.0D, 0.0D, 0.0D);
+						}
+					}
+					else if (yawMod == 90) {
+						for (double[] explosion : smokeFX) {
+							cart.worldObj.spawnParticle(smokeType, cart.posX + explosion[2], cart.posY + explosion[1] + ((Math.tan(pitchRads)*4 * -explosion[1])), cart.posZ + explosion[0], 0.0D, 0.0D, 0.0D);
+						}
+					}
+					else if (yawMod == 0) {
+						for (double[] explosion : smokeFX) {
+							cart.worldObj.spawnParticle(smokeType, cart.posX + explosion[0], cart.posY + explosion[1] + ((Math.tan(pitchRads)*4 * -explosion[1])), cart.posZ + explosion[2], 0.0D, 0.0D, 0.0D);
+						}
+					}
+					else if (yawMod == -90) {
+						for (double[] explosion : smokeFX) {
+							cart.worldObj.spawnParticle(smokeType, cart.posX + explosion[2], cart.posY + explosion[1] + ((Math.tan(pitchRads)*4 * -explosion[1])), cart.posZ - explosion[0], 0.0D, 0.0D, 0.0D);
+						}
 					}
 				}
 			}
