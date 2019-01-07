@@ -84,7 +84,7 @@ public class EntityTender_Southern1102 extends Tender implements IInventory {
 	}
 	@Override
 	public String getInventoryName() {
-		return "USSR 0-5-0's Tender";
+		return "Baldwin 4-6-0 Tender";
 	}
 
 	@Override

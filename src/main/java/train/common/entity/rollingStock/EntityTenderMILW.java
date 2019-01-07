@@ -83,7 +83,7 @@ public class EntityTenderMILW extends Tender implements IInventory {
 	}
 	@Override
 	public String getInventoryName() {
-		return "Tender";
+		return "MILW Tender";
 	}
 
 	@Override

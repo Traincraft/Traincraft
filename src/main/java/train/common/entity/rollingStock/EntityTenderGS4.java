@@ -83,7 +83,7 @@ public class EntityTenderGS4 extends Tender implements IInventory {
 	}
 	@Override
 	public String getInventoryName() {
-		return "Tender";
+		return "GS4 Tender";
 	}
 
 	@Override

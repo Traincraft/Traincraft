@@ -84,7 +84,7 @@ public class EntityTenderBerk1225 extends Tender implements IInventory {
 	}
 	@Override
 	public String getInventoryName() {
-		return "Tender";
+		return "Berkshire 1225 Tender";
 	}
 
 	@Override

@@ -108,9 +108,11 @@ public class WorldEvents{
 
 			((EntityPlayer)event.entity).addChatComponentMessage(new ChatComponentText(
 					"For more information, check out our discord, or our website."));
+			((EntityPlayer)event.entity).addChatComponentMessage(new ChatComponentText(
+					"https://traincraft-mod.blogspot.com/p/default.html"));
 
 			((EntityPlayer)event.entity).addChatComponentMessage(new ChatComponentText(
-					"to see this again, enable \"FIRST RUN\" in your config."));
+					"to see this again, enable \"FIRST RUN\" in your Traincraft config and restart the game."));
 			ConfigHandler.FIRST_RUN=false;
 			ConfigHandler.changeFirstLoad();
 

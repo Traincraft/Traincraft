@@ -1084,7 +1084,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 			this.harvestBlock_do(Vec3.createVectorHelper(i + iX, j + hY + b, k + 1));
 			this.harvestBlock_do(Vec3.createVectorHelper(i + iX, j + hY + b, k - 1));
 		}
-		if (tunnelActive) {
+		if (tunnelActive && BuilderInvent[7]!=null && BuilderInvent[7].stackSize>7) {
 			for (int c = 0; c <= 3; c++) {
 				getBlockList(worldObj, i + iX, j + hY + c, k - 2);
 				getBlockList(worldObj, i + iX, j + hY + c, k + 2);
@@ -1096,6 +1096,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 					this.harvestBlock_do(Vec3.createVectorHelper(i + iX, j + hY + c, k - 2));
 					worldObj.setBlock(i + iX, j + hY + c, k - 2, Block.getBlockFromItem(tunnelBlockStack.getItem()),
 							tunnelBlockStack.getItem().getMetadata(tunnelBlockStack.getItemDamage()), 3);
+
 					decrStackSize(7, 1);
 				}
 				if (worldObj.getBlock(i + iX, j + hY + c, k + 2) == Block.getBlockFromItem(tunnelBlockStack.getItem())
@@ -1202,7 +1203,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 			this.harvestBlock_do(Vec3.createVectorHelper(i + 1, j + hY + b, k + kZ));
 			this.harvestBlock_do(Vec3.createVectorHelper(i - 1, j + hY + b, k + kZ));
 		}
-		if (tunnelActive) {
+		if (tunnelActive && BuilderInvent[7]!=null && BuilderInvent[7].stackSize>7) {
 			for (int c = 0; c <= 3; c++) {
 				getBlockList(worldObj, i - 2, j + hY + c, k + kZ);
 				getBlockList(worldObj, i + 2, j + hY + c, k + kZ);

@@ -84,7 +84,7 @@ public class EntityTenderFowler4F extends Tender implements IInventory {
 	}
 	@Override
 	public String getInventoryName() {
-		return "Tender";
+		return "Fowler 4F Tender";
 	}
 
 	@Override
