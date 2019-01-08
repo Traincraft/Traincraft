@@ -148,7 +148,7 @@ public abstract class Tender extends Freight implements IFluidHandler {
 			ItemStack result = LiquidManager.getInstance().processContainer(this, 0, this, itemstack);
 			if (result != null) {
 				placeInInvent(result, tender);
-				//decrStackSize(0, 1);
+				decrStackSize(0, 1);
 			}
 		}
 	}
