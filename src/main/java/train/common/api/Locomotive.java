@@ -754,81 +754,76 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 		//Minecraft Train Control things.
 
 		if (!worldObj.isRemote) {
-		if(mtcStatus == 1 | mtcStatus == 2) {
+			if (mtcStatus == 1 | mtcStatus == 2) {
 
-			if (getSpeed() > speedLimit) {
-				isDriverOverspeed = true;
-			} else {
-				isDriverOverspeed = false;
-
-			}
-			if (isDriverOverspeed && ticksExisted % 120 == 0 && overspeedBrakingInProgress == false && !overspeedOveridePressed && atoStatus != 1) {
-				//Start braking because the driver is an idiot.
-				overspeedBrakingInProgress = true;
-			}
-			if (overspeedBrakingInProgress == true) {
-				if (atoStatus != 1) { return;}
-				if (getSpeed() < speedLimit && !overspeedOveridePressed) {
-					//Stop overspeed braking.
-					overspeedBrakingInProgress = false;
+				if (getSpeed() > speedLimit) {
+					isDriverOverspeed = true;
+				} else {
 					isDriverOverspeed = false;
-				} else if (getSpeed() < speedLimit && overspeedOveridePressed) {
-                    overspeedBrakingInProgress = false;
-                    isDriverOverspeed = false;
 
-				} else {
-
-					motionX *= brake;
-					motionZ *= brake;
 				}
-			}
-
-			distanceFromStopPoint = this.getDistance(this.xFromStopPoint, this.yFromStopPoint, this.zFromStopPoint);
-			distanceFromSpeedChange = this.getDistance(this.xSpeedLimitChange, this.ySpeedLimitChange, this.zSpeedLimitChange);
-
-			if (distanceFromSpeedChange < this.getSpeed() && !(distanceFromSpeedChange < nextSpeedLimit)) {
-				speedLimit = (int) Math.round(distanceFromSpeedChange);
-				Traincraft.itsChannel.sendToAll(new PacketSetSpeed(this.speedLimit, (int)this.posX, (int)this.posY, (int)this.posZ, getEntityId()));
-			}
-			if (distanceFromStopPoint < this.getSpeed() && !(distanceFromStopPoint < nextSpeedLimit)) {
-				speedLimit = (int) Math.round(distanceFromStopPoint);
-				Traincraft.itsChannel.sendToAll(new PacketSetSpeed(this.speedLimit, (int)this.posX, (int)this.posY, (int)this.posZ, getEntityId()));
-			}
-
-			if (this.atoStatus == 1 && !this.parkingBrake) {
-				if (this.speedLimit != 0) {
-					this.parkingBrake = false;
-					//Accelerate to the speed limit
-					if (!(distanceFromStopPoint < this.getSpeed())) {
-						accel(this.speedLimit);
+				if (isDriverOverspeed && ticksExisted % 120 == 0 && overspeedBrakingInProgress == false && !overspeedOveridePressed && atoStatus != 1) {
+					//Start braking because the driver is an idiot.
+					overspeedBrakingInProgress = true;
+				}
+				if (overspeedBrakingInProgress && atoStatus != 1) {
+					if (getSpeed() < speedLimit) {
+						//Stop overspeed braking.
+						overspeedBrakingInProgress = false;
+						isDriverOverspeed = false;
+					} else {
+						slow(speedLimit);
 					}
-				} else {
-					if (distanceFromStopPoint < this.getSpeed()) {
-						//Stop it at a certain point
-						stop(Vec3.createVectorHelper(this.xFromStopPoint, this.yFromStopPoint, this.zFromStopPoint));
+				}
+
+				distanceFromStopPoint = this.getDistance(this.xFromStopPoint, this.yFromStopPoint, this.zFromStopPoint);
+				distanceFromSpeedChange = this.getDistance(this.xSpeedLimitChange, this.ySpeedLimitChange, this.zSpeedLimitChange);
+
+				if (distanceFromSpeedChange < this.getSpeed() && !(distanceFromSpeedChange < nextSpeedLimit)) {
+					speedLimit = (int) Math.round(distanceFromSpeedChange);
+					Traincraft.itsChannel.sendToAllAround(new PacketSetSpeed(this.speedLimit, (int) this.posX, (int) this.posY, (int) this.posZ, getEntityId()), new TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
+				}
+				if (distanceFromStopPoint < this.getSpeed() && !(distanceFromStopPoint < nextSpeedLimit)) {
+					speedLimit = (int) Math.round(distanceFromStopPoint);
+					Traincraft.itsChannel.sendToAllAround(new PacketSetSpeed(this.speedLimit, (int) this.posX, (int) this.posY, (int) this.posZ, getEntityId()), new TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D) );
+				}
+
+
+				//For Automatic Train Operation
+				if (this.atoStatus == 1 && !this.parkingBrake) {
+					if (this.speedLimit != 0) {
+						this.parkingBrake = false;
+						//Accelerate to the speed limit
+						if (!(distanceFromStopPoint < this.getSpeed())) {
+							accel(this.speedLimit);
+						}
+					} else {
+						if (distanceFromStopPoint < this.getSpeed()) {
+							//Stop it at a certain point
+							stop(Vec3.createVectorHelper(this.xFromStopPoint, this.yFromStopPoint, this.zFromStopPoint));
+
+						}
 
 					}
+					if (distanceFromSpeedChange < this.getSpeed() && !(this.getSpeed() == this.nextSpeedLimit)) {
+						//Slow it down to the next speed limit
+						slow(this.nextSpeedLimit);
+					}
+					if (isDriverOverspeed) {
+						//The ATO system is speeding somehow, slow it down
+						slow(this.speedLimit);
+					}
+					if (this.distanceFromStopPoint < 3) {
+						this.parkingBrake = true;
+						this.isBraking = true;
+						this.xFromStopPoint = 0.0;
+						this.yFromStopPoint = 0.0;
+						this.zFromStopPoint = 0.0;
+						this.atoStatus = 0;
+					}
+				}
 
-				}
-				if (distanceFromSpeedChange < this.getSpeed() && !(this.getSpeed() == this.nextSpeedLimit)) {
-					//Slow it down to the next speed limit
-					slow(this.nextSpeedLimit);
-				}
-				if (isDriverOverspeed) {
-					//The ATO system is speeding somehow, slow it down
-					slow(this.speedLimit);
-				}
-				if(this.distanceFromStopPoint < 3) {
-					this.parkingBrake = true;
-					this.isBraking = true;
-					this.xFromStopPoint = 0.0;
-					this.yFromStopPoint = 0.0;
-					this.zFromStopPoint = 0.0;
-					this.atoStatus = 0;
-				}
 			}
-
-		}
 
 		}
 		super.onUpdate();
@@ -1244,8 +1239,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 	}
 
 	public void slow(Integer desiredSpeed) {
-		this.motionX *= this.brake;
-		motionZ *=this.brake;
+		this.brakePressed = true;
 	}
 	public void stop(Vec3 signalPosition) {
 		double currentDistance = Math.copySign(Vec3.createVectorHelper(this.posX, this.posY, this.posZ).distanceTo(signalPosition), 1.0D);
