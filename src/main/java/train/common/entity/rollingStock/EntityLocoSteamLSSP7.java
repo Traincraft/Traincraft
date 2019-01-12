@@ -101,7 +101,7 @@ public class EntityLocoSteamLSSP7 extends SteamTrain {
 	}
 	@Override
 	public String getInventoryName() {
-		return "Small steam Locomotive";
+		return "LSSP 7";
 	}
 
 	@Override

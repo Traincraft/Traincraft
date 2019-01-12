@@ -643,7 +643,7 @@ public class ModelRheingoldPassenger_Dining2 extends ModelBase
 		fixRotation(rheingoldpassenger_dining2Model, false, true, true);
 	}
 
-	private ModelDeiticBogie bogie1 = new ModelDeiticBogie();
+	private ModelRheingoldBogie bogie1 = new ModelRheingoldBogie();
 
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
@@ -653,7 +653,7 @@ public class ModelRheingoldPassenger_Dining2 extends ModelBase
 			rheingoldpassenger_dining2Model[i].render(f5);
 		}
 
-		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/Class85_Bogie.png"));
+		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/Rheingold_Bogie.png"));
 		GL11.glPushMatrix();
 		GL11.glTranslated(-3.35,-0.1,0);
 		GL11.glScaled(0.7,0.7,0.9);

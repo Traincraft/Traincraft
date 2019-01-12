@@ -18,7 +18,7 @@ import train.common.library.GuiIDs;
 public class EntityTender4000 extends Tender implements IInventory {
 	public int freightInventorySize;
 	public EntityTender4000(World world) {
-		super(world, FluidRegistry.WATER, 0, EnumTrains.tenderGS4.getTankCapacity(), LiquidManager.WATER_FILTER);
+		super(world, FluidRegistry.WATER, 0, EnumTrains.Model4000GallonTender.getTankCapacity(), LiquidManager.WATER_FILTER);
 		initFreightTender();
 	}
 
@@ -106,7 +106,7 @@ public class EntityTender4000 extends Tender implements IInventory {
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return 2.25F;
+		return 2F;
 	}
 
 	@Override

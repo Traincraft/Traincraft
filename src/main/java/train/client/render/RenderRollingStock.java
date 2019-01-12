@@ -269,50 +269,51 @@ public class RenderRollingStock extends Render {
 
 	private static void renderSmokeFX(EntityRollingStock cart, float yaw, float pitch, String smokeType, ArrayList<double[]> smokeFX, int smokeIterations, float time, boolean hasSmokeOnSlopes) {
 		if(cart instanceof Locomotive && !((Locomotive)cart).isLocoTurnedOn()){return;}
-		double rads = yaw * 3.141592653589793D / 180.0D;
-		double pitchRads = pitch * 3.141592653589793D / 180.0D;
 		if(Math.abs(pitch)>30)return;
 		//if (pitch != 0 && !hasSmokeOnSlopes) { return; }
 		if ((cart instanceof Locomotive && ((Locomotive) cart).getFuel() > 0) || (cart instanceof EntityTracksBuilder && ((EntityTracksBuilder) cart).getFuel() > 0)) {
 			int r = random.nextInt(10 * smokeIterations);
-			double spread = random.nextDouble() * 0.1 - random.nextDouble() * 0.1;
-			if (spread >= 1.0D) {
-				spread -= 1.0D;
-			}
-			else if (spread <= -1.0D) {
-				spread += 1.0D;
-			}
-
-			float x;
-			float z;
 			double speed = 0;
 			if (cart instanceof Locomotive) speed = ((Locomotive) cart).getSpeed();
 			if (r < ((smokeIterations * 4) + (speed * 5))) {
-				float yawMod = yaw % 360;
+				double rotatedvec[];
 				for (int j = 0; j < smokeIterations; j++) {
-					if (yawMod == 180) {
-						for (double[] explosion : smokeFX) {
-							cart.worldObj.spawnParticle(smokeType, cart.posX - explosion[0], cart.posY + explosion[1] + ((Math.tan(pitchRads)* 4  * -explosion[1])), cart.posZ + explosion[2], 0.0D, 0.0D, 0.0D);
-						}
-					}
-					else if (yawMod == 90) {
-						for (double[] explosion : smokeFX) {
-							cart.worldObj.spawnParticle(smokeType, cart.posX + explosion[2], cart.posY + explosion[1] + ((Math.tan(pitchRads)*4 * -explosion[1])), cart.posZ + explosion[0], 0.0D, 0.0D, 0.0D);
-						}
-					}
-					else if (yawMod == 0) {
-						for (double[] explosion : smokeFX) {
-							cart.worldObj.spawnParticle(smokeType, cart.posX + explosion[0], cart.posY + explosion[1] + ((Math.tan(pitchRads)*4 * -explosion[1])), cart.posZ + explosion[2], 0.0D, 0.0D, 0.0D);
-						}
-					}
-					else if (yawMod == -90) {
-						for (double[] explosion : smokeFX) {
-							cart.worldObj.spawnParticle(smokeType, cart.posX + explosion[2], cart.posY + explosion[1] + ((Math.tan(pitchRads)*4 * -explosion[1])), cart.posZ - explosion[0], 0.0D, 0.0D, 0.0D);
-						}
+
+
+					for (double[] explosion : smokeFX) {
+						rotatedvec = rotatePointF(explosion[0], explosion[1], explosion[2], pitch, yaw);
+						cart.worldObj.spawnParticle(smokeType,
+								cart.posX + rotatedvec[0], cart.posY + rotatedvec[1], cart.posZ +rotatedvec[2],
+								0,0,0);
 					}
 				}
 			}
 		}
+	}
+	public static final float radianF = (float) Math.PI / 180.0f;
+	public static double[] rotatePointF(double x, double y, double z, float pitch, float yaw) {
+		double[] xyz = new double[]{x,y,z};
+		float sin, cos;
+		//rotate pitch
+		if (pitch != 0.0F) {
+			pitch *= radianF;
+			cos = MathHelper.cos(pitch);
+			sin = MathHelper.sin(pitch);
+
+			xyz[0] = (y * sin) + (x * cos);
+			xyz[1] = (y * cos) - (x * sin);
+		}
+		//rotate yaw
+		if (yaw != 0.0F) {
+			yaw *= radianF;
+			cos = MathHelper.cos(yaw);
+			sin = MathHelper.sin(yaw);
+
+			xyz[0] = (x * cos) - (z * sin);
+			xyz[2] = (x * sin) + (z * cos);
+		}
+
+		return xyz;
 	}
 
 	private static void renderExplosionFX(EntityRollingStock cart, float yaw, float pitch, String explosionType, ArrayList<double[]> explosionFX, int explosionFXIterations, boolean hasSmokeOnSlopes) {
