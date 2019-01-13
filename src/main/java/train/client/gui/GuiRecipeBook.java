@@ -616,9 +616,9 @@ public class GuiRecipeBook extends GuiScreen {
 			renderItem.renderItemIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList[7], var5 + 68 + offset, var6 + 103);
 		if (itemList[8] != null)
 			renderItem.renderItemIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList[8], var5 + 86 + offset, var6 + 103);
-		if (itemOutput != null)
+		if (itemOutput != null && itemOutput.getItem() !=null)
 			renderItem.renderItemIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemOutput, var5 + 145 + offset, var6 + 85);
-		if (itemOutput != null)
+		if (itemOutput != null && itemOutput.getItem() !=null)
 			this.fontRendererObj.drawString(itemOutput.getItem().getItemStackDisplayName(itemOutput), var5 + 20 + offset, var6 + 40, 0);
 		if (itemOutput != null)
 			this.fontRendererObj.drawString("Crafted in: Train Workbench", var5 + 20 + offset, var6 + 130, 0);

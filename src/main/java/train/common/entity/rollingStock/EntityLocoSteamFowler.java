@@ -103,7 +103,7 @@ public class EntityLocoSteamFowler extends SteamTrain {
 	}
 	@Override
 	public String getInventoryName() {
-		return "Hall Class";
+		return "Fowler 4F";
 	}
 
 	@Override

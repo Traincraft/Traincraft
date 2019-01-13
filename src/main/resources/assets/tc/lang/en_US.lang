@@ -26,11 +26,11 @@ fluid.tc:fluid.diesel.name=Diesel Fuel
 fluid.tc:fluid.refinedfuel.name=Refined Fuel
 tile.tc:bridgePillar.name=Bridge Pillar
 tile.tc:switchStand.name=High Star Switch Stand
-tile.mtcspeedtransmitter.name=MTC Speed Transmitter
-tile.mtcstatustransmitter.name=MTC Status Transmitter
-tile.mtcatostoppointtransmitter.name=MTC ATO Stop Point Transmitter
-tile.mtcstatusreceiver.name=MTC Status Receiver
-tile.mtcdestinationreceiver.name=MTC Destination Receiver
+tile.tc:mtcTransmitterSpeed.name=MTC Speed Transmitter
+tile.tc:mtcTransmitterMTC.name=MTC Status Transmitter
+tile.tc:mtcATOStopTransmitter.name=MTC ATO Stop Point Transmitter
+tile.tc:mtcReceiverMTC.name=MTC Status Receiver
+tile.tc:mtcReceiverDestination.name=MTC Destination Receiver
 
 
 <!-- ## Fluids ## -->
