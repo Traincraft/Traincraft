@@ -9,9 +9,9 @@ package train.client.render.models;
 // Last changed on: 25.08.2017 - 21:12:31
 
 
-        import net.minecraft.entity.Entity;
-        import train.client.tmt.ModelBase;
-        import train.client.tmt.ModelRendererTurbo;
+import net.minecraft.entity.Entity;
+import tmt.ModelBase;
+import tmt.ModelRendererTurbo;
 
 public class Model042TGLYN extends ModelBase
 {

@@ -2,8 +2,8 @@ package train.client.render.models;
 
 import net.minecraft.entity.Entity;
 import org.lwjgl.opengl.GL11;
+import tmt.ModelBase;
 import train.client.render.CustomModelRenderer;
-import train.client.tmt.ModelBase;
 import train.common.api.Freight;
 
 public class ModelFreightOpen2 extends ModelBase {

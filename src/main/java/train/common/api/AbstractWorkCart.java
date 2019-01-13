@@ -16,6 +16,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
+import train.common.adminbook.ServerLogger;
 
 public abstract class AbstractWorkCart extends EntityRollingStock implements IInventory{
 	protected ItemStack[] furnaceItemStacks;
@@ -327,10 +328,11 @@ public abstract class AbstractWorkCart extends EntityRollingStock implements IIn
 				riddenByEntity.mountEntity(this);
 			}
 			this.setDead();
+			ServerLogger.deleteWagon(this);
 			if(damagesource.getEntity() instanceof EntityPlayer) {
 				for(ItemStack stack : furnaceItemStacks){
 					if (stack != null) {
-						dropItem(stack.getItem(), stack.stackSize);
+						entityDropItem(stack,1);
 					}
 				}
 				dropCartAsItem(((EntityPlayer)damagesource.getEntity()).capabilities.isCreativeMode);

@@ -8,6 +8,7 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.StatCollector;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import org.lwjgl.opengl.GL11;
@@ -38,8 +39,13 @@ public class GuiLiquid extends GuiContainer {
 		super.drawScreen(t, g, par3);
 
 		if (intersectsWith(t, g)) {
-			drawCreativeTabHoveringText(liquid.getLiquidName(), t, g);
+			if (liquid.getLiquidName()!= null && !liquid.getLiquidName().equals("")) {
+				drawCreativeTabHoveringText(StatCollector.translateToLocal(liquid.getLiquidName()) + ": " + liquid.getAmount() + "mb/" + liquid.getCapacity() + "mb", t, g);
+			} else {
+				drawCreativeTabHoveringText( "0mb/" + liquid.getCapacity() + "mb", t, g);
+			}
 		}
+
 
 	}
 
@@ -93,30 +99,6 @@ public class GuiLiquid extends GuiContainer {
 			}
 		}
 	}
-	@Override
-	protected void drawCreativeTabHoveringText(String str, int t, int g) {
-		
-		String state = "";
-		if (liquid.getTrainLockedFromPacket()) {state = "Locked";}
-		if (!liquid.getTrainLockedFromPacket()) {state = "Unlocked";}
-		
-		int textWidth = fontRendererObj.getStringWidth(liquid.getAmount() + "/" + liquid.getCapacity());
-		int startX = t + 14;
-		int startY = g - 12;
-
-		int i4 = 0xf0100010;
-		drawGradientRect(startX - 3, startY - 4, startX + textWidth + 3, startY + 22, i4, i4);
-		drawGradientRect(startX - 4, startY - 3, startX + textWidth + 4, startY + 21, i4, i4);
-		int colour1 = 0x505000ff;
-		int colour2 = (colour1 & 0xfefefe) >> 1 | colour1 & 0xff000000;
-		drawGradientRect(startX - 3, startY - 3, startX + textWidth + 3, startY + 21, colour1, colour2);
-		drawGradientRect(startX - 2, startY - 2, startX + textWidth + 2, startY + 20, i4, i4);
-		if (str != null && str.length() > 0)
-			fontRendererObj.drawStringWithShadow(str, startX, startY, -1);
-		else
-			fontRendererObj.drawStringWithShadow("Empty", startX, startY, -1);
-		fontRendererObj.drawStringWithShadow(liquid.getAmount() + "/" + liquid.getCapacity(), startX, startY + 10, -1);
-	}
 
 	@Override
 	protected void drawGuiContainerForegroundLayer(int i, int j) {
@@ -166,7 +148,7 @@ public class GuiLiquid extends GuiContainer {
 		fontRendererObj.drawStringWithShadow("only its owner can open", startX, startY + 10, -1);
 		fontRendererObj.drawStringWithShadow("the GUI and destroy it.", startX, startY + 20, -1);
 		fontRendererObj.drawStringWithShadow("Current state: "+state, startX, startY+30, -1);
-		fontRendererObj.drawStringWithShadow("Owner: "+((AbstractTrains) liquid).getTrainOwner().trim(), startX, startY+40, -1);
+		fontRendererObj.drawStringWithShadow("Owner: "+(liquid).getTrainOwner().trim(), startX, startY+40, -1);
 	}
 	public boolean intersectsWithLockButton(int mouseX, int mouseY) {
 		//System.out.println(mouseX+" "+mouseY);
@@ -183,10 +165,10 @@ public class GuiLiquid extends GuiContainer {
 		int k = (height - ySize) / 2;
 		drawTexturedModalRect(j, k, 0, 0, xSize, ySize);
 
-		int amount = liquid.getAmount();
-		int l = (amount * 50) / liquid.getCapacity();
 
-		Fluid theLiquid = FluidRegistry.getFluid(liquid.getLiquidName());
+		int l = (liquid.getAmount() * 50) / liquid.getCapacity();
+
+		Fluid theLiquid = FluidRegistry.getFluid(liquid.getLiquidItemID());
 		/** Don't render anything if the cart is empty */
 		if (theLiquid != null) {
 			/** Protection against missing rendering icon, to avoid NPE */

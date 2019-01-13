@@ -7,7 +7,7 @@
 
 package train.common.core.interfaces;
 
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.Item;
 
 import java.util.List;
 
@@ -15,13 +15,13 @@ public abstract interface ITier {
 
 	public abstract int Tier();
 
-	public abstract List<ItemStack> knownRecipes();
+	public abstract List<Item> knownRecipes();
 
 	public abstract int[] getSlotSelected();
 
 	public abstract void setSlotSelected(int[] selected);
 
-	public abstract List<ItemStack> getResultList();
+	public abstract List<Item> getResultList();
 
 	public abstract String getGUIName();
 

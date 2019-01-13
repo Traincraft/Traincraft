@@ -23,8 +23,15 @@ tile.tc:assemblyTableIII.name=Sestavljalna miza III
 tile.tc:tcRail.name=Traincraft tirnice
 tile.tc:tcRailGag.name=Traincraft tirnice
 fluid.tc:fluid.diesel.name=Dizelsko gorivo
-fluid.tc:refinedfuel.name=Refinirano gorivo
+fluid.tc:fluid.refinedfuel.name=Refinirano gorivo
 tile.tc:bridgePillar.name=Podpornik mostu
+
+<!-- ## Fluids ## -->
+fluid.diesel.name=Dizelsko gorivo
+fluid.refinedfuel.name=Refinirano gorivo
+
+fluid.tile.water=Voda
+fluid.tile.lava=Lava
 
 <!-- ## Items ## -->
 item.tc:diesel.name=(Poln) Dizelski kontejner
@@ -133,7 +140,7 @@ item.tc:minecartFlatCart_DB.name=Ravni vagon (DB)
 item.tc:minecartFlatCartLogs_DB.name=Lesni vagon (DB)
 item.tc:minecartFreightGondola_DB.name=Tovorni gondola (DB)
 item.tc:minecartTankWagon_DB.name=Cisterna (DB)
-item.tc:minecartLocoSD70.name=SD70 Union Pacific (US)
+item.tc:minecartLocoSD70.name=SD70M (US)
 item.tc:minecartLocoEr.name=USSR 0-5-0
 item.tc:minecartTenderEr.name=USSR 0-5-0 premogovnik
 item.tc:minecartFreightCenterBeam_Empty.name=Tovorni vagon
@@ -165,7 +172,7 @@ item.tc:minecartLocoSteamShay.name=Shay (US)
 item.tc:minecartLocoSteamAdler.name=Adler
 item.tc:minecartCabooseLogging.name=Vagon za hlode
 item.tc:minecartPassengerTramNY.name=N.Y. Podzemna (potni�ki)
-item.tc:minecartLocoSD40.name=SD40 Santa Fe (U.S.)
+item.tc:minecartLocoSD40.name=SD40-2 (U.S.)
 item.tc:zeppelin.name=Cepelin
 item.tc:copperRail.name=Bakreni tiri
 item.tc:steelRail.name=Jekleni tiri
@@ -294,8 +301,8 @@ entity.tc.Loco Electric BR_E69.name=BRE69
 entity.tc.Loco Electric VL10.name=VL10 (SU)
 entity.tc.Loco Diesel V60 DB.name=V60 (DB)
 entity.tc.Loco Diesel Shunter.name=Shunter (UK)
-entity.tc.Loco Diesel SD70.name=SD70 (US)
-entity.tc.Loco Diesel SD40.name=SD40 (US)
+entity.tc.Loco Diesel SD70.name=SD70M (US)
+entity.tc.Loco Diesel SD40.name=SD40-2 (US)
 entity.tc.Loco Diesel GP7.name=GP7 (US)
 entity.tc.Loco Diesel CME3.name=CHME3 (SU)
 entity.tc.Loco Diesel GP40.name=GP40 (US)

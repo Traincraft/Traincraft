@@ -106,7 +106,7 @@ public class BlockAssemblyTableII extends BlockContainer {
 						i1 = itemstack.stackSize;
 					}
 					itemstack.stackSize -= i1;
-					EntityItem entityitem = new EntityItem(world, (float) i + f, (float) j + f1, (float) k + f2, itemstack.splitStack(i1));
+					EntityItem entityitem = new EntityItem(world, i + f, j + f1, k + f2, itemstack.splitStack(i1));
 					float f3 = 0.05F;
 					entityitem.motionX = (float) distilRand.nextGaussian() * f3;
 					entityitem.motionY = (float) distilRand.nextGaussian() * f3 + 0.2F;
@@ -126,9 +126,10 @@ public class BlockAssemblyTableII extends BlockContainer {
 
 	@Override
 	public void onBlockPlacedBy(World world, int i, int j, int k, EntityLivingBase entityliving, ItemStack stack) {
+		super.onBlockPlacedBy(world, i, j, k, entityliving, stack);
 		TileCrafterTierII te = (TileCrafterTierII) world.getTileEntity(i, j, k);
 		if (te != null) {
-			int dir = MathHelper.floor_double((double) ((entityliving.rotationYaw * 4F) / 360F) + 0.5D) & 3;
+			int dir = MathHelper.floor_double((entityliving.rotationYaw * 4F) / 360F + 0.5D) & 3;
 			te.setFacing(ForgeDirection.getOrientation(dir == 0 ? 2 : dir == 1 ? 5 : dir == 2 ? 3 : 4));
 			world.markBlockForUpdate(i, j, k);
 		}

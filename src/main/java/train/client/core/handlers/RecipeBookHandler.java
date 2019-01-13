@@ -17,7 +17,7 @@ public class RecipeBookHandler {
 	/**
 	 * This is used to show if the recipe can also be crafted in vanilla workbench
 	 */
-	public static String[] vanillaWorkTableRecipes = new String[20];
+	public static String[] vanillaWorkTableRecipes = new String[21];
 
 	public RecipeBookHandler() {
 		vanillaWorkTableRecipes[0] = BlockIDs.assemblyTableI.block.getUnlocalizedName();
@@ -37,6 +37,7 @@ public class RecipeBookHandler {
 		vanillaWorkTableRecipes[17] = ItemIDs.hat_ticketMan_paintable.item.getUnlocalizedName();
 		vanillaWorkTableRecipes[18] = ItemIDs.jacket_driver_paintable.item.getUnlocalizedName();
 		vanillaWorkTableRecipes[19] = ItemIDs.jacket_ticketMan_paintable.item.getUnlocalizedName();
+		vanillaWorkTableRecipes[20] = BlockIDs.switchStand.block.getUnlocalizedName();
 	}
 
 	// TODO: Make parameters more specific than List

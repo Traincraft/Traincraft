@@ -1,13 +1,10 @@
 package train.client.render.models;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.entity.Entity;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidRegistry;
 import org.lwjgl.opengl.GL11;
+import tmt.ModelBase;
 import train.client.render.CustomModelRenderer;
-import train.client.tmt.ModelBase;
 import train.common.api.LiquidTank;
 
 public class ModelWatertransp extends ModelBase {
@@ -378,8 +375,7 @@ public class ModelWatertransp extends ModelBase {
 	}
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-		
-		Tessellator te = Tessellator.instance;
+
 		
 		box.render(f5);
 		box0.render(f5);
@@ -448,9 +444,9 @@ public class ModelWatertransp extends ModelBase {
 		box8.render(f5);
 		box9.render(f5);		
 		//lava	
-		Fluid theLiquid = FluidRegistry.getFluid(((LiquidTank)entity).getLiquidName());
+		//Fluid theLiquid = FluidRegistry.getFluid(((LiquidTank)entity).getLiquidName());
 		GL11.glPushMatrix();
-		if(entity != null) {
+		if ((((LiquidTank) entity).getAmount()) != 0) {
 			GL11.glTranslatef(0.0f, ((((LiquidTank)entity).getAmount()/1000)*0.03f)+0.0f, 0.0f);
     		Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
     		box58.render(f5);

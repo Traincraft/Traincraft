@@ -3,6 +3,7 @@ package train.common.entity.rollingStock;
 import com.mojang.authlib.GameProfile;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
+import mods.railcraft.api.core.items.ITrackItem;
 import mods.railcraft.api.tracks.RailTools;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
@@ -25,12 +26,16 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
 import train.common.Traincraft;
+import train.common.adminbook.ServerLogger;
 import train.common.api.EntityRollingStock;
 import train.common.api.Freight;
+import train.common.blocks.BlockTCRail;
+import train.common.blocks.BlockTCRailGag;
 import train.common.core.TrainModBlockUtil;
 import train.common.core.handlers.BuilderOreHandler;
 import train.common.core.handlers.FuelHandler;
 import train.common.core.plugins.PluginRailcraft;
+import train.common.items.ItemTCRail;
 import train.common.library.BlockIDs;
 import train.common.library.GuiIDs;
 import train.common.library.ItemIDs;
@@ -170,13 +175,41 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 		if (canDigg()) {
 			updateState(true);
 			this.digBuilder(i, j, k);
+			applyDragAndPushForces();
 		}
 		else {
 			updateState(false);
 			this.motionX = 0;
 			this.motionZ = 0;
 		}
+
+		if (getInventory() != null && ticksExisted%4==0){
+			Freight link;
+			if(cartLinked1 instanceof Freight && cartLinked1.getInventory() !=null) {
+				link = (Freight) cartLinked1;
+
+			} else if (cartLinked2 instanceof Freight && cartLinked2.getInventory() !=null) {
+				link = (Freight) cartLinked2;
+			} else {
+				return;
+			}
+			for (int index = 1; index < 11; index++) {
+				if (getInventory()[index] != null && getInventory()[index].getItem() != null && getInventory()[index].stackSize < getInventory()[index].getMaxStackSize()) {
+
+					for (int f=0; f<link.getInventory().length;f++) {
+						if (link.getInventory()[f] != null && link.getInventory()[f].getItem() == getInventory()[index].getItem()){
+							link.decrStackSize(f,1);
+							getInventory()[index].stackSize++;
+							break;
+						}
+					}
+				}
+			}
+		}
 	}
+
+	@Override
+	public ItemStack[] getInventory(){return BuilderInvent;}
 
 	private boolean canDigg() {
 		return (checkForBallast() && checkForTracks() && getFuel() > 0);
@@ -731,17 +764,14 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 	 */
 	private void playMiningEffect(Vec3 pos, int block_index) {
 		miningTickCounter++;
-		int id = Block.getIdFromBlock(worldObj.getBlock((int) pos.xCoord, (int) pos.yCoord, (int) pos.zCoord));
-		Block block = Block.getBlockById(id);
 
-		if (!FMLCommonHandler.instance().getMinecraftServerInstance().isDedicatedServer()) {
+		if (!FMLCommonHandler.instance().getMinecraftServerInstance().isDedicatedServer() && pos != null && worldObj !=null) {
+			Block block = worldObj.getBlock((int) pos.xCoord, (int) pos.yCoord, (int) pos.zCoord);
 			if (miningTickCounter % 8 == 0 && block != null && !worldObj.isRemote && Minecraft.getMinecraft() != null) {
 				this.worldObj.playSound((int) pos.xCoord + 0.5F, (int) pos.yCoord + 0.5F, (int) pos.zCoord + 0.5F, block.stepSound.getBreakSound(), 1.0F, block.stepSound.getPitch() * 0.5F, true);
 			}
-			if (miningTickCounter % 8 == 0 && block_index != 0 && block != null && pos != null) {
-				if (FMLClientHandler.instance().getClient() != null) {
-					FMLClientHandler.instance().getClient().effectRenderer.addBlockHitEffects((int) pos.xCoord, (int) pos.yCoord, (int) pos.zCoord, block_index < 4 ? getSideFromYaw() : (block_index < 6 ? 1 : 0));
-				}
+			if (miningTickCounter % 8 == 0 && block_index != 0 && block != null && FMLClientHandler.instance().getClient() != null ) {
+				FMLClientHandler.instance().getClient().effectRenderer.addBlockHitEffects((int) pos.xCoord, (int) pos.yCoord, (int) pos.zCoord, block_index < 4 ? getSideFromYaw() : (block_index < 6 ? 1 : 0));
 			}
 		}
 	}
@@ -836,6 +866,9 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 
 	/** Compares the currentHeight with given height in GUI */
 	private int checkForHeight() {
+		if(tracksStack!=null && tracksStack.getItem() instanceof ItemTCRail){
+			return 0;
+		}
 		if ((int) currentHeight < getPlannedHeight()) {
 			return 1;
 		}
@@ -861,6 +894,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 				riddenByEntity.mountEntity(this);
 			}
 			this.setDead();
+			ServerLogger.deleteWagon(this);
 			if(damagesource.getEntity() instanceof EntityPlayer) {
 				dropCartAsItem(((EntityPlayer)damagesource.getEntity()).capabilities.isCreativeMode);
 				for(ItemStack stack : BuilderInvent){
@@ -991,14 +1025,15 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 
 			//torchPlacer(i, j, k, iX, kZ);
 
-			if (hY == 0 && !BlockRailBase.func_150051_a(worldObj.getBlock(i, j + hY, k)) && !BlockRailBase.func_150051_a(worldObj.getBlock(i, j, k)) && Blocks.rail.canPlaceBlockAt(worldObj, i, j + hY, k)) {
+			if (hY == 0 && !BlockRailBase.func_150051_a(worldObj.getBlock(i, j, k)) && Blocks.rail.canPlaceBlockAt(worldObj, i, j, k)
+					&& !(worldObj.getBlock(i, j, k) instanceof BlockTCRail) && !(worldObj.getBlock(i, j, k) instanceof BlockTCRailGag) ) {
 				checkForTracks();
 				trackfuel--;
 
 				if (!worldObj.isRemote) {
 					decrStackSize(1, 1);
 				}
-				RailTools.placeRailAt(tracksStack.copy(), worldObj, i, j + hY, k);
+				placeRailAt(this, tracksStack.copy(), worldObj, i, j + hY, k);
 			}
 			else if (hY < 0 && Block.getIdFromBlock(worldObj.getBlock(i, j + hY, k)) == 0 && Block.getIdFromBlock(worldObj.getBlock(i, j + hY - 1, k)) != 0 && Blocks.rail.canPlaceBlockAt(worldObj, i, j + hY, k)) {
 				checkForTracks();
@@ -1007,7 +1042,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 				if (!worldObj.isRemote) {
 					decrStackSize(1, 1);
 				}
-				RailTools.placeRailAt(tracksStack.copy(), worldObj, i, j + hY, k);
+				placeRailAt(this, tracksStack.copy(), worldObj, i, j + hY, k);
 			}
 			else if (hY > 0 && (Blocks.rail!=worldObj.getBlock(i + iX, j + hY, k + kZ)) && Blocks.rail!=worldObj.getBlock(i + iX, j + hY + 1, k + kZ) && Blocks.rail!=worldObj.getBlock(i + iX, j, k + kZ) && Blocks.rail!=worldObj.getBlock(i, j + hY, k) && Blocks.rail!=worldObj.getBlock(i, j - hY, k) && Blocks.rail.canPlaceBlockAt(worldObj, i + iX, j + hY, k + kZ)) {
 				checkForTracks();
@@ -1015,7 +1050,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 				if (!worldObj.isRemote) {
 					decrStackSize(1, 1);
 				}
-				RailTools.placeRailAt(tracksStack.copy(), worldObj, i + iX, j + hY, k + kZ);
+				placeRailAt(this, tracksStack.copy(), worldObj, i + iX, j + hY, k + kZ);
 			}
 		}
 	}
@@ -1049,7 +1084,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 			this.harvestBlock_do(Vec3.createVectorHelper(i + iX, j + hY + b, k + 1));
 			this.harvestBlock_do(Vec3.createVectorHelper(i + iX, j + hY + b, k - 1));
 		}
-		if (tunnelActive) {
+		if (tunnelActive && BuilderInvent[7]!=null && BuilderInvent[7].stackSize>7) {
 			for (int c = 0; c <= 3; c++) {
 				getBlockList(worldObj, i + iX, j + hY + c, k - 2);
 				getBlockList(worldObj, i + iX, j + hY + c, k + 2);
@@ -1061,6 +1096,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 					this.harvestBlock_do(Vec3.createVectorHelper(i + iX, j + hY + c, k - 2));
 					worldObj.setBlock(i + iX, j + hY + c, k - 2, Block.getBlockFromItem(tunnelBlockStack.getItem()),
 							tunnelBlockStack.getItem().getMetadata(tunnelBlockStack.getItemDamage()), 3);
+
 					decrStackSize(7, 1);
 				}
 				if (worldObj.getBlock(i + iX, j + hY + c, k + 2) == Block.getBlockFromItem(tunnelBlockStack.getItem())
@@ -1115,7 +1151,28 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 			}
 		}
 	}
-	
+
+	public static boolean placeRailAt(EntityTracksBuilder builder, ItemStack stack, World world, int i, int j, int k) {
+		if (stack == null)
+			return false;
+		if (stack.getItem() instanceof ITrackItem)
+			return ((ITrackItem) stack.getItem()).placeTrack(stack.copy(), world, i, j, k);
+		if (stack.getItem() instanceof ItemBlock) {
+			Block block = ((ItemBlock) stack.getItem()).field_150939_a;
+			if (BlockRailBase.func_150051_a(block)) {
+				boolean success = world.setBlock(i, j, k, block);
+				if (success)
+					world.playSoundEffect((float) i + 0.5F, (float) j + 0.5F, (float) k + 0.5F, block.stepSound.func_150496_b(), (block.stepSound.getVolume() + 1.0F) / 2.0F, block.stepSound.getPitch() * 0.8F);
+				return success;
+			}
+		} if (stack.getItem() instanceof ItemTCRail){
+			ItemTCRail rail = (ItemTCRail) stack.getItem();
+			return  (rail.onItemUse(stack, null, world, i, j, k, 0,0,0, builder.rotationYaw+90));
+		}
+		return RailTools.placeRailAt(builder, stack, world, i, j, k);
+	}
+
+
 	private void digAwayZAxis(int i, int j, int k, int kZ, int hY) {
 		
 		for (int a = 0; a <= 3; a++) {
@@ -1146,7 +1203,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 			this.harvestBlock_do(Vec3.createVectorHelper(i + 1, j + hY + b, k + kZ));
 			this.harvestBlock_do(Vec3.createVectorHelper(i - 1, j + hY + b, k + kZ));
 		}
-		if (tunnelActive) {
+		if (tunnelActive && BuilderInvent[7]!=null && BuilderInvent[7].stackSize>7) {
 			for (int c = 0; c <= 3; c++) {
 				getBlockList(worldObj, i - 2, j + hY + c, k + kZ);
 				getBlockList(worldObj, i + 2, j + hY + c, k + kZ);

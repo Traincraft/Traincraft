@@ -46,7 +46,7 @@ public class TileGeneratorDiesel extends Energy implements IFluidHandler{
     public void updateEntity(){
         if(!worldObj.isRemote){
             if(slots[0] != null){
-                ItemStack result = LiquidManager.getInstance().processContainer(this, 0, theTank, slots[0]);
+                ItemStack result = LiquidManager.getInstance().processContainer(this, 0, this, slots[0]);
                 if(result != null && placeInInvent(result, 1, false)){
                     placeInInvent(result, 1, true);
                     this.markDirty();

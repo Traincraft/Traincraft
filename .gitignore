@@ -12,6 +12,8 @@ out
 *.iml
 *.ipr
 
+.DS_Store
+
 # gradle
 build
 .gradle
@@ -21,6 +23,7 @@ asm
 config
 logs
 options.txt
+libs
 saves
 usernamecache.json
 crash-report
@@ -29,3 +32,4 @@ crash-reports
 # other
 run
 lib
+*.iws___jb_tmp___

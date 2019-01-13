@@ -9,8 +9,8 @@
 package train.client.render;
 
 import net.minecraft.entity.Entity;
-import train.client.tmt.ModelBase;
-import train.client.tmt.ModelRendererTurbo;
+import tmt.ModelBase;
+import tmt.ModelRendererTurbo;
 
 public class ModelGTNG extends ModelBase {
     int textureX = 512;

@@ -59,8 +59,8 @@ public class ModelSlopeTCTrack extends ModelBase {
 		// Move the object into the correct position on the block (because the OBJ's origin is the
 		// center of the object)
 		GL11.glTranslatef((float) x + 0.5f, (float) y, (float) z + 0.5f);
-		
-		GL11.glColor3f(1, 1, 1);
+
+		GL11.glColor4f(1, 1, 1, 1);
 		// GL11.glScalef(0.5f, 0.5f, 0.5f);
 		int facing = tcRail.getWorldObj().getBlockMetadata(tcRail.xCoord, tcRail.yCoord, tcRail.zCoord);
 		

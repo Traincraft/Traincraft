@@ -5,7 +5,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -15,13 +14,10 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import train.common.Traincraft;
-import train.common.items.ItemTCRail;
 import train.common.library.BlockIDs;
 import train.common.library.Info;
-import train.common.tile.TileTCRail;
 import train.common.tile.TileTCRailGag;
 
-import java.util.List;
 import java.util.Random;
 
 public class BlockTCRailGag extends Block {
@@ -141,24 +137,9 @@ public class BlockTCRailGag extends Block {
 	 */
 	@Override
 	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int i, int j, int k) {
-		TileTCRailGag tileEntity = (TileTCRailGag) world.getTileEntity(i, j, k);
-		if (tileEntity != null && !tileEntity.type.equals("null")
-				&& (tileEntity.type.equals(ItemTCRail.TrackTypes.SLOPE_WOOD.getLabel())
-						|| tileEntity.type.equals(ItemTCRail.TrackTypes.SLOPE_GRAVEL.getLabel())
-						|| tileEntity.type.equals(ItemTCRail.TrackTypes.SLOPE_BALLAST.getLabel())
-				 || tileEntity.type.equals(ItemTCRail.TrackTypes.LARGE_SLOPE_WOOD.getLabel())
-				 || tileEntity.type.equals(ItemTCRail.TrackTypes.LARGE_SLOPE_GRAVEL.getLabel())
-				 || tileEntity.type.equals(ItemTCRail.TrackTypes.LARGE_SLOPE_BALLAST.getLabel())
-				 || tileEntity.type.equals(ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_WOOD.getLabel())
-				 || tileEntity.type.equals(ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_GRAVEL.getLabel())
-				 || tileEntity.type.equals(ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_BALLAST.getLabel())
-				)) {
-			List list = world.getEntitiesWithinAABB(EntityMinecart.class, AxisAlignedBB.getBoundingBox(i - 1.5, j, k - 1.5, ((float) (i + 1.5)), ((float) (j + 1.5)), ((float) (k + 1.5))));
-			if (!list.isEmpty()) {
-				return null;
-			}
-			return AxisAlignedBB.getBoundingBox(i + this.minX, j + this.minY, k + this.minZ, i + this.maxX,
-					(double) j + tileEntity.bbHeight, k + this.maxZ);
+		TileEntity tileEntity = world.getTileEntity(i, j, k);
+		if (tileEntity instanceof TileTCRailGag && !((TileTCRailGag)tileEntity).type.equals("null")) {
+			return AxisAlignedBB.getBoundingBox(i, j, k, i + 1, j + ((TileTCRailGag)tileEntity).bbHeight, k + 1);
 		}
 		return null;
 	}

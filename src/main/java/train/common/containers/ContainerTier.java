@@ -70,7 +70,7 @@ public class ContainerTier extends ContainerTraincraft {
 		if (tier1.getResultList() != null) {
 			if (tier1.getResultList().size() <= 8) {
 				for (int i = 0; i < tier1.getResultList().size(); i++) {
-					tier.setInventorySlotContents(i + 10, new ItemStack(tier1.getResultList().get(i).getItem()));
+					tier.setInventorySlotContents(i + 10, new ItemStack(tier1.getResultList().get(i)));
 				}
 			}
 			else {

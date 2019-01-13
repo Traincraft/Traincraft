@@ -161,7 +161,7 @@ public class TileEntityDistil extends TileTraincraft implements IFluidHandler {
 
 				if (this.updateTicks % 8 == 0) {
 
-					ItemStack result = LiquidManager.getInstance().processContainer(this, 2, theTank, slots[2]);
+					ItemStack result = LiquidManager.getInstance().processContainer(this, 2, this, slots[2]);
 
 					if (result != null && placeInInvent(result, 4, false)) {
 
@@ -243,7 +243,7 @@ public class TileEntityDistil extends TileTraincraft implements IFluidHandler {
 	}
 
 	private boolean canSmelt() {
-		if (slots[0] == null) {
+		if (slots[0] == null || (slots[3] != null && slots[3].stackSize==64) || (slots[4] != null && slots[4].stackSize==64)) {
 			return false;
 		}
 		ItemStack itemstack = DistilRecipes.smelting().getSmeltingResult(slots[0].getItem());
