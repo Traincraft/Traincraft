@@ -1239,7 +1239,8 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 	}
 
 	public void slow(Integer desiredSpeed) {
-		this.brakePressed = true;
+		motionX *= brake;
+		motionZ *= brake;
 	}
 	public void stop(Vec3 signalPosition) {
 		double currentDistance = Math.copySign(Vec3.createVectorHelper(this.posX, this.posY, this.posZ).distanceTo(signalPosition), 1.0D);
