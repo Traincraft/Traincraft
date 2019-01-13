@@ -566,7 +566,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 	/** Locking for passengers, flat, caboose, jukebox,workcart */
 	protected boolean lockThisCart(ItemStack itemstack, EntityPlayer entityplayer) {
 		if (itemstack != null && (itemstack.getItem() instanceof ItemWrench || itemstack.getItem() instanceof ItemAdminBook)) {
-			if (entityplayer.getDisplayName().equals(this.trainOwner) || entityplayer.canCommandSenderUseCommand(2, "")) {
+			if (entityplayer.getDisplayName().equals(this.trainOwner) || entityplayer.getGameProfile().getName().equals(this.trainOwner) || this.trainOwner.equals("") || entityplayer.canCommandSenderUseCommand(2, "")) {
 				if (locked) {
 					locked = false;
 					entityplayer.addChatMessage(new ChatComponentText("unlocked"));
@@ -591,9 +591,10 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 	protected boolean canBeDestroyedByPlayer(DamageSource damagesource) {
 		if (this.getTrainLockedFromPacket()) {
 			if (damagesource.getEntity() instanceof EntityPlayer) {
-				if ((damagesource.getEntity() instanceof EntityPlayerMP) && MinecraftServer.getServer() != null && MinecraftServer.getServer().getConfigurationManager() != null && MinecraftServer.getServer().getConfigurationManager().func_152596_g(((EntityPlayer) damagesource.getEntity()).getGameProfile()) && ((EntityPlayer) damagesource.getEntity()).inventory.getCurrentItem() != null && ((EntityPlayer) damagesource.getEntity()).inventory.getCurrentItem().getItem() instanceof ItemWrench) {
+				if ((damagesource.getEntity() instanceof EntityPlayerMP) && ((EntityPlayerMP)damagesource.getEntity()).canCommandSenderUseCommand(2, "") && ((EntityPlayer) damagesource.getEntity()).inventory.getCurrentItem() != null && ((EntityPlayer) damagesource.getEntity()).inventory.getCurrentItem().getItem() instanceof ItemWrench) {
 
 					((EntityPlayer) damagesource.getEntity()).addChatMessage(new ChatComponentText("Removing the train using OP permission"));
+					return true;
 				}
 				else if (!((EntityPlayer) damagesource.getEntity()).getDisplayName().toLowerCase().equals(this.trainOwner.toLowerCase())) {
 					((EntityPlayer) damagesource.getEntity()).addChatMessage(new ChatComponentText("You are not the owner!"));
