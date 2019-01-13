@@ -322,6 +322,7 @@ item.tc:minecartLongCoveredHopper.name=Dlouhý uzavřený sypač
 item.tc:minecartLocoFOLM1.name=FOL M1
 item.tc:minecartHeavyweightFreight.name=Vůz pro těžká zavazadla
 item.tc:minecartLocoBP4.name=BP4
+item.tc:minecartASTFAutorack.name=ASTF ft-41 Automatický nosič
 
 
 item.tc:minecart4000GallonTender.name=4000 Galonový tendr
@@ -588,7 +589,7 @@ entity.tc.Passenger MILW.name=Hiawatha 1935 MILW Osobní vagón)
 entity.tc.Passenger MILW Tail.name=Hiawatha 1935 MILW (Koncový vagón)
 entity.tc.MILW Baggage.name=Hiawatha 1935 MILW (Zavazadlový vagón)
 entity.tc.Loco Steam MILW Class A.name=Hiawatha 1935 MILW (Třída A)
-entity.tc.MILW Tender.name=Hiawatha 1935 MILW Tendr
+entity.tc.Tender MILW.name=Hiawatha 1935 MILW Tendr
 entity.tc.Loco Electric E103.name=E103
 entity.tc.Loco Electric CD151.name=ČD 151
 entity.tc.Bamboo Flatcar Freight.name=Bambusový nákladní vůz
@@ -603,12 +604,21 @@ entity.tc.Freight Long Covered Hopper.name=Dlouhý uzavřený sypač
 entity.tc.Loco FOL M1.name=FOL M1
 entity.tc.Freight Heavyweight Baggage.name=Vůz pro těžká zavazadla
 entity.tc.Loco Diesel BP4.name=BP4
+entity.tc.Freight ASTF Autorack.name=ASTF ft-41 Automatický řadič
+entity.tc.Loco Fowler.name=Fowler 4F
+entity.tc.Fowler 4F Tender.name=Fowler 4F tendr
+entity.tc.Loco Electric BP4.name=BP4
+entity.tc.Loco Berkshire 765.name=Berkshire 765
+entity.tc.Loco Steam USATCUK.name=S100 (UK)
+entity.tc.Loco Steam USATCUS.name=S100 (US)
+entity.tc.1225 tender.name=Berkshire 1225 tendr
+entity.tc.Loco Berkshire 1225.name=Berkshire 1225
 
 
 entity.tc.Loco Hall Class.name=Třída Hall
 entity.tc.4000GallonTender.name=4000 Galonový tendr
 entity.tc.Loco King Class.name=Třída King
-entity.tc.Loco WLS40.name=WLs40
+entity.tc.Loco WLs40.name=WLs40
 entity.tc.Freight Car L.name=Nákladní vůz L
 entity.tc.Loco Steam C41 0-8-0.name=C41 0-8-0
 entity.tc.Loco Steam Alco SC4.name=Alco SC4
