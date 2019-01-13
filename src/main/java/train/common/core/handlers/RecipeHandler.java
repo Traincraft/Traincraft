@@ -103,7 +103,9 @@ public class RecipeHandler {
 		ArrayList<ItemStack> plastics	= multiNameOreDict("itemPlastic", "dustPlastic");//dustPlastic for MFR support
 		ArrayList<ItemStack> copper = OreDictionary.getOres("ingotCopper");
 		ArrayList<ItemStack> dustCoal = OreDictionary.getOres("dustCoal");
-		ArrayList<ItemStack> coal = OreDictionary.getOres("coal");
+		List<ItemStack> coal = new ArrayList<ItemStack>();
+		coal.add(new ItemStack(Items.coal));
+		coal.addAll(OreDictionary.getOres("coal"));
 		ArrayList<ItemStack> redstone = OreDictionary.getOres("dustRedstone");
 		ArrayList<ItemStack> waterbucket = waterContainers();
 		// Always do this " X " instead of this "X", and do not put "" empty brackets
