@@ -515,7 +515,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 
 	public void soundHorn() {
 		for (EnumSounds sounds : EnumSounds.values()) {
-			if (sounds.getEntityClass() != null && sounds.getEntityClass().equals(this.getClass()) && whistleDelay == 0) {
+			if (sounds.getEntityClass() != null && !sounds.getHornString().equals("")&& sounds.getEntityClass().equals(this.getClass()) && whistleDelay == 0) {
 				worldObj.playSoundAtEntity(this, Info.resourceLocation + ":" + sounds.getHornString(), sounds.getHornVolume(), 1.0F);
 				whistleDelay = 65;
 			}
@@ -674,11 +674,11 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 				if (sounds.getEntityClass() != null && sounds.getEntityClass().equals(this.getClass())) {
 					if (getFuel() > 0 && this.isLocoTurnedOn()) {
 						double speed = Math.sqrt(motionX * motionX + motionZ * motionZ);
-						if (speed > -0.001D && speed < 0.01D && soundPosition == 0) {
+						if (speed > -0.001D && speed < 0.01D && soundPosition == 0 && !sounds.getIdleString().equals("")) {
 							worldObj.playSoundAtEntity(this, Info.resourceLocation + ":" + sounds.getIdleString(), sounds.getIdleVolume(), 0.001F);
 							soundPosition = sounds.getIdleSoundLenght();
 						}
-						if (sounds.getSoundChangeWithSpeed()) {
+						if (sounds.getSoundChangeWithSpeed() && !sounds.getRunString().equals("")) {
 							if (speed > 0.01D && speed < 0.06D && soundPosition == 0) {
 								worldObj.playSoundAtEntity(this, Info.resourceLocation + ":" + sounds.getRunString(), sounds.getRunVolume(), 0.1F);
 								soundPosition = sounds.getRunSoundLenght();
@@ -693,7 +693,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 							}
 						}
 						else {
-							if (speed > 0.01D && soundPosition == 0) {
+							if (speed > 0.01D && soundPosition == 0 && !sounds.getRunString().equals("")) {
 								worldObj.playSoundAtEntity(this, Info.resourceLocation + ":" + sounds.getRunString(), sounds.getRunVolume(), 0.4F);
 								soundPosition = sounds.getRunSoundLenght();
 							}

@@ -131,7 +131,7 @@ public class LiquidTank extends EntityRollingStock implements IFluidHandler, ISi
 				}
 			} else if (emptyItem != null) {
 				if(emptyItem.getItem() == cargoItems[1].getItem()) {
-    				if(cargoItems[1].stackSize+1 < cargoItems[1].getMaxStackSize()) {
+    				if(cargoItems[1].stackSize+1 <= cargoItems[1].getMaxStackSize()) {
     					result = LiquidManager.getInstance().processContainer(this, 0, this, itemstack);
     				}
 				}

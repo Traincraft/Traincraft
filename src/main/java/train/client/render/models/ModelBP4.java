@@ -205,15 +205,11 @@ public class ModelBP4 extends ModelBase
 
 		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/wellcar_bogie.png"));
 		GL11.glPushMatrix();
-		GL11.glScalef(1.2f,1.2f,1f);
-		GL11.glTranslatef(0f,-0.1f,0.225f);
-		bogie.render(entity, f, f1, f2, f3, f4, f5);
-		GL11.glTranslatef(-0.5f,0,0);
+		GL11.glScalef(1.2f,1.2f,1.1f);
+		GL11.glTranslatef(-0.2f,-0.1f,0.225f);
 		bogie.render(entity, f, f1, f2, f3, f4, f5);
 
-		GL11.glTranslatef(3.6f,0f,0);
-		bogie.render(entity, f, f1, f2, f3, f4, f5);
-		GL11.glTranslatef(-0.5f,0,0);
+		GL11.glTranslatef(3f,0f,0);
 		bogie.render(entity, f, f1, f2, f3, f4, f5);
 		GL11.glPopMatrix();
 	}
