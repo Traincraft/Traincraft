@@ -11,11 +11,15 @@ import train.common.core.handlers.ConfigHandler;
 public class SpeedHandler {
 
 	public static float handleSpeed(float railMaxSpeed, float maxSpeed, Entity entity) {
-		// System.out.println("Rail: " + railMaxSpeed);
-		// System.out.println("Max: " + maxSpeed);
 		if(entity instanceof Locomotive) {
-			if (railMaxSpeed >= 0.4f) {
+			if (railMaxSpeed >= 0.4f && railMaxSpeed <= 0.45f) {
 				return convertSpeed(entity, maxSpeed);
+			} else if (railMaxSpeed < 0.4f) {
+				if (convertSpeed(entity, maxSpeed) < railMaxSpeed)
+					return convertSpeed(entity, maxSpeed);
+				return railMaxSpeed;
+			} else if ((railMaxSpeed > 0.45f && railMaxSpeed < 1.1f) ) {
+				return convertSpeed(entity, maxSpeed) + 0.2f;
 			} else {
 				return convertSpeed(entity, maxSpeed);
 			}
@@ -56,7 +60,7 @@ public class SpeedHandler {
 	 * 
 	 */
 	private static float convertSpeed(Entity entity, float maxSpeed) {
-		float speed = ((Locomotive) entity).getMaxSpeed()*0.28f;// speed is in m/s
+		float speed = ((Locomotive) entity).getMaxSpeed()*0.2775f;// speed is in m/s
 		if(ConfigHandler.REAL_TRAIN_SPEED){
 			speed /= 2f;// applying ratio
 		}else{

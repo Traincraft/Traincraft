@@ -89,11 +89,13 @@ public class ModelWellcar extends ModelBase
 		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/wellcar_bogie.png"));
 
 		GL11.glPushMatrix();
+		GL11.glScalef(1,1,0.9f);
 		GL11.glTranslated(-1.4,0.1,-0.375);
 		fronttrucks.render(entity,f,f1,f2,f3,f4,f5);
 		GL11.glPopMatrix();
 
 		GL11.glPushMatrix();
+		GL11.glScalef(1,1,0.9f);
 		GL11.glTranslated(1.2,0.1,-0.375);
 		backtrucks.render(entity,f,f1,f2,f3,f4,f5);
 		GL11.glPopMatrix();

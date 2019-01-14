@@ -112,7 +112,10 @@ public abstract class ElectricTrain extends Locomotive {
 		else {
 			if(this.isLocoTurnedOn()) {
 				fuelTrain -= amount;
-				if (fuelTrain < 0) fuelTrain = 0;
+				if (fuelTrain < 0){
+					fuelTrain = 0;
+					setLocoTurnedOnFromPacket(false);
+				}
 			}
 		}
 		/*if (hasUranium && (rand.nextInt(reduceExplosionChance) == 0) && (!Ignite)) {// fuse
