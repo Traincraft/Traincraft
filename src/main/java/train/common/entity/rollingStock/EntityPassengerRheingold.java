@@ -26,7 +26,7 @@ public class EntityPassengerRheingold extends EntityRollingStock implements IPas
 	}
 	@Override
 	public void updateRiderPosition() {
-		TraincraftUtil.updateRider(this, (float) anglePitchClient, worldObj.isRemote?rotationYawClientReal:serverRealRotation, -0.3, 0,-0.1);
+		TraincraftUtil.updateRider(this, (float) anglePitchClient, worldObj.isRemote?rotationYawClientReal:serverRealRotation, -0.3, 0,0);
 	}
 
 	@Override
@@ -71,6 +71,6 @@ public class EntityPassengerRheingold extends EntityRollingStock implements IPas
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return 3.45F;
+		return 3.94F;
 	}
 }

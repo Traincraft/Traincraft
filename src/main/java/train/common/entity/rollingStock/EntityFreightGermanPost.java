@@ -94,7 +94,7 @@ public class EntityFreightGermanPost extends Freight implements IInventory {
 	}
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return 4.35F;
+		return 3.955F;
 	}
 
 	@Override

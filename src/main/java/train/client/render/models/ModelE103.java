@@ -44,7 +44,7 @@ public class ModelE103 extends ModelConverter //Same as Filename
 
 		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/e103bogie.png"));
 		GL11.glPushMatrix();
-		GL11.glTranslated(-1.35,0.175,0.06);
+		GL11.glTranslated(-1.35,0.1,0.06);
 		bogie.render(entity,f,f1,f2,f3,f4,f5);
 
 		GL11.glTranslated(3,0,0);
