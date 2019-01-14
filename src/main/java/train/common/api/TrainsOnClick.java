@@ -1,19 +1,14 @@
 package train.common.api;
 
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.SidedProxy;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
-import train.common.core.CommonProxy;
 import train.common.library.ItemIDs;
 
 public class TrainsOnClick {
 	public boolean onClickWithStake(AbstractTrains train, ItemStack itemstack, EntityPlayer playerEntity, World world) {
-		if (itemstack != null && itemstack.getItem() == ItemIDs.stake.item && !world.isRemote &&
-				(FMLCommonHandler.instance().getMinecraftServerInstance().isSinglePlayer() || !train.isLinked() || train.getTrainOwner().equals(playerEntity.getDisplayName()) || train.getTrainOwner().equals("") || train.getTrainOwner()==null)) {
+		if (itemstack != null && itemstack.getItem() == ItemIDs.stake.item && !world.isRemote) {
 			if (playerEntity.isSneaking() && train instanceof Locomotive) {
 				if (!train.canBeAdjusted(train)) {
 					playerEntity.addChatMessage(new ChatComponentText(((EntityRollingStock) train).getTrainName() + " can be pulled, don't forget to fuel it!"));

@@ -15,10 +15,16 @@ public interface ITierRecipe {
 
 	public abstract int getTier();
 
+	public abstract int getOutputSize();
+
 	public abstract ItemStack getOutput();
 
+	public abstract String getRecipeName();
+
+	public abstract ItemStack getRecipeIn(int slot);
+
 	@SuppressWarnings("rawtypes")
-	public abstract List<ItemStack> getInput();
+	public abstract List getInput();
 
 	public abstract int toDecrease(int slot);
 }

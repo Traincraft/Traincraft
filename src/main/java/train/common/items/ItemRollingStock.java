@@ -71,37 +71,33 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 			trainCreator = var5.getString("trainCreator");
 			/*if (id > 0)
 				par3List.add("\u00a77" + "ID: " + id);*/
-			if (trainCreator.length() > 0) {
+			if (trainCreator.length() > 0)
 				par3List.add("\u00a77" + "Creator: " + trainCreator);
-			}
 			int color = var5.getInteger("trainColor");
-			if (var5.hasKey("trainColor") && color <= 16) {
+			if (var5.hasKey("trainColor") && color <= 16)
 				par3List.add("\u00a77" + "Color: " + AbstractTrains.getColorAsString(color));
-			}
 
 		}
 		double mass = getMass();
 		int power = getMHP();
 		int maxSpeed = getMaxSpeed();
 		String[] additionnalInfo = getAdditionnalInfo();
-		if (getTrainType().length() > 0) {
+		if (getTrainType().length() > 0)
 			par3List.add("\u00a77" + "Type: " + getTrainType());
-		}
-		if (power > 0) {
-			par3List.add("\u00a77" + "Power: " + power + " Mhp");
-		}
-		if (mass != 0) {
+		if (power > 0)
+			par3List.add("\u00a77" + "Power: " + power +" Mhp");
+		if (mass > 0)
 			par3List.add("\u00a77" + "Mass: " + (mass * 10));
-		}
-		if (maxSpeed > 0) {
+		if (maxSpeed > 0)
 			par3List.add("\u00a77" + "Max Speed: " + maxSpeed);
-		}
 		if(getCargoCapacity()>0){
 			par3List.add("\u00a77" + "Slots: "+getCargoCapacity());
 		}
-		if(additionnalInfo!=null){
-			for(String info : additionnalInfo){
-				par3List.add("\u00a77" + info);
+		if(additionnalInfo!=null && additionnalInfo.length>0 && additionnalInfo[0].length()>0){
+			for(int i=0;i<additionnalInfo.length;i++){
+				if(additionnalInfo[i].length()>0){
+					par3List.add("\u00a77" + additionnalInfo[i]);
+				}
 			}
 		}
 	}
@@ -212,8 +208,6 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 						rollingStock.setColor(AbstractTrains.getColorFromString(train.getColors()[0]));
 					}
 				}
-
-				break;
 			}
 		}
 		if (rollingStock != null) {

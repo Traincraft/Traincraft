@@ -9,8 +9,8 @@
 package train.client.render.models;
 
 import net.minecraft.entity.Entity;
-import tmt.ModelBase;
-import tmt.ModelRendererTurbo;
+import train.client.tmt.ModelBase;
+import train.client.tmt.ModelRendererTurbo;
 
 public class ModelVBShay extends ModelBase {
     int textureX = 512;
@@ -294,7 +294,7 @@ public class ModelVBShay extends ModelBase {
 
         vbshayModel[24].addBox(0F, 0F, 0F, 14, 1, 1, 0F); // Box 24
         vbshayModel[24].setRotationPoint(-27F, 7F, 7F);
-        vbshayModel[24].rotateAngleZ = -0.13962634F;
+        vbshayModel[24].rotateAngleZ = 0.13962634F;
 
         vbshayModel[25].addBox(0F, 0F, 0F, 1, 3, 3, 0F); // Box 25
         vbshayModel[25].setRotationPoint(-14F, 4F, 6F);
@@ -319,11 +319,11 @@ public class ModelVBShay extends ModelBase {
 
         vbshayModel[32].addBox(0F, 0F, 1F, 1, 10, 1, 0F); // Box 32
         vbshayModel[32].setRotationPoint(-11F, -6F, 6F);
-        vbshayModel[32].rotateAngleX = 0.10471976F;
+        vbshayModel[32].rotateAngleX = -0.10471976F;
 
         vbshayModel[33].addBox(0F, 0F, 1F, 1, 10, 1, 0F); // Box 33
         vbshayModel[33].setRotationPoint(-8F, -5F, 6F);
-        vbshayModel[33].rotateAngleX = -0.10471976F;
+        vbshayModel[33].rotateAngleX = 0.10471976F;
 
         vbshayModel[34].addBox(0F, 0F, 0F, 3, 5, 3, 0F); // Box 34
         vbshayModel[34].setRotationPoint(-12F, -10F, 6F);
@@ -363,7 +363,7 @@ public class ModelVBShay extends ModelBase {
 
         vbshayModel[46].addBox(0F, 0F, 0F, 22, 1, 1, 0F); // Box 47
         vbshayModel[46].setRotationPoint(-5F, 5F, 7F);
-        vbshayModel[46].rotateAngleZ = 0.08726646F;
+        vbshayModel[46].rotateAngleZ = -0.08726646F;
 
         vbshayModel[47].addBox(0F, 0F, 0F, 5, 5, 0, 0F); // Box 48
         vbshayModel[47].setRotationPoint(16F, 5F, -6F);
@@ -505,7 +505,7 @@ public class ModelVBShay extends ModelBase {
 
         vbshayModel[93].addBox(0F, 0F, 0F, 24, 1, 0, 0F); // Box 94
         vbshayModel[93].setRotationPoint(8F, -2F, -8.01F);
-        vbshayModel[93].rotateAngleZ = -0.43633231F;
+        vbshayModel[93].rotateAngleZ = 0.43633231F;
 
         vbshayModel[94].addBox(0F, 0F, 0F, 3, 1, 0, 0F); // Box 95
         vbshayModel[94].setRotationPoint(30F, -11F, -8.01F);
@@ -578,7 +578,7 @@ public class ModelVBShay extends ModelBase {
 
         vbshayModel[117].addBox(0F, 0F, 0F, 24, 1, 0, 0F); // Box 121
         vbshayModel[117].setRotationPoint(8F, -2F, 8.01F);
-        vbshayModel[117].rotateAngleZ = -0.43633231F;
+        vbshayModel[117].rotateAngleZ = 0.43633231F;
 
         vbshayModel[118].addBox(0F, 0F, 0F, 1, 11, 0, 0F); // Box 122
         vbshayModel[118].setRotationPoint(8F, -12F, 8.01F);
@@ -609,7 +609,7 @@ public class ModelVBShay extends ModelBase {
 
         vbshayModel[127].addBox(0F, 0F, 0F, 9, 1, 1, 0F); // Box 131
         vbshayModel[127].setRotationPoint(-28F, -3F, 9F);
-        vbshayModel[127].rotateAngleZ = -0.34906585F;
+        vbshayModel[127].rotateAngleZ = 0.34906585F;
 
         vbshayModel[128].addBox(1F, 0F, 0F, 9, 1, 1, 0F); // Box 132
         vbshayModel[128].setRotationPoint(-21F, -6F, 9F);
@@ -739,7 +739,7 @@ public class ModelVBShay extends ModelBase {
 
         vbshayModel[170].addBox(0F, 0F, 0F, 7, 1, 1, 0F); // Box 177
         vbshayModel[170].setRotationPoint(-19F, -6F, -5F);
-        vbshayModel[170].rotateAngleZ = -0.45378561F;
+        vbshayModel[170].rotateAngleZ = 0.45378561F;
 
         vbshayModel[171].addBox(0F, 0F, 0F, 1, 6, 1, 0F); // Box 178
         vbshayModel[171].setRotationPoint(-11F, -7F, -5F);
@@ -767,19 +767,19 @@ public class ModelVBShay extends ModelBase {
 
         vbshayModel[179].addBox(0F, 0F, 0F, 17, 1, 1, 0F); // Box 186
         vbshayModel[179].setRotationPoint(-29F, 1F, 2F);
-        vbshayModel[179].rotateAngleZ = 0.20943951F;
+        vbshayModel[179].rotateAngleZ = -0.20943951F;
 
         vbshayModel[180].addBox(0F, 0F, 0F, 17, 1, 1, 0F); // Box 187
         vbshayModel[180].setRotationPoint(-29F, 1F, -2F);
-        vbshayModel[180].rotateAngleZ = 0.20943951F;
+        vbshayModel[180].rotateAngleZ = -0.20943951F;
 
         vbshayModel[181].addBox(0F, 0F, 0F, 17, 1, 1, 0F); // Box 188
         vbshayModel[181].setRotationPoint(-7F, 5F, -2F);
-        vbshayModel[181].rotateAngleZ = -0.2443461F;
+        vbshayModel[181].rotateAngleZ = 0.2443461F;
 
         vbshayModel[182].addBox(0F, 0F, 0F, 17, 1, 1, 0F); // Box 189
         vbshayModel[182].setRotationPoint(-7F, 5F, 2F);
-        vbshayModel[182].rotateAngleZ = -0.2443461F;
+        vbshayModel[182].rotateAngleZ = 0.2443461F;
 
         vbshayModel[183].addShapeBox(0F, 0F, 0F, 1, 2, 3, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 190
         vbshayModel[183].setRotationPoint(-18F, -25F, 4F);

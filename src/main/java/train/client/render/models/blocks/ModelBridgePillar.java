@@ -33,7 +33,7 @@ public class ModelBridgePillar extends ModelBase {
 		GL11.glTranslatef((float) x + 0.5f, (float) y, (float) z + 0.5f);
 
 		FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_slope.png"));
-		GL11.glColor4f(1, 1, 1, 1);
+		GL11.glColor3f(1, 1, 1);
 		int facing = pillar.getWorldObj().getBlockMetadata((int) pillar.xCoord, (int) pillar.yCoord, (int) pillar.zCoord);
 		if(facing == 2){
 			GL11.glRotatef(90, 0, 1, 0);

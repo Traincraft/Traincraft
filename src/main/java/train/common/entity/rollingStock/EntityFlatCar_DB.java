@@ -25,12 +25,6 @@ public class EntityFlatCar_DB extends EntityRollingStock implements IPassenger {
 	}
 
 	@Override
-	public void onUpdate(){
-		super.onUpdate();
-		boundingBox.maxY-=1;
-	}
-
-	@Override
 	public void updateRiderPosition() {
 		riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset() + 0.4, posZ);
 	}
@@ -45,9 +39,6 @@ public class EntityFlatCar_DB extends EntityRollingStock implements IPassenger {
 	public boolean interactFirst(EntityPlayer entityplayer) {
 		playerEntity = entityplayer;
 		if ((super.interactFirst(entityplayer))) {
-			return false;
-		}
-		if (entityplayer.ridingEntity == this){
 			return false;
 		}
 		if (!worldObj.isRemote) {

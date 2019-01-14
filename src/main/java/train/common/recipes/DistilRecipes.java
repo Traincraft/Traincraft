@@ -4,6 +4,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import train.common.core.handlers.ConfigHandler;
 import train.common.library.BlockIDs;
 import train.common.library.ItemIDs;
 

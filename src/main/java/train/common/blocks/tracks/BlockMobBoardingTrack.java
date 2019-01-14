@@ -12,7 +12,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import train.common.entity.rollingStock.EntityStockCar;
-import train.common.entity.rollingStock.EntityStockCarDRWG;
 import train.common.library.Tracks;
 
 import java.io.DataInputStream;
@@ -29,12 +28,12 @@ public class BlockMobBoardingTrack extends TrackBaseTraincraft implements ITrack
 	}
 	@Override
 	public void onMinecartPass(EntityMinecart cart) {
-		if (cart instanceof EntityStockCar || cart instanceof EntityStockCarDRWG) {
+		if (cart instanceof EntityStockCar) {
 			if (cart.riddenByEntity != null)
 				return;
 			AxisAlignedBB box = null;
 			box = cart.boundingBox.expand(4, 4, 4);
-			List list = this.getWorld().getEntitiesWithinAABBExcludingEntity(cart, box);
+			List list = this.getWorld().getEntitiesWithinAABBExcludingEntity((Entity) cart, box);
 			if (list != null && list.size() > 0) {
 
 				for (int j1 = 0; j1 < list.size(); j1++) {

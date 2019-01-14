@@ -14,6 +14,8 @@ import train.common.library.GuiIDs;
 
 public class EntityFreightCart extends Freight implements IInventory {
 	public int freightInventorySize;
+	public int numFreightSlots;
+	private EntityPlayer playerEntity;
 
 	public EntityFreightCart(World world) {
 		super(world);
@@ -21,6 +23,7 @@ public class EntityFreightCart extends Freight implements IInventory {
 	}
 
 	public void initFreightCart() {
+		numFreightSlots = 9;
 		if(trainSpec!=null)freightInventorySize = trainSpec.getCargoCapacity();
 		cargoItems = new ItemStack[freightInventorySize];
 	}

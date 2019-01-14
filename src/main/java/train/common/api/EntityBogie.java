@@ -1,13 +1,15 @@
 package train.common.api;
 
+import java.util.List;
+
 import com.mojang.authlib.GameProfile;
+
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mods.railcraft.api.carts.IMinecart;
 import mods.railcraft.api.carts.IRoutableCart;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockAir;
 import net.minecraft.block.BlockRailBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityMinecart;
@@ -19,15 +21,11 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import train.common.blocks.BlockTCRail;
-import train.common.blocks.BlockTCRailGag;
 import train.common.items.ItemTCRail;
 import train.common.items.ItemTCRail.TrackTypes;
 import train.common.library.BlockIDs;
 import train.common.tile.TileTCRail;
 import train.common.tile.TileTCRailGag;
-
-import java.util.List;
 
 public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableCart {
 
@@ -396,7 +394,8 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 				this.setPosition(this.posX, this.posY + yOffset - 0.3d, this.posZ);
 				// System.out.println("Server Y: " + this.posY);
 			}
-			} else {
+			}
+			else {
 		        if (this.worldObj.isRemote)
 		        {
 		            if (this.turnProgress > 0)
@@ -523,51 +522,32 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 			worldObj.removeEntity(this);
 		}
 	}
+	
+	private void moveOnTCStraight(int j, double cx, double cz, int meta){
+		/*
+		 * Nitro-Note: Do we need all those shitty motionX and Z?
+		 * Nitro-Note 2: setPosition is to make a great look when Train placed down. :)
+		 */
+		this.posY = j + 0.2D;
+		double norm = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
+		if (meta % 2 == 0) {
 
-	private void moveOnTCStraight(int j, double cx, double cz, int meta) {
-		posY = j + 0.2;
-		if (meta == 2 || meta == 0) {
-			double norm = Math.sqrt(motionX * motionX + motionZ * motionZ);
 
-			setPosition(cx + 0.5, posY + yOffset, posZ);
-			//setPosition(posX, posY + yOffset, posZ);
+			this.setPosition(cx + 0.5D, this.posY + this.yOffset, this.posZ);
+			this.moveEntity(0.0D, 0.0D, Math.copySign(norm, this.motionZ));
 
-			motionX = 0;
-			motionZ = Math.copySign(norm, motionZ);
-			this.boundingBox.offset(0, 0 , Math.copySign(norm, this.motionZ));
-
-			List boxes = worldObj.getCollidingBoundingBoxes(this, boundingBox);
-			for(Object b : boxes){
-				if(!(b instanceof BlockRailBase) && !(b instanceof BlockTCRail) && !(b instanceof BlockTCRailGag) && !(b instanceof BlockAir)){
-					return;
-				}
-			}
-			this.posX = (this.boundingBox.minX + this.boundingBox.maxX) / 2.0D;
-			this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
-			this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) / 2.0D;
-
-			//System.out.println("straight z "+Math.copySign(norm, motionZ));
+			// this.motionX = 0.0D;
+			// this.motionZ = Math.copySign(norm, this.motionZ);
 		}
-		if (meta == 1 || meta == 3) {
+		else {
 
-			setPosition(posX, posY + yOffset, cz + 0.5);
-			//setPosition(posX, posY + yOffset, posZ);
+			// double norm = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 
-			motionX = Math.copySign(Math.sqrt(motionX * motionX + motionZ * motionZ), motionX);
-			motionZ = 0;
-			this.boundingBox.offset(motionX, 0 , 0);
+			this.setPosition(this.posX, this.posY + this.yOffset, cz + 0.5D);
+			this.moveEntity(Math.copySign(norm, this.motionX), 0.0D, 0.0D);
 
-			List boxes = worldObj.getCollidingBoundingBoxes(this, boundingBox);
-			for(Object b : boxes){
-				if(!(b instanceof BlockRailBase) && !(b instanceof BlockTCRail) && !(b instanceof BlockTCRailGag) && !(b instanceof BlockAir)){
-					return;
-				}
-			}
-			this.posX = (this.boundingBox.minX + this.boundingBox.maxX) / 2.0D;
-			this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
-			this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) / 2.0D;
-
-			//System.out.println("straight x "+Math.copySign(norm, motionX));
+			// this.motionX = Math.copySign(norm, this.motionX);
+			// this.motionZ = 0.0D;
 		}
 	}
 
@@ -618,11 +598,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 			double norm = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 			double newPosY = Math.abs(j + (Math.tan(slopeAngle * Math.abs(cz - this.posZ))) + this.yOffset + 0.3);
 			this.setPosition(cx + 0.5D, newPosY, this.posZ);
-
-			this.boundingBox.offset(0, 0 , Math.copySign(norm, this.motionZ));
-			this.posX = (this.boundingBox.minX + this.boundingBox.maxX) / 2.0D;
-			this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
-			this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) / 2.0D;
+			this.moveEntity(0.0D, 0.0D, Math.copySign(norm, this.motionZ));
 
 			this.motionX = 0.0D;
 			this.motionY = 0.0D;
@@ -635,12 +611,8 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 			double norm = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 			double newPosY = (j + (Math.tan(slopeAngle * Math.abs(cx - this.posX))) + this.yOffset + 0.3);
 			this.setPosition(this.posX, newPosY, cz + 0.5D);
-
-			this.boundingBox.offset(Math.copySign(norm, this.motionX), 0 ,0);
-			this.posX = (this.boundingBox.minX + this.boundingBox.maxX) / 2.0D;
-			this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
-			this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) / 2.0D;
-
+			this.moveEntity(Math.copySign(norm, this.motionX), 0.0D, 0.0D);
+			
 			this.motionX = Math.copySign(norm, this.motionX);
 			this.motionY = 0.0D;
 			this.motionZ = 0.0D;

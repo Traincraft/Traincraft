@@ -8,7 +8,6 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
-import train.common.adminbook.ServerLogger;
 
 public abstract class Freight extends EntityRollingStock implements IInventory {
 	public ItemStack cargoItems[];
@@ -35,7 +34,6 @@ public abstract class Freight extends EntityRollingStock implements IInventory {
 				riddenByEntity.mountEntity(this);
 			}
 			this.setDead();
-			ServerLogger.deleteWagon(this);
 			if(damagesource.getEntity() instanceof EntityPlayer) {
 				dropCartAsItem(((EntityPlayer)damagesource.getEntity()).capabilities.isCreativeMode);
 			}
@@ -197,7 +195,4 @@ public abstract class Freight extends EntityRollingStock implements IInventory {
 			}
 		}
 	}
-
-	@Override
-	public ItemStack[] getInventory(){return cargoItems;}
 }
