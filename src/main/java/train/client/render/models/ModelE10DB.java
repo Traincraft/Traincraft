@@ -745,24 +745,11 @@ public class ModelE10DB extends ModelConverter
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
-
-		GL11.glDisable(GL11.GL_CULL_FACE);
-		for(int i = 0; i < 157; i++)
-		{
-			if(bodyModel[i].boxName!= null && bodyModel[i].boxName.equals("lamp")){
-				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
-				bodyModel[i].render(f5);
-				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
-
-			} else {
-				bodyModel[i].render(f5);
-			}
-		}
-		GL11.glEnable(GL11.GL_CULL_FACE);
+		super.render(entity, f, f1, f2, f3, f4, f5);
 
 		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/e10_Bogie.png"));
 		GL11.glPushMatrix();
-		GL11.glTranslated(-1.6,0.2,-0.375);
+		GL11.glTranslated(-1.6,0.15,-0.375);
 		trucks.render(entity,f,f1,f2,f3,f4,f5);
 
 		GL11.glTranslated(3.3,0,0);

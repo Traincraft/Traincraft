@@ -43,10 +43,10 @@ public class ModelGermanPost extends ModelConverter //Same as Filename
 
 		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/Rheingold_Bogie.png"));
 		GL11.glPushMatrix();
-		GL11.glTranslated(-1.75,0.25,-0.45);
+		GL11.glTranslated(-1.75,0.20,-0.5);
 		bogie1.render(entity,f,f1,f2,f3,f4,f5);
 
-		GL11.glTranslated(5.32,0,0);
+		GL11.glTranslated(5.32,0,-0.05);
 		bogie1.render(entity,f,f1,f2,f3,f4,f5);
 		GL11.glPopMatrix();
 	}

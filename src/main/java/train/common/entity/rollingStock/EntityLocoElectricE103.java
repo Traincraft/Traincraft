@@ -30,7 +30,7 @@ public class EntityLocoElectricE103 extends ElectricTrain {
 
 	@Override
 	public void updateRiderPosition() {
-		TraincraftUtil.updateRider(this, (float) anglePitchClient, worldObj.isRemote?rotationYawClientReal:serverRealRotation, 0, 0.15,3.75);
+		TraincraftUtil.updateRider(this, (float) anglePitchClient, worldObj.isRemote?rotationYawClientReal:serverRealRotation, 0, 0.05,3.65);
 	}
 
 	@Override
@@ -105,7 +105,7 @@ public class EntityLocoElectricE103 extends ElectricTrain {
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return 0.8F;
+		return 0.995F;
 	}
 
 	@Override

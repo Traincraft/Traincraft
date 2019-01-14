@@ -846,10 +846,10 @@ public class ModelRheingoldPassenger extends ModelConverter
 
 		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/Rheingold_Bogie.png"));
 		GL11.glPushMatrix();
-		GL11.glTranslated(-4.625,0.25,-1.066);
+		GL11.glTranslated(-4.625,0.20,-1.045);
 		bogie1.render(entity,f,f1,f2,f3,f4,f5);
 
-		GL11.glTranslated(5.32,0,0);
+		GL11.glTranslated(5.32,0, 0);
 		bogie1.render(entity,f,f1,f2,f3,f4,f5);
 		GL11.glPopMatrix();
 	}
