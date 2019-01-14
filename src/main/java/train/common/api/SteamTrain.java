@@ -177,13 +177,13 @@ public abstract class SteamTrain extends Locomotive implements IFluidHandler {
 			return;
 
 		boolean hasCoalInTender = false;
-		if (isLocoTurnedOn()) {
+		if (isLocoTurnedOn() && ticksExisted%5==0) {
 			FluidStack drain = null;
 			if(cartLinked1 instanceof Tender){
 				if (getFluid() == null) {
-					drain = ((LiquidTank) cartLinked1).drain(ForgeDirection.UNKNOWN, new FluidStack(FluidRegistry.WATER, 100), true);
+					drain = ((Tender) cartLinked1).drain(ForgeDirection.UNKNOWN, new FluidStack(FluidRegistry.WATER, 100), true);
 				} else if (getFluid().getFluid() == FluidRegistry.WATER) {
-					drain = ((LiquidTank) cartLinked1).drain(ForgeDirection.UNKNOWN, new FluidStack(FluidRegistry.WATER, 100), true);
+					drain = ((Tender) cartLinked1).drain(ForgeDirection.UNKNOWN, new FluidStack(FluidRegistry.WATER, 100), true);
 				}
 				for (int h = 0; h < ((Tender) cartLinked1).tenderItems.length; h++) {
 					if (((Tender) cartLinked1).tenderItems[h] != null && FuelHandler.steamFuelLast(((Tender) cartLinked1).tenderItems[h]) != 0) {
@@ -199,9 +199,9 @@ public abstract class SteamTrain extends Locomotive implements IFluidHandler {
 
 			} else if (cartLinked2 instanceof Tender){
 				if (getFluid() == null) {
-					drain = ((LiquidTank) cartLinked2).drain(ForgeDirection.UNKNOWN, new FluidStack(FluidRegistry.WATER, 100), true);
+					drain = ((Tender) cartLinked2).drain(ForgeDirection.UNKNOWN, new FluidStack(FluidRegistry.WATER, 100), true);
 				} else if (getFluid().getFluid() == FluidRegistry.WATER) {
-					drain = ((LiquidTank) cartLinked2).drain(ForgeDirection.UNKNOWN, new FluidStack(FluidRegistry.WATER, 100), true);
+					drain = ((Tender) cartLinked2).drain(ForgeDirection.UNKNOWN, new FluidStack(FluidRegistry.WATER, 100), true);
 				}
 
 

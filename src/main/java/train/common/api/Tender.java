@@ -161,7 +161,7 @@ public abstract class Tender extends Freight implements IFluidHandler {
 			liquidInSlot(tenderInvent, loco);
 		}
 
-		if(fill(ForgeDirection.UNKNOWN, new FluidStack(FluidRegistry.WATER,100), false)==100) {
+		if(ticksExisted%5==0 && fill(ForgeDirection.UNKNOWN, new FluidStack(FluidRegistry.WATER,100), false)==100) {
 			FluidStack drain =null;
 			if (cartLinked1 instanceof LiquidTank
 					&& !(cartLinked1 instanceof EntityBUnitEMDF7) && !(cartLinked1 instanceof EntityBUnitEMDF3) && !(cartLinked1 instanceof EntityBUnitDD35)) {

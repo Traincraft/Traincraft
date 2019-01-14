@@ -192,7 +192,7 @@ public class ModelBP4 extends ModelBase
 
 
 	}
-	ModelWellcarBogie bogie = new ModelWellcarBogie();
+	ModelAmericanFreightTrucks bogie = new ModelAmericanFreightTrucks();
 
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
@@ -203,13 +203,13 @@ public class ModelBP4 extends ModelBase
 		}
 
 
-		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/wellcar_bogie.png"));
+		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/AmericanFreightTrucks.png"));
 		GL11.glPushMatrix();
-		GL11.glScalef(1.2f,1.2f,1.1f);
-		GL11.glTranslatef(-0.2f,-0.1f,0.225f);
+		GL11.glScalef(1.3f,1.3f,0.9f);
+		GL11.glTranslatef(-0.2f,0.15f,0.4f);
 		bogie.render(entity, f, f1, f2, f3, f4, f5);
 
-		GL11.glTranslatef(3f,0f,0);
+		GL11.glTranslatef(2.8f,0f,0);
 		bogie.render(entity, f, f1, f2, f3, f4, f5);
 		GL11.glPopMatrix();
 	}

@@ -105,7 +105,7 @@ public class ModelKClassRailBox extends ModelBase
 
 	}
 
-	ModelWellcarBogie bogie = new ModelWellcarBogie();
+	ModelAmericanFreightTrucks bogie = new ModelAmericanFreightTrucks();
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
@@ -114,10 +114,11 @@ public class ModelKClassRailBox extends ModelBase
 			kclassrailboxModel[i].render(f5);
 		}
 
-		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/wellcar_bogie.png"));
+		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/AmericanFreightTrucks.png"));
 
 		GL11.glPushMatrix();
-		GL11.glTranslated(0.85,-0.3,0.7);
+		GL11.glScalef(1,1,0.9f);
+		GL11.glTranslated(0.875,0,0.8);
 		bogie.render(entity,f,f1,f2,f3,f4,f5);
 
 		GL11.glTranslated(1.875,0,0);
