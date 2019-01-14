@@ -4,17 +4,17 @@ package train.common.tile;
 import cofh.api.energy.IEnergyProvider;
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
-import train.common.core.TrainModBlockUtil;
+import train.common.core.handlers.ConfigHandler;
 import train.common.core.handlers.WorldEvents;
 import train.common.core.util.Energy;
-import train.common.core.handlers.ConfigHandler;
+import train.common.library.BlockIDs;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 public class TileWindMill extends Energy implements IEnergyProvider {
@@ -77,15 +77,12 @@ public class TileWindMill extends Energy implements IEnergyProvider {
 				if (!this.worldObj.isAirBlock(this.xCoord, this.yCoord + 1, this.zCoord)) {
 					Block block = this.worldObj.getBlock(this.xCoord, this.yCoord + 1, this.zCoord);
 					if (block != null) {
-						ArrayList<ItemStack> stacks = new ArrayList<ItemStack>(TrainModBlockUtil.getItemStackFromBlock(worldObj, this.xCoord, this.yCoord + 1, this.zCoord));
-						for (ItemStack s : stacks) {
-							EntityItem entityitem = new EntityItem(worldObj, this.xCoord, this.yCoord + 1, this.zCoord, s);
-							float f3 = 0.05F;
-							entityitem.motionX = (float) rand.nextGaussian() * f3;
-							entityitem.motionY = (float) rand.nextGaussian() * f3 + 0.2F;
-							entityitem.motionZ = (float) rand.nextGaussian() * f3;
-							worldObj.spawnEntityInWorld(entityitem);
-						}
+						EntityItem entityitem = new EntityItem(worldObj, this.xCoord, this.yCoord + 1, this.zCoord, new ItemStack(Item.getItemFromBlock(BlockIDs.windMill.block),1));
+						float f3 = 0.05F;
+						entityitem.motionX = (float) rand.nextGaussian() * f3;
+						entityitem.motionY = (float) rand.nextGaussian() * f3 + 0.2F;
+						entityitem.motionZ = (float) rand.nextGaussian() * f3;
+						worldObj.spawnEntityInWorld(entityitem);
 					}
 					this.worldObj.setBlockToAir(this.xCoord, this.yCoord, this.zCoord);
 				}

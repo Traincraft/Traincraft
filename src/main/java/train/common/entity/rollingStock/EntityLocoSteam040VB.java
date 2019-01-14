@@ -101,7 +101,7 @@ public class EntityLocoSteam040VB extends SteamTrain {
 
 	@Override
 	public String getInventoryName() {
-		return "Steam Locomotive";
+		return "0-4-0 Vertical Boiler";
 	}
 
 	@Override

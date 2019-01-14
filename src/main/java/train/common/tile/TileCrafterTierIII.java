@@ -26,14 +26,14 @@ public class TileCrafterTierIII extends TileEntity implements IInventory, ITier 
 
 	private ForgeDirection facing;
 	private final int Tier = 3;
-	private List<ItemStack>			resultList;
-	private static List<ItemStack> knownRecipes = new ArrayList<ItemStack>();
+	private List<Item>			resultList;
+	private static List<Item> knownRecipes = new ArrayList<Item>();
 	private static int[] slotSelected;
 
 	public TileCrafterTierIII() {
 		crafterInventory = new ItemStack[26];
 		this.rand = new Random();
-		this.resultList = new ArrayList<ItemStack>();
+		this.resultList = new ArrayList<Item>();
 		slotSelected = new int[8];
 	}
 
@@ -48,7 +48,7 @@ public class TileCrafterTierIII extends TileEntity implements IInventory, ITier 
 	}
 
 	@Override
-	public List<ItemStack> getResultList() {
+	public List<Item> getResultList() {
 		return resultList;
 	}
 
@@ -116,8 +116,8 @@ public class TileCrafterTierIII extends TileEntity implements IInventory, ITier 
 			NBTTagCompound nbttagcompound2 = nbttaglist2.getCompoundTagAt(i);
 			byte byte1 = nbttagcompound2.getByte("Recipe");
 			if (byte1 >= 0) {
-				if (!listContains(knownRecipes, ItemStack.loadItemStackFromNBT(nbttagcompound2))) {
-					knownRecipes.add(ItemStack.loadItemStackFromNBT(nbttagcompound2));
+				if (!listContainsItem(knownRecipes, ItemStack.loadItemStackFromNBT(nbttagcompound2).getItem())) {
+					knownRecipes.add(ItemStack.loadItemStackFromNBT(nbttagcompound2).getItem());
 				}
 			}
 		}
@@ -148,7 +148,7 @@ public class TileCrafterTierIII extends TileEntity implements IInventory, ITier 
 			for (int i = 0; i < knownRecipes.size(); i++) {
 				NBTTagCompound nbttagcompound2 = new NBTTagCompound();
 				nbttagcompound2.setByte("Recipe", (byte) i);
-				knownRecipes.get(i).writeToNBT(nbttagcompound2);
+				new ItemStack(knownRecipes.get(i)).writeToNBT(nbttagcompound2);
 				nbttaglist2.appendTag(nbttagcompound2);
 			}
 			nbtTag.setTag("Known", nbttaglist2);
@@ -166,17 +166,15 @@ public class TileCrafterTierIII extends TileEntity implements IInventory, ITier 
 		int count = 0;
 		for (int j = 0; j < recipes.size(); j++) {
 			ItemStack stack = recipes.get(j).hasComponents(crafterInventory);
-			if (stack != null) {
-				resultList.add(stack);
-				if (crafterInventory.length< count+10) {
-					crafterInventory[count + 10] = new ItemStack(stack.getItem(), 1, 0);
-					count++;
-				}
+			if (stack != null && !resultList.contains(stack.getItem()) && (count + 10) < crafterInventory.length - 8) {
+				resultList.add(stack.getItem());
+				crafterInventory[count + 10] = stack;
+				count++;
 			}
 		}
 
 		for (int i = 0; i < resultList.size(); i++) {
-			if (!listContains(knownRecipes, resultList.get(i))) {
+			if (!listContainsItem(knownRecipes, resultList.get(i))) {
 				knownRecipes.add(resultList.get(i));
 			}
 		}
@@ -222,9 +220,9 @@ public class TileCrafterTierIII extends TileEntity implements IInventory, ITier 
 		return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, nbt);
 	}
 
-	private boolean listContains(List<ItemStack> list, ItemStack stack) {
+	private boolean listContainsItem(List<Item> list, Item stack) {
 		for (int i = 0; i < list.size(); i++) {
-			if (Item.getIdFromItem(list.get(i).getItem()) == Item.getIdFromItem(stack.getItem())) {
+			if (Item.getIdFromItem(list.get(i)) == Item.getIdFromItem(stack)) {
 				return true;
 			}
 		}
@@ -237,7 +235,7 @@ public class TileCrafterTierIII extends TileEntity implements IInventory, ITier 
 	}
 
 	@Override
-	public List<ItemStack> knownRecipes() {
+	public List<Item> knownRecipes() {
 		return knownRecipes;
 	}
 

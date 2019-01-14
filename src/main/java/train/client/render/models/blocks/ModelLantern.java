@@ -57,11 +57,11 @@ public class ModelLantern extends ModelBase {
 		float f2 = (float) (j >> 16 & 255) / 255.0F;
 		float f3 = (float) (j >> 8 & 255) / 255.0F;
 		float f4 = (float) (j & 255) / 255.0F;
-		GL11.glColor3f(f1 * f2, f1 * f3, f1 * f4);
+		GL11.glColor4f(f1 * f2, f1 * f3, f1 * f4,1);
 		// Render the object, using modelTutBox.renderAll();
 
 		this.render();
-		GL11.glColor3f(1, 1, 1);
+		GL11.glColor4f(1, 1, 1,1);
 
 		// Pop this matrix from the stack.
 		GL11.glPopMatrix();

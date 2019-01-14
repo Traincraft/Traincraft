@@ -12,6 +12,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
@@ -126,10 +127,12 @@ public class ItemTCCompositeSuit extends ItemTCArmor {
 					}
 				}
 				//System.out.println(world.getBlockLightValue((int)player.posX, (int)player.posY+(int)player.getEyeHeight(), (int)player.posZ) +" "+world.isAirBlock((int)player.posX, (int)player.posY+(int)player.getEyeHeight(), (int)player.posZ) +" "+world.isAnyLiquid(player.boundingBox));
-				if(!world.isRemote && world.getBlockLightValue((int)player.posX, (int)player.posY+(int)player.getEyeHeight(), (int)player.posZ)<=4 && (world.isAirBlock((int)player.posX, (int)player.posY+(int)player.getEyeHeight(), (int)player.posZ)||world.isAnyLiquid(player.boundingBox)) && player.getActivePotionEffect(Potion.nightVision)==null){
+				if(!world.isRemote && world.getBlockLightValue((int)player.posX, (int)player.posY+(int)player.getEyeHeight(), (int)player.posZ)<=4 && (world.isAirBlock((int)player.posX, (int)player.posY+(int)player.getEyeHeight(), (int)player.posZ)||world.isAnyLiquid(player.boundingBox))){
 					if (armorHelmet.getMaxDamage()-armorHelmet.getItemDamage()>1) {
-						player.addPotionEffect(new PotionEffect(Potion.nightVision.id, 10 * 20, 0));
-						armorHelmet.damageItem(1, player);
+						if (player.getActivePotionEffect(Potion.nightVision) ==null || player.getActivePotionEffect(Potion.nightVision).getDuration()<220) {
+							player.addPotionEffect(new PotionEffect(Potion.nightVision.id, 820, 0, true));
+							armorHelmet.damageItem(1, player);
+						}
 					} else {
 						armorHelmet.damageItem(armorHelmet.getMaxDamage()-armorHelmet.getItemDamage(), player);
 					}
@@ -159,11 +162,11 @@ public class ItemTCCompositeSuit extends ItemTCArmor {
 		ItemStack armorPants = player.inventory.armorItemInSlot(1);
 		if(armorPants!=null && armorPants.getItem() instanceof ItemTCCompositeSuit){
 			if(player.isBurning()){
-				if (armorChest.getMaxDamage()-armorChest.getItemDamage()>1) {
+				if (armorPants.getMaxDamage()-armorPants.getItemDamage()>1) {
 					player.extinguish();
-					armorChest.damageItem(1, player);
+					armorPants.damageItem(1, player);
 				} else {
-					armorChest.damageItem(armorChest.getMaxDamage()-armorChest.getItemDamage(), player);
+					armorPants.damageItem(armorPants.getMaxDamage()-armorPants.getItemDamage(), player);
 				}
 			}
 			/*if(itemarmor.getArmorMaterial() == Traincraft.instance.armorCompositeSuit && armorPants.isItemEnchantable()){
@@ -220,5 +223,10 @@ public class ItemTCCompositeSuit extends ItemTCArmor {
 			}
 		}
 
+	}
+
+	@Override
+	public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack) {
+		return(par2ItemStack.getItem() == Items.diamond);
 	}
 }

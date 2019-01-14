@@ -2,8 +2,8 @@ package train.client.render.models;
 
 
 import net.minecraft.entity.Entity;
+import tmt.ModelBase;
 import train.client.render.CustomModelRenderer;
-import train.client.tmt.ModelBase;
 import train.common.core.handlers.ConfigHandler;
 
 public class ModelPassenger7 extends ModelBase {

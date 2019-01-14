@@ -10,6 +10,7 @@ package train.client.gui;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
@@ -169,8 +170,8 @@ public abstract class GuiTraincraft extends GuiContainer {
 		}
 	}
 
-	public void drawRecipes(int recipeSize, List<ItemStack> recipes, int x, int y) {
-		ItemStack item = null;
+	public void drawRecipes(int recipeSize, List<Item> recipes, int x, int y) {
+		Item item = null;
 
 		if (recipeSize == -1) {
 			item = recipes.get(0);
@@ -183,7 +184,7 @@ public abstract class GuiTraincraft extends GuiContainer {
 		}
 
 		if (item != null) {
-			itemRender.renderItemIntoGUI(this.fontRendererObj, this.mc.renderEngine, item, x, y);
+			itemRender.renderItemIntoGUI(this.fontRendererObj, this.mc.renderEngine, new ItemStack(item), x, y);
 		}
 		else {
 			String var4 = Info.guiPrefix + "Icons.png";
@@ -192,18 +193,18 @@ public abstract class GuiTraincraft extends GuiContainer {
 		}
 	}
 
-	public void drawOverlays(int recipeSize, List<ItemStack> recipes) {
+	public void drawOverlays(int recipeSize, List<Item> recipes) {
 
 
 		List<ItemStack> itemStacks = null;
 		if (recipeSize == -1) {
-			itemStacks = TierRecipeManager.getInstance().getTierRecipe(tier.Tier(), recipes.get(recipes.size() - 1)).getInput();
+			itemStacks = TierRecipeManager.getInstance().getTierRecipe(tier.Tier(), new ItemStack(recipes.get(recipes.size() - 1))).getInput();
 		}
 		else if (recipeSize == recipes.size()) {
-			itemStacks = TierRecipeManager.getInstance().getTierRecipe(tier.Tier(), recipes.get(0)).getInput();
+			itemStacks = TierRecipeManager.getInstance().getTierRecipe(tier.Tier(), new ItemStack(recipes.get(0))).getInput();
 		}
 		else {
-			itemStacks = TierRecipeManager.getInstance().getTierRecipe(tier.Tier(), recipes.get(recipeSize)).getInput();
+			itemStacks = TierRecipeManager.getInstance().getTierRecipe(tier.Tier(), new ItemStack(recipes.get(recipeSize))).getInput();
 		}
 		drawOverlays2(itemStacks.get(0), 25, 27);
 		drawOverlays2(itemStacks.get(1), 43, 93);

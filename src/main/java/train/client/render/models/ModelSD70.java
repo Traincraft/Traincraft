@@ -2,8 +2,8 @@ package train.client.render.models;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
+import tmt.ModelBase;
 import train.client.render.CustomModelRenderer;
-import train.client.tmt.ModelBase;
 import train.common.core.handlers.ConfigHandler;
 
 public class ModelSD70 extends ModelBase {
@@ -559,10 +559,11 @@ public class ModelSD70 extends ModelBase {
 
 		box69 = new CustomModelRenderer(this, 122, 18, 256, 256);
 		box69.addBox(0F, 0F, 0F, 6, 1, 5);
-		box69.setPosition(-9F, 23F, -31F);
-		box69.rotateAngleX = -5.8817595792208905F;
-		box69.rotateAngleY = 4.4505895925855405F;
-		box69.rotateAngleZ = -3.141592653589793F;
+		box69.setPosition(-3.2F, 25F, -26.2F);
+		box69.rotateAngleX = 5.8817595792208905F;
+		box69.rotateAngleY = -4.9505895925855405F;
+		box69.rotateAngleZ = 3.141592653589793F;
+
 
 		box7 = new CustomModelRenderer(this, 49, 31, 256, 256);
 		box7.addBox(0F, 0F, 0F, 16, 2, 2);

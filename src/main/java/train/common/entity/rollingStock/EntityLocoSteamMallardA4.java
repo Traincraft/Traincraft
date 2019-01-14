@@ -42,7 +42,7 @@ public class EntityLocoSteamMallardA4 extends SteamTrain {
 		double pitchRads = this.renderPitch * 3.141592653589793D / 180.0D;
 		riddenByEntity.setPosition(posX - Math.cos(rads)*3, posY + (Math.tan(pitchRads)*-3F)+( getMountedYOffset() + riddenByEntity.getYOffset() + 0.55F), posZ - Math.sin(rads)*3);
 		*/
-		riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset(), posZ);
+		riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset()+0.6, posZ);
 	}
 
 	@Override
@@ -126,7 +126,7 @@ public class EntityLocoSteamMallardA4 extends SteamTrain {
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return (0.7F);
+		return (1F);
 	}
 
 	@Override

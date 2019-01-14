@@ -1,8 +1,8 @@
 package train.client.render.models;
 
 import net.minecraft.entity.Entity;
-import train.client.tmt.ModelBase;
-import train.client.tmt.ModelRendererTurbo;
+import tmt.ModelBase;
+import tmt.ModelRendererTurbo;
 
 public class ModelICE1Passenger extends ModelBase
 {

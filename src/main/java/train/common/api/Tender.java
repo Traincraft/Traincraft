@@ -6,6 +6,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
 import train.common.api.LiquidManager.StandardTank;
+import train.common.entity.rollingStock.EntityBUnitDD35;
+import train.common.entity.rollingStock.EntityBUnitEMDF3;
+import train.common.entity.rollingStock.EntityBUnitEMDF7;
 
 public abstract class Tender extends Freight implements IFluidHandler {
 
@@ -134,7 +137,7 @@ public abstract class Tender extends Freight implements IFluidHandler {
 				}
 			}
 			else if (i == tender.tenderItems.length - 1) {
-				dropItem(itemstack1.getItem(), 1);
+				entityDropItem(itemstack1,1);
 				return;
 			}
 		}
@@ -145,10 +148,10 @@ public abstract class Tender extends Freight implements IFluidHandler {
 			return;
 		this.update += 1;
 		if (this.update % 8 == 0 && itemstack != null) {
-			ItemStack result = LiquidManager.getInstance().processContainer(this, 0, theTank, itemstack);
+			ItemStack result = LiquidManager.getInstance().processContainer(this, 0, this, itemstack);
 			if (result != null) {
 				placeInInvent(result, tender);
-				//decrStackSize(0, 1);
+				decrStackSize(0, 1);
 			}
 		}
 	}
@@ -156,6 +159,28 @@ public abstract class Tender extends Freight implements IFluidHandler {
 	protected void checkInvent(ItemStack tenderInvent, Tender loco) {
 		if (tenderInvent != null) {
 			liquidInSlot(tenderInvent, loco);
+		}
+
+		if(ticksExisted%5==0 && fill(ForgeDirection.UNKNOWN, new FluidStack(FluidRegistry.WATER,100), false)==100) {
+			FluidStack drain =null;
+			if (cartLinked1 instanceof LiquidTank
+					&& !(cartLinked1 instanceof EntityBUnitEMDF7) && !(cartLinked1 instanceof EntityBUnitEMDF3) && !(cartLinked1 instanceof EntityBUnitDD35)) {
+				if (getFluid() == null) {
+					drain = ((LiquidTank) cartLinked1).drain(ForgeDirection.UNKNOWN, new FluidStack(FluidRegistry.WATER, 100), true);
+				} else if (getFluid().getFluid() == FluidRegistry.WATER) {
+					drain = ((LiquidTank) cartLinked1).drain(ForgeDirection.UNKNOWN, new FluidStack(FluidRegistry.WATER, 100), true);
+				}
+			} else if (cartLinked2 instanceof LiquidTank
+					&& !(cartLinked1 instanceof EntityBUnitEMDF7) && !(cartLinked1 instanceof EntityBUnitEMDF3) && !(cartLinked1 instanceof EntityBUnitDD35)) {
+				if (getFluid() == null) {
+					drain = ((LiquidTank) cartLinked2).drain(ForgeDirection.UNKNOWN, new FluidStack(FluidRegistry.WATER, 100), true);
+				} else if (getFluid().getFluid() == FluidRegistry.WATER) {
+					drain = ((LiquidTank) cartLinked2).drain(ForgeDirection.UNKNOWN, new FluidStack(FluidRegistry.WATER, 100), true);
+				}
+			}
+			if (drain != null) {
+				fill(ForgeDirection.UNKNOWN, drain, true);
+			}
 		}
 	}
 	/*IInventory implements*/

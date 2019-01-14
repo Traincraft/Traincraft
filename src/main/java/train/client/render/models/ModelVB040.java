@@ -10,8 +10,8 @@
 package train.client.render.models;
 
 import net.minecraft.entity.Entity;
-import train.client.tmt.ModelBase;
-import train.client.tmt.ModelRendererTurbo;
+import tmt.ModelBase;
+import tmt.ModelRendererTurbo;
 
 public class ModelVB040 extends ModelBase
 {
@@ -298,6 +298,7 @@ public class ModelVB040 extends ModelBase
         vb040Model[67].addBox(0F, 0F, 0F, 1, 2, 1, 0F); // Box 67
         vb040Model[67].setRotationPoint(-4F, -10F, 0F);
 
+        fixRotation(vb040Model, false, true, true);
 
     }
 

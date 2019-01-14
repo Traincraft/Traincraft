@@ -67,8 +67,7 @@ public class BlockTCRail extends Block {
 		}
 		if (tileEntity != null && (tileEntity.idDrop != null) && !world.isRemote) {
 			EntityPlayer player = Traincraft.proxy.getPlayer();
-			boolean flag = player != null && player.capabilities.isCreativeMode;
-			if (!flag) {
+			if (!(player != null && player.capabilities.isCreativeMode)) {
 				this.dropBlockAsItem(world, i, j, k, new ItemStack(tileEntity.idDrop, 1, 0));
 			}
 		}
@@ -153,7 +152,10 @@ public class BlockTCRail extends Block {
 	}
 
 	@Override
-	public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4) {
-		return null;
+	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int i, int j, int k) {
+		return world==null||world.isRemote?
+				AxisAlignedBB.getBoundingBox(i -18f, j, k -18f, i +18f, j, k +18f)
+		:
+				AxisAlignedBB.getBoundingBox(i + this.minX, j + this.minY, k + this.minZ, i + this.maxX, j, k + this.maxZ);
 	}
 }

@@ -13,7 +13,7 @@ Here you will find the source code for the **Traincraft 1.7.10 Port**.<br/>
 - <b>Licensing and rules, READ THIS PART ESPECIALLY</b>
 
 ## Join the Discussion!
-If you wish to contact the original developers, MrBrutal can sometimes be found in the Discord, you can also send an email to spitfire4466@gmail.com <br/> If you'd like to join the live chat, head over to our [Public Discord chat](https://discord.gg/0zzHVjy4UIqVJskM).<br/> And, of course, be sure to check out the issues tab here on GitHub.
+If you wish to contact the original developers, MrBrutal can sometimes be found in the Discord, you can also send an email to spitfire4466@gmail.com <br/> If you'd like to join the live chat, head over to our [Public Discord chat](https://discord.gg/SgpnCnK).<br/> And, of course, be sure to check out the issues tab here on GitHub.
 
 ## Official Links
 * Main Site and Downloads: [http://www.traincraft-mod.com](http://www.traincraft-mod.com)
@@ -22,7 +22,7 @@ If you wish to contact the original developers, MrBrutal can sometimes be found 
 * IRC: #Traincraft on Esper.net - Currently not used
 * Curse For New Downloads: [https://minecraft.curseforge.com/projects/traincraft](https://minecraft.curseforge.com/projects/traincraft)
 * 1.7.10 Forum: [http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/2738593-traincraft](http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/2738593-traincraft)
-* Discord live chat (active) [https://discord.gg/0zzHVjy4UIqVJskM](https://discord.gg/0zzHVjy4UIqVJskM)
+* Discord live chat (active) [https://discord.gg/SgpnCnK](https://discord.gg/SgpnCnK)
 
 ## What is Traincraft?
 Traincraft is a [Minecraft](https://minecraft.net/) mod built using [Minecraft Forge](https://github.com/MinecraftForge).

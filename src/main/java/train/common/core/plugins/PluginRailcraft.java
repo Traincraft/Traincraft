@@ -31,13 +31,13 @@ public class PluginRailcraft {
 		ArrayList<ItemStack> copper = OreDictionary.getOres("ingotCopper");
 		if (copper != null && copper.size() >= 0) {
 			for(ItemStack aCopper : copper){
-				RailcraftCraftingManager.rollingMachine.addRecipe(new ItemStack(ItemIDs.copperRail.item, 8), "X X", "X X", "X X", 'X', aCopper);
+				RailcraftCraftingManager.rollingMachine.addRecipe(new ItemStack(ItemIDs.copperRail.item, 8), "XXX", "   ", "XXX", 'X', aCopper);
 			}
 		}
 		ArrayList<ItemStack> steel = OreDictionary.getOres("ingotSteel");
 		if (steel != null && steel.size() >= 0) {
 			for(ItemStack aSteel : steel){
-				RailcraftCraftingManager.rollingMachine.addRecipe(new ItemStack(ItemIDs.steelRail.item, 16), "X X", "I I", "X X", 'X', aSteel, 'I', Items.iron_ingot);
+				RailcraftCraftingManager.rollingMachine.addRecipe(new ItemStack(ItemIDs.steelRail.item, 16), "XXX", "   ", "XXX", 'X', aSteel);
 			}
 		}
 	}

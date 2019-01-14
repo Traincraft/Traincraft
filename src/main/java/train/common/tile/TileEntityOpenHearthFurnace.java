@@ -10,6 +10,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import train.common.blocks.BlockOpenHearthFurnace;
@@ -73,7 +74,7 @@ public class TileEntityOpenHearthFurnace extends TileTraincraft{
 					currentItemBurnTime = furnaceBurnTime = getItemBurnTime(this.slots[2]);
 					if (furnaceBurnTime > 0) {
 						flag1 = true;
-						if (this.slots[2].getItem().hasContainerItem()) {
+						if (this.slots[2].getItem().hasContainerItem(this.slots[2])) {
 							this.slots[2] = new ItemStack(this.slots[2].getItem().getContainerItem());
 						}
 						else {
@@ -153,7 +154,7 @@ public class TileEntityOpenHearthFurnace extends TileTraincraft{
 			this.slots[3].stackSize += itemstack.stackSize;
 
 		}
-		if (this.slots[0].getItem().hasContainerItem()) {
+		if (this.slots[0].getItem().hasContainerItem(this.slots[0])) {
 			this.slots[0] = new ItemStack(this.slots[0].getItem().getContainerItem());
 		}
 		else {
@@ -163,7 +164,7 @@ public class TileEntityOpenHearthFurnace extends TileTraincraft{
 			this.slots[0] = null;
 		}
 
-		if (this.slots[1].getItem().hasContainerItem()) {
+		if (this.slots[1].getItem().hasContainerItem(this.slots[1])) {
 			this.slots[1] = new ItemStack(this.slots[1].getItem().getContainerItem());
 		}
 		else {
@@ -177,6 +178,9 @@ public class TileEntityOpenHearthFurnace extends TileTraincraft{
 	private int getItemBurnTime(ItemStack it) {
 		if (it == null) {
 			return 0;
+		}
+		if(TileEntityFurnace.getItemBurnTime(it) >0){
+			return TileEntityFurnace.getItemBurnTime(it);
 		}
 		Item var1 = it.getItem();
 		if (Item.getIdFromItem(var1) < 256 && Block.getBlockFromItem(var1).getMaterial() == Material.wood)

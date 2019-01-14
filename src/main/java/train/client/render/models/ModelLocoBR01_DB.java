@@ -5,10 +5,10 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
+import tmt.ModelBase;
 import train.client.core.ClientProxy;
 import train.client.render.CustomModelRenderer;
 import train.client.render.models.blocks.ModelRing;
-import train.client.tmt.ModelBase;
 import train.common.library.Info;
 
 public class ModelLocoBR01_DB extends ModelBase {

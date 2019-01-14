@@ -98,7 +98,7 @@ public class TileSignal extends TileEntity {
 			break;
 		}
 
-		List list = this.worldObj.getEntitiesWithinAABB(EntityMinecart.class, AxisAlignedBB.getBoundingBox((double) this.xCoord + x4, (double) this.yCoord, (double) this.zCoord + x5, (double) (this.xCoord + x1), (double) (this.yCoord + 1), (double) (this.zCoord + x3)).expand(1.0D, 1.0D, 1.0D));
+		List list = this.worldObj.getEntitiesWithinAABB(EntityMinecart.class, AxisAlignedBB.getBoundingBox( this.xCoord + x4, this.yCoord, this.zCoord + x5, (this.xCoord + x1), (this.yCoord + 1),  (this.zCoord + x3)).expand(1.0D, 1.0D, 1.0D));
 		Entity entity;
 
 		if (list != null && list.size() > 0) {

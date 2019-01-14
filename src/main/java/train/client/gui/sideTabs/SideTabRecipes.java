@@ -11,8 +11,9 @@ import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.audio.PositionedSoundRecord;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
 import train.client.gui.GuiCrafterTier;
 import train.common.library.Info;
@@ -70,7 +71,7 @@ public class SideTabRecipes extends SideTab {
 			gui.currentKnownItem=null;
 		}
 		else {
-			ItemStack item = null;
+			Item item = null;
 			if (recipeSize == -1) {
 				item = recipes.get(0);
 			}
@@ -85,7 +86,7 @@ public class SideTabRecipes extends SideTab {
 			}
 
 			if (item != null) {
-				fontRenderer.drawString(item.getDisplayName(), x - 93, y + 78, headerColour);
+				fontRenderer.drawString(StatCollector.translateToLocal(item.getUnlocalizedName()), x - 93, y + 78, headerColour);
 				gui.currentKnownItem = item;
 			}
 			else {

@@ -9,6 +9,7 @@ import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
 import train.common.entity.rollingStock.EntityStockCar;
+import train.common.entity.rollingStock.EntityStockCarDRWG;
 import train.common.library.Tracks;
 
 import java.io.DataInputStream;
@@ -24,7 +25,7 @@ public class BlockDisembarkTrack extends TrackBaseTraincraft implements ITrackEm
 	}
 	@Override
 	public void onMinecartPass(EntityMinecart cart) {
-		if (cart instanceof EntityStockCar) {
+		if (cart instanceof EntityStockCar || cart instanceof EntityStockCarDRWG) {
 			if (cart.riddenByEntity == null)
 				return;
 			cart.riddenByEntity.mountEntity(cart);

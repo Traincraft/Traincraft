@@ -3,8 +3,8 @@ package train.client.render.models;
 import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
+import tmt.ModelBase;
 import train.client.render.CustomModelRenderer;
-import train.client.tmt.ModelBase;
 import train.common.entity.rollingStock.EntityTracksBuilder;
 import train.common.library.Info;
 

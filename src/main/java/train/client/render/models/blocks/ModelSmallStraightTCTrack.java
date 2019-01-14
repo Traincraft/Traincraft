@@ -43,6 +43,7 @@ public class ModelSmallStraightTCTrack extends ModelBase {
 
 		// Move the object into the correct position on the block (because the OBJ's origin is the center of the object)
 		GL11.glTranslatef((float) x + 0.5f, (float) y, (float) z + 0.5f);
+		GL11.glColor4f(1, 1, 1, 1);
 
 		// Bind the texture, so that OpenGL properly textures our block.
 		if (type.equals("straight")) {

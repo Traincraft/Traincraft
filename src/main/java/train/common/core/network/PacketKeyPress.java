@@ -4,9 +4,11 @@ import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import io.netty.buffer.ByteBuf;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import train.common.api.EntityRollingStock;
 import train.common.api.Locomotive;
+import train.common.core.CommonProxy;
 import train.common.entity.digger.EntityRotativeDigger;
 import train.common.entity.zeppelin.AbstractZeppelin;
 
@@ -77,6 +79,12 @@ public class PacketKeyPress implements IMessage {
 				}
 			}
 
+			/*if (message.key == 404){
+				CommonProxy.debug = CommonProxy.debug;
+				if (Minecraft.getMinecraft().theWorld != null) {
+					System.out.println(Minecraft.getMinecraft().theWorld.isRemote);
+				}
+			}*/
 			return null;
 		}
 	}
