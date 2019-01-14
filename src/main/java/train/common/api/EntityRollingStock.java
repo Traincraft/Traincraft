@@ -12,8 +12,6 @@ import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.api.carts.ILinkableCart;
 import mods.railcraft.api.tracks.RailTools;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockAir;
-import net.minecraft.block.BlockRail;
 import net.minecraft.block.BlockRailBase;
 import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.entity.*;
@@ -25,22 +23,19 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
+import net.minecraft.world.ChunkCoordIntPair;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
+import net.minecraftforge.common.ForgeChunkManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.minecart.MinecartCollisionEvent;
 import net.minecraftforge.event.entity.minecart.MinecartInteractEvent;
 import net.minecraftforge.event.entity.minecart.MinecartUpdateEvent;
 import train.client.core.handlers.SoundUpdaterRollingStock;
 import train.common.Traincraft;
-import train.common.adminbook.ServerLogger;
-import train.common.blocks.BlockTCRail;
-import train.common.blocks.BlockTCRailGag;
 import train.common.core.HandleOverheating;
 import train.common.core.handlers.*;
 import train.common.core.network.PacketRollingStockRotation;
@@ -67,8 +62,8 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 	/** Axis aligned bounding box. */
 	private AxisAlignedBB boundingBoxSmall;
 
-	public float maxSpeed;
-	public float railMaxSpeed;
+	private float maxSpeed;
+	private float railMaxSpeed;
 	public double speedLimiter = 1;
 	public boolean speedWasSet = false;
 
@@ -107,12 +102,13 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 	private CollisionHandler collisionhandler;
 	private LinkHandler linkhandler;
 	private TrainsOnClick trainsOnClick;
+	private SpeedHandler speedhandler;
 	public boolean isBraking;
 	public boolean isClimbing;
 	public int overheatLevel;
 	public int linkageNumber;
 
-	public Side side;
+	protected Side side;
 	@SideOnly(Side.CLIENT)
 	private SoundHandler theSoundManager;
 	@SideOnly(Side.CLIENT)
@@ -130,6 +126,11 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 	 * each ticks: numLaps++ used for fuel consumption rate
 	 */
 	private int numLaps;
+	/**
+	 * each ticks: numLaps++ used to clear train list when loco is not attached
+	 * anymore
+	 */
+	public int numLaps2;
 
 	private int ticksSinceHeld = 0;
 	private boolean cartLocked = false;
@@ -197,6 +198,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		collisionhandler = new CollisionHandler(world);
 		linkhandler = new LinkHandler(world);
 		trainsOnClick = new TrainsOnClick();
+		speedhandler = new SpeedHandler();
 
 		/* Railcraft's stuff */
 		//maxSpeed = defaultMaxSpeedRail;
@@ -222,6 +224,16 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		//this.boundingBox.offset(0, 0.5, 0);
 	}
 
+	public void setInformation(String trainType, String trainOwner, String trainCreator, String trainName, int uniqueID) {
+		if (!worldObj.isRemote) {
+			dataWatcher.updateObject(5, ID);
+			dataWatcher.updateObject(6, trainType);
+			dataWatcher.updateObject(7, trainOwner);
+			dataWatcher.updateObject(9, trainName);
+			dataWatcher.updateObject(11, uniqueID);
+			if (trainCreator != null && trainCreator.length() > 0) dataWatcher.updateObject(13, trainCreator);
+		}
+	}
 
 	/**
 	 * this is basically NBT for entity spawn, to keep data between client and server in sync because some data is not automatically shared.
@@ -360,25 +372,25 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			setRollingDirection(-getRollingDirection());
 			setRollingAmplitude(10);
 			setBeenAttacked();
-			if (((EntityPlayer) damagesource.getEntity()).capabilities.isCreativeMode) {
+			if (damagesource.getEntity() instanceof EntityPlayer && ((EntityPlayer) damagesource.getEntity()).capabilities.isCreativeMode) {
 				this.setDamage(1000);
-				if (ConfigHandler.ENABLE_WAGON_REMOVAL_NOTICES && ((EntityPlayer) damagesource.getEntity()).canCommandSenderUseCommand(2,"")) {
-					((EntityPlayer) damagesource.getEntity()).addChatComponentMessage(new ChatComponentText("Operator removed train owned by " + getTrainOwner()));
-				}
 			}
 			setDamage(getDamage() + i * 10);
 			if (getDamage() > 40) {
 				if (riddenByEntity != null) {
 					riddenByEntity.mountEntity(this);
 				}
-				ServerLogger.deleteWagon(this);
 				/**
 				 * Destroy IPassenger since they don't extend Freight or
 				 * Locomotive and don't have a proper attackEntityFrom() method
 				 */
 				if (this instanceof IPassenger) {
 					this.setDead();
-					dropCartAsItem(((EntityPlayer)damagesource.getEntity()).capabilities.isCreativeMode);
+					if (damagesource.getEntity() instanceof EntityPlayer) {
+						dropCartAsItem(((EntityPlayer)damagesource.getEntity()).capabilities.isCreativeMode);
+					} else {
+						dropCartAsItem(false);
+					}
 				}
 			}
 		}
@@ -613,17 +625,14 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				//int newID = setNewUniqueID(readID);
 				
 					//TraincraftSaveHandler seems to not work, may cause uniqueID bug.
-				setNewUniqueID(this.getEntityId());
+				int readID = -1;
+				int newID = setNewUniqueID(readID);
 				
 				//TraincraftSaveHandler.writeValue(FMLCommonHandler.instance().getMinecraftServerInstance(), "numberOfTrains:", "" + newID);
 				//System.out.println("Train is missing an ID, adding new one for "+this.trainName+" "+this.uniqueID);
 			}
 		}
-
-		if (riddenByEntity instanceof EntityPlayer){
-			((EntityPlayer) riddenByEntity).addPotionEffect(new PotionEffect(Potion.resistance.id, 20, 5, true));
-		}
-
+		
 		if (getRollingAmplitude() > 0) {
 			setRollingAmplitude(getRollingAmplitude() - 1);
 		}
@@ -903,9 +912,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			}
 			shouldServerSetPosYOnClient = false;
 		}
-		if(!worldObj.isRemote){
-			anglePitchClient=(anglePitch * 60);
-		}
 
 		//this.setRotation(this.rotationYaw, this.rotationPitch);
 		AxisAlignedBB box;
@@ -940,7 +946,9 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		MinecraftForge.EVENT_BUS.post(new MinecartUpdateEvent(this, i, j, k));
 		//setBoundingBoxSmall(posX, posY, posZ, 0.98F, 0.7F);
 		numLaps++;
+		numLaps2++;
 		if ((this instanceof Locomotive) && (this.Link1 == 0) && (this.Link2 == 0) && numLaps > 700) {
+			numLaps2 = 0;
 			this.RollingStock.clear();
 		}
 
@@ -952,10 +960,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		}
 		this.dataWatcher.updateObject(14, (int) (motionX * 100));
 		this.dataWatcher.updateObject(21, (int) (motionZ * 100));
-
-		if (ConfigHandler.ENABLE_LOGGING && !worldObj.isRemote && updateTicks%120==0){
-			ServerLogger.writeWagonToFolder(this);
-		}
 	}
 
 	private void updateOnTrack(int i, int j, int k, Block l) {
@@ -1155,15 +1159,23 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				}
 				if(derailSpeed == 0){
 					this.unLink();
-					moveOnTCStraight(i, j, k, tile.xCoord, tile.zCoord, (tile.getBlockMetadata()+1)%4);
+					int meta = tile.getBlockMetadata();
+					double cx = tile.xCoord;
+					double cy = tile.yCoord;
+					double cz = tile.zCoord;
+					moveOnTCStraight(i, j, k, cx, cy, cz, (meta+1)%4);
 				}
 				else{
+					double r = tile.r;
+					double cx = tile.cx;
+					double cy = tile.cy;
+					double cz = tile.cz;
 					int meta = tile.getBlockMetadata();
 					if (shouldIgnoreSwitch(tile, i, j, k, meta)) {
-						moveOnTCStraight(i, j, k, tile.xCoord, tile.zCoord, meta);
+						moveOnTCStraight(i, j, k, tile.xCoord, tile.yCoord, tile.zCoord, tile.getBlockMetadata());
 					} else {
 						if (ItemTCRail.isTCTurnTrack(tile))
-							moveOnTC90TurnRail(i, j, k, tile.r, tile.cx, tile.cz);
+							moveOnTC90TurnRail(i, j, k, r, cx, cy, cz, tile.getType(), meta);
 					}
 					// shouldIgnoreSwitch(tile, i, j, k, meta);
 					// if (ItemTCRail.isTCTurnTrack(tile)) moveOnTC90TurnRail(i, j, k, r, cx, cy,
@@ -1171,13 +1183,26 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				}
 			}
 			if (ItemTCRail.isTCStraightTrack(tile)) {
-				moveOnTCStraight(i, j, k, tile.xCoord, tile.zCoord, tile.getBlockMetadata());
+				int meta = tile.getBlockMetadata();
+				double cx = tile.xCoord;
+				double cy = tile.yCoord;
+				double cz = tile.zCoord;
+				moveOnTCStraight(i, j, k, cx, cy, cz, meta);
 			}
 			if (ItemTCRail.isTCSlopeTrack(tile)) {
-				moveOnTCSlope( j, tile.xCoord, tile.zCoord, tile.slopeAngle, tile.slopeHeight, tile.getBlockMetadata());
+				int meta = tile.getBlockMetadata();
+				double cx = tile.xCoord;
+				double cz = tile.zCoord;
+				double slopeAngle = tile.slopeAngle;
+				double slopeHeight = tile.slopeHeight;
+				moveOnTCSlope( j, cx, cz, slopeAngle, slopeHeight, meta);
 			}
 			if (ItemTCRail.isTCTwoWaysCrossingTrack(tile)) {
-				moveOnTCTwoWaysCrossing(i, j, k, tile.xCoord, tile.yCoord, tile.zCoord, tile.getBlockMetadata());
+				int meta = tile.getBlockMetadata();
+				double cx = tile.xCoord;
+				double cy = tile.yCoord;
+				double cz = tile.zCoord;
+				moveOnTCTwoWaysCrossing(i, j, k, cx, cy, cz, meta);
 			}
 
 		}
@@ -1191,10 +1216,19 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				TileTCRail tile = (TileTCRail) worldObj.getTileEntity(tileGag.originX, tileGag.originY, tileGag.originZ);
 				//System.out.println(tile.getType());
 				if (ItemTCRail.isTCTurnTrack(tile)) {
-					moveOnTC90TurnRail(i, j, k, tile.r, tile.cx, tile.cz);
+					double r = tile.r;
+					double cx = tile.cx;
+					double cy = tile.cy;
+					double cz = tile.cz;
+					int meta = tile.getBlockMetadata();
+					moveOnTC90TurnRail(i, j, k, r, cx, cy, cz, tile.getType(), meta);
 				}
 				if (ItemTCRail.isTCStraightTrack(tile)) {
-					moveOnTCStraight(i, j, k, tile.xCoord, tile.zCoord, tile.getBlockMetadata());
+					int meta = tile.getBlockMetadata();
+					double cx = tile.xCoord;
+					double cy = tile.yCoord;
+					double cz = tile.zCoord;
+					moveOnTCStraight(i, j, k, cx, cy, cz, meta);
 				}
 				if (ItemTCRail.isTCSlopeTrack(tile)) {
 					int meta = tile.getBlockMetadata();
@@ -1225,7 +1259,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			if (meta == 2) {
 				if (motionZ > 0 && Math.abs(motionX) < 0.01) {
 					TileEntity tile2 = worldObj.getTileEntity(i, j, k + 1);
-					if (tile2 instanceof TileTCRail) {
+					if (tile2 != null && tile2 instanceof TileTCRail) {
 						((TileTCRail) tile2).setSwitchState(false, true);
 					}
 					return true;
@@ -1234,7 +1268,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			if (meta == 0) {
 				if (motionZ < 0 && Math.abs(motionX) < 0.01) {
 					TileEntity tile2 = worldObj.getTileEntity(i, j, k - 1);
-					if (tile2 instanceof TileTCRail) {
+					if (tile2 != null && tile2 instanceof TileTCRail) {
 						((TileTCRail) tile2).setSwitchState(false, true);
 					}
 					return true;
@@ -1243,7 +1277,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			if (meta == 1) {
 				if (Math.abs(motionZ) < 0.01 && motionX > 0) {
 					TileEntity tile2 = worldObj.getTileEntity(i + 1, j, k);
-					if (tile2 instanceof TileTCRail) {
+					if (tile2 != null && tile2 instanceof TileTCRail) {
 						((TileTCRail) tile2).setSwitchState(false, true);
 					}
 					return true;
@@ -1252,7 +1286,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			if (meta == 3) {
 				if (Math.abs(motionZ) < 0.01 && motionX < 0) {
 					TileEntity tile2 = worldObj.getTileEntity(i - 1, j, k);
-					if (tile2 instanceof TileTCRail) {
+					if (tile2 != null && tile2 instanceof TileTCRail) {
 						((TileTCRail) tile2).setSwitchState(false, true);
 					}
 					return true;
@@ -1261,49 +1295,32 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		}
 		return false;
 	}
-
-	private void moveOnTCStraight(int i, int j, int k, double cx, double cz, int meta) {
+	
+	private void moveOnTCStraight(int i, int j, int k, double cx, double cy, double cz, int meta) {
 		posY = j + 0.2;
 		if (meta == 2 || meta == 0) {
+			double p_corr_x = cx + 0.5;
 			double norm = Math.sqrt(motionX * motionX + motionZ * motionZ);
 
-			setPosition(cx + 0.5, posY + yOffset, posZ);
+			setPosition(p_corr_x, posY + yOffset, posZ);
 			//setPosition(posX, posY + yOffset, posZ);
 
 			motionX = 0;
 			motionZ = Math.copySign(norm, motionZ);
-			this.boundingBox.offset(0, 0 , Math.copySign(norm, this.motionZ));
-
-			List boxes = worldObj.getCollidingBoundingBoxes(this, boundingBox);
-			for(Object b : boxes){
-				if(!(b instanceof BlockRailBase) && !(b instanceof BlockTCRail) && !(b instanceof BlockTCRailGag) && !(b instanceof BlockAir)){
-					return;
-				}
-			}
-			this.posX = (this.boundingBox.minX + this.boundingBox.maxX) / 2.0D;
-			this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
-			this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) / 2.0D;
+			moveEntity(0.0D, 0.0D, motionZ);
 
 			//System.out.println("straight z "+Math.copySign(norm, motionZ));
 		}
 		if (meta == 1 || meta == 3) {
+			double p_corr_z = cz + 0.5;
+			double norm = Math.sqrt(motionX * motionX + motionZ * motionZ);
 
-			setPosition(posX, posY + yOffset, cz + 0.5);
+			setPosition(posX, posY + yOffset, p_corr_z);
 			//setPosition(posX, posY + yOffset, posZ);
 
-			motionX = Math.copySign(Math.sqrt(motionX * motionX + motionZ * motionZ), motionX);
+			motionX = Math.copySign(norm, motionX);
 			motionZ = 0;
-			this.boundingBox.offset(motionX, 0 , 0);
-
-			List boxes = worldObj.getCollidingBoundingBoxes(this, boundingBox);
-			for(Object b : boxes){
-				if(!(b instanceof BlockRailBase) && !(b instanceof BlockTCRail) && !(b instanceof BlockTCRailGag) && !(b instanceof BlockAir)){
-					return;
-				}
-			}
-			this.posX = (this.boundingBox.minX + this.boundingBox.maxX) / 2.0D;
-			this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
-			this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) / 2.0D;
+			moveEntity(motionX, 0.0D, 0.0D);
 
 			//System.out.println("straight x "+Math.copySign(norm, motionX));
 		}
@@ -1318,11 +1335,9 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			}
 
 			double norm = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
-			this.setPosition(cx + 0.5D,  Math.abs(j + (Math.tan(slopeAngle * Math.abs(cz - this.posZ))) + this.yOffset +0.3), this.posZ);
-			this.boundingBox.offset(0, 0 , Math.copySign(norm, this.motionZ));
-			this.posX = (this.boundingBox.minX + this.boundingBox.maxX) / 2.0D;
-			this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
-			this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) / 2.0D;
+			double newPosY = Math.abs(j + (Math.tan(slopeAngle * Math.abs(cz - this.posZ))) + this.yOffset +0.3);
+			this.setPosition(cx + 0.5D, newPosY, this.posZ);
+			this.moveEntity(0.0D, 0.0D, Math.copySign(norm, this.motionZ));
 
 			if (!(this instanceof Locomotive) && !(this instanceof EntityTracksBuilder)) {
 				if ((this.posY - this.prevPosY) < 0) {
@@ -1333,11 +1348,11 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				if (norm < 0.01) {
 					//System.out.println(motionZ);
 					if ((motionZ) < 0 && meta == 2) {
-						norm += 0.0001;
+						norm = norm += 0.0001;
 						motionZ = Math.copySign(motionZ, 1);
 					}
 					if ((motionZ) > 0 && meta == 0) {
-						norm += 0.0001;
+						norm = norm += 0.0001;
 						motionZ = Math.copySign(motionZ, -1);
 					}
 				}
@@ -1353,12 +1368,9 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			}
 
 			double norm = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
-			this.setPosition(this.posX, (j + (Math.tan(slopeAngle * Math.abs(cx - this.posX))) + this.yOffset+0.3), cz + 0.5D);
-			this.boundingBox.offset(Math.copySign(norm, this.motionX), 0 ,0);
-			this.posX = (this.boundingBox.minX + this.boundingBox.maxX) / 2.0D;
-			this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
-			this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) / 2.0D;
-
+			double newPosY = (j + (Math.tan(slopeAngle * Math.abs(cx - this.posX))) + this.yOffset+0.3);
+			this.setPosition(this.posX, newPosY, cz + 0.5D);
+			this.moveEntity(Math.copySign(norm, this.motionX), 0.0D, 0.0D);
 			if (!(this instanceof Locomotive) && !(this instanceof EntityTracksBuilder)) {
 				if ((this.posY - this.prevPosY) < 0) {
 					norm *= 1.02;
@@ -1368,11 +1380,11 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				if (norm < 0.01) {
 					//System.out.println(motionX);
 					if ((motionX) < 0 && meta == 1) {
-						norm += 0.0001;
+						norm = norm += 0.0001;
 						motionX = Math.copySign(motionX, 1);
 					}
 					if ((motionX) > 0 && meta == 3) {
-						norm += 0.0001;
+						norm = norm += 0.0001;
 						motionX = Math.copySign(motionX, -1);
 					}
 				}
@@ -1383,7 +1395,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		}
 	}
 
-	protected void moveOnTC90TurnRail(int i, int j, int k, double r, double cx, double cz) {
+	protected void moveOnTC90TurnRail(int i, int j, int k, double r, double cx, double cy, double cz, String type, int meta) {
 		//System.out.println("curve");
 		posY = j + 0.2;
 		double cpx = posX - cx;
@@ -1398,15 +1410,30 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		double vx2 = -norm_cpz * vnorm;//-v
 		double vz2 = norm_cpx * vnorm;//u
 
-		double px2_cx = (posX + motionX * 2) - cx;
-		double pz2_cz = (posZ + motionZ * 2) - cz;
+		double px2 = posX + motionX * 2;
+		double pz2 = posZ + motionZ * 2;
+
+		double px2_cx = px2 - cx;
+		double pz2_cz = pz2 - cz;
 
 		double p2_c_norm = Math.sqrt((px2_cx * px2_cx) + (pz2_cz * pz2_cz));
 
-		vx2 = Math.copySign(vx2, (cx + ((px2_cx / p2_c_norm) * r)) - posX);
-		vz2 = Math.copySign(vz2, (cz + ((pz2_cz / p2_c_norm) * r)) - posZ);
+		double px2_cx_norm = px2_cx / p2_c_norm;
+		double pz2_cz_norm = pz2_cz / p2_c_norm;
 
-		setPosition(cx + ((cpx / cp_norm) * r), posY + yOffset, cz + ((cpz / cp_norm) * r));
+		double px3 = cx + (px2_cx_norm * r);
+		double pz3 = cz + (pz2_cz_norm * r);
+
+		double signX = px3 - posX;
+		double signZ = pz3 - posZ;
+
+		vx2 = Math.copySign(vx2, signX);
+		vz2 = Math.copySign(vz2, signZ);
+
+		double p_corr_x = cx + ((cpx / cp_norm) * r);
+		double p_corr_z = cz + ((cpz / cp_norm) * r);
+
+		setPosition(p_corr_x, posY + yOffset, p_corr_z);
 
 		moveEntity(vx2, 0.0D, vz2);
 
@@ -1421,37 +1448,35 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		if (!(this instanceof Locomotive)) {
 			int l = MathHelper.floor_double(serverRealRotation * 4.0F / 360.0F + 0.5D) & 3;
 			//System.out.println(l);
-			if (l == 2 || l == 0){
-				moveEntity(motionX, 0.0D, 0.0D);
-			} else if (l == 1 || l == 3){
-				moveEntity(0.0D, 0.0D, motionZ);
-			}
+			if (l == 2 || l == 0) moveEntity(motionX, 0.0D, 0.0D);
+			if (l == 1 || l == 3) moveEntity(0.0D, 0.0D, motionZ);
 		}
 		else {
 			int l = MathHelper.floor_double(rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
 			//System.out.println(l);
-			if (l == 2 || l == 0){
-				moveEntity(motionX, 0.0D, 0.0D);
-			}
-			else if (l == 1 || l == 3){
-				moveEntity(0.0D, 0.0D, motionZ);
-			}
+			if (l == 2 || l == 0) moveEntity(motionX, 0.0D, 0.0D);
+			if (l == 1 || l == 3) moveEntity(0.0D, 0.0D, motionZ);
 			//moveEntity(motionX, 0.0D, motionZ);
 		}
 	}
 
-	public void limitSpeedOnTCRail() {
+	private void limitSpeedOnTCRail() {
 		railMaxSpeed = 3;
 		maxSpeed = Math.min(railMaxSpeed, getMaxCartSpeedOnRail());
-		maxSpeed = SpeedHandler.handleSpeed(railMaxSpeed, maxSpeed, this);
+		maxSpeed = (float) speedhandler.handleSpeed(railMaxSpeed, maxSpeed, this);
 		//System.out.println(maxSpeed);
 		if (this.speedLimiter != 0 && speedWasSet) {
 			//maxSpeed *= this.speedLimiter;
 			adjustSpeed(maxSpeed, speedLimiter);
 		}
-		motionX *= 0.9D;
-		motionZ *= 0.9D;
-
+		if ((!isLocomotive())) {
+			motionX *= 0.99D;
+			motionZ *= 0.99D;
+		}
+		else {
+			motionX *= 1D;
+			motionZ *= 1D;
+		}
 		if (motionX < -maxSpeed) {
 			motionX = -maxSpeed;
 		}
@@ -1558,9 +1583,8 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		super.writeEntityToNBT(nbttagcompound);
 		nbttagcompound.setDouble("speedLimiter", this.speedLimiter);
 		nbttagcompound.setFloat("serverRealRotation", this.serverRealRotation);
-		nbttagcompound.setFloat("yawRotation", this.rotationYaw);
 		//nbttagcompound.setBoolean("hasSpawnedBogie", this.hasSpawnedBogie);
-		//nbttagcompound.setBoolean("needsBogieUpdate", this.needsBogieUpdate);
+		nbttagcompound.setBoolean("needsBogieUpdate", this.needsBogieUpdate);
 		nbttagcompound.setBoolean("firstLoad", this.firstLoad);
 		nbttagcompound.setFloat("rotation", this.rotation);
 		nbttagcompound.setBoolean("brake", isBraking);
@@ -1570,14 +1594,10 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 	protected void readEntityFromNBT(NBTTagCompound nbttagcompound) {
 		super.readEntityFromNBT(nbttagcompound);
 		this.speedLimiter = nbttagcompound.getDouble("speedLimiter");
-		this.serverRealRotation = nbttagcompound.getFloat("serverRealRotation");
-
-		if (nbttagcompound.hasKey("yawRotation")){
-			rotationYaw = nbttagcompound.getFloat("yawRotation");
-		}
-		//if (Math.abs(this.serverRealRotation) > 178.5f) this.serverRealRotation = Math.copySign(178.5f, this.serverRealRotation);
+		this.serverRealRotation = MathHelper.wrapAngleTo180_float(nbttagcompound.getFloat("serverRealRotation"));
+		if (Math.abs(this.serverRealRotation) > 178.5f) this.serverRealRotation = Math.copySign(178.5f, this.serverRealRotation);
 		//this.hasSpawnedBogie = nbttagcompound.getBoolean("hasSpawnedBogie");
-		//this.needsBogieUpdate = nbttagcompound.getBoolean("needsBogieUpdate");
+		this.needsBogieUpdate = nbttagcompound.getBoolean("needsBogieUpdate");
 		this.firstLoad = nbttagcompound.getBoolean("firstLoad");
 		this.rotation = nbttagcompound.getFloat("rotation");
 		this.isBraking = nbttagcompound.getBoolean("brake");
@@ -1591,16 +1611,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 
 	@Override
 	public boolean interactFirst(EntityPlayer entityplayer) {
-		if (super.interactFirst(entityplayer)){
-			return true;
-		}
-		if (entityplayer.ridingEntity == this){
-			return false;
-		}
-
-		if(lockThisCart(entityplayer.inventory.getCurrentItem(), entityplayer)){
-			return true;
-		}
+		if (super.interactFirst(entityplayer)) return true;
 
 		playerEntity = entityplayer;
 		ItemStack itemstack = entityplayer.inventory.getCurrentItem();
@@ -1610,7 +1621,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				if (!worldObj.isRemote) entityplayer.addChatMessage(new ChatComponentText("Train is locked"));
 				return true;
 			}
-			else if (!playerEntity.getDisplayName().toLowerCase().equals(this.trainOwner.toLowerCase()) && entityplayer.inventory.getCurrentItem() != null && entityplayer.inventory.getCurrentItem().getItem() instanceof ItemDye && (this instanceof Locomotive)) {
+			else if (!playerEntity.getDisplayName().toLowerCase().equals(this.trainOwner.toLowerCase()) && itemstack != null && itemstack.getItem() instanceof ItemDye && (this instanceof Locomotive)) {
 				if (!worldObj.isRemote) entityplayer.addChatMessage(new ChatComponentText("Train is locked"));
 				return true;
 			}
@@ -1694,9 +1705,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		//if(par1Entity instanceof EntityPlayer)return;
 		if (this.bogieLoco == null) return;
 
-		if (par1Entity == this){
-			return;
-		}
+		if (par1Entity == this) return;
 		if (par1Entity instanceof EntityBogie) {
 			if (((EntityBogie) par1Entity).entityMainTrainID == this.uniqueID) return;
 		}
@@ -1744,15 +1753,14 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				double distancesZ[] = new double[4];
 				double euclidian[] = new double[4];
 				if (par1Entity instanceof EntityRollingStock) {
-					EntityRollingStock entity = (EntityRollingStock)par1Entity;
 					if (((EntityRollingStock) par1Entity).bogieLoco != null || this.bogieLoco != null) {
 
 						if (((EntityRollingStock) par1Entity).bogieLoco != null && this.bogieLoco == null) {
-							distancesX[0] = entity.posX - this.posX;
-							distancesZ[0] = entity.posZ - this.posZ;
+							distancesX[0] = ((AbstractTrains) par1Entity).posX - this.posX;
+							distancesZ[0] = ((AbstractTrains) par1Entity).posZ - this.posZ;
 							euclidian[0] = MathHelper.sqrt_double((distancesX[0] * distancesX[0]) + (distancesZ[0] * distancesZ[0]));
-							distancesX[1] = entity.bogieLoco.posX - this.posX;
-							distancesZ[1] = entity.bogieLoco.posZ - this.posZ;
+							distancesX[1] = ((EntityRollingStock) par1Entity).bogieLoco.posX - this.posX;
+							distancesZ[1] = ((EntityRollingStock) par1Entity).bogieLoco.posZ - this.posZ;
 							euclidian[1] = MathHelper.sqrt_double((distancesX[1] * distancesX[1]) + (distancesZ[1] * distancesZ[1]));
 							distancesX[2] = 100;
 							distancesZ[2] = 100;
@@ -1762,11 +1770,11 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 							euclidian[3] = MathHelper.sqrt_double((distancesX[3] * distancesX[3]) + (distancesZ[3] * distancesZ[3]));
 						}
 						else if (((EntityRollingStock) par1Entity).bogieLoco == null && this.bogieLoco != null) {
-							distancesX[0] = entity.posX - this.posX;
-							distancesZ[0] = entity.posZ - this.posZ;
+							distancesX[0] = ((AbstractTrains) par1Entity).posX - this.posX;
+							distancesZ[0] = ((AbstractTrains) par1Entity).posZ - this.posZ;
 							euclidian[0] = MathHelper.sqrt_double((distancesX[0] * distancesX[0]) + (distancesZ[0] * distancesZ[0]));
-							distancesX[1] = entity.posX - this.bogieLoco.posX;
-							distancesZ[1] = entity.posZ - this.bogieLoco.posZ;
+							distancesX[1] = ((AbstractTrains) par1Entity).posX - this.bogieLoco.posX;
+							distancesZ[1] = ((AbstractTrains) par1Entity).posZ - this.bogieLoco.posZ;
 							euclidian[1] = MathHelper.sqrt_double((distancesX[1] * distancesX[1]) + (distancesZ[1] * distancesZ[1]));
 							distancesX[2] = 100;
 							distancesZ[2] = 100;
@@ -1776,17 +1784,17 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 							euclidian[3] = MathHelper.sqrt_double((distancesX[3] * distancesX[3]) + (distancesZ[3] * distancesZ[3]));
 						}
 						else {
-							distancesX[0] = entity.posX - this.posX;
-							distancesZ[0] = entity.posZ - this.posZ;
+							distancesX[0] = ((AbstractTrains) par1Entity).posX - this.posX;
+							distancesZ[0] = ((AbstractTrains) par1Entity).posZ - this.posZ;
 							euclidian[0] = MathHelper.sqrt_double((distancesX[0] * distancesX[0]) + (distancesZ[0] * distancesZ[0]));
-							distancesX[1] = entity.bogieLoco.posX - this.posX;
-							distancesZ[1] = entity.bogieLoco.posZ - this.posZ;
+							distancesX[1] = ((EntityRollingStock) par1Entity).bogieLoco.posX - this.posX;
+							distancesZ[1] = ((EntityRollingStock) par1Entity).bogieLoco.posZ - this.posZ;
 							euclidian[1] = MathHelper.sqrt_double((distancesX[1] * distancesX[1]) + (distancesZ[1] * distancesZ[1]));
-							distancesX[2] = entity.posX - this.bogieLoco.posX;
-							distancesZ[2] = entity.posZ - this.bogieLoco.posZ;
+							distancesX[2] = ((AbstractTrains) par1Entity).posX - this.bogieLoco.posX;
+							distancesZ[2] = ((AbstractTrains) par1Entity).posZ - this.bogieLoco.posZ;
 							euclidian[2] = MathHelper.sqrt_double((distancesX[2] * distancesX[2]) + (distancesZ[2] * distancesZ[2]));
-							distancesX[3] = entity.bogieLoco.posX - this.bogieLoco.posX;
-							distancesZ[3] = entity.bogieLoco.posZ - this.bogieLoco.posZ;
+							distancesX[3] = ((EntityRollingStock) par1Entity).bogieLoco.posX - this.bogieLoco.posX;
+							distancesZ[3] = ((EntityRollingStock) par1Entity).bogieLoco.posZ - this.bogieLoco.posZ;
 							euclidian[3] = MathHelper.sqrt_double((distancesX[3] * distancesX[3]) + (distancesZ[3] * distancesZ[3]));
 						}
 						double min = euclidian[0];
@@ -1830,13 +1838,17 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 					d0 *= 0.5D;
 					d1 *= 0.5D;
 
-					if ((par1Entity instanceof EntityMinecart ) && !this.isAttached) {
+					if ((par1Entity instanceof EntityMinecart || (par1Entity instanceof EntityBogie && (((EntityBogie) par1Entity).entityMainTrain != null && !((EntityBogie) par1Entity).entityMainTrain.isAttached)) || (par1Entity instanceof EntityRollingStock && !((EntityRollingStock) par1Entity).isAttached)) && !this.isAttached) {
 
+						double d4 = par1Entity.posX - this.posX;
+						double d5 = par1Entity.posZ - this.posZ;
+						Vec3 vec3 = Vec3.createVectorHelper(d4, 0.0D, d5).normalize();
 						Vec3 vec31 = Vec3.createVectorHelper(MathHelper.cos(this.rotationYaw * (float) Math.PI / 180.0F), 0.0D, MathHelper.sin(this.rotationYaw * (float) Math.PI / 180.0F)).normalize();
+						double d6 = Math.abs(vec3.dotProduct(vec31));
 
-						if (Math.abs(Vec3.createVectorHelper(par1Entity.posX - this.posX, 0.0D,par1Entity.posZ - this.posZ).normalize().dotProduct(vec31)) < 0.800000011920929D) { return; }
+						if (d6 < 0.800000011920929D) { return; }
 
-						double d9 = par1Entity.motionX + this.motionX;
+						double d7 = par1Entity.motionX + this.motionX;
 						double d8 = par1Entity.motionZ + this.motionZ;
 
 						if ((par1Entity instanceof Locomotive && !isPoweredCart()) || (((EntityMinecart) par1Entity).isPoweredCart()) && !isPoweredCart()) {
@@ -1876,27 +1888,27 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 						}
 						else {
 							//System.out.println("3 "+par1Entity +"     "+ this);
-							d9 *= 0.4D;
+							d7 *= 0.4D;
 							d8 *= 0.4D;
 
 							if (par1Entity instanceof EntityBogie || par1Entity instanceof Locomotive) {
-								d9 *= -1;//-3
+								d7 *= -1;//-3
 								d8 *= -1;//-3
 							}
 
 							this.motionX *= 0.20000000298023224D;
 							this.motionZ *= 0.20000000298023224D;
-							this.addVelocity(d9 - d0, 0.0D, d8 - d1);
+							this.addVelocity(d7 - d0, 0.0D, d8 - d1);
 							if (par1Entity instanceof EntityBogie) {
 								//d7/=3;
 								//d8/=3;
-								d9 *= 0.333333333333;
+								d7 *= 0.333333333333;
 								d8 *= 0.333333333333;
 							}
 
 							par1Entity.motionX *= 0.20000000298023224D;
 							par1Entity.motionZ *= 0.20000000298023224D;
-							par1Entity.addVelocity(d9 + d0, 0.0D, d8 + d1);
+							par1Entity.addVelocity(d7 + d0, 0.0D, d8 + d1);
 
 						}
 					}
@@ -1940,13 +1952,17 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 						}
 
 						if (par1Entity instanceof EntityLiving) {
-							float f1 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ) *60;
-							//f1 *= 6;//ratio
-							//f1 *= 10;//to get speed in "pseudo m/s"
+							float f1 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
+							f1 *= 6;//ratio
+							f1 *= 10;//to get speed in "pseudo m/s"
 							if ((f1 * 3.6) < 35) {//if speed is smaller than 35km/h then don't do any damage but push entities
 								return;
 							}
-							int j1 = (int) Math.ceil((f1) * ((par1Entity instanceof EntityCreeper)?100:1));
+							double damage = 1D;
+							if (par1Entity instanceof EntityCreeper) {//Creeper are killed in one shot hopefully
+								damage = 100D;
+							}
+							int j1 = (int) Math.ceil((f1) * damage);
 							par1Entity.attackEntityFrom(TrainsDamageSource.ranOver, j1);
 						}
 					}
@@ -2153,8 +2169,8 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		Block id = worldObj.getBlock(i, j, k);
 		if (!BlockRailBase.func_150051_a(id)) { return; }
 		railMaxSpeed = ((BlockRailBase) id).getRailMaxSpeed(worldObj, this, i, j, k);
-		maxSpeed = Math.max(railMaxSpeed, getMaxCartSpeedOnRail());
-		maxSpeed = SpeedHandler.handleSpeed(railMaxSpeed, maxSpeed, this);
+		maxSpeed = Math.min(railMaxSpeed, getMaxCartSpeedOnRail());
+		maxSpeed = (float) speedhandler.handleSpeed(railMaxSpeed, maxSpeed, this);
 		if (this.speedLimiter != 0 && speedWasSet) {
 			//maxSpeed *= this.speedLimiter;
 			adjustSpeed(maxSpeed, speedLimiter);
@@ -2182,7 +2198,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		moveEntity(motionX, 0.0D, motionZ);
 	}
 
-	public void adjustSpeed(float maxSpeed, double limiter) {
+	private void adjustSpeed(float maxSpeed, double limiter) {
 		float targetSpeed = (float) (maxSpeed * limiter);
 		float targetSpeedX = (float) Math.copySign(targetSpeed, motionX);
 		float targetSpeedZ = (float) Math.copySign(targetSpeed, motionZ);
@@ -2296,8 +2312,8 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 	/**
 	 * @see SpeedHandler description in SpeedHandler
 	 */
-	public double convertSpeed(Locomotive entity) {
-		double speed = entity.getCustomSpeed();// speed in m/s
+	public double convertSpeed(Entity entity) {
+		double speed = ((Locomotive) entity).getCustomSpeed();// speed in m/s
 		if (ConfigHandler.REAL_TRAIN_SPEED) {
 			speed /= 2;// applying ratio
 		}
@@ -2480,8 +2496,10 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			double d3 = 0.0D;
 			double d4 = i + 0.5D + aint[0][0] * 0.5D;
 			double d6 = k + 0.5D + aint[0][2] * 0.5D;
-			double d10 = (i + 0.5D + aint[1][0] * 0.5D) - d4;
-			double d12 = (k + 0.5D + aint[1][2] * 0.5D) - d6;
+			double d7 = i + 0.5D + aint[1][0] * 0.5D;
+			double d9 = k + 0.5D + aint[1][2] * 0.5D;
+			double d10 = d7 - d4;
+			double d12 = d9 - d6;
 
 			if (d10 == 0.0D) {
 				d3 = par5 - k;
@@ -2500,6 +2518,4 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			return null;
 		}
 	}
-
-	public ItemStack[] getInventory(){return null;}
 }

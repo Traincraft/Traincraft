@@ -8,8 +8,6 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
-import train.common.adminbook.ServerLogger;
-import train.common.entity.rollingStock.EntityTankLava;
 
 import javax.annotation.Nullable;
 
@@ -79,7 +77,7 @@ public class LiquidTank extends EntityRollingStock implements IFluidHandler, ISi
 			this.dataWatcher.updateObject(18, theTank.getFluid().amount);
 			this.dataWatcher.updateObject(4, theTank.getFluid().getFluidID());
 			if (theTank.getFluid().getFluid() != null)
-				this.dataWatcher.updateObject(22, theTank.getFluid().getFluid().getUnlocalizedName());
+				this.dataWatcher.updateObject(22, theTank.getFluid().getFluid().getName());
 			handleMass();
 		}
 		else if (theTank != null && theTank.getFluid() == null) {
@@ -109,36 +107,19 @@ public class LiquidTank extends EntityRollingStock implements IFluidHandler, ISi
 		if (this.update % 8 == 0 && itemstack != null) {
 			ItemStack emptyItem = itemstack.getItem().getContainerItem(itemstack);
 			if(cargoItems[1] == null) {
-				if (theTank.getFluidAmount() == 0) {
-					for (Fluid fluid : FluidRegistry.getRegisteredFluids().values()) {
-						if (LiquidManager.getInstance().containsFluid(itemstack,
-								FluidRegistry.getFluidStack(FluidRegistry.getFluidName(fluid), 0))) {
-							if (fluid.getTemperature() < 1000) {
-								if (!(this instanceof EntityTankLava)) {
-									result = LiquidManager.getInstance().processContainer(this, 0, this, itemstack);
-									break;
-								}
-							} else {
-								if (this instanceof EntityTankLava) {
-									result = LiquidManager.getInstance().processContainer(this, 0, this, itemstack);
-									break;
-								}
-							}
-						}
-					}
-				} else {
-					result = LiquidManager.getInstance().processContainer(this, 0, this, itemstack);
-				}
-			} else if (emptyItem != null) {
+				result = LiquidManager.getInstance().processContainer(this, 0, theTank, itemstack);
+			}
+			else if(emptyItem != null) {
 				if(emptyItem.getItem() == cargoItems[1].getItem()) {
-    				if(cargoItems[1].stackSize+1 <= cargoItems[1].getMaxStackSize()) {
-    					result = LiquidManager.getInstance().processContainer(this, 0, this, itemstack);
+    				if(cargoItems[1].stackSize+1 < cargoItems[1].getMaxStackSize()) {
+    					result = LiquidManager.getInstance().processContainer(this, 0, theTank, itemstack);
     				}
 				}
-			} else {
+			}
+			else {
 				if(itemstack.getItem() == cargoItems[1].getItem()) {
     				if(cargoItems[1].stackSize+1 <= cargoItems[1].getMaxStackSize()) {
-    					result = LiquidManager.getInstance().processContainer(this, 0, this, itemstack);
+    					result = LiquidManager.getInstance().processContainer(this, 0, theTank, itemstack);
     				}
 				}
 			}
@@ -333,7 +314,6 @@ public class LiquidTank extends EntityRollingStock implements IFluidHandler, ISi
 				riddenByEntity.mountEntity(this);
 			}
 			this.setDead();
-			ServerLogger.deleteWagon(this);
 			if (damagesource.getEntity() instanceof EntityPlayer) {
 				dropCartAsItem(((EntityPlayer)damagesource.getEntity()).capabilities.isCreativeMode);
 			}

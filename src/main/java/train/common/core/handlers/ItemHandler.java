@@ -9,17 +9,16 @@ package train.common.core.handlers;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRailBase;
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemSeeds;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 import train.common.api.*;
 import train.common.entity.rollingStock.*;
 import train.common.items.ItemTCRail;
+
+import java.util.ArrayList;
 
 public class ItemHandler {
 	
@@ -45,8 +44,6 @@ public class ItemHandler {
 	public static boolean handleFreight(Entity entity, ItemStack itemstack) {
 		int logWood = OreDictionary.getOreID("logWood");
 		int plankWood = OreDictionary.getOreID("plankWood");
-		int slabWood =  OreDictionary.getOreID("slabWood");
-		int stairWood = OreDictionary.getOreID("stairWood");
 		if(itemstack == null) {
 			return false;
 		}
@@ -54,36 +51,47 @@ public class ItemHandler {
 		if (block == null) {
 			return false;
 		}
-		if (entity instanceof EntityFreightCenterbeam_Wood_1 || entity instanceof EntityFreightCenterbeam_Wood_2 ||
-				entity instanceof EntityFlatCartWoodUS || entity instanceof EntityBulkheadFlatCart || entity instanceof EntityFlatCarLogs_DB ||
-				entity instanceof EntityFreightWood || entity instanceof EntityFreightWood2) {
+		if (entity instanceof EntityBoxCartUS || entity instanceof EntityFreightCart
+				|| entity instanceof EntityFreightCart2 || entity instanceof EntityFreightCartSmall
+				|| entity instanceof EntityFreightCenterbeam_Empty || entity instanceof EntityFreightTrailer
+				|| entity instanceof EntityFreightWagenDB || entity instanceof EntityFreightWellcar) {
+			return true;
+		}
+		if (entity instanceof EntityFlatCarLogs_DB || entity instanceof EntityFreightWood
+				|| entity instanceof EntityFreightWood2) {
+			return OreDictionary.getOreID(itemstack) == logWood;
+		}
+		if (entity instanceof EntityFlatCartWoodUS) {
+			return OreDictionary.getOreID(itemstack) == plankWood;
+		}
+		if (entity instanceof EntityFreightCenterbeam_Wood_1 || entity instanceof EntityFreightCenterbeam_Wood_2) {
             int isid = OreDictionary.getOreID(itemstack);
-			return isid == plankWood || isid == logWood || isid == slabWood || isid == stairWood ||
-					itemstack.getItem() == Item.getItemFromBlock(Blocks.ladder) || itemstack.getItem() == Item.getItemFromBlock(Blocks.fence) || itemstack.getItem() == Item.getItemFromBlock(Blocks.fence_gate);
+			return isid == plankWood || isid == logWood;
 		}
-		else if (entity instanceof EntityFlatCarRails_DB) {
-			return block instanceof BlockRailBase || itemstack.getItem() instanceof ItemTCRail;
+		if (entity instanceof EntityFreightOpenWagon || entity instanceof EntityFreightCartUS
+				|| entity instanceof EntityFreightClosed || entity instanceof EntityFreightGondola_DB
+				|| entity instanceof EntityFreightOpen2 || entity instanceof EntityFreightHopperUS) {
+            int isid = OreDictionary.getOreID(itemstack);
+			return !(isid == plankWood || isid == logWood);
 		}
-		else if (entity instanceof EntityFreightGrain) {
+		if (entity instanceof EntityFlatCarRails_DB) {
+			if (block instanceof BlockRailBase) {
+				return true;
+			}
+			return itemstack.getItem() instanceof ItemTCRail;
+		}
+		if (entity instanceof EntityFreightGrain) {
 			Item item = itemstack.getItem();
 			if (item == Items.wheat || item == Items.wheat_seeds || item == Items.melon_seeds
-					|| item == Items.pumpkin_seeds || item instanceof ItemSeeds) {
+					|| item == Items.pumpkin_seeds) {
 				return true;
 			}
 			return cropStuff(itemstack);
 		}
-		else if (entity instanceof EntityFreightMinetrain) {
+		if (entity instanceof EntityFreightMinetrain) {
 				return block.isOpaqueCube();
 		}
-		else if (entity instanceof EntityFreightSlateWagon){
-			return block.getMaterial() == Material.rock;
-		}
-		else if (entity instanceof EntityFreightIceWagon){
-			return block.getMaterial() == Material.ice || block.getMaterial() == Material.packedIce;
-		}
-		else {
-			return true;
-		}
+		return false;
 	}
 
 	private static boolean cropStuff(ItemStack itemstack) {

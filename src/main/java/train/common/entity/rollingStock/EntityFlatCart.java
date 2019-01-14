@@ -34,19 +34,11 @@ public class EntityFlatCart extends EntityRollingStock implements IPassenger {
 		super.setDead();
 		isDead = true;
 	}
-	@Override
-	public void onUpdate(){
-		super.onUpdate();
-		boundingBox.maxY-=1;
-	}
 
 	@Override
 	public boolean interactFirst(EntityPlayer entityplayer) {
 		playerEntity = entityplayer;
 		if ((super.interactFirst(entityplayer))) {
-			return false;
-		}
-		if (entityplayer.ridingEntity == this){
 			return false;
 		}
 		if (!worldObj.isRemote) {

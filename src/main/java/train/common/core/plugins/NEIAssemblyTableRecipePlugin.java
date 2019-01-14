@@ -16,7 +16,6 @@ import train.common.core.managers.TierRecipeManager;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 
@@ -264,20 +263,19 @@ public class NEIAssemblyTableRecipePlugin extends ShapedRecipeHandler {
 	}
 
 	public static List assemblyListCleaner(List recipeList) {
-		HashSet outputList = new HashSet();
+		ArrayList outputList = new ArrayList();
 		ArrayList cleanedList = new ArrayList();
 		for (int i = 0; i < recipeList.size(); i++) {
-			//ItemStack output = ((TierRecipe) recipeList.get(i)).getOutput();
-			int id=Item.getIdFromItem(((TierRecipe) recipeList.get(i)).getOutput().getItem());
+			ItemStack output = ((TierRecipe) recipeList.get(i)).getOutput();
 			if (outputList != null) {
-				if (!outputList.contains(id)) {
+				if (!outputList.contains(Item.getIdFromItem(((TierRecipe) recipeList.get(i)).getOutput().getItem()))) {
 					cleanedList.add(recipeList.get(i));
 				}
 			}
 			else {
 				cleanedList.add(recipeList.get(i));
 			}
-			outputList.add(id);
+			outputList.add(Item.getIdFromItem(((TierRecipe) recipeList.get(i)).getOutput().getItem()));
 		}
 		return cleanedList;
 	}

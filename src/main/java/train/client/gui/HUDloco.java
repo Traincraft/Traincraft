@@ -29,7 +29,6 @@ public class HUDloco extends GuiScreen {
 	public void renderSkillHUD(RenderGameOverlayEvent event, Locomotive rcCar) {
 		windowWidth = event.resolution.getScaledWidth();
 		windowHeight = event.resolution.getScaledHeight() - 100;
-		GL11.glColor4f(255, 255, 255, 255);
 		renderBG(rcCar);
 		/**
 		 * Steam Train have water

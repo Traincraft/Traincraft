@@ -26,14 +26,14 @@ public class TileCrafterTierI extends TileEntity implements IInventory, ITier {
 
 	private ForgeDirection facing;
 	private final int Tier = 1;
-	private List<Item>			resultList;
-	private static List<Item> knownRecipes = new ArrayList<Item>();
+	private List<ItemStack>			resultList;
+	private static List<ItemStack> knownRecipes = new ArrayList<ItemStack>();
 	private static int[] slotSelected;
 
 	public TileCrafterTierI() {
 		crafterInventory = new ItemStack[26];
 		this.rand = new Random();
-		this.resultList = new ArrayList<Item>();
+		this.resultList = new ArrayList<ItemStack>();
 		slotSelected = new int[8];
 	}
 
@@ -48,7 +48,7 @@ public class TileCrafterTierI extends TileEntity implements IInventory, ITier {
 	}
 
 	@Override
-	public List<Item> getResultList() {
+	public List<ItemStack> getResultList() {
 		return resultList;
 	}
 
@@ -98,38 +98,38 @@ public class TileCrafterTierI extends TileEntity implements IInventory, ITier {
 
 	@Override
 	public void readFromNBT(NBTTagCompound nbtTag) {
-
+		
 		super.readFromNBT(nbtTag);
-
+		
 		facing = ForgeDirection.getOrientation(nbtTag.getByte("Orientation"));
 		slotSelected = nbtTag.getIntArray("Selected");
 		NBTTagList nbttaglist = nbtTag.getTagList("Items", Constants.NBT.TAG_COMPOUND);
-
+		
 		this.crafterInventory = new ItemStack[this.getSizeInventory()];
-
+		
 		for (int i = 0; i < nbttaglist.tagCount(); i++) {
-
+			
 			NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
 			byte byte0 = nbttagcompound1.getByte("Slot");
-
+			
 			if (byte0 >= 0 && byte0 < crafterInventory.length) {
-
+				
 				this.crafterInventory[byte0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
 			}
 		}
 
 		NBTTagList nbttaglist2 = nbtTag.getTagList("Known", Constants.NBT.TAG_COMPOUND);
-
+		
 		for (int i = 0; i < nbttaglist2.tagCount(); i++) {
-
+			
 			NBTTagCompound nbttagcompound2 = nbttaglist2.getCompoundTagAt(i);
 			byte byte1 = nbttagcompound2.getByte("Recipe");
-
+			
 			if (byte1 >= 0) {
-
-				if (!listContainsItem(knownRecipes, ItemStack.loadItemStackFromNBT(nbttagcompound2).getItem())) {
-
-					knownRecipes.add(ItemStack.loadItemStackFromNBT(nbttagcompound2).getItem());
+				
+				if (!listContains(knownRecipes, ItemStack.loadItemStackFromNBT(nbttagcompound2))) {
+					
+					knownRecipes.add(ItemStack.loadItemStackFromNBT(nbttagcompound2));
 				}
 			}
 		}
@@ -137,45 +137,45 @@ public class TileCrafterTierI extends TileEntity implements IInventory, ITier {
 
 	@Override
 	public void writeToNBT(NBTTagCompound nbtTag) {
-
+		
 		super.writeToNBT(nbtTag);
-
+		
 		if (facing != null) {
-
+			
 			nbtTag.setByte("Orientation", (byte) facing.ordinal());
 		}
 		else {
-
+			
 			nbtTag.setByte("Orientation", (byte) ForgeDirection.NORTH.ordinal());
 		}
-
+		
 		nbtTag.setIntArray("Selected", slotSelected);
 		NBTTagList nbttaglist = new NBTTagList();
-
+		
 		for (int i = 0; i < this.crafterInventory.length; i++) {
-
+			
 			if (this.crafterInventory[i] != null) {
-
+				
 				NBTTagCompound nbttagcompound1 = new NBTTagCompound();
 				nbttagcompound1.setByte("Slot", (byte) i);
 				this.crafterInventory[i].writeToNBT(nbttagcompound1);
 				nbttaglist.appendTag(nbttagcompound1);
 			}
 		}
-
+		
 		nbtTag.setTag("Items", nbttaglist);
 		NBTTagList nbttaglist2 = new NBTTagList();
-
+		
 		if (knownRecipes != null) {
-
+			
 			for (int i = 0; i < knownRecipes.size(); i++) {
-
+				
 				NBTTagCompound nbttagcompound2 = new NBTTagCompound();
 				nbttagcompound2.setByte("Recipe", (byte) i);
-				new ItemStack(knownRecipes.get(i)).writeToNBT(nbttagcompound2);
+				knownRecipes.get(i).writeToNBT(nbttagcompound2);
 				nbttaglist2.appendTag(nbttagcompound2);
 			}
-
+			
 			nbtTag.setTag("Known", nbttaglist2);
 		}
 	}
@@ -194,17 +194,17 @@ public class TileCrafterTierI extends TileEntity implements IInventory, ITier {
 
 		List<TierRecipe> recipes = TierRecipeManager.getInstance().getTierRecipeList(1);
 		int count = 0;
-		for (TierRecipe recipe : recipes) {
-			ItemStack stack = recipe.hasComponents(crafterInventory);
-			if (stack != null && !resultList.contains(stack.getItem()) && (count + 10) < crafterInventory.length - 8) {
-				resultList.add(stack.getItem());
-				crafterInventory[count + 10] = stack;
+		for (int j = 0; j < recipes.size(); j++) {
+			ItemStack stack = recipes.get(j).hasComponents(crafterInventory);
+			if (stack != null) {
+				resultList.add(stack);
+				crafterInventory[count + 10] = new ItemStack(stack.getItem(), 1, 0);
 				count++;
 			}
 		}
 
 		for (int i = 0; i < resultList.size(); i++) {
-			if (!listContainsItem(knownRecipes, resultList.get(i))) {
+			if (!listContains(knownRecipes, resultList.get(i))) {
 				knownRecipes.add(resultList.get(i));
 			}
 		}
@@ -222,17 +222,17 @@ public class TileCrafterTierI extends TileEntity implements IInventory, ITier {
 	}
 
 	public ForgeDirection getFacing() {
-
+		
 		if (facing != null) {
-
+			
 			return this.facing;
 		}
-
+		
 		return ForgeDirection.NORTH;
 	}
 
 	public void setFacing(ForgeDirection face) {
-
+		
 		if (facing != face)
 			this.facing = face;
 	}
@@ -252,9 +252,9 @@ public class TileCrafterTierI extends TileEntity implements IInventory, ITier {
 		return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, nbt);
 	}
 
-	private boolean listContainsItem(List<Item> list, Item stack) {
+	private boolean listContains(List<ItemStack> list, ItemStack stack) {
 		for (int i = 0; i < list.size(); i++) {
-			if (Item.getIdFromItem(list.get(i)) == Item.getIdFromItem(stack)) {
+			if (Item.getIdFromItem(list.get(i).getItem()) == Item.getIdFromItem(stack.getItem())) {
 				return true;
 			}
 		}
@@ -302,7 +302,7 @@ public class TileCrafterTierI extends TileEntity implements IInventory, ITier {
 			return true;
 		if(i>9)
 			return false;
-
+		
 		List<TierRecipe> recipeList = TierRecipeManager.getInstance().getTierRecipeList(this.Tier);
 		for(TierRecipe recipe : recipeList){
 			ItemStack stack2 = recipe.getInput().get(i);
@@ -310,10 +310,10 @@ public class TileCrafterTierI extends TileEntity implements IInventory, ITier {
 				return true;
 			}
 		}
-
+		
 		return false;
 	}
-
+	
 	/*
 	@Override // Just no.
 	public void updateEntity() {

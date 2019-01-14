@@ -9,7 +9,6 @@ package train.common.items;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import train.common.Traincraft;
-import train.common.adminbook.ItemAdminBook;
 import train.common.library.Info;
 import train.common.library.ItemIDs;
 
@@ -40,7 +39,6 @@ public class TCItems {
 		//ItemIDs.signal.item = new ItemSignal(ItemIDs.signal.itemID, BlockIDs.activeSignal.block).setIconIndex(ItemIDs.signal.iconIndex);
 		ItemIDs.chunkLoaderActivator.item = new ItemChunkLoaderActivator();
 		ItemIDs.recipeBook.item = new ItemRecipeBook();
-		ItemIDs.adminBook.item = new ItemAdminBook();
 		
 		ItemIDs.stake.item = new ItemStacked(200);
 		ItemIDs.airship.item = new ItemZeppelins(0);

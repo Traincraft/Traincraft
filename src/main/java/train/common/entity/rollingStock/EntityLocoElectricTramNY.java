@@ -113,7 +113,7 @@ public class EntityLocoElectricTramNY extends ElectricTrain {
 	}
 	@Override
 	public String getInventoryName() {
-		return "Kawasaki PA4";
+		return "N.Y. Subway";
 	}
 
 	@Override

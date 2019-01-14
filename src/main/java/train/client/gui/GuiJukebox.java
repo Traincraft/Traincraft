@@ -42,6 +42,8 @@ public class GuiJukebox extends GuiScreen {
 	private int gui_inner_height;
 	private int anim = 0;
 	private String infoText;
+	private boolean flash;
+	private float volume = 1.0f;
 	
 	public GuiJukebox(EntityPlayer player, EntityJukeBoxCart jukebox) {
 		this.jukebox = jukebox;
@@ -193,16 +195,15 @@ public class GuiJukebox extends GuiScreen {
 		super.mouseClicked(par1, par2, par3);
 	}
 
-	@Override
 	@SideOnly(Side.CLIENT)
 	protected void actionPerformed(GuiButton button) {
 		if (button.id == 0) {
 			if (streamTextBox.getText() != null && streamTextBox.getText().length() > 0) {
 				if ((!jukebox.isPlaying())) {
-					if (this.streamTextBox.getText().toLowerCase().contains(".m3u")) {
+					if (this.streamTextBox.getText().toLowerCase().endsWith(".m3u")) {
 						this.jukebox.streamURL = takeFirstEntryFromM3U(this.streamTextBox.getText());
 					}
-					else if (this.streamTextBox.getText().toLowerCase().contains(".pls")) {
+					else if (this.streamTextBox.getText().toLowerCase().endsWith(".pls")) {
 						this.jukebox.streamURL = parsePls(this.streamTextBox.getText());
 					}
 					else {
@@ -237,7 +238,7 @@ public class GuiJukebox extends GuiScreen {
 		}
 
 		if (button.id == 4) {
-			if((Minecraft.getMinecraft().thePlayer != null) && (jukebox.player != null) && (!jukebox.isInvalid)){
+			if((Minecraft.getMinecraft().thePlayer != null) && (((EntityJukeBoxCart) jukebox).player != null) && (!((EntityJukeBoxCart) jukebox).isInvalid)){
 				if(jukebox.volume<1.0f) {
     				jukebox.volume += 0.1f;
 				}
@@ -245,7 +246,7 @@ public class GuiJukebox extends GuiScreen {
 		}
 
 		if (button.id == 5) {
-			if((Minecraft.getMinecraft().thePlayer != null) && (jukebox.player != null) && (!jukebox.isInvalid)){
+			if((Minecraft.getMinecraft().thePlayer != null) && (((EntityJukeBoxCart) jukebox).player != null) && (!((EntityJukeBoxCart) jukebox).isInvalid)){
 				if(jukebox.volume>0.0f) {
 					jukebox.volume -= 0.1f;
 				}
@@ -255,8 +256,8 @@ public class GuiJukebox extends GuiScreen {
 		if (button.id == 3) {
 			if (player != null && player instanceof EntityPlayer && player.getDisplayName().equals(((AbstractTrains) jukebox).getTrainOwner())) {
 				if ((!((AbstractTrains) jukebox).locked)) {
-					AxisAlignedBB box = jukebox.boundingBox.expand(5, 5, 5);
-					List lis3 = jukebox.worldObj.getEntitiesWithinAABBExcludingEntity(jukebox, box);
+					AxisAlignedBB box = ((EntityJukeBoxCart) jukebox).boundingBox.expand(5, 5, 5);
+					List lis3 = ((EntityJukeBoxCart) jukebox).worldObj.getEntitiesWithinAABBExcludingEntity(jukebox, box);
 					if (lis3 != null && lis3.size() > 0) {
 						for (int j1 = 0; j1 < lis3.size(); j1++) {
 							Entity entity = (Entity) lis3.get(j1);
@@ -270,8 +271,8 @@ public class GuiJukebox extends GuiScreen {
 					this.initGui();
 				}
 				else {
-					AxisAlignedBB box = jukebox.boundingBox.expand(5, 5, 5);
-					List lis3 = jukebox.worldObj.getEntitiesWithinAABBExcludingEntity(jukebox, box);
+					AxisAlignedBB box = ((EntityJukeBoxCart) jukebox).boundingBox.expand(5, 5, 5);
+					List lis3 = ((EntityJukeBoxCart) jukebox).worldObj.getEntitiesWithinAABBExcludingEntity(jukebox, box);
 					if (lis3 != null && lis3.size() > 0) {
 						for (int j1 = 0; j1 < lis3.size(); j1++) {
 							Entity entity = (Entity) lis3.get(j1);
@@ -301,7 +302,6 @@ public class GuiJukebox extends GuiScreen {
 		return false;
 	}
 
-	@Override
 	protected void drawCreativeTabHoveringText(String str, int t, int g) {
 		String state = "";
 		if (jukebox.locked)

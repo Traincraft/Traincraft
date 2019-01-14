@@ -28,7 +28,6 @@ import train.client.core.helpers.JLayerHook;
 import train.client.gui.*;
 import train.client.render.*;
 import train.common.Traincraft;
-import train.common.adminbook.GUIAdminBook;
 import train.common.api.EntityBogie;
 import train.common.api.EntityRollingStock;
 import train.common.core.CommonProxy;
@@ -51,18 +50,19 @@ public class ClientProxy extends CommonProxy {
 
 	public static boolean isHoliday() {
 		Calendar cal = Calendar.getInstance();
-		return(cal.get(Calendar.MONTH) == Calendar.DECEMBER || (cal.get(Calendar.MONTH) == Calendar.JANUARY) && cal.get(Calendar.DATE) < 7);
+		if (cal.get(Calendar.MONTH) == Calendar.DECEMBER
+				&& (cal.get(Calendar.DATE) >= 5 && cal.get(Calendar.DATE) <= 31)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	@Override
-	public void registerEvents(FMLPreInitializationEvent event) {
+	public void registerEvents(FMLPreInitializationEvent event){
 		super.registerEvents(event);
 		ClientTickHandler tickHandler = new ClientTickHandler();
 		HUDloco huDloco = new HUDloco();
-		if (Loader.isModLoaded("ComputerCraft")){
-			HUDMTC hudMTC = new HUDMTC();
-			registerEvent(hudMTC);
-		}
 
 		registerEvent(tickHandler);
 		registerEvent(huDloco);
@@ -92,9 +92,6 @@ public class ClientProxy extends CommonProxy {
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileLantern.class, new RenderLantern());
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockIDs.lantern.block), new ItemRenderLantern());
-
-		ClientRegistry.bindTileEntitySpecialRenderer(TileSwitchStand.class, new RenderSwitchStand());
-		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockIDs.switchStand.block), new ItemRenderSwitchStand());
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileWaterWheel.class, new RenderWaterWheel());
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockIDs.waterWheel.block), new ItemRenderWaterWheel());
@@ -154,8 +151,6 @@ public class ClientProxy extends CommonProxy {
 			return riddenByEntity != null ? new GuiZepp(riddenByEntity.inventory, entity) : null;
 		case (GuiIDs.DIGGER):
 			return riddenByEntity != null ? new GuiBuilder(player, riddenByEntity.inventory, entity) : null;
-		case (GuiIDs.MTC_INFO):
-			return riddenByEntity != null && Loader.isModLoaded("ComputerCraft") ? new GuiMTCInfo(player) : null;
 
 			//Stationary entities while player is not riding. 
 		case (GuiIDs.FREIGHT):
@@ -242,11 +237,6 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public float getJukeboxVolume() {
 		return Minecraft.getMinecraft().gameSettings.getSoundLevel(SoundCategory.RECORDS) * Minecraft.getMinecraft().gameSettings.getSoundLevel(SoundCategory.MASTER);
-	}
-
-	@Override
-	public void openadmingui(String data){
-		Minecraft.getMinecraft().displayGuiScreen(new GUIAdminBook(data));
 	}
 
 	@Override

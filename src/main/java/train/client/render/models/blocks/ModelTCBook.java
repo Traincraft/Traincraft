@@ -21,8 +21,10 @@ import train.common.tile.TileBook;
 
 public class ModelTCBook extends ModelBase {
 	private IModelCustom book;
+	private long lastframe;
 	
 	private final GameSettings settings = Minecraft.getMinecraft().gameSettings;
+	private final Minecraft mc = Minecraft.getMinecraft();
 	
 	float rot = 0.0f;
 	
@@ -31,6 +33,7 @@ public class ModelTCBook extends ModelBase {
 	}
 	
 	public void render(int pages) {
+		Tessellator tesselator = Tessellator.instance;
 		FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "book2.png"));
 		GL11.glPushMatrix();
 		GL11.glTranslatef(0.0f, 0.0f, 0.0f);

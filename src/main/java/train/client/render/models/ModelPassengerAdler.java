@@ -9,7 +9,7 @@ package train.client.render.models;
 
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
-import tmt.ModelBase;
+import train.client.tmt.ModelBase;
 
 public class ModelPassengerAdler extends ModelBase {
 
