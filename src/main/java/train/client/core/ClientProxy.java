@@ -53,6 +53,11 @@ public class ClientProxy extends CommonProxy {
 		Calendar cal = Calendar.getInstance();
 		return(cal.get(Calendar.MONTH) == Calendar.DECEMBER || (cal.get(Calendar.MONTH) == Calendar.JANUARY) && cal.get(Calendar.DATE) < 7);
 	}
+	
+	@Override
+	public void throwAlphaException() {
+		throw new AlphaExpiredException();
+	}
 
 	@Override
 	public void registerEvents(FMLPreInitializationEvent event) {
