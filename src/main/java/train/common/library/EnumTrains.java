@@ -94,7 +94,7 @@ public enum EnumTrains {
 	freightHopper("Freight Hopper Green", EntityFreightGrain.class, ItemIDs.minecartGrain.item, "freight", 4, null, 18, 36, new String[]{"Cargo: wheat, seeds"}),
 	freightKClassRailBox("Freight K Class Rail Box", EntityFreightKClassRailBox.class, ItemIDs.minecartKClassRailBox.item, "freight", 4, null, 18, 36, new String[]{"Cargo: any"}),
 	freightShortCoveredHopper("Freight Short Covered Hopper", EntityFreightShortCoveredHopper.class, ItemIDs.minecartShortCoveredHopper.item, "freight", 4, null, 18, 36, new String[]{"Cargo: any"}),
-	freightLongCoveredHopper("Freight Long Covered Hopper", EntityFreightLongCoveredHopper.class, ItemIDs.minecartLongCoveredHopper.item, "freight", 6, null, 18, 54, new String[]{"Cargo: any"}),
+	freightLongCoveredHopper("Freight Long Covered Hopper", EntityFreightLongCoveredHopper.class, ItemIDs.minecartLongCoveredHopper.item, "freight", 6, new String[]{"LightGrey", "Grey","Pink", "White"}, 18, 54, new String[]{"Cargo: any"}),
 	freightOpenWagon("Freight Open Wagon", EntityFreightOpenWagon.class, ItemIDs.minecartOpenWagon.item, "freight", 2, null, 18, 36, new String[]{"Cargo: blocks, vanilla items"}),//"train_hopper" for open wagon => weird
 	freightHopperUS("Freight Hopper US", EntityFreightHopperUS.class, ItemIDs.minecartFreightHopperUS.item, "freight", 4, new String[]{"Brown", "Grey", "Blue", "Red", "Black", "LightBlue", "Purple", "Green", "Magenta", "Orange"}, 18, 27, new String[]{"Cargo: blocks"}),
 	freight100TonHopper("Freight 100 Ton Hopper", EntityFreight100TonHopper.class, ItemIDs.minecartFreight100TonHopper.item, "freight", 4, new String[]{"Red", "Black", "Blue", "Grey"}, 18, 54, new String[]{"Cargo: blocks"}),
@@ -221,7 +221,7 @@ public enum EnumTrains {
 			ItemIDs.minecartLocoClass85.item, "electric", 3156, 160, 0, 10, 0, 170, 0.7, 0.965, 0, null, 18, -5),
 	locoElectricCD151("Loco Electric CD151", EntityLocoElectricCD151.class, ItemIDs.minecartLocoCD151.item,
 			"electric", 5438, 150, 0, 10, 0, 170, 0.7, 0.965, 6850, new String[]{"Blue", "Yellow", "Red"}, 18, -4),
-	locoElectricBP4("Loco Electric BP4",EntityLocoElectricBP4.class, ItemIDs.minecartLocoBP4.item,"electric",3041,166,0,60,0,200,0.8,0.97,8650,null,10,-3.1),
+	locoElectricBP4("Loco Electric BP4",EntityLocoElectricBP4.class, ItemIDs.minecartLocoBP4.item,"electric",1520,166,0,60,0,200,0.8,0.97,8650,null,10,-3.1),
 
 	/** Steam */
 	locoSteamA4("Loco Steam A4 Mallard", EntityLocoSteamMallardA4.class,  ItemIDs.minecartLocoA4Mallard.item, "steam", 2200, 203, 0, 60, 200, 160, 0.65, 0.97, 10000, new String[] { "Blue", "Lime", "Black", "Green", "White" }, 7, -5 ),
@@ -507,7 +507,11 @@ public enum EnumTrains {
 	
 	public AbstractTrains getEntity(World world, double x, double y, double z){
 		try {
-			return (AbstractTrains) entityClass.getConstructor(World.class,double.class,double.class,double.class).newInstance(world,x,y,z);
+			if(world.isRemote){
+				entityClass.getConstructor(World.class).newInstance(world);
+			} else {
+				return (AbstractTrains) entityClass.getConstructor(World.class, double.class, double.class, double.class).newInstance(world, x, y, z);
+			}
 		} catch (IllegalArgumentException e) {
 			e.printStackTrace();
 		} catch (SecurityException e) {

@@ -122,24 +122,51 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 		inventorySize = numCargoSlots + numCargoSlots2 + numCargoSlots1;
 		dataWatcher.addObject(2, 0);
 		this.setDefaultMass(0);
-		this.setCustomSpeed(getMaxSpeed());
 		dataWatcher.addObject(3, destination);
 		dataWatcher.addObject(22, locoState);
 		dataWatcher.addObject(24, fuelTrain);
 		dataWatcher.addObject(25, (int) convertSpeed(Math.sqrt(Math.abs(motionX * motionX) + Math.abs(motionZ * motionZ))));//convertSpeed((Math.abs(this.motionX) + Math.abs(this.motionZ))
 		dataWatcher.addObject(26, castToString(currentNumCartsPulled));
 		dataWatcher.addObject(27, castToString(currentMassPulled));
-		dataWatcher.addObject(28, castToString(Math.round(currentSpeedSlowDown)));
+		dataWatcher.addObject(28, (int)currentSpeedSlowDown);
 		dataWatcher.addObject(29, castToString(currentAccelSlowDown));
 		dataWatcher.addObject(30, castToString(currentBrakeSlowDown));
 		dataWatcher.addObject(31, castToString(currentFuelConsumptionChange));
 		dataWatcher.addObject(15, (float)Math.round((getCustomSpeed() * 3.6f)));
+		this.setCustomSpeed(getMaxSpeed());
 		//dataWatcher.addObject(32, lineWaypoints);
 		setAccel(0);
 		setBrake(0);
 		this.entityCollisionReduction = 0.99F;
 		if(this instanceof SteamTrain)isLocoTurnedOn = true;
 	}
+
+	public Locomotive(World world, double x, double y, double z) {
+		super(world,x,y,z);
+		setFuelConsumption(0);
+		inventorySize = numCargoSlots + numCargoSlots2 + numCargoSlots1;
+		dataWatcher.addObject(2, 0);
+		this.setDefaultMass(0);
+		dataWatcher.addObject(3, destination);
+		dataWatcher.addObject(22, locoState);
+		dataWatcher.addObject(24, fuelTrain);
+		dataWatcher.addObject(25, (int) convertSpeed(Math.sqrt(Math.abs(motionX * motionX) + Math.abs(motionZ * motionZ))));//convertSpeed((Math.abs(this.motionX) + Math.abs(this.motionZ))
+		dataWatcher.addObject(26, castToString(currentNumCartsPulled));
+		dataWatcher.addObject(27, castToString(currentMassPulled));
+		dataWatcher.addObject(28, (int)currentSpeedSlowDown);
+		dataWatcher.addObject(29, castToString(currentAccelSlowDown));
+		dataWatcher.addObject(30, castToString(currentBrakeSlowDown));
+		dataWatcher.addObject(31, castToString(currentFuelConsumptionChange));
+		dataWatcher.addObject(15, (float)Math.round((getCustomSpeed() * 3.6f)));
+		this.setCustomSpeed(getMaxSpeed());
+		//dataWatcher.addObject(32, lineWaypoints);
+		setAccel(0);
+		setBrake(0);
+		this.entityCollisionReduction = 0.99F;
+		if(this instanceof SteamTrain)isLocoTurnedOn = true;
+
+	}
+
 
 	/**
 	 * this is basically NBT for entity spawn, to keep data between client and server in sync because some data is not automatically shared.
@@ -225,7 +252,11 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 	 */
 	public float getMaxSpeed() {
 		if (trainSpec != null) {
-			return trainSpec.getMaxSpeed()-(float)currentSpeedSlowDown;
+			if(dataWatcher!=null) {
+				return trainSpec.getMaxSpeed() - getCurrentSpeedSlowDown();
+			} else {
+				return trainSpec.getMaxSpeed() - (float)currentSpeedSlowDown;
+			}
 		}
 		return 50;
 	}
@@ -467,8 +498,8 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 		return (this.dataWatcher.getWatchableObjectString(27));
 	}
 
-	public String getCurrentSpeedSlowDown() {
-		return (this.dataWatcher.getWatchableObjectString(28));
+	public int getCurrentSpeedSlowDown() {
+		return (this.dataWatcher.getWatchableObjectInt(28));
 	}
 
 	public String getCurrentAccelSlowDown() {
@@ -830,7 +861,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 			dataWatcher.updateObject(3, destination);
 			dataWatcher.updateObject(26, (castToString(currentNumCartsPulled)));
 			dataWatcher.updateObject(27, (castToString((currentMassPulled)) + " tons"));
-			dataWatcher.updateObject(28, (castToString((int) currentSpeedSlowDown) + " km/h"));
+			dataWatcher.updateObject(28, ((int) currentSpeedSlowDown));
 			dataWatcher.updateObject(29, (castToString((double) (Math.round(currentAccelSlowDown * 1000)) / 1000)));
 			dataWatcher.updateObject(30, (castToString((double) (Math.round(currentBrakeSlowDown * 1000)) / 1000)));
 			dataWatcher.updateObject(31, ("1c/" + castToString((int) (currentFuelConsumptionChange)) + " per tick"));

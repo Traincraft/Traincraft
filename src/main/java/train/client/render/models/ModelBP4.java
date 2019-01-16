@@ -192,18 +192,19 @@ public class ModelBP4 extends ModelBase
 
 
 	}
-	ModelAmericanFreightTrucks bogie = new ModelAmericanFreightTrucks();
+	ModelBP4Bogie bogie = new ModelBP4Bogie();
 
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
+
 		for(int i = 0; i < 41; i++)
 		{
 			bp4Model[i].render(f5);
 		}
 
 
-		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/AmericanFreightTrucks.png"));
+		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/bp4bogie.png"));
 		GL11.glPushMatrix();
 		GL11.glScalef(1.3f,1.3f,0.9f);
 		GL11.glTranslatef(-0.2f,0.15f,0.4f);

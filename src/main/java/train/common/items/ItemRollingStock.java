@@ -206,6 +206,8 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 		EntityRollingStock rollingStock = null;
 		for(EnumTrains train : EnumTrains.values()){
 			if(train.getItem() == itemstack.getItem()){
+				System.out.println(train.getItem().getUnlocalizedName());
+				System.out.println(world!=null);
 				rollingStock = (EntityRollingStock) train.getEntity(world, i + 0.5F, j + 0.5F, k + 0.5F);
 				if(train.getColors()!=null){
 					if(rollingStock != null){
