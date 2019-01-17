@@ -113,7 +113,7 @@ public class ModelE10DB extends ModelConverter
 		bodyModel[72] = new ModelRendererTurbo(this, 441, 65, textureX, textureY); // Box 107
 		bodyModel[73] = new ModelRendererTurbo(this, 1, 73, textureX, textureY); // Box 55
 		bodyModel[74] = new ModelRendererTurbo(this, 449, 65, textureX, textureY); // Box 88
-		bodyModel[75] = new ModelRendererTurbo(this, 505, 17, textureX, textureY); // Box 116
+		bodyModel[75] = new ModelRendererTurbo(this, 505, 17, textureX, textureY, "lamp"); // Box 116
 		bodyModel[76] = new ModelRendererTurbo(this, 121, 73, textureX, textureY); // Box 118
 		bodyModel[77] = new ModelRendererTurbo(this, 225, 41, textureX, textureY); // Box 119
 		bodyModel[78] = new ModelRendererTurbo(this, 177, 25, textureX, textureY); // Box 120
@@ -139,7 +139,7 @@ public class ModelE10DB extends ModelConverter
 		bodyModel[98] = new ModelRendererTurbo(this, 441, 81, textureX, textureY); // Box 144
 		bodyModel[99] = new ModelRendererTurbo(this, 465, 33, textureX, textureY); // Box 132
 		bodyModel[100] = new ModelRendererTurbo(this, 257, 73, textureX, textureY); // Box 133
-		bodyModel[101] = new ModelRendererTurbo(this, 329, 73, textureX, textureY); // Box 134
+		bodyModel[101] = new ModelRendererTurbo(this, 329, 73, textureX, textureY, "lamp"); // Box 134
 		bodyModel[102] = new ModelRendererTurbo(this, 337, 73, textureX, textureY, "lamp"); // FrontLeftYellow
 		bodyModel[103] = new ModelRendererTurbo(this, 361, 73, textureX, textureY); // Box 136
 		bodyModel[104] = new ModelRendererTurbo(this, 369, 73, textureX, textureY); // Box 137
@@ -745,7 +745,15 @@ public class ModelE10DB extends ModelConverter
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
-		super.render(entity, f, f1, f2, f3, f4, f5);
+		for (ModelRendererTurbo mrt : bodyModel) {
+			if (mrt.boxName.equals("lamp")) {
+				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+				mrt.render(f5, false);
+				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+			} else {
+				mrt.render(f5, false);
+			}
+		}
 
 		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/e10_Bogie.png"));
 		GL11.glPushMatrix();

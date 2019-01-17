@@ -308,9 +308,15 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 								rollingStock.serverRealRotation = 90;
 							}
 						}else{
-							player.addChatMessage(new ChatComponentText("Place me on a straight piece of track!"));
-							rollingStock.setDead();
-							return rollingStock;
+							if(player!=null) {
+								player.addChatMessage(new ChatComponentText("Place me on a straight piece of track!"));
+								rollingStock.setDead();
+								return rollingStock;
+							} else {
+								if(meta == 0 || meta == 2){
+									rollingStock.serverRealRotation = 90;
+								}
+							}
 						}
 					}
 				}

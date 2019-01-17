@@ -9,6 +9,7 @@
 
 package train.client.render.models;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import tmt.ModelBase;
 import tmt.ModelRendererTurbo;
@@ -241,19 +242,19 @@ public class ModelWLs40 extends ModelBase
 		wls40Model[217] = new ModelRendererTurbo(this, 209, 73, textureX, textureY); // Box 7
 		wls40Model[218] = new ModelRendererTurbo(this, 289, 73, textureX, textureY); // Box 7
 		wls40Model[219] = new ModelRendererTurbo(this, 377, 73, textureX, textureY); // Box 7
-		wls40Model[220] = new ModelRendererTurbo(this, 353, 57, textureX, textureY); // Box 224
-		wls40Model[221] = new ModelRendererTurbo(this, 57, 65, textureX, textureY); // Box 224
-		wls40Model[222] = new ModelRendererTurbo(this, 425, 65, textureX, textureY); // Box 224
-		wls40Model[223] = new ModelRendererTurbo(this, 225, 73, textureX, textureY); // Box 224
+		wls40Model[220] = new ModelRendererTurbo(this, 353, 57, textureX, textureY, "lamp"); // Box 224
+		wls40Model[221] = new ModelRendererTurbo(this, 57, 65, textureX, textureY, "lamp"); // Box 224
+		wls40Model[222] = new ModelRendererTurbo(this, 425, 65, textureX, textureY, "lamp"); // Box 224
+		wls40Model[223] = new ModelRendererTurbo(this, 225, 73, textureX, textureY, "lamp"); // Box 224
 		wls40Model[224] = new ModelRendererTurbo(this, 233, 73, textureX, textureY); // Box 224
 		wls40Model[225] = new ModelRendererTurbo(this, 249, 73, textureX, textureY); // Box 224
 		wls40Model[226] = new ModelRendererTurbo(this, 257, 73, textureX, textureY); // Box 224
 		wls40Model[227] = new ModelRendererTurbo(this, 321, 73, textureX, textureY); // Box 224
 		wls40Model[228] = new ModelRendererTurbo(this, 297, 65, textureX, textureY); // Box 235
-		wls40Model[229] = new ModelRendererTurbo(this, 369, 73, textureX, textureY); // Box 224
-		wls40Model[230] = new ModelRendererTurbo(this, 377, 73, textureX, textureY); // Box 224
-		wls40Model[231] = new ModelRendererTurbo(this, 385, 73, textureX, textureY); // Box 224
-		wls40Model[232] = new ModelRendererTurbo(this, 473, 73, textureX, textureY); // Box 224
+		wls40Model[229] = new ModelRendererTurbo(this, 369, 73, textureX, textureY, "lamp"); // Box 224
+		wls40Model[230] = new ModelRendererTurbo(this, 377, 73, textureX, textureY, "lamp"); // Box 224
+		wls40Model[231] = new ModelRendererTurbo(this, 385, 73, textureX, textureY, "lamp"); // Box 224
+		wls40Model[232] = new ModelRendererTurbo(this, 473, 73, textureX, textureY, "lamp"); // Box 224
 		wls40Model[233] = new ModelRendererTurbo(this, 481, 73, textureX, textureY); // Box 224
 		wls40Model[234] = new ModelRendererTurbo(this, 489, 73, textureX, textureY); // Box 224
 		wls40Model[235] = new ModelRendererTurbo(this, 497, 73, textureX, textureY); // Box 224
@@ -1876,9 +1877,14 @@ public class ModelWLs40 extends ModelBase
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
-		for(int i = 0; i < 394; i++)
-		{
-			wls40Model[i].render(f5);
+		for (ModelRendererTurbo mrt : wls40Model) {
+			if (mrt.boxName.equals("lamp")) {
+				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+				mrt.render(f5, false);
+				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+			} else {
+				mrt.render(f5, false);
+			}
 		}
 	}
 

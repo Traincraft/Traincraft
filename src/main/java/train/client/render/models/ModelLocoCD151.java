@@ -8,6 +8,7 @@
 // Last changed on: 07.07.2018 - 13:59:53
 
 package train.client.render.models; //Path where the model is located
+ import net.minecraft.client.Minecraft;
  import net.minecraft.entity.Entity;
  import net.minecraft.util.ResourceLocation;
  import org.lwjgl.opengl.GL11;
@@ -34,7 +35,16 @@ public class ModelLocoCD151 extends ModelConverter //Same as Filename
 	private ModelCD151Bogie bogie = new ModelCD151Bogie();
 	@Override
 	public void render(Entity entity, float f0, float f1, float f2, float f3, float f4, float scale){
-		super.render(entity, f0, f1, f2, f3, f4, scale);
+		for (ModelRendererTurbo mrt : bodyModel){
+			if(mrt.boxName.equals("lamp")){
+				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+				mrt.render(scale,false);
+				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+			} else {
+				mrt.render(scale,false);
+			}
+		}
+
 		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation,Info.trainsPrefix +"cd151_front_bogie.png"));
 		GL11.glPushMatrix();
 		GL11.glTranslatef(-2.15f,0.3f,-0.4f);
@@ -92,12 +102,12 @@ public class ModelLocoCD151 extends ModelConverter //Same as Filename
 		bodyModel[43] = new ModelRendererTurbo(this, 49, 49, textureX, textureY); // Box 44
 		bodyModel[44] = new ModelRendererTurbo(this, 65, 49, textureX, textureY); // Box 45
 		bodyModel[45] = new ModelRendererTurbo(this, 49, 49, textureX, textureY); // Box 46
-		bodyModel[46] = new ModelRendererTurbo(this, 137, 1, textureX, textureY); // Box 47
-		bodyModel[47] = new ModelRendererTurbo(this, 137, 1, textureX, textureY); // Box 48
+		bodyModel[46] = new ModelRendererTurbo(this, 137, 1, textureX, textureY, "lamp"); // Box 47
+		bodyModel[47] = new ModelRendererTurbo(this, 137, 1, textureX, textureY, "lamp"); // Box 48
 		bodyModel[48] = new ModelRendererTurbo(this, 129, 1, textureX, textureY); // Box 49
 		bodyModel[49] = new ModelRendererTurbo(this, 129, 1, textureX, textureY); // Box 50
-		bodyModel[50] = new ModelRendererTurbo(this, 161, 17, textureX, textureY); // Box 51
-		bodyModel[51] = new ModelRendererTurbo(this, 161, 17, textureX, textureY); // Box 52
+		bodyModel[50] = new ModelRendererTurbo(this, 161, 17, textureX, textureY, "lamp"); // Box 51
+		bodyModel[51] = new ModelRendererTurbo(this, 161, 17, textureX, textureY, "lamp"); // Box 52
 		bodyModel[52] = new ModelRendererTurbo(this, 369, 39, textureX, textureY); // Box 52
 		bodyModel[53] = new ModelRendererTurbo(this, 401, 33, textureX, textureY); // Box 53
 		bodyModel[54] = new ModelRendererTurbo(this, 65, 57, textureX, textureY); // Box 54

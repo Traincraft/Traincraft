@@ -10,6 +10,8 @@
 package train.client.render.models;
 
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.Entity;
 import tmt.ModelConverter;
 import tmt.ModelRendererTurbo;
 
@@ -29,6 +31,22 @@ public class ModelLoco44TonSwitcher extends ModelConverter //Same as Filename
 
 		flipAll();
 	}
+
+	@Override
+	public void render(Entity entity, float f0, float f1, float f2, float f3, float f4, float scale) {
+		for (ModelRendererTurbo mrt : bodyModel) {
+			if (mrt.boxName.equals("lamp")) {
+				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+				mrt.render(scale, false);
+				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+			} else {
+				mrt.render(scale, false);
+			}
+		}
+	}
+
+
+
 
 	private void initbodyModel_1()
 	{
@@ -244,8 +262,8 @@ public class ModelLoco44TonSwitcher extends ModelConverter //Same as Filename
 		bodyModel[209] = new ModelRendererTurbo(this, 129, 89, textureX, textureY); // Box 227
 		bodyModel[210] = new ModelRendererTurbo(this, 145, 89, textureX, textureY); // Box 228
 		bodyModel[211] = new ModelRendererTurbo(this, 161, 89, textureX, textureY); // Box 229
-		bodyModel[212] = new ModelRendererTurbo(this, 425, 25, textureX, textureY); // Box 230
-		bodyModel[213] = new ModelRendererTurbo(this, 177, 89, textureX, textureY); // Box 231
+		bodyModel[212] = new ModelRendererTurbo(this, 425, 25, textureX, textureY, "lamp"); // Box 230
+		bodyModel[213] = new ModelRendererTurbo(this, 177, 89, textureX, textureY, "lamp"); // Box 231
 		bodyModel[214] = new ModelRendererTurbo(this, 233, 89, textureX, textureY); // Box 232
 		bodyModel[215] = new ModelRendererTurbo(this, 113, 89, textureX, textureY); // Box 233
 		bodyModel[216] = new ModelRendererTurbo(this, 313, 89, textureX, textureY); // Box 234

@@ -9,6 +9,7 @@
 
 package train.client.render.models; //Path where the model is located
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
@@ -37,10 +38,19 @@ public class ModelE103 extends ModelConverter //Same as Filename
 
 	private ModelE103Bogie bogie = new ModelE103Bogie();
 
+
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
-		super.render(entity, f, f1, f2, f3, f4, f5);
+		for (ModelRendererTurbo mrt : bodyModel) {
+			if (mrt.boxName.equals("lamp")) {
+				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+				mrt.render(f5, false);
+				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+			} else {
+				mrt.render(f5, false);
+			}
+		}
 
 		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/e103bogie.png"));
 		GL11.glPushMatrix();
@@ -119,10 +129,10 @@ public class ModelE103 extends ModelConverter //Same as Filename
 		bodyModel[62] = new ModelRendererTurbo(this, 185, 49, textureX, textureY); // Box 81
 		bodyModel[63] = new ModelRendererTurbo(this, 433, 1, textureX, textureY); // Box 82
 		bodyModel[64] = new ModelRendererTurbo(this, 473, 1, textureX, textureY); // Box 90
-		bodyModel[65] = new ModelRendererTurbo(this, 169, 17, textureX, textureY); // FrontLeftYellow
-		bodyModel[66] = new ModelRendererTurbo(this, 137, 57, textureX, textureY); // Box 90
-		bodyModel[67] = new ModelRendererTurbo(this, 49, 73, textureX, textureY); // Box 91
-		bodyModel[68] = new ModelRendererTurbo(this, 73, 73, textureX, textureY); // Box 92
+		bodyModel[65] = new ModelRendererTurbo(this, 169, 17, textureX, textureY, "lamp"); // FrontLeftYellow
+		bodyModel[66] = new ModelRendererTurbo(this, 137, 57, textureX, textureY, "lamp"); // Box 90
+		bodyModel[67] = new ModelRendererTurbo(this, 49, 73, textureX, textureY, "lamp"); // Box 91
+		bodyModel[68] = new ModelRendererTurbo(this, 73, 73, textureX, textureY, "lamp"); // Box 92
 		bodyModel[69] = new ModelRendererTurbo(this, 57, 49, textureX, textureY); // Box 93
 		bodyModel[70] = new ModelRendererTurbo(this, 185, 49, textureX, textureY); // Box 94
 		bodyModel[71] = new ModelRendererTurbo(this, 321, 81, textureX, textureY); // Box 95
@@ -232,7 +242,7 @@ public class ModelE103 extends ModelConverter //Same as Filename
 		bodyModel[175] = new ModelRendererTurbo(this, 385, 33, textureX, textureY); // Box 196
 		bodyModel[176] = new ModelRendererTurbo(this, 25, 41, textureX, textureY); // Box 197
 		bodyModel[177] = new ModelRendererTurbo(this, 97, 41, textureX, textureY); // Box 198
-		bodyModel[178] = new ModelRendererTurbo(this, 233, 49, textureX, textureY); // Box 199
+		bodyModel[178] = new ModelRendererTurbo(this, 233, 49, textureX, textureY, "lamp"); // Box 199
 		bodyModel[179] = new ModelRendererTurbo(this, 257, 49, textureX, textureY); // Box 200
 		bodyModel[180] = new ModelRendererTurbo(this, 409, 129, textureX, textureY); // Box 180
 		bodyModel[181] = new ModelRendererTurbo(this, 297, 113, textureX, textureY); // Box 181

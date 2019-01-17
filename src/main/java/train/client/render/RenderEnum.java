@@ -382,7 +382,7 @@ public enum RenderEnum {
 			add(new double[] { 1.6D, -0.4D, 0.8D });
 		}
 	}, 2, true),
-	locoSteamLSSP7(EntityLocoSteamLSSP7.class, new ModelLSSP7(), "LSSP7", false, new float[] { -0.9F, -0.2F, 0.8F }, new float[] { 0F, 180F, 180F }, new float[] { 1F, 1F, 1F }, "smoke", 20, new ArrayList<double[]>() {
+	locoSteamLSSP7(EntityLocoSteamLSSP7.class, new ModelLSSP7(), "LSSP7", false, new float[] { -1F, -0.2F, 0.8F }, new float[] { 0F, 180F, 180F }, new float[] { 1F, 1F, 1F }, "smoke", 20, new ArrayList<double[]>() {
 		{
 			add(new double[] { 0.1D, 1.15D, 0D });
 		}

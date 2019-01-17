@@ -371,10 +371,7 @@ public class LinkHandler {
 	 * @return
 	 */
 	public float getOptimalDistance(AbstractTrains cart1, AbstractTrains cart2) {
-		float dist = 0.0F;
-			dist += cart1.getOptimalDistance(cart2);
-			dist += cart2.getOptimalDistance(cart1);
-		return dist;
+		return cart1.getOptimalDistance(cart2)+cart2.getOptimalDistance(cart1);
 	}
 
 	/**

@@ -9,6 +9,7 @@
 
 package train.client.render.models;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
@@ -36,7 +37,7 @@ public class ModelFOL_M1 extends ModelBase
 		fol_m1Model[8] = new ModelRendererTurbo(this, 241, 1, textureX, textureY); // Box 8
 		fol_m1Model[9] = new ModelRendererTurbo(this, 273, 1, textureX, textureY); // Box 9
 		fol_m1Model[10] = new ModelRendererTurbo(this, 81, 1, textureX, textureY); // Box 11
-		fol_m1Model[11] = new ModelRendererTurbo(this, 113, 1, textureX, textureY); // Box 12
+		fol_m1Model[11] = new ModelRendererTurbo(this, 113, 1, textureX, textureY, "lamp"); // Box 12
 		fol_m1Model[12] = new ModelRendererTurbo(this, 305, 1, textureX, textureY); // Box 14
 		fol_m1Model[13] = new ModelRendererTurbo(this, 281, 17, textureX, textureY); // Box 15
 		fol_m1Model[14] = new ModelRendererTurbo(this, 57, 17, textureX, textureY); // Box 17
@@ -139,8 +140,8 @@ public class ModelFOL_M1 extends ModelBase
 		fol_m1Model[111] = new ModelRendererTurbo(this, 193, 73, textureX, textureY); // Box 275
 		fol_m1Model[112] = new ModelRendererTurbo(this, 305, 81, textureX, textureY); // Box 305
 		fol_m1Model[113] = new ModelRendererTurbo(this, 305, 89, textureX, textureY); // Box 309
-		fol_m1Model[114] = new ModelRendererTurbo(this, 233, 49, textureX, textureY); // Box 310
-		fol_m1Model[115] = new ModelRendererTurbo(this, 241, 49, textureX, textureY); // Box 311
+		fol_m1Model[114] = new ModelRendererTurbo(this, 233, 49, textureX, textureY, "lamp"); // Box 310
+		fol_m1Model[115] = new ModelRendererTurbo(this, 241, 49, textureX, textureY, "lamp"); // Box 311
 		fol_m1Model[116] = new ModelRendererTurbo(this, 305, 97, textureX, textureY); // Box 313
 		fol_m1Model[117] = new ModelRendererTurbo(this, 345, 97, textureX, textureY); // Box 314
 		fol_m1Model[118] = new ModelRendererTurbo(this, 329, 105, textureX, textureY); // Box 316
@@ -529,10 +530,16 @@ public class ModelFOL_M1 extends ModelBase
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
-		for(int i = 0; i < 124; i++)
-		{
-			fol_m1Model[i].render(f5);
+		for (ModelRendererTurbo mrt : fol_m1Model){
+			if(mrt.boxName.equals("lamp")){
+				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+				mrt.render(f5,false);
+				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+			} else {
+				mrt.render(f5,false);
+			}
 		}
+
 
 		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/FOL_M1_Bogie.png"));
 
