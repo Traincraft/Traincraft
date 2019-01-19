@@ -94,7 +94,7 @@ public enum EnumTrains {
 	freightHopper("Freight Hopper Green", EntityFreightGrain.class, ItemIDs.minecartGrain.item, "freight", 4, null, 18, 36, new String[]{"Cargo: wheat, seeds"}),
 	freightKClassRailBox("Freight K Class Rail Box", EntityFreightKClassRailBox.class, ItemIDs.minecartKClassRailBox.item, "freight", 4, null, 18, 36, new String[]{"Cargo: any"}),
 	freightShortCoveredHopper("Freight Short Covered Hopper", EntityFreightShortCoveredHopper.class, ItemIDs.minecartShortCoveredHopper.item, "freight", 4, null, 18, 36, new String[]{"Cargo: any"}),
-	freightLongCoveredHopper("Freight Long Covered Hopper", EntityFreightLongCoveredHopper.class, ItemIDs.minecartLongCoveredHopper.item, "freight", 6, new String[]{"LightGrey", "Grey","Pink", "White"}, 18, 54, new String[]{"Cargo: any"}),
+	freightLongCoveredHopper("Freight Long Covered Hopper", EntityFreightLongCoveredHopper.class, ItemIDs.minecartLongCoveredHopper.item, "freight", 6, new String[]{"LightGrey", "Grey","Pink", "White", "Green"}, 18, 54, new String[]{"Cargo: any"}),
 	freightOpenWagon("Freight Open Wagon", EntityFreightOpenWagon.class, ItemIDs.minecartOpenWagon.item, "freight", 2, null, 18, 36, new String[]{"Cargo: blocks, vanilla items"}),//"train_hopper" for open wagon => weird
 	freightHopperUS("Freight Hopper US", EntityFreightHopperUS.class, ItemIDs.minecartFreightHopperUS.item, "freight", 4, new String[]{"Brown", "Grey", "Blue", "Red", "Black", "LightBlue", "Purple", "Green", "Magenta", "Orange"}, 18, 27, new String[]{"Cargo: blocks"}),
 	freight100TonHopper("Freight 100 Ton Hopper", EntityFreight100TonHopper.class, ItemIDs.minecartFreight100TonHopper.item, "freight", 4, new String[]{"Red", "Black", "Blue", "Grey"}, 18, 54, new String[]{"Cargo: blocks"}),
