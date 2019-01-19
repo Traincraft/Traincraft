@@ -138,9 +138,10 @@ public class ItemTCRail extends ItemPart {
 
 	private boolean canPlaceTrack(EntityPlayer player,  World world, int x, int y, int z) {
 		Block l1 = world.getBlock(x, y - 1, z);
-		System.out.println(x + ":" +z);
 
-		if(player !=null && !player.canPlayerEdit(x, y - 1, z, 0, player.getCurrentEquippedItem())){
+		if(player !=null && (!player.canPlayerEdit(x, y - 1, z, 0, player.getCurrentEquippedItem()) ||
+				!player.canPlayerEdit(x, y, z, 0, player.getCurrentEquippedItem()))
+		){
 			return false;
 		}
 

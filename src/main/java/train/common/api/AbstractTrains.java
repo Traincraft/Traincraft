@@ -399,6 +399,10 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		Link2 = nbttagcompound.getDouble("Link2");
 	}
 
+	@Override
+	public boolean writeMountToNBT(NBTTagCompound tag){
+		return false;
+	}
 
 	public void setInformation(String trainType, String trainOwner, String trainCreator, String trainName, int uniqueID) {
 		if (!worldObj.isRemote) {
