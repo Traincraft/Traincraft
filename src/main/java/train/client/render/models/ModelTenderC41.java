@@ -791,6 +791,7 @@ public class ModelTenderC41 extends ModelConverter
 		tenderc41Model[188].addBox(0F, 0F, 0F, 31, 6, 0, 0F); // Box 188
 		tenderc41Model[188].setRotationPoint(71F, -18.5F, 10.01F);
 
+		fixRotation(tenderc41Model, false, true, true);
 
 	}
 

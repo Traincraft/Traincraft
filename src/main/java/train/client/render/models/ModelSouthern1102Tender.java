@@ -710,6 +710,7 @@ public class ModelSouthern1102Tender extends ModelBase
 		southern1102tenderModel[168].setRotationPoint(71F, -18.5F, 10.01F);
 
 
+		fixRotation(southern1102tenderModel, false, true, true);
 	}
 
 	@Override

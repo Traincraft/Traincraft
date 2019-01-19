@@ -84,7 +84,7 @@ public class ModelRendererTurbo extends ModelRenderer {
 	}
 	
 	public ModelRendererTurbo(ModelBase modelbase){
-		this(modelbase, null);
+		this(modelbase, "");
 	}
 	
 	/**
