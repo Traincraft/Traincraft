@@ -30,7 +30,7 @@ public class EntityLocoElectricCD151 extends ElectricTrain {
 
 	@Override
 	public void updateRiderPosition() {
-		TraincraftUtil.updateRider(this, (float) anglePitchClient, worldObj.isRemote?rotationYawClientReal:serverRealRotation, 0, 0.3,3.75);
+		TraincraftUtil.updateRider(this,  3.75, 0.3);
 	}
 
 	@Override

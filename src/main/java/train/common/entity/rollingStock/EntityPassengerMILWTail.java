@@ -26,7 +26,7 @@ public class EntityPassengerMILWTail extends EntityRollingStock implements IPass
 	}
 	@Override
 	public void updateRiderPosition() {
-		TraincraftUtil.updateRider(this, (float) anglePitchClient, worldObj.isRemote?rotationYawClientReal:serverRealRotation, -0.45, 0,-0.125);
+		TraincraftUtil.updateRider(this, -0.45, 0);
 	}
 
 	@Override

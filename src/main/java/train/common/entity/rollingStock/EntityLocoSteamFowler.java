@@ -39,7 +39,7 @@ public class EntityLocoSteamFowler extends SteamTrain {
 
 	@Override
 	public void updateRiderPosition() {
-		TraincraftUtil.updateRider(this, (float) anglePitchClient, worldObj.isRemote?rotationYawClientReal:serverRealRotation, 0, 0.25,- 0.25);
+		TraincraftUtil.updateRider(this, -0.25, 0.25);
 	}
 
 	@Override

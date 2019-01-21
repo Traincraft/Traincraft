@@ -38,7 +38,7 @@ public class EntityLocoDieselBamboo extends DieselTrain {
 
 	@Override
 	public void updateRiderPosition() {
-		TraincraftUtil.updateRider(this, (float) anglePitchClient, worldObj.isRemote?rotationYawClientReal:serverRealRotation, 0, 0,1.3);
+		TraincraftUtil.updateRider(this, 1.3, 0);
 	}
 
 	@Override

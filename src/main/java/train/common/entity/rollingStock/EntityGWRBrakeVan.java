@@ -36,7 +36,7 @@ public class EntityGWRBrakeVan extends AbstractWorkCart implements IInventory {
 	}
 	@Override
 	public void updateRiderPosition() {
-		TraincraftUtil.updateRider(this, (float) anglePitchClient, worldObj.isRemote?rotationYawClientReal:serverRealRotation, -1, 0.2,0);
+		TraincraftUtil.updateRider(this, -1, 0.2);
 	}
 	@Override
 	public void setDead() {

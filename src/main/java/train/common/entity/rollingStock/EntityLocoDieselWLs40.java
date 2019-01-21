@@ -38,7 +38,7 @@ public class EntityLocoDieselWLs40 extends DieselTrain {
 
 	@Override
 	public void updateRiderPosition() {
-		TraincraftUtil.updateRider(this, (float) anglePitchClient, worldObj.isRemote?rotationYawClientReal:serverRealRotation, 0, 0.5f,0);
+		TraincraftUtil.updateRider(this, 0, 0.5f);
 	}
 
 	@Override

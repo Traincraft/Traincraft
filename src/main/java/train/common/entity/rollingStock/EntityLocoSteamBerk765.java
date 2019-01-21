@@ -38,7 +38,7 @@ public class EntityLocoSteamBerk765 extends SteamTrain {
 
 	@Override
 	public void updateRiderPosition() {
-		TraincraftUtil.updateRider(this, (float) anglePitchClient, worldObj.isRemote?rotationYawClientReal:serverRealRotation, 0, 0.375,-1.125);
+		TraincraftUtil.updateRider(this, -1.125, 0.375);
 	}
 
 	@Override

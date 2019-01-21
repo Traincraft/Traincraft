@@ -26,7 +26,7 @@ public class EntityPassengerRheingoldPanorama extends EntityRollingStock impleme
 	}
 	@Override
 	public void updateRiderPosition() {
-		TraincraftUtil.updateRider(this, (float) anglePitchClient, worldObj.isRemote?rotationYawClientReal:serverRealRotation, -0.5, 0.4,0);
+		TraincraftUtil.updateRider(this,-0.5, 0.4);
 	}
 
 	@Override
