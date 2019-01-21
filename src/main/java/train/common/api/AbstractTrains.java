@@ -33,6 +33,7 @@ import train.common.library.EnumTrains;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public abstract class AbstractTrains extends EntityMinecart implements IMinecart, IRoutableCart, IEntityAdditionalSpawnData {
 
@@ -372,6 +373,11 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		//nbttagcompound.setDouble("motionZ", motionZ);
 		nbttagcompound.setDouble("Link1", Link1);
 		nbttagcompound.setDouble("Link2", Link2);
+
+		nbttagcompound.setInteger("Dim", this.dimension);
+
+		nbttagcompound.setLong("UUIDM", this.getUniqueID().getMostSignificantBits());
+		nbttagcompound.setLong("UUIDL", this.getUniqueID().getLeastSignificantBits());
 	}
 
 	@Override
@@ -397,6 +403,13 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		//motionZ = nbttagcompound.getDouble("motionZ");
 		Link1 = nbttagcompound.getDouble("Link1");
 		Link2 = nbttagcompound.getDouble("Link2");
+		if(nbttagcompound.hasKey("Dim")){
+			this.dimension=nbttagcompound.getInteger("Dim");
+		}
+
+		if(nbttagcompound.hasKey("UUIDM")){
+			this.entityUniqueID = new UUID(nbttagcompound.getLong("UUIDM"), nbttagcompound.getLong("UUIDL"));
+		}
 	}
 
 	@Override
