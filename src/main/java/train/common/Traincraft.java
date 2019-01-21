@@ -53,11 +53,11 @@ public class Traincraft {
 	public static CommonProxy proxy;
 	
 	/* Traincraft Alpha checks */
-	public static final boolean alpha = false;
+	public static final boolean alpha = true;
 	
 	public static boolean alphaEnd() {
 		Calendar cal = Calendar.getInstance();
-		return (cal.get(Calendar.MONTH) == Calendar.JANUARY && cal.get(Calendar.DATE) <= 14);
+		return (cal.get(Calendar.YEAR) == 2019 && cal.get(Calendar.MONTH) == Calendar.JANUARY && cal.get(Calendar.DATE) >= 21 && cal.get(Calendar.DATE) <= 31);
 	}
 
 	/* TrainCraft Logger */
