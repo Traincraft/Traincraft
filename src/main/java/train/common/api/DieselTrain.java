@@ -159,7 +159,7 @@ public abstract class DieselTrain extends Locomotive implements IFluidHandler {
 		if (!this.isLocoTurnedOn()) {
 			motionX *= 0.8;
 			motionZ *= 0.8;
-		} else if (fuelTrain+100 < maxTank) {
+		} else if (ticksExisted%5==0 &&fuelTrain+100 < maxTank) {
 			FluidStack drain = null;
 			if(cartLinked1 instanceof LiquidTank && !(cartLinked1 instanceof EntityBUnitEMDF7) && !(cartLinked1 instanceof EntityBUnitEMDF3) && !(cartLinked1 instanceof EntityBUnitDD35)){
 				if (getFluid() == null) {

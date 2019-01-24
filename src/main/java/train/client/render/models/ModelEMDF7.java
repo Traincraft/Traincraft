@@ -745,7 +745,7 @@ public class ModelEMDF7 extends ModelBase
 
 		emdf7Model[175].addShapeBox(0F, 0F, 0F, 3, 1, 3, 0F, -0.75F, 0F, -0.75F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.75F, 0F, -0.75F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 178
 		emdf7Model[175].setRotationPoint(12F, -25.75F, -3F);
-		fixRotation(emdf7Model, true, true, true);
+		fixRotation(emdf7Model, false, true, true);
 
 	}
 

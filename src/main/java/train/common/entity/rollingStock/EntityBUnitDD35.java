@@ -18,7 +18,6 @@ import train.common.library.GuiIDs;
 
 public class EntityBUnitDD35 extends LiquidTank implements IFluidHandler {
 	public int freightInventorySize;
-	private double lastPos=0;
 
 	private int update = 8;
 	private LiquidManager.StandardTank theTank;
@@ -70,9 +69,8 @@ public class EntityBUnitDD35 extends LiquidTank implements IFluidHandler {
 		if (getAmount() > 0) {
 			// setColor(getColorFromString("Full"));
 			setDefaultMass(-EnumTrains.BUnitDD35.getMass());
-			if (MathHelper.floor_double(Math.abs(posX + posZ)) != lastPos && ticksExisted % 40 == 0) {
-				drain(ForgeDirection.UNKNOWN, 12,true);
-				lastPos = MathHelper.floor_double(Math.abs(posX+posZ));
+			if ((motionX>0.01 || motionZ>0.01) && ticksExisted % 40 == 0) {
+				drain(ForgeDirection.UNKNOWN, 8,true);
 			}
 			
 		} else if (getAmount() <= 0) {
