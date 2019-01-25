@@ -30,13 +30,10 @@ public class LiquidManager {
 	public static Fluid oil;
 	public static Fluid steam;
 	public static Fluid fuel;
-	public static Fluid creosoteOil;
 	public static Fluid biomass;
 	public static Fluid biofuel;
+	public static Fluid bioDiesel;
 	public static Fluid bioethanol;
-	public static Fluid seedoil;
-	public static Fluid honey;
-	public static Fluid juice;
 
 	public static final Fluid DIESEL = new Fluid("Diesel").setUnlocalizedName("diesel.name").setDensity(860);
 	public static final Fluid REFINED_FUEL = new Fluid("RefinedFuel").setDensity(820).setUnlocalizedName("refinedfuel.name");
@@ -99,13 +96,10 @@ public class LiquidManager {
 		oil = FluidRegistry.getFluid("oil");
 		steam = FluidRegistry.getFluid("steam");
 		fuel = FluidRegistry.getFluid("fuel");
-		creosoteOil = FluidRegistry.getFluid("creosote oil");
 		biomass = FluidRegistry.getFluid("biomass");
 		bioethanol = FluidRegistry.getFluid("bioethanol");
 		biofuel = FluidRegistry.getFluid("biofuel");
-		seedoil = FluidRegistry.getFluid("seedoil");
-		honey = FluidRegistry.getFluid("honey");
-		juice = FluidRegistry.getFluid("juice");
+		bioDiesel = FluidRegistry.getFluid("biodiesel");
 	}
 
 	public boolean isDieselLocoFuel(ItemStack stack) {
@@ -132,6 +126,8 @@ public class LiquidManager {
 			fuels[1] = new FluidStack(REFINED_FUEL, 1);
 		if (biofuel != null)
 			fuels[2] = new FluidStack(biofuel, 1);
+		if (bioDiesel != null)
+			fuels[2] = new FluidStack(bioDiesel, 1);
 		if (fuel != null)
 			fuels[3] = new FluidStack(fuel, 1);
 		if (bioethanol != null)
