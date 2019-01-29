@@ -42,7 +42,8 @@ public class TraincraftUtil{
         return world.getBlock(x,y,z) instanceof BlockRailBase;
     }
 
-    private static final double radian = (Math.PI / 180.0D);
+    public static final double degrees = (180d / Math.PI);
+    public static final double radian = (Math.PI / 180.0D);
     public static void updateRider(EntityRollingStock transport,double distance, double yOffset) {
         double pitchRads = transport.anglePitchClient * radian;
         double rotationCos1 = Math.cos(Math.toRadians(transport.renderYaw+((transport instanceof Locomotive)?90:180)));
