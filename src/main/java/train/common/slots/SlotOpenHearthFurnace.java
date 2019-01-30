@@ -7,9 +7,12 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
+import net.minecraftforge.oredict.OreDictionary;
 import train.common.inventory.TrainCraftingManager;
 import train.common.library.AchievementIDs;
 import train.common.library.ItemIDs;
+
+import java.util.ArrayList;
 
 public class SlotOpenHearthFurnace extends Slot {
 	private EntityPlayer thePlayer;
@@ -60,8 +63,9 @@ public class SlotOpenHearthFurnace extends Slot {
 		itemstack.onCrafting(this.thePlayer.worldObj, this.thePlayer, this.amount);
 		
 		FMLCommonHandler.instance().firePlayerSmeltedEvent(thePlayer, itemstack);
-		if (itemstack.getItem() == ItemIDs.steel.item)
+		if (OreDictionary.getOres("ingotSteel").contains(itemstack)) {
 			thePlayer.addStat(AchievementIDs.steel.achievement, 1);
+		}
 
 		if (!this.thePlayer.worldObj.isRemote) {
 			int var2 = this.amount;

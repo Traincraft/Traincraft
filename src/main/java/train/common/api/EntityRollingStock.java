@@ -597,9 +597,10 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				//System.out.println(i + " " + this.trainSpec.getBogiePositions()[i]);
 				if (bogieLoco == null) {
 					this.bogieShift = this.trainSpec.getBogieLocoPosition();
-					this.bogieLoco = new EntityBogie(worldObj, (posX - Math.cos(this.serverRealRotation * TraincraftUtil.radian) * this.bogieShift),
+					this.bogieLoco = new EntityBogie(worldObj,
+							(posX - Math.cos(this.serverRealRotation * TraincraftUtil.radian) * this.bogieShift),
 							posY + ((Math.tan(this.renderPitch * TraincraftUtil.radian) * -this.bogieShift) + getMountedYOffset()),
-							(posZ - Math.sin(this.renderPitch * TraincraftUtil.radian) * this.bogieShift), this, this.uniqueID, 0, this.bogieShift);
+							(posZ - Math.sin(this.serverRealRotation * TraincraftUtil.radian) * this.bogieShift), this, this.uniqueID, 0, this.bogieShift);
 
 					//if(!worldObj.isRemote)System.out.println("ID: "+this.getID());
 					if (!worldObj.isRemote) worldObj.spawnEntityInWorld(bogieLoco);
@@ -699,10 +700,11 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			if (rollingturnProgress > 0) {
 				rotationYaw = (float) rotationYawClient;
 				this.rotationPitch = (float) (this.rotationPitch + (this.rollingPitch - this.rotationPitch) / this.rollingturnProgress);
-				--this.rollingturnProgress;
+
 				this.setPosition(this.posX + (this.rollingX - this.posX) / this.rollingturnProgress,
 						this.posY + (this.rollingY - this.posY) / this.rollingturnProgress,
 						this.posZ + (this.rollingZ - this.posZ) / this.rollingturnProgress);
+				--this.rollingturnProgress;
 				this.setRotation(this.rotationYaw, this.rotationPitch);
 				//System.out.println("1 client "+var46 +" Server "+this.posYFromServer + "ticks "+clientTicks);
 			}
@@ -907,7 +909,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 
 		//this.setRotation(this.rotationYaw, this.rotationPitch);
 
-		list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, collisionhandler!=null?
+		list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, getCollisionHandler()!=null?
 				getCollisionHandler().getMinecartCollisionBox(this):
 				boundingBox.expand(0.2D, 0.0D, 0.2D));
 
