@@ -139,7 +139,7 @@ public enum RenderEnum {
 	ModelFowler4FTender(EntityTenderFowler4F.class, new ModelFowler4FTender(), "Fowler_4F_Tender",  false, new float[] { -5.25F, -0.51585F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	tenderCoranationClass(EntityTenderCoranationClass.class, new ModelCoranationClassTender(), "CoranationClassTender", false, new float[] { 0.0F, 0.2F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	tenderBerk1225(EntityTenderBerk1225.class, new Model1225Tender(), "Berkshire_tender_",  true, new float[] { 2.75F, -0.65F, 0.0625F }, new float[] { 0F, 0F, 180F }, null, "", 0, null, "", null, 0, false),
-	tenderC41(EntityTender_C41.class, new ModelTenderC41(), "C41Tender", false, new float[] { -5.35F, -0.5F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	tenderC41(EntityTender_C41.class, new ModelTenderC41(), "C41Tender", false, new float[] { 0.1F, 0.2F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	tenderSouthern1102(EntityTender_Southern1102.class, new ModelSouthern1102Tender(), "Southern1102Tender", false, new float[] { -5.25F, -0.5F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	tenderMILW(EntityTenderMILW.class, new ModelMILWTender(), "milw_tender", false, new float[] {0.15F, 0.055F, 0.025F }, new float[] { 0F, 180F, 180F }, new float[]{0.9f,0.9f,0.9f}, "", 0, null, "", null, 0, false),
 

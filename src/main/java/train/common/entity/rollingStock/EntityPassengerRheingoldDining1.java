@@ -36,7 +36,7 @@ public class EntityPassengerRheingoldDining1 extends AbstractWorkCart implements
 
 	@Override
 	public void updateRiderPosition() {
-		TraincraftUtil.updateRider(this,  0, 0);
+		TraincraftUtil.updateRider(this,  -0.1, 0);
 	}
 
 	@Override
