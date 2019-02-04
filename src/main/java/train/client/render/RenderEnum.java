@@ -259,7 +259,7 @@ public enum RenderEnum {
 			add(new double[]{0.9D, 1.4D, 0.0D});
 		}
 	}, "", null, 0, false),
-	locoFOL_M1(EntityLocoDieselFOLM1.class, new ModelFOL_M1(), "FOL_M1", false, new float[] { -2.8F, 0.05F, 0.9F },  new float[] { 0F, 180F, 180F }, null, "largesmoke", 2, new ArrayList<double[]>() {
+	locoFOL_M1(EntityLocoDieselFOLM1.class, new ModelFOL_M1(), "FOL_M1", false, new float[] { -2.8F, 0.05F, 0.9F },  new float[] { 0F, 180F, 180F }, null, "smoke", 3, new ArrayList<double[]>() {
 		{
 			add(new double[]{1.3D, 1.45D, 0.0D});
 		}
