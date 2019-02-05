@@ -4,7 +4,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
@@ -18,6 +20,7 @@ public class LiquidTank extends EntityRollingStock implements IFluidHandler, ISi
 	protected ItemStack cargoItems[];
 	private int update = 8;
 	private FluidTank theTank;
+	public TileEntity[] blocksToCheck;
 
 	/**
 	 * 
@@ -73,8 +76,36 @@ public class LiquidTank extends EntityRollingStock implements IFluidHandler, ISi
 	@Override
 	public void onUpdate() {
 		super.onUpdate();
-		if (worldObj.isRemote)
-			return;
+		if (worldObj.isRemote){ return;}
+
+		if(ticksExisted%5==0 && fill(ForgeDirection.UNKNOWN, new FluidStack(FluidRegistry.WATER,100), false)==100) {
+			FluidStack drain = null;
+			blocksToCheck = new TileEntity[]{worldObj.getTileEntity(MathHelper.floor_double(posX), MathHelper.floor_double(posY - 1), MathHelper.floor_double(posZ)),
+					worldObj.getTileEntity(MathHelper.floor_double(posX), MathHelper.floor_double(posY + 2), MathHelper.floor_double(posZ)),
+					worldObj.getTileEntity(MathHelper.floor_double(posX), MathHelper.floor_double(posY + 3), MathHelper.floor_double(posZ)),
+					worldObj.getTileEntity(MathHelper.floor_double(posX), MathHelper.floor_double(posY + 4), MathHelper.floor_double(posZ))
+			};
+
+			for (TileEntity block : blocksToCheck) {
+				if (drain == null && block instanceof IFluidHandler) {
+					for (ForgeDirection direction : ForgeDirection.VALID_DIRECTIONS) {
+						if (((IFluidHandler) block).drain(direction, 100, false) != null &&
+								((IFluidHandler) block).drain(direction, 100, false).fluid == FluidRegistry.WATER &&
+								((IFluidHandler) block).drain(direction, 100, false).amount == 100
+						) {
+							drain = ((IFluidHandler) block).drain(
+									direction, 100, true);
+						}
+					}
+				}
+			}
+
+			if (drain != null) {
+				fill(ForgeDirection.UNKNOWN, drain, true);
+			}
+		}
+
+
 		if (theTank != null && theTank.getFluid() != null) {
 			this.dataWatcher.updateObject(18, theTank.getFluid().amount);
 			this.dataWatcher.updateObject(4, theTank.getFluid().getFluidID());

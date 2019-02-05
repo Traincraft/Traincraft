@@ -225,11 +225,11 @@ public enum EnumTrains {
 
 	/** Steam */
 	locoSteamA4("Loco Steam A4 Mallard", EntityLocoSteamMallardA4.class,  ItemIDs.minecartLocoA4Mallard.item, "steam", 2200, 203, 0, 60, 200, 160, 0.65, 0.97, 10000, new String[] { "Blue", "Lime", "Black", "Green", "White" }, 7, -5 ),
-	locosteamHallClass("Loco Hall Class", EntityLocoSteamHallClass.class,  ItemIDs.minecartLocoHallClass.item, "steam", 9567, 164, 0, 60, 200, 160, 0.65, 0.97, 10000, new String[] { "Green", "Red", "Lime" }, 7, -4.95 ),
-	locosteamBerk1225("Loco Berkshire 1225", EntityLocoSteamBerk1225.class,  ItemIDs.minecartLocoBerk1225.item, "steam", 9567, 164, 0, 60, 200, 160, 0.65, 0.97, 10000, null, 7, -4.25 ),
-	locosteamBerk765("Loco Berkshire 765", EntityLocoSteamBerk765.class,  ItemIDs.minecartLocoBerk765.item, "steam", 9567, 164, 0, 60, 200, 160, 0.65, 0.97, 10000, null, 7, -4.25 ),
-	locosteamFowler("Loco Fowler", EntityLocoSteamFowler.class,  ItemIDs.minecartLocoFowler.item, "steam", 9567, 102, 0, 60, 200, 160, 0.65, 0.97, 10000, null, 7, -3.25 ),
-	locosteamKingClass("Loco King Class", EntityLocoSteamKingClass.class,  ItemIDs.minecartLocoKingClass.item, "steam", 9665, 174, 0, 60, 200, 160, 0.65, 0.97, 10000, new String[] { "Green", "Blue", "Lime" }, 7, -5.35 ),
+	locosteamHallClass("Loco Hall Class", EntityLocoSteamHallClass.class,  ItemIDs.minecartLocoHallClass.item, "steam", 2256, 164, 0, 60, 200, 160, 0.65, 0.97, 10000, new String[] { "Green", "Red", "Lime" }, 7, -4.95 ),
+	locosteamBerk1225("Loco Berkshire 1225", EntityLocoSteamBerk1225.class,  ItemIDs.minecartLocoBerk1225.item, "steam", 5742, 164, 0, 60, 200, 160, 0.65, 0.97, 10000, null, 7, -4.25 ),
+	locosteamBerk765("Loco Berkshire 765", EntityLocoSteamBerk765.class,  ItemIDs.minecartLocoBerk765.item, "steam", 5314, 164, 0, 60, 200, 160, 0.65, 0.97, 10000, null, 7, -4.25 ),
+	locosteamFowler("Loco Fowler", EntityLocoSteamFowler.class,  ItemIDs.minecartLocoFowler.item, "steam", 2032, 102, 0, 60, 200, 160, 0.65, 0.97, 10000, null, 7, -3.25 ),
+	locosteamKingClass("Loco King Class", EntityLocoSteamKingClass.class,  ItemIDs.minecartLocoKingClass.item, "steam", 33372, 174, 0, 60, 200, 160, 0.65, 0.97, 10000, new String[] { "Green", "Blue", "Lime" }, 7, -5.35 ),
 	locoSteamMILW("Loco Steam MILW Class A", EntityLocoSteamMILWClassA.class,  ItemIDs.minecartLocoMILWClassA.item, "steam", 3000, 193, 0, 60, 150, 160, 0.65, 0.97, 10000, null, 7, -4.5 ),
 	locoSteamCherepanov("Loco Steam Cherepanov",EntityLocoSteamCherepanov.class, ItemIDs.minecartLocoCherepanov.item,"steam",150,30,0,40,120,120,0.3D,0.98D,3000,null,18,-1.7),
 	locoSteamBR80("Loco Steam BR80",EntityLocoSteamBR80_DB.class,ItemIDs.minecartLocoBR80_DB.item,"steam",567,45,0,100,130,135,0.45,0.97,7000,new String [] {"Black", "Green"},16,-1.1),

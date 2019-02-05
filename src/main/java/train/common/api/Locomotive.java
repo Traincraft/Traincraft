@@ -13,6 +13,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
 import org.lwjgl.input.Keyboard;
@@ -52,6 +53,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 	private boolean forwardPressed = false;
 	private boolean backwardPressed = false;
 	private boolean brakePressed = false;
+	public TileEntity[] blocksToCheck;
 	
 
         public int speedLimit = 0;

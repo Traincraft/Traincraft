@@ -2,6 +2,8 @@ package train.common.api;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
@@ -17,6 +19,7 @@ public abstract class Tender extends Freight implements IFluidHandler {
 	private int update = 8;
 	private StandardTank theTank;
 	private IFluidTank[] tankArray = new IFluidTank[1];
+	public TileEntity[] blocksToCheck;
 	/**
 	 * 
 	 * @param world
@@ -163,14 +166,33 @@ public abstract class Tender extends Freight implements IFluidHandler {
 
 		if(ticksExisted%5==0 && fill(ForgeDirection.UNKNOWN, new FluidStack(FluidRegistry.WATER,100), false)==100) {
 			FluidStack drain =null;
-			if (cartLinked1 instanceof LiquidTank
+			blocksToCheck = new TileEntity[]{worldObj.getTileEntity(MathHelper.floor_double(posX), MathHelper.floor_double(posY - 1), MathHelper.floor_double(posZ)),
+					worldObj.getTileEntity(MathHelper.floor_double(posX), MathHelper.floor_double(posY + 2), MathHelper.floor_double(posZ)),
+					worldObj.getTileEntity(MathHelper.floor_double(posX), MathHelper.floor_double(posY + 3), MathHelper.floor_double(posZ)),
+					worldObj.getTileEntity(MathHelper.floor_double(posX), MathHelper.floor_double(posY + 4), MathHelper.floor_double(posZ))
+			};
+
+			for (TileEntity block : blocksToCheck) {
+				if (drain == null && block instanceof IFluidHandler) {
+					for (ForgeDirection direction : ForgeDirection.VALID_DIRECTIONS) {
+						if(((IFluidHandler) block).drain(direction,100,false)!=null &&
+								((IFluidHandler) block).drain(direction, 100, false).fluid==FluidRegistry.WATER &&
+								((IFluidHandler) block).drain(direction, 100, false).amount ==100
+						) {
+							drain = ((IFluidHandler) block).drain(
+									direction, 100, true);
+						}
+					}
+				}
+			}
+			if (drain ==null && cartLinked1 instanceof LiquidTank
 					&& !(cartLinked1 instanceof EntityBUnitEMDF7) && !(cartLinked1 instanceof EntityBUnitEMDF3) && !(cartLinked1 instanceof EntityBUnitDD35)) {
 				if (getFluid() == null) {
 					drain = ((LiquidTank) cartLinked1).drain(ForgeDirection.UNKNOWN, new FluidStack(FluidRegistry.WATER, 100), true);
 				} else if (getFluid().getFluid() == FluidRegistry.WATER) {
 					drain = ((LiquidTank) cartLinked1).drain(ForgeDirection.UNKNOWN, new FluidStack(FluidRegistry.WATER, 100), true);
 				}
-			} else if (cartLinked2 instanceof LiquidTank
+			} else if (drain ==null && cartLinked2 instanceof LiquidTank
 					&& !(cartLinked1 instanceof EntityBUnitEMDF7) && !(cartLinked1 instanceof EntityBUnitEMDF3) && !(cartLinked1 instanceof EntityBUnitDD35)) {
 				if (getFluid() == null) {
 					drain = ((LiquidTank) cartLinked2).drain(ForgeDirection.UNKNOWN, new FluidStack(FluidRegistry.WATER, 100), true);
