@@ -596,14 +596,18 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 					|| this.trainOwner.equals("") || entityplayer.canCommandSenderUseCommand(2, "")) {
 				if (locked) {
 					locked = false;
-					entityplayer.addChatMessage(new ChatComponentText("unlocked"));
+					if(worldObj.isRemote) {
+						entityplayer.addChatMessage(new ChatComponentText("unlocked"));
+					}
 				}
 				else {
 					locked = true;
-					entityplayer.addChatMessage(new ChatComponentText("locked"));
+					if(worldObj.isRemote) {
+						entityplayer.addChatMessage(new ChatComponentText("locked"));
+					}
 				}
 			}
-			else {
+			else if (worldObj.isRemote) {
 				entityplayer.addChatMessage(new ChatComponentText("You are not the owner!"));
 			}
 			return true;

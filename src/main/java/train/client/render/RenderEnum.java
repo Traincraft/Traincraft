@@ -12,7 +12,7 @@ public enum RenderEnum {
 
 	/** Passengers */
 	passengerCartBlue(EntityPassengerBlue.class, new ModelPassenger6(), "passenger", true, new float[] { 0.0F, -0.47F, 0.0F }, null, null, "", 0, null, "", null, 0, false),
-	passengerCartBlackSmall(EntityPassenger2.class, new ModelPassenger2(), "passenger3", false, new float[] { 0.0F, -0.32F, 0.0F }, null, null, "", 0, null, "", null, 0, false),
+	passengerCartBlackSmall(EntityPassenger2.class, new ModelPassenger2(), "passenger3", false, new float[] { 0.0F, -0.32F, -0.1F }, null, null, "", 0, null, "", null, 0, false),
 	passengerLongGreen(EntityPassenger5.class, new ModelPassenger5(), "passenger5_", true, new float[] { 0.0F, -0.32F, 0.0F }, null, null, "", 0, null, "", null, 0, false),
 	passengerShortGreen(EntityPassenger7.class, new ModelPassenger7(), "passenger7", false, new float[] { 0.0F, -0.44F, 0.0F }, new float[] { 0F, 90F, 0F }, null, "", 0, null, "", null, 0, false),
 	passenger_1class_DB(EntityPassenger_1class_DB.class, new ModelPassenger_1class_DB(), "passenger_1class_DB", false, new float[] { 0.0F, -0.44F, 0.0F }, null, null, "", 0, null, "", null, 0, false),
@@ -165,7 +165,7 @@ public enum RenderEnum {
 			add(new double[] { 0.45D, 1.3D, 0.0D });
 		}
 	}, "", null, 0, false),
-	loco44tonner(EntityLocoDiesel44TonSwitcher.class, new ModelLoco44TonSwitcher(), "loco_44tonswitcher", false, new float[] { -2.75F, -0.4F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "smoke", 4, new ArrayList<double[]>() {
+	loco44tonner(EntityLocoDiesel44TonSwitcher.class, new ModelLoco44TonSwitcher(), "loco_44tonswitcher", false, new float[] { -2.75F, -0.425F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "smoke", 4, new ArrayList<double[]>() {
 		{
 			add(new double[] { 0.6D, 1.55D, 0.0D });
 			add(new double[] { 2D, 1.55D, 0.0D });
