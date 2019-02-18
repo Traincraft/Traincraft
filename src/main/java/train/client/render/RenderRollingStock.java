@@ -365,7 +365,7 @@ public class RenderRollingStock extends Render {
 		return getTexture(entity);
 	}
 
-	private static ResourceLocation getTexture(Entity entity) {
+	public static ResourceLocation getTexture(Entity entity) {
 		for (RenderEnum renders : RenderEnum.values()) {
 			if (renders.getEntityClass() != null && renders.getEntityClass().equals(entity.getClass())) { return getResourceFile(renders.getTexture(), renders.getIsMultiTextured(), (EntityRollingStock) entity); }
 		}
