@@ -16,6 +16,8 @@ import org.lwjgl.opengl.GL11;
 import tmt.ModelConverter;
 import tmt.ModelRendererTurbo;
 import tmt.Tessellator;
+import train.client.render.RenderRollingStock;
+import train.common.api.AbstractTrains;
 import train.common.library.Info;
 
 public class ModelDepressedFlatbed extends ModelConverter //Same as Filename
@@ -35,20 +37,45 @@ public class ModelDepressedFlatbed extends ModelConverter //Same as Filename
 		flipAll();
 	}
 	private ModelFreightTruckM trucks = new ModelFreightTruckM();
+	private ModelCharB1 tank1 = new ModelCharB1();
+	private ModelFT17 tank2 = new ModelFT17();
+	private ModelPanzerI tank3 = new ModelPanzerI();
 
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
+		Tessellator.bindTexture(RenderRollingStock.getTexture(entity));
 		super.render(entity, f, f1, f2, f3, f4, f5);
 
 		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/freighttruckm.png"));
 		GL11.glPushMatrix();
 		GL11.glTranslated(-3.15,0,-0.25);
 		trucks.render(entity,f,f1,f2,f3,f4,f5);
-
 		GL11.glTranslated(5.45,0,0);
 		trucks.render(entity,f,f1,f2,f3,f4,f5);
 		GL11.glPopMatrix();
+
+		if( entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor()==7) {
+			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/CharB1.png"));
+			GL11.glPushMatrix();
+			GL11.glTranslated(0.9, 0.14, -0.0425);
+			GL11.glScalef(0.55f, 0.55f, 0.55f);
+			tank1.render(entity, f, f1, f2, f3, f4, f5);
+			GL11.glPopMatrix();
+		} else if( entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor()==0) {
+			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/PanzerI.png"));
+			GL11.glPushMatrix();
+			GL11.glTranslated(0.45,0.025,-0.11);
+			GL11.glScalef(0.55f,0.55f,0.55f);
+			tank3.render(entity,f,f1,f2,f3,f4,f5);
+			GL11.glPopMatrix();
+		} else {     Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/FT17.png"));
+			GL11.glPushMatrix();
+			GL11.glTranslated(0.5,0.04,-0.0425);
+			GL11.glScalef(0.55f,0.55f,0.55f);
+			tank2.render(entity,f,f1,f2,f3,f4,f5);
+			GL11.glPopMatrix();
+		}
 	}
 
 	private void initbodyModel_1()
