@@ -17,7 +17,6 @@ public class TileInfoGrabberMTC  extends TileEntity implements IPeripheral {
     public String trainLevel = "0";
     public String trainName = "0";
     public String trainType = "0";
-    public String trainID = "0";
     public boolean trainOverSensor = false;
     public AxisAlignedBB boundingBox = null;
     @Override

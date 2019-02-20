@@ -5,7 +5,7 @@
  * @author Mrbrutal
  ******************************************************************************/
 
-package train.common.core.handlers;
+package train.common.core.network;
 
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.relauncher.Side;
@@ -56,8 +56,8 @@ public class PacketHandler {
 				PacketTrackBuilderHeight.class, 8, Side.SERVER);
 		Traincraft.builderChannel.registerMessage(PacketTrackBuilderFollow.Handler.class,
 				PacketTrackBuilderFollow.class, 9, Side.SERVER);
-		Traincraft.degActivateChannel.registerMessage(PacketDEGActivate.Handler.class,
-				PacketDEGActivate.class, 10, Side.SERVER);
+		/*Traincraft.degActivateChannel.registerMessage(PacketDEGActivate.Handler.class,
+				PacketDEGActivate.class, 10, Side.SERVER);*/
 		Traincraft.updateTrainIDChannel.registerMessage(PacketUpdateTrainID.Handler.class, PacketUpdateTrainID.class, 11, Side.SERVER);
         Traincraft.updateDestinationChannel.registerMessage(PacketDestination.Handler.class, PacketDestination.class, 12, Side.SERVER);
 		Traincraft.itsChannel.registerMessage(PacketSetSpeedHandler.class, PacketSetSpeed.class, 200, Side.CLIENT);
