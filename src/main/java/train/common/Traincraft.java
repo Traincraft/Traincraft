@@ -71,7 +71,7 @@ public class Traincraft {
 
 	public static final SimpleNetworkWrapper itaChannel = NetworkRegistry.INSTANCE.newSimpleChannel("TransmitterAspect");
 	public static  SimpleNetworkWrapper itsChannel = NetworkRegistry.INSTANCE.newSimpleChannel("TransmitterSpeed");
-	public static  SimpleNetworkWrapper mtcsChannel = NetworkRegistry.INSTANCE.newSimpleChannel("MTCSysSetSpeed");
+	//public static  SimpleNetworkWrapper mtcsChannel = NetworkRegistry.INSTANCE.newSimpleChannel("MTCSysSetSpeed");
 	public static  SimpleNetworkWrapper itnsChannel = NetworkRegistry.INSTANCE.newSimpleChannel("TransmitterNextSpeed");
 	public static final SimpleNetworkWrapper mtlChannel = NetworkRegistry.INSTANCE.newSimpleChannel("MTCLevelUpdater");
 	public static final SimpleNetworkWrapper msChannel = NetworkRegistry.INSTANCE.newSimpleChannel("MTCStatus");
@@ -136,6 +136,14 @@ public class Traincraft {
 		FMLCommonHandler.instance().bus().register(retroGen);
 		
 		MapGenStructureIO.func_143031_a(ComponentVillageTrainstation.class, "Trainstation");
+
+		if (Loader.isModLoaded("ComputerCraft")) {
+			try {
+				proxy.registerComputerCraftPeripherals();
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+		}
 
 		/* Other Proxy init */
 		tcLog.info("Initialize Renderer and Events");
