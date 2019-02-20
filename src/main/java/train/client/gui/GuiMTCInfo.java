@@ -5,23 +5,32 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.Entity;
+import org.lwjgl.input.Keyboard;
+import scala.Char;
 import train.client.gui.GuiTCTextField;
 import train.common.Traincraft;
 import train.common.api.Locomotive;
+import train.common.api.SteamTrain;
+import train.common.core.network.PacketDestination;
+import train.common.core.network.PacketUpdateTrainID;
 import train.common.mtc.packets.PacketMTCLevelUpdate;
+
+import java.util.Collections;
 
 import static org.lwjgl.opengl.GL11.glColor3f;
 
 public class GuiMTCInfo extends GuiScreen {
        Locomotive theLocomotive;
        private GuiTCTextField trainLevel;
+       private GuiTCTextField trainID;
+       private GuiTCTextField destination;
        private GuiButton okayButton;
     public GuiMTCInfo(Entity entity) {
 
         if (entity instanceof Locomotive) {
-
           theLocomotive = (Locomotive)entity;
       }
     }
@@ -29,56 +38,76 @@ public class GuiMTCInfo extends GuiScreen {
     @Override
     public void initGui() {
 
-        trainLevel = new GuiTCTextField(fontRendererObj, this.width/2 -5, this.height/2 - 1, 15,10);
-        okayButton = new GuiButton(0,this.width/2 -5, this.height/2 + 10, 25,25, "Okay" );
+        trainLevel = new GuiTCTextField(fontRendererObj, this.width/2 -5, this.height/2 - 1, 15,15);
+        destination = new GuiTCTextField(fontRendererObj, this.width/2 -5, this.height/2 + 20, 80,15);
+        trainID = new GuiTCTextField(fontRendererObj, this.width/2 -5, this.height/2 - 20, 80,15);
+        okayButton = new GuiButton(0,this.width/2 -5, this.height/2 + 40, 60,25, "Okay" );
         trainLevel.setMaxStringLength(1);
         trainLevel.setText(theLocomotive.trainLevel);
-        this.buttonList.add(okayButton);
+        trainID.setMaxStringLength(6);
+        trainID.setText(theLocomotive.trainID);
+        destination.setText(theLocomotive.getDestinationGUI());
+
+
 
     }
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-
-
-
-
          drawDefaultBackground();
-
-        this.drawCenteredString(this.fontRendererObj, "TrainAdditions Config", this.width / 2, 40, 0xFFFFFFFF);
-        glColor3f(1, 1, 1);
-        this.drawString( this.fontRendererObj,"Train Level: ", this.width/2 -70, this.height/2,  0xFFFFFFFF);
-
-     trainLevel.drawTextBox();
+        this.drawCenteredString(this.fontRendererObj, "Minecraft Train Control Setup", this.width / 2, 40, 0xFFFFFFFF);
+        this.drawString( this.fontRendererObj,"Train Level: ", this.width/2 -70, this.height/2 + 3,  0xFFFFFFFF);
+        this.drawString( this.fontRendererObj,"Train ID: ", this.width/2 -70, this.height/2 - 17,  0xFFFFFFFF);
+        this.drawString( this.fontRendererObj,"Destination: ", this.width/2 -70, this.height/2 + 23,  0xFFFFFFFF);
+        trainLevel.drawTextBox();
+        trainID.drawTextBox();
+        destination.drawTextBox();
         super.drawScreen(mouseX, mouseY, partialTicks);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     protected void actionPerformed(GuiButton button) {
-        if (button.id == 0) {
-            if (trainLevel.getText() != null && isInteger(trainLevel.getText())) {
-               // System.out.println(trainLevel.getText());
 
-                theLocomotive.trainLevel = trainLevel.getText();
-                Traincraft.mtlChannel.sendToServer(new PacketMTCLevelUpdate(theLocomotive.getEntityId(), Integer.parseInt(trainLevel.getText())));
-                mc.thePlayer.closeScreen();
-                //update
-            }
-        }
     }
     @Override
     public void updateScreen() {
         super.updateScreen();
-        trainLevel.updateCursorCounter();
+        if (trainLevel.isFocused()) {
+            trainLevel.updateCursorCounter();
+        }
+        if (trainID.isFocused()) {
+            trainID.updateCursorCounter();
+        }
+        if (destination.isFocused()) {
+            destination.updateCursorCounter();
+        }
+
 
 
     }
     @Override
     protected void keyTyped(char par1, int par2) {
-        trainLevel.textboxKeyTyped(par1, par2);
-        if (par2 == 1 || par2 == mc.gameSettings.keyBindBack.getKeyCode()) {
-            if (!trainLevel.isFocused()) {
+
+        if (trainLevel.isFocused()  && par2 == Keyboard.KEY_1 || par2 == Keyboard.KEY_2 || par2 == Keyboard.KEY_3 || par2 == Keyboard.KEY_4 || par2 == Keyboard.KEY_5 || par2 == Keyboard.KEY_6 ||par2 == Keyboard.KEY_7 || par2 == Keyboard.KEY_8 || par2 == Keyboard.KEY_9 || par2 == Keyboard.KEY_0  || par2 == Keyboard.KEY_BACK) {
+            trainLevel.textboxKeyTyped(par1, par2);
+        }
+       if (trainID.isFocused()) {
+            trainID.textboxKeyTyped(par1, par2);
+       }
+        if (destination.isFocused()) {
+            destination.textboxKeyTyped(par1, par2);
+        }
+
+        if (par2 == 1 || par2 == Keyboard.KEY_ESCAPE) {
+            if (!destination.isFocused() || !trainID.isFocused() || !trainLevel.isFocused()) {
+                mc.thePlayer.closeScreen();
+                theLocomotive.trainLevel = trainLevel.getText();
+                Traincraft.mtlChannel.sendToServer(new PacketMTCLevelUpdate(theLocomotive.getEntityId(), Integer.parseInt(trainLevel.getText())));
+                theLocomotive.trainID = trainID.getText();
+                Traincraft.updateTrainIDChannel.sendToServer(new PacketUpdateTrainID(theLocomotive.getEntityId(), trainID.getText()));
+                theLocomotive.destination = destination.getText();
+                Traincraft.updateDestinationChannel.sendToServer(new PacketDestination(theLocomotive.getEntityId(), destination.getText()));
                 mc.thePlayer.closeScreen();
             }
         }
@@ -88,6 +117,8 @@ public class GuiMTCInfo extends GuiScreen {
     @Override
     protected void mouseClicked(int par1, int par2, int par3) {
         trainLevel.mouseClicked(par1, par2, par3);
+        trainID.mouseClicked(par1, par2, par3);
+        destination.mouseClicked(par1, par2, par3);
         super.mouseClicked(par1, par2, par3);
     }
     @Override
@@ -97,12 +128,9 @@ public class GuiMTCInfo extends GuiScreen {
     public static boolean isInteger(String s) {
         try {
             Integer.parseInt(s);
-        } catch(NumberFormatException e) {
-            return false;
-        } catch(NullPointerException e) {
+            return true;
+        } catch (NumberFormatException nfe) {
             return false;
         }
-        // only got here if we didn't return false
-        return true;
     }
 }
