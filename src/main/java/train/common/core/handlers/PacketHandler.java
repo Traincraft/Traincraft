@@ -61,7 +61,8 @@ public class PacketHandler {
 		if (Loader.isModLoaded("ComputerCraft")) {
 			Traincraft.itsChannel.registerMessage(PacketSetSpeedHandler.class, PacketSetSpeed.class, 200, Side.CLIENT);
 			Traincraft.itsChannel.registerMessage(PacketSetSpeedHandler.class, PacketSetSpeed.class, 212, Side.SERVER);
-
+			Traincraft.updateTrainIDChannel.registerMessage(PacketUpdateTrainID.Handler.class, PacketUpdateTrainID.class, 11, Side.SERVER);
+        		Traincraft.updateDestinationChannel.registerMessage(PacketDestination.Handler.class, PacketDestination.class, 12, Side.SERVER);
 			Traincraft.itnsChannel.registerMessage(PacketNextSpeedHandler.class, PacketNextSpeed.class, 211, Side.CLIENT);
 			Traincraft.mtlChannel.registerMessage(PacketMTCLevelUpdateHandler.class, PacketMTCLevelUpdate.class, 201, Side.SERVER);
 			Traincraft.msChannel.registerMessage(PacketMTChandler.class, PacketMTC.class, 202, Side.SERVER);
