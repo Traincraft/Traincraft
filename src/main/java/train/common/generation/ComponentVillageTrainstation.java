@@ -186,6 +186,9 @@ public class ComponentVillageTrainstation extends StructureVillagePieces.Village
 			if (rD == 4) {
 				cart.setColor(AbstractTrains.getColorFromString("Blue"));
 			}
+			if (rD == 7) {
+				cart.setColor(AbstractTrains.getColorFromString("Red"));
+			}
 			if (rD == 5) {
 				cart.setColor(AbstractTrains.getColorFromString("Brown"));
 			}

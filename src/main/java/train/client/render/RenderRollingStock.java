@@ -230,14 +230,15 @@ public class RenderRollingStock extends Render {
 				}
 				Tessellator.bindTexture(getTexture(cart));
 
-
+				GL11.glEnable(GL11.GL_LIGHTING);
 				int skyLight = cart.worldObj.getLightBrightnessForSkyBlocks(i, j, k, 0);
-				OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit,  skyLight % 65536,  skyLight / 65536f);
-				GL11.glDisable(GL11.GL_LIGHTING);
+				OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit,  skyLight % 65536,
+						skyLight / 65536f);
+
 
 				renders.getModel().render(cart, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
 
-				GL11.glEnable(GL11.GL_LIGHTING);
+				//GL11.glEnable(GL11.GL_LIGHTING);
 
 				if (renders.hasSmoke()) {
 					if (cart.bogieLoco != null) {// || cart.bogieUtility[0]!=null){
