@@ -312,10 +312,12 @@ public abstract class Tender extends Freight implements IFluidHandler {
 
 	@Override
 	public void dropCartAsItem(boolean isCreative){
-		super.dropCartAsItem(isCreative);
-		for(ItemStack stack : tenderItems){
-			if (stack != null) {
-				entityDropItem(stack, 0);
+		if(!itemdropped) {
+			super.dropCartAsItem(isCreative);
+			for (ItemStack stack : tenderItems) {
+				if (stack != null) {
+					entityDropItem(stack, 0);
+				}
 			}
 		}
 	}

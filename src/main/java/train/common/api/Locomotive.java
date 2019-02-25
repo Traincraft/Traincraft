@@ -1122,10 +1122,12 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 
 	@Override
 	public void dropCartAsItem(boolean isCreative){
-		super.dropCartAsItem(isCreative);
-		for(ItemStack stack : locoInvent){
-			if (stack != null) {
-				entityDropItem(stack, 0);
+		if(!itemdropped) {
+			super.dropCartAsItem(isCreative);
+			for (ItemStack stack : locoInvent) {
+				if (stack != null) {
+					entityDropItem(stack, 0);
+				}
 			}
 		}
 	}
