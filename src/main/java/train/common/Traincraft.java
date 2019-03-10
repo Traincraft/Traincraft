@@ -65,8 +65,8 @@ public class Traincraft {
 	public static SimpleNetworkWrapper brakeChannel;
 	public static SimpleNetworkWrapper lockChannel;
 	public static SimpleNetworkWrapper builderChannel;
-	public static SimpleNetworkWrapper updateTrainIDChannel = NetworkRegistry.INSTANCE.newSimpleChannel("updateTrainIDChannel");
-    public static SimpleNetworkWrapper updateDestinationChannel = NetworkRegistry.INSTANCE.newSimpleChannel("updateDestinationChannel");
+	public static SimpleNetworkWrapper updateTrainIDChannel = NetworkRegistry.INSTANCE.newSimpleChannel("TrainIDChannel");
+    public static SimpleNetworkWrapper updateDestinationChannel = NetworkRegistry.INSTANCE.newSimpleChannel("updateDestnChannel");
 
 
 	public static final SimpleNetworkWrapper itaChannel = NetworkRegistry.INSTANCE.newSimpleChannel("TransmitterAspect");
@@ -187,33 +187,7 @@ public class Traincraft {
 
 		proxy.registerBookHandler();
 
-		if (Loader.isModLoaded("ComputerCraft")) {
-			tcLog.info("Activating ComputerCraft Functionality");
-			BlockIDs.mtcTransmitterSpeed.block = new BlockInfoTransmitterSpeed(Material.rock).setHardness(3.5F).setStepSound(Block.soundTypeMetal).setBlockTextureName("tc" + ":" + "textures/blocks/speedTransmitter").setBlockName("mtcspeedtransmitter");
-			BlockIDs.mtcTransmitterMTC.block = new BlockInfoTransmitterMTC(Material.rock).setHardness(3.5F).setStepSound(Block.soundTypeMetal);
-			BlockIDs.mtcATOStopTransmitter.block = new BlockATOTransmitterStopPoint(Material.rock).setHardness(3.5F).setStepSound(Block.soundTypeMetal);
-			BlockIDs.mtcReceiverMTC.block = new BlockInfoGrabberMTC(Material.rock).setHardness(3.5F).setStepSound(Block.soundTypeMetal);
-			BlockIDs.mtcReceiverDestination.block = new BlockInfoGrabberDestination(Material.rock).setHardness(3.5F).setStepSound(Block.soundTypeMetal);
-			GameRegistry.registerBlock(new BlockInfoTransmitterSpeed(Material.rock), "mtcspeedtransmitter").setBlockTextureName("tc" + ":" + "speedTransmitter").setBlockName("mtcspeedtransmitter").setCreativeTab(Traincraft.tcTab);
-			GameRegistry.registerBlock(new BlockInfoTransmitterMTC(Material.rock), "mtcstatustransmitter").setBlockTextureName("tc" + ":" + "mtcTransmitter").setBlockName("mtcstatustransmitter").setCreativeTab(Traincraft.tcTab);
-			GameRegistry.registerBlock(new BlockATOTransmitterStopPoint(Material.rock), "mtcatostoppointtransmitter").setBlockTextureName("tc" + ":" + "atoStopTransmitter").setBlockName("mtcatostoppointtransmitter").setCreativeTab(Traincraft.tcTab);
-			GameRegistry.registerBlock(new BlockInfoGrabberMTC(Material.rock), "mtcstatusreceiver").setBlockTextureName("tc" + ":" + "mtcReceiver").setBlockName("mtcstatusreceiver").setCreativeTab(Traincraft.tcTab);
-			GameRegistry.registerBlock(new BlockInfoGrabberDestination(Material.rock), "mtcdestinationreceiver").setBlockTextureName("tc:destinationreceiver").setBlockName("mtcdestinationreceiver").setCreativeTab(Traincraft.tcTab);
-			GameRegistry.registerTileEntity(TileInfoTransmitterSpeed.class, "tileInfoTransmitterSpeed");
-			GameRegistry.registerTileEntity(TileInfoTransmitterMTC.class, "tileInfoTransmitterMTC");
-			GameRegistry.registerTileEntity(TileInfoGrabberMTC.class, "tileInfoReceiverMTC");
-			GameRegistry.registerTileEntity(TileInfoGrabberDestination.class, "tileInfoReceiverDestination");
-			GameRegistry.registerTileEntity(TileATOTransmitterStopPoint.class, "tileATOTransmitterStopPoint");
-
-			GameRegistry.registerTileEntity(TilePDMInstructionRadio.class, "tilePDMInstructionRadio");
-			GameRegistry.registerBlock(new BlockPDMInstructionRadio(Material.rock), "pdminstructionradio").setBlockName("pdminstructionradio").setCreativeTab(Traincraft.tcTab);
-			BlockIDs.pdmInstructionBlock.block = new BlockPDMInstructionRadio(Material.rock).setHardness(3.5F).setStepSound(Block.soundTypeMetal);
-			try {
-				proxy.registerComputerCraftPeripherals();
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			}
-		}
+		
 		tcLog.info("Finished Initialization");
 
 
