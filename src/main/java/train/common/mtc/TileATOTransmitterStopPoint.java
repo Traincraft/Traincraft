@@ -98,4 +98,22 @@ public class TileATOTransmitterStopPoint extends TileEntity implements IPeripher
       return boundingBox;
    }
 
+  @Override
+   public void readFromNBT(NBTTagCompound nbttagcompound) {
+      super.readFromNBT(nbttagcompound);
+      this.isActivated = nbttagcompound.getBoolean("isActivated");
+      this.stopX = nbttagcompound.getDouble("stopX");
+      this.stopY = nbttagcompound.getDouble("stopY");
+      this.stopZ = nbttagcompound.getDouble("stopZ");
+   }
+
+   @Override
+   public void writeToNBT(NBTTagCompound nbttagcompound) {
+      super.writeToNBT(nbttagcompound);
+      nbttagcompound.setBoolean("isActivated", this.isActivated);
+      nbttagcompound.setDouble("stopX", this.stopX);
+      nbttagcompound.setDouble("stopY", this.stopY);
+      nbttagcompound.setDouble("stopZ", this.stopZ);
+   }
+
 }
