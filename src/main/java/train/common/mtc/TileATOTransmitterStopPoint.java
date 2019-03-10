@@ -9,6 +9,7 @@ import dan200.computercraft.api.peripheral.IPeripheral;
 import java.util.Iterator;
 import java.util.List;
 import net.minecraft.entity.Entity;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import train.common.Traincraft;
@@ -96,6 +97,24 @@ public class TileATOTransmitterStopPoint extends TileEntity implements IPeripher
          boundingBox = AxisAlignedBB.getBoundingBox(xCoord, yCoord, zCoord, xCoord + 2, yCoord + 2, zCoord + 2);
       }
       return boundingBox;
+   }
+
+  @Override
+   public void readFromNBT(NBTTagCompound nbttagcompound) {
+      super.readFromNBT(nbttagcompound);
+      this.isActivated = nbttagcompound.getBoolean("isActivated");
+      this.stopX = nbttagcompound.getDouble("stopX");
+      this.stopY = nbttagcompound.getDouble("stopY");
+      this.stopZ = nbttagcompound.getDouble("stopZ");
+   }
+
+   @Override
+   public void writeToNBT(NBTTagCompound nbttagcompound) {
+      super.writeToNBT(nbttagcompound);
+      nbttagcompound.setBoolean("isActivated", this.isActivated);
+      nbttagcompound.setDouble("stopX", this.stopX);
+      nbttagcompound.setDouble("stopY", this.stopY);
+      nbttagcompound.setDouble("stopZ", this.stopZ);
    }
 
 }

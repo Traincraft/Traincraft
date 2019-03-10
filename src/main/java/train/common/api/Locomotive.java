@@ -806,14 +806,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 				distanceFromStopPoint = this.getDistance(this.xFromStopPoint, this.yFromStopPoint, this.zFromStopPoint);
 				distanceFromSpeedChange = this.getDistance(this.xSpeedLimitChange, this.ySpeedLimitChange, this.zSpeedLimitChange);
 
-				if (distanceFromSpeedChange < this.getSpeed() && !(distanceFromSpeedChange < nextSpeedLimit)) {
-					speedLimit = (int) Math.round(distanceFromSpeedChange);
-					Traincraft.itsChannel.sendToAllAround(new PacketSetSpeed(this.speedLimit, (int) this.posX, (int) this.posY, (int) this.posZ, getEntityId()), new TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
-				}
-				if (distanceFromStopPoint < this.getSpeed() && !(distanceFromStopPoint < nextSpeedLimit)) {
-					speedLimit = (int) Math.round(distanceFromStopPoint);
-					Traincraft.itsChannel.sendToAllAround(new PacketSetSpeed(this.speedLimit, (int) this.posX, (int) this.posY, (int) this.posZ, getEntityId()), new TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D) );
-				}
+				
 
 
 				//For Automatic Train Operation
@@ -847,6 +840,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 						this.yFromStopPoint = 0.0;
 						this.zFromStopPoint = 0.0;
 						this.atoStatus = 0;
+						
 					}
 				}
 
