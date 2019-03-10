@@ -42,7 +42,7 @@ import java.util.List;
 public class CommonProxy implements IGuiHandler {
 	public static List<MP3Player> playerList = new ArrayList<MP3Player>();
 	public static boolean debug = false;
-	
+
 	public void throwAlphaException() {
 		throw new IllegalStateException("You're trying to use a Traincraft alpha-version past its expiry date. Download a release-build at https://minecraft.curseforge.com/projects/traincraft.");
 	}
@@ -175,7 +175,7 @@ public class CommonProxy implements IGuiHandler {
 			return null;
 		}
 	}
-	
+
 	@Override
 	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
 		return null;
@@ -203,7 +203,7 @@ public class CommonProxy implements IGuiHandler {
 	public void registerTextureFX() {}
 
 	public void registerSounds() {}
-	
+
 	public void registerBookHandler() {}
 
 	public Minecraft getMinecraft() {
@@ -211,7 +211,7 @@ public class CommonProxy implements IGuiHandler {
 	}
 
 	public void registerVillagerSkin(int villagerId, String textureName) {}
-	
+
 	public static void killAllStreams() {
 		for (MP3Player p : playerList) {
 			p.stop();
@@ -219,13 +219,13 @@ public class CommonProxy implements IGuiHandler {
 	}
 
 	public void openadmingui(String data){}
-	
+
 	public static boolean checkJukeboxEntity(World world, int id) {
 		return  world.getEntityByID(id)!=null;
 	}
 
 	public void doNEICheck(ItemStack stack) {}
-	
+
 	public EntityPlayer getPlayer() {
 		return null;
 	}

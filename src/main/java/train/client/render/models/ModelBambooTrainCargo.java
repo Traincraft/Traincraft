@@ -1,5 +1,5 @@
 //This File was created with the Minecraft-SMP Modelling Toolbox 2.3.0.0
-// Copyright (C) 2018 Minecraft-SMP.de
+// Copyright (C) 2019 Minecraft-SMP.de
 // This file is for Flan's Flying Mod Version 4.0.x+
 
 // Model: Bamboo Train Cargo
@@ -19,7 +19,7 @@ public class ModelBambooTrainCargo extends ModelConverter //Same as Filename
 
 	public ModelBambooTrainCargo() //Same as Filename
 	{
-		bodyModel = new ModelRendererTurbo[54];
+		bodyModel = new ModelRendererTurbo[51];
 
 		initbodyModel_1();
 
@@ -75,16 +75,13 @@ public class ModelBambooTrainCargo extends ModelConverter //Same as Filename
 		bodyModel[41] = new ModelRendererTurbo(this, 222, 24, textureX, textureY); // Box 42
 		bodyModel[42] = new ModelRendererTurbo(this, 222, 24, textureX, textureY); // Box 43
 		bodyModel[43] = new ModelRendererTurbo(this, 222, 24, textureX, textureY); // Box 44
-		bodyModel[44] = new ModelRendererTurbo(this, 209, 73, textureX, textureY); // Box 40
-		bodyModel[45] = new ModelRendererTurbo(this, 105, 81, textureX, textureY); // Box 41
-		bodyModel[46] = new ModelRendererTurbo(this, 233, 33, textureX, textureY); // Box 42
-		bodyModel[47] = new ModelRendererTurbo(this, 241, 1, textureX, textureY); // Box 43
-		bodyModel[48] = new ModelRendererTurbo(this, 193, 9, textureX, textureY); // Box 44
-		bodyModel[49] = new ModelRendererTurbo(this, 1, 57, textureX, textureY); // Box 45
-		bodyModel[50] = new ModelRendererTurbo(this, 153, 81, textureX, textureY); // Box 46
-		bodyModel[51] = new ModelRendererTurbo(this, 1, 89, textureX, textureY); // Box 47
-		bodyModel[52] = new ModelRendererTurbo(this, 49, 89, textureX, textureY); // Box 48
-		bodyModel[53] = new ModelRendererTurbo(this, 225, 9, textureX, textureY); // Box 49
+		bodyModel[44] = new ModelRendererTurbo(this, 209, 91, textureX, textureY); // Box 40
+		bodyModel[45] = new ModelRendererTurbo(this, 209, 91, textureX, textureY); // Box 41
+		bodyModel[46] = new ModelRendererTurbo(this, 157, 81, textureX, textureY); // Box 46
+		bodyModel[47] = new ModelRendererTurbo(this, 1, 89, textureX, textureY); // Box 47
+		bodyModel[48] = new ModelRendererTurbo(this, 49, 89, textureX, textureY); // Box 48
+		bodyModel[49] = new ModelRendererTurbo(this, 105, 81, textureX, textureY); // Box 54
+		bodyModel[50] = new ModelRendererTurbo(this, 209, 72, textureX, textureY); // Box 55
 
 		bodyModel[0].addShapeBox(0F, 0F, 0F, 46, 1, 1, 0F,0F, -0.7F, 0F, 0F, -0.7F, 0F, 0F, -0.7F, 0F, 0F, -0.7F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 1
 		bodyModel[0].setRotationPoint(-23F, 1F, 11.5F);
@@ -227,43 +224,31 @@ public class ModelBambooTrainCargo extends ModelConverter //Same as Filename
 		bodyModel[43].setRotationPoint(-16F, 4F, -5F);
 
 		bodyModel[44].addBox(0F, 0F, 0F, 10, 10, 10, 0F); // Box 40
-		bodyModel[44].setRotationPoint(4F, -8.32F, 0F);
-		bodyModel[44].rotateAngleY = -0.31415927F;
+		bodyModel[44].setRotationPoint(6F, -8.32F, -9F);
+		bodyModel[44].rotateAngleY = -0.20943951F;
 
 		bodyModel[45].addBox(0F, 0F, 0F, 10, 10, 10, 0F); // Box 41
-		bodyModel[45].setRotationPoint(-7F, -8.32F, -9F);
+		bodyModel[45].setRotationPoint(-7F, -8.32F, -12F);
 		bodyModel[45].rotateAngleY = 0.17453293F;
 
-		bodyModel[46].addBox(0F, 0F, 0F, 5, 5, 3, 0F); // Box 42
-		bodyModel[46].setRotationPoint(7F, -3.32F, -8F);
-		bodyModel[46].rotateAngleY = -0.15707963F;
+		bodyModel[46].addBox(0F, 0F, 0F, 5, 5, 15, 0F); // Box 46
+		bodyModel[46].setRotationPoint(-15F, -3.32F, -7F);
+		bodyModel[46].rotateAngleY = 0.06981317F;
 
-		bodyModel[47].addBox(0F, 0F, 0F, 2, 2, 3, 0F); // Box 43
-		bodyModel[47].setRotationPoint(18F, -0.32F, -1F);
-		bodyModel[47].rotateAngleY = -0.10471976F;
+		bodyModel[47].addBox(0F, 0F, 0F, 5, 5, 15, 0F); // Box 47
+		bodyModel[47].setRotationPoint(-22F, -3.32F, -8F);
+		bodyModel[47].rotateAngleY = -0.01745329F;
 
-		bodyModel[48].addBox(0F, 0F, 0F, 4, 2, 3, 0F); // Box 44
-		bodyModel[48].setRotationPoint(16F, -0.32F, -9F);
-		bodyModel[48].rotateAngleY = -0.34906585F;
+		bodyModel[48].addBox(0F, 0F, 0F, 5, 5, 15, 0F); // Box 48
+		bodyModel[48].setRotationPoint(-21F, -8.32F, -5F);
+		bodyModel[48].rotateAngleY = -0.43633231F;
 
-		bodyModel[49].addBox(0F, 0F, 0F, 5, 5, 4, 0F); // Box 45
-		bodyModel[49].setRotationPoint(-5F, -3.32F, 6F);
+		bodyModel[49].addBox(0F, 0F, 0F, 14, 10, 10, 0F); // Box 54
+		bodyModel[49].setRotationPoint(-4F, -8.32F, 0F);
 		bodyModel[49].rotateAngleY = 0.10471976F;
 
-		bodyModel[50].addBox(0F, 0F, 0F, 5, 5, 15, 0F); // Box 46
-		bodyModel[50].setRotationPoint(-15F, -3.32F, -7F);
-		bodyModel[50].rotateAngleY = 0.06981317F;
-
-		bodyModel[51].addBox(0F, 0F, 0F, 5, 5, 15, 0F); // Box 47
-		bodyModel[51].setRotationPoint(-22F, -3.32F, -8F);
-		bodyModel[51].rotateAngleY = -0.01745329F;
-
-		bodyModel[52].addBox(0F, 0F, 0F, 5, 5, 15, 0F); // Box 48
-		bodyModel[52].setRotationPoint(-21F, -8.32F, -5F);
-		bodyModel[52].rotateAngleY = -0.43633231F;
-
-		bodyModel[53].addBox(0F, 0F, 0F, 2, 1, 4, 0F); // Box 49
-		bodyModel[53].setRotationPoint(2F, 0.68F, 5F);
-		bodyModel[53].rotateAngleY = -0.06981317F;
+		bodyModel[50].addBox(0F, 0F, 0F, 8, 8, 8, 0F); // Box 55
+		bodyModel[50].setRotationPoint(11F, -6.32F, 3F);
+		bodyModel[50].rotateAngleY = -0.31415927F;
 	}
 }

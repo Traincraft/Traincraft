@@ -58,6 +58,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 	public TrainHandler train;
 	public List<ChunkCoordIntPair> loadedChunks = new ArrayList<ChunkCoordIntPair>();
 	public boolean shouldChunkLoad = true;
+	protected boolean itemdropped =false;
 	/**
 	 * A reference to EnumTrains containing all spec for this specific train
 	 */
@@ -545,7 +546,8 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 	}
 
 	public void dropCartAsItem(boolean isCreative) {
-		if (!isCreative) {
+		if (!isCreative && !itemdropped) {
+			itemdropped=true;
 			for (ItemStack item : getItemsDropped()) {
 				setUniqueIDToItem(item);
 				entityDropItem(item, 0);

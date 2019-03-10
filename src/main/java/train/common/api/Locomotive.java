@@ -326,7 +326,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 	 * @return int
 	 */
 	public int getFuelConsumption() {
-		return fuelRate;
+		return fuelRate==0?trainSpec.getFuelConsumption():fuelRate;
 	}
 
 	/**
@@ -1116,10 +1116,12 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 
 	@Override
 	public void dropCartAsItem(boolean isCreative){
-		super.dropCartAsItem(isCreative);
-		for(ItemStack stack : locoInvent){
-			if (stack != null) {
-				entityDropItem(stack, 0);
+		if(!itemdropped) {
+			super.dropCartAsItem(isCreative);
+			for (ItemStack stack : locoInvent) {
+				if (stack != null) {
+					entityDropItem(stack, 0);
+				}
 			}
 		}
 	}

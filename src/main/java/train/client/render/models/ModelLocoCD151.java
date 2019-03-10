@@ -102,12 +102,12 @@ public class ModelLocoCD151 extends ModelConverter //Same as Filename
 		bodyModel[43] = new ModelRendererTurbo(this, 49, 49, textureX, textureY); // Box 44
 		bodyModel[44] = new ModelRendererTurbo(this, 65, 49, textureX, textureY); // Box 45
 		bodyModel[45] = new ModelRendererTurbo(this, 49, 49, textureX, textureY); // Box 46
-		bodyModel[46] = new ModelRendererTurbo(this, 137, 1, textureX, textureY); // lamp
-		bodyModel[47] = new ModelRendererTurbo(this, 137, 1, textureX, textureY); // lamp
+		bodyModel[46] = new ModelRendererTurbo(this, 137, 1, textureX, textureY, "lamp"); // lamp
+		bodyModel[47] = new ModelRendererTurbo(this, 137, 1, textureX, textureY, "lamp"); // lamp
 		bodyModel[48] = new ModelRendererTurbo(this, 129, 1, textureX, textureY); // Box 49
 		bodyModel[49] = new ModelRendererTurbo(this, 129, 1, textureX, textureY); // Box 50
-		bodyModel[50] = new ModelRendererTurbo(this, 161, 17, textureX, textureY); // lamp
-		bodyModel[51] = new ModelRendererTurbo(this, 161, 17, textureX, textureY); // lamp
+		bodyModel[50] = new ModelRendererTurbo(this, 161, 17, textureX, textureY, "lamp"); // lamp
+		bodyModel[51] = new ModelRendererTurbo(this, 161, 17, textureX, textureY, "lamp"); // lamp
 		bodyModel[52] = new ModelRendererTurbo(this, 369, 39, textureX, textureY); // Box 52
 		bodyModel[53] = new ModelRendererTurbo(this, 401, 33, textureX, textureY); // Box 53
 		bodyModel[54] = new ModelRendererTurbo(this, 65, 57, textureX, textureY); // Box 54

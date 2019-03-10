@@ -3,6 +3,7 @@ package train.common.entity.rollingStock;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import train.common.api.EntityRollingStock;
 import train.common.api.IPassenger;
@@ -77,4 +78,25 @@ public class EntityStockCar extends EntityRollingStock implements IPassenger {
 	public float getOptimalDistance(EntityMinecart cart) {
 		return 1.45F;
 	}
+
+	@Override
+	protected void writeEntityToNBT(NBTTagCompound nbttagcompound) {
+		super.writeEntityToNBT(nbttagcompound);
+		if (riddenByEntity != null) {
+
+			NBTTagCompound c = new NBTTagCompound();
+			if(riddenByEntity.writeMountToNBT(c)) {
+				nbttagcompound.setTag("mob", c);
+			}
+		}
+	}
+
+	@Override
+	protected void readEntityFromNBT(NBTTagCompound nbttagcompound) {
+		super.readEntityFromNBT(nbttagcompound);
+		if(nbttagcompound.hasKey("mob")){
+			readEntityFromNBT(nbttagcompound.getCompoundTag("mob"));
+		}
+	}
+
 }
