@@ -91,6 +91,7 @@ public class CommonProxy implements IGuiHandler {
 			GameRegistry.registerTileEntity(TileInfoGrabberMTC.class, "tileInfoReceiverMTC");
 			GameRegistry.registerTileEntity(TileInfoGrabberDestination.class, "tileInfoReceiverDestination");
 			GameRegistry.registerTileEntity(TileATOTransmitterStopPoint.class, "tileATOTransmitterStopPoint");
+			GameRegistry.registerTileEntity(TilePDMInstructionRadio.class, "tilePDMInstructionRadio");
 		}
 	}
 
@@ -100,7 +101,6 @@ public class CommonProxy implements IGuiHandler {
 			Method computerCraft_registerPeripheralProvider = computerCraft.getMethod("registerPeripheralProvider", new Class[] { Class.forName("dan200.computercraft.api.peripheral.IPeripheralProvider") });
 
 			//Register all CC required blocks
-			computerCraft_registerPeripheralProvider.invoke(null, BlockInfoTransmitterAspect.instance);
 			computerCraft_registerPeripheralProvider.invoke(null, BlockInfoTransmitterSpeed.instance);
 			computerCraft_registerPeripheralProvider.invoke(null, BlockInfoGrabberMTC.instance);
 			computerCraft_registerPeripheralProvider.invoke(null, BlockInfoTransmitterMTC.instance);
