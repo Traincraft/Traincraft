@@ -1,19 +1,14 @@
 package train.common.mtc;
 
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import dan200.computercraft.api.lua.ILuaContext;
 import dan200.computercraft.api.lua.LuaException;
 import dan200.computercraft.api.peripheral.IComputerAccess;
 import dan200.computercraft.api.peripheral.IPeripheral;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import train.common.api.Locomotive;
 import train.common.api.WirelessTransmitter;
-import train.common.entity.rollingStock.EntityFreightWood2;
-import train.common.entity.rollingStock.EntityLocoElectricHighSpeedZeroED;
 
 import java.util.*;
 
@@ -131,7 +126,7 @@ public class TilePDMInstructionRadio extends TileEntity implements IPeripheral, 
             }
     }
 
-    public List<WirelessTransmitter> getWirelessTransmittersInBoundingBox() {
+    public ArrayList<WirelessTransmitter> getWirelessTransmittersInBoundingBox() {
        // System.out.println("Got some..");
       /*  List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(null, AxisAlignedBB.getBoundingBox(xCoord, yCoord, zCoord, xCoord + 100, yCoord +100, zCoord + 100));
         ArrayList<EntityLocoElectricPeachDriverlessMetro> returnList = new ArrayList();
@@ -150,7 +145,6 @@ public class TilePDMInstructionRadio extends TileEntity implements IPeripheral, 
         int k = (this.zCoord / 16)-50;
         int l = (this.zCoord / 16) + 50;
         List[] entities;
-        ArrayList<WirelessTransmitter> returnList = new ArrayList();
         ArrayList<WirelessTransmitter> toAdd = new ArrayList();
         for (int i1 = i; i1 <= j; ++i1) {
             for (int j1 = k; j1 <= l; ++j1) {
@@ -171,14 +165,16 @@ public class TilePDMInstructionRadio extends TileEntity implements IPeripheral, 
         }
         //Oh yeah, also get other instruction radios too
         List<TileEntity> allTEs = worldObj.loadedTileEntityList;
-        for (TileEntity te : allTEs) {
-
+        Iterator<TileEntity> iterator = allTEs.iterator();
+        while(iterator.hasNext()) {
+           TileEntity te = iterator.next();
             if (te instanceof TilePDMInstructionRadio) {
-             //   System.out.println("Found a radio, uuid is " + ((TilePDMInstructionRadio)te).uniqueID);
+                //   System.out.println("Found a radio, uuid is " + ((TilePDMInstructionRadio)te).uniqueID);
                 toAdd.add((TilePDMInstructionRadio)te);
             }
         }
        //System.out.println("Got some..");
+        ArrayList returnList = new ArrayList();
         returnList.addAll(toAdd);
         return returnList;
     }

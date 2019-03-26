@@ -840,7 +840,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 					isDriverOverspeed = false;
 
 				}
-				if (isDriverOverspeed && ticksExisted % 120 == 0 && !overspeedBrakingInProgress && !overspeedOveridePressed && atoStatus != 1 && speedLimit != 0) {
+				if (isDriverOverspeed && ticksExisted % 120 == 0 && !overspeedBrakingInProgress && !overspeedOveridePressed && atoStatus != 1) {
 					//Start braking because the driver is an idiot.
 					overspeedBrakingInProgress = true;
 				}
@@ -1451,9 +1451,9 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 				this.mtcStatus = thing.get("mtcStatus").getAsInt();
 				Traincraft.mscChannel.sendToAllAround(new PacketMTC(getEntityId(), mtcStatus, 2), new NetworkRegistry.TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
 				nextSpeedLimit = thing.get("nextSpeedLimit").getAsInt();
-				Traincraft.itsChannel.sendToAllAround(new PacketSetSpeed(speedLimit, 0, 0, 0, getEntityId()), new NetworkRegistry.TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
 				if (!speedGoingDown && xFromStopPoint == 0.0) {
 					speedLimit = thing.get("speedLimit").getAsInt();
+					Traincraft.itsChannel.sendToAllAround(new PacketSetSpeed(speedLimit, 0, 0, 0, getEntityId()), new NetworkRegistry.TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
 				}
 				if (thing.get("speedChange").getAsBoolean()) {
 					xSpeedLimitChange = thing.get("nextSpeedLimitChangeX").getAsDouble();
@@ -1491,13 +1491,13 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
             if (te instanceof TilePDMInstructionRadio) {
 
                 TilePDMInstructionRadio teP = (TilePDMInstructionRadio)te;
-                if (teP != null) {
+
                     if (teP.uniqueID.equals(message.UUIDTo)) {
 
                     	//System.out.println(message.message);
                         teP.receiveMessage(message);
                     }
-                }
+
             }
         }
 
@@ -1524,51 +1524,6 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 		this.serverUUID = "";
 		isConnected = false;
 	}
-	public List<WirelessTransmitter> getWirelessTransmittersInBoundingBox() {
-      /*  List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(null, AxisAlignedBB.getBoundingBox(xCoord, yCoord, zCoord, xCoord + 100, yCoord +100, zCoord + 100));
-        ArrayList<EntityLocoElectricPeachDriverlessMetro> returnList = new ArrayList();
-        if (list != null) {
-            System.out.println(list.size());
-            for (Object obj : list) {
-                System.out.println(obj.getClass().getName());
-                if (obj instanceof EntityLocoElectricPeachDriverlessMetro) {
-                    returnList.add((EntityLocoElectricPeachDriverlessMetro)obj);
-                }
-            }
-        }Oka
-        return returnList;*/
-		int i = (new Double(this.posX).intValue() / 16) -50;
-		int j = (new Double(this.posX).intValue()  / 16 )+ 50;
-		int k = (new Double(this.posZ).intValue()  / 16)-50;
-		int l = (new Double(this.posZ).intValue()  / 16) + 50;
-		List[] entities;
-		ArrayList<WirelessTransmitter> returnList = new ArrayList();
-		for (int i1 = i; i1 <= j; ++i1) {
-			for (int j1 = k; j1 <= l; ++j1) {
-				if (worldObj.getChunkProvider().chunkExists(i1, j1)) {
-					entities = worldObj.getChunkFromChunkCoords(i1, j1).entityLists;
-					for (List olist: entities) {
-						for(Object obj : olist) {
 
-							if(obj instanceof Locomotive){
-								//System.out.println("Found a locomotive, uuid is " + ((Locomotive)obj).trainID);
-								returnList.add((Locomotive)obj);
-							}
-
-						}
-					}
-				}
-			}
-		}
-		//Oh yeah, also get other instruction radios too
-		List<TileEntity> allTEs = worldObj.loadedTileEntityList;
-		for (TileEntity te : allTEs) {
-
-			if (te instanceof TilePDMInstructionRadio) {
-				returnList.add((TilePDMInstructionRadio)te);
-			}
-		}
-		return returnList;
-	}
 
 }
