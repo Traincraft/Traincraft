@@ -13,11 +13,12 @@ import org.lwjgl.input.Keyboard;
 import train.client.gui.GuiMTCInfo;
 import train.common.Traincraft;
 import train.common.api.Locomotive;
+import train.common.api.SteamTrain;
+import train.common.core.handlers.ConfigHandler;
 import train.common.core.network.PacketKeyPress;
 import train.common.mtc.packets.PacketATO;
 
-public class TCKeyHandler
-{
+public class TCKeyHandler {
 	public static KeyBinding horn;
 	public static KeyBinding inventory;
 	public static KeyBinding up;
@@ -28,8 +29,8 @@ public class TCKeyHandler
 	public static KeyBinding toggleATO;
 	public static KeyBinding mtcOverride;
 	public static KeyBinding overspeedOverride;
-	public TCKeyHandler()
-	{
+
+	public TCKeyHandler() {
 		horn = new KeyBinding("key.traincraft.horn", Keyboard.KEY_H, "key.categories.traincraft");
 		ClientRegistry.registerKeyBinding(horn);
 		inventory = new KeyBinding("key.traincraft.inventory", Keyboard.KEY_R, "key.categories.traincraft");
@@ -52,11 +53,11 @@ public class TCKeyHandler
 			overspeedOverride = new KeyBinding("key.traincraft.overspeedOverride", Keyboard.KEY_L, "key.categories.traincraft");
 			ClientRegistry.registerKeyBinding(overspeedOverride);
 		}
-
 	}
+
 	@SubscribeEvent
 	public void onKeyInput(InputEvent.KeyInputEvent event) {
-		if(!Minecraft.getMinecraft().ingameGUI.getChatGUI().getChatOpen()) {
+		if (!Minecraft.getMinecraft().ingameGUI.getChatGUI().getChatOpen()) {
 			if (up.getIsKeyPressed()) {
 				sendKeyControlsPacket(0);
 			}
@@ -84,14 +85,24 @@ public class TCKeyHandler
 				if (toggleATO.isPressed() && Minecraft.getMinecraft().thePlayer.ridingEntity instanceof Locomotive) {
 					sendKeyControlsPacket(16);
 					Locomotive train = (Locomotive) Minecraft.getMinecraft().thePlayer.ridingEntity;
-					if (train.mtcStatus != 0) {
-						if (train.atoStatus == 1) {
-							train.atoStatus = 0;
+					if (train.mtcStatus != 0 && train.mtcType == 2) {
+						if (train instanceof SteamTrain && !ConfigHandler.ALLOW_ATO_ON_STEAMERS) {
+							((EntityPlayer) train.riddenByEntity).addChatMessage(new ChatComponentText("Automatic Train Operation cannot be used with steam trains"));
 						} else {
-							train.atoStatus = 1;
+							if (train.atoStatus == 1) {
+								train.atoStatus = 0;
+							} else {
+								train.atoStatus = 1;
+							}
 						}
+
+					} else {
+						((EntityPlayer) train.riddenByEntity).addChatMessage(new ChatComponentText("Automatic Train Operation can only be activated when you are using W-MTC"));
 					}
+
 				}
+
+
 				if (mtcOverride.isPressed() && Minecraft.getMinecraft().thePlayer.ridingEntity instanceof Locomotive) {
 					Locomotive train = (Locomotive) Minecraft.getMinecraft().thePlayer.ridingEntity;
 
@@ -127,14 +138,15 @@ public class TCKeyHandler
 						}
 					}
 				}
-			}
 
-			}
-
-			if (FMLClientHandler.instance().getClient().gameSettings.keyBindSneak.isPressed() && Keyboard.isKeyDown(Keyboard.KEY_F3)){
-				sendKeyControlsPacket(404);
 			}
 		}
+
+		if (FMLClientHandler.instance().getClient().gameSettings.keyBindSneak.isPressed() && Keyboard.isKeyDown(Keyboard.KEY_F3)) {
+			sendKeyControlsPacket(404);
+		}
+	}
+
 
 	
 	private static void sendKeyControlsPacket(int key)

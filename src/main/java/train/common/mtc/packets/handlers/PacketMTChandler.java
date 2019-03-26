@@ -13,12 +13,12 @@ import train.common.mtc.packets.PacketMTC;
 public class PacketMTChandler implements IMessageHandler<PacketMTC, IMessage> {
     @Override
     public IMessage onMessage(PacketMTC message, MessageContext ctx) {
-        if (message.mode == 1) {
 
             Entity theTrain = Minecraft.getMinecraft().theWorld.getEntityByID(message.entity);
             if (theTrain != null && theTrain instanceof Locomotive) {
 
                 ((Locomotive) theTrain).mtcStatus = message.mtcStatus;
+                if (message.mode != 0) { ((Locomotive) theTrain).mtcType = message.mode;}
                 //if (message.mtcStatus == 0) {
 //
                 //        ((Locomotive) theTrain).speedLimit = "0";
@@ -30,12 +30,8 @@ public class PacketMTChandler implements IMessageHandler<PacketMTC, IMessage> {
 
             }
 
-        } else {
-            Entity trainEntity = ctx.getServerHandler().playerEntity.worldObj.getEntityByID(message.entity);
-            if (trainEntity != null) {
-                ((Locomotive) trainEntity).mtcStatus = message.mtcStatus;
-            }
-        }
+
+
             return null;
         }
 

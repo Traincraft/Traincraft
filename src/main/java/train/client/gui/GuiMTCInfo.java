@@ -103,7 +103,10 @@ public class GuiMTCInfo extends GuiScreen {
             if (!destination.isFocused() || !trainID.isFocused() || !trainLevel.isFocused()) {
                 mc.thePlayer.closeScreen();
                 theLocomotive.trainLevel = trainLevel.getText();
-                Traincraft.mtlChannel.sendToServer(new PacketMTCLevelUpdate(theLocomotive.getEntityId(), Integer.parseInt(trainLevel.getText())));
+                if (!trainLevel.getText().equals("")) {
+                    Traincraft.mtlChannel.sendToServer(new PacketMTCLevelUpdate(theLocomotive.getEntityId(), Integer.parseInt(trainLevel.getText())));
+                }
+
                 theLocomotive.trainID = trainID.getText();
                 Traincraft.updateTrainIDChannel.sendToServer(new PacketUpdateTrainID(theLocomotive.getEntityId(), trainID.getText()));
                 theLocomotive.destination = destination.getText();

@@ -40,7 +40,7 @@ public enum BlockIDs {
 	mtcATOStopTransmitter(false, null),
 	mtcReceiverMTC(false, null),
 	mtcReceiverDestination(false, null),
-
+	pdmInstructionBlock(false, null),
 	//Liquids
 	diesel(false, ItemBlockFluid.class),
 	refinedFuel(false, ItemBlockFluid.class),
