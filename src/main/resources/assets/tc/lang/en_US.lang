@@ -31,7 +31,7 @@ tile.tc:mtcTransmitterMTC.name=MTC Status Transmitter
 tile.tc:mtcATOStopTransmitter.name=MTC ATO Stop Point Transmitter
 tile.tc:mtcReceiverMTC.name=MTC Status Receiver
 tile.tc:mtcReceiverDestination.name=MTC Destination Receiver
-
+tile.tc:pdmInstructionBlock.name=W-MTC Wireless Radio
 
 <!-- ## Fluids ## -->
 fluid.diesel.name=Diesel Fuel

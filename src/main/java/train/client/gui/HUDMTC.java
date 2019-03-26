@@ -19,7 +19,7 @@ public class HUDMTC extends GuiScreen {
 
 	private Minecraft game;
 	private int windowWidth, windowHeight;
-
+	public boolean mtcIconOnOff = true;
 //test15
 	@SubscribeEvent
 	public void onGameRender(RenderGameOverlayEvent.Text event){
@@ -63,7 +63,6 @@ public class HUDMTC extends GuiScreen {
 			int xPos = 0 + margin;
 			int yPos = 0 + margin;
 			Gui.drawRect(xPos, yPos, xPos + width + padding * 2 + 70, yPos + height + padding + padding + 35, 0xAA000000);
-
 			if (rcCar.atoStatus == 1) {
 				this.drawString(this.game.fontRenderer, "Speed Limit: " + rcCar.speedLimit + " km/h" + ", ATO on", xPos + 4, yPos, 14737632);
 			} else {
@@ -72,29 +71,49 @@ public class HUDMTC extends GuiScreen {
 			this.drawString(this.game.fontRenderer, "Next Speed Limit: " + rcCar.nextSpeedLimit + " km/h", xPos + 4, yPos + 10, 14737632);
 			rcCar.distanceFromStopPoint = rcCar.getDistance(rcCar.xFromStopPoint, rcCar.yFromStopPoint, rcCar.zFromStopPoint);
 			rcCar.distanceFromSpeedChange = rcCar.getDistance(rcCar.xSpeedLimitChange, rcCar.ySpeedLimitChange,rcCar.zSpeedLimitChange);
-
+			rcCar.distanceFromStationStop = rcCar.getDistance(rcCar.xStationStop, rcCar.yStationStop,rcCar.zStationStop);
 			if (rcCar.xFromStopPoint != 0 && rcCar.yFromStopPoint != 0 && rcCar.zFromStopPoint != 0) {
-				this.drawString(this.game.fontRenderer, "Stop in " + Math.round(rcCar.distanceFromStopPoint)  + " blocks", xPos + 4, yPos + 19, 0xFFFFFFFF);
+				this.drawString(this.game.fontRenderer, "Stop in " + Math.round(rcCar.distanceFromStopPoint)  + " blocks.", xPos + 4, yPos + 19, 14737632);
+			}
+			if (rcCar.xFromStopPoint == 0 && rcCar.yFromStopPoint == 0 && rcCar.zFromStopPoint == 0 && rcCar.xStationStop != 0 && rcCar.yStationStop != 0  && rcCar.xStationStop != 0 ) {
+				this.drawString(this.game.fontRenderer, "Station stop in " +Math.round(rcCar.distanceFromStationStop) + " blocks.", xPos + 4, yPos + 19, 14737632);
 			}
 			if (rcCar.xSpeedLimitChange != 0 && rcCar.ySpeedLimitChange != 0 && rcCar.zSpeedLimitChange != 0) {
-				this.drawString(this.game.fontRenderer, "Next speed limit in " + Math.round(rcCar.distanceFromSpeedChange)  + " blocks", xPos + 4, yPos + 28, 0xFFFFFFFF);
+				this.drawString(this.game.fontRenderer, "Next speed limit in " + Math.round(rcCar.distanceFromSpeedChange)  + " blocks.", xPos + 4, yPos + 28, 14737632);
 			}
 
 			if (rcCar.speedLimit < rcCar.getSpeed() && !rcCar.overspeedOveridePressed) {
-				drawTexturedRect(new ResourceLocation(Info.resourceLocation, Info.guiPrefix + "mtcspeeding.png"), 30, 40, 0, 0, 64, 64, 64, 64, 0.25);
+				drawTexturedRect(new ResourceLocation(Info.resourceLocation, Info.guiPrefix + "mtcspeeding.png"), 30, 45, 0, 0, 64, 64, 64, 64, 0.25);
 			} else if (rcCar.overspeedOveridePressed) {
-				drawTexturedRect(new ResourceLocation(Info.resourceLocation, Info.guiPrefix + "mtcspeedingoverride.png"), 30, 40, 0, 0, 64, 64, 64, 64, 0.25);
+				drawTexturedRect(new ResourceLocation(Info.resourceLocation, Info.guiPrefix + "mtcspeedingoverride.png"), 30, 45, 0, 0, 64, 64, 64, 64, 0.25);
 			}
 
 			//hey
 
 		}
-		if (rcCar.mtcOverridePressed) {
-			drawTexturedRect(new ResourceLocation(Info.resourceLocation, Info.guiPrefix + "mtcdisable.png"), 12, 40, 0, 0, 64, 64, 64, 64, 0.25);
-		} else if (rcCar.mtcStatus == 1){
-			drawTexturedRect(new ResourceLocation(Info.resourceLocation, Info.guiPrefix + "mtcicon.png"), 12, 40, 0, 0, 64, 64, 64, 64, 0.25);
+
+		if (rcCar.ticksExisted % 21 == 0 && rcCar.mtcStatus == 2) {
+			if (mtcIconOnOff) {
+				mtcIconOnOff = false;
+			} else {
+				mtcIconOnOff = true;
+			}
+		} else if (rcCar.mtcStatus == 1) {
+			mtcIconOnOff = true;
 		}
 
+		if (rcCar.mtcOverridePressed) {
+			drawTexturedRect(new ResourceLocation(Info.resourceLocation, Info.guiPrefix + "mtcdisable.png"), 12, 45, 0, 0, 64, 64, 64, 64, 0.25);
+		} else if (rcCar.mtcStatus == 1 || rcCar.mtcStatus == 2) {
+			if (mtcIconOnOff) {
+				if (rcCar.mtcType == 1 || rcCar.mtcType == 0) {
+					drawTexturedRect(new ResourceLocation(Info.resourceLocation, Info.guiPrefix + "mtcicon.png"), 12, 45, 0, 0, 64, 64, 64, 64, 0.25);
+				} else {
+					drawTexturedRect(new ResourceLocation(Info.resourceLocation, Info.guiPrefix + "mtcicon2.png"), 12, 45, 0, 0, 64, 64, 64, 64, 0.25);
+				}
+
+			}
+		}
 
 	}
 

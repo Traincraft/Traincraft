@@ -41,7 +41,7 @@ public class PacketATODOSlowDownHandler implements IMessageHandler<PacketATODoSl
          ((Locomotive)entity).xFromStopPoint = 0.0;
          ((Locomotive)entity).yFromStopPoint = 0.0;
          ((Locomotive)entity).zFromStopPoint = 0.0;
-         Traincraft.atoSetStopPoint.sendToAll(new PacketATOSetStopPoint(entity.getEntityId(),0.0, 0.0, 0.0));
+         Traincraft.atoSetStopPoint.sendToAll(new PacketATOSetStopPoint(entity.getEntityId(),0.0, 0.0, 0.0, 0.0,0.0,0.0));
          ((Locomotive)entity).atoStatus = 0;
          System.out.println("ato ended!");
          Traincraft.atoChannel.sendToServer(new PacketATO(entity.getEntityId(), 0));

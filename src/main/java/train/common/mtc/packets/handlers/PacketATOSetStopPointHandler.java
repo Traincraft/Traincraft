@@ -18,6 +18,9 @@ public class PacketATOSetStopPointHandler implements IMessageHandler<PacketATOSe
          theTrain.xFromStopPoint = message.xPos;
          theTrain.yFromStopPoint = message.yPos;
          theTrain.zFromStopPoint = message.zPos;
+         theTrain.xStationStop = message.sXPos;
+         theTrain.yStationStop = message.sYPos;
+         theTrain.zStationStop = message.sZPos;
       }
 
       return null;

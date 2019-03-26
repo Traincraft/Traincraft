@@ -67,7 +67,7 @@ public class PacketHandler {
 			Traincraft.mtlChannel.registerMessage(PacketMTCLevelUpdateHandler.class, PacketMTCLevelUpdate.class, 201, Side.SERVER);
 			Traincraft.msChannel.registerMessage(PacketMTChandler.class, PacketMTC.class, 202, Side.SERVER);
 			Traincraft.mscChannel.registerMessage(PacketMTChandler.class, PacketMTC.class, 203, Side.CLIENT);
-			Traincraft.atoChannel.registerMessage(PacketATOHandler.class, PacketATO.class, 205, Side.SERVER);
+			Traincraft.atoChannel.registerMessage(PacketATOHandler.class, PacketATO.class, 205, Side.CLIENT);
 			Traincraft.atoDoSlowDownChannel.registerMessage(PacketATODOSlowDownHandler.class, PacketATODoSlowDown.class, 206, Side.SERVER);
 			Traincraft.atoDoAccelChannel.registerMessage(PacketATODoAccelHandler.class, PacketDoAccel.class, 207, Side.SERVER);
 			Traincraft.atoSetStopPoint.registerMessage(PacketATOSetStopPointHandler.class, PacketATOSetStopPoint.class, 208, Side.CLIENT);

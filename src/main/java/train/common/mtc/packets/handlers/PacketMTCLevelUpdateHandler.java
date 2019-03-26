@@ -16,7 +16,6 @@ public class PacketMTCLevelUpdateHandler implements IMessageHandler<PacketMTCLev
 
         if (trainEntity != null ) {
             ((Locomotive) trainEntity).trainLevel = Integer.toString(message.level);
-            System.out.println( ((Locomotive) trainEntity).trainLevel);
         }
         return null;
     }

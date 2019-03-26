@@ -34,3 +34,5 @@ run
 lib
 *.iws___jb_tmp___
 *.directory
+classes
+runserver

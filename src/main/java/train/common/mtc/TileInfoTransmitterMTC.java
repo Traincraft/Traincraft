@@ -12,8 +12,10 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 import train.common.Traincraft;
 import train.common.api.Locomotive;
+
 import train.common.mtc.packets.PacketMTC;
 
+import javax.swing.text.html.parser.Entity;
 import java.util.List;
 
 public class TileInfoTransmitterMTC extends TileEntity implements IPeripheral {
@@ -25,6 +27,10 @@ public class TileInfoTransmitterMTC extends TileEntity implements IPeripheral {
     //MTC 2 = MTC Warn End
     //MTC 3 = MTC End
 	public boolean activated = false;
+	public String stationName = "";
+	public String serverUUID = "";
+	public String signalBlock = "";
+	public int mtcType = 0;
     public TileInfoTransmitterMTC() {
         this.world = worldObj;
     }
@@ -34,7 +40,11 @@ public class TileInfoTransmitterMTC extends TileEntity implements IPeripheral {
     public void readFromNBT(NBTTagCompound nbttagcompound) {
         super.readFromNBT(nbttagcompound);
         this.MTCInfo = nbttagcompound.getInteger("mtcInfo");
+        this.mtcType = nbttagcompound.getInteger("mtcType");
         this.activated = nbttagcompound.getBoolean("activated");
+        this.stationName =  nbttagcompound.getString("stationName");
+        this.serverUUID = nbttagcompound.getString("serverUUID");
+        this.signalBlock = nbttagcompound.getString("signalBlock");
     }
 
     @Override
@@ -42,7 +52,12 @@ public class TileInfoTransmitterMTC extends TileEntity implements IPeripheral {
         super.writeToNBT(nbttagcompound);
 
         nbttagcompound.setInteger("mtcInfo", this.MTCInfo);
+        nbttagcompound.setInteger("mtcType", this.mtcType);
 		nbttagcompound.setBoolean("activated", this.activated);
+        nbttagcompound.setString("stationName", this.stationName);
+        nbttagcompound.setString("serverUUID", this.serverUUID);
+        nbttagcompound.setString("signalBlock", this.signalBlock);
+
     }
 
     public void updateEntity() {
@@ -63,9 +78,28 @@ public class TileInfoTransmitterMTC extends TileEntity implements IPeripheral {
                  //       daTrain.speedLimit = "0";
 
                  //   }
-				 if (activated == true) {
+
+				 if (activated) {
                     //ExampleMod.msChannel.sendToAll(new PacketMTC(daTrain.getEntityId(), MTCInfo, 2));
-                    Traincraft.mscChannel.sendToAllAround(new PacketMTC(daTrain.getEntityId(), MTCInfo, 1) , new NetworkRegistry.TargetPoint(this.worldObj.provider.dimensionId, daTrain.posX, daTrain.posY, daTrain.posZ, 150.0D));
+                    Traincraft.mscChannel.sendToAllAround(new PacketMTC(daTrain.getEntityId(), MTCInfo, 0) , new NetworkRegistry.TargetPoint(this.worldObj.provider.dimensionId, daTrain.posX, daTrain.posY, daTrain.posZ, 150.0D));
+
+                    daTrain.mtcStatus =  MTCInfo;
+                    daTrain.currentSignalBlock = this.signalBlock;
+                    daTrain.mtcType = this.mtcType;
+                    if (this.mtcType == 2) {
+                        daTrain.stationStop = false;
+                        daTrain.speedGoingDown = false;
+                        if (!(daTrain.serverUUID.equals(this.serverUUID))) {
+
+                            daTrain.attemptConnection(serverUUID);
+                        }
+                    } else if (serverUUID.equals("end")) {
+                    //End communications with the server
+                        daTrain.disconnectFromServer();
+                        daTrain.serverUUID = "";
+                    }
+
+
                   }
                 }
             }
@@ -87,7 +121,7 @@ public class TileInfoTransmitterMTC extends TileEntity implements IPeripheral {
 
     @Override
     public String[] getMethodNames() {
-        return new  String[] {"setMTCStatus", "getMTCStatus", "activate", "deactivate"};
+        return new  String[] {"setMTCStatus", "getMTCStatus", "activate", "deactivate", "setStationName", "setServerUUID", "setSignalBlock", "setMTCType"};
     }
 
     @Override
@@ -106,13 +140,23 @@ public class TileInfoTransmitterMTC extends TileEntity implements IPeripheral {
              return new Object[] {true};
 
 		    } case 3: {
-				activated = false;
-			 return new Object[] {true};
-		    
-			
-			
-			
-			} default:
+                activated = false;
+                return new Object[]{true};
+
+
+            } case 4: {
+               stationName = arguments[0].toString();
+                return new Object[]{true};
+			} case 5: {
+			  serverUUID = arguments[0].toString();
+			  return new Object[]{true};
+            } case 6: {
+               signalBlock = arguments[0].toString();
+                return new Object[]{true};
+            } case 7: {
+                mtcType = (int)Math.round(Double.parseDouble(arguments[0].toString()));
+                return new Object[]{true};
+            } default:
                 return new Object[] {"nil"};
         }
 	}
