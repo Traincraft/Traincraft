@@ -321,7 +321,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 	 * @return int
 	 */
 	public int getFuelConsumption() {
-		return fuelRate;
+		return fuelRate==0?trainSpec.getFuelConsumption():fuelRate;
 	}
 
 	/**
@@ -585,7 +585,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 
 	public void soundHorn() {
 		for (EnumSounds sounds : EnumSounds.values()) {
-			if (sounds.getEntityClass() != null && sounds.getEntityClass().equals(this.getClass()) && whistleDelay == 0) {
+			if (sounds.getEntityClass() != null && !sounds.getHornString().equals("")&& sounds.getEntityClass().equals(this.getClass()) && whistleDelay == 0) {
 				worldObj.playSoundAtEntity(this, Info.resourceLocation + ":" + sounds.getHornString(), sounds.getHornVolume(), 1.0F);
 				whistleDelay = 65;
 			}
@@ -976,7 +976,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 			dataWatcher.updateObject(3, destination);
 			dataWatcher.updateObject(26, (castToString(currentNumCartsPulled)));
 			dataWatcher.updateObject(27, (castToString((currentMassPulled)) + " tons"));
-			dataWatcher.updateObject(28, (castToString((int) currentSpeedSlowDown) + " km/h"));
+			dataWatcher.updateObject(28, ((int) currentSpeedSlowDown) + " km/h");
 			dataWatcher.updateObject(29, (castToString((double) (Math.round(currentAccelSlowDown * 1000)) / 1000)));
 			dataWatcher.updateObject(30, (castToString((double) (Math.round(currentBrakeSlowDown * 1000)) / 1000)));
 			dataWatcher.updateObject(31, ("1c/" + castToString((int) (currentFuelConsumptionChange)) + " per tick"));
