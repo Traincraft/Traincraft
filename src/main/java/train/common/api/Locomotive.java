@@ -741,14 +741,14 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 		}
 		if (ConfigHandler.SOUNDS) {
 			for (EnumSounds sounds : EnumSounds.values()) {
-				if (sounds.getEntityClass() != null && sounds.getEntityClass().equals(this.getClass())) {
+				if (sounds.getEntityClass() != null && !sounds.getHornString().equals("")&& sounds.getEntityClass().equals(this.getClass()) && whistleDelay == 0) {
 					if (getFuel() > 0 && this.isLocoTurnedOn()) {
 						double speed = Math.sqrt(motionX * motionX + motionZ * motionZ);
 						if (speed > -0.001D && speed < 0.01D && soundPosition == 0) {
 							worldObj.playSoundAtEntity(this, Info.resourceLocation + ":" + sounds.getIdleString(), sounds.getIdleVolume(), 0.001F);
 							soundPosition = sounds.getIdleSoundLenght();
 						}
-						if (sounds.getSoundChangeWithSpeed()) {
+						if (sounds.getSoundChangeWithSpeed() && !sounds.getHornString().equals("")&& sounds.getEntityClass().equals(this.getClass()) && whistleDelay == 0) {
 							if (speed > 0.01D && speed < 0.06D && soundPosition == 0) {
 								worldObj.playSoundAtEntity(this, Info.resourceLocation + ":" + sounds.getRunString(), sounds.getRunVolume(), 0.1F);
 								soundPosition = sounds.getRunSoundLenght();
@@ -1236,12 +1236,14 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 
 	@Override
 	public void dropCartAsItem(boolean isCreative){
-		super.dropCartAsItem(isCreative);
-		for(ItemStack stack : locoInvent){
-			if (stack != null) {
-				entityDropItem(stack, 0);
+		if(!itemdropped) {
+			super.dropCartAsItem(isCreative);
+			for (ItemStack stack : locoInvent) {
+				if (stack != null) {
+					entityDropItem(stack, 0);
+				}
 			}
-		}
+			}
 	}
 
 	/** RC routing integration */
