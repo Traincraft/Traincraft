@@ -4,18 +4,16 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
-import dan200.computercraft.api.peripheral.IComputerAccess;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -32,12 +30,10 @@ import train.common.core.network.PacketParkingBrake;
 import train.common.core.network.PacketSlotsFilled;
 import train.common.library.EnumSounds;
 import train.common.library.Info;
-import train.common.mtc.LineWaypoint;
 import train.common.mtc.PDMMessage;
 import train.common.mtc.TilePDMInstructionRadio;
 import train.common.mtc.packets.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -606,32 +602,29 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 	public void onUpdate() {
 
 		if (worldObj.isRemote && ticksExisted %2 ==0 && !Minecraft.getMinecraft().ingameGUI.getChatGUI().getChatOpen()){
-			if (Keyboard.isKeyDown(FMLClientHandler.instance().getClient().gameSettings.keyBindForward.getKeyCode())
+			if (FMLClientHandler.instance().getClient().gameSettings.keyBindForward.isPressed()
 					&& !forwardPressed) {
 				Traincraft.keyChannel.sendToServer(new PacketKeyPress(4));
 				forwardPressed = true;
-			} else if (!Keyboard
-					.isKeyDown(FMLClientHandler.instance().getClient().gameSettings.keyBindForward.getKeyCode())
+			} else if (!FMLClientHandler.instance().getClient().gameSettings.keyBindForward.isPressed()
 					&& forwardPressed) {
 				Traincraft.keyChannel.sendToServer(new PacketKeyPress(13));
 				forwardPressed = false;
 			}
-			if (Keyboard.isKeyDown(FMLClientHandler.instance().getClient().gameSettings.keyBindBack.getKeyCode())
+			if (FMLClientHandler.instance().getClient().gameSettings.keyBindBack.isPressed()
 					&& !backwardPressed) {
 				Traincraft.keyChannel.sendToServer(new PacketKeyPress(5));
 				backwardPressed = true;
-			} else if (!Keyboard
-					.isKeyDown(FMLClientHandler.instance().getClient().gameSettings.keyBindBack.getKeyCode())
+			} else if (!FMLClientHandler.instance().getClient().gameSettings.keyBindBack.isPressed()
 					&& backwardPressed) {
 				Traincraft.keyChannel.sendToServer(new PacketKeyPress(14));
 				backwardPressed = false;
 			}
-			if (Keyboard.isKeyDown(FMLClientHandler.instance().getClient().gameSettings.keyBindJump.getKeyCode())
+			if (FMLClientHandler.instance().getClient().gameSettings.keyBindJump.isPressed()
 					&& !brakePressed) {
 				Traincraft.keyChannel.sendToServer(new PacketKeyPress(12));
 				brakePressed = true;
-			} else if (!Keyboard
-					.isKeyDown(FMLClientHandler.instance().getClient().gameSettings.keyBindJump.getKeyCode())
+			} else if (!FMLClientHandler.instance().getClient().gameSettings.keyBindJump.isPressed()
 					&& brakePressed) {
 				Traincraft.keyChannel.sendToServer(new PacketKeyPress(15));
 				brakePressed = false;
@@ -1485,23 +1478,25 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 	}
 	@Override
     public void sendMessage(PDMMessage message) {
-	//	System.out.println("Sendmessage..");
-        AxisAlignedBB targetBox = AxisAlignedBB.getBoundingBox(this.posX, this.posY, this.posZ, this.posX + 2000, this.posY + 2000, this.posZ + 2000);
-        List<TileEntity> allTEs = worldObj.loadedTileEntityList;
-        for (TileEntity te : allTEs) {
+		if (Loader.isModLoaded("ComputerCraft")) {
+			//	System.out.println("Sendmessage..");
+			AxisAlignedBB targetBox = AxisAlignedBB.getBoundingBox(this.posX, this.posY, this.posZ, this.posX + 2000, this.posY + 2000, this.posZ + 2000);
+			List<TileEntity> allTEs = worldObj.loadedTileEntityList;
+			for (TileEntity te : allTEs) {
 
-            if (te instanceof TilePDMInstructionRadio) {
+				if (te instanceof TilePDMInstructionRadio) {
 
-                TilePDMInstructionRadio teP = (TilePDMInstructionRadio)te;
+					TilePDMInstructionRadio teP = (TilePDMInstructionRadio) te;
 
-                    if (teP.uniqueID.equals(message.UUIDTo)) {
+					if (teP.uniqueID.equals(message.UUIDTo)) {
 
-                    	//System.out.println(message.message);
-                        teP.receiveMessage(message);
-                    }
+						//System.out.println(message.message);
+						teP.receiveMessage(message);
+					}
 
-            }
-        }
+				}
+			}
+		}
 
 
     }
