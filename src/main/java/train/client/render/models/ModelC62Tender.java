@@ -16,7 +16,6 @@ import org.lwjgl.opengl.GL11;
 import tmt.ModelConverter;
 import tmt.ModelRendererTurbo;
 import tmt.Tessellator;
-import train.common.Traincraft;
 import train.common.api.EntityRollingStock;
 import train.common.library.Info;
 

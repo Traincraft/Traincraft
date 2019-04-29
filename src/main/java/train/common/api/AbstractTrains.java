@@ -12,7 +12,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
@@ -141,7 +140,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 	/**
 	 * Registers all possible color textures
 	 */
-	public ArrayList<Integer> acceptedColors;
+	public ArrayList<Byte> acceptedColors;
 
 
 	public AbstractTrains(World world) {
@@ -149,7 +148,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		renderDistanceWeight = 2.0D;
 		color = -1;
 		dataWatcher.addObject(12, color);
-		acceptedColors = new ArrayList<Integer>();
+		acceptedColors = new ArrayList<Byte>();
 		dataWatcher.addObject(6, trainType);
 		dataWatcher.addObject(7, trainOwner);
 		dataWatcher.addObject(8, trainDestroyer);
@@ -167,7 +166,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 				trainSpec = trains;
 				if (trains.getColors() != null) {
 					for (int i = 0; i < trains.getColors().length; i++) {
-						this.acceptedColors.add(AbstractTrains.getColorFromString(trains.getColors()[i]));
+						this.acceptedColors.add((trains.getColors()[i]));
 					}
 				}
 				this.setSize(0.98f, 1.98f);
@@ -336,7 +335,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 	 */
 	public void setColor(int color) {
 		if (color==-1 && EnumTrains.getCurrentTrain(getCartItem().getItem()).getColors()!=null){
-			color = getColorFromString(EnumTrains.getCurrentTrain(getCartItem().getItem()).getColors()[0]);
+			color = (EnumTrains.getCurrentTrain(getCartItem().getItem()).getColors()[0]);
 		}
 		dataWatcher.updateObject(12, color);
 	}
@@ -521,28 +520,6 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		default:
 			return "" + getColor();
 		}
-	}
-
-	public static int getColorFromString(String color) {
-		if (color.equals("Black")) return 0;
-		if (color.equals("Red")) return 1;
-		if (color.equals("Green")) return 2;
-		if (color.equals("Brown")) return 3;
-		if (color.equals("Blue")) return 4;
-		if (color.equals("Purple")) return 5;
-		if (color.equals("Cyan")) return 6;
-		if (color.equals("LightGrey")) return 7;
-		if (color.equals("Grey")) return 8;
-		if (color.equals("Magenta")) return 13;
-		if (color.equals("Lime")) return 10;
-		if (color.equals("Yellow")) return 11;
-		if (color.equals("LightBlue")) return 12;
-		if (color.equals("Pink")) return 9;
-		if (color.equals("Orange")) return 14;
-		if (color.equals("White")) return 15;
-		if (color.equals("Empty")) return 100;
-		if (color.equals("Full")) return 101;
-		return -1;
 	}
 
 	public void dropCartAsItem(boolean isCreative) {

@@ -9,6 +9,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
 import train.common.Traincraft;
 import train.common.api.LiquidTank;
+import train.common.core.util.TraincraftUtil;
 import train.common.library.EnumTrains;
 import train.common.library.GuiIDs;
 
@@ -49,9 +50,9 @@ public class EntityTankLava extends LiquidTank {
 		if (worldObj.isRemote)
 			return;
 		if (getAmount() > 0)
-			setColor(getColorFromString("Full"));
+			setColor(TraincraftUtil.getByteFromColor("Full"));
 		if (getAmount() <= 0)
-			setColor(getColorFromString("Empty"));
+			setColor(TraincraftUtil.getByteFromColor("Empty"));
 	}
 	
 	@Override

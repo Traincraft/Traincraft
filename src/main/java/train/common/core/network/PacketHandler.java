@@ -11,7 +11,6 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.relauncher.Side;
 import train.common.Traincraft;
 import train.common.adminbook.ItemAdminBook;
-import train.common.core.network.*;
 import train.common.library.Info;
 import train.common.mtc.packets.*;
 import train.common.mtc.packets.handlers.*;

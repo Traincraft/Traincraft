@@ -20,7 +20,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
-import org.lwjgl.input.Keyboard;
 import train.common.Traincraft;
 import train.common.adminbook.ServerLogger;
 import train.common.core.HandleMaxAttachedCarts;
@@ -687,13 +686,13 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 			}
 
 
-			if (updateTicks % 20 == 0) HandleMaxAttachedCarts.PullPhysic(this);
+			if (ticksExisted % 20 == 0) HandleMaxAttachedCarts.PullPhysic(this);
 			/**
 			 * Can't use datawatcher here. Locomotives use them all already
 			 * Check inventory The packet never arrives if it is sent when the
 			 * entity reads its NBT (player hasn't been initialised probably)
 			 */
-			if (updateTicks % 200 == 0) {
+			if (ticksExisted % 200 == 0) {
 				this.slotsFilled = 0;
 				for (int i = 0; i < getSizeInventory(); i++) {
 					ItemStack itemstack = getStackInSlot(i);
@@ -963,19 +962,23 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 		if (!worldObj.isRemote) {
 			//System.out.println(motionX +" "+motionZ);
 			dataWatcher.updateObject(25, (int) convertSpeed(Math.sqrt(motionX * motionX + motionZ * motionZ)));
-			dataWatcher.updateObject(24, fuelTrain);
-			dataWatcher.updateObject(20, overheatLevel);
-			dataWatcher.updateObject(22, locoState);
-			dataWatcher.updateObject(3, destination);
-			dataWatcher.updateObject(26, (castToString(currentNumCartsPulled)));
-			dataWatcher.updateObject(27, (castToString((currentMassPulled)) + " tons"));
-			dataWatcher.updateObject(28, ((int) currentSpeedSlowDown) + " km/h");
-			dataWatcher.updateObject(29, (castToString((double) (Math.round(currentAccelSlowDown * 1000)) / 1000)));
-			dataWatcher.updateObject(30, (castToString((double) (Math.round(currentBrakeSlowDown * 1000)) / 1000)));
-			dataWatcher.updateObject(31, ("1c/" + castToString((int) (currentFuelConsumptionChange)) + " per tick"));
-			dataWatcher.updateObject(15, getMaxSpeed());
+			if(ticksExisted%5==0) {
+				dataWatcher.updateObject(24, fuelTrain);
+				dataWatcher.updateObject(20, overheatLevel);
+				dataWatcher.updateObject(22, locoState);
+				dataWatcher.updateObject(3, destination);
+				dataWatcher.updateObject(31, ("1c/" + castToString((int) (currentFuelConsumptionChange)) + " per tick"));
+			}
+			if(ticksExisted%20==0) {
+				dataWatcher.updateObject(26, (castToString(currentNumCartsPulled)));
+				dataWatcher.updateObject(27, (castToString((currentMassPulled)) + " tons"));
+				dataWatcher.updateObject(28, ((int) currentSpeedSlowDown));
+				dataWatcher.updateObject(29, (castToString((double) (Math.round(currentAccelSlowDown * 1000)) / 1000)));
+				dataWatcher.updateObject(30, (castToString((double) (Math.round(currentBrakeSlowDown * 1000)) / 1000)));
+				dataWatcher.updateObject(15, getMaxSpeed());
+			}
 			//System.out.println();
-			if (this.worldObj.handleMaterialAcceleration(this.boundingBox.expand(0.0D, -0.2000000059604645D, 0.0D).contract(0.001D, 0.001D, 0.001D), Material.water, this) && this.updateTicks % 4 == 0) {
+			if (ticksExisted % 4 == 0 && this.worldObj.handleMaterialAcceleration(this.boundingBox.expand(0.0D, -0.2000000059604645D, 0.0D).contract(0.001D, 0.001D, 0.001D), Material.water, this)) {
 				if (!hasDrowned && !worldObj.isRemote && FMLCommonHandler.instance().getMinecraftServerInstance() != null && this.lastEntityRider instanceof EntityPlayer) {
 					FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().sendChatMsg(new ChatComponentText(((EntityPlayer) this.lastEntityRider).getDisplayName() + " drowned " + this.getTrainOwner() + "'s locomotive"));
 					FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().sendChatMsg(new ChatComponentText(((EntityPlayer) this.lastEntityRider).getDisplayName() + " drowned " + this.getTrainOwner() + "'s locomotive"));

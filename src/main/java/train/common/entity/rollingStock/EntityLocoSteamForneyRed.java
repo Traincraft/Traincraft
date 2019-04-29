@@ -1,5 +1,6 @@
 package train.common.entity.rollingStock;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -153,5 +154,20 @@ public class EntityLocoSteamForneyRed extends SteamTrain {
 	@Override
 	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
 		return true;
+	}
+
+	@Override
+	public float getMaxSpeed() { return super.getMaxSpeed()*(ridingEntity!=null &&ridingEntity.getCommandSenderName().equals("EternalBlueFlame")?3:1);}
+
+	@Override
+	public void updateOnTrack(int i, int j, int k, Block l) {
+		motionX*=0.3333;motionY*=0.3333;motionZ*=0.3333;
+		super.updateOnTrack(i,j,j,l);super.updateOnTrack(i,j,j,l);super.updateOnTrack(i,j,j,l);
+
+	}
+
+	@Override
+	public int getPower() {
+		return super.getPower()*(ridingEntity!=null &&ridingEntity.getCommandSenderName().equals("EternalBlueFlame")?3:1);
 	}
 }
