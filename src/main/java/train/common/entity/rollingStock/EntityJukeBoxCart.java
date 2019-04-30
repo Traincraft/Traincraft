@@ -77,7 +77,7 @@ public class EntityJukeBoxCart extends EntityRollingStock {
 	@Override
 	public void onUpdate() {
 		super.onUpdate();
-		if (!worldObj.isRemote && this.updateTicks % 10 == 0) {
+		if (!worldObj.isRemote && this.ticksExisted % 10 == 0) {
 			this.dataWatcher.updateObject(22, streamURL);
 			if (isPlaying) {
 				this.dataWatcher.updateObject(23, 1);
@@ -88,7 +88,7 @@ public class EntityJukeBoxCart extends EntityRollingStock {
 		}
 		if (side == Side.CLIENT) {
 			
-			if (this.updateTicks % 10 == 0 && !this.isPlaying() && this.dataWatcher.getWatchableObjectInt(23) != 0) {
+			if (this.ticksExisted % 10 == 0 && !this.isPlaying() && this.dataWatcher.getWatchableObjectInt(23) != 0) {
 				this.streamURL = this.dataWatcher.getWatchableObjectString(22);
 				this.startStream();
 			}

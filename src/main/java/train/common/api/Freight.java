@@ -141,7 +141,7 @@ public abstract class Freight extends EntityRollingStock implements IInventory {
 	 * Handle mass depending on item count tenders are done differently
 	 */
 	protected void handleMass() {
-		if (this.updateTicks % 10 != 0)
+		if (this.ticksExisted % 10 != 0)
 			return;
 		if (worldObj.isRemote)
 			return;

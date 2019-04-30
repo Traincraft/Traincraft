@@ -124,7 +124,7 @@ public abstract class LiquidTank extends EntityRollingStock implements IFluidHan
 	 * Handle mass depending on liquid amount
 	 */
 	protected void handleMass() {
-		if (this.updateTicks % 10 != 0 && theTank.getFluid().amount > 0) {
+		if (this.ticksExisted % 10 != 0 && theTank.getFluid().amount > 0) {
 			this.mass = this.getDefaultMass();
 			double preciseAmount = theTank.getFluid().amount;
 			mass += (preciseAmount / 10000);//1 bucket = 1 kilo
