@@ -826,7 +826,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 			if (mtcStatus == 1 | mtcStatus == 2) {
 				if (mtcType == 2) {
 					//Send updates every few seconds
-					if (this.ticksExisted % 20 == 0) {
+					if (this.ticksExisted % 20 == 0 && !canBePulled) {
 						JsonObject sendingObj = new JsonObject();
 						sendingObj.addProperty("funct", "update");
 						sendingObj.addProperty("signalBlock", this.currentSignalBlock);
@@ -951,7 +951,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 						this.atoStatus = 0;
 						this.stationStop = true;
 
-							Traincraft.atoChannel.sendToAllAround(new PacketATO(this.getEntityId(), 0),new NetworkRegistry.TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
+0),new NetworkRegistry.TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
 							Traincraft.atoSetStopPoint.sendToAllAround(new PacketATOSetStopPoint(this.getEntityId(), 0.0, 0.0, 0.0, 0.0, 0.0, 0.0), new NetworkRegistry.TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
 							Traincraft.brakeChannel.sendToAllAround(new PacketParkingBrake(true, this.getEntityId()), new NetworkRegistry.TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
 							JsonObject sendingObj = new JsonObject();
@@ -1480,6 +1480,11 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 
 					Traincraft.atoSetStopPoint.sendToAllAround(new PacketATOSetStopPoint(this.getEntityId(), xFromStopPoint, yFromStopPoint, zFromStopPoint, xStationStop, yStationStop, zStationStop), new NetworkRegistry.TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
 				}
+                                if (thing.get("atoStatus") != null && thing.get("atoStatus").getAsInteger()) {
+                               this.atoStatus = thing.get("atoStatus");
+                                Traincraft.atoChannel.sendToAllAround(new PacketATO(this.getEntityId(), thing.get("atoStatus").getAsInteger()),new NetworkRegistry.TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
+                           })
+
 			}
 		}
 	}
@@ -1508,7 +1513,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 
     public void attemptConnection(String theServerUUID) {
 	    //Oh, that's great! We just got the servers UUID. Now let's try connecting to it.
-		if (theServerUUID != null && !serverUUID.equals(theServerUUID)) {
+		if (theServerUUID != null && !serverUUID.equals(theServerUUID) && !canBePulled) {
 		//	System.out.println("Oh, that's great! We just got the servers UUID. Now let's try connecting to it.");
 			JsonObject sendTo = new JsonObject();
 			sendTo.addProperty("funct", "attemptconnection");
