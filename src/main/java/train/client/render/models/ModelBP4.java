@@ -9,6 +9,7 @@
 
 package train.client.render.models;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
@@ -52,7 +53,7 @@ public class ModelBP4 extends ModelConverter
 		bodyModel[13] = new ModelRendererTurbo(this, 449, 1, textureX, textureY); // Box 28
 		bodyModel[14] = new ModelRendererTurbo(this, 465, 1, textureX, textureY); // Box 29
 		bodyModel[15] = new ModelRendererTurbo(this, 425, 1, textureX, textureY); // Box 30
-		bodyModel[16] = new ModelRendererTurbo(this, 489, 1, textureX, textureY); // Box 31 lamp
+		bodyModel[16] = new ModelRendererTurbo(this, 489, 1, textureX, textureY, "lamp"); // Box 31 lamp
 		bodyModel[17] = new ModelRendererTurbo(this, 1, 9, textureX, textureY); // Box 33
 		bodyModel[18] = new ModelRendererTurbo(this, 177, 9, textureX, textureY); // Box 34
 		bodyModel[19] = new ModelRendererTurbo(this, 1, 25, textureX, textureY); // Box 38R
@@ -63,7 +64,7 @@ public class ModelBP4 extends ModelConverter
 		bodyModel[24] = new ModelRendererTurbo(this, 289, 9, textureX, textureY); // Box 44
 		bodyModel[25] = new ModelRendererTurbo(this, 497, 17, textureX, textureY); // Box 45
 		bodyModel[26] = new ModelRendererTurbo(this, 161, 25, textureX, textureY); // Box 47
-		bodyModel[27] = new ModelRendererTurbo(this, 465, 9, textureX, textureY); // Box 48 lamp
+		bodyModel[27] = new ModelRendererTurbo(this, 465, 9, textureX, textureY, "lamp"); // Box 48 lamp
 		bodyModel[28] = new ModelRendererTurbo(this, 193, 17, textureX, textureY); // Box 44
 		bodyModel[29] = new ModelRendererTurbo(this, 489, 25, textureX, textureY); // Box 45
 		bodyModel[30] = new ModelRendererTurbo(this, 225, 41, textureX, textureY); // Box 46
@@ -91,8 +92,8 @@ public class ModelBP4 extends ModelConverter
 		bodyModel[52] = new ModelRendererTurbo(this, 169, 33, textureX, textureY); // Box 70
 		bodyModel[53] = new ModelRendererTurbo(this, 209, 33, textureX, textureY); // Box 71
 		bodyModel[54] = new ModelRendererTurbo(this, 1, 9, textureX, textureY); // Box 72
-		bodyModel[55] = new ModelRendererTurbo(this, 201, 9, textureX, textureY); // Box 77 lamp
-		bodyModel[56] = new ModelRendererTurbo(this, 273, 9, textureX, textureY); // Box 78 lamp
+		bodyModel[55] = new ModelRendererTurbo(this, 201, 9, textureX, textureY, "lamp"); // Box 77 lamp
+		bodyModel[56] = new ModelRendererTurbo(this, 273, 9, textureX, textureY, "lamp"); // Box 78 lamp
 		bodyModel[57] = new ModelRendererTurbo(this, 345, 41, textureX, textureY); // Box 79
 		bodyModel[58] = new ModelRendererTurbo(this, 97, 33, textureX, textureY); // Box 80
 		bodyModel[59] = new ModelRendererTurbo(this, 73, 41, textureX, textureY); // Box 81
@@ -106,8 +107,8 @@ public class ModelBP4 extends ModelConverter
 		bodyModel[67] = new ModelRendererTurbo(this, 129, 57, textureX, textureY); // Box 89
 		bodyModel[68] = new ModelRendererTurbo(this, 409, 41, textureX, textureY); // Box 90
 		bodyModel[69] = new ModelRendererTurbo(this, 137, 57, textureX, textureY); // Box 91
-		bodyModel[70] = new ModelRendererTurbo(this, 193, 17, textureX, textureY); // Box 92 lamp
-		bodyModel[71] = new ModelRendererTurbo(this, 177, 25, textureX, textureY); // Box 93 lamp
+		bodyModel[70] = new ModelRendererTurbo(this, 193, 17, textureX, textureY, "lamp"); // Box 92 lamp
+		bodyModel[71] = new ModelRendererTurbo(this, 177, 25, textureX, textureY, "lamp"); // Box 93 lamp
 		bodyModel[72] = new ModelRendererTurbo(this, 497, 1, textureX, textureY); // box64
 		bodyModel[73] = new ModelRendererTurbo(this, 441, 17, textureX, textureY); // box65
 		bodyModel[74] = new ModelRendererTurbo(this, 193, 9, textureX, textureY); // Box 96
@@ -498,7 +499,13 @@ public class ModelBP4 extends ModelConverter
 
 		for(ModelRendererTurbo m :bodyModel)
 		{
+			if(m.boxName.equals("lamp")){
+				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+			}
 			m.render(f5);
+			if(m.boxName.equals("lamp")){
+				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+			}
 		}
 
 
