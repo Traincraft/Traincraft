@@ -20,6 +20,7 @@ public class TrainsOnClick {
 					playerEntity.addChatMessage(new ChatComponentText("Attach the BACK of this locomotive to the BACK of another locomotive. Otherwise you will encounter weird problems on turns"));
 					((Locomotive) train).setCanBeAdjusted(true);
 					((Locomotive) train).canBePulled = true;
+					((Locomotive) train).disconnectFromServer();
 				}
 				else {
 					playerEntity.addChatMessage(new ChatComponentText(((EntityRollingStock) train).getTrainName() + " can pull"));
