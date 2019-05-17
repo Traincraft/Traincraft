@@ -12,10 +12,8 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 import train.common.Traincraft;
 import train.common.api.Locomotive;
-
 import train.common.mtc.packets.PacketMTC;
 
-import javax.swing.text.html.parser.Entity;
 import java.util.List;
 
 public class TileInfoTransmitterMTC extends TileEntity implements IPeripheral {

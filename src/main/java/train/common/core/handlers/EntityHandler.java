@@ -25,7 +25,7 @@ public class EntityHandler {
 		EntityRegistry.registerModEntity(EntityZeppelinOneBalloon.class, "zeppelin big", EntityIds.ZEPPELIN_BIG, Traincraft.instance, 512, 1, true);//zepplin big
 		int trainID= 32;
 		for(EnumTrains trains : EnumTrains.values()){
-			EntityRegistry.registerModEntity(trains.getEntityClass(), trains.getInternalName(), trainID, Traincraft.instance, 512, 1, true);
+			EntityRegistry.registerModEntity(trains.getEntityClass(), trains.getInternalName(), trainID, Traincraft.instance, 320, 1, true);
 			trainID++;
 			if(trainID== 112 || trainID==51){
 				trainID++;

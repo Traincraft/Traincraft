@@ -134,7 +134,6 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		float dz = (float) (this.posZ - entityMainTrain.posZ);
 		float angle = (float) Math.toDegrees(Math.atan2(dz, dx)) - 90F;
 		angle = MathHelper.wrapAngleTo180_float(angle);
-		float serverRealRotation = angle;
 		//System.out.println("distance "+Math.sqrt(dx*dx+dz*dz)+" "+this.entityMainTrain);
 		//
 		//		double rads = serverRealRotation * Math.PI / 180.0D;
@@ -149,17 +148,13 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		//System.out.println("shift "+bogieShift);
 		//System.out.println(this.posZ +" Z "+  (posZ - (sin * this.bogieShift)));
 		//System.out.println(this.posX +" X "+  (posX - (cos * this.bogieShift)));
-		float rotationCos1 = (float) Math.cos(Math.toRadians(serverRealRotation + 90));
-		float rotationSin1 = (float) Math.sin(Math.toRadians((serverRealRotation + 90)));
 		//float anglePitchClient = serverRealPitch*60;
-		double bogieX1 = (entityMainTrain.posX + (rotationCos1 * Math.abs(this.bogieShift)));
-		double bogieZ1 = (entityMainTrain.posZ + (rotationSin1 * Math.abs(this.bogieShift)));
 		/*System.out.println("rotation "+serverRealRotation);
 		System.out.println(this.posZ +" Z "+  bogieZ1);
 		System.out.println(this.posX +" X "+  bogieX1);
 		/*System.out.println(this.posX +" X "+  bogieX1);*/
-		this.motionX = (bogieX1 - this.posX);
-		this.motionZ = (bogieZ1 - this.posZ);
+		this.motionX = ((entityMainTrain.posX + (Math.cos(Math.toRadians(angle + 90)) * Math.abs(this.bogieShift))) - this.posX);
+		this.motionZ = ((entityMainTrain.posZ + (Math.sin(Math.toRadians((angle + 90))) * Math.abs(this.bogieShift))) - this.posZ);
 		//this.setPosition(bogieX1, this.posY, bogieZ1);
 
 
@@ -525,7 +520,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 	}
 
 	private void moveOnTCStraight(int j, double cx, double cz, int meta) {
-		posY = j + 0.2;
+		posY = j;// + 0.2;
 		if (meta == 2 || meta == 0) {
 			double norm = Math.sqrt(motionX * motionX + motionZ * motionZ);
 
@@ -577,7 +572,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		 * need something to parse to this function. setPosition is superflous since you can't place
 		 * trains down on 2 way crossings.
 		 */
-		// this.posY = j + 0.2D;
+		 //this.posY = j;// + 0.2D;
 		//System.out.println(l);
 		//if(l==2||l==0)moveEntity(motionX, 0.0D, 0.0D);
 		//if(l==1||l==3)moveEntity(0.0D, 0.0D, motionZ);
@@ -648,7 +643,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 	}
 
 	private void moveOnTC90TurnRail(int j,double r, double cx, double cz){
-		posY = j + 0.2;
+		//posY = j + 0.2;
 		double cpx = posX - cx;
 		double cpz = posZ - cz;
 		double cp_norm = Math.sqrt(cpx * cpx + cpz * cpz);
@@ -661,25 +656,16 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		double vx2 = -norm_cpz * vnorm;//-v
 		double vz2 = norm_cpx * vnorm;//u
 
-		double px2 = posX + motionX;
-		double pz2 = posZ + motionZ;
-
-		double px2_cx = px2 - cx;
-		double pz2_cz = pz2 - cz;
+		double px2_cx = (posX + motionX) - cx;
+		double pz2_cz = (posZ + motionZ) - cz;
 
 		double p2_c_norm = Math.sqrt((px2_cx * px2_cx) + (pz2_cz * pz2_cz));
 
 		double px2_cx_norm = px2_cx / p2_c_norm;
 		double pz2_cz_norm = pz2_cz / p2_c_norm;
 
-		double px3 = cx + (px2_cx_norm * r);
-		double pz3 = cz + (pz2_cz_norm * r);
-
-		double signX = px3 - posX;
-		double signZ = pz3 - posZ;
-
-		vx2 = Math.copySign(vx2, signX);
-		vz2 = Math.copySign(vz2, signZ);
+		vx2 = Math.copySign(vx2, cx + (px2_cx_norm * r) - posX);
+		vz2 = Math.copySign(vz2, cz + (pz2_cz_norm * r) - posZ);
 
 		double p_corr_x = cx + ((cpx / cp_norm) * r);
 		double p_corr_z = cz + ((cpz / cp_norm) * r);
@@ -700,7 +686,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 			if (meta == 2) {
 				if (motionZ > 0 && Math.abs(motionX) < 0.01) {
 					TileEntity tile2 = worldObj.getTileEntity(i, j, k + 1);
-					if (tile2 != null && tile2 instanceof TileTCRail) {
+					if (tile2 instanceof TileTCRail) {
 						((TileTCRail) tile2).setSwitchState(false, true);
 					}
 					return true;
@@ -709,7 +695,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 			if (meta == 0) {
 				if (motionZ < 0 && Math.abs(motionX) < 0.01) {
 					TileEntity tile2 = worldObj.getTileEntity(i, j, k - 1);
-					if (tile2 != null && tile2 instanceof TileTCRail) {
+					if (tile2 instanceof TileTCRail) {
 						((TileTCRail) tile2).setSwitchState(false, true);
 					}
 					return true;
@@ -718,7 +704,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 			if (meta == 1) {
 				if (Math.abs(motionZ) < 0.01 && motionX > 0) {
 					TileEntity tile2 = worldObj.getTileEntity(i + 1, j, k);
-					if (tile2 != null && tile2 instanceof TileTCRail) {
+					if (tile2 instanceof TileTCRail) {
 						((TileTCRail) tile2).setSwitchState(false, true);
 					}
 					return true;

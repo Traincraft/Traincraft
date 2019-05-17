@@ -4,25 +4,22 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
-import dan200.computercraft.api.peripheral.IComputerAccess;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
-import org.lwjgl.input.Keyboard;
 import train.common.Traincraft;
 import train.common.adminbook.ServerLogger;
 import train.common.core.HandleMaxAttachedCarts;
@@ -32,12 +29,10 @@ import train.common.core.network.PacketParkingBrake;
 import train.common.core.network.PacketSlotsFilled;
 import train.common.library.EnumSounds;
 import train.common.library.Info;
-import train.common.mtc.LineWaypoint;
 import train.common.mtc.PDMMessage;
 import train.common.mtc.TilePDMInstructionRadio;
 import train.common.mtc.packets.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -637,7 +632,41 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
                 brakePressed = false;
             }
 
+
         }
+
+	@Override
+	public void onUpdate() {
+
+		if (worldObj.isRemote && ticksExisted %2 ==0 && !Minecraft.getMinecraft().ingameGUI.getChatGUI().getChatOpen()){
+			if (FMLClientHandler.instance().getClient().gameSettings.keyBindForward.isPressed()
+					&& !forwardPressed) {
+				Traincraft.keyChannel.sendToServer(new PacketKeyPress(4));
+				forwardPressed = true;
+			} else if (!FMLClientHandler.instance().getClient().gameSettings.keyBindForward.isPressed()
+					&& forwardPressed) {
+				Traincraft.keyChannel.sendToServer(new PacketKeyPress(13));
+				forwardPressed = false;
+			}
+			if (FMLClientHandler.instance().getClient().gameSettings.keyBindBack.isPressed()
+					&& !backwardPressed) {
+				Traincraft.keyChannel.sendToServer(new PacketKeyPress(5));
+				backwardPressed = true;
+			} else if (!FMLClientHandler.instance().getClient().gameSettings.keyBindBack.isPressed()
+					&& backwardPressed) {
+				Traincraft.keyChannel.sendToServer(new PacketKeyPress(14));
+				backwardPressed = false;
+			}
+			if (FMLClientHandler.instance().getClient().gameSettings.keyBindJump.isPressed()
+					&& !brakePressed) {
+				Traincraft.keyChannel.sendToServer(new PacketKeyPress(12));
+				brakePressed = true;
+			} else if (!FMLClientHandler.instance().getClient().gameSettings.keyBindJump.isPressed()
+					&& brakePressed) {
+				Traincraft.keyChannel.sendToServer(new PacketKeyPress(15));
+				brakePressed = false;
+			}
+
 
         // if (worldObj.isRemote) {
         // if (updateTicks % 50 == 0) {
@@ -692,6 +721,94 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
                     motionZ *= brake;
                 }
             }
+
+
+		// if (worldObj.isRemote) {
+		// if (updateTicks % 50 == 0) {
+		// Traincraft.brakeChannel
+		// .sendToServer(new PacketParkingBrake(parkingBrake, this.getEntityId()));
+		// Traincraft.ignitionChannel.sendToServer(new PacketSetLocoTurnedOn(isLocoTurnedOn));//
+		// sending to client
+		// updateTicks=0;
+		// }
+		// }
+		if (!worldObj.isRemote) {
+			if (this.riddenByEntity instanceof EntityLivingBase) {
+				//EntityLivingBase entity = (EntityLivingBase) this.riddenByEntity;
+				if (forwardPressed || backwardPressed) {
+					if (getFuel() > 0 && this.isLocoTurnedOn() && rand.nextInt(4) == 0 && !worldObj.isRemote) {
+						if (this.getTrainLockedFromPacket() && !((EntityPlayer) this.riddenByEntity).getDisplayName()
+								.toLowerCase().equals(this.getTrainOwner().toLowerCase())) {
+							return;
+						}
+						if (riddenByEntity instanceof EntityPlayer) {
+							int dir = MathHelper
+									.floor_double((((EntityPlayer) riddenByEntity).rotationYaw * 4F) / 360F + 0.5D) & 3;
+							if (dir == 2){
+								if (forwardPressed) {
+									motionZ -= 0.0075 * this.accelerate;
+								} else {
+									motionZ += 0.0075 * this.accelerate;
+								}
+							} else if (dir == 0){
+								if (forwardPressed) {
+									motionZ += 0.0075 * this.accelerate;
+								} else {
+									motionZ -= 0.0075 * this.accelerate;
+								}
+							} else if (dir == 1){
+								if (forwardPressed) {
+									motionX -= 0.0075 * this.accelerate;
+								} else {
+									motionX += 0.0075 * this.accelerate;
+								}
+							} else if (dir == 3){
+								if (forwardPressed) {
+									motionX += 0.0075 * this.accelerate;
+								} else {
+									motionX -= 0.0075 * this.accelerate;
+								}
+							}
+						}
+					}
+				} else if (brakePressed) {
+					motionX *= brake;
+					motionZ *= brake;
+				}
+			}
+
+
+			if (ticksExisted % 20 == 0) HandleMaxAttachedCarts.PullPhysic(this);
+			/**
+			 * Can't use datawatcher here. Locomotives use them all already
+			 * Check inventory The packet never arrives if it is sent when the
+			 * entity reads its NBT (player hasn't been initialised probably)
+			 */
+			if (ticksExisted % 200 == 0) {
+				this.slotsFilled = 0;
+				for (int i = 0; i < getSizeInventory(); i++) {
+					ItemStack itemstack = getStackInSlot(i);
+					if (itemstack != null) {
+						slotsFilled++;
+					}
+				}
+
+				Traincraft.slotschannel.sendToAllAround(new PacketSlotsFilled(this, slotsFilled), new TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
+			}
+			/**
+			 * Fuel consumption
+			 */
+			//if (this instanceof DieselTrain) consumption /= 5;
+			if (fuelUpdateTicks >= 100) {
+				fuelUpdateTicks = 0;
+				updateFuelTrain(this.getFuelConsumption());
+			}
+			fuelUpdateTicks++;
+
+			if (!this.isLocoTurnedOn()) {
+				motionX *= 0;
+				motionZ *= 0;
+			}
 
 
             if (updateTicks % 20 == 0) HandleMaxAttachedCarts.PullPhysic(this);
@@ -913,6 +1030,51 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
                     if (!(distanceFromStopPoint < this.getSpeed()) && (!(distanceFromSpeedChange < this.getSpeed()))) {
                         accel(this.speedLimit);
                     }
+
+
+		super.onUpdate();
+		if (!worldObj.isRemote) {
+			//System.out.println(motionX +" "+motionZ);
+			dataWatcher.updateObject(25, (int) convertSpeed(Math.sqrt(motionX * motionX + motionZ * motionZ)));
+			if(ticksExisted%5==0) {
+				dataWatcher.updateObject(24, fuelTrain);
+				dataWatcher.updateObject(20, overheatLevel);
+				dataWatcher.updateObject(22, locoState);
+				dataWatcher.updateObject(3, destination);
+				dataWatcher.updateObject(31, ("1c/" + castToString((int) (currentFuelConsumptionChange)) + " per tick"));
+			}
+			if(ticksExisted%20==0) {
+				dataWatcher.updateObject(26, (castToString(currentNumCartsPulled)));
+				dataWatcher.updateObject(27, (castToString((currentMassPulled)) + " tons"));
+				dataWatcher.updateObject(28, ((int) currentSpeedSlowDown));
+				dataWatcher.updateObject(29, (castToString((double) (Math.round(currentAccelSlowDown * 1000)) / 1000)));
+				dataWatcher.updateObject(30, (castToString((double) (Math.round(currentBrakeSlowDown * 1000)) / 1000)));
+				dataWatcher.updateObject(15, getMaxSpeed());
+			}
+			//System.out.println();
+			if (ticksExisted % 4 == 0 && this.worldObj.handleMaterialAcceleration(this.boundingBox.expand(0.0D, -0.2000000059604645D, 0.0D).contract(0.001D, 0.001D, 0.001D), Material.water, this)) {
+				if (!hasDrowned && !worldObj.isRemote && FMLCommonHandler.instance().getMinecraftServerInstance() != null && this.lastEntityRider instanceof EntityPlayer) {
+					FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().sendChatMsg(new ChatComponentText(((EntityPlayer) this.lastEntityRider).getDisplayName() + " drowned " + this.getTrainOwner() + "'s locomotive"));
+					FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().sendChatMsg(new ChatComponentText(((EntityPlayer) this.lastEntityRider).getDisplayName() + " drowned " + this.getTrainOwner() + "'s locomotive"));
+				}
+				//this.attackEntityFrom(DamageSource.generic, 100);
+				this.setCustomSpeed(0);// set speed to normal
+				this.setAccel(0.000001);// simulate a break down
+				this.setBrake(1);
+				this.motionX *= 0.97;// slowly slows down
+				this.motionZ *= 0.97;
+				this.fuelTrain = 0;
+				this.hasDrowned = true;
+				this.canCheckInvent = false;
+				blowUpDelay++;
+				if (blowUpDelay > 20) {
+					this.attackEntityFrom(DamageSource.drown, 100);
+				}
+			}/*
+			 * else{ this.canCheckInvent=true; this.hasDrowned=false; }
+			 */
+		}
+	}
 
 
                     if (distanceFromStopPoint < this.getSpeed()) {
@@ -1492,14 +1654,19 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
     }
     @Override
     public void sendMessage(PDMMessage message) {
-        //	System.out.println("Sendmessage..");
-        AxisAlignedBB targetBox = AxisAlignedBB.getBoundingBox(this.posX, this.posY, this.posZ, this.posX + 2000, this.posY + 2000, this.posZ + 2000);
-        List<TileEntity> allTEs = worldObj.loadedTileEntityList;
-        for (TileEntity te : allTEs) {
 
-            if (te instanceof TilePDMInstructionRadio) {
 
-                TilePDMInstructionRadio teP = (TilePDMInstructionRadio)te;
+		if (Loader.isModLoaded("ComputerCraft")) {
+			//	System.out.println("Sendmessage..");
+			AxisAlignedBB targetBox = AxisAlignedBB.getBoundingBox(this.posX, this.posY, this.posZ, this.posX + 2000, this.posY + 2000, this.posZ + 2000);
+			List<TileEntity> allTEs = worldObj.loadedTileEntityList;
+			for (TileEntity te : allTEs) {
+
+
+				if (te instanceof TilePDMInstructionRadio) {
+
+					TilePDMInstructionRadio teP = (TilePDMInstructionRadio) te;
+
 
                 if (teP.uniqueID.equals(message.UUIDTo)) {
 
@@ -1507,8 +1674,16 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
                     teP.receiveMessage(message);
                 }
 
-            }
-        }
+					if (teP.uniqueID.equals(message.UUIDTo)) {
+
+						//System.out.println(message.message);
+						teP.receiveMessage(message);
+					}
+
+
+				}
+			}
+		}
 
 
     }

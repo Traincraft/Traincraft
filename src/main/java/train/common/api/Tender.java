@@ -78,7 +78,7 @@ public abstract class Tender extends Freight implements IFluidHandler {
 	 */
 	@Override
 	protected void handleMass(){
-		if(this.updateTicks%10!=0)return;
+		if(this.ticksExisted%10!=0)return;
 		double preciseAmount=0;
 		this.mass=this.getDefaultMass();
 		if(theTank != null && theTank.getFluid() != null && theTank.getFluid().amount>0){

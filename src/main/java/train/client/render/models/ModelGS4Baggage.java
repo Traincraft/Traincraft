@@ -421,7 +421,7 @@ public class ModelGS4Baggage extends ModelBase
 		}
 
 		if(entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor()==2){
-			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/gs4_bogie_red.png"));
+			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/gs4_bogie_Red.png"));
 		} else {
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/GS4_bogie.png"));
 		}

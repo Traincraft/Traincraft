@@ -98,7 +98,7 @@ public class EntityFreightKClassRailBox extends Freight implements IInventory {
 	}
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return 2.1F;
+		return 1.725F;
 	}
 
 	@Override

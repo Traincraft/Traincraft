@@ -83,7 +83,6 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 		double mass = getMass();
 		int power = getMHP();
 		int maxSpeed = getMaxSpeed();
-		String[] additionnalInfo = getAdditionnalInfo();
 		if (getTrainType().length() > 0) {
 			par3List.add("\u00a77" + "Type: " + getTrainType());
 		}
@@ -99,10 +98,8 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 		if(getCargoCapacity()>0){
 			par3List.add("\u00a77" + "Slots: "+getCargoCapacity());
 		}
-		if(additionnalInfo!=null){
-			for(String info : additionnalInfo){
-				par3List.add("\u00a77" + info);
-			}
+		if(getAdditionnalInfo()!=null){
+			par3List.add("\u00a77" + getAdditionnalInfo());
 		}
 	}
 	@Override
@@ -142,7 +139,7 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 		}
 		return 0;
 	}
-	public String[] getAdditionnalInfo() {
+	public String getAdditionnalInfo() {
 		for(EnumTrains trains : EnumTrains.values()){
 			if(trains.getItem() == this){
 				return trains.getAdditionnalTooltip();
@@ -211,7 +208,7 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 				rollingStock = (EntityRollingStock) train.getEntity(world, i + 0.5F, j + 0.5F, k + 0.5F);
 				if(train.getColors()!=null){
 					if(rollingStock != null){
-						rollingStock.setColor(AbstractTrains.getColorFromString(train.getColors()[0]));
+						rollingStock.setColor((train.getColors()[0]));
 					}
 				}
 

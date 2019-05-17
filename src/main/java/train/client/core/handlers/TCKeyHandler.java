@@ -16,7 +16,6 @@ import train.common.api.Locomotive;
 import train.common.api.SteamTrain;
 import train.common.core.handlers.ConfigHandler;
 import train.common.core.network.PacketKeyPress;
-import train.common.mtc.packets.PacketATO;
 
 public class TCKeyHandler {
 	public static KeyBinding horn;
