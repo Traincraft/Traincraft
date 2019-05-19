@@ -524,7 +524,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		if (meta == 2 || meta == 0) {
 			double norm = Math.sqrt(motionX * motionX + motionZ * motionZ);
 
-			setPosition(cx + 0.5, posY + yOffset, posZ);
+			setPosition(cx + 0.5, posY + yOffset+0.5, posZ);
 			//setPosition(posX, posY + yOffset, posZ);
 
 			motionX = 0;
@@ -537,9 +537,9 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 					return;
 				}
 			}
-			this.posX = (this.boundingBox.minX + this.boundingBox.maxX) / 2.0D;
-			this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
-			this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) / 2.0D;
+			setPosition((this.boundingBox.minX+this.boundingBox.maxX)*0.5,
+					this.boundingBox.minY+this.yOffset - this.ySize-0.5,
+					(this.boundingBox.minZ+this.boundingBox.maxZ)*0.5);
 
 			//System.out.println("straight z "+Math.copySign(norm, motionZ));
 		}
@@ -558,9 +558,9 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 					return;
 				}
 			}
-			this.posX = (this.boundingBox.minX + this.boundingBox.maxX) / 2.0D;
-			this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
-			this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) / 2.0D;
+			setPosition((this.boundingBox.minX+this.boundingBox.maxX)*0.5,
+					this.boundingBox.minY+this.yOffset - this.ySize-0.5,
+					(this.boundingBox.minZ+this.boundingBox.maxZ)*0.5);
 
 			//System.out.println("straight x "+Math.copySign(norm, motionX));
 		}
@@ -603,7 +603,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 	}
 	private void moveOnTCSlope(int j, double cx, double cz, double slopeAngle, double slopeHeight, int meta) {
 
-		// posY = j + 2.5;
+		posY = j + 0.5;
 		if (meta == 2 || meta == 0) {
 
 			if (meta == 2) {
@@ -643,38 +643,29 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 	}
 
 	private void moveOnTC90TurnRail(int j,double r, double cx, double cz){
-		//posY = j + 0.2;
+		posY = j;// + 0.2;
 		double cpx = posX - cx;
 		double cpz = posZ - cz;
 		double cp_norm = Math.sqrt(cpx * cpx + cpz * cpz);
 
 		double vnorm = Math.sqrt(motionX * motionX + motionZ * motionZ);
 
-		double norm_cpx = cpx / cp_norm;//u
-		double norm_cpz = cpz / cp_norm;//v
-
-		double vx2 = -norm_cpz * vnorm;//-v
-		double vz2 = norm_cpx * vnorm;//u
+		double vx2 = -(cpz/cp_norm) * vnorm;//-v
+		double vz2 = (cpx/cp_norm) * vnorm;//u
 
 		double px2_cx = (posX + motionX) - cx;
 		double pz2_cz = (posZ + motionZ) - cz;
 
 		double p2_c_norm = Math.sqrt((px2_cx * px2_cx) + (pz2_cz * pz2_cz));
 
-		double px2_cx_norm = px2_cx / p2_c_norm;
-		double pz2_cz_norm = pz2_cz / p2_c_norm;
-
-		vx2 = Math.copySign(vx2, cx + (px2_cx_norm * r) - posX);
-		vz2 = Math.copySign(vz2, cz + (pz2_cz_norm * r) - posZ);
-
 		double p_corr_x = cx + ((cpx / cp_norm) * r);
 		double p_corr_z = cz + ((cpz / cp_norm) * r);
 
 		setPosition(p_corr_x, posY + yOffset, p_corr_z);
 
-		moveEntity(vx2, 0.0D, vz2);
-		motionX = vx2;
-		motionZ = vz2;
+		moveEntity(motionX= Math.copySign(vx2, cx + ((px2_cx/p2_c_norm) * r) - posX),
+				0.0D,
+				motionZ=Math.copySign(vz2, cz + ((pz2_cz/p2_c_norm) * r) - posZ));
 	}
 	private boolean shouldIgnoreSwitch(TileTCRail tile, int i, int j, int k, int meta) {
 		if (tile != null
