@@ -42,7 +42,7 @@ public class GuiCrafterTier extends GuiTraincraft {
 	public Item currentKnownItem=null;
 	private int ticksInGui=0;
 	private Item previousItem;
-	private Entity renderEntity;
+	private AbstractTrains renderEntity;
 	private int color = 0;
 	private int currentRenderTabY = 40;
 	public GuiCrafterTier(InventoryPlayer inv, IInventory tier) {
@@ -78,7 +78,7 @@ public class GuiCrafterTier extends GuiTraincraft {
 
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float f, int t, int g) {
-		List cs = inventorySlots.inventorySlots;
+		//List cs = inventorySlots.inventorySlots;
 
 		int j = (width - xSize) / 2;
 		int k = (height - ySize) / 2;
@@ -111,20 +111,18 @@ public class GuiCrafterTier extends GuiTraincraft {
 				GL11.glTranslatef(guiLeft-70, this.guiTop+170, 100);
 
 				RenderHelper.enableGUIStandardItemLighting();
-				Item item = currentKnownItem;
-				EnumTrains train = EnumTrains.getCurrentTrain(item);
-				if(EnumTrains.getEntityWithItem(item, this.mc.theWorld, 0, 0, 0)!=null && !Item.itemRegistry.getNameForObject(item).equals(Item.itemRegistry.getNameForObject(previousItem))){
-					renderEntity = EnumTrains.getEntityWithItem(item, this.mc.theWorld, 0, 0, 0);
-					previousItem = item;
+				EnumTrains train = EnumTrains.getCurrentTrain(currentKnownItem);
+				renderEntity = train.getEntity(mc.theWorld);
+				if(renderEntity!=null && !Item.itemRegistry.getNameForObject(currentKnownItem).equals(Item.itemRegistry.getNameForObject(previousItem))){
+					previousItem = currentKnownItem;
 				}
 				if(train.getColors()!=null){
 					if(color < 0)color = 0;
 					if(ticksInGui % 400 == 0)color++;
 					if(color>train.getColors().length-1)color=0;
-					if(renderEntity!=null)((AbstractTrains)renderEntity).setColor((train.getColors()[color]));
+					if(renderEntity!=null)renderEntity.setColor((train.getColors()[color]));
 				}
-				float scale = train.getGuiRenderScale();
-				GL11.glScalef(-scale, scale, scale);
+				GL11.glScalef(-train.getGuiRenderScale(), train.getGuiRenderScale(), train.getGuiRenderScale());
 				GL11.glRotatef(180, 0, 0, 1);
 				GL11.glRotatef(roll, 1, 0, 0);
 				GL11.glRotatef(yaw, 0, 1, 0);

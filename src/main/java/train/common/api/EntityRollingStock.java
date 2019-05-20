@@ -1238,10 +1238,11 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 		return false;
 	}
 
+	private double norm;
 	private void moveOnTCStraight(int i, int j, int k, double cx, double cz, int meta) {
 		posY=j;
 		if (meta == 2 || meta == 0) {
-			double norm = Math.sqrt(motionX * motionX + motionZ * motionZ);
+			norm = Math.sqrt(motionX * motionX + motionZ * motionZ);
 
 			setPosition(cx + 0.5, posY + yOffset+this.ySize+0.5, posZ);
 			//setPosition(posX, posY + yOffset, posZ);
@@ -1288,77 +1289,36 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 	}
 
 	private void moveOnTCSlope(int j, double cx, double cz, double slopeAngle, int meta) {
-		posY = j + 0.5;
+		posY = j;// + 0.5;
 		if (meta == 2 || meta == 0) {
 
 			if (meta == 2) {
 				cz += 1;
+				if (!(this instanceof Locomotive) && !(this instanceof EntityTracksBuilder)) {
+					motionZ += rotationPitch<90?0.01:-0.01;
+				}
+			} else if (!(this instanceof Locomotive) && !(this instanceof EntityTracksBuilder)) {
+				motionZ += rotationPitch>90?0.01:-0.01;
 			}
 
-			double norm = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
-			this.setPosition(cx + 0.5D,  Math.abs(j + (Math.tan(slopeAngle * Math.abs(cz - this.posZ))) + this.yOffset +0.3), this.posZ);
-			this.boundingBox.offset(0, 0 , Math.copySign(norm, this.motionZ));
-			this.posX = (this.boundingBox.minX + this.boundingBox.maxX) * 0.5;
-			this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
-			this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) * 0.5;
-
-			if (!(this instanceof Locomotive) && !(this instanceof EntityTracksBuilder)) {
-				if ((this.posY - this.prevPosY) < 0) {
-					norm *= 1.02;
-				} else if ((this.posY - this.prevPosY) > 0) {
-					norm *= 0.98;
-				}
-				if (norm < 0.01) {
-					//System.out.println(motionZ);
-					if ((motionZ) < 0 && meta == 2) {
-						norm += 0.0001;
-						motionZ = Math.copySign(motionZ, 1);
-					}
-					if ((motionZ) > 0 && meta == 0) {
-						norm += 0.0001;
-						motionZ = Math.copySign(motionZ, -1);
-					}
-				}
-			}
-
+			this.setPosition(cx + 0.5D,  Math.abs(j + (Math.tan(slopeAngle * Math.abs(cz - this.posZ))) + this.yOffset-this.ySize+0.1), this.posZ+motionZ);
 			this.motionX = 0.0D;
-			this.motionY = 0.0D;
-			this.motionZ = Math.copySign(norm, this.motionZ);
 		}
 		else if (meta == 1 || meta == 3) {
 			if (meta == 1) {
 				cx += 1;
+				if (!(this instanceof Locomotive) && !(this instanceof EntityTracksBuilder)) {
+					motionX += rotationPitch<90?0.01:-0.01;
+				}
+			} else if (!(this instanceof Locomotive) && !(this instanceof EntityTracksBuilder)) {
+				motionX += rotationPitch>90?0.01:-0.01;
 			}
 
-			double norm = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
-			this.setPosition(this.posX, (j + (Math.tan(slopeAngle * Math.abs(cx - this.posX))) + this.yOffset+0.3), cz + 0.5D);
-			this.boundingBox.offset(Math.copySign(norm, this.motionX), 0 ,0);
-			this.posX = (this.boundingBox.minX + this.boundingBox.maxX) * 0.5;
-			this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
-			this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) * 0.5;
+			this.setPosition(this.posX+motionX, (j + (Math.tan(slopeAngle * Math.abs(cx - this.posX))) + this.yOffset-this.ySize+0.1), cz + 0.5D);
 
-			if (!(this instanceof Locomotive) && !(this instanceof EntityTracksBuilder)) {
-				if ((this.posY - this.prevPosY) < 0) {
-					norm *= 1.02;
-				} else if ((this.posY - this.prevPosY) > 0) {
-					norm *= 0.98;
-				}
-				if (norm < 0.01) {
-					//System.out.println(motionX);
-					if ((motionX) < 0 && meta == 1) {
-						norm += 0.0001;
-						motionX = Math.copySign(motionX, 1);
-					}
-					if ((motionX) > 0 && meta == 3) {
-						norm += 0.0001;
-						motionX = Math.copySign(motionX, -1);
-					}
-				}
-			}
-			this.motionX = Math.copySign(norm, this.motionX);
-			this.motionY = 0.0D;
 			this.motionZ = 0.0D;
 		}
+
 		updateRiderPosition();
 	}
 
@@ -1369,18 +1329,18 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 		double cpz = posZ - cz;
 		double cp_norm = Math.sqrt(cpx * cpx + cpz * cpz);
 
-		double vnorm = Math.sqrt(motionX * motionX + motionZ * motionZ);
+		norm = Math.sqrt(motionX * motionX + motionZ * motionZ);
 
-		double vx2 = -(cpz / cp_norm) * vnorm;//-v
-		double vz2 = (cpx / cp_norm) * vnorm;//u
+		double vx2 = -(cpz / cp_norm) * norm;//-v
+		double vz2 = (cpx / cp_norm) * norm;//u
 
 		double px2_cx = (posX + motionX * 2) - cx;
 		double pz2_cz = (posZ + motionZ * 2) - cz;
 
-		double p2_c_norm = Math.sqrt((px2_cx * px2_cx) + (pz2_cz * pz2_cz));
+		norm = Math.sqrt((px2_cx * px2_cx) + (pz2_cz * pz2_cz));
 
-		vx2 = Math.copySign(vx2, (cx + ((px2_cx / p2_c_norm) * r)) - posX);
-		vz2 = Math.copySign(vz2, (cz + ((pz2_cz / p2_c_norm) * r)) - posZ);
+		vx2 = Math.copySign(vx2, (cx + ((px2_cx / norm) * r)) - posX);
+		vz2 = Math.copySign(vz2, (cz + ((pz2_cz / norm) * r)) - posZ);
 
 		setPosition(cx + ((cpx / cp_norm) * r), posY + yOffset-this.ySize, cz + ((cpz / cp_norm) * r));
 
