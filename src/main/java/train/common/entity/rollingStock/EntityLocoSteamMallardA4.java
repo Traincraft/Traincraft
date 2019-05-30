@@ -42,6 +42,7 @@ public class EntityLocoSteamMallardA4 extends SteamTrain {
 		double pitchRads = this.renderPitch * 3.141592653589793D / 180.0D;
 		riddenByEntity.setPosition(posX - Math.cos(rads)*3, posY + (Math.tan(pitchRads)*-3F)+( getMountedYOffset() + riddenByEntity.getYOffset() + 0.55F), posZ - Math.sin(rads)*3);
 		*/
+		if(riddenByEntity==null){return;}
 		riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset()+0.6, posZ);
 	}
 
@@ -53,7 +54,7 @@ public class EntityLocoSteamMallardA4 extends SteamTrain {
 
 	@Override
 	public void pressKey(int i) {
-		if (i == 7 && riddenByEntity != null && riddenByEntity instanceof EntityPlayer) {
+		if (i == 7 &&  riddenByEntity instanceof EntityPlayer) {
 			((EntityPlayer) riddenByEntity).openGui(Traincraft.instance, GuiIDs.LOCO, worldObj, (int) this.posX, (int) this.posY, (int) this.posZ);
 		}
 	}

@@ -39,6 +39,7 @@ public class EntityLocoSteamPannier extends SteamTrain {
 	public boolean shouldRiderSit(){return false;}
 	@Override
 	public void updateRiderPosition() {
+		if(riddenByEntity==null){return;}
 		riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset()+0.3F, posZ);// default
 	}
 
@@ -50,7 +51,7 @@ public class EntityLocoSteamPannier extends SteamTrain {
 
 	@Override
 	public void pressKey(int i) {
-		if (i == 7 && riddenByEntity != null && riddenByEntity instanceof EntityPlayer) {
+		if (i == 7 && riddenByEntity instanceof EntityPlayer) {
 			((EntityPlayer) riddenByEntity).openGui(Traincraft.instance, GuiIDs.LOCO, worldObj, (int) this.posX, (int) this.posY, (int) this.posZ);
 		}
 	}

@@ -37,6 +37,7 @@ public class EntityLocoSteamCherepanov extends SteamTrain {
 
 	@Override
 	public void updateRiderPosition() {
+		if(riddenByEntity==null){return;}
 		riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset() + 0.154, posZ);
 	}
 

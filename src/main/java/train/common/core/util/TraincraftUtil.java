@@ -90,6 +90,7 @@ public class TraincraftUtil{
     public static final double degrees = (180d / Math.PI);
     public static final double radian = (Math.PI / 180.0D);
     public static void updateRider(EntityRollingStock transport,double distance, double yOffset) {
+        if(transport.riddenByEntity==null){return;}
         double pitchRads = transport.anglePitchClient * radian;
         double rotationCos1 = Math.cos(Math.toRadians(transport.renderYaw+((transport instanceof Locomotive)?90:180)));
         double rotationSin1 = Math.sin(Math.toRadians(transport.renderYaw+((transport instanceof Locomotive)?90:180)));

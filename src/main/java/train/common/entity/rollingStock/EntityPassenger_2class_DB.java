@@ -26,7 +26,9 @@ public class EntityPassenger_2class_DB extends EntityRollingStock implements IPa
 
 	@Override
 	public void updateRiderPosition() {
-		riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset() + 0.2, posZ);
+		if(riddenByEntity!=null) {
+			riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset() + 0.2, posZ);
+		}
 	}
 
 	@Override

@@ -35,6 +35,7 @@ public class EntityWorkCart extends AbstractWorkCart implements IInventory {
 
 	@Override
 	public void updateRiderPosition() {
+		if(riddenByEntity==null){return;}
 		riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset() + 0.15F, posZ);
 	}
 

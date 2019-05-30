@@ -37,6 +37,7 @@ public class EntityLocoDieselChME3 extends DieselTrain {
 
 	@Override
 	public void updateRiderPosition() {
+		if(riddenByEntity==null){return;}
 		riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset() + 0.35F, posZ);
 	}
 

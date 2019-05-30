@@ -37,6 +37,7 @@ public class EntityLocoSteamUSATCUK extends SteamTrain {
 
 	@Override
 	public void updateRiderPosition() {
+		if(riddenByEntity==null){return;}
 		double pitchRads = this.anglePitchClient * Math.PI / 180.0D;
 		double distance = -0.2;
 		double yOffset = 0.0;

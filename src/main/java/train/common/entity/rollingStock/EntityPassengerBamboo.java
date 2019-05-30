@@ -26,6 +26,7 @@ public class EntityPassengerBamboo extends EntityRollingStock implements IPassen
 
 	@Override
 	public void updateRiderPosition() {
+		if(riddenByEntity==null){return;}
 		riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset(), posZ);
 	}
 
@@ -44,7 +45,7 @@ public class EntityPassengerBamboo extends EntityRollingStock implements IPassen
 		if (!worldObj.isRemote) {
 			ItemStack itemstack = entityplayer.inventory.getCurrentItem();
 			if(lockThisCart(itemstack, entityplayer))return true;
-			if (riddenByEntity != null && (riddenByEntity instanceof EntityPlayer) && riddenByEntity != entityplayer) {
+			if (riddenByEntity instanceof EntityPlayer && riddenByEntity != entityplayer) {
 				return true;
 			}
 			if (!worldObj.isRemote) {

@@ -26,6 +26,7 @@ public class EntityPassengerTramNY extends EntityRollingStock implements IPassen
 
 	@Override
 	public void updateRiderPosition() {
+		if(riddenByEntity==null){return;}
 		riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset()+0.1F, posZ);
 	}
 

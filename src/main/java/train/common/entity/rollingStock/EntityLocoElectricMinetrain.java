@@ -29,6 +29,7 @@ public class EntityLocoElectricMinetrain extends ElectricTrain {
 
 	@Override
 	public void updateRiderPosition() {
+		if(riddenByEntity==null){return;}
 		riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset() + 0.10F, posZ);
 	}
 

@@ -36,6 +36,7 @@ public class EntityMailWagen_DB extends AbstractWorkCart implements IInventory {
 
 	@Override
 	public void updateRiderPosition() {
+		if(riddenByEntity==null){return;}
 		riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset() + 0.15F, posZ);
 	}
 
@@ -47,7 +48,7 @@ public class EntityMailWagen_DB extends AbstractWorkCart implements IInventory {
 
 	@Override
 	public void pressKey(int i) {
-		if (riddenByEntity != null && riddenByEntity instanceof EntityPlayer) {
+		if (riddenByEntity instanceof EntityPlayer) {
 			if (locked && !((EntityPlayer) riddenByEntity).getDisplayName().toLowerCase().equals(this.trainOwner.toLowerCase())) {
 				return;
 			}

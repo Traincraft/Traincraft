@@ -29,6 +29,7 @@ public class EntityLocoElectricClass85 extends ElectricTrain {
 
 	@Override
 	public void updateRiderPosition() {
+		if(riddenByEntity==null){return;}
 		double pitchRads = this.anglePitchClient * Math.PI / 180.0D;
 		double distance = 4.75;
 		double yOffset = 0.35;
