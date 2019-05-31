@@ -130,9 +130,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 	}
 
 	public void updateDistance() {
-		float dx = (float) (this.posX - entityMainTrain.posX);
-		float dz = (float) (this.posZ - entityMainTrain.posZ);
-		float angle = (float) Math.toDegrees(Math.atan2(dz, dx)) - 90F;
+		float angle = (float) Math.toDegrees(Math.atan2((this.posZ - entityMainTrain.posZ), (this.posX - entityMainTrain.posX))) - 90F;
 		angle = MathHelper.wrapAngleTo180_float(angle);
 		//System.out.println("distance "+Math.sqrt(dx*dx+dz*dz)+" "+this.entityMainTrain);
 		//

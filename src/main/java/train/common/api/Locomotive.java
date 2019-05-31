@@ -599,377 +599,289 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
     }
 
 	@Override
-	public void onUpdate() {
+    public void onUpdate() {
 
-        if (worldObj.isRemote && ticksExisted % 2 == 0 && !Minecraft.getMinecraft().ingameGUI.getChatGUI().getChatOpen()) {
-            if (FMLClientHandler.instance().getClient().gameSettings.keyBindForward.isPressed()
+        if (worldObj.isRemote && ticksExisted %2 ==0 && !Minecraft.getMinecraft().ingameGUI.getChatGUI().getChatOpen()){
+            if (FMLClientHandler.instance().getClient().gameSettings.keyBindForward.getIsKeyPressed()
                     && !forwardPressed) {
                 Traincraft.keyChannel.sendToServer(new PacketKeyPress(4));
                 forwardPressed = true;
-            } else if (!FMLClientHandler.instance().getClient().gameSettings.keyBindForward.isPressed()
+            } else if (!FMLClientHandler.instance().getClient().gameSettings.keyBindForward.getIsKeyPressed()
                     && forwardPressed) {
                 Traincraft.keyChannel.sendToServer(new PacketKeyPress(13));
                 forwardPressed = false;
             }
-            if (FMLClientHandler.instance().getClient().gameSettings.keyBindBack.isPressed()
+            if (FMLClientHandler.instance().getClient().gameSettings.keyBindBack.getIsKeyPressed()
                     && !backwardPressed) {
                 Traincraft.keyChannel.sendToServer(new PacketKeyPress(5));
                 backwardPressed = true;
-            } else if (!FMLClientHandler.instance().getClient().gameSettings.keyBindBack.isPressed()
+            } else if (!FMLClientHandler.instance().getClient().gameSettings.keyBindBack.getIsKeyPressed()
                     && backwardPressed) {
                 Traincraft.keyChannel.sendToServer(new PacketKeyPress(14));
                 backwardPressed = false;
             }
-            if (FMLClientHandler.instance().getClient().gameSettings.keyBindJump.isPressed()
+            if (FMLClientHandler.instance().getClient().gameSettings.keyBindJump.getIsKeyPressed()
                     && !brakePressed) {
                 Traincraft.keyChannel.sendToServer(new PacketKeyPress(12));
                 brakePressed = true;
-            } else if (!FMLClientHandler.instance().getClient().gameSettings.keyBindJump.isPressed()
+            } else if (!FMLClientHandler.instance().getClient().gameSettings.keyBindJump.getIsKeyPressed()
                     && brakePressed) {
                 Traincraft.keyChannel.sendToServer(new PacketKeyPress(15));
                 brakePressed = false;
             }
 
+        }
 
-            // if (worldObj.isRemote) {
-            // if (updateTicks % 50 == 0) {
-            // Traincraft.brakeChannel
-            // .sendToServer(new PacketParkingBrake(parkingBrake, this.getEntityId()));
-            // Traincraft.ignitionChannel.sendToServer(new PacketSetLocoTurnedOn(isLocoTurnedOn));//
-            // sending to client
-            // updateTicks=0;
-            // }
-            // }
-            if (!worldObj.isRemote) {
-                if (this.riddenByEntity instanceof EntityLivingBase) {
-                    //EntityLivingBase entity = (EntityLivingBase) this.riddenByEntity;
-                    if (forwardPressed || backwardPressed) {
-                        if (getFuel() > 0 && this.isLocoTurnedOn() && rand.nextInt(4) == 0 && !worldObj.isRemote) {
-                            if (this.getTrainLockedFromPacket() && !((EntityPlayer) this.riddenByEntity).getDisplayName()
-                                    .toLowerCase().equals(this.getTrainOwner().toLowerCase())) {
-                                return;
-                            }
-                            if (riddenByEntity instanceof EntityPlayer) {
-                                int dir = MathHelper
-                                        .floor_double((((EntityPlayer) riddenByEntity).rotationYaw * 4F) / 360F + 0.5D) & 3;
-                                if (dir == 2) {
-                                    if (forwardPressed) {
-                                        motionZ -= 0.0075 * this.accelerate;
-                                    } else {
-                                        motionZ += 0.0075 * this.accelerate;
-                                    }
-                                } else if (dir == 0) {
-                                    if (forwardPressed) {
-                                        motionZ += 0.0075 * this.accelerate;
-                                    } else {
-                                        motionZ -= 0.0075 * this.accelerate;
-                                    }
-                                } else if (dir == 1) {
-                                    if (forwardPressed) {
-                                        motionX -= 0.0075 * this.accelerate;
-                                    } else {
-                                        motionX += 0.0075 * this.accelerate;
-                                    }
-                                } else if (dir == 3) {
-                                    if (forwardPressed) {
-                                        motionX += 0.0075 * this.accelerate;
-                                    } else {
-                                        motionX -= 0.0075 * this.accelerate;
-                                    }
-                                }
-                            }
+        // if (worldObj.isRemote) {
+        // if (updateTicks % 50 == 0) {
+        // Traincraft.brakeChannel
+        // .sendToServer(new PacketParkingBrake(parkingBrake, this.getEntityId()));
+        // Traincraft.ignitionChannel.sendToServer(new PacketSetLocoTurnedOn(isLocoTurnedOn));//
+        // sending to client
+        // updateTicks=0;
+        // }
+        // }
+        if (!worldObj.isRemote) {
+            if (this.riddenByEntity instanceof EntityLivingBase) {
+                //EntityLivingBase entity = (EntityLivingBase) this.riddenByEntity;
+                if (forwardPressed || backwardPressed) {
+                    if (getFuel() > 0 && this.isLocoTurnedOn() && rand.nextInt(4) == 0 && !worldObj.isRemote) {
+                        if (this.getTrainLockedFromPacket() && !((EntityPlayer) this.riddenByEntity).getDisplayName()
+                                .toLowerCase().equals(this.getTrainOwner().toLowerCase())) {
+                            return;
                         }
-                    } else if (brakePressed) {
-                        motionX *= brake;
-                        motionZ *= brake;
-                    }
-                }
-
-
-                // if (worldObj.isRemote) {
-                // if (updateTicks % 50 == 0) {
-                // Traincraft.brakeChannel
-                // .sendToServer(new PacketParkingBrake(parkingBrake, this.getEntityId()));
-                // Traincraft.ignitionChannel.sendToServer(new PacketSetLocoTurnedOn(isLocoTurnedOn));//
-                // sending to client
-                // updateTicks=0;
-                // }
-                // }
-                if (!worldObj.isRemote) {
-                    if (this.riddenByEntity instanceof EntityLivingBase) {
-                        //EntityLivingBase entity = (EntityLivingBase) this.riddenByEntity;
-                        if (forwardPressed || backwardPressed) {
-                            if (getFuel() > 0 && this.isLocoTurnedOn() && rand.nextInt(4) == 0 && !worldObj.isRemote) {
-                                if (this.getTrainLockedFromPacket() && !((EntityPlayer) this.riddenByEntity).getDisplayName()
-                                        .toLowerCase().equals(this.getTrainOwner().toLowerCase())) {
-                                    return;
-                                }
-                                if (riddenByEntity instanceof EntityPlayer) {
-                                    int dir = MathHelper
-                                            .floor_double((((EntityPlayer) riddenByEntity).rotationYaw * 4F) / 360F + 0.5D) & 3;
-                                    if (dir == 2) {
-                                        if (forwardPressed) {
-                                            motionZ -= 0.0075 * this.accelerate;
-                                        } else {
-                                            motionZ += 0.0075 * this.accelerate;
-                                        }
-                                    } else if (dir == 0) {
-                                        if (forwardPressed) {
-                                            motionZ += 0.0075 * this.accelerate;
-                                        } else {
-                                            motionZ -= 0.0075 * this.accelerate;
-                                        }
-                                    } else if (dir == 1) {
-                                        if (forwardPressed) {
-                                            motionX -= 0.0075 * this.accelerate;
-                                        } else {
-                                            motionX += 0.0075 * this.accelerate;
-                                        }
-                                    } else if (dir == 3) {
-                                        if (forwardPressed) {
-                                            motionX += 0.0075 * this.accelerate;
-                                        } else {
-                                            motionX -= 0.0075 * this.accelerate;
-                                        }
-                                    }
-                                }
-                            }
-                        } else if (brakePressed) {
-                            motionX *= brake;
-                            motionZ *= brake;
-                        }
-                    }
-
-
-                    if (ticksExisted % 20 == 0) HandleMaxAttachedCarts.PullPhysic(this);
-                    /**
-                     * Can't use datawatcher here. Locomotives use them all already
-                     * Check inventory The packet never arrives if it is sent when the
-                     * entity reads its NBT (player hasn't been initialised probably)
-                     */
-                    if (ticksExisted % 200 == 0) {
-                        this.slotsFilled = 0;
-                        for (int i = 0; i < getSizeInventory(); i++) {
-                            ItemStack itemstack = getStackInSlot(i);
-                            if (itemstack != null) {
-                                slotsFilled++;
-                            }
-                        }
-
-                        Traincraft.slotschannel.sendToAllAround(new PacketSlotsFilled(this, slotsFilled), new TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
-                    }
-                    /**
-                     * Fuel consumption
-                     */
-                    //if (this instanceof DieselTrain) consumption /= 5;
-                    if (fuelUpdateTicks >= 100) {
-                        fuelUpdateTicks = 0;
-                        updateFuelTrain(this.getFuelConsumption());
-                    }
-                    fuelUpdateTicks++;
-
-                    if (!this.isLocoTurnedOn()) {
-                        motionX *= 0;
-                        motionZ *= 0;
-                    }
-
-
-                    if (ticksExisted % 20 == 0) HandleMaxAttachedCarts.PullPhysic(this);
-                    /**
-                     * Can't use datawatcher here. Locomotives use them all already
-                     * Check inventory The packet never arrives if it is sent when the
-                     * entity reads its NBT (player hasn't been initialised probably)
-                     */
-                    if (ticksExisted % 200 == 0) {
-                        this.slotsFilled = 0;
-                        for (int i = 0; i < getSizeInventory(); i++) {
-                            ItemStack itemstack = getStackInSlot(i);
-                            if (itemstack != null) {
-                                slotsFilled++;
-                            }
-                        }
-
-                        Traincraft.slotschannel.sendToAllAround(new PacketSlotsFilled(this, slotsFilled), new TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
-                    }
-                    /**
-                     * Fuel consumption
-                     */
-                    //if (this instanceof DieselTrain) consumption /= 5;
-                    if (fuelUpdateTicks >= 100) {
-                        fuelUpdateTicks = 0;
-                        updateFuelTrain(this.getFuelConsumption());
-                    }
-                    fuelUpdateTicks++;
-
-                    if (!this.isLocoTurnedOn()) {
-                        motionX *= 0;
-                        motionZ *= 0;
-                    }
-
-                }
-                if (whistleDelay > 0) {
-                    whistleDelay--;
-                }
-                if (this.riddenByEntity instanceof EntityPlayer) {
-                    this.lastRider = ((EntityPlayer) this.riddenByEntity).getDisplayName();
-                    this.lastEntityRider = (this.riddenByEntity);
-                }
-
-                if (!this.worldObj.isRemote && this.getParkingBrakeFromPacket() && !getState().equals("broken")) {
-                    motionX *= 0.0;
-                    motionZ *= 0.0;
-                }
-                if (ConfigHandler.SOUNDS) {
-                    for (EnumSounds sounds : EnumSounds.values()) {
-                        if (sounds.getEntityClass() != null && !sounds.getHornString().equals("") && sounds.getEntityClass().equals(this.getClass()) && whistleDelay == 0) {
-                            if (getFuel() > 0 && this.isLocoTurnedOn()) {
-                                double speed = Math.sqrt(motionX * motionX + motionZ * motionZ);
-                                if (speed > -0.001D && speed < 0.01D && soundPosition == 0) {
-                                    worldObj.playSoundAtEntity(this, Info.resourceLocation + ":" + sounds.getIdleString(), sounds.getIdleVolume(), 0.001F);
-                                    soundPosition = sounds.getIdleSoundLenght();
-                                }
-                                if (sounds.getSoundChangeWithSpeed() && !sounds.getHornString().equals("") && sounds.getEntityClass().equals(this.getClass()) && whistleDelay == 0) {
-                                    if (speed > 0.01D && speed < 0.06D && soundPosition == 0) {
-                                        worldObj.playSoundAtEntity(this, Info.resourceLocation + ":" + sounds.getRunString(), sounds.getRunVolume(), 0.1F);
-                                        soundPosition = sounds.getRunSoundLenght();
-                                    } else if (speed > 0.06D && speed < 0.2D && soundPosition == 0) {
-                                        worldObj.playSoundAtEntity(this, Info.resourceLocation + ":" + sounds.getRunString(), sounds.getRunVolume(), 0.4F);
-                                        soundPosition = sounds.getRunSoundLenght() / 2;
-                                    } else if (speed > 0.2D && soundPosition == 0) {
-                                        worldObj.playSoundAtEntity(this, Info.resourceLocation + ":" + sounds.getRunString(), sounds.getRunVolume(), 0.5F);
-                                        soundPosition = sounds.getRunSoundLenght() / 3;
-                                    }
+                        if (riddenByEntity instanceof EntityPlayer) {
+                            int dir = MathHelper
+                                    .floor_double((((EntityPlayer) riddenByEntity).rotationYaw * 4F) / 360F + 0.5D) & 3;
+                            if (dir == 2){
+                                if (forwardPressed) {
+                                    motionZ -= 0.0075 * this.accelerate;
                                 } else {
-                                    if (speed > 0.01D && soundPosition == 0) {
-                                        worldObj.playSoundAtEntity(this, Info.resourceLocation + ":" + sounds.getRunString(), sounds.getRunVolume(), 0.4F);
-                                        soundPosition = sounds.getRunSoundLenght();
-                                    }
+                                    motionZ += 0.0075 * this.accelerate;
                                 }
-                                if (soundPosition > 0) {
-                                    soundPosition--;
+                            } else if (dir == 0){
+                                if (forwardPressed) {
+                                    motionZ += 0.0075 * this.accelerate;
+                                } else {
+                                    motionZ -= 0.0075 * this.accelerate;
+                                }
+                            } else if (dir == 1){
+                                if (forwardPressed) {
+                                    motionX -= 0.0075 * this.accelerate;
+                                } else {
+                                    motionX += 0.0075 * this.accelerate;
+                                }
+                            } else if (dir == 3){
+                                if (forwardPressed) {
+                                    motionX += 0.0075 * this.accelerate;
+                                } else {
+                                    motionX -= 0.0075 * this.accelerate;
                                 }
                             }
-                            break;
                         }
                     }
+                } else if (brakePressed) {
+                    motionX *= brake;
+                    motionZ *= brake;
                 }
-                if (getState().equals("cold")) {
-                    this.extinguish();
-                    if (getCurrentMaxSpeed() >= (getMaxSpeed() * 0.6)) {
-                        motionX *= 0.0;
-                        motionZ *= 0.0;
+            }
+
+
+            if (ticksExisted % 20 == 0) HandleMaxAttachedCarts.PullPhysic(this);
+            /**
+             * Can't use datawatcher here. Locomotives use them all already
+             * Check inventory The packet never arrives if it is sent when the
+             * entity reads its NBT (player hasn't been initialised probably)
+             */
+            if (ticksExisted % 200 == 0) {
+                this.slotsFilled = 0;
+                for (int i = 0; i < getSizeInventory(); i++) {
+                    ItemStack itemstack = getStackInSlot(i);
+                    if (itemstack != null) {
+                        slotsFilled++;
                     }
                 }
-                if (getState().equals("warm")) {
-                    this.extinguish();
-                    if (getCurrentMaxSpeed() >= (getMaxSpeed() * 0.7)) {
-                        motionX *= 0.94;
-                        motionZ *= 0.94;
-                    }
-                }
-                if (getState().equals("hot")) {
-                    this.extinguish();
-                }
-                //if (getState().equals("very hot")) {}
-                if (getState().equals("too hot")) {
-                    motionX *= 0.95;
-                    motionZ *= 0.95;
-                    worldObj.spawnParticle("largesmoke", posX, posY + 0.3, posZ, 0.0D, 0.0D, 0.0D);
-                }
-                if (getState().equals("broken")) {
-                    setFire(8);
-                    this.setCustomSpeed(0);// set speed to normal
-                    this.setAccel(0.000001);// simulate a break down
-                    this.setBrake(1);
-                    this.motionX *= 0.97;// slowly slows down
-                    this.motionZ *= 0.97;
-                    worldObj.spawnParticle("largesmoke", posX, posY + 0.3, posZ, 0.0D, 0.0D, 0.0D);
-                    worldObj.spawnParticle("largesmoke", posX, posY + 0.3, posZ, 0.0D, 0.0D, 0.0D);
-                    blowUpDelay++;
-                    if (blowUpDelay > 80) {
-                        if (!worldObj.isRemote) {
-                            //worldObj.createExplosion(this, this.posX, this.posY, this.posZ, 0.5F, true);
-                            worldObj.createExplosion(this, this.posX, this.posY, this.posZ, 0.5F, false);
-                            this.setDead();
+
+                Traincraft.slotschannel.sendToAllAround(new PacketSlotsFilled(this, slotsFilled), new TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
+            }
+            /**
+             * Fuel consumption
+             */
+            //if (this instanceof DieselTrain) consumption /= 5;
+            if (fuelUpdateTicks >= 100) {
+                fuelUpdateTicks = 0;
+                updateFuelTrain(this.getFuelConsumption());
+            }
+            fuelUpdateTicks++;
+
+            if (!this.isLocoTurnedOn()) {
+                motionX *= 0;
+                motionZ *= 0;
+            }
+
+        }
+        if (whistleDelay > 0) {
+            whistleDelay--;
+        }
+        if (this.riddenByEntity instanceof EntityPlayer) {
+            this.lastRider = ((EntityPlayer) this.riddenByEntity).getDisplayName();
+            this.lastEntityRider = (this.riddenByEntity);
+        }
+
+        if (!this.worldObj.isRemote && this.getParkingBrakeFromPacket() && !getState().equals("broken")) {
+            motionX *= 0.0;
+            motionZ *= 0.0;
+        }
+        if (ConfigHandler.SOUNDS) {
+            for (EnumSounds sounds : EnumSounds.values()) {
+                if (sounds.getEntityClass() != null && !sounds.getHornString().equals("")&& sounds.getEntityClass().equals(this.getClass()) && whistleDelay == 0) {
+                    if (getFuel() > 0 && this.isLocoTurnedOn()) {
+                        double speed = Math.sqrt(motionX * motionX + motionZ * motionZ);
+                        if (speed > -0.001D && speed < 0.01D && soundPosition == 0) {
+                            worldObj.playSoundAtEntity(this, Info.resourceLocation + ":" + sounds.getIdleString(), sounds.getIdleVolume(), 0.001F);
+                            soundPosition = sounds.getIdleSoundLenght();
                         }
-                        if (!worldObj.isRemote && FMLCommonHandler.instance().getMinecraftServerInstance() != null && this.lastEntityRider instanceof EntityPlayer) {
-                            FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().sendChatMsg(new ChatComponentText(((EntityPlayer) this.lastEntityRider).getDisplayName() + " blew " + this.getTrainOwner() + "'s locomotive"));
-                            FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().sendChatMsg(new ChatComponentText(((EntityPlayer) this.lastEntityRider).getDisplayName() + " blew " + this.getTrainOwner() + "'s locomotive"));
+                        if (sounds.getSoundChangeWithSpeed() && !sounds.getHornString().equals("")&& sounds.getEntityClass().equals(this.getClass()) && whistleDelay == 0) {
+                            if (speed > 0.01D && speed < 0.06D && soundPosition == 0) {
+                                worldObj.playSoundAtEntity(this, Info.resourceLocation + ":" + sounds.getRunString(), sounds.getRunVolume(), 0.1F);
+                                soundPosition = sounds.getRunSoundLenght();
+                            }
+                            else if (speed > 0.06D && speed < 0.2D && soundPosition == 0) {
+                                worldObj.playSoundAtEntity(this, Info.resourceLocation + ":" + sounds.getRunString(), sounds.getRunVolume(), 0.4F);
+                                soundPosition = sounds.getRunSoundLenght() / 2;
+                            }
+                            else if (speed > 0.2D && soundPosition == 0) {
+                                worldObj.playSoundAtEntity(this, Info.resourceLocation + ":" + sounds.getRunString(), sounds.getRunVolume(), 0.5F);
+                                soundPosition = sounds.getRunSoundLenght() / 3;
+                            }
+                        }
+                        else {
+                            if (speed > 0.01D && soundPosition == 0) {
+                                worldObj.playSoundAtEntity(this, Info.resourceLocation + ":" + sounds.getRunString(), sounds.getRunVolume(), 0.4F);
+                                soundPosition = sounds.getRunSoundLenght();
+                            }
+                        }
+                        if (soundPosition > 0) {
+                            soundPosition--;
                         }
                     }
+                    break;
                 }
-                //Minecraft Train Control things.
+            }
+        }
+        if (getState().equals("cold")) {
+            this.extinguish();
+            if (getCurrentMaxSpeed() >= (getMaxSpeed() * 0.6)) {
+                motionX *= 0.0;
+                motionZ *= 0.0;
+            }
+        }
+        if (getState().equals("warm")) {
+            this.extinguish();
+            if (getCurrentMaxSpeed() >= (getMaxSpeed() * 0.7)) {
+                motionX *= 0.94;
+                motionZ *= 0.94;
+            }
+        }
+        if (getState().equals("hot")) {
+            this.extinguish();
+        }
+        //if (getState().equals("very hot")) {}
+        if (getState().equals("too hot")) {
+            motionX *= 0.95;
+            motionZ *= 0.95;
+            worldObj.spawnParticle("largesmoke", posX, posY + 0.3, posZ, 0.0D, 0.0D, 0.0D);
+        }
+        if (getState().equals("broken")) {
+            setFire(8);
+            this.setCustomSpeed(0);// set speed to normal
+            this.setAccel(0.000001);// simulate a break down
+            this.setBrake(1);
+            this.motionX *= 0.97;// slowly slows down
+            this.motionZ *= 0.97;
+            worldObj.spawnParticle("largesmoke", posX, posY + 0.3, posZ, 0.0D, 0.0D, 0.0D);
+            worldObj.spawnParticle("largesmoke", posX, posY + 0.3, posZ, 0.0D, 0.0D, 0.0D);
+            blowUpDelay++;
+            if (blowUpDelay > 80) {
                 if (!worldObj.isRemote) {
-                    if (mtcStatus == 1 | mtcStatus == 2) {
-                        if (mtcType == 2) {
-                            //Send updates every few seconds
-                            if (this.ticksExisted % 20 == 0 && !canBePulled) {
-                                JsonObject sendingObj = new JsonObject();
-                                sendingObj.addProperty("funct", "update");
-                                sendingObj.addProperty("signalBlock", this.currentSignalBlock);
-                                sendingObj.addProperty("destination", this.getDestinationGUI());
-                                sendingObj.addProperty("trainLevel", this.trainLevel);
-                                sendMessage(new PDMMessage(this.trainID, this.serverUUID, sendingObj.toString(), 1));
-                            }
-                        }
-                        if (getSpeed() > speedLimit && speedLimit != 0) {
-                            isDriverOverspeed = true;
-                        } else {
-                            isDriverOverspeed = false;
+                    //worldObj.createExplosion(this, this.posX, this.posY, this.posZ, 0.5F, true);
+                    worldObj.createExplosion(this, this.posX, this.posY, this.posZ, 0.5F, false);
+                    this.setDead();
+                }
+                if (!worldObj.isRemote && FMLCommonHandler.instance().getMinecraftServerInstance() != null && this.lastEntityRider instanceof EntityPlayer) {
+                    FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().sendChatMsg(new ChatComponentText(((EntityPlayer) this.lastEntityRider).getDisplayName() + " blew " + this.getTrainOwner() + "'s locomotive"));
+                    FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().sendChatMsg(new ChatComponentText(((EntityPlayer) this.lastEntityRider).getDisplayName() + " blew " + this.getTrainOwner() + "'s locomotive"));
+                }
+            }
+        }
+        //Minecraft Train Control things.
+        if (!worldObj.isRemote) {
+            if (mtcStatus == 1 | mtcStatus == 2) {
+                if (mtcType == 2) {
+                    //Send updates every few seconds
+                    if (this.ticksExisted % 20 == 0) {
+                        JsonObject sendingObj = new JsonObject();
+                        sendingObj.addProperty("funct", "update");
+                        sendingObj.addProperty("signalBlock", this.currentSignalBlock);
+                        sendingObj.addProperty("trainLevel", this.trainLevel);
+                        sendMessage(new PDMMessage(this.trainID, this.serverUUID, sendingObj.toString(), 1));
+                    }
+                }
+                if (getSpeed() > speedLimit && speedLimit != 0) {
+                    isDriverOverspeed = true;
+                } else {
+                    isDriverOverspeed = false;
 
-                        }
-                        if (isDriverOverspeed && ticksExisted % 120 == 0 && !overspeedBrakingInProgress && !overspeedOveridePressed && atoStatus != 1) {
-                            //Start braking because the driver is an idiot.
-                            overspeedBrakingInProgress = true;
-                        }
-                        if (overspeedBrakingInProgress && atoStatus != 1) {
-                            if (getSpeed() < speedLimit) {
-                                //Stop overspeed braking.
-                                overspeedBrakingInProgress = false;
-                                isDriverOverspeed = false;
-                            } else {
-                                slow(speedLimit);
-                            }
-                        }
+                }
+                if (isDriverOverspeed && ticksExisted % 120 == 0 && !overspeedBrakingInProgress && !overspeedOveridePressed && atoStatus != 1) {
+                    //Start braking because the driver is an idiot.
+                    overspeedBrakingInProgress = true;
+                }
+                if (overspeedBrakingInProgress && atoStatus != 1) {
+                    if (getSpeed() < speedLimit) {
+                        //Stop overspeed braking.
+                        overspeedBrakingInProgress = false;
+                        isDriverOverspeed = false;
+                    } else {
+                        slow(speedLimit);
+                    }
+                }
 
-                        distanceFromStopPoint = this.getDistance(this.xFromStopPoint, this.yFromStopPoint, this.zFromStopPoint);
-                        distanceFromSpeedChange = this.getDistance(this.xSpeedLimitChange, this.ySpeedLimitChange, this.zSpeedLimitChange);
+                distanceFromStopPoint = this.getDistance(this.xFromStopPoint, this.yFromStopPoint, this.zFromStopPoint);
+                distanceFromSpeedChange = this.getDistance(this.xSpeedLimitChange, this.ySpeedLimitChange, this.zSpeedLimitChange);
 
-                        if (distanceFromSpeedChange <= this.speedLimit && distanceFromSpeedChange <= this.getSpeed() && !(distanceFromSpeedChange <= this.nextSpeedLimit)) {
-                            speedLimit = (int) Math.round(distanceFromSpeedChange);
-                            speedGoingDown = true;
+                if (distanceFromSpeedChange <= this.speedLimit && distanceFromSpeedChange <= this.getSpeed() && !(distanceFromSpeedChange <= this.nextSpeedLimit)) {
+                    speedLimit = (int) Math.round(distanceFromSpeedChange);
+                    speedGoingDown = true;
 
-                            Traincraft.itsChannel.sendToAllAround(new PacketSetSpeed(this.speedLimit, (int) this.posX, (int) this.posY, (int) this.posZ, getEntityId()), new TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
-                            if (distanceFromSpeedChange <= 6) {
-                                this.xSpeedLimitChange = 0.0;
-                                this.ySpeedLimitChange = 0.0;
-                                this.zSpeedLimitChange = 0.0;
-                                speedLimit = nextSpeedLimit;
-                                this.nextSpeedLimit = 0;
-                                Traincraft.itsChannel.sendToAllAround(new PacketSetSpeed(this.speedLimit, (int) this.posX, (int) this.posY, (int) this.posZ, getEntityId()), new TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
-                                Traincraft.itnsChannel.sendToAllAround(new PacketNextSpeed(nextSpeedLimit, 0, 0, 0, xSpeedLimitChange, ySpeedLimitChange, zSpeedLimitChange, this.getEntityId()), new NetworkRegistry.TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
-                                speedGoingDown = false;
-                                speedGoingDown = false;
-                                speedGoingDown = false;
-                                speedGoingDown = false;
-                            }
+                    Traincraft.itsChannel.sendToAllAround(new PacketSetSpeed(this.speedLimit, (int) this.posX, (int) this.posY, (int) this.posZ, getEntityId()), new TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
+                    if (distanceFromSpeedChange <= 6) {
+                        this.xSpeedLimitChange = 0.0;
+                        this.ySpeedLimitChange = 0.0;
+                        this.zSpeedLimitChange = 0.0;
+                        speedLimit = nextSpeedLimit;
+                        this.nextSpeedLimit = 0;
+                        Traincraft.itsChannel.sendToAllAround(new PacketSetSpeed(this.speedLimit, (int) this.posX, (int) this.posY, (int) this.posZ, getEntityId()), new TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
+                        Traincraft.itnsChannel.sendToAllAround(new PacketNextSpeed( nextSpeedLimit, 0,0,0, xSpeedLimitChange, ySpeedLimitChange, zSpeedLimitChange, this.getEntityId()), new NetworkRegistry.TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
+                        speedGoingDown = false;
+                    }
 
-                        }
+                }
 
-                        if (distanceFromStopPoint >= 40 && distanceFromStopPoint < this.speedLimit && !(xFromStopPoint == 0.0) && mtcType == 1) {
-                            this.speedLimit = (int) Math.round(distanceFromStopPoint);
-                            Traincraft.itsChannel.sendToAllAround(new PacketSetSpeed(this.speedLimit, (int) this.posX, (int) this.posY, (int) this.posZ, getEntityId()), new TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
-                            speedGoingDown = true;
-                        } else {
+                if (distanceFromStopPoint >= 40 && distanceFromStopPoint < this.speedLimit && !(xFromStopPoint == 0.0) && mtcType == 1){
+                    this.speedLimit = (int)Math.round(distanceFromStopPoint);
+                    Traincraft.itsChannel.sendToAllAround(new PacketSetSpeed(this.speedLimit, (int) this.posX, (int) this.posY, (int) this.posZ, getEntityId()), new TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
+                    speedGoingDown = true;
+                } else {
 
-                        }
-                        if (distanceFromStopPoint >= 10 && distanceFromStopPoint < this.speedLimit && !(xFromStopPoint == 0.0) && mtcType == 2) {
-                            this.speedLimit = (int) Math.round(distanceFromStopPoint);
-                            Traincraft.itsChannel.sendToAllAround(new PacketSetSpeed(this.speedLimit, (int) this.posX, (int) this.posY, (int) this.posZ, getEntityId()), new TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
-                            speedGoingDown = true;
-                        } else {
+                }
+                if (distanceFromStopPoint >= 10 && distanceFromStopPoint < this.speedLimit && !(xFromStopPoint == 0.0) && mtcType == 2){
+                    this.speedLimit = (int)Math.round(distanceFromStopPoint);
+                    Traincraft.itsChannel.sendToAllAround(new PacketSetSpeed(this.speedLimit, (int) this.posX, (int) this.posY, (int) this.posZ, getEntityId()), new TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
+                    speedGoingDown = true;
+                } else {
 
-                        }
+                }
 
 
 				/*if (distanceFromStopPoint < this.getSpeed() && !(distanceFromStopPoint < nextSpeedLimit)  && !(this instanceof EntityLocoElectricPeachDriverlessMetro)) {
@@ -978,156 +890,158 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 				}*/
 
 
-                        //For Automatic Train Operation
-                        if (this.atoStatus == 1) {
-                            distanceFromStationStop = this.getDistance(this.xStationStop, this.yStationStop, this.zStationStop);
-                            if (this.parkingBrake) {
-                                this.parkingBrake = false;
-                                //Accelerate to the speed limit
+
+
+                //For Automatic Train Operation
+                if (this.atoStatus == 1) {
+                    distanceFromStationStop = this.getDistance(this.xStationStop, this.yStationStop, this.zStationStop);
+                    if (this.parkingBrake) {
+                        this.parkingBrake = false;
+                        //Accelerate to the speed limit
+                    }
+                    if (!(distanceFromStopPoint < this.getSpeed()) && (!(distanceFromSpeedChange < this.getSpeed()))) {
+                        accel(this.speedLimit);
+                    }
+
+                    if (!worldObj.isRemote) {
+                        //System.out.println(motionX +" "+motionZ);
+                        dataWatcher.updateObject(25, (int) convertSpeed(Math.sqrt(motionX * motionX + motionZ * motionZ)));
+                        if (ticksExisted % 5 == 0) {
+                            dataWatcher.updateObject(24, fuelTrain);
+                            dataWatcher.updateObject(20, overheatLevel);
+                            dataWatcher.updateObject(22, locoState);
+                            dataWatcher.updateObject(3, destination);
+                            dataWatcher.updateObject(31, ("1c/" + castToString((int) (currentFuelConsumptionChange)) + " per tick"));
+                        }
+                        if (ticksExisted % 20 == 0) {
+                            dataWatcher.updateObject(26, (castToString(currentNumCartsPulled)));
+                            dataWatcher.updateObject(27, (castToString((currentMassPulled)) + " tons"));
+                            dataWatcher.updateObject(28, castToString((int) currentSpeedSlowDown));
+                            dataWatcher.updateObject(29, (castToString((double) (Math.round(currentAccelSlowDown * 1000)) / 1000)));
+                            dataWatcher.updateObject(30, (castToString((double) (Math.round(currentBrakeSlowDown * 1000)) / 1000)));
+                            dataWatcher.updateObject(15, getMaxSpeed());
+                        }
+                        //System.out.println();
+                        if (ticksExisted % 4 == 0 && this.worldObj.handleMaterialAcceleration(this.boundingBox.expand(0.0D, -0.2000000059604645D, 0.0D).contract(0.001D, 0.001D, 0.001D), Material.water, this)) {
+                            if (!hasDrowned && !worldObj.isRemote && FMLCommonHandler.instance().getMinecraftServerInstance() != null && this.lastEntityRider instanceof EntityPlayer) {
+                                FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().sendChatMsg(new ChatComponentText(((EntityPlayer) this.lastEntityRider).getDisplayName() + " drowned " + this.getTrainOwner() + "'s locomotive"));
+                                FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().sendChatMsg(new ChatComponentText(((EntityPlayer) this.lastEntityRider).getDisplayName() + " drowned " + this.getTrainOwner() + "'s locomotive"));
                             }
-                            if (!(distanceFromStopPoint < this.getSpeed()) && (!(distanceFromSpeedChange < this.getSpeed()))) {
-                                accel(this.speedLimit);
+                            //this.attackEntityFrom(DamageSource.generic, 100);
+                            this.setCustomSpeed(0);// set speed to normal
+                            this.setAccel(0.000001);// simulate a break down
+                            this.setBrake(1);
+                            this.motionX *= 0.97;// slowly slows down
+                            this.motionZ *= 0.97;
+                            this.fuelTrain = 0;
+                            this.hasDrowned = true;
+                            this.canCheckInvent = false;
+                            blowUpDelay++;
+                            if (blowUpDelay > 20) {
+                                this.attackEntityFrom(DamageSource.drown, 100);
                             }
+                        }/*
+                         * else{ this.canCheckInvent=true; this.hasDrowned=false; }
+                         */
+                    }
 
+                if (distanceFromStopPoint < this.getSpeed()) {
+                        //Stop it at a certain point
+                        stop(Vec3.createVectorHelper(this.xFromStopPoint, this.yFromStopPoint, this.zFromStopPoint));
 
-                            super.onUpdate();
-                            if (!worldObj.isRemote) {
-                                //System.out.println(motionX +" "+motionZ);
-                                dataWatcher.updateObject(25, (int) convertSpeed(Math.sqrt(motionX * motionX + motionZ * motionZ)));
-                                if (ticksExisted % 5 == 0) {
-                                    dataWatcher.updateObject(24, fuelTrain);
-                                    dataWatcher.updateObject(20, overheatLevel);
-                                    dataWatcher.updateObject(22, locoState);
-                                    dataWatcher.updateObject(3, destination);
-                                    dataWatcher.updateObject(31, ("1c/" + castToString((int) (currentFuelConsumptionChange)) + " per tick"));
-                                }
-                                if (ticksExisted % 20 == 0) {
-                                    dataWatcher.updateObject(26, (castToString(currentNumCartsPulled)));
-                                    dataWatcher.updateObject(27, (castToString((currentMassPulled)) + " tons"));
-                                    dataWatcher.updateObject(28, ((int) currentSpeedSlowDown));
-                                    dataWatcher.updateObject(29, (castToString((double) (Math.round(currentAccelSlowDown * 1000)) / 1000)));
-                                    dataWatcher.updateObject(30, (castToString((double) (Math.round(currentBrakeSlowDown * 1000)) / 1000)));
-                                    dataWatcher.updateObject(15, getMaxSpeed());
-                                }
-                                //System.out.println();
-                                if (ticksExisted % 4 == 0 && this.worldObj.handleMaterialAcceleration(this.boundingBox.expand(0.0D, -0.2000000059604645D, 0.0D).contract(0.001D, 0.001D, 0.001D), Material.water, this)) {
-                                    if (!hasDrowned && !worldObj.isRemote && FMLCommonHandler.instance().getMinecraftServerInstance() != null && this.lastEntityRider instanceof EntityPlayer) {
-                                        FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().sendChatMsg(new ChatComponentText(((EntityPlayer) this.lastEntityRider).getDisplayName() + " drowned " + this.getTrainOwner() + "'s locomotive"));
-                                        FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().sendChatMsg(new ChatComponentText(((EntityPlayer) this.lastEntityRider).getDisplayName() + " drowned " + this.getTrainOwner() + "'s locomotive"));
-                                    }
-                                    //this.attackEntityFrom(DamageSource.generic, 100);
-                                    this.setCustomSpeed(0);// set speed to normal
-                                    this.setAccel(0.000001);// simulate a break down
-                                    this.setBrake(1);
-                                    this.motionX *= 0.97;// slowly slows down
-                                    this.motionZ *= 0.97;
-                                    this.fuelTrain = 0;
-                                    this.hasDrowned = true;
-                                    this.canCheckInvent = false;
-                                    blowUpDelay++;
-                                    if (blowUpDelay > 20) {
-                                        this.attackEntityFrom(DamageSource.drown, 100);
-                                    }
-                                }/*
-                                 * else{ this.canCheckInvent=true; this.hasDrowned=false; }
-                                 */
-                            }
+                    }
+                    if (distanceFromStationStop < this.getSpeed()) {
+                        stop(Vec3.createVectorHelper(this.xStationStop, this.yStationStop, this.zStationStop));
+                        stationStopping = true;
+
+                    } else {
+                        stationStopping = false;
+                    }
+
+                    if (distanceFromSpeedChange < this.getSpeed() && !(this.getSpeed() == this.nextSpeedLimit)) {
+                        //Slow it down to the next speed limit
+                        slow(this.nextSpeedLimit);
+                    }
+
+                    if (isDriverOverspeed) {
+                        //The ATO system is speeding somehow, slow it down
+                        slow(this.speedLimit);
+                    }
+                    if (this.distanceFromStopPoint < 2 || this.distanceFromStationStop < 2) {
+                        this.parkingBrake = true;
+                        this.isBraking = true;
+                        if (this.distanceFromStopPoint < 2 ) {
+                            this.xFromStopPoint = 0.0;
+                            this.yFromStopPoint = 0.0;
+                            this.zFromStopPoint = 0.0;
+                        } else if (this.distanceFromStationStop < 2) {
+                            this.xStationStop = 0.0;
+                            this.yStationStop = 0.0;
+                            this.zStationStop = 0.0;
                         }
+                        this.atoStatus = 0;
+                        this.stationStop = true;
 
-
-                        if (distanceFromStopPoint < this.getSpeed()) {
-                            //Stop it at a certain point
-                            stop(Vec3.createVectorHelper(this.xFromStopPoint, this.yFromStopPoint, this.zFromStopPoint));
-
-                        }
-                        if (distanceFromStationStop < this.getSpeed()) {
-                            stop(Vec3.createVectorHelper(this.xStationStop, this.yStationStop, this.zStationStop));
-                            stationStopping = true;
-
-                        } else {
-                            stationStopping = false;
-                        }
-
-                        if (distanceFromSpeedChange < this.getSpeed() && !(this.getSpeed() == this.nextSpeedLimit)) {
-                            //Slow it down to the next speed limit
-                            slow(this.nextSpeedLimit);
-                        }
-
-                        if (isDriverOverspeed) {
-                            //The ATO system is speeding somehow, slow it down
-                            slow(this.speedLimit);
-                        }
-                        if (this.distanceFromStopPoint < 2 || this.distanceFromStationStop < 2) {
-                            this.parkingBrake = true;
-                            this.isBraking = true;
-                            if (this.distanceFromStopPoint < 2) {
-                                this.xFromStopPoint = 0.0;
-                                this.yFromStopPoint = 0.0;
-                                this.zFromStopPoint = 0.0;
-                            } else if (this.distanceFromStationStop < 2) {
-                                this.xStationStop = 0.0;
-                                this.yStationStop = 0.0;
-                                this.zStationStop = 0.0;
-                            }
-                            this.atoStatus = 0;
-                            this.stationStop = true;
-
-                            Traincraft.atoChannel.sendToAllAround(new PacketATO(this.getEntityId(), 0), new NetworkRegistry.TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
-
-                            Traincraft.atoSetStopPoint.sendToAllAround(new PacketATOSetStopPoint(this.getEntityId(), 0.0, 0.0, 0.0, 0.0, 0.0, 0.0), new NetworkRegistry.TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
-                            Traincraft.brakeChannel.sendToAllAround(new PacketParkingBrake(true, this.getEntityId()), new NetworkRegistry.TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
-                            JsonObject sendingObj = new JsonObject();
-                            sendingObj.addProperty("funct", "stationstopcomplete");
-                            sendMessage(new PDMMessage(this.trainID, serverUUID, sendingObj.toString(), 0));
-
-                        }
-
+                        Traincraft.atoChannel.sendToAllAround(new PacketATO(this.getEntityId(), 0),new NetworkRegistry.TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
+                        Traincraft.atoSetStopPoint.sendToAllAround(new PacketATOSetStopPoint(this.getEntityId(), 0.0, 0.0, 0.0, 0.0, 0.0, 0.0), new NetworkRegistry.TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
+                        Traincraft.brakeChannel.sendToAllAround(new PacketParkingBrake(true, this.getEntityId()), new NetworkRegistry.TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
+                        JsonObject sendingObj = new JsonObject();
+                        sendingObj.addProperty("funct", "stationstopcomplete");
+                        sendMessage(new PDMMessage(this.trainID, serverUUID, sendingObj.toString(), 0));
 
                     }
 
-                }
-            }
 
-            super.onUpdate();
-            if (!worldObj.isRemote) {
-                //System.out.println(motionX +" "+motionZ);
-                dataWatcher.updateObject(25, (int) convertSpeed(Math.sqrt(motionX * motionX + motionZ * motionZ)));
+                }
+
+            }
+        }
+
+        super.onUpdate();
+        if (!worldObj.isRemote) {
+            //System.out.println(motionX +" "+motionZ);
+            dataWatcher.updateObject(25, (int) convertSpeed(Math.sqrt(motionX * motionX + motionZ * motionZ)));
+            if(ticksExisted%5==0) {
                 dataWatcher.updateObject(24, fuelTrain);
                 dataWatcher.updateObject(20, overheatLevel);
                 dataWatcher.updateObject(22, locoState);
                 dataWatcher.updateObject(3, destination);
+                dataWatcher.updateObject(31, ("1c/" + castToString((int) (currentFuelConsumptionChange)) + " per tick"));
+            }
+            if(ticksExisted%20==0) {
                 dataWatcher.updateObject(26, (castToString(currentNumCartsPulled)));
                 dataWatcher.updateObject(27, (castToString((currentMassPulled)) + " tons"));
-                dataWatcher.updateObject(28, ((int) currentSpeedSlowDown) + " km/h");
+                dataWatcher.updateObject(28, castToString((int) currentSpeedSlowDown));
                 dataWatcher.updateObject(29, (castToString((double) (Math.round(currentAccelSlowDown * 1000)) / 1000)));
                 dataWatcher.updateObject(30, (castToString((double) (Math.round(currentBrakeSlowDown * 1000)) / 1000)));
-                dataWatcher.updateObject(31, ("1c/" + castToString((int) (currentFuelConsumptionChange)) + " per tick"));
                 dataWatcher.updateObject(15, getMaxSpeed());
-                //System.out.println();
-                if (this.worldObj.handleMaterialAcceleration(this.boundingBox.expand(0.0D, -0.2000000059604645D, 0.0D).contract(0.001D, 0.001D, 0.001D), Material.water, this) && this.ticksExisted % 4 == 0) {
-                    if (!hasDrowned && !worldObj.isRemote && FMLCommonHandler.instance().getMinecraftServerInstance() != null && this.lastEntityRider instanceof EntityPlayer) {
-                        FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().sendChatMsg(new ChatComponentText(((EntityPlayer) this.lastEntityRider).getDisplayName() + " drowned " + this.getTrainOwner() + "'s locomotive"));
-                        FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().sendChatMsg(new ChatComponentText(((EntityPlayer) this.lastEntityRider).getDisplayName() + " drowned " + this.getTrainOwner() + "'s locomotive"));
-                    }
-                    //this.attackEntityFrom(DamageSource.generic, 100);
-                    this.setCustomSpeed(0);// set speed to normal
-                    this.setAccel(0.000001);// simulate a break down
-                    this.setBrake(1);
-                    this.motionX *= 0.97;// slowly slows down
-                    this.motionZ *= 0.97;
-                    this.fuelTrain = 0;
-                    this.hasDrowned = true;
-                    this.canCheckInvent = false;
-                    blowUpDelay++;
-                    if (blowUpDelay > 20) {
-                        this.attackEntityFrom(DamageSource.drown, 100);
-                    }
-                }/*
-                 * else{ this.canCheckInvent=true; this.hasDrowned=false; }
-                 */
             }
+            //System.out.println();
+            if (ticksExisted % 4 == 0 && this.worldObj.handleMaterialAcceleration(this.boundingBox.expand(0.0D, -0.2000000059604645D, 0.0D).contract(0.001D, 0.001D, 0.001D), Material.water, this)) {
+                if (!hasDrowned && !worldObj.isRemote && FMLCommonHandler.instance().getMinecraftServerInstance() != null && this.lastEntityRider instanceof EntityPlayer) {
+                    FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().sendChatMsg(new ChatComponentText(((EntityPlayer) this.lastEntityRider).getDisplayName() + " drowned " + this.getTrainOwner() + "'s locomotive"));
+                    FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().sendChatMsg(new ChatComponentText(((EntityPlayer) this.lastEntityRider).getDisplayName() + " drowned " + this.getTrainOwner() + "'s locomotive"));
+                }
+                //this.attackEntityFrom(DamageSource.generic, 100);
+                this.setCustomSpeed(0);// set speed to normal
+                this.setAccel(0.000001);// simulate a break down
+                this.setBrake(1);
+                this.motionX *= 0.97;// slowly slows down
+                this.motionZ *= 0.97;
+                this.fuelTrain = 0;
+                this.hasDrowned = true;
+                this.canCheckInvent = false;
+                blowUpDelay++;
+                if (blowUpDelay > 20) {
+                    this.attackEntityFrom(DamageSource.drown, 100);
+                }
+            }/*
+             * else{ this.canCheckInvent=true; this.hasDrowned=false; }
+             */
         }
     }
+
+
 
     @Override
     protected void applyDragAndPushForces() {

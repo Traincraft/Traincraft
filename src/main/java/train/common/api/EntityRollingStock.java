@@ -141,7 +141,6 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 	private boolean needsBogieUpdate;
 	private boolean firstLoad = true;
 	public EntityBogie bogieLoco = null;
-	private boolean hasSpawnedBogie = false;
 	private double mountedOffset = -0.5;
 	public double posYFromServer;
 	private boolean shouldServerSetPosYOnClient = true;
@@ -589,10 +588,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 
 	@Override
 	public void onUpdate() {
-
-		if (addedToChunk && !this.hasSpawnedBogie && this.trainSpec.getBogieLocoPosition() != 0) {
-				//System.out.println(i + " " + this.trainSpec.getBogiePositions()[i]);
-				if (bogieLoco == null) {
+		if (this.trainSpec.getBogieLocoPosition() != 0 && this.bogieLoco ==null) {
 					this.bogieShift = this.trainSpec.getBogieLocoPosition();
 					this.bogieLoco = new EntityBogie(worldObj,
 							(posX - Math.cos(this.serverRealRotation * TraincraftUtil.radian) * this.bogieShift),
@@ -600,10 +596,10 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 							(posZ - Math.sin(this.serverRealRotation * TraincraftUtil.radian) * this.bogieShift), this, this.uniqueID, 0, this.bogieShift);
 
 					//if(!worldObj.isRemote)System.out.println("ID: "+this.getID());
-					if (!worldObj.isRemote) worldObj.spawnEntityInWorld(bogieLoco);
+					if (!worldObj.isRemote){
+						worldObj.spawnEntityInWorld(bogieLoco);
+					}
 					this.needsBogieUpdate = true;
-				}
-				this.hasSpawnedBogie = true;
 		}
 		
 		super.manageChunkLoading();
@@ -725,7 +721,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 		 * Link1 or Link2 When it finds it, (EntityRollingStock)cartLinked1 and
 		 * cartLinked2 will be updated accordingly
 		 */
-		if (addedToChunk && ((this.cartLinked1 == null && this.Link1 != 0) || (this.cartLinked2 == null && this.Link2 != 0))) {
+		if (((this.cartLinked1 == null && this.Link1 != 0) || (this.cartLinked2 == null && this.Link2 != 0))) {
 			list = worldObj.getEntitiesWithinAABBExcludingEntity(this, boundingBox.expand(15, 15, 15));
 			//System.out.println("link " + this.uniqueID + " " + this + " to " + this.Link1 + " " + this.Link2);
 			if (list != null && list.size() > 0) {
@@ -752,11 +748,11 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 		//System.out.println(this.serverRealRotation);
 		if (needsBogieUpdate) {
 			if (bogieLoco != null) {
-				float rotationCos1 = (float) Math.cos(Math.toRadians(serverRealRotation));
-				float rotationSin1 = (float) Math.sin(Math.toRadians((serverRealRotation)));
+				double rotationCos1 = Math.cos(Math.toRadians(serverRealRotation));
+				double rotationSin1 = Math.sin(Math.toRadians((serverRealRotation)));
 				if (!firstLoad) {
-					rotationCos1 = (float) Math.cos(Math.toRadians(serverRealRotation + 90));
-					rotationSin1 = (float) Math.sin(Math.toRadians((serverRealRotation + 90)));
+					rotationCos1 = Math.cos(Math.toRadians(serverRealRotation + 90));
+					rotationSin1 = Math.sin(Math.toRadians((serverRealRotation + 90)));
 				}
 				this.bogieLoco.setPosition(this.posX + (rotationCos1 * Math.abs(bogieShift)),
 						bogieLoco.posY,
