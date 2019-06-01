@@ -1164,7 +1164,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 			//if(worldObj.getBlockTileEntity(i,j,k)==null || !(worldObj.getBlockTileEntity(i,j,k) instanceof TileTCRailGag))return;
 			TileTCRailGag tileGag = (TileTCRailGag) worldObj.getTileEntity(i, j, k);
 			//if(worldObj.getBlockTileEntity(tileGag.originX, tileGag.originY, tileGag.originZ)==null || !(worldObj.getBlockTileEntity(tileGag.originX, tileGag.originY, tileGag.originZ) instanceof TileTCRail))return;
-			if (worldObj.getTileEntity(tileGag.originX, tileGag.originY, tileGag.originZ) instanceof TileTCRail) {
+			if (tileGag!=null && worldObj.getTileEntity(tileGag.originX, tileGag.originY, tileGag.originZ) instanceof TileTCRail) {
 				TileTCRail tile = (TileTCRail) worldObj.getTileEntity(tileGag.originX, tileGag.originY, tileGag.originZ);
 				//System.out.println(tile.getType());
 				if (ItemTCRail.isTCTurnTrack(tile)) {
