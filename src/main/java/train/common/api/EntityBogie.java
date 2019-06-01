@@ -518,11 +518,11 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 	}
 
 	private void moveOnTCStraight(int j, double cx, double cz, int meta) {
-		posY = j;// + 0.2;
+		posY=j;
 		if (meta == 2 || meta == 0) {
 			double norm = Math.sqrt(motionX * motionX + motionZ * motionZ);
 
-			setPosition(cx + 0.5, posY + yOffset+0.5, posZ);
+			setPosition(cx + 0.5, posY + yOffset+this.ySize+0.5, posZ);
 			//setPosition(posX, posY + yOffset, posZ);
 
 			motionX = 0;
@@ -535,15 +535,16 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 					return;
 				}
 			}
-			setPosition((this.boundingBox.minX+this.boundingBox.maxX)*0.5,
-					this.boundingBox.minY+this.yOffset - this.ySize-0.5,
-					(this.boundingBox.minZ+this.boundingBox.maxZ)*0.5);
+			setPosition((this.boundingBox.minX + this.boundingBox.maxX) *0.5,
+					this.boundingBox.minY + this.yOffset - this.ySize-0.5,
+					(this.boundingBox.minZ + this.boundingBox.maxZ)*0.5
+			);
 
 			//System.out.println("straight z "+Math.copySign(norm, motionZ));
 		}
 		if (meta == 1 || meta == 3) {
 
-			setPosition(posX, posY + yOffset, cz + 0.5);
+			setPosition(posX, posY + yOffset+this.ySize+0.5, cz + 0.5);
 			//setPosition(posX, posY + yOffset, posZ);
 
 			motionX = Math.copySign(Math.sqrt(motionX * motionX + motionZ * motionZ), motionX);
@@ -556,9 +557,10 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 					return;
 				}
 			}
-			setPosition((this.boundingBox.minX+this.boundingBox.maxX)*0.5,
-					this.boundingBox.minY+this.yOffset - this.ySize-0.5,
-					(this.boundingBox.minZ+this.boundingBox.maxZ)*0.5);
+			setPosition((this.boundingBox.minX + this.boundingBox.maxX) *0.5,
+					this.boundingBox.minY + this.yOffset - this.ySize-0.5,
+					(this.boundingBox.minZ + this.boundingBox.maxZ)*0.5
+			);
 
 			//System.out.println("straight x "+Math.copySign(norm, motionX));
 		}
