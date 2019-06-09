@@ -426,7 +426,7 @@ public class RecipeHandler {
 		}
 		
 		/* Vanilla Furnace recipes */
-		GameRegistry.addSmelting(new ItemStack(Item.getItemFromBlock(BlockIDs.oreTC.block), 0), OreDictionary.getOres("ingotCopper").get(0), 0.7f);
+		GameRegistry.addSmelting(new ItemStack(BlockIDs.oreTC.block, 0), OreDictionary.getOres("ingotCopper").get(0), 0.7f);
 	}
 
 	public static void addDictRecipe(ItemStack stack, Object... obj) {
