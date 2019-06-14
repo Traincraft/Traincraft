@@ -1,5 +1,6 @@
 package tmt;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 
 /**
@@ -25,13 +26,25 @@ public abstract class Model<T> extends net.minecraft.client.model.ModelBase {
 	/** render sub-model array */
 	public void render(ModelRendererTurbo[] model){
 		for(ModelRendererTurbo sub : model){
-			sub.render();
+			if(sub.boxName.contains("lamp")) {
+				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+				sub.render();
+				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+			} else {
+				sub.render();
+			}
 		}
 	}
 	
 	public void render(ModelRendererTurbo[] model, float scale, boolean rotorder){
 		for(ModelRendererTurbo sub : model){
-			sub.render(scale, rotorder);
+			if(sub.boxName.contains("lamp")) {
+				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+				sub.render();
+				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+			} else {
+				sub.render();
+			}
 		}
 	}
 	
