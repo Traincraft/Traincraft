@@ -141,9 +141,9 @@ public class TCKeyHandler {
 			}
 		}
 
-		if (FMLClientHandler.instance().getClient().gameSettings.keyBindSneak.isPressed() && Keyboard.isKeyDown(Keyboard.KEY_F3)) {
-			sendKeyControlsPacket(404);
-		}
+		//if (FMLClientHandler.instance().getClient().gameSettings.keyBindSneak.isPressed() && Keyboard.isKeyDown(Keyboard.KEY_F3)) {
+		//	sendKeyControlsPacket(404);
+		//}
 	}
 
 

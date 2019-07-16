@@ -602,29 +602,29 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
     public void onUpdate() {
 
         if (worldObj.isRemote && ticksExisted %2 ==0 && !Minecraft.getMinecraft().ingameGUI.getChatGUI().getChatOpen()){
-            if (FMLClientHandler.instance().getClient().gameSettings.keyBindForward.getIsKeyPressed()
+            if (FMLClientHandler.instance().getClient().gameSettings.keyBindForward.isPressed()
                     && !forwardPressed) {
                 Traincraft.keyChannel.sendToServer(new PacketKeyPress(4));
                 forwardPressed = true;
-            } else if (!FMLClientHandler.instance().getClient().gameSettings.keyBindForward.getIsKeyPressed()
+            } else if (!FMLClientHandler.instance().getClient().gameSettings.keyBindForward.isPressed()
                     && forwardPressed) {
                 Traincraft.keyChannel.sendToServer(new PacketKeyPress(13));
                 forwardPressed = false;
             }
-            if (FMLClientHandler.instance().getClient().gameSettings.keyBindBack.getIsKeyPressed()
+            if (FMLClientHandler.instance().getClient().gameSettings.keyBindBack.isPressed()
                     && !backwardPressed) {
                 Traincraft.keyChannel.sendToServer(new PacketKeyPress(5));
                 backwardPressed = true;
-            } else if (!FMLClientHandler.instance().getClient().gameSettings.keyBindBack.getIsKeyPressed()
+            } else if (!FMLClientHandler.instance().getClient().gameSettings.keyBindBack.isPressed()
                     && backwardPressed) {
                 Traincraft.keyChannel.sendToServer(new PacketKeyPress(14));
                 backwardPressed = false;
             }
-            if (FMLClientHandler.instance().getClient().gameSettings.keyBindJump.getIsKeyPressed()
+            if (FMLClientHandler.instance().getClient().gameSettings.keyBindJump.isPressed()
                     && !brakePressed) {
                 Traincraft.keyChannel.sendToServer(new PacketKeyPress(12));
                 brakePressed = true;
-            } else if (!FMLClientHandler.instance().getClient().gameSettings.keyBindJump.getIsKeyPressed()
+            } else if (!FMLClientHandler.instance().getClient().gameSettings.keyBindJump.isPressed()
                     && brakePressed) {
                 Traincraft.keyChannel.sendToServer(new PacketKeyPress(15));
                 brakePressed = false;
