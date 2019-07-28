@@ -64,6 +64,7 @@ public enum ItemIDs {
 	steelRail("ItemTrain", "item_rail_steel", 1),
 	recipeBook("ItemRecipeBook", "item_book_blue", 1),
 	adminBook("ItemAdminBook", "item_book_blue", 0),
+	wirelessTransmitter("ItemWirelessTransmitter", "wireless_transmitter", 3),
 
 	minecartWork("ItemRollingStock", "train_work", 4),
 	minecartTender("ItemRollingStock", "train_tender", 4),
