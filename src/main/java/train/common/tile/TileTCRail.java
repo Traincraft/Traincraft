@@ -1,5 +1,7 @@
 package train.common.tile;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
@@ -41,6 +43,8 @@ public class TileTCRail extends TileEntity {
 	private static final float f = 0.125F;
 	public boolean hasRotated = false;
 	private int isLeftFlag = -5;
+	public Integer displayList = null;
+	public boolean refreshModel = true;
 
 	public TileTCRail() {
 		if(this.worldObj != null)
@@ -94,6 +98,9 @@ public class TileTCRail extends TileEntity {
 
 	@Override
 	public void updateEntity() {
+		if(updateTicks%60==0){
+			refreshModel=true;
+		}
 		if (worldObj.isRemote || !canTypeBeModifiedBySwitch) {
 
 			return;
@@ -550,5 +557,10 @@ public class TileTCRail extends TileEntity {
 				}
 			}
 		}
+	}
+
+	@SideOnly(Side.CLIENT)
+	public double getMaxRenderDistanceSquared() {
+		return 16384.0D;
 	}
 }

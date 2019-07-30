@@ -1,14 +1,15 @@
 package train.client.render;
 
+import net.minecraft.client.renderer.GLAllocation;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
+import org.lwjgl.opengl.GL11;
 import train.client.render.models.blocks.*;
 import train.common.tile.TileTCRail;
 
 public class RenderTCRail extends TileEntitySpecialRenderer {
 
 	private static final ModelSmallStraightTCTrack modelSmallStraight = new ModelSmallStraightTCTrack();
-	private static final ModelSmallStraightTCTrack modelRoadCrossing = new ModelSmallStraightTCTrack();
 	private static final ModelMediumStraightTCTrack modelMediumStraight = new ModelMediumStraightTCTrack();
 	private static final ModelRightTurnTCTrack modelRightTurn = new ModelRightTurnTCTrack();
 	private static final ModelLeftTurnTCTrack modelLeftTurn = new ModelLeftTurnTCTrack();
@@ -27,8 +28,17 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 	public void renderTileEntityAt(TileEntity var1, double x, double y, double z, float var8) {
 		if(var1 instanceof TileTCRail){
 			TileTCRail railTile = (TileTCRail) var1;
-			
+
+			if(railTile.displayList!=null){
+				org.lwjgl.opengl.GL11.glCallList(railTile.displayList);
+				if(!railTile.refreshModel) {
+					return;
+				}
+			}
+
 			if (railTile.hasModel && railTile.getTrackType() != null) {
+				railTile.displayList = GLAllocation.generateDisplayLists(1);
+				GL11.glNewList(railTile.displayList, GL11.GL_COMPILE);
 				switch (railTile.getTrackType()){
 					case MEDIUM_TURN:
 					case MEDIUM_RIGHT_TURN: {
@@ -94,13 +104,13 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 						modelSmallStraight.render("straight", railTile, x, y, z);break;
 					}
 					case SMALL_ROAD_CROSSING:{
-						modelRoadCrossing.render("crossing", railTile, x, y, z); break;
+						modelSmallStraight.render("crossing", railTile, x, y, z); break;
 					}
 					case SMALL_ROAD_CROSSING_1:{
-						modelRoadCrossing.render("crossing1", railTile, x, y, z); break;
+						modelSmallStraight.render("crossing1", railTile, x, y, z); break;
 					}
 					case SMALL_ROAD_CROSSING_2:{
-						modelRoadCrossing.render("crossing2", railTile, x, y, z); break;
+						modelSmallStraight.render("crossing2", railTile, x, y, z); break;
 					}
 					case TWO_WAYS_CROSSING: {
 						modelTwoWaysCrossing.render(x, y, z);
@@ -143,7 +153,8 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 						break;
 					}
 				}
-
+				GL11.glEndList();
+				railTile.refreshModel=false;
 
 			}
 		}
