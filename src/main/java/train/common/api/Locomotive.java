@@ -28,6 +28,8 @@ import train.common.core.handlers.ConfigHandler;
 import train.common.core.network.PacketKeyPress;
 import train.common.core.network.PacketParkingBrake;
 import train.common.core.network.PacketSlotsFilled;
+import train.common.entity.rollingStock.*;
+import train.common.items.ItemWirelessTransmitter;
 import train.common.library.EnumSounds;
 import train.common.library.Info;
 import train.common.mtc.PDMMessage;
@@ -483,7 +485,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
         }
         if (i == 16) {
             if (mtcStatus != 0 && this.mtcType == 2) {
-                if (!(this instanceof SteamTrain && !ConfigHandler.ALLOW_ATO_ON_STEAMERS)) {
+                if (trainIsATOSupported()) {
                     if (atoStatus == 1) {
                         atoStatus = 0;
                     } else {
@@ -598,33 +600,33 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
         }
     }
 
-	@Override
+    @Override
     public void onUpdate() {
 
         if (worldObj.isRemote && ticksExisted %2 ==0 && !Minecraft.getMinecraft().ingameGUI.getChatGUI().getChatOpen()){
-            if (FMLClientHandler.instance().getClient().gameSettings.keyBindForward.isPressed()
+            if (FMLClientHandler.instance().getClient().gameSettings.keyBindForward.getIsKeyPressed()
                     && !forwardPressed) {
                 Traincraft.keyChannel.sendToServer(new PacketKeyPress(4));
                 forwardPressed = true;
-            } else if (!FMLClientHandler.instance().getClient().gameSettings.keyBindForward.isPressed()
+            } else if (!FMLClientHandler.instance().getClient().gameSettings.keyBindForward.getIsKeyPressed()
                     && forwardPressed) {
                 Traincraft.keyChannel.sendToServer(new PacketKeyPress(13));
                 forwardPressed = false;
             }
-            if (FMLClientHandler.instance().getClient().gameSettings.keyBindBack.isPressed()
+            if (FMLClientHandler.instance().getClient().gameSettings.keyBindBack.getIsKeyPressed()
                     && !backwardPressed) {
                 Traincraft.keyChannel.sendToServer(new PacketKeyPress(5));
                 backwardPressed = true;
-            } else if (!FMLClientHandler.instance().getClient().gameSettings.keyBindBack.isPressed()
+            } else if (!FMLClientHandler.instance().getClient().gameSettings.keyBindBack.getIsKeyPressed()
                     && backwardPressed) {
                 Traincraft.keyChannel.sendToServer(new PacketKeyPress(14));
                 backwardPressed = false;
             }
-            if (FMLClientHandler.instance().getClient().gameSettings.keyBindJump.isPressed()
+            if (FMLClientHandler.instance().getClient().gameSettings.keyBindJump.getIsKeyPressed()
                     && !brakePressed) {
                 Traincraft.keyChannel.sendToServer(new PacketKeyPress(12));
                 brakePressed = true;
-            } else if (!FMLClientHandler.instance().getClient().gameSettings.keyBindJump.isPressed()
+            } else if (!FMLClientHandler.instance().getClient().gameSettings.keyBindJump.getIsKeyPressed()
                     && brakePressed) {
                 Traincraft.keyChannel.sendToServer(new PacketKeyPress(15));
                 brakePressed = false;
@@ -824,7 +826,16 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
                         sendingObj.addProperty("funct", "update");
                         sendingObj.addProperty("signalBlock", this.currentSignalBlock);
                         sendingObj.addProperty("trainLevel", this.trainLevel);
+                        sendingObj.addProperty("trainName", this.getTrainName());
                         sendMessage(new PDMMessage(this.trainID, this.serverUUID, sendingObj.toString(), 1));
+                    }
+                    if (mtcType == 2 && !trainIsWMTCSupported()) {
+                        //Seems like the MTC card has been removed suddenly. Terminate connections.
+                        disconnectFromServer();
+                        serverUUID = "";
+                        mtcStatus = 0;
+                        Traincraft.mscChannel.sendToAllAround(new PacketMTC(getEntityId(), mtcStatus, 2), new NetworkRegistry.TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
+
                     }
                 }
                 if (getSpeed() > speedLimit && speedLimit != 0) {
@@ -893,7 +904,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 
 
                 //For Automatic Train Operation
-                if (this.atoStatus == 1) {
+                if (this.atoStatus == 1 && trainIsATOSupported()) {
                     distanceFromStationStop = this.getDistance(this.xStationStop, this.yStationStop, this.zStationStop);
                     if (this.parkingBrake) {
                         this.parkingBrake = false;
@@ -945,7 +956,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
                          */
                     }
 
-                if (distanceFromStopPoint < this.getSpeed()) {
+                    if (distanceFromStopPoint < this.getSpeed()) {
                         //Stop it at a certain point
                         stop(Vec3.createVectorHelper(this.xFromStopPoint, this.yFromStopPoint, this.zFromStopPoint));
 
@@ -1224,7 +1235,6 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 			if ((stack.getItem() == Item.itemRegistry.getObject("redstone")) || (stack.getItem() instanceof IElectricItem)) return placeInSpecialInvent(stack, 0, doAdd);
 		}
 		return 0;
-
 	}
 	*/
 
@@ -1520,7 +1530,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
                     this.atoStatus = thing.get("atoStatus").getAsInt();
                     Traincraft.atoChannel.sendToAllAround(new PacketATO(this.getEntityId(), thing.get("atoStatus").getAsInt()),new NetworkRegistry.TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
                 }
-               
+
 
             }
         }
@@ -1529,48 +1539,83 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
     public void sendMessage(PDMMessage message) {
 
 
-		if (Loader.isModLoaded("ComputerCraft")) {
-			//	System.out.println("Sendmessage..");
-			AxisAlignedBB targetBox = AxisAlignedBB.getBoundingBox(this.posX, this.posY, this.posZ, this.posX + 2000, this.posY + 2000, this.posZ + 2000);
-			List<TileEntity> allTEs = worldObj.loadedTileEntityList;
-			for (TileEntity te : allTEs) {
+        if (Loader.isModLoaded("ComputerCraft")) {
+            //	System.out.println("Sendmessage..");
+            AxisAlignedBB targetBox = AxisAlignedBB.getBoundingBox(this.posX, this.posY, this.posZ, this.posX + 2000, this.posY + 2000, this.posZ + 2000);
+            List<TileEntity> allTEs = worldObj.loadedTileEntityList;
+            for (TileEntity te : allTEs) {
 
 
-				if (te instanceof TilePDMInstructionRadio) {
+                if (te instanceof TilePDMInstructionRadio) {
 
-					TilePDMInstructionRadio teP = (TilePDMInstructionRadio) te;
+                    TilePDMInstructionRadio teP = (TilePDMInstructionRadio) te;
 
 
-                if (teP.uniqueID.equals(message.UUIDTo)) {
+                    if (teP.uniqueID.equals(message.UUIDTo)) {
 
-                    //System.out.println(message.message);
-                    teP.receiveMessage(message);
+                        //System.out.println(message.message);
+                        teP.receiveMessage(message);
+                    }
+
+                    if (teP.uniqueID.equals(message.UUIDTo)) {
+
+                        //System.out.println(message.message);
+                        teP.receiveMessage(message);
+                    }
+
+
                 }
-
-					if (teP.uniqueID.equals(message.UUIDTo)) {
-
-						//System.out.println(message.message);
-						teP.receiveMessage(message);
-					}
-
-
-				}
-			}
-		}
+            }
+        }
 
 
     }
 
     public void attemptConnection(String theServerUUID) {
         //Oh, that's great! We just got the servers UUID. Now let's try connecting to it.
-        if (theServerUUID != null && !serverUUID.equals(theServerUUID) && !canBePulled) {
-            //	System.out.println("Oh, that's great! We just got the servers UUID. Now let's try connecting to it.");
-            JsonObject sendTo = new JsonObject();
-            sendTo.addProperty("funct", "attemptconnection");
-            sendTo.addProperty("trainType", this.trainLevel);
-            //	System.out.println(sendTo.toString());
-            sendMessage(new PDMMessage(this.trainID, theServerUUID, sendTo.toString(), 0));
+        //Check if it is one of the supported trains
+        //Check for support
+        if ( trainIsWMTCSupported()) {
+            if (theServerUUID != null && !serverUUID.equals(theServerUUID) && !canBePulled) {
+                //	System.out.println("Oh, that's great! We just got the servers UUID. Now let's try connecting to it.");
+                JsonObject sendTo = new JsonObject();
+                sendTo.addProperty("funct", "attemptconnection");
+                sendTo.addProperty("trainType", this.trainLevel);
+
+                sendMessage(new PDMMessage(this.trainID, theServerUUID, sendTo.toString(), 0));
+            }
         }
+    }
+
+    public Boolean trainIsWMTCSupported() {
+        Boolean support = false;
+        Integer whichOneToCheck = 0;
+        if (this instanceof SteamTrain)  whichOneToCheck = 2;
+        if (!(this instanceof SteamTrain)) whichOneToCheck = 1;
+        if (this.getInventory()[whichOneToCheck] != null) {
+            // System.out.println(this.getInventory()[whichOneToCheck].getItem().getClass().getName());
+            if (this.getInventory()[whichOneToCheck].getItem() instanceof ItemWirelessTransmitter) {
+                support = true;
+            } else {
+                support = false;
+            }
+        }
+        if (this instanceof EntityLocoDieselSD40 || this instanceof EntityLocoElectricBP4 || this instanceof EntityLocoDieselClass66 || this instanceof EntityLocoElectricBR185 || this instanceof EntityLocoElectricCD151 || this instanceof EntityLocoDieselDD35A|| this instanceof EntityLocoElectricICE1|| this instanceof EntityLocoElectricHighSpeedZeroED|| this instanceof EntityLocoElectricE103|| this instanceof EntityLocoDieselV60_DB|| this instanceof EntityLocoDieselCD742|| this instanceof EntityLocoElectricVL10|| this instanceof EntityLocoElectricTramNY|| this instanceof EntityLocoDieselIC4_DSB_MG || this instanceof EntityLocoDieselSD70 || support) {
+            return true;
+        } else {
+            return false;
+        }
+
+
+    }
+
+    public Boolean trainIsATOSupported() {
+        if (this instanceof EntityLocoElectricHighSpeedZeroED || this instanceof EntityLocoElectricTramNY || this instanceof EntityLocoElectricICE1 || this instanceof EntityLocoDieselIC4_DSB_MG || (this instanceof SteamTrain && ConfigHandler.ALLOW_ATO_ON_STEAMERS) ) {
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
     public void disconnectFromServer() {

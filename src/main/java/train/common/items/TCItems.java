@@ -7,6 +7,7 @@
 
 package train.common.items;
 
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
 import train.common.Traincraft;
 import train.common.adminbook.ItemAdminBook;
@@ -89,7 +90,10 @@ public class TCItems {
 		ItemIDs.tcRailVeryLargeSlopeWood.item = new ItemTCRail(ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_WOOD);
 		ItemIDs.tcRailVeryLargeSlopeGravel.item = new ItemTCRail(ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_GRAVEL);
 		ItemIDs.tcRailVeryLargeSlopeBallast.item = new ItemTCRail(ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_BALLAST);
-		
+
+		if (Loader.isModLoaded("ComputerCraft")) {
+			ItemIDs.wirelessTransmitter.item = new ItemWirelessTransmitter();
+		}
 	}
 	
 	private static void registerItems() {

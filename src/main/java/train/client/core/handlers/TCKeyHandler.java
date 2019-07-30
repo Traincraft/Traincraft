@@ -85,8 +85,8 @@ public class TCKeyHandler {
 					sendKeyControlsPacket(16);
 					Locomotive train = (Locomotive) Minecraft.getMinecraft().thePlayer.ridingEntity;
 					if (train.mtcStatus != 0 && train.mtcType == 2) {
-						if (train instanceof SteamTrain && !ConfigHandler.ALLOW_ATO_ON_STEAMERS) {
-							((EntityPlayer) train.riddenByEntity).addChatMessage(new ChatComponentText("Automatic Train Operation cannot be used with steam trains"));
+						if (!train.trainIsATOSupported()) {
+							((EntityPlayer) train.riddenByEntity).addChatMessage(new ChatComponentText("Automatic Train Operation is not supported for this train"));
 						} else {
 							if (train.atoStatus == 1) {
 								train.atoStatus = 0;
