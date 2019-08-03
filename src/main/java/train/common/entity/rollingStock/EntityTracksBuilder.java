@@ -705,7 +705,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 
 	/* Gets the drops of the block then calls blockSpawner */
 	public void getBlockList(World worldObj, int i, int j, int k) {
-		if ((Block.getIdFromBlock(worldObj.getBlock(i, j, k)) != 0)) {
+		if ((Block.getIdFromBlock(worldObj.getBlock(i, j, k)) != 0) && worldObj.canMineBlock(null,i,j,k)) {
 			ArrayList<ItemStack> stacks = new ArrayList<ItemStack>(TrainModBlockUtil.getItemStackFromBlock(worldObj, i, j, k));//underBlockStack.getItem().getMetadata(underBlockStack.getItemDamage())
 			for (ItemStack s : stacks) {
 				if( (BlockRailBase.func_150051_a(Block.getBlockFromItem(s.getItem()))))return;
@@ -724,7 +724,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 	 * @param pos
 	 */
 	private void harvestBlock_do(Vec3 pos) {
-		if (pos == null) {
+		if (pos == null || !worldObj.canMineBlock(null,(int)pos.xCoord,(int)pos.yCoord, (int)pos.zCoord)) {
 			return;
 		}
 		int id = Block.getIdFromBlock(worldObj.getBlock((int) pos.xCoord, (int) pos.yCoord, (int) pos.zCoord));
@@ -799,9 +799,11 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 	public void putRoof(int i, int j, int k, int inv, World worldObj, ItemStack block) {
 		if (!tunnelActive && block != null && (Block.getIdFromBlock(worldObj.getBlock(i, j, k)) != Item.getIdFromItem(block.getItem()))) {
 			// worldObj.getBlockId(i-1,j+3,k) == Block.dirt.blockID || worldObj.getBlockId(i-1,j+3,k) == 8 || worldObj.getBlockId(i-1,j+3,k) == 9 || worldObj.getBlockId(i-1,j+3,k) == 10 || worldObj.getBlockId(i-1,j+3,k) == 11 || worldObj.getBlockId(i-1,j+3,k) == 12 || worldObj.getBlockId(i-1,j+3,k) == 13 || worldObj.getBlockId(i-1,j+3,k) == 1){
-			getBlockList(worldObj, i, j, k);
-			worldObj.setBlock(i, j, k, Block.getBlockFromItem(block.getItem()), block.getItem().getMetadata(block.getItemDamage()), 3);
-			decrStackSize(inv, 1);
+			if(worldObj.canMineBlock(null,i,j,k)) {
+				getBlockList(worldObj, i, j, k);
+				worldObj.setBlock(i, j, k, Block.getBlockFromItem(block.getItem()), block.getItem().getMetadata(block.getItemDamage()), 3);
+				decrStackSize(inv, 1);
+			}
 		}
 	}
 
@@ -945,6 +947,9 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 				kZ = 0;
 			}
 			else {
+				return;
+			}
+			if(worldObj.canMineBlock(null,i,hY,k)){
 				return;
 			}
 			
