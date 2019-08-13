@@ -800,8 +800,11 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 		if (!tunnelActive && block != null && (Block.getIdFromBlock(worldObj.getBlock(i, j, k)) != Item.getIdFromItem(block.getItem()))) {
 			// worldObj.getBlockId(i-1,j+3,k) == Block.dirt.blockID || worldObj.getBlockId(i-1,j+3,k) == 8 || worldObj.getBlockId(i-1,j+3,k) == 9 || worldObj.getBlockId(i-1,j+3,k) == 10 || worldObj.getBlockId(i-1,j+3,k) == 11 || worldObj.getBlockId(i-1,j+3,k) == 12 || worldObj.getBlockId(i-1,j+3,k) == 13 || worldObj.getBlockId(i-1,j+3,k) == 1){
 			getBlockList(worldObj, i, j, k);
-			worldObj.setBlock(i, j, k, Block.getBlockFromItem(block.getItem()), block.getItem().getMetadata(block.getItemDamage()), 3);
-			decrStackSize(inv, 1);
+			Block b = Block.getBlockFromItem(block.getItem());
+			worldObj.setBlock(i, j, k, b, block.getItem().getMetadata(block.getItemDamage()), 3);
+			if(worldObj.getBlock(i,j,k).getUnlocalizedName().equals(b.getUnlocalizedName())){
+				decrStackSize(inv, 1);
+			}
 		}
 	}
 
@@ -981,7 +984,11 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 				getBlockList(worldObj, i, j - 1, k);
 				worldObj.setBlock(i, j - 1 + hY, k, Block.getBlockFromItem(underBlockStack.getItem()),
 						underBlockStack.getItem().getMetadata(underBlockStack.getItemDamage()), 3);
-				decrStackSize(3, 1);// decr underblock
+				if(worldObj.getBlock(i,j-1+hY,k).getUnlocalizedName().equals(underBlockStack.getUnlocalizedName())) {
+					decrStackSize(3, 1);// decr underblock
+				} else {
+					return;
+				}
 			}
 			// builder is going up
 			if (hY > 0 && underBlockStack != null
@@ -991,7 +998,11 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 				getBlockList(worldObj, i + iX, j - 1, k + kZ);
 				worldObj.setBlock(i + iX, j - 1 + hY, k + kZ, Block.getBlockFromItem(underBlockStack.getItem()),
 						underBlockStack.getItem().getMetadata(underBlockStack.getItemDamage()), 3);
-				decrStackSize(3, 1);// decr underblock
+				if(worldObj.getBlock(i + iX,j-1+hY,k+kZ).getUnlocalizedName().equals(underBlockStack.getUnlocalizedName())) {
+					decrStackSize(3, 1);// decr underblock
+				} else {
+					return;
+				}
 			}
 
 			// builder is going down
