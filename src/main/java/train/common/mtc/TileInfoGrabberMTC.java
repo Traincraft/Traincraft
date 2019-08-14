@@ -9,13 +9,14 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import train.common.api.Locomotive;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TileInfoGrabberMTC  extends TileEntity implements IPeripheral {
     public Boolean isActivated = false;
     public String trainID = "0";
     public String trainLevel = "0";
-    //h
+    public ArrayList<IComputerAccess> computers = new ArrayList<IComputerAccess>();
     public String trainName = "0";
     public String trainType = "0";
     public boolean trainOverSensor = false;
@@ -73,6 +74,17 @@ public class TileInfoGrabberMTC  extends TileEntity implements IPeripheral {
                            this.trainName = daTrain.getTrainName();
                            this.trainType = daTrain.getTrainType();
                            trainOverSensor = true;
+                            try {
+                                if (computers != null && computers.size() > 0) {
+                                    for (IComputerAccess c : computers) {
+                                        c.queueEvent("mtc_trainoversensor", new Object[]{c.getAttachmentName()});
+
+                                        // System.out.println(message.message);
+                                    }
+                                }
+                            } catch (Exception ex) {
+                                ex.printStackTrace();
+                            }
                         }
                     }
                 }
@@ -119,14 +131,13 @@ public class TileInfoGrabberMTC  extends TileEntity implements IPeripheral {
 
     }
 
-    @Override
     public void attach(IComputerAccess computer) {
-
+        computers.add(computer);
     }
 
     @Override
     public void detach(IComputerAccess computer) {
-
+        computers.remove(computer);
     }
 
     @Override
