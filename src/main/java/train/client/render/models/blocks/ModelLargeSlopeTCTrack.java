@@ -43,11 +43,6 @@ public class ModelLargeSlopeTCTrack extends ModelBase {
 	}
 
 	public void render(String type, TileTCRail tcRail, double x, double y, double z) {
-		// Push a blank matrix onto the stack
-		GL11.glPushMatrix();
-
-		// Move the object into the correct position on the block (because the OBJ's origin is the center of the object)
-		GL11.glTranslatef((float) x + 0.5f, (float) y, (float) z + 0.5f);
 
 		GL11.glColor4f(1, 1, 1, 1);
 		//GL11.glScalef(0.5f, 0.5f, 0.5f);
@@ -56,16 +51,13 @@ public class ModelLargeSlopeTCTrack extends ModelBase {
 		if (facing == 3) {
 			GL11.glRotatef(-90, 0, 1, 0);
 		}
-		if (facing == 1) {
+		else if (facing == 1) {
 			GL11.glRotatef(90, 0, 1, 0);
 		}
-		if(facing == 0){
+		else if(facing == 0){
 			GL11.glRotatef(180, 0, 1, 0);
 		}
 		//GL11.glTranslatef(0.0f, 0.0f, -1.0f);
 		render(type);
-
-		// Pop this matrix from the stack.
-		GL11.glPopMatrix();
 	}
 }
