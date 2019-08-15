@@ -1081,22 +1081,33 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 					&& !(worldObj.getBlock(i, jUB + 1, k) instanceof BlockTCRail)	// check if we does not delete TC rail
 					&& !(worldObj.getBlock(i, jUB + 1, k) instanceof BlockTCRailGag)) {
 				checkForTracks();
-				trackfuel--;
 				
-				decrStackSize(1, 1);
+				boolean success = placeRailAt(this, tracksStack.copy(), worldObj, i, jUB + 1, k);
 
-				placeRailAt(this, tracksStack.copy(), worldObj, i, jUB + 1, k);
+				if(success) {
+					trackfuel--;
+					decrStackSize(1, 1);
+				}else {
+					this.motionX = 0.0f;
+					this.motionZ = 0.0f;
+					this.skipTick = true;
+				}
 			}
 			if(!BlockRailBase.func_150051_a(worldObj.getBlock(iUB, jUB + 1, kUB))  	// check we does not delete rail
 					&& Blocks.rail.canPlaceBlockAt(worldObj, iUB, jUB + 1, kUB) 	 	// check if we can place rail
 					&& !(worldObj.getBlock(iUB, jUB + 1, kUB) instanceof BlockTCRail)	// check if we does not delete TC rail
 					&& !(worldObj.getBlock(iUB, jUB + 1, kUB) instanceof BlockTCRailGag)) {
 				checkForTracks();
-				trackfuel--;
 				
-				decrStackSize(1, 1);
-
-				placeRailAt(this, tracksStack.copy(), worldObj, iUB, jUB + 1, kUB);
+				boolean success = placeRailAt(this, tracksStack.copy(), worldObj, iUB, jUB + 1, kUB);
+				if(success) {
+					trackfuel--;
+					decrStackSize(1, 1);
+				}else {
+					this.motionX = 0.0f;
+					this.motionZ = 0.0f;
+					this.skipTick = true;
+				}
 			}
 		}
 			
