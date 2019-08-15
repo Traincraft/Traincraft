@@ -168,21 +168,22 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 		int j = MathHelper.floor_double(posY);
 		int k = MathHelper.floor_double(posZ);
 		
-		if (canDigg()) {
-			updateState(true);
-			applyDragAndPushForces();
-			this.digBuilder(i, j, k);
-
-		}
-		else {
-			updateState(false);
+		if(this.skipTick) {
 			this.skipTick = false;
 			this.motionX = 0;
 			this.motionZ = 0;
 		}
+		else if (canDigg()) {
+			updateState(true);
+			applyDragAndPushForces();
+			this.digBuilder(i, j, k);
+		}
+		else {
+			updateState(false);
+			this.motionX = 0;
+			this.motionZ = 0;
+		}
 				
-		/*		
-
 		if (getInventory() != null && ticksExisted%4==0){
 			Freight link;
 			if(cartLinked1 instanceof Freight && cartLinked1.getInventory() !=null) {
@@ -206,7 +207,6 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 				}
 			}
 		}
-		*/
 	}
 	
 	private void updateFuel() {
@@ -235,7 +235,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 	public ItemStack[] getInventory(){return BuilderInvent;}
 
 	private boolean canDigg() {
-		return (checkForBallast() && checkForTracks() && getFuel() > 0 && !this.skipTick);
+		return (checkForBallast() && checkForTracks() && getFuel() > 0);
 	}
 	@Override
 	protected void writeEntityToNBT(NBTTagCompound nbttagcompound) {
@@ -1007,13 +1007,17 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 			
 			// Place : only place one block per tick
 			Block underBlock = Block.getBlockFromItem(underBlockStack.getItem());
-			Block trackBlock = Block.getBlockFromItem(tracksStack.getItem()); // maybe replace by istrack
 			
 				// underBlockPos
-			int iUB = i;
+			int iUB = i + iX;
 			int jUB = j-1+hY;
-			int kUB = k;
-				
+			int kUB = k + kZ;
+			
+			if(hY < 0) {
+				iUB = i;
+				kUB = k;		
+			}
+			
 				// wait underblocks fall if needed
 			if((worldObj.getBlock(iUB, jUB, kUB) instanceof BlockFalling
 							&& BlockFalling.func_149831_e(worldObj, iUB, jUB - 1, kUB)) 
@@ -1023,28 +1027,28 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 				this.motionX = 0.0f;
 				this.motionZ = 0.0f;
 				this.skipTick = true;
-			
+							
 				return;
 			}
 			
 				//place underblock 2
-			if (underBlock2Stack != null && worldObj.getBlock(i + iX, j - 2 + hY, k + kZ) != Block.getBlockFromItem(underBlock2Stack.getItem())) {
-				getBlockList(worldObj, i + iX, j - 2 + hY, k + kZ);
+			if (underBlock2Stack != null && worldObj.getBlock(iUB, jUB - 1, kUB) != Block.getBlockFromItem(underBlock2Stack.getItem())) {
+				getBlockList(worldObj, iUB, jUB - 1, kUB);
 				// changes the second block under the rails
-				worldObj.setBlock(i + iX, j - 2 + hY, k + kZ, Block.getBlockFromItem(underBlock2Stack.getItem()),
+				worldObj.setBlock(iUB, jUB - 1, kUB, Block.getBlockFromItem(underBlock2Stack.getItem()),
 						underBlock2Stack.getItem().getMetadata(underBlock2Stack.getItemDamage()), 3);
 				decrStackSize(2, 1);// decr underblock2	
 				
 				this.motionX = 0.0f;
 				this.motionZ = 0.0f;
 				this.skipTick = true;
-									
+				
 				return;	
 			}
 			
 				// place underBlock
 			else if( worldObj.getBlock(iUB, jUB, kUB) != underBlock 
-				&& worldObj.getBlock(iUB, jUB, kUB) != trackBlock) {
+				&& !BlockRailBase.func_150051_a(worldObj.getBlock(iUB, jUB, kUB))) {
 												
 				if(hY < 0) {					
 					int di = (this.lastFace == 0 || this.lastFace == 2) ? 0 : 1;
@@ -1067,21 +1071,32 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 				this.motionX = 0.0f;
 				this.motionZ = 0.0f;
 				this.skipTick = true;
-										
+				
 				return;					
 			}
 						
 				// place track
-			if(!BlockRailBase.func_150051_a(worldObj.getBlock(i, j + hY, k))  	// check we does not delete rail
-					&& Blocks.rail.canPlaceBlockAt(worldObj, i, j + hY, k) 	 	// check if we can place rail
-					&& !(worldObj.getBlock(i, j + hY, k) instanceof BlockTCRail)	// check if we does not delete TC rail
-					&& !(worldObj.getBlock(i, j + hY, k) instanceof BlockTCRailGag)) {
+			if(!BlockRailBase.func_150051_a(worldObj.getBlock(i, jUB + 1, k))  	// check we does not delete rail
+					&& Blocks.rail.canPlaceBlockAt(worldObj, i, jUB + 1, k) 	 	// check if we can place rail
+					&& !(worldObj.getBlock(i, jUB + 1, k) instanceof BlockTCRail)	// check if we does not delete TC rail
+					&& !(worldObj.getBlock(i, jUB + 1, k) instanceof BlockTCRailGag)) {
 				checkForTracks();
 				trackfuel--;
 				
 				decrStackSize(1, 1);
 
-				placeRailAt(this, tracksStack.copy(), worldObj, i, j + hY, k);
+				placeRailAt(this, tracksStack.copy(), worldObj, i, jUB + 1, k);
+			}
+			if(!BlockRailBase.func_150051_a(worldObj.getBlock(iUB, jUB + 1, kUB))  	// check we does not delete rail
+					&& Blocks.rail.canPlaceBlockAt(worldObj, iUB, jUB + 1, kUB) 	 	// check if we can place rail
+					&& !(worldObj.getBlock(iUB, jUB + 1, kUB) instanceof BlockTCRail)	// check if we does not delete TC rail
+					&& !(worldObj.getBlock(iUB, jUB + 1, kUB) instanceof BlockTCRailGag)) {
+				checkForTracks();
+				trackfuel--;
+				
+				decrStackSize(1, 1);
+
+				placeRailAt(this, tracksStack.copy(), worldObj, iUB, jUB + 1, kUB);
 			}
 		}
 			
