@@ -102,7 +102,7 @@ public class EntityLocoSteamBerk765 extends SteamTrain {
 	}
 	@Override
 	public String getInventoryName() {
-		return "Berkshire 1225";
+		return "Berkshire 765";
 	}
 
 	@Override
