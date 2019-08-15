@@ -1010,97 +1010,81 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 			Block trackBlock = Block.getBlockFromItem(tracksStack.getItem()); // maybe replace by istrack
 			
 				// underBlockPos
-			int iUB = i + iX*Math.abs(hY);
+			int iUB = i;
 			int jUB = j-1+hY;
-			int kUB = k + kZ*Math.abs(hY);
+			int kUB = k;
 				
-				// should I place underBlock pos ?
-			if( worldObj.getBlock(iUB, jUB, kUB) != underBlock 
+				// wait underblocks fall if needed
+			if((worldObj.getBlock(iUB, jUB, kUB) instanceof BlockFalling
+							&& BlockFalling.func_149831_e(worldObj, iUB, jUB - 1, kUB)) 
+					|| (worldObj.getBlock(iUB, jUB-1, kUB) instanceof BlockFalling
+							&& BlockFalling.func_149831_e(worldObj, iUB, jUB - 2, kUB))) {
+			
+				this.motionX = 0.0f;
+				this.motionZ = 0.0f;
+				this.skipTick = true;
+			
+				return;
+			}
+			
+				//place underblock 2
+			if (underBlock2Stack != null && worldObj.getBlock(i + iX, j - 2 + hY, k + kZ) != Block.getBlockFromItem(underBlock2Stack.getItem())) {
+				getBlockList(worldObj, i + iX, j - 2 + hY, k + kZ);
+				// changes the second block under the rails
+				worldObj.setBlock(i + iX, j - 2 + hY, k + kZ, Block.getBlockFromItem(underBlock2Stack.getItem()),
+						underBlock2Stack.getItem().getMetadata(underBlock2Stack.getItemDamage()), 3);
+				decrStackSize(2, 1);// decr underblock2	
+				
+				this.motionX = 0.0f;
+				this.motionZ = 0.0f;
+				this.skipTick = true;
+									
+				return;	
+			}
+			
+				// place underBlock
+			else if( worldObj.getBlock(iUB, jUB, kUB) != underBlock 
 				&& worldObj.getBlock(iUB, jUB, kUB) != trackBlock) {
-
+												
+				if(hY < 0) {					
+					int di = (this.lastFace == 0 || this.lastFace == 2) ? 0 : 1;
+					int dz = (this.lastFace == 0 || this.lastFace == 2) ? 1 : 0;
+					
+					getBlockList(worldObj, iUB+1, jUB+1, kUB);
+					getBlockList(worldObj, iUB  , jUB+1, kUB);
+					getBlockList(worldObj, iUB-1, jUB+1, kUB);
+					this.harvestBlock_do(Vec3.createVectorHelper(iUB+di, jUB+1, kUB + dz));
+					this.harvestBlock_do(Vec3.createVectorHelper(iUB   , jUB+1, kUB     ));
+					this.harvestBlock_do(Vec3.createVectorHelper(iUB-di, jUB+1, kUB - dz));
+				}
+				
 				getBlockList(worldObj, iUB, jUB, kUB);
 				
 				worldObj.setBlock(iUB, jUB, kUB, underBlock);
 				
 				decrStackSize(3, 1);
 				
-					// dig if we need to go down
-				if(hY < 0) {					
-					int dj = (this.lastFace == 0 || this.lastFace == 2) ? 1 : 0;
-					int di = (this.lastFace == 0 || this.lastFace == 2) ? 0 : 1;
-					
-					getBlockList(worldObj, iUB - di, jUB+1, kUB - dj);
-					getBlockList(worldObj, iUB     , jUB+1, kUB     );
-					getBlockList(worldObj, iUB + di, jUB+1, kUB + dj);
-					
-					this.harvestBlock_do(Vec3.createVectorHelper(iUB - di, jUB+1, kUB - dj));
-					this.harvestBlock_do(Vec3.createVectorHelper(iUB     , jUB+1, kUB     ));
-					this.harvestBlock_do(Vec3.createVectorHelper(iUB + di, jUB+1, kUB + dj));
-					
-				}
-				
 				this.motionX = 0.0f;
 				this.motionZ = 0.0f;
 				this.skipTick = true;
-				
-				return;
+										
+				return;					
 			}
-			else if(worldObj.getBlock(iUB, jUB, kUB) instanceof BlockFalling
-					&& BlockFalling.func_149831_e(worldObj, iUB, jUB - 1, kUB)) {
-			
-			this.motionX = 0.0f;
-			this.motionZ = 0.0f;
-			this.skipTick = true;
-			
-			return;
-		}
-
-		//placing the block (not the one right under the track but below)
-		if (underBlock2Stack != null && worldObj.getBlock(i + iX, j - 2 + hY, k + kZ) != Block.getBlockFromItem(underBlock2Stack.getItem())) {
-			getBlockList(worldObj, i + iX, j - 2 + hY, k + kZ);
-			// changes the second block under the rails
-			worldObj.setBlock(i + iX, j - 2 + hY, k + kZ, Block.getBlockFromItem(underBlock2Stack.getItem()),
-					underBlock2Stack.getItem().getMetadata(underBlock2Stack.getItemDamage()), 3);
-			decrStackSize(2, 1);// decr underblock2				
-		}
-
-
-			//torchPlacer(i, j, k, iX, kZ);
-			// place rail
-		if (hY == 0 && !BlockRailBase.func_150051_a(worldObj.getBlock(i, j, k)) && Blocks.rail.canPlaceBlockAt(worldObj, i, j, k)
-				&& !(worldObj.getBlock(i, j, k) instanceof BlockTCRail) && !(worldObj.getBlock(i, j, k) instanceof BlockTCRailGag) ) {
-			checkForTracks();
-			trackfuel--;
-
-			if (!worldObj.isRemote) {
-				decrStackSize(1, 1);
-			}
-			placeRailAt(this, tracksStack.copy(), worldObj, i, j + hY, k);
-			this.motionX = 0.0f;
-			this.motionZ = 0.0f;
-		}
-		else if (hY < 0 && Block.getIdFromBlock(worldObj.getBlock(i, j + hY, k)) == 0 && Block.getIdFromBlock(worldObj.getBlock(i, j + hY - 1, k)) != 0 && Blocks.rail.canPlaceBlockAt(worldObj, i, j + hY, k)) {
-			checkForTracks();
-			trackfuel--;
-
-				if (!worldObj.isRemote) {
-					decrStackSize(1, 1);
-				}
-				placeRailAt(this, tracksStack.copy(), worldObj, i, j + hY, k);
-				this.motionX = 0.0f;
-				this.motionZ = 0.0f;
-			}
-			else if (hY > 0 && (Blocks.rail!=worldObj.getBlock(i + iX, j + hY, k + kZ)) && Blocks.rail!=worldObj.getBlock(i + iX, j + hY + 1, k + kZ) && Blocks.rail!=worldObj.getBlock(i + iX, j, k + kZ) && Blocks.rail!=worldObj.getBlock(i, j + hY, k) && Blocks.rail!=worldObj.getBlock(i, j - hY, k) && Blocks.rail.canPlaceBlockAt(worldObj, i + iX, j + hY, k + kZ)) {
+						
+				// place track
+			if(!BlockRailBase.func_150051_a(worldObj.getBlock(i, j + hY, k))  	// check we does not delete rail
+					&& Blocks.rail.canPlaceBlockAt(worldObj, i, j + hY, k) 	 	// check if we can place rail
+					&& !(worldObj.getBlock(i, j + hY, k) instanceof BlockTCRail)	// check if we does not delete TC rail
+					&& !(worldObj.getBlock(i, j + hY, k) instanceof BlockTCRailGag)) {
 				checkForTracks();
 				trackfuel--;
-				if (!worldObj.isRemote) {
-					decrStackSize(1, 1);
-				}
-				placeRailAt(this, tracksStack.copy(), worldObj, i + iX, j + hY, k + kZ);
-				this.motionX = 0.0f;
-				this.motionZ = 0.0f;
+				
+				decrStackSize(1, 1);
+
+				placeRailAt(this, tracksStack.copy(), worldObj, i, j + hY, k);
 			}
 		}
+			
 	}
 	
 	private void digAwayXAxis(int i, int j, int k, int iX, int hY) {
