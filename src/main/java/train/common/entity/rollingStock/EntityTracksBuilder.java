@@ -597,15 +597,23 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 	}
 
 	/** can this block be used as ballast */
-	private boolean canBeBallast(ItemStack stack) {
-		/*
-		 * if (stack != null && (stack.itemID == Block.planks.blockID || stack.itemID == Block.gravel.blockID || stack.itemID == Block.stone.blockID || stack.itemID == Block.brick.blockID || stack.itemID == Block.cobblestone.blockID || stack.itemID == Block.sandStone.blockID)) { return true; } */
-		//return false;
+	public static boolean canBeBallast(ItemStack stack) {
+		if(stack == null || stack.getItem() == null)
+			return false;
+		
+			// allow gravel and sand ...
+		if (stack.getItem() instanceof ItemBlock) {
+			Block block = Block.getBlockFromItem(stack.getItem());
+			if(block instanceof BlockFalling) {
+				return true;
+			}
+		}
+
 		return canBeTunnel(stack);
 	}
 
 	/** can this block be used for the tunnel */
-	private boolean canBeTunnel(ItemStack stack) {
+	public static boolean canBeTunnel(ItemStack stack) {
 		if (stack == null || stack.getItem() == null)
 			return false;
 		if (!(stack.getItem() instanceof ItemBlock))
@@ -616,8 +624,8 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 				return false;
 			if(block.getRenderType()!=0)
 				return false;
-			/*if (block.isOpaqueCube())
-				return true;*/
+			if(block instanceof BlockFalling)
+				return false;
 			return true;
 		}
 		return false;
