@@ -887,6 +887,10 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 		if(block == newblock && metadata == newmeta)
 			return true;
 
+		if(shouldIgnoreBlockForHarvesting(Vec3.createVectorHelper(i, j, k),
+				Block.getIdFromBlock(block)))
+			return false;
+
 		BlockEvent.BreakEvent event = new BlockEvent.BreakEvent(i, j, k, worldObj,
 				block, metadata, this.fakeplayer);
 
@@ -930,6 +934,10 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 				|| block instanceof BlockTCRailGag) {
 			return true;
 		}
+
+		if(shouldIgnoreBlockForHarvesting(Vec3.createVectorHelper(i, j, k),
+				Block.getIdFromBlock(block)))
+			return false;
 
 		BlockEvent.BreakEvent event = new BlockEvent.BreakEvent(i, j, k, worldObj,
 				block, metadata, this.fakeplayer);
@@ -977,6 +985,14 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 					|| block instanceof BlockTCRailGag) {
 				v--;
 				hY++;
+			}
+		}else if(hY > 0) {
+			Block block = worldObj.getBlock(u - iX, v, w - kZ);
+			if(BlockRail.func_150051_a(block)
+					|| block instanceof BlockTCRail
+					|| block instanceof BlockTCRailGag) {
+				v++;
+				hY--;
 			}
 		}
 
