@@ -29,14 +29,17 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 		if(var1 instanceof TileTCRail){
 			TileTCRail railTile = (TileTCRail) var1;
 
+			// Push a blank matrix onto the stack
+			GL11.glPushMatrix();
+
+			// Move the object into the correct position on the block (because the OBJ's origin is the center of the object)
+			GL11.glTranslated( x + 0.5,  y,  z + 0.5);
+
 			if(railTile.displayList!=null){
 				org.lwjgl.opengl.GL11.glCallList(railTile.displayList);
-				if(!railTile.refreshModel) {
-					return;
-				}
 			}
 
-			if (railTile.hasModel && railTile.getTrackType() != null) {
+			if (railTile.refreshModel && railTile.hasModel && railTile.getTrackType() != null) {
 				railTile.displayList = GLAllocation.generateDisplayLists(1);
 				GL11.glNewList(railTile.displayList, GL11.GL_COMPILE);
 				switch (railTile.getTrackType()){
@@ -157,6 +160,7 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 				railTile.refreshModel=false;
 
 			}
+			GL11.glPopMatrix();
 		}
 	}
 }

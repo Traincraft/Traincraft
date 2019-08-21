@@ -50,11 +50,6 @@ public class ModelLeftSwitchTCTrack extends ModelBase {
 	}
 
 	public void render(String type, TileTCRail tcRail, double x, double y, double z) {
-		// Push a blank matrix onto the stack
-		GL11.glPushMatrix();
-
-		// Move the object into the correct position on the block (because the OBJ's origin is the center of the object)
-		GL11.glTranslatef((float) x + 0.5f, (float) y, (float) z + 0.5f);
 
 		// Bind the texture, so that OpenGL properly textures our block.
 		FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
@@ -66,63 +61,60 @@ public class ModelLeftSwitchTCTrack extends ModelBase {
 			if(type.equals("medium")){
 				GL11.glTranslatef(-1.0f, 0.0f, 1.0f);
 			}
-			if(type.equals("large_90")){
+			else if(type.equals("large_90")){
 				GL11.glRotatef(0, 0, 1, 0);
 				GL11.glTranslatef(0.0f, 0.0f, -4.0f);
 			}
-			if(type.equals("medium_parallel")){
+			else if(type.equals("medium_parallel")){
 				GL11.glRotatef(-90, 0, 1, 0);
 			}
 		}
-		if (facing == 1) {
+		else if (facing == 1) {
 			if(type.equals("medium")){
 				GL11.glRotatef(180, 0, 1, 0);
 				GL11.glTranslatef(-1.0f, 0.0f, 1.0f);
 			}
-			if(type.equals("large_90")){
+			else if(type.equals("large_90")){
 				GL11.glRotatef(180, 0, 1, 0);
 				GL11.glTranslatef(0.0f, 0.0f, -4.0f);
 			}
-			if(type.equals("medium_parallel")){
+			else if(type.equals("medium_parallel")){
 				GL11.glRotatef(90, 0, 1, 0);
 			}
 		}
-		if(facing == 2){
+		else if(facing == 2){
 			if(type.equals("medium")){
 				GL11.glRotatef(90, 0, 1, 0);
 				GL11.glTranslatef(-1.0f, 0.0f, 1.0f);
 			}
-			if(type.equals("large_90")){
+			else if(type.equals("large_90")){
 				GL11.glRotatef(90, 0, 1, 0);
 				GL11.glTranslatef(0.0f, 0.0f, -4.0f);
 			}
-			if(type.equals("medium_parallel")){
+			//if(type.equals("medium_parallel")){
 				//do something if needed
-			}
+			//}
 		}
-		if(facing == 0){
+		else if(facing == 0){
 			if(type.equals("medium")){
 				GL11.glRotatef(-90, 0, 1, 0);
 				GL11.glTranslatef(-1.0f, 0.0f, 1.0f);
 			}
-			if(type.equals("large_90")){
+			else if(type.equals("large_90")){
 				GL11.glRotatef(-90, 0, 1, 0);
 				GL11.glTranslatef(.0f, 0.0f, -4.0f);
 			}
-			if(type.equals("medium_parallel")){
+			else if(type.equals("medium_parallel")){
 				GL11.glRotatef(180, 0, 1, 0);
 			}
 		}
-		if(type.equals("medium")&&!tcRail.getSwitchState())this.renderMediumInactive();
-		if(type.equals("medium")&&tcRail.getSwitchState())this.renderMediumActive();
-		if(type.equals("medium_parallel")&&!tcRail.getSwitchState())this.renderMediumParallelInactive();
-		if(type.equals("medium_parallel")&&tcRail.getSwitchState())this.renderMediumParallelActive();
-		if(type.equals("large_90")&&!tcRail.getSwitchState())this.renderLarge90Inactive();
-		if(type.equals("large_90")&&tcRail.getSwitchState())this.renderLarge90Active();
+		if(type.equals("medium")&&!tcRail.getSwitchState()){this.renderMediumInactive();}
+		if(type.equals("medium")&&tcRail.getSwitchState()){this.renderMediumActive();}
+		if(type.equals("medium_parallel")&&!tcRail.getSwitchState()){this.renderMediumParallelInactive();}
+		if(type.equals("medium_parallel")&&tcRail.getSwitchState()){this.renderMediumParallelActive();}
+		if(type.equals("large_90")&&!tcRail.getSwitchState()){this.renderLarge90Inactive();}
+		if(type.equals("large_90")&&tcRail.getSwitchState()){this.renderLarge90Active();}
 		
 		//if(type.equals("large"))this.renderLarge();
-
-		// Pop this matrix from the stack.
-		GL11.glPopMatrix();
 	}
 }

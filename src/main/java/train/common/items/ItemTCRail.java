@@ -1970,5 +1970,9 @@ public class ItemTCRail extends ItemPart {
 	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
 		par3List.add("\u00a77" + type.getTooltip());
 	}
+
+	public TrackTypes getTrackType() {
+		return this.type;
+	}
 }
 
