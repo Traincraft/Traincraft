@@ -14,12 +14,10 @@ import train.common.tile.TileTCRail;
 @SideOnly(Side.CLIENT)
 public class ModelSmallStraightTCTrack extends ModelBase {
 	
-	private IModelCustom modelSmallStraight;
-	private IModelCustom modelRoadCrossing;
+	private static IModelCustom modelSmallStraight = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_normal.obj"));
+	private static IModelCustom modelRoadCrossing = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_roadcrossing.obj"));
 
 	public ModelSmallStraightTCTrack() {
-		modelSmallStraight = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_normal.obj"));
-		modelRoadCrossing = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_roadcrossing.obj"));
 	}
 
 	public void render(String type) {

@@ -13,10 +13,9 @@ import train.common.tile.TileTCRail;
 
 @SideOnly(Side.CLIENT)
 public class ModelMediumStraightTCTrack extends ModelBase {
-	private IModelCustom modelMediumStraight;
+	private static IModelCustom modelMediumStraight = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_normal.obj"));
 
 	public ModelMediumStraightTCTrack() {
-		modelMediumStraight = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_normal.obj"));
 	}
 
 	public void render() {

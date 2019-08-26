@@ -39,7 +39,7 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 				org.lwjgl.opengl.GL11.glCallList(railTile.displayList);
 			}
 
-			if (railTile.refreshModel && railTile.hasModel && railTile.getTrackType() != null) {
+			if (railTile.displayList==null && railTile.hasModel && railTile.getTrackType() != null) {
 				railTile.displayList = GLAllocation.generateDisplayLists(1);
 				GL11.glNewList(railTile.displayList, GL11.GL_COMPILE);
 				switch (railTile.getTrackType()){
@@ -157,7 +157,6 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 					}
 				}
 				GL11.glEndList();
-				railTile.refreshModel=false;
 
 			}
 			GL11.glPopMatrix();

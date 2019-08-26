@@ -621,7 +621,7 @@ public class ModelASTFAutorack extends ModelBase
 
 	}
 
-	ModelWellcarBogie bogie = new ModelWellcarBogie();
+	ModelAmericanFreightTrucks bogie = new ModelAmericanFreightTrucks();
 
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
@@ -630,9 +630,9 @@ public class ModelASTFAutorack extends ModelBase
 		{
 			astfautorackModel[i].render(f5);
 		}
-		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/wellcar_bogie.png"));
+		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/AmericanFreightTrucks.png"));
 		GL11.glPushMatrix();
-		GL11.glTranslatef(-2.65f,0.3f,-0.35f);
+		GL11.glTranslatef(-2.65f,0.6f,-0.35f);
 		bogie.render(entity, f, f1, f2, f3, f4, f5);
 
 		GL11.glTranslatef(6.9f,0f,0);
