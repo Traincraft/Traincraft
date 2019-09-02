@@ -4,6 +4,7 @@ import dan200.computercraft.api.lua.ILuaContext;
 import dan200.computercraft.api.lua.LuaException;
 import dan200.computercraft.api.peripheral.IComputerAccess;
 import dan200.computercraft.api.peripheral.IPeripheral;
+import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
@@ -11,6 +12,8 @@ import train.common.api.Locomotive;
 import train.common.api.WirelessTransmitter;
 
 import java.util.*;
+
+import static train.common.Traincraft.tcLog;
 
 public class TilePDMInstructionRadio extends TileEntity implements IPeripheral, WirelessTransmitter {
     public Boolean isActivated = false;
@@ -40,7 +43,7 @@ public class TilePDMInstructionRadio extends TileEntity implements IPeripheral, 
     }
     @Override
     public String getType() {
-        return "pdmInstructionRadio";
+        return "wirelessMTCRadio";
     }
 
     @Override
@@ -53,7 +56,7 @@ public class TilePDMInstructionRadio extends TileEntity implements IPeripheral, 
         switch(method) {
             case 0: {
                 isActivated = true;
-                System.out.println(uniqueID);
+                tcLog.info("Wireless Transmitter UUID is: " + uniqueID);
                 return new Object[] {true};
 
             } case 1: {
@@ -64,8 +67,7 @@ public class TilePDMInstructionRadio extends TileEntity implements IPeripheral, 
                 sendMessage(new PDMMessage(this.uniqueID, arguments[0].toString(), arguments[1].toString(), 1 ));
                 return new Object[]{true};
             } case 3 : {
-
-                System.out.println(uniqueID);
+                tcLog.info("Wireless Transmitter UUID is: " + uniqueID);
                 return new Object[]{uniqueID};
             } case 4 : {
                return new Object[]{connectedTrains};
@@ -92,38 +94,38 @@ public class TilePDMInstructionRadio extends TileEntity implements IPeripheral, 
     @Override
     public void sendMessage(PDMMessage message) {
         //System.out.println("Attempting to send..");
-            for (WirelessTransmitter wt :  getWirelessTransmittersInBoundingBox()) {
+        if (isActivated) {
+            for (WirelessTransmitter wt : getWirelessTransmittersInBoundingBox()) {
                 if (wt instanceof Locomotive) {
                     ///System.out.println("Train's ID: " + ((Locomotive)wt).trainID);
-                   //System.out.println("Finding ID: " + message.UUIDTo);
+                    //System.out.println("Finding ID: " + message.UUIDTo);
                     //System.out.println("It's at " +  ((Locomotive)wt).posX + ", " +  ((Locomotive)wt).posY + ", " +  ((Locomotive)wt).posZ);
                 } else if (wt instanceof TilePDMInstructionRadio) {
                     ///System.out.println("Radio's ID: " + ((TilePDMInstructionRadio)wt).uniqueID);
-                   /// System.out.println("Finding ID: " + message.UUIDTo);
-                   // System.out.println("It's at " + ((TilePDMInstructionRadio)wt).xCoord + ", " + ((TilePDMInstructionRadio)wt).yCoord + ", " + ((TilePDMInstructionRadio)wt).zCoord );
+                    /// System.out.println("Finding ID: " + message.UUIDTo);
+                    // System.out.println("It's at " + ((TilePDMInstructionRadio)wt).xCoord + ", " + ((TilePDMInstructionRadio)wt).yCoord + ", " + ((TilePDMInstructionRadio)wt).zCoord );
                 }
-
-
 
 
                 if (wt instanceof Locomotive) {
 
-                    Locomotive actualLocomotive = (Locomotive)wt;
+                    Locomotive actualLocomotive = (Locomotive) wt;
                     if (actualLocomotive.trainID.equals(message.UUIDTo)) {
-                    //    System.out.println("Both of those match! Sending message..");
-                      wt.receiveMessage(new PDMMessage(this.uniqueID, message.UUIDTo, message.message, system));
+                        //    System.out.println("Both of those match! Sending message..");
+                        wt.receiveMessage(new PDMMessage(this.uniqueID, message.UUIDTo, message.message, system));
                     }
                 } else if (wt instanceof TilePDMInstructionRadio) {
 
-                   TilePDMInstructionRadio actualRadio = (TilePDMInstructionRadio)wt;
-                    if (actualRadio.uniqueID.equals(message.UUIDTo))  {
-                     //   System.out.println("Both of those match! Sending message..");
+                    TilePDMInstructionRadio actualRadio = (TilePDMInstructionRadio) wt;
+                    if (actualRadio.uniqueID.equals(message.UUIDTo)) {
+                        //   System.out.println("Both of those match! Sending message..");
                         wt.receiveMessage(message);
                     }
 
                 }
 
             }
+        }
     }
 
     public ArrayList<WirelessTransmitter> getWirelessTransmittersInBoundingBox() {
@@ -180,17 +182,19 @@ public class TilePDMInstructionRadio extends TileEntity implements IPeripheral, 
     }
 
     public void receiveMessage(PDMMessage message) {
-        try {
-            if (computers != null && computers.size() > 0) {
-                for (IComputerAccess c : computers) {
-                    c.queueEvent("pdm_message", new Object[]{c.getAttachmentName(), message.UUIDFrom, message.UUIDTo,message.message,
-                            message.system});
+        if (isActivated) {
+            try {
+                if (computers != null && computers.size() > 0) {
+                    for (IComputerAccess c : computers) {
+                        c.queueEvent("radio_message", new Object[]{c.getAttachmentName(), message.UUIDFrom, message.UUIDTo, message.message,
+                                message.system});
 
-                   // System.out.println(message.message);
+                        // System.out.println(message.message);
+                    }
                 }
+            } catch (Exception ex) {
+                ex.printStackTrace();
             }
-        } catch (Exception ex) {
-            ex.printStackTrace();
         }
     }
     @Override
@@ -198,7 +202,7 @@ public class TilePDMInstructionRadio extends TileEntity implements IPeripheral, 
         if (worldObj == null) {
             return;
         }
-        markDirty();
+
     }
 
 

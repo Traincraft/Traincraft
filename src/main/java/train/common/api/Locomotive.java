@@ -488,8 +488,10 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
                 if (trainIsATOSupported()) {
                     if (atoStatus == 1) {
                         atoStatus = 0;
+                        Minecraft.getMinecraft().thePlayer.sendChatMessage("Automatic Train Operation disabled.");
                     } else {
                         atoStatus = 1;
+                        Minecraft.getMinecraft().thePlayer.sendChatMessage("Automatic Train Operation enabled.");
                     }
                 }
             }
@@ -996,10 +998,11 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
                         Traincraft.atoChannel.sendToAllAround(new PacketATO(this.getEntityId(), 0),new NetworkRegistry.TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
                         Traincraft.atoSetStopPoint.sendToAllAround(new PacketATOSetStopPoint(this.getEntityId(), 0.0, 0.0, 0.0, 0.0, 0.0, 0.0), new NetworkRegistry.TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
                         Traincraft.brakeChannel.sendToAllAround(new PacketParkingBrake(true, this.getEntityId()), new NetworkRegistry.TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
-                        JsonObject sendingObj = new JsonObject();
-                        sendingObj.addProperty("funct", "stationstopcomplete");
-                        sendMessage(new PDMMessage(this.trainID, serverUUID, sendingObj.toString(), 0));
-
+                        if (isConnected && trainIsATOSupported()) {
+                            JsonObject sendingObj = new JsonObject();
+                            sendingObj.addProperty("funct", "stationstopcomplete");
+                            sendMessage(new PDMMessage(this.trainID, serverUUID, sendingObj.toString(), 0));
+                        }
                     }
 
 
@@ -1532,6 +1535,15 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
                 }
 
 
+
+            } else if (thing.get("funct").getAsString().equals("startrun")) {
+                if (this.ridingEntity != null) {
+                    Minecraft.getMinecraft().thePlayer.sendChatMessage("ATO start requested from W-MTC server. ");
+                }
+                if (trainIsATOSupported()) {
+                    atoStatus = 1;
+                    Traincraft.atoChannel.sendToAllAround(new PacketATO(this.getEntityId(), thing.get("atoStatus").getAsInt()),new NetworkRegistry.TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
+                }
             }
         }
     }
@@ -1571,14 +1583,12 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
         //Oh, that's great! We just got the servers UUID. Now let's try connecting to it.
         //Check if it is one of the supported trains
         //Check for support
-        System.out.println("ATtempting connection");
         if ( trainIsWMTCSupported() && this.worldObj != null && !worldObj.isRemote) {
             if (theServerUUID != null && !serverUUID.equals(theServerUUID) && !canBePulled) {
                 //	System.out.println("Oh, that's great! We just got the servers UUID. Now let's try connecting to it.");
                 JsonObject sendTo = new JsonObject();
                 sendTo.addProperty("funct", "attemptconnection");
                 sendTo.addProperty("trainType", this.trainLevel);
-                System.out.println("Sent attempt message to " + theServerUUID);
                 sendMessage(new PDMMessage(this.trainID, theServerUUID, sendTo.toString(), 0));
             }
         }
@@ -1607,7 +1617,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
     }
 
     public Boolean trainIsATOSupported() {
-        if (this instanceof EntityLocoElectricHighSpeedZeroED || this instanceof EntityLocoElectricTramNY || this instanceof EntityLocoElectricICE1 || this instanceof EntityLocoDieselIC4_DSB_MG || (this instanceof SteamTrain && ConfigHandler.ALLOW_ATO_ON_STEAMERS) ) {
+        if (this instanceof EntityLocoElectricHighSpeedZeroED || this instanceof EntityLocoElectricTramNY || this instanceof EntityLocoElectricICE1 || this instanceof EntityLocoDieselIC4_DSB_MG ) {
             return true;
         } else {
             return false;

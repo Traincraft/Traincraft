@@ -12,6 +12,8 @@ import train.common.api.Locomotive;
 import java.util.ArrayList;
 import java.util.List;
 
+import static train.common.Traincraft.tcLog;
+
 public class TileInfoGrabberMTC  extends TileEntity implements IPeripheral {
     public Boolean isActivated = false;
     public String trainID = "0";
