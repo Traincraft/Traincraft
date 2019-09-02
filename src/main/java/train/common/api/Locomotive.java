@@ -1477,7 +1477,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
         JsonObject thing = parser.parse(message.message.toString()).getAsJsonObject();
         //System.out.println("Got one!");
 
-        if (message != null) {
+        if (message != null && this.worldObj != null && !worldObj.isRemote) {
             if (thing.get("funct").getAsString().equals("startlevel2")) {
                 //That's actually really great, now let's get where it sent from owo
                 //	System.out.println("Connected!");
@@ -1539,12 +1539,12 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
     public void sendMessage(PDMMessage message) {
 
 
-        if (Loader.isModLoaded("ComputerCraft")) {
+        if (Loader.isModLoaded("ComputerCraft") && this.worldObj != null && !worldObj.isRemote) {
             //	System.out.println("Sendmessage..");
             AxisAlignedBB targetBox = AxisAlignedBB.getBoundingBox(this.posX, this.posY, this.posZ, this.posX + 2000, this.posY + 2000, this.posZ + 2000);
-            List<TileEntity> allTEs = worldObj.loadedTileEntityList;
-            for (TileEntity te : allTEs) {
-
+            List allTEs = this.worldObj.loadedTileEntityList;
+            for (Object te : allTEs) {
+           System.out.println(te.getClass());
 
                 if (te instanceof TilePDMInstructionRadio) {
 
@@ -1557,11 +1557,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
                         teP.receiveMessage(message);
                     }
 
-                    if (teP.uniqueID.equals(message.UUIDTo)) {
 
-                        //System.out.println(message.message);
-                        teP.receiveMessage(message);
-                    }
 
 
                 }
@@ -1575,13 +1571,14 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
         //Oh, that's great! We just got the servers UUID. Now let's try connecting to it.
         //Check if it is one of the supported trains
         //Check for support
-        if ( trainIsWMTCSupported()) {
+        System.out.println("ATtempting connection");
+        if ( trainIsWMTCSupported() && this.worldObj != null && !worldObj.isRemote) {
             if (theServerUUID != null && !serverUUID.equals(theServerUUID) && !canBePulled) {
                 //	System.out.println("Oh, that's great! We just got the servers UUID. Now let's try connecting to it.");
                 JsonObject sendTo = new JsonObject();
                 sendTo.addProperty("funct", "attemptconnection");
                 sendTo.addProperty("trainType", this.trainLevel);
-
+                System.out.println("Sent attempt message to " + theServerUUID);
                 sendMessage(new PDMMessage(this.trainID, theServerUUID, sendTo.toString(), 0));
             }
         }
@@ -1619,13 +1616,14 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
     }
 
     public void disconnectFromServer() {
-        JsonObject sendTo = new JsonObject();
-        sendTo.addProperty("funct", "disconnect");
-        sendMessage(new PDMMessage(this.trainID, serverUUID, sendTo.toString(), 0));
-        this.mtcType = 1;
-        this.serverUUID = "";
-        isConnected = false;
+        if (this.worldObj != null && !worldObj.isRemote){
+            JsonObject sendTo = new JsonObject();
+            sendTo.addProperty("funct", "disconnect");
+            sendMessage(new PDMMessage(this.trainID, serverUUID, sendTo.toString(), 0));
+            this.mtcType = 1;
+            this.serverUUID = "";
+            isConnected = false;
+        }
+
     }
-
-
 }
