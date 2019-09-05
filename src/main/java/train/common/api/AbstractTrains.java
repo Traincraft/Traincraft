@@ -438,87 +438,87 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 
 	public static String getColorAsString(int i) {
 		switch (i) {
-		case 0:
-			return "Black";
-		case 1:
-			return "Red";
-		case 2:
-			return "Green";
-		case 3:
-			return "Brown";
-		case 4:
-			return "Blue";
-		case 5:
-			return "Purple";
-		case 6:
-			return "Cyan";
-		case 7:
-			return "LightGrey";
-		case 8:
-			return "Grey";
-		case 13:
-			return "Magenta";
-		case 10:
-			return "Lime";
-		case 11:
-			return "Yellow";
-		case 12:
-			return "LightBlue";
-		case 9:
-			return "Pink";
-		case 14:
-			return "Orange";
-		case 15:
-			return "White";
-		case 100:
-			return "Empty";
-		case 101:
-			return "Full";
-		default:
-			return "" + i;
+			case 0:
+				return "Black";
+			case 1:
+				return "Red";
+			case 2:
+				return "Green";
+			case 3:
+				return "Brown";
+			case 4:
+				return "Blue";
+			case 5:
+				return "Purple";
+			case 6:
+				return "Cyan";
+			case 7:
+				return "LightGrey";
+			case 8:
+				return "Grey";
+			case 13:
+				return "Magenta";
+			case 10:
+				return "Lime";
+			case 11:
+				return "Yellow";
+			case 12:
+				return "LightBlue";
+			case 9:
+				return "Pink";
+			case 14:
+				return "Orange";
+			case 15:
+				return "White";
+			case 100:
+				return "Empty";
+			case 101:
+				return "Full";
+			default:
+				return "" + i;
 		}
 	}
 
 	public String getColorAsString() {
 		switch (getColor()) {
-		case 0:
-			return "Black";
-		case 1:
-			return "Red";
-		case 2:
-			return "Green";
-		case 3:
-			return "Brown";
-		case 4:
-			return "Blue";
-		case 5:
-			return "Purple";
-		case 6:
-			return "Cyan";
-		case 7:
-			return "LightGrey";
-		case 8:
-			return "Grey";
-		case 13:
-			return "Magenta";
-		case 10:
-			return "Lime";
-		case 11:
-			return "Yellow";
-		case 12:
-			return "LightBlue";
-		case 9:
-			return "Pink";
-		case 14:
-			return "Orange";
-		case 15:
-			return "White";
-		case 100:
-			return "Empty";
-		case 101:
-			return "Full";
-		default:
-			return "" + getColor();
+			case 0:
+				return "Black";
+			case 1:
+				return "Red";
+			case 2:
+				return "Green";
+			case 3:
+				return "Brown";
+			case 4:
+				return "Blue";
+			case 5:
+				return "Purple";
+			case 6:
+				return "Cyan";
+			case 7:
+				return "LightGrey";
+			case 8:
+				return "Grey";
+			case 13:
+				return "Magenta";
+			case 10:
+				return "Lime";
+			case 11:
+				return "Yellow";
+			case 12:
+				return "LightBlue";
+			case 9:
+				return "Pink";
+			case 14:
+				return "Orange";
+			case 15:
+				return "White";
+			case 100:
+				return "Empty";
+			case 101:
+				return "Full";
+			default:
+				return "" + getColor();
 		}
 	}
 

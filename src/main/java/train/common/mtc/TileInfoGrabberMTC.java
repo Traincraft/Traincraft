@@ -12,6 +12,8 @@ import train.common.api.Locomotive;
 import java.util.ArrayList;
 import java.util.List;
 
+import static train.common.Traincraft.tcLog;
+
 public class TileInfoGrabberMTC  extends TileEntity implements IPeripheral {
     public Boolean isActivated = false;
     public String trainID = "0";
@@ -65,31 +67,34 @@ public class TileInfoGrabberMTC  extends TileEntity implements IPeripheral {
                 if (list != null && list.size() > 0) {
                     for (Object obj : list) {
 
-                        if (obj instanceof Locomotive) {
 
-                            Locomotive daTrain = (Locomotive) obj;
-                            if (daTrain.mtcOverridePressed) { return;}
-                           this.trainLevel = daTrain.trainLevel;
-                           this.trainID = daTrain.trainID;
-                           this.trainName = daTrain.getTrainName();
-                           this.trainType = daTrain.getTrainType();
-                           trainOverSensor = true;
-                            try {
-                                if (computers != null && computers.size() > 0) {
-                                    for (IComputerAccess c : computers) {
-                                        c.queueEvent("mtc_trainoversensor", new Object[]{c.getAttachmentName()});
-
-                                        // System.out.println(message.message);
-                                    }
+                            if (obj instanceof Locomotive) {
+                                Locomotive daTrain = (Locomotive) obj;
+                                if (daTrain.mtcOverridePressed) {
+                                    return;
                                 }
-                            } catch (Exception ex) {
-                                ex.printStackTrace();
+                                this.trainLevel = daTrain.trainLevel;
+                                this.trainID = daTrain.trainID;
+                                this.trainName = daTrain.getTrainName();
+                                this.trainType = daTrain.getTrainType();
+                                trainOverSensor = true;
+                                try {
+                                    if (computers != null && computers.size() > 0) {
+                                        for (IComputerAccess c : computers) {
+                                            c.queueEvent("mtc_trainoversensor", new Object[]{c.getAttachmentName()});
+
+                                            // System.out.println(message.message);
+                                        }
+                                    }
+                                } catch (Exception ex) {
+                                    ex.printStackTrace();
+                                }
                             }
                         }
                     }
                 }
             }
-        }
+
 
 
     @Override
@@ -99,7 +104,7 @@ public class TileInfoGrabberMTC  extends TileEntity implements IPeripheral {
 
     @Override
     public String[] getMethodNames() {
-        return new String[]  {"activate", "deactivate", "getMTCLevel", "getMTCName", "getMTCType", "isTrainOverSensor", "getTrainID"};
+        return new String[]  {"activate", "deactivate", "getMTCLevel", "getMTCName", "getMTCType", "isTrainOverSensor", "getTrainID", "getIsEndOfTrain"};
     }
     @Override
     public Object[] callMethod(IComputerAccess computer, ILuaContext context, int method, Object[] arguments) throws LuaException, InterruptedException {

@@ -487,8 +487,10 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
                 if (trainIsATOSupported()) {
                     if (atoStatus == 1) {
                         atoStatus = 0;
+                        Minecraft.getMinecraft().thePlayer.sendChatMessage("Automatic Train Operation disabled.");
                     } else {
                         atoStatus = 1;
+                        Minecraft.getMinecraft().thePlayer.sendChatMessage("Automatic Train Operation enabled.");
                     }
                 }
             }
@@ -995,10 +997,11 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
                         Traincraft.atoChannel.sendToAllAround(new PacketATO(this.getEntityId(), 0),new NetworkRegistry.TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
                         Traincraft.atoSetStopPoint.sendToAllAround(new PacketATOSetStopPoint(this.getEntityId(), 0.0, 0.0, 0.0, 0.0, 0.0, 0.0), new NetworkRegistry.TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
                         Traincraft.brakeChannel.sendToAllAround(new PacketParkingBrake(true, this.getEntityId()), new NetworkRegistry.TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
-                        JsonObject sendingObj = new JsonObject();
-                        sendingObj.addProperty("funct", "stationstopcomplete");
-                        sendMessage(new PDMMessage(this.trainID, serverUUID, sendingObj.toString(), 0));
-
+                        if (isConnected && trainIsATOSupported()) {
+                            JsonObject sendingObj = new JsonObject();
+                            sendingObj.addProperty("funct", "stationstopcomplete");
+                            sendMessage(new PDMMessage(this.trainID, serverUUID, sendingObj.toString(), 0));
+                        }
                     }
 
 
@@ -1476,7 +1479,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
         JsonObject thing = parser.parse(message.message.toString()).getAsJsonObject();
         //System.out.println("Got one!");
 
-        if (message != null) {
+        if (message != null && this.worldObj != null && !worldObj.isRemote) {
             if (thing.get("funct").getAsString().equals("startlevel2")) {
                 //That's actually really great, now let's get where it sent from owo
                 //	System.out.println("Connected!");
@@ -1531,6 +1534,15 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
                 }
 
 
+
+            } else if (thing.get("funct").getAsString().equals("startrun")) {
+                if (this.ridingEntity != null) {
+                    Minecraft.getMinecraft().thePlayer.sendChatMessage("ATO start requested from W-MTC server. ");
+                }
+                if (trainIsATOSupported()) {
+                    atoStatus = 1;
+                    Traincraft.atoChannel.sendToAllAround(new PacketATO(this.getEntityId(), thing.get("atoStatus").getAsInt()),new NetworkRegistry.TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
+                }
             }
         }
     }
@@ -1538,12 +1550,12 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
     public void sendMessage(PDMMessage message) {
 
 
-        if (Loader.isModLoaded("ComputerCraft")) {
+        if (Loader.isModLoaded("ComputerCraft") && this.worldObj != null && !worldObj.isRemote) {
             //	System.out.println("Sendmessage..");
             AxisAlignedBB targetBox = AxisAlignedBB.getBoundingBox(this.posX, this.posY, this.posZ, this.posX + 2000, this.posY + 2000, this.posZ + 2000);
-            List<TileEntity> allTEs = worldObj.loadedTileEntityList;
-            for (TileEntity te : allTEs) {
-
+            List allTEs = this.worldObj.loadedTileEntityList;
+            for (Object te : allTEs) {
+           System.out.println(te.getClass());
 
                 if (te instanceof TilePDMInstructionRadio) {
 
@@ -1556,11 +1568,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
                         teP.receiveMessage(message);
                     }
 
-                    if (teP.uniqueID.equals(message.UUIDTo)) {
 
-                        //System.out.println(message.message);
-                        teP.receiveMessage(message);
-                    }
 
 
                 }
@@ -1574,13 +1582,12 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
         //Oh, that's great! We just got the servers UUID. Now let's try connecting to it.
         //Check if it is one of the supported trains
         //Check for support
-        if ( trainIsWMTCSupported()) {
+        if ( trainIsWMTCSupported() && this.worldObj != null && !worldObj.isRemote) {
             if (theServerUUID != null && !serverUUID.equals(theServerUUID) && !canBePulled) {
                 //	System.out.println("Oh, that's great! We just got the servers UUID. Now let's try connecting to it.");
                 JsonObject sendTo = new JsonObject();
                 sendTo.addProperty("funct", "attemptconnection");
                 sendTo.addProperty("trainType", this.trainLevel);
-
                 sendMessage(new PDMMessage(this.trainID, theServerUUID, sendTo.toString(), 0));
             }
         }
@@ -1609,7 +1616,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
     }
 
     public Boolean trainIsATOSupported() {
-        if (this instanceof EntityLocoElectricHighSpeedZeroED || this instanceof EntityLocoElectricTramNY || this instanceof EntityLocoElectricICE1 || this instanceof EntityLocoDieselIC4_DSB_MG || (this instanceof SteamTrain && ConfigHandler.ALLOW_ATO_ON_STEAMERS) ) {
+        if (this instanceof EntityLocoElectricHighSpeedZeroED || this instanceof EntityLocoElectricTramNY || this instanceof EntityLocoElectricICE1 || this instanceof EntityLocoDieselIC4_DSB_MG ) {
             return true;
         } else {
             return false;
@@ -1618,13 +1625,14 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
     }
 
     public void disconnectFromServer() {
-        JsonObject sendTo = new JsonObject();
-        sendTo.addProperty("funct", "disconnect");
-        sendMessage(new PDMMessage(this.trainID, serverUUID, sendTo.toString(), 0));
-        this.mtcType = 1;
-        this.serverUUID = "";
-        isConnected = false;
+        if (this.worldObj != null && !worldObj.isRemote){
+            JsonObject sendTo = new JsonObject();
+            sendTo.addProperty("funct", "disconnect");
+            sendMessage(new PDMMessage(this.trainID, serverUUID, sendTo.toString(), 0));
+            this.mtcType = 1;
+            this.serverUUID = "";
+            isConnected = false;
+        }
+
     }
-
-
 }
