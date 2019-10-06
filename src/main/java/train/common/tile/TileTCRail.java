@@ -43,7 +43,6 @@ public class TileTCRail extends TileEntity {
 	private static final float f = 0.125F;
 	public boolean hasRotated = false;
 	private int isLeftFlag = -5;
-	public Integer displayList = null;
 
 	public TileTCRail() {
 		if(this.worldObj != null)
