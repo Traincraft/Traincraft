@@ -14,6 +14,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -842,9 +843,13 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
                 }
                 if (getSpeed() > speedLimit && speedLimit != 0) {
                     isDriverOverspeed = true;
+
                 } else {
                     isDriverOverspeed = false;
 
+                }
+                if (isDriverOverspeed && (ticksExisted % 40 == 0) && atoStatus != 1) {
+                    Traincraft.playSoundOnClientChannel.sendTo(new PacketPlaySoundOnClient(7, "tc:mtc_overspeed"), (EntityPlayerMP)this.riddenByEntity);
                 }
                 if (isDriverOverspeed && ticksExisted % 120 == 0 && !overspeedBrakingInProgress && !overspeedOveridePressed && atoStatus != 1) {
                     //Start braking because the driver is an idiot.
@@ -1482,6 +1487,13 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 
         if (message != null && this.worldObj != null && !worldObj.isRemote) {
             if (thing.get("funct").getAsString().equals("startlevel2")) {
+
+                if (this.speedLimit != thing.get("speedLimit").getAsInt() && this.riddenByEntity != null) {
+                    Traincraft.playSoundOnClientChannel.sendTo(new PacketPlaySoundOnClient(7, "tc:mtc_speedchange"), (EntityPlayerMP)this.riddenByEntity);
+                }
+                if (this.nextSpeedLimit != thing.get("nextSpeedLimit").getAsInt() && this.riddenByEntity != null) {
+                    Traincraft.playSoundOnClientChannel.sendTo(new PacketPlaySoundOnClient(7, "tc:mtc_speedchange"), (EntityPlayerMP)this.riddenByEntity);
+                }
                 //That's actually really great, now let's get where it sent from owo
                 //	System.out.println("Connected!");
                 serverUUID = message.UUIDFrom;
@@ -1556,7 +1568,6 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
             AxisAlignedBB targetBox = AxisAlignedBB.getBoundingBox(this.posX, this.posY, this.posZ, this.posX + 2000, this.posY + 2000, this.posZ + 2000);
             List allTEs = this.worldObj.loadedTileEntityList;
             for (Object te : allTEs) {
-           System.out.println(te.getClass());
 
                 if (te instanceof TilePDMInstructionRadio) {
 

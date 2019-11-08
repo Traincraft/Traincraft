@@ -80,7 +80,7 @@ public class Traincraft {
 	//public static final SimpleNetworkWrapper ctChannel = NetworkRegistry.INSTANCE.newSimpleChannel("ctmChannel");
 	public static final SimpleNetworkWrapper gsfsChannel = NetworkRegistry.INSTANCE.newSimpleChannel("gsfsChannel");
 	public static final SimpleNetworkWrapper gsfsrChannel = NetworkRegistry.INSTANCE.newSimpleChannel("gsfsReturnChannel");
-
+	public static final SimpleNetworkWrapper playSoundOnClientChannel  = NetworkRegistry.INSTANCE.newSimpleChannel(" SoundOnCChannel");
 
 
 	public static File configDirectory;
