@@ -6,14 +6,24 @@ import dan200.computercraft.api.lua.ILuaContext;
 import dan200.computercraft.api.lua.LuaException;
 import dan200.computercraft.api.peripheral.IComputerAccess;
 import dan200.computercraft.api.peripheral.IPeripheral;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.audio.ISound;
+import net.minecraft.client.audio.MovingSound;
+import net.minecraft.client.audio.PositionedSoundRecord;
+import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.ResourceLocation;
 import train.common.Traincraft;
 import train.common.api.Locomotive;
+import train.common.library.Info;
 import train.common.mtc.packets.PacketMTC;
 import train.common.mtc.packets.PacketNextSpeed;
+import train.common.mtc.packets.PacketPlaySoundOnClient;
 import train.common.mtc.packets.PacketSetSpeed;
 
 import java.util.List;
@@ -85,6 +95,16 @@ public class TileInfoTransmitterSpeed  extends TileEntity implements IPeripheral
 							 hadSentMTCPacket = true;
                          }
 
+                        if (daTrain.speedLimit != setSpeed) {
+
+                                if (daTrain.riddenByEntity != null ) {
+
+                                   // worldObj.playSoundAtEntity(daTrain.ridingEntity, Info.resourceLocation + ":" + "mtc_speedchange", 1.0F, 1.0F);
+                                    // worldObj.playSoundAtEntity(this, Info.resourceLocation + ":" + sounds.getHornString(), sounds.getHornVolume(), 1.0F);
+                                    Traincraft.playSoundOnClientChannel.sendTo(new PacketPlaySoundOnClient(7, "tc:mtc_speedchange"), (EntityPlayerMP)daTrain.riddenByEntity);
+                                }
+
+                            }
 
                         daTrain.speedLimit = setSpeed;
 
