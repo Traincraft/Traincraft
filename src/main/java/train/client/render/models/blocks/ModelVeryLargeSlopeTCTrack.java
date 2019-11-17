@@ -11,16 +11,12 @@ import train.common.tile.TileTCRail;
 
 public class ModelVeryLargeSlopeTCTrack extends ModelBase {
 	
-	private IModelCustom	modeltrack;
-	private IModelCustom	modelVeryLargeSlopeWood;
-	private IModelCustom	modelVeryLargeSlopeBallast;
+	private static IModelCustom modeltrack = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_slope_verylong.obj"));
+	private static IModelCustom modelVeryLargeSlopeWood = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "supports_wood_verylong.obj"));
+	private static IModelCustom modelVeryLargeSlopeBallast = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "supports_ballast_verylong.obj"));
 	
 	public ModelVeryLargeSlopeTCTrack() {
-		modeltrack = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_slope_verylong.obj"));
-		modelVeryLargeSlopeWood = AdvancedModelLoader
-				.loadModel(new ResourceLocation(Info.modelPrefix + "supports_wood_verylong.obj"));
-		modelVeryLargeSlopeBallast = AdvancedModelLoader
-				.loadModel(new ResourceLocation(Info.modelPrefix + "supports_ballast_verylong.obj"));
+
 	}
 	
 	public void render(String type) {

@@ -32,17 +32,11 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 			// Push a blank matrix onto the stack
 			GL11.glPushMatrix();
 
-			// Move the object into the correct position on the block (because the OBJ's origin is the center of the object)
-			GL11.glTranslated( x + 0.5,  y,  z + 0.5);
 
-			if(railTile.displayList!=null){
-				org.lwjgl.opengl.GL11.glCallList(railTile.displayList);
-			}
-
-			if (railTile.refreshModel && railTile.hasModel && railTile.getTrackType() != null) {
-				railTile.displayList = GLAllocation.generateDisplayLists(1);
-				GL11.glNewList(railTile.displayList, GL11.GL_COMPILE);
-				switch (railTile.getTrackType()){
+			if (railTile.hasModel && railTile.getTrackType() != null) {
+				// Move the object into the correct position on the block (because the OBJ's origin is the center of the object)
+				GL11.glTranslated( x + 0.5,  y,  z + 0.5);
+				switch (railTile.getTrackType()) {
 					case MEDIUM_TURN:
 					case MEDIUM_RIGHT_TURN: {
 						modelRightTurn.render("medium", railTile, x, y, z);
@@ -103,17 +97,21 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 						modelMediumStraight.render(railTile, x, y, z);
 						break;
 					}
-					case SMALL_STRAIGHT:{
-						modelSmallStraight.render("straight", railTile, x, y, z);break;
+					case SMALL_STRAIGHT: {
+						modelSmallStraight.render("straight", railTile, x, y, z);
+						break;
 					}
-					case SMALL_ROAD_CROSSING:{
-						modelSmallStraight.render("crossing", railTile, x, y, z); break;
+					case SMALL_ROAD_CROSSING: {
+						modelSmallStraight.render("crossing", railTile, x, y, z);
+						break;
 					}
-					case SMALL_ROAD_CROSSING_1:{
-						modelSmallStraight.render("crossing1", railTile, x, y, z); break;
+					case SMALL_ROAD_CROSSING_1: {
+						modelSmallStraight.render("crossing1", railTile, x, y, z);
+						break;
 					}
-					case SMALL_ROAD_CROSSING_2:{
-						modelSmallStraight.render("crossing2", railTile, x, y, z); break;
+					case SMALL_ROAD_CROSSING_2: {
+						modelSmallStraight.render("crossing2", railTile, x, y, z);
+						break;
 					}
 					case TWO_WAYS_CROSSING: {
 						modelTwoWaysCrossing.render(x, y, z);
@@ -156,8 +154,6 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 						break;
 					}
 				}
-				GL11.glEndList();
-				railTile.refreshModel=false;
 
 			}
 			GL11.glPopMatrix();

@@ -12,10 +12,9 @@ import train.common.library.Info;
 
 @SideOnly(Side.CLIENT)
 public class ModelTwoWaysCrossingTCTrack extends ModelBase {
-	private IModelCustom modelTwoWaysCrossing;
+	private static IModelCustom modelTwoWaysCrossing= AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_x.obj"));
 
 	public ModelTwoWaysCrossingTCTrack() {
-		modelTwoWaysCrossing = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_x.obj"));
 	}
 
 	public void render() {

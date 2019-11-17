@@ -12,8 +12,6 @@ import net.minecraft.util.ChatComponentText;
 import train.client.gui.GuiMTCInfo;
 import train.common.Traincraft;
 import train.common.api.Locomotive;
-import train.common.api.SteamTrain;
-import train.common.core.handlers.ConfigHandler;
 import train.common.core.network.PacketKeyPress;
 
 import java.awt.event.KeyEvent;

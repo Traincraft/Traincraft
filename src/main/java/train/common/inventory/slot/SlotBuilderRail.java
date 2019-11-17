@@ -1,9 +1,7 @@
 package train.common.inventory.slot;
 
-import mods.railcraft.api.core.items.ITrackItem;
 import mods.railcraft.api.tracks.RailTools;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockRailBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;

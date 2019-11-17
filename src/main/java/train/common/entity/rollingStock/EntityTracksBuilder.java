@@ -5,17 +5,12 @@ import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
 import mods.railcraft.api.core.items.ITrackItem;
 import mods.railcraft.api.tracks.RailTools;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockFalling;
-import net.minecraft.block.BlockLiquid;
-import net.minecraft.block.BlockRail;
-import net.minecraft.block.BlockRailBase;
+import net.minecraft.block.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -29,6 +24,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.event.world.BlockEvent;
 import train.common.Traincraft;
 import train.common.adminbook.ServerLogger;
@@ -36,18 +32,15 @@ import train.common.api.EntityRollingStock;
 import train.common.api.Freight;
 import train.common.blocks.BlockTCRail;
 import train.common.blocks.BlockTCRailGag;
-import train.common.core.FakePlayer;
 import train.common.core.TrainModBlockUtil;
-import train.common.core.handlers.BuilderOreHandler;
 import train.common.core.handlers.FuelHandler;
 import train.common.core.plugins.PluginRailcraft;
 import train.common.items.ItemTCRail;
-import train.common.library.BlockIDs;
 import train.common.library.GuiIDs;
-import train.common.library.ItemIDs;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class EntityTracksBuilder extends EntityRollingStock implements IInventory {
 	public ItemStack item;
@@ -94,7 +87,9 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 	public EntityTracksBuilder(World world) {
 		super(world);
 		initBuilder();
-		fakeplayer = new FakePlayer(world);
+		
+		if(world instanceof WorldServer)
+			fakeplayer = new FakePlayer((WorldServer) world, new GameProfile(new UUID(0,0),""));
 	}
 
 	public void initBuilder() {
@@ -125,7 +120,9 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 		currentHeight = posY;
 		plannedHeight = (int) currentHeight - 1;
 		setPlannedHeight(plannedHeight);
-		fakeplayer = new FakePlayer(world);
+		
+		if(world instanceof WorldServer)
+			fakeplayer = new FakePlayer((WorldServer) world, new GameProfile(new UUID(0,0),""));
 	}
 
 	@Override
@@ -829,25 +826,27 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 		int id = Block.getIdFromBlock(block);
 		int meta = worldObj.getBlockMetadata(i, j, k);
 
+		if(shouldIgnoreBlockForHarvesting(Vec3.createVectorHelper(i, j, k),
+				Block.getIdFromBlock(block))) {
 			// drop Maybe need a rework
-		if (id != 0) {
-			ArrayList<ItemStack> stacks = new ArrayList<ItemStack>(TrainModBlockUtil.getItemStackFromBlock(worldObj, i, j, k));
+			if (id != 0) {
+				ArrayList<ItemStack> stacks = new ArrayList<ItemStack>(TrainModBlockUtil.getItemStackFromBlock(worldObj, i, j, k));
 
-			for (ItemStack s : stacks) {
+				for (ItemStack s : stacks) {
 					// we do not destroy rails
-				if( (BlockRailBase.func_150051_a(Block.getBlockFromItem(s.getItem()))))return;
+					if( (BlockRailBase.func_150051_a(Block.getBlockFromItem(s.getItem()))))return;
 				
-				if (Item.getIdFromItem(s.getItem()) != 0
-						&& (s.getItem() != Item.getItemFromBlock(Block.getBlockFromName("glass")))) {
+					if (Item.getIdFromItem(s.getItem()) != 0
+							&& (s.getItem() != Item.getItemFromBlock(Block.getBlockFromName("glass")))) {
 						//&& (Item.getIdFromItem(s.getItem())) != Item.getIdFromItem(tunnelBlockStack.getItem())) {
 
 					//if ((Block.getIdFromBlock(worldObj.getBlock(i, j, k)) != Item.getIdFromItem(tunnelBlockStack.getItem()))) {
 						putInInvent(s);
 					//}
+					}
 				}
 			}
 		}
-
 			// mining effect
 		if (Block.getBlockById(id) != null && id != 0 && !worldObj.isRemote) {
 			this.playMiningEffect(Vec3.createVectorHelper(i, j, k), id);
@@ -886,10 +885,6 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 
 		if(block == newblock && metadata == newmeta)
 			return true;
-
-		if(shouldIgnoreBlockForHarvesting(Vec3.createVectorHelper(i, j, k),
-				Block.getIdFromBlock(block)))
-			return false;
 
 		BlockEvent.BreakEvent event = new BlockEvent.BreakEvent(i, j, k, worldObj,
 				block, metadata, this.fakeplayer);
@@ -934,10 +929,6 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 				|| block instanceof BlockTCRailGag) {
 			return true;
 		}
-
-		if(shouldIgnoreBlockForHarvesting(Vec3.createVectorHelper(i, j, k),
-				Block.getIdFromBlock(block)))
-			return false;
 
 		BlockEvent.BreakEvent event = new BlockEvent.BreakEvent(i, j, k, worldObj,
 				block, metadata, this.fakeplayer);

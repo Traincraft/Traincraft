@@ -1,11 +1,7 @@
 package train.client.render.models;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.Entity;
-import tmt.ModelBase;
 import tmt.ModelConverter;
 import tmt.ModelRendererTurbo;
-import train.client.render.CustomModelRenderer;
 
 public class ModelGP7 extends ModelConverter //Same as Filename
 {

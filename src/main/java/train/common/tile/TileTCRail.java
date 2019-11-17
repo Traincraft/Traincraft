@@ -43,8 +43,6 @@ public class TileTCRail extends TileEntity {
 	private static final float f = 0.125F;
 	public boolean hasRotated = false;
 	private int isLeftFlag = -5;
-	public Integer displayList = null;
-	public boolean refreshModel = true;
 
 	public TileTCRail() {
 		if(this.worldObj != null)
@@ -98,9 +96,6 @@ public class TileTCRail extends TileEntity {
 
 	@Override
 	public void updateEntity() {
-		if(updateTicks%60==0){
-			refreshModel=true;
-		}
 		if (worldObj.isRemote || !canTypeBeModifiedBySwitch) {
 
 			return;
