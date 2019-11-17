@@ -88,7 +88,6 @@ public class TileInfoTransmitterMTC extends TileEntity implements IPeripheral {
                         daTrain.stationStop = false;
                         daTrain.speedGoingDown = false;
                         if (!(daTrain.serverUUID.equals(this.serverUUID))) {
-
                             daTrain.attemptConnection(serverUUID);
                         }
                     } else if (serverUUID.equals("end")) {
