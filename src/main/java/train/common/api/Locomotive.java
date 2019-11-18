@@ -156,6 +156,9 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
         setAccel(0);
         setBrake(0);
         this.entityCollisionReduction = 0.99F;
+        if(this instanceof SteamTrain){
+            isLocoTurnedOn=true;
+        }
 
         if (!serverUUID.equals("")) {
             attemptConnection(serverUUID);
@@ -649,7 +652,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
                 backwardPressed = true;
             } else if (!FMLClientHandler.instance().getClient().gameSettings.keyBindBack.getIsKeyPressed()
                     && backwardPressed) {
-                Traincraft.keyChannel.sendToServer(new PacketKeyPress(13));
+                Traincraft.keyChannel.sendToServer(new PacketKeyPress(14));
                 backwardPressed = false;
             }
             if (FMLClientHandler.instance().getClient().gameSettings.keyBindJump.getIsKeyPressed()
