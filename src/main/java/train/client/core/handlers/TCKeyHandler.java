@@ -9,11 +9,12 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentText;
-import org.lwjgl.input.Keyboard;
 import train.client.gui.GuiMTCInfo;
 import train.common.Traincraft;
 import train.common.api.Locomotive;
 import train.common.core.network.PacketKeyPress;
+
+import java.awt.event.KeyEvent;
 
 public class TCKeyHandler {
 	public static KeyBinding horn;
@@ -26,30 +27,35 @@ public class TCKeyHandler {
 	public static KeyBinding toggleATO;
 	public static KeyBinding mtcOverride;
 	public static KeyBinding overspeedOverride;
-
+/*	public static KeyBinding remoteControlForward;
+	public static KeyBinding remoteControlBackwards;
+	public static KeyBinding remoteControlHorn;
+	public static KeyBinding remoteControlBrake;*/
 	public TCKeyHandler() {
-		horn = new KeyBinding("key.traincraft.horn", Keyboard.KEY_H, "key.categories.traincraft");
+		horn = new KeyBinding("key.traincraft.horn", KeyEvent.VK_H, "key.categories.traincraft");
 		ClientRegistry.registerKeyBinding(horn);
-		inventory = new KeyBinding("key.traincraft.inventory", Keyboard.KEY_R, "key.categories.traincraft");
+		inventory = new KeyBinding("key.traincraft.inventory", KeyEvent.VK_R, "key.categories.traincraft");
 		ClientRegistry.registerKeyBinding(inventory);
-		up = new KeyBinding("key.traincraft.up", Keyboard.KEY_Y, "key.categories.traincraft");
+		up = new KeyBinding("key.traincraft.up", KeyEvent.VK_Y, "key.categories.traincraft");
 		ClientRegistry.registerKeyBinding(up);
-		down = new KeyBinding("key.traincraft.down", Keyboard.KEY_X, "key.categories.traincraft");
+		down = new KeyBinding("key.traincraft.down", KeyEvent.VK_X, "key.categories.traincraft");
 		ClientRegistry.registerKeyBinding(down);
-		idle = new KeyBinding("key.traincraft.idle", Keyboard.KEY_C, "key.categories.traincraft");
+		idle = new KeyBinding("key.traincraft.idle", KeyEvent.VK_C, "key.categories.traincraft");
 		ClientRegistry.registerKeyBinding(idle);
-		furnace = new KeyBinding("key.traincraft.furnace", Keyboard.KEY_F, "key.categories.traincraft");
+		furnace = new KeyBinding("key.traincraft.furnace", KeyEvent.VK_F, "key.categories.traincraft");
 		ClientRegistry.registerKeyBinding(furnace);
 		if (Loader.isModLoaded("ComputerCraft")) {
-			MTCScreen = new KeyBinding("key.traincraft.showMTCScreen", Keyboard.KEY_M, "key.categories.traincraft");
+			MTCScreen = new KeyBinding("key.traincraft.showMTCScreen", KeyEvent.VK_M, "key.categories.traincraft");
 			ClientRegistry.registerKeyBinding(MTCScreen);
-			toggleATO = new KeyBinding("key.traincraft.toggleATO", Keyboard.KEY_O, "key.categories.traincraft");
+			toggleATO = new KeyBinding("key.traincraft.toggleATO", KeyEvent.VK_O, "key.categories.traincraft");
 			ClientRegistry.registerKeyBinding(toggleATO);
-			mtcOverride = new KeyBinding("key.traincraft.mtcOverride", Keyboard.KEY_T, "key.categories.traincraft");
+			mtcOverride = new KeyBinding("key.traincraft.mtcOverride", KeyEvent.VK_T, "key.categories.traincraft");
 			ClientRegistry.registerKeyBinding(mtcOverride);
-			overspeedOverride = new KeyBinding("key.traincraft.overspeedOverride", Keyboard.KEY_L, "key.categories.traincraft");
+			overspeedOverride = new KeyBinding("key.traincraft.overspeedOverride", KeyEvent.VK_L, "key.categories.traincraft");
 			ClientRegistry.registerKeyBinding(overspeedOverride);
-		}
+}
+
+
 	}
 
 	@SubscribeEvent
@@ -75,8 +81,16 @@ public class TCKeyHandler {
 			}
 			if (Loader.isModLoaded("ComputerCraft")) {
 				if (MTCScreen.isPressed() && !FMLClientHandler.instance().isGUIOpen(GuiMTCInfo.class)) {
-					if (Minecraft.getMinecraft().thePlayer.ridingEntity != null) {
-						Minecraft.getMinecraft().displayGuiScreen(new GuiMTCInfo(Minecraft.getMinecraft().thePlayer.ridingEntity));
+					if (Minecraft.getMinecraft().thePlayer.ridingEntity != null && Minecraft.getMinecraft().thePlayer.ridingEntity instanceof Locomotive) {
+//&&((Locomotive)Minecraft.getMinecraft().thePlayer.ridingEntity).getTrainOwner().equals(Minecraft.getMinecraft().thePlayer.getDisplayName()))
+						if (((Locomotive)Minecraft.getMinecraft().thePlayer.ridingEntity).locked) {
+							if (((Locomotive)Minecraft.getMinecraft().thePlayer.ridingEntity).getTrainOwner().equals(Minecraft.getMinecraft().thePlayer.getDisplayName())) {
+								Minecraft.getMinecraft().displayGuiScreen(new GuiMTCInfo(Minecraft.getMinecraft().thePlayer.ridingEntity));
+						}
+
+						} else {
+							Minecraft.getMinecraft().displayGuiScreen(new GuiMTCInfo(Minecraft.getMinecraft().thePlayer.ridingEntity));
+						}
 					}
 				}
 				if (toggleATO.isPressed() && Minecraft.getMinecraft().thePlayer.ridingEntity instanceof Locomotive) {
