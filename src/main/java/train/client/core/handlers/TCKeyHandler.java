@@ -15,6 +15,7 @@ import train.common.Traincraft;
 import train.common.api.Locomotive;
 import train.common.core.network.PacketKeyPress;
 
+
 public class TCKeyHandler {
 	public static KeyBinding horn;
 	public static KeyBinding inventory;
@@ -26,7 +27,10 @@ public class TCKeyHandler {
 	public static KeyBinding toggleATO;
 	public static KeyBinding mtcOverride;
 	public static KeyBinding overspeedOverride;
-
+/*	public static KeyBinding remoteControlForward;
+	public static KeyBinding remoteControlBackwards;
+	public static KeyBinding remoteControlHorn;
+	public static KeyBinding remoteControlBrake;*/
 	public TCKeyHandler() {
 		horn = new KeyBinding("key.traincraft.horn", Keyboard.KEY_H, "key.categories.traincraft");
 		ClientRegistry.registerKeyBinding(horn);
@@ -49,7 +53,9 @@ public class TCKeyHandler {
 			ClientRegistry.registerKeyBinding(mtcOverride);
 			overspeedOverride = new KeyBinding("key.traincraft.overspeedOverride", Keyboard.KEY_L, "key.categories.traincraft");
 			ClientRegistry.registerKeyBinding(overspeedOverride);
-		}
+}
+
+
 	}
 
 	@SubscribeEvent
@@ -75,8 +81,16 @@ public class TCKeyHandler {
 			}
 			if (Loader.isModLoaded("ComputerCraft")) {
 				if (MTCScreen.isPressed() && !FMLClientHandler.instance().isGUIOpen(GuiMTCInfo.class)) {
-					if (Minecraft.getMinecraft().thePlayer.ridingEntity != null) {
-						Minecraft.getMinecraft().displayGuiScreen(new GuiMTCInfo(Minecraft.getMinecraft().thePlayer.ridingEntity));
+					if (Minecraft.getMinecraft().thePlayer.ridingEntity != null && Minecraft.getMinecraft().thePlayer.ridingEntity instanceof Locomotive) {
+//&&((Locomotive)Minecraft.getMinecraft().thePlayer.ridingEntity).getTrainOwner().equals(Minecraft.getMinecraft().thePlayer.getDisplayName()))
+						if (((Locomotive)Minecraft.getMinecraft().thePlayer.ridingEntity).locked) {
+							if (((Locomotive)Minecraft.getMinecraft().thePlayer.ridingEntity).getTrainOwner().equals(Minecraft.getMinecraft().thePlayer.getDisplayName())) {
+								Minecraft.getMinecraft().displayGuiScreen(new GuiMTCInfo(Minecraft.getMinecraft().thePlayer.ridingEntity));
+						}
+
+						} else {
+							Minecraft.getMinecraft().displayGuiScreen(new GuiMTCInfo(Minecraft.getMinecraft().thePlayer.ridingEntity));
+						}
 					}
 				}
 				if (toggleATO.isPressed() && Minecraft.getMinecraft().thePlayer.ridingEntity instanceof Locomotive) {

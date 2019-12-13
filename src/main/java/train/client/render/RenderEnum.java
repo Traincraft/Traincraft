@@ -458,7 +458,7 @@ public enum RenderEnum {
 			add(new double[] { 3.4D, -0.2D, 0.8D });
 		}
 	}, 2, false),
-	locoSteamForney(EntityLocoSteamForneyRed.class, new ModelLocoForney(), "locoForney_", true, new float[] { -0.6F, -0.44F, 0.0F }, new float[] { 0F, 90F, 0F }, null, "largesmoke", 3, new ArrayList<double[]>() {
+	locoSteamForney(EntityLocoSteamForneyRed.class, new ModelLocoForney(), "locoForney_", true, new float[] { -1.3F, -0.44F, 0.0F }, new float[] { 0F, 90F, 0F }, null, "largesmoke", 3, new ArrayList<double[]>() {
 		{
 			add(new double[] { 1.4D, 1.9D, 0.0D });
 		}

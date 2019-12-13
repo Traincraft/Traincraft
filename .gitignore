@@ -4,6 +4,7 @@ bin
 .settings
 .metadata
 eclipse
+.debris
 
 # idea
 out

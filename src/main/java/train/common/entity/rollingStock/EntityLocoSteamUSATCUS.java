@@ -132,7 +132,7 @@ public class EntityLocoSteamUSATCUS extends SteamTrain {
 
 	@Override
 	public String getInventoryName() {
-		return "Southern 1102";
+		return "S100 USATCUS";
 	}
 
 	@Override
