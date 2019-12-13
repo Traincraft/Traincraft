@@ -572,7 +572,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 	protected boolean lockThisCart(ItemStack itemstack, EntityPlayer entityplayer) {
 		if (itemstack != null && (itemstack.getItem() instanceof ItemWrench || itemstack.getItem() instanceof ItemAdminBook)) {
 			if (entityplayer.getDisplayName().equals(this.trainOwner) || entityplayer.getGameProfile().getName().equals(this.trainOwner)
-					|| this.trainOwner.equals("") || entityplayer.canCommandSenderUseCommand(2, "")) {
+					|| this.trainOwner.equals("") || entityplayer.canCommandSenderUseCommand(2, "tc.admin")) {
 				if (locked) {
 					locked = false;
 					if(worldObj.isRemote) {
@@ -602,7 +602,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		if (this.getTrainLockedFromPacket()) {
 			if (damagesource.getEntity() instanceof EntityPlayer) {
 				if ((damagesource.getEntity() instanceof EntityPlayerMP) &&
-						((EntityPlayerMP)damagesource.getEntity()).canCommandSenderUseCommand(2, "") &&
+						((EntityPlayerMP)damagesource.getEntity()).canCommandSenderUseCommand(2, "tc.admin") &&
 						((EntityPlayer) damagesource.getEntity()).inventory.getCurrentItem() != null &&
 						((EntityPlayer) damagesource.getEntity()).inventory.getCurrentItem().getItem() instanceof ItemWrench) {
 
