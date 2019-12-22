@@ -1353,7 +1353,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 			//System.out.println(l);
 			if (l == 2 || l == 0){
 				moveEntity(motionX, 0.0D, 0.0D);
-			} else if (l == 1 || l == 3){
+			} else {
 				moveEntity(0.0D, 0.0D, motionZ);
 			}
 		}
@@ -1363,7 +1363,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 			if (l == 2 || l == 0){
 				moveEntity(motionX, 0.0D, 0.0D);
 			}
-			else if (l == 1 || l == 3){
+			else {
 				moveEntity(0.0D, 0.0D, motionZ);
 			}
 			//moveEntity(motionX, 0.0D, motionZ);

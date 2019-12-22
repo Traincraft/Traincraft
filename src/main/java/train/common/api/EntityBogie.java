@@ -49,12 +49,6 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
     private double minecartZ;
     private double minecartYaw;
     private double minecartPitch;
-    @SideOnly(Side.CLIENT)
-    private double velocityX;
-    @SideOnly(Side.CLIENT)
-    private double velocityY;
-    @SideOnly(Side.CLIENT)
-    private double velocityZ;
 
 
 
@@ -704,7 +698,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 			if (meta == 3) {
 				if (Math.abs(motionZ) < 0.01 && motionX < 0) {
 					TileEntity tile2 = worldObj.getTileEntity(i - 1, j, k);
-					if (tile2 != null && tile2 instanceof TileTCRail) {
+					if (tile2 instanceof TileTCRail) {
 						((TileTCRail) tile2).setSwitchState(false, true);
 					}
 					return true;
@@ -750,7 +744,6 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 
 	@Override
 	public GameProfile getOwner() {
-
 		return  this.entityMainTrain.getOwner();
 	}
 	
@@ -765,8 +758,5 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		this.minecartYaw = p_70056_7_;
 		this.minecartPitch = p_70056_8_;
 		this.turnProgress = p_70056_9_ + 2;
-		this.motionX = this.velocityX;
-		this.motionY = this.velocityY;
-		this.motionZ = this.velocityZ;
 	}
 }

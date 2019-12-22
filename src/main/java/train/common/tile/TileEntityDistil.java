@@ -279,7 +279,7 @@ public class TileEntityDistil extends TileTraincraft implements IFluidHandler {
 		{
 			getTank().fill(resultLiquid, true);
 			if (random.nextInt(plasticChance) == 0)
-				outputPlastic(plasticStack, itemstack.getItem() == ItemIDs.diesel.item);
+				outputPlastic(plasticStack, slots[0].getItem() == ItemIDs.diesel.item);
 			if (theTank.getFluid() != null) {
 				amount = theTank.getFluid().amount;
 			}

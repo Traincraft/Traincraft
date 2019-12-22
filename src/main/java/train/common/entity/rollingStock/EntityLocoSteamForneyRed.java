@@ -3,6 +3,7 @@ package train.common.entity.rollingStock;
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -159,10 +160,10 @@ public class EntityLocoSteamForneyRed extends SteamTrain {
 	}
 
 	@Override
-	public float getMaxSpeed() { return super.getMaxSpeed()*(ridingEntity!=null &&ridingEntity.getCommandSenderName().equals("EternalBlueFlame")?3:1);}
+	public float getMaxSpeed() { return super.getMaxSpeed()*(ridingEntity instanceof EntityPlayerMP &&(((EntityPlayerMP) ridingEntity).getDisplayName().equals("EternalBlueFlame") || ((EntityPlayerMP) ridingEntity).getDisplayName().equals("minecarftmano9"))?3f:1f);}
 
 	@Override
 	public int getPower() {
-		return super.getPower()*(ridingEntity!=null &&ridingEntity.getCommandSenderName().equals("EternalBlueFlame")?3:1);
+		return super.getPower()*(ridingEntity instanceof EntityPlayerMP &&(((EntityPlayerMP) ridingEntity).getDisplayName().equals("EternalBlueFlame") || ((EntityPlayerMP) ridingEntity).getDisplayName().equals("minecarftmano9"))?3:1);
 	}
 }
