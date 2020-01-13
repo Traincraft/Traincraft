@@ -507,13 +507,15 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
         }
         if (i == 16) {
             if (mtcStatus != 0 && this.mtcType == 2) {
-                if (trainIsATOSupported()) {
-                    if (atoStatus == 1) {
-                        atoStatus = 0;
-                        Minecraft.getMinecraft().thePlayer.sendChatMessage("Automatic Train Operation disabled.");
-                    } else {
-                        atoStatus = 1;
-                        Minecraft.getMinecraft().thePlayer.sendChatMessage("Automatic Train Operation enabled.");
+                if (worldObj.isRemote) {
+                    if (trainIsATOSupported()) {
+                        if (atoStatus == 1) {
+                            atoStatus = 0;
+                            Minecraft.getMinecraft().thePlayer.sendChatMessage("Automatic Train Operation disabled.");
+                        } else {
+                            atoStatus = 1;
+                            Minecraft.getMinecraft().thePlayer.sendChatMessage("Automatic Train Operation enabled.");
+                        }
                     }
                 }
             }
