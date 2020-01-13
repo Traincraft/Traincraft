@@ -143,7 +143,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
         dataWatcher.addObject(24, fuelTrain);
 
 
-        dataWatcher.addObject(4, trainID);
+        dataWatcher.addObject(5, trainID);
         dataWatcher.addObject(25, (int) convertSpeed(Math.sqrt(Math.abs(motionX * motionX) + Math.abs(motionZ * motionZ))));//convertSpeed((Math.abs(this.motionX) + Math.abs(this.motionZ))
         dataWatcher.addObject(26, castToString(currentNumCartsPulled));
         dataWatcher.addObject(27, castToString(currentMassPulled));
@@ -156,6 +156,9 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
         setAccel(0);
         setBrake(0);
         this.entityCollisionReduction = 0.99F;
+        if(this instanceof SteamTrain){
+            isLocoTurnedOn=true;
+        }
 
         if (!serverUUID.equals("")) {
             attemptConnection(serverUUID);
@@ -450,7 +453,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
         trainID = ntc.getString("trainID");
 
         //Hey uhh..let's update the datawatcher, just so that things stay in sync.
-        dataWatcher.updateObject(4,trainID);
+        dataWatcher.updateObject(5,trainID);
 
     }
 
@@ -631,7 +634,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 
         if (trainID.equals("") && !worldObj.isRemote && ticksExisted%40 ==0) {
             trainID = RandomStringUtils.randomAlphanumeric(5);
-            dataWatcher.updateObject(4, trainID);
+            dataWatcher.updateObject(5, trainID);
 
         }
 
@@ -651,7 +654,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
                 backwardPressed = true;
             } else if (!FMLClientHandler.instance().getClient().gameSettings.keyBindBack.getIsKeyPressed()
                     && backwardPressed) {
-                Traincraft.keyChannel.sendToServer(new PacketKeyPress(13));
+                Traincraft.keyChannel.sendToServer(new PacketKeyPress(14));
                 backwardPressed = false;
             }
             if (FMLClientHandler.instance().getClient().gameSettings.keyBindJump.getIsKeyPressed()
@@ -958,7 +961,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
                             dataWatcher.updateObject(20, overheatLevel);
                             dataWatcher.updateObject(22, locoState);
                             dataWatcher.updateObject(3, destination);
-                            dataWatcher.updateObject(4, trainID);
+                            dataWatcher.updateObject(5, trainID);
                             dataWatcher.updateObject(31, ("1c/" + castToString((int) (currentFuelConsumptionChange)) + " per tick"));
                         }
                         if (ticksExisted % 20 == 0) {

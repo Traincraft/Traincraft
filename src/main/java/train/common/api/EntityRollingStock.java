@@ -89,7 +89,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 	private float rollingServerPitch;
 	public double rotationYawClient;
 	public float rotationYawClientReal;
-	public double anglePitchClient;
+	public float anglePitchClient;
 	public float serverRealRotation;
 	private float previousServerRealRotation;
 	public boolean isServerInReverse = false;
@@ -360,9 +360,9 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 			setRollingDirection(-getRollingDirection());
 			setRollingAmplitude(10);
 			setBeenAttacked();
-			if (((EntityPlayer) damagesource.getEntity()).capabilities.isCreativeMode) {
+			if (((EntityPlayer) damagesource.getEntity()).capabilities.isCreativeMode&& ((EntityPlayer) damagesource.getEntity()).canCommandSenderUseCommand(2,"tc.admin")) {
 				this.setDamage(1000);
-				if (ConfigHandler.ENABLE_WAGON_REMOVAL_NOTICES && ((EntityPlayer) damagesource.getEntity()).canCommandSenderUseCommand(2,"")) {
+				if (ConfigHandler.ENABLE_WAGON_REMOVAL_NOTICES) {
 					((EntityPlayer) damagesource.getEntity()).addChatComponentMessage(new ChatComponentText("Operator removed train owned by " + getTrainOwner()));
 				}
 			}
@@ -1118,23 +1118,22 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 		else if (l == BlockIDs.tcRail.block) {
 			//applyDragAndPushForces();
 			limitSpeedOnTCRail();
-			//if(worldObj.getTileEntity(i,j,k)==null || !(worldObj.getTileEntity(i,j,k) instanceof TileTCRail))return;
+			if(worldObj.getTileEntity(i,j,k)==null || !(worldObj.getTileEntity(i,j,k) instanceof TileTCRail))return;
 			TileTCRail tile = (TileTCRail) worldObj.getTileEntity(i, j, k);
 			//j+=0.2;
 
 			//System.out.println(tile.getType());
 			if (ItemTCRail.isTCTurnTrack(tile)) {
-				
-				if(bogieLoco != null) {
+
+				if (bogieLoco != null) {
 					if (!bogieLoco.isOnRail()) {
 						derailSpeed = 0;
 					}
 				}
-				if(derailSpeed == 0){
+				if (derailSpeed == 0) {
 					this.unLink();
-					moveOnTCStraight(i, j, k, tile.xCoord, tile.zCoord, (tile.getBlockMetadata()+1)%4);
-				}
-				else{
+					moveOnTCStraight(i, j, k, tile.xCoord, tile.zCoord, (tile.getBlockMetadata() + 1) % 4);
+				} else {
 					int meta = tile.getBlockMetadata();
 					if (shouldIgnoreSwitch(tile, i, j, k, meta)) {
 						moveOnTCStraight(i, j, k, tile.xCoord, tile.zCoord, meta);
@@ -1151,7 +1150,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 				moveOnTCStraight(i, j, k, tile.xCoord, tile.zCoord, tile.getBlockMetadata());
 			}
 			if (ItemTCRail.isTCSlopeTrack(tile)) {
-				moveOnTCSlope( j, tile.xCoord, tile.zCoord, tile.slopeAngle, tile.getBlockMetadata());
+				moveOnTCSlope(j, tile.xCoord, tile.zCoord, tile.slopeAngle, tile.getBlockMetadata());
 			}
 			if (ItemTCRail.isTCTwoWaysCrossingTrack(tile)) {
 				moveOnTCTwoWaysCrossing(i, j, k, tile.xCoord, tile.yCoord, tile.zCoord, tile.getBlockMetadata());
@@ -1354,7 +1353,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 			//System.out.println(l);
 			if (l == 2 || l == 0){
 				moveEntity(motionX, 0.0D, 0.0D);
-			} else if (l == 1 || l == 3){
+			} else {
 				moveEntity(0.0D, 0.0D, motionZ);
 			}
 		}
@@ -1364,7 +1363,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 			if (l == 2 || l == 0){
 				moveEntity(motionX, 0.0D, 0.0D);
 			}
-			else if (l == 1 || l == 3){
+			else {
 				moveEntity(0.0D, 0.0D, motionZ);
 			}
 			//moveEntity(motionX, 0.0D, motionZ);

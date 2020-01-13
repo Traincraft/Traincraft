@@ -49,12 +49,6 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
     private double minecartZ;
     private double minecartYaw;
     private double minecartPitch;
-    @SideOnly(Side.CLIENT)
-    private double velocityX;
-    @SideOnly(Side.CLIENT)
-    private double velocityY;
-    @SideOnly(Side.CLIENT)
-    private double velocityZ;
 
 
 
@@ -362,7 +356,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		this.setCurrentCartSpeedCapOnRail(1.8F);
 		this.setMaxSpeedAirLateral(1.8F);
 
-		//if (!this.worldObj.isRemote || true) {
+		if (!this.worldObj.isRemote) {
 			
 			this.prevPosX = this.posX;
 			this.prevPosY = this.posY;
@@ -385,32 +379,9 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 
 			if (BlockRailBase.func_150051_a(block)) {
 				super.onUpdate();
-			if (!worldObj.isRemote) {
 				this.setPosition(this.posX, this.posY + yOffset - 0.3d, this.posZ);
 				// System.out.println("Server Y: " + this.posY);
-			}
 			} else {
-		        if (this.worldObj.isRemote)
-		        {
-		            if (this.turnProgress > 0)
-		            {
-		                double d6 = this.posX + (this.minecartX - this.posX) / this.turnProgress;
-		                double d7 = this.posY + (this.minecartY - this.posY) / this.turnProgress;
-		                double d1 = this.posZ + (this.minecartZ - this.posZ) / this.turnProgress;
-		                double d3 = MathHelper.wrapAngleTo180_double(this.minecartYaw - this.rotationYaw);
-		                this.rotationYaw = (float)(this.rotationYaw + d3 / this.turnProgress);
-		                this.rotationPitch = (float)(this.rotationPitch + (this.minecartPitch - this.rotationPitch) / this.turnProgress);
-		                --this.turnProgress;
-		                this.setPosition(d6, d7, d1);
-		                this.setRotation(this.rotationYaw, this.rotationPitch);
-		            }
-		            else
-		            {
-		                this.setPosition(this.posX, this.posY, this.posZ);
-		                this.setRotation(this.rotationYaw, this.rotationPitch);
-		            }
-		        }
-		        else{
 		        	TileEntity tileEntity = this.worldObj.getTileEntity(i, j, k);
 		        	TileTCRail tileRail;
 
@@ -468,14 +439,10 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 
 						moveOnTCSlope(j, tileRail.xCoord, tileRail.zCoord, tileRail.slopeAngle, tileRail.slopeHeight, tileRail.getBlockMetadata());
 					}
-		        }
 			}
-
 			this.func_145775_I();
 			this.rotationPitch = 0.0F;
-		//}
 
-		if (!this.worldObj.isRemote) {
 
 			if(this.entityMainTrain == null) {
 
@@ -511,7 +478,22 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 					}
 				}
 			}
+
+		} else if (this.turnProgress > 0) {
+			double d6 = this.posX + (this.minecartX - this.posX) / this.turnProgress;
+			double d7 = this.posY + (this.minecartY - this.posY) / this.turnProgress;
+			double d1 = this.posZ + (this.minecartZ - this.posZ) / this.turnProgress;
+			double d3 = MathHelper.wrapAngleTo180_double(this.minecartYaw - this.rotationYaw);
+			this.rotationYaw = (float)(this.rotationYaw + d3 / this.turnProgress);
+			this.rotationPitch = (float)(this.rotationPitch + (this.minecartPitch - this.rotationPitch) / this.turnProgress);
+			--this.turnProgress;
+			this.setPosition(d6, d7, d1);
+			this.setRotation(this.rotationYaw, this.rotationPitch);
+		} else {
+			this.setPosition(this.posX, this.posY, this.posZ);
+			this.setRotation(this.rotationYaw, this.rotationPitch);
 		}
+
 		if (posX == 0 && posZ == 0) {
 			worldObj.removeEntity(this);
 		}
@@ -704,7 +686,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 			if (meta == 3) {
 				if (Math.abs(motionZ) < 0.01 && motionX < 0) {
 					TileEntity tile2 = worldObj.getTileEntity(i - 1, j, k);
-					if (tile2 != null && tile2 instanceof TileTCRail) {
+					if (tile2 instanceof TileTCRail) {
 						((TileTCRail) tile2).setSwitchState(false, true);
 					}
 					return true;
@@ -750,7 +732,6 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 
 	@Override
 	public GameProfile getOwner() {
-
 		return  this.entityMainTrain.getOwner();
 	}
 	
@@ -765,8 +746,5 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		this.minecartYaw = p_70056_7_;
 		this.minecartPitch = p_70056_8_;
 		this.turnProgress = p_70056_9_ + 2;
-		this.motionX = this.velocityX;
-		this.motionY = this.velocityY;
-		this.motionZ = this.velocityZ;
 	}
 }

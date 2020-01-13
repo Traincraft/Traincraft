@@ -55,7 +55,7 @@ public class ItemAdminBook extends Item {
         try {
             if (world.isRemote) {
                 return stack;
-            } else if (!player.canCommandSenderUseCommand(2, "")) {
+            } else if (!player.canCommandSenderUseCommand(2, "tc.admin")) {
                 return stack;
             }
 
