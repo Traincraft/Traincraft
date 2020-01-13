@@ -91,7 +91,7 @@ public abstract class ElectricTrain extends Locomotive {
 					}
 					int max = ((IEnergyHandler) block).getEnergyStored(direction);
 					if (max > 0) {
-						draw = ((IEnergyHandler) block).receiveEnergy(direction, Math.max(-MathHelper.floor_double(Math.min(200, maxEnergy - getFuel()) * 0.1), -max), false);
+						draw = ((IEnergyHandler) block).receiveEnergy(direction, Math.max(-MathHelper.floor_double(Math.min(200, maxEnergy - getFuel()) * 0.2), -max), false);
 					}
 				}
 				fuelTrain += -draw;
