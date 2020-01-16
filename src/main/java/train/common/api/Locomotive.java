@@ -880,7 +880,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
                     isDriverOverspeed = false;
 
                 }
-                if (isDriverOverspeed && (ticksExisted % 40 == 0) && atoStatus != 1) {
+                if (isDriverOverspeed && (ticksExisted % 40 == 0) && atoStatus != 1 && this.riddenByEntity != null) {
                     Traincraft.playSoundOnClientChannel.sendTo(new PacketPlaySoundOnClient(7, "tc:mtc_overspeed"), (EntityPlayerMP)this.riddenByEntity);
                 }
                 if (isDriverOverspeed && ticksExisted % 120 == 0 && !overspeedBrakingInProgress && !overspeedOveridePressed && atoStatus != 1) {
@@ -1463,7 +1463,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 
                         }
 
-                    } else {
+                    }/* else {
                         int dir = MathHelper
                                 .floor_double((((EntityPlayer) riddenByEntity).rotationYaw * 4F) / 360F + 0.5D) & 3;
                         if (dir == 2) {
@@ -1485,7 +1485,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 
                         }
 
-                    }
+                    }*/
                 }
 
             }
@@ -1545,7 +1545,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
             } else if (thing.get("funct").getAsString().equals("response")) {
                 mtcType = 2;
                 this.mtcStatus = thing.get("mtcStatus").getAsInt();
-                if (!thing.get("destination").getAsString().equals("")) {
+                if (thing.get("destination") != null && !thing.get("destination").getAsString().equals("")) {
                     this.destination = thing.get("destination").getAsString();
                 }
                 Traincraft.mscChannel.sendToAllAround(new PacketMTC(getEntityId(), mtcStatus, 2), new NetworkRegistry.TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
@@ -1584,8 +1584,8 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 
 
             } else if (thing.get("funct").getAsString().equals("startrun")) {
-                if (this.ridingEntity != null) {
-                    Minecraft.getMinecraft().thePlayer.sendChatMessage("ATO start requested from W-MTC server. ");
+                if (this.riddenByEntity != null) {
+                    ((EntityPlayer) this.riddenByEntity).addChatMessage(new ChatComponentText("ATO start requested from W-MTC server. "));
                 }
                 if (trainIsATOSupported()) {
                     atoStatus = 1;
