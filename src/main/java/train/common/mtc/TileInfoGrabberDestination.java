@@ -115,6 +115,8 @@ public class TileInfoGrabberDestination extends TileEntity implements IPeriphera
                         }
                     }
                 }
+            } else {
+                trainThere = false;
             }
         }
     }
