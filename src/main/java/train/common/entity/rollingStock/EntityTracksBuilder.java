@@ -89,7 +89,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 		initBuilder();
 		
 		if(world instanceof WorldServer)
-			fakeplayer = new FakePlayer((WorldServer) world, new GameProfile(new UUID(0,0),""));
+			fakeplayer=new FakePlayer((WorldServer) world, getOwner()!=null?getOwner():new GameProfile(UUID.nameUUIDFromBytes(trainOwner==null||trainOwner.length()<1?"[Traincraft]".getBytes(): trainOwner.getBytes()),trainOwner==null||trainOwner.length()<1?"[Traincraft]": trainOwner));
 	}
 
 	public void initBuilder() {
@@ -122,7 +122,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 		setPlannedHeight(plannedHeight);
 		
 		if(world instanceof WorldServer)
-			fakeplayer = new FakePlayer((WorldServer) world, new GameProfile(new UUID(0,0),""));
+			fakeplayer=new FakePlayer((WorldServer) world, getOwner()!=null?getOwner():new GameProfile(UUID.nameUUIDFromBytes(trainOwner==null||trainOwner.length()<1?"[Traincraft]".getBytes(): trainOwner.getBytes()),trainOwner==null||trainOwner.length()<1?"[Traincraft]": trainOwner));
 	}
 
 	@Override
