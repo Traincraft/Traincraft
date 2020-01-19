@@ -24,7 +24,7 @@ public class TilePDMInstructionRadio extends TileEntity implements IPeripheral, 
     Map< String,Map<String, String>> connectedTrains =
             new HashMap<String,Map<String, String>>();
     public TilePDMInstructionRadio() {
-        if (uniqueID == null) {
+        if (uniqueID.equals("")) {
             uniqueID = UUID.randomUUID().toString();
         }
     }
