@@ -900,7 +900,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
                 distanceFromStopPoint = this.getDistance(this.xFromStopPoint, this.yFromStopPoint, this.zFromStopPoint);
                 distanceFromSpeedChange = this.getDistance(this.xSpeedLimitChange, this.ySpeedLimitChange, this.zSpeedLimitChange);
 
-                if (distanceFromSpeedChange <= this.speedLimit && distanceFromSpeedChange <= this.getSpeed() && !(distanceFromSpeedChange <= this.nextSpeedLimit)) {
+                if (distanceFromSpeedChange <= this.speedLimit && distanceFromSpeedChange <= this.getSpeed() && (distanceFromSpeedChange <= this.nextSpeedLimit)) {
                     speedLimit = (int) Math.round(distanceFromSpeedChange);
                     speedGoingDown = true;
 
