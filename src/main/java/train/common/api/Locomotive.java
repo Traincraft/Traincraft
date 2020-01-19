@@ -862,6 +862,10 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
                         sendingObj.addProperty("signalBlock", this.currentSignalBlock);
                         sendingObj.addProperty("trainLevel", this.trainLevel);
                         sendingObj.addProperty("trainName", this.getTrainName());
+                        sendingObj.addProperty("destination", this.getDestinationGUI());
+                        sendingObj.addProperty("posX", this.posX);
+                        sendingObj.addProperty("posY", this.posY);
+                        sendingObj.addProperty("posZ", this.posZ);
                         sendMessage(new PDMMessage(this.trainID, this.serverUUID, sendingObj.toString(), 1));
                     }
                     if (mtcType == 2 && !trainIsWMTCSupported()) {
@@ -1690,6 +1694,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
                 JsonObject sendTo = new JsonObject();
                 sendTo.addProperty("funct", "attemptconnection");
                 sendTo.addProperty("trainType", this.trainLevel);
+                sendTo.addProperty("destination", this.getDestinationGUI());
                 sendMessage(new PDMMessage(this.trainID, theServerUUID, sendTo.toString(), 0));
             }
         }
