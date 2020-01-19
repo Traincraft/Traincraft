@@ -1440,7 +1440,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 
             if (this.getSpeed() != desiredSpeed) {
                 if ((int) this.getSpeed() <= this.speedLimit) {
-                    if (this.riddenByEntity == null) {
+
 
                         double rotation = this.serverRealRotation;
                         if (rotation == 90.0) {
@@ -1463,7 +1463,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 
                         }
 
-                    }/* else {
+                   /* else {
                         int dir = MathHelper
                                 .floor_double((((EntityPlayer) riddenByEntity).rotationYaw * 4F) / 360F + 0.5D) & 3;
                         if (dir == 2) {
