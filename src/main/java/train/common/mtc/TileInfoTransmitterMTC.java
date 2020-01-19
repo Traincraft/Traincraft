@@ -64,7 +64,7 @@ public class TileInfoTransmitterMTC extends TileEntity implements IPeripheral {
         }
 
         if (worldObj.isRemote) {return;}
-        List<Object> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(null, this.getRenderBoundingBox());
+        List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(null, this.getRenderBoundingBox());
         if (list != null && list.size() > 0) {
             for (Object obj : list) {
                 if (obj instanceof Locomotive) {

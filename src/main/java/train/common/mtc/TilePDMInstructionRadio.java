@@ -19,7 +19,7 @@ public class TilePDMInstructionRadio extends TileEntity implements IPeripheral, 
     public Boolean isActivated = false;
     public ArrayList<IComputerAccess> computers = new ArrayList<IComputerAccess>();
     public int system = 0;
-    public String uniqueID;
+    public String uniqueID = "";
     public AxisAlignedBB boundingBox = null;
     Map< String,Map<String, String>> connectedTrains =
             new HashMap<String,Map<String, String>>();

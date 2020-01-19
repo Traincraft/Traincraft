@@ -1536,7 +1536,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
                 speedLimit = thing.get("speedLimit").getAsInt();
                 nextSpeedLimit = thing.get("nextSpeedLimit").getAsInt();
                 Traincraft.itsChannel.sendToAllAround(new PacketSetSpeed(speedLimit, 0, 0, 0, getEntityId()), new NetworkRegistry.TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
-                if (nextSpeedLimit != 0) {
+                if (thing.get("speedChangeSoon") != null && thing.get("speedChangeSoon") != null) {
                     xSpeedLimitChange = thing.get("nextSpeedLimitChangeX").getAsDouble();
                     ySpeedLimitChange = thing.get("nextSpeedLimitChangeY").getAsDouble();
                     zSpeedLimitChange = thing.get("nextSpeedLimitChangeZ").getAsDouble();
@@ -1544,24 +1544,27 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 
             } else if (thing.get("funct").getAsString().equals("response")) {
                 mtcType = 2;
-                this.mtcStatus = thing.get("mtcStatus").getAsInt();
+                if (thing.get("mtcStatus") != null) { this.mtcStatus = thing.get("mtcStatus").getAsInt();}
+
+
+
                 if (thing.get("destination") != null && !thing.get("destination").getAsString().equals("")) {
                     this.destination = thing.get("destination").getAsString();
                 }
                 Traincraft.mscChannel.sendToAllAround(new PacketMTC(getEntityId(), mtcStatus, 2), new NetworkRegistry.TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
-                nextSpeedLimit = thing.get("nextSpeedLimit").getAsInt();
+                if (thing.get("mtcStatus") != null) { nextSpeedLimit = thing.get("nextSpeedLimit").getAsInt(); }
                 if (!speedGoingDown && xFromStopPoint == 0.0) {
-                    speedLimit = thing.get("speedLimit").getAsInt();
+                    if (thing.get("speedLimit") != null) {speedLimit = thing.get("speedLimit").getAsInt();}
                     Traincraft.itsChannel.sendToAllAround(new PacketSetSpeed(speedLimit, 0, 0, 0, getEntityId()), new NetworkRegistry.TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
                 }
-                if (thing.get("speedChange").getAsBoolean()) {
+                if (thing.get("speedChange") != null && thing.get("speedChange").getAsBoolean()) {
                     xSpeedLimitChange = thing.get("nextSpeedLimitChangeX").getAsDouble();
                     ySpeedLimitChange = thing.get("nextSpeedLimitChangeY").getAsDouble();
                     zSpeedLimitChange = thing.get("nextSpeedLimitChangeZ").getAsDouble();
                     Traincraft.itnsChannel.sendToAllAround(new PacketNextSpeed( nextSpeedLimit, 0,0,0, xSpeedLimitChange, ySpeedLimitChange, zSpeedLimitChange, this.getEntityId()), new NetworkRegistry.TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
                 }
 
-                if (thing.get("endSoon").getAsBoolean()) {
+                if (thing.get("endSoon") != null && thing.get("endSoon").getAsBoolean()) {
                     if (!(stationStop)) {
                         xFromStopPoint = thing.get("xStopPoint").getAsDouble();
                         yFromStopPoint = thing.get("yStopPoint").getAsDouble();
@@ -1569,14 +1572,14 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
                         Traincraft.atoSetStopPoint.sendToAllAround(new PacketATOSetStopPoint(this.getEntityId(), xFromStopPoint, yFromStopPoint, zFromStopPoint, xStationStop, yStationStop, zStationStop), new NetworkRegistry.TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
                     }
                 }
-                if (thing.get("stationStopSoon").getAsBoolean() && !stationStop) {
+                if (thing.get("stationStopSoon") != null && thing.get("stationStopSoon").getAsBoolean() && !stationStop) {
                     xStationStop = thing.get("xStationStop").getAsDouble();
                     yStationStop = thing.get("yStationStop").getAsDouble();
                     zStationStop = thing.get("zStationStop").getAsDouble();
 
 
                     Traincraft.atoSetStopPoint.sendToAllAround(new PacketATOSetStopPoint(this.getEntityId(), xFromStopPoint, yFromStopPoint, zFromStopPoint, xStationStop, yStationStop, zStationStop), new NetworkRegistry.TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
-                } if (thing.get("atoStatus") != null) {
+                } if ( thing.get("atoStatus") != null &&thing.get("atoStatus") != null) {
                     this.atoStatus = thing.get("atoStatus").getAsInt();
                     Traincraft.atoChannel.sendToAllAround(new PacketATO(this.getEntityId(), thing.get("atoStatus").getAsInt()),new NetworkRegistry.TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
                 }
@@ -1641,7 +1644,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
                 }
             } else if (thing.get("funct").getAsString().equals("message")) {
                 if (this.riddenByEntity != null) {
-                    ((EntityPlayer) this.riddenByEntity).addChatMessage(new ChatComponentText("Message from W-MTC Server: " + thing.get("themessage").getAsString()));
+                    if (thing.get("themessage") != null) { ((EntityPlayer) this.riddenByEntity).addChatMessage(new ChatComponentText("Message from W-MTC Server: " + thing.get("themessage").getAsString()));}
                 }
             }
         }
