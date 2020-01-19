@@ -1552,7 +1552,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
                     this.destination = thing.get("destination").getAsString();
                 }
                 Traincraft.mscChannel.sendToAllAround(new PacketMTC(getEntityId(), mtcStatus, 2), new NetworkRegistry.TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
-                if (thing.get("mtcStatus") != null) { nextSpeedLimit = thing.get("nextSpeedLimit").getAsInt(); }
+                if (thing.get("nextSpeedLimit") != null) { nextSpeedLimit = thing.get("nextSpeedLimit").getAsInt(); }
                 if (!speedGoingDown && xFromStopPoint == 0.0) {
                     if (thing.get("speedLimit") != null) {speedLimit = thing.get("speedLimit").getAsInt();}
                     Traincraft.itsChannel.sendToAllAround(new PacketSetSpeed(speedLimit, 0, 0, 0, getEntityId()), new NetworkRegistry.TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
