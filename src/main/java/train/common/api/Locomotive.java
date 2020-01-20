@@ -1523,7 +1523,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
         //System.out.println("Got one!");
         if (message != null && this.worldObj != null && !worldObj.isRemote) {
             if (thing.get("funct").getAsString().equals("startlevel2")) {
-
+            System.out.println(thing.toString());
                 if (this.speedLimit != thing.get("speedLimit").getAsInt() && this.riddenByEntity != null) {
                     Traincraft.playSoundOnClientChannel.sendTo(new PacketPlaySoundOnClient(7, "tc:mtc_speedchange"), (EntityPlayerMP)this.riddenByEntity);
                 }
@@ -1534,13 +1534,17 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
                 //	System.out.println("Connected!");
                 serverUUID = message.UUIDFrom;
                 mtcType = 2;
-                mtcStatus = thing.get("mtcStatus").getAsInt();
+
+                if (thing.get("mtcStatus") != null) {
+                    mtcStatus = thing.get("mtcStatus").getAsInt();
+                }
+
                 isConnected = true;
                 Traincraft.mscChannel.sendToAllAround(new PacketMTC(getEntityId(), mtcStatus, 2), new NetworkRegistry.TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
                 speedLimit = thing.get("speedLimit").getAsInt();
                 nextSpeedLimit = thing.get("nextSpeedLimit").getAsInt();
                 Traincraft.itsChannel.sendToAllAround(new PacketSetSpeed(speedLimit, 0, 0, 0, getEntityId()), new NetworkRegistry.TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
-                if (thing.get("speedChangeSoon") != null && thing.get("speedChangeSoon") != null) {
+                if (thing.get("speedChangeSoon") != null && thing.get("speedChangeSoon").getAsBoolean()) {
                     xSpeedLimitChange = thing.get("nextSpeedLimitChangeX").getAsDouble();
                     ySpeedLimitChange = thing.get("nextSpeedLimitChangeY").getAsDouble();
                     zSpeedLimitChange = thing.get("nextSpeedLimitChangeZ").getAsDouble();
