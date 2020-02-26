@@ -2090,20 +2090,16 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 			motionX *= 0.99D;
 			motionZ *= 0.99D;
 		}
-		else {
-			motionX *= 1D;
-			motionZ *= 1D;
-		}
 		if (motionX < -maxSpeed) {
 			motionX = -maxSpeed;
 		}
-		if (motionX > maxSpeed) {
+		else if (motionX > maxSpeed) {
 			motionX = maxSpeed;
 		}
 		if (motionZ < -maxSpeed) {
 			motionZ = -maxSpeed;
 		}
-		if (motionZ > maxSpeed) {
+		else if (motionZ > maxSpeed) {
 			motionZ = maxSpeed;
 		}
 		moveEntity(motionX, 0.0D, motionZ);

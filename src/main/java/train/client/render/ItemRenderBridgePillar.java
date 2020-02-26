@@ -8,9 +8,9 @@ import org.lwjgl.opengl.GL11;
 import train.client.render.models.blocks.ModelBridgePillar;
 import train.common.library.Info;
 
+import static train.client.render.RenderBridgePillar.modelBridgePillar;
+
 public class ItemRenderBridgePillar implements IItemRenderer {
-	private static final ModelBridgePillar modelBridgePillar = new ModelBridgePillar();
-	private static final ResourceLocation texture = new ResourceLocation(Info.resourceLocation,Info.modelTexPrefix + "track_slope.png");
 
 	public ItemRenderBridgePillar() {
 	}
@@ -53,8 +53,6 @@ public class ItemRenderBridgePillar implements IItemRenderer {
 		GL11.glPushMatrix();
 
 		GL11.glTranslatef(x, y, z);
-
-		FMLClientHandler.instance().getClient().renderEngine.bindTexture(texture);
 
 		modelBridgePillar.render();
 		GL11.glPopMatrix();
