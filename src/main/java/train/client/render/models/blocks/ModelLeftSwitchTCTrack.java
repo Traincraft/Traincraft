@@ -1,6 +1,5 @@
 package train.client.render.models.blocks;
 
-import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.model.ModelBase;
@@ -8,6 +7,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.IModelCustom;
 import org.lwjgl.opengl.GL11;
+import tmt.Tessellator;
 import train.common.library.Info;
 import train.common.tile.TileTCRail;
 
@@ -47,12 +47,11 @@ public class ModelLeftSwitchTCTrack extends ModelBase {
 	public void render(String type, TileTCRail tcRail, double x, double y, double z) {
 
 		// Bind the texture, so that OpenGL properly textures our block.
-		FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
+		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
 		GL11.glColor4f(1, 1, 1, 1);
 		//GL11.glScalef(0.5f, 0.5f, 0.5f);
-		int facing = tcRail.getWorldObj().getBlockMetadata(tcRail.xCoord, tcRail.yCoord, tcRail.zCoord);
 
-		if (facing == 3) {
+		if (tcRail.getFacing() == 3) {
 			if(type.equals("medium")){
 				GL11.glTranslatef(-1.0f, 0.0f, 1.0f);
 			}
@@ -64,7 +63,7 @@ public class ModelLeftSwitchTCTrack extends ModelBase {
 				GL11.glRotatef(-90, 0, 1, 0);
 			}
 		}
-		else if (facing == 1) {
+		else if (tcRail.getFacing() == 1) {
 			if(type.equals("medium")){
 				GL11.glRotatef(180, 0, 1, 0);
 				GL11.glTranslatef(-1.0f, 0.0f, 1.0f);
@@ -77,7 +76,7 @@ public class ModelLeftSwitchTCTrack extends ModelBase {
 				GL11.glRotatef(90, 0, 1, 0);
 			}
 		}
-		else if(facing == 2){
+		else if(tcRail.getFacing() == 2){
 			if(type.equals("medium")){
 				GL11.glRotatef(90, 0, 1, 0);
 				GL11.glTranslatef(-1.0f, 0.0f, 1.0f);
@@ -90,7 +89,7 @@ public class ModelLeftSwitchTCTrack extends ModelBase {
 				//do something if needed
 			//}
 		}
-		else if(facing == 0){
+		else if(tcRail.getFacing() == 0){
 			if(type.equals("medium")){
 				GL11.glRotatef(-90, 0, 1, 0);
 				GL11.glTranslatef(-1.0f, 0.0f, 1.0f);
@@ -103,13 +102,15 @@ public class ModelLeftSwitchTCTrack extends ModelBase {
 				GL11.glRotatef(180, 0, 1, 0);
 			}
 		}
-		if(type.equals("medium")&&!tcRail.getSwitchState()){this.renderMediumInactive();}
-		if(type.equals("medium")&&tcRail.getSwitchState()){this.renderMediumActive();}
-		if(type.equals("medium_parallel")&&!tcRail.getSwitchState()){this.renderMediumParallelInactive();}
-		if(type.equals("medium_parallel")&&tcRail.getSwitchState()){this.renderMediumParallelActive();}
-		if(type.equals("large_90")&&!tcRail.getSwitchState()){this.renderLarge90Inactive();}
-		if(type.equals("large_90")&&tcRail.getSwitchState()){this.renderLarge90Active();}
-		
+		if(tcRail.getSwitchState()){
+			if(type.equals("medium")){this.renderMediumActive();}
+			else if(type.equals("medium_parallel")){this.renderMediumParallelActive();}
+			else if(type.equals("large_90")){this.renderLarge90Active();}
+		} else {
+			if(type.equals("medium")){this.renderMediumInactive();}
+			else if(type.equals("medium_parallel")){this.renderMediumParallelInactive();}
+			else if(type.equals("large_90")){this.renderLarge90Inactive();}
+		}
 		//if(type.equals("large"))this.renderLarge();
 	}
 }
