@@ -973,7 +973,6 @@ public class ModelBP4 extends ModelConverter
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/bp4bogie.png"));
 		}
 
-		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/bp4bogie.png"));
 		GL11.glPushMatrix();
 		GL11.glScalef(1f,1f,0.9f);
 		GL11.glTranslatef(-1.35f,0.26f,0.1f);

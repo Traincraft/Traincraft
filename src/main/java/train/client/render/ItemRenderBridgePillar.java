@@ -1,12 +1,10 @@
 package train.client.render;
 
-import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
 import tmt.Tessellator;
-import train.client.render.models.blocks.ModelBridgePillar;
 import train.common.library.Info;
 
 import static train.client.render.RenderBridgePillar.modelBridgePillar;
