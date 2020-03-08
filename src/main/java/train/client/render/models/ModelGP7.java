@@ -1,5 +1,7 @@
 package train.client.render.models;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.Entity;
 import tmt.ModelConverter;
 import tmt.ModelRendererTurbo;
 
@@ -10,7 +12,7 @@ public class ModelGP7 extends ModelConverter //Same as Filename
 
 	public ModelGP7() //Same as Filename
 	{
-		bodyModel = new ModelRendererTurbo[56];
+		bodyModel = new ModelRendererTurbo[57];
 
 		initbodyModel_1();
 
@@ -18,6 +20,20 @@ public class ModelGP7 extends ModelConverter //Same as Filename
 
 
 		flipAll();
+	}
+
+	@Override
+	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
+
+		for(ModelRendererTurbo m :bodyModel) {
+			if(m.boxName.equals("lamp")){
+				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+			}
+			m.render(f5);
+			if(m.boxName.equals("lamp")){
+				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+			}
+		}
 	}
 
 	private void initbodyModel_1()
@@ -63,24 +79,25 @@ public class ModelGP7 extends ModelConverter //Same as Filename
 		bodyModel[38] = new ModelRendererTurbo(this, 190, 56, textureX, textureY); // Box 39
 		bodyModel[39] = new ModelRendererTurbo(this, 0, 17, textureX, textureY); // Box 40
 		bodyModel[40] = new ModelRendererTurbo(this, 133, 78, textureX, textureY); // Box 41
-		bodyModel[41] = new ModelRendererTurbo(this, 246, 112, textureX, textureY, "lamp"); // Box 42
+		bodyModel[41] = new ModelRendererTurbo(this, 246, 112, textureX, textureY, "lamp"); // Box 42 lamp
 		bodyModel[42] = new ModelRendererTurbo(this, 112, 70, textureX, textureY); // Box 43
 		bodyModel[43] = new ModelRendererTurbo(this, 216, 33, textureX, textureY); // Box 44
-		bodyModel[44] = new ModelRendererTurbo(this, 246, 112, textureX, textureY, "lamp"); // Box 45
-		bodyModel[45] = new ModelRendererTurbo(this, 232, 108, textureX, textureY, "lamp"); // Box 46
-		bodyModel[46] = new ModelRendererTurbo(this, 179, 71, textureX, textureY, "lamp"); // Box 47
+		bodyModel[44] = new ModelRendererTurbo(this, 246, 112, textureX, textureY, "lamp"); // Box 45 lamp
+		bodyModel[45] = new ModelRendererTurbo(this, 232, 108, textureX, textureY, "lamp"); // Box 46 lamp
+		bodyModel[46] = new ModelRendererTurbo(this, 179, 71, textureX, textureY, "lamp"); // Box 47 lamp
 		bodyModel[47] = new ModelRendererTurbo(this, 244, 118, textureX, textureY); // Box 48
 		bodyModel[48] = new ModelRendererTurbo(this, 244, 118, textureX, textureY); // Box 49
 		bodyModel[49] = new ModelRendererTurbo(this, 245, 107, textureX, textureY); // Box 50
-		bodyModel[50] = new ModelRendererTurbo(this, 246, 112, textureX, textureY, "lamp"); // Box 51
+		bodyModel[50] = new ModelRendererTurbo(this, 246, 112, textureX, textureY, "lamp"); // Box 51 lamp
 		bodyModel[51] = new ModelRendererTurbo(this, 133, 78, textureX, textureY); // Box 53
-		bodyModel[52] = new ModelRendererTurbo(this, 246, 112, textureX, textureY, "lamp"); // Box 54
+		bodyModel[52] = new ModelRendererTurbo(this, 246, 112, textureX, textureY, "lamp"); // Box 54 lamp
 		bodyModel[53] = new ModelRendererTurbo(this, 112, 96, textureX, textureY); // Box 55
 		bodyModel[54] = new ModelRendererTurbo(this, 112, 96, textureX, textureY); // Box 56
 		bodyModel[55] = new ModelRendererTurbo(this, 22, 1, textureX, textureY); // Box 58
+		bodyModel[56] = new ModelRendererTurbo(this, 126, 106, textureX, textureY); // Box 2
 
 		bodyModel[0].addBox(0F, 0F, 0F, 7, 3, 14, 0F); // Box 0
-		bodyModel[0].setRotationPoint(11F, 3.01F, -7F);
+		bodyModel[0].setRotationPoint(11F, 3F, -7F);
 
 		bodyModel[1].addBox(0F, 0F, 0F, 46, 2, 14, 0F); // Box 1
 		bodyModel[1].setRotationPoint(-23F, 8F, -7F);
@@ -101,7 +118,7 @@ public class ModelGP7 extends ModelConverter //Same as Filename
 		bodyModel[6].setRotationPoint(-10F, 7F, -9F);
 
 		bodyModel[7].addBox(0F, 0F, 0F, 7, 3, 14, 0F); // Box 7
-		bodyModel[7].setRotationPoint(-18F, 3.01F, -7F);
+		bodyModel[7].setRotationPoint(-18F, 3F, -7F);
 
 		bodyModel[8].addBox(0F, 0F, 0F, 2, 19, 2, 0F); // Box 8
 		bodyModel[8].setRotationPoint(-23F, 11F, -1F);
@@ -212,7 +229,7 @@ public class ModelGP7 extends ModelConverter //Same as Filename
 		bodyModel[40].addBox(0F, 0F, 0F, 1, 9, 18, 0F); // Box 41
 		bodyModel[40].setRotationPoint(-27F, 2F, -9F);
 
-		bodyModel[41].addBox(0F, 0F, 0F, 1, 2, 2, 0F); // Box 42
+		bodyModel[41].addBox(0F, 0F, 0F, 1, 2, 2, 0F); // Box 42 lamp
 		bodyModel[41].setRotationPoint(-27F, 11F, 4F);
 
 		bodyModel[42].addBox(0F, 0F, 0F, 3, 9, 16, 0F); // Box 43
@@ -221,13 +238,13 @@ public class ModelGP7 extends ModelConverter //Same as Filename
 		bodyModel[43].addBox(0F, 0F, 0F, 3, 9, 16, 0F); // Box 44
 		bodyModel[43].setRotationPoint(-26F, 2F, -8F);
 
-		bodyModel[44].addBox(0F, 0F, 0F, 1, 2, 2, 0F); // Box 45
+		bodyModel[44].addBox(0F, 0F, 0F, 1, 2, 2, 0F); // Box 45 lamp
 		bodyModel[44].setRotationPoint(-27F, 11F, -6F);
 
-		bodyModel[45].addBox(0F, 0F, 0F, 2, 4, 2, 0F); // Box 46
+		bodyModel[45].addBox(0F, 0F, 0F, 2, 4, 2, 0F); // Box 46 lamp
 		bodyModel[45].setRotationPoint(-24F, 25F, -1F);
 
-		bodyModel[46].addBox(0F, 0F, 0F, 2, 4, 2, 0F); // Box 47
+		bodyModel[46].addBox(0F, 0F, 0F, 2, 4, 2, 0F); // Box 47 lamp
 		bodyModel[46].setRotationPoint(22F, 25F, -1F);
 
 		bodyModel[47].addBox(0F, 0F, 0F, 1, 4, 4, 0F); // Box 48
@@ -239,7 +256,7 @@ public class ModelGP7 extends ModelConverter //Same as Filename
 		bodyModel[49].addBox(0F, 0F, 0F, 2, 1, 2, 0F); // Box 50
 		bodyModel[49].setRotationPoint(18F, 30F, -1F);
 
-		bodyModel[50].addBox(0F, 0F, 0F, 1, 2, 2, 0F); // Box 51
+		bodyModel[50].addBox(0F, 0F, 0F, 1, 2, 2, 0F); // Box 51 lamp
 		bodyModel[50].setRotationPoint(27F, 11F, 6F);
 		bodyModel[50].rotateAngleY = -3.14159265F;
 
@@ -247,7 +264,7 @@ public class ModelGP7 extends ModelConverter //Same as Filename
 		bodyModel[51].setRotationPoint(27F, 2F, 9F);
 		bodyModel[51].rotateAngleY = -3.14159265F;
 
-		bodyModel[52].addBox(0F, 0F, 0F, 1, 2, 2, 0F); // Box 54
+		bodyModel[52].addBox(0F, 0F, 0F, 1, 2, 2, 0F); // Box 54 lamp
 		bodyModel[52].setRotationPoint(27F, 11F, -4F);
 		bodyModel[52].rotateAngleY = -3.14159265F;
 
@@ -259,5 +276,9 @@ public class ModelGP7 extends ModelConverter //Same as Filename
 
 		bodyModel[55].addBox(0F, 0F, 0F, 14, 5, 8, 0F); // Box 58
 		bodyModel[55].setRotationPoint(8F, 3F, -4F);
+
+		bodyModel[56].addBox(0F, 0F, 0F, 46, 9, 12, 0F); // Box 2
+		bodyModel[56].setRotationPoint(-23F, 0F, -6F);
+
 	}
 }
