@@ -237,9 +237,14 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		Block block = this.worldObj.getBlock(MathHelper.floor_double(this.posX),
 				MathHelper.floor_double(this.posY), MathHelper.floor_double(this.posZ));
 		
-		if(block.getMaterial()== Material.air) {
+		if(!(BlockRailBase.func_150051_a(block) || block == BlockIDs.tcRail.block || block == BlockIDs.tcRailGag.block)) {
 			block = this.worldObj.getBlock(MathHelper.floor_double(this.posX),
 					MathHelper.floor_double(this.posY)-1, MathHelper.floor_double(this.posZ));
+
+			if(!(BlockRailBase.func_150051_a(block) || block == BlockIDs.tcRail.block || block == BlockIDs.tcRailGag.block)) {
+				block = this.worldObj.getBlock(MathHelper.floor_double(this.posX),
+						MathHelper.floor_double(this.posY)+1, MathHelper.floor_double(this.posZ));
+			}
 		}
 		return (BlockRailBase.func_150051_a(block) || block == BlockIDs.tcRail.block || block == BlockIDs.tcRailGag.block);
 	}
@@ -375,11 +380,12 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 			if (BlockRailBase.func_150051_a(block) || block == BlockIDs.tcRail.block || block == BlockIDs.tcRailGag.block) {
 				j--;
 			} else {
-				Block block2 = this.worldObj.getBlock(i, j + 1, k);
-				if(BlockRailBase.func_150051_a(block2) || block2 == BlockIDs.tcRail.block || block2 == BlockIDs.tcRailGag.block){
+				block = this.worldObj.getBlock(i, j + 1, k);
+				if(BlockRailBase.func_150051_a(block) || block == BlockIDs.tcRail.block || block == BlockIDs.tcRailGag.block){
 					j++;
+				} else {
+					block = this.worldObj.getBlock(i, j, k);
 				}
-				block = this.worldObj.getBlock(i, j, k);
 			}
 
 			if (BlockRailBase.func_150051_a(block)) {
@@ -390,14 +396,9 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		        	TileEntity tileEntity = this.worldObj.getTileEntity(i, j, k);
 		        	TileTCRail tileRail;
 
-					if (tileEntity instanceof TileTCRailGag) {
-
+					if (block == BlockIDs.tcRailGag.block && tileEntity instanceof TileTCRailGag) {
 						TileTCRailGag tileGag = (TileTCRailGag) tileEntity;
 						tileEntity = this.worldObj.getTileEntity(tileGag.originX, tileGag.originY, tileGag.originZ);
-					}
-					else {
-
-						return;
 					}
 
 					if (tileEntity instanceof TileTCRail) {
