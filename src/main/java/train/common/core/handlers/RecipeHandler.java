@@ -368,17 +368,9 @@ public class RecipeHandler {
 		// Medium Straight (3 Recipes? Really?)
 		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailMediumStraight.item, 1),
 				 "S  ", "S  ", "S  ", Character.valueOf('S'), ItemIDs.tcRailSmallStraight.item );
-		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailMediumStraight.item, 1),
-				 " S ", " S ", " S ", Character.valueOf('S'), ItemIDs.tcRailSmallStraight.item );
-		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailMediumStraight.item, 1),
-				 "  S", "  S", "  S", Character.valueOf('S'), ItemIDs.tcRailSmallStraight.item );
 		// Long Straight (3 Recipes? Really?)
 		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailLongStraight.item, 1),
 				 "   ", " M ", " M ", Character.valueOf('M'), ItemIDs.tcRailMediumStraight.item );
-		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailLongStraight.item, 1),
-				 "   ", "M  ", "M  ", Character.valueOf('M'), ItemIDs.tcRailMediumStraight.item );
-		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailLongStraight.item, 1),
-				 "   ", "  M", "  M", Character.valueOf('M'), ItemIDs.tcRailMediumStraight.item );
 		
 		// Medium Turn
 		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailMediumTurn.item, 1),
@@ -410,6 +402,49 @@ public class RecipeHandler {
 		// Bridge Pillar
 		TrainCraftingManager.instance.addRecipe(new ItemStack(BlockIDs.bridgePillar.block, 2),
 				 "SSS", "S S", "SSS", Character.valueOf('S'), Items.stick );
+
+
+
+
+		TrainCraftingManager.instance.addRecipe(new ItemStack(Blocks.rail,3), "   ", " S ", "   ",
+				(char)'S',new ItemStack(ItemIDs.tcRailMediumStraight.item,1));
+		TrainCraftingManager.instance.addRecipe(new ItemStack(Blocks.rail,6), "   ", " S ", "   ",
+				(char)'S',new ItemStack(ItemIDs.tcRailLongStraight.item,1));
+
+		TrainCraftingManager.instance.addRecipe(new ItemStack(Blocks.rail,13), "   ", " S ", "   ",
+				(char)'S',new ItemStack(ItemIDs.tcRailLargeSwitch.item,1));
+		TrainCraftingManager.instance.addRecipe(new ItemStack(Blocks.rail,8), "   ", " S ", "   ",
+				(char)'S',new ItemStack(ItemIDs.tcRailMediumSwitch.item,1));
+		TrainCraftingManager.instance.addRecipe(new ItemStack(Blocks.rail,20), "   ", " S ", "   ",
+				(char)'S',new ItemStack(ItemIDs.tcRailMediumParallelSwitch.item,1));
+
+		TrainCraftingManager.instance.addRecipe(new ItemStack(Blocks.rail,5), "   ", " S ", "   ",
+				(char)'S',new ItemStack(ItemIDs.tcRailMediumTurn.item,1));
+		TrainCraftingManager.instance.addRecipe(new ItemStack(Blocks.rail,9), "   ", " S ", "   ",
+				(char)'S',new ItemStack(ItemIDs.tcRailLargeTurn.item,1));
+		TrainCraftingManager.instance.addRecipe(new ItemStack(Blocks.rail,19), "   ", " S ", "   ",
+				(char)'S',new ItemStack(ItemIDs.tcRailLargeTurn.item,1));
+
+		TrainCraftingManager.instance.addRecipe(new ItemStack(Blocks.rail,6), "   ", " S ", "   ",
+				(char)'S',new ItemStack(ItemIDs.tcRailSlopeBallast.item,1));
+		TrainCraftingManager.instance.addRecipe(new ItemStack(Blocks.rail,12), "   ", " S ", "   ",
+				(char)'S',new ItemStack(ItemIDs.tcRailLargeSlopeBallast.item,1));
+		TrainCraftingManager.instance.addRecipe(new ItemStack(Blocks.rail,18), "   ", " S ", "   ",
+				(char)'S',new ItemStack(ItemIDs.tcRailVeryLargeSlopeBallast.item,1));
+
+		TrainCraftingManager.instance.addRecipe(new ItemStack(Blocks.rail,6), "   ", " S ", "   ",
+				(char)'S',new ItemStack(ItemIDs.tcRailSlopeWood.item,1));
+		TrainCraftingManager.instance.addRecipe(new ItemStack(Blocks.rail,12), "   ", " S ", "   ",
+				(char)'S',new ItemStack(ItemIDs.tcRailLargeSlopeWood.item,1));
+		TrainCraftingManager.instance.addRecipe(new ItemStack(Blocks.rail,18), "   ", " S ", "   ",
+				(char)'S',new ItemStack(ItemIDs.tcRailVeryLargeSlopeWood.item,1));
+
+		TrainCraftingManager.instance.addRecipe(new ItemStack(Blocks.rail,6), "   ", " S ", "   ",
+				(char)'S',new ItemStack(ItemIDs.tcRailSlopeGravel.item,1));
+		TrainCraftingManager.instance.addRecipe(new ItemStack(Blocks.rail,12), "   ", " S ", "   ",
+				(char)'S',new ItemStack(ItemIDs.tcRailLargeSlopeGravel.item,1));
+		TrainCraftingManager.instance.addRecipe(new ItemStack(Blocks.rail,18), "   ", " S ", "   ",
+				(char)'S',new ItemStack(ItemIDs.tcRailVeryLargeSlopeGravel.item,1));
 	}
 	
 	public static void initSmeltingRecipes(){

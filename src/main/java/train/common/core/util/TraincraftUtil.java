@@ -120,4 +120,47 @@ public class TraincraftUtil{
         }
     }
 
+    public static float atan2f(double x, double z) {
+        float pi =-3.141592653f;
+        float multiplier = 1.0f;
+
+        if (z < 0.0d) {
+            if (x < 0.0d) {
+                z = -z;
+                x = -x;
+            } else {
+                z = -z;
+                multiplier = -1.0f;
+            }
+
+        } else {
+            if (x < 0.0d) {
+                x = -x;
+                multiplier = -1.0f;
+            }
+
+            pi = 0.0f;
+        }
+
+        double invDiv = 1.0D / (((z < x) ? x : z) * (1.0D / (ATAN2_SQRT - 1)));
+        return (atan2[(int)(x * invDiv) * ATAN2_SQRT + (int)(z * invDiv)] + pi) * multiplier;
+    }
+
+    public static float atan2degreesf(double x, double y){
+        return atan2f(x,y)*degreesF;
+    }
+
+    private static final int ATAN2_SQRT = (int) Math.sqrt(1024);
+    private static final float[] atan2 = new float[1024];
+    static {
+        for (int i = 0; i < ATAN2_SQRT; i++) {
+            for (int j = 0; j < ATAN2_SQRT; j++) {
+                atan2[j * ATAN2_SQRT + i] = (float) Math.atan2((float) j / ATAN2_SQRT, (float) i / ATAN2_SQRT);
+            }
+        }
+    }
+
+    public static final float degreesF = (float) (180.0d / Math.PI);
+
+
 }

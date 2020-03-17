@@ -145,8 +145,6 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 	public double posYFromServer;
 	private boolean shouldServerSetPosYOnClient = true;
 	private int clientTicks = 0;
-	
-	private double derailSpeed = 0.46;
 
 	public EntityRollingStock(World world) {
 		super(world);
@@ -635,8 +633,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 		isBraking = false;
 
 		if (worldObj.isRemote && Traincraft.proxy.getCurrentScreen() == null && riddenByEntity instanceof EntityLivingBase) {
-			EntityLivingBase entity = (EntityLivingBase) riddenByEntity;
-			if (TraincraftEntityHelper.getIsJumping(entity)) isBraking = true;
+			if (TraincraftEntityHelper.getIsJumping((EntityLivingBase) riddenByEntity)) isBraking = true;
 		}
 
 		if (!this.worldObj.isRemote && this.worldObj instanceof WorldServer) {
@@ -679,12 +676,9 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 			this.worldObj.theProfiler.endSection();
 		}
 
-		Side side = FMLCommonHandler.instance().getEffectiveSide();
-		if (side == Side.CLIENT) {
-			soundUpdater();
-		}
 
 		if (worldObj.isRemote) {
+			soundUpdater();
 			clientTicks++;
 			//rotationYaw = (float) rotationYawClient;
 			if (rollingturnProgress > 0) {
@@ -790,13 +784,19 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 			bogieLoco.updateDistance();
 		}
 
-		if (isRailBlockAt(worldObj, i, j - 1, k) || worldObj.getBlock(i, j - 1, k) == BlockIDs.tcRail.block || worldObj.getBlock(i, j - 1, k) == BlockIDs.tcRailGag.block) {
-			j--;
-		} else if (isRailBlockAt(worldObj, i, j + 1, k) || worldObj.getBlock(i, j + 1, k) == BlockIDs.tcRail.block || worldObj.getBlock(i, j + 1, k) == BlockIDs.tcRailGag.block) {
-			j++;
-		}
-		
 		l = worldObj.getBlock(i, j, k);
+
+		if(!(l instanceof BlockRailBase || l instanceof BlockTCRail || l instanceof BlockTCRailGag)) {
+			l = worldObj.getBlock(i, j-1, k);
+
+			if (!(l instanceof BlockRailBase || l instanceof BlockTCRail || l instanceof BlockTCRailGag)) {
+				l = worldObj.getBlock(i, j+1, k);
+				if (!(l instanceof BlockRailBase || l instanceof BlockTCRail || l instanceof BlockTCRailGag)) {
+					l = worldObj.getBlock(i, j, k);
+				}
+			}
+		}
+
 
 		updateOnTrack(i, j, k, l);
 		// System.out.println(this.posY);
@@ -808,7 +808,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 		//this.rotationPitch = 0.0F;
 		//System.out.println(Math.sqrt(d6*d6+d7*d7));
 		if (d6 * d6 + d7 * d7 > 0.0001D) {
-			this.rotationYaw = (float) (Math.atan2(d7, d6) * 180.0D / Math.PI);
+			this.rotationYaw = (float) (TraincraftUtil.atan2degreesf(d7, d6) * 180.0D / Math.PI);
 			if (this.isClientInReverse) {
 				this.rotationYaw += 180.0F;
 			}
@@ -819,7 +819,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 		float anglePitch=0;
 		if (bogieLoco != null) {
 
-			serverRealRotation = MathHelper.wrapAngleTo180_float((float) Math.toDegrees(Math.atan2((float) (bogieLoco.posZ - this.posZ), (float) (bogieLoco.posX - this.posX))) - 90F);
+			serverRealRotation = MathHelper.wrapAngleTo180_float((TraincraftUtil.atan2degreesf((float) (bogieLoco.posZ - this.posZ), (float) (bogieLoco.posX - this.posX))) - 90F);
 
 			anglePitch = (float) Math.atan(((bogieLoco.posY - posY)) /
 					MathHelper.sqrt_double(((bogieLoco.posX - posX) * (bogieLoco.posX - posX)) +
@@ -998,10 +998,8 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 			 double d17 = 0.0D;
 			 double d18 = i + 0.5D + matrix[i1][0][0] * 0.5D;
 			 double d19 = k + 0.5D + matrix[i1][0][2] * 0.5D;
-			 double d20 = i + 0.5D + matrix[i1][1][0] * 0.5D;
-			 double d21 = k + 0.5D + matrix[i1][1][2] * 0.5D;
-			 d9 = d20 - d18;
-			 d10 = d21 - d19;
+			 d9 = (i + 0.5D + matrix[i1][1][0] * 0.5D) - d18;
+			 d10 = (k + 0.5D + matrix[i1][1][2] * 0.5D) - d19;
 			 if (d9 == 0.0D) {
 			 posX = i + 0.5D;
 			 d17 = posZ - k;
@@ -1011,43 +1009,41 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 			 d17 = posX - i;
 			 }
 			 else {
-			 double d22 = posX - d18;
-			 double d24 = posZ - d19;
-			 d17 = (d22 * d9 + d24 * d10) * 2D;
+			 d17 = ((posX - d18) * d9 + (posZ - d19) * d10) * 2D;
 			 //double derailSpeed = 0;//0.46;
 			 //System.out.println(d13);
 			 if(bogieLoco != null) {
 				 if (!bogieLoco.isOnRail()) {
-					 derailSpeed = 0;
 					 this.unLink();
+
+					 /**
+					  * Handles derail
+					  */
+					 if (this instanceof Locomotive && d13 > 0 && i1 >= 6) {
+						 if (d9 > 0 && d10 < 0) {
+							 d10 = 0;
+							 d9 += 2;
+						 }
+						 else if (d9 < 0 && d10 > 0) {
+							 d9 = 0;
+							 d10 += 2;
+						 }
+						 else if (d10 < 0 && d9 < 0) {
+							 d10 -= 2;
+							 d9 = 0;
+						 }
+						 else if (d9 > 0 && d10 > 0) {
+							 d10 += 2;
+							 d9 = 0;
+						 }
+						 if (FMLCommonHandler.instance().getMinecraftServerInstance() != null &&
+								 this.riddenByEntity instanceof EntityPlayer) {
+							 FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().sendChatMsg(new
+									 ChatComponentText(((EntityPlayer) this.riddenByEntity).getDisplayName() + "derailed"
+									 + this.trainOwner + "'s locomotive"));
+						 }
+					 }
 				 }
-			 }
-			 /**
-			 * Handles derail
-			 */
-			 if (this instanceof Locomotive && d13 > derailSpeed && i1 >= 6) {
-			 if (d9 > 0 && d10 < 0) {
-			 d10 = 0;
-			 d9 += 2;
-			 }
-			 else if (d9 < 0 && d10 > 0) {
-			 d9 = 0;
-			 d10 += 2;
-			 }
-			 else if (d10 < 0 && d9 < 0) {
-			 d10 -= 2;
-			 d9 = 0;
-			 }
-			 else if (d9 > 0 && d10 > 0) {
-			 d10 += 2;
-			 d9 = 0;
-			 }
-			 if (FMLCommonHandler.instance().getMinecraftServerInstance() != null &&
-			 this.riddenByEntity instanceof EntityPlayer) {
-			 FMLCommonHandler.instance().getMinecraftServerInstance().getConfigurationManager().sendChatMsg(new
-						ChatComponentText(((EntityPlayer) this.riddenByEntity).getDisplayName() + "derailed"
-								+ this.trainOwner + "'s locomotive"));
-			 }
 			 }
 			
 			 }
@@ -1079,12 +1075,10 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 				}
 				setPosition(posX, posY + yOffset - 0.8d, posZ);
 			}
-			 int k1 = MathHelper.floor_double(posX);
-			 int l1 = MathHelper.floor_double(posZ);
-			 if (k1 != i || l1 != k) {
+			 if ((int)posX != i || (int)posZ != k) {
 			 double d15 = Math.sqrt(motionX * motionX + motionZ * motionZ);
-			 motionX = d15 * (k1 - i);
-			 motionZ = d15 * (l1 - k);
+			 motionX = d15 * ((int)posX - i);
+			 motionZ = d15 * ((int)posZ - k);
 			 }
 			
 			 if (shouldDoRailFunctions()) {
@@ -1115,7 +1109,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 			 }
 			 }
 		}
-		else if (l == BlockIDs.tcRail.block) {
+		else if (l instanceof BlockTCRail) {
 			//applyDragAndPushForces();
 			limitSpeedOnTCRail();
 			if(worldObj.getTileEntity(i,j,k)==null || !(worldObj.getTileEntity(i,j,k) instanceof TileTCRail))return;
@@ -1127,12 +1121,20 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 
 				if (bogieLoco != null) {
 					if (!bogieLoco.isOnRail()) {
-						derailSpeed = 0;
+						this.unLink();
+						moveOnTCStraight(i, j, k, tile.xCoord, tile.zCoord, (tile.getBlockMetadata() + 1) % 4);
+					} else {
+						int meta = tile.getBlockMetadata();
+						if (shouldIgnoreSwitch(tile, i, j, k, meta)) {
+							moveOnTCStraight(i, j, k, tile.xCoord, tile.zCoord, meta);
+						} else {
+							if (ItemTCRail.isTCTurnTrack(tile))
+								moveOnTC90TurnRail(i, j, k, tile.r, tile.cx, tile.cz);
+						}
+						// shouldIgnoreSwitch(tile, i, j, k, meta);
+						// if (ItemTCRail.isTCTurnTrack(tile)) moveOnTC90TurnRail(i, j, k, r, cx, cy,
+						// cz, tile.getType(), meta);
 					}
-				}
-				if (derailSpeed == 0) {
-					this.unLink();
-					moveOnTCStraight(i, j, k, tile.xCoord, tile.zCoord, (tile.getBlockMetadata() + 1) % 4);
 				} else {
 					int meta = tile.getBlockMetadata();
 					if (shouldIgnoreSwitch(tile, i, j, k, meta)) {
@@ -1141,9 +1143,6 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 						if (ItemTCRail.isTCTurnTrack(tile))
 							moveOnTC90TurnRail(i, j, k, tile.r, tile.cx, tile.cz);
 					}
-					// shouldIgnoreSwitch(tile, i, j, k, meta);
-					// if (ItemTCRail.isTCTurnTrack(tile)) moveOnTC90TurnRail(i, j, k, r, cx, cy,
-					// cz, tile.getType(), meta);
 				}
 			}
 			if (ItemTCRail.isTCStraightTrack(tile)) {
@@ -1157,7 +1156,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 			}
 
 		}
-		else if (l == BlockIDs.tcRailGag.block) {
+		else if (l instanceof BlockTCRailGag) {
 			//applyDragAndPushForces();
 			limitSpeedOnTCRail();
 			//if(worldObj.getBlockTileEntity(i,j,k)==null || !(worldObj.getBlockTileEntity(i,j,k) instanceof TileTCRailGag))return;

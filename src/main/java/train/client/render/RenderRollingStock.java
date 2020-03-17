@@ -13,6 +13,7 @@ import org.lwjgl.opengl.GL11;
 import tmt.Tessellator;
 import train.common.api.EntityRollingStock;
 import train.common.api.Locomotive;
+import train.common.core.util.TraincraftUtil;
 import train.common.entity.rollingStock.EntityTracksBuilder;
 import train.common.library.Info;
 
@@ -63,7 +64,7 @@ public class RenderRollingStock extends Render {
 
 			if (var27.lengthVector() != 0.0D) {
 				var27 = var27.normalize();
-				yaw = (float) (Math.atan2(var27.zCoord, var27.xCoord) / Math.PI) * 180F;
+				yaw = TraincraftUtil.atan2degreesf(var27.zCoord, var27.xCoord);
 				pitch = (float) (Math.atan(var27.yCoord) * 73.0D);
 			}
 

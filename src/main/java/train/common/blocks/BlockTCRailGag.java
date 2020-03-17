@@ -22,7 +22,6 @@ import java.util.Random;
 
 public class BlockTCRailGag extends Block {
 	private IIcon texture;
-	float f = 0.125F;
 
 	public BlockTCRailGag() {
 		super(Material.iron);
