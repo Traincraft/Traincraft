@@ -793,7 +793,11 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 				l = worldObj.getBlock(i, j+1, k);
 				if (!(l instanceof BlockRailBase || l instanceof BlockTCRail || l instanceof BlockTCRailGag)) {
 					l = worldObj.getBlock(i, j, k);
+				} else {
+					j++;
 				}
+			} else {
+				j--;
 			}
 		}
 
@@ -808,7 +812,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 		//this.rotationPitch = 0.0F;
 		//System.out.println(Math.sqrt(d6*d6+d7*d7));
 		if (d6 * d6 + d7 * d7 > 0.0001D) {
-			this.rotationYaw = (float) (TraincraftUtil.atan2degreesf(d7, d6) * 180.0D / Math.PI);
+			this.rotationYaw = (TraincraftUtil.atan2degreesf(d7, d6));
 			if (this.isClientInReverse) {
 				this.rotationYaw += 180.0F;
 			}
