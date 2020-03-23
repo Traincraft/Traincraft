@@ -94,6 +94,7 @@ public class TCItems {
 		if (Loader.isModLoaded("ComputerCraft")) {
 			ItemIDs.wirelessTransmitter.item = new ItemWirelessTransmitter();
 		}
+		ItemIDs.remoteController.item = new ItemRemoteController();
 	}
 	
 	private static void registerItems() {
