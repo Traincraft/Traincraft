@@ -18,7 +18,6 @@ import train.common.library.Info;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class TileCrafterTierI extends TileEntity implements IInventory, ITier {
 	private ItemStack[] crafterInventory;

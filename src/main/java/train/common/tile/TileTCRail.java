@@ -71,12 +71,10 @@ public class TileTCRail extends TileEntity {
 
 	private ItemTCRail.TrackTypes renderType = null;
 	public ItemTCRail.TrackTypes getTrackType(){
-		if (renderType == null){
-			if(hasModel && getType() != null){
-				for(ItemTCRail.TrackTypes rail : ItemTCRail.TrackTypes.values()){
-					if (rail.getLabel().equals(getType())){
-						renderType = rail;
-					}
+		if (renderType == null && hasModel && getType() != null){
+			for(ItemTCRail.TrackTypes rail : ItemTCRail.TrackTypes.values()){
+				if (rail.getLabel().equals(getType())){
+					renderType = rail;
 				}
 			}
 		}

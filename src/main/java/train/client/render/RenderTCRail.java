@@ -1,6 +1,5 @@
 package train.client.render;
 
-import net.minecraft.client.renderer.GLAllocation;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import org.lwjgl.opengl.GL11;
@@ -37,6 +36,8 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 				// Move the object into the correct position on the block (because the OBJ's origin is the center of the object)
 				GL11.glTranslated( x + 0.5,  y,  z + 0.5);
 				switch (railTile.getTrackType()) {
+					case LONG_STRAIGHT:
+						break;
 					case MEDIUM_TURN:
 					case MEDIUM_RIGHT_TURN: {
 						modelRightTurn.render("medium", railTile, x, y, z);
@@ -91,8 +92,6 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 						modelLeftTurn.render("very_large", railTile, x, y, z);
 						break;
 					}
-					case LONG_STRAIGHT:
-						break;
 					case MEDIUM_STRAIGHT: {
 						modelMediumStraight.render(railTile, x, y, z);
 						break;

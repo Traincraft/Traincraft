@@ -16,6 +16,7 @@ import org.lwjgl.opengl.GL11;
 import tmt.ModelBase;
 import tmt.ModelRendererTurbo;
 import tmt.Tessellator;
+import train.common.api.AbstractTrains;
 import train.common.library.Info;
 
 public class ModelFOL_M1 extends ModelBase
@@ -25,7 +26,7 @@ public class ModelFOL_M1 extends ModelBase
 
 	public ModelFOL_M1()
 	{
-		fol_m1Model = new ModelRendererTurbo[157];
+		fol_m1Model = new ModelRendererTurbo[188];
 		fol_m1Model[0] = new ModelRendererTurbo(this, 1, 1, textureX, textureY); // Box 0
 		fol_m1Model[1] = new ModelRendererTurbo(this, 57, 1, textureX, textureY); // Box 1
 		fol_m1Model[2] = new ModelRendererTurbo(this, 89, 1, textureX, textureY); // Box 2
@@ -154,10 +155,10 @@ public class ModelFOL_M1 extends ModelBase
 		fol_m1Model[125] = new ModelRendererTurbo(this, 1, 97, textureX, textureY); // Box 184
 		fol_m1Model[126] = new ModelRendererTurbo(this, 361, 57, textureX, textureY); // Box 185
 		fol_m1Model[127] = new ModelRendererTurbo(this, 193, 113, textureX, textureY); // Box 186
-		fol_m1Model[128] = new ModelRendererTurbo(this, 385, 97, textureX, textureY); // Box 187
+		fol_m1Model[128] = new ModelRendererTurbo(this, 5, 155, textureX, textureY); // Box 187
 		fol_m1Model[129] = new ModelRendererTurbo(this, 257, 97, textureX, textureY); // Box 188
-		fol_m1Model[130] = new ModelRendererTurbo(this, 97, 81, textureX, textureY); // Box 189
-		fol_m1Model[131] = new ModelRendererTurbo(this, 209, 81, textureX, textureY); // Box 190
+		fol_m1Model[130] = new ModelRendererTurbo(this, 24, 133, textureX, textureY); // Box 189
+		fol_m1Model[131] = new ModelRendererTurbo(this, 44, 134, textureX, textureY); // Box 190
 		fol_m1Model[132] = new ModelRendererTurbo(this, 305, 97, textureX, textureY); // Box 191
 		fol_m1Model[133] = new ModelRendererTurbo(this, 305, 121, textureX, textureY); // Box 250
 		fol_m1Model[134] = new ModelRendererTurbo(this, 257, 49, textureX, textureY); // Box 252 smoke
@@ -183,6 +184,37 @@ public class ModelFOL_M1 extends ModelBase
 		fol_m1Model[154] = new ModelRendererTurbo(this, 193, 113, textureX, textureY); // Box 272
 		fol_m1Model[155] = new ModelRendererTurbo(this, 233, 113, textureX, textureY); // Box 273
 		fol_m1Model[156] = new ModelRendererTurbo(this, 497, 113, textureX, textureY); // Box 274
+		fol_m1Model[157] = new ModelRendererTurbo(this, 450, 134, textureX, textureY); // Box 157
+		fol_m1Model[158] = new ModelRendererTurbo(this, 450, 157, textureX, textureY); // Box 157
+		fol_m1Model[159] = new ModelRendererTurbo(this, 32, 82, textureX, textureY, "lamp"); // Box 310 lamp
+		fol_m1Model[160] = new ModelRendererTurbo(this, 32, 96, textureX, textureY, "lamp"); // Box 310 lamp
+		fol_m1Model[161] = new ModelRendererTurbo(this, 385, 97, textureX, textureY); // Box 161
+		fol_m1Model[162] = new ModelRendererTurbo(this, 220, 139, textureX, textureY, "lamp"); // Box 176 lamp
+		fol_m1Model[163] = new ModelRendererTurbo(this, 235, 139, textureX, textureY, "lamp"); // Box 177 lamp
+		fol_m1Model[164] = new ModelRendererTurbo(this, 0, 10, textureX, textureY); // Box 188
+		fol_m1Model[165] = new ModelRendererTurbo(this, 270, 5, textureX, textureY); // Box 189
+		fol_m1Model[166] = new ModelRendererTurbo(this, 207, 29, textureX, textureY); // Box 190
+		fol_m1Model[167] = new ModelRendererTurbo(this, 204, 29, textureX, textureY); // Box 191
+		fol_m1Model[168] = new ModelRendererTurbo(this, 294, 21, textureX, textureY); // Box 192
+		fol_m1Model[169] = new ModelRendererTurbo(this, 303, 1, textureX, textureY); // Box 193
+		fol_m1Model[170] = new ModelRendererTurbo(this, 26, 149, textureX, textureY); // Box 170
+		fol_m1Model[171] = new ModelRendererTurbo(this, 192, 29, textureX, textureY); // Box 171
+		fol_m1Model[172] = new ModelRendererTurbo(this, 204, 139, textureX, textureY, "lamp"); // Box 172 lamp
+		fol_m1Model[173] = new ModelRendererTurbo(this, 299, 22, textureX, textureY); // Box 173
+		fol_m1Model[174] = new ModelRendererTurbo(this, 310, 1, textureX, textureY); // Box 174
+		fol_m1Model[175] = new ModelRendererTurbo(this, 195, 141, textureX, textureY, "lamp"); // Box 175 lamp
+		fol_m1Model[176] = new ModelRendererTurbo(this, 270, 1, textureX, textureY); // Box 176
+		fol_m1Model[177] = new ModelRendererTurbo(this, 186, 29, textureX, textureY); // Box 177
+		fol_m1Model[178] = new ModelRendererTurbo(this, 0, 7, textureX, textureY); // Box 178
+		fol_m1Model[179] = new ModelRendererTurbo(this, 8, 135, textureX, textureY); // Box 179
+		fol_m1Model[180] = new ModelRendererTurbo(this, 463, 113, textureX, textureY, "lamp"); // Box 189 lamp
+		fol_m1Model[181] = new ModelRendererTurbo(this, 87, 67, textureX, textureY, "lamp"); // Box 190 lamp
+		fol_m1Model[182] = new ModelRendererTurbo(this, 397, 135, textureX, textureY); // Box 191
+		fol_m1Model[183] = new ModelRendererTurbo(this, 30, 28, textureX, textureY); // Box 162 light
+		fol_m1Model[184] = new ModelRendererTurbo(this, 430, 103, textureX, textureY); // Box 165
+		fol_m1Model[185] = new ModelRendererTurbo(this, 163, 92, textureX, textureY); // Box 162 light
+		fol_m1Model[186] = new ModelRendererTurbo(this, 126, 92, textureX, textureY); // Box 165
+		fol_m1Model[187] = new ModelRendererTurbo(this, 6, 172, textureX, textureY); // Box 196
 
 		fol_m1Model[0].addBox(0F, 0F, 0F, 13, 2, 22, 0F); // Box 0
 		fol_m1Model[0].setRotationPoint(-24F, -24F, 3F);
@@ -488,7 +520,7 @@ public class ModelFOL_M1 extends ModelBase
 		fol_m1Model[100].setRotationPoint(50F, -20F, 2.5F);
 
 		fol_m1Model[101].addBox(0F, 0F, 0F, 8, 2, 3, 0F); // Box 263
-		fol_m1Model[101].setRotationPoint(-35F, 1F, 12.5F);
+		fol_m1Model[101].setRotationPoint(-36F, 1F, 12.5F);
 
 		fol_m1Model[102].addBox(0F, 0F, 0F, 14, 2, 2, 0F); // Box 265
 		fol_m1Model[102].setRotationPoint(-2F, -4F, 6F);
@@ -568,20 +600,20 @@ public class ModelFOL_M1 extends ModelBase
 		fol_m1Model[127].addBox(0F, 0F, 0F, 7, 3, 21, 0F); // Box 186
 		fol_m1Model[127].setRotationPoint(20F, -3F, 3.5F);
 
-		fol_m1Model[128].addBox(0F, 0F, 0F, 1, 3, 9, 0F); // Box 187
-		fol_m1Model[128].setRotationPoint(-32F, 1F, 9.5F);
+		fol_m1Model[128].addBox(0F, 0F, 0F, 1, 2, 10, 0F); // Box 187
+		fol_m1Model[128].setRotationPoint(-29F, 1F, 9F);
 
-		fol_m1Model[129].addShapeBox(0F, 0F, 0F, 8, 3, 1, 0F, 0F, 0F, -1F, 0F, 0F, 5F, 0F, 0F, -5F, -1F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 5F, 0F, 0F, -5F, -1F, 0F, 0F); // Box 188
-		fol_m1Model[129].setRotationPoint(-32F, 1F, 8.5F);
+		fol_m1Model[129].addShapeBox(0F, 0F, 0F, 8, 3, 1, 0F, -2F, 0F, -1F, 0F, 0F, 5F, 0F, 0F, -5F, -3F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 5F, 0F, 0F, -5F, -1F, 0F, 0F); // Box 188
+		fol_m1Model[129].setRotationPoint(-32F, 3F, 8.5F);
 
-		fol_m1Model[130].addShapeBox(0F, 0F, 0F, 3, 3, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, 0F, 0F); // Box 189
+		fol_m1Model[130].addShapeBox(0F, 0F, 0F, 3, 5, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, 0F, 0F); // Box 189
 		fol_m1Model[130].setRotationPoint(-24F, 1F, 3.5F);
 
-		fol_m1Model[131].addShapeBox(0F, 0F, 0F, 3, 3, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, 0F, 0F); // Box 190
+		fol_m1Model[131].addShapeBox(0F, 0F, 0F, 3, 5, 1, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, 0F, 0F); // Box 190
 		fol_m1Model[131].setRotationPoint(-24F, 1F, 23.5F);
 
-		fol_m1Model[132].addShapeBox(0F, 0F, 0F, 8, 3, 1, 0F, -1F, 0F, 0F, 0F, 0F, -5F, 0F, 0F, 5F, 0F, 0F, -1F, -1F, 0F, 0F, 0F, 0F, -5F, 0F, 0F, 5F, 0F, 0F, -1F); // Box 191
-		fol_m1Model[132].setRotationPoint(-32F, 1F, 18.5F);
+		fol_m1Model[132].addShapeBox(0F, 0F, 0F, 8, 3, 1, 0F, -3F, 0F, 0F, 0F, 0F, -5F, 0F, 0F, 5F, -2F, 0F, -1F, -1F, 0F, 0F, 0F, 0F, -5F, 0F, 0F, 5F, 0F, 0F, -1F); // Box 191
+		fol_m1Model[132].setRotationPoint(-32F, 3F, 18.5F);
 
 		fol_m1Model[133].addBox(0F, 0F, 0F, 30, 3, 22, 0F); // Box 250
 		fol_m1Model[133].setRotationPoint(-1F, 2F, 3F);
@@ -656,6 +688,99 @@ public class ModelFOL_M1 extends ModelBase
 		fol_m1Model[156].addBox(0F, 0F, 0F, 5, 5, 0, 0F); // Box 274
 		fol_m1Model[156].setRotationPoint(49F, 1F, 3F);
 
+		fol_m1Model[157].addBox(0F, 0F, 0F, 29, 22, 0, 0F); // Box 157
+		fol_m1Model[157].setRotationPoint(-2F, -22F, 3.01F);
+
+		fol_m1Model[158].addBox(0F, 0F, 0F, 29, 22, 0, 0F); // Box 157
+		fol_m1Model[158].setRotationPoint(-2F, -22F, 25.01F);
+
+		fol_m1Model[159].addBox(0F, 0F, 0F, 1, 2, 2, 0F); // Box 310 lamp
+		fol_m1Model[159].setRotationPoint(-29F, 1F, 7F);
+
+		fol_m1Model[160].addBox(0F, 0F, 0F, 1, 2, 2, 0F); // Box 310 lamp
+		fol_m1Model[160].setRotationPoint(-29F, 1F, 19F);
+
+		fol_m1Model[161].addShapeBox(0F, 0F, 0F, 1, 3, 9, 0F, -2F, 0F, 0F, 2F, 0F, 0F, 2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 161
+		fol_m1Model[161].setRotationPoint(-32F, 3F, 9.5F);
+
+		fol_m1Model[162].addBox(0F, 0F, 0F, 1, 1, 1, 0F); // Box 176 lamp
+		fol_m1Model[162].setRotationPoint(-31.75F, -24.25F, 13.5F);
+
+		fol_m1Model[163].addBox(0F, 0F, 0F, 1, 1, 1, 0F); // Box 177 lamp
+		fol_m1Model[163].setRotationPoint(-31.75F, -22.75F, 13.5F);
+
+		fol_m1Model[164].addShapeBox(0F, 0F, 0F, 1, 1, 0, 0F, -0.5F, -1F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, -1F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F); // Box 188
+		fol_m1Model[164].setRotationPoint(-32.75F, -22.75F, 14.51F);
+
+		fol_m1Model[165].addShapeBox(0F, 0F, 0F, 1, 1, 0, 0F, -0.5F, -1F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, -1F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F); // Box 189
+		fol_m1Model[165].setRotationPoint(-32.75F, -22.75F, 13.49F);
+
+		fol_m1Model[166].addShapeBox(0F, 0F, 0F, 1, 0, 1, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F); // Box 190
+		fol_m1Model[166].setRotationPoint(-32.75F, -21.75F, 13.5F);
+
+		fol_m1Model[167].addShapeBox(0F, 0F, 0F, 1, 0, 1, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F); // Box 191
+		fol_m1Model[167].setRotationPoint(-32.75F, -23.25F, 13.5F);
+
+		fol_m1Model[168].addShapeBox(0F, 0F, 0F, 1, 1, 0, 0F, -0.5F, -1F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, -1F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F); // Box 192
+		fol_m1Model[168].setRotationPoint(-32.75F, -24.25F, 13.49F);
+
+		fol_m1Model[169].addShapeBox(0F, 0F, 0F, 1, 1, 0, 0F, -0.5F, -1F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, -1F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F); // Box 193
+		fol_m1Model[169].setRotationPoint(-32.75F, -24.25F, 14.51F);
+
+		fol_m1Model[170].addBox(0F, 0F, 0F, 11, 3, 2, 0F); // Box 170
+		fol_m1Model[170].setRotationPoint(-31.5F, -24.5F, 13F);
+
+		fol_m1Model[171].addShapeBox(0F, 0F, 0F, 1, 0, 1, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F); // Box 171
+		fol_m1Model[171].setRotationPoint(-32.75F, -24.75F, 14.5F);
+
+		fol_m1Model[172].addBox(0F, 0F, 0F, 1, 1, 1, 0F); // Box 172 lamp
+		fol_m1Model[172].setRotationPoint(-31.75F, -25.75F, 14.5F);
+
+		fol_m1Model[173].addShapeBox(0F, 0F, 0F, 1, 1, 0, 0F, -0.5F, -1F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, -1F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F); // Box 173
+		fol_m1Model[173].setRotationPoint(-32.75F, -25.75F, 14.49F);
+
+		fol_m1Model[174].addShapeBox(0F, 0F, 0F, 1, 1, 0, 0F, -0.5F, -1F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, -1F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F); // Box 174
+		fol_m1Model[174].setRotationPoint(-32.75F, -25.75F, 15.51F);
+
+		fol_m1Model[175].addBox(0F, 0F, 0F, 1, 1, 1, 0F); // Box 175 lamp
+		fol_m1Model[175].setRotationPoint(-31.75F, -25.75F, 12.5F);
+
+		fol_m1Model[176].addShapeBox(0F, 0F, 0F, 1, 1, 0, 0F, -0.5F, -1F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, -1F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F); // Box 176
+		fol_m1Model[176].setRotationPoint(-32.75F, -25.75F, 12.49F);
+
+		fol_m1Model[177].addShapeBox(0F, 0F, 0F, 1, 0, 1, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F); // Box 177
+		fol_m1Model[177].setRotationPoint(-32.75F, -24.75F, 12.5F);
+
+		fol_m1Model[178].addShapeBox(0F, 0F, 0F, 1, 1, 0, 0F, -0.5F, -1F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, -1F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F); // Box 178
+		fol_m1Model[178].setRotationPoint(-32.75F, -25.75F, 13.51F);
+
+		fol_m1Model[179].addShapeBox(0F, 0F, 0F, 2, 2, 4, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 179
+		fol_m1Model[179].setRotationPoint(-31.5F, -26.5F, 12F);
+
+		fol_m1Model[180].addBox(0F, 0F, 0F, 1, 2, 2, 0F); // Box 189 lamp
+		fol_m1Model[180].setRotationPoint(59F, 1F, 5F);
+
+		fol_m1Model[181].addBox(0F, 0F, 0F, 1, 2, 2, 0F); // Box 190 lamp
+		fol_m1Model[181].setRotationPoint(59F, 1F, 21F);
+
+		fol_m1Model[182].addShapeBox(0F, 0F, 0F, 1, 4, 22, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, -1F); // Box 191
+		fol_m1Model[182].setRotationPoint(58F, 1F, 3F);
+
+		fol_m1Model[183].addShapeBox(0F, 0F, 0F, 1, 2, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 162 light
+		fol_m1Model[183].setRotationPoint(-22.68F, -27F, 20.5F);
+
+		fol_m1Model[184].addShapeBox(0F, 0F, 0F, 2, 1, 1, 0F, 0.3F, -0.5F, 0.1F, -1F, -0.5F, 0.1F, -1F, -0.5F, 0.1F, 0.3F, -0.5F, 0.1F, 0.3F, 0F, 0.1F, -1F, 0F, 0.1F, -1F, 0F, 0.1F, 0.3F, 0F, 0.1F); // Box 165
+		fol_m1Model[184].setRotationPoint(-22.5F, -26F, 20.5F);
+
+		fol_m1Model[185].addShapeBox(0F, 0F, 0F, 1, 2, 1, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 162 light
+		fol_m1Model[185].setRotationPoint(-22.68F, -27F, 6.5F);
+
+		fol_m1Model[186].addShapeBox(0F, 0F, 0F, 2, 1, 1, 0F, 0.3F, -0.5F, 0.1F, -1F, -0.5F, 0.1F, -1F, -0.5F, 0.1F, 0.3F, -0.5F, 0.1F, 0.3F, 0F, 0.1F, -1F, 0F, 0.1F, -1F, 0F, 0.1F, 0.3F, 0F, 0.1F); // Box 165
+		fol_m1Model[186].setRotationPoint(-22.5F, -26F, 6.5F);
+
+		fol_m1Model[187].addBox(0F, 0F, 0F, 2, 16, 7, 0F); // Box 196
+		fol_m1Model[187].setRotationPoint(60F, -18F, 15F);
+
 
 	}
 	ModelFOL_M1Bogie bogie = new ModelFOL_M1Bogie();
@@ -674,7 +799,11 @@ public class ModelFOL_M1 extends ModelBase
 		}
 
 
-		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/FOL_M1_Bogie.png"));
+		if(entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor()==8){
+			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/FOL_M1_Bogie_grey.png"));
+		} else {
+			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/FOL_M1_Bogie.png"));
+		}
 
 		GL11.glPushMatrix();
 		GL11.glTranslated(-0.2,0,1.0);

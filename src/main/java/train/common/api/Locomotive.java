@@ -5,13 +5,11 @@ import com.google.gson.JsonParser;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.DataWatcher;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityAnimal;
@@ -23,9 +21,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
-
 import org.apache.commons.lang3.RandomStringUtils;
-import org.lwjgl.input.Keyboard;
 import train.common.Traincraft;
 import train.common.adminbook.ServerLogger;
 import train.common.core.HandleMaxAttachedCarts;
@@ -41,10 +37,7 @@ import train.common.mtc.PDMMessage;
 import train.common.mtc.TilePDMInstructionRadio;
 import train.common.mtc.packets.*;
 
-import java.nio.charset.Charset;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Random;
 
 public abstract class Locomotive extends EntityRollingStock implements IInventory, WirelessTransmitter {
     public int inventorySize;

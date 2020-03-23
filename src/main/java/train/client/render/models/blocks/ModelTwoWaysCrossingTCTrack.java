@@ -1,6 +1,5 @@
 package train.client.render.models.blocks;
 
-import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.model.ModelBase;
@@ -8,6 +7,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.IModelCustom;
 import org.lwjgl.opengl.GL11;
+import tmt.Tessellator;
 import train.common.library.Info;
 
 @SideOnly(Side.CLIENT)
@@ -24,7 +24,7 @@ public class ModelTwoWaysCrossingTCTrack extends ModelBase {
 	public void render(double x, double y, double z) {
 
 		// Bind the texture, so that OpenGL properly textures our block.
-		FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
+		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
 		GL11.glColor4f(1, 1, 1, 1);
 		//GL11.glScalef(0.5f, 0.5f, 0.5f);
 
