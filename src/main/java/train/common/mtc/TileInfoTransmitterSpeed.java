@@ -35,6 +35,8 @@ public class TileInfoTransmitterSpeed  extends TileEntity implements IPeripheral
 
 	public boolean hadSentPacket = false;
 	public boolean hadSentMTCPacket = false;
+
+	public boolean enforceSpeedLimits = false;
     @Override
     public void readFromNBT(NBTTagCompound nbttagcompound) {
         super.readFromNBT(nbttagcompound);
@@ -44,7 +46,7 @@ public class TileInfoTransmitterSpeed  extends TileEntity implements IPeripheral
         this.xFromSpeedChange = nbttagcompound.getDouble("xFromSpeedChange");
         this.yFromSpeedChange = nbttagcompound.getDouble("yFromSpeedChange");
         this.zFromSpeedChange = nbttagcompound.getDouble("zFromSpeedChange");
-
+        this.enforceSpeedLimits = nbttagcompound.getBoolean("enforceSpeedLimits");
 
     }
 
@@ -57,7 +59,7 @@ public class TileInfoTransmitterSpeed  extends TileEntity implements IPeripheral
         nbttagcompound.setDouble("xFromSpeedChange", this.xFromSpeedChange);
         nbttagcompound.setDouble("yFromSpeedChange",  this.yFromSpeedChange);
         nbttagcompound.setDouble("zFromSpeedChange",  this.zFromSpeedChange);
-
+        nbttagcompound.setBoolean("enforceSpeedLimits", this.enforceSpeedLimits);
     }
     @Override
 
@@ -80,6 +82,7 @@ public class TileInfoTransmitterSpeed  extends TileEntity implements IPeripheral
                     if (obj instanceof Locomotive) {
 
                         Locomotive daTrain = (Locomotive) obj;
+                        daTrain.enforceSpeedLimits = enforceSpeedLimits;
                         if (daTrain.mtcOverridePressed) { return;}
                          if (daTrain.mtcStatus == 0  && hadSentMTCPacket == false) {
                              daTrain.mtcStatus = 1;
@@ -139,7 +142,7 @@ public class TileInfoTransmitterSpeed  extends TileEntity implements IPeripheral
 
     @Override
     public String[] getMethodNames() {
-        return new String[]  {"activate", "deactivate", "setSpeed", "getSpeed", "setNextSpeed", "setNextX", "setNextY", "setNextZ"};
+        return new String[]  {"activate", "deactivate", "setSpeed", "getSpeed", "setNextSpeed", "setNextX", "setNextY", "setNextZ", "enforceSpeedLimits"};
     }
 
     @Override
@@ -177,8 +180,16 @@ public class TileInfoTransmitterSpeed  extends TileEntity implements IPeripheral
                 if (arguments[0] instanceof Double) { this.yFromSpeedChange = Double.parseDouble(arguments[0].toString()); } else { return new Object[] {"nil"};}
                 return new Object[] {true};
             }case 7: {
-                if (arguments[0] instanceof Double) { this.zFromSpeedChange = Double.parseDouble(arguments[0].toString()); } else { return new Object[] {"nil"};}
-                return new Object[] {true};
+                if (arguments[0] instanceof Double) {
+                    this.zFromSpeedChange = Double.parseDouble(arguments[0].toString());
+                } else {
+                    return new Object[]{"nil"};
+                }
+                return new Object[]{true};
+            }case 8: {
+                if (arguments[0] instanceof Boolean) {
+                    this.enforceSpeedLimits = (Boolean) arguments[0];
+                }
             } default:
                 return new Object[] {"nil"};
         }
