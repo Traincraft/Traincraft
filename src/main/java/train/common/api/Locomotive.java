@@ -930,7 +930,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
             } else {
 
             }
-            if (distanceFromStopPoint >= 10 && distanceFromStopPoint < this.speedLimit && !(xFromStopPoint == 0.0) && mtcType == 2) {
+            if (distanceFromStopPoint >= 15 && distanceFromStopPoint < this.speedLimit && !(xFromStopPoint == 0.0) && mtcType == 2) {
                 this.speedLimit = (int) Math.round(distanceFromStopPoint);
                 Traincraft.itsChannel.sendToAllAround(new PacketSetSpeed(this.speedLimit, (int) this.posX, (int) this.posY, (int) this.posZ, getEntityId()), new TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
                 speedGoingDown = true;
@@ -1521,8 +1521,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
         JsonObject thing = parser.parse(message.message.toString()).getAsJsonObject();
         //System.out.println("Got one!");
         if (message != null && this.worldObj != null && !worldObj.isRemote) {
-            if (thing.get("funct").getAsString().equals("startlevel2")) {
-            System.out.println(thing.toString());
+            if (thing.get("funct").getAsString().equals("startlevel2"))
                 if (this.speedLimit != thing.get("speedLimit").getAsInt() && this.riddenByEntity != null) {
                     Traincraft.playSoundOnClientChannel.sendTo(new PacketPlaySoundOnClient(7, "tc:mtc_speedchange"), (EntityPlayerMP)this.riddenByEntity);
                 }
