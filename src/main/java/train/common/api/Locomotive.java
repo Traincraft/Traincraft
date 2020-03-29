@@ -1656,7 +1656,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
                 }
             }
         }
-    }
+
     @Override
     public void sendMessage(PDMMessage message) {
 
