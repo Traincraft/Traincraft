@@ -37,7 +37,8 @@ public class GuiMTCInfo extends GuiScreen {
         trainLevel.setText(theLocomotive.trainLevel);
         trainID.setMaxStringLength(6);
         trainID.setText(theLocomotive.getDataWatcher().getWatchableObjectString(5));
-        destination.setText(theLocomotive.getDataWatcher().getWatchableObjectString(53));
+
+        destination.setText(theLocomotive.getDataWatcher().getWatchableObjectString(3));
 
 
 

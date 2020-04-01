@@ -93,6 +93,7 @@ public class TCItems {
 
 		if (Loader.isModLoaded("ComputerCraft")) {
 			ItemIDs.wirelessTransmitter.item = new ItemWirelessTransmitter();
+			ItemIDs.atoCard.item = new ItemATOCard();
 		}
 	}
 	

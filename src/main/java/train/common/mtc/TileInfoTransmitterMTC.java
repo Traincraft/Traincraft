@@ -29,6 +29,8 @@ public class TileInfoTransmitterMTC extends TileEntity implements IPeripheral {
 	public String serverUUID = "";
 	public String signalBlock = "";
 	public int mtcType = 0;
+    public boolean enforceSpeedLimits = false;
+
     public TileInfoTransmitterMTC() {
         this.world = worldObj;
     }
@@ -43,6 +45,8 @@ public class TileInfoTransmitterMTC extends TileEntity implements IPeripheral {
         this.stationName =  nbttagcompound.getString("stationName");
         this.serverUUID = nbttagcompound.getString("serverUUID");
         this.signalBlock = nbttagcompound.getString("signalBlock");
+        this.signalBlock = nbttagcompound.getString("signalBlock");
+        this.enforceSpeedLimits = nbttagcompound.getBoolean("enforceSpeedLimits");
     }
 
     @Override
@@ -55,6 +59,7 @@ public class TileInfoTransmitterMTC extends TileEntity implements IPeripheral {
         nbttagcompound.setString("stationName", this.stationName);
         nbttagcompound.setString("serverUUID", this.serverUUID);
         nbttagcompound.setString("signalBlock", this.signalBlock);
+        nbttagcompound.setBoolean("enforceSpeedLimits", this.enforceSpeedLimits);
 
     }
 
@@ -64,7 +69,7 @@ public class TileInfoTransmitterMTC extends TileEntity implements IPeripheral {
         }
 
         if (worldObj.isRemote) {return;}
-        List<Object> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(null, this.getRenderBoundingBox());
+        List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(null, this.getRenderBoundingBox());
         if (list != null && list.size() > 0) {
             for (Object obj : list) {
                 if (obj instanceof Locomotive) {
@@ -84,6 +89,7 @@ public class TileInfoTransmitterMTC extends TileEntity implements IPeripheral {
                     daTrain.mtcStatus =  MTCInfo;
                     daTrain.currentSignalBlock = this.signalBlock;
                     daTrain.mtcType = this.mtcType;
+                    daTrain.enforceSpeedLimits = enforceSpeedLimits;
                     if (this.mtcType == 2) {
                         daTrain.stationStop = false;
                         daTrain.speedGoingDown = false;
@@ -118,7 +124,7 @@ public class TileInfoTransmitterMTC extends TileEntity implements IPeripheral {
 
     @Override
     public String[] getMethodNames() {
-        return new  String[] {"setMTCStatus", "getMTCStatus", "activate", "deactivate", "setStationName", "setServerUUID", "setSignalBlock", "setMTCType"};
+        return new  String[] {"setMTCStatus", "getMTCStatus", "activate", "deactivate", "setStationName", "setServerUUID", "setSignalBlock", "setMTCType", "enforceSpeedLimits"};
     }
 
     @Override
@@ -153,6 +159,10 @@ public class TileInfoTransmitterMTC extends TileEntity implements IPeripheral {
             } case 7: {
                 mtcType = (int)Math.round(Double.parseDouble(arguments[0].toString()));
                 return new Object[]{true};
+            }case 8: {
+                if (arguments[0] instanceof Boolean) {
+                    this.enforceSpeedLimits = (Boolean) arguments[0];
+                }
             } default:
                 return new Object[] {"nil"};
         }
