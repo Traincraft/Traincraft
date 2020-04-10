@@ -29,24 +29,33 @@ public class PacketKeyPress implements IMessage {
 
 	/** The key that was pressed. */
 	int key;
+	int entityID;
 
 	public PacketKeyPress() {}
 
 	public PacketKeyPress(int key) {
 
 		this.key = key;
+		this.entityID = 0;
+	}
+	public PacketKeyPress(int key, int entityID) {
+
+		this.key = key;
+		this.entityID = entityID;
 	}
 
 	@Override
 	public void fromBytes(ByteBuf bbuf) {
 
 		this.key = bbuf.readInt();
+		this.entityID = bbuf.readInt();
 	}
 
 	@Override
 	public void toBytes(ByteBuf bbuf) {
 
 		bbuf.writeInt(this.key);
+		bbuf.writeInt(this.entityID);
 	}
 
 	public static class Handler implements IMessageHandler<PacketKeyPress, IMessage> {
@@ -60,7 +69,7 @@ public class PacketKeyPress implements IMessage {
 			if (ridingEntity != null) {
 
 				if (ridingEntity instanceof Locomotive) {
-
+					System.out.println("hallo!!");
 					((Locomotive) ridingEntity).keyHandlerFromPacket(message.key);
 				}
 				else if (ridingEntity instanceof EntityRollingStock) {
@@ -75,8 +84,15 @@ public class PacketKeyPress implements IMessage {
 
 					((EntityRotativeDigger) ridingEntity).pressKey(message.key);
 				}
+				return null;
 			}
-
+			if (message.entityID != 0) {
+				System.out.println("Dew this..");
+				Entity theRidingEntity = context.getServerHandler().playerEntity.worldObj.getEntityByID(message.entityID);
+				if (theRidingEntity != null) {
+					((Locomotive) theRidingEntity).keyHandlerFromPacket(message.key);
+				}
+			}
 			/*if (message.key == 404){
 				CommonProxy.debug = CommonProxy.debug;
 				if (Minecraft.getMinecraft().theWorld != null) {
