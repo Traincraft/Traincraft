@@ -887,7 +887,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 			rollingServerPitch = tempPitch2;
 		}
 		//System.out.println(updateTicks);
-		if (ticksExisted % 2 == 0) {
+		if (ticksExisted % ConfigHandler.UPDATE_FREQUENCY == 0) {
 			shouldServerSetPosYOnClient = true;
 		}
 		if (shouldServerSetPosYOnClient) {

@@ -219,5 +219,6 @@ public class GuiForney extends GuiContainer {
 		fontRendererObj.drawStringWithShadow("State: " + loco.getState(), 1, 90, 0xFFFFFF);
 		fontRendererObj.drawStringWithShadow("Heat level: " + loco.getOverheatLevel(), 1, 100, 0xFFFFFF);
 		fontRendererObj.drawStringWithShadow("Maximum Speed: " + (loco.getCustomSpeedGUI()), 1, 110, 0xFFFFFF);
+		fontRendererObj.drawStringWithShadow("UUID: " + loco.getUniqueID().toString(),1,0,0xFFFFFF);
 	}
 }
