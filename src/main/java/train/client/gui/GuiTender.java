@@ -151,7 +151,7 @@ public class GuiTender extends GuiContainer {
 
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float f, int t, int g) {
-		fontRendererObj.drawStringWithShadow("UUID: " + tender.getUniqueID().toString(),1,0,0xFFFFFF);
+		fontRendererObj.drawStringWithShadow("UUID: " + tender.getPersistentUUID() + " - Entity UUID" + tender.getUniqueID().toString(),1,0,0xFFFFFF);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		mc.renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation,Info.guiPrefix + "gui_tender.png"));
 		int j = (width - xSize) / 2;

@@ -45,6 +45,7 @@ import train.common.core.handlers.*;
 import train.common.core.network.PacketRollingStockRotation;
 import train.common.core.util.TraincraftUtil;
 import train.common.entity.rollingStock.EntityTracksBuilder;
+import train.common.items.ItemRollingStock;
 import train.common.items.ItemTCRail;
 import train.common.items.ItemTCRail.TrackTypes;
 import train.common.items.ItemWrench;
@@ -55,6 +56,7 @@ import train.common.tile.TileTCRailGag;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import static train.common.core.util.TraincraftUtil.degrees;
 import static train.common.core.util.TraincraftUtil.isRailBlockAt;
@@ -226,11 +228,13 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 	 */
 	@Override
 	public void readSpawnData(ByteBuf additionalData) {
+		super.readSpawnData(additionalData);
 		isBraking = additionalData.readBoolean();
 		setTrainLockedFromPacket(additionalData.readBoolean());
 	}
 	@Override
 	public void writeSpawnData(ByteBuf buffer) {
+		super.writeSpawnData(buffer);
 		buffer.writeBoolean(isBraking);
 		buffer.writeBoolean(getTrainLockedFromPacket());
 	}
@@ -2297,7 +2301,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 		List<ItemStack> items = new ArrayList<ItemStack>();
 		for (EnumTrains trains : EnumTrains.values()) {
 			if (trains.getEntityClass().equals(this.getClass())) {
-				items.add(new ItemStack(trains.getItem()));
+				items.add(ItemRollingStock.setPersistentData(new ItemStack(trains.getItem()), this,getUniqueTrainID(),null));
 				return items;
 			}
 		}
