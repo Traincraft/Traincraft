@@ -116,7 +116,7 @@ public class RenderRollingStock extends Render {
 			cart.setMountedYOffset(-0.5);
 			GL11.glTranslatef(0f, -0.30f, 0f);
 		}
-		if(cart.worldObj.getBlock(i,j,k).getClass().getName().equals("ebf.tim.blocks.rails.BlockRailCore")){
+		if(cart.worldObj != null && cart.worldObj.getBlock(i,j,k).getClass().getName().equals("ebf.tim.blocks.rails.BlockRailCore")){
 			GL11.glTranslatef(0f, 0.15f, 0f);
 		}
 		if (cart.bogieLoco != null) {// || cart.bogieUtility[0]!=null){
@@ -172,7 +172,7 @@ public class RenderRollingStock extends Render {
 					newYaw = cart.rotationYawClientReal;
 					cart.oldClientYaw = cart.rotationYawClientReal;
 				}
-				GL11.glRotatef((90.0f-(newYaw+90.0f)), 0.0F, 1.0F, 0.0F);
+				GL11.glRotatef(-newYaw, 0.0F, 1.0F, 0.0F);
 				cart.setRenderYaw(yaw);
 				cart.setRenderPitch(pitch);
 			}

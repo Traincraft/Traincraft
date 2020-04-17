@@ -1,6 +1,7 @@
 package train.common.api;
 
 import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import io.netty.buffer.ByteBuf;
 import mods.railcraft.api.carts.IMinecart;
@@ -12,14 +13,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.*;
 import net.minecraft.world.ChunkCoordIntPair;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeChunkManager;
 import net.minecraftforge.common.ForgeChunkManager.Ticket;
+import org.apache.commons.lang3.ArrayUtils;
 import train.client.render.RenderEnum;
 import train.common.Traincraft;
 import train.common.adminbook.ItemAdminBook;
@@ -196,10 +195,25 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 	@Override
 	public void readSpawnData(ByteBuf additionalData) {
 		locked = additionalData.readBoolean();
+		if(additionalData.readBoolean()){
+			getEntityData().setString("puuid", ByteBufUtils.readUTF8String(additionalData));
+			getEntityData().setString("theCreator", ByteBufUtils.readUTF8String(additionalData));
+			getEntityData().setString("theOwner", ByteBufUtils.readUTF8String(additionalData));
+			getEntityData().setInteger("color", additionalData.readInt());
+		}
 	}
 	@Override
 	public void writeSpawnData(ByteBuf buffer) {
 		buffer.writeBoolean(locked);
+		if(getEntityData().hasKey("puuid")) {
+			buffer.writeBoolean(true);
+			ByteBufUtils.writeUTF8String(buffer, getEntityData().getString("puuid"));
+			ByteBufUtils.writeUTF8String(buffer, getEntityData().getString("theCreator"));
+			ByteBufUtils.writeUTF8String(buffer, getEntityData().getString("theOwner"));
+			buffer.writeInt(getEntityData().getInteger("color"));
+		} else {
+			buffer.writeBoolean(false);
+		}
 	}
 
 
@@ -334,10 +348,13 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 	 * @param color
 	 */
 	public void setColor(int color) {
-		if (color==-1 && EnumTrains.getCurrentTrain(getCartItem().getItem()).getColors()!=null){
-			color = (EnumTrains.getCurrentTrain(getCartItem().getItem()).getColors()[0]);
+		if (EnumTrains.getCurrentTrain(getCartItem().getItem()).getColors()!=null){
+			if (color==-1 || !ArrayUtils.contains(EnumTrains.getCurrentTrain(getCartItem().getItem()).getColors(),(byte)color)) {
+				color = (EnumTrains.getCurrentTrain(getCartItem().getItem()).getColors()[0]);
+			}
 		}
 		dataWatcher.updateObject(12, color);
+		this.getEntityData().setInteger("color", color);
 	}
 
 	public void setRenderYaw(float yaw) {
@@ -526,21 +543,19 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		if (!isCreative && !itemdropped) {
 			itemdropped=true;
 			for (ItemStack item : getItemsDropped()) {
-				setUniqueIDToItem(item);
-				entityDropItem(item, 0);
+				if (item.getItem() instanceof ItemRollingStock){
+					ItemStack stack = ItemRollingStock.setPersistentData(item,this,this.getUniqueTrainID(),null);
+					entityDropItem(stack!=null?stack:item,0);
+				} else {
+					entityDropItem(item, 0);
+				}
 			}
 		}
 	}
 
-	protected void setUniqueIDToItem(ItemStack stack) {
-		NBTTagCompound var3 = stack.getTagCompound();
-		if (var3 == null) {
-			var3 = new NBTTagCompound();
-			stack.setTagCompound(var3);
-		}
-		if (this.uniqueID != -1) stack.getTagCompound().setInteger("uniqueID", this.uniqueID);
-		if (this.trainCreator != null && this.trainCreator.length() > 0) stack.getTagCompound().setString("trainCreator", this.trainCreator);
-		if (this.getColor() != -1) stack.getTagCompound().setInteger("trainColor", this.getColor());
+	@Override
+	public ItemStack getPickedResult(MovingObjectPosition target) {
+		return getCartItem();
 	}
 
 	protected void setDefaultMass(double def) {
@@ -680,4 +695,16 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		}
 	}
 
+
+
+
+	public String getPersistentUUID() {
+		if(getEntityData().hasKey("puuid")) {
+			return getEntityData().getString("puuid");
+		} else {
+			System.out.println("setting UUID");
+			getEntityData().setString("puuid", getUniqueID().toString());
+			return this.getUniqueID().toString();
+		}
+	}
 }
