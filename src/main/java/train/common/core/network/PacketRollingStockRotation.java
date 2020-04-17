@@ -38,10 +38,10 @@ public class PacketRollingStockRotation implements IMessage {
 	public void fromBytes(ByteBuf bbuf) {
 
 		this.entityID = bbuf.readInt();
-		this.rotationYawServer = bbuf.readInt();
-		this.realRotation = bbuf.readInt();
+		this.rotationYawServer = bbuf.readFloat();
+		this.realRotation = bbuf.readFloat();
 		this.anglePitch = bbuf.readInt();
-		this.posY = bbuf.readInt();
+		this.posY = bbuf.readFloat();
 		this.isInReverse = bbuf.readBoolean();
 	}
 

@@ -394,7 +394,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 		setRollingAmplitude(10);
 		setDamage(getDamage() + getDamage() * 10);
 	}
-	
+
 	public void unLink(){
 		if (this.isAttached) {
 			if (this.cartLinked1 != null) {
@@ -603,9 +603,9 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 					}
 					this.needsBogieUpdate = true;
 		}
-		
+
 		super.manageChunkLoading();
-		
+
 		/**
 		 * Set the uniqueID if the entity doesn't have one.
 		 */
@@ -614,10 +614,10 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 				//TraincraftSaveHandler.createFile(FMLCommonHandler.instance().getMinecraftServerInstance());
 				//int readID = TraincraftSaveHandler.readInt(FMLCommonHandler.instance().getMinecraftServerInstance(), "numberOfTrains:");
 				//int newID = setNewUniqueID(readID);
-				
+
 					//TraincraftSaveHandler seems to not work, may cause uniqueID bug.
 				setNewUniqueID(this.getEntityId());
-				
+
 				//TraincraftSaveHandler.writeValue(FMLCommonHandler.instance().getMinecraftServerInstance(), "numberOfTrains:", "" + newID);
 				//System.out.println("Train is missing an ID, adding new one for "+this.trainName+" "+this.uniqueID);
 			}
@@ -951,7 +951,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 	boolean flag,flag1;
 	public void updateOnTrack(int i, int j, int k, Block l) {
 		if (canUseRail() && BlockRailBase.func_150051_a(l)) {
-			
+
 			Vec3 vec3d = func_514_g(posX, posY, posZ);
 			 int i1 = ((BlockRailBase) l).getBasicRailMetadata(worldObj, this, i, j, k);
 			 meta = i1;
@@ -976,9 +976,9 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 			 if (i1 >= 2 && i1 <= 5) {
 			 posY = (j + 1);
 			 }
-			
+
 			 adjustSlopeVelocities(i1);
-			
+
 
 
 			 double d9 = matrix[i1][1][0] - matrix[i1][0][0];
@@ -1053,14 +1053,14 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 					 }
 				 }
 			 }
-			
+
 			 }
 			 posX = d18 + d9 * d17;
 			 posZ = d19 + d10 * d17;
 			setPosition(posX, posY + yOffset + 0.35, posZ);
 
 			 moveMinecartOnRail(i, j, k, 0.0D);
-			
+
 			 if (matrix[i1][0][1] != 0 && MathHelper.floor_double(posX) - i == matrix[i1][0][0] &&
 			 MathHelper.floor_double(posZ) - k == matrix[i1][0][2]) {
 			 setPosition(posX, posY + matrix[i1][0][1], posZ);
@@ -1069,9 +1069,9 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 			 MathHelper.floor_double(posZ) - k == matrix[i1][1][2]) {
 			 setPosition(posX, posY + matrix[i1][1][1], posZ);
 			 }
-			
+
 			 applyDragAndPushForces();
-			
+
 			Vec3 vec3d1 = func_514_g(posX, posY, posZ);
 			if (vec3d1 != null && vec3d != null) {
 				double d28 = (vec3d.yCoord - vec3d1.yCoord) * 0.050000000000000003D;
@@ -1088,11 +1088,11 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 			 motionX = d15 * ((int)posX - i);
 			 motionZ = d15 * ((int)posZ - k);
 			 }
-			
+
 			 if (shouldDoRailFunctions()) {
 			 ((BlockRailBase) l).onMinecartPass(worldObj, this, i, j, k);
 			 }
-			
+
 			 if (flag && shouldDoRailFunctions()) {
 			 double d31 = Math.sqrt(motionX * motionX + motionZ * motionZ);
 			 if (d31 > 0.01D) {
@@ -1190,7 +1190,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 		}
 
 	}
-	
+
 	private boolean shouldIgnoreSwitch(TileTCRail tile, int i, int j, int k, int meta) {
 		if (tile != null
 				&& (tile.getType().equals(TrackTypes.MEDIUM_RIGHT_TURN.getLabel())
@@ -1198,7 +1198,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 						|| tile.getType().equals(TrackTypes.LARGE_LEFT_TURN.getLabel())
 						|| tile.getType().equals(TrackTypes.LARGE_RIGHT_TURN.getLabel()))
 				&& tile.canTypeBeModifiedBySwitch) {
-			
+
 
 			if (meta == 2) {
 				if (motionZ > 0 && Math.abs(motionX) < 0.01) {
@@ -1847,7 +1847,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 						}/*
 						 * else if(par1Entity instanceof EntityBogie){
 						 * par1Entity.addVelocity(-d0, 0.0D, -d1);
-						 * 
+						 *
 						 * }
 						 */
 						//if(!(par1Entity instanceof EntityPlayer))par1Entity.addVelocity(d0 / 4.0D, 0.0D, d1 / 4.0D);
@@ -1894,7 +1894,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 
 	/**
 	 * To disable linking altogether, return false here.
-	 * 
+	 *
 	 * @return True if this cart is linkable.
 	 */
 	@Override
@@ -1904,7 +1904,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 
 	/**
 	 * Check called when attempting to link carts.
-	 * 
+	 *
 	 * @param cart
 	 *            The cart that we are attempting to link with.
 	 * @return True if we can link with this cart.
@@ -1917,7 +1917,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 	/**
 	 * Returns true if this cart has two links or false if it can only link with
 	 * one cart.
-	 * 
+	 *
 	 * @return True if two links
 	 */
 	@Override
@@ -1929,7 +1929,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 	 * Gets the distance at which this cart can be linked. This is called on
 	 * both carts and added together to determine how close two carts need to be
 	 * for a successful link. Default = LinkageManager.LINKAGE_DISTANCE
-	 * 
+	 *
 	 * @param cart
 	 *            The cart that you are attempting to link with.
 	 * @return The linkage distance
@@ -1946,7 +1946,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 	 * between linked carts at all times. Default =
 	 * LinkageManager.OPTIMAL_DISTANCE
 	 * ETERNAL's NOTE: because this is forcing the value of EntityMinecart, it's actually a call to the super but using this instance. Not actually an infinate look like compiler thinks.
-	 * 
+	 *
 	 * @param cart
 	 *            The cart that you are linked with.
 	 * @return The optimal rest distance
@@ -1957,7 +1957,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 	 * Return false if linked carts have no effect on the velocity of this cart.
 	 * Use carefully, if you link two carts that can't be adjusted, it will
 	 * behave as if they are not linked.
-	 * 
+	 *
 	 * @param cart
 	 *            The cart doing the adjusting.
 	 * @return Whether the cart can have its velocity adjusted.
@@ -1974,7 +1974,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 
 	/**
 	 * Called when a link is broken (usually).
-	 * 
+	 *
 	 * @param cart
 	 *            The cart we were linked with.
 	 */
@@ -1993,7 +1993,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 	 * be an ItemStack that can be used by the player to place the cart. This is
 	 * the item that was registered with the cart via the registerMinecart
 	 * function, but is not necessary the item the cart drops when destroyed.
-	 * 
+	 *
 	 * @return An ItemStack that can be used to place the cart.
 	 */
 	@Override
@@ -2003,7 +2003,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 
 	/**
 	 * Returns true if this cart is self propelled.
-	 * 
+	 *
 	 * @return True if powered.
 	 */
 	@Override
@@ -2015,7 +2015,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 	 * Returns true if this cart is a storage cart Some carts may have
 	 * inventories but not be storage carts and some carts without inventories
 	 * may be storage carts.
-	 * 
+	 *
 	 * @return True if this cart should be classified as a storage cart.
 	 */
 	public boolean isStorageCart() {
@@ -2024,7 +2024,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 
 	/**
 	 * Returns true if this cart can be ridden by an Entity.
-	 * 
+	 *
 	 * @return True if this cart can be ridden.
 	 */
 	@Override
@@ -2035,7 +2035,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 	/**
 	 * Returns true if this cart can currently use rails. This function is
 	 * mainly used to gracefully detach a minecart from a rail.
-	 * 
+	 *
 	 * @return True if the minecart can use rails.
 	 */
 	@Override
@@ -2046,7 +2046,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 	/**
 	 * Set whether the minecart can use rails. This function is mainly used to
 	 * gracefully detach a minecart from a rail.
-	 * 
+	 *
 	 * @param use
 	 *            Whether the minecart can currently use rails.
 	 */
@@ -2058,7 +2058,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 	/**
 	 * Return false if this cart should not call IRail.onMinecartPass() and
 	 * should ignore Powered Rails.
-	 * 
+	 *
 	 * @return True if this cart should call IRail.onMinecartPass().
 	 */
 	@Override
@@ -2074,7 +2074,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 
 	/**
 	 * Carts should return their drag factor here
-	 * 
+	 *
 	 * @return The drag rate.
 	 */
 	@Override
@@ -2156,7 +2156,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 	 * Returns the carts max speed. Carts going faster than 1.1 cause issues
 	 * with chunk loading. This value is compared with the rails max speed to determine
 	 * the carts current max speed. A normal rails max speed is 0.4.
-	 * 
+	 *
 	 * @return Carts max speed.
 	 */
 	@Override
