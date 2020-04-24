@@ -788,22 +788,14 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 			bogieLoco.updateDistance();
 		}
 
-		l = worldObj.getBlock(i, j, k);
-
-		if(!(l instanceof BlockRailBase || l instanceof BlockTCRail || l instanceof BlockTCRailGag)) {
-			l = worldObj.getBlock(i, j-1, k);
-
-			if (!(l instanceof BlockRailBase || l instanceof BlockTCRail || l instanceof BlockTCRailGag)) {
-				l = worldObj.getBlock(i, j+1, k);
-				if (!(l instanceof BlockRailBase || l instanceof BlockTCRail || l instanceof BlockTCRailGag)) {
-					l = worldObj.getBlock(i, j, k);
-				} else {
-					j++;
-				}
-			} else {
-				j--;
-			}
+		if (isRailBlockAt(worldObj, i, j - 1, k) || worldObj.getBlock(i, j - 1, k) == BlockIDs.tcRail.block || worldObj.getBlock(i, j - 1, k) == BlockIDs.tcRailGag.block) {
+			j--;
+		} else if (isRailBlockAt(worldObj, i, j + 1, k) || worldObj.getBlock(i, j + 1, k) == BlockIDs.tcRail.block || worldObj.getBlock(i, j + 1, k) == BlockIDs.tcRailGag.block) {
+			j++;
 		}
+
+
+		l = worldObj.getBlock(i, j, k);
 
 
 		updateOnTrack(i, j, k, l);
@@ -911,12 +903,13 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 		if (list != null && !list.isEmpty()) {
 			Entity entity;
 			for (Object obj : list) {
+				if(obj==this.riddenByEntity){continue;}
 				entity = (Entity) obj;
 
-				if (entity != this.riddenByEntity && entity.canBePushed() && entity instanceof EntityMinecart) {
+				if (entity.canBePushed() && entity instanceof EntityMinecart) {
 					entity.applyEntityCollision(this);
 				}
-				else if (entity != this.riddenByEntity && entity.canBePushed() && !(entity instanceof EntityMinecart)) {
+				else if (entity.canBePushed() && !(entity instanceof EntityMinecart)) {
 					this.applyEntityCollision(entity);
 				}
 			}
@@ -1117,7 +1110,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 			 }
 			 }
 		}
-		else if (l instanceof BlockTCRail) {
+		else if (l == BlockIDs.tcRail.block) {
 			//applyDragAndPushForces();
 			limitSpeedOnTCRail();
 			if(worldObj.getTileEntity(i,j,k)==null || !(worldObj.getTileEntity(i,j,k) instanceof TileTCRail))return;
@@ -1164,7 +1157,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 			}
 
 		}
-		else if (l instanceof BlockTCRailGag) {
+		else if (l == BlockIDs.tcRailGag.block) {
 			//applyDragAndPushForces();
 			limitSpeedOnTCRail();
 			//if(worldObj.getBlockTileEntity(i,j,k)==null || !(worldObj.getBlockTileEntity(i,j,k) instanceof TileTCRailGag))return;

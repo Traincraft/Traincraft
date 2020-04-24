@@ -125,11 +125,6 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 	public static int uniqueIDs = 1;
 
 	/**
-	 * cached value for the render data so we don't have to iterate the enum every frame.
-	 */
-	public RenderEnum renderData = null;
-
-	/**
 	 * The distance this train has traveled
 	 */
 	public double trainDistanceTraveled = 0;
