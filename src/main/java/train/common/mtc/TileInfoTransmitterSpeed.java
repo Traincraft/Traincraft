@@ -271,7 +271,6 @@ public class TileInfoTransmitterSpeed  extends TileEntity implements IPeripheral
     @Callback
     @Optional.Method(modid = "OpenComputers")
     public Object[] setSpeed(Context context, Arguments args) {
-        System.out.println("Set!");
         if (args.isInteger(0)) { this.setSpeed = args.checkInteger(0);}
         System.out.println(args.isInteger(0));
 
