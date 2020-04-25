@@ -205,7 +205,9 @@ public class Traincraft {
 		tcLog.info("Activation Mod Compatibility");
 		TrainModCore.ModsLoaded();
 		LiquidManager.getLiquidsFromDictionnary();
-
+		if (Loader.isModLoaded("OpenComputers")) {
+			tcLog.info("OpenComputers integration successfully activated!");
+		}
 		tcLog.info("Finished PostInitialization");
 	}
 
