@@ -7,7 +7,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public class BlockInfoGrabberMTC   extends BlockContainer implements IPeripheralProvider {
+public class BlockInfoGrabberMTC extends BlockContainer implements IPeripheralProvider {
 
     public static  BlockInfoGrabberMTC instance;
     public BlockInfoGrabberMTC(Material p_i45386_1_) {
