@@ -260,9 +260,9 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 		return dataWatcher.getWatchableObjectInt(5);
 	}
 
-	public int getNumberOfTrainsForServer() {
+	/*public int getNumberOfTrainsForServer() {
 		return dataWatcher.getWatchableObjectInt(10);
-	}
+	}*/
 
 	public int getUniqueTrainIDClient() {
 		return dataWatcher.getWatchableObjectInt(11);
@@ -616,7 +616,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 				//int newID = setNewUniqueID(readID);
 
 					//TraincraftSaveHandler seems to not work, may cause uniqueID bug.
-				setNewUniqueID(this.getEntityId());
+				setNewUniqueID();
 
 				//TraincraftSaveHandler.writeValue(FMLCommonHandler.instance().getMinecraftServerInstance(), "numberOfTrains:", "" + newID);
 				//System.out.println("Train is missing an ID, adding new one for "+this.trainName+" "+this.uniqueID);

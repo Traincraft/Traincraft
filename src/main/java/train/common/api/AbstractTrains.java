@@ -41,7 +41,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 	protected int color;
 	public boolean isAttached = false;
 	public boolean isAttaching = false;
-	public static int numberOfTrains;
+	public static int numberOfTrains = Integer.MIN_VALUE;
 	public EntityPlayer playerEntity;
 	public double Link1;
 	public double Link2;
@@ -147,7 +147,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		dataWatcher.addObject(7, trainOwner);
 		dataWatcher.addObject(8, trainDestroyer);
 		dataWatcher.addObject(9, trainName);
-		dataWatcher.addObject(10, numberOfTrains);
+		//dataWatcher.addObject(10, numberOfTrains);
 		dataWatcher.addObject(11, uniqueID);
 		dataWatcher.addObject(13, trainCreator);
 		shouldChunkLoad=ConfigHandler.CHUNK_LOADING;
@@ -255,7 +255,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 				//TraincraftSaveHandler.createFile(FMLCommonHandler.instance().getMinecraftServerInstance());
 				//int readID = TraincraftSaveHandler.readInt(FMLCommonHandler.instance().getMinecraftServerInstance(), "numberOfTrains:");
 				//int newID = setNewUniqueID(readID);
-				setNewUniqueID(this.getEntityId());
+				setNewUniqueID();
 				//TraincraftSaveHandler.writeValue(FMLCommonHandler.instance().getMinecraftServerInstance(), "numberOfTrains:", new String("" + newID));
 				//System.out.println("Train is missing an ID, adding new one for "+this.trainName+" "+this.uniqueID);
 			}
@@ -297,9 +297,9 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		ForgeChunkManager.releaseTicket(chunkTicket);
 	}
 
-	public int setNewUniqueID(int numberOfTrains) {
+	public int setNewUniqueID() {
 		// System.out.println(numberOfTrains);
-		if (numberOfTrains <= 0) {
+		if (numberOfTrains == Integer.MIN_VALUE) {
 			numberOfTrains = uniqueIDs++;
 		}
 		else {
@@ -405,7 +405,11 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		trainName = nbttagcompound.getString("theName");
 		trainType = nbttagcompound.getString("theType");
 		uniqueID = nbttagcompound.getInteger("uniqueID");
-		//uniqueIDs = nbttagcompound.getInteger("uniqueIDs");
+		if(uniqueIDs==Integer.MIN_VALUE && nbttagcompound.hasKey("uniqueIDs")) {
+			uniqueIDs = nbttagcompound.getInteger("uniqueIDs");
+		} else {
+			uniqueIDs =Integer.MIN_VALUE;
+		}
 		setInformation(trainType, trainOwner, trainCreator, trainName, uniqueID);
 
 		numberOfTrains = nbttagcompound.getInteger("numberOfTrains");

@@ -102,7 +102,7 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 				par3List.add("\u00a77" + "Owner: " + var5.getString("trainOwner"));
 			}
 
-			if (var5.hasKey("color")) {
+			if (var5.hasKey("treinColor")) {
 				par3List.add("\u00a77" + "Color: " + AbstractTrains.getColorAsString(var5.getInteger("trainColor")));
 			}
 
