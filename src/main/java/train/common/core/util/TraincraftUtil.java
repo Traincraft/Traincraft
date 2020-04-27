@@ -95,7 +95,7 @@ public class TraincraftUtil{
         double rotationCos1 = Math.cos(Math.toRadians(transport.renderYaw+((transport instanceof Locomotive)?90:180)));
         double rotationSin1 = Math.sin(Math.toRadians(transport.renderYaw+((transport instanceof Locomotive)?90:180)));
         float pitch = (float) (transport.posY + (Math.tan(pitchRads) * distance) + transport.getMountedYOffset()
-                + transport.riddenByEntity.getYOffset() + yOffset);
+                + transport.riddenByEntity.getYOffset() + yOffset+0.2f);
         float pitch1 = (float)(transport.posY + transport.getMountedYOffset() + transport.riddenByEntity.getYOffset() + yOffset);
         if(transport.side.isServer()){
             rotationCos1 =  Math.cos(Math.toRadians(transport.serverRealRotation + 90));
