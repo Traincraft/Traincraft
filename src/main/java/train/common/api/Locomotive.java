@@ -1023,7 +1023,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
                     //The ATO system is speeding somehow, slow it down
                     slow(this.speedLimit);
                 }
-                if (this.distanceFromStopPoint < 2 || this.distanceFromStationStop < 2) {
+                if (this.distanceFromStopPoint < 2 || this.distanceFromStationStop < 2 && !stationStop) {
                     this.parkingBrake = true;
                     this.isBraking = true;
                     if (this.distanceFromStopPoint < 2) {
@@ -1034,6 +1034,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
                         this.xStationStop = 0.0;
                         this.yStationStop = 0.0;
                         this.zStationStop = 0.0;
+                        this.distanceFromStationStop = 0.0;
                     }
                     this.atoStatus = 0;
                     this.stationStop = true;
