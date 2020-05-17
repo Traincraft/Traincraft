@@ -14,6 +14,7 @@ import cpw.mods.fml.common.registry.VillagerRegistry;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
@@ -35,6 +36,7 @@ import train.common.library.Info;
 import train.common.recipes.AssemblyTableRecipes;
 
 import java.io.File;
+import java.net.HttpURLConnection;
 
 @Mod(modid = Info.modID, name = Info.modName, version = Info.modVersion)
 public class Traincraft {
@@ -205,7 +207,9 @@ public class Traincraft {
 		tcLog.info("Activation Mod Compatibility");
 		TrainModCore.ModsLoaded();
 		LiquidManager.getLiquidsFromDictionnary();
-
+		if (Loader.isModLoaded("OpenComputers")) {
+			tcLog.info("OpenComputers integration successfully activated!");
+		}
 		tcLog.info("Finished PostInitialization");
 	}
 

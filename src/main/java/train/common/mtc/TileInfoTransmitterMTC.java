@@ -1,11 +1,16 @@
 package train.common.mtc;
 
 
+import cpw.mods.fml.common.Optional;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import dan200.computercraft.api.lua.ILuaContext;
 import dan200.computercraft.api.lua.LuaException;
 import dan200.computercraft.api.peripheral.IComputerAccess;
 import dan200.computercraft.api.peripheral.IPeripheral;
+import li.cil.oc.api.machine.Arguments;
+import li.cil.oc.api.machine.Callback;
+import li.cil.oc.api.machine.Context;
+import li.cil.oc.api.network.SimpleComponent;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
@@ -15,10 +20,10 @@ import train.common.api.Locomotive;
 import train.common.mtc.packets.PacketMTC;
 
 import java.util.List;
-
-public class TileInfoTransmitterMTC extends TileEntity implements IPeripheral {
+@Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = "OpenComputers")
+public class TileInfoTransmitterMTC extends TileEntity implements IPeripheral, SimpleComponent {
     public World world;
-    public int MTCInfo = 0;
+    public int MTCInfo = 1;
     //MTC Info Transmitter Statues:
     //MTC 0 = Nothing, really/Inactive
     //MTC 1 = MTC Start
@@ -28,7 +33,7 @@ public class TileInfoTransmitterMTC extends TileEntity implements IPeripheral {
 	public String stationName = "";
 	public String serverUUID = "";
 	public String signalBlock = "";
-	public int mtcType = 0;
+	public int mtcType = 1;
     public boolean enforceSpeedLimits = false;
 
     public TileInfoTransmitterMTC() {
@@ -146,7 +151,6 @@ public class TileInfoTransmitterMTC extends TileEntity implements IPeripheral {
                 activated = false;
                 return new Object[]{true};
 
-
             } case 4: {
                stationName = arguments[0].toString();
                 return new Object[]{true};
@@ -182,5 +186,47 @@ public class TileInfoTransmitterMTC extends TileEntity implements IPeripheral {
     @Override
     public boolean equals(IPeripheral other) {
         return false;
+    }
+
+    @Override
+    public String getComponentName() {
+        return "info_transmitter_mtc";
+    }
+
+    @Callback
+    @Optional.Method(modid = "OpenComputers")
+    public Object[] activate(Context context, Arguments args) {
+        this.activated = true;
+        return new Object[]{true};
+    }
+    @Callback
+    @Optional.Method(modid = "OpenComputers")
+    public Object[] deactivate(Context context, Arguments args) {
+        this.activated = false;
+        return new Object[]{true};
+    }
+    @Callback
+    @Optional.Method(modid = "OpenComputers")
+    public Object[] setMTCStatus(Context context, Arguments args) {
+        if (args.isInteger(0)) { this.MTCInfo = args.checkInteger(0);}
+        return new Object[]{true};
+    }
+    @Callback
+    @Optional.Method(modid = "OpenComputers")
+    public Object[] setServerUUID(Context context, Arguments args) {
+        if (args.isString(0)) { this.serverUUID = args.checkString(0);}
+        return new Object[]{true};
+    }
+    @Callback
+    @Optional.Method(modid = "OpenComputers")
+    public Object[] setMTCType(Context context, Arguments args) {
+        if (args.isInteger(0)) { this.mtcType = args.checkInteger(0);}
+        return new Object[]{true};
+    }
+    @Callback
+    @Optional.Method(modid = "OpenComputers")
+    public Object[] enforceSpeedLimits(Context context, Arguments args) {
+        if (args.isBoolean(0)) { this.enforceSpeedLimits = args.isBoolean(0);}
+        return new Object[]{true};
     }
 }

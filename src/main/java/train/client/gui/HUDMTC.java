@@ -36,21 +36,6 @@ public class HUDMTC extends GuiScreen {
 			/**
 			 * Steam Train have water
 			 */
-			String mtcStatus = "";
-			if (rcCar.mtcStatus == 0) {
-				mtcStatus = "Inactive";
-			}
-
-			if (rcCar.mtcStatus == 1) {
-				mtcStatus = "Active";
-			}
-			if (rcCar.mtcStatus == 2) {
-				mtcStatus = "Ending Soon";
-			}
-			if (rcCar.mtcStatus == 3) {
-
-				mtcStatus = "Ended";
-			}
 			int width = this.game.fontRenderer.getStringWidth("Speed Limit: " + rcCar.speedLimit + " km/h");
 
 			int width2 = this.game.fontRenderer.getStringWidth("");
@@ -88,7 +73,7 @@ public class HUDMTC extends GuiScreen {
 			//hey
 
 		}
-
+		//System.out.println(rcCar.ticksExisted % 21);
 		if (rcCar.ticksExisted % 21 == 0 && rcCar.mtcStatus == 2) {
 			if (mtcIconOnOff) {
 				mtcIconOnOff = false;
@@ -108,7 +93,6 @@ public class HUDMTC extends GuiScreen {
 				} else {
 					drawTexturedRect(new ResourceLocation(Info.resourceLocation, Info.guiPrefix + "mtcicon2.png"), 12, 45, 0, 0, 64, 64, 64, 64, 0.25);
 				}
-
 			}
 		}
 

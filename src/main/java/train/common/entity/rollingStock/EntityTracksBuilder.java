@@ -636,17 +636,6 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 		}
 
 	}
-
-	/**
-	 * Check if block is unharvestable
-	 *
-	 * @param pos
-	 * @param id block id
-	 * @return is not harvested
-	 */
-	private boolean shouldIgnoreBlockForHarvesting(Vec3 pos, int id) {
-		return(id == 0 || Block.getBlockById(id) == null || id == Block.getIdFromBlock(Blocks.bedrock) || id == Block.getIdFromBlock(Blocks.fire) || id == Block.getIdFromBlock(Blocks.portal) || id == Block.getIdFromBlock(Blocks.end_portal) || Block.getBlockById(id) instanceof BlockLiquid || id == 55 || id == 70 || id == 72);
-	}
 	
 	/**
 	 * Spawn breaking particles for blockparticles
@@ -824,35 +813,33 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 
 		Block block =  worldObj.getBlock(i, j, k);
 
-		int id = Block.getIdFromBlock(block);
 		int meta = worldObj.getBlockMetadata(i, j, k);
 
-		if(shouldIgnoreBlockForHarvesting(Vec3.createVectorHelper(i, j, k),
-				Block.getIdFromBlock(block))) {
-			// drop Maybe need a rework
-			if (id != 0) {
-				ArrayList<ItemStack> stacks = new ArrayList<ItemStack>(TrainModBlockUtil.getItemStackFromBlock(worldObj, i, j, k));
+		if (block.getDrops(worldObj, i, j, k, meta, 0).size()>0) {
 
-				for (ItemStack s : stacks) {
-					// we do not destroy rails
-					if( (BlockRailBase.func_150051_a(Block.getBlockFromItem(s.getItem()))))return;
-				
-					if (Item.getIdFromItem(s.getItem()) != 0
-							&& (s.getItem() != Item.getItemFromBlock(Block.getBlockFromName("glass")))) {
-						//&& (Item.getIdFromItem(s.getItem())) != Item.getIdFromItem(tunnelBlockStack.getItem())) {
+			ArrayList<ItemStack> stacks = new ArrayList<ItemStack>(block.getDrops(worldObj, i, j, k, meta, 0));
 
-					//if ((Block.getIdFromBlock(worldObj.getBlock(i, j, k)) != Item.getIdFromItem(tunnelBlockStack.getItem()))) {
-						putInInvent(s);
-					//}
-					}
-				}
+			for (ItemStack s : stacks) {
+				// we do not destroy rails
+				//if( (BlockRailBase.func_150051_a(Block.getBlockFromItem(s.getItem()))))return;
+
+				//if (Item.getIdFromItem(s.getItem()) != 0
+				//		&& (s.getItem() != Item.getItemFromBlock(Block.getBlockFromName("glass")))) {
+					//&& (Item.getIdFromItem(s.getItem())) != Item.getIdFromItem(tunnelBlockStack.getItem())) {
+
+				//if ((Block.getIdFromBlock(worldObj.getBlock(i, j, k)) != Item.getIdFromItem(tunnelBlockStack.getItem()))) {
+					putInInvent(s);
+				//}
+				//}
 			}
 		}
-			// mining effect
-		if (Block.getBlockById(id) != null && id != 0 && !worldObj.isRemote) {
+		// mining effect
+		if (!worldObj.isRemote) {
+			int id= Block.getIdFromBlock(block);
 			this.playMiningEffect(Vec3.createVectorHelper(i, j, k), id);
 			worldObj.playAuxSFX(2001, i, j, k, id + (meta << 12));
 		}
+
 	}
 
 	private boolean replaceBlockAt(int i, int j, int k, int inventoryId) {
@@ -916,7 +903,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 
 	private boolean placeRailAt(int i, int j, int k) {
 
-		int inventoryId = this.slotId_Rail;
+		int inventoryId = slotId_Rail;
 
 		if(BuilderInvent[inventoryId] == null)
 			return false;
@@ -943,7 +930,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 
 				// place new block
 			worldObj.setBlockToAir(i, j, k);
-			boolean success = this.placeRailAt(this, BuilderInvent[inventoryId], worldObj, i, j, k);
+			boolean success = placeRailAt(this, BuilderInvent[inventoryId], worldObj, i, j, k);
 
 			if(success) {
 				BuilderInvent[inventoryId].stackSize--; // ok ?

@@ -193,7 +193,7 @@ public enum RenderEnum {
 			add(new double[] { 3.0D, 1.4D, 0.0D });
 		}
 	}, "", null, 0, true),
-	locoV60_DB(EntityLocoDieselV60_DB.class, new ModelV60(), "locoV60_DB_", true, new float[] { -0.5F, -0.44F, 0.0F }, null, null, "smoke", 4, new ArrayList<double[]>() {
+	locoV60_DB(EntityLocoDieselV60_DB.class, new ModelV60(), "locoV60_DB_", true, new float[] { -0.75F, -0.44F, 0.0F }, null, null, "smoke", 4, new ArrayList<double[]>() {
 		{
 			add(new double[] { 0.75D, 1.7D, 0.0D });
 		}

@@ -122,7 +122,7 @@ public class EntityLocoDieselV60_DB extends DieselTrain {
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return (1.5F);
+		return (1.3F);
 	}
 
 	@Override

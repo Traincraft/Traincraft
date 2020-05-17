@@ -47,7 +47,7 @@ public class TCKeyHandler {
 		ClientRegistry.registerKeyBinding(idle);
 		furnace = new KeyBinding("key.traincraft.furnace", Keyboard.KEY_F, "key.categories.traincraft");
 		ClientRegistry.registerKeyBinding(furnace);
-		if (Loader.isModLoaded("ComputerCraft")) {
+		if (Loader.isModLoaded("ComputerCraft") || Loader.isModLoaded("OpenComputers")) {
 			MTCScreen = new KeyBinding("key.traincraft.showMTCScreen", Keyboard.KEY_M, "key.categories.traincraft");
 			ClientRegistry.registerKeyBinding(MTCScreen);
 			toggleATO = new KeyBinding("key.traincraft.toggleATO", Keyboard.KEY_O, "key.categories.traincraft");
@@ -96,85 +96,7 @@ public class TCKeyHandler {
 			if (furnace.isPressed()) {
 				sendKeyControlsPacket(9);
 			}
-
-			/*if (remoteControlForward.isPressed() && hasController) {
-				ItemRemoteController theController = (ItemRemoteController)currentItem;
-				if (theController.attachedLoco != null) {
-					theController.sendKeyPacket(4);
-					System.out.println("Forward!!");
-				} else {
-					Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText("The controller is not paired to a train yet!"));
-				}
-
-			} else if (!remoteControlForward.isPressed() && hasController) {
-				ItemRemoteController theController = (ItemRemoteController)currentItem;
-				if (theController.attachedLoco != null) {
-					theController.sendKeyPacket(13);
-				}
-			}
-
-			if (remoteControlBackwards.isPressed() && hasController) {
-				ItemRemoteController theController = (ItemRemoteController)currentItem;
-				if (theController.attachedLoco != null) {
-					theController.sendKeyPacket(5);
-				} else {
-					Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText("The controller is not paired to a train yet!"));
-				}
-			}  else if (!remoteControlBackwards.isPressed() && hasController) {
-				ItemRemoteController theController = (ItemRemoteController)currentItem;
-				if (theController.attachedLoco != null) {
-					theController.sendKeyPacket(14);
-				}
-			}
-
-			if (remoteControlHorn.isPressed() && hasController) {
-				ItemRemoteController theController = (ItemRemoteController)currentItem;
-				if (theController.attachedLoco != null) {
-					theController.sendKeyPacket(8);
-				} else {
-					Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText("The controller is not paired to a train yet!"));
-				}
-			}
-
-			if (remoteControlBrake.isPressed() && hasController) {
-				ItemRemoteController theController = (ItemRemoteController)currentItem;
-				if (theController.attachedLoco != null) {
-					theController.sendKeyPacket(12);
-				} else {
-					Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText("The controller is not paired to a train yet!"));
-				}
-			}  else if (!remoteControlBrake.isPressed() && hasController) {
-				ItemRemoteController theController = (ItemRemoteController)currentItem;
-				if (theController.attachedLoco != null) {
-					theController.sendKeyPacket(15);
-				}
-			}
-
-}*/
-			if (remoteControlParkingBrake.isPressed() && hasController) {
-				ItemRemoteController theController = (ItemRemoteController) currentItem;
-				if (theController.attachedLoco != null) {
-					if (theController.attachedLoco.getParkingBrakeFromPacket()) {
-						theController.sendParkingBrake(false);
-					} else {
-						theController.sendParkingBrake(true);
-					}
-				} else {
-					Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText("The controller is not paired to a train yet!"));
-				}
-
-			}
-
-			if (remoteControlHorn.isPressed() && hasController) {
-				ItemRemoteController theController = (ItemRemoteController)currentItem;
-				if (theController.attachedLoco != null) {
-					theController.sendKeyPacket(8);
-				} else {
-					Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText("The controller is not paired to a train yet!"));
-				}
-			}
-
-			if (Loader.isModLoaded("ComputerCraft")) {
+			if (Loader.isModLoaded("ComputerCraft") || Loader.isModLoaded("OpenComputers")) {
 				if (MTCScreen.isPressed() && !FMLClientHandler.instance().isGUIOpen(GuiMTCInfo.class)) {
 					if (Minecraft.getMinecraft().thePlayer.ridingEntity != null && Minecraft.getMinecraft().thePlayer.ridingEntity instanceof Locomotive) {
 //&&((Locomotive)Minecraft.getMinecraft().thePlayer.ridingEntity).getTrainOwner().equals(Minecraft.getMinecraft().thePlayer.getDisplayName()))

@@ -237,7 +237,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		Block block = this.worldObj.getBlock(MathHelper.floor_double(this.posX),
 				MathHelper.floor_double(this.posY), MathHelper.floor_double(this.posZ));
 		
-		if(!(BlockRailBase.func_150051_a(block) || block == BlockIDs.tcRail.block || block == BlockIDs.tcRailGag.block)) {
+		if(block.getMaterial()== Material.air) {
 			block = this.worldObj.getBlock(MathHelper.floor_double(this.posX),
 					MathHelper.floor_double(this.posY)-1, MathHelper.floor_double(this.posZ));
 
@@ -396,7 +396,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		        	TileEntity tileEntity = this.worldObj.getTileEntity(i, j, k);
 		        	TileTCRail tileRail;
 
-					if (block == BlockIDs.tcRailGag.block && tileEntity instanceof TileTCRailGag) {
+					if (tileEntity instanceof TileTCRailGag) {
 						TileTCRailGag tileGag = (TileTCRailGag) tileEntity;
 						tileEntity = this.worldObj.getTileEntity(tileGag.originX, tileGag.originY, tileGag.originZ);
 					}
