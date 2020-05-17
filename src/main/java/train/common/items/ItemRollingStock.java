@@ -37,8 +37,6 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 
 	private String iconName = "";
 	private String trainName;
-	private int trainColor = -1;
-	private String persistentUUID="";
 
 	public ItemRollingStock(String iconName) {
 		super(1);
@@ -75,7 +73,7 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 					tag.setInteger("trainColor",train.getEntityData().getInteger("color"));
 				}
 			} else {
-				tag.setString("trainCreator", player!=null?player.getDisplayName():"");
+				tag.setString("trainCreator", player!=null?player.getDisplayName():"Creative");
 			}
 			tag.setInteger("uniqueID", trainID==null?AbstractTrains.uniqueIDs++:trainID);
 
@@ -104,7 +102,7 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 				par3List.add("\u00a77" + "Owner: " + var5.getString("trainOwner"));
 			}
 
-			if (var5.hasKey("color")) {
+			if (var5.hasKey("treinColor")) {
 				par3List.add("\u00a77" + "Color: " + AbstractTrains.getColorAsString(var5.getInteger("trainColor")));
 			}
 
@@ -392,9 +390,9 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 						rollingStock.uniqueID = uniID;
 					if (uniID != -1)
 						rollingStock.getEntityData().setInteger("uniqueID", uniID);
-					trainColor = var5.getInteger("trainColor");
-					if (var5.hasKey("trainColor"))
-						rollingStock.setColor(trainColor);
+					if (var5.hasKey("trainColor")) {
+						rollingStock.setColor(var5.getInteger("trainColor"));
+					}
 					rollingStock.trainCreator = var5.getString("trainCreator");
 				}
 				if(itemstack.hasTagCompound()) {

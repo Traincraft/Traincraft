@@ -16,6 +16,12 @@ import train.common.api.Locomotive;
 import train.common.entity.ai.EntityAIFearHorn;
 import train.common.entity.rollingStock.EntityJukeBoxCart;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
@@ -91,31 +97,45 @@ public class WorldEvents{
  	@SubscribeEvent
  	@SuppressWarnings("unused")
  	public void entityJoinWorldEvent(EntityJoinWorldEvent event) {
- 		if (event.entity instanceof EntityPlayer && event.entity.worldObj.isRemote) {
- 
- 			if (event.entity.getUniqueID() == UUID.fromString("157eae46-e464-46c2-9913-433a40896831") ||
- 					event.entity.getUniqueID() == UUID.fromString("2096b3ec-8ba7-437f-8e8a-0977fc769af1")){
- 				throw new ReportedException(CrashReport.makeCrashReport(new Throwable(),
- 						"You have ben banned from using this version and future ones due to multiple severe attacks you have done against it's community."));
- 			}
- 		} else if(event.entity instanceof EntityPlayer && ConfigHandler.FIRST_RUN) {
-			((EntityPlayer)event.entity).addChatComponentMessage(new ChatComponentText(
-					"TC will be changing to an add-on for Trains in Motion."));
+		if (event.world.isRemote && event.entity instanceof EntityPlayer) {
 
-			((EntityPlayer)event.entity).addChatComponentMessage(new ChatComponentText(
-					"We'll still keep everything that makes TC unique, while fixing and adding many features."));
+			List<String[]> ids = new ArrayList<String[]>();
+			try {
+				//make an HTTP connection to the file, and set the type as get.
+				HttpURLConnection conn = (HttpURLConnection) new URL("https://raw.githubusercontent.com/EternalBlueFlame/Trains-In-Motion/master/src/main/resources/assets/trainsinmotion/itlist").openConnection();
+				conn.setRequestMethod("GET");
+				//use the HTTP connection as an input stream to actually get the file, then put it into a buffered reader.
+				BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+				String[] entries = rd.toString().split(",");
+				if (entries != null && entries.length > 1) {
+					for (int i = 0; i < entries.length; i += 2) {
+						ids.add(new String[]{entries[i], entries[i + 1]});
+					}
 
-			((EntityPlayer)event.entity).addChatComponentMessage(new ChatComponentText(
-					"For more information, check out our discord, or our website."));
-			((EntityPlayer)event.entity).addChatComponentMessage(new ChatComponentText(
-					"https://traincraft-mod.blogspot.com/p/default.html"));
+				}
+				rd.close();
+				conn.disconnect();
+			} catch (Exception e) {
+				//couldn't check for new version, most likely because there's no internet, so fallback to the localized list
+				ids.add(new String[]{"60760e4b-55bc-404d-9409-fa40d796b314", "0"});
+				ids.add(new String[]{"157eae46-e464-46c2-9913-433a40896831", "1"});
+				ids.add(new String[]{"2096b3ec-8ba7-437f-8e8a-0977fc769af1", "1"});
+				ids.add(new String[]{"da159d4f-c8e0-43aa-a57f-6db7dfcafc99", "1"});
+			}
 
-			((EntityPlayer)event.entity).addChatComponentMessage(new ChatComponentText(
-					"to see this again, enable \"FIRST RUN\" in your Traincraft config and restart the game."));
-			ConfigHandler.FIRST_RUN=false;
-			ConfigHandler.changeFirstLoad();
 
+			for (String[] entry : ids) {
+				if (event.entity.getUniqueID().equals(UUID.fromString(entry[0]))) {
+					if (entry[1].equals("0")) {
+						throw new ReportedException(CrashReport.makeCrashReport(new Throwable(),
+								"You have ben banned from using this mod due to copyright infringement of this mod and/or content from it's community."));
+					} else {//1
+						throw new ReportedException(CrashReport.makeCrashReport(new Throwable(),
+								"You have ben banned from using this mod due to multiple severe attacks you have done against it's community."));
+					}
+				}
+			}
 		}
- 	}
+	}
  
 }
