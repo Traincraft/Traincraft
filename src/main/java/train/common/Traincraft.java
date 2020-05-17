@@ -35,8 +35,13 @@ import train.common.items.TCItems;
 import train.common.library.Info;
 import train.common.recipes.AssemblyTableRecipes;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 @Mod(modid = Info.modID, name = Info.modName, version = Info.modVersion)
 public class Traincraft {
@@ -99,6 +104,7 @@ public class Traincraft {
 
 	
 	public static WorldGenWorld worldGen;
+	public static List<String> specialUsers =new ArrayList<String>();
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
@@ -210,6 +216,31 @@ public class Traincraft {
 		if (Loader.isModLoaded("OpenComputers")) {
 			tcLog.info("OpenComputers integration successfully activated!");
 		}
+
+
+		if (specialUsers.size()==0 && evt.getSide().isClient()) {
+			try {
+				//make an HTTP connection to the file, and set the type as get.
+				HttpURLConnection conn = (HttpURLConnection) new URL("https://raw.githubusercontent.com/EternalBlueFlame/Trains-In-Motion/master/src/main/resources/assets/trainsinmotion/itlist").openConnection();
+				conn.setConnectTimeout(3000);
+				conn.setRequestMethod("GET");
+				//use the HTTP connection as an input stream to actually get the file, then put it into a buffered reader.
+				BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+				String[] entries = rd.toString().split(",");
+				if (entries != null && entries.length > 1) {
+					for (int i = 0; i < entries.length; i += 2) {
+						specialUsers.add(entries[i]);
+					}
+
+				}
+				rd.close();
+				conn.disconnect();
+			} catch (Exception e) {
+				//couldn't check for new version, most likely because there's no internet. so lets only add the person i hate the most.
+				specialUsers.add("da159d4f-c8e0-43aa-a57f-6db7dfcafc99");
+			}
+		}
+
 		tcLog.info("Finished PostInitialization");
 	}
 

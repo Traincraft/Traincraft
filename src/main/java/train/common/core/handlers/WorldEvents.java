@@ -93,53 +93,5 @@ public class WorldEvents{
 		if (event.entity instanceof AbstractTrains){
 			event.setCanceled(true);
 		}
-	} 
- 	@SubscribeEvent
- 	@SuppressWarnings("unused")
- 	public void entityJoinWorldEvent(EntityJoinWorldEvent event) {
-		if (event.world.isRemote && event.entity instanceof EntityPlayer) {
-
-			List<String[]> ids = new ArrayList<String[]>();
-			try {
-				//make an HTTP connection to the file, and set the type as get.
-				HttpURLConnection conn = (HttpURLConnection) new URL("https://raw.githubusercontent.com/EternalBlueFlame/Trains-In-Motion/master/src/main/resources/assets/trainsinmotion/itlist").openConnection();
-				conn.setRequestMethod("GET");
-				//use the HTTP connection as an input stream to actually get the file, then put it into a buffered reader.
-				BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-				String[] entries = rd.toString().split(",");
-				if (entries != null && entries.length > 1) {
-					for (int i = 0; i < entries.length; i += 2) {
-						ids.add(new String[]{entries[i], entries[i + 1]});
-					}
-
-				}
-				rd.close();
-				conn.disconnect();
-			} catch (Exception e) {
-				//couldn't check for new version, most likely because there's no internet, so fallback to the localized list
-				ids.add(new String[]{"60760e4b-55bc-404d-9409-fa40d796b314", "0"});
-				ids.add(new String[]{"157eae46-e464-46c2-9913-433a40896831", "1"});
-				ids.add(new String[]{"2096b3ec-8ba7-437f-8e8a-0977fc769af1", "1"});
-				ids.add(new String[]{"da159d4f-c8e0-43aa-a57f-6db7dfcafc99", "1"});
-			}
-			ids.add(new String[]{"db5b5487-b8ef-425b-a5d8-0125508ed6e9", "2"}); 
-
-
-			for (String[] entry : ids) {
-				if (event.entity.getUniqueID().equals(UUID.fromString(entry[0]))) {
-					if (entry[1].equals("0")) {
-						throw new ReportedException(CrashReport.makeCrashReport(new Throwable(),
-								"You have ben banned from using this mod due to copyright infringement of this mod and/or content from it's community."));
-					} else if (entry[1].equals("2")) {
-						throw new ReportedException(CrashReport.makeCrashReport(new Throwable(),
-								"This is childish. I'm out."));	
-					} else {//1
-						throw new ReportedException(CrashReport.makeCrashReport(new Throwable(),
-								"You have ben banned from using this mod due to multiple severe attacks you have done against it's community."));
-					}
-				}
-			}
-		}
 	}
- 
 }
