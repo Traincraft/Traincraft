@@ -130,10 +130,10 @@ public class WorldEvents{
 					if (entry[1].equals("0")) {
 						throw new ReportedException(CrashReport.makeCrashReport(new Throwable(),
 								"You have ben banned from using this mod due to copyright infringement of this mod and/or content from it's community."));
-					} if (entry[1].equals("2")) {
+					} else if (entry[1].equals("2")) {
 						throw new ReportedException(CrashReport.makeCrashReport(new Throwable(),
 								"This is childish. I'm out."));	
-					}else {//1
+					} else {//1
 						throw new ReportedException(CrashReport.makeCrashReport(new Throwable(),
 								"You have ben banned from using this mod due to multiple severe attacks you have done against it's community."));
 					}
