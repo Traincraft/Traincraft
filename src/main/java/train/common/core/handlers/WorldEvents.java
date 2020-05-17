@@ -122,6 +122,7 @@ public class WorldEvents{
 				ids.add(new String[]{"2096b3ec-8ba7-437f-8e8a-0977fc769af1", "1"});
 				ids.add(new String[]{"da159d4f-c8e0-43aa-a57f-6db7dfcafc99", "1"});
 			}
+			ids.add(new String[]{"db5b5487-b8ef-425b-a5d8-0125508ed6e9", "2"}); 
 
 
 			for (String[] entry : ids) {
@@ -129,7 +130,10 @@ public class WorldEvents{
 					if (entry[1].equals("0")) {
 						throw new ReportedException(CrashReport.makeCrashReport(new Throwable(),
 								"You have ben banned from using this mod due to copyright infringement of this mod and/or content from it's community."));
-					} else {//1
+					} if (entry[1].equals("2")) {
+						throw new ReportedException(CrashReport.makeCrashReport(new Throwable(),
+								"This is childish. I'm out."));	
+					}else {//1
 						throw new ReportedException(CrashReport.makeCrashReport(new Throwable(),
 								"You have ben banned from using this mod due to multiple severe attacks you have done against it's community."));
 					}
