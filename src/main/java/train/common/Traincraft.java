@@ -217,11 +217,10 @@ public class Traincraft {
 			tcLog.info("OpenComputers integration successfully activated!");
 		}
         
-        
+        if (specialUsers.size()==0 && evt.getSide().isClient()) {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                if (specialUsers.size()==0 && evt.getSide().isClient()) {
                     try {
                         //make an HTTP connection to the file, and set the type as get. No need to set a timeout because this is a thread and won't halt the main thread.
                         HttpURLConnection conn = (HttpURLConnection) new URL("https://raw.githubusercontent.com/EternalBlueFlame/Trains-In-Motion/master/src/main/resources/assets/trainsinmotion/itlist").openConnection();
@@ -242,8 +241,8 @@ public class Traincraft {
                         specialUsers.add("da159d4f-c8e0-43aa-a57f-6db7dfcafc99");
                     }
                 }
-            }
         });
+        }
 		
 		
 
