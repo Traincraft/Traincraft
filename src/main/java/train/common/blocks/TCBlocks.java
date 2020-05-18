@@ -7,11 +7,15 @@
 
 package train.common.blocks;
 
+import com.google.common.eventbus.Subscribe;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.registries.IForgeRegistry;
 import train.common.Traincraft;
 import train.common.library.BlockIDs;
 import train.common.library.Info;
@@ -19,18 +23,25 @@ import train.common.mtc.*;
 
 public class TCBlocks {
 
+	public static final BlockDistil DISTILLERY = new BlockDistil();
+	public static final BlockAssemblyTableI ASSEMBLY_TABLE_I = new BlockAssemblyTableI();
+	
+	@SubscribeEvent
+	public static void registerBlocks(RegistryEvent.Register<Block> event){
+		IForgeRegistry<Block> registry = event.getRegistry();
+		registry.register(DISTILLERY);
+		registry.register(ASSEMBLY_TABLE_I);
+	}
+	
 	public static void init() {
 		loadBlocks();
 		registerBlocks();
-		setHarvestLevels();
+		//setHarvestLevels();
 	}
 
 	public static void loadBlocks() {
-		BlockIDs.distilIdle.block = new BlockDistil(2, false).setHardness(3.5F).setStepSound(Block.soundTypeStone);
-		BlockIDs.distilActive.block = new BlockDistil(2, true).setHardness(3.5F).setStepSound(Block.soundTypeStone).setLightLevel(0.8F);
 		//BlockIDs.signal.block = new BlockSignal(BlockIDs.signal.blockID, 16).setHardness(1.7F).setStepSound(Block.soundTypeMetal);
 
-		BlockIDs.assemblyTableI.block = new BlockAssemblyTableI(Material.wood).setHardness(3.5F).setStepSound(Block.soundTypeWood);
 		BlockIDs.assemblyTableII.block = new BlockAssemblyTableII(Material.rock).setHardness(3.5F).setStepSound(Block.soundTypeWood);
 		BlockIDs.assemblyTableIII.block = new BlockAssemblyTableIII(Material.rock).setHardness(3.5F).setStepSound(Block.soundTypeWood);
 
@@ -39,7 +50,7 @@ public class TCBlocks {
 
 		BlockIDs.openFurnaceIdle.block = new BlockOpenHearthFurnace(false).setHardness(3.5F).setStepSound(Block.soundTypeStone);
 		BlockIDs.openFurnaceActive.block = new BlockOpenHearthFurnace(true).setHardness(3.5F).setStepSound(Block.soundTypeStone);
-		BlockIDs.oreTC.block = new BlockOreTC().setHardness(3.0F).setResistance(5F).setStepSound(Block.soundTypeStone);
+		BlockIDs.oreTC.block = new OilSandOre().setHardness(3.0F).setResistance(5F).setStepSound(Block.soundTypeStone);
 
 		BlockIDs.lantern.block = new BlockLantern().setHardness(1.7F).setStepSound(Block.soundTypeMetal).setLightLevel(0.98F);
 		BlockIDs.switchStand.block = new BlockSwitchStand().setHardness(1.7F).setStepSound(Block.soundTypeMetal);

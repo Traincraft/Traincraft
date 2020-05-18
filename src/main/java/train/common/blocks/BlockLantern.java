@@ -1,62 +1,52 @@
 package train.common.blocks;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.IIcon;
-import net.minecraft.world.World;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.EnumBlockRenderType;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import train.common.Traincraft;
-import train.common.items.ItemWrench;
-import train.common.library.GuiIDs;
 import train.common.library.Info;
-import train.common.tile.TileLantern;
 
-import java.util.Random;
-
+/**
+ * In 1.7 the lantern has a tile entity to do the coloring. It would be better if the color is handled within the block.
+ * This includes deleting the tile entity and maybe using right lick with itemdye for color change
+ */
 public class BlockLantern extends Block {
-	private IIcon texture;
 
+	public static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(0.2F, 0.0F, 0.2F, 0.7F, 0.9F, 0.7F);
+	
 	public BlockLantern() {
-		super(Material.rock);
-		setCreativeTab(Traincraft.tcTab);
+		super(Material.ROCK);
+		this.setRegistryName(Info.modID, "lantern");
+		this.setCreativeTab(Traincraft.tcTab);
 		this.setTickRandomly(true);
-		float f = 0.3F;
-		this.setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, f * 3.0F, 0.5F + f);
 	}
-
+	
 	@Override
-	public boolean hasTileEntity(int metadata) {
-		return true;
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+		return BOUNDING_BOX;
 	}
-
+	
 	@Override
-	public boolean renderAsNormalBlock() {
+	public EnumBlockRenderType getRenderType(IBlockState state) {
+		return EnumBlockRenderType.MODEL;
+	}
+	
+	@Override
+	public boolean isFullBlock(IBlockState state) {
+		return false;
+	}
+	
+	@Override
+	public boolean isOpaqueCube(IBlockState state) {
 		return false;
 	}
 
-	@Override
-	public boolean isOpaqueCube() {
-		return false;
-	}
-
-	@Override
-	public TileEntity createTileEntity(World world, int metadata) {
-		return new TileLantern();
-	}
-
-	@Override
-	public int getRenderType() {
-		return -1;
-	}
-
+	/* todo particles for lantern
 	@SideOnly(Side.CLIENT)
-	/**
-	 * A randomly called display update to be able to add particles or other items for display
-	 */
 	@Override
 	public void randomDisplayTick(World par1World, int par2, int par3, int par4, Random par5Random) {
 		double d0 = (double) ((float) par2 + 0.5F);
@@ -67,26 +57,6 @@ public class BlockLantern extends Block {
 		par1World.spawnParticle("flame", d0, par3 + d3, d2, 0.0D, 0.0D, 0.0D);
 
 	}
-	@Override
-	public boolean onBlockActivated(World world, int i, int j, int k, EntityPlayer player, int par6, float par7, float par8, float par9) {
-		TileEntity te = world.getTileEntity(i, j, k);
-		if (player.isSneaking()) {
-			return false;
-		}
-		if(player!=null && player.getCurrentEquippedItem()!=null && player.getCurrentEquippedItem().getItem() instanceof ItemWrench)
-		if (te != null && te instanceof TileLantern) {
-			player.openGui(Traincraft.instance, GuiIDs.LANTERN, world, i, j, k);
-		}
-		return true;
-	}
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(IIconRegister iconRegister) {
-		texture = iconRegister.registerIcon(Info.modID.toLowerCase() + ":lantern");
-	}
-
-	@Override
-	public IIcon getIcon(int i, int j) {
-		return texture;
-	}
+	*/
+	
 }

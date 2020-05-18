@@ -10,7 +10,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import org.lwjgl.input.Keyboard;
 import train.common.Traincraft;
 import train.common.core.network.PacketLantern;
-import train.common.tile.TileLantern;
 
 @SideOnly(Side.CLIENT)
 public class GuiLantern extends GuiScreen {

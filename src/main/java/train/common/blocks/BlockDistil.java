@@ -1,6 +1,8 @@
 package train.common.blocks;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirectional;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
@@ -27,8 +29,12 @@ public class BlockDistil extends BaseContainerBlock {
 
 	public BlockDistil() {
 		super(Material.ROCK);
-		this.setCreativeTab(Traincraft.tcTab);
 		this.setRegistryName(Info.modID, "distillery");
+		
+		this.setCreativeTab(Traincraft.tcTab);
+		this.setHardness(3.5F);
+		this.setSoundType(SoundType.STONE);
+		
 		this.setDefaultState(this.blockState.getBaseState().withProperty(ACTIVE, false).withProperty(BlockDirectional.FACING, EnumFacing.NORTH));
 	}
 	

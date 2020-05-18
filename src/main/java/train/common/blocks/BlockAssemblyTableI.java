@@ -1,5 +1,7 @@
 package train.common.blocks;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,10 +17,13 @@ import train.common.tile.TileCrafterTierI;
 
 public class BlockAssemblyTableI extends BaseContainerBlock {
 
-	public BlockAssemblyTableI(Material material) {
-		super(material);
-		this.setCreativeTab(Traincraft.tcTab);
+	public BlockAssemblyTableI() {
+		super(Material.WOOD);
 		this.setRegistryName(Info.modID, "assembly_table_1");
+		
+		this.setCreativeTab(Traincraft.tcTab);
+		this.setHardness(3.5F);
+		this.setSoundType(SoundType.WOOD);
 	}
 	
 	@Override

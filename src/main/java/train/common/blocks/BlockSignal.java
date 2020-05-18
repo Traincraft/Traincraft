@@ -26,6 +26,8 @@ import java.util.Random;
  |||+  Mounted		0=no		1=yes
  ||+   Directions	0=both		1=one
  ++    Direction facing	00=north	01=east	10=south	11=west
+ 
+ 18.05.2020 canitzp: This bit mask it too big for a default block and should be changed. Until this the whole class is disabled
  */
 
 public class BlockSignal extends BlockContainer {

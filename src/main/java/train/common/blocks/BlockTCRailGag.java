@@ -1,51 +1,45 @@
 package train.common.blocks;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.IIcon;
-import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.EnumBlockRenderType;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import train.common.Traincraft;
-import train.common.library.BlockIDs;
 import train.common.library.Info;
 import train.common.tile.TileTCRailGag;
 
+import javax.annotation.Nullable;
 import java.util.Random;
 
 public class BlockTCRailGag extends Block {
-	private IIcon texture;
 
 	public BlockTCRailGag() {
-		super(Material.iron);
-		setCreativeTab(Traincraft.tcTab);
-		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.125F, 1.0F);
+		super(Material.IRON);
+		this.setRegistryName(Info.modID, "rail_gag");
+		this.setCreativeTab(Traincraft.tcTab);
 	}
-
-	/**
-	 * Checks to see if its valid to put this block at the specified coordinates. Args: world, x, y, z
-	 */
+	
 	@Override
-	public boolean canPlaceBlockAt(World par1World, int par2, int par3, int par4) {
-		return false;
-	}
-
-	@Override
-	public void breakBlock(World world, int i, int j, int k, Block par5, int par6) {
-		TileTCRailGag tileEntity = (TileTCRailGag) world.getTileEntity(i, j, k);
-		if (tileEntity != null) {
-			// NOTE: func_147480_a = destroyBlock
-			world.func_147480_a(tileEntity.originX, tileEntity.originY, tileEntity.originZ, false);
-			world.removeTileEntity(tileEntity.originX, tileEntity.originY, tileEntity.originZ);
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+		TileEntity tile = source.getTileEntity(pos);
+		if(tile instanceof TileTCRailGag){
+			return BlockTCRail.BOUNDING_BOX.setMaxY(((TileTCRailGag) tile).bbHeight);
 		}
-		world.removeTileEntity(i, j, k);
+		return BlockTCRail.BOUNDING_BOX;
+	}
+	
+	@Override
+	public boolean canPlaceBlockAt(World worldIn, BlockPos pos) {
+		return false;
 	}
 
 	/**
@@ -55,91 +49,41 @@ public class BlockTCRailGag extends Block {
 	public int quantityDropped(Random par1Random) {
 		return 0;
 	}
-
+	
 	@Override
-    public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z, EntityPlayer player) {
-		return null;
+	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
+		return ItemStack.EMPTY;
 	}
 	
 	@Override
-	public void onNeighborBlockChange(World world, int i, int j, int k, Block par5) {
-		TileEntity tileEntity = world.getTileEntity(i, j, k);
-		if (tileEntity instanceof TileTCRailGag) {
-			if (world.isAirBlock(((TileTCRailGag)tileEntity).originX, ((TileTCRailGag)tileEntity).originY, ((TileTCRailGag)tileEntity).originZ)) {
-				// NOTE: func_147480_a = destroyBlock
-				world.func_147480_a(i, j, k, false);
-				world.removeTileEntity(i, j, k);
-			}
-			if (!World.doesBlockHaveSolidTopSurface(world, i, j - 1, k) && world.getBlock(i, j-1, k) != BlockIDs.bridgePillar.block) {
-				// NOTE: func_147480_a = destroyBlock
-				world.func_147480_a(i, j, k, false);
-				world.removeTileEntity(i, j, k);
-			}
-		}
-	}
-
-	/**
-	 * Updates the blocks bounds based on its current state. Args: world, x, y, z
-	 */
-	@Override
-	public void setBlockBoundsBasedOnState(IBlockAccess par1IBlockAccess, int i, int j, int k) {
-		TileEntity tileEntity = par1IBlockAccess.getTileEntity(i, j, k);
-		if (tileEntity instanceof TileTCRailGag) {
-			//System.out.println(tileEntity.type+" "+tileEntity.bbHeight);
-			this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, ((TileTCRailGag)tileEntity).bbHeight, 1.0F);
-		}
-	}
-
-	@Override
-	public boolean hasTileEntity(int metadata) {
+	public boolean hasTileEntity(IBlockState state) {
 		return true;
 	}
-
+	
+	@Nullable
 	@Override
-	public boolean renderAsNormalBlock() {
-		return false;
-	}
-
-	@Override
-	public boolean isOpaqueCube() {
-		return false;
-	}
-
-	@Override
-	public TileEntity createTileEntity(World world, int metadata) {
+	public TileEntity createTileEntity(World world, IBlockState state) {
 		return new TileTCRailGag();
 	}
-
+	
 	@Override
-	public int getRenderType() {
-		return -1;
+	public EnumBlockRenderType getRenderType(IBlockState state) {
+		return EnumBlockRenderType.MODEL;
 	}
-
+	
 	@Override
-	public boolean shouldSideBeRendered(IBlockAccess iblockaccess, int i, int j, int k, int l) {
+	public boolean isFullBlock(IBlockState state) {
 		return false;
 	}
-
+	
 	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(IIconRegister iconRegister) {
-		texture = iconRegister.registerIcon(Info.modID.toLowerCase() + ":tracks/rail_normal_turned");
+	public boolean isOpaqueCube(IBlockState state) {
+		return false;
 	}
-
+	
 	@Override
-	public IIcon getIcon(int i, int j) {
-		return texture;
+	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
+		return false;
 	}
-
-	/**
-	 * Returns a bounding box from the pool of bounding boxes (this means this box can change after the pool has been cleared to be reused)
-	 */
-	@Override
-	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int i, int j, int k) {
-		TileEntity tileEntity = world.getTileEntity(i, j, k);
-		if (tileEntity instanceof TileTCRailGag && !((TileTCRailGag)tileEntity).type.equals("null")) {
-			return AxisAlignedBB.getBoundingBox(i, j, k, i + 1, j + ((TileTCRailGag)tileEntity).bbHeight, k + 1);
-		}
-		return null;
-	}
+	
 }

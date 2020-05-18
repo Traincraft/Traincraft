@@ -7,98 +7,74 @@
 
 package train.common.blocks;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.BlockContainer;
+import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.block.state.BlockStateContainer;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.IIcon;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.EnumBlockRenderType;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import train.common.Traincraft;
 import train.common.library.Info;
 import train.common.tile.TileStopper;
 
-import static net.minecraftforge.common.util.ForgeDirection.UP;
-
-public class BlockStopper extends BlockContainer {
-
-	private IIcon texture;
-
+public class BlockStopper extends BaseContainerBlock {
+	
 	public BlockStopper() {
-		super(Material.iron);
-		setCreativeTab(Traincraft.tcTab);
+		super(Material.IRON);
+		this.setRegistryName(Info.modID, "stopper");
+		this.setCreativeTab(Traincraft.tcTab);
+		this.setDefaultState(this.getBlockState().getBaseState().withProperty(BlockDirectional.FACING, EnumFacing.NORTH));
 	}
-
+	
 	@Override
-	public boolean renderAsNormalBlock() {
+	public EnumBlockRenderType getRenderType(IBlockState state) {
+		return EnumBlockRenderType.MODEL;
+	}
+	
+	@Override
+	public boolean isFullBlock(IBlockState state) {
 		return false;
 	}
-
+	
 	@Override
-	public boolean isOpaqueCube() {
+	public boolean isOpaqueCube(IBlockState state) {
 		return false;
 	}
-
+	
 	@Override
-	public int getRenderType() {
-		return -1; //RenderingRegistry.getNextAvailableRenderId();
-	}
-
-	@Override
-	public IIcon getIcon(int i, int j) {
-		return texture;
-	}
-
-	@Override
-	public boolean canPlaceBlockAt(World world, int x, int y, int z) {
-		return (world.isSideSolid(x, y-1, z, UP));
-	}
-
-	@Override
-	public void onBlockPlacedBy(World world, int par2, int par3, int par4, EntityLivingBase living, ItemStack stack) {
-		TileStopper te = (TileStopper) world.getTileEntity(par2, par3, par4);
-		int var6 = MathHelper.floor_double(living.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
-		int var7 = world.getBlockMetadata(par2, par3, par4) >> 2;
-		++var6;
-		var6 %= 4;
-
-		if (var6 == 0) {
-			if (te != null) {
-				te.setFacing(2 | var7 << 2);
-			}
-		}
-
-		if (var6 == 1) {
-			if (te != null) {
-				te.setFacing(3 | var7 << 2);
-			}
-		}
-
-		if (var6 == 2) {
-			if (te != null) {
-				te.setFacing(0 | var7 << 2);
-			}
-		}
-
-		if (var6 == 3) {
-			if (te != null) {
-				te.setFacing(1 | var7 << 2);
-			}
-		}
+	public boolean canPlaceBlockAt(World world, BlockPos pos) {
+		return world.isSideSolid(pos.down(), EnumFacing.UP);
 	}
 
 	@Override
 	public TileEntity createNewTileEntity(World world, int meta) {
 		return new TileStopper(meta);
 	}
-
+	
+	// state: ABCD => CD = facing
 	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(IIconRegister iconRegister) {
-		texture = iconRegister.registerIcon(Info.modID.toLowerCase() + ":stopper");
+	public IBlockState getStateFromMeta(int meta) {
+		return this.getDefaultState().withProperty(BlockDirectional.FACING, EnumFacing.byHorizontalIndex(meta & 0b0011));
 	}
+	
+	@Override
+	public int getMetaFromState(IBlockState state) {
+		return state.getValue(BlockDirectional.FACING).getHorizontalIndex();
+	}
+	
+	@Override
+	public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
+		return super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer).withProperty(BlockDirectional.FACING, placer.getHorizontalFacing().getOpposite());
+	}
+	
+	@Override
+	protected BlockStateContainer createBlockState() {
+		return new BlockStateContainer(this, BlockDirectional.FACING);
+	}
+
+	
 }

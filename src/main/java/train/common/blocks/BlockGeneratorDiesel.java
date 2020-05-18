@@ -7,75 +7,66 @@
 
 package train.common.blocks;
 
-import cpw.mods.fml.client.registry.RenderingRegistry;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.IIcon;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.EnumBlockRenderType;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import train.common.Traincraft;
 import train.common.library.GuiIDs;
 import train.common.library.Info;
+import train.common.tile.TileCrafterTierI;
 import train.common.tile.TileGeneratorDiesel;
 
-import java.util.Random;
-
-public class BlockGeneratorDiesel extends BlockContainer {
-
-	private IIcon texture;
-
+public class BlockGeneratorDiesel extends BaseContainerBlock {
+	
 	public BlockGeneratorDiesel() {
-		super(Material.iron);
-		setCreativeTab(Traincraft.tcTab);
+		super(Material.IRON);
+		this.setRegistryName(Info.modID, "generator_diesel");
+		this.setCreativeTab(Traincraft.tcTab);
 		this.setTickRandomly(true);
-		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1F, 1F, 1F);
 	}
-
+	
 	@Override
-	public boolean renderAsNormalBlock() {
+	public EnumBlockRenderType getRenderType(IBlockState state) {
+		return EnumBlockRenderType.MODEL;
+	}
+	
+	@Override
+	public boolean isFullBlock(IBlockState state) {
 		return false;
 	}
-
+	
 	@Override
-	public boolean isOpaqueCube() {
+	public boolean isOpaqueCube(IBlockState state) {
 		return false;
 	}
-
+	
 	@Override
-	public int getRenderType() {
-		return RenderingRegistry.getNextAvailableRenderId();
-	}
-
-	@Override
-	public IIcon getIcon(int i, int j) {
-		return texture;
-	}
-
-	@Override
-	public boolean onBlockActivated(World world, int i, int j, int k, EntityPlayer player, int par6, float par7, float par8, float par9) {
-		TileEntity te = world.getTileEntity(i, j, k);
-		if (player.isSneaking()) {
-			return false;
-		}
+	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		if (!world.isRemote) {
-			if (te != null && te instanceof TileGeneratorDiesel) {
-				player.openGui(Traincraft.instance, GuiIDs.GENERATOR_DIESEL, world, i, j, k);
+			if (!player.isSneaking()) {
+				TileEntity te = world.getTileEntity(pos);
+				if (te instanceof TileCrafterTierI) {
+					player.openGui(Traincraft.instance, GuiIDs.GENERATOR_DIESEL, world, pos.getX(), pos.getY(), pos.getZ());
+				}
+			}
+			else {
+				return false;
 			}
 		}
 		return true;
 	}
+	
 	/**
      * Lets the block know when one of its neighbor changes. Doesn't know which neighbor changed (coordinates passed are
      * their own) Args: x, y, z, neighbor blockID
      */
+	/* todo add redstone detection for tile base
 	@Override
     public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, Block par5)
     {
@@ -87,44 +78,10 @@ public class BlockGeneratorDiesel extends BlockContainer {
             tile.powered = flag;
         }
     }
-
-	@Override
-	public void onBlockPlacedBy(World world, int par2, int par3, int par4, EntityLivingBase living, ItemStack stack) {
-		TileGeneratorDiesel te = (TileGeneratorDiesel) world.getTileEntity(par2, par3, par4);
-		int var6 = MathHelper.floor_double((double) (living.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
-		int var7 = world.getBlockMetadata(par2, par3, par4) >> 2;
-		++var6;
-		var6 %= 4;
-
-		if (var6 == 0) {
-			if (te != null) {
-				te.setFacing(2 | var7 << 2);
-				 world.setBlockMetadataWithNotify(par2, par3, par4, 2 | var7 << 2, 2);
-			}
-		}
-
-		if (var6 == 1) {
-			if (te != null) {
-				te.setFacing(3 | var7 << 2);
-				world.setBlockMetadataWithNotify(par2, par3, par4, 3 | var7 << 2, 2);
-			}
-		}
-
-		if (var6 == 2) {
-			if (te != null) {
-				te.setFacing(0 | var7 << 2);
-				world.setBlockMetadataWithNotify(par2, par3, par4, 0 | var7 << 2, 2);
-			}
-		}
-
-		if (var6 == 3) {
-			if (te != null) {
-				te.setFacing(1 | var7 << 2);
-				world.setBlockMetadataWithNotify(par2, par3, par4, 1 | var7 << 2, 2);
-			}
-		}
-
-	}
+    
+	 */
+	
+	/* todo particles for disel generator
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void randomDisplayTick(World world, int par2, int par3, int par4, Random rand) {
@@ -162,14 +119,11 @@ public class BlockGeneratorDiesel extends BlockContainer {
 			//world.spawnParticle("flame", d0, par3 + d3, d2, 0.0D, 0.0D, 0.0D);
 		}
 	}
+	 */
+	
 	@Override
 	public TileEntity createNewTileEntity(World world, int meta) {
 		return new TileGeneratorDiesel();
 	}
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(IIconRegister iconRegister) {
-		texture = iconRegister.registerIcon(Info.modID.toLowerCase() + ":generator_diesel");
-	}
 }

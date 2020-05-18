@@ -14,7 +14,6 @@ import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.IModelCustom;
 import org.lwjgl.opengl.GL11;
 import train.common.library.Info;
-import train.common.tile.TileLantern;
 
 @SideOnly(Side.CLIENT)
 public class ModelLantern extends ModelBase {
