@@ -1,26 +1,20 @@
 package train.common;
 
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.*;
-import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.registry.VillagerRegistry;
-import net.minecraft.command.CommandBase;
-import net.minecraft.command.ICommandSender;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
-import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
-import net.minecraftforge.common.AchievementPage;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.EnumHelper;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.fml.common.event.*;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import train.common.api.LiquidManager;
@@ -35,19 +29,13 @@ import train.common.items.TCItems;
 import train.common.library.Info;
 import train.common.recipes.AssemblyTableRecipes;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 
 @Mod(modid = Info.modID, name = Info.modName, version = Info.modVersion)
 public class Traincraft {
 
 	/* TrainCraft instance */
-	@Instance(Info.modID)
+	@Mod.Instance(Info.modID)
 	public static Traincraft instance;
 
 	/* TrainCraft proxy files */
@@ -95,17 +83,20 @@ public class Traincraft {
 	/* Creative tab for Traincraft */
 	public static CreativeTabs tcTab;
 
-	public ArmorMaterial armor = EnumHelper.addArmorMaterial("Armor", 5, new int[] { 1, 2, 2, 1 }, 25);
-	public ArmorMaterial armorCloth = EnumHelper.addArmorMaterial("TCcloth", 5, new int[] {1, 2, 2, 1}, 25);
-	public ArmorMaterial armorCompositeSuit = EnumHelper.addArmorMaterial("TCsuit", 70, new int[] {2, 6, 5, 2}, 50);
+	public ArmorMaterial armor = EnumHelper.addArmorMaterial(Info.modID + ":armor", "armor", 5, new int[] { 1, 2, 2, 1 }, 25, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0);
+	public ArmorMaterial armorCloth = EnumHelper.addArmorMaterial(Info.modID + ":cloth", "cloth", 5, new int[] {1, 2, 2, 1}, 25, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0);
+	public ArmorMaterial armorCompositeSuit = EnumHelper.addArmorMaterial(Info.modID + ":suit", "suit", 70, new int[] {2, 6, 5, 2}, 50, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0);
 	public static int trainArmor;
 	public static int trainCloth;
 	public static int trainCompositeSuit;
-
 	
 	public static WorldGenWorld worldGen;
-
-	@EventHandler
+	
+	public Traincraft() {
+	
+	}
+	
+	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		tcLog.info("Starting Traincraft " + Info.modVersion + "!");
 		/* Config handler */
@@ -128,9 +119,9 @@ public class Traincraft {
 		proxy.registerSounds();
 		proxy.setHook(); // Moved file needed to run JLayer, we need to set a hook in order to retrieve it
 
-		GameRegistry.registerFuelHandler(new FuelHandler());
-		AchievementHandler.load();
-		AchievementPage.registerAchievementPage(AchievementHandler.tmPage);
+		// todo fuel handler GameRegistry.registerFuelHandler(new FuelHandler());
+		//AchievementHandler.load();
+		//AchievementPage.registerAchievementPage(AchievementHandler.tmPage);
 		GameRegistry.registerWorldGenerator(worldGen = new WorldGenWorld(),5);
 		
 		//Retrogen Handling
@@ -138,15 +129,15 @@ public class Traincraft {
 		MinecraftForge.EVENT_BUS.register(retroGen);
 		FMLCommonHandler.instance().bus().register(retroGen);
 		
-		MapGenStructureIO.func_143031_a(ComponentVillageTrainstation.class, "Trainstation");
+		MapGenStructureIO.registerStructureComponent(ComponentVillageTrainstation.class, "Trainstation");
 
-		if (Loader.isModLoaded("ComputerCraft")) {
+		/*if (Loader.isModLoaded("ComputerCraft")) {
 			try {
 				proxy.registerComputerCraftPeripherals();
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
 			}
-		}
+		}*/
 
 		/* Other Proxy init */
 		tcLog.info("Initialize Renderer and Events");
@@ -159,7 +150,7 @@ public class Traincraft {
 		tcLog.info("Finished PreInitialization");
 	}
 
-	@EventHandler
+	@Mod.EventHandler
 	public void load(FMLInitializationEvent event) {
 		tcLog.info("Start Initialization");
 
@@ -189,11 +180,11 @@ public class Traincraft {
 
 		/*Trainman Villager*/
 		tcLog.info("Initialize Station Chief Villager");
-		VillagerRegistry.instance().registerVillagerId(ConfigHandler.TRAINCRAFT_VILLAGER_ID);
+		/*VillagerRegistry.instance().registerVillagerId(ConfigHandler.TRAINCRAFT_VILLAGER_ID);
 		VillagerTraincraftHandler villageHandler = new VillagerTraincraftHandler();
 		VillagerRegistry.instance().registerVillageCreationHandler(villageHandler);
 		proxy.registerVillagerSkin(ConfigHandler.TRAINCRAFT_VILLAGER_ID, "station_chief.png");
-		VillagerRegistry.instance().registerVillageTradeHandler(ConfigHandler.TRAINCRAFT_VILLAGER_ID, villageHandler);
+		VillagerRegistry.instance().registerVillageTradeHandler(ConfigHandler.TRAINCRAFT_VILLAGER_ID, villageHandler);*/
 
 
 		proxy.registerBookHandler();
@@ -204,7 +195,7 @@ public class Traincraft {
 
 	}
 
-	@EventHandler
+	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent evt) {
 		tcLog.info("Start to PostInitialize");
 		tcLog.info("Register ChunkHandler");
@@ -218,19 +209,20 @@ public class Traincraft {
 		tcLog.info("Finished PostInitialization");
 	}
 
-	@EventHandler
+	@Mod.EventHandler
 	public void serverStop(FMLServerStoppedEvent event) {
 		proxy.killAllStreams();
 	}
 
-	@EventHandler
+	/*
+	@Mod.EventHandler
 	public void serverLoad(FMLServerStartingEvent event)
 	{
 		event.registerServerCommand(new tcAdminPerm());
-	}
+	}*/
 
 
-	public class tcAdminPerm extends CommandBase {
+	/*public class tcAdminPerm extends CommandBase {
 		public String getCommandName() {return "tc.admin";}
 		public String getCommandUsage(ICommandSender CommandSender) {return "/tcadmin";}
 		public int getRequiredPermissionLevel() {return 2;}
@@ -241,7 +233,7 @@ public class Traincraft {
 							"this command exists as a placeholder to allow admin permissions in TC via plugins and mds such as GroupManager and Forge Essentials"));
 
 		}
-	}
+	}*/
 
 
 }

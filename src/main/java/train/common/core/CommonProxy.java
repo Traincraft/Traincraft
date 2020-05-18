@@ -1,21 +1,21 @@
 package train.common.core;
 
-import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.network.IGuiHandler;
-import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.ForgeChunkManager;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.client.FMLClientHandler;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.network.IGuiHandler;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import train.common.Traincraft;
 import train.common.api.EntityRollingStock;
 import train.common.api.Freight;
@@ -85,16 +85,17 @@ public class CommonProxy implements IGuiHandler {
 		GameRegistry.registerTileEntity(TileTCRail.class, "tileTCRail");
 		GameRegistry.registerTileEntity(TileBridgePillar.class, "tileTCBridgePillar");
 
-		if (Loader.isModLoaded("ComputerCraft") || Loader.isModLoaded("OpenComputers")) {
+		/*if (Loader.isModLoaded("ComputerCraft") || Loader.isModLoaded("OpenComputers")) {
 			GameRegistry.registerTileEntity(TileInfoTransmitterSpeed.class, "tileInfoTransmitterSpeed");
 			GameRegistry.registerTileEntity(TileInfoTransmitterMTC.class, "tileInfoTransmitterMTC");
 			GameRegistry.registerTileEntity(TileInfoGrabberMTC.class, "tileInfoReceiverMTC");
 			GameRegistry.registerTileEntity(TileInfoGrabberDestination.class, "tileInfoReceiverDestination");
 			GameRegistry.registerTileEntity(TileATOTransmitterStopPoint.class, "tileATOTransmitterStopPoint");
 			GameRegistry.registerTileEntity(TilePDMInstructionRadio.class, "tilePDMInstructionRadio");
-		}
+		}*/
 	}
 
+	/*
 	public void registerComputerCraftPeripherals() throws ClassNotFoundException {
 		Class computerCraft = Class.forName("dan200.computercraft.ComputerCraft");
 		try {
@@ -116,61 +117,58 @@ public class CommonProxy implements IGuiHandler {
 			e.printStackTrace();
 		}
 	}
+	 */
+	
 	@Override
 	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-		TileEntity te = world.getTileEntity(x, y, z);
-		EntityPlayer riddenByEntity = null;
-		Entity entity = player.ridingEntity;
+		TileEntity te = world.getTileEntity(new BlockPos(x, y, z));
+		Entity ridingEntity = player.getRidingEntity();
 
-		if (player.ridingEntity != null) {
-			riddenByEntity = (EntityPlayer) entity.riddenByEntity;
-		}
-
-		Entity entity1 = null;
+		Entity stationaryEntity = null;
 		if (y == -1) {
-			entity1 = getEntity(world, x);
+			stationaryEntity = getEntity(world, x);
 		}
 
 		switch (ID) {
 		case (GuiIDs.CRAFTER_TIER_I):
-			return te != null && te instanceof TileCrafterTierI ? new ContainerTier(player.inventory, (TileCrafterTierI) te) : null;
+			return te instanceof TileCrafterTierI ? new ContainerTier(player.inventory, (TileCrafterTierI) te) : null;
 		case (GuiIDs.CRAFTER_TIER_II):
-			return te != null && te instanceof TileCrafterTierII ? new ContainerTier(player.inventory, (TileCrafterTierII) te) : null;
+			return te instanceof TileCrafterTierII ? new ContainerTier(player.inventory, (TileCrafterTierII) te) : null;
 		case (GuiIDs.CRAFTER_TIER_III):
-			return te != null && te instanceof TileCrafterTierIII ? new ContainerTier(player.inventory, (TileCrafterTierIII) te) : null;
+			return te instanceof TileCrafterTierIII ? new ContainerTier(player.inventory, (TileCrafterTierIII) te) : null;
 		case (GuiIDs.DISTIL):
-			return te != null && te instanceof TileEntityDistil ? new ContainerDistil(player.inventory, (TileEntityDistil) te) : null;
+			return te instanceof TileEntityDistil ? new ContainerDistil(player.inventory, (TileEntityDistil) te) : null;
 		case (GuiIDs.GENERATOR_DIESEL):
-			return te != null && te instanceof TileGeneratorDiesel ? new ContainerGeneratorDiesel(player.inventory, (TileGeneratorDiesel) te) : null;
+			return te instanceof TileGeneratorDiesel ? new ContainerGeneratorDiesel(player.inventory, (TileGeneratorDiesel) te) : null;
 		case (GuiIDs.OPEN_HEARTH_FURNACE):
-			return te != null && te instanceof TileEntityOpenHearthFurnace ? new ContainerOpenHearthFurnace(player.inventory, (TileEntityOpenHearthFurnace) te) : null;
+			return te instanceof TileEntityOpenHearthFurnace ? new ContainerOpenHearthFurnace(player.inventory, (TileEntityOpenHearthFurnace) te) : null;
 		case (GuiIDs.TRAIN_WORKBENCH):
-			return te != null && te instanceof TileTrainWbench ? new ContainerTrainWorkbench(player.inventory, player.worldObj, (TileTrainWbench) te) : null;
+			return te instanceof TileTrainWbench ? new ContainerTrainWorkbench(player.inventory, player.getEntityWorld(), (TileTrainWbench) te) : null;
 		case (GuiIDs.LOCO):
-			return riddenByEntity != null ? new InventoryLoco(riddenByEntity.inventory, (EntityRollingStock) entity) : null;
+			return new InventoryLoco(player.inventory, (EntityRollingStock) ridingEntity);
 		case (GuiIDs.FORNEY):
-			return riddenByEntity != null ? new InventoryForney(player.inventory, (EntityRollingStock) entity) : null;
+			return new InventoryForney(player.inventory, (EntityRollingStock) ridingEntity);
 		case (GuiIDs.CRAFTING_CART):
-			return new ContainerWorkbenchCart(player.inventory, player.worldObj);
+			return new ContainerWorkbenchCart(player.inventory, player.getEntityWorld());
 		case (GuiIDs.FURNACE_CART):
-			return riddenByEntity != null ? new InventoryWorkCart(player.inventory, entity) : null;
+			return new InventoryWorkCart(player.inventory, ridingEntity);
 		case (GuiIDs.ZEPPELIN):
-			return riddenByEntity != null ? new InventoryZepp(player.inventory, (AbstractZeppelin) entity) : null;
+			return new InventoryZepp(player.inventory, (AbstractZeppelin) ridingEntity);
 		case (GuiIDs.DIGGER):
-			return riddenByEntity != null  ? new InventoryRotativeDigger(player.inventory, (EntityRotativeDigger) entity) : null;
+			return new InventoryRotativeDigger(player.inventory, (EntityRotativeDigger) ridingEntity);
 
 			/* Stationary entities while player is not riding. */
 		case (GuiIDs.FREIGHT):
-			//System.out.println("Freight: " + ID + " | " + entity1.getEntityName() + " | " + x + ":" + y + ":" + z);
-			return entity1 != null && entity1 instanceof Freight ? new InventoryFreight(player.inventory, (Freight) entity1) : null;
+			//System.out.println("Freight: " + ID + " | " + stationaryEntity.getEntityName() + " | " + x + ":" + y + ":" + z);
+			return stationaryEntity instanceof Freight ? new InventoryFreight(player.inventory, (Freight) stationaryEntity) : null;
 		case (GuiIDs.JUKEBOX):
-			return entity1 != null && entity1 instanceof EntityJukeBoxCart ? new InventoryJukeBoxCart(player.inventory, (EntityJukeBoxCart) entity1) : null;
+			return stationaryEntity instanceof EntityJukeBoxCart ? new InventoryJukeBoxCart(player.inventory, (EntityJukeBoxCart) stationaryEntity) : null;
 		case (GuiIDs.TENDER):
-			return entity1 != null && entity1 instanceof Tender ? new InventoryTender(player.inventory, (Tender) entity1) : null;
+			return stationaryEntity instanceof Tender ? new InventoryTender(player.inventory, (Tender) stationaryEntity) : null;
 		case (GuiIDs.BUILDER):
-			return entity1 != null && entity1 instanceof EntityTracksBuilder ? new InventoryBuilder(player.inventory, (EntityTracksBuilder) entity1) : null;
+			return stationaryEntity instanceof EntityTracksBuilder ? new InventoryBuilder(player.inventory, (EntityTracksBuilder) stationaryEntity) : null;
 		case (GuiIDs.LIQUID):
-			return entity1 != null && entity1 instanceof LiquidTank ? new InventoryLiquid(player.inventory, (LiquidTank) entity1) : null;
+			return stationaryEntity instanceof LiquidTank ? new InventoryLiquid(player.inventory, (LiquidTank) stationaryEntity) : null;
 		default:
 			return null;
 		}
