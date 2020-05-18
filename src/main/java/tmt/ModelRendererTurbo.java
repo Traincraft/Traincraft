@@ -1,12 +1,11 @@
 package tmt;
 
-import net.minecraft.client.Minecraft;
+import com.sun.javafx.geom.Vec3f;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GLAllocation;
-import net.minecraft.client.renderer.texture.TextureManager;
-import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.MathHelper;
 import org.lwjgl.opengl.GL11;
 
 import java.io.IOException;
@@ -1470,10 +1469,10 @@ public class ModelRendererTurbo extends ModelRenderer {
     	for(TexturedPolygon face : faces){
     		PositionTransformVertex[] verts = face.vertices;
     		for(PositionTransformVertex vert : verts){
-    			vert.vector3F.addVector(
-    					vert.vector3F.xCoord * (x ? -1 : 1),
-    					vert.vector3F.xCoord * (y ? -1 : 1),
-    					vert.vector3F.xCoord * (z ? -1 : 1));
+    			vert.vector3F.add(new Vec3f(
+    					vert.vector3F.x * (x ? -1 : 1),
+    					vert.vector3F.x * (y ? -1 : 1),
+    					vert.vector3F.x * (z ? -1 : 1)));
     		}
     		if(x^y^z){
     			face.flipFace();

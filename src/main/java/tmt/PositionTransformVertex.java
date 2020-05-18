@@ -1,5 +1,6 @@
 package tmt;
 
+import com.sun.javafx.geom.Vec3f;
 import net.minecraft.client.model.PositionTextureVertex;
 
 public class PositionTransformVertex{
@@ -12,15 +13,8 @@ public class PositionTransformVertex{
 		this(new Vec3f(x, y, z), u, v);
 	}
 
-	@Deprecated
-	public PositionTransformVertex(PositionTextureVertex vertex, float u, float v){
-		vector3F = new Vec3f(vertex.vector3D);
-		textureX = u;
-		textureY = v;
-	}
-
 	public PositionTransformVertex(Vec3f vector, float u, float v){
-		vector3F = new Vec3f(vector.xCoord, vector.yCoord, vector.zCoord);
+		vector3F = new Vec3f(vector.x, vector.y, vector.z);
 		textureX = u;
 		textureY = v;
 	}

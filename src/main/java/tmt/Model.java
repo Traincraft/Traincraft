@@ -27,9 +27,9 @@ public abstract class Model<T> extends net.minecraft.client.model.ModelBase {
 	public void render(ModelRendererTurbo[] model){
 		for(ModelRendererTurbo sub : model){
 			if(sub.boxName.contains("lamp")) {
-				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+				Minecraft.getMinecraft().entityRenderer.disableLightmap();
 				sub.render();
-				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+				Minecraft.getMinecraft().entityRenderer.enableLightmap();
 			} else {
 				sub.render();
 			}
@@ -39,9 +39,9 @@ public abstract class Model<T> extends net.minecraft.client.model.ModelBase {
 	public void render(ModelRendererTurbo[] model, float scale, boolean rotorder){
 		for(ModelRendererTurbo sub : model){
 			if(sub.boxName.contains("lamp")) {
-				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+				Minecraft.getMinecraft().entityRenderer.disableLightmap();
 				sub.render();
-				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+				Minecraft.getMinecraft().entityRenderer.enableLightmap();
 			} else {
 				sub.render();
 			}

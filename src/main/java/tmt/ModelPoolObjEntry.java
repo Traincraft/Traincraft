@@ -1,5 +1,7 @@
 package tmt;
 
+import com.sun.javafx.geom.Vec3f;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -91,7 +93,7 @@ public class ModelPoolObjEntry extends ModelPoolEntry {
 					String s1;
 					int finalPhase = 0;
 					float[] normal = new float[] {0F, 0F, 0F};
-					ArrayList<Vec3f> iNormal = new ArrayList<Vec3f>();
+					ArrayList<Vec3f> iNormal = new ArrayList<>();
 					do{
 						int vInt;
 						float[] curUV;
@@ -101,7 +103,7 @@ public class ModelPoolObjEntry extends ModelPoolEntry {
 						if(ind > -1){
 							s1 = s.substring(0, ind);
 						}
-						if(s1.indexOf("/") > -1){
+						if(s1.contains("/")){
 							String[] f = s1.split("/");
 							vInt = Integer.parseInt(f[0]) - 1;
 							if(f[1].equals("")){

@@ -1,6 +1,6 @@
 package tmt;
 
-import cpw.mods.fml.common.Loader;
+import net.minecraftforge.fml.common.Loader;
 import org.apache.commons.io.IOUtils;
 
 import java.io.File;

@@ -1,6 +1,7 @@
 package tmt;
 
-import net.minecraft.util.MathHelper;
+import com.sun.javafx.geom.Vec3f;
+import net.minecraft.util.math.MathHelper;
 
 import java.util.ArrayList;
 
@@ -50,13 +51,13 @@ public class Shape2D {
 			Vec3f vecCoord = new Vec3f(curCoord.xCoord, curCoord.yCoord, 0);
 			setVectorRotations(vecCoord, rotX, rotY, rotZ);
 			verts[idx] = new PositionTransformVertex(
-													x + vecCoord.xCoord,
-													y + vecCoord.yCoord,
-													z + vecCoord.zCoord, texU1, texV);
+													x + vecCoord.x,
+													y + vecCoord.y,
+													z + vecCoord.z, texU1, texV);
 			verts[idx + coords.size()] = new PositionTransformVertex(
-													x + vecCoord.xCoord - extrudeVector.xCoord,
-													y + vecCoord.yCoord - extrudeVector.yCoord,
-													z + vecCoord.zCoord - extrudeVector.zCoord, texU2, texV);
+													x + vecCoord.x - extrudeVector.x,
+													y + vecCoord.y - extrudeVector.y,
+													z + vecCoord.z - extrudeVector.z, texU2, texV);
 			vertsTop[idx] = new PositionTransformVertex(verts[idx].vector3F, verts[idx].textureX, verts[idx].textureY);
 			vertsBottom[coords.size() - idx - 1] = new PositionTransformVertex(verts[idx + coords.size()].vector3F,verts[idx + coords.size()].textureX,verts[idx + coords.size()].textureY);
 			if(faceLengths != null){
@@ -105,9 +106,9 @@ public class Shape2D {
         float zC = MathHelper.cos(z);
         float zS = MathHelper.sin(z);
         
-        double xVec = extrudeVector.xCoord;
-        double yVec = extrudeVector.yCoord;
-        double zVec = extrudeVector.zCoord;
+        double xVec = extrudeVector.x;
+        double yVec = extrudeVector.y;
+        double zVec = extrudeVector.z;
         
         // rotation around x
 		double xy = xC*yVec - xS*zVec;
