@@ -1,14 +1,13 @@
 package train.common.adminbook;
 
-import cpw.mods.fml.common.registry.GameData;
-import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraftforge.fluids.FluidContainerRegistry;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import train.common.Traincraft;
 import train.common.api.EntityRollingStock;
 import train.common.api.LiquidTank;
@@ -21,6 +20,8 @@ import java.util.List;
 /**
  * @author EternalBlueFlame
  */
+@Deprecated
+// todo remove as soon as possible and replace with proper way for handling the book
 public class ServerLogger {
     /*
     --------------------------------------------------
@@ -49,7 +50,7 @@ public class ServerLogger {
             if (!new File(sb.toString()).exists()){
                 new File(sb.toString()).mkdir();
             }
-            sb.append(wagon.getCartItem().getItem().delegate.name().replace(":", "~").toLowerCase());
+            sb.append(wagon.getCartItem().getItem().delegate.name().toString().replace(":", "~").toLowerCase());
             sb.append("_");
             sb.append(wagon.getUniqueID().toString().toLowerCase());
             sb.append(".txt");
@@ -77,9 +78,9 @@ public class ServerLogger {
                     }
                 }
                 if (wagon instanceof LiquidTank) {
-                    for (FluidTankInfo tank : ((LiquidTank)wagon).getTankInfo(ForgeDirection.UNKNOWN)) {
+                    /*for (FluidTankInfo tank : ((LiquidTank)wagon).getTankInfo(EnumFacing.NORTH)) {
                         addFluidXML(sb, tank.fluid);
-                    }
+                    }*/ // removed because nothing works yet. todo reimplement
                 }
                 sb.append("   </inventory>");
             }
@@ -105,7 +106,7 @@ public class ServerLogger {
          sb.append("unknown_player");
         }
         sb.append("/");
-        sb.append(wagon.getCartItem().getItem().delegate.name().replace(":", "~").toLowerCase());
+        sb.append(wagon.getCartItem().getItem().delegate.name().toString().replace(":", "~").toLowerCase());
         sb.append("_");
         sb.append(wagon.getUniqueID().toString().toLowerCase());
         sb.append(".txt");
@@ -119,21 +120,22 @@ public class ServerLogger {
 
 
 
-    private static void addItemXML(StringBuilder string, ItemStack item){
-        if (item == null || item.getItem() == null || item.stackSize<=0){
+    private static void addItemXML(StringBuilder string, ItemStack stack){
+        if (stack.isEmpty() ||stack.getCount() <= 0){
             return;
         }
         string.append("        <ItemStack>\n            <ID>");
-        string.append(Item.getIdFromItem(item.getItem()));
+        string.append(Item.getIdFromItem(stack.getItem()));
         string.append("</ID>\n            <delegate>");
-        string.append(item.getItem().delegate.name());
+        string.append(stack.getItem().delegate.name());
         string.append("</delegate>\n            <meta>");
-        string.append(item.getItemDamage());
+        string.append(stack.getItemDamage());
         string.append("</meta>\n            <StackSize>");
-        string.append(item.stackSize);
+        string.append(stack.getCount());
         string.append("</StackSize>\n        </ItemStack>\n");
     }
 
+    // todo addFluidXML
     private static void addFluidXML(StringBuilder string, FluidStack item){
         if (item == null || item.getFluid() == null || item.amount<=0){
             return;
@@ -141,14 +143,11 @@ public class ServerLogger {
 
         int fill=1000;
         while(fill < item.amount) {
-         addItemXML(string, FluidContainerRegistry.fillFluidContainer(item, new ItemStack(Items.bucket)));
+         //addItemXML(string, FluidContainerRegistry.fillFluidContainer(item, new ItemStack(Items.bucket)));
          fill +=1000;
         }
     }
-
-
-
-
+    
     /*
     --------------------------------------------------
     Reading
@@ -159,7 +158,11 @@ public class ServerLogger {
     public static List<ItemStack> getItems(String doc){
         try {
             ArrayList<ItemStack> itemStacks = new ArrayList<ItemStack>();
-            itemStacks.add(new ItemStack(GameData.getItemRegistry().getObject(doc.substring(doc.indexOf("<delegate>")+10, doc.indexOf("</delegate>")))));
+            Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(doc.substring(doc.indexOf("<delegate>")+10, doc.indexOf("</delegate>"))));
+            if(item == null){
+                return new ArrayList<>();
+            }
+            itemStacks.add(new ItemStack(item));
 
             List<String> stacks = new ArrayList<String>();
             while (doc.contains("<ItemStack>")){
@@ -182,21 +185,18 @@ public class ServerLogger {
     }
 
     //parses the individual item
-    public static ItemStack parseItemFromXML(String doc){
-        try {
-            ItemStack stack = new ItemStack(
-                    GameData.getItemRegistry().getObject(doc.substring(doc.indexOf("<delegate>")+10, doc.indexOf("</delegate>"))),//get item by delegate name since it's static
-                    Integer.parseInt(doc.substring(doc.indexOf("<StackSize>")+11, doc.indexOf("</StackSize>")))//we always get strings so gotta parse.
-            );
-
-            stack.setItemDamage(Integer.parseInt(doc.substring(doc.indexOf("<meta>")+6, doc.indexOf("</meta>"))));
-
+    public static ItemStack parseItemFromXML(String doc) {
+        try{
+            Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(doc.substring(doc.indexOf("<delegate>") + 10, doc.indexOf("</delegate>"))));
+            if(item == null){
+                return ItemStack.EMPTY;
+            }
+            ItemStack stack = new ItemStack(item, Integer.parseInt(doc.substring(doc.indexOf("<StackSize>") + 11, doc.indexOf("</StackSize>"))));
+            stack.setItemDamage(Integer.parseInt(doc.substring(doc.indexOf("<meta>") + 6, doc.indexOf("</meta>"))));
             return stack;
-        } catch (Exception e){
-            return null;
+        }catch(NumberFormatException e){
+            return ItemStack.EMPTY;
         }
     }
-
-
-
+    
 }

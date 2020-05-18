@@ -7,61 +7,50 @@
 
 package train.common.blocks;
 
-import cpw.mods.fml.client.registry.RenderingRegistry;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.IIcon;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.EnumBlockRenderType;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import train.common.Traincraft;
 import train.common.library.Info;
 import train.common.tile.TileBridgePillar;
 
-public class BlockBridgePillar extends BlockContainer {
-
-	private IIcon texture;
-
+public class BlockBridgePillar extends BaseContainerBlock {
+	
 	public BlockBridgePillar() {
-		super(Material.wood);
-		setCreativeTab(Traincraft.tcTab);
+		super(Material.WOOD);
+		this.setCreativeTab(Traincraft.tcTab);
+		this.setRegistryName(Info.modID, "bridge_pillar");
 	}
-
+	
 	@Override
-	public boolean renderAsNormalBlock() {
+	public EnumBlockRenderType getRenderType(IBlockState state) {
+		return EnumBlockRenderType.MODEL;
+	}
+	
+	@Override
+	public boolean isFullBlock(IBlockState state) {
 		return false;
 	}
-
+	
 	@Override
-	public boolean isOpaqueCube() {
+	public boolean isOpaqueCube(IBlockState state) {
 		return false;
 	}
-
-	@Override
-	public int getRenderType() {
-		return RenderingRegistry.getNextAvailableRenderId();
-	}
-
-	@Override
-	public IIcon getIcon(int i, int j) {
-		return texture;
-	}
-
+	
 	@Override
 	public TileEntity createNewTileEntity(World world, int meta) {
 		return new TileBridgePillar();
 	}
 	
-	/**
-	 * Called when the block is placed in the world.
-	 */
 	@Override
-	public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLiving, ItemStack par6ItemStack) {
+	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
+		// set metadata? idk what it is doing right now
+		/*
 		int l = MathHelper.floor_double((double) (par5EntityLiving.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
 		int i1 = par1World.getBlockMetadata(par2, par3, par4) >> 2;
 		++l;
@@ -82,10 +71,7 @@ public class BlockBridgePillar extends BlockContainer {
 		if (l == 3) {
 			par1World.setBlockMetadataWithNotify(par2, par3, par4, 1 | i1 << 2, 2);
 		}
+		 */
 	}
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(IIconRegister iconRegister) {
-		texture = iconRegister.registerIcon(Info.modID.toLowerCase() + ":assembly_1_bottom");
-	}
+	
 }
