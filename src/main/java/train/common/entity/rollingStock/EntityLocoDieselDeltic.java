@@ -37,6 +37,7 @@ public class EntityLocoDieselDeltic extends DieselTrain {
 
 	@Override
 	public void updateRiderPosition() {
+		if(riddenByEntity==null){return;}
 		double pitchRads = this.anglePitchClient * Math.PI / 180.0D;
 		double distance = 4.5;
 		double yOffset = 0.6;
@@ -80,6 +81,12 @@ public class EntityLocoDieselDeltic extends DieselTrain {
 		if (i == 7 && riddenByEntity != null && riddenByEntity instanceof EntityPlayer) {
 			((EntityPlayer) riddenByEntity).openGui(Traincraft.instance, GuiIDs.LOCO, worldObj, (int) this.posX, (int) this.posY, (int) this.posZ);
 		}
+	}
+	
+	@Override
+	public void onUpdate() {
+		checkInvent(locoInvent[0]);
+		super.onUpdate();
 	}
 
 	@Override

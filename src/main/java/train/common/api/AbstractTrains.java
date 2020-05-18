@@ -1,30 +1,29 @@
 package train.common.api;
 
 import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import io.netty.buffer.ByteBuf;
 import mods.railcraft.api.carts.IMinecart;
 import mods.railcraft.api.carts.IRoutableCart;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.*;
 import net.minecraft.world.ChunkCoordIntPair;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeChunkManager;
 import net.minecraftforge.common.ForgeChunkManager.Ticket;
+import org.apache.commons.lang3.ArrayUtils;
 import train.client.render.RenderEnum;
 import train.common.Traincraft;
+import train.common.adminbook.ItemAdminBook;
 import train.common.core.handlers.ConfigHandler;
-import train.common.core.handlers.RollingStockStatsEventHandler;
 import train.common.core.handlers.TrainHandler;
-import train.common.core.handlers.TraincraftSaveHandler;
 import train.common.items.ItemChunkLoaderActivator;
 import train.common.items.ItemRollingStock;
 import train.common.items.ItemWrench;
@@ -32,6 +31,7 @@ import train.common.library.EnumTrains;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public abstract class AbstractTrains extends EntityMinecart implements IMinecart, IRoutableCart, IEntityAdditionalSpawnData {
 
@@ -41,8 +41,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 	protected int color;
 	public boolean isAttached = false;
 	public boolean isAttaching = false;
-	public int ID;
-	public static int numberOfTrains;
+	public static int numberOfTrains = Integer.MIN_VALUE;
 	public EntityPlayer playerEntity;
 	public double Link1;
 	public double Link2;
@@ -52,11 +51,12 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 	public int clearLinkTimer = 0;
 	//private Set chunks;
 	protected Ticket chunkTicket;
-	protected float renderYaw;
+	public float renderYaw;
 	protected float renderPitch;
 	public TrainHandler train;
 	public List<ChunkCoordIntPair> loadedChunks = new ArrayList<ChunkCoordIntPair>();
 	public boolean shouldChunkLoad = true;
+	protected boolean itemdropped =false;
 	/**
 	 * A reference to EnumTrains containing all spec for this specific train
 	 */
@@ -125,11 +125,6 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 	public static int uniqueIDs = 1;
 
 	/**
-	 * cached value for the render data so we don't have to iterate the enum every frame.
-	 */
-	public RenderEnum renderData = null;
-
-	/**
 	 * The distance this train has traveled
 	 */
 	public double trainDistanceTraveled = 0;
@@ -139,28 +134,25 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 	/**
 	 * Registers all possible color textures
 	 */
-	public ArrayList<Integer> acceptedColors;
+	public ArrayList<Byte> acceptedColors;
 
-	protected RollingStockStatsEventHandler statsEventHandler;
 
 	public AbstractTrains(World world) {
 		super(world);
 		renderDistanceWeight = 2.0D;
-		statsEventHandler = new RollingStockStatsEventHandler(this);
 		color = -1;
 		dataWatcher.addObject(12, color);
-		acceptedColors = new ArrayList<Integer>();
-		if (!world.isRemote) ID = ++numberOfTrains;
-		dataWatcher.addObject(5, ID);
+		acceptedColors = new ArrayList<Byte>();
 		dataWatcher.addObject(6, trainType);
 		dataWatcher.addObject(7, trainOwner);
 		dataWatcher.addObject(8, trainDestroyer);
 		dataWatcher.addObject(9, trainName);
-		dataWatcher.addObject(10, numberOfTrains);
+		//dataWatcher.addObject(10, numberOfTrains);
 		dataWatcher.addObject(11, uniqueID);
 		dataWatcher.addObject(13, trainCreator);
 		shouldChunkLoad=ConfigHandler.CHUNK_LOADING;
 		this.setFlag(7, shouldChunkLoad);
+
 
 		for (EnumTrains trains : EnumTrains.values()) {
 			if (trains.getEntityClass().equals(this.getClass())) {
@@ -168,11 +160,13 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 				trainSpec = trains;
 				if (trains.getColors() != null) {
 					for (int i = 0; i < trains.getColors().length; i++) {
-						this.acceptedColors.add(AbstractTrains.getColorFromString(trains.getColors()[i]));
+						this.acceptedColors.add((trains.getColors()[i]));
 					}
 				}
-				this.setSize((float) trainSpec.getWidth(), (float) trainSpec.getHeight());
+				this.setSize(0.98f, 1.98f);
 				this.setMinecartName(trainSpec.name());
+
+				break;
 			}
 		}
 	}
@@ -182,16 +176,39 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		this.setPosition(x, y, z);
 	}
 
+	@Override
+	public AxisAlignedBB getCollisionBox(Entity p_70114_1_) {
+		if(riddenByEntity!=p_70114_1_){
+			return super.getCollisionBox(p_70114_1_);
+		} else {
+			return null;
+		}
+	}
 	/**
 	 * this is basically NBT for entity spawn, to keep data between client and server in sync because some data is not automatically shared.
 	 */
 	@Override
 	public void readSpawnData(ByteBuf additionalData) {
 		locked = additionalData.readBoolean();
+		if(additionalData.readBoolean()){
+			getEntityData().setString("puuid", ByteBufUtils.readUTF8String(additionalData));
+			getEntityData().setString("theCreator", ByteBufUtils.readUTF8String(additionalData));
+			getEntityData().setString("theOwner", ByteBufUtils.readUTF8String(additionalData));
+			getEntityData().setInteger("color", additionalData.readInt());
+		}
 	}
 	@Override
 	public void writeSpawnData(ByteBuf buffer) {
 		buffer.writeBoolean(locked);
+		if(getEntityData().hasKey("puuid")) {
+			buffer.writeBoolean(true);
+			ByteBufUtils.writeUTF8String(buffer, getEntityData().getString("puuid"));
+			ByteBufUtils.writeUTF8String(buffer, getEntityData().getString("theCreator"));
+			ByteBufUtils.writeUTF8String(buffer, getEntityData().getString("theOwner"));
+			buffer.writeInt(getEntityData().getInteger("color"));
+		} else {
+			buffer.writeBoolean(false);
+		}
 	}
 
 
@@ -235,15 +252,15 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		//if(this instanceof Locomotive)System.out.println("I'm alive. Remote: " + worldObj.isRemote);
 		if (!worldObj.isRemote && this.uniqueID == -1) {
 			if (FMLCommonHandler.instance().getMinecraftServerInstance() != null) {
-				TraincraftSaveHandler.createFile(FMLCommonHandler.instance().getMinecraftServerInstance());
-				int readID = TraincraftSaveHandler.readInt(FMLCommonHandler.instance().getMinecraftServerInstance(), "numberOfTrains:");
-				int newID = setNewUniqueID(readID);
-				TraincraftSaveHandler.writeValue(FMLCommonHandler.instance().getMinecraftServerInstance(), "numberOfTrains:", new String("" + newID));
+				//TraincraftSaveHandler.createFile(FMLCommonHandler.instance().getMinecraftServerInstance());
+				//int readID = TraincraftSaveHandler.readInt(FMLCommonHandler.instance().getMinecraftServerInstance(), "numberOfTrains:");
+				//int newID = setNewUniqueID(readID);
+				setNewUniqueID();
+				//TraincraftSaveHandler.writeValue(FMLCommonHandler.instance().getMinecraftServerInstance(), "numberOfTrains:", new String("" + newID));
 				//System.out.println("Train is missing an ID, adding new one for "+this.trainName+" "+this.uniqueID);
 			}
 		}
 		shouldChunkLoad = getFlag(7);
-		statsEventHandler.trainDistance();
 		if (shouldChunkLoad){
 			if(this.chunkTicket == null) {
 				this.requestTicket();
@@ -253,7 +270,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 
 	@Override
 	public void onUpdate() {
-			super.onUpdate();
+		super.onUpdate();
 		if(!(this instanceof EntityRollingStock)) {
 			manageChunkLoading();
 		}
@@ -280,9 +297,9 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		ForgeChunkManager.releaseTicket(chunkTicket);
 	}
 
-	public int setNewUniqueID(int numberOfTrains) {
+	public int setNewUniqueID() {
 		// System.out.println(numberOfTrains);
-		if (numberOfTrains <= 0) {
+		if (numberOfTrains == Integer.MIN_VALUE) {
 			numberOfTrains = uniqueIDs++;
 		}
 		else {
@@ -312,6 +329,8 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 				}
 				itemstack.damageItem(1, entityplayer);
 				return true;
+			} else if(lockThisCart(itemstack, entityplayer)) {
+				return true;
 			}
 		}
 		return false;
@@ -324,7 +343,13 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 	 * @param color
 	 */
 	public void setColor(int color) {
+		if (EnumTrains.getCurrentTrain(getCartItem().getItem()).getColors()!=null){
+			if (color==-1 || !ArrayUtils.contains(EnumTrains.getCurrentTrain(getCartItem().getItem()).getColors(),(byte)color)) {
+				color = (EnumTrains.getCurrentTrain(getCartItem().getItem()).getColors()[0]);
+			}
+		}
 		dataWatcher.updateObject(12, color);
+		this.getEntityData().setInteger("color", color);
 	}
 
 	public void setRenderYaw(float yaw) {
@@ -354,13 +379,17 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		//nbttagcompound.setInteger("uniqueIDs",uniqueIDs);
 
 		nbttagcompound.setInteger("numberOfTrains", AbstractTrains.numberOfTrains);
-		nbttagcompound.setInteger("ID", this.ID);
 		nbttagcompound.setBoolean("isAttached", this.isAttached);
 		nbttagcompound.setBoolean("linked", this.linked);
-		nbttagcompound.setDouble("motionX", motionX);
-		nbttagcompound.setDouble("motionZ", motionZ);
+		//nbttagcompound.setDouble("motionX", motionX);
+		//nbttagcompound.setDouble("motionZ", motionZ);
 		nbttagcompound.setDouble("Link1", Link1);
 		nbttagcompound.setDouble("Link2", Link2);
+
+		nbttagcompound.setInteger("Dim", this.dimension);
+
+		nbttagcompound.setLong("UUIDM", this.getUniqueID().getMostSignificantBits());
+		nbttagcompound.setLong("UUIDL", this.getUniqueID().getLeastSignificantBits());
 	}
 
 	@Override
@@ -376,10 +405,13 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		trainName = nbttagcompound.getString("theName");
 		trainType = nbttagcompound.getString("theType");
 		uniqueID = nbttagcompound.getInteger("uniqueID");
-		//uniqueIDs = nbttagcompound.getInteger("uniqueIDs");
-		((EntityRollingStock) this).setInformation(trainType, trainOwner, trainCreator, trainName, uniqueID);
+		if(uniqueIDs==Integer.MIN_VALUE && nbttagcompound.hasKey("uniqueIDs")) {
+			uniqueIDs = nbttagcompound.getInteger("uniqueIDs");
+		} else {
+			uniqueIDs =Integer.MIN_VALUE;
+		}
+		setInformation(trainType, trainOwner, trainCreator, trainName, uniqueID);
 
-		ID = nbttagcompound.getInteger("ID");
 		numberOfTrains = nbttagcompound.getInteger("numberOfTrains");
 		isAttached = nbttagcompound.getBoolean("isAttached");
 		linked = nbttagcompound.getBoolean("linked");
@@ -387,134 +419,142 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		//motionZ = nbttagcompound.getDouble("motionZ");
 		Link1 = nbttagcompound.getDouble("Link1");
 		Link2 = nbttagcompound.getDouble("Link2");
+		if(nbttagcompound.hasKey("Dim")){
+			this.dimension=nbttagcompound.getInteger("Dim");
+		}
+
+		if(nbttagcompound.hasKey("UUIDM")){
+			this.entityUniqueID = new UUID(nbttagcompound.getLong("UUIDM"), nbttagcompound.getLong("UUIDL"));
+		}
+	}
+
+	@Override
+	public boolean writeMountToNBT(NBTTagCompound tag){
+		return false;
+	}
+	@Override
+	public boolean writeToNBTOptional(NBTTagCompound p_70039_1_) {
+		if (!this.isDead && this.getEntityString() != null) {
+			p_70039_1_.setString("id", this.getEntityString());
+			this.writeToNBT(p_70039_1_);
+			return true;
+		}
+		return false;
+	}
+
+	public void setInformation(String trainType, String trainOwner, String trainCreator, String trainName, int uniqueID) {
+		if (!worldObj.isRemote) {
+			dataWatcher.updateObject(6, trainType);
+			dataWatcher.updateObject(7, trainOwner);
+			dataWatcher.updateObject(9, trainName);
+			dataWatcher.updateObject(11, uniqueID);
+			if (trainCreator != null && trainCreator.length() > 0){ dataWatcher.updateObject(13, trainCreator);}
+		}
 	}
 
 	public static String getColorAsString(int i) {
 		switch (i) {
-		case 0:
-			return "Black";
-		case 1:
-			return "Red";
-		case 2:
-			return "Green";
-		case 3:
-			return "Brown";
-		case 4:
-			return "Blue";
-		case 5:
-			return "Purple";
-		case 6:
-			return "Cyan";
-		case 7:
-			return "LightGrey";
-		case 8:
-			return "Grey";
-		case 13:
-			return "Magenta";
-		case 10:
-			return "Lime";
-		case 11:
-			return "Yellow";
-		case 12:
-			return "LightBlue";
-		case 9:
-			return "Pink";
-		case 14:
-			return "Orange";
-		case 15:
-			return "White";
-		case 100:
-			return "Empty";
-		case 101:
-			return "Full";
-		default:
-			return "" + i;
+			case 0:
+				return "Black";
+			case 1:
+				return "Red";
+			case 2:
+				return "Green";
+			case 3:
+				return "Brown";
+			case 4:
+				return "Blue";
+			case 5:
+				return "Purple";
+			case 6:
+				return "Cyan";
+			case 7:
+				return "LightGrey";
+			case 8:
+				return "Grey";
+			case 13:
+				return "Magenta";
+			case 10:
+				return "Lime";
+			case 11:
+				return "Yellow";
+			case 12:
+				return "LightBlue";
+			case 9:
+				return "Pink";
+			case 14:
+				return "Orange";
+			case 15:
+				return "White";
+			case 100:
+				return "Empty";
+			case 101:
+				return "Full";
+			default:
+				return "" + i;
 		}
 	}
 
 	public String getColorAsString() {
 		switch (getColor()) {
-		case 0:
-			return "Black";
-		case 1:
-			return "Red";
-		case 2:
-			return "Green";
-		case 3:
-			return "Brown";
-		case 4:
-			return "Blue";
-		case 5:
-			return "Purple";
-		case 6:
-			return "Cyan";
-		case 7:
-			return "LightGrey";
-		case 8:
-			return "Grey";
-		case 13:
-			return "Magenta";
-		case 10:
-			return "Lime";
-		case 11:
-			return "Yellow";
-		case 12:
-			return "LightBlue";
-		case 9:
-			return "Pink";
-		case 14:
-			return "Orange";
-		case 15:
-			return "White";
-		case 100:
-			return "Empty";
-		case 101:
-			return "Full";
-		default:
-			return "" + getColor();
+			case 0:
+				return "Black";
+			case 1:
+				return "Red";
+			case 2:
+				return "Green";
+			case 3:
+				return "Brown";
+			case 4:
+				return "Blue";
+			case 5:
+				return "Purple";
+			case 6:
+				return "Cyan";
+			case 7:
+				return "LightGrey";
+			case 8:
+				return "Grey";
+			case 13:
+				return "Magenta";
+			case 10:
+				return "Lime";
+			case 11:
+				return "Yellow";
+			case 12:
+				return "LightBlue";
+			case 9:
+				return "Pink";
+			case 14:
+				return "Orange";
+			case 15:
+				return "White";
+			case 100:
+				return "Empty";
+			case 101:
+				return "Full";
+			default:
+				return "" + getColor();
 		}
 	}
 
-	public static int getColorFromString(String color) {
-		if (color.equals("Black")) return 0;
-		if (color.equals("Red")) return 1;
-		if (color.equals("Green")) return 2;
-		if (color.equals("Brown")) return 3;
-		if (color.equals("Blue")) return 4;
-		if (color.equals("Purple")) return 5;
-		if (color.equals("Cyan")) return 6;
-		if (color.equals("LightGrey")) return 7;
-		if (color.equals("Grey")) return 8;
-		if (color.equals("Magenta")) return 13;
-		if (color.equals("Lime")) return 10;
-		if (color.equals("Yellow")) return 11;
-		if (color.equals("LightBlue")) return 12;
-		if (color.equals("Pink")) return 9;
-		if (color.equals("Orange")) return 14;
-		if (color.equals("White")) return 15;
-		if (color.equals("Empty")) return 100;
-		if (color.equals("Full")) return 101;
-		return -1;
-	}
-
 	public void dropCartAsItem(boolean isCreative) {
-		if (!isCreative) {
+		if (!isCreative && !itemdropped) {
+			itemdropped=true;
 			for (ItemStack item : getItemsDropped()) {
-				setUniqueIDToItem(item);
-				entityDropItem(item, 0);
+				if (item.getItem() instanceof ItemRollingStock){
+					ItemStack stack = ItemRollingStock.setPersistentData(item,this,this.getUniqueTrainID(),null);
+					entityDropItem(stack!=null?stack:item,0);
+				} else {
+					entityDropItem(item, 0);
+				}
 			}
 		}
 	}
 
-	protected void setUniqueIDToItem(ItemStack stack) {
-		NBTTagCompound var3 = stack.getTagCompound();
-		if (var3 == null) {
-			var3 = new NBTTagCompound();
-			stack.setTagCompound(var3);
-		}
-		if (this.uniqueID != -1) stack.getTagCompound().setInteger("uniqueID", this.uniqueID);
-		if (this.trainCreator != null && this.trainCreator.length() > 0) stack.getTagCompound().setString("trainCreator", this.trainCreator);
-		if (this.getColor() != -1) stack.getTagCompound().setInteger("trainColor", this.getColor());
+	@Override
+	public ItemStack getPickedResult(MovingObjectPosition target) {
+		return getCartItem();
 	}
 
 	protected void setDefaultMass(double def) {
@@ -544,18 +584,23 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 
 	/** Locking for passengers, flat, caboose, jukebox,workcart */
 	protected boolean lockThisCart(ItemStack itemstack, EntityPlayer entityplayer) {
-		if (itemstack != null && itemstack.getItem() instanceof ItemWrench) {
-			if (entityplayer.getDisplayName().equals(this.trainOwner)) {
+		if (itemstack != null && (itemstack.getItem() instanceof ItemWrench || itemstack.getItem() instanceof ItemAdminBook)) {
+			if (entityplayer.getDisplayName().equals(this.trainOwner) || entityplayer.getGameProfile().getName().equals(this.trainOwner)
+					|| this.trainOwner.equals("") || entityplayer.canCommandSenderUseCommand(2, "tc.admin")) {
 				if (locked) {
 					locked = false;
-					entityplayer.addChatMessage(new ChatComponentText("unlocked"));
+					if(worldObj.isRemote) {
+						entityplayer.addChatMessage(new ChatComponentText("unlocked"));
+					}
 				}
 				else {
 					locked = true;
-					entityplayer.addChatMessage(new ChatComponentText("locked"));
+					if(worldObj.isRemote) {
+						entityplayer.addChatMessage(new ChatComponentText("locked"));
+					}
 				}
 			}
-			else {
+			else if (worldObj.isRemote) {
 				entityplayer.addChatMessage(new ChatComponentText("You are not the owner!"));
 			}
 			return true;
@@ -570,16 +615,20 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 	protected boolean canBeDestroyedByPlayer(DamageSource damagesource) {
 		if (this.getTrainLockedFromPacket()) {
 			if (damagesource.getEntity() instanceof EntityPlayer) {
-				if ((damagesource.getEntity() instanceof EntityPlayerMP) && MinecraftServer.getServer() != null && MinecraftServer.getServer().getConfigurationManager() != null && MinecraftServer.getServer().getConfigurationManager().func_152596_g(((EntityPlayer) damagesource.getEntity()).getGameProfile()) && ((EntityPlayer) damagesource.getEntity()).inventory.getCurrentItem() != null && ((EntityPlayer) damagesource.getEntity()).inventory.getCurrentItem().getItem() instanceof ItemWrench) {
+				if ((damagesource.getEntity() instanceof EntityPlayerMP) &&
+						((EntityPlayerMP)damagesource.getEntity()).canCommandSenderUseCommand(2, "tc.admin") &&
+						((EntityPlayer) damagesource.getEntity()).inventory.getCurrentItem() != null &&
+						((EntityPlayer) damagesource.getEntity()).inventory.getCurrentItem().getItem() instanceof ItemWrench) {
 
 					((EntityPlayer) damagesource.getEntity()).addChatMessage(new ChatComponentText("Removing the train using OP permission"));
+					return false;
 				}
 				else if (!((EntityPlayer) damagesource.getEntity()).getDisplayName().toLowerCase().equals(this.trainOwner.toLowerCase())) {
 					((EntityPlayer) damagesource.getEntity()).addChatMessage(new ChatComponentText("You are not the owner!"));
 					return true;
 				}
 			}
-			else {
+			else if (!damagesource.isProjectile()) {
 				return true;
 			}
 		}
@@ -645,4 +694,16 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		}
 	}
 
+
+
+
+	public String getPersistentUUID() {
+		if(getEntityData().hasKey("puuid")) {
+			return getEntityData().getString("puuid");
+		} else {
+			System.out.println("setting UUID");
+			getEntityData().setString("puuid", getUniqueID().toString());
+			return this.getUniqueID().toString();
+		}
+	}
 }

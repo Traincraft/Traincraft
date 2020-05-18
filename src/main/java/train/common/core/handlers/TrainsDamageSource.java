@@ -1,5 +1,6 @@
 package train.common.core.handlers;
 
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentText;
@@ -41,8 +42,12 @@ public class TrainsDamageSource extends DamageSource {
 	 */
 	@Override
 	public ChatComponentText func_151519_b(EntityLivingBase living) {
-		String name="";
-		if(living instanceof EntityPlayer)name=((EntityPlayer)living).getDisplayName();
-			return new ChatComponentText(name + deathMessage);
+		if(living instanceof EntityPlayer) {
+			return new ChatComponentText(((EntityPlayer) living).getDisplayName() + deathMessage);
+		} else if(living instanceof EntityLiving &&((EntityLiving)living).getCustomNameTag() !=null && ((EntityLiving)living).getCustomNameTag().length()>0) {
+			return new ChatComponentText( ((EntityLiving)living).getCustomNameTag() + deathMessage);
+		} else {
+			return new ChatComponentText(living.getCommandSenderName() +deathMessage);
+		}
 	}
 }

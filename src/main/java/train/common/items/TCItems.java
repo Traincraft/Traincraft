@@ -7,8 +7,10 @@
 
 package train.common.items;
 
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
 import train.common.Traincraft;
+import train.common.adminbook.ItemAdminBook;
 import train.common.library.Info;
 import train.common.library.ItemIDs;
 
@@ -39,6 +41,7 @@ public class TCItems {
 		//ItemIDs.signal.item = new ItemSignal(ItemIDs.signal.itemID, BlockIDs.activeSignal.block).setIconIndex(ItemIDs.signal.iconIndex);
 		ItemIDs.chunkLoaderActivator.item = new ItemChunkLoaderActivator();
 		ItemIDs.recipeBook.item = new ItemRecipeBook();
+		ItemIDs.adminBook.item = new ItemAdminBook();
 		
 		ItemIDs.stake.item = new ItemStacked(200);
 		ItemIDs.airship.item = new ItemZeppelins(0);
@@ -87,7 +90,11 @@ public class TCItems {
 		ItemIDs.tcRailVeryLargeSlopeWood.item = new ItemTCRail(ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_WOOD);
 		ItemIDs.tcRailVeryLargeSlopeGravel.item = new ItemTCRail(ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_GRAVEL);
 		ItemIDs.tcRailVeryLargeSlopeBallast.item = new ItemTCRail(ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_BALLAST);
-		
+
+		if (Loader.isModLoaded("ComputerCraft")) {
+			ItemIDs.wirelessTransmitter.item = new ItemWirelessTransmitter();
+			ItemIDs.atoCard.item = new ItemATOCard();
+		}
 	}
 	
 	private static void registerItems() {

@@ -23,4 +23,6 @@ public class GuiIDs {
 	
 	//public static final int RECIPE_BOOK2 = 101;
 	public static final int JUKEBOX = 102;
+	public static final int MTC_INFO = 103;
+	public static final int SPEED_TRANSMITTER = 104;
 }

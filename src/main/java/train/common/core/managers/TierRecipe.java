@@ -52,26 +52,8 @@ public class TierRecipe implements ITierRecipe {
 	}
 
 	@Override
-	public int getOutputSize() {
-		return outputSize;
-	}
-
-	@Override
 	public ItemStack getOutput() {
 		return output;
-	}
-
-	@Override
-	public String getRecipeName() {
-		return output.getDisplayName();
-	}
-
-	@Override
-	public ItemStack getRecipeIn(int slot) {
-		if(slot < stacks.length) {
-			return stacks[slot].copy();
-		}
-		return null;
 	}
 
 	@Override

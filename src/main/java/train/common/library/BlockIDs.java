@@ -31,10 +31,16 @@ public enum BlockIDs {
 	openFurnaceActive(false, null),
 	oreTC(true, ItemBlockOreTC.class),
 	lantern(false, null),
+	switchStand(false, null),
 	waterWheel(true, ItemBlockGeneratorWaterWheel.class),
 	windMill(true, ItemBlockGeneratorWindMill.class),
 	generatorDiesel(true, ItemBlockGeneratorDiesel.class),
-	
+	mtcTransmitterSpeed(false, null),
+	mtcTransmitterMTC(false, null),
+	mtcATOStopTransmitter(false, null),
+	mtcReceiverMTC(false, null),
+	mtcReceiverDestination(false, null),
+	pdmInstructionBlock(false, null),
 	//Liquids
 	diesel(false, ItemBlockFluid.class),
 	refinedFuel(false, ItemBlockFluid.class),
@@ -42,6 +48,7 @@ public enum BlockIDs {
 	tcRailGag(false,null),
 	tcRail(false,null),
 	bridgePillar(false,null);
+
 
 	public Block block;
 	public boolean hasItemBlock;

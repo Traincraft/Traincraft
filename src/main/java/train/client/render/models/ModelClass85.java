@@ -13,9 +13,9 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
-import train.client.tmt.ModelBase;
-import train.client.tmt.ModelRendererTurbo;
-import train.client.tmt.Tessellator;
+import tmt.ModelBase;
+import tmt.ModelRendererTurbo;
+import tmt.Tessellator;
 import train.common.library.Info;
 
 public class ModelClass85 extends ModelBase
@@ -829,6 +829,8 @@ public class ModelClass85 extends ModelBase
 		class85Model[192].addBox(0F, 0F, 0F, 16, 16, 51, 0F); // Box 200
 		class85Model[192].setRotationPoint(-8.5F, -10F, -19F);
 
+		fixRotation(class85Model, false, true, true);
+
 
 	}
 	private ModelDeiticBogie fronttrucks = new ModelDeiticBogie();
@@ -848,15 +850,14 @@ public class ModelClass85 extends ModelBase
 			}
 		}
 
+		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/Class85_Bogie.png"));
 		GL11.glPushMatrix();
-		Tessellator.bindTexture(new ResourceLocation(Info.modID, "textures/trains/Class85_Bogie.png"));
 		GL11.glTranslated(0,0.1,-1.8);
 		GL11.glScalef(0.8f,1f,1f);
 		fronttrucks.render(entity,f,f1,f2,f3,f4,f5);
 		GL11.glPopMatrix();
 
 		GL11.glPushMatrix();
-		Tessellator.bindTexture(new ResourceLocation(Info.modID, "textures/trains/Class85_Bogie.png"));
 		GL11.glTranslated(0,0.1,1.7);
 		GL11.glScalef(0.8f,1f,1f);
 		backtrucks.render(entity,f,f1,f2,f3,f4,f5);

@@ -1,16 +1,14 @@
 package train.common.api;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
 import train.common.api.LiquidManager.StandardTank;
 import train.common.core.handlers.FuelHandler;
-
-import java.util.List;
 
 public abstract class SteamTrain extends Locomotive implements IFluidHandler {
 
@@ -152,7 +150,7 @@ public abstract class SteamTrain extends Locomotive implements IFluidHandler {
 				}
 			}
 			else if (i == loco.locoInvent.length - 1) {
-				dropItem(itemstack1.getItem(), 1);
+				entityDropItem(itemstack1,1);
 				return;
 			}
 		}
@@ -164,7 +162,7 @@ public abstract class SteamTrain extends Locomotive implements IFluidHandler {
 			return;
 		this.update += 1;
 		if (this.update % 8 == 0 && itemstack != null) {
-			ItemStack result = LiquidManager.getInstance().processContainer(this, 1, theTank, itemstack); //'this' needs to be the loco inventory, but that's not an inventory it's a Itemstack[]
+			ItemStack result = LiquidManager.getInstance().processContainer(this, 1, this, itemstack); //'this' needs to be the loco inventory, but that's not an inventory it's a Itemstack[]
 			if (result != null) {
 				placeInInvent(result, loco);
 				decrStackSize(1, 1);
@@ -177,50 +175,71 @@ public abstract class SteamTrain extends Locomotive implements IFluidHandler {
 			return;
 
 		boolean hasCoalInTender = false;
-		AxisAlignedBB box3 = null;
-		if (loco.rotationYaw == -90 || loco.rotationYaw == 90) {
-			box3 = loco.boundingBox.expand(2.4, 2.1, 2.7);
-		}
-		else if (loco.rotationYaw == 180 || loco.rotationYaw == 0) {
-			box3 = loco.boundingBox.expand(2.7, 2.1, 2.4);
-		}
-		else {
-			box3 = loco.boundingBox.expand(1.5, 2.1, 1.5);
-		}
-		@SuppressWarnings("rawtypes") List lis3 = worldObj.getEntitiesWithinAABBExcludingEntity(this, box3);
-		if (lis3 != null && lis3.size() > 0) {
-			for (Object j1 : lis3) {
-				Entity entity = (Entity) j1;
-				if ((entity instanceof Tender) && (isAttached || isLinked())) {
-					for (int h = 0; h < ((Tender) entity).tenderItems.length; h++) {
-						if (((Tender) entity).tenderItems[h] != null && FuelHandler.steamFuelLast(((Tender) entity).tenderItems[h]) != 0) {
-							if (getFuel() < maxFuel && ((getFuel() + FuelHandler.steamFuelLast(((Tender) entity).tenderItems[h])) <= maxFuel)) {
-								fuelTrain += FuelHandler.steamFuelLast(((Tender) entity).tenderItems[h]);
-								hasCoalInTender = true;
-								((Tender) entity).decrStackSize(h, 1);
-								return;
-								//h = ((Tender) entity).tenderItems.length;
-								//j1 = lis3.size();
-							}
-						}
-						else if (((Tender) entity).getWater() > 0) {
-							if (getWater() < maxTank) {
+		if (isLocoTurnedOn() && ticksExisted%10==0) {
+			FluidStack drain = null;
 
-								FluidStack drain = ((Tender) entity).drain(ForgeDirection.UNKNOWN, 1, false);
-								if ((drain != null) && (drain.amount > 0)) {
-									((Tender) entity).drain(ForgeDirection.UNKNOWN, 1, true);
-								}
-								int used = fill(ForgeDirection.UNKNOWN, drain, false);
-								if ((drain != null) && (used >= drain.amount)) {
-									fill(ForgeDirection.UNKNOWN, drain, true);
-								}
+			if(fill(ForgeDirection.UNKNOWN,new FluidStack(FluidRegistry.WATER, 100), false)==100) {
+				blocksToCheck = new TileEntity[]{worldObj.getTileEntity(MathHelper.floor_double(posX), MathHelper.floor_double(posY - 1), MathHelper.floor_double(posZ)),
+						worldObj.getTileEntity(MathHelper.floor_double(posX), MathHelper.floor_double(posY + 2), MathHelper.floor_double(posZ)),
+						worldObj.getTileEntity(MathHelper.floor_double(posX), MathHelper.floor_double(posY + 3), MathHelper.floor_double(posZ)),
+						worldObj.getTileEntity(MathHelper.floor_double(posX), MathHelper.floor_double(posY + 4), MathHelper.floor_double(posZ))
+				};
+
+				for (TileEntity block : blocksToCheck) {
+					if (drain == null && block instanceof IFluidHandler) {
+						for (ForgeDirection direction : ForgeDirection.VALID_DIRECTIONS) {
+							if(((IFluidHandler) block).drain(direction,100,false)!=null &&
+									((IFluidHandler) block).drain(direction, 100, false).fluid==FluidRegistry.WATER &&
+									((IFluidHandler) block).drain(direction, 100, false).amount ==100
+							) {
+								drain = ((IFluidHandler) block).drain(
+										direction, 100, true);
 							}
 						}
 					}
 				}
-				else {
-					hasCoalInTender = false;
+			}
+
+			if(cartLinked1 instanceof Tender){
+				if(drain==null && fill(ForgeDirection.UNKNOWN,new FluidStack(FluidRegistry.WATER, 100), false)==100) {
+					if (getFluid() == null || getFluid().getFluid() == FluidRegistry.WATER) {
+						drain = ((Tender) cartLinked1).drain(ForgeDirection.UNKNOWN, new FluidStack(FluidRegistry.WATER, 100), true);
+					}
 				}
+				for (int h = 0; h < ((Tender) cartLinked1).tenderItems.length; h++) {
+					if (((Tender) cartLinked1).tenderItems[h] != null && FuelHandler.steamFuelLast(((Tender) cartLinked1).tenderItems[h]) != 0) {
+						if (getFuel() < maxFuel && ((getFuel() + FuelHandler.steamFuelLast(((Tender) cartLinked1).tenderItems[h])) <= maxFuel)) {
+							fuelTrain += FuelHandler.steamFuelLast(((Tender) cartLinked1).tenderItems[h]);
+							hasCoalInTender = true;
+							((Tender) cartLinked1).decrStackSize(h, 1);
+							break;
+						}
+					}
+				}
+
+
+			} else if (cartLinked2 instanceof Tender){
+
+				if(drain==null && fill(ForgeDirection.UNKNOWN,new FluidStack(FluidRegistry.WATER, 100), false)==100) {
+					if (getFluid() == null || getFluid().getFluid() == FluidRegistry.WATER) {
+						drain = ((Tender) cartLinked2).drain(ForgeDirection.UNKNOWN, new FluidStack(FluidRegistry.WATER, 100), true);
+					}
+				}
+
+
+				for (int h = 0; h < ((Tender) cartLinked2).tenderItems.length; h++) {
+					if (((Tender) cartLinked2).tenderItems[h] != null && FuelHandler.steamFuelLast(((Tender) cartLinked2).tenderItems[h]) != 0) {
+						if (getFuel() < maxFuel && ((getFuel() + FuelHandler.steamFuelLast(((Tender) cartLinked2).tenderItems[h])) <= maxFuel)) {
+							fuelTrain += FuelHandler.steamFuelLast(((Tender) cartLinked2).tenderItems[h]);
+							hasCoalInTender = true;
+							((Tender) cartLinked2).decrStackSize(h, 1);
+							break;
+						}
+					}
+				}
+			}
+			if (drain != null){
+				fill(ForgeDirection.UNKNOWN, drain, true);
 			}
 		}
 		if (!hasCoalInTender && locoInvent0 != null && FuelHandler.steamFuelLast(locoInvent0) != 0) {
@@ -229,6 +248,8 @@ public abstract class SteamTrain extends Locomotive implements IFluidHandler {
 				decrStackSize(0, 1);
 			}
 		}
+
+
 		if (locoInvent1 != null) {
 			liquidInSlot(locoInvent1, loco);
 			return;

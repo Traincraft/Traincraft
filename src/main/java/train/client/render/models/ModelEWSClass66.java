@@ -13,9 +13,9 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
-import train.client.tmt.ModelBase;
-import train.client.tmt.ModelRendererTurbo;
-import train.client.tmt.Tessellator;
+import tmt.ModelBase;
+import tmt.ModelRendererTurbo;
+import tmt.Tessellator;
 import train.common.library.Info;
 
 public class ModelEWSClass66 extends ModelBase
@@ -173,7 +173,7 @@ public class ModelEWSClass66 extends ModelBase
 
 		ewsclass66Model[1].addBox(0F, 0F, 0F, 2, 20, 110, 0F); // 03
 		ewsclass66Model[1].setRotationPoint(10F, 8F, -51F);
-		ewsclass66Model[1].rotateAngleZ = 1.57079633F;
+		ewsclass66Model[1].rotateAngleZ = -1.57079633F;
 
 		ewsclass66Model[2].addShapeBox(0F, 0F, 0F, 20, 1, 1, 0F, 0F, 0F, 1F, 0F, 0F, 1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 1F, 0F, 0F, 1F, 0F, 0F, 0F, 0F, 0F, 0F); // 04
 		ewsclass66Model[2].setRotationPoint(-10F, -2F, 60F);
@@ -199,7 +199,8 @@ public class ModelEWSClass66 extends ModelBase
 		ewsclass66Model[8].rotateAngleX = -0.20943951F;
 
 		ewsclass66Model[9].addShapeBox(0F, 0F, 0F, 1, 10, 10, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // 11
-		ewsclass66Model[9].setRotationPoint(-10F, -2F, 48F);
+		ewsclass66Model[9].setRotationPoint(-9F, -2F, 58F);
+		ewsclass66Model[9].rotateAngleY = -3.14159265F;
 
 		ewsclass66Model[10].addShapeBox(0F, 0F, 0F, 1, 10, 10, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // 12
 		ewsclass66Model[10].setRotationPoint(9F, -2F, 48F);
@@ -289,7 +290,8 @@ public class ModelEWSClass66 extends ModelBase
 		ewsclass66Model[37].setRotationPoint(8F, -8F, 60F);
 
 		ewsclass66Model[38].addShapeBox(0F, 0F, 0F, 1, 10, 10, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // 43
-		ewsclass66Model[38].setRotationPoint(-10F, -2F, -50F);
+		ewsclass66Model[38].setRotationPoint(-9F, -2F, -40F);
+		ewsclass66Model[38].rotateAngleY = -3.14159265F;
 
 		ewsclass66Model[39].addShapeBox(0F, 0F, 0F, 20, 9, 1, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 2F, 0F, 0F, 2F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, 2F, 0F, 0F, 2F); // 44
 		ewsclass66Model[39].setRotationPoint(-10F, -1F, -54F);
@@ -640,6 +642,7 @@ public class ModelEWSClass66 extends ModelBase
 		ewsclass66Model[140].addShapeBox(0F, 0F, 0F, 1, 20, 108, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -20F, 0F, 0F, -20F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -20F, 0F, 0F, -20F); // Box 143
 		ewsclass66Model[140].setRotationPoint(9F, -12F, -40F);
 
+		fixRotation(ewsclass66Model, false, true, true);
 
 	}
 	private ModelEWSClass66_Bogie fronttrucks = new ModelEWSClass66_Bogie();
@@ -659,15 +662,14 @@ public class ModelEWSClass66 extends ModelBase
 			}
 		}
 
+		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/Class66Bogie.png"));
 		GL11.glPushMatrix();
-		Tessellator.bindTexture(new ResourceLocation(Info.modID, "textures/trains/Class66Bogie.png"));
 		GL11.glTranslated(0,0.3,-2.6);
 		GL11.glScalef(0.8f,0.8f,0.8f);
 		fronttrucks.render(entity,f,f1,f2,f3,f4,f5);
 		GL11.glPopMatrix();
 
 		GL11.glPushMatrix();
-		Tessellator.bindTexture(new ResourceLocation(Info.modID, "textures/trains/Class66Bogie.png"));
 		GL11.glTranslated(0,0.3,2.1);
 		GL11.glScalef(0.8f,0.8f,0.8f);
 		backtrucks.render(entity,f,f1,f2,f3,f4,f5);

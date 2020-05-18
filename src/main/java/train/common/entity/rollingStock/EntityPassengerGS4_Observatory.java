@@ -6,6 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import train.common.api.EntityRollingStock;
 import train.common.api.IPassenger;
+import train.common.core.util.TraincraftUtil;
 
 public class EntityPassengerGS4_Observatory extends EntityRollingStock implements IPassenger {
 
@@ -25,20 +26,7 @@ public class EntityPassengerGS4_Observatory extends EntityRollingStock implement
 	}
 	@Override
 	public void updateRiderPosition() {
-		//if(this.bogie[0]!=null){
-			/*double dX = this.posX - this.bogie[0].posX;
-			double dZ = this.posZ - this.bogie[0].posZ;
-			dX/=2;
-			dZ/=2;*/
-			//System.out.println(worldObj.isRemote+ " "+(posX - dX) +" " + (posZ - dZ));
-			//riddenByEntity.setPosition(posX - dX, posY + getMountedYOffset() + riddenByEntity.getYOffset() + 0.2, posZ-dZ);	
-		//}
-		/*double rads = this.rotationYawClientReal-90 * 3.141592653589793D / 180.0D;
-		double pitchRads = this.anglePitchClient * 3.141592653589793D / 180.0D;
-		double distance = 1.3;
-		riddenByEntity.setPosition(posX - Math.cos(rads)*distance, posY + (Math.tan(pitchRads)*-distance)+( getMountedYOffset() + riddenByEntity.getYOffset() + 0.2F), posZ - Math.sin(rads)*distance);
-		*/
-		riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset() + 0.4, posZ);
+		TraincraftUtil.updateRider(this,  -0.05, 0.15);
 	}
 
 	@Override
@@ -83,6 +71,6 @@ public class EntityPassengerGS4_Observatory extends EntityRollingStock implement
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return 3F;
+		return 3.1F;
 	}
 }

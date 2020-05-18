@@ -2,8 +2,8 @@ package train.client.render.models;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
+import tmt.ModelBase;
 import train.client.render.CustomModelRenderer;
-import train.client.tmt.ModelBase;
 
 public class ModelChME3 extends ModelBase {
 	

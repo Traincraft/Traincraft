@@ -23,8 +23,15 @@ tile.tc:assemblyTableIII.name=Montage Bank III
 tile.tc:tcRail.name=Traincraft Gleis
 tile.tc:tcRailGag.name=Traincraft Gleis
 fluid.tc:fluid.diesel.name=Dieselkraftstoff
-fluid.tc:refinedfuel.name=Rafinierter Kraftstoff
+fluid.tc:fluid.refinedfuel.name=Rafinierter Kraftstoff
 tile.tc:bridgePillar.name=Brückenpfeiler
+
+<!-- ## Fluids ## -->
+fluid.diesel.name=Dieselkraftstoff
+fluid.refinedfuel.name=Rafinierter Kraftstoff
+
+fluid.tile.water=Wasser
+fluid.tile.lava=Lava
 
 <!-- ## Items ## -->
 item.tc:diesel.name=(Gefüllter) Dieselkanister
@@ -133,7 +140,7 @@ item.tc:minecartFlatCart_DB.name=Flachwagen (DB)
 item.tc:minecartFlatCartLogs_DB.name=Holzwagen (DB)
 item.tc:minecartFreightGondola_DB.name=Niederbordwagen (DB)
 item.tc:minecartTankWagon_DB.name=Kesselwagen (DB)
-item.tc:minecartLocoSD70.name=SD-70 Union Pacific (US)
+item.tc:minecartLocoSD70.name=SD-70M (US)
 item.tc:minecartLocoEr.name=USSR 0-5-0
 item.tc:minecartTenderEr.name=USSR 0-5-0 Tender
 item.tc:minecartFreightCenterBeam_Empty.name=Güterwagen
@@ -167,7 +174,7 @@ item.tc:minecartTenderAdler.name=Adler Tender
 item.tc:minecartPassengerAdler.name=Adler Personenwagen
 item.tc:minecartCabooseLogging.name=Holzcaboose
 item.tc:minecartPassengerTramNY.name=N.Y. U-Bahn (Personenwagen)
-item.tc:minecartLocoSD40.name=SD-40 Santa Fe (U.S.)
+item.tc:minecartLocoSD40.name=SD40-2 (U.S.)
 item.tc:zeppelin.name=Zeppelin
 item.tc:copperRail.name=Kupferschiene
 item.tc:steelRail.name=Stahlschine
@@ -306,8 +313,8 @@ entity.tc.Loco Electric BR_E69.name=BR E69
 entity.tc.Loco Electric VL10.name=VL10 (SU)
 entity.tc.Loco Diesel V60 DB.name=BR V60 (DB)
 entity.tc.Loco Diesel Shunter.name=Shunter (UK)
-entity.tc.Loco Diesel SD70.name=SD70 (US)
-entity.tc.Loco Diesel SD40.name=SD40 (US)
+entity.tc.Loco Diesel SD70.name=SD70M (US)
+entity.tc.Loco Diesel SD40.name=SD40-2 (US)
 entity.tc.Loco Diesel GP7.name=GP7 (US)
 entity.tc.Loco Diesel CME3.name=CHME3 (SU)
 entity.tc.Loco Diesel CD742.name=CD 742

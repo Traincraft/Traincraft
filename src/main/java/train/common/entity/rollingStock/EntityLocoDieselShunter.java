@@ -37,6 +37,7 @@ public class EntityLocoDieselShunter extends DieselTrain {
 
 	@Override
 	public void updateRiderPosition() {
+		if(riddenByEntity==null){return;}
 		riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset() + 0.4F, posZ);
 	}
 	
@@ -98,7 +99,7 @@ public class EntityLocoDieselShunter extends DieselTrain {
 	}
 	@Override
 	public String getInventoryName() {
-		return "Shunter";
+		return "Class 08 Shunter";
 	}
 	@Override
 	public boolean interactFirst(EntityPlayer entityplayer) {

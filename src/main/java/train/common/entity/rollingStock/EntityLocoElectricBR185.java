@@ -29,6 +29,7 @@ public class EntityLocoElectricBR185 extends ElectricTrain {
 
 	@Override
 	public void updateRiderPosition() {
+		if(riddenByEntity==null){return;}
 		double pitchRads = this.anglePitchClient * Math.PI / 180.0D;
 		double distance = 4.5;
 		double yOffset = 0.2;
@@ -133,7 +134,7 @@ public class EntityLocoElectricBR185 extends ElectricTrain {
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return 0.56F;
+		return 0.7F;
 	}
 
 	@Override

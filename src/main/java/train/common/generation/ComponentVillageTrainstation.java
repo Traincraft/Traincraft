@@ -1,17 +1,17 @@
 package train.common.generation;
 
-import java.util.List;
-import java.util.Random;
-
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.StructureVillagePieces;
-import train.common.api.AbstractTrains;
 import train.common.api.EntityRollingStock;
+import train.common.core.util.TraincraftUtil;
 import train.common.entity.rollingStock.*;
 import train.common.library.BlockIDs;
+
+import java.util.List;
+import java.util.Random;
 
 public class ComponentVillageTrainstation extends StructureVillagePieces.Village {
 
@@ -181,13 +181,18 @@ public class ComponentVillageTrainstation extends StructureVillagePieces.Village
 
 			cart.setLocationAndAngles(j1 + 0.5D, k1, l1 + 0.5D, 90.0F, 0.0F);
 			cart.setTrainOwner("VillagerJoe");
+			cart.shouldChunkLoad=false;
 			if (rD == 4) {
-				cart.setColor(AbstractTrains.getColorFromString("Blue"));
+				cart.setColor(TraincraftUtil.getByteFromColor("Blue"));
+			}
+			if (rD == 7) {
+				cart.setColor(TraincraftUtil.getByteFromColor("Red"));
 			}
 			if (rD == 5) {
-				cart.setColor(AbstractTrains.getColorFromString("Brown"));
+				cart.setColor(TraincraftUtil.getByteFromColor("Brown"));
 			}
 			world.spawnEntityInWorld(cart);
+			cart.setInformation(cart.getTrainType(), "VillagerJoe", "VillagerJoe", cart.getCartItem().getItem().getItemStackDisplayName(cart.getCartItem()), -1);
 		}
 		int j2 = this.getXWithOffset(3, 8);
 		int k2 = this.getYWithOffset(1);
@@ -213,10 +218,10 @@ public class ComponentVillageTrainstation extends StructureVillagePieces.Village
 			cart.setLocationAndAngles(j2 + 0.5D, k2, l2 + 0.5D, 90.0F, 0.0F);
 			cart.setTrainOwner("VillagerJoe");
 			if (rD == 4) {
-				cart.setColor(AbstractTrains.getColorFromString("Blue"));
+				cart.setColor(TraincraftUtil.getByteFromColor("Blue"));
 			}
 			if (rD == 5) {
-				cart.setColor(AbstractTrains.getColorFromString("Brown"));
+				cart.setColor(TraincraftUtil.getByteFromColor("Brown"));
 			}
 			world.spawnEntityInWorld(cart);
 		}

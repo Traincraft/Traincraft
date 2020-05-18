@@ -39,6 +39,7 @@ public class EntityLocoSteamClimax extends SteamTrain {
 	public boolean shouldRiderSit(){return false;}
 	@Override
 	public void updateRiderPosition() {
+		if(riddenByEntity==null){return;}
 		riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset()+0.6F, posZ);// default
 	}
 

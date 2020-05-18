@@ -37,7 +37,8 @@ public class EntityLocoDieselV60_DB extends DieselTrain {
 
 	@Override
 	public void updateRiderPosition() {
-		riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset() + 0.45F, posZ);
+		if(riddenByEntity==null){return;}
+		riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset() + 0.65F, posZ);
 	}
 
 	@Override
@@ -121,7 +122,7 @@ public class EntityLocoDieselV60_DB extends DieselTrain {
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return (1.5F);
+		return (1.3F);
 	}
 
 	@Override

@@ -1,8 +1,5 @@
 package train.common.core.handlers;
 
-import java.util.List;
-import java.util.Random;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.item.EntityMinecart;
@@ -23,6 +20,9 @@ import train.common.entity.EntityLasersLines;
 import train.common.entity.rollingStock.EntityStockCar;
 import train.common.entity.rollingStock.EntityStockCarDRWG;
 
+import java.util.List;
+import java.util.Random;
+
 public class CollisionHandler {
 
 	private World worldObj;
@@ -34,15 +34,17 @@ public class CollisionHandler {
 
 	}
 
+	private List listRide;
+	private Entity entity;
+	private AxisAlignedBB box = null;
 	public void handleCollisions(Entity entityOne, AxisAlignedBB boundingBox) {
-		AxisAlignedBB box = null;
 		/**
 		 * A smaller BB is needed otherwise the entity will get sucked back as soon as it unmounts this does not affect collisions with player or other carts. Only collisions with mobs
 		 */
-		List listRide = worldObj.getEntitiesWithinAABBExcludingEntity(entityOne, boundingBox.expand(-0.5, -0.5, -0.5));
+		listRide = worldObj.getEntitiesWithinAABBExcludingEntity(entityOne, boundingBox.expand(-0.5, -0.5, -0.5));
 		if (listRide != null && listRide.size() > 0) {
 			for (int j1 = 0; j1 < listRide.size(); j1++) {
-				Entity entity = (Entity) listRide.get(j1);
+				entity = (Entity) listRide.get(j1);
 				if (!(entity instanceof EntityLasersLines) && !entity.noClip) {
 					if (entity != entity.riddenByEntity && !(unAutorizedMob(entity, entityOne)) && (entity instanceof EntityLiving)) {
 						applyRideEntity(entity, entityOne);
@@ -59,11 +61,11 @@ public class CollisionHandler {
 		else {
 			box = boundingBox.expand(2, 0, 2);
 		}
-		List listLiving = worldObj.getEntitiesWithinAABBExcludingEntity(entityOne, box);
-		if (listLiving != null && listLiving.size() > 0) {
+		listRide = worldObj.getEntitiesWithinAABBExcludingEntity(entityOne, box);
+		if (listRide != null && listRide.size() > 0) {
 
-			for (int j1 = 0; j1 < listLiving.size(); j1++) {
-				Entity entity = (Entity) listLiving.get(j1);
+			for (int j1 = 0; j1 < listRide.size(); j1++) {
+				entity = (Entity) listRide.get(j1);
 
 				if (!(entity instanceof EntityLasersLines) && !entity.noClip) {
 
@@ -85,11 +87,11 @@ public class CollisionHandler {
 		}
 		//box = boundingBox.expand(2, 2, 2);
 
-		List list = worldObj.getEntitiesWithinAABBExcludingEntity(entityOne, box);
-		if (list != null && list.size() > 0) {
+		listRide = worldObj.getEntitiesWithinAABBExcludingEntity(entityOne, box);
+		if (listRide != null && listRide.size() > 0) {
 
-			for (int j1 = 0; j1 < list.size(); j1++) {
-				Entity entity = (Entity) list.get(j1);
+			for (int j1 = 0; j1 < listRide.size(); j1++) {
+				entity = (Entity) listRide.get(j1);
 				if (!(entity instanceof EntityLasersLines) && !entity.noClip && !(entity instanceof EntityLiving) && !(entityOne instanceof EntityLiving)) {
 
 					if (entity != entity.riddenByEntity && entity.canBePushed() && (entityOne instanceof AbstractTrains) && (entity instanceof AbstractTrains) && !((AbstractTrains) entityOne).isAttached) {
@@ -345,8 +347,11 @@ public class CollisionHandler {
 
 		double d2 = MathHelper.abs_max(d, d1);
 
-		if (d2 <= 0.7D && !(entityOne instanceof EntityPlayer)) {
+		if (d2 <= 0.7D && !(entityOne instanceof EntityPlayer)&& d!=0 && d1!=0) {
 			d2 = MathHelper.sqrt_double(d2);
+			if(d2==0){
+				d2=0.1;
+			}
 			d /= d2;
 			d1 /= d2;
 			double d3 = 1.0D / d2;
@@ -384,7 +389,7 @@ public class CollisionHandler {
 						if ((f1 * 3.6) < 35) {//if speed is smaller than 35km/h then don't do any damage but push entities
 							if (f7 == 0) {
 
-								movingobjectposition.entityHit.addVelocity(d / 1.5, 0.0D, d1 / 1.5);
+								movingobjectposition.entityHit.addVelocity(d * 0.666666667, 0.0D, d1 * 0.666666667);
 
 								entity.velocityChanged = true;
 								return;

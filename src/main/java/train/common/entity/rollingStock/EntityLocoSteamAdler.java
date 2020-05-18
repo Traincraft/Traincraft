@@ -37,6 +37,7 @@ public class EntityLocoSteamAdler extends SteamTrain {
 
 	@Override
 	public void updateRiderPosition() {
+		if(riddenByEntity==null){return;}
 		double distance = -0.1;
 		double pitchRads = this.anglePitchClient * 3.141592653589793D / 180.0D;
 		float rotationCos1 = (float) Math.cos(Math.toRadians(this.renderYaw + 90));

@@ -7,8 +7,7 @@
 
 package train.common.core.handlers;
 
-import java.util.ArrayList;
-
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -21,26 +20,36 @@ import train.common.library.BlockIDs;
 import train.common.library.ItemIDs;
 import train.common.recipes.RecipesArmorDyes;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static train.common.recipes.AssemblyTableRecipes.waterContainers;
+
 public class RecipeHandler {
 
-	private static final ArrayList<ItemStack> steel = OreDictionary.getOres("ingotSteel");
-	private static final ArrayList<ItemStack> iron = OreDictionary.getOres("ingotIron");
-	private static final ArrayList<ItemStack> planks = OreDictionary.getOres("plankWood");
-	private static final ArrayList<ItemStack> logs = OreDictionary.getOres("logWood");
-	private static final ArrayList<ItemStack> plastics = OreDictionary.getOres("dustPlastic");
-	private static final ArrayList<ItemStack> copper = OreDictionary.getOres("ingotCopper");
-	private static final ArrayList<ItemStack> dustCoal = OreDictionary.getOres("dustCoal");
-
+	private static ArrayList<ItemStack> multiNameOreDict(String ... names){
+		ArrayList<ItemStack> entries = new ArrayList<ItemStack>();
+		for (String name : names){
+			entries.addAll(OreDictionary.getOres(name));
+		}
+		return entries;
+	}
 
 	public static void initBlockRecipes() {
+		ArrayList<ItemStack> iron = OreDictionary.getOres("ingotIron");
+
 		TrainCraftingManager.instance.getRecipeList().add(new RecipesArmorDyes());
 		/* Assembly tables */
-		GameRegistry.addRecipe(new ItemStack(BlockIDs.assemblyTableI.block, 1),  "IPI", "S S", "SPS", Character.valueOf('I'), Items.iron_ingot, Character.valueOf('P'), Blocks.piston, Character.valueOf('S'), Blocks.stone );
+		for (ItemStack ironingot : iron) {
+			GameRegistry.addRecipe(new ItemStack(BlockIDs.assemblyTableI.block, 1), "IPI", "S S", "SPS", Character.valueOf('I'), ironingot, Character.valueOf('P'), Blocks.piston, Character.valueOf('S'), Blocks.stone);
+		}
 		GameRegistry.addRecipe(new ItemStack(BlockIDs.assemblyTableII.block, 1),  "GPG", "O O", "OPO", Character.valueOf('G'), Items.gold_ingot, Character.valueOf('P'), Blocks.piston, Character.valueOf('O'), Blocks.obsidian );
 		GameRegistry.addRecipe(new ItemStack(BlockIDs.assemblyTableIII.block, 1),  "GPG", "DLD", "OPO", Character.valueOf('G'), Items.gold_ingot, Character.valueOf('P'), Blocks.piston, Character.valueOf('D'), Items.diamond, Character.valueOf('L'), Blocks.glowstone, Character.valueOf('O'), Blocks.obsidian );
 
 		if (!ConfigHandler.DISABLE_TRAIN_WORKBENCH) {
-			addDictRecipe(new ItemStack(BlockIDs.trainWorkbench.block, 1), "###", "IFI", "###", Character.valueOf('#'), "plankWood", Character.valueOf('F'), Blocks.furnace, Character.valueOf('I'), Items.iron_ingot);
+			for (ItemStack ironingot : iron) {
+				addDictRecipe(new ItemStack(BlockIDs.trainWorkbench.block, 1), "###", "IFI", "###", Character.valueOf('#'), "plankWood", Character.valueOf('F'), Blocks.furnace, Character.valueOf('I'), ironingot);
+			}
 		}
 		addDictRecipe(new ItemStack(BlockIDs.distilIdle.block, 1),  "###", "#F#", "###", Character.valueOf('#'), "ingotSteel", Character.valueOf('F'), ItemIDs.firebox.item );
 
@@ -52,7 +61,9 @@ public class RecipeHandler {
 		}
 
 		/* Lantern */
-		GameRegistry.addRecipe(new ItemStack(BlockIDs.lantern.block, 4),  "III", "PTP", "III", Character.valueOf('I'), Items.iron_ingot, Character.valueOf('P'), Blocks.glass_pane, Character.valueOf('T'),Blocks.torch );
+		for (ItemStack ironingot : iron) {
+			GameRegistry.addRecipe(new ItemStack(BlockIDs.lantern.block, 4), "III", "PTP", "III", Character.valueOf('I'), ironingot, Character.valueOf('P'), Blocks.glass_pane, Character.valueOf('T'), Blocks.torch);
+		}
 		
 		/* Clothes */
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.overalls.item, 1),  " # ", "X$X", "X$X", Character.valueOf('X'), new ItemStack(Items.dye, 1, 4), Character.valueOf('$'), Items.leather_leggings, Character.valueOf('#'), new ItemStack(Items.dye, 1, 1) );
@@ -72,8 +83,12 @@ public class RecipeHandler {
 		/* Recipe book */
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.recipeBook.item, 1),  "TTT", "TBT", "TTT", Character.valueOf('T'), Blocks.rail, Character.valueOf('B'), Items.book );
 
-		/*Buffer*/
-		addDictRecipe(new ItemStack(BlockIDs.stopper.block, 1),  "WWW", "I I", "RRR", Character.valueOf('W'), "plankWood", Character.valueOf('R'), Blocks.rail, Character.valueOf('I'), Items.iron_ingot);
+		for (ItemStack ironingot : iron) {
+			addDictRecipe(new ItemStack(BlockIDs.switchStand.block, 1), " W ", " I ", " R ", Character.valueOf('W'), Blocks.lever, Character.valueOf('R'), Items.stick, Character.valueOf('I'), ironingot);
+
+			/*Buffer*/
+			addDictRecipe(new ItemStack(BlockIDs.stopper.block, 1), "WWW", "I I", "RRR", Character.valueOf('W'), "plankWood", Character.valueOf('R'), Blocks.rail, Character.valueOf('I'), ironingot);
+		}
 		
 		GameRegistry.addRecipe(new ItemStack(BlockIDs.oreTC.block, 1,3),  "GXG", Character.valueOf('G'), Blocks.gravel, Character.valueOf('X'), Items.clay_ball);
 		
@@ -81,11 +96,25 @@ public class RecipeHandler {
 
 	public static void initItemRecipes() {
 
+		ArrayList<ItemStack> steel = OreDictionary.getOres("ingotSteel");
+		ArrayList<ItemStack> iron = OreDictionary.getOres("ingotIron");
+		ArrayList<ItemStack> planks = OreDictionary.getOres("plankWood");
+		ArrayList<ItemStack> logs = OreDictionary.getOres("logWood");
+		ArrayList<ItemStack> plastics	= multiNameOreDict("platePlastic", "itemPlastic", "dustPlastic");//dustPlastic for MFR support, platePlastic for GT6 support
+		ArrayList<ItemStack> copper = OreDictionary.getOres("ingotCopper");
+		ArrayList<ItemStack> dustCoal = OreDictionary.getOres("dustCoal");
+		List<ItemStack> coal = new ArrayList<ItemStack>();
+		coal.add(new ItemStack(Items.coal));
+		coal.addAll(OreDictionary.getOres("coal"));
+		ArrayList<ItemStack> redstone = OreDictionary.getOres("dustRedstone");
+		ArrayList<ItemStack> waterbucket = waterContainers();
 		// Always do this " X " instead of this "X", and do not put "" empty brackets
 
 		/* I placed it here because workbench should be one of the first recipe shown in the recipe book */
 		for (ItemStack plank : planks) {
-			TrainCraftingManager.instance.addRecipe(new ItemStack(BlockIDs.trainWorkbench.block, 1),  "###", "IFI", "###", Character.valueOf('#'), plank, Character.valueOf('F'), Blocks.furnace, Character.valueOf('I'), Items.iron_ingot );
+			for (ItemStack ironingot : iron) {
+				TrainCraftingManager.instance.addRecipe(new ItemStack(BlockIDs.trainWorkbench.block, 1), "###", "IFI", "###", Character.valueOf('#'), plank, Character.valueOf('F'), Blocks.furnace, Character.valueOf('I'), ironingot);
+			}
 		}
 		
 		/* Recipe book */
@@ -95,7 +124,10 @@ public class RecipeHandler {
 		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.chunkLoaderActivator.item, 1),  "  P", " S ", "S  ", Character.valueOf('S'), Items.blaze_rod, Character.valueOf('P'), Items.ender_pearl );
 
 		/* Assembly tables */
-		TrainCraftingManager.instance.addRecipe(new ItemStack(BlockIDs.assemblyTableI.block, 1),  "IPI", "S S", "SPS", Character.valueOf('I'), Items.iron_ingot, Character.valueOf('P'), Blocks.piston, Character.valueOf('S'), Blocks.stone );
+
+		for (ItemStack ironingot : iron) {
+			TrainCraftingManager.instance.addRecipe(new ItemStack(BlockIDs.assemblyTableI.block, 1), "IPI", "S S", "SPS", Character.valueOf('I'), ironingot, Character.valueOf('P'), Blocks.piston, Character.valueOf('S'), Blocks.stone);
+		}
 		TrainCraftingManager.instance.addRecipe(new ItemStack(BlockIDs.assemblyTableII.block, 1),  "GPG", "O O", "OPO", Character.valueOf('G'), Items.gold_ingot, Character.valueOf('P'), Blocks.piston, Character.valueOf('O'), Blocks.obsidian );
 		TrainCraftingManager.instance.addRecipe(new ItemStack(BlockIDs.assemblyTableIII.block, 1),  "GPG", "DLD", "OPO", Character.valueOf('G'), Items.gold_ingot, Character.valueOf('P'), Blocks.piston, Character.valueOf('D'), Items.diamond, Character.valueOf('L'), Blocks.glowstone, Character.valueOf('O'), Blocks.obsidian );
 
@@ -103,8 +135,9 @@ public class RecipeHandler {
 		TrainCraftingManager.instance.addRecipe(new ItemStack(BlockIDs.openFurnaceIdle.block, 1),  "#L#", "#B#", "#I#", Character.valueOf('#'), Blocks.nether_brick, Character.valueOf('L'), Items.lava_bucket, Character.valueOf('B'), Items.bucket, Character.valueOf('I'), Blocks.iron_block );
 
 		/* Lantern */
-		TrainCraftingManager.instance.addRecipe(new ItemStack(BlockIDs.lantern.block, 4),  "III", "PTP", "III", Character.valueOf('I'), Items.iron_ingot, Character.valueOf('P'), Blocks.glass_pane, Character.valueOf('T'),Blocks.torch );
-	
+		for (ItemStack ironingot : iron) {
+			TrainCraftingManager.instance.addRecipe(new ItemStack(BlockIDs.lantern.block, 4), "III", "PTP", "III", Character.valueOf('I'), ironingot, Character.valueOf('P'), Blocks.glass_pane, Character.valueOf('T'), Blocks.torch);
+		}
 		/* Clothes */
 		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.overalls.item, 1),  " # ", "X$X", "X X", Character.valueOf('X'), new ItemStack(Items.dye, 1, 4), Character.valueOf('$'), Items.leather_leggings, Character.valueOf('#'), new ItemStack(Items.dye, 1, 1) );
 		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.jacket.item, 1),  "X X", "X$X", "X#X", Character.valueOf('X'), new ItemStack(Items.dye, 1, 14), Character.valueOf('$'), Items.leather_chestplate, Character.valueOf('#'), Items.string );
@@ -126,8 +159,10 @@ public class RecipeHandler {
 			for (ItemStack plastic : plastics) {
 				/* Empty canister */
 				TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.emptyCanister.item, 4),  "PPP", "P P", "PPP", Character.valueOf('P'), plastic);
-				/* Electronic circuit */
-				TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.electronicCircuit.item, 1),  "XXX", "RPR", "XXX", Character.valueOf('X'), ItemIDs.copperWireFine.item, Character.valueOf('P'), plastic, Character.valueOf('R'), Items.redstone );
+				for (ItemStack rs :redstone) {
+					/* Electronic circuit */
+					TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.electronicCircuit.item, 1), "XXX", "RPR", "XXX", Character.valueOf('X'), ItemIDs.copperWireFine.item, Character.valueOf('P'), plastic, Character.valueOf('R'), rs.getItem());
+				}
 				/* Composite Material*/
 				TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.reinforcedPlastic.item, 16),  "LPL", "PLP", "GPG", Character.valueOf('G'), Blocks.glass_pane, Character.valueOf('P'), ItemIDs.graphite.item, Character.valueOf('L'), plastic);
 				
@@ -147,30 +182,35 @@ public class RecipeHandler {
 
 		/* Trains parts */
 
-		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.generator.item, 1),  " ##", "E$$", " ##", Character.valueOf('#'), ItemIDs.copperWireFine.item, Character.valueOf('E'), ItemIDs.electronicCircuit.item, Character.valueOf('$'), Items.iron_ingot );// generator
-		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.controls.item, 1),  "#X#", "#E#", "$$$", Character.valueOf('#'), Blocks.lever, Character.valueOf('X'), Blocks.stone_button, Character.valueOf('$'), Items.iron_ingot, Character.valueOf('E'), ItemIDs.electronicCircuit.item );// train controls
-		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.dieselengine.item, 2),  "###", "XXX", "CCC", Character.valueOf('#'), ItemIDs.piston.item, Character.valueOf('X'), ItemIDs.cylinder.item, Character.valueOf('C'), ItemIDs.camshaft.item );// diesel engine
-		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.electmotor.item, 1),  "I#I", "#E#", "I#I", Character.valueOf('#'), ItemIDs.copperWireFine.item, Character.valueOf('I'), Items.iron_ingot, Character.valueOf('E'), ItemIDs.electronicCircuit.item );// Electric motor
-
+		for (ItemStack ironingot : iron) {
+			TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.generator.item, 1), " ##", "E$$", " ##", Character.valueOf('#'), ItemIDs.copperWireFine.item, Character.valueOf('E'), ItemIDs.electronicCircuit.item, Character.valueOf('$'), ironingot);// generator
+			TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.controls.item, 1), "#X#", "#E#", "$$$", Character.valueOf('#'), Blocks.lever, Character.valueOf('X'), Blocks.stone_button, Character.valueOf('$'), ironingot, Character.valueOf('E'), ItemIDs.electronicCircuit.item);// train controls
+			TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.electmotor.item, 1), "I#I", "#E#", "I#I", Character.valueOf('#'), ItemIDs.copperWireFine.item, Character.valueOf('I'), ironingot, Character.valueOf('E'), ItemIDs.electronicCircuit.item);// Electric motor
+			for (ItemStack bucketWater : waterbucket) {
+				TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.ironBoiler.item, 2), "###", "XXX", "###", Character.valueOf('#'), ironingot, Character.valueOf('X'), bucketWater.getItem());// iron Boiler
+			}
+			TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.ironFirebox.item, 2),  "###", "#X#", "###", Character.valueOf('#'), ironingot, Character.valueOf('X'), Items.flint_and_steel );// iron Firebox
+			TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.ironChimney.item, 2),  "# #", "# #", "# #", Character.valueOf('#'), ironingot );
+		}
+		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.dieselengine.item, 2), "###", "XXX", "CCC", Character.valueOf('#'), ItemIDs.piston.item, Character.valueOf('X'), ItemIDs.cylinder.item, Character.valueOf('C'), ItemIDs.camshaft.item);// diesel engine
 		for (ItemStack dustStack : dustCoal) {
 			TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.graphite.item, 2),  "###", "#X#", "###", Character.valueOf('#'), dustStack, Character.valueOf('X'), Items.clay_ball );// Graphite
 		}
-		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.ironBoiler.item, 2),  "###", "XXX", "###", Character.valueOf('#'), Items.iron_ingot, Character.valueOf('X'), Items.water_bucket );// iron Boiler
-		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.ironFirebox.item, 2),  "###", "#X#", "###", Character.valueOf('#'), Items.iron_ingot, Character.valueOf('X'), Items.flint_and_steel );// iron Firebox
-		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.ironChimney.item, 2),  "# #", "# #", "# #", Character.valueOf('#'), Items.iron_ingot );
 		
 		if (!ConfigHandler.MAKE_MODPACKS_GREAT_AGAIN) {
-			TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.coaldust.item, 4),
-					 "###", "   ", "   ", Character.valueOf('#'), Items.coal );
-			TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.coaldust.item, 4),
-					 "   ", "###", "   ", Character.valueOf('#'), Items.coal );
-			TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.coaldust.item, 4),
-					 "   ", "   ", "###", Character.valueOf('#'), Items.coal );
+			for (ItemStack c : coal) {
+				TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.coaldust.item, 4),
+						"###", "   ", "   ", Character.valueOf('#'), c.getItem());
+				TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.coaldust.item, 4),
+						"   ", "###", "   ", Character.valueOf('#'), c.getItem());
+				TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.coaldust.item, 4),
+						"   ", "   ", "###", Character.valueOf('#'), c.getItem());
+			}
 		}
 		
-		//TrainCraftingManager.instance.addShapelessRecipe(new ItemStack(ItemIDs.coaldust.item, 4),  Items.coal, Items.coal, Items.coal, Items.coal );// coal dust
+		//TrainCraftingManager.instance.addShapelessRecipe(new ItemStack(ItemIDs.coaldust.item, 4),  c.getItem(), c.getItem(), c.getItem(), c.getItem() );// coal dust
 		
-		//TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.signal.item, 2),  "#", "X", "X", Character.valueOf('X'), ItemIDs.steel.item, Character.valueOf('#'), Items.redstone );
+		//TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.signal.item, 2),  "#", "X", "X", Character.valueOf('X'), ItemIDs.steel.item, Character.valueOf('#'), rs );
 		/* diesel generator */
 		TrainCraftingManager.instance.addRecipe(new ItemStack(BlockIDs.generatorDiesel.block, 1),  "C  ", "DE ", Character.valueOf('C'), ItemIDs.steelchimney.item, Character.valueOf('D'), ItemIDs.dieselengine.item, Character.valueOf('E'), ItemIDs.electronicCircuit.item );
 		
@@ -190,19 +230,28 @@ public class RecipeHandler {
 				TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.composite_wrench.item, 1), "S S", " R "," R ", Character.valueOf('R'), ItemIDs.reinforcedPlastic.item, Character.valueOf('S'),steelItem );
 				TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.steelcab.item, 2),  "###", "X X", "XXX", Character.valueOf('X'), steelItem, Character.valueOf('#'), plankItem );// Steel cab
 				TrainCraftingManager.instance.addRecipe(new ItemStack(BlockIDs.distilIdle.block, 1),  "###", "#F#", "###", Character.valueOf('#'), steelItem, Character.valueOf('F'), ItemIDs.firebox.item );
-				TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.transformer.item, 1),  "# #", "XEX", "###", Character.valueOf('#'), steelItem, Character.valueOf('E'), ItemIDs.electronicCircuit.item, Character.valueOf('X'), Items.redstone );// transformer
+				for (ItemStack rs :redstone) {
+					TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.transformer.item, 1), "# #", "XEX", "###", Character.valueOf('#'), steelItem, Character.valueOf('E'), ItemIDs.electronicCircuit.item, Character.valueOf('X'), rs.getItem());// transformer
+				}
 
-				TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.boiler.item, 2),  "###", "XXX", "###", Character.valueOf('#'), steelItem, Character.valueOf('X'), Items.water_bucket );// Boiler
+				for (ItemStack bucketWater :waterbucket) {
+					TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.boiler.item, 2), "###", "XXX", "###", Character.valueOf('#'), steelItem, Character.valueOf('X'), bucketWater.getItem());// Boiler
+				}
 				TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.firebox.item, 2),  "###", "#X#", "###", Character.valueOf('#'), steelItem, Character.valueOf('X'), Items.flint_and_steel );// Firebox
-				TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.bogie.item, 4),  " # ", "#X#", " # ", Character.valueOf('#'), steelItem, Character.valueOf('X'), Items.iron_ingot );// Bogie
-				TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.steelframe.item, 2),  "# #", "AAA", Character.valueOf('A'), steelItem, Character.valueOf('#'), Items.iron_ingot );// Steel Frame
-				TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.steelframe.item, 2),  "   ", "# #", "AAA", Character.valueOf('A'), steelItem, Character.valueOf('#'), Items.iron_ingot );// Steel Frame
+				for (ItemStack ironingot : iron) {
+					TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.bogie.item, 4), " # ", "#X#", " # ", Character.valueOf('#'), steelItem, Character.valueOf('X'), ironingot);// Bogie
+					TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.steelframe.item, 2), "# #", "AAA", Character.valueOf('A'), steelItem, Character.valueOf('#'), ironingot);// Steel Frame
+					TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.steelframe.item, 2), "   ", "# #", "AAA", Character.valueOf('A'), steelItem, Character.valueOf('#'), ironingot);// Steel Frame
+
+					TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.stake.item, 1),  "   ", "IFI", "   ", Character.valueOf('I'), steelItem, Character.valueOf('F'), ironingot );
+					TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.stake.item, 1),  "IFI", "   ", "   ", Character.valueOf('I'), steelItem, Character.valueOf('F'), ironingot );
+					TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.stake.item, 1),  "   ", "   ", "IFI", Character.valueOf('I'), steelItem, Character.valueOf('F'), ironingot );
+
+					TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.propeller.item, 2),  " # ", "#X#", " # ", Character.valueOf('#'), plankItem, Character.valueOf('X'), ironingot );// Propeller
+				}
 				TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.steelchimney.item, 2),  "# #", "# #", "# #", Character.valueOf('#'), steelItem );// Bogie
 				TrainCraftingManager.instance.addRecipe(new ItemStack(Items.flint_and_steel, 2),  "* ", " #", Character.valueOf('*'), steelItem, Character.valueOf('#'), Items.flint );
 
-				TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.stake.item, 1),  "   ", "IFI", "   ", Character.valueOf('I'), steelItem, Character.valueOf('F'), Items.iron_ingot );
-				TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.stake.item, 1),  "IFI", "   ", "   ", Character.valueOf('I'), steelItem, Character.valueOf('F'), Items.iron_ingot );
-				TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.stake.item, 1),  "   ", "   ", "IFI", Character.valueOf('I'), steelItem, Character.valueOf('F'), Items.iron_ingot );
 
 				TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.transmition.item, 1),  " # ", "#X#", " # ", Character.valueOf('#'), steelItem, Character.valueOf('X'), ItemIDs.diesel.item );// transmition
 				TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.piston.item, 3),  " # ", " X ", Character.valueOf('#'), steelItem, Character.valueOf('X'), Items.stick );// piston
@@ -210,7 +259,6 @@ public class RecipeHandler {
 				TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.camshaft.item, 3),  "   ", "###", "   ", Character.valueOf('#'), steelItem );// camshaft
 				TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.camshaft.item, 3),  "   ", "   ", "###", Character.valueOf('#'), steelItem );// camshaft
 				TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.cylinder.item, 3),  "# #", "# #", "###", Character.valueOf('#'), steelItem );// cylinder
-				TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.propeller.item, 2),  " # ", "#X#", " # ", Character.valueOf('#'), plankItem, Character.valueOf('X'), Items.iron_ingot );// Propeller
 
 			}
 			for (ItemStack ironItem : iron) {
@@ -218,7 +266,7 @@ public class RecipeHandler {
 
 				TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailSmallRoadCrossing.item, 16), "I I", "IPI", "I I", Character.valueOf('P'), new ItemStack(Blocks.stained_hardened_clay, 1, 15), Character.valueOf('I'), ironItem);
 				TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailSmallRoadCrossing1.item, 16), "I I", "IPI", "I I", Character.valueOf('P'), new ItemStack(Blocks.stained_hardened_clay, 1, 7), Character.valueOf('I'), ironItem);
-				TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailSmallRoadCrossing2.item, 16), "I I", "IPI", "I I", Character.valueOf('P'), new ItemStack(Blocks.stained_hardened_clay, 1, 3), Character.valueOf('I'), ironItem);
+				TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailSmallRoadCrossing2.item, 16), "I I", "IPI", "I I", Character.valueOf('P'), new ItemStack(Blocks.stained_hardened_clay, 1, 8), Character.valueOf('I'), ironItem);
 			}
 			for (ItemStack logStack :logs) {
 				/* Water Wheel */
@@ -226,26 +274,50 @@ public class RecipeHandler {
 
 				TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.woodenBogie.item, 4),  " # ", "#X#", " # ", Character.valueOf('#'), plankItem, Character.valueOf('X'), logStack );// wooden Bogie
 			}
-			TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.seats.item, 1),  "#  ", "## ", "XXX", Character.valueOf('#'), plankItem, Character.valueOf('X'), Items.iron_ingot );// transformer
 			TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.woodenFrame.item, 2),  "# #", "AAA", Character.valueOf('A'), plankItem, Character.valueOf('#'), plankItem );// wooden Frame
 			TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.woodenFrame.item, 2),  "   ", "# #", "AAA", Character.valueOf('A'), plankItem, Character.valueOf('#'), plankItem );// wooden Frame
 			TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.woodenCab.item, 2),  "###", "X X", "XXX", Character.valueOf('X'), plankItem, Character.valueOf('#'), plankItem );// wooden cab
-			TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.ironBogie.item, 4),  " # ", "#X#", " # ", Character.valueOf('#'), Items.iron_ingot, Character.valueOf('X'), plankItem );// iron Bogie
-			TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.ironFrame.item, 2),  "# #", "AAA", Character.valueOf('A'), Items.iron_ingot, Character.valueOf('#'), plankItem );// iron Frame
-			TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.ironFrame.item, 2),  "   ", "# #", "AAA", Character.valueOf('A'), Items.iron_ingot, Character.valueOf('#'), plankItem );// iron Frame
-			TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.ironCab.item, 2),  "###", "X X", "XXX", Character.valueOf('X'), Items.iron_ingot, Character.valueOf('#'), plankItem );// iron cab
-			TrainCraftingManager.instance.addRecipe(new ItemStack(BlockIDs.stopper.block, 1),  "WWW", "I I", "RRR", Character.valueOf('W'), plankItem, Character.valueOf('R'), Blocks.rail, Character.valueOf('I'), Items.iron_ingot);// stopper
+
+			for (ItemStack ironingot : iron) {
+				TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.seats.item, 1), "#  ", "## ", "XXX", Character.valueOf('#'), plankItem, Character.valueOf('X'), ironingot);// transformer
+				TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.ironBogie.item, 4), " # ", "#X#", " # ", Character.valueOf('#'), ironingot, Character.valueOf('X'), plankItem);// iron Bogie
+				TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.ironFrame.item, 2), "# #", "AAA", Character.valueOf('A'), ironingot, Character.valueOf('#'), plankItem);// iron Frame
+				TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.ironFrame.item, 2), "   ", "# #", "AAA", Character.valueOf('A'), ironingot, Character.valueOf('#'), plankItem);// iron Frame
+				TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.ironCab.item, 2), "###", "X X", "XXX", Character.valueOf('X'), ironingot, Character.valueOf('#'), plankItem);// iron cab
+				TrainCraftingManager.instance.addRecipe(new ItemStack(BlockIDs.stopper.block, 1), "WWW", "I I", "RRR", Character.valueOf('W'), plankItem, Character.valueOf('R'), Blocks.rail, Character.valueOf('I'), ironingot);// stopper
+				TrainCraftingManager.instance.addRecipe(new ItemStack(BlockIDs.switchStand.block, 1), " W ", " I ", " R ", Character.valueOf('W'), Blocks.lever, Character.valueOf('R'), Items.stick, Character.valueOf('I'), ironingot);//switchstand
+			}
 			// Short Wood Slope
 			TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailSlopeWood.item, 1),
 					 " MW", "MWW", "WWW", Character.valueOf('M'), ItemIDs.tcRailMediumStraight.item,
 							Character.valueOf('W'), plankItem );
 		}
 				/* Wind mill */
-		TrainCraftingManager.instance.addRecipe(new ItemStack(BlockIDs.windMill.block, 1),  " R ", " G ", "B B",Character.valueOf('G'), ItemIDs.generator.item, Character.valueOf('B'), Items.iron_ingot, Character.valueOf('R'), ItemIDs.propeller.item);
+		for (ItemStack ironingot : iron) {
+			TrainCraftingManager.instance.addRecipe(new ItemStack(BlockIDs.windMill.block, 1), " R ", " G ", "B B", Character.valueOf('G'), ItemIDs.generator.item, Character.valueOf('B'), ironingot, Character.valueOf('R'), ItemIDs.propeller.item);
+
+			if (Loader.isModLoaded("ComputerCraft")) {
+				TrainCraftingManager.instance.addRecipe(new ItemStack(BlockIDs.mtcTransmitterSpeed.block, 1), "SRS", "RTR", "SRS", 'S', ironingot, 'R', Items.redstone, 'T', Blocks.stone_pressure_plate);
+				TrainCraftingManager.instance.addRecipe(new ItemStack(BlockIDs.mtcReceiverMTC.block, 1), "STS", " R ", "SPS", 'S', ironingot, 'R', Items.redstone, 'P', Items.repeater, 'T', new ItemStack(Blocks.torch, 1));
+				TrainCraftingManager.instance.addRecipe(new ItemStack(BlockIDs.mtcTransmitterMTC.block, 1), "GSG", "TRT", "GSG", 'G', Items.gold_ingot, 'S',new ItemStack(Blocks.stone), 'R', Items.repeater, 'T', new ItemStack(Blocks.redstone_torch));
+				TrainCraftingManager.instance.addRecipe(new ItemStack(BlockIDs.mtcReceiverDestination.block, 1), "SRS", "RTR", "SRS", 'S', ironingot, 'R', Items.redstone, 'T', Items.sign);
+				TrainCraftingManager.instance.addRecipe(new ItemStack(BlockIDs.mtcATOStopTransmitter.block, 1), " S ", "RTS", " R ", 'S', ironingot, 'R', Items.redstone, 'T', ItemIDs.electronicCircuit.item);
+			}
+		}
+
+
+/*
+		for (ItemStack s: iron) {
+
+		}*/
+
+
+
+
 		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailSmallStraight.item, 1),  "   ", " R ", "   ", Character.valueOf('R'), Item.getItemFromBlock(Blocks.rail));// small straight track
-		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailSmallRoadCrossing.item, 1),  "   ", "SRS", "   ", Character.valueOf('S'), new ItemStack(Blocks.stained_hardened_clay, 1, 15), Character.valueOf('R'), Item.getItemFromBlock(Blocks.rail) );
+		/*TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailSmallRoadCrossing.item, 1),  "   ", "SRS", "   ", Character.valueOf('S'), new ItemStack(Blocks.stained_hardened_clay, 1, 15), Character.valueOf('R'), Item.getItemFromBlock(Blocks.rail) );
 		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailSmallRoadCrossing1.item, 1),  "   ", "SRS", "   ", Character.valueOf('S'), new ItemStack(Blocks.stained_hardened_clay, 1, 7), Character.valueOf('R'), Item.getItemFromBlock(Blocks.rail) );
-		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailSmallRoadCrossing2.item, 1),  "   ", "SRS", "   ", Character.valueOf('S'), new ItemStack(Blocks.stained_hardened_clay, 1, 3), Character.valueOf('R'), Item.getItemFromBlock(Blocks.rail) );
+		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailSmallRoadCrossing2.item, 1),  "   ", "SRS", "   ", Character.valueOf('S'), new ItemStack(Blocks.stained_hardened_clay, 1, 3), Character.valueOf('R'), Item.getItemFromBlock(Blocks.rail) );*/
 		TrainCraftingManager.instance.addRecipe(new ItemStack(Item.getItemFromBlock(Blocks.rail), 1),  "   ", " R ", "   ", Character.valueOf('R'), ItemIDs.tcRailSmallStraight.item);
 		TrainCraftingManager.instance.addRecipe(new ItemStack(Item.getItemFromBlock(Blocks.rail), 1),  "   ", " R ", "   ", Character.valueOf('R'), ItemIDs.tcRailSmallRoadCrossing.item);
 		TrainCraftingManager.instance.addRecipe(new ItemStack(Item.getItemFromBlock(Blocks.rail), 1),  "   ", " R ", "   ", Character.valueOf('R'), ItemIDs.tcRailSmallRoadCrossing1.item);
@@ -258,6 +330,22 @@ public class RecipeHandler {
 		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailSlopeBallast.item, 1),
 				 " MB", "MBB", "BBB", Character.valueOf('M'), ItemIDs.tcRailMediumStraight.item,
 						Character.valueOf('B'), new ItemStack(BlockIDs.oreTC.block, 1, 3) );
+
+		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailSlopeGravel.item, 1),
+				"   ", " S ", " B ", 'S', ItemIDs.tcRailSlopeWood.item, 'B', Blocks.gravel );
+		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailLargeSlopeGravel.item, 1),
+				"   ", " S ", " B ", 'S', ItemIDs.tcRailLargeSlopeWood.item, 'B', Blocks.gravel );
+		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailVeryLargeSlopeGravel.item, 1),
+				"   ", " S ", " B ", 'S', ItemIDs.tcRailVeryLargeSlopeWood.item, 'B', Blocks.gravel );
+
+		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailSlopeBallast.item, 1),
+				"   ", " S ", " B ", 'S', ItemIDs.tcRailSlopeWood.item, 'B', Blocks.gravel );
+		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailLargeSlopeBallast.item, 1),
+				"   ", " S ", " B ", 'S', ItemIDs.tcRailLargeSlopeWood.item, 'B', Blocks.gravel );
+		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailVeryLargeSlopeBallast.item, 1),
+				"   ", " S ", " B ", 'S', ItemIDs.tcRailVeryLargeSlopeWood.item, 'B', Blocks.gravel );
+
+
 		// Large Slope Wood
 		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailLargeSlopeWood.item, 1),
 				 "   ", "  S", " S ", 'S', ItemIDs.tcRailSlopeWood.item );
@@ -279,18 +367,12 @@ public class RecipeHandler {
 		
 		// Medium Straight (3 Recipes? Really?)
 		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailMediumStraight.item, 1),
-				 "S  ", "S  ", "S  ", Character.valueOf('S'), ItemIDs.tcRailSmallStraight.item );
-		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailMediumStraight.item, 1),
 				 " S ", " S ", " S ", Character.valueOf('S'), ItemIDs.tcRailSmallStraight.item );
-		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailMediumStraight.item, 1),
-				 "  S", "  S", "  S", Character.valueOf('S'), ItemIDs.tcRailSmallStraight.item );
 		// Long Straight (3 Recipes? Really?)
 		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailLongStraight.item, 1),
 				 "   ", " M ", " M ", Character.valueOf('M'), ItemIDs.tcRailMediumStraight.item );
 		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailLongStraight.item, 1),
-				 "   ", "M  ", "M  ", Character.valueOf('M'), ItemIDs.tcRailMediumStraight.item );
-		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailLongStraight.item, 1),
-				 "   ", "  M", "  M", Character.valueOf('M'), ItemIDs.tcRailMediumStraight.item );
+				" M ", " M ", "   ", Character.valueOf('M'), ItemIDs.tcRailMediumStraight.item );
 		
 		// Medium Turn
 		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailMediumTurn.item, 1),
@@ -322,17 +404,66 @@ public class RecipeHandler {
 		// Bridge Pillar
 		TrainCraftingManager.instance.addRecipe(new ItemStack(BlockIDs.bridgePillar.block, 2),
 				 "SSS", "S S", "SSS", Character.valueOf('S'), Items.stick );
+
+
+
+
+		TrainCraftingManager.instance.addRecipe(new ItemStack(Blocks.rail,3), "   ", " S ", "   ",
+				(char)'S',new ItemStack(ItemIDs.tcRailMediumStraight.item,1));
+		TrainCraftingManager.instance.addRecipe(new ItemStack(Blocks.rail,6), "   ", " S ", "   ",
+				(char)'S',new ItemStack(ItemIDs.tcRailLongStraight.item,1));
+
+		TrainCraftingManager.instance.addRecipe(new ItemStack(Blocks.rail,13), "   ", " S ", "   ",
+				(char)'S',new ItemStack(ItemIDs.tcRailLargeSwitch.item,1));
+		TrainCraftingManager.instance.addRecipe(new ItemStack(Blocks.rail,8), "   ", " S ", "   ",
+				(char)'S',new ItemStack(ItemIDs.tcRailMediumSwitch.item,1));
+		TrainCraftingManager.instance.addRecipe(new ItemStack(Blocks.rail,20), "   ", " S ", "   ",
+				(char)'S',new ItemStack(ItemIDs.tcRailMediumParallelSwitch.item,1));
+
+		TrainCraftingManager.instance.addRecipe(new ItemStack(Blocks.rail,5), "   ", " S ", "   ",
+				(char)'S',new ItemStack(ItemIDs.tcRailMediumTurn.item,1));
+		TrainCraftingManager.instance.addRecipe(new ItemStack(Blocks.rail,9), "   ", " S ", "   ",
+				(char)'S',new ItemStack(ItemIDs.tcRailLargeTurn.item,1));
+		TrainCraftingManager.instance.addRecipe(new ItemStack(Blocks.rail,19), "   ", " S ", "   ",
+				(char)'S',new ItemStack(ItemIDs.tcRailLargeTurn.item,1));
+
+		TrainCraftingManager.instance.addRecipe(new ItemStack(Blocks.rail,6), "   ", " S ", "   ",
+				(char)'S',new ItemStack(ItemIDs.tcRailSlopeBallast.item,1));
+		TrainCraftingManager.instance.addRecipe(new ItemStack(Blocks.rail,12), "   ", " S ", "   ",
+				(char)'S',new ItemStack(ItemIDs.tcRailLargeSlopeBallast.item,1));
+		TrainCraftingManager.instance.addRecipe(new ItemStack(Blocks.rail,18), "   ", " S ", "   ",
+				(char)'S',new ItemStack(ItemIDs.tcRailVeryLargeSlopeBallast.item,1));
+
+		TrainCraftingManager.instance.addRecipe(new ItemStack(Blocks.rail,6), "   ", " S ", "   ",
+				(char)'S',new ItemStack(ItemIDs.tcRailSlopeWood.item,1));
+		TrainCraftingManager.instance.addRecipe(new ItemStack(Blocks.rail,12), "   ", " S ", "   ",
+				(char)'S',new ItemStack(ItemIDs.tcRailLargeSlopeWood.item,1));
+		TrainCraftingManager.instance.addRecipe(new ItemStack(Blocks.rail,18), "   ", " S ", "   ",
+				(char)'S',new ItemStack(ItemIDs.tcRailVeryLargeSlopeWood.item,1));
+
+		TrainCraftingManager.instance.addRecipe(new ItemStack(Blocks.rail,6), "   ", " S ", "   ",
+				(char)'S',new ItemStack(ItemIDs.tcRailSlopeGravel.item,1));
+		TrainCraftingManager.instance.addRecipe(new ItemStack(Blocks.rail,12), "   ", " S ", "   ",
+				(char)'S',new ItemStack(ItemIDs.tcRailLargeSlopeGravel.item,1));
+		TrainCraftingManager.instance.addRecipe(new ItemStack(Blocks.rail,18), "   ", " S ", "   ",
+				(char)'S',new ItemStack(ItemIDs.tcRailVeryLargeSlopeGravel.item,1));
 	}
 	
 	public static void initSmeltingRecipes(){
+
 		/* OpenHearthFurnace recipes */
 		if (!ConfigHandler.MAKE_MODPACKS_GREAT_AGAIN) {
-			TrainCraftingManager.instance.addHearthFurnaceRecipe(new ItemStack(Items.iron_ingot),
-					new ItemStack(ItemIDs.graphite.item), new ItemStack(ItemIDs.steel.item), 2F, 1000);
+			ArrayList<ItemStack> steel = OreDictionary.getOres("ingotSteel");
+			ArrayList<ItemStack> iron = OreDictionary.getOres("ingotIron");
+			for (ItemStack s : steel) {
+				for (ItemStack ironitm : iron)
+				TrainCraftingManager.instance.addHearthFurnaceRecipe(ironitm,
+						new ItemStack(ItemIDs.graphite.item), s, 2F, 1000);
+			}
 		}
 		
 		/* Vanilla Furnace recipes */
-		GameRegistry.addSmelting(new ItemStack(Item.getItemFromBlock(BlockIDs.oreTC.block), 0), OreDictionary.getOres("ingotCopper").get(0), 0.7f);
+		GameRegistry.addSmelting(new ItemStack(BlockIDs.oreTC.block, 0), OreDictionary.getOres("ingotCopper").get(0), 0.7f);
 	}
 
 	public static void addDictRecipe(ItemStack stack, Object... obj) {

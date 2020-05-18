@@ -16,6 +16,7 @@ import train.common.core.network.PacketSetTrainLockedToClient;
 import train.common.inventory.InventoryTender;
 import train.common.library.Info;
 
+import java.util.Collections;
 import java.util.List;
 
 public class GuiTender extends GuiContainer {
@@ -138,10 +139,21 @@ public class GuiTender extends GuiContainer {
 	}
 
 	@Override
+	public void drawScreen(int mouseX, int mouseY, float par3){
+		super.drawScreen(mouseX, mouseY,par3);
+		int j = (width - xSize) / 2;
+		int k = (height - ySize) / 2;
+		if (mouseX>j+143 && mouseX<j+161 && mouseY>k+18 && mouseY<k+68){
+			drawHoveringText(Collections.singletonList("Water: " + (tender.getWater()) + "mb / " + (tender.getCartTankCapacity()) +"mb"),
+					mouseX, mouseY, fontRendererObj);
+		}
+	}
+
+	@Override
 	protected void drawGuiContainerBackgroundLayer(float f, int t, int g) {
-		String i = Info.guiPrefix + "gui_tender.png";
+		fontRendererObj.drawStringWithShadow("UUID: " + tender.getPersistentUUID() + " - Entity UUID" + tender.getUniqueID().toString(),1,0,0xFFFFFF);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		mc.renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation,i));
+		mc.renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation,Info.guiPrefix + "gui_tender.png"));
 		int j = (width - xSize) / 2;
 		int k = (height - ySize) / 2;
 		drawTexturedModalRect(j, k, 0, 0, xSize, ySize);

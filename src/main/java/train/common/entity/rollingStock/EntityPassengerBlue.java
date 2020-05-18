@@ -45,6 +45,7 @@ public class EntityPassengerBlue extends EntityRollingStock implements IPassenge
 			pitch-=pitchRads*1.2;
 		}
 		riddenByEntity.setPosition(bogieX1, pitch, bogieZ1);*/
+		if(riddenByEntity==null){return;}
 		riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset(), posZ);
 	}
 

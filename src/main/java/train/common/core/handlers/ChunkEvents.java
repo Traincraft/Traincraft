@@ -8,8 +8,6 @@ import net.minecraftforge.common.ForgeChunkManager;
 import net.minecraftforge.common.ForgeChunkManager.Ticket;
 import net.minecraftforge.event.entity.EntityEvent;
 import train.common.api.AbstractTrains;
-import train.common.api.EntityBogie;
-import train.common.api.EntityRollingStock;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,8 +31,8 @@ public class ChunkEvents implements ForgeChunkManager.LoadingCallback, ForgeChun
 	private static void forceChunkLoading(AbstractTrains transport, int newChunkX, int newChunkZ) {
 		if(transport != null && transport.getTicket() != null) {
 			List<ChunkCoordIntPair> newChunks = new ArrayList<ChunkCoordIntPair>();
-			for(int x = newChunkX - 2; x <= newChunkX + 2; ++x) {
-				for(int z = newChunkZ - 2; z <= newChunkZ + 2; ++z) {
+			for(int x = newChunkX - 1; x <= newChunkX + 1; ++x) {
+				for(int z = newChunkZ - 1; z <= newChunkZ + 1; ++z) {
 					newChunks.add(new ChunkCoordIntPair(x, z));
 				}
 			}

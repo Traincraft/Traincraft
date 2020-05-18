@@ -28,13 +28,12 @@ public class LinkHandler {
 		if (entityOne.isAttaching) {
 			List lis = worldObj.getEntitiesWithinAABBExcludingEntity(entityOne, customBoundingBox.expand(15, 5, 15));
 			if (entityOne.bogieLoco != null) {
-				lis.addAll(worldObj.getEntitiesWithinAABBExcludingEntity(entityOne, ((EntityRollingStock) entityOne).bogieLoco.boundingBox.expand(7, 5, 7)));
+				lis.addAll(worldObj.getEntitiesWithinAABBExcludingEntity(entityOne, entityOne.bogieLoco.boundingBox.expand(7, 5, 7)));
 			}
 
 
 			if (lis != null && lis.size() > 0) {
 				for (Object ent : lis) {
-					Entity entity = (Entity) ent;
 
 					/**
 					 * first testing if the link can be emptied
@@ -44,8 +43,8 @@ public class LinkHandler {
 					//doesLink2StillExist(entityOne, lis);
 					//}
 
-					if (entity != entityOne.riddenByEntity && (entity instanceof EntityRollingStock) && ((EntityRollingStock) entity).isAttaching) {
-						addStake((EntityRollingStock) entity, entityOne, true);
+					if (ent instanceof EntityRollingStock && ((EntityRollingStock) ent).isAttaching) {
+						addStake((EntityRollingStock) ent, entityOne, true);
 					}
 
 				}
@@ -372,10 +371,7 @@ public class LinkHandler {
 	 * @return
 	 */
 	public float getOptimalDistance(AbstractTrains cart1, AbstractTrains cart2) {
-		float dist = 0.0F;
-			dist += cart1.getOptimalDistance((EntityMinecart) cart2);
-			dist += cart2.getOptimalDistance((EntityMinecart) cart1);
-		return dist;
+		return cart1.getOptimalDistance(cart2)+cart2.getOptimalDistance(cart1);
 	}
 
 	/**
@@ -400,7 +396,7 @@ public class LinkHandler {
 	 * Handles the cart coupling physics
 	 */
 	private void StakePhysic(EntityRollingStock cart1, EntityRollingStock cart2, int linkIndex) {
-		if (worldObj.isRemote) {
+		if (worldObj.isRemote || cart1.ticksExisted<5 || cart2.ticksExisted<5) {
 			return;
 		}
 		if (cart2.isAttached && cart1.isAttached && areLinked(cart2, cart1)) {
@@ -487,7 +483,7 @@ public class LinkHandler {
 			}
 
 			double d2 = MathHelper.sqrt_double((d * d) + (d1 * d1));
-			if(d2>15){
+			if(d2>20){
 				//System.out.println("distance too big "+ cart1 +" "+cart2);
 				if(cart1.worldObj!=null){
 					EntityPlayer player = cart1.worldObj.getClosestPlayer(cart1.posX, cart1.posY, cart1.posZ, 300);
@@ -515,8 +511,8 @@ public class LinkHandler {
 			double stretch = d2 -getOptimalDistance(cart1, cart2);
 			//System.out.println("stretch "+stretch);
 
-			double springX = limitForce(0.2499999761581421D * stretch * vecX * -1);
-			double springZ = limitForce(0.2499999761581421D * stretch * vecZ * -1);
+			double springX = limitForce(0.4D * stretch * vecX * -1);
+			double springZ = limitForce(0.4D * stretch * vecZ * -1);
 
 
 
@@ -531,8 +527,8 @@ public class LinkHandler {
 
 			double dot = (cart1.motionX - cart2.motionX) * unitX + (cart1.motionZ - cart2.motionZ) * unitZ;
 
-			double dampX = limitForce(0.4000000059604645D * dot * unitX * -1);// 0.4
-			double dampZ = limitForce(0.4000000059604645D * dot * unitZ * -1);
+			double dampX = limitForce(0.4D * dot * unitX * -1);// 0.4
+			double dampZ = limitForce(0.4D * dot * unitZ * -1);
 
 			if (adj1) {
 				cart1.motionX += dampX;
@@ -546,7 +542,7 @@ public class LinkHandler {
 	}
 
 	private double limitForce(double force) {
-		return Math.copySign(Math.abs(Math.min(Math.abs(force), 6.0D)), force);
+		return Math.copySign(Math.abs(Math.min(Math.abs(force), 14.0D)), force);
 	}
 	private double limitForce(double force, double max) {
 		return Math.copySign(Math.abs(Math.min(Math.abs(force), max)),  force);

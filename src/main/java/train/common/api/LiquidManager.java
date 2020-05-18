@@ -9,10 +9,12 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mods.railcraft.api.fuel.FuelManager;
 import net.minecraft.block.material.Material;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
 import train.common.blocks.BlockTraincraftFluid;
 import train.common.items.ItemBlockFluid;
@@ -28,13 +30,10 @@ public class LiquidManager {
 	public static Fluid oil;
 	public static Fluid steam;
 	public static Fluid fuel;
-	public static Fluid creosoteOil;
 	public static Fluid biomass;
 	public static Fluid biofuel;
+	public static Fluid bioDiesel;
 	public static Fluid bioethanol;
-	public static Fluid seedoil;
-	public static Fluid honey;
-	public static Fluid juice;
 
 	public static final Fluid DIESEL = new Fluid("Diesel").setUnlocalizedName("diesel.name").setDensity(860);
 	public static final Fluid REFINED_FUEL = new Fluid("RefinedFuel").setDensity(820).setUnlocalizedName("refinedfuel.name");
@@ -97,13 +96,10 @@ public class LiquidManager {
 		oil = FluidRegistry.getFluid("oil");
 		steam = FluidRegistry.getFluid("steam");
 		fuel = FluidRegistry.getFluid("fuel");
-		creosoteOil = FluidRegistry.getFluid("creosote oil");
 		biomass = FluidRegistry.getFluid("biomass");
 		bioethanol = FluidRegistry.getFluid("bioethanol");
 		biofuel = FluidRegistry.getFluid("biofuel");
-		seedoil = FluidRegistry.getFluid("seedoil");
-		honey = FluidRegistry.getFluid("honey");
-		juice = FluidRegistry.getFluid("juice");
+		bioDiesel = FluidRegistry.getFluid("biodiesel");
 	}
 
 	public boolean isDieselLocoFuel(ItemStack stack) {
@@ -130,6 +126,8 @@ public class LiquidManager {
 			fuels[1] = new FluidStack(REFINED_FUEL, 1);
 		if (biofuel != null)
 			fuels[2] = new FluidStack(biofuel, 1);
+		if (bioDiesel != null)
+			fuels[2] = new FluidStack(bioDiesel, 1);
 		if (fuel != null)
 			fuels[3] = new FluidStack(fuel, 1);
 		if (bioethanol != null)
@@ -194,24 +192,27 @@ public class LiquidManager {
 		return null;
 	}
 
-	public ItemStack processContainer(IInventory inventory, int inventoryIndex, FluidTank tank, ItemStack itemstack) {
+	public ItemStack processContainer(IInventory inventory, int inventoryIndex, IFluidHandler tank, ItemStack itemstack) {
 		FluidStack bucketLiquid = getFluidInContainer(itemstack);
 		ItemStack emptyItem = itemstack.getItem().getContainerItem(itemstack);
 		if ((bucketLiquid != null)) {
-			int used = tank.fill(bucketLiquid, false);
+			int used = tank.fill(ForgeDirection.UNKNOWN,bucketLiquid, false);
 			if (used >= bucketLiquid.amount) {
-				tank.fill(bucketLiquid, true);
+				tank.fill(ForgeDirection.UNKNOWN,bucketLiquid, true);
+				if (itemstack.getItem() == Items.potionitem){
+					return new ItemStack(Items.glass_bottle, 1);
+				}
 				inventory.decrStackSize(inventoryIndex, 1);
 				return emptyItem;
 			}
 		}
 		else if ((getInstance().isEmptyContainer(itemstack))) {
-			ItemStack filled = getInstance().fillFluidContainer(tank.getFluid(), itemstack);
+			ItemStack filled = getInstance().fillFluidContainer(tank.drain(ForgeDirection.UNKNOWN,1000,false), itemstack);
 			if ((filled != null)) {
 				FluidStack liquid = getFluidInContainer(filled);
-				FluidStack drain = tank.drain(liquid.amount, false);
+				FluidStack drain = tank.drain(ForgeDirection.UNKNOWN,liquid.amount, false);
 				if ((drain != null) && (drain.amount > 0)) {
-					tank.drain(liquid.amount, true);
+					tank.drain(ForgeDirection.UNKNOWN,liquid.amount, true);
 					inventory.decrStackSize(inventoryIndex, 1);
 					return filled;
 				}

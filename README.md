@@ -13,16 +13,18 @@ Here you will find the source code for the **Traincraft 1.7.10 Port**.<br/>
 - <b>Licensing and rules, READ THIS PART ESPECIALLY</b>
 
 ## Join the Discussion!
-If you wish to contact the original developers, MrBrutal can sometimes be found in the Discord, you can also send an email to spitfire4466@gmail.com <br/> If you'd like to join the live chat, head over to our [Public Discord chat](https://discord.gg/0zzHVjy4UIqVJskM).<br/> And, of course, be sure to check out the issues tab here on GitHub.
+If you wish to contact the original developers, you can contact Mr. Brutal on twitter [https://twitter.com/Mrbrutall](https://twitter.com/Mrbrutall) or send an email to spitfire4466@gmail.com<br/> If you'd like to join the live chat, head over to our [Public Discord chat](https://discord.gg/SgpnCnK).<br/> And, of course, be sure to check out the issues tab here on GitHub.
 
 ## Official Links
 * Main Site and Downloads: [http://www.traincraft-mod.com](http://www.traincraft-mod.com)
-* Blog and Forums: [http://blog.meansoft.si](http://blog.meansoft.si)
-* Wiki: [http://wiki.meansoft.si](http://wiki.meansoft.si)
-* IRC: #Traincraft on Esper.net - Currently not used
-* Curse For New Downloads: [https://minecraft.curseforge.com/projects/traincraft](https://minecraft.curseforge.com/projects/traincraft)
+* Brutal's Blog: [http://blog.meansoft.si](http://blog.meansoft.si)
+* Our Blog: [https://traincraft-mod.blogspot.com](https://traincraft-mod.blogspot.com)
+* Old wiki: [http://wiki.meansoft.si](http://wiki.meansoft.si)
+* Brutal's IRC: #Traincraft on Esper.net - Currently not used
+* Curse For Downloads: [https://minecraft.curseforge.com/projects/traincraft](https://minecraft.curseforge.com/projects/traincraft)
 * 1.7.10 Forum: [http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/2738593-traincraft](http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/2738593-traincraft)
-* Discord live chat (active) [https://discord.gg/0zzHVjy4UIqVJskM](https://discord.gg/0zzHVjy4UIqVJskM)
+* Discord live chat (active) [https://discord.gg/SgpnCnK](https://discord.gg/SgpnCnK)
+* Rewrite and info on upcoming support for 1.8.9+: https://traincraft-mod.blogspot.com/p/tim.html
 
 ## What is Traincraft?
 Traincraft is a [Minecraft](https://minecraft.net/) mod built using [Minecraft Forge](https://github.com/MinecraftForge).
@@ -40,12 +42,18 @@ This specific fork is maintained by **EternalBlueFlame** and **NitroxydeX**. It 
 
 ## Contributing
 The traincraft project welcomes contributions from anyone, provided they have signed the Contributor Licensing Agreement (CLA) found [here](https://cla-assistant.io/Mrbrutal/Traincraft).
-If your IDE asks for a deobfuscator, select the folder: C:\Users\[USERNAME]\.gradle\caches\minecraft\net\minecraftforge\forge\1.7.10-10.13.4.1558-1.7.10\unpacked\conf
+If you are just looking to make skins, they can all be found here: [https://github.com/EternalBlueFlame/Traincraft-5/tree/1.7/src/main/resources/assets/tc/textures/trains](https://github.com/EternalBlueFlame/Traincraft-5/tree/1.7/src/main/resources/assets/tc/textures/trains)
+NOTE: With the rewrite we will continue to support community skins for the models ported from 1.6.4 and older via the "Heritage: Community edition" pack.
+
+For Code changes:
+If your IDE asks for a deobfuscator, select the folder:
+windows: C:\Users\[USERNAME]\.gradle\caches\minecraft\net\minecraftforge\forge\1.7.10-10.13.4.1558-1.7.10\unpacked\conf
+OSX/Linux: ~\.gradle\caches\minecraft\net\minecraftforge\forge\1.7.10-10.13.4.1558-1.7.10\unpacked\conf
 
 Setting up the project was made easy with the setup.bat file (doesn't always work for eclipse, blame forge).<br/>
 Otherwise this project will follow standard Forge conventions. See [http://www.minecraftforge.net/wiki/Installation/Source](http://www.minecraftforge.net/wiki/Installation/Source)<br/>
 After you finish the tutorial or setup, if it has not already been defined, you must manually define the root path of your JDK installation folder, and the location of your :ForgeBin:<br/>
-You must also import the required API libraries for the related mods if it is not done automatically (ic2, Buildcraft, railcraft, etc).
+You may also need to import the required API libraries for the related mods if it is not done automatically (Buildcraft, railcraft, etc).
 
 ## License
 Traincraft is licensed under a custom usage license tailored specifically for the project. It can be read [here](https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md).

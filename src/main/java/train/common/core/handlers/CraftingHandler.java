@@ -27,13 +27,12 @@ public class CraftingHandler
       }
 		if ((event.crafting.getItem() instanceof ItemRollingStock)) {
 			if (!event.player.worldObj.isRemote) {
-        if (FMLCommonHandler.instance().getMinecraftServerInstance() != null)
-        {
-					ItemRollingStock stock = (ItemRollingStock) event.crafting.getItem();
-          TraincraftSaveHandler.createFile(FMLCommonHandler.instance().getMinecraftServerInstance());
-          int readID = TraincraftSaveHandler.readInt(FMLCommonHandler.instance().getMinecraftServerInstance(), "numberOfTrains:");
-          int newID = stock.setNewUniqueID(event.crafting, event.player, readID);
-          TraincraftSaveHandler.writeValue(FMLCommonHandler.instance().getMinecraftServerInstance(), "numberOfTrains:", "" + newID);
+        if (FMLCommonHandler.instance().getMinecraftServerInstance() != null) {
+          //TraincraftSaveHandler.createFile(FMLCommonHandler.instance().getMinecraftServerInstance());
+          //int readID = TraincraftSaveHandler.readInt(FMLCommonHandler.instance().getMinecraftServerInstance(), "numberOfTrains:");
+          //int newID = stock.setNewUniqueID(event.crafting, event.player, readID);
+            event.crafting.setTagCompound(ItemRollingStock.setPersistentData(event.crafting, null, null,event.player).getTagCompound());
+          //TraincraftSaveHandler.writeValue(FMLCommonHandler.instance().getMinecraftServerInstance(), "numberOfTrains:", "" + newID);
         }
       }
     }

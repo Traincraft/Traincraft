@@ -2,7 +2,6 @@ package train.common.api;
 
 import net.minecraft.world.World;
 import train.common.library.BlockIDs;
-import train.common.tile.TileSignal;
 
 public class TrainsSignal {
 	// ***Signal behavior***/
@@ -15,7 +14,7 @@ public class TrainsSignal {
 
 		/* Basically checks if there is a signal somewhere in front of the cart, using the speed */
 		/* t represents the distance to the signal */
-		@SuppressWarnings("unused") TileSignal te = (TileSignal) worldObj.getTileEntity(i, j, k);
+		//@SuppressWarnings("unused") TileSignal te = (TileSignal) worldObj.getTileEntity(i, j, k);
 
 		if ((motionX > 0) && motionZ == 0) {
 			for (int t = 0; t < 12; t++) {

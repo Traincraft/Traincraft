@@ -10,25 +10,17 @@ import train.common.core.handlers.ConfigHandler;
 
 public class SpeedHandler {
 
-	public double handleSpeed(double railMaxSpeed, float maxSpeed, Entity entity) {
-		// System.out.println("Rail: " + railMaxSpeed);
-		// System.out.println("Max: " + maxSpeed);
-		if (railMaxSpeed >= 0.4 && railMaxSpeed <= 0.45 && entity instanceof Locomotive) {
-			return convertSpeed(entity);
-		}
-		else if (railMaxSpeed < 0.4 && entity instanceof Locomotive) {
-			if (convertSpeed(entity) < railMaxSpeed)
-				return convertSpeed(entity);
-			return railMaxSpeed;
-		}
-		else if ((railMaxSpeed > 0.45 && railMaxSpeed<1.1) && entity instanceof Locomotive) {
-			return convertSpeed(entity) + 0.2;
-		}
-		else if (entity instanceof Locomotive) {
-			return convertSpeed(entity);
-		}
-		else {
-			return 3;
+	public static float handleSpeed(float railMaxSpeed, float maxSpeed, Entity entity) {
+		if(entity instanceof Locomotive) {
+			if (railMaxSpeed < 0.4f) {
+				return Math.min(convertSpeed(entity, maxSpeed), railMaxSpeed);
+			} else if (railMaxSpeed > 0.45f && railMaxSpeed < 1.1f ) {
+				return convertSpeed(entity, maxSpeed) + 0.2f;
+			}
+
+			return convertSpeed(entity, maxSpeed);
+		}else {
+			return 15;
 		}
 	}
 
@@ -63,17 +55,9 @@ public class SpeedHandler {
 	/**
 	 * 
 	 */
-	private double convertSpeed(Entity entity) {
-		double speed = ((Locomotive) entity).getCustomSpeed();// speed is in m/s
-		if(ConfigHandler.REAL_TRAIN_SPEED){
-			speed /= 2;// applying ratio
-		}else{
-			speed /= 6;
-		}
-		speed /= 10;// converted in minecraft speed
-		if (speed > 0.912D && ((Locomotive) entity).isAttached) {
-			return 0.912D;// max speed when carts are attached
-		}
-		return speed;
+	private static float convertSpeed(Entity entity, float maxSpeed) {
+		float speed = ((Locomotive) entity).getMaxSpeed()*0.2775f;// speed is in m/s
+		speed /= ConfigHandler.REAL_TRAIN_SPEED?2f:6f;// applying ratio
+		return speed/10;// converted in minecraft speed
 	}
 }

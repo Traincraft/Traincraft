@@ -130,8 +130,7 @@ public class GuiFreight extends GuiContainer {
 	protected void drawGuiContainerForegroundLayer(int i, int j) {
 		GL11.glDisable(GL11.GL_LIGHTING);
 		GL11.glDisable(GL11.GL_DEPTH_TEST);
-		
-		fontRendererObj.drawString(freight.getCommandSenderName(), 60, 6, 0x404040);
+		fontRendererObj.drawString(freight.getCommandSenderName(), 10, 6, 0x404040);
 		fontRendererObj.drawString("Inventory", 8, (ySize - 96) + 2, 0x404040);
 		
 		GL11.glEnable(GL11.GL_LIGHTING);
@@ -144,6 +143,7 @@ public class GuiFreight extends GuiContainer {
 
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float f, int t, int g) {
+		fontRendererObj.drawStringWithShadow("UUID: " + freight.getPersistentUUID() + " - Entity UUID" + freight.getUniqueID().toString(),1,0,0xFFFFFF);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		mc.renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, Info.guiPrefix + "container.png"));
 		int j = (width - xSize) / 2;

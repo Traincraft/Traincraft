@@ -29,14 +29,14 @@ import train.common.library.Info;
 import train.common.tile.TileTCRail;
 import train.common.tile.TileTCRailGag;
 
+import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ItemRollingStock extends ItemMinecart implements IMinecart, IMinecartItem {
 
 	private String iconName = "";
 	private String trainName;
-	private String trainCreator;
-	private int trainColor = -1;
 
 	public ItemRollingStock(String iconName) {
 		super(1);
@@ -46,21 +46,44 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 		setCreativeTab(Traincraft.tcTab);
 	}
 
-	public int setNewUniqueID(ItemStack stack, EntityPlayer player, int numberOfTrains) {
-		NBTTagCompound var3 = stack.getTagCompound();
-		if (numberOfTrains <= 0) {
-			numberOfTrains = AbstractTrains.uniqueIDs++;
+	public static ItemStack setPersistentData(@Nullable ItemStack oldStack, @Nullable AbstractTrains train, @Nullable Integer trainID, @Nullable EntityPlayer player) {
+
+		ItemStack stack = oldStack;
+
+		if (train != null){
+			for (EnumTrains trains : EnumTrains.values()) {
+				if (trains.getEntityClass().equals(train.getClass())) {
+					stack = (new ItemStack(trains.getItem()));
+					break;
+				}
+			}
 		}
-		else {
-			AbstractTrains.uniqueIDs = numberOfTrains++;
+		if(stack!=null) {
+			NBTTagCompound tag = stack.getTagCompound();
+			if(tag==null){
+				tag=new NBTTagCompound();
+			}
+			if(train!=null) {
+				tag.setString("puuid", train.getPersistentUUID());
+				tag.setString("trainCreator", player==null?train.getEntityData().getString("theCreator"):player.getDisplayName());
+				if(train.getEntityData().hasKey("theOwner")) {
+					tag.setString("theOwner", train.getEntityData().getString("theOwner"));
+				}
+				if(train.getEntityData().hasKey("color")) {
+					tag.setInteger("trainColor",train.getEntityData().getInteger("color"));
+				}
+			} else {
+				tag.setString("trainCreator", player!=null?player.getDisplayName():"Creative");
+			}
+			tag.setInteger("uniqueID", trainID==null?AbstractTrains.uniqueIDs++:trainID);
+
+
+			stack.setTagCompound(tag);
+		} else {
+			return null;//THIS SHOULD NEVER HAPPEN, but compensate anyway because java is stupid and forge is unreliable.
 		}
-		if (var3 == null) {
-			var3 = new NBTTagCompound();
-			stack.setTagCompound(var3);
-		}
-		stack.getTagCompound().setInteger("uniqueID", numberOfTrains);
-		stack.getTagCompound().setString("trainCreator", player.getDisplayName());
-		return numberOfTrains;
+		return stack;
+
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -68,37 +91,42 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
 		if (par1ItemStack.hasTagCompound()) {
 			NBTTagCompound var5 = par1ItemStack.getTagCompound();
-			trainCreator = var5.getString("trainCreator");
 			/*if (id > 0)
 				par3List.add("\u00a77" + "ID: " + id);*/
-			if (trainCreator.length() > 0)
-				par3List.add("\u00a77" + "Creator: " + trainCreator);
-			int color = var5.getInteger("trainColor");
-			if (var5.hasKey("trainColor") && color <= 16)
-				par3List.add("\u00a77" + "Color: " + AbstractTrains.getColorAsString(color));
+
+			if (var5.hasKey("trainCreator")) {
+				par3List.add("\u00a77" + "Creator: " + var5.getString("trainCreator"));
+			}
+
+			if (var5.hasKey("trainOwner")) {
+				par3List.add("\u00a77" + "Owner: " + var5.getString("trainOwner"));
+			}
+
+			if (var5.hasKey("treinColor")) {
+				par3List.add("\u00a77" + "Color: " + AbstractTrains.getColorAsString(var5.getInteger("trainColor")));
+			}
 
 		}
 		double mass = getMass();
 		int power = getMHP();
 		int maxSpeed = getMaxSpeed();
-		String[] additionnalInfo = getAdditionnalInfo();
-		if (getTrainType().length() > 0)
+		if (getTrainType().length() > 0) {
 			par3List.add("\u00a77" + "Type: " + getTrainType());
-		if (power > 0)
-			par3List.add("\u00a77" + "Power: " + power +" Mhp");
-		if (mass != 0)
+		}
+		if (power > 0) {
+			par3List.add("\u00a77" + "Power: " + power + " Mhp");
+		}
+		if (mass != 0) {
 			par3List.add("\u00a77" + "Mass: " + (mass * 10));
-		if (maxSpeed > 0)
+		}
+		if (maxSpeed > 0) {
 			par3List.add("\u00a77" + "Max Speed: " + maxSpeed);
+		}
 		if(getCargoCapacity()>0){
 			par3List.add("\u00a77" + "Slots: "+getCargoCapacity());
 		}
-		if(additionnalInfo!=null && additionnalInfo.length>0 && additionnalInfo[0].length()>0){
-			for(int i=0;i<additionnalInfo.length;i++){
-				if(additionnalInfo[i].length()>0){
-					par3List.add("\u00a77" + additionnalInfo[i]);
-				}
-			}
+		if(getAdditionnalInfo()!=null){
+			par3List.add("\u00a77" + getAdditionnalInfo());
 		}
 	}
 	@Override
@@ -138,7 +166,7 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 		}
 		return 0;
 	}
-	public String[] getAdditionnalInfo() {
+	public String getAdditionnalInfo() {
 		for(EnumTrains trains : EnumTrains.values()){
 			if(trains.getItem() == this){
 				return trains.getAdditionnalTooltip();
@@ -166,7 +194,7 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 		if (par3World.isRemote) {
 			return false;
 		}
-		if(tileentity!=null && tileentity instanceof TileTCRail){
+		if(tileentity instanceof TileTCRail){
 			TileTCRail tile = (TileTCRail) tileentity;
 			if (tile.getType().equals(TrackTypes.MEDIUM_STRAIGHT.getLabel())
 					|| tile.getType().equals(TrackTypes.SMALL_STRAIGHT.getLabel())
@@ -179,7 +207,7 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 			par2EntityPlayer.addChatMessage(new ChatComponentText("Place me on a straight piece of track !"));
 			return false;
 		}else
-		if(tileentity!=null && tileentity instanceof TileTCRailGag){
+		if(tileentity instanceof TileTCRailGag){
 			TileTCRailGag tileGag = (TileTCRailGag) tileentity;
 			TileTCRail tile = (TileTCRail) par3World.getTileEntity(tileGag.originX, tileGag.originY, tileGag.originZ);
 			if(tile!=null && tile.getType().equals(TrackTypes.MEDIUM_STRAIGHT.getLabel())){
@@ -202,12 +230,16 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 		EntityRollingStock rollingStock = null;
 		for(EnumTrains train : EnumTrains.values()){
 			if(train.getItem() == itemstack.getItem()){
+				//System.out.println(train.getItem().getUnlocalizedName());
+				//System.out.println(world!=null);
 				rollingStock = (EntityRollingStock) train.getEntity(world, i + 0.5F, j + 0.5F, k + 0.5F);
 				if(train.getColors()!=null){
 					if(rollingStock != null){
-						rollingStock.setColor(AbstractTrains.getColorFromString(train.getColors()[0]));
+						rollingStock.setColor((train.getColors()[0]));
 					}
 				}
+
+				break;
 			}
 		}
 		if (rollingStock != null) {
@@ -300,9 +332,15 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 								rollingStock.serverRealRotation = 90;
 							}
 						}else{
-							player.addChatMessage(new ChatComponentText("Place me on a straight piece of track!"));
-							rollingStock.setDead();
-							return rollingStock;
+							if(player!=null) {
+								player.addChatMessage(new ChatComponentText("Place me on a straight piece of track!"));
+								rollingStock.setDead();
+								return rollingStock;
+							} else {
+								if(meta == 0 || meta == 2){
+									rollingStock.serverRealRotation = 90;
+								}
+							}
 						}
 					}
 				}
@@ -352,16 +390,30 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 						rollingStock.uniqueID = uniID;
 					if (uniID != -1)
 						rollingStock.getEntityData().setInteger("uniqueID", uniID);
-					trainCreator = var5.getString("trainCreator");
-					trainColor = var5.getInteger("trainColor");
-					if (var5.hasKey("trainColor"))
-						rollingStock.setColor(trainColor);
-					rollingStock.trainCreator = trainCreator;
+					if (var5.hasKey("trainColor")) {
+						rollingStock.setColor(var5.getInteger("trainColor"));
+					}
+					rollingStock.trainCreator = var5.getString("trainCreator");
 				}
-				if (player != null)
-					rollingStock.setInformation(((ItemRollingStock) itemstack.getItem()).getTrainType(), player.getDisplayName(), trainCreator, (itemstack.getItem()).getItemStackDisplayName(itemstack), uniID);
-				if (player == null)
-					rollingStock.setInformation(((ItemRollingStock) itemstack.getItem()).getTrainType(), "", trainCreator, (itemstack.getItem()).getItemStackDisplayName(itemstack), uniID);
+				if(itemstack.hasTagCompound()) {
+					if (itemstack.getTagCompound().hasKey("theOwner")) {
+						rollingStock.setInformation(((ItemRollingStock) itemstack.getItem()).getTrainType(), itemstack.getTagCompound().getString("theOwner"), itemstack.getTagCompound().getString("theCreator"), (itemstack.getItem()).getItemStackDisplayName(itemstack), uniID);
+					} else if (player != null) {
+						rollingStock.setInformation(((ItemRollingStock) itemstack.getItem()).getTrainType(), player.getDisplayName(), itemstack.getTagCompound().getString("theCreator"), (itemstack.getItem()).getItemStackDisplayName(itemstack), uniID);
+					} else {
+						rollingStock.setInformation(((ItemRollingStock) itemstack.getItem()).getTrainType(), "", itemstack.getTagCompound().getString("theCreator"), (itemstack.getItem()).getItemStackDisplayName(itemstack), uniID);
+					}
+					if (itemstack.getTagCompound().hasKey("color")) {
+						rollingStock.setColor(itemstack.getTagCompound().getInteger("color"));
+					}
+					if (itemstack.getTagCompound().hasKey("puuid")) {
+						rollingStock.getEntityData().setString("puuid", itemstack.getTagCompound().getString("puuid"));
+					}
+				} else if (player != null) {
+					rollingStock.setInformation(((ItemRollingStock) itemstack.getItem()).getTrainType(), player.getDisplayName(), "Creative", (itemstack.getItem()).getItemStackDisplayName(itemstack), uniID);
+				} else {
+					rollingStock.setInformation(((ItemRollingStock) itemstack.getItem()).getTrainType(), "", "Creative", (itemstack.getItem()).getItemStackDisplayName(itemstack), uniID);
+				}
 
 				if (ConfigHandler.SHOW_POSSIBLE_COLORS && rollingStock.acceptedColors != null && rollingStock.acceptedColors.size() > 0) {
 					String concatColors = ": ";

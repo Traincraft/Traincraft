@@ -37,6 +37,7 @@ public class EntityLocoSteam4_4_0 extends SteamTrain {
 
 	@Override
 	public void updateRiderPosition() {
+		if(riddenByEntity==null){return;}
 		riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset() + 0.45, posZ);// default
 	}
 

@@ -37,6 +37,7 @@ public class EntityLocoDieselGP7Red extends DieselTrain {
 
 	@Override
 	public void updateRiderPosition() {
+		if(riddenByEntity==null){return;}
 		double pitchRads = this.anglePitchClient * Math.PI / 180.0D;
 		double distance = 1.3;
 		double yOffset = 0.3;

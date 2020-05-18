@@ -12,8 +12,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.IModelCustom;
 import org.lwjgl.opengl.GL11;
+import tmt.ModelBase;
 import train.client.render.CustomModelRenderer;
-import train.client.tmt.ModelBase;
 import train.common.library.Info;
 
 public class ModelStopper extends ModelBase {
@@ -105,7 +105,7 @@ public class ModelStopper extends ModelBase {
 		GL11.glRotatef(90, 0, 1, 0);
 		FMLClientHandler.instance().getClient().renderEngine
 				.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
-		GL11.glColor3f(1, 1, 1);
+		GL11.glColor4f(1, 1, 1, 1);
 		track.renderAll();
 		GL11.glPopMatrix();
 	}
@@ -123,6 +123,7 @@ public class ModelStopper extends ModelBase {
 		GL11.glRotatef(90, 0, 1, 0);
 		FMLClientHandler.instance().getClient().renderEngine
 				.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
+		GL11.glColor4f(1, 1, 1, 1);
 		track.renderAll();
 	}
 }

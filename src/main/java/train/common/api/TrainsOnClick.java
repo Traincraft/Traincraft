@@ -1,5 +1,6 @@
 package train.common.api;
 
+import cpw.mods.fml.common.FMLCommonHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
@@ -8,13 +9,17 @@ import train.common.library.ItemIDs;
 
 public class TrainsOnClick {
 	public boolean onClickWithStake(AbstractTrains train, ItemStack itemstack, EntityPlayer playerEntity, World world) {
-		if (itemstack != null && itemstack.getItem() == ItemIDs.stake.item && !world.isRemote) {
+		if (itemstack != null && itemstack.getItem() == ItemIDs.stake.item && !world.isRemote &&
+				(FMLCommonHandler.instance().getMinecraftServerInstance().isSinglePlayer() ||
+						!train.locked || train.getTrainOwner().equals(playerEntity.getDisplayName()) ||
+						train.getTrainOwner().equals("") || train.getTrainOwner()==null)) {
 			if (playerEntity.isSneaking() && train instanceof Locomotive) {
 				if (!train.canBeAdjusted(train)) {
 					playerEntity.addChatMessage(new ChatComponentText(((EntityRollingStock) train).getTrainName() + " can be pulled, don't forget to fuel it!"));
 					playerEntity.addChatMessage(new ChatComponentText("Attach the BACK of this locomotive to the BACK of another locomotive. Otherwise you will encounter weird problems on turns"));
 					((Locomotive) train).setCanBeAdjusted(true);
 					((Locomotive) train).canBePulled = true;
+					((Locomotive) train).disconnectFromServer();
 				}
 				else {
 					playerEntity.addChatMessage(new ChatComponentText(((EntityRollingStock) train).getTrainName() + " can pull"));

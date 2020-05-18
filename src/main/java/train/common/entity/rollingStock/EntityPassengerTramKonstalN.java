@@ -26,6 +26,7 @@ public class EntityPassengerTramKonstalN extends EntityRollingStock implements I
 
 	@Override
 	public void updateRiderPosition() {
+		if(riddenByEntity==null){return;}
 		riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset()+0.1F, posZ);
 	}
 

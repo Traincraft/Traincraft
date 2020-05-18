@@ -21,7 +21,14 @@ tile.tc:assemblyTableI.name=Сборочный стол I уровня
 tile.tc:assemblyTableII.name=Сборочный стол II уровня
 tile.tc:assemblyTableIII.name=Сборочный стол III уровня
 fluid.tc:fluid.diesel.name=Дизельное топливо
-fluid.tc:refinedfuel.name=Бензин
+fluid.tc:fluid.refinedfuel.name=Бензин
+
+<!-- ## Fluids ## -->
+fluid.diesel.name=Дизельное топливо
+fluid.refinedfuel.name=Бензин
+
+fluid.tile.water=вода
+fluid.tile.lava=лава
 
 <!-- ## Предметы ## -->
 item.tc:diesel.name=Канистра с дизельным топливом
@@ -130,7 +137,7 @@ item.tc:minecartFlatCart_DB.name=Бортовая платформа (DB)
 item.tc:minecartFlatCartLogs_DB.name=Лесовозная платформа (DB)
 item.tc:minecartFreightGondola_DB.name=Полувагон (DB)
 item.tc:minecartTankWagon_DB.name=Цистерна (DB)
-item.tc:minecartLocoSD70.name=SD70 Union Pacific (США)
+item.tc:minecartLocoSD70.name=SD70M (США)
 item.tc:minecartLocoEr.name=Паровоз Э
 item.tc:minecartTenderEr.name=Тендер паровоза Э
 item.tc:minecartFreightCenterBeam_Empty.name=Вагон для пиломатериалов (пустой)
@@ -161,7 +168,7 @@ item.tc:minecartTenderC62Class.name=Тендер С62 (Япония)
 item.tc:minecartLocoSteamShay.name=Shay (США)
 item.tc:minecartCabooseLogging.name=Лесозаготовочный кабуз
 item.tc:minecartPassengerTramNY.name=Прицепной вагон метро
-item.tc:minecartLocoSD40.name=SD40 Santa Fe (США)
+item.tc:minecartLocoSD40.name=SD40-2 (США)
 
 <!-- ## Достижения ## -->
 achievement.tc:engineer=Одежда кочегара

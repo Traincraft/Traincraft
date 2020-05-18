@@ -18,6 +18,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import train.common.entity.rollingStock.EntityTracksBuilder;
+import train.common.items.ItemTCRail;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -51,20 +53,7 @@ public abstract class RailTools {
      * @return true if successful
      * @see ITrackItem
      */
-    public static boolean placeRailAt(ItemStack stack, World world, int i, int j, int k) {
-        if (stack == null)
-            return false;
-        if (stack.getItem() instanceof ITrackItem)
-            return ((ITrackItem) stack.getItem()).placeTrack(stack.copy(), world, i, j, k);
-        if (stack.getItem() instanceof ItemBlock) {
-            Block block = ((ItemBlock) stack.getItem()).field_150939_a;
-            if (BlockRailBase.func_150051_a(block)) {
-                boolean success = world.setBlock(i, j, k, block);
-                if (success)
-                    world.playSoundEffect((float) i + 0.5F, (float) j + 0.5F, (float) k + 0.5F, block.stepSound.func_150496_b(), (block.stepSound.getVolume() + 1.0F) / 2.0F, block.stepSound.getPitch() * 0.8F);
-                return success;
-            }
-        }
+    public static boolean placeRailAt(EntityTracksBuilder builder, ItemStack stack, World world, int i, int j, int k) {
         return false;
     }
 
@@ -78,7 +67,7 @@ public abstract class RailTools {
      * @see ITrackItem
      */
     public static boolean isTrackItem(ItemStack stack) {
-        return stack != null && stack.getItem() instanceof ITrackItem;
+        return stack != null && (stack.getItem() instanceof ITrackItem || stack.getItem() instanceof ItemTCRail);
     }
 
     /**

@@ -26,6 +26,7 @@ public class EntityPassengerHighSpeedCarZeroED extends EntityRollingStock implem
 
 	@Override
 	public void updateRiderPosition() {
+		if(riddenByEntity==null){return;}
 		riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset(), posZ);
 	}
 

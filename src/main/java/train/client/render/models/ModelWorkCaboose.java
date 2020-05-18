@@ -1,11 +1,73 @@
 package train.client.render.models;
 
 import net.minecraft.entity.Entity;
+import tmt.ModelBase;
 import train.client.render.CustomModelRenderer;
-import train.client.tmt.ModelBase;
 import train.common.core.handlers.ConfigHandler;
 
 public class ModelWorkCaboose extends ModelBase {
+
+
+	// variables init:
+	public CustomModelRenderer box;
+	public CustomModelRenderer box0;
+	public CustomModelRenderer box1;
+	public CustomModelRenderer box10;
+	public CustomModelRenderer box11;
+	public CustomModelRenderer box12;
+	public CustomModelRenderer box13;
+	public CustomModelRenderer box14;
+	public CustomModelRenderer box15;
+	public CustomModelRenderer box16;
+	public CustomModelRenderer box17;
+	public CustomModelRenderer box18;
+	public CustomModelRenderer box19;
+	public CustomModelRenderer box2;
+	public CustomModelRenderer box20;
+	public CustomModelRenderer box21;
+	public CustomModelRenderer box22;
+	public CustomModelRenderer box23;
+	public CustomModelRenderer box24;
+	public CustomModelRenderer box25;
+	public CustomModelRenderer box26;
+	public CustomModelRenderer box27;
+	public CustomModelRenderer box28;
+	public CustomModelRenderer box29;
+	public CustomModelRenderer box3;
+	public CustomModelRenderer box30;
+	public CustomModelRenderer box31;
+	public CustomModelRenderer box32;
+	public CustomModelRenderer box33;
+	public CustomModelRenderer box34;
+	public CustomModelRenderer box35;
+	public CustomModelRenderer box36;
+	public CustomModelRenderer box37;
+	public CustomModelRenderer box38;
+	public CustomModelRenderer box39;
+	public CustomModelRenderer box4;
+	public CustomModelRenderer box40;
+	public CustomModelRenderer box41;
+	public CustomModelRenderer box42;
+	public CustomModelRenderer box43;
+	public CustomModelRenderer box44;
+	public CustomModelRenderer box45;
+	public CustomModelRenderer box46;
+	public CustomModelRenderer box47;
+	public CustomModelRenderer box48;
+	public CustomModelRenderer box49;
+	public CustomModelRenderer box5;
+	public CustomModelRenderer box50;
+	public CustomModelRenderer box51;
+	public CustomModelRenderer box52;
+	public CustomModelRenderer box53;
+	public CustomModelRenderer box54;
+	public CustomModelRenderer box55;
+	public CustomModelRenderer box56;
+	public CustomModelRenderer box6;
+	public CustomModelRenderer box7;
+	public CustomModelRenderer box8;
+	public CustomModelRenderer box9;
+
 
 	public ModelWorkCaboose() {
 		box = new CustomModelRenderer(this, 1, 24, 150, 305);
@@ -258,64 +320,5 @@ public class ModelWorkCaboose extends ModelBase {
 
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5) {}
 
-	// variables init:
-	public CustomModelRenderer box;
-	public CustomModelRenderer box0;
-	public CustomModelRenderer box1;
-	public CustomModelRenderer box10;
-	public CustomModelRenderer box11;
-	public CustomModelRenderer box12;
-	public CustomModelRenderer box13;
-	public CustomModelRenderer box14;
-	public CustomModelRenderer box15;
-	public CustomModelRenderer box16;
-	public CustomModelRenderer box17;
-	public CustomModelRenderer box18;
-	public CustomModelRenderer box19;
-	public CustomModelRenderer box2;
-	public CustomModelRenderer box20;
-	public CustomModelRenderer box21;
-	public CustomModelRenderer box22;
-	public CustomModelRenderer box23;
-	public CustomModelRenderer box24;
-	public CustomModelRenderer box25;
-	public CustomModelRenderer box26;
-	public CustomModelRenderer box27;
-	public CustomModelRenderer box28;
-	public CustomModelRenderer box29;
-	public CustomModelRenderer box3;
-	public CustomModelRenderer box30;
-	public CustomModelRenderer box31;
-	public CustomModelRenderer box32;
-	public CustomModelRenderer box33;
-	public CustomModelRenderer box34;
-	public CustomModelRenderer box35;
-	public CustomModelRenderer box36;
-	public CustomModelRenderer box37;
-	public CustomModelRenderer box38;
-	public CustomModelRenderer box39;
-	public CustomModelRenderer box4;
-	public CustomModelRenderer box40;
-	public CustomModelRenderer box41;
-	public CustomModelRenderer box42;
-	public CustomModelRenderer box43;
-	public CustomModelRenderer box44;
-	public CustomModelRenderer box45;
-	public CustomModelRenderer box46;
-	public CustomModelRenderer box47;
-	public CustomModelRenderer box48;
-	public CustomModelRenderer box49;
-	public CustomModelRenderer box5;
-	public CustomModelRenderer box50;
-	public CustomModelRenderer box51;
-	public CustomModelRenderer box52;
-	public CustomModelRenderer box53;
-	public CustomModelRenderer box54;
-	public CustomModelRenderer box55;
-	public CustomModelRenderer box56;
-	public CustomModelRenderer box6;
-	public CustomModelRenderer box7;
-	public CustomModelRenderer box8;
-	public CustomModelRenderer box9;
 
 }

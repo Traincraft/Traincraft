@@ -37,7 +37,8 @@ public class EntityLocoDieselMILW_H1044 extends DieselTrain {
 
 	@Override
 	public void updateRiderPosition() {
-		riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset() + 0.05F, posZ);
+		if(riddenByEntity==null){return;}
+		riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset() + 0.45F, posZ);
 	}
 
 	@Override

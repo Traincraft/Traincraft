@@ -31,6 +31,7 @@ public class EntityLocoElectricNewHighSpeed extends ElectricTrain {
 
 	@Override
 	public void updateRiderPosition() {
+		if(riddenByEntity==null){return;}
 		riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset() + 0.35F, posZ);
 	}
 

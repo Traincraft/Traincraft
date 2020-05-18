@@ -4,9 +4,9 @@ import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
+import tmt.ModelBase;
 import train.client.core.ClientProxy;
 import train.client.render.CustomModelRenderer;
-import train.client.tmt.ModelBase;
 import train.common.entity.rollingStock.EntityTenderBR01_DB;
 import train.common.library.Info;
 

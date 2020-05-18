@@ -8,6 +8,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
+import train.common.adminbook.ServerLogger;
 
 public abstract class Freight extends EntityRollingStock implements IInventory {
 	public ItemStack cargoItems[];
@@ -34,6 +35,7 @@ public abstract class Freight extends EntityRollingStock implements IInventory {
 				riddenByEntity.mountEntity(this);
 			}
 			this.setDead();
+			ServerLogger.deleteWagon(this);
 			if(damagesource.getEntity() instanceof EntityPlayer) {
 				dropCartAsItem(((EntityPlayer)damagesource.getEntity()).capabilities.isCreativeMode);
 			}
@@ -139,7 +141,7 @@ public abstract class Freight extends EntityRollingStock implements IInventory {
 	 * Handle mass depending on item count tenders are done differently
 	 */
 	protected void handleMass() {
-		if (this.updateTicks % 10 != 0)
+		if (this.ticksExisted % 10 != 0)
 			return;
 		if (worldObj.isRemote)
 			return;
@@ -186,13 +188,18 @@ public abstract class Freight extends EntityRollingStock implements IInventory {
 
 	@Override
 	public void dropCartAsItem(boolean isCreative){
-		super.dropCartAsItem(isCreative);
-		if (! (this instanceof Tender) && cargoItems != null) {
-			for (ItemStack stack : cargoItems) {
-				if (stack != null) {
-					entityDropItem(stack, 0);
+		if(!itemdropped) {
+			super.dropCartAsItem(isCreative);
+			if (!(this instanceof Tender) && cargoItems != null) {
+				for (ItemStack stack : cargoItems) {
+					if (stack != null) {
+						entityDropItem(stack, 0);
+					}
 				}
 			}
 		}
 	}
+
+	@Override
+	public ItemStack[] getInventory(){return cargoItems;}
 }

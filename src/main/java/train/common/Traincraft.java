@@ -1,20 +1,22 @@
 package train.common;
 
 import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.event.FMLServerStoppedEvent;
+import cpw.mods.fml.common.event.*;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.VillagerRegistry;
+import net.minecraft.command.CommandBase;
+import net.minecraft.command.ICommandSender;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraftforge.common.AchievementPage;
 import net.minecraftforge.common.MinecraftForge;
@@ -33,7 +35,13 @@ import train.common.items.TCItems;
 import train.common.library.Info;
 import train.common.recipes.AssemblyTableRecipes;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 @Mod(modid = Info.modID, name = Info.modName, version = Info.modVersion)
 public class Traincraft {
@@ -60,13 +68,36 @@ public class Traincraft {
 	public static SimpleNetworkWrapper brakeChannel;
 	public static SimpleNetworkWrapper lockChannel;
 	public static SimpleNetworkWrapper builderChannel;
+	public static SimpleNetworkWrapper updateTrainIDChannel = NetworkRegistry.INSTANCE.newSimpleChannel("TrainIDChannel");
+    public static SimpleNetworkWrapper updateDestinationChannel = NetworkRegistry.INSTANCE.newSimpleChannel("updateDestnChannel");
+
+
+	public static final SimpleNetworkWrapper itaChannel = NetworkRegistry.INSTANCE.newSimpleChannel("TransmitterAspect");
+	public static  SimpleNetworkWrapper itsChannel = NetworkRegistry.INSTANCE.newSimpleChannel("TransmitterSpeed");
+	//public static  SimpleNetworkWrapper mtcsChannel = NetworkRegistry.INSTANCE.newSimpleChannel("MTCSysSetSpeed");
+	public static  SimpleNetworkWrapper itnsChannel = NetworkRegistry.INSTANCE.newSimpleChannel("TransmitterNextSpeed");
+	public static final SimpleNetworkWrapper mtlChannel = NetworkRegistry.INSTANCE.newSimpleChannel("MTCLevelUpdater");
+	public static final SimpleNetworkWrapper msChannel = NetworkRegistry.INSTANCE.newSimpleChannel("MTCStatus");
+	public static final SimpleNetworkWrapper mscChannel = NetworkRegistry.INSTANCE.newSimpleChannel("MTCStatusToClient");
+	public static final SimpleNetworkWrapper atoChannel = NetworkRegistry.INSTANCE.newSimpleChannel("ATOPacket");
+	public static final SimpleNetworkWrapper atoDoSlowDownChannel = NetworkRegistry.INSTANCE.newSimpleChannel("ATODoSlowDown");
+	public static final SimpleNetworkWrapper atoDoAccelChannel = NetworkRegistry.INSTANCE.newSimpleChannel("ATODoAccel");
+	public static final SimpleNetworkWrapper atoSetStopPoint = NetworkRegistry.INSTANCE.newSimpleChannel("ATOSetStopPoint");
+	public static final SimpleNetworkWrapper NCSlowDownChannel = NetworkRegistry.INSTANCE.newSimpleChannel("NCDoSlowDown");
+	//public static final SimpleNetworkWrapper ctChannel = NetworkRegistry.INSTANCE.newSimpleChannel("ctmChannel");
+	public static final SimpleNetworkWrapper gsfsChannel = NetworkRegistry.INSTANCE.newSimpleChannel("gsfsChannel");
+	public static final SimpleNetworkWrapper gsfsrChannel = NetworkRegistry.INSTANCE.newSimpleChannel("gsfsReturnChannel");
+	public static final SimpleNetworkWrapper playSoundOnClientChannel  = NetworkRegistry.INSTANCE.newSimpleChannel(" SoundOnCChannel");
+
+
+	public static File configDirectory;
 
 	/* Creative tab for Traincraft */
 	public static CreativeTabs tcTab;
 
 	public ArmorMaterial armor = EnumHelper.addArmorMaterial("Armor", 5, new int[] { 1, 2, 2, 1 }, 25);
 	public ArmorMaterial armorCloth = EnumHelper.addArmorMaterial("TCcloth", 5, new int[] {1, 2, 2, 1}, 25);
-	public ArmorMaterial armorCompositeSuit = EnumHelper.addArmorMaterial("TCsuit", 70, new int[] {1, 3, 3, 1}, 50);
+	public ArmorMaterial armorCompositeSuit = EnumHelper.addArmorMaterial("TCsuit", 70, new int[] {2, 6, 5, 2}, 50);
 	public static int trainArmor;
 	public static int trainCloth;
 	public static int trainCompositeSuit;
@@ -78,6 +109,7 @@ public class Traincraft {
 	public void preInit(FMLPreInitializationEvent event) {
 		tcLog.info("Starting Traincraft " + Info.modVersion + "!");
 		/* Config handler */
+		configDirectory= event.getModConfigurationDirectory();
 		ConfigHandler.init(new File(event.getModConfigurationDirectory(), Info.modName + ".cfg"));
 
 		/* Register the KeyBinding Handler */
@@ -107,6 +139,14 @@ public class Traincraft {
 		FMLCommonHandler.instance().bus().register(retroGen);
 		
 		MapGenStructureIO.func_143031_a(ComponentVillageTrainstation.class, "Trainstation");
+
+		if (Loader.isModLoaded("ComputerCraft")) {
+			try {
+				proxy.registerComputerCraftPeripherals();
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+		}
 
 		/* Other Proxy init */
 		tcLog.info("Initialize Renderer and Events");
@@ -155,8 +195,13 @@ public class Traincraft {
 		proxy.registerVillagerSkin(ConfigHandler.TRAINCRAFT_VILLAGER_ID, "station_chief.png");
 		VillagerRegistry.instance().registerVillageTradeHandler(ConfigHandler.TRAINCRAFT_VILLAGER_ID, villageHandler);
 
+
 		proxy.registerBookHandler();
+
+		
 		tcLog.info("Finished Initialization");
+
+
 	}
 
 	@EventHandler
@@ -167,7 +212,9 @@ public class Traincraft {
 		tcLog.info("Activation Mod Compatibility");
 		TrainModCore.ModsLoaded();
 		LiquidManager.getLiquidsFromDictionnary();
-
+		if (Loader.isModLoaded("OpenComputers")) {
+			tcLog.info("OpenComputers integration successfully activated!");
+		}
 		tcLog.info("Finished PostInitialization");
 	}
 
@@ -175,4 +222,26 @@ public class Traincraft {
 	public void serverStop(FMLServerStoppedEvent event) {
 		proxy.killAllStreams();
 	}
+
+	@EventHandler
+	public void serverLoad(FMLServerStartingEvent event)
+	{
+		event.registerServerCommand(new tcAdminPerm());
+	}
+
+
+	public class tcAdminPerm extends CommandBase {
+		public String getCommandName() {return "tc.admin";}
+		public String getCommandUsage(ICommandSender CommandSender) {return "/tcadmin";}
+		public int getRequiredPermissionLevel() {return 2;}
+
+		public void processCommand(ICommandSender CommandSender, String[] par2ArrayOfStr) {
+			getCommandSenderAsPlayer(CommandSender).addChatMessage(
+					new ChatComponentText(
+							"this command exists as a placeholder to allow admin permissions in TC via plugins and mds such as GroupManager and Forge Essentials"));
+
+		}
+	}
+
+
 }

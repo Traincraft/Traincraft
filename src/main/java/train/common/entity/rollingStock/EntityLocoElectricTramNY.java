@@ -29,6 +29,7 @@ public class EntityLocoElectricTramNY extends ElectricTrain {
 
 	@Override
 	public void updateRiderPosition() {
+		if(riddenByEntity==null){return;}
 		double pitchRads = this.anglePitchClient * Math.PI / 180.0D;
 		double distance = 1.5;
 		double yOffset = 0.2;
@@ -113,7 +114,7 @@ public class EntityLocoElectricTramNY extends ElectricTrain {
 	}
 	@Override
 	public String getInventoryName() {
-		return "N.Y. Subway";
+		return "Kawasaki PA4";
 	}
 
 	@Override

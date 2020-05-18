@@ -37,6 +37,7 @@ public class EntityLocoSteamGLYN042T extends SteamTrain {
 
 	@Override
 	public void updateRiderPosition() {
+		if(riddenByEntity==null){return;}
 		riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset() + 0.45, posZ);// default
 	}
 	@Override
@@ -50,7 +51,7 @@ public class EntityLocoSteamGLYN042T extends SteamTrain {
 
 	@Override
 	public void pressKey(int i) {
-		if (i == 7 && riddenByEntity != null && riddenByEntity instanceof EntityPlayer) {
+		if (i == 7 && riddenByEntity instanceof EntityPlayer) {
 			((EntityPlayer) riddenByEntity).openGui(Traincraft.instance, GuiIDs.LOCO, worldObj, (int) this.posX, (int) this.posY, (int) this.posZ);
 		}
 	}

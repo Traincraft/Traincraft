@@ -1,7 +1,7 @@
 /**
  * A track that detects all instance of Locomotive
  * 
- * @author Spitfire4466(Edited by PeachMaster)
+ * @author Spitfire4466(Edited by NitroxydeX)
  */
 package train.common.blocks.tracks;
 
@@ -10,6 +10,7 @@ import mods.railcraft.api.tracks.ITrackEmitter;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatComponentText;
 import train.common.api.DieselTrain;
 import train.common.api.ElectricTrain;
@@ -17,14 +18,43 @@ import train.common.api.Locomotive;
 import train.common.api.SteamTrain;
 import train.common.library.Tracks;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+
 public class BlockDetectorAllLocomotiveTrack extends BlockDetectorTrack implements ITrackEmitter {
 	
-	public int ThingToSet;
+	private int	ThingToSet	= 0;
 	@Override
 	public Tracks getTrackType() {
 		return Tracks.DETECTOR_ALL_LOCOMOTIVES;
 	}
 	
+	@Override
+	public void readFromNBT(NBTTagCompound nbttagcompound) {
+		super.readFromNBT(nbttagcompound);
+		this.ThingToSet = nbttagcompound.getInteger("state");
+	}
+	
+	@Override
+	public void writeToNBT(NBTTagCompound nbttagcompound) {
+		super.writeToNBT(nbttagcompound);
+		nbttagcompound.setInteger("state", this.ThingToSet);
+	}
+	
+	@Override
+	public void readPacketData(DataInputStream data) throws IOException {
+		super.readPacketData(data);
+		this.ThingToSet = data.readInt();
+		markBlockNeedsUpdate();
+	}
+	
+	@Override
+	public void writePacketData(DataOutputStream data) throws IOException {
+		super.writePacketData(data);
+		
+		data.writeInt(this.ThingToSet);
+	}
 	
 	@Override
 	public boolean blockActivated(EntityPlayer player) {
@@ -72,7 +102,6 @@ public class BlockDetectorAllLocomotiveTrack extends BlockDetectorTrack implemen
 	
 	@Override
 	public void onMinecartPass(EntityMinecart cart) {
-		
 		switch(this.ThingToSet) {
 		case 0: {
 			if (cart instanceof Locomotive) {
@@ -98,7 +127,7 @@ public class BlockDetectorAllLocomotiveTrack extends BlockDetectorTrack implemen
 			}
 			break;
 		}
-				}
+		}
 		
 		}
 	}

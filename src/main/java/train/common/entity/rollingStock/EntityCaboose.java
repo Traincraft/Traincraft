@@ -26,6 +26,7 @@ public class EntityCaboose extends EntityRollingStock implements IPassenger {
 
 	@Override
 	public void updateRiderPosition() {
+		if(riddenByEntity==null){return;}
 		riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset(), posZ);
 	}
 

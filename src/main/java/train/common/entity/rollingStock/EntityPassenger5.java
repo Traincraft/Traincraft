@@ -26,7 +26,9 @@ public class EntityPassenger5 extends EntityRollingStock implements IPassenger {
 
 	@Override
 	public void updateRiderPosition() {
-		riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset() + 0.2F, posZ);
+		if(riddenByEntity!=null) {
+			riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset() + 0.2F, posZ);
+		}
 	}
 
 	@Override

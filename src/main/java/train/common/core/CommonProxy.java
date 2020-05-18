@@ -2,6 +2,7 @@ package train.common.core;
 
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -30,13 +31,21 @@ import train.common.entity.rollingStock.EntityTracksBuilder;
 import train.common.entity.zeppelin.AbstractZeppelin;
 import train.common.inventory.*;
 import train.common.library.GuiIDs;
+import train.common.mtc.*;
 import train.common.tile.*;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CommonProxy implements IGuiHandler {
 	public static List<MP3Player> playerList = new ArrayList<MP3Player>();
+	public static boolean debug = false;
+
+	public void throwAlphaException() {
+		throw new IllegalStateException("You're trying to use a Traincraft alpha-version past its expiry date. Download a release-build at https://minecraft.curseforge.com/projects/traincraft.");
+	}
 
 	public void setKeyBinding(String name, int value) {}
 
@@ -65,8 +74,9 @@ public class CommonProxy implements IGuiHandler {
 		GameRegistry.registerTileEntity(TileEntityDistil.class, "Tile Distil");
 		GameRegistry.registerTileEntity(TileEntityOpenHearthFurnace.class, "Tile OpenHearthFurnace");
 		GameRegistry.registerTileEntity(TileStopper.class, "TileStopper");
-		GameRegistry.registerTileEntity(TileSignal.class, "TileSignal");
+		GameRegistry.registerTileEntity(TileSignal.class, "TileTrainSignal");
 		GameRegistry.registerTileEntity(TileLantern.class, "tileLantern");
+		GameRegistry.registerTileEntity(TileSwitchStand.class, "tileSwitchStand");
 		GameRegistry.registerTileEntity(TileWaterWheel.class, "tileWaterWheel");
 		GameRegistry.registerTileEntity(TileWindMill.class, "tileWindMill");
 		GameRegistry.registerTileEntity(TileGeneratorDiesel.class, "tileGeneratorDiesel");
@@ -74,8 +84,38 @@ public class CommonProxy implements IGuiHandler {
 		GameRegistry.registerTileEntity(TileTCRailGag.class, "tileTCRailGag");
 		GameRegistry.registerTileEntity(TileTCRail.class, "tileTCRail");
 		GameRegistry.registerTileEntity(TileBridgePillar.class, "tileTCBridgePillar");
+
+		if (Loader.isModLoaded("ComputerCraft") || Loader.isModLoaded("OpenComputers")) {
+			GameRegistry.registerTileEntity(TileInfoTransmitterSpeed.class, "tileInfoTransmitterSpeed");
+			GameRegistry.registerTileEntity(TileInfoTransmitterMTC.class, "tileInfoTransmitterMTC");
+			GameRegistry.registerTileEntity(TileInfoGrabberMTC.class, "tileInfoReceiverMTC");
+			GameRegistry.registerTileEntity(TileInfoGrabberDestination.class, "tileInfoReceiverDestination");
+			GameRegistry.registerTileEntity(TileATOTransmitterStopPoint.class, "tileATOTransmitterStopPoint");
+			GameRegistry.registerTileEntity(TilePDMInstructionRadio.class, "tilePDMInstructionRadio");
+		}
 	}
 
+	public void registerComputerCraftPeripherals() throws ClassNotFoundException {
+		Class computerCraft = Class.forName("dan200.computercraft.ComputerCraft");
+		try {
+			Method computerCraft_registerPeripheralProvider = computerCraft.getMethod("registerPeripheralProvider", new Class[] { Class.forName("dan200.computercraft.api.peripheral.IPeripheralProvider") });
+
+			//Register all CC required blocks
+			computerCraft_registerPeripheralProvider.invoke(null, BlockInfoTransmitterSpeed.instance);
+			computerCraft_registerPeripheralProvider.invoke(null, BlockInfoGrabberMTC.instance);
+			computerCraft_registerPeripheralProvider.invoke(null, BlockInfoTransmitterMTC.instance);
+			computerCraft_registerPeripheralProvider.invoke(null, BlockATOTransmitterStopPoint.instance);
+
+		} catch (NoSuchMethodException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			e.printStackTrace();
+		}
+	}
 	@Override
 	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
 		TileEntity te = world.getTileEntity(x, y, z);
@@ -135,7 +175,7 @@ public class CommonProxy implements IGuiHandler {
 			return null;
 		}
 	}
-	
+
 	@Override
 	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
 		return null;
@@ -163,7 +203,7 @@ public class CommonProxy implements IGuiHandler {
 	public void registerTextureFX() {}
 
 	public void registerSounds() {}
-	
+
 	public void registerBookHandler() {}
 
 	public Minecraft getMinecraft() {
@@ -171,19 +211,21 @@ public class CommonProxy implements IGuiHandler {
 	}
 
 	public void registerVillagerSkin(int villagerId, String textureName) {}
-	
+
 	public static void killAllStreams() {
 		for (MP3Player p : playerList) {
 			p.stop();
 		}
 	}
-	
+
+	public void openadmingui(String data){}
+
 	public static boolean checkJukeboxEntity(World world, int id) {
 		return  world.getEntityByID(id)!=null;
 	}
 
 	public void doNEICheck(ItemStack stack) {}
-	
+
 	public EntityPlayer getPlayer() {
 		return null;
 	}
@@ -195,4 +237,5 @@ public class CommonProxy implements IGuiHandler {
 	public void registerKeyBindingHandler() {}
 
 	public void setHook() {}
+	
 }

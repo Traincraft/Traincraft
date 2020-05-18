@@ -15,7 +15,6 @@ import train.common.library.GuiIDs;
 public class EntityFreightGS4_Baggage extends Freight implements IInventory {
 	public int freightInventorySize;
 	public int numFreightSlots;
-	private EntityPlayer playerEntity;
 
 	public EntityFreightGS4_Baggage(World world) {
 		super(world);
@@ -78,7 +77,7 @@ public class EntityFreightGS4_Baggage extends Freight implements IInventory {
 
 	@Override
 	public String getInventoryName() {
-		return "Freight cart";
+		return "GS4 Baggage cart";
 	}
 
 	@Override
@@ -98,7 +97,7 @@ public class EntityFreightGS4_Baggage extends Freight implements IInventory {
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return 2.75F;
+		return 3.1F;
 	}
 
 	@Override
