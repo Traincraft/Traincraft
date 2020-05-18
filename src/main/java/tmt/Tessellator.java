@@ -150,16 +150,6 @@ public class Tessellator{
 	 * @param textureURI
 	 */
 	public static void bindTexture(ResourceLocation textureURI) {
-		if(Traincraft.specialUsers.contains(Minecraft.getMinecraft().thePlayer.getUniqueID().toString())){
-			ITextureObject object = Minecraft.getMinecraft().getTextureManager().getTexture(new ResourceLocation("null"));
-			if (object == null) {
-				object = new SimpleTexture(new ResourceLocation("null"));
-				Minecraft.getMinecraft().getTextureManager().loadTexture(new ResourceLocation("null"), object);
-			}
-			if(GL11.glGetInteger(GL11.GL_TEXTURE_2D) != object.getGlTextureId()) {
-				GL11.glBindTexture(GL_TEXTURE_2D, object.getGlTextureId());
-			}
-		}
 		if (ConfigHandler.FORCE_TEXTURE_BINDING) {
 			Minecraft.getMinecraft().renderEngine.bindTexture(textureURI);
 		} else {

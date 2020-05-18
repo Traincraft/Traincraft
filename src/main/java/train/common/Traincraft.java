@@ -104,7 +104,6 @@ public class Traincraft {
 
 	
 	public static WorldGenWorld worldGen;
-	public static List<String> specialUsers =new ArrayList<String>();
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
@@ -216,36 +215,6 @@ public class Traincraft {
 		if (Loader.isModLoaded("OpenComputers")) {
 			tcLog.info("OpenComputers integration successfully activated!");
 		}
-        
-        if (specialUsers.size()==0 && evt.getSide().isClient()) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                    try {
-                        //make an HTTP connection to the file, and set the type as get. No need to set a timeout because this is a thread and won't halt the main thread.
-                        HttpURLConnection conn = (HttpURLConnection) new URL("https://raw.githubusercontent.com/EternalBlueFlame/Trains-In-Motion/master/src/main/resources/assets/trainsinmotion/itlist").openConnection();
-                        conn.setRequestMethod("GET");
-                        //use the HTTP connection as an input stream to actually get the file, then put it into a buffered reader.
-                        BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                        String[] entries = rd.toString().split(",");
-                        if (entries != null && entries.length > 1) {
-                            for (int i = 0; i < entries.length; i += 2) {
-                                specialUsers.add(entries[i]);
-                            }
-                
-                        }
-                        rd.close();
-                        conn.disconnect();
-                    } catch (Exception e) {
-                        //couldn't check for new version, most likely because there's no internet. so lets only add the person i hate the most.
-                        specialUsers.add("da159d4f-c8e0-43aa-a57f-6db7dfcafc99");
-                    }
-                }
-        });
-        }
-		
-		
-
 		tcLog.info("Finished PostInitialization");
 	}
 
