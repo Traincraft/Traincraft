@@ -1,31 +1,29 @@
 package train.common.api;
 
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.network.ByteBufUtils;
-import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import io.netty.buffer.ByteBuf;
-import mods.railcraft.api.carts.IMinecart;
-import mods.railcraft.api.carts.IRoutableCart;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityList;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.*;
-import net.minecraft.world.ChunkCoordIntPair;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeChunkManager;
 import net.minecraftforge.common.ForgeChunkManager.Ticket;
+import net.minecraftforge.common.util.ChunkCoordComparator;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.network.ByteBufUtils;
+import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import org.apache.commons.lang3.ArrayUtils;
-import train.client.render.RenderEnum;
 import train.common.Traincraft;
 import train.common.adminbook.ItemAdminBook;
 import train.common.core.handlers.ConfigHandler;
 import train.common.core.handlers.TrainHandler;
 import train.common.items.ItemChunkLoaderActivator;
-import train.common.items.ItemRollingStock;
 import train.common.items.ItemWrench;
 import train.common.library.EnumTrains;
 
@@ -33,7 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public abstract class AbstractTrains extends EntityMinecart implements IMinecart, IRoutableCart, IEntityAdditionalSpawnData {
+public abstract class AbstractTrains extends EntityMinecart implements IEntityAdditionalSpawnData {
 
 	/**
 	 * The color of the current rollingstock -1 if default
@@ -54,7 +52,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 	public float renderYaw;
 	protected float renderPitch;
 	public TrainHandler train;
-	public List<ChunkCoordIntPair> loadedChunks = new ArrayList<ChunkCoordIntPair>();
+	public List<ChunkCoordComparator> loadedChunks = new ArrayList<>();
 	public boolean shouldChunkLoad = true;
 	protected boolean itemdropped =false;
 	/**
@@ -139,17 +137,17 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 
 	public AbstractTrains(World world) {
 		super(world);
-		renderDistanceWeight = 2.0D;
+		//renderDistanceWeight = 2.0D;
 		color = -1;
-		dataWatcher.addObject(12, color);
+		//dataWatcher.addObject(12, color);
 		acceptedColors = new ArrayList<Byte>();
-		dataWatcher.addObject(6, trainType);
-		dataWatcher.addObject(7, trainOwner);
-		dataWatcher.addObject(8, trainDestroyer);
-		dataWatcher.addObject(9, trainName);
+		//dataWatcher.addObject(6, trainType);
+		//dataWatcher.addObject(7, trainOwner);
+		//dataWatcher.addObject(8, trainDestroyer);
+		//dataWatcher.addObject(9, trainName);
 		//dataWatcher.addObject(10, numberOfTrains);
-		dataWatcher.addObject(11, uniqueID);
-		dataWatcher.addObject(13, trainCreator);
+		//dataWatcher.addObject(11, uniqueID);
+		//dataWatcher.addObject(13, trainCreator);
 		shouldChunkLoad=ConfigHandler.CHUNK_LOADING;
 		this.setFlag(7, shouldChunkLoad);
 
@@ -164,7 +162,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 					}
 				}
 				this.setSize(0.98f, 1.98f);
-				this.setMinecartName(trainSpec.name());
+				//this.setMinecartName(trainSpec.name());
 
 				break;
 			}
@@ -178,7 +176,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 
 	@Override
 	public AxisAlignedBB getCollisionBox(Entity p_70114_1_) {
-		if(riddenByEntity!=p_70114_1_){
+		if(this.getControllingPassenger() != p_70114_1_){
 			return super.getCollisionBox(p_70114_1_);
 		} else {
 			return null;
@@ -250,7 +248,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 
 	public void manageChunkLoading(){
 		//if(this instanceof Locomotive)System.out.println("I'm alive. Remote: " + worldObj.isRemote);
-		if (!worldObj.isRemote && this.uniqueID == -1) {
+		if (!this.world.isRemote && this.uniqueID == -1) {
 			if (FMLCommonHandler.instance().getMinecraftServerInstance() != null) {
 				//TraincraftSaveHandler.createFile(FMLCommonHandler.instance().getMinecraftServerInstance());
 				//int readID = TraincraftSaveHandler.readInt(FMLCommonHandler.instance().getMinecraftServerInstance(), "numberOfTrains:");
@@ -310,26 +308,26 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		// System.out.println("setting new ID "+uniqueID);
 		return numberOfTrains;
 	}
-
+	
 	@Override
-	public boolean interactFirst(EntityPlayer entityplayer) {
-		ItemStack itemstack = entityplayer.inventory.getCurrentItem();
-		if (!worldObj.isRemote && ConfigHandler.CHUNK_LOADING && (this instanceof Locomotive) ) {
-			if (itemstack != null && itemstack.getItem() instanceof ItemChunkLoaderActivator) {
-				this.playerEntity = entityplayer;
+	public boolean processInitialInteract(EntityPlayer player, EnumHand hand) {
+		ItemStack heldStack = player.getHeldItem(hand);
+		if (!this.world.isRemote && ConfigHandler.CHUNK_LOADING && (this instanceof Locomotive) ) {
+			if (!heldStack.isEmpty() && heldStack.getItem() instanceof ItemChunkLoaderActivator) {
+				this.playerEntity = player;
 				if (getFlag(7)) {
 					this.setFlag(7, false);
-					entityplayer.addChatMessage(new ChatComponentText("Stop loading chunks"));
+					player.sendMessage(new TextComponentString("Stop loading chunks"));
 					ForgeChunkManager.releaseTicket(chunkTicket);
 					chunkTicket = null;
 				}
 				else if (!getFlag(7)) {
 					this.setFlag(7, true);
-					entityplayer.addChatMessage(new ChatComponentText("Start loading chunks"));
+					player.sendMessage(new TextComponentString("Start loading chunks"));
 				}
-				itemstack.damageItem(1, entityplayer);
+				heldStack.damageItem(1, player);
 				return true;
-			} else if(lockThisCart(itemstack, entityplayer)) {
+			} else if(lockThisCart(heldStack, player)) {
 				return true;
 			}
 		}
@@ -348,7 +346,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 				color = (EnumTrains.getCurrentTrain(getCartItem().getItem()).getColors()[0]);
 			}
 		}
-		dataWatcher.updateObject(12, color);
+		//dataWatcher.updateObject(12, color);
 		this.getEntityData().setInteger("color", color);
 	}
 
@@ -361,7 +359,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 	}
 
 	public int getColor() {
-		return dataWatcher.getWatchableObjectInt(12);
+		return 0;//dataWatcher.getWatchableObjectInt(12);
 	}
 
 	@Override
@@ -427,11 +425,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 			this.entityUniqueID = new UUID(nbttagcompound.getLong("UUIDM"), nbttagcompound.getLong("UUIDL"));
 		}
 	}
-
-	@Override
-	public boolean writeMountToNBT(NBTTagCompound tag){
-		return false;
-	}
+	
 	@Override
 	public boolean writeToNBTOptional(NBTTagCompound p_70039_1_) {
 		if (!this.isDead && this.getEntityString() != null) {
@@ -443,12 +437,14 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 	}
 
 	public void setInformation(String trainType, String trainOwner, String trainCreator, String trainName, int uniqueID) {
-		if (!worldObj.isRemote) {
-			dataWatcher.updateObject(6, trainType);
-			dataWatcher.updateObject(7, trainOwner);
-			dataWatcher.updateObject(9, trainName);
-			dataWatcher.updateObject(11, uniqueID);
-			if (trainCreator != null && trainCreator.length() > 0){ dataWatcher.updateObject(13, trainCreator);}
+		if (!this.world.isRemote) {
+			//dataWatcher.updateObject(6, trainType);
+			//dataWatcher.updateObject(7, trainOwner);
+			//dataWatcher.updateObject(9, trainName);
+			//dataWatcher.updateObject(11, uniqueID);
+			if (trainCreator != null && trainCreator.length() > 0){
+				//dataWatcher.updateObject(13, trainCreator);
+			}
 		}
 	}
 
@@ -551,10 +547,10 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 			}
 		}
 	}
-
+	
 	@Override
-	public ItemStack getPickedResult(MovingObjectPosition target) {
-		return getCartItem();
+	public ItemStack getPickedResult(RayTraceResult target) {
+		return this.getCartItem();
 	}
 
 	protected void setDefaultMass(double def) {
@@ -585,23 +581,23 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 	/** Locking for passengers, flat, caboose, jukebox,workcart */
 	protected boolean lockThisCart(ItemStack itemstack, EntityPlayer entityplayer) {
 		if (itemstack != null && (itemstack.getItem() instanceof ItemWrench || itemstack.getItem() instanceof ItemAdminBook)) {
-			if (entityplayer.getDisplayName().equals(this.trainOwner) || entityplayer.getGameProfile().getName().equals(this.trainOwner)
-					|| this.trainOwner.equals("") || entityplayer.canCommandSenderUseCommand(2, "tc.admin")) {
+			if (entityplayer.getDisplayName().getUnformattedText().equals(this.trainOwner) || entityplayer.getGameProfile().getName().equals(this.trainOwner)
+					|| this.trainOwner.equals("") || entityplayer.canUseCommand(2, "tc.admin")) {
 				if (locked) {
 					locked = false;
-					if(worldObj.isRemote) {
-						entityplayer.addChatMessage(new ChatComponentText("unlocked"));
+					if(this.world.isRemote) {
+						playerEntity.sendMessage(new TextComponentString("unlocked"));
 					}
 				}
 				else {
 					locked = true;
-					if(worldObj.isRemote) {
-						entityplayer.addChatMessage(new ChatComponentText("locked"));
+					if(this.world.isRemote) {
+						playerEntity.sendMessage(new TextComponentString("locked"));
 					}
 				}
 			}
-			else if (worldObj.isRemote) {
-				entityplayer.addChatMessage(new ChatComponentText("You are not the owner!"));
+			else if (this.world.isRemote) {
+				playerEntity.sendMessage(new TextComponentString("You are not the owner!"));
 			}
 			return true;
 		}
@@ -614,47 +610,22 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 
 	protected boolean canBeDestroyedByPlayer(DamageSource damagesource) {
 		if (this.getTrainLockedFromPacket()) {
-			if (damagesource.getEntity() instanceof EntityPlayer) {
-				if ((damagesource.getEntity() instanceof EntityPlayerMP) &&
-						((EntityPlayerMP)damagesource.getEntity()).canCommandSenderUseCommand(2, "tc.admin") &&
-						((EntityPlayer) damagesource.getEntity()).inventory.getCurrentItem() != null &&
-						((EntityPlayer) damagesource.getEntity()).inventory.getCurrentItem().getItem() instanceof ItemWrench) {
+			if (damagesource.getImmediateSource() instanceof EntityPlayer) {
+				if ((damagesource.getImmediateSource() instanceof EntityPlayerMP) &&
+						damagesource.getImmediateSource().canUseCommand(2, "tc.admin") &&
+					!((EntityPlayer) damagesource.getImmediateSource()).inventory.getCurrentItem().isEmpty() &&
+						((EntityPlayer) damagesource.getImmediateSource()).inventory.getCurrentItem().getItem() instanceof ItemWrench) {
 
-					((EntityPlayer) damagesource.getEntity()).addChatMessage(new ChatComponentText("Removing the train using OP permission"));
+					damagesource.getImmediateSource().sendMessage(new TextComponentString("Removing the train using OP permission"));
 					return false;
 				}
-				else if (!((EntityPlayer) damagesource.getEntity()).getDisplayName().toLowerCase().equals(this.trainOwner.toLowerCase())) {
-					((EntityPlayer) damagesource.getEntity()).addChatMessage(new ChatComponentText("You are not the owner!"));
+				else if (!damagesource.getImmediateSource().getDisplayName().getUnformattedComponentText().toLowerCase().equals(this.trainOwner.toLowerCase())) {
+					damagesource.getImmediateSource().sendMessage(new TextComponentString("You are not the owner!"));
 					return true;
 				}
 			}
-			else if (!damagesource.isProjectile()) {
-				return true;
-			}
+			else return !damagesource.isProjectile();
 		}
-		return false;
-	}
-
-	/** Railcraft routing integration */
-	@Override
-	public boolean doesCartMatchFilter(ItemStack stack, EntityMinecart cart) {
-		if (stack == null || cart == null) { return false; }
-		ItemStack cartItem = cart.getCartItem();
-		return cartItem != null && stack.isItemEqual(cartItem);
-	}
-
-	@Override
-	public String getDestination() {
-		if (destination == null) return "";
-		return destination;
-	}
-
-	/**
-	 * Only locomotives can receive a destination from a track. It is then
-	 * transmitted to attached carts
-	 */
-	@Override
-	public boolean setDestination(ItemStack ticket) {
 		return false;
 	}
 
@@ -665,19 +636,6 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		return nbt.getString("dest");
 	}
 
-
-	@Override
-	public String getCommandSenderName(){
-		String s = EntityList.getEntityString(this);
-		if (s == null) {
-			s = "generic";
-		}
-
-		return StatCollector.translateToLocal("entity." + s + ".name");
-	}
-
-
-
 	public void setTicket(ForgeChunkManager.Ticket ticket){
 		this.chunkTicket = ticket;
 	}
@@ -686,17 +644,14 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 	}
 
 	public void requestTicket() {
-		ForgeChunkManager.Ticket chunkTicket = ForgeChunkManager.requestTicket(Traincraft.instance, worldObj , ForgeChunkManager.Type.ENTITY);
+		ForgeChunkManager.Ticket chunkTicket = ForgeChunkManager.requestTicket(Traincraft.instance, this.world, ForgeChunkManager.Type.ENTITY);
 		if(chunkTicket != null) {
 			chunkTicket.setChunkListDepth(25);
 			chunkTicket.bindEntity(this);
 			this.setTicket(chunkTicket);
 		}
 	}
-
-
-
-
+	
 	public String getPersistentUUID() {
 		if(getEntityData().hasKey("puuid")) {
 			return getEntityData().getString("puuid");

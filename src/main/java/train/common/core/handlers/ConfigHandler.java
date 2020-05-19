@@ -10,7 +10,6 @@ package train.common.core.handlers;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 import train.common.Traincraft;
-import train.common.library.Info;
 
 import java.io.File;
 
@@ -46,7 +45,7 @@ public class ConfigHandler {
 	public static int UPDATE_FREQUENCY=3;
 
 	public static void changeFirstLoad(){
-		Configuration cf = new Configuration(new File(Traincraft.configDirectory, Info.modName + ".cfg"));
+		Configuration cf = new Configuration(new File(Traincraft.configDirectory, Traincraft.MOD_NAME + ".cfg"));
 		cf.load();
 		cf.get(CATEGORY_GENERAL, "FIRST_RUN", true).set(false);
 		cf.save();
@@ -91,7 +90,7 @@ public class ConfigHandler {
 
 
 		} catch (Exception e) {
-			Traincraft.tcLog.fatal("Traincraft had a problem loading its configuration\n" + e);
+			Traincraft.LOGGER.fatal("Traincraft had a problem loading its configuration\n" + e);
 		} finally {
 			if(cf.hasChanged()) {
 				cf.save();

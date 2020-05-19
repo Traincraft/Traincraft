@@ -13,7 +13,6 @@ import net.minecraftforge.common.util.ForgeDirection;
 import train.common.core.handlers.ConfigHandler;
 import train.common.core.handlers.WorldEvents;
 import train.common.core.util.Energy;
-import train.common.library.BlockIDs;
 
 import java.util.Random;
 

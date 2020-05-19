@@ -7,7 +7,9 @@
 
 package train.common.blocks;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirectional;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
@@ -22,7 +24,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import train.common.Traincraft;
 import train.common.library.GuiIDs;
-import train.common.library.Info;
 import train.common.tile.TileCrafterTierI;
 import train.common.tile.TileEntityOpenHearthFurnace;
 
@@ -32,8 +33,12 @@ public class BlockOpenHearthFurnace extends BaseContainerBlock {
 
 	protected BlockOpenHearthFurnace() {
 		super(Material.ROCK);
-		this.setRegistryName(Info.modID, "hearth_furnace");
-		this.setCreativeTab(Traincraft.tcTab);
+		this.setRegistryName(Traincraft.MOD_ID, "hearth_furnace");
+		
+		this.setCreativeTab(Traincraft.TAB);
+		this.setHardness(3.5F);
+		this.setSoundType(SoundType.STONE);
+		
 		this.setDefaultState(this.blockState.getBaseState().withProperty(ACTIVE, false).withProperty(BlockDirectional.FACING, EnumFacing.NORTH));
 	}
 	

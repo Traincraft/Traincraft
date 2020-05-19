@@ -3,7 +3,7 @@ package train.client.core.helpers;
 import javazoom.jl.decoder.JavaLayerHook;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
-import train.common.library.Info;
+import train.common.Traincraft;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,7 +17,7 @@ public class JLayerHook implements JavaLayerHook {
 	@Override
 	public InputStream getResourceAsStream(String name) {
 		try {
-			return mc.getResourceManager().getResource(new ResourceLocation(Info.modID, "jlayer/" + name)).getInputStream();
+			return mc.getResourceManager().getResource(new ResourceLocation(Traincraft.MOD_ID, "jlayer/" + name)).getInputStream();
 		} catch (IOException e) {
 			e.printStackTrace();
 			return null;

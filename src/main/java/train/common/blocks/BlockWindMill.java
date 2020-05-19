@@ -1,57 +1,73 @@
 package train.common.blocks;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockDirectional;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.block.state.BlockStateContainer;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.IIcon;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.EnumBlockRenderType;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import train.common.Traincraft;
-import train.common.library.Info;
 import train.common.tile.TileWindMill;
 
-import java.util.Random;
+import javax.annotation.Nullable;
 
 public class BlockWindMill extends Block {
-	private IIcon texture;
 
+	public static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(0.0F, 0.0F, 0.0F, 1.0F, 2.0F, 1.0F);
+	
 	public BlockWindMill() {
-		super(Material.wood);
-		setCreativeTab(Traincraft.tcTab);
+		super(Material.WOOD);
+		this.setRegistryName(Traincraft.MOD_ID, "wind_mill");
+		
+		this.setCreativeTab(Traincraft.TAB);
 		this.setTickRandomly(true);
-		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1F, 2F, 1F);
+		this.setHardness(1.7F);
+		this.setSoundType(SoundType.WOOD);
+		this.setHarvestLevel("axe", 0);
+		
+		this.setDefaultState(this.getBlockState().getBaseState().withProperty(BlockDirectional.FACING, EnumFacing.NORTH));
 	}
-
+	
 	@Override
-	public boolean hasTileEntity(int metadata) {
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+		return BOUNDING_BOX;
+	}
+	
+	@Override
+	public boolean hasTileEntity(IBlockState state) {
 		return true;
 	}
-
+	
+	@Nullable
 	@Override
-	public boolean renderAsNormalBlock() {
-		return false;
-	}
-
-	@Override
-	public boolean isOpaqueCube() {
-		return false;
-	}
-
-	@Override
-	public TileEntity createTileEntity(World world, int metadata) {
+	public TileEntity createTileEntity(World world, IBlockState state) {
 		return new TileWindMill();
 	}
-
+	
 	@Override
-	public int getRenderType() {
-		return -1;
+	public EnumBlockRenderType getRenderType(IBlockState state) {
+		return EnumBlockRenderType.MODEL;
+	}
+	
+	@Override
+	public boolean isFullBlock(IBlockState state) {
+		return false;
+	}
+	
+	@Override
+	public boolean isOpaqueCube(IBlockState state) {
+		return false;
 	}
 
+	/* todo water mill particle code
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void randomDisplayTick(World par1World, int par2, int par3, int par4, Random par5Random) {
@@ -62,54 +78,26 @@ public class BlockWindMill extends Block {
 			}
 		}
 	}
-
-	/**
-	 * Called when the block is placed in the world.
 	 */
+	
+	// state: ABCD => CD = facing
 	@Override
-	public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLiving, ItemStack par6ItemStack) {
-		int l = MathHelper.floor_double((double) (par5EntityLiving.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
-		int i1 = par1World.getBlockMetadata(par2, par3, par4) >> 2;
-		++l;
-		l %= 4;
-
-		if (l == 0) {
-			par1World.setBlockMetadataWithNotify(par2, par3, par4, 2 | i1 << 2, 2);
-		}
-
-		if (l == 1) {
-			par1World.setBlockMetadataWithNotify(par2, par3, par4, 3 | i1 << 2, 2);
-		}
-
-		if (l == 2) {
-			par1World.setBlockMetadataWithNotify(par2, par3, par4, 0 | i1 << 2, 2);
-		}
-
-		if (l == 3) {
-			par1World.setBlockMetadataWithNotify(par2, par3, par4, 1 | i1 << 2, 2);
-		}
+	public IBlockState getStateFromMeta(int meta) {
+		return this.getDefaultState().withProperty(BlockDirectional.FACING, EnumFacing.byHorizontalIndex(meta & 0b0011));
 	}
-
+	
 	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(IIconRegister iconRegister) {
-		texture = iconRegister.registerIcon(Info.modID.toLowerCase() + ":wind_mill");
+	public int getMetaFromState(IBlockState state) {
+		return state.getValue(BlockDirectional.FACING).getHorizontalIndex();
 	}
-
+	
 	@Override
-	public IIcon getIcon(int i, int j) {
-		return texture;
+	public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
+		return super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer).withProperty(BlockDirectional.FACING, placer.getHorizontalFacing().getOpposite());
 	}
-
-	/**
-	 * ejects contained items into the world, and notifies neighbours of an update, as appropriate
-	 */
+	
 	@Override
-	public void breakBlock(World par1World, int par2, int par3, int par4, Block par5, int par6) {
-		TileEntity tile = par1World.getTileEntity(par2, par3, par4);
-		if (tile != null && tile instanceof TileWindMill) {
-			tile.onChunkUnload();
-		}
-		super.breakBlock(par1World, par2, par3, par4, par5, par6);
+	protected BlockStateContainer createBlockState() {
+		return new BlockStateContainer(this, BlockDirectional.FACING);
 	}
 }

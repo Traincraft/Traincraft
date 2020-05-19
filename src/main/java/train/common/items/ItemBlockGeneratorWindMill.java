@@ -1,24 +1,25 @@
 package train.common.items;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
+import train.common.blocks.TCBlocks;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 public class ItemBlockGeneratorWindMill extends ItemBlock{
 
-	public ItemBlockGeneratorWindMill(Block id) {
-		super(id);
+	public ItemBlockGeneratorWindMill() {
+		super(TCBlocks.WIND_MILL);
 	}
 	
-	@SideOnly(Side.CLIENT)
 	@Override
-	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
-		par3List.add("\u00a77" + "RF generator.");
-		par3List.add("\u00a77" + "Max Production (storm): 15 RF/t.");
+	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+		tooltip.add("\u00a77" + "RF generator.");
+		tooltip.add("\u00a77" + "Max Production (storm): 15 RF/t.");
 	}
+	
 }

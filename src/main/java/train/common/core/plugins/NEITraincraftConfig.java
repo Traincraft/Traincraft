@@ -2,8 +2,8 @@ package train.common.core.plugins;
 
 import codechicken.nei.api.API;
 import codechicken.nei.api.IConfigureNEI;
+import train.common.Traincraft;
 import train.common.core.handlers.ConfigHandler;
-import train.common.library.Info;
 
 public class NEITraincraftConfig implements IConfigureNEI {
 
@@ -23,11 +23,11 @@ public class NEITraincraftConfig implements IConfigureNEI {
 
 	@Override
     public String getName() {
-		return Info.modName;
+		return Traincraft.MOD_NAME;
     }
 
     @Override
     public String getVersion() {
-		return Info.modVersion;
+		return Traincraft.MOD_VERSION;
     }    
 }

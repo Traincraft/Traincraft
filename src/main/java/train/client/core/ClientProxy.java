@@ -1,50 +1,38 @@
 package train.client.core;
 
-import cpw.mods.fml.client.registry.ClientRegistry;
-import cpw.mods.fml.client.registry.RenderingRegistry;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.Optional;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.registry.VillagerRegistry;
 import javazoom.jl.decoder.JavaLayerUtils;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.audio.SoundCategory;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
-import org.apache.logging.log4j.Level;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.Optional;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import train.client.core.handlers.ClientTickHandler;
-import train.client.core.handlers.RecipeBookHandler;
 import train.client.core.handlers.TCKeyHandler;
 import train.client.core.helpers.JLayerHook;
 import train.client.gui.*;
 import train.client.render.*;
-import train.common.Traincraft;
 import train.common.adminbook.GUIAdminBook;
 import train.common.api.EntityBogie;
 import train.common.api.EntityRollingStock;
 import train.common.core.CommonProxy;
 import train.common.core.Traincraft_EventSounds;
+import train.common.entity.BaseTrainEntity;
 import train.common.entity.digger.EntityRotativeDigger;
 import train.common.entity.digger.EntityRotativeWheel;
-import train.common.entity.rollingStock.EntityJukeBoxCart;
 import train.common.entity.zeppelin.EntityZeppelinOneBalloon;
 import train.common.entity.zeppelin.EntityZeppelinTwoBalloons;
-import train.common.library.BlockIDs;
-import train.common.library.GuiIDs;
-import train.common.library.Info;
 import train.common.tile.*;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.Calendar;
 
 public class ClientProxy extends CommonProxy {
@@ -53,21 +41,16 @@ public class ClientProxy extends CommonProxy {
 		Calendar cal = Calendar.getInstance();
 		return(cal.get(Calendar.MONTH) == Calendar.DECEMBER || (cal.get(Calendar.MONTH) == Calendar.JANUARY) && cal.get(Calendar.DATE) < 7);
 	}
-	
-	@Override
-	public void throwAlphaException() {
-		throw new AlphaExpiredException();
-	}
 
 	@Override
 	public void registerEvents(FMLPreInitializationEvent event) {
 		super.registerEvents(event);
 		ClientTickHandler tickHandler = new ClientTickHandler();
 		HUDloco huDloco = new HUDloco();
-		if (Loader.isModLoaded("ComputerCraft") || Loader.isModLoaded("OpenComputers")){
+		/*if (Loader.isModLoaded("ComputerCraft") || Loader.isModLoaded("OpenComputers")){
 			HUDMTC hudMTC = new HUDMTC();
 			registerEvent(hudMTC);
-		}
+		}*/
 
 		registerEvent(tickHandler);
 		registerEvent(huDloco);
@@ -87,38 +70,57 @@ public class ClientProxy extends CommonProxy {
 
 
 		ClientRegistry.bindTileEntitySpecialRenderer(TileStopper.class, new RenderStopper());
-		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockIDs.stopper.block), new ItemRenderStopper());
+		//MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockIDs.stopper.block), new ItemRenderStopper());
 		
 		//ClientRegistry.bindTileEntitySpecialRenderer(TileBook.class, new RenderTCBook());
 		//MinecraftForgeClient.registerItemRenderer(BlockIDs.book.blockID, new ItemRenderBook());
 
 		ClientRegistry.bindTileEntitySpecialRenderer(TileSignal.class, new RenderSignal());
-		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockIDs.signal.block), new ItemRenderSignal());
+		//MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockIDs.signal.block), new ItemRenderSignal());
 		
-		ClientRegistry.bindTileEntitySpecialRenderer(TileLantern.class, new RenderLantern());
-		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockIDs.lantern.block), new ItemRenderLantern());
+		//ClientRegistry.bindTileEntitySpecialRenderer(TileLantern.class, new RenderLantern());
+		//MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockIDs.lantern.block), new ItemRenderLantern());
 
 		ClientRegistry.bindTileEntitySpecialRenderer(TileSwitchStand.class, new RenderSwitchStand());
-		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockIDs.switchStand.block), new ItemRenderSwitchStand());
+		//MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockIDs.switchStand.block), new ItemRenderSwitchStand());
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileWaterWheel.class, new RenderWaterWheel());
-		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockIDs.waterWheel.block), new ItemRenderWaterWheel());
+		//MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockIDs.waterWheel.block), new ItemRenderWaterWheel());
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileWindMill.class, new RenderWindMill());
-		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockIDs.windMill.block), new ItemRenderWindMill());
+		//MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockIDs.windMill.block), new ItemRenderWindMill());
 
 		ClientRegistry.bindTileEntitySpecialRenderer(TileGeneratorDiesel.class, new RenderGeneratorDiesel());
-		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockIDs.generatorDiesel.block), new ItemRenderGeneratorDiesel());
+		//MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockIDs.generatorDiesel.block), new ItemRenderGeneratorDiesel());
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileTCRail.class, new RenderTCRail());
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileBridgePillar.class, new RenderBridgePillar());
-		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockIDs.bridgePillar.block), new ItemRenderBridgePillar());
+		//MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockIDs.bridgePillar.block), new ItemRenderBridgePillar());
 	}
 
 	@Override
-	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-		TileEntity te = world.getTileEntity(x, y, z);
+	public Object getClientGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
+		// id determines if it is a tile or a entity. 1 => TileBase; 2 => Entity (z = world entity id)
+		switch(id){
+			case 1: {
+				TileEntity tile = world.getTileEntity(new BlockPos(x, y, z));
+				if(tile instanceof BaseTile){
+					return ((BaseTile) tile).openGui(player);
+				}
+				break;
+			}
+			case 2: {
+				Entity entity = world.getEntityByID(z);
+				if(entity instanceof BaseTrainEntity){
+					return ((BaseTrainEntity) entity).openGui(player);
+				}
+				break;
+			}
+		}
+		return null;
+		
+		/*TileEntity te = world.getTileEntity(x, y, z);
 		EntityPlayer riddenByEntity = null;
 		Entity entity = player.ridingEntity;
 		if (player.ridingEntity != null) {
@@ -134,19 +136,19 @@ public class ClientProxy extends CommonProxy {
 		}
 		switch (ID) {
 		case (GuiIDs.CRAFTER_TIER_I):
-			return te != null && te instanceof TileCrafterTierI ? new GuiCrafterTier(player.inventory, (TileCrafterTierI) te) : null;
+			return te instanceof TileCrafterTierI ? new GuiCrafterTier(player.inventory, (TileCrafterTierI) te) : null;
 		case (GuiIDs.CRAFTER_TIER_II):
-			return te != null && te instanceof TileCrafterTierII ? new GuiCrafterTier(player.inventory, (TileCrafterTierII) te) : null;
+			return te instanceof TileCrafterTierII ? new GuiCrafterTier(player.inventory, (TileCrafterTierII) te) : null;
 		case (GuiIDs.CRAFTER_TIER_III):
-			return te != null && te instanceof TileCrafterTierIII ? new GuiCrafterTier(player.inventory, (TileCrafterTierIII) te) : null;
+			return te instanceof TileCrafterTierIII ? new GuiCrafterTier(player.inventory, (TileCrafterTierIII) te) : null;
 		case (GuiIDs.DISTIL):
-			return te != null && te instanceof TileEntityDistil ? new GuiDistil(player.inventory, (TileEntityDistil) te) : null;
+			return te instanceof TileEntityDistil ? new GuiDistil(player.inventory, (TileEntityDistil) te) : null;
 		case (GuiIDs.GENERATOR_DIESEL):
-			return te != null && te instanceof TileGeneratorDiesel ? new GuiGeneratorDiesel(player.inventory, (TileGeneratorDiesel) te) : null;
+			return te instanceof TileGeneratorDiesel ? new GuiGeneratorDiesel(player.inventory, (TileGeneratorDiesel) te) : null;
 		case (GuiIDs.OPEN_HEARTH_FURNACE):
-			return te != null && te instanceof TileEntityOpenHearthFurnace ? new GuiOpenHearthFurnace(player.inventory, (TileEntityOpenHearthFurnace) te) : null;
+			return te instanceof TileEntityOpenHearthFurnace ? new GuiOpenHearthFurnace(player.inventory, (TileEntityOpenHearthFurnace) te) : null;
 		case GuiIDs.TRAIN_WORKBENCH:
-			return te != null && te instanceof TileTrainWbench ? new GuiTrainCraftingBlock(player.inventory, player.worldObj, (TileTrainWbench) te) : null;
+			return te instanceof TileTrainWbench ? new GuiTrainCraftingBlock(player.inventory, player.getEntityWorld(), (TileTrainWbench) te) : null;
 		case (GuiIDs.LOCO):
 			return riddenByEntity != null ? new GuiLoco2(riddenByEntity.inventory, entity) : null;
 		case (GuiIDs.FORNEY):
@@ -159,8 +161,8 @@ public class ClientProxy extends CommonProxy {
 			return riddenByEntity != null ? new GuiZepp(riddenByEntity.inventory, entity) : null;
 		case (GuiIDs.DIGGER):
 			return riddenByEntity != null ? new GuiBuilder(player, riddenByEntity.inventory, entity) : null;
-		case (GuiIDs.MTC_INFO):
-			return riddenByEntity != null && Loader.isModLoaded("ComputerCraft")  || Loader.isModLoaded("OpenComputers") ? new GuiMTCInfo(player) : null;
+		//case (GuiIDs.MTC_INFO):
+			//return riddenByEntity != null && Loader.isModLoaded("ComputerCraft")  || Loader.isModLoaded("OpenComputers") ? new GuiMTCInfo(player) : null;
 
 			//Stationary entities while player is not riding. 
 		case (GuiIDs.FREIGHT):
@@ -173,20 +175,20 @@ public class ClientProxy extends CommonProxy {
 			return entity1 != null ? new GuiLiquid(player,player.inventory, entity1) : null;
 		case (GuiIDs.RECIPE_BOOK):
 			return new GuiRecipeBook(player, player.getCurrentEquippedItem());
-		/*case (GuiIDs.RECIPE_BOOK2):
-			return te != null && te instanceof TileBook ? new GuiRecipeBook2(player, player.getCurrentEquippedItem()) : new GuiRecipeBook2(player, player.getCurrentEquippedItem());*/
-		case (GuiIDs.LANTERN):
-			return new GuiLantern(player, (TileLantern)te);
+		//case (GuiIDs.RECIPE_BOOK2):
+			//return te != null && te instanceof TileBook ? new GuiRecipeBook2(player, player.getCurrentEquippedItem()) : new GuiRecipeBook2(player, player.getCurrentEquippedItem());
+		//case (GuiIDs.LANTERN):
+			//return new GuiLantern(player, (TileLantern)te);
 		case (GuiIDs.JUKEBOX):
 			return entity1 != null ? new GuiJukebox(player,(EntityJukeBoxCart)entity1) : null;
 		default:
 			return null;
-		}
+		}*/
 	}
 
 	@Override
 	public int addArmor(String armor) {
-		return RenderingRegistry.addNewArmourRendererPrefix(armor);
+		return 0;//RenderingRegistry.addNewArmourRendererPrefix(armor);
 	}
 
 	@Override
@@ -195,7 +197,7 @@ public class ClientProxy extends CommonProxy {
 	}
 	@Override
 	public void registerVillagerSkin(int villagerId, String textureName) {
-		VillagerRegistry.instance().registerVillagerSkin(villagerId, new ResourceLocation(Info.resourceLocation,Info.villagerPrefix + textureName));
+		//VillagerRegistry.instance().registerVillagerSkin(villagerId, new ResourceLocation(Info.resourceLocation,Info.villagerPrefix + textureName));
 	}
 
 	@Override
@@ -215,32 +217,32 @@ public class ClientProxy extends CommonProxy {
 	
 	@Override
 	public EntityPlayer getPlayer() {
-		return getMinecraft().thePlayer;
+		return getMinecraft().player;
 	}
 
 	@Optional.Method(modid = "NotEnoughItems")
 	@Override
 	public void doNEICheck(ItemStack stack) {
-		if (Minecraft.getMinecraft().thePlayer != null) {
-			if(Loader.isModLoaded("Not Enough Items")) {
+		if (Minecraft.getMinecraft().player != null) {
+			/*if(Loader.isModLoaded("Not Enough Items")) {
 				try {
 					Class neiApi = Class.forName("codechicken.nei.api.API");
 					Method hideItem = neiApi.getDeclaredMethod("hideItem", stack.getClass());
 					hideItem.invoke(null, stack);
 				} catch (ClassNotFoundException e) {
-					Traincraft.tcLog.log(Level.WARN, "Chicken core didn't have required class: Wrong version of the library or something is horribly wrong", e);
+					Traincraft.LOGGER.log(Level.WARN, "Chicken core didn't have required class: Wrong version of the library or something is horribly wrong", e);
 				} catch (NoSuchMethodException e) {
-					Traincraft.tcLog.log(Level.WARN, "Chicken core didn't have required method: Wrong version of the library or something is horribly wrong", e);
+					Traincraft.LOGGER.log(Level.WARN, "Chicken core didn't have required method: Wrong version of the library or something is horribly wrong", e);
 				} catch (SecurityException e) {
-					Traincraft.tcLog.log(Level.FATAL, "Something is horribly wrong", e);
+					Traincraft.LOGGER.log(Level.FATAL, "Something is horribly wrong", e);
 				} catch (IllegalAccessException e) {
-					Traincraft.tcLog.log(Level.FATAL, "Something is horribly wrong", e);
+					Traincraft.LOGGER.log(Level.FATAL, "Something is horribly wrong", e);
 				} catch (IllegalArgumentException e) {
-					Traincraft.tcLog.log(Level.WARN, "Chicken core had the method but it's signature was wrong: Wrong version of the library or something is horribly wrong", e);
+					Traincraft.LOGGER.log(Level.WARN, "Chicken core had the method but it's signature was wrong: Wrong version of the library or something is horribly wrong", e);
 				} catch (InvocationTargetException e) {
-					Traincraft.tcLog.log(Level.WARN, "The method we called from Chicken core threw an exception", e);
+					Traincraft.LOGGER.log(Level.WARN, "The method we called from Chicken core threw an exception", e);
 				}
-			}
+			}*/
         }
 	}
 	

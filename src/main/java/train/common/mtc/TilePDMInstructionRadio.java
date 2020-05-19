@@ -13,12 +13,12 @@ import li.cil.oc.api.network.*;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
+import train.common.Traincraft;
 import train.common.api.Locomotive;
 import train.common.api.WirelessTransmitter;
 
 import java.util.*;
 
-import static train.common.Traincraft.tcLog;
 @Optional.Interface(iface = "li.cil.oc.api.network.Environment", modid = "OpenComputers")
 public class TilePDMInstructionRadio extends TileEntity implements IPeripheral, WirelessTransmitter, Environment {
     public Boolean isActivated = false;
@@ -76,7 +76,7 @@ public class TilePDMInstructionRadio extends TileEntity implements IPeripheral, 
         switch(method) {
             case 0: {
                 isActivated = true;
-                tcLog.info("Wireless Transmitter UUID is: " + uniqueID);
+                Traincraft.LOGGER.info("Wireless Transmitter UUID is: " + uniqueID);
                 return new Object[] {true};
 
             } case 1: {
@@ -87,7 +87,7 @@ public class TilePDMInstructionRadio extends TileEntity implements IPeripheral, 
                 sendMessage(new PDMMessage(this.uniqueID, arguments[0].toString(), arguments[1].toString(), 1 ));
                 return new Object[]{true};
             } case 3 : {
-                tcLog.info("Wireless Transmitter UUID is: " + uniqueID);
+                Traincraft.LOGGER.info("Wireless Transmitter UUID is: " + uniqueID);
                 return new Object[]{uniqueID};
             } case 4 : {
                return new Object[]{connectedTrains};
@@ -243,7 +243,7 @@ public class TilePDMInstructionRadio extends TileEntity implements IPeripheral, 
     @Optional.Method(modid = "OpenComputers")
     public Object[] activate(Context context, Arguments args) {
         isActivated = true;
-        tcLog.info("Wireless Transmitter UUID is: " + uniqueID);
+        Traincraft.LOGGER.info("Wireless Transmitter UUID is: " + uniqueID);
         return new Object[]{true};
     }
     @Callback

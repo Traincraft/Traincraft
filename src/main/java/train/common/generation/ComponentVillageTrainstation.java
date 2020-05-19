@@ -8,7 +8,6 @@ import net.minecraft.world.gen.structure.StructureVillagePieces;
 import train.common.api.EntityRollingStock;
 import train.common.core.util.TraincraftUtil;
 import train.common.entity.rollingStock.*;
-import train.common.library.BlockIDs;
 
 import java.util.List;
 import java.util.Random;

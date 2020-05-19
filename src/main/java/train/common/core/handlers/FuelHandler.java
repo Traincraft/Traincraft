@@ -4,7 +4,6 @@ import cpw.mods.fml.common.IFuelHandler;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityFurnace;
-import train.common.library.BlockIDs;
 
 public class FuelHandler implements IFuelHandler {
 

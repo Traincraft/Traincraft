@@ -7,7 +7,6 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import train.common.api.LiquidManager;
 import train.common.containers.ContainerDistil;
-import train.common.library.BlockIDs;
 import train.common.library.Info;
 import train.common.recipes.DistilRecipes;
 import train.common.tile.TileEntityDistil;

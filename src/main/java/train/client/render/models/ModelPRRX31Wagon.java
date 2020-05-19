@@ -9,7 +9,7 @@ import org.lwjgl.opengl.GL11;
 import tmt.ModelBase;
 import tmt.ModelRendererTurbo;
 import tmt.Tessellator;
-import train.common.library.Info;
+import train.common.Traincraft;
 
 // Model: PRR X31a Wagon Top
 // Model Creator: Mr. Rail
@@ -875,7 +875,7 @@ public class ModelPRRX31Wagon extends ModelBase
             prrx31wagonModel[i].render(f5);
         }
 
-        Tessellator.bindTexture(new ResourceLocation(Info.modID, "textures/trains/Bettendorf_trucks.png"));
+        Tessellator.bindTexture(new ResourceLocation(Traincraft.MOD_ID, "textures/trains/Bettendorf_trucks.png"));
         GL11.glPushMatrix();
 		GL11.glTranslated(1.75, 0.1, 0);
         fronttrucks.render(entity,f,f1,f2,f3,f4,f5);

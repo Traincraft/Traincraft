@@ -15,7 +15,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import train.common.blocks.BlockOpenHearthFurnace;
 import train.common.inventory.TrainCraftingManager;
-import train.common.library.BlockIDs;
 import train.common.library.ItemIDs;
 
 import java.util.Random;

@@ -1,6 +1,5 @@
-package train.common.blocks;
+/*package train.common.blocks;
 
-import cpw.mods.fml.client.registry.RenderingRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -8,9 +7,6 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.IIcon;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import train.common.Traincraft;
 import train.common.library.ItemIDs;
@@ -29,14 +25,14 @@ import java.util.Random;
  
  18.05.2020 canitzp: This bit mask it too big for a default block and should be changed. Until this the whole class is disabled
  */
-
+/*
 public class BlockSignal extends BlockContainer {
 
 	public BlockSignal() {
 		super(Material.circuits);
 		this.setLightLevel(1.0F);
 		setBlockBounds(0.2F, 0.0F, 0.2F, 0.8F, 2.6F, 0.8F);
-		setCreativeTab(Traincraft.tcTab);
+		setCreativeTab(Traincraft.TAB);
 	}
 
 	@Override
@@ -82,7 +78,7 @@ public class BlockSignal extends BlockContainer {
 
 		/*
 		 * if (l == 0) { world.setBlockMetadataWithNotify(i, j, k, 2); te.rot = 2; } if (l == 1) { world.setBlockMetadataWithNotify(i, j, k, 5); te.rot = 5; } if (l == 2) { world.setBlockMetadataWithNotify(i, j, k, 3); te.rot = 3; } if (l == 3) { world.setBlockMetadataWithNotify(i, j, k, 4); te.rot = 4; } */
-		int var6 = MathHelper.floor_double((double) (entityliving.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+		/*int var6 = MathHelper.floor_double((double) (entityliving.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
 		int var7 = world.getBlockMetadata(i, j, k) >> 2;
 		++var6;
 		var6 %= 4;
@@ -135,13 +131,13 @@ public class BlockSignal extends BlockContainer {
 		 * 
 		 * te.rot = 3; } if (l == 4) { te.rot = 4; } */
 		//System.out.println("added " + te.rot);
-		updateTick(world, i, j, k);
+		/*updateTick(world, i, j, k);
 	}
 
 	/**
 	 * Sets whether this block type will receive random update ticks
 	 */
-	@Override
+	/*@Override
 	public Block setTickRandomly(boolean par1) {
 		this.needsRandomTick = true;
 		return this;
@@ -150,7 +146,7 @@ public class BlockSignal extends BlockContainer {
 	/**
 	 * Returns whether or not this block is of a type that needs random ticking. Called for ref-counting purposes by ExtendedBlockStorage in order to broadly cull a chunk from the random chunk update list for efficiency's sake.
 	 */
-	@Override
+	/*@Override
 	public boolean getTickRandomly() {
 		return this.needsRandomTick;
 	}
@@ -158,7 +154,7 @@ public class BlockSignal extends BlockContainer {
 	/**
 	 * A randomly called display update to be able to add particles or other items for display
 	 */
-	@Override
+	/*@Override
 	public void randomDisplayTick(World world, int i, int j, int k, Random random) {
 		updateTick(world, i, j, k, random);
 	}
@@ -203,4 +199,4 @@ public class BlockSignal extends BlockContainer {
 	public TileEntity createNewTileEntity(World world, int meta) {
 		return new TileSignal();
 	}
-}
+}*/

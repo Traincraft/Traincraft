@@ -1,17 +1,14 @@
 package train.client.core.handlers;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.client.entity.EntityPlayerSP;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.math.MathHelper;
 import train.common.api.EntityRollingStock;
 import train.common.api.Locomotive;
 import train.common.core.handlers.ConfigHandler;
 import train.common.entity.rollingStock.EntityJukeBoxCart;
 
 //TODO Fix the sounds
-@SideOnly(Side.CLIENT)
 public class SoundUpdaterRollingStock {
 
 	private SoundHandler theSoundManager;
@@ -46,10 +43,10 @@ public class SoundUpdaterRollingStock {
 		float var6 = this.soundPitch;
 		float var7 = this.volume2;
 		double var8 = this.cartSpeed;
-		this.riddenByPlayer = this.thePlayer != null && this.theMinecart.riddenByEntity == this.thePlayer;
+		this.riddenByPlayer = this.theMinecart.getControllingPassenger() == this.thePlayer;
 		this.isDead = this.theMinecart.isDead;
 		//System.out.println(MathHelper.sqrt_double(this.theMinecart.getMotionXClient()*this.theMinecart.getMotionXClient()+this.theMinecart.getMotionZClient()*this.theMinecart.getMotionZClient())/100);
-		this.cartSpeed = MathHelper.sqrt_double(this.theMinecart.getMotionXClient() * this.theMinecart.getMotionXClient() + this.theMinecart.getMotionZClient() * this.theMinecart.getMotionZClient()) / 100;
+		this.cartSpeed = MathHelper.sqrt(this.theMinecart.getMotionXClient() * this.theMinecart.getMotionXClient() + this.theMinecart.getMotionZClient() * this.theMinecart.getMotionZClient()) / 100;
 		this.isMoving = this.cartSpeed >= 0.01D;
 		//System.out.println(isMoving);
 		//if (var2 && !this.riddenByPlayer) {
@@ -83,9 +80,9 @@ public class SoundUpdaterRollingStock {
 			if (this.soundPitch > 1.0F) {
 				this.soundPitch = 1.0F;
 			}
-			float var10 = MathHelper.clamp_float((float) this.cartSpeed, 0.0F, 4.0F) / 4.0F;
+			float var10 = MathHelper.clamp((float) this.cartSpeed, 0.0F, 4.0F) / 4.0F;
 			this.volume2 = 0.0F + var10 * 0.75F;
-			var10 = MathHelper.clamp_float(var10 * 2.0F, 0.0F, 1.0F);
+			var10 = MathHelper.clamp(var10 * 2.0F, 0.0F, 1.0F);
 			this.volume1 = 0.0F + var10 * 0.7F;
 		}
 		else if (var4) {

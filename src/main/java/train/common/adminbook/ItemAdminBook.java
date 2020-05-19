@@ -19,7 +19,6 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import train.common.Traincraft;
-import train.common.library.Info;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
@@ -37,8 +36,8 @@ import java.util.List;
 public class ItemAdminBook extends Item {
 
     public ItemAdminBook(){
-        this.setCreativeTab(Traincraft.tcTab);
-        this.setRegistryName(new ResourceLocation(Info.modID, "adminbook"));
+        this.setCreativeTab(Traincraft.TAB);
+        this.setRegistryName(new ResourceLocation(Traincraft.MOD_ID, "adminbook"));
     }
 
     /**

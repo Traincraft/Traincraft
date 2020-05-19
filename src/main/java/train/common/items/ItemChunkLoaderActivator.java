@@ -1,36 +1,30 @@
 package train.common.items;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 import train.common.Traincraft;
-import train.common.library.Info;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 public class ItemChunkLoaderActivator extends Item {
 
 	public ItemChunkLoaderActivator() {
-		super();
-		maxStackSize = 1;
-		setCreativeTab(Traincraft.tcTab);
-		setMaxDamage(10);
+		this.setRegistryName(Traincraft.MOD_ID, "chunk_loader_activator");
+		
+		this.maxStackSize = 1;
+		this.setCreativeTab(Traincraft.TAB);
+		this.setMaxDamage(10);
 	}
-
+	
 	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerIcons(IIconRegister iconRegister) {
-		this.itemIcon = iconRegister.registerIcon(Info.modID.toLowerCase() + ":chunk_loader");
+	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+		tooltip.add("\u00a77" + "Right click on a Locomotive");
+		tooltip.add("\u00a77" + " to start/stop chunk loading.");
+		tooltip.add("\u00a77" + "Locomotives will load chunks");
+		tooltip.add("\u00a77" + "around attached carts.");
 	}
-	@SideOnly(Side.CLIENT)
-	@Override
-	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
-		par3List.add("\u00a77" + "Right click on a Locomotive");
-		par3List.add("\u00a77" + " to start/stop chunk loading.");
-		par3List.add("\u00a77" + "Locomotives will load chunks");
-		par3List.add("\u00a77" + "around attached carts.");
-	}
+	
 }

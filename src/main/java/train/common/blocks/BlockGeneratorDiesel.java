@@ -7,8 +7,14 @@
 
 package train.common.blocks;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockDirectional;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.PropertyBool;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
@@ -18,17 +24,23 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import train.common.Traincraft;
 import train.common.library.GuiIDs;
-import train.common.library.Info;
 import train.common.tile.TileCrafterTierI;
 import train.common.tile.TileGeneratorDiesel;
 
 public class BlockGeneratorDiesel extends BaseContainerBlock {
 	
+	public static final PropertyBool ACTIVE = PropertyBool.create("active");
+	
 	public BlockGeneratorDiesel() {
 		super(Material.IRON);
-		this.setRegistryName(Info.modID, "generator_diesel");
-		this.setCreativeTab(Traincraft.tcTab);
+		this.setRegistryName(Traincraft.MOD_ID, "generator_diesel");
+		
+		this.setCreativeTab(Traincraft.TAB);
 		this.setTickRandomly(true);
+		this.setHardness(1.7F);
+		this.setSoundType(SoundType.METAL);
+		
+		this.setDefaultState(this.blockState.getBaseState().withProperty(ACTIVE, false).withProperty(BlockDirectional.FACING, EnumFacing.NORTH));
 	}
 	
 	@Override
@@ -60,6 +72,27 @@ public class BlockGeneratorDiesel extends BaseContainerBlock {
 			}
 		}
 		return true;
+	}
+	
+	// state: ABCD => B = active; CD = facing
+	@Override
+	public IBlockState getStateFromMeta(int meta) {
+		return this.getDefaultState().withProperty(ACTIVE, (meta & 0b0100) > 0).withProperty(BlockDirectional.FACING, EnumFacing.byHorizontalIndex(meta & 0b0011));
+	}
+	
+	@Override
+	public int getMetaFromState(IBlockState state) {
+		return (state.getValue(ACTIVE) ? 0b0100 : 0b0000) | (state.getValue(BlockDirectional.FACING).getHorizontalIndex());
+	}
+	
+	@Override
+	public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
+		return super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer).withProperty(BlockDirectional.FACING, placer.getHorizontalFacing().getOpposite());
+	}
+	
+	@Override
+	protected BlockStateContainer createBlockState() {
+		return new BlockStateContainer(this, ACTIVE, BlockDirectional.FACING);
 	}
 	
 	/**

@@ -8,6 +8,7 @@
 package train.common.blocks;
 
 import net.minecraft.block.BlockDirectional;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -18,15 +19,18 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import train.common.Traincraft;
-import train.common.library.Info;
 import train.common.tile.TileStopper;
 
 public class BlockStopper extends BaseContainerBlock {
 	
 	public BlockStopper() {
 		super(Material.IRON);
-		this.setRegistryName(Info.modID, "stopper");
-		this.setCreativeTab(Traincraft.tcTab);
+		this.setRegistryName(Traincraft.MOD_ID, "stopper");
+		
+		this.setCreativeTab(Traincraft.TAB);
+		this.setHardness(1.7F);
+		this.setSoundType(SoundType.ANVIL);
+		
 		this.setDefaultState(this.getBlockState().getBaseState().withProperty(BlockDirectional.FACING, EnumFacing.NORTH));
 	}
 	

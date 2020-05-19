@@ -10,7 +10,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
-import train.common.library.Info;
+import train.common.Traincraft;
 
 public class BlockTraincraftFluid extends BlockFluidClassic {
 	
@@ -31,7 +31,7 @@ public class BlockTraincraftFluid extends BlockFluidClassic {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister iconRegister) {
-		this.theIcon = new IIcon[]{iconRegister.registerIcon(Info.modID.toLowerCase() + ":liquid_" + fluidName), iconRegister.registerIcon(Info.modID.toLowerCase() +":liquid_" + fluidName + "_flow")};
+		this.theIcon = new IIcon[]{iconRegister.registerIcon(Traincraft.MOD_ID.toLowerCase() + ":liquid_" + fluidName), iconRegister.registerIcon(Traincraft.MOD_ID.toLowerCase() +":liquid_" + fluidName + "_flow")};
 	}
 
 	public BlockTraincraftFluid setFlammable(boolean flammable) {
@@ -76,6 +76,6 @@ public class BlockTraincraftFluid extends BlockFluidClassic {
 	
 	@Override
 	public String getUnlocalizedName() {
-		return "fluid." + Info.modID + ":" + fluidName;
+		return "fluid." + Traincraft.MOD_ID + ":" + fluidName;
 	}
 }

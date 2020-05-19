@@ -1,6 +1,7 @@
 package train.common.blocks;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumBlockRenderType;
@@ -8,7 +9,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import train.common.Traincraft;
-import train.common.library.Info;
 
 /**
  * In 1.7 the lantern has a tile entity to do the coloring. It would be better if the color is handled within the block.
@@ -20,9 +20,13 @@ public class BlockLantern extends Block {
 	
 	public BlockLantern() {
 		super(Material.ROCK);
-		this.setRegistryName(Info.modID, "lantern");
-		this.setCreativeTab(Traincraft.tcTab);
+		this.setRegistryName(Traincraft.MOD_ID, "lantern");
+		
+		this.setCreativeTab(Traincraft.TAB);
 		this.setTickRandomly(true);
+		this.setHardness(1.7F);
+		this.setSoundType(SoundType.METAL);
+		this.setLightLevel(0.98F);
 	}
 	
 	@Override

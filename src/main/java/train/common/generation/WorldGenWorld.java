@@ -20,7 +20,6 @@ import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraftforge.fml.common.IWorldGenerator;
 import train.common.core.handlers.ConfigHandler;
 import train.common.core.handlers.RetrogenHandler;
-import train.common.library.BlockIDs;
 
 import java.util.Random;
 

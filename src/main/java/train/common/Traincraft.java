@@ -1,12 +1,9 @@
 package train.common;
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.SoundEvents;
-import net.minecraft.item.ItemArmor.ArmorMaterial;
-import net.minecraft.util.SoundEvent;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
@@ -18,77 +15,98 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import train.common.api.LiquidManager;
-import train.common.blocks.TCBlocks;
 import train.common.core.CommonProxy;
-import train.common.core.CreativeTabTraincraft;
 import train.common.core.TrainModCore;
 import train.common.core.handlers.*;
 import train.common.generation.ComponentVillageTrainstation;
 import train.common.generation.WorldGenWorld;
 import train.common.items.TCItems;
-import train.common.library.Info;
 import train.common.recipes.AssemblyTableRecipes;
 
 import java.io.File;
 
-@Mod(modid = Info.modID, name = Info.modName, version = Info.modVersion)
+@Mod(modid = Traincraft.MOD_ID, name = Traincraft.MOD_NAME, version = Traincraft.MOD_VERSION)
 public class Traincraft {
-
+	
+	/* Mod relevant information */
+	public static final String MOD_ID = "tc";
+	public static final String MOD_NAME = "Traincraft";
+	public static final String MOD_VERSION = "@VERSION1@";
+	
 	/* TrainCraft instance */
-	@Mod.Instance(Info.modID)
+	@Mod.Instance(MOD_ID)
 	public static Traincraft instance;
-
+	
 	/* TrainCraft proxy files */
 	@SidedProxy(clientSide = "train.client.core.ClientProxy", serverSide = "train.common.core.CommonProxy")
 	public static CommonProxy proxy;
-
+	
 	/* TrainCraft Logger */
-	public static Logger tcLog = LogManager.getLogger(Info.modName);
-
-	/** Network Channel to send packets on */
+	public static final Logger LOGGER = LogManager.getLogger(MOD_NAME);
+	
+	/* Creative tab for Traincraft */
+	public static CreativeTabs TAB = new CreativeTabs(MOD_ID) {
+		@Override
+		public ItemStack createIcon() {
+			return new ItemStack(TCItems.CANISTER);
+		}
+	};
+	
+	/**
+	 * Network Channel to send packets on
+	 */
+	@Deprecated // move into one single network handler
 	public static SimpleNetworkWrapper modChannel;
+	@Deprecated // move into one single network handler
 	public static SimpleNetworkWrapper keyChannel;
+	@Deprecated // move into one single network handler
 	public static SimpleNetworkWrapper rotationChannel;
-
-
+	@Deprecated // move into one single network handler
 	public static SimpleNetworkWrapper slotschannel;
+	@Deprecated // move into one single network handler
 	public static SimpleNetworkWrapper ignitionChannel;
+	@Deprecated // move into one single network handler
 	public static SimpleNetworkWrapper brakeChannel;
+	@Deprecated // move into one single network handler
 	public static SimpleNetworkWrapper lockChannel;
+	@Deprecated // move into one single network handler
 	public static SimpleNetworkWrapper builderChannel;
+	@Deprecated // move into one single network handler
 	public static SimpleNetworkWrapper updateTrainIDChannel = NetworkRegistry.INSTANCE.newSimpleChannel("TrainIDChannel");
-    public static SimpleNetworkWrapper updateDestinationChannel = NetworkRegistry.INSTANCE.newSimpleChannel("updateDestnChannel");
-
-
+	@Deprecated // move into one single network handler
+	public static SimpleNetworkWrapper updateDestinationChannel = NetworkRegistry.INSTANCE.newSimpleChannel("updateDestnChannel");
+	@Deprecated // move into one single network handler
 	public static final SimpleNetworkWrapper itaChannel = NetworkRegistry.INSTANCE.newSimpleChannel("TransmitterAspect");
-	public static  SimpleNetworkWrapper itsChannel = NetworkRegistry.INSTANCE.newSimpleChannel("TransmitterSpeed");
+	@Deprecated // move into one single network handler
+	public static SimpleNetworkWrapper itsChannel = NetworkRegistry.INSTANCE.newSimpleChannel("TransmitterSpeed");
 	//public static  SimpleNetworkWrapper mtcsChannel = NetworkRegistry.INSTANCE.newSimpleChannel("MTCSysSetSpeed");
-	public static  SimpleNetworkWrapper itnsChannel = NetworkRegistry.INSTANCE.newSimpleChannel("TransmitterNextSpeed");
+	@Deprecated // move into one single network handler
+	public static SimpleNetworkWrapper itnsChannel = NetworkRegistry.INSTANCE.newSimpleChannel("TransmitterNextSpeed");
+	@Deprecated // move into one single network handler
 	public static final SimpleNetworkWrapper mtlChannel = NetworkRegistry.INSTANCE.newSimpleChannel("MTCLevelUpdater");
+	@Deprecated // move into one single network handler
 	public static final SimpleNetworkWrapper msChannel = NetworkRegistry.INSTANCE.newSimpleChannel("MTCStatus");
+	@Deprecated // move into one single network handler
 	public static final SimpleNetworkWrapper mscChannel = NetworkRegistry.INSTANCE.newSimpleChannel("MTCStatusToClient");
+	@Deprecated // move into one single network handler
 	public static final SimpleNetworkWrapper atoChannel = NetworkRegistry.INSTANCE.newSimpleChannel("ATOPacket");
+	@Deprecated // move into one single network handler
 	public static final SimpleNetworkWrapper atoDoSlowDownChannel = NetworkRegistry.INSTANCE.newSimpleChannel("ATODoSlowDown");
+	@Deprecated // move into one single network handler
 	public static final SimpleNetworkWrapper atoDoAccelChannel = NetworkRegistry.INSTANCE.newSimpleChannel("ATODoAccel");
+	@Deprecated // move into one single network handler
 	public static final SimpleNetworkWrapper atoSetStopPoint = NetworkRegistry.INSTANCE.newSimpleChannel("ATOSetStopPoint");
+	@Deprecated // move into one single network handler
 	public static final SimpleNetworkWrapper NCSlowDownChannel = NetworkRegistry.INSTANCE.newSimpleChannel("NCDoSlowDown");
 	//public static final SimpleNetworkWrapper ctChannel = NetworkRegistry.INSTANCE.newSimpleChannel("ctmChannel");
+	@Deprecated // move into one single network handler
 	public static final SimpleNetworkWrapper gsfsChannel = NetworkRegistry.INSTANCE.newSimpleChannel("gsfsChannel");
+	@Deprecated // move into one single network handler
 	public static final SimpleNetworkWrapper gsfsrChannel = NetworkRegistry.INSTANCE.newSimpleChannel("gsfsReturnChannel");
-	public static final SimpleNetworkWrapper playSoundOnClientChannel  = NetworkRegistry.INSTANCE.newSimpleChannel(" SoundOnCChannel");
-
-
+	@Deprecated // move into one single network handler
+	public static final SimpleNetworkWrapper playSoundOnClientChannel = NetworkRegistry.INSTANCE.newSimpleChannel(" SoundOnCChannel");
+	
 	public static File configDirectory;
-
-	/* Creative tab for Traincraft */
-	public static CreativeTabs tcTab;
-
-	public ArmorMaterial armor = EnumHelper.addArmorMaterial(Info.modID + ":armor", "armor", 5, new int[] { 1, 2, 2, 1 }, 25, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0);
-	public ArmorMaterial armorCloth = EnumHelper.addArmorMaterial(Info.modID + ":cloth", "cloth", 5, new int[] {1, 2, 2, 1}, 25, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0);
-	public ArmorMaterial armorCompositeSuit = EnumHelper.addArmorMaterial(Info.modID + ":suit", "suit", 70, new int[] {2, 6, 5, 2}, 50, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0);
-	public static int trainArmor;
-	public static int trainCloth;
-	public static int trainCompositeSuit;
 	
 	public static WorldGenWorld worldGen;
 	
@@ -98,31 +116,26 @@ public class Traincraft {
 	
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
-		tcLog.info("Starting Traincraft " + Info.modVersion + "!");
+		LOGGER.info("Starting Traincraft " + MOD_VERSION + "!");
 		/* Config handler */
-		configDirectory= event.getModConfigurationDirectory();
-		ConfigHandler.init(new File(event.getModConfigurationDirectory(), Info.modName + ".cfg"));
-
+		configDirectory = event.getModConfigurationDirectory();
+		ConfigHandler.init(new File(event.getModConfigurationDirectory(), MOD_NAME + ".cfg"));
+		
 		/* Register the KeyBinding Handler */
 		proxy.registerKeyBindingHandler();
-
+		
 		/* Register Items, Blocks, ... */
-		tcLog.info("Initialize Blocks, Items, ...");
-		tcTab = new CreativeTabTraincraft(CreativeTabs.getNextID(), "Traincraft");
-		trainArmor = proxy.addArmor("armor");
-		trainCloth = proxy.addArmor("Paintable");
-		trainCompositeSuit = proxy.addArmor("CompositeSuit");
-		TCBlocks.init();
-		TCItems.init();
+		LOGGER.info("Initialize Blocks, Items, ...");
+		
 		EntityHandler.init();
 		proxy.registerTileEntities();
 		proxy.registerSounds();
 		proxy.setHook(); // Moved file needed to run JLayer, we need to set a hook in order to retrieve it
-
+		
 		// todo fuel handler GameRegistry.registerFuelHandler(new FuelHandler());
 		//AchievementHandler.load();
 		//AchievementPage.registerAchievementPage(AchievementHandler.tmPage);
-		GameRegistry.registerWorldGenerator(worldGen = new WorldGenWorld(),5);
+		GameRegistry.registerWorldGenerator(worldGen = new WorldGenWorld(), 5);
 		
 		//Retrogen Handling
 		RetrogenHandler retroGen = new RetrogenHandler();
@@ -138,77 +151,77 @@ public class Traincraft {
 				e.printStackTrace();
 			}
 		}*/
-
+		
 		/* Other Proxy init */
-		tcLog.info("Initialize Renderer and Events");
+		LOGGER.info("Initialize Renderer and Events");
 		proxy.registerRenderInformation();
 		proxy.registerEvents(event);
-
+		
 		/* Networking and Packet initialisation */
 		PacketHandler.init();
-
-		tcLog.info("Finished PreInitialization");
+		
+		LOGGER.info("Finished PreInitialization");
 	}
-
+	
 	@Mod.EventHandler
 	public void load(FMLInitializationEvent event) {
-		tcLog.info("Start Initialization");
-
+		LOGGER.info("Start Initialization");
+		
 		//proxy.getCape();
-
+		
 		/* GUI handler initiation */
-		tcLog.info("Initialize Gui");
+		LOGGER.info("Initialize Gui");
 		NetworkRegistry.INSTANCE.registerGuiHandler(instance, proxy);
 		FMLCommonHandler.instance().bus().register(new CraftingHandler());
-
+		
 		/* Ore dictionary */
 		OreHandler.registerOres();
-
+		
 		/* Recipes */
-		tcLog.info("Initialize Recipes");
+		LOGGER.info("Initialize Recipes");
 		RecipeHandler.initBlockRecipes();
 		RecipeHandler.initItemRecipes();
 		RecipeHandler.initSmeltingRecipes();
 		AssemblyTableRecipes.recipes();
-
+		
 		/* Register the liquids */
-		tcLog.info("Initialize Fluids");
+		LOGGER.info("Initialize Fluids");
 		LiquidManager.getInstance().registerLiquids();
-
+		
 		/* Liquid FX */
 		proxy.registerTextureFX();
-
+		
 		/*Trainman Villager*/
-		tcLog.info("Initialize Station Chief Villager");
+		LOGGER.info("Initialize Station Chief Villager");
 		/*VillagerRegistry.instance().registerVillagerId(ConfigHandler.TRAINCRAFT_VILLAGER_ID);
 		VillagerTraincraftHandler villageHandler = new VillagerTraincraftHandler();
 		VillagerRegistry.instance().registerVillageCreationHandler(villageHandler);
 		proxy.registerVillagerSkin(ConfigHandler.TRAINCRAFT_VILLAGER_ID, "station_chief.png");
 		VillagerRegistry.instance().registerVillageTradeHandler(ConfigHandler.TRAINCRAFT_VILLAGER_ID, villageHandler);*/
-
-
-		proxy.registerBookHandler();
-
 		
-		tcLog.info("Finished Initialization");
-
-
+		
+		proxy.registerBookHandler();
+		
+		
+		LOGGER.info("Finished Initialization");
+		
+		
 	}
-
+	
 	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent evt) {
-		tcLog.info("Start to PostInitialize");
-		tcLog.info("Register ChunkHandler");
-
-		tcLog.info("Activation Mod Compatibility");
+		LOGGER.info("Start to PostInitialize");
+		LOGGER.info("Register ChunkHandler");
+		
+		LOGGER.info("Activation Mod Compatibility");
 		TrainModCore.ModsLoaded();
 		LiquidManager.getLiquidsFromDictionnary();
-		if (Loader.isModLoaded("OpenComputers")) {
-			tcLog.info("OpenComputers integration successfully activated!");
+		if(Loader.isModLoaded("OpenComputers")){
+			LOGGER.info("OpenComputers integration successfully activated!");
 		}
-		tcLog.info("Finished PostInitialization");
+		LOGGER.info("Finished PostInitialization");
 	}
-
+	
 	@Mod.EventHandler
 	public void serverStop(FMLServerStoppedEvent event) {
 		proxy.killAllStreams();
@@ -234,6 +247,6 @@ public class Traincraft {
 
 		}
 	}*/
-
-
+	
+	
 }

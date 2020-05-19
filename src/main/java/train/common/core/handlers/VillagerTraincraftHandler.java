@@ -13,7 +13,6 @@ import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList;
 import net.minecraft.world.gen.structure.StructureVillagePieces;
 import train.common.generation.ComponentVillageTrainstation;
-import train.common.items.ItemRollingStock;
 import train.common.library.ItemIDs;
 
 import java.util.List;

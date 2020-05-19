@@ -1,56 +1,47 @@
 package train.common.items;
 
-import cpw.mods.fml.common.Optional;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
-import train.common.Traincraft;
-import train.common.library.ItemIDs;
 
+import javax.annotation.Nullable;
 import java.util.List;
-@Optional.Interface(iface = "buildcraft.api.tools.IToolWrench", modid = "BuildCraft|Core")
-public class ItemWrench extends ItemPart implements buildcraft.api.tools.IToolWrench{
+
+public class ItemWrench extends BaseItem {
 
 	public ItemWrench() {
-		super(ItemIDs.composite_wrench.iconName);
-		maxStackSize = 1;
-		setCreativeTab(Traincraft.tcTab);
+		super("wrench");
+		this.maxStackSize = 1;
 	}
-
+	
 	@Override
-	public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
-		Block blockId = world.getBlock(x, y, z);
-		if (blockId.rotateBlock(world, x, y, z, ForgeDirection.getOrientation(side))) {
-			player.swingItem();
-			return !world.isRemote;
+	public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+		if(!world.isRemote){
+			player.swingArm(hand);
+			IBlockState state = world.getBlockState(pos);
+			state.getBlock().rotateBlock(world, pos, facing);
 		}
-		return false;
+		return EnumActionResult.SUCCESS;
 	}
-	@SideOnly(Side.CLIENT)
+	
 	@Override
-	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
-		par3List.add("\u00a77" + "Works same as a BuildCraft wrench.");
-		par3List.add("\u00a77" + "Use it to change lantern color.");
-		par3List.add("\u00a77" + "Use it to lock/unlock certain carts (passenger)");
-		par3List.add("\u00a77" + "Use it to remove locked trains (OP only)");
+	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+		tooltip.add("\u00a77" + "Works same as a BuildCraft wrench.");
+		tooltip.add("\u00a77" + "Use it to change lantern color.");
+		tooltip.add("\u00a77" + "Use it to lock/unlock certain carts (passenger)");
+		tooltip.add("\u00a77" + "Use it to remove locked trains (OP only)");
 	}
-
-	@Optional.Method(modid = "BuildCraft|Core")
+	
 	@Override
-	public boolean canWrench(EntityPlayer player, int x, int y, int z) {
+	public boolean doesSneakBypassUse(ItemStack stack, IBlockAccess world, BlockPos pos, EntityPlayer player) {
 		return true;
 	}
-
-	@Optional.Method(modid = "BuildCraft|Core")
-	@Override
-	public void wrenchUsed(EntityPlayer player, int x, int y, int z) {}
-
-	@Override
-	public boolean doesSneakBypassUse(World world, int x, int y, int z, EntityPlayer player) {
-		return true;
-	}
+	
 }

@@ -25,6 +25,7 @@ import train.common.containers.*;
 import train.common.core.handlers.ChunkEvents;
 import train.common.core.handlers.WorldEvents;
 import train.common.core.util.MP3Player;
+import train.common.entity.BaseTrainEntity;
 import train.common.entity.digger.EntityRotativeDigger;
 import train.common.entity.rollingStock.EntityJukeBoxCart;
 import train.common.entity.rollingStock.EntityTracksBuilder;
@@ -40,12 +41,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CommonProxy implements IGuiHandler {
-	public static List<MP3Player> playerList = new ArrayList<MP3Player>();
+	public static List<MP3Player> playerList = new ArrayList<>();
 	public static boolean debug = false;
-
-	public void throwAlphaException() {
-		throw new IllegalStateException("You're trying to use a Traincraft alpha-version past its expiry date. Download a release-build at https://minecraft.curseforge.com/projects/traincraft.");
-	}
 
 	public void setKeyBinding(String name, int value) {}
 
@@ -75,7 +72,6 @@ public class CommonProxy implements IGuiHandler {
 		GameRegistry.registerTileEntity(TileEntityOpenHearthFurnace.class, "Tile OpenHearthFurnace");
 		GameRegistry.registerTileEntity(TileStopper.class, "TileStopper");
 		GameRegistry.registerTileEntity(TileSignal.class, "TileTrainSignal");
-		GameRegistry.registerTileEntity(TileLantern.class, "tileLantern");
 		GameRegistry.registerTileEntity(TileSwitchStand.class, "tileSwitchStand");
 		GameRegistry.registerTileEntity(TileWaterWheel.class, "tileWaterWheel");
 		GameRegistry.registerTileEntity(TileWindMill.class, "tileWindMill");
@@ -120,7 +116,27 @@ public class CommonProxy implements IGuiHandler {
 	 */
 	
 	@Override
-	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
+	public Object getServerGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
+		// id determines if it is a tile or a entity. 1 => TileBase; 2 => Entity (z = world entity id)
+		switch(id){
+			case 1: {
+				TileEntity tile = world.getTileEntity(new BlockPos(x, y, z));
+				if(tile instanceof BaseTile){
+					return ((BaseTile) tile).openContainer(player);
+				}
+				break;
+			}
+			case 2: {
+				Entity entity = world.getEntityByID(z);
+				if(entity instanceof BaseTrainEntity){
+					return ((BaseTrainEntity) entity).openContainer(player);
+				}
+				break;
+			}
+		}
+		return null;
+		
+		/*
 		TileEntity te = world.getTileEntity(new BlockPos(x, y, z));
 		Entity ridingEntity = player.getRidingEntity();
 
@@ -156,8 +172,6 @@ public class CommonProxy implements IGuiHandler {
 			return new InventoryZepp(player.inventory, (AbstractZeppelin) ridingEntity);
 		case (GuiIDs.DIGGER):
 			return new InventoryRotativeDigger(player.inventory, (EntityRotativeDigger) ridingEntity);
-
-			/* Stationary entities while player is not riding. */
 		case (GuiIDs.FREIGHT):
 			//System.out.println("Freight: " + ID + " | " + stationaryEntity.getEntityName() + " | " + x + ":" + y + ":" + z);
 			return stationaryEntity instanceof Freight ? new InventoryFreight(player.inventory, (Freight) stationaryEntity) : null;
@@ -171,7 +185,7 @@ public class CommonProxy implements IGuiHandler {
 			return stationaryEntity instanceof LiquidTank ? new InventoryLiquid(player.inventory, (LiquidTank) stationaryEntity) : null;
 		default:
 			return null;
-		}
+		}*/
 	}
 
 	@Override

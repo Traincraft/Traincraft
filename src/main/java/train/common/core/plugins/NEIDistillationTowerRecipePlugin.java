@@ -14,7 +14,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityFurnace;
 import org.lwjgl.opengl.GL11;
 import train.client.gui.GuiDistil;
-import train.common.items.ItemBlockOreTC;
 import train.common.library.ItemIDs;
 import train.common.recipes.DistilRecipes;
 

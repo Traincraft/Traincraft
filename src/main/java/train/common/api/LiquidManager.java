@@ -17,8 +17,6 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
 import train.common.blocks.BlockTraincraftFluid;
-import train.common.items.ItemBlockFluid;
-import train.common.library.BlockIDs;
 import train.common.library.ItemIDs;
 
 public class LiquidManager {

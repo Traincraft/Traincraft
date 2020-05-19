@@ -1,16 +1,6 @@
 package train.common.api;
 
-import com.mojang.authlib.GameProfile;
-import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import io.netty.buffer.ByteBuf;
-import mods.railcraft.api.carts.CartTools;
-import mods.railcraft.api.carts.ILinkableCart;
-import mods.railcraft.api.tracks.RailTools;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockAir;
 import net.minecraft.block.BlockRailBase;
@@ -29,6 +19,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.MinecraftForge;
@@ -38,30 +29,21 @@ import net.minecraftforge.event.entity.minecart.MinecartUpdateEvent;
 import train.client.core.handlers.SoundUpdaterRollingStock;
 import train.common.Traincraft;
 import train.common.adminbook.ServerLogger;
-import train.common.blocks.BlockTCRail;
-import train.common.blocks.BlockTCRailGag;
 import train.common.core.HandleOverheating;
 import train.common.core.handlers.*;
 import train.common.core.network.PacketRollingStockRotation;
 import train.common.core.util.TraincraftUtil;
 import train.common.entity.rollingStock.EntityTracksBuilder;
-import train.common.items.ItemRollingStock;
-import train.common.items.ItemTCRail;
-import train.common.items.ItemTCRail.TrackTypes;
 import train.common.items.ItemWrench;
-import train.common.library.BlockIDs;
 import train.common.library.EnumTrains;
-import train.common.tile.TileTCRail;
-import train.common.tile.TileTCRailGag;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import static train.common.core.util.TraincraftUtil.degrees;
 import static train.common.core.util.TraincraftUtil.isRailBlockAt;
 
-public abstract class EntityRollingStock extends AbstractTrains implements ILinkableCart {
+public abstract class EntityRollingStock extends AbstractTrains {
 	public int fuelTrain;
 	protected static final int matrix[][][] = { { { 0, 0, -1 }, { 0, 0, 1 } }, { { -1, 0, 0 }, { 1, 0, 0 } }, { { -1, -1, 0 }, { 1, 0, 0 } }, { { -1, 0, 0 }, { 1, -1, 0 } }, { { 0, 0, -1 }, { 0, -1, 1 } }, { { 0, -1, -1 }, { 0, 0, 1 } }, { { 0, 0, 1 }, { 1, 0, 0 } }, { { 0, 0, 1 }, { -1, 0, 0 } }, { { 0, 0, -1 }, { -1, 0, 0 } }, { { 0, 0, -1 }, { 1, 0, 0 } } };
 
@@ -100,11 +82,9 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 	public float serverRealPitch;
 	private double rollingPitch;
 	public float oldClientYaw = 0;//used in rendering class
-	@SideOnly(Side.CLIENT)
+	
 	private double rollingVelocityX;
-	@SideOnly(Side.CLIENT)
 	private double rollingVelocityY;
-	@SideOnly(Side.CLIENT)
 	private double rollingVelocityZ;
 
 	private CollisionHandler collisionhandler;
@@ -115,10 +95,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 	public int overheatLevel;
 	public int linkageNumber;
 
-	public Side side;
-	@SideOnly(Side.CLIENT)
 	private SoundHandler theSoundManager;
-	@SideOnly(Side.CLIENT)
 	private SoundUpdaterRollingStock sndUpdater;
 	/**
 	 * Array containing @TrainHandler objects. In other words it contains all
@@ -151,11 +128,6 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 	public EntityRollingStock(World world) {
 		super(world);
 		initRollingStock(world);
-	}
-
-	@Override
-	public GameProfile getOwner() {
-		return CartTools.getCartOwner(this);
 	}
 
 	public EntityRollingStock(World world, double d, double d1, double d2) {

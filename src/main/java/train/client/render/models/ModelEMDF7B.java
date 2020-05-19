@@ -14,7 +14,7 @@ import org.lwjgl.opengl.GL11;
 import tmt.ModelBase;
 import tmt.ModelRendererTurbo;
 import tmt.Tessellator;
-import train.common.library.Info;
+import train.common.Traincraft;
 
 public class ModelEMDF7B extends ModelBase
 {
@@ -443,13 +443,13 @@ public class ModelEMDF7B extends ModelBase
             emdf7bModel[i].render(f5);
         }
         GL11.glPushMatrix();
-        Tessellator.bindTexture(new ResourceLocation(Info.modID, "textures/trains/Blomberg_b_trucks.png"));
+        Tessellator.bindTexture(new ResourceLocation(Traincraft.MOD_ID, "textures/trains/Blomberg_b_trucks.png"));
         GL11.glTranslated(-1.8,0,0);
         GL11.glScalef(0.9F, 0.9F, 0.9F);
         fronttrucks.render(entity,f,f1,f2,f3,f4,f5);
         GL11.glPopMatrix();
         GL11.glPushMatrix();
-        Tessellator.bindTexture(new ResourceLocation(Info.modID, "textures/trains/Blomberg_b_trucks.png"));
+        Tessellator.bindTexture(new ResourceLocation(Traincraft.MOD_ID, "textures/trains/Blomberg_b_trucks.png"));
         GL11.glTranslated(1.8,0,0);
         GL11.glScalef(0.9F, 0.9F, 0.9F);
         backtrucks.render(entity,f,f1,f2,f3,f4,f5);

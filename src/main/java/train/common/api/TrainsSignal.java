@@ -1,7 +1,6 @@
 package train.common.api;
 
 import net.minecraft.world.World;
-import train.common.library.BlockIDs;
 
 public class TrainsSignal {
 	// ***Signal behavior***/

@@ -7,24 +7,32 @@
 
 package train.common.blocks;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockDirectional;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import train.common.Traincraft;
-import train.common.library.Info;
-import train.common.tile.TileBridgePillar;
 
-public class BlockBridgePillar extends BaseContainerBlock {
+public class BlockBridgePillar extends Block {
 	
 	public BlockBridgePillar() {
 		super(Material.WOOD);
-		this.setCreativeTab(Traincraft.tcTab);
-		this.setRegistryName(Info.modID, "bridge_pillar");
+		this.setRegistryName(Traincraft.MOD_ID, "bridge_pillar");
+		
+		this.setCreativeTab(Traincraft.TAB);
+		this.setHardness(3.5F);
+		this.setSoundType(SoundType.WOOD);
+		this.setHarvestLevel("axe", 0);
+		
+		this.setDefaultState(this.getBlockState().getBaseState().withProperty(BlockDirectional.FACING, EnumFacing.NORTH));
 	}
 	
 	@Override
@@ -42,36 +50,25 @@ public class BlockBridgePillar extends BaseContainerBlock {
 		return false;
 	}
 	
+	// state: ABCD => CD = facing
 	@Override
-	public TileEntity createNewTileEntity(World world, int meta) {
-		return new TileBridgePillar();
+	public IBlockState getStateFromMeta(int meta) {
+		return this.getDefaultState().withProperty(BlockDirectional.FACING, EnumFacing.byHorizontalIndex(meta & 0b0011));
 	}
 	
 	@Override
-	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
-		// set metadata? idk what it is doing right now
-		/*
-		int l = MathHelper.floor_double((double) (par5EntityLiving.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
-		int i1 = par1World.getBlockMetadata(par2, par3, par4) >> 2;
-		++l;
-		l %= 4;
-
-		if (l == 0) {
-			par1World.setBlockMetadataWithNotify(par2, par3, par4, 2 | i1 << 2, 2);
-		}
-
-		if (l == 1) {
-			par1World.setBlockMetadataWithNotify(par2, par3, par4, 3 | i1 << 2, 2);
-		}
-
-		if (l == 2) {
-			par1World.setBlockMetadataWithNotify(par2, par3, par4, 0 | i1 << 2, 2);
-		}
-
-		if (l == 3) {
-			par1World.setBlockMetadataWithNotify(par2, par3, par4, 1 | i1 << 2, 2);
-		}
-		 */
+	public int getMetaFromState(IBlockState state) {
+		return state.getValue(BlockDirectional.FACING).getHorizontalIndex();
+	}
+	
+	@Override
+	public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
+		return super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer).withProperty(BlockDirectional.FACING, placer.getHorizontalFacing().getOpposite());
+	}
+	
+	@Override
+	protected BlockStateContainer createBlockState() {
+		return new BlockStateContainer(this, BlockDirectional.FACING);
 	}
 	
 }

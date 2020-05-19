@@ -13,7 +13,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.stats.Achievement;
 import net.minecraftforge.common.AchievementPage;
 import train.common.library.AchievementIDs;
-import train.common.library.BlockIDs;
 import train.common.library.ItemIDs;
 
 public class AchievementHandler {

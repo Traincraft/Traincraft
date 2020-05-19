@@ -1,5 +1,6 @@
 package train.common.blocks;
 
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,16 +11,19 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import train.common.Traincraft;
 import train.common.library.GuiIDs;
-import train.common.library.Info;
 import train.common.tile.TileCrafterTierI;
 import train.common.tile.TileCrafterTierII;
 
 public class BlockAssemblyTableII extends BaseContainerBlock {
 
-	public BlockAssemblyTableII(Material material) {
-		super(material);
-		this.setCreativeTab(Traincraft.tcTab);
-		this.setRegistryName(Info.modID, "assembly_table_2");
+	public BlockAssemblyTableII() {
+		super(Material.ROCK);
+		this.setRegistryName(Traincraft.MOD_ID, "assembly_table_2");
+		
+		this.setCreativeTab(Traincraft.TAB);
+		this.setHardness(3.5F);
+		this.setSoundType(SoundType.STONE);
+		this.setHarvestLevel("pickaxe", 0);
 	}
 	
 	@Override

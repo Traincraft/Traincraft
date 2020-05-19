@@ -20,7 +20,7 @@ import train.common.mtc.packets.handlers.*;
 public class PacketHandler {
 
 	public static void init(){
-		Traincraft.tcLog.info("Initialize Packets");
+		Traincraft.LOGGER.info("Initialize Packets");
 		Traincraft.modChannel = NetworkRegistry.INSTANCE.newSimpleChannel(Info.channel);
 		Traincraft.keyChannel = NetworkRegistry.INSTANCE.newSimpleChannel(Info.keyChannel);
 		Traincraft.rotationChannel = NetworkRegistry.INSTANCE.newSimpleChannel(Info.rotationChannel);

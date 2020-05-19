@@ -37,9 +37,9 @@ public class TrainModCore {
 			readRailcraftConfig();
 			if (!rcVanillaRecipes) {
 				PluginRailcraft.init();
-				Traincraft.tcLog.info("Enabled Traincraft additional tracks for Railcraft");
+				Traincraft.LOGGER.info("Enabled Traincraft additional tracks for Railcraft");
 			} else {
-				Traincraft.tcLog.info(
+				Traincraft.LOGGER.info(
 						"You've enabled vanilla rail recipes in Railcraft. Disable them to get Traincraft additional tracks");
 			}
 		}

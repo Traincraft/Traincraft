@@ -1,6 +1,5 @@
 package train.common.blocks;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -17,7 +16,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import train.common.Traincraft;
 import train.common.library.GuiIDs;
-import train.common.library.Info;
 import train.common.tile.TileCrafterTierI;
 import train.common.tile.TileEntityDistil;
 
@@ -29,9 +27,9 @@ public class BlockDistil extends BaseContainerBlock {
 
 	public BlockDistil() {
 		super(Material.ROCK);
-		this.setRegistryName(Info.modID, "distillery");
+		this.setRegistryName(Traincraft.MOD_ID, "distillery");
 		
-		this.setCreativeTab(Traincraft.tcTab);
+		this.setCreativeTab(Traincraft.TAB);
 		this.setHardness(3.5F);
 		this.setSoundType(SoundType.STONE);
 		

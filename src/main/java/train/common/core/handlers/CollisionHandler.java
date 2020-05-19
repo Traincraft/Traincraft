@@ -6,10 +6,10 @@ import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.monster.*;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.MovingObjectPosition;
-import net.minecraft.util.Vec3;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.minecart.MinecartCollisionEvent;
@@ -46,7 +46,7 @@ public class CollisionHandler {
 			for (int j1 = 0; j1 < listRide.size(); j1++) {
 				entity = (Entity) listRide.get(j1);
 				if (!(entity instanceof EntityLasersLines) && !entity.noClip) {
-					if (entity != entity.riddenByEntity && !(unAutorizedMob(entity, entityOne)) && (entity instanceof EntityLiving)) {
+					if (entity != entity.getControllingPassenger() && !(unAutorizedMob(entity, entityOne)) && (entity instanceof EntityLiving)) {
 						applyRideEntity(entity, entityOne);
 					}
 				}
@@ -69,13 +69,13 @@ public class CollisionHandler {
 
 				if (!(entity instanceof EntityLasersLines) && !entity.noClip) {
 
-					if (entity != entity.riddenByEntity && (entity instanceof EntityLiving) && (!entity.getClass().getName().equals("EntityLittleMaid")) && (unAutorizedMob(entity, entityOne))) {
+					if (entity != entity.getControllingPassenger() && (entity instanceof EntityLiving) && (!entity.getClass().getName().equals("EntityLittleMaid")) && (unAutorizedMob(entity, entityOne))) {
 
 						applyCollisionLiving(entity, entityOne);
 						// applyEntityCollision(entity, entityOne);
 						return;
 					}
-					if (entity != entity.riddenByEntity && (entity instanceof EntityPlayer) && (entityOne instanceof AbstractTrains)) {
+					if (entity != entity.getControllingPassenger() && (entity instanceof EntityPlayer) && (entityOne instanceof AbstractTrains)) {
 
 						applyEntityCollision(entity, entityOne);
 						return;
@@ -94,7 +94,7 @@ public class CollisionHandler {
 				entity = (Entity) listRide.get(j1);
 				if (!(entity instanceof EntityLasersLines) && !entity.noClip && !(entity instanceof EntityLiving) && !(entityOne instanceof EntityLiving)) {
 
-					if (entity != entity.riddenByEntity && entity.canBePushed() && (entityOne instanceof AbstractTrains) && (entity instanceof AbstractTrains) && !((AbstractTrains) entityOne).isAttached) {
+					if (entity != entity.getControllingPassenger() && entity.canBePushed() && (entityOne instanceof AbstractTrains) && (entity instanceof AbstractTrains) && !((AbstractTrains) entityOne).isAttached) {
 
 						//applyCollision3(entity, entityOne);
 						applyEntityCollisionVanilla(entity, (EntityMinecart) entityOne);
@@ -102,14 +102,14 @@ public class CollisionHandler {
 						// MinecraftForge.EVENT_BUS.post(new MinecartCollisionEvent((EntityMinecart)entityOne, entity));
 
 					}
-					else if (entity != entity.riddenByEntity && entity.canBePushed() && (entity instanceof EntityMinecart) && !(entity instanceof AbstractTrains) && (entityOne instanceof AbstractTrains) && !((AbstractTrains) entityOne).isAttached) {
+					else if (entity != entity.getControllingPassenger() && entity.canBePushed() && (entity instanceof EntityMinecart) && !(entity instanceof AbstractTrains) && (entityOne instanceof AbstractTrains) && !((AbstractTrains) entityOne).isAttached) {
 
 						//applyCollision2(entity, entityOne);
 						applyEntityCollisionVanilla(entity, (EntityMinecart) entityOne);
 						return;
 						// MinecraftForge.EVENT_BUS.post(new MinecartCollisionEvent((EntityMinecart)entityOne, entity));
 					}
-					else if (entity != entity.riddenByEntity && entity.canBePushed() && (entity instanceof AbstractTrains) && (entityOne instanceof AbstractTrains) && !(entity == ((EntityRollingStock)entityOne).cartLinked1) && !(entity == ((EntityRollingStock)entityOne).cartLinked2)) {
+					else if (entity != entity.getControllingPassenger() && entity.canBePushed() && (entity instanceof AbstractTrains) && (entityOne instanceof AbstractTrains) && !(entity == ((EntityRollingStock)entityOne).cartLinked1) && !(entity == ((EntityRollingStock)entityOne).cartLinked2)) {
 
 						//applyCollision2(entity, entityOne);
 						applyEntityCollisionVanilla(entity, (EntityMinecart) entityOne);
@@ -134,12 +134,12 @@ public class CollisionHandler {
 			return;
 		}
 		if (!this.worldObj.isRemote) {
-			if (par1Entity != entityOne.riddenByEntity) {
+			if (par1Entity != entityOne.getControllingPassenger()) {
 
 				double d0 = par1Entity.posX - entityOne.posX;
 				double d1 = par1Entity.posZ - entityOne.posZ;
 				double d2 = d0 * d0 + d1 * d1;
-				d2 = MathHelper.sqrt_double(d2);
+				d2 = MathHelper.sqrt(d2);
 
 				if (d2 <= ((AbstractTrains) entityOne).getLinkageDistance(entityOne) && d2 >= 9.999999747378752E-5D) {
 
@@ -210,12 +210,12 @@ public class CollisionHandler {
 		}
 
 		if (!this.worldObj.isRemote) {
-			if (entity != entityOne.riddenByEntity) {
+			if (entity != entityOne.getControllingPassenger()) {
 
 				double var2 = entity.posX - entityOne.posX;
 				double var4 = entity.posZ - entityOne.posZ;
 				double var6 = var2 * var2 + var4 * var4;
-				var6 = MathHelper.sqrt_double(var6);
+				var6 = MathHelper.sqrt(var6);
 				if (var6 <= ((AbstractTrains) entityOne).getLinkageDistance((EntityMinecart) entityOne)*0.8 && var6 >= 9.999999747378752E-5D) {
 
 					var2 /= var6;
@@ -238,8 +238,8 @@ public class CollisionHandler {
 					if (entity instanceof EntityMinecart) {
 						double var10 = entity.posX - entityOne.posX;
 						double var12 = entity.posZ - entityOne.posZ;
-						Vec3 var14 = Vec3.createVectorHelper(var10, 0.0D, var12).normalize();
-						Vec3 var15 = Vec3.createVectorHelper(MathHelper.cos(entityOne.rotationYaw * (float) Math.PI / 180.0F), 0.0D, MathHelper.sin(entityOne.rotationYaw * (float) Math.PI / 180.0F)).normalize();
+						Vec3d var14 = new Vec3d(var10, 0.0D, var12).normalize();
+						Vec3d var15 = new Vec3d(MathHelper.cos(entityOne.rotationYaw * (float) Math.PI / 180.0F), 0.0D, MathHelper.sin(entityOne.rotationYaw * (float) Math.PI / 180.0F)).normalize();
 						double var16 = Math.abs(var14.dotProduct(var15));
 
 						if (var16 < 0.800000011920929D) {
@@ -275,20 +275,14 @@ public class CollisionHandler {
 						}
 					}
 					else {
-						if (entityOne instanceof EntityMinecart)
-							entityOne.addVelocity(-var2, 0.0D, -var4);
+						entityOne.addVelocity(-var2, 0.0D, -var4);
 						if(entity instanceof EntityPlayer){
-
-							MovingObjectPosition movingobjectposition = worldObj.rayTraceBlocks(Vec3.createVectorHelper(entityOne.posX, entityOne.posY, entityOne.posZ), Vec3.createVectorHelper(entityOne.posX + entityOne.motionX, entityOne.posY + entityOne.motionY, entityOne.posZ + entityOne.motionZ), false);
-							if (entity != null && entity instanceof EntityPlayer) {
-								movingobjectposition = new MovingObjectPosition(entity);
-							}
-							if (movingobjectposition != null) {
-								if (movingobjectposition.entityHit != null) {
-									float f7 = MathHelper.sqrt_double(entityOne.motionX * entityOne.motionX + entityOne.motionZ * entityOne.motionZ);
-									movingobjectposition.entityHit.addVelocity(-((entityOne.motionX * 1 * 0.0060000002384185791D)) / f7, 0.00000000000000001D, -(((entityOne.motionZ * 1 * 0.0060000002384185791D)) / f7));
-									entity.velocityChanged = true;
-								}
+							
+							RayTraceResult rayTraceResult = new RayTraceResult(entity);
+							if (rayTraceResult.entityHit != null) {
+								float f7 = MathHelper.sqrt(entityOne.motionX * entityOne.motionX + entityOne.motionZ * entityOne.motionZ);
+								rayTraceResult.entityHit.addVelocity(-((entityOne.motionX * 1 * 0.0060000002384185791D)) / f7, 0.00000000000000001D, -(((entityOne.motionZ * 1 * 0.0060000002384185791D)) / f7));
+								entity.velocityChanged = true;
 							}
 						}
 					}
@@ -321,7 +315,7 @@ public class CollisionHandler {
 		if (worldObj.isRemote) {
 			return;
 		}
-		if (entity == entityOne.riddenByEntity) {
+		if (entity == entityOne.getControllingPassenger()) {
 			return;
 		}
 		if (!((AbstractTrains) entityOne).canBeRidden()) {
@@ -330,8 +324,8 @@ public class CollisionHandler {
 		if (!(entityOne instanceof EntityStockCar) && !(entityOne instanceof EntityStockCarDRWG)) {
 			return;
 		}
-		if ((entity instanceof EntityLiving) && ((AbstractTrains) entityOne).canBeRidden() && entityOne.riddenByEntity == null && entity.ridingEntity == null) {
-			entity.mountEntity(entityOne);
+		if ((entity instanceof EntityLiving) && ((AbstractTrains) entityOne).canBeRidden() && entityOne.getControllingPassenger() == null && entity.getControllingPassenger() == null) {
+			entity.startRiding(entityOne);
 		}
 
 	}
@@ -345,10 +339,10 @@ public class CollisionHandler {
 		double d = entity.posX - entityOne.posX;
 		double d1 = entity.posZ - entityOne.posZ;
 
-		double d2 = MathHelper.abs_max(d, d1);
+		double d2 = MathHelper.absMax(d, d1);
 
 		if (d2 <= 0.7D && !(entityOne instanceof EntityPlayer)&& d!=0 && d1!=0) {
-			d2 = MathHelper.sqrt_double(d2);
+			d2 = MathHelper.sqrt(d2);
 			if(d2==0){
 				d2=0.1;
 			}
@@ -367,216 +361,56 @@ public class CollisionHandler {
 			d *= 0.5D;
 			d1 *= 0.5D;
 
-			if (entity.ridingEntity == null) {
+			if (entity.getControllingPassenger() == null) {
 
-				Vec3 vec3d4 = Vec3.createVectorHelper(entityOne.posX, entityOne.posY, entityOne.posZ);
-				Vec3 vec3d5 = Vec3.createVectorHelper(entityOne.posX + entityOne.motionX, entityOne.posY + entityOne.motionY, entityOne.posZ + entityOne.motionZ);
-				MovingObjectPosition movingobjectposition = worldObj.rayTraceBlocks(vec3d4, vec3d5, false);
+				Vec3d vec3d4 = new Vec3d(entityOne.posX, entityOne.posY, entityOne.posZ);
+				Vec3d vec3d5 = new Vec3d(entityOne.posX + entityOne.motionX, entityOne.posY + entityOne.motionY, entityOne.posZ + entityOne.motionZ);
+				RayTraceResult rayTraceResult = worldObj.rayTraceBlocks(vec3d4, vec3d5, false);
+				
+				rayTraceResult = new RayTraceResult(entity);
+				
+				if (rayTraceResult.entityHit != null) {
 
-				if (entity != null) {
-					movingobjectposition = new MovingObjectPosition(entity);
+					float f1 = MathHelper.sqrt(entityOne.motionX * entityOne.motionX + entityOne.motionY * entityOne.motionY + entityOne.motionZ * entityOne.motionZ);
+					float f7 = MathHelper.sqrt(entityOne.motionX * entityOne.motionX + entityOne.motionZ * entityOne.motionZ);
+					double damage = 1D;
+					f1 *= 6;//ratio
+					f1 *= 10;//to get speed in "pseudo m/s"
+					if ((f1 * 3.6) < 35) {//if speed is smaller than 35km/h then don't do any damage but push entities
+						if (f7 == 0) {
 
-				}
-				if (movingobjectposition != null) {
+							rayTraceResult.entityHit.addVelocity(d * 0.666666667, 0.0D, d1 * 0.666666667);
 
-					if (movingobjectposition.entityHit != null) {
-
-						float f1 = MathHelper.sqrt_double(entityOne.motionX * entityOne.motionX + entityOne.motionY * entityOne.motionY + entityOne.motionZ * entityOne.motionZ);
-						float f7 = MathHelper.sqrt_double(entityOne.motionX * entityOne.motionX + entityOne.motionZ * entityOne.motionZ);
-						double damage = 1D;
-						f1 *= 6;//ratio
-						f1 *= 10;//to get speed in "pseudo m/s"
-						if ((f1 * 3.6) < 35) {//if speed is smaller than 35km/h then don't do any damage but push entities
-							if (f7 == 0) {
-
-								movingobjectposition.entityHit.addVelocity(d * 0.666666667, 0.0D, d1 * 0.666666667);
-
-								entity.velocityChanged = true;
-								return;
-							}
-							//System.out.println("bla");
-							movingobjectposition.entityHit.addVelocity(((entityOne.motionX * 1 * 0.060000002384185791D)) / f7, 0.00000000000000001D, (((entityOne.motionZ * 1 * 0.060000002384185791D)) / f7));
 							entity.velocityChanged = true;
 							return;
 						}
-						if (entity instanceof EntityCreeper) {//Creeper are killed in one shot hopefully
-							damage = 100D;
-						}
-						int j1 = (int) Math.ceil((f1) * damage);
+						//System.out.println("bla");
+						rayTraceResult.entityHit.addVelocity(((entityOne.motionX * 1 * 0.060000002384185791D)) / f7, 0.00000000000000001D, (((entityOne.motionZ * 1 * 0.060000002384185791D)) / f7));
+						entity.velocityChanged = true;
+						return;
+					}
+					if (entity instanceof EntityCreeper) {//Creeper are killed in one shot hopefully
+						damage = 100D;
+					}
+					int j1 = (int) Math.ceil((f1) * damage);
 
 
-						if (unAutorizedMob(movingobjectposition.entityHit, entityOne) || ((entity instanceof EntityPlayer || entityOne instanceof EntityPlayer)) && ((f1 * 3.6) > 60))// (movingobjectposition.entityHit instanceof EntityCreature) && !(movingobjectposition.entityHit instanceof EntityWolf))
-						{
+					if (unAutorizedMob(rayTraceResult.entityHit, entityOne) || entity instanceof EntityPlayer && f1 * 3.6 > 60)// (rayTraceResult.entityHit instanceof EntityCreature) && !(rayTraceResult.entityHit instanceof EntityWolf))
+					{
 
-							entity.attackEntityFrom(TrainsDamageSource.ranOver, j1);//DamageSource.causeMobDamage((EntityLiving) entity);
-							if (f7 > 0.0F) {
-								movingobjectposition.entityHit.addVelocity((entityOne.motionX * 2 * 0.60000002384185791D) / f7, 0.10000000000000001D, (entityOne.motionZ * 2 * 0.60000002384185791D) / f7);
-								entity.velocityChanged = true;
-							}
-
-							//worldObj.playSoundAtEntity(entityOne, "damage.fallsmall", 1.0F, 1.2F / (rand.nextFloat() * 0.2F + 0.9F));
-							entityOne.playSound("damage.fallsmall", 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
-							for (int var9 = 0; var9 < 4; ++var9) {
-								entity.worldObj.spawnParticle("crit", entity.posX + entity.motionX * var9 / 4.0D, entity.posY + entity.motionY * var9 / 4.0D, entity.posZ + entity.motionZ * var9 / 4.0D, -entity.motionX, -entity.motionY + 0.2D, -entity.motionZ);
-							}
-
+						entity.attackEntityFrom(TrainsDamageSource.ranOver, j1);//DamageSource.causeMobDamage((EntityLiving) entity);
+						if (f7 > 0.0F) {
+							rayTraceResult.entityHit.addVelocity((entityOne.motionX * 2 * 0.60000002384185791D) / f7, 0.10000000000000001D, (entityOne.motionZ * 2 * 0.60000002384185791D) / f7);
+							entity.velocityChanged = true;
 						}
 
+						//worldObj.playSoundAtEntity(entityOne, "damage.fallsmall", 1.0F, 1.2F / (rand.nextFloat() * 0.2F + 0.9F));
+						//todo play sound entityOne.playSound("damage.fallsmall", 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
+						for (int var9 = 0; var9 < 4; ++var9) {
+							//todo spawn particle entity.world.spawnParticle("crit", entity.posX + entity.motionX * var9 / 4.0D, entity.posY + entity.motionY * var9 / 4.0D, entity.posZ + entity.motionZ * var9 / 4.0D, -entity.motionX, -entity.motionY + 0.2D, -entity.motionZ);
+						}
+
 					}
-				}
-			}
-
-		}
-
-	}
-
-	public void applyCollision3(Entity entity, Entity entityOne) {
-
-		if (worldObj.isRemote) {
-			return;
-		}
-
-		double d = entity.posX - entityOne.posX;
-		double d1 = entity.posZ - entityOne.posZ;
-
-		// double d2 = d * d + d1 * d1;
-		double d2 = MathHelper.abs_max(d, d1);
-
-		if (d2 >= 0.0099999997764825821D) {
-			d2 = MathHelper.sqrt_double(d2);
-			d /= d2;
-			d1 /= d2;
-			double d3 = 1.0D / d2;
-			if (d3 > 1.0D) {
-				d3 = 1.0D;
-			}
-			d *= d3;
-			d1 *= d3;
-			d *= 0.10000000149011612D;
-			d1 *= 0.10000000149011612D;
-			d *= 1.0F - entityOne.entityCollisionReduction;
-			d1 *= 1.0F - entityOne.entityCollisionReduction;
-			d *= 0.5D;
-			d1 *= 0.5D;
-
-			if (entity instanceof AbstractTrains) {
-				if (((AbstractTrains) entity).isLocomotive() && !((AbstractTrains) entityOne).isLocomotive()) {
-
-					entityOne.motionX = 0;
-					entityOne.motionZ = 0;
-					if ((!((AbstractTrains) entity).isBuilder() && !((AbstractTrains) entityOne).isBuilder())) {
-						entityOne.addVelocity(entity.motionX - (d), 0.0D, entity.motionZ - (d1));
-					}
-					else {
-						entity.motionX = 0;
-						entity.motionZ = 0;
-					}
-
-					// System.out.println("is 1");
-
-				}
-				else if (!((AbstractTrains) entity).isLocomotive() && ((AbstractTrains) entityOne).isLocomotive() && (!((AbstractTrains) entity).isBuilder() && !((AbstractTrains) entityOne).isBuilder())) {
-
-					entity.motionX = 0;
-					entity.motionZ = 0;
-					entity.addVelocity(entityOne.motionX + (d), 0.0D, entityOne.motionZ + (d1));
-
-					// System.out.println("is 2");
-
-				}
-				else if (((AbstractTrains) entity).isFreightOrPassenger() && ((AbstractTrains) entityOne).isFreightOrPassenger()) {
-
-					entity.motionX = 0;
-					entity.motionZ = 0;
-					entity.addVelocity(entityOne.motionX + d, 0.0D, entityOne.motionZ + d1);
-
-					// System.out.println("is 3");
-					entityOne.motionX *= 0.98999998807907104D;
-					entityOne.motionZ *= 0.98999998807907104D;
-
-				}
-				//else {
-
-					// entityOne.addVelocity(entityOne.motionX+(d*5), 0.0D, entityOne.motionZ+(d*5)); //addVelocity(d7 - d, 0.0D, d8 - d1);
-
-				//}
-			}
-
-			// System.out.println("debug");
-			// System.out.println("==============");
-		}
-
-	}
-
-	public void applyCollision2(Entity entity, Entity entityOne) {
-
-		if (worldObj.isRemote) {
-			return;
-		}
-
-		double d = entity.posX - entityOne.posX;
-		double d1 = entity.posZ - entityOne.posZ;
-
-		double d2 = MathHelper.abs_max(d, d1);
-
-		if (d2 >= 0.0099999997764825821D) {
-			d2 = MathHelper.sqrt_double(d2);
-			d /= d2;
-			d1 /= d2;
-			double d3 = 1.0D / d2;
-			if (d3 > 1.0D) {
-				d3 = 1.0D;
-			}
-			d *= d3;
-			d1 *= d3;
-			d *= 0.10000000149011612D;
-			d1 *= 0.10000000149011612D;
-			d *= 1.0F - entityOne.entityCollisionReduction;
-			d1 *= 1.0F - entityOne.entityCollisionReduction;
-			d *= 0.5D;
-			d1 *= 0.5D;
-
-			if (entity instanceof EntityMinecart) {
-				double d4 = entity.posX - entityOne.posX;
-				double d5 = entity.posZ - entityOne.posZ;
-				Vec3 vec3d = Vec3.createVectorHelper(d4, 0.0D, d5).normalize();
-				Vec3 vec3d1 = Vec3.createVectorHelper(MathHelper.cos((entityOne.rotationYaw * 3.141593F) / 180F), 0.0D, MathHelper.sin((entityOne.rotationYaw * 3.141593F) / 180F)).normalize();
-				double d6 = Math.abs(vec3d.dotProduct(vec3d1));
-
-				if (d6 < 0.80000001192092896D) {
-
-					return;
-
-				}
-
-				if (!((AbstractTrains) entityOne).isLocomotive()) {
-
-					entityOne.motionX = 0;
-					entityOne.motionZ = 0;
-
-					entityOne.addVelocity(entity.motionX - (d), 0.0D, entity.motionZ - (d1));
-					// System.out.println("is 1");
-
-				}
-				else if (((AbstractTrains) entityOne).isLocomotive()) {
-
-					entity.motionX = 0;
-					entity.motionZ = 0;
-					entity.addVelocity(entityOne.motionX + (d), 0.0D, entityOne.motionZ + (d1));
-
-				}
-				else if (((AbstractTrains) entityOne).isFreightOrPassenger()) {
-
-					entity.motionX = 0;
-					entity.motionZ = 0;
-					entity.addVelocity(entityOne.motionX + d, 0.0D, entityOne.motionZ + d1);
-
-					entity.motionX *= 0.98999998807907104D;
-					entity.motionZ *= 0.98999998807907104D;
-
-				}
-				else {
-					entityOne.addVelocity(entityOne.motionX + (d * 5), 0.0D, entityOne.motionZ + (d * 5));
 
 				}
 			}
@@ -584,5 +418,5 @@ public class CollisionHandler {
 		}
 
 	}
-
+	
 }

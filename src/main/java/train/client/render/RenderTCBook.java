@@ -10,7 +10,6 @@ package train.client.render;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import train.client.render.models.blocks.ModelTCBook;
-import train.common.tile.TileBook;
 
 public class RenderTCBook extends TileEntitySpecialRenderer {
 

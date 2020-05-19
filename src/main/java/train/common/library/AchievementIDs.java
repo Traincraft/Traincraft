@@ -1,7 +1,6 @@
 package train.common.library;
 
 import net.minecraft.item.Item;
-import net.minecraft.stats.Achievement;
 
 public enum AchievementIDs {
 	steel(new Item[] { ItemIDs.steel.item }),

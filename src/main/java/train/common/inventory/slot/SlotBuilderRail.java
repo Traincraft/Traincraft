@@ -8,8 +8,6 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import train.common.items.ItemTCRail;
-import train.common.items.ItemTCRail.TrackTypes;
 
 public class SlotBuilderRail extends Slot {
 

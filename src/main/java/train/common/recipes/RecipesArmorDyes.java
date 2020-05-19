@@ -6,7 +6,6 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import train.common.core.interfaces.ITCRecipe;
-import train.common.items.ItemTCArmor;
 
 public class RecipesArmorDyes implements ITCRecipe {
 

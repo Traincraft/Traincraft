@@ -7,7 +7,7 @@ import org.lwjgl.opengl.GL11;
 import tmt.ModelBase;
 import tmt.ModelRendererTurbo;
 import tmt.Tessellator;
-import train.common.library.Info;
+import train.common.Traincraft;
 
 //This File was created with the Minecraft-SMP Modelling Toolbox 2.3.0.0
 // Copyright (C) 2017 Minecraft-SMP.de
@@ -743,7 +743,7 @@ public class ModelPRRCaboose extends ModelBase
             prrcabooseModel[i].render(f5);
         }
 
-        Tessellator.bindTexture(new ResourceLocation(Info.modID, "textures/trains/Bettendorf_trucks.png"));
+        Tessellator.bindTexture(new ResourceLocation(Traincraft.MOD_ID, "textures/trains/Bettendorf_trucks.png"));
         GL11.glPushMatrix();
 		GL11.glTranslated(1.25, 0.1, 0);
         fronttrucks.render(entity,f,f1,f2,f3,f4,f5);

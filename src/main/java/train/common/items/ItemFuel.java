@@ -12,7 +12,7 @@ public class ItemFuel extends Item {
 	public ItemFuel(ArrayList<String[]> list) {
 		super();
 		maxStackSize = 64;
-		setCreativeTab(Traincraft.tcTab);
+		setCreativeTab(Traincraft.TAB);
 		this.info = list;
 	}
 

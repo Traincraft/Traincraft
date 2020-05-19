@@ -2,6 +2,7 @@ package train.common.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirectional;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
@@ -15,7 +16,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import train.common.Traincraft;
-import train.common.library.Info;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -28,9 +28,13 @@ public class BlockSwitchStand extends Block {
 	public static final PropertyBool ACTIVE = PropertyBool.create("active");
 	
 	public BlockSwitchStand() {
-		super(Material.ROCK);
-		this.setRegistryName(Info.modID, "switch_stand");
-		this.setCreativeTab(Traincraft.tcTab);
+		super(Material.IRON);
+		this.setRegistryName(Traincraft.MOD_ID, "switch_stand");
+		
+		this.setCreativeTab(Traincraft.TAB);
+		this.setHardness(1.7F);
+		this.setSoundType(SoundType.METAL);
+		
 		this.setDefaultState(this.getBlockState().getBaseState().withProperty(ACTIVE, false).withProperty(BlockDirectional.FACING, EnumFacing.NORTH));
 	}
 	

@@ -14,7 +14,6 @@ import net.minecraftforge.client.model.IModelCustom;
 import org.lwjgl.opengl.GL11;
 import tmt.Tessellator;
 import train.common.library.Info;
-import train.common.tile.TileBridgePillar;
 
 public class ModelBridgePillar extends ModelBase {
 	private IModelCustom bridgePillar;
