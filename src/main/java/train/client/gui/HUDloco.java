@@ -3,14 +3,12 @@ package train.client.gui;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import org.lwjgl.opengl.GL11;
 import train.common.api.DieselTrain;
 import train.common.api.Locomotive;
 import train.common.api.SteamTrain;
-import train.common.items.ItemRemoteController;
 import train.common.library.Info;
 
 public class HUDloco extends GuiScreen {
@@ -20,27 +18,8 @@ public class HUDloco extends GuiScreen {
 
 	@SubscribeEvent
 	public void onGameRender(RenderGameOverlayEvent.Text event){
-		Item currentItem = new Item();
-
-		if (Minecraft.getMinecraft().thePlayer != null && Minecraft.getMinecraft().thePlayer.inventory.getCurrentItem() != null) {
-			currentItem = Minecraft.getMinecraft().thePlayer.inventory.getCurrentItem().getItem();
-		}
-		boolean hasController = currentItem instanceof ItemRemoteController;
-		boolean isControllerPaired = false;
-		if (hasController) {
-			if ((((ItemRemoteController)currentItem).attachedLoco) != null) {
-				isControllerPaired = true;
-			}
-		}
-		if (game != null && game.thePlayer != null && game.thePlayer.ridingEntity != null && game.thePlayer.ridingEntity instanceof Locomotive && Minecraft.isGuiEnabled() && game.currentScreen == null || isControllerPaired ) {
-			if (isControllerPaired && Minecraft.getMinecraft().theWorld.getEntityByID(((ItemRemoteController)currentItem).attachedLoco.getEntityId()) != null) {
-				renderSkillHUD(event, (Locomotive) Minecraft.getMinecraft().theWorld.getEntityByID(((ItemRemoteController)currentItem).attachedLoco.getEntityId()));
-			} else {
-				if (game != null && game.thePlayer != null && game.thePlayer.ridingEntity != null) {
-					renderSkillHUD(event, (Locomotive) game.thePlayer.ridingEntity);
-				}
-			}
-
+		if (game != null && game.thePlayer != null && game.thePlayer.ridingEntity != null && game.thePlayer.ridingEntity instanceof Locomotive && Minecraft.isGuiEnabled() && game.currentScreen == null) {
+			renderSkillHUD(event, (Locomotive) game.thePlayer.ridingEntity);
 		} else {
 			this.game = this.mc = Minecraft.getMinecraft();
 			this.fontRendererObj = this.game.fontRenderer;

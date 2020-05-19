@@ -95,7 +95,6 @@ public class TCItems {
 			ItemIDs.wirelessTransmitter.item = new ItemWirelessTransmitter();
 			ItemIDs.atoCard.item = new ItemATOCard();
 		}
-		ItemIDs.remoteController.item = new ItemRemoteController();
 	}
 	
 	private static void registerItems() {

@@ -23,7 +23,6 @@ import net.minecraft.util.*;
 import net.minecraft.world.World;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.lwjgl.input.Keyboard;
-import train.client.core.handlers.TCKeyHandler;
 import train.common.Traincraft;
 import train.common.adminbook.ServerLogger;
 import train.common.core.HandleMaxAttachedCarts;
@@ -41,7 +40,6 @@ import train.common.mtc.TilePDMInstructionRadio;
 import train.common.mtc.packets.*;
 
 import java.nio.charset.Charset;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -486,25 +484,22 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
      */
     @Override
     public void keyHandlerFromPacket(int i) {
-        /*if (this.getTrainLockedFromPacket()) {
+        if (this.getTrainLockedFromPacket()) {
             if (this.riddenByEntity instanceof EntityPlayer
                     && !((EntityPlayer) this.riddenByEntity).getDisplayName().toLowerCase()
                     .equals(this.getTrainOwner().toLowerCase())) {
                 return;
             }
-        }*/
-
+        }
         pressKey(i);
         if (i == 8 && ConfigHandler.SOUNDS) {
             soundHorn();
         }
         if (i == 4) {
             forwardPressed = true;
-            System.out.println("Forward!!");
         }
         if (i == 5) {
             backwardPressed = true;
-            System.out.println("Back!!");
         }
         if (i == 12) {
             brakePressed = true;
@@ -662,33 +657,31 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
         }
 
         if (worldObj.isRemote && ticksExisted %2 ==0 && !Minecraft.getMinecraft().ingameGUI.getChatGUI().getChatOpen()){
-            if (FMLClientHandler.instance().getClient().gameSettings.keyBindForward.getIsKeyPressed() || TCKeyHandler.remoteControlForward.getIsKeyPressed()
+            if (FMLClientHandler.instance().getClient().gameSettings.keyBindForward.getIsKeyPressed()
                     && !forwardPressed) {
                 Traincraft.keyChannel.sendToServer(new PacketKeyPress(4, this.getEntityId()));
                 forwardPressed = true;
-            } else if (!FMLClientHandler.instance().getClient().gameSettings.keyBindForward.getIsKeyPressed() || !TCKeyHandler.remoteControlForward.getIsKeyPressed()
+            } else if (!FMLClientHandler.instance().getClient().gameSettings.keyBindForward.getIsKeyPressed()
                     && forwardPressed) {
-                Traincraft.keyChannel.sendToServer(new PacketKeyPress(13, this.getEntityId()));
+                Traincraft.keyChannel.sendToServer(new PacketKeyPress(13));
                 forwardPressed = false;
-
             }
-            if (FMLClientHandler.instance().getClient().gameSettings.keyBindBack.getIsKeyPressed() || TCKeyHandler.remoteControlBackwards.getIsKeyPressed()
+            if (FMLClientHandler.instance().getClient().gameSettings.keyBindBack.getIsKeyPressed()
                     && !backwardPressed) {
-                Traincraft.keyChannel.sendToServer(new PacketKeyPress(5, this.getEntityId()));
+                Traincraft.keyChannel.sendToServer(new PacketKeyPress(5));
                 backwardPressed = true;
-
-            } else if (!FMLClientHandler.instance().getClient().gameSettings.keyBindBack.getIsKeyPressed() || !TCKeyHandler.remoteControlBackwards.getIsKeyPressed()
+            } else if (!FMLClientHandler.instance().getClient().gameSettings.keyBindBack.getIsKeyPressed()
                     && backwardPressed) {
-                Traincraft.keyChannel.sendToServer(new PacketKeyPress(14, this.getEntityId()));
+                Traincraft.keyChannel.sendToServer(new PacketKeyPress(14));
                 backwardPressed = false;
             }
-            if (FMLClientHandler.instance().getClient().gameSettings.keyBindJump.getIsKeyPressed() || TCKeyHandler.remoteControlBrake.getIsKeyPressed()
+            if (FMLClientHandler.instance().getClient().gameSettings.keyBindJump.getIsKeyPressed()
                     && !brakePressed) {
-                Traincraft.keyChannel.sendToServer(new PacketKeyPress(12, this.getEntityId()));
+                Traincraft.keyChannel.sendToServer(new PacketKeyPress(12));
                 brakePressed = true;
-            } else if (!FMLClientHandler.instance().getClient().gameSettings.keyBindJump.getIsKeyPressed() || !TCKeyHandler.remoteControlBrake.getIsKeyPressed()
+            } else if (!FMLClientHandler.instance().getClient().gameSettings.keyBindJump.getIsKeyPressed()
                     && brakePressed) {
-                Traincraft.keyChannel.sendToServer(new PacketKeyPress(15, this.getEntityId()));
+                Traincraft.keyChannel.sendToServer(new PacketKeyPress(15));
                 brakePressed = false;
             }
 
@@ -704,15 +697,14 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
         // }
         // }
         if (!worldObj.isRemote) {
-            if (true == true) { // was this.riddenByEntity instanceof EntityLivingBase
+            if (this.riddenByEntity instanceof EntityLivingBase) {
                 //EntityLivingBase entity = (EntityLivingBase) this.riddenByEntity;
                 if (forwardPressed || backwardPressed) {
                     if (getFuel() > 0 && this.isLocoTurnedOn() && rand.nextInt(4) == 0 && !worldObj.isRemote) {
-                        /*if (this.getTrainLockedFromPacket() && !((EntityPlayer) this.riddenByEntity).getDisplayName()
+                        if (this.getTrainLockedFromPacket() && !((EntityPlayer) this.riddenByEntity).getDisplayName()
                                 .toLowerCase().equals(this.getTrainOwner().toLowerCase())) {
                             return;
-                        }*/
-
+                        }
                         if (riddenByEntity instanceof EntityPlayer) {
                             int dir = MathHelper
                                     .floor_double((((EntityPlayer) riddenByEntity).rotationYaw * 4F) / 360F + 0.5D) & 3;
