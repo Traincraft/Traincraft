@@ -16,6 +16,8 @@ import net.minecraftforge.oredict.OreDictionary;
 import train.common.core.interfaces.ITCRecipe;
 import train.common.core.util.TraincraftUtil;
 
+import java.util.Arrays;
+
 public class ShapedTrainRecipes implements ITCRecipe {
 	/** How many horizontal slots this recipe is wide. */
 	public final int recipeWidth;
@@ -54,16 +56,14 @@ public class ShapedTrainRecipes implements ITCRecipe {
 	 */
 	@Override
 	public boolean matches(IInventory inventory, World world) {
-		for (int i = 0; i < slots.length; i++) {
-			//System.out.print(slots[i] + " ");
-			slots[i] = false;
-		}
+		//System.out.print(slots[i] + " ");
+		Arrays.fill(slots, false);
 		//System.out.println();
 
 		checkMatch(inventory, true);
-
-		for (int i = 0; i < slots.length; i++) {
-			if (!slots[i]) {
+		
+		for(boolean slot : slots){
+			if(!slot){
 				return false;
 			}
 		}
@@ -75,25 +75,25 @@ public class ShapedTrainRecipes implements ITCRecipe {
 	 */
 	private boolean checkMatch(IInventory inventory, boolean par4) {
 		for (int i = 0; i < 9/* recipeItems.length */; i++) {
-			ItemStack var9 = recipeItems[i];
-			ItemStack var10 = inventory.getStackInSlot(i);
+			ItemStack recipeStack = recipeItems[i];
+			ItemStack stackInSlot = inventory.getStackInSlot(i);
 
-			if (var10 != null || var9 != null) {
-				if (var10 == null || var9 == null) {
-					//System.out.println(var9.getDisplayName() + " : " + var10.getDisplayName());
+			if (!stackInSlot.isEmpty() || !recipeStack.isEmpty()) {
+				if (stackInSlot.isEmpty() || recipeStack.isEmpty()) {
+					//System.out.println(recipeStack.getDisplayName() + " : " + stackInSlot.getDisplayName());
 					slots[i] = false;
 					continue;
 				}
-				if(!TraincraftUtil.itemStackMatches(var9, var10) || var9.stackSize > var10.stackSize ){
+				if(!TraincraftUtil.itemStackMatches(recipeStack, stackInSlot) || recipeStack.getCount() > stackInSlot.getCount() ){
 					slots[i] = false;
 					continue;
 				}
-				if (var9.getItemDamage() != OreDictionary.WILDCARD_VALUE && var9.getItemDamage() != var10.getItemDamage()) {
-					//System.out.println(var9.getDisplayName() + " : " + var10.getDisplayName());
+				if (recipeStack.getItemDamage() != OreDictionary.WILDCARD_VALUE && recipeStack.getItemDamage() != stackInSlot.getItemDamage()) {
+					//System.out.println(recipeStack.getDisplayName() + " : " + stackInSlot.getDisplayName());
 					slots[i] = false;
 					continue;
 				}
-				//System.out.println(recipeItems.length + ":" + var9.getDisplayName() + " : " + var10.getDisplayName());
+				//System.out.println(recipeItems.length + ":" + recipeStack.getDisplayName() + " : " + stackInSlot.getDisplayName());
 				slots[i] = true;
 			}
 			else {
@@ -114,8 +114,8 @@ public class ShapedTrainRecipes implements ITCRecipe {
 			for (int var3 = 0; var3 < inventory.getSizeInventory(); ++var3) {
 				ItemStack var4 = inventory.getStackInSlot(var3);
 
-				if (var4 != null && var4.hasTagCompound()) {
-					var2.setTagCompound((NBTTagCompound) var4.stackTagCompound.copy());
+				if (!var4.isEmpty() && var4.hasTagCompound()) {
+					var2.setTagCompound(var4.getTagCompound().copy());
 				}
 			}
 		}

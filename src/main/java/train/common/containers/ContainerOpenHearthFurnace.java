@@ -36,20 +36,20 @@ public class ContainerOpenHearthFurnace extends Container {
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer player, int i) {
 		ItemStack itemstack = null;
-		Slot slot = (Slot) inventorySlots.get(i);
+		Slot slot = inventorySlots.get(i);
 		if (slot != null && slot.getHasStack()) {
 			ItemStack itemstack1 = slot.getStack();
 			itemstack = itemstack1.copy();
 			if (i < 4) {//TODO probably have to set this to 3
 				if (!mergeItemStack(itemstack1, 4, inventorySlots.size(), true)) {
-					return null;
+					return ItemStack.EMPTY;
 				}
 			}
 			else if (!mergeItemStack(itemstack1, 0, 4, false)) {
 				return null;
 			}
-			if (itemstack1.stackSize == 0) {
-				slot.putStack(null);
+			if (itemstack1.getCount() == 0) {
+				slot.putStack(ItemStack.EMPTY);
 			}
 			else {
 				slot.onSlotChanged();

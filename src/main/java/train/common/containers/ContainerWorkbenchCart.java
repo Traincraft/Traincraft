@@ -7,6 +7,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
+
 public class ContainerWorkbenchCart extends Container {
 	/** The crafting matrix inventory (3x3). */
 	public InventoryCrafting craftMatrix = new InventoryCrafting(this, 3, 3);
@@ -44,38 +46,39 @@ public class ContainerWorkbenchCart extends Container {
 	 */
 	@Override
 	public void onCraftMatrixChanged(IInventory par1IInventory) {
-		this.craftResult.setInventorySlotContents(0, CraftingManager.getInstance().findMatchingRecipe(craftMatrix, worldObj));
+		// todo fix this this.craftResult.setInventorySlotContents(0, CraftingManager.getInstance().findMatchingRecipe(craftMatrix, worldObj));
 	}
 
 	/**
 	 * Callback for when the crafting gui is closed.
 	 */
 	@Override
-	public void onContainerClosed(EntityPlayer par1EntityPlayer) {
-		super.onContainerClosed(par1EntityPlayer);
+	public void onContainerClosed(@Nonnull EntityPlayer player) {
+		super.onContainerClosed(player);
 
 		if (!worldObj.isRemote) {
 			for (int var2 = 0; var2 < 9; ++var2) {
-				ItemStack var3 = craftMatrix.getStackInSlotOnClosing(var2);
+				ItemStack var3 = craftMatrix.getStackInSlot(var2);
 
-				if (var3 != null) {
-					par1EntityPlayer.dropItem(var3.getItem(), var3.stackSize);
+				if (!var3.isEmpty()) {
+					player.dropItem(var3.getItem(), var3.getCount());
 				}
 			}
 		}
 	}
 	@Override
-	public boolean canInteractWith(EntityPlayer par1EntityPlayer) {
+	public boolean canInteractWith(@Nonnull EntityPlayer player) {
 		return true;
 	}
 
 	/**
 	 * Called to transfer a stack from one inventory to the other eg. when shift clicking.
 	 */
+	@Nonnull
 	@Override
-	public ItemStack transferStackInSlot(EntityPlayer player, int par1) {
-		ItemStack var2 = null;
-		Slot var3 = (Slot) inventorySlots.get(par1);
+	public ItemStack transferStackInSlot(@Nonnull EntityPlayer player, int par1) {
+		ItemStack var2 = ItemStack.EMPTY;
+		Slot var3 = inventorySlots.get(par1);
 
 		if (var3 != null && var3.getHasStack()) {
 			ItemStack var4 = var3.getStack();
@@ -83,37 +86,37 @@ public class ContainerWorkbenchCart extends Container {
 
 			if (par1 == 0) {
 				if (!this.mergeItemStack(var4, 10, 46, true)) {
-					return null;
+					return ItemStack.EMPTY;
 				}
 
 				var3.onSlotChange(var4, var2);
 			}
 			else if (par1 >= 10 && par1 < 37) {
 				if (!this.mergeItemStack(var4, 37, 46, false)) {
-					return null;
+					return ItemStack.EMPTY;
 				}
 			}
 			else if (par1 >= 37 && par1 < 46) {
 				if (!this.mergeItemStack(var4, 10, 37, false)) {
-					return null;
+					return ItemStack.EMPTY;
 				}
 			}
 			else if (!this.mergeItemStack(var4, 10, 46, false)) {
-				return null;
+				return ItemStack.EMPTY;
 			}
 
-			if (var4.stackSize == 0) {
-				var3.putStack(null);
+			if (var4.getCount() == 0) {
+				var3.putStack(ItemStack.EMPTY);
 			}
 			else {
 				var3.onSlotChanged();
 			}
 
-			if (var4.stackSize == var2.stackSize) {
-				return null;
+			if (var4.getCount() == var2.getCount()) {
+				return ItemStack.EMPTY;
 			}
 
-			var3.onPickupFromSlot(player, var4);
+			var3.onTake(player, var4);
 		}
 
 		return var2;

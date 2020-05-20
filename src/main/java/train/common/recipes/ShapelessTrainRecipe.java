@@ -22,9 +22,9 @@ public class ShapelessTrainRecipe implements ITCRecipe {
 	private final ItemStack recipeOutput;
 
 	/** Is a List of ItemStack that composes the recipe. */
-	public final List recipeItems;
+	public final List<ItemStack> recipeItems;
 
-	public ShapelessTrainRecipe(ItemStack par1ItemStack, List par2List) {
+	public ShapelessTrainRecipe(ItemStack par1ItemStack, List<ItemStack> par2List) {
 		this.recipeOutput = par1ItemStack;
 		this.recipeItems = par2List;
 	}
@@ -38,15 +38,13 @@ public class ShapelessTrainRecipe implements ITCRecipe {
 	 */
 	@Override
 	public boolean matches(IInventory inventory, World world) {
-		ArrayList var3 = new ArrayList(this.recipeItems);
+		ArrayList<ItemStack> var3 = new ArrayList<>(this.recipeItems);
 		for (int i = 0; i < 9; i++) {
 			ItemStack var6 = inventory.getStackInSlot(i);
-			if (var6 != null) {
+			if (!var6.isEmpty()) {
 				boolean var7 = false;
-				Iterator var8 = var3.iterator();
-				while (var8.hasNext()) {
-					ItemStack var9 = (ItemStack) var8.next();
-					if (var6 == var9 && (var9.getItemDamage() == OreDictionary.WILDCARD_VALUE || var6.getItemDamage() == var9.getItemDamage()) /* && var6.stackSize == var9.stackSize */) {
+				for(ItemStack var9 : var3){
+					if(var6 == var9 && (var9.getItemDamage() == OreDictionary.WILDCARD_VALUE || var6.getItemDamage() == var9.getItemDamage()) /* && var6.stackSize == var9.stackSize */){
 						var7 = true;
 						var3.remove(var9);
 						break;

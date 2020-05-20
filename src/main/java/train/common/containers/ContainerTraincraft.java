@@ -20,7 +20,7 @@ public abstract class ContainerTraincraft extends Container {
 
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer player, int i) {
-		return null;
+		return ItemStack.EMPTY;
 	}
 
 	public int getInventorySize() {

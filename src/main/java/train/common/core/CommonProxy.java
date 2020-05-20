@@ -17,26 +17,12 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import train.common.Traincraft;
-import train.common.api.EntityRollingStock;
-import train.common.api.Freight;
-import train.common.api.LiquidTank;
-import train.common.api.Tender;
-import train.common.containers.*;
 import train.common.core.handlers.ChunkEvents;
 import train.common.core.handlers.WorldEvents;
 import train.common.core.util.MP3Player;
 import train.common.entity.BaseTrainEntity;
-import train.common.entity.digger.EntityRotativeDigger;
-import train.common.entity.rollingStock.EntityJukeBoxCart;
-import train.common.entity.rollingStock.EntityTracksBuilder;
-import train.common.entity.zeppelin.AbstractZeppelin;
-import train.common.inventory.*;
-import train.common.library.GuiIDs;
-import train.common.mtc.*;
 import train.common.tile.*;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,44 +62,7 @@ public class CommonProxy implements IGuiHandler {
 		GameRegistry.registerTileEntity(TileWaterWheel.class, "tileWaterWheel");
 		GameRegistry.registerTileEntity(TileWindMill.class, "tileWindMill");
 		GameRegistry.registerTileEntity(TileGeneratorDiesel.class, "tileGeneratorDiesel");
-		GameRegistry.registerTileEntity(TileBook.class, "tileBook");
-		GameRegistry.registerTileEntity(TileTCRailGag.class, "tileTCRailGag");
-		GameRegistry.registerTileEntity(TileTCRail.class, "tileTCRail");
-		GameRegistry.registerTileEntity(TileBridgePillar.class, "tileTCBridgePillar");
-
-		/*if (Loader.isModLoaded("ComputerCraft") || Loader.isModLoaded("OpenComputers")) {
-			GameRegistry.registerTileEntity(TileInfoTransmitterSpeed.class, "tileInfoTransmitterSpeed");
-			GameRegistry.registerTileEntity(TileInfoTransmitterMTC.class, "tileInfoTransmitterMTC");
-			GameRegistry.registerTileEntity(TileInfoGrabberMTC.class, "tileInfoReceiverMTC");
-			GameRegistry.registerTileEntity(TileInfoGrabberDestination.class, "tileInfoReceiverDestination");
-			GameRegistry.registerTileEntity(TileATOTransmitterStopPoint.class, "tileATOTransmitterStopPoint");
-			GameRegistry.registerTileEntity(TilePDMInstructionRadio.class, "tilePDMInstructionRadio");
-		}*/
 	}
-
-	/*
-	public void registerComputerCraftPeripherals() throws ClassNotFoundException {
-		Class computerCraft = Class.forName("dan200.computercraft.ComputerCraft");
-		try {
-			Method computerCraft_registerPeripheralProvider = computerCraft.getMethod("registerPeripheralProvider", new Class[] { Class.forName("dan200.computercraft.api.peripheral.IPeripheralProvider") });
-
-			//Register all CC required blocks
-			computerCraft_registerPeripheralProvider.invoke(null, BlockInfoTransmitterSpeed.instance);
-			computerCraft_registerPeripheralProvider.invoke(null, BlockInfoGrabberMTC.instance);
-			computerCraft_registerPeripheralProvider.invoke(null, BlockInfoTransmitterMTC.instance);
-			computerCraft_registerPeripheralProvider.invoke(null, BlockATOTransmitterStopPoint.instance);
-
-		} catch (NoSuchMethodException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			e.printStackTrace();
-		}
-	}
-	 */
 	
 	@Override
 	public Object getServerGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {

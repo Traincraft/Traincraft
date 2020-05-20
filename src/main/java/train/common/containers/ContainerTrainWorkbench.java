@@ -12,6 +12,8 @@ import train.common.inventory.TrainCraftingManager;
 import train.common.slots.SlotCrafterTier;
 import train.common.slots.SlotTrainCrafting;
 
+import javax.annotation.Nonnull;
+
 public class ContainerTrainWorkbench extends Container {
 
 	public IInventory craftMatrix;
@@ -61,14 +63,15 @@ public class ContainerTrainWorkbench extends Container {
 	}
 
 	@Override
-	public boolean canInteractWith(EntityPlayer player) {
-		return craftMatrix.isUseableByPlayer(player);
+	public boolean canInteractWith(@Nonnull EntityPlayer player) {
+		return craftMatrix.isUsableByPlayer(player);
 	}
 
+	@Nonnull
 	@Override
-	public ItemStack transferStackInSlot(EntityPlayer player, int par1) {
-		ItemStack var2 = null;
-		Slot var3 = (Slot) this.inventorySlots.get(par1);
+	public ItemStack transferStackInSlot(@Nonnull EntityPlayer player, int par1) {
+		ItemStack var2 = ItemStack.EMPTY;
+		Slot var3 = this.inventorySlots.get(par1);
 
 		if (var3 != null && var3.getHasStack()) {
 			ItemStack var4 = var3.getStack();
@@ -76,35 +79,35 @@ public class ContainerTrainWorkbench extends Container {
 
 			if (par1 == 0) {
 				if (!this.mergeItemStack(var4, 10, 46, true)) {
-					return null;
+					return ItemStack.EMPTY;
 				}
 				var3.onSlotChange(var4, var2);
 			}
 			else if (par1 >= 10 && par1 < 37) {
 				if (!this.mergeItemStack(var4, 37, 46, false)) {
-					return null;
+					return ItemStack.EMPTY;
 				}
 			}
 			else if (par1 >= 37 && par1 < 46) {
 				if (!this.mergeItemStack(var4, 10, 37, false)) {
-					return null;
+					return ItemStack.EMPTY;
 				}
 			}
 			else if (!this.mergeItemStack(var4, 10, 46, false)) {
-				return null;
+				return ItemStack.EMPTY;
 			}
 
-			if (var4.stackSize == 0) {
-				var3.putStack(null);
+			if (var4.getCount() == 0) {
+				var3.putStack(ItemStack.EMPTY);
 			}
 			else {
 				var3.onSlotChanged();
 			}
 
-			if (var4.stackSize == var2.stackSize) {
-				return null;
+			if (var4.getCount() == var2.getCount()) {
+				return ItemStack.EMPTY;
 			}
-			var3.onPickupFromSlot(player, var4);
+			var3.onTake(player, var4);
 		}
 		return var2;
 	}

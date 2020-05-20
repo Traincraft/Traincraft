@@ -10,6 +10,8 @@ import train.common.core.interfaces.ITier;
 import train.common.slots.SlotCrafterTier;
 import train.common.slots.SlotResultTier;
 
+import javax.annotation.Nonnull;
+
 public class ContainerTier extends ContainerTraincraft {
 
 	private IInventory tier;
@@ -85,7 +87,7 @@ public class ContainerTier extends ContainerTraincraft {
 	}
 
 	@Override
-	public boolean canInteractWith(EntityPlayer entityplayer) {
-		return tier.isUseableByPlayer(entityplayer);
+	public boolean canInteractWith(@Nonnull EntityPlayer player) {
+		return tier.isUsableByPlayer(player);
 	}
 }

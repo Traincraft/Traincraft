@@ -17,7 +17,6 @@ import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import train.common.inventory.TrainCraftingManager;
 import train.common.library.ItemIDs;
-import train.common.recipes.RecipesArmorDyes;
 
 import java.util.ArrayList;
 import java.util.List;

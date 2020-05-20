@@ -33,20 +33,20 @@ public class ContainerGeneratorDiesel extends Container {
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer player, int i) {
 		ItemStack itemstack = null;
-		Slot slot = (Slot) inventorySlots.get(i);
+		Slot slot = inventorySlots.get(i);
 		if (slot != null && slot.getHasStack()) {
 			ItemStack itemstack1 = slot.getStack();
 			itemstack = itemstack1.copy();
 			if (i < 1) {
 				if (!mergeItemStack(itemstack1, 1, inventorySlots.size(), true)) {
-					return null;
+					return ItemStack.EMPTY;
 				}
 			}
 			else if (!mergeItemStack(itemstack1, 1, 1, false)) {
 				return null;
 			}
-			if (itemstack1.stackSize == 0) {
-				slot.putStack(null);
+			if (itemstack1.getCount() == 0) {
+				slot.putStack(ItemStack.EMPTY);
 			}
 			else {
 				slot.onSlotChanged();
