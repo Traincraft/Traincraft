@@ -659,7 +659,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
         if (worldObj.isRemote && ticksExisted %2 ==0 && !Minecraft.getMinecraft().ingameGUI.getChatGUI().getChatOpen()){
             if (FMLClientHandler.instance().getClient().gameSettings.keyBindForward.getIsKeyPressed()
                     && !forwardPressed) {
-                Traincraft.keyChannel.sendToServer(new PacketKeyPress(4, this.getEntityId()));
+                Traincraft.keyChannel.sendToServer(new PacketKeyPress(4));
                 forwardPressed = true;
             } else if (!FMLClientHandler.instance().getClient().gameSettings.keyBindForward.getIsKeyPressed()
                     && forwardPressed) {
@@ -922,6 +922,12 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
                         sendingObj.addProperty("posX", this.posX);
                         sendingObj.addProperty("posY", this.posY);
                         sendingObj.addProperty("posZ", this.posZ);
+                        sendingObj.addProperty("atoStatus", this.atoStatus);
+                        if (this.ridingEntity != null && this.ridingEntity instanceof EntityPlayer) {
+                            sendingObj.addProperty("driverName", ((EntityPlayer)ridingEntity).getDisplayName());
+                        } else {
+                            sendingObj.addProperty("driverName", "Nobody");
+                        }
                         sendingObj.addProperty("currentSpeed", (int)Math.abs(this.getSpeed()));
                         sendingObj.addProperty("speedOverrideActivated", overspeedOveridePressed);
                         sendMessage(new PDMMessage(this.trainID, this.serverUUID, sendingObj.toString(), 1));
@@ -1016,7 +1022,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
                     this.parkingBrake = false;
                     //Accelerate to the speed limit
                 }
-                if (!(distanceFromStopPoint < this.getSpeed()) && (!(distanceFromSpeedChange < this.getSpeed()))) {
+                if (!(distanceFromStopPoint < this.getSpeed()) && (!(distanceFromSpeedChange < this.getSpeed())) && !(this.distanceFromStopPoint  < 2)) {
                     accel(this.speedLimit);
                 }
 
@@ -1085,11 +1091,17 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
                     //The ATO system is speeding somehow, slow it down
                     slow(this.speedLimit);
                 }
-                if (this.distanceFromStopPoint < 2 || this.distanceFromStationStop < 2 && !stationStop) {
+
+                if (this.distanceFromStopPoint  < 2) {
+                    this.isBraking = true;
+                    this.parkingBrake = true;
+                }
+
+                if (this.distanceFromStationStop < 2 && !stationStop) {
                     this.parkingBrake = true;
                     this.isBraking = true;
-                    if (this.distanceFromStopPoint < 2) {
-                        this.xFromStopPoint = 0.0;
+
+                     if (this.distanceFromStationStop < 2) {
                         this.yFromStopPoint = 0.0;
                         this.zFromStopPoint = 0.0;
                     } else if (this.distanceFromStationStop < 2) {
@@ -1668,11 +1680,35 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
                     }
                     Traincraft.itsChannel.sendToAllAround(new PacketSetSpeed(speedLimit, 0, 0, 0, getEntityId()), new NetworkRegistry.TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
                 }
-                if (thing.get("speedChangeSoon") != null && thing.get("speedChangeSoon").getAsBoolean()) {
-                    xSpeedLimitChange = thing.get("xNextSpeedLimit").getAsDouble();
-                    ySpeedLimitChange = thing.get("yNextSpeedLimit").getAsDouble();
-                    zSpeedLimitChange = thing.get("zNextSpeedLimit").getAsDouble();
+
+                if (thing.get("xNextSpeedLimit") != null && thing.get("xNextSpeedLimit").getAsString().equals("reset")) {
+                    xSpeedLimitChange = 0.0;
+                    ySpeedLimitChange = 0.0;
+                    zSpeedLimitChange = 0.0;
+                    distanceFromSpeedChange = 0.0;
                     Traincraft.itnsChannel.sendToAllAround(new PacketNextSpeed(nextSpeedLimit, 0, 0, 0, xSpeedLimitChange, ySpeedLimitChange, zSpeedLimitChange, this.getEntityId()), new NetworkRegistry.TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
+                }
+                if (thing.get("xStopPoint") != null && thing.get("xStopPoint").getAsString().equals("reset")) {
+                    xFromStopPoint = 0.0;
+                    yFromStopPoint = 0.0;
+                    zFromStopPoint = 0.0;
+                    distanceFromStopPoint = 0.0;
+                    Traincraft.atoSetStopPoint.sendToAllAround(new PacketATOSetStopPoint(this.getEntityId(), xFromStopPoint, yFromStopPoint, zFromStopPoint, xStationStop, yStationStop, zStationStop), new NetworkRegistry.TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
+                }
+
+                if (thing.get("xStationStop") != null && thing.get("xStationStop").getAsString().equals("reset")) {
+                    xFromStopPoint = 0.0;
+                    yFromStopPoint = 0.0;
+                    zFromStopPoint = 0.0;
+                    distanceFromStationStop = 0.0;
+                    Traincraft.atoSetStopPoint.sendToAllAround(new PacketATOSetStopPoint(this.getEntityId(), xFromStopPoint, yFromStopPoint, zFromStopPoint, xStationStop, yStationStop, zStationStop), new NetworkRegistry.TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
+                }
+
+                if (thing.get("speedChangeSoon") != null && thing.get("speedChangeSoon").getAsBoolean()) {
+                        xSpeedLimitChange = thing.get("xNextSpeedLimit").getAsDouble();
+                        ySpeedLimitChange = thing.get("yNextSpeedLimit").getAsDouble();
+                        zSpeedLimitChange = thing.get("zNextSpeedLimit").getAsDouble();
+                        Traincraft.itnsChannel.sendToAllAround(new PacketNextSpeed(nextSpeedLimit, 0, 0, 0, xSpeedLimitChange, ySpeedLimitChange, zSpeedLimitChange, this.getEntityId()), new NetworkRegistry.TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
                 }
 
                 if (thing.get("stopSoon") != null && thing.get("stopSoon").getAsBoolean()) {
@@ -1684,12 +1720,12 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
                     }
                 }
                 if (thing.get("stationStopSoon") != null && thing.get("stationStopSoon").getAsBoolean() && !stationStop) {
-                    xStationStop = thing.get("xStationStop").getAsDouble();
-                    yStationStop = thing.get("yStationStop").getAsDouble();
-                    zStationStop = thing.get("zStationStop").getAsDouble();
+                        xStationStop = thing.get("xStationStop").getAsDouble();
+                        yStationStop = thing.get("yStationStop").getAsDouble();
+                        zStationStop = thing.get("zStationStop").getAsDouble();
 
 
-                    Traincraft.atoSetStopPoint.sendToAllAround(new PacketATOSetStopPoint(this.getEntityId(), xFromStopPoint, yFromStopPoint, zFromStopPoint, xStationStop, yStationStop, zStationStop), new NetworkRegistry.TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
+                        Traincraft.atoSetStopPoint.sendToAllAround(new PacketATOSetStopPoint(this.getEntityId(), xFromStopPoint, yFromStopPoint, zFromStopPoint, xStationStop, yStationStop, zStationStop), new NetworkRegistry.TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
                 }
                 if (thing.get("atoStatus") != null && thing.get("atoStatus") != null ) {
                     if (thing.get("atoStatus").getAsInt() == 1 && atoAllowed) {

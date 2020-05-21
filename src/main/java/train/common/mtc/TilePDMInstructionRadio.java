@@ -216,8 +216,7 @@ public class TilePDMInstructionRadio extends TileEntity implements IPeripheral, 
                     for (IComputerAccess c : computers) {
                         c.queueEvent("radio_message", new Object[]{c.getAttachmentName(), message.UUIDFrom, message.UUIDTo, message.message,
                                 message.system});
-
-                         System.out.println(message.message);
+                        
                     }
                 }
                 if (node != null) {
