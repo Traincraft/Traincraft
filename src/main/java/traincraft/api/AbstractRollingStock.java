@@ -1,23 +1,29 @@
 package traincraft.api;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
+import train.common.Traincraft;
+import traincraft.items.ItemConnector;
+import traincraft.network.GuiHandler;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.*;
 
@@ -44,7 +50,10 @@ public abstract class AbstractRollingStock<A extends AbstractRollingStock<A>> ex
     @Override
     protected void entityInit() {
         super.entityInit();
-        
+    
+        Vec3d size = this.getSize(this);
+        this.setSize(((float) size.x), (float) size.y);
+    
         this.registerSkins(this, this.skins);
     }
     
@@ -150,49 +159,74 @@ public abstract class AbstractRollingStock<A extends AbstractRollingStock<A>> ex
     }
     
     @Override
-    protected void addPassenger(Entity passenger) {
+    protected void addPassenger(@Nonnull Entity passenger) {
         if(this.seats.stream().anyMatch(passengerSeat -> passengerSeat.isUsedBy(passenger))){
             super.addPassenger(passenger);
         }
     }
     
     @Override
-    protected void removePassenger(Entity passenger) {
+    protected void removePassenger(@Nonnull Entity passenger) {
         this.seats.stream().filter(passengerSeat -> passengerSeat.isUsedBy(passenger)).forEach(passengerSeat -> passengerSeat.setCurrentUser(null));
         super.removePassenger(passenger);
     }
     
     @Override
-    protected boolean canFitPassenger(Entity passenger) {
+    protected boolean canFitPassenger(@Nonnull Entity passenger) {
         return this.seats.stream().anyMatch(PassengerSeat::isFree);
     }
     
     @Nullable
     @Override
     public Entity getControllingPassenger() {
-        return super.getControllingPassenger();
+        return this.seats.stream().filter(PassengerSeat::isControllingSeat).findFirst().map(PassengerSeat::getCurrentUser).orElse(null);
     }
     
     @Override
-    public List<Entity> getPassengers() {
-        return super.getPassengers();
+    public void updatePassenger(@Nonnull Entity passenger) {
+        this.seats.stream().filter(seat -> seat.isUsedBy(passenger)).forEach(seat -> {
+            double width = this.getEntityBoundingBox().maxX - this.getEntityBoundingBox().minX;
+            double depth = this.getEntityBoundingBox().maxZ - this.getEntityBoundingBox().minZ;
+            double x = this.posX + (width / 2.0F) + (seat.getX() + (seat.getWidth() / 2.0F));
+            double y = this.posY + seat.getY();
+            double z = this.posZ + (depth / 2.0F) + (seat.getZ() + (seat.getWidth() / 2.0F));
+            passenger.setPosition(x, y, z);
+        });
     }
     
     @Override
-    public boolean isPassenger(Entity entityIn) {
-        return super.isPassenger(entityIn);
+    public boolean canPlayerOpenGuiOrContainer(@Nonnull AbstractRollingStock<?> rollingStock, @Nonnull EntityPlayer player) {
+        if(this.restriction == EnumRestriction.PRIVATE || this.restriction == EnumRestriction.SEATS_ONLY){
+            if(!player.getUniqueID().equals(this.owner)){
+                return false;
+            }
+        }
+        return player.getDistanceSq(this.posX + 0.5D, this.posY + 0.5D, this.posZ + 0.5D) <= 64.0D;
     }
     
-    /**
-     * Called when a player right clicks this entity.
-     * This is fired through a event, so we get the Vector at which the player has clicked.
-     * This is used to determine which seat should be used for the player.
-     *
-     * @param player The clicker
-     * @param hand The hand used by the clicker
-     * @param hitVec The vector at which the clicker hit this entity. Reference: {@link PlayerInteractEvent.EntityInteractSpecific#getLocalPos()}
-     */
-    public void onPlayerClick(EntityPlayer player, EnumHand hand, Vec3d hitVec){
+    @Nonnull
+    @Override
+    public EnumActionResult applyPlayerInteraction(@Nonnull EntityPlayer player, @Nonnull Vec3d hitVec, @Nonnull EnumHand hand) {
+        ItemStack holdingItem = player.getHeldItem(hand);
+        if(!holdingItem.isEmpty() && this.handlePlayerClickWithItem(this, player, hand, holdingItem, hitVec)){
+            return EnumActionResult.SUCCESS;
+        }
+        if(!player.isSneaking()){
+            // todo seat code
+        }
+        if(this.canPlayerOpenGuiOrContainer(this, player)){
+            GuiHandler.openEntityGui(player, this);
+            return EnumActionResult.SUCCESS;
+        }
+        return EnumActionResult.PASS;
+    }
     
+    @Override
+    public boolean handlePlayerClickWithItem(@Nonnull AbstractRollingStock<?> rollingStock, @Nonnull EntityPlayer player, @Nonnull EnumHand hand, @Nonnull ItemStack stack, @Nonnull Vec3d hitVector) {
+        if(stack.getItem() instanceof ItemConnector){
+            ItemConnector.handleEntityClick(this, player, hand, stack);
+            return true;
+        }
+        return false;
     }
 }

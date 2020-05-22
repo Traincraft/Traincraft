@@ -1,4 +1,4 @@
-package train.common.items;
+package traincraft.items;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;

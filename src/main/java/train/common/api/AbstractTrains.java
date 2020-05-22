@@ -23,8 +23,8 @@ import train.common.Traincraft;
 import train.common.adminbook.ItemAdminBook;
 import train.common.core.handlers.ConfigHandler;
 import train.common.core.handlers.TrainHandler;
-import train.common.items.ItemChunkLoaderActivator;
-import train.common.items.ItemWrench;
+import traincraft.items.ItemChunkLoaderActivator;
+import traincraft.items.ItemWrench;
 import train.common.library.EnumTrains;
 
 import java.util.ArrayList;

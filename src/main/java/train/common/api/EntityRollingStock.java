@@ -34,7 +34,7 @@ import train.common.core.handlers.*;
 import train.common.core.network.PacketRollingStockRotation;
 import train.common.core.util.TraincraftUtil;
 import train.common.entity.rollingStock.EntityTracksBuilder;
-import train.common.items.ItemWrench;
+import traincraft.items.ItemWrench;
 import train.common.library.EnumTrains;
 
 import java.util.ArrayList;

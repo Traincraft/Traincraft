@@ -1,4 +1,4 @@
-package train.common.items.armor;
+package traincraft.items.armor;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,8 +18,6 @@ import train.common.Traincraft;
 
 import javax.annotation.Nullable;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 public class ItemArmorCompositeSuit extends ItemArmor {
     

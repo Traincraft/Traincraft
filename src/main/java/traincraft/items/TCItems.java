@@ -5,7 +5,7 @@
  * @author Mrbrutal
  ******************************************************************************/
 
-package train.common.items;
+package traincraft.items;
 
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
@@ -15,7 +15,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 import train.common.Traincraft;
 import train.common.blocks.TCBlocks;
-import train.common.items.armor.*;
+import traincraft.items.armor.*;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;

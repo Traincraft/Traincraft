@@ -1,4 +1,4 @@
-package train.common.items.armor;
+package traincraft.items.armor;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.init.SoundEvents;
@@ -12,13 +12,13 @@ import train.common.Traincraft;
 
 import javax.annotation.Nullable;
 
-public class ItemArmorTicketmanJacket extends ItemArmor {
+public class ItemArmorDriverHat extends ItemArmor {
     
-    public static final ArmorMaterial ARMOR_MATERIAL = EnumHelper.addArmorMaterial(Traincraft.MOD_ID + ":ticketman_jacket", "ticketman_jacket", 5, new int[]{1, 2, 2, 1}, 25, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0);
-    public static final int DEFAULT_COLOR = 0x002cdb;
+    public static final ArmorMaterial ARMOR_MATERIAL = EnumHelper.addArmorMaterial(Traincraft.MOD_ID + ":driver_hat", "driver_hat", 5, new int[]{1, 2, 2, 1}, 25, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0);
+    public static final int DEFAULT_COLOR = 0x1469d9;
     
-    public ItemArmorTicketmanJacket() {
-        super(ARMOR_MATERIAL, 0, EntityEquipmentSlot.CHEST);
+    public ItemArmorDriverHat() {
+        super(ARMOR_MATERIAL, 0, EntityEquipmentSlot.LEGS);
     
         this.setCreativeTab(Traincraft.TAB);
     }
@@ -26,7 +26,7 @@ public class ItemArmorTicketmanJacket extends ItemArmor {
     @Nullable
     @Override
     public String getArmorTexture(ItemStack stack, Entity entity, EntityEquipmentSlot slot, String type) {
-        return Traincraft.MOD_ID + ":textures/armor/ticketman_jacket.png";
+        return Traincraft.MOD_ID + ":textures/armor/driver_hat.png";
     }
     
     @Override

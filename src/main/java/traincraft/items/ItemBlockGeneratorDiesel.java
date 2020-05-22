@@ -5,9 +5,8 @@
  * @author Spitfire4466
  ******************************************************************************/
 
-package train.common.items;
+package traincraft.items;
 
-import net.minecraft.block.Block;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;

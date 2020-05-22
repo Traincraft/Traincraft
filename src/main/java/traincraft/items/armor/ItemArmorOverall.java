@@ -1,4 +1,4 @@
-package train.common.items.armor;
+package traincraft.items.armor;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.init.SoundEvents;

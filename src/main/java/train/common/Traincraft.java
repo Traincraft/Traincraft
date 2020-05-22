@@ -20,7 +20,7 @@ import train.common.core.TrainModCore;
 import train.common.core.handlers.*;
 import train.common.generation.ComponentVillageTrainstation;
 import train.common.generation.WorldGenWorld;
-import train.common.items.TCItems;
+import traincraft.items.TCItems;
 import train.common.recipes.AssemblyTableRecipes;
 
 import java.io.File;
@@ -29,7 +29,7 @@ import java.io.File;
 public class Traincraft {
 	
 	/* Mod relevant information */
-	public static final String MOD_ID = "tc";
+	public static final String MOD_ID = "traincraft";
 	public static final String MOD_NAME = "Traincraft";
 	public static final String MOD_VERSION = "@VERSION1@";
 	

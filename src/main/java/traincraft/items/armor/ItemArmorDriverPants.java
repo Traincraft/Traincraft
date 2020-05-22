@@ -1,4 +1,4 @@
-package train.common.items.armor;
+package traincraft.items.armor;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.init.SoundEvents;
@@ -12,12 +12,13 @@ import train.common.Traincraft;
 
 import javax.annotation.Nullable;
 
-public class ItemArmorHat extends ItemArmor {
+public class ItemArmorDriverPants extends ItemArmor {
     
-    public static final ArmorMaterial ARMOR_MATERIAL = EnumHelper.addArmorMaterial(Traincraft.MOD_ID + ":hat", "hat", 5, new int[]{1, 2, 2, 1}, 25, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0);
+    public static final ArmorMaterial ARMOR_MATERIAL = EnumHelper.addArmorMaterial(Traincraft.MOD_ID + ":driver_pants", "driver_pants", 5, new int[]{1, 2, 2, 1}, 25, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0);
+    public static final int DEFAULT_COLOR = 0x1535d4;
     
-    public ItemArmorHat() {
-        super(ARMOR_MATERIAL, 0, EntityEquipmentSlot.HEAD);
+    public ItemArmorDriverPants() {
+        super(ARMOR_MATERIAL, 0, EntityEquipmentSlot.LEGS);
     
         this.setCreativeTab(Traincraft.TAB);
     }
@@ -25,25 +26,22 @@ public class ItemArmorHat extends ItemArmor {
     @Nullable
     @Override
     public String getArmorTexture(ItemStack stack, Entity entity, EntityEquipmentSlot slot, String type) {
-        return Traincraft.MOD_ID + ":textures/armor/hat.png";
+        return Traincraft.MOD_ID + ":textures/armor/driver_pants.png";
     }
     
     @Override
     public boolean hasColor(ItemStack stack) {
-        return stack.hasTagCompound() && stack.getTagCompound().hasKey("color", Constants.NBT.TAG_INT);
+        return true;
     }
     
     @Override
     public int getColor(ItemStack stack) {
-        return stack.getTagCompound().getInteger("color");
+        return stack.hasTagCompound() && stack.getTagCompound().hasKey("color", Constants.NBT.TAG_INT) ? stack.getTagCompound().getInteger("color") : DEFAULT_COLOR;
     }
     
     @Override
     public void removeColor(ItemStack stack) {
-        stack.getTagCompound().removeTag("color");
-        if(stack.getTagCompound().isEmpty()){
-            stack.setTagCompound(null);
-        }
+        this.setColor(stack, DEFAULT_COLOR);
     }
     
     @Override

@@ -1,4 +1,4 @@
-package train.common.items;
+package traincraft.items;
 
 import net.minecraft.item.Item;
 import train.common.Traincraft;
