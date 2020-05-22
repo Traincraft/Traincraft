@@ -1102,9 +1102,6 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
                     this.isBraking = true;
 
                      if (this.distanceFromStationStop < 2) {
-                        this.yFromStopPoint = 0.0;
-                        this.zFromStopPoint = 0.0;
-                    } else if (this.distanceFromStationStop < 2) {
                         this.xStationStop = 0.0;
                         this.yStationStop = 0.0;
                         this.zStationStop = 0.0;
@@ -1656,13 +1653,11 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
                     this.destination = thing.get("destination").getAsString();
                 }
 
-                System.out.println(distanceFromSpeedChange<this.nextSpeedLimit);
                 if (riddenByEntity != null && this.speedLimit != thing.get("speedLimit").getAsInt() || this.nextSpeedLimit != thing.get("nextSpeedLimit").getAsInt()  && !speedGoingDown && !(distanceFromSpeedChange < this.nextSpeedLimit))  {
 
                     // worldObj.playSoundAtEntity(daTrain.ridingEntity, Info.resourceLocation + ":" + "mtc_speedchange", 1.0F, 1.0F);
                     // worldObj.playSoundAtEntity(this, Info.resourceLocation + ":" + sounds.getHornString(), sounds.getHornVolume(), 1.0F);
 
-                    System.out.println(speedGoingDown);
                     if (!speedGoingDown) {
                         Traincraft.playSoundOnClientChannel.sendTo(new PacketPlaySoundOnClient(7, "tc:mtc_speedchange"), (EntityPlayerMP) riddenByEntity);
                     }
@@ -1723,8 +1718,6 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
                         xStationStop = thing.get("xStationStop").getAsDouble();
                         yStationStop = thing.get("yStationStop").getAsDouble();
                         zStationStop = thing.get("zStationStop").getAsDouble();
-
-
                         Traincraft.atoSetStopPoint.sendToAllAround(new PacketATOSetStopPoint(this.getEntityId(), xFromStopPoint, yFromStopPoint, zFromStopPoint, xStationStop, yStationStop, zStationStop), new NetworkRegistry.TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D));
                 }
                 if (thing.get("atoStatus") != null && thing.get("atoStatus") != null ) {
