@@ -229,14 +229,14 @@ public class ModelChME3 extends ModelBase {
 		box8.render(f5);
 		box9.render(f5);
 		
-		Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+		Minecraft.getMinecraft().entityRenderer.disableLightmap();
 		box26.render(f5);
 		box27.render(f5);
 		box23.render(f5);
 		box28.render(f5);
 		box32.render(f5);
 		box34.render(f5);
-		Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+		Minecraft.getMinecraft().entityRenderer.enableLightmap();
 	}
 
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5) {}

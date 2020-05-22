@@ -1,4 +1,4 @@
-package train.common.tile;
+/*package train.common.tile;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -283,4 +283,4 @@ public class TileCrafterTierIII extends TileEntity implements IInventory, ITier 
 	@Override
 	public void updateEntity() {
 	}
-}
+}*/

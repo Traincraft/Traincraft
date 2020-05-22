@@ -5,11 +5,10 @@ import org.lwjgl.opengl.GL11;
 import tmt.ModelBase;
 import train.client.core.ClientProxy;
 import train.client.render.CustomModelRenderer;
-import train.client.render.models.blocks.ModelPresent;
 
 public class ModelFlatCar_DB extends ModelBase {
 
-	private ModelPresent present;
+	//private ModelPresent present;
 	
 	public CustomModelRenderer box;
 	public CustomModelRenderer box0;
@@ -40,7 +39,7 @@ public class ModelFlatCar_DB extends ModelBase {
 	
 	public ModelFlatCar_DB() {
 		
-		present = new ModelPresent();
+		//present = new ModelPresent();
 		
 		box = new CustomModelRenderer(this, 70, 25, 256, 128);
 		box.addBox(0F, 0F, 0F, 8, 4, 4);
@@ -183,35 +182,35 @@ public class ModelFlatCar_DB extends ModelBase {
     		GL11.glPushMatrix();
     		GL11.glTranslatef(0, 1, 0);
     		GL11.glRotatef(-15, 0, 1, 0);
-    		present.render(0xff007300);
+    		//present.render(0xff007300);
     		GL11.glPopMatrix();
     		
     		GL11.glPushMatrix();
     		GL11.glTranslatef(-1.16f, 0.8f, 0.18f);
     		GL11.glScalef(0.8f, 0.8f, 0.8f);
     		GL11.glRotatef(45, 0, 1, 0);
-    		present.render(0xff800018);
+    		//present.render(0xff800018);
     		GL11.glPopMatrix();
     		
     		GL11.glPushMatrix();
     		GL11.glTranslatef(-0.8f, 0.8f, -0.4f);
     		GL11.glScalef(0.4f, 0.4f, 0.4f);
     		GL11.glRotatef(70, 0, 1, 0);
-    		present.render(0xff3639b8);
+    		//present.render(0xff3639b8);
     		GL11.glPopMatrix();
     		
     		GL11.glPushMatrix();
     		GL11.glTranslatef(1.16f, 0.8f, -0.18f);
     		GL11.glScalef(0.8f, 0.8f, 0.8f);
     		GL11.glRotatef(45, 0, 1, 0);
-    		present.render(0xff59976c);
+    		//present.render(0xff59976c);
     		GL11.glPopMatrix();
     		
     		GL11.glPushMatrix();
     		GL11.glTranslatef(0.8f, 0.8f, 0.4f);
     		GL11.glScalef(0.4f, 0.4f, 0.4f);
     		GL11.glRotatef(70, 0, 1, 0);
-    		present.render(0xffbadc00);
+    		//present.render(0xffbadc00);
     		GL11.glPopMatrix();
 		}
 

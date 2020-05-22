@@ -88,16 +88,16 @@ public class TierRecipe implements ITierRecipe {
 	}
 
 	public static boolean areSizesIdentical(ItemStack inSlot, ItemStack inRecipe) {
-		if (inRecipe == null || inSlot == null) {
+		if (inRecipe.isEmpty() || inSlot.isEmpty()) {
 			return inRecipe == inSlot;
 		}
-		return inSlot.stackSize >= inRecipe.stackSize;
+		return inSlot.getCount() >= inRecipe.getCount();
 	}
 
 	@Override
 	public int toDecrease(int slot) {
 		if (slot < stacks.length) {
-			return stacks[slot].stackSize;
+			return stacks[slot].getCount();
 		}
 		return 0;
 	}

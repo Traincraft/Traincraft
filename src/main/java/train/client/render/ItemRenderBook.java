@@ -5,7 +5,7 @@
  * @author Mrbrutal
  ******************************************************************************/
 
-package train.client.render;
+/*package train.client.render;
 
 import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.Minecraft;
@@ -102,8 +102,9 @@ public class ItemRenderBook implements IItemRenderer {
 		GL11.glRotatef(rotation, x, y, z);
 		GL11.glRotatef(-25.0f, 1.0f, 0.0f, 0.0f);
 		GL11.glScalef(scale, scale, scale);
-		book1.rotate(10/*+(int)((Math.sin(w)*10)-(Math.sin(w))%10)*/);
+		book1.rotate(10/*+(int)((Math.sin(w)*10)-(Math.sin(w))%10)*//*);
 		GL11.glPopMatrix();
 	}
 
 }
+*/

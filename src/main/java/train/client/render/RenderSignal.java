@@ -1,4 +1,4 @@
-package train.client.render;
+/*package train.client.render;
 
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
@@ -21,7 +21,7 @@ public class RenderSignal extends TileEntitySpecialRenderer {
 		}
 		else {
 			bindTextureByName(Info.trainsPrefix + "signal_suisse_red.png");
-		}*/
+		}*//*
 		modelSignal.render(0.0625F, var1.getFacing());
 		GL11.glPopMatrix();
 	}
@@ -30,4 +30,4 @@ public class RenderSignal extends TileEntitySpecialRenderer {
 	public void renderTileEntityAt(TileEntity tileentity, double d, double d1, double d2, float f) {
 		renderAModelAt((TileSignal) tileentity, d, d1, d2, f);
 	}
-}
+}*/

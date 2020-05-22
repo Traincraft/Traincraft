@@ -2824,7 +2824,7 @@ public class ModelGP40 extends ModelBase {
 		Shape343.render(f5);
 		Shape370.render(f5);
 
-		Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+		Minecraft.getMinecraft().entityRenderer.disableLightmap();
 		light4.render(f5);
 		light2.render(f5);
 		light5.render(f5);
@@ -2835,7 +2835,7 @@ public class ModelGP40 extends ModelBase {
 		light1.render(f5);
 		light_big_2.render(f5);
 		light8.render(f5);
-		Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+		Minecraft.getMinecraft().entityRenderer.enableLightmap();
 	}
 
 	private void setRotation(ModelRenderer model, float x, float y, float z) {

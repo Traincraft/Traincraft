@@ -9,6 +9,7 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -19,7 +20,6 @@ import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
-import train.common.Traincraft;
 import traincraft.items.ItemConnector;
 import traincraft.network.GuiHandler;
 
@@ -35,7 +35,7 @@ public abstract class AbstractRollingStock<A extends AbstractRollingStock<A>> ex
     private int activeSkin;
     private double travelDistance;
     private Map<String, ResourceLocation> skins = new HashMap<>();
-    private AbstractRollingStock next, previous;
+    private AbstractRollingStock<?> next, previous;
     
     private List<PassengerSeat> seats = new ArrayList<>();
     
@@ -52,9 +52,16 @@ public abstract class AbstractRollingStock<A extends AbstractRollingStock<A>> ex
         super.entityInit();
     
         Vec3d size = this.getSize(this);
-        this.setSize(((float) size.x), (float) size.y);
-    
+        //this.setSize(((float) size.x), (float) size.y);
+        this.setEntityBoundingBox(new AxisAlignedBB(0, 0, 0, size.x, size.y, size.z));
+        
         this.registerSkins(this, this.skins);
+    }
+    
+    @Nonnull
+    @Override
+    public Type getType() {
+        return Type.RIDEABLE;
     }
     
     @Override
@@ -202,6 +209,16 @@ public abstract class AbstractRollingStock<A extends AbstractRollingStock<A>> ex
             }
         }
         return player.getDistanceSq(this.posX + 0.5D, this.posY + 0.5D, this.posZ + 0.5D) <= 64.0D;
+    }
+    
+    @Override
+    public boolean canLinkToAnotherRollingStock(@Nonnull AbstractRollingStock<?> rollingStock, @Nonnull AbstractRollingStock<?> other, @Nullable EntityPlayer linker) {
+        return false; //todo
+    }
+    
+    @Override
+    public void linkToAnotherRollingStock(@Nonnull AbstractRollingStock<?> rollingStock, @Nonnull AbstractRollingStock<?> other, @Nullable EntityPlayer linker) {
+    
     }
     
     @Nonnull

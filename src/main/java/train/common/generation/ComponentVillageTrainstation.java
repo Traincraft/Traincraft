@@ -1,11 +1,10 @@
-package train.common.generation;
+/*package train.common.generation;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.StructureVillagePieces;
-import train.common.api.EntityRollingStock;
 import train.common.core.util.TraincraftUtil;
 import train.common.entity.rollingStock.*;
 
@@ -230,9 +229,9 @@ public class ComponentVillageTrainstation extends StructureVillagePieces.Village
 
 	/**
 	 * Returns the villager type to spawn in this component, based on the number of villagers already spawned.
-	 */
+	 *//*
 	@Override
 	protected int getVillagerType(int par1) {
 		return 86;
 	}
-}
+}*/

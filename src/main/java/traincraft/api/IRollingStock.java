@@ -23,8 +23,7 @@ public interface IRollingStock {
     
     /**
      * Gets the size of this, within a {@link Vec3d} object.
-     * The x-field is the width and the y-field is the height.
-     * The z-field can be ignored.
+     * The x-field is the width, the y-field is the height and the z-field is the depth
      *
      * The default value is a one by one block sized entity.
      *
@@ -32,11 +31,12 @@ public interface IRollingStock {
      * @return The size of this rolling stock
      */
     default Vec3d getSize(AbstractRollingStock<?> rollingStock){
-        return new Vec3d(0.98F, 0.98F, 0);
+        return new Vec3d(0.98F, 0.98F, 0.98F);
     }
     
     /**
      * Gets the acceleration this rolling stock should be capable of.
+     * Unit should be meters/second (m/s)
      *
      * @param rollingStock This rolling stock
      * @return The acceleration
@@ -45,6 +45,7 @@ public interface IRollingStock {
     
     /**
      * Gets the maximum break power this rolling stock should be capable of.
+     * Unit should be meters/second (m/s)
      *
      * @param rollingStock This rolling stock
      * @return The maximum break power
@@ -53,6 +54,7 @@ public interface IRollingStock {
     
     /**
      * Gets the maximum speed this rolling stock should be capable of.
+     * Unit should be meters/second (m/s)
      *
      * @param rollingStock This rolling stock
      * @return The maximum speed
@@ -61,6 +63,7 @@ public interface IRollingStock {
     
     /**
      * Gets the maximum reverse speed this rolling stock should be capable of.
+     * Unit should be meters/second (m/s)
      *
      * Set this to zero or below will prevent the rolling stock from driving in reverse direction.
      * This can be set to the maximum speed in case the rolling stock can drive in both directions
@@ -69,6 +72,16 @@ public interface IRollingStock {
      * @return The maximum reverse speed
      */
     double getMaxReverseSpeed(AbstractRollingStock<?> rollingStock);
+    
+    /**
+     * Gets the mass of the rolling stock.
+     * This is used in acceleration and breaking calculations.
+     * Unit should be kilogram (kg)
+     *
+     * @param rollingStock This rolling stock
+     * @return The mass
+     */
+    double getMass(AbstractRollingStock<?> rollingStock);
     
     /**
      * With this method you can add skins to your rolling stock.

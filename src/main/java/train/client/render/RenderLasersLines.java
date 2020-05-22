@@ -1,4 +1,4 @@
-package train.client.render;
+/*package train.client.render;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
@@ -9,7 +9,7 @@ import org.lwjgl.opengl.GL11;
 import train.common.entity.EntityLasersLines;
 
 public class RenderLasersLines extends Render {
-	/** instance of ModelBoat for rendering */
+	/** instance of ModelBoat for rendering *//*
 	private static final ModelBase model = new ModelBase() {};
 	private ModelRenderer box;
 
@@ -24,7 +24,7 @@ public class RenderLasersLines extends Render {
 
 	/**
 	 * The render method used in RenderBoat that renders the boat model.
-	 */
+	 *//*
 	public void renderLasersLines(EntityLasersLines en, double x, double y, double z, float f, float f1) {
 		if (en.hidden ^ en.isDead) {
 			return;
@@ -58,7 +58,7 @@ public class RenderLasersLines extends Render {
 
 	/**
 	 * Actually renders the given argument. This is a synthetic bridge method, always casting down its argument and then handing it off to a worker function which does the actual work. In all probabilty, the class Render is generic (Render<T extends Entity) and this method has signature public void doRender(T entity, double d, double d1, double d2, float f, float f1). But JAD is pre 1.5 so doesn't do that.
-	 */
+	 *//*
 	@Override
 	public void doRender(Entity entity, double par2, double par4, double par6, float par8, float par9) {
 
@@ -71,3 +71,4 @@ public class RenderLasersLines extends Render {
 		return null;
 	}
 }
+*/

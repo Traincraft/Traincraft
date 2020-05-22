@@ -1,4 +1,4 @@
-package train.client.gui;
+/*package train.client.gui;
 
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -91,7 +91,7 @@ public class GuiCrafterTier extends GuiTraincraft {
 		if(!isTabRecipeOpen){
 			currentRenderTabY=40;
 		}
-		/**Render the entity in GUI*/
+		/**Render the entity in GUI*//*
 		if(currentKnownItem!=null && isTabRecipeOpen){
 			if(currentRenderTabY<120)currentRenderTabY++;
 			ticksInGui++;
@@ -182,3 +182,4 @@ public class GuiCrafterTier extends GuiTraincraft {
 		sideTabManager.add(new SideTabSlots(tier1, this, true, true, true, slotStates));
 	}
 }
+*/

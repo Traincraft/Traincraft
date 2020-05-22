@@ -1,4 +1,4 @@
-package train.client.gui;
+/*package train.client.gui;
 
 
 import cpw.mods.fml.relauncher.Side;
@@ -129,3 +129,4 @@ public class GuiMTCInfo extends GuiScreen {
         }
     }
 }
+*/

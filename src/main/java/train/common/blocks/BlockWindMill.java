@@ -15,7 +15,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import train.common.Traincraft;
-import train.common.tile.TileWindMill;
+import traincraft.tile.TileWindMill;
 
 import javax.annotation.Nullable;
 

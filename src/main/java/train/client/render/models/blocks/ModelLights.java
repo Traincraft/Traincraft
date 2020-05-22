@@ -5,7 +5,7 @@
  * @author Mrbrutal
  ******************************************************************************/
 
-package train.client.render.models.blocks;
+/*package train.client.render.models.blocks;
 
 import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.Minecraft;
@@ -45,3 +45,4 @@ public class ModelLights extends ModelBase {
 		GL11.glPopMatrix();
 	}
 }
+*/

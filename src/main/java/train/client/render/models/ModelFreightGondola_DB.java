@@ -4,7 +4,6 @@ import net.minecraft.entity.Entity;
 import org.lwjgl.opengl.GL11;
 import tmt.ModelBase;
 import train.client.render.CustomModelRenderer;
-import train.common.api.Freight;
 
 public class ModelFreightGondola_DB extends ModelBase {
 	public CustomModelRenderer box;
@@ -227,7 +226,7 @@ public class ModelFreightGondola_DB extends ModelBase {
 		box8.render(f5);
 		box9.render(f5);
 		
-		int cargo = ((Freight) entity).getAmmountOfCargo();
+		/*int cargo = ((Freight) entity).getAmmountOfCargo();
 		if (cargo != 0) {
 			GL11.glPushMatrix();
 			GL11.glScalef(1, 0.1f, 1);
@@ -252,7 +251,7 @@ public class ModelFreightGondola_DB extends ModelBase {
 			GL11.glTranslatef(0, -1.14f, 0);
 			box64.render(f5);
 			GL11.glPopMatrix();
-		}
+		}*/
 	}
 
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5) {}

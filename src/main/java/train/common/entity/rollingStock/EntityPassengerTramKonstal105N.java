@@ -1,4 +1,4 @@
-package train.common.entity.rollingStock;
+/*package train.common.entity.rollingStock;
 
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
@@ -74,4 +74,4 @@ public class EntityPassengerTramKonstal105N extends EntityRollingStock implement
 	public float getOptimalDistance(EntityMinecart cart) {
 		return 2.2F;
 	}
-}
+}*/

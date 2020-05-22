@@ -618,9 +618,9 @@ public class ModelMILWTender extends ModelBase
 		for(int i = 0; i < 145; i++)
 		{
 			if(milwtenderModel[i].boxName!= null && milwtenderModel[i].boxName.equals("lamp")){
-				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+				Minecraft.getMinecraft().entityRenderer.disableLightmap();
 				milwtenderModel[i].render(f5);
-				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+				Minecraft.getMinecraft().entityRenderer.enableLightmap();
 
 			} else {
 				milwtenderModel[i].render(f5);

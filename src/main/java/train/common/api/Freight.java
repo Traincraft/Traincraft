@@ -1,4 +1,4 @@
-package train.common.api;
+/*package train.common.api;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -43,7 +43,7 @@ public abstract class Freight extends EntityRollingStock implements IInventory {
 		return true;
 	}
 
-	/* IInventory implements */
+	/* IInventory implements *//*
 	@Override
 	public ItemStack getStackInSlot(int i) {
 		return cargoItems[i];
@@ -120,7 +120,7 @@ public abstract class Freight extends EntityRollingStock implements IInventory {
 	 * Returns true if this cart is a storage cart Some carts may have inventories but not be storage carts and some carts without inventories may be storage carts.
 	 * 
 	 * @return True if this cart should be classified as a storage cart.
-	 */
+	 *//*
 	@Override
 	public boolean isStorageCart() {
 		return true;
@@ -139,7 +139,7 @@ public abstract class Freight extends EntityRollingStock implements IInventory {
 
 	/**
 	 * Handle mass depending on item count tenders are done differently
-	 */
+	 *//*
 	protected void handleMass() {
 		if (this.ticksExisted % 10 != 0)
 			return;
@@ -202,4 +202,4 @@ public abstract class Freight extends EntityRollingStock implements IInventory {
 
 	@Override
 	public ItemStack[] getInventory(){return cargoItems;}
-}
+}*/

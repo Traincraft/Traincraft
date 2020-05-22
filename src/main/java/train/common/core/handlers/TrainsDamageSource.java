@@ -3,9 +3,11 @@ package train.common.core.handlers;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentString;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +15,7 @@ public class TrainsDamageSource extends DamageSource {
 
 	public static final List<TrainsDamageSource> damageSources = new ArrayList();
 
-	public static final TrainsDamageSource ranOver = (TrainsDamageSource) new TrainsDamageSource("ranOver", " was rolled over by a train!").setDamageBypassesArmor();
+	public static final TrainsDamageSource ranOver = (TrainsDamageSource) new TrainsDamageSource("ranOver", "was rolled over by a train!").setDamageBypassesArmor();
 	public String deathMessage;
 
 	public TrainsDamageSource(String damageType) {
@@ -37,17 +39,17 @@ public class TrainsDamageSource extends DamageSource {
 
 	/*
 	 * public void registerDeathMessage() { LanguageRegistry.instance().addName("death.ranOver", "was rolled over!");//.addStringLocalization("death." + this.damageType, this.deathMessage); } */
-	/**
-	 * Returns the message to be displayed on player death.
-	 */
+	
+	@Nonnull
 	@Override
-	public ChatComponentText func_151519_b(EntityLivingBase living) {
-		if(living instanceof EntityPlayer) {
-			return new ChatComponentText(((EntityPlayer) living).getDisplayName() + deathMessage);
-		} else if(living instanceof EntityLiving &&((EntityLiving)living).getCustomNameTag() !=null && ((EntityLiving)living).getCustomNameTag().length()>0) {
-			return new ChatComponentText( ((EntityLiving)living).getCustomNameTag() + deathMessage);
-		} else {
-			return new ChatComponentText(living.getCommandSenderName() +deathMessage);
+	public ITextComponent getDeathMessage(@Nonnull EntityLivingBase entity) {
+		if(entity instanceof EntityPlayer){
+			return new TextComponentString(String.format("%s%s", ((EntityPlayer) entity).getDisplayNameString(), this.deathMessage));
+		} else if(entity instanceof EntityLiving){
+			if(entity.hasCustomName()){
+				return new TextComponentString(String.format("%s %s", entity.getCustomNameTag(), this.deathMessage));
+			}
 		}
+		return new TextComponentString(String.format("%s %s", entity.getName(), this.deathMessage));
 	}
 }

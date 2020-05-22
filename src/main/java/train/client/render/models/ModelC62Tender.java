@@ -11,13 +11,9 @@ package train.client.render.models; //Path where the model is located
 
 
 import net.minecraft.entity.Entity;
-import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import tmt.ModelConverter;
 import tmt.ModelRendererTurbo;
-import tmt.Tessellator;
-import train.common.api.EntityRollingStock;
-import train.common.library.Info;
 
 public class ModelC62Tender extends ModelConverter //Same as Filename
 {
@@ -41,7 +37,7 @@ public class ModelC62Tender extends ModelConverter //Same as Filename
 	@Override
 	public void render(Entity entity, float f0, float f1, float f2, float f3, float f4, float scale){
 		super.render(entity, f0, f1, f2, f3, f4, scale);
-		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation,Info.trainsPrefix +"c62_tender_bogie_"+((EntityRollingStock)entity).getColorAsString() + ".png"));
+		//Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation,Info.trainsPrefix +"c62_tender_bogie_"+((EntityRollingStock)entity).getColorAsString() + ".png"));
 		GL11.glPushMatrix();
 		GL11.glTranslatef(2.25f,0f,0);
 		bogie.render();

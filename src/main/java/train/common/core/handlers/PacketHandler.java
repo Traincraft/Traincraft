@@ -5,7 +5,7 @@
  * @author Mrbrutal
  ******************************************************************************/
 
-package train.common.core.handlers;
+/*package train.common.core.handlers;
 
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.network.NetworkRegistry;
@@ -76,3 +76,4 @@ public class PacketHandler {
 		}
 	}
 }
+*/

@@ -8,7 +8,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.opengl.GL11;
-import train.common.core.handlers.ConfigHandler;
 
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
@@ -145,7 +144,7 @@ public class Tessellator{
 	 * @param textureURI
 	 */
 	public static void bindTexture(ResourceLocation textureURI) {
-		if (ConfigHandler.FORCE_TEXTURE_BINDING) {
+		if (false/*ConfigHandler.FORCE_TEXTURE_BINDING*/) {
 			Minecraft.getMinecraft().renderEngine.bindTexture(textureURI);
 		} else {
 			ITextureObject object = Minecraft.getMinecraft().getTextureManager().getTexture(textureURI);

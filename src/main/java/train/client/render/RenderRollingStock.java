@@ -1,4 +1,4 @@
-package train.client.render;
+/*package train.client.render;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -30,7 +30,7 @@ public class RenderRollingStock extends Render {
 
 	/**
 	 * Renders the Minecart.
-	 */
+	 *//*
 	public static void renderTheMinecart(EntityRollingStock cart, double x, double y, double z, float yaw, float time) {
 		GL11.glPushMatrix();
 		long var10 = cart.getEntityId() * 493286711L;
@@ -102,7 +102,7 @@ public class RenderRollingStock extends Render {
 		}*/
 		//System.out.println(Math.abs(yaw - serverYaw));
 		//System.out.println("yaw after "+yaw+" server yaw after "+serverYaw);
-
+/*
 		GL11.glTranslatef((float) x, (float) y, (float) z);
 		int i = MathHelper.floor_double(cart.posX);
 		int j = MathHelper.floor_double(cart.posY);
@@ -376,4 +376,4 @@ public class RenderRollingStock extends Render {
 		}
 		return null;
 	}
-}
+}*/

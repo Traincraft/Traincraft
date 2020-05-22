@@ -1,4 +1,4 @@
-package train.common.entity.rollingStock;
+/*package train.common.entity.rollingStock;
 
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
@@ -114,4 +114,4 @@ public class EntityCabooseLoggingPRR extends AbstractWorkCart implements IInvent
 	}
 
 	public void markDirty(){}
-}
+}*/

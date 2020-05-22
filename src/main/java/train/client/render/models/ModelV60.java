@@ -579,14 +579,14 @@ public class ModelV60 extends ModelBase {
 		box89.render(f5);
 		box9.render(f5);
 		
-		Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+		Minecraft.getMinecraft().entityRenderer.disableLightmap();
 		box80.render(f5);
 		box81.render(f5);
 		box82.render(f5);
 		box79.render(f5);
 		box74.render(f5);
 		box75.render(f5);
-		Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+		Minecraft.getMinecraft().entityRenderer.enableLightmap();
 	}
 
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5) {}

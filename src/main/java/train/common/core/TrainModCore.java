@@ -1,8 +1,7 @@
 package train.common.core;
 
-import cpw.mods.fml.common.Loader;
+import net.minecraftforge.fml.common.Loader;
 import train.common.Traincraft;
-import train.common.core.plugins.PluginRailcraft;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -36,7 +35,7 @@ public class TrainModCore {
 		if(Loader.isModLoaded("Railcraft")){
 			readRailcraftConfig();
 			if (!rcVanillaRecipes) {
-				PluginRailcraft.init();
+				//PluginRailcraft.init();
 				Traincraft.LOGGER.info("Enabled Traincraft additional tracks for Railcraft");
 			} else {
 				Traincraft.LOGGER.info(

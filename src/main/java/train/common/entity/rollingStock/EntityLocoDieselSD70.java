@@ -1,4 +1,4 @@
-package train.common.entity.rollingStock;
+/*package train.common.entity.rollingStock;
 
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
@@ -132,3 +132,4 @@ public class EntityLocoDieselSD70 extends DieselTrain {
 		return true;
 	}
 }
+*/

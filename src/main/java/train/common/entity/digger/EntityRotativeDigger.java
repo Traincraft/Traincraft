@@ -1,4 +1,4 @@
-package train.common.entity.digger;
+/*package train.common.entity.digger;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -66,7 +66,7 @@ public class EntityRotativeDigger extends Entity implements IInventory {
 	public float pitch = 0F;
 	public float roll = 0F;
 	public float pitchLimits = 0.75F;
-	/** passengers wheels */
+	/** passengers wheels *//*
 	protected EntityRotativeWheel[] wheels;
 
 	public EntityRotativeDigger(World world) {
@@ -86,7 +86,7 @@ public class EntityRotativeDigger extends Entity implements IInventory {
 
 		/**
 		 * Entities are always rendered even if out player's sight => no more flickering/disappearing
-		 */
+		 *//*
 		if (ConfigHandler.FLICKERING) {
 			this.ignoreFrustumCheck = true;
 		}
@@ -293,7 +293,7 @@ public class EntityRotativeDigger extends Entity implements IInventory {
 	 * @param y
 	 * @param z
 	 * @return
-	 */
+	 *//*
 	public Vec3 rotate(double x, double y, double z) {
 
 		double cosYaw = Math.cos(this.getYaw() * 3.141593F / 180.0F);
@@ -342,7 +342,7 @@ public class EntityRotativeDigger extends Entity implements IInventory {
 
 		/**
 		 * Handle the wheels mouvements
-		 */
+		 *//*
 		if (wheels != null) {
 			for (int seatNum = 0; seatNum < wheels.length; seatNum++) {
 				Vec3 posVec = this.rotate(wheels[seatNum].seatX, wheels[seatNum].seatY, wheels[seatNum].seatZ).addVector(this.posX, this.posY + 0.7, this.posZ);
@@ -354,7 +354,7 @@ public class EntityRotativeDigger extends Entity implements IInventory {
 
 		//It hasn't any GUI for now
 		/*if (fuel <= 0) { if (zeppInvent[0] != null && zeppInvent[0].itemID == ItemIDs.refinedFuel.item.shiftedIndex) { fuel = ConfigHandler2.ZeppelinCoal; this.dataWatcher.updateObject(20, fuel); decrStackSize(0, 1); } } */
-
+/*
 		if (boatTimeSinceHit > 0) {
 			boatTimeSinceHit--;
 		}
@@ -467,7 +467,7 @@ public class EntityRotativeDigger extends Entity implements IInventory {
 
 		moveEntity(motionX, motionY, motionZ);
 
-		/* This is how the entity rotates with the look of the player */
+		/* This is how the entity rotates with the look of the player *//*
 		if (getFuel() > 0 && riddenByEntity != null && riddenByEntity instanceof EntityPlayer) {
 			Vec3 vecLook = ((EntityPlayer) riddenByEntity).getLook(2);// .addVector(posX, posY, posZ);
 			double da = rotationYaw;
@@ -532,7 +532,7 @@ public class EntityRotativeDigger extends Entity implements IInventory {
 	 * 
 	 * @param pos position
 	 * @param block_index index of the block in mining list
-	 */
+	 *//*
 
 	private void playMiningEffect(Vec3 pos, int block_index) {
 		Block id = worldObj.getBlock((int) pos.xCoord, (int) pos.yCoord, (int) pos.zCoord);
@@ -546,7 +546,7 @@ public class EntityRotativeDigger extends Entity implements IInventory {
 	 * Convert "rotation yaw" angle to block side index.
 	 * 
 	 * @return block side for particles
-	 */
+	 *//*
 	private int getSideFromYaw() {
 		if (rotationYaw == 0) {
 			return 5;
@@ -634,7 +634,7 @@ public class EntityRotativeDigger extends Entity implements IInventory {
 
 	/**
 	 * works exactly like getStackInSlot, is only used upon closing GUIs
-	 */
+	 *//*
 	@Override
 	public ItemStack getStackInSlotOnClosing(int par1) {
 		if (this.zeppInvent[par1] != null) {
@@ -722,7 +722,7 @@ public class EntityRotativeDigger extends Entity implements IInventory {
 			return true;
 		}
 
-		/* This is a temporary fix for testing purpose Or maybe not. Does this thing really needs a GUI? */
+		/* This is a temporary fix for testing purpose Or maybe not. Does this thing really needs a GUI? *//*
 		ItemStack var2 = entityplayer.inventory.getCurrentItem();
 
 		if (var2 != null && var2.getItem() == ItemIDs.refinedFuel.item) {
@@ -766,3 +766,4 @@ public class EntityRotativeDigger extends Entity implements IInventory {
 		return true;
 	}
 }
+*/

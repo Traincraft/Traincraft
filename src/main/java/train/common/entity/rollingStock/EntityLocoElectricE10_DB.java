@@ -1,4 +1,4 @@
-package train.common.entity.rollingStock;
+/*package train.common.entity.rollingStock;
 
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
@@ -116,4 +116,4 @@ public class EntityLocoElectricE10_DB extends ElectricTrain {
 	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
 		return true;
 	}
-}
+}*/

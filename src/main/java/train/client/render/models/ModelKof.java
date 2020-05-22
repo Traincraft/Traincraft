@@ -476,14 +476,14 @@ public class ModelKof extends ModelBase {
 		box8.render(f5);
 		box9.render(f5);
 		
-		Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+		Minecraft.getMinecraft().entityRenderer.disableLightmap();
 		box81.render(f5);
 		box82.render(f5);
 		box46.render(f5);
 		box47.render(f5);
 		box48.render(f5);
 		box49.render(f5);
-		Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+		Minecraft.getMinecraft().entityRenderer.enableLightmap();
 	}
 
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5) {}

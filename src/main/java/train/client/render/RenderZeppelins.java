@@ -1,4 +1,4 @@
-package train.client.render;
+/*package train.client.render;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.Render;
@@ -30,7 +30,7 @@ public class RenderZeppelins extends Render {
 		GL11.glRotatef(90F - f, 0.0F, 1.0F, 0.0F);
 		/**
 		 * Damage mouvements
-		 */
+		 *//*
 		float f2 = (float) entityzepplin.boatTimeSinceHit - f1;
 		float f3 = (float) entityzepplin.boatCurrentDamage - f1;
 		if (f3 < 0.0F) {
@@ -42,7 +42,7 @@ public class RenderZeppelins extends Render {
 
 		/**
 		 * Pitch
-		 */
+		 *//*
 		float pitch = entityzepplin.pitch / 1.5F;
 
 		if (pitch > 30) {
@@ -55,7 +55,7 @@ public class RenderZeppelins extends Render {
 
 		/**
 		 * Roll
-		 */
+		 *//*
 		float roll = entityzepplin.roll * 20F;
 		if (roll > 15) {
 			roll = 15;
@@ -93,3 +93,4 @@ public class RenderZeppelins extends Render {
 		}
 	}
 }
+*/

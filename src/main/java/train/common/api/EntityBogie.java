@@ -1,4 +1,4 @@
-package train.common.api;
+/*package train.common.api;
 
 import com.mojang.authlib.GameProfile;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -94,7 +94,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 
 	/**
 	 * Returns a boundingBox used to collide the entity with other entities and blocks. This enables the entity to be pushable on contact, like boats or minecarts.
-	 */
+	 *//*
 	@Override
 	public AxisAlignedBB getCollisionBox(Entity par1Entity) {
 
@@ -145,7 +145,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		/*System.out.println("rotation "+serverRealRotation);
 		System.out.println(this.posZ +" Z "+  bogieZ1);
 		System.out.println(this.posX +" X "+  bogieX1);
-		/*System.out.println(this.posX +" X "+  bogieX1);*/
+		/*System.out.println(this.posX +" X "+  bogieX1);*//*
 		this.motionX = ((entityMainTrain.posX + (Math.cos(angle) * Math.abs(this.bogieShift))) - this.posX);
 		this.motionZ = ((entityMainTrain.posZ + (Math.sin((angle)) * Math.abs(this.bogieShift))) - this.posZ);
 		//this.setPosition(bogieX1, this.posY, bogieZ1);
@@ -222,7 +222,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 			entityMainTrain.motionX = 0;
 			entityMainTrain.motionZ = 0;
 		}
-		}*/
+		}*//*
 	}
 
 	public boolean isOnRail(){
@@ -313,7 +313,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 	 * Return false if this cart should not call onMinecartPass() and should ignore Powered Rails.
 	 *
 	 * @return True if this cart should call onMinecartPass().
-	 */
+	 *//*
 	@Override
 	public boolean shouldDoRailFunctions() {
 
@@ -332,7 +332,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 	 * speed cap to determine the carts current max speed. A normal rail's max speed is 0.4.
 	 *
 	 * @return Carts max speed.
-	 */
+	 *//*
 	@Override
 	public float getMaxCartSpeedOnRail() {
 
@@ -346,7 +346,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 	}
 	/**
 	 * Called to update the entity's position/logic.
-	 */
+	 *//*
 	@Override
 	public void onUpdate(){
 		//super.onUpdate(); // XXX I'll just assume that this is not supposed to be there. Why would you run Vanilla update code, only to run your own code afterwards to do basically the same..?
@@ -532,7 +532,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		//if(l==1||l==3)moveEntity(0.0D, 0.0D, motionZ);
 		//if(Math.abs(motionX)>Math.abs(motionZ))System.out.println("X");
 		//if(Math.abs(motionZ)>Math.abs(motionX))System.out.println("Z");
-		
+		/*
 		double norm = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 		
 		if (Math.abs(motionZ) > Math.abs(motionX)) {
@@ -681,6 +681,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		 */
 
 		//double railMaxSpeed = 3; // XXX Really? Define a field for THAT? Come on..
+/*
 		double maxSpeed = Math.min(3.0D, getMaxCartSpeedOnRail());
 
 		if (this.motionX < -maxSpeed) {
@@ -719,4 +720,4 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		this.minecartPitch = p_70056_8_;
 		this.turnProgress = p_70056_9_ + 2;
 	}
-}
+}*/

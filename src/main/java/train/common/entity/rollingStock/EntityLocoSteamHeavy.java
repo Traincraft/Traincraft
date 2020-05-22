@@ -1,4 +1,4 @@
-package train.common.entity.rollingStock;
+/*package train.common.entity.rollingStock;
 
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,7 +14,7 @@ import train.common.library.GuiIDs;
 
 public class EntityLocoSteamHeavy extends SteamTrain {
 	public EntityLocoSteamHeavy(World world) {
-		super(world, 5000/*change value here to EnumTrains..getTankCapacity()*/, LiquidManager.WATER_FILTER);
+		super(world, 5000/*change value here to EnumTrains..getTankCapacity()*//*, LiquidManager.WATER_FILTER);
 		initLocoSteam();
 	}
 
@@ -134,4 +134,4 @@ public class EntityLocoSteamHeavy extends SteamTrain {
 	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
 		return true;
 	}
-}
+}*/

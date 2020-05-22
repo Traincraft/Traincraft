@@ -16,7 +16,6 @@ import org.lwjgl.opengl.GL11;
 import tmt.ModelConverter;
 import tmt.ModelRendererTurbo;
 import tmt.Tessellator;
-import train.common.api.AbstractTrains;
 import train.common.library.Info;
 
 public class ModelBP4 extends ModelConverter
@@ -958,20 +957,20 @@ public class ModelBP4 extends ModelConverter
 		for(ModelRendererTurbo m :bodyModel)
 		{
 			if(m.boxName.equals("lamp")){
-				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+				Minecraft.getMinecraft().entityRenderer.disableLightmap();
 			}
 			m.render(f5);
 			if(m.boxName.equals("lamp")){
-				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+				Minecraft.getMinecraft().entityRenderer.enableLightmap();
 			}
 		}
 
 
-		if(entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor()==5){
+		/*if(entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor()==5){
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/bp4bogie_purple.png"));
 		} else {
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/bp4bogie.png"));
-		}
+		}*/
 
 		GL11.glPushMatrix();
 		GL11.glScalef(1f,1f,0.9f);

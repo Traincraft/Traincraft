@@ -2,7 +2,6 @@ package train.common;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Loader;
@@ -14,11 +13,9 @@ import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import train.common.api.LiquidManager;
 import train.common.core.CommonProxy;
 import train.common.core.TrainModCore;
 import train.common.core.handlers.*;
-import train.common.generation.ComponentVillageTrainstation;
 import train.common.generation.WorldGenWorld;
 import traincraft.items.TCItems;
 import train.common.recipes.AssemblyTableRecipes;
@@ -119,7 +116,7 @@ public class Traincraft {
 		LOGGER.info("Starting Traincraft " + MOD_VERSION + "!");
 		/* Config handler */
 		configDirectory = event.getModConfigurationDirectory();
-		ConfigHandler.init(new File(event.getModConfigurationDirectory(), MOD_NAME + ".cfg"));
+		//ConfigHandler.init(new File(event.getModConfigurationDirectory(), MOD_NAME + ".cfg"));
 		
 		/* Register the KeyBinding Handler */
 		proxy.registerKeyBindingHandler();
@@ -127,7 +124,7 @@ public class Traincraft {
 		/* Register Items, Blocks, ... */
 		LOGGER.info("Initialize Blocks, Items, ...");
 		
-		EntityHandler.init();
+		//EntityHandler.init();
 		proxy.registerTileEntities();
 		proxy.registerSounds();
 		proxy.setHook(); // Moved file needed to run JLayer, we need to set a hook in order to retrieve it
@@ -142,7 +139,7 @@ public class Traincraft {
 		MinecraftForge.EVENT_BUS.register(retroGen);
 		FMLCommonHandler.instance().bus().register(retroGen);
 		
-		MapGenStructureIO.registerStructureComponent(ComponentVillageTrainstation.class, "Trainstation");
+		//MapGenStructureIO.registerStructureComponent(ComponentVillageTrainstation.class, "Trainstation");
 
 		/*if (Loader.isModLoaded("ComputerCraft")) {
 			try {
@@ -158,7 +155,7 @@ public class Traincraft {
 		proxy.registerEvents(event);
 		
 		/* Networking and Packet initialisation */
-		PacketHandler.init();
+		//PacketHandler.init();
 		
 		LOGGER.info("Finished PreInitialization");
 	}
@@ -171,22 +168,22 @@ public class Traincraft {
 		
 		/* GUI handler initiation */
 		LOGGER.info("Initialize Gui");
-		NetworkRegistry.INSTANCE.registerGuiHandler(instance, proxy);
-		FMLCommonHandler.instance().bus().register(new CraftingHandler());
+		//NetworkRegistry.INSTANCE.registerGuiHandler(instance, proxy);
+		//FMLCommonHandler.instance().bus().register(new CraftingHandler());
 		
 		/* Ore dictionary */
 		OreHandler.registerOres();
 		
 		/* Recipes */
 		LOGGER.info("Initialize Recipes");
-		RecipeHandler.initBlockRecipes();
-		RecipeHandler.initItemRecipes();
-		RecipeHandler.initSmeltingRecipes();
+		//RecipeHandler.initBlockRecipes();
+		//RecipeHandler.initItemRecipes();
+		//RecipeHandler.initSmeltingRecipes();
 		AssemblyTableRecipes.recipes();
 		
 		/* Register the liquids */
 		LOGGER.info("Initialize Fluids");
-		LiquidManager.getInstance().registerLiquids();
+		//LiquidManager.getInstance().registerLiquids();
 		
 		/* Liquid FX */
 		proxy.registerTextureFX();
@@ -215,7 +212,7 @@ public class Traincraft {
 		
 		LOGGER.info("Activation Mod Compatibility");
 		TrainModCore.ModsLoaded();
-		LiquidManager.getLiquidsFromDictionnary();
+		//LiquidManager.getLiquidsFromDictionnary();
 		if(Loader.isModLoaded("OpenComputers")){
 			LOGGER.info("OpenComputers integration successfully activated!");
 		}

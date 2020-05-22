@@ -7,7 +7,6 @@
 
 package train.common.blocks;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -24,8 +23,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import train.common.Traincraft;
 import train.common.library.GuiIDs;
-import train.common.tile.TileCrafterTierI;
-import train.common.tile.TileEntityOpenHearthFurnace;
+import traincraft.tile.TileOpenHearthFurnace;
 
 public class BlockOpenHearthFurnace extends BaseContainerBlock {
 	
@@ -52,7 +50,7 @@ public class BlockOpenHearthFurnace extends BaseContainerBlock {
 		if (!world.isRemote) {
 			if (!player.isSneaking()) {
 				TileEntity te = world.getTileEntity(pos);
-				if (te instanceof TileCrafterTierI) {
+				if (te instanceof TileOpenHearthFurnace) {
 					player.openGui(Traincraft.instance, GuiIDs.OPEN_HEARTH_FURNACE, world, pos.getX(), pos.getY(), pos.getZ());
 				}
 			}
@@ -65,7 +63,7 @@ public class BlockOpenHearthFurnace extends BaseContainerBlock {
 
 	@Override
 	public TileEntity createNewTileEntity(World world, int i) {
-		return new TileEntityOpenHearthFurnace();
+		return new TileOpenHearthFurnace();
 	}
 	
 	// state: ABCD => B = active; CD = facing

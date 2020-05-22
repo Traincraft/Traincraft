@@ -13,7 +13,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import train.common.Traincraft;
-import train.common.tile.TileWaterWheel;
+import traincraft.tile.TileWaterWheel;
 
 import javax.annotation.Nullable;
 

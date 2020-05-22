@@ -11,8 +11,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import train.common.Traincraft;
 import train.common.library.GuiIDs;
-import train.common.tile.TileCrafterTierI;
-import train.common.tile.TileTrainWbench;
+import traincraft.tile.TileTrainWorkbench;
 
 public class BlockTrainWorkbench extends BaseContainerBlock {
 
@@ -31,7 +30,7 @@ public class BlockTrainWorkbench extends BaseContainerBlock {
 		if (!world.isRemote) {
 			if (!player.isSneaking()) {
 				TileEntity te = world.getTileEntity(pos);
-				if (te instanceof TileCrafterTierI) {
+				if (te instanceof TileTrainWorkbench) {
 					player.openGui(Traincraft.instance, GuiIDs.TRAIN_WORKBENCH, world, pos.getX(), pos.getY(), pos.getZ());
 				}
 			}
@@ -44,7 +43,7 @@ public class BlockTrainWorkbench extends BaseContainerBlock {
 
 	@Override
 	public TileEntity createNewTileEntity(World world, int meta) {
-		return new TileTrainWbench();
+		return new TileTrainWorkbench();
 	}
 
 }

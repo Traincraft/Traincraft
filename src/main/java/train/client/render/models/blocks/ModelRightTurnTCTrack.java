@@ -1,4 +1,4 @@
-package train.client.render.models.blocks;
+/*package train.client.render.models.blocks;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -55,4 +55,4 @@ public class ModelRightTurnTCTrack extends ModelBase {
 			this.renderVeryLarge();
 		}
 	}
-}
+}*/

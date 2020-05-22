@@ -19,7 +19,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import train.common.Traincraft;
-import train.common.tile.TileStopper;
+import traincraft.tile.TileStopper;
 
 public class BlockStopper extends BaseContainerBlock {
 	
@@ -56,7 +56,7 @@ public class BlockStopper extends BaseContainerBlock {
 
 	@Override
 	public TileEntity createNewTileEntity(World world, int meta) {
-		return new TileStopper(meta);
+		return new TileStopper();
 	}
 	
 	// state: ABCD => CD = facing

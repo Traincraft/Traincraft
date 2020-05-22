@@ -5,7 +5,7 @@
  * @author Mrbrutal
  ******************************************************************************/
 
-package train.client.render.models.blocks;
+/*package train.client.render.models.blocks;
 
 import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.model.ModelBase;
@@ -35,3 +35,4 @@ private IModelCustom ring;
 		GL11.glPopMatrix();
 	}
 }
+*/

@@ -1,4 +1,4 @@
-package train.client.gui;
+/*package train.client.gui;
 
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -34,7 +34,7 @@ public class HUDMTC extends GuiScreen {
 		if (rcCar.mtcStatus == 1 || rcCar.mtcStatus == 2) {
 			/**
 			 * Steam Train have water
-			 */
+			 *//*
 			int width = this.game.fontRenderer.getStringWidth("Speed Limit: " + rcCar.speedLimit + " km/h");
 
 			int width2 = this.game.fontRenderer.getStringWidth("");
@@ -112,3 +112,4 @@ public class HUDMTC extends GuiScreen {
 		tessellator.draw();
 	}
 }
+*/

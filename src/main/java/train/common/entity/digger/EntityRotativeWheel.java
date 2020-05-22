@@ -1,4 +1,4 @@
-package train.common.entity.digger;
+/*package train.common.entity.digger;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -18,7 +18,7 @@ import java.util.List;
 
 public class EntityRotativeWheel extends Entity {
 
-	/** For the driver seat position */
+	/** For the driver seat position *//*
 
 	public double seatX;
 	public double seatY;
@@ -26,7 +26,7 @@ public class EntityRotativeWheel extends Entity {
 	public double riderOffset;
 	public int seatID;
 	public Entity entity;
-	/** Fake player instance used for block mining */
+	/** Fake player instance used for block mining *//*
 	private EntityPlayer fakePlayer;
 	public int startWheel;
 	private int field_9394_d;
@@ -52,7 +52,7 @@ public class EntityRotativeWheel extends Entity {
 	 * @param y
 	 * @param z
 	 * @param riderOffset
-	 */
+	 *//*
 	public EntityRotativeWheel(World world, Entity entity, int numSeat, double x, double y, double z, double riderOffset) {
 		this(world);
 		this.entity = entity;
@@ -117,7 +117,7 @@ public class EntityRotativeWheel extends Entity {
 			//TODO how many blocks should be harvested?
 			/*for (int h = -1; h < 2; h++) { vec = Vec3.vec3dPool.getVecFromPool(posX, posY + h, posZ); this.harvestBlock_do(vec); vec = Vec3.vec3dPool.getVecFromPool(posX + 1, posY + h, posZ); this.harvestBlock_do(vec); vec = Vec3.vec3dPool.getVecFromPool(posX - 1, posY + h, posZ); this.harvestBlock_do(vec); vec = Vec3.vec3dPool.getVecFromPool(posX, posY + h, posZ - 1); this.harvestBlock_do(vec); vec = Vec3.vec3dPool.getVecFromPool(posX, posY + h, posZ + 1); this.harvestBlock_do(vec); vec = Vec3.vec3dPool.getVecFromPool(posX + 1, posY + h, posZ - 1); this.harvestBlock_do(vec); vec = Vec3.vec3dPool.getVecFromPool(posX - 1, posY + h, posZ + 1); this.harvestBlock_do(vec); vec = Vec3.vec3dPool.getVecFromPool(posX - 1, posY + h, posZ - 1); this.harvestBlock_do(vec); vec = Vec3.vec3dPool.getVecFromPool(posX + 1, posY + h, posZ + 1); this.harvestBlock_do(vec);
 			 * 
-			 * } */
+			 * } *//*
 
 		}
 		if (worldObj.isRemote) {
@@ -156,7 +156,7 @@ public class EntityRotativeWheel extends Entity {
 	 * Perform block harvesting, drop the item, remove block and play sound.
 	 * 
 	 * @param pos
-	 */
+	 *//*
 
 	private void harvestBlock_do(Vec3 pos) {
 		if (pos == null)
@@ -187,7 +187,7 @@ public class EntityRotativeWheel extends Entity {
 	 * @param pos
 	 * @param id block id
 	 * @return is not harvested
-	 */
+	 *//*
 	private boolean shouldIgnoreBlockForHarvesting(Vec3 pos, Block id) {
 
 		if (id == null || id instanceof BlockTorch || id == Block.getBlockFromName("bedrock") || id == Block.getBlockFromName("fire") || id == Block.getBlockFromName("portal") || id == Block.getBlockFromName("endPortal") || id instanceof BlockLiquid || Block.getIdFromBlock(id) == 55 || Block.getIdFromBlock(id) == 70 || Block.getIdFromBlock(id) == 72) {
@@ -213,7 +213,7 @@ public class EntityRotativeWheel extends Entity {
 	 * 
 	 * @param pos position
 	 * @param block_index index of the block in mining list
-	 */
+	 *//*
 	private int miningTickCounter = 0;
 
 	@SideOnly(Side.CLIENT)
@@ -228,7 +228,7 @@ public class EntityRotativeWheel extends Entity {
 	 * Convert "rotation yaw" angle to block side index.
 	 * 
 	 * @return block side for particles
-	 */
+	 *//*
 	private int getSideFromYaw() {
 		if (rotationYaw == 0) {
 			return 5;
@@ -293,4 +293,4 @@ public class EntityRotativeWheel extends Entity {
 	private double field_9387_k;
 	private double field_9386_l;
 
-}
+}*/

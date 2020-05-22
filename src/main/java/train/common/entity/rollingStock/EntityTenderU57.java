@@ -1,4 +1,4 @@
-package train.common.entity.rollingStock;
+/*package train.common.entity.rollingStock;
 
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,7 +19,7 @@ public class EntityTenderU57 extends Tender implements IInventory {
 	public int numFreightSlots;
 
 	public EntityTenderU57(World world) {
-		super(world, FluidRegistry.WATER, 0, 10000 /*EnumTrains..getTankCapacity()*/, LiquidManager.WATER_FILTER);
+		super(world, FluidRegistry.WATER, 0, 10000 /*EnumTrains..getTankCapacity()*//*, LiquidManager.WATER_FILTER);
 		initFreightTender();
 	}
 
@@ -112,4 +112,4 @@ public class EntityTenderU57 extends Tender implements IInventory {
 	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
 		return true;
 	}
-}
+}*/

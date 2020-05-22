@@ -1,4 +1,4 @@
-package train.common.api;
+/*package train.common.api;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
@@ -20,7 +20,6 @@ import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import org.apache.commons.lang3.ArrayUtils;
 import train.common.Traincraft;
-import train.common.adminbook.ItemAdminBook;
 import train.common.core.handlers.ConfigHandler;
 import train.common.core.handlers.TrainHandler;
 import traincraft.items.ItemChunkLoaderActivator;
@@ -35,7 +34,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IEntityAd
 
 	/**
 	 * The color of the current rollingstock -1 if default
-	 */
+	 *//*
 	protected int color;
 	public boolean isAttached = false;
 	public boolean isAttaching = false;
@@ -57,35 +56,35 @@ public abstract class AbstractTrains extends EntityMinecart implements IEntityAd
 	protected boolean itemdropped =false;
 	/**
 	 * A reference to EnumTrains containing all spec for this specific train
-	 */
+	 *//*
 	protected EnumTrains trainSpec;
 
 	/**
 	 * The name of the train based on the item name
-	 */
+	 *//*
 	public String trainName = "";
 	public double accelerate = 0.7D;
 	public double brake = 0.96D;
 	/**
 	 * determines the mass of the carts from 0 to 10 it's then multiplied by 10
 	 * to pretend this is [tons]
-	 */
+	 *//*
 	public double mass = 1;
 	/**
 	 * the default mass, not affected by weight of items/liquids
-	 */
+	 *//*
 	public double defaultMass = 1;
 	/**
 	 * the power of locomotives, 0 for carts
-	 */
+	 *//*
 	public int power = 0;
 	/**
 	 * Whether this train is locked and can only be used by the Owner
-	 */
+	 *//*
 	public boolean locked = false;
 	/**
 	 * The owner of the train: The user who spawned it
-	 */
+	 *//*
 	public String trainOwner = "";
 
 	public String getTrainOwner() {
@@ -98,40 +97,40 @@ public abstract class AbstractTrains extends EntityMinecart implements IEntityAd
 
 	/**
 	 * The creator of the train
-	 */
+	 *//*
 	public String trainCreator = "";
 
 	/**
 	 * The type of the train: steam tender diesel electric freight flat tank
 	 * passenger work special
-	 */
+	 *//*
 	public String trainType = "";
 
 	/**
 	 * player who destroyed the train
-	 */
+	 *//*
 	protected String trainDestroyer = "";
 
 	/**
 	 * unique ID for a train. ID is create when item is created. This allows to
 	 * track a train not only in his entity form
-	 */
+	 *//*
 	public int uniqueID = -1;
 	/**
 	 * supposed to store the last ID given;
-	 */
+	 *//*
 	public static int uniqueIDs = 1;
 
 	/**
 	 * The distance this train has traveled
-	 */
+	 *//*
 	public double trainDistanceTraveled = 0;
 
 	public String destination = "";
 
 	/**
 	 * Registers all possible color textures
-	 */
+	 *//*
 	public ArrayList<Byte> acceptedColors;
 
 
@@ -184,7 +183,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IEntityAd
 	}
 	/**
 	 * this is basically NBT for entity spawn, to keep data between client and server in sync because some data is not automatically shared.
-	 */
+	 *//*
 	@Override
 	public void readSpawnData(ByteBuf additionalData) {
 		locked = additionalData.readBoolean();
@@ -288,7 +287,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IEntityAd
 		 * this.chunkCoordZ); } } } else if (!ConfigHandler.CHUNK_LOADING) {
 		 * this.releaseTicket(); } else { if (this.ticket == null) {
 		 * this.requestTicket(); } }
-		 */
+		 *//*
 	}
 	@Override
 	public void setDead() {
@@ -339,7 +338,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IEntityAd
 	 *
 	 * @see ItemRollingStock
 	 * @param color
-	 */
+	 *//*
 	public void setColor(int color) {
 		if (EnumTrains.getCurrentTrain(getCartItem().getItem()).getColors()!=null){
 			if (color==-1 || !ArrayUtils.contains(EnumTrains.getCurrentTrain(getCartItem().getItem()).getColors(),(byte)color)) {
@@ -564,21 +563,21 @@ public abstract class AbstractTrains extends EntityMinecart implements IEntityAd
 
 	/**
 	 * Lock packet
-	 */
+	 *//*
 	public boolean getTrainLockedFromPacket() {
 		return locked;
 	}
 
 	/**
 	 * Lock packet
-	 */
+	 *//*
 	public void setTrainLockedFromPacket(boolean set) {
 		// System.out.println(worldObj.isRemote + " " + set);
 		locked = set;
 	}
 
 
-	/** Locking for passengers, flat, caboose, jukebox,workcart */
+	/** Locking for passengers, flat, caboose, jukebox,workcart *//*
 	protected boolean lockThisCart(ItemStack itemstack, EntityPlayer entityplayer) {
 		if (itemstack != null && (itemstack.getItem() instanceof ItemWrench || itemstack.getItem() instanceof ItemAdminBook)) {
 			if (entityplayer.getDisplayName().getUnformattedText().equals(this.trainOwner) || entityplayer.getGameProfile().getName().equals(this.trainOwner)
@@ -661,4 +660,4 @@ public abstract class AbstractTrains extends EntityMinecart implements IEntityAd
 			return this.getUniqueID().toString();
 		}
 	}
-}
+}*/

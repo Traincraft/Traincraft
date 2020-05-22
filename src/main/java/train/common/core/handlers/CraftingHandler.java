@@ -5,7 +5,7 @@
  * @author Mrbrutal
  ******************************************************************************/
 
-package train.common.core.handlers;
+/*package train.common.core.handlers;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -52,4 +52,4 @@ public class CraftingHandler
       }
     }
   }
-}
+}*/

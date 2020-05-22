@@ -1,4 +1,4 @@
-package train.common.entity.rollingStock;
+/*package train.common.entity.rollingStock;
 
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
@@ -74,4 +74,4 @@ public class PassengerIC4_DSB_FH extends EntityRollingStock implements IPassenge
 	public float getOptimalDistance(EntityMinecart cart) {
 		return 3.65F;
 	}
-}
+}*/

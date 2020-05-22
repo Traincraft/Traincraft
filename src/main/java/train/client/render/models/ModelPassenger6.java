@@ -5,11 +5,10 @@ import org.lwjgl.opengl.GL11;
 import tmt.ModelBase;
 import train.client.core.ClientProxy;
 import train.client.render.CustomModelRenderer;
-import train.client.render.models.blocks.ModelLights;
 
 public class ModelPassenger6 extends ModelBase {
 	
-	private ModelLights lights;
+	//private ModelLights lights;
 
 	public CustomModelRenderer box;
 	public CustomModelRenderer box0;
@@ -110,7 +109,7 @@ public class ModelPassenger6 extends ModelBase {
 
 	public ModelPassenger6() {
 		
-		lights = new ModelLights();
+		//lights = new ModelLights();
 		
 		box = new CustomModelRenderer(this, 158, 245, 256, 256);
 		box.addBox(0F, 0F, 0F, 10, 4, 4);
@@ -661,35 +660,35 @@ public class ModelPassenger6 extends ModelBase {
 		if (ClientProxy.isHoliday()) {
 			GL11.glPushMatrix();
 			GL11.glTranslatef(-1.12f, 0.8f, -0.72f);
-			lights.render(5);
+			//lights.render(5);
 			GL11.glPopMatrix();
 			
 			GL11.glPushMatrix();
 			GL11.glTranslatef(0, 0.8f, -0.72f);
-			lights.render(5);
+			//lights.render(5);
 			GL11.glPopMatrix();
 			
 			GL11.glPushMatrix();
 			GL11.glTranslatef(1.12f, 0.8f, -0.72f);
-			lights.render(5);
+			//lights.render(5);
 			GL11.glPopMatrix();
 			
 			GL11.glPushMatrix();
 			GL11.glTranslatef(-1.12f, 0.8f, 0.72f);
 			GL11.glRotatef(-180f, 0, 1, 0);
-			lights.render(5);
+			//lights.render(5);
 			GL11.glPopMatrix();
 			
 			GL11.glPushMatrix();
 			GL11.glTranslatef(0, 0.8f, 0.72f);
 			GL11.glRotatef(-180f, 0, 1, 0);
-			lights.render(5);
+			//lights.render(5);
 			GL11.glPopMatrix();
 			
 			GL11.glPushMatrix();
 			GL11.glTranslatef(1.12f, 0.8f, 0.72f);
 			GL11.glRotatef(-180f, 0, 1, 0);
-			lights.render(5);
+			//lights.render(5);
 			GL11.glPopMatrix();
 		}
 	}

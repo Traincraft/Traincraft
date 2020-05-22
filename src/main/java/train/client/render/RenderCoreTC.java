@@ -5,7 +5,7 @@
  * @author Mrbrutal
  ******************************************************************************/
 
-package train.client.render;
+/*package train.client.render;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.Tessellator;
@@ -198,3 +198,4 @@ public class RenderCoreTC {
 		tessellator.addVertexWithUV(d + blockMaxX, d1 + blockMaxY, d2 + blockMaxZ, d3, d5);
 	}
 }
+*/

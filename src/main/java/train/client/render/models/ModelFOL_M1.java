@@ -16,7 +16,6 @@ import org.lwjgl.opengl.GL11;
 import tmt.ModelBase;
 import tmt.ModelRendererTurbo;
 import tmt.Tessellator;
-import train.common.api.AbstractTrains;
 import train.common.library.Info;
 
 public class ModelFOL_M1 extends ModelBase
@@ -790,20 +789,20 @@ public class ModelFOL_M1 extends ModelBase
 	{
 		for (ModelRendererTurbo mrt : fol_m1Model){
 			if(mrt.boxName.equals("lamp")){
-				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+				Minecraft.getMinecraft().entityRenderer.disableLightmap();
 				mrt.render(f5,false);
-				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+				Minecraft.getMinecraft().entityRenderer.enableLightmap();
 			} else {
 				mrt.render(f5,false);
 			}
 		}
 
 
-		if(entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor()==8){
+		/*if(entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor()==8){
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/FOL_M1_Bogie_grey.png"));
 		} else {
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/FOL_M1_Bogie.png"));
-		}
+		}*/
 
 		GL11.glPushMatrix();
 		GL11.glTranslated(-0.2,0,1.0);

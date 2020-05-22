@@ -1,4 +1,4 @@
-package train.common.entity.rollingStock;
+/*package train.common.entity.rollingStock;
 
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
@@ -112,3 +112,4 @@ public class EntityTenderHeavy extends Tender implements IInventory {
 		return true;
 	}
  }
+*/

@@ -1,19 +1,18 @@
 package train.client.render.models;
 
-import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.client.FMLClientHandler;
 import org.lwjgl.opengl.GL11;
 import tmt.ModelBase;
 import train.client.core.ClientProxy;
 import train.client.render.CustomModelRenderer;
-import train.client.render.models.blocks.ModelRing;
 import train.common.library.Info;
 
 public class ModelLocoBR01_DB extends ModelBase {
 	
-	private ModelRing ring;
+	//private ModelRing ring;
 	
 	public CustomModelRenderer box;
 	public CustomModelRenderer box0;
@@ -97,7 +96,7 @@ public class ModelLocoBR01_DB extends ModelBase {
 
 	public ModelLocoBR01_DB() {
 		
-		ring = new ModelRing();
+		//ring = new ModelRing();
 		
 		box = new CustomModelRenderer(this, 22, 54, 256, 256);
 		box.addBox(0F, 0F, 0F, 1, 3, 20);
@@ -555,18 +554,18 @@ public class ModelLocoBR01_DB extends ModelBase {
 		box98.render(f5);
 		box99.render(f5);
 		
-		Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+		Minecraft.getMinecraft().entityRenderer.disableLightmap();
 		box94.render(f5);
 		box95.render(f5);
 		box22.render(f5);
-		Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+		Minecraft.getMinecraft().entityRenderer.enableLightmap();
 		
 		if (ClientProxy.isHoliday()) {
 			GL11.glPushMatrix();
 			GL11.glTranslatef(-3.08f, 1.3f, 0);
 			GL11.glRotatef(180, 0, 1, 0);
 			GL11.glScalef(0.7f, 0.7f, 0.7f);
-			ring.render(5);
+			//ring.render(5);
 			GL11.glPopMatrix();
 		}
 	}

@@ -710,9 +710,9 @@ public class ModelEMDF3 extends ModelBase
 		for (int i = 0; i < 164; i++)
 		{
 			if (emdf3Model[i].boxName != null && emdf3Model[i].boxName.equals("lamp")) {
-				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+				Minecraft.getMinecraft().entityRenderer.disableLightmap();
 				emdf3Model[i].render(f5);
-				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+				Minecraft.getMinecraft().entityRenderer.enableLightmap();
 			} else {
 				emdf3Model[i].render(f5);
 			}

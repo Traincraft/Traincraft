@@ -6,11 +6,10 @@ import org.lwjgl.opengl.GL11;
 import tmt.ModelBase;
 import train.client.core.ClientProxy;
 import train.client.render.CustomModelRenderer;
-import train.client.render.models.blocks.ModelRing;
 
 public class ModelLocoEr_Ussr extends ModelBase {
 
-	private ModelRing ring;
+	//private ModelRing ring;
 	
 	public CustomModelRenderer body;
 	public CustomModelRenderer box;
@@ -95,7 +94,7 @@ public class ModelLocoEr_Ussr extends ModelBase {
 	
 	public ModelLocoEr_Ussr() {
 		
-		ring = new ModelRing();
+		//ring = new ModelRing();
 		
 		body = new CustomModelRenderer(this, 134, 117, 256, 256);
 		body.addBox(0F, 0F, 0F, 13, 2, 22);
@@ -555,18 +554,18 @@ public class ModelLocoEr_Ussr extends ModelBase {
 		box8.render(f5);
 		box83.render(f5);
 		
-		Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+		Minecraft.getMinecraft().entityRenderer.disableLightmap();
 		box35.render(f5);
 		box16.render(f5);
 		box9.render(f5);
-		Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+		Minecraft.getMinecraft().entityRenderer.enableLightmap();
 		
 		if (ClientProxy.isHoliday()) {
 			GL11.glPushMatrix();
 			GL11.glTranslatef(-3.08f, 1.3f, 0);
 			GL11.glRotatef(180, 0, 1, 0);
 			GL11.glScalef(0.7f, 0.7f, 0.7f);
-			ring.render(5);
+			//ring.render(5);
 			GL11.glPopMatrix();
 		}
 	}

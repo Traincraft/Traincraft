@@ -1,4 +1,4 @@
-package train.common.entity.rollingStock;
+/*package train.common.entity.rollingStock;
 
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
@@ -112,4 +112,4 @@ public class EntityTankWagonUS extends LiquidTank {
 	public float getOptimalDistance(EntityMinecart cart) {
 		return 1.6F;
 	}
-}
+}*/

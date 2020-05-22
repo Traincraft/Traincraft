@@ -1,4 +1,4 @@
-package train.common.core.handlers;
+/*package train.common.core.handlers;
 
 import train.common.api.EntityRollingStock;
 import train.common.api.Locomotive;
@@ -51,4 +51,4 @@ public class TrainHandler {
 	public int getTrainPower() {
 		return trainPower;
 	}
-}
+}*/

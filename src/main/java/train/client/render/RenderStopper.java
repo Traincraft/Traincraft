@@ -5,7 +5,7 @@
  * @author Mrbrutal
  ******************************************************************************/
 
-package train.client.render;
+/*package train.client.render;
 
 import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -41,3 +41,4 @@ public class RenderStopper extends TileEntitySpecialRenderer {
 		render(var1, var2, var4, var6);
 	}
 }
+*/

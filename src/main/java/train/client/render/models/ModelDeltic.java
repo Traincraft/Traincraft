@@ -829,11 +829,11 @@ public class ModelDeltic extends ModelBase
 		{
 
 			if (i==22 || i==24 || i==23 || i== 27 || i==25 || i==26){
-				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+				Minecraft.getMinecraft().entityRenderer.disableLightmap();
 			}
 			deltic2Model[i].render(f5);
 			if (i==22 || i==24 || i==23 || i== 27 || i==25 || i==26){
-				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+				Minecraft.getMinecraft().entityRenderer.enableLightmap();
 			}
 		}
 

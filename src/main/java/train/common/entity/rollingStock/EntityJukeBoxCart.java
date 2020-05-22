@@ -1,4 +1,4 @@
-package train.common.entity.rollingStock;
+/*package train.common.entity.rollingStock;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
@@ -129,7 +129,7 @@ public class EntityJukeBoxCart extends EntityRollingStock {
 	 * 
 	 * @param url
 	 * @param playing
-	 */
+	 *//*
 	public void recievePacket(String url, boolean playing) {
 		this.streamURL = url;
 		this.isPlaying = playing;
@@ -223,4 +223,4 @@ public class EntityJukeBoxCart extends EntityRollingStock {
 			this.dataWatcher.updateObject(23, 0);
 		}
 	}
-}
+}*/

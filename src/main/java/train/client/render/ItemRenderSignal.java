@@ -5,7 +5,7 @@
  * @author Mrbrutal
  ******************************************************************************/
 
-package train.client.render;
+/*package train.client.render;
 
 import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.item.ItemStack;
@@ -67,3 +67,4 @@ public class ItemRenderSignal implements IItemRenderer {
 		GL11.glPopMatrix(); //end
 	}
 }
+*/

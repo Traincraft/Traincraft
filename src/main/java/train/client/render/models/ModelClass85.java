@@ -842,11 +842,11 @@ public class ModelClass85 extends ModelBase
 		for(int i = 0; i < 193; i++)
 		{
 			if (i==30 || i==31 || i==37 || i== 38 || i==39 || i==40 || i==35 || i ==34){
-				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+				Minecraft.getMinecraft().entityRenderer.disableLightmap();
 			}
 			class85Model[i].render(f5);
 			if (i==30 || i==31 || i==37 || i== 38 || i==39 || i==40 || i==35 || i ==34){
-				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+				Minecraft.getMinecraft().entityRenderer.enableLightmap();
 			}
 		}
 

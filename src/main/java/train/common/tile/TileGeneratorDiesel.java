@@ -5,7 +5,7 @@
  * @author Spitfire4466
  ******************************************************************************/
 
-package train.common.tile;
+/*package train.common.tile;
 
 
 import net.minecraft.item.ItemStack;
@@ -175,3 +175,4 @@ public class TileGeneratorDiesel extends Energy implements IFluidHandler{
     }
 
 }
+*/

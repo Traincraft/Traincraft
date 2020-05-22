@@ -5,7 +5,7 @@
  * @author Mrbrutal
  ******************************************************************************/
 
-package train.common.tile;
+/*package train.common.tile;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -207,4 +207,4 @@ public class TileTraincraft extends TileEntity implements ISidedInventory{
         }
     }
 
-}
+}*/

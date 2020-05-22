@@ -4,7 +4,6 @@ import net.minecraft.entity.Entity;
 import org.lwjgl.opengl.GL11;
 import tmt.ModelBase;
 import train.client.render.CustomModelRenderer;
-import train.common.api.Freight;
 
 public class ModelFreightCartUS extends ModelBase {
 	
@@ -135,10 +134,10 @@ public class ModelFreightCartUS extends ModelBase {
 		box8.render(f5);
 		box9.render(f5);
 		
-		int cargo = ((Freight) entity).getAmmountOfCargo();
+		int cargo = 0;//((Freight) entity).getAmmountOfCargo();
 		if (cargo != 0) {
 			GL11.glPushMatrix();
-			GL11.glTranslatef(0, -0.51f+((Freight)entity).getAmmountOfCargo()*0.016f, 0);
+			//GL11.glTranslatef(0, -0.51f+((Freight)entity).getAmmountOfCargo()*0.016f, 0);
 			box0.render(f5);
 			GL11.glPopMatrix();
 		}

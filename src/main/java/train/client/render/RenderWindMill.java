@@ -1,4 +1,4 @@
-package train.client.render;
+/*package train.client.render;
 
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
@@ -16,3 +16,4 @@ public class RenderWindMill extends TileEntitySpecialRenderer {
 		modelWindMillWheel.render((TileWindMill) tileEntity, x, y, z);
 	}
 }
+*/

@@ -1,4 +1,4 @@
-package train.common.tile;
+/*package train.common.tile;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityMinecart;
@@ -131,4 +131,4 @@ public class TileSignal extends TileEntity {
 			}
 		}
 	}
-}
+}*/

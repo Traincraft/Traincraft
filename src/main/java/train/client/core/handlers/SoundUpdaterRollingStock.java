@@ -1,4 +1,4 @@
-package train.client.core.handlers;
+/*package train.client.core.handlers;
 
 import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.client.entity.EntityPlayerSP;
@@ -13,10 +13,10 @@ public class SoundUpdaterRollingStock {
 
 	private SoundHandler theSoundManager;
 
-	/** Minecart which sound is being updated. */
+	/** Minecart which sound is being updated. *//*
 	private EntityRollingStock theMinecart;
 
-	/** The player that is getting the minecart sound updates. */
+	/** The player that is getting the minecart sound updates. *//*
 	private EntityPlayerSP thePlayer;
 	private boolean riddenByPlayer = false;
 	private boolean isDead = false;
@@ -59,7 +59,7 @@ public class SoundUpdaterRollingStock {
 				if (var2 || this.riddenByPlayer) {
 					//this.theSoundManager.stopEntitySound(this.thePlayer);
 				}
-			}*/
+			}*//*
 			this.flag = true;
 			if (this.isDead) {
 				return;
@@ -72,7 +72,7 @@ public class SoundUpdaterRollingStock {
 			this.flag = false;
 			var1 = true;
 		}
-		*/
+		*//*
 		if (this.isMoving) {
 			if (this.soundPitch < 1.0F) {
 				this.soundPitch += 0.0025F;
@@ -115,6 +115,6 @@ public class SoundUpdaterRollingStock {
 				this.theSoundManager.stopEntitySound(this.thePlayer);
 			}
 		}
-		*/
+		*//*
 	}
-}
+}*/

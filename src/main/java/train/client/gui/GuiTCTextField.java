@@ -5,7 +5,7 @@
  * @author Mrbrutal
  ******************************************************************************/
 
-package train.client.gui;
+/*package train.client.gui;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -20,16 +20,16 @@ import org.lwjgl.opengl.GL11;
 public class GuiTCTextField extends Gui {
 	/**
 	 * Have the font renderer from GuiScreen to render the textbox text into the screen.
-	 */
+	 *//*
 	private final FontRenderer fontRenderer;
 	private final int xPos;
 	private final int yPos;
 
-	/** The width of this text field. */
+	/** The width of this text field. *//*
 	private final int width;
 	private final int height;
 
-	/** Have the current text beign edited on the textbox. */
+	/** Have the current text beign edited on the textbox. *//*
 	private String text = "";
 	private int maxStringLength = 32;
 	private int cursorCounter;
@@ -37,31 +37,31 @@ public class GuiTCTextField extends Gui {
 
 	/**
 	 * if true the textbox can lose focus by clicking elsewhere on the screen
-	 */
+	 *//*
 	private boolean canLoseFocus = true;
 
 	/**
 	 * If this value is true along isEnabled, keyTyped will process the keys.
-	 */
+	 *//*
 	private boolean isFocused;
 
 	/**
 	 * If this value is true along isFocused, keyTyped will process the keys.
-	 */
+	 *//*
 	private boolean isEnabled = true;
 
 	/**
 	 * The current character index that should be used as start of the rendered text.
-	 */
+	 *//*
 	private int lineScrollOffset;
 	private int cursorPosition;
 
-	/** other selection position, maybe the same as the cursor */
+	/** other selection position, maybe the same as the cursor *//*
 	private int selectionEnd;
 	private int enabledColor = 14737632;
 	private int disabledColor = 7368816;
 
-	/** True if this textbox is visible */
+	/** True if this textbox is visible *//*
 	private boolean visible = true;
 
 	public GuiTCTextField(FontRenderer par1FontRenderer, int par2, int par3, int par4, int par5) {
@@ -74,14 +74,14 @@ public class GuiTCTextField extends Gui {
 
 	/**
 	 * Increments the cursor counter
-	 */
+	 *//*
 	public void updateCursorCounter() {
 		++this.cursorCounter;
 	}
 
 	/**
 	 * Sets the text of the textbox.
-	 */
+	 *//*
 	public void setText(String par1Str) {
 		if (par1Str.length() > this.maxStringLength) {
 			this.text = par1Str.substring(0, this.maxStringLength);
@@ -95,14 +95,14 @@ public class GuiTCTextField extends Gui {
 
 	/**
 	 * Returns the text beign edited on the textbox.
-	 */
+	 *//*
 	public String getText() {
 		return this.text;
 	}
 
 	/**
 	 * @return returns the text between the cursor and selectionEnd
-	 */
+	 *//*
 	public String getSelectedtext() {
 		int i = this.cursorPosition < this.selectionEnd ? this.cursorPosition : this.selectionEnd;
 		int j = this.cursorPosition < this.selectionEnd ? this.selectionEnd : this.cursorPosition;
@@ -111,7 +111,7 @@ public class GuiTCTextField extends Gui {
 
 	/**
 	 * replaces selected text, or inserts text at the position on the cursor
-	 */
+	 *//*
 	public void writeText(String par1Str) {
 		String s1 = "";
 		String s2 = ChatAllowedCharacters.filerAllowedCharacters(par1Str);
@@ -144,7 +144,7 @@ public class GuiTCTextField extends Gui {
 
 	/**
 	 * Deletes the specified number of words starting at the cursor position. Negative numbers will delete words left of the cursor.
-	 */
+	 *//*
 	public void deleteWords(int par1) {
 		if (this.text.length() != 0) {
 			if (this.selectionEnd != this.cursorPosition) {
@@ -158,7 +158,7 @@ public class GuiTCTextField extends Gui {
 
 	/**
 	 * delete the selected text, otherwsie deletes characters from either side of the cursor. params: delete num
-	 */
+	 *//*
 	public void deleteFromCursor(int par1) {
 		if (this.text.length() != 0) {
 			if (this.selectionEnd != this.cursorPosition) {
@@ -189,14 +189,14 @@ public class GuiTCTextField extends Gui {
 
 	/**
 	 * see @getNthNextWordFromPos() params: N, position
-	 */
+	 *//*
 	public int getNthWordFromCursor(int par1) {
 		return this.getNthWordFromPos(par1, this.getCursorPosition());
 	}
 
 	/**
 	 * gets the position of the nth word. N may be negative, then it looks backwards. params: N, position
-	 */
+	 *//*
 	public int getNthWordFromPos(int par1, int par2) {
 		return this.func_73798_a(par1, this.getCursorPosition(), true);
 	}
@@ -236,14 +236,14 @@ public class GuiTCTextField extends Gui {
 
 	/**
 	 * Moves the text cursor by a specified number of characters and clears the selection
-	 */
+	 *//*
 	public void moveCursorBy(int par1) {
 		this.setCursorPosition(this.selectionEnd + par1);
 	}
 
 	/**
 	 * sets the position of the cursor to the provided index
-	 */
+	 *//*
 	public void setCursorPosition(int par1) {
 		this.cursorPosition = par1;
 		int j = this.text.length();
@@ -261,21 +261,21 @@ public class GuiTCTextField extends Gui {
 
 	/**
 	 * sets the cursors position to the beginning
-	 */
+	 *//*
 	public void setCursorPositionZero() {
 		this.setCursorPosition(0);
 	}
 
 	/**
 	 * sets the cursors position to after the text
-	 */
+	 *//*
 	public void setCursorPositionEnd() {
 		this.setCursorPosition(this.text.length());
 	}
 
 	/**
 	 * Call this method from you GuiScreen to process the keys into textbox.
-	 */
+	 *//*
 	public boolean textboxKeyTyped(char par1, int par2) {
 		if (this.isEnabled && this.isFocused) {
 			switch (par1) {
@@ -383,7 +383,7 @@ public class GuiTCTextField extends Gui {
 
 	/**
 	 * Args: x, y, buttonClicked
-	 */
+	 *//*
 	public void mouseClicked(int par1, int par2, int par3) {
 		boolean flag = par1 >= this.xPos && par1 < this.xPos + this.width && par2 >= this.yPos && par2 < this.yPos + this.height;
 
@@ -405,7 +405,7 @@ public class GuiTCTextField extends Gui {
 
 	/**
 	 * Draws the textbox
-	 */
+	 *//*
 	public void drawTextBox() {
 		if (this.getVisible()) {
 			if (this.getEnableBackgroundDrawing()) {
@@ -465,7 +465,7 @@ public class GuiTCTextField extends Gui {
 
 	/**
 	 * draws the vertical line cursor in the textbox
-	 */
+	 *//*
 	private void drawCursorVertical(int par1, int par2, int par3, int par4) {
 		int i1;
 
@@ -506,35 +506,35 @@ public class GuiTCTextField extends Gui {
 
 	/**
 	 * returns the maximum number of character that can be contained in this textbox
-	 */
+	 *//*
 	public int getMaxStringLength() {
 		return this.maxStringLength;
 	}
 
 	/**
 	 * returns the current position of the cursor
-	 */
+	 *//*
 	public int getCursorPosition() {
 		return this.cursorPosition;
 	}
 
 	/**
 	 * get enable drawing background and outline
-	 */
+	 *//*
 	public boolean getEnableBackgroundDrawing() {
 		return this.enableBackgroundDrawing;
 	}
 
 	/**
 	 * enable drawing background and outline
-	 */
+	 *//*
 	public void setEnableBackgroundDrawing(boolean par1) {
 		this.enableBackgroundDrawing = par1;
 	}
 
 	/**
 	 * Sets the text colour for this textbox (disabled text will not use this colour)
-	 */
+	 *//*
 	public void setTextColor(int par1) {
 		this.enabledColor = par1;
 	}
@@ -545,7 +545,7 @@ public class GuiTCTextField extends Gui {
 
 	/**
 	 * setter for the focused field
-	 */
+	 *//*
 	public void setFocused(boolean par1) {
 		if (par1 && !this.isFocused) {
 			this.cursorCounter = 0;
@@ -556,7 +556,7 @@ public class GuiTCTextField extends Gui {
 
 	/**
 	 * getter for the focused field
-	 */
+	 *//*
 	public boolean isFocused() {
 		return this.isFocused;
 	}
@@ -567,21 +567,21 @@ public class GuiTCTextField extends Gui {
 
 	/**
 	 * the side of the selection that is not the cursor, maye be the same as the cursor
-	 */
+	 *//*
 	public int getSelectionEnd() {
 		return this.selectionEnd;
 	}
 
 	/**
 	 * returns the width of the textbox depending on if the the box is enabled
-	 */
+	 *//*
 	public int getWidth() {
 		return this.getEnableBackgroundDrawing() ? this.width - 8 : this.width;
 	}
 
 	/**
 	 * Sets the position of the selection anchor (i.e. position the selection was started at)
-	 */
+	 *//*
 	public void setSelectionPos(int par1) {
 		int j = this.text.length();
 
@@ -627,22 +627,23 @@ public class GuiTCTextField extends Gui {
 
 	/**
 	 * if true the textbox can lose focus by clicking elsewhere on the screen
-	 */
+	 *//*
 	public void setCanLoseFocus(boolean par1) {
 		this.canLoseFocus = par1;
 	}
 
 	/**
 	 * @return {@code true} if this textbox is visible
-	 */
+	 *//*
 	public boolean getVisible() {
 		return this.visible;
 	}
 
 	/**
 	 * Sets whether or not this textbox is visible
-	 */
+	 *//*
 	public void setVisible(boolean par1) {
 		this.visible = par1;
 	}
 }
+*/

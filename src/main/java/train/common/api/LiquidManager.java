@@ -1,4 +1,4 @@
-package train.common.api;
+/*package train.common.api;
 
 import buildcraft.api.fuels.BuildcraftFuelRegistry;
 import cpw.mods.fml.common.Loader;
@@ -336,3 +336,4 @@ public class LiquidManager {
 		}
 	}
 }
+*/

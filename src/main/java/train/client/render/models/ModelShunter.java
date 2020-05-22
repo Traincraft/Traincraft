@@ -592,7 +592,7 @@ public class ModelShunter extends ModelBase {
 		box90.render(f5);
 		box92.render(f5);
 		
-		Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+		Minecraft.getMinecraft().entityRenderer.disableLightmap();
 		box76.render(f5);
 		box77.render(f5);
 		box81.render(f5);
@@ -600,7 +600,7 @@ public class ModelShunter extends ModelBase {
 		box83.render(f5);
 		box84.render(f5);
 		box91.render(f5);
-		Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+		Minecraft.getMinecraft().entityRenderer.enableLightmap();
 	}
 
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5) {}

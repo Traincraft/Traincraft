@@ -557,9 +557,9 @@ public class ModelGS4Loco extends ModelBase
 		{
 
 			if(gs4locoModel[i].boxName!= null && gs4locoModel[i].boxName.equals("lamp")){
-				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+				Minecraft.getMinecraft().entityRenderer.disableLightmap();
 				gs4locoModel[i].render(f5);
-				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+				Minecraft.getMinecraft().entityRenderer.enableLightmap();
 
 			} else {
 				gs4locoModel[i].render(f5);

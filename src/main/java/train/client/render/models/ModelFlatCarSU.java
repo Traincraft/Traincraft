@@ -5,11 +5,10 @@ import org.lwjgl.opengl.GL11;
 import tmt.ModelBase;
 import train.client.core.ClientProxy;
 import train.client.render.CustomModelRenderer;
-import train.client.render.models.blocks.ModelPresent;
 
 public class ModelFlatCarSU extends ModelBase {
 	
-	private ModelPresent present;
+	//private ModelPresent present;
 	
 	public CustomModelRenderer box;
 	public CustomModelRenderer box0;
@@ -26,7 +25,7 @@ public class ModelFlatCarSU extends ModelBase {
 
 	public ModelFlatCarSU() {
 		
-		present = new ModelPresent();
+		//present = new ModelPresent();
 		
 		box = new CustomModelRenderer(this, 84, 7, 128, 128);
 		box.addBox(0F, 0F, 0F, 7, 3, 14);
@@ -98,14 +97,14 @@ public class ModelFlatCarSU extends ModelBase {
     		GL11.glTranslatef(0.4f, 0.86f, 0);
     		GL11.glScalef(0.6f, 0.6f, 0.6f);
     		GL11.glRotatef(15, 0, 1, 0);
-    		present.render(0xffc05a5a);
+    		//present.render(0xffc05a5a);
     		GL11.glPopMatrix();
     		
     		GL11.glPushMatrix();
     		GL11.glTranslatef(-0.4f, 0.86f, 0);
     		GL11.glScalef(0.6f, 0.6f, 0.6f);
     		GL11.glRotatef(-5, 0, 1, 0);
-    		present.render(0xffc0b05a);
+    		//present.render(0xffc0b05a);
     		GL11.glPopMatrix();
     		
     		//small
@@ -113,28 +112,28 @@ public class ModelFlatCarSU extends ModelBase {
     		GL11.glTranslatef(1, 0.77f, 0.3f);
     		GL11.glScalef(0.4f, 0.4f, 0.4f);
     		GL11.glRotatef(35, 0, 1, 0);
-    		present.render(0xff287528);
+    		//present.render(0xff287528);
     		GL11.glPopMatrix();
     		
     		GL11.glPushMatrix();
     		GL11.glTranslatef(-1, 0.77f, -0.3f);
     		GL11.glScalef(0.4f, 0.4f, 0.4f);
     		GL11.glRotatef(-70, 0, 1, 0);
-    		present.render(0xff287550);
+    		//present.render(0xff287550);
     		GL11.glPopMatrix();
     		
     		GL11.glPushMatrix();
     		GL11.glTranslatef(-1, 0.77f, 0.3f);
     		GL11.glScalef(0.4f, 0.4f, 0.4f);
     		GL11.glRotatef(125, 0, 1, 0);
-    		present.render(0xff282c75);
+    		//present.render(0xff282c75);
     		GL11.glPopMatrix();
     		
     		GL11.glPushMatrix();
     		GL11.glTranslatef(1, 0.77f, -0.3f);
     		GL11.glScalef(0.4f, 0.4f, 0.4f);
     		GL11.glRotatef(-70, 0, 1, 0);
-    		present.render(0xff821b1b);
+    		//present.render(0xff821b1b);
     		GL11.glPopMatrix();
 		}
 		

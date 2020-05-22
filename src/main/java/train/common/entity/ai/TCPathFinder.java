@@ -1,4 +1,4 @@
-package train.common.entity.ai;
+/*package train.common.entity.ai;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -109,3 +109,4 @@ public class TCPathFinder extends PathFinder{
         return flag3 ? 2 : 1;
     }
 }
+*/

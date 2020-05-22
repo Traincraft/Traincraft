@@ -3,7 +3,6 @@ package train.client.render.models;
 import net.minecraft.entity.Entity;
 import tmt.ModelBase;
 import train.client.render.CustomModelRenderer;
-import train.common.api.Freight;
 
 public class ModelWood extends ModelBase {
 
@@ -234,7 +233,7 @@ public class ModelWood extends ModelBase {
 		box8.render(f5);
 		box9.render(f5);
 		
-		int cargo = ((Freight) entity).getAmmountOfCargo();
+		int cargo = 0;//((Freight) entity).getAmmountOfCargo();
 		if (cargo != 0) {
 			box35.render(f5);
 			box29.render(f5);

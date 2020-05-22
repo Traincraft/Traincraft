@@ -1,4 +1,4 @@
-package train.client.render.models.blocks;
+/*package train.client.render.models.blocks;
 
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
@@ -65,3 +65,4 @@ public class ModelWindMill extends ModelBase {
 	}
 
 }
+*/

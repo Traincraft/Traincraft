@@ -6,11 +6,10 @@ import org.lwjgl.opengl.GL11;
 import tmt.ModelBase;
 import train.client.core.ClientProxy;
 import train.client.render.CustomModelRenderer;
-import train.client.render.models.blocks.ModelRing;
 
 public class ModelLocoC62Class extends ModelBase {
 	
-	private ModelRing ring;
+	//private ModelRing ring;
 	
 	public CustomModelRenderer box;
 	public CustomModelRenderer box0;
@@ -116,7 +115,7 @@ public class ModelLocoC62Class extends ModelBase {
 
 	public ModelLocoC62Class() {
 
-		ring = new ModelRing();
+		//ring = new ModelRing();
 		
 		box = new CustomModelRenderer(this, 1, 24, 132, 256);
 		box.addBox(0F, 0F, 0F, 14, 14, 1);
@@ -545,17 +544,17 @@ public class ModelLocoC62Class extends ModelBase {
 		box98.render(f5);
 		box99.render(f5);
 		
-		Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+		Minecraft.getMinecraft().entityRenderer.disableLightmap();
 		box97.render(f5);
 		box46.render(f5);
-		Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+		Minecraft.getMinecraft().entityRenderer.enableLightmap();
 		
 		if (ClientProxy.isHoliday()) {
 			GL11.glPushMatrix();
 			GL11.glTranslatef(-5.70f, 1.35f, 0);
 			GL11.glRotatef(180, 0, 1, 0);
 			GL11.glScalef(0.7f, 0.7f, 0.7f);
-			ring.render(5);
+			//ring.render(5);
 			GL11.glPopMatrix();
 		}
 	}

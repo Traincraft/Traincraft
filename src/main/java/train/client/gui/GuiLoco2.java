@@ -1,4 +1,4 @@
-package train.client.gui;
+/*package train.client.gui;
 
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -139,7 +139,7 @@ public class GuiLoco2 extends GuiContainer {
 					guibutton.displayString = "Start Engine";
 					/**
 					 * We implemented Auto ParkingBrake since Brutal tried to did it in the Locomotive API when you turn off the damn Train
-					 */
+					 *//*
 					Traincraft.brakeChannel.sendToServer(new PacketParkingBrake(true, loco.getEntityId()));
 					loco.parkingBrake = true;
 					loco.isBraking = true;
@@ -316,4 +316,4 @@ public class GuiLoco2 extends GuiContainer {
 		fontRendererObj.drawStringWithShadow("Destination: " + (loco.getDestinationGUI()), 1, 120, 0xFFFFFF);
 		fontRendererObj.drawStringWithShadow("UUID: " + loco.getPersistentUUID() + " - Entity UUID" + loco.getUniqueID().toString(),1,0,0xFFFFFF);
 	}
-}
+}*/

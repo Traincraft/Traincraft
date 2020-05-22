@@ -35,7 +35,7 @@ public class TrainsItems {
 		ItemStack stack = registry.get(tag);
 		if (stack != null) {
 			stack = stack.copy();
-			stack.stackSize = qty;
+			stack.setCount(qty);
 		}
 		return stack;
 	}

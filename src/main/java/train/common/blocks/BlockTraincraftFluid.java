@@ -1,4 +1,4 @@
-package train.common.blocks;
+/*package train.common.blocks;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -79,3 +79,4 @@ public class BlockTraincraftFluid extends BlockFluidClassic {
 		return "fluid." + Traincraft.MOD_ID + ":" + fluidName;
 	}
 }
+*/

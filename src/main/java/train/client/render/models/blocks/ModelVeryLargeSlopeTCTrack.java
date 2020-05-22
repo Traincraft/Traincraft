@@ -1,4 +1,4 @@
-package train.client.render.models.blocks;
+/*package train.client.render.models.blocks;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.util.ResourceLocation;
@@ -52,4 +52,4 @@ public class ModelVeryLargeSlopeTCTrack extends ModelBase {
 		render(type);
 
 	}
-}
+}*/

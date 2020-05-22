@@ -775,14 +775,14 @@ public class ModelSD40 extends ModelBase {
 		box97.render(f5);
 		box98.render(f5);
 		
-		Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+		Minecraft.getMinecraft().entityRenderer.disableLightmap();
 		box104.render(f5);
 		box105.render(f5);
 		box106.render(f5);
 		box107.render(f5);
 		box32.render(f5);
 		box33.render(f5);
-		Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+		Minecraft.getMinecraft().entityRenderer.enableLightmap();
 	}
 
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5) {}

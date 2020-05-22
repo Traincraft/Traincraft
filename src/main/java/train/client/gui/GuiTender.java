@@ -1,4 +1,4 @@
-package train.client.gui;
+/*package train.client.gui;
 
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -169,3 +169,4 @@ public class GuiTender extends GuiContainer {
 		}
 	}
 }
+*/

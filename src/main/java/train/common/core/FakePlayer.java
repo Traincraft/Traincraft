@@ -1,4 +1,4 @@
-package train.common.core;
+/*package train.common.core;
 
 import com.mojang.authlib.GameProfile;
 import net.minecraft.block.Block;
@@ -25,13 +25,13 @@ import java.util.UUID;
  * 
  * @author MightyPork
  * @copy 2012
- */
+ *//*
 public class FakePlayer extends EntityPlayer {
 	/**
 	 * Create fake player in world
 	 * 
 	 * @param world the world
-	 */
+	 *//*
 	public FakePlayer(World world) {
 		super(world, new GameProfile(new UUID(0,0),""));
 		inventory = new InventoryPlayer(this);
@@ -238,3 +238,4 @@ public class FakePlayer extends EntityPlayer {
 	}
 
 }
+*/

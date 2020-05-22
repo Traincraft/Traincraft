@@ -712,9 +712,9 @@ public class ModelDD35A extends ModelBase
 		for(int i = 0; i < 170; i++)
 		{
 			if(dd35aModel[i].boxName!= null && dd35aModel[i].boxName.equals("lamp")){
-				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+				Minecraft.getMinecraft().entityRenderer.disableLightmap();
 				dd35aModel[i].render(f5);
-				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+				Minecraft.getMinecraft().entityRenderer.enableLightmap();
 
 			} else {
 				dd35aModel[i].render(f5);

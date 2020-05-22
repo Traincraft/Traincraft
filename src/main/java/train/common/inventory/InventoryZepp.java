@@ -1,4 +1,4 @@
-package train.common.inventory;
+/*package train.common.inventory;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -75,7 +75,7 @@ public class InventoryZepp extends Container {
 	 * merges provided ItemStack with the first available one in the
 	 * container/player inventory I had to mess around quite a bit to get this
 	 * right
-	 */
+	 *//*
 	@Override
 	protected boolean mergeItemStack(ItemStack par1ItemStack, int i, int j, boolean bool) {
 		boolean var5 = false;
@@ -104,7 +104,7 @@ public class InventoryZepp extends Container {
 					/*
 					 * This checks if there is room for the stack in the
 					 * inventory. If yes then transfer the whole stack
-					 */
+					 *//*
 					if (var9 <= par1ItemStack.getMaxStackSize() && var9 <= maxSize)//added max size check
 					{
 
@@ -116,7 +116,7 @@ public class InventoryZepp extends Container {
 					/*
 					 * This checks if the stack currently in inventory is lower
 					 * than maxStackSize, if so it transfers what it can.
-					 */
+					 *//*
 					else if (var8.stackSize < par1ItemStack.getMaxStackSize() && var8.stackSize < maxSize)//added max size check
 					{
 
@@ -188,4 +188,4 @@ public class InventoryZepp extends Container {
 
 		return var5;
 	}
-}
+}*/

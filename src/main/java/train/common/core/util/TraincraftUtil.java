@@ -1,8 +1,9 @@
-package train.common.core.util;
+/*package train.common.core.util;
 
 import net.minecraft.block.BlockRailBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
 import train.common.api.EntityRollingStock;
@@ -11,20 +12,21 @@ import train.common.api.Locomotive;
 
 public class TraincraftUtil{
 
-    public static Item getItemFromName(String name){
-        if (Item.itemRegistry.containsKey(name)){
-            return (Item) Item.itemRegistry.getObject(name);
-        } else {
-            return null;
+    public static Item getItemFromName(ResourceLocation registryName){
+        for(Item item : Item.REGISTRY){
+            if(registryName.equals(item.getRegistryName())){
+                return item;
+            }
         }
+        return null;
     }
 
-    public static ItemStack getItemFromUnlocalizedName(String itemName, int meta){
-        Item item = getItemFromName(itemName);
+    public static ItemStack getItemFromUnlocalizedName(ResourceLocation registryName, int meta){
+        Item item = getItemFromName(registryName);
         if(item != null){
             return new ItemStack(item, 1, meta);
         }
-        return null;
+        return ItemStack.EMPTY;
     }
 
     public static byte getByteFromColor(String c){
@@ -167,3 +169,4 @@ public class TraincraftUtil{
 
 
 }
+*/

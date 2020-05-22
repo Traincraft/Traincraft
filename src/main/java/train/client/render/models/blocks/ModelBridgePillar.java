@@ -5,7 +5,7 @@
  * @author Mrbrutal
  ******************************************************************************/
 
-package train.client.render.models.blocks;
+/*package train.client.render.models.blocks;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.util.ResourceLocation;
@@ -34,7 +34,8 @@ public class ModelBridgePillar extends ModelBase {
 		/*int facing = pillar.getWorldObj().getBlockMetadata(pillar.xCoord, pillar.yCoord, pillar.zCoord);
 		if(facing == 2 || facing==0){
 			GL11.glRotatef(90, 0, 1, 0);
-		}*/
+		}*//*
 		render();
 	}
 }
+*/

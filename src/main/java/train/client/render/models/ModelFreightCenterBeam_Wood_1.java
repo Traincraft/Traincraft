@@ -3,8 +3,6 @@ package train.client.render.models;
 import net.minecraft.entity.Entity;
 import tmt.ModelBase;
 import train.client.render.CustomModelRenderer;
-import train.common.api.Freight;
-import train.common.core.handlers.ConfigHandler;
 
 public class ModelFreightCenterBeam_Wood_1 extends ModelBase {
 
@@ -148,9 +146,9 @@ public class ModelFreightCenterBeam_Wood_1 extends ModelBase {
 
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-		if (ConfigHandler.FLICKERING) {
+		/*if (ConfigHandler.FLICKERING) {
 			super.render(entity, f, f1, f2, f3, f4, f5);
-		}
+		}*/
 		box.render(f5);
 		box0.render(f5);
 		box1.render(f5);
@@ -177,9 +175,9 @@ public class ModelFreightCenterBeam_Wood_1 extends ModelBase {
 		box9.render(f5);
 		box2.render(f5);
 
-		int cargo = ((Freight) entity).getAmmountOfCargo();
+		int cargo = 0;//((Freight) entity).getAmmountOfCargo();
 		if (cargo != 0) {
-			if(cargo<=((Freight) entity).getSizeInventory()/6) {
+			/*if(cargo<=0((Freight) entity).getSizeInventory()/6) {
 				//bottom
 				box24.render(f5);
 				box19.render(f5);
@@ -216,7 +214,7 @@ public class ModelFreightCenterBeam_Wood_1 extends ModelBase {
 				//top
 				box23.render(f5);
 				box27.render(f5);
-			}
+			}*/
 		}
 	}
 

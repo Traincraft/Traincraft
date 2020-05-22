@@ -16,8 +16,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import train.common.Traincraft;
 import train.common.library.GuiIDs;
-import train.common.tile.TileCrafterTierI;
-import train.common.tile.TileEntityDistil;
+import traincraft.tile.TileDistillery;
 
 import java.util.Random;
 
@@ -46,7 +45,7 @@ public class BlockDistil extends BaseContainerBlock {
 		if (!world.isRemote) {
 			if (!player.isSneaking()) {
 				TileEntity te = world.getTileEntity(pos);
-				if (te instanceof TileCrafterTierI) {
+				if (te instanceof TileDistillery) {
 					player.openGui(Traincraft.instance, GuiIDs.DISTIL, world, pos.getX(), pos.getY(), pos.getZ());
 				}
 			}
@@ -125,7 +124,7 @@ public class BlockDistil extends BaseContainerBlock {
 
 	@Override
 	public TileEntity createNewTileEntity(World world, int meta) {
-		return new TileEntityDistil();
+		return new TileDistillery();
 	}
 
 }

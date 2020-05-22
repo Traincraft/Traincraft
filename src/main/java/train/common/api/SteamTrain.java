@@ -1,4 +1,4 @@
-package train.common.api;
+/*package train.common.api;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -24,7 +24,7 @@ public abstract class SteamTrain extends Locomotive implements IFluidHandler {
 	 * 
 	 * @param world
 	 * @param capacity
-	 */
+	 *//*
 	public SteamTrain(World world, int capacity) {
 		this(capacity, world, null);
 	}
@@ -54,7 +54,7 @@ public abstract class SteamTrain extends Locomotive implements IFluidHandler {
 	 * returns the waterConsumption for each steam loco default is 200: rand.nextInt(200)==0
 	 * 
 	 * @return
-	 */
+	 *//*
 	public int getWaterConsumption() {
 		if (trainSpec != null) {
 			return trainSpec.getWaterConsumption();
@@ -67,7 +67,7 @@ public abstract class SteamTrain extends Locomotive implements IFluidHandler {
 		super.onUpdate();
 		/**
 		 * so the client side knows the water amount
-		 */
+		 *//*
 		if (worldObj.isRemote) {
 			return;
 		}
@@ -95,7 +95,7 @@ public abstract class SteamTrain extends Locomotive implements IFluidHandler {
 	 * added for SMP, used by the HUD
 	 * 
 	 * @return
-	 */
+	 *//*
 	public int getWater() {
 		return (this.dataWatcher.getWatchableObjectInt(23));
 	}
@@ -104,7 +104,7 @@ public abstract class SteamTrain extends Locomotive implements IFluidHandler {
 	 * used by the GUI
 	 * 
 	 * @return int
-	 */
+	 *//*
 	public int getLiquidItemID() {
 		return (this.dataWatcher.getWatchableObjectInt(4));
 	}
@@ -260,7 +260,7 @@ public abstract class SteamTrain extends Locomotive implements IFluidHandler {
 		}
 	}
 
-	/** Used for the gui */
+	/** Used for the gui *//*
 	@Override
 	public int getFuelDiv(int i) {
 		if (worldObj.isRemote) {
@@ -318,3 +318,4 @@ public abstract class SteamTrain extends Locomotive implements IFluidHandler {
 		return theTank.getFluidAmount();
 	}
 }
+*/

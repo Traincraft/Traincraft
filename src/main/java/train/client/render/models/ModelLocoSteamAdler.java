@@ -2198,10 +2198,10 @@ public class ModelLocoSteamAdler extends ModelBase {
 		Shape271.render(f5);
 		Shape272.render(f5);
 		
-		Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+		Minecraft.getMinecraft().entityRenderer.disableLightmap();
 		Shape188.render(f5);
 		Shape189.render(f5);
-		Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+		Minecraft.getMinecraft().entityRenderer.enableLightmap();
 	}
 
 	private void setRotation(ModelRenderer model, float x, float y, float z) {

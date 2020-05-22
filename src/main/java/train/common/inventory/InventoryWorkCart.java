@@ -1,4 +1,4 @@
-package train.common.inventory;
+/*package train.common.inventory;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -136,4 +136,4 @@ public class InventoryWorkCart extends Container {
 
 		return var3;
 	}
-}
+}*/

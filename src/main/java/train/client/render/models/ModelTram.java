@@ -548,12 +548,12 @@ public class ModelTram extends ModelBase {
 		box81.render(f5);
 		box9.render(f5);
 		
-		Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+		Minecraft.getMinecraft().entityRenderer.disableLightmap();
 		box78.render(f5);
 		box79.render(f5);
 		box71.render(f5);
 		box44.render(f5);
-		Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+		Minecraft.getMinecraft().entityRenderer.enableLightmap();
 	}
 
 	public void render2(float f5) {
@@ -638,12 +638,12 @@ public class ModelTram extends ModelBase {
 		box81.render(f5);
 		box9.render(f5);
 		
-		Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+		Minecraft.getMinecraft().entityRenderer.disableLightmap();
 		box78.render(f5);
 		box79.render(f5);
 		box71.render(f5);
 		box44.render(f5);
-		Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+		Minecraft.getMinecraft().entityRenderer.enableLightmap();
 	}
 
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5) {}

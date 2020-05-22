@@ -1,4 +1,4 @@
-package train.common.api;
+/*package train.common.api;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -60,7 +60,7 @@ public class TrainsOnClick {
 				
 				
 				if (((EntityRollingStock) train).train != null && ((EntityRollingStock) train).train.getTrains().size() <= 1) {
-					/** no more @RollingStocks in the train then remove the train object from the global list */
+					/** no more @RollingStocks in the train then remove the train object from the global list *//*
 					EntityRollingStock.allTrains.remove(((EntityRollingStock) train).train);
 					//System.out.println("Train is destroyed, remove it from the global array");
 				}
@@ -72,3 +72,4 @@ public class TrainsOnClick {
 		}
 	}
 }
+*/

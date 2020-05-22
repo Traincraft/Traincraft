@@ -5,28 +5,19 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
-import net.minecraftforge.common.ForgeChunkManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.network.IGuiHandler;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import train.common.Traincraft;
-import train.common.core.handlers.ChunkEvents;
 import train.common.core.handlers.WorldEvents;
 import train.common.core.util.MP3Player;
-import train.common.entity.BaseTrainEntity;
-import train.common.tile.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CommonProxy implements IGuiHandler {
+public class CommonProxy {
 	public static List<MP3Player> playerList = new ArrayList<>();
 	public static boolean debug = false;
 
@@ -36,11 +27,11 @@ public class CommonProxy implements IGuiHandler {
 
 	public void registerEvents(FMLPreInitializationEvent event){
 		WorldEvents worldEvents = new WorldEvents();
-		ChunkEvents chunkEvents = new ChunkEvents();
+		//ChunkEvents chunkEvents = new ChunkEvents();
 
 		registerEvent(worldEvents);
-		registerEvent(chunkEvents);
-		ForgeChunkManager.setForcedChunkLoadingCallback(Traincraft.instance, chunkEvents);
+		//registerEvent(chunkEvents);
+		//ForgeChunkManager.setForcedChunkLoadingCallback(Traincraft.instance, chunkEvents);
 
 	}
 
@@ -50,7 +41,7 @@ public class CommonProxy implements IGuiHandler {
 	}
 
 	public void registerTileEntities() {
-		GameRegistry.registerTileEntity(TileCrafterTierI.class, "TileCrafterTierI");
+		/*GameRegistry.registerTileEntity(TileCrafterTierI.class, "TileCrafterTierI");
 		GameRegistry.registerTileEntity(TileCrafterTierII.class, "TileCrafterTierII");
 		GameRegistry.registerTileEntity(TileCrafterTierIII.class, "TileCrafterTierIII");
 		GameRegistry.registerTileEntity(TileTrainWbench.class, "TileTrainWbench");
@@ -61,30 +52,11 @@ public class CommonProxy implements IGuiHandler {
 		GameRegistry.registerTileEntity(TileSwitchStand.class, "tileSwitchStand");
 		GameRegistry.registerTileEntity(TileWaterWheel.class, "tileWaterWheel");
 		GameRegistry.registerTileEntity(TileWindMill.class, "tileWindMill");
-		GameRegistry.registerTileEntity(TileGeneratorDiesel.class, "tileGeneratorDiesel");
+		GameRegistry.registerTileEntity(TileGeneratorDiesel.class, "tileGeneratorDiesel");*/
 	}
 	
-	@Override
+	//@Override
 	public Object getServerGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
-		// id determines if it is a tile or a entity. 1 => TileBase; 2 => Entity (z = world entity id)
-		switch(id){
-			case 1: {
-				TileEntity tile = world.getTileEntity(new BlockPos(x, y, z));
-				if(tile instanceof BaseTile){
-					return ((BaseTile) tile).openContainer(player);
-				}
-				break;
-			}
-			case 2: {
-				Entity entity = world.getEntityByID(z);
-				if(entity instanceof BaseTrainEntity){
-					return ((BaseTrainEntity) entity).openContainer(player);
-				}
-				break;
-			}
-		}
-		return null;
-		
 		/*
 		TileEntity te = world.getTileEntity(new BlockPos(x, y, z));
 		Entity ridingEntity = player.getRidingEntity();
@@ -135,9 +107,10 @@ public class CommonProxy implements IGuiHandler {
 		default:
 			return null;
 		}*/
+		return null;
 	}
 
-	@Override
+	//@Override
 	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
 		return null;
 	}

@@ -1,4 +1,4 @@
-package train.client.render;
+/*package train.client.render;
 
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
@@ -12,3 +12,4 @@ public class RenderLantern extends TileEntitySpecialRenderer {
 		modelLantern.render((TileLantern) tileEntity, x, y, z);
 	}
 }
+*/

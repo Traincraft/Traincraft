@@ -3,7 +3,6 @@ package train.client.render.models;
 import net.minecraft.entity.Entity;
 import tmt.ModelBase;
 import train.client.render.CustomModelRenderer;
-import train.common.core.handlers.ConfigHandler;
 
 public class ModelLoco3 extends ModelBase {
 
@@ -72,9 +71,9 @@ public class ModelLoco3 extends ModelBase {
 	}
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-		if (ConfigHandler.FLICKERING) {
+		/*if (ConfigHandler.FLICKERING) {
 			super.render(entity, f, f1, f2, f3, f4, f5);
-		}
+		}*/
 		// super.render(entity, f, f1, f2, f3, f4, f5);
 
 		for (int i = 0; i < 19; i++) {

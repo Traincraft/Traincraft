@@ -1,4 +1,4 @@
-package train.client.render.models.blocks;
+/*package train.client.render.models.blocks;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -54,4 +54,4 @@ public class ModelSlopeTCTrack extends ModelBase {
 		// GL11.glTranslatef(0.0f, 0.0f, -1.0f);
 		render(type);
 	}
-}
+}*/

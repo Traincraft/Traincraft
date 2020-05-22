@@ -5,7 +5,6 @@ import net.minecraft.entity.Entity;
 import org.lwjgl.opengl.GL11;
 import tmt.ModelBase;
 import train.client.render.CustomModelRenderer;
-import train.common.api.LiquidTank;
 
 public class ModelWatertransp extends ModelBase {
 
@@ -446,12 +445,12 @@ public class ModelWatertransp extends ModelBase {
 		//lava	
 		//Fluid theLiquid = FluidRegistry.getFluid(((LiquidTank)entity).getLiquidName());
 		GL11.glPushMatrix();
-		if ((((LiquidTank) entity).getAmount()) != 0) {
+		/*if ((((LiquidTank) entity).getAmount()) != 0) {
 			GL11.glTranslatef(0.0f, ((((LiquidTank)entity).getAmount()/1000)*0.03f)+0.0f, 0.0f);
-    		Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+    		Minecraft.getMinecraft().entityRenderer.disableLightmap();
     		box58.render(f5);
-    		Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
-		}
+    		Minecraft.getMinecraft().entityRenderer.enableLightmap();
+		}*/
 		GL11.glPopMatrix();
 	}
 

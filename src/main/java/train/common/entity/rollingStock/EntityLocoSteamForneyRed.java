@@ -1,4 +1,4 @@
-package train.common.entity.rollingStock;
+/*package train.common.entity.rollingStock;
 
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
@@ -165,4 +165,4 @@ public class EntityLocoSteamForneyRed extends SteamTrain {
 	public int getPower() {
 		return super.getPower()*(ridingEntity instanceof EntityPlayerMP &&(((EntityPlayerMP) ridingEntity).getDisplayName().equals("EternalBlueFlame") || ((EntityPlayerMP) ridingEntity).getDisplayName().equals("minecarftmano9"))?3:1);
 	}
-}
+}*/

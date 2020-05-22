@@ -1,12 +1,11 @@
 package train.client.render.models;
 
-import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.client.FMLClientHandler;
 import tmt.ModelBase;
 import train.client.core.ClientProxy;
 import train.client.render.CustomModelRenderer;
-import train.common.api.Freight;
 import train.common.library.Info;
 
 public class ModelMinetrain extends ModelBase {
@@ -209,7 +208,7 @@ public class ModelMinetrain extends ModelBase {
 		box24.render(f5);
 		box25.render(f5);
 		
-		int cargo = ((Freight) entity).getAmmountOfCargo();
+		int cargo = 0;//((Freight) entity).getAmmountOfCargo();
 		if (cargo != 0) {
 			if(cargo<=9) {
 				box27.render(f5);

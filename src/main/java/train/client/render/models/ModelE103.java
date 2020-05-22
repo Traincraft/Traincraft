@@ -44,9 +44,9 @@ public class ModelE103 extends ModelConverter //Same as Filename
 	{
 		for (ModelRendererTurbo mrt : bodyModel) {
 			if (mrt.boxName.equals("lamp")) {
-				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+				Minecraft.getMinecraft().entityRenderer.disableLightmap();
 				mrt.render(f5, false);
-				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+				Minecraft.getMinecraft().entityRenderer.enableLightmap();
 			} else {
 				mrt.render(f5, false);
 			}

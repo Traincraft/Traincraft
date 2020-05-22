@@ -5,7 +5,7 @@
  * @author Mrbrutal
  ******************************************************************************/
 
-package train.common.recipes;
+/*package train.common.recipes;
 
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
@@ -19,22 +19,22 @@ import train.common.core.util.TraincraftUtil;
 import java.util.Arrays;
 
 public class ShapedTrainRecipes implements ITCRecipe {
-	/** How many horizontal slots this recipe is wide. */
+	/** How many horizontal slots this recipe is wide. *//*
 	public final int recipeWidth;
 
-	/** How many vertical slots this recipe uses. */
+	/** How many vertical slots this recipe uses. *//*
 	public final int recipeHeight;
 
-	/** Is a array of ItemStack that composes the recipe. */
+	/** Is a array of ItemStack that composes the recipe. *//*
 	public final ItemStack[] recipeItems;
 
-	/** Is a array of ItemStack that composes the recipe. */
+	/** Is a array of ItemStack that composes the recipe. *//*
 	public boolean[] slots;
 
-	/** Is the ItemStack that you get when craft the recipe. */
+	/** Is the ItemStack that you get when craft the recipe. *//*
 	private ItemStack recipeOutput;
 
-	/** Is the itemID of the output item that you get when craft the recipe. */
+	/** Is the itemID of the output item that you get when craft the recipe. *//*
 	public final int recipeOutputItemID;
 	private boolean field_92049_f = false;
 
@@ -53,7 +53,7 @@ public class ShapedTrainRecipes implements ITCRecipe {
 
 	/**
 	 * Used to check if a recipe matches current crafting inventory
-	 */
+	 *//*
 	@Override
 	public boolean matches(IInventory inventory, World world) {
 		//System.out.print(slots[i] + " ");
@@ -72,9 +72,9 @@ public class ShapedTrainRecipes implements ITCRecipe {
 
 	/**
 	 * Checks if the region of a crafting inventory is match for the recipe.
-	 */
+	 *//*
 	private boolean checkMatch(IInventory inventory, boolean par4) {
-		for (int i = 0; i < 9/* recipeItems.length */; i++) {
+		for (int i = 0; i < 9/* recipeItems.length *//*; i++) {
 			ItemStack recipeStack = recipeItems[i];
 			ItemStack stackInSlot = inventory.getStackInSlot(i);
 
@@ -105,7 +105,7 @@ public class ShapedTrainRecipes implements ITCRecipe {
 
 	/**
 	 * Returns an Item that is the result of this recipe
-	 */
+	 *//*
 	@Override
 	public ItemStack getCraftingResult(IInventory inventory) {
 		ItemStack var2 = getRecipeOutput().copy();
@@ -124,7 +124,7 @@ public class ShapedTrainRecipes implements ITCRecipe {
 
 	/**
 	 * Returns the size of the recipe area
-	 */
+	 *//*
 	@Override
 	public int getRecipeSize() {
 		return recipeWidth * recipeHeight;
@@ -135,3 +135,4 @@ public class ShapedTrainRecipes implements ITCRecipe {
 		return this;
 	}
 }
+*/

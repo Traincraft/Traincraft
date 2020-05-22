@@ -1,4 +1,4 @@
-package train.common.entity;
+/*package train.common.entity;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
@@ -125,4 +125,4 @@ public class EntityLasersLines extends Entity {
 		return false;
 	}
 
-}
+}*/

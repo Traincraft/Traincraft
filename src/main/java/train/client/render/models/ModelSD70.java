@@ -4,7 +4,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import tmt.ModelBase;
 import train.client.render.CustomModelRenderer;
-import train.common.core.handlers.ConfigHandler;
 
 public class ModelSD70 extends ModelBase {
 	
@@ -718,9 +717,9 @@ public class ModelSD70 extends ModelBase {
 	}
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-		if (ConfigHandler.FLICKERING) {
+		/*if (ConfigHandler.FLICKERING) {
 			super.render(entity, f, f1, f2, f3, f4, f5);
-		}
+		}*/
 
 		box.render(f5);
 		box0.render(f5);
@@ -849,14 +848,14 @@ public class ModelSD70 extends ModelBase {
 		box93.render(f5);
 		box94.render(f5);
 		
-		Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+		Minecraft.getMinecraft().entityRenderer.disableLightmap();
 		box32.render(f5);
 		box33.render(f5);
 		box104.render(f5);
 		box105.render(f5);
 		box106.render(f5);
 		box107.render(f5);
-		Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+		Minecraft.getMinecraft().entityRenderer.enableLightmap();
 	}
 
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5) {}

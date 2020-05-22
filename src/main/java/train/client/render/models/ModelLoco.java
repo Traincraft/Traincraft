@@ -4,7 +4,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import tmt.ModelBase;
 import train.client.render.CustomModelRenderer;
-import train.common.core.handlers.ConfigHandler;
 
 public class ModelLoco extends ModelBase {
 
@@ -376,9 +375,9 @@ public class ModelLoco extends ModelBase {
 	}
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-		if (ConfigHandler.FLICKERING) {
+		/*if (ConfigHandler.FLICKERING) {
 			super.render(entity, f, f1, f2, f3, f4, f5);
-		}
+		}*/
 		bogey.render(f5);
 		bogey0.render(f5);
 		box.render(f5);
@@ -464,9 +463,9 @@ public class ModelLoco extends ModelBase {
 		box9.render(f5);
 		frame.render(f5);
 		
-		Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+		Minecraft.getMinecraft().entityRenderer.disableLightmap();
 		box60.render(f5);
-		Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+		Minecraft.getMinecraft().entityRenderer.enableLightmap();
 
 	}
 

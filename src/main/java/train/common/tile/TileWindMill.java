@@ -1,4 +1,4 @@
-package train.common.tile;
+/*package train.common.tile;
 
 
 import cofh.api.energy.IEnergyProvider;
@@ -70,7 +70,7 @@ public class TileWindMill extends Energy implements IEnergyProvider {
 		updateTicks++;
 		/**
 		 * Remove any block on top of the wind mill
-		 */
+		 *//*
 		if (!worldObj.isRemote) {
 			if (updateTicks % 20 == 0) {
 				if (!this.worldObj.isAirBlock(this.xCoord, this.yCoord + 1, this.zCoord)) {
@@ -89,7 +89,7 @@ public class TileWindMill extends Energy implements IEnergyProvider {
 
 			/**
 			 * Check every 6 seconds if a selectable area around the windmill top-block can see the sky
-			 */
+			 *//*
             if(this.updateTicks % 120 == 0) {
                 this.standsOpen = 0;
                 int st = ConfigHandler.WINDMILL_CHECK_RADIUS;
@@ -108,7 +108,7 @@ public class TileWindMill extends Energy implements IEnergyProvider {
 
 			/**
 			 * Calculate production using wind strength
-			 */
+			 *//*
 			if (this.standsOpen == 0 && updateTicks % 4 == 0) {
 				this.energy.receiveEnergy((WorldEvents.windStrength + (Math.round(this.yCoord *0.25f)) * 10), false);
 				if (this.worldObj.isThundering()) {
@@ -126,3 +126,4 @@ public class TileWindMill extends Energy implements IEnergyProvider {
 		}
 	}
 }
+*/

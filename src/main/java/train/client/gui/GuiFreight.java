@@ -1,4 +1,4 @@
-package train.client.gui;
+/*package train.client.gui;
 
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -152,4 +152,4 @@ public class GuiFreight extends GuiContainer {
 		drawTexturedModalRect(j, k, 0, 0, xSize, inventoryRows * 18 + 17);
 		drawTexturedModalRect(j, k + inventoryRows * 18 + 17, 0, 126, xSize, 96);
 	}
-}
+}*/

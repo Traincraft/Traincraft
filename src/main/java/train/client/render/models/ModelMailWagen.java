@@ -5,11 +5,10 @@ import org.lwjgl.opengl.GL11;
 import tmt.ModelBase;
 import train.client.core.ClientProxy;
 import train.client.render.CustomModelRenderer;
-import train.client.render.models.blocks.ModelLights;
 
 public class ModelMailWagen extends ModelBase {
 	
-	private ModelLights lights;
+	//private ModelLights lights;
 	
 	public CustomModelRenderer box;
 	public CustomModelRenderer box0;
@@ -82,7 +81,7 @@ public class ModelMailWagen extends ModelBase {
 
 	public ModelMailWagen() {
 		
-		lights = new ModelLights();
+		//lights = new ModelLights();
 		
 		box = new CustomModelRenderer(this, 70, 25, 256, 128);
 		box.addBox(0F, 0F, 0F, 8, 4, 4);
@@ -456,13 +455,13 @@ public class ModelMailWagen extends ModelBase {
 		if (ClientProxy.isHoliday()) {
 			GL11.glPushMatrix();
 			GL11.glTranslatef(-0.5f, 0.8f, -0.72f);
-			lights.render(5);
+			//lights.render(5);
 			GL11.glPopMatrix();
 			
 			GL11.glPushMatrix();
 			GL11.glTranslatef(-0.5f, 0.8f, 0.72f);
 			GL11.glRotatef(-180f, 0, 1, 0);
-			lights.render(5);
+			//lights.render(5);
 			GL11.glPopMatrix();
 		}
 	}

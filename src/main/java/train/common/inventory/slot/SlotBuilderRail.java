@@ -1,4 +1,4 @@
-package train.common.inventory.slot;
+/*package train.common.inventory.slot;
 
 import mods.railcraft.api.tracks.RailTools;
 import net.minecraft.block.Block;
@@ -21,7 +21,7 @@ public class SlotBuilderRail extends Slot {
      *  - rail, detector rail, golden rail
      *  - iron, steel (why ?)
      *  - small straight TC rail
-     */
+     *//*
     public boolean isItemValid(ItemStack stack)
     {
     	if(stack == null)
@@ -48,3 +48,4 @@ public class SlotBuilderRail extends Slot {
     }
 
 }
+*/

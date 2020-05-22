@@ -1,4 +1,4 @@
-package train.client.gui;
+/*package train.client.gui;
 
 
 import cpw.mods.fml.relauncher.Side;
@@ -159,3 +159,4 @@ public class GuiSpeedTransmitter extends GuiScreen {
 
 }
 
+*/

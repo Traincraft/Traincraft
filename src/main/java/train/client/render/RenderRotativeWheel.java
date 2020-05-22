@@ -1,4 +1,4 @@
-package train.client.render;
+/*package train.client.render;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.Render;
@@ -55,3 +55,4 @@ public class RenderRotativeWheel extends Render {
 		return null;
 	}
 }
+*/

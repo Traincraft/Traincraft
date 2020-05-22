@@ -5,7 +5,7 @@
  * @author Mrbrutal
  ******************************************************************************/
 
-package train.common.entity.rollingStock;
+/*package train.common.entity.rollingStock;
 
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
@@ -80,3 +80,4 @@ public class EntityPassengerAdler extends EntityRollingStock implements IPasseng
 		return 1.05F;
 	}
 }
+*/

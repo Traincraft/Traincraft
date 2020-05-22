@@ -1,4 +1,4 @@
-package train.client.render;
+/*package train.client.render;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.Render;
@@ -23,7 +23,7 @@ public class RenderRotativeDigger extends Render {
 		GL11.glRotatef(90F - f, 0.0F, 1.0F, 0.0F);
 		/**
 		 * Damage mouvements
-		 */
+		 *//*
 		float f2 = (float) digger.boatTimeSinceHit - f1;
 		float f3 = (float) digger.boatCurrentDamage - f1;
 		if (f3 < 0.0F) {
@@ -38,7 +38,7 @@ public class RenderRotativeDigger extends Render {
 		 */
 		/* float pitch = digger.pitch/1.5F;
 		 * 
-		 * if(pitch>30){ pitch=30; } if(pitch<-30){ pitch=-30; } GL11.glRotatef(pitch, 1.0F, 0.0F, 0.0F); */
+		 * if(pitch>30){ pitch=30; } if(pitch<-30){ pitch=-30; } GL11.glRotatef(pitch, 1.0F, 0.0F, 0.0F); *//*
 
 		GL11.glTranslatef(0.0F, 0.5F, 0.0F);
 		//loadTexture(Info.trainsPrefix + "rotaryExcavator.png");
@@ -56,3 +56,4 @@ public class RenderRotativeDigger extends Render {
 		return null;
 	}
 }
+*/

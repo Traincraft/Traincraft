@@ -1,4 +1,4 @@
-package train.client.render;
+/*package train.client.render;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.Render;
@@ -25,7 +25,7 @@ public class RenderBogie extends Render {
 
 		float factor = (float) (1.0 / 16.0);
 		GL11.glScalef(2, 2, 2);
-		box.render(factor);*/
+		box.render(factor);*//*
 		
 
 		GL11.glPopMatrix();
@@ -38,3 +38,4 @@ public class RenderBogie extends Render {
 	
 
 }
+*/

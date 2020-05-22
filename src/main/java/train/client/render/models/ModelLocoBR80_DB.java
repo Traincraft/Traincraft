@@ -1,14 +1,13 @@
 package train.client.render.models;
 
-import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.client.FMLClientHandler;
 import org.lwjgl.opengl.GL11;
 import tmt.ModelBase;
 import train.client.core.ClientProxy;
 import train.client.render.CustomModelRenderer;
-import train.client.render.models.blocks.ModelRing;
 import train.common.library.Info;
 
 public class ModelLocoBR80_DB extends ModelBase {
@@ -17,7 +16,7 @@ public class ModelLocoBR80_DB extends ModelBase {
 	private long lastframe;
 	private float dig;
 	
-	private ModelRing ring;
+	//private ModelRing ring;
 	
 	public CustomModelRenderer body;
 	public CustomModelRenderer box;
@@ -95,7 +94,7 @@ public class ModelLocoBR80_DB extends ModelBase {
 
 	public ModelLocoBR80_DB() {
 		
-		ring = new ModelRing();
+		//ring = new ModelRing();
 		
 		body = new CustomModelRenderer(this, 0, 206, 128, 256);
 		body.addBox(0F, 0F, 0F, 23, 2, 22);
@@ -508,10 +507,10 @@ public class ModelLocoBR80_DB extends ModelBase {
 		box57.render(f5);
 		box58.render(f5);
 		
-		Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+		Minecraft.getMinecraft().entityRenderer.disableLightmap();
 		lightBack.render(f5);
 		lightFront.render(f5);
-		Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+		Minecraft.getMinecraft().entityRenderer.enableLightmap();
 		
 		box6.render(f5);
 		box60.render(f5);
@@ -550,7 +549,7 @@ public class ModelLocoBR80_DB extends ModelBase {
 			GL11.glTranslatef(-1.4f, 1.2f, 0);
 			GL11.glRotatef(180, 0, 1, 0);
 			GL11.glScalef(0.7f, 0.7f, 0.7f);
-			ring.render(5);
+			//ring.render(5);
 			GL11.glPopMatrix();
 		}
 	}

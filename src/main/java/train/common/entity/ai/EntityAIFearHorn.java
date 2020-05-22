@@ -1,4 +1,4 @@
-package train.common.entity.ai;
+/*package train.common.entity.ai;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.EntityAIBase;
@@ -45,7 +45,7 @@ public class EntityAIFearHorn extends EntityAIBase{
 	
     /**
      * Execute a one shot task or start executing a continuous task
-     */
+     *//*
     public void startExecuting()
     {
     	tryMoveToXYZ(this.randPosX, this.randPosY, this.randPosZ, 2.0D);
@@ -53,7 +53,7 @@ public class EntityAIFearHorn extends EntityAIBase{
 
     /**
      * Returns whether an in-progress EntityAIBase should continue executing
-     */
+     *//*
     public boolean continueExecuting()
     {
         return !this.entity.getNavigator().noPath();
@@ -61,7 +61,7 @@ public class EntityAIFearHorn extends EntityAIBase{
     
     /**
      * Returns the path to the given coordinates
-     */
+     *//*
     private PathEntity getPathToXYZ(double x, double y, double z)
     {
         return getEntityPathToXYZ(MathHelper.floor_double(x), (int)y, MathHelper.floor_double(z), 
@@ -70,7 +70,7 @@ public class EntityAIFearHorn extends EntityAIBase{
 
     /**
      * Try to find and set a path to XYZ. Returns true if successful.
-     */
+     *//*
     private boolean tryMoveToXYZ(double x, double y, double z, double speed)
     {
         PathEntity pathentity = this.getPathToXYZ((double)MathHelper.floor_double(x), (double)((int)y), (double)MathHelper.floor_double(z));
@@ -94,3 +94,4 @@ public class EntityAIFearHorn extends EntityAIBase{
         return pathentity;
     }
 }
+*/

@@ -1,4 +1,4 @@
-package train.common.entity.rollingStock;
+/*package train.common.entity.rollingStock;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
@@ -261,4 +261,4 @@ public class EntityLocoSteamSnowPlow extends SteamTrain {
 	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
 		return true;
 	}
-}
+}*/

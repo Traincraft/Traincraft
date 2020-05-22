@@ -5,7 +5,7 @@
  * @author Mrbrutal
  ******************************************************************************/
 
-package train.client.render.models.blocks;
+/*package train.client.render.models.blocks;
 
 import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.util.ResourceLocation;
@@ -127,3 +127,4 @@ public class ModelStopper extends ModelBase {
 		track.renderAll();
 	}
 }
+*/

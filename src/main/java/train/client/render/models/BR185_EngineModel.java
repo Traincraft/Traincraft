@@ -722,9 +722,9 @@ public class BR185_EngineModel extends ModelBase
 		{
 
 			if(br185_enginemodelModel[i].boxName!= null && br185_enginemodelModel[i].boxName.equals("lamp")){
-				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+				Minecraft.getMinecraft().entityRenderer.disableLightmap();
 				br185_enginemodelModel[i].render(f5);
-				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+				Minecraft.getMinecraft().entityRenderer.enableLightmap();
 
 			} else {
 				br185_enginemodelModel[i].render(f5);

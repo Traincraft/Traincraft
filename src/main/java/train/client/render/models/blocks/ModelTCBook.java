@@ -5,7 +5,7 @@
  * @author Mrbrutal
  ******************************************************************************/
 
-package train.client.render.models.blocks;
+/*package train.client.render.models.blocks;
 
 import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.client.Minecraft;
@@ -119,7 +119,7 @@ public class ModelTCBook extends ModelBase {
     		GL11.glTranslatef(-0.50889f-i*0.0047898f+(float)(Math.log(pages-i)/102.5f), 0.0f, -0.477f+((pages-i)*0.007f));
     		GL11.glScalef(1.0f, 1.0f, 1.0f);
     		//GL11.glTranslatef(-0.51889f-i*0.0047898f+(float)(Math.log(pages-i)/49.76f), 0.0f, -0.477f+((pages-i)*0.007f)); + rotation
-    		GL11.glRotatef(-90.0f/*+((pages-i)*0.155f)*/, 0.0f, 1.0f, 0.0f);
+    		GL11.glRotatef(-90.0f/*+((pages-i)*0.155f)*//*, 0.0f, 1.0f, 0.0f);
     		GL11.glDisable(GL11.GL_LIGHTING);
     		book.renderPart("page_left");
     		GL11.glPopMatrix();
@@ -127,7 +127,7 @@ public class ModelTCBook extends ModelBase {
     		GL11.glPushMatrix();
     		GL11.glTranslatef(0.50889f+i*0.0047898f-(float)(Math.log(pages-i)/102.5f), 0.0f, -0.477f+((pages-i)*0.007f));
     		GL11.glScalef(1.0f, 1.0f, 1.0f);
-    		GL11.glRotatef(90.0f/*-((pages-i)*0.155f)*/, 0.0f, 1.0f, 0.0f);
+    		GL11.glRotatef(90.0f/*-((pages-i)*0.155f)*//*, 0.0f, 1.0f, 0.0f);
     		book.renderPart("page_right");
     		GL11.glPopMatrix();
 		}
@@ -199,4 +199,4 @@ public class ModelTCBook extends ModelBase {
 		render2(10);
 		GL11.glPopMatrix();
 	}
-}
+}*/

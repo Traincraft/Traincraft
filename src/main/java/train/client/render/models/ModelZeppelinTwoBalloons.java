@@ -3,8 +3,6 @@ package train.client.render.models;
 import net.minecraft.entity.Entity;
 import tmt.ModelBase;
 import train.client.render.CustomModelRenderer;
-import train.common.core.handlers.ConfigHandler;
-import train.common.entity.zeppelin.EntityZeppelinTwoBalloons;
 
 public class ModelZeppelinTwoBalloons extends ModelBase {
 
@@ -108,11 +106,11 @@ public class ModelZeppelinTwoBalloons extends ModelBase {
 	}
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-		if (ConfigHandler.FLICKERING) {
+		/*if (ConfigHandler.FLICKERING) {
 			super.render(entity, f, f1, f2, f3, f4, f5);
-		}
+		}*/
 
-		if (((EntityZeppelinTwoBalloons) entity).getFuel() > 0) {
+		/*if (((EntityZeppelinTwoBalloons) entity).getFuel() > 0) {
 			long now = System.nanoTime();
 			int elapsed = (int) ((now - lastframe) / (1000 * 1000));
 			helice -= (float) elapsed / 300.0f;
@@ -120,7 +118,7 @@ public class ModelZeppelinTwoBalloons extends ModelBase {
 
 			zepSides[6].rotateAngleZ = helice + helice1;
 			zepSides[7].rotateAngleZ = helice + helice2;
-		}
+		}*/
 
 		for (int i = 0; i < l; i++) {
 			zepSides[i].render(f5);

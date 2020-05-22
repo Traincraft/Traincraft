@@ -3,16 +3,10 @@ package train.client.core;
 import javazoom.jl.decoder.JavaLayerUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.client.registry.ClientRegistry;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -20,18 +14,7 @@ import train.client.core.handlers.ClientTickHandler;
 import train.client.core.handlers.TCKeyHandler;
 import train.client.core.helpers.JLayerHook;
 import train.client.gui.*;
-import train.client.render.*;
-import train.common.adminbook.GUIAdminBook;
-import train.common.api.EntityBogie;
-import train.common.api.EntityRollingStock;
 import train.common.core.CommonProxy;
-import train.common.core.Traincraft_EventSounds;
-import train.common.entity.BaseTrainEntity;
-import train.common.entity.digger.EntityRotativeDigger;
-import train.common.entity.digger.EntityRotativeWheel;
-import train.common.entity.zeppelin.EntityZeppelinOneBalloon;
-import train.common.entity.zeppelin.EntityZeppelinTwoBalloons;
-import train.common.tile.*;
 
 import java.util.Calendar;
 
@@ -46,19 +29,19 @@ public class ClientProxy extends CommonProxy {
 	public void registerEvents(FMLPreInitializationEvent event) {
 		super.registerEvents(event);
 		ClientTickHandler tickHandler = new ClientTickHandler();
-		HUDloco huDloco = new HUDloco();
+		//HUDloco huDloco = new HUDloco();
 		/*if (Loader.isModLoaded("ComputerCraft") || Loader.isModLoaded("OpenComputers")){
 			HUDMTC hudMTC = new HUDMTC();
 			registerEvent(hudMTC);
 		}*/
 
 		registerEvent(tickHandler);
-		registerEvent(huDloco);
+		//registerEvent(huDloco);
 	}
 
 	@Override
 	public void registerRenderInformation() {
-		FMLCommonHandler.instance().bus().register(new ClientTickHandler());
+		/*FMLCommonHandler.instance().bus().register(new ClientTickHandler());
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityRollingStock.class, new RenderRollingStock());
 		RenderingRegistry.registerEntityRenderingHandler(EntityZeppelinTwoBalloons.class, new RenderZeppelins());
@@ -93,33 +76,14 @@ public class ClientProxy extends CommonProxy {
 		ClientRegistry.bindTileEntitySpecialRenderer(TileGeneratorDiesel.class, new RenderGeneratorDiesel());
 		//MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockIDs.generatorDiesel.block), new ItemRenderGeneratorDiesel());
 		
-		ClientRegistry.bindTileEntitySpecialRenderer(TileTCRail.class, new RenderTCRail());
+		//ClientRegistry.bindTileEntitySpecialRenderer(TileTCRail.class, new RenderTCRail());
 		
-		ClientRegistry.bindTileEntitySpecialRenderer(TileBridgePillar.class, new RenderBridgePillar());
-		//MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockIDs.bridgePillar.block), new ItemRenderBridgePillar());
+		//ClientRegistry.bindTileEntitySpecialRenderer(TileBridgePillar.class, new RenderBridgePillar());
+		//MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockIDs.bridgePillar.block), new ItemRenderBridgePillar());*/
 	}
 
 	@Override
 	public Object getClientGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
-		// id determines if it is a tile or a entity. 1 => TileBase; 2 => Entity (z = world entity id)
-		switch(id){
-			case 1: {
-				TileEntity tile = world.getTileEntity(new BlockPos(x, y, z));
-				if(tile instanceof BaseTile){
-					return ((BaseTile) tile).openGui(player);
-				}
-				break;
-			}
-			case 2: {
-				Entity entity = world.getEntityByID(z);
-				if(entity instanceof BaseTrainEntity){
-					return ((BaseTrainEntity) entity).openGui(player);
-				}
-				break;
-			}
-		}
-		return null;
-		
 		/*TileEntity te = world.getTileEntity(x, y, z);
 		EntityPlayer riddenByEntity = null;
 		Entity entity = player.ridingEntity;
@@ -184,6 +148,7 @@ public class ClientProxy extends CommonProxy {
 		default:
 			return null;
 		}*/
+		return null;
 	}
 
 	@Override
@@ -202,12 +167,11 @@ public class ClientProxy extends CommonProxy {
 
 	@Override
 	public void registerSounds() {
-		MinecraftForge.EVENT_BUS.register(new Traincraft_EventSounds());
 	}
 	
 	@Override
 	public void registerBookHandler() {
-		RecipeBookHandler recipeBookHandler = new RecipeBookHandler();
+		//RecipeBookHandler recipeBookHandler = new RecipeBookHandler();
 	}
 
 	@Override
@@ -253,7 +217,7 @@ public class ClientProxy extends CommonProxy {
 
 	@Override
 	public void openadmingui(String data){
-		Minecraft.getMinecraft().displayGuiScreen(new GUIAdminBook(data));
+		//Minecraft.getMinecraft().displayGuiScreen(new GUIAdminBook(data));
 	}
 
 	@Override

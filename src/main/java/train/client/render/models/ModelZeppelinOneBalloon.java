@@ -3,7 +3,6 @@ package train.client.render.models;
 import net.minecraft.entity.Entity;
 import tmt.ModelBase;
 import train.client.render.CustomModelRenderer;
-import train.common.entity.zeppelin.EntityZeppelinOneBalloon;
 
 public class ModelZeppelinOneBalloon extends ModelBase {
 	public float propel1 = 0.4188790204786391F;
@@ -562,7 +561,7 @@ public class ModelZeppelinOneBalloon extends ModelBase {
 
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-		if (((EntityZeppelinOneBalloon) entity).getFuel() > 0) {
+		/*if (((EntityZeppelinOneBalloon) entity).getFuel() > 0) {
 			long now = System.nanoTime();
 			int elapsed = (int) ((now - lastframe) / (1000 * 1000));
 			propel -= (float) elapsed / 300.0f;
@@ -570,7 +569,7 @@ public class ModelZeppelinOneBalloon extends ModelBase {
 			//Propeller.rotateAngleZ = 0;
 			Propeller.rotateAngleX = propel + propel1;
 			Propeller2.rotateAngleX = propel + propel2;
-		}
+		}*/
 		box.render(f5);
 		box0.render(f5);
 		box1.render(f5);

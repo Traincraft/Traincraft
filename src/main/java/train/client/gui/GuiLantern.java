@@ -1,4 +1,4 @@
-package train.client.gui;
+/*package train.client.gui;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -13,13 +13,13 @@ import train.common.core.network.PacketLantern;
 
 @SideOnly(Side.CLIENT)
 public class GuiLantern extends GuiScreen {
-	/** The player editing the gui */
+	/** The player editing the gui *//*
 	private final EntityPlayer editingPlayer;
 
-	/** Text field containing the color. */
+	/** Text field containing the color. *//*
 	private GuiTextField colorTextField;
 
-	/** the block being edited. */
+	/** the block being edited. *//*
 	private final TileLantern lanternBlock;
 	private GuiButton doneBtn;
 	private GuiButton cancelBtn;
@@ -30,7 +30,7 @@ public class GuiLantern extends GuiScreen {
 	}
 	/**
 	 * Adds the buttons (and other controls) to the screen in question.
-	 */
+	 *//*
 	@Override
 	public void initGui() {
 		this.buttonList.clear();
@@ -46,7 +46,7 @@ public class GuiLantern extends GuiScreen {
 	
 	/**
 	 * Fired when a control is clicked. This is the equivalent of ActionListener.actionPerformed(ActionEvent e).
-	 */
+	 *//*
 	@Override
 	protected void actionPerformed(GuiButton par1GuiButton) {
 		if (par1GuiButton.enabled) {
@@ -74,7 +74,7 @@ public class GuiLantern extends GuiScreen {
 	 * if string is not correct format (hex) then return null
 	 * @param text
 	 * @return
-	 */
+	 *//*
 	public static Integer tryParse(String text) {
 		try {
 			return new Integer(Integer.parseInt(text, 16));
@@ -85,7 +85,7 @@ public class GuiLantern extends GuiScreen {
 	
 	/**
 	 * Fired when a key is typed. This is the equivalent of KeyListener.keyTyped(KeyEvent e).
-	 */
+	 *//*
 	@Override
 	protected void keyTyped(char par1, int par2) {
 		this.colorTextField.textboxKeyTyped(par1, par2);
@@ -103,7 +103,7 @@ public class GuiLantern extends GuiScreen {
 	
 	/**
 	 * Called when the mouse is clicked.
-	 */
+	 *//*
 	@Override
 	protected void mouseClicked(int par1, int par2, int par3) {
 		super.mouseClicked(par1, par2, par3);
@@ -112,7 +112,7 @@ public class GuiLantern extends GuiScreen {
 	
 	/**
 	 * Draws the screen and all the components in it.
-	 */
+	 *//*
 	@Override
 	public void drawScreen(int par1, int par2, float par3) {
 		this.drawDefaultBackground();
@@ -130,4 +130,4 @@ public class GuiLantern extends GuiScreen {
 	public boolean doesGuiPauseGame() {
 		return false;
 	}
-}
+}*/

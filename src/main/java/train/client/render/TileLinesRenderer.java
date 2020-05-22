@@ -1,4 +1,4 @@
-package train.client.render;
+/*package train.client.render;
 
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
@@ -6,7 +6,7 @@ import train.client.render.models.ModelLines;
 
 /**
  * @author Spitfire4466 <trains-and-zeppelin.wikispaces.com>
- */
+ *//*
 public class TileLinesRenderer extends TileEntitySpecialRenderer {
 	private static final ModelLines model = new ModelLines();
 
@@ -19,11 +19,11 @@ public class TileLinesRenderer extends TileEntitySpecialRenderer {
 	 * 
 	 * 
 	 * 
-	 * } */
+	 * } *//*
 	@Override
 	public void renderTileEntityAt(TileEntity tileentity, double d, double d1, double d2, float f) {
 		// renderAModelAt((TileEntityElectricConverter)tileentity, d, d1, d2, f);
 	}
 
 
-}
+}*/

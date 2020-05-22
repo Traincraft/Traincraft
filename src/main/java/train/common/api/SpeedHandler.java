@@ -1,4 +1,4 @@
-package train.common.api;
+/*package train.common.api;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -31,7 +31,7 @@ public class SpeedHandler {
 	 * @param j
 	 * @param k
 	 * @return
-	 */
+	 *//*
 	public static boolean isSpeedRailAt(World world, int i, int j, int k) {
 		Block block = world.getBlock(i, j, k);
 		//Block block = Block.blocksList[id];
@@ -54,10 +54,11 @@ public class SpeedHandler {
 
 	/**
 	 * 
-	 */
+	 *//*
 	private static float convertSpeed(Entity entity, float maxSpeed) {
 		float speed = ((Locomotive) entity).getMaxSpeed()*0.2775f;// speed is in m/s
 		speed /= ConfigHandler.REAL_TRAIN_SPEED?2f:6f;// applying ratio
 		return speed/10;// converted in minecraft speed
 	}
 }
+*/

@@ -3,7 +3,6 @@ package train.client.render.models;
 import net.minecraft.entity.Entity;
 import tmt.ModelBase;
 import train.client.render.CustomModelRenderer;
-import train.common.api.Freight;
 
 public class ModelFreightCenterBeam_Wood_2 extends ModelBase {
 
@@ -145,7 +144,7 @@ public class ModelFreightCenterBeam_Wood_2 extends ModelBase {
 		box2.render(f5);
 		
 		//freight
-		if(((Freight)entity).getAmmountOfCargo() != 0) {
+		/*if(((Freight)entity).getAmmountOfCargo() != 0) {
 			//GL11.glPushMatrix();
 			//GL11.glScalef(1, 0.0f+((Freight)entity).getAmmountOfCargo()*0.0194f, 1);
 			//GL11.glTranslatef(0, 0.0f+(((Freight)entity).getSizeInventory()-((Freight)entity).getAmmountOfCargo())*0.5f, 0);
@@ -153,7 +152,7 @@ public class ModelFreightCenterBeam_Wood_2 extends ModelBase {
     		box19.render(f5);
     		box20.render(f5);
     		//GL11.glPopMatrix();
-		}
+		}*/
 
 	}
 

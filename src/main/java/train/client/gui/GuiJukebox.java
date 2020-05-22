@@ -1,4 +1,4 @@
-package train.client.gui;
+/*package train.client.gui;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -372,4 +372,4 @@ public class GuiJukebox extends GuiScreen {
 		}
 		return out;
 	}
-}
+}*/

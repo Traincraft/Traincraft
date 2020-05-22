@@ -1,4 +1,4 @@
-package train.common.tile;
+/*package train.common.tile;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -45,7 +45,7 @@ public class TileEntityDistil extends TileTraincraft implements IFluidHandler {
 
 	/**
 	 * Used by the GUI
-	 */
+	 *//*
 	@SideOnly(Side.CLIENT)
 	public int getLiquid() {
 		return (amount);
@@ -53,7 +53,7 @@ public class TileEntityDistil extends TileTraincraft implements IFluidHandler {
 
 	/**
 	 * Used by the GUI
-	 */
+	 *//*
 	@SideOnly(Side.CLIENT)
 	public int getLiquidItemID() {
 		return liquidItemID;
@@ -398,3 +398,4 @@ public class TileEntityDistil extends TileTraincraft implements IFluidHandler {
 	}
 
 }
+*/

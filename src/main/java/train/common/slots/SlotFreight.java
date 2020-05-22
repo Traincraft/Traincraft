@@ -5,7 +5,7 @@
  * @author Mrbrutal
  ******************************************************************************/
 
-package train.common.slots;
+/*package train.common.slots;
 
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
@@ -29,3 +29,4 @@ public class SlotFreight extends Slot {
 		return stack != null && ItemHandler.handleFreight(freight, stack);
 	}
 }
+*/

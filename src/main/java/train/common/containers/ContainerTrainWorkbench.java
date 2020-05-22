@@ -1,4 +1,4 @@
-package train.common.containers;
+/*package train.common.containers;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -56,7 +56,7 @@ public class ContainerTrainWorkbench extends Container {
 	/*
 	 * @Override public void updateCraftingResults() { super.updateCraftingResults(); craftResult.setInventorySlotContents(0, TrainCraftingManager.getInstance().func_82787_a(craftMatrix, worldObj)); } */
 
-	@Override
+	/*@Override
 	public void detectAndSendChanges() {
 		super.detectAndSendChanges();
 		craftResult.setInventorySlotContents(0, TrainCraftingManager.getInstance().func_82787_a(craftMatrix, worldObj));
@@ -112,3 +112,4 @@ public class ContainerTrainWorkbench extends Container {
 		return var2;
 	}
 }
+*/
