@@ -7,6 +7,9 @@
 
 package traincraft.items;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
@@ -15,10 +18,16 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 import train.common.Traincraft;
 import train.common.blocks.TCBlocks;
-import traincraft.items.armor.*;
-
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
+import traincraft.items.armor.ItemArmorCompositeSuit;
+import traincraft.items.armor.ItemArmorDriverHat;
+import traincraft.items.armor.ItemArmorDriverJacket;
+import traincraft.items.armor.ItemArmorDriverPants;
+import traincraft.items.armor.ItemArmorHat;
+import traincraft.items.armor.ItemArmorJacket;
+import traincraft.items.armor.ItemArmorOverall;
+import traincraft.items.armor.ItemArmorTicketmanHat;
+import traincraft.items.armor.ItemArmorTicketmanJacket;
+import traincraft.items.armor.ItemArmorTicketmanPants;
 
 @Mod.EventBusSubscriber(modid = Traincraft.MOD_ID)
 public class TCItems {

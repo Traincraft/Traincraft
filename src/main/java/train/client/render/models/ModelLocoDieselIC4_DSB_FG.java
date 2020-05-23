@@ -11,9 +11,10 @@
 
 package train.client.render.models;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
-import org.lwjgl.opengl.GL11;
 import tmt.ModelBase;
 
 public class ModelLocoDieselIC4_DSB_FG extends ModelBase

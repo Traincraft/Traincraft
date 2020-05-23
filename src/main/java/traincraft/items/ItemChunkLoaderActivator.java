@@ -1,13 +1,14 @@
 package traincraft.items;
 
+import java.util.List;
+
+import javax.annotation.Nullable;
+
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import train.common.Traincraft;
-
-import javax.annotation.Nullable;
-import java.util.List;
 
 public class ItemChunkLoaderActivator extends Item {
 

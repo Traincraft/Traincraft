@@ -1,5 +1,7 @@
 package traincraft.items.armor;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -9,8 +11,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.util.EnumHelper;
 import train.common.Traincraft;
-
-import javax.annotation.Nullable;
 
 public class ItemArmorTicketmanPants extends ItemArmor {
     

@@ -1,14 +1,14 @@
 package train.common.core.handlers;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.event.world.ChunkDataEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import train.common.Traincraft;
-
-import java.util.ArrayList;
-import java.util.Random;
 
 public class RetrogenHandler {
 	public static final byte VERSION = 1; // useful for world generation changes in future releases, to allow partial retrogen.

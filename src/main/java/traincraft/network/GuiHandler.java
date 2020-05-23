@@ -1,5 +1,7 @@
 package traincraft.network;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
@@ -9,8 +11,6 @@ import net.minecraftforge.fml.common.network.IGuiHandler;
 import train.common.Traincraft;
 import train.common.tile.BaseTile;
 import traincraft.api.AbstractRollingStock;
-
-import javax.annotation.Nullable;
 
 public class GuiHandler implements IGuiHandler {
     

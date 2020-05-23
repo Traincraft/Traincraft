@@ -1,11 +1,11 @@
 package tmt;
 
-import com.sun.javafx.geom.Vec3f;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
+
+import com.sun.javafx.geom.Vec3f;
 
 public class ModelPoolObjEntry extends ModelPoolEntry {
 	

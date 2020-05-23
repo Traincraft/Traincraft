@@ -1,12 +1,12 @@
 package train.common.core.util;
 
+import java.net.URL;
+
 import javazoom.jl.player.advanced.AdvancedPlayer;
 import javazoom.jl.player.advanced.PlaybackEvent;
 import javazoom.jl.player.advanced.PlaybackListener;
 import net.minecraft.world.World;
 import train.common.Traincraft;
-
-import java.net.URL;
 
 public class MP3Player extends PlaybackListener implements Runnable {
 	private String streamURL;

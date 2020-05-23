@@ -1,10 +1,10 @@
 package traincraft.api;
 
+import java.io.IOException;
+
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializer;
-
-import java.io.IOException;
 
 public class TCSerializer {
     

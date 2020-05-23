@@ -1,5 +1,8 @@
 package train.common.core;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.Entity;
@@ -13,9 +16,6 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import train.common.core.handlers.WorldEvents;
 import train.common.core.util.MP3Player;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class CommonProxy {
 	public static List<MP3Player> playerList = new ArrayList<>();

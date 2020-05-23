@@ -7,15 +7,15 @@
 
 package train.common.blocks;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+
 import net.minecraft.block.Block;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 import train.common.Traincraft;
-
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
 
 @Mod.EventBusSubscriber(modid = Traincraft.MOD_ID)
 public class TCBlocks {

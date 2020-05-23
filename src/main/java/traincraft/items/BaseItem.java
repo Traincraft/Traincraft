@@ -1,9 +1,9 @@
 package traincraft.items;
 
+import java.util.function.Consumer;
+
 import net.minecraft.item.Item;
 import train.common.Traincraft;
-
-import java.util.function.Consumer;
 
 /**
  * @author canitzp

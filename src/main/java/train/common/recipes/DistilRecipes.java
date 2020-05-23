@@ -1,14 +1,14 @@
 package train.common.recipes;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import train.common.blocks.TCBlocks;
 import train.common.library.ItemIDs;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class DistilRecipes {
 	

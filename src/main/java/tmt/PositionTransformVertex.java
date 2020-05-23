@@ -1,7 +1,6 @@
 package tmt;
 
 import com.sun.javafx.geom.Vec3f;
-import net.minecraft.client.model.PositionTextureVertex;
 
 public class PositionTransformVertex{
 

@@ -3,9 +3,10 @@ package train.client.render.models;
 // Copyright (C) 2017 Minecraft-SMP.de
 // This file is for Flan's Flying Mod Version 4.0.x+
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
-import org.lwjgl.opengl.GL11;
 import tmt.ModelBase;
 import tmt.ModelRendererTurbo;
 import tmt.Tessellator;

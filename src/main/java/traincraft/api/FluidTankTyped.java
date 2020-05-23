@@ -1,11 +1,11 @@
 package traincraft.api;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 public class FluidTankTyped extends FluidTank {
     

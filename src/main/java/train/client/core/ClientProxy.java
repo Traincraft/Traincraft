@@ -1,5 +1,7 @@
 package train.client.core;
 
+import java.util.Calendar;
+
 import javazoom.jl.decoder.JavaLayerUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
@@ -13,10 +15,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import train.client.core.handlers.ClientTickHandler;
 import train.client.core.handlers.TCKeyHandler;
 import train.client.core.helpers.JLayerHook;
-import train.client.gui.*;
 import train.common.core.CommonProxy;
-
-import java.util.Calendar;
 
 public class ClientProxy extends CommonProxy {
 

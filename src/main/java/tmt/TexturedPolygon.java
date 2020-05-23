@@ -1,9 +1,10 @@
 package tmt;
 
-import com.sun.javafx.geom.Vec3f;
+import java.util.ArrayList;
+
 import org.lwjgl.opengl.GL11;
 
-import java.util.ArrayList;
+import com.sun.javafx.geom.Vec3f;
 
 
 public class TexturedPolygon {

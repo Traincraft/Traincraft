@@ -3,9 +3,10 @@ package train.client.render.models;
 //Keep in mind that you still need to fill in some blanks
 // - ZeuX
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
-import org.lwjgl.opengl.GL11;
 import tmt.ModelBase;
 
 public class ModelLocoDieselIC4_DSB_FH extends ModelBase

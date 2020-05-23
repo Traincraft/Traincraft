@@ -1,9 +1,10 @@
 package tmt;
 
-import com.sun.javafx.geom.Vec3f;
-import net.minecraft.util.math.MathHelper;
-
 import java.util.ArrayList;
+
+import com.sun.javafx.geom.Vec3f;
+
+import net.minecraft.util.math.MathHelper;
 
 
 public class Shape2D {

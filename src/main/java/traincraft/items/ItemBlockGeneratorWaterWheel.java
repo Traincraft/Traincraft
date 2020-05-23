@@ -1,12 +1,13 @@
 package traincraft.items;
 
+import java.util.List;
+
+import javax.annotation.Nullable;
+
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import train.common.blocks.TCBlocks;
-
-import javax.annotation.Nullable;
-import java.util.List;
 
 public class ItemBlockGeneratorWaterWheel extends BaseItemBlock{
 

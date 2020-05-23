@@ -1,5 +1,9 @@
 package train.common.blocks;
 
+import java.util.List;
+
+import javax.annotation.Nullable;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.SoundType;
@@ -16,9 +20,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import train.common.Traincraft;
-
-import javax.annotation.Nullable;
-import java.util.List;
 
 /**
  * In 1.7 this block needed a tile entity, but we can change this with properties

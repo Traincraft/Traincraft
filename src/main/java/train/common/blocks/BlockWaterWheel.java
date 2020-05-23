@@ -1,5 +1,7 @@
 package train.common.blocks;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.SoundType;
@@ -14,8 +16,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import train.common.Traincraft;
 import traincraft.tile.TileWaterWheel;
-
-import javax.annotation.Nullable;
 
 public class BlockWaterWheel extends Block {
 

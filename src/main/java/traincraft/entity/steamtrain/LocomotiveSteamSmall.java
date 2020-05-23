@@ -1,5 +1,7 @@
 package traincraft.entity.steamtrain;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.Vec2f;
 import net.minecraft.world.World;
@@ -8,8 +10,6 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import traincraft.api.AbstractRollingStock;
 import traincraft.api.FluidTankTyped;
 import traincraft.api.Units;
-
-import javax.annotation.Nullable;
 
 public class LocomotiveSteamSmall extends AbstractRollingStock<LocomotiveSteamSmall> {
     

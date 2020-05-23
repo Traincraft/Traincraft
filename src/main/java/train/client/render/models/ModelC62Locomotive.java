@@ -10,8 +10,9 @@
 package train.client.render.models; //Path where the model is located
 
 
-import net.minecraft.entity.Entity;
 import org.lwjgl.opengl.GL11;
+
+import net.minecraft.entity.Entity;
 import tmt.ModelConverter;
 import tmt.ModelRendererTurbo;
 

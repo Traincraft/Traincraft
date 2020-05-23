@@ -1,5 +1,7 @@
 package train.common.blocks;
 
+import java.util.Random;
+
 import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -17,8 +19,6 @@ import net.minecraft.world.World;
 import train.common.Traincraft;
 import train.common.library.GuiIDs;
 import traincraft.tile.TileDistillery;
-
-import java.util.Random;
 
 public class BlockDistil extends BaseContainerBlock {
 

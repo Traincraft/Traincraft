@@ -1,7 +1,6 @@
 package train.client.render.models;
 
 import net.minecraft.entity.Entity;
-import org.lwjgl.opengl.GL11;
 import tmt.ModelBase;
 import train.client.render.CustomModelRenderer;
 

@@ -1,5 +1,9 @@
 package traincraft.items.armor;
 
+import java.util.Arrays;
+
+import javax.annotation.Nullable;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -15,9 +19,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.IRarity;
 import net.minecraftforge.common.util.EnumHelper;
 import train.common.Traincraft;
-
-import javax.annotation.Nullable;
-import java.util.Arrays;
 
 public class ItemArmorCompositeSuit extends ItemArmor {
     
