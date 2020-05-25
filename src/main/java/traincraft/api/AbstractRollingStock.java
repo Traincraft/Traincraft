@@ -1,10 +1,13 @@
 package traincraft.api;
 
+import net.minecraft.client.multiplayer.WorldClient;
+import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -13,15 +16,18 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import traincraft.items.ItemConnector;
 import traincraft.network.GuiHandler;
+import traincraft.network.TCPackets;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -246,4 +252,14 @@ public abstract class AbstractRollingStock<A extends AbstractRollingStock<A>> ex
         }
         return false;
     }
+    
+    public IMessage onNetworkPacketClient(@Nonnull TCPackets packet, @Nonnull NBTTagCompound data){
+        return packet.run(this, data);
+    }
+    
+    public IMessage onNetworkPacketServer(@Nonnull TCPackets packet, @Nonnull NBTTagCompound data){
+        return packet.run(this, data);
+    }
+    
+    public void useHorn(){}
 }

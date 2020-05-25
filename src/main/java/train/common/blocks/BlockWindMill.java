@@ -2,6 +2,7 @@ package train.common.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirectional;
+import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;
@@ -33,7 +34,7 @@ public class BlockWindMill extends Block {
 		this.setSoundType(SoundType.WOOD);
 		this.setHarvestLevel("axe", 0);
 		
-		this.setDefaultState(this.getBlockState().getBaseState().withProperty(BlockDirectional.FACING, EnumFacing.NORTH));
+		this.setDefaultState(this.getBlockState().getBaseState().withProperty(BlockHorizontal.FACING, EnumFacing.NORTH));
 	}
 	
 	@Override
@@ -83,21 +84,21 @@ public class BlockWindMill extends Block {
 	// state: ABCD => CD = facing
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		return this.getDefaultState().withProperty(BlockDirectional.FACING, EnumFacing.byHorizontalIndex(meta & 0b0011));
+		return this.getDefaultState().withProperty(BlockHorizontal.FACING, EnumFacing.byHorizontalIndex(meta & 0b0011));
 	}
 	
 	@Override
 	public int getMetaFromState(IBlockState state) {
-		return state.getValue(BlockDirectional.FACING).getHorizontalIndex();
+		return state.getValue(BlockHorizontal.FACING).getHorizontalIndex();
 	}
 	
 	@Override
 	public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
-		return super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer).withProperty(BlockDirectional.FACING, placer.getHorizontalFacing().getOpposite());
+		return super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer).withProperty(BlockHorizontal.FACING, placer.getHorizontalFacing().getOpposite());
 	}
 	
 	@Override
 	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, BlockDirectional.FACING);
+		return new BlockStateContainer(this, BlockHorizontal.FACING);
 	}
 }

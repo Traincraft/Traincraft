@@ -133,13 +133,9 @@ public class CommonProxy {
 	public GuiScreen getCurrentScreen() {
 		return null;
 	}
-
-	public void registerTextureFX() {}
-
+	
 	public void registerSounds() {}
-
-	public void registerBookHandler() {}
-
+	
 	public Minecraft getMinecraft() {
 		return null;
 	}
@@ -167,9 +163,7 @@ public class CommonProxy {
 	public float getJukeboxVolume() {
 		return 0;
 	}
-
-	public void registerKeyBindingHandler() {}
-
+	
 	public void setHook() {}
 	
 }

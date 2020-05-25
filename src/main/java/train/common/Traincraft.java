@@ -11,14 +11,17 @@ import net.minecraftforge.fml.common.event.*;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import train.client.core.handlers.TCKeyHandler;
 import train.common.core.CommonProxy;
-import train.common.core.TrainModCore;
 import train.common.core.handlers.*;
 import train.common.generation.WorldGenWorld;
+import traincraft.capabilities.CapabilityWorldWind;
 import traincraft.items.TCItems;
-import train.common.recipes.AssemblyTableRecipes;
+import traincraft.network.GuiHandler;
+import traincraft.network.PacketTraincraftEntity;
 
 import java.io.File;
 
@@ -49,59 +52,7 @@ public class Traincraft {
 		}
 	};
 	
-	/**
-	 * Network Channel to send packets on
-	 */
-	@Deprecated // move into one single network handler
-	public static SimpleNetworkWrapper modChannel;
-	@Deprecated // move into one single network handler
-	public static SimpleNetworkWrapper keyChannel;
-	@Deprecated // move into one single network handler
-	public static SimpleNetworkWrapper rotationChannel;
-	@Deprecated // move into one single network handler
-	public static SimpleNetworkWrapper slotschannel;
-	@Deprecated // move into one single network handler
-	public static SimpleNetworkWrapper ignitionChannel;
-	@Deprecated // move into one single network handler
-	public static SimpleNetworkWrapper brakeChannel;
-	@Deprecated // move into one single network handler
-	public static SimpleNetworkWrapper lockChannel;
-	@Deprecated // move into one single network handler
-	public static SimpleNetworkWrapper builderChannel;
-	@Deprecated // move into one single network handler
-	public static SimpleNetworkWrapper updateTrainIDChannel = NetworkRegistry.INSTANCE.newSimpleChannel("TrainIDChannel");
-	@Deprecated // move into one single network handler
-	public static SimpleNetworkWrapper updateDestinationChannel = NetworkRegistry.INSTANCE.newSimpleChannel("updateDestnChannel");
-	@Deprecated // move into one single network handler
-	public static final SimpleNetworkWrapper itaChannel = NetworkRegistry.INSTANCE.newSimpleChannel("TransmitterAspect");
-	@Deprecated // move into one single network handler
-	public static SimpleNetworkWrapper itsChannel = NetworkRegistry.INSTANCE.newSimpleChannel("TransmitterSpeed");
-	//public static  SimpleNetworkWrapper mtcsChannel = NetworkRegistry.INSTANCE.newSimpleChannel("MTCSysSetSpeed");
-	@Deprecated // move into one single network handler
-	public static SimpleNetworkWrapper itnsChannel = NetworkRegistry.INSTANCE.newSimpleChannel("TransmitterNextSpeed");
-	@Deprecated // move into one single network handler
-	public static final SimpleNetworkWrapper mtlChannel = NetworkRegistry.INSTANCE.newSimpleChannel("MTCLevelUpdater");
-	@Deprecated // move into one single network handler
-	public static final SimpleNetworkWrapper msChannel = NetworkRegistry.INSTANCE.newSimpleChannel("MTCStatus");
-	@Deprecated // move into one single network handler
-	public static final SimpleNetworkWrapper mscChannel = NetworkRegistry.INSTANCE.newSimpleChannel("MTCStatusToClient");
-	@Deprecated // move into one single network handler
-	public static final SimpleNetworkWrapper atoChannel = NetworkRegistry.INSTANCE.newSimpleChannel("ATOPacket");
-	@Deprecated // move into one single network handler
-	public static final SimpleNetworkWrapper atoDoSlowDownChannel = NetworkRegistry.INSTANCE.newSimpleChannel("ATODoSlowDown");
-	@Deprecated // move into one single network handler
-	public static final SimpleNetworkWrapper atoDoAccelChannel = NetworkRegistry.INSTANCE.newSimpleChannel("ATODoAccel");
-	@Deprecated // move into one single network handler
-	public static final SimpleNetworkWrapper atoSetStopPoint = NetworkRegistry.INSTANCE.newSimpleChannel("ATOSetStopPoint");
-	@Deprecated // move into one single network handler
-	public static final SimpleNetworkWrapper NCSlowDownChannel = NetworkRegistry.INSTANCE.newSimpleChannel("NCDoSlowDown");
-	//public static final SimpleNetworkWrapper ctChannel = NetworkRegistry.INSTANCE.newSimpleChannel("ctmChannel");
-	@Deprecated // move into one single network handler
-	public static final SimpleNetworkWrapper gsfsChannel = NetworkRegistry.INSTANCE.newSimpleChannel("gsfsChannel");
-	@Deprecated // move into one single network handler
-	public static final SimpleNetworkWrapper gsfsrChannel = NetworkRegistry.INSTANCE.newSimpleChannel("gsfsReturnChannel");
-	@Deprecated // move into one single network handler
-	public static final SimpleNetworkWrapper playSoundOnClientChannel = NetworkRegistry.INSTANCE.newSimpleChannel(" SoundOnCChannel");
+	public static final SimpleNetworkWrapper TC_NETWORK = NetworkRegistry.INSTANCE.newSimpleChannel(MOD_ID);
 	
 	public static File configDirectory;
 	
@@ -117,9 +68,6 @@ public class Traincraft {
 		/* Config handler */
 		configDirectory = event.getModConfigurationDirectory();
 		//ConfigHandler.init(new File(event.getModConfigurationDirectory(), MOD_NAME + ".cfg"));
-		
-		/* Register the KeyBinding Handler */
-		proxy.registerKeyBindingHandler();
 		
 		/* Register Items, Blocks, ... */
 		LOGGER.info("Initialize Blocks, Items, ...");
@@ -164,29 +112,29 @@ public class Traincraft {
 	public void load(FMLInitializationEvent event) {
 		LOGGER.info("Start Initialization");
 		
-		//proxy.getCape();
+		LOGGER.info("Initializing Network Packets");
+		NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
+		TC_NETWORK.registerMessage(PacketTraincraftEntity.class, PacketTraincraftEntity.class, 0, Side.SERVER);
+		TC_NETWORK.registerMessage(PacketTraincraftEntity.class, PacketTraincraftEntity.class, 1, Side.CLIENT);
 		
-		/* GUI handler initiation */
-		LOGGER.info("Initialize Gui");
-		//NetworkRegistry.INSTANCE.registerGuiHandler(instance, proxy);
-		//FMLCommonHandler.instance().bus().register(new CraftingHandler());
+		if(event.getSide() == Side.CLIENT){
+			LOGGER.info("Register Keys");
+			
+		}
 		
 		/* Ore dictionary */
-		OreHandler.registerOres();
+		//OreHandler.registerOres();
 		
 		/* Recipes */
 		LOGGER.info("Initialize Recipes");
 		//RecipeHandler.initBlockRecipes();
 		//RecipeHandler.initItemRecipes();
 		//RecipeHandler.initSmeltingRecipes();
-		AssemblyTableRecipes.recipes();
+		//AssemblyTableRecipes.recipes();
 		
 		/* Register the liquids */
 		LOGGER.info("Initialize Fluids");
 		//LiquidManager.getInstance().registerLiquids();
-		
-		/* Liquid FX */
-		proxy.registerTextureFX();
 		
 		/*Trainman Villager*/
 		LOGGER.info("Initialize Station Chief Villager");
@@ -196,22 +144,19 @@ public class Traincraft {
 		proxy.registerVillagerSkin(ConfigHandler.TRAINCRAFT_VILLAGER_ID, "station_chief.png");
 		VillagerRegistry.instance().registerVillageTradeHandler(ConfigHandler.TRAINCRAFT_VILLAGER_ID, villageHandler);*/
 		
-		
-		proxy.registerBookHandler();
-		
-		
 		LOGGER.info("Finished Initialization");
-		
-		
 	}
 	
 	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent evt) {
 		LOGGER.info("Start to PostInitialize");
+		
+		LOGGER.info("Initializing Capabilities");
+		CapabilityWorldWind.register();
+		
 		LOGGER.info("Register ChunkHandler");
 		
 		LOGGER.info("Activation Mod Compatibility");
-		TrainModCore.ModsLoaded();
 		//LiquidManager.getLiquidsFromDictionnary();
 		if(Loader.isModLoaded("OpenComputers")){
 			LOGGER.info("OpenComputers integration successfully activated!");
@@ -221,7 +166,7 @@ public class Traincraft {
 	
 	@Mod.EventHandler
 	public void serverStop(FMLServerStoppedEvent event) {
-		proxy.killAllStreams();
+		CommonProxy.killAllStreams();
 	}
 
 	/*

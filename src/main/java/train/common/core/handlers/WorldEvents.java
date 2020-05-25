@@ -15,15 +15,15 @@ public class WorldEvents{
 	private static Random rand = new Random();
 	public static int windStrength = 10 + rand.nextInt(10);
 
-	@SubscribeEvent
+	//@SubscribeEvent
 	public void onWorldTick(TickEvent.WorldTickEvent handler){
-		if(handler.world.isRemote){
+	/*	if(handler.world.isRemote){
 			if(windTicker % 128 == 0){
 				updateWind();
 				windTicker=0;
 			}
 			windTicker++;
-		}
+		}*/
 	}
 
 	private static void updateWind() {

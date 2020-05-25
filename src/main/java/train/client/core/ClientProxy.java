@@ -168,11 +168,6 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public void registerSounds() {
 	}
-	
-	@Override
-	public void registerBookHandler() {
-		//RecipeBookHandler recipeBookHandler = new RecipeBookHandler();
-	}
 
 	@Override
 	public Minecraft getMinecraft() {
@@ -218,11 +213,6 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public void openadmingui(String data){
 		//Minecraft.getMinecraft().displayGuiScreen(new GUIAdminBook(data));
-	}
-
-	@Override
-	public void registerKeyBindingHandler() {
-		FMLCommonHandler.instance().bus().register(new TCKeyHandler());
 	}
 	
 	@Override
