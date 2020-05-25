@@ -37,3 +37,5 @@ lib
 *.directory
 classes
 run_server
+.classpath
+.project
