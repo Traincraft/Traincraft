@@ -13,7 +13,7 @@ public class Config {
     //TODO
     public static boolean EXAMPLE_SETTING;
 
-    public static final void initalize(File file){
+    public static final void initialize(File file){
         config = new Configuration(file, "1.0", true);
         MinecraftForge.EVENT_BUS.register(new ConfigEventHandler());
         config.load();

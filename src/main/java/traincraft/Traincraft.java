@@ -71,7 +71,7 @@ public class Traincraft {
 		LOGGER.info("Starting Traincraft " + MOD_VERSION + "!");
 		/* Config handler */
 		configDirectory = event.getModConfigurationDirectory();
-		Config.initalize(event.getSuggestedConfigurationFile());
+		Config.initialize(event.getSuggestedConfigurationFile());
 		
 		/* Register Items, Blocks, ... */
 		LOGGER.info("Initialize Blocks, Items, ...");
