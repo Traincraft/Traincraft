@@ -12,9 +12,9 @@
   "credits": "Created by Spitfire4466 & Mrbrutal",
   "parent": "",
   "screenshots": [],
-  "requiredMods": ["Forge@[10.13.4.1558,)"],
-  "dependencies": ["Forge@[10.13.4.1558,)", "Railcraft@[9.11.0.0,)"],
-  "dependants": ["TConstruct"],
+  "requiredMods": ["forge@[14.23.5.2854,)"],
+  "dependencies": ["forge@[14.23.5.2854,)", "railcraft@[9.11.0.0,)"],
+  "dependants": ["tconstruct"],
   "useDependencyInformation": "true"
 }
 ]

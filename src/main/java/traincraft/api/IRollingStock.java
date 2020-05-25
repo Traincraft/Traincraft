@@ -1,9 +1,12 @@
 package traincraft.api;
 
-import net.fexcraft.lib.tmt.ModelBase;
+import java.util.Map;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
@@ -17,10 +20,7 @@ import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.items.IItemHandler;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import java.util.Map;
+import traincraft.renderer.TraincraftModel;
 
 public interface IRollingStock {
     
@@ -104,7 +104,7 @@ public interface IRollingStock {
      * @param rollingStock This rolling stock
      * @return The rolling stock model
      */
-    ModelBase getModel(AbstractRollingStock<?> rollingStock);
+    TraincraftModel getModel(AbstractRollingStock<?> rollingStock);
     
     /**
      * Used by the {@link traincraft.renderer.RendererRollingStock} to determine the texture for

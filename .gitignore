@@ -21,7 +21,7 @@ build
 
 # build
 asm
-config
+/config
 logs
 options.txt
 libs
@@ -37,3 +37,5 @@ lib
 *.directory
 classes
 run_server
+.classpath
+.project

@@ -1,29 +1,32 @@
 package traincraft;
 
+import java.io.File;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.*;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStoppedEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import train.common.core.CommonProxy;
-import train.common.core.handlers.*;
+import train.common.core.handlers.RetrogenHandler;
 import train.common.generation.WorldGenWorld;
 import traincraft.capabilities.CapabilityWorldWind;
 import traincraft.entity.TCEntities;
 import traincraft.items.TCItems;
 import traincraft.network.GuiHandler;
 import traincraft.network.PacketTraincraftEntity;
-
-import java.io.File;
 
 @Mod(modid = Traincraft.MOD_ID, name = Traincraft.MOD_NAME, version = Traincraft.MOD_VERSION)
 public class Traincraft {
@@ -67,7 +70,7 @@ public class Traincraft {
 		LOGGER.info("Starting Traincraft " + MOD_VERSION + "!");
 		/* Config handler */
 		configDirectory = event.getModConfigurationDirectory();
-		//ConfigHandler.init(new File(event.getModConfigurationDirectory(), MOD_NAME + ".cfg"));
+		//Config.initialize(event.getSuggestedConfigurationFile());
 		
 		/* Register Items, Blocks, ... */
 		LOGGER.info("Initialize Blocks, Items, ...");
@@ -87,7 +90,6 @@ public class Traincraft {
 		//Retrogen Handling
 		RetrogenHandler retroGen = new RetrogenHandler();
 		MinecraftForge.EVENT_BUS.register(retroGen);
-		FMLCommonHandler.instance().bus().register(retroGen);
 		
 		//MapGenStructureIO.registerStructureComponent(ComponentVillageTrainstation.class, "Trainstation");
 
