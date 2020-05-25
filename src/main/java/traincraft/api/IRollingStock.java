@@ -19,8 +19,6 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fluids.capability.IFluidHandler;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.IItemHandler;
 import traincraft.renderer.TraincraftModel;
 
@@ -106,7 +104,6 @@ public interface IRollingStock {
      * @param rollingStock This rolling stock
      * @return The rolling stock model
      */
-    @SideOnly(Side.CLIENT)
     TraincraftModel getModel(AbstractRollingStock<?> rollingStock);
     
     /**
@@ -133,7 +130,6 @@ public interface IRollingStock {
      * @param entityYaw This entities yaw
      * @param partialTicks The partial ticks to apply for smooth rotating and movement
      */
-    @SideOnly(Side.CLIENT)
     default void preRender(AbstractRollingStock<?> rollingStock, RenderManager renderManager, double x, double y, double z, float entityYaw, float partialTicks){}
     
     /**
@@ -149,7 +145,6 @@ public interface IRollingStock {
      * @param entityYaw This entities yaw
      * @param partialTicks The partial ticks to apply for smooth rotating and movement
      */
-    @SideOnly(Side.CLIENT)
     default void postRender(AbstractRollingStock<?> rollingStock, RenderManager renderManager, double x, double y, double z, float entityYaw, float partialTicks){}
     
     /**
@@ -275,7 +270,6 @@ public interface IRollingStock {
      * @param player The player
      * @return A Gui to show to the player
      */
-    @SideOnly(Side.CLIENT)
     @Nullable
     default GuiScreen openGui(@Nonnull AbstractRollingStock<?> rollingStock, @Nonnull EntityPlayer player){
         return null;
