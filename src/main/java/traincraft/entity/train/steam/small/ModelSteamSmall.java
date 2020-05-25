@@ -1,14 +1,12 @@
 package traincraft.entity.train.steam.small;
 
-import net.fexcraft.lib.tmt.ModelBase;
 import net.fexcraft.lib.tmt.ModelRendererTurbo;
+import traincraft.renderer.TraincraftModel;
 
-public class ModelSteamSmall extends ModelBase {
-	
-	public ModelRendererTurbo[] modelParts;
+public class ModelSteamSmall extends TraincraftModel {
 	
 	public ModelSteamSmall() {
-		modelParts = new ModelRendererTurbo[19];
+		ModelRendererTurbo[] modelParts = new ModelRendererTurbo[19];
 
 		modelParts[0] = new ModelRendererTurbo(this, 0, 0, 128, 128);
 		modelParts[1] = new ModelRendererTurbo(this, 43, 112, 128, 128);
@@ -68,23 +66,8 @@ public class ModelSteamSmall extends ModelBase {
 		modelParts[17].setPosition(-10F, 8F, -22F);
 		modelParts[18].addBox(0F, 0F, 0F, 20, 1, 20, 0.0F);
 		modelParts[18].setPosition(-10F, 36F, -20F);
-	}
-	
-	@Override
-	public void render() {
-		for (int i = 0; i < 19; i++) {
-			modelParts[i].render();
-		}
-	}
-	
-	@Override
-	public void translate(float x, float y, float z) {
-	
-	}
-	
-	@Override
-	public void rotate(float x, float y, float z) {
-	
+		
+		this.add("body", modelParts);
 	}
 
 }

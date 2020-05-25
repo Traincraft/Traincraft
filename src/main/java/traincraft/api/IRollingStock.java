@@ -5,7 +5,6 @@ import java.util.Map;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import net.fexcraft.lib.tmt.ModelBase;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.player.EntityPlayer;
@@ -23,6 +22,7 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.IItemHandler;
+import traincraft.renderer.TraincraftModel;
 
 public interface IRollingStock {
     
@@ -107,7 +107,7 @@ public interface IRollingStock {
      * @return The rolling stock model
      */
     @SideOnly(Side.CLIENT)
-    ModelBase getModel(AbstractRollingStock<?> rollingStock);
+    TraincraftModel getModel(AbstractRollingStock<?> rollingStock);
     
     /**
      * Used by the {@link traincraft.renderer.RendererRollingStock} to determine the texture for

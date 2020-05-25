@@ -1,6 +1,9 @@
 package traincraft.entity.train.steam.small;
 
-import net.fexcraft.lib.tmt.ModelBase;
+import java.util.Map;
+
+import javax.annotation.Nullable;
+
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.Vec2f;
@@ -12,9 +15,7 @@ import traincraft.Traincraft;
 import traincraft.api.AbstractRollingStock;
 import traincraft.api.FluidTankTyped;
 import traincraft.api.Units;
-
-import javax.annotation.Nullable;
-import java.util.Map;
+import traincraft.renderer.TraincraftModel;
 
 public class LocomotiveSteamSmall extends AbstractRollingStock<LocomotiveSteamSmall> {
     
@@ -67,7 +68,7 @@ public class LocomotiveSteamSmall extends AbstractRollingStock<LocomotiveSteamSm
     }
     
     @Override
-    public ModelBase getModel(AbstractRollingStock<?> rollingStock) {
+    public TraincraftModel getModel(AbstractRollingStock<?> rollingStock) {
         return MODEL;
     }
     
