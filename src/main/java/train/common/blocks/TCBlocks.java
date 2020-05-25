@@ -12,7 +12,7 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
-import train.common.Traincraft;
+import traincraft.Traincraft;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;

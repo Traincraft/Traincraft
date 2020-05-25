@@ -9,7 +9,7 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
-import train.common.Traincraft;
+import traincraft.Traincraft;
 import train.common.api.*;
 import train.common.core.network.PacketParkingBrake;
 import train.common.core.network.PacketSetLocoTurnedOn;

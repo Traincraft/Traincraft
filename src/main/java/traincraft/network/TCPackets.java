@@ -2,7 +2,7 @@ package traincraft.network;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
-import train.common.Traincraft;
+import traincraft.Traincraft;
 import traincraft.api.AbstractRollingStock;
 
 import javax.annotation.Nonnull;

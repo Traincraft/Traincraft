@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.util.EnumHelper;
-import train.common.Traincraft;
+import traincraft.Traincraft;
 
 import javax.annotation.Nullable;
 

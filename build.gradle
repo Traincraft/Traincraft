@@ -55,10 +55,15 @@ repositories {
     maven {
 		url = "http://maven.cil.li/"
 	}*/
+    maven { // jitpack.io: FCL
+        url 'https://jitpack.io'
+    }
 }
 
 dependencies {
 	minecraft 'net.minecraftforge:forge:1.12.2-14.23.5.2854'
+
+    compile 'com.github.Fexcraft:FCL:1.12.2-SNAPSHOT'
     //compile "li.cil.oc:OpenComputers:MC1.7.10-1.5.+:api"
     //compile name: "buildcraft", version: "7.1.16", classifier: "dev"
     //compile "codechicken:CodeChickenLib:1.7.10-1.1.3.138:dev"

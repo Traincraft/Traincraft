@@ -10,7 +10,7 @@ import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
-import train.common.Traincraft;
+import traincraft.Traincraft;
 import traincraft.capabilities.CapabilityWorldWind;
 import traincraft.capabilities.WorldWind;
 import traincraft.save.TCDimensionSaveData;

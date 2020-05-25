@@ -10,7 +10,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
-import train.common.Traincraft;
+import traincraft.Traincraft;
 
 public class BlockTraincraftFluid extends BlockFluidClassic {
 	

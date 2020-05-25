@@ -9,7 +9,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 import org.lwjgl.input.Keyboard;
-import train.common.Traincraft;
+import traincraft.Traincraft;
 import traincraft.api.AbstractRollingStock;
 import traincraft.network.TCPackets;
 

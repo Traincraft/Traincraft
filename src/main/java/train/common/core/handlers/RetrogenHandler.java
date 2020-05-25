@@ -5,7 +5,7 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.event.world.ChunkDataEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
-import train.common.Traincraft;
+import traincraft.Traincraft;
 
 import java.util.ArrayList;
 import java.util.Random;

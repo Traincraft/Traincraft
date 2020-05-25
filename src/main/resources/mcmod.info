@@ -1,6 +1,6 @@
 [
 {
-  "modid": "tc",
+  "modid": "traincraft",
   "name": "Traincraft",
   "description": "A mod that adds over 200 trains and rolling stock to the game.",
   "version": "${version}",

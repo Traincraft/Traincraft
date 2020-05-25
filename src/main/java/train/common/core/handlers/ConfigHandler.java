@@ -9,7 +9,7 @@
 
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
-import train.common.Traincraft;
+import traincraft.Traincraft;
 
 import java.io.File;
 

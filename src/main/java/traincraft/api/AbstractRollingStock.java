@@ -1,6 +1,10 @@
 package traincraft.api;
 
+import net.fexcraft.lib.tmt.ModelBase;
 import net.minecraft.client.multiplayer.WorldClient;
+import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.client.renderer.texture.TextureManager;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -40,7 +44,7 @@ public abstract class AbstractRollingStock<A extends AbstractRollingStock<A>> ex
     private EnumRestriction restriction;
     private int activeSkin;
     private double travelDistance;
-    private Map<String, ResourceLocation> skins = new HashMap<>();
+    private Map<String, ResourceLocation> skins;
     private AbstractRollingStock<?> next, previous;
     
     private List<PassengerSeat> seats = new ArrayList<>();
@@ -56,12 +60,21 @@ public abstract class AbstractRollingStock<A extends AbstractRollingStock<A>> ex
     @Override
     protected void entityInit() {
         super.entityInit();
-    
-        Vec3d size = this.getSize(this);
-        //this.setSize(((float) size.x), (float) size.y);
-        this.setEntityBoundingBox(new AxisAlignedBB(0, 0, 0, size.x, size.y, size.z));
         
+        this.skins = new HashMap<>();
         this.registerSkins(this, this.skins);
+    }
+    
+    @Override
+    public void setPosition(double x, double y, double z) {
+        this.posX = x;
+        this.posY = y;
+        this.posZ = z;
+        Vec3d size = this.getSize(this);
+        double halfWidth = (size.x / 2.0D);
+        double height = size.y;
+        double halfDepth = (size.z / 2.0D);
+        this.setEntityBoundingBox(new AxisAlignedBB(x - halfWidth, y, z - halfDepth, x + halfWidth, y + height, z + halfDepth));
     }
     
     @Nonnull
@@ -165,6 +178,11 @@ public abstract class AbstractRollingStock<A extends AbstractRollingStock<A>> ex
         return this.travelDistance;
     }
     
+    // called every frame! should be cached if possible!!!
+    public ResourceLocation getTexture(AbstractRollingStock<?> rollingStock){
+        return !this.skins.isEmpty() ? this.getActiveSkin().getValue() : TextureMap.LOCATION_MISSING_TEXTURE;
+    }
+    
     @Override
     public void removePassengers() {
         super.removePassengers();
@@ -235,6 +253,7 @@ public abstract class AbstractRollingStock<A extends AbstractRollingStock<A>> ex
             return EnumActionResult.SUCCESS;
         }
         if(!player.isSneaking()){
+            System.out.println(hitVec);
             // todo seat code
         }
         if(this.canPlayerOpenGuiOrContainer(this, player)){

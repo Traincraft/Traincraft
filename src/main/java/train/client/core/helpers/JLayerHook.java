@@ -3,7 +3,7 @@ package train.client.core.helpers;
 import javazoom.jl.decoder.JavaLayerHook;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
-import train.common.Traincraft;
+import traincraft.Traincraft;
 
 import java.io.IOException;
 import java.io.InputStream;

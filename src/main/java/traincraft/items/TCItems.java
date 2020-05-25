@@ -13,7 +13,7 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
-import train.common.Traincraft;
+import traincraft.Traincraft;
 import train.common.blocks.TCBlocks;
 import traincraft.items.armor.*;
 

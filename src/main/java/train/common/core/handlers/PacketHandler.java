@@ -10,7 +10,7 @@
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.relauncher.Side;
-import train.common.Traincraft;
+import traincraft.Traincraft;
 import train.common.adminbook.ItemAdminBook;
 import train.common.core.network.*;
 import train.common.library.Info;

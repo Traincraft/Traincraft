@@ -8,7 +8,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.entity.player.EntityPlayer;
 import org.lwjgl.input.Keyboard;
-import train.common.Traincraft;
+import traincraft.Traincraft;
 import train.common.core.network.PacketLantern;
 
 @SideOnly(Side.CLIENT)

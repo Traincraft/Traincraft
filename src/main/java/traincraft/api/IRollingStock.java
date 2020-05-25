@@ -1,6 +1,9 @@
 package traincraft.api;
 
+import net.fexcraft.lib.tmt.ModelBase;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
@@ -92,6 +95,57 @@ public interface IRollingStock {
      * @param skins The map of skins already registered
      */
     default void registerSkins(AbstractRollingStock<?> rollingStock, Map<String, ResourceLocation> skins){}
+    
+    /**
+     * This is used by the renderer to get the actual model that has to be rendered.
+     * Since it is called every frame, it should not create new objects, instead it should
+     * use a static final Model.
+     *
+     * @param rollingStock This rolling stock
+     * @return The rolling stock model
+     */
+    ModelBase getModel(AbstractRollingStock<?> rollingStock);
+    
+    /**
+     * Used by the {@link traincraft.renderer.RendererRollingStock} to determine the texture for
+     * the model.
+     * This is called every frame and therefor shouldn't use any object creation.
+     *
+     * @param rollingStock This rolling stock
+     * @return The model texture
+     */
+    ResourceLocation getTexture(AbstractRollingStock<?> rollingStock);
+    
+    /**
+     * Called by the renderer before the model nor the texture are applied to the render engine.
+     * This is also before the {@link net.minecraft.client.renderer.GlStateManager#translate(double, double, double)} happens.
+     * Can be used to render custom stuff.
+     * Called every frame, so be careful when using this method.
+     *
+     * @param rollingStock This rolling stock
+     * @param renderManager The renderer manager
+     * @param x Drawing x position
+     * @param y Drawing y position
+     * @param z Drawing z position
+     * @param entityYaw This entities yaw
+     * @param partialTicks The partial ticks to apply for smooth rotating and movement
+     */
+    default void preRender(AbstractRollingStock<?> rollingStock, RenderManager renderManager, double x, double y, double z, float entityYaw, float partialTicks){}
+    
+    /**
+     * Called by the renderer after the model has be rendered.
+     * Can be used to render custom stuff.
+     * Called every frame, so be careful when using this method.
+     *
+     * @param rollingStock This rolling stock
+     * @param renderManager The renderer manager
+     * @param x Drawing x position
+     * @param y Drawing y position
+     * @param z Drawing z position
+     * @param entityYaw This entities yaw
+     * @param partialTicks The partial ticks to apply for smooth rotating and movement
+     */
+    default void postRender(AbstractRollingStock<?> rollingStock, RenderManager renderManager, double x, double y, double z, float entityYaw, float partialTicks){}
     
     /**
      * Gets the inventory handler for this rolling stock.

@@ -27,7 +27,7 @@ import net.minecraftforge.event.entity.minecart.MinecartCollisionEvent;
 import net.minecraftforge.event.entity.minecart.MinecartInteractEvent;
 import net.minecraftforge.event.entity.minecart.MinecartUpdateEvent;
 import train.client.core.handlers.SoundUpdaterRollingStock;
-import train.common.Traincraft;
+import traincraft.Traincraft;
 import train.common.adminbook.ServerLogger;
 import train.common.core.HandleOverheating;
 import train.common.core.handlers.*;

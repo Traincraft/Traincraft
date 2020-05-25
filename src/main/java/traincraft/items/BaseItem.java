@@ -1,7 +1,7 @@
 package traincraft.items;
 
 import net.minecraft.item.Item;
-import train.common.Traincraft;
+import traincraft.Traincraft;
 
 import java.util.function.Consumer;
 

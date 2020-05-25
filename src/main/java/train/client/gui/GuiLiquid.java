@@ -13,7 +13,7 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import org.lwjgl.opengl.GL11;
 import train.client.core.helpers.FluidRenderHelper;
-import train.common.Traincraft;
+import traincraft.Traincraft;
 import train.common.api.AbstractTrains;
 import train.common.api.LiquidTank;
 import train.common.core.network.PacketSetTrainLockedToClient;
