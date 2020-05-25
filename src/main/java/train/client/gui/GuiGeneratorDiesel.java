@@ -1,4 +1,4 @@
-package train.client.gui;
+/*package train.client.gui;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -74,3 +74,4 @@ public class GuiGeneratorDiesel extends GuiContainer{
         return mouseX >= j+143 && mouseX <= j+164 && mouseY >= k+5 && mouseY <= k+57;
     }
 }
+*/

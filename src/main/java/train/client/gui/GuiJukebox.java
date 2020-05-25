@@ -1,4 +1,4 @@
-package train.client.gui;
+/*package train.client.gui;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -12,7 +12,7 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
-import train.common.Traincraft;
+import traincraft.Traincraft;
 import train.common.api.AbstractTrains;
 import train.common.core.network.PacketSetJukeboxStreamingUrl;
 import train.common.core.network.PacketSetTrainLockedToClient;
@@ -372,4 +372,4 @@ public class GuiJukebox extends GuiScreen {
 		}
 		return out;
 	}
-}
+}*/

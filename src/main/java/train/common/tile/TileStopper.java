@@ -5,7 +5,7 @@
  * @author Mrbrutal
  ******************************************************************************/
 
-package train.common.tile;
+/*package train.common.tile;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -64,4 +64,4 @@ public class TileStopper extends TileEntity {
 		this.readFromNBT(pkt.func_148857_g());
 		super.onDataPacket(net, pkt);
 	}
-}
+}*/

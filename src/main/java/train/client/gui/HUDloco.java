@@ -1,4 +1,4 @@
-package train.client.gui;
+/*package train.client.gui;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.client.Minecraft;
@@ -33,14 +33,14 @@ public class HUDloco extends GuiScreen {
 		renderBG(rcCar);
 		/**
 		 * Steam Train have water
-		 */
+		 *//*
 		if (rcCar instanceof SteamTrain) {
 			renderWaterBar(rcCar);
 		}
 
 		/**
 		 * Some loco may not overheat in the future
-		 */
+		 *//*
 		if (rcCar.canOverheat()) {
 			renderOverheating(rcCar);
 		}
@@ -74,7 +74,7 @@ public class HUDloco extends GuiScreen {
 		else {
 			h = 13;
 		}
-		GL11.glEnable(3042 /* GL_BLEND */);
+		GL11.glEnable(3042 /* GL_BLEND *//*);
 		GL11.glEnable(32826);
 		fontRendererObj.drawStringWithShadow("Speed:", 106, windowHeight + 7 + (h), 0xFFFFFF);
 		fontRendererObj.drawStringWithShadow("  " + (int) Math.abs(((float) (speed))), 106,
@@ -85,16 +85,16 @@ public class HUDloco extends GuiScreen {
 			fontRendererObj.drawStringWithShadow("State: " + loco.getState(), 50, windowHeight + 80, 0xFFFFFF);
 		}
 		GL11.glDisable(32826);
-		GL11.glDisable(3042 /* GL_BLEND */);
+		GL11.glDisable(3042 /* GL_BLEND *//*);
 	}
 
 	private void renderFuelBar(Locomotive loco) {
-		GL11.glEnable(3042 /* GL_BLEND */);
+		GL11.glEnable(3042 /* GL_BLEND *//*);
 		GL11.glEnable(32826);
 		int l;
 		/**
 		 * So that the content of the tank is renderer and not the fuel currently burned
-		 */
+		 *//*
 		if (loco instanceof DieselTrain) {
 			l = ((((DieselTrain) loco).getDiesel()));
 
@@ -112,7 +112,7 @@ public class HUDloco extends GuiScreen {
 
 		/**
 		 * Steam Train have different HUD
-		 */
+		 *//*
 		if (loco instanceof SteamTrain) {
 			game.renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation,Info.guiPrefix + "loco_hud_steam.png"));
 		}
@@ -122,7 +122,7 @@ public class HUDloco extends GuiScreen {
 		/**
 		 * Things are slightly different in Steam HUD
 		 * because it's a black bar that is rendered that hides the color bar the black bar is rendered from top to bottom
-		 */
+		 *//*
 		if (!(loco instanceof SteamTrain)) {
 			drawTexturedModalRect(28, windowHeight + 11, 148, 150 + l, 7, 70 - l);// l max = 70
 		}
@@ -131,7 +131,7 @@ public class HUDloco extends GuiScreen {
 		}
 		// fontRendererObj.drawStringWithShadow("Fuel:", 4, (windowHeight/2)+1, 0xFFFFFF);
 		GL11.glDisable(32826);
-		GL11.glDisable(3042 /* GL_BLEND */);
+		GL11.glDisable(3042 /* GL_BLEND *//*);
 	}
 
 	private void renderWaterBar(Locomotive loco) {
@@ -145,13 +145,13 @@ public class HUDloco extends GuiScreen {
 		}
 		/**
 		 * because it's a black bar that is rendered that hides the color bar the black bar is rendered from top to bottom
-		 */
-		GL11.glEnable(3042 /* GL_BLEND */);
+		 *//*
+		GL11.glEnable(3042 /* GL_BLEND *//*);
 		GL11.glEnable(32826);
 		drawTexturedModalRect(70, windowHeight + 17, 190, 169 + l_Scaled, 6, 49 - l_Scaled);// l max = 49
 		GL11.glDisable(32826);
-		GL11.glDisable(3042 /* GL_BLEND */);
-		/* this is for the red overlay if you don't put water into steam trains */
+		GL11.glDisable(3042 /* GL_BLEND *//*);
+		/* this is for the red overlay if you don't put water into steam trains *//*
 		if (l <= 1 && loco.getIsFuelled()) {
 			this.drawGradientRect(0, 0, windowWidth, windowHeight + 100, 1615855616, -1602211792);
 		}
@@ -164,7 +164,7 @@ public class HUDloco extends GuiScreen {
 
 		/**
 		 * SteamTrain have different HUD
-		 */
+		 *//*
 		if (loco instanceof SteamTrain) {
 			game.renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation,Info.guiPrefix + "loco_hud_steam.png"));
 		}
@@ -173,14 +173,14 @@ public class HUDloco extends GuiScreen {
 		}
 		/**
 		 * Scale the speed so that it doesn't go higher than 49 pixels
-		 */
+		 *//*
 		double speedScaled = Math.abs((speed * 49) / 280);
 		if (speedScaled > 49) {
 			speedScaled = 49;
 		}
 		/**
 		 * Things are slightly different in Steam HUD
-		 */
+		 *//*
 		if (!(loco instanceof SteamTrain)) {
 			drawTexturedModalRect(75, windowHeight + 37 - ((int) speedScaled) + (20), 163, 150, 30, 5);
 		}
@@ -197,12 +197,12 @@ public class HUDloco extends GuiScreen {
 			overheatLevel = loco.getOverheatTime() + 30;
 		}
 		// fontRendererObj.drawStringWithShadow("Heat:", 33, (windowHeight/2)+1, 0xFFFFFF);
-		GL11.glEnable(3042 /* GL_BLEND */);
+		GL11.glEnable(3042 /* GL_BLEND *//*);
 		GL11.glEnable(32826);
 
 		/**
 		 * Steam Train have different HUD
-		 */
+		 *//*
 		if (loco instanceof SteamTrain) {
 			game.renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation,Info.guiPrefix + "loco_hud_steam.png"));
 		}
@@ -216,7 +216,7 @@ public class HUDloco extends GuiScreen {
 		}
 		/**
 		 * Things are slightly different in Steam HUD render overheat arrow black bar for steam train
-		 */
+		 *//*
 		if (!(loco instanceof SteamTrain)) {
 			drawTexturedModalRect(58, windowHeight + 37 - ( overheatScaled) + (20), 169, 158, 23, 5);
 		}
@@ -224,7 +224,8 @@ public class HUDloco extends GuiScreen {
 			drawTexturedModalRect(56, windowHeight + 17, 176, (169 + overheatScaled), 5, 49 - overheatScaled);
 		}
 		GL11.glDisable(32826);
-		GL11.glDisable(3042 /* GL_BLEND */);
+		GL11.glDisable(3042 /* GL_BLEND *//*);
 	}
 
 }
+*/

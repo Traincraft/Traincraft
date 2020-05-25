@@ -1,4 +1,4 @@
-package train.client.gui;
+/*package train.client.gui;
 
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -13,7 +13,7 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import org.lwjgl.opengl.GL11;
 import train.client.core.helpers.FluidRenderHelper;
-import train.common.Traincraft;
+import traincraft.Traincraft;
 import train.common.api.AbstractTrains;
 import train.common.api.LiquidTank;
 import train.common.core.network.PacketSetTrainLockedToClient;
@@ -170,28 +170,28 @@ public class GuiLiquid extends GuiContainer {
 		int l = (liquid.getAmount() * 50) / liquid.getCapacity();
 
 		Fluid theLiquid = FluidRegistry.getFluid(liquid.getLiquidItemID());
-		/** Don't render anything if the cart is empty */
+		/** Don't render anything if the cart is empty *//*
 		if (theLiquid != null) {
-			/** Protection against missing rendering icon, to avoid NPE */
+			/** Protection against missing rendering icon, to avoid NPE *//*
 			if (theLiquid.getIcon() == null)
 				return;
-			/** Get the texture sheet of the liquid */
+			/** Get the texture sheet of the liquid *//*
 			//mc.renderEngine.func_110577_a(new ResourceLocation(Info.resourceLocation,Info.guiPrefix + "empty.png"));
 			mc.renderEngine.bindTexture(FluidRenderHelper.getFluidSheet(theLiquid));
 			//func_110628_a(FluidRenderHelper.getFluidSheet(new FluidStack(theLiquid,1)));
-			/** Drawing 16*16 icons side by side, extending them gives bad results */
+			/** Drawing 16*16 icons side by side, extending them gives bad results *//*
 			for (int col = 0; col < 66 / 16; col++) {
 				for (int row = 0; row <= (l) / 16; row++) {
 					//System.out.println(ItemIDs.bogie.item.getIconFromDamage(0));
 					drawTexturedModelRectFromIcon(j + 58 + col * 16, k + 52 + -row * 16,FluidRenderHelper.getFluidTexture(theLiquid,false), 16, 16);
 				}
 			}
-			/** Bind again to render a black overlay. The icon is rendered in 16*16 square and therefore not adapted to a 50 pixels high tank */
+			/** Bind again to render a black overlay. The icon is rendered in 16*16 square and therefore not adapted to a 50 pixels high tank *//*
 			mc.renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation,Info.guiPrefix + "gui_liquid.png"));
-			/** Drawing black overlay over the liquid */
+			/** Drawing black overlay over the liquid *//*
 			drawTexturedModalRect(j + 58, (k + 1), 4, 168, 64, 50 - l + 15);
 		}
-		/** Drawing the red scale over the liquid */
+		/** Drawing the red scale over the liquid *//*
 		drawTexturedModalRect(j + 58, (k + 67 - 50), 72, 167, 64, 50);
 	}
 
@@ -201,3 +201,4 @@ public class GuiLiquid extends GuiContainer {
 		return (mouseX >= j + 57 && mouseX <= j + 123 && mouseY >= k + 16 && mouseY <= k + 68);
 	}
 }
+*/

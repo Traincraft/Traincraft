@@ -1,4 +1,4 @@
-package train.common.api;
+/*package train.common.api;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -26,7 +26,7 @@ public abstract class Tender extends Freight implements IFluidHandler {
 	 * @param fluid
 	 * @param quantity
 	 * @param capacity
-	 */
+	 *//*
 	public Tender(World world, Fluid fluid, int quantity, int capacity) {
 		this(new FluidStack(fluid, quantity), capacity, world, null);
 	}
@@ -75,7 +75,7 @@ public abstract class Tender extends Freight implements IFluidHandler {
 	}
 	/**
 	 * handle mass depending on items and liquid
-	 */
+	 *//*
 	@Override
 	protected void handleMass(){
 		if(this.ticksExisted%10!=0)return;
@@ -99,7 +99,7 @@ public abstract class Tender extends Freight implements IFluidHandler {
 	 * added for SMP, used by the HUD
 	 * 
 	 * @return
-	 */
+	 *//*
 	public int getWater() {
 		return (this.dataWatcher.getWatchableObjectInt(23));
 	}
@@ -108,7 +108,7 @@ public abstract class Tender extends Freight implements IFluidHandler {
 	 * used by the GUI
 	 * 
 	 * @return int
-	 */
+	 *//*
 	public int getLiquidItemID() {
 		return (this.dataWatcher.getWatchableObjectInt(4));
 	}
@@ -205,7 +205,7 @@ public abstract class Tender extends Freight implements IFluidHandler {
 			}
 		}
 	}
-	/*IInventory implements*/
+	/*IInventory implements*//*
 	@Override
 	public ItemStack getStackInSlot(int i) {
 		return tenderItems[i];
@@ -321,4 +321,4 @@ public abstract class Tender extends Freight implements IFluidHandler {
 			}
 		}
 	}
-}
+}*/

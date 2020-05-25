@@ -5,11 +5,11 @@
  * @author Mrbrutal
  ******************************************************************************/
 
-package train.common.core.handlers;
+/*package train.common.core.handlers;
 
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
-import train.common.Traincraft;
+import traincraft.Traincraft;
 
 import java.io.File;
 
@@ -56,7 +56,7 @@ public class ConfigHandler {
 
 		try {
 			cf.load();
-			/* General */
+			/* General *//*
 			SOUNDS = cf.get(CATEGORY_GENERAL, "ENABLE_SOUNDS", true).getBoolean(true);
 			FLICKERING = cf.get(CATEGORY_GENERAL, "DISABLE_FLICKERING", true,"forces trains and rollingstock to render twice, this fixes some bugs with texture flickering.").getBoolean(true);
 			ORE_GEN = cf.get(CATEGORY_GENERAL, "ENABLE_FUEL_ORES_SPAWN", true).getBoolean(true);
@@ -97,4 +97,4 @@ public class ConfigHandler {
 			}
 		}
 	}
-}
+}*/

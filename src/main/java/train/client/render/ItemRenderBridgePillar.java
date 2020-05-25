@@ -1,4 +1,4 @@
-package train.client.render;
+/*package train.client.render;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -57,3 +57,4 @@ public class ItemRenderBridgePillar implements IItemRenderer {
 		GL11.glPopMatrix();
 	}
 }
+*/

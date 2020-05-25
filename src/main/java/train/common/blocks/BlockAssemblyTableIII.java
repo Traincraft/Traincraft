@@ -9,10 +9,9 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import train.common.Traincraft;
+import traincraft.Traincraft;
 import train.common.library.GuiIDs;
-import train.common.tile.TileCrafterTierI;
-import train.common.tile.TileCrafterTierIII;
+import traincraft.tile.TileAssemblyTableIII;
 
 public class BlockAssemblyTableIII extends BaseContainerBlock {
 
@@ -31,7 +30,7 @@ public class BlockAssemblyTableIII extends BaseContainerBlock {
 		if (!world.isRemote) {
 			if (!player.isSneaking()) {
 				TileEntity te = world.getTileEntity(pos);
-				if (te instanceof TileCrafterTierI) {
+				if (te instanceof TileAssemblyTableIII) {
 					player.openGui(Traincraft.instance, GuiIDs.CRAFTER_TIER_III, world, pos.getX(), pos.getY(), pos.getZ());
 				}
 			}
@@ -44,7 +43,7 @@ public class BlockAssemblyTableIII extends BaseContainerBlock {
 	
 	@Override
 	public TileEntity createNewTileEntity(World world, int meta) {
-		return new TileCrafterTierIII();
+		return new TileAssemblyTableIII();
 	}
 
 }

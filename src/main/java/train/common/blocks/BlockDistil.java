@@ -1,6 +1,6 @@
 package train.common.blocks;
 
-import net.minecraft.block.BlockDirectional;
+import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
@@ -14,10 +14,9 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import train.common.Traincraft;
+import traincraft.Traincraft;
 import train.common.library.GuiIDs;
-import train.common.tile.TileCrafterTierI;
-import train.common.tile.TileEntityDistil;
+import traincraft.tile.TileDistillery;
 
 import java.util.Random;
 
@@ -33,7 +32,7 @@ public class BlockDistil extends BaseContainerBlock {
 		this.setHardness(3.5F);
 		this.setSoundType(SoundType.STONE);
 		
-		this.setDefaultState(this.blockState.getBaseState().withProperty(ACTIVE, false).withProperty(BlockDirectional.FACING, EnumFacing.NORTH));
+		this.setDefaultState(this.blockState.getBaseState().withProperty(ACTIVE, false).withProperty(BlockHorizontal.FACING, EnumFacing.NORTH));
 	}
 	
 	@Override
@@ -46,7 +45,7 @@ public class BlockDistil extends BaseContainerBlock {
 		if (!world.isRemote) {
 			if (!player.isSneaking()) {
 				TileEntity te = world.getTileEntity(pos);
-				if (te instanceof TileCrafterTierI) {
+				if (te instanceof TileDistillery) {
 					player.openGui(Traincraft.instance, GuiIDs.DISTIL, world, pos.getX(), pos.getY(), pos.getZ());
 				}
 			}
@@ -60,29 +59,29 @@ public class BlockDistil extends BaseContainerBlock {
 	// state: ABCD => B = active; CD = facing
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		return this.getDefaultState().withProperty(ACTIVE, (meta & 0b0100) > 0).withProperty(BlockDirectional.FACING, EnumFacing.byHorizontalIndex(meta & 0b0011));
+		return this.getDefaultState().withProperty(ACTIVE, (meta & 0b0100) > 0).withProperty(BlockHorizontal.FACING, EnumFacing.byHorizontalIndex(meta & 0b0011));
 	}
 	
 	@Override
 	public int getMetaFromState(IBlockState state) {
-		return (state.getValue(ACTIVE) ? 0b0100 : 0b0000) | (state.getValue(BlockDirectional.FACING).getHorizontalIndex());
+		return (state.getValue(ACTIVE) ? 0b0100 : 0b0000) | (state.getValue(BlockHorizontal.FACING).getHorizontalIndex());
 	}
 	
 	@Override
 	public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
-		return super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer).withProperty(BlockDirectional.FACING, placer.getHorizontalFacing().getOpposite());
+		return super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer).withProperty(BlockHorizontal.FACING, placer.getHorizontalFacing().getOpposite());
 	}
 	
 	@Override
 	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, ACTIVE, BlockDirectional.FACING);
+		return new BlockStateContainer(this, ACTIVE, BlockHorizontal.FACING);
 	}
 	
 	// todo distillery particle effects
 	@Override
 	public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand) {
 		if(state.getValue(ACTIVE)){
-			EnumFacing facing = state.getValue(BlockDirectional.FACING);
+			EnumFacing facing = state.getValue(BlockHorizontal.FACING);
 			
 		}
 	}
@@ -125,7 +124,7 @@ public class BlockDistil extends BaseContainerBlock {
 
 	@Override
 	public TileEntity createNewTileEntity(World world, int meta) {
-		return new TileEntityDistil();
+		return new TileDistillery();
 	}
 
 }

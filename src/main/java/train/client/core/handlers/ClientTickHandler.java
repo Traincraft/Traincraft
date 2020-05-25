@@ -4,7 +4,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
-import train.common.Traincraft;
+import traincraft.Traincraft;
 import train.common.core.CommonProxy;
 import train.common.core.util.MP3Player;
 

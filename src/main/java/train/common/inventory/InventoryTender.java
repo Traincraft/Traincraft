@@ -1,4 +1,4 @@
-package train.common.inventory;
+/*package train.common.inventory;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -82,4 +82,4 @@ public class InventoryTender extends Container {
 		}
 		return itemstack;
 	}
-}
+}*/

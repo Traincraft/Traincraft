@@ -5,7 +5,7 @@
  * @author Mrbrutal
  ******************************************************************************/
 
-package train.client.gui.sideTabs;
+/*package train.client.gui.sideTabs;
 
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
@@ -188,3 +188,4 @@ public abstract class SideTab {
 		}
 	}
 }
+*/

@@ -5,7 +5,7 @@
  * @author Mrbrutal
  ******************************************************************************/
 
-package train.common.tile;
+/*package train.common.tile;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -206,4 +206,4 @@ public class TileTrainWbench extends TileEntity implements IInventory {
 
 		return true;
 	}
-}
+}*/

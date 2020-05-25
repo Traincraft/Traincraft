@@ -1,4 +1,4 @@
-package train.common.core.handlers;
+/*package train.common.core.handlers;
 
 import com.google.common.collect.ListMultimap;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -16,7 +16,7 @@ import java.util.List;
  * <h1>Chunkloading manager</h1>
  * This is a modified chunkloading manager from TiM. Changed to suit TC's use.
  * @author Eternal Blue Flame
- */
+ *//*
 public class ChunkEvents implements ForgeChunkManager.LoadingCallback, ForgeChunkManager.OrderedLoadingCallback, ForgeChunkManager.PlayerOrderedLoadingCallback {
 
 
@@ -79,3 +79,4 @@ public class ChunkEvents implements ForgeChunkManager.LoadingCallback, ForgeChun
 		return tickets;
 	}
 }
+*/

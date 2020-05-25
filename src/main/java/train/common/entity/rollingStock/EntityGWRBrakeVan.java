@@ -1,11 +1,11 @@
-package train.common.entity.rollingStock;
+/*package train.common.entity.rollingStock;
 
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import train.common.Traincraft;
+import traincraft.Traincraft;
 import train.common.api.AbstractWorkCart;
 import train.common.core.util.TraincraftUtil;
 import train.common.library.GuiIDs;
@@ -117,4 +117,4 @@ public class EntityGWRBrakeVan extends AbstractWorkCart implements IInventory {
 	public float getOptimalDistance(EntityMinecart cart) {
 		return 3.4F;
 	}
-}
+}*/

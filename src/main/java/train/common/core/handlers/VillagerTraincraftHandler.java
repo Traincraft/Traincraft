@@ -1,4 +1,4 @@
-package train.common.core.handlers;
+/*package train.common.core.handlers;
 
 import cpw.mods.fml.common.registry.VillagerRegistry.IVillageCreationHandler;
 import cpw.mods.fml.common.registry.VillagerRegistry.IVillageTradeHandler;
@@ -92,3 +92,4 @@ public class VillagerTraincraftHandler implements IVillageCreationHandler,IVilla
 		return ComponentVillageTrainstation.buildComponent(startPiece, pieces, random, p1, p2, p3, p4, p5);
 	}
 }
+*/

@@ -1,4 +1,4 @@
-package train.common.entity.zeppelin;
+/*package train.common.entity.zeppelin;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
@@ -48,3 +48,4 @@ public class EntityZeppelinOneBalloon extends AbstractZeppelin{
 		return "Zeppelin One Balloon";
 	}
 }
+*/

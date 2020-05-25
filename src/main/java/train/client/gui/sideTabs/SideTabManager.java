@@ -5,7 +5,7 @@
  * @author Mrbrutal
  ******************************************************************************/
 
-package train.client.gui.sideTabs;
+/*package train.client.gui.sideTabs;
 
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
@@ -49,7 +49,7 @@ public class SideTabManager {
 	 * Inserts a tab into the next-to-last position.
 	 * 
 	 * @param tab
-	 */
+	 *//*
 	public void insert(SideTab tab) {
 		if (tab.side) {
 			this.sideTabLeft.add(sideTabLeft.size() - 1, tab);
@@ -193,3 +193,4 @@ public class SideTabManager {
 		}
 	}
 }
+*/

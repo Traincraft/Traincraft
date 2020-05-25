@@ -1,4 +1,4 @@
-package train.common.tile;
+/*package train.common.tile;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -30,7 +30,7 @@ public class TileSwitchStand extends TileTraincraft {
         updateTicks++;
         /**
          * Remove any block on top of the wind mill
-         */
+         *//*
         if (!worldObj.isRemote) {
             if (updateTicks % 20 == 0) {
                 if (!this.worldObj.isAirBlock(this.xCoord, this.yCoord + 1, this.zCoord)) {
@@ -84,4 +84,4 @@ public class TileSwitchStand extends TileTraincraft {
         return AxisAlignedBB.getBoundingBox(xCoord-1, yCoord-1, zCoord-1, xCoord + 2, yCoord + 2, zCoord + 2);
     }
 
-}
+}*/

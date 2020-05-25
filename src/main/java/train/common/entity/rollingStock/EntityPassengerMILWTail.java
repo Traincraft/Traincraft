@@ -1,4 +1,4 @@
-package train.common.entity.rollingStock;
+/*package train.common.entity.rollingStock;
 
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
@@ -73,4 +73,4 @@ public class EntityPassengerMILWTail extends EntityRollingStock implements IPass
 	public float getOptimalDistance(EntityMinecart cart) {
 		return 3F;
 	}
-}
+}*/

@@ -1,4 +1,4 @@
-package train.common.api;
+/*package train.common.api;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.block.Block;
@@ -27,14 +27,14 @@ import net.minecraftforge.event.entity.minecart.MinecartCollisionEvent;
 import net.minecraftforge.event.entity.minecart.MinecartInteractEvent;
 import net.minecraftforge.event.entity.minecart.MinecartUpdateEvent;
 import train.client.core.handlers.SoundUpdaterRollingStock;
-import train.common.Traincraft;
+import traincraft.Traincraft;
 import train.common.adminbook.ServerLogger;
 import train.common.core.HandleOverheating;
 import train.common.core.handlers.*;
 import train.common.core.network.PacketRollingStockRotation;
 import train.common.core.util.TraincraftUtil;
 import train.common.entity.rollingStock.EntityTracksBuilder;
-import train.common.items.ItemWrench;
+import traincraft.items.ItemWrench;
 import train.common.library.EnumTrains;
 
 import java.util.ArrayList;
@@ -49,7 +49,7 @@ public abstract class EntityRollingStock extends AbstractTrains {
 
 	protected EntityPlayer playerEntity;
 
-	/** Axis aligned bounding box. */
+	/** Axis aligned bounding box. *//*
 	private AxisAlignedBB boundingBoxSmall;
 
 	public float maxSpeed;
@@ -65,7 +65,7 @@ public abstract class EntityRollingStock extends AbstractTrains {
 	public double d6;
 	public double d7;
 
-	/** appears to be the progress of the turn */
+	/** appears to be the progress of the turn *//*
 	private int rollingturnProgress;
 	private double rollingX;
 	private double rollingY;
@@ -101,13 +101,13 @@ public abstract class EntityRollingStock extends AbstractTrains {
 	 * Array containing @TrainHandler objects. In other words it contains all
 	 * the "trains" object the train object contains an array which contains all @RollingStocks
 	 * that are part of the train
-	 */
+	 *//*
 	public static ArrayList<TrainHandler> allTrains = new ArrayList<TrainHandler>();
 	private HandleOverheating handleOverheating;
 	public ArrayList<EntityRollingStock> RollingStock;
 	/**
 	 * each ticks: numLaps++ used for fuel consumption rate
-	 */
+	 *//*
 	private int numLaps;
 
 	private int ticksSinceHeld = 0;
@@ -115,7 +115,7 @@ public abstract class EntityRollingStock extends AbstractTrains {
 
 	/**
 	 * New physics integration
-	 */
+	 *//*
 	private double bogieShift = 0;
 	private boolean needsBogieUpdate;
 	private boolean firstLoad = true;
@@ -173,6 +173,7 @@ public abstract class EntityRollingStock extends AbstractTrains {
 		/* Railcraft's stuff */
 		//maxSpeed = defaultMaxSpeedRail;
 		//maxSpeedGround = defaultMaxSpeedGround;
+		/*
 		maxSpeedAirLateral = defaultMaxSpeedAirLateral;
 		maxSpeedAirVertical = defaultMaxSpeedAirVertical;
 		dragAir = defaultDragAir;
@@ -180,7 +181,7 @@ public abstract class EntityRollingStock extends AbstractTrains {
 		/**
 		 * Trains are always rendered even if out player's sight => no more
 		 * flickering/disappearing
-		 */
+		 *//*
 		if (ConfigHandler.FLICKERING) {
 			this.ignoreFrustumCheck = true;
 		}
@@ -197,7 +198,7 @@ public abstract class EntityRollingStock extends AbstractTrains {
 
 	/**
 	 * this is basically NBT for entity spawn, to keep data between client and server in sync because some data is not automatically shared.
-	 */
+	 *//*
 	@Override
 	public void readSpawnData(ByteBuf additionalData) {
 		super.readSpawnData(additionalData);
@@ -234,7 +235,7 @@ public abstract class EntityRollingStock extends AbstractTrains {
 
 	/*public int getNumberOfTrainsForServer() {
 		return dataWatcher.getWatchableObjectInt(10);
-	}*/
+	}*//*
 
 	public int getUniqueTrainIDClient() {
 		return dataWatcher.getWatchableObjectInt(11);
@@ -242,7 +243,7 @@ public abstract class EntityRollingStock extends AbstractTrains {
 
 	/*
 	 * @Override public int getID() { return ID; }
-	 */
+	 *//*
 
 	@Override
 	protected boolean canTriggerWalking() {
@@ -349,7 +350,7 @@ public abstract class EntityRollingStock extends AbstractTrains {
 				/**
 				 * Destroy IPassenger since they don't extend Freight or
 				 * Locomotive and don't have a proper attackEntityFrom() method
-				 */
+				 *//*
 				if (this instanceof IPassenger) {
 					this.setDead();
 					dropCartAsItem(((EntityPlayer)damagesource.getEntity()).capabilities.isCreativeMode);
@@ -448,7 +449,7 @@ public abstract class EntityRollingStock extends AbstractTrains {
 	 * gets packet from server and distribute for GUI handles motion
 	 *
 	 * @param i
-	 */
+	 *//*
 	public void keyHandlerFromPacket(int i) {
 		this.pressKey(i);
 	}
@@ -458,7 +459,7 @@ public abstract class EntityRollingStock extends AbstractTrains {
 			for (int i2 = 0; i2 < train.getTrains().size(); i2++) {
 				if (RailTools.isCartLockedDown(train.getTrains().get(i2))) {
 					cartLocked = true;
-					/** If something in the train is locked down */
+					/** If something in the train is locked down *//*
 					ticksSinceHeld = 40;
 					if (!((Locomotive) this).canBeAdjusted) {
 						((Locomotive) this).setCanBeAdjusted(true);
@@ -493,7 +494,7 @@ public abstract class EntityRollingStock extends AbstractTrains {
 		/**
 		 * if the global train list is empty this is only used when the first @EntityRollingStock
 		 * is put down or when the world reloads
-		 */
+		 *//*
 		if (ticksExisted % 40 != 0) return;
 		if (allTrains.size() == 0) {
 			//System.out.println("array empty");
@@ -504,7 +505,7 @@ public abstract class EntityRollingStock extends AbstractTrains {
 			/**
 			 * This is used when global train list isn't empty but this @EntityRollingStock
 			 * isn't part of a train yet
-			 */
+			 *//*
 		}
 		else if (train == null || (train != null && train.getTrains().size() == 0)) {
 			if ((this.cartLinked1 != null || this.cartLinked2 != null)) {
@@ -523,7 +524,7 @@ public abstract class EntityRollingStock extends AbstractTrains {
 		/**
 		 * getting main locomotive of the train and copying its destination to
 		 * all attached carts
-		 */
+		 *//*
 		if (train != null && train.getTrains().size() > 1) {
 			if (this instanceof Locomotive && !((Locomotive) this).canBeAdjusted && this.getDestination().length() > 0) {
 				for (int i = 0; i < train.getTrains().size(); i++) {
@@ -534,7 +535,7 @@ public abstract class EntityRollingStock extends AbstractTrains {
 		}
 		/**
 		 * Resets destination
-		 */
+		 *//*
 		else if (!(this instanceof Locomotive)) {
 			destination = "";
 		}
@@ -545,7 +546,7 @@ public abstract class EntityRollingStock extends AbstractTrains {
 	/**
 	 * Sets the position and rotation. Only difference from the other one is no bounding on the rotation. Args: posX,
 	 * posY, posZ, yaw, pitch
-	 */
+	 *//*
 	public void setPositionAndRotation2(double par1, double par3, double par5, float par7, float par8, int par9) {
 		this.rollingX = par1;
 		this.rollingY = par3;
@@ -580,7 +581,7 @@ public abstract class EntityRollingStock extends AbstractTrains {
 
 		/**
 		 * Set the uniqueID if the entity doesn't have one.
-		 */
+		 *//*
 		if (!worldObj.isRemote && this.uniqueID == -1) {
 			if (FMLCommonHandler.instance().getMinecraftServerInstance() != null) {
 				//TraincraftSaveHandler.createFile(FMLCommonHandler.instance().getMinecraftServerInstance());
@@ -690,7 +691,7 @@ public abstract class EntityRollingStock extends AbstractTrains {
 		 * known. This method search for the entity with the ID corresponding to
 		 * Link1 or Link2 When it finds it, (EntityRollingStock)cartLinked1 and
 		 * cartLinked2 will be updated accordingly
-		 */
+		 *//*
 		if (((this.cartLinked1 == null && this.Link1 != 0) || (this.cartLinked2 == null && this.Link2 != 0))) {
 			list = worldObj.getEntitiesWithinAABBExcludingEntity(this, boundingBox.expand(15, 15, 15));
 			//System.out.println("link " + this.uniqueID + " " + this + " to " + this.Link1 + " " + this.Link2);
@@ -736,7 +737,7 @@ public abstract class EntityRollingStock extends AbstractTrains {
 				 * ((Math.tan(pitchRads) * -this.bogieShift[bog]) +
 				 * getMountedYOffset()), (float) (posZ - Math.sin(rads) *
 				 * this.bogieShift[bog]));
-				 */
+				 *//*
 			}
 			firstLoad = false;
 			/*
@@ -753,7 +754,7 @@ public abstract class EntityRollingStock extends AbstractTrains {
 			 * //System.out.println("updatePos "+this.bogieUtility
 			 * [bog].posX+" "+ this.bogieUtility[bog].posY
 			 * +" "+this.bogieUtility[bog].posZ); } }
-			 */
+			 *//*
 			needsBogieUpdate = false;
 		}
 		if (bogieLoco != null) {
@@ -991,7 +992,7 @@ public abstract class EntityRollingStock extends AbstractTrains {
 
 					 /**
 					  * Handles derail
-					  */
+					  *//*
 					 if (this instanceof Locomotive && d13 > 0 && i1 >= 6) {
 						 if (d9 > 0 && d10 < 0) {
 							 d10 = 0;
@@ -1530,7 +1531,7 @@ public abstract class EntityRollingStock extends AbstractTrains {
 			this.setDestination(itemstack);
 			/**
 			 * ticket are single use but golden ones are multiple uses
-			 */
+			 *//*
 			ItemStack ticket = GameRegistry.findItemStack("Railcraft", "railcraft.routing.ticket", 1);
 			if (ticket != null && ticket.getItem() != null && itemstack.getItem() == ticket.getItem()) {
 				if (--itemstack.stackSize == 0) {
@@ -1542,7 +1543,7 @@ public abstract class EntityRollingStock extends AbstractTrains {
 		/**
 		 * If the color is valid for the cart, then change it and reduce
 		 * itemstack size
-		 */
+		 *//*
 		if (itemstack != null && itemstack.getItem() instanceof ItemDye) {
 			if (this.acceptedColors != null && this.acceptedColors.size() > 0) {
 				for (int i = 0; i < this.acceptedColors.size(); i++) {
@@ -1589,7 +1590,7 @@ public abstract class EntityRollingStock extends AbstractTrains {
 	/**
 	 * Applies a velocity to each of the entities pushing them away from each
 	 * other. Args: entity
-	 */
+	 *//*
 	@Override
 	public void applyEntityCollision(Entity par1Entity) {
 		//System.out.println(par1Entity +" " +this.bogieLoco +" "+this.bogieUtility[0]);
@@ -1638,7 +1639,7 @@ public abstract class EntityRollingStock extends AbstractTrains {
 				 * if(((EntityBogie)par1Entity).entityMainTrain!=null &&
 				 * ((EntityBogie)par1Entity).entityMainTrain.isAttached)return;
 				 * }
-				 */
+				 *//*
 				//System.out.println(par1Entity);
 				double d0 = par1Entity.posX - this.posX;
 				double d1 = par1Entity.posZ - this.posZ;
@@ -1817,6 +1818,7 @@ public abstract class EntityRollingStock extends AbstractTrains {
 						 */
 						//if(!(par1Entity instanceof EntityPlayer))par1Entity.addVelocity(d0 / 4.0D, 0.0D, d1 / 4.0D);
 						//par1Entity.setVelocity(0, 0.0D, 0);
+						/*
 						par1Entity.addVelocity(d0 * 2 * 100, 0.0D, d1 * 2 * 100);
 						/*
 						 * if(this.bogieUtility[0]!=null &&
@@ -1824,7 +1826,7 @@ public abstract class EntityRollingStock extends AbstractTrains {
 						 * this.bogieUtility[0].addVelocity(-d0*2, 0.0D, -d1*2);
 						 * this.bogieUtility[1].addVelocity(-d0*2, 0.0D, -d1*2);
 						 * }
-						 */
+						 *//*
 
 						if (par1Entity instanceof EntityPlayer) {
 
@@ -1861,7 +1863,7 @@ public abstract class EntityRollingStock extends AbstractTrains {
 	 * To disable linking altogether, return false here.
 	 *
 	 * @return True if this cart is linkable.
-	 */
+	 *//*
 	@Override
 	public boolean isLinkable() {
 		return true;
@@ -1873,7 +1875,7 @@ public abstract class EntityRollingStock extends AbstractTrains {
 	 * @param cart
 	 *            The cart that we are attempting to link with.
 	 * @return True if we can link with this cart.
-	 */
+	 *//*
 	@Override
 	public boolean canLinkWithCart(EntityMinecart cart) {
 		return true;
@@ -1884,7 +1886,7 @@ public abstract class EntityRollingStock extends AbstractTrains {
 	 * one cart.
 	 *
 	 * @return True if two links
-	 */
+	 *//*
 	@Override
 	public boolean hasTwoLinks() {
 		return true;
@@ -1898,7 +1900,7 @@ public abstract class EntityRollingStock extends AbstractTrains {
 	 * @param cart
 	 *            The cart that you are attempting to link with.
 	 * @return The linkage distance
-	 */
+	 *//*
 	@Override
 	public float getLinkageDistance(EntityMinecart cart) {
 		return this.getOptimalDistance(cart) + 2.4F;
@@ -1915,7 +1917,7 @@ public abstract class EntityRollingStock extends AbstractTrains {
 	 * @param cart
 	 *            The cart that you are linked with.
 	 * @return The optimal rest distance
-	 */
+	 *//*
 	@Override
 	public abstract float getOptimalDistance(EntityMinecart cart);
 	/**
@@ -1926,7 +1928,7 @@ public abstract class EntityRollingStock extends AbstractTrains {
 	 * @param cart
 	 *            The cart doing the adjusting.
 	 * @return Whether the cart can have its velocity adjusted.
-	 */
+	 *//*
 	@Override
 	public boolean canBeAdjusted(EntityMinecart cart) {
 		return true;
@@ -1942,7 +1944,7 @@ public abstract class EntityRollingStock extends AbstractTrains {
 	 *
 	 * @param cart
 	 *            The cart we were linked with.
-	 */
+	 *//*
 	@Override
 	public void onLinkBroken(EntityMinecart cart) {
 		linked = false;
@@ -1960,7 +1962,7 @@ public abstract class EntityRollingStock extends AbstractTrains {
 	 * function, but is not necessary the item the cart drops when destroyed.
 	 *
 	 * @return An ItemStack that can be used to place the cart.
-	 */
+	 *//*
 	@Override
 	public ItemStack getCartItem() {
 		return getItemsDropped().get(0);
@@ -1970,7 +1972,7 @@ public abstract class EntityRollingStock extends AbstractTrains {
 	 * Returns true if this cart is self propelled.
 	 *
 	 * @return True if powered.
-	 */
+	 *//*
 	@Override
 	public boolean isPoweredCart() {
 		return (isLocomotive());
@@ -1982,7 +1984,7 @@ public abstract class EntityRollingStock extends AbstractTrains {
 	 * may be storage carts.
 	 *
 	 * @return True if this cart should be classified as a storage cart.
-	 */
+	 *//*
 	public boolean isStorageCart() {
 		return (isFreightCart());
 	}
@@ -1991,7 +1993,7 @@ public abstract class EntityRollingStock extends AbstractTrains {
 	 * Returns true if this cart can be ridden by an Entity.
 	 *
 	 * @return True if this cart can be ridden.
-	 */
+	 *//*
 	@Override
 	public boolean canBeRidden() {
 		return ((isLocomotive() || isPassenger() || isWorkCart()));
@@ -2002,7 +2004,7 @@ public abstract class EntityRollingStock extends AbstractTrains {
 	 * mainly used to gracefully detach a minecart from a rail.
 	 *
 	 * @return True if the minecart can use rails.
-	 */
+	 *//*
 	@Override
 	public boolean canUseRail() {
 		return canUseRail;
@@ -2014,7 +2016,7 @@ public abstract class EntityRollingStock extends AbstractTrains {
 	 *
 	 * @param use
 	 *            Whether the minecart can currently use rails.
-	 */
+	 *//*
 	@Override
 	public void setCanUseRail(boolean use) {
 		canUseRail = use;
@@ -2025,7 +2027,7 @@ public abstract class EntityRollingStock extends AbstractTrains {
 	 * should ignore Powered Rails.
 	 *
 	 * @return True if this cart should call IRail.onMinecartPass().
-	 */
+	 *//*
 	@Override
 	public boolean shouldDoRailFunctions() {
 		return true;
@@ -2041,7 +2043,7 @@ public abstract class EntityRollingStock extends AbstractTrains {
 	 * Carts should return their drag factor here
 	 *
 	 * @return The drag rate.
-	 */
+	 *//*
 	@Override
 	public double getDragAir() {
 		return 0.98D;
@@ -2123,7 +2125,7 @@ public abstract class EntityRollingStock extends AbstractTrains {
 	 * the carts current max speed. A normal rails max speed is 0.4.
 	 *
 	 * @return Carts max speed.
-	 */
+	 *//*
 	@Override
 	public float getMaxCartSpeedOnRail() {
 		return maxSpeed;
@@ -2167,14 +2169,14 @@ public abstract class EntityRollingStock extends AbstractTrains {
 	/**
 	 * returns the middle of the overheat bar in the HUD
 	 *
-	 */
+	 *//*
 	public int getAverageOverheat() {
 		return (this.getOverheatTime() + 30) / 2;
 	}
 
 	/**
 	 * client-server communication
-	 */
+	 *//*
 	public void setOverheatLevel(int overheatLevel) {
 		this.overheatLevel = overheatLevel;
 		this.dataWatcher.updateObject(20, overheatLevel);
@@ -2183,14 +2185,14 @@ public abstract class EntityRollingStock extends AbstractTrains {
 	/**
 	 * client-server communication
 	 *
-	 */
+	 *//*
 	public int getOverheatLevel() {
 		return (this.dataWatcher.getWatchableObjectInt(20));
 	}
 
 	/**
 	 * @see SpeedHandler description in SpeedHandler
-	 */
+	 *//*
 	public double convertSpeed(Locomotive entity) {
 		double speed = entity.getCustomSpeed();// speed in m/s
 		if (ConfigHandler.REAL_TRAIN_SPEED) {
@@ -2206,7 +2208,7 @@ public abstract class EntityRollingStock extends AbstractTrains {
 	/**
 	 * Used in SoundUpdaterRollingStock
 	 *
-	 */
+	 *//*
 	public int getMotionXClient() {
 		return (this.dataWatcher.getWatchableObjectInt(14));
 	}
@@ -2214,7 +2216,7 @@ public abstract class EntityRollingStock extends AbstractTrains {
 	/**
 	 * Used in SoundUpdaterRollingStock
 	 *
-	 */
+	 *//*
 	public int getMotionZClient() {
 		return (this.dataWatcher.getWatchableObjectInt(21));
 	}
@@ -2363,7 +2365,7 @@ public abstract class EntityRollingStock extends AbstractTrains {
 		 * ((TileTCRail)tileOrigin).getType
 		 * ().equals(TrackTypes.MEDIUM_SLOPE.getLabel())){ shouldIgnoreYCoord =
 		 * true; } }
-		 */
+		 *//*
 		if (l == BlockIDs.tcRail.block || l == BlockIDs.tcRailGag.block) {
 			//par3 = (double) j;
 			double d4 = i + 0.5D + matrix[0][0][0] * 0.5D;
@@ -2389,4 +2391,4 @@ public abstract class EntityRollingStock extends AbstractTrains {
 	}
 
 	public ItemStack[] getInventory(){return null;}
-}
+}*/

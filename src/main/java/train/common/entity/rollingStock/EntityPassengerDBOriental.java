@@ -5,7 +5,7 @@
  * @author Mrbrutal
  ******************************************************************************/
 
-package train.common.entity.rollingStock;
+/*package train.common.entity.rollingStock;
 
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
@@ -81,3 +81,4 @@ public class EntityPassengerDBOriental extends EntityRollingStock implements IPa
 		return 2.25F;
 	}
 }
+*/

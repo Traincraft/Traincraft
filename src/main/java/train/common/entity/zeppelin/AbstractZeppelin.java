@@ -1,4 +1,4 @@
-package train.common.entity.zeppelin;
+/*package train.common.entity.zeppelin;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -22,7 +22,7 @@ import net.minecraft.util.StatCollector;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
-import train.common.Traincraft;
+import traincraft.Traincraft;
 import train.common.core.handlers.ConfigHandler;
 import train.common.core.handlers.FuelHandler;
 import train.common.core.network.PacketKeyPress;
@@ -46,7 +46,7 @@ public abstract class AbstractZeppelin extends Entity implements IInventory {
 	public int boatRockDirection;
 	/*
 	 * Unknown variables
-	 */
+	 *//*
 	protected boolean field_70279_a;
 
 	protected int boatPosRotationIncrements;
@@ -172,7 +172,7 @@ public abstract class AbstractZeppelin extends Entity implements IInventory {
 			if (getFuel() > 0 && posY < 256) {
 				/**
 				 * up
-				 */
+				 *//*
 				altitude = true;
 				idle = false;
 			}
@@ -181,13 +181,13 @@ public abstract class AbstractZeppelin extends Entity implements IInventory {
 		if (i == 2) {
 			/**
 			 * down
-			 */
+			 *//*
 			altitude = false;
 			idle = false;
 		}
 		/**
 		 * idle key
-		 */
+		 *//*
 		if (i == 6) {
 			altitude = false;
 			idle = true;
@@ -247,7 +247,7 @@ public abstract class AbstractZeppelin extends Entity implements IInventory {
 	/**
 	 * Sets the position and rotation. Only difference from the other one is no bounding on the rotation. Args: posX,
 	 * posY, posZ, yaw, pitch
-	 */
+	 *//*
 	@Override
 	public void setPositionAndRotation2(double par1, double par3, double par5, float par7, float par8, int par9) {
 		if (this.field_70279_a) {
@@ -276,7 +276,7 @@ public abstract class AbstractZeppelin extends Entity implements IInventory {
 	@SideOnly(Side.CLIENT)
 	/**
 	 * Sets the velocity to the args. Args: x, y, z
-	 */
+	 *//*
 	@Override
 	public void setVelocity(double par1, double par3, double par5) {
 		this.velocityX = this.motionX = par1;
@@ -291,7 +291,7 @@ public abstract class AbstractZeppelin extends Entity implements IInventory {
 	 * @param y
 	 * @param z
 	 * @return
-	 */
+	 *//*
 	public Vec3 rotate(double x, double y, double z) {
 		double cosYaw = Math.cos(this.getYaw() * 3.141593F / 180.0F);
 		double sinYaw = Math.sin(this.getYaw() * 3.141593F / 180.0F);
@@ -569,7 +569,7 @@ public abstract class AbstractZeppelin extends Entity implements IInventory {
 
 	/**
 	 * works exactly like getStackInSlot, is only used upon closing GUIs
-	 */
+	 *//*
 	@Override
 	public ItemStack getStackInSlotOnClosing(int par1) {
 		if (this.zeppInvent[par1] != null) {
@@ -679,4 +679,4 @@ public abstract class AbstractZeppelin extends Entity implements IInventory {
 
 		return StatCollector.translateToLocal("entity." + s + ".name");
 	}
-}
+}*/

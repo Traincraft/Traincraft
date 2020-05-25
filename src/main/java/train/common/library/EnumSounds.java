@@ -1,4 +1,4 @@
-package train.common.library;
+/*package train.common.library;
 
 import train.common.entity.rollingStock.*;
 
@@ -111,7 +111,7 @@ public enum EnumSounds {
 	 * @param idleVolume
 	 * @param idleSoundLenght
 	 * @param soundChangeWithSpeed
-	 */
+	 *//*
 	private EnumSounds(Class entityClass, String horn, float hornVolume, String run, float runVolume, int runSoundLenght, String idle, float idleVolume, int idleSoundLenght, boolean soundChangeWithSpeed) {
 		this.entityClass = entityClass;
 		this.horn = horn;
@@ -165,3 +165,4 @@ public enum EnumSounds {
 		return soundChangeWithSpeed;
 	}
 }
+*/

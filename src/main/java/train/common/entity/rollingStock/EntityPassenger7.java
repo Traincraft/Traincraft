@@ -1,4 +1,4 @@
-package train.common.entity.rollingStock;
+/*package train.common.entity.rollingStock;
 
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
@@ -74,3 +74,4 @@ public class EntityPassenger7 extends EntityRollingStock implements IPassenger {
 		return 1.4F;
 	}
 }
+*/

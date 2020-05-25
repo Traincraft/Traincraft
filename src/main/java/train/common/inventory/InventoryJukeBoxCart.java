@@ -1,4 +1,4 @@
-package train.common.inventory;
+/*package train.common.inventory;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -20,4 +20,4 @@ public class InventoryJukeBoxCart extends Container {
 	public boolean canInteractWith(EntityPlayer var1) {
 		return !jukebox.isDead;
 	}
-}
+}*/

@@ -1,4 +1,4 @@
-package train.client.render;
+/*package train.client.render;
 
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
@@ -13,3 +13,4 @@ public class RenderWaterWheel extends TileEntitySpecialRenderer {
 		modelWaterWheel.render((TileWaterWheel) tileEntity, x, y, z);
 	}
 }
+*/

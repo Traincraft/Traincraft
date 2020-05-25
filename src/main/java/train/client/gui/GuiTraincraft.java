@@ -5,7 +5,7 @@
  * @author SirSengir
  ******************************************************************************/
 
-package train.client.gui;
+/*package train.client.gui;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.IInventory;
@@ -145,7 +145,7 @@ public abstract class GuiTraincraft extends GuiContainer {
 
 		for (int l = 0; l < cs.size(); l++) {
 			Slot slot = (Slot) cs.get(l);
-			if (/* slot instanceof Slot && */slot.slotNumber < 10) {
+			if (/* slot instanceof Slot && *//*slot.slotNumber < 10) {
 				String var4 = tier.getGUITexture();
 				GL11.glColor4f(1.0F, 1.0F, 1.0F, 0.9F);
 				mc.renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation,var4));
@@ -236,4 +236,4 @@ public abstract class GuiTraincraft extends GuiContainer {
 			GL11.glEnable(GL11.GL_DEPTH_TEST);
 		}
 	}
-}
+}*/

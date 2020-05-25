@@ -1,4 +1,4 @@
-package train.common.entity.rollingStock;
+/*package train.common.entity.rollingStock;
 
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
@@ -44,7 +44,7 @@ public class EntityPassengerBlue extends EntityRollingStock implements IPassenge
 			bogieZ1+=pitchRads*2;
 			pitch-=pitchRads*1.2;
 		}
-		riddenByEntity.setPosition(bogieX1, pitch, bogieZ1);*/
+		riddenByEntity.setPosition(bogieX1, pitch, bogieZ1);*//*
 		if(riddenByEntity==null){return;}
 		riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset(), posZ);
 	}
@@ -93,4 +93,4 @@ public class EntityPassengerBlue extends EntityRollingStock implements IPassenge
 	public float getOptimalDistance(EntityMinecart cart) {
 		return 2.2F;
 	}
-}
+}*/

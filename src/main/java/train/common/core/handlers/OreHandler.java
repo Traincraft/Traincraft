@@ -9,15 +9,16 @@ package train.common.core.handlers;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
+import train.common.blocks.TCBlocks;
 import train.common.library.ItemIDs;
 
 public class OreHandler {
 
 	public static void registerOres() {
 		
-		OreDictionary.registerOre("oreCopper", new ItemStack(BlockIDs.oreTC.block, 1, 0));
-		OreDictionary.registerOre("oreOilsands", new ItemStack(BlockIDs.oreTC.block, 1, 1));
-		OreDictionary.registerOre("orePetroleum", new ItemStack(BlockIDs.oreTC.block, 1, 2));
+		OreDictionary.registerOre("oreCopper", new ItemStack(TCBlocks.COPPER_ORE, 1, 0));
+		OreDictionary.registerOre("oreOilsands", new ItemStack(TCBlocks.OIL_SAND, 1, 1));
+		OreDictionary.registerOre("orePetroleum", new ItemStack(TCBlocks.PETROL_ORE, 1, 2));
 
 		OreDictionary.registerOre("ingotCopper", new ItemStack(ItemIDs.ingotCopper.item));
 

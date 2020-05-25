@@ -1,4 +1,4 @@
-package train.common.api;
+/*package train.common.api;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
@@ -73,7 +73,7 @@ public abstract class AbstractWorkCart extends EntityRollingStock implements IIn
 
 	/**
 	 * Returns the maximum stack size for a inventory slot. Seems to always be 64, possibly will be extended. *Isn't this more of a set than a get?*
-	 */
+	 *//*
 	@Override
 	public int getInventoryStackLimit() {
 		return 64;
@@ -83,7 +83,7 @@ public abstract class AbstractWorkCart extends EntityRollingStock implements IIn
 	/**
 	 * Returns an integer between 0 and the passed value representing how close the current item is to being completely
 	 * cooked
-	 */
+	 *//*
 	public int getCookProgressScaled(int par1) {
 		return this.furnaceCookTime * par1 / 200;
 	}
@@ -92,7 +92,7 @@ public abstract class AbstractWorkCart extends EntityRollingStock implements IIn
 	/**
 	 * Returns an integer between 0 and the passed value representing how much burn time is left on the current fuel
 	 * item, where 0 means that the item is exhausted and the passed value means that the item is fresh
-	 */
+	 *//*
 	public int getBurnTimeRemainingScaled(int par1) {
 		if (this.currentItemBurnTime == 0) {
 			this.currentItemBurnTime = 200;
@@ -147,12 +147,12 @@ public abstract class AbstractWorkCart extends EntityRollingStock implements IIn
 
 		//TODO REIMPLEMENT
 		/*
-		 * if (var2) { this.onInventoryChanged(); } */
+		 * if (var2) { this.onInventoryChanged(); } *//*
 	}
 
 	/**
 	 * Returns true if the furnace can smelt an item, i.e. has a source item, destination stack isn't full, etc.
-	 */
+	 *//*
 	private boolean canSmelt() {
 		if (this.furnaceItemStacks[0] == null) {
 			return false;
@@ -172,7 +172,7 @@ public abstract class AbstractWorkCart extends EntityRollingStock implements IIn
 
 	/**
 	 * Turn one item from the furnace source stack into the appropriate smelted item in the furnace result stack
-	 */
+	 *//*
 	public void smeltItem() {
 		if (this.canSmelt()) {
 			ItemStack var1 = FurnaceRecipes.smelting().getSmeltingResult(this.furnaceItemStacks[0]);
@@ -192,7 +192,7 @@ public abstract class AbstractWorkCart extends EntityRollingStock implements IIn
 
 	/**
 	 * Returns the number of ticks that the supplied fuel item will keep the furnace burning, or 0 if the item isn't fuel
-	 */
+	 *//*
 	public static int getItemBurnTime(ItemStack par0ItemStack) {
 		if (par0ItemStack == null) {
 			return 0;
@@ -233,17 +233,17 @@ public abstract class AbstractWorkCart extends EntityRollingStock implements IIn
 
 	/**
 	 * Return true if item is a fuel source (getItemBurnTime() > 0).
-	 */
+	 *//*
 	public static boolean isItemFuel(ItemStack par0ItemStack) {
 		return getItemBurnTime(par0ItemStack) > 0;
 	}
 
-	/** for the workCart **/
+	/** for the workCart **//*
 	public int getSizeInventoryWork() {
 		return this.furnaceItemStacks.length;
 	}
 
-	/** for the freight carts inventory **/
+	/** for the freight carts inventory **//*
 	@Override
 	public ItemStack getStackInSlot(int i) {
 		return this.furnaceItemStacks[i];
@@ -251,7 +251,7 @@ public abstract class AbstractWorkCart extends EntityRollingStock implements IIn
 
 	/**
 	 * When some containers are closed they call this on each slot, then drop whatever it returns as an EntityItem - like when you close a workbench GUI.
-	 */
+	 *//*
 	@Override
 	public ItemStack getStackInSlotOnClosing(int par1) {
 		if (this.furnaceItemStacks[par1] != null) {
@@ -266,7 +266,7 @@ public abstract class AbstractWorkCart extends EntityRollingStock implements IIn
 
 	/**
 	 * Removes from an inventory slot (first arg) up to a specified number (second arg) of items and returns them in a new stack.
-	 */
+	 *//*
 	@Override
 	public ItemStack decrStackSize(int par1, int par2) {
 		if (this.furnaceItemStacks[par1] != null) {
@@ -291,7 +291,7 @@ public abstract class AbstractWorkCart extends EntityRollingStock implements IIn
 
 	/**
 	 * Sets the given item stack to the specified slot in the inventory (can be crafting or armor sections).
-	 */
+	 *//*
 	@Override
 	public void setInventorySlotContents(int par1, ItemStack par2ItemStack) {
 		this.furnaceItemStacks[par1] = par2ItemStack;
@@ -346,3 +346,4 @@ public abstract class AbstractWorkCart extends EntityRollingStock implements IIn
 		return true;
 	}
 }
+*/

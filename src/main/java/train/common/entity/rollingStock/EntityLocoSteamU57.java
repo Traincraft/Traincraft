@@ -1,4 +1,4 @@
-package train.common.entity.rollingStock;
+/*package train.common.entity.rollingStock;
 
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
@@ -7,14 +7,14 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
-import train.common.Traincraft;
+import traincraft.Traincraft;
 import train.common.api.LiquidManager;
 import train.common.api.SteamTrain;
 import train.common.library.GuiIDs;
 
 public class EntityLocoSteamU57 extends SteamTrain {
 	public EntityLocoSteamU57(World world) {
-		super(world, 5000/*Change here to EnumTrains..getTankCapacity()*/, LiquidManager.WATER_FILTER);
+		super(world, 5000/*Change here to EnumTrains..getTankCapacity()*//*, LiquidManager.WATER_FILTER);
 		initLocoSteam();
 	}
 
@@ -133,4 +133,4 @@ public class EntityLocoSteamU57 extends SteamTrain {
 	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
 		return true;
 	}
-}
+}*/

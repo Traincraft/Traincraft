@@ -5,7 +5,7 @@
  * @author Mrbrutal
  ******************************************************************************/
 
-package train.common.core.handlers;
+/*package train.common.core.handlers;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRailBase;
@@ -95,3 +95,4 @@ public class ItemHandler {
 		return false;
 	}
 }
+*/

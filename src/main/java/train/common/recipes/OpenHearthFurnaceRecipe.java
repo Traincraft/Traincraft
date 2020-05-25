@@ -1,4 +1,4 @@
-package train.common.recipes;
+/*package train.common.recipes;
 
 import net.minecraft.item.ItemStack;
 import train.common.core.util.TraincraftUtil;
@@ -42,4 +42,4 @@ public class OpenHearthFurnaceRecipe {
 	public ItemStack[] getRecipe() {
 		return new ItemStack[]{ingredient1, ingredient2};
 	}
-}
+}*/

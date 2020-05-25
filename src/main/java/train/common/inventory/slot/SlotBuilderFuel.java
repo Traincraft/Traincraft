@@ -1,4 +1,4 @@
-package train.common.inventory.slot;
+/*package train.common.inventory.slot;
 
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
@@ -13,10 +13,11 @@ public class SlotBuilderFuel extends Slot {
 	
     /**
      * Check if the stack is a valid item for this slot.
-     */
+     *//*
     public boolean isItemValid(ItemStack stack)
     {
         return FuelHandler.steamFuelLast(stack) > 0;
     }
 
 }
+*/

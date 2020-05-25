@@ -1,4 +1,4 @@
-package train.common.entity.rollingStock;
+/*package train.common.entity.rollingStock;
 
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
@@ -37,7 +37,7 @@ public class EntityPassengerICE_1class extends EntityRollingStock implements IPa
 		double pitchRads = this.anglePitchClient * 3.141592653589793D / 180.0D;
 		double distance = 1.3;
 		riddenByEntity.setPosition(posX - Math.cos(rads)*distance, posY + (Math.tan(pitchRads)*-distance)+( getMountedYOffset() + riddenByEntity.getYOffset() + 0.2F), posZ - Math.sin(rads)*distance);
-		*/
+		*//*
 		if(riddenByEntity==null){return;}
 		riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset() + 0.2, posZ);
 	}
@@ -86,4 +86,4 @@ public class EntityPassengerICE_1class extends EntityRollingStock implements IPa
 	public float getOptimalDistance(EntityMinecart cart) {
 		return 3.1F;
 	}
-}
+}*/

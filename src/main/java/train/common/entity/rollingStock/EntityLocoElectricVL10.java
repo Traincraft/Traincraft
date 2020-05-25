@@ -1,4 +1,4 @@
-package train.common.entity.rollingStock;
+/*package train.common.entity.rollingStock;
 
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
@@ -7,7 +7,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
-import train.common.Traincraft;
+import traincraft.Traincraft;
 import train.common.api.ElectricTrain;
 import train.common.library.GuiIDs;
 
@@ -103,7 +103,7 @@ public class EntityLocoElectricVL10 extends ElectricTrain {
 		}
 	}
 	@Override
-	/** return the loco inventory size **/
+	/** return the loco inventory size **//*
 	public int getSizeInventory() {
 
 		return inventorySize;
@@ -113,7 +113,7 @@ public class EntityLocoElectricVL10 extends ElectricTrain {
 		return "VL10";
 	}
 	@Override
-	/* The player clicks on the cart */
+	/* The player clicks on the cart *//*
 	public boolean interactFirst(EntityPlayer entityplayer) {
 
 		playerEntity = entityplayer;
@@ -148,3 +148,4 @@ public class EntityLocoElectricVL10 extends ElectricTrain {
 		return true;
 	}
 }
+*/

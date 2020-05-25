@@ -3,7 +3,7 @@ package train.common.blocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import train.common.Traincraft;
+import traincraft.Traincraft;
 
 public class BlockCopperOre extends Block {
 

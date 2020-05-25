@@ -1,4 +1,4 @@
-package train.client.gui;
+/*package train.client.gui;
 
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -9,7 +9,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
-import train.common.Traincraft;
+import traincraft.Traincraft;
 import train.common.api.LiquidManager;
 import train.common.api.Tender;
 import train.common.core.network.PacketSetTrainLockedToClient;
@@ -169,3 +169,4 @@ public class GuiTender extends GuiContainer {
 		}
 	}
 }
+*/

@@ -1,4 +1,4 @@
-package train.common.core.handlers;
+/*package train.common.core.handlers;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityMinecart;
@@ -20,7 +20,7 @@ public class LinkHandler {
 		worldObj = world;
 	}
 	
-	/* coupling cart stuff */
+	/* coupling cart stuff *//*
 	public void handleStake(EntityRollingStock entityOne, AxisAlignedBB customBoundingBox) {
 		if(entityOne.isAttaching){
 			List<Entity> entities = worldObj.getEntitiesWithinAABBExcludingEntity(entityOne, customBoundingBox.expand(15, 5, 15));
@@ -38,7 +38,7 @@ public class LinkHandler {
 					//doesLink1StillExist(entityOne, entities);
 					//doesLink2StillExist(entityOne, entities);
 					//}
-					
+					/*
 					if(entity instanceof EntityRollingStock && ((EntityRollingStock) entity).isAttaching){
 						addStake((EntityRollingStock) entity, entityOne, true);
 					}
@@ -59,7 +59,7 @@ public class LinkHandler {
 	 * obvious
 	 *
 	 * @param entity
-	 */
+	 *//*
 	private void freeLink1(Entity entity) {
 		if(entity instanceof EntityRollingStock){
 			((AbstractTrains) entity).Link1 = 0;
@@ -74,7 +74,7 @@ public class LinkHandler {
 	 * same
 	 *
 	 * @param entity
-	 */
+	 *//*
 	private void freeLink2(Entity entity) {
 		if(entity instanceof EntityRollingStock){
 			((AbstractTrains) entity).Link2 = 0;
@@ -89,7 +89,7 @@ public class LinkHandler {
 	
 	/**
 	 * Attaching to colliding carts
-	 */
+	 *//*
 	public void addStake(EntityRollingStock cart1, EntityRollingStock cart2, boolean byPlayer) {
 		if(worldObj.isRemote){
 			return;
@@ -169,7 +169,7 @@ public class LinkHandler {
 			if(MathHelper.sqrt((d * d) + (d1 * d1)) <= distanceBehindCart){
 				/**
 				 * attach only if the link is free, each cart has two link obviously
-				 */
+				 *//*
 				
 				
 				if(cart1.Link1 == 0 || cart1.Link1 == -1){
@@ -233,7 +233,7 @@ public class LinkHandler {
 	 * @param cart1
 	 * @param cart2
 	 * @return
-	 */
+	 *//*
 	public boolean areLinked(Entity cart1, Entity cart2) {
 		if(!(cart1 instanceof AbstractTrains) || !(cart2 instanceof AbstractTrains)){
 			return false;
@@ -242,7 +242,7 @@ public class LinkHandler {
 		/* System.out.println("cart1.getID() "+ ((AbstractTrains)cart1).getID()); System.out.println("cart2.getID() "+ ((AbstractTrains)cart2).getID()); System.out.println("cart1 link1 " + ((AbstractTrains)cart1).Link1); System.out.println("cart1 link2 " + ((AbstractTrains)cart1).Link2); System.out.println("cart2 link1 " + ((AbstractTrains)cart2).Link1); System.out.println("cart2 link2 " + ((AbstractTrains)cart2).Link2); */
 		/**
 		 * testing if the ID of the cart1 is registered as attached to the cart2 same with cart2 attached to cart1
-		 */
+		 *//*
 		return ((((AbstractTrains) cart2).getUniqueTrainID() == ((AbstractTrains) cart1).Link1) || (((AbstractTrains) cart2).getUniqueTrainID() == ((AbstractTrains) cart1).Link2)) ||
 			((((AbstractTrains) cart1).getUniqueTrainID() == ((AbstractTrains) cart2).Link1) || (((AbstractTrains) cart1).getUniqueTrainID() == ((AbstractTrains) cart2).Link2));
 	}
@@ -253,7 +253,7 @@ public class LinkHandler {
 	 * @param cart1
 	 * @param cart2
 	 * @return
-	 */
+	 *//*
 	public float getOptimalDistance(AbstractTrains cart1, AbstractTrains cart2) {
 		return cart1.getOptimalDistance(cart2) + cart2.getOptimalDistance(cart1);
 	}
@@ -264,7 +264,7 @@ public class LinkHandler {
 	 * @param cart1
 	 * @param cart2
 	 * @return
-	 */
+	 *//*
 	private boolean canCartBeAdjustedBy(Entity cart1, Entity cart2) {
 		if(cart1 == cart2){
 			return false;
@@ -278,7 +278,7 @@ public class LinkHandler {
 	
 	/**
 	 * Handles the cart coupling physics
-	 */
+	 *//*
 	private void StakePhysic(EntityRollingStock cart1, EntityRollingStock cart2, int linkIndex) {
 		if(worldObj.isRemote || cart1.ticksExisted < 5 || cart2.ticksExisted < 5){
 			return;
@@ -430,4 +430,4 @@ public class LinkHandler {
 	private double limitForce(double force, double max) {
 		return Math.copySign(Math.abs(Math.min(Math.abs(force), max)), force);
 	}
-}
+}*/

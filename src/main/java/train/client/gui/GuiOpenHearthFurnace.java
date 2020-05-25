@@ -1,4 +1,4 @@
-package train.client.gui;
+/*package train.client.gui;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -40,3 +40,4 @@ public class GuiOpenHearthFurnace extends GuiContainer {
 		drawTexturedModalRect(j + 79, k + 34, 176, 14, i1 + 1, 16);
 	}
 }
+*/

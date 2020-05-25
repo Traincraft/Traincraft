@@ -1,4 +1,4 @@
-package train.common.slots;
+/*package train.common.slots;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import net.minecraft.entity.item.EntityXPOrb;
@@ -26,7 +26,7 @@ public class SlotDistil extends Slot {
 
 	/**
 	 * Decrease the size of the stack in slot (first int arg) by the amount of the second int arg. Returns the new stack.
-	 */
+	 *//*
 	@Override
 	public ItemStack decrStackSize(int par1) {
 		if (this.getHasStack()) {
@@ -44,7 +44,7 @@ public class SlotDistil extends Slot {
 
 	/**
 	 * the itemStack passed in is the output - ie, iron ingots, and pickaxes, not ore and wood. Typically increases an internal count then calls onCrafting(item).
-	 */
+	 *//*
 	@Override
 	protected void onCrafting(ItemStack itemstack, int par2) {
 		this.amount += par2;
@@ -53,7 +53,7 @@ public class SlotDistil extends Slot {
 
 	/**
 	 * the itemStack passed in is the output - ie, iron ingots, and pickaxes, not ore and wood.
-	 */
+	 *//*
 	@Override
 	protected void onCrafting(ItemStack itemstack) {
 		itemstack.onCrafting(this.thePlayer.worldObj, this.thePlayer, this.amount);
@@ -88,3 +88,4 @@ public class SlotDistil extends Slot {
 		FMLCommonHandler.instance().firePlayerCraftingEvent(this.thePlayer, itemstack, inventory);
 	}
 }
+*/

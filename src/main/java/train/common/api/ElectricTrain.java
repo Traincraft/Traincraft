@@ -1,4 +1,4 @@
-package train.common.api;
+/*package train.common.api;
 
 import cofh.api.energy.IEnergyContainerItem;
 import cofh.api.energy.IEnergyHandler;
@@ -48,7 +48,7 @@ public abstract class ElectricTrain extends Locomotive {
 		}
 		if(!this.canCheckInvent)return;
 		
-		/* if the loco has fuel */
+		/* if the loco has fuel *//*
 		if (getFuel() < maxEnergy && locoInvent[0] != null)
 		{
 			Item item = locoInvent[0].getItem();
@@ -71,11 +71,11 @@ public abstract class ElectricTrain extends Locomotive {
 				int transfer = ElectricItem.manager.discharge(locoInvent[0], maxEnergy - getFuel(), 2, false, false);
 				fuelTrain = transfer;
 				//System.out.println("Amount: " + transfer + " Fuel: " + getFuel());//TODO debug
-			}*/
+			}*//*
 		}/* else if (getFuel() <= 0) {// fuel check if (locoInvent[0] != null && (PluginIndustrialCraft.getItems().containsKey(PluginIndustrialCraft.getNames()[20])) && (PluginIndustrialCraft.getItems().containsKey(PluginIndustrialCraft.getNames()[23]))) { if ((locoInvent[0].itemID == PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[20]).itemID)) { hasUranium = true; fuelTrain = maxEnergy; if (!worldObj.isRemote) { decrStackSize(0, 1); } reduceExplosionChance = 1000; for (int u = 1; u < locoInvent.length; u++) {// checks the inventory
 		  * 
 		  * if (locoInvent[u] != null) { if (locoInvent[u].itemID == PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[21]).itemID) { reduceExplosionChance += 10000; if (rand.nextInt(10) == 0 && (!worldObj.isRemote)) { locoInvent[u].setItemDamage(1); } } } } } else if ((locoInvent[0].itemID == PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[23]).itemID)) { hasUranium = true; fuelTrain = 800 + 1000000; // locoInvent[0] = null; if (!worldObj.isRemote) { decrStackSize(0, 1); } reduceExplosionChance = 1000; for (int u = 1; u < locoInvent.length; u++) {// checks the inventory if (locoInvent[u] != null) { if (locoInvent[u].itemID == PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[21]).itemID) { reduceExplosionChance += 10000; if (rand.nextInt(10) == 0 && (!worldObj.isRemote)) { locoInvent[u].setItemDamage(1); } } } } } } } */
-
+/*
 		blocksToCheck = new TileEntity[]{worldObj.getTileEntity(MathHelper.floor_double(posX), MathHelper.floor_double(posY-2),MathHelper.floor_double(posZ)),
 				worldObj.getTileEntity(MathHelper.floor_double(posX), MathHelper.floor_double(posY+2),MathHelper.floor_double(posZ)),
 				worldObj.getTileEntity(MathHelper.floor_double(posX), MathHelper.floor_double(posY+3),MathHelper.floor_double(posZ)),
@@ -124,7 +124,7 @@ public abstract class ElectricTrain extends Locomotive {
 			Ignite = true;
 			setFire(8);
 			worldObj.playSoundAtEntity(this, "random.fuse", 1.0F, 0.5F);
-		}*/
+		}*//*
 		if (Ignite && timeSinceIgnited == 100) {
 			worldObj.createExplosion(this, posX, posY, posZ, 200F, true);
 			// ConfigHandler2.logger.fine("Train has exploded");
@@ -145,3 +145,4 @@ public abstract class ElectricTrain extends Locomotive {
 		return false;
 	}
 }
+*/

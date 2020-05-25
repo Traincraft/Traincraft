@@ -1,4 +1,4 @@
-package train.common.slots;
+/*package train.common.slots;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,7 +12,7 @@ public class SlotResultTier extends Slot {
 
 	private EntityPlayer thePlayer;
 	private ITier tier2;
-	/** The craft matrix inventory linked to this result slot. */
+	/** The craft matrix inventory linked to this result slot. *//*
 	private final IInventory craftMatrix;
 
 	public SlotResultTier(EntityPlayer entityplayer, IInventory iinventory, int i, int j, int k) {
@@ -43,4 +43,4 @@ public class SlotResultTier extends Slot {
 		super.onPickupFromSlot(player, itemstack);
 		FMLCommonHandler.instance().firePlayerCraftingEvent(player, itemstack, craftMatrix);
 	}
-}
+}*/

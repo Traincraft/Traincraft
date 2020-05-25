@@ -1,4 +1,4 @@
-package train.client.gui;
+/*package train.client.gui;
 
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -8,7 +8,7 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
-import train.common.Traincraft;
+import traincraft.Traincraft;
 import train.common.api.LiquidManager;
 import train.common.api.Locomotive;
 import train.common.api.SteamTrain;
@@ -221,4 +221,4 @@ public class GuiForney extends GuiContainer {
 		fontRendererObj.drawStringWithShadow("Maximum Speed: " + (loco.getCustomSpeedGUI()), 1, 110, 0xFFFFFF);
 		fontRendererObj.drawStringWithShadow("Persistent UUID: " + loco.getPersistentUUID() + " - Entity UUID" + loco.getUniqueID().toString(),1,0,0xFFFFFF);
 	}
-}
+}*/

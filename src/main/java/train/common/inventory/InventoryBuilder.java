@@ -1,4 +1,4 @@
-package train.common.inventory;
+/*package train.common.inventory;
 
 // Decompiled by Jad v1.5.8g. Copyright 2001 Pavel Kouznetsov.
 // Jad home page: http://www.kpdus.com/jad.html
@@ -124,7 +124,7 @@ public class InventoryBuilder extends Container {
 
     /**
      * merges provided ItemStack with the first avaliable one in the container/player inventory
-     */
+     *//*
 	@Override
     protected boolean mergeItemStack(ItemStack stack, int first, int last, boolean isPlayer)
     {
@@ -221,4 +221,4 @@ public class InventoryBuilder extends Container {
 	private EntityTracksBuilder loco;
 	private InventoryPlayer player;
 	private int inventorySize;
-}
+}*/

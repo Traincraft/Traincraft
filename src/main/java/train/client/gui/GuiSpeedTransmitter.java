@@ -1,4 +1,4 @@
-package train.client.gui;
+/*package train.client.gui;
 
 
 import cpw.mods.fml.relauncher.Side;
@@ -7,7 +7,7 @@ import net.minecraft.block.Block;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.tileentity.TileEntity;
-import train.common.Traincraft;
+import traincraft.Traincraft;
 import train.common.mtc.TileInfoTransmitterSpeed;
 import train.common.mtc.packets.PacketNextSpeed;
 import train.common.mtc.packets.PacketSetSpeed;
@@ -159,3 +159,4 @@ public class GuiSpeedTransmitter extends GuiScreen {
 
 }
 
+*/

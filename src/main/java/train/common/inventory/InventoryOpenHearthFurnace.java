@@ -1,4 +1,4 @@
-package train.common.inventory;
+/*package train.common.inventory;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -83,3 +83,4 @@ public class InventoryOpenHearthFurnace implements IInventory{
 	}
 
 }
+*/

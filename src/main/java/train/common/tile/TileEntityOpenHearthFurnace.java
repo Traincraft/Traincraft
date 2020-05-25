@@ -1,4 +1,4 @@
-package train.common.tile;
+/*package train.common.tile;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
@@ -233,3 +233,4 @@ public class TileEntityOpenHearthFurnace extends TileTraincraft{
 		currentItemBurnTime = nbt.getShort("ItemBurnTime");
 	}
 }
+*/

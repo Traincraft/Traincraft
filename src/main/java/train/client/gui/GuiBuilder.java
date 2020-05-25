@@ -1,16 +1,13 @@
-package train.client.gui;
+/*package train.client.gui;
 
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
-import train.common.Traincraft;
+import traincraft.Traincraft;
 import train.common.core.network.PacketSetTrainLockedToClient;
 import train.common.core.network.PacketTrackBuilderFollow;
 import train.common.core.network.PacketTrackBuilderHeight;
@@ -211,4 +208,4 @@ public class GuiBuilder extends GuiContainer {
 			drawTexturedModalRect(j + 105 + 18 * k1, k + 60, 14, 166, 18, 18);
 		}
 	}
-}
+}*/

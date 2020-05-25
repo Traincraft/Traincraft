@@ -1,4 +1,4 @@
-package train.common.core.handlers;
+/*package train.common.core.handlers;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.MathHelper;
@@ -10,7 +10,7 @@ public class RollingStockStatsEventHandler {
 
 	/**
 	 * Stores the distance a player has done on this train
-	 */
+	 *//*
 	private ArrayList<playerDistance> plDist = new ArrayList<playerDistance>();
 	private AbstractTrains train;
 
@@ -21,7 +21,7 @@ public class RollingStockStatsEventHandler {
 	/**
 	 * Calculates the distance this train has done if a player rides it, also calculates
 	 */
-	/* Ready for stats implement, unused for now** */
+	/* Ready for stats implement, unused for now** *//*
 	public void trainDistance() {
 		double xDist = train.prevPosX - train.posX;
 		double yDist = train.prevPosY - train.posY;
@@ -44,7 +44,7 @@ public class RollingStockStatsEventHandler {
 	/**
 	 * just an object to register the distance a player has done
 	 * 
-	 */
+	 *//*
 	private class playerDistance {
 		private String username;
 		private double distance;
@@ -68,3 +68,4 @@ public class RollingStockStatsEventHandler {
 	}
 
 }
+*/

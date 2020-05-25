@@ -1,4 +1,4 @@
-package train.common.core.util;
+/*package train.common.core.util;
 
 import cofh.api.energy.EnergyStorage;
 import cofh.api.energy.IEnergyProvider;
@@ -82,3 +82,4 @@ public class Energy extends TileTraincraft implements IEnergyProvider {
 
 
 }
+*/

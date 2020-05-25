@@ -1,4 +1,4 @@
-package train.client.gui;
+/*package train.client.gui;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -12,11 +12,11 @@ import train.common.library.Info;
 class GuiButtonNextPage extends GuiButton {
 	/**
 	 * True for pointing right (next page), false for pointing left (previous page).
-	 */
+	 *//*
 	private final boolean nextPage;
 	/**
 	 * if the button has to be drawn drawButton is more than just draw, it makes the button exists or not too
-	 */
+	 *//*
 	public boolean showButton;
 
 	public GuiButtonNextPage(int par1, int par2, int par3, int xSize, int ySize, boolean par4) {
@@ -26,7 +26,7 @@ class GuiButtonNextPage extends GuiButton {
 
 	/**
 	 * Draws this button to the screen.
-	 */
+	 *//*
 	@Override
 	public void drawButton(Minecraft mc, int par2, int par3) {
 		if (this.visible && showButton) {
@@ -47,3 +47,4 @@ class GuiButtonNextPage extends GuiButton {
 		}
 	}
 }
+*/

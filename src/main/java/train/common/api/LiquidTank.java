@@ -1,4 +1,4 @@
-package train.common.api;
+/*package train.common.api;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
@@ -28,7 +28,7 @@ public abstract class LiquidTank extends EntityRollingStock implements IFluidHan
 	 * @param fluid
 	 * @param quantity
 	 * @param capacity
-	 */
+	 *//*
 	public LiquidTank(World world, Fluid fluid, int quantity, int capacity) {
 			this(new FluidStack(fluid, quantity), capacity, world);
 	}
@@ -122,7 +122,7 @@ public abstract class LiquidTank extends EntityRollingStock implements IFluidHan
 
 	/**
 	 * Handle mass depending on liquid amount
-	 */
+	 *//*
 	protected void handleMass() {
 		if (this.ticksExisted % 10 != 0 && theTank.getFluid().amount > 0) {
 			this.mass = this.getDefaultMass();
@@ -260,7 +260,7 @@ public abstract class LiquidTank extends EntityRollingStock implements IFluidHan
 	public ItemStack[] canExtractItem(boolean doRemove, ForgeDirection from, int maxItemCount) {
 		return null;
 	}
-	*/
+	*//*
 
 	@Override
 	public boolean canExtractItem(int p_102008_1_, ItemStack p_102008_2_, int p_102008_3_) {
@@ -418,3 +418,4 @@ public abstract class LiquidTank extends EntityRollingStock implements IFluidHan
 		return new FluidTankInfo[] { theTank.getInfo() };
 	}
 }
+*/

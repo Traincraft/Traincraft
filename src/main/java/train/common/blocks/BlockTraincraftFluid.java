@@ -1,4 +1,4 @@
-package train.common.blocks;
+/*package train.common.blocks;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -10,7 +10,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
-import train.common.Traincraft;
+import traincraft.Traincraft;
 
 public class BlockTraincraftFluid extends BlockFluidClassic {
 	
@@ -79,3 +79,4 @@ public class BlockTraincraftFluid extends BlockFluidClassic {
 		return "fluid." + Traincraft.MOD_ID + ":" + fluidName;
 	}
 }
+*/

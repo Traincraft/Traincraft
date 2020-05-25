@@ -1,4 +1,4 @@
-package train.common.slots;
+/*package train.common.slots;
 
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
@@ -22,3 +22,4 @@ public class SlotTender extends Slot {
 		return false;
 	}
 }
+*/

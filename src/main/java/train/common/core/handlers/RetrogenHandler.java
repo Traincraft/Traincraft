@@ -1,11 +1,11 @@
 package train.common.core.handlers;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.TickEvent;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.event.world.ChunkDataEvent;
-import train.common.Traincraft;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
+import traincraft.Traincraft;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -19,7 +19,7 @@ public class RetrogenHandler {
 	@SubscribeEvent
 	public void onChunkLoad(ChunkDataEvent.Load event) {
 		ChunkData data = new ChunkData(event.getChunk());
-		if (ConfigHandler.RETROGEN_CHUNKS && event.getData().getByte("TraincraftRetrogen") < VERSION && !gennedChunks.contains(data)) {
+		if (false /*ConfigHandler.RETROGEN_CHUNKS*/ && event.getData().getByte("TraincraftRetrogen") < VERSION && !gennedChunks.contains(data)) {
 			chunksToRetroGen.add(event.getChunk());
 		}
 		gennedChunks.remove(data);
@@ -32,15 +32,15 @@ public class RetrogenHandler {
 	/** called every server tick. Retrogens chunks if needed. **/
 	@SubscribeEvent
 	public void onServerTick(TickEvent.ServerTickEvent event) {
-		if (ConfigHandler.RETROGEN_CHUNKS) {
+		if (false /*ConfigHandler.RETROGEN_CHUNKS*/) {
 			if (event.phase == TickEvent.Phase.END) {
 				for (Chunk chunk : (ArrayList<Chunk>) chunksToRetroGen.clone()) {
 					chunksToRetroGen.remove(chunk);
-					if (chunk.worldObj instanceof WorldServer) {
-						WorldServer world = (WorldServer) chunk.worldObj;
-						rand.setSeed((long)chunk.xPosition * 341873128712L + (long)chunk.zPosition * 132897987541L);
-						Traincraft.LOGGER.info("Retrogen chunk at " + chunk.xPosition + ", " + chunk.zPosition + " for dimension " + world.provider.dimensionId + ", Version " + VERSION);
-						Traincraft.worldGen.generate(rand, chunk.xPosition, chunk.zPosition, world, world.theChunkProviderServer.currentChunkProvider, world.theChunkProviderServer.currentChunkProvider);
+					if (chunk.getWorld() instanceof WorldServer) {
+						WorldServer world = (WorldServer) chunk.getWorld();
+						rand.setSeed((long)chunk.x * 341873128712L + (long)chunk.z * 132897987541L);
+						Traincraft.LOGGER.info("Retrogen chunk at " + chunk.x + ", " + chunk.z + " for dimension " + world.provider.getDimension() + ", Version " + VERSION);
+						Traincraft.worldGen.generate(rand, chunk.x, chunk.z, world, world.getChunkProvider().chunkGenerator, world.getChunkProvider());
 						gennedChunks.remove(new ChunkData(chunk));
 					}
 				}
@@ -51,9 +51,9 @@ public class RetrogenHandler {
 	public static class ChunkData {
 		private final int chunkX, chunkZ, dimension;
 		private ChunkData(Chunk chunk) {
-			this.chunkX = chunk.xPosition;
-			this.chunkZ = chunk.zPosition;
-			this.dimension = chunk.worldObj.provider.dimensionId;
+			this.chunkX = chunk.x;
+			this.chunkZ = chunk.z;
+			this.dimension = chunk.getWorld().provider.getDimension();
 		}
 		public ChunkData(int chunkX, int chunkZ, int dimension) {
 			this.chunkX = chunkX;

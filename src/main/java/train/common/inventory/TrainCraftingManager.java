@@ -1,4 +1,4 @@
-package train.common.inventory;
+/*package train.common.inventory;
 
 import net.minecraft.block.Block;
 import net.minecraft.inventory.IInventory;
@@ -16,15 +16,15 @@ import java.util.HashMap;
 import java.util.List;
 
 public class TrainCraftingManager {
-	/** The static instance of this class */
+	/** The static instance of this class *//*
 	public static final TrainCraftingManager instance = new TrainCraftingManager();
 
-	/** A list of all the recipes added */
+	/** A list of all the recipes added *//*
 	private List<ITCRecipe> recipes = new ArrayList<>();
 	
 	private final ArrayList<ShapedTrainRecipes> shapedRecipes = new ArrayList<ShapedTrainRecipes>();
 
-	/** Recipes for openHearthFurnace */
+	/** Recipes for openHearthFurnace *//*
 	private final HashMap<Integer, ArrayList<Integer>> hearthFurnaceMap = new HashMap<>();
 	private final ArrayList<OpenHearthFurnaceRecipe> hearthFurnaceRecipes = new ArrayList<>();
 	private final HashMap<Integer, Float> hearthFurnaceXpMap = new HashMap<>();
@@ -77,7 +77,7 @@ public class TrainCraftingManager {
 			var12.put(var13, var14);
 		}
 
-		ItemStack[] var15 = new ItemStack[/* var5 * var6 */9];
+		ItemStack[] var15 = new ItemStack[/* var5 * var6 *//*9];
 
 		for (int var16 = 0; var16 < var5 * var6; ++var16) {
 			char var10 = var3.charAt(var16);
@@ -161,7 +161,7 @@ public class TrainCraftingManager {
 
 	/**
 	 * returns the List<> of all recipes
-	 */
+	 *//*
 	public List<ITCRecipe> getRecipeList() {
 		return this.recipes;
 	}
@@ -252,3 +252,4 @@ public class TrainCraftingManager {
 		return hearthFurnaceRecipes;
 	}
 }
+*/

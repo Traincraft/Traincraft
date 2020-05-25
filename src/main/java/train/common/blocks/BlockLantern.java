@@ -8,7 +8,7 @@ import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
-import train.common.Traincraft;
+import traincraft.Traincraft;
 
 /**
  * In 1.7 the lantern has a tile entity to do the coloring. It would be better if the color is handled within the block.

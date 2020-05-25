@@ -1,9 +1,9 @@
-package train.common.api;
+/*package train.common.api;
 
 import net.minecraft.world.World;
 
 public class TrainsSignal {
-	// ***Signal behavior***/
+	// ***Signal behavior***//*
 	public static int isSignal(double motionX, double motionZ, int i, int j, int k, World worldObj) {
 		int action = 0;// stupid name
 		// equals 1 if there is a signal near, carts slows down
@@ -14,7 +14,7 @@ public class TrainsSignal {
 		/* Basically checks if there is a signal somewhere in front of the cart, using the speed */
 		/* t represents the distance to the signal */
 		//@SuppressWarnings("unused") TileSignal te = (TileSignal) worldObj.getTileEntity(i, j, k);
-
+/*
 		if ((motionX > 0) && motionZ == 0) {
 			for (int t = 0; t < 12; t++) {
 				if ((worldObj.getBlock(i + t, j, k + l) == BlockIDs.signal.block) || (worldObj.getBlock(i + t, j, k - l) == BlockIDs.signal.block)) {// k = sides, j= heigh, i front
@@ -28,7 +28,7 @@ public class TrainsSignal {
 					action = 0;
 				}
 			}
-			/* North */
+			/* North *//*
 		}
 		else if ((motionX < 0) && motionZ == 0) {
 			for (int t = 0; t < 12; t++) {
@@ -43,7 +43,7 @@ public class TrainsSignal {
 					action = 0;
 				}
 			}
-			/* EAST */
+			/* EAST *//*
 		}
 		else if ((motionZ > 0) && motionX == 0) {
 			// k - = front
@@ -59,7 +59,7 @@ public class TrainsSignal {
 					action = 0;
 				}
 			}
-			/* WEST */
+			/* WEST *//*
 		}
 		else if ((motionZ < 0) && motionX == 0) {
 			for (int t = 0; t < 12; t++) {
@@ -80,4 +80,4 @@ public class TrainsSignal {
 		}
 		return action;
 	}
-}
+}*/

@@ -1,4 +1,4 @@
-package train.common.entity.rollingStock;
+/*package train.common.entity.rollingStock;
 
 import com.mojang.authlib.GameProfile;
 import cpw.mods.fml.client.FMLClientHandler;
@@ -26,7 +26,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.event.world.BlockEvent;
-import train.common.Traincraft;
+import traincraft.Traincraft;
 import train.common.adminbook.ServerLogger;
 import train.common.api.EntityRollingStock;
 import train.common.api.Freight;
@@ -60,9 +60,9 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 	public int plannedHeight;
 
 	EntityPlayer playerEntity;
-	/** Affected by the button */
+	/** Affected by the button *//*
 	public boolean followTracks;
-	/** stack representing the tracks in the inventory */
+	/** stack representing the tracks in the inventory *//*
 	private int maxFuel = 5000;
 	private int miningTickCounter = 0;
 	
@@ -138,7 +138,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 			// Position update
 		super.onUpdate();
 
-		/* smoke+fuel */
+		/* smoke+fuel *//*
 		if (rand.nextInt(4) == 0) {
 			Smoke();// creates smoke
 		}
@@ -558,7 +558,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 		}
 	}
 
-	/** can this block be used as ballast */
+	/** can this block be used as ballast *//*
 	public static boolean canBeBallast(ItemStack stack) {
 		if(stack == null || stack.getItem() == null)
 			return false;
@@ -574,7 +574,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 		return canBeTunnel(stack);
 	}
 
-	/** can this block be used for the tunnel */
+	/** can this block be used for the tunnel *//*
 	public static boolean canBeTunnel(ItemStack stack) {
 		if (stack == null || stack.getItem() == null)
 			return false;
@@ -638,7 +638,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 	 *
 	 * @param pos position
 	 * @param block_index index of the block in mining list
-	 */
+	 *//*
 	private void playMiningEffect(Vec3 pos, int block_index) {
 		miningTickCounter++;
 
@@ -693,7 +693,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 	 * north = 0 west = 3 east = 1 south = 2
 	 *
 	 * @return orientation
-	 */
+	 *//*
 	private int getFacing() {
 		if (!worldObj.isRemote) {
 			if(d7 == 0. && d6 == 0.) {
@@ -711,7 +711,7 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 		return MathHelper.floor_double(rotation * 4.0F / 360.0F + 0.5D) & 3;
 	}
 
-	/** Compares the currentHeight with given height in GUI */
+	/** Compares the currentHeight with given height in GUI *//*
 	private int checkForHeight() {
 		if(BuilderInvent[slotId_Rail] !=null
 				&& BuilderInvent[slotId_Rail].getItem() instanceof ItemTCRail){
@@ -752,14 +752,14 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 
 	/**
 	 * This handles the Builder's digging process
-	 */
+	 *//*
 	private void digBuilder(int i, int j, int k) {
 		if (worldObj.isRemote) {
 			return;
 		}
-		/** +1/-1 on X axis, used to know where to dig */
+		/** +1/-1 on X axis, used to know where to dig *//*
 		int iX = 0;
-		/** +1/-1 on Z axis, used to know where to dig */
+		/** +1/-1 on Z axis, used to know where to dig *//*
 		int kZ = 0;
 
 		//checks the tracks in slot 1
@@ -1053,4 +1053,4 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 	@Override
 	public GameProfile getOwner(){return null;}
 
-}
+}*/

@@ -1,4 +1,4 @@
-package train.common.containers;
+/*package train.common.containers;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -58,3 +58,4 @@ public class ContainerOpenHearthFurnace extends Container {
 		return itemstack;
 	}
 }
+*/

@@ -1,4 +1,4 @@
-package train.common.core;
+/*package train.common.core;
 
 import train.common.api.EntityRollingStock;
 import train.common.api.Locomotive;
@@ -20,7 +20,7 @@ import train.common.api.Locomotive;
  * 
  * Then brake: brake+=ScaledPower*Mass
  * 
- */
+ *//*
 public class HandleMaxAttachedCarts {
 	
 	public HandleMaxAttachedCarts() {
@@ -29,7 +29,7 @@ public class HandleMaxAttachedCarts {
 
 	/**
 	 * handles the physic for the locomotive speed, acceleration, brake and fuel consumption depending of the carts attached to it
-	 */
+	 *//*
 	public static void PullPhysic(Locomotive cart1) {
 		double totalMass = 0;
 		if (( cart1).train != null && ( cart1).train.getTrains().size() != 0) {
@@ -46,7 +46,7 @@ public class HandleMaxAttachedCarts {
 		}
 		/**
 		 * Speed is scaled by the mass of carts pulled and the power of the locomotive Power is converted before this calculation MaxSpeed-=exp((Power*Mass)/2)
-		 */
+		 *//*
 		if(totalMass<0){
 			totalMass=0;
 		} else {
@@ -82,7 +82,7 @@ public class HandleMaxAttachedCarts {
 
 		/**
 		 * acceleration is scaled by the mass of carts pulled and the power of the locomotive Power is converted and scaled before this calculation accelerate-=ScaledPower*Mass
-		 */
+		 *//*
 		double scaledPower = totalMass==0?0:(totalMass/(power/745.7));//(power*totalMass)/(power*6);//scalePower(power);
 		scaledPower = scalePower(scaledPower);
 		double accelerate = (cart1).setAccel(0);// reset acceleration and get default
@@ -101,7 +101,7 @@ public class HandleMaxAttachedCarts {
 
 		/**
 		 * brake is scaled by the mass of carts pulled and the power of the locomotive Power is converted and scaled before this calculation brake+=ScaledPower*Mass
-		 */
+		 *//*
 		double brake = ( cart1).setBrake(0);// reset brake and get default
 		brake += (scaledPower * totalMass);
 		if (brake > 1)
@@ -118,7 +118,7 @@ public class HandleMaxAttachedCarts {
 
 		/**
 		 * fuel consumption is scaled by the mass of carts pulled and the power of the locomotive Power is converted before this calculation fuelRate-=power*Mass
-		 */
+		 *//*
 
 		int fuelRate = (cart1).setFuelConsumption(0);// reset and get default
 		fuelRate -= (int) (scaledPower * totalMass*100);
@@ -140,7 +140,7 @@ public class HandleMaxAttachedCarts {
 	 * 
 	 * @param power
 	 * @return
-	 */
+	 *//*
 	@Deprecated
 	private double convertPower(double power) {
 		power /= 1000;
@@ -154,7 +154,7 @@ public class HandleMaxAttachedCarts {
 	 * Used to scale power for calculation like Brake and Acceleration rates
 	 * 
 	 * @return
-	 */
+	 *//*
 	private static double scalePower(double power) {
 		if (power ==0){
 			return 0;
@@ -165,4 +165,4 @@ public class HandleMaxAttachedCarts {
 
 	}
 
-}
+}*/

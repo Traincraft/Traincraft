@@ -1,4 +1,4 @@
-package train.client.gui;
+/*package train.client.gui;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -26,11 +26,11 @@ import java.util.List;
 
 @SideOnly(Side.CLIENT)
 public class GuiRecipeBook extends GuiScreen {
-	/** The player editing the book */
+	/** The player editing the book *//*
 	private final EntityPlayer editingPlayer;
 	private final ItemStack itemstackBook;
 
-	/** Update ticks since the gui was opened */
+	/** Update ticks since the gui was opened *//*
 	private int bookImageWidth = 206;
 	private int bookImageHeight = 200;
 	public static int bookTotalPages = 102;
@@ -408,7 +408,7 @@ public class GuiRecipeBook extends GuiScreen {
 
 	/**
 	 * Adds the buttons (and other controls) to the screen in question.
-	 */
+	 *//*
 	@Override
 	public void initGui() {
 		this.buttonList.clear();
@@ -435,7 +435,7 @@ public class GuiRecipeBook extends GuiScreen {
 
 	/**
 	 * Fired when a control is clicked. This is the equivalent of ActionListener.actionPerformed(ActionEvent e).
-	 */
+	 *//*
 	@Override
 	protected void actionPerformed(GuiButton par1GuiButton) {
 		if (par1GuiButton.enabled) {
@@ -469,7 +469,7 @@ public class GuiRecipeBook extends GuiScreen {
 
 	/**
 	 * Draws the screen and all the components in it.
-	 */
+	 *//*
 	@Override
 	public void drawScreen(int par1, int par2, float par3) {
 		String pageIndic;
@@ -718,4 +718,4 @@ public class GuiRecipeBook extends GuiScreen {
 			this.mc.thePlayer.closeScreen();
 		}
 	}
-}
+}*/

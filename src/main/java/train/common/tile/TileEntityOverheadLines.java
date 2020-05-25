@@ -1,4 +1,4 @@
-package train.common.tile;
+/*package train.common.tile;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import net.minecraft.nbt.NBTTagCompound;
@@ -11,7 +11,7 @@ import train.common.core.handlers.OverheadLinesEnergyNetHandler;
 
 /**
  * @author Spitfire4466 <trains-and-zeppelin.wikispaces.com>
- */
+ *//*
 public class TileEntityOverheadLines extends TileEntity {
 
 	public double energy = 0;
@@ -56,7 +56,7 @@ public class TileEntityOverheadLines extends TileEntity {
 			this.addedToEnergyNet = true;
 			/**
 			 * IC2
-			 */
+			 *//*
 			if (isSimulating()&&!addedToEnergyNet) {
 				//TODO: This is require by IC2 to know about this energy tile
 				//MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
@@ -84,7 +84,7 @@ public class TileEntityOverheadLines extends TileEntity {
 			if ((entity instanceof IElectricTrain)) { if ((this.energy > 0) && (((EntityRollingStock)entity).fuelTrain)<400 ) { double transfered = this.energy0.05; (((EntityRollingStock)entity).fuelTrain)+=transfered; this.energy-=transfered2; } } } }
 
 		List lis1 = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, AxisAlignedBB.getBoundingBoxFromPool((double)this.xCoord, (double)this.yCoord, (double)this.zCoord, (double)(this.xCoord + 0.1), (double)(this.yCoord+0.1), (double)(this.zCoord + 0.1)).expand(1.2D, 1.2D, 1.2D));
-*/
+*//*
 	}
 	public double getDistanceSq(double par1, double par3, double par5) {
 		double var7 = this.xCoord - par1;
@@ -120,7 +120,7 @@ public class TileEntityOverheadLines extends TileEntity {
 	}
 	/**
 	 * Writes a tile entity to NBT.
-	 */
+	 *//*
 	@Override
 	public void writeToNBT(NBTTagCompound par1NBTTagCompound) {
 		super.writeToNBT(par1NBTTagCompound); 
@@ -145,7 +145,7 @@ public class TileEntityOverheadLines extends TileEntity {
 		Back=par1NBTTagCompound.getBoolean("Back"); 
 		Front=par1NBTTagCompound.getBoolean("Front");
 	}
-	/*/
+	/*//*
 	@Override
 	public double getDemandedEnergy() {
 		return this.getMaxEnergy() - this.getEnergy();
@@ -168,7 +168,7 @@ public class TileEntityOverheadLines extends TileEntity {
 		// NOTE: This was deduced from previously existing getMaxSafeInputs value 1024
 		return 3; // High Voltage
 	}
-	/*/
+	/*//*
 	public double getEnergy() {
 		return this.energy;
 	}
@@ -179,7 +179,7 @@ public class TileEntityOverheadLines extends TileEntity {
 	public double getMaxEnergy() {
 		return this.maxEnergy;
 	}
-	/*/
+	/*//*
 	@Override
 	public boolean acceptsEnergyFrom(TileEntity emitter,
 			ForgeDirection direction) {
@@ -188,7 +188,7 @@ public class TileEntityOverheadLines extends TileEntity {
 	public boolean facingMatchesDirection(Direction direction) { 
 		return direction.toSideValue() == getFacing(); 
 	}
-	/*/
+	/*//*
 	@Override
 	public Packet getDescriptionPacket() {
 
@@ -198,5 +198,4 @@ public class TileEntityOverheadLines extends TileEntity {
 		return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, nbt);
 	}
 }
-
-
+*/

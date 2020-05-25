@@ -7,7 +7,7 @@
 
 package train.common.blocks;
 
-import net.minecraft.block.BlockDirectional;
+import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;
@@ -18,8 +18,8 @@ import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import train.common.Traincraft;
-import train.common.tile.TileStopper;
+import traincraft.Traincraft;
+import traincraft.tile.TileStopper;
 
 public class BlockStopper extends BaseContainerBlock {
 	
@@ -31,7 +31,7 @@ public class BlockStopper extends BaseContainerBlock {
 		this.setHardness(1.7F);
 		this.setSoundType(SoundType.ANVIL);
 		
-		this.setDefaultState(this.getBlockState().getBaseState().withProperty(BlockDirectional.FACING, EnumFacing.NORTH));
+		this.setDefaultState(this.getBlockState().getBaseState().withProperty(BlockHorizontal.FACING, EnumFacing.NORTH));
 	}
 	
 	@Override
@@ -56,28 +56,28 @@ public class BlockStopper extends BaseContainerBlock {
 
 	@Override
 	public TileEntity createNewTileEntity(World world, int meta) {
-		return new TileStopper(meta);
+		return new TileStopper();
 	}
 	
 	// state: ABCD => CD = facing
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		return this.getDefaultState().withProperty(BlockDirectional.FACING, EnumFacing.byHorizontalIndex(meta & 0b0011));
+		return this.getDefaultState().withProperty(BlockHorizontal.FACING, EnumFacing.byHorizontalIndex(meta & 0b0011));
 	}
 	
 	@Override
 	public int getMetaFromState(IBlockState state) {
-		return state.getValue(BlockDirectional.FACING).getHorizontalIndex();
+		return state.getValue(BlockHorizontal.FACING).getHorizontalIndex();
 	}
 	
 	@Override
 	public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
-		return super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer).withProperty(BlockDirectional.FACING, placer.getHorizontalFacing().getOpposite());
+		return super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer).withProperty(BlockHorizontal.FACING, placer.getHorizontalFacing().getOpposite());
 	}
 	
 	@Override
 	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, BlockDirectional.FACING);
+		return new BlockStateContainer(this, BlockHorizontal.FACING);
 	}
 
 	

@@ -1,4 +1,4 @@
-package train.client.gui;
+/*package train.client.gui;
 
 
 import cpw.mods.fml.relauncher.Side;
@@ -7,7 +7,7 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.Entity;
 import org.lwjgl.input.Keyboard;
-import train.common.Traincraft;
+import traincraft.Traincraft;
 import train.common.api.Locomotive;
 import train.common.core.network.PacketDestination;
 import train.common.core.network.PacketUpdateTrainID;
@@ -129,3 +129,4 @@ public class GuiMTCInfo extends GuiScreen {
         }
     }
 }
+*/

@@ -1,4 +1,4 @@
-package train.common.api;
+/*package train.common.api;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -22,7 +22,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
 import org.apache.commons.lang3.RandomStringUtils;
-import train.common.Traincraft;
+import traincraft.Traincraft;
 import train.common.adminbook.ServerLogger;
 import train.common.core.HandleMaxAttachedCarts;
 import train.common.core.handlers.ConfigHandler;
@@ -94,18 +94,18 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
     public boolean stationStop = false;
     /**
      * state of the loco
-     */
+     *//*
     private String locoState = "";
     /**
      * false if linked carts have no effect on the velocity of this cart. Use
      * carefully, if you link two carts that can't be adjusted, it will behave
      * as if they are not linked.
-     */
+     *//*
     protected boolean canBeAdjusted = false;
 
     /**
      * These variables are used to display changes in the GUI
-     */
+     *//*
     public int currentNumCartsPulled = 0;
     public double currentMassPulled = 0;
     public double currentSpeedSlowDown = 0;
@@ -115,13 +115,13 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 
     /**
      * used internally inside each loco to set the fuel consumption
-     */
+     *//*
     protected int fuelRate;
     /**
      * This is for the "can pull" feature It is used to avoid conflict with
      * isCartLockDown @see EntityRollingStock line 422 This is set in @see
      * TrainsOnClick
-     */
+     *//*
     public boolean canBePulled = false;
 
 
@@ -161,7 +161,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 
     /**
      * this is basically NBT for entity spawn, to keep data between client and server in sync because some data is not automatically shared.
-     */
+     *//*
     @Override
     public void readSpawnData(ByteBuf additionalData) {
         super.readSpawnData(additionalData);
@@ -195,7 +195,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
      * To disable linking altogether, return false here.
      *
      * @return True if this cart is linkable.
-     */
+     *//*
     @Override
     public boolean isLinkable() {
         return false;
@@ -207,7 +207,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
      * may be storage carts.
      *
      * @return True if this cart should be classified as a storage cart.
-     */
+     *//*
     @Override
     public boolean isStorageCart() {
         return false;
@@ -228,7 +228,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
      * used
      * <p>
      * //@param speed //this is for making documentation of some sort via javadoc, shouldn't be relevant to the operation of the mod
-     */
+     *//*
     public void setCustomSpeed(double m) {
         if (m != 0) {
             setCurrentMaxSpeed((int) m);
@@ -242,7 +242,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
      * km/h) divided by 3.6 to get ms
      *
      * @return double
-     */
+     *//*
     public float getMaxSpeed() {
         if (trainSpec != null) {
             if (currentMassPulled > 1) {
@@ -261,7 +261,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
      * divided by 3.6 to get ms
      *
      * @return double
-     */
+     *//*
     public float getCustomSpeed() {
         return getCurrentMaxSpeed() / 3.6f;
     }
@@ -308,7 +308,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
      * //@param i //this is for making documentation of some sort via javadoc, shouldn't be relevant to the operation of the mod
      *
      * @return
-     */
+     *//*
     public int setFuelConsumption(int c) {
         if (c != 0) {
             return fuelRate = c;
@@ -324,7 +324,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
      * returns the fuel consumption rate for each loco
      *
      * @return int
-     */
+     *//*
     public int getFuelConsumption() {
         return fuelRate == 0 ? trainSpec.getFuelConsumption() : fuelRate;
     }
@@ -333,7 +333,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
      * Return the power of the loco, used for cart pulling
      *
      * @see HandleMaxAttachedCarts for calculations
-     */
+     *//*
     public int getPower() {
         if (trainSpec != null) {
             return trainSpec.getMHP();
@@ -345,7 +345,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
      * Set acceleration rate if rate = 0, default value is used
      *
      * @param rate
-     */
+     *//*
     public double setAccel(double rate) {
         if (rate != 0) {
             return accelerate = rate;
@@ -361,7 +361,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
      * Set brake rate if rate = 0, default value is used
      *
      * @param rate
-     */
+     *//*
     public double setBrake(double rate) {
         if (rate != 0) {
             return brake = rate;
@@ -456,7 +456,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
     /**
      * Returns true if this entity should push and be pushed by other entities
      * when colliding.
-     */
+     *//*
     @Override
     public boolean canBePushed() {
         return false;
@@ -470,7 +470,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
      * gets packet from server and distribute for GUI handles motion
      *
      * @param i
-     */
+     *//*
     @Override
     public void keyHandlerFromPacket(int i) {
         if (this.getTrainLockedFromPacket()) {
@@ -555,7 +555,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
      * All this is used in GUI only
      *
      * @return
-     */
+     *//*
     public String getCurrentNumCartsPulled() {
         return (this.dataWatcher.getWatchableObjectString(26));
     }
@@ -723,7 +723,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
              * Can't use datawatcher here. Locomotives use them all already
              * Check inventory The packet never arrives if it is sent when the
              * entity reads its NBT (player hasn't been initialised probably)
-             */
+             *//*
             if (ticksExisted % 200 == 0) {
                 this.slotsFilled = 0;
                 for (int i = 0; i < getSizeInventory(); i++) {
@@ -737,7 +737,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
             }
             /**
              * Fuel consumption
-             */
+             *//*
             //if (this instanceof DieselTrain) consumption /= 5;
             if (fuelUpdateTicks >= 100) {
                 fuelUpdateTicks = 0;
@@ -941,7 +941,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 				/*if (distanceFromStopPoint < this.getSpeed() && !(distanceFromStopPoint < nextSpeedLimit)  && !(this instanceof EntityLocoElectricPeachDriverlessMetro)) {
 					speedLimit = (int) Math.round(distanceFromStopPoint);
 					Traincraft.itsChannel.sendToAllAround(new PacketSetSpeed(this.speedLimit, (int) this.posX, (int) this.posY, (int) this.posZ, getEntityId()), new TargetPoint(this.worldObj.provider.dimensionId, this.posX, this.posY, this.posZ, 150.0D) );
-				}*/
+				}*//*
 
 
             //For Automatic Train Operation
@@ -995,7 +995,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
                         }
                     }/*
                      * else{ this.canCheckInvent=true; this.hasDrowned=false; }
-                     */
+                     *//*
                 }
 
                 if (distanceFromStopPoint < this.getSpeed()) {
@@ -1092,7 +1092,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
                 }
             }/*
              * else{ this.canCheckInvent=true; this.hasDrowned=false; }
-             */
+             *//*
         }
     }
 
@@ -1109,7 +1109,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
      * Carts should return their drag factor here
      *
      * @return The drag rate.
-     */
+     *//*
     @Override
     public double getDragAir() {
         return 1D;
@@ -1119,7 +1119,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
      * Added for SMP
      *
      * @return true if on, false if off
-     */
+     *//*
     public boolean getParkingBrakeFromPacket() {
         return parkingBrake;
     }
@@ -1129,7 +1129,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
      *
      * @param set
      *            set 0 if parking break is false, 1 if true
-     */
+     *//*
     public void setParkingBrakeFromPacket(boolean set) {
         parkingBrake = set;
     }
@@ -1138,7 +1138,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
      * added for SMP, used by the HUD
      *
      * @return
-     */
+     *//*
     public double getSpeed() {
         return dataWatcher.getWatchableObjectInt(25);
     }
@@ -1147,7 +1147,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
      * added for SMP, used by the HUD
      *
      * @return
-     */
+     *//*
     @Override
     public int getOverheatLevel() {
         return (this.dataWatcher.getWatchableObjectInt(20));
@@ -1157,7 +1157,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
      * returns the state of the loco state is the consequence of overheating
      *
      * @return cold warm hot very hot too hot broken
-     */
+     *//*
     public String getState() {
         return (this.dataWatcher.getWatchableObjectString(22));
     }
@@ -1167,7 +1167,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
      *
      * @param state
      *            cold warm hot very hot too hot broken
-     */
+     *//*
     public void setState(String state) {
         locoState = state;
         this.dataWatcher.updateObject(22, state);
@@ -1177,7 +1177,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
      * added for SMP, used by the HUD
      *
      * @return
-     */
+     *//*
     public int getFuel() {
         if (worldObj.isRemote) { return (this.dataWatcher.getWatchableObjectInt(24)); }
         return fuelTrain;
@@ -1185,13 +1185,13 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 
     /**
      * Is it fuelled? used in GUI
-     */
+     *//*
     public boolean getIsFuelled() {
         if (worldObj.isRemote) { return (this.dataWatcher.getWatchableObjectInt(24)) > 0; }
         return (this.fuelTrain > 0);
     }
 
-    /** Used for the gui */
+    /** Used for the gui *//*
     public int getFuelDiv(int i) {
         if (worldObj.isRemote) { return ((this.dataWatcher.getWatchableObjectInt(24) * i) / 1200); }
         return (this.fuelTrain * i) / 1200;
@@ -1200,7 +1200,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
     /**
      * This code applies fuel consumption.
      * @param consumption
-     */
+     *//*
     protected void updateFuelTrain(int consumption) {
         if (fuelTrain < 0) {
             motionX *= 0.8;
@@ -1299,7 +1299,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
     //	public ItemStack[] extractItem(boolean doRemove, ForgeDirection from, int maxItemCount) {
     //		return null;
     //	}
-
+/*
     @Override
     public boolean attackEntityFrom(DamageSource damagesource, float i) {
         if (worldObj.isRemote) { return true; }
@@ -1337,7 +1337,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
         }
     }
 
-    /** RC routing integration */
+    /** RC routing integration *//*
     @Override
     public boolean setDestination(ItemStack ticket) {
         if (ticket != null) {
@@ -1347,7 +1347,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
         return false;
     }
 
-    /* IInventory implements */
+    /* IInventory implements *//*
     @Override
     public ItemStack getStackInSlot(int i) {
         return locoInvent[i];
@@ -1437,7 +1437,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
     public ItemStack[] getInventory(){return locoInvent;}
 
 
-    /** For MTC's Automatic Train Operation system */
+    /** For MTC's Automatic Train Operation system *//*
     public void accel(Integer desiredSpeed) {
         if (this.worldObj != null) {
 
@@ -1488,7 +1488,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 
                         }
 
-                    }*/
+                    }*//*
                 }
 
             }
@@ -1782,3 +1782,4 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
 
     }
 }
+*/

@@ -1,4 +1,4 @@
-package train.common.api;
+/*package train.common.api;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -269,4 +269,4 @@ public abstract class DieselTrain extends Locomotive implements IFluidHandler {
 	public int getFluidAmount() {
 		return theTank.getFluidAmount();
 	}
-}
+}*/

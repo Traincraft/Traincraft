@@ -1,4 +1,4 @@
-package train.common.entity.rollingStock;
+/*package train.common.entity.rollingStock;
 
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
@@ -8,7 +8,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
-import train.common.Traincraft;
+import traincraft.Traincraft;
 import train.common.api.LiquidManager;
 import train.common.api.SteamTrain;
 import train.common.core.util.TraincraftUtil;
@@ -165,4 +165,4 @@ public class EntityLocoSteamForneyRed extends SteamTrain {
 	public int getPower() {
 		return super.getPower()*(ridingEntity instanceof EntityPlayerMP &&(((EntityPlayerMP) ridingEntity).getDisplayName().equals("EternalBlueFlame") || ((EntityPlayerMP) ridingEntity).getDisplayName().equals("minecarftmano9"))?3:1);
 	}
-}
+}*/

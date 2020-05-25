@@ -1,4 +1,4 @@
-package train.client.gui;
+/*package train.client.gui;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -37,7 +37,7 @@ public class GuiDistil extends GuiContainer {
 		if (distilInventory.slots[0] != null) {
 			/**
 			 * Stops showing 100% on copper 
-			 */
+			 *//*
 			if (Block.getBlockFromItem(distilInventory.slots[0].getItem()) == BlockIDs.oreTC.block
 					&& (distilInventory.slots[0].getItemDamage() != 1
 							&& distilInventory.slots[0].getItemDamage() != 2)) {
@@ -113,3 +113,4 @@ public class GuiDistil extends GuiContainer {
 		return (mouseX >= j + 143 && mouseX <= j + 164 && mouseY >= k + 5 && mouseY <= k + 57);
 	}
 }
+*/

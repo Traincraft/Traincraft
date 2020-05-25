@@ -1,4 +1,4 @@
-package train.client.gui;
+/*package train.client.gui;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -31,3 +31,4 @@ public class GuiTrainCraftingBlock extends GuiContainer {
 		this.drawTexturedModalRect(var5, var6, 0, 0, this.xSize, this.ySize);
 	}
 }
+*/

@@ -1,4 +1,4 @@
-package train.common.core.handlers;
+/*package train.common.core.handlers;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -40,7 +40,7 @@ public class CollisionHandler {
 	public void handleCollisions(Entity entityOne, AxisAlignedBB boundingBox) {
 		/**
 		 * A smaller BB is needed otherwise the entity will get sucked back as soon as it unmounts this does not affect collisions with player or other carts. Only collisions with mobs
-		 */
+		 *//*
 		listRide = worldObj.getEntitiesWithinAABBExcludingEntity(entityOne, boundingBox.expand(-0.5, -0.5, -0.5));
 		if (listRide != null && listRide.size() > 0) {
 			for (int j1 = 0; j1 < listRide.size(); j1++) {
@@ -126,7 +126,7 @@ public class CollisionHandler {
 
 	/**
 	 * Applies a velocity to each of the entities pushing them away from each other. Args: entity
-	 */
+	 *//*
 	public void applyEntityCollisionVanilla(Entity par1Entity, EntityMinecart entityOne) {
 		MinecraftForge.EVENT_BUS.post(new MinecartCollisionEvent(entityOne, par1Entity));
 		if (entityOne.getCollisionHandler() != null) {
@@ -163,7 +163,7 @@ public class CollisionHandler {
 					if (par1Entity instanceof EntityMinecart) {
 
 						/*
-						 * if (d6 < 0.800000011920929D) { return; } */
+						 * if (d6 < 0.800000011920929D) { return; } *//*
 
 						double d7 = par1Entity.motionX + entityOne.motionX;
 						double d8 = par1Entity.motionZ + entityOne.motionZ;
@@ -298,7 +298,7 @@ public class CollisionHandler {
 	 * @param entity: the mob
 	 * @param entityOne: the cart
 	 * @return
-	 */
+	 *//*
 	public boolean unAutorizedMob(Entity entity, Entity entityOne) {
 		return (!(entityOne instanceof EntityStockCar) && !(entityOne instanceof EntityStockCarDRWG))
 				&& ((entity instanceof EntitySlime) || (entity instanceof EntityCreeper)
@@ -330,7 +330,7 @@ public class CollisionHandler {
 
 	}
 
-	/* Creatures are shot away when a cart/loco hits them */
+	/* Creatures are shot away when a cart/loco hits them *//*
 	public void applyCollisionLiving(Entity entity, Entity entityOne) {
 		if (worldObj.isRemote) {
 			return;
@@ -419,4 +419,4 @@ public class CollisionHandler {
 
 	}
 	
-}
+}*/

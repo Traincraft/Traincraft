@@ -2,41 +2,44 @@ package train.client.core.handlers;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
+import net.minecraft.entity.Entity;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 import org.lwjgl.input.Keyboard;
-import train.common.Traincraft;
-import train.common.core.network.PacketKeyPress;
+import traincraft.Traincraft;
+import traincraft.api.AbstractRollingStock;
+import traincraft.network.TCPackets;
 
+@Mod.EventBusSubscriber(modid = Traincraft.MOD_ID)
 public class TCKeyHandler {
-	public static KeyBinding horn;
-	public static KeyBinding inventory;
-	public static KeyBinding up;
-	public static KeyBinding down;
-	public static KeyBinding idle;
-	public static KeyBinding furnace;
-	public static KeyBinding MTCScreen;
+	
+	public static KeyBinding horn = new KeyBinding("key.traincraft.horn", Keyboard.KEY_H, "key.categories.traincraft");
+	public static KeyBinding inventory = new KeyBinding("key.traincraft.inventory", Keyboard.KEY_R, "key.categories.traincraft");
+	public static KeyBinding up = new KeyBinding("key.traincraft.up", Keyboard.KEY_Y, "key.categories.traincraft");
+	public static KeyBinding down = new KeyBinding("key.traincraft.down", Keyboard.KEY_X, "key.categories.traincraft");
+	public static KeyBinding idle = new KeyBinding("key.traincraft.idle", Keyboard.KEY_C, "key.categories.traincraft");
+	public static KeyBinding furnace = new KeyBinding("key.traincraft.furnace", Keyboard.KEY_F, "key.categories.traincraft");
+	
+	/*public static KeyBinding MTCScreen;
 	public static KeyBinding toggleATO;
 	public static KeyBinding mtcOverride;
 	public static KeyBinding overspeedOverride;
-/*	public static KeyBinding remoteControlForward;
+	public static KeyBinding remoteControlForward;
 	public static KeyBinding remoteControlBackwards;
 	public static KeyBinding remoteControlHorn;
 	public static KeyBinding remoteControlBrake;*/
-	public TCKeyHandler() {
-		horn = new KeyBinding("key.traincraft.horn", Keyboard.KEY_H, "key.categories.traincraft");
+	
+	public static void register(){
 		ClientRegistry.registerKeyBinding(horn);
-		inventory = new KeyBinding("key.traincraft.inventory", Keyboard.KEY_R, "key.categories.traincraft");
 		ClientRegistry.registerKeyBinding(inventory);
-		up = new KeyBinding("key.traincraft.up", Keyboard.KEY_Y, "key.categories.traincraft");
 		ClientRegistry.registerKeyBinding(up);
-		down = new KeyBinding("key.traincraft.down", Keyboard.KEY_X, "key.categories.traincraft");
 		ClientRegistry.registerKeyBinding(down);
-		idle = new KeyBinding("key.traincraft.idle", Keyboard.KEY_C, "key.categories.traincraft");
 		ClientRegistry.registerKeyBinding(idle);
-		furnace = new KeyBinding("key.traincraft.furnace", Keyboard.KEY_F, "key.categories.traincraft");
 		ClientRegistry.registerKeyBinding(furnace);
+		
 		/*if (Loader.isModLoaded("ComputerCraft") || Loader.isModLoaded("OpenComputers")) {
 			MTCScreen = new KeyBinding("key.traincraft.showMTCScreen", Keyboard.KEY_M, "key.categories.traincraft");
 			ClientRegistry.registerKeyBinding(MTCScreen);
@@ -51,24 +54,27 @@ public class TCKeyHandler {
 
 	@SubscribeEvent
 	public static void onKeyInput(InputEvent.KeyInputEvent event) {
+		Entity ridingEntity = Minecraft.getMinecraft().player.getRidingEntity();
 		if (!Minecraft.getMinecraft().ingameGUI.getChatGUI().getChatOpen()) {
 			if (up.isPressed()) {
-				sendKeyControlsPacket(0);
+				//sendKeyControlsPacket(0);
 			}
 			if (down.isPressed()) {
-				sendKeyControlsPacket(2);
+				//sendKeyControlsPacket(2);
 			}
 			if (idle.isPressed()) {
-				sendKeyControlsPacket(6);
+				//sendKeyControlsPacket(6);
 			}
 			if (inventory.isPressed()) {
-				sendKeyControlsPacket(7);
+				//sendKeyControlsPacket(7);
 			}
 			if (horn.isPressed()) {
-				sendKeyControlsPacket(8);
+				if(ridingEntity instanceof AbstractRollingStock<?>){
+					TCPackets.KEY_HORN.sendToServer((AbstractRollingStock<?>) ridingEntity, new NBTTagCompound());
+				}
 			}
 			if (furnace.isPressed()) {
-				sendKeyControlsPacket(9);
+				//sendKeyControlsPacket(9);
 			}
 			/*if (Loader.isModLoaded("ComputerCraft") || Loader.isModLoaded("OpenComputers")) {
 				if (MTCScreen.isPressed() && !FMLClientHandler.instance().isGUIOpen(GuiMTCInfo.class)) {
@@ -149,10 +155,4 @@ public class TCKeyHandler {
 		//}
 	}
 
-
-	
-	private static void sendKeyControlsPacket(int key)
-	{
-		Traincraft.keyChannel.sendToServer(new PacketKeyPress(key));
-	}
 }

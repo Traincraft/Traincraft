@@ -1,4 +1,4 @@
-package train.common.entity.rollingStock;
+/*package train.common.entity.rollingStock;
 
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
@@ -7,7 +7,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
-import train.common.Traincraft;
+import traincraft.Traincraft;
 import train.common.api.LiquidTank;
 import train.common.core.util.TraincraftUtil;
 import train.common.library.EnumTrains;
@@ -115,4 +115,4 @@ public class EntityTankLava extends LiquidTank {
 	public float getOptimalDistance(EntityMinecart cart) {
 		return 1.85F;
 	}
-}
+}*/
