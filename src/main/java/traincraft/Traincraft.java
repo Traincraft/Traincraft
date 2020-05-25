@@ -90,7 +90,6 @@ public class Traincraft {
 		//Retrogen Handling
 		RetrogenHandler retroGen = new RetrogenHandler();
 		MinecraftForge.EVENT_BUS.register(retroGen);
-		MinecraftForge.EVENT_BUS.register(retroGen);
 		
 		//MapGenStructureIO.registerStructureComponent(ComponentVillageTrainstation.class, "Trainstation");
 
