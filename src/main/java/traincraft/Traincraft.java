@@ -28,7 +28,7 @@ import traincraft.items.TCItems;
 import traincraft.network.GuiHandler;
 import traincraft.network.PacketTraincraftEntity;
 
-@Mod(modid = Traincraft.MOD_ID, name = Traincraft.MOD_NAME, version = Traincraft.MOD_VERSION, guiFactory = "traincraft.config.GuiFactory")
+@Mod(modid = Traincraft.MOD_ID, name = Traincraft.MOD_NAME, version = Traincraft.MOD_VERSION)
 public class Traincraft {
 	
 	/* Mod relevant information */
