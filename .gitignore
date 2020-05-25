@@ -21,7 +21,7 @@ build
 
 # build
 asm
-config
+/config
 logs
 options.txt
 libs

@@ -23,12 +23,13 @@ import train.common.core.CommonProxy;
 import train.common.core.handlers.RetrogenHandler;
 import train.common.generation.WorldGenWorld;
 import traincraft.capabilities.CapabilityWorldWind;
+import traincraft.config.Config;
 import traincraft.entity.TCEntities;
 import traincraft.items.TCItems;
 import traincraft.network.GuiHandler;
 import traincraft.network.PacketTraincraftEntity;
 
-@Mod(modid = Traincraft.MOD_ID, name = Traincraft.MOD_NAME, version = Traincraft.MOD_VERSION)
+@Mod(modid = Traincraft.MOD_ID, name = Traincraft.MOD_NAME, version = Traincraft.MOD_VERSION, guiFactory = "traincraft.config.GuiFactory")
 public class Traincraft {
 	
 	/* Mod relevant information */
@@ -70,7 +71,7 @@ public class Traincraft {
 		LOGGER.info("Starting Traincraft " + MOD_VERSION + "!");
 		/* Config handler */
 		configDirectory = event.getModConfigurationDirectory();
-		//ConfigHandler.init(new File(event.getModConfigurationDirectory(), MOD_NAME + ".cfg"));
+		Config.initalize(event.getSuggestedConfigurationFile());
 		
 		/* Register Items, Blocks, ... */
 		LOGGER.info("Initialize Blocks, Items, ...");
