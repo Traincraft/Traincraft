@@ -19,6 +19,7 @@ public class ItemArmorDriverHat extends ItemArmor {
     
     public ItemArmorDriverHat() {
         super(ARMOR_MATERIAL, 0, EntityEquipmentSlot.LEGS);
+        this.setRegistryName(Traincraft.MOD_ID, "armor_driver_hat");
     
         this.setCreativeTab(Traincraft.TAB);
     }

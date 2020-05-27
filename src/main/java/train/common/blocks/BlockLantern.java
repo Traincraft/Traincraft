@@ -14,7 +14,7 @@ import traincraft.Traincraft;
  * In 1.7 the lantern has a tile entity to do the coloring. It would be better if the color is handled within the block.
  * This includes deleting the tile entity and maybe using right lick with itemdye for color change
  */
-public class BlockLantern extends Block {
+public class BlockLantern extends BaseBlock {
 
 	public static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(0.2F, 0.0F, 0.2F, 0.7F, 0.9F, 0.7F);
 	

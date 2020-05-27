@@ -20,7 +20,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import traincraft.Traincraft;
 
-public class BlockBridgePillar extends Block {
+public class BlockBridgePillar extends BaseBlock {
 	
 	public BlockBridgePillar() {
 		super(Material.WOOD);

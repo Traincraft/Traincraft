@@ -8,17 +8,19 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import traincraft.Traincraft;
+import traincraft.items.ItemBlockGeneratorWaterWheel;
 import traincraft.tile.TileWaterWheel;
 
 import javax.annotation.Nullable;
 
-public class BlockWaterWheel extends Block {
+public class BlockWaterWheel extends BaseBlock {
 
 	public BlockWaterWheel() {
 		super(Material.WOOD);
@@ -30,6 +32,11 @@ public class BlockWaterWheel extends Block {
 		this.setHardness(1.7F);
 		this.setSoundType(SoundType.WOOD);
 		this.setHarvestLevel("axe", 0);
+	}
+	
+	@Override
+	public ItemBlock getItemBlock() {
+		return new ItemBlockGeneratorWaterWheel();
 	}
 	
 	@Override

@@ -18,6 +18,7 @@ public class ItemArmorHat extends ItemArmor {
     
     public ItemArmorHat() {
         super(ARMOR_MATERIAL, 0, EntityEquipmentSlot.HEAD);
+        this.setRegistryName(Traincraft.MOD_ID, "armor_hat");
     
         this.setCreativeTab(Traincraft.TAB);
     }

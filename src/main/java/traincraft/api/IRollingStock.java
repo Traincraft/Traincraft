@@ -1,5 +1,6 @@
 package traincraft.api;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Nonnull;
@@ -97,6 +98,14 @@ public interface IRollingStock {
     default void registerSkins(AbstractRollingStock<?> rollingStock, Map<String, ResourceLocation> skins){}
     
     /**
+     * Use this method to add seats to your rolling stock.
+     *
+     * @param rollingStock This rolling stock
+     * @param seats The list of seats
+     */
+    default void registerSeats(AbstractRollingStock<?> rollingStock, List<PassengerSeat> seats){}
+    
+    /**
      * This is used by the renderer to get the actual model that has to be rendered.
      * Since it is called every frame, it should not create new objects, instead it should
      * use a static final Model.
@@ -115,6 +124,10 @@ public interface IRollingStock {
      * @return The model texture
      */
     ResourceLocation getTexture(AbstractRollingStock<?> rollingStock);
+    
+    default float getModelScale(AbstractRollingStock<?> rollingStock){
+        return 1.0F;
+    }
     
     /**
      * Called by the renderer before the model nor the texture are applied to the render engine.

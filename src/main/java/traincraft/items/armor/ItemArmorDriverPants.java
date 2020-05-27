@@ -19,6 +19,7 @@ public class ItemArmorDriverPants extends ItemArmor {
     
     public ItemArmorDriverPants() {
         super(ARMOR_MATERIAL, 0, EntityEquipmentSlot.LEGS);
+        this.setRegistryName(Traincraft.MOD_ID, "armor_driver_pants");
     
         this.setCreativeTab(Traincraft.TAB);
     }

@@ -19,6 +19,7 @@ public class ItemArmorDriverJacket extends ItemArmor {
     
     public ItemArmorDriverJacket() {
         super(ARMOR_MATERIAL, 0, EntityEquipmentSlot.CHEST);
+        this.setRegistryName(Traincraft.MOD_ID, "armor_driver_jacket");
     
         this.setCreativeTab(Traincraft.TAB);
     }

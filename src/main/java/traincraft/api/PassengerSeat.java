@@ -2,39 +2,39 @@ package traincraft.api;
 
 
 import net.minecraft.entity.Entity;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.Vec3d;
 
 public class PassengerSeat {
 
     private boolean controllingSeat;
-    private float x, y, z, width, height;
+    private AxisAlignedBB boundingBox;
+    private Vec3d centerPoint;
     private Entity currentUser;
     
-    public PassengerSeat(float x, float y, float z, float width, float height) {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-        this.width = width;
-        this.height = height;
+    public PassengerSeat(AxisAlignedBB boundingBox) {
+        this.boundingBox = boundingBox;
+        this.centerPoint = new Vec3d(boundingBox.minX + (this.getWidth() / 2D), boundingBox.minY + (this.getHeight() / 2D), boundingBox.minZ + (this.getDepth() / 2D));
     }
     
-    public float getX() {
-        return x;
+    public AxisAlignedBB getBoundingBox() {
+        return boundingBox;
     }
     
-    public float getY() {
-        return y;
+    public Vec3d getCenter(){
+        return this.centerPoint;
     }
     
-    public float getZ() {
-        return z;
+    public double getWidth() {
+        return this.boundingBox.maxX - this.boundingBox.minX;
     }
     
-    public float getWidth() {
-        return width;
+    public double getHeight() {
+        return this.boundingBox.maxY - this.boundingBox.minY;
     }
     
-    public float getHeight() {
-        return height;
+    public double getDepth() {
+        return this.boundingBox.maxZ - this.boundingBox.minZ;
     }
     
     public Entity getCurrentUser() {

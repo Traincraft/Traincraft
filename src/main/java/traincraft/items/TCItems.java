@@ -13,6 +13,7 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
+import train.common.blocks.IItemBlockSupplier;
 import traincraft.Traincraft;
 import train.common.blocks.TCBlocks;
 import traincraft.items.armor.*;
@@ -23,15 +24,8 @@ import java.lang.reflect.Modifier;
 @Mod.EventBusSubscriber(modid = Traincraft.MOD_ID)
 public class TCItems {
 
-	public static final ItemBlockGeneratorDiesel GENERATOR_DIESEL = new ItemBlockGeneratorDiesel();
-	public static final ItemBlockGeneratorWaterWheel WATER_WHEEL = new ItemBlockGeneratorWaterWheel();
-	public static final ItemBlockGeneratorWindMill WIND_MILL = new ItemBlockGeneratorWindMill();
-	
-	public static final BaseItemBlock OIL_SAND = new BaseItemBlock(TCBlocks.OIL_SAND);
-	public static final BaseItemBlock PETROL_ORE = new BaseItemBlock(TCBlocks.PETROL_ORE);
-	public static final BaseItemBlock COPPER_ORE = new BaseItemBlock(TCBlocks.COPPER_ORE);
-	
 	public static final ItemWrench WRENCH = new ItemWrench();
+	public static final ItemSkinChanger SKIN_CHANGER = new ItemSkinChanger();
 	public static final ItemCanister CANISTER = new ItemCanister();
 	public static final ItemConnector CONNECTOR = new ItemConnector();
 	public static final BaseItem STEEL_DUST = new BaseItem("steel_dust");
@@ -94,11 +88,23 @@ public class TCItems {
 		IForgeRegistry<Item> registry = event.getRegistry();
 		
 		try{
-			for(Field field : TCBlocks.class.getDeclaredFields()){
+			for(Field field : TCItems.class.getDeclaredFields()){
 				if(Modifier.isPublic(field.getModifiers()) && Modifier.isStatic(field.getModifiers()) && Modifier.isFinal(field.getModifiers())){
 					Object obj = field.get(null);
 					if(obj instanceof Item){
 						registry.register((Item) obj);
+					}
+				}
+			}
+		}catch(IllegalAccessException ignored){}
+		
+		// item blocks
+		try{
+			for(Field field : TCBlocks.class.getDeclaredFields()){
+				if(Modifier.isPublic(field.getModifiers()) && Modifier.isStatic(field.getModifiers()) && Modifier.isFinal(field.getModifiers())){
+					Object obj = field.get(null);
+					if(obj instanceof IItemBlockSupplier){
+						registry.register(((IItemBlockSupplier) obj).getItemBlock());
 					}
 				}
 			}

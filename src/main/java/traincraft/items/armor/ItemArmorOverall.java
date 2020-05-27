@@ -18,6 +18,7 @@ public class ItemArmorOverall extends ItemArmor {
     
     public ItemArmorOverall() {
         super(ARMOR_MATERIAL, 0, EntityEquipmentSlot.CHEST);
+        this.setRegistryName(Traincraft.MOD_ID, "armor_overall");
     
         this.setCreativeTab(Traincraft.TAB);
     }

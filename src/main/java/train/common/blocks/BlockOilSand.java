@@ -3,9 +3,11 @@ package train.common.blocks;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.item.ItemBlock;
 import traincraft.Traincraft;
+import traincraft.items.BaseItemBlock;
 
-public class BlockOilSand extends BlockFalling {
+public class BlockOilSand extends BlockFalling implements IItemBlockSupplier {
 
 	public BlockOilSand() {
 		super(Material.SAND);
@@ -17,5 +19,9 @@ public class BlockOilSand extends BlockFalling {
 		this.setSoundType(SoundType.SAND);
 		this.setHarvestLevel("shovel", 1);
 	}
-
+	
+	@Override
+	public ItemBlock getItemBlock() {
+		return new BaseItemBlock(this);
+	}
 }

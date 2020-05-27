@@ -12,8 +12,11 @@ public enum TCPackets {
     
     NOOP((rollingStock, nbtTagCompound) -> null), // index 0 for catching errors
     CUSTOM((rollingStock, nbtTagCompound) -> null), // custom packets, they have to be overwritten in the AbstractRollingStock class
-    KEY_HORN((rollingStock, nbt) -> {
-        rollingStock.useHorn();
+    KEY_PRESS((rollingStock, nbt) -> {
+        boolean isGuiOpen = nbt.getBoolean("gui_open");
+        for(int pressed_key : nbt.getIntArray("pressed_keys")){
+            rollingStock.clientKeyPress(EnumKeyEvent.values()[pressed_key], isGuiOpen);
+        }
         return null;
     }),
     ;

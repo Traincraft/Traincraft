@@ -23,7 +23,7 @@ import java.util.List;
 /**
  * In 1.7 this block needed a tile entity, but we can change this with properties
  */
-public class BlockSwitchStand extends Block {
+public class BlockSwitchStand extends BaseBlock {
 
 	public static final PropertyBool ACTIVE = PropertyBool.create("active");
 	

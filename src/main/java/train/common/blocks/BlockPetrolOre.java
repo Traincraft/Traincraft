@@ -5,7 +5,7 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import traincraft.Traincraft;
 
-public class BlockPetrolOre extends Block {
+public class BlockPetrolOre extends BaseBlock {
 
 	public BlockPetrolOre() {
 		super(Material.ROCK);

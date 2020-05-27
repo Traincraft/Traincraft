@@ -7,14 +7,14 @@
   "mcversion": "${mcversion}",
   "logoFile": "Logo.png",
   "url": "http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/1287038",
-  "updateUrl": "https://github.com/EternalBlueFlame/Traincraft-5",
+  "updateUrl": "https://github.com/Traincraft/Traincraft",
   "authorList": ["EternalBlueFlame", "�5NitroxydeX�f", "canitzp", "Hagrud", "ZnDevelopement", "�4Spitfire4466�f", "�fMrbrutal", "DAYdiecast"],
   "credits": "Created by Spitfire4466 & Mrbrutal",
   "parent": "",
   "screenshots": [],
-  "requiredMods": ["forge@[14.23.5.2854,)"],
-  "dependencies": ["forge@[14.23.5.2854,)", "railcraft@[9.11.0.0,)"],
-  "dependants": ["tconstruct"],
+  "requiredMods": [],
+  "dependencies": [],
+  "dependants": [],
   "useDependencyInformation": "true"
 }
 ]

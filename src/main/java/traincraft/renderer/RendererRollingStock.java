@@ -23,7 +23,9 @@ public class RendererRollingStock<T extends AbstractRollingStock<T>> extends Ren
         entity.preRender(entity, this.renderManager, x, y, z, entityYaw, partialTicks);
         
         GlStateManager.translate(x, y, z);
-        GlStateManager.rotate(180.0F - entityYaw, 0.0F, 1.0F, 0.0F);
+        GlStateManager.rotate(-entityYaw - 45F, 0.0F, 1.0F, 0.0F);
+        float modelScale = entity.getModelScale(entity);
+        GlStateManager.scale(modelScale, modelScale, modelScale);
         this.bindTexture(entity.getTexture(entity));
         entity.getModel(entity).render();
         
@@ -37,4 +39,5 @@ public class RendererRollingStock<T extends AbstractRollingStock<T>> extends Ren
     protected ResourceLocation getEntityTexture(T entity) {
         return entity.getTexture(entity);
     }
+    
 }

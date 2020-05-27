@@ -10,11 +10,12 @@ import train.common.blocks.TCBlocks;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class ItemBlockGeneratorWindMill extends ItemBlock{
+public class ItemBlockGeneratorWindMill extends BaseItemBlock{
 
 	public ItemBlockGeneratorWindMill() {
 		super(TCBlocks.WIND_MILL);
 	}
+	
 	
 	@Override
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {

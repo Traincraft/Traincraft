@@ -19,6 +19,7 @@ public class ItemArmorTicketmanPants extends ItemArmor {
     
     public ItemArmorTicketmanPants() {
         super(ARMOR_MATERIAL, 0, EntityEquipmentSlot.LEGS);
+        this.setRegistryName(Traincraft.MOD_ID, "armor_ticketman_pants");
     
         this.setCreativeTab(Traincraft.TAB);
     }

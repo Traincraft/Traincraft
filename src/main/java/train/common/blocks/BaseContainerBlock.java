@@ -5,13 +5,15 @@ import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import train.common.tile.BaseTile;
+import traincraft.items.BaseItemBlock;
 
-public abstract class BaseContainerBlock extends BlockContainer {
+public abstract class BaseContainerBlock extends BlockContainer implements IItemBlockSupplier {
     
     protected BaseContainerBlock(Material materialIn) {
         super(materialIn);
@@ -37,5 +39,10 @@ public abstract class BaseContainerBlock extends BlockContainer {
         if(tile instanceof BaseTile){
             ((BaseTile) tile).onBlockPlacedBy(placer, stack);
         }
+    }
+    
+    @Override
+    public ItemBlock getItemBlock() {
+        return new BaseItemBlock(this);
     }
 }

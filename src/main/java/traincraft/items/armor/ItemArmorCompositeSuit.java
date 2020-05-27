@@ -25,6 +25,7 @@ public class ItemArmorCompositeSuit extends ItemArmor {
     
     public ItemArmorCompositeSuit(EntityEquipmentSlot equipmentSlotIn) {
         super(ARMOR_MATERIAL, 0, equipmentSlotIn);
+        this.setRegistryName(Traincraft.MOD_ID, "armor_composite_suit_" + equipmentSlotIn.getName());
     }
     
     @Nullable

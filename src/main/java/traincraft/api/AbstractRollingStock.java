@@ -9,6 +9,9 @@ import java.util.UUID;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.RenderGlobal;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityMinecart;
@@ -31,6 +34,8 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import traincraft.items.ItemConnector;
+import traincraft.items.ItemSkinChanger;
+import traincraft.network.EnumKeyEvent;
 import traincraft.network.GuiHandler;
 import traincraft.network.TCPackets;
 
@@ -44,7 +49,7 @@ public abstract class AbstractRollingStock<A extends AbstractRollingStock<A>> ex
     private Map<String, ResourceLocation> skins;
     private AbstractRollingStock<?> next, previous;
     
-    private List<PassengerSeat> seats = new ArrayList<>();
+    private List<PassengerSeat> seats;
     
     public AbstractRollingStock(World worldIn) {
         super(worldIn);
@@ -60,6 +65,9 @@ public abstract class AbstractRollingStock<A extends AbstractRollingStock<A>> ex
         
         this.skins = new HashMap<>();
         this.registerSkins(this, this.skins);
+        
+        this.seats = new ArrayList<>();
+        this.registerSeats(this, this.seats);
     }
     
     @Override
@@ -71,7 +79,15 @@ public abstract class AbstractRollingStock<A extends AbstractRollingStock<A>> ex
         double halfWidth = (size.x / 2.0D);
         double height = size.y;
         double halfDepth = (size.z / 2.0D);
-        this.setEntityBoundingBox(new AxisAlignedBB(x - halfWidth, y, z - halfDepth, x + halfWidth, y + height, z + halfDepth));
+        AxisAlignedBB bb = new AxisAlignedBB(x - halfWidth, y, z - halfDepth, x + halfWidth, y + height, z + halfDepth);
+        // todo rotate aabb -> TCUtil.generateRotatedAABB
+        this.setEntityBoundingBox(bb);
+    }
+    
+    @Override
+    public void setPositionAndRotationDirect(double x, double y, double z, float yaw, float pitch, int posRotationIncrements, boolean teleport) {
+        super.setPositionAndRotationDirect(x, y, z, yaw, pitch, posRotationIncrements, teleport);
+        this.setPosition(x, y, z); // to recalculate the bounding box
     }
     
     @Nonnull
@@ -175,6 +191,20 @@ public abstract class AbstractRollingStock<A extends AbstractRollingStock<A>> ex
         return this.travelDistance;
     }
     
+    @Override
+    public void postRender(AbstractRollingStock<?> rollingStock, RenderManager renderManager, double x, double y, double z, float entityYaw, float partialTicks) {
+        GlStateManager.pushMatrix();
+    
+        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+        //GlStateManager.translate(x, y, z);
+        for(PassengerSeat seat : this.seats){
+            AxisAlignedBB bb = seat.getBoundingBox();
+            RenderGlobal.drawBoundingBox(bb.minX, bb.minY, bb.minZ, bb.maxX, bb.maxY, bb.maxZ, 1.0F, 1.0F, 0.0F, 1.0F);
+        }
+    
+        GlStateManager.popMatrix();
+    }
+    
     // called every frame! should be cached if possible!!!
     public ResourceLocation getTexture(AbstractRollingStock<?> rollingStock){
         return !this.skins.isEmpty() ? this.getActiveSkin().getValue() : TextureMap.LOCATION_MISSING_TEXTURE;
@@ -215,9 +245,10 @@ public abstract class AbstractRollingStock<A extends AbstractRollingStock<A>> ex
         this.seats.stream().filter(seat -> seat.isUsedBy(passenger)).forEach(seat -> {
             double width = this.getEntityBoundingBox().maxX - this.getEntityBoundingBox().minX;
             double depth = this.getEntityBoundingBox().maxZ - this.getEntityBoundingBox().minZ;
-            double x = this.posX + (width / 2.0F) + (seat.getX() + (seat.getWidth() / 2.0F));
-            double y = this.posY + seat.getY();
-            double z = this.posZ + (depth / 2.0F) + (seat.getZ() + (seat.getWidth() / 2.0F));
+            Vec3d seatCenter = seat.getCenter();
+            double x = this.posX + (width / 2.0F) + seatCenter.x;
+            double y = this.posY + (seatCenter.y - (seat.getHeight() / 2D));
+            double z = this.posZ + (depth / 2.0F) + seatCenter.z;
             passenger.setPosition(x, y, z);
         });
     }
@@ -251,7 +282,15 @@ public abstract class AbstractRollingStock<A extends AbstractRollingStock<A>> ex
         }
         if(!player.isSneaking()){
             System.out.println(hitVec);
-            // todo seat code
+            for(PassengerSeat seat : this.seats){
+                if(seat.getBoundingBox().contains(hitVec)){
+                    if(seat.isFree()){
+                        //this.startRiding(player);
+                        System.out.println("place in seat");
+                    }
+                    break;
+                }
+            }
         }
         if(this.canPlayerOpenGuiOrContainer(this, player)){
             GuiHandler.openEntityGui(player, this);
@@ -265,6 +304,9 @@ public abstract class AbstractRollingStock<A extends AbstractRollingStock<A>> ex
         if(stack.getItem() instanceof ItemConnector){
             ItemConnector.handleEntityClick(this, player, hand, stack);
             return true;
+        } else if(stack.getItem() instanceof ItemSkinChanger){
+            this.setActiveSkin(this.getNextSkinId());
+            return true;
         }
         return false;
     }
@@ -277,5 +319,5 @@ public abstract class AbstractRollingStock<A extends AbstractRollingStock<A>> ex
         return packet.run(this, data);
     }
     
-    public void useHorn(){}
+    public void clientKeyPress(EnumKeyEvent key, boolean isGuiOpen){}
 }

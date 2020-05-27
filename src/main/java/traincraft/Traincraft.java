@@ -19,6 +19,7 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
+import train.client.core.handlers.TCKeyHandler;
 import train.common.core.CommonProxy;
 import train.common.core.handlers.RetrogenHandler;
 import train.common.generation.WorldGenWorld;
@@ -34,7 +35,7 @@ public class Traincraft {
 	/* Mod relevant information */
 	public static final String MOD_ID = "traincraft";
 	public static final String MOD_NAME = "Traincraft";
-	public static final String MOD_VERSION = "@VERSION1@";
+	public static final String MOD_VERSION = "@VERSION@";
 	
 	/* TrainCraft instance */
 	@Mod.Instance(MOD_ID)
@@ -76,6 +77,9 @@ public class Traincraft {
 		LOGGER.info("Initialize Blocks, Items, ...");
 		TCEntities.registerEntities(event);
 		
+		/* Register Keys */
+		LOGGER.info("Initialize Key bindings");
+		TCKeyHandler.register();
 		
 		//EntityHandler.init();
 		//proxy.registerTileEntities();
@@ -86,10 +90,6 @@ public class Traincraft {
 		//AchievementHandler.load();
 		//AchievementPage.registerAchievementPage(AchievementHandler.tmPage);
 		GameRegistry.registerWorldGenerator(worldGen = new WorldGenWorld(), 5);
-		
-		//Retrogen Handling
-		RetrogenHandler retroGen = new RetrogenHandler();
-		MinecraftForge.EVENT_BUS.register(retroGen);
 		
 		//MapGenStructureIO.registerStructureComponent(ComponentVillageTrainstation.class, "Trainstation");
 
