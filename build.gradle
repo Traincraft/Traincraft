@@ -91,13 +91,9 @@ configurations.all {
 dependencies {
 	minecraft 'net.minecraftforge:forge:1.12.2-14.23.5.2854'
 
-    compile group: "com.github.Fexcraft", name: "FCL", version: "1.12.2-SNAPSHOT", changing: true
-    //compile "li.cil.oc:OpenComputers:MC1.7.10-1.5.+:api"
-    //compile name: "buildcraft", version: "7.1.16", classifier: "dev"
-    //compile "codechicken:CodeChickenLib:1.7.10-1.1.3.138:dev"
-    //compile "codechicken:CodeChickenCore:1.7.10-1.0.7.46:dev"
-    //compile "codechicken:NotEnoughItems:1.7.10-1.0.5.110:dev"
-    //compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fg.deobf(group: "com.github.Fexcraft", name: "FCL", version: "1.12.2-SNAPSHOT", changing: true)
+    compile fg.deobf(group: "com.github.TeamOpenIndustry", name: "TrackAPI", version: "forge_1.12.2-SNAPSHOT")
+
 }
 
 jar {
@@ -107,7 +103,7 @@ jar {
             "Specification-Vendor": "traincraft",
             "Specification-Version": "1", // We are version 1 of ourselves
             "Implementation-Title": project.name,
-            "Implementation-Version": "${version}",
+            "Implementation-Version": project.version,
             "Implementation-Vendor" :"traincraft",
             "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])

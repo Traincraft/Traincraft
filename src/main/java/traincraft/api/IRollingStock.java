@@ -1,5 +1,6 @@
 package traincraft.api;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -8,6 +9,7 @@ import javax.annotation.Nullable;
 
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
@@ -15,8 +17,9 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.Vec2f;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.Vec3d;
+import net.minecraftforge.common.IMinecartCollisionHandler;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fluids.capability.IFluidHandler;
@@ -36,6 +39,24 @@ public interface IRollingStock {
      */
     default Vec3d getSize(AbstractRollingStock<?> rollingStock){
         return new Vec3d(0.98F, 0.98F, 0.98F);
+    }
+    
+    /**
+     * Used to return a List with {@link AxisAlignedBB} as collision boxes.
+     * Called every server tick for this rolling stock.
+     * Leaving this empty would lead to this rolling stock not having a collision at all.
+     * Normally this returns a singleton list with default collision box logic applied.
+     *
+     * @param rollingStock This rolling stock
+     * @param posVec The position of this rolling stock as {@link Vec3d}
+     * @return A list with collision boxes
+     */
+    default List<AxisAlignedBB> getCollisionBoxes(AbstractRollingStock<?> rollingStock, Vec3d posVec){
+        IMinecartCollisionHandler collisionHandler = EntityMinecart.getCollisionHandler();
+        if(collisionHandler != null){
+            return Collections.singletonList(collisionHandler.getMinecartCollisionBox(rollingStock));
+        }
+        return Collections.singletonList(rollingStock.getEntityBoundingBox().grow(0.2D, 0.0D, 0.2D));
     }
     
     /**
@@ -230,7 +251,7 @@ public interface IRollingStock {
      * @param rollingStock This rolling stock
      * @return The most front axis (The y-field of Vec2f is the z coordinate)
      */
-    Vec2f getFrontAxis(AbstractRollingStock<?> rollingStock);
+    Vec3d getFrontAxis(AbstractRollingStock<?> rollingStock);
     
     /**
      * Gets the most back axis around the rolling stock should rotate.
@@ -240,7 +261,7 @@ public interface IRollingStock {
      * @param rollingStock This rolling stock
      * @return The most back axis (The y-field of Vec2f is the z coordinate)
      */
-    Vec2f getBackAxis(AbstractRollingStock<?> rollingStock);
+    Vec3d getBackAxis(AbstractRollingStock<?> rollingStock);
     
     /**
      * This is used to check if this rollings stock can be connected to another rollings stock.
@@ -298,5 +319,21 @@ public interface IRollingStock {
     @Nullable
     default Container openContainer(@Nonnull AbstractRollingStock<?> rollingStock, @Nonnull EntityPlayer player){
         return null;
+    }
+    
+    /**
+     * This calculates motion for this rolling stock.
+     * With this motion vector the next position is calculated.
+     * This also has to drain the power from this rolling stock.
+     * When front and back axis aren't null, they should be used instead of the currentPosition vector.
+     *
+     * @param rollingStock This rolling stock
+     * @param currentPosition The current position
+     * @return A motion vector
+     */
+    default Vec3d calculateMotion(@Nonnull AbstractRollingStock<?> rollingStock, @Nonnull Vec3d currentPosition){
+        // todo calculate motionX, motionY and motionZ and apply these to this rolling stock
+        // todo calculate the power usage and drain the power
+        return Vec3d.ZERO;
     }
 }

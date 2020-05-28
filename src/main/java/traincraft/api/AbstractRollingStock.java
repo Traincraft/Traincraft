@@ -14,25 +14,27 @@ import net.minecraft.client.renderer.RenderGlobal;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.MoverType;
 import net.minecraft.entity.item.EntityMinecart;
+import net.minecraft.entity.monster.EntityIronGolem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
+import net.minecraftforge.event.entity.minecart.MinecartUpdateEvent;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
+import trackapi.lib.ITrack;
+import trackapi.lib.Util;
 import traincraft.items.ItemConnector;
 import traincraft.items.ItemSkinChanger;
 import traincraft.network.EnumKeyEvent;
@@ -121,6 +123,88 @@ public abstract class AbstractRollingStock<A extends AbstractRollingStock<A>> ex
             }
         }
         return super.getCapability(capability, facing);
+    }
+    
+    @Override
+    public void onUpdate() {
+        if(this.getRollingAmplitude() > 0){
+            this.setRollingAmplitude(this.getRollingAmplitude() - 1);
+        }
+        if(this.getDamage() > 0.0F){
+            this.setDamage(this.getDamage() - 1.0F);
+        }
+        if(this.posY < -64.0D){
+            this.outOfWorld();
+        }
+    
+        if(world.isRemote){
+            // todo client code
+        } else {
+            this.prevPosX = this.posX;
+            this.prevPosY = this.posY;
+            this.prevPosZ = this.posZ;
+            if(!this.hasNoGravity()){
+                this.motionY -= 0.03999999910593033D;
+            }
+            
+            Vec3d positionVector = new Vec3d(this.posX, this.posY, this.posZ);
+            Vec3d frontAxis = this.getFrontAxis(this);
+            Vec3d backAxis = this.getBackAxis(this);
+            if(frontAxis != null && backAxis != null){ // dual axis mode
+                ITrack frontTrack = Util.getTileEntity(this.world, frontAxis, true);
+                if(frontTrack != null){ // move front axis
+                    Vec3d frontMotion = this.calculateMotion(this, frontAxis);
+                    Vec3d frontNextPosition = frontTrack.getNextPosition(frontAxis, frontMotion);
+                    // todo @erwin move this rolling stock
+                } else {
+                    // todo @erwin derail movement
+                }
+                ITrack backTrack = Util.getTileEntity(this.world, backAxis, true);
+                if(backTrack != null){ // move back axis
+                    Vec3d backMotion = this.calculateMotion(this, backAxis);
+                    Vec3d backNextPosition = backTrack.getNextPosition(backAxis, backMotion);
+                    // todo @erwin move this rolling stock
+                } else {
+                    // todo @erwin derail movement
+                }
+            } else { // single axis mode
+                ITrack track = Util.getTileEntity(this.world, positionVector, true);
+                if(track != null){
+                    Vec3d motion = this.calculateMotion(this, positionVector);
+                    Vec3d nextPosition = track.getNextPosition(positionVector, motion);
+                    // todo @erwin move this rolling stock
+                } else {
+                    // todo @erwin derail movement
+                }
+            }
+            
+            this.doBlockCollisions();
+            this.rotationPitch = 0.0F;
+            double deltaX = this.prevPosX - this.posX;
+            double deltaZ = this.prevPosZ - this.posZ;
+            if(deltaX * deltaX + deltaZ * deltaZ > 0.001D){
+                this.rotationYaw = (float) (MathHelper.atan2(deltaZ, deltaX) * 180.0D / Math.PI);
+            }
+            this.setRotation(this.rotationYaw, this.rotationPitch);
+    
+            // apply collisions to entities except passengers
+            List<AxisAlignedBB> collisionBoxes = this.getCollisionBoxes(this, new Vec3d(this.posX, this.posY, this.posZ));
+            if(!collisionBoxes.isEmpty()){
+                List<Entity> list = new ArrayList<>();
+                for(AxisAlignedBB collisionBox : collisionBoxes){
+                    list.addAll(this.world.getEntitiesWithinAABBExcludingEntity(this, collisionBox));
+                }
+                for(Entity entity : list){
+                    if(!this.isPassenger(entity) && entity.canBePushed()){
+                        if(entity instanceof EntityPlayer){
+                            this.onCollideWithPlayer((EntityPlayer) entity);
+                        }
+                        this.applyEntityCollision(entity);
+                    }
+                }
+            }
+            this.handleWaterMovement();
+        }
     }
     
     public A setOwner(UUID owner){

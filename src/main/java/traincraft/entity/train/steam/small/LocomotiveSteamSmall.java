@@ -5,13 +5,9 @@ import java.util.Map;
 
 import javax.annotation.Nullable;
 
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.RenderGlobal;
-import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.Vec2f;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -93,12 +89,12 @@ public class LocomotiveSteamSmall extends AbstractRollingStock<LocomotiveSteamSm
     }
     
     @Override
-    public Vec2f getFrontAxis(AbstractRollingStock<?> rollingStock) {
+    public Vec3d getFrontAxis(AbstractRollingStock<?> rollingStock) {
         return null;
     }
     
     @Override
-    public Vec2f getBackAxis(AbstractRollingStock<?> rollingStock) {
+    public Vec3d getBackAxis(AbstractRollingStock<?> rollingStock) {
         return null;
     }
     
