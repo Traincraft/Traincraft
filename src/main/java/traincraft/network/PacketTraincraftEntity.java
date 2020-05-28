@@ -29,14 +29,14 @@ public class PacketTraincraftEntity implements IMessage, IMessageHandler<PacketT
     }
     
     @Override
-    public void fromBytes(ByteBuf buf) {
+    public void toBytes(ByteBuf buf) {
         buf.writeInt(this.packet.ordinal());
         buf.writeInt(this.entityId);
         ByteBufUtils.writeTag(buf, this.data);
     }
     
     @Override
-    public void toBytes(ByteBuf buf) {
+    public void fromBytes(ByteBuf buf) {
         this.packet = TCPackets.values()[buf.readInt()];
         this.entityId = buf.readInt();
         this.data = ByteBufUtils.readTag(buf);

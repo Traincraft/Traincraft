@@ -19,12 +19,15 @@ import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.monster.EntityIronGolem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.event.entity.minecart.MinecartUpdateEvent;
@@ -33,6 +36,7 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.wrapper.InvWrapper;
 import trackapi.lib.ITrack;
 import trackapi.lib.Util;
 import traincraft.items.ItemConnector;
@@ -40,14 +44,15 @@ import traincraft.items.ItemSkinChanger;
 import traincraft.network.EnumKeyEvent;
 import traincraft.network.GuiHandler;
 import traincraft.network.TCPackets;
+import traincraft.tile.BaseTile;
 
 public abstract class AbstractRollingStock<A extends AbstractRollingStock<A>> extends EntityMinecart implements IRollingStock {
     
     private UUID owner;
     private String name;
-    private EnumRestriction restriction;
-    private int activeSkin;
-    private double travelDistance;
+    private EnumRestriction restriction = EnumRestriction.PUBLIC;
+    private int activeSkin = 0;
+    private double travelDistance = 0D;
     private Map<String, ResourceLocation> skins;
     private AbstractRollingStock<?> next, previous;
     
@@ -96,6 +101,80 @@ public abstract class AbstractRollingStock<A extends AbstractRollingStock<A>> ex
     @Override
     public Type getType() {
         return Type.RIDEABLE;
+    }
+    
+    @Override
+    protected void readEntityFromNBT(NBTTagCompound compound) {
+        super.readEntityFromNBT(compound);
+        this.readFromNBT(compound, BaseTile.NBTState.SAVE);
+    }
+    
+    @Override
+    protected void writeEntityToNBT(NBTTagCompound compound) {
+        super.writeEntityToNBT(compound);
+        this.writeToNBT(compound, BaseTile.NBTState.SAVE);
+    }
+    
+    @Override
+    public void readFromNBT(NBTTagCompound nbt, BaseTile.NBTState state) {
+        if(nbt.hasUniqueId("owner")){
+            this.owner = nbt.getUniqueId("owner");
+        }
+        if(nbt.hasKey("name", Constants.NBT.TAG_STRING)){
+            this.name = nbt.getString("name");
+        }
+        if(nbt.hasKey("restriction", Constants.NBT.TAG_INT)){
+            this.restriction = EnumRestriction.values()[nbt.getInteger("restriction")];
+        }
+        if(nbt.hasKey("active_skin", Constants.NBT.TAG_INT)){
+            this.activeSkin = nbt.getInteger("active_skin");
+        }
+        if(nbt.hasKey("travel_distance", Constants.NBT.TAG_DOUBLE)){
+            this.travelDistance = nbt.getInteger("travel_distance");
+        }
+        if(nbt.hasKey("inventory")){
+            NBTTagCompound inventoryNBT = nbt.getCompoundTag("inventory");
+            IItemHandler inventory = this.getInventory(this, null);
+            if(inventory instanceof InvWrapper && ((InvWrapper) inventory).getInv() instanceof INBTSerializable<?>){
+                ((INBTSerializable<NBTTagCompound>) ((InvWrapper) inventory).getInv()).deserializeNBT(inventoryNBT);
+            }
+        }
+        if(nbt.hasKey("fluid_tank")){
+            NBTTagCompound fluidTankNBT = nbt.getCompoundTag("fluid_tank");
+            IFluidHandler fluidHandler = this.getFluidTank(this, null);
+            if(fluidHandler instanceof INBTSerializable<?>){
+                ((INBTSerializable<NBTTagCompound>) fluidHandler).deserializeNBT(fluidTankNBT);
+            }
+        }
+    }
+    
+    @Override
+    public void writeToNBT(NBTTagCompound nbt, BaseTile.NBTState state) {
+        if(this.owner != null){
+            nbt.setUniqueId("owner", this.owner);
+        }
+        if(this.name != null){
+            nbt.setString("name", this.name);
+        }
+        nbt.setInteger("restriction", this.restriction.ordinal());
+        nbt.setInteger("active_skin", this.activeSkin);
+        nbt.setDouble("travel_distance", this.travelDistance);
+        
+        IItemHandler inventory = this.getInventory(this, null);
+        if(inventory instanceof InvWrapper && ((InvWrapper) inventory).getInv() instanceof INBTSerializable<?>){
+            NBTBase value = ((INBTSerializable<?>) ((InvWrapper) inventory).getInv()).serializeNBT();
+            if(value instanceof NBTTagCompound){
+                nbt.setTag("inventory", value);
+            }
+        }
+    
+        IFluidHandler fluidHandler = this.getFluidTank(this, null);
+        if(fluidHandler instanceof INBTSerializable<?>){
+            NBTBase value = ((INBTSerializable<?>) fluidHandler).serializeNBT();
+            if(value instanceof NBTTagCompound){
+                nbt.setTag("fluid_tank", value);
+            }
+        }
     }
     
     @Override
@@ -404,4 +483,11 @@ public abstract class AbstractRollingStock<A extends AbstractRollingStock<A>> ex
     }
     
     public void clientKeyPress(EnumKeyEvent key, boolean isGuiOpen){}
+    
+    /* Utility methods below*/
+    public void sendSyncPacketToClients(){
+        NBTTagCompound syncData = new NBTTagCompound();
+        this.writeToNBT(syncData, BaseTile.NBTState.SYNC);
+        TCPackets.SYNC.sendToClientsAround(this, syncData);
+    }
 }

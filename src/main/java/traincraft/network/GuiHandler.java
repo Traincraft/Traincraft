@@ -7,7 +7,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 import traincraft.Traincraft;
-import train.common.tile.BaseTile;
+import traincraft.tile.BaseTile;
 import traincraft.api.AbstractRollingStock;
 
 import javax.annotation.Nullable;

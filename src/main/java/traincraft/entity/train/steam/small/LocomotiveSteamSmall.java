@@ -3,8 +3,12 @@ package traincraft.entity.train.steam.small;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.Container;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -13,18 +17,12 @@ import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import traincraft.Traincraft;
-import traincraft.api.AbstractRollingStock;
-import traincraft.api.FluidTankTyped;
-import traincraft.api.PassengerSeat;
-import traincraft.api.Units;
+import traincraft.api.*;
 import traincraft.renderer.TraincraftModel;
 
-public class LocomotiveSteamSmall extends AbstractRollingStock<LocomotiveSteamSmall> {
+public class LocomotiveSteamSmall extends LocomotiveSteam<LocomotiveSteamSmall> {
     
-    public static final int TANK_CAPACITY = 5000;
     private static final ModelSteamSmall MODEL = new ModelSteamSmall();
-    
-    private final FluidTankTyped fluidTank = new FluidTankTyped(FluidRegistry.WATER, TANK_CAPACITY);
     
     public LocomotiveSteamSmall(World worldIn) {
         super(worldIn);
@@ -98,8 +96,15 @@ public class LocomotiveSteamSmall extends AbstractRollingStock<LocomotiveSteamSm
         return null;
     }
     
+    @Nullable
     @Override
-    public IFluidHandler getFluidTank(AbstractRollingStock<?> rollingStock, @Nullable EnumFacing side) {
-        return this.fluidTank;
+    public GuiScreen openGui(@Nonnull AbstractRollingStock<?> rollingStock, @Nonnull EntityPlayer player) {
+        return new GuiLocomotiveSteam(this, player);
+    }
+    
+    @Nullable
+    @Override
+    public Container openContainer(@Nonnull AbstractRollingStock<?> rollingStock, @Nonnull EntityPlayer player) {
+        return new ContainerLocomotiveSteam(this, player);
     }
 }

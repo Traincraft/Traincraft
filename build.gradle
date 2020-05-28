@@ -92,8 +92,8 @@ dependencies {
 	minecraft 'net.minecraftforge:forge:1.12.2-14.23.5.2854'
 
     compile fg.deobf(group: "com.github.Fexcraft", name: "FCL", version: "1.12.2-SNAPSHOT", changing: true)
-    compile fg.deobf(group: "com.github.TeamOpenIndustry", name: "TrackAPI", version: "forge_1.12.2-SNAPSHOT")
-
+    compileOnly fg.deobf(group: "com.github.TeamOpenIndustry", name: "TrackAPI", version: "forge_1.12.2-SNAPSHOT", changing: true)
+    //runtimeOnly group: "com.github.TeamOpenIndustry", name: "TrackAPI", version: "forge_1.12.2-SNAPSHOT", changing: true
 }
 
 jar {

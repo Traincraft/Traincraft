@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import train.common.tile.BaseTile;
+import traincraft.tile.BaseTile;
 import traincraft.items.BaseItemBlock;
 
 public abstract class BaseContainerBlock extends BlockContainer implements IItemBlockSupplier {

@@ -13,6 +13,7 @@ import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -25,8 +26,13 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.items.IItemHandler;
 import traincraft.renderer.TraincraftModel;
+import traincraft.tile.BaseTile;
 
 public interface IRollingStock {
+    
+    default void readFromNBT(NBTTagCompound nbt, BaseTile.NBTState state){}
+    
+    default void writeToNBT(NBTTagCompound nbt, BaseTile.NBTState state){}
     
     /**
      * Gets the size of this, within a {@link Vec3d} object.

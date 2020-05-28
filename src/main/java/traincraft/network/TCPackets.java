@@ -1,9 +1,11 @@
 package traincraft.network;
 
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import traincraft.Traincraft;
 import traincraft.api.AbstractRollingStock;
+import traincraft.tile.BaseTile;
 
 import javax.annotation.Nonnull;
 import java.util.function.BiFunction;
@@ -19,6 +21,10 @@ public enum TCPackets {
         }
         return null;
     }),
+    SYNC((rollingStock, nbtTagCompound) -> {
+        rollingStock.readFromNBT(nbtTagCompound, BaseTile.NBTState.SYNC);
+        return null;
+    })
     ;
     
     private BiFunction<AbstractRollingStock<?>, NBTTagCompound, IMessage> action;
@@ -33,5 +39,9 @@ public enum TCPackets {
     
     public void sendToServer(@Nonnull AbstractRollingStock<?> entity, @Nonnull NBTTagCompound data){
         Traincraft.TC_NETWORK.sendToServer(new PacketTraincraftEntity(entity, this, data));
+    }
+    
+    public void sendToClientsAround(@Nonnull AbstractRollingStock<?> entity, NBTTagCompound data){
+        Traincraft.TC_NETWORK.sendToAllAround(new PacketTraincraftEntity(entity, this, data), new NetworkRegistry.TargetPoint(entity.dimension, entity.posX, entity.posY, entity.posZ, 128));
     }
 }

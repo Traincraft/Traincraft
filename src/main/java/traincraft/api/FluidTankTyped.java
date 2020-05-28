@@ -1,13 +1,17 @@
 package traincraft.api;
 
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
+import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
+import net.minecraftforge.fluids.capability.IFluidTankProperties;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class FluidTankTyped extends FluidTank {
+public class FluidTankTyped extends FluidTank implements INBTSerializable<NBTTagCompound> {
     
     @Nonnull
     private Fluid validFluid;
@@ -35,5 +39,17 @@ public class FluidTankTyped extends FluidTank {
     @Override
     public boolean canDrainFluidType(@Nullable FluidStack fluid) {
         return (fluid == null || this.validFluid.equals(fluid.getFluid())) && super.canDrainFluidType(fluid);
+    }
+    
+    @Override
+    public NBTTagCompound serializeNBT() {
+        NBTTagCompound nbt = new NBTTagCompound();
+        this.writeToNBT(nbt);
+        return nbt;
+    }
+    
+    @Override
+    public void deserializeNBT(NBTTagCompound nbt) {
+        this.readFromNBT(nbt);
     }
 }

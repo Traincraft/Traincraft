@@ -2,6 +2,7 @@ package traincraft;
 
 import java.io.File;
 
+import net.minecraftforge.fluids.FluidRegistry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -61,6 +62,10 @@ public class Traincraft {
 	public static File configDirectory;
 	
 	public static WorldGenWorld worldGen;
+	
+	static {
+		FluidRegistry.enableUniversalBucket();
+	}
 	
 	public Traincraft() {
 	
