@@ -21,7 +21,7 @@ import traincraft.tile.BaseTile;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public abstract class LocomotiveSteam<A extends LocomotiveSteam<A>> extends AbstractRollingStock<A> {
+public abstract class LocomotiveSteam<A extends LocomotiveSteam<A>> extends AbstractRollingStock<A> implements ITemperatureSupplier {
     
     public static final int BURN_SLOT = 0;
     public static final int WATER_SLOT = 1;
@@ -31,6 +31,7 @@ public abstract class LocomotiveSteam<A extends LocomotiveSteam<A>> extends Abst
     
     public int maxBurnTime = 0;
     public int burnTime = 0;
+    public double temperature = this.getDefaultTemperature();
     
     public LocomotiveSteam(World worldIn) {
         super(worldIn);
@@ -70,8 +71,33 @@ public abstract class LocomotiveSteam<A extends LocomotiveSteam<A>> extends Abst
     }
     
     @Override
-    public void readFromNBT(NBTTagCompound nbt, BaseTile.NBTState state) {
-        super.readFromNBT(nbt, state);
+    public double getTemperature() {
+        return this.temperature;
+    }
+    
+    @Override
+    public void setTemperature(double temperature) {
+        this.temperature = temperature;
+    }
+    
+    @Override
+    public double getMaximumTemperature() {
+        return 473.15D; // 200°C
+    }
+    
+    @Override
+    public double getMinimumTemperature() {
+        return 253.15D; // -20°C
+    }
+    
+    @Override
+    public double getDefaultTemperature() {
+        return 293.15D; // 20°C
+    }
+    
+    @Override
+    public void readFromNBT(AbstractRollingStock<?> rollingStock, NBTTagCompound nbt, BaseTile.NBTState state) {
+        super.readFromNBT(rollingStock, nbt, state);
         if(state != BaseTile.NBTState.DROP){
             if(nbt.hasKey("burn_time", Constants.NBT.TAG_INT)){
                 this.burnTime = nbt.getInteger("burn_time");
@@ -83,8 +109,8 @@ public abstract class LocomotiveSteam<A extends LocomotiveSteam<A>> extends Abst
     }
     
     @Override
-    public void writeToNBT(NBTTagCompound nbt, BaseTile.NBTState state) {
-        super.writeToNBT(nbt, state);
+    public void writeToNBT(AbstractRollingStock<?> rollingStock, NBTTagCompound nbt, BaseTile.NBTState state) {
+        super.writeToNBT(rollingStock, nbt, state);
         if(state != BaseTile.NBTState.DROP){
             nbt.setInteger("burn_time", this.burnTime);
             nbt.setInteger("max_burn_time", this.maxBurnTime);

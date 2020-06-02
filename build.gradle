@@ -67,19 +67,13 @@ minecraft {
 }
 
 repositories {
-    /*maven {
-        name "ChickenBones"
-        url "http://chickenbones.net/maven/"
-    }
-	ivy {
-        name "BuildCraft"
-        artifactPattern "http://www.mod-buildcraft.com/releases/BuildCraft/[revision]/[module]-[revision](-[classifier]).[ext]"
+    maven {
+        name "jitpack.io: FCL & TrackAPI"
+        url "https://jitpack.io"
     }
     maven {
-		url = "http://maven.cil.li/"
-	}*/
-    maven { // jitpack.io: FCL
-        url 'https://jitpack.io'
+        name "Cyclops Repo"
+        url "https://oss.jfrog.org/artifactory/simple/libs-release/"
     }
 }
 
@@ -91,9 +85,12 @@ configurations.all {
 dependencies {
 	minecraft 'net.minecraftforge:forge:1.12.2-14.23.5.2854'
 
+    // dependencies
     compile fg.deobf(group: "com.github.Fexcraft", name: "FCL", version: "1.12.2-SNAPSHOT", changing: true)
     compileOnly fg.deobf(group: "com.github.TeamOpenIndustry", name: "TrackAPI", version: "forge_1.12.2-SNAPSHOT", changing: true)
-    //runtimeOnly group: "com.github.TeamOpenIndustry", name: "TrackAPI", version: "forge_1.12.2-SNAPSHOT", changing: true
+
+    // compile dependencies, but runtime optionals
+    compile fg.deobf(group: "org.cyclops.commoncapabilities", name: "CommonCapabilities", version: "1.12.2-1.4.0-171")
 }
 
 jar {

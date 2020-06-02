@@ -14,9 +14,7 @@ import net.minecraft.client.renderer.RenderGlobal;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.MoverType;
 import net.minecraft.entity.item.EntityMinecart;
-import net.minecraft.entity.monster.EntityIronGolem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTBase;
@@ -24,13 +22,11 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.World;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
-import net.minecraftforge.event.entity.minecart.MinecartUpdateEvent;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
@@ -39,6 +35,7 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 import trackapi.lib.ITrack;
 import trackapi.lib.Util;
+import traincraft.compat.CompatibilityManager;
 import traincraft.items.ItemConnector;
 import traincraft.items.ItemSkinChanger;
 import traincraft.network.EnumKeyEvent;
@@ -106,17 +103,17 @@ public abstract class AbstractRollingStock<A extends AbstractRollingStock<A>> ex
     @Override
     protected void readEntityFromNBT(NBTTagCompound compound) {
         super.readEntityFromNBT(compound);
-        this.readFromNBT(compound, BaseTile.NBTState.SAVE);
+        this.readFromNBT(this, compound, BaseTile.NBTState.SAVE);
     }
     
     @Override
     protected void writeEntityToNBT(NBTTagCompound compound) {
         super.writeEntityToNBT(compound);
-        this.writeToNBT(compound, BaseTile.NBTState.SAVE);
+        this.writeToNBT(this, compound, BaseTile.NBTState.SAVE);
     }
     
     @Override
-    public void readFromNBT(NBTTagCompound nbt, BaseTile.NBTState state) {
+    public void readFromNBT(AbstractRollingStock<?> rollingStock, NBTTagCompound nbt, BaseTile.NBTState state) {
         if(nbt.hasUniqueId("owner")){
             this.owner = nbt.getUniqueId("owner");
         }
@@ -146,10 +143,13 @@ public abstract class AbstractRollingStock<A extends AbstractRollingStock<A>> ex
                 ((INBTSerializable<NBTTagCompound>) fluidHandler).deserializeNBT(fluidTankNBT);
             }
         }
+        // todo read energy capabililty
+    
+        CompatibilityManager.readRollingStockNBT(this, nbt, state);
     }
     
     @Override
-    public void writeToNBT(NBTTagCompound nbt, BaseTile.NBTState state) {
+    public void writeToNBT(AbstractRollingStock<?> rollingStock, NBTTagCompound nbt, BaseTile.NBTState state) {
         if(this.owner != null){
             nbt.setUniqueId("owner", this.owner);
         }
@@ -175,16 +175,20 @@ public abstract class AbstractRollingStock<A extends AbstractRollingStock<A>> ex
                 nbt.setTag("fluid_tank", value);
             }
         }
+        
+        // todo write energy capabililty
+        
+        CompatibilityManager.writeRollingStockNBT(this, nbt, state);
     }
     
     @Override
-    public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing) {
-        return this.getCapability(capability, facing) != null;
+    public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
+        return this.getCapability(capability, facing) != null || CompatibilityManager.hasRollingStockCapability(this, capability, facing);
     }
     
     @Nullable
     @Override
-    public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
+    public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
         if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY){
             IItemHandler itemHandler = this.getInventory(this, facing);
             if(itemHandler != null){
@@ -200,6 +204,10 @@ public abstract class AbstractRollingStock<A extends AbstractRollingStock<A>> ex
             if(energyStorage != null){
                 return CapabilityEnergy.ENERGY.cast(energyStorage);
             }
+        }
+        T compatCapability = CompatibilityManager.getRollingStockCapability(this, capability, facing);
+        if(compatCapability != null){
+            return compatCapability;
         }
         return super.getCapability(capability, facing);
     }
@@ -487,7 +495,7 @@ public abstract class AbstractRollingStock<A extends AbstractRollingStock<A>> ex
     /* Utility methods below*/
     public void sendSyncPacketToClients(){
         NBTTagCompound syncData = new NBTTagCompound();
-        this.writeToNBT(syncData, BaseTile.NBTState.SYNC);
+        this.writeToNBT(this, syncData, BaseTile.NBTState.SYNC);
         TCPackets.SYNC.sendToClientsAround(this, syncData);
     }
 }

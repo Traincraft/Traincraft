@@ -9,6 +9,7 @@ import javax.annotation.Nullable;
 
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
@@ -20,6 +21,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.World;
 import net.minecraftforge.common.IMinecartCollisionHandler;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -28,11 +30,37 @@ import net.minecraftforge.items.IItemHandler;
 import traincraft.renderer.TraincraftModel;
 import traincraft.tile.BaseTile;
 
+/**
+ * This describes the default values and behaviours any rolling stock should have.
+ * It nearly fully implemented through {@link AbstractRollingStock}, which you should extend in favor of this.
+ * This interface is only for clearly seeing the documentation and all of this could be moved to {@link AbstractRollingStock}.
+ *
+ * @see AbstractRollingStock
+ * @see LocomotiveSteam
+ * @since 5.0.0
+ * @author canitzp
+ */
 public interface IRollingStock {
     
-    default void readFromNBT(NBTTagCompound nbt, BaseTile.NBTState state){}
+    /**
+     * Use this to read from nbt.
+     * This is also called when a sync packet arrives (SYNC)
+     * or a previously placed rolling stock is played again (DROP).
+     *
+     * @param rollingStock This rolling stock
+     * @param nbt The nbt compound to read from
+     * @param state What was written (e.g.: a sync packet has not written all values)
+     */
+    default void readFromNBT(AbstractRollingStock<?> rollingStock, NBTTagCompound nbt, BaseTile.NBTState state){}
     
-    default void writeToNBT(NBTTagCompound nbt, BaseTile.NBTState state){}
+    /**
+     * Use this to write custom NBT to this rolling stock.
+     *
+     * @param rollingStock This rolling stock
+     * @param nbt The nbt compound to write to
+     * @param state What should be written (e.g.: a sync packet has not to write all values)
+     */
+    default void writeToNBT(AbstractRollingStock<?> rollingStock, NBTTagCompound nbt, BaseTile.NBTState state){}
     
     /**
      * Gets the size of this, within a {@link Vec3d} object.
@@ -115,6 +143,17 @@ public interface IRollingStock {
     double getMass(AbstractRollingStock<?> rollingStock);
     
     /**
+     * Use this to add information to the train. This is used in the gui to show the stats.
+     * This should probably call the {@link net.minecraft.item.Item#addInformation(ItemStack, World, List, ITooltipFlag)}
+     * of the rolling stock item, to reduce code duplicates.
+     *
+     * @param rollingStock This rolling stock
+     * @param information A list of string representing a line of information
+     * @param flag Flag for the information (normal or advanced tooltip)
+     */
+    default void addInformation(AbstractRollingStock<?> rollingStock, List<String> information, ITooltipFlag flag){}
+    
+    /**
      * With this method you can add skins to your rolling stock.
      * Keep in mind that by not overwriting this method the rolling stock has no texture.
      * The default texture is at index 0.
@@ -152,6 +191,12 @@ public interface IRollingStock {
      */
     ResourceLocation getTexture(AbstractRollingStock<?> rollingStock);
     
+    /**
+     * Used to scale this model when rendered.
+     *
+     * @param rollingStock This rolling stock
+     * @return The scale value
+     */
     default float getModelScale(AbstractRollingStock<?> rollingStock){
         return 1.0F;
     }
@@ -227,6 +272,7 @@ public interface IRollingStock {
     /**
      * Called when a player right clicks this entity.
      * This is used to determine which seat should be used for the player.
+     * This overwrites {@link net.minecraft.entity.Entity#applyPlayerInteraction(EntityPlayer, Vec3d, EnumHand)}.
      *
      * @param player The clicker
      * @param hand The hand used by the clicker

@@ -22,7 +22,7 @@ import traincraft.renderer.TraincraftModel;
 
 public class LocomotiveSteamSmall extends LocomotiveSteam<LocomotiveSteamSmall> {
     
-    private static final ModelSteamSmall MODEL = new ModelSteamSmall();
+    private static final TraincraftModel MODEL = TCUtil.loadModelFromJTMT(new ResourceLocation(Traincraft.MOD_ID, "steam/small.jtmt"));
     
     public LocomotiveSteamSmall(World worldIn) {
         super(worldIn);

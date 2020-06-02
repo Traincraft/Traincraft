@@ -50,4 +50,28 @@ public class GuiLocomotiveSteam extends GuiContainer {
         super.drawScreen(mouseX, mouseY, partialTicks);
         this.renderHoveredToolTip(mouseX, mouseY);
     }
+    
+    @Override
+    protected void renderHoveredToolTip(int mouseX, int mouseY) {
+        super.renderHoveredToolTip(mouseX, mouseY);
+        
+        // fluid tank hovering
+        if(this.isPointInRegion(142, 18, 20, 52, mouseX, mouseY)){
+            IFluidHandler fluidTank = this.locomotiveSteam.getFluidTank(this.locomotiveSteam, null);
+            if(fluidTank instanceof FluidTankTyped){
+                int capacity = ((FluidTankTyped) fluidTank).getCapacity();
+                if(capacity > 0){
+                    this.drawHoveringText(String.format("%dmB / %dmB", ((FluidTankTyped) fluidTank).getFluidAmount(), capacity), mouseX, mouseY);
+                }
+            }
+        }
+        
+        // burn time hovering
+        if(this.isPointInRegion(8, 37, 14, 12, mouseX, mouseY)){
+            if(this.locomotiveSteam.maxBurnTime > 0){
+                float burnPercent = (this.locomotiveSteam.maxBurnTime - this.locomotiveSteam.burnTime) / (this.locomotiveSteam.maxBurnTime * 1F);
+                this.drawHoveringText(String.format("%d%%", Math.round(burnPercent * 10)), mouseX, mouseY);
+            }
+        }
+    }
 }

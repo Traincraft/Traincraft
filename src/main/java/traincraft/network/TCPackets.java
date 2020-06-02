@@ -22,7 +22,7 @@ public enum TCPackets {
         return null;
     }),
     SYNC((rollingStock, nbtTagCompound) -> {
-        rollingStock.readFromNBT(nbtTagCompound, BaseTile.NBTState.SYNC);
+        rollingStock.readFromNBT(rollingStock, nbtTagCompound, BaseTile.NBTState.SYNC);
         return null;
     })
     ;
