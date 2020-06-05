@@ -2,7 +2,11 @@ package traincraft;
 
 import java.io.File;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.FallbackResourceManager;
+import net.minecraft.client.resources.IReloadableResourceManager;
 import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -24,6 +28,8 @@ import train.client.core.handlers.TCKeyHandler;
 import train.common.core.CommonProxy;
 import train.common.core.handlers.RetrogenHandler;
 import train.common.generation.WorldGenWorld;
+import traincraft.blocks.distillery.DistilleryRecipe;
+import traincraft.blocks.distillery.TileDistillery;
 import traincraft.capabilities.CapabilityWorldWind;
 import traincraft.entity.TCEntities;
 import traincraft.items.TCItems;
@@ -171,6 +177,17 @@ public class Traincraft {
 			LOGGER.info("OpenComputers integration successfully activated!");
 		}
 		LOGGER.info("Finished PostInitialization");
+		
+		if(evt.getSide().isClient()){
+			((IReloadableResourceManager) Minecraft.getMinecraft().getResourceManager()).registerReloadListener(resourceManager -> {
+				TileDistillery.DISTIL_RECIPES.clear();
+				ForgeRegistries.RECIPES.forEach(recipe -> {
+					if(recipe instanceof DistilleryRecipe){
+						TileDistillery.DISTIL_RECIPES.add((DistilleryRecipe) recipe);
+					}
+				});
+			});
+		}
 	}
 	
 	@Mod.EventHandler

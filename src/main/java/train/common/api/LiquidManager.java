@@ -16,7 +16,7 @@ import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
-import train.common.blocks.BlockTraincraftFluid;
+import traincraft.blocks.BlockTraincraftFluid;
 import train.common.library.ItemIDs;
 
 public class LiquidManager {

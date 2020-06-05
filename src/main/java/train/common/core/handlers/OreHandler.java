@@ -9,7 +9,7 @@ package train.common.core.handlers;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
-import train.common.blocks.TCBlocks;
+import traincraft.blocks.TCBlocks;
 import train.common.library.ItemIDs;
 
 public class OreHandler {

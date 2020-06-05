@@ -5,7 +5,7 @@
  * @author Mrbrutal
  ******************************************************************************/
 
-package train.common.blocks;
+package traincraft.blocks;
 
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.SoundType;
@@ -30,7 +30,7 @@ public class BlockOpenHearthFurnace extends BaseContainerBlock {
 	public static final PropertyBool ACTIVE = PropertyBool.create("active");
 
 	protected BlockOpenHearthFurnace() {
-		super(Material.ROCK);
+		super(Material.ROCK, TileOpenHearthFurnace.class);
 		this.setRegistryName(Traincraft.MOD_ID, "hearth_furnace");
 		
 		this.setCreativeTab(Traincraft.TAB);
@@ -43,27 +43,6 @@ public class BlockOpenHearthFurnace extends BaseContainerBlock {
 	@Override
 	public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos) {
 		return state.getValue(ACTIVE) ? 12 : 0;
-	}
-	
-	@Override
-	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		if (!world.isRemote) {
-			if (!player.isSneaking()) {
-				TileEntity te = world.getTileEntity(pos);
-				if (te instanceof TileOpenHearthFurnace) {
-					player.openGui(Traincraft.instance, GuiIDs.OPEN_HEARTH_FURNACE, world, pos.getX(), pos.getY(), pos.getZ());
-				}
-			}
-			else {
-				return false;
-			}
-		}
-		return true;
-	}
-
-	@Override
-	public TileEntity createNewTileEntity(World world, int i) {
-		return new TileOpenHearthFurnace();
 	}
 	
 	// state: ABCD => B = active; CD = facing

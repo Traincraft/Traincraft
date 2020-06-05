@@ -1,6 +1,5 @@
-package train.common.blocks;
+package traincraft.blocks;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -21,12 +20,12 @@ import traincraft.tile.TileWindMill;
 
 import javax.annotation.Nullable;
 
-public class BlockWindMill extends BaseBlock {
+public class BlockWindMill extends BaseContainerBlock {
 
 	public static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(0.0F, 0.0F, 0.0F, 1.0F, 2.0F, 1.0F);
 	
 	public BlockWindMill() {
-		super(Material.WOOD);
+		super(Material.WOOD, TileWindMill.class);
 		this.setRegistryName(Traincraft.MOD_ID, "wind_mill");
 		
 		this.setCreativeTab(Traincraft.TAB);
@@ -46,17 +45,6 @@ public class BlockWindMill extends BaseBlock {
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 		return BOUNDING_BOX;
-	}
-	
-	@Override
-	public boolean hasTileEntity(IBlockState state) {
-		return true;
-	}
-	
-	@Nullable
-	@Override
-	public TileEntity createTileEntity(World world, IBlockState state) {
-		return new TileWindMill();
 	}
 	
 	@Override

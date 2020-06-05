@@ -1,6 +1,6 @@
 /*package train.common.core.handlers;
 
-import train.common.blocks.tracks.BlockEnergyTrack;
+import traincraft.blocks.tracks.BlockEnergyTrack;
 
 import java.util.ArrayList;
 

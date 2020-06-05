@@ -1,4 +1,4 @@
-package train.common.blocks;
+package traincraft.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;

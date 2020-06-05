@@ -1,4 +1,4 @@
-package train.common.blocks;
+package traincraft.blocks.distillery;
 
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.SoundType;
@@ -7,16 +7,13 @@ import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import traincraft.Traincraft;
-import train.common.library.GuiIDs;
-import traincraft.tile.TileDistillery;
+import traincraft.blocks.BaseContainerBlock;
 
 import java.util.Random;
 
@@ -25,7 +22,7 @@ public class BlockDistil extends BaseContainerBlock {
 	public static final PropertyBool ACTIVE = PropertyBool.create("active");
 
 	public BlockDistil() {
-		super(Material.ROCK);
+		super(Material.ROCK, TileDistillery.class);
 		this.setRegistryName(Traincraft.MOD_ID, "distillery");
 		
 		this.setCreativeTab(Traincraft.TAB);
@@ -38,22 +35,6 @@ public class BlockDistil extends BaseContainerBlock {
 	@Override
 	public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos) {
 		return state.getValue(ACTIVE) ? 12 : 0;
-	}
-	
-	@Override
-	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		if (!world.isRemote) {
-			if (!player.isSneaking()) {
-				TileEntity te = world.getTileEntity(pos);
-				if (te instanceof TileDistillery) {
-					player.openGui(Traincraft.instance, GuiIDs.DISTIL, world, pos.getX(), pos.getY(), pos.getZ());
-				}
-			}
-			else {
-				return false;
-			}
-		}
-		return true;
 	}
 	
 	// state: ABCD => B = active; CD = facing
@@ -77,7 +58,7 @@ public class BlockDistil extends BaseContainerBlock {
 		return new BlockStateContainer(this, ACTIVE, BlockHorizontal.FACING);
 	}
 	
-	// todo distillery particle effects
+	// todo traincraft.blocks.distillery particle effects
 	@Override
 	public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand) {
 		if(state.getValue(ACTIVE)){
@@ -121,10 +102,5 @@ public class BlockDistil extends BaseContainerBlock {
 	}
 	
 	 */
-
-	@Override
-	public TileEntity createNewTileEntity(World world, int meta) {
-		return new TileDistillery();
-	}
 
 }

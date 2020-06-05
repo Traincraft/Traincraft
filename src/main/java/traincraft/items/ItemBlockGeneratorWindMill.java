@@ -1,11 +1,9 @@
 package traincraft.items;
 
-import net.minecraft.block.Block;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import train.common.blocks.TCBlocks;
+import traincraft.blocks.TCBlocks;
 
 import javax.annotation.Nullable;
 import java.util.List;

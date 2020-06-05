@@ -1,6 +1,5 @@
-package train.common.blocks;
+package traincraft.blocks;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.SoundType;
@@ -20,10 +19,10 @@ import traincraft.tile.TileWaterWheel;
 
 import javax.annotation.Nullable;
 
-public class BlockWaterWheel extends BaseBlock {
+public class BlockWaterWheel extends BaseContainerBlock {
 
 	public BlockWaterWheel() {
-		super(Material.WOOD);
+		super(Material.WOOD, TileWaterWheel.class);
 		this.setRegistryName(Traincraft.MOD_ID, "water_wheel");
 		this.setDefaultState(this.getBlockState().getBaseState().withProperty(BlockHorizontal.FACING, EnumFacing.NORTH));
 		
@@ -37,17 +36,6 @@ public class BlockWaterWheel extends BaseBlock {
 	@Override
 	public ItemBlock getItemBlock() {
 		return new ItemBlockGeneratorWaterWheel();
-	}
-	
-	@Override
-	public boolean hasTileEntity(IBlockState state) {
-		return true;
-	}
-	
-	@Nullable
-	@Override
-	public TileEntity createTileEntity(World world, IBlockState state) {
-		return new TileWaterWheel();
 	}
 	
 	@Override

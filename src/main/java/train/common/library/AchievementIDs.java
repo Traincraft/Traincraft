@@ -2,7 +2,7 @@ package train.common.library;
 
 import net.minecraft.advancements.Advancement;
 import net.minecraft.item.Item;
-import train.common.blocks.TCBlocks;
+import traincraft.blocks.TCBlocks;
 
 public enum AchievementIDs {
 	steel(new Item[] { ItemIDs.steel.item }),

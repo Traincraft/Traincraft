@@ -5,14 +5,16 @@
  * @author Mrbrutal
  ******************************************************************************/
 
-package train.common.blocks;
+package traincraft.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 import traincraft.Traincraft;
+import traincraft.blocks.distillery.BlockDistil;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -50,6 +52,9 @@ public class TCBlocks {
 					Object obj = field.get(null);
 					if(obj instanceof Block){
 						registry.register((Block) obj);
+					}
+					if(obj instanceof BaseContainerBlock){
+						GameRegistry.registerTileEntity(((BaseContainerBlock) obj).getTileClass(), ((BaseContainerBlock) obj).getRegistryName());
 					}
 				}
 			}

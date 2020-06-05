@@ -13,9 +13,9 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
-import train.common.blocks.IItemBlockSupplier;
+import traincraft.blocks.IItemBlockSupplier;
 import traincraft.Traincraft;
-import train.common.blocks.TCBlocks;
+import traincraft.blocks.TCBlocks;
 import traincraft.items.armor.*;
 
 import java.lang.reflect.Field;

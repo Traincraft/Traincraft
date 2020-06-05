@@ -12,7 +12,7 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IRarity;
-import train.common.blocks.TCBlocks;
+import traincraft.blocks.TCBlocks;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

@@ -1,4 +1,4 @@
-package train.common.blocks;
+package traincraft.blocks;
 
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -16,34 +16,13 @@ import traincraft.tile.TileAssemblyTableIII;
 public class BlockAssemblyTableIII extends BaseContainerBlock {
 
 	public BlockAssemblyTableIII() {
-		super(Material.ROCK);
+		super(Material.ROCK, TileAssemblyTableIII.class);
 		this.setRegistryName(Traincraft.MOD_ID, "assembly_table_3");
 		
 		this.setCreativeTab(Traincraft.TAB);
 		this.setHardness(3.5F);
 		this.setSoundType(SoundType.STONE);
 		this.setHarvestLevel("pickaxe", 0);
-	}
-	
-	@Override
-	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		if (!world.isRemote) {
-			if (!player.isSneaking()) {
-				TileEntity te = world.getTileEntity(pos);
-				if (te instanceof TileAssemblyTableIII) {
-					player.openGui(Traincraft.instance, GuiIDs.CRAFTER_TIER_III, world, pos.getX(), pos.getY(), pos.getZ());
-				}
-			}
-			else {
-				return false;
-			}
-		}
-		return true;
-	}
-	
-	@Override
-	public TileEntity createNewTileEntity(World world, int meta) {
-		return new TileAssemblyTableIII();
 	}
 
 }

@@ -5,7 +5,7 @@
  * @author Spitfire4466
  ******************************************************************************/
 
-package train.common.blocks;
+package traincraft.blocks;
 
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.SoundType;
@@ -32,7 +32,7 @@ public class BlockGeneratorDiesel extends BaseContainerBlock {
 	public static final PropertyBool ACTIVE = PropertyBool.create("active");
 	
 	public BlockGeneratorDiesel() {
-		super(Material.IRON);
+		super(Material.IRON, TileDieselGenerator.class);
 		this.setRegistryName(Traincraft.MOD_ID, "generator_diesel");
 		
 		this.setCreativeTab(Traincraft.TAB);
@@ -61,22 +61,6 @@ public class BlockGeneratorDiesel extends BaseContainerBlock {
 	@Override
 	public boolean isOpaqueCube(IBlockState state) {
 		return false;
-	}
-	
-	@Override
-	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		if (!world.isRemote) {
-			if (!player.isSneaking()) {
-				TileEntity te = world.getTileEntity(pos);
-				if (te instanceof TileDieselGenerator) {
-					player.openGui(Traincraft.instance, GuiIDs.GENERATOR_DIESEL, world, pos.getX(), pos.getY(), pos.getZ());
-				}
-			}
-			else {
-				return false;
-			}
-		}
-		return true;
 	}
 	
 	// state: ABCD => B = active; CD = facing
@@ -159,9 +143,4 @@ public class BlockGeneratorDiesel extends BaseContainerBlock {
 	}
 	 */
 	
-	@Override
-	public TileEntity createNewTileEntity(World world, int meta) {
-		return new TileDieselGenerator();
-	}
-
 }

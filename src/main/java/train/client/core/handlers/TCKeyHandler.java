@@ -13,7 +13,7 @@ import org.lwjgl.input.Keyboard;
 import traincraft.Traincraft;
 import traincraft.api.AbstractRollingStock;
 import traincraft.network.EnumKeyEvent;
-import traincraft.network.TCPackets;
+import traincraft.network.TCEntityPackets;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,7 +58,7 @@ public class TCKeyHandler {
 				NBTTagCompound data = new NBTTagCompound();
 				data.setBoolean("gui_open", Minecraft.getMinecraft().currentScreen != null);
 				data.setIntArray("pressed_keys", pressedKeys.stream().mapToInt(Enum::ordinal).toArray());
-				TCPackets.KEY_PRESS.sendToServer((AbstractRollingStock<?>) ridingEntity, data);
+				TCEntityPackets.KEY_PRESS.sendToServer((AbstractRollingStock<?>) ridingEntity, data);
 			}
 		}
 	}

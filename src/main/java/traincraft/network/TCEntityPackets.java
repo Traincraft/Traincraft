@@ -10,7 +10,7 @@ import traincraft.tile.BaseTile;
 import javax.annotation.Nonnull;
 import java.util.function.BiFunction;
 
-public enum TCPackets {
+public enum TCEntityPackets {
     
     NOOP((rollingStock, nbtTagCompound) -> null), // index 0 for catching errors
     CUSTOM((rollingStock, nbtTagCompound) -> null), // custom packets, they have to be overwritten in the AbstractRollingStock class
@@ -29,7 +29,7 @@ public enum TCPackets {
     
     private BiFunction<AbstractRollingStock<?>, NBTTagCompound, IMessage> action;
     
-    TCPackets(BiFunction<AbstractRollingStock<?>, NBTTagCompound, IMessage> action) {
+    TCEntityPackets(BiFunction<AbstractRollingStock<?>, NBTTagCompound, IMessage> action) {
         this.action = action;
     }
     

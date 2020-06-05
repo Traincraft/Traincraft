@@ -5,7 +5,7 @@
  * @author Mrbrutal
  ******************************************************************************/
 
-package train.common.blocks;
+package traincraft.blocks;
 
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.SoundType;
@@ -13,15 +13,13 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import traincraft.Traincraft;
-import traincraft.tile.TileStopper;
 
-public class BlockStopper extends BaseContainerBlock {
+public class BlockStopper extends BaseBlock {
 	
 	public BlockStopper() {
 		super(Material.IRON);
@@ -52,11 +50,6 @@ public class BlockStopper extends BaseContainerBlock {
 	@Override
 	public boolean canPlaceBlockAt(World world, BlockPos pos) {
 		return world.isSideSolid(pos.down(), EnumFacing.UP);
-	}
-
-	@Override
-	public TileEntity createNewTileEntity(World world, int meta) {
-		return new TileStopper();
 	}
 	
 	// state: ABCD => CD = facing

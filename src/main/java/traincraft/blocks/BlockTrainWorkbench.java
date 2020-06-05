@@ -1,4 +1,4 @@
-package train.common.blocks;
+package traincraft.blocks;
 
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -16,34 +16,13 @@ import traincraft.tile.TileTrainWorkbench;
 public class BlockTrainWorkbench extends BaseContainerBlock {
 
 	public BlockTrainWorkbench() {
-		super(Material.WOOD);
+		super(Material.WOOD, TileTrainWorkbench.class);
 		this.setRegistryName(Traincraft.MOD_ID, "train_workbench");
 		
 		this.setCreativeTab(Traincraft.TAB);
 		this.setHardness(1.7F);
 		this.setSoundType(SoundType.WOOD);
 		this.setHarvestLevel("axe", 0);
-	}
-	
-	@Override
-	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		if (!world.isRemote) {
-			if (!player.isSneaking()) {
-				TileEntity te = world.getTileEntity(pos);
-				if (te instanceof TileTrainWorkbench) {
-					player.openGui(Traincraft.instance, GuiIDs.TRAIN_WORKBENCH, world, pos.getX(), pos.getY(), pos.getZ());
-				}
-			}
-			else {
-				return false;
-			}
-		}
-		return true;
-	}
-
-	@Override
-	public TileEntity createNewTileEntity(World world, int meta) {
-		return new TileTrainWorkbench();
 	}
 
 }

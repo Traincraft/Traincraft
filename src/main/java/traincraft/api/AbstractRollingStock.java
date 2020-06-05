@@ -40,7 +40,7 @@ import traincraft.items.ItemConnector;
 import traincraft.items.ItemSkinChanger;
 import traincraft.network.EnumKeyEvent;
 import traincraft.network.GuiHandler;
-import traincraft.network.TCPackets;
+import traincraft.network.TCEntityPackets;
 import traincraft.tile.BaseTile;
 
 public abstract class AbstractRollingStock<A extends AbstractRollingStock<A>> extends EntityMinecart implements IRollingStock {
@@ -482,11 +482,11 @@ public abstract class AbstractRollingStock<A extends AbstractRollingStock<A>> ex
         return false;
     }
     
-    public IMessage onNetworkPacketClient(@Nonnull TCPackets packet, @Nonnull NBTTagCompound data){
+    public IMessage onNetworkPacketClient(@Nonnull TCEntityPackets packet, @Nonnull NBTTagCompound data){
         return packet.run(this, data);
     }
     
-    public IMessage onNetworkPacketServer(@Nonnull TCPackets packet, @Nonnull NBTTagCompound data){
+    public IMessage onNetworkPacketServer(@Nonnull TCEntityPackets packet, @Nonnull NBTTagCompound data){
         return packet.run(this, data);
     }
     
@@ -496,6 +496,6 @@ public abstract class AbstractRollingStock<A extends AbstractRollingStock<A>> ex
     public void sendSyncPacketToClients(){
         NBTTagCompound syncData = new NBTTagCompound();
         this.writeToNBT(this, syncData, BaseTile.NBTState.SYNC);
-        TCPackets.SYNC.sendToClientsAround(this, syncData);
+        TCEntityPackets.SYNC.sendToClientsAround(this, syncData);
     }
 }

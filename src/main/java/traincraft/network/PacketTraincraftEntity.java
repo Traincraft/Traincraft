@@ -15,14 +15,14 @@ import traincraft.api.AbstractRollingStock;
 public class PacketTraincraftEntity implements IMessage, IMessageHandler<PacketTraincraftEntity, IMessage> {
     
     private int entityId;
-    private TCPackets packet;
+    private TCEntityPackets packet;
     private NBTTagCompound data;
     
     // empty constructor for Forge
     @Deprecated
     public PacketTraincraftEntity() {}
     
-    public PacketTraincraftEntity(AbstractRollingStock<?> entity, TCPackets packet, NBTTagCompound data) {
+    public PacketTraincraftEntity(AbstractRollingStock<?> entity, TCEntityPackets packet, NBTTagCompound data) {
         this.entityId = entity.getEntityId();
         this.packet = packet;
         this.data = data;
@@ -37,7 +37,7 @@ public class PacketTraincraftEntity implements IMessage, IMessageHandler<PacketT
     
     @Override
     public void fromBytes(ByteBuf buf) {
-        this.packet = TCPackets.values()[buf.readInt()];
+        this.packet = TCEntityPackets.values()[buf.readInt()];
         this.entityId = buf.readInt();
         this.data = ByteBufUtils.readTag(buf);
     }
@@ -47,9 +47,11 @@ public class PacketTraincraftEntity implements IMessage, IMessageHandler<PacketT
         switch(ctx.side){
             case CLIENT: {
                 WorldClient clientWorld = Minecraft.getMinecraft().world;
-                Entity entity = clientWorld.getEntityByID(message.entityId);
-                if(entity instanceof AbstractRollingStock<?>){
-                    return ((AbstractRollingStock<?>) entity).onNetworkPacketClient(message.packet, message.data);
+                if(clientWorld != null){
+                    Entity entity = clientWorld.getEntityByID(message.entityId);
+                    if(entity instanceof AbstractRollingStock<?>){
+                        return ((AbstractRollingStock<?>) entity).onNetworkPacketClient(message.packet, message.data);
+                    }
                 }
                 break;
             }

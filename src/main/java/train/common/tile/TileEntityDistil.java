@@ -11,7 +11,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
 import train.common.api.LiquidManager;
 import train.common.api.LiquidManager.StandardTank;
-import train.common.blocks.BlockDistil;
+import traincraft.blocks.distillery.BlockDistil;
 import train.common.library.ItemIDs;
 import train.common.recipes.DistilRecipes;
 

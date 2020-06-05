@@ -5,7 +5,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
-import train.common.blocks.tracks.BlockEnergyTrack;
+import traincraft.blocks.tracks.BlockEnergyTrack;
 import train.common.core.handlers.OverheadLinesEnergyNetHandler;
 
 

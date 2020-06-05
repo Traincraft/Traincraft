@@ -13,7 +13,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
-import train.common.blocks.BlockOpenHearthFurnace;
+import traincraft.blocks.BlockOpenHearthFurnace;
 import train.common.inventory.TrainCraftingManager;
 import train.common.library.ItemIDs;
 
