@@ -9,7 +9,6 @@ import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.crafting.IRecipeFactory;
 import net.minecraftforge.common.crafting.JsonContext;
 import net.minecraftforge.fluids.Fluid;
@@ -21,12 +20,28 @@ public class DistilleryRecipeFactory implements IRecipeFactory {
     @Override
     public IRecipe parse(JsonContext context, JsonObject json) {
         Ingredient inputIngredient;
+        int inputAmount = 1;
+        int burnTime = 200;
         ItemStack outputIngredient;
         FluidStack fluid = null;
         if(json.has("input")){
             inputIngredient = ShapedRecipes.deserializeIngredient(json.get("input"));
         } else {
             throw new JsonSyntaxException("input can't be null");
+        }
+        if(json.has("input_amount")){
+            if(json.get("input_amount").isJsonPrimitive() && json.get("input_amount").getAsJsonPrimitive().isNumber()){
+                inputAmount = json.get("input_amount").getAsInt();
+            } else {
+                throw new JsonSyntaxException("input_amount has to be a integer");
+            }
+        }
+        if(json.has("burn_time")){
+            if(json.get("burn_time").isJsonPrimitive() && json.get("burn_time").getAsJsonPrimitive().isNumber()){
+                burnTime = json.get("burn_time").getAsInt();
+            } else {
+                throw new JsonSyntaxException("burn_time has to be a integer");
+            }
         }
         if(json.has("output") && json.get("output").isJsonObject()){
             outputIngredient = ShapedRecipes.deserializeItem(json.get("output").getAsJsonObject(), true);
@@ -36,7 +51,7 @@ public class DistilleryRecipeFactory implements IRecipeFactory {
         if(json.has("fluid")){
             fluid = deserializeFluidStack(json.get("fluid"));
         }
-        return new DistilleryRecipe(inputIngredient, outputIngredient, fluid);
+        return new DistilleryRecipe(inputIngredient, inputAmount, burnTime, outputIngredient, fluid);
     }
     
     public static FluidStack deserializeFluidStack(JsonElement element){

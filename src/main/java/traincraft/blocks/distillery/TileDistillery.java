@@ -39,7 +39,7 @@ public class TileDistillery extends BaseTile implements ITickable {
     private final InvWrapper inventory = new InvWrapper(rawInventory);
     private final FluidTank fluidTank = new FluidTank(FLUID_TANK_CAPACITY);
     
-    private int burnTime, maxBurnTime;
+    private int burnTime, maxBurnTime, recipeBurnTime;
     private ResourceLocation activeRecipe = null;
     
     public TileDistillery() {
@@ -68,7 +68,7 @@ public class TileDistillery extends BaseTile implements ITickable {
     
     protected boolean isItemValidForInventory(int slot, @Nonnull ItemStack stack){
         switch(slot){
-            case INPUT_SLOT: return DISTIL_RECIPES.stream().anyMatch(distilleryRecipe -> distilleryRecipe.getInputStack().apply(stack));
+            case INPUT_SLOT: return DISTIL_RECIPES.stream().anyMatch(distilleryRecipe -> distilleryRecipe.getInputIngredient().apply(stack));
             case BURN_SLOT: return TileEntityFurnace.isItemFuel(stack);
             case OUTPUT_SLOT: return false;
             case CONTAINER_INPUT_SLOT: return stack.hasCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null);
@@ -77,18 +77,28 @@ public class TileDistillery extends BaseTile implements ITickable {
         }
     }
     
-    public void onInventoryChange(IInventory inventory){
+    public void onInventoryChange(IInventory inventory) {
         // this only checks when the inventory is updated if a recipe can be executed
         if(this.activeRecipe == null){
             ItemStack inputStack = inventory.getStackInSlot(INPUT_SLOT);
             if(!inputStack.isEmpty()){
-                DISTIL_RECIPES.stream().filter(distilleryRecipe -> canStackBeApplied(distilleryRecipe.getInputStack(), inputStack))
+                DISTIL_RECIPES.stream().filter(distilleryRecipe -> canStackBeApplied(distilleryRecipe.getInputIngredient(), distilleryRecipe.getInputAmount(), inputStack))
                               .findFirst()
                               .ifPresent(recipe -> {
-                                  this.activeRecipe = recipe.getRegistryName();
-                                  this.syncToClient();
+                                  if(this.burnTime >= recipe.getBurnTime()){
+                                      ItemStack outputStack = inventory.getStackInSlot(OUTPUT_SLOT);
+                                      if(outputStack.isEmpty() || canStacksBeMerged(outputStack, recipe.getOutputStack())){
+                                          inputStack.shrink(recipe.getInputAmount());
+                                          if(inputStack.getCount() <= 0){
+                                              inventory.setInventorySlotContents(INPUT_SLOT, ItemStack.EMPTY);
+                                          }
+                                          this.activeRecipe = recipe.getRegistryName();
+                                          this.recipeBurnTime = recipe.getBurnTime();
+                                          this.syncToClient();
+                                      }
+                                  }
                               });
-                
+    
             }
         }
     }
@@ -97,22 +107,44 @@ public class TileDistillery extends BaseTile implements ITickable {
     public void update() {
         if(!this.world.isRemote){
             if(this.activeRecipe != null){
-            
+                this.recipeBurnTime--;
+                if(this.recipeBurnTime <= 0){
+                    this.recipeBurnTime = 0;
+                    DISTIL_RECIPES.stream().filter(distilleryRecipe -> this.activeRecipe.equals(distilleryRecipe.getRegistryName())).findFirst().ifPresent(recipe -> {
+                        ItemStack outputStack = recipe.getOutputStack().copy();
+                        ItemStack currentOutputStack = inventory.getStackInSlot(OUTPUT_SLOT);
+                        if(currentOutputStack.isEmpty()){
+                            inventory.setStackInSlot(OUTPUT_SLOT, outputStack);
+                        } else {
+                            currentOutputStack.grow(outputStack.getCount());
+                        }
+                    });
+                }
             }
         }
     }
     
-    public static boolean canStackBeApplied(Ingredient ingredient, ItemStack stack){
+    public static boolean canStackBeApplied(Ingredient ingredient, int amount, ItemStack stack){
         if(!stack.isEmpty()){
             for(ItemStack matchingStack : ingredient.getMatchingStacks()){
                 if(ItemStack.areItemsEqual(matchingStack, stack)){ // test item and damage
-                    if(stack.getCount() >= matchingStack.getCount()){ // test for enough stacksize
+                    if(stack.getCount() >= amount){ // test for enough stacksize
                         if(ItemStack.areItemStackTagsEqual(matchingStack, stack)){ // test for equal nbt
                             return true;
                         }
                     }
                 }
             }
+        }
+        return false;
+    }
+    
+    public static boolean canStacksBeMerged(ItemStack a, ItemStack b){
+        if(a.isEmpty() || b.isEmpty()){
+            return true;
+        }
+        if(ItemStack.areItemStacksEqual(a, b)){
+            return a.getCount() + b.getCount() <= Math.min(a.getMaxStackSize(), b.getMaxStackSize());
         }
         return false;
     }
