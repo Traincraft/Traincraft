@@ -1885,6 +1885,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
             this.mtcType = 1;
             this.serverUUID = "";
             isConnected = false;
+            Traincraft.mscChannel.sendToAllAround(new PacketMTC(getEntityId(),   0, 1)  , new NetworkRegistry.TargetPoint(this.worldObj.provider.dimensionId, posX, posY, posZ, 150.0D));
         }
 
     }
