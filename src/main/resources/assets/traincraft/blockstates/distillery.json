@@ -1,0 +1,46 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "textures": {
+      "up": "traincraft:blocks/distil_top",
+      "down": "traincraft:blocks/distil_bottom",
+      "north": "traincraft:blocks/distil_off_front",
+      "east": "traincraft:blocks/distil_side",
+      "west": "#east",
+      "south": "#east",
+      "particle": "#down"
+    },
+    "model": "cube",
+    "transform": "forge:default-block"
+  },
+  "variants": {
+    "facing": {
+      "north": {
+        "y": 0
+      },
+      "south": {
+        "y": 180
+      },
+      "west": {
+        "y": 270
+      },
+      "east": {
+        "y": 90
+      }
+    },
+    "active": {
+      "true": {
+        "textures": {
+          "north": "traincraft:blocks/distil_on_front"
+        }
+      },
+      "false": {}
+    },
+    "normal": [
+      {}
+    ],
+    "inventory": [
+      {}
+    ]
+  }
+}

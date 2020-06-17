@@ -7,6 +7,11 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import traincraft.Traincraft;
+import traincraft.api.FluidTankChangeListener;
+import traincraft.api.FluidTankTyped;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class GuiDistillery extends GuiContainer {
     
@@ -49,6 +54,25 @@ public class GuiDistillery extends GuiContainer {
         this.drawDefaultBackground();
         super.drawScreen(mouseX, mouseY, partialTicks);
         this.renderHoveredToolTip(mouseX, mouseY);
+    }
+    
+    @Override
+    protected void renderHoveredToolTip(int mouseX, int mouseY) {
+        super.renderHoveredToolTip(mouseX, mouseY);
+        
+        // fluid tank hovering
+        if(this.isPointInRegion(144, 6, 20, 52, mouseX, mouseY)){
+            IFluidHandler fluidTank = this.tile.getFluidTank(null);
+            if(fluidTank instanceof FluidTank){
+                int capacity = ((FluidTank) fluidTank).getCapacity();
+                if(capacity > 0 && ((FluidTank) fluidTank).getFluid() != null){
+                    List<String> hoveringText = new ArrayList<>();
+                    hoveringText.add(((FluidTank) fluidTank).getFluid().getLocalizedName());
+                    hoveringText.add(String.format("%dmB / %dmB", ((FluidTank) fluidTank).getFluidAmount(), capacity));
+                    this.drawHoveringText(hoveringText, mouseX, mouseY);
+                }
+            }
+        }
     }
     
     private void drawFluid(FluidTank tank, int x, int y, int width, int height) {

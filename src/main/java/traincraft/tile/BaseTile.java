@@ -32,6 +32,8 @@ import javax.annotation.Nullable;
 
 public abstract class BaseTile extends TileEntity {
     
+    private boolean sync = false;
+    
     public IItemHandler getInventory(@Nullable EnumFacing side){
         return null;
     }
@@ -42,6 +44,27 @@ public abstract class BaseTile extends TileEntity {
     
     public IEnergyStorage getEnergyStorage(@Nullable EnumFacing side){
         return null;
+    }
+    
+    /**
+     * Update method for checking things like syncing. Has to be called by the tile itself.
+     * This approach was choosen to avoid every BaseTile from ticking
+     */
+    protected final void updateBaseTile(){
+        if(this.sync){
+            this.sync = false;
+            if(this.world instanceof WorldServer){
+                SPacketUpdateTileEntity updatePacket = this.getUpdatePacket();
+                if(updatePacket != null){
+                    PlayerChunkMapEntry entry = ((WorldServer) this.world).getPlayerChunkMap().getEntry(this.pos.getX() >> 4, this.getPos().getZ() >> 4);
+                    if(entry != null){
+                        for(EntityPlayerMP player : entry.getWatchingPlayers()){
+                            player.connection.sendPacket(updatePacket);
+                        }
+                    }
+                }
+            }
+        }
     }
     
     @Override
@@ -87,17 +110,7 @@ public abstract class BaseTile extends TileEntity {
     }
     
     public void syncToClient() {
-        if(this.world instanceof WorldServer){
-            SPacketUpdateTileEntity updatePacket = this.getUpdatePacket();
-            if(updatePacket != null){
-                PlayerChunkMapEntry entry = ((WorldServer) this.world).getPlayerChunkMap().getEntry(this.pos.getX() >> 4, this.getPos().getZ() >> 4);
-                if(entry != null){
-                    for(EntityPlayerMP player : entry.getWatchingPlayers()){
-                        player.connection.sendPacket(updatePacket);
-                    }
-                }
-            }
-        }
+        this.sync = true;
     }
     
     @Override

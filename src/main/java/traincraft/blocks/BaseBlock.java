@@ -20,4 +20,10 @@ public class BaseBlock extends Block implements IItemBlockSupplier {
     public ItemBlock getItemBlock() {
         return new BaseItemBlock(this);
     }
+    
+    @Override
+    public String getTranslationKey() {
+        return this.getRegistryName().toString();
+    }
+    
 }

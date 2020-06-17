@@ -11,7 +11,7 @@ import net.minecraftforge.fluids.capability.IFluidTankProperties;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class FluidTankTyped extends FluidTank implements INBTSerializable<NBTTagCompound> {
+public class FluidTankTyped extends FluidTankSerializable {
     
     @Nonnull
     private Fluid validFluid;
@@ -39,17 +39,5 @@ public class FluidTankTyped extends FluidTank implements INBTSerializable<NBTTag
     @Override
     public boolean canDrainFluidType(@Nullable FluidStack fluid) {
         return (fluid == null || this.validFluid.equals(fluid.getFluid())) && super.canDrainFluidType(fluid);
-    }
-    
-    @Override
-    public NBTTagCompound serializeNBT() {
-        NBTTagCompound nbt = new NBTTagCompound();
-        this.writeToNBT(nbt);
-        return nbt;
-    }
-    
-    @Override
-    public void deserializeNBT(NBTTagCompound nbt) {
-        this.readFromNBT(nbt);
     }
 }

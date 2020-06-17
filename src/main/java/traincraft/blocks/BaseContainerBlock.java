@@ -86,4 +86,9 @@ public abstract class BaseContainerBlock extends BlockContainer implements IItem
         }
         return null;
     }
+    
+    @Override
+    public String getTranslationKey() {
+        return this.getRegistryName().toString();
+    }
 }
