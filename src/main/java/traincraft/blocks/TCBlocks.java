@@ -8,6 +8,7 @@
 package traincraft.blocks;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -15,6 +16,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 import traincraft.Traincraft;
 import traincraft.blocks.distillery.BlockDistil;
+import traincraft.liquids.TCLiquids;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -41,6 +43,8 @@ public class TCBlocks {
 	public static final BlockOilSand OIL_SAND = new BlockOilSand();
 	public static final BlockPetrolOre PETROL_ORE = new BlockPetrolOre();
 	public static final BlockCopperOre COPPER_ORE = new BlockCopperOre();
+	
+	public static final BlockFluidBase OIL_LIQUID = new BlockFluidBase(TCLiquids.OIL, Material.WATER);
 	
 	@SubscribeEvent
 	public static void registerBlocks(RegistryEvent.Register<Block> event){

@@ -59,7 +59,7 @@ public class DistilleryRecipeFactory implements IRecipeFactory {
             if(element.isJsonObject()){
                 JsonObject fluidJson = (JsonObject) element;
                 String fluidName;
-                int amount = 0;
+                int amount = 1000;
                 NBTTagCompound nbt;
                 if(fluidJson.has("name")){
                     fluidName = fluidJson.get("name").getAsString();

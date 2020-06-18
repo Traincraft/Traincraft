@@ -73,6 +73,22 @@ public class GuiDistillery extends GuiContainer {
                 }
             }
         }
+        
+        // burn time hovering
+        if(this.isPointInRegion(58, 37, 13, 13, mouseX, mouseY)){
+            if(this.tile.maxBurnTime > 0){
+                float burnPercent = this.tile.burnTime / (this.tile.maxBurnTime * 1F);
+                this.drawHoveringText(String.format("%d%% left", Math.round(burnPercent * 100)), mouseX, mouseY);
+            }
+        }
+        
+        // recipe burn time hovering
+        if(this.isPointInRegion(86, 35, 24, 38, mouseX, mouseY)){
+            if(this.tile.maxRecipeBurnTime > 0){
+                float burnPercent = (this.tile.maxRecipeBurnTime - this.tile.recipeBurnTime) / (this.tile.maxRecipeBurnTime * 1F);
+                this.drawHoveringText(String.format("%d%%", Math.round(burnPercent * 100)), mouseX, mouseY);
+            }
+        }
     }
     
     private void drawFluid(FluidTank tank, int x, int y, int width, int height) {

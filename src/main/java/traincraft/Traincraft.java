@@ -3,7 +3,6 @@ package traincraft;
 import java.io.File;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.resources.FallbackResourceManager;
 import net.minecraft.client.resources.IReloadableResourceManager;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
@@ -12,7 +11,6 @@ import org.apache.logging.log4j.Logger;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -26,13 +24,13 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import train.client.core.handlers.TCKeyHandler;
 import train.common.core.CommonProxy;
-import train.common.core.handlers.RetrogenHandler;
 import train.common.generation.WorldGenWorld;
 import traincraft.blocks.distillery.DistilleryRecipe;
 import traincraft.blocks.distillery.TileDistillery;
 import traincraft.capabilities.CapabilityWorldWind;
 import traincraft.entity.TCEntities;
 import traincraft.items.TCItems;
+import traincraft.liquids.TCLiquids;
 import traincraft.network.GuiHandler;
 import traincraft.network.PacketTraincraftEntity;
 
@@ -46,7 +44,7 @@ public class Traincraft {
 	
 	/* TrainCraft instance */
 	@Mod.Instance(MOD_ID)
-	public static Traincraft instance;
+	public static Traincraft INSTANCE;
 	
 	/* TrainCraft proxy files */
 	@SidedProxy(clientSide = "train.client.core.ClientProxy", serverSide = "train.common.core.CommonProxy")
@@ -87,6 +85,7 @@ public class Traincraft {
 		/* Register Items, Blocks, ... */
 		LOGGER.info("Initialize Blocks, Items, ...");
 		TCEntities.registerEntities(event);
+		TCLiquids.registerLiquids(event);
 		
 		/* Register Keys */
 		LOGGER.info("Initialize Key bindings");
@@ -128,7 +127,7 @@ public class Traincraft {
 		LOGGER.info("Start Initialization");
 		
 		LOGGER.info("Initializing Network Packets");
-		NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
+		NetworkRegistry.INSTANCE.registerGuiHandler(Traincraft.INSTANCE, new GuiHandler());
 		TC_NETWORK.registerMessage(PacketTraincraftEntity.class, PacketTraincraftEntity.class, 0, Side.SERVER);
 		TC_NETWORK.registerMessage(PacketTraincraftEntity.class, PacketTraincraftEntity.class, 1, Side.CLIENT);
 		

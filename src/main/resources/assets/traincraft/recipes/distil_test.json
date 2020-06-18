@@ -1,12 +1,13 @@
 {
   "type": "traincraft:distillery",
   "input": {
-    "item": "minecraft:crafting_table"
+    "item": "traincraft:ore_oil_sand"
   },
   "output": {
-    "item": "minecraft:redstone_torch"
+    "item": "traincraft:raw_plastic"
   },
   "fluid": {
-    "name": "water"
+    "name": "traincraft:oil",
+    "amount": 250
   }
 }

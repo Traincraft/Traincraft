@@ -24,4 +24,9 @@ public class BlockOilSand extends BlockFalling implements IItemBlockSupplier {
 	public ItemBlock getItemBlock() {
 		return new BaseItemBlock(this);
 	}
+	
+	@Override
+	public String getTranslationKey() {
+		return this.getRegistryName().toString();
+	}
 }

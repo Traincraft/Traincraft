@@ -23,7 +23,7 @@ public class TCEntities {
     }
     
     private static <T extends AbstractRollingStock<T>> void register(FMLPreInitializationEvent event, ResourceLocation resourceLocation, Class<T> clazz){
-        EntityRegistry.registerModEntity(resourceLocation, clazz, resourceLocation.getPath(), entityIds++, Traincraft.instance, 64, 1, true);
+        EntityRegistry.registerModEntity(resourceLocation, clazz, resourceLocation.getPath(), entityIds++, Traincraft.INSTANCE, 64, 1, true);
         if(event.getSide() == Side.CLIENT){
             registerClient(clazz);
         }

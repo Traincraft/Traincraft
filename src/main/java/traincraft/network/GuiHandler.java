@@ -25,6 +25,7 @@ public class GuiHandler implements IGuiHandler {
             case TILE_ENTITY: {
                 TileEntity tile = world.getTileEntity(new BlockPos(x, y, z));
                 if(tile instanceof BaseTile){
+                    ((BaseTile) tile).syncToClient(); // sync to clients when opening gui
                     return ((BaseTile) tile).openContainer(player);
                 }
                 break;
@@ -64,14 +65,14 @@ public class GuiHandler implements IGuiHandler {
     }
     
     public static void openGui(EntityPlayer player, BlockPos pos, int type){
-        player.openGui(Traincraft.instance, type, player.getEntityWorld(), pos.getX(), pos.getY(), pos.getZ());
+        player.openGui(Traincraft.INSTANCE, type, player.getEntityWorld(), pos.getX(), pos.getY(), pos.getZ());
     }
     
     public static void openTileGui(EntityPlayer player, TileEntity tile){
-        player.openGui(Traincraft.instance, TILE_ENTITY, player.getEntityWorld(), tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ());
+        player.openGui(Traincraft.INSTANCE, TILE_ENTITY, player.getEntityWorld(), tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ());
     }
     
     public static void openEntityGui(EntityPlayer player, Entity entity){
-        player.openGui(Traincraft.instance, ENTITY, player.getEntityWorld(), 0, 0, entity.getEntityId());
+        player.openGui(Traincraft.INSTANCE, ENTITY, player.getEntityWorld(), 0, 0, entity.getEntityId());
     }
 }

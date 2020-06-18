@@ -36,6 +36,7 @@ public class TCItems {
 	public static final BaseItem STEEL_FRAME = new BaseItem("steel_frame");
 	public static final BaseItem STEEL_CABIN = new BaseItem("steel_cabin");
 	public static final BaseItem STEEL_CHIMNEY = new BaseItem("steel_chimney");
+	public static final BaseItem RAW_PLASTIC = new BaseItem("raw_plastic");
 	/*
 	balloon
 	propeller
@@ -60,7 +61,6 @@ public class TCItems {
 	controls
 	transmition
 	generator
-	rawPlastic
 	ingotCopper
 	copperWireFine
 	electronicCircuit

@@ -26,27 +26,12 @@ public class FluidTankChangeListener extends FluidTankSerializable {
     }
     
     @Override
-    public int fillInternal(FluidStack resource, boolean doFill) {
-        int i = super.fillInternal(resource, doFill);
-        if(doFill) {
-            this.onContentsChanged();
-        }
-        return i;
-    }
-    
-    @Nullable
-    @Override
-    public FluidStack drainInternal(int maxDrain, boolean doDrain) {
-        FluidStack fluidStack = super.drainInternal(maxDrain, doDrain);
-        if(doDrain){
-            this.onContentsChanged();
-        }
-        return fluidStack;
-    }
-    
-    @Override
     protected void onContentsChanged() {
         super.onContentsChanged();
         this.changeListener.run();
+    }
+    
+    public FluidTank copyWithoutListener(){
+        return new FluidTank(this.getFluid(), this.getCapacity());
     }
 }

@@ -15,7 +15,7 @@ public class ContainerDistillery extends Container {
     public ContainerDistillery(TileDistillery tile, EntityPlayer player) {
         this.tile = tile;
         this.player = player;
-    
+        
         IItemHandler inventory = tile.getInventory(null);
         if(inventory instanceof InvWrapper){
             this.addSlotToContainer(new SlotInventory(((InvWrapper) inventory).getInv(), TileDistillery.INPUT_SLOT, 56, 17));
