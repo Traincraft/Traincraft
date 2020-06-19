@@ -53,7 +53,7 @@ public abstract class BaseTile extends TileEntity {
     protected final void updateBaseTile(){
         if(this.sync){
             this.sync = false;
-            if(this.world instanceof WorldServer){
+            if(!this.world.isRemote && this.world instanceof WorldServer){
                 SPacketUpdateTileEntity updatePacket = this.getUpdatePacket();
                 if(updatePacket != null){
                     PlayerChunkMapEntry entry = ((WorldServer) this.world).getPlayerChunkMap().getEntry(this.pos.getX() >> 4, this.getPos().getZ() >> 4);

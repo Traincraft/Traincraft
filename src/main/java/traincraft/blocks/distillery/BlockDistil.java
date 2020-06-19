@@ -7,14 +7,15 @@ import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import traincraft.Traincraft;
 import traincraft.blocks.BaseContainerBlock;
 
+import javax.annotation.Nonnull;
 import java.util.Random;
 
 public class BlockDistil extends BaseContainerBlock {
@@ -33,11 +34,12 @@ public class BlockDistil extends BaseContainerBlock {
 	}
 	
 	@Override
-	public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos) {
+	public int getLightValue(IBlockState state, @Nonnull IBlockAccess world, @Nonnull BlockPos pos) {
 		return state.getValue(ACTIVE) ? 12 : 0;
 	}
 	
 	// state: ABCD => B = active; CD = facing
+	@Nonnull
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
 		return this.getDefaultState().withProperty(ACTIVE, (meta & 0b0100) > 0).withProperty(BlockHorizontal.FACING, EnumFacing.byHorizontalIndex(meta & 0b0011));
@@ -48,59 +50,53 @@ public class BlockDistil extends BaseContainerBlock {
 		return (state.getValue(ACTIVE) ? 0b0100 : 0b0000) | (state.getValue(BlockHorizontal.FACING).getHorizontalIndex());
 	}
 	
+	@Nonnull
 	@Override
-	public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
+	public IBlockState getStateForPlacement(@Nonnull World world, @Nonnull BlockPos pos, @Nonnull EnumFacing facing, float hitX, float hitY, float hitZ, int meta, @Nonnull EntityLivingBase placer) {
 		return super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer).withProperty(BlockHorizontal.FACING, placer.getHorizontalFacing().getOpposite());
 	}
 	
+	@Nonnull
 	@Override
 	protected BlockStateContainer createBlockState() {
 		return new BlockStateContainer(this, ACTIVE, BlockHorizontal.FACING);
 	}
 	
-	// todo traincraft.blocks.distillery particle effects
 	@Override
-	public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand) {
+	public void randomDisplayTick(IBlockState state, @Nonnull World world, @Nonnull BlockPos pos, @Nonnull Random rand) {
 		if(state.getValue(ACTIVE)){
-			EnumFacing facing = state.getValue(BlockHorizontal.FACING);
+			float x = pos.getX() + 0.5F;
+			float y = pos.getY() + rand.nextFloat() * 6F / 16F;
+			float z = pos.getZ() + 0.5F;
+			float randOffset = rand.nextFloat() * 0.6F - 0.3F;
 			
-		}
-	}
-	
-	/*
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void randomDisplayTick(World world, int i, int j, int k, Random random) {
-		if (this.isActive) {
-			ForgeDirection side = ((TileEntityDistil) world.getTileEntity(i, j, k)).getFacing();
-			float var7 = (float) i + 0.5F;
-			float var8 = (float) j + 0.0F + random.nextFloat() * 6.0F / 16.0F;
-			float var9 = (float) k + 0.5F;
-			float var10 = 0.52F;
-			float var11 = random.nextFloat() * 0.6F - 0.3F;
 			for (int t = 0; t < 10; t++) {
-
-				world.spawnParticle("mobSpellAmbient", var7, (double) j + 1F, var9, 0, 0, 0);
+				world.spawnParticle(EnumParticleTypes.SPELL_MOB_AMBIENT, x, y + 1F, z, 0, 0, 0);
 			}
-			if (side == ForgeDirection.WEST) {
-				world.spawnParticle("smoke", (double) (var7 - var10), (double) var8, (double) (var9 + var11), 0.0D, 0.0D, 0.0D);
-				world.spawnParticle("flame", (double) (var7 - var10), (double) var8, (double) (var9 + var11), 0.0D, 0.0D, 0.0D);
-			}
-			else if (side == ForgeDirection.EAST) {
-				world.spawnParticle("smoke", (double) (var7 + var10), (double) var8, (double) (var9 + var11), 0.0D, 0.0D, 0.0D);
-				world.spawnParticle("flame", (double) (var7 + var10), (double) var8, (double) (var9 + var11), 0.0D, 0.0D, 0.0D);
-			}
-			else if (side == ForgeDirection.NORTH) {
-				world.spawnParticle("smoke", (double) (var7 + var11), (double) var8, (double) (var9 - var10), 0.0D, 0.0D, 0.0D);
-				world.spawnParticle("flame", (double) (var7 + var11), (double) var8, (double) (var9 - var10), 0.0D, 0.0D, 0.0D);
-			}
-			else if (side == ForgeDirection.SOUTH) {
-				world.spawnParticle("smoke", (double) (var7 + var11), (double) var8, (double) (var9 + var10), 0.0D, 0.0D, 0.0D);
-				world.spawnParticle("flame", (double) (var7 + var11), (double) var8, (double) (var9 + var10), 0.0D, 0.0D, 0.0D);
+			
+			switch(state.getValue(BlockHorizontal.FACING)){
+				case NORTH: {
+					world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, x + randOffset, y, z - 0.52F, 0.0D, 0.0D, 0.0D);
+					world.spawnParticle(EnumParticleTypes.FLAME, x + randOffset, y, z - 0.52F, 0.0D, 0.0D, 0.0D);
+					break;
+				}
+				case EAST: {
+					world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, x + 0.52F, y, z + randOffset, 0.0D, 0.0D, 0.0D);
+					world.spawnParticle(EnumParticleTypes.FLAME, x + 0.52F, y, z + randOffset, 0.0D, 0.0D, 0.0D);
+					break;
+				}
+				case SOUTH: {
+					world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, x + randOffset, y, z + 0.52F, 0.0D, 0.0D, 0.0D);
+					world.spawnParticle(EnumParticleTypes.FLAME, x + randOffset, y, z + 0.52F, 0.0D, 0.0D, 0.0D);
+					break;
+				}
+				case WEST: {
+					world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, x - 0.52F, y, z + randOffset, 0.0D, 0.0D, 0.0D);
+					world.spawnParticle(EnumParticleTypes.FLAME, x - 0.52F, y, z + randOffset, 0.0D, 0.0D, 0.0D);
+					break;
+				}
 			}
 		}
 	}
-	
-	 */
 
 }

@@ -1,14 +1,17 @@
 package traincraft.api;
 
+import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.util.INBTSerializable;
+import net.minecraftforge.items.wrapper.SidedInvWrapper;
 
-public class InventoryBase extends InventoryBasic implements INBTSerializable<NBTTagCompound> {
+public class InventoryBase extends InventoryBasic implements INBTSerializable<NBTTagCompound>, ISidedInventory {
     
     public InventoryBase(String title, boolean customName, int slotCount) {
         super(title, customName, slotCount);
@@ -45,5 +48,36 @@ public class InventoryBase extends InventoryBasic implements INBTSerializable<NB
                 this.setInventorySlotContents(slot, new ItemStack(itemTags));
             }
         }
+    }
+    
+    public static SidedInvWrapper[] getSidedWrappers(ISidedInventory inventory){
+        SidedInvWrapper[] ara = new SidedInvWrapper[6];
+        for(EnumFacing facing : EnumFacing.VALUES){
+            ara[facing.getIndex()] = new SidedInvWrapper(inventory, facing);
+        }
+        return ara;
+    }
+    
+    @Override
+    public int[] getSlotsForFace(EnumFacing side) {
+        if (this.getSizeInventory() > 0) {
+            int[] ints = new int[this.getSizeInventory()];
+            for (int i = 0; i < ints.length; i++) {
+                ints[i] = i;
+            }
+            return ints;
+        } else {
+            return new int[0];
+        }
+    }
+    
+    @Override
+    public boolean canInsertItem(int index, ItemStack itemStackIn, EnumFacing direction) {
+        return false;
+    }
+    
+    @Override
+    public boolean canExtractItem(int index, ItemStack stack, EnumFacing direction) {
+        return false;
     }
 }
