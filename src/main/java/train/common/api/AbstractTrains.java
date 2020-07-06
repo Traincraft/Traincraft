@@ -543,7 +543,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 			itemdropped=true;
 			for (ItemStack item : getItemsDropped()) {
 				if (item.getItem() instanceof ItemRollingStock){
-					ItemStack stack = ItemRollingStock.setPersistentData(item,this,this.getUniqueTrainID(),null);
+					ItemStack stack = ItemRollingStock.setPersistentData(item,this,this.getUniqueTrainID(),trainCreator, trainOwner, getColor());
 					entityDropItem(stack!=null?stack:item,0);
 				} else {
 					entityDropItem(item, 0);
@@ -640,7 +640,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 	public boolean doesCartMatchFilter(ItemStack stack, EntityMinecart cart) {
 		if (stack == null || cart == null) { return false; }
 		ItemStack cartItem = cart.getCartItem();
-		return cartItem != null && stack.isItemEqual(cartItem);
+		return cartItem.getItem() == stack.getItem();
 	}
 
 	@Override
