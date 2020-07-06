@@ -91,7 +91,8 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
     public String currentSignalBlock = "";
     public boolean speedGoingDown = false;
     public boolean isConnected = false;
-
+    public boolean isConnecting = false;
+    public String connectingUUID = "";	
     public boolean enforceSpeedLimits = true;
     public TileEntity[] blocksToCheck;
     public boolean stationStop = false;
