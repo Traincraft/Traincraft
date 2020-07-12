@@ -74,6 +74,8 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		this.yOffset = 0.65f;
 		//this.setSize(0.1F, 1.98F);
 		this.side = FMLCommonHandler.instance().getEffectiveSide();
+
+		isImmuneToFire = true;
 	}
 
 	public EntityBogie(World world, double d, double d1, double d2, EntityRollingStock mainTrain, int id, int index, double bogieShift) {
@@ -91,6 +93,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		this.bogieIndex = index;
 		this.bogieShift = bogieShift;
 		this.setPosition(d, d1 + this.yOffset, d2);
+		isImmuneToFire = true;
 	}
 
 	@Override

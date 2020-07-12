@@ -38,6 +38,9 @@ repositories {
         name "ChickenBones"
         url "http://chickenbones.net/maven/"
     }
+    maven { 
+        url = "http://maven.cil.li/"
+    }
 }
 
 dependencies {
@@ -46,7 +49,6 @@ dependencies {
             name "BuildCraft"
             artifactPattern "http://www.mod-buildcraft.com/releases/BuildCraft/[revision]/[module]-[revision](-[classifier]).[ext]"
         }
-        maven { url = "http://maven.cil.li/" }
     }
 
     compile "li.cil.oc:OpenComputers:MC1.7.10-1.5.+:api"

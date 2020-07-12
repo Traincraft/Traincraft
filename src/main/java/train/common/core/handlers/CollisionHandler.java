@@ -43,8 +43,8 @@ public class CollisionHandler {
 		 */
 		listRide = worldObj.getEntitiesWithinAABBExcludingEntity(entityOne, boundingBox.expand(-0.5, -0.5, -0.5));
 		if (listRide != null && listRide.size() > 0) {
-			for (int j1 = 0; j1 < listRide.size(); j1++) {
-				entity = (Entity) listRide.get(j1);
+			for (Object aListRide : listRide) {
+				entity = (Entity) aListRide;
 				if (!(entity instanceof EntityLasersLines) && !entity.noClip) {
 					if (entity != entity.riddenByEntity && !(unAutorizedMob(entity, entityOne)) && (entity instanceof EntityLiving)) {
 						applyRideEntity(entity, entityOne);
@@ -64,8 +64,8 @@ public class CollisionHandler {
 		listRide = worldObj.getEntitiesWithinAABBExcludingEntity(entityOne, box);
 		if (listRide != null && listRide.size() > 0) {
 
-			for (int j1 = 0; j1 < listRide.size(); j1++) {
-				entity = (Entity) listRide.get(j1);
+			for (Object aListRide : listRide) {
+				entity = (Entity) aListRide;
 
 				if (!(entity instanceof EntityLasersLines) && !entity.noClip) {
 
@@ -90,8 +90,8 @@ public class CollisionHandler {
 		listRide = worldObj.getEntitiesWithinAABBExcludingEntity(entityOne, box);
 		if (listRide != null && listRide.size() > 0) {
 
-			for (int j1 = 0; j1 < listRide.size(); j1++) {
-				entity = (Entity) listRide.get(j1);
+			for (Object aListRide : listRide) {
+				entity = (Entity) aListRide;
 				if (!(entity instanceof EntityLasersLines) && !entity.noClip && !(entity instanceof EntityLiving) && !(entityOne instanceof EntityLiving)) {
 
 					if (entity != entity.riddenByEntity && entity.canBePushed() && (entityOne instanceof AbstractTrains) && (entity instanceof AbstractTrains) && !((AbstractTrains) entityOne).isAttached) {
@@ -101,15 +101,13 @@ public class CollisionHandler {
 						return;
 						// MinecraftForge.EVENT_BUS.post(new MinecartCollisionEvent((EntityMinecart)entityOne, entity));
 
-					}
-					else if (entity != entity.riddenByEntity && entity.canBePushed() && (entity instanceof EntityMinecart) && !(entity instanceof AbstractTrains) && (entityOne instanceof AbstractTrains) && !((AbstractTrains) entityOne).isAttached) {
+					} else if (entity != entity.riddenByEntity && entity.canBePushed() && (entity instanceof EntityMinecart) && !(entity instanceof AbstractTrains) && (entityOne instanceof AbstractTrains) && !((AbstractTrains) entityOne).isAttached) {
 
 						//applyCollision2(entity, entityOne);
 						applyEntityCollisionVanilla(entity, (EntityMinecart) entityOne);
 						return;
 						// MinecraftForge.EVENT_BUS.post(new MinecartCollisionEvent((EntityMinecart)entityOne, entity));
-					}
-					else if (entity != entity.riddenByEntity && entity.canBePushed() && (entity instanceof AbstractTrains) && (entityOne instanceof AbstractTrains) && !(entity == ((EntityRollingStock)entityOne).cartLinked1) && !(entity == ((EntityRollingStock)entityOne).cartLinked2)) {
+					} else if (entity != entity.riddenByEntity && entity.canBePushed() && (entity instanceof AbstractTrains) && (entityOne instanceof AbstractTrains) && !(entity == ((EntityRollingStock) entityOne).cartLinked1) && !(entity == ((EntityRollingStock) entityOne).cartLinked2)) {
 
 						//applyCollision2(entity, entityOne);
 						applyEntityCollisionVanilla(entity, (EntityMinecart) entityOne);
@@ -129,8 +127,8 @@ public class CollisionHandler {
 	 */
 	public void applyEntityCollisionVanilla(Entity par1Entity, EntityMinecart entityOne) {
 		MinecraftForge.EVENT_BUS.post(new MinecartCollisionEvent(entityOne, par1Entity));
-		if (entityOne.getCollisionHandler() != null) {
-			entityOne.getCollisionHandler().onEntityCollision(entityOne, par1Entity);
+		if (EntityMinecart.getCollisionHandler() != null) {
+			EntityMinecart.getCollisionHandler().onEntityCollision(entityOne, par1Entity);
 			return;
 		}
 		if (!this.worldObj.isRemote) {
