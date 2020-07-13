@@ -90,7 +90,7 @@ dependencies {
     compileOnly fg.deobf(group: "com.github.TeamOpenIndustry", name: "TrackAPI", version: "forge_1.12.2-SNAPSHOT", changing: true)
 
     // compile dependencies, but runtime optionals
-    compile fg.deobf(group: "org.cyclops.commoncapabilities", name: "CommonCapabilities", version: "1.12.2-1.4.0-171")
+    compile fg.deobf(group: "org.cyclops.commoncapabilities", name: "CommonCapabilities", version: "1.12.2-2.4.6-328")
 }
 
 jar {

@@ -12,7 +12,36 @@ The following shows a simple path on which features are gonna appear first. Nobo
     - Implement the API with a simple train
     - Model file is loaded from .json (JTMT-Format) on class load (Cooperation with Fexcraft)
 - [ ] Implement all the items from 1.7.10
+    - [ ] Composite Armor
+    - [ ] Driver Armor
+    - [ ] General TC Armor
+    - [ ] Ticketman Armor
+    - [ ] Fluid Canister: - should be able to hold every fluid, just like a bucket
+    - [ ] Traincraft tool: combination of the wrench, stake and skin changer
+    - [ ] All the items used for crafting rolling stock
 - [ ] Implement all the blocks from 1.7.10
+    - [ ] Assembly Table I
+    - [ ] Assembly Table II
+    - [ ] Assembly Table III
+    - [ ] Bridge Pillar
+    - [x] Copper Ore
+    - [ ] Diesel Generator
+    - [ ] Distillery
+        - [x] Block
+        - [x] TileEntity
+        - [x] Texture
+        - [x] Gui and Container (shift clicking is missing)
+        - [ ] Logic (partly done)
+    - [ ] Lantern
+        - should work without a tile entity. Colors are bound to the default minecraft colors
+    - [x] Oil Sand
+    - [ ] Open Hearth Furnace
+    - [x] Petrol Ore
+    - [ ] Stopper
+    - [ ] Switch Stand
+    - [ ] Train Workbench
+    - [ ] Water Wheel
+    - [ ] Wind Mill
     - Including recipe handling over .json (To support the vanilla based system)
 - [ ] Implement driving physics for TrackAPI compatible rails (**Help is needed**)
 - [ ] Implement linked rolling stock
@@ -41,6 +70,6 @@ The following shows a simple path on which features are gonna appear first. Nobo
 - [ ] Implement the recipe book. We don't need it, but it just looks nice.
 - [ ] Second Alpha version release, with most of the bugs found in alpha one fixed.
 
-- [ ] Implement all the rolling stock.
+- [ ] Implement all the rolling stock from 1.6.4, since the added 1.7.10 models and skins are removed, due to the artists not wanting them in Traincraft anymore.
 - [ ] Fixing most of the alpha 2 bugs
 - [ ] First Beta release

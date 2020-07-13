@@ -25,12 +25,10 @@ public class InventoryBase extends InventoryBasic implements INBTSerializable<NB
     public NBTTagCompound serializeNBT() {
         NBTTagList nbtTagList = new NBTTagList();
         for(int i = 0; i < this.getSizeInventory(); i++){
-            if(!this.getStackInSlot(i).isEmpty()){
-                NBTTagCompound itemTag = new NBTTagCompound();
-                itemTag.setInteger("Slot", i);
-                this.getStackInSlot(i).writeToNBT(itemTag);
-                nbtTagList.appendTag(itemTag);
-            }
+            NBTTagCompound itemTag = new NBTTagCompound();
+            itemTag.setInteger("Slot", i);
+            this.getStackInSlot(i).writeToNBT(itemTag);
+            nbtTagList.appendTag(itemTag);
         }
         NBTTagCompound nbt = new NBTTagCompound();
         nbt.setTag("Items", nbtTagList);
@@ -73,11 +71,11 @@ public class InventoryBase extends InventoryBasic implements INBTSerializable<NB
     
     @Override
     public boolean canInsertItem(int index, ItemStack itemStackIn, EnumFacing direction) {
-        return false;
+        return this.isItemValidForSlot(index, itemStackIn);
     }
     
     @Override
     public boolean canExtractItem(int index, ItemStack stack, EnumFacing direction) {
-        return false;
+        return true;
     }
 }

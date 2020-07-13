@@ -7,9 +7,13 @@
 
 package traincraft.items;
 
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
@@ -85,6 +89,7 @@ public class TCItems {
 	
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event){
+		boolean isClient = FMLCommonHandler.instance().getSide().isClient();
 		IForgeRegistry<Item> registry = event.getRegistry();
 		
 		try{
@@ -104,7 +109,12 @@ public class TCItems {
 				if(Modifier.isPublic(field.getModifiers()) && Modifier.isStatic(field.getModifiers()) && Modifier.isFinal(field.getModifiers())){
 					Object obj = field.get(null);
 					if(obj instanceof IItemBlockSupplier){
-						registry.register(((IItemBlockSupplier) obj).getItemBlock());
+						ItemBlock itemBlock = ((IItemBlockSupplier) obj).getItemBlock();
+						registry.register(itemBlock);
+						
+						if(isClient){
+							ModelLoader.setCustomModelResourceLocation(itemBlock, 0, new ModelResourceLocation(itemBlock.getRegistryName(), "inventory"));
+						}
 					}
 				}
 			}

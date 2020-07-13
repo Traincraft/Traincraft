@@ -23,6 +23,7 @@ import net.minecraftforge.items.wrapper.InvWrapper;
 import net.minecraftforge.items.wrapper.SidedInvWrapper;
 import traincraft.api.FluidTankChangeListener;
 import traincraft.api.FluidTankSerializable;
+import traincraft.api.InventoryBase;
 import traincraft.api.InventorySpecific;
 import traincraft.tile.BaseTile;
 
@@ -44,7 +45,7 @@ public class TileDistillery extends BaseTile implements ITickable {
     public static final int FLUID_TANK_CAPACITY = 16000;
     
     private final InventorySpecific rawInventory = new InventorySpecific("Distillery Inventory", false, 5, this::isItemValidForInventory);
-    private final SidedInvWrapper inventory = new SidedInvWrapper(rawInventory, );
+    private final SidedInvWrapper[] inventory = InventoryBase.getSidedWrappers(rawInventory);
     private final FluidTankSerializable fluidTank = new FluidTankSerializable(FLUID_TANK_CAPACITY);
     
     public int burnTime, maxBurnTime, recipeBurnTime, maxRecipeBurnTime;
@@ -55,8 +56,13 @@ public class TileDistillery extends BaseTile implements ITickable {
     }
     
     @Override
+    public IInventory getRealInventory() {
+        return this.rawInventory;
+    }
+    
+    @Override
     public IItemHandler getInventory(@Nullable EnumFacing side) {
-        return this.inventory;
+        return this.inventory[side != null ? side.ordinal() : 0];
     }
     
     @Override
@@ -117,7 +123,6 @@ public class TileDistillery extends BaseTile implements ITickable {
     
     public void onInventoryChange(IInventory inventory) {
         if(this.world == null || !this.world.isRemote){
-            System.out.println("Inventory change");
             // this only checks when the inventory is updated if a recipe can be executed
             if(this.activeRecipe == null){
                 testForNewRecipe();
@@ -128,22 +133,24 @@ public class TileDistillery extends BaseTile implements ITickable {
                 testAndConsumeForBurnStack();
             }
     
-            testForFluidContainerMerge();
+            if(!this.rawInventory.getStackInSlot(CONTAINER_INPUT_SLOT).isEmpty()){
+                testForFluidContainerMerge();
+            }
         }
     }
     
     private void testForNewRecipe(){
-        ItemStack inputStack = inventory.getStackInSlot(INPUT_SLOT);
-        if(!inputStack.isEmpty()){
+        ItemStack inputStack = rawInventory.getStackInSlot(INPUT_SLOT);
+        if(!inputStack.isEmpty() && this.burnTime > 0){
             DISTIL_RECIPES.stream().filter(distilleryRecipe -> canStackBeApplied(distilleryRecipe.getInputIngredient(), distilleryRecipe.getInputAmount(), inputStack))
                           .findFirst()
                           .ifPresent(recipe -> {
-                              ItemStack outputStack = inventory.getStackInSlot(OUTPUT_SLOT);
+                              ItemStack outputStack = rawInventory.getStackInSlot(OUTPUT_SLOT);
                               if(canStacksBeMerged(outputStack, recipe.getOutputStack())){ // check if output itemstacks can be merged
                                   if(canFluidsMerge(this.fluidTank, recipe.getOutputFluid())){ // check if output fluid can be merged
                                       inputStack.shrink(recipe.getInputAmount());
                                       if(inputStack.getCount() <= 0){
-                                          this.inventory.setStackInSlot(INPUT_SLOT, ItemStack.EMPTY);
+                                          this.rawInventory.setInventorySlotContents(INPUT_SLOT, ItemStack.EMPTY);
                                       }
                                       this.activeRecipe = recipe.getRegistryName();
                                       this.recipeBurnTime = this.maxRecipeBurnTime = recipe.getBurnTime();
@@ -158,23 +165,24 @@ public class TileDistillery extends BaseTile implements ITickable {
     }
     
     private void testAndConsumeForBurnStack() {
-        ItemStack burnStack = this.inventory.getStackInSlot(BURN_SLOT);
+        ItemStack burnStack = this.rawInventory.getStackInSlot(BURN_SLOT);
         if(!burnStack.isEmpty()){
             int itemBurnTime = TileEntityFurnace.getItemBurnTime(burnStack);
             if(itemBurnTime > 0){
                 this.burnTime = this.maxBurnTime = itemBurnTime;
                 burnStack.shrink(1);
                 if(burnStack.isEmpty()){
-                    this.inventory.setStackInSlot(BURN_SLOT, ItemStack.EMPTY);
+                    this.rawInventory.setInventorySlotContents(BURN_SLOT, ItemStack.EMPTY);
                 }
                 this.syncToClient();
             }
         }
     }
     
+    // todo logic isn't functional
     private void testForFluidContainerMerge(){
         if(this.fluidTank.getFluidAmount() > 0){
-            ItemStack inputTankDrainStack = this.inventory.getStackInSlot(CONTAINER_INPUT_SLOT);
+            ItemStack inputTankDrainStack = this.rawInventory.getStackInSlot(CONTAINER_INPUT_SLOT);
             if(!inputTankDrainStack.isEmpty()){
                 ItemStack inputCopy = inputTankDrainStack.copy();
                 inputCopy.setCount(1);
@@ -182,12 +190,12 @@ public class TileDistillery extends BaseTile implements ITickable {
                 if(capability != null){
                     FluidStack drained = this.fluidTank.drain(capability.fill(this.fluidTank.drain(Integer.MAX_VALUE, false), false), false);
                     if(drained != null && drained.amount > 0){
-                        ItemStack outputTankDrainStack = this.inventory.getStackInSlot(CONTAINER_OUTPUT_SLOT);
+                        ItemStack outputTankDrainStack = this.rawInventory.getStackInSlot(CONTAINER_OUTPUT_SLOT);
                         if(canStacksBeMerged(capability.getContainer(), outputTankDrainStack)){
                             // do the filling to the input stack copy
                             this.fluidTank.drain(capability.fill(this.fluidTank.drain(Integer.MAX_VALUE, false), true), true);
                             if(outputTankDrainStack.isEmpty()){
-                                this.inventory.setStackInSlot(CONTAINER_OUTPUT_SLOT, capability.getContainer().copy());
+                                this.rawInventory.setInventorySlotContents(CONTAINER_OUTPUT_SLOT, capability.getContainer().copy());
                             } else {
                                 outputTankDrainStack.grow(1);
                             }
@@ -195,7 +203,7 @@ public class TileDistillery extends BaseTile implements ITickable {
                             // shrink input stack
                             inputTankDrainStack.shrink(1);
                             if(inputTankDrainStack.isEmpty()){
-                                this.inventory.setStackInSlot(CONTAINER_INPUT_SLOT, ItemStack.EMPTY);
+                                this.rawInventory.setInventorySlotContents(CONTAINER_INPUT_SLOT, ItemStack.EMPTY);
                             }
     
                             this.syncToClient();
@@ -217,9 +225,9 @@ public class TileDistillery extends BaseTile implements ITickable {
                     this.recipeBurnTime = 0;
                     DISTIL_RECIPES.stream().filter(distilleryRecipe -> this.activeRecipe.equals(distilleryRecipe.getRegistryName())).findFirst().ifPresent(recipe -> {
                         ItemStack outputStack = recipe.getOutputStack().copy();
-                        ItemStack currentOutputStack = inventory.getStackInSlot(OUTPUT_SLOT);
+                        ItemStack currentOutputStack = rawInventory.getStackInSlot(OUTPUT_SLOT);
                         if(currentOutputStack.isEmpty()){
-                            inventory.setStackInSlot(OUTPUT_SLOT, outputStack);
+                            rawInventory.setInventorySlotContents(OUTPUT_SLOT, outputStack);
                         } else {
                             currentOutputStack.grow(outputStack.getCount());
                         }

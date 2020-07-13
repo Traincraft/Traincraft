@@ -64,15 +64,14 @@ public abstract class BaseContainerBlock extends BlockContainer implements IItem
     
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+        if(player.isSneaking()){
+            return false;
+        }
         if(!world.isRemote){
-            if(!player.isSneaking()){
-                TileEntity te = world.getTileEntity(pos);
-                if(te instanceof BaseTile){
-                    GuiHandler.openTileGui(player, te);
-                    return true;
-                }
-            } else {
-                return false;
+            TileEntity te = world.getTileEntity(pos);
+            if(te instanceof BaseTile){
+                GuiHandler.openTileGui(player, te);
+                return true;
             }
         }
         return true;

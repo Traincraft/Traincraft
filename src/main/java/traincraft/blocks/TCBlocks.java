@@ -9,7 +9,11 @@ package traincraft.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.item.Item;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -56,14 +60,13 @@ public class TCBlocks {
 					Object obj = field.get(null);
 					if(obj instanceof Block){
 						registry.register((Block) obj);
-					}
-					if(obj instanceof BaseContainerBlock){
-						GameRegistry.registerTileEntity(((BaseContainerBlock) obj).getTileClass(), ((BaseContainerBlock) obj).getRegistryName());
+						if(obj instanceof BaseContainerBlock){
+							GameRegistry.registerTileEntity(((BaseContainerBlock) obj).getTileClass(), ((BaseContainerBlock) obj).getRegistryName());
+						}
 					}
 				}
 			}
 		}catch(IllegalAccessException ignored){}
-		
 	}
 	
 	public static void init() {

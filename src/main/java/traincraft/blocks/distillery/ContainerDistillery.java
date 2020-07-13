@@ -2,9 +2,9 @@ package traincraft.blocks.distillery;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.wrapper.InvWrapper;
+import net.minecraft.item.ItemStack;
 import traincraft.api.SlotInventory;
 
 public class ContainerDistillery extends Container {
@@ -15,14 +15,14 @@ public class ContainerDistillery extends Container {
     public ContainerDistillery(TileDistillery tile, EntityPlayer player) {
         this.tile = tile;
         this.player = player;
-        
-        IItemHandler inventory = tile.getInventory(null);
-        if(inventory instanceof InvWrapper){
-            this.addSlotToContainer(new SlotInventory(((InvWrapper) inventory).getInv(), TileDistillery.INPUT_SLOT, 56, 17));
-            this.addSlotToContainer(new SlotInventory(((InvWrapper) inventory).getInv(), TileDistillery.BURN_SLOT, 56, 53));
-            this.addSlotToContainer(new SlotInventory(((InvWrapper) inventory).getInv(), TileDistillery.OUTPUT_SLOT, 116, 60));
-            this.addSlotToContainer(new SlotInventory(((InvWrapper) inventory).getInv(), TileDistillery.CONTAINER_INPUT_SLOT, 123, 8));
-            this.addSlotToContainer(new SlotInventory(((InvWrapper) inventory).getInv(), TileDistillery.CONTAINER_OUTPUT_SLOT, 123, 33));
+    
+        IInventory inv = tile.getRealInventory();
+        if(inv != null){
+            this.addSlotToContainer(new SlotInventory(inv, TileDistillery.INPUT_SLOT, 56, 17));
+            this.addSlotToContainer(new SlotInventory(inv, TileDistillery.BURN_SLOT, 56, 53));
+            this.addSlotToContainer(new SlotInventory(inv, TileDistillery.OUTPUT_SLOT, 116, 60));
+            this.addSlotToContainer(new SlotInventory(inv, TileDistillery.CONTAINER_INPUT_SLOT, 123, 8));
+            this.addSlotToContainer(new SlotInventory(inv, TileDistillery.CONTAINER_OUTPUT_SLOT, 123, 33));
         }
         
         for(int x = 0; x < 3; ++x){
@@ -39,5 +39,10 @@ public class ContainerDistillery extends Container {
     @Override
     public boolean canInteractWith(EntityPlayer playerIn) {
         return true;
+    }
+    
+    @Override
+    public ItemStack transferStackInSlot(EntityPlayer playerIn, int index) {
+        return ItemStack.EMPTY; // todo distillery container shift click behaviour
     }
 }

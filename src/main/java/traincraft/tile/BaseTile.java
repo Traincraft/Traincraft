@@ -6,6 +6,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.Container;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
@@ -14,6 +15,8 @@ import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.server.management.PlayerChunkMapEntry;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.INBTSerializable;
@@ -34,6 +37,15 @@ public abstract class BaseTile extends TileEntity {
     
     private boolean sync = false;
     
+    @Override
+    public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newState) {
+        return oldState.getBlock() != newState.getBlock();
+    }
+    
+    public IInventory getRealInventory(){
+        return null;
+    }
+    
     public IItemHandler getInventory(@Nullable EnumFacing side){
         return null;
     }
@@ -53,7 +65,7 @@ public abstract class BaseTile extends TileEntity {
     protected final void updateBaseTile(){
         if(this.sync){
             this.sync = false;
-            if(!this.world.isRemote && this.world instanceof WorldServer){
+            if(this.world instanceof WorldServer){
                 SPacketUpdateTileEntity updatePacket = this.getUpdatePacket();
                 if(updatePacket != null){
                     PlayerChunkMapEntry entry = ((WorldServer) this.world).getPlayerChunkMap().getEntry(this.pos.getX() >> 4, this.getPos().getZ() >> 4);
@@ -132,6 +144,8 @@ public abstract class BaseTile extends TileEntity {
             IItemHandler inventory = this.getInventory(null);
             if(inventory instanceof InvWrapper && ((InvWrapper) inventory).getInv() instanceof INBTSerializable<?>){
                 ((INBTSerializable<NBTTagCompound>) ((InvWrapper) inventory).getInv()).deserializeNBT(inventoryNBT);
+            } else if(this.getRealInventory() != null && this.getRealInventory() instanceof INBTSerializable<?>){
+                ((INBTSerializable<NBTTagCompound>) this.getRealInventory()).deserializeNBT(inventoryNBT);
             }
         }
         if(nbt.hasKey("fluid_tank")){
@@ -148,6 +162,11 @@ public abstract class BaseTile extends TileEntity {
         IItemHandler inventory = this.getInventory(null);
         if(inventory instanceof InvWrapper && ((InvWrapper) inventory).getInv() instanceof INBTSerializable<?>){
             NBTBase value = ((INBTSerializable<?>) ((InvWrapper) inventory).getInv()).serializeNBT();
+            if(value instanceof NBTTagCompound){
+                nbt.setTag("inventory", value);
+            }
+        } else if(this.getRealInventory() != null && this.getRealInventory() instanceof INBTSerializable<?>){
+            NBTBase value = ((INBTSerializable<?>) this.getRealInventory()).serializeNBT();
             if(value instanceof NBTTagCompound){
                 nbt.setTag("inventory", value);
             }
