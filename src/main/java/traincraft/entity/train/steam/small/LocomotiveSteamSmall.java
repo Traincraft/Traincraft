@@ -86,16 +86,6 @@ public class LocomotiveSteamSmall extends LocomotiveSteam<LocomotiveSteamSmall> 
         return 0.8F;
     }
     
-    @Override
-    public Vec3d getFrontAxis(AbstractRollingStock<?> rollingStock) {
-        return null;
-    }
-    
-    @Override
-    public Vec3d getBackAxis(AbstractRollingStock<?> rollingStock) {
-        return null;
-    }
-    
     @Nullable
     @Override
     public GuiScreen openGui(@Nonnull AbstractRollingStock<?> rollingStock, @Nonnull EntityPlayer player) {

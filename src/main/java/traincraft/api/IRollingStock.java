@@ -133,25 +133,17 @@ public interface IRollingStock {
     double getMaxReverseSpeed(AbstractRollingStock<?> rollingStock);
     
     /**
-     * Gets the mass of the rolling stock.
+     * Gets the mass of the empty rolling stock.
      * This is used in acceleration and breaking calculations.
-     * Unit should be kilogram (kg)
+     * Unit should be kilogram (kg).
+     * Every player should add about 80-90kg to this.
+     * In Freight cars one block (itemblock) should add around (hardness*1000) kg per one block
+     * and all other items 100kg per stack.
      *
      * @param rollingStock This rolling stock
      * @return The mass
      */
     double getMass(AbstractRollingStock<?> rollingStock);
-    
-    /**
-     * Use this to add information to the train. This is used in the gui to show the stats.
-     * This should probably call the {@link net.minecraft.item.Item#addInformation(ItemStack, World, List, ITooltipFlag)}
-     * of the rolling stock item, to reduce code duplicates.
-     *
-     * @param rollingStock This rolling stock
-     * @param information A list of string representing a line of information
-     * @param flag Flag for the information (normal or advanced tooltip)
-     */
-    default void addInformation(AbstractRollingStock<?> rollingStock, List<String> information, ITooltipFlag flag){}
     
     /**
      * With this method you can add skins to your rolling stock.
@@ -296,24 +288,15 @@ public interface IRollingStock {
     boolean handlePlayerClickWithItem(@Nonnull AbstractRollingStock<?> rollingStock, @Nonnull EntityPlayer player, @Nonnull EnumHand hand, @Nonnull ItemStack stack, @Nonnull Vec3d hitVector);
     
     /**
-     * Gets the most front axis around the rolling stock should rotate.
-     * Returning null here or at the {@link #getBackAxis(AbstractRollingStock)} method
-     * will result in using the center point of the rolling stock as rotation point.
+     * Use this method to add an axis to a rolling stock.
+     * They get sorted on entity creation.
+     * The default axis is the center of the entity.
+     * The y-Axis can be ignored, since it doesn't matter.
      *
      * @param rollingStock This rolling stock
-     * @return The most front axis (The y-field of Vec2f is the z coordinate)
+     * @param axes The list of axes already registered
      */
-    Vec3d getFrontAxis(AbstractRollingStock<?> rollingStock);
-    
-    /**
-     * Gets the most back axis around the rolling stock should rotate.
-     * Returning null here or at the {@link #getFrontAxis(AbstractRollingStock)} method
-     * will result in using the center point of the rolling stock as rotation point.
-     *
-     * @param rollingStock This rolling stock
-     * @return The most back axis (The y-field of Vec2f is the z coordinate)
-     */
-    Vec3d getBackAxis(AbstractRollingStock<?> rollingStock);
+    default void addAxes(AbstractRollingStock<?> rollingStock, List<Vec3d> axes){}
     
     /**
      * This is used to check if this rollings stock can be connected to another rollings stock.

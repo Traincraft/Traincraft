@@ -52,7 +52,7 @@ public abstract class AbstractRollingStock<A extends AbstractRollingStock<A>> ex
     private double travelDistance = 0D;
     private Map<String, ResourceLocation> skins;
     private AbstractRollingStock<?> next, previous;
-    
+    private List<Vec3d> axes;
     private List<PassengerSeat> seats;
     
     public AbstractRollingStock(World worldIn) {
@@ -69,6 +69,9 @@ public abstract class AbstractRollingStock<A extends AbstractRollingStock<A>> ex
         
         this.skins = new HashMap<>();
         this.registerSkins(this, this.skins);
+        
+        this.axes = new ArrayList<>();
+        this.addAxes(this, this.axes);
         
         this.seats = new ArrayList<>();
         this.registerSeats(this, this.seats);
@@ -234,6 +237,7 @@ public abstract class AbstractRollingStock<A extends AbstractRollingStock<A>> ex
                 this.motionY -= 0.03999999910593033D;
             }
             
+            /*
             Vec3d positionVector = new Vec3d(this.posX, this.posY, this.posZ);
             Vec3d frontAxis = this.getFrontAxis(this);
             Vec3d backAxis = this.getBackAxis(this);
@@ -263,7 +267,7 @@ public abstract class AbstractRollingStock<A extends AbstractRollingStock<A>> ex
                 } else {
                     // todo @erwin derail movement
                 }
-            }
+            }*/
             
             this.doBlockCollisions();
             this.rotationPitch = 0.0F;

@@ -1,9 +1,14 @@
 package traincraft;
 
 import java.io.File;
+import java.nio.file.Path;
+import java.util.function.Predicate;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.IReloadableResourceManager;
+import net.minecraft.client.resources.IResourceManager;
+import net.minecraftforge.client.resource.IResourceType;
+import net.minecraftforge.client.resource.ISelectiveResourceReloadListener;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
@@ -25,6 +30,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import train.client.core.handlers.TCKeyHandler;
 import train.common.core.CommonProxy;
 import train.common.generation.WorldGenWorld;
+import traincraft.api.TraincraftAddonLoader;
 import traincraft.blocks.distillery.DistilleryRecipe;
 import traincraft.blocks.distillery.TileDistillery;
 import traincraft.capabilities.CapabilityWorldWind;
@@ -67,6 +73,8 @@ public class Traincraft {
 	
 	public static WorldGenWorld worldGen;
 	
+	public File gameDirectory;
+	
 	static {
 		FluidRegistry.enableUniversalBucket();
 	}
@@ -77,6 +85,7 @@ public class Traincraft {
 	
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
+		this.gameDirectory = event.getModConfigurationDirectory().getParentFile();
 		LOGGER.info("Starting Traincraft " + MOD_VERSION + "!");
 		/* Config handler */
 		configDirectory = event.getModConfigurationDirectory();
@@ -158,6 +167,9 @@ public class Traincraft {
 		proxy.registerVillagerSkin(ConfigHandler.TRAINCRAFT_VILLAGER_ID, "station_chief.png");
 		VillagerRegistry.instance().registerVillageTradeHandler(ConfigHandler.TRAINCRAFT_VILLAGER_ID, villageHandler);*/
 		
+		LOGGER.info("Loading addons");
+		TraincraftAddonLoader.loadFolders(new File(this.gameDirectory, "traincraft"));
+		
 		LOGGER.info("Finished Initialization");
 	}
 	
@@ -171,22 +183,13 @@ public class Traincraft {
 		LOGGER.info("Register ChunkHandler");
 		
 		LOGGER.info("Activation Mod Compatibility");
-		//LiquidManager.getLiquidsFromDictionnary();
-		if(Loader.isModLoaded("OpenComputers")){
-			LOGGER.info("OpenComputers integration successfully activated!");
-		}
-		LOGGER.info("Finished PostInitialization");
 		
 		if(evt.getSide().isClient()){
-			((IReloadableResourceManager) Minecraft.getMinecraft().getResourceManager()).registerReloadListener(resourceManager -> {
-				TileDistillery.DISTIL_RECIPES.clear();
-				ForgeRegistries.RECIPES.forEach(recipe -> {
-					if(recipe instanceof DistilleryRecipe){
-						TileDistillery.DISTIL_RECIPES.add((DistilleryRecipe) recipe);
-					}
-				});
-			});
+			LOGGER.info("Register Reload Listener");
+			((IReloadableResourceManager) Minecraft.getMinecraft().getResourceManager()).registerReloadListener(this::onResourceReload);
 		}
+		
+		LOGGER.info("Finished PostInitialization");
 	}
 	
 	@Mod.EventHandler
@@ -194,6 +197,16 @@ public class Traincraft {
 		CommonProxy.killAllStreams();
 	}
 
+	public void onResourceReload(IResourceManager resourceManager){
+		// add distillery recipes to new list
+		TileDistillery.DISTIL_RECIPES.clear();
+		ForgeRegistries.RECIPES.forEach(recipe -> {
+			if(recipe instanceof DistilleryRecipe){
+				TileDistillery.DISTIL_RECIPES.add((DistilleryRecipe) recipe);
+			}
+		});
+	}
+	
 	/*
 	@Mod.EventHandler
 	public void serverLoad(FMLServerStartingEvent event)

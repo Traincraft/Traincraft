@@ -71,5 +71,88 @@ The following shows a simple path on which features are gonna appear first. Nobo
 - [ ] Second Alpha version release, with most of the bugs found in alpha one fixed.
 
 - [ ] Implement all the rolling stock from 1.6.4, since the added 1.7.10 models and skins are removed, due to the artists not wanting them in Traincraft anymore.
+    - Most of them need new names with a general naming scheme
+    - Their implementation should be done through the use of the .json based model and TC API, to give examples for other addons
+    - [ ] Work Train
+    - [ ] Tender
+    - [ ] Freight Cart
+    - [ ] Steam Locomotive
+    - [ ] Small Steam Train
+    - [ ] Tracks Builder
+    - [ ] Caboose
+    - [ ] Grain Hopper
+    - [ ] Lava Tank Cart -> General fluid tank cart
+    - [ ] Log Transport
+    - [ ] Passenger Car
+    - [ ] BR E69
+    - [ ] Shunter (UK)
+    - [ ] VL10 (SU)
+    - [ ] Tram
+    - [ ] ChME3 (SU)
+    - [ ] Flat car
+    - [ ] Freight Wagon
+    - [ ] Open Wagon
+    - [ ] Tank Wagon (SU)
+    - [ ] Jukebox -> no mp3 implementation, only minecraft sounds from discs
+    - [ ] Stock Car
+    - [ ] Work Caboose
+    - [ ] Passenger Car
+    - [ ] Tank Wagon
+    - [ ] Passenger Car
+    - [ ] GP-7 (US)
+    - [ ] CD 742
+    - [ ] Flatcart (SU)
+    - [ ] Flatcart (US)
+    - [ ] Box Cart (US)
+    - [ ] Hopper Wagon (US)
+    - [ ] Tank Wagon (US)
+    - [ ] Platform Cart Wood (US)
+    - [ ] Freight Car (US)
+    - [ ] Small Freight Car
+    - [ ] Cherepanov (SU)
+    - [ ] Minecart
+    - [ ] Cart Hauler
+    - [ ] Tender
+    - [ ] Wood Transport
+    - [ ] Caboose
+    - [ ] Passenger Car
+    - [ ] Freight Car closed
+    - [ ] Freight Car
+    - [ ] Mogul (US)
+    - [ ] Forney (US)
+    - [ ] BR01 (DB)
+    - [ ] Mail Wagon (DB)
+    - [ ] Freight Wagon
+    - [ ] Pass. Cart - I Class (DB)
+    - [ ] Pass. Cart - II Class (DB)
+    - [ ] BR80 (DB)
+    - [ ] BR01's Tender (DB)
+    - [ ] Rail Transport (DB)
+    - [ ] Flat Car (DB)
+    - [ ] Log Transport (DB)
+    - [ ] Freight Gondola (DB)
+    - [ ] Tank Wagon (DB)
+    - [ ] SD70 Union Pacific (US)
+    - [ ] USSR 0-5-0
+    - [ ] USSR 0-5-0 Tender
+    - [ ] Freight Car
+    - [ ] Wood Transport
+    - [ ] Wood Transport
+    - [ ] Freight Trailer
+    - [ ] Freight Wellcar
+    - [ ] Kof (DB)
+    - [ ] V60 (DB)
+    - [ ] High Speed Car
+    - [ ] N.Y. Subway
+    - [ ] High Speed Locomotive
+    - [ ] C62 Class [JNR]
+    - [ ] Tender [JNR]
+    - [ ] Shay (US)
+    - [ ] Adler
+    - [ ] Adler Tender
+    - [ ] Adler Passenger Car
+    - [ ] Logging Caboose
+    - [ ] N.Y. Subway (passenger cart)
+    - [ ] SD40 Santa Fe (U.S.)
 - [ ] Fixing most of the alpha 2 bugs
 - [ ] First Beta release
