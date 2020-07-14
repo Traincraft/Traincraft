@@ -6,13 +6,12 @@ import com.google.gson.JsonParseException;
 import com.google.gson.JsonParser;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
+import org.apache.commons.io.FileUtils;
 import traincraft.Traincraft;
 import traincraft.renderer.TraincraftModel;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 public class TCUtil {
     
@@ -40,5 +39,19 @@ public class TCUtil {
             Traincraft.LOGGER.error(new FileNotFoundException(String.format("JTMT file not found! '%s'", locationPath)));
         }
         return EMPTY;
+    }
+    
+    public static TraincraftModel loadModelFromJTMT(JsonParser parser, String jtmtLocation){
+        try{
+            JsonElement jsonElement = parser.parse(FileUtils.readFileToString(new File(jtmtLocation), StandardCharsets.UTF_8));
+            if(jsonElement.isJsonObject()){
+                return new TraincraftModel(jsonElement.getAsJsonObject());
+            }  else {
+                Traincraft.LOGGER.error(new JsonParseException(String.format("JTMT file is not a json-object! '%s'", jtmtLocation)));
+            }
+        }catch(IOException e){
+            Traincraft.LOGGER.error("JTMT File '" + jtmtLocation + "' could not be loaded!", e);
+        }
+        return null;
     }
 }
