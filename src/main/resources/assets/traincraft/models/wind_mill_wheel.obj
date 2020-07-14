@@ -1,5 +1,6 @@
 # Blender v2.67 (sub 0) OBJ File: 'wind_mill_joint.blend'
 # www.blender.org
+mtllib wind_mill_wheel.mtl
 o Cube
 v -0.021490 -0.007661 0.123979
 v -0.021490 -0.007661 0.093240

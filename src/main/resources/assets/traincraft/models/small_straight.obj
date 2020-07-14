@@ -1,5 +1,6 @@
 # Blender v2.69 (sub 0) OBJ File: 'small_straight.blend'
 # www.blender.org
+mtllib small_straight.mtl
 o Cube
 v -0.523626 -0.075325 -1.000000
 v -0.523626 -0.075325 1.000000

@@ -1,5 +1,6 @@
 # Blender v2.67 (sub 0) OBJ File: 'water_wheel_joint_uv.blend'
 # www.blender.org
+mtllib water_wheel.mtl
 o Cube
 v 0.691891 1.834403 0.550952
 v 0.691891 1.834403 -0.554203
