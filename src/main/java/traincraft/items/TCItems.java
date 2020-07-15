@@ -98,6 +98,10 @@ public class TCItems {
 					Object obj = field.get(null);
 					if(obj instanceof Item){
 						registry.register((Item) obj);
+						
+						if(isClient){
+							ModelLoader.setCustomModelResourceLocation((Item) obj, 0, new ModelResourceLocation(((Item) obj).getRegistryName(), "inventory"));
+						}
 					}
 				}
 			}

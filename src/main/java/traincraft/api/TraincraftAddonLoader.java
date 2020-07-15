@@ -20,14 +20,16 @@ public class TraincraftAddonLoader {
     private static final JsonParser JSON_PARSER = new JsonParser();
     
     public static void loadFolders(File rootDirectory){
-        for(File file : FileUtils.listFiles(rootDirectory, new String[]{"json"}, true)){
-            try{
-                JsonElement jsonElement = JSON_PARSER.parse(FileUtils.readFileToString(file, StandardCharsets.UTF_8));
-                if(jsonElement.isJsonObject()){
-                    loadTrainJson(jsonElement.getAsJsonObject());
+        if(rootDirectory.exists()){
+            for(File file : FileUtils.listFiles(rootDirectory, new String[]{"json"}, true)){
+                try{
+                    JsonElement jsonElement = JSON_PARSER.parse(FileUtils.readFileToString(file, StandardCharsets.UTF_8));
+                    if(jsonElement.isJsonObject()){
+                        loadTrainJson(jsonElement.getAsJsonObject());
+                    }
+                } catch(IOException e){
+                    Traincraft.LOGGER.error("Addon file '" + file.getAbsolutePath() + "' could not be read!", e);
                 }
-            } catch(IOException e){
-                Traincraft.LOGGER.error("Addon file '" + file.getAbsolutePath() + "' could not be read!", e);
             }
         }
     }

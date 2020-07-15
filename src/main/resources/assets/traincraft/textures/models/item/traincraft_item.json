@@ -1,0 +1,4 @@
+{
+  "parent": "item/generated",
+  "transform": "forge:default-item"
+}

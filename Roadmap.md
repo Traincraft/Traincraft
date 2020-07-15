@@ -42,6 +42,7 @@ The following shows a simple path on which features are gonna appear first. Nobo
     - [ ] Train Workbench
     - [ ] Water Wheel
     - [ ] Wind Mill
+        - A custom Capability was added to address the wind speed
     - Including recipe handling over .json (To support the vanilla based system)
 - [ ] Implement driving physics for TrackAPI compatible rails (**Help is needed**)
 - [ ] Implement linked rolling stock
