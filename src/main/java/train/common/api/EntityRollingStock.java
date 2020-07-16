@@ -68,7 +68,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 	protected EntityPlayer playerEntity;
 
 	/** Axis aligned bounding box. */
-	private AxisAlignedBB boundingBoxSmall;
+	//private AxisAlignedBB boundingBoxSmall;
 
 	public float maxSpeed;
 	public float railMaxSpeed;
@@ -179,7 +179,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 		isImmuneToFire = true;
 		//field_70499_f = false;
 
-		//setSize(0.98F, 1.98F);
+		setSize(0.98F, 2.15F);
 		//yOffset = 0;
 		//ySize = 0.98F;
 		yOffset = 0.65f;
@@ -188,9 +188,9 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 
 		entityCollisionReduction = 0.8F;
 
-		boundingBoxSmall = AxisAlignedBB.getBoundingBox(0.0D, 0.0D, 0.0D, 0.0D, 2.0D, 1.0D);
+		//boundingBoxSmall = AxisAlignedBB.getBoundingBox(0.0D, 0.0D, 0.0D, 0.0D, 2.0D, 1.0D);
 		//setBoundingBoxSmall(0.0D, 0.0D, 0.0D, 0.98F, 0.7F);
-		setBoundingBoxSmall(0.0D, 0.0D, 0.0D, 2.0F, 1.0F);
+		setBoundingBoxSmall(0.0D, 0.0D, 0.0D, 2.0F, 1.5F);
 		RollingStock = new ArrayList<EntityRollingStock>();
 		handleOverheating = new HandleOverheating(this);
 
@@ -300,7 +300,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 
 	@Override
 	public AxisAlignedBB getCollisionBox(Entity entity) {
-		return null;
+		return getBoundingBox();
 	}
 
 	@Override
@@ -952,7 +952,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 			 flag = false;
 			 flag1 = false;
 			 if (l == Blocks.golden_rail) {
-				 flag = (worldObj.getBlockMetadata(i, j, k) & 8) != 0;
+				 flag = ((BlockRailBase)worldObj.getBlock(i, j, k)).getBasicRailMetadata(worldObj, this,i,j,k) != 0;
 				 flag1 = !flag;
 				 if (i1 == 8) {i1 = 0;}
 				 else if (i1 == 9) {i1 = 1;}
@@ -2249,12 +2249,12 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 
 	@Override
 	protected void  func_145775_I() {
-		int var1 = MathHelper.floor_double(this.boundingBoxSmall.minX + 0.001D);
-		int var2 = MathHelper.floor_double(this.boundingBoxSmall.minY + 0.001D);
-		int var3 = MathHelper.floor_double(this.boundingBoxSmall.minZ + 0.001D);
-		int var4 = MathHelper.floor_double(this.boundingBoxSmall.maxX - 0.001D);
-		int var5 = MathHelper.floor_double(this.boundingBoxSmall.maxY - 0.001D);
-		int var6 = MathHelper.floor_double(this.boundingBoxSmall.maxZ - 0.001D);
+		int var1 = MathHelper.floor_double(this.getBoundingBox().minX + 0.001D);
+		int var2 = MathHelper.floor_double(this.getBoundingBox().minY + 0.001D);
+		int var3 = MathHelper.floor_double(this.getBoundingBox().minZ + 0.001D);
+		int var4 = MathHelper.floor_double(this.getBoundingBox().maxX - 0.001D);
+		int var5 = MathHelper.floor_double(this.getBoundingBox().maxY - 0.001D);
+		int var6 = MathHelper.floor_double(this.getBoundingBox().maxZ - 0.001D);
 
 		if (this.worldObj.checkChunksExist(var1, var2, var3, var4, var5, var6)) {
 			for (int var7 = var1; var7 <= var4; ++var7) {
@@ -2273,7 +2273,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 
 	private void setBoundingBoxSmall(double par1, double par3, double par5, float width, float height) {
 		float var7 = width * 0.5F;
-		this.boundingBoxSmall.setBounds(par1 - var7, par3 - this.yOffset + this.ySize, par5 - var7, par1 + var7, par3 - this.yOffset + this.ySize + height, par5 + var7);
+		this.boundingBox.setBounds(par1 - var7, par3 , par5 - var7, par1 + var7, par3 + height, par5 + var7);
 	}
 
 	public float getYaw() {
