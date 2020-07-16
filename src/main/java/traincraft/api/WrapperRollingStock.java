@@ -6,10 +6,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import traincraft.renderer.TraincraftModel;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class WrapperRollingStock {
     
@@ -156,6 +153,27 @@ public class WrapperRollingStock {
     
     public void addAxis(Vec3d axis){
         this.axes.add(axis);
+    }
+    
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", WrapperRollingStock.class.getSimpleName() + "[", "]")
+            .add("name='" + name + "'")
+            .add("description=" + description)
+            .add("model=" + model)
+            .add("modelScale=" + modelScale)
+            .add("modelOffset=" + modelOffset)
+            .add("modelRotation=" + modelRotation)
+            .add("size=" + size)
+            .add("acceleration=" + acceleration)
+            .add("breakPower=" + breakPower)
+            .add("maxSpeed=" + maxSpeed)
+            .add("maxReverseSpeed=" + maxReverseSpeed)
+            .add("mass=" + mass)
+            .add("skins=" + skins)
+            .add("seats=" + seats)
+            .add("axes=" + axes)
+            .toString();
     }
     
     private class WrapperRollingStockEntityImpl extends AbstractRollingStock<WrapperRollingStockEntityImpl> {

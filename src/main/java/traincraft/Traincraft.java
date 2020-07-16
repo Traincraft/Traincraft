@@ -167,8 +167,11 @@ public class Traincraft {
 		proxy.registerVillagerSkin(ConfigHandler.TRAINCRAFT_VILLAGER_ID, "station_chief.png");
 		VillagerRegistry.instance().registerVillageTradeHandler(ConfigHandler.TRAINCRAFT_VILLAGER_ID, villageHandler);*/
 		
-		LOGGER.info("Loading addons");
-		TraincraftAddonLoader.loadFolders(new File(this.gameDirectory, "traincraft"));
+		File addonRoot = new File(this.gameDirectory, "traincraft");
+		LOGGER.info("Loading internal files");
+		TraincraftAddonLoader.loadInternals(event.getSide(), MOD_ID, addonRoot);
+		LOGGER.info("Loading external addons");
+		TraincraftAddonLoader.loadFolders(event.getSide(), addonRoot);
 		
 		LOGGER.info("Finished Initialization");
 	}

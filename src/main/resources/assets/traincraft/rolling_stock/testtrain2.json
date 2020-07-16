@@ -1,0 +1,11 @@
+{
+  "name": "Test Train",
+  "desc": [],
+  "model": {
+
+  },
+
+  "skins": {
+    "test2": "traincraft:textures/rolling_stock/trains/steam/small_blue"
+  }
+}
