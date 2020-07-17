@@ -300,7 +300,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 
 	@Override
 	public AxisAlignedBB getCollisionBox(Entity entity) {
-		return getBoundingBox();
+		return null;
 	}
 
 	@Override
