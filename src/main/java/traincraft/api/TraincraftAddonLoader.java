@@ -1,5 +1,7 @@
 package traincraft.api;
 
+import com.google.common.collect.BiMap;
+import com.google.common.collect.ListMultimap;
 import com.google.common.collect.Sets;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
@@ -7,15 +9,23 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.resources.IResourcePack;
 import net.minecraft.client.resources.data.IMetadataSection;
 import net.minecraft.client.resources.data.MetadataSerializer;
+import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.fml.client.FMLClientHandler;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.ModContainer;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import traincraft.Traincraft;
+import traincraft.entity.TCEntities;
+import traincraft.renderer.RendererRollingStock;
 
 import javax.annotation.Nullable;
 import java.awt.image.BufferedImage;
@@ -36,6 +46,8 @@ public class TraincraftAddonLoader {
     
     private static final Gson GSON = new Gson();
     private static final JsonParser JSON_PARSER = new JsonParser();
+    private static ListMultimap<ModContainer, EntityRegistry.EntityRegistration> entityRegistrationMultimap;
+    private static BiMap<Class<? extends Entity>, EntityRegistry.EntityRegistration> entityRegistrationMap;
     @SideOnly(Side.CLIENT)
     private static TCRL traincraftResourceLoader = null;
     
@@ -55,61 +67,83 @@ public class TraincraftAddonLoader {
     }
     
     public static void loadInternals(Side side, String modId, File rootDirectory) {
-    
+        String path = String.format("/assets/" + modId + "/rolling_stock");
         try{
-            URI uri = TraincraftAddonLoader.class.getResource("/assets").toURI();
+            URI uri = TraincraftAddonLoader.class.getResource(path).toURI();
             Path myPath;
             if (uri.getScheme().equals("jar")) {
                 FileSystem fileSystem = FileSystems.newFileSystem(uri, Collections.emptyMap());
-                myPath = fileSystem.getPath("/assets");
+                myPath = fileSystem.getPath(path);
             } else {
                 myPath = Paths.get(uri);
             }
             Stream<Path> walk = Files.walk(myPath, 10);
-            for (Iterator<Path> it = walk.iterator(); it.hasNext();){
-                System.out.println(it.next());
-            }
-            FMLCommonHandler.instance().exitJava(0, false);
+            walk.filter(path1 -> FilenameUtils.isExtension(path1.toString(), "json")).forEach(path1 -> {
+                try{
+                    JsonElement jsonElement = JSON_PARSER.parse(new String(Files.readAllBytes(path1), StandardCharsets.UTF_8));
+                    if(jsonElement.isJsonObject()){
+                        loadTrainJson(side, path1.toFile(), jsonElement.getAsJsonObject());
+                    }
+                }catch(IOException e){
+                    e.printStackTrace();
+                }
+            });
         }catch(URISyntaxException e){
             e.printStackTrace();
         }catch(IOException e){
             e.printStackTrace();
         }
-        
-        
-        /*
-        CodeSource codeSource = TraincraftAddonLoader.class.getProtectionDomain().getCodeSource();
-        List<String> files = new ArrayList<>();
-        if(codeSource != null){
-            try{
-                URL jarFile = codeSource.getLocation();
-                ZipInputStream zip = new ZipInputStream(jarFile.openStream());
-                ZipEntry ze;
+    }
     
-                while((ze = zip.getNextEntry()) != null){
-                    String entryName = ze.getName();
-                    if(entryName.startsWith("assets/" + modId + "/rolling_stock/") && entryName.endsWith(".json")){
-                        files.add(entryName);
-                    }
-                }
-            }catch(IOException e){
+    // create entity and item
+    private static void registerWrapper(Side side, WrapperRollingStock wrapper){
+        ModContainer mc = FMLCommonHandler.instance().findContainerFor(Traincraft.INSTANCE);
+        ResourceLocation resourceLocation = wrapper.getId();
+        Class<? extends WrapperRollingStock.WrapperRollingStockEntityImpl> clazz = wrapper.createEntity(null).getClass();
+        EntityRegistry.EntityRegistration er = EntityRegistry.instance().new EntityRegistration(mc,
+            resourceLocation,
+            clazz,
+            resourceLocation.getPath(),
+            TCEntities.entityIds++,
+            64,
+            1,
+            true,
+            wrapper::createEntity);
+        
+        if(entityRegistrationMap == null){
+            // Reflection to get the map from "EntityRegistry.class"
+            try{
+                Field entityClassRegistrations = ReflectionHelper.findField(EntityRegistry.class, "entityClassRegistrations");
+                entityRegistrationMap = (BiMap<Class<? extends Entity>, EntityRegistry.EntityRegistration>) entityClassRegistrations.get(EntityRegistry.instance());
+            } catch(IllegalAccessException | ReflectionHelper.UnableToFindFieldException e){
                 e.printStackTrace();
             }
+    
+        }
+    
+        if(entityRegistrationMultimap == null){
+            // Reflection to get the map from "EntityRegistry.class"
+            try{
+                Field entityClassRegistrations = ReflectionHelper.findField(EntityRegistry.class, "entityRegistrations");
+                entityRegistrationMultimap = (ListMultimap<ModContainer, EntityRegistry.EntityRegistration>) entityClassRegistrations.get(EntityRegistry.instance());
+            } catch(IllegalAccessException | ReflectionHelper.UnableToFindFieldException e){
+                e.printStackTrace();
+            }
+        
         }
         
-        if(!files.isEmpty()){
-            for(String path : files){
-                InputStream is = TraincraftAddonLoader.class.getResourceAsStream(path);
-                if(is != null){
-                    JsonElement jsonElement = JSON_PARSER.parse(new InputStreamReader(is));
-                    if(jsonElement.isJsonObject()){
-                        loadTrainJson(side, rootDirectory, jsonElement.getAsJsonObject());
-                    }
-                } else {
-                    Traincraft.LOGGER.error("Addon path '" + path + "' could not be read!");
-                }
-            }
-        }*/
+        if(entityRegistrationMap != null){
+            entityRegistrationMap.put(clazz, er);
+        }
+        ForgeRegistries.ENTITIES.register(new CustomEntityEntry<>(wrapper, resourceLocation.getPath()));
+        if(entityRegistrationMultimap != null){
+            entityRegistrationMultimap.put(mc, er);
+        }
+        
+        if(side == Side.CLIENT){
+            RenderingRegistry.registerEntityRenderingHandler(clazz, RendererRollingStock::new);
+        }
+        System.out.println("Registered: " + wrapper);
     }
     
     private static void loadTrainJson(Side side, File file, JsonObject root){
@@ -139,6 +173,12 @@ public class TraincraftAddonLoader {
     
     private static void loadRollingStock(Side side, File file, JsonObject root, WrapperRollingStock wrapper){
         // general information
+        if(root.has("id")){
+            wrapper.setId(new ResourceLocation(root.get("id").getAsString()));
+        } else {
+            Traincraft.LOGGER.error(String.format("Can't load rolling stock from '%s': Missing id", file));
+            return;
+        }
         if(root.has("name")){
             wrapper.setName(root.get("name").getAsString());
         }
@@ -156,7 +196,12 @@ public class TraincraftAddonLoader {
         if(root.has("model") && root.get("model").isJsonObject()){
             JsonObject model = root.get("model").getAsJsonObject();
             if(model.has("location")){
-                wrapper.setModel(TCUtil.loadModelFromJTMT(JSON_PARSER, model.get("location").getAsString()));
+                String location = model.get("location").getAsString();
+                if(FilenameUtils.isExtension(location, new String[]{"json", "jtmt"})){
+                    wrapper.setModel(TCUtil.loadModelFromJTMT(JSON_PARSER, location));
+                } else {
+                    wrapper.setModel(TCUtil.loadModelFromJTMT(new ResourceLocation(location)));
+                }
             }
             if(model.has("scale")){
                 if(model.get("scale").isJsonArray()){ // array with 3 double as x, y, z
@@ -237,8 +282,7 @@ public class TraincraftAddonLoader {
             }
         }
     
-        System.out.println(wrapper);
-        
+        registerWrapper(side, wrapper);
     }
     
     // CLIENT ONLY!

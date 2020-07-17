@@ -12,12 +12,12 @@ import traincraft.renderer.RendererRollingStock;
 
 public class TCEntities {
     
-    private static int entityIds = 0;
+    public static int entityIds = 0;
     
     public static void registerEntities(FMLPreInitializationEvent event){
         Traincraft.LOGGER.info("Registering Entities (Trains)");
         
-        register(event, new ResourceLocation(Traincraft.MOD_ID, "locomotive_steam_small"), LocomotiveSteamSmall.class);
+        //register(event, new ResourceLocation(Traincraft.MOD_ID, "locomotive_steam_small"), LocomotiveSteamSmall.class);
         
         Traincraft.LOGGER.info(String.format("Registered %d Entities", entityIds));
     }

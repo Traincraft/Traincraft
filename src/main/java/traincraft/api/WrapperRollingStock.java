@@ -10,6 +10,7 @@ import java.util.*;
 
 public class WrapperRollingStock {
     
+    private ResourceLocation id;
     private String name;
     private List<String> description = new ArrayList<>();
     
@@ -22,17 +23,25 @@ public class WrapperRollingStock {
     private List<PassengerSeat> seats = new ArrayList<>();
     private List<Vec3d> axes = new ArrayList<>();
     
-    public AbstractRollingStock<?> createEntity(World world){
+    public WrapperRollingStockEntityImpl createEntity(World world){
         return new WrapperRollingStockEntityImpl(world);
     }
     
-    public AbstractRollingStock<?> createEntity(World world, double x, double y, double z){
+    public WrapperRollingStockEntityImpl createEntity(World world, double x, double y, double z){
         return new WrapperRollingStockEntityImpl(world, x, y, z);
     }
     
     // todo to be implemented
     public Item createItem(){
         return null;
+    }
+    
+    public ResourceLocation getId() {
+        return id;
+    }
+    
+    public void setId(ResourceLocation id) {
+        this.id = id;
     }
     
     public void setName(String name) {
@@ -176,7 +185,7 @@ public class WrapperRollingStock {
             .toString();
     }
     
-    private class WrapperRollingStockEntityImpl extends AbstractRollingStock<WrapperRollingStockEntityImpl> {
+    public class WrapperRollingStockEntityImpl extends AbstractRollingStock<WrapperRollingStockEntityImpl> {
         
         public WrapperRollingStockEntityImpl(World world) {
             super(world);

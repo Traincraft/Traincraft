@@ -1,0 +1,10 @@
+{
+  "id": "traincraft:locomotive_steam_small",
+  "name": "Small Steam Locomotive",
+  "desc": [
+    "Just a tiny little steam train"
+  ],
+  "model": {
+    "location": "traincraft:rolling_stock/train/steam/steam_train"
+  }
+}
