@@ -39,7 +39,7 @@ Traincraft has had well over **1,000,000 downloads** and has been in development
 > As of late, **Spitfire4466** and **Mrbrutal** have had little time to work on Traincraft. Open-sourcing the mod was the only viable option that would ensure it's continuation. Message from **Mrbrutal**: I have never open-sourced a project on this level or size, and am a bit hesitant to do so. However, in the hopes that we can make Traincraft great again (no this is not a Trump reference) and that I can still be a part of this, I have open-sourced both versions of Traincraft  here on Github. Anyone that is willing to contribute can contribute as long as they have signed the CLA (scroll down).
 
 ## Contributing
-The Traincraft project welcomes contributions from anyone, provided they have signed the Contributor Licensing Agreement (CLA) found [here](https://cla-assistant.io/Mrbrutal/Traincraft).  
+The Traincraft project welcomes contributions from anyone, provided they have signed the Contributor Licensing Agreement (CLA) found [here](https://cla-assistant.io/Traincraft/Traincraft).  
 
 1. To start developing, fork this branch (e.g.: `git clone https://github.com/Traincraft/Traincraft -b 1.12.2-rewrite`) and import the build.gradle file as project into your ide.  
 2. After Forge is done setting everything up, you have to run `gradlew genEclipseRuns`,`gradlew genIntelliJRuns` or `gradlew genVCRuns` to generate the correct run files.  
