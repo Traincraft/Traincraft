@@ -23,6 +23,4 @@ public class BaseItem extends Item{
         itemAction.accept(this);
     }
     
-    
-
 }

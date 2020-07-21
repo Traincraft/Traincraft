@@ -4,7 +4,7 @@
     "item": "traincraft:ore_oil_sand"
   },
   "output": {
-    "item": "traincraft:raw_plastic"
+    "item": "traincraft:plastic"
   },
   "fluid": {
     "name": "traincraft:oil",

@@ -1,0 +1,6 @@
+{
+  "parent": "traincraft:item/traincraft_item",
+  "textures": {
+    "layer0": "traincraft:items/armor/driver_hat"
+  }
+}

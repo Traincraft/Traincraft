@@ -2,11 +2,18 @@ package traincraft;
 
 import java.io.File;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.client.resources.IReloadableResourceManager;
 import net.minecraft.client.resources.IResourceManager;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemArmor;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.client.resource.IResourceType;
 import net.minecraftforge.client.resource.ISelectiveResourceReloadListener;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -64,6 +71,27 @@ public class Traincraft {
 		@Override
 		public ItemStack createIcon() {
 			return new ItemStack(TCItems.CANISTER);
+		}
+		
+		@Override
+		public void displayAllRelevantItems(NonNullList<ItemStack> stacks) {
+			List<Item> blocks = new ArrayList<>();
+			List<Item> armor = new ArrayList<>();
+			List<Item> items = new ArrayList<>();
+			for(Item item : ForgeRegistries.ITEMS){
+				if(item.getRegistryName() != null && item.getRegistryName().getNamespace().equals(MOD_ID)){
+					if(item instanceof ItemBlock){
+						blocks.add(item);
+					} else if(item instanceof ItemArmor){
+						armor.add(item);
+					} else {
+						items.add(item);
+					}
+				}
+			}
+			blocks.forEach(item -> item.getSubItems(this, stacks));
+			armor.forEach(item -> item.getSubItems(this, stacks));
+			items.forEach(item -> item.getSubItems(this, stacks));
 		}
 	};
 	
@@ -141,6 +169,15 @@ public class Traincraft {
 		TC_NETWORK.registerMessage(PacketTraincraftEntity.class, PacketTraincraftEntity.class, 1, Side.CLIENT);
 		
 		if(event.getSide() == Side.CLIENT){
+			LOGGER.info("Register item color handler");
+			for(Item item : ForgeRegistries.ITEMS){
+				if(item.getRegistryName() != null && item.getRegistryName().getNamespace().equals(MOD_ID)){
+					if(item instanceof IItemColor){
+						Minecraft.getMinecraft().getItemColors().registerItemColorHandler((IItemColor) item, item);
+					}
+				}
+			}
+			
 			LOGGER.info("Register Keys");
 			
 		}

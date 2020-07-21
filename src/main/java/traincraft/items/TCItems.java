@@ -7,7 +7,9 @@
 
 package traincraft.items;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -35,12 +37,12 @@ public class TCItems {
 	public static final BaseItem STEEL_DUST = new BaseItem("steel_dust");
 	public static final BaseItem COAL_DUST = new BaseItem("coal_dust");
 	public static final BaseItem GRAPHITE = new BaseItem("graphite");
-	public static final BaseItem FIRE_BOX = new BaseItem("fire_box");
-	public static final BaseItem BOGIE = new BaseItem("bogie");
+	public static final BaseItem STEEL_FIREBOX = new BaseItem("steel_firebox");
+	public static final BaseItem STEEL_BOGIE = new BaseItem("steel_bogie");
 	public static final BaseItem STEEL_FRAME = new BaseItem("steel_frame");
 	public static final BaseItem STEEL_CABIN = new BaseItem("steel_cabin");
 	public static final BaseItem STEEL_CHIMNEY = new BaseItem("steel_chimney");
-	public static final BaseItem RAW_PLASTIC = new BaseItem("raw_plastic");
+	public static final BaseItem PLASTIC = new BaseItem("plastic");
 	/*
 	balloon
 	propeller
@@ -73,15 +75,15 @@ public class TCItems {
 	 */
 	public static final ItemChunkLoaderActivator CHUNK_LOADER_ACTIVATOR = new ItemChunkLoaderActivator();
 	
-	public static final ItemArmorOverall OVERALL = new ItemArmorOverall();
+	public static final ItemArmorOveralls OVERALL = new ItemArmorOveralls();
 	public static final ItemArmorJacket JACKET = new ItemArmorJacket();
 	public static final ItemArmorHat HAT = new ItemArmorHat();
-	public static final ItemArmorTicketmanJacket TICKETMAN_JACKET = new ItemArmorTicketmanJacket();
-	public static final ItemArmorTicketmanPants TICKETMAN_PANTS = new ItemArmorTicketmanPants();
-	public static final ItemArmorTicketmanHat TICKETMAN_HAT = new ItemArmorTicketmanHat();
-	public static final ItemArmorDriverJacket DRIVER_JACKET = new ItemArmorDriverJacket();
-	public static final ItemArmorDriverPants DRIVER_PANTS = new ItemArmorDriverPants();
-	public static final ItemArmorDriverHat DRIVER_HAT = new ItemArmorDriverHat();
+	public static final BaseColorableArmor TICKETMAN_JACKET = new BaseColorableArmor(BaseColorableArmor.TICKETMAN, EntityEquipmentSlot.CHEST, "armor_ticketman_jacket", "ticketman", BaseColorableArmor.TICKETMAN_JACKET_DEFAULT_COLOR, true);
+	public static final BaseColorableArmor TICKETMAN_PANTS = new BaseColorableArmor(BaseColorableArmor.TICKETMAN, EntityEquipmentSlot.LEGS, "armor_ticketman_pants", "ticketman_pants", BaseColorableArmor.TICKETMAN_PANTS_DEFAULT_COLOR, true);
+	public static final BaseColorableArmor TICKETMAN_HAT = new BaseColorableArmor(BaseColorableArmor.TICKETMAN, EntityEquipmentSlot.HEAD, "armor_ticketman_hat", "ticketman", BaseColorableArmor.TICKETMAN_HAT_DEFAULT_COLOR, true);
+	public static final BaseColorableArmor DRIVER_JACKET = new BaseColorableArmor(BaseColorableArmor.DRIVER, EntityEquipmentSlot.CHEST, "armor_driver_jacket", "driver", BaseColorableArmor.DRIVER_JACKET_DEFAULT_COLOR, true);
+	public static final BaseColorableArmor DRIVER_PANTS = new BaseColorableArmor(BaseColorableArmor.DRIVER, EntityEquipmentSlot.LEGS, "armor_driver_pants", "driver_pants", BaseColorableArmor.DRIVER_PANTS_DEFAULT_COLOR, true);
+	public static final BaseColorableArmor DRIVER_HAT = new BaseColorableArmor(BaseColorableArmor.DRIVER, EntityEquipmentSlot.HEAD, "armor_driver_hat", "driver", BaseColorableArmor.DRIVER_HAT_DEFAULT_COLOR, true);
 	public static final ItemArmorCompositeSuit COMPOSITE_SUIT_HEAD = new ItemArmorCompositeSuit(EntityEquipmentSlot.HEAD);
 	public static final ItemArmorCompositeSuit COMPOSITE_SUIT_CHEST = new ItemArmorCompositeSuit(EntityEquipmentSlot.CHEST);
 	public static final ItemArmorCompositeSuit COMPOSITE_SUIT_PANTS = new ItemArmorCompositeSuit(EntityEquipmentSlot.LEGS);

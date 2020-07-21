@@ -19,6 +19,7 @@ public class ItemArmorJacket extends ItemArmor {
     public ItemArmorJacket() {
         super(ARMOR_MATERIAL, 0, EntityEquipmentSlot.CHEST);
         this.setRegistryName(Traincraft.MOD_ID, "armor_jacket");
+        this.setTranslationKey(this.getRegistryName().toString());
     
         this.setCreativeTab(Traincraft.TAB);
     }
@@ -26,31 +27,7 @@ public class ItemArmorJacket extends ItemArmor {
     @Nullable
     @Override
     public String getArmorTexture(ItemStack stack, Entity entity, EntityEquipmentSlot slot, String type) {
-        return Traincraft.MOD_ID + ":textures/armor/jacket.png";
+        return Traincraft.MOD_ID + ":textures/armor/orange_jacket.png";
     }
     
-    @Override
-    public boolean hasColor(ItemStack stack) {
-        return stack.hasTagCompound() && stack.getTagCompound().hasKey("color", Constants.NBT.TAG_INT);
-    }
-    
-    @Override
-    public int getColor(ItemStack stack) {
-        return stack.getTagCompound().getInteger("color");
-    }
-    
-    @Override
-    public void removeColor(ItemStack stack) {
-        stack.getTagCompound().removeTag("color");
-        if(stack.getTagCompound().isEmpty()){
-            stack.setTagCompound(null);
-        }
-    }
-    
-    @Override
-    public void setColor(ItemStack stack, int color) {
-        NBTTagCompound nbt = stack.hasTagCompound() ? stack.getTagCompound() : new NBTTagCompound();
-        nbt.setInteger("color", color);
-        stack.setTagCompound(nbt);
-    }
 }
