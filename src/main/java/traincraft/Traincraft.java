@@ -36,6 +36,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import train.client.core.handlers.TCKeyHandler;
 import train.common.core.CommonProxy;
+import train.common.core.handlers.OreHandler;
 import train.common.generation.WorldGenWorld;
 import traincraft.api.TraincraftAddonLoader;
 import traincraft.blocks.distillery.DistilleryRecipe;
@@ -183,7 +184,8 @@ public class Traincraft {
 		}
 		
 		/* Ore dictionary */
-		//OreHandler.registerOres();
+		LOGGER.info("Register Ores into OreDictionary");
+		OreHandler.registerOres();
 		
 		/* Recipes */
 		LOGGER.info("Initialize Recipes");

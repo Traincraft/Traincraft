@@ -34,6 +34,7 @@ public class TCItems {
 	public static final ItemSkinChanger SKIN_CHANGER = new ItemSkinChanger();
 	public static final ItemCanister CANISTER = new ItemCanister();
 	public static final ItemConnector CONNECTOR = new ItemConnector();
+	public static final BaseItem STEEL_INGOT = new BaseItem("steel_ingot");
 	public static final BaseItem STEEL_DUST = new BaseItem("steel_dust");
 	public static final BaseItem COAL_DUST = new BaseItem("coal_dust");
 	public static final BaseItem GRAPHITE = new BaseItem("graphite");
@@ -43,6 +44,7 @@ public class TCItems {
 	public static final BaseItem STEEL_CABIN = new BaseItem("steel_cabin");
 	public static final BaseItem STEEL_CHIMNEY = new BaseItem("steel_chimney");
 	public static final BaseItem PLASTIC = new BaseItem("plastic");
+	public static final BaseItem COPPER_INGOT = new BaseItem("copper_ingot");
 	/*
 	balloon
 	propeller
@@ -61,13 +63,11 @@ public class TCItems {
 	ironFrame
 	ironBogie
 	ironCab
-	steel
 	seats
 	transformer
 	controls
 	transmition
 	generator
-	ingotCopper
 	copperWireFine
 	electronicCircuit
 	reinforcedPlastic
