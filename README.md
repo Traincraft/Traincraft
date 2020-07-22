@@ -43,8 +43,11 @@ The Traincraft project welcomes contributions from anyone, provided they have si
 
 1. To start developing, fork this branch (e.g.: `git clone https://github.com/Traincraft/Traincraft -b 1.12.2-rewrite`) and import the build.gradle file as project into your ide.  
 2. After Forge is done setting everything up, you have to run `gradlew genEclipseRuns`,`gradlew genIntelliJRuns` or `gradlew genVCRuns` to generate the correct run files.  
-* Before running, you have to manually add the "TrackAPI" mod and "CyclopsCore" to the "mods" directories under "run" and "run_server" (you may have to create the mods folder).
-* After the first launch and for every resource change, you have to copy "build/resources/main/assets" to "build/classes/java/assets". This is a bug with the current forgegradle version under 1.12.2
+3. If you are using IntelliJ, you will need to go to File -> Settings -> Build, Execution, Deployment -> Build Tools -> Gradle and change the "Build and Run Using" and "Run Tests Using" to IntelliJ
+4. (Also for IntelliJ) Then go to File -> Project Structure and set the compiler output path to the build folder
+5. (Still IntelliJ) Finally, File -> Invalidate Caches/Restart and hit Invalidate and Restart. 
+    * This should fix the issue with resources going into the wrong place
+* Before running, you have to manually add the "TrackAPI" mod to the "mods" directories under "run" and "run_server" (you may have to create the mods folder).
 * For more information on getting set up, read [the Forge Getting Started page](https://mcforge.readthedocs.io/en/latest/gettingstarted/)
 
 ## License
