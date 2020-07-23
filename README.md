@@ -33,7 +33,7 @@ Traincraft is a [Minecraft](https://minecraft.net/) mod built using [Minecraft F
 
 Traincraft alters the looks of and adds new functionality to various aspects of the game. It adds over 80 trains, wagons, and other vehicles as well as a new railway system with curved tracks and slopes.  
 Traincraft was originally created by **Spitfire4466**, then jointly developed with **Mrbrutal**, and subsequently maintained by **Mrbrutal**. In June 2020 **canitzp** has been declared as an owner too.   
-Traincraft has had well over **1,000,000 downloads** and has been in development since Minecraft 1.2.5.
+Traincraft has had well over **1,000,000 downloads** and has been in development since Minecraft 1.1.0 (and even earlier).
 
 ## Why did **Mrbrutal** post the Source Code?
 > As of late, **Spitfire4466** and **Mrbrutal** have had little time to work on Traincraft. Open-sourcing the mod was the only viable option that would ensure it's continuation. Message from **Mrbrutal**: I have never open-sourced a project on this level or size, and am a bit hesitant to do so. However, in the hopes that we can make Traincraft great again (no this is not a Trump reference) and that I can still be a part of this, I have open-sourced both versions of Traincraft  here on Github. Anyone that is willing to contribute can contribute as long as they have signed the CLA (scroll down).

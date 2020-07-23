@@ -102,7 +102,11 @@ public class TCItems {
 						registry.register((Item) obj);
 						
 						if(isClient){
-							ModelLoader.setCustomModelResourceLocation((Item) obj, 0, new ModelResourceLocation(((Item) obj).getRegistryName(), "inventory"));
+							if(obj instanceof BaseItem){ //  BaseItems can change their model behaviour
+								((BaseItem) obj).registerModel();
+							} else {
+								ModelLoader.setCustomModelResourceLocation((Item) obj, 0, new ModelResourceLocation(((Item) obj).getRegistryName(), "inventory"));
+							}
 						}
 					}
 				}

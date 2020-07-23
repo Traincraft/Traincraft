@@ -1,6 +1,8 @@
 package traincraft.items;
 
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
+import net.minecraftforge.client.model.ModelLoader;
 import traincraft.Traincraft;
 
 import java.util.function.Consumer;
@@ -21,6 +23,10 @@ public class BaseItem extends Item{
         this.setCreativeTab(Traincraft.TAB);
         
         itemAction.accept(this);
+    }
+    
+    public void registerModel(){
+        ModelLoader.setCustomModelResourceLocation(this, 0, new ModelResourceLocation(this.getRegistryName(), "inventory"));
     }
     
 }

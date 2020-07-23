@@ -52,7 +52,7 @@ public class RetrogenHandler {
 						WorldServer world = (WorldServer) chunk.getWorld();
 						rand.setSeed((long) chunk.x * 341873128712L + (long) chunk.z * 132897987541L);
 						Traincraft.LOGGER.info("Retrogen chunk at " + chunk.x + ", " + chunk.z + " for dimension " + world.provider.getDimension() + ", Version " + VERSION);
-						Traincraft.worldGen.generate(rand, chunk.x, chunk.z, world, world.getChunkProvider().chunkGenerator, world.getChunkProvider());
+						WorldGenWorld.INSTANCE.generate(rand, chunk.x, chunk.z, world, world.getChunkProvider().chunkGenerator, world.getChunkProvider());
 						gennedChunks.remove(new ChunkData(chunk));
 					}
 				}

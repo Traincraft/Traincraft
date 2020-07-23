@@ -7,9 +7,16 @@
 
 package traincraft.items;
 
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.color.IItemColor;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.translation.I18n;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.fluids.*;
@@ -22,8 +29,8 @@ import traincraft.Traincraft;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class ItemCanister extends BaseItem {
-
+public class ItemCanister extends BaseItem implements IItemColor {
+	
 	public ItemCanister(){
 		super("canister");
 		this.setMaxStackSize(64);
@@ -34,6 +41,49 @@ public class ItemCanister extends BaseItem {
 	@Override
 	public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable NBTTagCompound nbt) {
 		return new CanisterFluidWrapper(stack);
+	}
+	
+	@Override
+	public String getItemStackDisplayName(ItemStack stack) {
+		IFluidHandlerItem capability = stack.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null);
+		if(capability instanceof CanisterFluidWrapper){
+			FluidStack fluidStack = ((CanisterFluidWrapper) capability).getFluid();
+			if(fluidStack != null){
+				String unloc = this.getUnlocalizedNameInefficiently(stack);
+				if (I18n.canTranslate(unloc + "." + fluidStack.getFluid().getName())){
+					return I18n.translateToLocal(unloc + "." + fluidStack.getFluid().getName());
+				}
+				return I18n.translateToLocalFormatted("%s " + unloc + ".name", fluidStack.getLocalizedName());
+			}
+		}
+		return super.getItemStackDisplayName(stack);
+	}
+	
+	@Override
+	public int colorMultiplier(ItemStack stack, int tintIndex) {
+		IFluidHandlerItem capability = stack.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null);
+		if(capability instanceof CanisterFluidWrapper){
+			FluidStack fluid = ((CanisterFluidWrapper) capability).getFluid();
+			if(fluid != null){
+				return fluid.getFluid().getColor(fluid);
+			}
+		}
+		return -1;
+	}
+	
+	@Override
+	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
+		if(this.isInCreativeTab(tab)){
+			items.add(new ItemStack(this));
+			for(Fluid fluid : FluidRegistry.getRegisteredFluids().values()){
+				ItemStack stack = new ItemStack(this);
+				IFluidHandlerItem capability = stack.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null);
+				if(capability instanceof CanisterFluidWrapper){
+					((CanisterFluidWrapper) capability).setFluid(new FluidStack(fluid, Fluid.BUCKET_VOLUME));
+					items.add(stack);
+				}
+			}
+		}
 	}
 	
 	public static class CanisterFluidWrapper implements IFluidHandlerItem, ICapabilityProvider {

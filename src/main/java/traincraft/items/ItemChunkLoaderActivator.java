@@ -13,6 +13,7 @@ public class ItemChunkLoaderActivator extends Item {
 
 	public ItemChunkLoaderActivator() {
 		this.setRegistryName(Traincraft.MOD_ID, "chunk_loader_activator");
+		this.setTranslationKey(this.getRegistryName().toString());
 		
 		this.maxStackSize = 1;
 		this.setCreativeTab(Traincraft.TAB);
