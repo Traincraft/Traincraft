@@ -5,7 +5,7 @@
  * @author Mrbrutal
  ******************************************************************************/
 
-package train.common.core.handlers;
+package traincraft.world;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
@@ -17,9 +17,9 @@ public class OreHandler {
 
 	public static void registerOres() {
 		
-		OreDictionary.registerOre("oreCopper", new ItemStack(TCBlocks.COPPER_ORE, 1, 0));
-		OreDictionary.registerOre("oreOilsands", new ItemStack(TCBlocks.OIL_SAND, 1, 1));
-		OreDictionary.registerOre("orePetroleum", new ItemStack(TCBlocks.PETROL_ORE, 1, 2));
+		OreDictionary.registerOre("oreCopper", new ItemStack(TCBlocks.COPPER_ORE));
+		OreDictionary.registerOre("oreOilsands", new ItemStack(TCBlocks.OIL_SAND));
+		OreDictionary.registerOre("orePetroleum", new ItemStack(TCBlocks.PETROL_ORE));
 
 		OreDictionary.registerOre("ingotCopper", new ItemStack(TCItems.COPPER_INGOT));
 

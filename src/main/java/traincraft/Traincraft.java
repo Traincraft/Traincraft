@@ -1,10 +1,8 @@
 package traincraft;
 
 import java.io.File;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Predicate;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.color.IItemColor;
@@ -14,8 +12,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.NonNullList;
-import net.minecraftforge.client.resource.IResourceType;
-import net.minecraftforge.client.resource.ISelectiveResourceReloadListener;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
@@ -23,7 +19,6 @@ import org.apache.logging.log4j.Logger;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -36,8 +31,8 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import train.client.core.handlers.TCKeyHandler;
 import train.common.core.CommonProxy;
-import train.common.core.handlers.OreHandler;
-import train.common.generation.WorldGenWorld;
+import traincraft.world.OreHandler;
+import traincraft.world.WorldGenWorld;
 import traincraft.api.TraincraftAddonLoader;
 import traincraft.blocks.distillery.DistilleryRecipe;
 import traincraft.blocks.distillery.TileDistillery;
@@ -100,8 +95,6 @@ public class Traincraft {
 	
 	public static File configDirectory;
 	
-	public static WorldGenWorld worldGen;
-	
 	public File gameDirectory;
 	
 	static {
@@ -137,7 +130,7 @@ public class Traincraft {
 		// todo fuel handler GameRegistry.registerFuelHandler(new FuelHandler());
 		//AchievementHandler.load();
 		//AchievementPage.registerAchievementPage(AchievementHandler.tmPage);
-		GameRegistry.registerWorldGenerator(worldGen = new WorldGenWorld(), 5);
+		GameRegistry.registerWorldGenerator(WorldGenWorld.INSTANCE, 5);
 		
 		//MapGenStructureIO.registerStructureComponent(ComponentVillageTrainstation.class, "Trainstation");
 

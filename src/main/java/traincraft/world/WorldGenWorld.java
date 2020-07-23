@@ -5,7 +5,7 @@
  * @author Mrbrutal
  ******************************************************************************/
 
-package train.common.generation;
+package traincraft.world;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
@@ -15,12 +15,13 @@ import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraftforge.fml.common.IWorldGenerator;
-import train.common.core.handlers.RetrogenHandler;
 
 import java.util.Random;
 
 public class WorldGenWorld implements IWorldGenerator {
 
+	public static final WorldGenWorld INSTANCE = new WorldGenWorld();
+	
 	private void addOreSpawn(IBlockState generateBlockState, IBlockState replaceBlockState, World world, Random random, int blockXPos, int blockZPos, int maxVeinSize, int chancesToSpawn, int minY, int maxY){
 		if(maxY > minY){
 			int yDiff = maxY - minY;
