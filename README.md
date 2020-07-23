@@ -41,7 +41,7 @@ Traincraft has had well over **1,000,000 downloads** and has been in development
 ## Contributing
 The Traincraft project welcomes contributions from anyone, provided they have signed the Contributor Licensing Agreement (CLA) found [here](https://cla-assistant.io/Traincraft/Traincraft).  
 
-1. To start developing, fork this branch (e.g.: `git clone https://github.com/Traincraft/Traincraft -b 1.12.2-rewrite`) and import the build.gradle file as project into your ide.  
+1. To start developing, fork this branch (e.g.: `git clone https://github.com/Traincraft/Traincraft`) and import the build.gradle file as project into your ide.  
 2. After Forge is done setting everything up, you have to run `gradlew genEclipseRuns`,`gradlew genIntelliJRuns` or `gradlew genVCRuns` to generate the correct run files.  
 3. Before running, you have to manually add the "TrackAPI" mod to the "mods" directories under "run" and "run_server" (you may have to create the mods folder).
 4. If you are using IntelliJ, you will need to go to File -> Settings -> Build, Execution, Deployment -> Build Tools -> Gradle and change the "Build and Run Using" and "Run Tests Using" to IntelliJ
