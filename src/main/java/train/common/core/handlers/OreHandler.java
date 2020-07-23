@@ -11,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 import traincraft.blocks.TCBlocks;
 import train.common.library.ItemIDs;
+import traincraft.items.TCItems;
 
 public class OreHandler {
 
@@ -20,13 +21,14 @@ public class OreHandler {
 		OreDictionary.registerOre("oreOilsands", new ItemStack(TCBlocks.OIL_SAND, 1, 1));
 		OreDictionary.registerOre("orePetroleum", new ItemStack(TCBlocks.PETROL_ORE, 1, 2));
 
-		OreDictionary.registerOre("ingotCopper", new ItemStack(ItemIDs.ingotCopper.item));
+		OreDictionary.registerOre("ingotCopper", new ItemStack(TCItems.COPPER_INGOT));
 
-		OreDictionary.registerOre("ingotSteel", new ItemStack(ItemIDs.steel.item));
+		OreDictionary.registerOre("ingotSteel", new ItemStack(TCItems.STEEL_INGOT));
+		OreDictionary.registerOre("dustSteel", new ItemStack(TCItems.STEEL_DUST));
+
+		OreDictionary.registerOre("itemPlastic", new ItemStack(TCItems.PLASTIC));
+		OreDictionary.registerOre("dustPlastic", new ItemStack(TCItems.PLASTIC));//MFR support
 		
-		OreDictionary.registerOre("itemPlastic", new ItemStack(ItemIDs.rawPlastic.item));
-		OreDictionary.registerOre("dustPlastic", new ItemStack(ItemIDs.rawPlastic.item));//MFR support
-		
-		OreDictionary.registerOre("dustCoal", new ItemStack(ItemIDs.coaldust.item));
+		OreDictionary.registerOre("dustCoal", new ItemStack(TCItems.COAL_DUST));
 	}
 }
