@@ -1,5 +1,6 @@
 package train.common.mtc;
 
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Optional;
 import dan200.computercraft.api.lua.ILuaContext;
 import dan200.computercraft.api.lua.LuaException;
@@ -28,8 +29,13 @@ public class TileInfoGrabberMTC  extends TileEntity implements IPeripheral, Envi
     public boolean trainOverSensor = false;
     public AxisAlignedBB boundingBox = null;
     protected boolean addedToNetwork = false;
-    public Node leNode = Network.newNode(this, Visibility.Network).withComponent(getComponentName()).withConnector(32).create();;
+    public Node leNode;
 
+    public TileInfoGrabberMTC() {
+        if (Loader.isModLoaded("OpenComputers")) {
+            leNode = Network.newNode(this, Visibility.Network).withComponent(getComponentName()).withConnector(32).create();
+        }
+    }
     @Override
     public void readFromNBT(NBTTagCompound nbttagcompound) {
         super.readFromNBT(nbttagcompound);

@@ -1,5 +1,6 @@
 package train.common.mtc;
 
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Optional;
 import dan200.computercraft.api.lua.ILuaContext;
 import dan200.computercraft.api.lua.LuaException;
@@ -26,8 +27,11 @@ public class TileInfoGrabberDestination extends TileEntity implements IPeriphera
     public AxisAlignedBB boundingBox = null;
     public ArrayList<IComputerAccess> computers = new ArrayList<IComputerAccess>();
     protected boolean addedToNetwork = false;
-    public Node node = Network.newNode(this, Visibility.Network).withComponent(getComponentName()).withConnector(32).create();
+    public Node node;
     public TileInfoGrabberDestination() {
+        if (Loader.isModLoaded("OpenComputers")) {
+            node = Network.newNode(this, Visibility.Network).withComponent(getComponentName()).withConnector(32).create();
+        }
     }
 
     @Override

@@ -95,10 +95,12 @@ public class TileInfoTransmitterMTC extends TileEntity implements IPeripheral, S
                     daTrain.currentSignalBlock = this.signalBlock;
                     daTrain.mtcType = this.mtcType;
                     daTrain.enforceSpeedLimits = enforceSpeedLimits;
-                    if (this.mtcType == 2) {
+                    if (this.mtcType == 2 && !daTrain.isConnecting) {
                         daTrain.stationStop = false;
                         daTrain.speedGoingDown = false;
-                        if (!(daTrain.serverUUID.equals(this.serverUUID))) {
+                        if ( !this.serverUUID.equals("") &&  !(daTrain.serverUUID.equals(this.serverUUID))) {
+                            daTrain.isConnecting = true;
+                            daTrain.connectingUUID = this.serverUUID;
                             daTrain.attemptConnection(serverUUID);
                         }
                     } else if (serverUUID.equals("end")) {
@@ -221,6 +223,12 @@ public class TileInfoTransmitterMTC extends TileEntity implements IPeripheral, S
     @Optional.Method(modid = "OpenComputers")
     public Object[] setMTCType(Context context, Arguments args) {
         if (args.isInteger(0)) { this.mtcType = args.checkInteger(0);}
+        return new Object[]{true};
+    }
+    @Callback
+    @Optional.Method(modid = "OpenComputers")
+    public Object[] setSignalBlock(Context context, Arguments args) {
+        if (args.isString(0)) { this.signalBlock = args.checkString(0);}
         return new Object[]{true};
     }
     @Callback
