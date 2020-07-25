@@ -34,6 +34,7 @@ public class TCItems {
 	public static final ItemSkinChanger SKIN_CHANGER = new ItemSkinChanger();
 	public static final ItemCanister CANISTER = new ItemCanister();
 	public static final ItemConnector CONNECTOR = new ItemConnector();
+	public static final RecipeBook RECIPE_BOOK = new RecipeBook("recipe_book");
 	public static final BaseItem STEEL_INGOT = new BaseItem("steel_ingot");
 	public static final BaseItem STEEL_DUST = new BaseItem("steel_dust");
 	public static final BaseItem COAL_DUST = new BaseItem("coal_dust");

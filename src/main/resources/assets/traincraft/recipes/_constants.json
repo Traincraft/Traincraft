@@ -1,0 +1,9 @@
+[
+  {
+    "name": "IRON_INGOT",
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "ingotIron"
+    }
+  }
+]

@@ -31,6 +31,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import train.client.core.handlers.TCKeyHandler;
 import train.common.core.CommonProxy;
+import traincraft.api.RecipeHandler;
 import traincraft.world.OreHandler;
 import traincraft.world.WorldGenWorld;
 import traincraft.api.TraincraftAddonLoader;
@@ -182,9 +183,9 @@ public class Traincraft {
 		
 		/* Recipes */
 		LOGGER.info("Initialize Recipes");
-		//RecipeHandler.initBlockRecipes();
-		//RecipeHandler.initItemRecipes();
-		//RecipeHandler.initSmeltingRecipes();
+		RecipeHandler.initBlockRecipes();
+		RecipeHandler.initItemRecipes();
+		RecipeHandler.initSmeltingRecipes();
 		//AssemblyTableRecipes.recipes();
 		
 		/* Register the liquids */

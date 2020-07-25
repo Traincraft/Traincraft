@@ -43,7 +43,8 @@ public class TCBlocks {
 	public static final BlockSwitchStand SWITCH_STAND = new BlockSwitchStand();
 	public static final BlockBridgePillar BRIDGE_PILLAR = new BlockBridgePillar();
 	public static final BlockLantern LANTERN = new BlockLantern();
-	
+	public static final BlockBallast BALLAST = new BlockBallast();
+
 	public static final BlockOilSand OIL_SAND = new BlockOilSand();
 	public static final BlockPetrolOre PETROL_ORE = new BlockPetrolOre();
 	public static final BlockCopperOre COPPER_ORE = new BlockCopperOre();
