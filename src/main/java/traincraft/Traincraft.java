@@ -183,9 +183,7 @@ public class Traincraft {
 		
 		/* Recipes */
 		LOGGER.info("Initialize Recipes");
-		RecipeHandler.initBlockRecipes();
-		RecipeHandler.initItemRecipes();
-		RecipeHandler.initSmeltingRecipes();
+		RecipeHandler.initRecipes();
 		//AssemblyTableRecipes.recipes();
 		
 		/* Register the liquids */
