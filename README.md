@@ -56,4 +56,4 @@ After you finish the tutorial or setup, if it has not already been defined, you 
 You may also need to import the required API libraries for the related mods if it is not done automatically (Buildcraft, railcraft, etc).
 
 ## License
-Traincraft is licensed under a custom usage license tailored specifically for the project. It can be read [here](https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md).
+Traincraft is licensed under a custom usage license tailored specifically for the project. It can be read [here](https://github.com/Mrbrutal/Traincraft-164/blob/master/LICENSE.md).
