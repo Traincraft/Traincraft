@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#F#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "type": "forge:ore_dict",
+      "ore": "ingotSteel"
+    },
+    "F": {
+      "item": "traincraft:steel_firebox"
+    }
+  },
+  "result": {
+    "item": "traincraft:distillery"
+  }
+}

@@ -31,6 +31,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import train.client.core.handlers.TCKeyHandler;
 import train.common.core.CommonProxy;
+import traincraft.blocks.TCBlocks;
 import traincraft.world.OreHandler;
 import traincraft.world.WorldGenWorld;
 import traincraft.api.TraincraftAddonLoader;
@@ -181,10 +182,8 @@ public class Traincraft {
 		OreHandler.registerOres();
 		
 		/* Recipes */
-		LOGGER.info("Initialize Recipes");
-		//RecipeHandler.initBlockRecipes();
-		//RecipeHandler.initItemRecipes();
-		//RecipeHandler.initSmeltingRecipes();
+		LOGGER.info("Initialize Smelting Recipe");
+		GameRegistry.addSmelting(TCBlocks.COPPER_ORE, new ItemStack(TCItems.COPPER_INGOT, 1), 0.7f);
 		//AssemblyTableRecipes.recipes();
 		
 		/* Register the liquids */

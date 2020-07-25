@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IPI",
+    "S S",
+    "SPS"
+  ],
+  "key": {
+    "I": {
+      "item": "#IRON_INGOT"
+    },
+    "P": {
+      "item": "minecraft:piston"
+    },
+    "S": {
+      "item": "minecraft:stone",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "traincraft:assembly_table_1"
+  }
+}

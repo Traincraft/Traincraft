@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#L#",
+    "#B#",
+    "#I#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:nether_brick"
+    },
+    "L": {
+      "item": "minecraft:lava_bucket"
+    },
+    "B": {
+      "item": "minecraft:bucket"
+    },
+    "I": {
+      "item": "minecraft:iron_block"
+    }
+  },
+  "result": {
+    "item": "traincraft:hearth_furnace"
+  }
+}

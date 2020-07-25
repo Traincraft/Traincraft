@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WWW",
+    "I I",
+    "RRR"
+  ],
+  "key": {
+    "W": {
+      "type": "forge:ore_dict",
+      "ore": "plankWood"
+    },
+    "I": {
+      "item": "#IRON_INGOT"
+    },
+    "R": {
+      "item": "minecraft:rail"
+    }
+  },
+  "result": {
+    "item": "traincraft:stopper"
+  }
+}

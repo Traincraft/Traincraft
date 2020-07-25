@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "III",
+    "PTP",
+    "III"
+  ],
+  "key": {
+    "I": {
+      "item": "#IRON_INGOT"
+    },
+    "P": {
+      "type": "forge:ore_dict",
+      "ore": "paneGlass"
+    },
+    "T": {
+      "item": "minecraft:torch"
+    }
+  },
+  "result": {
+    "item": "traincraft:lantern",
+    "count": 4
+  }
+}
