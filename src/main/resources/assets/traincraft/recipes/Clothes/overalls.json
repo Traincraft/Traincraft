@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "X$X",
+    "X$X"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:dye",
+      "data": 4
+    },
+    "$": {
+      "item": "minecraft:leather_leggings"
+    },
+    "#": {
+      "item": "minecraft:dye",
+      "data": 1
+    }
+  },
+  "result": {
+    "item": "traincraft:armor_overalls"
+  }
+}
