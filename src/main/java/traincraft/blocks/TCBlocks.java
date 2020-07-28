@@ -49,8 +49,6 @@ public class TCBlocks {
 	public static final BlockPetrolOre PETROL_ORE = new BlockPetrolOre();
 	public static final BlockCopperOre COPPER_ORE = new BlockCopperOre();
 	
-	public static final BlockFluidBase OIL_LIQUID = new BlockFluidBase(TCLiquids.OIL, Material.WATER);
-	
 	@SubscribeEvent
 	public static void registerBlocks(RegistryEvent.Register<Block> event){
 		IForgeRegistry<Block> registry = event.getRegistry();
