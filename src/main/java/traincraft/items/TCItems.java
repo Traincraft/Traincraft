@@ -7,9 +7,7 @@
 
 package traincraft.items;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -23,6 +21,7 @@ import traincraft.blocks.IItemBlockSupplier;
 import traincraft.Traincraft;
 import traincraft.blocks.TCBlocks;
 import traincraft.items.armor.*;
+import traincraft.items.guide.GuideItem;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -34,7 +33,7 @@ public class TCItems {
 	public static final ItemSkinChanger SKIN_CHANGER = new ItemSkinChanger();
 	public static final ItemCanister CANISTER = new ItemCanister();
 	public static final ItemConnector CONNECTOR = new ItemConnector();
-	public static final RecipeBook RECIPE_BOOK = new RecipeBook("recipe_book");
+	public static final GuideItem GUIDE = new GuideItem();
 	public static final BaseItem STEEL_INGOT = new BaseItem("steel_ingot");
 	public static final BaseItem STEEL_DUST = new BaseItem("steel_dust");
 	public static final BaseItem COAL_DUST = new BaseItem("coal_dust");
