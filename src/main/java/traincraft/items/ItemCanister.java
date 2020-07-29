@@ -49,11 +49,7 @@ public class ItemCanister extends BaseItem implements IItemColor {
 		if(capability instanceof CanisterFluidWrapper){
 			FluidStack fluidStack = ((CanisterFluidWrapper) capability).getFluid();
 			if(fluidStack != null){
-				String unloc = this.getUnlocalizedNameInefficiently(stack);
-				if (I18n.canTranslate(unloc + "." + fluidStack.getFluid().getName())){
-					return I18n.translateToLocal(unloc + "." + fluidStack.getFluid().getName());
-				}
-				return I18n.translateToLocalFormatted("%s " + unloc + ".name", fluidStack.getLocalizedName());
+				return (fluidStack.getLocalizedName() + " " + super.getItemStackDisplayName(stack));
 			}
 		}
 		return super.getItemStackDisplayName(stack);
