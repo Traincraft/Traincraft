@@ -14,7 +14,7 @@ The following shows a simple path on which features are gonna appear first. Nobo
 - [ ] Implement all the items from 1.7.10
     - [ ] Composite Armor
     - [ ] Driver Armor
-    - [ ] General TC Armor
+    - [x] General TC Armor
     - [ ] Ticketman Armor
     - [ ] Fluid Canister: - should be able to hold every fluid, just like a bucket
     - [ ] Traincraft tool: combination of the wrench, stake and skin changer
