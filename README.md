@@ -50,6 +50,19 @@ The Traincraft project welcomes contributions from anyone, provided they have si
     * This should fix the issue with resources going into the wrong place
 * For more information on getting set up, read [the Forge Getting Started page](https://mcforge.readthedocs.io/en/latest/gettingstarted/)
 
+#### Contribution guideline
+- Code files (.java) should have a copyright header and the @author and @since tag. @author is the name of the contributer (you), while @since should be the current date in ISO-8601 format (YYYY-MM-DD). Copyright is the first thing in the class, even before the package name. Here is the default layout (works in IntelliJ):
+
+```
+Traincraft
+Copyright (c) 2011-$today.year.
+
+This file ("$file.fileName") is part of the Traincraft mod for Minecraft.
+It is created by all people that are listed with @author below.
+It is distributed under LGPL-v3.0.
+You can find the source code at https://github.com/Traincraft/Traincraft 
+```
+
 ## License
 All versions for Minecraft 1.7.10 and below are using a custom license which you can find [here](https://github.com/Traincraft/Traincraft/blob/master/LICENSE.md).
 All versions for Minecraft 1.12.2 and above are using the [LGPLv3.0 License](https://github.com/IQAndreas/markdown-licenses/blob/master/gnu-lgpl-v3.0.md).

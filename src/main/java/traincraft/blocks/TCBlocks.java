@@ -17,6 +17,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 import traincraft.Traincraft;
+import traincraft.blocks.battery.BlockBattery;
 import traincraft.blocks.distillery.BlockDistil;
 
 import java.lang.reflect.Field;
@@ -35,6 +36,7 @@ public class TCBlocks {
     public static final BlockWaterWheel WATER_WHEEL = new BlockWaterWheel();
     public static final BlockWindMill WIND_MILL = new BlockWindMill();
     public static final BlockGeneratorDiesel GENERATOR_DIESEL = new BlockGeneratorDiesel();
+    public static final BlockBattery BATTERY = new BlockBattery();
     
     public static final BlockStopper STOPPER = new BlockStopper();
     public static final BlockBridgePillar BRIDGE_PILLAR = new BlockBridgePillar();

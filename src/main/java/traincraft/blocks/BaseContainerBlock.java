@@ -10,6 +10,7 @@
 
 package traincraft.blocks;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
@@ -23,11 +24,13 @@ import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import traincraft.items.BaseItemBlock;
 import traincraft.network.GuiHandler;
 import traincraft.tile.BaseTile;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public abstract class BaseContainerBlock extends BlockContainer implements IItemBlockSupplier {
@@ -63,22 +66,38 @@ public abstract class BaseContainerBlock extends BlockContainer implements IItem
         if(player.isSneaking()){
             return false;
         }
-        if(!world.isRemote){
-            TileEntity te = world.getTileEntity(pos);
-            if(te instanceof BaseTile){
-                GuiHandler.openTileGui(player, te);
+        TileEntity te = world.getTileEntity(pos);
+        if(te instanceof BaseTile){
+            if(((BaseTile) te).hasGui()){
+                if(!world.isRemote){
+                    GuiHandler.openTileGui(player, te);
+                }
                 return true;
+            } else{
+                return ((BaseTile) te).onBlockInteraction(player, hand, facing, hitX, hitY, hitZ);
             }
         }
-        return true;
+        return false;
     }
     
     @Override
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack){
-        super.onBlockPlacedBy(world, pos, state, placer, stack);
         TileEntity tile = world.getTileEntity(pos);
         if(tile instanceof BaseTile){
             ((BaseTile) tile).onBlockPlacedBy(placer, stack);
+        }
+    }
+    
+    @Override
+    public void onNeighborChange(@Nonnull IBlockAccess world, @Nonnull BlockPos pos, @Nonnull BlockPos neighbor){
+        TileEntity tile = world.getTileEntity(pos);
+        if(tile instanceof BaseTile){
+            for(EnumFacing facing : EnumFacing.VALUES){
+                if(neighbor.offset(facing).equals(pos)){
+                    ((BaseTile) tile).onNeighborChange(neighbor, facing);
+                    break;
+                }
+            }
         }
     }
     

@@ -25,6 +25,7 @@ import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.server.management.PlayerChunkMapEntry;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
@@ -190,6 +191,10 @@ public abstract class BaseTile extends TileEntity {
         // todo write energy capabililty
     }
     
+    public boolean hasGui(){
+        return false;
+    }
+    
     public GuiScreen openGui(EntityPlayer player){
         return null;
     }
@@ -203,6 +208,14 @@ public abstract class BaseTile extends TileEntity {
     }
     
     public void onBlockPlacedBy(EntityLivingBase placer, ItemStack stack){
+    
+    }
+    
+    public boolean onBlockInteraction(EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ){
+        return false;
+    }
+    
+    public void onNeighborChange(@Nonnull BlockPos neighbor, EnumFacing facing){
     
     }
     
