@@ -44,7 +44,7 @@ item.traincraft:copper_ingot.name=Copper Ingot
 item.traincraft:chunk_loader_activator.name=Chunk Loader Activator
 item.traincraft:connector.name=Connector
 item.traincraft:canister.name=Canister
-item.traincraft:recipe_book.name=Traincraft guide
+item.traincraft:guide.name=Traincraft guide
 item.traincraft:wrench.name=Wrench
 
 # Armor
