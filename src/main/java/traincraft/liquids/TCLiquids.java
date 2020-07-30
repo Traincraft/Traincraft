@@ -1,3 +1,13 @@
+/*
+ * Traincraft
+ * Copyright (c) 2011-2020.
+ *
+ * This file ("TCLiquids.java") is part of the Traincraft mod for Minecraft.
+ * It is created by all people that are listed with @author below.
+ * It is distributed under LGPL-v3.0.
+ * You can find the source code at https://github.com/Traincraft/Traincraft
+ */
+
 package traincraft.liquids;
 
 import net.minecraft.block.Block;
@@ -18,7 +28,6 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import traincraft.Traincraft;
 import traincraft.blocks.BlockFluidBase;
-import traincraft.blocks.TCBlocks;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -64,17 +73,18 @@ public class TCLiquids {
                     }
                 }
             }
-        }catch(IllegalAccessException ignored){}
+        } catch(IllegalAccessException ignored){
+        }
     }
     
-    private static void registerFluidRenderer(Fluid fluid) {
+    private static void registerFluidRenderer(Fluid fluid){
         Block block = fluid.getBlock();
         Item item = Item.getItemFromBlock(block);
         final ModelResourceLocation loc = new ModelResourceLocation(new ResourceLocation(Traincraft.MOD_ID, "fluids"), fluid.getName());
         ItemMeshDefinition mesh = stack -> loc;
         StateMapperBase mapper = new StateMapperBase() {
             @Override
-            protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
+            protected ModelResourceLocation getModelResourceLocation(IBlockState state){
                 return loc;
             }
         };

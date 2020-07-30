@@ -1,3 +1,13 @@
+/*
+ * Traincraft
+ * Copyright (c) 2011-2020.
+ *
+ * This file ("GuiDistillery.java") is part of the Traincraft mod for Minecraft.
+ * It is created by all people that are listed with @author below.
+ * It is distributed under LGPL-v3.0.
+ * You can find the source code at https://github.com/Traincraft/Traincraft
+ */
+
 package traincraft.blocks.distillery;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -7,8 +17,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import traincraft.Traincraft;
-import traincraft.api.FluidTankChangeListener;
-import traincraft.api.FluidTankTyped;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,47 +25,31 @@ public class GuiDistillery extends GuiContainer {
     
     private static final ResourceLocation GUI_LOC = new ResourceLocation(Traincraft.MOD_ID, "textures/gui/gui_distillation_tower2.png");
     
-    private TileDistillery tile;
-    private EntityPlayer player;
+    private final TileDistillery tile;
+    private final EntityPlayer player;
     
-    public GuiDistillery(TileDistillery tile, EntityPlayer player) {
+    public GuiDistillery(TileDistillery tile, EntityPlayer player){
         super(new ContainerDistillery(tile, player));
         this.tile = tile;
         this.player = player;
     }
     
     @Override
-    public void initGui() {
+    public void initGui(){
         super.initGui();
         this.xSize = 176;
         this.ySize = 166;
     }
     
     @Override
-    protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
-        GlStateManager.pushMatrix();
-        
-        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-        this.mc.renderEngine.bindTexture(GUI_LOC);
-        this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
-    
-        IFluidHandler fluidTank = this.tile.getFluidTank(null);
-        if(fluidTank instanceof FluidTank){
-            this.drawFluid((FluidTank) fluidTank, this.guiLeft + 144, this.guiTop + 6, 20, 52);
-        }
-    
-        GlStateManager.popMatrix();
-    }
-    
-    @Override
-    public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+    public void drawScreen(int mouseX, int mouseY, float partialTicks){
         this.drawDefaultBackground();
         super.drawScreen(mouseX, mouseY, partialTicks);
         this.renderHoveredToolTip(mouseX, mouseY);
     }
     
     @Override
-    protected void renderHoveredToolTip(int mouseX, int mouseY) {
+    protected void renderHoveredToolTip(int mouseX, int mouseY){
         super.renderHoveredToolTip(mouseX, mouseY);
         
         // fluid tank hovering
@@ -91,8 +83,24 @@ public class GuiDistillery extends GuiContainer {
         }
     }
     
-    private void drawFluid(FluidTank tank, int x, int y, int width, int height) {
-        if (tank != null && tank.getFluid() != null) {
+    @Override
+    protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY){
+        GlStateManager.pushMatrix();
+        
+        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+        this.mc.renderEngine.bindTexture(GUI_LOC);
+        this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
+        
+        IFluidHandler fluidTank = this.tile.getFluidTank(null);
+        if(fluidTank instanceof FluidTank){
+            this.drawFluid((FluidTank) fluidTank, this.guiLeft + 144, this.guiTop + 6, 20, 52);
+        }
+        
+        GlStateManager.popMatrix();
+    }
+    
+    private void drawFluid(FluidTank tank, int x, int y, int width, int height){
+        if(tank != null && tank.getFluid() != null){
             ResourceLocation fluidTexture = tank.getFluid().getFluid().getStill();
             fluidTexture = new ResourceLocation(fluidTexture.getNamespace(), "textures/" + fluidTexture.getPath() + ".png");
             this.mc.renderEngine.bindTexture(fluidTexture);

@@ -1,3 +1,13 @@
+/*
+ * Traincraft
+ * Copyright (c) 2011-2020.
+ *
+ * This file ("PassengerSeat.java") is part of the Traincraft mod for Minecraft.
+ * It is created by all people that are listed with @author below.
+ * It is distributed under LGPL-v3.0.
+ * You can find the source code at https://github.com/Traincraft/Traincraft
+ */
+
 package traincraft.api;
 
 
@@ -6,18 +16,18 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.Vec3d;
 
 public class PassengerSeat {
-
+    
+    private final AxisAlignedBB boundingBox;
+    private final Vec3d centerPoint;
     private boolean controllingSeat;
-    private AxisAlignedBB boundingBox;
-    private Vec3d centerPoint;
     private Entity currentUser;
     
-    public PassengerSeat(AxisAlignedBB boundingBox) {
+    public PassengerSeat(AxisAlignedBB boundingBox){
         this.boundingBox = boundingBox;
         this.centerPoint = new Vec3d(boundingBox.minX + (this.getWidth() / 2D), boundingBox.minY + (this.getHeight() / 2D), boundingBox.minZ + (this.getDepth() / 2D));
     }
     
-    public AxisAlignedBB getBoundingBox() {
+    public AxisAlignedBB getBoundingBox(){
         return boundingBox;
     }
     
@@ -25,23 +35,23 @@ public class PassengerSeat {
         return this.centerPoint;
     }
     
-    public double getWidth() {
+    public double getWidth(){
         return this.boundingBox.maxX - this.boundingBox.minX;
     }
     
-    public double getHeight() {
+    public double getHeight(){
         return this.boundingBox.maxY - this.boundingBox.minY;
     }
     
-    public double getDepth() {
+    public double getDepth(){
         return this.boundingBox.maxZ - this.boundingBox.minZ;
     }
     
-    public Entity getCurrentUser() {
+    public Entity getCurrentUser(){
         return currentUser;
     }
     
-    public void setCurrentUser(Entity currentUser) {
+    public void setCurrentUser(Entity currentUser){
         this.currentUser = currentUser;
     }
     
@@ -57,7 +67,7 @@ public class PassengerSeat {
         this.controllingSeat = true;
     }
     
-    public boolean isControllingSeat() {
+    public boolean isControllingSeat(){
         return controllingSeat;
     }
 }

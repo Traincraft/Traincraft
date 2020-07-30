@@ -1,3 +1,13 @@
+/*
+ * Traincraft
+ * Copyright (c) 2011-2020.
+ *
+ * This file ("ContainerDistillery.java") is part of the Traincraft mod for Minecraft.
+ * It is created by all people that are listed with @author below.
+ * It is distributed under LGPL-v3.0.
+ * You can find the source code at https://github.com/Traincraft/Traincraft
+ */
+
 package traincraft.blocks.distillery;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -9,13 +19,13 @@ import traincraft.api.SlotInventory;
 
 public class ContainerDistillery extends Container {
     
-    private TileDistillery tile;
-    private EntityPlayer player;
+    private final TileDistillery tile;
+    private final EntityPlayer player;
     
-    public ContainerDistillery(TileDistillery tile, EntityPlayer player) {
+    public ContainerDistillery(TileDistillery tile, EntityPlayer player){
         this.tile = tile;
         this.player = player;
-    
+        
         IInventory inv = tile.getRealInventory();
         if(inv != null){
             this.addSlotToContainer(new SlotInventory(inv, TileDistillery.INPUT_SLOT, 56, 17));
@@ -30,19 +40,19 @@ public class ContainerDistillery extends Container {
                 this.addSlotToContainer(new Slot(player.inventory, y + x * 9 + 9, 8 + y * 18, 84 + x * 18));
             }
         }
-    
+        
         for(int x = 0; x < 9; ++x){
             this.addSlotToContainer(new Slot(player.inventory, x, 8 + x * 18, 142));
         }
     }
     
     @Override
-    public boolean canInteractWith(EntityPlayer playerIn) {
-        return true;
+    public ItemStack transferStackInSlot(EntityPlayer playerIn, int index){
+        return ItemStack.EMPTY; // todo distillery container shift click behaviour
     }
     
     @Override
-    public ItemStack transferStackInSlot(EntityPlayer playerIn, int index) {
-        return ItemStack.EMPTY; // todo distillery container shift click behaviour
+    public boolean canInteractWith(EntityPlayer playerIn){
+        return true;
     }
 }

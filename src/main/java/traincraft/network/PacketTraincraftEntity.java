@@ -1,3 +1,13 @@
+/*
+ * Traincraft
+ * Copyright (c) 2011-2020.
+ *
+ * This file ("PacketTraincraftEntity.java") is part of the Traincraft mod for Minecraft.
+ * It is created by all people that are listed with @author below.
+ * It is distributed under LGPL-v3.0.
+ * You can find the source code at https://github.com/Traincraft/Traincraft
+ */
+
 package traincraft.network;
 
 import io.netty.buffer.ByteBuf;
@@ -20,32 +30,33 @@ public class PacketTraincraftEntity implements IMessage, IMessageHandler<PacketT
     
     // empty constructor for Forge
     @Deprecated
-    public PacketTraincraftEntity() {}
+    public PacketTraincraftEntity(){
+    }
     
-    public PacketTraincraftEntity(AbstractRollingStock<?> entity, TCEntityPackets packet, NBTTagCompound data) {
+    public PacketTraincraftEntity(AbstractRollingStock<?> entity, TCEntityPackets packet, NBTTagCompound data){
         this.entityId = entity.getEntityId();
         this.packet = packet;
         this.data = data;
     }
     
     @Override
-    public void toBytes(ByteBuf buf) {
-        buf.writeInt(this.packet.ordinal());
-        buf.writeInt(this.entityId);
-        ByteBufUtils.writeTag(buf, this.data);
-    }
-    
-    @Override
-    public void fromBytes(ByteBuf buf) {
+    public void fromBytes(ByteBuf buf){
         this.packet = TCEntityPackets.values()[buf.readInt()];
         this.entityId = buf.readInt();
         this.data = ByteBufUtils.readTag(buf);
     }
     
     @Override
-    public IMessage onMessage(PacketTraincraftEntity message, MessageContext ctx) {
+    public void toBytes(ByteBuf buf){
+        buf.writeInt(this.packet.ordinal());
+        buf.writeInt(this.entityId);
+        ByteBufUtils.writeTag(buf, this.data);
+    }
+    
+    @Override
+    public IMessage onMessage(PacketTraincraftEntity message, MessageContext ctx){
         switch(ctx.side){
-            case CLIENT: {
+            case CLIENT:{
                 WorldClient clientWorld = Minecraft.getMinecraft().world;
                 if(clientWorld != null){
                     Entity entity = clientWorld.getEntityByID(message.entityId);
@@ -55,7 +66,7 @@ public class PacketTraincraftEntity implements IMessage, IMessageHandler<PacketT
                 }
                 break;
             }
-            case SERVER: {
+            case SERVER:{
                 WorldServer serverWorld = ctx.getServerHandler().player.getServerWorld();
                 Entity entity = serverWorld.getEntityByID(message.entityId);
                 if(entity instanceof AbstractRollingStock<?>){

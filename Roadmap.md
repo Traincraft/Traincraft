@@ -12,11 +12,11 @@ The following shows a simple path on which features are gonna appear first. Nobo
     - Implement the API with a simple train
     - Model file is loaded from .json (JTMT-Format) on class load (Cooperation with Fexcraft)
 - [ ] Implement all the items from 1.7.10
-    - [ ] Composite Armor
-    - [ ] Driver Armor
+    - [x] Composite Armor
+    - [x] Driver Armor
     - [x] General TC Armor
-    - [ ] Ticketman Armor
-    - [ ] Fluid Canister: - should be able to hold every fluid, just like a bucket
+    - [x] Ticketman Armor
+    - [x] Fluid Canister: - should be able to hold every fluid, just like a bucket
     - [ ] Traincraft tool: combination of the wrench, stake and skin changer
     - [ ] All the items used for crafting rolling stock
 - [ ] Implement all the blocks from 1.7.10
@@ -41,7 +41,7 @@ The following shows a simple path on which features are gonna appear first. Nobo
     - [ ] Switch Stand
     - [ ] Train Workbench
     - [ ] Water Wheel
-    - [ ] Wind Mill
+    - [x] Wind Mill
         - A custom Capability was added to address the wind speed
     - Including recipe handling over .json (To support the vanilla based system)
 - [ ] Implement driving physics for TrackAPI compatible rails (**Help is needed**)

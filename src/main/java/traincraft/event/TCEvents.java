@@ -1,3 +1,13 @@
+/*
+ * Traincraft
+ * Copyright (c) 2011-2020.
+ *
+ * This file ("TCEvents.java") is part of the Traincraft mod for Minecraft.
+ * It is created by all people that are listed with @author below.
+ * It is distributed under LGPL-v3.0.
+ * You can find the source code at https://github.com/Traincraft/Traincraft
+ */
+
 package traincraft.event;
 
 import net.minecraft.util.EnumFacing;
@@ -29,13 +39,13 @@ public class TCEvents {
     public static void worldAttachCapabilities(AttachCapabilitiesEvent<World> event){
         event.addCapability(new ResourceLocation(Traincraft.MOD_ID, "capability_world_wind"), new ICapabilityProvider() {
             @Override
-            public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
+            public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing){
                 return capability == CapabilityWorldWind.WORLD_WIND;
             }
-    
+            
             @Nullable
             @Override
-            public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
+            public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing){
                 TCDimensionSaveData saveData = getSaveData(event.getObject());
                 return saveData != null ? CapabilityWorldWind.WORLD_WIND.cast(saveData.getWorldWind()) : capability.getDefaultInstance();
             }
@@ -57,16 +67,15 @@ public class TCEvents {
                     // original traincraft 1.7 algorithm
                     int upChance = 10;
                     int downChance = 10;
-                    if (windStrength > 20) {
+                    if(windStrength > 20){
                         upChance -= windStrength - 20;
-                    }
-                    else if (windStrength < 10) {
+                    } else if(windStrength < 10){
                         downChance -= 10 - windStrength;
                     }
-                    if (event.world.rand.nextInt(100) <= upChance) {
+                    if(event.world.rand.nextInt(100) <= upChance){
                         windStrength += 1;
                     }
-                    if (event.world.rand.nextInt(100) <= downChance) {
+                    if(event.world.rand.nextInt(100) <= downChance){
                         windStrength -= 1;
                     }
                     

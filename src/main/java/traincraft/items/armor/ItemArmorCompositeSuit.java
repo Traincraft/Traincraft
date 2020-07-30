@@ -1,3 +1,13 @@
+/*
+ * Traincraft
+ * Copyright (c) 2011-2020.
+ *
+ * This file ("ItemArmorCompositeSuit.java") is part of the Traincraft mod for Minecraft.
+ * It is created by all people that are listed with @author below.
+ * It is distributed under LGPL-v3.0.
+ * You can find the source code at https://github.com/Traincraft/Traincraft
+ */
+
 package traincraft.items.armor;
 
 import net.minecraft.entity.Entity;
@@ -23,7 +33,7 @@ public class ItemArmorCompositeSuit extends ItemArmor {
     
     public static final ArmorMaterial ARMOR_MATERIAL = EnumHelper.addArmorMaterial(Traincraft.MOD_ID + ":composite_suit", "composite_suit", 70, new int[]{2, 6, 5, 2}, 50, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 2);
     
-    public ItemArmorCompositeSuit(EntityEquipmentSlot entityEquipmentSlot) {
+    public ItemArmorCompositeSuit(EntityEquipmentSlot entityEquipmentSlot){
         super(ARMOR_MATERIAL, 0, entityEquipmentSlot);
         this.setRegistryName(Traincraft.MOD_ID, "armor_composite_suit_" + entityEquipmentSlot.getName());
         this.setTranslationKey(this.getRegistryName().toString());
@@ -31,30 +41,13 @@ public class ItemArmorCompositeSuit extends ItemArmor {
         this.setCreativeTab(Traincraft.TAB);
     }
     
-    @Nullable
     @Override
-    public String getArmorTexture(ItemStack stack, Entity entity, EntityEquipmentSlot slot, String type) {
-        if(slot != EntityEquipmentSlot.LEGS){
-            String name = type != null ? "composite_suit_overlay.png": "composite_suit.png";
-            return Traincraft.MOD_ID + ":textures/armor/" + name;
-        } else {
-            String name = type != null ? "composite_suit_pants_overlay.png": "composite_suit_pants.png";
-            return Traincraft.MOD_ID + ":textures/armor/" + name;
-        }
-    }
-    
-    @Override
-    public IRarity getForgeRarity(ItemStack stack) {
-        return EnumRarity.EPIC;
-    }
-    
-    @Override
-    public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
+    public boolean getIsRepairable(ItemStack toRepair, ItemStack repair){
         return repair.getItem() == Items.DIAMOND;
     }
     
     @Override
-    public void onArmorTick(World world, EntityPlayer player, ItemStack stack) {
+    public void onArmorTick(World world, EntityPlayer player, ItemStack stack){
         if(world.getTotalWorldTime() % 20 == 0){
             if(stack.getItem() instanceof ItemArmorCompositeSuit){
                 EntityEquipmentSlot equipmentSlot = ((ItemArmorCompositeSuit) stack.getItem()).armorType;
@@ -68,7 +61,7 @@ public class ItemArmorCompositeSuit extends ItemArmor {
                                 stack.damageItem(5, player);
                             }
                         }
-                
+                        
                         if(player.isInWater() && stack.getMaxDamage() - stack.getItemDamage() > 1){
                             PotionEffect waterBreatingEffect = player.getActivePotionEffect(MobEffects.WATER_BREATHING);
                             if(waterBreatingEffect != null){
@@ -76,12 +69,12 @@ public class ItemArmorCompositeSuit extends ItemArmor {
                                     player.addPotionEffect(new PotionEffect(MobEffects.WATER_BREATHING, 400 + (300 - waterBreatingEffect.getDuration())));
                                     stack.damageItem(1, player);
                                 }
-                            } else {
+                            } else{
                                 player.addPotionEffect(new PotionEffect(MobEffects.WATER_BREATHING, 400));
                                 stack.damageItem(1, player);
                             }
                         }
-                
+                        
                         if(!world.isDaytime() && stack.getMaxDamage() - stack.getItemDamage() > 1){
                             PotionEffect nightVisionEffect = player.getActivePotionEffect(MobEffects.NIGHT_VISION);
                             if(nightVisionEffect != null){
@@ -89,14 +82,14 @@ public class ItemArmorCompositeSuit extends ItemArmor {
                                     player.addPotionEffect(new PotionEffect(MobEffects.NIGHT_VISION, 400 + (300 - nightVisionEffect.getDuration())));
                                     stack.damageItem(1, player);
                                 }
-                            } else {
+                            } else{
                                 player.addPotionEffect(new PotionEffect(MobEffects.NIGHT_VISION, 400));
                                 stack.damageItem(1, player);
                             }
                         }
                         break;
                     }
-                    case CHEST: {
+                    case CHEST:{
                         if(player.getHealth() < player.getMaxHealth() && world.getTotalWorldTime() % 100 == 0){
                             if(stack.getMaxDamage() - stack.getItemDamage() > 1){
                                 player.heal(1.0F);
@@ -105,7 +98,7 @@ public class ItemArmorCompositeSuit extends ItemArmor {
                         }
                         break;
                     }
-                    case LEGS: {
+                    case LEGS:{
                         if(player.getHealth() < player.getMaxHealth() && stack.getMaxDamage() - stack.getItemDamage() > 1){
                             if(player.isBurning()){
                                 player.extinguish();
@@ -114,7 +107,7 @@ public class ItemArmorCompositeSuit extends ItemArmor {
                         }
                         break;
                     }
-                    case FEET: {
+                    case FEET:{
                         if(!player.isInWater() && stack.getMaxDamage() - stack.getItemDamage() > 5){
                             PotionEffect effect = player.getActivePotionEffect(MobEffects.JUMP_BOOST);
                             if(effect != null){
@@ -122,7 +115,7 @@ public class ItemArmorCompositeSuit extends ItemArmor {
                                     player.addPotionEffect(new PotionEffect(MobEffects.JUMP_BOOST, 400 + (300 - effect.getDuration())));
                                     stack.damageItem(1, player);
                                 }
-                            } else {
+                            } else{
                                 player.addPotionEffect(new PotionEffect(MobEffects.JUMP_BOOST, 400));
                                 stack.damageItem(1, player);
                             }
@@ -131,6 +124,23 @@ public class ItemArmorCompositeSuit extends ItemArmor {
                 }
             }
         }
+    }
+    
+    @Nullable
+    @Override
+    public String getArmorTexture(ItemStack stack, Entity entity, EntityEquipmentSlot slot, String type){
+        if(slot != EntityEquipmentSlot.LEGS){
+            String name = type != null ? "composite_suit_overlay.png" : "composite_suit.png";
+            return Traincraft.MOD_ID + ":textures/armor/" + name;
+        } else{
+            String name = type != null ? "composite_suit_pants_overlay.png" : "composite_suit_pants.png";
+            return Traincraft.MOD_ID + ":textures/armor/" + name;
+        }
+    }
+    
+    @Override
+    public IRarity getForgeRarity(ItemStack stack){
+        return EnumRarity.EPIC;
     }
     
 }
