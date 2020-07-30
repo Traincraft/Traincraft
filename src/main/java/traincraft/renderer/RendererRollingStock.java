@@ -1,3 +1,13 @@
+/*
+ * Traincraft
+ * Copyright (c) 2011-2020.
+ *
+ * This file ("RendererRollingStock.java") is part of the Traincraft mod for Minecraft.
+ * It is created by all people that are listed with @author below.
+ * It is distributed under LGPL-v3.0.
+ * You can find the source code at https://github.com/Traincraft/Traincraft
+ */
+
 package traincraft.renderer;
 
 import net.minecraft.client.renderer.GlStateManager;
@@ -10,12 +20,12 @@ import javax.annotation.Nullable;
 
 public class RendererRollingStock<T extends AbstractRollingStock<T>> extends Render<T> {
     
-    public RendererRollingStock(RenderManager renderManager) {
+    public RendererRollingStock(RenderManager renderManager){
         super(renderManager);
     }
     
     @Override
-    public void doRender(T entity, double x, double y, double z, float entityYaw, float partialTicks) {
+    public void doRender(T entity, double x, double y, double z, float entityYaw, float partialTicks){
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
         
         GlStateManager.pushMatrix();
@@ -36,7 +46,7 @@ public class RendererRollingStock<T extends AbstractRollingStock<T>> extends Ren
     
     @Nullable
     @Override
-    protected ResourceLocation getEntityTexture(T entity) {
+    protected ResourceLocation getEntityTexture(T entity){
         return entity.getTexture(entity);
     }
     

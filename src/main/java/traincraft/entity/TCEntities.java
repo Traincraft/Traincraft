@@ -1,3 +1,13 @@
+/*
+ * Traincraft
+ * Copyright (c) 2011-2020.
+ *
+ * This file ("TCEntities.java") is part of the Traincraft mod for Minecraft.
+ * It is created by all people that are listed with @author below.
+ * It is distributed under LGPL-v3.0.
+ * You can find the source code at https://github.com/Traincraft/Traincraft
+ */
+
 package traincraft.entity;
 
 import net.minecraft.util.ResourceLocation;
@@ -7,7 +17,6 @@ import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import traincraft.Traincraft;
 import traincraft.api.AbstractRollingStock;
-import traincraft.entity.train.steam.small.LocomotiveSteamSmall;
 import traincraft.renderer.RendererRollingStock;
 
 public class TCEntities {

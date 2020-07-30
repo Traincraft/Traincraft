@@ -1,15 +1,17 @@
+/*
+ * Traincraft
+ * Copyright (c) 2011-2020.
+ *
+ * This file ("IRollingStock.java") is part of the Traincraft mod for Minecraft.
+ * It is created by all people that are listed with @author below.
+ * It is distributed under LGPL-v3.0.
+ * You can find the source code at https://github.com/Traincraft/Traincraft
+ */
+
 package traincraft.api;
-
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
@@ -21,7 +23,6 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
 import net.minecraftforge.common.IMinecartCollisionHandler;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -30,15 +31,21 @@ import net.minecraftforge.items.IItemHandler;
 import traincraft.renderer.TraincraftModel;
 import traincraft.tile.BaseTile;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+
 /**
  * This describes the default values and behaviours any rolling stock should have.
  * It nearly fully implemented through {@link AbstractRollingStock}, which you should extend in favor of this.
  * This interface is only for clearly seeing the documentation and all of this could be moved to {@link AbstractRollingStock}.
  *
+ * @author canitzp
  * @see AbstractRollingStock
  * @see LocomotiveSteam
  * @since 5.0.0
- * @author canitzp
  */
 public interface IRollingStock {
     
@@ -48,24 +55,26 @@ public interface IRollingStock {
      * or a previously placed rolling stock is played again (DROP).
      *
      * @param rollingStock This rolling stock
-     * @param nbt The nbt compound to read from
-     * @param state What was written (e.g.: a sync packet has not written all values)
+     * @param nbt          The nbt compound to read from
+     * @param state        What was written (e.g.: a sync packet has not written all values)
      */
-    default void readFromNBT(AbstractRollingStock<?> rollingStock, NBTTagCompound nbt, BaseTile.NBTState state){}
+    default void readFromNBT(AbstractRollingStock<?> rollingStock, NBTTagCompound nbt, BaseTile.NBTState state){
+    }
     
     /**
      * Use this to write custom NBT to this rolling stock.
      *
      * @param rollingStock This rolling stock
-     * @param nbt The nbt compound to write to
-     * @param state What should be written (e.g.: a sync packet has not to write all values)
+     * @param nbt          The nbt compound to write to
+     * @param state        What should be written (e.g.: a sync packet has not to write all values)
      */
-    default void writeToNBT(AbstractRollingStock<?> rollingStock, NBTTagCompound nbt, BaseTile.NBTState state){}
+    default void writeToNBT(AbstractRollingStock<?> rollingStock, NBTTagCompound nbt, BaseTile.NBTState state){
+    }
     
     /**
      * Gets the size of this, within a {@link Vec3d} object.
      * The x-field is the width, the y-field is the height and the z-field is the depth
-     *
+     * <p>
      * The default value is a one by one block sized entity.
      *
      * @param rollingStock This rolling stock
@@ -82,7 +91,7 @@ public interface IRollingStock {
      * Normally this returns a singleton list with default collision box logic applied.
      *
      * @param rollingStock This rolling stock
-     * @param posVec The position of this rolling stock as {@link Vec3d}
+     * @param posVec       The position of this rolling stock as {@link Vec3d}
      * @return A list with collision boxes
      */
     default List<AxisAlignedBB> getCollisionBoxes(AbstractRollingStock<?> rollingStock, Vec3d posVec){
@@ -123,7 +132,7 @@ public interface IRollingStock {
     /**
      * Gets the maximum reverse speed this rolling stock should be capable of.
      * Unit should be meters/second (m/s)
-     *
+     * <p>
      * Set this to zero or below will prevent the rolling stock from driving in reverse direction.
      * This can be set to the maximum speed in case the rolling stock can drive in both directions
      *
@@ -151,17 +160,19 @@ public interface IRollingStock {
      * The default texture is at index 0.
      *
      * @param rollingStock This rolling stock
-     * @param skins The map of skins already registered
+     * @param skins        The map of skins already registered
      */
-    default void registerSkins(AbstractRollingStock<?> rollingStock, Map<String, ResourceLocation> skins){}
+    default void registerSkins(AbstractRollingStock<?> rollingStock, Map<String, ResourceLocation> skins){
+    }
     
     /**
      * Use this method to add seats to your rolling stock.
      *
      * @param rollingStock This rolling stock
-     * @param seats The list of seats
+     * @param seats        The list of seats
      */
-    default void registerSeats(AbstractRollingStock<?> rollingStock, List<PassengerSeat> seats){}
+    default void registerSeats(AbstractRollingStock<?> rollingStock, List<PassengerSeat> seats){
+    }
     
     /**
      * This is used by the renderer to get the actual model that has to be rendered.
@@ -199,30 +210,32 @@ public interface IRollingStock {
      * Can be used to render custom stuff.
      * Called every frame, so be careful when using this method.
      *
-     * @param rollingStock This rolling stock
+     * @param rollingStock  This rolling stock
      * @param renderManager The renderer manager
-     * @param x Drawing x position
-     * @param y Drawing y position
-     * @param z Drawing z position
-     * @param entityYaw This entities yaw
-     * @param partialTicks The partial ticks to apply for smooth rotating and movement
+     * @param x             Drawing x position
+     * @param y             Drawing y position
+     * @param z             Drawing z position
+     * @param entityYaw     This entities yaw
+     * @param partialTicks  The partial ticks to apply for smooth rotating and movement
      */
-    default void preRender(AbstractRollingStock<?> rollingStock, RenderManager renderManager, double x, double y, double z, float entityYaw, float partialTicks){}
+    default void preRender(AbstractRollingStock<?> rollingStock, RenderManager renderManager, double x, double y, double z, float entityYaw, float partialTicks){
+    }
     
     /**
      * Called by the renderer after the model has be rendered.
      * Can be used to render custom stuff.
      * Called every frame, so be careful when using this method.
      *
-     * @param rollingStock This rolling stock
+     * @param rollingStock  This rolling stock
      * @param renderManager The renderer manager
-     * @param x Drawing x position
-     * @param y Drawing y position
-     * @param z Drawing z position
-     * @param entityYaw This entities yaw
-     * @param partialTicks The partial ticks to apply for smooth rotating and movement
+     * @param x             Drawing x position
+     * @param y             Drawing y position
+     * @param z             Drawing z position
+     * @param entityYaw     This entities yaw
+     * @param partialTicks  The partial ticks to apply for smooth rotating and movement
      */
-    default void postRender(AbstractRollingStock<?> rollingStock, RenderManager renderManager, double x, double y, double z, float entityYaw, float partialTicks){}
+    default void postRender(AbstractRollingStock<?> rollingStock, RenderManager renderManager, double x, double y, double z, float entityYaw, float partialTicks){
+    }
     
     /**
      * Gets the inventory handler for this rolling stock.
@@ -230,7 +243,7 @@ public interface IRollingStock {
      * Returning null would mean that this rolling stock has no inventory.
      *
      * @param rollingStock This rolling stock
-     * @param side The side at which it tries to interact with. CAN BE NULL!
+     * @param side         The side at which it tries to interact with. CAN BE NULL!
      * @return The {@link IItemHandler} for the specified side
      */
     default IItemHandler getInventory(AbstractRollingStock<?> rollingStock, @Nullable EnumFacing side){
@@ -242,7 +255,7 @@ public interface IRollingStock {
      * Returning null would mean that this rolling stock has no fluid storage.
      *
      * @param rollingStock This rolling stock
-     * @param side The side at which it tries to interact with. CAN BE NULL!
+     * @param side         The side at which it tries to interact with. CAN BE NULL!
      * @return The {@link IFluidHandler} for the specified side
      */
     default IFluidHandler getFluidTank(AbstractRollingStock<?> rollingStock, @Nullable EnumFacing side){
@@ -254,7 +267,7 @@ public interface IRollingStock {
      * Returning null would mean that this rolling stock has no energy storage.
      *
      * @param rollingStock This rolling stock
-     * @param side The side at which it tries to interact with. CAN BE NULL!
+     * @param side         The side at which it tries to interact with. CAN BE NULL!
      * @return The {@link IEnergyStorage} for the specified side
      */
     default IEnergyStorage getEnergyStorage(AbstractRollingStock<?> rollingStock, @Nullable EnumFacing side){
@@ -267,7 +280,7 @@ public interface IRollingStock {
      * This overwrites {@link net.minecraft.entity.Entity#applyPlayerInteraction(EntityPlayer, Vec3d, EnumHand)}.
      *
      * @param player The clicker
-     * @param hand The hand used by the clicker
+     * @param hand   The hand used by the clicker
      * @param hitVec The vector at which the clicker hit this entity. Reference: {@link PlayerInteractEvent.EntityInteractSpecific#getLocalPos()}
      * @return The Result of this method.
      */
@@ -279,10 +292,10 @@ public interface IRollingStock {
      * As an example this is used for connection two rolling stocks together: {@link traincraft.items.ItemConnector#handleEntityClick(AbstractRollingStock, EntityPlayer, EnumHand, ItemStack)}
      *
      * @param rollingStock The rolling stock that was clicked
-     * @param player The player that clicked the rolling stock
-     * @param hand The used hand of the player
-     * @param stack The stack, the player hit the rolling stock with
-     * @param hitVector The vector at which that player hit the rolling stock. Reference: {@link PlayerInteractEvent.EntityInteractSpecific#getLocalPos()}
+     * @param player       The player that clicked the rolling stock
+     * @param hand         The used hand of the player
+     * @param stack        The stack, the player hit the rolling stock with
+     * @param hitVector    The vector at which that player hit the rolling stock. Reference: {@link PlayerInteractEvent.EntityInteractSpecific#getLocalPos()}
      * @return True if the stack had some usage, that should prevent the player to start riding the rolling stock.
      */
     boolean handlePlayerClickWithItem(@Nonnull AbstractRollingStock<?> rollingStock, @Nonnull EntityPlayer player, @Nonnull EnumHand hand, @Nonnull ItemStack stack, @Nonnull Vec3d hitVector);
@@ -294,17 +307,18 @@ public interface IRollingStock {
      * The y-Axis can be ignored, since it doesn't matter.
      *
      * @param rollingStock This rolling stock
-     * @param axes The list of axes already registered
+     * @param axes         The list of axes already registered
      */
-    default void addAxes(AbstractRollingStock<?> rollingStock, List<Vec3d> axes){}
+    default void addAxes(AbstractRollingStock<?> rollingStock, List<Vec3d> axes){
+    }
     
     /**
      * This is used to check if this rollings stock can be connected to another rollings stock.
      * This should check if they are on the same rail and if there is no obstacle between them.
      *
      * @param rollingStock This rolling stock
-     * @param other The rolling stock we want to connect
-     * @param linker The player who wants to connect both. Can be null when the linker is not a player, but a command/...
+     * @param other        The rolling stock we want to connect
+     * @param linker       The player who wants to connect both. Can be null when the linker is not a player, but a command/...
      * @return True when this rolling stock can be connected to the other
      */
     boolean canLinkToAnotherRollingStock(@Nonnull AbstractRollingStock<?> rollingStock, @Nonnull AbstractRollingStock<?> other, @Nullable EntityPlayer linker);
@@ -314,8 +328,8 @@ public interface IRollingStock {
      * This is also called on both rolling stocks.
      *
      * @param rollingStock This rolling stock
-     * @param other The rolling stock we connect to
-     * @param linker The player who wants to connect both. Can be null when the linker is not a player, but a command/...
+     * @param other        The rolling stock we connect to
+     * @param linker       The player who wants to connect both. Can be null when the linker is not a player, but a command/...
      */
     void linkToAnotherRollingStock(@Nonnull AbstractRollingStock<?> rollingStock, @Nonnull AbstractRollingStock<?> other, @Nullable EntityPlayer linker);
     
@@ -325,7 +339,7 @@ public interface IRollingStock {
      * against the maximum distance the player can have to this entity.
      *
      * @param rollingStock This rolling stock
-     * @param player The player
+     * @param player       The player
      * @return True when player is allowed to access gui or container
      */
     default boolean canPlayerOpenGuiOrContainer(@Nonnull AbstractRollingStock<?> rollingStock, @Nonnull EntityPlayer player){
@@ -336,7 +350,7 @@ public interface IRollingStock {
      * Return some {@link GuiScreen} here, which is then displayed to the requesting player.
      *
      * @param rollingStock This rolling stock
-     * @param player The player
+     * @param player       The player
      * @return A Gui to show to the player
      */
     @Nullable
@@ -348,7 +362,7 @@ public interface IRollingStock {
      * Return some {@link Container} here, which is then displayed to the requesting player.
      *
      * @param rollingStock This rolling stock
-     * @param player The player
+     * @param player       The player
      * @return A Container to show to the player
      */
     @Nullable
@@ -362,7 +376,7 @@ public interface IRollingStock {
      * This also has to drain the power from this rolling stock.
      * When front and back axis aren't null, they should be used instead of the currentPosition vector.
      *
-     * @param rollingStock This rolling stock
+     * @param rollingStock    This rolling stock
      * @param currentPosition The current position
      * @return A motion vector
      */

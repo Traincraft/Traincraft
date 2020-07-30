@@ -1,3 +1,13 @@
+/*
+ * Traincraft
+ * Copyright (c) 2011-2020.
+ *
+ * This file ("BaseTile.java") is part of the Traincraft mod for Minecraft.
+ * It is created by all people that are listed with @author below.
+ * It is distributed under LGPL-v3.0.
+ * You can find the source code at https://github.com/Traincraft/Traincraft
+ */
+
 package traincraft.tile;
 
 import net.minecraft.block.state.IBlockState;
@@ -27,8 +37,6 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
-import traincraft.api.AbstractRollingStock;
-import traincraft.compat.CompatibilityManager;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -38,8 +46,63 @@ public abstract class BaseTile extends TileEntity {
     private boolean sync = false;
     
     @Override
-    public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newState) {
+    public final void readFromNBT(NBTTagCompound compound){
+        super.readFromNBT(compound);
+        this.readNBT(compound, NBTState.SAVE);
+    }
+    
+    @Override
+    public final NBTTagCompound writeToNBT(NBTTagCompound compound){
+        super.writeToNBT(compound);
+        this.writeNBT(compound, NBTState.SAVE);
+        return compound;
+    }
+    
+    @Nullable
+    @Override
+    public SPacketUpdateTileEntity getUpdatePacket(){
+        NBTTagCompound compound = new NBTTagCompound();
+        this.writeNBT(compound, NBTState.SYNC);
+        return new SPacketUpdateTileEntity(getPos(), 0, compound);
+    }
+    
+    @Override
+    public final void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt){
+        if(pkt != null){
+            this.readNBT(pkt.getNbtCompound(), NBTState.SYNC);
+        }
+    }
+    
+    @Override
+    public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newState){
         return oldState.getBlock() != newState.getBlock();
+    }
+    
+    @Override
+    public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing){
+        return this.getCapability(capability, facing) != null;
+    }
+    
+    @Nullable
+    @Override
+    public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing){
+        if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY){
+            IItemHandler itemHandler = this.getInventory(facing);
+            if(itemHandler != null){
+                return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(itemHandler);
+            }
+        } else if(capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY){
+            IFluidHandler fluidHandler = this.getFluidTank(facing);
+            if(fluidHandler != null){
+                return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(fluidHandler);
+            }
+        } else if(capability == CapabilityEnergy.ENERGY){
+            IEnergyStorage energyStorage = this.getEnergyStorage(facing);
+            if(energyStorage != null){
+                return CapabilityEnergy.ENERGY.cast(energyStorage);
+            }
+        }
+        return super.getCapability(capability, facing);
     }
     
     public IInventory getRealInventory(){
@@ -79,63 +142,8 @@ public abstract class BaseTile extends TileEntity {
         }
     }
     
-    @Override
-    public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
-        return this.getCapability(capability, facing) != null;
-    }
-    
-    @Nullable
-    @Override
-    public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
-        if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY){
-            IItemHandler itemHandler = this.getInventory(facing);
-            if(itemHandler != null){
-                return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(itemHandler);
-            }
-        } else if(capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY){
-            IFluidHandler fluidHandler = this.getFluidTank(facing);
-            if(fluidHandler != null){
-                return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(fluidHandler);
-            }
-        } else if(capability == CapabilityEnergy.ENERGY){
-            IEnergyStorage energyStorage = this.getEnergyStorage(facing);
-            if(energyStorage != null){
-                return CapabilityEnergy.ENERGY.cast(energyStorage);
-            }
-        }
-        return super.getCapability(capability, facing);
-    }
-    
-    @Nullable
-    @Override
-    public SPacketUpdateTileEntity getUpdatePacket() {
-        NBTTagCompound compound = new NBTTagCompound();
-        this.writeNBT(compound, NBTState.SYNC);
-        return new SPacketUpdateTileEntity(getPos(), 0, compound);
-    }
-    
-    @Override
-    public final void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
-        if (pkt != null) {
-            this.readNBT(pkt.getNbtCompound(), NBTState.SYNC);
-        }
-    }
-    
-    public void syncToClient() {
+    public void syncToClient(){
         this.sync = true;
-    }
-    
-    @Override
-    public final void readFromNBT(NBTTagCompound compound) {
-        super.readFromNBT(compound);
-        this.readNBT(compound, NBTState.SAVE);
-    }
-    
-    @Override
-    public final NBTTagCompound writeToNBT(NBTTagCompound compound) {
-        super.writeToNBT(compound);
-        this.writeNBT(compound, NBTState.SAVE);
-        return compound;
     }
     
     public void readNBT(NBTTagCompound nbt, NBTState state){
@@ -171,7 +179,7 @@ public abstract class BaseTile extends TileEntity {
                 nbt.setTag("inventory", value);
             }
         }
-    
+        
         IFluidHandler fluidHandler = this.getFluidTank(null);
         if(fluidHandler instanceof INBTSerializable<?>){
             NBTBase value = ((INBTSerializable<?>) fluidHandler).serializeNBT();
@@ -198,7 +206,7 @@ public abstract class BaseTile extends TileEntity {
     
     }
     
-    public static enum NBTState {
+    public enum NBTState {
         SAVE,
         SYNC,
         DROP

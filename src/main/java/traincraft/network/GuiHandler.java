@@ -1,3 +1,13 @@
+/*
+ * Traincraft
+ * Copyright (c) 2011-2020.
+ *
+ * This file ("GuiHandler.java") is part of the Traincraft mod for Minecraft.
+ * It is created by all people that are listed with @author below.
+ * It is distributed under LGPL-v3.0.
+ * You can find the source code at https://github.com/Traincraft/Traincraft
+ */
+
 package traincraft.network;
 
 import net.minecraft.entity.Entity;
@@ -7,8 +17,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 import traincraft.Traincraft;
-import traincraft.tile.BaseTile;
 import traincraft.api.AbstractRollingStock;
+import traincraft.tile.BaseTile;
 
 import javax.annotation.Nullable;
 
@@ -19,10 +29,10 @@ public class GuiHandler implements IGuiHandler {
     
     @Nullable
     @Override
-    public Object getServerGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
+    public Object getServerGuiElement(int id, EntityPlayer player, World world, int x, int y, int z){
         // id determines if it is a tile or a entity. 1 => TileBase; 2 => Entity (z = world entity id)
         switch(id){
-            case TILE_ENTITY: {
+            case TILE_ENTITY:{
                 TileEntity tile = world.getTileEntity(new BlockPos(x, y, z));
                 if(tile instanceof BaseTile){
                     ((BaseTile) tile).syncToClient(); // sync to clients when opening gui
@@ -30,7 +40,7 @@ public class GuiHandler implements IGuiHandler {
                 }
                 break;
             }
-            case ENTITY: {
+            case ENTITY:{
                 Entity entity = world.getEntityByID(z);
                 if(entity instanceof AbstractRollingStock<?>){
                     return ((AbstractRollingStock<?>) entity).openContainer((AbstractRollingStock<?>) entity, player);
@@ -43,17 +53,17 @@ public class GuiHandler implements IGuiHandler {
     
     @Nullable
     @Override
-    public Object getClientGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
+    public Object getClientGuiElement(int id, EntityPlayer player, World world, int x, int y, int z){
         // id determines if it is a tile or a entity. 1 => TileBase; 2 => Entity (z = world entity id)
         switch(id){
-            case TILE_ENTITY: {
+            case TILE_ENTITY:{
                 TileEntity tile = world.getTileEntity(new BlockPos(x, y, z));
                 if(tile instanceof BaseTile){
                     return ((BaseTile) tile).openGui(player);
                 }
                 break;
             }
-            case ENTITY: {
+            case ENTITY:{
                 Entity entity = world.getEntityByID(z);
                 if(entity instanceof AbstractRollingStock<?>){
                     return ((AbstractRollingStock<?>) entity).openGui((AbstractRollingStock<?>) entity, player);

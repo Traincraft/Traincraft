@@ -1,3 +1,13 @@
+/*
+ * Traincraft
+ * Copyright (c) 2011-2020.
+ *
+ * This file ("InventoryBase.java") is part of the Traincraft mod for Minecraft.
+ * It is created by all people that are listed with @author below.
+ * It is distributed under LGPL-v3.0.
+ * You can find the source code at https://github.com/Traincraft/Traincraft
+ */
+
 package traincraft.api;
 
 import net.minecraft.inventory.ISidedInventory;
@@ -13,16 +23,16 @@ import net.minecraftforge.items.wrapper.SidedInvWrapper;
 
 public class InventoryBase extends InventoryBasic implements INBTSerializable<NBTTagCompound>, ISidedInventory {
     
-    public InventoryBase(String title, boolean customName, int slotCount) {
+    public InventoryBase(String title, boolean customName, int slotCount){
         super(title, customName, slotCount);
     }
     
-    public InventoryBase(ITextComponent title, int slotCount) {
+    public InventoryBase(ITextComponent title, int slotCount){
         super(title, slotCount);
     }
     
     @Override
-    public NBTTagCompound serializeNBT() {
+    public NBTTagCompound serializeNBT(){
         NBTTagList nbtTagList = new NBTTagList();
         for(int i = 0; i < this.getSizeInventory(); i++){
             NBTTagCompound itemTag = new NBTTagCompound();
@@ -37,7 +47,7 @@ public class InventoryBase extends InventoryBasic implements INBTSerializable<NB
     }
     
     @Override
-    public void deserializeNBT(NBTTagCompound nbt) {
+    public void deserializeNBT(NBTTagCompound nbt){
         NBTTagList tagList = nbt.getTagList("Items", Constants.NBT.TAG_COMPOUND);
         for(int i = 0; i < tagList.tagCount(); i++){
             NBTTagCompound itemTags = tagList.getCompoundTagAt(i);
@@ -48,34 +58,34 @@ public class InventoryBase extends InventoryBasic implements INBTSerializable<NB
         }
     }
     
+    @Override
+    public int[] getSlotsForFace(EnumFacing side){
+        if(this.getSizeInventory() > 0){
+            int[] ints = new int[this.getSizeInventory()];
+            for(int i = 0; i < ints.length; i++){
+                ints[i] = i;
+            }
+            return ints;
+        } else{
+            return new int[0];
+        }
+    }
+    
+    @Override
+    public boolean canInsertItem(int index, ItemStack itemStackIn, EnumFacing direction){
+        return this.isItemValidForSlot(index, itemStackIn);
+    }
+    
+    @Override
+    public boolean canExtractItem(int index, ItemStack stack, EnumFacing direction){
+        return true;
+    }
+    
     public static SidedInvWrapper[] getSidedWrappers(ISidedInventory inventory){
         SidedInvWrapper[] ara = new SidedInvWrapper[6];
         for(EnumFacing facing : EnumFacing.VALUES){
             ara[facing.getIndex()] = new SidedInvWrapper(inventory, facing);
         }
         return ara;
-    }
-    
-    @Override
-    public int[] getSlotsForFace(EnumFacing side) {
-        if (this.getSizeInventory() > 0) {
-            int[] ints = new int[this.getSizeInventory()];
-            for (int i = 0; i < ints.length; i++) {
-                ints[i] = i;
-            }
-            return ints;
-        } else {
-            return new int[0];
-        }
-    }
-    
-    @Override
-    public boolean canInsertItem(int index, ItemStack itemStackIn, EnumFacing direction) {
-        return this.isItemValidForSlot(index, itemStackIn);
-    }
-    
-    @Override
-    public boolean canExtractItem(int index, ItemStack stack, EnumFacing direction) {
-        return true;
     }
 }

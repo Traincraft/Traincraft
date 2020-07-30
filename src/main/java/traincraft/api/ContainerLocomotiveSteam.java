@@ -1,8 +1,17 @@
+/*
+ * Traincraft
+ * Copyright (c) 2011-2020.
+ *
+ * This file ("ContainerLocomotiveSteam.java") is part of the Traincraft mod for Minecraft.
+ * It is created by all people that are listed with @author below.
+ * It is distributed under LGPL-v3.0.
+ * You can find the source code at https://github.com/Traincraft/Traincraft
+ */
+
 package traincraft.api;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityFurnace;
@@ -14,7 +23,7 @@ public class ContainerLocomotiveSteam extends Container {
     
     private final LocomotiveSteam<?> locomotiveSteam;
     
-    public ContainerLocomotiveSteam(LocomotiveSteam<?> locomotiveSteam, EntityPlayer player) {
+    public ContainerLocomotiveSteam(LocomotiveSteam<?> locomotiveSteam, EntityPlayer player){
         this.locomotiveSteam = locomotiveSteam;
         IItemHandler inventory = locomotiveSteam.getInventory(locomotiveSteam, null);
         if(inventory instanceof InvWrapper){
@@ -26,25 +35,25 @@ public class ContainerLocomotiveSteam extends Container {
                 }
             }
         }
-    
+        
         for(int x = 0; x < 3; ++x){
             for(int y = 0; y < 9; ++y){
                 this.addSlotToContainer(new Slot(player.inventory, y + x * 9 + 9, 8 + y * 18, 84 + x * 18));
             }
         }
-    
+        
         for(int x = 0; x < 9; ++x){
             this.addSlotToContainer(new Slot(player.inventory, x, 8 + x * 18, 142));
         }
     }
     
     @Override
-    public boolean canInteractWith(EntityPlayer player) {
-        return true;
+    public ItemStack transferStackInSlot(EntityPlayer playerIn, int index){
+        return ItemStack.EMPTY;
     }
     
     @Override
-    public ItemStack transferStackInSlot(EntityPlayer playerIn, int index) {
-        return ItemStack.EMPTY;
+    public boolean canInteractWith(EntityPlayer player){
+        return true;
     }
 }

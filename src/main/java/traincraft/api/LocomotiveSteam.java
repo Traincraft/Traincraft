@@ -1,3 +1,13 @@
+/*
+ * Traincraft
+ * Copyright (c) 2011-2020.
+ *
+ * This file ("LocomotiveSteam.java") is part of the Traincraft mod for Minecraft.
+ * It is created by all people that are listed with @author below.
+ * It is distributed under LGPL-v3.0.
+ * You can find the source code at https://github.com/Traincraft/Traincraft
+ */
+
 package traincraft.api;
 
 import net.minecraft.entity.item.EntityItem;
@@ -33,102 +43,41 @@ public abstract class LocomotiveSteam<A extends LocomotiveSteam<A>> extends Abst
     public int burnTime = 0;
     public double temperature = this.getDefaultTemperature();
     
-    public LocomotiveSteam(World worldIn) {
+    public LocomotiveSteam(World worldIn){
         super(worldIn);
     }
     
-    public LocomotiveSteam(World worldIn, double x, double y, double z) {
+    public LocomotiveSteam(World worldIn, double x, double y, double z){
         super(worldIn, x, y, z);
     }
     
-    /**
-     * @return The amount of water this steam locomotive can store in milli buckets.
-     */
-    protected int getWaterTankCapacity(){
-        return 5000;
-    }
-    
-    /**
-     * @return The size of the inventory. The default gui/container has 10 slots for coal
-     */
-    protected int getInventorySize(){
-        return 11;
-    }
-    
-    /**
-     * @param slot The slot number.
-     * @param stack The ItemStack
-     * @return If the specific ItemStack can be put in the inventory. This defaults to all stacks that can be burned or that can hold fluids.
-     */
-    protected boolean isItemValidForInventory(int slot, @Nonnull ItemStack stack){
-        switch(slot){
-            case BURN_SLOT: return TileEntityFurnace.isItemFuel(stack);
-            case WATER_SLOT: return stack.hasCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null);
-            default:{
-                return TileEntityFurnace.isItemFuel(stack) || stack.hasCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null);
-            }
-        }
-    }
-    
     @Override
-    public double getTemperature() {
+    public double getTemperature(){
         return this.temperature;
     }
     
     @Override
-    public void setTemperature(double temperature) {
+    public void setTemperature(double temperature){
         this.temperature = temperature;
     }
     
     @Override
-    public double getMaximumTemperature() {
+    public double getMaximumTemperature(){
         return 473.15D; // 200°C
     }
     
     @Override
-    public double getMinimumTemperature() {
+    public double getMinimumTemperature(){
         return 253.15D; // -20°C
     }
     
     @Override
-    public double getDefaultTemperature() {
+    public double getDefaultTemperature(){
         return 293.15D; // 20°C
     }
     
     @Override
-    public void readFromNBT(AbstractRollingStock<?> rollingStock, NBTTagCompound nbt, BaseTile.NBTState state) {
-        super.readFromNBT(rollingStock, nbt, state);
-        if(state != BaseTile.NBTState.DROP){
-            if(nbt.hasKey("burn_time", Constants.NBT.TAG_INT)){
-                this.burnTime = nbt.getInteger("burn_time");
-            }
-            if(nbt.hasKey("max_burn_time", Constants.NBT.TAG_INT)){
-                this.maxBurnTime = nbt.getInteger("max_burn_time");
-            }
-        }
-    }
-    
-    @Override
-    public void writeToNBT(AbstractRollingStock<?> rollingStock, NBTTagCompound nbt, BaseTile.NBTState state) {
-        super.writeToNBT(rollingStock, nbt, state);
-        if(state != BaseTile.NBTState.DROP){
-            nbt.setInteger("burn_time", this.burnTime);
-            nbt.setInteger("max_burn_time", this.maxBurnTime);
-        }
-    }
-    
-    @Override
-    public IItemHandler getInventory(AbstractRollingStock<?> rollingStock, @Nullable EnumFacing side) {
-        return this.inventory;
-    }
-    
-    @Override
-    public IFluidHandler getFluidTank(AbstractRollingStock<?> rollingStock, @Nullable EnumFacing side) {
-        return this.fluidTank;
-    }
-    
-    @Override
-    public void onUpdate() {
+    public void onUpdate(){
         super.onUpdate();
         if(!this.world.isRemote){
             boolean shouldSendUpdatePacket = false;
@@ -155,7 +104,7 @@ public abstract class LocomotiveSteam<A extends LocomotiveSteam<A>> extends Abst
                     }
                 }
             }
-    
+            
             // refill water from inventory
             ItemStack waterStack = this.inventory.getStackInSlot(WATER_SLOT);
             boolean searchForWaterContainerInInventory = waterStack.isEmpty();
@@ -187,7 +136,7 @@ public abstract class LocomotiveSteam<A extends LocomotiveSteam<A>> extends Abst
                                         if(!stack1.isEmpty()){
                                             this.world.spawnEntity(new EntityItem(this.world, this.posX, this.posY, this.posZ, stack1));
                                         }
-                                    } else {
+                                    } else{
                                         ItemStack stack1 = this.inventory.insertItem(i, stackInSlot, false);
                                         if(!stack1.isEmpty()){
                                             this.world.spawnEntity(new EntityItem(this.world, this.posX, this.posY, this.posZ, stack1));
@@ -240,11 +189,73 @@ public abstract class LocomotiveSteam<A extends LocomotiveSteam<A>> extends Abst
                 this.burnTime--;
                 shouldSendUpdatePacket = this.burnTime % 5 == 0;
             }
-    
             
             
             if(shouldSendUpdatePacket){
                 this.sendSyncPacketToClients();
+            }
+        }
+    }
+    
+    @Override
+    public void readFromNBT(AbstractRollingStock<?> rollingStock, NBTTagCompound nbt, BaseTile.NBTState state){
+        super.readFromNBT(rollingStock, nbt, state);
+        if(state != BaseTile.NBTState.DROP){
+            if(nbt.hasKey("burn_time", Constants.NBT.TAG_INT)){
+                this.burnTime = nbt.getInteger("burn_time");
+            }
+            if(nbt.hasKey("max_burn_time", Constants.NBT.TAG_INT)){
+                this.maxBurnTime = nbt.getInteger("max_burn_time");
+            }
+        }
+    }
+    
+    @Override
+    public void writeToNBT(AbstractRollingStock<?> rollingStock, NBTTagCompound nbt, BaseTile.NBTState state){
+        super.writeToNBT(rollingStock, nbt, state);
+        if(state != BaseTile.NBTState.DROP){
+            nbt.setInteger("burn_time", this.burnTime);
+            nbt.setInteger("max_burn_time", this.maxBurnTime);
+        }
+    }
+    
+    @Override
+    public IItemHandler getInventory(AbstractRollingStock<?> rollingStock, @Nullable EnumFacing side){
+        return this.inventory;
+    }
+    
+    @Override
+    public IFluidHandler getFluidTank(AbstractRollingStock<?> rollingStock, @Nullable EnumFacing side){
+        return this.fluidTank;
+    }
+    
+    /**
+     * @return The amount of water this steam locomotive can store in milli buckets.
+     */
+    protected int getWaterTankCapacity(){
+        return 5000;
+    }
+    
+    /**
+     * @return The size of the inventory. The default gui/container has 10 slots for coal
+     */
+    protected int getInventorySize(){
+        return 11;
+    }
+    
+    /**
+     * @param slot  The slot number.
+     * @param stack The ItemStack
+     * @return If the specific ItemStack can be put in the inventory. This defaults to all stacks that can be burned or that can hold fluids.
+     */
+    protected boolean isItemValidForInventory(int slot, @Nonnull ItemStack stack){
+        switch(slot){
+            case BURN_SLOT:
+                return TileEntityFurnace.isItemFuel(stack);
+            case WATER_SLOT:
+                return stack.hasCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null);
+            default:{
+                return TileEntityFurnace.isItemFuel(stack) || stack.hasCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null);
             }
         }
     }

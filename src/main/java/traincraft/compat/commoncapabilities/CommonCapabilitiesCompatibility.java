@@ -1,3 +1,13 @@
+/*
+ * Traincraft
+ * Copyright (c) 2011-2020.
+ *
+ * This file ("CommonCapabilitiesCompatibility.java") is part of the Traincraft mod for Minecraft.
+ * It is created by all people that are listed with @author below.
+ * It is distributed under LGPL-v3.0.
+ * You can find the source code at https://github.com/Traincraft/Traincraft
+ */
+
 package traincraft.compat.commoncapabilities;
 
 import net.minecraft.nbt.NBTTagCompound;
@@ -16,12 +26,12 @@ import javax.annotation.Nullable;
 public class CommonCapabilitiesCompatibility implements ITraincraftCompatibility {
     
     @Override
-    public boolean hasRollingStockCapability(AbstractRollingStock<?> rollingStock, Capability<?> capability, @Nullable EnumFacing facing) {
+    public boolean hasRollingStockCapability(AbstractRollingStock<?> rollingStock, Capability<?> capability, @Nullable EnumFacing facing){
         return rollingStock instanceof ITemperatureSupplier;
     }
     
     @Override
-    public <T> T getRollingStockCapability(AbstractRollingStock<?> rollingStock, Capability<T> capability, @Nullable EnumFacing facing) {
+    public <T> T getRollingStockCapability(AbstractRollingStock<?> rollingStock, Capability<T> capability, @Nullable EnumFacing facing){
         if(capability == TemperatureConfig.CAPABILITY){
             if(rollingStock instanceof ITemperatureSupplier){
                 return TemperatureConfig.CAPABILITY.cast(new GenericTemperature((ITemperatureSupplier) rollingStock));
@@ -31,7 +41,7 @@ public class CommonCapabilitiesCompatibility implements ITraincraftCompatibility
     }
     
     @Override
-    public void writeRollingStockNBT(AbstractRollingStock<?> rollingStock, NBTTagCompound nbt, BaseTile.NBTState state) {
+    public void writeRollingStockNBT(AbstractRollingStock<?> rollingStock, NBTTagCompound nbt, BaseTile.NBTState state){
         if(rollingStock.hasCapability(TemperatureConfig.CAPABILITY, null)){
             ITemperature capability = rollingStock.getCapability(TemperatureConfig.CAPABILITY, null);
             if(capability != null){
@@ -43,7 +53,7 @@ public class CommonCapabilitiesCompatibility implements ITraincraftCompatibility
     }
     
     @Override
-    public void readRollingStockNBT(AbstractRollingStock<?> rollingStock, NBTTagCompound nbt, BaseTile.NBTState state) {
+    public void readRollingStockNBT(AbstractRollingStock<?> rollingStock, NBTTagCompound nbt, BaseTile.NBTState state){
         if(rollingStock.hasCapability(TemperatureConfig.CAPABILITY, null) && rollingStock instanceof ITemperatureSupplier){
             ITemperature capability = rollingStock.getCapability(TemperatureConfig.CAPABILITY, null);
             if(capability != null && nbt.hasKey("temperature", Constants.NBT.TAG_COMPOUND)){
