@@ -1,7 +1,7 @@
 package train.client.render.models;
 //tender
 import net.minecraft.entity.Entity;
-import tmt.ModelBase;
+import fexcraft.tmt.slim.ModelBase;
 import train.client.render.CustomModelRenderer;
 
 public class ModelTenderHeavy extends ModelBase

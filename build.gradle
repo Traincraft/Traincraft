@@ -63,6 +63,7 @@ dependencies {
     compile "codechicken:CodeChickenCore:1.7.10-1.0.7.46:dev"
     compile "codechicken:NotEnoughItems:1.7.10-1.0.5.110:dev"
 
+    //TODO: replace this soon with a proper gradle import from TiM's git
     compile fileTree(dir: 'libs', include: ['*.jar'])
     // real examples
     //compile 'com.mod-buildcraft:buildcraft:6.0.8:dev'  // adds buildcraft to the dev env

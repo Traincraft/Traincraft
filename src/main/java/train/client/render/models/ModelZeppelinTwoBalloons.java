@@ -1,7 +1,7 @@
 package train.client.render.models;
 
 import net.minecraft.entity.Entity;
-import tmt.ModelBase;
+import fexcraft.tmt.slim.ModelBase;
 import train.client.render.CustomModelRenderer;
 import train.common.core.handlers.ConfigHandler;
 import train.common.entity.zeppelin.EntityZeppelinTwoBalloons;

@@ -5,7 +5,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
-import tmt.Tessellator;
+import fexcraft.tmt.slim.Tessellator;
 import train.common.library.Info;
 import train.common.tile.TileTCRail;
 

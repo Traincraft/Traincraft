@@ -11,8 +11,8 @@ package train.client.render.models;
 
 import net.minecraft.entity.Entity;
 import org.lwjgl.opengl.GL11;
-import tmt.ModelBase;
-import tmt.ModelRendererTurbo;
+import fexcraft.tmt.slim.ModelBase;
+import fexcraft.tmt.slim.ModelRendererTurbo;
 
 public class ModelPassenger_DB_oriental extends ModelBase
 {
