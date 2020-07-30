@@ -1,0 +1,65 @@
+# This is a comment, do no remove or modify these!
+# Only replace the words on the right side of "="
+# Save the file the same way this file was saved but replace "en_us" with appropriate language name (lowercase)
+
+# Misc
+itemGroup.traincraft=Traincraft
+
+# Blocks
+traincraft:copper_ore.name=Copper Ore
+traincraft:ore_oil_sand.name=Oil Sands
+traincraft:petrol_ore.name=Petrol ore
+traincraft:ballast.name=Ballast
+traincraft:generator_diesel.name=Diesel Generator
+traincraft:wind_mill.name=Windmill
+traincraft:water_wheel.name=Water Wheel
+traincraft:lantern.name=Lantern
+traincraft:hearth_furnace.name=Hearth Furnace
+traincraft:stopper.name=Train Buffer
+traincraft:train_workbench.name=Train Workbench
+traincraft:distillery.name=Distillery
+traincraft:assembly_table_1.name=Assembly Table I
+traincraft:assembly_table_2.name=Assembly Table II
+traincraft:assembly_table_3.name=Assembly Table III
+traincraft:bridge_pillar.name=Bridge Pillar
+traincraft:switch_stand.name=High Star Switch Stand
+
+# Fluids
+fluid.traincraft:oil=Oil
+fluid.traincraft:diesel=Diesel Fuel
+fluid.traincraft:refined_fuel=Refined Fuel
+
+# Items
+item.traincraft:steel_dust.name=Steel Dust
+item.traincraft:coal_dust.name=Coal Dust
+item.traincraft:graphite.name=Graphite
+item.traincraft:steel_firebox.name=Steel Firebox
+item.traincraft:steel_bogie.name=Steel Wheels
+item.traincraft:steel_frame.name=Steel Frame
+item.traincraft:steel_cabin.name=Steel Cabin
+item.traincraft:steel_chimney.name=Steel Chimney
+item.traincraft:steel_ingot.name=Steel Ingot
+item.traincraft:plastic.name=Plastic
+item.traincraft:copper_ingot.name=Copper Ingot
+item.traincraft:chunk_loader_activator.name=Chunk Loader Activator
+item.traincraft:connector.name=Connector
+item.traincraft:canister.name=Canister
+item.traincraft:recipe_book.name=Traincraft guide
+item.traincraft:wrench.name=Wrench
+
+# Armor
+item.traincraft:armor_overalls.name=Engineer's Overalls
+item.traincraft:armor_jacket.name=Reflective Jacket
+item.traincraft:armor_hat.name=Engineer's Hat
+item.traincraft:armor_ticketman_hat.name=Ticket Man's Hat
+item.traincraft:armor_ticketman_pants.name=Ticket Man's Pants
+item.traincraft:armor_ticketman_jacket.name=Ticket Man's Jacket
+item.traincraft:armor_driver_hat.name=Driver's Hat
+item.traincraft:armor_driver_pants.name=Driver's Pants
+item.traincraft:armor_driver_jacket.name=Driver's Jacket
+item.traincraft:armor_composite_suit_head.name=Composite Suit's Helmet
+item.traincraft:armor_composite_suit_legs.name=Composite Suit's Pants
+item.traincraft:armor_composite_suit_feet.name=Composite Suit's Boots
+item.traincraft:armor_composite_suit_chest.name=Composite Suit's Chest
+
+item.traincraft:skin_changer.name=Skin Changer
