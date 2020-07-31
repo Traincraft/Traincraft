@@ -10,7 +10,6 @@
 
 package traincraft.blocks;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
@@ -89,6 +88,11 @@ public abstract class BaseContainerBlock extends BlockContainer implements IItem
     }
     
     @Override
+    public String getTranslationKey(){
+        return this.getRegistryName().toString();
+    }
+    
+    @Override
     public void onNeighborChange(@Nonnull IBlockAccess world, @Nonnull BlockPos pos, @Nonnull BlockPos neighbor){
         TileEntity tile = world.getTileEntity(pos);
         if(tile instanceof BaseTile){
@@ -99,11 +103,6 @@ public abstract class BaseContainerBlock extends BlockContainer implements IItem
                 }
             }
         }
-    }
-    
-    @Override
-    public String getTranslationKey(){
-        return this.getRegistryName().toString();
     }
     
     @Override
