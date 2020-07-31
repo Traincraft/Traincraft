@@ -23,5 +23,6 @@ public class BlockBattery extends BaseContainerBlock {
     public BlockBattery(){
         super(Material.IRON, TileBattery.class);
         this.setRegistryName(Traincraft.MOD_ID, "battery");
+        this.setCreativeTab(Traincraft.TAB);
     }
 }
