@@ -75,6 +75,11 @@ repositories {
         name "Cyclops Repo"
         url "https://oss.jfrog.org/artifactory/simple/libs-release/"
     }
+    maven {
+        // location of the maven that hosts JEI files
+        name = "Progwml6 maven"
+        url = "https://dvs1.progwml6.com/files/maven/"
+    }
 }
 
 configurations.all {
@@ -92,6 +97,8 @@ dependencies {
     // compile dependencies, but runtime optionals
     compile "org.cyclops.cyclopscore:CyclopsCore:1.12.2-1.6.5-1096:deobf"
     compile fg.deobf(group: "org.cyclops.commoncapabilities", name: "CommonCapabilities", version: "1.12.2-2.4.6-328")
+    compileOnly fg.deobf("mezz.jei:jei_1.12.2:4.15.0.296:api")
+    //runtimeOnly "mezz.jei:jei_1.12.2:4.15.0.296"
 }
 
 jar {

@@ -1,41 +1,6 @@
-# eclipse
-bin
-*.launch
-.settings
-.metadata
-eclipse
-.debris
-
-# idea
-out
-.idea
-*.iws
-*.iml
-*.ipr
-
-.DS_Store
-
-# gradle
-build
-.gradle
-
-# build
-asm
-/config
-logs
-options.txt
-libs
-saves
-usernamecache.json
-crash-report
-crash-reports
-
-# other
-run
-lib
-*.iws___jb_tmp___
-*.directory
-classes
-run_server
-.classpath
-.project
+/run/
+/run_data/
+/run_server/
+/build/
+/.idea/
+/.gradle/

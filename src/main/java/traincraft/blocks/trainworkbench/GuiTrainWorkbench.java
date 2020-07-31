@@ -36,7 +36,6 @@ public class GuiTrainWorkbench extends GuiContainer {
 
     @Override
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
-        Traincraft.LOGGER.log(Level.INFO, "draw trainworkbench bg layer");
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         this.mc.getTextureManager().bindTexture(GUI_LOCATION);
         int i = this.guiLeft;

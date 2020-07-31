@@ -1,0 +1,20 @@
+{
+  "_comment:": "WARNING: oredict for trainworkbench not implemented, non-3x3 not yet implemented either.",
+  "type": "traincraft:trainworkbench",
+  "pattern": [
+    "   ",
+    "xax",
+    "   "
+  ],
+  "key": {
+    "x": {
+      "item": "traincraft:steel_ingot"
+    },
+    "a": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "result": {
+    "item": "traincraft:connector"
+  }
+}

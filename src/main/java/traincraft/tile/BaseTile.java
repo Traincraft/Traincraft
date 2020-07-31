@@ -47,13 +47,14 @@ public abstract class BaseTile extends TileEntity {
     private boolean sync = false;
     
     @Override
-    public final void readFromNBT(NBTTagCompound compound){
+    public final void readFromNBT(@Nonnull NBTTagCompound compound){
         super.readFromNBT(compound);
         this.readNBT(compound, NBTState.SAVE);
     }
     
+    @Nonnull
     @Override
-    public final NBTTagCompound writeToNBT(NBTTagCompound compound){
+    public final NBTTagCompound writeToNBT(@Nonnull NBTTagCompound compound){
         super.writeToNBT(compound);
         this.writeNBT(compound, NBTState.SAVE);
         return compound;
@@ -68,14 +69,12 @@ public abstract class BaseTile extends TileEntity {
     }
     
     @Override
-    public final void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt){
-        if(pkt != null){
-            this.readNBT(pkt.getNbtCompound(), NBTState.SYNC);
-        }
+    public final void onDataPacket(@Nonnull NetworkManager net, @Nonnull SPacketUpdateTileEntity pkt){
+        this.readNBT(pkt.getNbtCompound(), NBTState.SYNC);
     }
     
     @Override
-    public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newState){
+    public boolean shouldRefresh(@Nonnull World world, @Nonnull BlockPos pos, IBlockState oldState, IBlockState newState){
         return oldState.getBlock() != newState.getBlock();
     }
     
@@ -147,6 +146,7 @@ public abstract class BaseTile extends TileEntity {
         this.sync = true;
     }
     
+    @SuppressWarnings("unchecked")
     public void readNBT(NBTTagCompound nbt, NBTState state){
         if(nbt.hasKey("inventory")){
             NBTTagCompound inventoryNBT = nbt.getCompoundTag("inventory");

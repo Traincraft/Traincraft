@@ -11,10 +11,12 @@
 package traincraft.blocks.trainworkbench;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.*;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.play.server.SPacketSetSlot;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.apache.logging.log4j.Level;
@@ -22,6 +24,9 @@ import traincraft.Traincraft;
 import traincraft.api.SlotInventory;
 import traincraft.blocks.TCBlocks;
 import traincraft.blocks.distillery.TileDistillery;
+import traincraft.items.TCItems;
+
+import java.util.ArrayList;
 
 /**
  * @author PseudonymPatel
@@ -29,6 +34,8 @@ import traincraft.blocks.distillery.TileDistillery;
  */
 // NOTE: basically using the exact same system as the vanilla workbench
 public class ContainerTrainWorkbench extends Container {
+
+    public static ArrayList<TrainWorkbenchRecipe> TRAINWORKBENCH_RECIPES = new ArrayList<>();
 
     public InventoryCrafting craftMatrix = new InventoryCrafting(this, 3, 3);
     public InventoryCraftResult craftResult = new InventoryCraftResult();
@@ -64,9 +71,22 @@ public class ContainerTrainWorkbench extends Container {
     }
 
     //stuff from vanilla ctable
-//    public void onCraftMatrixChanged(IInventory inventoryIn) {
-//        this.slotChangedCraftingGrid(this.world, this.player, this.craftMatrix, this.craftResult);
-//    }
+    //BUG: can only craft anything once (per game load)
+    public void onCraftMatrixChanged(IInventory inventory) {
+        if(this.world == null || !this.world.isRemote) {
+            //clear current item in outputSlot first
+            craftResult.setInventorySlotContents(0, ItemStack.EMPTY);
+
+            if (!inventory.isEmpty()) {
+                //filter through the trainrecipies and find the first match (there should only be one match, but just in case duplicate recipes or sth.
+                TRAINWORKBENCH_RECIPES.stream().filter(recipe -> recipe.betterMatches(inventory)).findFirst().ifPresent(recipe -> {
+                    craftResult.setInventorySlotContents(0, recipe.getRecipeOutput());
+                });
+            }
+            //makes it so the item can be seen in the inventory, not just there and invisible.
+            ((EntityPlayerMP) player).connection.sendPacket(new SPacketSetSlot(this.windowId, 0, craftResult.getStackInSlot(0)));
+        }
+    }
 
     public void onContainerClosed(EntityPlayer playerIn) {
         super.onContainerClosed(playerIn);
@@ -96,26 +116,21 @@ public class ContainerTrainWorkbench extends Container {
                 }
 
                 slot.onSlotChange(itemstack1, itemstack);
-            }
-            else if (index >= 10 && index < 37) {
-                if (!this.mergeItemStack(itemstack1, 37, 46, false))
-                {
+            } else if (index >= 10 && index < 37) {
+                if (!this.mergeItemStack(itemstack1, 37, 46, false)) {
                     return ItemStack.EMPTY;
                 }
-            }
-            else if (index >= 37 && index < 46) {
+            } else if (index >= 37 && index < 46) {
                 if (!this.mergeItemStack(itemstack1, 10, 37, false)) {
                     return ItemStack.EMPTY;
                 }
-            }
-            else if (!this.mergeItemStack(itemstack1, 10, 46, false)) {
+            } else if (!this.mergeItemStack(itemstack1, 10, 46, false)) {
                 return ItemStack.EMPTY;
             }
 
             if (itemstack1.isEmpty()) {
                 slot.putStack(ItemStack.EMPTY);
-            }
-            else {
+            } else {
                 slot.onSlotChanged();
             }
 

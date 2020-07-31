@@ -13,25 +13,26 @@
 
 package traincraft.blocks.trainworkbench;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.InventoryBasic;
+import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntityFurnace;
-import net.minecraft.util.NonNullList;
-import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
-import org.apache.logging.log4j.Level;
-import traincraft.Traincraft;
 import traincraft.api.InventorySpecific;
 import traincraft.tile.BaseTile;
 
 import javax.annotation.Nonnull;
+import java.util.ArrayList;
+import java.util.Optional;
+import java.util.stream.Stream;
 
 public class TileTrainWorkbench extends BaseTile {
 
-    //only the crafting grid, not the output slot
+    //store all the trainworkbench recipes here, for easy comparing and not having to go through each and every forge recipe every time.
+    public static final ArrayList<TrainWorkbenchRecipe> TRAIN_WORKBENCH_RECIPES = new ArrayList<>();
+
     private final InventorySpecific inventory = new InventorySpecific("Train Workbench Inventory", false, 9, this::isItemValidForInventory);
 
     public TileTrainWorkbench() {
@@ -42,9 +43,9 @@ public class TileTrainWorkbench extends BaseTile {
     public IInventory getRealInventory() {
         return inventory;
     }
+
     @Override
     public GuiScreen openGui(EntityPlayer player) {
-        Traincraft.LOGGER.log(Level.INFO, "trainworkbench open gui");
         return new GuiTrainWorkbench(this, player);
     }
 
@@ -61,6 +62,5 @@ public class TileTrainWorkbench extends BaseTile {
     }
 
     public void onInventoryChange(IInventory inventory) {
-        //Here we can handle things that happen when items change in grid
     }
 }

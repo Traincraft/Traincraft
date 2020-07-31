@@ -1,0 +1,65 @@
+# This is a comment, do no remove or modify these!
+# Only replace the words on the right side of "="
+# Save the file the same way this file was saved but replace "en_us" with appropriate language name (lowercase)
+
+# Misc
+itemGroup.traincraft=Traincraft
+
+# Blocks
+traincraft:copper_ore.name=Kupfererz
+traincraft:ore_oil_sand.name=Ölsand
+traincraft:petrol_ore.name=Petroleum Erz
+traincraft:ballast.name=Ballast
+traincraft:generator_diesel.name=Dieselgenerator
+traincraft:wind_mill.name=Windrad
+traincraft:water_wheel.name=Wasserrad
+traincraft:lantern.name=Laterne
+traincraft:hearth_furnace.name=Hochofen
+traincraft:stopper.name=Prellblock
+traincraft:train_workbench.name=Train Workbench
+traincraft:distillery.name=Distille
+traincraft:assembly_table_1.name=Montagebank I
+traincraft:assembly_table_2.name=Montagebank II
+traincraft:assembly_table_3.name=Montagebank III
+traincraft:bridge_pillar.name=Brückenpfeiler
+traincraft:switch_stand.name=Weichenhebel
+
+# Fluids
+fluid.traincraft:oil=Öl
+fluid.traincraft:diesel=Dieseltreibstoff
+fluid.traincraft:refined_fuel=Benzin
+
+# Items
+item.traincraft:steel_dust.name=Stahlstaub
+item.traincraft:coal_dust.name=Kohlestaub
+item.traincraft:graphite.name=Graphit
+item.traincraft:steel_firebox.name=Stahl-Feuerraum
+item.traincraft:steel_bogie.name=Stahlräder
+item.traincraft:steel_frame.name=Stahlramen
+item.traincraft:steel_cabin.name=Stahlkabine
+item.traincraft:steel_chimney.name=Stahlschornstein
+item.traincraft:steel_ingot.name=Stahlbarren
+item.traincraft:plastic.name=Plastik
+item.traincraft:copper_ingot.name=Kupferbarren
+item.traincraft:chunk_loader_activator.name=Chunk Aktivierer
+item.traincraft:connector.name=Kopplung
+item.traincraft:canister.name=Kanister
+item.traincraft:recipe_book.name=Traincraft Handbuch
+item.traincraft:wrench.name=Schraubenschlüssel
+
+# Armor
+item.traincraft:armor_overalls.name=Blaumann
+item.traincraft:armor_jacket.name=Warnweste
+item.traincraft:armor_hat.name=Schinenarbeitermütze
+item.traincraft:armor_ticketman_hat.name=Schaffnerhut
+item.traincraft:armor_ticketman_pants.name=Schaffnerhose
+item.traincraft:armor_ticketman_jacket.name=Schaffnerjacke
+item.traincraft:armor_driver_hat.name=Zugführerhut
+item.traincraft:armor_driver_pants.name=Zugführerhose
+item.traincraft:armor_driver_jacket.name=Zugführerjacke
+item.traincraft:armor_composite_suit_head.name=Komposithelm
+item.traincraft:armor_composite_suit_legs.name=Komposithose
+item.traincraft:armor_composite_suit_feet.name=Komposischuhe
+item.traincraft:armor_composite_suit_chest.name=Kompositjacke
+
+item.traincraft:skin_changer.name=Skin Changer
