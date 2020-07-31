@@ -111,7 +111,12 @@ public class TileDistillery extends BaseTile implements ITickable {
     public GuiScreen openGui(EntityPlayer player){
         return new GuiDistillery(this, player);
     }
-    
+
+    @Override
+    public boolean hasGui(){
+        return true;
+    }
+
     @Override
     public Container openContainer(EntityPlayer player){
         return new ContainerDistillery(this, player);

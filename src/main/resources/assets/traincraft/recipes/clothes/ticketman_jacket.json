@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X X",
+    "XPX",
+    "X#X"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:dye",
+      "data": 4
+    },
+    "P": {
+      "item": "minecraft:leather_chestplate"
+    },
+    "X": {
+      "item": "minecraft:string"
+    }
+  },
+  "result": {
+    "item": "traincraft:armor_ticketman_jacket"
+  }
+}
