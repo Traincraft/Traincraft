@@ -63,3 +63,8 @@ item.traincraft:armor_composite_suit_feet.name=Composite Suit's Boots
 item.traincraft:armor_composite_suit_chest.name=Composite Suit's Chest
 
 item.traincraft:skin_changer.name=Skin Changer
+
+# Config
+traincraft:config.title=Traincraft Configuration
+traincraft:config.copper_ore_gen=Generate Copper Ore
+traincraft:config.other_ore_gen=Generate Petroleum/Oil Sands
