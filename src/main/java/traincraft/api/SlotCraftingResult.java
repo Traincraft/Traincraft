@@ -22,7 +22,8 @@ import net.minecraft.util.NonNullList;
 import traincraft.blocks.trainworkbench.TrainWorkbenchRecipe;
 
 /**
- * This is similar to mojang's SlotCrafting, except it is tailored specifically to Traincraft's use cases.
+ * This is similar to mojang's SlotCrafting, except it is tailored specifically to be used with the assemblyTable.
+ * NOTE: This will only work correctly if it's used with AssemblyTableRecipes.
  *
  * @author PseudonymPatel
  * @since 2020-8-3
@@ -71,7 +72,7 @@ public class SlotCraftingResult extends Slot {
         IRecipe irecipe = inventorycraftresult.getRecipeUsed();
 
         //the following can be uncommented later (it all works) if we want to do things with the recipe that was just crafted.
-        //I commented it out because it was adding a recipe to the recipe book for whatever was just crafted, but that should not be done (line 75)
+        //I commented it out because it was adding a recipe to the recipe book for whatever was just crafted, but that should not be done (line 76)
         if (irecipe != null && !irecipe.isDynamic()) {
 //            this.player.unlockRecipes(Lists.newArrayList(irecipe));
             inventorycraftresult.setRecipeUsed((IRecipe) null);
@@ -82,7 +83,7 @@ public class SlotCraftingResult extends Slot {
         InventoryCraftResult inventorycraftresult = (InventoryCraftResult)this.inventory;
         IRecipe irecipe = inventorycraftresult.getRecipeUsed();
 
-        if (irecipe instanceof TrainWorkbenchRecipe) {
+        //if (irecipe instanceof TrainWorkbenchRecipe) {
             this.onCrafting(stack);
             net.minecraftforge.common.ForgeHooks.setCraftingPlayer(thePlayer);
             NonNullList<ItemStack> nonnulllist = CraftingManager.getRemainingItems((InventoryCrafting) this.craftMatrix, thePlayer.world);
@@ -108,7 +109,7 @@ public class SlotCraftingResult extends Slot {
                     }
                 }
             }
-        } //else if (irecipe instanceof AssemblyTableRecipe) {
+        //} //else if (irecipe instanceof AssemblyTableRecipe) {
             //TODO: assembly table recipe
         //}
 

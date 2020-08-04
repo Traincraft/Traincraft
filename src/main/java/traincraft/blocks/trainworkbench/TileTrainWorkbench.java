@@ -17,25 +17,15 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.InventoryBasic;
-import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import traincraft.api.InventorySpecific;
 import traincraft.tile.BaseTile;
 
 import javax.annotation.Nonnull;
-import java.util.ArrayList;
-import java.util.Optional;
-import java.util.stream.Stream;
 
 //TODO: make the trainworkbench save inventory on close
-//TODO: re-implement non 3x3 crafting in 3x3 grid (ie 1 row recipe works in any row)
 //TODO: BUG: closing game while container is open will delete everything inside of container.
-//TODO: BUG: shift-clicking on item to quick craft it will only quick craft one item, and will not update the gui, but will subtract the appropriate amount of items.
 public class TileTrainWorkbench extends BaseTile {
-
-    //store all the trainworkbench recipes here, for easy comparing and not having to go through each and every forge recipe every time.
-    public static final ArrayList<TrainWorkbenchRecipe> TRAIN_WORKBENCH_RECIPES = new ArrayList<>();
 
     private final InventorySpecific inventory = new InventorySpecific("Train Workbench Inventory", false, 9, this::isItemValidForInventory);
 

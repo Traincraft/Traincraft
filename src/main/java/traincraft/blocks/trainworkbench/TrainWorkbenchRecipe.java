@@ -13,6 +13,7 @@ package traincraft.blocks.trainworkbench;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.inventory.InventoryCrafting;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.Ingredient;
@@ -21,6 +22,7 @@ import net.minecraft.world.World;
 import org.apache.logging.log4j.Level;
 import org.cyclops.cyclopscore.ingredient.storage.InconsistentIngredientInsertionException;
 import traincraft.Traincraft;
+import traincraft.api.InventoryBase;
 
 /**
  * TrainWorkbenchRecipe implements crafting recipes that are crafted on the Train Workbench
@@ -58,6 +60,39 @@ public class TrainWorkbenchRecipe extends net.minecraftforge.registries.IForgeRe
      * @return whether the recipe matches the inventory or not
      */
     public boolean betterMatches(IInventory inv) {
+        //eliminate empty rows and columns for non 3x3 crafting
+        if (inv.getStackInSlot(0) == ItemStack.EMPTY && inv.getStackInSlot(1) == ItemStack.EMPTY && inv.getStackInSlot(2) == ItemStack.EMPTY) {
+            //first row is empty, shift everything up one, and rerun the function with new inventory.
+            InventoryBasic newInv = new InventoryBasic("newInv", false, 9);
+            for (int i = 3; i < 9; ++i) { //set the bottom two row to top
+                newInv.setInventorySlotContents(i - 3, inv.getStackInSlot(i));
+            }
+            for (int i = 7; i < 9; ++i) { //make bottom row empty as there is nothing there
+                newInv.setInventorySlotContents(i, ItemStack.EMPTY);
+            }
+            return betterMatches(newInv);
+        }
+
+        //TODO: eliminate empty columns
+        if (inv.getStackInSlot(0) == ItemStack.EMPTY && inv.getStackInSlot(3) == ItemStack.EMPTY && inv.getStackInSlot(6) == ItemStack.EMPTY) {
+            InventoryBasic newInv = new InventoryBasic("newInv", false, 9);
+
+            //do this manually, sadly it might be the best way :(
+            newInv.setInventorySlotContents(0, inv.getStackInSlot(1));
+            newInv.setInventorySlotContents(1, inv.getStackInSlot(2));
+            newInv.setInventorySlotContents(2, ItemStack.EMPTY);
+
+            newInv.setInventorySlotContents(3, inv.getStackInSlot(4));
+            newInv.setInventorySlotContents(4, inv.getStackInSlot(5));
+            newInv.setInventorySlotContents(5, ItemStack.EMPTY);
+
+            newInv.setInventorySlotContents(6, inv.getStackInSlot(7));
+            newInv.setInventorySlotContents(7, inv.getStackInSlot(8));
+            newInv.setInventorySlotContents(8, ItemStack.EMPTY);
+
+            return betterMatches(newInv);
+        }
+
         for (int i = 0; i < recipe.size(); ++i) {
             //use getMatching stacks to compare ingredients
             boolean foundOne = false;
@@ -85,7 +120,9 @@ public class TrainWorkbenchRecipe extends net.minecraftforge.registries.IForgeRe
                 return false;
             }
         }
+
 //        //the following is for vanilla crafting in both 3x3 and non sizes
+//        //each for loop iterates over possible rows and cols for the recipe to possibly be in.
 //        for (int i = 0; i <= 3 - this.recipeWidth; ++i) {
 //            for (int j = 0; j <= 3 - this.recipeHeight; ++j) {
 //                if (this.checkMatch(inv, i, j, true)) {
@@ -98,7 +135,7 @@ public class TrainWorkbenchRecipe extends net.minecraftforge.registries.IForgeRe
 //        }
         return true;
     }
-    //Guess what? This is also vanilla. And it provides support for smaller than 3x3.
+
     @Override
     public boolean matches(InventoryCrafting inv, World worldIn) {
         return betterMatches(inv);

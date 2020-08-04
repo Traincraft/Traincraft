@@ -117,7 +117,11 @@ public class Traincraft {
         LOGGER.info("Initialize Blocks, Items, ...");
         TCEntities.registerEntities(event);
         TCLiquids.registerLiquids(event);
-        
+
+        /* Ore dictionary */
+        LOGGER.info("Register Ores into OreDictionary");
+        OreHandler.registerOres();
+
         GameRegistry.registerWorldGenerator(WorldGenWorld.INSTANCE, 5);
         
         LOGGER.info("Finished PreInitialization");
@@ -145,10 +149,6 @@ public class Traincraft {
             LOGGER.info("Register Keys");
             
         }
-        
-        /* Ore dictionary */
-        LOGGER.info("Register Ores into OreDictionary");
-        OreHandler.registerOres();
         
         /* Recipes */
         LOGGER.info("Initialize Smelting Recipe");

@@ -16,31 +16,25 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
-import net.fexcraft.lib.mc.crafting.BluePrintTableContainer2;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.InventoryBasic;
-import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.common.crafting.IRecipeFactory;
 import net.minecraftforge.common.crafting.JsonContext;
+import net.minecraftforge.oredict.OreDictionary;
 
+import javax.annotation.Nullable;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.ExecutionException;
 
-import static net.minecraft.item.crafting.ShapedRecipes.deserializeIngredient;
 import static net.minecraft.item.crafting.ShapedRecipes.deserializeItem;
 
 /**
  * This class allows for json implementation of recipes for the Train Workbench, used to craft train parts.
  *
  * WARNING: Please make sure patterns are 3x3 to avoid any problems. This should be fixed once things work.
- * WARNING/TODO: Does not currently support forge ore dict.
  *
  * @author PseudonymPatel
  * @since 2020-7-30
@@ -118,20 +112,21 @@ public class TrainWorkbenchRecipeFactory implements IRecipeFactory {
         }
     }
 
-    //This shapedrecipes bad boy takes the symbols and maps them to ingredients.
-    private static Map<String, Ingredient> deserializeKey(JsonObject json)
-    {
+    /**
+     * Turns the json object into a map of recipe ingredient keys (ie. #, X, etc.) and the corresponding ingredient.
+     *
+     * @param json The object containing the array of keys
+     * @return A map of the keys to the corresponding Ingredient
+     */
+    private static Map<String, Ingredient> deserializeKey(JsonObject json) {
         Map<String, Ingredient> map = Maps.<String, Ingredient>newHashMap();
 
-        for (Map.Entry<String, JsonElement> entry : json.entrySet())
-        {
-            if (((String)entry.getKey()).length() != 1)
-            {
+        for (Map.Entry<String, JsonElement> entry : json.entrySet()) {
+            if (((String)entry.getKey()).length() != 1) {
                 throw new JsonSyntaxException("Invalid key entry: '" + (String)entry.getKey() + "' is an invalid symbol (must be 1 character only).");
             }
 
-            if (" ".equals(entry.getKey()))
-            {
+            if (" ".equals(entry.getKey())) {
                 throw new JsonSyntaxException("Invalid key entry: ' ' is a reserved symbol.");
             }
 
@@ -142,6 +137,12 @@ public class TrainWorkbenchRecipeFactory implements IRecipeFactory {
         return map;
     }
 
+    /**
+     * Removes empty rows and columns from the crafting recipe, good for being able to use (ie) one row recipe in any row.
+     *
+     * @param toShrink array of strings to shrink.
+     * @return shrunken recipe
+     */
     private static String[] shrink(String... toShrink) {
         int i = Integer.MAX_VALUE;
         int j = 0;
@@ -198,5 +199,56 @@ public class TrainWorkbenchRecipeFactory implements IRecipeFactory {
         }
 
         return i;
+    }
+
+    /**
+     * Takes a jsonElement describing a Ingredient and turns it into the corresponding Ingredient.
+     * NOTE: this is overridden to provide support for forge ore dictionary.
+     *
+     * @param jsonElement object/array of objects describing single ingredient.
+     * @return the ingredient
+     */
+    public static Ingredient deserializeIngredient(@Nullable JsonElement jsonElement) {
+        if (jsonElement != null && !jsonElement.isJsonNull()) {
+            //first check if using ore dict, otherwise do normal stuff
+            if (jsonElement.getAsJsonObject().has("type")) {
+                if (jsonElement.getAsJsonObject().get("type").getAsString().equals("forge:ore_dict")) {
+                    if (jsonElement.getAsJsonObject().has("ore")) {
+                        //find all ItemStacks for ore
+                        NonNullList<ItemStack> itemStacksNNlist = OreDictionary.getOres(jsonElement.getAsJsonObject().get("ore").getAsString());
+                        ItemStack[] itemStacks = new ItemStack[itemStacksNNlist.size()];
+                        for (int i = 0; i < itemStacksNNlist.size(); ++i) {
+                            itemStacks[i] = itemStacksNNlist.get(i);
+                        }
+                        return Ingredient.fromStacks(itemStacks);
+                    } else {
+                        throw new JsonSyntaxException("Does not contain ore item.");
+                    }
+                } else {
+                    throw new JsonSyntaxException("Does not support non forge:ore_dict types.");
+                }
+            } else if (jsonElement.isJsonObject()) {
+                return Ingredient.fromStacks(deserializeItem(jsonElement.getAsJsonObject(), false));
+            } else if (!jsonElement.isJsonArray()) {
+                throw new JsonSyntaxException("Expected item to be object or array of objects");
+            } else {
+                JsonArray jsonarray = jsonElement.getAsJsonArray();
+
+                if (jsonarray.size() == 0) {
+                    throw new JsonSyntaxException("Item array cannot be empty, at least one item must be defined");
+                } else {
+                    ItemStack[] aitemstack = new ItemStack[jsonarray.size()];
+
+                    for (int i = 0; i < jsonarray.size(); ++i) {
+                        aitemstack[i] = deserializeItem(JsonUtils.getJsonObject(jsonarray.get(i), "item"), false);
+                    }
+
+                    return Ingredient.fromStacks(aitemstack);
+                }
+            }
+        }
+        else {
+            throw new JsonSyntaxException("Item cannot be null");
+        }
     }
 }

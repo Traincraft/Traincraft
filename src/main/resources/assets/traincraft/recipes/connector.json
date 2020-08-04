@@ -7,10 +7,12 @@
   ],
   "key": {
     "x": {
-      "item": "traincraft:steel_ingot"
+      "type": "forge:ore_dict",
+      "ore": "ingotSteel"
     },
     "a": {
-      "item": "minecraft:iron_ingot"
+      "type": "forge:ore_dict",
+      "ore": "ingotIron"
     }
   },
   "result": {
