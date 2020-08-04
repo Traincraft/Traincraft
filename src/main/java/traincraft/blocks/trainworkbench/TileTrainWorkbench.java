@@ -28,6 +28,10 @@ import java.util.ArrayList;
 import java.util.Optional;
 import java.util.stream.Stream;
 
+//TODO: make the trainworkbench save inventory on close
+//TODO: re-implement non 3x3 crafting in 3x3 grid (ie 1 row recipe works in any row)
+//TODO: BUG: closing game while container is open will delete everything inside of container.
+//TODO: BUG: shift-clicking on item to quick craft it will only quick craft one item, and will not update the gui, but will subtract the appropriate amount of items.
 public class TileTrainWorkbench extends BaseTile {
 
     //store all the trainworkbench recipes here, for easy comparing and not having to go through each and every forge recipe every time.

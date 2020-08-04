@@ -1,5 +1,4 @@
 {
-  "_comment:": "WARNING: oredict for trainworkbench not implemented, non-3x3 not yet implemented either.",
   "type": "traincraft:trainworkbench",
   "pattern": [
     "   ",

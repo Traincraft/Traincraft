@@ -13,18 +13,14 @@ package traincraft.blocks.trainworkbench;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.inventory.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.play.server.SPacketSetSlot;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
 import org.apache.logging.log4j.Level;
 import traincraft.Traincraft;
-import traincraft.api.SlotInventory;
-import traincraft.blocks.TCBlocks;
-import traincraft.blocks.distillery.TileDistillery;
-import traincraft.items.TCItems;
+import traincraft.api.SlotCraftingResult;
 
 import java.util.ArrayList;
 
@@ -48,7 +44,7 @@ public class ContainerTrainWorkbench extends Container {
         this.player = playerInventory.player;
 
         //output spot
-        this.addSlotToContainer(new SlotCrafting(playerInventory.player, this.craftMatrix, this.craftResult, 0, 124, 35));
+        this.addSlotToContainer(new SlotCraftingResult(playerInventory.player, this.craftMatrix, this.craftResult, 0, 124, 35));
 
         //crafting grid
         for (int i = 0; i < 3; ++i) {
@@ -80,7 +76,8 @@ public class ContainerTrainWorkbench extends Container {
             if (!inventory.isEmpty()) {
                 //filter through the trainrecipies and find the first match (there should only be one match, but just in case duplicate recipes or sth.
                 TRAINWORKBENCH_RECIPES.stream().filter(recipe -> recipe.betterMatches(inventory)).findFirst().ifPresent(recipe -> {
-                    craftResult.setInventorySlotContents(0, recipe.getRecipeOutput());
+                    craftResult.setInventorySlotContents(0, recipe.getRecipeOutput().copy());
+                    craftResult.setRecipeUsed(recipe);
                 });
             }
             //makes it so the item can be seen in the inventory, not just there and invisible.

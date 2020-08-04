@@ -58,7 +58,7 @@ public class TrainWorkbenchRecipe extends net.minecraftforge.registries.IForgeRe
      * @return whether the recipe matches the inventory or not
      */
     public boolean betterMatches(IInventory inv) {
-        for (int i = 0; i < 9; ++i) {
+        for (int i = 0; i < recipe.size(); ++i) {
             //use getMatching stacks to compare ingredients
             boolean foundOne = false;
 
