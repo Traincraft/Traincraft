@@ -31,8 +31,6 @@ import java.util.ArrayList;
 // NOTE: basically using the exact same system as the vanilla workbench
 public class ContainerTrainWorkbench extends Container {
 
-    public static ArrayList<TrainWorkbenchRecipe> TRAINWORKBENCH_RECIPES = new ArrayList<>();
-
     public InventoryCrafting craftMatrix = new InventoryCrafting(this, 3, 3);
     public InventoryCraftResult craftResult = new InventoryCraftResult();
     private final World world;
@@ -75,7 +73,7 @@ public class ContainerTrainWorkbench extends Container {
 
             if (!inventory.isEmpty()) {
                 //filter through the trainrecipies and find the first match (there should only be one match, but just in case duplicate recipes or sth.
-                TRAINWORKBENCH_RECIPES.stream().filter(recipe -> recipe.betterMatches(inventory)).findFirst().ifPresent(recipe -> {
+                TrainWorkbenchRecipe.TRAINWORKBENCH_RECIPES.stream().filter(recipe -> recipe.betterMatches(inventory)).findFirst().ifPresent(recipe -> {
                     craftResult.setInventorySlotContents(0, recipe.getRecipeOutput().copy());
                 });
             }

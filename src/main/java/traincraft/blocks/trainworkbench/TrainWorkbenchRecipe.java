@@ -24,6 +24,8 @@ import org.cyclops.cyclopscore.ingredient.storage.InconsistentIngredientInsertio
 import traincraft.Traincraft;
 import traincraft.api.InventoryBase;
 
+import java.util.ArrayList;
+
 /**
  * TrainWorkbenchRecipe implements crafting recipes that are crafted on the Train Workbench
  * Recipes will be created/registered using json files, and you should not need to make an instance of this class yourself.
@@ -33,6 +35,8 @@ import traincraft.api.InventoryBase;
  * @since 2020-7-30
  */
 public class TrainWorkbenchRecipe extends net.minecraftforge.registries.IForgeRegistryEntry.Impl<IRecipe> implements IRecipe {
+
+    public static ArrayList<TrainWorkbenchRecipe> TRAINWORKBENCH_RECIPES = new ArrayList<>();
 
     private final NonNullList<Ingredient> recipe;
     private final ItemStack recipeOutput;

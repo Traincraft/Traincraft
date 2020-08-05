@@ -130,7 +130,7 @@ public class Traincraft {
     @Mod.EventHandler
     public void load(FMLInitializationEvent event){
         LOGGER.info("Start Initialization");
-        
+
         LOGGER.info("Initializing Network Packets");
         NetworkRegistry.INSTANCE.registerGuiHandler(Traincraft.INSTANCE, new GuiHandler());
         TC_NETWORK.registerMessage(PacketTraincraftEntity.class, PacketTraincraftEntity.class, 0, Side.SERVER);
@@ -185,12 +185,12 @@ public class Traincraft {
     public void onResourceReload(IResourceManager resourceManager){
         // add distillery & trainworkbench recipes to new list
         TileDistillery.DISTIL_RECIPES.clear();
-        ContainerTrainWorkbench.TRAINWORKBENCH_RECIPES.clear();
+        TrainWorkbenchRecipe.TRAINWORKBENCH_RECIPES.clear();
         ForgeRegistries.RECIPES.forEach(recipe -> {
             if(recipe instanceof DistilleryRecipe){
                 TileDistillery.DISTIL_RECIPES.add((DistilleryRecipe) recipe);
             } else if (recipe instanceof TrainWorkbenchRecipe) {
-                ContainerTrainWorkbench.TRAINWORKBENCH_RECIPES.add((TrainWorkbenchRecipe) recipe);
+                TrainWorkbenchRecipe.TRAINWORKBENCH_RECIPES.add((TrainWorkbenchRecipe) recipe);
             }
         });
     }
