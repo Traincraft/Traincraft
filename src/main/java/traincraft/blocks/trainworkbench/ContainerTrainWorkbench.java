@@ -1,4 +1,4 @@
-/**
+/*
  * Traincraft
  * Copyright (c) 2011-2020.
  *
@@ -69,7 +69,7 @@ public class ContainerTrainWorkbench extends Container {
     //stuff from vanilla ctable
     //BUG: can only craft anything once (per game load)
     public void onCraftMatrixChanged(IInventory inventory) {
-        if(this.world == null || !this.world.isRemote) {
+        if(this.world == null || !this.world.isRemote && inventory == craftMatrix) {
             //clear current item in outputSlot first
             craftResult.setInventorySlotContents(0, ItemStack.EMPTY);
 

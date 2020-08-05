@@ -55,6 +55,7 @@ public class TrainWorkbenchRecipe extends net.minecraftforge.registries.IForgeRe
     /**
      * Use this instead of matches() because InventoryCrafting has so many problems.
      * WARNING: only takes 3x3 matrices.
+     * WARNING: will overflow if no items in recipe.
      *
      * @param inv the inventory to compare
      * @return whether the recipe matches the inventory or not
@@ -136,9 +137,10 @@ public class TrainWorkbenchRecipe extends net.minecraftforge.registries.IForgeRe
         return true;
     }
 
+    //turning this simply to false is a "hacky" workaround to non having it be craftable in vanilla ctable, because trainworkbench uses betterMatch
     @Override
     public boolean matches(InventoryCrafting inv, World worldIn) {
-        return betterMatches(inv);
+        return false;
     }
 
     //did it this way because vanilla ctable did it this way.
