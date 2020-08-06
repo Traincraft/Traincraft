@@ -48,34 +48,37 @@ public class TCItems {
     public static final BaseItem STEEL_CHIMNEY = new BaseItem("steel_chimney");
     public static final BaseItem PLASTIC = new BaseItem("plastic");
     public static final BaseItem COPPER_INGOT = new BaseItem("copper_ingot");
-    /*
-    balloon
-    propeller
-    steamengine
-    dieselengine
-    piston
-    camshaft
-    cylinder
-    electmotor
-    woodenFrame
-    woodenBogie
-    woodenCab
-    ironChimney
-    ironFirebox
-    ironBoiler
-    ironFrame
-    ironBogie
-    ironCab
-    seats
-    transformer
-    controls
-    transmition
-    generator
-    copperWireFine
-    electronicCircuit
-    reinforcedPlastic
-    reinforcedPlates
-     */
+    
+    public static final BaseItem BALLOON = new BaseItem("balloon");
+    public static final BaseItem BOGIE_IRON = new BaseItem("bogie_iron");
+    public static final BaseItem BOGIE_WOOD = new BaseItem("bogie_wood");
+    public static final BaseItem BOILER_IRON = new BaseItem("boiler_iron");
+    public static final BaseItem BOILER_STEEL = new BaseItem("boiler_steel");
+    public static final BaseItem CAB_IRON = new BaseItem("cab_iron");
+    public static final BaseItem CAB_WOOD = new BaseItem("cab_wood");
+    public static final BaseItem CAMSHAFT = new BaseItem("camshaft");
+    public static final BaseItem CHIMNEY_IRON = new BaseItem("chimney_iron");
+    public static final BaseItem CIRCUIT = new BaseItem("circuit");
+    public static final BaseItem CONTROLS = new BaseItem("controls");
+    public static final BaseItem CYLINDER = new BaseItem("cylinder");
+    public static final BaseItem ENGINE_DIESEL = new BaseItem("engine_diesel");
+    public static final BaseItem ENGINE_ELECTRIC = new BaseItem("engine_electric");
+    public static final BaseItem ENGINE_STEAM = new BaseItem("engine_steam");
+    public static final BaseItem FIBERGLASS_PLATE = new BaseItem("fiberglass_plate");
+    public static final BaseItem FIREBOX_IRON = new BaseItem("firebox_iron");
+    public static final BaseItem FRAME_IRON = new BaseItem("frame_iron");
+    public static final BaseItem FRAME_WOOD = new BaseItem("frame_wood");
+    public static final BaseItem PISTON = new BaseItem("piston");
+    public static final BaseItem PROPELLER = new BaseItem("propeller");
+    public static final BaseItem RAIL_COPPER = new BaseItem("rail_copper");
+    public static final BaseItem RAIL_STEEL = new BaseItem("rail_steel");
+    public static final BaseItem REINFORCED_PLATE = new BaseItem("reinforced_plate");
+    public static final BaseItem SEATS = new BaseItem("seats");
+    public static final BaseItem SIGNAL = new BaseItem("signal");
+    public static final BaseItem TRANSFORMER = new BaseItem("transformer");
+    public static final BaseItem TRANSMITION = new BaseItem("transmition");
+    public static final BaseItem FINE_COPPER_WIRE = new BaseItem("fine_copper_wire");
+    
     public static final ItemChunkLoaderActivator CHUNK_LOADER_ACTIVATOR = new ItemChunkLoaderActivator();
     
     public static final ItemArmorOveralls OVERALL = new ItemArmorOveralls();

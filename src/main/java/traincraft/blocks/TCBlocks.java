@@ -19,6 +19,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 import traincraft.Traincraft;
 import traincraft.blocks.battery.BlockBattery;
 import traincraft.blocks.distillery.BlockDistil;
+import traincraft.blocks.trainworkbench.BlockTrainWorkbench;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;

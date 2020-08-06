@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "XLX",
+    "X$X"
+  ],
+  "key": {
+    "$": {
+      "item": "minecraft:dye",
+      "data": 8
+    },
+    "L": {
+      "item": "minecraft:leather_leggings"
+    },
+    "X": {
+      "item": "minecraft:string"
+    }
+  },
+  "result": {
+    "item": "traincraft:armor_ticketman_pants"
+  }
+}

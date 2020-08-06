@@ -44,8 +44,38 @@ item.traincraft:copper_ingot.name=Copper Ingot
 item.traincraft:chunk_loader_activator.name=Chunk Loader Activator
 item.traincraft:connector.name=Connector
 item.traincraft:canister.name=Canister
-item.traincraft:recipe_book.name=Traincraft guide
+item.traincraft:guide.name=Traincraft guide
 item.traincraft:wrench.name=Wrench
+
+item.traincraft:balloon.name=Balloon
+item.traincraft:bogie_iron.name=Iron Bogie
+item.traincraft:bogie_wood.name=Wood Bogie
+item.traincraft:boiler_iron.name=Iron Boiler
+item.traincraft:boiler_steel.name=Steel Boiler
+item.traincraft:cab_iron.name=Iron Cab
+item.traincraft:cab_wood.name=Wooden Cab
+item.traincraft:camshaft.name=Camshaft
+item.traincraft:chimney_iron.name=Iron Chimney
+item.traincraft:circuit.name=Circuit
+item.traincraft:controls.name=Controls
+item.traincraft:cylinder.name=Cylinder
+item.traincraft:engine_diesel.name=Diesel Engine
+item.traincraft:engine_electric.name=Electric Engine
+item.traincraft:engine_steam.name=Steam Engine
+item.traincraft:fiberglass_plate.name=Fiberglass Plate
+item.traincraft:firebox_iron.name=Iron Firebox
+item.traincraft:frame_iron.name=Iron Frame
+item.traincraft:frame_wood.name=Wooden Frame
+item.traincraft:piston.name=Piston (Traincraft)
+item.traincraft:propeller.name=Propeller
+item.traincraft:rail_copper.name=Copper Rail
+item.traincraft:rail_steel.name=Steel Rail
+item.traincraft:reinforced_plate.name=Reinforced Plate
+item.traincraft:seats.name=Seats
+item.traincraft:signal.name=Signal
+item.traincraft:transformer.name=Transformer
+item.traincraft:transmition.name=Transmition
+item.traincraft:fine_copper_wire.name=Fine Copper Wire
 
 # Armor
 item.traincraft:armor_overalls.name=Engineer's Overalls
@@ -63,3 +93,8 @@ item.traincraft:armor_composite_suit_feet.name=Composite Suit's Boots
 item.traincraft:armor_composite_suit_chest.name=Composite Suit's Chest
 
 item.traincraft:skin_changer.name=Skin Changer
+
+# Config
+traincraft:config.title=Traincraft Configuration
+traincraft:config.copper_ore_gen=Generate Copper Ore
+traincraft:config.other_ore_gen=Generate Petroleum/Oil Sands

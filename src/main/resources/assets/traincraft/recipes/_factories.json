@@ -1,5 +1,6 @@
 {
   "recipes": {
-    "distillery": "traincraft.blocks.distillery.DistilleryRecipeFactory"
+    "distillery": "traincraft.blocks.distillery.DistilleryRecipeFactory",
+    "trainworkbench": "traincraft.blocks.trainworkbench.TrainWorkbenchRecipeFactory"
   }
 }

@@ -23,7 +23,7 @@ import java.util.List;
 
 public class GuiDistillery extends GuiContainer {
     
-    private static final ResourceLocation GUI_LOC = new ResourceLocation(Traincraft.MOD_ID, "textures/gui/gui_distillation_tower2.png");
+    public static final ResourceLocation GUI_LOC = new ResourceLocation(Traincraft.MOD_ID, "textures/gui/gui_distillation_tower2.png");
     
     private final TileDistillery tile;
     private final EntityPlayer player;

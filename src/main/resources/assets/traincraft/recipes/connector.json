@@ -1,0 +1,21 @@
+{
+  "type": "traincraft:trainworkbench",
+  "pattern": [
+    "   ",
+    "xax",
+    "   "
+  ],
+  "key": {
+    "x": {
+      "type": "forge:ore_dict",
+      "ore": "ingotSteel"
+    },
+    "a": {
+      "type": "forge:ore_dict",
+      "ore": "ingotIron"
+    }
+  },
+  "result": {
+    "item": "traincraft:connector"
+  }
+}
