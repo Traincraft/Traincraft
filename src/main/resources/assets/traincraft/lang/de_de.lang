@@ -8,7 +8,7 @@ itemGroup.traincraft=Traincraft
 # Blocks
 traincraft:copper_ore.name=Kupfererz
 traincraft:ore_oil_sand.name=Ölsand
-traincraft:petrol_ore.name=Petroleum Erz
+traincraft:petrol_ore.name=Petroleumerz
 traincraft:ballast.name=Ballast
 traincraft:generator_diesel.name=Dieselgenerator
 traincraft:wind_mill.name=Windrad
@@ -47,6 +47,36 @@ item.traincraft:canister.name=Kanister
 item.traincraft:recipe_book.name=Traincraft Handbuch
 item.traincraft:wrench.name=Schraubenschlüssel
 
+item.traincraft:balloon.name=Ballon
+item.traincraft:bogie_iron.name=Eisenfahrwerk
+item.traincraft:bogie_wood.name=Holzfahrwerk
+item.traincraft:boiler_iron.name=Eisenkessel
+item.traincraft:boiler_steel.name=Stahlkessel
+item.traincraft:cab_iron.name=Eisenkabine
+item.traincraft:cab_wood.name=Holzkabine
+item.traincraft:camshaft.name=Nockenwelle
+item.traincraft:chimney_iron.name=Eisenschornstein
+item.traincraft:circuit.name=Schaltkreis
+item.traincraft:controls.name=Steuerung
+item.traincraft:cylinder.name=Zylinder
+item.traincraft:engine_diesel.name=Dieselmotor
+item.traincraft:engine_electric.name=Elektromotor
+item.traincraft:engine_steam.name=Dampfmaschine
+item.traincraft:fiberglass_plate.name=Glasfaserplatte
+item.traincraft:firebox_iron.name=Eisen-Feuerraum
+item.traincraft:frame_iron.name=Eisenrahmen
+item.traincraft:frame_wood.name=Holzrahmen
+item.traincraft:piston.name=Kolben (Traincraft)
+item.traincraft:propeller.name=Propeller
+item.traincraft:rail_copper.name=Kupferschine
+item.traincraft:rail_steel.name=Stahlschine
+item.traincraft:reinforced_plate.name=Verstärkte Platte
+item.traincraft:seats.name=Sitze
+item.traincraft:signal.name=Signal
+item.traincraft:transformer.name=Stromwandler
+item.traincraft:transmition.name=Getriebe
+item.traincraft:fine_copper_wire.name=Feiner Kupferdraht
+
 # Armor
 item.traincraft:armor_overalls.name=Blaumann
 item.traincraft:armor_jacket.name=Warnweste
@@ -63,3 +93,8 @@ item.traincraft:armor_composite_suit_feet.name=Komposischuhe
 item.traincraft:armor_composite_suit_chest.name=Kompositjacke
 
 item.traincraft:skin_changer.name=Skin Changer
+
+# Config
+traincraft:config.title=Traincraft Konfiguration
+traincraft:config.copper_ore_gen=Generiere Kupfererz
+traincraft:config.other_ore_gen=Generiere Petroleumerz/Ölsand
