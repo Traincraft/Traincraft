@@ -48,7 +48,7 @@ public class TCItems {
     public static final BaseItem STEEL_CHIMNEY = new BaseItem("steel_chimney");
     public static final BaseItem PLASTIC = new BaseItem("plastic");
     public static final BaseItem COPPER_INGOT = new BaseItem("copper_ingot");
-
+    
     public static final BaseItem BALLOON = new BaseItem("balloon");
     public static final BaseItem BOGIE_IRON = new BaseItem("bogie_iron");
     public static final BaseItem BOGIE_WOOD = new BaseItem("bogie_wood");
@@ -78,7 +78,7 @@ public class TCItems {
     public static final BaseItem TRANSFORMER = new BaseItem("transformer");
     public static final BaseItem TRANSMITION = new BaseItem("transmition");
     public static final BaseItem FINE_COPPER_WIRE = new BaseItem("fine_copper_wire");
-
+    
     public static final ItemChunkLoaderActivator CHUNK_LOADER_ACTIVATOR = new ItemChunkLoaderActivator();
     
     public static final ItemArmorOveralls OVERALL = new ItemArmorOveralls();

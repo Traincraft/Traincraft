@@ -34,13 +34,13 @@ public class WorldGenWorld implements IWorldGenerator {
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider){
         RetrogenHandler.gennedChunks.add(new RetrogenHandler.ChunkData(chunkX, chunkZ, world.provider.getDimension()));
         if(world.getWorldType() != WorldType.FLAT){
-			if (ConfigHandler.OTHER_ORE_GEN) {
-				addOreSpawn(TCBlocks.OIL_SAND.getDefaultState(), Blocks.SAND.getDefaultState().withProperty(BlockSand.VARIANT, BlockSand.EnumType.SAND), world, random, chunkX * 16, chunkZ * 16, 10, 2, 25, 75);
-				addOreSpawn(TCBlocks.PETROL_ORE.getDefaultState(), Blocks.STONE.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.STONE), world, random, chunkX * 16, chunkZ * 16, 14, 3, 10, 50);
-			}
-			if (ConfigHandler.COPPER_ORE_GEN) {
-				addOreSpawn(TCBlocks.COPPER_ORE.getDefaultState(), Blocks.STONE.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.STONE), world, random, chunkX * 16, chunkZ * 16, 6, 4, 5, 50);
-			}
+            if(ConfigHandler.OTHER_ORE_GEN){
+                addOreSpawn(TCBlocks.OIL_SAND.getDefaultState(), Blocks.SAND.getDefaultState().withProperty(BlockSand.VARIANT, BlockSand.EnumType.SAND), world, random, chunkX * 16, chunkZ * 16, 10, 2, 25, 75);
+                addOreSpawn(TCBlocks.PETROL_ORE.getDefaultState(), Blocks.STONE.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.STONE), world, random, chunkX * 16, chunkZ * 16, 14, 3, 10, 50);
+            }
+            if(ConfigHandler.COPPER_ORE_GEN){
+                addOreSpawn(TCBlocks.COPPER_ORE.getDefaultState(), Blocks.STONE.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.STONE), world, random, chunkX * 16, chunkZ * 16, 6, 4, 5, 50);
+            }
         }
     }
     

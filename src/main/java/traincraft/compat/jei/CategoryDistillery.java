@@ -71,7 +71,7 @@ public class CategoryDistillery implements IRecipeCategory<WrapperDistillery> {
         
         itemStackGroup.init(TileDistillery.OUTPUT_SLOT, false, 16, 16);
         itemStackGroup.set(TileDistillery.OUTPUT_SLOT, recipeWrapper.getRecipe().getOutputStack());
-    
+        
         IGuiFluidStackGroup fluidStackGroup = recipeLayout.getFluidStacks();
         fluidStackGroup.init(0, false, 32, 0, 16, 52, TileDistillery.FLUID_TANK_CAPACITY, true, null);
     }
