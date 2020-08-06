@@ -1,0 +1,38 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "textures": {
+      "up": "traincraft:blocks/assembly_1_top",
+      "down": "traincraft:blocks/assembly_1_bottom",
+      "north": "traincraft:blocks/assembly_1_front",
+      "east": "traincraft:blocks/assembly_1_side",
+      "west": "#east",
+      "south": "#east",
+      "particle": "#down"
+    },
+    "model": "cube",
+    "transform": "forge:default-block"
+  },
+  "variants": {
+    "facing": {
+      "north": {
+        "y": 0
+      },
+      "south": {
+        "y": 180
+      },
+      "west": {
+        "y": 270
+      },
+      "east": {
+        "y": 90
+      }
+    },
+    "normal": [
+      {}
+    ],
+    "inventory": [
+      {}
+    ]
+  }
+}

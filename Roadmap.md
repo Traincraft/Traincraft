@@ -39,7 +39,7 @@ The following shows a simple path on which features are gonna appear first. Nobo
     - [x] Petrol Ore
     - [ ] Stopper
     - [ ] Switch Stand
-    - [ ] Train Workbench
+    - [x] Train Workbench
     - [ ] Water Wheel
     - [x] Wind Mill
         - A custom Capability was added to address the wind speed
