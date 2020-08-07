@@ -76,7 +76,7 @@ public class TCItems {
     public static final BaseItem SEATS = new BaseItem("seats");
     public static final BaseItem SIGNAL = new BaseItem("signal");
     public static final BaseItem TRANSFORMER = new BaseItem("transformer");
-    public static final BaseItem TRANSMITION = new BaseItem("transmition");
+    public static final BaseItem TRANSMISSION = new BaseItem("transmission");
     public static final BaseItem FINE_COPPER_WIRE = new BaseItem("fine_copper_wire");
     
     public static final ItemChunkLoaderActivator CHUNK_LOADER_ACTIVATOR = new ItemChunkLoaderActivator();
