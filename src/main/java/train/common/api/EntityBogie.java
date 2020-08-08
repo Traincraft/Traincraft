@@ -486,7 +486,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		if (meta == 2 || meta == 0) {
 			double norm = Math.sqrt(motionX * motionX + motionZ * motionZ);
 
-			setPosition(cx + 0.5, posY + yOffset, posZ);
+			setPosition(cx + 0.5, posY + yOffset+0.5, posZ);
 			//setPosition(posX, posY + yOffset, posZ);
 
 			motionX = 0;

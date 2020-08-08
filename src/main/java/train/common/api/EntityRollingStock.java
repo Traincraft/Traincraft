@@ -1239,7 +1239,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 		if (meta == 2 || meta == 0) {
 			norm = Math.sqrt(motionX * motionX + motionZ * motionZ);
 
-			setPosition(cx + 0.5, posY + yOffset, posZ);
+			setPosition(cx + 0.5, posY + yOffset +0.5, posZ);
 			//setPosition(posX, posY + yOffset, posZ);
 
 			motionX = 0;
@@ -1260,7 +1260,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 		}
 		if (meta == 1 || meta == 3) {
 
-			setPosition(posX, posY + yOffset, cz + 0.5);
+			setPosition(posX, posY + yOffset+0.5, cz + 0.5);
 			//setPosition(posX, posY + yOffset, posZ);
 
 			motionX = Math.copySign(Math.sqrt(motionX * motionX + motionZ * motionZ), motionX);
