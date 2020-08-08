@@ -315,8 +315,8 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 	@Override
 	public boolean interactFirst(EntityPlayer entityplayer) {
 		ItemStack itemstack = entityplayer.inventory.getCurrentItem();
-		if (!worldObj.isRemote && ConfigHandler.CHUNK_LOADING && (this instanceof Locomotive) ) {
-			if (itemstack != null && itemstack.getItem() instanceof ItemChunkLoaderActivator) {
+		if (!worldObj.isRemote && (this instanceof Locomotive) ) {
+			if (itemstack != null && ConfigHandler.CHUNK_LOADING && itemstack.getItem() instanceof ItemChunkLoaderActivator) {
 				this.playerEntity = entityplayer;
 				if (getFlag(7)) {
 					this.setFlag(7, false);

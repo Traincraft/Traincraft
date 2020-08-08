@@ -486,7 +486,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		if (meta == 2 || meta == 0) {
 			double norm = Math.sqrt(motionX * motionX + motionZ * motionZ);
 
-			setPosition(cx + 0.5, posY + yOffset+this.ySize+0.5, posZ);
+			setPosition(cx + 0.5, posY + yOffset, posZ);
 			//setPosition(posX, posY + yOffset, posZ);
 
 			motionX = 0;
@@ -499,10 +499,9 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 					return;
 				}
 			}
-			setPosition((this.boundingBox.minX + this.boundingBox.maxX) *0.5,
-					this.boundingBox.minY + this.yOffset - this.ySize-0.5,
-					(this.boundingBox.minZ + this.boundingBox.maxZ)*0.5
-			);
+			this.posX = (this.boundingBox.minX + this.boundingBox.maxX) *0.5D;
+			this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
+			this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) *0.5D;
 
 			//System.out.println("straight z "+Math.copySign(norm, motionZ));
 		}
@@ -607,7 +606,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 	}
 
 	private void moveOnTC90TurnRail(int j,double r, double cx, double cz){
-		posY = j;// + 0.2;
+		//posY = j;// + 0.2;
 		double cpx = posX - cx;
 		double cpz = posZ - cz;
 		double cp_norm = Math.sqrt(cpx * cpx + cpz * cpz);
