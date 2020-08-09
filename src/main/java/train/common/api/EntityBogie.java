@@ -606,7 +606,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 	}
 
 	private void moveOnTC90TurnRail(int j,double r, double cx, double cz){
-		//posY = j;// + 0.2;
+		posY = j;// + 0.2;
 		double cpx = posX - cx;
 		double cpz = posZ - cz;
 		double cp_norm = Math.sqrt(cpx * cpx + cpz * cpz);

@@ -1318,7 +1318,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 
 	protected void moveOnTC90TurnRail(int i, int j, int k, double r, double cx, double cz) {
 		//System.out.println("curve");
-		//posY = j;
+		posY = j;
 		double cpx = posX - cx;
 		double cpz = posZ - cz;
 		double cp_norm = Math.sqrt(cpx * cpx + cpz * cpz);
