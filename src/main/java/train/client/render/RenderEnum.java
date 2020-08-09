@@ -248,7 +248,7 @@ public enum RenderEnum {
 	locoIC4MG(EntityLocoDieselIC4_DSB_MG.class, new ModelLocoDieselIC4_DSB_MG(), "IC4_DSB_MG_", true, new float[] { -0.8F, -0.44F, 0.0F }, null, null, "", 0, null, "", null, 0, false),
 	locoBR185(EntityLocoElectricBR185.class, new BR185_EngineModel(), "BR185_Engine_", true, new float[] { -2.0F, 0.1F, 0.0F },  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	locoClass85(EntityLocoElectricClass85.class, new ModelClass85(), "Class85", false, new float[] { -3.0F, 0.65F, 0.0F },  new float[] { 0F, 90F, 180F }, null, "", 0, null, "", null, 0, false),
-	locoBP4(EntityLocoElectricBP4.class, new ModelBP4(), "bp4_", true, new float[] { -2.2F, 0.25F, 0.125F }, new float[] { 0F, 180F, 180F }, new float[]{1f,1.1f,0.9f}, "", 0, null, "", null, 0, false),
+	locoBP4(EntityLocoElectricBP4.class, new ModelBP4(), "bp4_", true, new float[] { -2.2F, 0.15F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	locoDeltic(EntityLocoDieselDeltic.class, new ModelDeltic(), "Deltic", false, new float[] { -2.25F, 0.8F, 0.0F },  new float[] { 0F, 90F, 180F }, null, "largesmoke", 1, new ArrayList<double[]>() {
 		{
 			add(new double[]{2.3D, 1.6D, 0D});
