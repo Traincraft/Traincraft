@@ -16,7 +16,6 @@ import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import net.minecraft.item.ItemStack;
 import traincraft.blocks.TCBlocks;
 import traincraft.blocks.distillery.DistilleryRecipe;
-import traincraft.blocks.distillery.TileDistillery;
 import traincraft.compat.jei.CategoryDistillery;
 import traincraft.compat.jei.WrapperDistillery;
 
@@ -47,7 +46,7 @@ public class TraincraftJEIPlugin implements IModPlugin {
     @Override
     public void register(IModRegistry registry){
         registry.handleRecipes(DistilleryRecipe.class, WrapperDistillery::new, DISTILLERY_RECIPE_CATEGORY);
-        registry.addRecipes(TileDistillery.DISTIL_RECIPES, DISTILLERY_RECIPE_CATEGORY);
+        registry.addRecipes(DistilleryRecipe.DISTIL_RECIPES, DISTILLERY_RECIPE_CATEGORY);
         registry.addRecipeCatalyst(new ItemStack(TCBlocks.DISTILLERY), DISTILLERY_RECIPE_CATEGORY);
     }
     

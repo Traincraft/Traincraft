@@ -26,35 +26,36 @@ import javax.annotation.Nonnull;
 //TODO: make the trainworkbench save inventory on close
 //TODO: BUG: closing game while container is open will delete everything inside of container.
 public class TileTrainWorkbench extends BaseTile {
-
+    
     private final InventorySpecific inventory = new InventorySpecific("Train Workbench Inventory", false, 9, this::isItemValidForInventory);
-
-    public TileTrainWorkbench() {
+    
+    public TileTrainWorkbench(){
         this.inventory.addInventoryChangeListener(this::onInventoryChange);
     }
-
+    
     @Override
-    public IInventory getRealInventory() {
+    public IInventory getRealInventory(){
         return inventory;
     }
-
+    
+    public boolean hasGui(){
+        return true;
+    }
+    
     @Override
-    public GuiScreen openGui(EntityPlayer player) {
+    public GuiScreen openGui(EntityPlayer player){
         return new GuiTrainWorkbench(this, player);
     }
-
+    
     @Override
-    public Container openContainer(EntityPlayer player) {
+    public Container openContainer(EntityPlayer player){
         return new ContainerTrainWorkbench(player.inventory, player.getEntityWorld());
     }
-    public boolean hasGui() {
+    
+    protected boolean isItemValidForInventory(int slot, @Nonnull ItemStack stack){
         return true;
     }
-
-    protected boolean isItemValidForInventory(int slot, @Nonnull ItemStack stack) {
-        return true;
-    }
-
-    public void onInventoryChange(IInventory inventory) {
+    
+    public void onInventoryChange(IInventory inventory){
     }
 }

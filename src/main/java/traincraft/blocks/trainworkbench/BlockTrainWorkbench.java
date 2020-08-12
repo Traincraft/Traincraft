@@ -25,43 +25,43 @@ import traincraft.blocks.BaseContainerBlock;
 import javax.annotation.Nonnull;
 
 public class BlockTrainWorkbench extends BaseContainerBlock {
-
-	public BlockTrainWorkbench(){
-		super(Material.WOOD, TileTrainWorkbench.class);
-		this.setRegistryName(Traincraft.MOD_ID, "train_workbench");
-
-		this.setCreativeTab(Traincraft.TAB);
-		this.setHardness(1.7F);
-		this.setSoundType(SoundType.WOOD);
-		this.setHarvestLevel("axe", 0);
-
-		this.setDefaultState(this.blockState.getBaseState().withProperty(BlockHorizontal.FACING, EnumFacing.NORTH));
-	}
-
-	// state: ABCD => B = active; CD = facing
-	@SuppressWarnings("deprecation")
-	@Nonnull
-	@Override
-	public IBlockState getStateFromMeta(int meta){
-		return this.getDefaultState().withProperty(BlockHorizontal.FACING, EnumFacing.byHorizontalIndex(meta & 0b0011));
-	}
-
-	@Override
-	public int getMetaFromState(IBlockState state){
-		return state.getValue(BlockHorizontal.FACING).getHorizontalIndex();
-	}
-
-	@SuppressWarnings("deprecation")
-	@Nonnull
-	@Override
-	public IBlockState getStateForPlacement(@Nonnull World world, @Nonnull BlockPos pos, @Nonnull EnumFacing facing, float hitX, float hitY, float hitZ, int meta, @Nonnull EntityLivingBase placer){
-		return super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer).withProperty(BlockHorizontal.FACING, placer.getHorizontalFacing().getOpposite());
-	}
-
-	@Nonnull
-	@Override
-	protected BlockStateContainer createBlockState(){
-		return new BlockStateContainer(this, BlockHorizontal.FACING);
-	}
-
+    
+    public BlockTrainWorkbench(){
+        super(Material.WOOD, TileTrainWorkbench.class);
+        this.setRegistryName(Traincraft.MOD_ID, "train_workbench");
+        
+        this.setCreativeTab(Traincraft.TAB);
+        this.setHardness(1.7F);
+        this.setSoundType(SoundType.WOOD);
+        this.setHarvestLevel("axe", 0);
+        
+        this.setDefaultState(this.blockState.getBaseState().withProperty(BlockHorizontal.FACING, EnumFacing.NORTH));
+    }
+    
+    // state: ABCD => B = active; CD = facing
+    @SuppressWarnings("deprecation")
+    @Nonnull
+    @Override
+    public IBlockState getStateFromMeta(int meta){
+        return this.getDefaultState().withProperty(BlockHorizontal.FACING, EnumFacing.byHorizontalIndex(meta & 0b0011));
+    }
+    
+    @Override
+    public int getMetaFromState(IBlockState state){
+        return state.getValue(BlockHorizontal.FACING).getHorizontalIndex();
+    }
+    
+    @SuppressWarnings("deprecation")
+    @Nonnull
+    @Override
+    public IBlockState getStateForPlacement(@Nonnull World world, @Nonnull BlockPos pos, @Nonnull EnumFacing facing, float hitX, float hitY, float hitZ, int meta, @Nonnull EntityLivingBase placer){
+        return super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer).withProperty(BlockHorizontal.FACING, placer.getHorizontalFacing().getOpposite());
+    }
+    
+    @Nonnull
+    @Override
+    protected BlockStateContainer createBlockState(){
+        return new BlockStateContainer(this, BlockHorizontal.FACING);
+    }
+    
 }

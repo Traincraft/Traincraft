@@ -28,14 +28,14 @@ public class WrapperDistillery implements IRecipeWrapper {
         this.recipe = recipe;
     }
     
-    public DistilleryRecipe getRecipe(){
-        return recipe;
-    }
-    
     @Override
     public void getIngredients(IIngredients ingredients){
         ingredients.setInputs(VanillaTypes.ITEM, Lists.newArrayList(this.recipe.getInputIngredient().getMatchingStacks()));
         ingredients.setOutput(VanillaTypes.ITEM, this.recipe.getRecipeOutput());
+    }
+    
+    public DistilleryRecipe getRecipe(){
+        return recipe;
     }
     
 }

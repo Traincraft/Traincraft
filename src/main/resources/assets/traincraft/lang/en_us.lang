@@ -74,7 +74,7 @@ item.traincraft:reinforced_plate.name=Reinforced Plate
 item.traincraft:seats.name=Seats
 item.traincraft:signal.name=Signal
 item.traincraft:transformer.name=Transformer
-item.traincraft:transmition.name=Transmition
+item.traincraft:transmission.name=Hydraulic Transmission
 item.traincraft:fine_copper_wire.name=Fine Copper Wire
 
 # Armor

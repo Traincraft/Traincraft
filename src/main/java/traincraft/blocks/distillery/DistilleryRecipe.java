@@ -17,7 +17,12 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DistilleryRecipe extends net.minecraftforge.registries.IForgeRegistryEntry.Impl<IRecipe> implements IRecipe {
+    
+    public static final List<DistilleryRecipe> DISTIL_RECIPES = new ArrayList<>();
     
     private final Ingredient inputIngredient;
     private final int inputAmount;

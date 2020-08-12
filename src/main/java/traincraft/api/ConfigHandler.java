@@ -17,28 +17,28 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import traincraft.Traincraft;
 
 @Config(modid = Traincraft.MOD_ID, category = "general")
-@Config.LangKey(Traincraft.MOD_ID  + ":config.title")
+@Config.LangKey(Traincraft.MOD_ID + ":config.title")
 public class ConfigHandler {
-
+    
     @Config.LangKey(Traincraft.MOD_ID + ":config.copper_ore_gen")
     @Config.Comment("This toggles whether Copper ore will generate or not. Must be set before world generates.")
     public static boolean COPPER_ORE_GEN = true;
-
+    
     @Config.LangKey(Traincraft.MOD_ID + ":config.other_ore_gen")
     @Config.Comment("This toggles whether Petroleum and Oil Sands will generate in the world. Must be set before world generates.")
     public static boolean OTHER_ORE_GEN = true;
-
+    
     @Mod.EventBusSubscriber(modid = Traincraft.MOD_ID)
     private static class EventHandler {
-
+        
         /**
          * Inject the new values and save to the config file when the config has been changed from the GUI.
          *
          * @param event The event
          */
         @SubscribeEvent
-        public static void onConfigChanged(final ConfigChangedEvent.OnConfigChangedEvent event) {
-            if (event.getModID().equals(Traincraft.MOD_ID)) {
+        public static void onConfigChanged(final ConfigChangedEvent.OnConfigChangedEvent event){
+            if(event.getModID().equals(Traincraft.MOD_ID)){
                 ConfigManager.sync(Traincraft.MOD_ID, Config.Type.INSTANCE);
             }
         }
