@@ -2,13 +2,13 @@
  * Traincraft
  * Copyright (c) 2011-2020.
  *
- * This file ("BlockAssemblyTableI.java") is part of the Traincraft mod for Minecraft.
+ * This file ("BlockAssemblyTableIII.java") is part of the Traincraft mod for Minecraft.
  * It is created by all people that are listed with @author below.
  * It is distributed under LGPL-v3.0.
  * You can find the source code at https://github.com/Traincraft/Traincraft
  */
 
-package traincraft.blocks;
+package traincraft.blocks.assemblytables;
 
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.SoundType;
@@ -20,20 +20,20 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import traincraft.Traincraft;
-import traincraft.tile.TileAssemblyTableI;
+import traincraft.blocks.BaseContainerBlock;
 
 import javax.annotation.Nonnull;
 
-public class BlockAssemblyTableI extends BaseContainerBlock {
+public class BlockAssemblyTableIII extends BaseContainerBlock {
     
-    public BlockAssemblyTableI(){
-        super(Material.WOOD, TileAssemblyTableI.class);
-        this.setRegistryName(Traincraft.MOD_ID, "assembly_table_1");
+    public BlockAssemblyTableIII(){
+        super(Material.ROCK, TileAssemblyTableIII.class);
+        this.setRegistryName(Traincraft.MOD_ID, "assembly_table_3");
         
         this.setCreativeTab(Traincraft.TAB);
         this.setHardness(3.5F);
-        this.setSoundType(SoundType.WOOD);
-        this.setHarvestLevel("axe", 0);
+        this.setSoundType(SoundType.STONE);
+        this.setHarvestLevel("pickaxe", 0);
         
         this.setDefaultState(this.blockState.getBaseState().withProperty(BlockHorizontal.FACING, EnumFacing.NORTH));
     }

@@ -2,13 +2,13 @@
  * Traincraft
  * Copyright (c) 2011-2020.
  *
- * This file ("BlockAssemblyTableIII.java") is part of the Traincraft mod for Minecraft.
+ * This file ("BlockAssemblyTableII.java") is part of the Traincraft mod for Minecraft.
  * It is created by all people that are listed with @author below.
  * It is distributed under LGPL-v3.0.
  * You can find the source code at https://github.com/Traincraft/Traincraft
  */
 
-package traincraft.blocks;
+package traincraft.blocks.assemblytables;
 
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.SoundType;
@@ -20,15 +20,15 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import traincraft.Traincraft;
-import traincraft.tile.TileAssemblyTableIII;
+import traincraft.blocks.BaseContainerBlock;
 
 import javax.annotation.Nonnull;
 
-public class BlockAssemblyTableIII extends BaseContainerBlock {
+public class BlockAssemblyTableII extends BaseContainerBlock {
     
-    public BlockAssemblyTableIII(){
-        super(Material.ROCK, TileAssemblyTableIII.class);
-        this.setRegistryName(Traincraft.MOD_ID, "assembly_table_3");
+    public BlockAssemblyTableII(){
+        super(Material.ROCK, TileAssemblyTableII.class);
+        this.setRegistryName(Traincraft.MOD_ID, "assembly_table_2");
         
         this.setCreativeTab(Traincraft.TAB);
         this.setHardness(3.5F);
