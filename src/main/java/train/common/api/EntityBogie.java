@@ -500,7 +500,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 				}
 			}
 			this.posX = (this.boundingBox.minX + this.boundingBox.maxX) *0.5D;
-			this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
+			this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize -0.5d;
 			this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) *0.5D;
 
 			//System.out.println("straight z "+Math.copySign(norm, motionZ));
@@ -520,10 +520,9 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 					return;
 				}
 			}
-			setPosition((this.boundingBox.minX + this.boundingBox.maxX) *0.5,
-					this.boundingBox.minY + this.yOffset - this.ySize-0.5,
-					(this.boundingBox.minZ + this.boundingBox.maxZ)*0.5
-			);
+			posX=(this.boundingBox.minX + this.boundingBox.maxX) *0.5;
+					posY=this.boundingBox.minY + this.yOffset - this.ySize-0.5;
+					posZ=(this.boundingBox.minZ + this.boundingBox.maxZ)*0.5;
 
 			//System.out.println("straight x "+Math.copySign(norm, motionX));
 		}

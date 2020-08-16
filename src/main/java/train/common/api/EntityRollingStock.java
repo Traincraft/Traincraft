@@ -1253,7 +1253,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 				}
 			}
 			this.posX = (this.boundingBox.minX + this.boundingBox.maxX) *0.5d;
-			this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
+			this.posY = this.boundingBox.minY + (double)this.yOffset - this.ySize-0.5d;
 			this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) *0.5d;
 
 			//System.out.println("straight z "+Math.copySign(norm, motionZ));
@@ -1273,10 +1273,9 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 					return;
 				}
 			}
-			setPosition((this.boundingBox.minX + this.boundingBox.maxX) *0.5,
-					this.boundingBox.minY + this.yOffset - this.ySize-0.5,
-					(this.boundingBox.minZ + this.boundingBox.maxZ)*0.5
-			);
+			posX =(this.boundingBox.minX + this.boundingBox.maxX) *0.5;
+			posY=this.boundingBox.minY + this.yOffset - this.ySize-0.5;
+			posZ=(this.boundingBox.minZ + this.boundingBox.maxZ)*0.5;
 
 			//System.out.println("straight x "+Math.copySign(norm, motionX));
 		}
