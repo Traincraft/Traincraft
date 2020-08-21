@@ -34,6 +34,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import traincraft.api.TraincraftAddonLoader;
 import traincraft.blocks.TCBlocks;
+import traincraft.blocks.assemblytables.AssemblyTableRecipe;
 import traincraft.blocks.distillery.DistilleryRecipe;
 import traincraft.blocks.trainworkbench.TrainWorkbenchRecipe;
 import traincraft.capabilities.CapabilityWorldWind;
@@ -188,6 +189,8 @@ public class Traincraft {
                 DistilleryRecipe.DISTIL_RECIPES.add((DistilleryRecipe) recipe);
             } else if(recipe instanceof TrainWorkbenchRecipe){
                 TrainWorkbenchRecipe.TRAINWORKBENCH_RECIPES.add((TrainWorkbenchRecipe) recipe);
+            } else if(recipe instanceof AssemblyTableRecipe){
+                AssemblyTableRecipe.ASSEMBLY_TABLE_RECIPES.add((AssemblyTableRecipe) recipe);
             }
         });
     }

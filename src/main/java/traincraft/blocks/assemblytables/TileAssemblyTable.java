@@ -14,8 +14,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryBasic;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.NonNullList;
+import net.minecraft.nbt.NBTBase;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.common.util.INBTSerializable;
+import org.apache.logging.log4j.Level;
+import traincraft.Traincraft;
 import traincraft.tile.BaseTile;
 
 /**
@@ -30,9 +33,10 @@ public class TileAssemblyTable extends BaseTile {
 
     private final int tier;
     private GuiAssemblyTable guiAssemblyTable;
-
+    private ContainerAssemblyTable containerAssemblyTable;
+    
     //These will be the 10 slots that the train parts will sit in to craft the trains
-    public AssemblyTableInventory craftingInventory = new AssemblyTableInventory();
+    public AssemblyTableInventory craftingInventory = new AssemblyTableInventory(this);
 
     //These 8 slots are for the small chest-like inventory inside of the train workbench.
     InventoryBasic storageInventory = new InventoryBasic("ASM table storage", false, 8);
@@ -58,7 +62,8 @@ public class TileAssemblyTable extends BaseTile {
 
     @Override
     public Container openContainer(EntityPlayer player) {
-        return new ContainerAssemblyTable(player.inventory, player.getEntityWorld(), this);
+        containerAssemblyTable = new ContainerAssemblyTable(player.inventory, player.getEntityWorld(), this);
+        return containerAssemblyTable;
     }
 
     /**
@@ -79,8 +84,59 @@ public class TileAssemblyTable extends BaseTile {
         return storageInventory;
     }
 
-    public IInventory getCraftingInventory() {
+    public AssemblyTableInventory getCraftingInventory() {
         return craftingInventory;
     }
-    //TODO: will need to override writeNBT and readNBT
+    
+    /**
+     * This function handles recipe checking. Will set the output item if recipe works.
+     */
+    public void onInventoryChanged() {
+        Traincraft.LOGGER.log(Level.DEBUG, "Assembly Table inventory changed function in tile called.");
+        //for loop to compare between ingredients, similar to workbench
+        if(this.world == null || !this.world.isRemote){
+            //clear output inventory area
+            outputInventory.clear();
+        
+            if(!craftingInventory.isEmpty()){
+                //filter through the trainrecipies and find the first match (there should only be one match, but just in case duplicate recipes or sth.
+                AssemblyTableRecipe.ASSEMBLY_TABLE_RECIPES.stream().filter(recipe -> recipe.betterMatches(craftingInventory)).findFirst().ifPresent(recipe -> {
+                    if (this.tier == recipe.getTier()){ //make sure correct tier before doing.
+                        craftingInventory.setRecipeUsed(recipe);
+                        outputInventory.setInventorySlotContents(0, recipe.getRecipeOutput().copy());
+                        containerAssemblyTable.detectAndSendChanges();
+                        this.syncToClient();
+                    }
+                });
+            }
+    
+            //update things that need update
+            containerAssemblyTable.detectAndSendChanges();
+        }
+    }
+    
+    public void readNBT(NBTTagCompound nbt, NBTState state){
+        if(nbt.hasKey("storageInventory")){
+            NBTTagCompound storageInventoryNBT = nbt.getCompoundTag("storageInventory");
+            if(this.getRealInventory() != null && this.getRealInventory() instanceof INBTSerializable<?>){
+                ((INBTSerializable<NBTTagCompound>) this.getRealInventory()).deserializeNBT(storageInventoryNBT);
+            }
+        }
+    }
+    
+    public void writeNBT(NBTTagCompound nbt, NBTState state){
+        //IItemHandler inventory = this.getInventory(null);
+//        if(inventory instanceof InvWrapper && ((InvWrapper) inventory).getInv() instanceof INBTSerializable<?>){
+//            NBTBase value = ((INBTSerializable<?>) ((InvWrapper) inventory).getInv()).serializeNBT();
+//            if(value instanceof NBTTagCompound){
+//                nbt.setTag("inventory", value);
+//            }
+//        } else
+        if(this.getRealInventory() != null && this.getRealInventory() instanceof INBTSerializable<?>){
+            NBTBase value = ((INBTSerializable<?>) this.getRealInventory()).serializeNBT();
+            if(value instanceof NBTTagCompound){
+                nbt.setTag("storageInventory", value);
+            }
+        }
+    }
 }

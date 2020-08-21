@@ -11,8 +11,10 @@ package traincraft.blocks.assemblytables;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextComponentTranslation;
 import org.apache.logging.log4j.Level;
 import traincraft.Traincraft;
 
@@ -44,7 +46,14 @@ public class GuiAssemblyTable extends GuiContainer {
         this.player = player;
         this.tileAssemblyTable = tileAssemblyTable;
     }
-
+    
+    @Override
+    public void drawScreen(int mouseX, int mouseY, float partialTicks){
+        this.drawDefaultBackground();
+        super.drawScreen(mouseX, mouseY, partialTicks);
+        this.renderHoveredToolTip(mouseX, mouseY);
+    }
+    
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
     }
@@ -80,13 +89,12 @@ public class GuiAssemblyTable extends GuiContainer {
         int adjustedX = (this.width - 176) / 2;
         int adjustedY = (this.height - 256) / 2;
 
-        //TODO: localize the strings via lang file, https://mcforge.readthedocs.io/en/1.12.x/concepts/internationalization/
         //TODO: are these colors ok?
-        this.fontRenderer.drawString("Assembly Table " + tier, 10 + adjustedX, 6 + adjustedY, new Color(186, 201, 48).getRGB());
+        this.fontRenderer.drawString(I18n.format(Traincraft.MOD_ID + ":assembly_table_" + tier + ".name"), 10 + adjustedX, 6 + adjustedY, new Color(186, 201, 48).getRGB());
 
         int color = new Color(147, 145, 158).getRGB();
-        this.fontRenderer.drawString("Storage", 10 + adjustedX, 118 + adjustedY, color);
-        this.fontRenderer.drawString("Output", 90 + adjustedX, 118 + adjustedY, color);
+        this.fontRenderer.drawString(I18n.format(Traincraft.MOD_ID + ":assemblytable.storage"), 10 + adjustedX, 118 + adjustedY, color);
+        this.fontRenderer.drawString(I18n.format(Traincraft.MOD_ID + ":assemblytable.output"), 90 + adjustedX, 118 + adjustedY, color);
     }
 
     //TODO: create methods to change color of slots, etc.

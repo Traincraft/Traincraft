@@ -24,6 +24,10 @@ traincraft:assembly_table_3.name=Assembly Table III
 traincraft:bridge_pillar.name=Bridge Pillar
 traincraft:switch_stand.name=High Star Switch Stand
 
+# Block GUI Strings
+traincraft:assemblytable.storage=Storage
+traincraft:assemblytable.output=Output
+
 # Fluids
 fluid.traincraft:oil=Oil
 fluid.traincraft:diesel=Diesel Fuel

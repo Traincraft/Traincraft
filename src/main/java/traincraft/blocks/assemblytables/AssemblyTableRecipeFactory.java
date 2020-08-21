@@ -10,10 +10,22 @@
 
 package traincraft.blocks.assemblytables;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonSyntaxException;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.util.JsonUtils;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.common.crafting.IRecipeFactory;
 import net.minecraftforge.common.crafting.JsonContext;
+import net.minecraftforge.oredict.OreDictionary;
+
+import javax.annotation.Nullable;
+
+import static net.minecraft.item.crafting.ShapedRecipes.deserializeItem;
 
 /**
  * Json parser for all 3 tiers of assembly table.
@@ -22,8 +34,110 @@ import net.minecraftforge.common.crafting.JsonContext;
  * @since 2020-8-7
  */
 public class AssemblyTableRecipeFactory implements IRecipeFactory {
+    
     @Override
     public IRecipe parse(JsonContext context, JsonObject json) {
+        
+        if (!json.has("tier")) {
+            throw new JsonSyntaxException("No tier element found in assembly table recipe");
+        }
+        int tier = json.get("tier").getAsInt();
+        
+        if (!json.has("result")) {
+            throw new JsonSyntaxException("No result element found in assembly table recipe");
+        }
+        ItemStack resultItemStack = deserializeItem(JsonUtils.getJsonObject(json, "result"), true);
+        
+        //set a blank AssemblyTableRecipe to add to.
+        AssemblyTableRecipe recipeInProgress = new AssemblyTableRecipe(tier, resultItemStack);
+        
+        if (json.has("planks")) {
+            recipeInProgress.setCraftingIngredient(0, deserializeIngredient(json.get("planks")));
+        } else {
+            throw new JsonSyntaxException("Could not find planks in assembly table recipe.");
+        }
+    
+        //we can iterate through an array of all the elements' names to set each of the 10 slots
+        String[] components = {"planks", "chimney", "cab", "dye", "component", "boiler", "firebox", "wheels", "frame", "coupler"};
+        
+        for (int i = 0; i < 10; ++i ) {
+            //since we initialize to empty slots, those that do not have an element in the json will be empty slots in the recipe.
+            if (json.has(components[i])) {
+                recipeInProgress.setCraftingIngredient(i, deserializeIngredient(json.get(components[i])));
+            }
+        }
+        
+        return recipeInProgress;
+    }
+    
+    @Nullable
+    private NumberedIngredient getNumberedIngredientFromJson() {
         return null;
+    }
+    
+    /**
+     * Takes a jsonElement describing a Ingredient and turns it into the corresponding Ingredient.
+     * NOTE: this is overridden to provide support for forge ore dictionary.
+     *
+     * @param jsonElement object/array of objects describing single ingredient.
+     * @return the ingredient
+     */
+    private static NumberedIngredient deserializeIngredient(@Nullable JsonElement jsonElement){
+        if(jsonElement != null && !jsonElement.isJsonNull()){
+            //first check if using ore dict, otherwise do normal stuff
+            if(jsonElement.getAsJsonObject().has("type")){
+                if(jsonElement.getAsJsonObject().get("type").getAsString().equals("forge:ore_dict")){
+                    if(jsonElement.getAsJsonObject().has("ore")){
+                        //find all ItemStacks for ore
+                        NonNullList<ItemStack> itemStacksNNlist = OreDictionary.getOres(jsonElement.getAsJsonObject().get("ore").getAsString());
+                        ItemStack[] itemStacks = new ItemStack[itemStacksNNlist.size()];
+                        for(int i = 0; i < itemStacksNNlist.size(); ++i){
+                            itemStacks[i] = itemStacksNNlist.get(i);
+                        }
+                        NumberedIngredient numedIng = new NumberedIngredient();
+                        numedIng.ingredient = Ingredient.fromStacks(itemStacks);
+                        if (jsonElement.getAsJsonObject().has("count")) {
+                            numedIng.setCount(jsonElement.getAsJsonObject().get("count").getAsInt());
+                        }
+                        return numedIng;
+                    } else{
+                        throw new JsonSyntaxException("Does not contain ore item.");
+                    }
+                } else{
+                    throw new JsonSyntaxException("Does not support non forge:ore_dict types.");
+                }
+            } else if(jsonElement.isJsonObject()){
+                NumberedIngredient numedIng = new NumberedIngredient();
+                numedIng.ingredient = Ingredient.fromStacks(deserializeItem(jsonElement.getAsJsonObject(), false));
+                if (jsonElement.getAsJsonObject().has("count")) {
+                    numedIng.setCount(jsonElement.getAsJsonObject().get("count").getAsInt());
+                }
+                return numedIng;
+            } else if(!jsonElement.isJsonArray()){
+                throw new JsonSyntaxException("Expected item to be object or array of objects");
+            } else{
+                JsonArray jsonarray = jsonElement.getAsJsonArray();
+                
+                if(jsonarray.size() == 0){
+                    throw new JsonSyntaxException("Item array cannot be empty, at least one item must be defined");
+                } else{
+                    ItemStack[] aitemstack = new ItemStack[jsonarray.size()];
+                    
+                    for(int i = 0; i < jsonarray.size(); ++i){
+                        aitemstack[i] = deserializeItem(JsonUtils.getJsonObject(jsonarray.get(i), "item"), false);
+                    }
+                    NumberedIngredient numedIng = new NumberedIngredient();
+                    numedIng.ingredient = Ingredient.fromStacks(aitemstack);
+                    if (jsonElement.getAsJsonObject().has("count")) {
+                        numedIng.setCount(jsonElement.getAsJsonObject().get("count").getAsInt());
+                    }
+                    return numedIng;
+                }
+            }
+        } else{
+            NumberedIngredient numedIng = new NumberedIngredient();
+            numedIng.ingredient = Ingredient.fromStacks(ItemStack.EMPTY);
+            return numedIng;
+        }
     }
 }

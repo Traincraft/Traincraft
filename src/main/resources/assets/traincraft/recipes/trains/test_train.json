@@ -1,0 +1,40 @@
+{
+  "type": "traincraft:assemblytable",
+  "_comment": "COMMENT: This example recipe is missing a dye entry, because dye is not required here.",
+
+  "tier": 1,
+
+  "planks": {
+    "type": "forge:ore_dict",
+    "ore": "plankWood",
+    "count": 4
+  },
+  "chimney": {
+    "item": "traincraft:chimney_iron"
+  },
+  "cab": {
+    "item": "traincraft:cab_iron"
+  },
+  "component": {
+    "item": "traincraft:guide"
+  },
+  "boiler": {
+    "item": "traincraft:boiler_iron"
+  },
+  "firebox": {
+    "item": "traincraft:firebox_iron",
+    "count": 2
+  },
+  "wheels": {
+    "item": "traincraft:bogie_iron"
+  },
+  "frame": {
+    "item": "traincraft:frame_iron"
+  },
+  "coupler": {
+    "item": "traincraft:connector"
+  },
+  "result": {
+    "item": "traincraft:guide"
+  }
+}

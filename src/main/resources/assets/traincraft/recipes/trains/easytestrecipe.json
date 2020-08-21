@@ -1,0 +1,15 @@
+{
+  "type": "traincraft:assemblytable",
+  "_comment": "COMMENT: This is to test things like recipe checking and item removal.",
+
+  "tier": 2,
+
+  "planks": {
+    "type": "forge:ore_dict",
+    "ore": "plankWood",
+    "count": 4
+  },
+  "result": {
+    "item": "traincraft:guide"
+  }
+}

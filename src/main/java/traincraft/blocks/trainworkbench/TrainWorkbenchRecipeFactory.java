@@ -207,7 +207,7 @@ public class TrainWorkbenchRecipeFactory implements IRecipeFactory {
      * @param jsonElement object/array of objects describing single ingredient.
      * @return the ingredient
      */
-    public static Ingredient deserializeIngredient(@Nullable JsonElement jsonElement){
+    private static Ingredient deserializeIngredient(@Nullable JsonElement jsonElement){
         if(jsonElement != null && !jsonElement.isJsonNull()){
             //first check if using ore dict, otherwise do normal stuff
             if(jsonElement.getAsJsonObject().has("type")){

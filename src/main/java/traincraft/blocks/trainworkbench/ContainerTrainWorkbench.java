@@ -119,9 +119,7 @@ public class ContainerTrainWorkbench extends Container {
             this.clearContainer(playerIn, this.world, this.craftMatrix);
         }
     }
-    
-    //stuff from vanilla ctable
-    //BUG: can only craft anything once (per game load)
+   
     public void onCraftMatrixChanged(IInventory inventory){
         if(this.world == null || !this.world.isRemote && inventory == craftMatrix){
             //clear current item in outputSlot first

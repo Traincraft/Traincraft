@@ -11,28 +11,37 @@ package traincraft.blocks.assemblytables;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentString;
 import org.apache.logging.log4j.Level;
 import traincraft.Traincraft;
 
+import javax.annotation.Nullable;
+
 public class AssemblyTableInventory implements IInventory {
 
-    NonNullList<ItemStack> inventory = NonNullList.withSize(10, ItemStack.EMPTY);
-
+    private NonNullList<ItemStack> inventory = NonNullList.withSize(10, ItemStack.EMPTY);
+    private final TileAssemblyTable tileAssemblyTable;
+    private AssemblyTableRecipe recipeUsed = null;
+    
     /**
      * Creates a empty AssemblyTableInventory
      */
-    public AssemblyTableInventory() {
+    public AssemblyTableInventory(TileAssemblyTable tileAssemblyTable) {
+        this.tileAssemblyTable = tileAssemblyTable;
     }
 
     /**
      * Creates a inventory already populated with items.
      *
+     * @param tileAssemblyTable The TileEntity that this is in, used for recipe checking.
      * @param inventory an NonNullList of length 10 filled with ItemStacks
      */
-    public AssemblyTableInventory(NonNullList<ItemStack> inventory) {
+    public AssemblyTableInventory(TileAssemblyTable tileAssemblyTable, NonNullList<ItemStack> inventory) {
+        this.tileAssemblyTable = tileAssemblyTable;
         this.inventory = inventory;
     }
 
@@ -41,6 +50,15 @@ public class AssemblyTableInventory implements IInventory {
         return 10;
     }
 
+    @Nullable
+    public void setRecipeUsed(AssemblyTableRecipe recipe) {
+        this.recipeUsed = recipe;
+    }
+    
+    public AssemblyTableRecipe getRecipeUsed() {
+        return recipeUsed;
+    }
+    
     @Override
     public boolean isEmpty() {
         //cannot use NonNullList.isEmpty() because it implements by comparing the size of the NNList with 0
@@ -64,7 +82,15 @@ public class AssemblyTableInventory implements IInventory {
 
     @Override
     public ItemStack decrStackSize(int index, int count) {
-        return null;
+        ItemStack itemstack = ItemStackHelper.getAndSplit(this.inventory, index, count);
+    
+        if (!itemstack.isEmpty())
+        {
+            this.markDirty();
+        }
+        this.markDirty();
+        tileAssemblyTable.onInventoryChanged();
+        return itemstack;
     }
 
     /**
@@ -77,27 +103,38 @@ public class AssemblyTableInventory implements IInventory {
     public ItemStack removeStackFromSlot(int index) {
         ItemStack itemStack = inventory.get(index);
         inventory.set(index, ItemStack.EMPTY);
+        this.markDirty();
+        tileAssemblyTable.onInventoryChanged();
         return itemStack;
     }
 
     @Override
     public void setInventorySlotContents(int index, ItemStack stack) {
         inventory.set(index, stack);
+    
+        if (!stack.isEmpty() && stack.getCount() > this.getInventoryStackLimit()){
+            stack.setCount(this.getInventoryStackLimit());
+        }
+    
+        this.markDirty();
+        tileAssemblyTable.onInventoryChanged();
     }
 
     @Override
     public int getInventoryStackLimit() {
-        return 0;
+        return 64;
     }
 
     @Override
     public void markDirty() {
-
+        //this would be the place to do things that would happen when inventory changes
+        //if going to use more in future, make sure that it is called in every place it should be
+        tileAssemblyTable.onInventoryChanged();
     }
 
     @Override
     public boolean isUsableByPlayer(EntityPlayer player) {
-        return false;
+        return true;
     }
 
     @Override
@@ -112,7 +149,7 @@ public class AssemblyTableInventory implements IInventory {
 
     @Override
     public boolean isItemValidForSlot(int index, ItemStack stack) {
-        //TODO: set this up using switch statement
+        //TODO: set this up using switch statement?
         return true;
     }
 
@@ -138,7 +175,7 @@ public class AssemblyTableInventory implements IInventory {
 
     @Override
     public String getName() {
-        return null;
+        return "Assembly table Inventory";
     }
 
     @Override
@@ -148,6 +185,6 @@ public class AssemblyTableInventory implements IInventory {
 
     @Override
     public ITextComponent getDisplayName() {
-        return null;
+        return new TextComponentString("(MAKE NOTE IF SEE THIS IN GAME)");
     }
 }
