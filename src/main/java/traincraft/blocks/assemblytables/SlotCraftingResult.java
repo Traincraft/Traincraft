@@ -31,11 +31,11 @@ import traincraft.Traincraft;
  */
 public class SlotCraftingResult extends Slot {
     
-    private final AssemblyTableInventory craftMatrix;
+    private final AssemblyCraftingItemHandler craftMatrix;
     private final EntityPlayer player;
     private int amountCrafted;
     
-    public SlotCraftingResult(EntityPlayer player, AssemblyTableInventory craftingInventory, IInventory inventoryIn, int slotIndex, int xPosition, int yPosition){
+    public SlotCraftingResult(EntityPlayer player, AssemblyCraftingItemHandler craftingInventory, IInventory inventoryIn, int slotIndex, int xPosition, int yPosition){
         super(inventoryIn, slotIndex, xPosition, yPosition);
         this.player = player;
         this.craftMatrix = craftingInventory;
@@ -56,7 +56,9 @@ public class SlotCraftingResult extends Slot {
     protected void onCrafting(ItemStack stack){
         if(this.amountCrafted > 0){
             stack.onCrafting(this.player.world, this.player, this.amountCrafted);
-            net.minecraftforge.fml.common.FMLCommonHandler.instance().firePlayerCraftingEvent(this.player, stack, craftMatrix);
+            //TODO: see if neccesary
+            
+            //net.minecraftforge.fml.common.FMLCommonHandler.instance().firePlayerCraftingEvent(this.player, stack, craftMatrix);
         }
         
         this.amountCrafted = 0;
@@ -66,7 +68,7 @@ public class SlotCraftingResult extends Slot {
      * This function is called when an item is taken from a SlotCraftingResult. Removes items from the crafting area before returning.
      * Will return EMPTY and log as level ERROR if any errors, but will not stop execution.
      *
-     * @implSpec MUST have set the recipe correctly in the AssemblyTableInventory beforehand.
+     * @implSpec MUST have set the recipe correctly in the AssemblyCraftingItemHandler beforehand.
      * @param thePlayer player doing the crafting
      * @param stack the item they will be taking, is not modified in function
      * @return the stack parameter, unmodified. Returns EMPTY if any errors.
@@ -92,14 +94,14 @@ public class SlotCraftingResult extends Slot {
             ItemStack itemStack = craftMatrix.getStackInSlot(i);
             if (itemStack.getCount() == amountToRemove) {
                 //if there is just enough, simply overwrite with EMPTY.
-                craftMatrix.setInventorySlotContents(i, ItemStack.EMPTY);
+                craftMatrix.setStackInSlot(i, ItemStack.EMPTY);
             } else {
                 itemStack.setCount(itemStack.getCount() - amountToRemove);
             }
         }
         
         craftMatrix.setRecipeUsed(null);
-        craftMatrix.markDirty();
+        craftMatrix.tileAssemblyTable.onInventoryChanged();
         return stack;
     }
     

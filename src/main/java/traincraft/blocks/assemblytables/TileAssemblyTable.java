@@ -2,7 +2,7 @@
  * Traincraft
  * Copyright (c) 2011-2020.
  *
- * This file ("null.java") is part of the Traincraft mod for Minecraft.
+ * This file ("TileAssemblyTable.java") is part of the Traincraft mod for Minecraft.
  * It is created by all people that are listed with @author below.
  * It is distributed under LGPL-v3.0.
  * You can find the source code at https://github.com/Traincraft/Traincraft
@@ -14,17 +14,21 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryBasic;
-import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.common.util.INBTSerializable;
-import org.apache.logging.log4j.Level;
-import traincraft.Traincraft;
+import net.minecraft.util.EnumFacing;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.ItemStackHandler;
 import traincraft.tile.BaseTile;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
  * This is the Assembly Table tileEntity for all tiers of assembly table. It gets the tier based on where the player is looking.
  *
- * @implNote If we can figure out how to register all the assembly table tile entitys as one, we don't need the three extra files as wrappers for this.
+ * @implNote If we can figure out how to register all the assembly table tile entities as one, we don't need the three extra files as wrappers for this.
  *
  * @author PseudonymPatel
  * @since 2020-8-7
@@ -36,21 +40,23 @@ public class TileAssemblyTable extends BaseTile {
     private ContainerAssemblyTable containerAssemblyTable;
     
     //These will be the 10 slots that the train parts will sit in to craft the trains
-    public AssemblyTableInventory craftingInventory = new AssemblyTableInventory(this);
-
+    private final AssemblyCraftingItemHandler craftingInventory = new AssemblyCraftingItemHandler(10, this);
+    
     //These 8 slots are for the small chest-like inventory inside of the train workbench.
-    InventoryBasic storageInventory = new InventoryBasic("ASM table storage", false, 8);
-
+    private final ItemStackHandler storageInventory = new ItemStackHandler(8);
+    
     //This may not be used, but if we need to store the output for some reason.
-    InventoryBasic outputInventory = new InventoryBasic("ASM table output", false, 8);
+    private final InventoryBasic outputInventory = new InventoryBasic("ASM table output", false, 8);
 
     public TileAssemblyTable(int tier) {
         this.tier = tier;
     }
-
+    
     @Override
     public GuiScreen openGui(EntityPlayer player) {
-        guiAssemblyTable = new GuiAssemblyTable(tier, player, this);
+        if (guiAssemblyTable == null){
+            guiAssemblyTable = new GuiAssemblyTable(tier, player, this);
+        }
         return guiAssemblyTable;
     }
 
@@ -61,30 +67,32 @@ public class TileAssemblyTable extends BaseTile {
     }
 
     @Override
-    public Container openContainer(EntityPlayer player) {
-        containerAssemblyTable = new ContainerAssemblyTable(player.inventory, player.getEntityWorld(), this);
+    public Container openContainer(EntityPlayer player){
+        if (containerAssemblyTable == null) {
+            containerAssemblyTable = new ContainerAssemblyTable(player.inventory, player.getEntityWorld(), this);
+        }
         return containerAssemblyTable;
     }
 
     /**
-     * This returns the 8 slots of STORAGE inventory stored in the workbench, not the crafting area.
+     * This SHOULD NOT BE USED!
      *
      * @return 8 inventory storage slots.
      */
     @Override
     public IInventory getRealInventory() {
-        return storageInventory;
+        return null;
     }
 
     public IInventory getOutputInventory() {
         return outputInventory;
     }
 
-    public IInventory getStorageInventory() {
+    public IItemHandler getStorageInventory() {
         return storageInventory;
     }
 
-    public AssemblyTableInventory getCraftingInventory() {
+    public AssemblyCraftingItemHandler getCraftingInventory() {
         return craftingInventory;
     }
     
@@ -92,9 +100,9 @@ public class TileAssemblyTable extends BaseTile {
      * This function handles recipe checking. Will set the output item if recipe works.
      */
     public void onInventoryChanged() {
-        Traincraft.LOGGER.log(Level.DEBUG, "Assembly Table inventory changed function in tile called.");
         //for loop to compare between ingredients, similar to workbench
         if(this.world == null || !this.world.isRemote){
+            this.markDirty();
             //clear output inventory area
             outputInventory.clear();
         
@@ -115,28 +123,43 @@ public class TileAssemblyTable extends BaseTile {
         }
     }
     
+    @Override
+    public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing){
+        if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+            return true;
+        }
+        return super.hasCapability(capability, facing);
+    }
+    
+    @Nullable
+    @Override
+    public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing){
+        if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY){
+            IItemHandler itemHandler = this.getCraftingInventory();
+            if(itemHandler != null){
+                return (T) itemHandler;
+            }
+        }
+        return super.getCapability(capability, facing);
+    }
+    
     public void readNBT(NBTTagCompound nbt, NBTState state){
         if(nbt.hasKey("storageInventory")){
-            NBTTagCompound storageInventoryNBT = nbt.getCompoundTag("storageInventory");
-            if(this.getRealInventory() != null && this.getRealInventory() instanceof INBTSerializable<?>){
-                ((INBTSerializable<NBTTagCompound>) this.getRealInventory()).deserializeNBT(storageInventoryNBT);
-            }
+            storageInventory.deserializeNBT(nbt.getCompoundTag("storageInventory"));
+        }
+        
+        if(nbt.hasKey("craftingInventory")){
+            storageInventory.deserializeNBT(nbt.getCompoundTag("craftingInventory"));
         }
     }
     
     public void writeNBT(NBTTagCompound nbt, NBTState state){
-        //IItemHandler inventory = this.getInventory(null);
-//        if(inventory instanceof InvWrapper && ((InvWrapper) inventory).getInv() instanceof INBTSerializable<?>){
-//            NBTBase value = ((INBTSerializable<?>) ((InvWrapper) inventory).getInv()).serializeNBT();
-//            if(value instanceof NBTTagCompound){
-//                nbt.setTag("inventory", value);
-//            }
-//        } else
-        if(this.getRealInventory() != null && this.getRealInventory() instanceof INBTSerializable<?>){
-            NBTBase value = ((INBTSerializable<?>) this.getRealInventory()).serializeNBT();
-            if(value instanceof NBTTagCompound){
-                nbt.setTag("storageInventory", value);
-            }
-        }
+        //write the nbt for the storage part of NBT
+        nbt.setTag("storageInventory", storageInventory.serializeNBT());
+        
+        //write the nbt for the crafting part of NBT
+        nbt.setTag("craftingInventory", craftingInventory.serializeNBT());
+        
+        //Not necessary to store tier information due to how each block gets a extension of this with tier pre-set
     }
 }

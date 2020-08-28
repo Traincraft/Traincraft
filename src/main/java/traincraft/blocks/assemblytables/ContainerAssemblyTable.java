@@ -15,6 +15,7 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.inventory.Slot;
 import net.minecraft.world.World;
+import net.minecraftforge.items.SlotItemHandler;
 
 //TODO: BUG: Clicking too far above or below (where a normal minecraft GUI would not be) drops the items out of inventory.
 // Change collision box/safe area or whatever
@@ -33,21 +34,21 @@ public class ContainerAssemblyTable extends Container {
         int offset = -45;
 
         //create the assembly table crafting slots
-        this.addSlotToContainer(new Slot(tileAssemblyTable.getCraftingInventory(), 0, 25, 27 + offset));
-        this.addSlotToContainer(new Slot(tileAssemblyTable.getCraftingInventory(), 1, 79, 27 + offset));
-        this.addSlotToContainer(new Slot(tileAssemblyTable.getCraftingInventory(), 2, 115, 27 + offset));
-        this.addSlotToContainer(new Slot(tileAssemblyTable.getCraftingInventory(), 3, 145, 27 + offset));
-        this.addSlotToContainer(new Slot(tileAssemblyTable.getCraftingInventory(), 4, 25, 61 + offset));
-        this.addSlotToContainer(new Slot(tileAssemblyTable.getCraftingInventory(), 5, 79, 61 + offset));
-        this.addSlotToContainer(new Slot(tileAssemblyTable.getCraftingInventory(), 6, 115, 61 + offset));
-        this.addSlotToContainer(new Slot(tileAssemblyTable.getCraftingInventory(), 7, 43, 93 + offset)); //play around
-        this.addSlotToContainer(new Slot(tileAssemblyTable.getCraftingInventory(), 8, 79, 93 + offset));
-        this.addSlotToContainer(new Slot(tileAssemblyTable.getCraftingInventory(), 9, 145, 93 + offset));
+        this.addSlotToContainer(new SlotItemHandler(tileAssemblyTable.getCraftingInventory(), 0, 25, 27 + offset));
+        this.addSlotToContainer(new SlotItemHandler(tileAssemblyTable.getCraftingInventory(), 1, 79, 27 + offset));
+        this.addSlotToContainer(new SlotItemHandler(tileAssemblyTable.getCraftingInventory(), 2, 115, 27 + offset));
+        this.addSlotToContainer(new SlotItemHandler(tileAssemblyTable.getCraftingInventory(), 3, 145, 27 + offset));
+        this.addSlotToContainer(new SlotItemHandler(tileAssemblyTable.getCraftingInventory(), 4, 25, 61 + offset));
+        this.addSlotToContainer(new SlotItemHandler(tileAssemblyTable.getCraftingInventory(), 5, 79, 61 + offset));
+        this.addSlotToContainer(new SlotItemHandler(tileAssemblyTable.getCraftingInventory(), 6, 115, 61 + offset));
+        this.addSlotToContainer(new SlotItemHandler(tileAssemblyTable.getCraftingInventory(), 7, 43, 93 + offset)); //play around
+        this.addSlotToContainer(new SlotItemHandler(tileAssemblyTable.getCraftingInventory(), 8, 79, 93 + offset));
+        this.addSlotToContainer(new SlotItemHandler(tileAssemblyTable.getCraftingInventory(), 9, 145, 93 + offset));
 
         //create the assembly table storage slots
         for (int i = 0; i < 2; ++i) {
             for (int j = 0; j < 4; ++j) {
-                this.addSlotToContainer(new Slot(tileAssemblyTable.getStorageInventory(), j + i * 4, 8 + j * 18, (128 + offset) + i * 18));
+                this.addSlotToContainer(new SlotItemHandler(tileAssemblyTable.getStorageInventory(), j + i * 4, 8 + j * 18, (128 + offset) + i * 18));
             }
         }
 

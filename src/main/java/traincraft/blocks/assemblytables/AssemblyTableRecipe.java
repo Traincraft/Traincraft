@@ -10,17 +10,13 @@
 
 package traincraft.blocks.assemblytables;
 
-import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryCrafting;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 
 /**
@@ -65,7 +61,7 @@ public class AssemblyTableRecipe extends net.minecraftforge.registries.IForgeReg
         return craftingResult.copy();
     }
 
-    public boolean betterMatches(AssemblyTableInventory inventory) {
+    public boolean betterMatches(AssemblyCraftingItemHandler inventory) {
         for (int i = 0; i < 10; ++i) {
     
             //account for empty stacks
@@ -140,13 +136,7 @@ class NumberedIngredient {
     public Ingredient ingredient = Ingredient.EMPTY;
     private int count = 1;
     
-    public NumberedIngredient(Ingredient ingredient, int count) {
-        this.count = count;
-        this.ingredient = ingredient;
-    }
-    
     public NumberedIngredient() {
-    
     }
     
     public void setCount(int count){
