@@ -43,7 +43,12 @@ public class TileAssemblyTable extends BaseTile {
     private final AssemblyCraftingItemHandler craftingInventory = new AssemblyCraftingItemHandler(10, this);
     
     //These 8 slots are for the small chest-like inventory inside of the train workbench.
-    private final ItemStackHandler storageInventory = new ItemStackHandler(8);
+    private final ItemStackHandler storageInventory = new ItemStackHandler(8) {
+        @Override
+        protected void onContentsChanged(int slot) {
+            markDirty();
+        }
+    };
     
     //This may not be used, but if we need to store the output for some reason.
     private final InventoryBasic outputInventory = new InventoryBasic("ASM table output", false, 8);
@@ -135,7 +140,7 @@ public class TileAssemblyTable extends BaseTile {
     @Override
     public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing){
         if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY){
-            IItemHandler itemHandler = this.getCraftingInventory();
+            IItemHandler itemHandler = this.getStorageInventory();
             if(itemHandler != null){
                 return (T) itemHandler;
             }
@@ -149,7 +154,7 @@ public class TileAssemblyTable extends BaseTile {
         }
         
         if(nbt.hasKey("craftingInventory")){
-            storageInventory.deserializeNBT(nbt.getCompoundTag("craftingInventory"));
+            craftingInventory.deserializeNBT(nbt.getCompoundTag("craftingInventory"));
         }
     }
     
