@@ -14,6 +14,7 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.inventory.Slot;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.items.SlotItemHandler;
 
@@ -75,7 +76,66 @@ public class ContainerAssemblyTable extends Container {
     @Override
     public void detectAndSendChanges(){
         super.detectAndSendChanges();
-        
+    }
+    
+    /**
+     * Shift clicking functionality. This is required to stop shift-clicking from freezing game.
+     *
+     * @param playerIn the player shift-clicking
+     * @param index the index of slot that is being shift-clicked
+     * @return null if fails?
+     */
+    @Override
+    public ItemStack transferStackInSlot(EntityPlayer playerIn, int index){
+        int OUTPUT = 26; //where the player inventory starts. Inventory, then hotbar.
+        ItemStack itemstack = ItemStack.EMPTY;
+        Slot slot = this.inventorySlots.get(index);
+    
+        if (slot != null && slot.getHasStack()){
+            ItemStack itemstack1 = slot.getStack();
+            itemstack = itemstack1.copy();
+
+            // If itemstack is in Output stack
+            if (index >= 18 && index <= 25){ //18 - 25 is output slots
+                // try to place in player inventory / action bar; add 36+1 because mergeItemStack uses < index?
+                // so the last slot in the inventory won't get checked if you don't add 1?
+                if(!this.mergeItemStack(itemstack1, OUTPUT, OUTPUT + 36, true)){
+                    return ItemStack.EMPTY;
+                }
+            } else if (index >= OUTPUT){ // itemstack is in player inventory, try to place in appropriate slot
+                // item in player's inventory, but not in action bar
+                if (index >= OUTPUT+1 && index < OUTPUT+28){
+                    // place in action bar
+                    if (!this.mergeItemStack(itemstack1, OUTPUT+27, OUTPUT+36, false)){
+                        return ItemStack.EMPTY;
+                    }
+                    
+                } else if (index >= OUTPUT+28 && index < OUTPUT+37 && !this.mergeItemStack(itemstack1, OUTPUT+1, OUTPUT+28, false)){
+                    return ItemStack.EMPTY;
+                }
+            }
+            // In one of the other slots; try to place in player inventory / action bar
+            else if (!this.mergeItemStack(itemstack1, OUTPUT, OUTPUT+36, false)){
+                return ItemStack.EMPTY;
+            }
+    
+            if (itemstack1.isEmpty()){
+                slot.putStack(ItemStack.EMPTY);
+            } else{
+                slot.onSlotChanged();
+            }
+    
+            if(itemstack1.getCount() == itemstack.getCount()){
+                return ItemStack.EMPTY;
+            }
+    
+            ItemStack itemstack2 = slot.onTake(playerIn, itemstack1);
+    
+            if(index == 0){
+                playerIn.dropItem(itemstack2, false);
+            }
+        }
+        return itemstack;
     }
     
     @Override
