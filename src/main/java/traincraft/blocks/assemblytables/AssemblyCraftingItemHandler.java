@@ -16,24 +16,10 @@ import javax.annotation.Nonnull;
 
 public class AssemblyCraftingItemHandler extends ItemStackHandler {
     public final TileAssemblyTable tileAssemblyTable;
-    private AssemblyTableRecipe recipeUsed = null;
     
     public AssemblyCraftingItemHandler(int size, TileAssemblyTable tileAssemblyTable) {
-        super(10);
+        super(size);
         this.tileAssemblyTable = tileAssemblyTable;
-    }
-    
-    /**
-     * Sets the recipe that needs to be used for item removal. Set to null when done with recipe.
-     *
-     * @param recipe The AssemblyTableRecipe to use.
-     */
-    public void setRecipeUsed(AssemblyTableRecipe recipe) {
-        this.recipeUsed = recipe;
-    }
-    
-    public AssemblyTableRecipe getRecipeUsed() {
-        return recipeUsed;
     }
     
     public boolean isEmpty() {

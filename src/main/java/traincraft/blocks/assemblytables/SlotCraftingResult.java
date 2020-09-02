@@ -56,9 +56,6 @@ public class SlotCraftingResult extends Slot {
     protected void onCrafting(ItemStack stack){
         if(this.amountCrafted > 0){
             stack.onCrafting(this.player.world, this.player, this.amountCrafted);
-            //TODO: see if neccesary
-            
-            //net.minecraftforge.fml.common.FMLCommonHandler.instance().firePlayerCraftingEvent(this.player, stack, craftMatrix);
         }
         
         this.amountCrafted = 0;
@@ -76,7 +73,7 @@ public class SlotCraftingResult extends Slot {
     @Override
     public ItemStack onTake(EntityPlayer thePlayer, ItemStack stack){
         
-        AssemblyTableRecipe recipe = craftMatrix.getRecipeUsed();
+        AssemblyTableRecipe recipe = craftMatrix.tileAssemblyTable.getRecipeInUse();
         if (recipe == null) {
             Traincraft.LOGGER.log(Level.ERROR, "Could not find recipe when taking item from crafting grid.");
             return ItemStack.EMPTY;
@@ -100,7 +97,7 @@ public class SlotCraftingResult extends Slot {
             }
         }
         
-        craftMatrix.setRecipeUsed(null);
+        craftMatrix.tileAssemblyTable.setRecipeInUse(null);
         craftMatrix.tileAssemblyTable.onInventoryChanged();
         return stack;
     }

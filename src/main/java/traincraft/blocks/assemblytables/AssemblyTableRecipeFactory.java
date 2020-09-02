@@ -58,7 +58,7 @@ public class AssemblyTableRecipeFactory implements IRecipeFactory {
         }
     
         //we can iterate through an array of all the elements' names to set each of the 10 slots
-        String[] components = {"planks", "chimney", "cab", "dye", "component", "boiler", "firebox", "wheels", "frame", "coupler"};
+        final String[] components = {"planks", "chimney", "cab", "dye", "component", "boiler", "firebox", "wheels", "frame", "coupler"};
         
         for (int i = 0; i < 10; ++i ) {
             //since we initialize to empty slots, those that do not have an element in the json will be empty slots in the recipe.

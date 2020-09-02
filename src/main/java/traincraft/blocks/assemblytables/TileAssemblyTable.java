@@ -9,11 +9,14 @@
  */
 package traincraft.blocks.assemblytables;
 
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryBasic;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
@@ -38,6 +41,9 @@ public class TileAssemblyTable extends BaseTile {
     private final int tier;
     private GuiAssemblyTable guiAssemblyTable;
     private ContainerAssemblyTable containerAssemblyTable;
+    
+    //This recipe is the one that is currently being crafted. It is used to know how much of each thing to subtract. Null when done using.
+    private AssemblyTableRecipe recipeInUse = null;
     
     //These will be the 10 slots that the train parts will sit in to craft the trains
     private final AssemblyCraftingItemHandler craftingInventory = new AssemblyCraftingItemHandler(10, this);
@@ -101,6 +107,14 @@ public class TileAssemblyTable extends BaseTile {
         return craftingInventory;
     }
     
+    public AssemblyTableRecipe getRecipeInUse(){
+        return recipeInUse;
+    }
+    
+    public void setRecipeInUse(AssemblyTableRecipe recipeInUse){
+        this.recipeInUse = recipeInUse;
+    }
+    
     /**
      * This function handles recipe checking. Will set the output item if recipe works.
      */
@@ -112,10 +126,10 @@ public class TileAssemblyTable extends BaseTile {
             outputInventory.clear();
         
             if(!craftingInventory.isEmpty()){
-                //filter through the trainrecipies and find the first match (there should only be one match, but just in case duplicate recipes or sth.
+                //filter through the train recipes and find the first match (there should only be one match, but just in case duplicate recipes or sth.
                 AssemblyTableRecipe.ASSEMBLY_TABLE_RECIPES.stream().filter(recipe -> recipe.betterMatches(craftingInventory)).findFirst().ifPresent(recipe -> {
                     if (this.tier == recipe.getTier()){ //make sure correct tier before doing.
-                        craftingInventory.setRecipeUsed(recipe);
+                        recipeInUse = recipe;
                         outputInventory.setInventorySlotContents(0, recipe.getRecipeOutput().copy());
                         containerAssemblyTable.detectAndSendChanges();
                         this.syncToClient();
@@ -125,6 +139,24 @@ public class TileAssemblyTable extends BaseTile {
     
             //update things that need update
             containerAssemblyTable.detectAndSendChanges();
+        }
+    }
+    
+    //used break rather than harvest because want to drop items even if wrong tool or other method used to break. Like chests.
+    @Override
+    public void onBlockBreak(IBlockState state){
+        //drop items from crafting inventory
+        for(int i = 0; i < craftingInventory.getSlots(); ++i){
+            if (craftingInventory.getStackInSlot(i) != ItemStack.EMPTY){
+                this.world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), craftingInventory.getStackInSlot(i)));
+            }
+        }
+        
+        //drop items from storage inventory
+        for(int i = 0; i < storageInventory.getSlots(); ++i){
+            if (storageInventory.getStackInSlot(i) != ItemStack.EMPTY){
+                this.world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), storageInventory.getStackInSlot(i)));
+            }
         }
     }
     

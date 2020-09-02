@@ -14,11 +14,8 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.TextComponentTranslation;
 import org.apache.logging.log4j.Level;
 import traincraft.Traincraft;
-
-import java.awt.*;
 
 public class GuiAssemblyTable extends GuiContainer {
 
@@ -42,6 +39,10 @@ public class GuiAssemblyTable extends GuiContainer {
      */
     public GuiAssemblyTable(int tier, EntityPlayer player, TileAssemblyTable tileAssemblyTable) {
         super(new ContainerAssemblyTable(player.inventory, player.getEntityWorld(), tileAssemblyTable));
+        
+        this.xSize = 176;
+        this.ySize = 256;
+        
         this.tier = tier;
         this.player = player;
         this.tileAssemblyTable = tileAssemblyTable;
@@ -63,38 +64,37 @@ public class GuiAssemblyTable extends GuiContainer {
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 
         //draw the gui image based on location
-        ResourceLocation GUI_LOC;
+        ResourceLocation guiLoc;
         switch (tier) {
             case 1:
-                GUI_LOC = GUI_LOCATION_TIER1;
+                guiLoc = GUI_LOCATION_TIER1;
                 break;
             case 2:
-                GUI_LOC = GUI_LOCATION_TIER2;
+                guiLoc = GUI_LOCATION_TIER2;
                 break;
             case 3:
-                GUI_LOC = GUI_LOCATION_TIER3;
+                guiLoc = GUI_LOCATION_TIER3;
                 break;
             default:
                 Traincraft.LOGGER.log(Level.ERROR, "Invalid tier found when opening Assembly Table Gui.");
                 //set to the Tier1, just so things don't fall apart.
-                GUI_LOC = GUI_LOCATION_TIER1;
+                guiLoc = GUI_LOCATION_TIER1;
                 break;
         }
 
-        this.mc.renderEngine.bindTexture(GUI_LOC);
+        this.mc.renderEngine.bindTexture(guiLoc);
         this.drawTexturedModalRect((width - 176) / 2, (height - 256) / 2, 0, 0, 176, 256);
 
         //draw the text
         //it seems that minecraft is not prepared to have different size guis than in vanilla, so we must do manual interpolation
         int adjustedX = (this.width - 176) / 2;
         int adjustedY = (this.height - 256) / 2;
+        
+        this.fontRenderer.drawString(I18n.format(Traincraft.MOD_ID + ":assembly_table_" + tier + ".name"), 10 + adjustedX, 6 + adjustedY, 12241200);
 
-        //TODO: are these colors ok?
-        this.fontRenderer.drawString(I18n.format(Traincraft.MOD_ID + ":assembly_table_" + tier + ".name"), 10 + adjustedX, 6 + adjustedY, new Color(186, 201, 48).getRGB());
-
-        int color = new Color(147, 145, 158).getRGB();
-        this.fontRenderer.drawString(I18n.format(Traincraft.MOD_ID + ":assemblytable.storage"), 10 + adjustedX, 118 + adjustedY, color);
-        this.fontRenderer.drawString(I18n.format(Traincraft.MOD_ID + ":assemblytable.output"), 90 + adjustedX, 118 + adjustedY, color);
+        //int color = new Color(147, 145, 158).getRGB(); // ie 9671070
+        this.fontRenderer.drawString(I18n.format(Traincraft.MOD_ID + ":assemblytable.storage"), 10 + adjustedX, 118 + adjustedY, 9671070);
+        this.fontRenderer.drawString(I18n.format(Traincraft.MOD_ID + ":assemblytable.output"), 90 + adjustedX, 118 + adjustedY, 9671070);
     }
 
     //TODO: create methods to change color of slots, etc.
