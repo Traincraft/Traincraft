@@ -16,6 +16,7 @@ import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
+import net.minecraftforge.items.IItemHandler;
 
 import java.util.ArrayList;
 
@@ -61,7 +62,7 @@ public class AssemblyTableRecipe extends net.minecraftforge.registries.IForgeReg
         return craftingResult.copy();
     }
 
-    public boolean betterMatches(AssemblyCraftingItemHandler inventory) {
+    public boolean betterMatches(IItemHandler inventory) {
         for (int i = 0; i < 10; ++i) {
     
             //account for empty stacks

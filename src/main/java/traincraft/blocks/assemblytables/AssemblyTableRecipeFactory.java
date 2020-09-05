@@ -35,6 +35,8 @@ import static net.minecraft.item.crafting.ShapedRecipes.deserializeItem;
  */
 public class AssemblyTableRecipeFactory implements IRecipeFactory {
     
+    private static final String[] COMPONENTS = {"planks", "chimney", "cab", "dye", "component", "boiler", "firebox", "wheels", "frame", "coupler"};
+    
     @Override
     public IRecipe parse(JsonContext context, JsonObject json) {
         
@@ -56,14 +58,11 @@ public class AssemblyTableRecipeFactory implements IRecipeFactory {
         } else {
             throw new JsonSyntaxException("Could not find planks in assembly table recipe.");
         }
-    
-        //we can iterate through an array of all the elements' names to set each of the 10 slots
-        final String[] components = {"planks", "chimney", "cab", "dye", "component", "boiler", "firebox", "wheels", "frame", "coupler"};
         
         for (int i = 0; i < 10; ++i ) {
             //since we initialize to empty slots, those that do not have an element in the json will be empty slots in the recipe.
-            if (json.has(components[i])) {
-                recipeInProgress.setCraftingIngredient(i, deserializeIngredient(json.get(components[i])));
+            if (json.has(COMPONENTS[i])) {
+                recipeInProgress.setCraftingIngredient(i, deserializeIngredient(json.get(COMPONENTS[i])));
             }
         }
         

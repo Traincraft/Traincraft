@@ -15,18 +15,12 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import traincraft.tile.BaseTile;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 /**
  * This is the Assembly Table tileEntity for all tiers of assembly table. It gets the tier based on where the player is looking.
@@ -39,25 +33,19 @@ import javax.annotation.Nullable;
 public class TileAssemblyTable extends BaseTile {
 
     private final int tier;
-    private GuiAssemblyTable guiAssemblyTable;
     private ContainerAssemblyTable containerAssemblyTable;
     
     //This recipe is the one that is currently being crafted. It is used to know how much of each thing to subtract. Null when done using.
     private AssemblyTableRecipe recipeInUse = null;
     
     //These will be the 10 slots that the train parts will sit in to craft the trains
-    private final AssemblyCraftingItemHandler craftingInventory = new AssemblyCraftingItemHandler(10, this);
+    //private final AssemblyCraftingItemHandler craftingInventory = new AssemblyCraftingItemHandler(10, this);
     
-    //These 8 slots are for the small chest-like inventory inside of the train workbench.
-    private final ItemStackHandler storageInventory = new ItemStackHandler(8) {
-        @Override
-        protected void onContentsChanged(int slot) {
-            markDirty();
-        }
-    };
+    //These 26 slots are 10 for crafting, 8 for storage, 8 for output.
+    private final AssemblyCraftingItemHandler rawInventory = new AssemblyCraftingItemHandler(18, this);
     
-    //This may not be used, but if we need to store the output for some reason.
-    private final InventoryBasic outputInventory = new InventoryBasic("ASM table output", false, 8);
+    //This is not saved.
+    private final ItemStackHandler outputInventory = new ItemStackHandler(8);
 
     public TileAssemblyTable(int tier) {
         this.tier = tier;
@@ -65,10 +53,7 @@ public class TileAssemblyTable extends BaseTile {
     
     @Override
     public GuiScreen openGui(EntityPlayer player) {
-        if (guiAssemblyTable == null){
-            guiAssemblyTable = new GuiAssemblyTable(tier, player, this);
-        }
-        return guiAssemblyTable;
+        return new GuiAssemblyTable(tier, player, this);
     }
 
     @Override
@@ -79,9 +64,7 @@ public class TileAssemblyTable extends BaseTile {
 
     @Override
     public Container openContainer(EntityPlayer player){
-        if (containerAssemblyTable == null) {
-            containerAssemblyTable = new ContainerAssemblyTable(player.inventory, player.getEntityWorld(), this);
-        }
+        containerAssemblyTable = new ContainerAssemblyTable(player.inventory, player.getEntityWorld(), this);
         return containerAssemblyTable;
     }
 
@@ -95,16 +78,12 @@ public class TileAssemblyTable extends BaseTile {
         return null;
     }
 
-    public IInventory getOutputInventory() {
+    public ItemStackHandler getInventory() {
+        return rawInventory;
+    }
+    
+    public ItemStackHandler getOutputInventory(){
         return outputInventory;
-    }
-
-    public IItemHandler getStorageInventory() {
-        return storageInventory;
-    }
-
-    public AssemblyCraftingItemHandler getCraftingInventory() {
-        return craftingInventory;
     }
     
     public AssemblyTableRecipe getRecipeInUse(){
@@ -122,20 +101,17 @@ public class TileAssemblyTable extends BaseTile {
         //for loop to compare between ingredients, similar to workbench
         if(this.world == null || !this.world.isRemote){
             this.markDirty();
-            //clear output inventory area
-            outputInventory.clear();
-        
-            if(!craftingInventory.isEmpty()){
-                //filter through the train recipes and find the first match (there should only be one match, but just in case duplicate recipes or sth.
-                AssemblyTableRecipe.ASSEMBLY_TABLE_RECIPES.stream().filter(recipe -> recipe.betterMatches(craftingInventory)).findFirst().ifPresent(recipe -> {
-                    if (this.tier == recipe.getTier()){ //make sure correct tier before doing.
-                        recipeInUse = recipe;
-                        outputInventory.setInventorySlotContents(0, recipe.getRecipeOutput().copy());
-                        containerAssemblyTable.detectAndSendChanges();
-                        this.syncToClient();
-                    }
-                });
-            }
+            recipeInUse = null;
+            //clear output area
+            outputInventory.setStackInSlot(0, ItemStack.EMPTY); //slot index 18 is the 19th slot, ie first output slot
+            
+            //filter through the train recipes and find the first match (there should only be one match, but just in case duplicate recipes or sth.
+            AssemblyTableRecipe.ASSEMBLY_TABLE_RECIPES.stream().filter(recipe -> recipe.betterMatches(rawInventory)).findFirst().ifPresent(recipe -> {
+                if (this.tier == recipe.getTier()){ //make sure correct tier before doing.
+                    recipeInUse = recipe;
+                    outputInventory.setStackInSlot(0, recipe.getRecipeOutput().copy());
+                }
+            });
     
             //update things that need update
             containerAssemblyTable.detectAndSendChanges();
@@ -145,58 +121,28 @@ public class TileAssemblyTable extends BaseTile {
     //used break rather than harvest because want to drop items even if wrong tool or other method used to break. Like chests.
     @Override
     public void onBlockBreak(IBlockState state){
-        //drop items from crafting inventory
-        for(int i = 0; i < craftingInventory.getSlots(); ++i){
-            if (craftingInventory.getStackInSlot(i) != ItemStack.EMPTY){
-                this.world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), craftingInventory.getStackInSlot(i)));
-            }
-        }
-        
-        //drop items from storage inventory
-        for(int i = 0; i < storageInventory.getSlots(); ++i){
-            if (storageInventory.getStackInSlot(i) != ItemStack.EMPTY){
-                this.world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), storageInventory.getStackInSlot(i)));
+        for(int i = 0; i < rawInventory.getSlots(); ++i){
+            if (rawInventory.getStackInSlot(i) != ItemStack.EMPTY){
+                this.world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), rawInventory.getStackInSlot(i)));
             }
         }
     }
     
     @Override
-    public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing){
-        if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
-            return true;
-        }
-        return super.hasCapability(capability, facing);
-    }
-    
-    @Nullable
-    @Override
-    public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing){
-        if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY){
-            IItemHandler itemHandler = this.getStorageInventory();
-            if(itemHandler != null){
-                return (T) itemHandler;
-            }
-        }
-        return super.getCapability(capability, facing);
+    public IItemHandler getInventory(EnumFacing side){
+        return rawInventory;
     }
     
     public void readNBT(NBTTagCompound nbt, NBTState state){
-        if(nbt.hasKey("storageInventory")){
-            storageInventory.deserializeNBT(nbt.getCompoundTag("storageInventory"));
-        }
-        
-        if(nbt.hasKey("craftingInventory")){
-            craftingInventory.deserializeNBT(nbt.getCompoundTag("craftingInventory"));
+        if(nbt.hasKey("asmTableInventory")){
+            rawInventory.deserializeNBT(nbt.getCompoundTag("asmTableInventory"));
         }
     }
-    
+
     public void writeNBT(NBTTagCompound nbt, NBTState state){
-        //write the nbt for the storage part of NBT
-        nbt.setTag("storageInventory", storageInventory.serializeNBT());
-        
         //write the nbt for the crafting part of NBT
-        nbt.setTag("craftingInventory", craftingInventory.serializeNBT());
-        
+        nbt.setTag("asmTableInventory", rawInventory.serializeNBT());
+
         //Not necessary to store tier information due to how each block gets a extension of this with tier pre-set
     }
 }

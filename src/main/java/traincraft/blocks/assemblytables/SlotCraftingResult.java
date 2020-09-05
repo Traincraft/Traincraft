@@ -10,17 +10,14 @@
 package traincraft.blocks.assemblytables;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.InventoryCraftResult;
-import net.minecraft.inventory.InventoryCrafting;
-import net.minecraft.inventory.Slot;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.CraftingManager;
-import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.NonNullList;
+import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.items.SlotItemHandler;
 import org.apache.logging.log4j.Level;
 import traincraft.Traincraft;
+import traincraft.items.TCItems;
 
 /**
  * This is similar to Mojang's SlotCrafting, except it is tailored specifically to be used with the assemblyTable.
@@ -29,16 +26,18 @@ import traincraft.Traincraft;
  * @author PseudonymPatel
  * @since 2020-8-3
  */
-public class SlotCraftingResult extends Slot {
+public class SlotCraftingResult extends SlotItemHandler {
     
-    private final AssemblyCraftingItemHandler craftMatrix;
+    private final ItemStackHandler craftMatrix;
     private final EntityPlayer player;
     private int amountCrafted;
+    private final TileAssemblyTable tileAssemblyTable;
     
-    public SlotCraftingResult(EntityPlayer player, AssemblyCraftingItemHandler craftingInventory, IInventory inventoryIn, int slotIndex, int xPosition, int yPosition){
-        super(inventoryIn, slotIndex, xPosition, yPosition);
+    public SlotCraftingResult(EntityPlayer player, TileAssemblyTable tileAssemblyTable, int slotIndex, int xPosition, int yPosition){
+        super(tileAssemblyTable.getOutputInventory(), slotIndex, xPosition, yPosition);
         this.player = player;
-        this.craftMatrix = craftingInventory;
+        this.craftMatrix = tileAssemblyTable.getInventory();
+        this.tileAssemblyTable = tileAssemblyTable;
     }
     
     @Override
@@ -73,7 +72,7 @@ public class SlotCraftingResult extends Slot {
     @Override
     public ItemStack onTake(EntityPlayer thePlayer, ItemStack stack){
         
-        AssemblyTableRecipe recipe = craftMatrix.tileAssemblyTable.getRecipeInUse();
+        AssemblyTableRecipe recipe = tileAssemblyTable.getRecipeInUse();
         if (recipe == null) {
             Traincraft.LOGGER.log(Level.ERROR, "Could not find recipe when taking item from crafting grid.");
             return ItemStack.EMPTY;
@@ -97,8 +96,8 @@ public class SlotCraftingResult extends Slot {
             }
         }
         
-        craftMatrix.tileAssemblyTable.setRecipeInUse(null);
-        craftMatrix.tileAssemblyTable.onInventoryChanged();
+        //tileAssemblyTable.setRecipeInUse(null);
+        tileAssemblyTable.onInventoryChanged();
         return stack;
     }
     
