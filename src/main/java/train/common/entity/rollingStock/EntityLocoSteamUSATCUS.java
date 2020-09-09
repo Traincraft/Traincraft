@@ -40,7 +40,7 @@ public class EntityLocoSteamUSATCUS extends SteamTrain {
 		if(riddenByEntity==null){return;}
 		double pitchRads = this.anglePitchClient * Math.PI / 180.0D;
 		double distance = -0.2;
-		double yOffset = 0.0;
+		double yOffset = 0.175;
 		float rotationCos1 = (float) Math.cos(Math.toRadians(this.renderYaw + 90));
 		float rotationSin1 = (float) Math.sin(Math.toRadians((this.renderYaw + 90)));
 		if(side.isServer()){

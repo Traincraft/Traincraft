@@ -387,13 +387,18 @@ public class CollisionHandler {
 						if ((f1 * 3.6) < 35) {//if speed is smaller than 35km/h then don't do any damage but push entities
 							if (f7 == 0) {
 
-								movingobjectposition.entityHit.addVelocity(d * 0.666666667, 0.0D, d1 * 0.666666667);
+								//movingobjectposition.entityHit.addVelocity(d * 0.666666667, 0.0D, d1 * 0.666666667);
+								movingobjectposition.entityHit.motionX+=d * 0.666666667;
+								movingobjectposition.entityHit.motionZ+=d1 * 0.666666667;
 
 								entity.velocityChanged = true;
 								return;
 							}
 							//System.out.println("bla");
-							movingobjectposition.entityHit.addVelocity(((entityOne.motionX * 1 * 0.060000002384185791D)) / f7, 0.00000000000000001D, (((entityOne.motionZ * 1 * 0.060000002384185791D)) / f7));
+							//movingobjectposition.entityHit.addVelocity(((entityOne.motionX * 1 * 0.060000002384185791D)) / f7, 0.00000000000000001D, (((entityOne.motionZ * 1 * 0.060000002384185791D)) / f7));
+
+							movingobjectposition.entityHit.motionX+=((entityOne.motionX * 1 * 0.060000002384185791D)) / f7;
+							movingobjectposition.entityHit.motionZ+=(((entityOne.motionZ * 1 * 0.060000002384185791D)) / f7);
 							entity.velocityChanged = true;
 							return;
 						}
@@ -408,7 +413,9 @@ public class CollisionHandler {
 
 							entity.attackEntityFrom(TrainsDamageSource.ranOver, j1);//DamageSource.causeMobDamage((EntityLiving) entity);
 							if (f7 > 0.0F) {
-								movingobjectposition.entityHit.addVelocity((entityOne.motionX * 2 * 0.60000002384185791D) / f7, 0.10000000000000001D, (entityOne.motionZ * 2 * 0.60000002384185791D) / f7);
+								//movingobjectposition.entityHit.addVelocity((entityOne.motionX * 2 * 0.60000002384185791D) / f7, 0.10000000000000001D, (entityOne.motionZ * 2 * 0.60000002384185791D) / f7);
+								movingobjectposition.entityHit.motionX+=(entityOne.motionX * 2 * 0.60000002384185791D) / f7;
+								movingobjectposition.entityHit.motionZ+=(entityOne.motionZ * 2 * 0.60000002384185791D) / f7;
 								entity.velocityChanged = true;
 							}
 

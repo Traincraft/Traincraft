@@ -38,7 +38,7 @@ public class EntityLocoDieselSD70 extends DieselTrain {
 
 	@Override
 	public void updateRiderPosition() {
-		TraincraftUtil.updateRider(this,2.3, 0.4);
+		TraincraftUtil.updateRider(this,2.3, 0.3);
 	}
 
 	@Override
