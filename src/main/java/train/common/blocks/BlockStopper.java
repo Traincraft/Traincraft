@@ -60,34 +60,27 @@ public class BlockStopper extends BlockContainer {
 
 	@Override
 	public void onBlockPlacedBy(World world, int par2, int par3, int par4, EntityLivingBase living, ItemStack stack) {
-		TileStopper te = (TileStopper) world.getTileEntity(par2, par3, par4);
+		TileEntity te = world.getTileEntity(par2, par3, par4);
+		if(!(te instanceof TileStopper)){return;}
 		int var6 = MathHelper.floor_double(living.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
 		int var7 = world.getBlockMetadata(par2, par3, par4) >> 2;
 		++var6;
 		var6 %= 4;
 
 		if (var6 == 0) {
-			if (te != null) {
-				te.setFacing(2 | var7 << 2);
-			}
+			((TileStopper)te).setFacing(2 | var7 << 2);
 		}
 
-		if (var6 == 1) {
-			if (te != null) {
-				te.setFacing(3 | var7 << 2);
-			}
+		else if (var6 == 1) {
+			((TileStopper)te).setFacing(3 | var7 << 2);
 		}
 
-		if (var6 == 2) {
-			if (te != null) {
-				te.setFacing(0 | var7 << 2);
-			}
+		else if (var6 == 2) {
+			((TileStopper)te).setFacing(0 | var7 << 2);
 		}
 
-		if (var6 == 3) {
-			if (te != null) {
-				te.setFacing(1 | var7 << 2);
-			}
+		else if (var6 == 3) {
+			((TileStopper)te).setFacing(1 | var7 << 2);
 		}
 	}
 
