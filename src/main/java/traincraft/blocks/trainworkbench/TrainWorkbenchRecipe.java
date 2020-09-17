@@ -95,7 +95,7 @@ public class TrainWorkbenchRecipe extends net.minecraftforge.registries.IForgeRe
             return betterMatches(newInv);
         }
         
-        //TODO: eliminate empty columns
+        //eliminate empty columns by removing the first column (if empty) and recursing
         if(inv.getStackInSlot(0) == ItemStack.EMPTY && inv.getStackInSlot(3) == ItemStack.EMPTY && inv.getStackInSlot(6) == ItemStack.EMPTY){
             InventoryBasic newInv = new InventoryBasic("newInv", false, 9);
             

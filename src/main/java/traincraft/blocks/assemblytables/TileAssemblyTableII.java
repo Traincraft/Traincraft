@@ -7,9 +7,10 @@
  * It is distributed under LGPL-v3.0.
  * You can find the source code at https://github.com/Traincraft/Traincraft
  */
+package traincraft.blocks.assemblytables;
 
-package traincraft.tile;
-
-public class TileAssemblyTableII extends BaseTile {
-    
+public class TileAssemblyTableII extends TileAssemblyTable {
+    public TileAssemblyTableII() {
+        super(2);
+    }
 }

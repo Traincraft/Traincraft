@@ -24,6 +24,6 @@ public class BlockBallast extends BaseBlock {
         this.setHardness(3.0F);
         this.setResistance(15F);
         this.setSoundType(SoundType.STONE);
-        this.setHarvestLevel("pickaxe", 1); //TODO check if this correct (should be stone)
+        this.setHarvestLevel("pickaxe", 1);
     }
 }

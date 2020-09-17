@@ -12,6 +12,7 @@ package traincraft.blocks.trainworkbench;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import org.apache.logging.log4j.Level;
@@ -29,8 +30,7 @@ public class GuiTrainWorkbench extends GuiContainer {
     private EntityPlayer player;
     
     public GuiTrainWorkbench(TileTrainWorkbench tile, EntityPlayer player){
-        super(new ContainerTrainWorkbench(player.inventory, tile.getWorld())); // tile.getWorld could be a prob, which world do I need??
-        Traincraft.LOGGER.log(Level.INFO, "trainworkbench init gui");
+        super(new ContainerTrainWorkbench(player.inventory, tile.getWorld()));
         this.tile = tile;
         this.player = player;
     }
@@ -51,7 +51,7 @@ public class GuiTrainWorkbench extends GuiContainer {
     
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY){
-        this.fontRenderer.drawString("Train Workbench", 28, 6, 4210752);
+        this.fontRenderer.drawString(I18n.format(Traincraft.MOD_ID + ":train_workbench.name"), 28, 6, 4210752);
     }
     
     @Override
