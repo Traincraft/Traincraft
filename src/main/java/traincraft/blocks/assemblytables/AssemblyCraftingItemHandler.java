@@ -37,21 +37,21 @@ public class AssemblyCraftingItemHandler extends ItemStackHandler {
     @Override
     public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate){
         ItemStack toReturn = super.insertItem(slot, stack, simulate);
-        tileAssemblyTable.onInventoryChanged();
+        tileAssemblyTable.onItemCrafted();
         return toReturn;
     }
     
     @Override
     public void setStackInSlot(int slot, @Nonnull ItemStack stack){
         super.setStackInSlot(slot, stack);
-        tileAssemblyTable.onInventoryChanged();
+        tileAssemblyTable.onItemCrafted();
     }
     
     @Nonnull
     @Override
     public ItemStack extractItem(int slot, int amount, boolean simulate){
         ItemStack toReturn = super.extractItem(slot, amount, simulate);
-        tileAssemblyTable.onInventoryChanged();
+        tileAssemblyTable.onItemCrafted();
         return toReturn;
     }
 }

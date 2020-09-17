@@ -20,7 +20,13 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.items.wrapper.SidedInvWrapper;
+import traincraft.api.InventoryBase;
+import traincraft.api.InventorySpecific;
 import traincraft.tile.BaseTile;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
  * This is the Assembly Table tileEntity for all tiers of assembly table. It gets the tier based on where the player is looking.
@@ -30,42 +36,39 @@ import traincraft.tile.BaseTile;
  * @author PseudonymPatel
  * @since 2020-8-7
  */
-public class TileAssemblyTable extends BaseTile {
+public abstract class TileAssemblyTable extends BaseTile {
 
     private final int tier;
-    private ContainerAssemblyTable containerAssemblyTable;
     
     //This recipe is the one that is currently being crafted. It is used to know how much of each thing to subtract. Null when done using.
     private AssemblyTableRecipe recipeInUse = null;
     
-    //These will be the 10 slots that the train parts will sit in to craft the trains
-    //private final AssemblyCraftingItemHandler craftingInventory = new AssemblyCraftingItemHandler(10, this);
-    
-    //These 26 slots are 10 for crafting, 8 for storage, 8 for output.
-    private final AssemblyCraftingItemHandler rawInventory = new AssemblyCraftingItemHandler(18, this);
-    
-    //This is not saved.
-    private final ItemStackHandler outputInventory = new ItemStackHandler(8);
+    //These 26 slots are 0-9 for crafting, 10-17 for storage, 18-25 for output.
+    private final InventorySpecific rawInventory = new InventorySpecific("Assembly Table Inventory", false, 26, this::isItemValidForInventory);
+    private final SidedInvWrapper[] inventory = InventoryBase.getSidedWrappers(this.rawInventory);
 
     public TileAssemblyTable(int tier) {
         this.tier = tier;
+        this.rawInventory.addInventoryChangeListener(this::onInventoryChange);
+    }
+    
+    protected boolean isItemValidForInventory(int slot, @Nonnull ItemStack stack){
+        return true;
     }
     
     @Override
     public GuiScreen openGui(EntityPlayer player) {
-        return new GuiAssemblyTable(tier, player, this);
+        return new GuiAssemblyTable(this.tier, player, this);
     }
 
     @Override
     public boolean hasGui() {
-        //I forget this every time...
         return true;
     }
 
     @Override
     public Container openContainer(EntityPlayer player){
-        containerAssemblyTable = new ContainerAssemblyTable(player.inventory, player.getEntityWorld(), this);
-        return containerAssemblyTable;
+        return new ContainerAssemblyTable(player.inventory, this);
     }
 
     /**
@@ -75,74 +78,70 @@ public class TileAssemblyTable extends BaseTile {
      */
     @Override
     public IInventory getRealInventory() {
-        return null;
-    }
-
-    public ItemStackHandler getInventory() {
-        return rawInventory;
+        return this.rawInventory;
     }
     
-    public ItemStackHandler getOutputInventory(){
-        return outputInventory;
-    }
-    
-    public AssemblyTableRecipe getRecipeInUse(){
-        return recipeInUse;
-    }
-    
-    public void setRecipeInUse(AssemblyTableRecipe recipeInUse){
-        this.recipeInUse = recipeInUse;
+    @Override
+    public IItemHandler getInventory(@Nullable EnumFacing side){
+        return this.inventory[side != null ? side.ordinal() : 0];
     }
     
     /**
-     * This function handles recipe checking. Will set the output item if recipe works.
+     * Called whe the inventory of the assembler changes by any means.
+     * This function should check if the crafting matrix contains a recipe and if so put the recipe output into the output slots
      */
-    public void onInventoryChanged() {
-        //for loop to compare between ingredients, similar to workbench
-        if(this.world == null || !this.world.isRemote){
-            this.markDirty();
-            recipeInUse = null;
-            //clear output area
-            outputInventory.setStackInSlot(0, ItemStack.EMPTY); //slot index 18 is the 19th slot, ie first output slot
-            
-            //filter through the train recipes and find the first match (there should only be one match, but just in case duplicate recipes or sth.
-            AssemblyTableRecipe.ASSEMBLY_TABLE_RECIPES.stream().filter(recipe -> recipe.betterMatches(rawInventory)).findFirst().ifPresent(recipe -> {
-                if (this.tier == recipe.getTier()){ //make sure correct tier before doing.
-                    recipeInUse = recipe;
-                    outputInventory.setStackInSlot(0, recipe.getRecipeOutput().copy());
-                }
-            });
+    public void onInventoryChange(IInventory inv){
+        // check if there is now a recipe in the crafting slots
+        this.checkForRecipe();
+        // check if we have to sync to the client after an inventory change
+        super.updateBaseTile();
+    }
     
-            //update things that need update
-            containerAssemblyTable.detectAndSendChanges();
+    /**
+     * Called when the player takes the output of the assembly table.
+     * This function should heck which item was taken and it should remove all used items from the crafting matrix.
+     */
+    public void onItemCrafted() {
+        // iterate over all inputs and reduce their stacks by the amount used by the recipe. MarkDirty is done automatically
+        for(int i = 0; i < 10; i++){
+            int countUsedByRecipe = this.recipeInUse.getCraftingIngredient(i).getCount();
+            this.rawInventory.decrStackSize(i, countUsedByRecipe);
+        }
+        
+        // check if we can craft something again
+        this.checkForRecipe();
+        
+        // mark this tile as syncable
+        this.syncToClient();
+    }
+    
+    public void checkForRecipe(){
+        for(AssemblyTableRecipe recipe : AssemblyTableRecipe.ASSEMBLY_TABLE_RECIPES){
+            boolean recipeInvalid = false;
+            for(int i = 0; i < 10; i++){
+                NumberedIngredient numberedIngredient = recipe.getCraftingIngredient(i);
+                ItemStack stackInSlot = this.rawInventory.getStackInSlot(i);
+                if(!numberedIngredient.ingredient.apply(stackInSlot) || !(numberedIngredient.getCount() <= stackInSlot.getCount())){
+                    recipeInvalid = true;
+                    break;
+                }
+            }
+            if(!recipeInvalid){
+                this.recipeInUse = recipe;
+                break;
+            }
         }
     }
     
     //used break rather than harvest because want to drop items even if wrong tool or other method used to break. Like chests.
     @Override
     public void onBlockBreak(IBlockState state){
-        for(int i = 0; i < rawInventory.getSlots(); ++i){
-            if (rawInventory.getStackInSlot(i) != ItemStack.EMPTY){
-                this.world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), rawInventory.getStackInSlot(i)));
+        for(int i = 0; i < this.rawInventory.getSizeInventory(); i++){
+            ItemStack stack = this.rawInventory.getStackInSlot(i);
+            if(!stack.isEmpty()){
+                this.world.spawnEntity(new EntityItem(this.world, this.pos.getX(), this.pos.getY(), this.pos.getZ(), stack));
             }
         }
     }
     
-    @Override
-    public IItemHandler getInventory(EnumFacing side){
-        return rawInventory;
-    }
-    
-    public void readNBT(NBTTagCompound nbt, NBTState state){
-        if(nbt.hasKey("asmTableInventory")){
-            rawInventory.deserializeNBT(nbt.getCompoundTag("asmTableInventory"));
-        }
-    }
-
-    public void writeNBT(NBTTagCompound nbt, NBTState state){
-        //write the nbt for the crafting part of NBT
-        nbt.setTag("asmTableInventory", rawInventory.serializeNBT());
-
-        //Not necessary to store tier information due to how each block gets a extension of this with tier pre-set
-    }
 }

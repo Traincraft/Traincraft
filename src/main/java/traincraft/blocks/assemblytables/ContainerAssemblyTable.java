@@ -14,41 +14,39 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
+import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
 public class ContainerAssemblyTable extends Container {
-
-    private final World world;
-    private final TileAssemblyTable tileAssemblyTable;
     
-    public ContainerAssemblyTable(InventoryPlayer playerInventory, World thisWorld, TileAssemblyTable tileAssemblyTable) {
-        this.world = thisWorld;
-        this.tileAssemblyTable = tileAssemblyTable;
+    public ContainerAssemblyTable(InventoryPlayer playerInventory, TileAssemblyTable tile) {
+        IItemHandler inventory = tile.getInventory(EnumFacing.NORTH);
+    
+        //create the assembly table crafting slots (0-9)
+        this.addSlotToContainer(new SlotItemHandler(inventory, 0, 25, 27));
+        this.addSlotToContainer(new SlotItemHandler(inventory, 1, 79, 27));
+        this.addSlotToContainer(new SlotItemHandler(inventory, 2, 115, 27));
+        this.addSlotToContainer(new SlotItemHandler(inventory, 3, 145, 27));
+        this.addSlotToContainer(new SlotItemHandler(inventory, 4, 25, 61));
+        this.addSlotToContainer(new SlotItemHandler(inventory, 5, 79, 61));
+        this.addSlotToContainer(new SlotItemHandler(inventory, 6, 115, 61));
+        this.addSlotToContainer(new SlotItemHandler(inventory, 7, 43, 93));
+        this.addSlotToContainer(new SlotItemHandler(inventory, 8, 79, 93));
+        this.addSlotToContainer(new SlotItemHandler(inventory, 9, 145, 93));
 
-        //create the assembly table crafting slots
-        this.addSlotToContainer(new SlotItemHandler(tileAssemblyTable.getInventory(), 0, 25, 27));
-        this.addSlotToContainer(new SlotItemHandler(tileAssemblyTable.getInventory(), 1, 79, 27));
-        this.addSlotToContainer(new SlotItemHandler(tileAssemblyTable.getInventory(), 2, 115, 27));
-        this.addSlotToContainer(new SlotItemHandler(tileAssemblyTable.getInventory(), 3, 145, 27));
-        this.addSlotToContainer(new SlotItemHandler(tileAssemblyTable.getInventory(), 4, 25, 61));
-        this.addSlotToContainer(new SlotItemHandler(tileAssemblyTable.getInventory(), 5, 79, 61));
-        this.addSlotToContainer(new SlotItemHandler(tileAssemblyTable.getInventory(), 6, 115, 61));
-        this.addSlotToContainer(new SlotItemHandler(tileAssemblyTable.getInventory(), 7, 43, 93));
-        this.addSlotToContainer(new SlotItemHandler(tileAssemblyTable.getInventory(), 8, 79, 93));
-        this.addSlotToContainer(new SlotItemHandler(tileAssemblyTable.getInventory(), 9, 145, 93));
-
-        //create the assembly table storage slots
+        //create the assembly table storage slots (10-17)
         for (int i = 0; i < 2; ++i) {
             for (int j = 0; j < 4; ++j) {
-                this.addSlotToContainer(new SlotItemHandler(tileAssemblyTable.getInventory(), 10 + (j + i * 4), 8 + j * 18, (128) + i * 18));
+                this.addSlotToContainer(new SlotItemHandler(inventory, 10 + (j + i * 4), 8 + j * 18, (128) + i * 18));
             }
         }
 
-        //create the assembly table output slots as SlotCraftingResult (custom Slot implementation)
+        //create the assembly table output slots as SlotCraftingResult (custom Slot implementation) (18-25)
         for (int i = 0; i < 2; ++i) {
             for (int j = 0; j < 4; ++j) {
-                this.addSlotToContainer(new SlotCraftingResult(playerInventory.player, tileAssemblyTable, (j + i * 4), 92 + j * 18, (128) + i * 18));
+                this.addSlotToContainer(new SlotCraftingResult(tile, 18 + (j + i * 4), 92 + j * 18, (128) + i * 18));
             }
         }
 
@@ -68,12 +66,12 @@ public class ContainerAssemblyTable extends Container {
     /**
      * Shift clicking functionality. This is required to stop shift-clicking from freezing game.
      *
-     * @param playerIn the player shift-clicking
+     * @param player the player shift-clicking
      * @param index the index of slot that is being shift-clicked
      * @return null if fails?
      */
     @Override
-    public ItemStack transferStackInSlot(EntityPlayer playerIn, int index){
+    public ItemStack transferStackInSlot(EntityPlayer player, int index){
         int OUTPUT = 26; //where the player inventory starts. Inventory, then hotbar.
         ItemStack itemstack = ItemStack.EMPTY;
         Slot slot = this.inventorySlots.get(index);
@@ -116,10 +114,10 @@ public class ContainerAssemblyTable extends Container {
                 return ItemStack.EMPTY;
             }
     
-            ItemStack itemstack2 = slot.onTake(playerIn, itemstack1);
+            ItemStack itemstack2 = slot.onTake(player, itemstack1);
     
             if(index == 0){
-                playerIn.dropItem(itemstack2, false);
+                player.dropItem(itemstack2, false);
             }
         }
         return itemstack;

@@ -10,14 +10,9 @@
 package traincraft.blocks.assemblytables;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraftforge.items.ItemStackHandler;
+import net.minecraft.util.EnumFacing;
 import net.minecraftforge.items.SlotItemHandler;
-import org.apache.logging.log4j.Level;
-import traincraft.Traincraft;
-import traincraft.items.TCItems;
 
 /**
  * This is similar to Mojang's SlotCrafting, except it is tailored specifically to be used with the assemblyTable.
@@ -28,76 +23,16 @@ import traincraft.items.TCItems;
  */
 public class SlotCraftingResult extends SlotItemHandler {
     
-    private final ItemStackHandler craftMatrix;
-    private final EntityPlayer player;
-    private int amountCrafted;
-    private final TileAssemblyTable tileAssemblyTable;
+    private final TileAssemblyTable tile;
     
-    public SlotCraftingResult(EntityPlayer player, TileAssemblyTable tileAssemblyTable, int slotIndex, int xPosition, int yPosition){
-        super(tileAssemblyTable.getOutputInventory(), slotIndex, xPosition, yPosition);
-        this.player = player;
-        this.craftMatrix = tileAssemblyTable.getInventory();
-        this.tileAssemblyTable = tileAssemblyTable;
+    public SlotCraftingResult(TileAssemblyTable tile, int slotIndex, int xPosition, int yPosition){
+        super(tile.getInventory(EnumFacing.NORTH), slotIndex, xPosition, yPosition);
+        this.tile = tile;
     }
     
     @Override
-    protected void onCrafting(ItemStack stack, int amount){
-        this.amountCrafted += amount;
-        this.onCrafting(stack);
-    }
-    
-    @Override
-    protected void onSwapCraft(int p_190900_1_){
-        this.amountCrafted += p_190900_1_;
-    }
-    
-    @Override
-    protected void onCrafting(ItemStack stack){
-        if(this.amountCrafted > 0){
-            stack.onCrafting(this.player.world, this.player, this.amountCrafted);
-        }
-        
-        this.amountCrafted = 0;
-    }
-    
-    /**
-     * This function is called when an item is taken from a SlotCraftingResult. Removes items from the crafting area before returning.
-     * Will return EMPTY and log as level ERROR if any errors, but will not stop execution.
-     *
-     * @implSpec MUST have set the recipe correctly in the AssemblyCraftingItemHandler beforehand.
-     * @param thePlayer player doing the crafting
-     * @param stack the item they will be taking, is not modified in function
-     * @return the stack parameter, unmodified. Returns EMPTY if any errors.
-     */
-    @Override
-    public ItemStack onTake(EntityPlayer thePlayer, ItemStack stack){
-        
-        AssemblyTableRecipe recipe = tileAssemblyTable.getRecipeInUse();
-        if (recipe == null) {
-            Traincraft.LOGGER.log(Level.ERROR, "Could not find recipe when taking item from crafting grid.");
-            return ItemStack.EMPTY;
-        }
-        this.onCrafting(stack);
-        
-        //iterate through each slot, remove the correct amount
-        for(int i = 0; i < 10; ++i){
-            if (recipe.getCraftingIngredient(i).ingredient == Ingredient.EMPTY) {
-                continue;
-            }
-            
-            int amountToRemove = recipe.getCraftingIngredient(i).getCount();
-            
-            ItemStack itemStack = craftMatrix.getStackInSlot(i);
-            if (itemStack.getCount() == amountToRemove) {
-                //if there is just enough, simply overwrite with EMPTY.
-                craftMatrix.setStackInSlot(i, ItemStack.EMPTY);
-            } else {
-                itemStack.setCount(itemStack.getCount() - amountToRemove);
-            }
-        }
-        
-        //tileAssemblyTable.setRecipeInUse(null);
-        tileAssemblyTable.onInventoryChanged();
+    public ItemStack onTake(EntityPlayer player, ItemStack stack){
+        this.tile.onItemCrafted();
         return stack;
     }
     
@@ -106,12 +41,4 @@ public class SlotCraftingResult extends SlotItemHandler {
         return false;
     }
     
-    @Override
-    public ItemStack decrStackSize(int amount){
-        if(this.getHasStack()){
-            this.amountCrafted += Math.min(amount, this.getStack().getCount());
-        }
-        
-        return super.decrStackSize(amount);
-    }
 }

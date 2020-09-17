@@ -69,11 +69,6 @@ public class AssemblyTableRecipeFactory implements IRecipeFactory {
         return recipeInProgress;
     }
     
-    @Nullable
-    private NumberedIngredient getNumberedIngredientFromJson() {
-        return null;
-    }
-    
     /**
      * Takes a jsonElement describing a Ingredient and turns it into the corresponding Ingredient.
      * NOTE: this is overridden to provide support for forge ore dictionary.

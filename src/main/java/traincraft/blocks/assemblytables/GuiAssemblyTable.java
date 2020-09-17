@@ -38,7 +38,7 @@ public class GuiAssemblyTable extends GuiContainer {
      * Green Strong Border (212, 63); (24, 24) size
      */
     public GuiAssemblyTable(int tier, EntityPlayer player, TileAssemblyTable tileAssemblyTable) {
-        super(new ContainerAssemblyTable(player.inventory, player.getEntityWorld(), tileAssemblyTable));
+        super(new ContainerAssemblyTable(player.inventory, tileAssemblyTable));
         
         this.xSize = 176;
         this.ySize = 256;

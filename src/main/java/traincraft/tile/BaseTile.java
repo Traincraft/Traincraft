@@ -123,7 +123,7 @@ public abstract class BaseTile extends TileEntity {
     
     /**
      * Update method for checking things like syncing. Has to be called by the tile itself.
-     * This approach was choosen to avoid every BaseTile from ticking
+     * This approach was chosen to avoid every BaseTile from ticking
      */
     protected final void updateBaseTile(){
         if(this.sync){
