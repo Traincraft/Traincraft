@@ -17,6 +17,8 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 import net.minecraftforge.items.IItemHandler;
+import traincraft.api.IDummyRecipe;
+import traincraft.api.NumberedIngredient;
 
 import java.util.ArrayList;
 
@@ -26,22 +28,22 @@ import java.util.ArrayList;
  * @author PseudonymPatel
  * @since 2020-8-7
  */
-public class AssemblyTableRecipe extends net.minecraftforge.registries.IForgeRegistryEntry.Impl<IRecipe> implements IRecipe {
+public class AssemblyTableRecipe extends net.minecraftforge.registries.IForgeRegistryEntry.Impl<IRecipe> implements IDummyRecipe {
 
     public static ArrayList<AssemblyTableRecipe> ASSEMBLY_TABLE_RECIPES = new ArrayList<>();
     
     private final int tier;
-    private NonNullList<NumberedIngredient> craftingIngredients = NonNullList.withSize(10, new NumberedIngredient());
-    private final ItemStack craftingResult;
+    private NonNullList<NumberedIngredient> craftingIngredients = NonNullList.withSize(10, NumberedIngredient.EMPTY);
+    private final ItemStack output;
     
-    public AssemblyTableRecipe(int tier, ItemStack craftingResult) {
+    public AssemblyTableRecipe(int tier, ItemStack resultItemStack) {
         this.tier = tier;
-        this.craftingResult = craftingResult;
+        this.output = resultItemStack;
     }
     
-    public AssemblyTableRecipe(int tier, ItemStack craftingResult, NonNullList<NumberedIngredient> craftingIngredients) {
+    public AssemblyTableRecipe(int tier, ItemStack resultItemStack, NonNullList<NumberedIngredient> craftingIngredients) {
         this.tier = tier;
-        this.craftingResult = craftingResult;
+        this.output = resultItemStack;
         this.craftingIngredients = craftingIngredients;
     }
     
@@ -50,101 +52,14 @@ public class AssemblyTableRecipe extends net.minecraftforge.registries.IForgeReg
     }
     
     public NumberedIngredient getCraftingIngredient(int index) {
-        return craftingIngredients.get(index);
+        return this.craftingIngredients.get(index);
     }
     
     public int getTier() {
-        return tier;
+        return this.tier;
     }
     
-    @Override
-    public ItemStack getCraftingResult(InventoryCrafting inv) {
-        return craftingResult.copy();
-    }
-
-    public boolean betterMatches(IItemHandler inventory) {
-        for (int i = 0; i < 10; ++i) {
-    
-            //account for empty stacks
-            if(Ingredient.fromStacks(inventory.getStackInSlot(i)) == Ingredient.EMPTY){
-                if(craftingIngredients.get(i).ingredient == Ingredient.EMPTY){
-                    continue;
-                } else{
-                    return false;
-                }
-            }
-            
-            boolean foundOne = false;
-            for(ItemStack invStack : Ingredient.fromStacks(inventory.getStackInSlot(i)).getMatchingStacks()){
-                for(ItemStack recStack : craftingIngredients.get(i).ingredient.getMatchingStacks()){
-                    if(invStack.getItem() == recStack.getItem()){ //compare if item correct
-                        if (inventory.getStackInSlot(i).getCount() >= craftingIngredients.get(i).getCount()) { //compare count
-                            foundOne = true;
-                            break;
-                        }
-                    }
-                }
-                if(foundOne) break;
-            }
-            if(!foundOne) return false;
-            
-//            if (Ingredient.fromStacks(inventory.getStackInSlot(i)) == craftingIngredients.get(i).ingredient
-//                && inventory.getStackInSlot(i).getCount() >= craftingIngredients.get(i).getCount()) {
-//                //this slot is good.
-//            } else {
-//                return false;
-//            }
-        }
-        return true;
-    }
-    
-    /**
-     * This gets the exact ItemStack associated with the output of the recipe. NOT a copy, so modifying this one will
-     * modify the result of the crafting recipe.
-     *
-     * @return A reference to the result of the recipe (ItemStack)
-     */
-    @Override
-    public ItemStack getRecipeOutput() {
-        return craftingResult;
-    }
-    
-    //absolutely useless for this.
-    @Override
-    public boolean canFit(int width, int height) {
-        return true;
-    }
-    
-    /**
-     * we cannot use this, because this requires InventoryCrafting and absolutely cannot use it or convert to it.
-     * we will instead use betterMatches (wow very creative!)
-     */
-    @Override
-    public boolean matches(InventoryCrafting inv, World worldIn) {
-        return false;
-    }
-}
-
-//This is here because it is only used in this file. Can move later if needed.
-/**
- * Tuples are not part of normal Java, so this is a stand-in for that. Yes, I know the problems with Java public class variables
- * but this is equivalent to the getIngredient() way, also, this provides no real security benefits.
- *
- * @author PseudoynmPatel
- * @since 2020-8-12
- */
-class NumberedIngredient {
-    public Ingredient ingredient = Ingredient.EMPTY;
-    private int count = 1;
-    
-    public NumberedIngredient() {
-    }
-    
-    public void setCount(int count){
-        this.count = count;
-    }
-    
-    public int getCount(){
-        return count;
+    public ItemStack getOutput(){
+        return output;
     }
 }

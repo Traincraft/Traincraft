@@ -22,6 +22,7 @@ import net.minecraft.util.NonNullList;
 import net.minecraftforge.common.crafting.IRecipeFactory;
 import net.minecraftforge.common.crafting.JsonContext;
 import net.minecraftforge.oredict.OreDictionary;
+import traincraft.api.NumberedIngredient;
 
 import javax.annotation.Nullable;
 
@@ -72,6 +73,7 @@ public class AssemblyTableRecipeFactory implements IRecipeFactory {
     /**
      * Takes a jsonElement describing a Ingredient and turns it into the corresponding Ingredient.
      * NOTE: this is overridden to provide support for forge ore dictionary.
+     * Should be removed in 1.15 in favor of a tweaked default Ingredient method.
      *
      * @param jsonElement object/array of objects describing single ingredient.
      * @return the ingredient
@@ -88,12 +90,10 @@ public class AssemblyTableRecipeFactory implements IRecipeFactory {
                         for(int i = 0; i < itemStacksNNlist.size(); ++i){
                             itemStacks[i] = itemStacksNNlist.get(i);
                         }
-                        NumberedIngredient numedIng = new NumberedIngredient();
-                        numedIng.ingredient = Ingredient.fromStacks(itemStacks);
                         if (jsonElement.getAsJsonObject().has("count")) {
-                            numedIng.setCount(jsonElement.getAsJsonObject().get("count").getAsInt());
+                            return new NumberedIngredient(jsonElement.getAsJsonObject().get("count").getAsInt(), itemStacks);
                         }
-                        return numedIng;
+                        return new NumberedIngredient(1, itemStacks);
                     } else{
                         throw new JsonSyntaxException("Does not contain ore item.");
                     }
@@ -101,12 +101,11 @@ public class AssemblyTableRecipeFactory implements IRecipeFactory {
                     throw new JsonSyntaxException("Does not support non forge:ore_dict types.");
                 }
             } else if(jsonElement.isJsonObject()){
-                NumberedIngredient numedIng = new NumberedIngredient();
-                numedIng.ingredient = Ingredient.fromStacks(deserializeItem(jsonElement.getAsJsonObject(), false));
+                ItemStack stack = deserializeItem(jsonElement.getAsJsonObject(), false);
                 if (jsonElement.getAsJsonObject().has("count")) {
-                    numedIng.setCount(jsonElement.getAsJsonObject().get("count").getAsInt());
+                    return new NumberedIngredient(jsonElement.getAsJsonObject().get("count").getAsInt(), stack);
                 }
-                return numedIng;
+                return new NumberedIngredient(1, stack);
             } else if(!jsonElement.isJsonArray()){
                 throw new JsonSyntaxException("Expected item to be object or array of objects");
             } else{
@@ -120,18 +119,13 @@ public class AssemblyTableRecipeFactory implements IRecipeFactory {
                     for(int i = 0; i < jsonarray.size(); ++i){
                         aitemstack[i] = deserializeItem(JsonUtils.getJsonObject(jsonarray.get(i), "item"), false);
                     }
-                    NumberedIngredient numedIng = new NumberedIngredient();
-                    numedIng.ingredient = Ingredient.fromStacks(aitemstack);
                     if (jsonElement.getAsJsonObject().has("count")) {
-                        numedIng.setCount(jsonElement.getAsJsonObject().get("count").getAsInt());
+                        return new NumberedIngredient(jsonElement.getAsJsonObject().get("count").getAsInt(), aitemstack);
                     }
-                    return numedIng;
+                    return new NumberedIngredient(1, aitemstack);
                 }
             }
-        } else{
-            NumberedIngredient numedIng = new NumberedIngredient();
-            numedIng.ingredient = Ingredient.fromStacks(ItemStack.EMPTY);
-            return numedIng;
         }
+        return NumberedIngredient.EMPTY;
     }
 }

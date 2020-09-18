@@ -32,8 +32,10 @@ public class SlotCraftingResult extends SlotItemHandler {
     
     @Override
     public ItemStack onTake(EntityPlayer player, ItemStack stack){
-        this.tile.onItemCrafted();
-        return stack;
+        if(!player.world.isRemote){
+            this.tile.onItemCrafted();
+        }
+        return super.onTake(player, stack);
     }
     
     @Override

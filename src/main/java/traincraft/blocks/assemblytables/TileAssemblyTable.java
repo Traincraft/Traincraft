@@ -18,11 +18,13 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.wrapper.SidedInvWrapper;
 import traincraft.api.InventoryBase;
 import traincraft.api.InventorySpecific;
+import traincraft.api.NumberedIngredient;
 import traincraft.tile.BaseTile;
 
 import javax.annotation.Nonnull;
@@ -70,12 +72,7 @@ public abstract class TileAssemblyTable extends BaseTile {
     public Container openContainer(EntityPlayer player){
         return new ContainerAssemblyTable(player.inventory, this);
     }
-
-    /**
-     * This SHOULD NOT BE USED!
-     *
-     * @return 8 inventory storage slots.
-     */
+    
     @Override
     public IInventory getRealInventory() {
         return this.rawInventory;
@@ -92,6 +89,7 @@ public abstract class TileAssemblyTable extends BaseTile {
      */
     public void onInventoryChange(IInventory inv){
         // check if there is now a recipe in the crafting slots
+        this.recipeInUse = null; // set to null, so it regenerates the recipe in any case
         this.checkForRecipe();
         // check if we have to sync to the client after an inventory change
         super.updateBaseTile();
@@ -103,10 +101,13 @@ public abstract class TileAssemblyTable extends BaseTile {
      */
     public void onItemCrafted() {
         // iterate over all inputs and reduce their stacks by the amount used by the recipe. MarkDirty is done automatically
+        this.rawInventory.disableEvents();
         for(int i = 0; i < 10; i++){
             int countUsedByRecipe = this.recipeInUse.getCraftingIngredient(i).getCount();
             this.rawInventory.decrStackSize(i, countUsedByRecipe);
         }
+        this.rawInventory.enableEvents();
+        this.recipeInUse = null;
         
         // check if we can craft something again
         this.checkForRecipe();
@@ -116,21 +117,33 @@ public abstract class TileAssemblyTable extends BaseTile {
     }
     
     public void checkForRecipe(){
+        // clear output slots (18-25)
+        for(int i = 18; i < 26; i++){
+            this.rawInventory.disableEvents();
+            this.rawInventory.setInventorySlotContents(i, ItemStack.EMPTY);
+            this.rawInventory.enableEvents();
+            this.syncToClient();
+        }
         for(AssemblyTableRecipe recipe : AssemblyTableRecipe.ASSEMBLY_TABLE_RECIPES){
             boolean recipeInvalid = false;
             for(int i = 0; i < 10; i++){
                 NumberedIngredient numberedIngredient = recipe.getCraftingIngredient(i);
                 ItemStack stackInSlot = this.rawInventory.getStackInSlot(i);
-                if(!numberedIngredient.ingredient.apply(stackInSlot) || !(numberedIngredient.getCount() <= stackInSlot.getCount())){
+                if(!numberedIngredient.apply(stackInSlot) || !(numberedIngredient.getCount() <= stackInSlot.getCount())){
                     recipeInvalid = true;
                     break;
                 }
             }
             if(!recipeInvalid){
                 this.recipeInUse = recipe;
+                this.rawInventory.disableEvents(); // disable the inventory listener, otherwise this would result in a infinite recursion
+                this.rawInventory.setInventorySlotContents(18, recipe.getOutput().copy());
+                this.rawInventory.enableEvents();
+                this.syncToClient();
                 break;
             }
         }
+        this.updateBaseTile();
     }
     
     //used break rather than harvest because want to drop items even if wrong tool or other method used to break. Like chests.

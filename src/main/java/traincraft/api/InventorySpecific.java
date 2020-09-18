@@ -19,6 +19,7 @@ import java.util.function.BiFunction;
 public class InventorySpecific extends InventoryBase {
     
     private final BiFunction<Integer, ItemStack, Boolean> validationFunction;
+    private boolean shouldFireEvent = true;
     
     public InventorySpecific(String title, boolean customName, int slotCount, BiFunction<Integer, ItemStack, Boolean> validationFunction){
         super(title, customName, slotCount);
@@ -66,7 +67,22 @@ public class InventorySpecific extends InventoryBase {
     }
     
     @Override
+    public void markDirty(){
+        if(this.shouldFireEvent){
+            super.markDirty();
+        }
+    }
+    
+    @Override
     public boolean isItemValidForSlot(int index, ItemStack stack){
         return this.validationFunction.apply(index, stack);
+    }
+    
+    public void disableEvents(){
+        this.shouldFireEvent = false;
+    }
+    
+    public void enableEvents(){
+        this.shouldFireEvent = true;
     }
 }
