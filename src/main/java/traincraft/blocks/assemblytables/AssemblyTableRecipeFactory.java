@@ -16,7 +16,6 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.JsonUtils;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.common.crafting.IRecipeFactory;
@@ -39,14 +38,14 @@ public class AssemblyTableRecipeFactory implements IRecipeFactory {
     private static final String[] COMPONENTS = {"planks", "chimney", "cab", "dye", "component", "boiler", "firebox", "wheels", "frame", "coupler"};
     
     @Override
-    public IRecipe parse(JsonContext context, JsonObject json) {
+    public IRecipe parse(JsonContext context, JsonObject json){
         
-        if (!json.has("tier")) {
+        if(!json.has("tier")){
             throw new JsonSyntaxException("No tier element found in assembly table recipe");
         }
         int tier = json.get("tier").getAsInt();
         
-        if (!json.has("result")) {
+        if(!json.has("result")){
             throw new JsonSyntaxException("No result element found in assembly table recipe");
         }
         ItemStack resultItemStack = deserializeItem(JsonUtils.getJsonObject(json, "result"), true);
@@ -54,15 +53,15 @@ public class AssemblyTableRecipeFactory implements IRecipeFactory {
         //set a blank AssemblyTableRecipe to add to.
         AssemblyTableRecipe recipeInProgress = new AssemblyTableRecipe(tier, resultItemStack);
         
-        if (json.has("planks")) {
+        if(json.has("planks")){
             recipeInProgress.setCraftingIngredient(0, deserializeIngredient(json.get("planks")));
-        } else {
+        } else{
             throw new JsonSyntaxException("Could not find planks in assembly table recipe.");
         }
         
-        for (int i = 0; i < 10; ++i ) {
+        for(int i = 0; i < 10; ++i){
             //since we initialize to empty slots, those that do not have an element in the json will be empty slots in the recipe.
-            if (json.has(COMPONENTS[i])) {
+            if(json.has(COMPONENTS[i])){
                 recipeInProgress.setCraftingIngredient(i, deserializeIngredient(json.get(COMPONENTS[i])));
             }
         }
@@ -90,7 +89,7 @@ public class AssemblyTableRecipeFactory implements IRecipeFactory {
                         for(int i = 0; i < itemStacksNNlist.size(); ++i){
                             itemStacks[i] = itemStacksNNlist.get(i);
                         }
-                        if (jsonElement.getAsJsonObject().has("count")) {
+                        if(jsonElement.getAsJsonObject().has("count")){
                             return new NumberedIngredient(jsonElement.getAsJsonObject().get("count").getAsInt(), itemStacks);
                         }
                         return new NumberedIngredient(1, itemStacks);
@@ -102,7 +101,7 @@ public class AssemblyTableRecipeFactory implements IRecipeFactory {
                 }
             } else if(jsonElement.isJsonObject()){
                 ItemStack stack = deserializeItem(jsonElement.getAsJsonObject(), false);
-                if (jsonElement.getAsJsonObject().has("count")) {
+                if(jsonElement.getAsJsonObject().has("count")){
                     return new NumberedIngredient(jsonElement.getAsJsonObject().get("count").getAsInt(), stack);
                 }
                 return new NumberedIngredient(1, stack);
@@ -119,7 +118,7 @@ public class AssemblyTableRecipeFactory implements IRecipeFactory {
                     for(int i = 0; i < jsonarray.size(); ++i){
                         aitemstack[i] = deserializeItem(JsonUtils.getJsonObject(jsonarray.get(i), "item"), false);
                     }
-                    if (jsonElement.getAsJsonObject().has("count")) {
+                    if(jsonElement.getAsJsonObject().has("count")){
                         return new NumberedIngredient(jsonElement.getAsJsonObject().get("count").getAsInt(), aitemstack);
                     }
                     return new NumberedIngredient(1, aitemstack);

@@ -10,7 +10,8 @@
 package traincraft.blocks.assemblytables;
 
 public class TileAssemblyTableII extends TileAssemblyTable {
-    public TileAssemblyTableII() {
+    
+    public TileAssemblyTableII(){
         super(2);
     }
 }

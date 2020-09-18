@@ -10,13 +10,9 @@
 
 package traincraft.blocks.assemblytables;
 
-import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.NonNullList;
-import net.minecraft.world.World;
-import net.minecraftforge.items.IItemHandler;
 import traincraft.api.IDummyRecipe;
 import traincraft.api.NumberedIngredient;
 
@@ -29,33 +25,33 @@ import java.util.ArrayList;
  * @since 2020-8-7
  */
 public class AssemblyTableRecipe extends net.minecraftforge.registries.IForgeRegistryEntry.Impl<IRecipe> implements IDummyRecipe {
-
+    
     public static ArrayList<AssemblyTableRecipe> ASSEMBLY_TABLE_RECIPES = new ArrayList<>();
     
     private final int tier;
-    private NonNullList<NumberedIngredient> craftingIngredients = NonNullList.withSize(10, NumberedIngredient.EMPTY);
     private final ItemStack output;
+    private NonNullList<NumberedIngredient> craftingIngredients = NonNullList.withSize(10, NumberedIngredient.EMPTY);
     
-    public AssemblyTableRecipe(int tier, ItemStack resultItemStack) {
+    public AssemblyTableRecipe(int tier, ItemStack resultItemStack){
         this.tier = tier;
         this.output = resultItemStack;
     }
     
-    public AssemblyTableRecipe(int tier, ItemStack resultItemStack, NonNullList<NumberedIngredient> craftingIngredients) {
+    public AssemblyTableRecipe(int tier, ItemStack resultItemStack, NonNullList<NumberedIngredient> craftingIngredients){
         this.tier = tier;
         this.output = resultItemStack;
         this.craftingIngredients = craftingIngredients;
     }
     
-    public void setCraftingIngredient(int index, NumberedIngredient numberedIngredient) {
+    public void setCraftingIngredient(int index, NumberedIngredient numberedIngredient){
         this.craftingIngredients.set(index, numberedIngredient);
     }
     
-    public NumberedIngredient getCraftingIngredient(int index) {
+    public NumberedIngredient getCraftingIngredient(int index){
         return this.craftingIngredients.get(index);
     }
     
-    public int getTier() {
+    public int getTier(){
         return this.tier;
     }
     
