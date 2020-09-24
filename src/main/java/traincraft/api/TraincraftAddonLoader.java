@@ -53,8 +53,8 @@ import java.util.stream.Stream;
 
 public class TraincraftAddonLoader {
     
-    private static final Gson GSON = new Gson();
-    private static final JsonParser JSON_PARSER = new JsonParser();
+    public static final Gson GSON = new Gson();
+    public static final JsonParser JSON_PARSER = new JsonParser();
     private static ListMultimap<ModContainer, EntityRegistry.EntityRegistration> entityRegistrationMultimap;
     private static BiMap<Class<? extends Entity>, EntityRegistry.EntityRegistration> entityRegistrationMap;
     @SideOnly(Side.CLIENT)
@@ -75,8 +75,8 @@ public class TraincraftAddonLoader {
         }
     }
     
-    public static void loadInternals(Side side, String modId, File rootDirectory){
-        String path = String.format("/assets/" + modId + "/rolling_stock");
+    public static void loadInternals(Side side, String modId){
+        String path = String.format("/assets/%s/rolling_stock", modId);
         try{
             URI uri = TraincraftAddonLoader.class.getResource(path).toURI();
             Path myPath;
@@ -97,19 +97,18 @@ public class TraincraftAddonLoader {
                     e.printStackTrace();
                 }
             });
-        } catch(URISyntaxException e){
-            e.printStackTrace();
-        } catch(IOException e){
+        } catch(URISyntaxException | IOException e){
             e.printStackTrace();
         }
     }
     
     // create entity and item
-    private static void registerWrapper(Side side, WrapperRollingStock wrapper){
+    private static void registerWrapper(Side side, IWrapperAddon<?> wrapper){
         ModContainer mc = FMLCommonHandler.instance().findContainerFor(Traincraft.INSTANCE);
         ResourceLocation resourceLocation = wrapper.getId();
-        Class<? extends WrapperRollingStock.WrapperRollingStockEntityImpl> clazz = wrapper.createEntity(null).getClass();
-        EntityRegistry.EntityRegistration er = EntityRegistry.instance().new EntityRegistration(mc,
+        Class<? extends AbstractRollingStock> clazz = wrapper.createEntity(null).getClass();
+        EntityRegistry.EntityRegistration er = EntityRegistry.instance().new EntityRegistration(
+            mc,
             resourceLocation,
             clazz,
             resourceLocation.getPath(),
@@ -159,7 +158,9 @@ public class TraincraftAddonLoader {
         if(root.has("type")){
             switch(root.get("type").getAsString()){
                 case "steam":{
-                    // todo load steam train
+                    WrapperSteamTrain wrapperSteamTrain = new WrapperSteamTrain();
+                    wrapperSteamTrain.loadFromFile(side, file, root);
+                    registerWrapper(side, wrapperSteamTrain);
                     break;
                 }
                 case "diesel":{
@@ -171,133 +172,22 @@ public class TraincraftAddonLoader {
                     break;
                 }
                 default:{
-                    loadRollingStock(side, file, root, new WrapperRollingStock());
+                    WrapperRollingStock wrapperRollingStock = new WrapperRollingStock();
+                    wrapperRollingStock.loadFromFile(side, file, root);
+                    registerWrapper(side, wrapperRollingStock);
                     break;
                 }
             }
         } else{
-            loadRollingStock(side, file, root, new WrapperRollingStock());
+            WrapperRollingStock wrapperRollingStock = new WrapperRollingStock();
+            wrapperRollingStock.loadFromFile(side, file, root);
+            registerWrapper(side, wrapperRollingStock);
         }
-    }
-    
-    private static void loadRollingStock(Side side, File file, JsonObject root, WrapperRollingStock wrapper){
-        // general information
-        if(root.has("id")){
-            wrapper.setId(new ResourceLocation(root.get("id").getAsString()));
-        } else{
-            Traincraft.LOGGER.error(String.format("Can't load rolling stock from '%s': Missing id", file));
-            return;
-        }
-        if(root.has("name")){
-            wrapper.setName(root.get("name").getAsString());
-        }
-        if(root.has("desc")){
-            if(root.get("desc").isJsonArray()){
-                for(JsonElement line : root.get("desc").getAsJsonArray()){
-                    wrapper.addDescriptionLine(line.getAsString());
-                }
-            } else{
-                wrapper.addDescriptionLine(root.get("desc").getAsString());
-            }
-        }
-        
-        // model information
-        if(root.has("model") && root.get("model").isJsonObject()){
-            JsonObject model = root.get("model").getAsJsonObject();
-            if(model.has("location")){
-                String location = model.get("location").getAsString();
-                if(FilenameUtils.isExtension(location, new String[]{"json", "jtmt"})){
-                    wrapper.setModel(TCUtil.loadModelFromJTMT(JSON_PARSER, location));
-                } else{
-                    wrapper.setModel(TCUtil.loadModelFromJTMT(new ResourceLocation(location)));
-                }
-            }
-            if(model.has("scale")){
-                if(model.get("scale").isJsonArray()){ // array with 3 double as x, y, z
-                    JsonArray scaleArray = model.get("scale").getAsJsonArray();
-                    if(scaleArray.size() == 3){
-                        wrapper.setModelScale(new Vec3d(scaleArray.get(0).getAsDouble(), scaleArray.get(1).getAsDouble(), scaleArray.get(2).getAsDouble()));
-                    }
-                } else{ // single value for all three values
-                    double scale = model.get("scale").getAsDouble();
-                    wrapper.setModelScale(new Vec3d(scale, scale, scale));
-                }
-            }
-            if(model.has("translate")){
-                if(model.get("translate").isJsonArray()){ // array with 3 double as x, y, z
-                    JsonArray translateArray = model.get("translate").getAsJsonArray();
-                    if(translateArray.size() == 3){
-                        wrapper.setModelOffset(new Vec3d(translateArray.get(0).getAsDouble(), translateArray.get(1).getAsDouble(), translateArray.get(2).getAsDouble()));
-                    }
-                } else{ // single value for all three values
-                    double translate = model.get("translate").getAsDouble();
-                    wrapper.setModelOffset(new Vec3d(translate, translate, translate));
-                }
-            }
-            if(model.has("rotation")){
-                if(model.get("rotation").isJsonArray()){ // array with 3 double as x, y, z
-                    JsonArray rotationArray = model.get("rotation").getAsJsonArray();
-                    if(rotationArray.size() == 3){
-                        wrapper.setModelRotation(new Vec3d(rotationArray.get(0).getAsDouble(), rotationArray.get(1).getAsDouble(), rotationArray.get(2).getAsDouble()));
-                    }
-                } else{ // single value for all three values
-                    double rotation = model.get("rotation").getAsDouble();
-                    wrapper.setModelRotation(new Vec3d(rotation, rotation, rotation));
-                }
-            }
-        }
-        
-        // actual rolling stock values
-        if(root.has("size")){
-            if(root.get("size").isJsonArray()){ // array with 3 double as x, y, z
-                JsonArray sizeArray = root.get("size").getAsJsonArray();
-                if(sizeArray.size() == 3){
-                    wrapper.setSize(new Vec3d(sizeArray.get(0).getAsDouble(), sizeArray.get(1).getAsDouble(), sizeArray.get(2).getAsDouble()));
-                }
-            } else{ // single value for all three values
-                double size = root.get("size").getAsDouble();
-                wrapper.setSize(new Vec3d(size, size, size));
-            }
-        }
-        if(root.has("acceleration")){
-            wrapper.setAcceleration(root.get("acceleration").getAsDouble());
-        }
-        if(root.has("breakPower")){
-            wrapper.setBreakPower(root.get("breakPower").getAsDouble());
-        }
-        if(root.has("maxSpeed")){
-            wrapper.setMaxSpeed(root.get("maxSpeed").getAsDouble());
-        }
-        if(root.has("maxReverseSpeed")){
-            wrapper.setMaxReverseSpeed(root.get("maxReverseSpeed").getAsDouble());
-        }
-        if(root.has("mass")){
-            wrapper.setMass(root.get("mass").getAsDouble());
-        }
-        if(root.has("skins")){
-            Map<String, String> rawSkinsMap = GSON.fromJson(root.get("skins"), new TypeToken<Map<String, String>>() {
-            }.getType());
-            if(rawSkinsMap != null && !rawSkinsMap.isEmpty()){
-                if(side.isClient()){
-                    rawSkinsMap.forEach((key, value) -> {
-                        ResourceLocation resourceLocation;
-                        if(FilenameUtils.isExtension(value, "png")){ // load as external file
-                            resourceLocation = loadFileTexture(new File(file.getParentFile(), value));
-                        } else{ // load as internal resource location
-                            resourceLocation = new ResourceLocation(value);
-                        }
-                        wrapper.addSkin(key, resourceLocation);
-                    });
-                }
-            }
-        }
-        
-        registerWrapper(side, wrapper);
     }
     
     // CLIENT ONLY!
     @SideOnly(Side.CLIENT)
-    private static ResourceLocation loadFileTexture(File file){
+    public static ResourceLocation loadFileTexture(File file){
         if(traincraftResourceLoader == null){
             try{
                 Field field = FMLClientHandler.class.getDeclaredField("resourcePackList");

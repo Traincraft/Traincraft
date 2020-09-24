@@ -17,8 +17,6 @@ import net.minecraft.util.ResourceLocation;
 import org.apache.logging.log4j.Level;
 import traincraft.Traincraft;
 
-*
-
 public class GuiAssemblyTable extends GuiContainer {
     
     private static final ResourceLocation GUI_LOCATION_TIER1 = new ResourceLocation(Traincraft.MOD_ID, "textures/gui/gui_assemblytable_tier1.png");

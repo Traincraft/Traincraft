@@ -10,15 +10,24 @@
 
 package traincraft.api;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import org.apache.commons.io.FilenameUtils;
+import traincraft.Traincraft;
 import traincraft.renderer.TraincraftModel;
 
+import java.io.File;
 import java.util.*;
 
-public class WrapperRollingStock {
+public class WrapperRollingStock implements IWrapperAddon<AbstractRollingStock<?>> {
     
     private final List<String> description = new ArrayList<>();
     private final Map<String, ResourceLocation> skins = new HashMap<>();
@@ -52,19 +61,156 @@ public class WrapperRollingStock {
             .toString();
     }
     
-    public WrapperRollingStockEntityImpl createEntity(World world){
+    public AbstractRollingStock<?> createEntity(World world){
         return new WrapperRollingStockEntityImpl(world);
     }
     
-    public WrapperRollingStockEntityImpl createEntity(World world, double x, double y, double z){
+    public AbstractRollingStock<?> createEntity(World world, double x, double y, double z){
         return new WrapperRollingStockEntityImpl(world, x, y, z);
     }
     
     // todo to be implemented
+    @Override
     public Item createItem(){
         return null;
     }
     
+    @Override
+    public void loadFromFile(Side side, File file, JsonObject root){
+        // general information
+        if(root.has("id")){
+            this.setId(new ResourceLocation(root.get("id").getAsString()));
+        } else{
+            Traincraft.LOGGER.error(String.format("Can't load rolling stock from '%s': Missing id", file));
+            return;
+        }
+        if(root.has("name")){
+            this.setName(root.get("name").getAsString());
+        }
+        if(root.has("desc")){
+            if(root.get("desc").isJsonArray()){
+                for(JsonElement line : root.get("desc").getAsJsonArray()){
+                    this.addDescriptionLine(line.getAsString());
+                }
+            } else{
+                this.addDescriptionLine(root.get("desc").getAsString());
+            }
+        }
+    
+        // model information
+        if(root.has("model") && root.get("model").isJsonObject()){
+            JsonObject model = root.get("model").getAsJsonObject();
+            if(model.has("location")){
+                String location = model.get("location").getAsString();
+                if(FilenameUtils.isExtension(location, new String[]{"json", "jtmt"})){
+                    this.setModel(TCUtil.loadModelFromJTMT(TraincraftAddonLoader.JSON_PARSER, location));
+                } else{
+                    this.setModel(TCUtil.loadModelFromJTMT(new ResourceLocation(location)));
+                }
+            }
+            if(model.has("scale")){
+                if(model.get("scale").isJsonArray()){ // array with 3 double as x, y, z
+                    JsonArray scaleArray = model.get("scale").getAsJsonArray();
+                    if(scaleArray.size() == 3){
+                        this.setModelScale(new Vec3d(scaleArray.get(0).getAsDouble(), scaleArray.get(1).getAsDouble(), scaleArray.get(2).getAsDouble()));
+                    }
+                } else{ // single value for all three values
+                    double scale = model.get("scale").getAsDouble();
+                    this.setModelScale(new Vec3d(scale, scale, scale));
+                }
+            }
+            if(model.has("translate")){
+                if(model.get("translate").isJsonArray()){ // array with 3 double as x, y, z
+                    JsonArray translateArray = model.get("translate").getAsJsonArray();
+                    if(translateArray.size() == 3){
+                        this.setModelOffset(new Vec3d(translateArray.get(0).getAsDouble(), translateArray.get(1).getAsDouble(), translateArray.get(2).getAsDouble()));
+                    }
+                } else{ // single value for all three values
+                    double translate = model.get("translate").getAsDouble();
+                    this.setModelOffset(new Vec3d(translate, translate, translate));
+                }
+            }
+            if(model.has("rotation")){
+                if(model.get("rotation").isJsonArray()){ // array with 3 double as x, y, z
+                    JsonArray rotationArray = model.get("rotation").getAsJsonArray();
+                    if(rotationArray.size() == 3){
+                        this.setModelRotation(new Vec3d(rotationArray.get(0).getAsDouble(), rotationArray.get(1).getAsDouble(), rotationArray.get(2).getAsDouble()));
+                    }
+                } else{ // single value for all three values
+                    double rotation = model.get("rotation").getAsDouble();
+                    this.setModelRotation(new Vec3d(rotation, rotation, rotation));
+                }
+            }
+        }
+    
+        // actual rolling stock values
+        if(root.has("size")){
+            if(root.get("size").isJsonArray()){ // array with 3 double as x, y, z
+                JsonArray sizeArray = root.get("size").getAsJsonArray();
+                if(sizeArray.size() == 3){
+                    this.setSize(new Vec3d(sizeArray.get(0).getAsDouble(), sizeArray.get(1).getAsDouble(), sizeArray.get(2).getAsDouble()));
+                }
+            } else{ // single value for all three values
+                double size = root.get("size").getAsDouble();
+                this.setSize(new Vec3d(size, size, size));
+            }
+        }
+        if(root.has("acceleration")){
+            this.setAcceleration(root.get("acceleration").getAsDouble());
+        }
+        if(root.has("breakPower")){
+            this.setBreakPower(root.get("breakPower").getAsDouble());
+        }
+        if(root.has("maxSpeed")){
+            this.setMaxSpeed(root.get("maxSpeed").getAsDouble());
+        }
+        if(root.has("maxReverseSpeed")){
+            this.setMaxReverseSpeed(root.get("maxReverseSpeed").getAsDouble());
+        }
+        if(root.has("mass")){
+            this.setMass(root.get("mass").getAsDouble());
+        }
+        if(root.has("skins")){
+            if(root.get("skins").isJsonObject()){
+                for(Map.Entry<String, JsonElement> entry : root.get("skins").getAsJsonObject().entrySet()){
+                    if(entry.getValue().isJsonPrimitive()){
+                        String name = entry.getKey();
+                        String path = entry.getValue().getAsString();
+                        ResourceLocation resourceLocation;
+                        if(FilenameUtils.isExtension(path, "png")){
+                            // load as external file
+                            resourceLocation = TraincraftAddonLoader.loadFileTexture(new File(file.getParentFile(), path));
+                        } else{
+                            // load as internal resource location
+                            resourceLocation = new ResourceLocation(path);
+                        }
+                        this.addSkin(name, resourceLocation);
+                    }
+                }
+            }
+        }
+        if(root.has("seats")){
+            if(root.get("seats").isJsonArray()){
+                for(JsonElement seatElement : root.get("seats").getAsJsonArray()){
+                    if(seatElement.isJsonArray()){
+                        JsonArray seatArray = seatElement.getAsJsonArray();
+                        if(seatArray.size() == 6){
+                            this.addSeat(new PassengerSeat(new AxisAlignedBB(
+                                seatArray.get(0).getAsDouble(),
+                                seatArray.get(1).getAsDouble(),
+                                seatArray.get(2).getAsDouble(),
+                                seatArray.get(3).getAsDouble(),
+                                seatArray.get(4).getAsDouble(),
+                                seatArray.get(5).getAsDouble()
+                            )));
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    @Override
     public ResourceLocation getId(){
         return id;
     }
@@ -193,7 +339,7 @@ public class WrapperRollingStock {
         this.axes.add(axis);
     }
     
-    public class WrapperRollingStockEntityImpl extends AbstractRollingStock<WrapperRollingStockEntityImpl> {
+    public class WrapperRollingStockEntityImpl<E extends WrapperRollingStockEntityImpl<E>> extends AbstractRollingStock<E> {
         
         public WrapperRollingStockEntityImpl(World world){
             super(world);

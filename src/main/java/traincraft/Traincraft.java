@@ -154,7 +154,7 @@ public class Traincraft {
         
         File addonRoot = new File(this.gameDirectory, "traincraft");
         LOGGER.info("Loading internal files");
-        TraincraftAddonLoader.loadInternals(event.getSide(), MOD_ID, addonRoot);
+        TraincraftAddonLoader.loadInternals(event.getSide(), MOD_ID);
         LOGGER.info("Loading external addons");
         TraincraftAddonLoader.loadFolders(event.getSide(), addonRoot);
         

@@ -31,7 +31,7 @@ public class TCUtil {
     }
     
     public static TraincraftModel loadModelFromJTMT(ResourceLocation jtmtLocation){
-        String locationPath = String.format("/assets/%s/jtmt/%s", jtmtLocation.getNamespace(), jtmtLocation.getPath());
+        String locationPath = String.format("/assets/%s/jtmt/%s.jtmt", jtmtLocation.getNamespace(), jtmtLocation.getPath());
         InputStream is = TCUtil.class.getResourceAsStream(locationPath);
         if(is != null){
             try(InputStreamReader json = new InputStreamReader(is)){

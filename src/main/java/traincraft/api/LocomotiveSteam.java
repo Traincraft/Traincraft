@@ -237,7 +237,7 @@ public abstract class LocomotiveSteam<A extends LocomotiveSteam<A>> extends Abst
     }
     
     /**
-     * @return The size of the inventory. The default gui/container has 10 slots for coal
+     * @return The size of the inventory. The default gui/container has 10 slots for coal and one for the water container
      */
     protected int getInventorySize(){
         return 11;
@@ -255,7 +255,7 @@ public abstract class LocomotiveSteam<A extends LocomotiveSteam<A>> extends Abst
             case WATER_SLOT:
                 return stack.hasCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null);
             default:{
-                return TileEntityFurnace.isItemFuel(stack) || stack.hasCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null);
+                return this.isItemValidForInventory(BURN_SLOT, stack) || this.isItemValidForInventory(WATER_SLOT, stack);
             }
         }
     }

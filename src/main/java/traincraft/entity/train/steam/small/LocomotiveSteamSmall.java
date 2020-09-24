@@ -28,7 +28,7 @@ import java.util.Map;
 
 public class LocomotiveSteamSmall extends LocomotiveSteam<LocomotiveSteamSmall> {
     
-    private static final TraincraftModel MODEL = TCUtil.loadModelFromJTMT(new ResourceLocation(Traincraft.MOD_ID, "steam/steam_train.jtmt"));
+    private static final TraincraftModel MODEL = TCUtil.loadModelFromJTMT(new ResourceLocation(Traincraft.MOD_ID, "steam/small.jtmt"));
     
     public LocomotiveSteamSmall(World worldIn){
         super(worldIn);

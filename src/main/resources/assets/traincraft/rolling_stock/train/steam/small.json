@@ -1,0 +1,33 @@
+{
+  "id": "traincraft:locomotive_steam_small",
+  "name": "Small Steam Locomotive",
+  "desc": [
+    "Just a tiny little steam train"
+  ],
+  "acceleration": 0.5,
+  "breakPower": 0.968,
+  "maxSpeed": 12.5,
+  "maxReverseSpeed": 0,
+  "mass": 5000,
+  "maxTemperature": 473.15,
+  "waterCapacity": 5000,
+  "skins": {
+    "red": "traincraft:textures/rolling_stock/trains/steam/small_red.png",
+    "green": "traincraft:textures/rolling_stock/trains/steam/small_green.png",
+    "blue": "traincraft:textures/rolling_stock/trains/steam/small_blue.png",
+    "yellow": "traincraft:textures/rolling_stock/trains/steam/small_yellow.png",
+    "black": "traincraft:textures/rolling_stock/trains/steam/small_black.png"
+  },
+  "seats": [
+    [-0.5, 0, -0.5, 0.5, 0.5, 0.5]
+  ],
+  "size": [
+    1.04,
+    1.856,
+    2.2
+  ],
+  "model": {
+    "location": "traincraft:train/steam/small",
+    "scale": 0.8
+  }
+}

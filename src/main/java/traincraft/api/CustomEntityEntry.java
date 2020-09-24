@@ -16,9 +16,9 @@ import net.minecraftforge.fml.common.registry.EntityEntry;
 
 public class CustomEntityEntry<T extends AbstractRollingStock<T>> extends EntityEntry {
     
-    private final WrapperRollingStock wrapper;
+    private final IWrapperAddon wrapper;
     
-    public CustomEntityEntry(WrapperRollingStock wrapper, String name){
+    public CustomEntityEntry(IWrapperAddon wrapper, String name){
         super(WrapperRollingStock.WrapperRollingStockEntityImpl.class, name);
         this.wrapper = wrapper;
         this.setRegistryName(wrapper.getId());
