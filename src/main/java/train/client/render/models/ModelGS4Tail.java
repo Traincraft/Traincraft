@@ -15,7 +15,6 @@ import org.lwjgl.opengl.GL11;
 import fexcraft.tmt.slim.ModelBase;
 import fexcraft.tmt.slim.ModelRendererTurbo;
 import fexcraft.tmt.slim.Tessellator;
-import train.common.api.AbstractTrains;
 import train.common.library.Info;
 
 public class ModelGS4Tail extends ModelBase
@@ -672,11 +671,12 @@ public class ModelGS4Tail extends ModelBase
 		{
 			gs4tailModel[i].render(f5);
 		}
-		if(entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor()==2){
+		//todo: this should be handled by TiM's skin system
+		/*if(entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor()==2){
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/GS4_bogie_Red.png"));
 		} else {
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/GS4_bogie.png"));
-		}
+		}*/
 
 		GL11.glPushMatrix();
 		GL11.glTranslated(-3.1,0,0);

@@ -1,5 +1,6 @@
 package train.common.blocks.tracks;
 
+import ebf.tim.entities.EntityTrainCore;
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.api.core.items.IToolCrowbar;
 import mods.railcraft.api.tracks.ITrackLockdown;
@@ -10,8 +11,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IIcon;
-import train.common.api.AbstractTrains;
-import train.common.api.Locomotive;
 import train.common.library.Tracks;
 
 import java.io.DataInputStream;
@@ -126,7 +125,7 @@ public class BlockStationTrack extends BlockTrackLockingBase implements ITrackLo
 	public void onMinecartPass(EntityMinecart cart) {
 		/*if (!(cart instanceof Locomotive))
 			return;*/
-		if((cart instanceof Locomotive)||(!(cart instanceof AbstractTrains)&&(cart != null))){
+		if(cart instanceof EntityTrainCore){
 
 			checkCart(cart);
 			int meta = this.tileEntity.getBlockMetadata();

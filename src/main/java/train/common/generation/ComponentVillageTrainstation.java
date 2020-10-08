@@ -5,9 +5,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.StructureVillagePieces;
-import train.common.api.EntityRollingStock;
 import train.common.core.util.TraincraftUtil;
-import train.common.entity.rollingStock.*;
 import train.common.library.BlockIDs;
 
 import java.util.List;
@@ -163,7 +161,8 @@ public class ComponentVillageTrainstation extends StructureVillagePieces.Village
 
 		if (structureboundingbox.isVecInside(j1, k1, l1)) {
 			int rD = random.nextInt(8);
-			EntityRollingStock cart = new EntityCabooseLogging(world);
+			//todo:spawn in wagons when implemented
+			/*EntityRollingStock cart = new EntityCabooseLogging(world);
 			if (rD == 0)
 				cart = new EntityCaboose(world);
 			if (rD == 1)
@@ -193,6 +192,7 @@ public class ComponentVillageTrainstation extends StructureVillagePieces.Village
 			}
 			world.spawnEntityInWorld(cart);
 			cart.setInformation(cart.getTrainType(), "VillagerJoe", "VillagerJoe", cart.getCartItem().getItem().getItemStackDisplayName(cart.getCartItem()), -1);
+			*/
 		}
 		int j2 = this.getXWithOffset(3, 8);
 		int k2 = this.getYWithOffset(1);
@@ -200,7 +200,8 @@ public class ComponentVillageTrainstation extends StructureVillagePieces.Village
 
 		if (structureboundingbox.isVecInside(j2, k2, l2)) {
 			int rD = random.nextInt(8);
-			EntityRollingStock cart = new EntityFreightWood2(world);
+			//todo:spawn in wagons when implemented
+			/*EntityRollingStock cart = new EntityFreightWood2(world);
 			if (rD == 0)
 				cart = new EntityCaboose(world);
 			if (rD == 1)
@@ -223,7 +224,7 @@ public class ComponentVillageTrainstation extends StructureVillagePieces.Village
 			if (rD == 5) {
 				cart.setColor(TraincraftUtil.getByteFromColor("Brown"));
 			}
-			world.spawnEntityInWorld(cart);
+			world.spawnEntityInWorld(cart);*/
 		}
 
 		return true;

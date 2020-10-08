@@ -1,11 +1,11 @@
 package train.common.blocks.tracks;
 
+import ebf.tim.entities.EntityTrainCore;
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.api.tracks.ITrackLockdown;
 import mods.railcraft.api.tracks.ITrackPowered;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.nbt.NBTTagCompound;
-import train.common.api.Locomotive;
 import train.common.library.Tracks;
 
 import java.io.DataInputStream;
@@ -56,7 +56,7 @@ public class BlockLocomotiveHoldingTrack extends BlockTrackLockingBase implement
 	}
 	@Override
 	public void onMinecartPass(EntityMinecart cart) {
-		if (!(cart instanceof Locomotive) && (cart.getClass().getSuperclass() != null && !cart.getClass().getSuperclass().getName().equals("EntityLocomotive")))
+		if (!(cart instanceof EntityTrainCore))
 			return;
 
 		checkCart(cart);

@@ -3,27 +3,14 @@ package train.common.core.handlers;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
-import net.minecraft.crash.CrashReport;
 import net.minecraft.entity.passive.EntityAnimal;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.ReportedException;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.EntityStruckByLightningEvent;
 import net.minecraftforge.event.world.ChunkEvent;
-import train.common.api.AbstractTrains;
-import train.common.api.Locomotive;
 import train.common.entity.ai.EntityAIFearHorn;
 import train.common.entity.rollingStock.EntityJukeBoxCart;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
-import java.util.UUID;
 
 public class WorldEvents{
 	private int windTicker = 0;
@@ -66,19 +53,6 @@ public class WorldEvents{
 	}
 
 	@SubscribeEvent
-	@SuppressWarnings("unused")
-	public void playerQuitEvent(PlayerEvent.PlayerLoggedOutEvent event){
-		if (event.player.ridingEntity instanceof AbstractTrains){
-			if (event.player.ridingEntity instanceof Locomotive) {
-				((Locomotive) event.player.ridingEntity).isBraking=true;
-				((Locomotive) event.player.ridingEntity).parkingBrake=true;
-			}
-			event.player.dismountEntity(event.player.ridingEntity);
-			event.player.ridingEntity = null;
-		}
-	}
-
-	@SubscribeEvent
 	public void chunkUnloadEvent(ChunkEvent.Unload event){
 		for(Object o : event.getChunk().entityLists){
 			if (o instanceof EntityJukeBoxCart){
@@ -87,11 +61,4 @@ public class WorldEvents{
 		}
 	}
 
-	@SubscribeEvent
-	@SuppressWarnings("unused")
-	public void EntityStruckByLightningEvent(EntityStruckByLightningEvent event) {
-		if (event.entity instanceof AbstractTrains){
-			event.setCanceled(true);
-		}
-	}
 }

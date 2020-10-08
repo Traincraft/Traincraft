@@ -1,9 +1,10 @@
 package train.client.render.models;
 
+import ebf.tim.entities.GenericRailTransport;
+import ebf.tim.utility.ItemStackSlot;
 import net.minecraft.entity.Entity;
 import fexcraft.tmt.slim.ModelBase;
 import train.client.render.CustomModelRenderer;
-import train.common.api.Freight;
 
 public class ModelFreightCenterBeam_Wood_2 extends ModelBase {
 
@@ -145,7 +146,14 @@ public class ModelFreightCenterBeam_Wood_2 extends ModelBase {
 		box2.render(f5);
 		
 		//freight
-		if(((Freight)entity).getAmmountOfCargo() != 0) {
+		int cargo = 0;
+
+		for (ItemStackSlot s : ((GenericRailTransport) entity).inventory){
+			if(s.getStack()!=null){
+				cargo++;
+			}
+		}
+		if(cargo != 0) {
 			//GL11.glPushMatrix();
 			//GL11.glScalef(1, 0.0f+((Freight)entity).getAmmountOfCargo()*0.0194f, 1);
 			//GL11.glTranslatef(0, 0.0f+(((Freight)entity).getSizeInventory()-((Freight)entity).getAmmountOfCargo())*0.5f, 0);

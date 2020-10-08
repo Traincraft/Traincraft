@@ -1,11 +1,11 @@
 package train.client.render.models;
 
 import cpw.mods.fml.client.FMLClientHandler;
+import ebf.tim.entities.GenericRailTransport;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import fexcraft.tmt.slim.ModelBase;
 import train.client.render.CustomModelRenderer;
-import train.common.entity.rollingStock.EntityTracksBuilder;
 import train.common.library.Info;
 
 public class ModelBuilder extends ModelBase {
@@ -552,7 +552,7 @@ public class ModelBuilder extends ModelBase {
 		dig -= (float) elapsed / 500.0f;
 		lastframe = now;
 
-		if (((EntityTracksBuilder) entity).getState()) {
+		if (((GenericRailTransport)entity).getBoolean(GenericRailTransport.boolValues.RUNNING)) {
 			FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation,Info.trainsPrefix + "builder2.png"));
 		}
 		else {
@@ -663,7 +663,7 @@ public class ModelBuilder extends ModelBase {
 		rotor6.render(f5);
 		rotor7.render(f5);
 
-		if (((EntityTracksBuilder) entity).getState()) {
+		if (((GenericRailTransport)entity).getBoolean(GenericRailTransport.boolValues.RUNNING)) {
 			rotor1.rotateAngleX = dig + 0.0F;
 			rotor2.rotateAngleX = dig + 1.58F;
 			rotor3.rotateAngleX = dig + 0.58F;

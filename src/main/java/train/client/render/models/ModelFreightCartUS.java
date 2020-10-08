@@ -1,10 +1,11 @@
 package train.client.render.models;
 
+import ebf.tim.entities.GenericRailTransport;
+import ebf.tim.utility.ItemStackSlot;
 import net.minecraft.entity.Entity;
 import org.lwjgl.opengl.GL11;
 import fexcraft.tmt.slim.ModelBase;
 import train.client.render.CustomModelRenderer;
-import train.common.api.Freight;
 
 public class ModelFreightCartUS extends ModelBase {
 	
@@ -135,10 +136,17 @@ public class ModelFreightCartUS extends ModelBase {
 		box8.render(f5);
 		box9.render(f5);
 		
-		int cargo = ((Freight) entity).getAmmountOfCargo();
+		int cargo = 0;
+
+		for (ItemStackSlot s : ((GenericRailTransport) entity).inventory){
+			if(s.getStack()!=null){
+				cargo++;
+			}
+		}
+
 		if (cargo != 0) {
 			GL11.glPushMatrix();
-			GL11.glTranslatef(0, -0.51f+((Freight)entity).getAmmountOfCargo()*0.016f, 0);
+			GL11.glTranslatef(0, -0.51f+(((GenericRailTransport) entity).getInventoryRows()*9)*0.016f, 0);
 			box0.render(f5);
 			GL11.glPopMatrix();
 		}

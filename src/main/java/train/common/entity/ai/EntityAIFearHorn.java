@@ -1,5 +1,7 @@
 package train.common.entity.ai;
 
+import ebf.tim.entities.EntityTrainCore;
+import ebf.tim.entities.GenericRailTransport;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.RandomPositionGenerator;
@@ -8,7 +10,6 @@ import net.minecraft.pathfinding.PathEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.ChunkCache;
-import train.common.api.Locomotive;
 
 public class EntityAIFearHorn extends EntityAIBase{
 	
@@ -24,7 +25,7 @@ public class EntityAIFearHorn extends EntityAIBase{
 
 	@Override
 	public boolean shouldExecute() {
-		if(entity.getEntityToAttack() instanceof Locomotive) {
+		if(entity.getEntityToAttack() instanceof EntityTrainCore) {
 			Entity loco = entity.getEntityToAttack(); 
 			Vec3 posLoco = Vec3.createVectorHelper(loco.posX, loco.posY, loco.posZ);
 			entity.detachHome();

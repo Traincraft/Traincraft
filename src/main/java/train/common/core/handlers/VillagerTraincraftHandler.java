@@ -2,6 +2,7 @@ package train.common.core.handlers;
 
 import cpw.mods.fml.common.registry.VillagerRegistry.IVillageCreationHandler;
 import cpw.mods.fml.common.registry.VillagerRegistry.IVillageTradeHandler;
+import ebf.tim.items.ItemTransport;
 import net.minecraft.block.Block;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.init.Blocks;
@@ -13,7 +14,6 @@ import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList;
 import net.minecraft.world.gen.structure.StructureVillagePieces;
 import train.common.generation.ComponentVillageTrainstation;
-import train.common.items.ItemRollingStock;
 import train.common.library.ItemIDs;
 
 import java.util.List;
@@ -56,11 +56,11 @@ public class VillagerTraincraftHandler implements IVillageCreationHandler,IVilla
 		
 		for(ItemIDs item : ItemIDs.values()){
 			if(item!=null && item.item!=null){
-				if(item.item instanceof ItemRollingStock){
+				if(item.item instanceof ItemTransport){
 					recipeList.add(new MerchantRecipe(new ItemStack(item.item), new ItemStack(Items.emerald,item.amountForEmerald)));
 					recipeList.add(new MerchantRecipe(new ItemStack(Items.emerald,item.amountForEmerald), item.item));
 				}else if(item.amountForEmerald>0){
-					if(!(item.item instanceof ItemRollingStock) && item.amountForEmerald>0){
+					if(!(item.item instanceof ItemTransport) && item.amountForEmerald>0){
 						recipeList.add(new MerchantRecipe(new ItemStack(item.item,item.amountForEmerald), Items.emerald));
 						recipeList.add(new MerchantRecipe(new ItemStack(Items.emerald), new ItemStack(item.item,item.amountForEmerald)));
 					}

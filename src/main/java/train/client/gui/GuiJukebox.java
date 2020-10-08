@@ -2,6 +2,9 @@ package train.client.gui;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import ebf.tim.TrainsInMotion;
+import ebf.tim.entities.GenericRailTransport;
+import ebf.tim.networking.PacketInteract;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
@@ -13,9 +16,7 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 import train.common.Traincraft;
-import train.common.api.AbstractTrains;
 import train.common.core.network.PacketSetJukeboxStreamingUrl;
-import train.common.core.network.PacketSetTrainLockedToClient;
 import train.common.entity.rollingStock.EntityJukeBoxCart;
 import train.common.library.Info;
 
@@ -68,7 +69,7 @@ public class GuiJukebox extends GuiScreen {
 		Keyboard.enableRepeatEvents(true);
 		int var1 = (this.width - gui_width) / 2;
 		int var2 = (this.height - gui_height) / 2;
-		if (!((AbstractTrains) jukebox).locked) {
+		if (!jukebox.getBoolean(GenericRailTransport.boolValues.LOCKED)) {
 			this.buttonList.add(this.buttonLock = new GuiButton(3, var1 + gui_width - 350, var2 - 10, 51, 10, "Unlocked"));
 		}
 		else {
@@ -253,19 +254,19 @@ public class GuiJukebox extends GuiScreen {
 		}
 
 		if (button.id == 3) {
-			if (player != null && player instanceof EntityPlayer && player.getDisplayName().equals(((AbstractTrains) jukebox).getTrainOwner())) {
-				if ((!((AbstractTrains) jukebox).locked)) {
+			if (player instanceof EntityPlayer && player.getDisplayName().equals( jukebox.getOwnerName())) {
+				if ((! jukebox.getBoolean(GenericRailTransport.boolValues.LOCKED))) {
 					AxisAlignedBB box = jukebox.boundingBox.expand(5, 5, 5);
 					List lis3 = jukebox.worldObj.getEntitiesWithinAABBExcludingEntity(jukebox, box);
 					if (lis3 != null && lis3.size() > 0) {
 						for (int j1 = 0; j1 < lis3.size(); j1++) {
 							Entity entity = (Entity) lis3.get(j1);
 							if (entity instanceof EntityPlayer) {
-								Traincraft.lockChannel.sendToServer(new PacketSetTrainLockedToClient(true, this.jukebox.getEntityId()));
+								TrainsInMotion.keyChannel.sendToServer(new PacketInteract(6, jukebox.getEntityId()));
 							}
 						}
 					}
-					((AbstractTrains) jukebox).locked = true;
+
 					button.displayString = "Locked";
 					this.initGui();
 				}
@@ -276,11 +277,10 @@ public class GuiJukebox extends GuiScreen {
 						for (int j1 = 0; j1 < lis3.size(); j1++) {
 							Entity entity = (Entity) lis3.get(j1);
 							if (entity instanceof EntityPlayer) {
-								Traincraft.lockChannel.sendToServer(new PacketSetTrainLockedToClient(true, this.jukebox.getEntityId()));
+								TrainsInMotion.keyChannel.sendToServer(new PacketInteract(6, jukebox.getEntityId()));
 							}
 						}
 					}
-					((AbstractTrains) jukebox).locked = false;
 					button.displayString = "UnLocked";
 					this.initGui();
 				}
@@ -304,7 +304,7 @@ public class GuiJukebox extends GuiScreen {
 	@Override
 	protected void drawCreativeTabHoveringText(String str, int t, int g) {
 		String state = "";
-		if (jukebox.locked)
+		if (jukebox.getBoolean(GenericRailTransport.boolValues.LOCKED))
 			state = "Locked";
 		else
 			state = "Unlocked";
@@ -322,7 +322,7 @@ public class GuiJukebox extends GuiScreen {
 		fontRendererObj.drawStringWithShadow("only its owner can open", t + 15, g + 10 - 40, -1);
 		fontRendererObj.drawStringWithShadow("the GUI and destroy it.", t + 15, g + 20 - 40, -1);
 		fontRendererObj.drawStringWithShadow("Current state: " + state, t + 15, g + 30 - 40, -1);
-		fontRendererObj.drawStringWithShadow("Owner: " + jukebox.getTrainOwner(), t + 15, g + 40 - 40, -1);
+		fontRendererObj.drawStringWithShadow("Owner: " + jukebox.getOwnerName(), t + 15, g + 40 - 40, -1);
 	}
 
 	public boolean intersectsWith(int mouseX, int mouseY) {

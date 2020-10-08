@@ -5,9 +5,10 @@
  */
 package train.common.blocks.tracks;
 
+import ebf.tim.TrainsInMotion;
+import ebf.tim.entities.GenericRailTransport;
 import mods.railcraft.api.tracks.ITrackEmitter;
 import net.minecraft.entity.item.EntityMinecart;
-import train.common.api.LiquidTank;
 import train.common.library.Tracks;
 
 public class BlockDetectorTankCartsTrack extends BlockDetectorTrack implements ITrackEmitter {
@@ -19,7 +20,8 @@ public class BlockDetectorTankCartsTrack extends BlockDetectorTrack implements I
 
 	@Override
 	public void onMinecartPass(EntityMinecart cart) {
-		if (cart instanceof LiquidTank) {
+		if (cart instanceof GenericRailTransport
+				&& ((GenericRailTransport) cart).getTypes().contains(TrainsInMotion.transportTypes.TANKER)) {
 			setTrackPowering();
 		}
 	}

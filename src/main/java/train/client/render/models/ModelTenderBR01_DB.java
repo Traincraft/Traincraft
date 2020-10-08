@@ -1,13 +1,14 @@
 package train.client.render.models;
 
 import cpw.mods.fml.client.FMLClientHandler;
+import ebf.tim.entities.GenericRailTransport;
+import ebf.tim.utility.ItemStackSlot;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import fexcraft.tmt.slim.ModelBase;
 import train.client.core.ClientProxy;
 import train.client.render.CustomModelRenderer;
-import train.common.entity.rollingStock.EntityTenderBR01_DB;
 import train.common.library.Info;
 
 public class ModelTenderBR01_DB extends ModelBase {
@@ -415,7 +416,13 @@ public class ModelTenderBR01_DB extends ModelBase {
 		box81.render(f5);
 		box9.render(f5);
 		
-		int cargo = ((EntityTenderBR01_DB) entity).getAmmountOfCargo();
+		int cargo = 0;
+
+		for (ItemStackSlot s : ((GenericRailTransport) entity).inventory){
+			if(s.getStack()!=null){
+				cargo++;
+			}
+		}
 		if (cargo != 0) {
 			GL11.glPushMatrix();
 			GL11.glTranslatef(0, -0.66f+cargo*0.046f, 0);

@@ -1,0 +1,205 @@
+<!-- ## This is a comment, do no remove or modify these! ## -->http://jabelarminecraft.blogspot.com/p/minecraft-modding-localization.html
+<!-- ## Only replace the words on the right side of "=" ## -->
+
+<!-- ## Credit to Eternal Blue Flame ## -->
+
+<!-- ## GUI ## -->
+gui.waterboiler=Water Boiler
+gui.creativemode=Creative Mode is 
+gui.brake.false=Brakes Are Disabled.
+gui.brake.true=Brakes Are Enabled.
+gui.lamp.true=Lamp Is On.
+gui.lamp.false=Lamp Is Off.
+gui.horn=Use Horn.
+gui.on=on.
+gui.off=off.
+gui.coupler.true=Couplers are open.
+gui.coupler.false=Couplers are closed.
+gui.locked.true=Locked to owner.
+gui.locked.false=Unlocked.
+gui.map=Open map.
+gui.rf=Redstone Flux
+gui.hydrogencell=Hydrogen Cell
+gui.coolant=Reactor Coolant
+gui.of= of 
+gui.buckets=Buckets.
+gui.unlink=Unlink couplers.
+gui.dropkey=Copy Ownership Key.
+gui.running.false=Locomotive is off.
+gui.running.true=Locomotive is on.
+gui.creative.false=Creative Mode Disabled.
+gui.creative.true=Creative Mode Enabled.
+
+container.traincrafting=Train Crafting Table
+
+menu.item.steam=Steam
+menu.item.diesel=Diesel
+menu.item.electric=Electric
+menu.item.hydrogen=Hydro-electric
+menu.item.nuclearsteam=Nuclear Steam
+menu.item.nuclearelectric=Nuclear Electric
+menu.item.speed=Speed
+menu.item.year=Year
+menu.item.country=Country
+menu.item.pullingpower=Pulling power
+menu.item.tons=Tons
+menu.item.weight=Weight
+menu.item.mhp=Metric Horsepower
+menu.item.seats=Seats
+menu.item.weight=Weight
+menu.item.isizeof=Inventory size of
+menu.item.slots=Slots
+menu.item.fictional=Fictional
+menu.noties=No Ties
+menu.nowires=No Overhead Wires
+menu.noballast=No Ballast
+menu.item=Item
+menu.items=Items
+menu.item.fueltype=Fuel Type
+menu.item.seats=Seats
+menu.ties=Ties:
+menu.ballast=Ballast:
+menu.rails=Rails:
+item.TiM=Trains in Motion
+item.tab.timsquared.name=Tim Squared
+
+<!-- ## Countries ## -->
+menu.item.us=USA
+menu.item.germany=Germany
+menu.item.japan=Japan
+menu.item.belgium=Belgium
+menu.item.russia=Russia
+menu.item.england=England
+menu.item.china=China
+menu.item.north korea=North Korea
+menu.item.south korea=South Korea
+menu.item.undefined=Undefined
+menu.item.canada=Canada
+menu.item.mexico=Mexico
+menu.item.africa=Africa
+menu.item.scotland=Scotland
+menu.item.poland=Poland
+menu.item.wales=Wales
+menu.item.north ireland=Northern Ireland
+menu.item.ireland=Ireland
+menu.item.south ireland=Republic of Ireland
+menu.item.united kingdom=United Kingdom
+menu.item.india=India
+menu.item.france=France
+menu.item.spain=Spain
+menu.item.australia=Australia
+menu.item.austria=Austria
+menu.item.brazil=Brazil
+menu.item.italy=Italy
+
+
+
+<!-- ## Items ## -->
+item.oil.bucket.name=Oil bucket
+item.diesel.bucket.name=Diesel bucket
+item.adminbook.name=Admin Book
+item.craftbook.name=Recipe Book
+item.transportkey.name=Transport Key
+item.transportticket.name=Transport Ticket
+item.steam.bucket.name=Steam Bucket
+item.heavysteam.bucket.name=Heavy Steam Bucket
+item.fueloil.bucket.name=Oil Bucket
+item.redstone.bucket.name=Redstone Bucket
+item.paintbucket.name=Paint Bucket
+item.cabin.wood.name=Wood Cabin
+item.cabin.aluminium.name=Aluminium Cabin
+item.cabin.copper.name=Copper Cabin
+item.cabin.iron.name=Iron Cabin
+item.cabin.steel.name=Steel Cabin
+item.cabin.fiberglass.name=Fiberglass Cabin
+item.cabin.plastic.name=Plastic Cabin
+item.frame.wood.name=Wood Frame
+item.frame.aluminium.name=Aluminium Frame
+item.frame.copper.name=Copper Frame
+item.frame.iron.name=Iron Frame
+item.frame.steel.name=Steel Frame
+item.frame.fiberglass.name=Fiberglass Frame
+item.frame.plastic.name=Plastic Frame
+item.wheel.wood.name=Wood Wheel
+item.wheel.aluminium.name=Aluminium Wheel
+item.wheel.iron.name=Iron wheel
+item.wheel.steel.name=Steel wheel
+item.wheel.plastic.name=Plastic Wheel
+item.chimney.wood.name=Wood Chimney
+item.chimney.aluminium.name=Aluminium Chimney
+item.chimney.copper.name=Copper Chimney
+item.chimney.iron.name=Iron Chimney
+item.chimney.steel.name=Steel Chimney
+item.chimney.fiberglass.name=Fiberglass Chimney
+item.chimney.plastic.name=Plastic Chimney
+item.chimney.aluminium.short.name=Short Aluminium Chimney
+item.chimney.steel.short.name=Short Steel Chimney
+item.boiler.wood.name=Wood Boiler
+item.boiler.iron.name=Iron Boiler
+item.boiler.steel.name=Steel Boiler
+item.boiler.copper.name=Copper Boiler
+item.petrol.engine.name= Petrol Engine
+item.small.diesel.engine.name= Small Diesel Engine
+item.medium.diesel.engine.name=Medium Diesel Engine
+item.large.diesel.engine.name=Large Diesel Engine
+item.small.electric.engine.name=Small Electric Engine
+item.medium.electric.engine.name=Medium Electric Engine
+item.large.electric.engine.name=Large Electric Engine
+item.seats.wooden.name=Wooden Seats
+item.seats.iron.name=Iron Seats
+item.seats.padded.name=Padded Seats
+item.seats.luxury.name=Luxury Seats
+item.hydraulic.transmission.name=Hydraulic Transmission
+item.pneumatic.transmission.name=Pneumatic Transmission
+item.transformer.name=Transformer
+item.transformer.hv.name=HV Transformer
+item.electric.controls.name=Electric Controls
+item.engine.piston.name=Piston
+item.engine.cylinder.name=Cylinder
+item.camshaft.name=Camshaft
+item.graphite.name=Graphite
+item.steel.pin.circuit.name=Steel Pin Circuit
+item.gold.pin.circuit.name=Gold Pin Circuit
+item.copper.wire.name=Copper Wire
+item.gold.wire.name=Gold Wire
+item.carbon.wire.name=Carbon Wire
+item.steel.wire.name=Steel Wire
+item.aluminium.wire.name=Aluminium Wire
+item.insulated.copper.wire.name=Insulated Copper Wire
+item.insulated.aluminium.wire.name=Insulated Aluminium Wire
+item.control.panel.name=Control Panel
+item.control.stand.name=Control Stand
+item.connecting.rod.name=Connecting Rod
+item.walschaerts.valve.gear.name=Walschaerts Valve Gear
+item.stephenson.valve.gear.name=Stephenson Valve Gear
+item.baker.valve.gear.name=Baker Valve Gear
+item.radial.valve.gear.name=Radial Valve Gear
+item.conjugating.valve.gear.name=Conjugating Valve Gear
+
+<!-- ## Blocks ## -->
+fluid.oil=Oil
+tile.block.traintable.name=Train Crafting Table
+Track Crafting Table.name=Track Crafting Table
+tile.block.railtable=Track Crafting Table
+item.timrail.name=Track
+tile.block.timrail.name=Track
+tile.block.diesel=Diesel Fluid
+fluid.diesel=Diesel Fluid
+tile.block.oil=Oil Fluid
+fluid.oil.name=Oil Fluid
+
+<!-- ## Trains ## -->
+<!-- ## These are actually defined from the item name, so one name covers all areas ## -->
+item.HenschelBrigadelok.name=Brigadelok 0-8-0
+item.HenschelBrigadelok-E.name=Brigadelok 0-8-0 (Electric)
+item.GATX13000GallonTanker.name=GATX 13000 Gallon Tanker
+item.V.A.TLogcar.name=V.A.T Logcar
+item.UnionPacific3-bayHopper.name=UP 3-Bay Hopper
+item.Pullman'sPalace.name=Pullman's Palace
+item.BurlingtonNorthern&SantaFe3-bayHopper.name=BNSF 3-Bay Hopper
+
+
+<!-- ## Rollingstock ## -->
+<!-- ## These are actually defined from the item name, so one name covers all areas ## -->
+item.pullmanspalace.name=Pullman's Palace
+item.vatlogcar.name=V.A.T Log Car

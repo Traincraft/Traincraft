@@ -1,0 +1,61 @@
+<!-- ## This is a comment, do no remove or modify these! ## -->
+<!-- ## Only replace the words on the right side of "=" ## -->
+
+<!-- ## Credit to Pietro Devò ## -->
+
+<!-- ## GUI ## -->
+gui.waterboiler=Bollitore dell'acqua
+gui.creativemode=La modalità creativa è 
+gui.brake=Il freno è
+gui.lamp=Il faro è
+gui.horn=Aziona il clacson 
+gui.trainisrunning=Il treno è
+gui.on=Acceso
+gui.off=Spento
+gui.coupler.false=Gli accoppiatori sono aperti
+gui.coupler.false=Gli accoppiatori sono chiusi
+gui.locked.true=Bloccato dal proprietario
+gui.locked.false=Sbloccato
+gui.rf=Flusso di pietrarossa
+gui.hydrogencell=Cella di idrogeno
+gui.coolant=Refrigerante del reattore
+gui.of=Di
+gui.buckets=Secchi
+
+container.traincrafting=Fabbricazione ferroviaria
+
+
+<!-- ## Items ## -->
+menu.item.era=Epoca
+menu.item.steam=Vapore
+menu.item.diesel=Diesel
+menu.item.Electric=Elettrico
+menu.item.hydrogen=Idro-elettrico
+menu.item.maglev=Lievitazione magnetica
+menu.item.nuclearsteam=Vapore nucleare
+menu.item.nuclearelectric=Elettrico nucleare
+menu.item.speed=Velocità
+menu.item.year=Anno
+menu.item.country=Nazione
+menu.item.germany=Germania
+menu.item.america=Stati Uniti d'America
+menu.item.pullingpower=Potenza di trazione
+menu.item.tons=Tonnellate
+menu.item.weight=Massa
+
+item.oilbucket=Secchio di olio
+
+
+<!-- ## Blocks ## -->
+fluid.oil=Olio
+block.traintable=Tavolo da lavoro ferroviario
+
+
+<!-- ## Trains ## -->
+<!-- ## These are actually defined from the item name, so one name covers all areas ## -->
+item.brigadelok080.name=Brigadelok 0-8-0
+
+
+<!-- ## Rollingstock ## -->
+<!-- ## These are actually defined from the item name, so one name covers all areas ## -->
+item.pullmanspalace.name=Carrozza-palazzo di Pullman

@@ -5,9 +5,9 @@
  */
 package train.common.blocks.tracks;
 
+import ebf.tim.entities.GenericRailTransport;
 import mods.railcraft.api.tracks.ITrackEmitter;
 import net.minecraft.entity.item.EntityMinecart;
-import train.common.api.Freight;
 import train.common.library.Tracks;
 
 public class BlockDetectorFreightTrack extends BlockDetectorTrack implements ITrackEmitter {
@@ -19,7 +19,7 @@ public class BlockDetectorFreightTrack extends BlockDetectorTrack implements ITr
 
 	@Override
 	public void onMinecartPass(EntityMinecart cart) {
-		if (cart instanceof Freight) {
+		if (cart instanceof GenericRailTransport && ((GenericRailTransport) cart).getInventoryRows()>0) {
 			setTrackPowering();
 		}
 	}

@@ -16,7 +16,6 @@ import org.lwjgl.opengl.GL11;
 import fexcraft.tmt.slim.ModelConverter;
 import fexcraft.tmt.slim.ModelRendererTurbo;
 import fexcraft.tmt.slim.Tessellator;
-import train.common.api.EntityRollingStock;
 import train.common.library.Info;
 
 public class ModelC62Tender extends ModelConverter //Same as Filename
@@ -41,7 +40,8 @@ public class ModelC62Tender extends ModelConverter //Same as Filename
 	@Override
 	public void render(Entity entity, float f0, float f1, float f2, float f3, float f4, float scale){
 		super.render(entity, f0, f1, f2, f3, f4, scale);
-		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation,Info.trainsPrefix +"c62_tender_bogie_"+((EntityRollingStock)entity).getColorAsString() + ".png"));
+		//todo: this should be handled by TiM's skin system.
+		// Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation,Info.trainsPrefix +"c62_tender_bogie_"+((EntityRollingStock)entity).getColorAsString() + ".png"));
 		GL11.glPushMatrix();
 		GL11.glTranslatef(2.25f,0f,0);
 		bogie.render();

@@ -8,6 +8,8 @@ package train.common.blocks.tracks;
 import cofh.api.energy.IEnergyHandler;
 import cofh.api.energy.IEnergyProvider;
 import cpw.mods.fml.common.FMLCommonHandler;
+import ebf.tim.TrainsInMotion;
+import ebf.tim.entities.EntityTrainCore;
 import mods.railcraft.api.core.items.IToolCrowbar;
 import mods.railcraft.api.electricity.IElectricGrid;
 import mods.railcraft.api.tracks.ITrackPowered;
@@ -21,8 +23,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.common.util.ForgeDirection;
-import train.common.api.ElectricTrain;
-import train.common.api.EntityRollingStock;
 import train.common.core.handlers.ConfigHandler;
 import train.common.library.Tracks;
 
@@ -176,14 +176,7 @@ public class BlockEnergyTrack extends TrackBaseTraincraft implements ITrackPower
 	}
 	@Override
 	public void onMinecartPass(EntityMinecart cart) {
-		if (!(cart instanceof ElectricTrain)) {
-			return;
-		}
-		if ((this.RFChandler.getCharge() > 20) && (((ElectricTrain) cart).fuelTrain) < (((ElectricTrain) cart).maxEnergy)) {
-			double transfered = this.RFChandler.getCharge() * 0.05;
-			(((EntityRollingStock) cart).fuelTrain) += transfered;
-			this.RFChandler.removeCharge(transfered);
-		}
+		super.onMinecartPass(cart);
 	}
 
 	@Override

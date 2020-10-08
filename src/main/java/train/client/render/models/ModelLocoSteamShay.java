@@ -1,11 +1,12 @@
 package train.client.render.models;
 
+import ebf.tim.entities.GenericRailTransport;
+import ebf.tim.utility.ItemStackSlot;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import org.lwjgl.opengl.GL11;
 import fexcraft.tmt.slim.ModelBase;
 import train.client.render.CustomModelRenderer;
-import train.common.entity.rollingStock.EntityLocoSteamShay;
 
 public class ModelLocoSteamShay extends ModelBase {
 
@@ -682,7 +683,13 @@ public class ModelLocoSteamShay extends ModelBase {
 		roof_piston_lower.render(f5);
 		roof_piston_upper.render(f5);
 		
-		int cargo = ((EntityLocoSteamShay) entity).getAmmountOfCargo();
+		int cargo = 0;
+
+		for (ItemStackSlot s : ((GenericRailTransport) entity).inventory){
+			if(s.getStack()!=null){
+				cargo++;
+			}
+		}
 		if (cargo != 0) {
 			GL11.glPushMatrix();
 			GL11.glTranslatef(0, -0.15f+cargo*0.016f, 0);

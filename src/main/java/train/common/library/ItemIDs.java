@@ -64,9 +64,7 @@ public enum ItemIDs {
 	steelRail("ItemTrain", "item_rail_steel", 1),
 	recipeBook("ItemRecipeBook", "item_book_blue", 1),
 	adminBook("ItemAdminBook", "item_book_blue", 0),
-	wirelessTransmitter("ItemWirelessTransmitter", "wireless_transmitter", 3),
 
-	atoCard("ItemATOCard", "ato_card", 5),
 	minecartWork("ItemRollingStock", "train_work", 4),
 	minecartTender("ItemRollingStock", "train_tender", 4),
 	minecartChest("ItemRollingStock", "train_freight_1", 4),
@@ -280,33 +278,7 @@ public enum ItemIDs {
 
 	minecartPassengerDBOriental("ItemRollingStock", "train_passenger_orient", 2),
 	minecartLocoSD40("ItemRollingStock", "train_sd40", 10),
-	zeppelin("ItemZeppelin", "item_zeppelin_one_balloon", 1),
-
-	tcRailSmallStraight("ItemTCRail", "item_rail_straight_small", 5),
-	tcRailMediumStraight("ItemTCRail", "item_rail_straight_medium", 5),
-	tcRailLongStraight("ItemTCRail", "item_rail_straight_large", 5),
-	tcRailSmallRoadCrossing("ItemTCRail", "item_rail_small_road_crossing", 5),
-	tcRailSmallRoadCrossing1("ItemTCRail", "item_rail_small_road_crossing_1", 5),
-	tcRailSmallRoadCrossing2("ItemTCRail", "item_rail_small_road_crossing_2", 5),
-
-	tcRailMediumTurn("ItemTCRail", "item_rail_turn_medium", 5),
-	tcRailLargeTurn("ItemTCRail", "item_rail_turn_large", 5),
-	tcRailVeryLargeTurn("ItemTCRail", "item_rail_turn_veryLarge", 5),
-
-	tcRailMediumSwitch("ItemTCRail", "item_rail_switch_medium", 5),
-	tcRailLargeSwitch("ItemTCRail", "item_rail_switch_large", 5),
-	tcRailMediumParallelSwitch("ItemTCRail", "item_rail_switch_parallel", 5),
-
-	tcRailTwoWaysCrossing("ItemTCRail","item_rail_two_ways_crossing",5),
-	tcRailSlopeWood("ItemTCRail", "item_rail_straight_slope_wood", 5),
-	tcRailSlopeGravel("ItemTCRail", "item_rail_straight_slope_gravel", 5),
-	tcRailSlopeBallast("ItemTCRail", "item_rail_straight_slope_ballast", 5),
-	tcRailLargeSlopeWood("ItemTCRail", "item_rail_straight_slope_wood", 3),
-	tcRailLargeSlopeGravel("ItemTCRail", "item_rail_straight_slope_gravel", 3),
-	tcRailLargeSlopeBallast("ItemTCRail", "item_rail_straight_slope_ballast", 3),
-	tcRailVeryLargeSlopeWood("ItemTCRail", "item_rail_straight_slope_wood", 3),
-	tcRailVeryLargeSlopeGravel("ItemTCRail", "item_rail_straight_slope_gravel", 3),
-	tcRailVeryLargeSlopeBallast("ItemTCRail", "item_rail_straight_slope_ballast", 3);
+	zeppelin("ItemZeppelin", "item_zeppelin_one_balloon", 1);
 
 	public Item item;
 	public String className;

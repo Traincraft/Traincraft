@@ -5,6 +5,7 @@
  */
 package train.common.blocks.tracks;
 
+import ebf.tim.entities.EntityTrainCore;
 import mods.railcraft.api.core.items.IToolCrowbar;
 import mods.railcraft.api.tracks.ITrackPowered;
 import net.minecraft.block.Block;
@@ -14,7 +15,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IIcon;
-import train.common.api.Locomotive;
 import train.common.library.Tracks;
 
 import java.io.DataInputStream;
@@ -75,41 +75,44 @@ public class BlockLocomotiveSpeedControllerTrack extends TrackBaseTraincraft imp
 
 	@Override
 	public void onMinecartPass(EntityMinecart cart) {
-		if (((cart instanceof Locomotive))) {
+		if (((cart instanceof EntityTrainCore))) {
+			//todo: this is not a feature in the TiM API yet.
+			/*
 			if (this.mode == 0)
-				((Locomotive) cart).speedLimiter = 0.1;
+				((EntityTrainCore) cart).speedLimiter = 0.1;
 			if (this.mode == 1)
-				((Locomotive) cart).speedLimiter = 0.15;
+				((EntityTrainCore) cart).speedLimiter = 0.15;
 			if (this.mode == 2)
-				((Locomotive) cart).speedLimiter = 0.2;
+				((EntityTrainCore) cart).speedLimiter = 0.2;
 			if (this.mode == 3)
-				((Locomotive) cart).speedLimiter = 0.25;
+				((EntityTrainCore) cart).speedLimiter = 0.25;
 			if (this.mode == 4)
-				((Locomotive) cart).speedLimiter = 0.3;
+				((EntityTrainCore) cart).speedLimiter = 0.3;
 			if (this.mode == 5)
-				((Locomotive) cart).speedLimiter = 0.35;
+				((EntityTrainCore) cart).speedLimiter = 0.35;
 			if (this.mode == 6)
-				((Locomotive) cart).speedLimiter = 0.4;
+				((EntityTrainCore) cart).speedLimiter = 0.4;
 			if (this.mode == 7)
-				((Locomotive) cart).speedLimiter = 0.45;
+				((EntityTrainCore) cart).speedLimiter = 0.45;
 			if (this.mode == 8)
-				((Locomotive) cart).speedLimiter = 0.5;
+				((EntityTrainCore) cart).speedLimiter = 0.5;
 			if (this.mode == 9)
-				((Locomotive) cart).speedLimiter = 0.6;
+				((EntityTrainCore) cart).speedLimiter = 0.6;
 			if (this.mode == 10)
-				((Locomotive) cart).speedLimiter = 0.65;
+				((EntityTrainCore) cart).speedLimiter = 0.65;
 			if (this.mode == 11)
-				((Locomotive) cart).speedLimiter = 0.7;
+				((EntityTrainCore) cart).speedLimiter = 0.7;
 			if (this.mode == 12)
-				((Locomotive) cart).speedLimiter = 0.75;
+				((EntityTrainCore) cart).speedLimiter = 0.75;
 			if (this.mode == 13)
-				((Locomotive) cart).speedLimiter = 0.85;
+				((EntityTrainCore) cart).speedLimiter = 0.85;
 			if (this.mode == 14)
-				((Locomotive) cart).speedLimiter = 0.9;
+				((EntityTrainCore) cart).speedLimiter = 0.9;
 			if (this.mode == 15)
-				((Locomotive) cart).speedLimiter = 1;
+				((EntityTrainCore) cart).speedLimiter = 1;
 			
-			((Locomotive) cart).speedWasSet = true;
+			((EntityTrainCore) cart).speedWasSet = true;
+			*/
 		}
 	}
 

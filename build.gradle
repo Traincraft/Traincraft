@@ -14,6 +14,9 @@ buildscript {
 apply plugin: 'forge'
 apply plugin: 'idea'
 
+sourceCompatibility = targetCompatibility = "1.7"
+compileJava { sourceCompatibility = targetCompatibility = "1.7" }
+
 ext.configFile = file "build.properties"
 configFile.withReader {
     def prop = new Properties()

@@ -5,9 +5,10 @@
  */
 package train.common.blocks.tracks;
 
+import ebf.tim.TrainsInMotion;
+import ebf.tim.entities.GenericRailTransport;
 import mods.railcraft.api.tracks.ITrackEmitter;
 import net.minecraft.entity.item.EntityMinecart;
-import train.common.api.IPassenger;
 import train.common.library.Tracks;
 
 public class BlockDetectorPassengerTrack extends BlockDetectorTrack implements ITrackEmitter {
@@ -18,7 +19,8 @@ public class BlockDetectorPassengerTrack extends BlockDetectorTrack implements I
 	}
 	@Override
 	public void onMinecartPass(EntityMinecart cart) {
-		if (cart instanceof IPassenger) {
+		if (cart instanceof GenericRailTransport
+				&& ((GenericRailTransport) cart).getTypes().contains(TrainsInMotion.transportTypes.PASSENGER)) {
 			setTrackPowering();
 		}
 	}

@@ -5,9 +5,11 @@
  */
 package train.common.blocks.tracks;
 
+import ebf.tim.TrainsInMotion;
+import ebf.tim.entities.EntityTrainCore;
+import ebf.tim.entities.GenericRailTransport;
 import mods.railcraft.api.tracks.ITrackEmitter;
 import net.minecraft.entity.item.EntityMinecart;
-import train.common.api.DieselTrain;
 import train.common.library.Tracks;
 
 public class BlockDetectorDieselLocomotiveTrack extends BlockDetectorTrack implements ITrackEmitter {
@@ -19,7 +21,8 @@ public class BlockDetectorDieselLocomotiveTrack extends BlockDetectorTrack imple
 
 	@Override
 	public void onMinecartPass(EntityMinecart cart) {
-		if (cart instanceof DieselTrain) {
+		if (cart instanceof EntityTrainCore
+				&& ((GenericRailTransport) cart).getTypes().contains(TrainsInMotion.transportTypes.DIESEL)) {
 			setTrackPowering();
 		}
 	}

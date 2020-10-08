@@ -1,9 +1,10 @@
 package train.client.render.models;
 
+import ebf.tim.entities.GenericRailTransport;
+import ebf.tim.utility.ItemStackSlot;
 import net.minecraft.entity.Entity;
 import fexcraft.tmt.slim.ModelBase;
 import train.client.render.CustomModelRenderer;
-import train.common.api.Freight;
 import train.common.core.handlers.ConfigHandler;
 
 public class ModelFreightCenterBeam_Wood_1 extends ModelBase {
@@ -177,14 +178,21 @@ public class ModelFreightCenterBeam_Wood_1 extends ModelBase {
 		box9.render(f5);
 		box2.render(f5);
 
-		int cargo = ((Freight) entity).getAmmountOfCargo();
+		int cargo = 0;
+
+		for (ItemStackSlot s : ((GenericRailTransport) entity).inventory){
+			if(s.getStack()!=null){
+				cargo++;
+			}
+		}
+		int inventorySize = ((GenericRailTransport) entity).getInventoryRows()*9;
 		if (cargo != 0) {
-			if(cargo<=((Freight) entity).getSizeInventory()/6) {
+			if(cargo<=inventorySize/6) {
 				//bottom
 				box24.render(f5);
 				box19.render(f5);
 			}
-			else if(cargo<=((Freight) entity).getSizeInventory()/3 && cargo>((Freight) entity).getSizeInventory()/6) {
+			else if(cargo<=inventorySize/3 && cargo>inventorySize/6) {
 				//bottom
 				box24.render(f5);
 				box19.render(f5);
@@ -192,7 +200,7 @@ public class ModelFreightCenterBeam_Wood_1 extends ModelBase {
 				box25.render(f5);
 				box20.render(f5);
 			}
-			else if(cargo<=((Freight) entity).getSizeInventory()/2 && cargo>((Freight) entity).getSizeInventory()/3) {
+			else if(cargo<=inventorySize/2 && cargo>inventorySize/3) {
 				//bottom
 				box24.render(f5);
 				box19.render(f5);
@@ -203,7 +211,7 @@ public class ModelFreightCenterBeam_Wood_1 extends ModelBase {
 				box26.render(f5);
 				box21.render(f5);
 			}
-			else if(cargo>((Freight) entity).getSizeInventory()/2) {
+			else if(cargo>inventorySize/2) {
 				//bottom
 				box24.render(f5);
 				box19.render(f5);

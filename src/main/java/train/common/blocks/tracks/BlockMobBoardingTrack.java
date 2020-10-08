@@ -3,6 +3,8 @@
  */
 package train.common.blocks.tracks;
 
+import ebf.tim.TrainsInMotion;
+import ebf.tim.entities.GenericRailTransport;
 import mods.railcraft.api.tracks.ITrackEmitter;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -11,8 +13,6 @@ import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
-import train.common.entity.rollingStock.EntityStockCar;
-import train.common.entity.rollingStock.EntityStockCarDRWG;
 import train.common.library.Tracks;
 
 import java.io.DataInputStream;
@@ -29,7 +29,8 @@ public class BlockMobBoardingTrack extends TrackBaseTraincraft implements ITrack
 	}
 	@Override
 	public void onMinecartPass(EntityMinecart cart) {
-		if (cart instanceof EntityStockCar || cart instanceof EntityStockCarDRWG) {
+		if (cart instanceof GenericRailTransport &&
+		((GenericRailTransport) cart).getTypes().contains(TrainsInMotion.transportTypes.STOCK)) {
 			if (cart.riddenByEntity != null)
 				return;
 			AxisAlignedBB box = null;

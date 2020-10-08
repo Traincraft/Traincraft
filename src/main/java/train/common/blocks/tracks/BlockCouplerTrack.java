@@ -4,15 +4,13 @@
  */
 package train.common.blocks.tracks;
 
+import ebf.tim.entities.GenericRailTransport;
 import mods.railcraft.api.carts.CartTools;
 import mods.railcraft.api.carts.ILinkageManager;
 import mods.railcraft.api.tracks.ITrackPowered;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
-import train.common.api.AbstractTrains;
-import train.common.api.EntityRollingStock;
-import train.common.core.handlers.LinkHandler;
 import train.common.library.Tracks;
 
 import java.io.DataInputStream;
@@ -36,33 +34,33 @@ public class BlockCouplerTrack extends TrackBaseTraincraft implements ITrackPowe
 	}
 	@Override
 	public void onMinecartPass(EntityMinecart cart) {
-		if (isPowered() && !(cart instanceof AbstractTrains)) {//So that it attaches minecarts when railcraft is installed
+		if (isPowered() && !(cart instanceof GenericRailTransport)) {//So that it attaches minecarts when railcraft is installed
 			ILinkageManager lm = CartTools.getLinkageManager(cart.worldObj);
 			if (taggedCart != null)
 				lm.createLink(this.taggedCart, cart);
 			this.taggedCart = cart;
 		}
 
-		if (isPowered() && cart instanceof EntityRollingStock) {
-			((EntityRollingStock) cart).isAttaching = true;
-			if (taggedCart instanceof EntityRollingStock) {
-				((EntityRollingStock) taggedCart).isAttaching = true;
+		if (isPowered() && cart instanceof GenericRailTransport) {
+			((GenericRailTransport) cart).setBoolean(GenericRailTransport.boolValues.COUPLINGFRONT,true);
+			if (taggedCart instanceof GenericRailTransport) {
+
+				//todo: this is not a feature in TiM's API yet, and also may just be redundant.
+				/*((GenericRailTransport) taggedCart).isAttaching = true;
 				LinkHandler lh = new LinkHandler(cart.worldObj);
-				lh.addStake((EntityRollingStock) this.taggedCart, (EntityRollingStock) cart, false);
+				lh.addStake((GenericRailTransport) this.taggedCart, (GenericRailTransport) cart, false);*/
 			}
 			this.taggedCart = cart;
 		}
-		if (!isPowered() && !(cart instanceof AbstractTrains)) {
+		if (!isPowered() && !(cart instanceof GenericRailTransport)) {
 			ILinkageManager lm = CartTools.getLinkageManager(cart.worldObj);
 			if (taggedCart != null)
 				lm.breakLink(this.taggedCart, cart);
 			this.taggedCart = cart;
 		}
 
-		if (!isPowered() && cart instanceof AbstractTrains) {
-			((AbstractTrains) cart).isAttached = false;
-			if (taggedCart != null)
-				((AbstractTrains) taggedCart).isAttaching = false;
+		if (!isPowered() && cart instanceof GenericRailTransport) {
+			((GenericRailTransport) cart).setBoolean(GenericRailTransport.boolValues.COUPLINGFRONT,false);
 			this.taggedCart = cart;
 		}
 	}

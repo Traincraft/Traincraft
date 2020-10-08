@@ -3,20 +3,20 @@ package train.common.entity.rollingStock;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import ebf.tim.TrainsInMotion;
+import ebf.tim.entities.GenericRailTransport;
+import ebf.tim.items.ItemPaintBucket;
+import ebf.tim.networking.PacketInteract;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import train.common.Traincraft;
-import train.common.adminbook.ServerLogger;
-import train.common.api.EntityRollingStock;
 import train.common.core.util.MP3Player;
 import train.common.library.GuiIDs;
 
-public class EntityJukeBoxCart extends EntityRollingStock {
+public class EntityJukeBoxCart extends GenericRailTransport {
 	
 	public boolean isPlaying = false;
 	public boolean isInvalid = false;
@@ -43,30 +43,6 @@ public class EntityJukeBoxCart extends EntityRollingStock {
 		prevPosZ = d2;
 	}
 
-	@Override
-	public boolean attackEntityFrom(DamageSource damagesource, float i) {
-		if (worldObj.isRemote) {
-			return true;
-		}
-		if(canBeDestroyedByPlayer(damagesource))return true;
-		super.attackEntityFrom(damagesource, i);
-		setRollingDirection(-getRollingDirection());
-		setRollingAmplitude(10);
-		setBeenAttacked();
-		setDamage(getDamage() + i * 10);
-		if (getDamage() > 40) {
-			if (riddenByEntity != null) {
-				riddenByEntity.mountEntity(this);
-			}
-			this.setDead();
-			ServerLogger.deleteWagon(this);
-			if(damagesource.getEntity() instanceof EntityPlayer) {
-				dropCartAsItem(((EntityPlayer)damagesource.getEntity()).capabilities.isCreativeMode);
-			}
-		}
-		return true;
-	}
-	
 	@Override
 	public void setDead() {
 		this.stopStream();
@@ -173,25 +149,18 @@ public class EntityJukeBoxCart extends EntityRollingStock {
 	}
 
 	@Override
-	public boolean interactFirst(EntityPlayer entityplayer) {
-		//ItemStack var2 = entityplayer.inventory.getCurrentItem();
-		playerEntity = entityplayer;
-		if ((super.interactFirst(entityplayer))) {
-			return false;
-		}
-		if (locked && !entityplayer.getDisplayName().toLowerCase().equals(this.trainOwner.toLowerCase())) {
-			if (!worldObj.isRemote)
-				entityplayer.addChatMessage(new ChatComponentText("this train is locked"));
-			return true;
-		}
-		
-		entityplayer.openGui(Traincraft.instance, GuiIDs.JUKEBOX, worldObj, this.getEntityId(), -1, (int) this.posZ);
-		return true;
-	}
+	public boolean interact(int player, boolean isFront, boolean isBack, int key) {
 
-	@Override
-	public boolean isStorageCart() {
-		return false;
+		EntityPlayer p =((EntityPlayer)worldObj.getEntityByID(player));
+		if (worldObj.isRemote) {
+			if (p.getHeldItem() != null && p.getHeldItem().getItem() instanceof ItemPaintBucket) {
+				p.openGui(Traincraft.instance, GuiIDs.JUKEBOX, worldObj, this.getEntityId(), -1, (int) this.posZ);
+			}
+			TrainsInMotion.keyChannel.sendToServer(new PacketInteract(key, getEntityId()));
+		} else {
+			super.interact(player,isFront,isBack,key);
+		}
+		return true;
 	}
 
 	@Override

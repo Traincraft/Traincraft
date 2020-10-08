@@ -8,8 +8,6 @@ import net.minecraft.pathfinding.PathFinder;
 import net.minecraft.pathfinding.PathPoint;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
-import train.common.blocks.BlockTCRail;
-import train.common.blocks.BlockTCRailGag;
 
 public class TCPathFinder extends PathFinder{
 
@@ -43,7 +41,7 @@ public class TCPathFinder extends PathFinder{
                 {
                     Block block = entity.worldObj.getBlock(i, j, k);
 
-                    if (block.getMaterial() != Material.air && !(block instanceof BlockTCRail) && !(block instanceof BlockTCRailGag))
+                    if (block.getMaterial() != Material.air)
                     {
                         if (block == Blocks.trapdoor)
                         {

@@ -17,21 +17,14 @@ import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.ForgeChunkManager;
 import net.minecraftforge.common.MinecraftForge;
 import train.common.Traincraft;
-import train.common.api.EntityRollingStock;
-import train.common.api.Freight;
-import train.common.api.LiquidTank;
-import train.common.api.Tender;
 import train.common.containers.*;
-import train.common.core.handlers.ChunkEvents;
 import train.common.core.handlers.WorldEvents;
 import train.common.core.util.MP3Player;
 import train.common.entity.digger.EntityRotativeDigger;
 import train.common.entity.rollingStock.EntityJukeBoxCart;
-import train.common.entity.rollingStock.EntityTracksBuilder;
 import train.common.entity.zeppelin.AbstractZeppelin;
 import train.common.inventory.*;
 import train.common.library.GuiIDs;
-import train.common.mtc.*;
 import train.common.tile.*;
 
 import java.lang.reflect.InvocationTargetException;
@@ -43,9 +36,6 @@ public class CommonProxy implements IGuiHandler {
 	public static List<MP3Player> playerList = new ArrayList<MP3Player>();
 	public static boolean debug = false;
 
-	public void throwAlphaException() {
-		throw new IllegalStateException("You're trying to use a Traincraft alpha-version past its expiry date. Download a release-build at https://minecraft.curseforge.com/projects/traincraft.");
-	}
 
 	public void setKeyBinding(String name, int value) {}
 
@@ -53,11 +43,8 @@ public class CommonProxy implements IGuiHandler {
 
 	public void registerEvents(FMLPreInitializationEvent event){
 		WorldEvents worldEvents = new WorldEvents();
-		ChunkEvents chunkEvents = new ChunkEvents();
 
 		registerEvent(worldEvents);
-		registerEvent(chunkEvents);
-		ForgeChunkManager.setForcedChunkLoadingCallback(Traincraft.instance, chunkEvents);
 
 	}
 
@@ -73,7 +60,6 @@ public class CommonProxy implements IGuiHandler {
 		GameRegistry.registerTileEntity(TileTrainWbench.class, "TileTrainWbench");
 		GameRegistry.registerTileEntity(TileEntityDistil.class, "Tile Distil");
 		GameRegistry.registerTileEntity(TileEntityOpenHearthFurnace.class, "Tile OpenHearthFurnace");
-		GameRegistry.registerTileEntity(TileStopper.class, "TileStopper");
 		GameRegistry.registerTileEntity(TileSignal.class, "TileTrainSignal");
 		GameRegistry.registerTileEntity(TileLantern.class, "tileLantern");
 		GameRegistry.registerTileEntity(TileSwitchStand.class, "tileSwitchStand");
@@ -81,41 +67,9 @@ public class CommonProxy implements IGuiHandler {
 		GameRegistry.registerTileEntity(TileWindMill.class, "tileWindMill");
 		GameRegistry.registerTileEntity(TileGeneratorDiesel.class, "tileGeneratorDiesel");
 		GameRegistry.registerTileEntity(TileBook.class, "tileBook");
-		GameRegistry.registerTileEntity(TileTCRailGag.class, "tileTCRailGag");
-		GameRegistry.registerTileEntity(TileTCRail.class, "tileTCRail");
 		GameRegistry.registerTileEntity(TileBridgePillar.class, "tileTCBridgePillar");
-
-		if (Loader.isModLoaded("ComputerCraft") || Loader.isModLoaded("OpenComputers")) {
-			GameRegistry.registerTileEntity(TileInfoTransmitterSpeed.class, "tileInfoTransmitterSpeed");
-			GameRegistry.registerTileEntity(TileInfoTransmitterMTC.class, "tileInfoTransmitterMTC");
-			GameRegistry.registerTileEntity(TileInfoGrabberMTC.class, "tileInfoReceiverMTC");
-			GameRegistry.registerTileEntity(TileInfoGrabberDestination.class, "tileInfoReceiverDestination");
-			GameRegistry.registerTileEntity(TileATOTransmitterStopPoint.class, "tileATOTransmitterStopPoint");
-			GameRegistry.registerTileEntity(TilePDMInstructionRadio.class, "tilePDMInstructionRadio");
-		}
 	}
 
-	public void registerComputerCraftPeripherals() throws ClassNotFoundException {
-		Class computerCraft = Class.forName("dan200.computercraft.ComputerCraft");
-		try {
-			Method computerCraft_registerPeripheralProvider = computerCraft.getMethod("registerPeripheralProvider", new Class[] { Class.forName("dan200.computercraft.api.peripheral.IPeripheralProvider") });
-
-			//Register all CC required blocks
-			computerCraft_registerPeripheralProvider.invoke(null, BlockInfoTransmitterSpeed.instance);
-			computerCraft_registerPeripheralProvider.invoke(null, BlockInfoGrabberMTC.instance);
-			computerCraft_registerPeripheralProvider.invoke(null, BlockInfoTransmitterMTC.instance);
-			computerCraft_registerPeripheralProvider.invoke(null, BlockATOTransmitterStopPoint.instance);
-
-		} catch (NoSuchMethodException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			e.printStackTrace();
-		}
-	}
 	@Override
 	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
 		TileEntity te = world.getTileEntity(x, y, z);
@@ -146,31 +100,14 @@ public class CommonProxy implements IGuiHandler {
 			return te != null && te instanceof TileEntityOpenHearthFurnace ? new ContainerOpenHearthFurnace(player.inventory, (TileEntityOpenHearthFurnace) te) : null;
 		case (GuiIDs.TRAIN_WORKBENCH):
 			return te != null && te instanceof TileTrainWbench ? new ContainerTrainWorkbench(player.inventory, player.worldObj, (TileTrainWbench) te) : null;
-		case (GuiIDs.LOCO):
-			return riddenByEntity != null ? new InventoryLoco(riddenByEntity.inventory, (EntityRollingStock) entity) : null;
-		case (GuiIDs.FORNEY):
-			return riddenByEntity != null ? new InventoryForney(player.inventory, (EntityRollingStock) entity) : null;
-		case (GuiIDs.CRAFTING_CART):
-			return new ContainerWorkbenchCart(player.inventory, player.worldObj);
-		case (GuiIDs.FURNACE_CART):
-			return riddenByEntity != null ? new InventoryWorkCart(player.inventory, entity) : null;
 		case (GuiIDs.ZEPPELIN):
 			return riddenByEntity != null ? new InventoryZepp(player.inventory, (AbstractZeppelin) entity) : null;
 		case (GuiIDs.DIGGER):
 			return riddenByEntity != null  ? new InventoryRotativeDigger(player.inventory, (EntityRotativeDigger) entity) : null;
 
 			/* Stationary entities while player is not riding. */
-		case (GuiIDs.FREIGHT):
-			//System.out.println("Freight: " + ID + " | " + entity1.getEntityName() + " | " + x + ":" + y + ":" + z);
-			return entity1 != null && entity1 instanceof Freight ? new InventoryFreight(player.inventory, (Freight) entity1) : null;
 		case (GuiIDs.JUKEBOX):
 			return entity1 != null && entity1 instanceof EntityJukeBoxCart ? new InventoryJukeBoxCart(player.inventory, (EntityJukeBoxCart) entity1) : null;
-		case (GuiIDs.TENDER):
-			return entity1 != null && entity1 instanceof Tender ? new InventoryTender(player.inventory, (Tender) entity1) : null;
-		case (GuiIDs.BUILDER):
-			return entity1 != null && entity1 instanceof EntityTracksBuilder ? new InventoryBuilder(player.inventory, (EntityTracksBuilder) entity1) : null;
-		case (GuiIDs.LIQUID):
-			return entity1 != null && entity1 instanceof LiquidTank ? new InventoryLiquid(player.inventory, (LiquidTank) entity1) : null;
 		default:
 			return null;
 		}

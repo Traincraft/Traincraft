@@ -16,7 +16,6 @@ import org.lwjgl.opengl.GL11;
 import fexcraft.tmt.slim.ModelConverter;
 import fexcraft.tmt.slim.ModelRendererTurbo;
 import fexcraft.tmt.slim.Tessellator;
-import train.common.api.AbstractTrains;
 import train.common.library.Info;
 
 public class ModelBP4 extends ModelConverter
@@ -967,11 +966,12 @@ public class ModelBP4 extends ModelConverter
 		}
 
 
-		if(entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor()==5){
+		//todo: this should be handled by TiM's skin system
+		/*if(entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor()==5){
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/bp4bogie_purple.png"));
 		} else {
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/bp4bogie.png"));
-		}
+		}*/
 
 		GL11.glPushMatrix();
 		GL11.glScalef(1f,1f,0.9f);

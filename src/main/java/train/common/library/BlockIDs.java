@@ -25,8 +25,6 @@ public enum BlockIDs {
 
 	trainWorkbench(false, null),
 
-	stopper(false, null),
-
 	openFurnaceIdle(false, null),
 	openFurnaceActive(false, null),
 	oreTC(true, ItemBlockOreTC.class),
@@ -35,18 +33,11 @@ public enum BlockIDs {
 	waterWheel(true, ItemBlockGeneratorWaterWheel.class),
 	windMill(true, ItemBlockGeneratorWindMill.class),
 	generatorDiesel(true, ItemBlockGeneratorDiesel.class),
-	mtcTransmitterSpeed(false, null),
-	mtcTransmitterMTC(false, null),
-	mtcATOStopTransmitter(false, null),
-	mtcReceiverMTC(false, null),
-	mtcReceiverDestination(false, null),
 	pdmInstructionBlock(false, null),
 	//Liquids
 	diesel(false, ItemBlockFluid.class),
 	refinedFuel(false, ItemBlockFluid.class),
-	
-	tcRailGag(false,null),
-	tcRail(false,null),
+
 	bridgePillar(false,null);
 
 

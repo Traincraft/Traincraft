@@ -16,7 +16,6 @@ import org.lwjgl.opengl.GL11;
 import fexcraft.tmt.slim.ModelBase;
 import fexcraft.tmt.slim.ModelRendererTurbo;
 import fexcraft.tmt.slim.Tessellator;
-import train.common.api.AbstractTrains;
 import train.common.library.Info;
 
 public class ModelFOL_M1 extends ModelBase
@@ -799,11 +798,12 @@ public class ModelFOL_M1 extends ModelBase
 		}
 
 
-		if(entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor()==8){
+		//todo: this should be handled by TiM's skin system
+		/*if(entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor()==8){
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/FOL_M1_Bogie_grey.png"));
 		} else {
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/FOL_M1_Bogie.png"));
-		}
+		}*/
 
 		GL11.glPushMatrix();
 		GL11.glTranslated(-0.2,0,1.0);

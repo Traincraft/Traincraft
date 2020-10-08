@@ -2,11 +2,10 @@ package train.client.core.handlers;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import ebf.tim.entities.GenericRailTransport;
 import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.util.MathHelper;
-import train.common.api.EntityRollingStock;
-import train.common.api.Locomotive;
 import train.common.core.handlers.ConfigHandler;
 import train.common.entity.rollingStock.EntityJukeBoxCart;
 
@@ -17,7 +16,7 @@ public class SoundUpdaterRollingStock {
 	private SoundHandler theSoundManager;
 
 	/** Minecart which sound is being updated. */
-	private EntityRollingStock theMinecart;
+	private GenericRailTransport theMinecart;
 
 	/** The player that is getting the minecart sound updates. */
 	private EntityPlayerSP thePlayer;
@@ -30,13 +29,13 @@ public class SoundUpdaterRollingStock {
 	private float volume2 = 0.0F;
 	private double cartSpeed = 0.0D;
 
-	public void update(SoundHandler par1SoundManager, EntityRollingStock rollingStock, EntityPlayerSP par3EntityPlayerSP) {
+	public void update(SoundHandler par1SoundManager, GenericRailTransport rollingStock, EntityPlayerSP par3EntityPlayerSP) {
 		this.theSoundManager = par1SoundManager;
 		this.theMinecart = rollingStock;
 		this.thePlayer = par3EntityPlayerSP;
 		if (this.theSoundManager == null || this.theMinecart == null || this.thePlayer == null)
 			return;
-		if (!ConfigHandler.SOUNDS || rollingStock instanceof EntityJukeBoxCart || rollingStock instanceof Locomotive)
+		if (!ConfigHandler.SOUNDS || rollingStock instanceof EntityJukeBoxCart)
 			return;//it somehow interferes with the music disks
 		boolean var1 = false;
 		boolean var2 = this.riddenByPlayer;
@@ -49,7 +48,7 @@ public class SoundUpdaterRollingStock {
 		this.riddenByPlayer = this.thePlayer != null && this.theMinecart.riddenByEntity == this.thePlayer;
 		this.isDead = this.theMinecart.isDead;
 		//System.out.println(MathHelper.sqrt_double(this.theMinecart.getMotionXClient()*this.theMinecart.getMotionXClient()+this.theMinecart.getMotionZClient()*this.theMinecart.getMotionZClient())/100);
-		this.cartSpeed = MathHelper.sqrt_double(this.theMinecart.getMotionXClient() * this.theMinecart.getMotionXClient() + this.theMinecart.getMotionZClient() * this.theMinecart.getMotionZClient()) / 100;
+		this.cartSpeed = MathHelper.sqrt_double(this.theMinecart.motionX * this.theMinecart.motionX + this.theMinecart.motionZ * this.theMinecart.motionZ) / 100;
 		this.isMoving = this.cartSpeed >= 0.01D;
 		//System.out.println(isMoving);
 		//if (var2 && !this.riddenByPlayer) {

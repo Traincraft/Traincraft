@@ -2,6 +2,7 @@ package train.common.entity.digger;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import ebf.tim.utility.CommonUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
@@ -474,7 +475,7 @@ public class EntityRotativeDigger extends Entity implements IInventory {
 			double db = 0 - vecLook.xCoord;
 			double dc = 0 - vecLook.zCoord;
 			if (db * db + dc * dc > 0.0000001D) {
-				da = TraincraftUtil.atan2degreesf(dc,db);
+				da = CommonUtil.atan2degreesf(dc,db);
 			}
 
 			double d19;

@@ -16,7 +16,6 @@ import org.lwjgl.opengl.GL11;
 import fexcraft.tmt.slim.ModelConverter;
 import fexcraft.tmt.slim.ModelRendererTurbo;
 import fexcraft.tmt.slim.Tessellator;
-import train.common.entity.rollingStock.ModelE103Bogie;
 import train.common.library.Info;
 
 public class ModelE103 extends ModelConverter //Same as Filename

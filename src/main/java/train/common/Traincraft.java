@@ -11,10 +11,10 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.VillagerRegistry;
+import ebf.tim.items.TiMTab;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
@@ -26,7 +26,6 @@ import org.apache.logging.log4j.Logger;
 import train.common.api.LiquidManager;
 import train.common.blocks.TCBlocks;
 import train.common.core.CommonProxy;
-import train.common.core.CreativeTabTraincraft;
 import train.common.core.TrainModCore;
 import train.common.core.handlers.*;
 import train.common.generation.ComponentVillageTrainstation;
@@ -63,28 +62,6 @@ public class Traincraft {
 	public static SimpleNetworkWrapper rotationChannel;
 
 
-	public static SimpleNetworkWrapper slotschannel;
-	public static SimpleNetworkWrapper ignitionChannel;
-	public static SimpleNetworkWrapper brakeChannel;
-	public static SimpleNetworkWrapper lockChannel;
-	public static SimpleNetworkWrapper builderChannel;
-	public static SimpleNetworkWrapper updateTrainIDChannel = NetworkRegistry.INSTANCE.newSimpleChannel("TrainIDChannel");
-    public static SimpleNetworkWrapper updateDestinationChannel = NetworkRegistry.INSTANCE.newSimpleChannel("updateDestnChannel");
-
-
-	public static  SimpleNetworkWrapper itsChannel = NetworkRegistry.INSTANCE.newSimpleChannel("TransmitterSpeed");
-	public static  SimpleNetworkWrapper itnsChannel = NetworkRegistry.INSTANCE.newSimpleChannel("TransmitterNextSpeed");
-	public static final SimpleNetworkWrapper mtlChannel = NetworkRegistry.INSTANCE.newSimpleChannel("MTCLevelUpdater");
-	public static final SimpleNetworkWrapper msChannel = NetworkRegistry.INSTANCE.newSimpleChannel("MTCStatus");
-	public static final SimpleNetworkWrapper mscChannel = NetworkRegistry.INSTANCE.newSimpleChannel("MTCStatusToClient");
-	public static final SimpleNetworkWrapper atoChannel = NetworkRegistry.INSTANCE.newSimpleChannel("ATOPacket");
-	public static final SimpleNetworkWrapper atoSetStopPoint = NetworkRegistry.INSTANCE.newSimpleChannel("ATOSetStopPoint");
-	//public static final SimpleNetworkWrapper ctChannel = NetworkRegistry.INSTANCE.newSimpleChannel("ctmChannel");
-	public static final SimpleNetworkWrapper gsfsChannel = NetworkRegistry.INSTANCE.newSimpleChannel("gsfsChannel");
-	public static final SimpleNetworkWrapper gsfsrChannel = NetworkRegistry.INSTANCE.newSimpleChannel("gsfsReturnChannel");
-	public static final SimpleNetworkWrapper playSoundOnClientChannel  = NetworkRegistry.INSTANCE.newSimpleChannel(" SoundOnCChannel");
-
-
 	public static File configDirectory;
 
 	/* Creative tab for Traincraft */
@@ -112,7 +89,7 @@ public class Traincraft {
 
 		/* Register Items, Blocks, ... */
 		tcLog.info("Initialize Blocks, Items, ...");
-		tcTab = new CreativeTabTraincraft(CreativeTabs.getNextID(), "Traincraft");
+		tcTab = new TiMTab("Traincraft", Info.modID, "textures/items/trains/train_br80");
 		trainArmor = proxy.addArmor("armor");
 		trainCloth = proxy.addArmor("Paintable");
 		trainCompositeSuit = proxy.addArmor("CompositeSuit");
@@ -135,14 +112,6 @@ public class Traincraft {
 		
 		MapGenStructureIO.func_143031_a(ComponentVillageTrainstation.class, "Trainstation");
 
-		if (Loader.isModLoaded("ComputerCraft")) {
-			try {
-				proxy.registerComputerCraftPeripherals();
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			}
-		}
-
 		/* Other Proxy init */
 		tcLog.info("Initialize Renderer and Events");
 		proxy.registerRenderInformation();
@@ -163,7 +132,6 @@ public class Traincraft {
 		/* GUI handler initiation */
 		tcLog.info("Initialize Gui");
 		NetworkRegistry.INSTANCE.registerGuiHandler(instance, proxy);
-		FMLCommonHandler.instance().bus().register(new CraftingHandler());
 
 		/* Ore dictionary */
 		OreHandler.registerOres();
@@ -207,9 +175,6 @@ public class Traincraft {
 		tcLog.info("Activation Mod Compatibility");
 		TrainModCore.ModsLoaded();
 		LiquidManager.getLiquidsFromDictionnary();
-		if (Loader.isModLoaded("OpenComputers")) {
-			tcLog.info("OpenComputers integration successfully activated!");
-		}
 		tcLog.info("Finished PostInitialization");
 	}
 

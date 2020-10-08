@@ -28,9 +28,6 @@ import train.client.core.helpers.JLayerHook;
 import train.client.gui.*;
 import train.client.render.*;
 import train.common.Traincraft;
-import train.common.adminbook.GUIAdminBook;
-import train.common.api.EntityBogie;
-import train.common.api.EntityRollingStock;
 import train.common.core.CommonProxy;
 import train.common.core.Traincraft_EventSounds;
 import train.common.entity.digger.EntityRotativeDigger;
@@ -53,22 +50,12 @@ public class ClientProxy extends CommonProxy {
 		Calendar cal = Calendar.getInstance();
 		return(cal.get(Calendar.MONTH) == Calendar.DECEMBER || (cal.get(Calendar.MONTH) == Calendar.JANUARY) && cal.get(Calendar.DATE) < 7);
 	}
-	
-	@Override
-	public void throwAlphaException() {
-		throw new AlphaExpiredException();
-	}
 
 	@Override
 	public void registerEvents(FMLPreInitializationEvent event) {
 		super.registerEvents(event);
 		ClientTickHandler tickHandler = new ClientTickHandler();
 		HUDloco huDloco = new HUDloco();
-		if (Loader.isModLoaded("ComputerCraft") || Loader.isModLoaded("OpenComputers")){
-			HUDMTC hudMTC = new HUDMTC();
-			registerEvent(hudMTC);
-		}
-
 		registerEvent(tickHandler);
 		registerEvent(huDloco);
 	}
@@ -77,18 +64,12 @@ public class ClientProxy extends CommonProxy {
 	public void registerRenderInformation() {
 		FMLCommonHandler.instance().bus().register(new ClientTickHandler());
 
-		RenderingRegistry.registerEntityRenderingHandler(EntityRollingStock.class, new RenderRollingStock());
 		RenderingRegistry.registerEntityRenderingHandler(EntityZeppelinTwoBalloons.class, new RenderZeppelins());
 		RenderingRegistry.registerEntityRenderingHandler(EntityZeppelinOneBalloon.class, new RenderZeppelins());
 		RenderingRegistry.registerEntityRenderingHandler(EntityRotativeDigger.class, new RenderRotativeDigger());
 		RenderingRegistry.registerEntityRenderingHandler(EntityRotativeWheel.class, new RenderRotativeWheel());
-		//bogies
-		RenderingRegistry.registerEntityRenderingHandler(EntityBogie.class, new RenderBogie());
 
 
-		ClientRegistry.bindTileEntitySpecialRenderer(TileStopper.class, new RenderStopper());
-		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockIDs.stopper.block), new ItemRenderStopper());
-		
 		//ClientRegistry.bindTileEntitySpecialRenderer(TileBook.class, new RenderTCBook());
 		//MinecraftForgeClient.registerItemRenderer(BlockIDs.book.blockID, new ItemRenderBook());
 
@@ -109,9 +90,7 @@ public class ClientProxy extends CommonProxy {
 
 		ClientRegistry.bindTileEntitySpecialRenderer(TileGeneratorDiesel.class, new RenderGeneratorDiesel());
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockIDs.generatorDiesel.block), new ItemRenderGeneratorDiesel());
-		
-		ClientRegistry.bindTileEntitySpecialRenderer(TileTCRail.class, new RenderTCRail());
-		
+
 		ClientRegistry.bindTileEntitySpecialRenderer(TileBridgePillar.class, new RenderBridgePillar());
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockIDs.bridgePillar.block), new ItemRenderBridgePillar());
 	}
@@ -133,12 +112,6 @@ public class ClientProxy extends CommonProxy {
 			}
 		}
 		switch (ID) {
-		case (GuiIDs.CRAFTER_TIER_I):
-			return te != null && te instanceof TileCrafterTierI ? new GuiCrafterTier(player.inventory, (TileCrafterTierI) te) : null;
-		case (GuiIDs.CRAFTER_TIER_II):
-			return te != null && te instanceof TileCrafterTierII ? new GuiCrafterTier(player.inventory, (TileCrafterTierII) te) : null;
-		case (GuiIDs.CRAFTER_TIER_III):
-			return te != null && te instanceof TileCrafterTierIII ? new GuiCrafterTier(player.inventory, (TileCrafterTierIII) te) : null;
 		case (GuiIDs.DISTIL):
 			return te != null && te instanceof TileEntityDistil ? new GuiDistil(player.inventory, (TileEntityDistil) te) : null;
 		case (GuiIDs.GENERATOR_DIESEL):
@@ -147,32 +120,9 @@ public class ClientProxy extends CommonProxy {
 			return te != null && te instanceof TileEntityOpenHearthFurnace ? new GuiOpenHearthFurnace(player.inventory, (TileEntityOpenHearthFurnace) te) : null;
 		case GuiIDs.TRAIN_WORKBENCH:
 			return te != null && te instanceof TileTrainWbench ? new GuiTrainCraftingBlock(player.inventory, player.worldObj, (TileTrainWbench) te) : null;
-		case (GuiIDs.LOCO):
-			return riddenByEntity != null ? new GuiLoco2(riddenByEntity.inventory, entity) : null;
-		case (GuiIDs.FORNEY):
-			return riddenByEntity != null ? new GuiForney(riddenByEntity.inventory, entity) : null;
-		case (GuiIDs.CRAFTING_CART):
-			return riddenByEntity != null ? new GuiCraftingCart(riddenByEntity.inventory, world) : null;
-		case (GuiIDs.FURNACE_CART):
-			return riddenByEntity != null ? new GuiFurnaceCart(riddenByEntity.inventory, entity) : null;
 		case (GuiIDs.ZEPPELIN):
 			return riddenByEntity != null ? new GuiZepp(riddenByEntity.inventory, entity) : null;
-		case (GuiIDs.DIGGER):
-			return riddenByEntity != null ? new GuiBuilder(player, riddenByEntity.inventory, entity) : null;
-		case (GuiIDs.MTC_INFO):
-			return riddenByEntity != null && Loader.isModLoaded("ComputerCraft")  || Loader.isModLoaded("OpenComputers") ? new GuiMTCInfo(player) : null;
-
-			//Stationary entities while player is not riding. 
-		case (GuiIDs.FREIGHT):
-			return entity1 != null ? new GuiFreight(player,player.inventory, entity1) : null;
-		case (GuiIDs.TENDER):
-			return entity1 != null ? new GuiTender(player,player.inventory, entity1) : null;
-		case (GuiIDs.BUILDER):
-			return entity1 != null ? new GuiBuilder(player,player.inventory, entity1) : null;
-		case (GuiIDs.LIQUID):
-			return entity1 != null ? new GuiLiquid(player,player.inventory, entity1) : null;
-		case (GuiIDs.RECIPE_BOOK):
-			return new GuiRecipeBook(player, player.getCurrentEquippedItem());
+			//Stationary entities while player is not riding.
 		/*case (GuiIDs.RECIPE_BOOK2):
 			return te != null && te instanceof TileBook ? new GuiRecipeBook2(player, player.getCurrentEquippedItem()) : new GuiRecipeBook2(player, player.getCurrentEquippedItem());*/
 		case (GuiIDs.LANTERN):
@@ -248,12 +198,6 @@ public class ClientProxy extends CommonProxy {
 	public float getJukeboxVolume() {
 		return Minecraft.getMinecraft().gameSettings.getSoundLevel(SoundCategory.RECORDS) * Minecraft.getMinecraft().gameSettings.getSoundLevel(SoundCategory.MASTER);
 	}
-
-	@Override
-	public void openadmingui(String data){
-		Minecraft.getMinecraft().displayGuiScreen(new GUIAdminBook(data));
-	}
-
 	@Override
 	public void registerKeyBindingHandler() {
 		FMLCommonHandler.instance().bus().register(new TCKeyHandler());

@@ -3,7 +3,6 @@ package train.common.library;
 public class GuiIDs {
 	public static final int LOCO = 79;
 	public static final int FREIGHT = 81;
-	public static final int BUILDER = 82;
 	public static final int FURNACE_CART = 84;
 	public static final int CRAFTING_CART = 83;
 	public static final int ZEPPELIN = 86;
@@ -23,6 +22,4 @@ public class GuiIDs {
 	
 	//public static final int RECIPE_BOOK2 = 101;
 	public static final int JUKEBOX = 102;
-	public static final int MTC_INFO = 103;
-	public static final int SPEED_TRANSMITTER = 104;
 }

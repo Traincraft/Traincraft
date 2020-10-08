@@ -2,6 +2,7 @@ package train.common.entity.zeppelin;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import ebf.tim.utility.CommonUtil;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
@@ -485,7 +486,7 @@ public abstract class AbstractZeppelin extends Entity implements IInventory {
 		double div10 = this.prevPosZ - this.posZ;
 
 		if ((div11 * div11) + (div10 * div10) > 0.001D) {
-			rot = TraincraftUtil.atan2degreesf(div10, div11);
+			rot = CommonUtil.atan2degreesf(div10, div11);
 		}
 
 		double d12 = MathHelper.wrapAngleTo180_double(rot - this.rotationYaw);

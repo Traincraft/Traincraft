@@ -5,6 +5,9 @@
  */
 package train.common.blocks.tracks;
 
+import ebf.tim.TrainsInMotion;
+import ebf.tim.entities.EntityTrainCore;
+import ebf.tim.entities.GenericRailTransport;
 import mods.railcraft.api.core.items.IToolCrowbar;
 import mods.railcraft.api.tracks.ITrackEmitter;
 import net.minecraft.entity.item.EntityMinecart;
@@ -12,10 +15,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ChatComponentText;
-import train.common.api.DieselTrain;
-import train.common.api.ElectricTrain;
-import train.common.api.Locomotive;
-import train.common.api.SteamTrain;
 import train.common.library.Tracks;
 
 import java.io.DataInputStream;
@@ -104,25 +103,25 @@ public class BlockDetectorAllLocomotiveTrack extends BlockDetectorTrack implemen
 	public void onMinecartPass(EntityMinecart cart) {
 		switch(this.ThingToSet) {
 		case 0: {
-			if (cart instanceof Locomotive) {
+			if (cart instanceof EntityTrainCore) {
 			setTrackPowering();
 			}
 			break;
 		}
 		case 3: {
-			if (cart instanceof SteamTrain) {
+			if (((GenericRailTransport)cart).getTypes().contains(TrainsInMotion.transportTypes.STEAM)) {
 			setTrackPowering();
 			}
 			break;
 		}
 		case 6: {
-			if (cart instanceof DieselTrain) {
+			if (((GenericRailTransport)cart).getTypes().contains(TrainsInMotion.transportTypes.DIESEL)) {
 			setTrackPowering();
 			}
 			break;
 		}
 		case 9: {
-			if (cart instanceof ElectricTrain) {
+			if (((GenericRailTransport)cart).getTypes().contains(TrainsInMotion.transportTypes.ELECTRIC)) {
 			setTrackPowering();
 			}
 			break;
