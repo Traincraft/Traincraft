@@ -58,21 +58,22 @@ public class EntityLocoSteam4_4_0 extends EntityTrainCore {
 
     @Override
     public void registerSkins(){
+        //todo: needs skin credits
         //make base skin and register
         String description = "One of the oldest trains in Traincraft, a simple 4-4-0";
         SkinRegistry.addSkin(this.getClass(),
-                new skin(TrainsInMotion.MODID,"textures/trains/4-4-0-loco_Blue.png","Blue", description));
+                new skin(Info.modID,"textures/trains/4-4-0-loco_Blue.png","Blue", description));
 
         SkinRegistry.addSkin(this.getClass(),
-                new skin(TrainsInMotion.MODID,"textures/trains/4-4-0-loco_Red.png","Red", description));
+                new skin(Info.modID,"textures/trains/4-4-0-loco_Red.png","Red", description));
         SkinRegistry.addSkin(this.getClass(),
-                new skin(TrainsInMotion.MODID,"textures/trains/4-4-0-loco_Purple.png","Purple", description));
+                new skin(Info.modID,"textures/trains/4-4-0-loco_Purple.png","Purple", description));
         SkinRegistry.addSkin(this.getClass(),
-                new skin(TrainsInMotion.MODID,"textures/trains/4-4-0-loco_Green.png","Green", description));
+                new skin(Info.modID,"textures/trains/4-4-0-loco_Green.png","Green", description));
         SkinRegistry.addSkin(this.getClass(),
-                new skin(TrainsInMotion.MODID,"textures/trains/4-4-0-loco_Brown.png","Brown", description));
+                new skin(Info.modID,"textures/trains/4-4-0-loco_Brown.png","Brown", description));
         SkinRegistry.addSkin(this.getClass(),
-                new skin(TrainsInMotion.MODID,"textures/trains/4-4-0-loco_Black.png","Black", description));
+                new skin(Info.modID,"textures/trains/4-4-0-loco_Black.png","Black", description));
         //note: is more detail is needed on the skin setup, you can make a new skin as a variable, and add additional data.
         //TC's models, even newer ones are fairly simple though, so this is an unlikely scenario.
 
@@ -83,7 +84,7 @@ public class EntityLocoSteam4_4_0 extends EntityTrainCore {
      */
     @Override
     public String getDefaultSkin(){
-        return "tc:Blue";
+        return Info.modID+":Blue";
     }
 
     //
@@ -111,7 +112,7 @@ public class EntityLocoSteam4_4_0 extends EntityTrainCore {
     }
     /**
      * <h2>Max Fuel</h2>
-     * @return the maxstorage of fuel the train can store.
+     * @return the max heat of fuel the boiler can sustain, a vale of 1 allows for a max of 750c.
      * @see GenericRailTransport#getMaxFuel() for more info.
      * @see FuelHandler for information on fuel consumption.
      */
@@ -157,7 +158,7 @@ public class EntityLocoSteam4_4_0 extends EntityTrainCore {
      * <h4>TRAINS ONLY.</h4>
      * @return defines the acceleration and pulling strength.
      * if only tractive effort is known you can use
-     * @see GenericRailTransport#transportTractiveEffort()
+     * @see GenericRailTransport#transportTractiveEffort() which is defined in lfb.
      */
     @Override
     public float transportMetricHorsePower(){return 400f;}

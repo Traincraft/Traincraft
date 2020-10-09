@@ -4,10 +4,13 @@ import ebf.tim.TrainsInMotion;
 import ebf.tim.api.SkinRegistry;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.ItemTransport;
+import fexcraft.tmt.slim.ModelBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import train.client.render.models.ModelA4Locomotive;
+import train.client.render.models.ModelBoxCartUS;
 import train.common.Traincraft;
 import train.common.library.Info;
 import train.common.library.ItemIDs;
@@ -34,47 +37,49 @@ public class EntityBoxCartUS extends GenericRailTransport {
     @Override
     public void registerSkins() {
         String description = "Fictional boxcar, likely designed after early 1800's US rollingstock.";
-        SkinRegistry.addSkin(this.getClass(), TrainsInMotion.MODID, "textures/trains/boxCartUS_Brown.png",
+        SkinRegistry.addSkin(this.getClass(), Info.modID, "textures/trains/boxCartUS_Brown.png",
                 "Brown", description);
 
 
         //todo: change names to match skin design rather than color.
         //todo: change skin descriptions to note contributor that created it (where applicable)
-        SkinRegistry.addSkin(this.getClass(), TrainsInMotion.MODID, "textures/trains/boxCartUS_Black.png",
+        SkinRegistry.addSkin(this.getClass(), Info.modID, "textures/trains/boxCartUS_Black.png",
                 "Black", description);
-        SkinRegistry.addSkin(this.getClass(), TrainsInMotion.MODID, "textures/trains/boxCartUS_Blue.png",
+        SkinRegistry.addSkin(this.getClass(), Info.modID, "textures/trains/boxCartUS_Blue.png",
                 "Blue", description);
-        SkinRegistry.addSkin(this.getClass(), TrainsInMotion.MODID, "textures/trains/boxCartUS_Cyan.png",
+        SkinRegistry.addSkin(this.getClass(), Info.modID, "textures/trains/boxCartUS_Cyan.png",
                 "Cyan", description);
-        SkinRegistry.addSkin(this.getClass(), TrainsInMotion.MODID, "textures/trains/boxCartUS_Green.png",
+        SkinRegistry.addSkin(this.getClass(), Info.modID, "textures/trains/boxCartUS_Green.png",
                 "Green", description);
-        SkinRegistry.addSkin(this.getClass(), TrainsInMotion.MODID, "textures/trains/boxCartUS_Grey.png",
+        SkinRegistry.addSkin(this.getClass(), Info.modID, "textures/trains/boxCartUS_Grey.png",
                 "Grey", description);
-        SkinRegistry.addSkin(this.getClass(), TrainsInMotion.MODID, "textures/trains/boxCartUS_LightBlue.png",
+        SkinRegistry.addSkin(this.getClass(), Info.modID, "textures/trains/boxCartUS_LightBlue.png",
                 "LightBlue", description);
-        SkinRegistry.addSkin(this.getClass(), TrainsInMotion.MODID, "textures/trains/boxCartUS_LightGrey.png",
+        SkinRegistry.addSkin(this.getClass(), Info.modID, "textures/trains/boxCartUS_LightGrey.png",
                 "LightGrey", description);
-        SkinRegistry.addSkin(this.getClass(), TrainsInMotion.MODID, "textures/trains/boxCartUS_Lime.png",
+        SkinRegistry.addSkin(this.getClass(), Info.modID, "textures/trains/boxCartUS_Lime.png",
                 "Lime", description);
-        SkinRegistry.addSkin(this.getClass(), TrainsInMotion.MODID, "textures/trains/boxCartUS_Magenta.png",
+        SkinRegistry.addSkin(this.getClass(), Info.modID, "textures/trains/boxCartUS_Magenta.png",
                 "Magenta", description);
-        SkinRegistry.addSkin(this.getClass(), TrainsInMotion.MODID, "textures/trains/boxCartUS_Orange.png",
+        SkinRegistry.addSkin(this.getClass(), Info.modID, "textures/trains/boxCartUS_Orange.png",
                 "Orange", description);
-        SkinRegistry.addSkin(this.getClass(), TrainsInMotion.MODID, "textures/trains/boxCartUS_Pink.png",
+        SkinRegistry.addSkin(this.getClass(), Info.modID, "textures/trains/boxCartUS_Pink.png",
                 "Pink", description);
-        SkinRegistry.addSkin(this.getClass(), TrainsInMotion.MODID, "textures/trains/boxCartUS_Purple.png",
+        SkinRegistry.addSkin(this.getClass(), Info.modID, "textures/trains/boxCartUS_Purple.png",
                 "Purple", description);
-        SkinRegistry.addSkin(this.getClass(), TrainsInMotion.MODID, "textures/trains/boxCartUS_Red.png",
+        SkinRegistry.addSkin(this.getClass(), Info.modID, "textures/trains/boxCartUS_Red.png",
                 "Red", description);
-        SkinRegistry.addSkin(this.getClass(), TrainsInMotion.MODID, "textures/trains/boxCartUS_White.png",
+        SkinRegistry.addSkin(this.getClass(), Info.modID, "textures/trains/boxCartUS_White.png",
                 "White", description);
-        SkinRegistry.addSkin(this.getClass(), TrainsInMotion.MODID, "textures/trains/boxCartUS_Yellow.png",
+        SkinRegistry.addSkin(this.getClass(), Info.modID, "textures/trains/boxCartUS_Yellow.png",
                 "Yellow", description);
     }
 
 
     @Override
-    public String getDefaultSkin(){return "tc:Brown";}
+    public String getDefaultSkin(){return Info.modID+":Brown";}
+    @Override
+    public ModelBase[] getModel(){return new ModelBase[]{new ModelBoxCartUS()};}
     @Override
     public String transportName(){return "Freight Box Cart US";}
     @Override

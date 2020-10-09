@@ -1,6 +1,7 @@
 package fexcraft.tmt.slim;
 
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -12,15 +13,27 @@ public class TexturedPolygon {
 	public List<TexturedVertex> vertices;
 
 	public TexturedPolygon(List<TexturedVertex> apositionTexturevertex){
-		vertices = apositionTexturevertex;
-		if(vertices.size()==4) {
-			if (vertices.get(0).vector3F.equals(vertices.get(1).vector3F) || vertices.get(0).vector3F.equals(vertices.get(3).vector3F)) {
-				vertices.remove(0);
-			} else if (vertices.get(1).vector3F.equals(vertices.get(2).vector3F)) {
-				vertices.remove(1);
-			} else if (vertices.get(2).vector3F.equals(vertices.get(3).vector3F)) {
-				vertices.remove(2);
+		vertices=new ArrayList<>();
+
+		if(apositionTexturevertex.size()==4) {
+			if (apositionTexturevertex.get(0).vector3F.equals(apositionTexturevertex.get(1).vector3F)
+					|| apositionTexturevertex.get(0).vector3F.equals(apositionTexturevertex.get(3).vector3F)) {
+				vertices.add(apositionTexturevertex.get(1));
+				vertices.add(apositionTexturevertex.get(2));
+				vertices.add(apositionTexturevertex.get(3));
+			} else if (apositionTexturevertex.get(1).vector3F.equals(apositionTexturevertex.get(2).vector3F)) {
+				vertices.add(apositionTexturevertex.get(0));
+				vertices.add(apositionTexturevertex.get(2));
+				vertices.add(apositionTexturevertex.get(3));
+			} else if (apositionTexturevertex.get(2).vector3F.equals(apositionTexturevertex.get(3).vector3F)) {
+				vertices.add(apositionTexturevertex.get(0));
+				vertices.add(apositionTexturevertex.get(1));
+				vertices.add(apositionTexturevertex.get(3));
+			} else {
+				vertices=apositionTexturevertex;
 			}
+		} else {
+			vertices=apositionTexturevertex;
 		}
 	}
 

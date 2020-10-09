@@ -3,12 +3,15 @@ package train.common.library;
 import ebf.tim.entities.GenericRailTransport;
 import train.common.entity.rollingStock.EntityBoxCartUS;
 import train.common.entity.trains.EntityLocoSteam4_4_0;
+import train.common.entity.trains.EntityLocoSteamHallClass;
+import train.common.entity.trains.EntityLocoSteamMallardA4;
 
 public class TrainRegistry {
 
     public static GenericRailTransport[] listSteam(){
         return new GenericRailTransport[]{
-                new EntityLocoSteam4_4_0(null)
+                new EntityLocoSteam4_4_0(null), new EntityLocoSteamMallardA4(null),
+                new EntityLocoSteamHallClass(null)
         };
     }
 
