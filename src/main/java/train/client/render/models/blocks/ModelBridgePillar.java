@@ -7,12 +7,12 @@
 
 package train.client.render.models.blocks;
 
+import fexcraft.tmt.slim.Tessellator;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.IModelCustom;
 import org.lwjgl.opengl.GL11;
-import fexcraft.tmt.slim.Tessellator;
 import train.common.library.Info;
 import train.common.tile.TileBridgePillar;
 

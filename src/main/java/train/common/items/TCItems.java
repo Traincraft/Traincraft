@@ -7,7 +7,6 @@
 
 package train.common.items;
 
-import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
 import train.common.Traincraft;
 import train.common.library.Info;
@@ -15,6 +14,7 @@ import train.common.library.ItemIDs;
 
 public class TCItems {
 
+	@Deprecated //need to use TiMGenericRegistry.registerItem(), this will also cover item special render so we can skip json icons.
 	public static void init() {
 		loadItems();
 		registerItems();

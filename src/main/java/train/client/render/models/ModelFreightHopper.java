@@ -2,9 +2,9 @@ package train.client.render.models;
 
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.utility.ItemStackSlot;
+import fexcraft.tmt.slim.ModelBase;
 import net.minecraft.entity.Entity;
 import org.lwjgl.opengl.GL11;
-import fexcraft.tmt.slim.ModelBase;
 import train.client.render.CustomModelRenderer;
 
 public class ModelFreightHopper extends ModelBase {

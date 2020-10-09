@@ -1,9 +1,9 @@
 package train.client.render.models;
 
+import fexcraft.tmt.slim.ModelBase;
 import fexcraft.tmt.slim.ModelRendererTurbo;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
-import fexcraft.tmt.slim.ModelBase;
 
 public class ModelSD40 extends ModelBase {
 	

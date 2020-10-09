@@ -9,9 +9,9 @@ package train.client.render.models;
 // Last changed on: 25.08.2017 - 21:12:31
 
 
-import net.minecraft.entity.Entity;
 import fexcraft.tmt.slim.ModelBase;
 import fexcraft.tmt.slim.ModelRendererTurbo;
+import net.minecraft.entity.Entity;
 
 public class Model042TGLYN extends ModelBase
 {

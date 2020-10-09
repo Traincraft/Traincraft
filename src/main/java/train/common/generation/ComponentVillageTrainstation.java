@@ -5,7 +5,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.StructureVillagePieces;
-import train.common.core.util.TraincraftUtil;
 import train.common.library.BlockIDs;
 
 import java.util.List;

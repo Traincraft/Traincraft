@@ -14,6 +14,7 @@ import train.common.library.ItemIDs;
 
 public class OreHandler {
 
+	@Deprecated// should be replaced as noted in TCBlocks.init()
 	public static void registerOres() {
 		
 		OreDictionary.registerOre("oreCopper", new ItemStack(BlockIDs.oreTC.block, 1, 0));

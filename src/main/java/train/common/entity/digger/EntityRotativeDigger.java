@@ -24,7 +24,6 @@ import net.minecraftforge.common.util.Constants;
 import train.common.Traincraft;
 import train.common.core.handlers.ConfigHandler;
 import train.common.core.network.PacketKeyPress;
-import train.common.core.util.TraincraftUtil;
 import train.common.library.ItemIDs;
 
 import java.util.List;

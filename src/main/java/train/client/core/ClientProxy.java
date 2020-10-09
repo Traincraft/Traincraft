@@ -3,31 +3,24 @@ package train.client.core;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.Optional;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.VillagerRegistry;
 import javazoom.jl.decoder.JavaLayerUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.SoundCategory;
-import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
-import org.apache.logging.log4j.Level;
 import train.client.core.handlers.ClientTickHandler;
-import train.client.core.handlers.RecipeBookHandler;
 import train.client.core.handlers.TCKeyHandler;
 import train.client.core.helpers.JLayerHook;
 import train.client.gui.*;
 import train.client.render.*;
-import train.common.Traincraft;
 import train.common.core.CommonProxy;
 import train.common.core.Traincraft_EventSounds;
 import train.common.entity.digger.EntityRotativeDigger;
@@ -40,8 +33,6 @@ import train.common.library.GuiIDs;
 import train.common.library.Info;
 import train.common.tile.*;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.Calendar;
 
 public class ClientProxy extends CommonProxy {
@@ -54,12 +45,11 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public void registerEvents(FMLPreInitializationEvent event) {
 		super.registerEvents(event);
-		ClientTickHandler tickHandler = new ClientTickHandler();
-		HUDloco huDloco = new HUDloco();
-		registerEvent(tickHandler);
-		registerEvent(huDloco);
+		registerEvent(new ClientTickHandler());
+		registerEvent(new HUDloco());
 	}
 
+	@Deprecated //TESR should be handled as noted in TCBlocks.init()
 	@Override
 	public void registerRenderInformation() {
 		FMLCommonHandler.instance().bus().register(new ClientTickHandler());
@@ -140,10 +130,6 @@ public class ClientProxy extends CommonProxy {
 	}
 
 	@Override
-	public GuiScreen getCurrentScreen() {
-		return Minecraft.getMinecraft().currentScreen;
-	}
-	@Override
 	public void registerVillagerSkin(int villagerId, String textureName) {
 		VillagerRegistry.instance().registerVillagerSkin(villagerId, new ResourceLocation(Info.resourceLocation,Info.villagerPrefix + textureName));
 	}
@@ -151,11 +137,6 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public void registerSounds() {
 		MinecraftForge.EVENT_BUS.register(new Traincraft_EventSounds());
-	}
-	
-	@Override
-	public void registerBookHandler() {
-		RecipeBookHandler recipeBookHandler = new RecipeBookHandler();
 	}
 
 	@Override
@@ -168,31 +149,6 @@ public class ClientProxy extends CommonProxy {
 		return getMinecraft().thePlayer;
 	}
 
-	@Optional.Method(modid = "NotEnoughItems")
-	@Override
-	public void doNEICheck(ItemStack stack) {
-		if (Minecraft.getMinecraft().thePlayer != null) {
-			if(Loader.isModLoaded("Not Enough Items")) {
-				try {
-					Class neiApi = Class.forName("codechicken.nei.api.API");
-					Method hideItem = neiApi.getDeclaredMethod("hideItem", stack.getClass());
-					hideItem.invoke(null, stack);
-				} catch (ClassNotFoundException e) {
-					Traincraft.tcLog.log(Level.WARN, "Chicken core didn't have required class: Wrong version of the library or something is horribly wrong", e);
-				} catch (NoSuchMethodException e) {
-					Traincraft.tcLog.log(Level.WARN, "Chicken core didn't have required method: Wrong version of the library or something is horribly wrong", e);
-				} catch (SecurityException e) {
-					Traincraft.tcLog.log(Level.FATAL, "Something is horribly wrong", e);
-				} catch (IllegalAccessException e) {
-					Traincraft.tcLog.log(Level.FATAL, "Something is horribly wrong", e);
-				} catch (IllegalArgumentException e) {
-					Traincraft.tcLog.log(Level.WARN, "Chicken core had the method but it's signature was wrong: Wrong version of the library or something is horribly wrong", e);
-				} catch (InvocationTargetException e) {
-					Traincraft.tcLog.log(Level.WARN, "The method we called from Chicken core threw an exception", e);
-				}
-			}
-        }
-	}
 	
 	@Override
 	public float getJukeboxVolume() {

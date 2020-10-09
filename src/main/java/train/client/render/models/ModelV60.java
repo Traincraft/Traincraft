@@ -1,8 +1,8 @@
 package train.client.render.models;
 
+import fexcraft.tmt.slim.ModelBase;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
-import fexcraft.tmt.slim.ModelBase;
 import train.client.render.CustomModelRenderer;
 
 public class ModelV60 extends ModelBase {

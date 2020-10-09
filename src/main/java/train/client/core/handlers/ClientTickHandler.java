@@ -1,22 +1,17 @@
 package train.client.core.handlers;
 
 import com.mojang.authlib.minecraft.MinecraftProfileTexture;
-import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.relauncher.Side;
-import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
-import net.minecraft.item.ItemStack;
 import train.client.core.helpers.CapesHelper;
 import train.common.Traincraft;
 import train.common.core.util.MP3Player;
-import train.common.library.Info;
 
 public class ClientTickHandler {
 	private static final Minecraft mc = Minecraft.getMinecraft();
-	private static boolean isHidden = false;
 
 	@SubscribeEvent
 	public void tick(TickEvent event) {
@@ -53,13 +48,6 @@ public class ClientTickHandler {
 					// NOTE: func_152121_a = switchTexture
 					player.func_152121_a(MinecraftProfileTexture.Type.CAPE, user.getCurrentRL());
 				}
-			}
-		}
-		if(!isHidden && Loader.isModLoaded("NotEnoughItems")) {
-			if(mc.theWorld != null && mc.theWorld.playerEntities != null) {
-				Traincraft.proxy.doNEICheck(new ItemStack(Block.getBlockFromName(Info.modID + ":tcRail")));
-				Traincraft.proxy.doNEICheck(new ItemStack(Block.getBlockFromName(Info.modID + ":tcRailGag")));
-				isHidden = true;
 			}
 		}
 	}

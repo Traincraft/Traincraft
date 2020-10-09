@@ -48,7 +48,7 @@ public class TiMGenericRegistry {
     private static List<String>usedNames = new ArrayList<>();
     private static List<String>redundantTiles = new ArrayList<>();
     private static List<String>redundantBlocks = new ArrayList<>();
-    private static int registryPosition =17;
+    public static int registryPosition =17;
 
     public TiMGenericRegistry(GenericRailTransport transport, Item[] recipe){
         this.transport = transport;

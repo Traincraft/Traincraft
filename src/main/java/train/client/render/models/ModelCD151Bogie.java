@@ -10,8 +10,8 @@
 package train.client.render.models;
 
 import fexcraft.tmt.slim.ModelBase;
-import net.minecraft.entity.Entity;
 import fexcraft.tmt.slim.ModelRendererTurbo;
+import net.minecraft.entity.Entity;
 
 public class ModelCD151Bogie extends ModelBase
 {

@@ -1,7 +1,6 @@
 package train.common;
 
 import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -9,9 +8,12 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.*;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.VillagerRegistry;
+import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.TiMTab;
+import ebf.tim.registry.TiMGenericRegistry;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.creativetab.CreativeTabs;
@@ -28,19 +30,16 @@ import train.common.blocks.TCBlocks;
 import train.common.core.CommonProxy;
 import train.common.core.TrainModCore;
 import train.common.core.handlers.*;
+import train.common.entity.zeppelin.EntityZeppelinOneBalloon;
+import train.common.entity.zeppelin.EntityZeppelinTwoBalloons;
 import train.common.generation.ComponentVillageTrainstation;
 import train.common.generation.WorldGenWorld;
 import train.common.items.TCItems;
 import train.common.library.Info;
+import train.common.library.TrainRegistry;
 import train.common.recipes.AssemblyTableRecipes;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 
 @Mod(modid = Info.modID, name = Info.modName, version = Info.modVersion)
 public class Traincraft {
@@ -95,7 +94,35 @@ public class Traincraft {
 		trainCompositeSuit = proxy.addArmor("CompositeSuit");
 		TCBlocks.init();
 		TCItems.init();
-		EntityHandler.init();
+
+		if(ConfigHandler.ENABLE_STEAM) {
+			//the null last value defines we aren't implementing a custom entity render.
+			TiMGenericRegistry.registerTransports(Info.modID, TrainRegistry.listSteam(),null);
+		}
+		if(ConfigHandler.ENABLE_DIESEL) {
+			TiMGenericRegistry.registerTransports(Info.modID, TrainRegistry.listDiesel(),null);
+		}
+		if(ConfigHandler.ENABLE_ELECTRIC) {
+			TiMGenericRegistry.registerTransports(Info.modID, TrainRegistry.listElectric(),null);
+		}
+		if(ConfigHandler.ENABLE_TENDER) {
+			TiMGenericRegistry.registerTransports(Info.modID, TrainRegistry.listTender(),null);
+		}
+
+		TiMGenericRegistry.registerTransports(Info.modID, TrainRegistry.listPassenger(),null);
+		TiMGenericRegistry.registerTransports(Info.modID, TrainRegistry.listFreight(),null);
+		TiMGenericRegistry.registerTransports(Info.modID, TrainRegistry.listWorkCart(),null);
+		TiMGenericRegistry.registerTransports(Info.modID, TrainRegistry.listTanker(),null);
+		TiMGenericRegistry.registerTransports(Info.modID, TrainRegistry.listSpecial(),null);
+
+		if(ConfigHandler.ENABLE_ZEPPELIN) {
+			//TiM doesn't have a generic entity registration yet, so these will likely have to remain as-is for now.
+			EntityRegistry.registerModEntity(EntityZeppelinTwoBalloons.class, "zeppelin", TiMGenericRegistry.registryPosition, Traincraft.instance, 512, 3, true);//zepplin
+			TiMGenericRegistry.registryPosition++;
+			EntityRegistry.registerModEntity(EntityZeppelinOneBalloon.class, "zeppelin big", TiMGenericRegistry.registryPosition, Traincraft.instance, 512, 3, true);//zepplin big
+			TiMGenericRegistry.registryPosition++;
+		}
+
 		proxy.registerTileEntities();
 		proxy.registerSounds();
 		proxy.setHook(); // Moved file needed to run JLayer, we need to set a hook in order to retrieve it
@@ -117,6 +144,9 @@ public class Traincraft {
 		proxy.registerRenderInformation();
 		proxy.registerEvents(event);
 
+		/* Ore dictionary */
+		OreHandler.registerOres();
+
 		/* Networking and Packet initialisation */
 		PacketHandler.init();
 
@@ -133,8 +163,6 @@ public class Traincraft {
 		tcLog.info("Initialize Gui");
 		NetworkRegistry.INSTANCE.registerGuiHandler(instance, proxy);
 
-		/* Ore dictionary */
-		OreHandler.registerOres();
 
 		/* Recipes */
 		tcLog.info("Initialize Recipes");
@@ -157,9 +185,6 @@ public class Traincraft {
 		VillagerRegistry.instance().registerVillageCreationHandler(villageHandler);
 		proxy.registerVillagerSkin(ConfigHandler.TRAINCRAFT_VILLAGER_ID, "station_chief.png");
 		VillagerRegistry.instance().registerVillageTradeHandler(ConfigHandler.TRAINCRAFT_VILLAGER_ID, villageHandler);
-
-
-		proxy.registerBookHandler();
 
 		
 		tcLog.info("Finished Initialization");

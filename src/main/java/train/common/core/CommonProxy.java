@@ -1,50 +1,39 @@
 package train.common.core;
 
-import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
-import net.minecraftforge.common.ForgeChunkManager;
 import net.minecraftforge.common.MinecraftForge;
-import train.common.Traincraft;
 import train.common.containers.*;
 import train.common.core.handlers.WorldEvents;
 import train.common.core.util.MP3Player;
 import train.common.entity.digger.EntityRotativeDigger;
 import train.common.entity.rollingStock.EntityJukeBoxCart;
 import train.common.entity.zeppelin.AbstractZeppelin;
-import train.common.inventory.*;
+import train.common.inventory.InventoryJukeBoxCart;
+import train.common.inventory.InventoryRotativeDigger;
+import train.common.inventory.InventoryZepp;
 import train.common.library.GuiIDs;
 import train.common.tile.*;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CommonProxy implements IGuiHandler {
 	public static List<MP3Player> playerList = new ArrayList<MP3Player>();
-	public static boolean debug = false;
 
-
-	public void setKeyBinding(String name, int value) {}
 
 	public void registerRenderInformation() {}
 
 	public void registerEvents(FMLPreInitializationEvent event){
-		WorldEvents worldEvents = new WorldEvents();
-
-		registerEvent(worldEvents);
+		registerEvent(new WorldEvents());
 
 	}
 
@@ -53,6 +42,7 @@ public class CommonProxy implements IGuiHandler {
 		MinecraftForge.EVENT_BUS.register(o);
 	}
 
+	@Deprecated //should be handled as noted in TCBlocks.init()
 	public void registerTileEntities() {
 		GameRegistry.registerTileEntity(TileCrafterTierI.class, "TileCrafterTierI");
 		GameRegistry.registerTileEntity(TileCrafterTierII.class, "TileCrafterTierII");
@@ -129,19 +119,9 @@ public class CommonProxy implements IGuiHandler {
 		return 0;
 	}
 
-	public Minecraft getClientInstance() {
-		return FMLClientHandler.instance().getClient();
-	}
-
-	public GuiScreen getCurrentScreen() {
-		return null;
-	}
-
 	public void registerTextureFX() {}
 
 	public void registerSounds() {}
-
-	public void registerBookHandler() {}
 
 	public Minecraft getMinecraft() {
 		return null;
@@ -154,14 +134,6 @@ public class CommonProxy implements IGuiHandler {
 			p.stop();
 		}
 	}
-
-	public void openadmingui(String data){}
-
-	public static boolean checkJukeboxEntity(World world, int id) {
-		return  world.getEntityByID(id)!=null;
-	}
-
-	public void doNEICheck(ItemStack stack) {}
 
 	public EntityPlayer getPlayer() {
 		return null;

@@ -1,10 +1,10 @@
 package train.client.render;
 
+import fexcraft.tmt.slim.Tessellator;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
-import fexcraft.tmt.slim.Tessellator;
 import train.client.render.models.ModelSwitchStandOff;
 import train.client.render.models.ModelSwitchStandOn;
 import train.common.library.Info;

@@ -4,7 +4,6 @@ import ebf.tim.utility.CommonUtil;
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
-import train.common.core.util.TraincraftUtil;
 
 public class EntityLasersLines extends Entity {
 	public double x1, y1, z1, x2, y2, z2;

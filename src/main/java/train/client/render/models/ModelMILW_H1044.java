@@ -8,12 +8,12 @@
 // Last changed on: 04.09.2017 - 12:12:33
 package train.client.render.models;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.util.ResourceLocation;
-import org.lwjgl.opengl.GL11;
 import fexcraft.tmt.slim.ModelBase;
 import fexcraft.tmt.slim.ModelRendererTurbo;
 import fexcraft.tmt.slim.Tessellator;
+import net.minecraft.entity.Entity;
+import net.minecraft.util.ResourceLocation;
+import org.lwjgl.opengl.GL11;
 import train.common.library.Info;
 
 public class ModelMILW_H1044 extends ModelBase

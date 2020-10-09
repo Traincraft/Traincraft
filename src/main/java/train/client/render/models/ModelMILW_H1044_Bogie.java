@@ -8,9 +8,9 @@
 // Last changed on: 04.09.2017 - 12:12:33
 package train.client.render.models;
 
-import net.minecraft.entity.Entity;
 import fexcraft.tmt.slim.ModelBase;
 import fexcraft.tmt.slim.ModelRendererTurbo;
+import net.minecraft.entity.Entity;
 
 public class ModelMILW_H1044_Bogie extends ModelBase
 {

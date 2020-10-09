@@ -1,10 +1,10 @@
 package train.client.render;
 
+import fexcraft.tmt.slim.Tessellator;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
-import fexcraft.tmt.slim.Tessellator;
 import train.common.library.Info;
 
 import static train.client.render.RenderBridgePillar.modelBridgePillar;

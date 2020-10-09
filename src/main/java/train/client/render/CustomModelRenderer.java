@@ -1,11 +1,11 @@
 package train.client.render;
 
 
-import fexcraft.tmt.slim.TexturedVertex;
-import fexcraft.tmt.slim.TexturedPolygon;
-import org.lwjgl.opengl.GL11;
 import fexcraft.tmt.slim.ModelBase;
 import fexcraft.tmt.slim.ModelRendererTurbo;
+import fexcraft.tmt.slim.TexturedPolygon;
+import fexcraft.tmt.slim.TexturedVertex;
+import org.lwjgl.opengl.GL11;
 import scala.actors.threadpool.Arrays;
 
 import java.util.ArrayList;

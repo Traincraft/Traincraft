@@ -1,8 +1,8 @@
 package train.client.render.models;
 
-import net.minecraft.entity.Entity;
 import fexcraft.tmt.slim.ModelBase;
 import fexcraft.tmt.slim.ModelRendererTurbo;
+import net.minecraft.entity.Entity;
 
 public class ModelSlateWagon extends ModelBase {
     int textureX = 512;

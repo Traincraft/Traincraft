@@ -7,11 +7,12 @@
 
 package train.common.core.handlers;
 
-import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.relauncher.Side;
 import train.common.Traincraft;
-import train.common.core.network.*;
+import train.common.core.network.PacketKeyPress;
+import train.common.core.network.PacketLantern;
+import train.common.core.network.PacketSetJukeboxStreamingUrl;
 import train.common.library.Info;
 
 public class PacketHandler {

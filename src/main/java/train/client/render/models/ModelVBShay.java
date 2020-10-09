@@ -8,9 +8,9 @@
 // Last changed on: 31.08.2017 - 09:50:57
 package train.client.render.models;
 
-import net.minecraft.entity.Entity;
 import fexcraft.tmt.slim.ModelBase;
 import fexcraft.tmt.slim.ModelRendererTurbo;
+import net.minecraft.entity.Entity;
 
 public class ModelVBShay extends ModelBase {
     int textureX = 512;

@@ -3,10 +3,10 @@ package train.client.render.models;
 //Keep in mind that you still need to fill in some blanks
 // - ZeuX
 
+import fexcraft.tmt.slim.ModelBase;
 import fexcraft.tmt.slim.ModelRendererTurbo;
 import net.minecraft.entity.Entity;
 import org.lwjgl.opengl.GL11;
-import fexcraft.tmt.slim.ModelBase;
 
 public class ModelLocoDieselIC4_DSB_FH extends ModelBase
 {

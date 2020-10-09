@@ -1,11 +1,9 @@
 package train.common.core.handlers;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.PlayerEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.event.entity.EntityStruckByLightningEvent;
 import net.minecraftforge.event.world.ChunkEvent;
 import train.common.entity.ai.EntityAIFearHorn;
 import train.common.entity.rollingStock.EntityJukeBoxCart;

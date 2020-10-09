@@ -7,17 +7,16 @@
 
 package train.common.blocks;
 
-import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
-import train.common.Traincraft;
 import train.common.library.BlockIDs;
 import train.common.library.Info;
 
 public class TCBlocks {
 
+	@Deprecated //need to use TiMGenericRegistry.registerBlock(), this will also cover tile entities and TESR.
 	public static void init() {
 		loadBlocks();
 		registerBlocks();

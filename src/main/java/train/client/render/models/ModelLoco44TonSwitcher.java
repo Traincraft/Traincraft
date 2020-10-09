@@ -10,10 +10,10 @@
 package train.client.render.models;
 
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.Entity;
 import fexcraft.tmt.slim.ModelConverter;
 import fexcraft.tmt.slim.ModelRendererTurbo;
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.Entity;
 
 public class ModelLoco44TonSwitcher extends ModelConverter //Same as Filename
 {

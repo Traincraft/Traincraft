@@ -1,8 +1,8 @@
 package train.client.render.models.blocks;
 
+import fexcraft.tmt.slim.ModelBase;
 import net.minecraft.entity.Entity;
 import org.lwjgl.opengl.GL11;
-import fexcraft.tmt.slim.ModelBase;
 import train.client.render.CustomModelRenderer;
 
 public class ModelBlockSignal extends ModelBase {

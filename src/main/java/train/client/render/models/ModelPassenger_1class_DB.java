@@ -1,8 +1,8 @@
 package train.client.render.models;
 
+import fexcraft.tmt.slim.ModelBase;
 import net.minecraft.entity.Entity;
 import org.lwjgl.opengl.GL11;
-import fexcraft.tmt.slim.ModelBase;
 import train.client.core.ClientProxy;
 import train.client.render.CustomModelRenderer;
 import train.client.render.models.blocks.ModelLights;

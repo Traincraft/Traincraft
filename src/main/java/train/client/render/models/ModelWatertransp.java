@@ -1,10 +1,10 @@
 package train.client.render.models;
 
 import ebf.tim.entities.GenericRailTransport;
+import fexcraft.tmt.slim.ModelBase;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import org.lwjgl.opengl.GL11;
-import fexcraft.tmt.slim.ModelBase;
 import train.client.render.CustomModelRenderer;
 
 public class ModelWatertransp extends ModelBase {

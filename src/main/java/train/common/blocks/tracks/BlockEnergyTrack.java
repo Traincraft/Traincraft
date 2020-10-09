@@ -8,8 +8,6 @@ package train.common.blocks.tracks;
 import cofh.api.energy.IEnergyHandler;
 import cofh.api.energy.IEnergyProvider;
 import cpw.mods.fml.common.FMLCommonHandler;
-import ebf.tim.TrainsInMotion;
-import ebf.tim.entities.EntityTrainCore;
 import mods.railcraft.api.core.items.IToolCrowbar;
 import mods.railcraft.api.electricity.IElectricGrid;
 import mods.railcraft.api.tracks.ITrackPowered;
