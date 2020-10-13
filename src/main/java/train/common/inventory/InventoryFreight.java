@@ -1,5 +1,9 @@
 package train.common.inventory;
 
+import cpw.mods.fml.common.Optional;
+import invtweaks.api.container.ChestContainer;
+import invtweaks.api.container.ContainerSection;
+import invtweaks.api.container.ContainerSectionCallback;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
@@ -8,6 +12,11 @@ import net.minecraft.item.ItemStack;
 import train.common.api.Freight;
 import train.common.slots.SlotFreight;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+@ChestContainer()
 public class InventoryFreight extends Container {
 
 	private Freight freight;
@@ -159,5 +168,20 @@ public class InventoryFreight extends Container {
 			}
 		}
 		return var5;
+	}
+
+	// Inventory Tweaks Compat
+	@ContainerSectionCallback
+	@Optional.Method(modid = "inventorytweaks")
+	public Map<ContainerSection, List<Slot>> getContainerSections() {
+		Map<ContainerSection, List<Slot>> sectSlots = new HashMap<ContainerSection, List<Slot>>();
+
+		int freightSlots = height * 9;
+		sectSlots.put(ContainerSection.CHEST, inventorySlots.subList(0, freightSlots));
+		sectSlots.put(ContainerSection.INVENTORY, inventorySlots.subList(freightSlots, freightSlots + 36));
+		sectSlots.put(ContainerSection.INVENTORY_NOT_HOTBAR, inventorySlots.subList(freightSlots, freightSlots + 27));
+		sectSlots.put(ContainerSection.INVENTORY_HOTBAR, inventorySlots.subList(freightSlots + 27, freightSlots + 36));
+
+		return sectSlots;
 	}
 }
