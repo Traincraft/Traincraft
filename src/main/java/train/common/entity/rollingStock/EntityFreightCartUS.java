@@ -20,22 +20,22 @@ import train.common.library.ItemIDs;
 import java.util.List;
 import java.util.UUID;
 
-public class EntityBoxCartUS extends GenericRailTransport {
+public class EntityFreightCartUS extends GenericRailTransport {
 
-    public EntityBoxCartUS(World worldObj) {
+    public EntityFreightCartUS(World worldObj) {
         super(worldObj);
     }
 
-    public EntityBoxCartUS(UUID owner, World world, double xPos, double yPos, double zPos) {
+    public EntityFreightCartUS(UUID owner, World world, double xPos, double yPos, double zPos) {
         super(owner, world, xPos, yPos, zPos);
     }
 
-    public static final Item thisItem = new ItemTransport(new EntityBoxCartUS((World)null), Info.modID, Traincraft.tcTab);
+    public static final Item thisItem = new ItemTransport(new EntityFreightCartUS((World)null), Info.modID, Traincraft.tcTab);
 
 
     //main stats
     @Override
-    public String transportName(){return "Freight Box Cart US";}
+    public String transportName(){return "Freight Cart US";}
     @Override
     public String transportcountry(){return "Undefined";}
     @Override
@@ -43,7 +43,7 @@ public class EntityBoxCartUS extends GenericRailTransport {
     @Override
     public boolean isFictional(){return false;}
     @Override
-    public int getInventoryRows(){return 5;}
+    public int getInventoryRows(){return 4;}
     @Override
     public List<TrainsInMotion.transportTypes> getTypes(){
         return TrainsInMotion.transportTypes.FREIGHT.singleton();
@@ -53,44 +53,44 @@ public class EntityBoxCartUS extends GenericRailTransport {
 
     //Model stuff
     @Override
-    public ModelBase[] getModel(){return new ModelBase[]{new train.client.render.models.ModelBoxCartUS()};}
+    public ModelBase[] getModel(){return new ModelBase[]{new train.client.render.models.ModelFreightCartUS()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{0.0f, -0.45f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.0f, -0.47f, 0.0f}};}
     @Override
     public void registerSkins(){
         String description ="";
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/boxCartUS_Brown.png","Brown", description));
+            new skin(Info.modID,"textures/trains/freightCartUS_Brown.png","Brown", description));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/boxCartUS_Red.png","Red", description));
+            new skin(Info.modID,"textures/trains/freightCartUS_Yellow.png","Yellow", description));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/boxCartUS_Blue.png","Blue", description));
+            new skin(Info.modID,"textures/trains/freightCartUS_Black.png","Black", description));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/boxCartUS_Black.png","Black", description));
+            new skin(Info.modID,"textures/trains/freightCartUS_Blue.png","Blue", description));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/boxCartUS_Yellow.png","Yellow", description));
+            new skin(Info.modID,"textures/trains/freightCartUS_Cyan.png","Cyan", description));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/boxCartUS_Magenta.png","Magenta", description));
+            new skin(Info.modID,"textures/trains/freightCartUS_Green.png","Green", description));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/boxCartUS_Cyan.png","Cyan", description));
+            new skin(Info.modID,"textures/trains/freightCartUS_Grey.png","Grey", description));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/boxCartUS_Pink.png","Pink", description));
+            new skin(Info.modID,"textures/trains/freightCartUS_LightBlue.png","LightBlue", description));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/boxCartUS_LightGrey.png","LightGrey", description));
+            new skin(Info.modID,"textures/trains/freightCartUS_LightGrey.png","LightGrey", description));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/boxCartUS_Green.png","Green", description));
+            new skin(Info.modID,"textures/trains/freightCartUS_Lime.png","Lime", description));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/boxCartUS_White.png","White", description));
+            new skin(Info.modID,"textures/trains/freightCartUS_Magenta.png","Magenta", description));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/boxCartUS_LightBlue.png","LightBlue", description));
+            new skin(Info.modID,"textures/trains/freightCartUS_Orange.png","Orange", description));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/boxCartUS_Lime.png","Lime", description));
+            new skin(Info.modID,"textures/trains/freightCartUS_Pink.png","Pink", description));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/boxCartUS_Purple.png","Purple", description));
+            new skin(Info.modID,"textures/trains/freightCartUS_Purple.png","Purple", description));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/boxCartUS_Orange.png","Orange", description));
+            new skin(Info.modID,"textures/trains/freightCartUS_Red.png","Red", description));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/boxCartUS_Grey.png","Grey", description));
+            new skin(Info.modID,"textures/trains/freightCartUS_White.png","White", description));
     }
     @Override
     public String getDefaultSkin(){
@@ -113,7 +113,7 @@ public class EntityBoxCartUS extends GenericRailTransport {
     @Override
     public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{0.824999988079071f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{0.7799999713897705f,2.1f,1.1f};}
     @Override
     public float[] bogieLengthFromCenter() {return new float[]{0.0f, -0.0f};}
 

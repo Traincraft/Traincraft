@@ -1832,6 +1832,14 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
     @SideOnly(Side.CLIENT)
     public float[][] modelOffsets(){return null;}
 
+
+    /**returns the x/y/z rotation each model should render at in degrees, in order with getModels
+     * example:
+     * return new float[][]{{x1,y1,z1},{x2,y2,z2}, etc...};
+     * may return null.*/
+    @SideOnly(Side.CLIENT)
+    public float[][] modelRotations(){return null;}
+
     /**event is to add skins for the model to the skins registry on mod initialization.
      * this function can be used to register multiple skins, one after another.
      * example:

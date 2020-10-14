@@ -273,6 +273,11 @@ public class RenderWagon extends Render {
             if(entity.modelOffsets()!=null && entity.modelOffsets().length>i) {
                 GL11.glTranslated(entity.modelOffsets()[i][0],entity.modelOffsets()[i][1],entity.modelOffsets()[i][2]);
             }
+            if(entity.modelRotations()!=null && entity.modelRotations().length>i) {
+                GL11.glRotatef(entity.modelRotations()[i][0],1,0,0);
+                GL11.glRotatef(entity.modelRotations()[i][1],0,1,0);
+                GL11.glRotatef(entity.modelRotations()[i][2],0,0,1);
+            }
             entity.renderData.modelList[i].render(entity, 0,0,0,0,0, entity.getRenderScale());
             GL11.glPopMatrix();
         }
