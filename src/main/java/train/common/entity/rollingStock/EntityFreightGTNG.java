@@ -11,6 +11,7 @@ import fexcraft.tmt.slim.ModelBase;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import train.client.render.models.*;
 import train.common.Traincraft;
@@ -53,7 +54,7 @@ public class EntityFreightGTNG extends GenericRailTransport {
 
     //Model stuff
     @Override
-    public ModelBase[] getModel(){return new ModelBase[]{new train.client.render.ModelGTNG()};}
+    public ModelBase[] getModel(){return new ModelBase[]{new train.client.render.models.ModelGTNG()};}
     @Override
     public float[][] modelOffsets(){return new float[][]{{0.0f, 0.2f, 0.0f}};}
     @Override
@@ -74,10 +75,8 @@ public class EntityFreightGTNG extends GenericRailTransport {
     @Override
     public ItemStack[] getRecipie() {
         return new ItemStack[]{
-                new ItemStack(), new ItemStack(), new ItemStack(), 
-                new ItemStack(), new ItemStack(), new ItemStack(), 
-                new ItemStack(), new ItemStack(), new ItemStack(), 
-        };
+                new ItemStack(ItemIDs.steel.item, 6), new ItemStack(ItemIDs.bogie.item, 2), new ItemStack(ItemIDs.steelframe.item, 2), 
+                new ItemStack(ItemIDs.steel.item, 2), null, null, null, null, new ItemStack(Blocks.hopper, 1)        };
     }
 
 

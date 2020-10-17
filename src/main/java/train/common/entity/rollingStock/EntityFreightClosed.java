@@ -11,6 +11,7 @@ import fexcraft.tmt.slim.ModelBase;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import train.client.render.models.*;
 import train.common.Traincraft;
@@ -74,10 +75,8 @@ public class EntityFreightClosed extends GenericRailTransport {
     @Override
     public ItemStack[] getRecipie() {
         return new ItemStack[]{
-                new ItemStack(), new ItemStack(), new ItemStack(), 
-                new ItemStack(), new ItemStack(), new ItemStack(), 
-                new ItemStack(), new ItemStack(), new ItemStack(), 
-        };
+                new ItemStack(Blocks.planks, 4), new ItemStack(ItemIDs.ironBogie.item, 2), new ItemStack(ItemIDs.ironFrame.item, 4), 
+                new ItemStack(Items.iron_ingot, 2), null, null, null, null, new ItemStack(Blocks.chest, 1)        };
     }
 
 

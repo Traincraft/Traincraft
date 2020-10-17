@@ -11,6 +11,7 @@ import fexcraft.tmt.slim.ModelBase;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import train.client.render.models.*;
 import train.common.Traincraft;
@@ -43,10 +44,10 @@ public class EntityCaboose3 extends GenericRailTransport {
     @Override
     public boolean isFictional(){return false;}
     @Override
-    public int getInventoryRows(){return ;}
+    public int getInventoryRows(){return 0;}
     @Override
     public List<TrainsInMotion.transportTypes> getTypes(){
-        return TrainsInMotion.transportTypes..singleton();
+        return TrainsInMotion.transportTypes.WORKCAR.singleton();
     }
     @Override
     public float weightKg(){return 10f;}
@@ -74,10 +75,9 @@ public class EntityCaboose3 extends GenericRailTransport {
     @Override
     public ItemStack[] getRecipie() {
         return new ItemStack[]{
-                new ItemStack(), new ItemStack(), new ItemStack(), 
-                new ItemStack(), new ItemStack(), new ItemStack(), 
-                new ItemStack(), new ItemStack(), new ItemStack(), 
-        };
+                new ItemStack(Blocks.planks, 2), new ItemStack(ItemIDs.ironBogie.item, 2), new ItemStack(ItemIDs.ironFrame.item, 2), 
+                new ItemStack(Items.iron_ingot, 2), null, new ItemStack(ItemIDs.woodenCab.item, 1), 
+                null, null, new ItemStack(ItemIDs.seats.item, 1)        };
     }
 
 

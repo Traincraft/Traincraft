@@ -21,22 +21,22 @@ import train.common.library.ItemIDs;
 import java.util.List;
 import java.util.UUID;
 
-public class EntityPassenger7 extends GenericRailTransport {
+public class EntityTracksBuilder extends GenericRailTransport {
 
-    public EntityPassenger7(World worldObj) {
+    public EntityTracksBuilder(World worldObj) {
         super(worldObj);
     }
 
-    public EntityPassenger7(UUID owner, World world, double xPos, double yPos, double zPos) {
+    public EntityTracksBuilder(UUID owner, World world, double xPos, double yPos, double zPos) {
         super(owner, world, xPos, yPos, zPos);
     }
 
-    public static final Item thisItem = new ItemTransport(new EntityPassenger7((World)null), Info.modID, Traincraft.tcTab);
+    public static final Item thisItem = new ItemTransport(new EntityTracksBuilder((World)null), Info.modID, Traincraft.tcTab);
 
 
     //main stats
     @Override
-    public String transportName(){return "Passenger Short Green";}
+    public String transportName(){return "Tracks Builder";}
     @Override
     public String transportcountry(){return "Undefined";}
     @Override
@@ -47,27 +47,25 @@ public class EntityPassenger7 extends GenericRailTransport {
     public int getInventoryRows(){return 0;}
     @Override
     public List<TrainsInMotion.transportTypes> getTypes(){
-        return TrainsInMotion.transportTypes.PASSENGER.singleton();
+        return TrainsInMotion.transportTypes.OTHER.singleton();
     }
     @Override
     public float weightKg(){return 10f;}
 
     //Model stuff
     @Override
-    public ModelBase[] getModel(){return new ModelBase[]{new train.client.render.models.ModelPassenger7()};}
+    public ModelBase[] getModel(){return new ModelBase[]{new train.client.render.models.ModelBuilder()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{0.0f, -0.44f, 0.0f}};}
-    @Override
-    public float[][] modelRotations(){return new float[][]{{0.0f, 90.0f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.0f, -0.42f, 0.0f}};}
     @Override
     public void registerSkins(){
         String description ="";
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/passenger7.png","passenger7", description));
+            new skin(Info.modID,"textures/trains/builder2.png","builder2", description));
     }
     @Override
     public String getDefaultSkin(){
-        return Info.modID+":"+"passenger7";
+        return Info.modID+":"+"builder2";
     }
 
 
@@ -75,9 +73,8 @@ public class EntityPassenger7 extends GenericRailTransport {
     @Override
     public ItemStack[] getRecipie() {
         return new ItemStack[]{
-                new ItemStack(Blocks.planks, 2), new ItemStack(ItemIDs.ironBogie.item, 2), new ItemStack(ItemIDs.ironFrame.item, 2), 
-                new ItemStack(Items.iron_ingot, 2), null, new ItemStack(ItemIDs.ironCab.item, 1), 
-                null, null, new ItemStack(ItemIDs.seats.item, 1)        };
+                new ItemStack(ItemIDs.steel.item, 6), new ItemStack(ItemIDs.bogie.item, 2), new ItemStack(ItemIDs.steelframe.item, 3), 
+                new ItemStack(ItemIDs.steel.item, 1), new ItemStack(ItemIDs.steelchimney.item, 1), null, new ItemStack(ItemIDs.boiler.item, 1), new ItemStack(ItemIDs.firebox.item, 1), new ItemStack(Blocks.rail, 16)        };
     }
 
 
@@ -85,7 +82,7 @@ public class EntityPassenger7 extends GenericRailTransport {
     @Override
     public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{0.699999988079071f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{1.0499999523162842f,2.1f,1.1f};}
     @Override
     public float[] bogieLengthFromCenter() {return new float[]{0.0f, -0.0f};}
 

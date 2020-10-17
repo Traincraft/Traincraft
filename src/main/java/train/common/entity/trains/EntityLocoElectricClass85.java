@@ -11,6 +11,7 @@ import fexcraft.tmt.slim.ModelBase;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import train.client.render.models.*;
 import train.common.Traincraft;
@@ -74,10 +75,9 @@ public class EntityLocoElectricClass85 extends EntityTrainCore {
     @Override
     public ItemStack[] getRecipie() {
         return new ItemStack[]{
-                new ItemStack(), new ItemStack(), new ItemStack(), 
-                new ItemStack(), new ItemStack(), new ItemStack(), 
-                new ItemStack(), new ItemStack(), new ItemStack(), 
-        };
+                new ItemStack(ItemIDs.controls.item, 2), new ItemStack(ItemIDs.bogie.item, 3), new ItemStack(ItemIDs.steelframe.item, 2), 
+                new ItemStack(ItemIDs.steel.item, 1), new ItemStack(ItemIDs.steelchimney.item, 1), new ItemStack(ItemIDs.steelcab.item, 1), 
+                new ItemStack(ItemIDs.transformer.item, 2), new ItemStack(ItemIDs.electmotor.item, 2), new ItemStack(Items.redstone, 2)        };
     }
 
 

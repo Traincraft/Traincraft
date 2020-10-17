@@ -97,7 +97,7 @@ public class TrainsInMotion {
         STEAM,DIESEL,HYDROGEN_DIESEL,ELECTRIC,NUCLEAR_STEAM,NUCLEAR_ELECTRIC, //trains
         PASSENGER, FREIGHT, HOPPER, TANKER, WORKCAR, SLUG, B_UNIT, //generic rollingstock
         LOGCAR, RAILCAR, FREEZERCAR, LAVATANKER, GRAINHOPPER, COALHOPPER, OILCAR, //specific cargo rollingstock
-        FUELTANKER, TENDER, ELECTRIC_TENDER, JUKEBOX, TRACKBUILDER, STOCK; //specialized Rollingstock
+        FUELTANKER, TENDER, ELECTRIC_TENDER, JUKEBOX, TRACKBUILDER, STOCK, OTHER; //specialized Rollingstock
 
          public boolean isTrain(){
              return this == STEAM || this == DIESEL || this == HYDROGEN_DIESEL || this == ELECTRIC ||

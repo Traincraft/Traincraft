@@ -44,9 +44,6 @@ public class CommonProxy implements IGuiHandler {
 
 	@Deprecated //should be handled as noted in TCBlocks.init()
 	public void registerTileEntities() {
-		GameRegistry.registerTileEntity(TileCrafterTierI.class, "TileCrafterTierI");
-		GameRegistry.registerTileEntity(TileCrafterTierII.class, "TileCrafterTierII");
-		GameRegistry.registerTileEntity(TileCrafterTierIII.class, "TileCrafterTierIII");
 		GameRegistry.registerTileEntity(TileTrainWbench.class, "TileTrainWbench");
 		GameRegistry.registerTileEntity(TileEntityDistil.class, "Tile Distil");
 		GameRegistry.registerTileEntity(TileEntityOpenHearthFurnace.class, "Tile OpenHearthFurnace");
@@ -76,12 +73,6 @@ public class CommonProxy implements IGuiHandler {
 		}
 
 		switch (ID) {
-		case (GuiIDs.CRAFTER_TIER_I):
-			return te != null && te instanceof TileCrafterTierI ? new ContainerTier(player.inventory, (TileCrafterTierI) te) : null;
-		case (GuiIDs.CRAFTER_TIER_II):
-			return te != null && te instanceof TileCrafterTierII ? new ContainerTier(player.inventory, (TileCrafterTierII) te) : null;
-		case (GuiIDs.CRAFTER_TIER_III):
-			return te != null && te instanceof TileCrafterTierIII ? new ContainerTier(player.inventory, (TileCrafterTierIII) te) : null;
 		case (GuiIDs.DISTIL):
 			return te != null && te instanceof TileEntityDistil ? new ContainerDistil(player.inventory, (TileEntityDistil) te) : null;
 		case (GuiIDs.GENERATOR_DIESEL):
