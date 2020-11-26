@@ -26,7 +26,7 @@ public class BlockDisembarkTrack extends TrackBaseTraincraft implements ITrackEm
 	@Override
 	public void onMinecartPass(EntityMinecart cart) {
 		if (cart instanceof GenericRailTransport &&
-		((GenericRailTransport) cart).getTypes().contains(TrainsInMotion.transportTypes.STOCK)) {
+		!TrainsInMotion.transportTypes.isTrain(((GenericRailTransport) cart).getTypes())) {
 			if (cart.riddenByEntity == null)
 				return;
 			cart.riddenByEntity.mountEntity(cart);

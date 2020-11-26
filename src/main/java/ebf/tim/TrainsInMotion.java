@@ -102,6 +102,15 @@ public class TrainsInMotion {
          public boolean isTanker(){
              return this == TANKER || this == LAVATANKER || this == OILCAR || this == FUELTANKER;
          }
+
+         public static boolean isTrain(List<transportTypes> types){
+             for(transportTypes t : types){
+                 if(t.isTrain()){
+                     return true;
+                 }
+             }
+             return false;
+         }
          public List<transportTypes> singleton(){return Collections.singletonList(this);}
     }
 

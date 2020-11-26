@@ -6,6 +6,7 @@ import ebf.XmlBuilder;
 import ebf.tim.blocks.RailTileEntity;
 import ebf.tim.items.ItemRail;
 import ebf.tim.registry.TiMItems;
+import ebf.tim.utility.DebugUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRail;
 import net.minecraft.block.BlockRailBase;
@@ -328,19 +329,10 @@ public class BlockRailCore extends BlockRail implements ITileEntityProvider {
             return null;
         }
     }
+
     @Override
     public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune) {
-        if(world.getTileEntity(x,y,z) instanceof RailTileEntity) {
-            XmlBuilder xml =((RailTileEntity) world.getTileEntity(x,y,z)).getData();
-
-            ArrayList<ItemStack> out = new ArrayList<>();
-            out.add(ItemRail.setStackData(
-                    new ItemStack(TiMItems.railItem, 1), xml.getItemStack("rail"),
-                    xml.getItemStack("ballast"), xml.getItemStack("ties"), xml.getItemStack("wires")));
-            return out;
-        } else {
-            return null;
-        }
+        return new ArrayList<>();
     }
 
 
@@ -353,6 +345,12 @@ public class BlockRailCore extends BlockRail implements ITileEntityProvider {
 
     @Override
     public void breakBlock(World p_149749_1_, int p_149749_2_, int p_149749_3_, int p_149749_4_, Block p_149749_5_, int p_149749_6_) {
+        if(!p_149749_1_.isRemote){
+            TileEntity e = p_149749_1_.getTileEntity(p_149749_2_,p_149749_3_,p_149749_4_);
+            if(e instanceof RailTileEntity){
+                ((RailTileEntity) e).dropItem();
+            }
+        }
         p_149749_1_.removeTileEntity(p_149749_2_, p_149749_3_, p_149749_4_);
     }
 

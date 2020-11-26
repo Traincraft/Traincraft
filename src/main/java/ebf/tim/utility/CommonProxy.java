@@ -34,7 +34,7 @@ public class CommonProxy implements IGuiHandler {
     public static EventManagerServer eventManagerServer = new EventManagerServer();
     public static Map<String, List<Recipe>> recipesInMods = new HashMap<>();
     public static String configDirectory;
-    public static boolean realSpeed=true;
+    public static boolean realSpeed=false;
 
 
 
@@ -83,7 +83,7 @@ public class CommonProxy implements IGuiHandler {
         config.save();
         configDirectory = event.getModConfigurationDirectory().getAbsolutePath();
 
-        realSpeed=config.getBoolean("UseRealSpeed","Gameplay", true,
+        realSpeed=config.getBoolean("UseRealSpeed","Gameplay", false,
                 "Real speed moves the train on the assumption a block is a meter. Setting this to false will move the train on the assumption a block is 16 meters (more similar to Traincraft).");
 
 

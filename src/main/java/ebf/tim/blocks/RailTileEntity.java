@@ -3,12 +3,17 @@ package ebf.tim.blocks;
 import ebf.XmlBuilder;
 import ebf.tim.TrainsInMotion;
 import ebf.tim.blocks.rails.RailShapeCore;
+import ebf.tim.items.ItemRail;
 import ebf.tim.registry.TiMBlocks;
+import ebf.tim.registry.TiMItems;
 import ebf.tim.render.models.Model1x1Rail;
 import ebf.tim.utility.ClientProxy;
 import fexcraft.tmt.slim.TextureManager;
 import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
 import net.minecraft.crash.CrashReportCategory;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
@@ -57,6 +62,8 @@ public class RailTileEntity extends TileEntity {
             if (!worldObj.isRemote) {
                 return;
             }
+
+            Minecraft.getMinecraft().entityRenderer.enableLightmap(1);
             TextureManager.adjustLightFixture(worldObj,xCoord,yCoord,zCoord);
             if(railGLID!=null){
                 if(!org.lwjgl.opengl.GL11.glIsList(railGLID)){
@@ -100,6 +107,17 @@ public class RailTileEntity extends TileEntity {
             boundingBox = AxisAlignedBB.getBoundingBox(xCoord-1, yCoord-1, zCoord-1, xCoord+1, yCoord, zCoord+1);
         }
         return boundingBox;
+    }
+
+
+    public void dropItem(){
+
+        ItemStack drop = ItemRail.setStackData(
+                new ItemStack(TiMItems.railItem, 1), data.getItemStack("rail"),
+                data.getItemStack("ballast"), data.getItemStack("ties"), data.getItemStack("wires"));
+        if(drop!=null) {
+            worldObj.spawnEntityInWorld(new EntityItem(worldObj, xCoord, yCoord + 0.5f, zCoord, drop));
+        }
     }
 
 

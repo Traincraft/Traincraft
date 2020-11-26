@@ -30,7 +30,7 @@ public class BlockMobBoardingTrack extends TrackBaseTraincraft implements ITrack
 	@Override
 	public void onMinecartPass(EntityMinecart cart) {
 		if (cart instanceof GenericRailTransport &&
-		((GenericRailTransport) cart).getTypes().contains(TrainsInMotion.transportTypes.STOCK)) {
+				!TrainsInMotion.transportTypes.isTrain(((GenericRailTransport) cart).getTypes())) {
 			if (cart.riddenByEntity != null)
 				return;
 			AxisAlignedBB box = null;

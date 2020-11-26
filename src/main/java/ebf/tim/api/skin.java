@@ -12,6 +12,10 @@ public class skin extends TransportSkin {
         super(modId, texture, name, description);
     }
 
+    public skin(String modId, String texture, String name, String description) {
+        super(modId, texture, name, description);
+    }
+
     @Deprecated
     @Override
     public skin setBogieTextures(String[] textures){

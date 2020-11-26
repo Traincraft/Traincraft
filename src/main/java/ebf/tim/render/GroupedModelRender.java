@@ -112,6 +112,9 @@ public class GroupedModelRender {
      * @param entityRenderScale the scale to render at.
      */
     public void doRender(RenderBlocks field_147909_c, ItemStack blockStack, RenderWagon render, float entityRenderScale, GenericRailTransport transport){
+        if(field_147909_c==null){
+            return;
+        }
         if (isBlock) {
             float yScale=1;
             if(isScaled){
