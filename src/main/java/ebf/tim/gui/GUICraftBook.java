@@ -1,7 +1,7 @@
 package ebf.tim.gui;
 
 import ebf.tim.TrainsInMotion;
-import ebf.tim.models.ModelBook;
+import ebf.tim.render.ModelBook;
 import ebf.tim.utility.ClientUtil;
 import ebf.tim.utility.CommonProxy;
 import ebf.tim.utility.DebugUtil;

@@ -2,6 +2,7 @@ package ebf.tim.items;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import ebf.tim.utility.CommonUtil;
 import ebf.tim.utility.DebugUtil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -72,9 +73,9 @@ public class ItemKey extends Item{
     public void addInformation(ItemStack stack, EntityPlayer player, List stringList, boolean p_77624_4_) {
         if(stack!=null && stack.stackTagCompound!=null) {
         if (this instanceof ItemTicket){
-            stringList.add("This ticket is for: ");
+            stringList.add(CommonUtil.translate("menu.item.ticket.lore1"));
         } else {
-            stringList.add("This key unlocks: ");
+            stringList.add(CommonUtil.translate("menu.item.key.lore1"));
         }
         List<UUID> hosts = getHostList(stack);
         List<String> names = getHostNames(stack);

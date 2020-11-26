@@ -6,6 +6,8 @@ import ebf.tim.utility.DebugUtil;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
 
 import java.util.HashMap;
 
@@ -19,6 +21,7 @@ public class XmlBuilder {
     public HashMap<String, float[]> floatArrayMap = new HashMap<>();
     public HashMap<String, String> stringMap = new HashMap<>();
     public HashMap<String, String[]> itemMap = new HashMap<>();
+    public HashMap<String, String[]> fluidMap = new HashMap<>();
 
     /*
      *----------Constructor Section----------
@@ -41,6 +44,14 @@ public class XmlBuilder {
                         new String[]{
                                 stack.getItem().delegate.name(),
                         stack.stackSize+"",stack.getItemDamage()+""});
+        return this;
+    }
+    public XmlBuilder putFluidStack(String id, FluidStack stack){
+        fluidMap.put(id,
+                stack==null?new String[]{"null"}:
+                        new String[]{
+                                stack.getFluid().getBlock().delegate.name(),
+                                stack.amount+""});
         return this;
     }
     public XmlBuilder putInt(String id, int value){
@@ -152,6 +163,11 @@ public class XmlBuilder {
         return s;
     }
 
+    public FluidStack getFluidStack(String id){
+        if(fluidMap.get(id) == null || fluidMap.get(id)[0].equals("null")){return null;}
+        return FluidRegistry.getFluidStack(fluidMap.get(id)[0], Integer.parseInt(fluidMap.get(id)[1]));
+    }
+
     public boolean containsString(String id){return stringMap.containsKey(id);}
     public boolean containsInt(String id){return intMap.containsKey(id);}
     public boolean containsIntArray(String id){return intArrayMap.containsKey(id);}
@@ -159,6 +175,7 @@ public class XmlBuilder {
     public boolean containsFloatArray(String id){return floatArrayMap.containsKey(id);}
     public boolean containsDouble(String id){return doubleMap.containsKey(id);}
     public boolean containsItemStack(String id){return itemMap.containsKey(id);}
+    public boolean containsFluidStack(String id){return fluidMap.containsKey(id);}
     public boolean containsXml(String id){return xmlMap.containsKey(id);}
 
     /*
@@ -258,6 +275,18 @@ public class XmlBuilder {
             tag(key, data);
         }
 
+        for(String key : fluidMap.keySet()){
+            tag(key, data, "fluid");
+            if(fluidMap.get(key) == null || fluidMap.get(key)[0].equals("null")){
+                data.append("null");
+            } else {
+                data.append(fluidMap.get(key)[0]);
+                data.append(",");
+                data.append(fluidMap.get(key)[1]);
+            }
+            tag(key, data);
+        }
+
         return data.toString();
     }
 
@@ -349,6 +378,11 @@ public class XmlBuilder {
                     }
                 }
 
+                case 14:{
+                    this.fluidMap.put(lineReader[index-1].substring(1, lineReader[index-1].length()-1),
+                            lineReader[index+1].split(","));index++;break;
+                }
+
                 case 0:{this.xmlMap.put(lineReader[index-1].substring(1, lineReader[index-1].length()-1),
                         new XmlBuilder(tagSubstring(lineReader, index)));index++;break;}
                 case -1:{index++;}//if it wasn't a tag declaration, skip to the next line
@@ -396,6 +430,7 @@ public class XmlBuilder {
                                                     stringContains(s, "<type=item>") ? 11 :
                                                             stringContains(s, "<type=intArray>") ? 12 :
                                                                     stringContains(s, "<type=floatArray>") ? 13 :
+                                                                            stringContains(s, "<type=fluid>") ? 14 :
                                                         -1;
 
     }

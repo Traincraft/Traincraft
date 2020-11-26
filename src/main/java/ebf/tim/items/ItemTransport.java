@@ -43,6 +43,31 @@ public class ItemTransport extends Item {
             subtext.add(EnumChatFormatting.RED + t("menu.item.fueltype") + ": " +
                     t("menu.item."+cart.transportFuelType().toLowerCase()));
         }
+        if(cart.getTypes()!=null && cart.getTypes().size()>0){
+            StringBuilder s = new StringBuilder();
+            subtext.add(EnumChatFormatting.RED + t("menu.item.types")+":");
+            boolean b=false;
+            for(TrainsInMotion.transportTypes type : cart.getTypes()){
+                if(type.isTrain()) {
+                    s.append(t("menu.item.locomotive")+", ");
+                    b=true;
+                    break;
+                }
+            }
+            if(!b){
+                s.append(t("menu.item.rollingstock")+", ");
+            }
+
+            for(TrainsInMotion.transportTypes type : cart.getTypes()){
+                if(type.isTrain()) {
+                    continue;
+                }
+                s.append(t("menu.item."+type.name())).append(", ");
+            }
+            s.delete(s.lastIndexOf(", "),s.length());
+
+            subtext.add(EnumChatFormatting.RED +s.toString());
+        }
         subtext.add(EnumChatFormatting.GREEN + t("menu.item.weight") +": " + cart.weightKg() + "kg");
         if (cart.transportTopSpeed()!=0){
             subtext.add(EnumChatFormatting.GREEN + t("menu.item.speed") +": " + cart.transportTopSpeed() +" km/h");

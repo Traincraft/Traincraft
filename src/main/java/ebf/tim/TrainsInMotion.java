@@ -13,7 +13,6 @@ import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
-import ebf.XmlBuilder;
 import ebf.tim.blocks.OreGen;
 import ebf.tim.entities.EntityBogie;
 import ebf.tim.entities.EntitySeat;
@@ -27,15 +26,9 @@ import ebf.tim.registry.TiMGenericRegistry;
 import ebf.tim.utility.ChunkHandler;
 import ebf.tim.utility.ClientProxy;
 import ebf.tim.utility.CommonProxy;
-import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.ForgeChunkManager;
 import net.minecraftforge.common.MinecraftForge;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -97,7 +90,7 @@ public class TrainsInMotion {
         STEAM,DIESEL,HYDROGEN_DIESEL,ELECTRIC,NUCLEAR_STEAM,NUCLEAR_ELECTRIC, //trains
         PASSENGER, FREIGHT, HOPPER, TANKER, WORKCAR, SLUG, B_UNIT, //generic rollingstock
         LOGCAR, RAILCAR, FREEZERCAR, LAVATANKER, GRAINHOPPER, COALHOPPER, OILCAR, //specific cargo rollingstock
-        FUELTANKER, TENDER, ELECTRIC_TENDER, JUKEBOX, TRACKBUILDER, STOCK, OTHER; //specialized Rollingstock
+        FUELTANKER, TENDER, ELECTRIC_TENDER, JUKEBOX, TRACKBUILDER, OTHER; //specialized Rollingstock
 
          public boolean isTrain(){
              return this == STEAM || this == DIESEL || this == HYDROGEN_DIESEL || this == ELECTRIC ||

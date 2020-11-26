@@ -12,10 +12,7 @@ import ebf.tim.utility.TransportSlotManager;
 import fexcraft.tmt.slim.Tessellator;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
-import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.ScaledResolution;
-import net.minecraft.client.renderer.GLAllocation;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.resources.I18n;
@@ -25,7 +22,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.ForgeHooksClient;
-import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
 
 import java.text.DecimalFormat;
@@ -122,6 +118,10 @@ public class GUITransport extends GUIContainerNoNEI {
         //draw the buttons.
         for (GUIButton b : buttons){
             b.drawButton(mouseX,mouseY);
+        }
+        //draw hover text;
+        for (GUIButton b : buttons){
+            b.drawText(mouseX,mouseY);
         }
     }
 
@@ -249,7 +249,7 @@ public class GUITransport extends GUIContainerNoNEI {
 
             @Override
             public void onClick() {
-                TrainsInMotion.keyChannel.sendToServer(new PacketInteract(4, transport.getEntityId()));
+                TrainsInMotion.keyChannel.sendToServer(new PacketInteract(15, transport.getEntityId()));
             }
         });
         //train specific
@@ -268,7 +268,7 @@ public class GUITransport extends GUIContainerNoNEI {
                     }
                 });
             }
-            if (!transport.getTypes().contains(TrainsInMotion.transportTypes.STEAM)) {
+            if (transport.getTypes()!=null && !transport.getTypes().contains(TrainsInMotion.transportTypes.STEAM)) {
                 this.buttons.add(new GUIButton((int)guiLeft + 202, (int)guiTop + 166, 18, 18){
 
                     @Override

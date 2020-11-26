@@ -5,12 +5,8 @@ import com.mojang.authlib.GameProfile;
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import ebf.tim.TrainsInMotion;
 import ebf.tim.blocks.rails.BlockRailCore;
-import ebf.tim.utility.ClientProxy;
 import ebf.tim.utility.CommonUtil;
-import ebf.tim.utility.DebugUtil;
-import fexcraft.tmt.slim.Vec3d;
 import io.netty.buffer.ByteBuf;
 import mods.railcraft.api.carts.IMinecart;
 import mods.railcraft.api.carts.IRoutableCart;
@@ -23,7 +19,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
@@ -42,11 +37,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
     private boolean isFront=true;
     /**used to calculate the X/Y/Z velocity based on the direction the rail is facing, similar to how vanilla minecarts work.*/
     private static final int[][][] vanillaRailMatrix = new int[][][] {{{0, 0, -1}, {0, 0, 1}}, {{ -1, 0, 0}, {1, 0, 0}}, {{ -1, -1, 0}, {1, 0, 0}}, {{ -1, 0, 0}, {1, -1, 0}}, {{0, 0, -1}, {0, -1, 1}}, {{0, -1, -1}, {0, 0, 1}}, {{0, 0, 1}, {1, 0, 0}}, {{0, 0, 1}, { -1, 0, 0}}, {{0, 0, -1}, { -1, 0, 0}}, {{0, 0, -1}, {1, 0, 0}}};
-    /*used by the transport class to apply a weight multiplication if the bogies are on a slope*/
-    public boolean isOnSlope=false;
 
-    /**cached value for the bogie path, prevents need to generate a new variable multiple times per tick*/
-    private double motionPathX, motionPathZ;
     /**cached value for the rail path, prevents need to generate a new variable multiple times per tick*/
     private double railPathX, railPathZ;
     /**cached value for the rail path, prevents need to generate a new variable multiple times per tick*/
@@ -182,10 +173,6 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
             this.prevPosY = this.posY;
             this.prevPosZ = this.posZ;
 
-            //prevent moving without motion velocity
-            if(motionX<0.001 && motionX > -0.001 && motionZ<0.001 && motionZ > -0.001){
-                return true;
-            }
 
             int floorX = MathHelper.floor_double(this.posX);
             int floorY = MathHelper.floor_double(this.posY);
@@ -197,8 +184,21 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
             //update on normal rails
             if (block instanceof BlockRailBase) {
                 this.yOffset=(block instanceof BlockRailCore?0.425f:0.3425f);
-                segmentMovement(Math.abs(motionX)+Math.abs(motionZ),
-                        floorX, floorY, floorZ, (BlockRailBase) block, host);
+
+                //prevent moving without motion velocity
+                if(Math.abs(motionX)+Math.abs(motionZ)<0.000001){
+                    return true;
+                }
+
+                //try to adhere to limiter track
+                float max = ((BlockRailBase) block).getRailMaxSpeed(worldObj,this,floorX, floorY, floorZ);
+                if(max!=0.4f) {
+                    segmentMovement(Math.min(Math.abs(motionX) + Math.abs(motionZ), max),
+                            floorX, floorY, floorZ, (BlockRailBase) block, host);
+                } else {
+                    segmentMovement(Math.abs(motionX) + Math.abs(motionZ),
+                            floorX, floorY, floorZ, (BlockRailBase) block, host);
+                }
                 //update on ZnD rails, and ones that don't extend block rail base.
                 //todo ZnD support, either by jar reference or API update
             //} else if (block instanceof ITrackBase) {
@@ -214,7 +214,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 
 
     private void segmentMovement(double velocity, int floorX, int floorY, int floorZ, BlockRailBase block, GenericRailTransport host){
-        while (velocity>=0.3) {
+        while (velocity>0) {
             moveBogieVanillaDirectional(Math.min(0.3,velocity), floorX, floorY, floorZ, block, host);
             velocity-=0.3;
 
@@ -227,11 +227,6 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
             if (blockNext instanceof BlockRailBase) {
                 block=(BlockRailBase) blockNext;
             }
-        }
-        //compensate for speeds under 0.3f
-        if(velocity>0.0001){
-            moveBogieVanillaDirectional(velocity, floorX, floorY, floorZ, block, host);
-            velocity=0;
         }
 
     }
@@ -380,29 +375,6 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
         motionProgress = turnProgress;
     }
 
-    public void setVelocity(double speed, float yaw){
-        Vec3d vec;
-        if(posX!=prevPosX||posZ!=prevPosZ) {
-            vec = CommonUtil.rotateDistance(speed, 0, CommonUtil.atan2degreesf(posZ - prevPosZ, posX - prevPosX));
-        } else {
-            vec=CommonUtil.rotateDistance(speed, 0, yaw-90);
-        }
-
-        motionX=vec.xCoord;
-        motionZ=vec.zCoord;
-    }
-
-    public void addVelocity(double speed, float yaw){
-        Vec3d vec;
-        if(posX!=prevPosX||posZ!=prevPosZ) {
-            vec = CommonUtil.rotateDistance(speed, 0, CommonUtil.atan2degreesf(posZ - prevPosZ, posX - prevPosX));
-        } else {
-            vec=CommonUtil.rotateDistance(speed, 0, yaw);
-        }
-
-        motionX+=vec.xCoord;
-        motionZ+=vec.zCoord;
-    }
 
     @Override
     public void setVelocity(double x, double y, double z) {

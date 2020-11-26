@@ -34,6 +34,7 @@ public class CommonProxy implements IGuiHandler {
     public static EventManagerServer eventManagerServer = new EventManagerServer();
     public static Map<String, List<Recipe>> recipesInMods = new HashMap<>();
     public static String configDirectory;
+    public static boolean realSpeed=true;
 
 
 
@@ -73,14 +74,19 @@ public class CommonProxy implements IGuiHandler {
         config.load();
         config.addCustomCategoryComment("Debug (Common)", "Used on server and client.");
         SkinRegistry.forceSkinRegister = config.getBoolean("ForceSkinRegister", "Debug (Common)", false,
-                "Forces skins to register even if the add-on for said skin is not available, doesn't cause instability just uses unnecessary ram.");
+                "Forces skins to register even if the add-on for said TransportSkin is not available, doesn't cause instability just uses unnecessary ram.");
 
         config.addCustomCategoryComment("Debug (Common, IDE Only)", "Only runs from IDE instances.");
         SkinRegistry.debugSkinRegistration = config.getBoolean("DebugSkinRegister", "Debug (Common, IDE Only)",false,
-                "Logs all skin registration events to debug console.");
+                "Logs all TransportSkin registration events to debug console.");
 
         config.save();
         configDirectory = event.getModConfigurationDirectory().getAbsolutePath();
+
+        realSpeed=config.getBoolean("UseRealSpeed","Gameplay", true,
+                "Real speed moves the train on the assumption a block is a meter. Setting this to false will move the train on the assumption a block is 16 meters (more similar to Traincraft).");
+
+
 
 
 

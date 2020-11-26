@@ -2,7 +2,7 @@ package ebf.tim.gui;
 
 
 import ebf.tim.TrainsInMotion;
-import ebf.tim.api.skin;
+import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.networking.PacketPaint;
 import ebf.tim.utility.ClientProxy;
@@ -39,7 +39,7 @@ public class GUIPaintBucket extends GuiScreen {
     public GuiButton buttonLivery;
 
     List<String>  skinList = new ArrayList<>();
-    skin currentSkin;
+    TransportSkin currentTransportSkin;
 
     int page = 0;
 
@@ -57,17 +57,17 @@ public class GUIPaintBucket extends GuiScreen {
     @Override
     public void initGui() {
         super.initGui();
-        if(skinList.size()==0) {
+        if(entity !=null && skinList.size()==0) {
             skinList = new ArrayList<>();
             if(entity.getSkinList(Minecraft.getMinecraft().thePlayer, true)!=null) {
-                List<skin> skins = new ArrayList<>(entity.getSkinList(Minecraft.getMinecraft().thePlayer, true).values());
-                Collections.sort(skins, new Comparator<skin>() {
+                List<TransportSkin> TransportSkins = new ArrayList<>(entity.getSkinList(Minecraft.getMinecraft().thePlayer, true).values());
+                Collections.sort(TransportSkins, new Comparator<TransportSkin>() {
                     @Override
-                    public int compare(skin o1, skin o2) {
+                    public int compare(TransportSkin o1, TransportSkin o2) {
                         return o1.id - o2.id;
                     }
                 });
-                for (skin s : skins) {
+                for (TransportSkin s : TransportSkins) {
                     skinList.add(s.modid + ":" + s.name);
                 }
             }
@@ -87,13 +87,15 @@ public class GUIPaintBucket extends GuiScreen {
     @Override
     public void drawScreen(int parWidth, int parHeight, float p_73863_3_) {
         super.drawScreen(parWidth, parHeight, p_73863_3_);
-
-        currentSkin = entity.getTextureByID(Minecraft.getMinecraft().thePlayer,true, skinList.get(page));
         guiLeft=new ScaledResolution(Minecraft.getMinecraft(), Minecraft.getMinecraft().displayWidth, Minecraft.getMinecraft().displayHeight).getScaledWidth();
         guiTop=new ScaledResolution(Minecraft.getMinecraft(), Minecraft.getMinecraft().displayWidth, Minecraft.getMinecraft().displayHeight).getScaledHeight();
 
+        if (skinList==null || skinList.size()==0){
+            return;
+        }
+        currentTransportSkin = entity.getTextureByID(Minecraft.getMinecraft().thePlayer,true, skinList.get(page));
         //initGui();
-        if(currentSkin==null){return;}
+        if(currentTransportSkin ==null){return;}
 
         switch(guiScreen) {
             case 0:{defineButtons();guiSkinSelect();break;}
@@ -103,7 +105,7 @@ public class GUIPaintBucket extends GuiScreen {
     @Override
     protected void actionPerformed(GuiButton parButton) {
         if (parButton==buttonApply) {
-            if(guiScreen==0) {//skin select
+            if(guiScreen==0) {//TransportSkin select
                 TrainsInMotion.keyChannel.sendToServer(new PacketPaint(skinList.get(page), entity.getEntityId()));
             } else if(guiScreen==1){//color select
 
@@ -117,13 +119,13 @@ public class GUIPaintBucket extends GuiScreen {
         }
         else if (parButton==buttonLeft) {
             page = (page <= 0 ? entity.getSkinList(Minecraft.getMinecraft().thePlayer, true).keySet().size() -1: page - 1);
-            currentSkin=entity.getSkinList(Minecraft.getMinecraft().thePlayer, true).get(skinList.get(page));
-            DebugUtil.println(page, currentSkin.name);
+            currentTransportSkin =entity.getSkinList(Minecraft.getMinecraft().thePlayer, true).get(skinList.get(page));
+            DebugUtil.println(page, currentTransportSkin.name);
         }
         else if (parButton==buttonRight) {
             page = (page+1 >= entity.getSkinList(Minecraft.getMinecraft().thePlayer, true).keySet().size() ? 0 : page + 1);
-            currentSkin=entity.getSkinList(Minecraft.getMinecraft().thePlayer, true).get(skinList.get(page));
-            DebugUtil.println(page, currentSkin.name);
+            currentTransportSkin =entity.getSkinList(Minecraft.getMinecraft().thePlayer, true).get(skinList.get(page));
+            DebugUtil.println(page, currentTransportSkin.name);
         }
     }
 
@@ -156,10 +158,10 @@ public class GUIPaintBucket extends GuiScreen {
         GL11.glColor4f(1F, 1F, 1F, 0.5F);
         float offsetFromScreenLeft = width * 0.5f;
 
-        int longest =fontRendererObj.getStringWidth(currentSkin.name);
+        int longest =fontRendererObj.getStringWidth(currentTransportSkin.getName());
 
-        if(currentSkin.getDescription()!=null) {
-            for (String s : currentSkin.getDescription()){
+        if(currentTransportSkin.getDescription()!=null) {
+            for (String s : currentTransportSkin.getDescription()){
                 if(fontRendererObj.getStringWidth(s)>longest){
                     longest=fontRendererObj.getStringWidth(s);
                 }
@@ -169,14 +171,14 @@ public class GUIPaintBucket extends GuiScreen {
 
         EventManager.drawTooltipBox((int)(width*0.175f),(int)(height*0.56f),(int)(width*0.5525f),(int)(height*0.085f),  ClientProxy.WAILA_BGCOLOR, ClientProxy.WAILA_GRADIENT1, ClientProxy.WAILA_GRADIENT2,100);
 
-        fontRendererObj.drawString(CommonUtil.translate(currentSkin.name),
-                (int)(offsetFromScreenLeft - fontRendererObj.getStringWidth(currentSkin.name)*0.65f),
+        fontRendererObj.drawString(CommonUtil.translate(currentTransportSkin.getName()),
+                (int)(offsetFromScreenLeft - fontRendererObj.getStringWidth(currentTransportSkin.getName())*0.65f),
                 (int)(height*0.59f),ClientProxy.WAILA_FONTCOLOR,false);
 
-        if(currentSkin.getDescription()!=null) {
-            for(int i=0; i<currentSkin.getDescription().length;i++) {
-                fontRendererObj.drawString(currentSkin.getDescription()[i],
-                        (int) (offsetFromScreenLeft - fontRendererObj.getStringWidth(currentSkin.getDescription()[i]) * 0.5f),
+        if(currentTransportSkin.getDescription()!=null) {
+            for(int i = 0; i< currentTransportSkin.getDescription().length; i++) {
+                fontRendererObj.drawString(currentTransportSkin.getDescription()[i],
+                        (int) (offsetFromScreenLeft - fontRendererObj.getStringWidth(currentTransportSkin.getDescription()[i]) * 0.5f),
                         (int) ((height * 0.1f) * 7)+(10*i), ClientProxy.WAILA_FONTCOLOR, false);
             }
         }
@@ -210,7 +212,7 @@ public class GUIPaintBucket extends GuiScreen {
         GL11.glScalef(scale,scale,scale);
 
         ClientProxy.transportRenderer.render(entity,0,0,0,0, true,
-                currentSkin);
+                currentTransportSkin);
         RenderHelper.disableStandardItemLighting();
         GL11.glPopMatrix();
         GL11.glPopMatrix();

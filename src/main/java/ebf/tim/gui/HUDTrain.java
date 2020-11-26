@@ -2,9 +2,11 @@ package ebf.tim.gui;
 
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import ebf.tim.TrainsInMotion;
 import ebf.tim.entities.EntityTrainCore;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.utility.ClientProxy;
+import ebf.tim.utility.CommonProxy;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.util.StatCollector;
@@ -53,13 +55,16 @@ public class HUDTrain extends GuiScreen {
                 fontRendererObj.drawString("Entity name: "+StatCollector.translateToLocal(trainEntity.transportName()), 8, 8, 4210752);
                 fontRendererObj.drawString("DEBUG INFO:", 8, 18, 4210752);
                 fontRendererObj.drawString("Accelerator State: " + -trainEntity.getDataWatcher().getWatchableObjectInt(18), 8, 28, 4210752);
-                //speed is velocity /20 to get meters per second. convert to km/h by dividing by 3.6, or mph by 2.236936293
-                double speed =(Math.abs(trainEntity.motionX)+Math.abs(trainEntity.motionZ))*0.05;//*0.05 same as /20 and not prone to error on speed 0;
+                //speed is velocity *20 to get meters per second. convert to km/h by dividing by 3.6, or mph by 2.236936293
+                double speed =trainEntity.getVelocity()* (CommonProxy.realSpeed ?20:100);
+                speed*=ClientProxy.speedInKmh?2.23694:3.6;
+                String speedDisplay = speed+"";
+                speedDisplay=speedDisplay.substring(0,Math.min(speedDisplay.length(),4));
 
                 if(ClientProxy.speedInKmh) {
-                    fontRendererObj.drawString("speed: " + Math.floor(speed*0.27777777777) + "km/h", 8, 38, 4210752);
+                    fontRendererObj.drawString("speed: " + speedDisplay + "km/h", 8, 38, 4210752);
                 } else {
-                    fontRendererObj.drawString("speed: " + Math.floor(speed*0.44703999981) + "mph", 8, 38, 4210752);
+                    fontRendererObj.drawString("speed: " + speedDisplay + "mph", 8, 38, 4210752);
                 }
                 fontRendererObj.drawString( "brake is " +  (((trainEntity.getBoolean(GenericRailTransport.boolValues.BRAKE))?StatCollector.translateToLocal("gui.on"):StatCollector.translateToLocal("gui.off"))), 8, 48, 4210752);
                 fontRendererObj.drawString( "train is " +  (((trainEntity.getBoolean(GenericRailTransport.boolValues.RUNNING))?StatCollector.translateToLocal("gui.on"):StatCollector.translateToLocal("gui.off"))), 8, 58, 4210752);

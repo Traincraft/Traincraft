@@ -2,19 +2,14 @@ package ebf.tim.gui;
 
 import ebf.tim.utility.ClientUtil;
 import ebf.tim.utility.CommonUtil;
-import ebf.tim.utility.DebugUtil;
-import fexcraft.tmt.slim.Tessellator;
 import fexcraft.tmt.slim.TextureManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
-
-import javax.annotation.Nullable;
 
 /**
  * <h2>Gui Button</h2>
@@ -91,10 +86,14 @@ public abstract class GUIButton extends GuiButton {
             }
         }
 
+        GL11.glPopMatrix();
+    }
+
+    public void drawText(int mouseX, int mouseY){
+        GL11.glPushMatrix();
         if(field_146123_n) {
             drawHoveringText(CommonUtil.translate(getHoverText()), mouseX, mouseY, Minecraft.getMinecraft().fontRenderer);
         }
-
         GL11.glPopMatrix();
     }
 

@@ -3,29 +3,23 @@ package ebf.tim.models;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.utility.CommonUtil;
 import fexcraft.tmt.slim.ModelBase;
+import fexcraft.tmt.slim.Vec3f;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * <h1>New Bogie</h1>
- * This is used to keep track of where bogies are supposed to render, and is intended to be client only.
- * @author Eternal Blue Flame
- */
 public class Bogie {
 
     /**the current yaw rotation.*/
     public float rotationYaw;
     /**the model defined in the registration of this.*/
     public ModelBase bogieModel;
-    public float[] offset = new float[]{0,0,0},prevPos = null, position = new float[]{0,0,0};
+    public float[] offset = new float[]{0,0},prevPos = null, position = new float[]{0,0};
 
     public List<Bogie> subBogies=new ArrayList<>();
 
-
-    public double sqrtPos = 0, oldSqrtPos = 0;
 
 
     public Bogie(ModelBase model, @Nullable float[] offset){
@@ -78,15 +72,32 @@ public class Bogie {
      */
     public void setRotation(GenericRailTransport entity){
         //update positions
-        if(prevPos == null){
-            rotationYaw = entity.rotationYaw;
-            sqrtPos= oldSqrtPos = Math.sqrt(entity.posX * entity.posX) + Math.sqrt(entity.posZ * entity.posZ);
-        } else if (sqrtPos - 2 > oldSqrtPos || sqrtPos + 2 <oldSqrtPos) {
-            oldSqrtPos = Math.sqrt(entity.posX * entity.posX) + Math.sqrt(entity.posZ * entity.posZ);
-            rotationYaw = CommonUtil.atan2degreesf(position[2] - prevPos[2], position[0] - prevPos[0]);
-            prevPos = position;
+        if(prevPos!=position && prevPos!=null && position!=null&&entity.getVelocity()>0.001) {
+            rotationYaw = CommonUtil.atan2degreesf(prevPos[1] - position[1], prevPos[0] - position[0]);
+            //DebugUtil.println(entity.rotationYaw, rotationYaw);
+            if(rotationYaw>entity.rotationYaw+120||rotationYaw<entity.rotationYaw-120){
+                rotationYaw=-rotationYaw;
+            }
+            for(Bogie b : subBogies){
+                b.setRotation(entity);
+            }
+        } else if(prevPos==null){
+            rotationYaw=entity.rotationYaw;
+        }
+    }
+
+    public void setPosition(GenericRailTransport entity, Vec3f prevOffset){
+        prevPos = position;
+        if(prevOffset==null){
+            prevOffset= CommonUtil.rotatePoint(new Vec3f(offset[0],0,offset[1]),0,entity.rotationYaw,0);
+            rotationYaw=entity.rotationYaw;
         } else {
-            sqrtPos = Math.sqrt(entity.posX * entity.posX) + Math.sqrt(entity.posZ * entity.posZ);
+            prevOffset.add(CommonUtil.rotatePoint(new Vec3f(offset[0],0,offset[1]),0,entity.rotationYaw,0));
+        }
+        position=new float[]{(float)entity.posX+prevOffset.xCoord, (float)entity.posZ+prevOffset.zCoord};
+
+        for(Bogie b : subBogies){
+            b.setPosition(entity,prevOffset);
         }
     }
 }

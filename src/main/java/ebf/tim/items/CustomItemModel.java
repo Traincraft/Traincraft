@@ -1,6 +1,7 @@
 package ebf.tim.items;
 
-import ebf.tim.models.rails.ModelRail;
+import ebf.tim.entities.GenericRailTransport;
+import ebf.tim.render.models.ModelRail;
 import ebf.tim.utility.ClientProxy;
 import ebf.tim.utility.Vec5f;
 import fexcraft.tmt.slim.Tessellator;
@@ -18,7 +19,7 @@ import org.lwjgl.opengl.GL11;
 import java.util.HashMap;
 import java.util.Map;
 
-import static ebf.tim.models.rails.Model1x1Rail.addVertexWithOffsetAndUV;
+import static ebf.tim.render.models.Model1x1Rail.addVertexWithOffsetAndUV;
 import static org.lwjgl.opengl.GL11.GL_TEXTURE_2D;
 
 public class CustomItemModel implements IItemRenderer /*ICustomModelLoader*/ {
@@ -63,21 +64,30 @@ public class CustomItemModel implements IItemRenderer /*ICustomModelLoader*/ {
         if(item==null){return;}
         if (item.getItem() instanceof ItemTransport){
             GL11.glPushMatrix();
-            scale = ((ItemTransport) item.getItem()).entity.getHitboxSize()[0];
+            GenericRailTransport entity = ((ItemTransport) item.getItem()).entity;
+            scale = entity.getHitboxSize()[0];
             if(scale!=0){
                 scale = 1.3f/(scale /1.3f);
             }
             GL11.glScalef(scale,scale,scale);
             switch (type){
                 case EQUIPPED_FIRST_PERSON:{
-                    GL11.glRotatef(90,0,1,0);
-                    GL11.glRotatef(10,0,0,1);
-                    GL11.glTranslatef(0.5f,1,0);
+                    GL11.glRotatef(270+(1*entity.getHitboxSize()[0]),0,1,0);
+                    GL11.glRotatef(10+(-1*entity.getHitboxSize()[0]),0,0,1);
+                    GL11.glRotatef(-1*entity.getHitboxSize()[0],1,0,0);
+                    GL11.glTranslatef(1f,0.4f*(entity.getHitboxSize()[0]),0.75f);
                     break;
                 }
-                case INVENTORY: case EQUIPPED:{
+                case INVENTORY: {
                     GL11.glRotatef(180,0,1,0);
                     GL11.glTranslatef(0,-0.85f,0);
+                    break;
+                }
+                case EQUIPPED:{
+                    GL11.glRotatef(0+(1*entity.getHitboxSize()[0]),0,1,0);
+                    GL11.glRotatef(10+(-1*entity.getHitboxSize()[0]),0,0,1);
+                    GL11.glRotatef(-1*entity.getHitboxSize()[0],1,0,0);
+                    GL11.glTranslatef(0.5f*(entity.getHitboxSize()[0]),0.15f*(entity.getHitboxSize()[0]),0.5f*(entity.getHitboxSize()[0]));
                     break;
                 }
                 default:{//item frame case

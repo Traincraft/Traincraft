@@ -1,10 +1,8 @@
 package ebf.tim.blocks.rails;
 
 import ebf.tim.blocks.RailTileEntity;
-import ebf.tim.utility.DebugUtil;
 import net.minecraft.block.BlockRailBase;
 import net.minecraft.world.ChunkPosition;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;

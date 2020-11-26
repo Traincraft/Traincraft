@@ -3,8 +3,6 @@ package ebf.tim.gui;
 import ebf.tim.TrainsInMotion;
 import ebf.tim.items.ItemAdminBook;
 import ebf.tim.utility.ServerLogger;
-import fexcraft.tmt.slim.Tessellator;
-import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.resources.I18n;

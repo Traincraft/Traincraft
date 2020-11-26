@@ -1,6 +1,7 @@
-package ebf.tim.models;
+package ebf.tim.render;
 
 
+import ebf.tim.models.Bogie;
 import fexcraft.tmt.slim.ModelBase;
 import fexcraft.tmt.slim.ModelRendererTurbo;
 
@@ -25,13 +26,12 @@ public class TransportRenderData {
      * most of the actual work related to this variable is handled in
      * @see GroupedModelRender*/
     public List<GroupedModelRender> blockCargoRenders = new ArrayList<GroupedModelRender>();
-    /**a cached list of all the vectors used, so we don't have to re-initialize them every frame.*/
-    public float[][] animationCache = new float[2][3];
     /**a cached list of all the cubes intended to display liveries.*/
     public List<ModelRendererTurbo> liveriesSquare = new ArrayList<ModelRendererTurbo>();
     /**the value to rotate the geometry with.*/
     public float wheelPitch=0;
     public float lastWheelPitch =0;
+    public long lastFrameTime=0;
     //use this to force a model/animator refresh, like if you change the lamp colors.
     public boolean needsModelUpdate = true;
 

@@ -12,8 +12,8 @@ import java.util.Map;
 public class SkinRegistry {
 
     public static boolean forceSkinRegister=false,debugSkinRegistration=true;
-    private static Map<String, Map<String, skin>> transports = new HashMap<String, Map<String, skin>>();
-    public static Map<String, skin> getTransportSkins(Class c){
+    private static Map<String, Map<String, TransportSkin>> transports = new HashMap<String, Map<String, TransportSkin>>();
+    public static Map<String, TransportSkin> getTransportSkins(Class c){
         return transports.containsKey(c.getName())?transports.get(c.getName()):null;
     }
 
@@ -80,13 +80,13 @@ public class SkinRegistry {
 
         if(Loader.isModLoaded(modid) || forceSkinRegister) {
             if (!transports.containsKey(c)) {
-                transports.put(c, new HashMap<String, skin>());
+                transports.put(c, new HashMap<String, TransportSkin>());
             }
             if(transports.get(c).containsKey(modid + ":" + skinName)){
-                DebugUtil.println("ERROR", "Duplicate skin entry: " + skinName, "In entity: " + c, "Overriding original entry");
+                DebugUtil.println("ERROR", "Duplicate TransportSkin entry: " + skinName, "In entity: " + c, "Overriding original entry");
             }
 
-            skin s = new skin(modid, textureURI,skinName,skinDescription);
+            TransportSkin s = new TransportSkin(modid, textureURI,skinName,skinDescription);
             s.setId(transports.get(c).size());
             if(bogieTextureURI!=null){
                 s.setBogieTextures(bogieTextureURI);
@@ -102,23 +102,30 @@ public class SkinRegistry {
     }
 
 
-    public static void addSkin(Class c, skin s){
-        addSkin(c.getName(),new skin(s.modid,s.texture, s.name,s.description)
+    public static void addSkin(Class c, TransportSkin s){
+        addSkin(c.getName(),new TransportSkin(s.modid,s.texture, s.name,s.description)
                 .setRecolorsFrom(s.colorsFrom).setRecolorsTo(s.colorsTo)
                 .setBogieTextures(s.bogieTextures).setSubBogieTextures(s.subBogieTextures));
     }
 
-    public static void addSkin(String c, skin s){
+    @Deprecated
+    public static void addSkin(Class c, skin s){
+        addSkin(c.getName(),new TransportSkin(s.modid,s.texture, s.name,s.description)
+                .setRecolorsFrom(s.colorsFrom).setRecolorsTo(s.colorsTo)
+                .setBogieTextures(s.bogieTextures).setSubBogieTextures(s.subBogieTextures));
+    }
+
+    public static void addSkin(String c, TransportSkin s){
         if (debugSkinRegistration) {
             DebugUtil.println("REGISTERING SKIN", c, "MODID: " + s.modid, s.texture, s.name, Loader.isModLoaded(s.modid));
         }
 
         if(Loader.isModLoaded(s.modid) || forceSkinRegister) {
             if (!transports.containsKey(c)) {
-                transports.put(c, new HashMap<String, skin>());
+                transports.put(c, new HashMap<String, TransportSkin>());
             }
             if(transports.get(c).containsKey(s.modid + ":" + s.name)){
-                DebugUtil.println("ERROR", "Duplicate skin entry: " + s.name, "In entity: " + c, "Overriding original entry");
+                DebugUtil.println("ERROR", "Duplicate TransportSkin entry: " + s.name, "In entity: " + c, "Overriding original entry");
             }
             s.setId(transports.get(c).size());
             transports.get(c).put(s.modid + ":" + s.name, s);
@@ -127,7 +134,7 @@ public class SkinRegistry {
 
 
 
-    public static skin getSkin(GenericRailTransport entity, EntityPlayer player, boolean isPaintBucket, String internalResourceURI){
+    public static TransportSkin getSkin(GenericRailTransport entity, EntityPlayer player, boolean isPaintBucket, String internalResourceURI){
         if (entity.getSkinList(player, isPaintBucket)==null || !entity.getSkinList(player, isPaintBucket).containsKey(internalResourceURI)){
             return null;
         }

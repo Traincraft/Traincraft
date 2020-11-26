@@ -13,7 +13,6 @@ import ebf.tim.entities.EntityTrainCore;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.networking.PacketInteract;
 import fexcraft.tmt.slim.Tessellator;
-import fexcraft.tmt.slim.Vec3d;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.gui.ScaledResolution;
@@ -21,7 +20,6 @@ import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.world.ChunkEvent;
@@ -44,9 +42,8 @@ import java.util.List;
 public class EventManager {
 
     private static List<GenericRailTransport> stock;
-    private static Vec3d vert;
     private static GenericRailTransport selected=null, lastSelected=null;
-
+    private static int holdTimer=0;
     /**
      * <h2>Keybind management</h2>
      * manages key pressed or released, since 1.7.10 has no direct support for key released we have to do it directly through LWJGL.
@@ -73,9 +70,13 @@ public class EventManager {
             if (player.ridingEntity instanceof EntityTrainCore) {
                 //for speed change
                 if (FMLClientHandler.instance().getClient().gameSettings.keyBindForward.isPressed()) {
-                    TrainsInMotion.keyChannel.sendToServer(new PacketInteract(2, player.ridingEntity.getEntityId()));
+                    if (holdTimer<15){
+                        TrainsInMotion.keyChannel.sendToServer(new PacketInteract(2, player.ridingEntity.getEntityId()));
+                    }
                 } else if (FMLClientHandler.instance().getClient().gameSettings.keyBindBack.getIsKeyPressed()) {
-                    TrainsInMotion.keyChannel.sendToServer(new PacketInteract(3, player.ridingEntity.getEntityId()));
+                    if (holdTimer<15){
+                        TrainsInMotion.keyChannel.sendToServer(new PacketInteract(3, player.ridingEntity.getEntityId()));
+                    }
                 } else if (ClientProxy.KeyHorn.isPressed()){
                     TrainsInMotion.keyChannel.sendToServer(new PacketInteract(9, player.ridingEntity.getEntityId()));
                 } else if (FMLClientHandler.instance().getClient().gameSettings.keyBindJump.isPressed()){
@@ -156,6 +157,39 @@ public class EventManager {
                         ((RailTileEntity) te).railGLID=null;
                     }
                 }
+            }
+        }
+    }
+
+
+    @SideOnly(Side.CLIENT)
+    @SubscribeEvent
+    @SuppressWarnings("unused")
+    public void onClientTick(TickEvent.PlayerTickEvent event) {
+        if(event.player.ridingEntity instanceof EntityTrainCore){
+            if (FMLClientHandler.instance().getClient().gameSettings.keyBindForward.getIsKeyPressed()) {
+                if (holdTimer==40){
+                    TrainsInMotion.keyChannel.sendToServer(new PacketInteract(12, event.player.ridingEntity.getEntityId()));
+                    holdTimer++;
+                } else if (holdTimer<40){
+                    holdTimer++;
+                }
+            } else if (FMLClientHandler.instance().getClient().gameSettings.keyBindBack.getIsKeyPressed()) {
+                if (holdTimer==40){
+                    TrainsInMotion.keyChannel.sendToServer(new PacketInteract(11, event.player.ridingEntity.getEntityId()));
+                    holdTimer++;
+                } else if (holdTimer<40){
+                    holdTimer++;
+                }
+            }
+
+
+            else if(!FMLClientHandler.instance().getClient().gameSettings.keyBindBack.getIsKeyPressed() &&
+                    !FMLClientHandler.instance().getClient().gameSettings.keyBindForward.getIsKeyPressed()){
+                if (holdTimer>40){
+                    TrainsInMotion.keyChannel.sendToServer(new PacketInteract(4, event.player.ridingEntity.getEntityId()));
+                }
+                holdTimer=0;
             }
         }
     }

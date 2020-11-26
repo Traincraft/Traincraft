@@ -1,4 +1,4 @@
-package ebf.tim.models;
+package ebf.tim.render;
 
 import ebf.tim.entities.GenericRailTransport;
 import fexcraft.tmt.slim.ModelRendererTurbo;
@@ -15,6 +15,8 @@ public abstract class AnimationBase {
     public abstract boolean isPart(ModelRendererTurbo model);
 
     public abstract boolean culls(ModelRendererTurbo model);
+
+    public abstract int getID(ModelRendererTurbo model);
 
     public abstract void animate(float rotationZ, float[] pistonOffset, GenericRailTransport host);
 }

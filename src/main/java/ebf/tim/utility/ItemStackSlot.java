@@ -205,7 +205,7 @@ public class ItemStackSlot extends Slot {
         if((isCraftingInput || isCraftingOutput) && hostInventory instanceof TileEntityStorage) {
             int page = ((TileEntityStorage)hostInventory).outputPage;
             switch (((TileEntityStorage)hostInventory).storageType) {
-                case 0: {
+                case 1: {
                     List<ItemStack> slots = RecipeManager.getResult(RecipeManager.getTransportRecipe(hostInventory));
                     if(slots==null){
                         for (int i = 0; i < 9; i++) {
@@ -234,7 +234,7 @@ public class ItemStackSlot extends Slot {
                     }
                     break;
                 }
-                case 1: {
+                case 0: {
                     putStackInSlot(hostSlots,406, RecipeManager.railRecipe(hostInventory));
                     break;
                 }

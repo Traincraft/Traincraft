@@ -2,12 +2,10 @@ package ebf.tim.items;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import ebf.XmlBuilder;
 import ebf.tim.blocks.RailTileEntity;
 import ebf.tim.blocks.rails.BlockRailCore;
 import ebf.tim.registry.TiMBlocks;
 import ebf.tim.utility.CommonUtil;
-import ebf.tim.utility.DebugUtil;
 import mods.railcraft.api.core.items.ITrackItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;

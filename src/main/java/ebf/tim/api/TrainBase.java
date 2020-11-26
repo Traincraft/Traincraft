@@ -48,11 +48,6 @@ public abstract class TrainBase extends EntityTrainCore{
     public abstract int getInventoryRows();
 
     /**
-     * defines the radius in microblocks that the pistons animate
-     */
-    public abstract float getPistonOffset();
-
-    /**
      * defines the length from center of the transport, thus is used for the motion calculation
      */
     public abstract float[] bogieLengthFromCenter();
@@ -149,7 +144,7 @@ public abstract class TrainBase extends EntityTrainCore{
      * the int[][] for hex recolors may be null.
      * hex values use "0x" in place of "#"
      * "0xff00aa" as an example.
-     * the first skin added to the registry for a transport class will be the default
+     * the first TransportSkin added to the registry for a transport class will be the default
      * additionally the addSkin function may be called from any other class at any time.
      * the registerSkins method is only for organization and convenience.*/
     public abstract void registerSkins();

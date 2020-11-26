@@ -23,9 +23,11 @@ public class GUITrainTable extends GuiContainer {
     private static List<ItemStack> overlays = new ArrayList<>();
     private static List<Integer> slotx = new ArrayList<>();
     private static List<Integer> sloty = new ArrayList<>();
+    private String hostname;
 
     public GUITrainTable(InventoryPlayer inventoryPlayer, World world, int x, int y, int z) {
         super(new TransportSlotManager(inventoryPlayer, (TileEntityStorage) world.getTileEntity(x,y,z)));
+        hostname=world.getBlock(x,y,z).getUnlocalizedName();
     }
 
 
@@ -38,7 +40,7 @@ public class GUITrainTable extends GuiContainer {
     protected void drawGuiContainerBackgroundLayer(float p_146976_1_, int mouseX, int mouseY) {
         GL11.glPushMatrix();
 
-        if(((TileEntityStorage)((TransportSlotManager)this.inventorySlots).hostInventory).storageType==1){
+        if(hostname.equals("tile.block.railtable")){
 
             ClientUtil.drawTextOutlined(fontRendererObj,"Rail", guiLeft+8, guiTop+2,0xffffff);
             ClientUtil.drawTextOutlined(fontRendererObj,"Ties", guiLeft+6, guiTop+24,0xffffff);
@@ -80,6 +82,36 @@ public class GUITrainTable extends GuiContainer {
             ClientUtil.drawTexturedRect(guiLeft,   guiTop+78, 0, 134, 176, 88);//actual inventory
             GL11.glEnable(GL11.GL_LIGHTING);
             GL11.glPopMatrix();
+
+        } else if (hostname.equals("tile.block.traintable")){
+            this.mc.getTextureManager().bindTexture(ClientUtil.craftingTableGuiTextures);
+            this.drawTexturedModalRect(guiLeft, guiTop, 0, 0, this.xSize, this.ySize);
+
+            slots = new ArrayList<>();
+            overlays = new ArrayList<>();
+            slotx = new ArrayList<>();
+            sloty = new ArrayList<>();
+            for (ItemStackSlot s : ((TileEntityStorage)((TransportSlotManager)this.inventorySlots).hostInventory).inventory) {
+                slots.add(s.getStack());
+                overlays.add(s.getOverlay());
+                slotx.add(s.xDisplayPosition);
+                sloty.add(s.yDisplayPosition);
+
+            }
+
+            GL11.glPushMatrix();
+            GL11.glEnable(GL11.GL_TEXTURE_2D);
+            GL11.glColor4f(1,1,1,1);
+            GL11.glEnable(GL11.GL_BLEND);
+            ClientUtil.drawSlots(slots,overlays, slotx,sloty,mouseX,mouseY,guiLeft,guiTop,itemRender);
+
+
+
+            GL11.glDisable(GL11.GL_LIGHTING);
+            GL11.glDisable(GL11.GL_BLEND);
+            GL11.glEnable(GL11.GL_LIGHTING);
+            GL11.glPopMatrix();
+
 
         } else {
             this.mc.getTextureManager().bindTexture(ClientUtil.craftingTableGuiTextures);

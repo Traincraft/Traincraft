@@ -50,6 +50,14 @@ public class CommonUtil {
         return (/*world.getTileEntity(x, y, z) instanceof ITrackBase ||*/ world.getBlock(x, y, z) instanceof BlockRailBase);
     }
 
+    public static boolean stringContains(String s1, String... s2){
+        for(String s3 : s2) {
+            if (stringContains(s1,s3)){
+                return true;
+            }
+        }
+        return false;
+    }
 
     public static boolean stringContains(String s1, String s2){
         if (s1 == null || s2 == null) {

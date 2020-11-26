@@ -1,11 +1,10 @@
-package ebf.tim.models;
+package ebf.tim.render;
 
-import ebf.tim.TrainsInMotion;
-import ebf.tim.api.skin;
+import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.GenericRailTransport;
+import ebf.tim.models.Bogie;
 import ebf.tim.utility.ClientProxy;
 import ebf.tim.utility.CommonUtil;
-import ebf.tim.utility.DebugUtil;
 import fexcraft.tmt.slim.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -19,7 +18,6 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 import javax.annotation.Nullable;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,7 +66,7 @@ public class RenderWagon extends Render {
     }
 
 
-    public void render(GenericRailTransport entity, double x, double y, double z, float yaw, boolean isPaintBucket, skin textureURI) {
+    public void render(GenericRailTransport entity, double x, double y, double z, float yaw, boolean isPaintBucket, TransportSkin textureURI) {
         renderBlocks=field_147909_c;
         doRender(entity,x,y,z,yaw,entity.frontBogie!=null?entity.frontBogie.yOffset:0, isPaintBucket, textureURI, this);
     }
@@ -90,7 +88,7 @@ public class RenderWagon extends Render {
      *
      *
      */
-    public static void doRender(GenericRailTransport entity, double x, double y, double z, float yaw, float bogieOffset, boolean isPaintBucket, @Nullable skin textureURI, RenderWagon renderInstance){
+    public static void doRender(GenericRailTransport entity, double x, double y, double z, float yaw, float bogieOffset, boolean isPaintBucket, @Nullable TransportSkin textureURI, RenderWagon renderInstance){
 
         if (entity.renderData.modelList == null || entity.renderData.needsModelUpdate) {
             entity.renderData = new TransportRenderData();
@@ -139,6 +137,7 @@ public class RenderWagon extends Render {
                 //cache the animating parts on the bogies.
                 if (entity.renderData.bogies != null) {
                     for (Bogie bogie : entity.renderData.bogies) {
+                        bogie.rotationYaw=entity.rotationYaw;
                         List<ParticleFX> animators = new ArrayList<>();
                         for (ModelRendererTurbo box : bogie.bogieModel.getParts()) {
                             if (box.boxName ==null){continue;}
@@ -164,6 +163,7 @@ public class RenderWagon extends Render {
                         if(bogie.subBogies==null){continue;}
                         //cache the animating parts on sub-bogies
                         for(Bogie subBogie : bogie.subBogies){
+                            subBogie.rotationYaw=entity.rotationYaw;
                             for(ModelRendererTurbo box : subBogie.bogieModel.getParts()){
                                 if (box.boxName ==null){continue;}
                                 //attempt to cache the parts for the main transport model
@@ -189,13 +189,9 @@ public class RenderWagon extends Render {
         //apply an additional offset based on the rails.
         //do this in render not in entity, otherwise it breaks Y position on client.
         if(entity.frontBogie!=null && entity.backBogie!=null) {
-            if(ClientProxy.railSkin==0){
-                railOffset=entity.frontBogie.yOffset>0.4?entity.frontBogie.yOffset-0.075:entity.frontBogie.yOffset;
-                railOffset+=entity.backBogie.yOffset>0.4?entity.backBogie.yOffset-0.075:entity.backBogie.yOffset;
-                railOffset*=0.5;
-            } else {
-                railOffset=(entity.frontBogie.yOffset+entity.backBogie.yOffset)*0.5;
-            }
+            railOffset=bogieRenderYOffset(entity.frontBogie.yOffset);
+            railOffset+=bogieRenderYOffset(entity.backBogie.yOffset);
+            railOffset*=0.5f;
         }
 
 
@@ -223,16 +219,13 @@ public class RenderWagon extends Render {
          * Be sure animations are enabled in user settings, then check of there is something to animate.
          * if there is, then calculate the vectors and apply the animations
          */
-        if (entity.worldObj!=null && !Minecraft.getMinecraft().isGamePaused() &&ClientProxy.EnableAnimations) {
-            if (entity.renderData.wheelPitch >= 6.2831855f || entity.renderData.wheelPitch <=-6.2831855f) {
-                entity.renderData.wheelPitch -= Math.copySign(6.2831855f, entity.renderData.wheelPitch);
+        if (entity.worldObj!=null && !Minecraft.getMinecraft().isGamePaused()) {
+            //cap the pitch value so we don't exceed values accepted by an integer.
+            if(entity.renderData.wheelPitch>Math.PI*10000 ||entity.renderData.wheelPitch<Math.PI*-10000){
+                entity.renderData.wheelPitch -= Math.copySign(Math.PI*10000, entity.renderData.wheelPitch);
             }
-            //use this to sync animations with framerate
-            float fps = Minecraft.getMinecraft().getLimitFramerate();
-            //define the rotation angle, if it's going fast enough.
-            entity.renderData.wheelPitch +=
-                    ((((entity.frontVelocityX * entity.frontVelocityX) + (entity.frontVelocityZ * entity.frontVelocityZ))
-                            *0.05f)*(fps/60f));
+            // define the rotation angle, scale based on framerate.
+            entity.renderData.wheelPitch -=(entity.velocity[1]*(System.currentTimeMillis()-entity.renderData.lastFrameTime)*60);
 
             //entity.renderData.wheelPitch+=0.03f;
 
@@ -240,14 +233,14 @@ public class RenderWagon extends Render {
                 entity.renderData.lastWheelPitch =entity.renderData.wheelPitch;
                 //if it's actually moving, then define the new position
 
-                entity.renderData.animationCache[0][0] = entity.getPistonOffset();
                 //animate the tagged parts
                 for (AnimationBase partToAnimate : entity.renderData.animatedPart) {
                     if(partToAnimate==null){continue;}
-                    partToAnimate.animate(entity.renderData.wheelPitch, entity.renderData.animationCache[0], entity);
+                    partToAnimate.animate(entity.renderData.wheelPitch, entity.getAnimationData(partToAnimate.getID(partToAnimate.modelRefrence)), entity);
                 }
             }
         }
+        entity.renderData.lastFrameTime=System.currentTimeMillis();
 
         /*
          * <h3>Render geometry</h3>
@@ -257,7 +250,7 @@ public class RenderWagon extends Render {
          * @see net.minecraft.client.renderer.entity.RenderEnderman#renderEquippedItems(EntityEnderman, float)
          */
         //System.out.println(entity.getTexture(0).getResourcePath() + entity.getDataWatcher().getWatchableObjectInt(24));
-        skin s;
+        TransportSkin s;
         if(!isPaintBucket && entity.worldObj!=null) {
             TextureManager.adjustLightFixture(entity.worldObj, (int) entity.posX, (int) entity.posY + 1, (int) entity.posZ);
             s=entity.getTexture(Minecraft.getMinecraft().thePlayer);
@@ -268,7 +261,9 @@ public class RenderWagon extends Render {
         }
 
         for(i=0; i< entity.renderData.modelList.length;i++) {
-            TextureManager.bindTexture(s.getTexture(i), s.colorsFrom, s.colorsTo, entity.colorsFrom, entity.colorsTo);
+            if(s!=null && s.getTexture(i)!=null) {
+                TextureManager.bindTexture(s.getTexture(i), s.colorsFrom, s.colorsTo, entity.colorsFrom, entity.colorsTo);
+            }
             GL11.glPushMatrix();
             if(entity.modelOffsets()!=null && entity.modelOffsets().length>i) {
                 GL11.glTranslated(entity.modelOffsets()[i][0],entity.modelOffsets()[i][1],entity.modelOffsets()[i][2]);
@@ -308,12 +303,11 @@ public class RenderWagon extends Render {
             ii=0;
             for(Bogie b : entity.renderData.bogies) {
                 //bind the texture
-                if (s.getBogieSkin(ii) != null) {
+                if (s!=null && s.getBogieSkin(ii) != null) {
                     TextureManager.bindTexture(s.getBogieSkin(ii), s.colorsFrom, s.colorsTo, entity.colorsFrom, entity.colorsTo);
                 }
                 GL11.glPushMatrix();
                 GL11.glTranslated(-b.offset[0], -b.offset[1], -b.offset[2]);
-                b.setRotation(entity);
                 if(!isPaintBucket) {
                     GL11.glRotatef(b.rotationYaw - yaw, 0.0f, 1.0f, 0);
                     GL11.glRotatef(entity.rotationPitch, 0.0f, 0.0f, 1.0f);
@@ -330,12 +324,11 @@ public class RenderWagon extends Render {
                 if(b.subBogies!=null) {
                     iii=0;
                     for (Bogie sub : b.subBogies) {
-                        if(s.getSubBogieSkin(iii)!=null){
+                        if(s!=null && s.getSubBogieSkin(iii)!=null){
                             TextureManager.bindTexture(s.getSubBogieSkin(iii), s.colorsFrom, s.colorsTo, entity.colorsFrom, entity.colorsTo);
                         }
                         GL11.glPushMatrix();
                         GL11.glTranslated(sub.offset[0]-b.offset[0], sub.offset[1]-b.offset[1], sub.offset[2]-b.offset[2]);
-                        sub.setRotation(entity);
 
                         if(!isPaintBucket) {
                             GL11.glRotatef(sub.rotationYaw - b.rotationYaw, 0.0f, 1.0f, 0);
@@ -359,15 +352,16 @@ public class RenderWagon extends Render {
                 ParticleFX.renderSmoke(particle, x, y, z, entity.getRenderScale(), yaw);
             }
 
+
         //render hitboxes
-        if(RenderManager.debugBoundingBox && entity.collisionHandler!=null && entity.collisionHandler.renderShape !=null) {
+        if(RenderManager.debugBoundingBox && entity.collisionHandler!=null /*&& entity.collisionHandler.renderShape !=null*/) {
             GL11.glPushMatrix();
             GL11.glEnable(GL11.GL_BLEND);
             OpenGlHelper.glBlendFunc(770, 771, 1, 0);
             GL11.glDisable(GL11.GL_TEXTURE_2D);
             GL11.glDisable(GL11.GL_ALPHA_TEST);
             //GL11.glDepthMask(false);
-
+            /* see HitboxDynamic
             GL11.glPushMatrix();
             GL11.glTranslated(x,y,z);
 
@@ -411,6 +405,7 @@ public class RenderWagon extends Render {
             Tessellator.getInstance().addVertex(entity.collisionHandler.renderShape[7].xCoord, entity.collisionHandler.renderShape[7].yCoord, entity.collisionHandler.renderShape[7].zCoord);
             Tessellator.getInstance().draw();
             GL11.glPopMatrix();
+            */
 
             GL11.glTranslated(x,y,z);
             drawRotationPoint(new Vec3f(entity.frontBogie.posX-entity.posX,entity.frontBogie.posY-entity.posY,entity.frontBogie.posZ-entity.posZ), entity);
@@ -459,5 +454,20 @@ public class RenderWagon extends Render {
         Tessellator.getInstance().addVertex(bogiePos.xCoord,bogiePos.yCoord+3, bogiePos.zCoord);
         Tessellator.getInstance().draw();
         GL11.glEnable(GL11.GL_TEXTURE_2D);
+    }
+
+
+
+    private static float bogieRenderYOffset(float input){
+        if(input>0.4f){
+            switch (ClientProxy.railSkin){
+                case 0:{return  input-0.0625f;}
+                case 3:{return  input-0.095f;}
+
+                default:{return input;}
+            }
+        } else {
+            return input;
+        }
     }
 }

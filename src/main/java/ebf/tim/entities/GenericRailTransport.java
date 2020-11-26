@@ -1,29 +1,33 @@
 package ebf.tim.entities;
 
 import com.mojang.authlib.GameProfile;
+import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import ebf.XmlBuilder;
 import ebf.tim.TrainsInMotion;
 import ebf.tim.api.SkinRegistry;
-import ebf.tim.api.skin;
+import ebf.tim.api.TransportSkin;
 import ebf.tim.items.ItemKey;
 import ebf.tim.items.ItemPaintBucket;
+import ebf.tim.items.ItemStake;
 import ebf.tim.items.ItemTicket;
 import ebf.tim.models.Bogie;
-import ebf.tim.models.ParticleFX;
-import ebf.tim.models.TransportRenderData;
 import ebf.tim.networking.PacketInteract;
 import ebf.tim.networking.PacketRemove;
 import ebf.tim.registry.NBTKeys;
 import ebf.tim.registry.TiMFluids;
+import ebf.tim.registry.TiMItems;
+import ebf.tim.render.ParticleFX;
+import ebf.tim.render.TransportRenderData;
 import ebf.tim.utility.*;
 import fexcraft.tmt.slim.ModelBase;
-import fexcraft.tmt.slim.Vec3f;
 import io.netty.buffer.ByteBuf;
 import mods.railcraft.api.carts.IFluidCart;
 import mods.railcraft.api.carts.ILinkableCart;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockRailBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.IEntityMultiPart;
@@ -90,7 +94,6 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
     public String destination ="";
     /**used to initialize a large number of variables that are used to calculate everything from movement to linking.
      * this is so we don't have to initialize each of these variables every tick, saves CPU.*/
-    @Deprecated//todo value 3 needs to be removed, it is no longer used.
     public float[][] vectorCache = new float[7][3];
     /**the health of the entity, similar to that of EntityLiving*/
     private int health = 20;
@@ -114,6 +117,10 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
     public double backVelocityX=0;
     /**The Z velocity of the back bogie*/
     public double backVelocityZ=0;
+    /**Used same as MinecartX/Y/Z in super to smoothly move on client*/
+    private double transportX=0, transportY=0, transportZ=0;
+    /**this is used like the turn progress in the super class*/
+    private int tickOffset=0;
     /**Used to be sure we only say once that the transport has been derailed*/
     private boolean displayDerail = false;
     public HitboxDynamic collisionHandler=null;
@@ -121,6 +128,8 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
     float prevRotationRoll;
     /**/
     float rotationRoll;
+    /**calculated movement speed, first value is used for GUI and speed, second is used for render effects.*/
+    public float[] velocity=new float[]{0,0};
     public int forceBackupTimer =0;
     public float pullingWeight=0;
 
@@ -268,17 +277,34 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
      */
     @Override
     public void entityInit(){
+        //0 is an integer used for the entity state, 0 is burning. 1 is sneaking. 2 is riding something. 3 is sprinting. 4. is eating
+        //1 is a short used for checking if the entity is underwater and how much air is left.
+        //i think 2-5 are used in 1.8.9+ for various things.
+        this.dataWatcher.addObject(12, 0.0F);//float used to show the current movement velocity.
         this.dataWatcher.addObject(13, 0);//train fuel consumption current
         this.dataWatcher.addObject(20, "");//fluid tank data
         this.dataWatcher.addObject(15, 0);//train heat
         this.dataWatcher.addObject(16, 40.0f);//train heat
         this.dataWatcher.addObject(17, bools!=null?bools.toInt():BitList.newInt());//booleans
-        //18 is used by EntityTrainCore
-        //19 is used by the core minecart
+        //18 is an int used by EntityTrainCore for the accelerator
+        //19 is a float used by the core minecart to define damage taken (we dont use this, but if we override it things break).
         this.dataWatcher.addObject(23, "");//owner
         this.dataWatcher.addObject(21, 0);//front linked transport
         this.dataWatcher.addObject(22, 0);//back linked transport
         this.dataWatcher.addObject(24,getDefaultSkin());//currently used
+
+
+        /*possible conflict notes:
+        EntityMinecart uses the following datawatchers.
+         overriding them has not proven to be harmful or conflicting, but it needs notation in case that changes.
+
+        17 used as an integer for RollingAmplitude
+        18 used as an integer for RollingDirection
+        20 used as an integer for the current block ID to check if it's air.
+        21 used as an integer for the DisplayTile value
+        22 used as a byte for if there is a DisplayTile.
+         */
+
     }
 
     /**
@@ -356,11 +382,23 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
                     frontBogie.posX - backBogie.posX)),
                     CommonUtil.calculatePitch(frontBogie.posY,backBogie.posY,Math.abs(bogieLengthFromCenter()[0]) + Math.abs(bogieLengthFromCenter()[1])));
 
-            //position this
-            setPosition((frontBogie.posX+backBogie.posX)*0.5,
-                    (frontBogie.posY+backBogie.posY)*0.5,(frontBogie.posZ+backBogie.posZ)*0.5);
+            transportX=p_70056_1_;
+            transportY=p_70056_3_;
+            transportZ=p_70056_5_;
+            tickOffset = p_70056_9_ + 2;
 
             updateRiderPosition();
+
+            //handle bogie rotations
+            if(renderData!=null && renderData.bogies!=null){
+                for(Bogie b : renderData.bogies){
+                    if(ClientProxy.EnableAnimations) {
+                        b.setRotation(this);
+                    } else {
+                        b.rotationYaw=rotationYaw;
+                    }
+                }
+            }
 
             //handle particles
             if (ClientProxy.EnableParticles){
@@ -387,6 +425,7 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
         return worldObj.isRemote?interact(p_130002_1_.getEntityId(),false,false, -1):super.interactFirst(p_130002_1_);
     }
 
+    //unused IDs: 14+
     public boolean interact(int player, boolean isFront, boolean isBack, int key) {
         EntityPlayer p =((EntityPlayer)worldObj.getEntityByID(player));
         if (worldObj.isRemote) {
@@ -435,6 +474,25 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
                                 return true;//end the function here if it already has the key.
                             }
                         }
+                        else if (p.getHeldItem().getItem() instanceof ItemStake){
+                            boolean toset = !getBoolean(boolValues.COUPLINGFRONT);
+                            setBoolean(boolValues.COUPLINGFRONT, toset);
+                            setBoolean(boolValues.COUPLINGBACK, toset);
+                            if(!p.isSneaking()) {
+                                if (toset) {
+                                    p.addChatMessage(new ChatComponentText(CommonUtil.translate("message.linking")));
+                                } else {
+                                    p.addChatMessage(new ChatComponentText(CommonUtil.translate("message.notlinking")));
+                                }
+                            } else if(frontLinkedTransport!=null || backLinkedTransport!=null){
+                                //calling the method from itself is a very lazy way to do this, but it's less to write.
+                                interact(player,isFront,isBack,13);
+                                p.addChatMessage(new ChatComponentText(CommonUtil.translate("message.unlinked")));
+                            } else if (p.isSneaking()){
+                                p.addChatMessage(new ChatComponentText(CommonUtil.translate("message.nolinks")));
+                            }
+                            return true;
+                        }
                         //TODO: else if(player.getHeldItem() instanceof stakeItem) {do linking/unlinking stuff dependant on if it was front or not;}
                     }
                     //be sure the player has permission to enter the transport, and that the transport has the main seat open.
@@ -477,7 +535,7 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
                     if (frontLinkedID != null){
                         transport = (worldObj.getEntityByID(frontLinkedID) instanceof GenericRailTransport)?(GenericRailTransport) worldObj.getEntityByID(frontLinkedID):null;
                         if (transport != null){
-                            if(transport.frontLinkedID == this.getEntityId()){
+                            if(transport.frontLinkedID !=null && transport.frontLinkedID == this.getEntityId()){
                                 transport.frontLinkedTransport = null;
                                 transport.frontLinkedID = null;
                             } else {
@@ -493,7 +551,7 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
                     if (backLinkedID != null){
                         transport = (worldObj.getEntityByID(backLinkedID) instanceof GenericRailTransport)?(GenericRailTransport) worldObj.getEntityByID(backLinkedID):null;
                         if (transport != null){
-                            if(transport.frontLinkedID == this.getEntityId()){
+                            if(transport.frontLinkedID!=null && transport.frontLinkedID == this.getEntityId()){
                                 transport.frontLinkedTransport = null;
                                 transport.frontLinkedID = null;
                             } else {
@@ -601,7 +659,7 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
             }
         }
         if(collisionHandler!=null && collisionHandler.interactionBoxes!=null){
-            for(HitboxDynamic.clientInteractBox box : collisionHandler.interactionBoxes){
+            for(HitboxDynamic.collisionBox box : collisionHandler.interactionBoxes){
                 if(box !=null){
                     box.setDead();
                     worldObj.removeEntity(box);
@@ -648,6 +706,29 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
     public void readSpawnData(ByteBuf additionalData) {
         owner = new UUID(additionalData.readLong(), additionalData.readLong());
         rotationYaw = additionalData.readFloat();
+
+        XmlBuilder xml = new XmlBuilder(ByteBufUtils.readUTF8String(additionalData));
+        if(getTankCapacity()!=null) {
+            fluidTank = new FluidTankInfo[getTankCapacity().length];
+            for (int i = 0; i < getTankCapacity().length; i++) {
+                if (xml.containsFluidStack("tanks." + i)) {
+                    fluidTank[i] = new FluidTankInfo(xml.getFluidStack("tanks." + i), getTankCapacity()[i]);
+                }
+            }
+        } else {
+            fluidTank= null;
+        }
+
+        inventory = new ArrayList<>();
+        //shouldn't need this, but enable if getting nulls
+        initInventorySlots();
+
+        if (getSizeInventory()>0) {
+            for (int i=0;i<getSizeInventory();i++) {
+                inventory.get(i).setSlotContents(xml.getItemStack("transportinv."+i),inventory);
+            }
+        }
+
     }
     @Deprecated //todo: send this data over the datawatcher or other more reliable means
     /**sends the data to server from client*/
@@ -656,6 +737,19 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
         buffer.writeLong(owner.getMostSignificantBits());
         buffer.writeLong(owner.getLeastSignificantBits());
         buffer.writeFloat(rotationYaw);
+        XmlBuilder xml = new XmlBuilder();
+        for(int i=0; i<getTankInfo(null).length;i++){
+            if(getTankInfo(null) !=null) {
+                xml.putFluidStack("tanks." + i, getTankInfo(null)[i].fluid);
+            }
+        }
+
+        if (inventory!=null) {
+            for (int i=0;i<getSizeInventory();i++) {
+                xml.putItemStack("transportinv."+i, inventory.get(i).getStack());
+            }
+        }
+        ByteBufUtils.writeUTF8String(buffer, xml.toXMLString());
     }
     /**loads the entity's save file*/
     @Override
@@ -782,6 +876,48 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
     public boolean hasDrag(){return true;}
 
     public void updatePosition(){
+        //reposition bogies to be sure they are the right distance
+        if(!worldObj.isRemote && ticksExisted%2==0) {
+            float[] f = CommonUtil.rotatePointF(bogieLengthFromCenter()[0], 0, 0, rotationPitch, rotationYaw, 0);
+
+            frontBogie.setPosition((f[0] + posX), frontBogie.posY, (f[2] + posZ));
+
+            f = CommonUtil.rotatePointF(bogieLengthFromCenter()[1], 0, 0, rotationPitch, rotationYaw, 0);
+
+            backBogie.setPosition((f[0] + posX), backBogie.posY, (f[2] + posZ));
+        }
+
+        //do scaled rail boosting but keep it capped to the max velocity of the rail
+        Block b = worldObj.getBlock((int)frontBogie.posX,(int)frontBogie.posY, (int)frontBogie.posZ);
+        if(b instanceof BlockRailBase && ((BlockRailBase) b).isPowered() &&
+                Math.abs(frontBogie.motionX)+Math.abs(frontBogie.motionZ)<//this part keeps it capped
+                        ((BlockRailBase) b).getRailMaxSpeed(worldObj,frontBogie, (int)frontBogie.posX, (int)frontBogie.posY, (int)frontBogie.posZ)){
+            frontBogie.addVelocity(//this part boosts in the current direction, scaled by the speed of the rail
+                    Math.copySign(
+                    ((BlockRailBase) b).getRailMaxSpeed(worldObj,frontBogie, (int)frontBogie.posX, (int)frontBogie.posY, (int)frontBogie.posZ)*0.005f,
+                    frontBogie.motionX),
+                    0,
+                    Math.copySign(
+                            ((BlockRailBase) b).getRailMaxSpeed(worldObj,frontBogie, (int)frontBogie.posX, (int)frontBogie.posY, (int)frontBogie.posZ)*0.005f,
+                            frontBogie.motionZ));
+        }
+        b = worldObj.getBlock((int)backBogie.posX,(int)backBogie.posY, (int)backBogie.posZ);
+        if(b instanceof BlockRailBase && ((BlockRailBase) b).isPowered() &&
+                Math.abs(backBogie.motionX)+Math.abs(backBogie.motionZ)<
+                        ((BlockRailBase) b).getRailMaxSpeed(worldObj,backBogie, (int)backBogie.posX, (int)backBogie.posY, (int)backBogie.posZ)){
+            backBogie.addVelocity(
+                    Math.copySign(
+                    ((BlockRailBase) b).getRailMaxSpeed(worldObj,backBogie, (int)backBogie.posX, (int)backBogie.posY, (int)backBogie.posZ)*0.005f,
+                    backBogie.motionX),
+                    0,
+                    Math.copySign(
+                            ((BlockRailBase) b).getRailMaxSpeed(worldObj,backBogie, (int)backBogie.posX, (int)backBogie.posY, (int)backBogie.posZ)*0.005f,
+                            backBogie.motionZ));
+        }
+
+        //actually move
+        prevPosX=posX;
+        prevPosZ=posZ;
         frontBogie.minecartMove(this);
         backBogie.minecartMove(this);
         motionX = frontVelocityX = frontBogie.motionX;
@@ -794,18 +930,13 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
                 frontBogie.posX - backBogie.posX)),
                 CommonUtil.calculatePitch(frontBogie.posY+frontBogie.yOffset,backBogie.posY+backBogie.yOffset,Math.abs(bogieLengthFromCenter()[0]) + Math.abs(bogieLengthFromCenter()[1])));
 
-        setPosition((frontBogie.posX+backBogie.posX)*0.5,
-                (frontBogie.posY+backBogie.posY)*0.5,(frontBogie.posZ+backBogie.posZ)*0.5);
+        vectorCache[3] = CommonUtil.rotatePointF(-bogieLengthFromCenter()[0],0,0,rotationPitch, rotationYaw,0);
+
+        setPosition((frontBogie.posX+vectorCache[3][0]),
+                (frontBogie.posY+vectorCache[3][1]),(frontBogie.posZ+vectorCache[3][2]));
+
+        dataWatcher.updateObject(12,velocity[0]=(float)((Math.abs(posX)-Math.abs(prevPosX))+(Math.abs(posZ)-Math.abs(prevPosZ))));
         collisionHandler.position(posX, posY, posZ, rotationPitch, rotationYaw);
-
-
-        if (ticksExisted % 20 == 0) {
-            double[] v = CommonUtil.rotatePoint(bogieLengthFromCenter()[0], 0, rotationYaw);
-            frontBogie.addVelocity((posX+v[0]-frontBogie.posX)*0.25f,0, (posZ+v[2]-frontBogie.posZ)*0.25f);
-
-            v = CommonUtil.rotatePoint(bogieLengthFromCenter()[1], 0, rotationYaw);
-            backBogie.addVelocity((posX+v[0]-backBogie.posX)*0.25f,0, (posZ+v[2]-backBogie.posZ)*0.25f);
-        }
 
     }
 
@@ -854,15 +985,46 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
             this.requestTicket();
         }
 
+        //CLIENT UPDATE
+        if(worldObj.isRemote){
+            if(tickOffset >0) {
+                prevPosX=posX;prevPosZ=posZ;
+                setPosition(
+                        this.posX + (this.transportX - this.posX) / (double) this.tickOffset,
+                        this.posY + (this.transportY - this.posY) / (double) this.tickOffset,
+                        this.posZ + (this.transportZ - this.posZ) / (double) this.tickOffset
+                );
+                velocity[1]=(float)((Math.abs(posX)-Math.abs(prevPosX))+(Math.abs(posZ)-Math.abs(prevPosZ)));
+                if(frontBogie!=null &&backBogie!=null){
+                    frontBogie.minecartMove(this);
+                    backBogie.minecartMove(this);
+
+                    setRotation((float)Math.toDegrees(CommonUtil.atan2f(
+                            frontBogie.posZ - backBogie.posZ,
+                            frontBogie.posX - backBogie.posX)),
+                            CommonUtil.calculatePitch(frontBogie.posY+frontBogie.yOffset,backBogie.posY+backBogie.yOffset,Math.abs(bogieLengthFromCenter()[0]) + Math.abs(bogieLengthFromCenter()[1])));
+                }
+                if(ClientProxy.EnableAnimations && renderData!=null && renderData.bogies!=null){
+                    for(Bogie b : renderData.bogies){
+                        b.setPosition(this, null);
+                    }
+                }
+                collisionHandler.position(posX, posY, posZ, rotationPitch, rotationYaw);
+                tickOffset--;
+            } else {
+                velocity[1]=0;
+            }
+        }
+
         //be sure bogies exist
 
         //always be sure the bogies exist on client and server.
         if (!worldObj.isRemote && (frontBogie == null || backBogie == null)) {
-            //spawn frontLinkedTransport bogie
+            //spawn front bogie
             vectorCache[0] = CommonUtil.rotatePointF(bogieLengthFromCenter()[0], 0, 0,rotationPitch, rotationYaw,0);
             frontBogie = new EntityBogie(worldObj, posX + vectorCache[0][0], posY + vectorCache[0][1], posZ + vectorCache[0][2], getEntityId(), true);
             frontBogie.setVelocity(frontVelocityX,0,frontVelocityZ);
-            //spawn backLinkedTransport bogie
+            //spawn back bogie
             vectorCache[0] = CommonUtil.rotatePointF(bogieLengthFromCenter()[1], 0, 0, rotationPitch, rotationYaw,0);
             backBogie = new EntityBogie(worldObj, posX + vectorCache[0][0], posY + vectorCache[0][1], posZ + vectorCache[0][2], getEntityId(), false);
             backBogie.setVelocity(backVelocityX, 0, backVelocityZ);
@@ -887,9 +1049,9 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
          *
          * this stops updating if the transport derails. Why update positions of something that doesn't move? We compensate for first tick to be sure hitboxes, bogies, etc, spawn on join.
          */
-        if (frontBogie!=null && backBogie != null && (!getBoolean(boolValues.DERAILED) || ticksExisted==1)){
+        if (!worldObj.isRemote && frontBogie!=null && backBogie != null && (!getBoolean(boolValues.DERAILED) || ticksExisted==1)){
             //handle movement.
-            if (!worldObj.isRemote) {
+            if(!(this instanceof EntityTrainCore && getAccelerator()!=0)){//disable linking motion if it's a running train
                 if (frontLinkedID != null && worldObj.getEntityByID(frontLinkedID) instanceof GenericRailTransport) {
                     manageLinks((GenericRailTransport) worldObj.getEntityByID(frontLinkedID));
                 }
@@ -899,41 +1061,23 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
             }
 
 
-            //todo: rollingstock need to be able to do this, it might be fine just in the normal update.....
-            if(rotationPitch>5){
-                if(rotationYaw>0){
-                    //modify speed from a secondary momentum variable
-                    // based on weight in a direction, multiplied by the percentage of rotation, with 90 being max
-                    vectorCache[1][2]+=Math.pow(weightKg(), -0.7457)*(rotationPitch/90);
-                } else {
-                    vectorCache[1][2]+=Math.pow(weightKg(), -0.7457)*(rotationPitch/90);
-                }
 
-            } else if (rotationPitch<-5){
-                if(rotationYaw>0){
-                    vectorCache[1][2]-=Math.pow(weightKg(), -0.7457)*(-rotationPitch/90);
-                } else {
-                    vectorCache[1][2]-=Math.pow(weightKg(), -0.7457)*(-rotationPitch/90);
-                }
-
-            } else {
-                if(vectorCache[1][2]>0.1 || vectorCache[1][2]<0.1){
-                    vectorCache[1][2]*=Math.pow(weightKg(), -0.07457)*1.625;
-                } else {
-                    vectorCache[1][2]=0;
-                }
-            }
-
-            if(vectorCache[1][2]!=0) {
-                //vectorCache[3] = CommonUtil.rotatePointF(vectorCache[1][2], 0, 0, rotationPitch, rotationYaw, 0);
-                frontBogie.addVelocity(vectorCache[1][2], rotationYaw);
-                backBogie.addVelocity(vectorCache[1][2], rotationYaw);
+            //calculate for slopes
+            if(Math.abs(rotationPitch)>4f){
+                double[] roll = CommonUtil.rotatePoint(new double[]{
+                        ((backBogie.posY-frontBogie.posY)
+                        /(Math.abs(bogieLengthFromCenter()[0])+Math.abs(bogieLengthFromCenter()[1]))
+                        )*0.01,0,0},
+                        0, rotationYaw,0);
+                frontBogie.addVelocity(roll[0],roll[1],roll[2]);
+                backBogie.addVelocity(roll[0],roll[1],roll[2]);
             } else if (hasDrag()) {
 
                 //this still seems obscene to me, but the result numbers check out pretty well
                 double drag = Math.pow(
                         //scale by weight, heavier means more drag
-                        Math.pow(weightKg(), -0.07457),
+                        getBoolean(boolValues.BRAKE)?Math.pow(weightKg()*4d, -0.07457):
+                                Math.pow(weightKg(), -0.07457),
 
                         //then scale by speed, faster speeds mean more drag.
                         //use speed from the front bogie, when you take out direction, both bogies should move at the same speed
@@ -1039,13 +1183,13 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
                     continue;
                 }
                 if (e instanceof EntityItem) {
-                    if (getTypes().contains(TrainsInMotion.transportTypes.HOPPER) && this.posY > this.posY + 0.5f &&
+                    if (getTypes()!=null &&getTypes().contains(TrainsInMotion.transportTypes.HOPPER) && this.posY > this.posY + 0.5f &&
                             ((EntityItem) e).getEntityItem()!=null && isItemValidForSlot(0, ((EntityItem) e).getEntityItem())) {
                         addItem(((EntityItem) e).getEntityItem());
                         worldObj.removeEntity(e);
                     }
 
-                } else if (e instanceof GenericRailTransport) {
+                } else if (e instanceof HitboxDynamic.collisionBox) {
                     double d0 = e.posX - this.posX;
                     double d1 = e.posZ - this.posZ;
                     double d2 = MathHelper.abs_max(d0, d1) * 1.25d;
@@ -1058,8 +1202,8 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
 
                         d0 *= Math.min(1.0D / d2, 1D);
                         d1 *= Math.min(1.0D / d2, 1D);
-                        d0 *= 0.025000000074505806D;
-                        d1 *= 0.025000000074505806D;
+                        d0 *= 0.05000000074505806D;
+                        d1 *= 0.05000000074505806D;
                         d0 *= (1.0D - this.entityCollisionReduction);
                         d1 *= (1.0D - this.entityCollisionReduction);
                         this.backBogie.addVelocity(-d0, 0, -d1);
@@ -1074,7 +1218,7 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
                     if (d2 >= 0.0009D) {
                         d0 /= d2;
                         d1 /= d2;
-                        if (e instanceof EntityPlayer && !getBoolean(boolValues.BRAKE)) {
+                        if (e instanceof EntityPlayer && !getBoolean(boolValues.BRAKE) && getAccelerator()==0) {
                             this.frontBogie.addVelocity(-d0, 0, -d1);
                             this.backBogie.addVelocity(-d0, 0, -d1);
                         }
@@ -1087,9 +1231,24 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
                     }
                 }
             }
+        } else {
+            //apparently to push away a player it has to happen on client
+            for (Entity e : collisionHandler.getCollidingEntities(this)) {
+                if (e.ridingEntity == null && e instanceof EntityPlayer) {
+
+                    double d0 = e.posX - this.posX;
+                    double d1 = e.posZ - this.posZ;
+                    double d2 = MathHelper.abs_max(d0, d1)*40;
+                    if (d2 >= 0.0009D) {
+                        d0 /= d2;
+                        d1 /= d2;
+                    }
+                    e.addVelocity(d0,0,d1);
+                }
+            }
         }
-        //handle particles
         if (backBogie!=null && !isDead && worldObj.isRemote) {
+            //handle particles
             if (ClientProxy.EnableParticles){
                 if(getParticles().size()>0) {
                     ParticleFX.updateParticleItterator(getParticles(), getBoolean(boolValues.RUNNING), true);
@@ -1105,6 +1264,8 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
             ServerLogger.writeWagonToFolder(this);
         }
     }
+
+    public int getAccelerator(){return 0;}
 
 
     /**
@@ -1202,9 +1363,9 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
             vectorCache[4][0] -= 0.4f * distance * vectorCache[5][0] * -1f;
             vectorCache[4][2] -= 0.4f * distance * vectorCache[5][2] * -1f;
 
-
-            this.frontBogie.addVelocity(vectorCache[4][0], 0, vectorCache[4][2]);
-            this.backBogie.addVelocity(vectorCache[4][0], 0, vectorCache[4][2]);
+            //can't be exactly 100% or it will fling itself into oblivion
+            this.frontBogie.addVelocity(vectorCache[4][0]*0.99, 0, vectorCache[4][2]*0.99);
+            this.backBogie.addVelocity(vectorCache[4][0]*0.99, 0, vectorCache[4][2]*0.99);
         }
 
     }
@@ -1276,13 +1437,16 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
     /**defines the ID of the owner*/
     public String getOwnerName(){return ownerName.equals("")?this.dataWatcher.getWatchableObjectString(23):ownerName;}
 
-    public skin getTexture(EntityPlayer viewer){
+    public TransportSkin getTexture(EntityPlayer viewer){
         return getSkinList(viewer, false).get(this.dataWatcher.getWatchableObjectString(24));
     }
-    public skin getCurrentSkin(){
+    public TransportSkin getCurrentSkin(){
         return getSkinList(null, false).get(this.dataWatcher.getWatchableObjectString(24));
     }
 
+    public float getVelocity(){
+        return worldObj.isRemote?this.dataWatcher.getWatchableObjectFloat(12):velocity[0];
+    }
     /**
      * NOTE: lists are hash maps, their index order is different every time an entry is added or removed.
      * todo: reliability improvement: make a version of this that builds a list of the keys
@@ -1293,24 +1457,24 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
      * @param skinId
      * @return
      */
-    public skin getTextureByID(EntityPlayer viewer, boolean isPaintBucket, String skinId){
+    public TransportSkin getTextureByID(EntityPlayer viewer, boolean isPaintBucket, String skinId){
         return getSkinList(viewer, isPaintBucket).get(skinId);
     }
 
     /**
-     * Method to allow entities to override skin interactions.
-     * for example, only allowing a specific player to apply a skin from the paint bucket,
-     *     or returning a different skin during render based on the transport's state.
+     * Method to allow entities to override TransportSkin interactions.
+     * for example, only allowing a specific player to apply a TransportSkin from the paint bucket,
+     *     or returning a different TransportSkin during render based on the transport's state.
      *
      * If the player is null, then the call is being made for saving and loading, and usually should not be modified.
      * When the player is null, isPaintBucket is false, so that allows null checks to be skipped by checking the bool first, in most cases.
      */
-    public Map<String, skin> getSkinList(EntityPlayer viewer, boolean isPaintBucket){
+    public Map<String, TransportSkin> getSkinList(EntityPlayer viewer, boolean isPaintBucket){
         return SkinRegistry.getTransportSkins(getClass());
     }
 
     /**
-     * return the name for the default skin of the transport.
+     * return the name for the default TransportSkin of the transport.
      */
     public String getDefaultSkin(){
         return getSkinList(null,false)==null?"":getSkinList(null, false).keySet().iterator().next();}
@@ -1494,11 +1658,12 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
      */
     public ItemStack getFirstBlock(int index){
         for (int i=0; i<getSizeInventory(); i++){
-            if (i>= index && inventory.get(i) != null && inventory.get(i).getHasStack() && inventory.get(i).getItem() instanceof ItemBlock){
+            if (i>= index && inventory.get(i) != null && inventory.get(i).getHasStack() &&
+                    inventory.get(i).getItem() instanceof ItemBlock){
                 return inventory.get(i).getStack();
             }
         }
-        return getFirstBlock(index>0?index-1:0);
+        return index>0?getFirstBlock(index-1):null;
     }
 
     /*
@@ -1816,7 +1981,10 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
      * may not return null*/
     public float[] bogieLengthFromCenter(){return new float[]{1,-1};}
 
-    /**defines the radius from center in microblocks that the pistons animate, if there are any.*/
+    /**No longer used, replaced by
+     * @see #getAnimationData(int)
+     * defines the radius from center in microblocks that the pistons animate, if there are any.*/
+    @Deprecated
     public float getPistonOffset(){return 0;}
 
     /**defines the scale to render the model at. Default is 0.0625*/
@@ -1847,7 +2015,7 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
      * the int[][] for hex recolors may be null.
      * hex values use "0x" in place of "#"
      * "0xff00aa" as an example.
-     * the first skin added to the registry for a transport class will be the default
+     * the first TransportSkin added to the registry for a transport class will be the default
      * additionally the addSkin function may be called from any other class at any time.
      * the registerSkins method is only for organization and convenience.*/
     public void registerSkins(){}
@@ -1904,6 +2072,7 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
      * example:
      * return new String[][]{{"water", "diesel"}, {"lava"}, null}*/
     public String[][] getTankFilters(){
+        if(getTypes()==null){return null;}
         //multi types first
         if(getTypes().contains(DIESEL) && getTypes().contains(ELECTRIC)){
             return FuelHandler.DefaultTanks.DIESEL_ELECTRIC.value();
@@ -1936,12 +2105,12 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
 
 
     /**
-     * returns an array of integers.
+     * returns an array of integers for lamp effects.
      * the first is density.
      * the second is scale in percentage.
      * the third is color in hex.
      * todo: the fourth is speed in percentage (does not apply to cone or sphere lamps)
-     * NOTE: you can use the method getCurrentSkin() to return different results based on the current skin.
+     * NOTE: you can use the method getCurrentSkin() to return different results based on the current TransportSkin.
      * @param id the index of the particle defined in the model
      */
     @SideOnly(Side.CLIENT)
@@ -1953,7 +2122,28 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
             case 3:{return new int[]{6, 100, 0xCECDCB};}//led lamp
             case 4:{return new int[]{3, 50, 0xCC0000};}//reverse lamp
             case 5:{return new int[]{3, 10, 0xCCCC00};}//small sphere lamp
+
             default:{return new int[]{5, 100, 0xCCCC00};}//lamp
+        }
+    }
+
+    /**
+     * returns an array of floats for animations with offsets:
+     * the first is direction in degrees on the X/Y axis from center.
+     * the second is distance on the X axis in microblocks from center.
+     * the third is  distance on the Z axis in microblocks from center.
+     * NOTE: you can use the method getCurrentSkin() to return different results based on the current TransportSkin.
+     * @param id the index of the effect defined in the model
+     */
+    @SideOnly(Side.CLIENT)
+    public float[] getAnimationData(int id) {
+        switch (id) {
+            case 1:{return new float[]{90, 40, 0};}//valve gear up position
+            case 2:{return new float[]{270, 40, 0};}//valve gear back position
+            case 3:{return new float[]{180, 40, 0};}//valve gear down position
+            case 4:{return new float[]{0, 40, 0};}//valve gear forward position
+
+            default:{return new float[]{0,0,0};}
         }
     }
 

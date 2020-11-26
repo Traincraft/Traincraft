@@ -5,7 +5,7 @@ import net.minecraft.item.Item;
 
 /**
  * <h1>Ticket Item</h1>
- * Used to allow players to board specific passenger transports.
+ * Used to allow players to change and modify skins
  * This is only used for instanceof checks and to define the item model/icon
  * @author Eternal Blue Flame
  */

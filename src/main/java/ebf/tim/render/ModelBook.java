@@ -1,4 +1,4 @@
-package ebf.tim.models;
+package ebf.tim.render;
 
 import fexcraft.tmt.slim.ModelConverter;
 import fexcraft.tmt.slim.ModelRendererTurbo;

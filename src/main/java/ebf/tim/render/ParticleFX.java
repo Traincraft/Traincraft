@@ -1,9 +1,8 @@
-package ebf.tim.models;
+package ebf.tim.render;
 
 import ebf.tim.TrainsInMotion;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.utility.CommonUtil;
-import ebf.tim.utility.DebugUtil;
 import fexcraft.tmt.slim.ModelBase;
 import fexcraft.tmt.slim.ModelRendererTurbo;
 import fexcraft.tmt.slim.TextureManager;

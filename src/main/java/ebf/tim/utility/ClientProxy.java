@@ -14,8 +14,8 @@ import ebf.tim.gui.*;
 import ebf.tim.items.ItemCraftGuide;
 import ebf.tim.items.ItemPaintBucket;
 import ebf.tim.items.ItemRail;
-import ebf.tim.models.RenderWagon;
-import ebf.tim.models.rails.ModelBallast;
+import ebf.tim.render.RenderWagon;
+import ebf.tim.render.models.ModelBallast;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.renderer.ItemRenderer;
@@ -35,8 +35,6 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
-
-import java.io.File;
 
 /**
  * <h1>client proxy</h1>
@@ -73,8 +71,8 @@ public class ClientProxy extends CommonProxy {
     public static KeyBinding KeyHorn = new KeyBinding("Use Horn/Whistle", Keyboard.KEY_H, "Trains in Motion");
     /**the keybind for opening the inventory*/
     public static KeyBinding KeyInventory = new KeyBinding("Open Train/rollingstock GUI",  Keyboard.KEY_I, "Trains in Motion");
-    /**the skin to use for the rail*/
-    public static int railSkin = 2;
+    /**the model to use for the rail*/
+    public static int railSkin = 3;
     /**toggles whether to show speed in km/h or mph*/
     public static boolean speedInKmh = true;
 
@@ -165,8 +163,8 @@ public class ClientProxy extends CommonProxy {
                 "Sets the HUD to show speeds in km/h. set to false for mph");
 
 
-        railSkin = config.getInt("railSkin","Quality (Client only)", 2,0,3,
-                "Defines the skin to use. 0: flat 2D rail similar to vanilla. 1: basic 3D rail similar to an extruded 2D. 2: Normal 3D rail. 3: High detail 3D rail");
+        railSkin = config.getInt("railSkin","Quality (Client only)", 3,0,3,
+                "Defines the rail model to use. 0: flat 2D rail similar to vanilla. 1: basic 3D rail similar to an extruded 2D. 2: Normal 3D rail. 3: High detail 3D rail");
 
         config.addCustomCategoryComment("Keybinds (Client only)", "accepted values can be set from in-game, or defined using the key code values from: http://minecraft.gamepedia.com/Key_codes");
 
@@ -194,7 +192,7 @@ public class ClientProxy extends CommonProxy {
         //seats
         RenderingRegistry.registerEntityRenderingHandler(EntitySeat.class, nullRender);
         //hitboxes
-        RenderingRegistry.registerEntityRenderingHandler(HitboxDynamic.clientInteractBox.class, nullRender);
+        RenderingRegistry.registerEntityRenderingHandler(HitboxDynamic.collisionBox.class, nullRender);
         //player scaler
         RenderingRegistry.registerEntityRenderingHandler(EntityPlayer.class, playerRender);
 

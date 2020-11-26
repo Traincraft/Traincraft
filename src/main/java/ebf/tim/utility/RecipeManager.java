@@ -26,9 +26,9 @@ public class RecipeManager {
     }
 
     public static void registerRecipe(Recipe recipe){
-        DebugUtil.println("REGISTERING RECIPE"
+/*        DebugUtil.println("REGISTERING RECIPE"
         , (recipe.topLeft()==null || recipe.topLeft().size()==0 || recipe.topLeft().get(0)==null?"null": recipe.topLeft().get(0).getDisplayName()),
-                recipe.getresult().get(0).getDisplayName());
+                recipe.getresult().get(0).getDisplayName());*/
 
         for(Recipe r : recipeList){
             if(r.recipeInputMatches(recipe.input)){

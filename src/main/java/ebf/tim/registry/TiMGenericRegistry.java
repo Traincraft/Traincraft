@@ -3,11 +3,13 @@ package ebf.tim.registry;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import ebf.tim.TrainsInMotion;
+import ebf.tim.blocks.BlockDynamic;
 import ebf.tim.blocks.BlockTrainFluid;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.ItemCraftGuide;
 import ebf.tim.items.ItemTransport;
 import ebf.tim.utility.*;
+import fexcraft.tmt.slim.ModelBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.MapColor;
@@ -19,6 +21,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBucket;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.client.MinecraftForgeClient;
@@ -55,11 +58,31 @@ public class TiMGenericRegistry {
         this.recipe = recipe;
     }
 
-    public static Block registerBlock(Block block, CreativeTabs tab, String unlocalizedName, @Nullable String oreDictionaryName, @Nullable Object TESR){
-        return registerBlock(block, tab, null, unlocalizedName,oreDictionaryName,TESR);
+    /**
+     *
+     * @param block the block in question
+     * @param tab the creative tab to put the block's item into, leave null for no creative tab entry.
+     * @param MODID modid of the host add-on, used for translations, texture names, and generic identification.
+     * @param unlocalizedName unlocalized name, used for translations, texture names, and generic identification.
+     * @param oreDictionaryName ore directory name, used for other mods to identify type, mainly used for ingots, ores, and wood.
+     * @param render a ModelBase instance for rendering the tile entity.
+     *               Can instead be a TESR instance for more rendering control.
+     *               Null will fallback to a normal textured block render.
+     * @return
+     */
+    public static Block registerBlock(Block block, CreativeTabs tab, String MODID, String unlocalizedName, @Nullable String oreDictionaryName, @Nullable Object render){
+        if(render instanceof ModelBase){
+            return registerBlock(block, tab, MODID, unlocalizedName, oreDictionaryName, TrainsInMotion.proxy.getTESR(), (ModelBase) render);
+        } else {
+            return registerBlock(block, tab, MODID, unlocalizedName, oreDictionaryName, render, null);
+        }
     }
 
-    public static Block registerBlock(Block block, CreativeTabs tab, String MODID, String unlocalizedName, @Nullable String oreDictionaryName, @Nullable Object TESR){
+    public static Block registerBlock(Block block, CreativeTabs tab, String unlocalizedName, @Nullable String oreDictionaryName, @Nullable Object render){
+        return registerBlock(block, tab, null, unlocalizedName, oreDictionaryName, render);
+    }
+
+    public static Block registerBlock(Block block, CreativeTabs tab, String MODID, String unlocalizedName, @Nullable String oreDictionaryName, @Nullable Object TESR, @Nullable ModelBase model){
         if(usedNames.contains(unlocalizedName)){
             DebugUtil.println("ERROR: ", "attempted to register Block with a used unlocalizedName", unlocalizedName);
             DebugUtil.throwStackTrace();
@@ -67,7 +90,7 @@ public class TiMGenericRegistry {
         if (tab!=null){
             block.setCreativeTab(tab);
         }
-        if (!unlocalizedName.equals("")){
+        if (unlocalizedName.length()>0){
             block.setBlockName(unlocalizedName);
             GameRegistry.registerBlock(block, unlocalizedName);
             usedNames.add(unlocalizedName);
@@ -85,6 +108,14 @@ public class TiMGenericRegistry {
         if (DebugUtil.dev() && TrainsInMotion.proxy.isClient() && block.getUnlocalizedName().equals(StatCollector.translateToLocal(block.getUnlocalizedName()))){
             DebugUtil.println("Block missing lang entry: " + block.getUnlocalizedName());
         }
+        if(block instanceof BlockDynamic) {
+            if(model!=null) {
+                ((BlockDynamic) block).setModel(model);
+            }
+            if(((BlockDynamic) block).texture==null){
+                ((BlockDynamic) block).texture=new ResourceLocation(MODID, unlocalizedName);
+            }
+        }
         if(block instanceof ITileEntityProvider){
             Class<? extends TileEntity> tile=((ITileEntityProvider)block).createNewTileEntity(null,0).getClass();
             if(!redundantTiles.contains(tile.getName())) {
@@ -92,6 +123,8 @@ public class TiMGenericRegistry {
                 redundantTiles.add(tile.getName());
                 if (TrainsInMotion.proxy.isClient() && TESR != null) {
                     cpw.mods.fml.client.registry.ClientRegistry.bindTileEntitySpecialRenderer(tile, (TileEntitySpecialRenderer) TESR);
+                } else if (TrainsInMotion.proxy.isClient()){
+                    cpw.mods.fml.client.registry.ClientRegistry.bindTileEntitySpecialRenderer(tile, (TileEntitySpecialRenderer) TrainsInMotion.proxy.getTESR());
                 }
             }
         }

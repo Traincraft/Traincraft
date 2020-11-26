@@ -1,9 +1,11 @@
 package ebf.tim.blocks;
 
 import ebf.XmlBuilder;
+import ebf.tim.TrainsInMotion;
 import ebf.tim.blocks.rails.RailShapeCore;
-import ebf.tim.models.rails.Model1x1Rail;
 import ebf.tim.registry.TiMBlocks;
+import ebf.tim.render.models.Model1x1Rail;
+import ebf.tim.utility.ClientProxy;
 import fexcraft.tmt.slim.TextureManager;
 import net.minecraft.block.Block;
 import net.minecraft.crash.CrashReportCategory;
@@ -13,6 +15,7 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
+import org.lwjgl.opengl.GL11;
 
 import javax.annotation.Nullable;
 
@@ -56,7 +59,15 @@ public class RailTileEntity extends TileEntity {
             }
             TextureManager.adjustLightFixture(worldObj,xCoord,yCoord,zCoord);
             if(railGLID!=null){
+                if(!org.lwjgl.opengl.GL11.glIsList(railGLID)){
+                    railGLID=null;
+                    return;
+                }
                 org.lwjgl.opengl.GL11.glCallList(railGLID);
+                if(ClientProxy.disableCache) {
+                    GL11.glDeleteLists(railGLID, 1);
+                    railGLID = null;
+                }
             }
             if(railGLID==null && data !=null && data.floatArrayMap.size()>0){
                 RailShapeCore route =new RailShapeCore().fromXML(data);
@@ -86,7 +97,7 @@ public class RailTileEntity extends TileEntity {
     @Override
     public AxisAlignedBB getRenderBoundingBox() {
         if (boundingBox == null) {
-            boundingBox = AxisAlignedBB.getBoundingBox(xCoord, yCoord, zCoord, xCoord+1, yCoord, zCoord+1);
+            boundingBox = AxisAlignedBB.getBoundingBox(xCoord-1, yCoord-1, zCoord-1, xCoord+1, yCoord, zCoord+1);
         }
         return boundingBox;
     }
@@ -103,6 +114,14 @@ public class RailTileEntity extends TileEntity {
             }
         }
 
+    }
+
+    @Override
+    public void onChunkUnload() {
+        if(TrainsInMotion.proxy.isClient() && railGLID!=null){
+            org.lwjgl.opengl.GL11.glDeleteLists(railGLID, 1);
+            railGLID = null;
+        }
     }
 
     @Override

@@ -6,7 +6,6 @@ import ebf.tim.entities.GenericRailTransport;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidStack;
@@ -14,6 +13,7 @@ import net.minecraftforge.fluids.FluidTankInfo;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +29,7 @@ public class ServerLogger {
 
     //run this on server side when inventory opens or player mounts, maybe other common but not constant events.
     public static void writeWagonToFolder(GenericRailTransport wagon){
+        FileOutputStream fileoutputstream=null;
         try {
             //make a stringbuilder to build the filename, faster than string+string+string+string etc. MUCH faster.
             StringBuilder sb = new StringBuilder();
@@ -52,7 +53,7 @@ public class ServerLogger {
             sb.append(wagon.getUniqueID());
             sb.append(".txt");
             //gen the file with the path
-            FileOutputStream fileoutputstream = new FileOutputStream(new File(sb.toString()));
+            fileoutputstream = new FileOutputStream(new File(sb.toString()));
             //reset the string builder then add all the data in an XML seeming format.
             //you don't HAVE to do XML, you can use other formats and use libraries, i just like this way because its easy to read.
             sb = new StringBuilder();
@@ -89,7 +90,15 @@ public class ServerLogger {
             }
             sb.append("\n</xmlRoot>");//seemingly unnecessary new line added to the end, linux needs this sometimes.
             fileoutputstream.write(sb.toString().getBytes());
+            fileoutputstream.close();
         } catch (Exception e){
+            //be sure to attempt to close the stream in case of failure
+            // requires another try/catch as permissions errors may not have let it open in the first place
+            if(fileoutputstream!=null){
+                try {
+                    fileoutputstream.close();
+                } catch (IOException ignored) {}
+            }
             //apparently we don't have permission, so, nevermind.
             e.printStackTrace();
         }

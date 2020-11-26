@@ -1,11 +1,16 @@
 package ebf.tim.blocks;
 
 import ebf.tim.TrainsInMotion;
+import fexcraft.tmt.slim.ModelBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
 /**
@@ -17,71 +22,80 @@ import net.minecraft.world.World;
  */
 public class BlockDynamic extends BlockContainer {
 
-    /**defines the type of GUI and potentially tile entity that the block uses
-     * 0: standard crafting table
-     * 1: rail crafting table , NOT IMPLEMENTED
-     * 2: storage blocks like chests, NOT IMPLEMENTED
-     * 3: signals, NOT IMPLEMENTED
-     * 4: levers, NOT IMPLEMENTED
-     * 5: signs, NOT IMPLEMENTED*/
-    private int type = 0;
+    public boolean rotates=true;
+    public ModelBase model=null;
+    //for models 0 is entire texture, for blocks, texture is:
+    //0 up, 1 down, 2 north, 3 south, 4 east, 5 west.
+    public ResourceLocation texture=null;
 
-    /**
-     * <h2>block initializer</h2>
-     *  Defines the material like what is necessary to make it and the creative tab for it, and the block name.
-     *  NOTE; forge materials are fake, don't use them directly, steal them from existing blocks.
-     */
-    public BlockDynamic(String name, Material material, int blockType){
+    public BlockDynamic(Material material, boolean isDirectional, boolean isStorage) {
         super(material);
-        setCreativeTab(TrainsInMotion.creativeTab);
-        setBlockName(name);
-        type = blockType;
+        rotates=isDirectional;
+        this.isBlockContainer=isStorage;
+        this.opaque=true;
     }
 
-    /**
-     * <h2>Block use</h2>
-     * Called upon block activation (right click on the block.)
-     * @return whether or not to animate the arm of the character for use.
-     */
+    public Block setModel(ModelBase modelBase){
+        model=modelBase;
+        return this;
+    }
+
+    @Override
+    public void breakBlock(World w, int x, int y, int z, Block b, int meta) {
+        super.breakBlock(w, x, y, z, b, meta);
+        w.removeTileEntity(x,y,z);
+    }
+
+
+    @Override
+    public int getRenderType(){
+        return -1;
+    }
+
+    @Override
+    public boolean renderAsNormalBlock(){
+        return false;
+    }
+
+    @Override
+    public boolean hasTileEntity(int metadata)
+    {
+        return true;
+    }
+
+    @Override
+    public TileEntity createNewTileEntity(World world, int meta) {
+        return isBlockContainer?new TileEntityStorage(this):new TileRenderFacing(this);
+    }
+
+    @Override
+    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack stack){
+        super.onBlockPlacedBy(world, x, y, z, entity, stack);
+        if(world.getTileEntity(x,y,z)==null){
+            world.setTileEntity(x,y,z,createNewTileEntity(world,0));
+        }
+        if(world.getTileEntity(x,y,z) instanceof TileRenderFacing){
+            ((TileRenderFacing) world.getTileEntity(x,y,z)).setFacing(
+                    MathHelper.floor_double((entity.rotationYaw / 90.0F) + 2.5D) & 3);
+        }
+    }
+
+
     @Override
     public boolean onBlockActivated(World worldOBJ, int x, int y, int z, EntityPlayer player, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_) {
-        if (player.isSneaking()) {
+        if (player.isSneaking() || !isBlockContainer) {
             return false;
         } else if (worldOBJ.isRemote) {
             return true;
         }
-        switch (type) {
-            case 0: case 1: {
-                TileEntity entity = worldOBJ.getTileEntity(x, y, z);
-                if (entity != null) {
-                    player.openGui(TrainsInMotion.instance, 0, worldOBJ, x, y, z);
-                }
-                return true;
-            }
-            //cosmetic and otherwise
-            default:{
-                return false;
-            }
+
+        if (worldOBJ.getTileEntity(x, y, z) instanceof TileEntityStorage) {
+            player.openGui(TrainsInMotion.instance, 0, worldOBJ, x, y, z);
+            return true;
+        } else {
+            return false;
         }
 
-    }
-
-    /**
-     * makes sure the inventory content is dumped before the block or tile entity is removed from world.
-     */
-    public void breakBlock(World world, int xCoord, int yCoord, int zCoord, Block block, int p_149749_6_) {
-        if(world.getTileEntity(xCoord,yCoord,zCoord) instanceof TileEntityStorage){
-            ((TileEntityStorage) world.getTileEntity(xCoord,yCoord,zCoord)).dropInventory();
-        }
-        super.breakBlock(world, xCoord, yCoord, zCoord, block, p_149749_6_);
-    }
-
-    /**
-     * <h2>Tile entity spawner</h2>
-     * spawns the tile entity related to this block, if there isn't one already. Called on placing the block.
-     */
-    public TileEntity createNewTileEntity(World worldObj, int meta){
-        return new TileEntityStorage(type);
     }
 
 }

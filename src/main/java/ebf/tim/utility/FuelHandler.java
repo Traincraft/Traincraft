@@ -74,13 +74,15 @@ public class FuelHandler{
 			}
 		}
 		if(transport.getTypes().contains(TrainsInMotion.transportTypes.DIESEL)){
-			if(FluidContainerRegistry.getFluidForFilledItem(itemStack).getUnlocalizedName().toLowerCase().contains("diesel")){
+			if(FluidContainerRegistry.getFluidForFilledItem(itemStack)!=null &&
+					FluidContainerRegistry.getFluidForFilledItem(itemStack).getUnlocalizedName().toLowerCase().contains("diesel")){
 				return new FluidStack(TiMFluids.fluidDiesel,1000);
 			}
 
 		}
 		if(transport.getTypes().contains(TrainsInMotion.transportTypes.STEAM)){
-			if(FluidContainerRegistry.getFluidForFilledItem(itemStack)!=null &&FluidContainerRegistry.getFluidForFilledItem(itemStack).getFluid()==FluidRegistry.WATER){
+			if(FluidContainerRegistry.getFluidForFilledItem(itemStack)!=null &&
+					FluidContainerRegistry.getFluidForFilledItem(itemStack).getFluid()==FluidRegistry.WATER){
 				return new FluidStack(FluidRegistry.WATER,1000);
 			}
 		}

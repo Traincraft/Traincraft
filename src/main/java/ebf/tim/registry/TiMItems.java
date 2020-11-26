@@ -7,7 +7,7 @@ import net.minecraft.item.Item;
 public class TiMItems {
 
     //todo
-    public static Item adminKey,stake,crowbar;
+    public static Item adminKey,crowbar;
 
     public static Item cabinWood,cabinAluminium,cabinCopper,cabinIron,cabinSteel,cabinFiberglass,cabinPlastic;
     public static Item frameWood,frameAluminium,frameCopper,frameIron,frameSteel,frameFiberglass,framePlastic;
@@ -34,6 +34,8 @@ public class TiMItems {
 
 
     public static void registerItems(){
+
+        TiMGenericRegistry.RegisterItem(new ItemStake(), TrainsInMotion.MODID, "stake",TrainsInMotion.creativeTab);
 
         TiMGenericRegistry.RegisterItem(new ItemAdminBook(),TrainsInMotion.MODID, "adminbook", TrainsInMotion.creativeTab);
         TiMGenericRegistry.RegisterItem(new ItemCraftGuide(),TrainsInMotion.MODID, "craftbook", TrainsInMotion.creativeTab);

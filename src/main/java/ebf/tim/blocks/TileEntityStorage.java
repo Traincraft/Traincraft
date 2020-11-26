@@ -1,7 +1,6 @@
 package ebf.tim.blocks;
 
 
-import ebf.tim.TrainsInMotion;
 import ebf.tim.registry.TiMFluids;
 import ebf.tim.utility.CommonUtil;
 import ebf.tim.utility.ItemStackSlot;
@@ -13,7 +12,6 @@ import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
 import net.minecraftforge.oredict.OreDictionary;
@@ -28,12 +26,14 @@ import java.util.List;
  * @see ebf.tim.utility.TransportSlotManager
  * @author Eternal Blue Flame
  */
-public class TileEntityStorage extends TileEntity implements IInventory, IFluidHandler {
+public class TileEntityStorage extends TileRenderFacing implements IInventory, IFluidHandler {
 
 
-    public TileEntityStorage(int type){
+    public TileEntityStorage(BlockDynamic block){
+        super(block);
         int s=400;
-        if(type==0){
+        inventory= new ArrayList<>();
+        if(block.getUnlocalizedName().equals("tile.block.traintable")){
             //inventory grid
             for (int l = 0; l < 3; ++l) {
                 for (int i1 = 0; i1 < 3; ++i1) {
@@ -48,6 +48,7 @@ public class TileEntityStorage extends TileEntity implements IInventory, IFluidH
                     s++;
                 }
             }
+            storageType=1;
         } else {
             inventory.add(new ItemStackSlot(this,400).setCoords( 30 , -2).setCraftingInput(true).setOverlay(Items.iron_ingot)); //ingot
             inventory.add(new ItemStackSlot(this,401).setCoords( 30 , 18).setCraftingInput(true).setOverlay(Blocks.planks)); //ties
@@ -59,31 +60,28 @@ public class TileEntityStorage extends TileEntity implements IInventory, IFluidH
             inventory.add(new ItemStackSlot(this,405).setCoords( 124 , -2).setCraftingInput(true).setOverlay(Blocks.rail));//old shape input
 
             inventory.add(new ItemStackSlot(this,406).setCoords( 124 , 33).setCraftingOutput(true)); //output
-
+            storageType=0;
         }
-        storageType=type;
+        markDirty();
     }
     /**the list of item stacks in the inventory*/
     public List<ItemStackSlot> inventory = new ArrayList<ItemStackSlot>();
     public int storageType=0;
-    public int[] extraData = null;
     public int outputPage=0;
     public boolean multiPage=false;
+
+    @Override
+    public String getInventoryName(){
+        return storageType==0?"trainsinmotion:trackcrafter":"trainsinmotion:traincrafter";
+    }
 
     /**
      * <h2>Syncing</h2>
      */
     /**loads the tile entity's save file*/
+    @Override
     public void readFromNBT(NBTTagCompound tag) {
         super.readFromNBT(tag);
-        storageType=tag.getInteger("storageType");
-        int extraDataLength=tag.getInteger("extraDataLength");
-        if(extraDataLength>0){
-            extraData = new int[extraDataLength];
-            for(int i=0; i<extraDataLength;i++){
-                extraData[i]=tag.getInteger("extraData_"+i);
-            }
-        }
         if (getSizeInventory()>0) {
             for (int i=0;i<getSizeInventory();i++) {
                 if (tag.hasKey("transportinv."+i)) {
@@ -105,15 +103,9 @@ public class TileEntityStorage extends TileEntity implements IInventory, IFluidH
 
     }
     /**saves the tile entity to server world*/
+    @Override
     public void writeToNBT(NBTTagCompound tag) {
         super.writeToNBT(tag);
-        tag.setInteger("stroageType", storageType);
-        tag.setInteger("extraDataLength", extraData==null?0:extraData.length);
-        if(extraData!=null){
-            for(int i=0; i<extraData.length;i++){
-                tag.setInteger("extraData_"+i,extraData[i]);
-            }
-        }
         if (inventory!=null) {
             for (int i=0;i<getSizeInventory();i++) {
                 NBTTagCompound invTag = new NBTTagCompound();
@@ -319,9 +311,6 @@ public class TileEntityStorage extends TileEntity implements IInventory, IFluidH
 
 
     @Override
-    public String getInventoryName() {return TrainsInMotion.MODID + ":storage";}
-
-    @Override
     public boolean hasCustomInventoryName() {
         return true;
     }
@@ -342,7 +331,7 @@ public class TileEntityStorage extends TileEntity implements IInventory, IFluidH
         switch (storageType){
             //todo prevent putting items in output
             case 0:{
-
+                return true;
             }
             case 1:{
                 if(slot==0){return OreDictionary.getOres("ingot").contains(itemStack);}
@@ -381,5 +370,5 @@ public class TileEntityStorage extends TileEntity implements IInventory, IFluidH
     @Override
     public ItemStack getStackInSlotOnClosing(int p_70304_1_) {return null;}
     @Override
-    public void markDirty() {}
+    public void markDirty() {super.markDirty();}
 }

@@ -32,6 +32,29 @@ gui.creative.true=Creative Mode Enabled.
 
 container.traincrafting=Train Crafting Table
 
+menu.item.types=Transport Types
+menu.item.locomotive=Locomotive
+menu.item.rollingstock=Rolling Stock
+menu.item.LOGCAR=Log Car
+menu.item.PASSENGER=Passenger Car
+menu.item.FREIGHT=Freight Car
+menu.item.HOPPER=Hopper Car
+menu.item.TANKER=Tanker Car
+menu.item.WORKCAR=Work Cart
+menu.item.SLUG=Slug
+menu.item.B_UNIT=B-Unit
+menu.item.RAILCAR=Rail Carrier
+menu.item.FREEZERCAR=Freezer Car
+menu.item.LAVATANKER=Lava Tanker
+menu.item.GRAINHOPPER=Grain Hopper
+menu.item.COALHOPPER=Coal Hopper
+menu.item.OILCAR=Oil Tanker
+menu.item.FUELTANKER=Fuel Tanker
+menu.item.TENDER=Tender
+menu.item.ELECTRIC_TENDER=Battery Car
+menu.item.JUKEBOX=Jukebox Cart
+menu.item.TRACKBUILDER=Rail Layer
+menu.item.OTHER=Other
 menu.item.steam=Steam
 menu.item.diesel=Diesel
 menu.item.electric=Electric
@@ -106,6 +129,10 @@ item.heavysteam.bucket.name=Heavy Steam Bucket
 item.fueloil.bucket.name=Oil Bucket
 item.redstone.bucket.name=Redstone Bucket
 item.paintbucket.name=Paint Bucket
+item.stake.name=Stake
+
+
+<!-- ## Crafting Items ## -->
 item.cabin.wood.name=Wood Cabin
 item.cabin.aluminium.name=Aluminium Cabin
 item.cabin.copper.name=Copper Cabin
@@ -187,19 +214,20 @@ tile.block.diesel=Diesel Fluid
 fluid.diesel=Diesel Fluid
 tile.block.oil=Oil Fluid
 fluid.oil.name=Oil Fluid
+fluid.redstone=RF
 
-<!-- ## Trains ## -->
-<!-- ## These are actually defined from the item name, so one name covers all areas ## -->
-item.HenschelBrigadelok.name=Brigadelok 0-8-0
-item.HenschelBrigadelok-E.name=Brigadelok 0-8-0 (Electric)
-item.GATX13000GallonTanker.name=GATX 13000 Gallon Tanker
-item.V.A.TLogcar.name=V.A.T Logcar
-item.UnionPacific3-bayHopper.name=UP 3-Bay Hopper
-item.Pullman'sPalace.name=Pullman's Palace
-item.BurlingtonNorthern&SantaFe3-bayHopper.name=BNSF 3-Bay Hopper
+<!-- ## Item Lore ## -->
+menu.item.stake.lore1=Use on a transport to toggle linking.
+menu.item.stake.lore2=Use while sneaking to unlink.
+menu.item.ticket.lore1=This ticket is for:
+menu.item.key.lore1=This key unlocks:
 
 
-<!-- ## Rollingstock ## -->
-<!-- ## These are actually defined from the item name, so one name covers all areas ## -->
-item.pullmanspalace.name=Pullman's Palace
-item.vatlogcar.name=V.A.T Log Car
+
+<!-- ## Chat messages ## -->
+message.linking=Couplers are now open.
+message.notlinking=Couplers are now closed.
+message.unlinked=Links removed.
+message.nolinks=Nothing to unlink.
+
+linebreak= \n
