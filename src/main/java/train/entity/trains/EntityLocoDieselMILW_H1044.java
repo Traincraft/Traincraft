@@ -2,15 +2,18 @@ package train.entity.trains;
 
 import ebf.tim.TrainsInMotion;
 import ebf.tim.api.SkinRegistry;
-import ebf.tim.api.skin;
+import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.EntityTrainCore;
+import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.ItemTransport;
 import ebf.tim.utility.ItemStackSlot;
 import fexcraft.tmt.slim.ModelBase;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
+import train.render.models.*;
 import train.Traincraft;
 import train.library.Info;
 import train.library.ItemIDs;
@@ -58,23 +61,22 @@ public class EntityLocoDieselMILW_H1044 extends EntityTrainCore {
     public float[][] modelRotations(){return new float[][]{{0.0f, 180.0f, 180.0f}};}
     @Override
     public void registerSkins(){
-        String description ="";
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/MILW_H1044_Orange.png","Orange", description));
+            new TransportSkin(Info.modID,"textures/trains/MILW_H1044_Orange.png","Orange", "description.MILW.H1044.Orange"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/MILW_H1044_Yellow.png","Yellow", description));
+            new TransportSkin(Info.modID,"textures/trains/MILW_H1044_Yellow.png","Yellow", "description.MILW.H1044.Yellow"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/MILW_H1044_Black.png","Black", description));
+            new TransportSkin(Info.modID,"textures/trains/MILW_H1044_Black.png","Black", "description.MILW.H1044.Black"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/MILW_H1044_Red.png","Red", description));
+            new TransportSkin(Info.modID,"textures/trains/MILW_H1044_Red.png","Red", "description.MILW.H1044.Red"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/MILW_H1044_Blue.png","Blue", description));
+            new TransportSkin(Info.modID,"textures/trains/MILW_H1044_Blue.png","Blue", "description.MILW.H1044.Blue"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/MILW_H1044_Grey.png","Grey", description));
+            new TransportSkin(Info.modID,"textures/trains/MILW_H1044_Grey.png","Grey", "description.MILW.H1044.Grey"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/MILW_H1044_LightBlue.png","LightBlue", description));
+            new TransportSkin(Info.modID,"textures/trains/MILW_H1044_LightBlue.png","LightBlue", "description.MILW.H1044.LightBlue"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/MILW_H1044_Green.png","Green", description));
+            new TransportSkin(Info.modID,"textures/trains/MILW_H1044_Green.png","Green", "description.MILW.H1044.Green"));
     }
     @Override
     public String getDefaultSkin(){

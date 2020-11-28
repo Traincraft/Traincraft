@@ -125,6 +125,9 @@ public class HitboxDynamic {
                                     ((Entity)obj).getEntityId()==host.getEntityId()){continue;}
 
                             if(obj instanceof GenericRailTransport) {
+                                if(((GenericRailTransport) obj).getEntityId()==host.getEntityId()){
+                                    continue;
+                                }
                                 stock=((GenericRailTransport) obj);
                                 if(host.frontLinkedID!=null && stock.getEntityId()==host.frontLinkedID){
                                     continue;

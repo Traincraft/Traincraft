@@ -2,14 +2,18 @@ package train.entity.rollingStock;
 
 import ebf.tim.TrainsInMotion;
 import ebf.tim.api.SkinRegistry;
-import ebf.tim.api.skin;
+import ebf.tim.api.TransportSkin;
+import ebf.tim.entities.EntityTrainCore;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.ItemTransport;
+import ebf.tim.utility.ItemStackSlot;
 import fexcraft.tmt.slim.ModelBase;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
+import train.render.models.*;
 import train.Traincraft;
 import train.library.Info;
 import train.library.ItemIDs;
@@ -57,21 +61,20 @@ public class EntityFreightLongCoveredHopper extends GenericRailTransport {
     public float[][] modelRotations(){return new float[][]{{0.0f, 180.0f, 180.0f}};}
     @Override
     public void registerSkins(){
-        String description ="";
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/LongCoveredHopper_LightGrey.png","LightGrey", description));
+            new TransportSkin(Info.modID,"textures/trains/LongCoveredHopper_LightGrey.png","LightGrey", "description.LongCoveredHopper.LightGrey"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/LongCoveredHopper_Grey.png","Grey", description));
+            new TransportSkin(Info.modID,"textures/trains/LongCoveredHopper_Grey.png","Grey", "description.LongCoveredHopper.Grey"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/LongCoveredHopper_Pink.png","Pink", description));
+            new TransportSkin(Info.modID,"textures/trains/LongCoveredHopper_Pink.png","Pink", "description.LongCoveredHopper.Pink"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/LongCoveredHopper_White.png","White", description));
+            new TransportSkin(Info.modID,"textures/trains/LongCoveredHopper_White.png","White", "description.LongCoveredHopper.White"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/LongCoveredHopper_Green.png","Green", description));
+            new TransportSkin(Info.modID,"textures/trains/LongCoveredHopper_Green.png","Green", "description.LongCoveredHopper.Green"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/LongCoveredHopper_Orange.png","Orange", description));
+            new TransportSkin(Info.modID,"textures/trains/LongCoveredHopper_Orange.png","Orange", "description.LongCoveredHopper.Orange"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/LongCoveredHopper_Lime.png","Lime", description));
+            new TransportSkin(Info.modID,"textures/trains/LongCoveredHopper_Lime.png","Lime", "description.LongCoveredHopper.Lime"));
     }
     @Override
     public String getDefaultSkin(){

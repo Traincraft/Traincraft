@@ -2,15 +2,18 @@ package train.entity.trains;
 
 import ebf.tim.TrainsInMotion;
 import ebf.tim.api.SkinRegistry;
-import ebf.tim.api.skin;
+import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.EntityTrainCore;
+import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.ItemTransport;
 import ebf.tim.utility.ItemStackSlot;
 import fexcraft.tmt.slim.ModelBase;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
+import train.render.models.*;
 import train.Traincraft;
 import train.library.Info;
 import train.library.ItemIDs;
@@ -44,7 +47,7 @@ public class EntityLocoSteamSnowPlow extends EntityTrainCore {
     public int getInventoryRows(){return 1;}
     @Override
     public List<TrainsInMotion.transportTypes> getTypes(){
-        return TrainsInMotion.transportTypes.STEAM.singleton();
+        return TrainsInMotion.transportTypes.SLUG.singleton();
     }
     @Override
     public float weightKg(){return 10f;}
@@ -58,9 +61,8 @@ public class EntityLocoSteamSnowPlow extends EntityTrainCore {
     public float[][] modelRotations(){return new float[][]{{0.0f, 180.0f, 180.0f}};}
     @Override
     public void registerSkins(){
-        String description ="";
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/train_snowplow.png","train_snowplow", description));
+            new TransportSkin(Info.modID,"textures/trains/train_snowplow.png","train_snowplow", "description.train_snowplow"));
     }
     @Override
     public String getDefaultSkin(){

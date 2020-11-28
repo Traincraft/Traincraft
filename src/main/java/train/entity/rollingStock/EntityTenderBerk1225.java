@@ -2,7 +2,7 @@ package train.entity.rollingStock;
 
 import ebf.tim.TrainsInMotion;
 import ebf.tim.api.SkinRegistry;
-import ebf.tim.api.skin;
+import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.ItemTransport;
 import fexcraft.tmt.slim.ModelBase;
@@ -57,11 +57,10 @@ public class EntityTenderBerk1225 extends GenericRailTransport {
     public float[][] modelRotations(){return new float[][]{{0.0f, 0.0f, 180.0f}};}
     @Override
     public void registerSkins(){
-        String description ="";
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/Berkshire_tender_Black.png","Black", description));
+            new TransportSkin(Info.modID,"textures/trains/Berkshire_tender_Black.png","Black", "description.Berkshire.tender.Black"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/Berkshire_tender_Grey.png","Grey", description));
+            new TransportSkin(Info.modID,"textures/trains/Berkshire_tender_Grey.png","Grey", "description.Berkshire.tender.Grey"));
     }
     @Override
     public String getDefaultSkin(){

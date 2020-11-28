@@ -2,14 +2,14 @@ package train.entity.rollingStock;
 
 import ebf.tim.TrainsInMotion;
 import ebf.tim.api.SkinRegistry;
-import ebf.tim.api.skin;
+import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.ItemTransport;
 import fexcraft.tmt.slim.ModelBase;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import train.Traincraft;
 import train.library.Info;
@@ -56,39 +56,38 @@ public class EntityFreightCartUS extends GenericRailTransport {
     public float[][] modelOffsets(){return new float[][]{{0.0f, -0.47f, 0.0f}};}
     @Override
     public void registerSkins(){
-        String description ="";
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/freightCartUS_Brown.png","Brown", description));
+            new TransportSkin(Info.modID,"textures/trains/freightCartUS_Brown.png","Brown", "description.freightCartUS.Brown"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/freightCartUS_Yellow.png","Yellow", description));
+            new TransportSkin(Info.modID,"textures/trains/freightCartUS_Yellow.png","Yellow", "description.freightCartUS.Yellow"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/freightCartUS_Black.png","Black", description));
+            new TransportSkin(Info.modID,"textures/trains/freightCartUS_Black.png","Black", "description.freightCartUS.Black"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/freightCartUS_Blue.png","Blue", description));
+            new TransportSkin(Info.modID,"textures/trains/freightCartUS_Blue.png","Blue", "description.freightCartUS.Blue"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/freightCartUS_Cyan.png","Cyan", description));
+            new TransportSkin(Info.modID,"textures/trains/freightCartUS_Cyan.png","Cyan", "description.freightCartUS.Cyan"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/freightCartUS_Green.png","Green", description));
+            new TransportSkin(Info.modID,"textures/trains/freightCartUS_Green.png","Green", "description.freightCartUS.Green"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/freightCartUS_Grey.png","Grey", description));
+            new TransportSkin(Info.modID,"textures/trains/freightCartUS_Grey.png","Grey", "description.freightCartUS.Grey"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/freightCartUS_LightBlue.png","LightBlue", description));
+            new TransportSkin(Info.modID,"textures/trains/freightCartUS_LightBlue.png","LightBlue", "description.freightCartUS.LightBlue"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/freightCartUS_LightGrey.png","LightGrey", description));
+            new TransportSkin(Info.modID,"textures/trains/freightCartUS_LightGrey.png","LightGrey", "description.freightCartUS.LightGrey"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/freightCartUS_Lime.png","Lime", description));
+            new TransportSkin(Info.modID,"textures/trains/freightCartUS_Lime.png","Lime", "description.freightCartUS.Lime"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/freightCartUS_Magenta.png","Magenta", description));
+            new TransportSkin(Info.modID,"textures/trains/freightCartUS_Magenta.png","Magenta", "description.freightCartUS.Magenta"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/freightCartUS_Orange.png","Orange", description));
+            new TransportSkin(Info.modID,"textures/trains/freightCartUS_Orange.png","Orange", "description.freightCartUS.Orange"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/freightCartUS_Pink.png","Pink", description));
+            new TransportSkin(Info.modID,"textures/trains/freightCartUS_Pink.png","Pink", "description.freightCartUS.Pink"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/freightCartUS_Purple.png","Purple", description));
+            new TransportSkin(Info.modID,"textures/trains/freightCartUS_Purple.png","Purple", "description.freightCartUS.Purple"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/freightCartUS_Red.png","Red", description));
+            new TransportSkin(Info.modID,"textures/trains/freightCartUS_Red.png","Red", "description.freightCartUS.Red"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/freightCartUS_White.png","White", description));
+            new TransportSkin(Info.modID,"textures/trains/freightCartUS_White.png","White", "description.freightCartUS.White"));
     }
     @Override
     public String getDefaultSkin(){

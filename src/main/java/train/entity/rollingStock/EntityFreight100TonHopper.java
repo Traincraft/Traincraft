@@ -2,13 +2,13 @@ package train.entity.rollingStock;
 
 import ebf.tim.TrainsInMotion;
 import ebf.tim.api.SkinRegistry;
-import ebf.tim.api.skin;
+import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.ItemTransport;
 import fexcraft.tmt.slim.ModelBase;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import train.Traincraft;
 import train.library.Info;
@@ -57,15 +57,14 @@ public class EntityFreight100TonHopper extends GenericRailTransport {
     public float[][] modelRotations(){return new float[][]{{0.0f, 180.0f, 180.0f}};}
     @Override
     public void registerSkins(){
-        String description ="";
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/freight_100tonhopper_Red.png","Red", description));
+            new TransportSkin(Info.modID,"textures/trains/freight_100tonhopper_Red.png","Red", "description.freight.100tonhopper.Red"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/freight_100tonhopper_Black.png","Black", description));
+            new TransportSkin(Info.modID,"textures/trains/freight_100tonhopper_Black.png","Black", "description.freight.100tonhopper.Black"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/freight_100tonhopper_Blue.png","Blue", description));
+            new TransportSkin(Info.modID,"textures/trains/freight_100tonhopper_Blue.png","Blue", "description.freight.100tonhopper.Blue"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/freight_100tonhopper_Grey.png","Grey", description));
+            new TransportSkin(Info.modID,"textures/trains/freight_100tonhopper_Grey.png","Grey", "description.freight.100tonhopper.Grey"));
     }
     @Override
     public String getDefaultSkin(){

@@ -295,107 +295,73 @@ public class XmlBuilder {
         if(!from.contains("<")){return;}
 //        DebugUtil.println(from);
         if(from.startsWith("<eternalXMLV2/>")){
-            parseXMLStringV2(from);
-            return;
-        }
-        String tag= from.substring(from.indexOf("<")+1, from.indexOf("type")-1);
-        String parse=from;
-        while (tag !=null){
-            switch (getType(parse.substring(0,parse.indexOf(">")))) {//parse the beginning tag for the data type
-                case 0:{this.xmlMap.put(tag, new XmlBuilder(tagSubstring(parse, tag)));break;}
-                case 1:{this.stringMap.put(tag, tagSubstring(parse, tag));break;}
-                case 2:{this.intMap.put(tag, Integer.parseInt(tagSubstring(parse, tag)));break;}
-                //case 3:{this.setBoolean(tag, Boolean.parseBoolean(tagSubstring(parse, tag)));break;}
-                case 4:{this.floatMap.put(tag, Float.parseFloat(tagSubstring(parse, tag)));break;}
-                //case 5:{this.setDouble(tag, Double.parseDouble(tagSubstring(parse, tag)));break;}
-                //case 6:{this.setLong(tag, Long.parseLong(tagSubstring(parse, tag)));break;}
-                //case 7:{this.setShort(tag, Short.parseShort(tagSubstring(parse, tag)));break;}
-                //case 8:{this.setByte(tag, Byte.parseByte(tagSubstring(parse, tag)));break;}
-                //case 9:{this.setByteArray(tag, parseByteArray(tagSubstring(parse, tag)));break;}
-                //case 10:{this.setIntArray(tag, parseIntArray(tagSubstring(parse, tag)));break;}
-                case 11:{this.itemMap.put(tag, tagSubstring(parse, tag).split(","));break;}
-            }
-            parse=parse.substring(parse.indexOf("</"+tag)+tag.length()+3);//skip string buffer to end of tag
-            if(parse.contains("<")) {
-                tag = parse.substring(parse.indexOf("<") + 1, parse.indexOf("type")-1);
-            } else {
-                tag=null;
-            }
-        }
-    }
+            String[] lineReader = from.split("\n");
+            int index =1;
+            while(index<lineReader.length) {
+                switch (checkType(lineReader[index])) {
 
+                    case 1:{this.stringMap.put(lineReader[index-1].substring(1, lineReader[index-1].length()-1),
+                            tagSubstring(lineReader, index));index++;break;}
+                    case 2:{this.intMap.put(lineReader[index-1].substring(1, lineReader[index-1].length()-1),
+                            Integer.parseInt(lineReader[index+1]));index++;break;}
 
-    private void parseXMLStringV2(String from){
-        String[] lineReader = from.split("\n");
-        int index =1;
-        while(index<lineReader.length) {
-            switch (checkType(lineReader[index])) {
+                    case 4:{this.floatMap.put(lineReader[index-1].substring(1, lineReader[index-1].length()-1),
+                            Float.parseFloat(lineReader[index+1]));index++;break;}
+                    case 5:{this.doubleMap.put(lineReader[index-1].substring(1, lineReader[index-1].length()-1),
+                            Double.parseDouble(lineReader[index+1]));index++;break;}
 
-                case 1:{this.stringMap.put(lineReader[index-1].substring(1, lineReader[index-1].length()-1),
-                        tagSubstring(lineReader, index));index++;break;}
-                case 2:{this.intMap.put(lineReader[index-1].substring(1, lineReader[index-1].length()-1),
-                        Integer.parseInt(lineReader[index+1]));index++;break;}
+                    case 11:{this.itemMap.put(lineReader[index-1].substring(1, lineReader[index-1].length()-1),
+                            lineReader[index+1].split(","));index++;break;}
 
-                case 4:{this.floatMap.put(lineReader[index-1].substring(1, lineReader[index-1].length()-1),
-                        Float.parseFloat(lineReader[index+1]));index++;break;}
-                case 5:{this.doubleMap.put(lineReader[index-1].substring(1, lineReader[index-1].length()-1),
-                        Double.parseDouble(lineReader[index+1]));index++;break;}
-
-                case 11:{this.itemMap.put(lineReader[index-1].substring(1, lineReader[index-1].length()-1),
-                        lineReader[index+1].split(","));index++;break;}
-
-                case 12: {
-                    String[] s = lineReader[index + 1].split(",");
-                    if (s[0].equals("null")) {
-                        intArrayMap.put(lineReader[index - 1].substring(1, lineReader[index - 1].length() - 1), null);
-                        index++;
-                        break;
-                    } else {
-                        int[] i = new int[s.length];
-                        for (int entry = 0; entry < s.length; entry++) {
-                            i[entry] = Integer.parseInt(s[entry]);
+                    case 12: {
+                        String[] s = lineReader[index + 1].split(",");
+                        if (s[0].equals("null")) {
+                            intArrayMap.put(lineReader[index - 1].substring(1, lineReader[index - 1].length() - 1), null);
+                            index++;
+                            break;
+                        } else {
+                            int[] i = new int[s.length];
+                            for (int entry = 0; entry < s.length; entry++) {
+                                i[entry] = Integer.parseInt(s[entry]);
+                            }
+                            this.intArrayMap.put(lineReader[index - 1].substring(1, lineReader[index - 1].length() - 1), i);
+                            index++;
+                            break;
                         }
-                        this.intArrayMap.put(lineReader[index - 1].substring(1, lineReader[index - 1].length() - 1), i);
-                        index++;
-                        break;
                     }
-                }
 
-                case 13: {
-                    String[] s = lineReader[index + 1].split(",");
-                    if (s[0].equals("null")) {
-                        floatArrayMap.put(lineReader[index - 1].substring(1, lineReader[index - 1].length() - 1), null);
-                        index++;
-                        break;
-                    } else {
-                        float[] i = new float[s.length];
-                        for (int entry = 0; entry < s.length; entry++) {
-                            i[entry] = Float.parseFloat(s[entry]);
+                    case 13: {
+                        String[] s = lineReader[index + 1].split(",");
+                        if (s[0].equals("null")) {
+                            floatArrayMap.put(lineReader[index - 1].substring(1, lineReader[index - 1].length() - 1), null);
+                            index++;
+                            break;
+                        } else {
+                            float[] i = new float[s.length];
+                            for (int entry = 0; entry < s.length; entry++) {
+                                i[entry] = Float.parseFloat(s[entry]);
+                            }
+                            this.floatArrayMap.put(lineReader[index - 1].substring(1, lineReader[index - 1].length() - 1), i);
+                            index++;
+                            break;
                         }
-                        this.floatArrayMap.put(lineReader[index - 1].substring(1, lineReader[index - 1].length() - 1), i);
-                        index++;
-                        break;
                     }
+
+                    case 14:{
+                        this.fluidMap.put(lineReader[index-1].substring(1, lineReader[index-1].length()-1),
+                                lineReader[index+1].split(","));index++;break;
+                    }
+
+                    case 0:{this.xmlMap.put(lineReader[index-1].substring(1, lineReader[index-1].length()-1),
+                            new XmlBuilder(tagSubstring(lineReader, index)));index++;break;}
+                    case -1:{index++;}//if it wasn't a tag declaration, skip to the next line
+
                 }
-
-                case 14:{
-                    this.fluidMap.put(lineReader[index-1].substring(1, lineReader[index-1].length()-1),
-                            lineReader[index+1].split(","));index++;break;
-                }
-
-                case 0:{this.xmlMap.put(lineReader[index-1].substring(1, lineReader[index-1].length()-1),
-                        new XmlBuilder(tagSubstring(lineReader, index)));index++;break;}
-                case -1:{index++;}//if it wasn't a tag declaration, skip to the next line
-
             }
         }
     }
 
 
-    //shorthand to simplify the other code
-    private static String tagSubstring(String parse, String tag){
-        return parse.substring(parse.indexOf(">")+1, parse.indexOf("</"+tag));
-    }
 
     private static String tagSubstring(String[] parse, int index){
         StringBuilder b = new StringBuilder();
@@ -409,16 +375,6 @@ public class XmlBuilder {
         return b.toString();
     }
 
-    @Deprecated
-    private int getType(String s){
-        return CommonUtil.stringContains(s, "xml") ? 0 :
-                CommonUtil.stringContains(s, "string") ? 1 :
-                        CommonUtil.stringContains(s, "int") ? 2 :
-                                CommonUtil.stringContains(s, "bool") ? 3 :
-                                        CommonUtil.stringContains(s, "float") ? 4 :
-                                                CommonUtil.stringContains(s, "item") ? 11 :
-                                                        -1;
-    }
 
     private int checkType(String s){
         return stringContains(s, "<type=xml>") ? 0 :

@@ -2,14 +2,18 @@ package train.entity.rollingStock;
 
 import ebf.tim.TrainsInMotion;
 import ebf.tim.api.SkinRegistry;
-import ebf.tim.api.skin;
+import ebf.tim.api.TransportSkin;
+import ebf.tim.entities.EntityTrainCore;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.ItemTransport;
+import ebf.tim.utility.ItemStackSlot;
 import fexcraft.tmt.slim.ModelBase;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
+import train.render.models.*;
 import train.Traincraft;
 import train.library.Info;
 import train.library.ItemIDs;
@@ -57,19 +61,18 @@ public class EntityPassengerRheingoldDining2 extends GenericRailTransport {
     public float[][] modelRotations(){return new float[][]{{0.0f, 180.0f, 180.0f}};}
     @Override
     public void registerSkins(){
-        String description ="";
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/Rheingold_passenger_dining2_Blue.png","Blue", description));
+            new TransportSkin(Info.modID,"textures/trains/Rheingold_passenger_dining2_Blue.png","Blue", "description.Rheingold.passenger.dining2.Blue"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/Rheingold_passenger_dining2_Red.png","Red", description));
+            new TransportSkin(Info.modID,"textures/trains/Rheingold_passenger_dining2_Red.png","Red", "description.Rheingold.passenger.dining2.Red"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/Rheingold_passenger_dining2_Green.png","Green", description));
+            new TransportSkin(Info.modID,"textures/trains/Rheingold_passenger_dining2_Green.png","Green", "description.Rheingold.passenger.dining2.Green"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/Rheingold_passenger_dining2_LightBlue.png","LightBlue", description));
+            new TransportSkin(Info.modID,"textures/trains/Rheingold_passenger_dining2_LightBlue.png","LightBlue", "description.Rheingold.passenger.dining2.LightBlue"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/Rheingold_passenger_dining2_Magenta.png","Magenta", description));
+            new TransportSkin(Info.modID,"textures/trains/Rheingold_passenger_dining2_Magenta.png","Magenta", "description.Rheingold.passenger.dining2.Magenta"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/Rheingold_passenger_dining2_Lime.png","Lime", description));
+            new TransportSkin(Info.modID,"textures/trains/Rheingold_passenger_dining2_Lime.png","Lime", "description.Rheingold.passenger.dining2.Lime"));
     }
     @Override
     public String getDefaultSkin(){

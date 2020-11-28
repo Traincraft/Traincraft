@@ -2,7 +2,7 @@ package train.entity.rollingStock;
 
 import ebf.tim.TrainsInMotion;
 import ebf.tim.api.SkinRegistry;
-import ebf.tim.api.skin;
+import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.ItemTransport;
 import fexcraft.tmt.slim.ModelBase;
@@ -56,39 +56,38 @@ public class EntityPassengerBamboo extends GenericRailTransport {
     public float[][] modelRotations(){return new float[][]{{0.0f, 180.0f, 180.0f}};}
     @Override
     public void registerSkins(){
-        String description ="";
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/passenger_bamboo_Red.png","Red", description));
+            new TransportSkin(Info.modID,"textures/trains/passenger_bamboo_Red.png","Red", "description.passenger.bamboo.Red"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/passenger_bamboo_Blue.png","Blue", description));
+            new TransportSkin(Info.modID,"textures/trains/passenger_bamboo_Blue.png","Blue", "description.passenger.bamboo.Blue"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/passenger_bamboo_Black.png","Black", description));
+            new TransportSkin(Info.modID,"textures/trains/passenger_bamboo_Black.png","Black", "description.passenger.bamboo.Black"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/passenger_bamboo_Yellow.png","Yellow", description));
+            new TransportSkin(Info.modID,"textures/trains/passenger_bamboo_Yellow.png","Yellow", "description.passenger.bamboo.Yellow"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/passenger_bamboo_Magenta.png","Magenta", description));
+            new TransportSkin(Info.modID,"textures/trains/passenger_bamboo_Magenta.png","Magenta", "description.passenger.bamboo.Magenta"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/passenger_bamboo_Cyan.png","Cyan", description));
+            new TransportSkin(Info.modID,"textures/trains/passenger_bamboo_Cyan.png","Cyan", "description.passenger.bamboo.Cyan"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/passenger_bamboo_Pink.png","Pink", description));
+            new TransportSkin(Info.modID,"textures/trains/passenger_bamboo_Pink.png","Pink", "description.passenger.bamboo.Pink"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/passenger_bamboo_LightGrey.png","LightGrey", description));
+            new TransportSkin(Info.modID,"textures/trains/passenger_bamboo_LightGrey.png","LightGrey", "description.passenger.bamboo.LightGrey"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/passenger_bamboo_Green.png","Green", description));
+            new TransportSkin(Info.modID,"textures/trains/passenger_bamboo_Green.png","Green", "description.passenger.bamboo.Green"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/passenger_bamboo_White.png","White", description));
+            new TransportSkin(Info.modID,"textures/trains/passenger_bamboo_White.png","White", "description.passenger.bamboo.White"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/passenger_bamboo_LightBlue.png","LightBlue", description));
+            new TransportSkin(Info.modID,"textures/trains/passenger_bamboo_LightBlue.png","LightBlue", "description.passenger.bamboo.LightBlue"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/passenger_bamboo_Lime.png","Lime", description));
+            new TransportSkin(Info.modID,"textures/trains/passenger_bamboo_Lime.png","Lime", "description.passenger.bamboo.Lime"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/passenger_bamboo_Brown.png","Brown", description));
+            new TransportSkin(Info.modID,"textures/trains/passenger_bamboo_Brown.png","Brown", "description.passenger.bamboo.Brown"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/passenger_bamboo_Purple.png","Purple", description));
+            new TransportSkin(Info.modID,"textures/trains/passenger_bamboo_Purple.png","Purple", "description.passenger.bamboo.Purple"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/passenger_bamboo_Orange.png","Orange", description));
+            new TransportSkin(Info.modID,"textures/trains/passenger_bamboo_Orange.png","Orange", "description.passenger.bamboo.Orange"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/passenger_bamboo_Grey.png","Grey", description));
+            new TransportSkin(Info.modID,"textures/trains/passenger_bamboo_Grey.png","Grey", "description.passenger.bamboo.Grey"));
     }
     @Override
     public String getDefaultSkin(){

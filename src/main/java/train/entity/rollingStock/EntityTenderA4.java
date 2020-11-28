@@ -2,7 +2,7 @@ package train.entity.rollingStock;
 
 import ebf.tim.TrainsInMotion;
 import ebf.tim.api.SkinRegistry;
-import ebf.tim.api.skin;
+import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.ItemTransport;
 import fexcraft.tmt.slim.ModelBase;
@@ -57,17 +57,16 @@ public class EntityTenderA4 extends GenericRailTransport {
     public float[][] modelRotations(){return new float[][]{{0.0f, 180.0f, 180.0f}};}
     @Override
     public void registerSkins(){
-        String description ="";
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/tenderA4_UK_Blue.png","Blue", description));
+            new TransportSkin(Info.modID,"textures/trains/tenderA4_UK_Blue.png","Blue", "description.tenderA4.UK.Blue"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/tenderA4_UK_Lime.png","Lime", description));
+            new TransportSkin(Info.modID,"textures/trains/tenderA4_UK_Lime.png","Lime", "description.tenderA4.UK.Lime"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/tenderA4_UK_Black.png","Black", description));
+            new TransportSkin(Info.modID,"textures/trains/tenderA4_UK_Black.png","Black", "description.tenderA4.UK.Black"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/tenderA4_UK_Green.png","Green", description));
+            new TransportSkin(Info.modID,"textures/trains/tenderA4_UK_Green.png","Green", "description.tenderA4.UK.Green"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/tenderA4_UK_White.png","White", description));
+            new TransportSkin(Info.modID,"textures/trains/tenderA4_UK_White.png","White", "description.tenderA4.UK.White"));
     }
     @Override
     public String getDefaultSkin(){

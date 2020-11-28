@@ -640,3 +640,9 @@ key.traincraft.showMTCScreen=Show MTC Screen
 key.traincraft.mtcOverride=Toggle MTC
 key.traincraft.overspeedOverride=Overspeed Override
 key.traincraft.toggleATO=Toggle ATO
+
+description.BoxCartPRR=Made in the middle of the great depression by Pennsylvania RailRoad shops in Altoona.<br>These boxcars saw use in everything from general goods to construction materials.<br>However their biggest use was in shipping parts for military jeeps.
+description.4-4-0-loco=One of the oldest trains in Traincraft that can be dated all the way back to the alpha, a simple 4-4-0
+description.locoA4.UK.Blue=The London and North Eastern Railway(LNER) Class A4, better known as the Mallard<br>was built in England and holds the world speed record for steam locomotives.
+description.locoA4.UK.White=This skin is designed after the Silver Jubilee.<br>At the time steam-hauled rail services in the UK were officially limited to a 90 mph<br>However trains such as this and The Coronation often broke this rule to stay on schedule.
+description.locoA4.UK.Green=This skin is designed after the 4488 Union of South Africa.<br>Better known as one of the variants of the Flying Scotsman.<br>A common misconception is that the A4 is *the* Flying Scotsman.<br>However the name is shared by several trains around the world.

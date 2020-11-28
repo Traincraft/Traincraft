@@ -2,7 +2,7 @@ package train.entity.rollingStock;
 
 import ebf.tim.TrainsInMotion;
 import ebf.tim.api.SkinRegistry;
-import ebf.tim.api.skin;
+import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.ItemTransport;
 import fexcraft.tmt.slim.ModelBase;
@@ -57,9 +57,8 @@ public class EntityPassengerAdler extends GenericRailTransport {
     public float[][] modelRotations(){return new float[][]{{180.0f, -90.0f, 0.0f}};}
     @Override
     public void registerSkins(){
-        String description ="";
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/passengerAdler.png","passengerAdler", description));
+            new TransportSkin(Info.modID,"textures/trains/passengerAdler.png","passengerAdler", "description.passengerAdler"));
     }
     @Override
     public String getDefaultSkin(){

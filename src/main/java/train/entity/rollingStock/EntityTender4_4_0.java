@@ -2,7 +2,7 @@ package train.entity.rollingStock;
 
 import ebf.tim.TrainsInMotion;
 import ebf.tim.api.SkinRegistry;
-import ebf.tim.api.skin;
+import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.ItemTransport;
 import fexcraft.tmt.slim.ModelBase;
@@ -57,21 +57,20 @@ public class EntityTender4_4_0 extends GenericRailTransport {
     public float[][] modelRotations(){return new float[][]{{0.0f, 90.0f, 0.0f}};}
     @Override
     public void registerSkins(){
-        String description ="";
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/4-4-0-loco_tender_Black.png","Black", description));
+            new TransportSkin(Info.modID,"textures/trains/4-4-0-loco_tender_Black.png","Black", "description.4-4-0-loco.tender.Black"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/4-4-0-loco_tender_White.png","White", description));
+            new TransportSkin(Info.modID,"textures/trains/4-4-0-loco_tender_White.png","White", "description.4-4-0-loco.tender.White"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/4-4-0-loco_tender_Brown.png","Brown", description));
+            new TransportSkin(Info.modID,"textures/trains/4-4-0-loco_tender_Brown.png","Brown", "description.4-4-0-loco.tender.Brown"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/4-4-0-loco_tender_Blue.png","Blue", description));
+            new TransportSkin(Info.modID,"textures/trains/4-4-0-loco_tender_Blue.png","Blue", "description.4-4-0-loco.tender.Blue"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/4-4-0-loco_tender_Green.png","Green", description));
+            new TransportSkin(Info.modID,"textures/trains/4-4-0-loco_tender_Green.png","Green", "description.4-4-0-loco.tender.Green"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/4-4-0-loco_tender_Red.png","Red", description));
+            new TransportSkin(Info.modID,"textures/trains/4-4-0-loco_tender_Red.png","Red", "description.4-4-0-loco.tender.Red"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/4-4-0-loco_tender_Purple.png","Purple", description));
+            new TransportSkin(Info.modID,"textures/trains/4-4-0-loco_tender_Purple.png","Purple", "description.4-4-0-loco.tender.Purple"));
     }
     @Override
     public String getDefaultSkin(){

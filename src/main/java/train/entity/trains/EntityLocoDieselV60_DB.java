@@ -2,15 +2,18 @@ package train.entity.trains;
 
 import ebf.tim.TrainsInMotion;
 import ebf.tim.api.SkinRegistry;
-import ebf.tim.api.skin;
+import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.EntityTrainCore;
+import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.ItemTransport;
 import ebf.tim.utility.ItemStackSlot;
 import fexcraft.tmt.slim.ModelBase;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
+import train.render.models.*;
 import train.Traincraft;
 import train.library.Info;
 import train.library.ItemIDs;
@@ -56,15 +59,14 @@ public class EntityLocoDieselV60_DB extends EntityTrainCore {
     public float[][] modelOffsets(){return new float[][]{{-0.75f, -0.44f, 0.0f}};}
     @Override
     public void registerSkins(){
-        String description ="";
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/locoV60_DB_Red.png","Red", description));
+            new TransportSkin(Info.modID,"textures/trains/locoV60_DB_Red.png","Red", "description.locoV60.DB.Red"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/locoV60_DB_Green.png","Green", description));
+            new TransportSkin(Info.modID,"textures/trains/locoV60_DB_Green.png","Green", "description.locoV60.DB.Green"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/locoV60_DB_Yellow.png","Yellow", description));
+            new TransportSkin(Info.modID,"textures/trains/locoV60_DB_Yellow.png","Yellow", "description.locoV60.DB.Yellow"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/locoV60_DB_Cyan.png","Cyan", description));
+            new TransportSkin(Info.modID,"textures/trains/locoV60_DB_Cyan.png","Cyan", "description.locoV60.DB.Cyan"));
     }
     @Override
     public String getDefaultSkin(){

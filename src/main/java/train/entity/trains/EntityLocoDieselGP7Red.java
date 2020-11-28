@@ -2,15 +2,18 @@ package train.entity.trains;
 
 import ebf.tim.TrainsInMotion;
 import ebf.tim.api.SkinRegistry;
-import ebf.tim.api.skin;
+import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.EntityTrainCore;
+import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.ItemTransport;
 import ebf.tim.utility.ItemStackSlot;
 import fexcraft.tmt.slim.ModelBase;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
+import train.render.models.*;
 import train.Traincraft;
 import train.library.Info;
 import train.library.ItemIDs;
@@ -58,39 +61,38 @@ public class EntityLocoDieselGP7Red extends EntityTrainCore {
     public float[][] modelRotations(){return new float[][]{{0.0f, 180.0f, 0.0f}};}
     @Override
     public void registerSkins(){
-        String description ="";
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/gp7_Red.png","Red", description));
+            new TransportSkin(Info.modID,"textures/trains/gp7_Red.png","Red", "description.gp7.Red"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/gp7_Blue.png","Blue", description));
+            new TransportSkin(Info.modID,"textures/trains/gp7_Blue.png","Blue", "description.gp7.Blue"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/gp7_Black.png","Black", description));
+            new TransportSkin(Info.modID,"textures/trains/gp7_Black.png","Black", "description.gp7.Black"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/gp7_Yellow.png","Yellow", description));
+            new TransportSkin(Info.modID,"textures/trains/gp7_Yellow.png","Yellow", "description.gp7.Yellow"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/gp7_Magenta.png","Magenta", description));
+            new TransportSkin(Info.modID,"textures/trains/gp7_Magenta.png","Magenta", "description.gp7.Magenta"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/gp7_Cyan.png","Cyan", description));
+            new TransportSkin(Info.modID,"textures/trains/gp7_Cyan.png","Cyan", "description.gp7.Cyan"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/gp7_Pink.png","Pink", description));
+            new TransportSkin(Info.modID,"textures/trains/gp7_Pink.png","Pink", "description.gp7.Pink"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/gp7_LightGrey.png","LightGrey", description));
+            new TransportSkin(Info.modID,"textures/trains/gp7_LightGrey.png","LightGrey", "description.gp7.LightGrey"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/gp7_Green.png","Green", description));
+            new TransportSkin(Info.modID,"textures/trains/gp7_Green.png","Green", "description.gp7.Green"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/gp7_White.png","White", description));
+            new TransportSkin(Info.modID,"textures/trains/gp7_White.png","White", "description.gp7.White"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/gp7_LightBlue.png","LightBlue", description));
+            new TransportSkin(Info.modID,"textures/trains/gp7_LightBlue.png","LightBlue", "description.gp7.LightBlue"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/gp7_Lime.png","Lime", description));
+            new TransportSkin(Info.modID,"textures/trains/gp7_Lime.png","Lime", "description.gp7.Lime"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/gp7_Brown.png","Brown", description));
+            new TransportSkin(Info.modID,"textures/trains/gp7_Brown.png","Brown", "description.gp7.Brown"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/gp7_Purple.png","Purple", description));
+            new TransportSkin(Info.modID,"textures/trains/gp7_Purple.png","Purple", "description.gp7.Purple"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/gp7_Orange.png","Orange", description));
+            new TransportSkin(Info.modID,"textures/trains/gp7_Orange.png","Orange", "description.gp7.Orange"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/gp7_Grey.png","Grey", description));
+            new TransportSkin(Info.modID,"textures/trains/gp7_Grey.png","Grey", "description.gp7.Grey"));
     }
     @Override
     public String getDefaultSkin(){

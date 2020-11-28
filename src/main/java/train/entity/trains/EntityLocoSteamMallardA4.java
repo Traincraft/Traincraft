@@ -2,6 +2,7 @@ package train.entity.trains;
 
 import ebf.tim.TrainsInMotion;
 import ebf.tim.api.SkinRegistry;
+import ebf.tim.api.TransportSkin;
 import ebf.tim.api.skin;
 import ebf.tim.entities.EntityTrainCore;
 import ebf.tim.items.ItemTransport;
@@ -66,26 +67,17 @@ public class EntityLocoSteamMallardA4 extends EntityTrainCore {
     public void registerSkins(){
         //todo: add skin texture credits.
         //make base skin and register
-        String description ="The London and North Eastern Railway(LNER) Class A4, better known as the Mallard\n" +
-                "was built in England and holds the world speed record for steam locomotives.";
         SkinRegistry.addSkin(this.getClass(),
-                new skin(Info.modID,"textures/trains/locoA4_UK_Blue.png","Blue", description));
+                new TransportSkin(Info.modID,"textures/trains/locoA4_UK_Blue.png","Blue", "description.locoA4.UK.Blue"));
 
         SkinRegistry.addSkin(this.getClass(),
-                new skin(Info.modID,"textures/trains/locoA4_UK_White.png","White",
-                        "This skin is designed after the Silver Jubilee.\n" +
-                                "at the time steam-hauled rail services in the UK were officially limited to a 90 mph\n" +
-                                "However trains such as this and The Coronation often broke this rule to stay on schedule."));
+                new TransportSkin(Info.modID,"textures/trains/locoA4_UK_White.png","White", "description.locoA4.UK.White"));
         SkinRegistry.addSkin(this.getClass(),
-                new skin(Info.modID,"textures/trains/locoA4_UK_Green.png","Green",
-                        "This skin is designed after the 4488 Union of South Africa.\n" +
-                                "Better known as one of the variants of the Flying Scotsman. \n" +
-                                "A common misconception is that the A4 is *the* Flying Scotsman.\n" +
-                                "However the name is shared by several trains around the world."));
+                new TransportSkin(Info.modID,"textures/trains/locoA4_UK_Green.png","Green", "description.locoA4.UK.Green"));
         SkinRegistry.addSkin(this.getClass(),
-                new skin(Info.modID,"textures/trains/locoA4_UK_Lime.png","Lime", description));
+                new TransportSkin(Info.modID,"textures/trains/locoA4_UK_Lime.png","Lime", "description.locoA4.UK.Lime"));
         SkinRegistry.addSkin(this.getClass(),
-                new skin(Info.modID,"textures/trains/locoA4_UK_Black.png","Black", description));
+                new TransportSkin(Info.modID,"textures/trains/locoA4_UK_Black.png","Black", "description.locoA4.UK.black"));
     }
 
     @Override

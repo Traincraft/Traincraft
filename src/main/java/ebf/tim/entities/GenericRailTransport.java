@@ -35,6 +35,7 @@ import net.minecraft.entity.boss.EntityDragonPart;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
@@ -1076,13 +1077,13 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
                 //this still seems obscene to me, but the result numbers check out pretty well
                 double drag = Math.pow(
                         //scale by weight, heavier means more drag
-                        getBoolean(boolValues.BRAKE)?Math.pow(weightKg()*4d, -0.07457):
-                                Math.pow(weightKg(), -0.07457),
+                        getBoolean(boolValues.BRAKE)?Math.pow(weightKg()*4d, -0.05):
+                                Math.pow(weightKg(), -0.05),
 
                         //then scale by speed, faster speeds mean more drag.
                         //use speed from the front bogie, when you take out direction, both bogies should move at the same speed
                         //multiply by 100 to give a more accurate scale, as 1 block per tick is a value of 1.
-                        Math.pow((Math.abs(frontBogie.motionX)+ Math.abs(frontBogie.motionZ))*10, -0.07457));
+                        Math.pow((Math.abs(motionX)+Math.abs(motionZ))*10, -0.025));
                 //give it a little buff to feel more arcade-like, the closer to 1, the less drag.
                 drag+=0.25;
 
@@ -1210,18 +1211,33 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
                         this.frontBogie.addVelocity(-d0, 0, -d1);
                     }
                 } else if (e instanceof EntityLiving || e instanceof EntityPlayer || e instanceof EntityMinecart) {
-                    double d0 = e.posX - this.posX;
-                    double d1 = e.posZ - this.posZ;
-                    double d2 = MathHelper.abs_max(d0, d1) * 7.5d;
 
-                    //push entity away
-                    if (d2 >= 0.0009D) {
-                        d0 /= d2;
-                        d1 /= d2;
-                        if (e instanceof EntityPlayer && !getBoolean(boolValues.BRAKE) && getAccelerator()==0) {
-                            this.frontBogie.addVelocity(-d0, 0, -d1);
-                            this.backBogie.addVelocity(-d0, 0, -d1);
+                    double[] motion = CommonUtil.rotatePoint(0.2,0,
+                            CommonUtil.atan2degreesf(posZ - e.posZ, posX - e.posX));
+
+                    if (e instanceof EntityPlayer && !getBoolean(boolValues.BRAKE) && getAccelerator()==0) {
+                        double distance = Math.copySign(0.2,motion[0]);
+                        if(distance>0){
+                            if(frontBogie.motionX+distance>distance){
+                                motion[0]=Math.max(0,distance-frontBogie.motionX);
+                            }
+                        } else {
+                            if(frontBogie.motionX+distance<distance){
+                                motion[0]=Math.min(0,distance-frontBogie.motionX);
+                            }
                         }
+                        distance = Math.copySign(0.2,motion[2]);
+                        if(distance>0){
+                            if(frontBogie.motionZ+distance>distance){
+                                motion[2]=Math.max(0,distance-frontBogie.motionZ);
+                            }
+                        } else {
+                            if(frontBogie.motionZ+distance<distance){
+                                motion[2]=Math.min(0,distance-frontBogie.motionZ);
+                            }
+                        }
+                        this.frontBogie.addVelocity(motion[0], 0, motion[2]);
+                        this.backBogie.addVelocity(motion[0], 0, motion[2]);
                     }
                     //hurt entity if going fast
                     if (Math.abs(motionX) + Math.abs(motionZ) > 0.25f) {
@@ -1238,7 +1254,7 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
 
                     double d0 = e.posX - this.posX;
                     double d1 = e.posZ - this.posZ;
-                    double d2 = MathHelper.abs_max(d0, d1)*40;
+                    double d2 = MathHelper.abs_max(d0, d1)*30;
                     if (d2 >= 0.0009D) {
                         d0 /= d2;
                         d1 /= d2;

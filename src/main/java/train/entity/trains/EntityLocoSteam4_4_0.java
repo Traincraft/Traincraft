@@ -2,6 +2,7 @@ package train.entity.trains;
 
 import ebf.tim.TrainsInMotion;
 import ebf.tim.api.SkinRegistry;
+import ebf.tim.api.TransportSkin;
 import ebf.tim.api.skin;
 import ebf.tim.entities.EntityTrainCore;
 import ebf.tim.entities.GenericRailTransport;
@@ -61,21 +62,21 @@ public class EntityLocoSteam4_4_0 extends EntityTrainCore {
     public void registerSkins(){
         //todo: needs skin credits
         //make base skin and register
-        String description = "One of the oldest trains in Traincraft, a simple 4-4-0";
+        String description = "description.4-4-0-loco";
         SkinRegistry.addSkin(this.getClass(),
-                new skin(Info.modID,"textures/trains/4-4-0-loco_Blue.png","Blue", description));
+                new TransportSkin(Info.modID,"textures/trains/4-4-0-loco_Blue.png","Blue", description));
 
         SkinRegistry.addSkin(this.getClass(),
-                new skin(Info.modID,"textures/trains/4-4-0-loco_Red.png","Red", description));
+                new TransportSkin(Info.modID,"textures/trains/4-4-0-loco_Red.png","Red", description));
         SkinRegistry.addSkin(this.getClass(),
-                new skin(Info.modID,"textures/trains/4-4-0-loco_Purple.png","Purple", description));
+                new TransportSkin(Info.modID,"textures/trains/4-4-0-loco_Purple.png","Purple", description));
         SkinRegistry.addSkin(this.getClass(),
-                new skin(Info.modID,"textures/trains/4-4-0-loco_Green.png","Green", description));
+                new TransportSkin(Info.modID,"textures/trains/4-4-0-loco_Green.png","Green", description));
         SkinRegistry.addSkin(this.getClass(),
-                new skin(Info.modID,"textures/trains/4-4-0-loco_Brown.png","Brown", description));
+                new TransportSkin(Info.modID,"textures/trains/4-4-0-loco_Brown.png","Brown", description));
         SkinRegistry.addSkin(this.getClass(),
-                new skin(Info.modID,"textures/trains/4-4-0-loco_Black.png","Black", description));
-        //note: is more detail is needed on the skin setup, you can make a new skin as a variable, and add additional data.
+                new TransportSkin(Info.modID,"textures/trains/4-4-0-loco_Black.png","Black", description));
+        //note: is more detail is needed on the skin setup, you can make a new TransportSkin as a variable, and add additional data.
         //TC's models, even newer ones are fairly simple though, so this is an unlikely scenario.
 
     }

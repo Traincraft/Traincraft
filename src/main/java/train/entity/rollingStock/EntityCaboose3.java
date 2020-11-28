@@ -2,14 +2,14 @@ package train.entity.rollingStock;
 
 import ebf.tim.TrainsInMotion;
 import ebf.tim.api.SkinRegistry;
-import ebf.tim.api.skin;
+import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.ItemTransport;
 import fexcraft.tmt.slim.ModelBase;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import train.Traincraft;
 import train.library.Info;
@@ -58,9 +58,8 @@ public class EntityCaboose3 extends GenericRailTransport {
     public float[][] modelRotations(){return new float[][]{{0.0f, 90.0f, 0.0f}};}
     @Override
     public void registerSkins(){
-        String description ="";
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/caboose3.png","caboose3", description));
+            new TransportSkin(Info.modID,"textures/trains/caboose3.png","caboose3", "description.caboose3"));
     }
     @Override
     public String getDefaultSkin(){

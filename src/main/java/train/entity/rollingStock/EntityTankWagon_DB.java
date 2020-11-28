@@ -2,7 +2,7 @@ package train.entity.rollingStock;
 
 import ebf.tim.TrainsInMotion;
 import ebf.tim.api.SkinRegistry;
-import ebf.tim.api.skin;
+import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.ItemTransport;
 import fexcraft.tmt.slim.ModelBase;
@@ -55,11 +55,10 @@ public class EntityTankWagon_DB extends GenericRailTransport {
     public float[][] modelOffsets(){return new float[][]{{0.0f, -0.44f, 0.0f}};}
     @Override
     public void registerSkins(){
-        String description ="";
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/tankWagon_DB_Blue.png","Blue", description));
+            new TransportSkin(Info.modID,"textures/trains/tankWagon_DB_Blue.png","Blue", "description.tankWagon.DB.Blue"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/tankWagon_DB_Green.png","Green", description));
+            new TransportSkin(Info.modID,"textures/trains/tankWagon_DB_Green.png","Green", "description.tankWagon.DB.Green"));
     }
     @Override
     public String getDefaultSkin(){

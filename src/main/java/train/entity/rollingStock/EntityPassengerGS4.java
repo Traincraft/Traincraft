@@ -2,7 +2,7 @@ package train.entity.rollingStock;
 
 import ebf.tim.TrainsInMotion;
 import ebf.tim.api.SkinRegistry;
-import ebf.tim.api.skin;
+import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.ItemTransport;
 import fexcraft.tmt.slim.ModelBase;
@@ -56,33 +56,32 @@ public class EntityPassengerGS4 extends GenericRailTransport {
     public float[][] modelRotations(){return new float[][]{{0.0f, 180.0f, 180.0f}};}
     @Override
     public void registerSkins(){
-        String description ="";
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/GS4_Passenger_Orange.png","Orange", description));
+            new TransportSkin(Info.modID,"textures/trains/GS4_Passenger_Orange.png","Orange", "description.GS4.Passenger.Orange"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/GS4_Passenger_White.png","White", description));
+            new TransportSkin(Info.modID,"textures/trains/GS4_Passenger_White.png","White", "description.GS4.Passenger.White"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/GS4_Passenger_Yellow.png","Yellow", description));
+            new TransportSkin(Info.modID,"textures/trains/GS4_Passenger_Yellow.png","Yellow", "description.GS4.Passenger.Yellow"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/GS4_Passenger_Brown.png","Brown", description));
+            new TransportSkin(Info.modID,"textures/trains/GS4_Passenger_Brown.png","Brown", "description.GS4.Passenger.Brown"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/GS4_Passenger_Green.png","Green", description));
+            new TransportSkin(Info.modID,"textures/trains/GS4_Passenger_Green.png","Green", "description.GS4.Passenger.Green"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/GS4_Passenger_Lime.png","Lime", description));
+            new TransportSkin(Info.modID,"textures/trains/GS4_Passenger_Lime.png","Lime", "description.GS4.Passenger.Lime"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/GS4_Passenger_Red.png","Red", description));
+            new TransportSkin(Info.modID,"textures/trains/GS4_Passenger_Red.png","Red", "description.GS4.Passenger.Red"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/GS4_Passenger_Grey.png","Grey", description));
+            new TransportSkin(Info.modID,"textures/trains/GS4_Passenger_Grey.png","Grey", "description.GS4.Passenger.Grey"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/GS4_Passenger_Green.png","Green", description));
+            new TransportSkin(Info.modID,"textures/trains/GS4_Passenger_Green.png","Green", "description.GS4.Passenger.Green"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/GS4_Passenger_LightGrey.png","LightGrey", description));
+            new TransportSkin(Info.modID,"textures/trains/GS4_Passenger_LightGrey.png","LightGrey", "description.GS4.Passenger.LightGrey"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/GS4_Passenger_Blue.png","Blue", description));
+            new TransportSkin(Info.modID,"textures/trains/GS4_Passenger_Blue.png","Blue", "description.GS4.Passenger.Blue"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/GS4_Passenger_Black.png","Black", description));
+            new TransportSkin(Info.modID,"textures/trains/GS4_Passenger_Black.png","Black", "description.GS4.Passenger.Black"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/GS4_Passenger_LightBlue.png","LightBlue", description));
+            new TransportSkin(Info.modID,"textures/trains/GS4_Passenger_LightBlue.png","LightBlue", "description.GS4.Passenger.LightBlue"));
     }
     @Override
     public String getDefaultSkin(){

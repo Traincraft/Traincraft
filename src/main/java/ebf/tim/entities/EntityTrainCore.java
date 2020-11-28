@@ -201,11 +201,11 @@ public class EntityTrainCore extends GenericRailTransport {
 
                 //velocity cap, since a running train has no drag, 0 is keep speed.
                 if (accelerator>0){
-                    if(getVelocity()>= (transportTopSpeed()*0.0277778f)*(CommonProxy.realSpeed?1:0.25)) {
+                    if(getVelocity()>= (transportTopSpeed()*0.0297f)*(CommonProxy.realSpeed?1:0.25)) {
                         vectorCache[1][0]=0;
                     }
                 } else if(accelerator<0) {
-                    if(getVelocity()>= (transportTopSpeedReverse()*0.0277778f)*(CommonProxy.realSpeed?1:0.25)){
+                    if(getVelocity()>= (transportTopSpeedReverse()*0.0297f)*(CommonProxy.realSpeed?1:0.25)){
                         vectorCache[1][0]=0;
                     }
                 }

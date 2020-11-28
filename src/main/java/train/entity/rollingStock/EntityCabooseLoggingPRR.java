@@ -2,13 +2,13 @@ package train.entity.rollingStock;
 
 import ebf.tim.TrainsInMotion;
 import ebf.tim.api.SkinRegistry;
-import ebf.tim.api.skin;
+import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.ItemTransport;
 import fexcraft.tmt.slim.ModelBase;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import train.Traincraft;
 import train.library.Info;
@@ -57,13 +57,12 @@ public class EntityCabooseLoggingPRR extends GenericRailTransport {
     public float[][] modelRotations(){return new float[][]{{0.0f, 180.0f, 180.0f}};}
     @Override
     public void registerSkins(){
-        String description ="";
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/PRRCaboose_Red.png","Red", description));
+            new TransportSkin(Info.modID,"textures/trains/PRRCaboose_Red.png","Red", "description.PRRCaboose.Red"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/PRRCaboose_Blue.png","Blue", description));
+            new TransportSkin(Info.modID,"textures/trains/PRRCaboose_Blue.png","Blue", "description.PRRCaboose.Blue"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/PRRCaboose_Green.png","Green", description));
+            new TransportSkin(Info.modID,"textures/trains/PRRCaboose_Green.png","Green", "description.PRRCaboose.Green"));
     }
     @Override
     public String getDefaultSkin(){

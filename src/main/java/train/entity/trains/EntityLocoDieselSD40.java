@@ -2,15 +2,18 @@ package train.entity.trains;
 
 import ebf.tim.TrainsInMotion;
 import ebf.tim.api.SkinRegistry;
-import ebf.tim.api.skin;
+import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.EntityTrainCore;
+import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.ItemTransport;
 import ebf.tim.utility.ItemStackSlot;
 import fexcraft.tmt.slim.ModelBase;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
+import train.render.models.*;
 import train.Traincraft;
 import train.library.Info;
 import train.library.ItemIDs;
@@ -58,21 +61,20 @@ public class EntityLocoDieselSD40 extends EntityTrainCore {
     public float[][] modelRotations(){return new float[][]{{180.0f, 90.0f, 0.0f}};}
     @Override
     public void registerSkins(){
-        String description ="";
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/locoSD40_Red.png","Red", description));
+            new TransportSkin(Info.modID,"textures/trains/locoSD40_Red.png","Red", "description.locoSD40.Red"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/locoSD40_Yellow.png","Yellow", description));
+            new TransportSkin(Info.modID,"textures/trains/locoSD40_Yellow.png","Yellow", "description.locoSD40.Yellow"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/locoSD40_Black.png","Black", description));
+            new TransportSkin(Info.modID,"textures/trains/locoSD40_Black.png","Black", "description.locoSD40.Black"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/locoSD40_Green.png","Green", description));
+            new TransportSkin(Info.modID,"textures/trains/locoSD40_Green.png","Green", "description.locoSD40.Green"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/locoSD40_Orange.png","Orange", description));
+            new TransportSkin(Info.modID,"textures/trains/locoSD40_Orange.png","Orange", "description.locoSD40.Orange"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/locoSD40_Magenta.png","Magenta", description));
+            new TransportSkin(Info.modID,"textures/trains/locoSD40_Magenta.png","Magenta", "description.locoSD40.Magenta"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/locoSD40_Blue.png","Blue", description));
+            new TransportSkin(Info.modID,"textures/trains/locoSD40_Blue.png","Blue", "description.locoSD40.Blue"));
     }
     @Override
     public String getDefaultSkin(){

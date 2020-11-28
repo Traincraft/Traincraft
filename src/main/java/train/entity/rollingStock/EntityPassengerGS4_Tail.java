@@ -2,7 +2,7 @@ package train.entity.rollingStock;
 
 import ebf.tim.TrainsInMotion;
 import ebf.tim.api.SkinRegistry;
-import ebf.tim.api.skin;
+import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.ItemTransport;
 import fexcraft.tmt.slim.ModelBase;
@@ -56,29 +56,28 @@ public class EntityPassengerGS4_Tail extends GenericRailTransport {
     public float[][] modelRotations(){return new float[][]{{0.0f, 180.0f, 180.0f}};}
     @Override
     public void registerSkins(){
-        String description ="";
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/GS4_Tail_Orange.png","Orange", description));
+            new TransportSkin(Info.modID,"textures/trains/GS4_Tail_Orange.png","Orange", "description.GS4.Tail.Orange"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/GS4_Tail_White.png","White", description));
+            new TransportSkin(Info.modID,"textures/trains/GS4_Tail_White.png","White", "description.GS4.Tail.White"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/GS4_Tail_Yellow.png","Yellow", description));
+            new TransportSkin(Info.modID,"textures/trains/GS4_Tail_Yellow.png","Yellow", "description.GS4.Tail.Yellow"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/GS4_Tail_Brown.png","Brown", description));
+            new TransportSkin(Info.modID,"textures/trains/GS4_Tail_Brown.png","Brown", "description.GS4.Tail.Brown"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/GS4_Tail_Lime.png","Lime", description));
+            new TransportSkin(Info.modID,"textures/trains/GS4_Tail_Lime.png","Lime", "description.GS4.Tail.Lime"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/GS4_Tail_Red.png","Red", description));
+            new TransportSkin(Info.modID,"textures/trains/GS4_Tail_Red.png","Red", "description.GS4.Tail.Red"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/GS4_Tail_Grey.png","Grey", description));
+            new TransportSkin(Info.modID,"textures/trains/GS4_Tail_Grey.png","Grey", "description.GS4.Tail.Grey"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/GS4_Tail_Green.png","Green", description));
+            new TransportSkin(Info.modID,"textures/trains/GS4_Tail_Green.png","Green", "description.GS4.Tail.Green"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/GS4_Tail_LightGrey.png","LightGrey", description));
+            new TransportSkin(Info.modID,"textures/trains/GS4_Tail_LightGrey.png","LightGrey", "description.GS4.Tail.LightGrey"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/GS4_Tail_Black.png","Black", description));
+            new TransportSkin(Info.modID,"textures/trains/GS4_Tail_Black.png","Black", "description.GS4.Tail.Black"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/GS4_Tail_LightBlue.png","LightBlue", description));
+            new TransportSkin(Info.modID,"textures/trains/GS4_Tail_LightBlue.png","LightBlue", "description.GS4.Tail.LightBlue"));
     }
     @Override
     public String getDefaultSkin(){

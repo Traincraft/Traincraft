@@ -2,13 +2,13 @@ package train.entity.rollingStock;
 
 import ebf.tim.TrainsInMotion;
 import ebf.tim.api.SkinRegistry;
-import ebf.tim.api.skin;
+import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.ItemTransport;
 import fexcraft.tmt.slim.ModelBase;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import train.Traincraft;
 import train.library.Info;
@@ -57,31 +57,30 @@ public class EntityFreightTrailer extends GenericRailTransport {
     public float[][] modelRotations(){return new float[][]{{0.0f, 90.0f, 0.0f}};}
     @Override
     public void registerSkins(){
-        String description ="";
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/freightTrailer_Blue.png","Blue", description));
+            new TransportSkin(Info.modID,"textures/trains/freightTrailer_Blue.png","Blue", "description.freightTrailer.Blue"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/freightTrailer_Yellow.png","Yellow", description));
+            new TransportSkin(Info.modID,"textures/trains/freightTrailer_Yellow.png","Yellow", "description.freightTrailer.Yellow"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/freightTrailer_LightBlue.png","LightBlue", description));
+            new TransportSkin(Info.modID,"textures/trains/freightTrailer_LightBlue.png","LightBlue", "description.freightTrailer.LightBlue"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/freightTrailer_Red.png","Red", description));
+            new TransportSkin(Info.modID,"textures/trains/freightTrailer_Red.png","Red", "description.freightTrailer.Red"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/freightTrailer_Grey.png","Grey", description));
+            new TransportSkin(Info.modID,"textures/trains/freightTrailer_Grey.png","Grey", "description.freightTrailer.Grey"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/freightTrailer_LightGrey.png","LightGrey", description));
+            new TransportSkin(Info.modID,"textures/trains/freightTrailer_LightGrey.png","LightGrey", "description.freightTrailer.LightGrey"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/freightTrailer_Magenta.png","Magenta", description));
+            new TransportSkin(Info.modID,"textures/trains/freightTrailer_Magenta.png","Magenta", "description.freightTrailer.Magenta"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/freightTrailer_Orange.png","Orange", description));
+            new TransportSkin(Info.modID,"textures/trains/freightTrailer_Orange.png","Orange", "description.freightTrailer.Orange"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/freightTrailer_Pink.png","Pink", description));
+            new TransportSkin(Info.modID,"textures/trains/freightTrailer_Pink.png","Pink", "description.freightTrailer.Pink"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/freightTrailer_Purple.png","Purple", description));
+            new TransportSkin(Info.modID,"textures/trains/freightTrailer_Purple.png","Purple", "description.freightTrailer.Purple"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/freightTrailer_Lime.png","Lime", description));
+            new TransportSkin(Info.modID,"textures/trains/freightTrailer_Lime.png","Lime", "description.freightTrailer.Lime"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/freightTrailer_White.png","White", description));
+            new TransportSkin(Info.modID,"textures/trains/freightTrailer_White.png","White", "description.freightTrailer.White"));
     }
     @Override
     public String getDefaultSkin(){

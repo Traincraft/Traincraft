@@ -7,6 +7,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import ebf.tim.blocks.rails.BlockRailCore;
 import ebf.tim.utility.CommonUtil;
+import ebf.tim.utility.DebugUtil;
 import io.netty.buffer.ByteBuf;
 import mods.railcraft.api.carts.IMinecart;
 import mods.railcraft.api.carts.IRoutableCart;
@@ -155,7 +156,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
      * @see CommonUtil
      * returns true or false depending on whether or not it derails from having no rail.
      */
-    public boolean minecartMove(GenericRailTransport host)   {
+    public boolean minecartMove(GenericRailTransport host) {
         //define the yaw from the super
         this.setRotation(host.rotationYaw, host.rotationPitch);
         //client only, update position

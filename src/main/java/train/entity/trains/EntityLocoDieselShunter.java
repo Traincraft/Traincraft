@@ -2,15 +2,18 @@ package train.entity.trains;
 
 import ebf.tim.TrainsInMotion;
 import ebf.tim.api.SkinRegistry;
-import ebf.tim.api.skin;
+import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.EntityTrainCore;
+import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.ItemTransport;
 import ebf.tim.utility.ItemStackSlot;
 import fexcraft.tmt.slim.ModelBase;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
+import train.render.models.*;
 import train.Traincraft;
 import train.library.Info;
 import train.library.ItemIDs;
@@ -56,15 +59,14 @@ public class EntityLocoDieselShunter extends EntityTrainCore {
     public float[][] modelOffsets(){return new float[][]{{-1.2f, -0.42f, 0.0f}};}
     @Override
     public void registerSkins(){
-        String description ="";
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/shunter_Blue.png","Blue", description));
+            new TransportSkin(Info.modID,"textures/trains/shunter_Blue.png","Blue", "description.shunter.Blue"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/shunter_Green.png","Green", description));
+            new TransportSkin(Info.modID,"textures/trains/shunter_Green.png","Green", "description.shunter.Green"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/shunter_Red.png","Red", description));
+            new TransportSkin(Info.modID,"textures/trains/shunter_Red.png","Red", "description.shunter.Red"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/shunter_Black.png","Black", description));
+            new TransportSkin(Info.modID,"textures/trains/shunter_Black.png","Black", "description.shunter.Black"));
     }
     @Override
     public String getDefaultSkin(){

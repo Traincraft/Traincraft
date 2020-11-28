@@ -2,8 +2,9 @@ package train.entity.trains;
 
 import ebf.tim.TrainsInMotion;
 import ebf.tim.api.SkinRegistry;
-import ebf.tim.api.skin;
+import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.EntityTrainCore;
+import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.ItemTransport;
 import ebf.tim.utility.ItemStackSlot;
 import fexcraft.tmt.slim.ModelBase;
@@ -12,6 +13,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
+import train.render.models.*;
 import train.Traincraft;
 import train.library.Info;
 import train.library.ItemIDs;
@@ -59,17 +61,16 @@ public class EntityLocoSteamSmall extends EntityTrainCore {
     public float[][] modelRotations(){return new float[][]{{0.0f, -90.0f, 0.0f}};}
     @Override
     public void registerSkins(){
-        String description ="";
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/loco3_Blue.png","Blue", description));
+            new TransportSkin(Info.modID,"textures/trains/loco3_Blue.png","Blue", "description.loco3.Blue"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/loco3_Red.png","Red", description));
+            new TransportSkin(Info.modID,"textures/trains/loco3_Red.png","Red", "description.loco3.Red"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/loco3_Green.png","Green", description));
+            new TransportSkin(Info.modID,"textures/trains/loco3_Green.png","Green", "description.loco3.Green"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/loco3_Yellow.png","Yellow", description));
+            new TransportSkin(Info.modID,"textures/trains/loco3_Yellow.png","Yellow", "description.loco3.Yellow"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/loco3_Black.png","Black", description));
+            new TransportSkin(Info.modID,"textures/trains/loco3_Black.png","Black", "description.loco3.Black"));
     }
     @Override
     public String getDefaultSkin(){

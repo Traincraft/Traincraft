@@ -2,15 +2,18 @@ package train.entity.trains;
 
 import ebf.tim.TrainsInMotion;
 import ebf.tim.api.SkinRegistry;
-import ebf.tim.api.skin;
+import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.EntityTrainCore;
+import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.ItemTransport;
 import ebf.tim.utility.ItemStackSlot;
 import fexcraft.tmt.slim.ModelBase;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
+import train.render.models.*;
 import train.Traincraft;
 import train.library.Info;
 import train.library.ItemIDs;
@@ -58,33 +61,32 @@ public class EntityLocoElectricBR185 extends EntityTrainCore {
     public float[][] modelRotations(){return new float[][]{{0.0f, 180.0f, 180.0f}};}
     @Override
     public void registerSkins(){
-        String description ="";
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/BR185_Engine_Red.png","Red", description));
+            new TransportSkin(Info.modID,"textures/trains/BR185_Engine_Red.png","Red", "description.BR185.Engine.Red"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/BR185_Engine_Blue.png","Blue", description));
+            new TransportSkin(Info.modID,"textures/trains/BR185_Engine_Blue.png","Blue", "description.BR185.Engine.Blue"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/BR185_Engine_Magenta.png","Magenta", description));
+            new TransportSkin(Info.modID,"textures/trains/BR185_Engine_Magenta.png","Magenta", "description.BR185.Engine.Magenta"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/BR185_Engine_Cyan.png","Cyan", description));
+            new TransportSkin(Info.modID,"textures/trains/BR185_Engine_Cyan.png","Cyan", "description.BR185.Engine.Cyan"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/BR185_Engine_Grey.png","Grey", description));
+            new TransportSkin(Info.modID,"textures/trains/BR185_Engine_Grey.png","Grey", "description.BR185.Engine.Grey"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/BR185_Engine_LightBlue.png","LightBlue", description));
+            new TransportSkin(Info.modID,"textures/trains/BR185_Engine_LightBlue.png","LightBlue", "description.BR185.Engine.LightBlue"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/BR185_Engine_LightGrey.png","LightGrey", description));
+            new TransportSkin(Info.modID,"textures/trains/BR185_Engine_LightGrey.png","LightGrey", "description.BR185.Engine.LightGrey"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/BR185_Engine_Orange.png","Orange", description));
+            new TransportSkin(Info.modID,"textures/trains/BR185_Engine_Orange.png","Orange", "description.BR185.Engine.Orange"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/BR185_Engine_Pink.png","Pink", description));
+            new TransportSkin(Info.modID,"textures/trains/BR185_Engine_Pink.png","Pink", "description.BR185.Engine.Pink"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/BR185_Engine_Purple.png","Purple", description));
+            new TransportSkin(Info.modID,"textures/trains/BR185_Engine_Purple.png","Purple", "description.BR185.Engine.Purple"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/BR185_Engine_White.png","White", description));
+            new TransportSkin(Info.modID,"textures/trains/BR185_Engine_White.png","White", "description.BR185.Engine.White"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/BR185_Engine_Yellow.png","Yellow", description));
+            new TransportSkin(Info.modID,"textures/trains/BR185_Engine_Yellow.png","Yellow", "description.BR185.Engine.Yellow"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/BR185_Engine_Black.png","Black", description));
+            new TransportSkin(Info.modID,"textures/trains/BR185_Engine_Black.png","Black", "description.BR185.Engine.Black"));
     }
     @Override
     public String getDefaultSkin(){

@@ -2,14 +2,14 @@ package train.entity.rollingStock;
 
 import ebf.tim.TrainsInMotion;
 import ebf.tim.api.SkinRegistry;
-import ebf.tim.api.skin;
+import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.ItemTransport;
 import fexcraft.tmt.slim.ModelBase;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import train.Traincraft;
 import train.library.Info;
@@ -58,13 +58,12 @@ public class EntityPropagandaJapan extends GenericRailTransport {
     public float[][] modelRotations(){return new float[][]{{0.0f, 180.0f, 180.0f}};}
     @Override
     public void registerSkins(){
-        String description ="";
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/propaganda_Japan_Red.png","Red", description));
+            new TransportSkin(Info.modID,"textures/trains/propaganda_Japan_Red.png","Red", "description.propaganda.Japan.Red"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/propaganda_Japan_White.png","White", description));
+            new TransportSkin(Info.modID,"textures/trains/propaganda_Japan_White.png","White", "description.propaganda.Japan.White"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/propaganda_Japan_Yellow.png","Yellow", description));
+            new TransportSkin(Info.modID,"textures/trains/propaganda_Japan_Yellow.png","Yellow", "description.propaganda.Japan.Yellow"));
     }
     @Override
     public String getDefaultSkin(){

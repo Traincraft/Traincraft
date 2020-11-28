@@ -2,13 +2,13 @@ package train.entity.rollingStock;
 
 import ebf.tim.TrainsInMotion;
 import ebf.tim.api.SkinRegistry;
-import ebf.tim.api.skin;
+import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.ItemTransport;
 import fexcraft.tmt.slim.ModelBase;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import train.Traincraft;
 import train.library.Info;
@@ -57,39 +57,38 @@ public class EntityFreightWellcar extends GenericRailTransport {
     public float[][] modelRotations(){return new float[][]{{0.0f, 180.0f, 180.0f}};}
     @Override
     public void registerSkins(){
-        String description ="";
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/wellcar_Blue.png","Blue", description));
+            new TransportSkin(Info.modID,"textures/trains/wellcar_Blue.png","Blue", "description.wellcar.Blue"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/wellcar_Red.png","Red", description));
+            new TransportSkin(Info.modID,"textures/trains/wellcar_Red.png","Red", "description.wellcar.Red"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/wellcar_Green.png","Green", description));
+            new TransportSkin(Info.modID,"textures/trains/wellcar_Green.png","Green", "description.wellcar.Green"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/wellcar_Black.png","Black", description));
+            new TransportSkin(Info.modID,"textures/trains/wellcar_Black.png","Black", "description.wellcar.Black"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/wellcar_Grey.png","Grey", description));
+            new TransportSkin(Info.modID,"textures/trains/wellcar_Grey.png","Grey", "description.wellcar.Grey"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/wellcar_Cyan.png","Cyan", description));
+            new TransportSkin(Info.modID,"textures/trains/wellcar_Cyan.png","Cyan", "description.wellcar.Cyan"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/wellcar_Brown.png","Brown", description));
+            new TransportSkin(Info.modID,"textures/trains/wellcar_Brown.png","Brown", "description.wellcar.Brown"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/wellcar_Lime.png","Lime", description));
+            new TransportSkin(Info.modID,"textures/trains/wellcar_Lime.png","Lime", "description.wellcar.Lime"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/wellcar_LightBlue.png","LightBlue", description));
+            new TransportSkin(Info.modID,"textures/trains/wellcar_LightBlue.png","LightBlue", "description.wellcar.LightBlue"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/wellcar_LightGrey.png","LightGrey", description));
+            new TransportSkin(Info.modID,"textures/trains/wellcar_LightGrey.png","LightGrey", "description.wellcar.LightGrey"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/wellcar_Magenta.png","Magenta", description));
+            new TransportSkin(Info.modID,"textures/trains/wellcar_Magenta.png","Magenta", "description.wellcar.Magenta"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/wellcar_Orange.png","Orange", description));
+            new TransportSkin(Info.modID,"textures/trains/wellcar_Orange.png","Orange", "description.wellcar.Orange"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/wellcar_Pink.png","Pink", description));
+            new TransportSkin(Info.modID,"textures/trains/wellcar_Pink.png","Pink", "description.wellcar.Pink"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/wellcar_Purple.png","Purple", description));
+            new TransportSkin(Info.modID,"textures/trains/wellcar_Purple.png","Purple", "description.wellcar.Purple"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/wellcar_White.png","White", description));
+            new TransportSkin(Info.modID,"textures/trains/wellcar_White.png","White", "description.wellcar.White"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/wellcar_Yellow.png","Yellow", description));
+            new TransportSkin(Info.modID,"textures/trains/wellcar_Yellow.png","Yellow", "description.wellcar.Yellow"));
     }
     @Override
     public String getDefaultSkin(){

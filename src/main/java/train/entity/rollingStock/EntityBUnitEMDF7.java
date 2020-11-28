@@ -2,7 +2,7 @@ package train.entity.rollingStock;
 
 import ebf.tim.TrainsInMotion;
 import ebf.tim.api.SkinRegistry;
-import ebf.tim.api.skin;
+import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.ItemTransport;
 import fexcraft.tmt.slim.ModelBase;
@@ -56,21 +56,20 @@ public class EntityBUnitEMDF7 extends GenericRailTransport {
     public float[][] modelRotations(){return new float[][]{{0.0f, 180.0f, 180.0f}};}
     @Override
     public void registerSkins(){
-        String description ="";
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/emdf7b_Black.png","Black", description));
+            new TransportSkin(Info.modID,"textures/trains/emdf7b_Black.png","Black", "description.emdf7b.Black"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/emdf7b_Lime.png","Lime", description));
+            new TransportSkin(Info.modID,"textures/trains/emdf7b_Lime.png","Lime", "description.emdf7b.Lime"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/emdf7b_Red.png","Red", description));
+            new TransportSkin(Info.modID,"textures/trains/emdf7b_Red.png","Red", "description.emdf7b.Red"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/emdf7b_Brown.png","Brown", description));
+            new TransportSkin(Info.modID,"textures/trains/emdf7b_Brown.png","Brown", "description.emdf7b.Brown"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/emdf7b_Green.png","Green", description));
+            new TransportSkin(Info.modID,"textures/trains/emdf7b_Green.png","Green", "description.emdf7b.Green"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/emdf7b_Orange.png","Orange", description));
+            new TransportSkin(Info.modID,"textures/trains/emdf7b_Orange.png","Orange", "description.emdf7b.Orange"));
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/emdf7b_Yellow.png","Yellow", description));
+            new TransportSkin(Info.modID,"textures/trains/emdf7b_Yellow.png","Yellow", "description.emdf7b.Yellow"));
     }
     @Override
     public String getDefaultSkin(){

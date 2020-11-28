@@ -2,7 +2,7 @@ package train.entity.rollingStock;
 
 import ebf.tim.TrainsInMotion;
 import ebf.tim.api.SkinRegistry;
-import ebf.tim.api.skin;
+import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.ItemTransport;
 import fexcraft.tmt.slim.ModelBase;
@@ -54,9 +54,8 @@ public class EntityFlatCartSU extends GenericRailTransport {
     public float[][] modelOffsets(){return new float[][]{{0.0f, -0.47f, 0.0f}};}
     @Override
     public void registerSkins(){
-        String description ="";
         SkinRegistry.addSkin(this.getClass(),
-            new skin(Info.modID,"textures/trains/flatcarsu.png","flatcarsu", description));
+            new TransportSkin(Info.modID,"textures/trains/flatcarsu.png","flatcarsu", "description.flatcarsu"));
     }
     @Override
     public String getDefaultSkin(){
