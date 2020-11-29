@@ -52,9 +52,9 @@ public class EntityTenderBerk1225 extends GenericRailTransport {
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.Model1225Tender()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{2.75f, -0.65f, 0.0625f}};}
+    public float[][] modelOffsets(){return new float[][]{{2.75f, 0.65f, 0.0625f}};}
     @Override
-    public float[][] modelRotations(){return new float[][]{{0.0f, 0.0f, 180.0f}};}
+    public float[][] modelRotations(){return new float[][]{{0.0f, -180.0f, 0.0f}};}
     @Override
     public void registerSkins(){
         SkinRegistry.addSkin(this.getClass(),
@@ -81,9 +81,9 @@ public class EntityTenderBerk1225 extends GenericRailTransport {
     @Override
     public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{1.4375f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{5.75f,2.1f,1.1f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{0.0f, -0.0f};}
+    public float[] bogieLengthFromCenter() {return new float[]{2.299999952316284f, -2.299999952316284f};}
     @Override
     public int[] getTankCapacity(){return new int[]{15000};}
 

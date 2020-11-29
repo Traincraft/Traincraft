@@ -52,9 +52,9 @@ public class EntityFreightBamboo extends GenericRailTransport {
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelBambooTrainCargo()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{0.1f, 0.0f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.1f, -0.0f, 0.0f}};}
     @Override
-    public float[][] modelRotations(){return new float[][]{{0.0f, 180.0f, 180.0f}};}
+    public float[][] modelRotations(){return new float[][]{{0.0f, 0.0f, 0.0f}};}
     @Override
     public void registerSkins(){
         SkinRegistry.addSkin(this.getClass(),
@@ -109,9 +109,9 @@ public class EntityFreightBamboo extends GenericRailTransport {
     @Override
     public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{0.7749999761581421f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{3.0999999046325684f,2.1f,1.1f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{0.0f, -0.0f};}
+    public float[] bogieLengthFromCenter() {return new float[]{1.2400000095367432f, -1.2400000095367432f};}
 
 
 

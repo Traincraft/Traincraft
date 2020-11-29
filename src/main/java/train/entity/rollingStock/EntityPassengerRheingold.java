@@ -51,9 +51,9 @@ public class EntityPassengerRheingold extends GenericRailTransport {
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelRheingoldPassenger()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{1.55f, 0.15f, -0.6f}};}
+    public float[][] modelOffsets(){return new float[][]{{1.55f, -0.15f, -0.6f}};}
     @Override
-    public float[][] modelRotations(){return new float[][]{{0.0f, 180.0f, 180.0f}};}
+    public float[][] modelRotations(){return new float[][]{{0.0f, 0.0f, 0.0f}};}
     @Override
     public void registerSkins(){
         SkinRegistry.addSkin(this.getClass(),
@@ -89,9 +89,9 @@ public class EntityPassengerRheingold extends GenericRailTransport {
     @Override
     public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{1.9700000286102295f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{7.880000114440918f,2.1f,1.1f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{0.0f, -0.0f};}
+    public float[] bogieLengthFromCenter() {return new float[]{3.1520001888275146f, -3.1520001888275146f};}
 
 
 

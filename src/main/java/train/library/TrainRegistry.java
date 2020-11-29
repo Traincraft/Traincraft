@@ -34,7 +34,7 @@ public class TrainRegistry {
 
     public static GenericRailTransport[] listDiesel(){
         return new GenericRailTransport[]{
-                new EntityLocoDiesel44TonSwitcher(null), new EntityLocoDiesel44TonSwitcher(null),
+                new EntityLocoDiesel44TonSwitcher(null),
                 new EntityLocoDieselCD742(null), new EntityLocoDieselChME3(null),
                 new EntityLocoDieselClass66(null), new EntityLocoDieselDD35A(null),
                 new EntityLocoDieselDeltic(null), new EntityLocoDieselEMDF3(null),

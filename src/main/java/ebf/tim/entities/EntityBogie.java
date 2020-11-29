@@ -7,7 +7,6 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import ebf.tim.blocks.rails.BlockRailCore;
 import ebf.tim.utility.CommonUtil;
-import ebf.tim.utility.DebugUtil;
 import io.netty.buffer.ByteBuf;
 import mods.railcraft.api.carts.IMinecart;
 import mods.railcraft.api.carts.IRoutableCart;

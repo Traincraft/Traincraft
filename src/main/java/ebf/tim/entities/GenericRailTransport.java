@@ -1073,12 +1073,16 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
                 frontBogie.addVelocity(roll[0],roll[1],roll[2]);
                 backBogie.addVelocity(roll[0],roll[1],roll[2]);
             } else if (hasDrag()) {
-
+                //be sure consist weight is properly updated and calculated for collective drag and other things.
+                float weight=pullingWeight* (getBoolean(boolValues.BRAKE)?4:1);
+                if(pullingWeight==0){
+                    updateConsist();
+                    weight = pullingWeight* (getBoolean(boolValues.BRAKE)?4:1);
+                }
                 //this still seems obscene to me, but the result numbers check out pretty well
                 double drag = Math.pow(
                         //scale by weight, heavier means more drag
-                        getBoolean(boolValues.BRAKE)?Math.pow(weightKg()*4d, -0.05):
-                                Math.pow(weightKg(), -0.05),
+                        Math.pow(weight, -0.025),
 
                         //then scale by speed, faster speeds mean more drag.
                         //use speed from the front bogie, when you take out direction, both bogies should move at the same speed
@@ -1313,7 +1317,10 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
 
     //todo: update needed info like weight and combined tractive effort based on values in this array
     public void setValuesOnLinkUpdate(List<GenericRailTransport> consist){
-
+        pullingWeight=0;
+        for(GenericRailTransport t : consist) {
+            pullingWeight +=t.weightKg();
+        }
     }
 
     //used for trains and B-units

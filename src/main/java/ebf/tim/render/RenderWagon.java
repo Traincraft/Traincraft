@@ -407,6 +407,35 @@ public class RenderWagon extends Render {
             GL11.glPopMatrix();
             */
 
+            GL11.glPushMatrix();
+
+            GL11.glEnable(GL11.GL_BLEND);
+            OpenGlHelper.glBlendFunc(770, 771, 1, 0);
+            GL11.glDisable(GL11.GL_TEXTURE_2D);
+            GL11.glDisable(GL11.GL_ALPHA_TEST);
+            GL11.glColor3f(1,0,0);
+            Tessellator.getInstance().startDrawing(GL11.GL_LINES);
+            Tessellator.getInstance().addVertex((float)x+entity.getHitboxSize()[0]*0.5f,(float)y+entity.getHitboxSize()[1],(float)z+(entity.getHitboxSize()[2]*0.5f));
+            Tessellator.getInstance().addVertex((float)x+entity.getHitboxSize()[0]*0.5f,(float)y+entity.getHitboxSize()[1],(float)z+(entity.getHitboxSize()[2]*-0.5f));
+            Tessellator.getInstance().draw();
+
+            GL11.glColor3f(0,1,0);
+            Tessellator.getInstance().startDrawing(GL11.GL_LINES);
+            Tessellator.getInstance().addVertex((float)x+entity.getHitboxSize()[0]*-0.5f,(float)y+entity.getHitboxSize()[1],(float)z+(entity.getHitboxSize()[2]*0.5f));
+            Tessellator.getInstance().addVertex((float)x+entity.getHitboxSize()[0]*0.5f,(float)y+entity.getHitboxSize()[1],(float)z+(entity.getHitboxSize()[2]*0.5f));
+            Tessellator.getInstance().draw();
+
+            GL11.glColor3f(0,0,1);
+            Tessellator.getInstance().startDrawing(GL11.GL_LINES);
+            Tessellator.getInstance().addVertex((float)x+entity.getHitboxSize()[0]*0.5f,(float)y+entity.getHitboxSize()[1],(float)z+(entity.getHitboxSize()[2]*0.5f));
+            Tessellator.getInstance().addVertex((float)x+entity.getHitboxSize()[0]*0.5f,(float)y,(float)z+(entity.getHitboxSize()[2]*0.5f));
+            Tessellator.getInstance().draw();
+            GL11.glDisable(GL11.GL_BLEND);
+            GL11.glEnable(GL11.GL_TEXTURE_2D);
+            GL11.glEnable(GL11.GL_ALPHA_TEST);
+            GL11.glPopMatrix();
+
+
             GL11.glTranslated(x,y,z);
             drawRotationPoint(new Vec3f(entity.frontBogie.posX-entity.posX,entity.frontBogie.posY-entity.posY,entity.frontBogie.posZ-entity.posZ), entity);
 

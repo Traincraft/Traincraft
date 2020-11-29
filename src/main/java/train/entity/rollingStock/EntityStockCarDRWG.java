@@ -53,9 +53,9 @@ public class EntityStockCarDRWG extends GenericRailTransport {
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelDRWGStockCar()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{1.0f, -0.4f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{1.0f, 0.4f, 0.0f}};}
     @Override
-    public float[][] modelRotations(){return new float[][]{{0.0f, 0.0f, 180.0f}};}
+    public float[][] modelRotations(){return new float[][]{{0.0f, -180.0f, 0.0f}};}
     @Override
     public void registerSkins(){
         SkinRegistry.addSkin(this.getClass(),
@@ -80,9 +80,9 @@ public class EntityStockCarDRWG extends GenericRailTransport {
     @Override
     public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{0.824999988079071f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{3.299999952316284f,2.1f,1.1f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{0.0f, -0.0f};}
+    public float[] bogieLengthFromCenter() {return new float[]{1.3200000524520874f, -1.3200000524520874f};}
 
 
 

@@ -4,16 +4,13 @@ import ebf.tim.TrainsInMotion;
 import ebf.tim.api.SkinRegistry;
 import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.EntityTrainCore;
-import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.ItemTransport;
 import ebf.tim.utility.ItemStackSlot;
 import fexcraft.tmt.slim.ModelBase;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
-import train.render.models.*;
 import train.Traincraft;
 import train.library.Info;
 import train.library.ItemIDs;
@@ -56,9 +53,9 @@ public class EntityLocoSteamForneyRed extends EntityTrainCore {
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelLocoForney()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{-1.3f, -0.44f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{-1.3f, 0.44f, 0.0f}};}
     @Override
-    public float[][] modelRotations(){return new float[][]{{0.0f, 90.0f, 0.0f}};}
+    public float[][] modelRotations(){return new float[][]{{0.0f, -90.0f, -180.0f}};}
     @Override
     public void registerSkins(){
         SkinRegistry.addSkin(this.getClass(),
@@ -94,9 +91,9 @@ public class EntityLocoSteamForneyRed extends EntityTrainCore {
     @Override
     public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{-1.3f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{3.8f,2.1f,1.1f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{-0.9f, 0.9f};}
+    public float[] bogieLengthFromCenter() {return new float[]{1.7000000119209289f, -1.7000000119209289f};}
     //Train specific stuff
     @Override
     public String transportFuelType(){return "steam";}

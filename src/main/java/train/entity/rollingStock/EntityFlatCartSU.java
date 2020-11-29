@@ -42,7 +42,7 @@ public class EntityFlatCartSU extends GenericRailTransport {
     public int getInventoryRows(){return 0;}
     @Override
     public List<TrainsInMotion.transportTypes> getTypes(){
-        return TrainsInMotion.transportTypes.FREIGHT.singleton();
+        return TrainsInMotion.transportTypes..singleton();
     }
     @Override
     public float weightKg(){return 10f;}
@@ -51,7 +51,9 @@ public class EntityFlatCartSU extends GenericRailTransport {
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelFlatCarSU()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{0.0f, -0.47f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.47f, 0.0f}};}
+@Override
+    public float[][] modelRotations(){return new float[][]{{0f,180f,180f}};}
     @Override
     public void registerSkins(){
         SkinRegistry.addSkin(this.getClass(),
@@ -76,9 +78,9 @@ public class EntityFlatCartSU extends GenericRailTransport {
     @Override
     public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{0.8500000238418579f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{3.4000000953674316f,2.1f,1.1f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{0.0f, -0.0f};}
+    public float[] bogieLengthFromCenter() {return new float[]{1.3600000143051147f, -1.3600000143051147f};}
 
 
 

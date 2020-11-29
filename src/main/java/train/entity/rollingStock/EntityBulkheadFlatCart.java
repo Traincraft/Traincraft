@@ -51,9 +51,9 @@ public class EntityBulkheadFlatCart extends GenericRailTransport {
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelBulkheadFlat()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.1f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.0f, -0.1f, 0.0f}};}
     @Override
-    public float[][] modelRotations(){return new float[][]{{0.0f, 180.0f, 180.0f}};}
+    public float[][] modelRotations(){return new float[][]{{0.0f, 0.0f, 0.0f}};}
     @Override
     public void registerSkins(){
         SkinRegistry.addSkin(this.getClass(),
@@ -82,9 +82,9 @@ public class EntityBulkheadFlatCart extends GenericRailTransport {
     @Override
     public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{1.149999976158142f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{4.599999904632568f,2.1f,1.1f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{0.0f, -0.0f};}
+    public float[] bogieLengthFromCenter() {return new float[]{1.840000033378601f, -1.840000033378601f};}
 
 
 

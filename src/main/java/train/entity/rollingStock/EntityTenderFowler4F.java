@@ -52,9 +52,9 @@ public class EntityTenderFowler4F extends GenericRailTransport {
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelFowler4FTender()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{-5.25f, -0.51585f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{-5.25f, 0.51585f, 0.0f}};}
     @Override
-    public float[][] modelRotations(){return new float[][]{{0.0f, 180.0f, 180.0f}};}
+    public float[][] modelRotations(){return new float[][]{{0.0f, 0.0f, 0.0f}};}
     @Override
     public void registerSkins(){
         SkinRegistry.addSkin(this.getClass(),
@@ -79,9 +79,9 @@ public class EntityTenderFowler4F extends GenericRailTransport {
     @Override
     public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{0.8999999761581421f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{3.5999999046325684f,2.1f,1.1f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{0.0f, -0.0f};}
+    public float[] bogieLengthFromCenter() {return new float[]{1.4399999380111694f, -1.4399999380111694f};}
     @Override
     public int[] getTankCapacity(){return new int[]{15000};}
 

@@ -129,11 +129,10 @@ public class EntityTrainCore extends GenericRailTransport {
 
     @Override
     public void setValuesOnLinkUpdate(List<GenericRailTransport> consist){
+        super.setValuesOnLinkUpdate(consist);
         maxPowerMicroblocks =0;
-        pullingWeight=0;
         for(GenericRailTransport t : consist) {
             maxPowerMicroblocks +=t.getPower();
-            pullingWeight +=t.weightKg();
         }
     }
 

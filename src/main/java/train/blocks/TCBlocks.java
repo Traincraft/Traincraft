@@ -70,9 +70,6 @@ public class TCBlocks {
 
 	public static void setHarvestLevels() {
 		BlockIDs.trainWorkbench.block.setHarvestLevel("axe", 0);
-		BlockIDs.assemblyTableI.block.setHarvestLevel("axe", 0);
-		BlockIDs.assemblyTableII.block.setHarvestLevel("axe", 0);
-		BlockIDs.assemblyTableIII.block.setHarvestLevel("axe", 0);
 		BlockIDs.waterWheel.block.setHarvestLevel("axe", 0);
 		BlockIDs.windMill.block.setHarvestLevel("axe", 0);
 		BlockIDs.bridgePillar.block.setHarvestLevel("axe", 0);

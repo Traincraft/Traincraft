@@ -53,9 +53,9 @@ public class EntityPassengerDBOriental extends GenericRailTransport {
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelPassenger_DB_oriental()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{0.0f, -0.42f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.42f, 0.0f}};}
     @Override
-    public float[][] modelRotations(){return new float[][]{{180.0f, 0.0f, 0.0f}};}
+    public float[][] modelRotations(){return new float[][]{{180.0f, -180.0f, -180.0f}};}
     @Override
     public void registerSkins(){
         SkinRegistry.addSkin(this.getClass(),
@@ -85,9 +85,9 @@ public class EntityPassengerDBOriental extends GenericRailTransport {
     @Override
     public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{1.125f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{4.5f,2.1f,1.1f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{0.0f, -0.0f};}
+    public float[] bogieLengthFromCenter() {return new float[]{1.8000000715255737f, -1.8000000715255737f};}
 
 
 

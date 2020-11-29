@@ -7,11 +7,9 @@ import ebf.tim.blocks.rails.BlockRailCore;
 import ebf.tim.registry.TiMBlocks;
 import ebf.tim.utility.CommonUtil;
 import mods.railcraft.api.core.items.ITrackItem;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockFlower;
-import net.minecraft.block.BlockMushroom;
-import net.minecraft.block.BlockRailBase;
+import net.minecraft.block.*;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -21,6 +19,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import net.minecraftforge.common.IPlantable;
 
 import java.util.List;
 
@@ -95,6 +94,20 @@ public class ItemRail extends Item implements ITrackItem {
                 x>>4, z>>4)) {
             return false;
         } else {
+            if(!(world.getBlock(x,y,z) instanceof BlockAir)){
+                //replaceable covers things like fluids, IPlantable and IGrowable cover things like grass and flowers
+                if(!world.getBlock(x,y,z).isReplaceable(world,x,y,z)
+                        && !(block instanceof IPlantable) && !(block instanceof IGrowable)){
+                    return false;
+                } else {
+                    //if it is replaceable, try to spawn the dropped item.
+                    Item blockStack = world.getBlock(x,y,z).getItemDropped(x,world.rand,z);
+                    if(blockStack!=null){
+                        world.spawnEntityInWorld(new EntityItem(world,x,y+0.5,z, new ItemStack(blockStack)));
+                    }
+                }
+            }
+
             if (world.setBlock(x,y,z, getPlacedBlock(), 0, 3)) {
                 int i1 = getPlacedBlock().onBlockPlaced(world, x,y,z, meta, p_77648_8_, p_77648_9_, p_77648_10_, 0);
                 if (world.getBlock(x,y,z) == getPlacedBlock()) {

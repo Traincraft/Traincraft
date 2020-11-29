@@ -4,16 +4,13 @@ import ebf.tim.TrainsInMotion;
 import ebf.tim.api.SkinRegistry;
 import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.EntityTrainCore;
-import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.ItemTransport;
 import ebf.tim.utility.ItemStackSlot;
 import fexcraft.tmt.slim.ModelBase;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
-import train.render.models.*;
 import train.Traincraft;
 import train.library.Info;
 import train.library.ItemIDs;
@@ -56,7 +53,9 @@ public class EntityLocoDieselV60_DB extends EntityTrainCore {
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelV60()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{-0.75f, -0.44f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{-0.75f, 0.44f, 0.0f}};}
+@Override
+    public float[][] modelRotations(){return new float[][]{{0f,180f,180f}};}
     @Override
     public void registerSkins(){
         SkinRegistry.addSkin(this.getClass(),
@@ -88,9 +87,9 @@ public class EntityLocoDieselV60_DB extends EntityTrainCore {
     @Override
     public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{-0.8500000238418579f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{4.099999904632568f,2.1f,1.1f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{-0.75f, 0.75f};}
+    public float[] bogieLengthFromCenter() {return new float[]{1.7899999618530273f, -1.7899999618530273f};}
     //Train specific stuff
     @Override
     public String transportFuelType(){return "diesel";}

@@ -4,19 +4,15 @@ import ebf.tim.TrainsInMotion;
 import ebf.tim.api.SkinRegistry;
 import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.EntityTrainCore;
-import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.ItemTransport;
 import ebf.tim.utility.ItemStackSlot;
 import fexcraft.tmt.slim.ModelBase;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
-import train.render.models.*;
 import train.Traincraft;
 import train.library.Info;
-import train.library.ItemIDs;
 
 import java.util.List;
 import java.util.UUID;
@@ -56,7 +52,9 @@ public class EntityLocoDieselIC4_DSB_MG extends EntityTrainCore {
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelLocoDieselIC4_DSB_MG()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{-0.8f, -0.44f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{-0.8f, 0.44f, 0.0f}};}
+@Override
+    public float[][] modelRotations(){return new float[][]{{0f,180f,180f}};}
     @Override
     public void registerSkins(){
         SkinRegistry.addSkin(this.getClass(),
@@ -74,9 +72,9 @@ public class EntityLocoDieselIC4_DSB_MG extends EntityTrainCore {
     @Override
     public ItemStack[] getRecipie() {
         return new ItemStack[]{
-                null, null, null,
-                null, null, null,
-                null, null, null
+                new ItemStack(), new ItemStack(), new ItemStack(), 
+                new ItemStack(), new ItemStack(), new ItemStack(), 
+                new ItemStack(), new ItemStack(), new ItemStack() 
         };
     }
 
@@ -85,9 +83,9 @@ public class EntityLocoDieselIC4_DSB_MG extends EntityTrainCore {
     @Override
     public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{-5.949999999254942f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{6.200000002980232f,2.1f,1.1f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{-3.0f, 3.0f};}
+    public float[] bogieLengthFromCenter() {return new float[]{3.0800000056624413f, -3.0800000056624413f};}
     //Train specific stuff
     @Override
     public String transportFuelType(){return "diesel";}
