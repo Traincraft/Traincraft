@@ -3,6 +3,7 @@ package train.render.models;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.utility.ItemStackSlot;
 import fexcraft.tmt.slim.ModelBase;
+import fexcraft.tmt.slim.ModelRendererTurbo;
 import net.minecraft.entity.Entity;
 import train.render.CustomModelRenderer;
 
@@ -198,43 +199,25 @@ public class ModelWood extends ModelBase {
 		box9 = new CustomModelRenderer(this, 107, 12, 256, 64);
 		box9.addBox(0F, 0F, 0F, 19, 3, 4);
 		box9.setPosition(-28F, 6F, -2F);
+
+		bodyModel=new ModelRendererTurbo[]{box,
+				box0,box1,box2,box3,box5,box6,box7,box8,box9,
+				box10,box11,box12,box13,box14,box15,box16,box17,box18,box19,
+				box21,box22,box23,box24,box25,box26,box27,box28,box29,
+				box30,box31,box34,box35,box36,box37,box63
+		};
+
+		fixRotation(bodyModel);
 	}
 
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-		box.render(f5);
-		box0.render(f5);
-		box10.render(f5);
-		box11.render(f5);
-		box12.render(f5);
-		box13.render(f5);
-		box14.render(f5);
-		box15.render(f5);
-		box16.render(f5);
-		box17.render(f5);
-		box18.render(f5);
-		box19.render(f5);
-		box21.render(f5);
-		box22.render(f5);
-		box23.render(f5);
-		box24.render(f5);
-		box25.render(f5);
-		box26.render(f5);
-		box27.render(f5);
-		box28.render(f5);
-		box3.render(f5);
-		box30.render(f5);
-		box31.render(f5);
-		box34.render(f5);
-		box36.render(f5);
-		box37.render(f5);
-		box5.render(f5);
-		box6.render(f5);
-		box63.render(f5);
-		box7.render(f5);
-		box8.render(f5);
-		box9.render(f5);
-		
+
+		box35.showModel=false;
+		box29.showModel=false;
+		box2.showModel=false;
+		box1.showModel=false;
+
 		int cargo = 0;
 
 		for (ItemStackSlot s : ((GenericRailTransport) entity).inventory){
@@ -243,11 +226,13 @@ public class ModelWood extends ModelBase {
 			}
 		}
 		if (cargo != 0) {
-			box35.render(f5);
-			box29.render(f5);
-			box2.render(f5);
-			box1.render(f5);
+			box35.showModel=true;
+			box29.showModel=true;
+			box2.showModel=true;
+			box1.showModel=true;
 		}
+
+		super.render(entity, f, f1, f2, f3, f4, f5);
 	}
 
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5) {}

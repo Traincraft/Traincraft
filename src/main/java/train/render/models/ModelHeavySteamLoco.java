@@ -2,6 +2,7 @@ package train.render.models;
 //loco
 
 import fexcraft.tmt.slim.ModelBase;
+import fexcraft.tmt.slim.ModelRendererTurbo;
 import net.minecraft.entity.Entity;
 import train.render.CustomModelRenderer;
 //import src.train.core.handlers.ConfigHandler;
@@ -289,71 +290,17 @@ public class ModelHeavySteamLoco extends ModelBase{
 		box9 = new CustomModelRenderer(this, 65, 107, 130, 256);
 		box9.addBox(0.0f, 0.0f, 0.0f, 10, 7, 4);
 		box9.setPosition(-50.0f, 2.0f, -11.0f);
-	}
 
-	// public void a(final lq entity, final float f, final float f1, final float f2, final float f3, final float f4, final float f5) {
-	//if (ConfigHandler.FLICKERING) {
-	//super.a(entity, f, f1, f2, f3, f4, f5);
-	// }
-	//no clue what that goop is for lul
+		bodyModel=new ModelRendererTurbo[]{box,
+				box0,box1,box2,box3,box4,box5,box6,box7,box8,box9,
+				box10,box11,box12,box13,box14,box15,box16,box17,box18,box19,
+				box20,box21,box22,box23,box24,box25,box26,box27,box28,box29,
+				box30,box31,box32,box33,box34,box35,box36,box37,box38,box39,
+				box40,box41,box42,box43,box44,box45,box46,box47,box48,box49,
+				box50,box51,box53
+		};
 
-	@Override
-	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-
-		box.render(f5);
-		box0.render(f5);
-		box1.render(f5);
-		box10.render(f5);
-		box11.render(f5);
-		box12.render(f5);
-		box13.render(f5);
-		box14.render(f5);
-		box15.render(f5);
-		box16.render(f5);
-		box17.render(f5);
-		box18.render(f5);
-		box19.render(f5);
-		box2.render(f5);
-		box20.render(f5);
-		box21.render(f5);
-		box22.render(f5);
-		box23.render(f5);
-		box24.render(f5);
-		box25.render(f5);
-		box26.render(f5);
-		box27.render(f5);
-		box28.render(f5);
-		box29.render(f5);
-		box3.render(f5);
-		box30.render(f5);
-		box31.render(f5);
-		box32.render(f5);
-		box33.render(f5);
-		box34.render(f5);
-		box35.render(f5);
-		box36.render(f5);
-		box37.render(f5);
-		box38.render(f5);
-		box39.render(f5);
-		box4.render(f5);
-		box40.render(f5);
-		box41.render(f5);
-		box42.render(f5);
-		box43.render(f5);
-		box44.render(f5);
-		box45.render(f5);
-		box46.render(f5);
-		box47.render(f5);
-		box48.render(f5);
-		box49.render(f5);
-		box5.render(f5);
-		box50.render(f5);
-		box51.render(f5);
-		box53.render(f5);
-		box6.render(f5);
-		box7.render(f5);
-		box8.render(f5);
-		box9.render(f5);
+		fixRotation(bodyModel);
 	}
 
 	//public void setRotationAngles(final float f, final float f1, final float f2, final float f3, final float f4, final float f5) {}

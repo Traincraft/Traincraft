@@ -2,6 +2,7 @@ package train.render.models;
 
 import cpw.mods.fml.client.FMLClientHandler;
 import fexcraft.tmt.slim.ModelBase;
+import fexcraft.tmt.slim.ModelRendererTurbo;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
@@ -469,6 +470,22 @@ public class ModelLocoBR01_DB extends ModelBase {
 		box99.setPosition(-38F, 12F, -7F);
 		box99.rotateAngleX = -0.5061454830783556F;
 		box99.rotateAngleY = -3.141592653589793F;
+
+
+		bodyModel=new ModelRendererTurbo[]{box,
+				box0,box1,box2,box3,box4,box5,box6,box7,box8,box9,
+				box10,box11,box12,box13,box14,box15,box16,box17,box18,box19,
+				box20,box21,box22,box23,box24,box25,box26,box27,box28,box29,
+				box30,box31,box32,box33,box34,box35,box36,box37,box38,box39,
+				box40,box41,box42,box43,box44,box45,box46,box47,box48,box49,
+				box50,box51,box52,box53,box54,box55,box57,
+				box60,box67,box73,box74,box76,box77,
+				box81,box82,box83,box85,box86,box94,box95,box97,box98,box99,
+				box102,box103,box106,box108,
+				box110
+		};
+
+		fixRotation(bodyModel);
 	}
 	
 	@Override
@@ -477,90 +494,7 @@ public class ModelLocoBR01_DB extends ModelBase {
 		if (ClientProxy.isHoliday()) {
 			FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/locoBR01_DB_winter.png"));
 		}
-		
-		box.render(f5);
-		box0.render(f5);
-		box1.render(f5);
-		box10.render(f5);
-		box102.render(f5);
-		box103.render(f5);
-		box106.render(f5);
-		box108.render(f5);
-		box11.render(f5);
-		box110.render(f5);
-		box12.render(f5);
-		box13.render(f5);
-		box14.render(f5);
-		box15.render(f5);
-		box16.render(f5);
-		box17.render(f5);
-		box18.render(f5);
-		box19.render(f5);
-		box2.render(f5);
-		box20.render(f5);
-		box21.render(f5);
-		box23.render(f5);
-		box24.render(f5);
-		box25.render(f5);
-		box26.render(f5);
-		box27.render(f5);
-		box28.render(f5);
-		box29.render(f5);
-		box3.render(f5);
-		box30.render(f5);
-		box31.render(f5);
-		box32.render(f5);
-		box33.render(f5);
-		box34.render(f5);
-		box35.render(f5);
-		box36.render(f5);
-		box37.render(f5);
-		box38.render(f5);
-		box39.render(f5);
-		box4.render(f5);
-		box40.render(f5);
-		box41.render(f5);
-		box42.render(f5);
-		box43.render(f5);
-		box44.render(f5);
-		box45.render(f5);
-		box46.render(f5);
-		box47.render(f5);
-		box48.render(f5);
-		box49.render(f5);
-		box5.render(f5);
-		box50.render(f5);
-		box51.render(f5);
-		box52.render(f5);
-		box53.render(f5);
-		box54.render(f5);
-		box55.render(f5);
-		box57.render(f5);
-		box6.render(f5);
-		box60.render(f5);
-		box67.render(f5);
-		box7.render(f5);
-		box73.render(f5);
-		box74.render(f5);
-		box76.render(f5);
-		box77.render(f5);
-		box8.render(f5);
-		box81.render(f5);
-		box82.render(f5);
-		box83.render(f5);
-		box85.render(f5);
-		box86.render(f5);
-		box9.render(f5);
-		box97.render(f5);
-		box98.render(f5);
-		box99.render(f5);
-		
-		Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
-		box94.render(f5);
-		box95.render(f5);
-		box22.render(f5);
-		Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
-		
+		super.render(entity, f, f1, f2, f3, f4, f5);
 		if (ClientProxy.isHoliday()) {
 			GL11.glPushMatrix();
 			GL11.glTranslatef(-3.08f, 1.3f, 0);

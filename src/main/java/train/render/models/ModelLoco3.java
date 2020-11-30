@@ -69,18 +69,7 @@ public class ModelLoco3 extends ModelBase {
 		sideModels[18].addBox(0F, 0F, 0F, 20, 1, 20, 0.0F);
 		sideModels[18].setPosition(-10F, 36F, -20F);
 
-	}
-	@Override
-	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-		if (ConfigHandler.FLICKERING) {
-			super.render(entity, f, f1, f2, f3, f4, f5);
-		}
-		// super.render(entity, f, f1, f2, f3, f4, f5);
-
-		for (int i = 0; i < 19; i++) {
-			sideModels[i].render(f5);
-
-		}
+		bodyModel=sideModels;
 
 	}
 

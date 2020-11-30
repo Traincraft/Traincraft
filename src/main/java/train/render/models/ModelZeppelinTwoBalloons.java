@@ -105,12 +105,12 @@ public class ModelZeppelinTwoBalloons extends ModelBase {
 		zepSides[15].rotateAngleY = -5.846852994181004F;
 		zepSides[15].rotateAngleZ = -0.4363323129985824F;
 
+		bodyModel=zepSides;
+		fixRotation(bodyModel);
+
 	}
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-		if (ConfigHandler.FLICKERING) {
-			super.render(entity, f, f1, f2, f3, f4, f5);
-		}
 
 		if (((EntityZeppelinTwoBalloons) entity).getFuel() > 0) {
 			long now = System.nanoTime();
@@ -121,11 +121,8 @@ public class ModelZeppelinTwoBalloons extends ModelBase {
 			zepSides[6].rotateAngleZ = helice + helice1;
 			zepSides[7].rotateAngleZ = helice + helice2;
 		}
+		super.render(entity, f, f1, f2, f3, f4, f5);
 
-		for (int i = 0; i < l; i++) {
-			zepSides[i].render(f5);
-
-		}
 
 	}
 

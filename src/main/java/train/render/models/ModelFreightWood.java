@@ -3,6 +3,7 @@ package train.render.models;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.utility.ItemStackSlot;
 import fexcraft.tmt.slim.ModelBase;
+import fexcraft.tmt.slim.ModelRendererTurbo;
 import net.minecraft.entity.Entity;
 import train.render.CustomModelRenderer;
 
@@ -121,36 +122,20 @@ public class ModelFreightWood extends ModelBase {
 		box9 = new CustomModelRenderer(this, 1, 46, 256, 128);
 		box9.addBox(0F, 0F, 0F, 1, 10, 2);
 		box9.setPosition(6F, 9F, -11F);
+		bodyModel=new ModelRendererTurbo[]{box,bogey,bogey0,
+				box0,box1,box2,box3,box4,box5,box6,box7,box8,box9,
+				box10,box11,box12,
+				box52,box53,box54,box55,box68,box71,box72,box73,box79,
+				box80,box81,box82
+		};
 
+		fixRotation(bodyModel);
 	}
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-		bogey.render(f5);
-		bogey0.render(f5);
-		box.render(f5);
-		box0.render(f5);
-		box1.render(f5);
-		box2.render(f5);
-		box3.render(f5);
-		box4.render(f5);
-		box5.render(f5);		
-		box52.render(f5);
-		box53.render(f5);
-		box54.render(f5);
-		box55.render(f5);
-		box6.render(f5);
-		box68.render(f5);
-		box7.render(f5);
-		box71.render(f5);
-		box72.render(f5);
-		box73.render(f5);
-		box79.render(f5);
-		box8.render(f5);
-		box80.render(f5);
-		box81.render(f5);
-		box82.render(f5);
-		box9.render(f5);
-		
+		box10.showModel=false;
+		box11.showModel=false;
+		box12.showModel=false;
 		int cargo = 0;
 
 		for (ItemStackSlot s : ((GenericRailTransport) entity).inventory){
@@ -160,18 +145,19 @@ public class ModelFreightWood extends ModelBase {
 		}
 		if (cargo != 0) {
     		if(cargo<=6) {
-    			box10.render(f5);
+    			box10.showModel=true;
 			}
     		else if(cargo<=12 && cargo>6) {
-    			box10.render(f5);
-    			box11.render(f5);
+    			box10.showModel=true;
+    			box11.showModel=true;
     		}
     		else {
-    			box10.render(f5);
-    			box11.render(f5);
-    			box12.render(f5);
+    			box10.showModel=true;
+    			box11.showModel=true;
+    			box12.showModel=true;
     		}
 		}
+		super.render(entity, f, f1, f2, f3, f4, f5);
 
 	}
 

@@ -2,6 +2,7 @@ package train.render.models;
 //tender
 
 import fexcraft.tmt.slim.ModelBase;
+import fexcraft.tmt.slim.ModelRendererTurbo;
 import net.minecraft.entity.Entity;
 import train.render.CustomModelRenderer;
 
@@ -154,42 +155,15 @@ public class ModelTenderHeavy extends ModelBase
 		box9 = new CustomModelRenderer(this, 65, 1, 128, 256);
 		box9.addBox(0.0f, 0.0f, 0.0f, 9, 4, 20);
 		box9.setPosition(-4.0f, 1.0f, -10.0f);
+
+		bodyModel=new ModelRendererTurbo[]{box,
+				box0,box1,box2,box3,box4,box5,box6,box7,box8,box9,
+				box10,box11,box12,box13,box14,box15,box16,box17,box18,box19,
+				box20,box21,box22,box23,box24,box25,box26,box27
+		};
+
+		fixRotation(bodyModel);
 	}
 
-
-	@Override
-	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-
-
-		box.render(f5);
-		box0.render(f5);
-		box1.render(f5);
-		box10.render(f5);
-		box11.render(f5);
-		box12.render(f5);
-		box13.render(f5);
-		box14.render(f5);
-		box15.render(f5);
-		box16.render(f5);
-		box17.render(f5);
-		box18.render(f5);
-		box19.render(f5);
-		box2.render(f5);
-		box20.render(f5);
-		box21.render(f5);
-		box22.render(f5);
-		box23.render(f5);
-		box24.render(f5);
-		box25.render(f5);
-		box26.render(f5);
-		box27.render(f5);
-		box3.render(f5);
-		box4.render(f5);
-		box5.render(f5);
-		box6.render(f5);
-		box7.render(f5);
-		box8.render(f5);
-		box9.render(f5);
-	}
 
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5) {}}

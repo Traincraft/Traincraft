@@ -4,6 +4,7 @@ import cpw.mods.fml.client.FMLClientHandler;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.utility.ItemStackSlot;
 import fexcraft.tmt.slim.ModelBase;
+import fexcraft.tmt.slim.ModelRendererTurbo;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import train.core.ClientProxy;
@@ -176,39 +177,22 @@ public class ModelMinetrain extends ModelBase {
 		box9.rotateAngleX = -5.742133239061344F;
 		box9.rotateAngleY = -3.141592653589793F;
 
+		bodyModel=new ModelRendererTurbo[]{box,
+				box0,box1,box2,box3,box4,box5,box6,box7,box8,box9,
+				box10,box11,box12,box13,box14,box15,box16,box17,box18,box19,
+				box20,box21,box22,box23,box24,box25,box26,box27
+		};
+
+		fixRotation(bodyModel);
+
 	}
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
 		if (ClientProxy.isHoliday()) {
 			FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/minetrain_winter.png"));
 		}
-		box.render(f5);
-		box0.render(f5);
-		box1.render(f5);
-		box2.render(f5);
-		box3.render(f5);
-		box4.render(f5);
-		box5.render(f5);
-		box6.render(f5);
-		box7.render(f5);
-		box8.render(f5);
-		box9.render(f5);
-		box10.render(f5);
-		box11.render(f5);
-		box12.render(f5);
-		box13.render(f5);
-		box14.render(f5);
-		box15.render(f5);
-		box16.render(f5);
-		box17.render(f5);
-		box18.render(f5);
-		box19.render(f5);
-		box20.render(f5);
-		box21.render(f5);
-		box22.render(f5);
-		box23.render(f5);
-		box24.render(f5);
-		box25.render(f5);
+		box27.showModel=false;
+		box26.showModel=false;
 		
 		int cargo = 0;
 
@@ -219,12 +203,14 @@ public class ModelMinetrain extends ModelBase {
 		}
 		if (cargo != 0) {
 			if(cargo<=9) {
-				box27.render(f5);
+				box27.showModel=true;
 			}
 			else {
-				box26.render(f5);
+				box26.showModel=true;
 			}
 		}
+
+		super.render(entity, f, f1, f2, f3, f4, f5);
 	}
 
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5) {}

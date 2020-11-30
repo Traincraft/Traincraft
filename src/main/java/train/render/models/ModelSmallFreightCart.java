@@ -1,6 +1,7 @@
 package train.render.models;
 
 import fexcraft.tmt.slim.ModelBase;
+import fexcraft.tmt.slim.ModelRendererTurbo;
 import net.minecraft.entity.Entity;
 import train.render.CustomModelRenderer;
 import train.core.handlers.ConfigHandler;
@@ -85,31 +86,13 @@ public class ModelSmallFreightCart extends ModelBase {
 		top.setPosition(22F, 26F, -2F);
 		top.rotateAngleY = -1.5707963267948966F;
 
-	}
-	@Override
-	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-		if (ConfigHandler.FLICKERING) {
-			super.render(entity, f, f1, f2, f3, f4, f5);
-		}
-		// render:
+		bodyModel=new ModelRendererTurbo[]{box,bogey,
+				box0,box1,box2,box3,box4,box5,attach,bogeyframe,top,roof,freightbox,carbase
+		};
 
-		attach.render(f5);
-		bogey.render(f5);
-		bogeyframe.render(f5);
-		box.render(f5);
-		box0.render(f5);
-		box1.render(f5);
-		box2.render(f5);
-		box3.render(f5);
-		box4.render(f5);
-		box5.render(f5);
-		carbase.render(f5);
-		freightbox.render(f5);
-		roof.render(f5);
-		top.render(f5);
+		fixRotation(bodyModel);
 
 	}
-
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5) {}
 
 	// variables init:

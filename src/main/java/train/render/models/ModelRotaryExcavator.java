@@ -1,6 +1,7 @@
 package train.render.models;
 
 import fexcraft.tmt.slim.ModelBase;
+import fexcraft.tmt.slim.ModelRendererTurbo;
 import net.minecraft.entity.Entity;
 import train.render.CustomModelRenderer;
 import train.core.handlers.ConfigHandler;
@@ -139,17 +140,24 @@ public class ModelRotaryExcavator extends ModelBase {
 		box31.rotateAngleX = -0.9424777960769379F;
 		box33.rotateAngleX = -0.9773843811168246F;
 		box0.rotateAngleX = -4.71238898038469F;
+
+		bodyModel=new ModelRendererTurbo[]{box,
+				box0,box1,box2,box3,box4,box5,box6,box7,box8,box9,
+				box10,box11,box12,box13,box14,box15,box16,box17,box18,box19,
+				box20,box21,box22,box23,box24,box25,box26,box27,box28,box29,
+				box30,box31,box32,box33,box34,box35
+		};
+
+		fixRotation(bodyModel);
 	}
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-		if (ConfigHandler.FLICKERING) {
-			super.render(entity, f, f1, f2, f3, f4, f5);
-		}
+		super.render(entity, f, f1, f2, f3, f4, f5);
 		//if (((EntityRotativeDigger) entity).getFuel() > 0) {//should only dig when rotative digger has fuel and dig mode is on, doesn't work yet
 		/**
 		 * Pitch
 		 */
-		float pitch = (float) Math.toRadians(((EntityRotativeDigger) entity).pitch);
+		/*float pitch = (float) Math.toRadians(((EntityRotativeDigger) entity).pitch);
 
 		if (pitch > ((EntityRotativeDigger) entity).pitchLimits)
 			pitch = ((EntityRotativeDigger) entity).pitchLimits;
@@ -162,46 +170,7 @@ public class ModelRotaryExcavator extends ModelBase {
 		box33.rotateAngleX = -pitch - 0.9773843811168246F;
 		box34.rotateAngleX = -pitch - 0.9773843811168246F;
 		box35.rotateAngleX = -pitch - 0.9773843811168246F;
-		//}
-
-		// render:
-		box.render(f5);
-		box0.render(f5);
-		box1.render(f5);
-		box10.render(f5);
-		box11.render(f5);
-		box12.render(f5);
-		box13.render(f5);
-		box14.render(f5);
-		box15.render(f5);
-		box16.render(f5);
-		box17.render(f5);
-		box18.render(f5);
-		box19.render(f5);
-		box2.render(f5);
-		box20.render(f5);
-		box21.render(f5);
-		box22.render(f5);
-		box23.render(f5);
-		box24.render(f5);
-		box25.render(f5);
-		box26.render(f5);
-		box27.render(f5);
-		box28.render(f5);
-		box29.render(f5);
-		box3.render(f5);
-		box30.render(f5);
-		box4.render(f5);
-		box5.render(f5);
-		box6.render(f5);
-		box7.render(f5);
-		box8.render(f5);
-		box9.render(f5);
-		box31.render(f5);
-		box33.render(f5);
-		box34.render(f5);
-		box35.render(f5);
-		box32.render(f5);
+		//}*/
 	}
 
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5) {}

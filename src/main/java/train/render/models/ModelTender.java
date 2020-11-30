@@ -1,6 +1,7 @@
 package train.render.models;
 
 import fexcraft.tmt.slim.ModelBase;
+import fexcraft.tmt.slim.ModelRendererTurbo;
 import net.minecraft.entity.Entity;
 import train.render.CustomModelRenderer;
 import train.core.handlers.ConfigHandler;
@@ -62,30 +63,10 @@ public class ModelTender extends ModelBase {
 		WHEELR0.addBox(0F, 0F, 0F, 2, 7, 7);
 		WHEELR0.setPosition(4F, 0F, 5F);
 
-	}
-	@Override
-	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-		if (ConfigHandler.FLICKERING) {
-			super.render(entity, f, f1, f2, f3, f4, f5);
-		}
-		/* super.render(entity, f, f1, f2, f3, f4, f5); for(int i = 0; i < 16; i++) { sideModels[i].render(f5);
-		 * 
-		 * } */
-		// render:
-		AXLE.render(f5);
-		AXLE0.render(f5);
-		BODY.render(f5);
-		BODY0.render(f5);
-		BODY1.render(f5);
-		BODY2.render(f5);
-		BODY3.render(f5);
-		UNDER.render(f5);
-		UNDER0.render(f5);
-		WHEELL.render(f5);
-		WHEELL0.render(f5);
-		WHEELR.render(f5);
-		WHEELR0.render(f5);
+		bodyModel=new ModelRendererTurbo[]{AXLE,AXLE0,BODY,BODY0,BODY1,BODY2,BODY3,UNDER,UNDER0,WHEELL,WHEELL0,WHEELR,WHEELR0
+		};
 
+		fixRotation(bodyModel);
 	}
 
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5) {}

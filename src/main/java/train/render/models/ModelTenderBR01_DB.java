@@ -4,6 +4,7 @@ import cpw.mods.fml.client.FMLClientHandler;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.utility.ItemStackSlot;
 import fexcraft.tmt.slim.ModelBase;
+import fexcraft.tmt.slim.ModelRendererTurbo;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
@@ -350,6 +351,19 @@ public class ModelTenderBR01_DB extends ModelBase {
 		box9.setPosition(-7F, 25F, -8F);
 		box9.rotateAngleX = -6.14355896702004F;
 
+		bodyModel=new ModelRendererTurbo[]{box,
+				box0,box3,box5,box6,box7,box8,box9,
+				box11,box12,box13,box14,box15,box16,box17,box18,box19,
+				box20,box22,box23,box25,box26,box27,box29,
+				box30,box32,box33,box34,box35,box36,box37,box38,box39,
+				box47,box48,box49,
+				box50,box51,box52,box53,box54,box55,box56,box58,box59,
+				box60,box61,box62,box63,box64,box65,box66,box67,box68,box69,
+				box70,box71,box81
+		};
+
+		fixRotation(bodyModel);
+
 	}
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
@@ -357,64 +371,6 @@ public class ModelTenderBR01_DB extends ModelBase {
 		if (ClientProxy.isHoliday()) {
 			FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/tenderBR01_DB_winter.png"));
 		}
-		
-		box.render(f5);
-		box0.render(f5);
-		box11.render(f5);
-		box12.render(f5);
-		box13.render(f5);
-		box14.render(f5);
-		box15.render(f5);
-		box16.render(f5);
-		box17.render(f5);
-		box18.render(f5);
-		box19.render(f5);
-		box20.render(f5);
-		box22.render(f5);
-		box23.render(f5);
-		box25.render(f5);
-		box26.render(f5);
-		box27.render(f5);
-		box29.render(f5);
-		box3.render(f5);
-		box30.render(f5);
-		box32.render(f5);
-		box33.render(f5);
-		box34.render(f5);
-		box35.render(f5);
-		box36.render(f5);
-		box37.render(f5);
-		box38.render(f5);
-		box39.render(f5);
-		box47.render(f5);
-		box48.render(f5);
-		box49.render(f5);
-		box5.render(f5);
-		box50.render(f5);
-		box51.render(f5);
-		box52.render(f5);
-		box53.render(f5);
-		box54.render(f5);
-		box55.render(f5);
-		box56.render(f5);
-		box58.render(f5);
-		box59.render(f5);
-		box6.render(f5);
-		box60.render(f5);
-		box61.render(f5);
-		box62.render(f5);
-		box63.render(f5);
-		box64.render(f5);
-		box65.render(f5);
-		box66.render(f5);
-		box67.render(f5);
-		box69.render(f5);
-		box7.render(f5);
-		box70.render(f5);
-		box71.render(f5);
-		box8.render(f5);
-		box81.render(f5);
-		box9.render(f5);
 		
 		int cargo = 0;
 
@@ -435,6 +391,8 @@ public class ModelTenderBR01_DB extends ModelBase {
 			box68.render(f5);
 			GL11.glPopMatrix();
 		}
+
+		super.render(entity, f, f1, f2, f3, f4, f5);
 	}
 
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5) {}

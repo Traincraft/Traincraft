@@ -3,6 +3,7 @@ package train.render.models;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.utility.ItemStackSlot;
 import fexcraft.tmt.slim.ModelBase;
+import fexcraft.tmt.slim.ModelRendererTurbo;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import org.lwjgl.opengl.GL11;
@@ -575,113 +576,27 @@ public class ModelLocoSteamShay extends ModelBase {
 		roof_piston_upper.setPosition(-15F, 33F, 3F);
 		roof_piston_upper.rotateAngleX = -6.09119908946021F;
 
+		bodyModel=new ModelRendererTurbo[]{box,rod_frnt_track,piston_rear,piston_front,
+				roof_piston_upper,roof_piston_lower,roof_blank_upper,rod_rear_truck,rod_rear_mid,
+				ladder_piston_side,ladder_blank_side,crank_1,crank_2,crank_3,crank_4,coal_pile,brake_cyl,
+				box0,box1,box2,box3,box4,box6,box7,box8,box9,
+				box10,box11,box12,box14,box15,box16,box17,box18,box19,
+				box20,box21,box22,box23,box24,box25,box26,box27,box28,box29,
+				box30,box32,box33,box34,box35,box36,box37,box39,
+				box40,box41,box42,box45,box46,box48,box49,
+				box50,box51,box52,box53,box54,box55,box56,box57,box58,box63,box64,box65,box66,box67,box68,box69,
+				box70,box71,box73,box74,box75,box76,box77,box79,
+				box80,box81,box82,box89,box90,box91,box92,box95,box96,box97,box98,
+				box100,box101,box104,box105,box107
+		};
+
+		fixRotation(bodyModel);
+
 	}
 	
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-		boiler_blank_lower.render(f5);
-		boiler_blank_upper.render(f5);
-		boiler_piston_lower.render(f5);
-		boiler_piston_upper.render(f5);
-		box.render(f5);
-		box0.render(f5);
-		box1.render(f5);
-		box10.render(f5);
-		box100.render(f5);
-		box101.render(f5);
-		box104.render(f5);
-		box105.render(f5);
-		box107.render(f5);
-		box11.render(f5);
-		box12.render(f5);
-		box14.render(f5);
-		box15.render(f5);
-		box16.render(f5);
-		box17.render(f5);
-		box18.render(f5);
-		box19.render(f5);
-		box2.render(f5);
-		box20.render(f5);
-		box21.render(f5);
-		box22.render(f5);
-		box23.render(f5);
-		box24.render(f5);
-		box25.render(f5);
-		box26.render(f5);
-		box27.render(f5);
-		box28.render(f5);
-		box29.render(f5);
-		box3.render(f5);
-		box30.render(f5);
-		box32.render(f5);
-		box33.render(f5);
-		box34.render(f5);
-		box35.render(f5);
-		box36.render(f5);
-		box37.render(f5);
-		box39.render(f5);
-		box4.render(f5);
-		box40.render(f5);
-		box41.render(f5);
-		box42.render(f5);
-		box45.render(f5);
-		box46.render(f5);
-		box48.render(f5);
-		box49.render(f5);
-		box50.render(f5);
-		box51.render(f5);
-		box52.render(f5);
-		box53.render(f5);
-		box54.render(f5);
-		box55.render(f5);
-		box56.render(f5);
-		box57.render(f5);
-		box58.render(f5);
-		box6.render(f5);
-		box63.render(f5);
-		box64.render(f5);
-		box65.render(f5);
-		box66.render(f5);
-		box67.render(f5);
-		box68.render(f5);
-		box69.render(f5);
-		box7.render(f5);
-		box70.render(f5);
-		box71.render(f5);
-		box73.render(f5);
-		box75.render(f5);
-		box76.render(f5);
-		box79.render(f5);
-		box8.render(f5);
-		box80.render(f5);
-		box81.render(f5);
-		box82.render(f5);
-		box89.render(f5);
-		box9.render(f5);
-		box90.render(f5);
-		box91.render(f5);
-		box92.render(f5);
-		box95.render(f5);
-		box96.render(f5);
-		box97.render(f5);
-		box98.render(f5);
-		brake_cyl.render(f5);
-		crank_1.render(f5);
-		crank_2.render(f5);
-		crank_3.render(f5);
-		crank_4.render(f5);
-		ladder_blank_side.render(f5);
-		ladder_piston_side.render(f5);
-		piston_front.render(f5);
-		piston_rear.render(f5);
-		rod_frnt_mid.render(f5);
-		rod_frnt_track.render(f5);
-		rod_rear_mid.render(f5);
-		rod_rear_truck.render(f5);
-		roof_blank_lower.render(f5);
-		roof_blank_upper.render(f5);
-		roof_piston_lower.render(f5);
-		roof_piston_upper.render(f5);
+		super.render(entity, f, f1, f2, f3, f4, f5);
 		
 		int cargo = 0;
 
@@ -696,11 +611,6 @@ public class ModelLocoSteamShay extends ModelBase {
 			coal_pile.render(f5);
 			GL11.glPopMatrix();
 		}
-		
-		Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
-		box74.render(f5);
-		box77.render(f5);
-		Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
 	}
 
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5) {}
