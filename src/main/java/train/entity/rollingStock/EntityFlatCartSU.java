@@ -42,7 +42,7 @@ public class EntityFlatCartSU extends GenericRailTransport {
     public int getInventoryRows(){return 0;}
     @Override
     public List<TrainsInMotion.transportTypes> getTypes(){
-        return TrainsInMotion.transportTypes..singleton();
+        return TrainsInMotion.transportTypes.FREIGHT.singleton();
     }
     @Override
     public float weightKg(){return 10f;}

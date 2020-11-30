@@ -32,20 +32,6 @@ public class ModelLoco44TonSwitcher extends ModelConverter //Same as Filename
 		flipAll();
 	}
 
-	@Override
-	public void render(Entity entity, float f0, float f1, float f2, float f3, float f4, float scale) {
-		for (ModelRendererTurbo mrt : bodyModel) {
-			if (mrt.boxName.equals("lamp")) {
-				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
-				mrt.render(scale);
-				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
-			} else {
-				mrt.render(scale);
-			}
-		}
-	}
-
-
 
 
 	private void initbodyModel_1()

@@ -222,4 +222,8 @@ public class EntityLocoSteam4_4_0 extends EntityTrainCore {
      */
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new ModelLoco()};}
+
+
+    @Override
+    public float[][] modelRotations(){return new float[][]{{0f,90f,180f}};}
 }

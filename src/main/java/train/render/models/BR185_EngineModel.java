@@ -718,18 +718,7 @@ public class BR185_EngineModel extends ModelBase
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
-		for(int i = 0; i < 171; i++)
-		{
-
-			if(br185_enginemodelModel[i].boxName!= null && br185_enginemodelModel[i].boxName.equals("lamp")){
-				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
-				br185_enginemodelModel[i].render(f5);
-				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
-
-			} else {
-				br185_enginemodelModel[i].render(f5);
-			}
-		}
+		super.render(entity, f, f1, f2, f3, f4, f5);
 		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/BR185_Bogie.png"));
 		GL11.glPushMatrix();
 		GL11.glTranslated(-1.5,0.27,0);

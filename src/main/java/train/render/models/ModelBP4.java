@@ -950,18 +950,7 @@ public class ModelBP4 extends ModelConverter
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
-
-		for(ModelRendererTurbo m :bodyModel)
-		{
-			if(m.boxName.equals("lamp")){
-				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
-			}
-			m.render(f5);
-			if(m.boxName.equals("lamp")){
-				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
-			}
-		}
-
+		super.render(entity, f, f1, f2, f3, f4, f5);
 
 		//todo: this should be handled by TiM's skin system
 		/*if(entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor()==5){

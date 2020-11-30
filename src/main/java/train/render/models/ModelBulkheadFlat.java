@@ -482,10 +482,7 @@ public class ModelBulkheadFlat extends ModelBase
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
-		for(int i = 0; i < 112; i++)
-		{
-			bulkheadflatModel[i].render(f5);
-		}
+		super.render(entity, f, f1, f2, f3, f4, f5);
 		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/wellcar_bogie.png"));
 		GL11.glPushMatrix();
 		GL11.glTranslated(-1.8,0.16,-0.35);

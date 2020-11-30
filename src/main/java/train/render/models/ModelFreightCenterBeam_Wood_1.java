@@ -3,6 +3,7 @@ package train.render.models;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.utility.ItemStackSlot;
 import fexcraft.tmt.slim.ModelBase;
+import fexcraft.tmt.slim.ModelRendererTurbo;
 import net.minecraft.entity.Entity;
 import train.render.CustomModelRenderer;
 import train.core.handlers.ConfigHandler;
@@ -145,38 +146,30 @@ public class ModelFreightCenterBeam_Wood_1 extends ModelBase {
 		box9 = new CustomModelRenderer(this, 3, 49, 256, 256);
 		box9.addBox(0F, 0F, 0F, 4, 2, 9);
 		box9.setPosition(-2F, 5F, 19F);
+		bodyModel=new ModelRendererTurbo[]{box,
+				box0,box1,box2,box3,box4,box5,box6,box7,box8,box9,
+				box10,box11,box12,box13,box14,box15,box16,box17,box18,box19,
+				box20,box21,box22,box23,box24,box25,box26,box27,box31,box32,box41,box43
+		};
+
+		fixRotation(bodyModel);
 	}
 
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-		if (ConfigHandler.FLICKERING) {
-			super.render(entity, f, f1, f2, f3, f4, f5);
-		}
-		box.render(f5);
-		box0.render(f5);
-		box1.render(f5);
-		box10.render(f5);
-		box11.render(f5);
-		box12.render(f5);
-		box13.render(f5);
-		box14.render(f5);
-		box15.render(f5);
-		box16.render(f5);
-		box17.render(f5);
-		box18.render(f5);
-		box22.render(f5);
-		box3.render(f5);
-		box31.render(f5);
-		box32.render(f5);
-		box4.render(f5);
-		box41.render(f5);
-		box43.render(f5);
-		box5.render(f5);
-		box6.render(f5);
-		box7.render(f5);
-		box8.render(f5);
-		box9.render(f5);
-		box2.render(f5);
+
+		//bottom
+		box24.showModel=false;
+		box19.showModel=false;
+		//bottom+1
+		box25.showModel=false;
+		box20.showModel=false;
+		//bottom+2
+		box26.showModel=false;
+		box21.showModel=false;
+		//top
+		box23.showModel=false;
+		box27.showModel=false;
 
 		int cargo = 0;
 
@@ -189,43 +182,44 @@ public class ModelFreightCenterBeam_Wood_1 extends ModelBase {
 		if (cargo != 0) {
 			if(cargo<=inventorySize/6) {
 				//bottom
-				box24.render(f5);
-				box19.render(f5);
+				box24.showModel=true;
+				box19.showModel=true;
 			}
 			else if(cargo<=inventorySize/3 && cargo>inventorySize/6) {
 				//bottom
-				box24.render(f5);
-				box19.render(f5);
+				box24.showModel=true;
+				box19.showModel=true;
 				//bottom+1
-				box25.render(f5);
-				box20.render(f5);
+				box25.showModel=true;
+				box20.showModel=true;
 			}
 			else if(cargo<=inventorySize/2 && cargo>inventorySize/3) {
 				//bottom
-				box24.render(f5);
-				box19.render(f5);
+				box24.showModel=true;
+				box19.showModel=true;
 				//bottom+1
-				box25.render(f5);
-				box20.render(f5);
+				box25.showModel=true;
+				box20.showModel=true;
 				//bottom+2
-				box26.render(f5);
-				box21.render(f5);
+				box26.showModel=true;
+				box21.showModel=true;
 			}
 			else if(cargo>inventorySize/2) {
 				//bottom
-				box24.render(f5);
-				box19.render(f5);
+				box24.showModel=true;
+				box19.showModel=true;
 				//bottom+1
-				box25.render(f5);
-				box20.render(f5);
+				box25.showModel=true;
+				box20.showModel=true;
 				//bottom+2
-				box26.render(f5);
-				box21.render(f5);
+				box26.showModel=true;
+				box21.showModel=true;
 				//top
-				box23.render(f5);
-				box27.render(f5);
+				box23.showModel=true;
+				box27.showModel=true;
 			}
 		}
+		super.render(entity, f, f1, f2, f3, f4, f5);
 	}
 
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5) {}

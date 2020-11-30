@@ -1,6 +1,7 @@
 package train.render.models;
 
 import fexcraft.tmt.slim.ModelBase;
+import fexcraft.tmt.slim.ModelRendererTurbo;
 import net.minecraft.entity.Entity;
 import org.lwjgl.opengl.GL11;
 import train.core.ClientProxy;
@@ -76,21 +77,16 @@ public class ModelFlatCarSU extends ModelBase {
 		box9.addBox(0F, 0F, 0F, 14, 5, 8);
 		box9.setPosition(8F, 3F, -4F);
 
+		bodyModel=new ModelRendererTurbo[]{box,
+				box0,box1,box2,box4,box6,box7,box9,
+				box14,box23,box24,box25
+		};
+
+		fixRotation(bodyModel);
 	}
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-		box.render(f5);
-		box0.render(f5);
-		box1.render(f5);
-		box14.render(f5);
-		box2.render(f5);
-		box23.render(f5);
-		box24.render(f5);
-		box25.render(f5);
-		box4.render(f5);
-		box6.render(f5);
-		box7.render(f5);
-		box9.render(f5);
+		super.render(entity, f, f1, f2, f3, f4, f5);
 		
 		if (ClientProxy.isHoliday()) {
 			//big

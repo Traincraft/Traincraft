@@ -67,11 +67,7 @@ public class PassengerIC4_DSB_FG extends GenericRailTransport {
     //recipe
     @Override
     public ItemStack[] getRecipie() {
-        return new ItemStack[]{
-                new ItemStack(), new ItemStack(), new ItemStack(), 
-                new ItemStack(), new ItemStack(), new ItemStack(), 
-                new ItemStack(), new ItemStack(), new ItemStack() 
-        };
+        return null;
     }
 
 

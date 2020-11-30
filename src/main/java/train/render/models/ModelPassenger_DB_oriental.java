@@ -408,10 +408,7 @@ public class ModelPassenger_DB_oriental extends ModelBase
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
-		for(int i = 0; i < 84; i++)
-		{
-			passenger_db_orientalModel[i].render(f5);
-		}
+		super.render(entity, f, f1, f2, f3, f4, f5);
         GL11.glPushMatrix();
         GL11.glTranslated(0,0.0,0);
 		bogie.render(entity, f, f1, f2, f3, f4, f5);

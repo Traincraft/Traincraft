@@ -44,7 +44,7 @@ public class EntityLocoSteamSnowPlow extends EntityTrainCore {
     public int getInventoryRows(){return 1;}
     @Override
     public List<TrainsInMotion.transportTypes> getTypes(){
-        return TrainsInMotion.transportTypes..singleton();
+        return TrainsInMotion.transportTypes.STEAM.singleton();
     }
     @Override
     public float weightKg(){return 10f;}

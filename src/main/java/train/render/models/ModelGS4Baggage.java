@@ -411,10 +411,7 @@ public class ModelGS4Baggage extends ModelBase
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
-		for(int i = 0; i < 92; i++)
-		{
-			gs4baggageModel[i].render(f5);
-		}
+		super.render(entity, f, f1, f2, f3, f4, f5);
 
 		//todo: this should be handled by TiM's skin system
 		/*if(entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor()==2){

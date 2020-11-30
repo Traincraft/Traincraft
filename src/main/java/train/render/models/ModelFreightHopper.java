@@ -3,6 +3,7 @@ package train.render.models;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.utility.ItemStackSlot;
 import fexcraft.tmt.slim.ModelBase;
+import fexcraft.tmt.slim.ModelRendererTurbo;
 import net.minecraft.entity.Entity;
 import org.lwjgl.opengl.GL11;
 import train.render.CustomModelRenderer;
@@ -208,47 +209,19 @@ public class ModelFreightHopper extends ModelBase {
 		box9 = new CustomModelRenderer(this, 0, 0, 128, 128);
 		box9.addBox(0F, 0F, 0F, 12, 3, 8);
 		box9.setPosition(9F, 4F, -4F);
+
+		bodyModel=new ModelRendererTurbo[]{box,
+				box0,box1,box2,box3,box4,box5,box6,box7,box8,box9,
+				box10,box11,box12,box13,box14,box15,box16,box17,box18,box19,
+				box20,box21,box22,box23,box24,box25,box27,box28,box29,
+				box30,box31,box32,box33,box34,box35,box36
+		};
+
+		fixRotation(bodyModel);
 	}
 	
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-		box.render(f5);
-		box0.render(f5);
-		box1.render(f5);
-		box10.render(f5);
-		box11.render(f5);
-		box12.render(f5);
-		box13.render(f5);
-		box14.render(f5);
-		box15.render(f5);
-		box16.render(f5);
-		box17.render(f5);
-		box18.render(f5);
-		box19.render(f5);
-		box2.render(f5);
-		box20.render(f5);
-		box21.render(f5);
-		box22.render(f5);
-		box23.render(f5);
-		box24.render(f5);
-		box25.render(f5);
-		box27.render(f5);
-		box28.render(f5);
-		box29.render(f5);
-		box3.render(f5);
-		box30.render(f5);
-		box31.render(f5);
-		box32.render(f5);
-		box33.render(f5);
-		box34.render(f5);
-		box35.render(f5);
-		box36.render(f5);
-		box4.render(f5);
-		box5.render(f5);
-		box6.render(f5);
-		box7.render(f5);
-		box8.render(f5);
-		box9.render(f5);
 		
 		int cargo = 0;
 
@@ -272,6 +245,8 @@ public class ModelFreightHopper extends ModelBase {
 				GL11.glPopMatrix();
 			}
 		}
+
+		super.render(entity, f, f1, f2, f3, f4, f5);
 	}
 
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5) {}

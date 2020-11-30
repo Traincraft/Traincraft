@@ -50,7 +50,7 @@ public class EntityFreightGTNG extends GenericRailTransport {
 
     //Model stuff
     @Override
-    public ModelBase[] getModel(){return new ModelBase[]{new train.render.ModelGTNG()};}
+    public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelGTNG()};}
     @Override
     public float[][] modelOffsets(){return new float[][]{{0.0f, -0.2f, 0.0f}};}
     @Override

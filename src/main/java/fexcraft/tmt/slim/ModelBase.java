@@ -1,5 +1,6 @@
 package fexcraft.tmt.slim;
 
+import ebf.tim.utility.CommonUtil;
 import ebf.tim.utility.DebugUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GLAllocation;
@@ -171,6 +172,14 @@ public class ModelBase extends ArrayList<ModelRendererTurbo> {
 			if(flipX){mod.rotateAngleX = -mod.rotateAngleX;}
 			if(flipY){mod.rotateAngleY = -mod.rotateAngleY;}
 			if(flipZ){mod.rotateAngleZ = -mod.rotateAngleZ;}
+		}
+	}
+
+	protected final void fixRotation(ModelRendererTurbo[] parts){
+		for(ModelRendererTurbo p : parts){
+			p.rotateAngleX*= CommonUtil.degreesF;
+			p.rotateAngleY*= CommonUtil.degreesF;
+			p.rotateAngleZ*= p.rotateAngleY!=0?-CommonUtil.degreesF:CommonUtil.degreesF;
 		}
 	}
 

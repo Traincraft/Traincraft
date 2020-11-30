@@ -1,6 +1,7 @@
 package train.render.models;
 
 import fexcraft.tmt.slim.ModelBase;
+import fexcraft.tmt.slim.ModelRendererTurbo;
 import net.minecraft.entity.Entity;
 import train.render.CustomModelRenderer;
 import train.core.handlers.ConfigHandler;
@@ -107,38 +108,12 @@ public class ModelFreightCenterBeam_Empty extends ModelBase {
 		box9 = new CustomModelRenderer(this, 3, 49, 256, 128);
 		box9.addBox(0F, 0F, 0F, 4, 2, 9);
 		box9.setPosition(-2F, 5F, 19F);
-	}
-	@Override
-	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-		if (ConfigHandler.FLICKERING) {
-			super.render(entity, f, f1, f2, f3, f4, f5);
-		}
-		box.render(f5);
-		box0.render(f5);
-		box1.render(f5);
-		box10.render(f5);
-		box11.render(f5);
-		box12.render(f5);
-		box13.render(f5);
-		box14.render(f5);
-		box15.render(f5);
-		box16.render(f5);
-		box17.render(f5);
-		box18.render(f5);
-		box2.render(f5);
-		box22.render(f5);
-		box3.render(f5);
-		box31.render(f5);
-		box32.render(f5);
-		box4.render(f5);
-		box41.render(f5);
-		box43.render(f5);
-		box5.render(f5);
-		box6.render(f5);
-		box7.render(f5);
-		box8.render(f5);
-		box9.render(f5);
+		bodyModel=new ModelRendererTurbo[]{box,
+				box0,box1,box2,box3,box4,box5,box6,box7,box8,box9,
+				box10,box11,box12,box13,box14,box15,box16,box17,box18,box22,box31,box32,box41,box43
+		};
 
+		fixRotation(bodyModel);
 	}
 
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5) {}

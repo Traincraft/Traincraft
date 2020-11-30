@@ -396,14 +396,7 @@ public class ModelMILW_H1044 extends ModelBase
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
-
-        GL11.glPushMatrix();
-        GL11.glScaled(1.2f, 1.2f, 1.2f);
-        for(ModelRendererTurbo m : milw_h1044Model)
-        {
-            m.render(f5);
-        }
-        GL11.glPopMatrix();
+        super.render(entity, f, f1, f2, f3, f4, f5);
 
         Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/MILW_H1044_bogie.png"));
 

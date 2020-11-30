@@ -707,16 +707,7 @@ public class ModelEMDF3 extends ModelBase
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
-		for (int i = 0; i < 164; i++)
-		{
-			if (emdf3Model[i].boxName != null && emdf3Model[i].boxName.equals("lamp")) {
-				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
-				emdf3Model[i].render(f5);
-				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
-			} else {
-				emdf3Model[i].render(f5);
-			}
-		}
+		super.render(entity, f, f1, f2, f3, f4, f5);
 
 		Tessellator.bindTexture(new ResourceLocation(Info.modID, "textures/trains/Blomberg_b_trucks.png"));
 		GL11.glPushMatrix();

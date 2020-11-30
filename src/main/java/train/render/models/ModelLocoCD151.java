@@ -36,15 +36,7 @@ public class ModelLocoCD151 extends ModelConverter //Same as Filename
 	private ModelCD151Bogie bogie = new ModelCD151Bogie();
 	@Override
 	public void render(Entity entity, float f0, float f1, float f2, float f3, float f4, float scale){
-		for (ModelRendererTurbo mrt : bodyModel){
-			if(mrt.boxName.equals("lamp")){
-				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
-				mrt.render(scale);
-				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
-			} else {
-				mrt.render(scale);
-			}
-		}
+		super.render(entity, f0, f1, f2, f3, f4, scale);
 
 		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation,Info.trainsPrefix +"cd151_front_bogie.png"));
 		GL11.glPushMatrix();

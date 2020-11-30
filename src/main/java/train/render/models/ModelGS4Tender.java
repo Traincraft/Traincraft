@@ -113,18 +113,7 @@ public class ModelGS4Tender extends ModelBase
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
-		for(int i = 0; i < 19; i++)
-		{
-
-			if(gs4tenderModel[i].boxName!= null && gs4tenderModel[i].boxName.equals("lamp")){
-				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
-				gs4tenderModel[i].render(f5);
-				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
-
-			} else {
-				gs4tenderModel[i].render(f5);
-			}
-		}
+		super.render(entity, f, f1, f2, f3, f4, f5);
 
 
 		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/GS4_tender_bogie.png"));

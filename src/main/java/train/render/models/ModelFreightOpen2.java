@@ -3,6 +3,7 @@ package train.render.models;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.utility.ItemStackSlot;
 import fexcraft.tmt.slim.ModelBase;
+import fexcraft.tmt.slim.ModelRendererTurbo;
 import net.minecraft.entity.Entity;
 import org.lwjgl.opengl.GL11;
 import train.render.CustomModelRenderer;
@@ -131,32 +132,17 @@ public class ModelFreightOpen2 extends ModelBase {
 		box82.addBox(0F, 0F, 0F, 12, 2, 2);
 		box82.setPosition(-6F, 2F, 11F);
 
+		bodyModel=new ModelRendererTurbo[]{box,
+				box0,box1,box2,box3,box4,box6,box53,box54,box55,box68,
+				box71,box72,box73,box78,box79,
+				box80,box81,box82
+		};
+
+		fixRotation(bodyModel);
+
 	}
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-		bogey.render(f5);
-		bogey0.render(f5);
-		box.render(f5);
-		box0.render(f5);
-		box1.render(f5);
-		box2.render(f5);
-		box3.render(f5);
-		box4.render(f5);
-		box52.render(f5);
-		box53.render(f5);
-		box54.render(f5);
-		box55.render(f5);
-		box6.render(f5);
-		box68.render(f5);
-		box71.render(f5);
-		box72.render(f5);
-		box73.render(f5);
-		box78.render(f5);
-		box79.render(f5);
-		box8.render(f5);
-		box80.render(f5);
-		box81.render(f5);
-		box82.render(f5);
 		
 		int cargo = 0;
 
@@ -171,6 +157,8 @@ public class ModelFreightOpen2 extends ModelBase {
 			box5.render(f5);
 			GL11.glPopMatrix();
 		}
+
+		super.render(entity, f, f1, f2, f3, f4, f5);
 	}
 
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5) {}

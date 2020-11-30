@@ -651,7 +651,8 @@ public class ModelEWSClass66 extends ModelBase
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
-		for(int i = 0; i < 141; i++)
+		super.render(entity, f, f1, f2, f3, f4, f5);
+		/*for(int i = 0; i < 141; i++)
 		{
 			if (i==53 || i==46 || i== 27 || i==34 || i==8 || i==7 || i==47 || i==49){
 				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
@@ -660,7 +661,7 @@ public class ModelEWSClass66 extends ModelBase
 			if (i==53 || i==46 || i== 27 || i==34 || i==8 || i==7 || i==47 || i==49){
 				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
 			}
-		}
+		}*/
 
 		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/Class66Bogie.png"));
 		GL11.glPushMatrix();

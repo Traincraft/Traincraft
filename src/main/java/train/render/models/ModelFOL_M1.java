@@ -784,15 +784,7 @@ public class ModelFOL_M1 extends ModelBase
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
-		for (ModelRendererTurbo mrt : fol_m1Model){
-			if(mrt.boxName.equals("lamp")){
-				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
-				mrt.render(f5);
-				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
-			} else {
-				mrt.render(f5);
-			}
-		}
+		super.render(entity, f, f1, f2, f3, f4, f5);
 
 
 		//todo: this should be handled by TiM's skin system
