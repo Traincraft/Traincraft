@@ -34,9 +34,10 @@ public class EntityFreightDenverRioGrande extends GenericRailTransport {
     @Override
     public String transportName(){return "Denver Rio Grande Baggage";}
     @Override
-    public String transportcountry(){return "Undefined";}
-    @Override
-    public String transportYear(){return "Undefined";}
+    public String transportcountry(){return "us";}
+    @Override//probably wrong, this is actually taken from:
+    // https://www.historycolorado.org/sites/default/files/media/documents/2017/5ah3006.pdf
+    public String transportYear(){return "1914-1960";}
     @Override
     public boolean isFictional(){return false;}
     @Override
@@ -45,14 +46,15 @@ public class EntityFreightDenverRioGrande extends GenericRailTransport {
     public List<TrainsInMotion.transportTypes> getTypes(){
         return TrainsInMotion.transportTypes.FREIGHT.singleton();
     }
-    @Override
-    public float weightKg(){return 10f;}
+    @Override//probably wrong, this is actually taken from:
+    // https://www.historycolorado.org/sites/default/files/media/documents/2017/5ah3006.pdf
+    public float weightKg(){return 58967f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelDRGBaggage()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{0.0f, -0.14f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.0f, 0.0f}};}
     @Override
     public float[][] modelRotations(){return new float[][]{{0.0f, 0.0f, 0.0f}};}
     @Override
@@ -82,11 +84,11 @@ public class EntityFreightDenverRioGrande extends GenericRailTransport {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return null;}
     @Override
-    public float[] getHitboxSize(){return new float[]{6.300000190734863f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{7.1f,2.6f,1.4f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{2.5200002193450928f, -2.5200002193450928f};}
+    public float[] bogieLengthFromCenter() {return new float[]{2.1f, -2.1f};}
 
 
 

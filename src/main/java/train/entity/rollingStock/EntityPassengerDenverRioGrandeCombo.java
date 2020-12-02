@@ -14,6 +14,7 @@ import train.Traincraft;
 import train.library.Info;
 import train.library.ItemIDs;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -33,26 +34,31 @@ public class EntityPassengerDenverRioGrandeCombo extends GenericRailTransport {
     //main stats
     @Override
     public String transportName(){return "Passenger Denver Rio Grande Combo";}
+    @Override//probably wrong, this is actually taken from:
+    // https://www.historycolorado.org/sites/default/files/media/documents/2017/5ah3006.pdf
+    public String transportcountry(){return "us";}
     @Override
-    public String transportcountry(){return "Undefined";}
-    @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "1914-1960";}
     @Override
     public boolean isFictional(){return false;}
     @Override
-    public int getInventoryRows(){return 0;}
+    public int getInventoryRows(){return 2;}
     @Override
     public List<TrainsInMotion.transportTypes> getTypes(){
-        return TrainsInMotion.transportTypes.PASSENGER.singleton();
+        List<TrainsInMotion.transportTypes> l=new ArrayList<>();
+        l.add(TrainsInMotion.transportTypes.PASSENGER);
+        l.add(TrainsInMotion.transportTypes.FREIGHT);
+        return l;
     }
-    @Override
-    public float weightKg(){return 10f;}
+    @Override//probably wrong, this is actually taken from:
+    // https://www.historycolorado.org/sites/default/files/media/documents/2017/5ah3006.pdf
+    public float weightKg(){return 58967f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelDRGCombo()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{0.0f, -0.14f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.0f, 0.0f}};}
     @Override
     public float[][] modelRotations(){return new float[][]{{0.0f, 0.0f, 0.0f}};}
     @Override
@@ -82,11 +88,11 @@ public class EntityPassengerDenverRioGrandeCombo extends GenericRailTransport {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return new float[][]{{1.6f,1.5f, 0f},{0.2f,1.4f, 0f},{-1f,1.5f, 0f},{-2.2f,1.5f, 0f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{6.300000190734863f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{7.1f,2.6f,1.4f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{2.5200002193450928f, -2.5200002193450928f};}
+    public float[] bogieLengthFromCenter() {return new float[]{2.1f, -2.1f};}
 
 
 

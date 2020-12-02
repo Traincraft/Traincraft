@@ -35,9 +35,9 @@ public class EntityLocoSteamC41 extends EntityTrainCore {
     @Override
     public String transportName(){return "Loco Steam C41";}
     @Override
-    public String transportcountry(){return "Undefined";}
-    @Override
-    public String transportYear(){return "Undefined";}
+    public String transportcountry(){return "us";}
+    @Override//this source is hard to find, https://forums.auran.com/trainz/archive/index.php/t-45743.html
+    public String transportYear(){return "1924-1927";}
     @Override
     public boolean isFictional(){return false;}
     @Override
@@ -46,14 +46,14 @@ public class EntityLocoSteamC41 extends EntityTrainCore {
     public List<TrainsInMotion.transportTypes> getTypes(){
         return TrainsInMotion.transportTypes.STEAM.singleton();
     }
-    @Override
-    public float weightKg(){return 10f;}
+    @Override//there's no way this is accurate, the stats are from the K-37 model.
+    public float weightKg(){return 83420f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelLocoC41()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{-3.5f, 0.5f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{-1.5f, 0.7f, 0.0f}};}
     @Override
     public float[][] modelRotations(){return new float[][]{{0.0f, 0.0f, 0.0f}};}
     @Override
@@ -79,11 +79,11 @@ public class EntityLocoSteamC41 extends EntityTrainCore {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return new float[][]{{2.1f,1.5f, -0.3f},{2.1f,1.5f, 0.3f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{4.600000047683716f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{5f,2.4f,1.4f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{2.1800000190734865f, -2.1800000190734865f};}
+    public float[] bogieLengthFromCenter() {return new float[]{1.3f, -2f};}
     //Train specific stuff
     @Override
     public String transportFuelType(){return "steam";}
@@ -103,7 +103,7 @@ public class EntityLocoSteamC41 extends EntityTrainCore {
     //these only change in very specific use cases.
     @Override
     public boolean shouldRiderSit(){
-        return false;
+        return true;
     }
     @Override
     public Item getItem(){return thisItem;}

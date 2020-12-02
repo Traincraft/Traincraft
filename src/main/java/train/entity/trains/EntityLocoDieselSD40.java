@@ -35,9 +35,9 @@ public class EntityLocoDieselSD40 extends EntityTrainCore {
     @Override
     public String transportName(){return "Loco Diesel SD40";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "us";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "1972-1989";}
     @Override
     public boolean isFictional(){return false;}
     @Override
@@ -47,15 +47,15 @@ public class EntityLocoDieselSD40 extends EntityTrainCore {
         return TrainsInMotion.transportTypes.DIESEL.singleton();
     }
     @Override
-    public float weightKg(){return 10f;}
+    public float weightKg(){return 166922f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelSD40()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{-1.2f, 0.47f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0f, 0.67f, 0.0f}};}
     @Override
-    public float[][] modelRotations(){return new float[][]{{180.0f, -90.0f, -180.0f}};}
+    public float[][] modelRotations(){return new float[][]{{180, 90.0f, 0}};}
     @Override
     public void registerSkins(){
         SkinRegistry.addSkin(this.getClass(),
@@ -91,24 +91,24 @@ public class EntityLocoDieselSD40 extends EntityTrainCore {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return new float[][]{{1,1.4f, 0.2f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{4.7000000953674315f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{4.7f,2.3f,1.1f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{2.1100000381469726f, -2.1100000381469726f};}
+    public float[] bogieLengthFromCenter() {return new float[]{1.3f, -1.3f};}
     //Train specific stuff
     @Override
     public String transportFuelType(){return "diesel";}
     @Override
-    public float transportMetricHorsePower(){return 3041;}
+    public float transportMetricHorsePower(){return 3041.61f;}
     @Override
     public float transportTopSpeed(){return 105;}
     @Override
     public ItemStackSlot fuelSlot(){
         return super.fuelSlot().setOverlay(Items.coal);
     }
-    @Override
-    public int[] getTankCapacity(){return new int[]{20000};}
+    @Override//fuel storage is 4000 us gallons, which translates to roughly 15.14 cubic meters of fluid
+    public int[] getTankCapacity(){return new int[]{15140};}
 
 
 
