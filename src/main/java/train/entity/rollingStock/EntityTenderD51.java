@@ -34,25 +34,25 @@ public class EntityTenderD51 extends GenericRailTransport {
     @Override
     public String transportName(){return "Tender D51";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "japan";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "1930-1951";}
     @Override
     public boolean isFictional(){return false;}
     @Override
-    public int getInventoryRows(){return 0;}
+    public int getInventoryRows(){return 2;}
     @Override
     public List<TrainsInMotion.transportTypes> getTypes(){
         return TrainsInMotion.transportTypes.TENDER.singleton();
     }
-    @Override
-    public float weightKg(){return 10f;}
+    @Override//taken from wikipedia, total weight minus loco weight.
+    public float weightKg(){return 46230f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelD51Tender()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{-3.0f, -0.35f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{-3.0f, -0.2f, 0.0f}};}
     @Override
     public float[][] modelRotations(){return new float[][]{{0.0f, 0.0f, 0.0f}};}
     @Override
@@ -77,11 +77,11 @@ public class EntityTenderD51 extends GenericRailTransport {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return null;}
     @Override
-    public float[] getHitboxSize(){return new float[]{3.799999952316284f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{3.8f,2.1f,1.1f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{1.5199999809265137f, -1.5199999809265137f};}
+    public float[] bogieLengthFromCenter() {return new float[]{1f, -1f};}
     @Override
     public int[] getTankCapacity(){return new int[]{14000};}
 

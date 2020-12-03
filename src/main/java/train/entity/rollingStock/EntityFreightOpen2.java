@@ -35,25 +35,25 @@ public class EntityFreightOpen2 extends GenericRailTransport {
     @Override
     public String transportName(){return "Freight Open RedBrown";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "undefined";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "unknown";}
     @Override
-    public boolean isFictional(){return false;}
+    public boolean isFictional(){return true;}
     @Override
-    public int getInventoryRows(){return 2;}
+    public int getInventoryRows(){return 3;}
     @Override
     public List<TrainsInMotion.transportTypes> getTypes(){
         return TrainsInMotion.transportTypes.FREIGHT.singleton();
     }
-    @Override
-    public float weightKg(){return 10f;}
+    @Override//cart is too vague to know what it is for sure, so we're just going off original stats.
+    public float weightKg(){return 9071.85f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelFreightOpen2()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.44f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.64f, 0.0f}};}
     @Override
     public float[][] modelRotations(){return new float[][]{{0.0f, -90.0f, -180.0f}};}
     @Override
@@ -78,11 +78,11 @@ public class EntityFreightOpen2 extends GenericRailTransport {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return null;}
     @Override
-    public float[] getHitboxSize(){return new float[]{2.640000104904175f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{2.6f,2.1f,1.1f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{1.0560001134872437f, -1.0560001134872437f};}
+    public float[] bogieLengthFromCenter() {return new float[]{0.7f, -0.7f};}
 
 
 

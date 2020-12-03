@@ -34,9 +34,9 @@ public class EntityBoxCartUS extends GenericRailTransport {
     @Override
     public String transportName(){return "Freight Box Cart US";}
     @Override
-    public String transportcountry(){return "Undefined";}
-    @Override
-    public String transportYear(){return "Undefined";}
+    public String transportcountry(){return "us";}
+    @Override//under the assumption these were using pressed steel undercarriages which was standardized in 1930
+    public String transportYear(){return "1930-1960";}
     @Override
     public boolean isFictional(){return false;}
     @Override
@@ -45,14 +45,15 @@ public class EntityBoxCartUS extends GenericRailTransport {
     public List<TrainsInMotion.transportTypes> getTypes(){
         return TrainsInMotion.transportTypes.FREIGHT.singleton();
     }
+    //weight was taken from the 50ft UP boxcars
     @Override
-    public float weightKg(){return 10f;}
+    public float weightKg(){return 122467f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelBoxCartUS()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.45f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.6f, 0.0f}};}
 @Override
     public float[][] modelRotations(){return new float[][]{{0f,180f,180f}};}
     @Override
@@ -107,11 +108,11 @@ public class EntityBoxCartUS extends GenericRailTransport {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return null;}
     @Override
-    public float[] getHitboxSize(){return new float[]{3.299999952316284f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{3.3f,2.5f,1.3f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{1.3200000524520874f, -1.3200000524520874f};}
+    public float[] bogieLengthFromCenter() {return new float[]{0.9f, -0.9f};}
 
 
 

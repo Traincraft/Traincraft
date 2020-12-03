@@ -35,9 +35,9 @@ public class EntityLocoDieselDD35A extends EntityTrainCore {
     @Override
     public String transportName(){return "Loco Diesel DD35A";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "us";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "1965";}
     @Override
     public boolean isFictional(){return false;}
     @Override
@@ -47,13 +47,13 @@ public class EntityLocoDieselDD35A extends EntityTrainCore {
         return TrainsInMotion.transportTypes.DIESEL.singleton();
     }
     @Override
-    public float weightKg(){return 10f;}
+    public float weightKg(){return 235575f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelDD35A()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{-5.0f, -0.18f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{-2.8f, 0.0f, 0.0f}};}
     @Override
     public float[][] modelRotations(){return new float[][]{{0.0f, 0.0f, 0.0f}};}
     @Override
@@ -83,9 +83,9 @@ public class EntityLocoDieselDD35A extends EntityTrainCore {
     @Override
     public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{7.349999904632568f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{8.3f,2.6f,1.2f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{3.4149999618530273f, -3.4149999618530273f};}
+    public float[] bogieLengthFromCenter() {return new float[]{2.6f, -2.6f};}
     //Train specific stuff
     @Override
     public String transportFuelType(){return "diesel";}
@@ -98,7 +98,7 @@ public class EntityLocoDieselDD35A extends EntityTrainCore {
         return super.fuelSlot().setOverlay(Items.coal);
     }
     @Override
-    public int[] getTankCapacity(){return new int[]{6850};}
+    public int[] getTankCapacity(){return new int[]{31150};}
 
 
 

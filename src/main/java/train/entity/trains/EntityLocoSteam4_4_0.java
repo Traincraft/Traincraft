@@ -144,14 +144,14 @@ public class EntityLocoSteam4_4_0 extends EntityTrainCore {
      *     Each set of floats represents a different rider.
      */
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{1.3f,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return new float[][]{{1.0f,1.6f, 0f}};}
 
     /**
      * defines the size of the hitbox for processing, in order of length, height, and width.
      */
     @Override
     public float[] getHitboxSize() {
-        return new float[]{2f,2.1f,1.1f};
+        return new float[]{3.2f,2.7f,1.2f};
     }
 
     /**
@@ -223,6 +223,8 @@ public class EntityLocoSteam4_4_0 extends EntityTrainCore {
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new ModelLoco()};}
 
+    @Override
+    public float[][] modelOffsets(){return new float[][]{{0.2f,0.6f,0f}};}
 
     @Override
     public float[][] modelRotations(){return new float[][]{{0f,90f,180f}};}
