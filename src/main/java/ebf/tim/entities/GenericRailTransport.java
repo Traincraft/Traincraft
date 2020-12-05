@@ -2191,7 +2191,7 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
     public String transportYear(){return "19 somethin'";}
 
     /**the fuel type to display for the transport.*/
-    public String transportFuelType(){return "Magic";}
+    public String transportFuelType(){return null;}
 
     /**the top speed in km/h for the transport.
      * not used tor rollingstock.*/

@@ -34,25 +34,25 @@ public class EntityTender_C41 extends GenericRailTransport {
     @Override
     public String transportName(){return "Tender C41";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "us";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "1902";}
     @Override
     public boolean isFictional(){return false;}
     @Override
-    public int getInventoryRows(){return 0;}
+    public int getInventoryRows(){return 1;}
     @Override
     public List<TrainsInMotion.transportTypes> getTypes(){
         return TrainsInMotion.transportTypes.TENDER.singleton();
     }
     @Override
-    public float weightKg(){return 10f;}
+    public float weightKg(){return 49124f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelTenderC41()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{0.1f, -0.2f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.1f, 0.0f, 0.0f}};}
     @Override
     public float[][] modelRotations(){return new float[][]{{0.0f, 0.0f, 0.0f}};}
     @Override
@@ -77,13 +77,13 @@ public class EntityTender_C41 extends GenericRailTransport {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return null;}
     @Override
-    public float[] getHitboxSize(){return new float[]{3.5f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{3.6f,2.1f,1.1f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{1.399999976158142f, -1.399999976158142f};}
+    public float[] bogieLengthFromCenter() {return new float[]{1f, -0.85f};}
     @Override
-    public int[] getTankCapacity(){return new int[]{16000};}
+    public int[] getTankCapacity(){return new int[]{22712};}
 
 
 

@@ -35,9 +35,9 @@ public class EntityLocoSteamMogulBlue extends EntityTrainCore {
     @Override
     public String transportName(){return "Loco Steam Mogul";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "us";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "1860-1910";}
     @Override
     public boolean isFictional(){return false;}
     @Override
@@ -47,15 +47,15 @@ public class EntityLocoSteamMogulBlue extends EntityTrainCore {
         return TrainsInMotion.transportTypes.STEAM.singleton();
     }
     @Override
-    public float weightKg(){return 10f;}
+    public float weightKg(){return 34020f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelLocoMogul()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{-0.6f, 0.44f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.3f, 0.64f, 0.0f}};}
     @Override
-    public float[][] modelRotations(){return new float[][]{{0.0f, -90.0f, -180.0f}};}
+    public float[][] modelRotations(){return new float[][]{{0.0f, 90.0f, -180.0f}};}
     @Override
     public void registerSkins(){
         SkinRegistry.addSkin(this.getClass(),
@@ -89,16 +89,18 @@ public class EntityLocoSteamMogulBlue extends EntityTrainCore {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return new float[][]{{1,1.6f, 0f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{3.5999999761581423f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{3.2f,2.4f,1.1f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{1.6600000023841859f, -1.6600000023841859f};}
+    public float[] bogieLengthFromCenter() {return new float[]{0.9f, -1f};}
     //Train specific stuff
     @Override
     public String transportFuelType(){return "steam";}
     @Override
     public float transportMetricHorsePower(){return 500;}
+    @Override
+    public float transportTractiveEffort(){return 16110;}
     @Override
     public float transportTopSpeed(){return 65;}
     @Override

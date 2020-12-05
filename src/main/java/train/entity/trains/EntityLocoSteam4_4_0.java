@@ -47,15 +47,13 @@ public class EntityLocoSteam4_4_0 extends EntityTrainCore {
     @Override
     public String transportName(){return "Loco Steam 4-4-0";}
     @Override
-    public String transportcountry(){return "TrainCraft";}
+    public String transportcountry(){return "us";}
     @Override
-    public String transportYear(){return "2007-ish";}
+    public String transportYear(){return "early 1800's";}
     @Override
     public String transportFuelType(){return "Steam";}
     @Override
-    public boolean isFictional(){return true;}
-    @Override
-    public float transportTractiveEffort(){return 0;}
+    public boolean isFictional(){return false;}
 
     @Override
     public void registerSkins(){
@@ -163,9 +161,11 @@ public class EntityLocoSteam4_4_0 extends EntityTrainCore {
      */
     @Override
     public float transportMetricHorsePower(){return 400f;}
+    @Override
+    public float transportTractiveEffort(){return 16000;}
 
     @Override
-    public float weightKg(){return 15000f;}//taken from The General 4-4-0 with some compensations for size difference
+    public float weightKg(){return 22800f;}//taken from The General 4-4-0
 
 
     /**
@@ -209,7 +209,7 @@ public class EntityLocoSteam4_4_0 extends EntityTrainCore {
      * for everything else the first is fuel and there isn't a second
      */
     @Override
-    public int[] getTankCapacity(){return new int[]{5000, 800};}
+    public int[] getTankCapacity(){return new int[]{20000, 1600};}
 
     /**
      * this should b exactly the same in all classes

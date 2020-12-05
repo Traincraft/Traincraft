@@ -35,27 +35,27 @@ public class EntityLocoSteamForneyRed extends EntityTrainCore {
     @Override
     public String transportName(){return "Loco Steam Forney";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "us";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "1861";}
     @Override
     public boolean isFictional(){return false;}
     @Override
-    public int getInventoryRows(){return 1;}
+    public int getInventoryRows(){return 3;}
     @Override
     public List<TrainsInMotion.transportTypes> getTypes(){
         return TrainsInMotion.transportTypes.STEAM.singleton();
     }
     @Override
-    public float weightKg(){return 10f;}
+    public float weightKg(){return 60781f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelLocoForney()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{-1.3f, 0.44f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{-0.2f, 0.54f, 0.0f}};}
     @Override
-    public float[][] modelRotations(){return new float[][]{{0.0f, -90.0f, -180.0f}};}
+    public float[][] modelRotations(){return new float[][]{{0.0f, 90.0f, -180.0f}};}
     @Override
     public void registerSkins(){
         SkinRegistry.addSkin(this.getClass(),
@@ -89,16 +89,18 @@ public class EntityLocoSteamForneyRed extends EntityTrainCore {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return new float[][]{{0.4f,1.6f, 0f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{3.8f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{4f,2.6f,1.1f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{1.7000000119209289f, -1.7000000119209289f};}
+    public float[] bogieLengthFromCenter() {return new float[]{1.2f, -1.4f};}
     //Train specific stuff
     @Override
     public String transportFuelType(){return "steam";}
     @Override
     public float transportMetricHorsePower(){return 600;}
+    @Override
+    public float transportTractiveEffort(){return 12089;}
     @Override
     public float transportTopSpeed(){return 70;}
     @Override
@@ -106,7 +108,7 @@ public class EntityLocoSteamForneyRed extends EntityTrainCore {
         return super.fuelSlot().setOverlay(Items.coal);
     }
     @Override
-    public int[] getTankCapacity(){return new int[]{8000, 1600};}
+    public int[] getTankCapacity(){return new int[]{5678, 1600};}
 
 
 
