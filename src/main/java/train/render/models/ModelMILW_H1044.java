@@ -391,6 +391,8 @@ public class ModelMILW_H1044 extends ModelBase
         milw_h1044Model[90].setRotationPoint(11F, 1F, -1F);
 
 
+        fixRotation(milw_h1044Model);
+        bodyModel=milw_h1044Model;
     }
 
     @Override

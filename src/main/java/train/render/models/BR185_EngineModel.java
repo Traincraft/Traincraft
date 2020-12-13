@@ -711,6 +711,9 @@ public class BR185_EngineModel extends ModelBase
 		br185_enginemodelModel[170].addShapeBox(0F, 0F, 0F, 2, 4, 2, 0F, -1F, -9F, 1F, -0.5F, -8.5F, 0F, -0.5F, -4F, 0F, -1F, -4F, 0F, -1F, 5F, 1F, -0.5F, 4.5F, 0F, -2.25F, 5F, 0F, 1F, 5F, 0F); // Box 184
 		br185_enginemodelModel[170].setRotationPoint(-48F, -22F, -11.5F);
 
+		fixRotation(br185_enginemodelModel);
+		bodyModel=br185_enginemodelModel;
+
 
 	}
 	BR185_BogieModel trucks = new BR185_BogieModel();

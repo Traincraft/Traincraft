@@ -406,6 +406,9 @@ public class ModelGS4Baggage extends ModelBase
 		gs4baggageModel[91].setRotationPoint(-30F, -10.2F, -9F);
 
 		fixRotation(gs4baggageModel, false, true, true);
+
+		bodyModel=gs4baggageModel;
+		fixRotation(bodyModel);
 	}
 	ModelGs4Bogie bogie1 = new ModelGs4Bogie();
 	@Override

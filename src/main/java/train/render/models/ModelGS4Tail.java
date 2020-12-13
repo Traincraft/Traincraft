@@ -657,6 +657,8 @@ public class ModelGS4Tail extends ModelBase
 		gs4tailModel[157].setRotationPoint(46F, -1F, -9.5F);
 		fixRotation(gs4tailModel, false, true, true);
 
+		bodyModel=gs4tailModel;
+		fixRotation(bodyModel);
 	}
 
 

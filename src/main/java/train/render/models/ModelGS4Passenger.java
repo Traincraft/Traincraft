@@ -419,6 +419,9 @@ public class ModelGS4Passenger extends ModelBase
 		gs4passengerModel[98].addShapeBox(0F, 0F, 0F, 16, 2, 22, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, -3F); // Box 100
 		gs4passengerModel[98].setRotationPoint(43F, 1F, -11F);
 
+		bodyModel=gs4passengerModel;
+		fixRotation(bodyModel);
+
 
 	}
 	ModelGs4Bogie bogie1 = new ModelGs4Bogie();

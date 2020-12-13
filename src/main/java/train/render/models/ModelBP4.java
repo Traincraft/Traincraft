@@ -943,6 +943,9 @@ public class ModelBP4 extends ModelConverter
 
 		bodyModel[224].addBox(0F, 0F, 0F, 3, 1, 1, 0F); // Box 224
 		bodyModel[224].setRotationPoint(-20F, -22.5F, 6F);
+
+
+		fixRotation(bodyModel);
 	}
 
 	ModelBP4Bogie bogie = new ModelBP4Bogie();//bloombergB trucks

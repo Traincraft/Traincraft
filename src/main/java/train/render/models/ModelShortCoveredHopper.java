@@ -215,6 +215,8 @@ public class ModelShortCoveredHopper extends ModelBase
 		shortcoveredhopperModel[46].setRotationPoint(9F, -17F, 21F);
 
 
+		fixRotation(shortcoveredhopperModel);
+		bodyModel=shortcoveredhopperModel;
 	}
 
 	ModelAmericanFreightTrucks bogie = new ModelAmericanFreightTrucks();

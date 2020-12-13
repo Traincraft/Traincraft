@@ -548,23 +548,7 @@ public class ModelGS4Loco extends ModelBase
 		gs4locoModel[128].setRotationPoint(-110.4F, 2F, -12F);
 
 		fixRotation(gs4locoModel, false, true, true);
-	}
-
-	@Override
-	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
-	{
-		for(int i = 0; i < 129; i++)
-		{
-
-			if(gs4locoModel[i].boxName!= null && gs4locoModel[i].boxName.equals("lamp")){
-				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
-				gs4locoModel[i].render(f5);
-				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
-
-			} else {
-				gs4locoModel[i].render(f5);
-			}
-		}
+		bodyModel=gs4locoModel;
 	}
 
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5)

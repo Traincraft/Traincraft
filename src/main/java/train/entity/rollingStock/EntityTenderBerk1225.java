@@ -34,9 +34,9 @@ public class EntityTenderBerk1225 extends GenericRailTransport {
     @Override
     public String transportName(){return "1225 tender";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "us";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "1941";}
     @Override
     public boolean isFictional(){return false;}
     @Override

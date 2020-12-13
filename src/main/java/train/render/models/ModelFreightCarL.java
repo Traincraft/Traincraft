@@ -195,6 +195,8 @@ public class ModelFreightCarL extends ModelBase
 		freightcarlModel[41].setRotationPoint(43F, 3F, 12F);
 		fixRotation(freightcarlModel, false, true, true);
 
+		fixRotation(freightcarlModel);
+		bodyModel=freightcarlModel;
 	}
 	ModelWellcarBogie bogie = new ModelWellcarBogie();
 

@@ -34,9 +34,9 @@ public class EntityFreightGS4_Baggage extends GenericRailTransport {
     @Override
     public String transportName(){return "Freight Cart GS4 Baggage";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "us";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "941-1942";}
     @Override
     public boolean isFictional(){return false;}
     @Override

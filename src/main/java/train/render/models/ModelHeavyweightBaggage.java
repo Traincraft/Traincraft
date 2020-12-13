@@ -346,6 +346,8 @@ public class ModelHeavyweightBaggage extends ModelBase
 		heavyweightboxcarModel[78].addBox(0F, 0F, 0F, 1, 1, 1, 0F); // Box 80
 		heavyweightboxcarModel[78].setRotationPoint(-16F, 3F, -11F);
 
+		fixRotation(heavyweightboxcarModel);
+		bodyModel=heavyweightboxcarModel;
 
 	}
 	ModelHeavyweightBogie bogie = new ModelHeavyweightBogie();

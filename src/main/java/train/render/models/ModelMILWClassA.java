@@ -834,22 +834,9 @@ public class ModelMILWClassA extends ModelBase
 		milwclassaModel[200].setRotationPoint(-85F, -3F, 9F);
 
 		fixRotation(milwclassaModel, false, true, true);
-	}
 
-	@Override
-	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
-	{
-		for(int i = 0; i < 201; i++)
-		{
-			if(milwclassaModel[i].boxName!= null && milwclassaModel[i].boxName.equals("lamp")){
-				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
-				milwclassaModel[i].render(f5);
-				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
-
-			} else {
-				milwclassaModel[i].render(f5);
-			}
-		}
+		fixRotation(milwclassaModel);
+		bodyModel=milwclassaModel;
 	}
 
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5)

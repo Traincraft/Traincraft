@@ -238,6 +238,8 @@ public class ModelKClassRailBox extends ModelBase
 		kclassrailboxModel[52].addShapeBox(0F, 0F, 0F, 1, 1, 2, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F); // Box 125
 		kclassrailboxModel[52].setRotationPoint(39F, 3F, 1F);
 
+		fixRotation(kclassrailboxModel);
+		bodyModel=kclassrailboxModel;
 
 	}
 

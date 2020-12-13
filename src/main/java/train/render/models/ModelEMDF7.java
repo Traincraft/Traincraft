@@ -747,6 +747,8 @@ public class ModelEMDF7 extends ModelBase
 		emdf7Model[175].setRotationPoint(12F, -25.75F, -3F);
 		fixRotation(emdf7Model, false, true, true);
 
+		fixRotation(emdf7Model);
+		bodyModel=emdf7Model;
 	}
 
     private ModelBloombergTrucks fronttrucks = new ModelBloombergTrucks();

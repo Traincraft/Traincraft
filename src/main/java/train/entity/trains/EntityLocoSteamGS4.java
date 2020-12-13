@@ -35,9 +35,9 @@ public class EntityLocoSteamGS4 extends EntityTrainCore {
     @Override
     public String transportName(){return "Loco Steam GS4";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "us";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "1941-1942";}
     @Override
     public boolean isFictional(){return false;}
     @Override
@@ -47,13 +47,13 @@ public class EntityLocoSteamGS4 extends EntityTrainCore {
         return TrainsInMotion.transportTypes.STEAM.singleton();
     }
     @Override
-    public float weightKg(){return 10f;}
+    public float weightKg(){return 215456f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelGS4Loco()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{0.0f, -0.15f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{3.4f, -0.05f, 0.0f}};}
     @Override
     public float[][] modelRotations(){return new float[][]{{0.0f, 0.0f, 0.0f}};}
     @Override
@@ -81,16 +81,18 @@ public class EntityLocoSteamGS4 extends EntityTrainCore {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return new float[][]{{3.5f,1.8f, 0.35f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{7.240000009536743f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{8f,2.7f,1.6f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{3.4960000216960907f, -3.4960000216960907f};}
+    public float[] bogieLengthFromCenter() {return new float[]{1.15f, -2.7f};}
     //Train specific stuff
     @Override
     public String transportFuelType(){return "steam";}
     @Override
     public float transportMetricHorsePower(){return 2653;}
+    @Override
+    public float transportTractiveEffort(){return 66326;}
     @Override
     public float transportTopSpeed(){return 180;}
     @Override
@@ -98,7 +100,7 @@ public class EntityLocoSteamGS4 extends EntityTrainCore {
         return super.fuelSlot().setOverlay(Items.coal);
     }
     @Override
-    public int[] getTankCapacity(){return new int[]{8800, 1760};}
+    public int[] getTankCapacity(){return new int[]{8820, 1760};}
 
 
 

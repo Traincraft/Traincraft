@@ -611,6 +611,8 @@ public class ModelGS4Tavern extends ModelBase
 		gs4tavernModel[146].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, 0F, -0.5F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F); // Box 220
 		gs4tavernModel[146].setRotationPoint(7.25F, -17.25F, 5F);
 
+		bodyModel=gs4tavernModel;
+		fixRotation(bodyModel);
 
 	}
 	ModelGs4Bogie bogie1 = new ModelGs4Bogie();

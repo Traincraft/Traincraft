@@ -106,6 +106,8 @@ public class ModelGS4Tender extends ModelBase
 		gs4tenderModel[18].setRotationPoint(-14F, -24F, -9F);
 
 
+		bodyModel=gs4tenderModel;
+		fixRotation(bodyModel);
 	}
 
 	ModelGS4TenderBogie bogie1 = new ModelGS4TenderBogie();

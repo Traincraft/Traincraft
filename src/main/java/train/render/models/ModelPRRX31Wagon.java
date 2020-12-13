@@ -866,6 +866,8 @@ public class ModelPRRX31Wagon extends ModelBase
 				0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F); // Box 212
 		prrx31wagonModel[163].setRotationPoint(7F, -7.5F, 11.5F);
 
+		fixRotation(prrx31wagonModel);
+		bodyModel=prrx31wagonModel;
     }
 
     @Override

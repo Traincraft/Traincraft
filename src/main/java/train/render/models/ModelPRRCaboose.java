@@ -734,6 +734,8 @@ public class ModelPRRCaboose extends ModelBase
 		prrcabooseModel[152].addBox(0F, 0F, 0F, 4, 1, 0, 0F); // Box 211
 		prrcabooseModel[152].setRotationPoint(29F, -22.4F, -9F);
 
+		fixRotation(prrcabooseModel);
+		bodyModel=prrcabooseModel;
     }
 
     @Override

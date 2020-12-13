@@ -474,6 +474,8 @@ public class ModelBulkheadFlat extends ModelBase
 		bulkheadflatModel[111].addShapeBox(0F, 0F, 0F, 0, 21, 5, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 5F, 0F, 0F, -5F, 0F, 0F, -5F, 0F, 0F, 5F, 0F, 0F); // Box 113
 		bulkheadflatModel[111].setRotationPoint(-33.05F, -21.05F, -10F);
 
+		fixRotation(bulkheadflatModel);
+		bodyModel=bulkheadflatModel;
 
 	}
 
