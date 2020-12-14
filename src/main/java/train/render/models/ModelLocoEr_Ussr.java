@@ -486,6 +486,7 @@ public class ModelLocoEr_Ussr extends ModelBase {
 				box70,box71,box72,box73,box74,box75,box76,box83
 		};
 
+		fixRotation(bodyModel,false,false,true);
 		fixRotation(bodyModel);
 	}
 	

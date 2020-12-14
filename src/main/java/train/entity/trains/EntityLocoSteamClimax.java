@@ -41,19 +41,19 @@ public class EntityLocoSteamClimax extends EntityTrainCore {
     @Override
     public boolean isFictional(){return false;}
     @Override
-    public int getInventoryRows(){return 1;}
+    public int getInventoryRows(){return 3;}
     @Override
     public List<TrainsInMotion.transportTypes> getTypes(){
         return TrainsInMotion.transportTypes.STEAM.singleton();
     }
-    @Override
-    public float weightKg(){return 10f;}
+    @Override//weight was taken from this document as noted under the Class A: https://www.climaxlocomotives.com/history/
+    public float weightKg(){return 2993.7f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelLocoClimax()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{0.0f, -0.18f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{1f, 0.0f, 0.0f}};}
     @Override
     public float[][] modelRotations(){return new float[][]{{0.0f, 0.0f, 0.0f}};}
     @Override
@@ -79,11 +79,11 @@ public class EntityLocoSteamClimax extends EntityTrainCore {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return new float[][]{{1,1.325f, 0.3f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{4.5f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{4.8f,2.4f,1.5f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{1.9500000476837158f, -1.9500000476837158f};}
+    public float[] bogieLengthFromCenter() {return new float[]{1.9f, -1.875f};}
     //Train specific stuff
     @Override
     public String transportFuelType(){return "steam";}

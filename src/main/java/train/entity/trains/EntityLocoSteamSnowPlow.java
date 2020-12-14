@@ -35,9 +35,9 @@ public class EntityLocoSteamSnowPlow extends EntityTrainCore {
     @Override
     public String transportName(){return "Loco Steam Snow Plow";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "us";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "1834-1884";}
     @Override
     public boolean isFictional(){return false;}
     @Override
@@ -46,18 +46,20 @@ public class EntityLocoSteamSnowPlow extends EntityTrainCore {
     public List<TrainsInMotion.transportTypes> getTypes(){
         return TrainsInMotion.transportTypes.STEAM.singleton();
     }
-    @Override
-    public float weightKg(){return 10f;}
+    @Override//it's a small steam powered rotary engine in a small boxcar, i added the weight of the US boxcar and the adler, close enough
+    public float weightKg(){return 122467f+11400f;}
 
+    public String[] additionalItemText(){return new String[]{"Historically this was not self powered"};}
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelSnowPlow()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{-2.0f, -0.12f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.05f, 0.0f}};}
     @Override
     public float[][] modelRotations(){return new float[][]{{0.0f, 0.0f, 0.0f}};}
     @Override
     public void registerSkins(){
+        //more useful information may be found at https://www.midcontinent.org/equipment-roster/service-equipment/oregon-short-line-762/
         SkinRegistry.addSkin(this.getClass(),
             new TransportSkin(Info.modID,"textures/trains/train_snowplow.png","train_snowplow", "description.train_snowplow"));
     }
@@ -81,9 +83,9 @@ public class EntityLocoSteamSnowPlow extends EntityTrainCore {
     @Override
     public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{6.149999976158142f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{6.15f,2.6f,1.5f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{2.935000002384186f, -2.935000002384186f};}
+    public float[] bogieLengthFromCenter() {return new float[]{1.5f, -1.4f};}
     //Train specific stuff
     @Override
     public String transportFuelType(){return "steam, snow plow";}

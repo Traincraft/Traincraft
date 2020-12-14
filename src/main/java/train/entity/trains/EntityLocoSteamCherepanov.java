@@ -35,9 +35,9 @@ public class EntityLocoSteamCherepanov extends EntityTrainCore {
     @Override
     public String transportName(){return "Loco Steam Cherepanov";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "russia";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "1833-1834";}
     @Override
     public boolean isFictional(){return false;}
     @Override
@@ -47,13 +47,13 @@ public class EntityLocoSteamCherepanov extends EntityTrainCore {
         return TrainsInMotion.transportTypes.STEAM.singleton();
     }
     @Override
-    public float weightKg(){return 10f;}
+    public float weightKg(){return 16380.7f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelLocoCherepanov()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{-0.875f, 0.47f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{-0.075f, 0.6f, 0.0f}};}
     @Override
     public float[][] modelRotations(){return new float[][]{{0.0f, 0.0f, -180.0f}};}
     @Override
@@ -78,11 +78,11 @@ public class EntityLocoSteamCherepanov extends EntityTrainCore {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return new float[][]{{0.85f,1.35f, 0.1f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{2.7f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{worldObj==null?2.8f:2.2f,2.7f,1.1f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{1.2500000059604646f, -1.2500000059604646f};}
+    public float[] bogieLengthFromCenter() {return new float[]{0.1f, -0.6f};}
     //Train specific stuff
     @Override
     public String transportFuelType(){return "steam";}

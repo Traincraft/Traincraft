@@ -34,9 +34,9 @@ public class EntityTenderEr_Ussr extends GenericRailTransport {
     @Override
     public String transportName(){return "Tender ER_USSR";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "russia";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "1912";}
     @Override
     public boolean isFictional(){return false;}
     @Override

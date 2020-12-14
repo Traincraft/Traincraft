@@ -114,6 +114,8 @@ public class EntityLocoElectricBR185 extends EntityTrainCore {
     @Override
     public float transportMetricHorsePower(){return 2428;}
     @Override
+    public float transportTractiveEffort(){return 24555;}
+    @Override
     public float transportTopSpeed(){return 160;}
     @Override
     public ItemStackSlot fuelSlot(){

@@ -60,12 +60,14 @@ public class HitboxDynamic {
         }
 
         depth*=2;width*=2;
-        interactionBoxes = new ArrayList<>();
-        int count =0;
-        for (float f = 0; f < depth-(width*0.25f); f +=width) {
-            interactionBoxes.add(new collisionBox(entity));
-            entity.worldObj.spawnEntityInWorld(interactionBoxes.get(count));
-            count++;
+        if(height!=-1f) {
+            interactionBoxes = new ArrayList<>();
+            int count = 0;
+            for (float f = 0; f < depth - (width * 0.25f); f += width) {
+                interactionBoxes.add(new collisionBox(entity));
+                entity.worldObj.spawnEntityInWorld(interactionBoxes.get(count));
+                count++;
+            }
         }
     }
 
@@ -89,9 +91,9 @@ public class HitboxDynamic {
         }*/
         for(int i=0; i<interactionBoxes.size();i++){
             Vec3d part = CommonUtil.rotateDistance(
-                    (interactionBoxes.get(0).host.getHitboxSize()[2]*i)-
-                            (interactionBoxes.get(0).host.getHitboxSize()[0]*0.5f)+
-                            (interactionBoxes.get(0).host.getHitboxSize()[2]*0.25f),
+                    -(interactionBoxes.get(0).host.getHitboxSize()[0]*0.5)+
+                            (interactionBoxes.get(0).host.getHitboxSize()[2]*0.5)
+                            +(interactionBoxes.get(0).host.getHitboxSize()[2]*i),
                     pitch, yaw).addVector(x,y,z);
             interactionBoxes.get(i).setPosition(part.xCoord,part.yCoord,part.zCoord);
         }

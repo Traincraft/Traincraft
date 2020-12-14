@@ -1254,16 +1254,17 @@ public class ModelLocoClimax extends ModelBase
         lococlimaxModel[302].addBox(0F, 0F, 0F, 1, 1, 1, 0F); // Box 302
         lococlimaxModel[302].setRotationPoint(6F, 2F, -4F);
 
+        fixRotation(lococlimaxModel,false,false,true);
+
+        fixRotation(lococlimaxModel);
+        bodyModel=lococlimaxModel;
 
     }
 
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
-        for(int i = 0; i < 303; i++)
-        {
-            lococlimaxModel[i].render(f5);
-        }
+        super.render(entity, f, f1, f2, f3, f4, f5);
     }
 
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5)

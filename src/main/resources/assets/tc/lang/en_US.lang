@@ -630,6 +630,7 @@ entity.tc.Loco Steam Alco SC4.name=Alco SC4
 description.villager.profession.tc.station_chief=Station Chief
 
 key.categories.traincraft=Traincraft
+item.key.categories.traincraft=Traincraft
 key.traincraft.horn=Horn
 key.traincraft.inventory=Inventory
 key.traincraft.up=Up

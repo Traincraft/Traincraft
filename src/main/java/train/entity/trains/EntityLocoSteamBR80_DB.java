@@ -35,25 +35,25 @@ public class EntityLocoSteamBR80_DB extends EntityTrainCore {
     @Override
     public String transportName(){return "Loco Steam BR80";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "germany";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "1927-1928";}
     @Override
     public boolean isFictional(){return false;}
     @Override
-    public int getInventoryRows(){return 1;}
+    public int getInventoryRows(){return 2;}
     @Override
     public List<TrainsInMotion.transportTypes> getTypes(){
         return TrainsInMotion.transportTypes.STEAM.singleton();
     }
     @Override
-    public float weightKg(){return 10f;}
+    public float weightKg(){return 54400f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelLocoBR80_DB()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{-0.75f, 0.44f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{-0.1f, 0.64f, 0.0f}};}
 @Override
     public float[][] modelRotations(){return new float[][]{{0f,180f,180f}};}
     @Override
@@ -81,16 +81,18 @@ public class EntityLocoSteamBR80_DB extends EntityTrainCore {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return new float[][]{{0.8f,1.5f, 0.45f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{3.300000047683716f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{3.4f,2.3f,1.4f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{1.4300000548362732f, -1.4300000548362732f};}
+    public float[] bogieLengthFromCenter() {return new float[]{0.6f, -0.7f};}
     //Train specific stuff
     @Override
     public String transportFuelType(){return "steam";}
     @Override
     public float transportMetricHorsePower(){return 575;}
+    @Override
+    public float transportTractiveEffort(){return 24555;}
     @Override
     public float transportTopSpeed(){return 45;}
     @Override
@@ -98,7 +100,7 @@ public class EntityLocoSteamBR80_DB extends EntityTrainCore {
         return super.fuelSlot().setOverlay(Items.coal);
     }
     @Override
-    public int[] getTankCapacity(){return new int[]{7000, 1400};}
+    public int[] getTankCapacity(){return new int[]{4920, 400};}
 
 
 

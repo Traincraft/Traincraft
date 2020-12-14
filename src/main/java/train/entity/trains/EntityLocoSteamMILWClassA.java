@@ -35,9 +35,9 @@ public class EntityLocoSteamMILWClassA extends EntityTrainCore {
     @Override
     public String transportName(){return "Loco Steam MILW Class A";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "us";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "1935-1937";}
     @Override
     public boolean isFictional(){return false;}
     @Override
@@ -47,13 +47,13 @@ public class EntityLocoSteamMILWClassA extends EntityTrainCore {
         return TrainsInMotion.transportTypes.STEAM.singleton();
     }
     @Override
-    public float weightKg(){return 10f;}
+    public float weightKg(){return 129727.4f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelMILWClassA()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{0.0f, -0.1f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{2.5f, -0.025f, 0.0f}};}
     @Override
     public float[][] modelRotations(){return new float[][]{{0.0f, 0.0f, 0.0f}};}
     @Override
@@ -79,16 +79,18 @@ public class EntityLocoSteamMILWClassA extends EntityTrainCore {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return new float[][]{{2.8f,1.375f, 0.3f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{6.100000023841858f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{6.6f,2.3f,1.5f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{2.89000004529953f, -2.89000004529953f};}
+    public float[] bogieLengthFromCenter() {return new float[]{0.4f, -2.4f};}
     //Train specific stuff
     @Override
     public String transportFuelType(){return "steam";}
     @Override
     public float transportMetricHorsePower(){return 1228;}
+    @Override
+    public float transportTractiveEffort(){return 30685;}
     @Override
     public float transportTopSpeed(){return 193;}
     @Override
