@@ -46,8 +46,8 @@ public class EntityLocoSteamLSSP7 extends EntityTrainCore {
     public List<TrainsInMotion.transportTypes> getTypes(){
         return TrainsInMotion.transportTypes.STEAM.singleton();
     }
-    @Override
-    public float weightKg(){return 10f;}
+    @Override//weight unknown, rough guess based on the 40 ton two truck variant https://nelsonslocomotive.com/Heisler/GettingStarted/GettingStarted.htm
+    public float weightKg(){return 30000f;}
 
     //Model stuff
     @Override

@@ -46,13 +46,13 @@ public class EntityTenderBerk1225 extends GenericRailTransport {
         return TrainsInMotion.transportTypes.TENDER.singleton();
     }
     @Override
-    public float weightKg(){return 10f;}
+    public float weightKg(){return 164900f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.Model1225Tender()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{2.75f, 0.65f, 0.0625f}};}
+    public float[][] modelOffsets(){return new float[][]{{2.75f, 0.8f, -0.0625f}};}
     @Override
     public float[][] modelRotations(){return new float[][]{{0.0f, -180.0f, 0.0f}};}
     @Override
@@ -79,11 +79,11 @@ public class EntityTenderBerk1225 extends GenericRailTransport {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return null;}
     @Override
     public float[] getHitboxSize(){return new float[]{5.75f,2.1f,1.1f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{2.299999952316284f, -2.299999952316284f};}
+    public float[] bogieLengthFromCenter() {return new float[]{1.5f, -1.5f};}
     @Override
     public int[] getTankCapacity(){return new int[]{15000};}
 

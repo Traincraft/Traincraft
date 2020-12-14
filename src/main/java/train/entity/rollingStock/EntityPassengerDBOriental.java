@@ -35,9 +35,9 @@ public class EntityPassengerDBOriental extends GenericRailTransport {
     @Override
     public String transportName(){return "Passenger DB oriental";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "uk";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "1966-1974";}
     @Override
     public boolean isFictional(){return false;}
     @Override
@@ -46,16 +46,16 @@ public class EntityPassengerDBOriental extends GenericRailTransport {
     public List<TrainsInMotion.transportTypes> getTypes(){
         return TrainsInMotion.transportTypes.PASSENGER.singleton();
     }
-    @Override
-    public float weightKg(){return 10f;}
+    @Override//weight is fully unknown, many passenger rollingstock are listed around 20 to 30 tons, so this is just a guess,
+    public float weightKg(){return 25000f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelPassenger_DB_oriental()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.42f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.62f, 0.0f}};}
     @Override
-    public float[][] modelRotations(){return new float[][]{{180.0f, -180.0f, -180.0f}};}
+    public float[][] modelRotations(){return new float[][]{{0.0f, -180.0f, -180.0f}};}
     @Override
     public void registerSkins(){
         SkinRegistry.addSkin(this.getClass(),
@@ -83,18 +83,18 @@ public class EntityPassengerDBOriental extends GenericRailTransport {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f},{-1,1.2f, 0f},{1,1.2f, 0f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{4.5f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{4.5f,2.3f,1.3f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{1.8000000715255737f, -1.8000000715255737f};}
+    public float[] bogieLengthFromCenter() {return new float[]{1.1f, -1.1f};}
 
 
 
     //these only change in very specific use cases.
     @Override
     public boolean shouldRiderSit(){
-        return false;
+        return true;
     }
     @Override
     public Item getItem(){return thisItem;}

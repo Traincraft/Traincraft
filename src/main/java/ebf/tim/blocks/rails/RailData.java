@@ -148,6 +148,10 @@ public class RailData {
                 meta = 9;
             }
 
+            if(flagzm && flagxp && flagxm && flagzp){
+                meta=1;
+            }
+
             if (meta == -1) {
                 if (flagzm || flagzp) {
                     meta = 0;

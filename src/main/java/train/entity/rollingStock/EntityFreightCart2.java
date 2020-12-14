@@ -47,13 +47,13 @@ public class EntityFreightCart2 extends GenericRailTransport {
         return TrainsInMotion.transportTypes.FREIGHT.singleton();
     }
     @Override
-    public float weightKg(){return 10f;}
+    public float weightKg(){return 122467f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelFreightCart2()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.32f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.05f, 0.52f, 0.0f}};}
 @Override
     public float[][] modelRotations(){return new float[][]{{0f,180f,180f}};}
     @Override
@@ -78,11 +78,11 @@ public class EntityFreightCart2 extends GenericRailTransport {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return null;}
     @Override
-    public float[] getHitboxSize(){return new float[]{2.940000057220459f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{worldObj==null?3.5f:2.9f,2.5f,1.3f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{1.1759999990463257f, -1.1759999990463257f};}
+    public float[] bogieLengthFromCenter() {return new float[]{0.9f, -0.9f};}
 
 
 
