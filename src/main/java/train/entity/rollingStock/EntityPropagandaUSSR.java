@@ -46,14 +46,17 @@ public class EntityPropagandaUSSR extends GenericRailTransport {
     public List<TrainsInMotion.transportTypes> getTypes(){
         return TrainsInMotion.transportTypes.OTHER.singleton();
     }
+    @Override//Most flatcars weigh anywhere between 10 and 30 tons.
+    public float weightKg(){return 15000f;}
     @Override
-    public float weightKg(){return 10f;}
+    public String[] additionalItemText(){return new String[]{"We can learn from history, but we can also deceive ourselves","when we selectively take evidence from the past to justify what we have already made up our minds to do.", "- Margaret MacMillan"};}
+
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelPropagandaCar()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{1.1f, -0.2f, -0.1f}};}
+    public float[][] modelOffsets(){return new float[][]{{1.1f, 0f, 0.075f}};}
     @Override
     public float[][] modelRotations(){return new float[][]{{0.0f, 0.0f, 0.0f}};}
     @Override
@@ -82,11 +85,11 @@ public class EntityPropagandaUSSR extends GenericRailTransport {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return null;}
     @Override
-    public float[] getHitboxSize(){return new float[]{7.400000095367432f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{7.4f,3.2f,1.4f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{2.9600000381469727f, -2.9600000381469727f};}
+    public float[] bogieLengthFromCenter() {return new float[]{2.8f, -2.7f};}
 
 
 

@@ -45,14 +45,14 @@ public class EntityFreightHeavyweightBaggage extends GenericRailTransport {
     public List<TrainsInMotion.transportTypes> getTypes(){
         return TrainsInMotion.transportTypes.FREIGHT.singleton();
     }
-    @Override
-    public float weightKg(){return 10f;}
+    @Override//rough guess, heavyweight cars are designed to make use of extra mass for a smoother movement, average is around 67t
+    public float weightKg(){return 65000f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelHeavyweightBaggage()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{0.0f, -0.1f, -0.05f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.0f, 0f}};}
     @Override
     public float[][] modelRotations(){return new float[][]{{0.0f, 0.0f, 0.0f}};}
     @Override
@@ -79,11 +79,11 @@ public class EntityFreightHeavyweightBaggage extends GenericRailTransport {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return null;}
     @Override
-    public float[] getHitboxSize(){return new float[]{10.0f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{10.0f,2.7f,1.4f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{4.0f, -4.0f};}
+    public float[] bogieLengthFromCenter() {return new float[]{3.8f, -3.8f};}
 
 
 

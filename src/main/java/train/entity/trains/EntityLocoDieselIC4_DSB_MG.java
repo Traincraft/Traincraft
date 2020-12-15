@@ -34,9 +34,9 @@ public class EntityLocoDieselIC4_DSB_MG extends EntityTrainCore {
     @Override
     public String transportName(){return "Loco Diesel IC4 DSB MG";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "denmark";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "2007";}
     @Override
     public boolean isFictional(){return false;}
     @Override
@@ -46,15 +46,15 @@ public class EntityLocoDieselIC4_DSB_MG extends EntityTrainCore {
         return TrainsInMotion.transportTypes.DIESEL.singleton();
     }
     @Override
-    public float weightKg(){return 10f;}
+    public float weightKg(){return 160027.4f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelLocoDieselIC4_DSB_MG()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{-0.8f, 0.44f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{-2.65f, -0.94f, 0.05f}};}
 @Override
-    public float[][] modelRotations(){return new float[][]{{0f,180f,180f}};}
+    public float[][] modelRotations(){return new float[][]{{0f,90f,0f}};}
     @Override
     public void registerSkins(){
         SkinRegistry.addSkin(this.getClass(),
@@ -77,11 +77,11 @@ public class EntityLocoDieselIC4_DSB_MG extends EntityTrainCore {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return new float[][]{{-3.0f,1.2f, 0f},{2f,1.2f, -0.25f},{-0.4f,1.2f, -0.25f},{-1.2f,1.2f, 0.25f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{6.200000002980232f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{8.6f,2.4f,1.5f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{3.0800000056624413f, -3.0800000056624413f};}
+    public float[] bogieLengthFromCenter() {return new float[]{4.0f, -2.0f};}
     //Train specific stuff
     @Override
     public String transportFuelType(){return "diesel";}
@@ -101,7 +101,7 @@ public class EntityLocoDieselIC4_DSB_MG extends EntityTrainCore {
     //these only change in very specific use cases.
     @Override
     public boolean shouldRiderSit(){
-        return false;
+        return true;
     }
     @Override
     public Item getItem(){return thisItem;}
