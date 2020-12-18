@@ -1,7 +1,3 @@
-<!-- ## This is a comment, do no remove or modify these! ## -->
-<!-- ## Only replace the words on the right side of "=" ## -->
-<!-- ## Save the file the same way this file was saved but replace "en_US" with appropriate language name ## -->
-
 <!-- ## Blocks ## -->
 tile.tc:oreTC.copperOre.name=Copper Ore
 tile.tc:oreTC.oilSands.name=Oil Sands

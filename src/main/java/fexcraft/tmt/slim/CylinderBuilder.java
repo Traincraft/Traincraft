@@ -1,6 +1,5 @@
 package fexcraft.tmt.slim;
 
-import fexcraft.fcl.common.Static;
 import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector3f;
 
@@ -126,8 +125,8 @@ public class CylinderBuilder {
         ArrayList<TexturedVertex> verts3 = new ArrayList<>();
         for(int repeat = 0; repeat < 2; repeat++){//top/base faces
             for(int index = 0; index < segments; index++){
-                float xSize = (float)((root.mirror ^ dirMirror ? -1 : 1) * Math.sin((Static.PI / segments) * index * 2F + Static.PI) * radius * sCur);
-                float zSize = (float)(-Math.cos((Static.PI / segments) * index * 2F + Static.PI) * radius * sCur);
+                float xSize = (float)((root.mirror ^ dirMirror ? -1 : 1) * Math.sin((ModelRendererTurbo.pi / segments) * index * 2F + ModelRendererTurbo.pi) * radius * sCur);
+                float zSize = (float)(-Math.cos((ModelRendererTurbo.pi / segments) * index * 2F + ModelRendererTurbo.pi) * radius * sCur);
                 float xPlace = xCur + (!dirSide ? xSize : 0);
                 float yPlace = yCur + (!dirTop ? zSize : 0);
                 float zPlace = zCur + (dirSide ? xSize : (dirTop ? zSize : 0));
@@ -136,8 +135,8 @@ public class CylinderBuilder {
                     TexturedVertex copy = new TexturedVertex(verts0.get(0)); verts0.add(copy);
                 }
                 //
-                float xSize2 = (float)((root.mirror ^ dirMirror ? -1 : 1) * Math.sin((Static.PI / segments) * index * 2F + Static.PI) * radius2 * sCur);
-                float zSize2 = (float)(-Math.cos((Static.PI / segments) * index * 2F + Static.PI) * radius2 * sCur);
+                float xSize2 = (float)((root.mirror ^ dirMirror ? -1 : 1) * Math.sin((ModelRendererTurbo.pi / segments) * index * 2F + ModelRendererTurbo.pi) * radius2 * sCur);
+                float zSize2 = (float)(-Math.cos((ModelRendererTurbo.pi / segments) * index * 2F + ModelRendererTurbo.pi) * radius2 * sCur);
                 xPlace = xCur + (!dirSide ? xSize2 : 0);
                 yPlace = yCur + (!dirTop ? zSize2 : 0);
                 zPlace = zCur + (dirSide ? xSize2 : (dirTop ? zSize2 : 0));
@@ -162,20 +161,20 @@ public class CylinderBuilder {
                     }
                     TexturedVertex[] arr = new TexturedVertex[4];
                     if(!radialtexture){
-                        xSize = (float)(Math.sin((Static.PI / segments) * i * 2F + (!dirTop ? 0 : Static.PI)) * (0.5F * uCircle - 2F * uOffset));
-                        ySize = (float)(Math.cos((Static.PI / segments) * i * 2F + (!dirTop ? 0 : Static.PI)) * (0.5F * vCircle - 2F * vOffset));
+                        xSize = (float)(Math.sin((ModelRendererTurbo.pi / segments) * i * 2F + (!dirTop ? 0 : ModelRendererTurbo.pi)) * (0.5F * uCircle - 2F * uOffset));
+                        ySize = (float)(Math.cos((ModelRendererTurbo.pi / segments) * i * 2F + (!dirTop ? 0 : ModelRendererTurbo.pi)) * (0.5F * vCircle - 2F * vOffset));
                         arr[0] = verts0.get(i).setTexturePosition(uStart + mul * uCircle + xSize, vStart + 0.5F * vCircle + ySize);
                         //
-                        xSize = (float)(Math.sin((Static.PI / segments) * i * 2F + (!dirTop ? 0 : Static.PI)) * (0.5F * uCircle2 - 2F * uOffset));
-                        ySize = (float)(Math.cos((Static.PI / segments) * i * 2F + (!dirTop ? 0 : Static.PI)) * (0.5F * vCircle2 - 2F * vOffset));
+                        xSize = (float)(Math.sin((ModelRendererTurbo.pi / segments) * i * 2F + (!dirTop ? 0 : ModelRendererTurbo.pi)) * (0.5F * uCircle2 - 2F * uOffset));
+                        ySize = (float)(Math.cos((ModelRendererTurbo.pi / segments) * i * 2F + (!dirTop ? 0 : ModelRendererTurbo.pi)) * (0.5F * vCircle2 - 2F * vOffset));
                         arr[1] = verts1.get(i).setTexturePosition(uStart + mul * uCircle + xSize, vStart + 0.5F * vCircle + ySize);
                         //
-                        xSize = (float)(Math.sin((Static.PI / segments) * (i + 1) * 2F + (!dirTop ? 0 : Static.PI)) * (0.5F * uCircle2 - 2F * uOffset));
-                        ySize = (float)(Math.cos((Static.PI / segments) * (i + 1) * 2F + (!dirTop ? 0 : Static.PI)) * (0.5F * vCircle2 - 2F * vOffset));
+                        xSize = (float)(Math.sin((ModelRendererTurbo.pi / segments) * (i + 1) * 2F + (!dirTop ? 0 : ModelRendererTurbo.pi)) * (0.5F * uCircle2 - 2F * uOffset));
+                        ySize = (float)(Math.cos((ModelRendererTurbo.pi / segments) * (i + 1) * 2F + (!dirTop ? 0 : ModelRendererTurbo.pi)) * (0.5F * vCircle2 - 2F * vOffset));
                         arr[2] = verts1.get(i + 1).setTexturePosition(uStart + mul * uCircle + xSize, vStart + 0.5F * vCircle + ySize);
                         //
-                        xSize = (float)(Math.sin((Static.PI / segments) * (i + 1) * 2F + (!dirTop ? 0 : Static.PI)) * (0.5F * uCircle - 2F * uOffset));
-                        ySize = (float)(Math.cos((Static.PI / segments) * (i + 1) * 2F + (!dirTop ? 0 : Static.PI)) * (0.5F * vCircle - 2F * vOffset));
+                        xSize = (float)(Math.sin((ModelRendererTurbo.pi / segments) * (i + 1) * 2F + (!dirTop ? 0 : ModelRendererTurbo.pi)) * (0.5F * uCircle - 2F * uOffset));
+                        ySize = (float)(Math.cos((ModelRendererTurbo.pi / segments) * (i + 1) * 2F + (!dirTop ? 0 : ModelRendererTurbo.pi)) * (0.5F * vCircle - 2F * vOffset));
                         arr[3] = verts0.get(i + 1).setTexturePosition(uStart + mul * uCircle + xSize, vStart + 0.5F * vCircle + ySize);
                     }
                     else{

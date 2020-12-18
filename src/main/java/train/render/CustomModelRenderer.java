@@ -26,7 +26,7 @@ public class CustomModelRenderer extends ModelRendererTurbo {
 
 	//for some odd reason the boxes seem inside out normally, so it's likely the values are reversed
 	@Override
-	public void addBox(float f, float f1, float f2, int i, int j, int k, float f3) {
+	public ModelRendererTurbo addBox(float f, float f1, float f2, int i, int j, int k, float f3) {
 		faces = new ArrayList<TexturedPolygon>();
 		float f4 = f + i +f3;
 		float f5 = f1 + j +f3;
@@ -48,7 +48,7 @@ public class CustomModelRenderer extends ModelRendererTurbo {
 		faces.add(generateFaces(new TexturedVertex[] { TexturedVertex2, TexturedVertex3, TexturedVertex7, TexturedVertex6 }, textureOffsetX + k + i, textureOffsetY, textureOffsetX + k + i + i, textureOffsetY + k, textureWidth, textureHeight));
 		faces.add(generateFaces(new TexturedVertex[] { TexturedVertex1, TexturedVertex, TexturedVertex3, TexturedVertex2 }, textureOffsetX + k, textureOffsetY + k, textureOffsetX + k + i, textureOffsetY + k + j, textureWidth, textureHeight));
 		faces.add(generateFaces(new TexturedVertex[] { TexturedVertex4, TexturedVertex5, TexturedVertex6, TexturedVertex7 }, textureOffsetX + k + i + k, textureOffsetY + k, textureOffsetX + k + i + k + i, textureOffsetY + k + j, textureWidth, textureHeight));
-
+		return this;
 	}
 
 

@@ -817,6 +817,8 @@ public class ModelDeltic extends ModelBase
 		deltic2Model[196].addShapeBox(0F, 0F, 0F, 9, 1, 9, 0F, -7F, 0F, -7F, 0F, 0F, -7F, 0F, 0F, 0F, -7F, 0F, 0F, -7F, 0F, -7F, 0F, 0F, -7F, 0F, 0F, 0F, -7F, 0F, 0F); // Box 196
 		deltic2Model[196].setRotationPoint(-10F, -17.25F, -5F);
 
+		fixRotation(deltic2Model);
+		bodyModel=deltic2Model;
 
 	}
 	private ModelDeltic_Bogie fronttrucks = new ModelDeltic_Bogie();

@@ -38,7 +38,7 @@ public class EntityTenderHeavy extends GenericRailTransport {
     @Override
     public String transportYear(){return "Undefined";}
     @Override
-    public boolean isFictional(){return false;}
+    public boolean isFictional(){return true;}
     @Override
     public int getInventoryRows(){return 0;}
     @Override
@@ -46,15 +46,15 @@ public class EntityTenderHeavy extends GenericRailTransport {
         return TrainsInMotion.transportTypes.TENDER.singleton();
     }
     @Override
-    public float weightKg(){return 10f;}
+    public float weightKg(){return 50000f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelTenderHeavy()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.4f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.2f, 0.55f, 0.0f}};}
     @Override
-    public float[][] modelRotations(){return new float[][]{{0.0f, 0.0f, -180.0f}};}
+    public float[][] modelRotations(){return new float[][]{{0.0f, 180.0f, -180.0f}};}
     @Override
     public void registerSkins(){
         SkinRegistry.addSkin(this.getClass(),
@@ -77,11 +77,11 @@ public class EntityTenderHeavy extends GenericRailTransport {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return null;}
     @Override
-    public float[] getHitboxSize(){return new float[]{2.5999999046325684f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{3.5f,2.1f,1.3f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{1.0399999618530273f, -1.0399999618530273f};}
+    public float[] bogieLengthFromCenter() {return new float[]{1.2f, -0.65f};}
     @Override
     public int[] getTankCapacity(){return new int[]{14000};}
 

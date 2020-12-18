@@ -618,6 +618,8 @@ public class ModelASTFAutorack extends ModelBase
 		astfautorackModel[147].addShapeBox(0F, 0F, 0F, 3, 2, 2, 0F, 0F, -0.2F, 0F, -0.5F, -0.2F, 0F, -0.5F, -0.2F, 0F, 0F, -0.2F, 0F, 0F, -0.2F, 0F, -0.5F, -0.2F, 0F, -0.5F, -0.2F, 0F, 0F, -0.2F, 0F); // Box 151
 		astfautorackModel[147].setRotationPoint(84F, 3F, -1F);
 
+		fixRotation(astfautorackModel);
+		bodyModel=astfautorackModel;
 
 	}
 

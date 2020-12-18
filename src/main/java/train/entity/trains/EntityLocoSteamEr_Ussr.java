@@ -35,9 +35,9 @@ public class EntityLocoSteamEr_Ussr extends EntityTrainCore {
     @Override
     public String transportName(){return "Loco Steam ER_USSR";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "russia";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "1912";}
     @Override
     public boolean isFictional(){return false;}
     @Override
@@ -47,17 +47,18 @@ public class EntityLocoSteamEr_Ussr extends EntityTrainCore {
         return TrainsInMotion.transportTypes.STEAM.singleton();
     }
     @Override
-    public float weightKg(){return 10f;}
+    public float weightKg(){return 15150f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelLocoEr_Ussr()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{-0.75f, 0.44f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.95f, 0.64f, 0.0f}};}
 @Override
     public float[][] modelRotations(){return new float[][]{{0f,180f,180f}};}
     @Override
     public void registerSkins(){
+        //notes: see #2. class E on https://www.rbth.com/science-and-tech/329130-8-of-russias-strongest-locomotives
         SkinRegistry.addSkin(this.getClass(),
             new TransportSkin(Info.modID,"textures/trains/locoEr_Ussr.png","locoEr_Ussr", "description.locoEr_Ussr"));
     }
@@ -79,11 +80,11 @@ public class EntityLocoSteamEr_Ussr extends EntityTrainCore {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return new float[][]{{1.8f,1.5f, 0.3f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{4.759999942779541f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{4.85f,2.4f,1.4f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{2.27399999499321f, -2.27399999499321f};}
+    public float[] bogieLengthFromCenter() {return new float[]{1.1f, -1.1f};}
     //Train specific stuff
     @Override
     public String transportFuelType(){return "steam";}

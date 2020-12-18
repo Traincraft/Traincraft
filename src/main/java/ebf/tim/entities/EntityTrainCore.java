@@ -15,6 +15,7 @@ import java.util.UUID;
 
 import static ebf.tim.TrainsInMotion.transportTypes.DIESEL;
 import static ebf.tim.TrainsInMotion.transportTypes.ELECTRIC;
+import static ebf.tim.TrainsInMotion.transportTypes.STEAM;
 
 /**
  * <h1>Train core</h1>
@@ -281,6 +282,20 @@ public class EntityTrainCore extends GenericRailTransport {
         } else if(getTypes().contains(ELECTRIC)){
             FuelHandler.manageElectricFuel(this);
         }
+    }
+
+    /**the fuel type to display for the transport.*/
+    public String transportFuelType(){
+            if(getTypes().contains(STEAM)){
+                return "Steam";
+            }
+            if (getTypes().contains(DIESEL)){
+                return "Diesel";
+            }
+            if(getTypes().contains(ELECTRIC)){
+                return "Electric";
+            }
+            return "Magic";
     }
 
 

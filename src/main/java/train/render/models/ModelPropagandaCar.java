@@ -99,6 +99,8 @@ public class ModelPropagandaCar extends ModelBase
 		propagandacarModel[17].setRotationPoint(-53F, -35F, -2.05F);
 
 
+		fixRotation(propagandacarModel);
+		bodyModel=propagandacarModel;
 	}
 	private ModelFreightTruckM fronttrucks = new ModelFreightTruckM();
 	private ModelFreightTruckM backtrucks = new ModelFreightTruckM();

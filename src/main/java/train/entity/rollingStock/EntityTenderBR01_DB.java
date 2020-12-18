@@ -34,9 +34,9 @@ public class EntityTenderBR01_DB extends GenericRailTransport {
     @Override
     public String transportName(){return "Tender BR01";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "germany";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "1926–1938";}
     @Override
     public boolean isFictional(){return false;}
     @Override

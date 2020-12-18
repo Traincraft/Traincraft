@@ -63,7 +63,7 @@ public class Traincraft {
 	public static File configDirectory;
 
 	/* Creative tab for Traincraft */
-	public static CreativeTabs tcTab;
+	public static TiMTab tcTab;
 
 	public ArmorMaterial armor = EnumHelper.addArmorMaterial("Armor", 5, new int[] { 1, 2, 2, 1 }, 25);
 	public ArmorMaterial armorCloth = EnumHelper.addArmorMaterial("TCcloth", 5, new int[] {1, 2, 2, 1}, 25);
@@ -87,7 +87,8 @@ public class Traincraft {
 
 		/* Register Items, Blocks, ... */
 		tcLog.info("Initialize Blocks, Items, ...");
-		tcTab = new TiMTab("Traincraft", Info.modID, "textures/items/trains/train_br80");
+		tcTab = new TiMTab("Traincraft", Info.modID, "key.categories.traincraft");
+		tcTab.getTabItem().setTextureName(Info.modID+":"+"transports/item.train_br80");
 		trainArmor = proxy.addArmor("armor");
 		trainCloth = proxy.addArmor("Paintable");
 		trainCompositeSuit = proxy.addArmor("CompositeSuit");

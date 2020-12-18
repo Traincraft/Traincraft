@@ -641,6 +641,7 @@ public class ModelRheingoldPassenger_Dining2 extends ModelBase
 		rheingoldpassenger_dining2Model[148].setRotationPoint(-73F, 2.1F, -1F);
 
 		fixRotation(rheingoldpassenger_dining2Model, false, true, true);
+		bodyModel=rheingoldpassenger_dining2Model;
 	}
 
 	private ModelRheingoldBogie bogie1 = new ModelRheingoldBogie();

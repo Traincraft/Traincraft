@@ -32,7 +32,7 @@ public class ChunkHandler implements ForgeChunkManager.LoadingCallback, ForgeChu
     @SuppressWarnings("unused")
     @SubscribeEvent
     public void entityEnteredChunk(EntityEvent.EnteringChunk event) {
-        if(event.entity instanceof GenericRailTransport && !event.entity.worldObj.isRemote) {
+        if(CommonProxy.enableChunkloading && event.entity instanceof GenericRailTransport && !event.entity.worldObj.isRemote) {
             forceChunkLoading(((GenericRailTransport) event.entity), event.newChunkX, event.newChunkZ);
         }
     }

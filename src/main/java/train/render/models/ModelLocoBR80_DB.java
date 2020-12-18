@@ -19,7 +19,7 @@ public class ModelLocoBR80_DB extends ModelBase {
 	private float dig;
 	
 	private ModelRing ring;
-	
+
 	public CustomModelRenderer body;
 	public CustomModelRenderer box;
 	public CustomModelRenderer box0;
@@ -438,16 +438,15 @@ public class ModelLocoBR80_DB extends ModelBase {
 		box9.addBox(0F, 0F, 0F, 1, 3, 3);
 		box9.setPosition(-26F, 7F, -8F);
 
-		bodyModel=new ModelRendererTurbo[]{box,
-				box0,box1,box2,box3,box4,box5,box6,box7,box8,box9,
+		bodyModel=new ModelRendererTurbo[]{body,box,box0,box1,
 				box10,box11,box12,box13,box14,box15,box16,box17,box18,box19,
-				box20,box21,box23,box24,box25,box26,box27,box28,box29,
-				box30,box31,box32,box33,box34,box35,box36,box37,box38,box39,
-				box40,box41,box42,box43,box44,box45,box49,
-				box50,box51,box52,box53,box54,box55,box56,box57,box58,
-				box60,box61,box62,box63,box64,box65,box66,box67,box68,
-				box70
+				box2,box20,box21,lightFront,box23,box24,box25,box26,box27,box28,
+				box29,box3,box30,box31,box32,box33,box34,box35,box36,box37,box38,
+				box39,box4,box40,box41,box42,box43,box44,box45,wheels1,wheels2,wheels3,
+				box49,box5,box50,box51,box52,box53,box54,box55,box56,box57,box58,lightBack,
+				box6,box60,box61,box62,box63,box64,box65,box66,box67,box68,coalbox,box7,box70,box8,box9
 		};
+		fixRotation(bodyModel,false,false,true);
 
 		fixRotation(bodyModel);
 

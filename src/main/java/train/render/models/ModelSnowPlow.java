@@ -508,6 +508,8 @@ public class ModelSnowPlow extends ModelBase
 		snowplowModel[119].setRotationPoint(-27F, -17F, -11F);
 
 
+		fixRotation(snowplowModel);
+		bodyModel=snowplowModel;
 	}
 
 	private ModelMILW_H1044_Bogie fronttrucks = new ModelMILW_H1044_Bogie();

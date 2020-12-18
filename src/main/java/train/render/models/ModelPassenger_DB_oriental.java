@@ -399,8 +399,10 @@ public class ModelPassenger_DB_oriental extends ModelBase
 		passenger_db_orientalModel[83].rotateAngleX = -6.09119909F;
 		passenger_db_orientalModel[83].rotateAngleY = -3.14159265F;
 
-		fixRotation(passenger_db_orientalModel, false, true, true);
+		//fixRotation(passenger_db_orientalModel, false, false, false);
 
+		fixRotation(passenger_db_orientalModel);
+		bodyModel=passenger_db_orientalModel;
 	}
 
 	ModelPassenger_DB_oriental_bogie bogie = new ModelPassenger_DB_oriental_bogie();

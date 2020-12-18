@@ -35,9 +35,9 @@ public class EntityLocoSteamCoranationClass extends EntityTrainCore {
     @Override
     public String transportName(){return "Loco Steam Coranation Class";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "uk";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "1938";}
     @Override
     public boolean isFictional(){return false;}
     @Override
@@ -47,13 +47,13 @@ public class EntityLocoSteamCoranationClass extends EntityTrainCore {
         return TrainsInMotion.transportTypes.STEAM.singleton();
     }
     @Override
-    public float weightKg(){return 10f;}
+    public float weightKg(){return 109834.6f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelCoranationClass()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{-3.8f, -0.2f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{-0.8f, 0.0f, 0.0f}};}
     @Override
     public float[][] modelRotations(){return new float[][]{{0.0f, 0.0f, 0.0f}};}
     @Override
@@ -79,11 +79,11 @@ public class EntityLocoSteamCoranationClass extends EntityTrainCore {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return new float[][]{{3.1f,1.5f, 0.3f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{7.799999952316284f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{7.8f,2.6f,1.3f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{3.7199999690055847f, -3.7199999690055847f};}
+    public float[] bogieLengthFromCenter() {return new float[]{1.8f, -2.5f};}
     //Train specific stuff
     @Override
     public String transportFuelType(){return "steam";}

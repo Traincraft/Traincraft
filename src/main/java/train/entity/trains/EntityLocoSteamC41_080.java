@@ -35,9 +35,9 @@ public class EntityLocoSteamC41_080 extends EntityTrainCore {
     @Override
     public String transportName(){return "Loco Steam C41 0-8-0";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "us";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "1902";}
     @Override
     public boolean isFictional(){return false;}
     @Override
@@ -47,13 +47,13 @@ public class EntityLocoSteamC41_080 extends EntityTrainCore {
         return TrainsInMotion.transportTypes.STEAM.singleton();
     }
     @Override
-    public float weightKg(){return 10f;}
+    public float weightKg(){return 82553.8f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelC41_080()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{-3.5f, 0.5f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{-1.7f, 0.7f, 0.0f}};}
     @Override
     public float[][] modelRotations(){return new float[][]{{0.0f, 0.0f, 0.0f}};}
     @Override
@@ -79,18 +79,20 @@ public class EntityLocoSteamC41_080 extends EntityTrainCore {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return new float[][]{{2.1f,1.5f, -0.3f},{2.1f,1.5f, 0.3f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{4.600000047683716f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{5f,2.4f,1.4f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{2.1800000190734865f, -2.1800000190734865f};}
+    public float[] bogieLengthFromCenter() {return new float[]{1.1f, -1.3f};}
     //Train specific stuff
     @Override
     public String transportFuelType(){return "steam";}
     @Override
     public float transportMetricHorsePower(){return 1484;}
     @Override
-    public float transportTopSpeed(){return 120;}
+    public float transportTractiveEffort(){return 41000;}
+    @Override
+    public float transportTopSpeed(){return 120.7f;}
     @Override
     public ItemStackSlot fuelSlot(){
         return super.fuelSlot().setOverlay(Items.coal);

@@ -216,7 +216,7 @@ public class ModelFreightHopper extends ModelBase {
 				box20,box21,box22,box23,box24,box25,box27,box28,box29,
 				box30,box31,box32,box33,box34,box35,box36
 		};
-
+		fixRotation(bodyModel,false,false,true);
 		fixRotation(bodyModel);
 	}
 	

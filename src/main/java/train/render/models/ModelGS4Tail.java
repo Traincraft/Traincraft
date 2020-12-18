@@ -9,10 +9,14 @@
 
 package train.render.models;
 
+import ebf.tim.entities.GenericRailTransport;
 import fexcraft.tmt.slim.ModelBase;
 import fexcraft.tmt.slim.ModelRendererTurbo;
+import fexcraft.tmt.slim.Tessellator;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
+import train.library.Info;
 
 public class ModelGS4Tail extends ModelBase
 {
@@ -657,6 +661,8 @@ public class ModelGS4Tail extends ModelBase
 		gs4tailModel[157].setRotationPoint(46F, -1F, -9.5F);
 		fixRotation(gs4tailModel, false, true, true);
 
+		bodyModel=gs4tailModel;
+		fixRotation(bodyModel);
 	}
 
 
@@ -666,11 +672,11 @@ public class ModelGS4Tail extends ModelBase
 	{
 		super.render(entity, f, f1, f2, f3, f4, f5);
 		//todo: this should be handled by TiM's skin system
-		/*if(entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor()==2){
+		if(entity instanceof GenericRailTransport && ((GenericRailTransport) entity).getCurrentSkin().name.equals("Red")){
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/GS4_bogie_Red.png"));
 		} else {
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/GS4_bogie.png"));
-		}*/
+		}
 
 		GL11.glPushMatrix();
 		GL11.glTranslated(-3.1,0,0);

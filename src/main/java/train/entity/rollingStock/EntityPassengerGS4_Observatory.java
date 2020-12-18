@@ -32,11 +32,11 @@ public class EntityPassengerGS4_Observatory extends GenericRailTransport {
 
     //main stats
     @Override
-    public String transportName(){return "Passenger GS4 Observatory";}
+    public String transportName(){return "Passenger GS4 Tavern";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "us";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "941-1942";}
     @Override
     public boolean isFictional(){return false;}
     @Override
@@ -45,14 +45,14 @@ public class EntityPassengerGS4_Observatory extends GenericRailTransport {
     public List<TrainsInMotion.transportTypes> getTypes(){
         return TrainsInMotion.transportTypes.PASSENGER.singleton();
     }
-    @Override
-    public float weightKg(){return 10f;}
+    @Override//weight is fully unknown, many passenger rollingstock are listed around 20 to 30 tons, so this is just a guess,
+    public float weightKg(){return 26000f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelGS4Tavern()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{0.0f, -0.025f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.05f, 0.125f, 0.0f}};}
     @Override
     public float[][] modelRotations(){return new float[][]{{0.0f, 0.0f, 0.0f}};}
     @Override
@@ -98,11 +98,11 @@ public class EntityPassengerGS4_Observatory extends GenericRailTransport {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return new float[][]{{-0.2f,1.2f, -0.15f},{-2.7f,1.2f, -0.3f},{2.3f,1.2f, -0.3f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{6.199999809265137f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{7.7f,2.4f,1.4f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{2.4800000190734863f, -2.4800000190734863f};}
+    public float[] bogieLengthFromCenter() {return new float[]{1.6f, -2.1f};}
 
 
 

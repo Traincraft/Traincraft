@@ -778,6 +778,8 @@ public class ModelFOL_M1 extends ModelBase
 		fol_m1Model[187].setRotationPoint(60F, -18F, 15F);
 
 
+		fixRotation(fol_m1Model);
+		bodyModel=fol_m1Model;
 	}
 	ModelFOL_M1Bogie bogie = new ModelFOL_M1Bogie();
 

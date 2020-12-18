@@ -35,9 +35,13 @@ public class ItemTransport extends Item {
     public ItemTransport(GenericRailTransport cart, String MODID, CreativeTabs tabs) {
         super();
         setUnlocalizedName(cart.transportName().replace(" ",""));
-        subtext.add(EnumChatFormatting.GRAY + t("menu.item.year") +": " + cart.transportYear());
-        subtext.add(EnumChatFormatting.GRAY + t("menu.item.country") + ": " +
-                t("menu.item."+cart.transportcountry().toLowerCase()));
+        if(cart.transportYear()!=null) {
+            subtext.add(EnumChatFormatting.GRAY + t("menu.item.year") + ": " + cart.transportYear());
+        }
+        if(cart.transportcountry()!=null) {
+            subtext.add(EnumChatFormatting.GRAY + t("menu.item.country") + ": " +
+                    t("menu.item." + cart.transportcountry().toLowerCase()));
+        }
 
         if(cart.transportFuelType()!=null && !cart.transportFuelType().equals("")) {
             subtext.add(EnumChatFormatting.RED + t("menu.item.fueltype") + ": " +

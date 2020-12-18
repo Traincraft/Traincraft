@@ -33,9 +33,9 @@ public class EntityPassengerGS4 extends GenericRailTransport {
     @Override
     public String transportName(){return "Passenger GS4";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "us";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "941-1942";}
     @Override
     public boolean isFictional(){return false;}
     @Override

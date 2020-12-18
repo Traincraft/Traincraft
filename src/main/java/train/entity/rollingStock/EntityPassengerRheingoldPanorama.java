@@ -34,9 +34,9 @@ public class EntityPassengerRheingoldPanorama extends GenericRailTransport {
     @Override
     public String transportName(){return "Rheingold Panorama";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "germany";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "1962-1976";}
     @Override
     public boolean isFictional(){return false;}
     @Override

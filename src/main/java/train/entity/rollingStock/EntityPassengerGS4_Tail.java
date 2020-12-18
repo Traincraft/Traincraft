@@ -33,9 +33,9 @@ public class EntityPassengerGS4_Tail extends GenericRailTransport {
     @Override
     public String transportName(){return "Passenger GS4 Tail";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "us";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "1941-1942";}
     @Override
     public boolean isFictional(){return false;}
     @Override
@@ -44,14 +44,14 @@ public class EntityPassengerGS4_Tail extends GenericRailTransport {
     public List<TrainsInMotion.transportTypes> getTypes(){
         return TrainsInMotion.transportTypes.PASSENGER.singleton();
     }
-    @Override
-    public float weightKg(){return 10f;}
+    @Override//weight is fully unknown, many passenger rollingstock are listed around 20 to 30 tons, so this is just a guess,
+    public float weightKg(){return 22000f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelGS4Tail()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{-0.2f, -0.025f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{-0.2f, 0.125f, 0.0f}};}
     @Override
     public float[][] modelRotations(){return new float[][]{{0.0f, 0.0f, 0.0f}};}
     @Override
@@ -97,18 +97,18 @@ public class EntityPassengerGS4_Tail extends GenericRailTransport {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return new float[][]{{-0.2f,1.2f, 0.3f},{0.9f,1.2f, -0.3f},{2.1f,1.2f, 0.3f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{6.599999904632568f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{8.2f,2.4f,1.4f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{2.640000104904175f, -2.640000104904175f};}
+    public float[] bogieLengthFromCenter() {return new float[]{1.6f, -2.1f};}
 
 
 
     //these only change in very specific use cases.
     @Override
     public boolean shouldRiderSit(){
-        return false;
+        return true;
     }
     @Override
     public Item getItem(){return thisItem;}

@@ -246,7 +246,7 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
         ignoreFrustumCheck = true;
         inventory = new ArrayList<>();
         initInventorySlots();
-        if(world!=null) {
+        if(world!=null && collisionHandler==null) {
             this.height = 0.25f;
             collisionHandler = new HitboxDynamic(getHitboxSize()[0],getHitboxSize()[1],getHitboxSize()[2], this);
             collisionHandler.position(posX, posY, posZ, rotationPitch, rotationYaw);
@@ -263,7 +263,7 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
         ignoreFrustumCheck = true;
         inventory = new ArrayList<>();
         initInventorySlots();
-        if(world!=null) {
+        if(world!=null && collisionHandler==null) {
             this.height = 0.25f;
             collisionHandler = new HitboxDynamic(getHitboxSize()[0],getHitboxSize()[1],getHitboxSize()[2], this);
             collisionHandler.position(posX, posY, posZ, rotationPitch, rotationYaw);
@@ -2191,7 +2191,7 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
     public String transportYear(){return "19 somethin'";}
 
     /**the fuel type to display for the transport.*/
-    public String transportFuelType(){return "Magic";}
+    public String transportFuelType(){return null;}
 
     /**the top speed in km/h for the transport.
      * not used tor rollingstock.*/

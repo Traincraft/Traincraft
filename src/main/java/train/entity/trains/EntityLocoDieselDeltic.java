@@ -35,9 +35,9 @@ public class EntityLocoDieselDeltic extends EntityTrainCore {
     @Override
     public String transportName(){return "Loco Diesel Deltic";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "uk";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "1961-1978";}
     @Override
     public boolean isFictional(){return false;}
     @Override
@@ -47,13 +47,13 @@ public class EntityLocoDieselDeltic extends EntityTrainCore {
         return TrainsInMotion.transportTypes.DIESEL.singleton();
     }
     @Override
-    public float weightKg(){return 10f;}
+    public float weightKg(){return 100589f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelDeltic()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{-2.25f, -0.8f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.0f, -0.6f, 0.0f}};}
     @Override
     public float[][] modelRotations(){return new float[][]{{0.0f, -90.0f, 0.0f}};}
     @Override
@@ -79,11 +79,11 @@ public class EntityLocoDieselDeltic extends EntityTrainCore {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return new float[][]{{-2.4f,1.7f, 0f},{2.4f,1.7f, 0.2f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{7.7f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{7.5f,2.7f,1.4f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{3.550000047683716f, -3.550000047683716f};}
+    public float[] bogieLengthFromCenter() {return new float[]{2.4f, -2.4f};}
     //Train specific stuff
     @Override
     public String transportFuelType(){return "diesel";}
@@ -103,7 +103,7 @@ public class EntityLocoDieselDeltic extends EntityTrainCore {
     //these only change in very specific use cases.
     @Override
     public boolean shouldRiderSit(){
-        return false;
+        return true;
     }
     @Override
     public Item getItem(){return thisItem;}

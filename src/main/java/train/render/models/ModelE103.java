@@ -808,5 +808,6 @@ public class ModelE103 extends ModelConverter //Same as Filename
 
 		bodyModel[182].addBox(0F, 0F, 0F, 5, 2, 2, 0F); // Box 182
 		bodyModel[182].setRotationPoint(-45F, 2F, -1F);
+		fixRotation(bodyModel);
 	}
 }

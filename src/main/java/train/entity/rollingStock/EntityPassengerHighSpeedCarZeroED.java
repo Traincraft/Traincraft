@@ -37,21 +37,21 @@ public class EntityPassengerHighSpeedCarZeroED extends GenericRailTransport {
     @Override
     public String transportYear(){return "Undefined";}
     @Override
-    public boolean isFictional(){return false;}
+    public boolean isFictional(){return true;}
     @Override
     public int getInventoryRows(){return 0;}
     @Override
     public List<TrainsInMotion.transportTypes> getTypes(){
         return TrainsInMotion.transportTypes.PASSENGER.singleton();
     }
-    @Override
-    public float weightKg(){return 10f;}
+    @Override//weight is fully unknown, many underground passenger rollingstock are listed around 25 to 40 tons, so this is just a guess,
+    public float weightKg(){return 35000f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelPassengerHighSpeedCarZeroED()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.47f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.61f, 0.0f}};}
 @Override
     public float[][] modelRotations(){return new float[][]{{0f,180f,180f}};}
     @Override
@@ -79,9 +79,9 @@ public class EntityPassengerHighSpeedCarZeroED extends GenericRailTransport {
     @Override
     public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{4.340000152587891f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{4.4f,2.3f,1.4f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{1.7360000610351562f, -1.7360000610351562f};}
+    public float[] bogieLengthFromCenter() {return new float[]{1.2f, -1.3f};}
 
 
 

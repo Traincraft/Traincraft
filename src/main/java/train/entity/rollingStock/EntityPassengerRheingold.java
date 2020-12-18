@@ -33,9 +33,9 @@ public class EntityPassengerRheingold extends GenericRailTransport {
     @Override
     public String transportName(){return "Passenger Rheingold";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "germany";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "1962-1976";}
     @Override
     public boolean isFictional(){return false;}
     @Override
@@ -44,14 +44,14 @@ public class EntityPassengerRheingold extends GenericRailTransport {
     public List<TrainsInMotion.transportTypes> getTypes(){
         return TrainsInMotion.transportTypes.PASSENGER.singleton();
     }
-    @Override
-    public float weightKg(){return 10f;}
+    @Override//weight is fully unknown, many passenger rollingstock are listed around 20 to 30 tons, so this is just a guess,
+    public float weightKg(){return 25000f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelRheingoldPassenger()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{1.55f, -0.15f, -0.6f}};}
+    public float[][] modelOffsets(){return new float[][]{{1.75f, 0f, 0.6f}};}
     @Override
     public float[][] modelRotations(){return new float[][]{{0.0f, 0.0f, 0.0f}};}
     @Override
@@ -87,18 +87,20 @@ public class EntityPassengerRheingold extends GenericRailTransport {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return new float[][]{
+            {-2.2f,1.2f, -0.1f},{-1.0f,1.2f, -0.1f},{-0.3f,1.2f, -0.1f},{0.9f,1.2f, -0.1f},{2.1f,1.2f, -0.1f}
+    };}
     @Override
-    public float[] getHitboxSize(){return new float[]{7.880000114440918f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{8.8f,2.2f,1.3f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{3.1520001888275146f, -3.1520001888275146f};}
+    public float[] bogieLengthFromCenter() {return new float[]{2.7f, -2.7f};}
 
 
 
     //these only change in very specific use cases.
     @Override
     public boolean shouldRiderSit(){
-        return false;
+        return true;
     }
     @Override
     public Item getItem(){return thisItem;}

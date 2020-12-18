@@ -430,6 +430,8 @@ public class ModelEMDF7B extends ModelBase
         emdf7bModel[100].setRotationPoint(39F, -18F, 4F);
 
 
+        fixRotation(emdf7bModel);
+        bodyModel=emdf7bModel;
     }
 
 

@@ -46,14 +46,14 @@ public class EntityLocoSteamLSSP7 extends EntityTrainCore {
     public List<TrainsInMotion.transportTypes> getTypes(){
         return TrainsInMotion.transportTypes.STEAM.singleton();
     }
-    @Override
-    public float weightKg(){return 10f;}
+    @Override//weight unknown, rough guess based on the 40 ton two truck variant https://nelsonslocomotive.com/Heisler/GettingStarted/GettingStarted.htm
+    public float weightKg(){return 30000f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelLSSP7()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{-0.4f, 0.3f, -0.8f}};}
+    public float[][] modelOffsets(){return new float[][]{{-0.3f, 0.3f, -0.8f}};}
     @Override
     public float[][] modelRotations(){return new float[][]{{0.0f, 0.0f, 0.0f}};}
     @Override
@@ -79,9 +79,9 @@ public class EntityLocoSteamLSSP7 extends EntityTrainCore {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return new float[][]{{0.65f,1.25f, 0.3f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{2.1f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return worldObj==null?new float[]{2.8f,2.2f,1.3f}:new float[]{2.2f,2.2f,1.3f};}
     @Override
     public float[] bogieLengthFromCenter() {return new float[]{0.3f, -0.55f};}
     //Train specific stuff

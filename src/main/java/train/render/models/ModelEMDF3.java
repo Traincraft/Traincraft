@@ -700,6 +700,8 @@ public class ModelEMDF3 extends ModelBase
 		emdf3Model[163].setRotationPoint(-21.01F, -15.25F, 0F);
 
 		fixRotation(emdf3Model, true, true, true);
+		fixRotation(emdf3Model);
+		bodyModel=emdf3Model;
 	}
 
 	private ModelBloombergTrucks fronttrucks = new ModelBloombergTrucks();

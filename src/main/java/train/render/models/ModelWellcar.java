@@ -74,6 +74,8 @@ public class ModelWellcar extends ModelBase
 		wellcarModel[11].addBox(0F, 0F, 0F, 46, 13, 16, 0F); // Box 14
 		wellcarModel[11].setRotationPoint(-23F, -11.05F, -8F);
 
+		fixRotation(wellcarModel);
+		bodyModel=wellcarModel;
 
 	}
 	private ModelWellcarBogie fronttrucks = new ModelWellcarBogie();

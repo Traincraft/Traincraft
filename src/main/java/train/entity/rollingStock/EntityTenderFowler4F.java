@@ -34,9 +34,9 @@ public class EntityTenderFowler4F extends GenericRailTransport {
     @Override
     public String transportName(){return "Fowler 4F Tender";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "uk";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "1924–1941";}
     @Override
     public boolean isFictional(){return false;}
     @Override

@@ -644,6 +644,8 @@ public class ModelEWSClass66 extends ModelBase
 
 		fixRotation(ewsclass66Model, false, true, true);
 
+		fixRotation(ewsclass66Model);
+		bodyModel=ewsclass66Model;
 	}
 	private ModelEWSClass66_Bogie fronttrucks = new ModelEWSClass66_Bogie();
 	private ModelEWSClass66_Bogie backtrucks = new ModelEWSClass66_Bogie();

@@ -9,10 +9,14 @@
 
 package train.render.models;
 
+import ebf.tim.entities.GenericRailTransport;
 import fexcraft.tmt.slim.ModelBase;
 import fexcraft.tmt.slim.ModelRendererTurbo;
+import fexcraft.tmt.slim.Tessellator;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
+import train.library.Info;
 
 public class ModelGS4Passenger extends ModelBase
 {
@@ -419,6 +423,9 @@ public class ModelGS4Passenger extends ModelBase
 		gs4passengerModel[98].addShapeBox(0F, 0F, 0F, 16, 2, 22, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, -3F); // Box 100
 		gs4passengerModel[98].setRotationPoint(43F, 1F, -11F);
 
+		bodyModel=gs4passengerModel;
+		fixRotation(bodyModel);
+
 
 	}
 	ModelGs4Bogie bogie1 = new ModelGs4Bogie();
@@ -428,11 +435,11 @@ public class ModelGS4Passenger extends ModelBase
 		super.render(entity, f, f1, f2, f3, f4, f5);
 
 		//TODO: this should be handled by TiM's skin system
-		/*if(entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor()==2){
+		if(entity instanceof GenericRailTransport && ((GenericRailTransport) entity).getCurrentSkin().name.equals("Red")){
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/GS4_bogie_Red.png"));
 		} else {
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/GS4_bogie.png"));
-		}*/
+		}
 		GL11.glPushMatrix();
 		GL11.glTranslated(-3.1,0,0);
 		bogie1.render(entity,f,f1,f2,f3,f4,f5);

@@ -299,6 +299,7 @@ public class ModelHeavySteamLoco extends ModelBase{
 				box40,box41,box42,box43,box44,box45,box46,box47,box48,box49,
 				box50,box51,box53
 		};
+		fixRotation(bodyModel,false,false,true);
 
 		fixRotation(bodyModel);
 	}

@@ -221,6 +221,8 @@ public class Model100TonHopper extends ModelBase
 		model100tonhopperModel[47].setRotationPoint(-39F, -25F, -8F);
 
 		fixRotation(model100tonhopperModel, false, true, true);
+		fixRotation(model100tonhopperModel);
+		bodyModel=model100tonhopperModel;
 
 	}
 	private ModelFreightTruckM fronttrucks = new ModelFreightTruckM();

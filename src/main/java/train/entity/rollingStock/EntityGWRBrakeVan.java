@@ -34,9 +34,9 @@ public class EntityGWRBrakeVan extends GenericRailTransport {
     @Override
     public String transportName(){return "GWR Toad Brake Van";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "us";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "1894-1947";}
     @Override
     public boolean isFictional(){return false;}
     @Override
@@ -46,13 +46,13 @@ public class EntityGWRBrakeVan extends GenericRailTransport {
         return TrainsInMotion.transportTypes.WORKCAR.singleton();
     }
     @Override
-    public float weightKg(){return 10f;}
+    public float weightKg(){return 18143.7f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelGWRBrakeVan()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{0.0f, -0.1f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.0f, 0.0f}};}
     @Override
     public float[][] modelRotations(){return new float[][]{{0.0f, 0.0f, 0.0f}};}
     @Override
@@ -78,18 +78,18 @@ public class EntityGWRBrakeVan extends GenericRailTransport {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return new float[][]{{0,1.6f, -0.2f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{6.800000190734863f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{6.8f,2.6f,1.4f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{2.7200000286102295f, -2.7200000286102295f};}
+    public float[] bogieLengthFromCenter() {return new float[]{2.0f, -2.0f};}
 
 
 
     //these only change in very specific use cases.
     @Override
     public boolean shouldRiderSit(){
-        return false;
+        return true;
     }
     @Override
     public Item getItem(){return thisItem;}

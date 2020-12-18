@@ -831,6 +831,8 @@ public class ModelClass85 extends ModelBase
 
 		fixRotation(class85Model, false, true, true);
 
+		fixRotation(class85Model);
+		bodyModel=class85Model;
 
 	}
 	private ModelDeiticBogie fronttrucks = new ModelDeiticBogie();

@@ -550,6 +550,8 @@ public class ModelTankWagonThreeDome extends ModelBase
 		tankwagonthreedomeModel[130].addShapeBox(0F, 0F, 0F, 2, 2, 4, 0F, 0F, 0F, 3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 3F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F); // Box 190
 		tankwagonthreedomeModel[130].setRotationPoint(36F, -4F, -2F);
 
+		fixRotation(tankwagonthreedomeModel);
+		bodyModel=tankwagonthreedomeModel;
 
 	}
 
