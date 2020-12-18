@@ -89,19 +89,29 @@ public class Tessellator{
 
 	public void drawTexturedVertsWithNormal(TexturedPolygon polygon, float scale){
 		GL11.glBegin(polygon.vertices.size()==4?GL11.GL_QUADS:polygon.vertices.size()==3?GL11.GL_TRIANGLES:GL11.GL_POLYGON);
-		for(TexturedVertex vert : polygon.vertices) {
-			GL11.glTexCoord2f(vert.textureX, vert.textureY);
-			if (x != null) {
-				GL11.glVertex3f((vert.vector3F.xCoord + x)*scale, (vert.vector3F.yCoord + y)*scale, (vert.vector3F.zCoord + z)*scale);
-			} else {
-				GL11.glVertex3f(vert.vector3F.xCoord*scale, vert.vector3F.yCoord*scale, vert.vector3F.zCoord*scale);
-			}
 
+		if(polygon.normal!=null) {
+			GL11.glNormal3f(polygon.normal.xCoord, polygon.normal.yCoord, polygon.normal.zCoord);
+		} else if(polygon.vertices.size()>2) {
+			Vec3f vec0 = new Vec3f(polygon.vertices.get(1).vector3F.subtract(polygon.vertices.get(0).vector3F));
+			Vec3f vec1 = new Vec3f(polygon.vertices.get(1).vector3F.subtract(polygon.vertices.get(2).vector3F));
+			Vec3f vec2 = vec1.crossProduct(vec0).normalize();
+			//integer based normal map scaling fits in better with vanilla, plus it looks more like TC.
+			GL11.glNormal3i(
+					((int)(vec2.xCoord * 127.0F)) & 255,
+					(((int)(vec2.yCoord * 127.0F)) & 255) << 8,
+					(((int)(vec2.zCoord * 127.0F)) & 255) << 16);
 		}
 
-		Vec3f norm = polygon.vertices.get(1).vector3F.subtract(polygon.vertices.get(2).vector3F)
-				.crossProduct(polygon.vertices.get(1).vector3F.subtract(polygon.vertices.get(0).vector3F));
-		GL11.glNormal3f(norm.yCoord, norm.xCoord, norm.zCoord);
+		for (TexturedVertex vert : polygon.vertices) {
+			GL11.glTexCoord2f(vert.textureX, vert.textureY);
+
+			if (x != null) {
+				GL11.glVertex3f((vert.vector3F.xCoord + x) * scale, (vert.vector3F.yCoord + y) * scale, (vert.vector3F.zCoord + z) * scale);
+			} else {
+				GL11.glVertex3f(vert.vector3F.xCoord * scale, vert.vector3F.yCoord * scale, vert.vector3F.zCoord * scale);
+			}
+		}
 
 		GL11.glEnd();
 	}

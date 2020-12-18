@@ -12,7 +12,7 @@ public class BoxBuilder {
     private static final Vec3f NULLVEC = new Vec3f(0, 0, 0);
     private final ModelRendererTurbo host;
     private float x, y, z, expansion, w, h, d;
-    private boolean[] invisible = new boolean[6];
+    private boolean[] invisible = new boolean[]{false,false,false,false,false,false};
     private float[][] uv = new float[6][];
     private boolean[] detached = new boolean[6];
     private Vec3f[] corners = new Vec3f[]{NULLVEC,NULLVEC,NULLVEC,NULLVEC,NULLVEC,NULLVEC,NULLVEC,NULLVEC};
