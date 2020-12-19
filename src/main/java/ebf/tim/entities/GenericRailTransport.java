@@ -23,6 +23,7 @@ import ebf.tim.render.ParticleFX;
 import ebf.tim.render.TransportRenderData;
 import ebf.tim.utility.*;
 import fexcraft.tmt.slim.ModelBase;
+import fexcraft.tmt.slim.Vec3d;
 import io.netty.buffer.ByteBuf;
 import mods.railcraft.api.carts.IFluidCart;
 import mods.railcraft.api.carts.ILinkableCart;
@@ -1039,6 +1040,7 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
                     seats.add(seat);
                 }
             }
+            collisionHandler.position(posX, posY, posZ, rotationPitch, rotationYaw);
         }
 
         /*
@@ -1052,6 +1054,8 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
          */
         if (!worldObj.isRemote && frontBogie!=null && backBogie != null && (!getBoolean(boolValues.DERAILED) || ticksExisted==1)){
             //handle movement.
+
+            //update positions related to linking
             if(!(this instanceof EntityTrainCore && getAccelerator()!=0)){//disable linking motion if it's a running train
                 if (frontLinkedID != null && worldObj.getEntityByID(frontLinkedID) instanceof GenericRailTransport) {
                     manageLinks((GenericRailTransport) worldObj.getEntityByID(frontLinkedID));
@@ -1060,8 +1064,6 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
                     manageLinks((GenericRailTransport) worldObj.getEntityByID(backLinkedID));
                 }
             }
-
-
 
             //calculate for slopes
             if(Math.abs(rotationPitch)>4f){
@@ -1358,40 +1360,47 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
      * If coupling is on then it will check sides without linked transports for anything to link to.
      */
     public void manageLinks(GenericRailTransport linkedTransport) {
-        vectorCache[4][0]=(float)(linkedTransport.posX - this.posX);
-        vectorCache[4][2]=(float)(linkedTransport.posZ - this.posZ);
-        if (Math.abs(vectorCache[4][0]) + Math.abs(vectorCache[4][2]) >0.05f) {
+        //distance
+        vectorCache[4][0]= (float)(this.posX - linkedTransport.posX);
+        vectorCache[4][2]= (float)(this.posZ - linkedTransport.posZ);
 
-            float distance = MathHelper.sqrt_double((vectorCache[4][0] * vectorCache[4][0]) + (vectorCache[4][2] * vectorCache[4][2]));
+        //movement length
+        float norm = MathHelper.sqrt_double(
+                vectorCache[4][0] * vectorCache[4][0] + vectorCache[4][2] * vectorCache[4][2]);
 
-            vectorCache[5][0] = vectorCache[4][0] / distance;
-            vectorCache[5][2] = vectorCache[4][2] / distance;
+        //scale the distance
+        vectorCache[5][0] = vectorCache[4][0] / norm;
+        vectorCache[5][2] = vectorCache[4][2] / norm;
 
-            if (linkedTransport.frontLinkedID != null && linkedTransport.frontLinkedID == this.getEntityId()) {
-                distance -= Math.abs(linkedTransport.getHitboxSize()[0]*-0.5f);
-            } else {
-                distance -= Math.abs(linkedTransport.getHitboxSize()[0]*0.5f);
-            }
-            if (this.frontLinkedID != null && this.frontLinkedID == linkedTransport.getEntityId()) {
-                distance -= Math.abs(this.getHitboxSize()[0]*-0.5f);
-            } else {
-                distance -= Math.abs(this.getHitboxSize()[0]*0.5f);
-            }
+        //add in linking distance to the movement length
+        norm -=((this.getHitboxSize()[0]*0.5f)+(linkedTransport.getHitboxSize()[0]*0.5f));
 
-            vectorCache[4][0] = 0.3f * distance * vectorCache[4][0];
-            vectorCache[4][2] = 0.3f * distance * vectorCache[4][2];
+        //scale distance based on movement length with linking distance.
+        vectorCache[4][0] = 0.4f * norm * vectorCache[4][0];
+        vectorCache[4][2] = 0.4f * norm * vectorCache[4][2];
 
-            distance = (-vectorCache[4][0] - vectorCache[4][0]) * vectorCache[5][0] + (-vectorCache[4][2] - vectorCache[4][2]) * vectorCache[5][2];
 
-            vectorCache[4][0] -= 0.4f * distance * vectorCache[5][0] * -1f;
-            vectorCache[4][2] -= 0.4f * distance * vectorCache[5][2] * -1f;
+        //apply velocity to both entities, due to async updates this is necessary for next step
+        this.frontBogie.addVelocity(-vectorCache[4][0],0,-vectorCache[4][2]);
+        this.backBogie.addVelocity(-vectorCache[4][0],0,-vectorCache[4][2]);
+        linkedTransport.frontBogie.addVelocity(vectorCache[4][0],0,vectorCache[4][2]);
+        linkedTransport.backBogie.addVelocity(vectorCache[4][0],0,vectorCache[4][2]);
 
-            //can't be exactly 100% or it will fling itself into oblivion
-            this.frontBogie.addVelocity(vectorCache[4][0]*0.99, 0, vectorCache[4][2]*0.99);
-            this.backBogie.addVelocity(vectorCache[4][0]*0.99, 0, vectorCache[4][2]*0.99);
-        }
+        //calculate distance based on the movement of each entity
+        norm = (float)((this.frontBogie.motionX - linkedTransport.frontBogie.motionX) * vectorCache[5][0] +
+                (this.frontBogie.motionZ - linkedTransport.frontBogie.motionZ) * vectorCache[5][2]);
 
+        //scale the distance based on the original scaled distance.
+        vectorCache[4][0] = 0.4f * norm * vectorCache[5][0] * -1;
+        vectorCache[4][2] = 0.4f * norm * vectorCache[5][2] * -1;
+
+        //now dampen the original movement distance based on the calculated movement speed
+        this.frontBogie.addVelocity(vectorCache[4][0],0,vectorCache[4][2]);
+        this.backBogie.addVelocity(vectorCache[4][0],0,vectorCache[4][2]);
+        linkedTransport.frontBogie.addVelocity(-vectorCache[4][0],0,-vectorCache[4][2]);
+        linkedTransport.backBogie.addVelocity(-vectorCache[4][0],0,-vectorCache[4][2]);
     }
+
 
 
     /**

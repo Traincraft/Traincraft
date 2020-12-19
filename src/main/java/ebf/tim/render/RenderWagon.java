@@ -355,11 +355,6 @@ public class RenderWagon extends Render {
 
         //render hitboxes
         if(RenderManager.debugBoundingBox && entity.collisionHandler!=null /*&& entity.collisionHandler.renderShape !=null*/) {
-            GL11.glPushMatrix();
-            GL11.glEnable(GL11.GL_BLEND);
-            OpenGlHelper.glBlendFunc(770, 771, 1, 0);
-            GL11.glDisable(GL11.GL_TEXTURE_2D);
-            GL11.glDisable(GL11.GL_ALPHA_TEST);
             //GL11.glDepthMask(false);
             /* see HitboxDynamic
             GL11.glPushMatrix();
@@ -408,50 +403,84 @@ public class RenderWagon extends Render {
             */
 
             GL11.glPushMatrix();
-
-            GL11.glEnable(GL11.GL_BLEND);
-            OpenGlHelper.glBlendFunc(770, 771, 1, 0);
+            GL11.glTranslated(x,y,z);
             GL11.glDisable(GL11.GL_TEXTURE_2D);
             GL11.glDisable(GL11.GL_ALPHA_TEST);
-            GL11.glColor3f(1,0,0);
+            GL11.glDisable(GL_LIGHTING);
+            GL11.glLineWidth(5);
+
+            GL11.glColor4f(1,0,1,1);
+
+            if(entity.frontLinkedID!=null) {
+                Entity e = entity.worldObj.getEntityByID(entity.frontLinkedID);
+                    if(e instanceof GenericRailTransport) {
+                        Vec3d rotated = CommonUtil.rotateDistance(entity.getHitboxSize()[0] * 0.5f,
+                                0, CommonUtil.atan2degreesf(
+                                        e.posZ - entity.posZ,e.posX - entity.posX));
+
+                        Tessellator.getInstance().startDrawing(GL11.GL_LINES);
+                        Tessellator.getInstance().addVertex(0,entity.getHitboxSize()[1]+0.5f,0);
+                        Tessellator.getInstance().addVertex((float)rotated.xCoord,entity.getHitboxSize()[1]+0.5f,(float)rotated.zCoord);
+                        Tessellator.getInstance().draw();
+
+                    }
+            }
+
+
+            if(entity.backLinkedID!=null) {
+                Entity e = entity.worldObj.getEntityByID(entity.backLinkedID);
+                if(e instanceof GenericRailTransport) {
+
+                    Vec3d rotated = CommonUtil.rotateDistance(entity.getHitboxSize()[0] * 0.5f,
+                            0, CommonUtil.atan2degreesf(
+                                    e.posZ - entity.posZ,e.posX - entity.posX));
+
+                    Tessellator.getInstance().startDrawing(GL11.GL_LINES);
+                    Tessellator.getInstance().addVertex(0,entity.getHitboxSize()[1]+0.5f,0);
+                    Tessellator.getInstance().addVertex((float)rotated.xCoord,entity.getHitboxSize()[1]+0.5f,(float)rotated.zCoord);
+                    Tessellator.getInstance().draw();
+
+                }
+            }
+
+            GL11.glRotatef(entity.rotationYaw,0,-1,0);
+            GL11.glColor4f(1,0,0,1);
             Tessellator.getInstance().startDrawing(GL11.GL_LINES);
-            Tessellator.getInstance().addVertex((float)x+entity.getHitboxSize()[0]*0.5f,(float)y+entity.getHitboxSize()[1],(float)z+(entity.getHitboxSize()[2]*0.5f));
-            Tessellator.getInstance().addVertex((float)x+entity.getHitboxSize()[0]*0.5f,(float)y+entity.getHitboxSize()[1],(float)z+(entity.getHitboxSize()[2]*-0.5f));
+            Tessellator.getInstance().addVertex(entity.getHitboxSize()[0]*0.5f,entity.getHitboxSize()[1],(entity.getHitboxSize()[2]*0.5f));
+            Tessellator.getInstance().addVertex(entity.getHitboxSize()[0]*0.5f,entity.getHitboxSize()[1],(entity.getHitboxSize()[2]*-0.5f));
             Tessellator.getInstance().draw();
 
             GL11.glColor3f(0,1,0);
             Tessellator.getInstance().startDrawing(GL11.GL_LINES);
-            Tessellator.getInstance().addVertex((float)x+entity.getHitboxSize()[0]*-0.5f,(float)y+entity.getHitboxSize()[1],(float)z+(entity.getHitboxSize()[2]*0.5f));
-            Tessellator.getInstance().addVertex((float)x+entity.getHitboxSize()[0]*0.5f,(float)y+entity.getHitboxSize()[1],(float)z+(entity.getHitboxSize()[2]*0.5f));
+            Tessellator.getInstance().addVertex((float)entity.getHitboxSize()[0]*-0.5f,(float)entity.getHitboxSize()[1],(entity.getHitboxSize()[2]*0.5f));
+            Tessellator.getInstance().addVertex((float)entity.getHitboxSize()[0]*0.5f,(float)entity.getHitboxSize()[1],(entity.getHitboxSize()[2]*0.5f));
             Tessellator.getInstance().draw();
 
             GL11.glColor3f(0,0,1);
             Tessellator.getInstance().startDrawing(GL11.GL_LINES);
-            Tessellator.getInstance().addVertex((float)x+entity.getHitboxSize()[0]*0.5f,(float)y+entity.getHitboxSize()[1],(float)z+(entity.getHitboxSize()[2]*0.5f));
-            Tessellator.getInstance().addVertex((float)x+entity.getHitboxSize()[0]*0.5f,(float)y,(float)z+(entity.getHitboxSize()[2]*0.5f));
+            Tessellator.getInstance().addVertex(entity.getHitboxSize()[0]*0.5f,entity.getHitboxSize()[1],(entity.getHitboxSize()[2]*0.5f));
+            Tessellator.getInstance().addVertex(entity.getHitboxSize()[0]*0.5f,(float)0,(entity.getHitboxSize()[2]*0.5f));
             Tessellator.getInstance().draw();
-            GL11.glDisable(GL11.GL_BLEND);
-            GL11.glEnable(GL11.GL_TEXTURE_2D);
-            GL11.glEnable(GL11.GL_ALPHA_TEST);
-            GL11.glPopMatrix();
-
-
-            GL11.glTranslated(x,y,z);
-            drawRotationPoint(new Vec3f(entity.frontBogie.posX-entity.posX,entity.frontBogie.posY-entity.posY,entity.frontBogie.posZ-entity.posZ), entity);
-
 
 
             if(entity.frontBogie==null || entity.backBogie==null){
+                GL11.glLineWidth(2);
+                GL11.glEnable(GL_LIGHTING);
+                GL11.glEnable(GL11.GL_TEXTURE_2D);
+                GL11.glEnable(GL11.GL_ALPHA_TEST);
+                GL11.glPopMatrix();
                 return;
             }
 
+            GL11.glRotatef(entity.rotationYaw,0,1,0);
+            drawRotationPoint(new Vec3f(entity.frontBogie.posX-entity.posX,entity.frontBogie.posY-entity.posY+0.3,entity.frontBogie.posZ-entity.posZ), entity);
 
-            drawRotationPoint(new Vec3f(entity.backBogie.posX-entity.posX,entity.backBogie.posY-entity.posY,entity.backBogie.posZ-entity.posZ), entity);
+            drawRotationPoint(new Vec3f(entity.backBogie.posX-entity.posX,entity.backBogie.posY-entity.posY+0.3,entity.backBogie.posZ-entity.posZ), entity);
 
-            GL11.glDisable(GL11.GL_BLEND);
+            GL11.glLineWidth(2);
+            GL11.glEnable(GL_LIGHTING);
             GL11.glEnable(GL11.GL_TEXTURE_2D);
             GL11.glEnable(GL11.GL_ALPHA_TEST);
-            //GL11.glDepthMask(true);
             GL11.glPopMatrix();
         }
     }

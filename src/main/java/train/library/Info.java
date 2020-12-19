@@ -25,7 +25,7 @@ public class Info {
 	public static final String bookPrefix = "textures/gui/book/";
 	public static final String trainsPrefix = "textures/trains/";
 	public static final String zeppelinTexturePrefix = "textures/zeppelin/";
-	public static final String modelPrefix = "tc:models/";//"/src/train/Resources/Models/";
+	public static final String modelPrefix = "traincraft:models/";//"/src/train/Resources/Models/";
 	//public static final String modelPrefix2 = "models/";
 	public static final String modelTexPrefix = "textures/models/";
 	public static final String armorPrefix = "textures/armor/";
