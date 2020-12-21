@@ -34,9 +34,9 @@ public class EntityFreightHeavyweightBaggage extends GenericRailTransport {
     @Override
     public String transportName(){return "Freight Heavyweight Baggage";}
     @Override
-    public String transportcountry(){return "Undefined";}
-    @Override
-    public String transportYear(){return "Undefined";}
+    public String transportcountry(){return "us";}
+    @Override//I think this is the rock island golden gate?
+    public String transportYear(){return "1929-1969";}
     @Override
     public boolean isFictional(){return false;}
     @Override

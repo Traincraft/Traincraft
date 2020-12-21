@@ -33,9 +33,9 @@ public class EntityFreightDepressedFlatbed extends GenericRailTransport {
     @Override
     public String transportName(){return "Freight Depressed Flatcar";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return null;}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "1960";}
     @Override
     public boolean isFictional(){return false;}
     @Override
@@ -44,14 +44,14 @@ public class EntityFreightDepressedFlatbed extends GenericRailTransport {
     public List<TrainsInMotion.transportTypes> getTypes(){
         return TrainsInMotion.transportTypes.FREIGHT.singleton();
     }
-    @Override
-    public float weightKg(){return 10f;}
+    @Override//Most flatcars weigh anywhere between 10 and 30 tons.
+    public float weightKg(){return 20000f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelDepressedFlatbed()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{-0.1f, -0.15f, -0.075f}};}
+    public float[][] modelOffsets(){return new float[][]{{-0.25f, 0f, 0.075f}};}
     @Override
     public float[][] modelRotations(){return new float[][]{{0.0f, 0.0f, 0.0f}};}
     @Override
@@ -80,11 +80,11 @@ public class EntityFreightDepressedFlatbed extends GenericRailTransport {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return null;}
     @Override
-    public float[] getHitboxSize(){return new float[]{7.599999904632568f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{7.6f,1.6f,1.1f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{3.0399999618530273f, -3.0399999618530273f};}
+    public float[] bogieLengthFromCenter() {return new float[]{2.8f, -2.65f};}
 
 
 

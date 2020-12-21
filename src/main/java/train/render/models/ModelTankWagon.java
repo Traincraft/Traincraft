@@ -118,6 +118,7 @@ public class ModelTankWagon extends ModelBase {
 				box10,box11,box12,box13,box14,box15,box16,box17,box18,box19,
 				box20,box25
 		};
+		fixRotation(bodyModel,false,false,true);
 
 		fixRotation(bodyModel);
 

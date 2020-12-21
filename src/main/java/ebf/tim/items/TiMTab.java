@@ -1,9 +1,13 @@
 package ebf.tim.items;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import ebf.tim.registry.TiMGenericRegistry;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.util.StatCollector;
+
+import java.util.List;
 
 /**
  * <h1>Creative tab</h1>
@@ -33,4 +37,10 @@ public class TiMTab extends CreativeTabs {
 
     /**the icon for the tab. override this one*/
     public Item getTabItem(){return tabItem;}
+
+    /**This is used to hide items from the creative tab, but could also be used for sorting.*/
+    @SideOnly(Side.CLIENT)
+    public void displayAllReleventItems(List p_78018_1_) {
+        super.displayAllReleventItems(p_78018_1_);
+    }
 }

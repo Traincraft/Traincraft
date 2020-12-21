@@ -34,25 +34,26 @@ public class EntityTankLava extends GenericRailTransport {
     @Override
     public String transportName(){return "Tank Lava";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return null;}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return null;}
     @Override
-    public boolean isFictional(){return false;}
+    public boolean isFictional(){return true;}
     @Override
     public int getInventoryRows(){return 0;}
     @Override
     public List<TrainsInMotion.transportTypes> getTypes(){
         return TrainsInMotion.transportTypes.TANKER.singleton();
     }
-    @Override
-    public float weightKg(){return 10f;}
+    @Override//tanker cars usually weigh anywhere around 40000lb to 180000lb.
+    // given the limited capacity, but extra reinforcement, 70000-ish 'seems legit'.
+    public float weightKg(){return 32000f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelWatertransp()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.44f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.64f, 0.0f}};}
 @Override
     public float[][] modelRotations(){return new float[][]{{0f,180f,180f}};}
     @Override
@@ -79,11 +80,11 @@ public class EntityTankLava extends GenericRailTransport {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return null;}
     @Override
-    public float[] getHitboxSize(){return new float[]{3.700000047683716f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{3.7f,2.1f,1.5f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{1.4800000190734863f, -1.4800000190734863f};}
+    public float[] bogieLengthFromCenter() {return new float[]{1.05f, -1.05f};}
     @Override
     public int[] getTankCapacity(){return new int[]{30000};}
 

@@ -299,16 +299,15 @@ public class ModelVB040 extends ModelBase
         vb040Model[67].setRotationPoint(-4F, -10F, 0F);
 
         fixRotation(vb040Model, false, true, true);
+        fixRotation(vb040Model);
+        bodyModel=vb040Model;
 
     }
 
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
-        for(int i = 0; i < 68; i++)
-        {
-            vb040Model[i].render(f5);
-        }
+        super.render(entity, f, f1, f2, f3, f4, f5);
     }
 
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5)
