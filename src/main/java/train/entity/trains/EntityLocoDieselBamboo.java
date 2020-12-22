@@ -112,7 +112,7 @@ public class EntityLocoDieselBamboo extends EntityTrainCore {
     @Override
     public float[] getHitboxSize(){return new float[]{2.600000023841858f,2.1f,1.1f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{1.2400000095367432f, -1.2400000095367432f};}
+    public float[] rotationPoints() {return new float[]{1.2400000095367432f, -1.2400000095367432f};}
     //Train specific stuff
     @Override
     public String transportFuelType(){return "diesel";}

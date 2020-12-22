@@ -77,7 +77,7 @@ public class PassengerIC4_DSB_FH extends GenericRailTransport {
     @Override
     public float[] getHitboxSize(){return new float[]{7.300000190734863f,2.1f,1.1f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{2.9200000762939453f, -2.9200000762939453f};}
+    public float[] rotationPoints() {return new float[]{2.9200000762939453f, -2.9200000762939453f};}
 
 
 

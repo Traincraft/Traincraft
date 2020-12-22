@@ -35,9 +35,9 @@ public class EntityLocoDieselEMDF3 extends EntityTrainCore {
     @Override
     public String transportName(){return "Loco Diesel EMD F-3";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "us";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "1945";}
     @Override
     public boolean isFictional(){return false;}
     @Override
@@ -47,13 +47,13 @@ public class EntityLocoDieselEMDF3 extends EntityTrainCore {
         return TrainsInMotion.transportTypes.DIESEL.singleton();
     }
     @Override
-    public float weightKg(){return 10f;}
+    public float weightKg(){return 106000f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelEMDF3()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{-2.2f, -0.1f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{-0.9f, 0.1f, 0.0f}};}
     @Override
     public float[][] modelRotations(){return new float[][]{{0.0f, 0.0f, 0.0f}};}
     @Override
@@ -91,11 +91,11 @@ public class EntityLocoDieselEMDF3 extends EntityTrainCore {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return new float[][]{{-0.8f,1.5f, 0.25f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{4.25f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{5.1f,2.5f,1.5f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{1.925000011920929f, -1.925000011920929f};}
+    public float[] rotationPoints() {return new float[]{1.95f, -1.3f};}
     //Train specific stuff
     @Override
     public String transportFuelType(){return "diesel";}

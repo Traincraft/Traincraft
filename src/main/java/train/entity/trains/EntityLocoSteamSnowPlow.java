@@ -85,7 +85,7 @@ public class EntityLocoSteamSnowPlow extends EntityTrainCore {
     @Override
     public float[] getHitboxSize(){return new float[]{6.15f,2.6f,1.5f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{1.5f, -1.4f};}
+    public float[] rotationPoints() {return new float[]{1.5f, -1.4f};}
     //Train specific stuff
     @Override
     public String transportFuelType(){return "steam, snow plow";}

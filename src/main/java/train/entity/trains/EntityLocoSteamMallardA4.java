@@ -104,7 +104,7 @@ public class EntityLocoSteamMallardA4 extends EntityTrainCore {
         return new float[]{7.6f,2.6f,1.5f};
     }
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{2.9f, -2.6f};}
+    public float[] rotationPoints() {return new float[]{2.9f, -2.6f};}
 
     @Override
     public float[][] modelOffsets(){return new float[][]{{-0.4f,0.0f,0f}};}

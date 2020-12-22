@@ -87,7 +87,7 @@ public class EntityFreightShortCoveredHopper extends GenericRailTransport {
     @Override
     public float[] getHitboxSize(){return new float[]{4.0f,2.1f,1.1f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{1.600000023841858f, -1.600000023841858f};}
+    public float[] rotationPoints() {return new float[]{1.600000023841858f, -1.600000023841858f};}
 
 
 

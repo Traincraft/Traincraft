@@ -84,7 +84,7 @@ public class EntityBulkheadFlatCart extends GenericRailTransport {
     @Override
     public float[] getHitboxSize(){return new float[]{5.1f,2.3f,1.5f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{1.7f, -1.7f};}
+    public float[] rotationPoints() {return new float[]{1.7f, -1.7f};}
 
 
 

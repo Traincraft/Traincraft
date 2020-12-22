@@ -2124,366 +2124,46 @@ public class ModelGP40 extends ModelBase {
 		Shape370.setRotationPoint(25F, 4F, -7.7F);
 		Shape370.mirror = true;
 		setRotation(Shape370, 0F, 0F, 0F);
-	}
 
-	@Override
-	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-
-		Shape344.render(f5);
-		Shape1.render(f5);
-		Shape345.render(f5);
-		Shape2.render(f5);
-		Shape346.render(f5);
-		Shape3.render(f5);
-		Shape347.render(f5);
-		Shape4.render(f5);
-		Shape348.render(f5);
-		Shape5.render(f5);
-		Shape349.render(f5);
-		Shape6.render(f5);
-		Shape350.render(f5);
-		Shape7.render(f5);
-		Shape351.render(f5);
-		Shape8.render(f5);
-		Shape352.render(f5);
-		Shape9.render(f5);
-		Shape353.render(f5);
-		Shape10.render(f5);
-		Shape11.render(f5);
-		Shape12.render(f5);
-		Shape13.render(f5);
-		Shape14.render(f5);
-		Shape15.render(f5);
-		Shape16.render(f5);
-		Shape17.render(f5);
-		Shape18.render(f5);
-		Shape19.render(f5);
-		Shape20.render(f5);
-		Shape21.render(f5);
-		Shape22.render(f5);
-		Shape23.render(f5);
-		Shape24.render(f5);
-		Shape25.render(f5);
-		Shape26.render(f5);
-		Shape27.render(f5);
-		Shape28.render(f5);
-		Shape29.render(f5);
-		Shape30.render(f5);
-		Shape31.render(f5);
-		Shape32.render(f5);
-		Shape33.render(f5);
-		Shape34.render(f5);
-		Shape35.render(f5);
-		Shape36.render(f5);
-		Shape37.render(f5);
-		Shape38.render(f5);
-		Shape39.render(f5);
-		Shape40.render(f5);
-		Shape41.render(f5);
-		Shape42.render(f5);
-		Shape43.render(f5);
-		Shape44.render(f5);
-		Shape45.render(f5);
-		Shape46.render(f5);
-		Shape47.render(f5);
-		Shape48.render(f5);
-		Shape49.render(f5);
-		Shape50.render(f5);
-		Shape51.render(f5);
-		Shape52.render(f5);
-		Shape53.render(f5);
-		Shape54.render(f5);
-		Shape55.render(f5);
-		Shape56.render(f5);
-		Shape57.render(f5);
-		Shape58.render(f5);
-		Shape59.render(f5);
-		Shape60.render(f5);
-		Shape61.render(f5);
-		Shape62.render(f5);
-		Shape63.render(f5);
-		Shape64.render(f5);
-		Shape65.render(f5);
-		Shape66.render(f5);
-		Shape67.render(f5);
-		Shape68.render(f5);
-		Shape69.render(f5);
-		Shape70.render(f5);
-		Shape71.render(f5);
-		Shape72.render(f5);
-		Shape73.render(f5);
-		Shape74.render(f5);
-		Shape75.render(f5);
-		Shape76.render(f5);
-		Shape77.render(f5);
-		Shape78.render(f5);
-		Shape79.render(f5);
-		Shape80.render(f5);
-		Shape81.render(f5);
-		Shape82.render(f5);
-		Shape83.render(f5);
-		Shape84.render(f5);
-		Shape85.render(f5);
-		Shape86.render(f5);
-		Shape87.render(f5);
-		Shape88.render(f5);
-		Shape89.render(f5);
-		Shape90.render(f5);
-		Shape91.render(f5);
-		Shape92.render(f5);
-		Shape93.render(f5);
-		Shape94.render(f5);
-		Shape95.render(f5);
-		Shape97.render(f5);
-		Shape98.render(f5);
-		Shape99.render(f5);
-		Shape100.render(f5);
-		Shape101.render(f5);
-		Shape102.render(f5);
-		Shape103.render(f5);
-		Shape104.render(f5);
-		Shape105.render(f5);
-		Shape106.render(f5);
-		Shape107.render(f5);
-		Shape108.render(f5);
-		Shape109.render(f5);
-		Shape110.render(f5);
-		Shape111.render(f5);
-		Shape112.render(f5);
-		Shape113.render(f5);
-		Shape114.render(f5);
-		Shape115.render(f5);
-		Shape116.render(f5);
-		Shape117.render(f5);
-		Shape118.render(f5);
-		Shape119.render(f5);
-		Shape120.render(f5);
-		Shape121.render(f5);
-		Shape122.render(f5);
-		Shape123.render(f5);
-		Shape124.render(f5);
-		Shape125.render(f5);
-		Shape126.render(f5);
-		Shape127.render(f5);
-		Shape128.render(f5);
-		Shape129.render(f5);
-		Shape130.render(f5);
-		Shape131.render(f5);
-		Shape132.render(f5);
-		Shape133.render(f5);
-		Shape134.render(f5);
-		Shape135.render(f5);
-		Shape136.render(f5);
-		Shape137.render(f5);
-		Shape138.render(f5);
-		Shape139.render(f5);
-		Shape140.render(f5);
-		Shape141.render(f5);
-		Shape142.render(f5);
-		Shape143.render(f5);
-		Shape144.render(f5);
-		Shape145.render(f5);
-		Shape146.render(f5);
-		Shape147.render(f5);
-		Shape148.render(f5);
-		Shape149.render(f5);
-		Shape150.render(f5);
-		Shape151.render(f5);
-		Shape152.render(f5);
-		Shape153.render(f5);
-		Shape154.render(f5);
-		Shape155.render(f5);
-		Shape156.render(f5);
-		Shape157.render(f5);
-		Shape158.render(f5);
-		Shape159.render(f5);
-		Shape160.render(f5);
-		Shape161.render(f5);
-		Shape162.render(f5);
-		Shape163.render(f5);
-		Shape164.render(f5);
-		Shape165.render(f5);
-		Shape166.render(f5);
-		Shape167.render(f5);
-		Shape168.render(f5);
-		Shape169.render(f5);
-		Shape170.render(f5);
-		Shape171.render(f5);
-		Shape172.render(f5);
-		Shape173.render(f5);
-		Shape174.render(f5);
-		Shape175.render(f5);
-		Shape177.render(f5);
-		Shape179.render(f5);
-		Shape180.render(f5);
-		Shape181.render(f5);
-		Shape182.render(f5);
-		Shape183.render(f5);
-		Shape185.render(f5);
-		Shape186.render(f5);
-		Shape187.render(f5);
-		Shape188.render(f5);
-		Shape189.render(f5);
-		Shape190.render(f5);
-		Shape191.render(f5);
-		Shape192.render(f5);
-		Shape193.render(f5);
-		Shape194.render(f5);
-		Shape195.render(f5);
-		Shape197.render(f5);
-		Shape198.render(f5);
-		Shape200.render(f5);
-		Shape203.render(f5);
-		Shape206.render(f5);
-		Shape207.render(f5);
-		Shape208.render(f5);
-		Shape209.render(f5);
-		Shape210.render(f5);
-		Shape211.render(f5);
-		Shape212.render(f5);
-		Shape213.render(f5);
-		Shape214.render(f5);
-		Shape215.render(f5);
-		Shape216.render(f5);
-		Shape217.render(f5);
-		Shape218.render(f5);
-		Shape219.render(f5);
-		Shape220.render(f5);
-		Shape221.render(f5);
-		Shape222.render(f5);
-		Shape223.render(f5);
-		Shape224.render(f5);
-		Shape225.render(f5);
-		Shape226.render(f5);
-		Shape227.render(f5);
-		Shape228.render(f5);
-		Shape229.render(f5);
-		Shape230.render(f5);
-		Shape231.render(f5);
-		Shape232.render(f5);
-		Shape233.render(f5);
-		Shape234.render(f5);
-		Shape235.render(f5);
-		Shape236.render(f5);
-		Shape237.render(f5);
-		Shape238.render(f5);
-		Shape240.render(f5);
-		Shape241.render(f5);
-		Shape242.render(f5);
-		Shape243.render(f5);
-		Shape244.render(f5);
-		Shape245.render(f5);
-		Shape246.render(f5);
-		Shape247.render(f5);
-		Shape248.render(f5);
-		Shape249.render(f5);
-		Shape250.render(f5);
-		Shape251.render(f5);
-		Shape252.render(f5);
-		Shape254.render(f5);
-		Shape255.render(f5);
-		Shape256.render(f5);
-		Shape257.render(f5);
-		Shape258.render(f5);
-		Shape259.render(f5);
-		Shape260.render(f5);
-		Shape261.render(f5);
-		Shape262.render(f5);
-		Shape263.render(f5);
-		Shape264.render(f5);
-		Shape265.render(f5);
-		Shape266.render(f5);
-		Shape267.render(f5);
-		Shape268.render(f5);
-		Shape269.render(f5);
-		Shape270.render(f5);
-		Shape271.render(f5);
-		Shape272.render(f5);
-		Shape273.render(f5);
-		chimney.render(f5);
-		Shape275.render(f5);
-		Shape276.render(f5);
-		Shape277.render(f5);
-		Shape278.render(f5);
-		Shape279.render(f5);
-		Shape280.render(f5);
-		Shape281.render(f5);
-		Shape282.render(f5);
-		Shape283.render(f5);
-		Shape284.render(f5);
-		Shape285.render(f5);
-		Shape286.render(f5);
-		Shape287.render(f5);
-		Shape288.render(f5);
-		Shape289.render(f5);
-		Shape290.render(f5);
-		Shape291.render(f5);
-		Shape292.render(f5);
-		Shape293.render(f5);
-		Shape294.render(f5);
-		Shape295.render(f5);
-		Shape296.render(f5);
-		Shape297.render(f5);
-		Shape298.render(f5);
-		Shape299.render(f5);
-		Shape300.render(f5);
-		Shape301.render(f5);
-		Shape302.render(f5);
-		Shape303.render(f5);
-		Shape304.render(f5);
-		Shape305.render(f5);
-		Shape306.render(f5);
-		Shape307.render(f5);
-		Shape308.render(f5);
-		Shape309.render(f5);
-		Shape310.render(f5);
-		Shape311.render(f5);
-		Shape312.render(f5);
-		Shape313.render(f5);
-		Shape314.render(f5);
-		Shape315.render(f5);
-		Shape316.render(f5);
-		Shape317.render(f5);
-		Shape318.render(f5);
-		Shape319.render(f5);
-		Shape320.render(f5);
-		Shape321.render(f5);
-		Shape322.render(f5);
-		Shape323.render(f5);
-		Shape324.render(f5);
-		Shape325.render(f5);
-		Shape326.render(f5);
-		Shape327.render(f5);
-		Shape328.render(f5);
-		Shape329.render(f5);
-		Shape330.render(f5);
-		Shape331.render(f5);
-		Shape332.render(f5);
-		Shape333.render(f5);
-		Shape334.render(f5);
-		Shape335.render(f5);
-		Shape336.render(f5);
-		Shape337.render(f5);
-		Shape338.render(f5);
-		Shape339.render(f5);
-		Shape340.render(f5);
-		Shape341.render(f5);
-		Shape342.render(f5);
-		Shape343.render(f5);
-		Shape370.render(f5);
-
-		Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
-		light4.render(f5);
-		light2.render(f5);
-		light5.render(f5);
-		light6.render(f5);
-		light3.render(f5);
-		light7.render(f5);
-		light_big_1.render(f5);
-		light1.render(f5);
-		light_big_2.render(f5);
-		light8.render(f5);
-		Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+		bodyModel=new ModelRendererTurbo[]{
+				Shape344, Shape1, Shape345, Shape2, Shape346, Shape3, Shape347, Shape4, Shape348, Shape5, Shape349,
+				Shape6, Shape350, Shape7, Shape351, Shape8, Shape352, Shape9, Shape353, Shape10, Shape11, Shape12,
+				Shape13, Shape14, Shape15, Shape16, Shape17, Shape18, Shape19, Shape20, Shape21, Shape22, Shape23,
+				Shape24, Shape25, Shape26, Shape27, Shape28, Shape29, Shape30, Shape31, Shape32, Shape33, Shape34,
+				Shape35, Shape36, Shape37, Shape38, Shape39, Shape40, Shape41, Shape42, Shape43, Shape44, Shape45,
+				Shape46, Shape47, Shape48, Shape49, Shape50, Shape51, Shape52, Shape53, Shape54, Shape55, Shape56,
+				Shape57, Shape58, Shape59, Shape60, Shape61, Shape62, Shape63, Shape64, Shape65, Shape66, Shape67,
+				Shape68, Shape69, Shape70, Shape71, Shape72, Shape73, Shape74, Shape75, Shape76, Shape77, Shape78,
+				Shape79, Shape80, Shape81, Shape82, Shape83, Shape84, Shape85, Shape86, Shape87, Shape88, Shape89,
+				Shape90, Shape91, Shape92, Shape93, Shape94, Shape95, Shape97, Shape98, Shape99, Shape100, Shape101,
+				Shape102, Shape103, Shape104, Shape105, Shape106, Shape107, Shape108, Shape109, Shape110, Shape111,
+				Shape112, Shape113, Shape114, Shape115, Shape116, Shape117, Shape118, Shape119, Shape120, Shape121,
+				Shape122, Shape123, Shape124, Shape125, Shape126, Shape127, Shape128, Shape129, Shape130, Shape131,
+				Shape132, Shape133, Shape134, Shape135, Shape136, Shape137, Shape138, Shape139, Shape140, Shape141,
+				Shape142, Shape143, Shape144, Shape145, Shape146, Shape147, Shape148, Shape149, Shape150, Shape151,
+				Shape152, Shape153, Shape154, Shape155, Shape156, Shape157, Shape158, Shape159, Shape160, Shape161,
+				Shape162, Shape163, Shape164, Shape165, Shape166, Shape167, Shape168, Shape169, Shape170, Shape171,
+				Shape172, Shape173, Shape174, Shape175, light_big_2, Shape177, light8, Shape179, Shape180, Shape181,
+				Shape182, Shape183, light1, Shape185, Shape186, Shape187, Shape188, Shape189, Shape190, Shape191,
+				Shape192, Shape193, Shape194, Shape195, light_big_1, Shape197, Shape198, light7, Shape200, light3,
+				Shape203, light5, light6, Shape206, Shape207, Shape208, Shape209, Shape210, Shape211, Shape212,
+				Shape213, Shape214, Shape215, Shape216, Shape217, Shape218, Shape219, Shape220, Shape221, Shape222,
+				Shape223, Shape224, Shape225, Shape226, Shape227, Shape228, Shape229, Shape230, Shape231, Shape232,
+				Shape233, Shape234, Shape235, Shape236, Shape237, Shape238, light2, Shape240, Shape241, Shape242,
+				Shape243, Shape244, Shape245, Shape246, Shape247, Shape248, Shape249, Shape250, Shape251, Shape252,
+				light4, Shape254, Shape255, Shape256, Shape257, Shape258, Shape259, Shape260, Shape261, Shape262,
+				Shape263, Shape264, Shape265, Shape266, Shape267, Shape268, Shape269, Shape270, Shape271, Shape272,
+				Shape273, chimney, Shape275, Shape276, Shape277, Shape278, Shape279, Shape280, Shape281, Shape282,
+				Shape283, Shape284, Shape285, Shape286, Shape287, Shape288, Shape289, Shape290, Shape291, Shape292,
+				Shape293, Shape294, Shape295, Shape296, Shape297, Shape298, Shape299, Shape300, Shape301, Shape302,
+				Shape303, Shape304, Shape305, Shape306, Shape307, Shape308, Shape309, Shape310, Shape311, Shape312,
+				Shape313, Shape314, Shape315, Shape316, Shape317, Shape318, Shape319, Shape320, Shape321, Shape322,
+				Shape323, Shape324, Shape325, Shape326, Shape327, Shape328, Shape329, Shape330, Shape331, Shape332,
+				Shape333, Shape334, Shape335, Shape336, Shape337, Shape338, Shape339, Shape340, Shape341, Shape342,
+				Shape343, Shape370
+		};
+		fixRotation(bodyModel,false,false,true);
+		fixRotation(bodyModel);
 	}
 
 	private void setRotation(ModelRendererTurbo model, float x, float y, float z) {

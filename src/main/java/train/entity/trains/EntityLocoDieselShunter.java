@@ -89,7 +89,7 @@ public class EntityLocoDieselShunter extends EntityTrainCore {
     @Override
     public float[] getHitboxSize(){return new float[]{3.780000047683716f,2.1f,1.1f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{1.7700000190734864f, -1.7700000190734864f};}
+    public float[] rotationPoints() {return new float[]{1.7700000190734864f, -1.7700000190734864f};}
     //Train specific stuff
     @Override
     public String transportFuelType(){return "diesel";}

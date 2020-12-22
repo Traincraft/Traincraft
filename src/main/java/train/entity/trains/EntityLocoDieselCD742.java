@@ -35,9 +35,9 @@ public class EntityLocoDieselCD742 extends EntityTrainCore {
     @Override
     public String transportName(){return "Loco Diesel CD742";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "cezch";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "1973-1989";}
     @Override
     public boolean isFictional(){return false;}
     @Override
@@ -53,7 +53,7 @@ public class EntityLocoDieselCD742 extends EntityTrainCore {
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelGP40()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{-0.8f, -0.75f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.55f, -0.9f, 0.0f}};}
     @Override
     public float[][] modelRotations(){return new float[][]{{180.0f, 0.0f, -180.0f}};}
     @Override
@@ -87,11 +87,11 @@ public class EntityLocoDieselCD742 extends EntityTrainCore {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return new float[][]{{1,1.4f, 0f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{3.700000047683716f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{4.6f,2.4f,1.5f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{1.7300000190734863f, -1.7300000190734863f};}
+    public float[] rotationPoints() {return new float[]{1.0f, -1.05f};}
     //Train specific stuff
     @Override
     public String transportFuelType(){return "diesel";}

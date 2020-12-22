@@ -53,7 +53,7 @@ public class EntityLocoDiesel44TonSwitcher extends EntityTrainCore {
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelLoco44TonSwitcher()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{-2.75f, 0.425f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{-1.45f, 0.625f, 0.0f}};}
     @Override
     public float[][] modelRotations(){return new float[][]{{0.0f, 0.0f, 0.0f}};}
     @Override
@@ -79,11 +79,11 @@ public class EntityLocoDiesel44TonSwitcher extends EntityTrainCore {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return new float[][]{{0.1f,1.6f, 0.35f},{0.1f,1.6f, -0.35f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{4.75f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{5.1f,2.6f,1.5f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{2.175000011920929f, -2.175000011920929f};}
+    public float[] rotationPoints() {return new float[]{1.45f, -1.45f};}
     //Train specific stuff
     @Override
     public String transportFuelType(){return "diesel";}
@@ -103,7 +103,7 @@ public class EntityLocoDiesel44TonSwitcher extends EntityTrainCore {
     //these only change in very specific use cases.
     @Override
     public boolean shouldRiderSit(){
-        return false;
+        return true;
     }
     @Override
     public Item getItem(){return thisItem;}

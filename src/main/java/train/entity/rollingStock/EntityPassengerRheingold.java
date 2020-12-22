@@ -93,7 +93,7 @@ public class EntityPassengerRheingold extends GenericRailTransport {
     @Override
     public float[] getHitboxSize(){return new float[]{8.8f,2.2f,1.3f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{2.7f, -2.7f};}
+    public float[] rotationPoints() {return new float[]{2.7f, -2.7f};}
 
 
 

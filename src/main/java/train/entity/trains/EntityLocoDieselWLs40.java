@@ -83,7 +83,7 @@ public class EntityLocoDieselWLs40 extends EntityTrainCore {
     @Override
     public float[] getHitboxSize(){return new float[]{5.0f,2.1f,1.1f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{2.300000011920929f, -2.300000011920929f};}
+    public float[] rotationPoints() {return new float[]{2.300000011920929f, -2.300000011920929f};}
     //Train specific stuff
     @Override
     public String transportFuelType(){return "diesel";}

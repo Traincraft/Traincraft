@@ -87,7 +87,7 @@ public class EntityLocoElectricCD151 extends EntityTrainCore {
     @Override
     public float[] getHitboxSize(){return new float[]{4.949999988079071f,2.1f,1.1f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{2.3799999952316284f, -2.3799999952316284f};}
+    public float[] rotationPoints() {return new float[]{2.3799999952316284f, -2.3799999952316284f};}
     //Train specific stuff
     @Override
     public String transportFuelType(){return "electric";}

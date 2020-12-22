@@ -81,7 +81,7 @@ public class EntityPassengerHighSpeedCarZeroED extends GenericRailTransport {
     @Override
     public float[] getHitboxSize(){return new float[]{4.4f,2.3f,1.4f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{1.2f, -1.3f};}
+    public float[] rotationPoints() {return new float[]{1.2f, -1.3f};}
 
 
 

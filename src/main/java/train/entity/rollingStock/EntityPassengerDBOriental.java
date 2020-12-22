@@ -87,7 +87,7 @@ public class EntityPassengerDBOriental extends GenericRailTransport {
     @Override
     public float[] getHitboxSize(){return new float[]{4.5f,2.3f,1.3f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{1.1f, -1.1f};}
+    public float[] rotationPoints() {return new float[]{1.1f, -1.1f};}
 
 
 

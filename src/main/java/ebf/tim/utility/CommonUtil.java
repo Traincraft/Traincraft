@@ -363,8 +363,8 @@ public class CommonUtil {
                 //check player direction
                 if (playerMeta == 3) {
                     //check if the transport can be placed in the area
-                    if (!CommonUtil.isRailBlockAt(worldObj, posX + MathHelper.floor_float(entity.bogieLengthFromCenter()[0]+ 1.0F ), posY, posZ)
-                            && !CommonUtil.isRailBlockAt(worldObj, posX + MathHelper.floor_float(entity.bogieLengthFromCenter()[1] - 1.0F ), posY, posZ)) {
+                    if (!CommonUtil.isRailBlockAt(worldObj, posX + MathHelper.floor_float(entity.rotationPoints()[0]+ 1.0F ), posY, posZ)
+                            && !CommonUtil.isRailBlockAt(worldObj, posX + MathHelper.floor_float(entity.rotationPoints()[1] - 1.0F ), posY, posZ)) {
                         playerEntity.addChatMessage(new ChatComponentText("Place on a straight piece of track that is of sufficient length"));
                         return false;
                     }
@@ -378,8 +378,8 @@ public class CommonUtil {
                 //same as above, but reverse direction.
                 else if (playerMeta == 1) {
 
-                    if (!CommonUtil.isRailBlockAt(worldObj, posX - MathHelper.floor_double(entity.bogieLengthFromCenter()[0]+ 1.0f ), posY, posZ)
-                            && !CommonUtil.isRailBlockAt(worldObj, posX - MathHelper.floor_double(entity.bogieLengthFromCenter()[1]- 1.0f ), posY, posZ)) {
+                    if (!CommonUtil.isRailBlockAt(worldObj, posX - MathHelper.floor_double(entity.rotationPoints()[0]+ 1.0f ), posY, posZ)
+                            && !CommonUtil.isRailBlockAt(worldObj, posX - MathHelper.floor_double(entity.rotationPoints()[1]- 1.0f ), posY, posZ)) {
                         playerEntity.addChatMessage(new ChatComponentText("Place on a straight piece of track that is of sufficient length"));
                         return false;
                     }
@@ -395,8 +395,8 @@ public class CommonUtil {
 
                 if (playerMeta == 0) {
 
-                    if (!CommonUtil.isRailBlockAt(worldObj, posX, posY, posZ + MathHelper.floor_float(entity.bogieLengthFromCenter()[0]+ 1.0f ))
-                            && !CommonUtil.isRailBlockAt(worldObj, posX, posY, posZ + MathHelper.floor_float(entity.bogieLengthFromCenter()[1]- 1.0f ))) {
+                    if (!CommonUtil.isRailBlockAt(worldObj, posX, posY, posZ + MathHelper.floor_float(entity.rotationPoints()[0]+ 1.0f ))
+                            && !CommonUtil.isRailBlockAt(worldObj, posX, posY, posZ + MathHelper.floor_float(entity.rotationPoints()[1]- 1.0f ))) {
                         playerEntity.addChatMessage(new ChatComponentText("Place on a straight piece of track that is of sufficient length"));
                         return false;
                     }
@@ -408,8 +408,8 @@ public class CommonUtil {
                 }
                 else if (playerMeta == 2) {
 
-                    if (!CommonUtil.isRailBlockAt(worldObj, posX, posY, posZ - MathHelper.floor_double(entity.bogieLengthFromCenter()[0]+ 1.0f ))
-                            && !CommonUtil.isRailBlockAt(worldObj, posX, posY, posZ - MathHelper.floor_double(entity.bogieLengthFromCenter()[1]- 1.0f ))) {
+                    if (!CommonUtil.isRailBlockAt(worldObj, posX, posY, posZ - MathHelper.floor_double(entity.rotationPoints()[0]+ 1.0f ))
+                            && !CommonUtil.isRailBlockAt(worldObj, posX, posY, posZ - MathHelper.floor_double(entity.rotationPoints()[1]- 1.0f ))) {
                         playerEntity.addChatMessage(new ChatComponentText("Place on a straight piece of track that is of sufficient length"));
                         return false;
                     }

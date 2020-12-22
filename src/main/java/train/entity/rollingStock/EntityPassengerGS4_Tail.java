@@ -101,7 +101,7 @@ public class EntityPassengerGS4_Tail extends GenericRailTransport {
     @Override
     public float[] getHitboxSize(){return new float[]{8.2f,2.4f,1.4f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{1.6f, -2.1f};}
+    public float[] rotationPoints() {return new float[]{1.6f, -2.1f};}
 
 
 

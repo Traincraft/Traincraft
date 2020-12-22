@@ -82,7 +82,7 @@ public class EntityGWRBrakeVan extends GenericRailTransport {
     @Override
     public float[] getHitboxSize(){return new float[]{6.8f,2.6f,1.4f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{2.0f, -2.0f};}
+    public float[] rotationPoints() {return new float[]{2.0f, -2.0f};}
 
 
 

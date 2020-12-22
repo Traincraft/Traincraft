@@ -70,7 +70,7 @@ public abstract class RollingstockBase extends EntityRollingStockCore{
     /**
      * defines the length from center of the transport, thus is used for the motion calculation
      */
-    public abstract float[] bogieLengthFromCenter();
+    public abstract float[] rotationPoints();
 
     /**
      * The new method for defining bogies, returns an array of bogies which have a set model and optionally set offsets.

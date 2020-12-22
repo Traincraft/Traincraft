@@ -33,11 +33,11 @@ public class EntityLocoDieselKof_DB extends EntityTrainCore {
 
     //main stats
     @Override
-    public String transportName(){return "Loco Diesel KOF DB";}
+    public String transportName(){return "Loco Diesel KOF II DB";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "germany";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "1932";}
     @Override
     public boolean isFictional(){return false;}
     @Override
@@ -47,13 +47,13 @@ public class EntityLocoDieselKof_DB extends EntityTrainCore {
         return TrainsInMotion.transportTypes.DIESEL.singleton();
     }
     @Override
-    public float weightKg(){return 10f;}
+    public float weightKg(){return 22048f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelKof()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{-1.0f, 0.44f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{-0.1f, 0.64f, 0.0f}};}
 @Override
     public float[][] modelRotations(){return new float[][]{{0f,180f,180f}};}
     @Override
@@ -87,11 +87,11 @@ public class EntityLocoDieselKof_DB extends EntityTrainCore {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return new float[][]{{1f,1.0f, 0.35f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{2.800000047683716f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{2.9f,1.9f,1.5f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{1.2800000190734864f, -1.2800000190734864f};}
+    public float[] rotationPoints() {return new float[]{0.5f, -0.65f};}
     //Train specific stuff
     @Override
     public String transportFuelType(){return "diesel";}

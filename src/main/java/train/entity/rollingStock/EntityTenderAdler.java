@@ -81,7 +81,7 @@ public class EntityTenderAdler extends GenericRailTransport {
     @Override
     public float[] getHitboxSize(){return new float[]{1.100000023841858f,2.1f,1.1f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{0.4400000274181366f, -0.4400000274181366f};}
+    public float[] rotationPoints() {return new float[]{0.4400000274181366f, -0.4400000274181366f};}
     @Override
     public int[] getTankCapacity(){return new int[]{4000};}
 

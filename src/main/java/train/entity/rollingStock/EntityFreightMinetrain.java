@@ -82,7 +82,7 @@ public class EntityFreightMinetrain extends GenericRailTransport {
     @Override
     public float[] getHitboxSize(){return new float[]{worldObj==null?1.9f:1.2f,1.6f,1.2f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{0.3f, -0.3f};}
+    public float[] rotationPoints() {return new float[]{0.3f, -0.3f};}
 
 
 

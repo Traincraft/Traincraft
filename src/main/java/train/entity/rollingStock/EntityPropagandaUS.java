@@ -88,7 +88,7 @@ public class EntityPropagandaUS extends GenericRailTransport {
     @Override
     public float[] getHitboxSize(){return new float[]{7.4f,3.2f,1.4f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{2.8f, -2.7f};}
+    public float[] rotationPoints() {return new float[]{2.8f, -2.7f};}
 
 
 

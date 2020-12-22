@@ -82,7 +82,7 @@ public class EntityFreightWood2 extends GenericRailTransport {
     @Override
     public float[] getHitboxSize(){return new float[]{worldObj==null?2.8f:2.4f,1.5f,1.1f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{1.0f, -1.0f};}
+    public float[] rotationPoints() {return new float[]{1.0f, -1.0f};}
 
 
 

@@ -18,12 +18,10 @@ import ebf.tim.networking.PacketInteract;
 import ebf.tim.networking.PacketRemove;
 import ebf.tim.registry.NBTKeys;
 import ebf.tim.registry.TiMFluids;
-import ebf.tim.registry.TiMItems;
 import ebf.tim.render.ParticleFX;
 import ebf.tim.render.TransportRenderData;
 import ebf.tim.utility.*;
 import fexcraft.tmt.slim.ModelBase;
-import fexcraft.tmt.slim.Vec3d;
 import io.netty.buffer.ByteBuf;
 import mods.railcraft.api.carts.IFluidCart;
 import mods.railcraft.api.carts.ILinkableCart;
@@ -36,7 +34,6 @@ import net.minecraft.entity.boss.EntityDragonPart;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
@@ -382,7 +379,7 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
             setRotation((float)Math.toDegrees(CommonUtil.atan2f(
                     frontBogie.posZ - backBogie.posZ,
                     frontBogie.posX - backBogie.posX)),
-                    CommonUtil.calculatePitch(frontBogie.posY,backBogie.posY,Math.abs(bogieLengthFromCenter()[0]) + Math.abs(bogieLengthFromCenter()[1])));
+                    CommonUtil.calculatePitch(frontBogie.posY,backBogie.posY,Math.abs(rotationPoints()[0]) + Math.abs(rotationPoints()[1])));
 
             transportX=p_70056_1_;
             transportY=p_70056_3_;
@@ -880,11 +877,11 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
     public void updatePosition(){
         //reposition bogies to be sure they are the right distance
         if(!worldObj.isRemote && ticksExisted%2==0) {
-            float[] f = CommonUtil.rotatePointF(bogieLengthFromCenter()[0], 0, 0, rotationPitch, rotationYaw, 0);
+            float[] f = CommonUtil.rotatePointF(rotationPoints()[0], 0, 0, rotationPitch, rotationYaw, 0);
 
             frontBogie.setPosition((f[0] + posX), frontBogie.posY, (f[2] + posZ));
 
-            f = CommonUtil.rotatePointF(bogieLengthFromCenter()[1], 0, 0, rotationPitch, rotationYaw, 0);
+            f = CommonUtil.rotatePointF(rotationPoints()[1], 0, 0, rotationPitch, rotationYaw, 0);
 
             backBogie.setPosition((f[0] + posX), backBogie.posY, (f[2] + posZ));
         }
@@ -930,9 +927,9 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
         setRotation((CommonUtil.atan2degreesf(
                 frontBogie.posZ - backBogie.posZ,
                 frontBogie.posX - backBogie.posX)),
-                CommonUtil.calculatePitch(frontBogie.posY+frontBogie.yOffset,backBogie.posY+backBogie.yOffset,Math.abs(bogieLengthFromCenter()[0]) + Math.abs(bogieLengthFromCenter()[1])));
+                CommonUtil.calculatePitch(frontBogie.posY+frontBogie.yOffset,backBogie.posY+backBogie.yOffset,Math.abs(rotationPoints()[0]) + Math.abs(rotationPoints()[1])));
 
-        vectorCache[3] = CommonUtil.rotatePointF(-bogieLengthFromCenter()[0],0,0,rotationPitch, rotationYaw,0);
+        vectorCache[3] = CommonUtil.rotatePointF(-rotationPoints()[0],0,0,rotationPitch, rotationYaw,0);
 
         setPosition((frontBogie.posX+vectorCache[3][0]),
                 (frontBogie.posY+vectorCache[3][1]),(frontBogie.posZ+vectorCache[3][2]));
@@ -1004,7 +1001,7 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
                     setRotation((float)Math.toDegrees(CommonUtil.atan2f(
                             frontBogie.posZ - backBogie.posZ,
                             frontBogie.posX - backBogie.posX)),
-                            CommonUtil.calculatePitch(frontBogie.posY+frontBogie.yOffset,backBogie.posY+backBogie.yOffset,Math.abs(bogieLengthFromCenter()[0]) + Math.abs(bogieLengthFromCenter()[1])));
+                            CommonUtil.calculatePitch(frontBogie.posY+frontBogie.yOffset,backBogie.posY+backBogie.yOffset,Math.abs(rotationPoints()[0]) + Math.abs(rotationPoints()[1])));
                 }
                 if(ClientProxy.EnableAnimations && renderData!=null && renderData.bogies!=null){
                     for(Bogie b : renderData.bogies){
@@ -1023,11 +1020,11 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
         //always be sure the bogies exist on client and server.
         if (!worldObj.isRemote && (frontBogie == null || backBogie == null)) {
             //spawn front bogie
-            vectorCache[0] = CommonUtil.rotatePointF(bogieLengthFromCenter()[0], 0, 0,rotationPitch, rotationYaw,0);
+            vectorCache[0] = CommonUtil.rotatePointF(rotationPoints()[0], 0, 0,rotationPitch, rotationYaw,0);
             frontBogie = new EntityBogie(worldObj, posX + vectorCache[0][0], posY + vectorCache[0][1], posZ + vectorCache[0][2], getEntityId(), true);
             frontBogie.setVelocity(frontVelocityX,0,frontVelocityZ);
             //spawn back bogie
-            vectorCache[0] = CommonUtil.rotatePointF(bogieLengthFromCenter()[1], 0, 0, rotationPitch, rotationYaw,0);
+            vectorCache[0] = CommonUtil.rotatePointF(rotationPoints()[1], 0, 0, rotationPitch, rotationYaw,0);
             backBogie = new EntityBogie(worldObj, posX + vectorCache[0][0], posY + vectorCache[0][1], posZ + vectorCache[0][2], getEntityId(), false);
             backBogie.setVelocity(backVelocityX, 0, backVelocityZ);
             worldObj.spawnEntityInWorld(frontBogie);
@@ -1069,7 +1066,7 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
             if(Math.abs(rotationPitch)>4f){
                 double[] roll = CommonUtil.rotatePoint(new double[]{
                         ((backBogie.posY-frontBogie.posY)
-                        /(Math.abs(bogieLengthFromCenter()[0])+Math.abs(bogieLengthFromCenter()[1]))
+                        /(Math.abs(rotationPoints()[0])+Math.abs(rotationPoints()[1]))
                         )*0.01,0,0},
                         0, rotationYaw,0);
                 frontBogie.addVelocity(roll[0],roll[1],roll[2]);
@@ -2008,9 +2005,16 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
     /**defines the points that the entity uses for path-finding and rotation, with 0 being the entity center.
      * Usually the point where the front and back bogies would connect to the transport.
      * Or the center of the frontmost and backmost wheel if there are no bogies.
+     * The first value is the back point, the second is the front point
      * example:
      * return new float{2f, -1f};
      * may not return null*/
+    public float[] rotationPoints(){return bogieLengthFromCenter();}
+
+    /**
+     * this method has been replaced by
+     * @see GenericRailTransport#rotationPoints()
+     */
     public float[] bogieLengthFromCenter(){return new float[]{1,-1};}
 
     /**No longer used, replaced by

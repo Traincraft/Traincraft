@@ -81,7 +81,7 @@ public class EntityTender_C41 extends GenericRailTransport {
     @Override
     public float[] getHitboxSize(){return new float[]{3.6f,2.1f,1.1f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{1f, -0.85f};}
+    public float[] rotationPoints() {return new float[]{1f, -0.85f};}
     @Override
     public int[] getTankCapacity(){return new int[]{22712};}
 

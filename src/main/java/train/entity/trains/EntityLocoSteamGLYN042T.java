@@ -35,9 +35,9 @@ public class EntityLocoSteamGLYN042T extends EntityTrainCore {
     @Override
     public String transportName(){return "Loco Steam glyn";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "wales";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "1892-1936";}
     @Override
     public boolean isFictional(){return false;}
     @Override
@@ -46,14 +46,14 @@ public class EntityLocoSteamGLYN042T extends EntityTrainCore {
     public List<TrainsInMotion.transportTypes> getTypes(){
         return TrainsInMotion.transportTypes.STEAM.singleton();
     }
-    @Override
-    public float weightKg(){return 10f;}
+    @Override//NOTE: this weight is actually from Sir Theodore, which was the predecessor to glyn, but with a nearly identical design
+    public float weightKg(){return 12700f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.Model042TGLYN()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{0.0f, -0.15f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{1.3f, 0f, 0.0f}};}
     @Override
     public float[][] modelRotations(){return new float[][]{{0.0f, 0.0f, 0.0f}};}
     @Override
@@ -79,11 +79,11 @@ public class EntityLocoSteamGLYN042T extends EntityTrainCore {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return new float[][]{{1.2f,1.4f, 0.4f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{4.299999952316284f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{4.1f,2.6f,1.5f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{1.9699999690055847f, -1.9699999690055847f};}
+    public float[] rotationPoints() {return new float[]{0.9f, -0.75f};}
     //Train specific stuff
     @Override
     public String transportFuelType(){return "steam";}

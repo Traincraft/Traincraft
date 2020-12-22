@@ -83,7 +83,7 @@ public class EntityBUnitDD35 extends GenericRailTransport {
     @Override
     public float[] getHitboxSize(){return new float[]{6.199999809265137f,2.1f,1.1f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{2.4800000190734863f, -2.4800000190734863f};}
+    public float[] rotationPoints() {return new float[]{2.4800000190734863f, -2.4800000190734863f};}
     @Override
     public int[] getTankCapacity(){return new int[]{12000};}
 

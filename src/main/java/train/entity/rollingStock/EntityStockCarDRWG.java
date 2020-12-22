@@ -82,7 +82,7 @@ public class EntityStockCarDRWG extends GenericRailTransport {
     @Override
     public float[] getHitboxSize(){return new float[]{3.299999952316284f,2.1f,1.1f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{1.3200000524520874f, -1.3200000524520874f};}
+    public float[] rotationPoints() {return new float[]{1.3200000524520874f, -1.3200000524520874f};}
 
 
 

@@ -22,20 +22,6 @@ public class ModelGP7 extends ModelConverter //Same as Filename
 		flipAll();
 	}
 
-	@Override
-	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-
-		for(ModelRendererTurbo m :bodyModel) {
-			if(m.boxName.equals("lamp")){
-				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
-			}
-			m.render(f5);
-			if(m.boxName.equals("lamp")){
-				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
-			}
-		}
-	}
-
 	private void initbodyModel_1()
 	{
 		bodyModel[0] = new ModelRendererTurbo(this, 85, 0, textureX, textureY); // Box 0

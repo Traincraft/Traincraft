@@ -699,7 +699,7 @@ public class ModelEMDF3 extends ModelBase
 		emdf3Model[163].addShapeBox(0F, 0F, 0F, 0, 2, 2, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, -0.5F, 0F, -0.5F, -0.5F); // Box 167 lamp
 		emdf3Model[163].setRotationPoint(-21.01F, -15.25F, 0F);
 
-		fixRotation(emdf3Model, true, true, true);
+		fixRotation(emdf3Model, false, true, true);
 		fixRotation(emdf3Model);
 		bodyModel=emdf3Model;
 	}

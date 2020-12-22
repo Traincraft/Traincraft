@@ -50,7 +50,7 @@ public abstract class TrainBase extends EntityTrainCore{
     /**
      * defines the length from center of the transport, thus is used for the motion calculation
      */
-    public abstract float[] bogieLengthFromCenter();
+    public abstract float[] rotationPoints();
 
     /**
      * defines the render scale, minecraft's default is 0.0625

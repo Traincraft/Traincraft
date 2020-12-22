@@ -81,7 +81,7 @@ public class EntityTankWagon2 extends GenericRailTransport {
     @Override
     public float[] getHitboxSize(){return new float[]{3.0799999237060547f,2.1f,1.1f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{1.2319999933242798f, -1.2319999933242798f};}
+    public float[] rotationPoints() {return new float[]{1.2319999933242798f, -1.2319999933242798f};}
     @Override
     public int[] getTankCapacity(){return new int[]{40000};}
 

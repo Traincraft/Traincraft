@@ -87,7 +87,7 @@ public class EntityPassengerDenverRioGrande extends GenericRailTransport {
     @Override
     public float[] getHitboxSize(){return new float[]{7.1f,2.6f,1.4f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{2.1f, -2.1f};}
+    public float[] rotationPoints() {return new float[]{2.1f, -2.1f};}
 
 
 

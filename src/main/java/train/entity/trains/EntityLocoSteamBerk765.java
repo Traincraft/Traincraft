@@ -83,7 +83,7 @@ public class EntityLocoSteamBerk765 extends EntityTrainCore {
     @Override
     public float[] getHitboxSize(){return new float[]{7.35f,2.5f,1.5f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{1f, -2.0f};}
+    public float[] rotationPoints() {return new float[]{1f, -2.0f};}
     //Train specific stuff
     @Override
     public String transportFuelType(){return "steam";}

@@ -84,7 +84,7 @@ public class EntityFreightDepressedFlatbed extends GenericRailTransport {
     @Override
     public float[] getHitboxSize(){return new float[]{7.6f,1.6f,1.1f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{2.8f, -2.65f};}
+    public float[] rotationPoints() {return new float[]{2.8f, -2.65f};}
 
 
 

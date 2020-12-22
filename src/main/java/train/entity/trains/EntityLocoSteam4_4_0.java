@@ -191,7 +191,7 @@ public class EntityLocoSteam4_4_0 extends EntityTrainCore {
      * Defines the points server uses to move and rotate the entity from.
      */
     @Override
-    public float[] bogieLengthFromCenter() {
+    public float[] rotationPoints() {
         return new float[]{1f, -0.8f};
     }
 

@@ -349,34 +349,5 @@ public class EventManager {
     @SubscribeEvent
     @SuppressWarnings("unused")
     public void entityJoinWorldEvent(EntityJoinWorldEvent event) {
-
-        //todo: for curseforge releases this must be disabled.
-        if (event.world.isRemote && event.entity instanceof EntityPlayer) {
-
-
-            //add alpha notice
-            ((EntityPlayer) event.entity).addChatMessage(new ChatComponentText("You are currently playing a pre-alpha of Trains In Motion."));
-            ((EntityPlayer) event.entity).addChatMessage(new ChatComponentText("For official releases, check out https://github.com/EternalBlueFlame/Trains-In-Motion/"));
-            ((EntityPlayer) event.entity).addChatMessage(new ChatComponentText("Keep in mind that everything in this mod currently is subject to change."));
-
-            //use an HTTP request and parse to check for new versions of the mod from github.
-            try {
-                //make an HTTP connection to the version text file, and set the type as get.
-                HttpURLConnection conn = (HttpURLConnection) new URL("https://raw.githubusercontent.com/EternalBlueFlame/Trains-In-Motion/master/version.txt").openConnection();
-                conn.setRequestMethod("GET");
-                //use the HTTP connection as an input stream to actually get the file, then put it into a buffered reader.
-                BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                //read the first line of the text document, if it's not the same as the current running version, notify there is an update, then display the second line, which is intended for a download URL.
-                if (!TrainsInMotion.MOD_VERSION.equals(rd.readLine())) {
-                    ((EntityPlayer) event.entity).addChatMessage(new ChatComponentText("A new version of Trains In Motion is available, check it out at:"));
-                    ((EntityPlayer) event.entity).addChatMessage(new ChatComponentText(rd.readLine()));
-                }
-                rd.close();
-                conn.disconnect();
-            } catch (Exception e) {
-                //couldn't check for new version, most likely because there's no internet, so just do nothing.
-            }
-
-        }
     }
 }

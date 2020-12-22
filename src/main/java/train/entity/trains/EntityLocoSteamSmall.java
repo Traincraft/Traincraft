@@ -36,11 +36,11 @@ public class EntityLocoSteamSmall extends EntityTrainCore {
     @Override
     public String transportName(){return "Loco Steam Small";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return null;}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return null;}
     @Override
-    public boolean isFictional(){return false;}
+    public boolean isFictional(){return true;}
     @Override
     public int getInventoryRows(){return 1;}
     @Override
@@ -54,9 +54,9 @@ public class EntityLocoSteamSmall extends EntityTrainCore {
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelLoco3()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{-0.99f, 0.5f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.6f, 0.0f}};}
     @Override
-    public float[][] modelRotations(){return new float[][]{{0.0f, -270.0f, -180.0f}};}
+    public float[][] modelRotations(){return new float[][]{{0.0f, -90.0f, -180.0f}};}
     @Override
     public void registerSkins(){
         SkinRegistry.addSkin(this.getClass(),
@@ -88,11 +88,11 @@ public class EntityLocoSteamSmall extends EntityTrainCore {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return new float[][]{{1.0f,1.6f, 0.3f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{2.1000000059604647f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{worldObj==null?3.5f:2.7f,2.6f,1.3f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{1.0100000113248826f, -1.0100000113248826f};}
+    public float[] rotationPoints() {return new float[]{0.775f, 0.025f};}
     //Train specific stuff
     @Override
     public String transportFuelType(){return "steam";}

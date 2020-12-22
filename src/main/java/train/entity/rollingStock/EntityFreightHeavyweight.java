@@ -81,7 +81,7 @@ public class EntityFreightHeavyweight extends GenericRailTransport {
     @Override
     public float[] getHitboxSize(){return new float[]{7.3f,2.6f,1.4f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{1.9f, -1.9f};}
+    public float[] rotationPoints() {return new float[]{1.9f, -1.9f};}
 
 
 

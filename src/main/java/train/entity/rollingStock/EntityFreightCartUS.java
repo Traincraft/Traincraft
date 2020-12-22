@@ -112,7 +112,7 @@ public class EntityFreightCartUS extends GenericRailTransport {
     @Override
     public float[] getHitboxSize(){return new float[]{3.119999885559082f,2.1f,1.1f};}
     @Override
-    public float[] bogieLengthFromCenter() {return new float[]{1.24f, -1.24f};}
+    public float[] rotationPoints() {return new float[]{1.24f, -1.24f};}
 
 
 
