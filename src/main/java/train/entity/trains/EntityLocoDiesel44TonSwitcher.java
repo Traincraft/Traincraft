@@ -35,9 +35,9 @@ public class EntityLocoDiesel44TonSwitcher extends EntityTrainCore {
     @Override
     public String transportName(){return "GE 44-ton Diesel switcher";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "us";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "1940-1956";}
     @Override
     public boolean isFictional(){return false;}
     @Override
@@ -47,7 +47,7 @@ public class EntityLocoDiesel44TonSwitcher extends EntityTrainCore {
         return TrainsInMotion.transportTypes.DIESEL.singleton();
     }
     @Override
-    public float weightKg(){return 10f;}
+    public float weightKg(){return 39625.8f;}
 
     //Model stuff
     @Override

@@ -173,7 +173,7 @@ public class ModelEWSClass66 extends ModelBase
 
 		ewsclass66Model[1].addBox(0F, 0F, 0F, 2, 20, 110, 0F); // 03
 		ewsclass66Model[1].setRotationPoint(10F, 8F, -51F);
-		ewsclass66Model[1].rotateAngleZ = -1.57079633F;
+		ewsclass66Model[1].rotateAngleZ = 1.57079633F;
 
 		ewsclass66Model[2].addShapeBox(0F, 0F, 0F, 20, 1, 1, 0F, 0F, 0F, 1F, 0F, 0F, 1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 1F, 0F, 0F, 1F, 0F, 0F, 0F, 0F, 0F, 0F); // 04
 		ewsclass66Model[2].setRotationPoint(-10F, -2F, 60F);

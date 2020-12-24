@@ -35,9 +35,9 @@ public class EntityLocoDieselSD70 extends EntityTrainCore {
     @Override
     public String transportName(){return "Loco Diesel SD70";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "us";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "1992";}
     @Override
     public boolean isFictional(){return false;}
     @Override
@@ -47,15 +47,15 @@ public class EntityLocoDieselSD70 extends EntityTrainCore {
         return TrainsInMotion.transportTypes.DIESEL.singleton();
     }
     @Override
-    public float weightKg(){return 10f;}
+    public float weightKg(){return 184612f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelSD70()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{-1.2f, 0.44f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.62f, 0.0f}};}
     @Override
-    public float[][] modelRotations(){return new float[][]{{0.0f, -90.0f, -180.0f}};}
+    public float[][] modelRotations(){return new float[][]{{0.0f, 90.0f, -180.0f}};}
     @Override
     public void registerSkins(){
         SkinRegistry.addSkin(this.getClass(),
@@ -91,11 +91,11 @@ public class EntityLocoDieselSD70 extends EntityTrainCore {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return new float[][]{{-1.2f,1.45f, 0.3f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{4.7000000953674315f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{4.7f,2.3f,1.3f};}
     @Override
-    public float[] rotationPoints() {return new float[]{2.1100000381469726f, -2.1100000381469726f};}
+    public float[] rotationPoints() {return new float[]{1.3f, -1.3f};}
     //Train specific stuff
     @Override
     public String transportFuelType(){return "diesel";}

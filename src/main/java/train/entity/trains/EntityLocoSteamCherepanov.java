@@ -53,7 +53,7 @@ public class EntityLocoSteamCherepanov extends EntityTrainCore {
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelLocoCherepanov()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{-0.075f, 0.6f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{-0.075f, worldObj==null?0.2f:0.6f, 0.0f}};}
     @Override
     public float[][] modelRotations(){return new float[][]{{0.0f, 0.0f, -180.0f}};}
     @Override

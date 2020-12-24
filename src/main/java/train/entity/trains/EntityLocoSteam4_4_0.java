@@ -149,7 +149,7 @@ public class EntityLocoSteam4_4_0 extends EntityTrainCore {
      */
     @Override
     public float[] getHitboxSize() {
-        return new float[]{3.2f,2.7f,1.2f};
+        return new float[]{worldObj==null?3.5f:3.2f,2.7f,1.2f};
     }
 
     /**
@@ -224,7 +224,7 @@ public class EntityLocoSteam4_4_0 extends EntityTrainCore {
     public ModelBase[] getModel(){return new ModelBase[]{new ModelLoco()};}
 
     @Override
-    public float[][] modelOffsets(){return new float[][]{{0.2f,0.6f,0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.2f,worldObj==null?0.4f:0.6f,0f}};}
 
     @Override
     public float[][] modelRotations(){return new float[][]{{0f,90f,180f}};}

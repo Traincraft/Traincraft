@@ -175,8 +175,8 @@ public class ModelSD70 extends ModelBase {
 		box103 = new CustomModelRenderer(this, 111, 86, 256, 256);
 		box103.addBox(2F, 0F, 0F, 6, 1, 1);
 		box103.setPosition(9F, 31F, -25F);
-		box103.rotateAngleY = 0.12217304763960307F;
-		box103.rotateAngleZ = 3.141592653589793F;
+		box103.rotateAngleY = -0.12217304763960307F;
+		box103.rotateAngleZ = -3.141592653589793F;
 
 		box104 = new CustomModelRenderer(this, 68, 62, 256, 256);
 		box104.addBox(0F, 0F, 0F, 2, 3, 1);
@@ -562,7 +562,7 @@ public class ModelSD70 extends ModelBase {
 		box69.addBox(0F, 0F, 0F, 6, 1, 5);
 		box69.setPosition(-3.2F, 25F, -26.2F);
 		box69.rotateAngleX = 5.8817595792208905F;
-		box69.rotateAngleY = -4.9505895925855405F;
+		box69.rotateAngleY = 4.9505895925855405F;
 		box69.rotateAngleZ = 3.141592653589793F;
 
 
@@ -580,12 +580,12 @@ public class ModelSD70 extends ModelBase {
 		box72.setPosition(9F, 23F, -31F);
 		box72.rotateAngleX = 3.141592653589793F;
 		box72.rotateAngleY = -3.385938748868999F;
-		box72.rotateAngleZ = 5.8817595792208905F;
+		box72.rotateAngleZ = -5.8817595792208905F;
 
 		box73 = new CustomModelRenderer(this, 103, 8, 256, 256);
 		box73.addBox(0F, 0F, 0F, 8, 13, 1);
 		box73.setPosition(9F, 23F, -31F);
-		box73.rotateAngleY = 0.22689280275926285F;
+		box73.rotateAngleY = -0.22689280275926285F;
 		box73.rotateAngleZ = 3.141592653589793F;
 
 		box74 = new CustomModelRenderer(this, 98, 1, 256, 256);
@@ -656,8 +656,8 @@ public class ModelSD70 extends ModelBase {
 		box87 = new CustomModelRenderer(this, 110, 77, 256, 256);
 		box87.addBox(0F, 0F, 0F, 8, 2, 1);
 		box87.setPosition(9F, 30F, -25F);
-		box87.rotateAngleY = 0.12217304763960307F;
-		box87.rotateAngleZ = 3.141592653589793F;
+		box87.rotateAngleY = -0.12217304763960307F;
+		box87.rotateAngleZ = -3.141592653589793F;
 
 		box88 = new CustomModelRenderer(this, 132, 72, 256, 256);
 		box88.addBox(0F, 0F, 0F, 4, 3, 1);
@@ -731,6 +731,7 @@ public class ModelSD70 extends ModelBase {
 				box110,box111,box112,box113,box114,box115,box116,box117,box118,box119,
 				box120,box121,box122,box123,box124,box125,box126,box128,box131,box132,box134,box143,box148
 		};
+		fixRotation(bodyModel,false,false, true);
 
 		fixRotation(bodyModel);
 

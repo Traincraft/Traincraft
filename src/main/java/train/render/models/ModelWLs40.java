@@ -1871,21 +1871,15 @@ public class ModelWLs40 extends ModelBase
 		wls40Model[393].rotateAngleY = 1.57079633F;
 
 		fixRotation(wls40Model, false, true, true);
+		fixRotation(wls40Model);
+		bodyModel=wls40Model;
 
 	}
 
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
-		for (ModelRendererTurbo mrt : wls40Model) {
-			if (mrt.boxName.equals("lamp")) {
-				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
-				mrt.render(f5);
-				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
-			} else {
-				mrt.render(f5);
-			}
-		}
+		super.render(entity, f, f1, f2, f3, f4, f5);
 	}
 
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5)

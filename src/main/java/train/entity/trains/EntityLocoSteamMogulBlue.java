@@ -53,7 +53,7 @@ public class EntityLocoSteamMogulBlue extends EntityTrainCore {
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelLocoMogul()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{0.3f, 0.64f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.3f, worldObj==null?0.4f:0.64f, 0.0f}};}
     @Override
     public float[][] modelRotations(){return new float[][]{{0.0f, 90.0f, -180.0f}};}
     @Override
@@ -91,7 +91,7 @@ public class EntityLocoSteamMogulBlue extends EntityTrainCore {
     @Override
     public float[][] getRiderOffsets(){return new float[][]{{1,1.6f, 0f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{3.2f,2.4f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{worldObj==null?3.5f:3.2f,2.4f,1.1f};}
     @Override
     public float[] rotationPoints() {return new float[]{0.9f, -1f};}
     //Train specific stuff
