@@ -35,9 +35,9 @@ public class EntityLocoElectricBP4 extends EntityTrainCore {
     @Override
     public String transportName(){return "Loco Electric BP4";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "us";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "2007";}
     @Override
     public boolean isFictional(){return false;}
     @Override
@@ -47,13 +47,13 @@ public class EntityLocoElectricBP4 extends EntityTrainCore {
         return TrainsInMotion.transportTypes.ELECTRIC.singleton();
     }
     @Override
-    public float weightKg(){return 10f;}
+    public float weightKg(){return 133492f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelBP4()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{-2.2f, -0.15f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0f, 0f, 0.0f}};}
     @Override
     public float[][] modelRotations(){return new float[][]{{0.0f, 0.0f, 0.0f}};}
     @Override
@@ -81,11 +81,11 @@ public class EntityLocoElectricBP4 extends EntityTrainCore {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return new float[][]{{-1.7f,1.35f, 0.25f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{5.649999976158142f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{5.6f,2.4f,1.4f};}
     @Override
-    public float[] rotationPoints() {return new float[]{2.685000002384186f, -2.685000002384186f};}
+    public float[] rotationPoints() {return new float[]{1.5f, -1.6f};}
     //Train specific stuff
     @Override
     public String transportFuelType(){return "electric";}

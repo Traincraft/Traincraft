@@ -32,12 +32,12 @@ public class EntityLocoDieselShunter extends EntityTrainCore {
 
 
     //main stats
+    @Override// this is the Victorian Railways F class, but i wanted to try and keep the old name to prevent confusion
+    public String transportName(){return "Loco F Class Diesel Shunter";}
     @Override
-    public String transportName(){return "Loco Diesel Shunter";}
+    public String transportcountry(){return "australia";}
     @Override
-    public String transportcountry(){return "Undefined";}
-    @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "1951-1953";}
     @Override
     public boolean isFictional(){return false;}
     @Override
@@ -47,13 +47,13 @@ public class EntityLocoDieselShunter extends EntityTrainCore {
         return TrainsInMotion.transportTypes.DIESEL.singleton();
     }
     @Override
-    public float weightKg(){return 10f;}
+    public float weightKg(){return 51000f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelShunter()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{-1.2f, 0.42f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.62f, 0.0f}};}
 @Override
     public float[][] modelRotations(){return new float[][]{{0f,180f,180f}};}
     @Override
@@ -85,11 +85,11 @@ public class EntityLocoDieselShunter extends EntityTrainCore {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return new float[][]{{1.4f,1.3f, 0.3f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{3.780000047683716f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{3.7f,2.3f,1.5f};}
     @Override
-    public float[] rotationPoints() {return new float[]{1.7700000190734864f, -1.7700000190734864f};}
+    public float[] rotationPoints() {return new float[]{0.85f, -0.8f};}
     //Train specific stuff
     @Override
     public String transportFuelType(){return "diesel";}

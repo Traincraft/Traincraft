@@ -35,9 +35,9 @@ public class EntityLocoDieselWLs40 extends EntityTrainCore {
     @Override
     public String transportName(){return "Loco WLs40";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "poland";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "1948-1993";}
     @Override
     public boolean isFictional(){return false;}
     @Override
@@ -47,13 +47,13 @@ public class EntityLocoDieselWLs40 extends EntityTrainCore {
         return TrainsInMotion.transportTypes.DIESEL.singleton();
     }
     @Override
-    public float weightKg(){return 10f;}
+    public float weightKg(){return 10000f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelWLs40()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{0.0f, -0.1f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{1.4f, 0.05f, 0.0f}};}
     @Override
     public float[][] modelRotations(){return new float[][]{{0.0f, 0.0f, 0.0f}};}
     @Override
@@ -79,11 +79,11 @@ public class EntityLocoDieselWLs40 extends EntityTrainCore {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return new float[][]{{1.4f,1.4f, 0.3f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{5.0f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{4.1f,2.4f,1.4f};}
     @Override
-    public float[] rotationPoints() {return new float[]{2.300000011920929f, -2.300000011920929f};}
+    public float[] rotationPoints() {return new float[]{0.4f, -0.65f};}
     //Train specific stuff
     @Override
     public String transportFuelType(){return "diesel";}

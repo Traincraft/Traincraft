@@ -1870,7 +1870,7 @@ public class ModelWLs40 extends ModelBase
 		wls40Model[393].setRotationPoint(-7F, -10F, 8.25F);
 		wls40Model[393].rotateAngleY = 1.57079633F;
 
-		fixRotation(wls40Model, false, true, true);
+		fixRotation(wls40Model, false, true, false);
 		fixRotation(wls40Model);
 		bodyModel=wls40Model;
 

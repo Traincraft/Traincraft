@@ -515,6 +515,7 @@ public class ModelShunter extends ModelBase {
 				box90,box91,box92
 		};
 
+		fixRotation(bodyModel,false,false, true);
 		fixRotation(bodyModel);
 
 	}
