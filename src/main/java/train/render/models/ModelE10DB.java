@@ -738,7 +738,6 @@ public class ModelE10DB extends ModelConverter
 
 		bodyModel[156].addBox(0F, 0F, 0F, 4, 2, 2, 0F); // Box 182
 		bodyModel[156].setRotationPoint(-48F, 2F, -1F);
-		fixRotation(bodyModel);
 	}
 
 	private ModelE10Bogie trucks = new ModelE10Bogie();

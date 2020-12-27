@@ -35,9 +35,9 @@ public class EntityLocoElectricCD151 extends EntityTrainCore {
     @Override
     public String transportName(){return "Loco Electric CD151";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "cezch";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "1996";}
     @Override
     public boolean isFictional(){return false;}
     @Override
@@ -47,13 +47,13 @@ public class EntityLocoElectricCD151 extends EntityTrainCore {
         return TrainsInMotion.transportTypes.ELECTRIC.singleton();
     }
     @Override
-    public float weightKg(){return 10f;}
+    public float weightKg(){return 20500f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelLocoCD151()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{-2.0f, -0.18f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.0f, 0.0f}};}
     @Override
     public float[][] modelRotations(){return new float[][]{{0.0f, 0.0f, 0.0f}};}
     @Override
@@ -83,11 +83,11 @@ public class EntityLocoElectricCD151 extends EntityTrainCore {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return new float[][]{{2.15f,1.4f, 0.3f},{-2.15f,1.4f, 0.3f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{4.949999988079071f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{5.5f,2.6f,1.4f};}
     @Override
-    public float[] rotationPoints() {return new float[]{2.3799999952316284f, -2.3799999952316284f};}
+    public float[] rotationPoints() {return new float[]{1.5f, -1.65f};}
     //Train specific stuff
     @Override
     public String transportFuelType(){return "electric";}

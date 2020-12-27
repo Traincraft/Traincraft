@@ -35,9 +35,9 @@ public class EntityLocoElectricHighSpeedZeroED extends EntityTrainCore {
     @Override
     public String transportName(){return "Loco Electric High Speed ZeroED";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return null;}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return null;}
     @Override
     public boolean isFictional(){return false;}
     @Override
@@ -47,13 +47,13 @@ public class EntityLocoElectricHighSpeedZeroED extends EntityTrainCore {
         return TrainsInMotion.transportTypes.ELECTRIC.singleton();
     }
     @Override
-    public float weightKg(){return 10f;}
+    public float weightKg(){return 10000f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelLocoHighSpeedZeroED()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{-1.7f, 0.44f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0f, 0.64f, 0.0f}};}
 @Override
     public float[][] modelRotations(){return new float[][]{{0f,180f,180f}};}
     @Override
@@ -79,11 +79,11 @@ public class EntityLocoElectricHighSpeedZeroED extends EntityTrainCore {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return new float[][]{{-0.5f,1.5f, 0f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{4.520000004768372f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{4.5f,2.3f,1.4f};}
     @Override
-    public float[] rotationPoints() {return new float[]{2.1480000138282778f, -2.1480000138282778f};}
+    public float[] rotationPoints() {return new float[]{1.3f, -1.325f};}
     //Train specific stuff
     @Override
     public String transportFuelType(){return "electric";}
@@ -102,7 +102,7 @@ public class EntityLocoElectricHighSpeedZeroED extends EntityTrainCore {
     //these only change in very specific use cases.
     @Override
     public boolean shouldRiderSit(){
-        return false;
+        return true;
     }
     @Override
     public Item getItem(){return thisItem;}

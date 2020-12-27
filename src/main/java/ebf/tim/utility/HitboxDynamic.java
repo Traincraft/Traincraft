@@ -91,9 +91,8 @@ public class HitboxDynamic {
         }*/
         for(int i=0; i<interactionBoxes.size();i++){
             Vec3d part = CommonUtil.rotateDistance(
-                    -(interactionBoxes.get(0).host.getHitboxSize()[0]*0.5)+
-                            (interactionBoxes.get(0).host.getHitboxSize()[2]*0.5)
-                            +(interactionBoxes.get(0).host.getHitboxSize()[2]*i),
+                    (interactionBoxes.get(0).host.getHitboxSize()[0]*0.5f)-
+                    ((interactionBoxes.get(0).host.getHitboxSize()[0]/interactionBoxes.size())*(i+0.5f)),
                     pitch, yaw).addVector(x,y,z);
             interactionBoxes.get(i).setPosition(part.xCoord,part.yCoord,part.zCoord);
         }
