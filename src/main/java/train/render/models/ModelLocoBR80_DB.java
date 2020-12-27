@@ -446,7 +446,6 @@ public class ModelLocoBR80_DB extends ModelBase {
 				box49,box5,box50,box51,box52,box53,box54,box55,box56,box57,box58,lightBack,
 				box6,box60,box61,box62,box63,box64,box65,box66,box67,box68,coalbox,box7,box70,box8,box9
 		};
-		fixRotation(bodyModel,false,false,true);
 
 		fixRotation(bodyModel);
 

@@ -1,10 +1,8 @@
 package train.render;
 
 
-import fexcraft.tmt.slim.ModelBase;
-import fexcraft.tmt.slim.ModelRendererTurbo;
-import fexcraft.tmt.slim.TexturedPolygon;
-import fexcraft.tmt.slim.TexturedVertex;
+import fexcraft.tmt.slim.*;
+import net.minecraft.client.Minecraft;
 import org.lwjgl.opengl.GL11;
 import scala.actors.threadpool.Arrays;
 
@@ -63,33 +61,37 @@ public class CustomModelRenderer extends ModelRendererTurbo {
 	private static final float degreesF = (float)(180D/Math.PI);
 
 	//same as super, but old models have inverse Y rotations and I don't even understand the Z rotation
-	public void render(float worldScale, boolean invertYZ) {
+	@Override
+	public void render(float scale) {
 
-		if(!showModel) {
+		if(!showModel){
 			return;
 		}
-		if (rotateAngleX != 0.0F || rotateAngleY != 0.0F || rotateAngleZ != 0.0F) {
-			GL11.glPushMatrix();
-			GL11.glTranslatef(rotationPointX * worldScale, rotationPointY * worldScale, rotationPointZ *worldScale);
-			if (rotateAngleZ != 0.0F) {
-				GL11.glRotatef(rotateAngleZ * degreesF, 0.0F, 0.0F, 1.0F);
-			}
-			if (rotateAngleY != 0.0F) {
-				GL11.glRotatef(rotateAngleY * degreesF, 0.0F, 1.0F, 0.0F);
-			}
-			if (rotateAngleX != 0.0F) {
-				GL11.glRotatef(rotateAngleX * degreesF, 1.0F, 0.0F, 0.0F);
-			}
-			super.render(worldScale);
-			GL11.glPopMatrix();
+		if (ignoresLighting){
+			Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
 		}
-		else if (rotationPointX != 0.0F || rotationPointY != 0.0F || rotationPointZ != 0.0F) {
-			GL11.glTranslatef(rotationPointX * worldScale, rotationPointY * worldScale, rotationPointZ * worldScale);
-            super.render(worldScale);
-			GL11.glTranslatef(-rotationPointX * worldScale, -rotationPointY * worldScale, -rotationPointZ * worldScale);
+		if(rotationPointX != 0.0F || rotationPointY != 0.0F || rotationPointZ != 0.0F){
+			GL11.glTranslatef(rotationPointX * scale, rotationPointY * scale, rotationPointZ * scale);
 		}
-		else {
-            super.render(worldScale);
+
+		if(rotateAngleZ != 0.0F){
+			GL11.glRotatef(rotateAngleZ, 0.0F, 0.0F, 1.0F);
+		}
+		if(rotateAngleY != 0.0F){
+			GL11.glRotatef(rotateAngleY, 0.0F, 1.0F, 0.0F);
+		}
+		if(rotateAngleX != 0.0F){
+			GL11.glRotatef(rotateAngleX, 1.0F, 0.0F, 0.0F);
+		}
+
+		for (TexturedPolygon poly : faces) {
+			Tessellator.getInstance().drawTexturedVertsWithNormal(poly, scale);
+		}
+		if(rotationPointX != 0.0F || rotationPointY != 0.0F || rotationPointZ != 0.0F){
+			GL11.glTranslatef(-rotationPointX * scale, -rotationPointY * scale, -rotationPointZ * scale);
+		}
+		if (ignoresLighting){
+			Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
 		}
 	}
 

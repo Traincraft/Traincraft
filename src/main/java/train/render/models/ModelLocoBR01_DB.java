@@ -484,7 +484,6 @@ public class ModelLocoBR01_DB extends ModelBase {
 				box102,box103,box106,box108,
 				box110
 		};
-		fixRotation(bodyModel,false,false,true);
 
 		fixRotation(bodyModel);
 	}

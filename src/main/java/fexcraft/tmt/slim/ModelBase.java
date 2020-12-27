@@ -179,7 +179,7 @@ public class ModelBase extends ArrayList<ModelRendererTurbo> {
 		for(ModelRendererTurbo p : parts){
 			p.rotateAngleX*= CommonUtil.degreesF;
 			p.rotateAngleY*= CommonUtil.degreesF;
-			p.rotateAngleZ*= -CommonUtil.degreesF;
+			p.rotateAngleZ*= CommonUtil.degreesF;
 		}
 	}
 

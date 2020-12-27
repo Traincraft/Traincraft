@@ -738,7 +738,6 @@ public class ModelLocoDieselIC4_DSB_MG extends ModelBase
 				Seats39,Seats40,Seats41,Seats42,Seats43,Seats44,Seats45,Seats46,Seats47,Seats48,Right4,Left4,Cab_32,
 				Cab_33,Bottom,Showel5,Showel6,Showel7,Showel8,Showel9,Shape1
 		};
-		fixRotation(bodyModel,false, false, true);
 		fixRotation(bodyModel);
 	}
 

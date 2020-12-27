@@ -53,7 +53,7 @@ public class EntityLocoElectricBR_E69 extends EntityTrainCore {
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelBR_E69()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.42f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.62f, 0.0f}};}
 @Override
     public float[][] modelRotations(){return new float[][]{{0f,180f,180f}};}
     @Override
@@ -89,7 +89,7 @@ public class EntityLocoElectricBR_E69 extends EntityTrainCore {
     @Override
     public float[] getHitboxSize(){return new float[]{3.0999999046325684f,2.1f,1.1f};}
     @Override
-    public float[] rotationPoints() {return new float[]{1.2400000095367432f, -1.2400000095367432f};}
+    public float[] rotationPoints() {return new float[]{0.8f, -0.7f};}
     //Train specific stuff
     @Override
     public String transportFuelType(){return "electric";}

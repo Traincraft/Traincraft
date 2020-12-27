@@ -502,7 +502,6 @@ public class ModelV60 extends ModelBase {
 				box70,box71,box72,box73,box74,box75,box76,box77,box78,box79,
 				box80,box81,box82,box83,box84,box85,box86,box87,box88,box89
 		};
-		fixRotation(bodyModel, false, false, true);
 
 		fixRotation(bodyModel);
 	}

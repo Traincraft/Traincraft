@@ -1254,8 +1254,6 @@ public class ModelLocoClimax extends ModelBase
         lococlimaxModel[302].addBox(0F, 0F, 0F, 1, 1, 1, 0F); // Box 302
         lococlimaxModel[302].setRotationPoint(6F, 2F, -4F);
 
-        fixRotation(lococlimaxModel,false,false,true);
-
         fixRotation(lococlimaxModel);
         bodyModel=lococlimaxModel;
 

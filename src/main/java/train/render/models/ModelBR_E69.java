@@ -369,7 +369,6 @@ public class ModelBR_E69 extends ModelBase {
 				box50,box51,box52,box53,box54,box55,box56,box57,box58,box59,
 				box60,box61,box62,box63,box64
 		};
-
 		fixRotation(bodyModel);
 
 	}

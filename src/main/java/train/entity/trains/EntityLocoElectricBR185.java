@@ -35,9 +35,9 @@ public class EntityLocoElectricBR185 extends EntityTrainCore {
     @Override
     public String transportName(){return "Loco Electric BR 185";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "german";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "1996";}
     @Override
     public boolean isFictional(){return false;}
     @Override
@@ -46,14 +46,14 @@ public class EntityLocoElectricBR185 extends EntityTrainCore {
     public List<TrainsInMotion.transportTypes> getTypes(){
         return TrainsInMotion.transportTypes.ELECTRIC.singleton();
     }
-    @Override
-    public float weightKg(){return 10f;}
+    @Override//this is a rough estimate as the weight varies between years
+    public float weightKg(){return 84000f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.BR185_EngineModel()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{-2.0f, -0.1f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.45f, 0.1f, 0.0f}};}
     @Override
     public float[][] modelRotations(){return new float[][]{{0.0f, 0.0f, 0.0f}};}
     @Override
@@ -103,11 +103,11 @@ public class EntityLocoElectricBR185 extends EntityTrainCore {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return new float[][]{{-2.1f,1.2f, -0.3f},{2.1f,1.2f, 0.3f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{6.399999976158142f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{6.1f,2.2f,1.6f};}
     @Override
-    public float[] rotationPoints() {return new float[]{3.060000002384186f, -3.060000002384186f};}
+    public float[] rotationPoints() {return new float[]{1.1f, -1.1f};}
     //Train specific stuff
     @Override
     public String transportFuelType(){return "electric";}

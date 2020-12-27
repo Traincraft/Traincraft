@@ -2162,7 +2162,6 @@ public class ModelGP40 extends ModelBase {
 				Shape333, Shape334, Shape335, Shape336, Shape337, Shape338, Shape339, Shape340, Shape341, Shape342,
 				Shape343, Shape370
 		};
-		fixRotation(bodyModel,false,false,true);
 		fixRotation(bodyModel);
 	}
 
