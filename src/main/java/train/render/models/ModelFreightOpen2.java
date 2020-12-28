@@ -135,7 +135,7 @@ public class ModelFreightOpen2 extends ModelBase {
 		bodyModel=new ModelRendererTurbo[]{box,
 				box0,box1,box2,box3,box4,box6,box53,box54,box55,box68,
 				box71,box72,box73,box78,box79,
-				box80,box81,box82
+				box80,box81,box82,bogey,bogey0
 		};
 
 		fixRotation(bodyModel);

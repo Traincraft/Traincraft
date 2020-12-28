@@ -81,11 +81,11 @@ public class ModelGS4Tender extends ModelBase
 
 		gs4tenderModel[11].addBox(0F, 0F, 0F, 6, 4, 1, 0F); // Box 33
 		gs4tenderModel[11].setRotationPoint(-38F, -25F, -6F);
-		gs4tenderModel[11].rotateAngleZ = 0.43633231F;
+		gs4tenderModel[11].rotateAngleZ = -0.43633231F;
 
 		gs4tenderModel[12].addBox(0F, 0F, 0F, 6, 4, 1, 0F); // Box 34
 		gs4tenderModel[12].setRotationPoint(-38F, -25F, 3F);
-		gs4tenderModel[12].rotateAngleZ = 0.43633231F;
+		gs4tenderModel[12].rotateAngleZ = -0.43633231F;
 
 		gs4tenderModel[13].addBox(0F, 0F, 0F, 4, 28, 1, 0F); // Box 35 NOCULL
 		gs4tenderModel[13].setRotationPoint(34.05F, -20F, 10.05F);
@@ -105,9 +105,8 @@ public class ModelGS4Tender extends ModelBase
 		gs4tenderModel[18].addShapeBox(0F, 0F, 0F, 53, 2, 16, 0F, 0F, 0F, -4F, 0F, 0F, -4F, 0F, 0F, -4F, 0F, 0F, -4F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 21
 		gs4tenderModel[18].setRotationPoint(-14F, -24F, -9F);
 
-
+		fixRotation(gs4tenderModel);
 		bodyModel=gs4tenderModel;
-		fixRotation(bodyModel);
 	}
 
 	ModelGS4TenderBogie bogie1 = new ModelGS4TenderBogie();

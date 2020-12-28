@@ -482,7 +482,7 @@ public class ModelLocoSteamShay extends ModelBase {
 		brake_cyl = new CustomModelRenderer(this, 84, 170, 256, 256);
 		brake_cyl.addBox(0F, 0F, 0F, 11, 3, 3);
 		brake_cyl.setPosition(24F, 14F, 9F);
-		brake_cyl.rotateAngleX = -5.497787143782138F;
+		brake_cyl.rotateAngleX =  5.497787143782138F;
 		brake_cyl.rotateAngleY = -3.141592653589793F;
 
 		coal_pile = new CustomModelRenderer(this, 168, 201, 256, 256);
@@ -576,8 +576,8 @@ public class ModelLocoSteamShay extends ModelBase {
 		roof_piston_upper.setPosition(-15F, 33F, 3F);
 		roof_piston_upper.rotateAngleX = -6.09119908946021F;
 
-		bodyModel=new ModelRendererTurbo[]{box,rod_frnt_track,piston_rear,piston_front,
-				roof_piston_upper,roof_piston_lower,roof_blank_upper,rod_rear_truck,rod_rear_mid,
+		bodyModel=new ModelRendererTurbo[]{box,rod_frnt_track,rod_frnt_mid,piston_front,
+				roof_piston_upper,roof_piston_lower,roof_blank_upper,roof_blank_lower,rod_rear_truck,rod_rear_mid,
 				ladder_piston_side,ladder_blank_side,crank_1,crank_2,crank_3,crank_4,coal_pile,brake_cyl,
 				box0,box1,box2,box3,box4,box6,box7,box8,box9,
 				box10,box11,box12,box14,box15,box16,box17,box18,box19,
@@ -587,11 +587,9 @@ public class ModelLocoSteamShay extends ModelBase {
 				box50,box51,box52,box53,box54,box55,box56,box57,box58,box63,box64,box65,box66,box67,box68,box69,
 				box70,box71,box73,box74,box75,box76,box77,box79,
 				box80,box81,box82,box89,box90,box91,box92,box95,box96,box97,box98,
-				box100,box101,box104,box105,box107
+				box100,box101,box104,box105,box107,boiler_piston_lower,boiler_piston_upper,boiler_blank_lower,boiler_blank_upper
 		};
-
 		fixRotation(bodyModel);
-
 	}
 	
 	@Override

@@ -596,17 +596,15 @@ public class ModelMILWPassenger extends ModelBase
 		passengermilwModel[141].addShapeBox(0F, 0F, 0F, 1, 1, 16, 0F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 156
 		passengermilwModel[141].setRotationPoint(48F, -21F, -8F);
 
-		fixRotation(passengermilwModel, false, true, true);
+		fixRotation(passengermilwModel);
+		bodyModel=passengermilwModel;
 
 	}
 
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
-		for(int i = 0; i < 142; i++)
-		{
-			passengermilwModel[i].render(f5);
-		}
+			super.render(entity, f, f1, f2, f3, f4, f5);
 	}
 
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5)

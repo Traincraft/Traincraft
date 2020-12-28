@@ -205,7 +205,7 @@ public class ModelCaboose3 extends ModelBase {
 				box10,box11,box12,box13,box14,box15,box16,box17,box18,box19,
 				box20,box21,box22,box23,box24,box25,box26,box27,box28,box29,
 				box52,box53,box54,box55,box68,box71,box72,box73,box78,box79,
-				box80,box81,box82
+				box80,box81,box82, bogey, bogey0
 		};
 
 		fixRotation(bodyModel);

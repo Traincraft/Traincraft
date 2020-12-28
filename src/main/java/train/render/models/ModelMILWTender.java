@@ -553,12 +553,12 @@ public class ModelMILWTender extends ModelBase
 		milwtenderModel[127].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.5F, -0.75F, -0.5F, -0.5F, -0.75F, -0.5F, -0.5F, -0.75F, -0.5F, -0.5F, -0.75F, -0.5F); // Box 135
 		milwtenderModel[127].setRotationPoint(33F, -16F, -8F);
 		milwtenderModel[127].rotateAngleX = 1.57079633F;
-		milwtenderModel[127].rotateAngleY = -1.57079633F;
+		milwtenderModel[127].rotateAngleY = 1.57079633F;
 
 		milwtenderModel[128].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.5F, -0.75F, -0.5F, -0.5F, -0.75F, -0.5F, -0.5F, -0.75F, -0.5F, -0.5F, -0.75F, -0.5F); // Box 136
 		milwtenderModel[128].setRotationPoint(33F, -16F, 11F);
 		milwtenderModel[128].rotateAngleX = 1.57079633F;
-		milwtenderModel[128].rotateAngleY = -1.57079633F;
+		milwtenderModel[128].rotateAngleY = 1.57079633F;
 
 		milwtenderModel[129].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.2F, 0F, -0.2F, -0.5F, -0.75F, -0.5F, -0.5F, -0.75F, -0.5F, -0.5F, -0.75F, -0.5F, -0.5F, -0.75F, -0.5F); // Box 137
 		milwtenderModel[129].setRotationPoint(32F, -16F, 11F);
@@ -609,23 +609,14 @@ public class ModelMILWTender extends ModelBase
 		milwtenderModel[144].addBox(0F, 0F, 0F, 1, 3, 1, 0F); // Box 144
 		milwtenderModel[144].setRotationPoint(29F, 1F, -10F);
 
-
+		fixRotation(milwtenderModel);
+		bodyModel=milwtenderModel;
 	}
 
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
-		for(int i = 0; i < 145; i++)
-		{
-			if(milwtenderModel[i].boxName!= null && milwtenderModel[i].boxName.equals("lamp")){
-				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
-				milwtenderModel[i].render(f5);
-				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
-
-			} else {
-				milwtenderModel[i].render(f5);
-			}
-		}
+		super.render(entity, f, f1, f2, f3, f4, f5);
 	}
 
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5)
