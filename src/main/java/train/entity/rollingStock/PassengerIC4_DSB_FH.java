@@ -52,7 +52,7 @@ public class PassengerIC4_DSB_FH extends GenericRailTransport {
     @Override
     public float[][] modelOffsets(){return new float[][]{{-0.8f, 0.44f, 0.0f}};}
 @Override
-    public float[][] modelRotations(){return new float[][]{{0f,180f,180f}};}
+    public float[][] modelRotations(){return new float[][]{{0f,90f,0f}};}
     @Override
     public void registerSkins(){
         SkinRegistry.addSkin(this.getClass(),

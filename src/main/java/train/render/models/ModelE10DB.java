@@ -608,35 +608,35 @@ public class ModelE10DB extends ModelConverter
 
 		bodyModel[120].addBox(-8F, 0F, 0F, 8, 1, 1, 0F); // pantoarm
 		bodyModel[120].setRotationPoint(-29F, -24.1F, -5F);
-		bodyModel[120].rotateAngleZ = -0.6981317F;
+		bodyModel[120].rotateAngleZ = 0.6981317F;
 
 		bodyModel[121].addShapeBox(-8F, -1F, 0F, 8, 1, 1, 0F,0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F); // pantoarm
 		bodyModel[121].setRotationPoint(-28F, -33F, -5F);
-		bodyModel[121].rotateAngleZ = 0.62831853F;
+		bodyModel[121].rotateAngleZ = -0.62831853F;
 
 		bodyModel[122].addShapeBox(-8F, 0F, 0F, 8, 1, 1, 0F,0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F); // pantoarm
 		bodyModel[122].setRotationPoint(-28F, -33F, -5F);
-		bodyModel[122].rotateAngleZ = 2.51327412F;
+		bodyModel[122].rotateAngleZ = -2.51327412F;
 
 		bodyModel[123].addBox(-8F, -1F, 0F, 8, 1, 1, 0F); // pantoarm
 		bodyModel[123].setRotationPoint(-27F, -24.1F, -5F);
-		bodyModel[123].rotateAngleZ = -2.44346095F;
+		bodyModel[123].rotateAngleZ = 2.44346095F;
 
 		bodyModel[124].addBox(-8F, 0F, 0F, 8, 1, 1, 0F); // Box 10
 		bodyModel[124].setRotationPoint(-29F, -24.1F, 4F);
-		bodyModel[124].rotateAngleZ = -0.6981317F;
+		bodyModel[124].rotateAngleZ = 0.6981317F;
 
 		bodyModel[125].addShapeBox(-8F, -1F, 0F, 8, 1, 1, 0F,0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F); // Box 11
 		bodyModel[125].setRotationPoint(-28F, -33F, 4F);
-		bodyModel[125].rotateAngleZ = 0.62831853F;
+		bodyModel[125].rotateAngleZ = -0.62831853F;
 
 		bodyModel[126].addShapeBox(-8F, 0F, 0F, 8, 1, 1, 0F,0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F); // Box 12
 		bodyModel[126].setRotationPoint(-28F, -33F, 4F);
-		bodyModel[126].rotateAngleZ = 2.51327412F;
+		bodyModel[126].rotateAngleZ = -2.51327412F;
 
 		bodyModel[127].addBox(-8F, -1F, 0F, 8, 1, 1, 0F); // Box 13
 		bodyModel[127].setRotationPoint(-27F, -24.1F, 4F);
-		bodyModel[127].rotateAngleZ = -2.44346095F;
+		bodyModel[127].rotateAngleZ = 2.44346095F;
 
 		bodyModel[128].addBox(0F, 0F, 0F, 31, 20, 10, 0F); // Box 175
 		bodyModel[128].setRotationPoint(-20F, -21F, -5F);
@@ -700,44 +700,45 @@ public class ModelE10DB extends ModelConverter
 
 		bodyModel[146].addShapeBox(-8F, -1F, 0F, 8, 1, 1, 0F,0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F); // Box 156
 		bodyModel[146].setRotationPoint(34F, -33F, 4F);
-		bodyModel[146].rotateAngleZ = 0.62831853F;
+		bodyModel[146].rotateAngleZ = -0.62831853F;
 
 		bodyModel[147].addBox(0F, -8F, 0F, 2, 1, 12, 0F); // Box 157
 		bodyModel[147].setRotationPoint(33F, -26F, -6F);
 
 		bodyModel[148].addShapeBox(-8F, 0F, 0F, 8, 1, 1, 0F,0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F); // Box 158
 		bodyModel[148].setRotationPoint(34F, -33F, 4F);
-		bodyModel[148].rotateAngleZ = 2.51327412F;
+		bodyModel[148].rotateAngleZ = -2.51327412F;
 
 		bodyModel[149].addBox(-8F, -1F, 0F, 8, 1, 1, 0F); // Box 159
 		bodyModel[149].setRotationPoint(35F, -24.1F, 4F);
-		bodyModel[149].rotateAngleZ = -2.44346095F;
+		bodyModel[149].rotateAngleZ = 2.44346095F;
 
 		bodyModel[150].addBox(-8F, 0F, 0F, 8, 1, 1, 0F); // Box 160
 		bodyModel[150].setRotationPoint(33F, -24.1F, 4F);
-		bodyModel[150].rotateAngleZ = -0.6981317F;
+		bodyModel[150].rotateAngleZ = 0.6981317F;
 
 		bodyModel[151].addBox(-8F, 0F, 0F, 8, 1, 1, 0F); // Box 161
 		bodyModel[151].setRotationPoint(33F, -24.1F, -5F);
-		bodyModel[151].rotateAngleZ = -0.6981317F;
+		bodyModel[151].rotateAngleZ = 0.6981317F;
 
 		bodyModel[152].addShapeBox(-8F, -1F, 0F, 8, 1, 1, 0F,0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F); // Box 162
 		bodyModel[152].setRotationPoint(34F, -33F, -5F);
-		bodyModel[152].rotateAngleZ = 0.62831853F;
+		bodyModel[152].rotateAngleZ = -0.62831853F;
 
 		bodyModel[153].addBox(-8F, -1F, 0F, 8, 1, 1, 0F); // Box 163
 		bodyModel[153].setRotationPoint(35F, -24.1F, -5F);
-		bodyModel[153].rotateAngleZ = -2.44346095F;
+		bodyModel[153].rotateAngleZ = 2.44346095F;
 
 		bodyModel[154].addShapeBox(-8F, 0F, 0F, 8, 1, 1, 0F,0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F); // Box 164
 		bodyModel[154].setRotationPoint(34F, -33F, -5F);
-		bodyModel[154].rotateAngleZ = 2.51327412F;
+		bodyModel[154].rotateAngleZ = -2.51327412F;
 
 		bodyModel[155].addBox(0F, 0F, 0F, 4, 2, 2, 0F); // Box 181
 		bodyModel[155].setRotationPoint(50F, 2F, -1F);
 
 		bodyModel[156].addBox(0F, 0F, 0F, 4, 2, 2, 0F); // Box 182
 		bodyModel[156].setRotationPoint(-48F, 2F, -1F);
+		fixRotation(bodyModel, false, true, true);
 	}
 
 	private ModelE10Bogie trucks = new ModelE10Bogie();

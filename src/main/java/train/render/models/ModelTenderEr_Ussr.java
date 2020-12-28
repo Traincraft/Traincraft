@@ -254,7 +254,7 @@ public class ModelTenderEr_Ussr extends ModelBase {
 		box9.setPosition(23F, 14F, -4F);
 		box9.rotateAngleZ = -6.230825429619756F;
 
-		bodyModel=new ModelRendererTurbo[]{box,
+		bodyModel=new ModelRendererTurbo[]{body,box,
 				box0,box1,box2,box3,box4,box5,box6,box7,box8,box9,
 				box10,box11,box12,box13,box14,box15,box16,box17,box18,box19,
 				box20,box21,box22,box23,box24,box25,box26,box27,box28,box29,
@@ -288,5 +288,6 @@ public class ModelTenderEr_Ussr extends ModelBase {
 		super.render(entity, f, f1, f2, f3, f4, f5);
 	}
 
-	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5) {}
+	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5) {
+	}
 }

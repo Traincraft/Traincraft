@@ -4,11 +4,6 @@
 // Keep in mind that you still need to fill in some blanks
 // - ZeuX
 
-
-
-
-
-
 package train.render.models;
 
 import fexcraft.tmt.slim.ModelBase;
@@ -517,100 +512,16 @@ public class ModelLocoDieselIC4_DSB_FG extends ModelBase
     TranConnector16.setRotationPoint(10F, 16F, 110F);
     TranConnector16.mirror = true;
     setRotation(TranConnector16, 0F, 0F, 1.570796F);
-  }
 
-  public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
-  {
-    GL11.glPushMatrix();
-    GL11.glRotatef(90,0,1,0);
-    GL11.glRotatef(180,0,0,1);
-    GL11.glTranslated(0,-1.4f,-2.6);
-    GL11.glScaled(0.7,0.9,1);
-    super.render(entity, f, f1, f2, f3, f4, f5);
-    //setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-    Left1.render(f5);
-    Left2.render(f5);
-    Left3.render(f5);
-    Floor1.render(f5);
-    Floor2.render(f5);
-    Ceiling.render(f5);
-    Right1.render(f5);
-    Right2.render(f5);
-    Right3.render(f5);
-    WallToCab.render(f5);
-    MiddleWall1.render(f5);
-    MiddleWall2.render(f5);
-    BackWall.render(f5);
-    Wheels1.render(f5);
-    Wheels2.render(f5);
-    Seats1.render(f5);
-    Seats2.render(f5);
-    Seats3.render(f5);
-    Seats4.render(f5);
-    Seats5.render(f5);
-    Seats6.render(f5);
-    Seats7.render(f5);
-    Seats8.render(f5);
-    Seats9.render(f5);
-    Seats10.render(f5);
-    Seats11.render(f5);
-    Seats12.render(f5);
-    Seats13.render(f5);
-    Seats14.render(f5);
-    Seats15.render(f5);
-    Seats16.render(f5);
-    Seats17.render(f5);
-    Seats18.render(f5);
-    Seats19.render(f5);
-    Seats20.render(f5);
-    Seats21.render(f5);
-    Seats22.render(f5);
-    Seats23.render(f5);
-    Seats24.render(f5);
-    Seats25.render(f5);
-    Seats26.render(f5);
-    Seats27.render(f5);
-    Seats28.render(f5);
-    Seats29.render(f5);
-    Seats30.render(f5);
-    Seats31.render(f5);
-    Seats32.render(f5);
-    Seats33.render(f5);
-    Seats34.render(f5);
-    Seats35.render(f5);
-    Seats36.render(f5);
-    Seats37.render(f5);
-    Seats38.render(f5);
-    Seats39.render(f5);
-    Seats40.render(f5);
-    Seats41.render(f5);
-    Seats42.render(f5);
-    Seats43.render(f5);
-    Seats44.render(f5);
-    Seats45.render(f5);
-    Seats46.render(f5);
-    Seats47.render(f5);
-    Seats48.render(f5);
-    Right4.render(f5);
-    Left4.render(f5);
-    Bottom.render(f5);
-    TranConnector1.render(f5);
-    TranConnector2.render(f5);
-    TranConnector3.render(f5);
-    TranConnector4.render(f5);
-    TrainConnector5.render(f5);
-    TrainConnector6.render(f5);
-    TrainConnector7.render(f5);
-    TrainConnector8.render(f5);
-    TrainConnector9.render(f5);
-    TrainConnector10.render(f5);
-    TranConnector11.render(f5);
-    TranConnector12.render(f5);
-    TrainConnector13.render(f5);
-    TrainConnector14.render(f5);
-    TranConnector15.render(f5);
-    TranConnector16.render(f5);
-    GL11.glPopMatrix();
+    bodyModel=new ModelRendererTurbo[]{Left1,Left2,Left3,Floor1,Floor2,Ceiling,Right1,Right2,Right3,WallToCab,MiddleWall1,MiddleWall2,BackWall,Wheels1,Wheels2,Seats1,Seats2,Seats3,Seats4,
+            Seats5,Seats6,Seats7,Seats8,Seats9,Seats10,Seats11,Seats12,Seats13,Seats14,Seats15,Seats16,Seats17,Seats18,Seats19,Seats20,Seats21,Seats22,Seats23,Seats24,Seats25,Seats26,Seats27,
+            Seats28,Seats29,Seats30,Seats31,Seats32,Seats33,Seats34,Seats35,Seats36,Seats37,Seats38,Seats39,Seats40,Seats41,Seats42,Seats43,Seats44,Seats45,Seats46,Seats47,Seats48,Right4,
+            Left4,Bottom,TranConnector1,TranConnector2,TranConnector3,TranConnector4,TrainConnector5,TrainConnector6,TrainConnector7,TrainConnector8,TrainConnector9,TrainConnector10,TranConnector11,
+            TranConnector12,TrainConnector13,TrainConnector14,TranConnector15,TranConnector16
+    };
+    fixRotation(bodyModel);
+
+
   }
 
   private void setRotation(ModelRendererTurbo model, float x, float y, float z)
