@@ -33,9 +33,9 @@ public class EntityPassengerTramNY extends GenericRailTransport {
     @Override
     public String transportName(){return "Passenger Tram NY";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "us";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "1986-2011";}
     @Override
     public boolean isFictional(){return false;}
     @Override
@@ -44,14 +44,14 @@ public class EntityPassengerTramNY extends GenericRailTransport {
     public List<TrainsInMotion.transportTypes> getTypes(){
         return TrainsInMotion.transportTypes.PASSENGER.singleton();
     }
-    @Override
-    public float weightKg(){return 10f;}
+    @Override//NOTE: this is actually from the PA5, but the design and materials are very similar
+    public float weightKg(){return 29029.9f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelTramNY()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.44f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.62f, 0.0f}};}
 @Override
     public float[][] modelRotations(){return new float[][]{{0f,180f,180f}};}
     @Override
@@ -77,18 +77,18 @@ public class EntityPassengerTramNY extends GenericRailTransport {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return new float[][]{{0.9f,1.2f, 0.3f},{-0.7f,1.2f, -0.3f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{4.400000095367432f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{4.4f,2.3f,1.5f};}
     @Override
-    public float[] rotationPoints() {return new float[]{1.7600001096725464f, -1.7600001096725464f};}
+    public float[] rotationPoints() {return new float[]{1.3f, -1.25f};}
 
 
 
     //these only change in very specific use cases.
     @Override
     public boolean shouldRiderSit(){
-        return false;
+        return true;
     }
     @Override
     public Item getItem(){return thisItem;}

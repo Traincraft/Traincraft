@@ -413,14 +413,84 @@ public class ModelLocoDieselIC4_DSB_FH extends ModelBase
 		Seats23.setRotationPoint(-9F, 9F, 98F);
 		Seats23.mirror = true;
 		setRotation(Seats23, 0F, 0F, 0F);
+	}
 
-		bodyModel=new ModelRendererTurbo[]{Left1,Left2,Left3,Left4,Floor1,Floor2,Floor3,Ceiling,Right1,Right2,Right3,Right4,Wheels1,Wheels2,Bottom,TranConnector1,TranConnector2,TranConnector3,
-		TranConnector4,TrainConnector5,TrainConnector6,TrainConnector7,TrainConnector8,TrainConnector9,TrainConnector10,TranConnector11,TranConnector12,TrainConnector13,TrainConnector14,
-		TranConnector15,TranConnector16,Stairs1,Stairs2,Stairs3,Walls1,Walls2,Walls3,Walls4,Walls5,Walls6,Walls7,Walls8,Walls9,Seats1,Seats2,Seats3,Seats4,Seats5,Seats6,Seats7,Seats8,Seats9,
-				Seats10,Seats11,Seats12,Seats13,Seats14,Seats15,Seats16,Seats17,Seats18,Seats19,Seats20,Seats21,Seats22,Seats23
-		};
-		fixRotation(bodyModel);
-
+	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
+	{
+		GL11.glPushMatrix();
+		GL11.glRotatef(90,0,1,0);
+		GL11.glRotatef(180,0,0,1);
+		GL11.glTranslated(0,-1.4f,-2.6);
+		GL11.glScaled(0.7,0.9,1);
+		super.render(entity, f, f1, f2, f3, f4, f5);
+		//setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+		Left1.render(f5);
+		Left2.render(f5);
+		Left3.render(f5);
+		Left4.render(f5);
+		Floor1.render(f5);
+		Floor2.render(f5);
+		Floor3.render(f5);
+		Ceiling.render(f5);
+		Right1.render(f5);
+		Right2.render(f5);
+		Right3.render(f5);
+		Right4.render(f5);
+		Wheels1.render(f5);
+		Wheels2.render(f5);
+		Bottom.render(f5);
+		TranConnector1.render(f5);
+		TranConnector2.render(f5);
+		TranConnector3.render(f5);
+		TranConnector4.render(f5);
+		TrainConnector5.render(f5);
+		TrainConnector6.render(f5);
+		TrainConnector7.render(f5);
+		TrainConnector8.render(f5);
+		TrainConnector9.render(f5);
+		TrainConnector10.render(f5);
+		TranConnector11.render(f5);
+		TranConnector12.render(f5);
+		TrainConnector13.render(f5);
+		TrainConnector14.render(f5);
+		TranConnector15.render(f5);
+		TranConnector16.render(f5);
+		Stairs1.render(f5);
+		Stairs2.render(f5);
+		Stairs3.render(f5);
+		Walls1.render(f5);
+		Walls2.render(f5);
+		Walls3.render(f5);
+		Walls4.render(f5);
+		Walls5.render(f5);
+		Walls6.render(f5);
+		Walls7.render(f5);
+		Walls8.render(f5);
+		Walls9.render(f5);
+		Seats1.render(f5);
+		Seats2.render(f5);
+		Seats3.render(f5);
+		Seats4.render(f5);
+		Seats5.render(f5);
+		Seats6.render(f5);
+		Seats7.render(f5);
+		Seats8.render(f5);
+		Seats9.render(f5);
+		Seats10.render(f5);
+		Seats11.render(f5);
+		Seats12.render(f5);
+		Seats13.render(f5);
+		Seats14.render(f5);
+		Seats15.render(f5);
+		Seats16.render(f5);
+		Seats17.render(f5);
+		Seats18.render(f5);
+		Seats19.render(f5);
+		Seats20.render(f5);
+		Seats21.render(f5);
+		Seats22.render(f5);
+		Seats23.render(f5);
+		GL11.glPopMatrix();
 	}
 
 	private void setRotation(ModelRendererTurbo model, float x, float y, float z)

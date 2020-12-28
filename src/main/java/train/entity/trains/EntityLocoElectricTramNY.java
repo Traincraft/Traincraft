@@ -5,13 +5,16 @@ import ebf.tim.api.SkinRegistry;
 import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.EntityTrainCore;
 import ebf.tim.items.ItemTransport;
+import ebf.tim.utility.DebugUtil;
 import ebf.tim.utility.ItemStackSlot;
 import fexcraft.tmt.slim.ModelBase;
+import net.minecraft.client.Minecraft;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import train.Traincraft;
+import train.library.EnumSounds;
 import train.library.Info;
 import train.library.ItemIDs;
 
@@ -35,9 +38,9 @@ public class EntityLocoElectricTramNY extends EntityTrainCore {
     @Override
     public String transportName(){return "Loco Electric Tram NY";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "us";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "1986-2011";}
     @Override
     public boolean isFictional(){return false;}
     @Override
@@ -46,14 +49,14 @@ public class EntityLocoElectricTramNY extends EntityTrainCore {
     public List<TrainsInMotion.transportTypes> getTypes(){
         return TrainsInMotion.transportTypes.ELECTRIC.singleton();
     }
-    @Override
-    public float weightKg(){return 10f;}
+    @Override//NOTE: this is actually from the PA5, but the design and materials are very similar
+    public float weightKg(){return 29029.9f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelTramNY()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{-1.5f, 0.44f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.62f, 0.0f}};}
 @Override
     public float[][] modelRotations(){return new float[][]{{0f,180f,180f}};}
     @Override
@@ -79,11 +82,11 @@ public class EntityLocoElectricTramNY extends EntityTrainCore {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return new float[][]{{-1.9f,1.2f, 0.45f},{-0.7f,1.2f, -0.3f},{0.9f,1.2f, 0.3f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{4.399999976158142f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{4.4f,2.3f,1.5f};}
     @Override
-    public float[] rotationPoints() {return new float[]{2.060000002384186f, -2.060000002384186f};}
+    public float[] rotationPoints() {return new float[]{1.25f, -1.25f};}
     //Train specific stuff
     @Override
     public String transportFuelType(){return "electric";}
@@ -98,11 +101,13 @@ public class EntityLocoElectricTramNY extends EntityTrainCore {
     public int[] getTankCapacity(){return new int[]{2250};}
 
 
+    /**defines the scale to render the model at. Default is 0.65*/
+    public float getPlayerScale(){return super.getPlayerScale();}
 
     //these only change in very specific use cases.
     @Override
     public boolean shouldRiderSit(){
-        return false;
+        return true;
     }
     @Override
     public Item getItem(){return thisItem;}

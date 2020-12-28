@@ -457,7 +457,7 @@ public class ModelLocoMogul extends ModelBase {
 				box40,box41,box42,box43,box44,box45,box46,box47,box48,box49,
 				box50,box51,box52,box53,box54,box55,box56,box57,box58,box59,
 				box60,box61,box62,box63,box64,box65,box66,box67,box68,box69,
-				box70,box71,box72,box73,box74,box75,box76,box77,box78,frame
+				box70,box71,box72,box73,box74,box75,box76,box77,box78
 		};
 
 		fixRotation(bodyModel);

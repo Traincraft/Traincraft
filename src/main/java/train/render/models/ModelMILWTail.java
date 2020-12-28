@@ -794,15 +794,16 @@ public class ModelMILWTail extends ModelBase
 		passengermilhwtailModel[184].setRotationPoint(37.5F, -5F, -5F);
 		passengermilhwtailModel[184].rotateAngleY = -3.14159265F;
 
-		fixRotation(passengermilhwtailModel);
-		bodyModel=passengermilhwtailModel;
 
 	}
 
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
-		super.render(entity, f, f1, f2, f3, f4, f5);
+		for(int i = 0; i < 185; i++)
+		{
+			passengermilhwtailModel[i].render(f5);
+		}
 	}
 
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5)

@@ -83,6 +83,12 @@ public class ModelTankWagon extends ModelBase {
 		box25.addBox(0F, 0F, 0F, 46, 7, 10);
 		box25.setPosition(-23F, 0F, -5F);
 
+		box3 = new CustomModelRenderer(this, 10, 68, 256, 256);
+		box3.addBox(0F, 0F, 0F, 1, 7, 4);
+		box3.setPosition(2F, 24F, -11F);
+		box3.rotateAngleY = 1.5707963267948966F;
+		box3.rotateAngleZ = 0.7853981633974483F;
+
 		box4 = new CustomModelRenderer(this, 3, 14, 256, 256);
 		box4.addBox(0F, 0F, 0F, 7, 3, 14);
 		box4.setPosition(-18F, 2F, -7F);
@@ -108,7 +114,7 @@ public class ModelTankWagon extends ModelBase {
 		box9.setPosition(7F, 6F, -7F);
 
 		bodyModel=new ModelRendererTurbo[]{box,
-				box0,box1,box2,box4,box6,box7,box8,box9,
+				box0,box1,box2,box3,box4,box6,box7,box8,box9,
 				box10,box11,box12,box13,box14,box15,box16,box17,box18,box19,
 				box20,box25
 		};
@@ -135,6 +141,7 @@ public class ModelTankWagon extends ModelBase {
 	public CustomModelRenderer box2;
 	public CustomModelRenderer box20;
 	public CustomModelRenderer box25;
+	public CustomModelRenderer box3;
 	public CustomModelRenderer box4;
 	public CustomModelRenderer box6;
 	public CustomModelRenderer box7;

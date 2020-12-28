@@ -114,7 +114,7 @@ public class ModelFreightClosed extends ModelBase {
 		box82.setPosition(-6F, 2F, 11F);
 		bodyModel=new ModelRendererTurbo[]{box,
 				box0,box1,box2,box3,box4,box5,box6,box7,box8,box52,box53,box54,box55,box68,box71,box72,box73
-				,box78,box79,box80,box81,box82,bogey,bogey0
+				,box78,box79,box80,box81,box82
 		};
 
 		fixRotation(bodyModel);

@@ -642,11 +642,10 @@ public class ModelEWSClass66 extends ModelBase
 		ewsclass66Model[140].addShapeBox(0F, 0F, 0F, 1, 20, 108, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -20F, 0F, 0F, -20F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -20F, 0F, 0F, -20F); // Box 143
 		ewsclass66Model[140].setRotationPoint(9F, -12F, -40F);
 
-		fixRotation(ewsclass66Model, false, true, false);
+		fixRotation(ewsclass66Model, false, true, true);
 
 		fixRotation(ewsclass66Model);
 		bodyModel=ewsclass66Model;
-
 	}
 	private ModelEWSClass66_Bogie fronttrucks = new ModelEWSClass66_Bogie();
 	private ModelEWSClass66_Bogie backtrucks = new ModelEWSClass66_Bogie();

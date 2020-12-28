@@ -198,7 +198,7 @@ public class ModelRheingoldPassenger_Dining2 extends ModelBase
 
 		rheingoldpassenger_dining2Model[7].addShapeBox(0F, 0F, 0F, 131, 3, 2, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 16
 		rheingoldpassenger_dining2Model[7].setRotationPoint(63F, -19F, -9F);
-		rheingoldpassenger_dining2Model[7].rotateAngleY = 3.14159265F;
+		rheingoldpassenger_dining2Model[7].rotateAngleY = -3.14159265F;
 
 		rheingoldpassenger_dining2Model[8].addBox(0F, 0F, 0F, 1, 3, 18, 0F); // Box 18
 		rheingoldpassenger_dining2Model[8].setRotationPoint(-69F, -19F, -9F);
@@ -640,7 +640,7 @@ public class ModelRheingoldPassenger_Dining2 extends ModelBase
 		rheingoldpassenger_dining2Model[148].addBox(0F, 0F, 0F, 4, 2, 2, 0F); // Box 182
 		rheingoldpassenger_dining2Model[148].setRotationPoint(-73F, 2.1F, -1F);
 
-		fixRotation(rheingoldpassenger_dining2Model);
+		fixRotation(rheingoldpassenger_dining2Model, false, true, true);
 		bodyModel=rheingoldpassenger_dining2Model;
 	}
 

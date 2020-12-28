@@ -1653,21 +1653,34 @@ public class ModelLocoSteamAdler extends ModelBase {
 		setRotation(Shape272, 0F, 0.2094395F, 0F);
 
 		bodyModel= new ModelRendererTurbo[]{
-				Shape1,Shape2,Shape3,Shape4,Shape5,Shape6,Shape7,Shape8,Shape9,Shape10,Shape11,Shape12,Shape13,Shape14,Shape15,Shape16,Shape17,Shape18,Shape19,Shape20,Shape21,
-				Shape22,Shape23,Shape24,Shape25,Shape26,Shape27,Shape28,Shape29,Shape30,Shape31,Shape32,Shape33,Shape34,Shape35,Shape36,Shape37,Shape38,Shape39,Shape40,Shape41,
-				Shape42,Shape43,Shape44,Shape45,Shape46,Shape47,Shape48,Shape49,Shape50,Shape51,Shape52,Shape53,Shape54,Shape55,Shape56,Shape57,Shape58,Shape59,Shape60,Shape61,
-				Shape62,Shape63,Shape64,Shape65,Shape66,Shape67,Shape68,Shape69,Shape70,Shape71,Shape72,Shape73,Shape74,Shape75,Shape76,Shape77,Shape78,Shape79,Shape80,Shape81,
-				Shape82,Shape83,Shape84,Shape85,Shape86,Shape87,Shape88,Shape89,Shape90,Shape91,Shape92,Shape93,Shape94,Shape95,Shape96,Shape97,Shape98,Shape99,Shape100,Shape101,
-				Shape102,Shape103,Shape104,Shape105,Shape106,Shape107,Shape108,Shape109,Shape110,Shape111,Shape112,Shape113,Shape114,Shape115,Shape116,Shape117,Shape118,Shape119,
-				Shape120,Shape121,Shape122,Shape123,Shape124,Shape125,Shape126,Shape127,Shape128,Shape129,Shape130,Shape131,Shape132,Shape133,Shape134,Shape135,Shape136,Shape137,
-				Shape138,Shape139,Shape140,Shape141,Shape142,Shape143,Shape144,Shape145,Shape146,Shape147,Shape148,Shape149,Shape150,Shape151,Shape152,Shape153,Shape154,Shape155,
-				Shape156,Shape157,Shape158,Shape159,Shape160,Shape161,Shape162,Shape163,Shape164,Shape165,Shape166,Shape167,Shape168,Shape169,Shape170,Shape171,Shape172,Shape173,
-				Shape174,Shape175,Shape176,Shape177,Shape178,Shape179,Shape180,Shape181,Shape182,Shape183,Shape184,Shape185,Shape186,Shape187,Shape188,Shape189,Shape190,Shape191,
-				Shape192,Shape193,Shape194,Shape195,Shape196,Shape197,Shape198,Shape199,Shape200,Shape201,Shape202,Shape203,Shape204,Shape205,Shape206,Shape207,Shape208,Shape209,
-				Shape210,Shape211,Shape212,Shape213,Shape214,Shape215,Shape216,Shape217,Shape218,Shape219,Shape220,Shape221,Shape222,Shape223,Shape224,Shape225,Shape226,Shape227,
-				Shape228,Shape229,Shape230,Shape231,Shape232,Shape233,Shape234,Shape235,Shape236,Shape237,Shape238,Shape239,Shape240,Shape241,Shape242,Shape243,Shape244,Shape245,
-				Shape246,Shape247,Shape248,Shape249,Shape250,Shape251,Shape252,Shape253,Shape254,Shape255,Shape256,Shape257,Shape258,Shape259,Shape260,Shape261,Shape262,Shape263,
-				Shape264,Shape265,Shape266,Shape267,Shape268,Shape269,Shape270,Shape271,Shape272
+				Shape1,Shape2,Shape3,Shape4,Shape5,Shape6,Shape7,Shape8,Shape9,
+				Shape10,Shape11,Shape12,Shape13,Shape14,Shape15,Shape16,Shape17,Shape18,Shape19,
+				Shape20,Shape21,Shape22,Shape23,Shape24,Shape25,Shape26,Shape27,Shape28,Shape29,
+				Shape30,Shape31,Shape32,Shape33,Shape34,Shape35,Shape36,Shape37,Shape38,Shape39,
+				Shape40,Shape41,Shape42,Shape43,Shape44,Shape45,Shape46,Shape47,Shape48,Shape49,
+				Shape50,Shape51,Shape52,Shape53,Shape54,Shape55,Shape56,Shape57,Shape58,Shape59,
+				Shape60,Shape61,Shape62,Shape63,Shape64,Shape65,Shape66,Shape67,Shape68,Shape69,
+				Shape70,Shape71,Shape72,Shape73,Shape74,Shape75,Shape76,Shape77,Shape78,Shape79,
+				Shape80,Shape81,Shape82,Shape83,Shape84,Shape85,Shape86,Shape87,Shape88,Shape89,
+				Shape90,Shape91,Shape92,Shape93,Shape94,Shape95,Shape96,Shape97,Shape98,Shape99,
+				Shape100,Shape101,Shape102,Shape103,Shape104,Shape105,Shape106,Shape107,Shape108,Shape109,
+				Shape110,Shape111,Shape112,Shape113,Shape114,Shape115,Shape116,Shape117,Shape118,Shape119,
+				Shape120,Shape121,Shape122,Shape123,Shape124,Shape125,Shape126,Shape127,Shape128,Shape129,
+				Shape130,Shape131,Shape132,Shape133,Shape134,Shape135,Shape136,Shape137,Shape138,Shape139,
+				Shape140,Shape141,Shape142,Shape143,Shape144,Shape145,Shape146,Shape147,Shape148,Shape149,
+				Shape150,Shape151,Shape152,Shape153,Shape154,Shape155,Shape156,Shape157,Shape158,Shape159,
+				Shape160,Shape161,Shape162,Shape163,Shape164,Shape165,Shape166,Shape167,Shape168,Shape169,
+				Shape170,Shape171,Shape172,Shape173,Shape174,Shape175,Shape176,Shape177,Shape178,Shape179,
+				Shape180,Shape181,Shape182,Shape183,Shape184,Shape185,Shape186,Shape187,Shape188,Shape189,
+				Shape190,Shape191,Shape192,Shape193,Shape194,Shape195,Shape196,Shape197,Shape198,Shape199,
+				Shape200,Shape201,Shape202,Shape203,Shape204,Shape205,Shape206,Shape207,Shape208,Shape209,
+				Shape210,Shape211,Shape212,Shape213,Shape214,Shape215,Shape216,Shape217,Shape218,Shape219,
+				Shape220,Shape221,Shape222,Shape223,Shape224,Shape225,Shape226,Shape227,Shape228,Shape229,
+				Shape230,Shape231,Shape232,Shape233,Shape234,Shape235,Shape236,Shape237,Shape238,Shape239,
+				Shape240,Shape241,Shape242,Shape243,Shape244,Shape245,Shape246,Shape247,Shape248,Shape249,
+				Shape250,Shape251,Shape252,Shape253,Shape254,Shape255,Shape256,Shape257,Shape258,Shape259,
+				Shape260,Shape261,Shape262,Shape263,Shape264,Shape265,Shape266,Shape267,Shape268,Shape269,
+				Shape270,Shape271,Shape272
 		};
 
 		fixRotation(bodyModel);
@@ -1681,6 +1694,6 @@ public class ModelLocoSteamAdler extends ModelBase {
 	private void setRotation(ModelRendererTurbo model, float x, float y, float z) {
 		model.rotateAngleX = x;
 		model.rotateAngleY = y;
-		model.rotateAngleZ = z;
+		model.rotateAngleZ = -z;
 	}
 }

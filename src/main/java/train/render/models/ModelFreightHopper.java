@@ -196,7 +196,7 @@ public class ModelFreightHopper extends ModelBase {
 		box6.addBox(0F, 0F, 0F, 25, 6, 14);
 		box6.setPosition(23F, 18F, 7F);
 		box6.rotateAngleY = 3.141592653589793F;
-		box6.rotateAngleZ = 0.6632251157578453F;
+		box6.rotateAngleZ = -0.6632251157578453F;
 
 		box7 = new CustomModelRenderer(this, 63, 59, 128, 128);
 		box7.addBox(0F, 0F, 0F, 7, 7, 1);

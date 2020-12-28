@@ -31,13 +31,17 @@ public class EntityLocoElectricBR_E69 extends EntityTrainCore {
     public static final Item thisItem = new ItemTransport(new EntityLocoElectricBR_E69((World)null), Info.modID, Traincraft.tcTab);
 
 
+    //the stats for this one were actually listed on an old museum page that had to be dug up from the wayback machine
+    //http://bayerisches-eisenbahnmuseum.de/Fahrzeuge/E69_t.htm
+    //it also has noteable history in railroad tycoon 2
+
     //main stats
     @Override
     public String transportName(){return "Loco Electric BR_E69";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "germany";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "1955-1970";}
     @Override
     public boolean isFictional(){return false;}
     @Override
@@ -47,7 +51,7 @@ public class EntityLocoElectricBR_E69 extends EntityTrainCore {
         return TrainsInMotion.transportTypes.ELECTRIC.singleton();
     }
     @Override
-    public float weightKg(){return 10f;}
+    public float weightKg(){return 26000f;}
 
     //Model stuff
     @Override
@@ -85,9 +89,9 @@ public class EntityLocoElectricBR_E69 extends EntityTrainCore {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return new float[][]{{0,1.4f, 0f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{3.0999999046325684f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{worldObj==null?3.2f:2.9f,2.5f,1.5f};}
     @Override
     public float[] rotationPoints() {return new float[]{0.8f, -0.7f};}
     //Train specific stuff

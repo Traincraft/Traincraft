@@ -35,9 +35,9 @@ public class EntityLocoElectricClass85 extends EntityTrainCore {
     @Override
     public String transportName(){return "Loco Electric Class 85";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "britain";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "1961-1992";}
     @Override
     public boolean isFictional(){return false;}
     @Override
@@ -47,13 +47,13 @@ public class EntityLocoElectricClass85 extends EntityTrainCore {
         return TrainsInMotion.transportTypes.ELECTRIC.singleton();
     }
     @Override
-    public float weightKg(){return 10f;}
+    public float weightKg(){return 80775.7f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelClass85()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{-3.0f, -0.65f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.45f, -0.45f, 0.0f}};}
     @Override
     public float[][] modelRotations(){return new float[][]{{0.0f, -90.0f, 0.0f}};}
     @Override
@@ -79,11 +79,11 @@ public class EntityLocoElectricClass85 extends EntityTrainCore {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return new float[][]{{-2.3f,1.3f, 0f},{2.3f,1.3f, 0f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{6.120000004768372f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{6.05f,2.3f,1.5f};}
     @Override
-    public float[] rotationPoints() {return new float[]{2.9480000138282776f, -2.9480000138282776f};}
+    public float[] rotationPoints() {return new float[]{1.7f, -1.7f};}
     //Train specific stuff
     @Override
     public String transportFuelType(){return "electric";}
@@ -102,7 +102,7 @@ public class EntityLocoElectricClass85 extends EntityTrainCore {
     //these only change in very specific use cases.
     @Override
     public boolean shouldRiderSit(){
-        return false;
+        return true;
     }
     @Override
     public Item getItem(){return thisItem;}
