@@ -166,17 +166,16 @@ public class ModelDRWGStockCar extends ModelBase
 		drwgstockcarModel[33].addShapeBox(0F, 0F, -9F, 50, 1, 9, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 35
 		drwgstockcarModel[33].setRotationPoint(-9F, -31F, 0F);
 
-
+		fixRotation(drwgstockcarModel);
+		bodyModel=drwgstockcarModel;
 	}
 
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
-		for(int i = 0; i < 34; i++)
-		{
-			drwgstockcarModel[i].render(f5);
-		}
+		super.render(entity, f, f1, f2, f3, f4, f5);
 	}
+
 
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5)
 	{

@@ -37,22 +37,6 @@ public class ModelE103 extends ModelConverter //Same as Filename
 
 	private ModelE103Bogie bogie = new ModelE103Bogie();
 
-
-	@Override
-	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
-	{
-		super.render(entity, f, f1, f2, f3, f4, f5);
-
-		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/e103bogie.png"));
-		GL11.glPushMatrix();
-		GL11.glTranslated(-1.35,0.1,0.06);
-		bogie.render(entity,f,f1,f2,f3,f4,f5);
-
-		GL11.glTranslated(3,0,0);
-		bogie.render(entity,f,f1,f2,f3,f4,f5);
-		GL11.glPopMatrix();
-	}
-
 	private void initbodyModel_1()
 	{
 		bodyModel[0] = new ModelRendererTurbo(this, 1, 1, textureX, textureY); // Box 62
@@ -413,8 +397,8 @@ public class ModelE103 extends ModelConverter //Same as Filename
 
 		bodyModel[57].addShapeBox(0F, 0F, 0F, 9, 1, 1, 0F,0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F); // Box 76
 		bodyModel[57].setRotationPoint(-19F, -22F, 0.5F);
-		bodyModel[57].rotateAngleY = -3.14159265F;
-		bodyModel[57].rotateAngleZ = 0.31415927F;
+		bodyModel[57].rotateAngleY = 3.14159265F;
+		bodyModel[57].rotateAngleZ = -0.31415927F;
 
 		bodyModel[58].addShapeBox(0F, 0F, 0F, 3, 1, 8, 0F,0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 77
 		bodyModel[58].setRotationPoint(-20F, -22F, -4F);
@@ -422,12 +406,12 @@ public class ModelE103 extends ModelConverter //Same as Filename
 		bodyModel[59].addShapeBox(-11F, -1F, 0F, 9, 1, 2, 0F,0F, -0.2F, -1.1F, 0F, -0.2F, -0.1F, 0F, -0.2F, -1.1F, 0F, -0.2F, -0.1F, 0F, -0.2F, -1.1F, 0F, -0.2F, -0.1F, 0F, -0.2F, -1.1F, 0F, -0.2F, -0.1F); // Box 78
 		bodyModel[59].setRotationPoint(-30F, -23F, 0.5F);
 		bodyModel[59].rotateAngleY = -3.14159265F;
-		bodyModel[59].rotateAngleZ = -0.33161256F;
+		bodyModel[59].rotateAngleZ = 0.33161256F;
 
 		bodyModel[60].addShapeBox(-11F, -1F, -2F, 9, 1, 2, 0F,0F, -0.2F, -0.1F, 0F, -0.2F, -1.1F, 0F, -0.2F, -0.1F, 0F, -0.2F, -1.1F, 0F, -0.2F, -0.1F, 0F, -0.2F, -1.1F, 0F, -0.2F, -0.1F, 0F, -0.2F, -1.1F); // Box 79
 		bodyModel[60].setRotationPoint(-30F, -23F, -0.5F);
 		bodyModel[60].rotateAngleY = -3.14159265F;
-		bodyModel[60].rotateAngleZ = -0.33161256F;
+		bodyModel[60].rotateAngleZ = 0.33161256F;
 
 		bodyModel[61].addShapeBox(0F, 0F, 0F, 1, 1, 2, 0F,0F, -1.5F, 0F, 0F, -1.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 1F, 0F, 0F, 1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 80
 		bodyModel[61].setRotationPoint(-20F, -28F, -6.5F);
@@ -763,15 +747,15 @@ public class ModelE103 extends ModelConverter //Same as Filename
 
 		bodyModel[168].addShapeBox(0F, 0F, 0F, 9, 1, 1, 0F,0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F, 0F, -0.1F, 0F); // Box 187
 		bodyModel[168].setRotationPoint(28F, -22F, -0.5F);
-		bodyModel[168].rotateAngleZ = 0.31415927F;
+		bodyModel[168].rotateAngleZ = -0.31415927F;
 
 		bodyModel[169].addShapeBox(-11F, -1F, -2F, 9, 1, 2, 0F,0F, -0.2F, -0.1F, 0F, -0.2F, -1.1F, 0F, -0.2F, -0.1F, 0F, -0.2F, -1.1F, 0F, -0.2F, -0.1F, 0F, -0.2F, -1.1F, 0F, -0.2F, -0.1F, 0F, -0.2F, -1.1F); // Box 188
 		bodyModel[169].setRotationPoint(39F, -23F, 0.5F);
-		bodyModel[169].rotateAngleZ = -0.33161256F;
+		bodyModel[169].rotateAngleZ = 0.33161256F;
 
 		bodyModel[170].addShapeBox(-11F, -1F, 0F, 9, 1, 2, 0F,0F, -0.2F, -1.1F, 0F, -0.2F, -0.1F, 0F, -0.2F, -1.1F, 0F, -0.2F, -0.1F, 0F, -0.2F, -1.1F, 0F, -0.2F, -0.1F, 0F, -0.2F, -1.1F, 0F, -0.2F, -0.1F); // Box 189
 		bodyModel[170].setRotationPoint(39F, -23F, -0.5F);
-		bodyModel[170].rotateAngleZ = -0.33161256F;
+		bodyModel[170].rotateAngleZ = 0.33161256F;
 
 		bodyModel[171].addShapeBox(0F, 0F, 0F, 1, 1, 2, 0F,0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -1.5F, 0F, 0F, -1.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 1F, 0F, 0F, 1F, 0F); // Box 190
 		bodyModel[171].setRotationPoint(28F, -28F, 4.5F);
@@ -808,6 +792,23 @@ public class ModelE103 extends ModelConverter //Same as Filename
 
 		bodyModel[182].addBox(0F, 0F, 0F, 5, 2, 2, 0F); // Box 182
 		bodyModel[182].setRotationPoint(-45F, 2F, -1F);
-		fixRotation(bodyModel);
+		fixRotation(bodyModel, true, false, true);
 	}
+
+	@Override
+	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
+	{
+		super.render(entity, f, f1, f2, f3, f4, f5);
+
+		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/e103bogie.png"));
+		GL11.glPushMatrix();
+		GL11.glTranslated(-1.35,0.1,0.06);
+		bogie.render(entity,f,f1,f2,f3,f4,f5);
+
+		GL11.glTranslated(3,0,0);
+		bogie.render(entity,f,f1,f2,f3,f4,f5);
+		GL11.glPopMatrix();
+	}
+
+	public ModelRendererTurbo ModelE103[];
 }
