@@ -46,8 +46,8 @@ public class EntityLocoElectricMinetrain extends EntityTrainCore {
     public List<TrainsInMotion.transportTypes> getTypes(){
         return TrainsInMotion.transportTypes.ELECTRIC.singleton();
     }
-    @Override
-    public float weightKg(){return 10f;}
+    @Override//the average minecart weighs anywhere from 500lb to 1500lb, considering this one hauls them im guessing probably double max?
+    public float weightKg(){return 1360f;}
 
     //Model stuff
     @Override

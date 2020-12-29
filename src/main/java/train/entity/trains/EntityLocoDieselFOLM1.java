@@ -46,8 +46,10 @@ public class EntityLocoDieselFOLM1 extends EntityTrainCore {
     public List<TrainsInMotion.transportTypes> getTypes(){
         return TrainsInMotion.transportTypes.DIESEL.singleton();
     }
-    @Override//the theme is a heavy steampunk, and it's rather large, so a little less than 1.5x an END F unit seems legit?
-    public float weightKg(){return 150000f;}
+    @Override
+    //the theme is a heavy steampunk, and it's rather large, so a little less than 1.5x an END F unit seems legit?
+    //EDIT: was corrected to 2000lb, that's rather light seeming.
+    public float weightKg(){return 907f;}
 
     //Model stuff
     @Override

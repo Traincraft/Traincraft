@@ -48,7 +48,7 @@ public class EntityLocoSteamSmall extends EntityTrainCore {
         return TrainsInMotion.transportTypes.STEAM.singleton();
     }
     @Override
-    public float weightKg(){return 10f;}
+    public float weightKg(){return 10000f;}
 
     //Model stuff
     @Override

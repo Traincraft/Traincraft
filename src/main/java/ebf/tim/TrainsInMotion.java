@@ -168,8 +168,6 @@ public class TrainsInMotion {
 
 
         proxy.register();
-        //register the worldgen
-        GameRegistry.registerWorldGenerator(new OreGen(), 0);
         if(event.getSide().isClient()) {
             //register the event handler
             MinecraftForge.EVENT_BUS.register(ClientProxy.eventManager);

@@ -47,7 +47,7 @@ public class EntityLocoDieselCD742 extends EntityTrainCore {
         return TrainsInMotion.transportTypes.DIESEL.singleton();
     }
     @Override
-    public float weightKg(){return 10f;}
+    public float weightKg(){return 64000f;}
 
     //Model stuff
     @Override

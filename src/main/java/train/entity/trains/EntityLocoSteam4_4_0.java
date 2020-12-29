@@ -49,7 +49,7 @@ public class EntityLocoSteam4_4_0 extends EntityTrainCore {
     @Override
     public String transportcountry(){return "us";}
     @Override
-    public String transportYear(){return "early 1800's";}
+    public String transportYear(){return "1855";}
     @Override
     public String transportFuelType(){return "Steam";}
     @Override

@@ -47,7 +47,7 @@ public class EntityLocoSteamC41T extends EntityTrainCore {
         return TrainsInMotion.transportTypes.STEAM.singleton();
     }
     @Override
-    public float weightKg(){return 10f;}
+    public float weightKg(){return 82553.8f;}
 
     //Model stuff
     @Override

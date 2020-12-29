@@ -1,11 +1,14 @@
 package ebf.tim.registry;
 
 import ebf.tim.TrainsInMotion;
+import ebf.tim.blocks.OreGen;
 import net.minecraft.block.material.MapColor;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraftforge.fluids.Fluid;
 
 import static ebf.tim.registry.TiMGenericRegistry.RegisterFluid;
+import static ebf.tim.registry.TiMGenericRegistry.registerOreGen;
 
 public class TiMFluids {
 
@@ -43,6 +46,15 @@ public class TiMFluids {
         RegisterFluid(fluidfueloil, bucketFuelOil, TrainsInMotion.MODID, "fueloil", false, 600, MapColor.brownColor, TrainsInMotion.creativeTab);
         RegisterFluid(fluidRedstone, bucketRedstone, TrainsInMotion.MODID, "redstone", false, 100, MapColor.redColor, TrainsInMotion.creativeTab);
         RegisterFluid(nullFluid, null, TrainsInMotion.MODID, "nullFluid", false, 100, MapColor.pinkColor, null);
+
+
+        //oil spawn at surface for deserts
+        registerOreGen(0,
+                new OreGen(fluidOil.getBlock(),-6,0,30,10,1)
+                        .setBiomes(new String[]{"desert"}).setFiller(Blocks.sand).setHeightOffset(3));
+        //oil spawn underground
+        registerOreGen(0,
+                new OreGen(fluidOil.getBlock(),40,60,20,6,3));
 
     }
 }

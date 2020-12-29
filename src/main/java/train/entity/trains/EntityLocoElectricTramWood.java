@@ -32,6 +32,8 @@ public class EntityLocoElectricTramWood extends EntityTrainCore {
     public static final Item thisItem = new ItemTransport(new EntityLocoElectricTramWood((World)null), Info.modID, Traincraft.tcTab);
 
 
+    //this seems to be a mild parody of the Lisbon trams Series 737, 738, 741-745
+    // http://tram-lisboa.ernstkers.nl/SecondGeneration.html
     //main stats
     @Override
     public String transportName(){return "Loco Electric Yellow Wood Tram";}
@@ -48,15 +50,15 @@ public class EntityLocoElectricTramWood extends EntityTrainCore {
         return TrainsInMotion.transportTypes.ELECTRIC.singleton();
     }
     @Override
-    public float weightKg(){return 10f;}
+    public float weightKg(){return 10730f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelTram()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{-0.8f, 0.44f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.64f, 0.0f}};}
 @Override
-    public float[][] modelRotations(){return new float[][]{{0f,180f,180f}};}
+    public float[][] modelRotations(){return new float[][]{{0f,0f,180f}};}
     @Override
     public void registerSkins(){
         SkinRegistry.addSkin(this.getClass(),
@@ -80,11 +82,11 @@ public class EntityLocoElectricTramWood extends EntityTrainCore {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return new float[][]{{-1.25f,1.1f, 0f},{0.6f,1.1f, -0.3f},{-0.6f,1.1f, 0.3f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{3.399999976158142f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{3.7f,2.3f,1.4f};}
     @Override
-    public float[] rotationPoints() {return new float[]{1.5600000023841858f, -1.5600000023841858f};}
+    public float[] rotationPoints() {return new float[]{0.775f, -0.8f};}
     //Train specific stuff
     @Override
     public String transportFuelType(){return "electric";}

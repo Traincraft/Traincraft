@@ -1352,6 +1352,20 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
 
 
     /**
+     * used by EntitySeat to define if the rider should sit based on the seat ID
+     * the seat ID is defined by the index of it's vector, minus one,
+     *    so the second seat position would have an ID of 1.
+     */
+    public boolean shouldRiderSit(int seat){
+        return shouldRiderSit();
+    }
+    @Override
+    public boolean shouldRiderSit(){
+        return true;
+    }
+
+
+    /**
      * <h2>manage links</h2>
      * this is used to reposition the transport based on the linked transports.
      * If coupling is on then it will check sides without linked transports for anything to link to.

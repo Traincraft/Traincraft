@@ -34,25 +34,25 @@ public class EntityTender4_4_0 extends GenericRailTransport {
     @Override
     public String transportName(){return "Tender 4-4-0";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "us";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "1855";}
     @Override
     public boolean isFictional(){return false;}
     @Override
-    public int getInventoryRows(){return 0;}
+    public int getInventoryRows(){return 3;}
     @Override
     public List<TrainsInMotion.transportTypes> getTypes(){
         return TrainsInMotion.transportTypes.TENDER.singleton();
     }
-    @Override
-    public float weightKg(){return 10f;}
+    @Override//NOTE: this is actually taken from the tender of the Sierra Railway 2-8-0 "Consolidation" #18, which has a very similar design
+    public float weightKg(){return 27216f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelNormalSteamTender()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.44f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.0f, worldObj==null?0.2f:0.64f, 0.0f}};}
     @Override
     public float[][] modelRotations(){return new float[][]{{0.0f, -90.0f, -180.0f}};}
     @Override
@@ -91,9 +91,9 @@ public class EntityTender4_4_0 extends GenericRailTransport {
     @Override
     public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{2.299999952316284f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{worldObj==null?2.8f:2.4f,1.7f,1.1f};}
     @Override
-    public float[] rotationPoints() {return new float[]{0.9200000166893005f, -0.9200000166893005f};}
+    public float[] rotationPoints() {return new float[]{0.5f, -0.7f};}
     @Override
     public int[] getTankCapacity(){return new int[]{8000};}
 

@@ -31,6 +31,7 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData {
     private int seatNumber =0;
 
     public Vec3 rotation =null;
+    GenericRailTransport parent;
 
     public EntitySeat(World world) {
         super(world);
@@ -66,13 +67,20 @@ public class EntitySeat extends Entity implements IEntityAdditionalSpawnData {
     public void onUpdate() {
         if (worldObj.getEntityByID(parentId) instanceof GenericRailTransport) {
             if(worldObj.isRemote) {
-                ((GenericRailTransport) worldObj.getEntityByID(parentId)).setseats(this, seatNumber);
+                if(parent==null){
+                    parent=(GenericRailTransport) worldObj.getEntityByID(parentId);
+                }
+                parent.setseats(this, seatNumber);
             }
         } else {
             worldObj.removeEntity(this);
         }
 
 
+    }
+    @Override
+    public boolean shouldRiderSit(){
+        return parent.shouldRiderSit(seatNumber);
     }
     /**returns the bounding box, this doesn't handle collisions, soo.. null.*/
     @Override
