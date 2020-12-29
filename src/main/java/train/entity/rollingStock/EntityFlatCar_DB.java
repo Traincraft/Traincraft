@@ -33,9 +33,9 @@ public class EntityFlatCar_DB extends GenericRailTransport {
     @Override
     public String transportName(){return "Flat Cart DB";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "german";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "1914";}
     @Override
     public boolean isFictional(){return false;}
     @Override
@@ -71,7 +71,7 @@ public class EntityFlatCar_DB extends GenericRailTransport {
     @Override
     public ItemStack[] getRecipie() {
         return new ItemStack[]{
-                new ItemStack(ItemIDs.steel.item, 5), new ItemStack(ItemIDs.bogie.item, 2), new ItemStack(ItemIDs.steelframe.item, 2), 
+                new ItemStack(ItemIDs.steel.item, 5), new ItemStack(ItemIDs.bogie.item, 2), new ItemStack(ItemIDs.steelframe.item, 2),
                 new ItemStack(ItemIDs.steel.item, 2), null, null, null, null, null        };
     }
 

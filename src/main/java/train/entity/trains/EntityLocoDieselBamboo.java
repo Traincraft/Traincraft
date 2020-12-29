@@ -35,7 +35,7 @@ public class EntityLocoDieselBamboo extends EntityTrainCore {
     @Override
     public String transportName(){return "Bamboo Flatcar Engine";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "Cambodia";}
     @Override
     public String transportYear(){return "Undefined";}
     @Override
@@ -101,7 +101,7 @@ public class EntityLocoDieselBamboo extends EntityTrainCore {
     @Override
     public ItemStack[] getRecipie() {
         return new ItemStack[]{
-                null, new ItemStack(ItemIDs.woodenBogie.item, 2), new ItemStack(ItemIDs.woodenFrame.item, 1), 
+                null, new ItemStack(ItemIDs.woodenBogie.item, 2), new ItemStack(ItemIDs.woodenFrame.item, 1),
                 null, null, null, null, new ItemStack(ItemIDs.dieselengine.item, 1), null        };
     }
 

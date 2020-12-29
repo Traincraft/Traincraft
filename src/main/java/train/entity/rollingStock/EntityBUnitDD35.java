@@ -33,9 +33,9 @@ public class EntityBUnitDD35 extends GenericRailTransport {
     @Override
     public String transportName(){return "DD35 B Unit";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "us";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "1963-1981";}
     @Override
     public boolean isFictional(){return false;}
     @Override
@@ -71,8 +71,8 @@ public class EntityBUnitDD35 extends GenericRailTransport {
     @Override
     public ItemStack[] getRecipie() {
         return new ItemStack[]{
-                null, new ItemStack(ItemIDs.bogie.item, 8), new ItemStack(ItemIDs.steelframe.item, 3), 
-                new ItemStack(ItemIDs.steel.item, 2), new ItemStack(ItemIDs.steelchimney.item, 2), new ItemStack(ItemIDs.steelcab.item, 1), 
+                null, new ItemStack(ItemIDs.bogie.item, 8), new ItemStack(ItemIDs.steelframe.item, 3),
+                new ItemStack(ItemIDs.steel.item, 2), new ItemStack(ItemIDs.steelchimney.item, 2), new ItemStack(ItemIDs.steelcab.item, 1),
                 new ItemStack(ItemIDs.electmotor.item, 8), new ItemStack(ItemIDs.dieselengine.item, 11), new ItemStack(ItemIDs.generator.item, 4)        };
     }
 
