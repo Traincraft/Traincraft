@@ -30,6 +30,7 @@ public class EntityCabooseLoggingPRR extends GenericRailTransport {
     public static final Item thisItem = new ItemTransport(new EntityCabooseLoggingPRR((World)null), Info.modID, Traincraft.tcTab);
 
 
+    //I cannot find anything about this one xx Chiel
     //main stats
     @Override
     public String transportName(){return "PRR Caboose Logging";}
@@ -74,7 +75,7 @@ public class EntityCabooseLoggingPRR extends GenericRailTransport {
     @Override
     public ItemStack[] getRecipie() {
         return new ItemStack[]{
-                new ItemStack(ItemIDs.steel.item, 5), new ItemStack(ItemIDs.bogie.item, 2), new ItemStack(ItemIDs.steelframe.item, 2), 
+                new ItemStack(ItemIDs.steel.item, 5), new ItemStack(ItemIDs.bogie.item, 2), new ItemStack(ItemIDs.steelframe.item, 2),
                 new ItemStack(ItemIDs.steel.item, 2), null, null, null, null, new ItemStack(Blocks.crafting_table, 1)        };
     }
 

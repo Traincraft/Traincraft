@@ -35,7 +35,7 @@ public class EntityLocoSteamMallardA4 extends EntityTrainCore {
     @Override
     public String transportName(){return "Loco Steam A4 Mallard";}
     @Override
-    public String transportcountry(){return "United Kingdom";}
+    public String transportcountry(){return "uk";}
     @Override
     public String transportYear(){return "1938";}
     @Override
