@@ -34,9 +34,9 @@ public class EntityPassengerAdler extends GenericRailTransport {
     @Override
     public String transportName(){return "Passenger Adler";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "germany";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "1835";}
     @Override
     public boolean isFictional(){return false;}
     @Override
@@ -45,16 +45,18 @@ public class EntityPassengerAdler extends GenericRailTransport {
     public List<TrainsInMotion.transportTypes> getTypes(){
         return TrainsInMotion.transportTypes.PASSENGER.singleton();
     }
-    @Override
-    public float weightKg(){return 10f;}
+    @Override//this is kinda sketchy, it's documented:
+    // During a trial run the adler hauled one railway wagon with a payload of 8,000 German pounds
+    //but no weight of the third or second class passenger cars was documented, so we're assuming the payload is a similar weight.
+    public float weightKg(){return 4480.7f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelPassengerAdler()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{0.0f, -1.04f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.05f, worldObj==null?-1.2f:-0.85f, 0.0f}};}
     @Override
-    public float[][] modelRotations(){return new float[][]{{180.0f, -270.0f, -180.0f}};}
+    public float[][] modelRotations(){return new float[][]{{180.0f, -90.0f, -180.0f}};}
     @Override
     public void registerSkins(){
         SkinRegistry.addSkin(this.getClass(),
@@ -78,18 +80,18 @@ public class EntityPassengerAdler extends GenericRailTransport {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return new float[][]{{0.1f,0.9f, 0f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{2.0999999046325684f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{worldObj==null?2.6f:2.2f,1.6f,1.0f};}
     @Override
-    public float[] rotationPoints() {return new float[]{0.8399999737739563f, -0.8399999737739563f};}
+    public float[] rotationPoints() {return new float[]{0.375f, -0.325f};}
 
 
 
     //these only change in very specific use cases.
     @Override
     public boolean shouldRiderSit(){
-        return false;
+        return true;
     }
     @Override
     public Item getItem(){return thisItem;}

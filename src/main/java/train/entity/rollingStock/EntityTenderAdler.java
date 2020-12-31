@@ -34,27 +34,27 @@ public class EntityTenderAdler extends GenericRailTransport {
     @Override
     public String transportName(){return "Tender Adler";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "germany";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "1835";}
     @Override
     public boolean isFictional(){return false;}
     @Override
-    public int getInventoryRows(){return 0;}
+    public int getInventoryRows(){return 1;}
     @Override
     public List<TrainsInMotion.transportTypes> getTypes(){
         return TrainsInMotion.transportTypes.TENDER.singleton();
     }
     @Override
-    public float weightKg(){return 10f;}
+    public float weightKg(){return 5994.6f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelTenderAdler()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{0.0f, -1.05f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.0f, worldObj==null?-1.2f:-0.85f, 0.0f}};}
     @Override
-    public float[][] modelRotations(){return new float[][]{{180.0f, -270.0f, -180.0f}};}
+    public float[][] modelRotations(){return new float[][]{{180.0f, -90.0f, -180.0f}};}
     @Override
     public void registerSkins(){
         SkinRegistry.addSkin(this.getClass(),
@@ -77,11 +77,11 @@ public class EntityTenderAdler extends GenericRailTransport {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return null;}
     @Override
-    public float[] getHitboxSize(){return new float[]{1.100000023841858f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{worldObj==null?2:1.8f,1.6f,1.0f};}
     @Override
-    public float[] rotationPoints() {return new float[]{0.4400000274181366f, -0.4400000274181366f};}
+    public float[] rotationPoints() {return new float[]{0.3f, -0.375f};}
     @Override
     public int[] getTankCapacity(){return new int[]{4000};}
 
