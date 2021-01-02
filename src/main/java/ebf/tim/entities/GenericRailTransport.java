@@ -998,9 +998,9 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
                     frontBogie.minecartMove(this);
                     backBogie.minecartMove(this);
 
-                    setRotation((float)Math.toDegrees(CommonUtil.atan2f(
+                    setRotation(CommonUtil.atan2degreesf(
                             frontBogie.posZ - backBogie.posZ,
-                            frontBogie.posX - backBogie.posX)),
+                            frontBogie.posX - backBogie.posX),
                             CommonUtil.calculatePitch(frontBogie.posY+frontBogie.yOffset,backBogie.posY+backBogie.yOffset,Math.abs(rotationPoints()[0]) + Math.abs(rotationPoints()[1])));
                 }
                 if(ClientProxy.EnableAnimations && renderData!=null && renderData.bogies!=null){

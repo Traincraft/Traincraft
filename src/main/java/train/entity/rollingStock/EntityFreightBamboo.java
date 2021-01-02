@@ -34,9 +34,9 @@ public class EntityFreightBamboo extends GenericRailTransport {
     @Override
     public String transportName(){return "Bamboo Flatcar Freight";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "cambodia";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "1980s";}
     @Override
     public boolean isFictional(){return false;}
     @Override
@@ -45,14 +45,14 @@ public class EntityFreightBamboo extends GenericRailTransport {
     public List<TrainsInMotion.transportTypes> getTypes(){
         return TrainsInMotion.transportTypes.FREIGHT.singleton();
     }
-    @Override
-    public float weightKg(){return 10f;}
+    @Override//the weight is a rough estimate based on size and the average weight of bamboo.
+    public float weightKg(){return 67f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelBambooTrainCargo()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{0.1f, -0.0f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.14f, 0.0f}};}
     @Override
     public float[][] modelRotations(){return new float[][]{{0.0f, 0.0f, 0.0f}};}
     @Override
@@ -107,11 +107,11 @@ public class EntityFreightBamboo extends GenericRailTransport {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return null;}
     @Override
-    public float[] getHitboxSize(){return new float[]{3.0999999046325684f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{3.1f,1.3f,1.6f};}
     @Override
-    public float[] rotationPoints() {return new float[]{1.2400000095367432f, -1.2400000095367432f};}
+    public float[] rotationPoints() {return new float[]{0.925f, -1f};}
 
 
 

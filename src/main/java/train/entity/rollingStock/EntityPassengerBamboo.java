@@ -33,9 +33,9 @@ public class EntityPassengerBamboo extends GenericRailTransport {
     @Override
     public String transportName(){return "Bamboo Flatcar Passenger";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "cambodia";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "1980s";}
     @Override
     public boolean isFictional(){return false;}
     @Override
@@ -44,14 +44,14 @@ public class EntityPassengerBamboo extends GenericRailTransport {
     public List<TrainsInMotion.transportTypes> getTypes(){
         return TrainsInMotion.transportTypes.PASSENGER.singleton();
     }
-    @Override
-    public float weightKg(){return 10f;}
+    @Override//the weight is a rough estimate based on size and the average weight of bamboo. 25kg engine
+    public float weightKg(){return 67f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelBambooTrainPassenger()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{0.1f, -0.0f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.14f, 0.0f}};}
     @Override
     public float[][] modelRotations(){return new float[][]{{0.0f, 0.0f, 0.0f}};}
     @Override
@@ -106,18 +106,18 @@ public class EntityPassengerBamboo extends GenericRailTransport {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return new float[][]{{-0.5f,0.9f, 0f},{0.5f,0.9f, 0f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{3.0999999046325684f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{3.1f,1.3f,1.6f};}
     @Override
-    public float[] rotationPoints() {return new float[]{1.2400000095367432f, -1.2400000095367432f};}
+    public float[] rotationPoints() {return new float[]{0.925f, -1f};}
 
 
 
     //these only change in very specific use cases.
     @Override
     public boolean shouldRiderSit(){
-        return false;
+        return true;
     }
     @Override
     public Item getItem(){return thisItem;}
