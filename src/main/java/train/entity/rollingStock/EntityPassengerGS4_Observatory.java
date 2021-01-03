@@ -88,7 +88,7 @@ public class EntityPassengerGS4_Observatory extends GenericRailTransport {
 
     //recipe
     @Override
-    public ItemStack[] getRecipie() {
+    public ItemStack[] getRecipe() {
         return new ItemStack[]{
                 new ItemStack(Blocks.glass, 1), new ItemStack(ItemIDs.bogie.item, 2), new ItemStack(ItemIDs.steelframe.item, 1), 
                 null, null, new ItemStack(ItemIDs.steelcab.item, 1), 

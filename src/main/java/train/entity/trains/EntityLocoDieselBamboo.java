@@ -99,7 +99,7 @@ public class EntityLocoDieselBamboo extends EntityTrainCore {
 
     //recipe
     @Override
-    public ItemStack[] getRecipie() {
+    public ItemStack[] getRecipe() {
         return new ItemStack[]{
                 null, new ItemStack(ItemIDs.woodenBogie.item, 2), new ItemStack(ItemIDs.woodenFrame.item, 1),
                 null, null, null, null, new ItemStack(ItemIDs.dieselengine.item, 1), null        };

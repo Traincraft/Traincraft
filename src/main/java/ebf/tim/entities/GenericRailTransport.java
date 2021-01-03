@@ -2205,7 +2205,7 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
      * example:
      * return new ItemStack[]{new ItemStack(Blocks.dirt, 2), new ItemStack(Blocks.glass,1), etc};
      * array must contain 9 values. may not return null.*/
-    public ItemStack[] getRecipie(){return new ItemStack[]{
+    public ItemStack[] getRecipe(){return new ItemStack[]{
             new ItemStack(Blocks.dirt),null,null,null,null,null,null,null,null
     };}
 

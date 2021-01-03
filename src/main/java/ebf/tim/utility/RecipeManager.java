@@ -30,6 +30,7 @@ public class RecipeManager {
         , (recipe.topLeft()==null || recipe.topLeft().size()==0 || recipe.topLeft().get(0)==null?"null": recipe.topLeft().get(0).getDisplayName()),
                 recipe.getresult().get(0).getDisplayName());*/
 
+        // adds a result to the recipe if it already exists, rather than creating a new one.
         for(Recipe r : recipeList){
             if(r.recipeInputMatches(recipe.input)){
                 r.addResults(recipe.result);

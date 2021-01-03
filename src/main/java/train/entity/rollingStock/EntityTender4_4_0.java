@@ -80,7 +80,7 @@ public class EntityTender4_4_0 extends GenericRailTransport {
 
     //recipe
     @Override
-    public ItemStack[] getRecipie() {
+    public ItemStack[] getRecipe() {
         return new ItemStack[]{
                 null, new ItemStack(ItemIDs.ironBogie.item, 2), new ItemStack(ItemIDs.woodenFrame.item, 1), 
                 new ItemStack(Items.stick, 2), null, null, null, null, new ItemStack(Items.coal, 1)        };

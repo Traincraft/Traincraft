@@ -127,18 +127,21 @@ public class Recipe {
 
 
 
-    public boolean recipeInputMatches(List<List<ItemStack>> stacks){
+    public boolean recipeInputMatches(List<List<ItemStack>> stacks){ //is this correctly comparing when null is present in the stacks parameter?
         int i=0;
         boolean slotClear=false;
-        for(List<ItemStack> slot : input){//itterate the slots
-            if (stacks.size() <= i){return false;}
-            for(ItemStack s : slot){//itterate the recipe values
-                for(ItemStack stak : stacks.get(i)) { //itterate the checked stack values
-                    if(s==null && stak==null) {
+        for(List<ItemStack> slot : input){//iterate through the recipe's ingredients
+            if (stacks.size() <= i){return false;} //recipes are variable length, terminate if it gets to the end without success
+            for(ItemStack s : slot){//iterate through the items that fit as the recipe's ingredient
+                for(ItemStack stak : stacks.get(i)) { //iterate the items that fit as that ingredient in stacks
+                    if(s==null && stak==null) { //if both are null, that is ok, it matches
                         slotClear=true;
                         break;
-                    } else if(s==null || stak==null){
-                        continue;
+                    } else if(s==null || stak==null){ //one is null when the other isn't.
+                        //Can either s or stak be null when there is a possible ingredient?
+                        //  I think not, so this means the ingredients don't match. Return false.
+                        //  Already accounted for both null, so this is safe to return false.
+                        return false;
                     }
                     if ((s.getItem() == stak.getItem() && s.stackSize <= stak.stackSize)) {
                         slotClear=true;

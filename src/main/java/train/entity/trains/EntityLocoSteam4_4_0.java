@@ -178,7 +178,7 @@ public class EntityLocoSteam4_4_0 extends EntityTrainCore {
      * @see ebf.tim.utility.RecipeManager#ODC(ItemStack)
      */
     @Override
-    public ItemStack[] getRecipie() {
+    public ItemStack[] getRecipe() {
         return new ItemStack[]{
                 new ItemStack(ItemIDs.ironChimney.item, 1), new ItemStack(Items.stick, 2), null,
                 new ItemStack(ItemIDs.ironBoiler.item, 1), new ItemStack(ItemIDs.ironFirebox.item, 1), new ItemStack(ItemIDs.woodenCab.item, 1),

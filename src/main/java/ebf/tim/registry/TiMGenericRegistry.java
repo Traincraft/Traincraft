@@ -250,20 +250,20 @@ public class TiMGenericRegistry {
                     registry.transportName().replace(" ","") + ".entity",
                     registryPosition, TrainsInMotion.instance, 1600, 3, true);
             GameRegistry.registerItem(registry.getCartItem().getItem(), registry.getCartItem().getItem().getUnlocalizedName());
-            if(registry.getRecipie()!=null) {
+            if(registry.getRecipe()!=null) {
                 if (CommonProxy.recipesInMods.containsKey(MODID)) {
-                    CommonProxy.recipesInMods.get(MODID).add(getRecipe(registry.getRecipie(), registry.getCartItem()));
+                    CommonProxy.recipesInMods.get(MODID).add(getRecipe(registry.getRecipe(), registry.getCartItem()));
                 } else {
                     CommonProxy.recipesInMods.put(MODID, new ArrayList<Recipe>());
-                    CommonProxy.recipesInMods.get(MODID).add(getRecipe(registry.getRecipie(), registry.getCartItem()));
+                    CommonProxy.recipesInMods.get(MODID).add(getRecipe(registry.getRecipe(), registry.getCartItem()));
                 }
             }
             if(TrainsInMotion.proxy.isClient() && ClientProxy.hdTransportItems){
                 MinecraftForgeClient.registerItemRenderer(registry.getCartItem().getItem(), ebf.tim.items.CustomItemModel.instance);
             }
             registry.registerSkins();
-            if(registry.getRecipie()!=null){
-                RecipeManager.registerRecipe(registry.getRecipie(), registry.getCartItem());
+            if(registry.getRecipe()!=null){
+                RecipeManager.registerRecipe(registry.getRecipe(), registry.getCartItem());
             }
             ItemCraftGuide.itemEntries.add(registry.getClass());
             if(TrainsInMotion.proxy.isClient()) {

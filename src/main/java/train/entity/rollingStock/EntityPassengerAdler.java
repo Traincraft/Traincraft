@@ -70,7 +70,7 @@ public class EntityPassengerAdler extends GenericRailTransport {
 
     //recipe
     @Override
-    public ItemStack[] getRecipie() {
+    public ItemStack[] getRecipe() {
         return new ItemStack[]{
                 new ItemStack(Items.iron_ingot, 1), new ItemStack(ItemIDs.woodenBogie.item, 2), new ItemStack(ItemIDs.woodenFrame.item, 2), 
                 new ItemStack(Items.iron_ingot, 1), null, new ItemStack(ItemIDs.woodenCab.item, 1), 
