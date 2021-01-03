@@ -70,7 +70,7 @@ public class EntityLocoDieselIC4_DSB_MG extends EntityTrainCore {
 
     //recipe
     @Override
-    public ItemStack[] getRecipie() {
+    public ItemStack[] getRecipe() {
         return null;
     }
 

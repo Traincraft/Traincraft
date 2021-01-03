@@ -39,7 +39,7 @@ public class EntityLocoElectricHighSpeedZeroED extends EntityTrainCore {
     @Override
     public String transportYear(){return null;}
     @Override
-    public boolean isFictional(){return false;}
+    public boolean isFictional(){return true;}
     @Override
     public int getInventoryRows(){return 1;}
     @Override
@@ -69,10 +69,10 @@ public class EntityLocoElectricHighSpeedZeroED extends EntityTrainCore {
 
     //recipe
     @Override
-    public ItemStack[] getRecipie() {
+    public ItemStack[] getRecipe() {
         return new ItemStack[]{
-                new ItemStack(ItemIDs.controls.item, 2), new ItemStack(ItemIDs.bogie.item, 2), new ItemStack(ItemIDs.steelframe.item, 1), 
-                new ItemStack(ItemIDs.steel.item, 1), null, new ItemStack(ItemIDs.steelcab.item, 1), 
+                new ItemStack(ItemIDs.controls.item, 2), new ItemStack(ItemIDs.bogie.item, 2), new ItemStack(ItemIDs.steelframe.item, 1),
+                new ItemStack(ItemIDs.steel.item, 1), null, new ItemStack(ItemIDs.steelcab.item, 1),
                 new ItemStack(ItemIDs.transformer.item, 2), new ItemStack(ItemIDs.electmotor.item, 2), new ItemStack(Items.redstone, 4)        };
     }
 

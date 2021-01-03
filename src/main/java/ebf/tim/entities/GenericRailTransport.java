@@ -998,9 +998,9 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
                     frontBogie.minecartMove(this);
                     backBogie.minecartMove(this);
 
-                    setRotation((float)Math.toDegrees(CommonUtil.atan2f(
+                    setRotation(CommonUtil.atan2degreesf(
                             frontBogie.posZ - backBogie.posZ,
-                            frontBogie.posX - backBogie.posX)),
+                            frontBogie.posX - backBogie.posX),
                             CommonUtil.calculatePitch(frontBogie.posY+frontBogie.yOffset,backBogie.posY+backBogie.yOffset,Math.abs(rotationPoints()[0]) + Math.abs(rotationPoints()[1])));
                 }
                 if(ClientProxy.EnableAnimations && renderData!=null && renderData.bogies!=null){
@@ -1348,6 +1348,20 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
             }
         }
 
+    }
+
+
+    /**
+     * used by EntitySeat to define if the rider should sit based on the seat ID
+     * the seat ID is defined by the index of it's vector, minus one,
+     *    so the second seat position would have an ID of 1.
+     */
+    public boolean shouldRiderSit(int seat){
+        return shouldRiderSit();
+    }
+    @Override
+    public boolean shouldRiderSit(){
+        return true;
     }
 
 
@@ -2191,7 +2205,7 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
      * example:
      * return new ItemStack[]{new ItemStack(Blocks.dirt, 2), new ItemStack(Blocks.glass,1), etc};
      * array must contain 9 values. may not return null.*/
-    public ItemStack[] getRecipie(){return new ItemStack[]{
+    public ItemStack[] getRecipe(){return new ItemStack[]{
             new ItemStack(Blocks.dirt),null,null,null,null,null,null,null,null
     };}
 

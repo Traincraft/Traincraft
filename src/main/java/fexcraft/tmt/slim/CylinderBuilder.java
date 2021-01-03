@@ -12,7 +12,7 @@ public class CylinderBuilder {
     private float x, y, z, radius, radius2, length, base_scale, top_scale;
     private int segments, seglimit, direction, texDiameterW, texDiameterH, texHeight;
     private Vec3f topoff = new Vec3f();
-    private boolean[] togglesides;
+    private boolean[] togglesides = new boolean[]{false,false,false,false};
     private Axis3DL toprot;
     //
     private boolean radialtexture = false;

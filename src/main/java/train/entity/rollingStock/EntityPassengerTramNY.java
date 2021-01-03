@@ -67,7 +67,7 @@ public class EntityPassengerTramNY extends GenericRailTransport {
 
     //recipe
     @Override
-    public ItemStack[] getRecipie() {
+    public ItemStack[] getRecipe() {
         return new ItemStack[]{
                 null, new ItemStack(ItemIDs.bogie.item, 2), new ItemStack(ItemIDs.steelframe.item, 1), 
                 new ItemStack(ItemIDs.steel.item, 1), null, new ItemStack(ItemIDs.steelcab.item, 1), 

@@ -33,9 +33,10 @@ public class EntityPassenger_1class_DB extends GenericRailTransport {
     @Override
     public String transportName(){return "Passenger 1Class DB";}
     @Override
-    public String transportcountry(){return "Undefined";}
-    @Override
-    public String transportYear(){return "Undefined";}
+    public String transportcountry(){return "germany";}
+    @Override//this may be incorrect, the only documentation i found was for a
+    //class 3 German Federal Railways passenger car, this is a class 1.
+    public String transportYear(){return "1928 - 1938";}
     @Override
     public boolean isFictional(){return false;}
     @Override
@@ -44,14 +45,14 @@ public class EntityPassenger_1class_DB extends GenericRailTransport {
     public List<TrainsInMotion.transportTypes> getTypes(){
         return TrainsInMotion.transportTypes.PASSENGER.singleton();
     }
-    @Override
-    public float weightKg(){return 10f;}
+    @Override//this is a VERY rough guess, no documentation could be found.
+    public float weightKg(){return 13000f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelPassenger_1class_DB()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.44f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.64f, 0.0f}};}
 @Override
     public float[][] modelRotations(){return new float[][]{{0f,180f,180f}};}
     @Override
@@ -67,7 +68,7 @@ public class EntityPassenger_1class_DB extends GenericRailTransport {
 
     //recipe
     @Override
-    public ItemStack[] getRecipie() {
+    public ItemStack[] getRecipe() {
         return new ItemStack[]{
                 new ItemStack(ItemIDs.steel.item, 2), new ItemStack(ItemIDs.bogie.item, 2), new ItemStack(ItemIDs.steelframe.item, 2), 
                 new ItemStack(ItemIDs.steel.item, 2), null, new ItemStack(ItemIDs.steelcab.item, 1), 
@@ -77,18 +78,18 @@ public class EntityPassenger_1class_DB extends GenericRailTransport {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return new float[][]{{0.9f,1.2f, -0.3f},{0,1.2f, -0.25f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{3.799999952316284f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{3.8f,2.2f,1.4f};}
     @Override
-    public float[] rotationPoints() {return new float[]{1.5199999809265137f, -1.5199999809265137f};}
+    public float[] rotationPoints() {return new float[]{0.9f, -0.85f};}
 
 
 
     //these only change in very specific use cases.
     @Override
     public boolean shouldRiderSit(){
-        return false;
+        return true;
     }
     @Override
     public Item getItem(){return thisItem;}

@@ -35,9 +35,9 @@ public class EntityCaboose3 extends GenericRailTransport {
     @Override
     public String transportName(){return "Caboose Black";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "us";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "1863";}
     @Override
     public boolean isFictional(){return false;}
     @Override
@@ -69,10 +69,10 @@ public class EntityCaboose3 extends GenericRailTransport {
 
     //recipe
     @Override
-    public ItemStack[] getRecipie() {
+    public ItemStack[] getRecipe() {
         return new ItemStack[]{
-                new ItemStack(Blocks.planks, 2), new ItemStack(ItemIDs.ironBogie.item, 2), new ItemStack(ItemIDs.ironFrame.item, 2), 
-                new ItemStack(Items.iron_ingot, 2), null, new ItemStack(ItemIDs.woodenCab.item, 1), 
+                new ItemStack(Blocks.planks, 2), new ItemStack(ItemIDs.ironBogie.item, 2), new ItemStack(ItemIDs.ironFrame.item, 2),
+                new ItemStack(Items.iron_ingot, 2), null, new ItemStack(ItemIDs.woodenCab.item, 1),
                 null, null, new ItemStack(ItemIDs.seats.item, 1)        };
     }
 

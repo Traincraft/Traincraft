@@ -74,10 +74,6 @@ public class Bogie {
         //update positions
         if(prevPos!=position && prevPos!=null && position!=null&&entity.getVelocity()>0.001) {
             rotationYaw = CommonUtil.atan2degreesf(prevPos[1] - position[1], prevPos[0] - position[0]);
-            //DebugUtil.println(entity.rotationYaw, rotationYaw);
-            if(rotationYaw>entity.rotationYaw+120||rotationYaw<entity.rotationYaw-120){
-                rotationYaw=-rotationYaw;
-            }
             for(Bogie b : subBogies){
                 b.setRotation(entity);
             }
@@ -90,7 +86,6 @@ public class Bogie {
         prevPos = position;
         if(prevOffset==null){
             prevOffset= CommonUtil.rotatePoint(new Vec3f(offset[0],0,offset[1]),0,entity.rotationYaw,0);
-            rotationYaw=entity.rotationYaw;
         } else {
             prevOffset.add(CommonUtil.rotatePoint(new Vec3f(offset[0],0,offset[1]),0,entity.rotationYaw,0));
         }

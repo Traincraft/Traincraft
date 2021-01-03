@@ -1,10 +1,12 @@
 package ebf.tim.registry;
 
 
+import cpw.mods.fml.common.IWorldGenerator;
 import cpw.mods.fml.common.registry.GameRegistry;
 import ebf.tim.TrainsInMotion;
 import ebf.tim.blocks.BlockDynamic;
 import ebf.tim.blocks.BlockTrainFluid;
+import ebf.tim.blocks.OreGen;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.ItemCraftGuide;
 import ebf.tim.items.ItemTransport;
@@ -16,6 +18,7 @@ import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.MaterialLiquid;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBucket;
@@ -23,8 +26,15 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeCache;
+import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.BiomeGenEnd;
+import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.client.MinecraftForgeClient;
+import net.minecraftforge.event.terraingen.BiomeEvent;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -32,7 +42,9 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 import static ebf.tim.utility.RecipeManager.getRecipe;
 
@@ -238,20 +250,20 @@ public class TiMGenericRegistry {
                     registry.transportName().replace(" ","") + ".entity",
                     registryPosition, TrainsInMotion.instance, 1600, 3, true);
             GameRegistry.registerItem(registry.getCartItem().getItem(), registry.getCartItem().getItem().getUnlocalizedName());
-            if(registry.getRecipie()!=null) {
+            if(registry.getRecipe()!=null) {
                 if (CommonProxy.recipesInMods.containsKey(MODID)) {
-                    CommonProxy.recipesInMods.get(MODID).add(getRecipe(registry.getRecipie(), registry.getCartItem()));
+                    CommonProxy.recipesInMods.get(MODID).add(getRecipe(registry.getRecipe(), registry.getCartItem()));
                 } else {
                     CommonProxy.recipesInMods.put(MODID, new ArrayList<Recipe>());
-                    CommonProxy.recipesInMods.get(MODID).add(getRecipe(registry.getRecipie(), registry.getCartItem()));
+                    CommonProxy.recipesInMods.get(MODID).add(getRecipe(registry.getRecipe(), registry.getCartItem()));
                 }
             }
             if(TrainsInMotion.proxy.isClient() && ClientProxy.hdTransportItems){
                 MinecraftForgeClient.registerItemRenderer(registry.getCartItem().getItem(), ebf.tim.items.CustomItemModel.instance);
             }
             registry.registerSkins();
-            if(registry.getRecipie()!=null){
-                RecipeManager.registerRecipe(registry.getRecipie(), registry.getCartItem());
+            if(registry.getRecipe()!=null){
+                RecipeManager.registerRecipe(registry.getRecipe(), registry.getCartItem());
             }
             ItemCraftGuide.itemEntries.add(registry.getClass());
             if(TrainsInMotion.proxy.isClient()) {
@@ -273,6 +285,13 @@ public class TiMGenericRegistry {
             usedNames.add(registry.transportName());
             registryPosition++;
         }
+    }
+
+    /**
+     * @param priority the priority to generate, higher numbers tend to generate after other mods.
+     */
+    public static void registerOreGen(int priority, OreGen veinConfig){
+        GameRegistry.registerWorldGenerator(veinConfig,priority);
     }
 
 

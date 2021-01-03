@@ -34,17 +34,17 @@ public class TileEntityStorage extends TileRenderFacing implements IInventory, I
         int s=400;
         inventory= new ArrayList<>();
         if(block.getUnlocalizedName().equals("tile.block.traintable")){
-            //inventory grid
+            //inventory grid (left grid)
             for (int l = 0; l < 3; ++l) {
                 for (int i1 = 0; i1 < 3; ++i1) {
-                    inventory.add(new ItemStackSlot(this,s).setCoords( 30 + i1 * 18, 17 + l * 18));
+                    inventory.add(new ItemStackSlot(this,s).setCoords( 30 + i1 * 18, 17 + l * 18).setCraftingInput(true));
                     s++;
                 }
             }
-            //tile entity's crafting grid
+            //tile entity's crafting grid (right hand grid)
             for (int l = 0; l < 3; ++l) {
                 for (int i1 = 0; i1 < 3; ++i1) {
-                    inventory.add(new ItemStackSlot(this,s).setCoords( 106 + i1 * 18, 17 + l * 18).setCraftingInput(true));
+                    inventory.add(new ItemStackSlot(this,s).setCoords( 106 + i1 * 18, 17 + l * 18));
                     s++;
                 }
             }

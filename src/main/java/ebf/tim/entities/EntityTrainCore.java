@@ -244,8 +244,6 @@ public class EntityTrainCore extends GenericRailTransport {
                         //skip updating speed on TC style cruise control
                         if(accelerator!=8 && accelerator!=-8) {
                             calculateAcceleration();
-                        } else {
-                            vectorCache[1][0] = 0;
                         }
                     } else {
                         vectorCache[1][0] = 0;

@@ -35,11 +35,11 @@ public class EntityPassenger2 extends GenericRailTransport {
     @Override
     public String transportName(){return "Passenger Small Black";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return null;}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return null;}
     @Override
-    public boolean isFictional(){return false;}
+    public boolean isFictional(){return true;}
     @Override
     public int getInventoryRows(){return 0;}
     @Override
@@ -47,13 +47,13 @@ public class EntityPassenger2 extends GenericRailTransport {
         return TrainsInMotion.transportTypes.PASSENGER.singleton();
     }
     @Override
-    public float weightKg(){return 10f;}
+    public float weightKg(){return 7000f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelPassenger2()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.32f, -0.1f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.54f, 0.05f}};}
 @Override
     public float[][] modelRotations(){return new float[][]{{0f,180f,180f}};}
     @Override
@@ -69,7 +69,7 @@ public class EntityPassenger2 extends GenericRailTransport {
 
     //recipe
     @Override
-    public ItemStack[] getRecipie() {
+    public ItemStack[] getRecipe() {
         return new ItemStack[]{
                 new ItemStack(Blocks.planks, 6), new ItemStack(ItemIDs.woodenBogie.item, 2), new ItemStack(ItemIDs.woodenFrame.item, 2), 
                 new ItemStack(Items.stick, 2), null, new ItemStack(ItemIDs.woodenCab.item, 1), 
@@ -79,18 +79,18 @@ public class EntityPassenger2 extends GenericRailTransport {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return new float[][]{{0,0.8f, 0f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{2.4000000953674316f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{2.7f,2.1f,1.1f};}
     @Override
-    public float[] rotationPoints() {return new float[]{0.9600000381469727f, -0.9600000381469727f};}
+    public float[] rotationPoints() {return new float[]{0.8f, -0.675f};}
 
 
 
     //these only change in very specific use cases.
     @Override
     public boolean shouldRiderSit(){
-        return false;
+        return true;
     }
     @Override
     public Item getItem(){return thisItem;}

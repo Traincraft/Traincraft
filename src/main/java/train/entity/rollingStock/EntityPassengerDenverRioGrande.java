@@ -73,7 +73,7 @@ public class EntityPassengerDenverRioGrande extends GenericRailTransport {
 
     //recipe
     @Override
-    public ItemStack[] getRecipie() {
+    public ItemStack[] getRecipe() {
         return new ItemStack[]{
                 null, new ItemStack(ItemIDs.ironBogie.item, 4), new ItemStack(ItemIDs.woodenFrame.item, 3), 
                 null, null, new ItemStack(ItemIDs.woodenCab.item, 3), 

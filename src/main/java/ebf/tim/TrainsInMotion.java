@@ -147,11 +147,12 @@ public class TrainsInMotion {
         if(event.getSide().isClient()){
 
             GUICraftBook.addPage(MODID, "Trains in Motion\nDev: Eternal Blue Flame" +
-                    "\nHonorable mentions\nfor helping development:\nFerdinand (Fexcraft)\nZora no Densha, cam27cam\nMothershipQ," +
-                    "Broscolotos\nSebasver\n");
+                    "\n\nHonorable mentions\nfor helping development:\nFerdinand (Fexcraft)\n" +
+                    "Zora no Densha, cam27cam\nMothershipQ, Broscolotos\nSebasver, Dominik__1\n");
 
             GUICraftBook.addPage(MODID,
-                    " \n \n \nA special thanks to everyone\nthat helped support the mod\nthrough donations:\nNightScale5755" +
+                    "A special thanks to\neveryone that helped\nsupport the mod through\ndonations:" +
+                            "\nNightScale5755" +"\nChielmeiberg1112"+
                             "\n \nAnd a big thanks to\nthe Traincraft community\nfor all the patience!");
         }
 
@@ -168,8 +169,6 @@ public class TrainsInMotion {
 
 
         proxy.register();
-        //register the worldgen
-        GameRegistry.registerWorldGenerator(new OreGen(), 0);
         if(event.getSide().isClient()) {
             //register the event handler
             MinecraftForge.EVENT_BUS.register(ClientProxy.eventManager);

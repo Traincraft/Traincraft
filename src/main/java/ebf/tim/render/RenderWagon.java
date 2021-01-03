@@ -211,6 +211,7 @@ public class RenderWagon extends Render {
         //set the render position
         GL11.glTranslated(x, y+ railOffset + ((entity.getRenderScale()-0.0625f)*10)+bogieOffset, z);
         //rotate the model.
+        GL11.glPushMatrix();
         GL11.glRotatef(-yaw - 180f, 0.0f, 1.0f, 0.0f);
         GL11.glRotatef(entity.rotationPitch - 180f, 0.0f, 0.0f, 1.0f);
 
@@ -292,6 +293,7 @@ public class RenderWagon extends Render {
             entity.renderData.blockCargoRenders.get(i).doRender(renderBlocks, entity.getFirstBlock(i), renderInstance, entity.getRenderScale(), entity);
         }
 
+        GL11.glPopMatrix();
         /*
          * <h4> render bogies</h4>
          * in TiM here we render the bogies. This will be removed in TC.
@@ -307,9 +309,11 @@ public class RenderWagon extends Render {
                     TextureManager.bindTexture(s.getBogieSkin(ii), s.colorsFrom, s.colorsTo, entity.colorsFrom, entity.colorsTo);
                 }
                 GL11.glPushMatrix();
+                GL11.glRotatef(-entity.rotationYaw, 0.0f, 1.0f, 0.0f);
+                GL11.glRotatef(entity.rotationPitch - 180f, 0.0f, 0.0f, 1.0f);
                 GL11.glTranslated(-b.offset[0], -b.offset[1], -b.offset[2]);
                 if(!isPaintBucket) {
-                    GL11.glRotatef(b.rotationYaw - yaw, 0.0f, 1.0f, 0);
+                    GL11.glRotatef(b.rotationYaw-entity.rotationYaw, 0.0f, 1.0f, 0);
                     GL11.glRotatef(entity.rotationPitch, 0.0f, 0.0f, 1.0f);
                 }
                 b.bogieModel.render(entity, 0, 0, 0, 0, 0, entity.getRenderScale());
@@ -348,9 +352,9 @@ public class RenderWagon extends Render {
         if(entity.worldObj==null || isPaintBucket){return;}
         //render the smoke and steam particles, if there are any.
         //this has to render seperate from the rest of the train as it's position is intended to be independant outside of spawn position
-            for (ParticleFX particle : entity.renderData.particles) {
-                ParticleFX.renderSmoke(particle, x, y, z, entity.getRenderScale(), yaw);
-            }
+        for (ParticleFX particle : entity.renderData.particles) {
+            ParticleFX.renderSmoke(particle, x, y, z, entity.getRenderScale(), yaw);
+        }
 
 
         //render hitboxes
@@ -413,17 +417,17 @@ public class RenderWagon extends Render {
 
             if(entity.frontLinkedID!=null) {
                 Entity e = entity.worldObj.getEntityByID(entity.frontLinkedID);
-                    if(e instanceof GenericRailTransport) {
-                        Vec3d rotated = CommonUtil.rotateDistance(entity.getHitboxSize()[0] * 0.5f,
-                                0, CommonUtil.atan2degreesf(
-                                        e.posZ - entity.posZ,e.posX - entity.posX));
+                if(e instanceof GenericRailTransport) {
+                    Vec3d rotated = CommonUtil.rotateDistance(entity.getHitboxSize()[0] * 0.5f,
+                            0, CommonUtil.atan2degreesf(
+                                    e.posZ - entity.posZ,e.posX - entity.posX));
 
-                        Tessellator.getInstance().startDrawing(GL11.GL_LINES);
-                        Tessellator.getInstance().addVertex(0,entity.getHitboxSize()[1]+0.5f,0);
-                        Tessellator.getInstance().addVertex((float)rotated.xCoord,entity.getHitboxSize()[1]+0.5f,(float)rotated.zCoord);
-                        Tessellator.getInstance().draw();
+                    Tessellator.getInstance().startDrawing(GL11.GL_LINES);
+                    Tessellator.getInstance().addVertex(0,entity.getHitboxSize()[1]+0.5f,0);
+                    Tessellator.getInstance().addVertex((float)rotated.xCoord,entity.getHitboxSize()[1]+0.5f,(float)rotated.zCoord);
+                    Tessellator.getInstance().draw();
 
-                    }
+                }
             }
 
 

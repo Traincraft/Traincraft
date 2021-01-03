@@ -32,13 +32,15 @@ public class EntityLocoElectricTramWood extends EntityTrainCore {
     public static final Item thisItem = new ItemTransport(new EntityLocoElectricTramWood((World)null), Info.modID, Traincraft.tcTab);
 
 
+    //this seems to be a mild parody of the Lisbon trams Series 737, 738, 741-745
+    // http://tram-lisboa.ernstkers.nl/SecondGeneration.html
     //main stats
     @Override
     public String transportName(){return "Loco Electric Yellow Wood Tram";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "singapore";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "1905-1927";}
     @Override
     public boolean isFictional(){return false;}
     @Override
@@ -48,15 +50,15 @@ public class EntityLocoElectricTramWood extends EntityTrainCore {
         return TrainsInMotion.transportTypes.ELECTRIC.singleton();
     }
     @Override
-    public float weightKg(){return 10f;}
+    public float weightKg(){return 10730f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelTram()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{-0.8f, 0.44f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.64f, 0.0f}};}
 @Override
-    public float[][] modelRotations(){return new float[][]{{0f,180f,180f}};}
+    public float[][] modelRotations(){return new float[][]{{0f,0f,180f}};}
     @Override
     public void registerSkins(){
         SkinRegistry.addSkin(this.getClass(),
@@ -70,21 +72,21 @@ public class EntityLocoElectricTramWood extends EntityTrainCore {
 
     //recipe
     @Override
-    public ItemStack[] getRecipie() {
+    public ItemStack[] getRecipe() {
         return new ItemStack[]{
-                new ItemStack(Blocks.planks, 4), new ItemStack(ItemIDs.ironBogie.item, 2), new ItemStack(ItemIDs.woodenFrame.item, 1), 
-                new ItemStack(Items.iron_ingot, 1), null, new ItemStack(ItemIDs.woodenCab.item, 1), 
+                new ItemStack(Blocks.planks, 4), new ItemStack(ItemIDs.ironBogie.item, 2), new ItemStack(ItemIDs.woodenFrame.item, 1),
+                new ItemStack(Items.iron_ingot, 1), null, new ItemStack(ItemIDs.woodenCab.item, 1),
                 new ItemStack(ItemIDs.transformer.item, 1), new ItemStack(ItemIDs.electmotor.item, 2), new ItemStack(Items.redstone, 4)        };
     }
 
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return new float[][]{{-1.25f,1.1f, 0f},{0.6f,1.1f, -0.3f},{-0.6f,1.1f, 0.3f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{3.399999976158142f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{3.7f,2.3f,1.4f};}
     @Override
-    public float[] rotationPoints() {return new float[]{1.5600000023841858f, -1.5600000023841858f};}
+    public float[] rotationPoints() {return new float[]{0.775f, -0.8f};}
     //Train specific stuff
     @Override
     public String transportFuelType(){return "electric";}

@@ -40,19 +40,19 @@ public class EntityTenderFowler4F extends GenericRailTransport {
     @Override
     public boolean isFictional(){return false;}
     @Override
-    public int getInventoryRows(){return 0;}
+    public int getInventoryRows(){return 2;}
     @Override
     public List<TrainsInMotion.transportTypes> getTypes(){
         return TrainsInMotion.transportTypes.TENDER.singleton();
     }
     @Override
-    public float weightKg(){return 10f;}
+    public float weightKg(){return 41861f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelFowler4FTender()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{-5.25f, 0.51585f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{-5.25f, 0.7f, 0.0f}};}
     @Override
     public float[][] modelRotations(){return new float[][]{{0.0f, 0.0f, 0.0f}};}
     @Override
@@ -68,7 +68,7 @@ public class EntityTenderFowler4F extends GenericRailTransport {
 
     //recipe
     @Override
-    public ItemStack[] getRecipie() {
+    public ItemStack[] getRecipe() {
         return new ItemStack[]{
                 null, new ItemStack(ItemIDs.bogie.item, 3), new ItemStack(ItemIDs.steelframe.item, 3), 
                 new ItemStack(ItemIDs.steel.item, 2), null, null, null, null, new ItemStack(Items.coal, 2)        };
@@ -77,11 +77,11 @@ public class EntityTenderFowler4F extends GenericRailTransport {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return null;}
     @Override
-    public float[] getHitboxSize(){return new float[]{3.5999999046325684f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{3.4f,1.9f,1.4f};}
     @Override
-    public float[] rotationPoints() {return new float[]{1.4399999380111694f, -1.4399999380111694f};}
+    public float[] rotationPoints() {return new float[]{0.9f, -1.05f};}
     @Override
     public int[] getTankCapacity(){return new int[]{15000};}
 
