@@ -70,7 +70,7 @@ public class EntityTenderBerk1225 extends GenericRailTransport {
 
     //recipe
     @Override
-    public ItemStack[] getRecipie() {
+    public ItemStack[] getRecipe() {
         return new ItemStack[]{
                 null, new ItemStack(ItemIDs.bogie.item, 4), new ItemStack(ItemIDs.steelframe.item, 4), 
                 new ItemStack(ItemIDs.steel.item, 2), null, null, null, null, new ItemStack(Items.coal, 2)        };

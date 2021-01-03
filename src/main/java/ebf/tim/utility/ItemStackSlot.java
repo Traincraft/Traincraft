@@ -205,11 +205,11 @@ public class ItemStackSlot extends Slot {
         if((isCraftingInput || isCraftingOutput) && hostInventory instanceof TileEntityStorage) {
             int page = ((TileEntityStorage)hostInventory).outputPage;
             switch (((TileEntityStorage)hostInventory).storageType) {
-                case 1: {
+                case 1: { //train crafting
                     List<ItemStack> slots = RecipeManager.getResult(RecipeManager.getTransportRecipe(hostInventory));
                     if(slots==null){
                         for (int i = 0; i < 9; i++) {
-                            putStackInSlot(hostSlots,400 + i, null);
+                            putStackInSlot(hostSlots,409 + i, null);
                         }
                     } else {
                         if(slots.size()<10) {
@@ -234,7 +234,7 @@ public class ItemStackSlot extends Slot {
                     }
                     break;
                 }
-                case 0: {
+                case 0: { //track crafting
                     putStackInSlot(hostSlots,406, RecipeManager.railRecipe(hostInventory));
                     break;
                 }
@@ -395,7 +395,7 @@ public class ItemStackSlot extends Slot {
 
     /**
      * Helper method to put a stack in the slot.
-     * @deprecated use {@link #setSlotContents(ItemStack)} instead because it can return whether ot not it actually did it.
+     * @deprecated use {@link #setSlotContents(ItemStack, List)} instead because it can return whether ot not it actually did it.
      */
     @Override
     @Deprecated

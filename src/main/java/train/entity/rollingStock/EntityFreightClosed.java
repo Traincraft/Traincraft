@@ -69,7 +69,7 @@ public class EntityFreightClosed extends GenericRailTransport {
 
     //recipe
     @Override
-    public ItemStack[] getRecipie() {
+    public ItemStack[] getRecipe() {
         return new ItemStack[]{
                 new ItemStack(Blocks.planks, 4), new ItemStack(ItemIDs.ironBogie.item, 2), new ItemStack(ItemIDs.ironFrame.item, 4), 
                 new ItemStack(Items.iron_ingot, 2), null, null, null, null, new ItemStack(Blocks.chest, 1)        };

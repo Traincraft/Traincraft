@@ -69,7 +69,7 @@ public class EntityLocoSteamLSSP7 extends EntityTrainCore {
 
     //recipe
     @Override
-    public ItemStack[] getRecipie() {
+    public ItemStack[] getRecipe() {
         return new ItemStack[]{
                 null, new ItemStack(ItemIDs.woodenBogie.item, 2), new ItemStack(ItemIDs.woodenFrame.item, 2), 
                 null, null, new ItemStack(ItemIDs.ironCab.item, 1), 
