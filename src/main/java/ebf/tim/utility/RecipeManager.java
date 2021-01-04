@@ -66,12 +66,17 @@ public class RecipeManager {
             return null;//if all inputs were null, then just return null. this is a common scenario, should save speed overall.
         }
 
+        List<ItemStack> retStacks = new ArrayList<>();
         for(Recipe r : recipeList){
             if(r.inputMatches(Arrays.asList(recipe))){
-                return r.result;
+                retStacks.addAll(r.result);
             }
         }
-        return null;
+        if(retStacks.size()==0) {
+            return null;
+        } else {
+            return retStacks;
+        }
     }
 
 

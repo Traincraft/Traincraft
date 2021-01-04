@@ -45,6 +45,15 @@ public class ClientUtil {
         GL11.glPopMatrix();
 
 
+        GL11.glPushMatrix();
+        RenderHelper.enableStandardItemLighting();
+        for (i=0;i<slots.size(); i++){
+            if (slots.get(i) != null && overlays == null) {
+                DrawItemSlotPreview(slotX.get(i)+guiLeft, slotY.get(i)+guiTop,mouseX,mouseY, slots.get(i), itemRender);
+            }
+        }
+        RenderHelper.disableStandardItemLighting();
+        GL11.glPopMatrix();
 
         if(overlays!=null) {
             GL11.glPushMatrix();

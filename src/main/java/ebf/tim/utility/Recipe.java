@@ -112,11 +112,10 @@ public class Recipe {
         int i=0;
         for(List<ItemStack> slot : input){
             for(ItemStack s : slot){
-                if(s==null && stacks.get(i)==null){
+                if(s==null){
                     continue;
-                } else if(s==null || stacks.get(i)==null) {
-                    return false;
-                } else if(stacks.size()<=i || s.getItem()!=stacks.get(i).getItem() || s.stackSize>stacks.get(i).stackSize){
+                }
+                if(stacks.get(i)==null || s.getItem()!=stacks.get(i).getItem() || s.stackSize>stacks.get(i).stackSize){
                     return false;
                 }
             }
