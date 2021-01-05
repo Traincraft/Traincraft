@@ -52,7 +52,7 @@ public class EntityBoxCartPRR extends GenericRailTransport {
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelPRRX31Wagon()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.38f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.53f, 0.0f}};}
     @Override
     public float[][] modelRotations(){return new float[][]{{0.0f, 0.0f, 0.0f}};}
     @Override
@@ -68,7 +68,7 @@ public class EntityBoxCartPRR extends GenericRailTransport {
 
     //recipe
     @Override
-    public ItemStack[] getRecipe() {
+    public ItemStack[] getRecipie() {
         return new ItemStack[]{
                 new ItemStack(ItemIDs.steel.item, 5), new ItemStack(ItemIDs.bogie.item, 2), new ItemStack(ItemIDs.steelframe.item, 3),
                 new ItemStack(ItemIDs.steel.item, 2), null, null, null, null, new ItemStack(Blocks.chest, 2)        };
@@ -79,9 +79,9 @@ public class EntityBoxCartPRR extends GenericRailTransport {
     @Override
     public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{6.099999904632568f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{6.1875f,2.0625f,1.4375f};}
     @Override
-    public float[] rotationPoints() {return new float[]{2.440000057220459f, -2.440000057220459f};}
+    public float[] rotationPoints() {return new float[]{1.75f, -1.75f};}
 
 
 

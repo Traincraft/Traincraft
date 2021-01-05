@@ -51,7 +51,7 @@ public class EntityFreightDepressedFlatbed extends GenericRailTransport {
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelDepressedFlatbed()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{-0.25f, 0f, 0.075f}};}
+    public float[][] modelOffsets(){return new float[][]{{-0.25f, .005f, 0.075f}};}
     @Override
     public float[][] modelRotations(){return new float[][]{{0.0f, 0.0f, 0.0f}};}
     @Override
@@ -71,7 +71,7 @@ public class EntityFreightDepressedFlatbed extends GenericRailTransport {
 
     //recipe
     @Override
-    public ItemStack[] getRecipe() {
+    public ItemStack[] getRecipie() {
         return new ItemStack[]{
                 new ItemStack(ItemIDs.steel.item, 2), new ItemStack(ItemIDs.bogie.item, 2), new ItemStack(ItemIDs.steelframe.item, 3), 
                 new ItemStack(ItemIDs.steel.item, 2), null, null, null, null, null        };
@@ -82,7 +82,7 @@ public class EntityFreightDepressedFlatbed extends GenericRailTransport {
     @Override
     public float[][] getRiderOffsets(){return null;}
     @Override
-    public float[] getHitboxSize(){return new float[]{7.6f,1.6f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{8f,1.0f,1.1f};}
     @Override
     public float[] rotationPoints() {return new float[]{2.8f, -2.65f};}
 
