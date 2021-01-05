@@ -52,8 +52,8 @@ public class EntityFreightHopperUS extends GenericRailTransport {
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelFreightHopper()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.62f, 0.0f}};}
-@Override
+    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.6275f, 0.0f}};}
+    @Override
     public float[][] modelRotations(){return new float[][]{{0f,180f,180f}};}
     @Override
     public void registerSkins(){
@@ -90,7 +90,7 @@ public class EntityFreightHopperUS extends GenericRailTransport {
 
     //recipe
     @Override
-    public ItemStack[] getRecipe() {
+    public ItemStack[] getRecipie() {
         return new ItemStack[]{
                 new ItemStack(ItemIDs.steel.item, 5), new ItemStack(ItemIDs.bogie.item, 2), new ItemStack(ItemIDs.steelframe.item, 2), 
                 new ItemStack(ItemIDs.steel.item, 2), null, null, null, null, new ItemStack(Items.wheat, 3)        };
@@ -101,9 +101,9 @@ public class EntityFreightHopperUS extends GenericRailTransport {
     @Override
     public float[][] getRiderOffsets(){return null;}
     @Override
-    public float[] getHitboxSize(){return new float[]{3.6f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{3.72f,1.8f,1.05f};}
     @Override
-    public float[] rotationPoints() {return new float[]{1f, -1f};}
+    public float[] rotationPoints() {return new float[]{0.925f, -.95f};}
 
 
 

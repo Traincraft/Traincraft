@@ -68,7 +68,7 @@ public class EntityFreightIceWagon extends GenericRailTransport {
 
     //recipe
     @Override
-    public ItemStack[] getRecipe() {
+    public ItemStack[] getRecipie() {
         return new ItemStack[]{
                 null, new ItemStack(ItemIDs.woodenBogie.item, 2), new ItemStack(ItemIDs.ironFrame.item, 1), 
                 new ItemStack(Items.iron_ingot, 2), null, null, null, null, new ItemStack(Items.snowball, 9)        };
@@ -79,9 +79,9 @@ public class EntityFreightIceWagon extends GenericRailTransport {
     @Override
     public float[][] getRiderOffsets(){return null;}
     @Override
-    public float[] getHitboxSize(){return worldObj==null?new float[]{2f,1.4f,1.1f}:new float[]{1.6f,1.4f,1.1f};}
+    public float[] getHitboxSize(){return worldObj==null?new float[]{2f,1.4f,1.1f}:new float[]{1.75f,1.1f,1.0f};}
     @Override
-    public float[] rotationPoints() {return new float[]{0.35f, -0.35f};}
+    public float[] rotationPoints() {return new float[]{0.295f, -0.285f};}
 
 
 

@@ -74,7 +74,7 @@ public class EntityFreightDenverRioGrande extends GenericRailTransport {
 
     //recipe
     @Override
-    public ItemStack[] getRecipe() {
+    public ItemStack[] getRecipie() {
         return new ItemStack[]{
                 new ItemStack(Blocks.chest, 4), new ItemStack(ItemIDs.ironBogie.item, 4), new ItemStack(ItemIDs.woodenFrame.item, 3), 
                 null, null, new ItemStack(ItemIDs.woodenCab.item, 3), 
@@ -86,9 +86,9 @@ public class EntityFreightDenverRioGrande extends GenericRailTransport {
     @Override
     public float[][] getRiderOffsets(){return null;}
     @Override
-    public float[] getHitboxSize(){return new float[]{7.1f,2.6f,1.4f};}
+    public float[] getHitboxSize(){return new float[]{7.1f,2.35f,1.4f};}
     @Override
-    public float[] rotationPoints() {return new float[]{2.1f, -2.1f};}
+    public float[] rotationPoints() {return new float[]{2.075f, -2.1f};}
 
 
 

@@ -52,7 +52,7 @@ public class EntityGWRBrakeVan extends GenericRailTransport {
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelGWRBrakeVan()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.0f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.0025f, 0.0f}};}
     @Override
     public float[][] modelRotations(){return new float[][]{{0.0f, 0.0f, 0.0f}};}
     @Override
@@ -68,7 +68,7 @@ public class EntityGWRBrakeVan extends GenericRailTransport {
 
     //recipe
     @Override
-    public ItemStack[] getRecipe() {
+    public ItemStack[] getRecipie() {
         return new ItemStack[]{
                 new ItemStack(Blocks.crafting_table, 1), new ItemStack(ItemIDs.ironBogie.item, 2), new ItemStack(ItemIDs.woodenFrame.item, 1), 
                 new ItemStack(Blocks.planks, 8), null, new ItemStack(ItemIDs.woodenCab.item, 1), 
@@ -80,9 +80,9 @@ public class EntityGWRBrakeVan extends GenericRailTransport {
     @Override
     public float[][] getRiderOffsets(){return new float[][]{{0,1.6f, -0.2f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{6.8f,2.6f,1.4f};}
+    public float[] getHitboxSize(){return new float[]{6.85f,2.45f,1.5f};}
     @Override
-    public float[] rotationPoints() {return new float[]{2.0f, -2.0f};}
+    public float[] rotationPoints() {return new float[]{2.01f, -2.06f};}
 
 
 

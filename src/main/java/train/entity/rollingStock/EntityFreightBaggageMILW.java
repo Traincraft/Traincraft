@@ -52,7 +52,7 @@ public class EntityFreightBaggageMILW extends GenericRailTransport {
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelMILWBaggage()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{0.1f, -0.1f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.1f, 0.005f, 0.0f}};}
     @Override
     public float[][] modelRotations(){return new float[][]{{0.0f, 0.0f, 0.0f}};}
     @Override
@@ -68,7 +68,7 @@ public class EntityFreightBaggageMILW extends GenericRailTransport {
 
     //recipe
     @Override
-    public ItemStack[] getRecipe() {
+    public ItemStack[] getRecipie() {
         return new ItemStack[]{
                 null, new ItemStack(ItemIDs.bogie.item, 2), new ItemStack(ItemIDs.steelframe.item, 1), 
                 null, null, null, null, null, new ItemStack(Blocks.chest, 2)        };
@@ -79,9 +79,9 @@ public class EntityFreightBaggageMILW extends GenericRailTransport {
     @Override
     public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{5.349999904632568f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{6.6f,1.96f,1.4f};}
     @Override
-    public float[] rotationPoints() {return new float[]{2.140000104904175f, -2.140000104904175f};}
+    public float[] rotationPoints() {return new float[]{2.025f, -1.55f};}
 
 
 

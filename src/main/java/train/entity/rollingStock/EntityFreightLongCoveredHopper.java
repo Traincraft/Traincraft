@@ -52,7 +52,7 @@ public class EntityFreightLongCoveredHopper extends GenericRailTransport {
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelLongCoveredHopper()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{-1.0f, 0.25f, 0.65f}};}
+    public float[][] modelOffsets(){return new float[][]{{-1.0f, 0.25f, -0.675f}};}
     @Override
     public float[][] modelRotations(){return new float[][]{{0.0f, 0.0f, 0.0f}};}
     @Override
@@ -80,7 +80,7 @@ public class EntityFreightLongCoveredHopper extends GenericRailTransport {
 
     //recipe
     @Override
-    public ItemStack[] getRecipe() {
+    public ItemStack[] getRecipie() {
         return new ItemStack[]{
                 new ItemStack(ItemIDs.steel.item, 5), new ItemStack(ItemIDs.bogie.item, 2), new ItemStack(ItemIDs.steelframe.item, 2), 
                 new ItemStack(ItemIDs.steel.item, 2), null, null, null, null, new ItemStack(Items.dye, 1)        };
@@ -91,7 +91,7 @@ public class EntityFreightLongCoveredHopper extends GenericRailTransport {
     @Override
     public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{6.099999904632568f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{6.099999904632568f,2.3f,1.4f};}
     @Override
     public float[] rotationPoints() {return new float[]{2.440000057220459f, -2.440000057220459f};}
 

@@ -79,7 +79,7 @@ public class EntityBUnitEMDF3 extends GenericRailTransport {
 
     //recipe
     @Override
-    public ItemStack[] getRecipe() {
+    public ItemStack[] getRecipie() {
         return new ItemStack[]{
                 null, new ItemStack(ItemIDs.bogie.item, 2), new ItemStack(ItemIDs.steelframe.item, 2), 
                 null, null, null, new ItemStack(ItemIDs.electmotor.item, 4), new ItemStack(ItemIDs.dieselengine.item, 6), new ItemStack(ItemIDs.generator.item, 4)        };
@@ -90,9 +90,9 @@ public class EntityBUnitEMDF3 extends GenericRailTransport {
     @Override
     public float[][] getRiderOffsets(){return null;}
     @Override
-    public float[] getHitboxSize(){return new float[]{5.1f,2.5f,1.5f};}
+    public float[] getHitboxSize(){return new float[]{5f,2.35f,1.5f};}
     @Override
-    public float[] rotationPoints() {return new float[]{1.8f, -1.8f};}
+    public float[] rotationPoints() {return new float[]{1.8f, -1.782f};}
     @Override
     public int[] getTankCapacity(){return new int[]{12000};}
 

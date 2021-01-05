@@ -67,7 +67,7 @@ public class EntityFreightASTFAutorack extends GenericRailTransport {
 
     //recipe
     @Override
-    public ItemStack[] getRecipe() {
+    public ItemStack[] getRecipie() {
         return new ItemStack[]{
                 new ItemStack(ItemIDs.steel.item, 4), new ItemStack(ItemIDs.bogie.item, 2), new ItemStack(ItemIDs.steelframe.item, 6), 
                 new ItemStack(ItemIDs.steel.item, 4), null, null, null, null, null        };

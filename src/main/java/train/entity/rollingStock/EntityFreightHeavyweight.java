@@ -68,7 +68,7 @@ public class EntityFreightHeavyweight extends GenericRailTransport {
 
     //recipe
     @Override
-    public ItemStack[] getRecipe() {
+    public ItemStack[] getRecipie() {
         return new ItemStack[]{
                 new ItemStack(ItemIDs.steel.item, 4), new ItemStack(ItemIDs.bogie.item, 2), new ItemStack(ItemIDs.steelframe.item, 2), 
                 new ItemStack(ItemIDs.steel.item, 2), null, null, null, null, new ItemStack(Blocks.chest, 2)        };
@@ -79,7 +79,7 @@ public class EntityFreightHeavyweight extends GenericRailTransport {
     @Override
     public float[][] getRiderOffsets(){return null;}
     @Override
-    public float[] getHitboxSize(){return new float[]{7.3f,2.6f,1.4f};}
+    public float[] getHitboxSize(){return new float[]{7.4f,2.5f,1.45f};}
     @Override
     public float[] rotationPoints() {return new float[]{1.9f, -1.9f};}
 

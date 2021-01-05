@@ -52,7 +52,7 @@ public class EntityFreightWellcar extends GenericRailTransport {
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelWellcar()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{0.0f, -0.0f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.155f, 0.0f}};}
     @Override
     public float[][] modelRotations(){return new float[][]{{0.0f, 0.0f, 0.0f}};}
     @Override
@@ -98,7 +98,7 @@ public class EntityFreightWellcar extends GenericRailTransport {
 
     //recipe
     @Override
-    public ItemStack[] getRecipe() {
+    public ItemStack[] getRecipie() {
         return new ItemStack[]{
                 new ItemStack(ItemIDs.steel.item, 5), new ItemStack(ItemIDs.bogie.item, 2), new ItemStack(ItemIDs.steelframe.item, 2), 
                 new ItemStack(ItemIDs.steel.item, 2), null, null, null, null, new ItemStack(Blocks.chest, 2)        };
@@ -111,7 +111,7 @@ public class EntityFreightWellcar extends GenericRailTransport {
     @Override
     public float[] getHitboxSize(){return new float[]{3.5999999046325684f,2.1f,1.1f};}
     @Override
-    public float[] rotationPoints() {return new float[]{1.4399999380111694f, -1.4399999380111694f};}
+    public float[] rotationPoints() {return new float[]{1.285f, -1.325f};}
 
 
 

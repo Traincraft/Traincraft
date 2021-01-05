@@ -52,7 +52,7 @@ public class EntityFreightGrain extends GenericRailTransport {
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelGrain()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.42f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.63f, 0.0f}};}
 @Override
     public float[][] modelRotations(){return new float[][]{{0f,180f,180f}};}
     @Override
@@ -68,7 +68,7 @@ public class EntityFreightGrain extends GenericRailTransport {
 
     //recipe
     @Override
-    public ItemStack[] getRecipe() {
+    public ItemStack[] getRecipie() {
         return new ItemStack[]{
                 new ItemStack(ItemIDs.steel.item, 5), new ItemStack(ItemIDs.bogie.item, 2), new ItemStack(ItemIDs.steelframe.item, 2), 
                 new ItemStack(ItemIDs.steel.item, 2), null, null, null, null, new ItemStack(Items.wheat, 3)        };
@@ -79,9 +79,9 @@ public class EntityFreightGrain extends GenericRailTransport {
     @Override
     public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{3.5999999046325684f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{3.65f,2.1f,1.125f};}
     @Override
-    public float[] rotationPoints() {return new float[]{1.4399999380111694f, -1.4399999380111694f};}
+    public float[] rotationPoints() {return new float[]{0.9f, -0.925f};}
 
 
 
