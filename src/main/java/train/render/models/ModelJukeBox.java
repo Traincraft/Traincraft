@@ -241,35 +241,35 @@ public class ModelJukeBox extends ModelBase {
 		if (ClientProxy.isHoliday()) {
 			GL11.glPushMatrix();
 			GL11.glTranslatef(-1.1f, 0.6f, -0.72f);
-			lights.render(5);
+			lights.render(5,entity.worldObj);
 			GL11.glPopMatrix();
 			
 			GL11.glPushMatrix();
 			GL11.glTranslatef(0, 0.6f, -0.71f);
-			lights.render(5);
+			lights.render(5,entity.worldObj);
 			GL11.glPopMatrix();
 			
 			GL11.glPushMatrix();
 			GL11.glTranslatef(1.1f, 0.6f, -0.72f);
-			lights.render(5);
+			lights.render(5,entity.worldObj);
 			GL11.glPopMatrix();
 			
 			GL11.glPushMatrix();
 			GL11.glTranslatef(-1.1f, 0.6f, 0.72f);
 			GL11.glRotatef(-180f, 0, 1, 0);
-			lights.render(5);
+			lights.render(5,entity.worldObj);
 			GL11.glPopMatrix();
 			
 			GL11.glPushMatrix();
 			GL11.glTranslatef(0, 0.6f, 0.71f);
 			GL11.glRotatef(-180f, 0, 1, 0);
-			lights.render(5);
+			lights.render(5,entity.worldObj);
 			GL11.glPopMatrix();
 			
 			GL11.glPushMatrix();
 			GL11.glTranslatef(1.1f, 0.6f, 0.72f);
 			GL11.glRotatef(-180f, 0, 1, 0);
-			lights.render(5);
+			lights.render(5,entity.worldObj);
 			GL11.glPopMatrix();
 		}
 		super.render(entity, f, f1, f2, f3, f4, f5);

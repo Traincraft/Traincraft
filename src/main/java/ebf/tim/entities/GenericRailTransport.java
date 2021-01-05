@@ -1591,7 +1591,7 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
      */
     @Override
     public void setInventorySlotContents(int slot, ItemStack itemStack) {
-        if (inventory != null && slot >=0 && slot <= getSizeInventory()) {
+        if (inventory != null && slot >=0 && slot < getSizeInventory()) {
             inventory.get(slot).setSlotContents(itemStack,inventory);
         }
     }
@@ -2205,9 +2205,14 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
      * example:
      * return new ItemStack[]{new ItemStack(Blocks.dirt, 2), new ItemStack(Blocks.glass,1), etc};
      * array must contain 9 values. may not return null.*/
-    public ItemStack[] getRecipe(){return new ItemStack[]{
-            new ItemStack(Blocks.dirt),null,null,null,null,null,null,null,null
-    };}
+    public ItemStack[] getRecipe(){return getRecipie();}
+
+    @Deprecated //old method for legacy support, move to #getRecipe()
+    public ItemStack[] getRecipie(){
+        return new ItemStack[]{
+                new ItemStack(Blocks.dirt),null,null,null,null,null,null,null,null
+        };
+    }
 
 
     /**defines the name used for registration and the default name used in the gui.*/

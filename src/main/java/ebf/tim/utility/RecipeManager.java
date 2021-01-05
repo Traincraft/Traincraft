@@ -7,6 +7,7 @@ import net.minecraft.block.Block;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -30,13 +31,6 @@ public class RecipeManager {
         , (recipe.topLeft()==null || recipe.topLeft().size()==0 || recipe.topLeft().get(0)==null?"null": recipe.topLeft().get(0).getDisplayName()),
                 recipe.getresult().get(0).getDisplayName());*/
 
-        // adds a result to the recipe if it already exists, rather than creating a new one.
-        for(Recipe r : recipeList){
-            if(r.recipeInputMatches(recipe.input)){
-                r.addResults(recipe.result);
-                return;
-            }
-        }
 
         recipeList.add(recipe);
 
@@ -66,12 +60,17 @@ public class RecipeManager {
             return null;//if all inputs were null, then just return null. this is a common scenario, should save speed overall.
         }
 
+        List<ItemStack> retStacks = new ArrayList<>();
         for(Recipe r : recipeList){
             if(r.inputMatches(Arrays.asList(recipe))){
-                return r.result;
+                retStacks.addAll(r.result);
             }
         }
-        return null;
+        if(retStacks.size()==0) {
+            return null;
+        } else {
+            return retStacks;
+        }
     }
 
 
@@ -189,11 +188,11 @@ public class RecipeManager {
         if(itm instanceof ItemStack){
             list=ODC((ItemStack)itm);
         }
+        else if (itm instanceof ItemBlock){
+            list=ODC(new ItemStack((ItemBlock)itm));
+        }
         else if (itm instanceof Item){
             list=ODC(new ItemStack((Item)itm));
-        }
-        else if (itm instanceof Block){
-            list=ODC(new ItemStack((Block)itm));
         }
         else if(itm instanceof String){
             String[] data = ((String) itm).split(" ");
