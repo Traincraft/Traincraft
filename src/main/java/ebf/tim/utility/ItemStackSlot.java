@@ -22,6 +22,14 @@ public class ItemStackSlot extends Slot {
     private ItemStack stack = null, overlay = null;
     private int slotID;
     private boolean isCraftingOutput = false, isCraftingInput = false;
+    private int tierIn = 1; //The tier of assemblytable this slot is in, if applicable. Ignore if not applicable.
+
+    public ItemStackSlot(IInventory host, int slot, int tier){
+        super(host, slot, 0,0);
+        this.slotNumber = slot;
+        this.slotID = slot;
+        this.tierIn = tier;
+    }
 
     public ItemStackSlot(IInventory host, int slot){
         super(host, slot, 0,0);
@@ -206,7 +214,7 @@ public class ItemStackSlot extends Slot {
             int page = ((TileEntityStorage)hostInventory).outputPage;
             switch (((TileEntityStorage)hostInventory).storageType) {
                 case 1: { //train crafting
-                    List<ItemStack> slots = RecipeManager.getResult(RecipeManager.getTransportRecipe(hostInventory));
+                    List<ItemStack> slots = RecipeManager.getResult(RecipeManager.getTransportRecipe(hostInventory), this.tierIn);
                     if(slots==null){
                         for (int i = 0; i < 9; i++) {
                             putStackInSlot(hostSlots,409 + i, null);

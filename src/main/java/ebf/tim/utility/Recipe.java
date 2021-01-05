@@ -13,11 +13,17 @@ public class Recipe {
 
     List<ItemStack> result = new ArrayList<>();
     List<List<ItemStack>> input = new ArrayList<>();
+    private int tier = 0; //a tier either 1, 2, or 3
     private int[] displayItem=new int[]{0,0,0,0,0,0,0,0,0,0};
 
 
+    public Recipe(List<ItemStack> results, List<List<ItemStack>> cost, int tier) {
+        this.result = results;
+        this.input = cost;
+        this.tier = tier;
+    }
     public Recipe(List<ItemStack> results, List<List<ItemStack>> cost){
-        result=results;input=cost;
+        result=results;input=cost;tier=1;
     }
     public void addResults(List<ItemStack> results){
         result.addAll(results);
@@ -42,6 +48,8 @@ public class Recipe {
         input.add(Arrays.asList(bottomLeft));
         input.add(Arrays.asList(bottomCenter));
         input.add(Arrays.asList(bottomRight));
+
+        tier = 1;
     }
 
     @Deprecated
@@ -64,6 +72,7 @@ public class Recipe {
         input.add(Collections.singletonList(bottomCenter));
         input.add(Collections.singletonList(bottomRight));
 
+        tier = 1;
     }
 
     //gets the individual stacks to check for crafting matches
@@ -80,6 +89,14 @@ public class Recipe {
     public List<ItemStack> bottomRight(){return input.get(8);}
 
     public List<ItemStack> getresult(){return result;}
+
+    public int getTier() {
+        return tier;
+    }
+
+    public void setTier(int tier) {
+        this.tier = tier;
+    }
 
     public List<List<ItemStack>> getRecipeItems() {
         return input;
@@ -133,6 +150,7 @@ public class Recipe {
             if (stacks.size() <= i){return false;} //recipes are variable length, terminate if it gets to the end without success
             for(ItemStack s : slot){//iterate through the items that fit as the recipe's ingredient
                 for(ItemStack stak : stacks.get(i)) { //iterate the items that fit as that ingredient in stacks
+                    slotClear = false; //need to reset, so doesn't carry over from prev. matching
                     if(s==null && stak==null) { //if both are null, that is ok, it matches
                         slotClear=true;
                         break;

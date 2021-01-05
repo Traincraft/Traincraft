@@ -33,8 +33,10 @@ public class RecipeManager {
         // adds a result to the recipe if it already exists, rather than creating a new one.
         for(Recipe r : recipeList){
             if(r.recipeInputMatches(recipe.input)){
-                r.addResults(recipe.result);
-                return;
+                if (r.getTier() == recipe.getTier()) {
+                    r.addResults(recipe.result);
+                    return;
+                }
             }
         }
 
@@ -61,15 +63,23 @@ public class RecipeManager {
         return null;
     }
 
-    public static List<ItemStack> getResult(ItemStack[] recipe){
+    /**Compares and returns a list of trains that are craftable with the given array of ItemStacks (the inputted recipe)
+     *
+     * @param recipe An array of ItemStacks that could be a valid recipe.
+     * @param tier The tier to compare recipes against. Will only look for results in given tier.
+     * @return A List of ItemStacks that are trains craftable with the recipe parameter. Null if nothing craftable.
+     */
+    public static List<ItemStack> getResult(ItemStack[] recipe, int tier){
         if(Arrays.equals(recipe, new ItemStack[]{null, null, null, null, null, null, null, null})){
             return null;//if all inputs were null, then just return null. this is a common scenario, should save speed overall.
         }
 
         List<ItemStack> retStacks = new ArrayList<>();
         for(Recipe r : recipeList){
-            if(r.inputMatches(Arrays.asList(recipe))){
-                retStacks.addAll(r.result);
+            if(r.getTier() == tier) { //compare tier first for speed
+                if (r.inputMatches(Arrays.asList(recipe))) {
+                    retStacks.addAll(r.result);
+                }
             }
         }
         if(retStacks.size()==0) {
