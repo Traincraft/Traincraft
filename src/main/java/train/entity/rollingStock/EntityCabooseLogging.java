@@ -71,7 +71,7 @@ public class EntityCabooseLogging extends GenericRailTransport {
 
     //recipe
     @Override
-    public ItemStack[] getRecipie() {
+    public ItemStack[] getRecipe() {
         return new ItemStack[]{
                 new ItemStack(Blocks.planks, 3), new ItemStack(ItemIDs.woodenBogie.item, 2), new ItemStack(ItemIDs.woodenFrame.item, 2),
                 new ItemStack(Items.iron_ingot, 1), null, null, null, null, new ItemStack(Blocks.crafting_table, 1)        };

@@ -79,7 +79,7 @@ public class EntityBUnitEMDF3 extends GenericRailTransport {
 
     //recipe
     @Override
-    public ItemStack[] getRecipie() {
+    public ItemStack[] getRecipe() {
         return new ItemStack[]{
                 null, new ItemStack(ItemIDs.bogie.item, 2), new ItemStack(ItemIDs.steelframe.item, 2), 
                 null, null, null, new ItemStack(ItemIDs.electmotor.item, 4), new ItemStack(ItemIDs.dieselengine.item, 6), new ItemStack(ItemIDs.generator.item, 4)        };

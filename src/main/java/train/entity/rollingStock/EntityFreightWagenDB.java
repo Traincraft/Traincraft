@@ -72,7 +72,7 @@ public class EntityFreightWagenDB extends GenericRailTransport {
 
     //recipe
     @Override
-    public ItemStack[] getRecipie() {
+    public ItemStack[] getRecipe() {
         return new ItemStack[]{
                 new ItemStack(ItemIDs.steel.item, 5), new ItemStack(ItemIDs.bogie.item, 2), new ItemStack(ItemIDs.woodenFrame.item, 2), 
                 new ItemStack(ItemIDs.steel.item, 2), null, null, null, null, new ItemStack(Blocks.chest, 2)        };

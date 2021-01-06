@@ -66,15 +66,29 @@ public class TransportSlotManager extends net.minecraft.inventory.Container {
             addSlots(slot);
         }
 
-        //player toolbar
-        for (int iT = 0; iT < 9; iT++) {
-            addSlots(new ItemStackSlot(iinventory, iT, 8 + iT * 18, 142));
-        }
+        if (block.assemblyTableTier != -1 && ClientProxy.isTraincraft) { //it is an assembly table, move slots lower. (but only for the traincraft asm tables)
+            //player hotbar
+            for (int iT = 0; iT < 9; iT++) {
+                addSlots(new ItemStackSlot(iinventory, iT, 8 + iT * 18, 232));
+            }
 
-        //player inventory
-        for (int ir = 0; ir < 3; ir++) {
-            for (int ic = 0; ic < 9; ic++) {
-                addSlots(new ItemStackSlot(iinventory, ((ir * 9) + ic) + 9, 8 + (ic * 18), 84 + (ir * 18)));
+            //player inventory
+            for (int ir = 0; ir < 3; ir++) {
+                for (int ic = 0; ic < 9; ic++) {
+                    addSlots(new ItemStackSlot(iinventory, ((ir * 9) + ic) + 9, 8 + (ic * 18), 174 + (ir * 18)));
+                }
+            }
+        } else {
+            //player toolbar
+            for (int iT = 0; iT < 9; iT++) {
+                addSlots(new ItemStackSlot(iinventory, iT, 8 + iT * 18, 142));
+            }
+
+            //player inventory
+            for (int ir = 0; ir < 3; ir++) {
+                for (int ic = 0; ic < 9; ic++) {
+                    addSlots(new ItemStackSlot(iinventory, ((ir * 9) + ic) + 9, 8 + (ic * 18), 84 + (ir * 18)));
+                }
             }
         }
         onCraftMatrixChanged(hostInventory);

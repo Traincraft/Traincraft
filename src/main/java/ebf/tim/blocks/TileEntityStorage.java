@@ -2,7 +2,9 @@ package ebf.tim.blocks;
 
 
 import ebf.tim.registry.TiMFluids;
+import ebf.tim.utility.ClientProxy;
 import ebf.tim.utility.CommonUtil;
+import ebf.tim.utility.DebugUtil;
 import ebf.tim.utility.ItemStackSlot;
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
@@ -27,25 +29,69 @@ import java.util.List;
  * @author Eternal Blue Flame
  */
 public class TileEntityStorage extends TileRenderFacing implements IInventory, IFluidHandler {
-
+    /**the list of item stacks in the inventory*/
+    public List<ItemStackSlot> inventory = new ArrayList<ItemStackSlot>();
+    public int storageType=0;
+    public int outputPage=0;
+    public boolean multiPage=false;
+    public int assemblyTableTier = -1; //only applies if part of assemblyTable/traintable, no need to set otherwise.
 
     public TileEntityStorage(BlockDynamic block){
         super(block);
         int s=400;
+
+        if (block.assemblyTableTier != -1) {
+            //if it's a traintable, it should be, things might break otherwise, this is temporary to see if I missed a case.
+            this.assemblyTableTier = block.assemblyTableTier;
+        } else {
+            DebugUtil.println("Did not set the tier of the assembly table/traintable!");
+            this.assemblyTableTier = 1;
+        }
+
         inventory= new ArrayList<>();
-        if(block.getUnlocalizedName().equals("tile.block.traintable")){
-            //inventory grid (left grid)
-            for (int l = 0; l < 3; ++l) {
-                for (int i1 = 0; i1 < 3; ++i1) {
-                    inventory.add(new ItemStackSlot(this,s).setCoords( 30 + i1 * 18, 17 + l * 18).setCraftingInput(true));
-                    s++;
+        if(block.getUnlocalizedName().equals("tile.block.traintabletier1") || block.getUnlocalizedName().equals("tile.block.traintabletier2") || block.getUnlocalizedName().equals("tile.block.traintabletier3")){
+            if (!ClientProxy.isTraincraft) {
+                //inventory grid (left grid)
+                for (int l = 0; l < 3; ++l) {
+                    for (int i1 = 0; i1 < 3; ++i1) {
+                        inventory.add(new ItemStackSlot(this, s, assemblyTableTier).setCoords(30 + i1 * 18, 17 + l * 18).setCraftingInput(true));
+                        s++;
+                    }
                 }
-            }
-            //tile entity's crafting grid (right hand grid)
-            for (int l = 0; l < 3; ++l) {
-                for (int i1 = 0; i1 < 3; ++i1) {
-                    inventory.add(new ItemStackSlot(this,s).setCoords( 106 + i1 * 18, 17 + l * 18));
-                    s++;
+                //tile entity's crafting grid (right hand grid)
+                for (int l = 0; l < 3; ++l) {
+                    for (int i1 = 0; i1 < 3; ++i1) {
+                        inventory.add(new ItemStackSlot(this, s).setCoords(106 + i1 * 18, 17 + l * 18).setCraftingOutput(true));
+                        s++;
+                    }
+                }
+            } else {
+                //this is traincraft
+                //create the assembly table crafting slots (0-9)
+                inventory.add(new ItemStackSlot(this, s+0, assemblyTableTier).setCoords(25, 27).setCraftingInput(true));
+                inventory.add(new ItemStackSlot(this, s+1, assemblyTableTier).setCoords(79, 27).setCraftingInput(true));
+                inventory.add(new ItemStackSlot(this, s+2, assemblyTableTier).setCoords(115, 27).setCraftingInput(true));
+                //the following is dye slot, removed so we can have 9 crafting slots; if adding back, remember to increment everything
+                //inventory.add(new ItemStackSlot(this, s+3, assemblyTableTier).setCoords(145, 27).setCraftingInput(true));
+                inventory.add(new ItemStackSlot(this, s+3, assemblyTableTier).setCoords(25, 61).setCraftingInput(true));
+                inventory.add(new ItemStackSlot(this, s+4, assemblyTableTier).setCoords(79, 61).setCraftingInput(true));
+                inventory.add(new ItemStackSlot(this, s+5, assemblyTableTier).setCoords(115, 61).setCraftingInput(true));
+                inventory.add(new ItemStackSlot(this, s+6, assemblyTableTier).setCoords(43, 93).setCraftingInput(true));
+                inventory.add(new ItemStackSlot(this, s+7, assemblyTableTier).setCoords(79, 93).setCraftingInput(true));
+                inventory.add(new ItemStackSlot(this, s+8, assemblyTableTier).setCoords(145, 93).setCraftingInput(true));
+
+                //create the assembly table output slots (9-16)
+                for(int i = 0; i < 2; ++i){
+                    for(int j = 0; j < 4; ++j){
+                        inventory.add(new ItemStackSlot(this, (s+9) + (j + i * 4)).setCoords(92 + j * 18, (128) + i * 18).setCraftingOutput(true));
+                    }
+                }
+
+                //create the assembly table storage slots
+                for(int i = 0; i < 2; ++i) {
+                    for (int j = 0; j < 4; ++j) {
+                        inventory.add(new ItemStackSlot(this, (s + 17) + (j + i * 4)).setCoords(8 + j * 18, (128) + i * 18));
+                    }
                 }
             }
             storageType=1;
@@ -64,11 +110,6 @@ public class TileEntityStorage extends TileRenderFacing implements IInventory, I
         }
         markDirty();
     }
-    /**the list of item stacks in the inventory*/
-    public List<ItemStackSlot> inventory = new ArrayList<ItemStackSlot>();
-    public int storageType=0;
-    public int outputPage=0;
-    public boolean multiPage=false;
 
     @Override
     public String getInventoryName(){
@@ -356,6 +397,24 @@ public class TileEntityStorage extends TileRenderFacing implements IInventory, I
         }
     }
 
+    //TODO: page incrementing and decrementing.
+    /**
+     * Goes to the next page of trains that fit the recipe. Will only increment if there is another page.
+     */
+    public void incrementPage() {
+        if (multiPage) {
+            //get the number of remaining pages
+            //if there are some, increment the outputPage int
+        }
+    }
+
+    public void decrementPage() {
+        if (multiPage) {
+            if (outputPage > 0) { // > 0 means it's gone through at least a page.
+                outputPage--;
+            }
+        }
+    }
 
     /**
      * <h2>unused</h2>

@@ -27,6 +27,15 @@ public class BlockDynamic extends BlockContainer {
     //for models 0 is entire texture, for blocks, texture is:
     //0 up, 1 down, 2 north, 3 south, 4 east, 5 west.
     public ResourceLocation texture=null;
+    public int assemblyTableTier = -1; //only applies if it is an assembly table/traintable. no need to set otherwise. -1 unless set.
+
+    public BlockDynamic(Material material, boolean isDirectional, boolean isStorage, int tier) {
+        super(material);
+        rotates=isDirectional;
+        this.isBlockContainer=isStorage;
+        this.opaque=true;
+        this.assemblyTableTier = tier;
+    }
 
     public BlockDynamic(Material material, boolean isDirectional, boolean isStorage) {
         super(material);

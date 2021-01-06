@@ -69,7 +69,7 @@ public class EntityFreightCartSmall extends GenericRailTransport {
 
     //recipe
     @Override
-    public ItemStack[] getRecipie() {
+    public ItemStack[] getRecipe() {
         return new ItemStack[]{
                 new ItemStack(Blocks.planks, 6), new ItemStack(ItemIDs.woodenBogie.item, 2), new ItemStack(ItemIDs.woodenFrame.item, 2), 
                 new ItemStack(Items.stick, 2), null, null, null, null, new ItemStack(Blocks.chest, 1)        };

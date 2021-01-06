@@ -2214,6 +2214,13 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
         };
     }
 
+    /**Returns the train's crafting tier. This decides which assembly table is needed to craft it (I, II, or III)
+     *
+     * @return either 1, 2, or 3 corresponding to which table should be able to craft it.
+     */
+    public int getTier() {
+        return 1;
+    }
 
     /**defines the name used for registration and the default name used in the gui.*/
     public String transportName(){return "Fugidsnot";}

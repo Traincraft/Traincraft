@@ -22,6 +22,14 @@ public class ItemStackSlot extends Slot {
     private ItemStack stack = null, overlay = null;
     private int slotID;
     private boolean isCraftingOutput = false, isCraftingInput = false;
+    private int tierIn = 1; //The tier of assemblytable this slot is in, if applicable. Ignore if not applicable.
+
+    public ItemStackSlot(IInventory host, int slot, int tier){
+        super(host, slot, 0,0);
+        this.slotNumber = slot;
+        this.slotID = slot;
+        this.tierIn = tier;
+    }
 
     public ItemStackSlot(IInventory host, int slot){
         super(host, slot, 0,0);
@@ -201,37 +209,54 @@ public class ItemStackSlot extends Slot {
         return value;
     }
 
+    /**
+     * Helper function to fill the output slots with the given stacks. This is a method to account for the 9 output slots
+     * in TiM and the 7 in the Traincraft assemblytable. This could be merged back into original function (onCraftMatrixChanged).
+     */
+    private void putResultsInOutputSlots(IInventory hostInventory, List<ItemStackSlot> hostSlots, List<ItemStack> slots, int page, int numberSlots) {
+        if(slots==null){
+            for (int i = 0; i < numberSlots; i++) {
+                putStackInSlot(hostSlots,409 + i, null);
+            }
+        } else {
+            if(slots.size()<numberSlots) {
+                for (int i = 0; i < numberSlots; i++) {
+                    putStackInSlot(hostSlots,409 + i, i >= slots.size() ?null: slots.get(i));
+                }
+                ((TileEntityStorage)hostInventory).multiPage=false;
+            } else {//when theres 10 or more outputs skip 2 since buttons will be in their place.
+                for (int i = 0; i < numberSlots-2; i++) {
+                    putStackInSlot(hostSlots,409 + i + (7*page), slots.get(i + (7*page)));
+                }
+//                putStackInSlot(hostSlots,409 + (7*page), slots.get((7*page)));
+//                putStackInSlot(hostSlots,410 + (7*page), slots.get(1+ (7*page)));
+//                putStackInSlot(hostSlots,411 + (7*page), slots.get(2+ (7*page)));
+//                //intentionally skip 412 because an arrow is there
+//                putStackInSlot(hostSlots,413 + (7*page), slots.get(3+ (7*page)));
+//                //intentionally skip 414 because an arrow is there
+//                putStackInSlot(hostSlots,415 + (7*page), slots.get(4+ (7*page)));
+//                putStackInSlot(hostSlots,416 + (7*page), slots.get(5+ (7*page)));
+//                putStackInSlot(hostSlots,417 + (7*page), slots.get(6+ (7*page)));
+
+                ((TileEntityStorage)hostInventory).multiPage=true;
+            }
+
+        }
+    }
+
     private void onCraftMatrixChanged(IInventory hostInventory, List<ItemStackSlot> hostSlots) {
         if((isCraftingInput || isCraftingOutput) && hostInventory instanceof TileEntityStorage) {
             int page = ((TileEntityStorage)hostInventory).outputPage;
             switch (((TileEntityStorage)hostInventory).storageType) {
                 case 1: { //train crafting
-                    List<ItemStack> slots = RecipeManager.getResult(RecipeManager.getTransportRecipe(hostInventory));
-                    if(slots==null){
-                        for (int i = 0; i < 9; i++) {
-                            putStackInSlot(hostSlots,409 + i, null);
-                        }
+                    List<ItemStack> slots = RecipeManager.getResult(RecipeManager.getTransportRecipe(hostInventory), this.tierIn);
+
+                    if (ClientProxy.isTraincraft) {
+                        putResultsInOutputSlots(hostInventory, hostSlots, slots, page, 7);
                     } else {
-                        if(slots.size()<10) {
-                            for (int i = 0; i < 9; i++) {
-                                putStackInSlot(hostSlots,409 + i, i >= slots.size() ?null: slots.get(i));
-                            }
-                            ((TileEntityStorage)hostInventory).multiPage=false;
-                        } else {//when theres 10 or more outputs skip 2 since buttons will be in their place.
-                            putStackInSlot(hostSlots,409 + (7*page), slots.get((7*page)));
-                            putStackInSlot(hostSlots,410 + (7*page), slots.get(1+ (7*page)));
-                            putStackInSlot(hostSlots,411 + (7*page), slots.get(2+ (7*page)));
-                            //intentionally skip 412 because an arrow is there
-                            putStackInSlot(hostSlots,413 + (7*page), slots.get(3+ (7*page)));
-                            //intentionally skip 414 because an arrow is there
-                            putStackInSlot(hostSlots,415 + (7*page), slots.get(4+ (7*page)));
-                            putStackInSlot(hostSlots,416 + (7*page), slots.get(5+ (7*page)));
-                            putStackInSlot(hostSlots,417 + (7*page), slots.get(6+ (7*page)));
-
-                            ((TileEntityStorage)hostInventory).multiPage=true;
-                        }
-
+                        putResultsInOutputSlots(hostInventory, hostSlots, slots, page, 9);
                     }
+
                     break;
                 }
                 case 0: { //track crafting
@@ -249,7 +274,7 @@ public class ItemStackSlot extends Slot {
         if(!isCraftingOutput){return;}
 
         switch (storageType) {
-            case 0: {
+            case 1: { //train crafting table
                 Recipe r = RecipeManager.getRecipe(getStack());
                 if(r==null || r.input==null){return;}
                 for(int i=0;i<9;i++){
@@ -264,7 +289,7 @@ public class ItemStackSlot extends Slot {
                 }
                 break;
             }
-            case 1:{
+            case 0:{
                 for(int i=0;i<6;i++){
                     shrinkStackInSlot(hostSlots,400+i,stacksize);
                 }
