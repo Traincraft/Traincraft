@@ -35,11 +35,11 @@ public class EntityPassenger7 extends GenericRailTransport {
     @Override
     public String transportName(){return "Passenger Short Green";}
     @Override
-    public String transportcountry(){return null;}
+    public String transportcountry(){return "Undefined";}
     @Override
-    public String transportYear(){return null;}
+    public String transportYear(){return "Undefined";}
     @Override
-    public boolean isFictional(){return true;}
+    public boolean isFictional(){return false;}
     @Override
     public int getInventoryRows(){return 0;}
     @Override
@@ -47,13 +47,13 @@ public class EntityPassenger7 extends GenericRailTransport {
         return TrainsInMotion.transportTypes.PASSENGER.singleton();
     }
     @Override
-    public float weightKg(){return 7000f;}
+    public float weightKg(){return 10f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelPassenger7()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{0.05f, 0.64f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.63f, 0.0f}};}
     @Override
     public float[][] modelRotations(){return new float[][]{{0.0f, -90.0f, -180.0f}};}
     @Override
@@ -79,18 +79,18 @@ public class EntityPassenger7 extends GenericRailTransport {
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.0f, 0f}};}
+    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{2.9f,2.3f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{2.875f,2.2f,1.15f};}
     @Override
-    public float[] rotationPoints() {return new float[]{0.85f, -0.75f};}
+    public float[] rotationPoints() {return new float[]{0.725f, -0.8f};}
 
 
 
     //these only change in very specific use cases.
     @Override
     public boolean shouldRiderSit(){
-        return true;
+        return false;
     }
     @Override
     public Item getItem(){return thisItem;}

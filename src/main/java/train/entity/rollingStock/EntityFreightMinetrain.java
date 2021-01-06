@@ -53,8 +53,8 @@ public class EntityFreightMinetrain extends GenericRailTransport {
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelMinetrain()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{0.0f, worldObj==null?0.2f:0.62f, 0.0f}};}
-@Override
+    public float[][] modelOffsets(){return new float[][]{{0.0f, worldObj==null?0.2f:0.63f, 0.0f}};}
+    @Override
     public float[][] modelRotations(){return new float[][]{{0f,180f,180f}};}
     @Override
     public void registerSkins(){
@@ -80,7 +80,7 @@ public class EntityFreightMinetrain extends GenericRailTransport {
     @Override
     public float[][] getRiderOffsets(){return null;}
     @Override
-    public float[] getHitboxSize(){return new float[]{worldObj==null?1.9f:1.2f,1.6f,1.2f};}
+    public float[] getHitboxSize(){return new float[]{worldObj==null?1.9f:1.4f,1.25f,1.0f};}
     @Override
     public float[] rotationPoints() {return new float[]{0.3f, -0.3f};}
 

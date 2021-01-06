@@ -86,9 +86,9 @@ public class EntityFreightDenverRioGrande extends GenericRailTransport {
     @Override
     public float[][] getRiderOffsets(){return null;}
     @Override
-    public float[] getHitboxSize(){return new float[]{7.1f,2.6f,1.4f};}
+    public float[] getHitboxSize(){return new float[]{7.1f,2.35f,1.4f};}
     @Override
-    public float[] rotationPoints() {return new float[]{2.1f, -2.1f};}
+    public float[] rotationPoints() {return new float[]{2.075f, -2.1f};}
 
 
 

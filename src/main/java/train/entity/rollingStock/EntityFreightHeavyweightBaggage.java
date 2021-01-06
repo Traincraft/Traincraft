@@ -52,7 +52,7 @@ public class EntityFreightHeavyweightBaggage extends GenericRailTransport {
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelHeavyweightBaggage()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.0f, 0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.03f, 0f}};}
     @Override
     public float[][] modelRotations(){return new float[][]{{0.0f, 0.0f, 0.0f}};}
     @Override
@@ -81,9 +81,9 @@ public class EntityFreightHeavyweightBaggage extends GenericRailTransport {
     @Override
     public float[][] getRiderOffsets(){return null;}
     @Override
-    public float[] getHitboxSize(){return new float[]{10.0f,2.7f,1.4f};}
+    public float[] getHitboxSize(){return new float[]{10.35f,2.6f,1.4f};}
     @Override
-    public float[] rotationPoints() {return new float[]{3.8f, -3.8f};}
+    public float[] rotationPoints() {return new float[]{3.8f, -3.7f};}
 
 
 

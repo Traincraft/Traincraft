@@ -52,7 +52,7 @@ public class EntityFreightGermanPost extends GenericRailTransport {
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelGermanPost()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{-1.0f, -0.15f, -0.075f}};}
+    public float[][] modelOffsets(){return new float[][]{{-1.0f, -0f, 0.05f}};}
     @Override
     public float[][] modelRotations(){return new float[][]{{0.0f, 0.0f, 0.0f}};}
     @Override
@@ -84,7 +84,7 @@ public class EntityFreightGermanPost extends GenericRailTransport {
     @Override
     public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{7.909999847412109f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{9f,2.15f,1.45f};}
     @Override
     public float[] rotationPoints() {return new float[]{3.1640000343322754f, -3.1640000343322754f};}
 

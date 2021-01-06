@@ -1,0 +1,9 @@
+red is top
+dark red is bottom
+Light blue is front
+Dark blue is back
+light green is left
+dark green is right
+
+texture must be a multitude of 64 wide by 32 tall.
+textures that use the same face for all sides must still use all sides on the texture

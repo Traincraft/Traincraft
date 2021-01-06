@@ -135,9 +135,8 @@ public class Recipe {
                 } else if (s == null && stacks.get(i) != null) {
                     //the recipe can be null but an item could be in the slot
                     return false;
-                }
-                //s!=null here, so if stacks.get(i) null bad, or the item not equal, or stack not big enough
-                if(stacks.get(i)==null || s.getItem()!=stacks.get(i).getItem() || s.stackSize>stacks.get(i).stackSize){
+                } else if(stacks.get(i)==null || s.getItem()!=stacks.get(i).getItem() || s.stackSize>stacks.get(i).stackSize){
+                    //s!=null here, so if stacks.get(i) null bad, or the item not equal, or stack not big enough
                     return false;
                 }
             }
@@ -177,18 +176,6 @@ public class Recipe {
         }
         return true;
     }
-
-    public boolean resultMatches(ItemStack stack){
-        for(ItemStack check : result){
-            if (stack.getItem()==check.getItem() && stack.stackSize<=check.stackSize) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-
-
 
 
 

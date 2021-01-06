@@ -53,7 +53,7 @@ public class EntityCabooseLogging extends GenericRailTransport {
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelCabooseLogging()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.42f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.63f, 0.0f}};}
 @Override
     public float[][] modelRotations(){return new float[][]{{0f,180f,180f}};}
     @Override
@@ -82,9 +82,9 @@ public class EntityCabooseLogging extends GenericRailTransport {
     @Override
     public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{2.0f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{2.0f,2.4f,1.45f};}
     @Override
-    public float[] rotationPoints() {return new float[]{0.800000011920929f, -0.800000011920929f};}
+    public float[] rotationPoints() {return new float[]{0.25f, -0.325f};}
 
 
 

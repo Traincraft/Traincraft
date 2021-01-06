@@ -51,7 +51,7 @@ public class EntityFlatCartSU extends GenericRailTransport {
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelFlatCarSU()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.62f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.63f, 0.0f}};}
 @Override
     public float[][] modelRotations(){return new float[][]{{0f,180f,180f}};}
     @Override
@@ -78,9 +78,9 @@ public class EntityFlatCartSU extends GenericRailTransport {
     @Override
     public float[][] getRiderOffsets(){return null;}
     @Override
-    public float[] getHitboxSize(){return new float[]{3.4f,1.5f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{3.8f,1.4f,1.125f};}
     @Override
-    public float[] rotationPoints() {return new float[]{0.9f, -0.9f};}
+    public float[] rotationPoints() {return new float[]{0.9f, -0.925f};}
 
 
 

@@ -3,10 +3,10 @@ package ebf.tim.utility;
 import cpw.mods.fml.common.registry.GameRegistry;
 import ebf.tim.items.ItemRail;
 import ebf.tim.registry.TiMItems;
-import net.minecraft.block.Block;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -204,11 +204,11 @@ public class RecipeManager {
         if(itm instanceof ItemStack){
             list=ODC((ItemStack)itm);
         }
+        else if (itm instanceof ItemBlock){
+            list=ODC(new ItemStack((ItemBlock)itm));
+        }
         else if (itm instanceof Item){
             list=ODC(new ItemStack((Item)itm));
-        }
-        else if (itm instanceof Block){
-            list=ODC(new ItemStack((Block)itm));
         }
         else if(itm instanceof String){
             String[] data = ((String) itm).split(" ");

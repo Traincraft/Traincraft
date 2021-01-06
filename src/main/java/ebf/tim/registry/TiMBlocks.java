@@ -8,6 +8,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 
 import static cpw.mods.fml.common.registry.GameRegistry.addRecipe;
 import static ebf.tim.registry.TiMGenericRegistry.registerBlock;
@@ -26,6 +27,7 @@ public class TiMBlocks {
 
 
     public static void registerBlocks(){
+        //trainTable.texture=new ResourceLocation("traincraft", "textures/blocks/assembly_2.png");
 
         registerBlock(railBlock, null, TrainsInMotion.MODID,"block.timrail", null, TrainsInMotion.proxy.getTESR());
 

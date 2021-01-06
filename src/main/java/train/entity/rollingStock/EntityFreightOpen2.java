@@ -53,7 +53,7 @@ public class EntityFreightOpen2 extends GenericRailTransport {
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelFreightOpen2()};}
     @Override
-    public float[][] modelOffsets(){return worldObj==null?new float[][]{{0.0f, 0.24f, 0.0f}}:new float[][]{{0.0f, 0.64f, 0.0f}};}
+    public float[][] modelOffsets(){return worldObj==null?new float[][]{{0.0f, 0.24f, 0.0f}}:new float[][]{{0.0f, 0.63f, 0.0f}};}
     @Override
     public float[][] modelRotations(){return new float[][]{{0.0f, -90.0f, -180.0f}};}
     @Override
@@ -80,9 +80,9 @@ public class EntityFreightOpen2 extends GenericRailTransport {
     @Override
     public float[][] getRiderOffsets(){return null;}
     @Override
-    public float[] getHitboxSize(){return new float[]{2.6f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{2.725f,1.525f,1.1f};}
     @Override
-    public float[] rotationPoints() {return new float[]{0.7f, -0.7f};}
+    public float[] rotationPoints() {return new float[]{0.675f, -0.75f};}
 
 
 

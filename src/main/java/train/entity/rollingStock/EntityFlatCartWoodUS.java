@@ -52,7 +52,7 @@ public class EntityFlatCartWoodUS extends GenericRailTransport {
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelFlatCarWoodUS()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.47f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.63f, 0.0f}};}
 @Override
     public float[][] modelRotations(){return new float[][]{{0f,180f,180f}};}
     @Override
@@ -79,9 +79,9 @@ public class EntityFlatCartWoodUS extends GenericRailTransport {
     @Override
     public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{3.4800000190734863f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{3.75f,1.65f,1.1f};}
     @Override
-    public float[] rotationPoints() {return new float[]{1.3920000791549683f, -1.3920000791549683f};}
+    public float[] rotationPoints() {return new float[]{0.9f, -0.95f};}
 
 
 
