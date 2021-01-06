@@ -85,6 +85,8 @@ public class ClientProxy extends CommonProxy {
 
     public static KeyBinding raildevtoolQuality;
 
+    /**Decides whether to use Traincraft or TiM assembly tables. */
+    public static boolean isTraincraft = true;
 
     /**
      * <h2> Client GUI Redirect </h2>

@@ -129,9 +129,14 @@ public class Recipe {
         int i=0;
         for(List<ItemStack> slot : input){
             for(ItemStack s : slot){
-                if(s==null){
+                if(s==null && stacks.get(i) == null) {
+                    //both must be null otherwise stacks.get(i) could have something and it falsely matches
                     continue;
+                } else if (s == null && stacks.get(i) != null) {
+                    //the recipe can be null but an item could be in the slot
+                    return false;
                 }
+                //s!=null here, so if stacks.get(i) null bad, or the item not equal, or stack not big enough
                 if(stacks.get(i)==null || s.getItem()!=stacks.get(i).getItem() || s.stackSize>stacks.get(i).stackSize){
                     return false;
                 }
