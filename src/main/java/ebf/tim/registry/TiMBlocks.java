@@ -28,6 +28,9 @@ public class TiMBlocks {
 
     public static void registerBlocks(){
         //trainTable.texture=new ResourceLocation("traincraft", "textures/blocks/assembly_2.png");
+        trainTableTier1.texture=new ResourceLocation("traincraft", "textures/blocks/assembly_1.png");
+        trainTableTier2.texture=new ResourceLocation("traincraft", "textures/blocks/assembly_2.png");
+        trainTableTier3.texture=new ResourceLocation("traincraft", "textures/blocks/assembly_3.png");
 
         registerBlock(railBlock, null, TrainsInMotion.MODID,"block.timrail", null, TrainsInMotion.proxy.getTESR());
 
