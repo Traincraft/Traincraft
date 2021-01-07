@@ -1,6 +1,7 @@
 package ebf.tim.blocks;
 
 
+import ebf.XmlBuilder;
 import ebf.tim.registry.TiMFluids;
 import ebf.tim.utility.ClientProxy;
 import ebf.tim.utility.CommonUtil;
@@ -123,10 +124,12 @@ public class TileEntityStorage extends TileRenderFacing implements IInventory, I
     @Override
     public void readFromNBT(NBTTagCompound tag) {
         super.readFromNBT(tag);
+        XmlBuilder data = new XmlBuilder(tag.getString("xmlData"));
+
         if (getSizeInventory()>0) {
             for (int i=0;i<getSizeInventory();i++) {
-                if (tag.hasKey("transportinv."+i)) {
-                    inventory.get(i).setSlotContents(ItemStack.loadItemStackFromNBT(tag.getCompoundTag("transportinv."+i)), inventory);
+                if (data.containsItemStack("items."+i)) {
+                    inventory.get(i).setSlotContents(data.getItemStack("items."+i), inventory);
                 }
             }
         }
@@ -134,8 +137,8 @@ public class TileEntityStorage extends TileRenderFacing implements IInventory, I
         if(getTankCapacity()!=null) {
             fluidTank = new FluidTankInfo[getTankCapacity().length];
             for (int i = 0; i < getTankCapacity().length; i++) {
-                if (tag.hasKey("tanks." + i)) {
-                    fluidTank[i] = new FluidTankInfo(FluidStack.loadFluidStackFromNBT(tag.getCompoundTag("tanks." + i)), getTankCapacity()[i]);
+                if (data.containsFluidStack("tanks." + i)) {
+                    fluidTank[i] = new FluidTankInfo(data.getFluidStack("tanks."+i), getTankCapacity()[i]);
                 }
             }
         } else {
@@ -147,22 +150,20 @@ public class TileEntityStorage extends TileRenderFacing implements IInventory, I
     @Override
     public void writeToNBT(NBTTagCompound tag) {
         super.writeToNBT(tag);
+        XmlBuilder data = new XmlBuilder();
         if (inventory!=null) {
             for (int i=0;i<getSizeInventory();i++) {
-                NBTTagCompound invTag = new NBTTagCompound();
                 if(inventory.get(i)!=null && inventory.get(i).getStack()!=null) {
-                    inventory.get(i).getStack().writeToNBT(invTag);
-                    tag.setTag("transportinv."+i, invTag);
+                    data.putItemStack("items."+i, inventory.get(i).getStack());
                 }
             }
         }
         for(int i=0; i<getTankInfo(null).length;i++){
             if(getTankInfo(null) !=null) {
-                NBTTagCompound tank = new NBTTagCompound();
-                getTankInfo(null)[i].fluid.writeToNBT(tank);
-                tag.setTag("tanks." + i, tank);
+                data.putFluidStack("tansk."+i, getTankInfo(null)[i].fluid);
             }
         }
+        tag.setString("xmlData",data.toXMLString());
     }
 
 
@@ -415,6 +416,7 @@ public class TileEntityStorage extends TileRenderFacing implements IInventory, I
             }
         }
     }
+
 
     /**
      * <h2>unused</h2>

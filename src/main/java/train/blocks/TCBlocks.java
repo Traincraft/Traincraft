@@ -8,8 +8,15 @@
 package train.blocks;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import ebf.tim.TrainsInMotion;
+import ebf.tim.blocks.BlockDynamic;
 import net.minecraft.block.Block;
+import net.minecraft.block.material.MapColor;
+import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import train.blocks.bench.BlockTrainWorkbench;
 import train.blocks.bridge.BlockBridgePillar;
 import train.blocks.distil.BlockDistil;
@@ -23,13 +30,32 @@ import train.blocks.windmill.BlockWindMill;
 import train.library.BlockIDs;
 import train.library.Info;
 
+import static cpw.mods.fml.common.registry.GameRegistry.addRecipe;
+import static ebf.tim.registry.TiMGenericRegistry.registerBlock;
+
 public class TCBlocks {
+	public static BlockDynamic trainTableTier1 = new BlockDynamic(new Material(MapColor.mapColorArray[13]), true, true, 1);
+	public static BlockDynamic trainTableTier2 = new BlockDynamic(new Material(MapColor.mapColorArray[13]), true, true, 2);
+	public static BlockDynamic trainTableTier3 = new BlockDynamic(new Material(MapColor.mapColorArray[13]), true, true, 3);
+
 
 	@Deprecated //need to use TiMGenericRegistry.registerBlock(), this will also cover tile entities and TESR.
 	public static void init() {
+		trainTableTier1.texture=new ResourceLocation("traincraft", "textures/blocks/assembly_1.png");
+		trainTableTier2.texture=new ResourceLocation("traincraft", "textures/blocks/assembly_2.png");
+		trainTableTier3.texture=new ResourceLocation("traincraft", "textures/blocks/assembly_3.png");
+
+		addRecipe(new ItemStack(registerBlock(trainTableTier1, TrainsInMotion.creativeTab, TrainsInMotion.MODID,"block.traintabletier1", null, null),1),
+				"IPI", "S S", "SPS", 'S', Blocks.stone, 'I', Items.iron_ingot, 'P', Blocks.piston); //tier 1
+		addRecipe(new ItemStack(registerBlock(trainTableTier2, TrainsInMotion.creativeTab, TrainsInMotion.MODID,"block.traintabletier2", null, null),1),
+				"GPG", "O O", "OPO", 'O', Blocks.obsidian, 'G', Items.gold_ingot, 'P', Blocks.piston); //tier 2
+		addRecipe(new ItemStack(registerBlock(trainTableTier3, TrainsInMotion.creativeTab, TrainsInMotion.MODID,"block.traintabletier3", null, null),1),
+				"GPG", "DLD", "OPO", 'O', Blocks.obsidian, 'G', Items.gold_ingot, 'P', Blocks.piston, 'D', Items.diamond, 'L', Blocks.glowstone); //tier 3
+
 		loadBlocks();
 		registerBlocks();
 		setHarvestLevels();
+
 	}
 
 	public static void loadBlocks() {

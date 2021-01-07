@@ -29,7 +29,7 @@ public class AchievementHandler {
 	}
 	
 	private static Achievement achievement(String name, int column, int row, ItemStack stack, Achievement parent) {
-		Achievement result = new Achievement("achievement.tc." + name, "tc:" + name, column, row, stack, parent);
+		Achievement result = new Achievement("achievement.traincraft." + name, "traincraft:" + name, column, row, stack, parent);
 		if(stack == null) {
 			result.initIndependentStat();
 		}
@@ -101,7 +101,7 @@ public class AchievementHandler {
 				AchievementIDs.flatCart.achievement, AchievementIDs.stockCar.achievement,
 				AchievementIDs.caboose.achievement };
 
-		tmPage = new AchievementPage("TrainCraft", ach);
+		tmPage = new AchievementPage("Traincraft", ach);
 
 	}
 }

@@ -90,6 +90,8 @@ public class RenderWagon extends Render {
      */
     public static void doRender(GenericRailTransport entity, double x, double y, double z, float yaw, float bogieOffset, boolean isPaintBucket, @Nullable TransportSkin textureURI, RenderWagon renderInstance){
 
+        if(entity==null){return;}
+
         if (entity.renderData.modelList == null || entity.renderData.needsModelUpdate) {
             entity.renderData = new TransportRenderData();
             entity.renderData.modelList = entity.getModel();

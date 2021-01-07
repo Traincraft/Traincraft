@@ -62,6 +62,11 @@ public class BlockDynamic extends BlockContainer {
     }
 
     @Override
+    public boolean isOpaqueCube(){
+        return false;
+    }
+
+    @Override
     public boolean renderAsNormalBlock(){
         return false;
     }

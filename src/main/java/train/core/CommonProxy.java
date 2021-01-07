@@ -56,16 +56,16 @@ public class CommonProxy implements IGuiHandler {
 
 	@Deprecated //should be handled as noted in TCBlocks.init()
 	public void registerTileEntities() {
-		GameRegistry.registerTileEntity(TileTrainWbench.class, "TileTrainWbench");
-		GameRegistry.registerTileEntity(TileEntityDistil.class, "Tile Distil");
-		GameRegistry.registerTileEntity(TileEntityOpenHearthFurnace.class, "Tile OpenHearthFurnace");
-		GameRegistry.registerTileEntity(TileSignal.class, "TileTrainSignal");
-		GameRegistry.registerTileEntity(TileLantern.class, "tileLantern");
-		GameRegistry.registerTileEntity(TileSwitchStand.class, "tileSwitchStand");
-		GameRegistry.registerTileEntity(TileWaterWheel.class, "tileWaterWheel");
-		GameRegistry.registerTileEntity(TileWindMill.class, "tileWindMill");
-		GameRegistry.registerTileEntity(TileGeneratorDiesel.class, "tileGeneratorDiesel");
-		GameRegistry.registerTileEntity(TileBridgePillar.class, "tileTCBridgePillar");
+		GameRegistry.registerTileEntity(TileTrainWbench.class, "traincraft.TileTrainWbench");
+		GameRegistry.registerTileEntity(TileEntityDistil.class, "traincraft.TileDistil");
+		GameRegistry.registerTileEntity(TileEntityOpenHearthFurnace.class, "traincraft.TileOpenHearthFurnace");
+		GameRegistry.registerTileEntity(TileSignal.class, "traincraft.TileTrainSignal");
+		GameRegistry.registerTileEntity(TileLantern.class, "traincraft.tileLantern");
+		GameRegistry.registerTileEntity(TileSwitchStand.class, "traincraft.tileSwitchStand");
+		GameRegistry.registerTileEntity(TileWaterWheel.class, "traincraft.tileWaterWheel");
+		GameRegistry.registerTileEntity(TileWindMill.class, "traincraft.tileWindMill");
+		GameRegistry.registerTileEntity(TileGeneratorDiesel.class, "traincraft.tileGeneratorDiesel");
+		GameRegistry.registerTileEntity(TileBridgePillar.class, "traincraft.tileTCBridgePillar");
 	}
 
 	@Override

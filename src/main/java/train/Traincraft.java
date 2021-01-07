@@ -11,6 +11,7 @@ import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.VillagerRegistry;
+import ebf.tim.TrainsInMotion;
 import ebf.tim.gui.GUICraftBook;
 import ebf.tim.items.TiMTab;
 import ebf.tim.registry.TiMGenericRegistry;
@@ -219,11 +220,11 @@ public class Traincraft {
 
 		/*Trainman Villager*/
 		tcLog.info("Initialize Station Chief Villager");
-		VillagerRegistry.instance().registerVillagerId(ConfigHandler.TRAINCRAFT_VILLAGER_ID);
+		VillagerRegistry.instance().registerVillagerId(ConfigHandler.TRAINCRAFT_VILLAGER_ID+1);
 		VillagerTraincraftHandler villageHandler = new VillagerTraincraftHandler();
 		VillagerRegistry.instance().registerVillageCreationHandler(villageHandler);
-		proxy.registerVillagerSkin(ConfigHandler.TRAINCRAFT_VILLAGER_ID, "station_chief.png");
-		VillagerRegistry.instance().registerVillageTradeHandler(ConfigHandler.TRAINCRAFT_VILLAGER_ID, villageHandler);
+		proxy.registerVillagerSkin(ConfigHandler.TRAINCRAFT_VILLAGER_ID+1, "station_chief.png");
+		VillagerRegistry.instance().registerVillageTradeHandler(ConfigHandler.TRAINCRAFT_VILLAGER_ID+1, villageHandler);
 
 		
 		tcLog.info("Finished Initialization");
