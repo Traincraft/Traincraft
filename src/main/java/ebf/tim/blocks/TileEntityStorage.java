@@ -41,17 +41,21 @@ public class TileEntityStorage extends TileRenderFacing implements IInventory, I
         super(block);
         int s=400;
 
-        if (block.assemblyTableTier != -1) {
-            //if it's a traintable, it should be, things might break otherwise, this is temporary to see if I missed a case.
-            this.assemblyTableTier = block.assemblyTableTier;
-        } else {
-            DebugUtil.println("Did not set the tier of the assembly table/traintable!");
-            this.assemblyTableTier = 1;
-        }
-
         inventory= new ArrayList<>();
-        if(block.getUnlocalizedName().equals("tile.block.traintabletier1") || block.getUnlocalizedName().equals("tile.block.traintabletier2") || block.getUnlocalizedName().equals("tile.block.traintabletier3")){
-            if (!ClientProxy.isTraincraft) {
+        if(block.getUnlocalizedName().equals("tile.block.traintabletier1") ||
+                block.getUnlocalizedName().equals("tile.block.traintabletier2") ||
+                block.getUnlocalizedName().equals("tile.block.traintabletier3") ||
+                block.getUnlocalizedName().equals("tile.block.traintable")) {
+
+            if (block.assemblyTableTier != -1) {
+                //if it's a traintable, it should be, things might break otherwise, this is temporary to see if I missed a case.
+                this.assemblyTableTier = block.assemblyTableTier;
+            } else {
+                DebugUtil.println("Did not set the tier of the assembly table/traintable!");
+                this.assemblyTableTier = 0;
+            }
+
+            if (!ClientProxy.isTraincraft || block.getUnlocalizedName().equals("tile.block.traintable")) {
                 //inventory grid (left grid)
                 for (int l = 0; l < 3; ++l) {
                     for (int i1 = 0; i1 < 3; ++i1) {
@@ -62,7 +66,7 @@ public class TileEntityStorage extends TileRenderFacing implements IInventory, I
                 //tile entity's crafting grid (right hand grid)
                 for (int l = 0; l < 3; ++l) {
                     for (int i1 = 0; i1 < 3; ++i1) {
-                        inventory.add(new ItemStackSlot(this, s).setCoords(106 + i1 * 18, 17 + l * 18).setCraftingOutput(true));
+                        inventory.add(new ItemStackSlot(this, s, assemblyTableTier).setCoords(106 + i1 * 18, 17 + l * 18).setCraftingOutput(true));
                         s++;
                     }
                 }
@@ -84,14 +88,16 @@ public class TileEntityStorage extends TileRenderFacing implements IInventory, I
                 //create the assembly table output slots (9-16)
                 for(int i = 0; i < 2; ++i){
                     for(int j = 0; j < 4; ++j){
-                        inventory.add(new ItemStackSlot(this, (s+9) + (j + i * 4)).setCoords(92 + j * 18, (128) + i * 18).setCraftingOutput(true));
+                        inventory.add(new ItemStackSlot(this, (s+9) + (j + i * 4), assemblyTableTier).setCoords(92 + j * 18, (128) + i * 18).setCraftingOutput(true));
                     }
                 }
 
                 //create the assembly table storage slots
+                //  slots 35 - 400 were meant for storage
+                int storageSlot = 36;
                 for(int i = 0; i < 2; ++i) {
                     for (int j = 0; j < 4; ++j) {
-                        inventory.add(new ItemStackSlot(this, (s + 17) + (j + i * 4)).setCoords(8 + j * 18, (128) + i * 18));
+                        inventory.add(new ItemStackSlot(this, (storageSlot) + (j + i * 4)).setCoords(8 + j * 18, (128) + i * 18));
                     }
                 }
             }

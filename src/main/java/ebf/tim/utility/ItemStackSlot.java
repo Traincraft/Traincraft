@@ -22,7 +22,7 @@ public class ItemStackSlot extends Slot {
     private ItemStack stack = null, overlay = null;
     private int slotID;
     private boolean isCraftingOutput = false, isCraftingInput = false;
-    private int tierIn = 1; //The tier of assemblytable this slot is in, if applicable. Ignore if not applicable.
+    private int tierIn = 0; //The tier of assemblytable this slot is in, if applicable. Ignore if not applicable.
 
     public ItemStackSlot(IInventory host, int slot, int tier){
         super(host, slot, 0,0);
@@ -177,36 +177,62 @@ public class ItemStackSlot extends Slot {
         return other.getItem()== getStack().getItem() && other.getTagCompound()== getStack().getTagCompound();
     }
 
-    public int getMaxCraft(IInventory hostInventory, List<ItemStackSlot> hostSlots){
-        int value =0;
-        if(isCraftingOutput && hostInventory instanceof TileEntityStorage) {
-            if(((TileEntityStorage)hostInventory).storageType==0){
-                int size=0;
-                Recipe r = RecipeManager.getRecipe(stack);
-                if(r!=null && r.getRecipeItems()!=null) {
-                    for (int i = 0; i < r.getRecipeItems().size(); i++) {
-                        for (ItemStack s : r.getRecipeItems().get(i)) {
-                            if (s != null && ((TileEntityStorage) hostInventory).getSlotIndexByID(400 + i).stack != null &&
-                                    s.getItem() == ((TileEntityStorage) hostInventory).getSlotIndexByID(400 + i).stack.getItem()) {
-                                value = Math.max(size,
-                                        ((TileEntityStorage) hostInventory).getSlotIndexByID(400 + i).stack.stackSize / s.stackSize);
+    public int getMaxCraft(IInventory hostInventory, List<ItemStackSlot> hostSlots) {
+        if (isCraftingOutput && hostInventory instanceof TileEntityStorage) {
+            //must be an output slot, must be in an inventory that does crafting
+            switch (((TileEntityStorage) hostInventory).storageType) {
+                case 0:
+                    //rail crafting table
+
+                    //same as the original function's implementation
+                    //  ie. out of non-zero stacks, return the size of the smallest stack
+
+                    int smallestStack = ((TileEntityStorage) hostInventory).getSlotIndexByID(400).getStackSize();
+                    if (smallestStack > 1) { //greater than 1 because if 1 the rest can't be smaller
+                        for (int i = 0; i < 5; i++) {
+                            int sizeOfStack = ((TileEntityStorage) hostInventory).getSlotIndexByID(400 + i).getStackSize();
+                            if (sizeOfStack > 0 && sizeOfStack < smallestStack) {
+                                smallestStack = sizeOfStack;
                             }
                         }
                     }
-                }
-            } else {
-                value = ((TileEntityStorage) hostInventory).getSlotIndexByID(400).getStackSize();
-                if(value>1) {
-                    for (int i = 1; i < 5; i++) {
-                        if (((TileEntityStorage) hostInventory).getSlotIndexByID(400 + i).getStackSize() > 0 &&
-                                ((TileEntityStorage) hostInventory).getSlotIndexByID(400 + i).getStackSize() < value) {
-                            value = ((TileEntityStorage) hostInventory).getSlotIndexByID(400 + i).getStackSize();
+                    return smallestStack;
+                case 1:
+                    //train crafting system
+                    Recipe recipe = RecipeManager.getRecipe(stack); //get the recipe that crafts item in this slot.
+
+                    int largestAmountCanMake = 999;
+
+                    if (recipe != null && recipe.getRecipeItems() != null) {
+                        //make sure there is a recipe that crafts this.
+
+                        for (int i = 0; i < recipe.getRecipeItems().size(); i++) {
+                            //iterate over all ingredients in recipe
+
+                            if (recipe.getRecipeItems().get(i).get(0) == null && ((TileEntityStorage) hostInventory).getSlotIndexByID(400 + i).getStack() == null) {
+                                //both null means the counting doesn't matter for this ingredient.
+                                continue;
+                            }
+
+                            if (recipe.getRecipeItems().get(i).get(0) == null) {
+                                //that's a problem, log it
+                                DebugUtil.println("There's a stack missing after the recipe has already been compared!");
+                                return 0; //can't craft any if this is the case
+                            }
+
+                            //for each ingredient, we want to see the most that can be crafted with the ingredient,
+                            //  then take the lowest number, for the stack that can craft the least of that ingredient.
+                            //  each ItemStack in the ingredient will have the same size, so we can use the first one because it's always there.
+                            int amountCanMake = ((TileEntityStorage) hostInventory).getSlotIndexByID(400 + i).getStackSize() / recipe.getRecipeItems().get(i).get(0).stackSize;
+                            if (amountCanMake < largestAmountCanMake) {
+                                largestAmountCanMake = amountCanMake;
+                            }
                         }
                     }
-                }
+                    return largestAmountCanMake;
             }
         }
-        return value;
+        return 0;
     }
 
     /**
@@ -251,7 +277,7 @@ public class ItemStackSlot extends Slot {
                 case 1: { //train crafting
                     List<ItemStack> slots = RecipeManager.getResult(RecipeManager.getTransportRecipe(hostInventory), this.tierIn);
 
-                    if (ClientProxy.isTraincraft) {
+                    if (ClientProxy.isTraincraft && tierIn > 0) {
                         putResultsInOutputSlots(hostInventory, hostSlots, slots, page, 7);
                     } else {
                         putResultsInOutputSlots(hostInventory, hostSlots, slots, page, 9);

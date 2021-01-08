@@ -252,10 +252,10 @@ public class TiMGenericRegistry {
             GameRegistry.registerItem(registry.getCartItem().getItem(), registry.getCartItem().getItem().getUnlocalizedName());
             if(registry.getRecipe()!=null) {
                 if (CommonProxy.recipesInMods.containsKey(MODID)) {
-                    CommonProxy.recipesInMods.get(MODID).add(getRecipe(registry.getRecipe(), registry.getCartItem()));
+                    CommonProxy.recipesInMods.get(MODID).add(getRecipe(registry.getRecipe(), registry.getCartItem(), registry.getTier()));
                 } else {
                     CommonProxy.recipesInMods.put(MODID, new ArrayList<Recipe>());
-                    CommonProxy.recipesInMods.get(MODID).add(getRecipe(registry.getRecipe(), registry.getCartItem()));
+                    CommonProxy.recipesInMods.get(MODID).add(getRecipe(registry.getRecipe(), registry.getCartItem(), registry.getTier()));
                 }
             }
             if(TrainsInMotion.proxy.isClient() && ClientProxy.hdTransportItems){
@@ -263,7 +263,7 @@ public class TiMGenericRegistry {
             }
             registry.registerSkins();
             if(registry.getRecipe()!=null){
-                RecipeManager.registerRecipe(registry.getRecipe(), registry.getCartItem());
+                RecipeManager.registerRecipe(registry.getRecipe(), registry.getCartItem(), registry.getTier());
             }
             ItemCraftGuide.itemEntries.add(registry.getClass());
             if(TrainsInMotion.proxy.isClient()) {

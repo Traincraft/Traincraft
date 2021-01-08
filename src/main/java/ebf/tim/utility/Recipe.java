@@ -49,7 +49,7 @@ public class Recipe {
         input.add(Arrays.asList(bottomCenter));
         input.add(Arrays.asList(bottomRight));
 
-        tier = 1;
+        tier = 0;
     }
 
     @Deprecated
@@ -72,7 +72,7 @@ public class Recipe {
         input.add(Collections.singletonList(bottomCenter));
         input.add(Collections.singletonList(bottomRight));
 
-        tier = 1;
+        tier = 0;
     }
 
     //gets the individual stacks to check for crafting matches

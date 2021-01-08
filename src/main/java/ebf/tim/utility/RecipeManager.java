@@ -21,8 +21,8 @@ public class RecipeManager {
     //private static List<Item> ingotDirectory = new ArrayList<>();
 
 
-    public static void registerRecipe(Object[] recipe, ItemStack output){
-        registerRecipe(getRecipe(recipe,output));
+    public static void registerRecipe(Object[] recipe, ItemStack output, int tier){
+        registerRecipe(getRecipe(recipe, output, tier));
     }
 
     public static void registerRecipe(Recipe recipe){
@@ -64,6 +64,7 @@ public class RecipeManager {
     }
 
     /**Compares and returns a list of trains that are craftable with the given array of ItemStacks (the inputted recipe)
+     * Funnily enough, in wanting to have a tier-less traintable, I implemented a fourth tier, tier 0.
      *
      * @param recipe An array of ItemStacks that could be a valid recipe.
      * @param tier The tier to compare recipes against. Will only look for results in given tier.
@@ -182,8 +183,8 @@ public class RecipeManager {
 
 
 
-    public static Recipe getRecipe(Object[] obj, ItemStack cartItem){
-        return new Recipe(new ItemStack[]{cartItem},
+    public static Recipe getRecipe(Object[] obj, ItemStack cartItem, int tier){
+        Recipe r = new Recipe(new ItemStack[]{cartItem},
                 getItem(obj[0]),
                 getItem(obj[1]),
                 getItem(obj[2]),
@@ -194,6 +195,8 @@ public class RecipeManager {
                 getItem(obj[7]),
                 getItem(obj[8])
         );
+        r.setTier(tier);
+        return r;
     }
 
     public static ItemStack[] getItem(Object itm){
