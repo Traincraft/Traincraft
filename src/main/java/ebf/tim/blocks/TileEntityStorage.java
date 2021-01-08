@@ -41,17 +41,21 @@ public class TileEntityStorage extends TileRenderFacing implements IInventory, I
         super(block);
         int s=400;
 
-        if (block.assemblyTableTier != -1) {
-            //if it's a traintable, it should be, things might break otherwise, this is temporary to see if I missed a case.
-            this.assemblyTableTier = block.assemblyTableTier;
-        } else {
-            DebugUtil.println("Did not set the tier of the assembly table/traintable!");
-            this.assemblyTableTier = 1;
-        }
-
         inventory= new ArrayList<>();
-        if(block.getUnlocalizedName().equals("tile.block.traintabletier1") || block.getUnlocalizedName().equals("tile.block.traintabletier2") || block.getUnlocalizedName().equals("tile.block.traintabletier3")){
-            if (!ClientProxy.isTraincraft) {
+        if(block.getUnlocalizedName().equals("tile.block.traintabletier1") ||
+                block.getUnlocalizedName().equals("tile.block.traintabletier2") ||
+                block.getUnlocalizedName().equals("tile.block.traintabletier3") ||
+                block.getUnlocalizedName().equals("tile.block.traintable")) {
+
+            if (block.assemblyTableTier != -1) {
+                //if it's a traintable, it should be, things might break otherwise, this is temporary to see if I missed a case.
+                this.assemblyTableTier = block.assemblyTableTier;
+            } else {
+                DebugUtil.println("Did not set the tier of the assembly table/traintable!");
+                this.assemblyTableTier = 0;
+            }
+
+            if (!ClientProxy.isTraincraft || block.getUnlocalizedName().equals("tile.block.traintable")) {
                 //inventory grid (left grid)
                 for (int l = 0; l < 3; ++l) {
                     for (int i1 = 0; i1 < 3; ++i1) {

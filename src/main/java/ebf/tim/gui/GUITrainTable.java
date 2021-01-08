@@ -32,7 +32,7 @@ public class GUITrainTable extends GuiContainer {
 
     private String hostname;
 
-    //TODO: button placement broken, functionality broken, possibly re-evaluate how to do this (need access to TileEntityStorage)
+    //TODO: button placement broken, functionality broken
     private GuiButton upButton = new GuiButton(0, 146, 127, 21, 21, "UP");
     private GuiButton downButton = new GuiButton(0, 146, 147, 21, 21, "DN");
 
@@ -40,7 +40,7 @@ public class GUITrainTable extends GuiContainer {
         super(new TransportSlotManager(inventoryPlayer, (TileEntityStorage) world.getTileEntity(x,y,z)));
         hostname=world.getBlock(x,y,z).getUnlocalizedName();
 
-        if (ClientProxy.isTraincraft) {
+        if (ClientProxy.isTraincraft && !hostname.equals("tile.block.traintable")) {
             this.ySize = 256;
         }
     }
@@ -58,10 +58,10 @@ public class GUITrainTable extends GuiContainer {
     }
 
     protected void drawGuiContainerForegroundLayer(int p_146979_1_, int p_146979_2_) {
-        if (!ClientProxy.isTraincraft) {
+        if (!ClientProxy.isTraincraft || hostname.equals("tile.block.traintable")) {
             this.fontRendererObj.drawString(I18n.format("container.inventory"), 8, this.ySize - 96 + 2, 4210752);
         } else {
-            if (hostname.equals("tile.block.traintabletier1") || hostname.equals("tile.block.traintabletier2") || hostname.equals("tile.block.traintabletier3")) {
+            if (hostname.startsWith("tile.block.traintable")) {
                 //assembly table and traincraft
                 //TODO: localize strings, edit colors if need be.
                 this.fontRendererObj.drawString(I18n.format("container.inventory"), 8, this.ySize - 92, 4210752);
@@ -120,8 +120,8 @@ public class GUITrainTable extends GuiContainer {
             GL11.glEnable(GL11.GL_LIGHTING);
             GL11.glPopMatrix();
 
-        } else if (hostname.equals("tile.block.traintabletier1") || hostname.equals("tile.block.traintabletier2") || hostname.equals("tile.block.traintabletier3")){
-            if (!ClientProxy.isTraincraft) { //TiM stuff
+        } else if (hostname.startsWith("tile.block.traintable")){
+            if (!ClientProxy.isTraincraft || hostname.equals("tile.block.traintable")) { //TiM stuff
                 this.mc.getTextureManager().bindTexture(ClientUtil.craftingTableGuiTextures);
                 this.drawTexturedModalRect(guiLeft, guiTop, 0, 0, this.xSize, this.ySize);
 

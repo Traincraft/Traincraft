@@ -16,7 +16,7 @@ import static ebf.tim.registry.TiMGenericRegistry.registerBlock;
 public class TiMBlocks {
 
     /**the crafting table for trains*/
-    public static BlockDynamic trainTable = new BlockDynamic(new Material(MapColor.mapColorArray[13]), true, true); //original
+    public static BlockDynamic trainTable = new BlockDynamic(new Material(MapColor.mapColorArray[13]), true, true, 0); //tier 0 = "no tier"
 
     public static BlockDynamic railTable = new BlockDynamic(new Material(MapColor.mapColorArray[6]), true, true);
 

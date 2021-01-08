@@ -64,6 +64,7 @@ public class RecipeManager {
     }
 
     /**Compares and returns a list of trains that are craftable with the given array of ItemStacks (the inputted recipe)
+     * Funnily enough, in wanting to have a tier-less traintable, I implemented a fourth tier, tier 0.
      *
      * @param recipe An array of ItemStacks that could be a valid recipe.
      * @param tier The tier to compare recipes against. Will only look for results in given tier.
