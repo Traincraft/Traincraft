@@ -21,8 +21,8 @@ public class RecipeManager {
     //private static List<Item> ingotDirectory = new ArrayList<>();
 
 
-    public static void registerRecipe(Object[] recipe, ItemStack output){
-        registerRecipe(getRecipe(recipe,output));
+    public static void registerRecipe(Object[] recipe, ItemStack output, int tier){
+        registerRecipe(getRecipe(recipe, output, tier));
     }
 
     public static void registerRecipe(Recipe recipe){
@@ -183,8 +183,8 @@ public class RecipeManager {
 
 
 
-    public static Recipe getRecipe(Object[] obj, ItemStack cartItem){
-        return new Recipe(new ItemStack[]{cartItem},
+    public static Recipe getRecipe(Object[] obj, ItemStack cartItem, int tier){
+        Recipe r = new Recipe(new ItemStack[]{cartItem},
                 getItem(obj[0]),
                 getItem(obj[1]),
                 getItem(obj[2]),
@@ -195,6 +195,8 @@ public class RecipeManager {
                 getItem(obj[7]),
                 getItem(obj[8])
         );
+        r.setTier(tier);
+        return r;
     }
 
     public static ItemStack[] getItem(Object itm){

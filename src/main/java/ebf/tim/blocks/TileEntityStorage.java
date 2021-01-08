@@ -66,7 +66,7 @@ public class TileEntityStorage extends TileRenderFacing implements IInventory, I
                 //tile entity's crafting grid (right hand grid)
                 for (int l = 0; l < 3; ++l) {
                     for (int i1 = 0; i1 < 3; ++i1) {
-                        inventory.add(new ItemStackSlot(this, s).setCoords(106 + i1 * 18, 17 + l * 18).setCraftingOutput(true));
+                        inventory.add(new ItemStackSlot(this, s, assemblyTableTier).setCoords(106 + i1 * 18, 17 + l * 18).setCraftingOutput(true));
                         s++;
                     }
                 }
@@ -88,14 +88,16 @@ public class TileEntityStorage extends TileRenderFacing implements IInventory, I
                 //create the assembly table output slots (9-16)
                 for(int i = 0; i < 2; ++i){
                     for(int j = 0; j < 4; ++j){
-                        inventory.add(new ItemStackSlot(this, (s+9) + (j + i * 4)).setCoords(92 + j * 18, (128) + i * 18).setCraftingOutput(true));
+                        inventory.add(new ItemStackSlot(this, (s+9) + (j + i * 4), assemblyTableTier).setCoords(92 + j * 18, (128) + i * 18).setCraftingOutput(true));
                     }
                 }
 
                 //create the assembly table storage slots
+                //  slots 35 - 400 were meant for storage
+                int storageSlot = 36;
                 for(int i = 0; i < 2; ++i) {
                     for (int j = 0; j < 4; ++j) {
-                        inventory.add(new ItemStackSlot(this, (s + 17) + (j + i * 4)).setCoords(8 + j * 18, (128) + i * 18));
+                        inventory.add(new ItemStackSlot(this, (storageSlot) + (j + i * 4)).setCoords(8 + j * 18, (128) + i * 18));
                     }
                 }
             }
