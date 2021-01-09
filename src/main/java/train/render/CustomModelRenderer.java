@@ -4,9 +4,9 @@ package train.render;
 import fexcraft.tmt.slim.*;
 import net.minecraft.client.Minecraft;
 import org.lwjgl.opengl.GL11;
-import scala.actors.threadpool.Arrays;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class CustomModelRenderer extends ModelRendererTurbo {
 
@@ -57,8 +57,6 @@ public class CustomModelRenderer extends ModelRendererTurbo {
 		aTexturedVertex[3] = new TexturedVertex(aTexturedVertex[3].vector3F,(float) k / textureWidth - 0.0015625F, (float) l / textureHeight - 0.003125F);
 		return new TexturedPolygon(Arrays.asList(aTexturedVertex));
 	}
-
-	private static final float degreesF = (float)(180D/Math.PI);
 
 	//same as super, but old models have inverse Y rotations and I don't even understand the Z rotation
 	@Override

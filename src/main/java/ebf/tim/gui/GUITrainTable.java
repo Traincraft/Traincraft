@@ -5,6 +5,7 @@ import ebf.tim.blocks.TileEntityStorage;
 import ebf.tim.networking.PacketCraftingPage;
 import ebf.tim.utility.*;
 import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.GuiLabel;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -50,14 +51,7 @@ public class GUITrainTable extends GuiContainer {
 
         buttonList =new ArrayList();
 
-        int[] upButtonCoord = {145, 127};
-        int[] downButtonCoord = {145, 145};
-        if (hostname.equals("tile.block.traintable")) {
-            upButtonCoord = new int[]{124, 53};
-            downButtonCoord = new int[]{142, 53};
-        }
-
-        this.buttonList.add(new GUIButton(this.guiLeft + downButtonCoord[0], this.guiTop + downButtonCoord[1], 19, 18,"DN"){
+        this.buttonList.add(new GUIButton(guiLeft+105, guiTop+34, 18, 18,"<<"){
             @Override
             public String getHoverText() {
                 return "Previous Page";
@@ -68,7 +62,7 @@ public class GUITrainTable extends GuiContainer {
             }
         });
 
-        this.buttonList.add(new GUIButton(this.guiLeft + upButtonCoord[0], this.guiTop + upButtonCoord[1], 19,18, "UP") {
+        this.buttonList.add(new GUIButton(this.guiLeft + 141, this.guiTop + 34, 18,18, ">>") {
             @Override
             public String getHoverText() {
                 return "Next Page";
@@ -78,6 +72,18 @@ public class GUITrainTable extends GuiContainer {
                 TrainsInMotion.keyChannel.sendToServer(new PacketCraftingPage(true,xCoord,yCoord,zCoord,dimension));
             }
         });
+    }
+
+    @Override
+    public void drawScreen(int p_73863_1_, int p_73863_2_, float p_73863_3_) {
+        super.drawScreen(p_73863_1_, p_73863_2_, p_73863_3_);
+
+        //draw button hover text
+        for (Object b : buttonList){
+            if(b instanceof GUIButton) {
+                ((GUIButton) b).drawText(p_73863_1_, p_73863_2_);
+            }
+        }
     }
 
     protected void drawGuiContainerForegroundLayer(int p_146979_1_, int p_146979_2_) {

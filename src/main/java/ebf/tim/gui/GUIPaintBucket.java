@@ -90,11 +90,18 @@ public class GUIPaintBucket extends GuiScreen {
             return;
         }
         currentTransportSkin = entity.getTextureByID(Minecraft.getMinecraft().thePlayer,true, skinList.get(page));
-        //initGui();
+
         if(currentTransportSkin ==null){return;}
 
         switch(guiScreen) {
             case 0:{defineButtons();guiSkinSelect();break;}
+        }
+
+        //draw button hover text
+        for (Object b : buttonList){
+            if(b instanceof GUIButton) {
+                ((GUIButton) b).drawText(parWidth, parHeight);
+            }
         }
     }
 
@@ -138,7 +145,7 @@ public class GUIPaintBucket extends GuiScreen {
 
 
                 buttonList.add(
-                        new GUIButton( percentLeft(75)-10,percentTop(56), 20,20,"Apply") {
+                        new GUIButton( percentLeft(83)-16,percentTop(56), 32,20,"Apply") {
                             @Override
                             public String getHoverText() {
                                 return "Apply Skin";
@@ -159,7 +166,7 @@ public class GUIPaintBucket extends GuiScreen {
 
 
                 buttonList.add(
-                        new GUIButton( percentLeft(75)-10,percentTop(56), 20,20,"Close") {
+                        new GUIButton( percentLeft(75)-16,percentTop(45), 64,20, "Close") {
                             @Override
                             public String getHoverText() {
                                 return "Close Menu";
@@ -258,4 +265,10 @@ public class GUIPaintBucket extends GuiScreen {
     }
 
 
+    @Override
+    protected void actionPerformed(GuiButton button) {
+        if (button instanceof GUIButton) {
+            ((GUIButton) button).onClick();
+        }
+    }
 }
