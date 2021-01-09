@@ -201,6 +201,23 @@ public class RecipeManager {
         return r;
     }
 
+    //This is necessary because the GenericRegistry will have to set the tier on the recipe somehow, in case it is set on the class.
+    public static Recipe getRecipeWithTier(Object[] obj, ItemStack cartItem, int tier){
+        Recipe r = new Recipe(new ItemStack[]{cartItem},
+                getItem(obj[0]),
+                getItem(obj[1]),
+                getItem(obj[2]),
+                getItem(obj[3]),
+                getItem(obj[4]),
+                getItem(obj[5]),
+                getItem(obj[6]),
+                getItem(obj[7]),
+                getItem(obj[8])
+        );
+        r.setTier(tier);
+        return r;
+    }
+
     public static ItemStack[] getItem(Object itm){
         ItemStack[] list = new ItemStack[1];
         if(itm==null){
