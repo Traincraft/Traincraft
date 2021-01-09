@@ -47,6 +47,7 @@ import java.util.List;
 import java.util.Random;
 
 import static ebf.tim.utility.RecipeManager.getRecipe;
+import static ebf.tim.utility.RecipeManager.getRecipeWithTier;
 
 /**
  * <h1>Train registry</h1>
@@ -252,10 +253,10 @@ public class TiMGenericRegistry {
             GameRegistry.registerItem(registry.getCartItem().getItem(), registry.getCartItem().getItem().getUnlocalizedName());
             if(registry.getRecipe()!=null) {
                 if (CommonProxy.recipesInMods.containsKey(MODID)) {
-                    CommonProxy.recipesInMods.get(MODID).add(getRecipe(registry.getRecipe(), registry.getCartItem(), registry.getTier()));
+                    CommonProxy.recipesInMods.get(MODID).add(getRecipeWithTier(registry.getRecipe(), registry.getCartItem(), registry.getTier()));
                 } else {
                     CommonProxy.recipesInMods.put(MODID, new ArrayList<Recipe>());
-                    CommonProxy.recipesInMods.get(MODID).add(getRecipe(registry.getRecipe(), registry.getCartItem(), registry.getTier()));
+                    CommonProxy.recipesInMods.get(MODID).add(getRecipeWithTier(registry.getRecipe(), registry.getCartItem(), registry.getTier()));
                 }
             }
             if(TrainsInMotion.proxy.isClient() && ClientProxy.hdTransportItems){

@@ -33,7 +33,7 @@ public class TileEntityStorage extends TileRenderFacing implements IInventory, I
     /**the list of item stacks in the inventory*/
     public List<ItemStackSlot> inventory = new ArrayList<ItemStackSlot>();
     public int storageType=0;
-    public int outputPage=0;
+    public int outputPage=1;
     public int pages=1;
     public int assemblyTableTier = -1; //only applies if part of assemblyTable/traintable, no need to set otherwise.
 
@@ -86,9 +86,9 @@ public class TileEntityStorage extends TileRenderFacing implements IInventory, I
                 inventory.add(new ItemStackSlot(this, s+8, assemblyTableTier).setCoords(145, 93).setCraftingInput(true));
 
                 //create the assembly table output slots (9-16)
-                for(int i = 0; i < 2; ++i){
-                    for(int j = 0; j < 4; ++j){
-                        inventory.add(new ItemStackSlot(this, (s+9) + (j + i * 4), assemblyTableTier).setCoords(92 + j * 18, (128) + i * 18).setCraftingOutput(true));
+                for(int i = 0; i < 4; ++i){
+                    for(int j = 0; j < 2; ++j){
+                        inventory.add(new ItemStackSlot(this, (s+9) + (j + i * 4), assemblyTableTier).setCoords(92 + i * 18, (128) + j * 18).setCraftingOutput(true));
                     }
                 }
 
@@ -377,7 +377,7 @@ public class TileEntityStorage extends TileRenderFacing implements IInventory, I
     @Override
     public boolean isItemValidForSlot(int slot, ItemStack itemStack) {
         switch (storageType){
-            //todo prevent putting items in output
+            //to do prevent putting items in output (taken care of elsewhere, left here as a note)
             case 0:{
                 return true;
             }
@@ -404,12 +404,11 @@ public class TileEntityStorage extends TileRenderFacing implements IInventory, I
         }
     }
 
-    //TODO: page incrementing and decrementing.
     /**
      * Goes to the next page of trains that fit the recipe. Will only increment if there is another page.
      */
     public void incrementPage() {
-        if (pages>1) {
+        if (pages > 1 && outputPage < pages) {
             //get the number of remaining pages
             //if there are some, increment the outputPage int
             outputPage++;

@@ -244,15 +244,18 @@ public class ItemStackSlot extends Slot {
             for (int i = 0; i < numberSlots; i++) {
                 putStackInSlot(hostSlots,409 + i, null);
             }
+            ((TileEntityStorage) hostInventory).pages = 1;
+            ((TileEntityStorage) hostInventory).outputPage = 1;
         } else {
-            if(slots.size()<numberSlots) {
+            if(slots.size() <= numberSlots) {
                 for (int i = 0; i < numberSlots; i++) {
                     putStackInSlot(hostSlots,409 + i, i >= slots.size() ?null: slots.get(i));
                 }
-                ((TileEntityStorage)hostInventory).pages=1;
-            } else {//when theres 10 or more outputs skip 2 since buttons will be in their place.
-                for (int i = 0; i < numberSlots-2; i++) {
-                    putStackInSlot(hostSlots,409 + i + (7*page), slots.get(i + (7*page)));
+                ((TileEntityStorage)hostInventory).pages = 1;
+                ((TileEntityStorage)hostInventory).outputPage = 1;
+            } else {//skip 2 since buttons will be in their place.
+                for (int i = 0; i < numberSlots-2; i++) {//TODO: disable the slots with buttons (last two)
+                    putStackInSlot(hostSlots,409 + i + ((numberSlots-2)*(page-1)), slots.get(i + ((numberSlots-2)*(page-1))));
                 }
 //                putStackInSlot(hostSlots,409 + (7*page), slots.get((7*page)));
 //                putStackInSlot(hostSlots,410 + (7*page), slots.get(1+ (7*page)));
@@ -264,9 +267,9 @@ public class ItemStackSlot extends Slot {
 //                putStackInSlot(hostSlots,416 + (7*page), slots.get(5+ (7*page)));
 //                putStackInSlot(hostSlots,417 + (7*page), slots.get(6+ (7*page)));
 
-                ((TileEntityStorage)hostInventory).pages=numberSlots/slots.size();
+                //divide the possible trains by the number of usable slots on each page and round it up
+                ((TileEntityStorage)hostInventory).pages = (slots.size()/(numberSlots-2)) + 1;
             }
-
         }
     }
 
@@ -278,7 +281,7 @@ public class ItemStackSlot extends Slot {
                     List<ItemStack> slots = RecipeManager.getResult(RecipeManager.getTransportRecipe(hostInventory), this.tierIn);
 
                     if (ClientProxy.isTraincraft && tierIn > 0) {
-                        putResultsInOutputSlots(hostInventory, hostSlots, slots, page, 7);
+                        putResultsInOutputSlots(hostInventory, hostSlots, slots, page, 8);
                     } else {
                         putResultsInOutputSlots(hostInventory, hostSlots, slots, page, 9);
                     }

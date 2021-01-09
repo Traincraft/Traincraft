@@ -4,6 +4,7 @@ import ebf.tim.TrainsInMotion;
 import ebf.tim.blocks.TileEntityStorage;
 import ebf.tim.networking.PacketCraftingPage;
 import ebf.tim.utility.*;
+import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -49,7 +50,14 @@ public class GUITrainTable extends GuiContainer {
 
         buttonList =new ArrayList();
 
-        this.buttonList.add(new GUIButton(146, 147, 21, 21,"DN"){
+        int[] upButtonCoord = {145, 127};
+        int[] downButtonCoord = {145, 145};
+        if (hostname.equals("tile.block.traintable")) {
+            upButtonCoord = new int[]{124, 53};
+            downButtonCoord = new int[]{142, 53};
+        }
+
+        this.buttonList.add(new GUIButton(this.guiLeft + downButtonCoord[0], this.guiTop + downButtonCoord[1], 19, 18,"DN"){
             @Override
             public String getHoverText() {
                 return "Previous Page";
@@ -60,7 +68,7 @@ public class GUITrainTable extends GuiContainer {
             }
         });
 
-        this.buttonList.add(new GUIButton(146, 127, 21,21, "UP") {
+        this.buttonList.add(new GUIButton(this.guiLeft + upButtonCoord[0], this.guiTop + upButtonCoord[1], 19,18, "UP") {
             @Override
             public String getHoverText() {
                 return "Next Page";
@@ -70,15 +78,6 @@ public class GUITrainTable extends GuiContainer {
                 TrainsInMotion.keyChannel.sendToServer(new PacketCraftingPage(true,xCoord,yCoord,zCoord,dimension));
             }
         });
-
-
-
-//        this.buttonList.add(upButton);
-//        this.buttonList.add(downButton);
-//        upButton.enabled = false;
-//        downButton.enabled = false;
-//        upButton.visible = false;
-//        downButton.visible = false;
     }
 
     protected void drawGuiContainerForegroundLayer(int p_146979_1_, int p_146979_2_) {
@@ -195,10 +194,32 @@ public class GUITrainTable extends GuiContainer {
                 this.drawTexturedModalRect(guiLeft, guiTop, 0, 0, this.xSize, this.ySize);
             }
 
+            //disable or enable buttons depending on pages
+            if (((TileEntityStorage) ((TransportSlotManager) this.inventorySlots).hostInventory).pages > 1) {
+                for (Object button : buttonList) {
+                    if (button instanceof GuiButton) {
+                        ((GuiButton) button).visible = true;
+                    }
+                }
+            } else {
+                for (Object button : buttonList) {
+                    if (button instanceof GuiButton) {
+                        ((GuiButton) button).visible = false;
+                    }
+                }
+            }
+
         } else {
             this.mc.getTextureManager().bindTexture(ClientUtil.craftingTableGuiTextures);
             this.drawTexturedModalRect(guiLeft, guiTop, 0, 0, this.xSize, this.ySize);
         }
         GL11.glPopMatrix();
+    }
+
+    @Override
+    protected void actionPerformed(GuiButton button) {
+        if (button instanceof GUIButton) {
+            ((GUIButton) button).onClick();
+        }
     }
 }
