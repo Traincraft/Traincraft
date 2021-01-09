@@ -86,6 +86,31 @@ public class CylinderBuilder {
         return setTopRotation(vec.xCoord, vec.yCoord, vec.zCoord);
     }
 
+    public CylinderBuilder removePolygon(int index){
+        if(index >= 0 && index <= 5){
+            togglesides[index] = true;
+        }
+        return this;
+    }
+
+    public CylinderBuilder removePolygons(int... poly_indices){
+        for(int index : poly_indices){
+            if(index >= 0 && index <= 5){
+                togglesides[index] = true;
+            }
+        }
+        return this;
+    }
+
+    public CylinderBuilder removePolygons(boolean... sides){
+        for(int index = 0; index < 6; index++){
+            if(sides.length >= (index + 1) && sides[index]){
+                togglesides[index] = true;
+            }
+        }
+        return this;
+    }
+
     public ModelRendererTurbo build(){
         if(radius2 == 0f && toprot == null){
             return root.addCylinder(x, y, z, radius, length, segments, base_scale, top_scale, direction, texDiameterW, texDiameterH, texHeight, topoff);

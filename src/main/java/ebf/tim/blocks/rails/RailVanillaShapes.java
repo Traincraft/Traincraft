@@ -24,7 +24,7 @@ public class RailVanillaShapes extends RailShapeCore{
         //intersections
         if (nearbyMeta[7] == 1 &&
                 checkBlockMeta(worldObj, xCoord, yCoord, zCoord + 2, 0)) {
-            shape.setEnd(0, 0, 1f).setSleeperCount(6);
+            shape.setEnd(0, 0, 1f).setSleeperCount(9);
         }
         if (nearbyMeta[1] == 1 && checkBlockMeta(worldObj, xCoord, yCoord, zCoord - 2, 0)) {
             shape.setStart(0, 0, -1f).setSleeperCount(6);
@@ -44,13 +44,13 @@ public class RailVanillaShapes extends RailShapeCore{
         //cover parallels
         if (nearbyMeta[7] == 7 && nearbyMeta[6] == 9) {
             shape.setEnd(parallelWidth, 0, 2f, parallelWidth)
-                    .setCenter(0, 0, 1.5f)
-                    .setSleeperCount(8);
+                    .setCenter(0, 0, 1f)
+                    .setSleeperCount(9);
         } else if (nearbyMeta[7] == 8 && nearbyMeta[6] == 9 &&
                 checkBlockMeta(worldObj, xCoord, yCoord, zCoord + 2, 0)//cover sharp u-turns
-            ) {
-            shape.setEnd(0, 0, 2f)
-                    .setCenter(0, 0, 1.5f)
+        ) {
+            shape.setEnd(0, 0, 1.5f)
+                    .setCenter(0, 0, 1f)
                     .setSleeperCount(8);
         }
 
@@ -60,7 +60,7 @@ public class RailVanillaShapes extends RailShapeCore{
                     .setSleeperCount(8);
         } else if (nearbyMeta[7] == 9 && nearbyMeta[8] == 8 &&
                 checkBlockMeta(worldObj, xCoord, yCoord, zCoord + 2, 0)//cover sharp u-turns
-            ) {
+        ) {
             shape.setEnd(0, 0, 2f)
                     .setCenter(0, 0, 1f)
                     .setSleeperCount(8);
@@ -84,7 +84,9 @@ public class RailVanillaShapes extends RailShapeCore{
         } else if (nearbyMeta[1] == 7 && nearbyMeta[0] == 6 &&
                 checkBlockMeta(worldObj, xCoord, yCoord, zCoord - 2, 0)//cover sharp u-turns
         ) {
-            shape.setStart(0, 0, -2f).setCenter(0, 0, -1.5f).setSleeperCount(8);
+            shape.setStart(0, 0, -1.5f)
+                    .setCenter(0, 0, -1f)
+                    .setSleeperCount(8);
         }
 
 
@@ -144,11 +146,11 @@ public class RailVanillaShapes extends RailShapeCore{
 
         //cover parallels
         if(((nearbyMeta[3]==9 && nearbyMeta[0]==6) || (nearbyMeta[3]==6 && nearbyMeta[6]==9))
-        && checkBlockMeta(worldObj, xCoord-2, yCoord, zCoord, 1)//cover sharp u-turns
+                && checkBlockMeta(worldObj, xCoord-2, yCoord, zCoord, 1)//cover sharp u-turns
         ){
             shape.setEnd(-2,0,0)
                     .setCenter(-1,0,0)
-            .setSleeperCount(8);
+                    .setSleeperCount(8);
         } else if(nearbyMeta[3]==8 && nearbyMeta[0]==6){
             shape.setEnd(-2,0,parallelWidth,parallelWidth)
                     .setCenter(-1,0,0)
@@ -296,7 +298,7 @@ public class RailVanillaShapes extends RailShapeCore{
         }
         if(nearbyMeta[1]==7 && nearbyMeta[5]==1){
             shape.setStart(1+parallelWidth,0,-parallelWidth, parallelWidth)
-            .setCenter(0.25f,0,-0.25f);
+                    .setCenter(0.25f,0,-0.25f);
         }
 
         //slopes
@@ -354,7 +356,7 @@ public class RailVanillaShapes extends RailShapeCore{
             shape.setStart(-0.5f,0,0)
                     .setCenter(-0.25f,0,-0.25f)
                     .setEnd(-parallelWidth,0,-1f-parallelWidth,parallelWidth)
-            .setSleeperCount(6);
+                    .setSleeperCount(6);
         }
 
         //slopes

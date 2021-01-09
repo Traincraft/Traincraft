@@ -34,7 +34,7 @@ public class TileEntityStorage extends TileRenderFacing implements IInventory, I
     public List<ItemStackSlot> inventory = new ArrayList<ItemStackSlot>();
     public int storageType=0;
     public int outputPage=0;
-    public boolean multiPage=false;
+    public int pages=1;
     public int assemblyTableTier = -1; //only applies if part of assemblyTable/traintable, no need to set otherwise.
 
     public TileEntityStorage(BlockDynamic block){
@@ -409,14 +409,15 @@ public class TileEntityStorage extends TileRenderFacing implements IInventory, I
      * Goes to the next page of trains that fit the recipe. Will only increment if there is another page.
      */
     public void incrementPage() {
-        if (multiPage) {
+        if (pages>1) {
             //get the number of remaining pages
             //if there are some, increment the outputPage int
+            outputPage++;
         }
     }
 
     public void decrementPage() {
-        if (multiPage) {
+        if (pages>1) {
             if (outputPage > 0) { // > 0 means it's gone through at least a page.
                 outputPage--;
             }

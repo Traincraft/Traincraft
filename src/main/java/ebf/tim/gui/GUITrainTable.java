@@ -1,8 +1,9 @@
 package ebf.tim.gui;
 
+import ebf.tim.TrainsInMotion;
 import ebf.tim.blocks.TileEntityStorage;
+import ebf.tim.networking.PacketCraftingPage;
 import ebf.tim.utility.*;
-import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -24,6 +25,7 @@ public class GUITrainTable extends GuiContainer {
     private static List<ItemStack> overlays = new ArrayList<>();
     private static List<Integer> slotx = new ArrayList<>();
     private static List<Integer> sloty = new ArrayList<>();
+    private static int xCoord, yCoord, zCoord, dimension;
     private static final ResourceLocation[] asmTableGUIs = { //hardcoded modID to avoid having to import traincraft.
             new ResourceLocation("traincraft", "textures/gui/gui_tierI_ironAge.png"),
             new ResourceLocation("traincraft", "textures/gui/gui_tierII_steelAge.png"),
@@ -31,10 +33,6 @@ public class GUITrainTable extends GuiContainer {
     };
 
     private String hostname;
-
-    //TODO: button placement broken, functionality broken
-    private GuiButton upButton = new GuiButton(0, 146, 127, 21, 21, "UP");
-    private GuiButton downButton = new GuiButton(0, 146, 147, 21, 21, "DN");
 
     public GUITrainTable(InventoryPlayer inventoryPlayer, World world, int x, int y, int z) {
         super(new TransportSlotManager(inventoryPlayer, (TileEntityStorage) world.getTileEntity(x,y,z)));
@@ -48,6 +46,32 @@ public class GUITrainTable extends GuiContainer {
     @Override
     public void initGui() {
         super.initGui();
+
+        buttonList =new ArrayList();
+
+        this.buttonList.add(new GUIButton(0, 146, 147, 21, "DN"){
+            @Override
+            public String getHoverText() {
+                return "Previous Page";
+            }
+            @Override
+            public void onClick() {
+                TrainsInMotion.keyChannel.sendToServer(new PacketCraftingPage(false,xCoord,yCoord,zCoord,dimension));
+            }
+        });
+
+        this.buttonList.add(new GUIButton(0, 146, 127, 21, "UP") {
+            @Override
+            public String getHoverText() {
+                return "Next Page";
+            }
+            @Override
+            public void onClick() {
+                TrainsInMotion.keyChannel.sendToServer(new PacketCraftingPage(true,xCoord,yCoord,zCoord,dimension));
+            }
+        });
+
+
 
 //        this.buttonList.add(upButton);
 //        this.buttonList.add(downButton);
@@ -177,14 +201,4 @@ public class GUITrainTable extends GuiContainer {
         }
         GL11.glPopMatrix();
     }
-
-    @Override
-    public void actionPerformed(GuiButton button) {
-        if (button == this.upButton) {
-            //TODO: get the TileEntityStorage and run incrementPage() function.
-        } else if (button ==  this.downButton) {
-            //TODO: get the TileEntityStorage and run decrementPage() function.
-        }
-    }
-
 }

@@ -249,7 +249,7 @@ public class ItemStackSlot extends Slot {
                 for (int i = 0; i < numberSlots; i++) {
                     putStackInSlot(hostSlots,409 + i, i >= slots.size() ?null: slots.get(i));
                 }
-                ((TileEntityStorage)hostInventory).multiPage=false;
+                ((TileEntityStorage)hostInventory).pages=1;
             } else {//when theres 10 or more outputs skip 2 since buttons will be in their place.
                 for (int i = 0; i < numberSlots-2; i++) {
                     putStackInSlot(hostSlots,409 + i + (7*page), slots.get(i + (7*page)));
@@ -264,7 +264,7 @@ public class ItemStackSlot extends Slot {
 //                putStackInSlot(hostSlots,416 + (7*page), slots.get(5+ (7*page)));
 //                putStackInSlot(hostSlots,417 + (7*page), slots.get(6+ (7*page)));
 
-                ((TileEntityStorage)hostInventory).multiPage=true;
+                ((TileEntityStorage)hostInventory).pages=numberSlots/slots.size();
             }
 
         }
