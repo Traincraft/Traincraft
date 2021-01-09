@@ -162,7 +162,7 @@ public class GUIPaintBucket extends GuiScreen {
                         new GUIButton( percentLeft(75)-10,percentTop(56), 20,20,"Close") {
                             @Override
                             public String getHoverText() {
-                                return "CLose Menu";
+                                return "Close Menu";
                             }
                             @Override
                             public void onClick() {

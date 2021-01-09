@@ -22,7 +22,10 @@ public class RecipeManager {
 
 
     public static void registerRecipe(Object[] recipe, ItemStack output, int tier){
-        registerRecipe(getRecipe(recipe, output, tier));
+        registerRecipe(getRecipe(recipe, output).setTier(tier));
+    }
+    public static void registerRecipe(Object[] recipe, ItemStack output){
+        registerRecipe(getRecipe(recipe, output));
     }
 
     public static void registerRecipe(Recipe recipe){
@@ -183,7 +186,7 @@ public class RecipeManager {
 
 
 
-    public static Recipe getRecipe(Object[] obj, ItemStack cartItem, int tier){
+    public static Recipe getRecipe(Object[] obj, ItemStack cartItem){
         Recipe r = new Recipe(new ItemStack[]{cartItem},
                 getItem(obj[0]),
                 getItem(obj[1]),
@@ -195,7 +198,6 @@ public class RecipeManager {
                 getItem(obj[7]),
                 getItem(obj[8])
         );
-        r.setTier(tier);
         return r;
     }
 

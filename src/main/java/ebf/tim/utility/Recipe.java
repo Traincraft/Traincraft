@@ -94,8 +94,9 @@ public class Recipe {
         return tier;
     }
 
-    public void setTier(int tier) {
+    public Recipe setTier(int tier) {
         this.tier = tier;
+        return this;
     }
 
     public List<List<ItemStack>> getRecipeItems() {
