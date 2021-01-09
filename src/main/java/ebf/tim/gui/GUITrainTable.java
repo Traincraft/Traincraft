@@ -49,7 +49,7 @@ public class GUITrainTable extends GuiContainer {
 
         buttonList =new ArrayList();
 
-        this.buttonList.add(new GUIButton(0, 146, 147, 21, "DN"){
+        this.buttonList.add(new GUIButton(146, 147, 21, 21,"DN"){
             @Override
             public String getHoverText() {
                 return "Previous Page";
@@ -60,7 +60,7 @@ public class GUITrainTable extends GuiContainer {
             }
         });
 
-        this.buttonList.add(new GUIButton(0, 146, 127, 21, "UP") {
+        this.buttonList.add(new GUIButton(146, 127, 21,21, "UP") {
             @Override
             public String getHoverText() {
                 return "Next Page";
