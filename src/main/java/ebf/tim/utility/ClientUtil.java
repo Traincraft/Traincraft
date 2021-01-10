@@ -6,12 +6,15 @@ import fexcraft.tmt.slim.TextureManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.GLAllocation;
+import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL12;
 
+import java.util.Iterator;
 import java.util.List;
 
 public class ClientUtil {
@@ -44,12 +47,11 @@ public class ClientUtil {
         }
         GL11.glPopMatrix();
 
-
         GL11.glPushMatrix();
         RenderHelper.enableStandardItemLighting();
         for (i=0;i<slots.size(); i++){
             if (slots.get(i) != null && overlays == null) {
-                DrawItemSlotPreview(slotX.get(i)+guiLeft, slotY.get(i)+guiTop,mouseX,mouseY, slots.get(i), itemRender);
+                DrawItemSlotPreview(slotX.get(i)+guiLeft, slotY.get(i)+guiTop,mouseX,mouseY, slots.get(i), guiLeft, guiTop, itemRender);
             }
         }
         RenderHelper.disableStandardItemLighting();
@@ -60,7 +62,7 @@ public class ClientUtil {
             RenderHelper.enableStandardItemLighting();
             for (i=0;i<slots.size(); i++){
                 if (overlays.get(i) != null && slots.get(i) == null) {
-                    DrawItemSlotPreview(slotX.get(i)+guiLeft, slotY.get(i)+guiTop,mouseX,mouseY, overlays.get(i), itemRender);
+                    DrawItemSlotPreview(slotX.get(i)+guiLeft, slotY.get(i)+guiTop,mouseX,mouseY, overlays.get(i), guiLeft, guiTop, itemRender);
                 }
             }
             RenderHelper.disableStandardItemLighting();
@@ -88,7 +90,7 @@ public class ClientUtil {
     }
 
 
-    private static void DrawItemSlotPreview(float x, float y, int mouseX, int mouseY, ItemStack overlay, RenderItem itemRender){
+    private static void DrawItemSlotPreview(float x, float y, int mouseX, int mouseY, ItemStack overlay, float guiLeft, float guiTop, RenderItem itemRender){
 
         if(overlay!=null && overlay.getItem()!=null) {
             //render the item and the overlay
@@ -98,6 +100,57 @@ public class ClientUtil {
                     overlay, (int)x, (int)y, null);
         }
 
+        if(mouseX>x && mouseX<x+18 && mouseY>y && mouseY<y+18){
+            GL11.glPushMatrix();
+            drawHoveringText(overlay.getDisplayName(), mouseX, mouseY, guiLeft,guiTop);
+
+            GL11.glPopMatrix();
+        }
+    }
+
+
+
+    public static void drawHoveringText(String str, int x, int y, float guiWidth, float guiHeight) {
+        GL11.glDisable(GL12.GL_RESCALE_NORMAL);
+        RenderHelper.disableStandardItemLighting();
+        GL11.glDisable(GL11.GL_LIGHTING);
+        GL11.glDisable(GL11.GL_TEXTURE_2D);
+
+        int j2 = x + 12;
+        int k2 = y;
+        int i1 = 8;
+        int k=Minecraft.getMinecraft().fontRenderer.getStringWidth(str);
+
+
+        if (j2 + k > Minecraft.getMinecraft().displayWidth/2) {
+            j2 -= 16 + k;
+        }
+
+        if (k2 + i1 + 6 > Minecraft.getMinecraft().displayHeight) {
+            k2 -= 6;
+        }
+
+        GL11.glTranslatef(0,0,1);
+        int j1 = -267386864;
+        drawGradientRect(j2 - 3, k2 - 4, j2 + k + 3, k2 - 3, j1, j1);
+        drawGradientRect(j2 - 3, k2 + i1 + 3, j2 + k + 3, k2 + i1 + 4, j1, j1);
+        drawGradientRect(j2 - 3, k2 - 3, j2 + k + 3, k2 + i1 + 3, j1, j1);
+        drawGradientRect(j2 - 4, k2 - 3, j2 - 3, k2 + i1 + 3, j1, j1);
+        drawGradientRect(j2 + k + 3, k2 - 3, j2 + k + 4, k2 + i1 + 3, j1, j1);
+        int k1 = 1347420415;
+        int l1 = (k1 & 16711422) >> 1 | k1 & -16777216;
+        drawGradientRect(j2 - 3, k2 - 3 + 1, j2 - 3 + 1, k2 + i1 + 3 - 1, k1, l1);
+        drawGradientRect(j2 + k + 2, k2 - 3 + 1, j2 + k + 3, k2 + i1 + 3 - 1, k1, l1);
+        drawGradientRect(j2 - 3, k2 - 3, j2 + k + 3, k2 - 3 + 1, k1, k1);
+        drawGradientRect(j2 - 3, k2 + i1 + 2, j2 + k + 3, k2 + i1 + 3, l1, l1);
+        GL11.glEnable(GL11.GL_TEXTURE_2D);
+
+        GL11.glTranslatef(0,0,400);
+        Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(str, j2, k2, -1);
+
+        GL11.glEnable(GL11.GL_LIGHTING);
+        RenderHelper.enableStandardItemLighting();
+        GL11.glEnable(GL12.GL_RESCALE_NORMAL);
     }
 
 
@@ -176,6 +229,35 @@ public class ClientUtil {
         tessellator.addVertexWithUV(posX + width, posY, 0, (posU + width) * guiScaler, posV * guiScaler);
         tessellator.addVertexWithUV(posX, posY, 0, posU * guiScaler, posV * guiScaler);
         tessellator.draw();
+    }
+
+    public static void drawGradientRect(int p_73733_1_, int p_73733_2_, int p_73733_3_, int p_73733_4_, int p_73733_5_, int p_73733_6_) {
+        float f = (p_73733_5_ >> 24 & 255) / 255.0F;
+        float f1 = (p_73733_5_ >> 16 & 255) / 255.0F;
+        float f2 = (p_73733_5_ >> 8 & 255) / 255.0F;
+        float f3 = (p_73733_5_ & 255) / 255.0F;
+        float f4 = (p_73733_6_ >> 24 & 255) / 255.0F;
+        float f5 = (p_73733_6_ >> 16 & 255) / 255.0F;
+        float f6 = (p_73733_6_ >> 8 & 255) / 255.0F;
+        float f7 = (p_73733_6_ & 255) / 255.0F;
+        GL11.glDisable(GL11.GL_TEXTURE_2D);
+        GL11.glEnable(GL11.GL_BLEND);
+        GL11.glDisable(GL11.GL_ALPHA_TEST);
+        OpenGlHelper.glBlendFunc(770, 771, 1, 0);
+        GL11.glShadeModel(GL11.GL_SMOOTH);
+        net.minecraft.client.renderer.Tessellator tessellator = net.minecraft.client.renderer.Tessellator.instance;
+        tessellator.startDrawingQuads();
+        tessellator.setColorRGBA_F(f1, f2, f3, f);
+        tessellator.addVertex(p_73733_3_, p_73733_2_, 300);
+        tessellator.addVertex(p_73733_1_, p_73733_2_, 300);
+        tessellator.setColorRGBA_F(f5, f6, f7, f4);
+        tessellator.addVertex(p_73733_1_, p_73733_4_, 300);
+        tessellator.addVertex(p_73733_3_, p_73733_4_, 300);
+        tessellator.draw();
+        GL11.glShadeModel(GL11.GL_FLAT);
+        GL11.glDisable(GL11.GL_BLEND);
+        GL11.glEnable(GL11.GL_ALPHA_TEST);
+        GL11.glEnable(GL11.GL_TEXTURE_2D);
     }
 
 }

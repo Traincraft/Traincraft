@@ -1073,10 +1073,10 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
                 backBogie.addVelocity(roll[0],roll[1],roll[2]);
             } else if (hasDrag()) {
                 //be sure consist weight is properly updated and calculated for collective drag and other things.
-                float weight=pullingWeight* (getBoolean(boolValues.BRAKE)?4:1);
+                float weight=pullingWeight* (getBoolean(boolValues.BRAKE)?6:1);
                 if(pullingWeight==0){
                     updateConsist();
-                    weight = pullingWeight* (getBoolean(boolValues.BRAKE)?4:1);
+                    weight = pullingWeight* (getBoolean(boolValues.BRAKE)?6:1);
                 }
                 //this still seems obscene to me, but the result numbers check out pretty well
                 double drag = Math.pow(
