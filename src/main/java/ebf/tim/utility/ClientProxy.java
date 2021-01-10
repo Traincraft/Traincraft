@@ -78,6 +78,8 @@ public class ClientProxy extends CommonProxy {
 
     public static boolean disableCache = false;
 
+    public static boolean debugHUD=false;
+
     public static KeyBinding raildevtoolUp, raildevtoolDown,
             raildevtoolLeft, raildevtoolRight, raildevtoolRaise, raildevtoolLower;
 
@@ -163,6 +165,10 @@ public class ClientProxy extends CommonProxy {
 
         speedInKmh = config.getBoolean("SpeedInKmh","Quality (Client only)", true,
                 "Sets the HUD to show speeds in km/h. set to false for mph");
+
+        debugHUD = config.getBoolean("debugHUD","Quality (Client only)", false,
+                "displays additional information in the HUD, such as the train name, if it's running, and the state of the brake and lamp");
+
 
 
         railSkin = config.getInt("railSkin","Quality (Client only)", 3,0,3,

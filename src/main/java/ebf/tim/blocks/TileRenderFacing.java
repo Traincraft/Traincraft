@@ -54,7 +54,9 @@ public class TileRenderFacing extends TileEntity {
                 GL11.glEnable(GL11.GL_LIGHTING);
                 Minecraft.getMinecraft().entityRenderer.enableLightmap(1);
                 TextureManager.fixEntityLighting();
-                TextureManager.adjustLightFixture(worldObj,xCoord,yCoord,zCoord);
+                if(worldObj!=null) {
+                    TextureManager.adjustLightFixture(worldObj, xCoord, yCoord, zCoord);
+                }
                 GL11.glTranslatef(0.5f,0.5f,0.5f);
                 if(host.rotates){
                     switch (facing){
@@ -168,6 +170,6 @@ public class TileRenderFacing extends TileEntity {
         markDirty();
     }
 
-    private static final ModelRendererTurbo cube = new ModelRendererTurbo((ModelBase) null, 0,0,64,32).addBox(-8,-8,-8,16,16,16);
+    public static final ModelRendererTurbo cube = new ModelRendererTurbo((ModelBase) null, 0,0,64,32).addBox(-8,-8,-8,16,16,16);
 
 }

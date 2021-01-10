@@ -179,7 +179,7 @@ public class EntityTrainCore extends GenericRailTransport {
                 vectorCache[1][0]*=(weight/13.6f);
                 vectorCache[1][0]*=0.0254f; //movement distance of 1 MHP in meters per second (30.48/60/20).
                 vectorCache[1][0]*=0.05f;//scale to ticks
-                vectorCache[1][0]*=0.0000000075f;//scale to i dont even know but it feels right
+                vectorCache[1][0]*=0.000000025f;//scale to i dont even know but it feels right
                 if(!CommonProxy.realSpeed){
                     vectorCache[1][0]*=0.25f;//scale to TC speed
                 }
@@ -219,7 +219,7 @@ public class EntityTrainCore extends GenericRailTransport {
      * this is intended for external use like collisions that need to see if the train is in gear from a superclass cast*/
     @Override
     public int getAccelerator(){
-        return accelerator;
+        return !worldObj.isRemote?accelerator:getDataWatcher().getWatchableObjectInt(18);
     }
 
     /**

@@ -10,6 +10,7 @@ import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 
 import static cpw.mods.fml.common.registry.GameRegistry.addRecipe;
 import static cpw.mods.fml.common.registry.GameRegistry.registerItem;
@@ -32,9 +33,10 @@ public class TiMOres {
 
     public static void registerOres(){
 
+        oreCopper.texture=new ResourceLocation("traincraft", "textures/blocks/ores/ore_copper.png");
 
-        registerItem(ingotCopper= new Item(), "ingotCopper", TrainsInMotion.MODID);
-        registerItem(ingotSteel= new Item(), "ingotSteel", TrainsInMotion.MODID);
+        registerItem(ingotCopper= new Item(), "ingotCopper", TrainsInMotion.MODID).setTextureName("traincraft:textures/items/parts/item_copper.png");
+        registerItem(ingotSteel= new Item(), "ingotSteel", TrainsInMotion.MODID).setTextureName("traincraft:textures/items/parts/item_steel.png");
         registerItem(ingotAluminum= new Item(), "ingotAluminum", TrainsInMotion.MODID);
 
         registerBlock(oreCopper, TrainsInMotion.creativeTab, TrainsInMotion.MODID, "oreCopper", "oreCopper", null);

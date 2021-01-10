@@ -39,6 +39,7 @@ public class HUDTrain extends GuiScreen {
     @SuppressWarnings("unused")
     /**checks if minecraft and the player is loaded, if true it checks if the player is in a locomotive, if true, it displays the debug GUI*/
     public void onRenderExperienceBar(RenderGameOverlayEvent event) {
+        if(!ClientProxy.debugHUD){return;}
         if (Minecraft.getMinecraft() != null && Minecraft.getMinecraft().thePlayer != null) {
             if (Minecraft.getMinecraft().thePlayer.ridingEntity instanceof EntityTrainCore) {
                 EntityTrainCore trainEntity = (EntityTrainCore) Minecraft.getMinecraft().thePlayer.ridingEntity;
