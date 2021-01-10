@@ -41,8 +41,8 @@ public class TCBlocks {
 	public static BlockDynamic trainTableTier2 = new BlockDynamic(new Material(MapColor.mapColorArray[13]), true, true, 2);
 	public static BlockDynamic trainTableTier3 = new BlockDynamic(new Material(MapColor.mapColorArray[13]), true, true, 3);
 
-	public static BlockDynamic oilSand = new BlockDynamic(new Material(MapColor.mapColorArray[13]), false, false);
-	public static BlockDynamic orePetroleum = new BlockDynamic(new Material(MapColor.mapColorArray[13]), false, false);
+	public static BlockDynamic oilSand = new BlockDynamic(new Material(MapColor.mapColorArray[2]), false, false);
+	public static BlockDynamic orePetroleum = new BlockDynamic(new Material(MapColor.mapColorArray[11]), false, false);
 
 
 	@Deprecated //need to use TiMGenericRegistry.registerBlock(), this will also cover tile entities and TESR.

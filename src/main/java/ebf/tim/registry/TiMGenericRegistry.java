@@ -132,9 +132,9 @@ public class TiMGenericRegistry {
         }
         if(block instanceof ITileEntityProvider){
             Class<? extends TileEntity> tile=((ITileEntityProvider)block).createNewTileEntity(null,0).getClass();
-            if(!redundantTiles.contains(tile.getName())) {
+            if(!redundantTiles.contains(unlocalizedName + "tile")) {
                 GameRegistry.registerTileEntity(tile, unlocalizedName + "tile");
-                redundantTiles.add(tile.getName());
+                redundantTiles.add(unlocalizedName + "tile");
                 if (TrainsInMotion.proxy.isClient() && TESR != null) {
                     cpw.mods.fml.client.registry.ClientRegistry.bindTileEntitySpecialRenderer(tile, (TileEntitySpecialRenderer) TESR);
                     MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(block), CustomItemModel.instance);
@@ -144,6 +144,9 @@ public class TiMGenericRegistry {
                     MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(block), CustomItemModel.instance);
                     CustomItemModel.registerBlockTextures(Item.getItemFromBlock(block), ((ITileEntityProvider)block).createNewTileEntity(null,0));
                 }
+            } else {
+                DebugUtil.println("redundant tile name found", unlocalizedName + "tile");
+                DebugUtil.printStackTrace();
             }
         }
         return block;
