@@ -4,6 +4,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import train.blocks.TCBlocks;
 import train.library.BlockIDs;
 import train.library.ItemIDs;
 
@@ -26,7 +27,7 @@ public class DistilRecipes {
 		smeltingList = new HashMap<Item, ItemStack>();
 
 		//Prevent copper to be distilled is set in TileEntitydistil.
-		addSmelting(Item.getItemFromBlock(BlockIDs.oreTC.block), new ItemStack(ItemIDs.diesel.item, 2), 0.5F, 1,
+		addSmelting(Item.getItemFromBlock(TCBlocks.orePetroleum), new ItemStack(ItemIDs.diesel.item, 2), 0.5F, 1,
 				new ItemStack(ItemIDs.rawPlastic.item, 1));
 		addSmelting(Items.reeds, new ItemStack(ItemIDs.diesel.item), 0.2F, 4,
 				new ItemStack(ItemIDs.rawPlastic.item, 1));

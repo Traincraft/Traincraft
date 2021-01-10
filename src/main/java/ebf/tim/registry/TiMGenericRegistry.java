@@ -137,11 +137,11 @@ public class TiMGenericRegistry {
                 redundantTiles.add(tile.getName());
                 if (TrainsInMotion.proxy.isClient() && TESR != null) {
                     cpw.mods.fml.client.registry.ClientRegistry.bindTileEntitySpecialRenderer(tile, (TileEntitySpecialRenderer) TESR);
-                    MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(block), new CustomItemModel());
+                    MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(block), CustomItemModel.instance);
                     CustomItemModel.registerBlockTextures(Item.getItemFromBlock(block), ((ITileEntityProvider)block).createNewTileEntity(null,0));
                 } else if (TrainsInMotion.proxy.isClient()){
                     cpw.mods.fml.client.registry.ClientRegistry.bindTileEntitySpecialRenderer(tile, (TileEntitySpecialRenderer) TrainsInMotion.proxy.getTESR());
-                    MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(block), new CustomItemModel());
+                    MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(block), CustomItemModel.instance);
                     CustomItemModel.registerBlockTextures(Item.getItemFromBlock(block), ((ITileEntityProvider)block).createNewTileEntity(null,0));
                 }
             }

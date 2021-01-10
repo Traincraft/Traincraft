@@ -13,6 +13,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+import train.blocks.TCBlocks;
 import train.blocks.bench.TrainCraftingManager;
 import train.library.BlockIDs;
 import train.library.ItemIDs;
@@ -195,9 +196,9 @@ public class TileEntityOpenHearthFurnace extends TileTraincraft {
 			return 100;
 		if (var1 == Items.blaze_rod)
 			return 2500;
-		if (var1 == Item.getItemFromBlock(BlockIDs.oreTC.block) && it.getItemDamage() == 1)
+		if (var1 == Item.getItemFromBlock(TCBlocks.orePetroleum))
 			return 2500;
-		if (var1 == Item.getItemFromBlock(BlockIDs.oreTC.block) && it.getItemDamage() == 2)
+		if (var1 == Item.getItemFromBlock(TCBlocks.oilSand))
 			return 2500;
 		if (var1 == ItemIDs.diesel.item)
 			return 4000;

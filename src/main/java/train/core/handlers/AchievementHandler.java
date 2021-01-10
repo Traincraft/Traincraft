@@ -65,7 +65,7 @@ public class AchievementHandler {
 		AchievementIDs.fast.achievement = achievement("fast", -8, 10, ItemIDs.minecartVL10.item, AchievementIDs.electMotor.achievement);
 
 		AchievementIDs.engineer.achievement = achievement("engineer", -2, -2, ItemIDs.overalls.item, null);
-
+/*
 		AchievementIDs.assemblyTable.achievement = achievement("assemblyTable", 6, 0, BlockIDs.assemblyTableI.block, null);
 		AchievementIDs.passenger.achievement = achievement("passenger", 5, 2, ItemIDs.minecartPassenger2.item, AchievementIDs.assemblyTable.achievement);
 		AchievementIDs.freight.achievement = achievement("freight", 7, 2, ItemIDs.minecartChest.item, AchievementIDs.assemblyTable.achievement);
@@ -80,7 +80,7 @@ public class AchievementHandler {
 		AchievementIDs.mail.achievement = achievement("mail", 7, 10, ItemIDs.minecartMailWagon_DB.item, AchievementIDs.assemblyTable.achievement);
 		AchievementIDs.stockCar.achievement = achievement("stockcar", 5, 12, ItemIDs.minecartStockCar.item, AchievementIDs.assemblyTable.achievement);
 		AchievementIDs.caboose.achievement = achievement("caboose", 7, 12, ItemIDs.minecartCaboose.item, AchievementIDs.assemblyTable.achievement);
-		AchievementIDs.flatCart.achievement = achievement("flatCart", 5, 14, ItemIDs.minecartFlatCartRail_DB.item, AchievementIDs.assemblyTable.achievement);
+		AchievementIDs.flatCart.achievement = achievement("flatCart", 5, 14, ItemIDs.minecartFlatCartRail_DB.item, AchievementIDs.assemblyTable.achievement);*/
 		//TODO put this: AchievementIDs.heavySteam.achievement  back once Heavy Steam is back
 		Achievement ach[] = new Achievement[] { AchievementIDs.steel.achievement, AchievementIDs.stake.achievement,
 				AchievementIDs.dieselFuel.achievement, AchievementIDs.electMotor.achievement,
@@ -96,7 +96,7 @@ public class AchievementHandler {
 				AchievementIDs.electronicCircuit.achievement, AchievementIDs.generator.achievement,
 				AchievementIDs.woodenParts.achievement, AchievementIDs.ironParts.achievement,
 				AchievementIDs.steelParts.achievement, AchievementIDs.trainWB.achievement,
-				AchievementIDs.assemblyTable.achievement, AchievementIDs.mail.achievement,
+				//AchievementIDs.assemblyTable.achievement, AchievementIDs.mail.achievement,
 				AchievementIDs.minetrain.achievement, AchievementIDs.cherepanov.achievement,
 				AchievementIDs.flatCart.achievement, AchievementIDs.stockCar.achievement,
 				AchievementIDs.caboose.achievement };

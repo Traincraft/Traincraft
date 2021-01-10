@@ -5,6 +5,7 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
+import train.blocks.TCBlocks;
 import train.blocks.fluids.LiquidManager;
 import train.blocks.distil.ContainerDistil;
 import train.library.BlockIDs;
@@ -39,7 +40,7 @@ public class GuiDistil extends GuiContainer {
 			/**
 			 * Stops showing 100% on copper 
 			 */
-			if (Block.getBlockFromItem(distilInventory.slots[0].getItem()) == BlockIDs.oreTC.block
+			if (Block.getBlockFromItem(distilInventory.slots[0].getItem()) == TCBlocks.orePetroleum
 					&& (distilInventory.slots[0].getItemDamage() != 1
 							&& distilInventory.slots[0].getItemDamage() != 2)) {
 				return;

@@ -9,6 +9,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
+import train.blocks.TCBlocks;
 import train.blocks.fluids.LiquidManager;
 import train.blocks.fluids.LiquidManager.StandardTank;
 import train.library.BlockIDs;
@@ -250,7 +251,7 @@ public class TileEntityDistil extends TileTraincraft implements IFluidHandler {
 		if (itemstack == null) {
 			return false;
 		}
-		if (Block.getBlockFromItem(slots[0].getItem()) == BlockIDs.oreTC.block
+		if (Block.getBlockFromItem(slots[0].getItem()) == TCBlocks.orePetroleum
 				&& (slots[0].getItemDamage() != 1 && slots[0].getItemDamage() != 2)) {
 			return false;
 		}

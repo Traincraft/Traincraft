@@ -77,6 +77,8 @@ public class TileRenderFacing extends TileEntity {
                 } else {
                     cube.render();
                 }
+
+                Minecraft.getMinecraft().entityRenderer.disableLightmap(1);
                 GL11.glPopMatrix();
                 org.lwjgl.opengl.GL11.glEndList();
 
