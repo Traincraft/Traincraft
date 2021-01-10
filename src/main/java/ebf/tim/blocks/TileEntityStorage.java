@@ -10,6 +10,7 @@ import ebf.tim.utility.ItemStackSlot;
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
@@ -172,6 +173,17 @@ public class TileEntityStorage extends TileRenderFacing implements IInventory, I
         tag.setString("xmlData",data.toXMLString());
     }
 
+
+    public void syncTileEntity(){
+        for(Object o : this.worldObj.playerEntities){
+            if(o instanceof EntityPlayerMP){
+                EntityPlayerMP player = (EntityPlayerMP) o;
+                if(player.getDistance(xCoord, yCoord, zCoord) <= 64) {
+                    player.playerNetServerHandler.sendPacket(this.getDescriptionPacket());
+                }
+            }
+        }
+    }
 
     /**the fluidTank tank*/
     private FluidTankInfo[] fluidTank = null;

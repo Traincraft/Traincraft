@@ -2,7 +2,11 @@ package train.blocks.distil;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import ebf.tim.blocks.TileEntityStorage;
+import ebf.tim.registry.TiMBlocks;
+import ebf.tim.registry.TiMFluids;
 import net.minecraft.block.Block;
+import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -18,7 +22,7 @@ import train.blocks.TileTraincraft;
 
 import java.util.Random;
 
-public class TileEntityDistil extends TileTraincraft implements IFluidHandler {
+public class TileEntityDistil extends TileEntityStorage implements IFluidHandler, ISidedInventory {
 
 	private ForgeDirection facing;
 	public int distilBurnTime;
@@ -27,21 +31,18 @@ public class TileEntityDistil extends TileTraincraft implements IFluidHandler {
 	private int cookDuration;
 	private Random random;
 	private int updateTicks;
-	private int maxTank = 0;
-	private StandardTank theTank;
 	public int amount;
 	public int liquidItemID;
 
 	public TileEntityDistil() {
 		//slots 0=input 1=fuel 3=output 2=input canister ?=filled canister
-		super(5, "Distillation tower");
+		super(TCBlocks.distilIdle);
 		distilBurnTime = 0;
 		currentItemBurnTime = 0;
 		distilCookTime = 0;
 		cookDuration = 400;//default is 200
 		random = new Random();
-		this.maxTank = 30000;
-		this.theTank = LiquidManager.getInstance().new FilteredTank(maxTank, LiquidManager.getInstance().dieselFilter(), 1);
+		//this.theTank = LiquidManager.getInstance().new FilteredTank(maxTank, new FluidStack[]{TiMFluids.fluidDiesel, }, 1);
 	}
 
 	/**
@@ -60,38 +61,32 @@ public class TileEntityDistil extends TileTraincraft implements IFluidHandler {
 		return liquidItemID;
 	}
 
-	public StandardTank getTank() {
-		return theTank;
-	}
 
 
 	@Override
-	public void readFromNBT(NBTTagCompound nbtTag, boolean forSyncing) {
-		super.readFromNBT(nbtTag, forSyncing);
+	public void readFromNBT(NBTTagCompound nbtTag) {
+		super.readFromNBT(nbtTag);
 		facing = ForgeDirection.getOrientation(nbtTag.getInteger("Orientation"));
 		distilBurnTime = nbtTag.getShort("BurnTime");
 		distilCookTime = nbtTag.getShort("CookTime");
 		currentItemBurnTime = nbtTag.getShort("CurrentItemBurn");
 		this.amount = nbtTag.getInteger("Amount");
 		liquidItemID = nbtTag.getInteger("LiquidID");
-		this.theTank.readFromNBT(nbtTag);
 	}
 
-	public int getTankCapacity() {
-		return maxTank;
+	public int[] getTankCapacity() {
+		return new int[]{30000};
 	}
 
 	@Override
-	public NBTTagCompound writeToNBT(NBTTagCompound nbtTag, boolean forSyncing) {
-		super.writeToNBT(nbtTag, forSyncing);
+	public void writeToNBT(NBTTagCompound nbtTag) {
+		super.writeToNBT(nbtTag);
 		nbtTag.setInteger("Orientation", getFacing().ordinal());
 		nbtTag.setShort("BurnTime", (short) distilBurnTime);
 		nbtTag.setShort("CookTime", (short) distilCookTime);
 		nbtTag.setInteger("Amount", this.amount);
 		nbtTag.setInteger("LiquidID", this.liquidItemID);
 		nbtTag.setShort("CurrentItemBurn", (short) this.currentItemBurnTime);
-		this.theTank.writeToNBT(nbtTag);
-		return nbtTag;
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -118,19 +113,19 @@ public class TileEntityDistil extends TileTraincraft implements IFluidHandler {
 			boolean flag = distilBurnTime > 0;
 			boolean flag1 = false;
 			if (distilBurnTime == 0 && canSmelt()) {
-				currentItemBurnTime = distilBurnTime = TileEntityFurnace.getItemBurnTime(slots[1]);
+				currentItemBurnTime = distilBurnTime = TileEntityFurnace.getItemBurnTime(inventory.get(1).getStack());
 				if (distilBurnTime > 0) {
 					flag1 = true;
-					if (slots[1] != null) {
-						if (slots[1].getItem().hasContainerItem(slots[1])) {
-							slots[1] = new ItemStack(slots[1].getItem().getContainerItem());
+					if (inventory.get(1).getStack() != null) {
+						if (inventory.get(1).getStack().getItem().hasContainerItem(inventory.get(1).getStack())) {
+							inventory.get(1).setStack(new ItemStack(inventory.get(1).getStack().getItem().getContainerItem()));
 						}
 						else {
-							slots[1].stackSize--;
+							inventory.get(1).getStack().stackSize--;
 						}
 
-						if (slots[1].stackSize == 0) {
-							slots[1] = null;
+						if (inventory.get(1).getStack().stackSize == 0) {
+							inventory.get(1).setStack(null);
 						}
 					}
 				}
@@ -158,28 +153,28 @@ public class TileEntityDistil extends TileTraincraft implements IFluidHandler {
 				this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
 			}
 
-			if (slots[2] != null) {
+			if (inventory.get(2).getStack() != null) {
 
 				if (this.updateTicks % 8 == 0) {
 
-					ItemStack result = LiquidManager.getInstance().processContainer(this, 2, this, slots[2]);
+					ItemStack result = LiquidManager.getInstance().processContainer(this, 2, this, inventory.get(2).getStack());
 
 					if (result != null && placeInInvent(result, 4, false)) {
 
 						placeInInvent(result, 4, true);
 
-						if (theTank.getFluid() != null) {
+						if (getTankInfo(ForgeDirection.UNKNOWN)[0].fluid.getFluid() != null) {
 
-							amount = theTank.getFluid().amount;
+							amount = getTankInfo(ForgeDirection.UNKNOWN)[0].fluid.amount;
 						}
 						else {
 
 							amount = 0;
 						}
 
-						if (theTank.getFluid() != null) {
+						if (getTankInfo(ForgeDirection.UNKNOWN)[0].fluid.getFluid() != null) {
 
-							liquidItemID = theTank.getFluid().getFluidID();
+							liquidItemID = getTankInfo(ForgeDirection.UNKNOWN)[0].fluid.getFluidID();
 						}
 						else {
 
@@ -194,14 +189,14 @@ public class TileEntityDistil extends TileTraincraft implements IFluidHandler {
 				}
 			}
 
-			if (theTank.getFluid() != null) {
-				amount = theTank.getFluid().amount;
+			if (getTankInfo(ForgeDirection.UNKNOWN)[0].fluid.getFluid() != null) {
+				amount = getTankInfo(ForgeDirection.UNKNOWN)[0].fluid.amount;
 			}
 			else {
 				amount = 0;
 			}
-			if (theTank.getFluid() != null) {
-				liquidItemID = theTank.getFluid().getFluidID();
+			if (getTankInfo(ForgeDirection.UNKNOWN)[0].fluid.getFluid() != null) {
+				liquidItemID = getTankInfo(ForgeDirection.UNKNOWN)[0].fluid.getFluidID();
 			}
 			else {
 				liquidItemID = 0;
@@ -221,21 +216,21 @@ public class TileEntityDistil extends TileTraincraft implements IFluidHandler {
 	}
 
 	private boolean placeInInvent(ItemStack itemstack1, int i, boolean doAdd) {
-		if (slots[i] == null) {
+		if (inventory.get(i) == null) {
 			if (doAdd)
-				slots[i] = itemstack1;
+				inventory.get(i).setStack(itemstack1);
 			return true;
 		}
-		else if (slots[i] != null && Item.getIdFromItem(slots[i].getItem()) == Item.getIdFromItem(itemstack1.getItem()) && itemstack1.isStackable() && (!itemstack1.getHasSubtypes() || slots[i].getItemDamage() == itemstack1.getItemDamage()) && ItemStack.areItemStackTagsEqual(slots[i], itemstack1)) {
-			int var9 = slots[i].stackSize + itemstack1.stackSize;
+		else if (inventory.get(i).getStack() != null && Item.getIdFromItem(inventory.get(i).getItem()) == Item.getIdFromItem(itemstack1.getItem()) && itemstack1.isStackable() && (!itemstack1.getHasSubtypes() || inventory.get(i).getStack().getItemDamage() == itemstack1.getItemDamage()) && ItemStack.areItemStackTagsEqual(inventory.get(i).getStack(), itemstack1)) {
+			int var9 = inventory.get(i).getStack().stackSize + itemstack1.stackSize;
 			if (var9 <= itemstack1.getMaxStackSize()) {
 				if (doAdd)
-					slots[i].stackSize = var9;
+					inventory.get(i).setSlotStacksize(var9);
 
 			}
-			else if (slots[i].stackSize < itemstack1.getMaxStackSize()) {
+			else if (inventory.get(i).getStack().stackSize < itemstack1.getMaxStackSize()) {
 				if (doAdd)
-					slots[i].stackSize += 1;
+					inventory.get(i).setSlotStacksize(inventory.get(i).getStackSize()+1);
 			}
 			return true;
 		}
@@ -244,21 +239,17 @@ public class TileEntityDistil extends TileTraincraft implements IFluidHandler {
 	}
 
 	private boolean canSmelt() {
-		if (slots[0] == null || (slots[3] != null && slots[3].stackSize==64) || (slots[4] != null && slots[4].stackSize==64)) {
+		if (inventory.get(0).getStack() == null || (inventory.get(3).getStack() != null && inventory.get(3).getStackSize()==64) || (inventory.get(4).getStack() != null && inventory.get(4).getStackSize()==64)) {
 			return false;
 		}
-		ItemStack itemstack = DistilRecipes.smelting().getSmeltingResult(slots[0].getItem());
+		ItemStack itemstack = DistilRecipes.smelting().getSmeltingResult(inventory.get(0).getStack().getItem());
 		if (itemstack == null) {
-			return false;
-		}
-		if (Block.getBlockFromItem(slots[0].getItem()) == TCBlocks.orePetroleum
-				&& (slots[0].getItemDamage() != 1 && slots[0].getItemDamage() != 2)) {
 			return false;
 		}
 		FluidStack resultLiquid = FluidContainerRegistry.getFluidForFilledItem(itemstack);
 		if (resultLiquid == null)
 			return false;
-		int used = getTank().fill(resultLiquid, false);
+		int used = fill(ForgeDirection.UNKNOWN, resultLiquid, false);
 		return (used >= resultLiquid.amount);
 	}
 
@@ -266,57 +257,57 @@ public class TileEntityDistil extends TileTraincraft implements IFluidHandler {
 		if (!canSmelt()) {
 			return;
 		}
-		ItemStack itemstack = DistilRecipes.smelting().getSmeltingResult(slots[0].getItem());
-		ItemStack plasticStack = DistilRecipes.smelting().getPlasticResult(slots[0].getItem());
-		int plasticChance = DistilRecipes.smelting().getPlasticChance(slots[0].getItem());
+		ItemStack itemstack = DistilRecipes.smelting().getSmeltingResult(inventory.get(0).getStack().getItem());
+		ItemStack plasticStack = DistilRecipes.smelting().getPlasticResult(inventory.get(0).getStack().getItem());
+		int plasticChance = DistilRecipes.smelting().getPlasticChance(inventory.get(0).getStack().getItem());
 		FluidStack resultLiquid = FluidContainerRegistry.getFluidForFilledItem(itemstack);
 		if (resultLiquid == null)
 			return;
 
-		int used = getTank().fill(resultLiquid, false);
+		int used = fill(ForgeDirection.UNKNOWN, resultLiquid, false);
 		if (used >= resultLiquid.amount)
 		{
-			getTank().fill(resultLiquid, true);
+			fill(ForgeDirection.UNKNOWN, resultLiquid, true);
 			if (random.nextInt(plasticChance) == 0)
-				outputPlastic(plasticStack, slots[0].getItem() == ItemIDs.diesel.item);
-			if (theTank.getFluid() != null) {
-				amount = theTank.getFluid().amount;
+				outputPlastic(plasticStack, inventory.get(0).getStack().getItem() == ItemIDs.diesel.item);
+			if (getTankInfo(ForgeDirection.UNKNOWN)[0].fluid.getFluid() != null) {
+				amount = getTankInfo(ForgeDirection.UNKNOWN)[0].fluid.amount;
 			}
-			if (theTank.getFluid() != null) {
-				liquidItemID = theTank.getFluid().getFluidID();
+			if (getTankInfo(ForgeDirection.UNKNOWN)[0].fluid.getFluid() != null) {
+				liquidItemID = getTankInfo(ForgeDirection.UNKNOWN)[0].fluid.getFluidID();
 			}
 
 			this.markDirty();
 			this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
 		}
 
-		if (slots[0].getItem().hasContainerItem(slots[0])) {
-			slots[0] = new ItemStack(slots[0].getItem().getContainerItem());
+		if (inventory.get(0).getStack().getItem().hasContainerItem(inventory.get(0).getStack())) {
+			inventory.get(0).setStack(new ItemStack(inventory.get(0).getStack().getItem().getContainerItem()));
 		}
 		else {
-			slots[0].stackSize--;
+			inventory.get(0).getStack().stackSize--;
 		}
-		if (slots[0].stackSize <= 0) {
-			slots[0] = null;
+		if (inventory.get(0).getStack().stackSize <= 0) {
+			inventory.get(0).setStack(null);
 		}
 		this.syncTileEntity();
 	}
 
 	private void outputPlastic(ItemStack plasticStack, boolean wasDeisel) {
-		if (slots[3] == null) {
+		if (inventory.get(3).getStack() == null) {
 			if(wasDeisel){
-				slots[3]= new ItemStack(ItemIDs.emptyCanister.item,1);
+				inventory.get(3).setStack(new ItemStack(ItemIDs.emptyCanister.item,1));
 			} else {
-				slots[3] = plasticStack.copy();
+				inventory.get(3).setStack(plasticStack.copy());
 			}
 		} else if(wasDeisel){
-			if(slots[3].getItem()==ItemIDs.emptyCanister.item){
-				slots[3].stackSize += plasticStack.stackSize;
+			if(inventory.get(3).getStack().getItem()==ItemIDs.emptyCanister.item){
+				inventory.get(3).getStack().stackSize += plasticStack.stackSize;
 			} else {
-				slots[3].stackSize += plasticStack.stackSize;
+				inventory.get(3).getStack().stackSize += plasticStack.stackSize;
 			}
-		} else if (Item.getIdFromItem(slots[3].getItem()) == Item.getIdFromItem(plasticStack.getItem())) {
-			slots[3].stackSize += plasticStack.stackSize;
+		} else if (Item.getIdFromItem(inventory.get(3).getStack().getItem()) == Item.getIdFromItem(plasticStack.getItem())) {
+			inventory.get(3).getStack().stackSize += plasticStack.stackSize;
 		}
 		this.markDirty();
 	}
@@ -339,31 +330,10 @@ public class TileEntityDistil extends TileTraincraft implements IFluidHandler {
 	public void closeInventory() {}
 
 	public FluidStack getFluid() {
-		return theTank.getFluid();
+		return getTankInfo(ForgeDirection.UNKNOWN)[0].fluid;
 	}
 
-	@Override
-	public int fill(ForgeDirection from, FluidStack resource, boolean doFill)
-	{
-		return theTank.fill(resource, doFill);
-	}
 
-	@Override
-	public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain) {
-		if (resource == null || !resource.isFluidEqual(theTank.getFluid())) {
-			return null;
-		}
-		return theTank.drain(resource.amount, doDrain);
-	}
-
-	@Override
-	public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain) {
-		return theTank.drain(maxDrain, doDrain);
-	}
-
-	public int getCapacity() {
-		return this.maxTank;
-	}
 	@Override
 	public boolean canFill(ForgeDirection from, Fluid fluid) {
 		return true;
@@ -375,15 +345,27 @@ public class TileEntityDistil extends TileTraincraft implements IFluidHandler {
 	}
 
 	@Override
-	public FluidTankInfo[] getTankInfo(ForgeDirection from)
-	{
-		return new FluidTankInfo[] { theTank.getInfo() };
+	public FluidTankInfo[] getTankInfo(ForgeDirection from) {
+		return new FluidTankInfo[] { new FluidTankInfo(new FluidStack(TiMFluids.fluidDiesel,0),30000) };
 	}
 
 
 	@Override
 	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
 		return true;
+	}
+
+	@Override
+	public int[] getAccessibleSlotsFromSide(int p_94128_1_) {
+		if(this.inventory.size() > 0){
+			int[] theInt = new int[inventory.size()];
+			for(int i = 0; i < theInt.length; i++){
+				theInt[i] = i;
+			}
+			return theInt;
+		} else {
+			return new int[0];
+		}
 	}
 
 	@Override

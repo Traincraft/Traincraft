@@ -36,16 +36,16 @@ public class GuiDistil extends GuiContainer {
 	protected void drawGuiContainerForegroundLayer(int par1, int par2) {
 		fontRendererObj.drawString("Distillation tower", 8, 6, 0x404040);
 		fontRendererObj.drawString("Inventory", 8, (ySize - 96) + 2, 0x404040);
-		if (distilInventory.slots[0] != null) {
+		if (distilInventory.inventory.get(0).getStack() != null) {
 			/**
 			 * Stops showing 100% on copper 
 			 */
-			if (Block.getBlockFromItem(distilInventory.slots[0].getItem()) == TCBlocks.orePetroleum
-					&& (distilInventory.slots[0].getItemDamage() != 1
-							&& distilInventory.slots[0].getItemDamage() != 2)) {
+			if (Block.getBlockFromItem(distilInventory.inventory.get(0).getStack().getItem()) == TCBlocks.orePetroleum
+					&& (distilInventory.inventory.get(0).getStack().getItemDamage() != 1
+							&& distilInventory.inventory.get(0).getStack().getItemDamage() != 2)) {
 				return;
 			}
-			double plasticChance = DistilRecipes.smelting().getPlasticChance(distilInventory.slots[0].getItem());
+			double plasticChance = DistilRecipes.smelting().getPlasticChance(distilInventory.inventory.get(0).getStack().getItem());
 			if(plasticChance!=0){//stops showing 100% for blocks that aren't part of a recipe
 				double chanceShown = ((1 / plasticChance) * 100);
 				fontRendererObj.drawString((int) chanceShown + "%", 79, 70, 0x404040);
@@ -95,7 +95,7 @@ public class GuiDistil extends GuiContainer {
 		int k = (height - ySize) / 2;
 		drawTexturedModalRect(j, k, 0, 0, xSize, ySize);
 		int amount = distilInventory.getLiquid();
-		int liqui =  Math.abs((amount * 50) / (distilInventory.getTankCapacity()));
+		int liqui =  Math.abs((amount * 50) / (distilInventory.getTankCapacity()[0]));
 		drawTexturedModalRect(j + 145, (k + 57) - liqui, 177, 107 - liqui, 18, liqui);
 		if (LiquidManager.REFINED_FUEL != null && distilInventory.getLiquidItemID() == LiquidManager.REFINED_FUEL.getID()) {
 			drawRect(j + 145, k + 57, 177, 107, 0);

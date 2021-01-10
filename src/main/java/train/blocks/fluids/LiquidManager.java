@@ -7,6 +7,7 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import ebf.tim.registry.TiMFluids;
 import mods.railcraft.api.fuel.FuelManager;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Items;
@@ -57,7 +58,7 @@ public class LiquidManager {
 		REFINED_FUEL.setBlock(BlockIDs.refinedFuel.block);
 		FluidContainerRegistry.registerFluidContainer(DIESEL, new ItemStack(ItemIDs.diesel.item), new ItemStack(ItemIDs.emptyCanister.item));
 		FluidContainerRegistry.registerFluidContainer(REFINED_FUEL, new ItemStack(ItemIDs.refinedFuel.item), new ItemStack(ItemIDs.emptyCanister.item));
-		dieselFilter();
+		//dieselFilter();
 		if (Loader.isModLoaded("Railcraft")) {
 			addRCFluids();
 		}
@@ -101,7 +102,7 @@ public class LiquidManager {
 		bioDiesel = FluidRegistry.getFluid("biodiesel");
 	}
 
-	public boolean isDieselLocoFuel(ItemStack stack) {
+	/*public boolean isDieselLocoFuel(ItemStack stack) {
 		FluidStack[] multiFilter;
 		FluidStack bucketLiquid = getFluidInContainer(stack);
 		LiquidManager.getInstance();
@@ -119,10 +120,10 @@ public class LiquidManager {
 
 	public static FluidStack[] dieselFilter() {
 		FluidStack[] fuels = new FluidStack[4];
-		if (DIESEL != null)
-			fuels[0] = new FluidStack(DIESEL, 1);
-		if (REFINED_FUEL != null)
-			fuels[1] = new FluidStack(REFINED_FUEL, 1);
+		if (TiMFluids.fluidDiesel != null)
+			fuels[0] = new FluidStack(TiMFluids.fluidDiesel, 1);
+		if (TiMFluids.fluidfueloil != null)
+			fuels[1] = new FluidStack(TiMFluids.fluidfueloil, 1);
 		if (biofuel != null)
 			fuels[2] = new FluidStack(biofuel, 1);
 		if (bioDiesel != null)
@@ -132,7 +133,7 @@ public class LiquidManager {
 		if (bioethanol != null)
 			fuels[2] = new FluidStack(bioethanol, 1);
 		return fuels;
-	}
+	}*/
 
 	public boolean isContainer(ItemStack stack) {
 		return FluidContainerRegistry.isContainer(stack);

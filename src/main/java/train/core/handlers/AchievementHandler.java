@@ -12,6 +12,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.Achievement;
 import net.minecraftforge.common.AchievementPage;
+import train.blocks.TCBlocks;
 import train.library.AchievementIDs;
 import train.library.BlockIDs;
 import train.library.ItemIDs;
@@ -54,7 +55,7 @@ public class AchievementHandler {
 		AchievementIDs.dieselEngine.achievement = achievement("dieselEngine", -6, 4, ItemIDs.dieselengine.item, AchievementIDs.steel.achievement);
 		AchievementIDs.diesel.achievement = achievement("dieselLoco", -6, 6, ItemIDs.minecartCD742.item, AchievementIDs.dieselEngine.achievement);
 
-		AchievementIDs.distilationTower.achievement = achievement("distilationTower", -10, 0, BlockIDs.distilActive.block,null);
+		AchievementIDs.distilationTower.achievement = achievement("distilationTower", -10, 0, TCBlocks.distilActive,null);
 		AchievementIDs.dieselFuel.achievement = achievement("dieselFuel", -8, 2, ItemIDs.diesel.item, AchievementIDs.distilationTower.achievement);
 		AchievementIDs.plastic.achievement = achievement("plastic", -12, 2, ItemIDs.rawPlastic.item, AchievementIDs.distilationTower.achievement);
 		AchievementIDs.fineCopperWire.achievement = achievement("fineCopperWire", -12, 4, ItemIDs.copperWireFine.item, AchievementIDs.plastic.achievement);

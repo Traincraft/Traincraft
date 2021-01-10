@@ -10,6 +10,7 @@ package train.blocks;
 import cpw.mods.fml.common.registry.GameRegistry;
 import ebf.tim.TrainsInMotion;
 import ebf.tim.blocks.BlockDynamic;
+import ebf.tim.registry.TiMOres;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
@@ -44,6 +45,9 @@ public class TCBlocks {
 	public static BlockDynamic oilSand = new BlockDynamic(new Material(MapColor.mapColorArray[2]), false, false);
 	public static BlockDynamic orePetroleum = new BlockDynamic(new Material(MapColor.mapColorArray[11]), false, false);
 
+	public static BlockDistil distilIdle = new BlockDistil(false);
+	public static BlockDistil distilActive = new BlockDistil(true);
+
 
 	@Deprecated //need to use TiMGenericRegistry.registerBlock(), this will also cover tile entities and TESR.
 	public static void init() {
@@ -51,18 +55,24 @@ public class TCBlocks {
 		trainTableTier2.texture=new ResourceLocation("traincraft", "textures/blocks/assembly_2.png");
 		trainTableTier3.texture=new ResourceLocation("traincraft", "textures/blocks/assembly_3.png");
 
+		distilIdle.texture=new ResourceLocation("traincraft", "textures/blocks/distil_off.png");
+		distilActive.texture=new ResourceLocation("traincraft", "textures/blocks/distil_on.png");
+
 		oilSand.texture=new ResourceLocation("traincraft", "textures/blocks/ores/ore_oilsands.png");
 		orePetroleum.texture=new ResourceLocation("traincraft", "textures/blocks/ores/ore_petroleum.png");
 
-		registerBlock(oilSand, Traincraft.tcTab, TrainsInMotion.MODID,"block.oilsand", null, null);
-		registerBlock(orePetroleum, Traincraft.tcTab, TrainsInMotion.MODID,"block.petroleum", null, null);
+		registerBlock(oilSand, Traincraft.tcTab, Info.modID,"block.oilsand", null, null);
+		registerBlock(orePetroleum, Traincraft.tcTab, Info.modID,"block.petroleum", null, null);
 
-		addRecipe(new ItemStack(registerBlock(trainTableTier1, Traincraft.tcTab, TrainsInMotion.MODID,"block.traintabletier1", null, null),1),
+		addRecipe(new ItemStack(registerBlock(trainTableTier1, Traincraft.tcTab, Info.modID,"block.traintabletier1", null, null),1),
 				"IPI", "S S", "SPS", 'S', Blocks.stone, 'I', Items.iron_ingot, 'P', Blocks.piston); //tier 1
-		addRecipe(new ItemStack(registerBlock(trainTableTier2, Traincraft.tcTab, TrainsInMotion.MODID,"block.traintabletier2", null, null),1),
+		addRecipe(new ItemStack(registerBlock(trainTableTier2, Traincraft.tcTab, Info.modID,"block.traintabletier2", null, null),1),
 				"GPG", "O O", "OPO", 'O', Blocks.obsidian, 'G', Items.gold_ingot, 'P', Blocks.piston); //tier 2
-		addRecipe(new ItemStack(registerBlock(trainTableTier3, Traincraft.tcTab, TrainsInMotion.MODID,"block.traintabletier3", null, null),1),
+		addRecipe(new ItemStack(registerBlock(trainTableTier3, Traincraft.tcTab, Info.modID,"block.traintabletier3", null, null),1),
 				"GPG", "DLD", "OPO", 'O', Blocks.obsidian, 'G', Items.gold_ingot, 'P', Blocks.piston, 'D', Items.diamond, 'L', Blocks.glowstone); //tier 3
+
+		registerBlock(distilIdle, Traincraft.tcTab, Info.modID,"block.distilIdle", null, null);
+		registerBlock(distilActive, null, Info.modID,"block.distilActive", null, null);
 
 		OreDictionary.registerOre("oreOilsands", new ItemStack(oilSand, 1, 1));
 		OreDictionary.registerOre("orePetroleum", new ItemStack(orePetroleum, 1, 2));
@@ -76,8 +86,6 @@ public class TCBlocks {
 	}
 
 	public static void loadBlocks() {
-		BlockIDs.distilIdle.block = new BlockDistil(2, false).setHardness(3.5F).setStepSound(Block.soundTypeStone);
-		BlockIDs.distilActive.block = new BlockDistil(2, true).setHardness(3.5F).setStepSound(Block.soundTypeStone).setLightLevel(0.8F);
 		//BlockIDs.signal.block = new BlockSignal(BlockIDs.signal.blockID, 16).setHardness(1.7F).setStepSound(Block.soundTypeMetal);
 
 		BlockIDs.trainWorkbench.block = new BlockTrainWorkbench(16).setHardness(1.7F).setStepSound(Block.soundTypeWood);

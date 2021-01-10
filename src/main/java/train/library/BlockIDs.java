@@ -13,8 +13,6 @@ import train.items.*;
 
 public enum BlockIDs {
 
-	distilIdle(false, null),
-	distilActive(false, null),
 	signal(false, null),
 	
 	//book(true, ItemBlockBook.class),

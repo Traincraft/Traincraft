@@ -31,7 +31,7 @@ public class TileGeneratorDiesel extends Energy implements IFluidHandler{
         super(2, "Diesel Generator", 320, 80);
         super.setSides(new ForgeDirection[]{ForgeDirection.EAST, ForgeDirection.WEST, ForgeDirection.NORTH, ForgeDirection.SOUTH, ForgeDirection.UP, ForgeDirection.DOWN});
         direction = ForgeDirection.getOrientation(this.blockMetadata);
-        this.theTank = LiquidManager.getInstance().new FilteredTank(30000, LiquidManager.dieselFilter(), 1);
+        //this.theTank = LiquidManager.getInstance().new FilteredTank(30000, LiquidManager.dieselFilter(), 1);
     }
 
     public int getFacing(){

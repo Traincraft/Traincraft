@@ -2,6 +2,7 @@ package train.blocks.distil;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import ebf.tim.blocks.BlockDynamic;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -18,6 +19,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import train.Traincraft;
+import train.blocks.TCBlocks;
 import train.library.BlockIDs;
 import train.library.GuiIDs;
 import train.library.Info;
@@ -25,21 +27,15 @@ import train.blocks.TileTraincraft;
 
 import java.util.Random;
 
-public class BlockDistil extends BlockContainer {
+public class BlockDistil extends BlockDynamic {
 
 	private final boolean isActive;
 	private static boolean keepDistilInventory = false;
 	private Random distilRand;
 
-	private IIcon textureTop;
-	private IIcon textureBottom;
-	private IIcon textureFront_off;
-	private IIcon textureFront_on;
-	private IIcon textureSide;
-	private IIcon textureBack;
 
-	public BlockDistil(int j, boolean flag) {
-		super(Material.rock);
+	public BlockDistil(boolean flag) {
+		super(Material.rock, true,true);
 		isActive = flag;
 		distilRand = new Random();
 		//setRequiresSelfNotify();
@@ -53,58 +49,7 @@ public class BlockDistil extends BlockContainer {
 
 	@Override
 	public Item getItemDropped(int i, Random random, int j) {
-		return Item.getItemFromBlock(BlockIDs.distilIdle.block);
-	}
-
-	@Override
-	public IIcon getIcon(int i, int j) {
-		if (!this.isActive) {
-			if (i == 1) {
-				return textureTop;
-			}
-			if (i == 0) {
-				return textureBottom;
-			}
-			if (i == 4) {
-				return textureBack;
-			}
-			if (i == 3) {
-				return textureFront_off;
-			}
-			else {
-				return textureSide;
-			}
-		}
-		else {
-			if (i == 1) {
-				return textureTop;
-			}
-			if (i == 0) {
-				return textureBottom;
-			}
-			if (i == 4) {
-				return textureBack;
-			}
-			if (i == 3) {
-				return textureFront_on;
-			}
-			else {
-				return textureSide;
-			}
-		}
-	}
-
-	@Override
-	public IIcon getIcon(IBlockAccess worldAccess, int i, int j, int k, int side) {
-		if (((TileEntityDistil) worldAccess.getTileEntity(i, j, k)).getFacing() != null) {
-			side = TileTraincraft.getOrientationFromSide(((TileEntityDistil) worldAccess.getTileEntity(i, j, k)).getFacing(), ForgeDirection.getOrientation(side)).ordinal();
-		}
-		if (!this.isActive) {
-			return side == 1 ? textureTop : side == 0 ? textureBottom : side == 4 ? textureSide : side == 5 ? textureSide : side == 3 ? textureFront_off : textureBack;
-		}
-		else {
-			return side == 1 ? textureTop : side == 0 ? textureBottom : side == 4 ? textureSide : side == 5 ? textureSide : side == 3 ? textureFront_on : textureBack;
-		}
+		return Item.getItemFromBlock(TCBlocks.distilIdle);
 	}
 
 	@Override
@@ -114,7 +59,7 @@ public class BlockDistil extends BlockContainer {
 			return false;
 		}
 		if (!world.isRemote) {
-			if (te != null && te instanceof TileEntityDistil) {
+			if (te instanceof TileEntityDistil) {
 				player.openGui(Traincraft.instance, GuiIDs.DISTIL, world, i, j, k);
 			}
 		}
@@ -159,10 +104,10 @@ public class BlockDistil extends BlockContainer {
 		TileEntity tileentity = world.getTileEntity(i, j, k);
 		keepDistilInventory = true;
 		if (flag) {
-			world.setBlock(i, j, k, BlockIDs.distilActive.block);
+			world.setBlock(i, j, k, TCBlocks.distilActive);
 		}
 		else {
-			world.setBlock(i, j, k, BlockIDs.distilIdle.block);
+			world.setBlock(i, j, k, TCBlocks.distilIdle);
 		}
 		keepDistilInventory = false;
 		world.setBlockMetadataWithNotify(i, j, k, l, 2);
@@ -228,14 +173,4 @@ public class BlockDistil extends BlockContainer {
 		return new TileEntityDistil();
 	}
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(IIconRegister iconRegister) {
-		textureTop = iconRegister.registerIcon(Info.modID.toLowerCase() + ":distil_top");
-		textureBottom = iconRegister.registerIcon(Info.modID.toLowerCase() + ":distil_bottom");
-		textureFront_off = iconRegister.registerIcon(Info.modID.toLowerCase() + ":distil_off_front");
-		textureFront_on = iconRegister.registerIcon(Info.modID.toLowerCase() + ":distil_on_front");
-		textureSide = iconRegister.registerIcon(Info.modID.toLowerCase() + ":distil_side");
-		textureBack = iconRegister.registerIcon(Info.modID.toLowerCase() + ":distil_bottom");
-	}
 }
