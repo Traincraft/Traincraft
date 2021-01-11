@@ -4,15 +4,22 @@ import ebf.tim.TrainsInMotion;
 import ebf.tim.blocks.TileEntityStorage;
 import ebf.tim.networking.PacketCraftingPage;
 import ebf.tim.utility.*;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiLabel;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL12;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +58,15 @@ public class GUITrainTable extends GuiContainer {
 
         buttonList =new ArrayList();
 
-        this.buttonList.add(new GUIButton(guiLeft+105, guiTop+34, 18, 18,"<<"){
+        //adjust button position for TC vs TiM traintable
+        int[] upButtonCoord = {145, 126};
+        int[] downButtonCoord = {145, 144};
+        if (hostname.equals("tile.block.traintable")) {
+            upButtonCoord = new int[]{105, 34};
+            downButtonCoord = new int[]{141, 34};
+        }
+
+        this.buttonList.add(new GUIButton(guiLeft+upButtonCoord[0], guiTop+upButtonCoord[1], 18, 18,"<<"){
             @Override
             public String getHoverText() {
                 return "Previous Page";
@@ -62,7 +77,7 @@ public class GUITrainTable extends GuiContainer {
             }
         });
 
-        this.buttonList.add(new GUIButton(this.guiLeft + 141, this.guiTop + 34, 18,18, ">>") {
+        this.buttonList.add(new GUIButton(this.guiLeft + downButtonCoord[0], this.guiTop + downButtonCoord[1], 18,18, ">>") {
             @Override
             public String getHoverText() {
                 return "Next Page";

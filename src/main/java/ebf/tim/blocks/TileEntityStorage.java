@@ -89,7 +89,7 @@ public class TileEntityStorage extends TileRenderFacing implements IInventory, I
                 //create the assembly table output slots (9-16)
                 for(int i = 0; i < 4; ++i){
                     for(int j = 0; j < 2; ++j){
-                        inventory.add(new ItemStackSlot(this, (s+9) + (j + i * 4), assemblyTableTier).setCoords(92 + i * 18, (128) + j * 18).setCraftingOutput(true));
+                        inventory.add(new ItemStackSlot(this, (s+9) + (j * 4 + i), assemblyTableTier).setCoords(92 + i * 18, (128) + j * 18).setCraftingOutput(true));
                     }
                 }
 
