@@ -61,7 +61,9 @@ public abstract class GUIButton extends GuiButton {
 
     @Override
     public void drawButton(Minecraft mc, int mouseX, int mouseY){
-        drawButton(mouseX, mouseY);
+        if (this.visible) {
+            drawButton(mouseX, mouseY);
+        }
     }
 
 

@@ -94,10 +94,38 @@ public class TransportSlotManager extends net.minecraft.inventory.Container {
         onCraftMatrixChanged(hostInventory);
     }
 
+    /**
+     * The way functions use this function seems to rely on the slotID being equal to the place in the inventory array.
+     * This way is what most minecraft things want, but NEI does not like it and likes the function commented out more.
+     *
+     * Right now, THIS IS PROBABLY **NOT** THE FUNCTIONALITY WE WANT! I did this so that NEI will not crash the game if
+     * someone accidentally scrolls on an item. after thinking about it some, this could be pretty close, and this
+     * function will more than likely need a disgusting solution. Probably would work if inventory sorted by slotID
+     */
     @Override
     public Slot getSlot(int p_75139_1_) {
+        if (inventory.get(p_75139_1_) == null) {
+            for (ItemStackSlot slot : inventory) {
+                if (slot.getSlotID() == p_75139_1_) {
+                    return slot;
+                }
+            }
+        }
         return this.inventory.get(p_75139_1_);
     }
+
+    /*
+     * There is a problem with nei and how we do our slots.
+     */
+//    @Override
+//    public Slot getSlot(int p_75139_1_) {
+//        for (ItemStackSlot slot : inventory) {
+//            if (slot.getSlotID() == p_75139_1_) {
+//                return slot;
+//            }
+//        }
+//        return null; //this should never happen
+//    }
 
 
     /**
@@ -209,7 +237,7 @@ public class TransportSlotManager extends net.minecraft.inventory.Container {
                                 break;
                             }
                         } else {
-                            if (slot.getStack() ==null || (slot.getStack()!=null && slot.contentEquals(player.inventory.getItemStack()))) {
+                            if (!slot.isCraftingOutput() && slot.getStack() ==null || (slot.getStack()!=null && slot.contentEquals(player.inventory.getItemStack()))) {
                                 ItemStack s = player.inventory.getItemStack().copy();
                                 ItemStack s2 = s.copy();
                                 s2.stackSize = 1;
@@ -354,7 +382,7 @@ public class TransportSlotManager extends net.minecraft.inventory.Container {
                 }
                 break;
             }
-            case 3: { /*ClickType.CLONE*/
+            case 3: { /*ClickType.CLONE (middle mouse button) */
                 if (player.capabilities.isCreativeMode && player.inventory.getItemStack() == null && slotId >= 0 && slot != null && slot.getHasStack()) {
                     itemstack = slot.getStack().copy();
                     itemstack.stackSize =itemstack.getMaxStackSize();
@@ -372,7 +400,14 @@ public class TransportSlotManager extends net.minecraft.inventory.Container {
                 }
                 break;
             }
-            case 5 : {/*ClickType.QUICK_CRAFT*/
+            case 5 : {/*ClickType.QUICK_CRAFT (dragging) */
+
+                //the following stops crafting output slots from eating items.
+                //  Not perfect, as it does still appear to be going into slots from client pov, but that is solely client side.
+                //  See GuiContainer.java's drawScreen(int, int, float) function, lines 139 - 162
+                if (slot != null && slot.isCraftingOutput()) {
+                    break;
+                }
 
                 //TODO: if crafting slot, loop until slot output is null.
                     int j1 = this.dragEvent;
@@ -436,25 +471,40 @@ public class TransportSlotManager extends net.minecraft.inventory.Container {
                         this.dragSlots.clear();
                     }
                 }
-            case 6: {
+            case 6: { // double clicking on an item (second click, putting down item normally)
                 if (slotId >= 0) {
-                    ItemStack itemstack1 = player.inventory.getItemStack();
+                    ItemStack heldStack = player.inventory.getItemStack();
 
-                    if (itemstack1 != null && (slot == null || !slot.getHasStack() || !slot.canTakeStack(player))) {
+                    //if player holding stack and either: slot clicked on is empty, doesn't have stack, can't take stack
+                    if (heldStack != null && (slot == null || !slot.getHasStack() || !slot.canTakeStack(player))) {
+
+                        //i and j say where to start and what direction to search
+                        //  if dragType is 0, then start at inventory spot 0 --> end
+                        //  if dragType isn't 0, then start at end and go backwards.
                         int i = dragType == 0 ? 0 : this.inventory.size() - 1;
                         int j = dragType == 0 ? 1 : -1;
 
-                        for (int k = 0; k < 2; ++k) {
-                            for (int l = i; l >= 0 && l < this.inventory.size() && itemstack1.stackSize < itemstack1.getMaxStackSize(); l += j) {
-                                Slot slot1 = getSlotByID(l);
+                        for (int k = 0; k < 2; ++k) { //loop twice. why?
+                            for (int l = i; l >= 0 && l < this.inventory.size() && heldStack.stackSize < heldStack.getMaxStackSize(); l += j) {
+                                //for loop loops either backwards or forwards through all inv slots, see large comment above
 
-                                if (slot1 != null && slot1.getHasStack() && canAddItemToSlot(slot1, itemstack1) && slot1.canTakeStack(player)) {
+                                //problem is that getting the slot via id results in trying to get 400+ but actually getting like 40 because it counts and doesn't skip like slotID
+                                Slot slot1 = getSlot(l);
+                                //prev: getSlotByID
+
+                                if (slot1 instanceof ItemStackSlot && ((ItemStackSlot) slot1).isCraftingOutput()) {
+                                    continue;
+                                }
+
+                                if (slot1 != null && slot1.getHasStack() && canAddItemToSlot(slot1, heldStack) && slot1.canTakeStack(player)) {
+                                    //if the held is combine-able with the slot in question
+
                                     ItemStack itemstack2 = slot1.getStack();
 
                                     if (k != 0 || itemstack2.stackSize != itemstack2.getMaxStackSize()) {
-                                        int i1 = Math.min(itemstack1.getMaxStackSize() - itemstack1.stackSize, itemstack2.stackSize);
+                                        int i1 = Math.min(heldStack.getMaxStackSize() - heldStack.stackSize, itemstack2.stackSize);
                                         ItemStack itemstack3 = slot1.decrStackSize(i1);
-                                        itemstack1.stackSize += i1;
+                                        heldStack.stackSize += i1;
 
                                         if (itemstack3 == null) {
                                             slot1.putStack(null);

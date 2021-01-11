@@ -237,7 +237,7 @@ public class ItemStackSlot extends Slot {
 
     /**
      * Helper function to fill the output slots with the given stacks. This is a method to account for the 9 output slots
-     * in TiM and the 7 in the Traincraft assemblytable. This could be merged back into original function (onCraftMatrixChanged).
+     * in TiM and the 8 in the Traincraft assemblytable. This could be merged back into original function (onCraftMatrixChanged).
      */
     private void putResultsInOutputSlots(IInventory hostInventory, List<ItemStackSlot> hostSlots, List<ItemStack> slots, int page, int numberSlots) {
         if(slots==null){
@@ -254,18 +254,22 @@ public class ItemStackSlot extends Slot {
                 ((TileEntityStorage)hostInventory).pages = 1;
                 ((TileEntityStorage)hostInventory).outputPage = 1;
             } else {//skip 2 since buttons will be in their place.
-                for (int i = 0; i < numberSlots-2; i++) {//TODO: disable the slots with buttons (last two)
-                    putStackInSlot(hostSlots,409 + i + ((numberSlots-2)*(page-1)), slots.get(i + ((numberSlots-2)*(page-1))));
+                if (tierIn > 0) {
+                    for (int i = 0; i < numberSlots - 2; i++) {//TODO: disable the slots with buttons (last two)
+                        putStackInSlot(hostSlots, 409 + i + ((numberSlots - 2) * (page - 1)), slots.get(i + ((numberSlots - 2) * (page - 1))));
+                    }
+                } else {
+                    //TiM crafter, but buttons in awkward place coding-wise
+                    putStackInSlot(hostSlots,409 + (7 * (page - 1)), slots.get(7 * (page - 1)));
+                    putStackInSlot(hostSlots,410 + (7 * (page - 1)), slots.get(1 + (7 * (page - 1))));
+                    putStackInSlot(hostSlots,411 + (7 * (page - 1)), slots.get(2 + (7 * (page - 1))));
+                    //intentionally skip 412 because an arrow is there
+                    putStackInSlot(hostSlots,413 + (7 * (page - 1)), slots.get(3 + (7 * (page - 1))));
+                    //intentionally skip 414 because an arrow is there
+                    putStackInSlot(hostSlots,415 + (7 * (page - 1)), slots.get(4 + (7 * (page - 1))));
+                    putStackInSlot(hostSlots,416 + (7 * (page - 1)), slots.get(5 + (7 * (page - 1))));
+                    putStackInSlot(hostSlots,417 + (7 * (page - 1)), slots.get(6 + (7 * (page - 1))));
                 }
-//                putStackInSlot(hostSlots,409 + (7*page), slots.get((7*page)));
-//                putStackInSlot(hostSlots,410 + (7*page), slots.get(1+ (7*page)));
-//                putStackInSlot(hostSlots,411 + (7*page), slots.get(2+ (7*page)));
-//                //intentionally skip 412 because an arrow is there
-//                putStackInSlot(hostSlots,413 + (7*page), slots.get(3+ (7*page)));
-//                //intentionally skip 414 because an arrow is there
-//                putStackInSlot(hostSlots,415 + (7*page), slots.get(4+ (7*page)));
-//                putStackInSlot(hostSlots,416 + (7*page), slots.get(5+ (7*page)));
-//                putStackInSlot(hostSlots,417 + (7*page), slots.get(6+ (7*page)));
 
                 //divide the possible trains by the number of usable slots on each page and round it up
                 ((TileEntityStorage)hostInventory).pages = (slots.size()/(numberSlots-2)) + 1;
@@ -520,4 +524,25 @@ public class ItemStackSlot extends Slot {
 
 
     public int getSlotID(){return slotID;}
+
+    /** Here, we use it to control whether or not to do the highlighting of slot when mousing over it.
+     * I am 99% sure it is used for that based on usages of the function found via IntelliJ.
+     * Function it overrides always returns true.
+     *
+     * @return boolean for if it should draw highlight
+     */
+    @Override
+    public boolean func_111238_b() {
+        //if the java ap exam taught me anything, it's short-circuit evaluation.
+        if (inventory instanceof TileEntityStorage && ((TileEntityStorage) inventory).pages > 1) {
+            if (tierIn > 0 && (slotID == 415 || slotID == 416)) {
+                //traincraft assemblyTables
+                return false;
+            } else if (tierIn == 0 && (slotID == 412 || slotID == 414)) {
+                //TiM traintable
+                return false;
+            }
+        }
+        return true;
+    }
 }
