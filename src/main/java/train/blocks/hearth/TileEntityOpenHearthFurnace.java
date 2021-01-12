@@ -3,6 +3,9 @@ package train.blocks.hearth;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import ebf.tim.blocks.TileEntityStorage;
+import ebf.tim.registry.TiMBlocks;
+import ebf.tim.utility.ItemStackSlot;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
@@ -21,9 +24,8 @@ import train.blocks.TileTraincraft;
 
 import java.util.Random;
 
-public class TileEntityOpenHearthFurnace extends TileTraincraft {
+public class TileEntityOpenHearthFurnace extends TileEntityStorage {
 
-	private ForgeDirection facing;
 	public int furnaceBurnTime;
 	public int currentItemBurnTime;
 	public int furnaceCookTime;
@@ -31,12 +33,19 @@ public class TileEntityOpenHearthFurnace extends TileTraincraft {
 	private Random random;
 
 	public TileEntityOpenHearthFurnace() {
-		super(4, "Open Hearth Furnace");
+		super(TCBlocks.blockHearthFurnace);
 		furnaceBurnTime = 0;
 		currentItemBurnTime = 0;
 		furnaceCookTime = 0;
 		cookDuration = 600;//default is 200
 		random = new Random();
+
+		inventory.add(new ItemStackSlot(this, 400, 56, 17));
+		inventory.add(new ItemStackSlot(this, 401, 35, 17));
+		inventory.add(new SlotOpenHearthFurnace(this, 3, 116, 35));
+
+		inventory.add(new ItemStackSlot(this, 403, 116, 60));
+		inventory.add(new ItemStackSlot(this, 404, 123, 33));
 	}
 
 	@Override
@@ -65,24 +74,25 @@ public class TileEntityOpenHearthFurnace extends TileTraincraft {
 	public void updateEntity() {
 		boolean flag = furnaceBurnTime > 0;
 		boolean flag1 = false;
-		cookDuration = TrainCraftingManager.instance.getHearthFurnaceRecipeDuration(this.slots[0], this.slots[1]);
+		cookDuration = TrainCraftingManager.instance.getHearthFurnaceRecipeDuration(
+				getSlotIndexByID(400).getStack(), getSlotIndexByID(401).getStack());
 		if (furnaceBurnTime > 0) {
 			furnaceBurnTime--;
 		}
 		if (!worldObj.isRemote) {
 			if (furnaceBurnTime == 0 && canSmelt()) {
-				if (this.slots[2] != null) {
-					currentItemBurnTime = furnaceBurnTime = getItemBurnTime(this.slots[2]);
+				if (getSlotIndexByID(402) != null) {
+					currentItemBurnTime = furnaceBurnTime = getItemBurnTime(getSlotIndexByID(402).getStack());
 					if (furnaceBurnTime > 0) {
 						flag1 = true;
-						if (this.slots[2].getItem().hasContainerItem(this.slots[2])) {
-							this.slots[2] = new ItemStack(this.slots[2].getItem().getContainerItem());
+						if (getSlotIndexByID(402).getItem().hasContainerItem(getSlotIndexByID(402).getStack())) {
+							getSlotIndexByID(402).setStack(new ItemStack(getSlotIndexByID(402).getItem().getContainerItem()));
 						}
 						else {
-							this.slots[2].stackSize--;
+							getSlotIndexByID(402).decrStackSize(1);
 						}
-						if (this.slots[2].stackSize == 0) {
-							this.slots[2] = null;
+						if (getSlotIndexByID(402).getStackSize() == 0) {
+							getSlotIndexByID(402).setStack(null);
 						}
 					}
 				}
@@ -100,7 +110,7 @@ public class TileEntityOpenHearthFurnace extends TileTraincraft {
 			}
 			if (flag != (furnaceBurnTime > 0)) {
 				flag1 = true;
-				BlockOpenHearthFurnace.updateHearthFurnaceBlockState(furnaceBurnTime > 0, worldObj, xCoord, yCoord, zCoord, random);
+				BlockOpenHearthFurnace.updateHearthFurnaceBlockState(furnaceBurnTime > 0, worldObj, xCoord, yCoord, zCoord);
 			}
 			this.syncTileEntity();
 		}
@@ -131,48 +141,51 @@ public class TileEntityOpenHearthFurnace extends TileTraincraft {
 	}
 
 	private boolean canSmelt(){
-		if(this.slots[0] == null){
+		if(getSlotIndexByID(400) == null){
 			return false;
 		}
-		if(this.slots[1] == null){//second input slot
+		if(getSlotIndexByID(401) == null){//second input slot
 			return false;
 		}
-		ItemStack itemstack = TrainCraftingManager.instance.getHearthFurnaceRecipeResult(this.slots[0], this.slots[1]);
+		ItemStack itemstack = TrainCraftingManager.instance.getHearthFurnaceRecipeResult(
+				getSlotIndexByID(400).getStack(), getSlotIndexByID(401).getStack());
 
-		return (itemstack != null) && (this.slots[3] == null || this.slots[3].isItemEqual(itemstack) && this.slots[3].stackSize < itemstack.getMaxStackSize());
+		return (itemstack != null) && (getSlotIndexByID(403) == null ||
+				getSlotIndexByID(403).getStack().isItemEqual(itemstack) &&
+						getSlotIndexByID(403).getStackSize() < itemstack.getMaxStackSize());
 	}
 
 	public void smeltItem() {
 		if (!canSmelt()) {
 			return;
 		}
-		ItemStack itemstack = TrainCraftingManager.instance.getHearthFurnaceRecipeResult(this.slots[0], this.slots[1]);
-		if (this.slots[3] == null) {
-			this.slots[3] = itemstack.copy();
+		ItemStack itemstack = TrainCraftingManager.instance.getHearthFurnaceRecipeResult(getSlotIndexByID(400).getStack(), getSlotIndexByID(401).getStack());
+		if (getSlotIndexByID(403) == null) {
+			getSlotIndexByID(403).setStack(itemstack.copy());
 
 		}
-		else if (this.slots[3].getItem() == itemstack.getItem()) {
-			this.slots[3].stackSize += itemstack.stackSize;
+		else if (getSlotIndexByID(403).getItem() == itemstack.getItem()) {
+			getSlotIndexByID(403).decrStackSize(-itemstack.stackSize);
 
 		}
-		if (this.slots[0].getItem().hasContainerItem(this.slots[0])) {
-			this.slots[0] = new ItemStack(this.slots[0].getItem().getContainerItem());
+		if (getSlotIndexByID(400).getItem().hasContainerItem(getSlotIndexByID(400).getStack())) {
+			getSlotIndexByID(400).setStack(new ItemStack(getSlotIndexByID(400).getItem().getContainerItem()));
 		}
 		else {
-			this.slots[0].stackSize--;
+			getSlotIndexByID(400).decrStackSize(1);
 		}
-		if (this.slots[0].stackSize <= 0) {
-			this.slots[0] = null;
+		if (getSlotIndexByID(400).getStackSize() <= 0) {
+			getSlotIndexByID(400).setStack(null);
 		}
 
-		if (this.slots[1].getItem().hasContainerItem(this.slots[1])) {
-			this.slots[1] = new ItemStack(this.slots[1].getItem().getContainerItem());
+		if (getSlotIndexByID(401).getItem().hasContainerItem(getSlotIndexByID(401).getStack())) {
+			getSlotIndexByID(401).setStack(new ItemStack(getSlotIndexByID(401).getItem().getContainerItem()));
 		}
 		else {
-			this.slots[1].stackSize--;
+			getSlotIndexByID(401).decrStackSize(1);
 		}
-		if (this.slots[1].stackSize <= 0) {
-			this.slots[1] = null;
+		if (getSlotIndexByID(401).getStackSize() <= 0) {
+			getSlotIndexByID(401).setStack(null);
 		}
 	}
 
@@ -207,29 +220,19 @@ public class TileEntityOpenHearthFurnace extends TileTraincraft {
 		return GameRegistry.getFuelValue(it);
 	}
 
-	public ForgeDirection getFacing() {
-		if(facing!=null)return this.facing;
-		return ForgeDirection.NORTH;
-	}
-
-	public void setFacing(ForgeDirection face) {
-		this.facing = face;
-	}
 
 	@Override
-	public NBTTagCompound writeToNBT(NBTTagCompound nbt, boolean forSyncing){
-		super.writeToNBT(nbt, forSyncing);
+	public void writeToNBT(NBTTagCompound nbt){
+		super.writeToNBT(nbt);
 		nbt.setByte("Orientation", (byte) getFacing().ordinal());
 		nbt.setShort("BurnTime", (short) furnaceBurnTime);
 		nbt.setShort("CookTime", (short) furnaceCookTime);
 		nbt.setShort("ItemBurnTime", (short) currentItemBurnTime);
-		return nbt;
 	}
 
 	@Override
-	public void readFromNBT(NBTTagCompound nbt, boolean forSyncing){
-		super.readFromNBT(nbt, forSyncing);
-		facing = ForgeDirection.getOrientation(nbt.getByte("Orientation"));
+	public void readFromNBT(NBTTagCompound nbt){
+		super.readFromNBT(nbt);
 		furnaceBurnTime = nbt.getShort("BurnTime");
 		furnaceCookTime = nbt.getShort("CookTime");
 		currentItemBurnTime = nbt.getShort("ItemBurnTime");

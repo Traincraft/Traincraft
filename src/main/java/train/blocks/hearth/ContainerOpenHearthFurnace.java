@@ -15,7 +15,7 @@ public class ContainerOpenHearthFurnace extends Container {
 		addSlotToContainer(new Slot(tileentityFurnace, 0, 56, 17));
 		addSlotToContainer(new Slot(tileentityFurnace, 1, 35, 17));
 		addSlotToContainer(new Slot(tileentityFurnace, 2, 47, 53));//53
-		addSlotToContainer(new SlotOpenHearthFurnace(inventoryplayer.player, tileentityFurnace, 3, 116, 35));
+		addSlotToContainer(new SlotOpenHearthFurnace(tileentityFurnace, 3, 116, 35));
 		for (int i = 0; i < 3; i++) {
 			for (int k = 0; k < 9; k++) {
 				addSlotToContainer(new Slot(inventoryplayer, k + i * 9 + 9, 8 + k * 18, 84 + i * 18));

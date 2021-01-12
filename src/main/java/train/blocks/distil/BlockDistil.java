@@ -2,53 +2,37 @@ package train.blocks.distil;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import ebf.tim.TrainsInMotion;
 import ebf.tim.blocks.BlockDynamic;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import train.Traincraft;
 import train.blocks.TCBlocks;
-import train.library.BlockIDs;
 import train.library.GuiIDs;
-import train.library.Info;
-import train.blocks.TileTraincraft;
 
 import java.util.Random;
 
 public class BlockDistil extends BlockDynamic {
 
-	private final boolean isActive;
 
-
-	public BlockDistil(boolean flag) {
+	public BlockDistil() {
 		super(Material.rock, true,true);
-		isActive = flag;
 		//setRequiresSelfNotify();
-
-		if (isActive) {
-			setLightLevel(0.8F);
-		} else {
-			setCreativeTab(Traincraft.tcTab);
-		}
 	}
 
 	@Override
 	public Item getItemDropped(int i, Random random, int j) {
-		return Item.getItemFromBlock(TCBlocks.distilIdle);
+		return Item.getItemFromBlock(TCBlocks.blockDistil);
 	}
 
 	@Override
@@ -68,33 +52,33 @@ public class BlockDistil extends BlockDynamic {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void randomDisplayTick(World world, int i, int j, int k, Random random) {
-		if (this.isActive) {
-			ForgeDirection side = ((TileEntityDistil) world.getTileEntity(i, j, k)).getFacing();
-			float var7 = (float) i + 0.5F;
-			float var8 = (float) j + 0.0F + random.nextFloat() * 6.0F / 16.0F;
-			float var9 = (float) k + 0.5F;
-			float var10 = 0.52F;
+		TileEntity te = Minecraft.getMinecraft().theWorld.getTileEntity((int) minX, (int) minY, (int) minZ);
+		if (te instanceof TileEntityDistil && ((TileEntityDistil) te).isBurning()) {
+			setLightLevel(0.8F);
+			ForgeDirection side = ((TileEntityDistil) te).getFacing();
+			float var7 = i + 0.5F;
+			float var8 = j + 0.0F + random.nextFloat() * 6.0F / 16.0F;
+			float var9 = k + 0.5F;
 			float var11 = random.nextFloat() * 0.6F - 0.3F;
 			for (int t = 0; t < 10; t++) {
-
 				world.spawnParticle("mobSpellAmbient", var7, (double) j + 1F, var9, 0, 0, 0);
 			}
+
 			if (side == ForgeDirection.WEST) {
-				world.spawnParticle("smoke", (double) (var7 - var10), (double) var8, (double) (var9 + var11), 0.0D, 0.0D, 0.0D);
-				world.spawnParticle("flame", (double) (var7 - var10), (double) var8, (double) (var9 + var11), 0.0D, 0.0D, 0.0D);
+				world.spawnParticle("smoke", (double) (var7 - 0.52F), (double) var8, (double) (var9 + var11), 0.0D, 0.0D, 0.0D);
+				world.spawnParticle("flame", (double) (var7 - 0.52F), (double) var8, (double) (var9 + var11), 0.0D, 0.0D, 0.0D);
+			} else if (side == ForgeDirection.EAST) {
+				world.spawnParticle("smoke", (double) (var7 + 0.52F), (double) var8, (double) (var9 + var11), 0.0D, 0.0D, 0.0D);
+				world.spawnParticle("flame", (double) (var7 + 0.52F), (double) var8, (double) (var9 + var11), 0.0D, 0.0D, 0.0D);
+			} else if (side == ForgeDirection.NORTH) {
+				world.spawnParticle("smoke", (double) (var7 + var11), (double) var8, (double) (var9 - 0.52F), 0.0D, 0.0D, 0.0D);
+				world.spawnParticle("flame", (double) (var7 + var11), (double) var8, (double) (var9 - 0.52F), 0.0D, 0.0D, 0.0D);
+			} else if (side == ForgeDirection.SOUTH) {
+				world.spawnParticle("smoke", (double) (var7 + var11), (double) var8, (double) (var9 + 0.52F), 0.0D, 0.0D, 0.0D);
+				world.spawnParticle("flame", (double) (var7 + var11), (double) var8, (double) (var9 + 0.52F), 0.0D, 0.0D, 0.0D);
 			}
-			else if (side == ForgeDirection.EAST) {
-				world.spawnParticle("smoke", (double) (var7 + var10), (double) var8, (double) (var9 + var11), 0.0D, 0.0D, 0.0D);
-				world.spawnParticle("flame", (double) (var7 + var10), (double) var8, (double) (var9 + var11), 0.0D, 0.0D, 0.0D);
-			}
-			else if (side == ForgeDirection.NORTH) {
-				world.spawnParticle("smoke", (double) (var7 + var11), (double) var8, (double) (var9 - var10), 0.0D, 0.0D, 0.0D);
-				world.spawnParticle("flame", (double) (var7 + var11), (double) var8, (double) (var9 - var10), 0.0D, 0.0D, 0.0D);
-			}
-			else if (side == ForgeDirection.SOUTH) {
-				world.spawnParticle("smoke", (double) (var7 + var11), (double) var8, (double) (var9 + var10), 0.0D, 0.0D, 0.0D);
-				world.spawnParticle("flame", (double) (var7 + var11), (double) var8, (double) (var9 + var10), 0.0D, 0.0D, 0.0D);
-			}
+		} else {
+			setLightLevel(0.0F);
 		}
 	}
 

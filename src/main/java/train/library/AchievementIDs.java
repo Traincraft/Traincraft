@@ -69,7 +69,7 @@ public enum AchievementIDs {
 	caboose(new Item[] { ItemIDs.minecartCaboose.item, ItemIDs.minecartCaboose3.item,
 			ItemIDs.minecartCabooseWork.item }),
 	stockCar(new Item[] { ItemIDs.minecartStockCar.item, ItemIDs.minecartDRWGStockCar.item }),
-	distilationTower(new Item[] { Item.getItemFromBlock(TCBlocks.distilIdle) });
+	distilationTower(new Item[] { Item.getItemFromBlock(TCBlocks.blockDistil) });
 
 	public Achievement	achievement;
 	protected Item[]	items;

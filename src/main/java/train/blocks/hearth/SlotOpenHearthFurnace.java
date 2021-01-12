@@ -1,6 +1,8 @@
 package train.blocks.hearth;
 
 import cpw.mods.fml.common.FMLCommonHandler;
+import ebf.tim.utility.ItemStackSlot;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -11,13 +13,10 @@ import net.minecraftforge.oredict.OreDictionary;
 import train.blocks.bench.TrainCraftingManager;
 import train.library.AchievementIDs;
 
-public class SlotOpenHearthFurnace extends Slot {
-	private EntityPlayer thePlayer;
-	private int amount;
+public class SlotOpenHearthFurnace extends ItemStackSlot {
 
-	public SlotOpenHearthFurnace(EntityPlayer entityplayer, IInventory iinventory, int i, int j, int k) {
+	public SlotOpenHearthFurnace(IInventory iinventory, int i, int j, int k) {
 		super(iinventory, i, j, k);
-		thePlayer = entityplayer;
 	}
 
 	@Override
@@ -25,17 +24,6 @@ public class SlotOpenHearthFurnace extends Slot {
 		return false;
 	}
 
-	/**
-	 * Decrease the size of the stack in slot (first int arg) by the amount of the second int arg. Returns the new stack.
-	 */
-	@Override
-	public ItemStack decrStackSize(int par1) {
-		if (this.getHasStack()) {
-			this.amount += Math.min(par1, this.getStack().stackSize);
-		}
-
-		return super.decrStackSize(par1);
-	}
 
 	@Override
 	public void onPickupFromSlot(EntityPlayer par1EntityPlayer, ItemStack itemstack) {
@@ -44,30 +32,14 @@ public class SlotOpenHearthFurnace extends Slot {
 	}
 
 	/**
-	 * the itemStack passed in is the output - ie, iron ingots, and pickaxes, not ore and wood. Typically increases an internal count then calls onCrafting(item).
-	 */
-	@Override
-	protected void onCrafting(ItemStack itemstack, int par2) {
-		this.amount += par2;
-		this.onCrafting(itemstack);
-	}
-
-	/**
 	 * the itemStack passed in is the output - ie, iron ingots, and pickaxes, not ore and wood.
 	 */
 	@Override
 	protected void onCrafting(ItemStack itemstack) {
-		itemstack.onCrafting(this.thePlayer.worldObj, this.thePlayer, this.amount);
-		
-		FMLCommonHandler.instance().firePlayerSmeltedEvent(thePlayer, itemstack);
-		if (OreDictionary.getOres("ingotSteel").contains(itemstack)) {
-			thePlayer.addStat(AchievementIDs.steel.achievement, 1);
-		}
-
-		if (!this.thePlayer.worldObj.isRemote) {
-			int var2 = this.amount;
+		if (!((Entity)inventory).worldObj.isRemote) {
 			float var3 = TrainCraftingManager.instance.getHearthFurnaceRecipeExperience(itemstack);
 			int var4;
+			int var2=getStackSize();
 
 			if (var3 == 0.0F) {
 				var2 = 0;
@@ -85,11 +57,9 @@ public class SlotOpenHearthFurnace extends Slot {
 			while (var2 > 0) {
 				var4 = EntityXPOrb.getXPSplit(var2);
 				var2 -= var4;
-				this.thePlayer.worldObj.spawnEntityInWorld(new EntityXPOrb(this.thePlayer.worldObj, this.thePlayer.posX, this.thePlayer.posY + 0.5D, this.thePlayer.posZ + 0.5D, var4));
+				((Entity)inventory).worldObj.spawnEntityInWorld(new EntityXPOrb(((Entity)inventory).worldObj, ((Entity)inventory).posX, ((Entity)inventory).posY + 0.5D, ((Entity)inventory).posZ + 0.5D, var4));
 			}
 		}
-
-		this.amount = 0;
 
 	}
 }

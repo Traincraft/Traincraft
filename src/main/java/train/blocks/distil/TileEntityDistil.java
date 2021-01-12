@@ -3,25 +3,16 @@ package train.blocks.distil;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import ebf.tim.blocks.TileEntityStorage;
-import ebf.tim.registry.TiMBlocks;
-import ebf.tim.registry.TiMFluids;
-import ebf.tim.utility.DebugUtil;
 import ebf.tim.utility.ItemStackSlot;
-import net.minecraft.block.Block;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntityFurnace;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
 import train.blocks.TCBlocks;
 import train.blocks.fluids.LiquidManager;
-import train.blocks.fluids.LiquidManager.StandardTank;
-import train.library.BlockIDs;
 import train.library.ItemIDs;
-import train.blocks.TileTraincraft;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -38,7 +29,7 @@ public class TileEntityDistil extends TileEntityStorage implements IFluidHandler
 
 	public TileEntityDistil() {
 		//slots 0=input 1=fuel 3=output 2=input canister ?=filled canister
-		super(TCBlocks.distilIdle);
+		super(TCBlocks.blockDistil);
 		distilBurnTime = 0;
 		currentItemBurnTime = 0;
 		distilCookTime = 0;
@@ -269,13 +260,6 @@ public class TileEntityDistil extends TileEntityStorage implements IFluidHandler
 		}
 		this.markDirty();
 	}
-
-
-	@Override
-	public void openInventory() {}
-
-	@Override
-	public void closeInventory() {}
 
 
 
