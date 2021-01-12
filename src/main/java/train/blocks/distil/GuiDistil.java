@@ -1,5 +1,6 @@
 package train.blocks.distil;
 
+import ebf.tim.registry.TiMFluids;
 import ebf.tim.utility.DebugUtil;
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -23,13 +24,13 @@ public class GuiDistil extends GuiContainer {
 	public GuiDistil(InventoryPlayer invPlayer, TileEntityDistil tileentitydistil) {
 		super(new ContainerDistil(invPlayer, tileentitydistil));
 		distilInventory = tileentitydistil;
-		staticAmount = distilInventory.amount;
+		staticAmount = distilInventory.getLiquid();
 	}
 
 	@Override
 	public void updateScreen(){
-		if (distilInventory.amount != staticAmount){
-			staticAmount = distilInventory.amount;
+		if (distilInventory.getLiquid() != staticAmount){
+			staticAmount = distilInventory.getLiquid();
 			super.updateScreen();
 		}
 	}
@@ -39,14 +40,6 @@ public class GuiDistil extends GuiContainer {
 		fontRendererObj.drawString("Distillation tower", 8, 6, 0x404040);
 		fontRendererObj.drawString("Inventory", 8, (ySize - 96) + 2, 0x404040);
 		if (distilInventory.inventory.get(0).getStack() != null) {
-			/**
-			 * Stops showing 100% on copper 
-			 */
-			if (Block.getBlockFromItem(distilInventory.inventory.get(0).getStack().getItem()) == TCBlocks.orePetroleum
-					&& (distilInventory.inventory.get(0).getStack().getItemDamage() != 1
-							&& distilInventory.inventory.get(0).getStack().getItemDamage() != 2)) {
-				return;
-			}
 			double plasticChance = DistilRecipes.smelting().getPlasticChance(distilInventory.inventory.get(0).getStack().getItem());
 			if(plasticChance!=0){//stops showing 100% for blocks that aren't part of a recipe
 				double chanceShown = ((1 / plasticChance) * 100);
@@ -57,28 +50,18 @@ public class GuiDistil extends GuiContainer {
 
 	@Override
 	public void drawScreen(int t, int g, float par3) {
-		//drawGuiContainerBackgroundLayer(par3, t, g);
-		//drawGuiContainerForegroundLayer(t, g);
 		super.drawScreen(t, g, par3);
-		if ((LiquidManager.DIESEL != null && distilInventory.getLiquidItemID() == LiquidManager.DIESEL.getID())) {
-			if (intersectsWith(t, g)) {
-				drawCreativeTabHoveringText("Diesel", t, g);
-			}
-		}
-		if ((LiquidManager.REFINED_FUEL != null && distilInventory.getLiquidItemID() == LiquidManager.REFINED_FUEL.getID())) {
-			if (intersectsWith(t, g)) {
-				drawCreativeTabHoveringText("Fuel", t, g);
-			}
+		if (intersectsWith(t, g)) {
+			drawCreativeTabHoveringText(distilInventory.getLiquid()>0 && distilInventory.getTankInfo(0)!=null &&
+					distilInventory.getTankInfo(0).fluid!=null?
+					distilInventory.getTankInfo(0).fluid.getLocalizedName():"empty", t, g);
 		}
 	}
 
 	@Override
 	protected void drawCreativeTabHoveringText(String str, int t, int g) {
 
-		int amount =0;
-		if(distilInventory.getTankInfo(null)[0]!=null && distilInventory.getTankInfo(null)[0].fluid!=null) {
-			amount=distilInventory.getTankInfo(null)[0].fluid.amount;
-		}
+		int amount =distilInventory.getLiquid();
 		int textWidth = fontRendererObj.getStringWidth(amount + "/" + distilInventory.getTankCapacity()[0]);
 		int startX = t + 14;
 		int startY = g - 12;
@@ -104,7 +87,7 @@ public class GuiDistil extends GuiContainer {
 		int amount = distilInventory.getLiquid();
 		int liqui =  Math.abs((amount * 50) / (distilInventory.getTankCapacity()[0]));
 		drawTexturedModalRect(j + 145, (k + 57) - liqui, 177, 107 - liqui, 18, liqui);
-		if (LiquidManager.REFINED_FUEL != null && distilInventory.getLiquidItemID() == LiquidManager.REFINED_FUEL.getID()) {
+		if (distilInventory.getFluidStack(0)!=null && distilInventory.getFluidStack(0).fluid == TiMFluids.fluidfueloil) {
 			drawRect(j + 145, k + 57, 177, 107, 0);
 		}
 

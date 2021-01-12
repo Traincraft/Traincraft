@@ -32,13 +32,11 @@ import java.util.Random;
 public class BlockDistil extends BlockDynamic {
 
 	private final boolean isActive;
-	private Random distilRand;
 
 
 	public BlockDistil(boolean flag) {
 		super(Material.rock, true,true);
 		isActive = flag;
-		distilRand = new Random();
 		//setRequiresSelfNotify();
 
 		if (isActive) {

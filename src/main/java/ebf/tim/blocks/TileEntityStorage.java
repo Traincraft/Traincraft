@@ -145,7 +145,8 @@ public class TileEntityStorage extends TileRenderFacing implements IInventory, I
             fluidTank = new FluidTankInfo[getTankCapacity().length];
             for (int i = 0; i < getTankCapacity().length; i++) {
                 if (data.containsFluidStack("tanks." + i)) {
-                    fluidTank[i] = new FluidTankInfo(data.getFluidStack("tanks."+i), getTankCapacity()[i]);
+                    FluidStack s =data.getFluidStack("tanks."+i);
+                    fluidTank[i] = new FluidTankInfo(s, getTankCapacity()[i]);
                 }
             }
         } else {
@@ -166,8 +167,10 @@ public class TileEntityStorage extends TileRenderFacing implements IInventory, I
             }
         }
         for(int i=0; i<getTankInfo(null).length;i++){
-            if(getTankInfo(null) !=null && getTankInfo(null)[i]!=null) {
-                data.putFluidStack("tanks."+i, getTankInfo(null)[i].fluid);
+            if(getTankInfo(i)!=null && getTankInfo(i).fluid!=null) {
+                data.putFluidStack("tanks." + i, getTankInfo(i).fluid);
+            } else if(getTankInfo(i)!=null){
+                data.putFluidStack("tanks." + i, null);
             }
         }
         tag.setString("xmlData",data.toXMLString());
@@ -224,27 +227,46 @@ public class TileEntityStorage extends TileRenderFacing implements IInventory, I
                     continue;
                 }
             }
-            if (getTankInfo(null)[stack]!=null && (
-                    resource.getFluid() == null || getTankInfo(null)[stack].fluid.getFluid() == resource.getFluid() ||
-                            getTankInfo(null)[stack].fluid.amount ==0)) {
+            if(getTankInfo(stack)!=null && (getTankInfo(stack).fluid==null|| getTankInfo(stack).fluid.getFluid()==null
+            || getTankInfo(stack).fluid.amount==0)){
 
-                if(leftoverDrain+getTankInfo(null)[stack].fluid.amount>getTankInfo(null)[stack].capacity){
-                    leftoverDrain-=getTankInfo(null)[stack].capacity-getTankInfo(null)[stack].fluid.amount;
-                    if(doFill){
-                        getTankInfo(null)[stack] = new FluidTankInfo(
-                                new FluidStack(resource.fluid, getTankInfo(null)[stack].capacity), getTankInfo(null)[stack].capacity);
+                int fill=leftoverDrain-fluidTank[stack].capacity;
+                    if (fill < 0) {
+                        if(doFill) {
+                            fluidTank[stack] = new FluidTankInfo(resource, getTankInfo(stack).capacity);
+                        }
+                        return 0;
+                    } else {
+                        leftoverDrain-=getTankInfo(stack).capacity;
+                        if(doFill) {
+                        fluidTank[stack] = new FluidTankInfo(
+                                new FluidStack(resource.getFluid(),getTankInfo(stack).capacity),
+                                getTankInfo(stack).capacity);
                     }
-                } else if (leftoverDrain+getTankInfo(null)[stack].fluid.amount<0){
-                    leftoverDrain-=getTankInfo(null)[stack].fluid.amount-resource.amount;
+                }
+            }
+
+            if (getTankInfo(stack)!=null &&  (
+                    resource.getFluid() == null || (getTankInfo(stack).fluid!=null &&
+                            getTankInfo(stack).fluid.getFluid() == resource.getFluid()))) {
+
+                if(leftoverDrain+getTankInfo(stack).fluid.amount>getTankInfo(stack).capacity){
+                    leftoverDrain-=getTankInfo(stack).capacity-getTankInfo(stack).fluid.amount;
                     if(doFill){
-                        getTankInfo(null)[stack] = new FluidTankInfo(
-                                new FluidStack(getTankInfo(null)[stack].fluid, 0), getTankInfo(null)[stack].capacity);
+                        fluidTank[stack] = new FluidTankInfo(
+                                new FluidStack(resource.fluid, getTankInfo(stack).capacity), getTankInfo(stack).capacity);
+                    }
+                } else if (leftoverDrain+getTankInfo(stack).fluid.amount<0){
+                    leftoverDrain-=getTankInfo(stack).fluid.amount-resource.amount;
+                    if(doFill){
+                        fluidTank[stack] = new FluidTankInfo(
+                                new FluidStack(getTankInfo(stack).fluid, 0), getTankInfo(stack).capacity);
                     }
                 } else {
                     if(doFill){
-                        getTankInfo(null)[stack] = new FluidTankInfo(
-                                new FluidStack(resource.fluid, getTankInfo(null)[stack].fluid.amount+leftoverDrain),
-                                getTankInfo(null)[stack].capacity);
+                        fluidTank[stack] = new FluidTankInfo(
+                                new FluidStack(resource.fluid, getTankInfo(stack).fluid.amount+leftoverDrain),
+                                getTankInfo(stack).capacity);
                     }
                     leftoverDrain=0;
                 }
@@ -278,6 +300,14 @@ public class TileEntityStorage extends TileRenderFacing implements IInventory, I
 
     }
 
+    public FluidStack getFluidStack(int slot){
+        if(getTankInfo(null)!=null && getTankInfo(null)[slot]!=null){
+            return null;
+        } else {
+            return getTankInfo(null)[slot].fluid;
+        }
+    }
+
     /*
      * <h1>Fluid Management</h1>
      */
@@ -302,9 +332,14 @@ public class TileEntityStorage extends TileRenderFacing implements IInventory, I
         return false;
     }
 
+    public FluidTankInfo getTankInfo(int tank){
+        return getTankInfo(null)[tank];
+    }
+
     @Override
     public FluidTankInfo[] getTankInfo(ForgeDirection from){
         if(getTankCapacity()==null || getTankCapacity().length ==0){
+            DebugUtil.println("dafaq");
             return new FluidTankInfo[]{};
         }
 
@@ -315,8 +350,13 @@ public class TileEntityStorage extends TileRenderFacing implements IInventory, I
                 tanks[i] = new FluidTankInfo(new FluidStack(FluidRegistry.WATER, 0), getTankCapacity()[i]);
             }
             fluidTank = tanks;
+        } else {
+            for (int f=0; f<fluidTank.length;f++){
+                if(fluidTank[f]==null){
+                    fluidTank[f]=new FluidTankInfo(new FluidStack(FluidRegistry.WATER, 0), getTankCapacity()[f]);
+                }
+            }
         }
-
         return fluidTank;
     }
 
