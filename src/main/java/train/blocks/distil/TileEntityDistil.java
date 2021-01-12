@@ -5,6 +5,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import ebf.tim.blocks.TileEntityStorage;
 import ebf.tim.registry.TiMBlocks;
 import ebf.tim.registry.TiMFluids;
+import ebf.tim.utility.ItemStackSlot;
 import net.minecraft.block.Block;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.Item;
@@ -20,11 +21,11 @@ import train.library.BlockIDs;
 import train.library.ItemIDs;
 import train.blocks.TileTraincraft;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class TileEntityDistil extends TileEntityStorage implements IFluidHandler, ISidedInventory {
 
-	private ForgeDirection facing;
 	public int distilBurnTime;
 	public int currentItemBurnTime;
 	public int distilCookTime;
@@ -43,6 +44,14 @@ public class TileEntityDistil extends TileEntityStorage implements IFluidHandler
 		cookDuration = 400;//default is 200
 		random = new Random();
 		//this.theTank = LiquidManager.getInstance().new FilteredTank(maxTank, new FluidStack[]{TiMFluids.fluidDiesel, }, 1);
+		inventory=new ArrayList<>();
+
+		inventory.add(new ItemStackSlot(this, 0, 56, 17));
+		inventory.add(new ItemStackSlot(this, 1, 56, 53));
+		inventory.add(new ItemStackSlot(this, 2, 123, 8));
+
+		inventory.add(new ItemStackSlot(this, 3, 116, 60));
+		inventory.add(new ItemStackSlot(this, 4, 123, 33));
 	}
 
 	/**
@@ -66,7 +75,6 @@ public class TileEntityDistil extends TileEntityStorage implements IFluidHandler
 	@Override
 	public void readFromNBT(NBTTagCompound nbtTag) {
 		super.readFromNBT(nbtTag);
-		facing = ForgeDirection.getOrientation(nbtTag.getInteger("Orientation"));
 		distilBurnTime = nbtTag.getShort("BurnTime");
 		distilCookTime = nbtTag.getShort("CookTime");
 		currentItemBurnTime = nbtTag.getShort("CurrentItemBurn");
@@ -81,7 +89,6 @@ public class TileEntityDistil extends TileEntityStorage implements IFluidHandler
 	@Override
 	public void writeToNBT(NBTTagCompound nbtTag) {
 		super.writeToNBT(nbtTag);
-		nbtTag.setInteger("Orientation", getFacing().ordinal());
 		nbtTag.setShort("BurnTime", (short) distilBurnTime);
 		nbtTag.setShort("CookTime", (short) distilCookTime);
 		nbtTag.setInteger("Amount", this.amount);
@@ -113,19 +120,19 @@ public class TileEntityDistil extends TileEntityStorage implements IFluidHandler
 			boolean flag = distilBurnTime > 0;
 			boolean flag1 = false;
 			if (distilBurnTime == 0 && canSmelt()) {
-				currentItemBurnTime = distilBurnTime = TileEntityFurnace.getItemBurnTime(inventory.get(1).getStack());
+				currentItemBurnTime = distilBurnTime = TileEntityFurnace.getItemBurnTime(getSlotIndexByID(1).getStack());
 				if (distilBurnTime > 0) {
 					flag1 = true;
-					if (inventory.get(1).getStack() != null) {
-						if (inventory.get(1).getStack().getItem().hasContainerItem(inventory.get(1).getStack())) {
-							inventory.get(1).setStack(new ItemStack(inventory.get(1).getStack().getItem().getContainerItem()));
+					if (getSlotIndexByID(1).getStack() != null) {
+						if (getSlotIndexByID(1).getStack().getItem().hasContainerItem(getSlotIndexByID(1).getStack())) {
+							getSlotIndexByID(1).setStack(new ItemStack(getSlotIndexByID(1).getStack().getItem().getContainerItem()));
 						}
 						else {
-							inventory.get(1).getStack().stackSize--;
+							getSlotIndexByID(1).getStack().stackSize--;
 						}
 
-						if (inventory.get(1).getStack().stackSize == 0) {
-							inventory.get(1).setStack(null);
+						if (getSlotIndexByID(1).getStack().stackSize == 0) {
+							getSlotIndexByID(1).setStack(null);
 						}
 					}
 				}
@@ -153,11 +160,11 @@ public class TileEntityDistil extends TileEntityStorage implements IFluidHandler
 				this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
 			}
 
-			if (inventory.get(2).getStack() != null) {
+			if (getSlotIndexByID(2).getStack() != null) {
 
 				if (this.updateTicks % 8 == 0) {
 
-					ItemStack result = LiquidManager.getInstance().processContainer(this, 2, this, inventory.get(2).getStack());
+					ItemStack result = LiquidManager.getInstance().processContainer(this, 2, this, getSlotIndexByID(2).getStack());
 
 					if (result != null && placeInInvent(result, 4, false)) {
 
@@ -216,21 +223,21 @@ public class TileEntityDistil extends TileEntityStorage implements IFluidHandler
 	}
 
 	private boolean placeInInvent(ItemStack itemstack1, int i, boolean doAdd) {
-		if (inventory.get(i) == null) {
+		if (getSlotIndexByID(i) == null) {
 			if (doAdd)
-				inventory.get(i).setStack(itemstack1);
+				getSlotIndexByID(i).setStack(itemstack1);
 			return true;
 		}
-		else if (inventory.get(i).getStack() != null && Item.getIdFromItem(inventory.get(i).getItem()) == Item.getIdFromItem(itemstack1.getItem()) && itemstack1.isStackable() && (!itemstack1.getHasSubtypes() || inventory.get(i).getStack().getItemDamage() == itemstack1.getItemDamage()) && ItemStack.areItemStackTagsEqual(inventory.get(i).getStack(), itemstack1)) {
-			int var9 = inventory.get(i).getStack().stackSize + itemstack1.stackSize;
+		else if (getSlotIndexByID(i).getStack() != null && Item.getIdFromItem(getSlotIndexByID(i).getItem()) == Item.getIdFromItem(itemstack1.getItem()) && itemstack1.isStackable() && (!itemstack1.getHasSubtypes() || getSlotIndexByID(i).getStack().getItemDamage() == itemstack1.getItemDamage()) && ItemStack.areItemStackTagsEqual(getSlotIndexByID(i).getStack(), itemstack1)) {
+			int var9 = getSlotIndexByID(i).getStack().stackSize + itemstack1.stackSize;
 			if (var9 <= itemstack1.getMaxStackSize()) {
 				if (doAdd)
-					inventory.get(i).setSlotStacksize(var9);
+					getSlotIndexByID(i).setSlotStacksize(var9);
 
 			}
-			else if (inventory.get(i).getStack().stackSize < itemstack1.getMaxStackSize()) {
+			else if (getSlotIndexByID(i).getStack().stackSize < itemstack1.getMaxStackSize()) {
 				if (doAdd)
-					inventory.get(i).setSlotStacksize(inventory.get(i).getStackSize()+1);
+					getSlotIndexByID(i).setSlotStacksize(getSlotIndexByID(i).getStackSize()+1);
 			}
 			return true;
 		}
@@ -239,10 +246,10 @@ public class TileEntityDistil extends TileEntityStorage implements IFluidHandler
 	}
 
 	private boolean canSmelt() {
-		if (inventory.get(0).getStack() == null || (inventory.get(3).getStack() != null && inventory.get(3).getStackSize()==64) || (inventory.get(4).getStack() != null && inventory.get(4).getStackSize()==64)) {
+		if (getSlotIndexByID(0).getStack() == null || (getSlotIndexByID(3).getStack() != null && getSlotIndexByID(3).getStackSize()==64) || (getSlotIndexByID(4).getStack() != null && getSlotIndexByID(4).getStackSize()==64)) {
 			return false;
 		}
-		ItemStack itemstack = DistilRecipes.smelting().getSmeltingResult(inventory.get(0).getStack().getItem());
+		ItemStack itemstack = DistilRecipes.smelting().getSmeltingResult(getSlotIndexByID(0).getStack().getItem());
 		if (itemstack == null) {
 			return false;
 		}
@@ -257,9 +264,9 @@ public class TileEntityDistil extends TileEntityStorage implements IFluidHandler
 		if (!canSmelt()) {
 			return;
 		}
-		ItemStack itemstack = DistilRecipes.smelting().getSmeltingResult(inventory.get(0).getStack().getItem());
-		ItemStack plasticStack = DistilRecipes.smelting().getPlasticResult(inventory.get(0).getStack().getItem());
-		int plasticChance = DistilRecipes.smelting().getPlasticChance(inventory.get(0).getStack().getItem());
+		ItemStack itemstack = DistilRecipes.smelting().getSmeltingResult(getSlotIndexByID(0).getStack().getItem());
+		ItemStack plasticStack = DistilRecipes.smelting().getPlasticResult(getSlotIndexByID(0).getStack().getItem());
+		int plasticChance = DistilRecipes.smelting().getPlasticChance(getSlotIndexByID(0).getStack().getItem());
 		FluidStack resultLiquid = FluidContainerRegistry.getFluidForFilledItem(itemstack);
 		if (resultLiquid == null)
 			return;
@@ -269,7 +276,7 @@ public class TileEntityDistil extends TileEntityStorage implements IFluidHandler
 		{
 			fill(ForgeDirection.UNKNOWN, resultLiquid, true);
 			if (random.nextInt(plasticChance) == 0)
-				outputPlastic(plasticStack, inventory.get(0).getStack().getItem() == ItemIDs.diesel.item);
+				outputPlastic(plasticStack, getSlotIndexByID(0).getStack().getItem() == ItemIDs.diesel.item);
 			if (getTankInfo(ForgeDirection.UNKNOWN)[0].fluid.getFluid() != null) {
 				amount = getTankInfo(ForgeDirection.UNKNOWN)[0].fluid.amount;
 			}
@@ -281,47 +288,37 @@ public class TileEntityDistil extends TileEntityStorage implements IFluidHandler
 			this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
 		}
 
-		if (inventory.get(0).getStack().getItem().hasContainerItem(inventory.get(0).getStack())) {
-			inventory.get(0).setStack(new ItemStack(inventory.get(0).getStack().getItem().getContainerItem()));
+		if (getSlotIndexByID(0).getStack().getItem().hasContainerItem(getSlotIndexByID(0).getStack())) {
+			getSlotIndexByID(0).setStack(new ItemStack(getSlotIndexByID(0).getStack().getItem().getContainerItem()));
 		}
 		else {
-			inventory.get(0).getStack().stackSize--;
+			getSlotIndexByID(0).getStack().stackSize--;
 		}
-		if (inventory.get(0).getStack().stackSize <= 0) {
-			inventory.get(0).setStack(null);
+		if (getSlotIndexByID(0).getStack().stackSize <= 0) {
+			getSlotIndexByID(0).setStack(null);
 		}
 		this.syncTileEntity();
 	}
 
 	private void outputPlastic(ItemStack plasticStack, boolean wasDeisel) {
-		if (inventory.get(3).getStack() == null) {
+		if (getSlotIndexByID(3).getStack() == null) {
 			if(wasDeisel){
-				inventory.get(3).setStack(new ItemStack(ItemIDs.emptyCanister.item,1));
+				getSlotIndexByID(3).setStack(new ItemStack(ItemIDs.emptyCanister.item,1));
 			} else {
-				inventory.get(3).setStack(plasticStack.copy());
+				getSlotIndexByID(3).setStack(plasticStack.copy());
 			}
 		} else if(wasDeisel){
-			if(inventory.get(3).getStack().getItem()==ItemIDs.emptyCanister.item){
-				inventory.get(3).getStack().stackSize += plasticStack.stackSize;
+			if(getSlotIndexByID(3).getStack().getItem()==ItemIDs.emptyCanister.item){
+				getSlotIndexByID(3).getStack().stackSize += plasticStack.stackSize;
 			} else {
-				inventory.get(3).getStack().stackSize += plasticStack.stackSize;
+				getSlotIndexByID(3).getStack().stackSize += plasticStack.stackSize;
 			}
-		} else if (Item.getIdFromItem(inventory.get(3).getStack().getItem()) == Item.getIdFromItem(plasticStack.getItem())) {
-			inventory.get(3).getStack().stackSize += plasticStack.stackSize;
+		} else if (Item.getIdFromItem(getSlotIndexByID(3).getStack().getItem()) == Item.getIdFromItem(plasticStack.getItem())) {
+			getSlotIndexByID(3).getStack().stackSize += plasticStack.stackSize;
 		}
 		this.markDirty();
 	}
 
-	public ForgeDirection getFacing() {
-		if(facing!=null){
-			return this.facing;
-		}
-		return ForgeDirection.NORTH;
-	}
-
-	public void setFacing(ForgeDirection face) {
-		this.facing = face;
-	}
 
 	@Override
 	public void openInventory() {}

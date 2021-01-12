@@ -19,6 +19,7 @@ import ebf.tim.entities.EntitySeat;
 import ebf.tim.gui.GUICraftBook;
 import ebf.tim.items.ItemAdminBook;
 import ebf.tim.items.TiMTab;
+import ebf.tim.networking.PacketCraftingPage;
 import ebf.tim.networking.PacketInteract;
 import ebf.tim.networking.PacketPaint;
 import ebf.tim.networking.PacketRemove;
@@ -165,6 +166,7 @@ public class TrainsInMotion {
         TrainsInMotion.keyChannel.registerMessage(HANDLERS[2], ItemAdminBook.PacketAdminBook.class, 3, Side.CLIENT);
         TrainsInMotion.keyChannel.registerMessage(HANDLERS[3], ItemAdminBook.PacketAdminBookClient.class, 4, Side.SERVER);
         TrainsInMotion.keyChannel.registerMessage(HANDLERS[4], PacketPaint.class, 6, Side.CLIENT);
+        TrainsInMotion.keyChannel.registerMessage(HANDLERS[5], PacketCraftingPage.class, 7, Side.SERVER);
         TrainsInMotion.trackChannel = NetworkRegistry.INSTANCE.newSimpleChannel("TiM.track");
 
 
@@ -189,7 +191,11 @@ public class TrainsInMotion {
 
 
 
+    //each packet needs it's own entry in this, duplicates are not allowed, for whatever reason
     private static final IMessageHandler[] HANDLERS = new IMessageHandler[]{
+            new IMessageHandler<IMessage, IMessage>() {
+                @Override public IMessage onMessage(IMessage message, MessageContext ctx) {return null;}
+            },
             new IMessageHandler<IMessage, IMessage>() {
                 @Override public IMessage onMessage(IMessage message, MessageContext ctx) {return null;}
             },

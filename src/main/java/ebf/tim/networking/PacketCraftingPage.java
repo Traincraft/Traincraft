@@ -3,6 +3,7 @@ package ebf.tim.networking;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import ebf.tim.blocks.TileEntityStorage;
 import ebf.tim.entities.GenericRailTransport;
+import ebf.tim.utility.DebugUtil;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
@@ -39,6 +40,7 @@ public class PacketCraftingPage implements IMessage {
 
         TileEntity te =MinecraftServer.getServer().worldServers[dim].getTileEntity(x,y,z);
 
+        DebugUtil.println(dim,x,y,z);
         if(te instanceof TileEntityStorage){
             if(key) {
                 ((TileEntityStorage) te).incrementPage();

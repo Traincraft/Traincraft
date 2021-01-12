@@ -14,6 +14,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
 import org.lwjgl.opengl.GL11;
 
 import static org.lwjgl.opengl.GL11.*;
@@ -34,6 +35,25 @@ public class TileRenderFacing extends TileEntity {
         facing=(byte) direction;
         this.markDirty();
         return this;
+    }
+
+    public TileRenderFacing setFacing(ForgeDirection direction){
+        //this follows the order definition of the valid directions
+        switch (direction){
+            case DOWN:{facing=0;break;}
+            case UP:{facing=1;break;}
+            case NORTH:{facing=2;break;}
+            case SOUTH:{facing=3;break;}
+            case WEST:{facing=4;break;}
+            case EAST:{facing=5;break;}
+        }
+        this.markDirty();
+        return this;
+    }
+
+    public ForgeDirection getFacing(){
+        //1.8.9+ it's getHorizontal
+        return ForgeDirection.getOrientation((int)facing);
     }
 
     @Override

@@ -46,6 +46,7 @@ public class GUITrainTable extends GuiContainer {
     public GUITrainTable(InventoryPlayer inventoryPlayer, World world, int x, int y, int z) {
         super(new TransportSlotManager(inventoryPlayer, (TileEntityStorage) world.getTileEntity(x,y,z)));
         hostname=world.getBlock(x,y,z).getUnlocalizedName();
+        xCoord=x;yCoord=y;zCoord=z;dimension=world.provider.dimensionId;
 
         if (ClientProxy.isTraincraft && !hostname.equals("tile.block.traintable")) {
             this.ySize = 256;
