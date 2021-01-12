@@ -1,9 +1,11 @@
 package train.blocks.distil;
 
+import ebf.tim.utility.DebugUtil;
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.util.ForgeDirection;
 import org.lwjgl.opengl.GL11;
 import train.blocks.TCBlocks;
 import train.blocks.fluids.LiquidManager;
@@ -72,7 +74,12 @@ public class GuiDistil extends GuiContainer {
 
 	@Override
 	protected void drawCreativeTabHoveringText(String str, int t, int g) {
-		int textWidth = fontRendererObj.getStringWidth(distilInventory.amount + "/" + distilInventory.getTankCapacity());
+
+		int amount =0;
+		if(distilInventory.getTankInfo(null)[0]!=null && distilInventory.getTankInfo(null)[0].fluid!=null) {
+			amount=distilInventory.getTankInfo(null)[0].fluid.amount;
+		}
+		int textWidth = fontRendererObj.getStringWidth(amount + "/" + distilInventory.getTankCapacity()[0]);
 		int startX = t + 14;
 		int startY = g - 12;
 
@@ -84,7 +91,7 @@ public class GuiDistil extends GuiContainer {
 		drawGradientRect(startX - 3, startY - 3, startX + textWidth + 3, startY + 8 + 3 + 10, colour1, colour2);
 		drawGradientRect(startX - 2, startY - 2, startX + textWidth + 2, startY + 8 + 2 + 10, i4, i4);
 		fontRendererObj.drawStringWithShadow(str, startX, startY, -1);
-		fontRendererObj.drawStringWithShadow(distilInventory.amount + "/" + distilInventory.getTankCapacity(), startX, startY + 10, -1);
+		fontRendererObj.drawStringWithShadow( amount + "/" + distilInventory.getTankCapacity()[0], startX, startY + 10, -1);
 	}
 
 	@Override

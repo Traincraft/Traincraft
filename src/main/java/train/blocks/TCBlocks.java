@@ -46,7 +46,6 @@ public class TCBlocks {
 	public static BlockDynamic orePetroleum = new BlockDynamic(new Material(MapColor.mapColorArray[11]), false, false);
 
 	public static BlockDistil distilIdle = new BlockDistil(false);
-	public static BlockDistil distilActive = new BlockDistil(true);
 
 
 	@Deprecated //need to use TiMGenericRegistry.registerBlock(), this will also cover tile entities and TESR.
@@ -56,7 +55,6 @@ public class TCBlocks {
 		trainTableTier3.texture=new ResourceLocation("traincraft", "textures/blocks/assembly_3.png");
 
 		distilIdle.texture=new ResourceLocation("traincraft", "textures/blocks/distil_off.png");
-		distilActive.texture=new ResourceLocation("traincraft", "textures/blocks/distil_on.png");
 
 		oilSand.texture=new ResourceLocation("traincraft", "textures/blocks/ores/ore_oilsands.png");
 		orePetroleum.texture=new ResourceLocation("traincraft", "textures/blocks/ores/ore_petroleum.png");
@@ -72,7 +70,6 @@ public class TCBlocks {
 				"GPG", "DLD", "OPO", 'O', Blocks.obsidian, 'G', Items.gold_ingot, 'P', Blocks.piston, 'D', Items.diamond, 'L', Blocks.glowstone); //tier 3
 
 		registerBlock(distilIdle, Traincraft.tcTab, Info.modID,"block.distilIdle", null, null);
-		registerBlock(distilActive, null, Info.modID,"block.distilActive", null, null);
 
 		OreDictionary.registerOre("oreOilsands", new ItemStack(oilSand, 1, 1));
 		OreDictionary.registerOre("orePetroleum", new ItemStack(orePetroleum, 1, 2));

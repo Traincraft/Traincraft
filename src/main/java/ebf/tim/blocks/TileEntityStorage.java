@@ -166,8 +166,8 @@ public class TileEntityStorage extends TileRenderFacing implements IInventory, I
             }
         }
         for(int i=0; i<getTankInfo(null).length;i++){
-            if(getTankInfo(null) !=null) {
-                data.putFluidStack("tansk."+i, getTankInfo(null)[i].fluid);
+            if(getTankInfo(null) !=null && getTankInfo(null)[i]!=null) {
+                data.putFluidStack("tanks."+i, getTankInfo(null)[i].fluid);
             }
         }
         tag.setString("xmlData",data.toXMLString());

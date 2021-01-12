@@ -55,6 +55,9 @@ public class BlockDynamic extends BlockContainer {
         w.removeTileEntity(x,y,z);
     }
 
+    public ResourceLocation getTexture(int x, int y, int z){
+        return texture;
+    }
 
     @Override
     public int getRenderType(){

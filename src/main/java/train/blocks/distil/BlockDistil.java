@@ -6,6 +6,7 @@ import ebf.tim.blocks.BlockDynamic;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
@@ -15,6 +16,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -30,7 +32,6 @@ import java.util.Random;
 public class BlockDistil extends BlockDynamic {
 
 	private final boolean isActive;
-	private static boolean keepDistilInventory = false;
 	private Random distilRand;
 
 
@@ -99,56 +100,18 @@ public class BlockDistil extends BlockDynamic {
 		}
 	}
 
-	public static void updateDistilBlockState(boolean flag, World world, int i, int j, int k) {
-		int l = world.getBlockMetadata(i, j, k);
-		TileEntity tileentity = world.getTileEntity(i, j, k);
-		keepDistilInventory = true;
-		if (flag) {
-			world.setBlock(i, j, k, TCBlocks.distilActive);
+	public ResourceLocation getTexture(int x, int y, int z){
+		if(Minecraft.getMinecraft().theWorld.getTileEntity(x,y,z) instanceof TileEntityDistil){
+			if(((TileEntityDistil) Minecraft.getMinecraft().theWorld.getTileEntity(x,y,z)).isBurning()){
+				return new ResourceLocation("traincraft", "textures/blocks/distil_on.png");
+			}
 		}
-		else {
-			world.setBlock(i, j, k, TCBlocks.distilIdle);
-		}
-		keepDistilInventory = false;
-		world.setBlockMetadataWithNotify(i, j, k, l, 2);
-		if (tileentity != null) {
-			tileentity.validate();
-			world.setTileEntity(i, j, k, tileentity);
-		}
+		return new ResourceLocation("traincraft", "textures/blocks/distil_off.png");
 	}
 
 	@Override
 	public void breakBlock(World world, int i, int j, int k, Block par5, int par6) {
-		if (!keepDistilInventory) {
-			TileEntityDistil tileentitydistil = (TileEntityDistil) world.getTileEntity(i, j, k);
-			if (tileentitydistil != null) {
-				label0: for (int l = 0; l < tileentitydistil.getSizeInventory(); l++) {
-					ItemStack itemstack = tileentitydistil.getStackInSlot(l);
-					if (itemstack == null) {
-						continue;
-					}
-					float f = distilRand.nextFloat() * 0.8F + 0.1F;
-					float f1 = distilRand.nextFloat() * 0.8F + 0.1F;
-					float f2 = distilRand.nextFloat() * 0.8F + 0.1F;
-					do {
-						if (itemstack.stackSize <= 0) {
-							continue label0;
-						}
-						int i1 = distilRand.nextInt(21) + 10;
-						if (i1 > itemstack.stackSize) {
-							i1 = itemstack.stackSize;
-						}
-						itemstack.stackSize -= i1;
-						EntityItem entityitem = new EntityItem(world, (float) i + f, (float) j + f1, (float) k + f2, itemstack.splitStack(i1));
-						float f3 = 0.05F;
-						entityitem.motionX = (float) distilRand.nextGaussian() * f3;
-						entityitem.motionY = (float) distilRand.nextGaussian() * f3 + 0.2F;
-						entityitem.motionZ = (float) distilRand.nextGaussian() * f3;
-						world.spawnEntityInWorld(entityitem);
-					} while (true);
-				}
-			}
-		}
+		//todo: keep inventory code for item
 		super.breakBlock(world, i, j, k, par5, par6);
 	}
 

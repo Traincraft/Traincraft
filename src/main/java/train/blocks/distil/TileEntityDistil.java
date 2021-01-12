@@ -5,6 +5,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import ebf.tim.blocks.TileEntityStorage;
 import ebf.tim.registry.TiMBlocks;
 import ebf.tim.registry.TiMFluids;
+import ebf.tim.utility.DebugUtil;
 import ebf.tim.utility.ItemStackSlot;
 import net.minecraft.block.Block;
 import net.minecraft.inventory.ISidedInventory;
@@ -12,6 +13,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntityFurnace;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
 import train.blocks.TCBlocks;
@@ -34,6 +36,7 @@ public class TileEntityDistil extends TileEntityStorage implements IFluidHandler
 	private int updateTicks;
 	public int amount;
 	public int liquidItemID;
+	public boolean wasBurning=false;
 
 	public TileEntityDistil() {
 		//slots 0=input 1=fuel 3=output 2=input canister ?=filled canister
@@ -114,6 +117,8 @@ public class TileEntityDistil extends TileEntityStorage implements IFluidHandler
 	}
 
 	@Override
+	public boolean canUpdate(){return true;}
+	@Override
 	public void updateEntity() {
 		if(!worldObj.isRemote){
 			updateTicks++;
@@ -152,11 +157,9 @@ public class TileEntityDistil extends TileEntityStorage implements IFluidHandler
 
 			if (flag != (distilBurnTime > 0)) {
 				flag1 = true;
-				BlockDistil.updateDistilBlockState(distilBurnTime > 0, worldObj, xCoord, yCoord, zCoord);
 			}
 			else {
 				flag1 = false;
-				BlockDistil.updateDistilBlockState(distilBurnTime > 0, worldObj, xCoord, yCoord, zCoord);
 				this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
 			}
 
@@ -170,18 +173,18 @@ public class TileEntityDistil extends TileEntityStorage implements IFluidHandler
 
 						placeInInvent(result, 4, true);
 
-						if (getTankInfo(ForgeDirection.UNKNOWN)[0].fluid.getFluid() != null) {
+						if (getTankInfo(null)[0].fluid.getFluid() != null) {
 
-							amount = getTankInfo(ForgeDirection.UNKNOWN)[0].fluid.amount;
+							amount = getTankInfo(null)[0].fluid.amount;
 						}
 						else {
 
 							amount = 0;
 						}
 
-						if (getTankInfo(ForgeDirection.UNKNOWN)[0].fluid.getFluid() != null) {
+						if (getTankInfo(null)[0].fluid.getFluid() != null) {
 
-							liquidItemID = getTankInfo(ForgeDirection.UNKNOWN)[0].fluid.getFluidID();
+							liquidItemID = getTankInfo(null)[0].fluid.getFluidID();
 						}
 						else {
 
@@ -196,14 +199,14 @@ public class TileEntityDistil extends TileEntityStorage implements IFluidHandler
 				}
 			}
 
-			if (getTankInfo(ForgeDirection.UNKNOWN)[0].fluid.getFluid() != null) {
-				amount = getTankInfo(ForgeDirection.UNKNOWN)[0].fluid.amount;
+			if (getTankInfo(null)[0]!=null && getTankInfo(null)[0].fluid != null) {
+				amount = getTankInfo(null)[0].fluid.amount;
 			}
 			else {
 				amount = 0;
 			}
-			if (getTankInfo(ForgeDirection.UNKNOWN)[0].fluid.getFluid() != null) {
-				liquidItemID = getTankInfo(ForgeDirection.UNKNOWN)[0].fluid.getFluidID();
+			if (getTankInfo(null)[0]!=null && getTankInfo(null)[0].fluid.getFluid() != null) {
+				liquidItemID = getTankInfo(null)[0].fluid.getFluidID();
 			}
 			else {
 				liquidItemID = 0;
@@ -253,11 +256,15 @@ public class TileEntityDistil extends TileEntityStorage implements IFluidHandler
 		if (itemstack == null) {
 			return false;
 		}
-		FluidStack resultLiquid = FluidContainerRegistry.getFluidForFilledItem(itemstack);
-		if (resultLiquid == null)
+		if (Block.getBlockFromItem(getSlotIndexByID(0).getItem()) != TCBlocks.orePetroleum) {
 			return false;
-		int used = fill(ForgeDirection.UNKNOWN, resultLiquid, false);
-		return (used >= resultLiquid.amount);
+		}
+		FluidStack resultLiquid = FluidContainerRegistry.getFluidForFilledItem(itemstack);
+		if (resultLiquid == null) {
+			return false;
+		}
+		int used = fill(null, resultLiquid, false);
+		return (used ==0);
 	}
 
 	public void smeltItem() {
@@ -271,17 +278,16 @@ public class TileEntityDistil extends TileEntityStorage implements IFluidHandler
 		if (resultLiquid == null)
 			return;
 
-		int used = fill(ForgeDirection.UNKNOWN, resultLiquid, false);
-		if (used >= resultLiquid.amount)
-		{
-			fill(ForgeDirection.UNKNOWN, resultLiquid, true);
+		int used = fill(null, resultLiquid, false);
+		if (used ==0) {
+			fill(null, resultLiquid, true);
 			if (random.nextInt(plasticChance) == 0)
 				outputPlastic(plasticStack, getSlotIndexByID(0).getStack().getItem() == ItemIDs.diesel.item);
-			if (getTankInfo(ForgeDirection.UNKNOWN)[0].fluid.getFluid() != null) {
-				amount = getTankInfo(ForgeDirection.UNKNOWN)[0].fluid.amount;
+			if (getTankInfo(null)[0].fluid.getFluid() != null) {
+				amount = getTankInfo(null)[0].fluid.amount;
 			}
-			if (getTankInfo(ForgeDirection.UNKNOWN)[0].fluid.getFluid() != null) {
-				liquidItemID = getTankInfo(ForgeDirection.UNKNOWN)[0].fluid.getFluidID();
+			if (getTankInfo(null)[0].fluid.getFluid() != null) {
+				liquidItemID = getTankInfo(null)[0].fluid.getFluidID();
 			}
 
 			this.markDirty();
@@ -327,29 +333,29 @@ public class TileEntityDistil extends TileEntityStorage implements IFluidHandler
 	public void closeInventory() {}
 
 	public FluidStack getFluid() {
-		return getTankInfo(ForgeDirection.UNKNOWN)[0].fluid;
+		return getTankInfo(null)[0].fluid;
 	}
 
 
-	@Override
-	public boolean canFill(ForgeDirection from, Fluid fluid) {
-		return true;
-	}
-
-	@Override
-	public boolean canDrain(ForgeDirection from, Fluid fluid) {
-		return true;
-	}
-
-	@Override
-	public FluidTankInfo[] getTankInfo(ForgeDirection from) {
-		return new FluidTankInfo[] { new FluidTankInfo(new FluidStack(TiMFluids.fluidDiesel,0),30000) };
-	}
 
 
 	@Override
 	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
 		return true;
+	}
+
+	@Override
+	public void markDirty() {
+		if(wasBurning!=isBurning()) {
+			super.markDirty();
+			wasBurning=isBurning();
+		} else {
+			if (this.worldObj != null) {
+				worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+				worldObj.markTileEntityChunkModified(xCoord, yCoord, zCoord, this);
+				this.worldObj.func_147453_f(this.xCoord, this.yCoord, this.zCoord, worldObj.getBlock(xCoord, yCoord, zCoord));
+			}
+		}
 	}
 
 	@Override
