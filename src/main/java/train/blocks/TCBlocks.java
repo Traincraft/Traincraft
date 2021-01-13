@@ -54,7 +54,7 @@ public class TCBlocks {
 
 		blockDistil.texture=new ResourceLocation("traincraft", "textures/blocks/distil_off.png");
 
-		blockDistil.texture=new ResourceLocation("traincraft", "textures/blocks/furnace_off.png");
+		blockHearthFurnace.texture=new ResourceLocation("traincraft", "textures/blocks/furnace_off.png");
 
 		oilSand.texture=new ResourceLocation("traincraft", "textures/blocks/ores/ore_oilsands.png");
 		orePetroleum.texture=new ResourceLocation("traincraft", "textures/blocks/ores/ore_petroleum.png");

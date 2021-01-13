@@ -339,7 +339,6 @@ public class TileEntityStorage extends TileRenderFacing implements IInventory, I
     @Override
     public FluidTankInfo[] getTankInfo(ForgeDirection from){
         if(getTankCapacity()==null || getTankCapacity().length ==0){
-            DebugUtil.println("dafaq");
             return new FluidTankInfo[]{};
         }
 

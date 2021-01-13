@@ -8,11 +8,14 @@
 package train.items;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import ebf.tim.registry.TiMGenericRegistry;
+import net.minecraft.item.Item;
 import train.Traincraft;
 import train.library.Info;
 import train.library.ItemIDs;
 
 public class TCItems {
+
 
 	@Deprecated //need to use TiMGenericRegistry.registerItem(), this will also cover item special render so we can skip json icons.
 	public static void init() {

@@ -37,22 +37,8 @@ public class SlotOpenHearthFurnace extends ItemStackSlot {
 	@Override
 	protected void onCrafting(ItemStack itemstack) {
 		if (!((Entity)inventory).worldObj.isRemote) {
-			float var3 = TrainCraftingManager.instance.getHearthFurnaceRecipeExperience(itemstack);
 			int var4;
 			int var2=getStackSize();
-
-			if (var3 == 0.0F) {
-				var2 = 0;
-			}
-			else if (var3 < 1.0F) {
-				var4 = MathHelper.floor_float((float) var2 * var3);
-
-				if (var4 < MathHelper.ceiling_float_int((float) var2 * var3) && (float) Math.random() < (float) var2 * var3 - (float) var4) {
-					++var4;
-				}
-
-				var2 = var4;
-			}
 
 			while (var2 > 0) {
 				var4 = EntityXPOrb.getXPSplit(var2);
