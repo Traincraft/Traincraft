@@ -11,9 +11,7 @@ import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
-import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
-import ebf.tim.blocks.OreGen;
 import ebf.tim.entities.EntityBogie;
 import ebf.tim.entities.EntitySeat;
 import ebf.tim.gui.GUICraftBook;
@@ -128,6 +126,9 @@ public class TrainsInMotion {
         MinecraftForge.EVENT_BUS.register(chunkHandler);
         creativeTab=new TiMTab("Trains in Motion", MODID, "TiM");
         creativeTabCrafting=new TiMTab("Trains in Motion Crafting", creativeTab.getTabItem());
+
+        //initialize fluids, items, blocks here so can be used by trains in the init part without problems.
+        proxy.register();
     }
 
     /**
@@ -170,7 +171,7 @@ public class TrainsInMotion {
         TrainsInMotion.trackChannel = NetworkRegistry.INSTANCE.newSimpleChannel("TiM.track");
 
 
-        proxy.register();
+
         if(event.getSide().isClient()) {
             //register the event handler
             MinecraftForge.EVENT_BUS.register(ClientProxy.eventManager);

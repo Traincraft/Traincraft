@@ -4,22 +4,14 @@ import ebf.tim.TrainsInMotion;
 import ebf.tim.blocks.TileEntityStorage;
 import ebf.tim.networking.PacketCraftingPage;
 import ebf.tim.utility.*;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiLabel;
 import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.client.renderer.OpenGlHelper;
-import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL12;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -110,7 +102,7 @@ public class GUITrainTable extends GuiContainer {
                 //assembly table and traincraft
                 //TODO: localize strings, edit colors if need be.
                 this.fontRendererObj.drawString(I18n.format("container.inventory"), 8, this.ySize - 92, 4210752);
-                this.fontRendererObj.drawString(I18n.format(hostname), 8, 5, 12241200);
+                this.fontRendererObj.drawString(I18n.format(hostname + ".name"), 8, 5, 12241200);
                 this.fontRendererObj.drawString(I18n.format("container.storage"), 8, 118, 4210752);
                 this.fontRendererObj.drawString(I18n.format("container.output"), 90, 118, 12241200);
             }

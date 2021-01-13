@@ -463,14 +463,14 @@ public class TileEntityStorage extends TileRenderFacing implements IInventory, I
             //get the number of remaining pages
             //if there are some, increment the outputPage int
             outputPage++;
+            inventory.get(0).onCraftMatrixChanged(this, inventory, false);
         }
     }
 
     public void decrementPage() {
-        if (pages>1) {
-            if (outputPage > 0) { // > 0 means it's gone through at least a page.
-                outputPage--;
-            }
+        if (pages > 1 && outputPage > 1) {
+            outputPage--;
+            inventory.get(0).onCraftMatrixChanged(this, inventory, false);
         }
     }
 

@@ -31,6 +31,8 @@ gui.creative.false=Creative Mode Disabled.
 gui.creative.true=Creative Mode Enabled.
 
 container.traincrafting=Train Crafting Table
+container.storage=Storage
+container.output=Output
 
 menu.item.types=Transport Types
 menu.item.locomotive=Locomotive
@@ -137,7 +139,10 @@ item.fueloil.bucket.name=Oil Bucket
 item.redstone.bucket.name=Redstone Bucket
 item.paintbucket.name=Paint Bucket
 item.stake.name=Stake
-
+item.ingot.steel.name=Steel Ingot
+item.ingot.aluminum.name=Aluminum Ingot
+item.ingot.copper.name=Copper Ingot
+item.dust.plastic.name=Plastic Dust
 
 <!-- ## Crafting Items ## -->
 item.cabin.wood.name=Wood Cabin
@@ -156,8 +161,8 @@ item.frame.fiberglass.name=Fiberglass Frame
 item.frame.plastic.name=Plastic Frame
 item.wheel.wood.name=Wood Wheel
 item.wheel.aluminium.name=Aluminium Wheel
-item.wheel.iron.name=Iron wheel
-item.wheel.steel.name=Steel wheel
+item.wheel.iron.name=Iron Wheel
+item.wheel.steel.name=Steel Wheel
 item.wheel.plastic.name=Plastic Wheel
 item.chimney.wood.name=Wood Chimney
 item.chimney.aluminium.name=Aluminium Chimney
@@ -222,6 +227,9 @@ fluid.diesel=Diesel Fluid
 tile.block.oil=Oil Fluid
 fluid.oil.name=Oil Fluid
 fluid.redstone=RF
+tile.block.traintabletier1.name=Assembly Table I
+tile.block.traintabletier2.name=Assembly Table II
+tile.block.traintabletier3.name=Assembly Table III
 
 <!-- ## Item Lore ## -->
 menu.item.stake.lore1=Use on a transport to toggle linking.

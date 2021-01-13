@@ -1,16 +1,12 @@
 package train.blocks.bench;
 
-import net.minecraft.block.Block;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import train.core.interfaces.ITCRecipe;
-import train.blocks.hearth.OpenHearthFurnaceRecipe;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 
 public class TrainCraftingManager {

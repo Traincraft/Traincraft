@@ -1,31 +1,17 @@
 package train.blocks.hearth;
 
-import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import ebf.tim.blocks.TileEntityStorage;
-import ebf.tim.registry.TiMBlocks;
 import ebf.tim.registry.TiMItems;
 import ebf.tim.utility.DebugUtil;
 import ebf.tim.utility.ItemStackSlot;
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.inventory.Slot;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.oredict.OreDictionary;
 import train.blocks.TCBlocks;
-import train.blocks.bench.TrainCraftingManager;
-import train.items.TCItems;
-import train.library.BlockIDs;
-import train.library.ItemIDs;
-import train.blocks.TileTraincraft;
 
 import java.util.ArrayList;
 import java.util.Random;

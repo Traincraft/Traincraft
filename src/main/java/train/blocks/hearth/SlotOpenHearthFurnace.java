@@ -1,17 +1,11 @@
 package train.blocks.hearth;
 
-import cpw.mods.fml.common.FMLCommonHandler;
 import ebf.tim.utility.ItemStackSlot;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.MathHelper;
-import net.minecraftforge.oredict.OreDictionary;
-import train.blocks.bench.TrainCraftingManager;
-import train.library.AchievementIDs;
 
 public class SlotOpenHearthFurnace extends ItemStackSlot {
 

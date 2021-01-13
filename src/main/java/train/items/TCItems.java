@@ -8,8 +8,6 @@
 package train.items;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import ebf.tim.registry.TiMGenericRegistry;
-import net.minecraft.item.Item;
 import train.Traincraft;
 import train.library.Info;
 import train.library.ItemIDs;

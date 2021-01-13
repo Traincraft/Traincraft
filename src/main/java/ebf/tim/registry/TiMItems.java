@@ -16,6 +16,7 @@ public class TiMItems {
     public static Item chimneyWood,chimneyAluminium,chimneyCopper,chimneyIron,chimneySteel,chimneyFiberglass,chimneyPlastic, chimneyAluminiumShort, chimneySteelShort;
 
     public static Item boilerWood,boilerIron,boilerSteel,boilerCopper;
+    public static Item fireboxIron, fireboxSteel;
     public static Item petrolEngine,smallDieselEngine,mediumDieselEngine,largeDieselEngine;
     public static Item smallElectricEngine,mediumElectricEngine,largeElectricEngine;
 
@@ -56,104 +57,116 @@ public class TiMItems {
 
 
         //Cabins
-        craftItmShorthand(cabinWood,"cabin.wood");
-        craftItmShorthand(cabinAluminium,"cabin.aluminium");
-        craftItmShorthand(cabinCopper, "cabin.copper");
-        craftItmShorthand(cabinIron, "cabin.iron");
-        craftItmShorthand(cabinSteel, "cabin.steel");
-        craftItmShorthand(cabinFiberglass, "cabin.fiberglass");
-        craftItmShorthand(cabinPlastic, "cabin.plastic");
+        cabinWood = createItem("cabin.wood");
+        cabinAluminium = createItem("cabin.aluminium");
+        cabinCopper = createItem("cabin.copper");
+        cabinIron = createItem("cabin.iron");
+        cabinSteel = createItem("cabin.steel");
+        cabinFiberglass = createItem("cabin.fiberglass");
+        cabinPlastic = createItem("cabin.plastic");
 
         //Frames
-        craftItmShorthand(frameWood, "frame.wood");
-        craftItmShorthand(frameAluminium, "frame.aluminium");
-        craftItmShorthand(frameCopper, "frame.copper");
-        craftItmShorthand(frameIron, "frame.iron");
-        craftItmShorthand(frameSteel, "frame.steel");
-        craftItmShorthand(frameFiberglass, "frame.fiberglass");
-        craftItmShorthand(framePlastic, "frame.plastic");
+        frameWood = createItem("frame.wood");
+        frameAluminium = createItem("frame.aluminium");
+        frameCopper = createItem("frame.copper");
+        frameIron = createItem("frame.iron");
+        frameSteel = createItem("frame.steel");
+        frameFiberglass = createItem("frame.fiberglass");
+        framePlastic = createItem("frame.plastic");
 
         //Wheels
-        craftItmShorthand(wheelWood, "wheel.wood");
-        craftItmShorthand(wheelAluminium, "wheel.aluminium");
-        craftItmShorthand(wheelIron, "wheel.iron");
-        craftItmShorthand(wheelSteel,"wheel.steel");
-        craftItmShorthand(wheelPlastic, "wheel.plastic");
+        wheelWood = createItem("wheel.wood");
+        wheelAluminium = createItem("wheel.aluminium");
+        wheelIron = createItem("wheel.iron");
+        wheelSteel = createItem("wheel.steel");
+        wheelPlastic = createItem("wheel.plastic");
 
         //Chimneys
-        craftItmShorthand(chimneyWood, "chimney.wood");
-        craftItmShorthand(chimneyAluminium, "chimney.aluminium");
-        craftItmShorthand(chimneyCopper, "chimney.copper");
-        craftItmShorthand(chimneyIron, "chimney.iron");
-        craftItmShorthand(chimneySteel, "chimney.steel");
-        craftItmShorthand(chimneyFiberglass, "chimney.fiberglass");
-        craftItmShorthand(chimneyPlastic, "chimney.plastic");
-        craftItmShorthand(chimneyAluminiumShort, "chimney.aluminium.short");
-        craftItmShorthand(chimneySteelShort, "chimney.steel.short");
+        chimneyWood = createItem("chimney.wood");
+        chimneyAluminium = createItem("chimney.aluminium");
+        chimneyCopper = createItem("chimney.copper");
+        chimneyIron = createItem("chimney.iron");
+        chimneySteel = createItem("chimney.steel");
+        chimneyFiberglass = createItem("chimney.fiberglass");
+        chimneyPlastic = createItem("chimney.plastic");
+        chimneyAluminiumShort = createItem("chimney.aluminium.short");
+        chimneySteelShort = createItem("chimney.steel.short");
 
         //Boilers
-        craftItmShorthand(boilerWood, "boiler.wood");
-        craftItmShorthand(boilerIron, "boiler.iron");
-        craftItmShorthand(boilerSteel, "boiler.steel");
-        craftItmShorthand(boilerCopper, "boiler.copper");
+        boilerWood = createItem("boiler.wood");
+        boilerIron = createItem("boiler.iron");
+        boilerSteel = createItem("boiler.steel");
+        boilerCopper = createItem("boiler.copper");
+
+        //Fireboxes
+        fireboxIron = createItem("firebox.iron");
+        fireboxSteel = createItem("firebox.steel");
 
         //Engines
-        craftItmShorthand(petrolEngine, "petrol.engine");
-        craftItmShorthand(smallDieselEngine, "small.diesel.engine");
-        craftItmShorthand(mediumDieselEngine, "medium.diesel.engine");
-        craftItmShorthand(largeDieselEngine, "large.diesel.engine");
-        craftItmShorthand(smallElectricEngine, "small.electric.engine");
-        craftItmShorthand(mediumElectricEngine, "medium.electric.engine");
-        craftItmShorthand(largeElectricEngine, "large.electric.engine");
+        petrolEngine = createItem("petrol.engine");
+        smallDieselEngine = createItem("small.diesel.engine");
+        mediumDieselEngine = createItem("medium.diesel.engine");
+        largeDieselEngine = createItem("large.diesel.engine");
+        smallElectricEngine = createItem("small.electric.engine");
+        mediumElectricEngine = createItem("medium.electric.engine");
+        largeElectricEngine = createItem("large.electric.engine");
 
         //Seats
-        craftItmShorthand(seatsWooden, "seats.wooden");
-        craftItmShorthand(seatsIron, "seats.iron");
-        craftItmShorthand(seatsPadded, "seats.padded");
-        craftItmShorthand(seatsLuxury, "seats.luxury");
+        seatsWooden = createItem("seats.wooden");
+        seatsIron = createItem("seats.iron");
+        seatsPadded = createItem("seats.padded");
+        seatsLuxury = createItem("seats.luxury");
 
         //Transmissions + Other
-        craftItmShorthand(hydraulicTransmission, "hydraulic.transmission");
-        craftItmShorthand(pneumaticTransmission, "pneumatic.transmission");
-        craftItmShorthand(transformer, "transformer");
-        craftItmShorthand(transformerHV, "transformer.hv");
-        craftItmShorthand(electricControls, "electric.controls");
+        hydraulicTransmission = createItem("hydraulic.transmission");
+        pneumaticTransmission = createItem("pneumatic.transmission");
+        transformer = createItem("transformer");
+        transformerHV = createItem("transformer.hv");
+        electricControls = createItem("electric.controls");
 
         //Wires
-        craftItmShorthand(copperWire, "copper.wire");
-        craftItmShorthand(goldWire, "gold.wire");
-        craftItmShorthand(carbonWire, "carbon.wire");
-        craftItmShorthand(steelWire, "steel.wire");
-        craftItmShorthand(aluminiumWire, "aluminium.wire");
-        craftItmShorthand(insulatedCopperWire, "insulated.copper.wire");
-        craftItmShorthand(insulatedAluminiumWire, "insulated.aluminium.wire");
+        copperWire = createItem("copper.wire");
+        goldWire = createItem("gold.wire");
+        carbonWire = createItem("carbon.wire");
+        steelWire = createItem("steel.wire");
+        aluminiumWire = createItem("aluminium.wire");
+        insulatedCopperWire = createItem("insulated.copper.wire");
+        insulatedAluminiumWire = createItem("insulated.aluminium.wire");
 
         //Valve Gears
-        craftItmShorthand(walschaertsValveGear, "walschaerts.valve.gear");
-        craftItmShorthand(stephensonValveGear, "stephenson.valve.gear");
-        craftItmShorthand(bakerValveGear, "baker.valve.gear");
-        craftItmShorthand(radialValveGear, "radial.valve.gear");
-        craftItmShorthand(conjugatingValveGear, "conjugating.valve.gear");
+        walschaertsValveGear = createItem("walschaerts.valve.gear");
+        stephensonValveGear = createItem("stephenson.valve.gear");
+        bakerValveGear = createItem("baker.valve.gear");
+        radialValveGear = createItem("radial.valve.gear");
+        conjugatingValveGear = createItem("conjugating.valve.gear");
 
         //Other
-        craftItmShorthand(enginePiston, "engine.piston");
-        craftItmShorthand(cylinder, "engine.cylinder");
-        craftItmShorthand(camshaft, "camshaft");
-        craftItmShorthand(graphite, "graphite");
-        craftItmShorthand(steelPinCircuit, "steel.pin.circuit");
-        craftItmShorthand(goldPinCircuit, "gold.pin.circuit");
-        craftItmShorthand(controlPanel, "control.panel");
-        craftItmShorthand(controlStand, "control.stand");
-        craftItmShorthand(connectingRod, "connecting.rod");
+        enginePiston = createItem("engine.piston");
+        cylinder = createItem("engine.cylinder");
+        camshaft = createItem("camshaft");
+        graphite = createItem("graphite");
+        steelPinCircuit = createItem("steel.pin.circuit");
+        goldPinCircuit = createItem("gold.pin.circuit");
+        controlPanel = createItem("control.panel");
+        controlStand = createItem("control.stand");
+        connectingRod = createItem("connecting.rod");
 
     }
 
-    private static void craftItmShorthand(Item i, String unlocalizedName){
-        if(i==null){
-            i=new Item();
-        }
-        TiMGenericRegistry.RegisterItem(i,TrainsInMotion.MODID,unlocalizedName,TrainsInMotion.creativeTabCrafting);
-        i.setTextureName(TrainsInMotion.MODID+ ":" + "crafting/" + i.getUnlocalizedName().replace("item.", ""));
+    private static Item createItem(String unlocalizedName) {
+        Item item = new Item();
+        TiMGenericRegistry.RegisterItem(item, TrainsInMotion.MODID, unlocalizedName, TrainsInMotion.creativeTabCrafting);
+        item.setTextureName(TrainsInMotion.MODID+ ":" + "crafting/" + item.getUnlocalizedName().replace("item.", ""));
+        return item;
     }
+
+    //variables are not truly passed by reference, so this does not work.
+//    private static void craftItmShorthand(Item i, String unlocalizedName) {
+//        if (i == null) {
+//            i=new Item();
+//        }
+//        TiMGenericRegistry.RegisterItem(i =new Item(),TrainsInMotion.MODID,unlocalizedName,TrainsInMotion.creativeTabCrafting);
+//        i.setTextureName(TrainsInMotion.MODID+ ":" + "crafting/" + i.getUnlocalizedName().replace("item.", ""));
+//    }
 
 }
