@@ -95,37 +95,13 @@ public class TransportSlotManager extends net.minecraft.inventory.Container {
     }
 
     /**
-     * The way functions use this function seems to rely on the slotID being equal to the place in the inventory array.
-     * This way is what most minecraft things want, but NEI does not like it and likes the function commented out more.
-     *
-     * Right now, THIS IS PROBABLY **NOT** THE FUNCTIONALITY WE WANT! I did this so that NEI will not crash the game if
-     * someone accidentally scrolls on an item. after thinking about it some, this could be pretty close, and this
-     * function will more than likely need a disgusting solution. Probably would work if inventory sorted by slotID
+     * Used by NEI, seems to work on our internal ID systems for some reason
      */
     @Override
     public Slot getSlot(int p_75139_1_) {
-        if (inventory.get(p_75139_1_) == null) {
-            for (ItemStackSlot slot : inventory) {
-                if (slot.getSlotID() == p_75139_1_) {
-                    return slot;
-                }
-            }
-        }
-        return this.inventory.get(p_75139_1_);
+        return getSlotByID(p_75139_1_);
     }
 
-    /*
-     * There is a problem with nei and how we do our slots.
-     */
-//    @Override
-//    public Slot getSlot(int p_75139_1_) {
-//        for (ItemStackSlot slot : inventory) {
-//            if (slot.getSlotID() == p_75139_1_) {
-//                return slot;
-//            }
-//        }
-//        return null; //this should never happen
-//    }
 
 
     /**
@@ -149,11 +125,25 @@ public class TransportSlotManager extends net.minecraft.inventory.Container {
     }
 
 
+    /**
+     * normally relied on getSlot, but can't use it because this method does not function on our internal IDs
+     * */
     @SideOnly(Side.CLIENT)
     public void putStacksInSlots(ItemStack[] p_75131_1_) {
         for (int i = 0; i < p_75131_1_.length; ++i) {
-            this.getSlot(i).putStack(p_75131_1_[i]);
+            this.putInSlot(i).putStack(p_75131_1_[i]);
         }
+    }
+    //this only exists for the method above
+    public Slot putInSlot(int p_75139_1_) {
+        if (inventory.get(p_75139_1_) == null) {
+            for (ItemStackSlot slot : inventory) {
+                if (slot.getSlotID() == p_75139_1_) {
+                    return slot;
+                }
+            }
+        }
+        return this.inventory.get(p_75139_1_);
     }
 
 
