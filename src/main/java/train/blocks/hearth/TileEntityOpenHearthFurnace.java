@@ -2,12 +2,15 @@ package train.blocks.hearth;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import ebf.XmlBuilder;
 import ebf.tim.blocks.TileEntityStorage;
 import ebf.tim.registry.TiMItems;
 import ebf.tim.utility.DebugUtil;
 import ebf.tim.utility.ItemStackSlot;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
@@ -32,12 +35,13 @@ public class TileEntityOpenHearthFurnace extends TileEntityStorage {
 		furnaceCookTime = 0;
 		cookDuration = 600;//default is 200
 		random = new Random();
+		storageType=-1;
 		inventory=new ArrayList<>();
 
-		inventory.add(new ItemStackSlot(this, 400, 56, 17));//iron
-		inventory.add(new ItemStackSlot(this, 401, 35, 17));//graphite
-		inventory.add(new ItemStackSlot(this, 402, 47, 53));//burnable
-		inventory.add(new SlotOpenHearthFurnace(this, 403, 116, 35));//output
+		inventory.add(new ItemStackSlot(this, 400, 56, 17).setCraftingInput(true).setOverlay(Items.iron_ingot));//iron
+		inventory.add(new ItemStackSlot(this, 401, 35, 17).setCraftingInput(true).setOverlay(TiMItems.graphite));//graphite
+		inventory.add(new ItemStackSlot(this, 402, 47, 53).setCraftingInput(true));//burnable
+		inventory.add(new ItemStackSlot(this, 403, 116, 35).setCraftingOutput(true));//output
 	}
 
 	@Override
@@ -146,7 +150,6 @@ public class TileEntityOpenHearthFurnace extends TileEntityStorage {
 		}
 		if(fail){return false;}
 		//be sure slot 2 is graphite
-		DebugUtil.println(getSlotIndexByID(401).getItem().delegate.name());
 		return getSlotIndexByID(401).getStack() != null && getSlotIndexByID(401).getItem() == TiMItems.graphite;
 	}
 
@@ -157,7 +160,7 @@ public class TileEntityOpenHearthFurnace extends TileEntityStorage {
 
 		ArrayList<ItemStack> steel = OreDictionary.getOres("ingotSteel");
 
-		if (getSlotIndexByID(403) == null) {
+		if (getSlotIndexByID(403).getStack() == null) {
 			getSlotIndexByID(403).setStack(new ItemStack(steel.get(0).getItem(),1));
 
 		}
@@ -165,25 +168,36 @@ public class TileEntityOpenHearthFurnace extends TileEntityStorage {
 			for(ItemStack s : steel){
 				if(s.getItem()==getSlotIndexByID(403).getItem()){
 					getSlotIndexByID(403).decrStackSize(-1);
+					break;
 				}
 			}
 		}
 
+		getSlotIndexByID(400).decrStackSize(1);
+		getSlotIndexByID(401).decrStackSize(1);
 
-		if (getSlotIndexByID(400).getItem().hasContainerItem(getSlotIndexByID(400).getStack())) {
-			getSlotIndexByID(400).setStack(new ItemStack(getSlotIndexByID(400).getItem().getContainerItem()));
-		}
-		else {
-			getSlotIndexByID(400).decrStackSize(1);
-		}
-
-		if (getSlotIndexByID(401).getItem().hasContainerItem(getSlotIndexByID(401).getStack())) {
-			getSlotIndexByID(401).setStack(new ItemStack(getSlotIndexByID(401).getItem().getContainerItem()));
-		}
-		else {
-			getSlotIndexByID(401).decrStackSize(1);
-		}
 		cookDuration = 1000;
+	}
+
+
+	@Override
+	public S35PacketUpdateTileEntity getDescriptionPacket() {
+		NBTTagCompound nbt = new NBTTagCompound();
+
+		XmlBuilder data = new XmlBuilder();
+		for(int i=0; i<getTankInfo(null).length;i++){
+			if(getTankInfo(i)!=null && getTankInfo(i).fluid!=null) {
+				data.putFluidStack("tanks." + i, getTankInfo(i).fluid);
+			} else if(getTankInfo(i)!=null){
+				data.putFluidStack("tanks." + i, null);
+			}
+		}
+		nbt.setString("xmlData",data.toXMLString());
+
+		nbt.setShort("BurnTime", (short) furnaceBurnTime);
+		nbt.setShort("CookTime", (short) furnaceCookTime);
+		nbt.setShort("ItemBurnTime", (short) currentItemBurnTime);
+		return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 0, nbt);
 	}
 
 	@Override
@@ -202,6 +216,11 @@ public class TileEntityOpenHearthFurnace extends TileEntityStorage {
 		currentItemBurnTime = nbt.getShort("ItemBurnTime");
 	}
 
+
+	@Override
+	public String getInventoryName(){
+		return "hearthfurnace";
+	}
 
 	@Override
 	public void markDirty() {

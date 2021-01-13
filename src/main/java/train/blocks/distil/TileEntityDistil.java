@@ -3,7 +3,10 @@ package train.blocks.distil;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import ebf.tim.blocks.TileEntityStorage;
+import ebf.tim.registry.TiMItems;
+import ebf.tim.registry.TiMOres;
 import ebf.tim.utility.ItemStackSlot;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -19,7 +22,7 @@ import train.library.ItemIDs;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class TileEntityDistil extends TileEntityStorage implements IFluidHandler, ISidedInventory {
+public class TileEntityDistil extends TileEntityStorage implements ISidedInventory {
 
 	public int distilBurnTime;
 	public int currentItemBurnTime;
@@ -37,15 +40,16 @@ public class TileEntityDistil extends TileEntityStorage implements IFluidHandler
 		distilCookTime = 0;
 		cookDuration = 400;//default is 200
 		random = new Random();
+		storageType=-1;
 		//this.theTank = LiquidManager.getInstance().new FilteredTank(maxTank, new FluidStack[]{TiMFluids.fluidDiesel, }, 1);
 		inventory=new ArrayList<>();
 
-		inventory.add(new ItemStackSlot(this, 400, 56, 17));
-		inventory.add(new ItemStackSlot(this, 401, 56, 53));
-		inventory.add(new ItemStackSlot(this, 402, 123, 8));
+		inventory.add(new ItemStackSlot(this, 400, 56, 17).setCraftingInput(true).setOverlay(TCBlocks.orePetroleum));
+		inventory.add(new ItemStackSlot(this, 401, 56, 53).setCraftingInput(true));
+		inventory.add(new ItemStackSlot(this, 402, 123, 8).setCraftingInput(true).setOverlay(Items.bucket));
 
-		inventory.add(new ItemStackSlot(this, 403, 116, 60));
-		inventory.add(new ItemStackSlot(this, 404, 123, 33));
+		inventory.add(new ItemStackSlot(this, 403, 116, 60).setCraftingOutput(true));
+		inventory.add(new ItemStackSlot(this, 404, 123, 33).setCraftingOutput(true));
 	}
 
 	/**
@@ -91,6 +95,11 @@ public class TileEntityDistil extends TileEntityStorage implements IFluidHandler
 		return (distilBurnTime * i) / currentItemBurnTime;
 	}
 
+
+	@Override
+	public String getInventoryName(){
+		return "distil";
+	}
 	public boolean isBurning() {
 		return distilBurnTime > 0;
 	}

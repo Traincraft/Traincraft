@@ -6,6 +6,9 @@ import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
+
+import java.util.ArrayList;
 
 public class SlotOpenHearthFurnace extends ItemStackSlot {
 
@@ -15,13 +18,20 @@ public class SlotOpenHearthFurnace extends ItemStackSlot {
 
 	@Override
 	public boolean isItemValid(ItemStack itemstack) {
+		if(itemstack==null){return true;}
+		ArrayList<ItemStack> steel = OreDictionary.getOres("ingotSteel");
+
+		for(ItemStack s: steel){
+			if(s.getItem()==itemstack.getItem()){
+				return true;
+			}
+		}
 		return false;
 	}
 
 
 	@Override
 	public void onPickupFromSlot(EntityPlayer par1EntityPlayer, ItemStack itemstack) {
-		this.onCrafting(itemstack);
 		super.onPickupFromSlot(par1EntityPlayer, itemstack);
 	}
 

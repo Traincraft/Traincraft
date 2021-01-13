@@ -131,21 +131,18 @@ public class TransportSlotManager extends net.minecraft.inventory.Container {
     @SideOnly(Side.CLIENT)
     public void putStacksInSlots(ItemStack[] p_75131_1_) {
         for (int i = 0; i < p_75131_1_.length; ++i) {
-            this.putInSlot(i).putStack(p_75131_1_[i]);
-        }
-    }
-    //this only exists for the method above
-    public Slot putInSlot(int p_75139_1_) {
-        if (inventory.get(p_75139_1_) == null) {
-            for (ItemStackSlot slot : inventory) {
-                if (slot.getSlotID() == p_75139_1_) {
-                    return slot;
-                }
+            if(inventory.size()>i) {
+                inventory.get(i).setStack(p_75131_1_[i]);
             }
         }
-        return this.inventory.get(p_75139_1_);
     }
 
+    @Override
+    public void putStackInSlot(int slot, ItemStack stack){
+        if(getSlot(slot)!=null){
+            getSlot(slot).putStack(stack);
+        }
+    }
 
 
 

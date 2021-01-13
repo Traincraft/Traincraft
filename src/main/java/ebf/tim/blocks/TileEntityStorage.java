@@ -133,7 +133,7 @@ public class TileEntityStorage extends TileRenderFacing implements IInventory, I
         super.readFromNBT(tag);
         XmlBuilder data = new XmlBuilder(tag.getString("xmlData"));
 
-        if (getSizeInventory()>0) {
+        if (getSizeInventory()>0 && !data.itemMap.isEmpty()) {
             for (int i=0;i<getSizeInventory();i++) {
                 if (data.containsItemStack("items."+i)) {
                     inventory.get(i).setSlotContents(data.getItemStack("items."+i), inventory);
@@ -145,8 +145,7 @@ public class TileEntityStorage extends TileRenderFacing implements IInventory, I
             fluidTank = new FluidTankInfo[getTankCapacity().length];
             for (int i = 0; i < getTankCapacity().length; i++) {
                 if (data.containsFluidStack("tanks." + i)) {
-                    FluidStack s =data.getFluidStack("tanks."+i);
-                    fluidTank[i] = new FluidTankInfo(s, getTankCapacity()[i]);
+                    fluidTank[i] = new FluidTankInfo(data.getFluidStack("tanks."+i), getTankCapacity()[i]);
                 }
             }
         } else {
@@ -463,14 +462,20 @@ public class TileEntityStorage extends TileRenderFacing implements IInventory, I
             //get the number of remaining pages
             //if there are some, increment the outputPage int
             outputPage++;
-            inventory.get(0).onCraftMatrixChanged(this, inventory, false);
+            for(ItemStackSlot slot: inventory) {
+                slot.onSlotChanged();
+                slot.onCraftMatrixChanged(this, inventory, false);
+            }
         }
     }
 
     public void decrementPage() {
         if (pages > 1 && outputPage > 1) {
             outputPage--;
-            inventory.get(0).onCraftMatrixChanged(this, inventory, false);
+            for(ItemStackSlot slot: inventory) {
+                slot.onSlotChanged();
+                slot.onCraftMatrixChanged(this, inventory, false);
+            }
         }
     }
 
