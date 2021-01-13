@@ -34,6 +34,8 @@ public class TiMItems {
 
     public static Item railItem;
 
+    public static Item generator;
+
 
     public static void registerItems(){
 
@@ -150,6 +152,9 @@ public class TiMItems {
         controlPanel = createItem("control.panel");
         controlStand = createItem("control.stand");
         connectingRod = createItem("connecting.rod");
+
+        //Idk if oversight or left out on purpose
+        generator = createItem("generator");
 
     }
 

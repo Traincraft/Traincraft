@@ -86,9 +86,9 @@ public class EntityPassengerBlue extends GenericRailTransport {
     @Override
     public ItemStack[] getRecipe() {
 //        return new ItemStack[]{
-//                new ItemStack(ItemIDs.steel.item, 5), new ItemStack(ItemIDs.bogie.item, 2), new ItemStack(ItemIDs.steelframe.item, 2),
-//                new ItemStack(ItemIDs.steel.item, 2), null, new ItemStack(ItemIDs.steelcab.item, 1),
-//                null, new ItemStack(ItemIDs.seats.item, 1), null        };
+//                new ItemStack(TiMOres.ingotSteel, 5), new ItemStack(TiMItems.wheelSteel, 2), new ItemStack(TiMItems.frameSteel, 2),
+//                new ItemStack(TiMOres.ingotSteel, 2), null, new ItemStack(TiMItems.cabinSteel, 1),
+//                null, new ItemStack(TiMItems.seatsWooden, 1), null        };
 
 
         return new ItemStack[]{

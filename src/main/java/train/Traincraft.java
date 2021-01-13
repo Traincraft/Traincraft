@@ -1,6 +1,5 @@
 package train;
 
-import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -11,7 +10,6 @@ import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.VillagerRegistry;
-import ebf.tim.TrainsInMotion;
 import ebf.tim.gui.GUICraftBook;
 import ebf.tim.items.TiMTab;
 import ebf.tim.registry.TiMGenericRegistry;
@@ -21,12 +19,11 @@ import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraftforge.common.AchievementPage;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.EnumHelper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import train.blocks.fluids.LiquidManager;
 import train.blocks.TCBlocks;
+import train.blocks.fluids.LiquidManager;
 import train.core.CommonProxy;
 import train.core.TrainModCore;
 import train.core.handlers.*;
@@ -36,7 +33,6 @@ import train.generation.ComponentVillageTrainstation;
 import train.items.TCItems;
 import train.library.Info;
 import train.library.TrainRegistry;
-import train.blocks.bench.AssemblyTableRecipes;
 
 import java.io.File;
 
@@ -121,6 +117,23 @@ public class Traincraft {
 		/* Register the KeyBinding Handler */
 		proxy.registerKeyBindingHandler();
 
+		/* Other Proxy init */
+		tcLog.info("Initialize Renderer and Events");
+		proxy.registerRenderInformation();
+		proxy.registerEvents(event);
+
+		/* Networking and Packet initialisation */
+		PacketHandler.init();
+
+		tcLog.info("Finished PreInitialization");
+	}
+
+	@EventHandler
+	public void load(FMLInitializationEvent event) {
+		tcLog.info("Start Initialization");
+
+		//proxy.getCape();
+
 		/* Register Items, Blocks, ... */
 		tcLog.info("Initialize Blocks, Items, ...");
 		tcTab = new TiMTab("Traincraft", Info.modID, "key.categories.traincraft");
@@ -167,25 +180,8 @@ public class Traincraft {
 		AchievementHandler.load();
 		AchievementPage.registerAchievementPage(AchievementHandler.tmPage);
 
-		
+
 		MapGenStructureIO.func_143031_a(ComponentVillageTrainstation.class, "Trainstation");
-
-		/* Other Proxy init */
-		tcLog.info("Initialize Renderer and Events");
-		proxy.registerRenderInformation();
-		proxy.registerEvents(event);
-
-		/* Networking and Packet initialisation */
-		PacketHandler.init();
-
-		tcLog.info("Finished PreInitialization");
-	}
-
-	@EventHandler
-	public void load(FMLInitializationEvent event) {
-		tcLog.info("Start Initialization");
-
-		//proxy.getCape();
 
 		/* GUI handler initiation */
 		tcLog.info("Initialize Gui");
