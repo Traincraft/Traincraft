@@ -14,6 +14,7 @@ import train.library.ItemIDs;
 
 public class TCItems {
 
+
 	@Deprecated //need to use TiMGenericRegistry.registerItem(), this will also cover item special render so we can skip json icons.
 	public static void init() {
 		loadItems();

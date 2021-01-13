@@ -14,7 +14,6 @@ public enum ItemIDs {
 	stake("ItemStacked", "item_stake", 1),
 	steeldust("ItemTrain", "item_steeldust", 0),
 	coaldust("ItemTrain", "item_coaldust", 15),
-	graphite("ItemTrain", "item_graphite", 10),
 	boiler("ItemTrain", "item_boiler_steel", 5),
 	firebox("ItemTrain", "item_firebox_steel", 5),
 	bogie("ItemTrain", "item_bogie_steel", 4),

@@ -24,7 +24,7 @@ public class TiMItems {
 
     public static Item hydraulicTransmission,pneumaticTransmission,transformer,transformerHV,electricControls;
 
-    public static Item enginePiston,cylinder,camshaft,graphite,steelPinCircuit, goldPinCircuit, connectingRod;
+    public static Item enginePiston,cylinder,camshaft,graphite=new Item(),steelPinCircuit, goldPinCircuit, connectingRod;
 
     public static Item copperWire,goldWire, carbonWire, steelWire, aluminiumWire, insulatedCopperWire, insulatedAluminiumWire;
 
@@ -161,7 +161,10 @@ public class TiMItems {
     }
 
     //variables are not truly passed by reference, so this does not work.
-//    private static void craftItmShorthand(Item i, String unlocalizedName){
+//    private static void craftItmShorthand(Item i, String unlocalizedName) {
+//        if (i == null) {
+//            i=new Item();
+//        }
 //        TiMGenericRegistry.RegisterItem(i =new Item(),TrainsInMotion.MODID,unlocalizedName,TrainsInMotion.creativeTabCrafting);
 //        i.setTextureName(TrainsInMotion.MODID+ ":" + "crafting/" + i.getUnlocalizedName().replace("item.", ""));
 //    }

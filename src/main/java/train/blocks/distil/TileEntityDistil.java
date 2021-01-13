@@ -9,7 +9,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntityFurnace;
-import net.minecraftforge.fluids.*;
+import net.minecraftforge.fluids.FluidContainerRegistry;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.IFluidHandler;
 import train.blocks.TCBlocks;
 import train.blocks.fluids.LiquidManager;
 import train.library.ItemIDs;
@@ -95,6 +97,7 @@ public class TileEntityDistil extends TileEntityStorage implements IFluidHandler
 
 	@Override
 	public boolean canUpdate(){return true;}
+
 	@Override
 	public void updateEntity() {
 		if(!worldObj.isRemote){

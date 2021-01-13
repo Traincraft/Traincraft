@@ -28,11 +28,11 @@ import train.blocks.windmill.TileWindMill;
 import train.core.handlers.WorldEvents;
 import train.core.util.MP3Player;
 import train.entity.digger.EntityRotativeDigger;
-import train.entity.rollingStock.EntityJukeBoxCart;
-import train.entity.zeppelin.AbstractZeppelin;
 import train.entity.inventory.InventoryJukeBoxCart;
 import train.entity.inventory.InventoryRotativeDigger;
 import train.entity.inventory.InventoryZepp;
+import train.entity.rollingStock.EntityJukeBoxCart;
+import train.entity.zeppelin.AbstractZeppelin;
 import train.library.GuiIDs;
 
 import java.util.ArrayList;
@@ -85,13 +85,13 @@ public class CommonProxy implements IGuiHandler {
 
 		switch (ID) {
 		case (GuiIDs.DISTIL):
-			return te != null && te instanceof TileEntityDistil ? new ContainerDistil(player.inventory, (TileEntityDistil) te) : null;
+			return te instanceof TileEntityDistil ? new ContainerDistil(player.inventory, (TileEntityDistil) te) : null;
 		case (GuiIDs.GENERATOR_DIESEL):
-			return te != null && te instanceof TileGeneratorDiesel ? new ContainerGeneratorDiesel(player.inventory, (TileGeneratorDiesel) te) : null;
+			return te instanceof TileGeneratorDiesel ? new ContainerGeneratorDiesel(player.inventory, (TileGeneratorDiesel) te) : null;
 		case (GuiIDs.OPEN_HEARTH_FURNACE):
-			return te != null && te instanceof TileEntityOpenHearthFurnace ? new ContainerOpenHearthFurnace(player.inventory, (TileEntityOpenHearthFurnace) te) : null;
+			return te instanceof TileEntityOpenHearthFurnace ? new ContainerOpenHearthFurnace(player.inventory, (TileEntityOpenHearthFurnace) te) : null;
 		case (GuiIDs.TRAIN_WORKBENCH):
-			return te != null && te instanceof TileTrainWbench ? new ContainerTrainWorkbench(player.inventory, player.worldObj, (TileTrainWbench) te) : null;
+			return te instanceof TileTrainWbench ? new ContainerTrainWorkbench(player.inventory, player.worldObj, (TileTrainWbench) te) : null;
 		case (GuiIDs.ZEPPELIN):
 			return riddenByEntity != null ? new InventoryZepp(player.inventory, (AbstractZeppelin) entity) : null;
 		case (GuiIDs.DIGGER):
