@@ -34,9 +34,9 @@ public class EntityPassengerHighSpeedCarZeroED extends GenericRailTransport {
     @Override
     public String transportName(){return "Passenger High Speed Zero ED";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return null;}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return null;}
     @Override
     public boolean isFictional(){return true;}
     @Override

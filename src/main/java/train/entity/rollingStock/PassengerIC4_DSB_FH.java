@@ -32,9 +32,9 @@ public class PassengerIC4_DSB_FH extends GenericRailTransport {
     @Override
     public String transportName(){return "Passenger IC4 DSB FH";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "denmark";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "2007";}
     @Override
     public boolean isFictional(){return false;}
     @Override
