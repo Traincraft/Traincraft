@@ -24,7 +24,7 @@ public class TiMItems {
 
     public static Item hydraulicTransmission,pneumaticTransmission,transformer,transformerHV,electricControls;
 
-    public static Item enginePiston,cylinder,camshaft,graphite=new Item(),steelPinCircuit, goldPinCircuit, connectingRod;
+    public static Item enginePiston,cylinder,camshaft,graphite,steelPinCircuit, goldPinCircuit, connectingRod;
 
     public static Item copperWire,goldWire, carbonWire, steelWire, aluminiumWire, insulatedCopperWire, insulatedAluminiumWire;
 
