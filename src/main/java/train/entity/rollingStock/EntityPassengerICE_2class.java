@@ -33,9 +33,9 @@ public class EntityPassengerICE_2class extends GenericRailTransport {
     @Override
     public String transportName(){return "Passenger ICE 2nd Class";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "german";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "1989-1993";}
     @Override
     public boolean isFictional(){return false;}
     @Override

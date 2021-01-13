@@ -35,9 +35,9 @@ public class EntityTankWagonUS extends GenericRailTransport {
     @Override
     public String transportName(){return "Tank Wagon US";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "us";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "1935";}
     @Override
     public boolean isFictional(){return false;}
     @Override

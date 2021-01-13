@@ -36,9 +36,9 @@ public class EntityStockCarDRWG extends GenericRailTransport {
     @Override
     public String transportName(){return "DRWG Stock Cart";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "us";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "1983";}
     @Override
     public boolean isFictional(){return false;}
     @Override
