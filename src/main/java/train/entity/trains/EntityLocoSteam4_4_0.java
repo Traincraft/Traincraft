@@ -15,9 +15,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import train.Traincraft;
-import train.blocks.bench.AssemblyTableRecipes;
 import train.library.Info;
-import train.library.ItemIDs;
 import train.render.models.ModelLoco;
 
 import java.util.List;
@@ -182,14 +180,14 @@ public class EntityLocoSteam4_4_0 extends EntityTrainCore {
     public ItemStack[] getRecipe() {
         return new ItemStack[]{
                 new ItemStack(TiMItems.chimneyIron, 1), new ItemStack(Items.stick, 2), null,
-                new ItemStack(TiMItems.boilerIron, 1), new ItemStack(ItemIDs.ironFirebox.item, 1), new ItemStack(TiMItems.cabinWood, 1),
+                new ItemStack(TiMItems.boilerIron, 1), new ItemStack(TiMItems.fireboxIron, 1), new ItemStack(TiMItems.cabinWood, 1),
                 new ItemStack(TiMItems.wheelIron, 3), new ItemStack(TiMItems.frameWood, 2), null
         };
 
 //        return new ItemStack[]{
-//                new ItemStack(ItemIDs.ironChimney.item, 1), new ItemStack(Items.stick, 2), null,
-//                new ItemStack(ItemIDs.ironBoiler.item, 1), new ItemStack(ItemIDs.ironFirebox.item, 1), new ItemStack(ItemIDs.woodenCab.item, 1),
-//                new ItemStack(ItemIDs.ironBogie.item, 3), new ItemStack(ItemIDs.woodenFrame.item, 2), null
+//                new ItemStack(TiMItems.chimneyIron, 1), new ItemStack(Items.stick, 2), null,
+//                new ItemStack(TiMItems.boilerIron, 1), new ItemStack(TiMItems.fireboxIron, 1), new ItemStack(TiMItems.cabinWood, 1),
+//                new ItemStack(TiMItems.wheelIron, 3), new ItemStack(TiMItems.frameWood, 2), null
 //        };
     }
 

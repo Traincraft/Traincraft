@@ -127,8 +127,6 @@ public class TrainsInMotion {
         creativeTab=new TiMTab("Trains in Motion", MODID, "TiM");
         creativeTabCrafting=new TiMTab("Trains in Motion Crafting", creativeTab.getTabItem());
 
-        //initialize fluids, items, blocks here so can be used by trains in the init part without problems.
-        proxy.register();
     }
 
     /**
@@ -142,6 +140,10 @@ public class TrainsInMotion {
      */
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
+
+        //register blocks, items, fluids, etc.
+        proxy.register();
+
         //loop for registering the entities. the values needed are the class, entity name, entity ID, mod instance, update range, update rate, and if it does velocity things,
         cpw.mods.fml.common.registry.EntityRegistry.registerModEntity(EntityBogie.class, "Bogie", 15, TrainsInMotion.instance, 60, 3, true);
         cpw.mods.fml.common.registry.EntityRegistry.registerModEntity(EntitySeat.class, "Seat", 16, TrainsInMotion.instance, 60, 3, true);

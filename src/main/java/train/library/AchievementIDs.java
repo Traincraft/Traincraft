@@ -1,16 +1,18 @@
 package train.library;
 
+import ebf.tim.registry.TiMItems;
+import ebf.tim.registry.TiMOres;
 import net.minecraft.item.Item;
 import net.minecraft.stats.Achievement;
 import train.blocks.TCBlocks;
 
 public enum AchievementIDs {
-	steel(new Item[] { ItemIDs.steel.item }),
+	steel(new Item[] { TiMOres.ingotSteel }),
 	stake(new Item[] { ItemIDs.stake.item }),
 	dieselFuel(new Item[] {ItemIDs.diesel.item }),
-	electMotor(new Item[] { ItemIDs.electmotor.item }),
-	dieselEngine(new Item[] { ItemIDs.dieselengine.item }),
-	firebox(new Item[] { ItemIDs.firebox.item, ItemIDs.ironFirebox.item }),
+	electMotor(new Item[] { TiMItems.smallElectricEngine }),
+	dieselEngine(new Item[] { TiMItems.smallDieselEngine }),
+	firebox(new Item[] { TiMItems.fireboxSteel, TiMItems.fireboxIron }),
 	zeppelin(new Item[] { ItemIDs.zeppelin.item, ItemIDs.airship.item }),
 	smallSteam(new Item[] { ItemIDs.minecartLoco3.item }),
 	normalSteam(new Item[] { ItemIDs.minecartPower.item, ItemIDs.minecartLocoBR01_DB.item,
@@ -49,16 +51,16 @@ public enum AchievementIDs {
 	openHearth(new Item[] { Item.getItemFromBlock(BlockIDs.openFurnaceIdle.block) }),
 	trainWB(new Item[] { Item.getItemFromBlock(BlockIDs.trainWorkbench.block) }),
 	engineer(new Item[] { ItemIDs.overalls.item, ItemIDs.hat.item, ItemIDs.jacket.item }),
-	woodenParts(new Item[] { ItemIDs.woodenBogie.item, ItemIDs.woodenCab.item, ItemIDs.woodenFrame.item,
-			ItemIDs.seats.item }),
-	ironParts(new Item[] { ItemIDs.ironBogie.item, ItemIDs.ironBoiler.item, ItemIDs.ironCab.item,
-			ItemIDs.ironChimney.item, ItemIDs.ironFirebox.item, ItemIDs.ironFrame.item }),
-	steelParts(new Item[] { ItemIDs.bogie.item, ItemIDs.steelcab.item, ItemIDs.steelchimney.item,
-			ItemIDs.steelframe.item, ItemIDs.boiler.item, ItemIDs.firebox.item }),
+	woodenParts(new Item[] { TiMItems.wheelWood, TiMItems.cabinWood, TiMItems.frameWood,
+			TiMItems.seatsWooden }),
+	ironParts(new Item[] { TiMItems.wheelIron, TiMItems.boilerIron, TiMItems.cabinIron,
+			TiMItems.chimneyIron, TiMItems.fireboxIron, TiMItems.frameIron }),
+	steelParts(new Item[] { TiMItems.wheelSteel, TiMItems.cabinSteel, TiMItems.chimneySteel,
+			TiMItems.frameSteel, TiMItems.boilerIron, TiMItems.fireboxSteel }),
 	plastic(new Item[] { ItemIDs.rawPlastic.item }),
 	fineCopperWire(new Item[] { ItemIDs.copperWireFine.item }),
 	electronicCircuit(new Item[] { ItemIDs.electronicCircuit.item }),
-	generator(new Item[] { ItemIDs.generator.item }),
+	generator(new Item[] { TiMItems.generator }),
 	cherepanov(new Item[] { ItemIDs.minecartLocoCherepanov.item }),
 	minetrain(new Item[] { ItemIDs.minecartLocoMineTrain.item }),
 	flatCart(new Item[] { ItemIDs.minecartFlatCart.item, ItemIDs.minecartFlatCart_DB.item,

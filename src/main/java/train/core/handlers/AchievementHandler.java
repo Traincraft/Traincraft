@@ -7,6 +7,8 @@
 
 package train.core.handlers;
 
+import ebf.tim.registry.TiMItems;
+import ebf.tim.registry.TiMOres;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -39,10 +41,10 @@ public class AchievementHandler {
 
 	public static void load() {
 		AchievementIDs.trainWB.achievement = achievement("trainWB", 0, 0, BlockIDs.trainWorkbench.block, null);
-		AchievementIDs.woodenParts.achievement = achievement("woodenParts", -2, 2, ItemIDs.woodenBogie.item, AchievementIDs.trainWB.achievement);
-		AchievementIDs.ironParts.achievement = achievement("ironParts", 0, 2, ItemIDs.ironBogie.item, AchievementIDs.trainWB.achievement);
-		AchievementIDs.steelParts.achievement = achievement("steelParts", 2, 2, ItemIDs.bogie.item, AchievementIDs.trainWB.achievement);
-		AchievementIDs.firebox.achievement = achievement("firebox", 0, 4, ItemIDs.firebox.item, AchievementIDs.ironParts.achievement);
+		AchievementIDs.woodenParts.achievement = achievement("woodenParts", -2, 2, TiMItems.wheelWood, AchievementIDs.trainWB.achievement);
+		AchievementIDs.ironParts.achievement = achievement("ironParts", 0, 2, TiMItems.wheelIron, AchievementIDs.trainWB.achievement);
+		AchievementIDs.steelParts.achievement = achievement("steelParts", 2, 2, TiMItems.wheelSteel, AchievementIDs.trainWB.achievement);
+		AchievementIDs.firebox.achievement = achievement("firebox", 0, 4, TiMItems.fireboxSteel, AchievementIDs.ironParts.achievement);
 		AchievementIDs.zeppelin.achievement = achievement("zeppelin", 2, 4, ItemIDs.airship.item, AchievementIDs.firebox.achievement);
 		AchievementIDs.smallSteam.achievement = achievement("smallSteam", -2, 6, ItemIDs.minecartLoco3.item, AchievementIDs.firebox.achievement);
 		AchievementIDs.normalSteam.achievement = achievement("normalSteam", 0, 6, ItemIDs.minecartPower.item, AchievementIDs.firebox.achievement);
@@ -50,9 +52,9 @@ public class AchievementHandler {
 		//TODO put it back once Heavy Steam is back
 
 		AchievementIDs.openHearth.achievement = achievement("openHearth", -4, 0, BlockIDs.openFurnaceActive.block, null);
-		AchievementIDs.steel.achievement = achievement("steel", -4, 2, ItemIDs.steel.item, AchievementIDs.openHearth.achievement);
+		AchievementIDs.steel.achievement = achievement("steel", -4, 2, TiMOres.ingotSteel, AchievementIDs.openHearth.achievement);
 		AchievementIDs.stake.achievement = achievement("stake", -4, 4, ItemIDs.stake.item, AchievementIDs.steel.achievement);
-		AchievementIDs.dieselEngine.achievement = achievement("dieselEngine", -6, 4, ItemIDs.dieselengine.item, AchievementIDs.steel.achievement);
+		AchievementIDs.dieselEngine.achievement = achievement("dieselEngine", -6, 4, TiMItems.smallDieselEngine, AchievementIDs.steel.achievement);
 		AchievementIDs.diesel.achievement = achievement("dieselLoco", -6, 6, ItemIDs.minecartCD742.item, AchievementIDs.dieselEngine.achievement);
 
 		AchievementIDs.distilationTower.achievement = achievement("distilationTower", -10, 0, TCBlocks.blockDistil,null);
@@ -60,8 +62,8 @@ public class AchievementHandler {
 		AchievementIDs.plastic.achievement = achievement("plastic", -12, 2, ItemIDs.rawPlastic.item, AchievementIDs.distilationTower.achievement);
 		AchievementIDs.fineCopperWire.achievement = achievement("fineCopperWire", -12, 4, ItemIDs.copperWireFine.item, AchievementIDs.plastic.achievement);
 		AchievementIDs.electronicCircuit.achievement = achievement("electronicCircuit", -12, 6, ItemIDs.electronicCircuit.item, AchievementIDs.fineCopperWire.achievement);
-		AchievementIDs.generator.achievement = achievement("generator", -14, 8, ItemIDs.generator.item, AchievementIDs.electronicCircuit.achievement);
-		AchievementIDs.electMotor.achievement = achievement("electMotor", -10, 8, ItemIDs.electmotor.item, AchievementIDs.electronicCircuit.achievement);
+		AchievementIDs.generator.achievement = achievement("generator", -14, 8, TiMItems.generator, AchievementIDs.electronicCircuit.achievement);
+		AchievementIDs.electMotor.achievement = achievement("electMotor", -10, 8, TiMItems.smallElectricEngine, AchievementIDs.electronicCircuit.achievement);
 		AchievementIDs.tram.achievement = achievement("tram", -12, 10, ItemIDs.minecartTramWood.item, AchievementIDs.electMotor.achievement);
 		AchievementIDs.fast.achievement = achievement("fast", -8, 10, ItemIDs.minecartVL10.item, AchievementIDs.electMotor.achievement);
 
