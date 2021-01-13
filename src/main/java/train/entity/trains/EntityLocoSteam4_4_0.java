@@ -6,6 +6,7 @@ import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.EntityTrainCore;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.ItemTransport;
+import ebf.tim.registry.TiMItems;
 import ebf.tim.utility.FuelHandler;
 import ebf.tim.utility.ItemStackSlot;
 import fexcraft.tmt.slim.ModelBase;
@@ -180,10 +181,16 @@ public class EntityLocoSteam4_4_0 extends EntityTrainCore {
     @Override
     public ItemStack[] getRecipe() {
         return new ItemStack[]{
-                new ItemStack(ItemIDs.ironChimney.item, 1), new ItemStack(Items.stick, 2), null,
-                new ItemStack(ItemIDs.ironBoiler.item, 1), new ItemStack(ItemIDs.ironFirebox.item, 1), new ItemStack(ItemIDs.woodenCab.item, 1),
-                new ItemStack(ItemIDs.ironBogie.item, 3), new ItemStack(ItemIDs.woodenFrame.item, 2), null
+                new ItemStack(TiMItems.chimneyIron, 1), new ItemStack(Items.stick, 2), null,
+                new ItemStack(TiMItems.boilerIron, 1), new ItemStack(ItemIDs.ironFirebox.item, 1), new ItemStack(TiMItems.cabinWood, 1),
+                new ItemStack(TiMItems.wheelIron, 3), new ItemStack(TiMItems.frameWood, 2), null
         };
+
+//        return new ItemStack[]{
+//                new ItemStack(ItemIDs.ironChimney.item, 1), new ItemStack(Items.stick, 2), null,
+//                new ItemStack(ItemIDs.ironBoiler.item, 1), new ItemStack(ItemIDs.ironFirebox.item, 1), new ItemStack(ItemIDs.woodenCab.item, 1),
+//                new ItemStack(ItemIDs.ironBogie.item, 3), new ItemStack(ItemIDs.woodenFrame.item, 2), null
+//        };
     }
 
 

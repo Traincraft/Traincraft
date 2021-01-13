@@ -254,30 +254,36 @@ public class ItemStackSlot extends Slot {
                 ((TileEntityStorage)hostInventory).pages = 1;
                 ((TileEntityStorage)hostInventory).outputPage = 1;
             } else {//skip 2 since buttons will be in their place.
-                if (tierIn > 0) {
-                    for (int i = 0; i < numberSlots - 2; i++) {//TODO: disable the slots with buttons (last two)
-                        putStackInSlot(hostSlots, 409 + i + ((numberSlots - 2) * (page - 1)), slots.get(i + ((numberSlots - 2) * (page - 1))));
+                if (tierIn > 0) { //TC
+                    for (int i = 0; i < 6; i++) {
+                        if (i + (6 * (page - 1)) < slots.size()) { //if slot is in bounds
+                            putStackInSlot(hostSlots, 409 + i, slots.get(i + ((numberSlots - 2) * (page - 1))));
+                        } else {
+                            break;
+                        }
                     }
-                } else {
+                } else if (tierIn == 0) { //TiM
                     //TiM crafter, but buttons in awkward place coding-wise
-                    putStackInSlot(hostSlots,409 + (7 * (page - 1)), slots.get(7 * (page - 1)));
-                    putStackInSlot(hostSlots,410 + (7 * (page - 1)), slots.get(1 + (7 * (page - 1))));
-                    putStackInSlot(hostSlots,411 + (7 * (page - 1)), slots.get(2 + (7 * (page - 1))));
-                    //intentionally skip 412 because an arrow is there
-                    putStackInSlot(hostSlots,413 + (7 * (page - 1)), slots.get(3 + (7 * (page - 1))));
-                    //intentionally skip 414 because an arrow is there
-                    putStackInSlot(hostSlots,415 + (7 * (page - 1)), slots.get(4 + (7 * (page - 1))));
-                    putStackInSlot(hostSlots,416 + (7 * (page - 1)), slots.get(5 + (7 * (page - 1))));
-                    putStackInSlot(hostSlots,417 + (7 * (page - 1)), slots.get(6 + (7 * (page - 1))));
-                }
+                    int slotIncrementor = 409;
+                    for (int i = 0; i < 7; i++) {
+                        if (slotIncrementor == 412 || slotIncrementor == 414) { //skip these slots
+                            slotIncrementor++;
+                        }
+                        if ((i + 7 * (page - 1)) < slots.size()) {
+                            putStackInSlot(hostSlots,slotIncrementor, slots.get(i + 7 * (page - 1)));
+                        } else {
+                            break;
+                        }
 
-                //divide the possible trains by the number of usable slots on each page and round it up
+                        slotIncrementor++;
+                    }
+                }
                 ((TileEntityStorage)hostInventory).pages = (slots.size()/(numberSlots-2)) + 1;
             }
         }
     }
 
-    private void onCraftMatrixChanged(IInventory hostInventory, List<ItemStackSlot> hostSlots) {
+    public void onCraftMatrixChanged(IInventory hostInventory, List<ItemStackSlot> hostSlots, boolean resetPage) {
         if((isCraftingInput || isCraftingOutput) && hostInventory instanceof TileEntityStorage) {
             int page = ((TileEntityStorage)hostInventory).outputPage;
             switch (((TileEntityStorage)hostInventory).storageType) {
@@ -290,6 +296,9 @@ public class ItemStackSlot extends Slot {
                         putResultsInOutputSlots(hostInventory, hostSlots, slots, page, 9);
                     }
 
+                    if (resetPage) {
+                        ((TileEntityStorage) hostInventory).outputPage = 1;
+                    }
                     break;
                 }
                 case 0: { //track crafting
@@ -297,7 +306,7 @@ public class ItemStackSlot extends Slot {
                     break;
                 }
             }
-
+            onSlotChanged();
             //todo: vanilla crafting table support for workcarts.
 
         }
@@ -388,7 +397,7 @@ public class ItemStackSlot extends Slot {
             }
             this.onSlotChanged();
             if(hostInventory!=null) {
-                onCraftMatrixChanged(inventory, hostInventory);
+                onCraftMatrixChanged(inventory, hostInventory, true);
             }
             return true;
         }
