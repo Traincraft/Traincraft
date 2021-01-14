@@ -5,13 +5,13 @@ import ebf.tim.api.SkinRegistry;
 import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.ItemTransport;
-import ebf.tim.registry.TiMItems;
 import fexcraft.tmt.slim.ModelBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import train.Traincraft;
 import train.library.Info;
+import train.library.ItemIDs;
 
 import java.util.List;
 import java.util.UUID;
@@ -33,9 +33,9 @@ public class EntityPassengerICE_Restaurant extends GenericRailTransport {
     @Override
     public String transportName(){return "ICE Restaurant";}
     @Override
-    public String transportcountry(){return "german";}
+    public String transportcountry(){return "Germany";}
     @Override
-    public String transportYear(){return "1989-1993";}
+    public String transportYear(){return "2016";}
     @Override
     public boolean isFictional(){return false;}
     @Override
@@ -45,13 +45,13 @@ public class EntityPassengerICE_Restaurant extends GenericRailTransport {
         return TrainsInMotion.transportTypes.PASSENGER.singleton();
     }
     @Override
-    public float weightKg(){return 10f;}
+    public float weightKg(){return 35000f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelICE1Restaurant()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{0.0f, -0.18f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.005f, 0.0f}};}
     @Override
     public float[][] modelRotations(){return new float[][]{{0.0f, 0.0f, 0.0f}};}
     @Override
@@ -69,9 +69,9 @@ public class EntityPassengerICE_Restaurant extends GenericRailTransport {
     @Override
     public ItemStack[] getRecipe() {
         return new ItemStack[]{
-                null, new ItemStack(TiMItems.wheelSteel, 2), new ItemStack(TiMItems.frameSteel, 2),
-                null, null, new ItemStack(TiMItems.cabinSteel, 1),
-                null, null, new ItemStack(TiMItems.seatsWooden, 1)        };
+                null, new ItemStack(ItemIDs.bogie.item, 2), new ItemStack(ItemIDs.steelframe.item, 2), 
+                null, null, new ItemStack(ItemIDs.steelcab.item, 1), 
+                null, null, new ItemStack(ItemIDs.seats.item, 1)        };
     }
 
 
@@ -79,9 +79,9 @@ public class EntityPassengerICE_Restaurant extends GenericRailTransport {
     @Override
     public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{6.199999809265137f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{7.9f,2.15f,1.35f};}
     @Override
-    public float[] rotationPoints() {return new float[]{2.4800000190734863f, -2.4800000190734863f};}
+    public float[] rotationPoints() {return new float[]{2.18f, -2.45f};}
 
 
 

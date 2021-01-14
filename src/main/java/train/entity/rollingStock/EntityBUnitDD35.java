@@ -5,14 +5,13 @@ import ebf.tim.api.SkinRegistry;
 import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.ItemTransport;
-import ebf.tim.registry.TiMItems;
-import ebf.tim.registry.TiMOres;
 import fexcraft.tmt.slim.ModelBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import train.Traincraft;
 import train.library.Info;
+import train.library.ItemIDs;
 
 import java.util.List;
 import java.util.UUID;
@@ -46,7 +45,7 @@ public class EntityBUnitDD35 extends GenericRailTransport {
         return TrainsInMotion.transportTypes.B_UNIT.singleton();
     }
     @Override
-    public float weightKg(){return 10f;}
+    public float weightKg(){return 236766.145f;}
 
     //Model stuff
     @Override
@@ -70,11 +69,11 @@ public class EntityBUnitDD35 extends GenericRailTransport {
 
     //recipe
     @Override
-    public ItemStack[] getRecipe() {
+    public ItemStack[] getRecipie() {
         return new ItemStack[]{
-                null, new ItemStack(TiMItems.wheelSteel, 8), new ItemStack(TiMItems.frameSteel, 3),
-                new ItemStack(TiMOres.ingotSteel, 2), new ItemStack(TiMItems.chimneySteel, 2), new ItemStack(TiMItems.cabinSteel, 1),
-                new ItemStack(TiMItems.smallElectricEngine, 8), new ItemStack(TiMItems.smallDieselEngine, 11), new ItemStack(TiMItems.generator, 4)        };
+                null, new ItemStack(ItemIDs.bogie.item, 8), new ItemStack(ItemIDs.steelframe.item, 3),
+                new ItemStack(ItemIDs.steel.item, 2), new ItemStack(ItemIDs.steelchimney.item, 2), new ItemStack(ItemIDs.steelcab.item, 1),
+                new ItemStack(ItemIDs.electmotor.item, 8), new ItemStack(ItemIDs.dieselengine.item, 11), new ItemStack(ItemIDs.generator.item, 4)        };
     }
 
 

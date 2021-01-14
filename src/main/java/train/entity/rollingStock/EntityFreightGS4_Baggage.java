@@ -5,7 +5,6 @@ import ebf.tim.api.SkinRegistry;
 import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.ItemTransport;
-import ebf.tim.registry.TiMItems;
 import fexcraft.tmt.slim.ModelBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -13,6 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import train.Traincraft;
 import train.library.Info;
+import train.library.ItemIDs;
 
 import java.util.List;
 import java.util.UUID;
@@ -34,9 +34,9 @@ public class EntityFreightGS4_Baggage extends GenericRailTransport {
     @Override
     public String transportName(){return "Freight Cart GS4 Baggage";}
     @Override
-    public String transportcountry(){return "us";}
+    public String transportcountry(){return "Us";}
     @Override
-    public String transportYear(){return "941-1942";}
+    public String transportYear(){return "1939";}
     @Override
     public boolean isFictional(){return false;}
     @Override
@@ -46,7 +46,7 @@ public class EntityFreightGS4_Baggage extends GenericRailTransport {
         return TrainsInMotion.transportTypes.FREIGHT.singleton();
     }
     @Override
-    public float weightKg(){return 10f;}
+    public float weightKg(){return 48987.976f;}
 
     //Model stuff
     @Override
@@ -88,16 +88,16 @@ public class EntityFreightGS4_Baggage extends GenericRailTransport {
 
     //recipe
     @Override
-    public ItemStack[] getRecipe() {
+    public ItemStack[] getRecipie() {
         return new ItemStack[]{
-                null, new ItemStack(TiMItems.wheelSteel, 2), new ItemStack(TiMItems.frameSteel, 1),
+                null, new ItemStack(ItemIDs.bogie.item, 2), new ItemStack(ItemIDs.steelframe.item, 1), 
                 null, null, null, null, null, new ItemStack(Blocks.chest, 2)        };
     }
 
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return null;}
     @Override
     public float[] getHitboxSize(){return new float[]{7.875f,2.25f,1.4f};}
     @Override

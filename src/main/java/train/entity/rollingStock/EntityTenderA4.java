@@ -5,7 +5,6 @@ import ebf.tim.api.SkinRegistry;
 import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.ItemTransport;
-import ebf.tim.registry.TiMItems;
 import fexcraft.tmt.slim.ModelBase;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -13,6 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import train.Traincraft;
 import train.library.Info;
+import train.library.ItemIDs;
 
 import java.util.List;
 import java.util.UUID;
@@ -52,7 +52,7 @@ public class EntityTenderA4 extends GenericRailTransport {
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelTenderA4()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{-0.25f, 0f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{-0.25f, 0.005f, 0.0f}};}
     @Override
     public float[][] modelRotations(){return new float[][]{{0.0f, 0.0f, 0.0f}};}
     @Override
@@ -78,7 +78,7 @@ public class EntityTenderA4 extends GenericRailTransport {
     @Override
     public ItemStack[] getRecipe() {
         return new ItemStack[]{
-                null, new ItemStack(TiMItems.wheelIron, 2), new ItemStack(TiMItems.frameSteel, 2),
+                null, new ItemStack(ItemIDs.ironBogie.item, 2), new ItemStack(ItemIDs.steelframe.item, 2), 
                 new ItemStack(Items.iron_ingot, 1), null, null, null, null, new ItemStack(Items.coal, 1)        };
     }
 
@@ -87,9 +87,9 @@ public class EntityTenderA4 extends GenericRailTransport {
     @Override
     public float[][] getRiderOffsets(){return null;}
     @Override
-    public float[] getHitboxSize(){return new float[]{4.2f,2.6f,1.3f};}
+    public float[] getHitboxSize(){return new float[]{4.25f,2.6f,1.3f};}
     @Override
-    public float[] rotationPoints() {return new float[]{0.975f, -1.3f};}
+    public float[] rotationPoints() {return new float[]{0.95f, -1.3f};}
     @Override
     public int[] getTankCapacity(){return new int[]{6000};}
 
