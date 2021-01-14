@@ -235,9 +235,19 @@ public class ItemStackSlot extends Slot {
         return 0;
     }
 
+    //seems to set the correct
+    public void updatePage(TileEntityStorage hostInventory, List<ItemStackSlot> hostSlots) {
+        List<ItemStack> slots = RecipeManager.getResult(RecipeManager.getTransportRecipe(hostInventory), this.tierIn);
+        if (hostInventory.assemblyTableTier > 0) {
+            putResultsInOutputSlots(hostInventory, hostSlots, slots, hostInventory.outputPage, 8);
+        } else if (hostInventory.assemblyTableTier == 0) {
+            putResultsInOutputSlots(hostInventory, hostSlots, slots, hostInventory.outputPage, 9);
+        }
+    }
+
     /**
      * Helper function to fill the output slots with the given stacks. This is a method to account for the 9 output slots
-     * in TiM and the 8 in the Traincraft assemblytable. This could be merged back into original function (onCraftMatrixChanged).
+     * in TiM and the 8 in the Traincraft assemblytable.
      */
     private void putResultsInOutputSlots(IInventory hostInventory, List<ItemStackSlot> hostSlots, List<ItemStack> slots, int page, int numberSlots) {
         if(slots==null){
@@ -280,11 +290,13 @@ public class ItemStackSlot extends Slot {
                 }
                 ((TileEntityStorage)hostInventory).pages = (slots.size()/(numberSlots-2)) + 1;
             }
+
+            onSlotChanged();
         }
     }
 
-    public void onCraftMatrixChanged(IInventory hostInventory, List<ItemStackSlot> hostSlots, boolean resetPage) {
-        if((isCraftingInput || isCraftingOutput) && hostInventory instanceof TileEntityStorage) {
+    public void onCraftMatrixChanged(IInventory hostInventory, List<ItemStackSlot> hostSlots) {
+        if((isCraftingInput || isCraftingOutput) && hostInventory instanceof TileEntityStorage && hostSlots.size() != 18) {
             int page = ((TileEntityStorage)hostInventory).outputPage;
             switch (((TileEntityStorage)hostInventory).storageType) {
                 case 1: { //train crafting
@@ -296,9 +308,8 @@ public class ItemStackSlot extends Slot {
                         putResultsInOutputSlots(hostInventory, hostSlots, slots, page, 9);
                     }
 
-                    if (resetPage) {
-                        ((TileEntityStorage) hostInventory).outputPage = 1;
-                    }
+                    ((TileEntityStorage) hostInventory).outputPage = 1;
+
                     break;
                 }
                 case 0: { //track crafting
@@ -397,7 +408,7 @@ public class ItemStackSlot extends Slot {
             }
             this.onSlotChanged();
             if(hostInventory!=null) {
-                onCraftMatrixChanged(inventory, hostInventory, true);
+                onCraftMatrixChanged(inventory, hostInventory);
             }
             return true;
         }

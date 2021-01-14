@@ -36,6 +36,7 @@ public class TileEntityStorage extends TileRenderFacing implements IInventory, I
     public int storageType=0;
     public int outputPage=1;
     public int pages=1;
+
     public int assemblyTableTier = -1; //only applies if part of assemblyTable/traintable, no need to set otherwise.
 
     public TileEntityStorage(BlockDynamic block){
@@ -462,20 +463,16 @@ public class TileEntityStorage extends TileRenderFacing implements IInventory, I
             //get the number of remaining pages
             //if there are some, increment the outputPage int
             outputPage++;
-            for(ItemStackSlot slot: inventory) {
-                slot.onSlotChanged();
-                slot.onCraftMatrixChanged(this, inventory, false);
-            }
+            getSlotIndexByID(400).updatePage(this, inventory);
+            this.markDirty();
         }
     }
 
     public void decrementPage() {
         if (pages > 1 && outputPage > 1) {
             outputPage--;
-            for(ItemStackSlot slot: inventory) {
-                slot.onSlotChanged();
-                slot.onCraftMatrixChanged(this, inventory, false);
-            }
+            getSlotIndexByID(400).updatePage(this, inventory);
+            this.markDirty();
         }
     }
 

@@ -62,10 +62,6 @@ public class TransportSlotManager extends net.minecraft.inventory.Container {
         //tile entity reference
         hostInventory = block;
 
-        for(ItemStackSlot slot : block.inventory){
-            addSlots(slot);
-        }
-
         if (block.assemblyTableTier > 0 && ClientProxy.isTraincraft) { //it is an assembly table, move slots lower. (but only for the traincraft asm tables)
             //player hotbar
             for (int iT = 0; iT < 9; iT++) {
@@ -91,6 +87,11 @@ public class TransportSlotManager extends net.minecraft.inventory.Container {
                 }
             }
         }
+
+        for(ItemStackSlot slot : block.inventory){
+            addSlots(slot);
+        }
+
         onCraftMatrixChanged(hostInventory);
     }
 
@@ -164,6 +165,10 @@ public class TransportSlotManager extends net.minecraft.inventory.Container {
     /*a heavily modified replica of the 1.12 version*/
     @Override
     public ItemStack slotClick(int slotId, int dragType, int clickTypeIn, EntityPlayer player) {
+
+        if (hostInventory instanceof TileEntityStorage && ((TileEntityStorage) hostInventory).assemblyTableTier >= 0) {
+            this.detectAndSendChanges();
+        }
 
         if (clickTypeIn == 4){
             clickTypeIn = Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT) ? 1 ://cover shift click
