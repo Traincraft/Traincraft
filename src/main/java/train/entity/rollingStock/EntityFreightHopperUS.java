@@ -5,8 +5,6 @@ import ebf.tim.api.SkinRegistry;
 import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.ItemTransport;
-import ebf.tim.registry.TiMItems;
-import ebf.tim.registry.TiMOres;
 import fexcraft.tmt.slim.ModelBase;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -14,6 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import train.Traincraft;
 import train.library.Info;
+import train.library.ItemIDs;
 
 import java.util.List;
 import java.util.UUID;
@@ -35,9 +34,9 @@ public class EntityFreightHopperUS extends GenericRailTransport {
     @Override
     public String transportName(){return "Freight Hopper US";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "Us";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "1960-1970";}
     @Override
     public boolean isFictional(){return false;}
     @Override
@@ -47,7 +46,7 @@ public class EntityFreightHopperUS extends GenericRailTransport {
         return TrainsInMotion.transportTypes.FREIGHT.singleton();
     }
     @Override//weight unknown, average weight of a 2-bay hopper is from 263,000 to 286,000 lbs.
-    public float weightKg(){return 120000f;}
+    public float weightKg(){return 119294.793f;}
 
     //Model stuff
     @Override
@@ -91,10 +90,10 @@ public class EntityFreightHopperUS extends GenericRailTransport {
 
     //recipe
     @Override
-    public ItemStack[] getRecipe() {
+    public ItemStack[] getRecipie() {
         return new ItemStack[]{
-                new ItemStack(TiMOres.ingotSteel, 5), new ItemStack(TiMItems.wheelSteel, 2), new ItemStack(TiMItems.frameSteel, 2),
-                new ItemStack(TiMOres.ingotSteel, 2), null, null, null, null, new ItemStack(Items.wheat, 3)        };
+                new ItemStack(ItemIDs.steel.item, 5), new ItemStack(ItemIDs.bogie.item, 2), new ItemStack(ItemIDs.steelframe.item, 2), 
+                new ItemStack(ItemIDs.steel.item, 2), null, null, null, null, new ItemStack(Items.wheat, 3)        };
     }
 
 

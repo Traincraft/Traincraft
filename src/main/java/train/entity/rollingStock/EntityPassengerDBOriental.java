@@ -5,7 +5,6 @@ import ebf.tim.api.SkinRegistry;
 import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.ItemTransport;
-import ebf.tim.registry.TiMItems;
 import fexcraft.tmt.slim.ModelBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -14,6 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import train.Traincraft;
 import train.library.Info;
+import train.library.ItemIDs;
 
 import java.util.List;
 import java.util.UUID;
@@ -35,7 +35,7 @@ public class EntityPassengerDBOriental extends GenericRailTransport {
     @Override
     public String transportName(){return "Passenger DB oriental";}
     @Override
-    public String transportcountry(){return "uk";}
+    public String transportcountry(){return "Germany";}
     @Override
     public String transportYear(){return "1966-1974";}
     @Override
@@ -53,7 +53,7 @@ public class EntityPassengerDBOriental extends GenericRailTransport {
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelPassenger_DB_oriental()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.62f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.63f, 0.0f}};}
     @Override
     public float[][] modelRotations(){return new float[][]{{0.0f, -180.0f, -180.0f}};}
     @Override
@@ -75,9 +75,9 @@ public class EntityPassengerDBOriental extends GenericRailTransport {
     @Override
     public ItemStack[] getRecipe() {
         return new ItemStack[]{
-                new ItemStack(Blocks.planks, 6), new ItemStack(TiMItems.wheelSteel, 2), new ItemStack(TiMItems.frameWood, 2),
-                new ItemStack(Items.stick, 2), null, new ItemStack(TiMItems.cabinWood, 1),
-                null, null, new ItemStack(TiMItems.seatsWooden, 1)        };
+                new ItemStack(Blocks.planks, 6), new ItemStack(ItemIDs.bogie.item, 2), new ItemStack(ItemIDs.woodenFrame.item, 2), 
+                new ItemStack(Items.stick, 2), null, new ItemStack(ItemIDs.woodenCab.item, 1), 
+                null, null, new ItemStack(ItemIDs.seats.item, 1)        };
     }
 
 
@@ -85,9 +85,9 @@ public class EntityPassengerDBOriental extends GenericRailTransport {
     @Override
     public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f},{-1,1.2f, 0f},{1,1.2f, 0f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{4.5f,2.3f,1.3f};}
+    public float[] getHitboxSize(){return new float[]{4.5f,2.125f,1.5f};}
     @Override
-    public float[] rotationPoints() {return new float[]{1.1f, -1.1f};}
+    public float[] rotationPoints() {return new float[]{1.05f, -1.125f};}
 
 
 

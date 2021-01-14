@@ -5,7 +5,6 @@ import ebf.tim.api.SkinRegistry;
 import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.ItemTransport;
-import ebf.tim.registry.TiMItems;
 import fexcraft.tmt.slim.ModelBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -13,6 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import train.Traincraft;
 import train.library.Info;
+import train.library.ItemIDs;
 
 import java.util.List;
 import java.util.UUID;
@@ -98,16 +98,16 @@ public class EntityFreightBamboo extends GenericRailTransport {
 
     //recipe
     @Override
-    public ItemStack[] getRecipe() {
+    public ItemStack[] getRecipie() {
         return new ItemStack[]{
-                null, new ItemStack(TiMItems.wheelWood, 2), new ItemStack(TiMItems.frameWood, 1),
+                null, new ItemStack(ItemIDs.woodenBogie.item, 2), new ItemStack(ItemIDs.woodenFrame.item, 1), 
                 null, null, null, null, null, new ItemStack(Blocks.chest, 1)        };
     }
 
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return null;}
     @Override
     public float[] getHitboxSize(){return new float[]{3.3f,1.3f,1.65f};}
     @Override

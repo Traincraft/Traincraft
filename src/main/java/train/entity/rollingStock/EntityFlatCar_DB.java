@@ -5,14 +5,13 @@ import ebf.tim.api.SkinRegistry;
 import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.ItemTransport;
-import ebf.tim.registry.TiMItems;
-import ebf.tim.registry.TiMOres;
 import fexcraft.tmt.slim.ModelBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import train.Traincraft;
 import train.library.Info;
+import train.library.ItemIDs;
 
 import java.util.List;
 import java.util.UUID;
@@ -34,7 +33,7 @@ public class EntityFlatCar_DB extends GenericRailTransport {
     @Override
     public String transportName(){return "Flat Cart DB";}
     @Override
-    public String transportcountry(){return "german";}
+    public String transportcountry(){return "Germany";}
     @Override
     public String transportYear(){return "1914";}
     @Override
@@ -46,7 +45,7 @@ public class EntityFlatCar_DB extends GenericRailTransport {
         return TrainsInMotion.transportTypes.FREIGHT.singleton();
     }
     @Override
-    public float weightKg(){return 10f;}
+    public float weightKg(){return 22500f;}
 
     //Model stuff
     @Override
@@ -70,10 +69,10 @@ public class EntityFlatCar_DB extends GenericRailTransport {
 
     //recipe
     @Override
-    public ItemStack[] getRecipe() {
+    public ItemStack[] getRecipie() {
         return new ItemStack[]{
-                new ItemStack(TiMOres.ingotSteel, 5), new ItemStack(TiMItems.wheelSteel, 2), new ItemStack(TiMItems.frameSteel, 2),
-                new ItemStack(TiMOres.ingotSteel, 2), null, null, null, null, null        };
+                new ItemStack(ItemIDs.steel.item, 5), new ItemStack(ItemIDs.bogie.item, 2), new ItemStack(ItemIDs.steelframe.item, 2),
+                new ItemStack(ItemIDs.steel.item, 2), null, null, null, null, null        };
     }
 
 

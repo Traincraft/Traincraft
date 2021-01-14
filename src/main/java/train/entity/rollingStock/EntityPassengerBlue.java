@@ -5,14 +5,13 @@ import ebf.tim.api.SkinRegistry;
 import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.ItemTransport;
-import ebf.tim.registry.TiMItems;
-import ebf.tim.registry.TiMOres;
 import fexcraft.tmt.slim.ModelBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import train.Traincraft;
 import train.library.Info;
+import train.library.ItemIDs;
 
 import java.util.List;
 import java.util.UUID;
@@ -34,9 +33,9 @@ public class EntityPassengerBlue extends GenericRailTransport {
     @Override
     public String transportName(){return "Passenger Blue";}
     @Override
-    public String transportcountry(){return "Unknown";}
+    public String transportcountry(){return "Uk";}
     @Override
-    public String transportYear(){return "Unknown";}
+    public String transportYear(){return "1951-1964";}
     @Override
     public boolean isFictional(){return false;}
     @Override
@@ -46,13 +45,13 @@ public class EntityPassengerBlue extends GenericRailTransport {
         return TrainsInMotion.transportTypes.PASSENGER.singleton();
     }
     @Override//this is a VERY rough guess, no documentation could be found.
-    public float weightKg(){return 17000f;}
+    public float weightKg(){return 39008.9f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelPassenger6()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.67f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.63f, 0.0f}};}
 @Override
     public float[][] modelRotations(){return new float[][]{{0f,180f,180f}};}
     @Override
@@ -85,16 +84,10 @@ public class EntityPassengerBlue extends GenericRailTransport {
     //recipe
     @Override
     public ItemStack[] getRecipe() {
-//        return new ItemStack[]{
-//                new ItemStack(TiMOres.ingotSteel, 5), new ItemStack(TiMItems.wheelSteel, 2), new ItemStack(TiMItems.frameSteel, 2),
-//                new ItemStack(TiMOres.ingotSteel, 2), null, new ItemStack(TiMItems.cabinSteel, 1),
-//                null, new ItemStack(TiMItems.seatsWooden, 1), null        };
-
-
         return new ItemStack[]{
-        new ItemStack(TiMOres.ingotSteel, 5), new ItemStack(TiMItems.wheelSteel, 2), new ItemStack(TiMItems.frameSteel, 2),
-        new ItemStack(TiMOres.ingotSteel, 2), null, new ItemStack(TiMItems.cabinSteel, 1),
-        null, new ItemStack(TiMItems.seatsWooden, 1), null        };
+                new ItemStack(ItemIDs.steel.item, 5), new ItemStack(ItemIDs.bogie.item, 2), new ItemStack(ItemIDs.steelframe.item, 2), 
+                new ItemStack(ItemIDs.steel.item, 2), null, new ItemStack(ItemIDs.steelcab.item, 1), 
+                null, new ItemStack(ItemIDs.seats.item, 1), null        };
     }
 
 
@@ -102,9 +95,9 @@ public class EntityPassengerBlue extends GenericRailTransport {
     @Override
     public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{4.400000095367432f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{4.45f,2.15f,1.4f};}
     @Override
-    public float[] rotationPoints() {return new float[]{1.7600001096725464f, -1.7600001096725464f};}
+    public float[] rotationPoints() {return new float[]{1.35f, -1.375f};}
 
 
 

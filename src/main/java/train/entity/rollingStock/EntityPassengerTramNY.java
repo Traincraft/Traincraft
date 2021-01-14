@@ -5,14 +5,13 @@ import ebf.tim.api.SkinRegistry;
 import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.ItemTransport;
-import ebf.tim.registry.TiMItems;
-import ebf.tim.registry.TiMOres;
 import fexcraft.tmt.slim.ModelBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import train.Traincraft;
 import train.library.Info;
+import train.library.ItemIDs;
 
 import java.util.List;
 import java.util.UUID;
@@ -34,7 +33,7 @@ public class EntityPassengerTramNY extends GenericRailTransport {
     @Override
     public String transportName(){return "Passenger Tram NY";}
     @Override
-    public String transportcountry(){return "us";}
+    public String transportcountry(){return "Us";}
     @Override
     public String transportYear(){return "1986-2011";}
     @Override
@@ -52,7 +51,7 @@ public class EntityPassengerTramNY extends GenericRailTransport {
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelTramNY()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.62f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.63f, 0.0f}};}
 @Override
     public float[][] modelRotations(){return new float[][]{{0f,180f,180f}};}
     @Override
@@ -70,8 +69,8 @@ public class EntityPassengerTramNY extends GenericRailTransport {
     @Override
     public ItemStack[] getRecipe() {
         return new ItemStack[]{
-                null, new ItemStack(TiMItems.wheelSteel, 2), new ItemStack(TiMItems.frameSteel, 1),
-                new ItemStack(TiMOres.ingotSteel, 1), null, new ItemStack(TiMItems.cabinSteel, 1),
+                null, new ItemStack(ItemIDs.bogie.item, 2), new ItemStack(ItemIDs.steelframe.item, 1), 
+                new ItemStack(ItemIDs.steel.item, 1), null, new ItemStack(ItemIDs.steelcab.item, 1), 
                 null, null, null        };
     }
 
@@ -80,9 +79,9 @@ public class EntityPassengerTramNY extends GenericRailTransport {
     @Override
     public float[][] getRiderOffsets(){return new float[][]{{0.9f,1.2f, 0.3f},{-0.7f,1.2f, -0.3f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{4.4f,2.3f,1.5f};}
+    public float[] getHitboxSize(){return new float[]{4.475f,2.175f,1.5f};}
     @Override
-    public float[] rotationPoints() {return new float[]{1.3f, -1.25f};}
+    public float[] rotationPoints() {return new float[]{1.25f, -1.25f};}
 
 
 

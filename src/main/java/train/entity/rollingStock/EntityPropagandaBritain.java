@@ -5,7 +5,6 @@ import ebf.tim.api.SkinRegistry;
 import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.ItemTransport;
-import ebf.tim.registry.TiMItems;
 import fexcraft.tmt.slim.ModelBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -14,6 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import train.Traincraft;
 import train.library.Info;
+import train.library.ItemIDs;
 
 import java.util.List;
 import java.util.UUID;
@@ -35,7 +35,7 @@ public class EntityPropagandaBritain extends GenericRailTransport {
     @Override
     public String transportName(){return "Propaganda Britain";}
     @Override
-    public String transportcountry(){return "uk";}
+    public String transportcountry(){return "Uk";}
     @Override
     public String transportYear(){return null;}
     @Override
@@ -55,7 +55,7 @@ public class EntityPropagandaBritain extends GenericRailTransport {
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelPropagandaCar()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{1.1f, 0f, 0.075f}};}
+    public float[][] modelOffsets(){return new float[][]{{1.1f, 0.0025f, 0.075f}};}
     @Override
     public float[][] modelRotations(){return new float[][]{{0.0f, 0.0f, 0.0f}};}
     @Override
@@ -77,7 +77,7 @@ public class EntityPropagandaBritain extends GenericRailTransport {
     @Override
     public ItemStack[] getRecipe() {
         return new ItemStack[]{
-                new ItemStack(Blocks.planks, 2), new ItemStack(TiMItems.wheelIron, 2), new ItemStack(TiMItems.frameWood, 2),
+                new ItemStack(Blocks.planks, 2), new ItemStack(ItemIDs.ironBogie.item, 2), new ItemStack(ItemIDs.woodenFrame.item, 2), 
                 null, null, null, null, null, new ItemStack(Items.painting, 2)        };
     }
 
@@ -86,9 +86,9 @@ public class EntityPropagandaBritain extends GenericRailTransport {
     @Override
     public float[][] getRiderOffsets(){return null;}
     @Override
-    public float[] getHitboxSize(){return new float[]{7.4f,3.2f,1.4f};}
+    public float[] getHitboxSize(){return new float[]{7.6f,2.95f,1.4f};}
     @Override
-    public float[] rotationPoints() {return new float[]{2.8f, -2.7f};}
+    public float[] rotationPoints() {return new float[]{2.7f, -2.625f};}
 
 
 

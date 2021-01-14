@@ -5,7 +5,6 @@ import ebf.tim.api.SkinRegistry;
 import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.ItemTransport;
-import ebf.tim.registry.TiMItems;
 import fexcraft.tmt.slim.ModelBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -14,6 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import train.Traincraft;
 import train.library.Info;
+import train.library.ItemIDs;
 
 import java.util.List;
 import java.util.UUID;
@@ -47,7 +47,7 @@ public class EntityCaboose3 extends GenericRailTransport {
         return TrainsInMotion.transportTypes.WORKCAR.singleton();
     }
     @Override
-    public float weightKg(){return 10f;}
+    public float weightKg(){return 15739.655f;}
 
     //Model stuff
     @Override
@@ -69,11 +69,11 @@ public class EntityCaboose3 extends GenericRailTransport {
 
     //recipe
     @Override
-    public ItemStack[] getRecipe() {
+    public ItemStack[] getRecipie() {
         return new ItemStack[]{
-                new ItemStack(Blocks.planks, 2), new ItemStack(TiMItems.wheelIron, 2), new ItemStack(TiMItems.frameIron, 2),
-                new ItemStack(Items.iron_ingot, 2), null, new ItemStack(TiMItems.cabinWood, 1),
-                null, null, new ItemStack(TiMItems.seatsWooden, 1)        };
+                new ItemStack(Blocks.planks, 2), new ItemStack(ItemIDs.ironBogie.item, 2), new ItemStack(ItemIDs.ironFrame.item, 2),
+                new ItemStack(Items.iron_ingot, 2), null, new ItemStack(ItemIDs.woodenCab.item, 1),
+                null, null, new ItemStack(ItemIDs.seats.item, 1)        };
     }
 
 

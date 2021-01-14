@@ -5,14 +5,13 @@ import ebf.tim.api.SkinRegistry;
 import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.ItemTransport;
-import ebf.tim.registry.TiMItems;
-import ebf.tim.registry.TiMOres;
 import fexcraft.tmt.slim.ModelBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import train.Traincraft;
 import train.library.Info;
+import train.library.ItemIDs;
 
 import java.util.List;
 import java.util.UUID;
@@ -34,9 +33,9 @@ public class EntityPassenger5 extends GenericRailTransport {
     @Override
     public String transportName(){return "Passenger Green Long";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "Us";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "1914-1960";}
     @Override
     public boolean isFictional(){return false;}
     @Override
@@ -46,7 +45,7 @@ public class EntityPassenger5 extends GenericRailTransport {
         return TrainsInMotion.transportTypes.PASSENGER.singleton();
     }
     @Override
-    public float weightKg(){return 10f;}
+    public float weightKg(){return 58967f;}
 
     //Model stuff
     @Override
@@ -70,11 +69,11 @@ public class EntityPassenger5 extends GenericRailTransport {
 
     //recipe
     @Override
-    public ItemStack[] getRecipe() {
+    public ItemStack[] getRecipie() {
         return new ItemStack[]{
-                new ItemStack(TiMOres.ingotSteel, 2), new ItemStack(TiMItems.wheelSteel, 2), new ItemStack(TiMItems.frameSteel, 2),
-                new ItemStack(TiMOres.ingotSteel, 2), null, new ItemStack(TiMItems.cabinSteel, 1),
-                null, null, new ItemStack(TiMItems.seatsWooden, 1)        };
+                new ItemStack(ItemIDs.steel.item, 2), new ItemStack(ItemIDs.bogie.item, 2), new ItemStack(ItemIDs.steelframe.item, 2), 
+                new ItemStack(ItemIDs.steel.item, 2), null, new ItemStack(ItemIDs.steelcab.item, 1), 
+                null, null, new ItemStack(ItemIDs.seats.item, 1)        };
     }
 
 

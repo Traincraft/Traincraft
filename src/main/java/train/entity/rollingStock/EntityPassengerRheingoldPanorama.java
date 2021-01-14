@@ -5,7 +5,6 @@ import ebf.tim.api.SkinRegistry;
 import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.ItemTransport;
-import ebf.tim.registry.TiMItems;
 import fexcraft.tmt.slim.ModelBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -13,6 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import train.Traincraft;
 import train.library.Info;
+import train.library.ItemIDs;
 
 import java.util.List;
 import java.util.UUID;
@@ -34,9 +34,9 @@ public class EntityPassengerRheingoldPanorama extends GenericRailTransport {
     @Override
     public String transportName(){return "Rheingold Panorama";}
     @Override
-    public String transportcountry(){return "germany";}
+    public String transportcountry(){return "Germany";}
     @Override
-    public String transportYear(){return "1962-1976";}
+    public String transportYear(){return "1965";}
     @Override
     public boolean isFictional(){return false;}
     @Override
@@ -46,13 +46,13 @@ public class EntityPassengerRheingoldPanorama extends GenericRailTransport {
         return TrainsInMotion.transportTypes.PASSENGER.singleton();
     }
     @Override
-    public float weightKg(){return 10f;}
+    public float weightKg(){return 45359.2f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelRheingoldPassenger_Panorama()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{-0.1f, -0.15f, 0.1f}};}
+    public float[][] modelOffsets(){return new float[][]{{-0.1f, -0.005f, -0.05f}};}
     @Override
     public float[][] modelRotations(){return new float[][]{{0.0f, 0.0f, 0.0f}};}
     @Override
@@ -72,9 +72,9 @@ public class EntityPassengerRheingoldPanorama extends GenericRailTransport {
     @Override
     public ItemStack[] getRecipe() {
         return new ItemStack[]{
-                new ItemStack(Blocks.glass, 1), new ItemStack(TiMItems.wheelSteel, 2), new ItemStack(TiMItems.frameSteel, 1),
-                null, null, new ItemStack(TiMItems.cabinSteel, 1),
-                null, null, new ItemStack(TiMItems.seatsWooden, 1)        };
+                new ItemStack(Blocks.glass, 1), new ItemStack(ItemIDs.bogie.item, 2), new ItemStack(ItemIDs.steelframe.item, 1), 
+                null, null, new ItemStack(ItemIDs.steelcab.item, 1), 
+                null, null, new ItemStack(ItemIDs.seats.item, 1)        };
     }
 
 
@@ -82,9 +82,9 @@ public class EntityPassengerRheingoldPanorama extends GenericRailTransport {
     @Override
     public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{7.900000095367432f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{8.425f,2.4f,1.45f};}
     @Override
-    public float[] rotationPoints() {return new float[]{3.1600000858306885f, -3.1600000858306885f};}
+    public float[] rotationPoints() {return new float[]{2.45f, -2.85f};}
 
 
 
