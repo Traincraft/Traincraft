@@ -5,7 +5,6 @@ import ebf.tim.api.SkinRegistry;
 import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.ItemTransport;
-import ebf.tim.registry.TiMItems;
 import fexcraft.tmt.slim.ModelBase;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -13,6 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import train.Traincraft;
 import train.library.Info;
+import train.library.ItemIDs;
 
 import java.util.List;
 import java.util.UUID;
@@ -52,7 +52,7 @@ public class EntityTender_C41 extends GenericRailTransport {
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelTenderC41()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{0.1f, 0.0f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.1f, 0.005f, 0.0f}};}
     @Override
     public float[][] modelRotations(){return new float[][]{{0.0f, 0.0f, 0.0f}};}
     @Override
@@ -70,7 +70,7 @@ public class EntityTender_C41 extends GenericRailTransport {
     @Override
     public ItemStack[] getRecipe() {
         return new ItemStack[]{
-                new ItemStack(Items.iron_ingot, 2), new ItemStack(TiMItems.wheelIron, 2), new ItemStack(TiMItems.frameIron, 2),
+                new ItemStack(Items.iron_ingot, 2), new ItemStack(ItemIDs.ironBogie.item, 2), new ItemStack(ItemIDs.ironFrame.item, 2), 
                 new ItemStack(Items.iron_ingot, 2), null, null, null, null, new ItemStack(Items.coal, 2)        };
     }
 
@@ -79,9 +79,9 @@ public class EntityTender_C41 extends GenericRailTransport {
     @Override
     public float[][] getRiderOffsets(){return null;}
     @Override
-    public float[] getHitboxSize(){return new float[]{3.6f,2.1f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{3.7f,1.775f,1.4f};}
     @Override
-    public float[] rotationPoints() {return new float[]{1f, -0.85f};}
+    public float[] rotationPoints() {return new float[]{1f, -0.875f};}
     @Override
     public int[] getTankCapacity(){return new int[]{22712};}
 

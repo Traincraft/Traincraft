@@ -5,8 +5,6 @@ import ebf.tim.api.SkinRegistry;
 import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.ItemTransport;
-import ebf.tim.registry.TiMItems;
-import ebf.tim.registry.TiMOres;
 import fexcraft.tmt.slim.ModelBase;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -14,6 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import train.Traincraft;
 import train.library.Info;
+import train.library.ItemIDs;
 
 import java.util.List;
 import java.util.UUID;
@@ -35,9 +34,9 @@ public class EntityTankWagon extends GenericRailTransport {
     @Override
     public String transportName(){return "Tank Wagon Yellow";}
     @Override
-    public String transportcountry(){return null;}
+    public String transportcountry(){return "Su";}
     @Override
-    public String transportYear(){return null;}
+    public String transportYear(){return "1958";}
     @Override
     public boolean isFictional(){return true;}
     @Override
@@ -71,18 +70,18 @@ public class EntityTankWagon extends GenericRailTransport {
     @Override
     public ItemStack[] getRecipe() {
         return new ItemStack[]{
-                new ItemStack(TiMOres.ingotSteel, 6), new ItemStack(TiMItems.wheelSteel, 2), new ItemStack(TiMItems.frameSteel, 2),
-                new ItemStack(TiMOres.ingotSteel, 2), null, null, null, null, new ItemStack(Items.water_bucket, 1)        };
+                new ItemStack(ItemIDs.steel.item, 6), new ItemStack(ItemIDs.bogie.item, 2), new ItemStack(ItemIDs.steelframe.item, 2), 
+                new ItemStack(ItemIDs.steel.item, 2), null, null, null, null, new ItemStack(Items.water_bucket, 1)        };
     }
 
 
     //these are separated for being fiddly.
     @Override
-    public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
+    public float[][] getRiderOffsets(){return null;}
     @Override
-    public float[] getHitboxSize(){return new float[]{3.4f,2.2f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{3.6f,2.05f,1.25f};}
     @Override
-    public float[] rotationPoints() {return new float[]{0.9f, -0.8f};}
+    public float[] rotationPoints() {return new float[]{0.9f, -0.925f};}
     @Override
     public int[] getTankCapacity(){return new int[]{40000};}
 

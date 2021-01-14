@@ -5,8 +5,6 @@ import ebf.tim.api.SkinRegistry;
 import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.ItemTransport;
-import ebf.tim.registry.TiMItems;
-import ebf.tim.registry.TiMOres;
 import fexcraft.tmt.slim.ModelBase;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -14,6 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import train.Traincraft;
 import train.library.Info;
+import train.library.ItemIDs;
 
 import java.util.List;
 import java.util.UUID;
@@ -53,7 +52,7 @@ public class EntityTenderCoranationClass extends GenericRailTransport {
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelCoranationClassTender()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.0f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.0f, 0.005f, 0.0f}};}
     @Override
     public float[][] modelRotations(){return new float[][]{{0.0f, 0.0f, 0.0f}};}
     @Override
@@ -71,8 +70,8 @@ public class EntityTenderCoranationClass extends GenericRailTransport {
     @Override
     public ItemStack[] getRecipe() {
         return new ItemStack[]{
-                new ItemStack(TiMOres.ingotSteel, 6), new ItemStack(TiMItems.wheelSteel, 2), new ItemStack(TiMItems.frameSteel, 3),
-                new ItemStack(TiMOres.ingotSteel, 2), null, null, null, null, new ItemStack(Items.coal, 1)        };
+                new ItemStack(ItemIDs.steel.item, 6), new ItemStack(ItemIDs.bogie.item, 2), new ItemStack(ItemIDs.steelframe.item, 3), 
+                new ItemStack(ItemIDs.steel.item, 2), null, null, null, null, new ItemStack(Items.coal, 1)        };
     }
 
 
@@ -80,9 +79,9 @@ public class EntityTenderCoranationClass extends GenericRailTransport {
     @Override
     public float[][] getRiderOffsets(){return null;}
     @Override
-    public float[] getHitboxSize(){return new float[]{worldObj==null?4.6f:4.5f,2.6f,1.4f};}
+    public float[] getHitboxSize(){return new float[]{worldObj==null?4.6f:4.35f,2.5f,1.4f};}
     @Override
-    public float[] rotationPoints() {return new float[]{1.1f, -1.1f};}
+    public float[] rotationPoints() {return new float[]{1.15f, -1.1f};}
     @Override
     public int[] getTankCapacity(){return new int[]{20000};}
 

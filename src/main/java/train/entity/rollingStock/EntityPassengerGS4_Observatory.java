@@ -5,7 +5,6 @@ import ebf.tim.api.SkinRegistry;
 import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.ItemTransport;
-import ebf.tim.registry.TiMItems;
 import fexcraft.tmt.slim.ModelBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -13,6 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import train.Traincraft;
 import train.library.Info;
+import train.library.ItemIDs;
 
 import java.util.List;
 import java.util.UUID;
@@ -34,9 +34,9 @@ public class EntityPassengerGS4_Observatory extends GenericRailTransport {
     @Override
     public String transportName(){return "Passenger GS4 Tavern";}
     @Override
-    public String transportcountry(){return "us";}
+    public String transportcountry(){return "Us";}
     @Override
-    public String transportYear(){return "941-1942";}
+    public String transportYear(){return "1939";}
     @Override
     public boolean isFictional(){return false;}
     @Override
@@ -46,13 +46,13 @@ public class EntityPassengerGS4_Observatory extends GenericRailTransport {
         return TrainsInMotion.transportTypes.PASSENGER.singleton();
     }
     @Override//weight is fully unknown, many passenger rollingstock are listed around 20 to 30 tons, so this is just a guess,
-    public float weightKg(){return 26000f;}
+    public float weightKg(){return 48987.976f;}
 
     //Model stuff
     @Override
     public ModelBase[] getModel(){return new ModelBase[]{new train.render.models.ModelGS4Tavern()};}
     @Override
-    public float[][] modelOffsets(){return new float[][]{{0.05f, 0.125f, 0.0f}};}
+    public float[][] modelOffsets(){return new float[][]{{0.05f, 0.13f, 0.0f}};}
     @Override
     public float[][] modelRotations(){return new float[][]{{0.0f, 0.0f, 0.0f}};}
     @Override
@@ -90,9 +90,9 @@ public class EntityPassengerGS4_Observatory extends GenericRailTransport {
     @Override
     public ItemStack[] getRecipe() {
         return new ItemStack[]{
-                new ItemStack(Blocks.glass, 1), new ItemStack(TiMItems.wheelSteel, 2), new ItemStack(TiMItems.frameSteel, 1),
-                null, null, new ItemStack(TiMItems.cabinSteel, 1),
-                null, null, new ItemStack(TiMItems.seatsWooden, 1)        };
+                new ItemStack(Blocks.glass, 1), new ItemStack(ItemIDs.bogie.item, 2), new ItemStack(ItemIDs.steelframe.item, 1), 
+                null, null, new ItemStack(ItemIDs.steelcab.item, 1), 
+                null, null, new ItemStack(ItemIDs.seats.item, 1)        };
     }
 
 
@@ -100,9 +100,9 @@ public class EntityPassengerGS4_Observatory extends GenericRailTransport {
     @Override
     public float[][] getRiderOffsets(){return new float[][]{{-0.2f,1.2f, -0.15f},{-2.7f,1.2f, -0.3f},{2.3f,1.2f, -0.3f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{7.7f,2.4f,1.4f};}
+    public float[] getHitboxSize(){return new float[]{7.875f,2.25f,1.4f};}
     @Override
-    public float[] rotationPoints() {return new float[]{1.6f, -2.1f};}
+    public float[] rotationPoints() {return new float[]{1.85f, -1.85f};}
 
 
 

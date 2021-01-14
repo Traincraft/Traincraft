@@ -5,13 +5,13 @@ import ebf.tim.api.SkinRegistry;
 import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.ItemTransport;
-import ebf.tim.registry.TiMItems;
 import fexcraft.tmt.slim.ModelBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import train.Traincraft;
 import train.library.Info;
+import train.library.ItemIDs;
 
 import java.util.List;
 import java.util.UUID;
@@ -33,7 +33,7 @@ public class EntityPassengerDenverRioGrande extends GenericRailTransport {
     @Override
     public String transportName(){return "Passenger Denver Rio Grande";}
     @Override
-    public String transportcountry(){return "us";}
+    public String transportcountry(){return "Us";}
     @Override//probably wrong, this is actually taken from:
     // https://www.historycolorado.org/sites/default/files/media/documents/2017/5ah3006.pdf
     public String transportYear(){return "1914-1960";}
@@ -75,9 +75,9 @@ public class EntityPassengerDenverRioGrande extends GenericRailTransport {
     @Override
     public ItemStack[] getRecipe() {
         return new ItemStack[]{
-                null, new ItemStack(TiMItems.wheelIron, 4), new ItemStack(TiMItems.frameWood, 3),
-                null, null, new ItemStack(TiMItems.cabinWood, 3),
-                null, null, new ItemStack(TiMItems.seatsWooden, 1)        };
+                null, new ItemStack(ItemIDs.ironBogie.item, 4), new ItemStack(ItemIDs.woodenFrame.item, 3), 
+                null, null, new ItemStack(ItemIDs.woodenCab.item, 3), 
+                null, null, new ItemStack(ItemIDs.seats.item, 1)        };
     }
 
 
@@ -85,9 +85,9 @@ public class EntityPassengerDenverRioGrande extends GenericRailTransport {
     @Override
     public float[][] getRiderOffsets(){return new float[][]{{0.2f,1.5f, 0f},{-2.2f,1.5f, 0f},{-1f,1.5f, 0f},{1.2f,1.5f, 0f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{7.1f,2.6f,1.4f};}
+    public float[] getHitboxSize(){return new float[]{7.2f,2.35f,1.4f};}
     @Override
-    public float[] rotationPoints() {return new float[]{2.1f, -2.1f};}
+    public float[] rotationPoints() {return new float[]{2.075f, -2.1f};}
 
 
 
