@@ -438,9 +438,5 @@ public class ModelEMDF3B extends ModelBase
 		GL11.glPopMatrix();
 	}
 
-	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5)
-	{
-	}
-
-	public ModelRendererTurbo emdf3bModel[];
+    public ModelRendererTurbo emdf3bModel[];
 }

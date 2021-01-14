@@ -303,6 +303,4 @@ public class ModelHeavySteamLoco extends ModelBase{
 		fixRotation(bodyModel);
 	}
 
-	//public void setRotationAngles(final float f, final float f1, final float f2, final float f3, final float f4, final float f5) {}
-	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5) {}
 }

@@ -1794,9 +1794,5 @@ public class ModelA4Locomotive extends ModelBase
 		}
 	}
 
-	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5)
-	{
-	}
-
-	public ModelRendererTurbo a4locomotiveModel[];
+    public ModelRendererTurbo a4locomotiveModel[];
 }

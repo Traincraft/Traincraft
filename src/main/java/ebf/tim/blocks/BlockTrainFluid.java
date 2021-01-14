@@ -2,6 +2,7 @@ package ebf.tim.blocks;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import ebf.tim.TrainsInMotion;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -26,6 +27,7 @@ public class BlockTrainFluid extends BlockFluidClassic {
     /**the texture for the block, the first value is the top and bottom, the second is for the sides.*/
     @SideOnly(Side.CLIENT)
     private IIcon[] sidedTexture;
+    private String modID= TrainsInMotion.MODID;
     /**returns if this is flammable*/
     private boolean flammable = false;
     /**returns the flammability of this*/
@@ -47,6 +49,10 @@ public class BlockTrainFluid extends BlockFluidClassic {
         return side != 0 && side != 1 ? this.sidedTexture[1] : this.sidedTexture[0];
     }
 
+    public void setModID(String id){
+        modID=id;
+    }
+
     /**
      * <h3>Register iicon</h3>
      * used to register the icon for the block.
@@ -54,7 +60,7 @@ public class BlockTrainFluid extends BlockFluidClassic {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister iconRegister) {
-        this.sidedTexture = new IIcon[]{iconRegister.registerIcon(fluidName), iconRegister.registerIcon(fluidName +"_flow")};
+        this.sidedTexture = new IIcon[]{iconRegister.registerIcon(modID+":fluids/"+fluidName), iconRegister.registerIcon(modID+":fluids/"+fluidName +"_flow")};
     }
 
     /**

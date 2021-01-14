@@ -9,26 +9,23 @@ package train.core.managers;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import train.blocks.bench.ITierCraftingManager;
-import train.blocks.bench.ITierRecipe;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TierRecipeManager implements ITierCraftingManager {
+public class TierRecipeManager {
 
-	private final List<ITierRecipe> recipeList;
+	private final List<TierRecipe> recipeList;
 	private static TierRecipeManager instance = new TierRecipeManager();
 
 	public TierRecipeManager() {
-		recipeList = new ArrayList<ITierRecipe>();
+		recipeList = new ArrayList<TierRecipe>();
 	}
 
-	public static ITierCraftingManager getInstance() {
+	public static TierRecipeManager getInstance() {
 		return instance;
 	}
 
-	@Override
 	public void addRecipe(int tier, ItemStack planks, ItemStack wheels,
 			ItemStack frame, ItemStack coupler, ItemStack chimney,
 			ItemStack cab, ItemStack boiler, ItemStack firebox,
@@ -53,12 +50,11 @@ public class TierRecipeManager implements ITierCraftingManager {
 				outputSize));
 	}
 
-	@Override
-	public ITierRecipe getTierRecipe(int tier, ItemStack output) {
+	public TierRecipe getTierRecipe(int tier, ItemStack output) {
 		if(output == null) {
 			return null;
 		}
-		for(ITierRecipe recipe: recipeList) {
+		for(TierRecipe recipe: recipeList) {
 			if(Item.getIdFromItem(recipe.getOutput().getItem()) == Item.getIdFromItem(output.getItem()) &&
 				recipe.getTier() == tier) {
 				return recipe;
@@ -67,15 +63,13 @@ public class TierRecipeManager implements ITierCraftingManager {
 		return null;
 	}
 
-	@Override
-	public List<ITierRecipe> getRecipeList() {
-		return new ArrayList<ITierRecipe>(this.recipeList);
+	public List<TierRecipe> getRecipeList() {
+		return new ArrayList<TierRecipe>(this.recipeList);
 	}
 
-	@Override
-	public List<ITierRecipe> getTierRecipeList(int tier) {
-		List<ITierRecipe> list = new ArrayList<ITierRecipe>();
-		for (ITierRecipe recipe: recipeList) {
+	public List<TierRecipe> getTierRecipeList(int tier) {
+		List<TierRecipe> list = new ArrayList<TierRecipe>();
+		for (TierRecipe recipe: recipeList) {
 			if (recipe.getTier() == tier) {
 				list.add(recipe);
 			}

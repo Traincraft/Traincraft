@@ -177,8 +177,6 @@ public class Traincraft {
 		proxy.setHook(); // Moved file needed to run JLayer, we need to set a hook in order to retrieve it
 
 		GameRegistry.registerFuelHandler(new FuelHandler());
-		AchievementHandler.load();
-		AchievementPage.registerAchievementPage(AchievementHandler.tmPage);
 
 
 		MapGenStructureIO.func_143031_a(ComponentVillageTrainstation.class, "Trainstation");
@@ -191,12 +189,6 @@ public class Traincraft {
 		/* Recipes */
 		tcLog.info("Initialize Recipes");
 
-		/* Register the liquids */
-		tcLog.info("Initialize Fluids");
-		LiquidManager.getInstance().registerLiquids();
-
-		/* Liquid FX */
-		proxy.registerTextureFX();
 
 		/*Trainman Villager*/
 		tcLog.info("Initialize Station Chief Villager");

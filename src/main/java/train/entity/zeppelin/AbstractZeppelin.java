@@ -161,11 +161,6 @@ public abstract class AbstractZeppelin extends Entity implements IInventory {
 		isDead = true;
 	}
 
-	public void pressKeyClient(int i) {
-		if (updateTicks % 5 == 0)
-			Traincraft.keyChannel.sendToServer(new PacketKeyPress(i));
-	}
-
 	public void pressKey(int i) {
 		if (i == 0) {
 			if (getFuel() > 0 && posY < 256) {
@@ -213,21 +208,6 @@ public abstract class AbstractZeppelin extends Entity implements IInventory {
 		}
 	}
 
-	public double speedXFromPitch(EntityPlayer player, double var3) {
-		return -MathHelper.sin((player.rotationYaw) / 180.0F * (float) Math.PI) * var3 * MathHelper.cos(player.rotationPitch / 180.0F * (float) Math.PI) * var3;
-	}
-
-	public double speedZFromPitch(EntityPlayer player, double var3) {
-		return MathHelper.cos((player.rotationYaw) / 180.0F * (float) Math.PI) * var3 * MathHelper.cos(player.rotationPitch / 180.0F * (float) Math.PI) * var3;
-	}
-
-	public double speedXFromPitch(Entity entity, double var3) {
-		return -MathHelper.sin((entity.rotationYaw + 90) / 180.0F * (float) Math.PI) * var3 * MathHelper.cos(entity.rotationPitch / 180.0F * (float) Math.PI) * var3;
-	}
-
-	public double speedZFromPitch(Entity entity, double var3) {
-		return MathHelper.cos((entity.rotationYaw + 90) / 180.0F * (float) Math.PI) * var3 * MathHelper.cos(entity.rotationPitch / 180.0F * (float) Math.PI) * var3;
-	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
@@ -655,10 +635,6 @@ public abstract class AbstractZeppelin extends Entity implements IInventory {
 		return (this.dataWatcher.getWatchableObjectInt(20));
 	}
 
-	@SideOnly(Side.CLIENT)
-	public void func_70270_d(boolean par1) {
-		this.field_70279_a = par1;
-	}
 
 	@Override
 	public boolean hasCustomInventoryName() {

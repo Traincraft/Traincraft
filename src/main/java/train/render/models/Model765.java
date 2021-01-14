@@ -33,20 +33,7 @@ public class Model765 extends ModelConverter //Same as Filename
 		flipAll();
 	}
 
-	@Override
-	public void render(Entity entity, float f0, float f1, float f2, float f3, float f4, float scale){
-		super.render(entity, f0, f1, f2, f3, f4, scale);
-		//Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation,Info.trainsPrefix +"cd151_front_bogie.png"));
-		//GL11.glPushMatrix();
-		//GL11.glTranslatef(0f,0f,0);
-		//bogie.render();
-		//Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation,Info.trainsPrefix +"cd151_rear_bogie.png"));
-		//GL11.glTranslatef(0f,-0.05f,0);
-		//bogie.render();
-		//GL11.glPopMatrix();
-	}
-
-	private void initbodyModel_1()
+    private void initbodyModel_1()
 	{
 		bodyModel[0] = new ModelRendererTurbo(this, 1, 1, textureX, textureY); // CombustionChamber1
 		bodyModel[1] = new ModelRendererTurbo(this, 65, 1, textureX, textureY); // CombustionChamber2

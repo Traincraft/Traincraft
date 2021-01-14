@@ -36,10 +36,12 @@ public class TiMItems {
 
     public static Item generator;
 
+    public static Item itemStake = new ItemStake();
+
 
     public static void registerItems(){
 
-        TiMGenericRegistry.RegisterItem(new ItemStake(), TrainsInMotion.MODID, "stake",TrainsInMotion.creativeTab);
+        TiMGenericRegistry.RegisterItem(itemStake, TrainsInMotion.MODID, "stake",TrainsInMotion.creativeTab);
 
         TiMGenericRegistry.RegisterItem(new ItemAdminBook(),TrainsInMotion.MODID, "adminbook", TrainsInMotion.creativeTab);
         TiMGenericRegistry.RegisterItem(new ItemCraftGuide(),TrainsInMotion.MODID, "craftbook", TrainsInMotion.creativeTab);
@@ -105,26 +107,26 @@ public class TiMItems {
         fireboxSteel = createItem("firebox.steel");
 
         //Engines
-        petrolEngine = createItem("petrol.engine");
-        smallDieselEngine = createItem("small.diesel.engine");
+        //petrolEngine = createItem("petrol.engine");
+        //smallDieselEngine = createItem("small.diesel.engine");
         mediumDieselEngine = createItem("medium.diesel.engine");
-        largeDieselEngine = createItem("large.diesel.engine");
+        //largeDieselEngine = createItem("large.diesel.engine");
         smallElectricEngine = createItem("small.electric.engine");
-        mediumElectricEngine = createItem("medium.electric.engine");
-        largeElectricEngine = createItem("large.electric.engine");
+        //mediumElectricEngine = createItem("medium.electric.engine");
+        //largeElectricEngine = createItem("large.electric.engine");
 
         //Seats
         seatsWooden = createItem("seats.wooden");
-        seatsIron = createItem("seats.iron");
-        seatsPadded = createItem("seats.padded");
-        seatsLuxury = createItem("seats.luxury");
+        //seatsIron = createItem("seats.iron");
+        //seatsPadded = createItem("seats.padded");
+        //seatsLuxury = createItem("seats.luxury");
 
         //Transmissions + Other
         hydraulicTransmission = createItem("hydraulic.transmission");
-        pneumaticTransmission = createItem("pneumatic.transmission");
+        //pneumaticTransmission = createItem("pneumatic.transmission");
         transformer = createItem("transformer");
-        transformerHV = createItem("transformer.hv");
-        electricControls = createItem("electric.controls");
+        //transformerHV = createItem("transformer.hv");
+        //electricControls = createItem("electric.controls");
 
         //Wires
         copperWire = createItem("copper.wire");
@@ -132,15 +134,15 @@ public class TiMItems {
         carbonWire = createItem("carbon.wire");
         steelWire = createItem("steel.wire");
         aluminiumWire = createItem("aluminium.wire");
-        insulatedCopperWire = createItem("insulated.copper.wire");
-        insulatedAluminiumWire = createItem("insulated.aluminium.wire");
+        //insulatedCopperWire = createItem("insulated.copper.wire");
+        //insulatedAluminiumWire = createItem("insulated.aluminium.wire");
 
         //Valve Gears
-        walschaertsValveGear = createItem("walschaerts.valve.gear");
-        stephensonValveGear = createItem("stephenson.valve.gear");
-        bakerValveGear = createItem("baker.valve.gear");
-        radialValveGear = createItem("radial.valve.gear");
-        conjugatingValveGear = createItem("conjugating.valve.gear");
+        //walschaertsValveGear = createItem("walschaerts.valve.gear");
+        //stephensonValveGear = createItem("stephenson.valve.gear");
+        //bakerValveGear = createItem("baker.valve.gear");
+        //radialValveGear = createItem("radial.valve.gear");
+        //conjugatingValveGear = createItem("conjugating.valve.gear");
 
         //Other
         enginePiston = createItem("engine.piston");
@@ -148,12 +150,10 @@ public class TiMItems {
         camshaft = createItem("camshaft");
         graphite = createItem("graphite");
         steelPinCircuit = createItem("steel.pin.circuit");
-        goldPinCircuit = createItem("gold.pin.circuit");
+        //goldPinCircuit = createItem("gold.pin.circuit");
         controlPanel = createItem("control.panel");
-        controlStand = createItem("control.stand");
-        connectingRod = createItem("connecting.rod");
-
-        //Idk if oversight or left out on purpose
+        //controlStand = createItem("control.stand");
+        //connectingRod = createItem("connecting.rod");
         generator = createItem("generator");
 
     }

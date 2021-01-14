@@ -3,6 +3,7 @@ package train.blocks.distil;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import ebf.tim.blocks.TileEntityStorage;
+import ebf.tim.registry.TiMFluids;
 import ebf.tim.registry.TiMItems;
 import ebf.tim.registry.TiMOres;
 import ebf.tim.utility.ItemStackSlot;
@@ -210,7 +211,7 @@ public class TileEntityDistil extends TileEntityStorage implements ISidedInvento
 			return false;
 		}
 		ItemStack itemstack = DistilRecipes.smelting().getSmeltingResult(getSlotIndexByID(400).getStack().getItem());
-		if (itemstack == null) {
+		if (itemstack == null || itemstack.getItem()==null) {
 			return false;
 		}
 		FluidStack resultLiquid = FluidContainerRegistry.getFluidForFilledItem(itemstack);
@@ -236,7 +237,7 @@ public class TileEntityDistil extends TileEntityStorage implements ISidedInvento
 		if (used ==0) {
 			fill(null, resultLiquid, true);
 			if (random.nextInt(plasticChance) == 0)
-				outputPlastic(plasticStack, getSlotIndexByID(400).getStack().getItem() == ItemIDs.diesel.item);
+				outputPlastic(plasticStack, getSlotIndexByID(400).getStack().getItem() == TiMFluids.bucketDiesel);
 
 			this.markDirty();
 			this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
@@ -257,12 +258,12 @@ public class TileEntityDistil extends TileEntityStorage implements ISidedInvento
 	private void outputPlastic(ItemStack plasticStack, boolean wasDeisel) {
 		if (getSlotIndexByID(403).getStack() == null) {
 			if(wasDeisel){
-				getSlotIndexByID(403).setStack(new ItemStack(ItemIDs.emptyCanister.item,1));
+				getSlotIndexByID(403).setStack(new ItemStack(Items.bucket,1));
 			} else {
 				getSlotIndexByID(403).setStack(plasticStack.copy());
 			}
 		} else if(wasDeisel){
-			if(getSlotIndexByID(403).getStack().getItem()==ItemIDs.emptyCanister.item){
+			if(getSlotIndexByID(403).getStack().getItem()==Items.bucket){
 				getSlotIndexByID(403).getStack().stackSize += plasticStack.stackSize;
 			} else {
 				getSlotIndexByID(403).getStack().stackSize += plasticStack.stackSize;

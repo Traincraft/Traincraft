@@ -28,8 +28,8 @@ public enum BlockIDs {
 	generatorDiesel(true, ItemBlockGeneratorDiesel.class),
 	pdmInstructionBlock(false, null),
 	//Liquids
-	diesel(false, ItemBlockFluid.class),
-	refinedFuel(false, ItemBlockFluid.class),
+	//diesel(false, ItemBlockFluid.class),
+	//refinedFuel(false, ItemBlockFluid.class),
 
 	bridgePillar(false,null);
 

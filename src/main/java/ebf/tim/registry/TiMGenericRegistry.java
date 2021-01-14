@@ -212,6 +212,7 @@ public class TiMGenericRegistry {
         FluidRegistry.registerFluid(fluid);
 
         Block block = new BlockTrainFluid(fluid, new MaterialLiquid(color)).setBlockName("block."+unlocalizedName.replace(".item","")).setBlockTextureName(MODID+":block_"+unlocalizedName);
+        ((BlockTrainFluid)block).setModID(MODID);
         GameRegistry.registerBlock(block, "block."+unlocalizedName);
         if(TrainsInMotion.proxy.isClient()){
             block.setBlockTextureName(MODID+":"+unlocalizedName);
@@ -308,6 +309,18 @@ public class TiMGenericRegistry {
         usedNames =null; registryPosition=-1; redundantTiles=null;
     }
 
+
+    /*todo:add support for buildcraft/railcraft burnable fluids
+	@Optional.Method(modid = "BuildCraft|Energy")
+	private void registerBCFluid(Fluid f, int powerPerCycle, int totalBurningTime){
+		BuildcraftFuelRegistry.fuel.addFuel(f, powerPerCycle, totalBurningTime);
+	}
+
+	@Optional.Method(modid = "Railcraft")
+	private void registerRCFluid(Fluid f, int totalBurningTime) {
+		FuelManager.addBoilerFuel(f, totalBurningTime);
+	}
+     */
 
 
 }

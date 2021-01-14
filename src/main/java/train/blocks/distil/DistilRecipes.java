@@ -1,5 +1,7 @@
 package train.blocks.distil;
 
+import ebf.tim.registry.TiMFluids;
+import ebf.tim.registry.TiMOres;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -27,23 +29,22 @@ public class DistilRecipes {
 		smeltingList = new HashMap<Item, ItemStack>();
 
 		//Prevent copper to be distilled is set in TileEntitydistil.
-		addSmelting(Item.getItemFromBlock(TCBlocks.orePetroleum), new ItemStack(ItemIDs.diesel.item, 2), 0.5F, 1,
-				new ItemStack(ItemIDs.rawPlastic.item, 1));
-		addSmelting(Items.reeds, new ItemStack(ItemIDs.diesel.item), 0.2F, 4,
-				new ItemStack(ItemIDs.rawPlastic.item, 1));
-		addSmelting(Item.getItemFromBlock(Blocks.leaves), new ItemStack(ItemIDs.diesel.item), 0.2F, 6,
-				new ItemStack(ItemIDs.rawPlastic.item, 2));
-		addSmelting(ItemIDs.diesel.item, new ItemStack(ItemIDs.refinedFuel.item), 1F, 1, new ItemStack(ItemIDs.rawPlastic.item, 2));
-		addSmelting(Items.wheat, new ItemStack(ItemIDs.diesel.item), 0.2F, 4,
-				new ItemStack(ItemIDs.rawPlastic.item, 1));
+		addSmelting(Item.getItemFromBlock(TCBlocks.orePetroleum), new ItemStack(TiMFluids.bucketDiesel, 2), 0.5F, 1,
+				new ItemStack(TiMOres.dustPlastic, 1));
+		addSmelting(Items.reeds, new ItemStack(TiMFluids.bucketDiesel), 0.2F, 4,
+				new ItemStack(TiMOres.dustPlastic, 1));
+		addSmelting(Item.getItemFromBlock(Blocks.leaves), new ItemStack(TiMFluids.bucketDiesel), 0.2F, 6,
+				new ItemStack(TiMOres.dustPlastic, 2));
+		addSmelting(TiMFluids.bucketDiesel, new ItemStack(TiMFluids.bucketFuelOil), 1F, 1, new ItemStack(TiMOres.dustPlastic, 2));
+		addSmelting(Items.wheat, new ItemStack(TiMFluids.bucketDiesel), 0.2F, 4,
+				new ItemStack(TiMOres.dustPlastic, 1));
 	}
 
 	/*
 	 * public void addSmelting(ItemStack i, ItemStack itemstack, float exp, int plasticChance, ItemStack plasticStack) { smeltingList.put(i, itemstack); plasticList.put(i, plasticStack); this.experienceList.put(Integer.valueOf(plasticStack.getItem().shiftedIndex), Float.valueOf(exp)); this.plasticChanceList.put(i, Float.valueOf(plasticChance)); } */
 
 	/**
-	 * 
-	 * @param i: Input block id
+	 *
 	 * @param itemstack: Output
 	 * @param exp: Experience
 	 * @param plasticChance used as follow: Math.random(plasticChance)==0

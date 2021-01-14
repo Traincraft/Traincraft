@@ -2,10 +2,7 @@ package train.render.models;
 
 import fexcraft.tmt.slim.ModelBase;
 import fexcraft.tmt.slim.ModelRendererTurbo;
-import net.minecraft.entity.Entity;
 import train.render.CustomModelRenderer;
-import train.core.handlers.ConfigHandler;
-import train.entity.digger.EntityRotativeDigger;
 
 public class ModelRotaryExcavator extends ModelBase {
 
@@ -150,32 +147,8 @@ public class ModelRotaryExcavator extends ModelBase {
 
 		fixRotation(bodyModel);
 	}
-	@Override
-	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-		super.render(entity, f, f1, f2, f3, f4, f5);
-		//if (((EntityRotativeDigger) entity).getFuel() > 0) {//should only dig when rotative digger has fuel and dig mode is on, doesn't work yet
-		/**
-		 * Pitch
-		 */
-		/*float pitch = (float) Math.toRadians(((EntityRotativeDigger) entity).pitch);
 
-		if (pitch > ((EntityRotativeDigger) entity).pitchLimits)
-			pitch = ((EntityRotativeDigger) entity).pitchLimits;
-		if (pitch < -((EntityRotativeDigger) entity).pitchLimits)
-			pitch = -((EntityRotativeDigger) entity).pitchLimits;
-
-		box8.rotateAngleX = -pitch - 5.6374134839416845F;
-		box31.rotateAngleX = -pitch - 0.9424777960769379F;
-		box9.rotateAngleX = -pitch - 0.9773843811168246F;
-		box33.rotateAngleX = -pitch - 0.9773843811168246F;
-		box34.rotateAngleX = -pitch - 0.9773843811168246F;
-		box35.rotateAngleX = -pitch - 0.9773843811168246F;
-		//}*/
-	}
-
-	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5) {}
-
-	// variables init:
+    // variables init:
 	public CustomModelRenderer box;
 	public CustomModelRenderer box0;
 	public CustomModelRenderer box1;

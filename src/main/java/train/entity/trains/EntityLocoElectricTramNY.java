@@ -99,9 +99,6 @@ public class EntityLocoElectricTramNY extends EntityTrainCore {
     public int[] getTankCapacity(){return new int[]{2250};}
 
 
-    /**defines the scale to render the model at. Default is 0.65*/
-    public float getPlayerScale(){return super.getPlayerScale();}
-
     //these only change in very specific use cases.
     @Override
     public boolean shouldRiderSit(){

@@ -94,13 +94,7 @@ public class EntityLasersLines extends Entity {
 		angleY = -CommonUtil.atan2degreesf(dy, dx);
 	}
 
-	@Override
-	public void onUpdate() {
-
-		super.onUpdate();
-	}
-
-	@Override
+    @Override
 	protected void readEntityFromNBT(NBTTagCompound nbttagcompound) {
 
 	}

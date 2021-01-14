@@ -72,10 +72,12 @@ public class TileRenderFacing extends TileEntity {
                 org.lwjgl.opengl.GL11.glNewList(blockGLID, org.lwjgl.opengl.GL11.GL_COMPILE);
                 GL11.glPushMatrix();
                 GL11.glEnable(GL11.GL_LIGHTING);
-                Minecraft.getMinecraft().entityRenderer.enableLightmap(1);
-                TextureManager.fixEntityLighting();
                 if(worldObj!=null) {
+                    Minecraft.getMinecraft().entityRenderer.enableLightmap(1);
+                    TextureManager.fixEntityLighting();
                     TextureManager.adjustLightFixture(worldObj, xCoord, yCoord, zCoord);
+                } else {
+                    Minecraft.getMinecraft().entityRenderer.disableLightmap(1);
                 }
                 GL11.glTranslatef(0.5f,0.5f,0.5f);
                 if(host.rotates){
@@ -98,7 +100,9 @@ public class TileRenderFacing extends TileEntity {
                     cube.render();
                 }
 
-                Minecraft.getMinecraft().entityRenderer.disableLightmap(1);
+                if(worldObj!=null) {
+                    Minecraft.getMinecraft().entityRenderer.disableLightmap(1);
+                }
                 GL11.glPopMatrix();
                 org.lwjgl.opengl.GL11.glEndList();
 

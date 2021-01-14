@@ -27,9 +27,7 @@ import train.blocks.waterwheel.TileWaterWheel;
 import train.blocks.windmill.TileWindMill;
 import train.core.handlers.WorldEvents;
 import train.core.util.MP3Player;
-import train.entity.digger.EntityRotativeDigger;
 import train.entity.inventory.InventoryJukeBoxCart;
-import train.entity.inventory.InventoryRotativeDigger;
 import train.entity.inventory.InventoryZepp;
 import train.entity.rollingStock.EntityJukeBoxCart;
 import train.entity.zeppelin.AbstractZeppelin;
@@ -94,8 +92,7 @@ public class CommonProxy implements IGuiHandler {
 			return te instanceof TileTrainWbench ? new ContainerTrainWorkbench(player.inventory, player.worldObj, (TileTrainWbench) te) : null;
 		case (GuiIDs.ZEPPELIN):
 			return riddenByEntity != null ? new InventoryZepp(player.inventory, (AbstractZeppelin) entity) : null;
-		case (GuiIDs.DIGGER):
-			return riddenByEntity != null  ? new InventoryRotativeDigger(player.inventory, (EntityRotativeDigger) entity) : null;
+
 
 			/* Stationary entities while player is not riding. */
 		case (GuiIDs.JUKEBOX):
@@ -121,9 +118,7 @@ public class CommonProxy implements IGuiHandler {
 		return 0;
 	}
 
-	public void registerTextureFX() {}
-
-	public void registerSounds() {}
+    public void registerSounds() {}
 
 	public Minecraft getMinecraft() {
 		return null;

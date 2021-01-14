@@ -288,6 +288,4 @@ public class ModelTenderEr_Ussr extends ModelBase {
 		super.render(entity, f, f1, f2, f3, f4, f5);
 	}
 
-	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5) {
-	}
 }

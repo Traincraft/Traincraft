@@ -36,8 +36,6 @@ import train.core.handlers.TCKeyHandler;
 import train.core.helpers.JLayerHook;
 import train.entity.gui.*;
 import train.render.*;
-import train.entity.digger.EntityRotativeDigger;
-import train.entity.digger.EntityRotativeWheel;
 import train.entity.rollingStock.EntityJukeBoxCart;
 import train.entity.zeppelin.EntityZeppelinOneBalloon;
 import train.entity.zeppelin.EntityZeppelinTwoBalloons;
@@ -68,8 +66,6 @@ public class ClientProxy extends CommonProxy {
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityZeppelinTwoBalloons.class, new RenderZeppelins());
 		RenderingRegistry.registerEntityRenderingHandler(EntityZeppelinOneBalloon.class, new RenderZeppelins());
-		RenderingRegistry.registerEntityRenderingHandler(EntityRotativeDigger.class, new RenderRotativeDigger());
-		RenderingRegistry.registerEntityRenderingHandler(EntityRotativeWheel.class, new RenderRotativeWheel());
 
 
 		//ClientRegistry.bindTileEntitySpecialRenderer(TileBook.class, new RenderTCBook());

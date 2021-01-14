@@ -27,18 +27,15 @@ public class TCItems {
 				if (items.className.equals("ItemTrain")) {
 					items.item = new ItemPart(items.iconName);
 				}
-				else if (items.className.equals("ItemRotativeDigger")) {
-					items.item = new ItemRotativeDigger();
-				}
 				else if (items.className.equals("ItemContainer")) {
 					items.item = new ItemContainer(items.iconName);
 				}
 			}
 		}
 		//ItemIDs.signal.item = new ItemSignal(ItemIDs.signal.itemID, BlockIDs.activeSignal.block).setIconIndex(ItemIDs.signal.iconIndex);
-		ItemIDs.chunkLoaderActivator.item = new ItemChunkLoaderActivator();
+		//ItemIDs.chunkLoaderActivator.item = new ItemChunkLoaderActivator();
 		
-		ItemIDs.stake.item = new ItemStacked(200);
+		//ItemIDs.stake.item = new ItemStacked(200);
 		ItemIDs.airship.item = new ItemZeppelins(0);
 		ItemIDs.zeppelin.item = new ItemZeppelins(1);
 		ItemIDs.overalls.item = new ItemTCArmor(ItemIDs.overalls.iconName, Traincraft.instance.armor, Traincraft.trainArmor, 2,0);
