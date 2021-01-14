@@ -8,6 +8,7 @@
 package train.blocks;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import ebf.tim.TrainsInMotion;
 import ebf.tim.blocks.BlockDynamic;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
@@ -45,6 +46,8 @@ public class TCBlocks {
 	public static BlockDistil blockDistil = new BlockDistil();
 	public static BlockOpenHearthFurnace blockHearthFurnace = new BlockOpenHearthFurnace();
 
+	public static BlockGeneratorDiesel dieselGenerator = new BlockGeneratorDiesel();
+
 
 	@Deprecated //need to use TiMGenericRegistry.registerBlock(), this will also cover tile entities and TESR.
 	public static void init() {
@@ -73,6 +76,12 @@ public class TCBlocks {
 
 		registerBlock(blockHearthFurnace, Traincraft.tcTab, Info.modID,"block.hearthfurnace", null, null);
 
+		if(TrainsInMotion.proxy.isClient()){
+			registerBlock(dieselGenerator, Traincraft.tcTab, Info.modID, "block.dieselGenerator", null, new train.render.RenderGeneratorDiesel());
+		} else {
+			registerBlock(dieselGenerator, Traincraft.tcTab, Info.modID, "block.dieselGenerator", null, null);
+		}
+
 		OreDictionary.registerOre("oreOilsands", new ItemStack(oilSand, 1, 1));
 		OreDictionary.registerOre("orePetroleum", new ItemStack(orePetroleum, 1, 2));
 
@@ -97,7 +106,7 @@ public class TCBlocks {
 		BlockIDs.switchStand.block = new BlockSwitchStand().setHardness(1.7F).setStepSound(Block.soundTypeMetal);
 		BlockIDs.waterWheel.block = new BlockWaterWheel().setHardness(1.7F).setStepSound(Block.soundTypeWood);
 		BlockIDs.windMill.block = new BlockWindMill().setHardness(1.7F).setStepSound(Block.soundTypeWood);
-		BlockIDs.generatorDiesel.block = new BlockGeneratorDiesel().setHardness(1.7F).setStepSound(Block.soundTypeMetal);
+		//BlockIDs.generatorDiesel.block = new BlockGeneratorDiesel().setHardness(1.7F).setStepSound(Block.soundTypeMetal);
 
 		BlockIDs.bridgePillar.block = new BlockBridgePillar().setHardness(3.5F).setStepSound(Block.soundTypeWood);
 

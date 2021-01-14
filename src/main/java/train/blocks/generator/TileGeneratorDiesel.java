@@ -8,19 +8,29 @@
 package train.blocks.generator;
 
 
+import cofh.api.energy.EnergyStorage;
+import cofh.api.energy.IEnergyProvider;
+import cofh.api.energy.IEnergyReceiver;
+import ebf.tim.blocks.TileEntityStorage;
+import ebf.tim.utility.ItemStackSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
+import train.blocks.TCBlocks;
 import train.blocks.fluids.LiquidManager;
 import train.core.util.Energy;
 
-public class TileGeneratorDiesel extends Energy implements IFluidHandler{
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class TileGeneratorDiesel extends TileEntityStorage implements IEnergyProvider {
 
     public boolean powered;
-    private ForgeDirection direction;
-    public FluidTank theTank;
+    public EnergyStorage energy = new EnergyStorage(3000,80); //core energy value the first value is max storage and the second is transfer max.
+    private ForgeDirection[] sides = new ForgeDirection[]{}; //defines supported sides
 
     public int currentBurnTime;
 
@@ -28,25 +38,22 @@ public class TileGeneratorDiesel extends Energy implements IFluidHandler{
     private int lastBurnTime;
 
     public TileGeneratorDiesel(){
-        super(2, "Diesel Generator", 320, 80);
-        super.setSides(new ForgeDirection[]{ForgeDirection.EAST, ForgeDirection.WEST, ForgeDirection.NORTH, ForgeDirection.SOUTH, ForgeDirection.UP, ForgeDirection.DOWN});
-        direction = ForgeDirection.getOrientation(this.blockMetadata);
+        super(TCBlocks.dieselGenerator);
+        this.energy.setCapacity(320);
+        this.energy.setMaxTransfer(80);
+        sides=new ForgeDirection[]{ForgeDirection.EAST, ForgeDirection.WEST, ForgeDirection.NORTH, ForgeDirection.SOUTH, ForgeDirection.UP, ForgeDirection.DOWN};
         //this.theTank = LiquidManager.getInstance().new FilteredTank(30000, LiquidManager.dieselFilter(), 1);
-    }
 
-    public int getFacing(){
-        return direction.ordinal();
-    }
+        inventory=new ArrayList<>();
+        inventory.add(new ItemStackSlot(this, 400, 56, 17));
+        inventory.add(new ItemStackSlot(this, 401, 56, 53));
 
-    public void setFacing(int facing){
-        direction = ForgeDirection.getOrientation(facing);
     }
-
     @Override
     public void updateEntity(){
         if(!worldObj.isRemote){
-            if(slots[0] != null){
-                ItemStack result = LiquidManager.getInstance().processContainer(this, 0, this, slots[0]);
+            if(getSlotIndexByID(400).getStack() != null){
+                ItemStack result = LiquidManager.getInstance().processContainer(this, 0, this, getSlotIndexByID(400).getStack());
                 if(result != null && placeInInvent(result, 1, false)){
                     placeInInvent(result, 1, true);
                     this.markDirty();
@@ -60,9 +67,9 @@ public class TileGeneratorDiesel extends Energy implements IFluidHandler{
 
             if(this.powered && energyProduced <= this.energy.getMaxEnergyStored()-this.energy.getEnergyStored()){
                 int fuelUsed = 50;
-                if(this.currentBurnTime <= 0 && this.theTank.getFluidAmount() >= fuelUsed){
+                if(this.currentBurnTime <= 0 && getTankInfo(0).fluid.amount >= fuelUsed){
                     this.currentBurnTime = 8;
-                    this.theTank.drain(fuelUsed, true);
+                    drain(ForgeDirection.UNKNOWN,fuelUsed, true);
                     this.markDirty();
                 }
             }
@@ -72,8 +79,8 @@ public class TileGeneratorDiesel extends Energy implements IFluidHandler{
             }
         }
 
-        if(this.theTank.getFluidAmount() != this.lastTankAmount || this.currentBurnTime != this.lastBurnTime){
-            this.lastTankAmount = this.theTank.getFluidAmount();
+        if(getTankInfo(0).fluid.amount != this.lastTankAmount || this.currentBurnTime != this.lastBurnTime){
+            this.lastTankAmount = getTankInfo(0).fluid.amount;
             this.lastBurnTime = this.currentBurnTime;
             this.syncTileEntity();
         }
@@ -81,53 +88,43 @@ public class TileGeneratorDiesel extends Energy implements IFluidHandler{
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound nbtTag, boolean forSyncing){
-        super.readFromNBT(nbtTag, forSyncing);
-        if(!forSyncing){
-            this.powered = nbtTag.getBoolean("Powered");
-        }
-        this.direction = ForgeDirection.values()[nbtTag.getInteger("direction")];
+    public void readFromNBT(NBTTagCompound nbtTag){
+        super.readFromNBT(nbtTag);
+        this.powered = nbtTag.getBoolean("Powered");
         this.currentBurnTime = nbtTag.getInteger("BurnTime");
-        this.theTank.readFromNBT(nbtTag);
+        this.energy.readFromNBT(nbtTag);
     }
 
     @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound nbtTag, boolean forSyncing){
-        super.writeToNBT(nbtTag, forSyncing);
-        if(!forSyncing){
-            nbtTag.setBoolean("Powered", this.powered);
-        }
-        nbtTag.setInteger("direction", direction.ordinal());
+    public void writeToNBT(NBTTagCompound nbtTag){
+        super.writeToNBT(nbtTag);
+        nbtTag.setBoolean("Powered", this.powered);
         nbtTag.setInteger("BurnTime", this.currentBurnTime);
-        this.theTank.writeToNBT(nbtTag);
-        return nbtTag;
+        this.energy.writeToNBT(nbtTag);
     }
 
-    public int getTankCapacity(){
-        return theTank.getCapacity();
+    public int[] getTankCapacity(){
+        return new int[]{30000};
     }
 
     private boolean placeInInvent(ItemStack itemstack1, int i, boolean doAdd){
-        if(slots[i] == null){
+        if(getSlotIndexByID(i).getStack() == null){
             if(doAdd){
-                slots[i] = itemstack1;
+                getSlotIndexByID(i).setStack(itemstack1);
             }
             return true;
         }
-        else if(slots[i] != null
-                && slots[i].getItem() == itemstack1.getItem()
-                && itemstack1.isStackable()
-                && (!itemstack1.getHasSubtypes() || slots[i]
-                .getItemDamage() == itemstack1.getItemDamage())
-                && ItemStack.areItemStackTagsEqual(slots[i],
-                itemstack1)){
-            int var9 = slots[i].stackSize+itemstack1.stackSize;
+        else if(getSlotIndexByID(i).getStack() != null && getSlotIndexByID(i).getStack().getItem() == itemstack1.getItem()
+                && itemstack1.isStackable() && (!itemstack1.getHasSubtypes() ||
+                getSlotIndexByID(i).getStack().getItemDamage() == itemstack1.getItemDamage())
+                && ItemStack.areItemStackTagsEqual(getSlotIndexByID(i).getStack(), itemstack1)){
             if(doAdd){
+                int var9 = getSlotIndexByID(i).getStack().stackSize+itemstack1.stackSize;
                 if(var9 <= itemstack1.getMaxStackSize()){
-                    slots[i].stackSize = var9;
+                    getSlotIndexByID(i).getStack().stackSize = var9;
                 }
-                else if(slots[i].stackSize < itemstack1.getMaxStackSize()){
-                    slots[i].stackSize += 1;
+                else if(getSlotIndexByID(i).getStack().stackSize < itemstack1.getMaxStackSize()){
+                    getSlotIndexByID(i).decrStackSize(-1);
                 }
             }
             return true;
@@ -142,36 +139,49 @@ public class TileGeneratorDiesel extends Energy implements IFluidHandler{
     }
 
     @Override
-    public int fill(ForgeDirection from, FluidStack resource, boolean doFill){
-        return theTank.fill(resource, doFill);
-    }
-
-    @Override
-    public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain){
-        if(resource == null || !resource.isFluidEqual(theTank.getFluid())){
-            return null;
-        }
-        return theTank.drain(resource.amount, doDrain);
-    }
-
-    @Override
-    public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain){
-        return theTank.drain(maxDrain, doDrain);
-    }
-
-    @Override
-    public boolean canFill(ForgeDirection from, Fluid fluid){
-        return true;
-    }
-
-    @Override
     public boolean canDrain(ForgeDirection from, Fluid fluid){
         return false;
     }
 
-    @Override
-    public FluidTankInfo[] getTankInfo(ForgeDirection from){
-        return new FluidTankInfo[]{theTank.getInfo()};
+    public void setSides(ForgeDirection[] listOfSides){
+        this.sides = listOfSides;
     }
+    public ForgeDirection[] getSides(){
+        return this.sides;
+    }
+
+
+    public void pushEnergy(World world, int x, int y, int z, EnergyStorage storage){
+        for (ForgeDirection side : getSides()) {
+            TileEntity tile = world.getTileEntity(x + side.offsetX, y + side.offsetY, z + side.offsetZ);
+            if (tile instanceof IEnergyReceiver && storage.getEnergyStored() > 0) {
+                if (((IEnergyReceiver) tile).canConnectEnergy(side.getOpposite())) {
+                    int receive = ((IEnergyReceiver) tile).receiveEnergy(side.getOpposite(), Math.min(storage.getMaxExtract(), storage.getEnergyStored()), false);
+                    storage.extractEnergy(receive, false);
+                }
+            }
+        }
+    }
+
+
+    //RF Overrides
+    @Override
+    public boolean canConnectEnergy(ForgeDirection dir) {
+        return Arrays.asList(sides).contains(dir);
+    }
+    @Override
+    public int extractEnergy(ForgeDirection dir, int amount, boolean simulate) {
+        return energy.extractEnergy(amount, simulate);
+    }
+    @Override
+    public int getEnergyStored(ForgeDirection dir) {
+        return energy.getEnergyStored();
+    }
+    @Override
+    public int getMaxEnergyStored(ForgeDirection dir) {
+        return this.energy.getMaxEnergyStored();
+    }
+
+
 
 }
