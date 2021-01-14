@@ -5,6 +5,8 @@ import ebf.tim.api.SkinRegistry;
 import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.EntityTrainCore;
 import ebf.tim.items.ItemTransport;
+import ebf.tim.registry.TiMItems;
+import ebf.tim.registry.TiMOres;
 import ebf.tim.utility.ItemStackSlot;
 import fexcraft.tmt.slim.ModelBase;
 import net.minecraft.init.Items;
@@ -13,7 +15,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import train.Traincraft;
 import train.library.Info;
-import train.library.ItemIDs;
 
 import java.util.List;
 import java.util.UUID;
@@ -77,9 +78,9 @@ public class EntityLocoDieselV60_DB extends EntityTrainCore {
     @Override
     public ItemStack[] getRecipe() {
         return new ItemStack[]{
-                new ItemStack(ItemIDs.controls.item, 1), new ItemStack(ItemIDs.bogie.item, 2), new ItemStack(ItemIDs.steelframe.item, 2), 
-                new ItemStack(ItemIDs.steel.item, 2), null, new ItemStack(ItemIDs.steelcab.item, 1), 
-                new ItemStack(ItemIDs.transmition.item, 1), new ItemStack(ItemIDs.dieselengine.item, 3), null        };
+                new ItemStack(TiMItems.controlPanel, 1), new ItemStack(TiMItems.wheelSteel, 2), new ItemStack(TiMItems.frameSteel, 2),
+                new ItemStack(TiMOres.ingotSteel, 2), null, new ItemStack(TiMItems.cabinSteel, 1),
+                new ItemStack(TiMItems.pneumaticTransmission, 1), new ItemStack(TiMItems.smallDieselEngine, 3), null        };
     }
 
 

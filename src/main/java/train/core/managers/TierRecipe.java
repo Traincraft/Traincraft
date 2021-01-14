@@ -9,17 +9,14 @@ package train.core.managers;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.OreDictionary;
-import train.blocks.bench.ITierRecipe;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class TierRecipe implements ITierRecipe {
+public class TierRecipe {
 
 	private final int tier;
 	private final ItemStack output;
-	private final int outputSize;
 
 	private final ItemStack[] stacks;
 
@@ -30,7 +27,6 @@ public class TierRecipe implements ITierRecipe {
 			int outputSize) {
 		this.tier = tier;
 		this.output = output;
-		this.outputSize = outputSize;
 
 		stacks = new ItemStack[] {
 			planks,
@@ -46,59 +42,18 @@ public class TierRecipe implements ITierRecipe {
 		};
 	}
 
-	@Override
 	public int getTier() {
 		return tier;
 	}
 
-	@Override
 	public ItemStack getOutput() {
 		return output;
 	}
 
-	@Override
 	public List<ItemStack> getInput() {
 		return Arrays.asList(stacks);
 	}
 
-	public ItemStack hasComponents(ItemStack... items) {
-		for (int i = 0; i < stacks.length; i++) {
-			if(!areItemsIdentical(items[i], stacks[i])) {
-				return null;
-			}
-			if(!areSizesIdentical(items[i], stacks[i])) {
-				return null;
-			}
-		}
-		return output;
-	}
 
-	public static boolean areItemsIdentical(ItemStack inSlot, ItemStack inRecipe) {
-		if (inRecipe == null || inSlot == null) {
-			return inRecipe == inSlot;
-		} else {
-			if (Item.getIdFromItem(inSlot.getItem()) != Item.getIdFromItem(inRecipe.getItem())) {
-				return false;
-			}
-			if (inRecipe.getItemDamage() == OreDictionary.WILDCARD_VALUE) {
-				return true;
-			}
-			return inSlot.getItemDamage() == inRecipe.getItemDamage();
-		}
-	}
 
-	public static boolean areSizesIdentical(ItemStack inSlot, ItemStack inRecipe) {
-		if (inRecipe == null || inSlot == null) {
-			return inRecipe == inSlot;
-		}
-		return inSlot.stackSize >= inRecipe.stackSize;
-	}
-
-	@Override
-	public int toDecrease(int slot) {
-		if (slot < stacks.length) {
-			return stacks[slot].stackSize;
-		}
-		return 0;
-	}
 }

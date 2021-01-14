@@ -126,9 +126,7 @@ public class ModelZeppelinTwoBalloons extends ModelBase {
 
 	}
 
-	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5) {}
-
-	public CustomModelRenderer zepSides[];
+    public CustomModelRenderer zepSides[];
 	public float helice1 = 0.4188790204786391F;
 	public float helice2 = 5.759586531581287F;
 	private long lastframe;

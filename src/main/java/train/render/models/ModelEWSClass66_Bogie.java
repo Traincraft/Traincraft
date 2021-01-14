@@ -214,9 +214,5 @@ public class ModelEWSClass66_Bogie extends ModelBase
 		}
 	}
 
-	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5)
-	{
-	}
-
-	public ModelRendererTurbo ewsclass66_bogieModel[];
+    public ModelRendererTurbo ewsclass66_bogieModel[];
 }

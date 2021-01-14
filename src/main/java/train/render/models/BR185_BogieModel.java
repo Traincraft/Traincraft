@@ -86,9 +86,5 @@ public class BR185_BogieModel extends ModelBase
 		}
 	}
 
-	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5)
-	{
-	}
-
-	public ModelRendererTurbo br101_bogieModel[];
+    public ModelRendererTurbo br101_bogieModel[];
 }

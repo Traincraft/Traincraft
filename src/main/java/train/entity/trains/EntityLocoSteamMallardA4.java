@@ -5,6 +5,7 @@ import ebf.tim.api.SkinRegistry;
 import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.EntityTrainCore;
 import ebf.tim.items.ItemTransport;
+import ebf.tim.registry.TiMItems;
 import ebf.tim.utility.ItemStackSlot;
 import fexcraft.tmt.slim.ModelBase;
 import net.minecraft.init.Items;
@@ -13,7 +14,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import train.Traincraft;
 import train.library.Info;
-import train.library.ItemIDs;
 import train.render.models.ModelA4Locomotive;
 
 import java.util.List;
@@ -89,9 +89,9 @@ public class EntityLocoSteamMallardA4 extends EntityTrainCore {
     @Override
     public ItemStack[] getRecipe() {
         return new ItemStack[]{
-                new ItemStack(ItemIDs.steelchimney.item, 1), new ItemStack(Items.iron_ingot, 2), null,
-                new ItemStack(ItemIDs.ironBoiler.item, 2), new ItemStack(ItemIDs.ironFirebox.item, 1), new ItemStack(ItemIDs.steelcab.item, 1),
-                new ItemStack(ItemIDs.ironBogie.item, 3), new ItemStack(ItemIDs.steelframe.item, 2), null
+                new ItemStack(TiMItems.chimneySteel, 1), new ItemStack(Items.iron_ingot, 2), null,
+                new ItemStack(TiMItems.boilerIron, 2), new ItemStack(TiMItems.fireboxIron, 1), new ItemStack(TiMItems.cabinSteel, 1),
+                new ItemStack(TiMItems.wheelIron, 3), new ItemStack(TiMItems.frameSteel, 2), null
         };
     }
 

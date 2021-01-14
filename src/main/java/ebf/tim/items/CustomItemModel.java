@@ -1,15 +1,19 @@
 package ebf.tim.items;
 
+import ebf.tim.blocks.TileRenderFacing;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.render.models.ModelRail;
 import ebf.tim.utility.ClientProxy;
 import ebf.tim.utility.Vec5f;
 import fexcraft.tmt.slim.Tessellator;
 import fexcraft.tmt.slim.TextureManager;
+import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
@@ -27,6 +31,14 @@ public class CustomItemModel implements IItemRenderer /*ICustomModelLoader*/ {
     public static CustomItemModel instance = new CustomItemModel();
 
     private static HashMap<ResourceLocation, Item> models = new HashMap<>();
+
+    private static HashMap<Item, TileRenderFacing> blockTextures = new HashMap<>();
+
+    public static void registerBlockTextures(Item itm, TileEntity tile){
+        if(tile instanceof TileRenderFacing) {
+            blockTextures.put(itm, (TileRenderFacing) tile);
+        }
+    }
 
     public static void registerModel(Item itm){
         models.put(new ResourceLocation(itm.getUnlocalizedName()), itm);
@@ -62,7 +74,17 @@ public class CustomItemModel implements IItemRenderer /*ICustomModelLoader*/ {
     @Override
     public void renderItem(ItemRenderType type, ItemStack item, Object... data) {
         if(item==null){return;}
-        if (item.getItem() instanceof ItemTransport){
+
+        if(blockTextures.containsKey(item.getItem())) {
+
+            GL11.glPushMatrix();
+            GL11.glScalef(0.95f,0.95f,0.95f);
+            GL11.glTranslatef(0,-0.1f,0);
+            blockTextures.get(item.getItem()).func_145828_a(null);
+
+            GL11.glPopMatrix();
+
+        } else if (item.getItem() instanceof ItemTransport){
             GL11.glPushMatrix();
             GenericRailTransport entity = ((ItemTransport) item.getItem()).entity;
             scale = entity.getHitboxSize()[0];

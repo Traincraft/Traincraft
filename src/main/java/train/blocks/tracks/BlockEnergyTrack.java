@@ -172,10 +172,6 @@ public class BlockEnergyTrack extends TrackBaseTraincraft implements ITrackPower
 
 		return false;
 	}
-	@Override
-	public void onMinecartPass(EntityMinecart cart) {
-		super.onMinecartPass(cart);
-	}
 
 	@Override
 	public boolean canUpdate() {

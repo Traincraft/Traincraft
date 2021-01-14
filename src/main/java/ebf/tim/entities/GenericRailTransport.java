@@ -1081,7 +1081,7 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
                 //this still seems obscene to me, but the result numbers check out pretty well
                 double drag = Math.pow(
                         //scale by weight, heavier means more drag
-                        Math.pow(weight, -0.025),
+                        Math.pow(weight, -0.015),
 
                         //then scale by speed, faster speeds mean more drag.
                         //use speed from the front bogie, when you take out direction, both bogies should move at the same speed
@@ -2214,6 +2214,15 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
         };
     }
 
+    /**Both decides whether to use Traincraft's assemblytables or TiM's traintable for the crafting of this transport.
+     * Return 0 (or don't override this at all - default is 0) to use TiM's traintable.
+     * Return 1, 2 or 3 to use the corresponding tier of assemblytable.
+     *
+     * @return either 1, 2, or 3 corresponding to which table should be able to craft it, or 0, to use the TiM traintable instead.
+     */
+    public int getTier() {
+        return 0;
+    }
 
     /**defines the name used for registration and the default name used in the gui.*/
     public String transportName(){return "Fugidsnot";}

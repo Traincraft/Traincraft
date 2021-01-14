@@ -8,6 +8,7 @@ import ebf.tim.blocks.BlockDynamic;
 import ebf.tim.blocks.BlockTrainFluid;
 import ebf.tim.blocks.OreGen;
 import ebf.tim.entities.GenericRailTransport;
+import ebf.tim.items.CustomItemModel;
 import ebf.tim.items.ItemCraftGuide;
 import ebf.tim.items.ItemTransport;
 import ebf.tim.utility.*;
@@ -47,6 +48,7 @@ import java.util.List;
 import java.util.Random;
 
 import static ebf.tim.utility.RecipeManager.getRecipe;
+import static ebf.tim.utility.RecipeManager.getRecipeWithTier;
 
 /**
  * <h1>Train registry</h1>
@@ -130,14 +132,21 @@ public class TiMGenericRegistry {
         }
         if(block instanceof ITileEntityProvider){
             Class<? extends TileEntity> tile=((ITileEntityProvider)block).createNewTileEntity(null,0).getClass();
-            if(!redundantTiles.contains(tile.getName())) {
+            if(!redundantTiles.contains(unlocalizedName + "tile")) {
                 GameRegistry.registerTileEntity(tile, unlocalizedName + "tile");
-                redundantTiles.add(tile.getName());
+                redundantTiles.add(unlocalizedName + "tile");
                 if (TrainsInMotion.proxy.isClient() && TESR != null) {
                     cpw.mods.fml.client.registry.ClientRegistry.bindTileEntitySpecialRenderer(tile, (TileEntitySpecialRenderer) TESR);
+                    MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(block), CustomItemModel.instance);
+                    CustomItemModel.registerBlockTextures(Item.getItemFromBlock(block), ((ITileEntityProvider)block).createNewTileEntity(null,0));
                 } else if (TrainsInMotion.proxy.isClient()){
                     cpw.mods.fml.client.registry.ClientRegistry.bindTileEntitySpecialRenderer(tile, (TileEntitySpecialRenderer) TrainsInMotion.proxy.getTESR());
+                    MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(block), CustomItemModel.instance);
+                    CustomItemModel.registerBlockTextures(Item.getItemFromBlock(block), ((ITileEntityProvider)block).createNewTileEntity(null,0));
                 }
+            } else {
+                DebugUtil.println("redundant tile name found", unlocalizedName + "tile");
+                DebugUtil.printStackTrace();
             }
         }
         return block;
@@ -203,6 +212,7 @@ public class TiMGenericRegistry {
         FluidRegistry.registerFluid(fluid);
 
         Block block = new BlockTrainFluid(fluid, new MaterialLiquid(color)).setBlockName("block."+unlocalizedName.replace(".item","")).setBlockTextureName(MODID+":block_"+unlocalizedName);
+        ((BlockTrainFluid)block).setModID(MODID);
         GameRegistry.registerBlock(block, "block."+unlocalizedName);
         if(TrainsInMotion.proxy.isClient()){
             block.setBlockTextureName(MODID+":"+unlocalizedName);
@@ -252,10 +262,10 @@ public class TiMGenericRegistry {
             GameRegistry.registerItem(registry.getCartItem().getItem(), registry.getCartItem().getItem().getUnlocalizedName());
             if(registry.getRecipe()!=null) {
                 if (CommonProxy.recipesInMods.containsKey(MODID)) {
-                    CommonProxy.recipesInMods.get(MODID).add(getRecipe(registry.getRecipe(), registry.getCartItem()));
+                    CommonProxy.recipesInMods.get(MODID).add(getRecipeWithTier(registry.getRecipe(), registry.getCartItem(), registry.getTier()));
                 } else {
                     CommonProxy.recipesInMods.put(MODID, new ArrayList<Recipe>());
-                    CommonProxy.recipesInMods.get(MODID).add(getRecipe(registry.getRecipe(), registry.getCartItem()));
+                    CommonProxy.recipesInMods.get(MODID).add(getRecipeWithTier(registry.getRecipe(), registry.getCartItem(), registry.getTier()));
                 }
             }
             if(TrainsInMotion.proxy.isClient() && ClientProxy.hdTransportItems){
@@ -263,7 +273,7 @@ public class TiMGenericRegistry {
             }
             registry.registerSkins();
             if(registry.getRecipe()!=null){
-                RecipeManager.registerRecipe(registry.getRecipe(), registry.getCartItem());
+                RecipeManager.registerRecipe(registry.getRecipe(), registry.getCartItem(), registry.getTier());
             }
             ItemCraftGuide.itemEntries.add(registry.getClass());
             if(TrainsInMotion.proxy.isClient()) {
@@ -299,6 +309,18 @@ public class TiMGenericRegistry {
         usedNames =null; registryPosition=-1; redundantTiles=null;
     }
 
+
+    /*todo:add support for buildcraft/railcraft burnable fluids
+	@Optional.Method(modid = "BuildCraft|Energy")
+	private void registerBCFluid(Fluid f, int powerPerCycle, int totalBurningTime){
+		BuildcraftFuelRegistry.fuel.addFuel(f, powerPerCycle, totalBurningTime);
+	}
+
+	@Optional.Method(modid = "Railcraft")
+	private void registerRCFluid(Fluid f, int totalBurningTime) {
+		FuelManager.addBoilerFuel(f, totalBurningTime);
+	}
+     */
 
 
 }

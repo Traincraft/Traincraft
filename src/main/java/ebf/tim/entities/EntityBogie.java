@@ -51,6 +51,8 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
     /**normally this variable exists already in 1.7, this additional declaration of it is support for 1.8.9+*/
     public float yOffset=0;
 
+    public int lastKnownRailX=0, lastKnownRailZ=0;
+
     public EntityBogie(World world) {
         super(world);
         yOffset=0.2f;
@@ -183,6 +185,8 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
             Block block = worldObj.getBlock(floorX, floorY, floorZ);
             //update on normal rails
             if (block instanceof BlockRailBase) {
+                lastKnownRailX=(int)posX;
+                lastKnownRailZ=(int)posZ;
                 this.yOffset=(block instanceof BlockRailCore?0.425f:0.3425f);
 
                 //prevent moving without motion velocity
@@ -205,6 +209,8 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
                 //update position for ZnD rails.
                 //moveBogieZnD(motionX, motionZ, floorX, floorY, floorZ, (ITrackBase) block);
             } else {
+                posX=lastKnownRailX+0.5;
+                posZ=lastKnownRailZ+0.5;
                 return true;
             }
         }

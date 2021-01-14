@@ -59,6 +59,14 @@ public abstract class GUIButton extends GuiButton {
         return !this.enabled?0:p_146114_1_?2:1;
     }
 
+    @Override
+    public void drawButton(Minecraft mc, int mouseX, int mouseY){
+        if (this.visible) {
+            drawButton(mouseX, mouseY);
+        }
+    }
+
+
     /** draws the button*/
     public void drawButton(int mouseX, int mouseY) {
         GL11.glPushMatrix();
@@ -85,16 +93,30 @@ public abstract class GUIButton extends GuiButton {
                 ClientUtil.drawTexturedRect(this.xPosition+1, this.yPosition+1, getIconUV()[0], getIconUV()[1], this.width-1, this.height-1, getIconUV()[2], getIconUV()[3]);
             }
         }
+        int l = 14737632;
 
+        if (packedFGColour != 0) {
+            l = packedFGColour;
+        }
+        else if (!this.enabled) {
+            l = 10526880;
+        }
+        else if (this.field_146123_n) {
+            l = 16777120;
+        }
+
+        this.drawCenteredString(Minecraft.getMinecraft().fontRenderer, this.displayString, this.xPosition + this.width / 2, this.yPosition + (this.height - 8) / 2, l);
         GL11.glPopMatrix();
     }
 
     public void drawText(int mouseX, int mouseY){
-        GL11.glPushMatrix();
-        if(field_146123_n) {
-            drawHoveringText(CommonUtil.translate(getHoverText()), mouseX, mouseY, Minecraft.getMinecraft().fontRenderer);
+        if(getHoverText()!=null) {
+            GL11.glPushMatrix();
+            if (field_146123_n) {
+                drawHoveringText(CommonUtil.translate(getHoverText()), mouseX, mouseY, Minecraft.getMinecraft().fontRenderer);
+            }
+            GL11.glPopMatrix();
         }
-        GL11.glPopMatrix();
     }
 
     /** checks if the button has hover text, if true the button's hover text is drawn*/

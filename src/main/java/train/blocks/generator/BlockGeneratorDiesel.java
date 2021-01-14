@@ -10,6 +10,7 @@ package train.blocks.generator;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import ebf.tim.blocks.BlockDynamic;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -27,12 +28,10 @@ import train.library.Info;
 
 import java.util.Random;
 
-public class BlockGeneratorDiesel extends BlockContainer {
-
-	private IIcon texture;
+public class BlockGeneratorDiesel extends BlockDynamic {
 
 	public BlockGeneratorDiesel() {
-		super(Material.iron);
+		super(Material.iron, true,true);
 		setCreativeTab(Traincraft.tcTab);
 		this.setTickRandomly(true);
 		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1F, 1F, 1F);
@@ -54,18 +53,13 @@ public class BlockGeneratorDiesel extends BlockContainer {
 	}
 
 	@Override
-	public IIcon getIcon(int i, int j) {
-		return texture;
-	}
-
-	@Override
 	public boolean onBlockActivated(World world, int i, int j, int k, EntityPlayer player, int par6, float par7, float par8, float par9) {
 		TileEntity te = world.getTileEntity(i, j, k);
 		if (player.isSneaking()) {
 			return false;
 		}
 		if (!world.isRemote) {
-			if (te != null && te instanceof TileGeneratorDiesel) {
+			if (te instanceof TileGeneratorDiesel) {
 				player.openGui(Traincraft.instance, GuiIDs.GENERATOR_DIESEL, world, i, j, k);
 			}
 		}
@@ -166,9 +160,4 @@ public class BlockGeneratorDiesel extends BlockContainer {
 		return new TileGeneratorDiesel();
 	}
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(IIconRegister iconRegister) {
-		texture = iconRegister.registerIcon(Info.modID.toLowerCase() + ":generator_diesel");
-	}
 }

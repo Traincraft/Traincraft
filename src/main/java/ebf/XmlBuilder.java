@@ -50,7 +50,7 @@ public class XmlBuilder {
         fluidMap.put(id,
                 stack==null?new String[]{"null"}:
                         new String[]{
-                                stack.getFluid().getBlock().delegate.name(),
+                                FluidRegistry.getFluidName(stack),
                                 stack.amount+""});
         return this;
     }

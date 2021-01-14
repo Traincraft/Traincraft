@@ -36,8 +36,6 @@ import train.core.handlers.TCKeyHandler;
 import train.core.helpers.JLayerHook;
 import train.entity.gui.*;
 import train.render.*;
-import train.entity.digger.EntityRotativeDigger;
-import train.entity.digger.EntityRotativeWheel;
 import train.entity.rollingStock.EntityJukeBoxCart;
 import train.entity.zeppelin.EntityZeppelinOneBalloon;
 import train.entity.zeppelin.EntityZeppelinTwoBalloons;
@@ -68,8 +66,6 @@ public class ClientProxy extends CommonProxy {
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityZeppelinTwoBalloons.class, new RenderZeppelins());
 		RenderingRegistry.registerEntityRenderingHandler(EntityZeppelinOneBalloon.class, new RenderZeppelins());
-		RenderingRegistry.registerEntityRenderingHandler(EntityRotativeDigger.class, new RenderRotativeDigger());
-		RenderingRegistry.registerEntityRenderingHandler(EntityRotativeWheel.class, new RenderRotativeWheel());
 
 
 		//ClientRegistry.bindTileEntitySpecialRenderer(TileBook.class, new RenderTCBook());
@@ -115,13 +111,13 @@ public class ClientProxy extends CommonProxy {
 		}
 		switch (ID) {
 		case (GuiIDs.DISTIL):
-			return te != null && te instanceof TileEntityDistil ? new GuiDistil(player.inventory, (TileEntityDistil) te) : null;
+			return te instanceof TileEntityDistil ? new GuiDistil(player.inventory, (TileEntityDistil) te) : null;
 		case (GuiIDs.GENERATOR_DIESEL):
-			return te != null && te instanceof TileGeneratorDiesel ? new GuiGeneratorDiesel(player.inventory, (TileGeneratorDiesel) te) : null;
+			return te instanceof TileGeneratorDiesel ? new GuiGeneratorDiesel(player.inventory, (TileGeneratorDiesel) te) : null;
 		case (GuiIDs.OPEN_HEARTH_FURNACE):
-			return te != null && te instanceof TileEntityOpenHearthFurnace ? new GuiOpenHearthFurnace(player.inventory, (TileEntityOpenHearthFurnace) te) : null;
+			return te instanceof TileEntityOpenHearthFurnace ? new GuiOpenHearthFurnace(player.inventory, (TileEntityOpenHearthFurnace) te) : null;
 		case GuiIDs.TRAIN_WORKBENCH:
-			return te != null && te instanceof TileTrainWbench ? new GuiTrainCraftingBlock(player.inventory, player.worldObj, (TileTrainWbench) te) : null;
+			return te instanceof TileTrainWbench ? new GuiTrainCraftingBlock(player.inventory, player.worldObj, (TileTrainWbench) te) : null;
 		case (GuiIDs.ZEPPELIN):
 			return riddenByEntity != null ? new GuiZepp(riddenByEntity.inventory, entity) : null;
 			//Stationary entities while player is not riding.

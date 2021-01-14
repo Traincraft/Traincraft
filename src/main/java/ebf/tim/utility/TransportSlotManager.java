@@ -66,24 +66,42 @@ public class TransportSlotManager extends net.minecraft.inventory.Container {
             addSlots(slot);
         }
 
-        //player toolbar
-        for (int iT = 0; iT < 9; iT++) {
-            addSlots(new ItemStackSlot(iinventory, iT, 8 + iT * 18, 142));
-        }
+        if (block.assemblyTableTier > 0 && ClientProxy.isTraincraft) { //it is an assembly table, move slots lower. (but only for the traincraft asm tables)
+            //player hotbar
+            for (int iT = 0; iT < 9; iT++) {
+                addSlots(new ItemStackSlot(iinventory, iT, 8 + iT * 18, 232));
+            }
 
-        //player inventory
-        for (int ir = 0; ir < 3; ir++) {
-            for (int ic = 0; ic < 9; ic++) {
-                addSlots(new ItemStackSlot(iinventory, ((ir * 9) + ic) + 9, 8 + (ic * 18), 84 + (ir * 18)));
+            //player inventory
+            for (int ir = 0; ir < 3; ir++) {
+                for (int ic = 0; ic < 9; ic++) {
+                    addSlots(new ItemStackSlot(iinventory, ((ir * 9) + ic) + 9, 8 + (ic * 18), 174 + (ir * 18)));
+                }
+            }
+        } else {
+            //player toolbar
+            for (int iT = 0; iT < 9; iT++) {
+                addSlots(new ItemStackSlot(iinventory, iT, 8 + iT * 18, 142));
+            }
+
+            //player inventory
+            for (int ir = 0; ir < 3; ir++) {
+                for (int ic = 0; ic < 9; ic++) {
+                    addSlots(new ItemStackSlot(iinventory, ((ir * 9) + ic) + 9, 8 + (ic * 18), 84 + (ir * 18)));
+                }
             }
         }
         onCraftMatrixChanged(hostInventory);
     }
 
+    /**
+     * Used by NEI, seems to work on our internal ID systems for some reason
+     */
     @Override
     public Slot getSlot(int p_75139_1_) {
-        return this.inventory.get(p_75139_1_);
+        return getSlotByID(p_75139_1_);
     }
+
 
 
     /**
@@ -107,13 +125,24 @@ public class TransportSlotManager extends net.minecraft.inventory.Container {
     }
 
 
+    /**
+     * normally relied on getSlot, but can't use it because this method does not function on our internal IDs
+     * */
     @SideOnly(Side.CLIENT)
     public void putStacksInSlots(ItemStack[] p_75131_1_) {
         for (int i = 0; i < p_75131_1_.length; ++i) {
-            this.getSlot(i).putStack(p_75131_1_[i]);
+            if(inventory.size()>i) {
+                inventory.get(i).setStack(p_75131_1_[i]);
+            }
         }
     }
 
+    @Override
+    public void putStackInSlot(int slot, ItemStack stack){
+        if(getSlot(slot)!=null){
+            getSlot(slot).putStack(stack);
+        }
+    }
 
 
 
@@ -165,7 +194,11 @@ public class TransportSlotManager extends net.minecraft.inventory.Container {
                         break;
                     } else if(player.inventory.getItemStack()!=null) {
                         if(dragType!=1) {
-                            if(slot.getStack()!=null && !slot.contentEquals(player.inventory.getItemStack())){
+                            if(slot.getStack()!=null && !slot.contentEquals(player.inventory.getItemStack())){ //swap stacks
+                                if (slot.isCraftingOutput()) {
+                                    //don't swap, or do anything really
+                                    break;
+                                }
                                 ItemStack old = player.inventory.getItemStack();
                                 ItemStack old2 = slot.getStack().copy();
 
@@ -173,11 +206,25 @@ public class TransportSlotManager extends net.minecraft.inventory.Container {
                                 player.inventory.setItemStack(old2.copy());
                                 break;
                             } else {
-                                player.inventory.setItemStack(slot.mergeStack(player.inventory.getItemStack(), inventory, 1));
+                                if (!slot.isCraftingOutput()) {
+                                    player.inventory.setItemStack(slot.mergeStack(player.inventory.getItemStack(), inventory, 1));
+                                } else {
+                                    //crafting output, so we should craft one more for the player.
+                                    //  first check if same item (don't want to add when click on empty slot)
+                                    if (slot.contentEquals(player.inventory.getItemStack())) {
+                                        if (player.inventory.getItemStack().stackSize == 64) {
+                                            //can't take another, holding full stack
+                                            break;
+                                        } else {
+                                            player.inventory.setItemStack(new ItemStack(player.inventory.getItemStack().getItem(), player.inventory.getItemStack().stackSize + 1));
+                                            slot.onCrafting(hostType, inventory, 1);
+                                        }
+                                    }
+                                }
                                 break;
                             }
                         } else {
-                            if (slot.getStack() ==null || (slot.getStack()!=null && slot.contentEquals(player.inventory.getItemStack()))) {
+                            if (!slot.isCraftingOutput() && slot.getStack() ==null || (slot.getStack()!=null && slot.contentEquals(player.inventory.getItemStack()))) {
                                 ItemStack s = player.inventory.getItemStack().copy();
                                 ItemStack s2 = s.copy();
                                 s2.stackSize = 1;
@@ -322,7 +369,7 @@ public class TransportSlotManager extends net.minecraft.inventory.Container {
                 }
                 break;
             }
-            case 3: { /*ClickType.CLONE*/
+            case 3: { /*ClickType.CLONE (middle mouse button) */
                 if (player.capabilities.isCreativeMode && player.inventory.getItemStack() == null && slotId >= 0 && slot != null && slot.getHasStack()) {
                     itemstack = slot.getStack().copy();
                     itemstack.stackSize =itemstack.getMaxStackSize();
@@ -340,7 +387,14 @@ public class TransportSlotManager extends net.minecraft.inventory.Container {
                 }
                 break;
             }
-            case 5 : {/*ClickType.QUICK_CRAFT*/
+            case 5 : {/*ClickType.QUICK_CRAFT (dragging) */
+
+                //the following stops crafting output slots from eating items.
+                //  Not perfect, as it does still appear to be going into slots from client pov, but that is solely client side.
+                //  See GuiContainer.java's drawScreen(int, int, float) function, lines 139 - 162
+                if (slot != null && slot.isCraftingOutput()) {
+                    break;
+                }
 
                 //TODO: if crafting slot, loop until slot output is null.
                     int j1 = this.dragEvent;
@@ -404,25 +458,40 @@ public class TransportSlotManager extends net.minecraft.inventory.Container {
                         this.dragSlots.clear();
                     }
                 }
-            case 6: {
+            case 6: { // double clicking on an item (second click, putting down item normally)
                 if (slotId >= 0) {
-                    ItemStack itemstack1 = player.inventory.getItemStack();
+                    ItemStack heldStack = player.inventory.getItemStack();
 
-                    if (itemstack1 != null && (slot == null || !slot.getHasStack() || !slot.canTakeStack(player))) {
+                    //if player holding stack and either: slot clicked on is empty, doesn't have stack, can't take stack
+                    if (heldStack != null && (slot == null || !slot.getHasStack() || !slot.canTakeStack(player))) {
+
+                        //i and j say where to start and what direction to search
+                        //  if dragType is 0, then start at inventory spot 0 --> end
+                        //  if dragType isn't 0, then start at end and go backwards.
                         int i = dragType == 0 ? 0 : this.inventory.size() - 1;
                         int j = dragType == 0 ? 1 : -1;
 
-                        for (int k = 0; k < 2; ++k) {
-                            for (int l = i; l >= 0 && l < this.inventory.size() && itemstack1.stackSize < itemstack1.getMaxStackSize(); l += j) {
-                                Slot slot1 = getSlotByID(l);
+                        for (int k = 0; k < 2; ++k) { //loop twice. why?
+                            for (int l = i; l >= 0 && l < this.inventory.size() && heldStack.stackSize < heldStack.getMaxStackSize(); l += j) {
+                                //for loop loops either backwards or forwards through all inv slots, see large comment above
 
-                                if (slot1 != null && slot1.getHasStack() && canAddItemToSlot(slot1, itemstack1) && slot1.canTakeStack(player)) {
+                                //problem is that getting the slot via id results in trying to get 400+ but actually getting like 40 because it counts and doesn't skip like slotID
+                                Slot slot1 = getSlot(l);
+                                //prev: getSlotByID
+
+                                if (slot1 instanceof ItemStackSlot && ((ItemStackSlot) slot1).isCraftingOutput()) {
+                                    continue;
+                                }
+
+                                if (slot1 != null && slot1.getHasStack() && canAddItemToSlot(slot1, heldStack) && slot1.canTakeStack(player)) {
+                                    //if the held is combine-able with the slot in question
+
                                     ItemStack itemstack2 = slot1.getStack();
 
                                     if (k != 0 || itemstack2.stackSize != itemstack2.getMaxStackSize()) {
-                                        int i1 = Math.min(itemstack1.getMaxStackSize() - itemstack1.stackSize, itemstack2.stackSize);
+                                        int i1 = Math.min(heldStack.getMaxStackSize() - heldStack.stackSize, itemstack2.stackSize);
                                         ItemStack itemstack3 = slot1.decrStackSize(i1);
-                                        itemstack1.stackSize += i1;
+                                        heldStack.stackSize += i1;
 
                                         if (itemstack3 == null) {
                                             slot1.putStack(null);

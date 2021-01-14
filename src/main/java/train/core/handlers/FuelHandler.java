@@ -3,6 +3,7 @@ package train.core.handlers;
 import cpw.mods.fml.common.IFuelHandler;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import train.blocks.TCBlocks;
 import train.library.BlockIDs;
 
 public class FuelHandler implements IFuelHandler {
@@ -14,7 +15,7 @@ public class FuelHandler implements IFuelHandler {
 	 */
 	@Override
 	public int getBurnTime(ItemStack fuel) {
-		if(Item.getIdFromItem(fuel.getItem()) == Item.getIdFromItem(Item.getItemFromBlock(BlockIDs.oreTC.block)) && (fuel.getItemDamage() == 1 || fuel.getItemDamage() == 2)){
+		if(Item.getIdFromItem(fuel.getItem()) == Item.getIdFromItem(Item.getItemFromBlock(TCBlocks.orePetroleum)) && (fuel.getItemDamage() == 1 || fuel.getItemDamage() == 2)){
 			return 2400;
 		}
 		return 0;

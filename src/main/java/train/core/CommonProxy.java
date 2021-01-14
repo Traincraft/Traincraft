@@ -27,12 +27,10 @@ import train.blocks.waterwheel.TileWaterWheel;
 import train.blocks.windmill.TileWindMill;
 import train.core.handlers.WorldEvents;
 import train.core.util.MP3Player;
-import train.entity.digger.EntityRotativeDigger;
+import train.entity.inventory.InventoryJukeBoxCart;
+import train.entity.inventory.InventoryZepp;
 import train.entity.rollingStock.EntityJukeBoxCart;
 import train.entity.zeppelin.AbstractZeppelin;
-import train.entity.inventory.InventoryJukeBoxCart;
-import train.entity.inventory.InventoryRotativeDigger;
-import train.entity.inventory.InventoryZepp;
 import train.library.GuiIDs;
 
 import java.util.ArrayList;
@@ -56,16 +54,16 @@ public class CommonProxy implements IGuiHandler {
 
 	@Deprecated //should be handled as noted in TCBlocks.init()
 	public void registerTileEntities() {
-		GameRegistry.registerTileEntity(TileTrainWbench.class, "TileTrainWbench");
-		GameRegistry.registerTileEntity(TileEntityDistil.class, "Tile Distil");
-		GameRegistry.registerTileEntity(TileEntityOpenHearthFurnace.class, "Tile OpenHearthFurnace");
-		GameRegistry.registerTileEntity(TileSignal.class, "TileTrainSignal");
-		GameRegistry.registerTileEntity(TileLantern.class, "tileLantern");
-		GameRegistry.registerTileEntity(TileSwitchStand.class, "tileSwitchStand");
-		GameRegistry.registerTileEntity(TileWaterWheel.class, "tileWaterWheel");
-		GameRegistry.registerTileEntity(TileWindMill.class, "tileWindMill");
-		GameRegistry.registerTileEntity(TileGeneratorDiesel.class, "tileGeneratorDiesel");
-		GameRegistry.registerTileEntity(TileBridgePillar.class, "tileTCBridgePillar");
+		GameRegistry.registerTileEntity(TileTrainWbench.class, "traincraft.TileTrainWbench");
+		GameRegistry.registerTileEntity(TileEntityDistil.class, "traincraft.TileDistil");
+		GameRegistry.registerTileEntity(TileEntityOpenHearthFurnace.class, "traincraft.TileOpenHearthFurnace");
+		GameRegistry.registerTileEntity(TileSignal.class, "traincraft.TileTrainSignal");
+		GameRegistry.registerTileEntity(TileLantern.class, "traincraft.tileLantern");
+		GameRegistry.registerTileEntity(TileSwitchStand.class, "traincraft.tileSwitchStand");
+		GameRegistry.registerTileEntity(TileWaterWheel.class, "traincraft.tileWaterWheel");
+		GameRegistry.registerTileEntity(TileWindMill.class, "traincraft.tileWindMill");
+		GameRegistry.registerTileEntity(TileGeneratorDiesel.class, "traincraft.tileGeneratorDiesel");
+		GameRegistry.registerTileEntity(TileBridgePillar.class, "traincraft.tileTCBridgePillar");
 	}
 
 	@Override
@@ -85,17 +83,16 @@ public class CommonProxy implements IGuiHandler {
 
 		switch (ID) {
 		case (GuiIDs.DISTIL):
-			return te != null && te instanceof TileEntityDistil ? new ContainerDistil(player.inventory, (TileEntityDistil) te) : null;
+			return te instanceof TileEntityDistil ? new ContainerDistil(player.inventory, (TileEntityDistil) te) : null;
 		case (GuiIDs.GENERATOR_DIESEL):
-			return te != null && te instanceof TileGeneratorDiesel ? new ContainerGeneratorDiesel(player.inventory, (TileGeneratorDiesel) te) : null;
+			return te instanceof TileGeneratorDiesel ? new ContainerGeneratorDiesel(player.inventory, (TileGeneratorDiesel) te) : null;
 		case (GuiIDs.OPEN_HEARTH_FURNACE):
-			return te != null && te instanceof TileEntityOpenHearthFurnace ? new ContainerOpenHearthFurnace(player.inventory, (TileEntityOpenHearthFurnace) te) : null;
+			return te instanceof TileEntityOpenHearthFurnace ? new ContainerOpenHearthFurnace(player.inventory, (TileEntityOpenHearthFurnace) te) : null;
 		case (GuiIDs.TRAIN_WORKBENCH):
-			return te != null && te instanceof TileTrainWbench ? new ContainerTrainWorkbench(player.inventory, player.worldObj, (TileTrainWbench) te) : null;
+			return te instanceof TileTrainWbench ? new ContainerTrainWorkbench(player.inventory, player.worldObj, (TileTrainWbench) te) : null;
 		case (GuiIDs.ZEPPELIN):
 			return riddenByEntity != null ? new InventoryZepp(player.inventory, (AbstractZeppelin) entity) : null;
-		case (GuiIDs.DIGGER):
-			return riddenByEntity != null  ? new InventoryRotativeDigger(player.inventory, (EntityRotativeDigger) entity) : null;
+
 
 			/* Stationary entities while player is not riding. */
 		case (GuiIDs.JUKEBOX):
@@ -121,9 +118,7 @@ public class CommonProxy implements IGuiHandler {
 		return 0;
 	}
 
-	public void registerTextureFX() {}
-
-	public void registerSounds() {}
+    public void registerSounds() {}
 
 	public Minecraft getMinecraft() {
 		return null;

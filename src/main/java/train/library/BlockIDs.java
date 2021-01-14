@@ -13,12 +13,6 @@ import train.items.*;
 
 public enum BlockIDs {
 
-	assemblyTableI(false, null),
-	assemblyTableII(false, null),
-	assemblyTableIII(false, null),
-
-	distilIdle(false, null),
-	distilActive(false, null),
 	signal(false, null),
 	
 	//book(true, ItemBlockBook.class),
@@ -27,7 +21,6 @@ public enum BlockIDs {
 
 	openFurnaceIdle(false, null),
 	openFurnaceActive(false, null),
-	oreTC(true, ItemBlockOreTC.class),
 	lantern(false, null),
 	switchStand(false, null),
 	waterWheel(true, ItemBlockGeneratorWaterWheel.class),
@@ -35,8 +28,8 @@ public enum BlockIDs {
 	generatorDiesel(true, ItemBlockGeneratorDiesel.class),
 	pdmInstructionBlock(false, null),
 	//Liquids
-	diesel(false, ItemBlockFluid.class),
-	refinedFuel(false, ItemBlockFluid.class),
+	//diesel(false, ItemBlockFluid.class),
+	//refinedFuel(false, ItemBlockFluid.class),
 
 	bridgePillar(false,null);
 

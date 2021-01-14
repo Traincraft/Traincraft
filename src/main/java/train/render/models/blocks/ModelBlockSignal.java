@@ -55,5 +55,4 @@ public class ModelBlockSignal extends ModelBase {
 		box1.render(f1);
 	}
 
-	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5) {}
 }

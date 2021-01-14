@@ -5,6 +5,7 @@ import ebf.tim.api.SkinRegistry;
 import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.ItemTransport;
+import ebf.tim.registry.TiMItems;
 import fexcraft.tmt.slim.ModelBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -12,7 +13,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import train.Traincraft;
 import train.library.Info;
-import train.library.ItemIDs;
 
 import java.util.List;
 import java.util.UUID;
@@ -68,10 +68,10 @@ public class EntityGWRBrakeVan extends GenericRailTransport {
 
     //recipe
     @Override
-    public ItemStack[] getRecipie() {
+    public ItemStack[] getRecipe() {
         return new ItemStack[]{
-                new ItemStack(Blocks.crafting_table, 1), new ItemStack(ItemIDs.ironBogie.item, 2), new ItemStack(ItemIDs.woodenFrame.item, 1), 
-                new ItemStack(Blocks.planks, 8), null, new ItemStack(ItemIDs.woodenCab.item, 1), 
+                new ItemStack(Blocks.crafting_table, 1), new ItemStack(TiMItems.wheelIron, 2), new ItemStack(TiMItems.frameWood, 1),
+                new ItemStack(Blocks.planks, 8), null, new ItemStack(TiMItems.cabinWood, 1),
                 null, null, new ItemStack(Blocks.furnace, 1)        };
     }
 

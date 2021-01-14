@@ -93,9 +93,8 @@ public class ModelSmallFreightCart extends ModelBase {
 		fixRotation(bodyModel);
 
 	}
-	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5) {}
 
-	// variables init:
+    // variables init:
 	public CustomModelRenderer attach;
 	public CustomModelRenderer bogey;
 	public CustomModelRenderer bogeyframe;

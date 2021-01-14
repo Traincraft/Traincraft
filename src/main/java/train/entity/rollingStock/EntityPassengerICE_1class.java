@@ -5,13 +5,13 @@ import ebf.tim.api.SkinRegistry;
 import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.ItemTransport;
+import ebf.tim.registry.TiMItems;
 import fexcraft.tmt.slim.ModelBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import train.Traincraft;
 import train.library.Info;
-import train.library.ItemIDs;
 
 import java.util.List;
 import java.util.UUID;
@@ -33,9 +33,9 @@ public class EntityPassengerICE_1class extends GenericRailTransport {
     @Override
     public String transportName(){return "Passenger ICE 1st Class";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return "germany";}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return "1989-1993";}
     @Override
     public boolean isFictional(){return false;}
     @Override
@@ -69,9 +69,9 @@ public class EntityPassengerICE_1class extends GenericRailTransport {
     @Override
     public ItemStack[] getRecipe() {
         return new ItemStack[]{
-                null, new ItemStack(ItemIDs.bogie.item, 2), new ItemStack(ItemIDs.steelframe.item, 2), 
-                null, null, new ItemStack(ItemIDs.steelcab.item, 1), 
-                null, null, new ItemStack(ItemIDs.seats.item, 1)        };
+                null, new ItemStack(TiMItems.wheelSteel, 2), new ItemStack(TiMItems.frameSteel, 2),
+                null, null, new ItemStack(TiMItems.cabinSteel, 1),
+                null, null, new ItemStack(TiMItems.seatsWooden, 1)        };
     }
 
 

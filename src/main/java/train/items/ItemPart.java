@@ -21,11 +21,6 @@ public class ItemPart extends Item{
         this.setCreativeTab(Traincraft.tcTab);
     }
 
-    public ItemPart overridePath(String newFolder){
-        this.folder = newFolder;
-        return this;
-    }
-
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister iconRegister) {

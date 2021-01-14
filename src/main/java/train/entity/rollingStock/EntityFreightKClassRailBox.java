@@ -5,6 +5,8 @@ import ebf.tim.api.SkinRegistry;
 import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.ItemTransport;
+import ebf.tim.registry.TiMItems;
+import ebf.tim.registry.TiMOres;
 import fexcraft.tmt.slim.ModelBase;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -12,7 +14,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import train.Traincraft;
 import train.library.Info;
-import train.library.ItemIDs;
 
 import java.util.List;
 import java.util.UUID;
@@ -70,10 +71,10 @@ public class EntityFreightKClassRailBox extends GenericRailTransport {
 
     //recipe
     @Override
-    public ItemStack[] getRecipie() {
+    public ItemStack[] getRecipe() {
         return new ItemStack[]{
-                new ItemStack(ItemIDs.steel.item, 5), new ItemStack(ItemIDs.bogie.item, 2), new ItemStack(ItemIDs.steelframe.item, 2), 
-                new ItemStack(ItemIDs.steel.item, 2), null, null, null, null, new ItemStack(Items.dye, 1)        };
+                new ItemStack(TiMOres.ingotSteel, 5), new ItemStack(TiMItems.wheelSteel, 2), new ItemStack(TiMItems.frameSteel, 2),
+                new ItemStack(TiMOres.ingotSteel, 2), null, null, null, null, new ItemStack(Items.dye, 1)        };
     }
 
 

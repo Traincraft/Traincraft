@@ -5,6 +5,7 @@ import ebf.tim.api.SkinRegistry;
 import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.EntityTrainCore;
 import ebf.tim.items.ItemTransport;
+import ebf.tim.registry.TiMItems;
 import ebf.tim.utility.ItemStackSlot;
 import fexcraft.tmt.slim.ModelBase;
 import net.minecraft.init.Items;
@@ -13,7 +14,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import train.Traincraft;
 import train.library.Info;
-import train.library.ItemIDs;
 
 import java.util.List;
 import java.util.UUID;
@@ -71,9 +71,9 @@ public class EntityLocoSteamGLYN042T extends EntityTrainCore {
     @Override
     public ItemStack[] getRecipe() {
         return new ItemStack[]{
-                null, new ItemStack(ItemIDs.ironBogie.item, 3), new ItemStack(ItemIDs.ironFrame.item, 1), 
-                null, new ItemStack(ItemIDs.ironChimney.item, 1), new ItemStack(ItemIDs.woodenCab.item, 1), 
-                new ItemStack(ItemIDs.boiler.item, 1), new ItemStack(ItemIDs.firebox.item, 1), null        };
+                null, new ItemStack(TiMItems.wheelIron, 3), new ItemStack(TiMItems.frameIron, 1),
+                null, new ItemStack(TiMItems.chimneyIron, 1), new ItemStack(TiMItems.cabinWood, 1),
+                new ItemStack(TiMItems.boilerIron, 1), new ItemStack(TiMItems.fireboxSteel, 1), null        };
     }
 
 

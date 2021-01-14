@@ -12,8 +12,14 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
 import org.lwjgl.opengl.GL11;
+
+import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL11.GL_NORMALIZE;
+import static org.lwjgl.opengl.GL11.GL_SMOOTH;
 
 public class TileRenderFacing extends TileEntity {
     public byte facing =-1;
@@ -31,33 +37,62 @@ public class TileRenderFacing extends TileEntity {
         return this;
     }
 
+    public TileRenderFacing setFacing(ForgeDirection direction){
+        //this follows the order definition of the valid directions
+        switch (direction){
+            case DOWN:{facing=0;break;}
+            case UP:{facing=1;break;}
+            case NORTH:{facing=2;break;}
+            case SOUTH:{facing=3;break;}
+            case WEST:{facing=4;break;}
+            case EAST:{facing=5;break;}
+        }
+        this.markDirty();
+        return this;
+    }
+
+    public ForgeDirection getFacing(){
+        //1.8.9+ it's getHorizontal
+        return ForgeDirection.getOrientation((int)facing);
+    }
+
     @Override
     public void func_145828_a(CrashReportCategory r){
         if(r==null){
+            if(host.texture!=null) {
+                GL11.glEnable(GL11.GL_TEXTURE_2D);
+                TextureManager.bindTexture(host.texture);
+            } else {
+                GL11.glDisable(GL11.GL_TEXTURE_2D);
+            }
+
+
             if(blockGLID ==null){
-                if(host.texture!=null) {
-                    Minecraft.getMinecraft().getTextureManager().bindTexture(host.texture);
-                }
                 blockGLID=org.lwjgl.opengl.GL11.glGenLists(1);
                 org.lwjgl.opengl.GL11.glNewList(blockGLID, org.lwjgl.opengl.GL11.GL_COMPILE);
                 GL11.glPushMatrix();
-                if(host.texture==null){
-                    GL11.glDisable(GL11.GL_TEXTURE_2D);
+                GL11.glEnable(GL11.GL_LIGHTING);
+                if(worldObj!=null) {
+                    Minecraft.getMinecraft().entityRenderer.enableLightmap(1);
+                    TextureManager.fixEntityLighting();
+                    TextureManager.adjustLightFixture(worldObj, xCoord, yCoord, zCoord);
+                } else {
+                    Minecraft.getMinecraft().entityRenderer.disableLightmap(1);
                 }
-                TextureManager.adjustLightFixture(worldObj,xCoord,yCoord,zCoord);
                 GL11.glTranslatef(0.5f,0.5f,0.5f);
                 if(host.rotates){
                     switch (facing){
                         //north
                         case 0:{GL11.glRotatef(90,0,1,0);break;}
                         //east
-                        case 1:{GL11.glRotatef(180,0,1,0);break;}
+                        case 1:{break;}
                         //south
                         case 2:{GL11.glRotatef(270,0,1,0);break;}
                         //west
-                        case 3:{break;}
+                        case 3:{GL11.glRotatef(180,0,1,0);break;}
                     }
                 }
+                GL11.glRotatef(180,1,0,0);
 
                 if(host.model!=null) {
                     host.model.render(null, 0, 0, 0, 0, 0, 0);
@@ -65,8 +100,8 @@ public class TileRenderFacing extends TileEntity {
                     cube.render();
                 }
 
-                if(host.texture==null){
-                    GL11.glEnable(GL11.GL_TEXTURE_2D);
+                if(worldObj!=null) {
+                    Minecraft.getMinecraft().entityRenderer.disableLightmap(1);
                 }
                 GL11.glPopMatrix();
                 org.lwjgl.opengl.GL11.glEndList();
@@ -77,13 +112,7 @@ public class TileRenderFacing extends TileEntity {
                     blockGLID=null;
                     return;
                 }
-                if(host.texture==null){
-                    GL11.glDisable(GL11.GL_TEXTURE_2D);
-                    org.lwjgl.opengl.GL11.glCallList(blockGLID);
-                    GL11.glEnable(GL11.GL_TEXTURE_2D);
-                } else {
-                    org.lwjgl.opengl.GL11.glCallList(blockGLID);
-                }
+                org.lwjgl.opengl.GL11.glCallList(blockGLID);
                 if(ebf.tim.utility.ClientProxy.disableCache){
                     org.lwjgl.opengl.GL11.glDeleteLists(blockGLID,1);
                     blockGLID =null;
@@ -167,6 +196,6 @@ public class TileRenderFacing extends TileEntity {
         markDirty();
     }
 
-    private static final ModelRendererTurbo cube = new ModelRendererTurbo((ModelBase) null, 0,0,64,32).addBox(-8,-8,-8,16,16,16);
+    public static final ModelRendererTurbo cube = new ModelRendererTurbo((ModelBase) null, 0,0,64,32).addBox(-8,-8,-8,16,16,16);
 
 }

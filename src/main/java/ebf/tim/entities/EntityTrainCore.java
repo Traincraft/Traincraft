@@ -144,11 +144,11 @@ public class EntityTrainCore extends GenericRailTransport {
         if (accelerator !=0 && accelerator!=8) {
             //speed is defined by the power in newtons divided by the weight, divided by the number of ticks in a second.
             if(getPower() !=0) {
-                float weight = pullingWeight* (getBoolean(boolValues.BRAKE)?4:1);
+                float weight = pullingWeight* (getBoolean(boolValues.BRAKE)?6:1);
                 //update the consist if somehow it didnt get initialized.
                 if(maxPowerMicroblocks==0 || pullingWeight==0){
                     updateConsist();
-                    weight = pullingWeight* (getBoolean(boolValues.BRAKE)?4:1);
+                    weight = pullingWeight* (getBoolean(boolValues.BRAKE)?6:1);
                 }
                 // weight's effect on HP is generally inverse of HP itself, it can be described as
                 // 30 lbs of coal about 100 feet in one minute = 33,000 lbf for 1.01387 MHP
@@ -179,7 +179,7 @@ public class EntityTrainCore extends GenericRailTransport {
                 vectorCache[1][0]*=(weight/13.6f);
                 vectorCache[1][0]*=0.0254f; //movement distance of 1 MHP in meters per second (30.48/60/20).
                 vectorCache[1][0]*=0.05f;//scale to ticks
-                vectorCache[1][0]*=0.0000001f;//scale to i dont even know but it feels right
+                vectorCache[1][0]*=0.000000025f;//scale to i dont even know but it feels right
                 if(!CommonProxy.realSpeed){
                     vectorCache[1][0]*=0.25f;//scale to TC speed
                 }
@@ -219,7 +219,7 @@ public class EntityTrainCore extends GenericRailTransport {
      * this is intended for external use like collisions that need to see if the train is in gear from a superclass cast*/
     @Override
     public int getAccelerator(){
-        return accelerator;
+        return !worldObj.isRemote?accelerator:getDataWatcher().getWatchableObjectInt(18);
     }
 
     /**
@@ -250,6 +250,11 @@ public class EntityTrainCore extends GenericRailTransport {
                         accelerator = 0;
                         this.dataWatcher.updateObject(18, accelerator);
                     }
+                }
+
+                if(accelerator==0 && getBoolean(boolValues.BRAKE) && getVelocity()==0){
+                    frontBogie.setVelocity(0,0,0);
+                    backBogie.setVelocity(0,0,0);
                 }
 
                 //cap to top speed, top speed is calculated as KMH converted to meters per second, converted to meters per tick

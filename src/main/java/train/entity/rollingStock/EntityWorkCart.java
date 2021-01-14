@@ -5,6 +5,7 @@ import ebf.tim.api.SkinRegistry;
 import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.ItemTransport;
+import ebf.tim.registry.TiMItems;
 import fexcraft.tmt.slim.ModelBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -13,7 +14,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import train.Traincraft;
 import train.library.Info;
-import train.library.ItemIDs;
 
 import java.util.List;
 import java.util.UUID;
@@ -35,11 +35,11 @@ public class EntityWorkCart extends GenericRailTransport {
     @Override
     public String transportName(){return "Work Cart Yellow";}
     @Override
-    public String transportcountry(){return "Undefined";}
+    public String transportcountry(){return null;}
     @Override
-    public String transportYear(){return "Undefined";}
+    public String transportYear(){return null;}
     @Override
-    public boolean isFictional(){return false;}
+    public boolean isFictional(){return true;}
     @Override
     public int getInventoryRows(){return 0;}
     @Override
@@ -71,8 +71,8 @@ public class EntityWorkCart extends GenericRailTransport {
     @Override
     public ItemStack[] getRecipe() {
         return new ItemStack[]{
-                new ItemStack(Blocks.crafting_table, 1), new ItemStack(ItemIDs.woodenBogie.item, 2), new ItemStack(ItemIDs.woodenFrame.item, 1), 
-                new ItemStack(Items.stick, 2), null, new ItemStack(ItemIDs.woodenCab.item, 1), 
+                new ItemStack(Blocks.crafting_table, 1), new ItemStack(TiMItems.wheelWood, 2), new ItemStack(TiMItems.frameWood, 1),
+                new ItemStack(Items.stick, 2), null, new ItemStack(TiMItems.cabinWood, 1),
                 null, null, new ItemStack(Blocks.furnace, 1)        };
     }
 

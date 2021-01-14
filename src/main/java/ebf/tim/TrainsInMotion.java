@@ -11,14 +11,13 @@ import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
-import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
-import ebf.tim.blocks.OreGen;
 import ebf.tim.entities.EntityBogie;
 import ebf.tim.entities.EntitySeat;
 import ebf.tim.gui.GUICraftBook;
 import ebf.tim.items.ItemAdminBook;
 import ebf.tim.items.TiMTab;
+import ebf.tim.networking.PacketCraftingPage;
 import ebf.tim.networking.PacketInteract;
 import ebf.tim.networking.PacketPaint;
 import ebf.tim.networking.PacketRemove;
@@ -127,6 +126,7 @@ public class TrainsInMotion {
         MinecraftForge.EVENT_BUS.register(chunkHandler);
         creativeTab=new TiMTab("Trains in Motion", MODID, "TiM");
         creativeTabCrafting=new TiMTab("Trains in Motion Crafting", creativeTab.getTabItem());
+
     }
 
     /**
@@ -140,6 +140,10 @@ public class TrainsInMotion {
      */
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
+
+        //register blocks, items, fluids, etc.
+        proxy.register();
+
         //loop for registering the entities. the values needed are the class, entity name, entity ID, mod instance, update range, update rate, and if it does velocity things,
         cpw.mods.fml.common.registry.EntityRegistry.registerModEntity(EntityBogie.class, "Bogie", 15, TrainsInMotion.instance, 60, 3, true);
         cpw.mods.fml.common.registry.EntityRegistry.registerModEntity(EntitySeat.class, "Seat", 16, TrainsInMotion.instance, 60, 3, true);
@@ -165,10 +169,11 @@ public class TrainsInMotion {
         TrainsInMotion.keyChannel.registerMessage(HANDLERS[2], ItemAdminBook.PacketAdminBook.class, 3, Side.CLIENT);
         TrainsInMotion.keyChannel.registerMessage(HANDLERS[3], ItemAdminBook.PacketAdminBookClient.class, 4, Side.SERVER);
         TrainsInMotion.keyChannel.registerMessage(HANDLERS[4], PacketPaint.class, 6, Side.CLIENT);
+        TrainsInMotion.keyChannel.registerMessage(HANDLERS[5], PacketCraftingPage.class, 7, Side.SERVER);
         TrainsInMotion.trackChannel = NetworkRegistry.INSTANCE.newSimpleChannel("TiM.track");
 
 
-        proxy.register();
+
         if(event.getSide().isClient()) {
             //register the event handler
             MinecraftForge.EVENT_BUS.register(ClientProxy.eventManager);
@@ -189,7 +194,11 @@ public class TrainsInMotion {
 
 
 
+    //each packet needs it's own entry in this, duplicates are not allowed, for whatever reason
     private static final IMessageHandler[] HANDLERS = new IMessageHandler[]{
+            new IMessageHandler<IMessage, IMessage>() {
+                @Override public IMessage onMessage(IMessage message, MessageContext ctx) {return null;}
+            },
             new IMessageHandler<IMessage, IMessage>() {
                 @Override public IMessage onMessage(IMessage message, MessageContext ctx) {return null;}
             },

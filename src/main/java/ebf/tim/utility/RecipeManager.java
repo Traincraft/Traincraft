@@ -3,7 +3,6 @@ package ebf.tim.utility;
 import cpw.mods.fml.common.registry.GameRegistry;
 import ebf.tim.items.ItemRail;
 import ebf.tim.registry.TiMItems;
-import net.minecraft.block.Block;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
@@ -22,8 +21,11 @@ public class RecipeManager {
     //private static List<Item> ingotDirectory = new ArrayList<>();
 
 
+    public static void registerRecipe(Object[] recipe, ItemStack output, int tier){
+        registerRecipe(getRecipe(recipe, output).setTier(tier));
+    }
     public static void registerRecipe(Object[] recipe, ItemStack output){
-        registerRecipe(getRecipe(recipe,output));
+        registerRecipe(getRecipe(recipe, output));
     }
 
     public static void registerRecipe(Recipe recipe){
@@ -31,6 +33,15 @@ public class RecipeManager {
         , (recipe.topLeft()==null || recipe.topLeft().size()==0 || recipe.topLeft().get(0)==null?"null": recipe.topLeft().get(0).getDisplayName()),
                 recipe.getresult().get(0).getDisplayName());*/
 
+        // adds a result to the recipe if it already exists, rather than creating a new one.
+        for(Recipe r : recipeList){
+            if(r.recipeInputMatches(recipe.input)){
+                if (r.getTier() == recipe.getTier()) {
+                    r.addResults(recipe.result);
+                    return;
+                }
+            }
+        }
 
         recipeList.add(recipe);
 
@@ -55,15 +66,24 @@ public class RecipeManager {
         return null;
     }
 
-    public static List<ItemStack> getResult(ItemStack[] recipe){
+    /**Compares and returns a list of trains that are craftable with the given array of ItemStacks (the inputted recipe)
+     * Funnily enough, in wanting to have a tier-less traintable, I implemented a fourth tier, tier 0.
+     *
+     * @param recipe An array of ItemStacks that could be a valid recipe.
+     * @param tier The tier to compare recipes against. Will only look for results in given tier.
+     * @return A List of ItemStacks that are trains craftable with the recipe parameter. Null if nothing craftable.
+     */
+    public static List<ItemStack> getResult(ItemStack[] recipe, int tier){
         if(Arrays.equals(recipe, new ItemStack[]{null, null, null, null, null, null, null, null})){
             return null;//if all inputs were null, then just return null. this is a common scenario, should save speed overall.
         }
 
         List<ItemStack> retStacks = new ArrayList<>();
         for(Recipe r : recipeList){
-            if(r.inputMatches(Arrays.asList(recipe))){
-                retStacks.addAll(r.result);
+            if(r.getTier() == tier) { //compare tier first for speed
+                if (r.inputMatches(Arrays.asList(recipe))) {
+                    retStacks.addAll(r.result);
+                }
             }
         }
         if(retStacks.size()==0) {
@@ -167,7 +187,7 @@ public class RecipeManager {
 
 
     public static Recipe getRecipe(Object[] obj, ItemStack cartItem){
-        return new Recipe(new ItemStack[]{cartItem},
+        Recipe r = new Recipe(new ItemStack[]{cartItem},
                 getItem(obj[0]),
                 getItem(obj[1]),
                 getItem(obj[2]),
@@ -178,6 +198,24 @@ public class RecipeManager {
                 getItem(obj[7]),
                 getItem(obj[8])
         );
+        return r;
+    }
+
+    //This is necessary because the GenericRegistry will have to set the tier on the recipe somehow, in case it is set on the class.
+    public static Recipe getRecipeWithTier(Object[] obj, ItemStack cartItem, int tier){
+        Recipe r = new Recipe(new ItemStack[]{cartItem},
+                getItem(obj[0]),
+                getItem(obj[1]),
+                getItem(obj[2]),
+                getItem(obj[3]),
+                getItem(obj[4]),
+                getItem(obj[5]),
+                getItem(obj[6]),
+                getItem(obj[7]),
+                getItem(obj[8])
+        );
+        r.setTier(tier);
+        return r;
     }
 
     public static ItemStack[] getItem(Object itm){

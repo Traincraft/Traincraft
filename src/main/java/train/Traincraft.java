@@ -1,6 +1,5 @@
 package train;
 
-import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -16,28 +15,24 @@ import ebf.tim.items.TiMTab;
 import ebf.tim.registry.TiMGenericRegistry;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraftforge.common.AchievementPage;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.EnumHelper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import train.blocks.fluids.LiquidManager;
 import train.blocks.TCBlocks;
+import train.blocks.fluids.LiquidManager;
 import train.core.CommonProxy;
 import train.core.TrainModCore;
 import train.core.handlers.*;
 import train.entity.zeppelin.EntityZeppelinOneBalloon;
 import train.entity.zeppelin.EntityZeppelinTwoBalloons;
 import train.generation.ComponentVillageTrainstation;
-import train.generation.WorldGenWorld;
 import train.items.TCItems;
 import train.library.Info;
 import train.library.TrainRegistry;
-import train.blocks.bench.AssemblyTableRecipes;
 
 import java.io.File;
 
@@ -73,8 +68,6 @@ public class Traincraft {
 	public static int trainCloth;
 	public static int trainCompositeSuit;
 
-	
-	public static WorldGenWorld worldGen;
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
@@ -124,6 +117,23 @@ public class Traincraft {
 		/* Register the KeyBinding Handler */
 		proxy.registerKeyBindingHandler();
 
+		/* Other Proxy init */
+		tcLog.info("Initialize Renderer and Events");
+		proxy.registerRenderInformation();
+		proxy.registerEvents(event);
+
+		/* Networking and Packet initialisation */
+		PacketHandler.init();
+
+		tcLog.info("Finished PreInitialization");
+	}
+
+	@EventHandler
+	public void load(FMLInitializationEvent event) {
+		tcLog.info("Start Initialization");
+
+		//proxy.getCape();
+
 		/* Register Items, Blocks, ... */
 		tcLog.info("Initialize Blocks, Items, ...");
 		tcTab = new TiMTab("Traincraft", Info.modID, "key.categories.traincraft");
@@ -167,36 +177,9 @@ public class Traincraft {
 		proxy.setHook(); // Moved file needed to run JLayer, we need to set a hook in order to retrieve it
 
 		GameRegistry.registerFuelHandler(new FuelHandler());
-		AchievementHandler.load();
-		AchievementPage.registerAchievementPage(AchievementHandler.tmPage);
-		GameRegistry.registerWorldGenerator(worldGen = new WorldGenWorld(),5);
-		
-		//Retrogen Handling
-		RetrogenHandler retroGen = new RetrogenHandler();
-		MinecraftForge.EVENT_BUS.register(retroGen);
-		FMLCommonHandler.instance().bus().register(retroGen);
-		
+
+
 		MapGenStructureIO.func_143031_a(ComponentVillageTrainstation.class, "Trainstation");
-
-		/* Other Proxy init */
-		tcLog.info("Initialize Renderer and Events");
-		proxy.registerRenderInformation();
-		proxy.registerEvents(event);
-
-		/* Ore dictionary */
-		OreHandler.registerOres();
-
-		/* Networking and Packet initialisation */
-		PacketHandler.init();
-
-		tcLog.info("Finished PreInitialization");
-	}
-
-	@EventHandler
-	public void load(FMLInitializationEvent event) {
-		tcLog.info("Start Initialization");
-
-		//proxy.getCape();
 
 		/* GUI handler initiation */
 		tcLog.info("Initialize Gui");
@@ -205,25 +188,15 @@ public class Traincraft {
 
 		/* Recipes */
 		tcLog.info("Initialize Recipes");
-		RecipeHandler.initBlockRecipes();
-		RecipeHandler.initItemRecipes();
-		RecipeHandler.initSmeltingRecipes();
-		AssemblyTableRecipes.recipes();
 
-		/* Register the liquids */
-		tcLog.info("Initialize Fluids");
-		LiquidManager.getInstance().registerLiquids();
-
-		/* Liquid FX */
-		proxy.registerTextureFX();
 
 		/*Trainman Villager*/
 		tcLog.info("Initialize Station Chief Villager");
-		VillagerRegistry.instance().registerVillagerId(ConfigHandler.TRAINCRAFT_VILLAGER_ID);
+		VillagerRegistry.instance().registerVillagerId(ConfigHandler.TRAINCRAFT_VILLAGER_ID+1);
 		VillagerTraincraftHandler villageHandler = new VillagerTraincraftHandler();
 		VillagerRegistry.instance().registerVillageCreationHandler(villageHandler);
-		proxy.registerVillagerSkin(ConfigHandler.TRAINCRAFT_VILLAGER_ID, "station_chief.png");
-		VillagerRegistry.instance().registerVillageTradeHandler(ConfigHandler.TRAINCRAFT_VILLAGER_ID, villageHandler);
+		proxy.registerVillagerSkin(ConfigHandler.TRAINCRAFT_VILLAGER_ID+1, "station_chief.png");
+		VillagerRegistry.instance().registerVillageTradeHandler(ConfigHandler.TRAINCRAFT_VILLAGER_ID+1, villageHandler);
 
 		
 		tcLog.info("Finished Initialization");
