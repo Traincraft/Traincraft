@@ -98,14 +98,14 @@ public class ClientUtil {
                     overlay, (int)x, (int)y);
             itemRender.renderItemOverlayIntoGUI(Minecraft.getMinecraft().fontRenderer, Minecraft.getMinecraft().getTextureManager(),
                     overlay, (int)x, (int)y, null);
+
+            if(mouseX>x && mouseX<x+18 && mouseY>y && mouseY<y+18){
+                GL11.glPushMatrix();
+                drawHoveringText(overlay.getDisplayName(), mouseX, mouseY, guiLeft,guiTop);
+                GL11.glPopMatrix();
+            }
         }
 
-        if(mouseX>x && mouseX<x+18 && mouseY>y && mouseY<y+18){
-            GL11.glPushMatrix();
-            drawHoveringText(overlay.getDisplayName(), mouseX, mouseY, guiLeft,guiTop);
-
-            GL11.glPopMatrix();
-        }
     }
 
 

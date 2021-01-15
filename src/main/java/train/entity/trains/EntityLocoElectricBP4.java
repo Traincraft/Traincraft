@@ -96,7 +96,7 @@ public class EntityLocoElectricBP4 extends EntityTrainCore {
     public float transportTopSpeed(){return 105;}
     @Override
     public ItemStackSlot fuelSlot(){
-        return super.fuelSlot().setOverlay(Items.coal);
+        return super.fuelSlot();
     }
     @Override
     public int[] getTankCapacity(){return new int[]{8650};}

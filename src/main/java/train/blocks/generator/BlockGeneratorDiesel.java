@@ -27,7 +27,7 @@ import java.util.Random;
 public class BlockGeneratorDiesel extends BlockDynamic {
 
 	public BlockGeneratorDiesel() {
-		super(Material.iron, true,true);
+		super(Material.iron, true);
 		setCreativeTab(Traincraft.tcTab);
 		this.setTickRandomly(true);
 		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1F, 1F, 1F);

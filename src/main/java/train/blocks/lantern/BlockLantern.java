@@ -16,7 +16,7 @@ import java.util.Random;
 public class BlockLantern extends BlockDynamic {
 
 	public BlockLantern() {
-		super(Material.rock,false,false);
+		super(Material.rock,false);
 		setCreativeTab(Traincraft.tcTab);
 		this.setTickRandomly(true);
 		float f = 0.3F;

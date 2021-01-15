@@ -70,7 +70,7 @@ public class ClientProxy extends CommonProxy {
     /**the keybind for the horn/whistle*/
     public static KeyBinding KeyHorn = new KeyBinding("Use Horn/Whistle", Keyboard.KEY_H, "Trains in Motion");
     /**the keybind for opening the inventory*/
-    public static KeyBinding KeyInventory = new KeyBinding("Open Train/rollingstock GUI",  Keyboard.KEY_I, "Trains in Motion");
+    public static KeyBinding KeyInventory = new KeyBinding("Open Train/rollingstock GUI",  Keyboard.KEY_R, "Trains in Motion");
     /**the model to use for the rail*/
     public static int railSkin = 3;
     /**toggles whether to show speed in km/h or mph*/
@@ -173,17 +173,13 @@ public class ClientProxy extends CommonProxy {
 
         railSkin = config.getInt("railSkin","Quality (Client only)", 3,0,3,
                 "Defines the rail model to use. 0: flat 2D rail similar to vanilla. 1: basic 3D rail similar to an extruded 2D. 2: Normal 3D rail. 3: High detail 3D rail");
-
-        config.addCustomCategoryComment("Keybinds (Client only)", "accepted values can be set from in-game, or defined using the key code values from: http://minecraft.gamepedia.com/Key_codes");
-
-        KeyLamp.setKeyCode(config.getInt("LampKeybind", "Keybinds (Client only)", Keyboard.KEY_L, 0, 0, ""));
-        KeyHorn.setKeyCode(config.getInt("HornKeybind", "Keybinds (Client only)", Keyboard.KEY_H, 0, 0, ""));
-        KeyInventory.setKeyCode(config.getInt("InventoryKeybind", "Keybinds (Client only)", Keyboard.KEY_I, 0, 0, ""));
-
         config.save();
 
         configDirectory = event.getModConfigurationDirectory().getAbsolutePath();
 
+        ClientRegistry.registerKeyBinding(KeyLamp);
+        ClientRegistry.registerKeyBinding(KeyHorn);
+        ClientRegistry.registerKeyBinding(KeyInventory);
 
     }
 

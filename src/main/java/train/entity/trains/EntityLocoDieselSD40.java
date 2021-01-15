@@ -106,7 +106,7 @@ public class EntityLocoDieselSD40 extends EntityTrainCore {
     public float transportTopSpeed(){return 105;}
     @Override
     public ItemStackSlot fuelSlot(){
-        return super.fuelSlot().setOverlay(Items.coal);
+        return super.fuelSlot();
     }
     @Override//fuel storage is 4000 us gallons, which translates to roughly 15.14 cubic meters of fluid
     public int[] getTankCapacity(){return new int[]{15140};}

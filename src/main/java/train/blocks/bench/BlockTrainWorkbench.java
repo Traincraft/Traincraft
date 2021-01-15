@@ -16,7 +16,7 @@ import train.library.GuiIDs;
 public class BlockTrainWorkbench extends BlockDynamic {
 
 	public BlockTrainWorkbench() {
-		super(Material.wood, true, true);
+		super(Material.wood, true);
 		setCreativeTab(Traincraft.tcTab);
 	}
 

@@ -330,7 +330,18 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
     }
 
     public ItemStackSlot fuelSlot(){
-        return new ItemStackSlot(this, 400,114,32);
+        if(getTypes().contains(STEAM)) {
+            return new ItemStackSlot(this, 400, 114, 32).setOverlay(Items.coal);
+        }
+        if(getTypes().contains(DIESEL)) {
+            return new ItemStackSlot(this, 400, 114, 32).setOverlay(TiMFluids.bucketOil);
+        }
+        if(getTypes().contains(ELECTRIC)) {
+            return new ItemStackSlot(this, 400, 114, 32).setOverlay(Items.redstone);
+        }
+
+
+        return new ItemStackSlot(this, 400, 114, 32);
 
     }
     public ItemStackSlot waterSlot(){

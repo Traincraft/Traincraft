@@ -345,7 +345,7 @@ public class BlockRailCore extends BlockRail implements ITileEntityProvider {
 
     @Override
     public void breakBlock(World p_149749_1_, int p_149749_2_, int p_149749_3_, int p_149749_4_, Block p_149749_5_, int p_149749_6_) {
-        if(!p_149749_1_.isRemote){
+        if(!p_149749_1_.isRemote && !p_149749_1_.getClosestPlayer(p_149749_2_,p_149749_3_,p_149749_4_,6).capabilities.isCreativeMode){
             TileEntity e = p_149749_1_.getTileEntity(p_149749_2_,p_149749_3_,p_149749_4_);
             if(e instanceof RailTileEntity){
                 ((RailTileEntity) e).dropItem();

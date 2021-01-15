@@ -93,7 +93,7 @@ public class EntityLocoDieselWLs40 extends EntityTrainCore {
     public float transportTopSpeed(){return 17;}
     @Override
     public ItemStackSlot fuelSlot(){
-        return super.fuelSlot().setOverlay(Items.coal);
+        return super.fuelSlot();
     }
     @Override
     public int[] getTankCapacity(){return new int[]{3000};}

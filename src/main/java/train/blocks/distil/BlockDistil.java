@@ -25,7 +25,7 @@ public class BlockDistil extends BlockDynamic {
 
 
 	public BlockDistil() {
-		super(Material.rock, true,true);
+		super(Material.rock,true);
 		//setRequiresSelfNotify();
 	}
 

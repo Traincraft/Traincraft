@@ -44,14 +44,14 @@ public class TileRenderFacing extends TileEntity {
     }
 
     public TileRenderFacing setFacing(ForgeDirection direction){
-        //this follows the order definition of the valid directions
+        //this follows our own orders, which don't make a lot of sense, but it works.
         switch (direction){
-            case DOWN:{facing=0;break;}
-            case UP:{facing=1;break;}
+            case SOUTH:{facing=0;break;}
+            case EAST:{facing=1;break;}
+            case WEST:{facing=3;break;}
             case NORTH:{facing=2;break;}
-            case SOUTH:{facing=3;break;}
-            case WEST:{facing=4;break;}
-            case EAST:{facing=5;break;}
+            case DOWN:{facing=4;break;}
+            case UP:{facing=5;break;}
         }
         this.markDirty();
         return this;
@@ -86,17 +86,15 @@ public class TileRenderFacing extends TileEntity {
                     Minecraft.getMinecraft().entityRenderer.disableLightmap(1);
                 }
                 GL11.glTranslatef(0.5f,0.5f,0.5f);
-                if(host.rotates){
-                    switch (facing){
-                        //north
-                        case 0:{GL11.glRotatef(90,0,1,0);break;}
-                        //east
-                        case 1:{break;}
-                        //south
-                        case 2:{GL11.glRotatef(270,0,1,0);break;}
-                        //west
-                        case 3:{GL11.glRotatef(180,0,1,0);break;}
-                    }
+                switch (facing){
+                    //north
+                    case 0:{GL11.glRotatef(90,0,1,0);break;}
+                    //east
+                    case 1:{break;}
+                    //south
+                    case 2:{GL11.glRotatef(270,0,1,0);break;}
+                    //west
+                    case 3:{GL11.glRotatef(180,0,1,0);break;}
                 }
                 GL11.glRotatef(180,1,0,0);
 
@@ -189,18 +187,16 @@ public class TileRenderFacing extends TileEntity {
     @Override
     public void writeToNBT(NBTTagCompound tag){
         super.writeToNBT(tag);
-        if(host.rotates) {
-            tag.setByte("f", facing);
-        }
+        tag.setByte("f", facing);
     }
 
     @Override
     public void readFromNBT(NBTTagCompound tag){
         super.readFromNBT(tag);
-        if(tag.hasKey("f")) {
-            facing = tag.getByte("f");
+        facing = tag.getByte("f");
+        if(worldObj!=null && worldObj.isRemote) {
+            markDirty();
         }
-        markDirty();
     }
 
     public void syncTileEntity(){

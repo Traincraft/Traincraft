@@ -130,7 +130,7 @@ public class EntityLocoSteam4_4_0 extends EntityTrainCore {
      */
     @Override
     public ItemStackSlot fuelSlot(){
-        return super.fuelSlot().setOverlay(Items.coal);
+        return super.fuelSlot();
     }
 
     /**

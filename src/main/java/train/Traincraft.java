@@ -10,6 +10,7 @@ import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.VillagerRegistry;
+import ebf.tim.TrainsInMotion;
 import ebf.tim.gui.GUICraftBook;
 import ebf.tim.items.TiMTab;
 import ebf.tim.registry.TiMGenericRegistry;
@@ -38,7 +39,7 @@ import train.library.TrainRegistry;
 
 import java.io.File;
 
-@Mod(modid = Info.modID, name = Info.modName, version = Info.modVersion)
+@Mod(modid = Info.modID, name = Info.modName, version = Info.modVersion, dependencies="after:"+ TrainsInMotion.MODID)
 public class Traincraft {
 
 	/* TrainCraft instance */

@@ -22,7 +22,6 @@ import net.minecraft.world.World;
  */
 public class BlockDynamic extends BlockContainer {
 
-    public boolean rotates=true;
     public ModelBase model=null;
     public Object tesr=null;
     //for models 0 is entire texture, for blocks, texture is:
@@ -30,17 +29,15 @@ public class BlockDynamic extends BlockContainer {
     public ResourceLocation texture=null;
     public int assemblyTableTier = -1; //only applies if it is an assembly table/traintable. no need to set otherwise. -1 unless set.
 
-    public BlockDynamic(Material material, boolean isDirectional, boolean isStorage, int tier) {
+    public BlockDynamic(Material material, boolean isStorage, int tier) {
         super(material);
-        rotates=isDirectional;
         this.isBlockContainer=isStorage;
         this.opaque=true;
         this.assemblyTableTier = tier;
     }
 
-    public BlockDynamic(Material material, boolean isDirectional, boolean isStorage) {
+    public BlockDynamic(Material material, boolean isStorage) {
         super(material);
-        rotates=isDirectional;
         this.isBlockContainer=isStorage;
         this.opaque=true;
     }

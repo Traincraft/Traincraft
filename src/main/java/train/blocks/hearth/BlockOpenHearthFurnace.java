@@ -32,7 +32,7 @@ public class BlockOpenHearthFurnace extends BlockDynamic {
 
 
 	public BlockOpenHearthFurnace() {
-		super(Material.rock, true,true);
+		super(Material.rock,true);
 		//setRequiresSelfNotify();
 	}
 

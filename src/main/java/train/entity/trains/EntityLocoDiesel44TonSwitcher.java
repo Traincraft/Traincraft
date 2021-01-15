@@ -93,7 +93,7 @@ public class EntityLocoDiesel44TonSwitcher extends EntityTrainCore {
     public float transportTopSpeed(){return 56;}
     @Override
     public ItemStackSlot fuelSlot(){
-        return super.fuelSlot().setOverlay(Items.coal);
+        return super.fuelSlot();
     }
     @Override
     public int[] getTankCapacity(){return new int[]{6850};}

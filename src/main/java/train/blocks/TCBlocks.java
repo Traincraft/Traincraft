@@ -32,12 +32,12 @@ import static cpw.mods.fml.common.registry.GameRegistry.addRecipe;
 import static ebf.tim.registry.TiMGenericRegistry.registerBlock;
 
 public class TCBlocks {
-	public static BlockDynamic trainTableTier1 = new BlockDynamic(new Material(MapColor.mapColorArray[13]), true, true, 1);
-	public static BlockDynamic trainTableTier2 = new BlockDynamic(new Material(MapColor.mapColorArray[13]), true, true, 2);
-	public static BlockDynamic trainTableTier3 = new BlockDynamic(new Material(MapColor.mapColorArray[13]), true, true, 3);
+	public static BlockDynamic trainTableTier1 = new BlockDynamic(new Material(MapColor.mapColorArray[13]),true, 1);
+	public static BlockDynamic trainTableTier2 = new BlockDynamic(new Material(MapColor.mapColorArray[13]),true, 2);
+	public static BlockDynamic trainTableTier3 = new BlockDynamic(new Material(MapColor.mapColorArray[13]),true, 3);
 
-	public static BlockDynamic oilSand = new BlockDynamic(new Material(MapColor.mapColorArray[2]), false, false);
-	public static BlockDynamic orePetroleum = new BlockDynamic(new Material(MapColor.mapColorArray[11]), false, false);
+	public static BlockDynamic oilSand = new BlockDynamic(new Material(MapColor.mapColorArray[2]), false);
+	public static BlockDynamic orePetroleum = new BlockDynamic(new Material(MapColor.mapColorArray[11]), false);
 
 	public static BlockDistil blockDistil = new BlockDistil();
 	public static BlockOpenHearthFurnace blockHearthFurnace = new BlockOpenHearthFurnace();

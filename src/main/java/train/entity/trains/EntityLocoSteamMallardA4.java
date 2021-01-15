@@ -118,7 +118,7 @@ public class EntityLocoSteamMallardA4 extends EntityTrainCore {
     public Item getItem(){return thisItem;}
     @Override
     public ItemStackSlot fuelSlot(){
-        return super.fuelSlot().setOverlay(Items.coal);
+        return super.fuelSlot();
     }
     @Override
     public float getMaxFuel(){return 1;}

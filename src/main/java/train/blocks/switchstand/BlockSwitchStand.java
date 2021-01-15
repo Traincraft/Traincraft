@@ -23,7 +23,7 @@ import java.util.Random;
 public class BlockSwitchStand extends BlockDynamic {
 
 	public BlockSwitchStand() {
-		super(Material.rock,true,false);
+		super(Material.rock,false);
 		setCreativeTab(Traincraft.tcTab);
 		this.setTickRandomly(true);
 		//this.setBlockBounds(0.5F , 0.0F, 0.5F , 0.5F ,  2.0F, 0.5F);

@@ -97,7 +97,7 @@ public class EntityLocoSteamBR80_DB extends EntityTrainCore {
     public float transportTopSpeed(){return 45;}
     @Override
     public ItemStackSlot fuelSlot(){
-        return super.fuelSlot().setOverlay(Items.coal);
+        return super.fuelSlot();
     }
     @Override
     public int[] getTankCapacity(){return new int[]{4920, 400};}

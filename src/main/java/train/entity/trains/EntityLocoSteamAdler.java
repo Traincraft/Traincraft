@@ -93,7 +93,7 @@ public class EntityLocoSteamAdler extends EntityTrainCore {
     public float transportTopSpeed(){return 64.3f;}
     @Override
     public ItemStackSlot fuelSlot(){
-        return super.fuelSlot().setOverlay(Items.coal);
+        return super.fuelSlot();
     }
     @Override
     public int[] getTankCapacity(){return new int[]{3000, 600};}

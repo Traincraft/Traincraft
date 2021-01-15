@@ -96,7 +96,7 @@ public class EntityLocoSteamPannier extends EntityTrainCore {
     public float transportTopSpeed(){return 80;}
     @Override
     public ItemStackSlot fuelSlot(){
-        return super.fuelSlot().setOverlay(Items.coal);
+        return super.fuelSlot();
     }
     @Override
     public int[] getTankCapacity(){return new int[]{3970, 800};}

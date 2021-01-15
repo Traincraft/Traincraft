@@ -219,6 +219,7 @@ public class FuelHandler{
 			if (train.fill(null, getUseableFluid(400,train))) {
 				if(!train.getBoolean(GenericRailTransport.boolValues.CREATIVE)) {
 					train.getSlotIndexByID(train.fuelSlot().getSlotID()).decrStackSize(1);
+					train.addItem(new ItemStack(Items.bucket));
 				}
 			}
             //todo: fluid pipe support, should be able to be toggled in server settings
@@ -228,13 +229,13 @@ public class FuelHandler{
         if (train.getBoolean(GenericRailTransport.boolValues.RUNNING)){
             //diesel trains use fuel similar to electric, except idle will use fuel.
 			if(train.accelerator==0){//idle
-				if(train.drain(null, 0, (int)(1f*train.getEfficiency()),false)>0) {
+				if(train.drain(null, 0, (int)(1f*train.getEfficiency()),false)==0) {
 					train.drain(null, 0, (int) (1f * train.getEfficiency()), true);
 				} else {
 					train.setBoolean(GenericRailTransport.boolValues.RUNNING, false);
 				}
 			} else {//moving
-				if (train.drain(null, 0, MathHelper.floor_double((1 * train.getEfficiency()) + (Math.copySign(train.accelerator, 1) * (5 * train.getEfficiency()))), false)>0) {
+				if (train.drain(null, 0, MathHelper.floor_double((1 * train.getEfficiency()) + (Math.copySign(train.accelerator, 1) * (5 * train.getEfficiency()))), false)==0) {
 					train.drain(null, 0,  MathHelper.floor_double((1 * train.getEfficiency()) + (Math.copySign(train.accelerator, 1) * (5 * train.getEfficiency()))), true);
 				} else {
 					train.setBoolean(GenericRailTransport.boolValues.RUNNING, false);

@@ -19,13 +19,13 @@ public class TiMOres {
 
     public static Item ingotSteel, ingotCopper, ingotAluminum, dustPlastic;
 
-    public static BlockDynamic copperBlock = new BlockDynamic(new Material(MapColor.mapColorArray[2]), false, false);
-    public static BlockDynamic steelBlock = new BlockDynamic(new Material(MapColor.mapColorArray[6]), false, false);
-    public static BlockDynamic aluminiumBlock = new BlockDynamic(new Material(MapColor.mapColorArray[14]), false, false);
+    public static BlockDynamic copperBlock = new BlockDynamic(new Material(MapColor.mapColorArray[2]), false);
+    public static BlockDynamic steelBlock = new BlockDynamic(new Material(MapColor.mapColorArray[6]), false);
+    public static BlockDynamic aluminiumBlock = new BlockDynamic(new Material(MapColor.mapColorArray[14]), false);
 
-    public static BlockDynamic oreCopper = new BlockDynamic(new Material(MapColor.mapColorArray[11]), false, false);
-    public static BlockDynamic oreSteel = new BlockDynamic(new Material(MapColor.mapColorArray[11]), false, false);
-    public static BlockDynamic oreAluminium = new BlockDynamic(new Material(MapColor.mapColorArray[11]), false, false);
+    public static BlockDynamic oreCopper = new BlockDynamic(new Material(MapColor.mapColorArray[11]), false);
+    public static BlockDynamic oreSteel = new BlockDynamic(new Material(MapColor.mapColorArray[11]), false);
+    public static BlockDynamic oreAluminium = new BlockDynamic(new Material(MapColor.mapColorArray[11]), false);
 
 
 

@@ -106,7 +106,7 @@ public class EntityLocoDieselSD70 extends EntityTrainCore {
     public float transportTopSpeed(){return 120;}
     @Override
     public ItemStackSlot fuelSlot(){
-        return super.fuelSlot().setOverlay(Items.coal);
+        return super.fuelSlot();
     }
     @Override
     public int[] getTankCapacity(){return new int[]{20000};}

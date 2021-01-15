@@ -27,7 +27,7 @@ import java.util.Random;
 public class BlockSignal extends BlockDynamic {
 
 	public BlockSignal() {
-		super(Material.circuits,true,true);
+		super(Material.circuits,true);
 		this.setLightLevel(1.0F);
 		setBlockBounds(0.2F, 0.0F, 0.2F, 0.8F, 2.6F, 0.8F);
 		setCreativeTab(Traincraft.tcTab);
