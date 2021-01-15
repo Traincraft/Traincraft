@@ -5,12 +5,13 @@
  * @author Mrbrutal
  ******************************************************************************/
 
-package train.blocks.bridge;
+package train.blocks;
 
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.BlockContainer;
+import ebf.tim.blocks.BlockDynamic;
+import ebf.tim.blocks.TileRenderFacing;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
@@ -22,12 +23,12 @@ import net.minecraft.world.World;
 import train.Traincraft;
 import train.library.Info;
 
-public class BlockBridgePillar extends BlockContainer {
+public class BlockBridgePillar extends BlockDynamic {
 
 	private IIcon texture;
 
 	public BlockBridgePillar() {
-		super(Material.wood);
+		super(Material.wood, true, false);
 		setCreativeTab(Traincraft.tcTab);
 	}
 
@@ -53,7 +54,7 @@ public class BlockBridgePillar extends BlockContainer {
 
 	@Override
 	public TileEntity createNewTileEntity(World world, int meta) {
-		return new TileBridgePillar();
+		return new tilePillar(this);
 	}
 	
 	/**
@@ -86,5 +87,13 @@ public class BlockBridgePillar extends BlockContainer {
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister iconRegister) {
 		texture = iconRegister.registerIcon(Info.modID.toLowerCase() + ":assembly_1_bottom");
+	}
+
+
+	public class tilePillar extends TileRenderFacing{
+
+		public tilePillar(BlockDynamic block) {
+			super(block);
+		}
 	}
 }

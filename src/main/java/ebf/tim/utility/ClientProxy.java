@@ -155,7 +155,7 @@ public class ClientProxy extends CommonProxy {
                 "Overrides the render of train and rollingstock items to use their full model. NOTICE: after the pre-alpha stages this should default to false.");
 
         preRenderModels = config.getBoolean("preRenderModels","Quality (Client only)", false,
-                "Pre-renders transport entity and item models during loading screen and stores them on GPU, Requires a lot of VRAM but makes the game run smoother, Don't use if get the GL error 1285 (Out of memory)");
+                "Pre-renders transport entity and item models during loading screen and stores them on GPU, Requires a lot of VRAM but makes the game run smoother, especially with NEI/JEI, Don't use if get the GL error 1285 (Out of memory)");
 
         disableCache = config.getBoolean("disableGLCache","Quality (Client only)", false,
                 "forces the render to skip model caching, this will cause significant lag, but is good for debugging, or if you get the GL error 1285 (Out of memory)");

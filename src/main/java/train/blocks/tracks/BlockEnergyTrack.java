@@ -13,7 +13,6 @@ import mods.railcraft.api.electricity.IElectricGrid;
 import mods.railcraft.api.tracks.ITrackPowered;
 import mods.railcraft.api.tracks.ITrackTile;
 import net.minecraft.block.Block;
-import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;

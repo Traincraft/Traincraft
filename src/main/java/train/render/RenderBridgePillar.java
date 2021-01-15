@@ -4,7 +4,6 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import org.lwjgl.opengl.GL11;
 import train.render.models.blocks.ModelBridgePillar;
-import train.blocks.bridge.TileBridgePillar;
 
 public class RenderBridgePillar extends TileEntitySpecialRenderer {
 	static final ModelBridgePillar modelBridgePillar = new ModelBridgePillar();
@@ -12,7 +11,7 @@ public class RenderBridgePillar extends TileEntitySpecialRenderer {
 	@Override
 	public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float tick) {
 		GL11.glPushMatrix();
-		modelBridgePillar.render((TileBridgePillar) tileEntity, x, y, z);
+		modelBridgePillar.render(tileEntity, x, y, z);
 		GL11.glPopMatrix();
 	}
 }

@@ -1,10 +1,11 @@
 package train.render;
 
+import ebf.tim.blocks.TileRenderFacing;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import org.lwjgl.opengl.GL11;
-import train.render.models.blocks.ModelBlockSignal;
 import train.blocks.signal.TileSignal;
+import train.render.models.blocks.ModelBlockSignal;
 
 public class RenderSignal extends TileEntitySpecialRenderer {
 
@@ -13,7 +14,7 @@ public class RenderSignal extends TileEntitySpecialRenderer {
 	public RenderSignal() {
 	}
 
-	public void renderAModelAt(TileSignal var1, double d, double d1, double d2, float f) {
+	public void renderAModelAt(TileEntity var1, double d, double d1, double d2, float f) {
 		GL11.glPushMatrix();
 		GL11.glTranslatef((float) d + 0.46F, (float) d1 + 0.0F, (float) d2 + 0.46F);
 		/*if (var1.state == 1) {
@@ -22,7 +23,7 @@ public class RenderSignal extends TileEntitySpecialRenderer {
 		else {
 			bindTextureByName(Info.trainsPrefix + "signal_suisse_red.png");
 		}*/
-		modelSignal.render(0.0625F, var1.getFacing());
+		modelSignal.render(0.0625F, var1 instanceof TileRenderFacing?((TileRenderFacing)var1).facing:0);
 		GL11.glPopMatrix();
 	}
 	

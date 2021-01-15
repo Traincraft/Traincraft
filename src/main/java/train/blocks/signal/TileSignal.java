@@ -1,17 +1,16 @@
 package train.blocks.signal;
 
+import ebf.tim.blocks.BlockDynamic;
+import ebf.tim.blocks.TileRenderFacing;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.Packet;
-import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 
 import java.util.List;
 
 //client
-public class TileSignal extends TileEntity {
+public class TileSignal extends TileRenderFacing {
 	public int state;// 0=red 1=green
 	public int rot;
 
@@ -20,7 +19,8 @@ public class TileSignal extends TileEntity {
 	public double fu;// signal
 	private int facingMeta;
 
-	public TileSignal() {
+	public TileSignal(BlockDynamic host) {
+		super(host);
 		// signal
 		tempSpeedX = 0;
 		tempSpeedZ = 0;
@@ -28,35 +28,15 @@ public class TileSignal extends TileEntity {
 		facingMeta = this.blockMetadata;
 	}
 
-	public int getFacing() {
-		return facingMeta;
-	}
-
-	public void setFacing(int facing) {
-		this.facingMeta = facing;
-		this.rot = facing;
-	}
-
 	@Override
 	public void readFromNBT(NBTTagCompound nbttagcompound) {
 		state = nbttagcompound.getInteger("state");
 		rot = nbttagcompound.getInteger("rot");
-		facingMeta = nbttagcompound.getByte("Orientation");
 	}
 	@Override
 	public void writeToNBT(NBTTagCompound nbttagcompound) {
-		nbttagcompound.setByte("Orientation", (byte) facingMeta);
 		nbttagcompound.setInteger("state", this.state);
 		nbttagcompound.setInteger("rot", this.rot);
-	}
-
-	@Override
-	public Packet getDescriptionPacket() {
-
-		NBTTagCompound nbt = new NBTTagCompound();
-		this.writeToNBT(nbt);
-
-		return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, nbt);
 	}
 
 	@Override

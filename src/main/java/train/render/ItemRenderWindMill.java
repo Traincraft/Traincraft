@@ -5,9 +5,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
+import train.library.Info;
 import train.render.models.blocks.ModelWindMill;
 import train.render.models.blocks.ModelWindMillWheel;
-import train.library.Info;
 
 public class ItemRenderWindMill implements IItemRenderer {
 	private ModelWindMill modelWindMill;

@@ -2,6 +2,7 @@ package train.blocks.windmill;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import ebf.tim.blocks.BlockDynamic;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -16,11 +17,11 @@ import train.library.Info;
 
 import java.util.Random;
 
-public class BlockWindMill extends Block {
+public class BlockWindMill extends BlockDynamic {
 	private IIcon texture;
 
 	public BlockWindMill() {
-		super(Material.wood);
+		super(Material.wood, true,false);
 		setCreativeTab(Traincraft.tcTab);
 		this.setTickRandomly(true);
 		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1F, 2F, 1F);
@@ -43,7 +44,12 @@ public class BlockWindMill extends Block {
 
 	@Override
 	public TileEntity createTileEntity(World world, int metadata) {
-		return new TileWindMill();
+		return new TileWindMill(this);
+	}
+
+	@Override
+	public TileEntity createNewTileEntity(World world, int metadata) {
+		return new TileWindMill(this);
 	}
 
 	@Override
@@ -55,7 +61,7 @@ public class BlockWindMill extends Block {
 	@Override
 	public void randomDisplayTick(World par1World, int par2, int par3, int par4, Random par5Random) {
 		TileEntity tile = par1World.getTileEntity(par2, par3, par4);
-		if (tile != null && tile instanceof TileWindMill && ((TileWindMill) tile).windClient > 0) {
+		if (tile instanceof TileWindMill && ((TileWindMill) tile).windClient > 0) {
 			if (par5Random.nextInt(20) == 0) {
 				par1World.playSound(par2, par3, par4, "minecart.inside", par5Random.nextFloat() * 0.25F + 0.1F, par5Random.nextFloat() * 1F - 0.6F, true);
 			}
@@ -106,7 +112,7 @@ public class BlockWindMill extends Block {
 	@Override
 	public void breakBlock(World par1World, int par2, int par3, int par4, Block par5, int par6) {
 		TileEntity tile = par1World.getTileEntity(par2, par3, par4);
-		if (tile != null && tile instanceof TileWindMill) {
+		if (tile instanceof TileWindMill) {
 			tile.onChunkUnload();
 		}
 		super.breakBlock(par1World, par2, par3, par4, par5, par6);

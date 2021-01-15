@@ -13,15 +13,16 @@ import cofh.api.energy.IEnergyProvider;
 import cofh.api.energy.IEnergyReceiver;
 import ebf.tim.blocks.TileEntityStorage;
 import ebf.tim.utility.ItemStackSlot;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraftforge.fluids.*;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidContainerRegistry;
+import net.minecraftforge.fluids.FluidStack;
 import train.blocks.TCBlocks;
-import train.blocks.fluids.LiquidManager;
-import train.core.util.Energy;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -49,15 +50,34 @@ public class TileGeneratorDiesel extends TileEntityStorage implements IEnergyPro
         inventory.add(new ItemStackSlot(this, 401, 56, 53));
 
     }
+
+
+    @Override
+    public boolean canUpdate(){return true;}
     @Override
     public void updateEntity(){
         if(!worldObj.isRemote){
             if(getSlotIndexByID(400).getStack() != null){
-                ItemStack result = LiquidManager.getInstance().processContainer(this, 0, this, getSlotIndexByID(400).getStack());
-                if(result != null && placeInInvent(result, 1, false)){
-                    placeInInvent(result, 1, true);
-                    this.markDirty();
+                FluidStack stak = FluidContainerRegistry.getFluidForFilledItem(getSlotIndexByID(400).getStack());
+                if(stak!=null && stak.amount>0){
+                    if(getTankInfo(0).fluid==null || getTankInfo(0).fluid.fluid ==null || getTankInfo(0).fluid.amount==0 ||
+                            (getTankInfo(0).fluid.amount+stak.amount<getTankCapacity()[0]&&
+                            getTankInfo(0).fluid.fluid == stak.fluid)){
+
+                        if(getSlotIndexByID(401).getStack()==null ||
+                                (getSlotIndexByID(401).getItem()== Items.bucket &&getSlotIndexByID(401).getStackSize()< getSlotIndexByID(401).getStack().getMaxStackSize())) {
+
+                            if(getSlotIndexByID(401).getStack()==null){
+                                getSlotIndexByID(401).setStack(new ItemStack(Items.bucket));
+                            } else {
+                                getSlotIndexByID(401).decrStackSize(-1);
+                            }
+                            fill(ForgeDirection.UNKNOWN, stak, true);
+                            getSlotIndexByID(400).decrStackSize(1);
+                        }
+                    }
                 }
+                this.markDirty();
             }
             int energyProduced = 70;
             if(this.currentBurnTime > 0){

@@ -9,13 +9,12 @@ package train.core.interfaces;
 
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
 
 public interface ITCRecipe {
 	/**
 	 * Used to check if a recipe matches current crafting inventory
 	 */
-	boolean matches(IInventory var1, World var2);
+	boolean matches(IInventory var1);
 
 	/**
 	 * Returns an Item that is the result of this recipe

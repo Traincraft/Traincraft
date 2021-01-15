@@ -10,7 +10,6 @@ package train.render.models;
 
 import fexcraft.tmt.slim.ModelBase;
 import fexcraft.tmt.slim.ModelRendererTurbo;
-import net.minecraft.entity.Entity;
 
 public class ModelTenderAdler extends ModelBase {
 

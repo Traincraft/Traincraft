@@ -2,7 +2,6 @@ package train.blocks.distil;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import ebf.tim.TrainsInMotion;
 import ebf.tim.blocks.BlockDynamic;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -119,7 +118,7 @@ public class BlockDistil extends BlockDynamic {
 
 	@Override
 	public TileEntity createNewTileEntity(World world, int meta) {
-		return new TileEntityDistil();
+		return new TileEntityDistil(this);
 	}
 
 }

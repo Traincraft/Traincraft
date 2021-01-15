@@ -7,7 +7,6 @@
 
 package train.core.managers;
 
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 import java.util.Arrays;

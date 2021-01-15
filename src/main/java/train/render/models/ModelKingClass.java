@@ -11,7 +11,6 @@ package train.render.models; //Path where the model is located
 
 import fexcraft.tmt.slim.ModelConverter;
 import fexcraft.tmt.slim.ModelRendererTurbo;
-import net.minecraft.entity.Entity;
 
 public class ModelKingClass extends ModelConverter //Same as Filename
 {

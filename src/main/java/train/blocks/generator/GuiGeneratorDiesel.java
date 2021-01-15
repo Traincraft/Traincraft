@@ -4,9 +4,7 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
-import train.blocks.generator.ContainerGeneratorDiesel;
 import train.library.Info;
-import train.blocks.generator.TileGeneratorDiesel;
 
 public class GuiGeneratorDiesel extends GuiContainer{
 
@@ -35,7 +33,8 @@ public class GuiGeneratorDiesel extends GuiContainer{
 
     @Override
     protected void drawCreativeTabHoveringText(String str, int t, int g){
-        int textWidth = fontRendererObj.getStringWidth(dieselInventory.theTank.getFluidAmount()+"/"+dieselInventory.getTankCapacity());
+        boolean hasFluid = dieselInventory.getTankInfo(0)!=null && dieselInventory.getTankInfo(0).fluid!=null;
+        int textWidth = fontRendererObj.getStringWidth(!hasFluid?"0/"+dieselInventory.getTankCapacity()[0]:(dieselInventory.getTankInfo(0).fluid.amount+"/"+dieselInventory.getTankCapacity()[0]));
         int startX = t+14;
         int startY = g-12;
 
@@ -47,7 +46,7 @@ public class GuiGeneratorDiesel extends GuiContainer{
         drawGradientRect(startX-3, startY-3, startX+textWidth+3, startY+8+3+10, colour1, colour2);
         drawGradientRect(startX-2, startY-2, startX+textWidth+2, startY+8+2+10, i4, i4);
         fontRendererObj.drawStringWithShadow(str, startX, startY, -1);
-        fontRendererObj.drawStringWithShadow(dieselInventory.theTank.getFluidAmount()+"/"+dieselInventory.getTankCapacity(), startX, startY+10, -1);
+        fontRendererObj.drawStringWithShadow(!hasFluid?"0/"+dieselInventory.getTankCapacity()[0]:(dieselInventory.getTankInfo(0).fluid.amount+"/"+dieselInventory.getTankCapacity()[0]), startX, startY+10, -1);
     }
 
     @Override
@@ -57,8 +56,12 @@ public class GuiGeneratorDiesel extends GuiContainer{
         int j = (width-xSize)/2;
         int k = (height-ySize)/2;
         drawTexturedModalRect(j, k, 0, 0, xSize, ySize);
-        int amount = dieselInventory.theTank.getFluidAmount();
-        int liqui = Math.abs((amount*50)/(dieselInventory.getTankCapacity()));
+        int amount = dieselInventory.getTankInfo(0)!=null && dieselInventory.getTankInfo(0).fluid!=null?
+                dieselInventory.getTankInfo(0).fluid.amount:0;
+        int liqui=0;
+        if(amount!=0){
+            liqui= Math.abs(((amount*50))/(dieselInventory.getTankCapacity()[0]));
+        }
         //if ((LiquidManager.diesel != null && dieselInventory.getLiquidItemIDClient() == LiquidManager.diesel.itemID)) {
         drawTexturedModalRect(j+145, (k+57)-liqui, 177, 107-liqui, 18, liqui);
         //}

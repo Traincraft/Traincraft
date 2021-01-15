@@ -3,7 +3,6 @@ package train.render.models;
 
 import fexcraft.tmt.slim.ModelBase;
 import fexcraft.tmt.slim.ModelRendererTurbo;
-import net.minecraft.entity.Entity;
 import train.render.CustomModelRenderer;
 //import src.train.core.handlers.ConfigHandler;
 

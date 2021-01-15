@@ -5,6 +5,7 @@ import ebf.tim.api.SkinRegistry;
 import ebf.tim.api.TransportSkin;
 import ebf.tim.entities.GenericRailTransport;
 import ebf.tim.items.ItemTransport;
+import ebf.tim.registry.TiMItems;
 import fexcraft.tmt.slim.ModelBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -13,7 +14,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import train.Traincraft;
 import train.library.Info;
-import train.library.ItemIDs;
 
 import java.util.List;
 import java.util.UUID;
@@ -71,7 +71,7 @@ public class EntityFreightWood2 extends GenericRailTransport {
     @Override
     public ItemStack[] getRecipie() {
         return new ItemStack[]{
-                new ItemStack(Blocks.planks, 3), new ItemStack(ItemIDs.bogie.item, 2), new ItemStack(ItemIDs.ironFrame.item, 1), 
+                new ItemStack(Blocks.planks, 3), new ItemStack(TiMItems.wheelWood, 2), new ItemStack(TiMItems.frameIron, 1),
                 new ItemStack(Items.iron_ingot, 2), null, null, null, null, new ItemStack(Blocks.log, 1)        };
     }
 

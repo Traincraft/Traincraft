@@ -1,65 +1,37 @@
 package train.blocks.bench;
 
+import ebf.tim.blocks.TileEntityStorage;
+import ebf.tim.utility.TransportSlotManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.InventoryCraftResult;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
 
-public class ContainerTrainWorkbench extends Container {
+public class ContainerTrainWorkbench extends TransportSlotManager {
 
-	public IInventory craftMatrix;
-	public IInventory craftResult = new InventoryCraftResult();
-	private World worldObj;
-
-	public ContainerTrainWorkbench(InventoryPlayer invPlayer, World world, IInventory te) {
-		this.worldObj = world;
-		craftMatrix = te;
-
-		this.addSlotToContainer(new SlotTrainCrafting(invPlayer.player, craftMatrix, craftResult, 0, 124, 35));
-		int var6;
-		int var7;
-
-		for (var6 = 0; var6 < 3; ++var6) {
-			for (var7 = 0; var7 < 3; ++var7) {
-				addSlotToContainer(new SlotCrafterTier(invPlayer.player, craftMatrix, var7 + var6 * 3, 30 + var7 * 18, 17 + var6 * 18));
-			}
-		}
-
-		for (var6 = 0; var6 < 3; ++var6) {
-			for (var7 = 0; var7 < 9; ++var7) {
-				addSlotToContainer(new Slot(invPlayer, var7 + var6 * 9 + 9, 8 + var7 * 18, 84 + var6 * 18));
-			}
-		}
-
-		for (var6 = 0; var6 < 9; ++var6) {
-			addSlotToContainer(new Slot(invPlayer, var6, 8 + var6 * 18, 142));
-		}
-
-		onCraftMatrixChanged(craftMatrix);
+	public ContainerTrainWorkbench(InventoryPlayer invPlayer, TileEntityStorage te) {
+		super(invPlayer,te);
 	}
 
 	@Override
 	public void onCraftMatrixChanged(IInventory inv) {
 		super.onCraftMatrixChanged(inv);
-		craftResult.setInventorySlotContents(0, TrainCraftingManager.getInstance().func_82787_a(craftMatrix, worldObj));
+		((TileEntityStorage)hostInventory).getSlotIndexByID(400).setStack(TrainCraftingManager.getInstance().func_82787_a(hostInventory));
 	}
 
 	/*
-	 * @Override public void updateCraftingResults() { super.updateCraftingResults(); craftResult.setInventorySlotContents(0, TrainCraftingManager.getInstance().func_82787_a(craftMatrix, worldObj)); } */
+	 * @Override public void updateCraftingResults() { super.updateCraftingResults(); craftResult.setInventorySlotContents(0, TrainCraftingManager.getInstance().func_82787_a(hostInventory, worldObj)); } */
 
 	@Override
 	public void detectAndSendChanges() {
 		super.detectAndSendChanges();
-		craftResult.setInventorySlotContents(0, TrainCraftingManager.getInstance().func_82787_a(craftMatrix, worldObj));
+		((TileEntityStorage)hostInventory).getSlotIndexByID(400).setStack(TrainCraftingManager.getInstance().func_82787_a(hostInventory));
 	}
 
 	@Override
 	public boolean canInteractWith(EntityPlayer player) {
-		return craftMatrix.isUseableByPlayer(player);
+		return hostInventory.isUseableByPlayer(player);
 	}
 
 	@Override

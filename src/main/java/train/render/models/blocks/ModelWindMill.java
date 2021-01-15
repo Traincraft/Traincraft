@@ -4,6 +4,7 @@ import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.model.ModelBase;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.IModelCustom;
@@ -14,11 +15,6 @@ import train.blocks.windmill.TileWindMill;
 @SideOnly(Side.CLIENT)
 public class ModelWindMill extends ModelBase {
 	private IModelCustom modelWindMill;
-	//private IModelCustom modelWindMillWheel;
-	private long lastframe;
-	private float wheel;
-	private int l;
-	public float wheel1 = 0.4188790204786391F;
 
 	public ModelWindMill() {
 		modelWindMill = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "wind_mill.obj"));
@@ -28,12 +24,18 @@ public class ModelWindMill extends ModelBase {
 		modelWindMill.renderAll();
 	}
 
-	public void render(TileWindMill windMill, double x, double y, double z) {
+	public void render(TileEntity windMill, double x, double y, double z) {
 		// Push a blank matrix onto the stack
 		GL11.glPushMatrix();
 
 		// Move the object into the correct position on the block (because the OBJ's origin is the center of the object)
-		GL11.glTranslatef((float) x + 0.5f, (float) y + 0.43f, (float) z + 0.5f);
+		if(windMill.getWorldObj()==null){
+			GL11.glTranslated( x,  y+0.5,  z);
+			GL11.glRotatef(180,0,0,1);
+			GL11.glScalef(0.8f,0.8f,0.8f);
+		} else {
+			GL11.glTranslated( x + 0.5,  y,  z + 0.5);
+		}
 
 		// Bind the texture, so that OpenGL properly textures our block.
 		FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation,Info.modelTexPrefix + "water_wheel_uv.png"));
@@ -45,17 +47,19 @@ public class ModelWindMill extends ModelBase {
 		float f4 = (float) (j & 255) / 255.0F;
 		GL11.glColor4f(f1 * f2, f1 * f3, f1 * f4, 1);
 		GL11.glScalef(0.5f, 0.5f, 0.5f);
-		int facing = windMill.getWorldObj().getBlockMetadata((int) windMill.xCoord, (int) windMill.yCoord, (int) windMill.zCoord);
-		if (facing == 3) {
-		}
-		if (facing == 1) {
-			GL11.glRotatef(180, 0, 1, 0);
-		}
-		if (facing == 0) {
-			GL11.glRotatef(-90, 0, 1, 0);
-		}
-		if (facing == 2) {
-			GL11.glRotatef(90, 0, 1, 0);
+		if(windMill.getWorldObj()!=null) {
+			int facing = windMill.getWorldObj().getBlockMetadata(windMill.xCoord, windMill.yCoord, windMill.zCoord);
+			if (facing == 3) {
+			}
+			if (facing == 1) {
+				GL11.glRotatef(180, 0, 1, 0);
+			}
+			if (facing == 0) {
+				GL11.glRotatef(-90, 0, 1, 0);
+			}
+			if (facing == 2) {
+				GL11.glRotatef(90, 0, 1, 0);
+			}
 		}
 
 		this.render();

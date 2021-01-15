@@ -2,25 +2,22 @@ package train.blocks.waterwheel;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import ebf.tim.blocks.BlockDynamic;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import train.Traincraft;
-import train.library.Info;
 
 import java.util.Random;
 
-public class BlockWaterWheel extends Block {
-	private IIcon texture;
+public class BlockWaterWheel extends BlockDynamic {
 
 	public BlockWaterWheel() {
-		super(Material.wood);
+		super(Material.wood, true,false);
 		setCreativeTab(Traincraft.tcTab);
 		this.setTickRandomly(true);
 		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1F, 1F, 1F);
@@ -43,8 +40,13 @@ public class BlockWaterWheel extends Block {
 
 	@Override
 	public TileEntity createTileEntity(World world, int metadata) {
-		return new TileWaterWheel();
+		return new TileWaterWheel(this);
 	}
+
+    @Override
+    public TileEntity createNewTileEntity(World world, int metadata) {
+        return new TileWaterWheel(this);
+    }
 
 	@Override
 	public int getRenderType() {
@@ -55,7 +57,7 @@ public class BlockWaterWheel extends Block {
 	@Override
 	public void randomDisplayTick(World par1World, int par2, int par3, int par4, Random par5Random) {
 		TileEntity tile = par1World.getTileEntity(par2, par3, par4);
-		if (tile != null && tile instanceof TileWaterWheel && ((TileWaterWheel) tile).getWaterDir() > -1001) {
+		if (tile instanceof TileWaterWheel && ((TileWaterWheel) tile).getWaterDir() > -1001) {
 			double d0 = (double) ((float) par2 + 0.5F);
 			double d2 = (double) ((float) par4 + 0.5F);
 
@@ -94,16 +96,6 @@ public class BlockWaterWheel extends Block {
 		}
 	}
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(IIconRegister iconRegister) {
-		texture = iconRegister.registerIcon(Info.modID.toLowerCase() + ":water_wheel");
-	}
-
-	@Override
-	public IIcon getIcon(int i, int j) {
-		return texture;
-	}
 
 	/**
 	 * ejects contained items into the world, and notifies neighbours of an update, as appropriate
@@ -112,7 +104,7 @@ public class BlockWaterWheel extends Block {
 	public void breakBlock(World par1World, int par2, int par3, int par4, Block par5, int par6) {
 		int l = par1World.getBlockMetadata(par2, par3, par4);
 		TileEntity tile = par1World.getTileEntity(par2, par3, par4);
-		if (tile != null && tile instanceof TileWaterWheel) {
+		if (tile instanceof TileWaterWheel) {
 			(tile).onChunkUnload();
 		}
 		super.breakBlock(par1World, par2, par3, par4, par5, par6);

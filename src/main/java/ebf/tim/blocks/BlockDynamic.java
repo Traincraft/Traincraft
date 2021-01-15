@@ -24,6 +24,7 @@ public class BlockDynamic extends BlockContainer {
 
     public boolean rotates=true;
     public ModelBase model=null;
+    public Object tesr=null;
     //for models 0 is entire texture, for blocks, texture is:
     //0 up, 1 down, 2 north, 3 south, 4 east, 5 west.
     public ResourceLocation texture=null;
@@ -46,6 +47,12 @@ public class BlockDynamic extends BlockContainer {
 
     public Block setModel(ModelBase modelBase){
         model=modelBase;
+        return this;
+    }
+
+
+    public Block setTESR(Object modelRender){
+        tesr=modelRender;
         return this;
     }
 

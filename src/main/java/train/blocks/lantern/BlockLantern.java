@@ -2,25 +2,21 @@ package train.blocks.lantern;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.Block;
+import ebf.tim.blocks.BlockDynamic;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import train.Traincraft;
 import train.items.ItemWrench;
 import train.library.GuiIDs;
-import train.library.Info;
 
 import java.util.Random;
 
-public class BlockLantern extends Block {
-	private IIcon texture;
+public class BlockLantern extends BlockDynamic {
 
 	public BlockLantern() {
-		super(Material.rock);
+		super(Material.rock,false,false);
 		setCreativeTab(Traincraft.tcTab);
 		this.setTickRandomly(true);
 		float f = 0.3F;
@@ -43,8 +39,8 @@ public class BlockLantern extends Block {
 	}
 
 	@Override
-	public TileEntity createTileEntity(World world, int metadata) {
-		return new TileLantern();
+	public TileEntity createNewTileEntity(World world, int metadata) {
+		return new TileLantern(this);
 	}
 
 	@Override
@@ -72,20 +68,10 @@ public class BlockLantern extends Block {
 		if (player.isSneaking()) {
 			return false;
 		}
-		if(player!=null && player.getCurrentEquippedItem()!=null && player.getCurrentEquippedItem().getItem() instanceof ItemWrench)
-		if (te != null && te instanceof TileLantern) {
+		if(player.getCurrentEquippedItem()!=null && player.getCurrentEquippedItem().getItem() instanceof ItemWrench)
+		if (te instanceof TileLantern) {
 			player.openGui(Traincraft.instance, GuiIDs.LANTERN, world, i, j, k);
 		}
 		return true;
-	}
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(IIconRegister iconRegister) {
-		texture = iconRegister.registerIcon(Info.modID.toLowerCase() + ":lantern");
-	}
-
-	@Override
-	public IIcon getIcon(int i, int j) {
-		return texture;
 	}
 }

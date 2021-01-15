@@ -1,20 +1,11 @@
 package train.blocks.distil;
 
 import ebf.tim.registry.TiMFluids;
-import ebf.tim.utility.DebugUtil;
-import net.minecraft.block.Block;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.util.ForgeDirection;
 import org.lwjgl.opengl.GL11;
-import train.blocks.TCBlocks;
-import train.blocks.fluids.LiquidManager;
-import train.blocks.distil.ContainerDistil;
-import train.library.BlockIDs;
 import train.library.Info;
-import train.blocks.distil.DistilRecipes;
-import train.blocks.distil.TileEntityDistil;
 
 public class GuiDistil extends GuiContainer {
 

@@ -2,16 +2,10 @@ package train.blocks.distil;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import ebf.tim.utility.ItemStackSlot;
 import ebf.tim.utility.TransportSlotManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
-import net.minecraft.inventory.Slot;
-import net.minecraft.item.ItemStack;
-
-import java.util.ArrayList;
 
 public class ContainerDistil extends TransportSlotManager {
 

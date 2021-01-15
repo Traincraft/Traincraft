@@ -12,8 +12,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
-import train.render.models.blocks.ModelBlockSignal;
 import train.library.Info;
+import train.render.models.blocks.ModelBlockSignal;
 
 public class ItemRenderSignal implements IItemRenderer {
 

@@ -7,8 +7,6 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import train.blocks.TCBlocks;
-import train.library.BlockIDs;
-import train.library.ItemIDs;
 
 import java.util.HashMap;
 import java.util.Map;

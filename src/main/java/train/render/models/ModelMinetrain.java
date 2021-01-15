@@ -8,8 +8,8 @@ import fexcraft.tmt.slim.ModelRendererTurbo;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import train.core.ClientProxy;
-import train.render.CustomModelRenderer;
 import train.library.Info;
+import train.render.CustomModelRenderer;
 
 public class ModelMinetrain extends ModelBase {
 	

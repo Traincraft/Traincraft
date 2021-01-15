@@ -13,7 +13,6 @@ import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.MinecraftForge;
 import train.blocks.bench.ContainerTrainWorkbench;
 import train.blocks.bench.TileTrainWbench;
-import train.blocks.bridge.TileBridgePillar;
 import train.blocks.distil.ContainerDistil;
 import train.blocks.distil.TileEntityDistil;
 import train.blocks.generator.ContainerGeneratorDiesel;
@@ -22,9 +21,6 @@ import train.blocks.hearth.ContainerOpenHearthFurnace;
 import train.blocks.hearth.TileEntityOpenHearthFurnace;
 import train.blocks.lantern.TileLantern;
 import train.blocks.signal.TileSignal;
-import train.blocks.switchstand.TileSwitchStand;
-import train.blocks.waterwheel.TileWaterWheel;
-import train.blocks.windmill.TileWindMill;
 import train.core.handlers.WorldEvents;
 import train.core.util.MP3Player;
 import train.entity.inventory.InventoryJukeBoxCart;
@@ -52,19 +48,6 @@ public class CommonProxy implements IGuiHandler {
 		MinecraftForge.EVENT_BUS.register(o);
 	}
 
-	@Deprecated //should be handled as noted in TCBlocks.init()
-	public void registerTileEntities() {
-		GameRegistry.registerTileEntity(TileTrainWbench.class, "traincraft.TileTrainWbench");
-		GameRegistry.registerTileEntity(TileEntityDistil.class, "traincraft.TileDistil");
-		GameRegistry.registerTileEntity(TileEntityOpenHearthFurnace.class, "traincraft.TileOpenHearthFurnace");
-		GameRegistry.registerTileEntity(TileSignal.class, "traincraft.TileTrainSignal");
-		GameRegistry.registerTileEntity(TileLantern.class, "traincraft.tileLantern");
-		GameRegistry.registerTileEntity(TileSwitchStand.class, "traincraft.tileSwitchStand");
-		GameRegistry.registerTileEntity(TileWaterWheel.class, "traincraft.tileWaterWheel");
-		GameRegistry.registerTileEntity(TileWindMill.class, "traincraft.tileWindMill");
-		GameRegistry.registerTileEntity(TileGeneratorDiesel.class, "traincraft.tileGeneratorDiesel");
-		GameRegistry.registerTileEntity(TileBridgePillar.class, "traincraft.tileTCBridgePillar");
-	}
 
 	@Override
 	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
@@ -89,14 +72,14 @@ public class CommonProxy implements IGuiHandler {
 		case (GuiIDs.OPEN_HEARTH_FURNACE):
 			return te instanceof TileEntityOpenHearthFurnace ? new ContainerOpenHearthFurnace(player.inventory, (TileEntityOpenHearthFurnace) te) : null;
 		case (GuiIDs.TRAIN_WORKBENCH):
-			return te instanceof TileTrainWbench ? new ContainerTrainWorkbench(player.inventory, player.worldObj, (TileTrainWbench) te) : null;
+			return te instanceof TileTrainWbench ? new ContainerTrainWorkbench(player.inventory, (TileTrainWbench) te) : null;
 		case (GuiIDs.ZEPPELIN):
 			return riddenByEntity != null ? new InventoryZepp(player.inventory, (AbstractZeppelin) entity) : null;
 
 
 			/* Stationary entities while player is not riding. */
 		case (GuiIDs.JUKEBOX):
-			return entity1 != null && entity1 instanceof EntityJukeBoxCart ? new InventoryJukeBoxCart(player.inventory, (EntityJukeBoxCart) entity1) : null;
+			return entity1 instanceof EntityJukeBoxCart ? new InventoryJukeBoxCart(player.inventory, (EntityJukeBoxCart) entity1) : null;
 		default:
 			return null;
 		}
@@ -108,7 +91,7 @@ public class CommonProxy implements IGuiHandler {
 	}
 
 	public static Entity getEntity(World world, int entityId) {
-		if ((world != null) && (world instanceof WorldServer)) {
+		if ((world instanceof WorldServer)) {
 			return world.getEntityByID(entityId);
 		}
 		return null;

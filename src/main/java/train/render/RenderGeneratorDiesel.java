@@ -12,9 +12,9 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
-import train.render.models.blocks.ModelGeneratorDiesel;
-import train.library.Info;
 import train.blocks.generator.TileGeneratorDiesel;
+import train.library.Info;
+import train.render.models.blocks.ModelGeneratorDiesel;
 
 public class RenderGeneratorDiesel extends TileEntitySpecialRenderer {
 
@@ -31,9 +31,13 @@ public class RenderGeneratorDiesel extends TileEntitySpecialRenderer {
 		FMLClientHandler.instance().getClient().renderEngine.bindTexture(texture);
 
 		//System.out.println(((TileStopper) var1).getFacing());
-		GL11.glTranslatef(0.5F, 0.0F, 0.5F);
-		modelGenerator.render(0.0625F, ((TileGeneratorDiesel) var1).getFacing());
-
+		if(var1.getWorldObj()==null){
+			GL11.glRotatef(180,0,0,1);
+			GL11.glTranslatef(0, -0.5F, 0);
+		} else {
+			GL11.glTranslatef(0.5F, 0.0F, 0.5F);
+		}
+		modelGenerator.render(0.0625F, ((TileGeneratorDiesel) var1).facing);
 		GL11.glPopMatrix();
 	}
 

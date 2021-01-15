@@ -1,12 +1,16 @@
 package ebf.tim.blocks;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import ebf.tim.TrainsInMotion;
 import fexcraft.tmt.slim.ModelBase;
 import fexcraft.tmt.slim.ModelRendererTurbo;
 import fexcraft.tmt.slim.TextureManager;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.crash.CrashReportCategory;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
@@ -30,6 +34,8 @@ public class TileRenderFacing extends TileEntity {
     public TileRenderFacing(BlockDynamic block){
         host=block;
     }
+
+    public TileRenderFacing(){}
 
     public TileRenderFacing setFacing(int direction){
         facing=(byte) direction;
@@ -96,6 +102,8 @@ public class TileRenderFacing extends TileEntity {
 
                 if(host.model!=null) {
                     host.model.render(null, 0, 0, 0, 0, 0, 0);
+                } else if(host.tesr instanceof TileEntitySpecialRenderer) {
+                    ((TileEntitySpecialRenderer) host.tesr).renderTileEntityAt(this,0,0,0,0);
                 } else {
                     cube.render();
                 }
@@ -165,7 +173,6 @@ public class TileRenderFacing extends TileEntity {
 
     @Override
     public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
-        super.onDataPacket(net, pkt);
         if(pkt ==null){return;}
         readFromNBT(pkt.func_148857_g());
         markDirty();
@@ -190,11 +197,29 @@ public class TileRenderFacing extends TileEntity {
     @Override
     public void readFromNBT(NBTTagCompound tag){
         super.readFromNBT(tag);
-        if(host.rotates) {
+        if(tag.hasKey("f")) {
             facing = tag.getByte("f");
         }
         markDirty();
     }
+
+    public void syncTileEntity(){
+        for(Object o : this.worldObj.playerEntities){
+            if(o instanceof EntityPlayerMP){
+                EntityPlayerMP player = (EntityPlayerMP) o;
+                if(player.getDistance(xCoord, yCoord, zCoord) <= 64) {
+                    player.playerNetServerHandler.sendPacket(this.getDescriptionPacket());
+                }
+            }
+        }
+    }
+
+    //todo: better control for render distance
+    /*@SideOnly(Side.CLIENT)
+    @Override
+    public double getMaxRenderDistanceSquared() {
+        return super.getMaxRenderDistanceSquared();
+    }*/
 
     public static final ModelRendererTurbo cube = new ModelRendererTurbo((ModelBase) null, 0,0,64,32).addBox(-8,-8,-8,16,16,16);
 

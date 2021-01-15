@@ -7,33 +7,24 @@
 
 package train.blocks.hearth;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import ebf.tim.TrainsInMotion;
 import ebf.tim.blocks.BlockDynamic;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import train.Traincraft;
+import train.blocks.TCBlocks;
 import train.blocks.distil.TileEntityDistil;
-import train.library.BlockIDs;
 import train.library.GuiIDs;
-import train.library.Info;
-import train.blocks.TileTraincraft;
 
 import java.util.Random;
 
@@ -57,7 +48,7 @@ public class BlockOpenHearthFurnace extends BlockDynamic {
 
 	@Override
 	public Item getItemDropped(int i, Random random, int j) {
-		return Item.getItemFromBlock(BlockIDs.openFurnaceIdle.block);
+		return Item.getItemFromBlock(TCBlocks.blockHearthFurnace);
 	}
 
 	public static void updateHearthFurnaceBlockState(boolean flag, World world, int i, int j, int k) {
@@ -121,7 +112,7 @@ public class BlockOpenHearthFurnace extends BlockDynamic {
 
 	@Override
 	public TileEntity createNewTileEntity(World var1, int i) {
-		return new TileEntityOpenHearthFurnace();
+		return new TileEntityOpenHearthFurnace(this);
 	}
 
 }

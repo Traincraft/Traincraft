@@ -3,14 +3,13 @@ package train.render.models;
 import cpw.mods.fml.client.FMLClientHandler;
 import fexcraft.tmt.slim.ModelBase;
 import fexcraft.tmt.slim.ModelRendererTurbo;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import train.core.ClientProxy;
+import train.library.Info;
 import train.render.CustomModelRenderer;
 import train.render.models.blocks.ModelRing;
-import train.library.Info;
 
 public class ModelLocoBR80_DB extends ModelBase {
 	

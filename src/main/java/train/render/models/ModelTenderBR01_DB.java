@@ -9,8 +9,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import train.core.ClientProxy;
-import train.render.CustomModelRenderer;
 import train.library.Info;
+import train.render.CustomModelRenderer;
 
 public class ModelTenderBR01_DB extends ModelBase {
 	

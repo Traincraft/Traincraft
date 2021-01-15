@@ -6,7 +6,6 @@ import fexcraft.tmt.slim.ModelBase;
 import fexcraft.tmt.slim.ModelRendererTurbo;
 import net.minecraft.entity.Entity;
 import train.render.CustomModelRenderer;
-import train.core.handlers.ConfigHandler;
 
 public class ModelFreightCenterBeam_Wood_1 extends ModelBase {
 

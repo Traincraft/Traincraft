@@ -12,8 +12,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
-import train.render.models.blocks.ModelStopper;
 import train.library.Info;
+import train.render.models.blocks.ModelStopper;
 
 public class ItemRenderStopper implements IItemRenderer {
 	private static final ResourceLocation texture = new ResourceLocation(Info.resourceLocation,Info.modelTexPrefix + "buffer.png");

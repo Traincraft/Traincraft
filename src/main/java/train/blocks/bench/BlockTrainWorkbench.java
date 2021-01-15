@@ -1,63 +1,25 @@
 package train.blocks.bench;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import ebf.tim.blocks.BlockDynamic;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import train.Traincraft;
 import train.library.GuiIDs;
-import train.library.Info;
-import train.blocks.TileTraincraft;
 
-import java.util.Random;
+public class BlockTrainWorkbench extends BlockDynamic {
 
-public class BlockTrainWorkbench extends BlockContainer {
-
-	private IIcon textureTop;
-	private IIcon textureBottom;
-	private IIcon textureFront;
-	private IIcon textureSide;
-
-	public BlockTrainWorkbench(int j) {
-		super(Material.wood);
+	public BlockTrainWorkbench() {
+		super(Material.wood, true, true);
 		setCreativeTab(Traincraft.tcTab);
 	}
 
-	@Override
-	public IIcon getIcon(int i, int j) {
-		if (i == 1) {
-			return textureTop;
-		}
-		if (i == 0) {
-			return textureBottom;
-		}
-		if (i == 3) {
-			return textureFront;
-		}
-		else {
-			return textureSide;
-		}
-	}
-
-	@Override
-	public IIcon getIcon(IBlockAccess worldAccess, int i, int j, int k, int side) {
-		if (((TileTrainWbench) worldAccess.getTileEntity(i, j, k)).getFacing() != null) {
-			side = TileTraincraft.getOrientationFromSide(((TileTrainWbench) worldAccess.getTileEntity(i, j, k)).getFacing(), ForgeDirection.getOrientation(side)).ordinal();
-		}
-		return side == 1 ? textureTop : side == 0 ? textureBottom : side == 3 ? textureFront : textureSide;
-	}
 
 	@Override
 	public boolean onBlockActivated(World world, int i, int j, int k, EntityPlayer player, int par6, float par7, float par8, float par9) {
@@ -66,7 +28,7 @@ public class BlockTrainWorkbench extends BlockContainer {
 			return false;
 		}
 		if (!world.isRemote) {
-			if (te != null && te instanceof TileTrainWbench) {
+			if (te instanceof TileTrainWbench) {
 				player.openGui(Traincraft.instance, GuiIDs.TRAIN_WORKBENCH, world, i, j, k);
 			}
 		}
@@ -75,7 +37,9 @@ public class BlockTrainWorkbench extends BlockContainer {
 
 	@Override
 	public void breakBlock(World world, int i, int j, int k, Block par5, int par6) {
-		Random distilRand = new Random();
+		//this seems to drop the items all over the place, the super method does this,
+		//    but maybe we should revisit this for something more interesting?
+		/*Random distilRand = new Random();
 		TileTrainWbench tilewb = (TileTrainWbench) world.getTileEntity(i, j, k);
 		if (tilewb != null) {
 			label0: for (int l = 0; l < tilewb.getSizeInventory(); l++) {
@@ -103,7 +67,7 @@ public class BlockTrainWorkbench extends BlockContainer {
 					world.spawnEntityInWorld(entityitem);
 				} while (true);
 			}
-		}
+		}*/
 		super.breakBlock(world, i, j, k, par5, par6);
 	}
 
@@ -125,15 +89,7 @@ public class BlockTrainWorkbench extends BlockContainer {
 
 	@Override
 	public TileEntity createNewTileEntity(World world, int meta) {
-		return new TileTrainWbench();
+		return new TileTrainWbench(this);
 	}
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(IIconRegister iconRegister) {
-		textureTop = iconRegister.registerIcon(Info.modID.toLowerCase() + ":train_table_top");
-		textureBottom = iconRegister.registerIcon(Info.modID.toLowerCase() + ":train_table_bottom");
-		textureFront = iconRegister.registerIcon(Info.modID.toLowerCase() + ":train_table_front");
-		textureSide = iconRegister.registerIcon(Info.modID.toLowerCase() + ":train_table_side");
-	}
 }

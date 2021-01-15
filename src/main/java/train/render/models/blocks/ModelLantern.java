@@ -9,6 +9,7 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.IModelCustom;
@@ -39,19 +40,25 @@ public class ModelLantern extends ModelBase {
 		modelLantern.renderAll();
 	}
 
-	public void render(TileLantern lantern, double x, double y, double z) {
+	public void render(TileEntity lantern, double x, double y, double z) {
 		// Push a blank matrix onto the stack
 		GL11.glPushMatrix();
 
 		// Move the object into the correct position on the block (because the OBJ's origin is the center of the object)
-		GL11.glTranslatef((float) x + 0.5f, (float) y + 0.5f, (float) z + 0.5f);
+		if(lantern.getWorldObj()==null){
+			GL11.glRotatef(180,0,0,1);
+			GL11.glTranslated(x+0, y+0.3, z+0);
+			GL11.glScalef(0.8f, 0.8f, 0.8f);
+		} else {
+			GL11.glTranslated(x+0.5, y+0.5, z+0.5);
+			// Scale our object to about half-size in all directions (the OBJ file is a little large)
+			GL11.glScalef(0.5f, 0.5f, 0.5f);
+		}
 
-		// Scale our object to about half-size in all directions (the OBJ file is a little large)
-		GL11.glScalef(0.5f, 0.5f, 0.5f);
 
 		// Bind the texture, so that OpenGL properly textures our block.
 		FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation,Info.modelTexPrefix + "lantern_uv_draw_2.png"));
-		int j = lantern.getRandomColor();
+		int j = lantern instanceof TileLantern?((TileLantern)lantern).getRandomColor():0xaaaaaa;
 		//System.out.println(j);
 		float f1 = 1.0F;
 		float f2 = (float) (j >> 16 & 255) / 255.0F;
@@ -65,16 +72,18 @@ public class ModelLantern extends ModelBase {
 
 		// Pop this matrix from the stack.
 		GL11.glPopMatrix();
-		GL11.glPushMatrix();
-		EntityItem ghostEntityItem = new EntityItem(lantern.getWorldObj());
-		ghostEntityItem.setEntityItemStack(new ItemStack(Blocks.torch, 1));
-		ghostEntityItem.hoverStart = 0.0F;
+		if(lantern.getWorldObj()!=null) {
+			GL11.glPushMatrix();
+			EntityItem ghostEntityItem = new EntityItem(lantern.getWorldObj());
+			ghostEntityItem.setEntityItemStack(new ItemStack(Blocks.torch, 1));
+			ghostEntityItem.hoverStart = 0.0F;
 
-		GL11.glTranslatef((float) x + 0.5F, (float) y + 0.1F, (float) z + 0.5F);
-		GL11.glScalef(0.5F, 0.5F, 0.5F);
-		renderItem.doRender(ghostEntityItem, 0, 0, 0, 0, 0);
+			GL11.glTranslatef((float) x + 0.5F, (float) y + 0.1F, (float) z + 0.5F);
+			GL11.glScalef(0.5F, 0.5F, 0.5F);
+			renderItem.doRender(ghostEntityItem, 0, 0, 0, 0, 0);
 
-		GL11.glPopMatrix();
+			GL11.glPopMatrix();
+		}
 	}
 
 }

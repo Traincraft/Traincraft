@@ -1,7 +1,6 @@
 package train.render.models;
 
 import fexcraft.tmt.slim.ModelBase;
-import net.minecraft.entity.Entity;
 import train.render.CustomModelRenderer;
 
 public class ModelPassenger extends ModelBase {

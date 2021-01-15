@@ -176,18 +176,6 @@ public class TileEntityStorage extends TileRenderFacing implements IInventory, I
         tag.setString("xmlData",data.toXMLString());
     }
 
-
-    public void syncTileEntity(){
-        for(Object o : this.worldObj.playerEntities){
-            if(o instanceof EntityPlayerMP){
-                EntityPlayerMP player = (EntityPlayerMP) o;
-                if(player.getDistance(xCoord, yCoord, zCoord) <= 64) {
-                    player.playerNetServerHandler.sendPacket(this.getDescriptionPacket());
-                }
-            }
-        }
-    }
-
     /**the fluidTank tank*/
     private FluidTankInfo[] fluidTank = null;
 

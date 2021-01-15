@@ -1,8 +1,8 @@
 package train.library;
 
 import ebf.tim.entities.GenericRailTransport;
-import train.entity.trains.*;
 import train.entity.rollingStock.*;
+import train.entity.trains.*;
 
 public class TrainRegistry {
 

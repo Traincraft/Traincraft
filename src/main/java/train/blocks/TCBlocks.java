@@ -7,10 +7,8 @@
 
 package train.blocks;
 
-import cpw.mods.fml.common.registry.GameRegistry;
 import ebf.tim.TrainsInMotion;
 import ebf.tim.blocks.BlockDynamic;
-import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
@@ -20,7 +18,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.oredict.OreDictionary;
 import train.Traincraft;
 import train.blocks.bench.BlockTrainWorkbench;
-import train.blocks.bridge.BlockBridgePillar;
 import train.blocks.distil.BlockDistil;
 import train.blocks.generator.BlockGeneratorDiesel;
 import train.blocks.hearth.BlockOpenHearthFurnace;
@@ -28,7 +25,6 @@ import train.blocks.lantern.BlockLantern;
 import train.blocks.switchstand.BlockSwitchStand;
 import train.blocks.waterwheel.BlockWaterWheel;
 import train.blocks.windmill.BlockWindMill;
-import train.library.BlockIDs;
 import train.library.Info;
 import train.library.ItemIDs;
 
@@ -47,23 +43,38 @@ public class TCBlocks {
 	public static BlockOpenHearthFurnace blockHearthFurnace = new BlockOpenHearthFurnace();
 
 	public static BlockGeneratorDiesel dieselGenerator = new BlockGeneratorDiesel();
+	public static BlockBridgePillar bridgePillar = new BlockBridgePillar();
+
+	public static BlockLantern lantern = new BlockLantern();
+	// NOTE: i dont think this one was supposed to exist, the render is extra broken,
+	//     like it wouldn't have worked in the old 1.7 builds levels of broken.
+	//public static BlockSignal signal = new BlockSignal();
+	public static BlockTrainWorkbench partTable = new BlockTrainWorkbench();
+
+
+	public static BlockWindMill windmill = new BlockWindMill();
+	public static BlockWaterWheel waterWheel = new BlockWaterWheel();
+	public static BlockSwitchStand highStarSwitch = new BlockSwitchStand();
 
 
 	@Deprecated //need to use TiMGenericRegistry.registerBlock(), this will also cover tile entities and TESR.
 	public static void init() {
-		trainTableTier1.texture=new ResourceLocation("traincraft", "textures/blocks/assembly_1.png");
-		trainTableTier2.texture=new ResourceLocation("traincraft", "textures/blocks/assembly_2.png");
-		trainTableTier3.texture=new ResourceLocation("traincraft", "textures/blocks/assembly_3.png");
+		trainTableTier1.texture=new ResourceLocation(Info.modID, "textures/blocks/assembly_1.png");
+		trainTableTier2.texture=new ResourceLocation(Info.modID, "textures/blocks/assembly_2.png");
+		trainTableTier3.texture=new ResourceLocation(Info.modID, "textures/blocks/assembly_3.png");
 
-		blockDistil.texture=new ResourceLocation("traincraft", "textures/blocks/distil_off.png");
+		blockDistil.texture=new ResourceLocation(Info.modID, "textures/blocks/distil_off.png");
 
-		blockHearthFurnace.texture=new ResourceLocation("traincraft", "textures/blocks/furnace_off.png");
+		blockHearthFurnace.texture=new ResourceLocation(Info.modID, "textures/blocks/furnace_off.png");
 
-		oilSand.texture=new ResourceLocation("traincraft", "textures/blocks/ores/ore_oilsands.png");
-		orePetroleum.texture=new ResourceLocation("traincraft", "textures/blocks/ores/ore_petroleum.png");
+
+		partTable.texture=new ResourceLocation(TrainsInMotion.MODID, "textures/blocks/train_table.png");
+
+		oilSand.texture=new ResourceLocation(Info.modID, "textures/blocks/ores/ore_oilsands.png");
+		orePetroleum.texture=new ResourceLocation(Info.modID, "textures/blocks/ores/ore_petroleum.png");
 
 		registerBlock(oilSand, Traincraft.tcTab, Info.modID,"block.oilsand", null, null);
-		registerBlock(orePetroleum, Traincraft.tcTab, Info.modID,"block.petroleum", null, null);
+		registerBlock(orePetroleum, Traincraft.tcTab, Info.modID,"block.petroleum", "petroleum", null);
 
 		addRecipe(new ItemStack(registerBlock(trainTableTier1, Traincraft.tcTab, Info.modID,"block.traintabletier1", null, null),1),
 				"IPI", "S S", "SPS", 'S', Blocks.stone, 'I', Items.iron_ingot, 'P', Blocks.piston); //tier 1
@@ -76,10 +87,28 @@ public class TCBlocks {
 
 		registerBlock(blockHearthFurnace, Traincraft.tcTab, Info.modID,"block.hearthfurnace", null, null);
 
+		registerBlock(partTable, Traincraft.tcTab, Info.modID,"block.parttable", null, null);
+
 		if(TrainsInMotion.proxy.isClient()){
 			registerBlock(dieselGenerator, Traincraft.tcTab, Info.modID, "block.dieselGenerator", null, new train.render.RenderGeneratorDiesel());
+			registerBlock(bridgePillar, Traincraft.tcTab, Info.modID, "block.bridgePillar", null, new train.render.RenderBridgePillar());
+
+			registerBlock(windmill, Traincraft.tcTab, Info.modID, "block.windmill", null, new train.render.RenderWindMill());
+			registerBlock(waterWheel, Traincraft.tcTab, Info.modID, "block.waterwheel", null, new train.render.RenderWaterWheel());
+			registerBlock(highStarSwitch, Traincraft.tcTab, Info.modID, "block.highstar", null, new train.render.RenderSwitchStand());
+
+			//registerBlock(signal, Traincraft.tcTab, Info.modID, "block.signal", null, new train.render.RenderSignal());
+			registerBlock(lantern, Traincraft.tcTab, Info.modID, "block.lantern", null, new train.render.RenderLantern());
 		} else {
 			registerBlock(dieselGenerator, Traincraft.tcTab, Info.modID, "block.dieselGenerator", null, null);
+			registerBlock(bridgePillar, Traincraft.tcTab, Info.modID, "block.bridgePillar", null, null);
+
+			registerBlock(windmill, Traincraft.tcTab, Info.modID, "block.windmill", null, null);
+			registerBlock(waterWheel, Traincraft.tcTab, Info.modID, "block.waterwheel", null, null);
+			registerBlock(highStarSwitch, Traincraft.tcTab, Info.modID, "block.highstar", null, null);
+
+			//registerBlock(signal, Traincraft.tcTab, Info.modID, "block.signal", null, null);
+			registerBlock(lantern, Traincraft.tcTab, Info.modID, "block.lantern", null, null);
 		}
 
 		OreDictionary.registerOre("oreOilsands", new ItemStack(oilSand, 1, 1));
@@ -87,51 +116,11 @@ public class TCBlocks {
 
 
 		OreDictionary.registerOre("dustCoal", new ItemStack(ItemIDs.coaldust.item));
-		loadBlocks();
-		registerBlocks();
 		setHarvestLevels();
 
 	}
 
-	public static void loadBlocks() {
-		//BlockIDs.signal.block = new BlockSignal(BlockIDs.signal.blockID, 16).setHardness(1.7F).setStepSound(Block.soundTypeMetal);
-
-		BlockIDs.trainWorkbench.block = new BlockTrainWorkbench(16).setHardness(1.7F).setStepSound(Block.soundTypeWood);
-
-		//BlockIDs.openFurnaceIdle.block = new BlockOpenHearthFurnace(false).setHardness(3.5F).setStepSound(Block.soundTypeStone);
-		//BlockIDs.openFurnaceActive.block = new BlockOpenHearthFurnace(true).setHardness(3.5F).setStepSound(Block.soundTypeStone);
-		//BlockIDs.oreTC.block = new BlockOreTC().setHardness(3.0F).setResistance(5F).setStepSound(Block.soundTypeStone);
-
-		BlockIDs.lantern.block = new BlockLantern().setHardness(1.7F).setStepSound(Block.soundTypeMetal).setLightLevel(0.98F);
-		BlockIDs.switchStand.block = new BlockSwitchStand().setHardness(1.7F).setStepSound(Block.soundTypeMetal);
-		BlockIDs.waterWheel.block = new BlockWaterWheel().setHardness(1.7F).setStepSound(Block.soundTypeWood);
-		BlockIDs.windMill.block = new BlockWindMill().setHardness(1.7F).setStepSound(Block.soundTypeWood);
-		//BlockIDs.generatorDiesel.block = new BlockGeneratorDiesel().setHardness(1.7F).setStepSound(Block.soundTypeMetal);
-
-		BlockIDs.bridgePillar.block = new BlockBridgePillar().setHardness(3.5F).setStepSound(Block.soundTypeWood);
-
-
-		//BlockIDs.book.block = new BlockBook(BlockIDs.book.blockID);
-	}
-
-	public static void registerBlocks() {
-		for (BlockIDs blocks : BlockIDs.values()) {
-			if(blocks.block != null) {
-				blocks.block.setBlockName(Info.modID + ":" + blocks.name());
-				if (blocks.hasItemBlock) {
-					GameRegistry.registerBlock(blocks.block, blocks.itemBlockClass, blocks.name());
-				} else {
-					GameRegistry.registerBlock(blocks.block, blocks.name());
-				}
-			}
-		}
-	}
-
 	public static void setHarvestLevels() {
-		BlockIDs.trainWorkbench.block.setHarvestLevel("axe", 0);
-		BlockIDs.waterWheel.block.setHarvestLevel("axe", 0);
-		BlockIDs.windMill.block.setHarvestLevel("axe", 0);
-		BlockIDs.bridgePillar.block.setHarvestLevel("axe", 0);
 		orePetroleum.setHarvestLevel("pickaxe", 1);
 
 		Blocks.rail.setHarvestLevel("ItemStacked", 0);

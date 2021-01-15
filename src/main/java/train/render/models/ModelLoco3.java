@@ -1,9 +1,7 @@
 package train.render.models;
 
 import fexcraft.tmt.slim.ModelBase;
-import net.minecraft.entity.Entity;
 import train.render.CustomModelRenderer;
-import train.core.handlers.ConfigHandler;
 
 public class ModelLoco3 extends ModelBase {
 

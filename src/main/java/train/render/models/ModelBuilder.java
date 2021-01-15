@@ -5,8 +5,8 @@ import ebf.tim.entities.GenericRailTransport;
 import fexcraft.tmt.slim.ModelBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
-import train.render.CustomModelRenderer;
 import train.library.Info;
+import train.render.CustomModelRenderer;
 
 public class ModelBuilder extends ModelBase {
 

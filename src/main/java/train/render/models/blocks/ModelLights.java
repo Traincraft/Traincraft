@@ -7,7 +7,6 @@
 
 package train.render.models.blocks;
 
-import cpw.mods.fml.client.FMLClientHandler;
 import fexcraft.tmt.slim.TextureManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;

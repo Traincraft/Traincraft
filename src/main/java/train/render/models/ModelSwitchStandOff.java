@@ -189,16 +189,9 @@ public class ModelSwitchStandOff extends ModelBase
 		switchstandoffModel[36].setRotationPoint(0F, -11F, -0.5F);
 
 		fixRotation(switchstandoffModel, false, true, true);
+		fixRotation(switchstandoffModel);
+		bodyModel=switchstandoffModel;
 
-	}
-
-	@Override
-	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
-	{
-		for(int i = 0; i < 37; i++)
-		{
-			switchstandoffModel[i].render(f5);
-		}
 	}
 
     public ModelRendererTurbo switchstandoffModel[];

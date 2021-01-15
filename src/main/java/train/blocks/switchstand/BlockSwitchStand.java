@@ -2,39 +2,35 @@ package train.blocks.switchstand;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import ebf.tim.blocks.BlockDynamic;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import train.Traincraft;
-import train.library.Info;
 
 import java.util.List;
 import java.util.Random;
 
-public class BlockSwitchStand extends Block {
-	private IIcon texture;
+public class BlockSwitchStand extends BlockDynamic {
 
 	public BlockSwitchStand() {
-		super(Material.rock);
+		super(Material.rock,true,false);
 		setCreativeTab(Traincraft.tcTab);
 		this.setTickRandomly(true);
 		//this.setBlockBounds(0.5F , 0.0F, 0.5F , 0.5F ,  2.0F, 0.5F);
 	}
 
 	@Override
-	public void addCollisionBoxesToList(World p_149743_1_, int p_149743_2_, int p_149743_3_, int p_149743_4_, AxisAlignedBB p_149743_5_, List p_149743_6_, Entity p_149743_7_)
-	{
+	public void addCollisionBoxesToList(World p_149743_1_, int p_149743_2_, int p_149743_3_, int p_149743_4_, AxisAlignedBB p_149743_5_, List p_149743_6_, Entity p_149743_7_) {
 	}
 
 	@Override
@@ -54,7 +50,12 @@ public class BlockSwitchStand extends Block {
 
 	@Override
 	public TileEntity createTileEntity(World world, int metadata) {
-		return new TileSwitchStand();
+		return new TileSwitchStand(this);
+	}
+
+	@Override
+	public TileEntity createNewTileEntity(World world, int metadata) {
+		return new TileSwitchStand(this);
 	}
 
 	@Override
@@ -196,16 +197,5 @@ public class BlockSwitchStand extends Block {
 	public boolean canProvidePower()
 	{
 		return true;
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(IIconRegister iconRegister) {
-		texture = iconRegister.registerIcon(Info.modID.toLowerCase() + ":assembly_1_bottom");
-	}
-
-	@Override
-	public IIcon getIcon(int i, int j) {
-		return texture;
 	}
 }

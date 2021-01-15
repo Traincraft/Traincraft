@@ -1,19 +1,16 @@
 package train.blocks.signal;
 
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import ebf.tim.blocks.BlockDynamic;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import train.Traincraft;
-import train.library.ItemIDs;
 
 import java.util.Random;
 
@@ -27,19 +24,15 @@ import java.util.Random;
  ++    Direction facing	00=north	01=east	10=south	11=west
  */
 
-public class BlockSignal extends BlockContainer {
+public class BlockSignal extends BlockDynamic {
 
 	public BlockSignal() {
-		super(Material.circuits);
+		super(Material.circuits,true,true);
 		this.setLightLevel(1.0F);
 		setBlockBounds(0.2F, 0.0F, 0.2F, 0.8F, 2.6F, 0.8F);
 		setCreativeTab(Traincraft.tcTab);
 	}
 
-	@Override
-	public Item getItemDropped(int i, Random random, int j) {
-		return ItemIDs.signal.item;
-	}
 	@Override
 	public int quantityDropped(Random random) {
 		return 1;
@@ -60,14 +53,7 @@ public class BlockSignal extends BlockContainer {
 		return RenderingRegistry.getNextAvailableRenderId();
 	}
 
-	@Override
-	public IIcon getIcon(int i, int j) {
-		return null;
-	}
 
-	public int tickRate() {
-		return 4;
-	}
 	@Override
 	public AxisAlignedBB getSelectedBoundingBoxFromPool(World world, int i, int j, int k) {
 		setBlockBoundsBasedOnState(world, i, j, k);
@@ -161,7 +147,6 @@ public class BlockSignal extends BlockContainer {
 	}
 
 	public void updateTick(World world, int i, int j, int k) {
-
 		TileSignal te = (TileSignal) world.getTileEntity(i, j, k);
 		if (te == null)
 			return;
@@ -198,6 +183,6 @@ public class BlockSignal extends BlockContainer {
 
 	@Override
 	public TileEntity createNewTileEntity(World world, int meta) {
-		return new TileSignal();
+		return new TileSignal(this);
 	}
 }

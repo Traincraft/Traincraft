@@ -2,8 +2,8 @@ package train.render.models;
 
 import fexcraft.tmt.slim.ModelBase;
 import net.minecraft.entity.Entity;
-import train.render.CustomModelRenderer;
 import train.core.handlers.ConfigHandler;
+import train.render.CustomModelRenderer;
 
 public class ModelFreightWellcar extends ModelBase {
 

@@ -5,8 +5,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
-import train.render.models.blocks.ModelLantern;
 import train.library.Info;
+import train.render.models.blocks.ModelLantern;
 
 public class ItemRenderLantern implements IItemRenderer {
 	private static final ModelLantern modelLantern= new ModelLantern();

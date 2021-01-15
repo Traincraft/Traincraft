@@ -4,7 +4,6 @@ import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
 import train.core.interfaces.ITCRecipe;
 import train.items.ItemTCArmor;
 
@@ -12,7 +11,7 @@ public class RecipesArmorDyes implements ITCRecipe {
 
 	// Used to check if a recipe matches current crafting inventory
 	@Override
-	public boolean matches(IInventory par1InventoryCrafting, World par2World) {
+	public boolean matches(IInventory par1InventoryCrafting) {
 		ItemStack itemstack = null;
 		boolean isEmpty = true;
 

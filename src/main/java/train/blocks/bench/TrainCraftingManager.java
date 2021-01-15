@@ -3,7 +3,6 @@ package train.blocks.bench;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
 import train.core.interfaces.ITCRecipe;
 
 import java.util.ArrayList;
@@ -29,7 +28,7 @@ public class TrainCraftingManager {
 	}
 
 
-	public ItemStack func_82787_a(IInventory inv, World world) {
+	public ItemStack func_82787_a(IInventory inv) {
 		int occupedSlot = 0;
 		ItemStack var3 = null;
 		ItemStack var4 = null;
@@ -64,7 +63,7 @@ public class TrainCraftingManager {
 		} else {
 			for (var5 = 0; var5 < this.recipes.size(); ++var5) {
 				ITCRecipe recipe = (ITCRecipe) this.recipes.get(var5);
-				if (recipe.matches(inv, world)) {
+				if (recipe.matches(inv)) {
 					return recipe.getCraftingResult(inv);
 				}
 			}

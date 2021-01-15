@@ -1,50 +1,51 @@
 package train.blocks.waterwheel;
 
+import cofh.api.energy.EnergyStorage;
 import cofh.api.energy.IEnergyProvider;
+import cofh.api.energy.IEnergyReceiver;
+import ebf.tim.blocks.BlockDynamic;
+import ebf.tim.blocks.TileRenderFacing;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
-import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
-import train.core.util.Energy;
 
-public class TileWaterWheel extends Energy implements IEnergyProvider {
-	
-	public int facingMeta;
+public class TileWaterWheel extends TileRenderFacing implements IEnergyProvider {
+	public EnergyStorage energy = new EnergyStorage(3000,80); //core energy value the first value is max storage and the second is transfer max.
+	private ForgeDirection[] sides = new ForgeDirection[]{}; //defines supported sides
 
-	public TileWaterWheel() {
-		super(0, "WaterWheel", 80, 80);
-		super.setSides(new ForgeDirection[]{ForgeDirection.EAST, ForgeDirection.WEST, ForgeDirection.NORTH, ForgeDirection.SOUTH});
-		facingMeta = this.blockMetadata;
+	public TileWaterWheel(BlockDynamic host) {
+		super(host);
+		setSides(new ForgeDirection[]{ForgeDirection.EAST, ForgeDirection.WEST, ForgeDirection.NORTH, ForgeDirection.SOUTH});
+
+		this.energy.setCapacity(80);
+		this.energy.setMaxTransfer(80);
 	}
 
 	@Override
-	public void readFromNBT(NBTTagCompound nbtTag, boolean forSyncing){
-		super.readFromNBT(nbtTag, forSyncing);
-		facingMeta = nbtTag.getByte("Orientation");
+	public void readFromNBT(NBTTagCompound nbtTag){
+		super.readFromNBT(nbtTag);
+		this.energy.readFromNBT(nbtTag);
 	}
 
 	@Override
-	public NBTTagCompound writeToNBT(NBTTagCompound nbtTag, boolean forSyncing){
-		super.writeToNBT(nbtTag, forSyncing);
-		nbtTag.setByte("Orientation", (byte) facingMeta);
-		return  nbtTag;
+	public void writeToNBT(NBTTagCompound nbtTag){
+		super.writeToNBT(nbtTag);
+		this.energy.writeToNBT(nbtTag);
 	}
 
-	@Override
-	public Packet getDescriptionPacket() {
-		NBTTagCompound nbt = new NBTTagCompound();
-		this.writeToNBT(nbt);
-
-		return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, nbt);
-	}
 	@Override
 	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
 		this.readFromNBT(pkt.func_148857_g());
 	}
+
+	@Override
+	public boolean canUpdate(){return true;}
 
 	@Override
 	public void updateEntity() {
@@ -99,12 +100,24 @@ public class TileWaterWheel extends Energy implements IEnergyProvider {
 	}
 	
 	private void setWaterDir(int i) {
-		facingMeta = i;
+		setFacing(i);
 		
 	}
-	
+
+	public void pushEnergy(World world, int x, int y, int z, EnergyStorage storage){
+		for (ForgeDirection side : getSides()) {
+			TileEntity tile = world.getTileEntity(x + side.offsetX, y + side.offsetY, z + side.offsetZ);
+			if (tile instanceof IEnergyReceiver && storage.getEnergyStored() > 0) {
+				if (((IEnergyReceiver) tile).canConnectEnergy(side.getOpposite())) {
+					int receive = ((IEnergyReceiver) tile).receiveEnergy(side.getOpposite(), Math.min(storage.getMaxExtract(), storage.getEnergyStored()), false);
+					storage.extractEnergy(receive, false);
+				}
+			}
+		}
+	}
+
 	public int getWaterDir() {
-		return facingMeta;
+		return facing;
 	}
 
 	@Override
@@ -117,4 +130,24 @@ public class TileWaterWheel extends Energy implements IEnergyProvider {
 	}
 
 
+	public void setSides(ForgeDirection[] listOfSides){
+		this.sides = listOfSides;
+	}
+	public ForgeDirection[] getSides(){
+		return this.sides;
+	}
+
+	//RF Overrides
+	@Override
+	public int extractEnergy(ForgeDirection dir, int amount, boolean simulate) {
+		return energy.extractEnergy(amount, simulate);
+	}
+	@Override
+	public int getEnergyStored(ForgeDirection dir) {
+		return energy.getEnergyStored();
+	}
+	@Override
+	public int getMaxEnergyStored(ForgeDirection dir) {
+		return this.energy.getMaxEnergyStored();
+	}
 }

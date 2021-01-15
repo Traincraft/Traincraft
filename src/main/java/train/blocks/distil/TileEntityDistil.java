@@ -2,10 +2,9 @@ package train.blocks.distil;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import ebf.tim.blocks.BlockDynamic;
 import ebf.tim.blocks.TileEntityStorage;
 import ebf.tim.registry.TiMFluids;
-import ebf.tim.registry.TiMItems;
-import ebf.tim.registry.TiMOres;
 import ebf.tim.utility.ItemStackSlot;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.ISidedInventory;
@@ -15,10 +14,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.IFluidHandler;
 import train.blocks.TCBlocks;
 import train.blocks.fluids.LiquidManager;
-import train.library.ItemIDs;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -33,9 +30,9 @@ public class TileEntityDistil extends TileEntityStorage implements ISidedInvento
 	private int updateTicks;
 	public boolean wasBurning=false;
 
-	public TileEntityDistil() {
+	public TileEntityDistil(BlockDynamic host) {
 		//slots 0=input 1=fuel 3=output 2=input canister ?=filled canister
-		super(TCBlocks.blockDistil);
+		super(host);
 		distilBurnTime = 0;
 		currentItemBurnTime = 0;
 		distilCookTime = 0;

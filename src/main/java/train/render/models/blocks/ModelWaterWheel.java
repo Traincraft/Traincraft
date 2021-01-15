@@ -4,6 +4,7 @@ import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.model.ModelBase;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.IModelCustom;
@@ -27,12 +28,18 @@ public class ModelWaterWheel extends ModelBase {
 		modelWaterWheel.renderAll();
 	}
 
-	public void render(TileWaterWheel waterWheel, double x, double y, double z) {
+	public void render(TileEntity waterWheel, double x, double y, double z) {
 		// Push a blank matrix onto the stack
 		GL11.glPushMatrix();
 
 		// Move the object into the correct position on the block (because the OBJ's origin is the center of the object)
-		GL11.glTranslatef((float) x + 0.5f, (float) y + 0.5f, (float) z + 0.5f);
+		if(waterWheel.getWorldObj()==null){
+			GL11.glTranslated( x,  y,  z);
+			GL11.glRotatef(180,0,0,1);
+			GL11.glScalef(0.25f, 0.25f, 0.5f);
+		} else {
+			GL11.glTranslated( x + 0.5,  y+0.5,  z + 0.5);
+		}
 
 		// Bind the texture, so that OpenGL properly textures our block.
 		FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation,Info.modelTexPrefix + "water_wheel_uv.png"));
@@ -44,34 +51,38 @@ public class ModelWaterWheel extends ModelBase {
 		float f4 = (float) (j & 255) / 255.0F;
 		GL11.glColor4f(f1 * f2, f1 * f3, f1 * f4, 1);
 		// Render the object, using modelTutBox.renderAll();
-		int facing = waterWheel.getWorldObj().getBlockMetadata((int) waterWheel.xCoord, (int) waterWheel.yCoord, (int) waterWheel.zCoord);
-		if (facing == 3) {
-			GL11.glScalef(0.7f, 0.5f, 0.5f);
-			GL11.glScalef(1f, 0.36f, 0.36f);
-			GL11.glRotatef(90, 0, 1, 0);
+		if(waterWheel.getWorldObj()!=null) {
+			int facing = waterWheel.getWorldObj().getBlockMetadata(waterWheel.xCoord, waterWheel.yCoord, waterWheel.zCoord);
+			if (facing == 3) {
+				GL11.glScalef(0.7f, 0.5f, 0.5f);
+				GL11.glScalef(1f, 0.36f, 0.36f);
+				GL11.glRotatef(90, 0, 1, 0);
+			}
+			if (facing == 1) {
+				GL11.glScalef(0.7f, 0.5f, 0.5f);
+				GL11.glScalef(1f, 0.36f, 0.36f);
+				GL11.glRotatef(-90, 0, 1, 0);
+			}
+			if (facing == 0) {
+				GL11.glScalef(0.5f, 0.5f, 0.7f);
+				GL11.glScalef(0.36f, 0.36f, 1f);
+			}
+			if (facing == 2) {
+				GL11.glScalef(0.5f, 0.5f, 0.7f);
+				GL11.glScalef(0.36f, 0.36f, 1f);
+				GL11.glRotatef(180, 0, 1, 0);
+			}
 		}
-		if (facing == 1) {
-			GL11.glScalef(0.7f, 0.5f, 0.5f);
-			GL11.glScalef(1f, 0.36f, 0.36f);
-			GL11.glRotatef(-90, 0, 1, 0);
-		}
-		if (facing == 0) {
-			GL11.glScalef(0.5f, 0.5f, 0.7f);
-			GL11.glScalef(0.36f, 0.36f, 1f);
-		}
-		if (facing == 2) {
-			GL11.glScalef(0.5f, 0.5f, 0.7f);
-			GL11.glScalef(0.36f, 0.36f, 1f);
-			GL11.glRotatef(180, 0, 1, 0);
-		}
-		if (waterWheel.getWaterDir() > -1001) {
-			long now = System.nanoTime();
-			int elapsed = (int) ((now - lastframe) / (1000 * 100));
-			wheel -= (float) elapsed / 300.0f;
-			lastframe = now;
-			//System.out.println(facing);
-			if (waterWheel.getWaterDir() == 0 || waterWheel.getWaterDir() == -3 || waterWheel.getWaterDir() == -1 || waterWheel.getWaterDir() == 1 || waterWheel.getWaterDir() == -2) {
-				GL11.glRotatef(-(wheel + wheel1), 0F, 0F, 1F);
+		if(waterWheel instanceof TileWaterWheel) {
+			if (((TileWaterWheel)waterWheel).getWaterDir() > -1001) {
+				long now = System.nanoTime();
+				int elapsed = (int) ((now - lastframe) / (1000 * 100));
+				wheel -= (float) elapsed / 300.0f;
+				lastframe = now;
+				//System.out.println(facing);
+				if (((TileWaterWheel)waterWheel).getWaterDir() == 0 || ((TileWaterWheel)waterWheel).getWaterDir() == -3 || ((TileWaterWheel)waterWheel).getWaterDir() == -1 || ((TileWaterWheel)waterWheel).getWaterDir() == 1 || ((TileWaterWheel)waterWheel).getWaterDir() == -2) {
+					GL11.glRotatef(-(wheel + wheel1), 0F, 0F, 1F);
+				}
 			}
 		}
 		this.render();

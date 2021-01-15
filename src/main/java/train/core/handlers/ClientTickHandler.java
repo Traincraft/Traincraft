@@ -6,8 +6,8 @@ import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.relauncher.Side;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
-import train.core.helpers.CapesHelper;
 import train.Traincraft;
+import train.core.helpers.CapesHelper;
 import train.core.util.MP3Player;
 
 public class ClientTickHandler {
