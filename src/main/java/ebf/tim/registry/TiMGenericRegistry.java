@@ -128,9 +128,6 @@ public class TiMGenericRegistry {
             } else if (TESR!=null){
                 ((BlockDynamic) block).setTESR(TESR);
             }
-            if(((BlockDynamic) block).texture==null){
-                ((BlockDynamic) block).texture=new ResourceLocation(MODID, unlocalizedName);
-            }
         }
         if(block instanceof ITileEntityProvider){
             Class<? extends TileEntity> tile=((ITileEntityProvider)block).createNewTileEntity(null,0).getClass();

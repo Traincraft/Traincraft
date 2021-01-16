@@ -82,7 +82,8 @@ public class BlockDistil extends BlockDynamic {
 	}
 
 	public ResourceLocation getTexture(int x, int y, int z){
-		if(Minecraft.getMinecraft().theWorld.getTileEntity(x,y,z) instanceof TileEntityDistil){
+		if(Minecraft.getMinecraft().theWorld!=null &&
+				Minecraft.getMinecraft().theWorld.getTileEntity(x,y,z) instanceof TileEntityDistil){
 			if(((TileEntityDistil) Minecraft.getMinecraft().theWorld.getTileEntity(x,y,z)).isBurning()){
 				return new ResourceLocation("traincraft", "textures/blocks/distil_on.png");
 			}

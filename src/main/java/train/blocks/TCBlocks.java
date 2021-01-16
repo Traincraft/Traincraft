@@ -14,7 +14,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.oredict.OreDictionary;
 import train.Traincraft;
 import train.blocks.bench.BlockTrainWorkbench;
@@ -59,19 +58,19 @@ public class TCBlocks {
 
 	@Deprecated //need to use TiMGenericRegistry.registerBlock(), this will also cover tile entities and TESR.
 	public static void init() {
-		trainTableTier1.texture=new ResourceLocation(Info.modID, "textures/blocks/assembly_1.png");
-		trainTableTier2.texture=new ResourceLocation(Info.modID, "textures/blocks/assembly_2.png");
-		trainTableTier3.texture=new ResourceLocation(Info.modID, "textures/blocks/assembly_3.png");
+		trainTableTier1.setTextureName(Info.modID+ ":textures/blocks/assembly_1.png");
+		trainTableTier2.setTextureName(Info.modID+ ":textures/blocks/assembly_2.png");
+		trainTableTier3.setTextureName(Info.modID+ ":textures/blocks/assembly_3.png");
 
-		blockDistil.texture=new ResourceLocation(Info.modID, "textures/blocks/distil_off.png");
+		blockDistil.setTextureName(Info.modID+ ":textures/blocks/distil_off.png");
 
-		blockHearthFurnace.texture=new ResourceLocation(Info.modID, "textures/blocks/furnace_off.png");
+		blockHearthFurnace.setTextureName(Info.modID+ ":textures/blocks/furnace_off.png");
 
 
-		partTable.texture=new ResourceLocation(TrainsInMotion.MODID, "textures/blocks/train_table.png");
+		partTable.setTextureName(TrainsInMotion.MODID +":textures/blocks/train_table.png");
 
-		oilSand.texture=new ResourceLocation(Info.modID, "textures/blocks/ores/ore_oilsands.png");
-		orePetroleum.texture=new ResourceLocation(Info.modID, "textures/blocks/ores/ore_petroleum.png");
+		oilSand.setTextureName(Info.modID+ ":textures/blocks/ores/ore_oilsands.png");
+		orePetroleum.setTextureName(Info.modID+ ":textures/blocks/ores/ore_petroleum.png");
 
 		registerBlock(oilSand, Traincraft.tcTab, Info.modID,"block.oilsand", null, null);
 		registerBlock(orePetroleum, Traincraft.tcTab, Info.modID,"block.petroleum", "petroleum", null);

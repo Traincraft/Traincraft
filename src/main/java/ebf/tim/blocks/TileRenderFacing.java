@@ -8,6 +8,7 @@ import fexcraft.tmt.slim.ModelRendererTurbo;
 import fexcraft.tmt.slim.TextureManager;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.crash.CrashReportCategory;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -16,7 +17,9 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import org.lwjgl.opengl.GL11;
@@ -65,9 +68,9 @@ public class TileRenderFacing extends TileEntity {
     @Override
     public void func_145828_a(CrashReportCategory r){
         if(r==null){
-            if(host.texture!=null) {
+            if(host.getTexture(xCoord,yCoord,zCoord)!=null) {
                 GL11.glEnable(GL11.GL_TEXTURE_2D);
-                TextureManager.bindTexture(host.texture);
+                TextureManager.bindTexture(host.getTexture(xCoord,yCoord,zCoord));
             } else {
                 GL11.glDisable(GL11.GL_TEXTURE_2D);
             }

@@ -1,14 +1,20 @@
 package ebf.tim.blocks;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import ebf.tim.TrainsInMotion;
+import ebf.tim.utility.DebugUtil;
 import fexcraft.tmt.slim.ModelBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
@@ -24,9 +30,6 @@ public class BlockDynamic extends BlockContainer {
 
     public ModelBase model=null;
     public Object tesr=null;
-    //for models 0 is entire texture, for blocks, texture is:
-    //0 up, 1 down, 2 north, 3 south, 4 east, 5 west.
-    public ResourceLocation texture=null;
     public int assemblyTableTier = -1; //only applies if it is an assembly table/traintable. no need to set otherwise. -1 unless set.
 
     public BlockDynamic(Material material, boolean isStorage, int tier) {
@@ -59,8 +62,23 @@ public class BlockDynamic extends BlockContainer {
         w.removeTileEntity(x,y,z);
     }
 
+    @Override
+    public Block setBlockTextureName(String name){return this;}
+
+    public Block setTextureName(String name){
+        textureName=name;
+        return this;
+    }
+
+    @SideOnly(Side.CLIENT)
     public ResourceLocation getTexture(int x, int y, int z){
-        return texture;
+        return new ResourceLocation(this.textureName == null ? "MISSING_ICON_BLOCK_" + getIdFromBlock(this) + "_" + this.getUnlocalizedName() :textureName);
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public IIcon getIcon(int a, int b){
+        return new particleTexture(textureName,32,0,16);
     }
 
     @Override
@@ -117,6 +135,17 @@ public class BlockDynamic extends BlockContainer {
             return false;
         }
 
+    }
+
+
+
+    public class particleTexture extends TextureAtlasSprite {
+
+
+        public particleTexture(String textureName, int xOffset, int yOffset, int scale){
+            super(textureName);
+            initSprite(scale,scale,xOffset,yOffset,false);
+        }
     }
 
 }

@@ -8,7 +8,6 @@ import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.oredict.OreDictionary;
 
 import static cpw.mods.fml.common.registry.GameRegistry.addRecipe;
@@ -31,14 +30,14 @@ public class TiMOres {
 
     public static void registerOres(){
 
-        oreCopper.texture=new ResourceLocation("traincraft", "textures/blocks/ores/ore_copper.png");
-        oreAluminium.texture=new ResourceLocation(TrainsInMotion.MODID, "textures/blocks/ores/ore.aluminum.png");
-        oreSteel.texture=new ResourceLocation(TrainsInMotion.MODID, "textures/blocks/ores/ore.steel.png");
+        oreCopper.setTextureName("traincraft:textures/blocks/ores/ore_copper.png");
+        oreAluminium.setTextureName(TrainsInMotion.MODID+ ":textures/blocks/ores/ore.aluminum.png");
+        oreSteel.setTextureName(TrainsInMotion.MODID+ ":textures/blocks/ores/ore.steel.png");
 
 
-        copperBlock.texture=new ResourceLocation(TrainsInMotion.MODID, "textures/blocks/ores/block.copper.png");
-        aluminiumBlock.texture=new ResourceLocation(TrainsInMotion.MODID, "textures/blocks/ores/block.aluminum.png");
-        steelBlock.texture=new ResourceLocation(TrainsInMotion.MODID, "textures/blocks/ores/block.steel.png");
+        copperBlock.setTextureName(TrainsInMotion.MODID+ ":textures/blocks/ores/block.copper.png");
+        aluminiumBlock.setTextureName(TrainsInMotion.MODID+ ":textures/blocks/ores/block.aluminum.png");
+        steelBlock.setTextureName(TrainsInMotion.MODID+ ":textures/blocks/ores/block.steel.png");
 
         ingotSteel = createItem("ingot.steel", "ingotSteel").setTextureName(TrainsInMotion.MODID + ":materials/ingot.steel");
         dustPlastic = createItem("dust.plastic", "dustPlastic").setTextureName(TrainsInMotion.MODID + ":materials/dust.plastic");
