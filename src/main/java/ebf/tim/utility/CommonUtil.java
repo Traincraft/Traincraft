@@ -357,71 +357,83 @@ public class CommonUtil {
         //be sure there is a rail at the location
         if (CommonUtil.isRailBlockAt(worldObj, posX,posY,posZ) && !worldObj.isRemote) {
             //define the direction
-            int playerMeta = MathHelper.floor_double((playerEntity.rotationYaw / 90.0F) + 2.5D) & 3;
-            //check rail axis
-            if (((BlockRailBase)worldObj.getBlock(posX,posY,posZ)).getBasicRailMetadata(worldObj, null,posX,posY,posZ) == 1){
-                //check player direction
-                if (playerMeta == 3) {
-                    //check if the transport can be placed in the area
-                    if (!CommonUtil.isRailBlockAt(worldObj, posX + MathHelper.floor_float(entity.rotationPoints()[0]+ 1.0F ), posY, posZ)
-                            && !CommonUtil.isRailBlockAt(worldObj, posX + MathHelper.floor_float(entity.rotationPoints()[1] - 1.0F ), posY, posZ)) {
-                        playerEntity.addChatMessage(new ChatComponentText("Place on a straight piece of track that is of sufficient length"));
-                        return false;
-                    }
-                    entity.rotationYaw= 0;
-                    //spawn the entity
-                    worldObj.spawnEntityInWorld(entity);
-                    entity.entityFirstInit(stack);
-                    return true;
+            int railMeta=((BlockRailBase)worldObj.getBlock(posX,posY,posZ)).getBasicRailMetadata(worldObj, null,posX,posY,posZ);
+            int playerMeta=MathHelper.floor_double((playerEntity.rotationYaw / 90.0F) + 2.5D) & 3;
 
+            if(railMeta==0){
+                //this direction is a bit more complicated due to how the numbers line up when coming from the other side
+                //also we have to %360 because some moron thought it a cool idea to have the character rotate from -360 to 360
+                if(playerEntity.rotationYaw%360>90&&playerEntity.rotationYaw%360<270){
+                    playerMeta=0;
+                } else {
+                    playerMeta=2;
                 }
-                //same as above, but reverse direction.
-                else if (playerMeta == 1) {
-
-                    if (!CommonUtil.isRailBlockAt(worldObj, posX - MathHelper.floor_double(entity.rotationPoints()[0]+ 1.0f ), posY, posZ)
-                            && !CommonUtil.isRailBlockAt(worldObj, posX - MathHelper.floor_double(entity.rotationPoints()[1]- 1.0f ), posY, posZ)) {
-                        playerEntity.addChatMessage(new ChatComponentText("Place on a straight piece of track that is of sufficient length"));
-                        return false;
-                    }
-                    entity.rotationYaw= 180;
-
-                    worldObj.spawnEntityInWorld(entity);
-                    entity.entityFirstInit(stack);
-                    return true;
-                }
-            }
-            //same as above but a different axis.
-            else if (((BlockRailBase)worldObj.getBlock(posX,posY,posZ)).getBasicRailMetadata(worldObj, null,posX,posY,posZ) == 0){
-
-                if (playerMeta == 0) {
-
-                    if (!CommonUtil.isRailBlockAt(worldObj, posX, posY, posZ + MathHelper.floor_float(entity.rotationPoints()[0]+ 1.0f ))
-                            && !CommonUtil.isRailBlockAt(worldObj, posX, posY, posZ + MathHelper.floor_float(entity.rotationPoints()[1]- 1.0f ))) {
-                        playerEntity.addChatMessage(new ChatComponentText("Place on a straight piece of track that is of sufficient length"));
-                        return false;
-                    }
-                    entity.rotationYaw= 90;
-
-                    worldObj.spawnEntityInWorld(entity);
-                    entity.entityFirstInit(stack);
-                    return true;
-                }
-                else if (playerMeta == 2) {
-
-                    if (!CommonUtil.isRailBlockAt(worldObj, posX, posY, posZ - MathHelper.floor_double(entity.rotationPoints()[0]+ 1.0f ))
-                            && !CommonUtil.isRailBlockAt(worldObj, posX, posY, posZ - MathHelper.floor_double(entity.rotationPoints()[1]- 1.0f ))) {
-                        playerEntity.addChatMessage(new ChatComponentText("Place on a straight piece of track that is of sufficient length"));
-                        return false;
-                    }
-
-                    entity.rotationYaw= 270;
-                    worldObj.spawnEntityInWorld(entity);
-                    entity.entityFirstInit(stack);
-                    return true;
+            } else if (railMeta==1){
+                if(playerEntity.rotationYaw%360>180){
+                    playerMeta=1;
+                } else {
+                    playerMeta=3;
                 }
             }
 
+            //check player direction
+            if (playerMeta == 3) {
+                //check if the transport can be placed in the area
+                if (!CommonUtil.isRailBlockAt(worldObj, posX + MathHelper.floor_float(entity.rotationPoints()[0]+ 1.0F ), posY, posZ)
+                        && !CommonUtil.isRailBlockAt(worldObj, posX + MathHelper.floor_float(entity.rotationPoints()[1] - 1.0F ), posY, posZ)) {
+                    playerEntity.addChatMessage(new ChatComponentText("Place on a straight piece of track that is of sufficient length"));
+                    return false;
+                }
+                entity.rotationYaw= 0;
+                //spawn the entity
+                worldObj.spawnEntityInWorld(entity);
+                entity.entityFirstInit(stack);
+                return true;
+
+            }
+            //same as above, but reverse direction.
+            else if (playerMeta == 1) {
+
+                if (!CommonUtil.isRailBlockAt(worldObj, posX - MathHelper.floor_double(entity.rotationPoints()[0]+ 1.0f ), posY, posZ)
+                        && !CommonUtil.isRailBlockAt(worldObj, posX - MathHelper.floor_double(entity.rotationPoints()[1]- 1.0f ), posY, posZ)) {
+                    playerEntity.addChatMessage(new ChatComponentText("Place on a straight piece of track that is of sufficient length"));
+                    return false;
+                }
+                entity.rotationYaw= 180;
+
+                worldObj.spawnEntityInWorld(entity);
+                entity.entityFirstInit(stack);
+                return true;
+            }
+
+            else if (playerMeta == 0) {
+
+                if (!CommonUtil.isRailBlockAt(worldObj, posX, posY, posZ + MathHelper.floor_float(entity.rotationPoints()[0]+ 1.0f ))
+                        && !CommonUtil.isRailBlockAt(worldObj, posX, posY, posZ + MathHelper.floor_float(entity.rotationPoints()[1]- 1.0f ))) {
+                    playerEntity.addChatMessage(new ChatComponentText("Place on a straight piece of track that is of sufficient length"));
+                    return false;
+                }
+                entity.rotationYaw= 90;
+
+                worldObj.spawnEntityInWorld(entity);
+                entity.entityFirstInit(stack);
+                return true;
+            }
+            else if (playerMeta == 2) {
+
+                if (!CommonUtil.isRailBlockAt(worldObj, posX, posY, posZ - MathHelper.floor_double(entity.rotationPoints()[0]+ 1.0f ))
+                        && !CommonUtil.isRailBlockAt(worldObj, posX, posY, posZ - MathHelper.floor_double(entity.rotationPoints()[1]- 1.0f ))) {
+                    playerEntity.addChatMessage(new ChatComponentText("Place on a straight piece of track that is of sufficient length"));
+                    return false;
+                }
+
+                entity.rotationYaw= 270;
+                worldObj.spawnEntityInWorld(entity);
+                entity.entityFirstInit(stack);
+                return true;
+            }
         }
+
 
         return false;
     }

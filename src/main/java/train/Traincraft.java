@@ -74,6 +74,28 @@ public class Traincraft {
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
+
+				/* Config handler */
+		configDirectory= event.getModConfigurationDirectory();
+		ConfigHandler.init(new File(event.getModConfigurationDirectory(), Info.modName + ".cfg"));
+
+		/* Register the KeyBinding Handler */
+		proxy.registerKeyBindingHandler();
+
+		/* Other Proxy init */
+		tcLog.info("Initialize Renderer and Events");
+		proxy.registerRenderInformation();
+		proxy.registerEvents(event);
+
+		/* Networking and Packet initialisation */
+		PacketHandler.init();
+
+		tcLog.info("Finished PreInitialization");
+	}
+
+	@EventHandler
+	public void load(FMLInitializationEvent event) {
+		tcLog.info("Start Initialization");
 		tcLog.info("Starting Traincraft " + Info.modVersion + "!");
 
 		GUICraftBook.addPage(Info.modID, "Traincraft\n" +
@@ -82,7 +104,7 @@ public class Traincraft {
 				"Canitzp, ComputerButter\n\n" +
 				"Project Overseer:\nSpitfire4466\n\n" +
 				"Lead artists: \nBroscolotos, Riggs64"
-				);
+		);
 
 		GUICraftBook.addPage(Info.modID, "Honorable Mentions:\n" +
 				"Mr. Brutal,\n" +
@@ -114,7 +136,7 @@ public class Traincraft {
 
 		GUICraftBook.addPage(Info.modID,
 				"I WILL STATE THIS AGAIN\n"+
-				"This release is an alpha,\n" +
+						"This release is an alpha,\n" +
 						"and some features may be\n" +
 						"missing, buggy, or\n" +
 						"incomplete.\n" +
@@ -122,28 +144,6 @@ public class Traincraft {
 						"patience and reports as\n" +
 						"we work on adding back all\n" +
 						"of the missing features,\nand many many more.");
-
-				/* Config handler */
-		configDirectory= event.getModConfigurationDirectory();
-		ConfigHandler.init(new File(event.getModConfigurationDirectory(), Info.modName + ".cfg"));
-
-		/* Register the KeyBinding Handler */
-		proxy.registerKeyBindingHandler();
-
-		/* Other Proxy init */
-		tcLog.info("Initialize Renderer and Events");
-		proxy.registerRenderInformation();
-		proxy.registerEvents(event);
-
-		/* Networking and Packet initialisation */
-		PacketHandler.init();
-
-		tcLog.info("Finished PreInitialization");
-	}
-
-	@EventHandler
-	public void load(FMLInitializationEvent event) {
-		tcLog.info("Start Initialization");
 
 		//proxy.getCape();
 

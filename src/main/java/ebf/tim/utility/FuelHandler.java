@@ -31,8 +31,8 @@ public class FuelHandler{
 
 	/**the main burnHeat variable used by most trains*/
 	public int burnHeat =0;
-	private float burnTime =0;
-	private float burnTimeMax =0;
+	public float burnTime =0;
+	public float burnTimeMax =0;
 
 	public enum DefaultTanks {
 		STEAM(new String[][]{{FluidRegistry.WATER.getName()},{TiMFluids.fluidSteam.getName()}}),
@@ -143,9 +143,10 @@ public class FuelHandler{
 			burnTime--;
 		}
 
+		DebugUtil.println(getUseableFluid(train.waterSlot().getSlotID(),train) !=null);
 		//if there's a fluid item in the slot and the train can consume the entire thing
 		if (getUseableFluid(train.waterSlot().getSlotID(),train) !=null &&
-				train.fill(null, getUseableFluid(401,train))) {
+				train.fill(null, getUseableFluid(train.waterSlot().getSlotID(),train),false)==0) {
 
 			train.fill(null, getUseableFluid(train.waterSlot().getSlotID(),train), true);
 			if (!train.getBoolean(GenericRailTransport.boolValues.CREATIVE)) {

@@ -1078,7 +1078,7 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
                 double[] roll = CommonUtil.rotatePoint(new double[]{
                         ((backBogie.posY-frontBogie.posY)
                         /(Math.abs(rotationPoints()[0])+Math.abs(rotationPoints()[1]))
-                        )*0.01,0,0},
+                        )*0.0025,0,0},
                         0, rotationYaw,0);
                 frontBogie.addVelocity(roll[0],roll[1],roll[2]);
                 backBogie.addVelocity(roll[0],roll[1],roll[2]);
@@ -1924,7 +1924,7 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
             if (getTankInfo(null)[stack]!=null && (
                     resource.getFluid() == null || getTankInfo(null)[stack].fluid.getFluid() == resource.getFluid() ||
                             getTankInfo(null)[stack].fluid.amount ==0)) {
-                if(resource.amount+getTankInfo(null)[stack].fluid.amount<=getTankInfo(null)[stack].capacity){
+                if(resource.amount+getTankInfo(null)[stack].fluid.amount<=getTankCapacity()[stack]){
                     getTankInfo(null)[stack] = new FluidTankInfo(
                             new FluidStack(resource.fluid, getTankInfo(null)[stack].fluid.amount+resource.amount),
                             getTankInfo(null)[stack].capacity);

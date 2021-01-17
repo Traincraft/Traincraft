@@ -3,9 +3,8 @@ package train.entity.gui;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import ebf.tim.TrainsInMotion;
 import ebf.tim.entities.EntityTrainCore;
-import ebf.tim.utility.ClientProxy;
-import ebf.tim.utility.CommonProxy;
-import ebf.tim.utility.FuelHandler;
+import ebf.tim.utility.*;
+import fexcraft.tmt.slim.TextureManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.util.ResourceLocation;
@@ -14,6 +13,7 @@ import org.lwjgl.opengl.GL11;
 import train.library.Info;
 
 public class HUDloco extends GuiScreen {
+	//todo all of this is fucked, fuel bar doesnt scale, speed is wrong, heat doesn't do jack on steam
 
 	private Minecraft game;
 	private int windowWidth, windowHeight;
@@ -73,7 +73,7 @@ public class HUDloco extends GuiScreen {
 		GL11.glEnable(GL11.GL_BLEND);
 		GL11.glEnable(32826);
 		fontRendererObj.drawStringWithShadow("Speed:", 106, windowHeight + 7 + (h), 0xFFFFFF);
-		fontRendererObj.drawStringWithShadow("  " + Math.floor(speed*0.27777777777), 106,
+		fontRendererObj.drawStringWithShadow("  " + Math.floor(speed*(ClientProxy.realSpeed?0.25:1)), 106,
 				windowHeight + 18 + (h), 0xFFFFFF);
 		fontRendererObj.drawStringWithShadow(" Km/h", 106, windowHeight + 29 + (h), 0xFFFFFF);
 
@@ -103,12 +103,14 @@ public class HUDloco extends GuiScreen {
 		/**
 		 * So that the content of the tank is renderer and not the fuel currently burned
 		 */
-		l = loco.getTankInfo(null)[0]!=null?loco.getTankInfo(null)[0].fluid.amount:1;
-		if (loco.getTypes().contains(TrainsInMotion.transportTypes.DIESEL) || loco.getTypes().contains(TrainsInMotion.transportTypes.ELECTRIC)) {
-			l = Math.abs(((l * 70) / ( loco.getTankCapacity()[0])));
-		}
-		else {
-			l= ((l * 70) / 1200);//scaled on 70 pixels
+		if(!loco.getTypes().contains(TrainsInMotion.transportTypes.STEAM)) {
+			l = loco.getTankInfo(null)[0] != null ? loco.getTankInfo(null)[0].fluid.amount : 1;
+			l = Math.abs(((l * 70) / (loco.getTankCapacity()[0])));
+		} else {
+			l = (int)loco.fuelHandler.burnTimeMax;
+			if(l!=0 && loco.fuelHandler.burnTime!=0){
+				l = Math.abs(((l * 70) / ((int)loco.fuelHandler.burnTime)));
+			}
 		}
 		if (l > 70) {
 			l = 70;// to fit the 70 pixels bar
@@ -121,12 +123,12 @@ public class HUDloco extends GuiScreen {
 		 * because it's a black bar that is rendered that hides the color bar the black bar is rendered from top to bottom
 		 */
 		if (!(loco.getTypes().contains(TrainsInMotion.transportTypes.STEAM))) {
-			game.renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation,Info.guiPrefix + "loco_hud_steam.png"));
-			drawTexturedModalRect(28, windowHeight + 11, 148, 150 + l, 7, 70 - l);// l max = 70
+			TextureManager.bindTexture(new ResourceLocation(Info.resourceLocation,Info.guiPrefix + "locohud.png"));
+			ClientUtil.drawTexturedRect(28, windowHeight + 11, 154, 170 + l, 7, 70 - l);// l max = 70
 		}
 		else {
-			game.renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation,Info.guiPrefix + "locohud.png"));
-			drawTexturedModalRect(34, windowHeight + 17, 154, 170 + l, 9, 70 - l);// l max = 70
+			TextureManager.bindTexture(new ResourceLocation(Info.resourceLocation,Info.guiPrefix + "loco_hud_steam.png"));
+			ClientUtil.drawTexturedRect(34, windowHeight + 17, 154, 170 + l, 7, 70 - l);// l max = 70
 		}
 		// fontRendererObj.drawStringWithShadow("Fuel:", 4, (windowHeight/2)+1, 0xFFFFFF);
 		GL11.glDisable(32826);
