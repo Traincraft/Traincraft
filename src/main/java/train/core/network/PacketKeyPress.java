@@ -54,7 +54,7 @@ public class PacketKeyPress implements IMessage {
 			Entity ridingEntity = context.getServerHandler().playerEntity.ridingEntity;
 
 			/* "instanceof" is null-safe, but we check to avoid four unnecessary instanceof checks for when the value is null anyways. */
-			if (ridingEntity != null) {
+			//if (ridingEntity != null) {
 
 				/*if (ridingEntity instanceof Locomotive) {
 
@@ -68,7 +68,7 @@ public class PacketKeyPress implements IMessage {
 
 					((AbstractZeppelin) ridingEntity).pressKey(message.key);
 				}
-			}
+			//}
 
 			/*if (message.key == 404){
 				CommonProxy.debug = CommonProxy.debug;

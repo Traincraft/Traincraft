@@ -80,7 +80,7 @@ public class EntityFreightCart2 extends GenericRailTransport {
     @Override
     public float[][] getRiderOffsets(){return null;}
     @Override
-    public float[] getHitboxSize(){return new float[]{3f,2.2f,1.4f};}
+    public float[] getHitboxSize(){return new float[]{worldObj==null?3.25f:3f,2.2f,1.4f};}
     @Override
     public float[] rotationPoints() {return new float[]{0.81f, -0.84f};}
 

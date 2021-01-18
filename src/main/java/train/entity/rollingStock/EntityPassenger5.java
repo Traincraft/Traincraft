@@ -82,7 +82,7 @@ public class EntityPassenger5 extends GenericRailTransport {
     @Override
     public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{3.55f,2.3f,1.4f};}
+    public float[] getHitboxSize(){return new float[]{worldObj==null?3.75f:3.55f,2.3f,1.4f};}
     @Override
     public float[] rotationPoints() {return new float[]{0.76f, -0.85f};}
 

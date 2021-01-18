@@ -81,7 +81,7 @@ public class EntityStockCarDRWG extends GenericRailTransport {
     @Override
     public float[][] getRiderOffsets(){return null;}
     @Override
-    public float[] getHitboxSize(){return new float[]{3.425f,2.125f,1.4f};}
+    public float[] getHitboxSize(){return new float[]{worldObj==null?3.55f:3.425f,2.125f,1.4f};}
     @Override
     public float[] rotationPoints() {return new float[]{.95f, -1.0f};}
 

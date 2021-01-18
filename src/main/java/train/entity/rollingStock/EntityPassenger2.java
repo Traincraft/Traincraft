@@ -47,7 +47,7 @@ public class EntityPassenger2 extends GenericRailTransport {
         return TrainsInMotion.transportTypes.PASSENGER.singleton();
     }
     @Override
-    public float weightKg(){return 8754.3327f;}
+    public float weightKg(){return 8754.3f;}
 
     //Model stuff
     @Override
@@ -81,7 +81,7 @@ public class EntityPassenger2 extends GenericRailTransport {
     @Override
     public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{2.53f,2.0f,1.5f};}
+    public float[] getHitboxSize(){return new float[]{3.53f,2.0f,1.5f};}
     @Override
     public float[] rotationPoints() {return new float[]{0.75f, -0.675f};}
 

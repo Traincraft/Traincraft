@@ -122,6 +122,7 @@ menu.item.australia=Australia
 menu.item.austria=Austria
 menu.item.brazil=Brazil
 menu.item.italy=Italy
+menu.item.cambodia=Cambodia
 menu.item.Factorio=Factorio
 
 
@@ -135,7 +136,7 @@ item.transportkey.name=Transport Key
 item.transportticket.name=Transport Ticket
 item.steam.bucket.name=Steam Bucket
 item.heavysteam.bucket.name=Heavy Steam Bucket
-item.fueloil.bucket.name=Oil Bucket
+item.fueloil.bucket.name=Fuel Oil Bucket
 item.redstone.bucket.name=Redstone Bucket
 item.paintbucket.name=Paint Bucket
 item.stake.name=Stake

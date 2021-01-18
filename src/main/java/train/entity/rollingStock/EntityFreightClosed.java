@@ -80,7 +80,7 @@ public class EntityFreightClosed extends GenericRailTransport {
     @Override
     public float[][] getRiderOffsets(){return null;}
     @Override
-    public float[] getHitboxSize(){return new float[]{2.725f,2.125f,1.1f};}
+    public float[] getHitboxSize(){return new float[]{worldObj==null?3.1f:2.725f,2.125f,1.1f};}
     @Override
     public float[] rotationPoints() {return new float[]{0.725f, -0.75f};}
 

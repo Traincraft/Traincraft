@@ -177,10 +177,6 @@ public class ClientProxy extends CommonProxy {
 
         configDirectory = event.getModConfigurationDirectory().getAbsolutePath();
 
-        ClientRegistry.registerKeyBinding(KeyLamp);
-        ClientRegistry.registerKeyBinding(KeyHorn);
-        ClientRegistry.registerKeyBinding(KeyInventory);
-
     }
 
     public static int WAILA_BGCOLOR = 1048592,WAILA_GRADIENT1 = 5243135,WAILA_GRADIENT2 = 2621567,WAILA_ALPHA = 0xEE,WAILA_FONTCOLOR=10526880;

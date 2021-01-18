@@ -81,7 +81,7 @@ public class EntityCabooseWorkCart extends GenericRailTransport {
     @Override
     public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{2.85f,2.7f,1.3f};}
+    public float[] getHitboxSize(){return new float[]{worldObj==null?3.25f:2.85f,2.7f,1.3f};}
     @Override
     public float[] rotationPoints() {return new float[]{0.76f, -0.85f};}
 

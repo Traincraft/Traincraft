@@ -38,17 +38,26 @@ public class RollingStockModel extends ModelBase {
                 list.render(list.boxList);
             }
             GL11.glEndList();
-            for(TurboList list :groups) {
-                list.boxList=null;
-            }
+            //for(TurboList list :groups) {
+            //    list.boxList=null;
+            //}
         } else {
-            GL11.glCallList(staticPartMap.get(this.getClass().getName()));
+            if(GL11.glIsList(staticPartMap.get(this.getClass().getName()))) {
+                GL11.glCallList(staticPartMap.get(this.getClass().getName()));
+            } else {
+                staticPartMap.put(this.getClass().getName(), GLAllocation.generateDisplayLists(1));
+                GL11.glNewList(staticPartMap.get(this.getClass().getName()), GL11.GL_COMPILE);
+                for(TurboList list :groups) {
+                    list.render(list.boxList);
+                }
+                GL11.glEndList();
+            }
         }
 
         for(TurboList list :groups) {
             if (list.animatedList != null) {
                 for (int i = 0; i < list.animatedList.size(); i++) {
-                    if (list.displayList.size() > i) {
+                    if (list.displayList.size() > i && GL11.glIsList(list.displayList.get(i))) {
                         GL11.glCallList(list.displayList.get(i));
                     } else if (list.animatedList.get(i) != null) {
                         list.displayList.add(GLAllocation.generateDisplayLists(1));

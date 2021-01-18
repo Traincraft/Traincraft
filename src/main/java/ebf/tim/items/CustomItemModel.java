@@ -123,6 +123,9 @@ public class CustomItemModel implements IItemRenderer /*ICustomModelLoader*/ {
                     ((ItemTransport)item.getItem()).entity,0,0,0, 0, true, null);
             GL11.glPopMatrix();
         } else if (item.getItem() instanceof ItemRail){
+            if(item.getTagCompound()==null){
+                return;
+            }
             GL11.glPushMatrix();
             GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
             GL11.glEnable(GL11.GL_BLEND);

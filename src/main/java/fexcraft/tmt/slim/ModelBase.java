@@ -46,7 +46,17 @@ public class ModelBase extends ArrayList<ModelRendererTurbo> {
 			GL11.glEndList();
 			boxList=null;
 		} else {
-			GL11.glCallList(staticPartMap.get(this.getClass().getName()));
+			//TODO: NOTE: find all instances of this,check if the entry exists before rendering, if not, make it generate a new one.
+			if(GL11.glIsList(staticPartMap.get(this.getClass().getName()))) {
+				GL11.glCallList(staticPartMap.get(this.getClass().getName()));
+			} else {
+				int disp=GLAllocation.generateDisplayLists(1);
+				staticPartMap.put(this.getClass().getName(), disp);
+				GL11.glNewList(disp, GL11.GL_COMPILE);
+				render(boxList);
+				GL11.glEndList();
+				boxList=null;
+			}
 		}
 
 		if(animatedList==null){return;}
@@ -67,8 +77,17 @@ public class ModelBase extends ArrayList<ModelRendererTurbo> {
 				GL11.glRotatef(part.rotateAngleY, 0.0F, 1.0F, 0.0F);
 				GL11.glRotatef(part.rotateAngleZ, 0.0F, 0.0F, 1.0F);
 				GL11.glRotatef(part.rotateAngleX, 1.0F, 0.0F, 0.0F);
-
-				GL11.glCallList(displayList.get(i));
+				if(GL11.glIsList(displayList.get(i))) {
+					GL11.glCallList(displayList.get(i));
+				} else {
+					int disp = GLAllocation.generateDisplayLists(1);
+					displayList.set(i,disp);
+					GL11.glNewList(disp, GL11.GL_COMPILE);
+					for (TexturedPolygon poly : animatedList.get(i).faces) {
+						Tessellator.getInstance().drawTexturedVertsWithNormal(poly, 0.0625F);
+					}
+					GL11.glEndList();
+				}
 
 				GL11.glTranslatef(-part.rotationPointX * 0.0625F, -part.rotationPointY * 0.0625F, -part.rotationPointZ * 0.0625F);
 				if (part.ignoresLighting){

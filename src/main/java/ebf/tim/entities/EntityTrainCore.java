@@ -10,6 +10,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+import train.library.EnumSounds;
+import train.library.Info;
 
 import java.util.List;
 import java.util.UUID;
@@ -277,6 +279,9 @@ public class EntityTrainCore extends GenericRailTransport {
             }
 
         }
+        if(whistleDelay>0) {
+            whistleDelay--;
+        }
     }
 
     @Override
@@ -318,6 +323,17 @@ public class EntityTrainCore extends GenericRailTransport {
     }
 
 
+    private int whistleDelay=0;
+    public void soundHorn() {
+        for (EnumSounds sounds : EnumSounds.values()) {
+            if (sounds.getEntityClass() != null && !sounds.getHornString().equals("")&& sounds.getEntityClass().equals(this.getClass()) && whistleDelay == 0) {
+                worldObj.playSoundAtEntity(this, Info.resourceLocation + ":" + sounds.getHornString(), sounds.getHornVolume(), 1.0F);
+                whistleDelay = 65;
+            }
+        }
+    }
+
+
     @Override
     public boolean interact(int player, boolean isFront, boolean isBack, int key) {
         if (!super.interact(player, isFront, isBack, key)){
@@ -327,7 +343,10 @@ public class EntityTrainCore extends GenericRailTransport {
                     return true;
                 }case 9:{ //plays a sound on all clients within hearing distance
                     //the second to last value is volume, and idk what the last one is.
-                    worldObj.playSoundEffect(posX, posY, posZ, getHorn().getResourcePath(), 1, 0.5f);
+                    //worldObj.playSoundEffect(posX, posY, posZ, getHorn().getResourcePath(), 1, 0.5f);
+                    if(whistleDelay==0){
+                        soundHorn();
+                    }
                     return true;
                 }case 2:{ //decrease speed
                     if (accelerator >-6 && getBoolean(boolValues.RUNNING)) {

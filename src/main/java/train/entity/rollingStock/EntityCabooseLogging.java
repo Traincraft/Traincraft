@@ -82,7 +82,7 @@ public class EntityCabooseLogging extends GenericRailTransport {
     @Override
     public float[][] getRiderOffsets(){return new float[][]{{0,1.2f, 0f}};}
     @Override
-    public float[] getHitboxSize(){return new float[]{2.0f,2.4f,1.45f};}
+    public float[] getHitboxSize(){return new float[]{worldObj==null?3.25f:2.0f,2.4f,1.45f};}
     @Override
     public float[] rotationPoints() {return new float[]{0.25f, -0.325f};}
 

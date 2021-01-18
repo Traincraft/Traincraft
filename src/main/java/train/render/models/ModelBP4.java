@@ -983,7 +983,7 @@ public class ModelBP4 extends ModelConverter
 
 
 		if(entity instanceof GenericRailTransport && ((GenericRailTransport) entity).getCurrentSkin().name.equals("Purple")){
-			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/bp4bogie_Purple.png"));
+			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/bp4bogie_purple.png"));
 		} else {
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/bp4bogie.png"));
 		}

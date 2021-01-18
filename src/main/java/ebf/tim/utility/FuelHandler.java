@@ -143,7 +143,6 @@ public class FuelHandler{
 			burnTime--;
 		}
 
-		DebugUtil.println(getUseableFluid(train.waterSlot().getSlotID(),train) !=null);
 		//if there's a fluid item in the slot and the train can consume the entire thing
 		if (getUseableFluid(train.waterSlot().getSlotID(),train) !=null &&
 				train.fill(null, getUseableFluid(train.waterSlot().getSlotID(),train),false)==0) {
