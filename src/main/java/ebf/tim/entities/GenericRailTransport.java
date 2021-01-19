@@ -2,6 +2,7 @@ package ebf.tim.entities;
 
 import com.mojang.authlib.GameProfile;
 import cpw.mods.fml.common.network.ByteBufUtils;
+import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -27,6 +28,7 @@ import mods.railcraft.api.carts.IFluidCart;
 import mods.railcraft.api.carts.ILinkableCart;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRailBase;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.IEntityMultiPart;
@@ -41,6 +43,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.*;
 import net.minecraft.world.ChunkCoordIntPair;
@@ -1730,15 +1733,20 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
         return inventory==null || inventory.size()<p_70304_1_?null:inventory.get(p_70304_1_).getStack();
     }
     @Override
-    public void markDirty() {forceBackupTimer = 30;}
+    public void markDirty() {
+        if(forceBackupTimer==0) {
+            forceBackupTimer = 30;
+        }
+
+    }
     /**called when the inventory GUI is opened*/
     @Override
     public void openInventory() {}
     /**called when the inventory GUI is closed*/
     @Override
     public void closeInventory() {
-        if (!worldObj.isRemote){
-            ServerLogger.writeWagonToFolder(this);
+        if(forceBackupTimer==0) {
+            forceBackupTimer = 30;
         }
     }
 
