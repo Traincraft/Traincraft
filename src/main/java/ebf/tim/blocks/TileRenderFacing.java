@@ -1,14 +1,9 @@
 package ebf.tim.blocks;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import ebf.tim.TrainsInMotion;
-import fexcraft.tmt.slim.ModelBase;
-import fexcraft.tmt.slim.ModelRendererTurbo;
-import fexcraft.tmt.slim.TextureManager;
+import fexcraft.tmt.slim.*;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.crash.CrashReportCategory;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -17,16 +12,9 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.IIcon;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import org.lwjgl.opengl.GL11;
-
-import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.opengl.GL11.GL_NORMALIZE;
-import static org.lwjgl.opengl.GL11.GL_SMOOTH;
 
 public class TileRenderFacing extends TileEntity {
     public byte facing =-1;
@@ -76,7 +64,45 @@ public class TileRenderFacing extends TileEntity {
             }
 
 
-            if(blockGLID ==null){
+            if(host.tesr instanceof TileEntitySpecialRenderer) {
+                //handle displaylist generation for positions and offsets of custom TESR
+                GL11.glPushMatrix();
+                if(blockGLID==null || !GL11.glIsList(blockGLID)) {
+                    blockGLID=org.lwjgl.opengl.GL11.glGenLists(1);
+                    org.lwjgl.opengl.GL11.glNewList(blockGLID, org.lwjgl.opengl.GL11.GL_COMPILE);
+                    if (worldObj != null) {
+                        Minecraft.getMinecraft().entityRenderer.enableLightmap(1);
+                        TextureManager.fixEntityLighting();
+                        TextureManager.adjustLightFixture(worldObj, xCoord, yCoord, zCoord);
+                    } else {
+                        Minecraft.getMinecraft().entityRenderer.disableLightmap(1);
+                    }
+                    GL11.glTranslatef(0.5f, 0.5f, 0.5f);
+                    switch (facing) {
+                        //north
+                        case 0:{GL11.glRotatef(90,0,1,0);break;}
+                        //east
+                        case 1:{break;}
+                        //south
+                        case 2:{GL11.glRotatef(270,0,1,0);break;}
+                        //west
+                        case 3:{GL11.glRotatef(180,0,1,0);break;}
+                    }
+                    GL11.glRotatef(180, 1, 0, 0);
+                } else {
+                    //if displaylist for custom TESR exists, call it.
+                    org.lwjgl.opengl.GL11.glCallList(blockGLID);
+                    if (ebf.tim.utility.ClientProxy.disableCache) {
+                        org.lwjgl.opengl.GL11.glDeleteLists(blockGLID, 1);
+                        blockGLID = null;
+                    }
+                }
+                //render TESR outside displaylist so it remains fully dynamic
+                ((TileEntitySpecialRenderer) host.tesr).renderTileEntityAt(this,0,0,0,0);
+                GL11.glPopMatrix();
+
+                //handle for normal blocks
+            } else if(blockGLID ==null && cube.faces.size()>0){
                 blockGLID=org.lwjgl.opengl.GL11.glGenLists(1);
                 org.lwjgl.opengl.GL11.glNewList(blockGLID, org.lwjgl.opengl.GL11.GL_COMPILE);
                 GL11.glPushMatrix();
@@ -103,10 +129,11 @@ public class TileRenderFacing extends TileEntity {
 
                 if(host.model!=null) {
                     host.model.render(null, 0, 0, 0, 0, 0, 0);
-                } else if(host.tesr instanceof TileEntitySpecialRenderer) {
-                    ((TileEntitySpecialRenderer) host.tesr).renderTileEntityAt(this,0,0,0,0);
                 } else {
-                    cube.render();
+                    //if it had no custom model defined, just render a basic cube
+                    for (TexturedPolygon p : cube.faces){
+                        Tessellator.getInstance().drawTexturedVertsWithNormal(p, 0.0625f);
+                    }
                 }
 
                 if(worldObj!=null) {
@@ -116,15 +143,14 @@ public class TileRenderFacing extends TileEntity {
                 org.lwjgl.opengl.GL11.glEndList();
 
             } else {
-
-                if(!org.lwjgl.opengl.GL11.glIsList(blockGLID)){
-                    blockGLID=null;
+                if (blockGLID==null || !org.lwjgl.opengl.GL11.glIsList(blockGLID)) {
+                    blockGLID = null;
                     return;
                 }
                 org.lwjgl.opengl.GL11.glCallList(blockGLID);
-                if(ebf.tim.utility.ClientProxy.disableCache){
-                    org.lwjgl.opengl.GL11.glDeleteLists(blockGLID,1);
-                    blockGLID =null;
+                if (ebf.tim.utility.ClientProxy.disableCache) {
+                    org.lwjgl.opengl.GL11.glDeleteLists(blockGLID, 1);
+                    blockGLID = null;
                 }
             }
         } else{

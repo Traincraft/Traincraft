@@ -101,9 +101,9 @@ public class ItemRail extends Item implements ITrackItem {
                     return false;
                 } else {
                     //if it is replaceable, try to spawn the dropped item.
-                    Item blockStack = world.getBlock(x,y,z).getItemDropped(x,world.rand,z);
-                    if(blockStack!=null){
-                        world.spawnEntityInWorld(new EntityItem(world,x,y+0.5,z, new ItemStack(blockStack)));
+                    List<ItemStack> blockStacks = world.getBlock(x,y,z).getDrops(world,x,y,z,world.getBlockMetadata(x,y,z),0);
+                    for(ItemStack stak : blockStacks){
+                        world.spawnEntityInWorld(new EntityItem(world,x,y+0.5,z, stak));
                     }
                 }
             }
