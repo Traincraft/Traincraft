@@ -347,6 +347,17 @@ public class CommonUtil {
         return xyz;
     }
 
+    public static void reverseArray(Object[] array) {
+        if (array != null) {
+            int i = 0;
+            for(int j = array.length - 1; j > i; ++i) {
+                Object tmp = array[j];
+                array[j] = array[i];
+                array[i] = tmp;
+                --j;
+            }
+        }
+    }
 
     /**
      * <h2>rail placement from item</h2>

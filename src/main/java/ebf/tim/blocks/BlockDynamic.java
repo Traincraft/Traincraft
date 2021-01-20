@@ -107,6 +107,12 @@ public class BlockDynamic extends BlockContainer {
         return isBlockContainer?new TileEntityStorage(this):new TileRenderFacing(this);
     }
 
+
+    @Override
+    public TileEntity createTileEntity(World world, int meta) {
+        return createNewTileEntity(world, meta);
+    }
+
     @Override
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack stack){
         super.onBlockPlacedBy(world, x, y, z, entity, stack);

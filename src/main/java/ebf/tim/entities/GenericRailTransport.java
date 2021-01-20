@@ -2032,6 +2032,7 @@ public class GenericRailTransport extends EntityMinecart implements IEntityAddit
                 ret[i] = new Bogie(bogieModels()[i], bogieModelOffsets()[i]);
             }
         }
+        CommonUtil.reverseArray(ret);
         return ret;
     }
 

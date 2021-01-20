@@ -259,25 +259,6 @@ public class ClientProxy extends CommonProxy {
         protected void bindTexture(ResourceLocation p_147499_1_){}
     };
 
-    public class railItemRederer extends ItemRenderer{
-        public railItemRederer(Minecraft p_i1247_1_) {
-            super(p_i1247_1_);
-        }
-        @Override
-        public void renderItem(EntityLivingBase p_78443_1_, ItemStack p_78443_2_, int p_78443_3_, IItemRenderer.ItemRenderType type) {
-            if(p_78443_2_.getItem() instanceof ItemRail){
-                if(p_78443_2_.getTagCompound().hasKey("ballast")){
-                    RailShapeCore p = new RailShapeCore();
-                    p.activePath.add(new Vec6f(-0.5f,0f,0f,0,0));
-                    p.activePath.add(new Vec6f(0.5f,0f,0f,0,0));
-                    p.gauge=new int[]{375};
-                    ModelBallast.modelPotatoBallast(p,0.5f,-0.5f, 1f,
-                            ItemStack.loadItemStackFromNBT(p_78443_2_.getTagCompound().getCompoundTag("ballast")));
-                }
-            }
-
-        }
-    }
 
     public static final RenderWagon transportRenderer = new RenderWagon();
 

@@ -1,6 +1,9 @@
 package ebf.tim.blocks;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import ebf.tim.TrainsInMotion;
+import ebf.tim.utility.DebugUtil;
 import fexcraft.tmt.slim.*;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
@@ -20,7 +23,7 @@ public class TileRenderFacing extends TileEntity {
     public byte facing =-1;
     private Integer blockGLID =null;
     private AxisAlignedBB boundingBox = null;
-    private BlockDynamic host;
+    public BlockDynamic host;
 
     public TileRenderFacing(BlockDynamic block){
         host=block;
@@ -54,6 +57,16 @@ public class TileRenderFacing extends TileEntity {
     }
 
     @Override
+    public boolean shouldRenderInPass(int pass){
+        return pass==0;
+    }
+
+    @Override
+    public AxisAlignedBB getRenderBoundingBox(){
+        return INFINITE_EXTENT_AABB;
+    }
+
+    @Override
     public void func_145828_a(CrashReportCategory r){
         if(r==null){
             if(host.getTexture(xCoord,yCoord,zCoord)!=null) {
@@ -62,55 +75,20 @@ public class TileRenderFacing extends TileEntity {
             } else {
                 GL11.glDisable(GL11.GL_TEXTURE_2D);
             }
+            if(worldObj!=null){
+                DebugUtil.printStackTrace();
+            }
 
 
-            if(host.tesr instanceof TileEntitySpecialRenderer) {
-                //handle displaylist generation for positions and offsets of custom TESR
-                GL11.glPushMatrix();
-                if(blockGLID==null || !GL11.glIsList(blockGLID)) {
-                    blockGLID=org.lwjgl.opengl.GL11.glGenLists(1);
-                    org.lwjgl.opengl.GL11.glNewList(blockGLID, org.lwjgl.opengl.GL11.GL_COMPILE);
-                    if (worldObj != null) {
-                        Minecraft.getMinecraft().entityRenderer.enableLightmap(1);
-                        TextureManager.fixEntityLighting();
-                        TextureManager.adjustLightFixture(worldObj, xCoord, yCoord, zCoord);
-                    } else {
-                        Minecraft.getMinecraft().entityRenderer.disableLightmap(1);
-                    }
-                    GL11.glTranslatef(0.5f, 0.5f, 0.5f);
-                    switch (facing) {
-                        //north
-                        case 0:{GL11.glRotatef(90,0,1,0);break;}
-                        //east
-                        case 1:{break;}
-                        //south
-                        case 2:{GL11.glRotatef(270,0,1,0);break;}
-                        //west
-                        case 3:{GL11.glRotatef(180,0,1,0);break;}
-                    }
-                    GL11.glRotatef(180, 1, 0, 0);
-                } else {
-                    //if displaylist for custom TESR exists, call it.
-                    org.lwjgl.opengl.GL11.glCallList(blockGLID);
-                    if (ebf.tim.utility.ClientProxy.disableCache) {
-                        org.lwjgl.opengl.GL11.glDeleteLists(blockGLID, 1);
-                        blockGLID = null;
-                    }
-                }
-                //render TESR outside displaylist so it remains fully dynamic
-                ((TileEntitySpecialRenderer) host.tesr).renderTileEntityAt(this,0,0,0,0);
-                GL11.glPopMatrix();
-
-                //handle for normal blocks
-            } else if(blockGLID ==null && cube.faces.size()>0){
-                blockGLID=org.lwjgl.opengl.GL11.glGenLists(1);
-                org.lwjgl.opengl.GL11.glNewList(blockGLID, org.lwjgl.opengl.GL11.GL_COMPILE);
-                GL11.glPushMatrix();
+            if(blockGLID ==null){
+                //blockGLID=org.lwjgl.opengl.GL11.glGenLists(1);
+                //org.lwjgl.opengl.GL11.glNewList(blockGLID, org.lwjgl.opengl.GL11.GL_COMPILE);
                 GL11.glEnable(GL11.GL_LIGHTING);
                 if(worldObj!=null) {
                     Minecraft.getMinecraft().entityRenderer.enableLightmap(1);
-                    TextureManager.fixEntityLighting();
-                    TextureManager.adjustLightFixture(worldObj, xCoord, yCoord, zCoord);
+                    //TextureManager.fixEntityLighting();
+                    //TextureManager.adjustLightFixture(worldObj, xCoord, yCoord, zCoord);
+                    DebugUtil.println("rendering tile");
                 } else {
                     Minecraft.getMinecraft().entityRenderer.disableLightmap(1);
                 }
@@ -130,29 +108,26 @@ public class TileRenderFacing extends TileEntity {
                 if(host.model!=null) {
                     host.model.render(null, 0, 0, 0, 0, 0, 0);
                 } else {
-                    //if it had no custom model defined, just render a basic cube
-                    for (TexturedPolygon p : cube.faces){
-                        Tessellator.getInstance().drawTexturedVertsWithNormal(p, 0.0625f);
+                    for (TexturedPolygon poly : cube.faces) {
+                        Tessellator.getInstance().drawTexturedVertsWithNormal(poly, 0.0625f);
                     }
                 }
-
-                if(worldObj!=null) {
-                    Minecraft.getMinecraft().entityRenderer.disableLightmap(1);
-                }
-                GL11.glPopMatrix();
-                org.lwjgl.opengl.GL11.glEndList();
+                //org.lwjgl.opengl.GL11.glEndList();
 
             } else {
-                if (blockGLID==null || !org.lwjgl.opengl.GL11.glIsList(blockGLID)) {
-                    blockGLID = null;
+
+                if(!org.lwjgl.opengl.GL11.glIsList(blockGLID)){
+                    blockGLID=null;
                     return;
                 }
                 org.lwjgl.opengl.GL11.glCallList(blockGLID);
-                if (ebf.tim.utility.ClientProxy.disableCache) {
-                    org.lwjgl.opengl.GL11.glDeleteLists(blockGLID, 1);
-                    blockGLID = null;
+                if(ebf.tim.utility.ClientProxy.disableCache){
+                    org.lwjgl.opengl.GL11.glDeleteLists(blockGLID,1);
+                    blockGLID =null;
                 }
             }
+            //be sure to re-enable the texture biding, because the UI wont
+            GL11.glEnable(GL11.GL_TEXTURE_2D);
         } else{
             super.func_145828_a(r);
         }
@@ -166,7 +141,7 @@ public class TileRenderFacing extends TileEntity {
 
     @Override
     public boolean shouldRefresh(Block oldBlock, Block newBlock, int oldMeta, int newMeta, World world, int x, int y, int z) {
-        return (oldBlock != newBlock);
+        return false;
     }
 
     @Override
@@ -205,13 +180,6 @@ public class TileRenderFacing extends TileEntity {
         markDirty();
     }
 
-    @Override
-    public AxisAlignedBB getRenderBoundingBox() {
-        if (boundingBox == null) {
-            boundingBox = AxisAlignedBB.getBoundingBox(xCoord-1, yCoord-1, zCoord-1, xCoord+1, yCoord, zCoord+1);
-        }
-        return boundingBox;
-    }
 
     @Override
     public void writeToNBT(NBTTagCompound tag){
@@ -240,11 +208,11 @@ public class TileRenderFacing extends TileEntity {
     }
 
     //todo: better control for render distance
-    /*@SideOnly(Side.CLIENT)
+    @SideOnly(Side.CLIENT)
     @Override
     public double getMaxRenderDistanceSquared() {
-        return super.getMaxRenderDistanceSquared();
-    }*/
+        return ((Minecraft.getMinecraft().gameSettings.renderDistanceChunks*16)+16)*((Minecraft.getMinecraft().gameSettings.renderDistanceChunks*16)+16);
+    }
 
     public static final ModelRendererTurbo cube = new ModelRendererTurbo((ModelBase) null, 0,0,64,32).addBox(-8,-8,-8,16,16,16);
 

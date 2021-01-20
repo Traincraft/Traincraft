@@ -279,13 +279,15 @@ public class FuelHandler{
 		if(getUseableFluid(train.fuelSlot().getSlotID(),train)!=null){
 			if(train.fill(null,getUseableFluid(train.fuelSlot().getSlotID(),train))){
 				train.fill(null,getUseableFluid(train.fuelSlot().getSlotID(),train),true);
-				if(train.getSlotIndexByID(train.fuelSlot().getSlotID()).getItem() instanceof IEnergyContainerItem){
-					((IEnergyContainerItem) train.getSlotIndexByID(train.fuelSlot().getSlotID()).getItem())
-							.extractEnergy(train.getSlotIndexByID(train.fuelSlot().getSlotID()).getStack(), 250, false);
-				} else {
-					train.getSlotIndexByID(train.fuelSlot().getSlotID()).decrStackSize(1);
-				}
 
+				if (!train.getBoolean(GenericRailTransport.boolValues.CREATIVE)) {
+					if (train.getSlotIndexByID(train.fuelSlot().getSlotID()).getItem() instanceof IEnergyContainerItem) {
+						((IEnergyContainerItem) train.getSlotIndexByID(train.fuelSlot().getSlotID()).getItem())
+								.extractEnergy(train.getSlotIndexByID(train.fuelSlot().getSlotID()).getStack(), 250, false);
+					} else {
+						train.getSlotIndexByID(train.fuelSlot().getSlotID()).decrStackSize(1);
+					}
+				}
 			}
 		}
 
