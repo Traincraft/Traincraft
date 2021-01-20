@@ -1,6 +1,7 @@
 package ebf.tim.utility;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import ebf.tim.blocks.TileEntityStorage;
 import ebf.tim.items.ItemRail;
 import ebf.tim.registry.TiMItems;
 import net.minecraft.init.Items;
@@ -74,13 +75,19 @@ public class RecipeManager {
      * @return A List of ItemStacks that are trains craftable with the recipe parameter. Null if nothing craftable.
      */
     public static List<ItemStack> getResult(ItemStack[] recipe, int tier){
-        if(Arrays.equals(recipe, new ItemStack[]{null, null, null, null, null, null, null, null})){
-            return null;//if all inputs were null, then just return null. this is a common scenario, should save speed overall.
+
+        //more advanced inventory empty check because of variable recipe size possible
+        boolean empty = true;
+        for (ItemStack is : recipe) {
+            if (is != null) {
+                empty = false;
+            }
         }
+        if (empty) return null;
 
         List<ItemStack> retStacks = new ArrayList<>();
         for(Recipe r : recipeList){
-            if(r.getTier() == tier) { //compare tier first for speed
+            if(r.getTier() == tier) { //compare tier first for speed (and to avoid incorrect dimensions)
                 if (r.inputMatches(Arrays.asList(recipe))) {
                     retStacks.addAll(r.result);
                 }
@@ -140,7 +147,36 @@ public class RecipeManager {
         return Ores;
     }
 
+    /**
+     * Gets the stacks in the crafting part of the provided IInventory. This is only used by a TileEntityStorage
+     * hostInventory but a fallback (original implementation) is left for safety.
+     *
+     * @precondition hostInventory, if a TileEntityStorage, must have all the crafting slots consecutively
+     * @param hostInventory the inventory to get the recipe from.
+     * @return an array of the ItemStacks that comprise the crafting recipe in the crafting input slots.
+     */
     public static ItemStack[] getTransportRecipe(IInventory hostInventory){
+        if (hostInventory instanceof TileEntityStorage) {
+            TileEntityStorage hostInv = (TileEntityStorage) hostInventory;
+
+            //generic algorithm to get all crafting slots without knowing amount crafting slots
+            boolean isCrafting = false; //true if we are in the midst of recipes.
+            ArrayList<ItemStack> craftingSlotsInterim = new ArrayList<>();
+            for (ItemStackSlot slot : hostInv.inventory) { //iterate through each slot of inventory
+                if (slot.isCraftingInput()) {
+                    isCrafting = true;
+                } else if (slot.isCraftingOutput()) {
+                    break; //reached the end of crafting
+                }
+                if (isCrafting) { //cannot be else if
+                    craftingSlotsInterim.add(slot.getStack());
+                }
+            }
+            ItemStack[] recipe = new ItemStack[craftingSlotsInterim.size()];
+            recipe = craftingSlotsInterim.toArray(recipe);
+            return recipe;
+
+        }
         return new ItemStack[]{
                 hostInventory.getStackInSlot(0),hostInventory.getStackInSlot(1),hostInventory.getStackInSlot(2),
                 hostInventory.getStackInSlot(3),hostInventory.getStackInSlot(4),hostInventory.getStackInSlot(5),

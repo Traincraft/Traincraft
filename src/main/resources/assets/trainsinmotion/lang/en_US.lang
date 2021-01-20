@@ -215,6 +215,8 @@ item.stephenson.valve.gear.name=Stephenson Valve Gear
 item.baker.valve.gear.name=Baker Valve Gear
 item.radial.valve.gear.name=Radial Valve Gear
 item.conjugating.valve.gear.name=Conjugating Valve Gear
+item.firebox.iron.name=Iron Firebox
+item.firebox.steel.name=Steel Firebox
 
 <!-- ## Blocks ## -->
 fluid.oil=Oil

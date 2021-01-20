@@ -13,8 +13,8 @@ public class Recipe {
 
     List<ItemStack> result = new ArrayList<>();
     List<List<ItemStack>> input = new ArrayList<>();
-    private int tier = 0; //a tier either 1, 2, or 3
-    private int[] displayItem=new int[]{0,0,0,0,0,0,0,0,0,0};
+    private int tier = 0; //a tier either 0, 1, 2, or 3
+    private int[] displayItem=new int[]{0,0,0,0,0,0,0,0,0,0}; //idk what this for, but it will have to be changed for supporting 10 input slots
 
 
     public Recipe(List<ItemStack> results, List<List<ItemStack>> cost, int tier) {
@@ -127,6 +127,9 @@ public class Recipe {
 
 
     public boolean inputMatches(List<ItemStack> stacks){
+        //first make sure that stacks isn't too small, ie. recipe for 9 slots and stacks is 10
+        if (stacks.size() < input.size()) return false;
+
         int i=0;
         for(List<ItemStack> slot : input){
             for(ItemStack s : slot){
