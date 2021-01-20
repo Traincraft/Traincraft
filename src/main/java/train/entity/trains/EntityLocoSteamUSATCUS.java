@@ -68,11 +68,15 @@ public class EntityLocoSteamUSATCUS extends EntityTrainCore {
     }
 
 
-    //recipe
+    @Override
+    public int getTier() {
+        return 1;
+    }
+
     @Override
     public ItemStack[] getRecipe() {
         return new ItemStack[]{
-                null, new ItemStack(TiMItems.wheelIron, 3), new ItemStack(TiMItems.frameSteel, 2),
+                null, new ItemStack(TiMItems.wheelIron, 3), new ItemStack(TiMItems.frameSteel, 2), new ItemStack(Items.dye, 8),
                 new ItemStack(TiMOres.ingotSteel, 2), new ItemStack(TiMItems.chimneySteel, 1), new ItemStack(TiMItems.cabinSteel, 1),
                 new ItemStack(TiMItems.boilerIron, 1), new ItemStack(TiMItems.fireboxIron, 1), new ItemStack(Items.coal, 1)        };
     }

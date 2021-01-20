@@ -250,16 +250,18 @@ public class ItemStackSlot extends Slot {
      * in TiM and the 8 in the Traincraft assemblytable.
      */
     private void putResultsInOutputSlots(IInventory hostInventory, List<ItemStackSlot> hostSlots, List<ItemStack> slots, int page, int numberSlots) {
+        int startSlot = 409;
+        if (tierIn > 0) startSlot = 410; //start one slot later for TC assemblytable
         if(slots==null){
             for (int i = 0; i < numberSlots; i++) {
-                putStackInSlot(hostSlots,409 + i, null);
+                putStackInSlot(hostSlots,startSlot + i, null);
             }
             ((TileEntityStorage) hostInventory).pages = 1;
             ((TileEntityStorage) hostInventory).outputPage = 1;
         } else {
             if(slots.size() <= numberSlots) {
                 for (int i = 0; i < numberSlots; i++) {
-                    putStackInSlot(hostSlots,409 + i, i >= slots.size() ?null: slots.get(i));
+                    putStackInSlot(hostSlots,startSlot + i, i >= slots.size() ?null: slots.get(i));
                 }
                 ((TileEntityStorage)hostInventory).pages = 1;
                 ((TileEntityStorage)hostInventory).outputPage = 1;
@@ -267,7 +269,7 @@ public class ItemStackSlot extends Slot {
                 if (tierIn > 0) { //TC
                     for (int i = 0; i < 6; i++) {
                         if (i + (6 * (page - 1)) < slots.size()) { //if slot is in bounds
-                            putStackInSlot(hostSlots, 409 + i, slots.get(i + ((numberSlots - 2) * (page - 1))));
+                            putStackInSlot(hostSlots, startSlot + i, slots.get(i + ((numberSlots - 2) * (page - 1))));
                         } else {
                             break;
                         }

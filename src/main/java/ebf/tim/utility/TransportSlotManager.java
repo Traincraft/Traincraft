@@ -92,7 +92,7 @@ public class TransportSlotManager extends net.minecraft.inventory.Container {
             addSlots(slot);
         }
 
-        onCraftMatrixChanged(hostInventory);
+        detectAndSendChanges();
     }
 
     /**

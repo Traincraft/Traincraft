@@ -10,7 +10,6 @@ import ebf.tim.utility.ItemStackSlot;
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
@@ -79,18 +78,19 @@ public class TileEntityStorage extends TileRenderFacing implements IInventory, I
                 inventory.add(new ItemStackSlot(this, s+1, assemblyTableTier).setCoords(79, 27).setCraftingInput(true));
                 inventory.add(new ItemStackSlot(this, s+2, assemblyTableTier).setCoords(115, 27).setCraftingInput(true));
                 //the following is dye slot, removed so we can have 9 crafting slots; if adding back, remember to increment everything
-                //inventory.add(new ItemStackSlot(this, s+3, assemblyTableTier).setCoords(145, 27).setCraftingInput(true));
-                inventory.add(new ItemStackSlot(this, s+3, assemblyTableTier).setCoords(25, 61).setCraftingInput(true));
-                inventory.add(new ItemStackSlot(this, s+4, assemblyTableTier).setCoords(79, 61).setCraftingInput(true));
-                inventory.add(new ItemStackSlot(this, s+5, assemblyTableTier).setCoords(115, 61).setCraftingInput(true));
-                inventory.add(new ItemStackSlot(this, s+6, assemblyTableTier).setCoords(43, 93).setCraftingInput(true));
-                inventory.add(new ItemStackSlot(this, s+7, assemblyTableTier).setCoords(79, 93).setCraftingInput(true));
-                inventory.add(new ItemStackSlot(this, s+8, assemblyTableTier).setCoords(145, 93).setCraftingInput(true));
+                inventory.add(new ItemStackSlot(this, s+3, assemblyTableTier).setCoords(145, 27).setCraftingInput(true));
+
+                inventory.add(new ItemStackSlot(this, s+4, assemblyTableTier).setCoords(25, 61).setCraftingInput(true));
+                inventory.add(new ItemStackSlot(this, s+5, assemblyTableTier).setCoords(79, 61).setCraftingInput(true));
+                inventory.add(new ItemStackSlot(this, s+6, assemblyTableTier).setCoords(115, 61).setCraftingInput(true));
+                inventory.add(new ItemStackSlot(this, s+7, assemblyTableTier).setCoords(43, 93).setCraftingInput(true));
+                inventory.add(new ItemStackSlot(this, s+8, assemblyTableTier).setCoords(79, 93).setCraftingInput(true));
+                inventory.add(new ItemStackSlot(this, s+9, assemblyTableTier).setCoords(145, 93).setCraftingInput(true));
 
                 //create the assembly table output slots (9-16)
                 for(int i = 0; i < 4; ++i){
                     for(int j = 0; j < 2; ++j){
-                        inventory.add(new ItemStackSlot(this, (s+9) + (j * 4 + i), assemblyTableTier).setCoords(92 + i * 18, (128) + j * 18).setCraftingOutput(true));
+                        inventory.add(new ItemStackSlot(this, (s+10) + (j * 4 + i), assemblyTableTier).setCoords(92 + i * 18, (128) + j * 18).setCraftingOutput(true));
                     }
                 }
 
@@ -110,7 +110,7 @@ public class TileEntityStorage extends TileRenderFacing implements IInventory, I
             inventory.add(new ItemStackSlot(this,402).setCoords( 30 , 37).setCraftingInput(true).setOverlay(Blocks.gravel)); //ballast
 
             inventory.add(new ItemStackSlot(this,403).setCoords( 50 , 7).setCraftingInput(true)); //wires
-            inventory.add(new ItemStackSlot(this,404).setCoords( 50 , 27).setCraftingInput(true));//augument slot
+            inventory.add(new ItemStackSlot(this,404).setCoords( 50 , 27).setCraftingInput(true));//augment slot
 
             inventory.add(new ItemStackSlot(this,405).setCoords( 124 , -2).setCraftingInput(true).setOverlay(Blocks.rail));//old shape input
 
