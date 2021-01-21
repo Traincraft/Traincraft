@@ -14,6 +14,9 @@ buildscript {
 apply plugin: 'forge'
 apply plugin: 'idea'
 
+sourceCompatibility = targetCompatibility = "1.7"
+compileJava { sourceCompatibility = targetCompatibility = "1.7" }
+
 ext.configFile = file "build.properties"
 configFile.withReader {
     def prop = new Properties()
@@ -38,6 +41,9 @@ repositories {
         name "ChickenBones"
         url "http://chickenbones.net/maven/"
     }
+    maven { 
+        url = "http://maven.cil.li/"
+    }
 }
 
 dependencies {
@@ -46,7 +52,6 @@ dependencies {
             name "BuildCraft"
             artifactPattern "http://www.mod-buildcraft.com/releases/BuildCraft/[revision]/[module]-[revision](-[classifier]).[ext]"
         }
-        maven { url = "http://maven.cil.li/" }
     }
 
     compile "li.cil.oc:OpenComputers:MC1.7.10-1.5.+:api"
@@ -61,6 +66,7 @@ dependencies {
     compile "codechicken:CodeChickenCore:1.7.10-1.0.7.46:dev"
     compile "codechicken:NotEnoughItems:1.7.10-1.0.5.110:dev"
 
+    //TODO: replace this soon with a proper gradle import from TiM's git
     compile fileTree(dir: 'libs', include: ['*.jar'])
     // real examples
     //compile 'com.mod-buildcraft:buildcraft:6.0.8:dev'  // adds buildcraft to the dev env

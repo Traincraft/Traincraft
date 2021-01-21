@@ -1,0 +1,208 @@
+<!-- ## This is a comment, do no remove or modify these! ## -->http://jabelarminecraft.blogspot.com/p/minecraft-modding-localization.html
+<!-- ## Only replace the words on the right side of "=" ## -->
+
+<!-- ## Credit to Eternal Blue Flame ## -->
+
+<!-- ## GUI ## -->
+gui.waterboiler=Water Boiler
+gui.creativemode=Creative modus is
+gui.brake.false=Remmen zijn uitgeschakeld.
+gui.brake.true=Remmen zijn ingeschakeld.
+gui.lamp.true=Lamp staat aan.
+gui.lamp.false=Lamp staat uit.
+gui.horn=Gebruik toeter.
+gui.on=aan.
+gui.off=uit.
+gui.coupler.true=Koppelingen zijn gesloten.
+gui.coupler.false=Koppelingen zijn gesloten.
+gui.locked.true=Vergrendeld naar eigenaar.
+gui.locked.false=Ontgrendeld.
+gui.map=Open kaart.
+gui.rf=Redstone Flux
+gui.hydrogencell=Waterstof cel
+gui.coolant=Reactor koelingsmiddel
+gui.of= of 
+gui.buckets=Emmers.
+gui.unlink=Ontkoppel.
+gui.dropkey=Kopieer de eigenaarssleutel.
+gui.running.false=Locomotief is uitgeschakeld.
+gui.running.true=Locomotive is ingeschakeld.
+gui.creative.false=Creative Modus uitgeschakeld.
+gui.creative.true=Creative Modus ingeschakeld.
+
+container.traincrafting=Train Crafting Table
+
+menu.item.steam=Stoom
+menu.item.diesel=Diesel
+menu.item.electric=Elektrisch
+menu.item.hydrogen=Hydro-elektrisch
+menu.item.nuclearsteam=Nucleare Stoom
+menu.item.nuclearelectric=Nucleare elektrisch
+menu.item.speed=Snelheid
+menu.item.year=Jaar
+menu.item.country=Land
+menu.item.pullingpower=Trekkracht
+menu.item.tons=Tonnen
+menu.item.weight=Gewicht
+menu.item.mhp=PK
+menu.item.seats=Stoelen
+menu.item.weight=Gewicht
+menu.item.isizeof=Inventory grootte van
+menu.item.slots=Vakjes
+menu.item.fictional=Fictief
+menu.noties=Geen Dwarsliggers
+menu.nowires=Geen Bovenleiding
+menu.noballast=Geen Ballast
+menu.item=Item
+menu.items=Items
+menu.item.fueltype=Brandstofsoort
+menu.item.seats=Stoelen
+menu.ties=Ties:
+menu.ballast=Ballast:
+menu.rails=Rails:
+item.TiM=Trains in Motion
+item.tab.timsquared.name=Tim Squared
+
+<!-- ## Countries ## -->
+menu.item.us=USA
+menu.item.germany=Duitsland
+menu.item.japan=Japan
+menu.item.belgium=België
+menu.item.russia=Rusland
+menu.item.england=Engeland
+menu.item.china=China
+menu.item.north korea=Noord-Korea
+menu.item.south korea=Zuid-Korea
+menu.item.undefined=Niet bekend
+menu.item.canada=Canada
+menu.item.mexico=Mexico
+menu.item.africa=Afrika
+menu.item.scotland=Schotland
+menu.item.poland=Polen
+menu.item.wales=Wales
+menu.item.north ireland=Noord-Ierland
+menu.item.ireland=Ierland
+menu.item.south ireland=Republiek van Ierland
+menu.item.united kingdom=Verenigd Koninkrijk
+menu.item.india=India
+menu.item.france=Frankrijk
+menu.item.spain=Spanje
+menu.item.australia=Australië
+menu.item.austria=Oostenrijk
+menu.item.brazil=Brazillië
+menu.item.italy=Italië
+
+
+
+<!-- ## Items ## -->
+item.oil.bucket.name=Emmer met Olie
+item.diesel.bucket.name=Emmer met Diesel
+item.adminbook.name=Adminboek
+item.craftbook.name=Receptenboek
+item.transportkey.name=Transportsleutel
+item.transportticket.name=Transportticket
+item.steam.bucket.name=Emmer met Stoom
+item.heavysteam.bucket.name=Emmer met zware Stoom
+item.fueloil.bucket.name=Emmer met Olie
+item.redstone.bucket.name=Emmer met Redstone
+item.paintbucket.name=Verfemmer
+item.cabin.wood.name=Houten Cabine
+item.cabin.aluminium.name=Aluminium Cabine
+item.cabin.copper.name=Koperen Cabine
+item.cabin.iron.name=IJzeren Cabine
+item.cabin.steel.name=Stalen Cabine
+item.cabin.fiberglass.name=Glasvezel Cabine
+item.cabin.plastic.name=Plastic Cabine
+item.frame.wood.name=Houten Frame
+item.frame.aluminium.name=Aluminium Frame
+item.frame.copper.name=Koperen Frame
+item.frame.iron.name=IJzeren Frame
+item.frame.steel.name=Stalen Frame
+item.frame.fiberglass.name=Glasvezel Frame
+item.frame.plastic.name=Plastic Frame
+item.wheel.wood.name=Houten Wiel
+item.wheel.aluminium.name=Aluminium Wiel
+item.wheel.iron.name=IJzeren Wiel
+item.wheel.steel.name=Stalen Wiel
+item.wheel.plastic.name=Plastic Wiel
+item.chimney.wood.name=Houten Schoorsteen
+item.chimney.aluminium.name=Aluminium Schoorsteen
+item.chimney.copper.name=Koperen Schoorsteen
+item.chimney.iron.name=IJzeren Schoorsteen
+item.chimney.steel.name=Stalen Schoorsteen
+item.chimney.fiberglass.name=Glasvezel Schoorsteen
+item.chimney.plastic.name=Plastic Schoorsteen
+item.chimney.aluminium.short.name=Korte Aluminium Schoorsteen
+item.chimney.steel.short.name=Korte Stalen Schoorsteen
+item.boiler.wood.name=Houten Boiler
+item.boiler.iron.name=IJzeren Boiler
+item.boiler.steel.name=Stalen Boiler
+item.boiler.copper.name=Koperen Boiler
+item.petrol.engine.name= Benzinemotor
+item.small.diesel.engine.name= Kleine Dieselmotor
+item.medium.diesel.engine.name=Medium Dieselmotor
+item.large.diesel.engine.name=Grote Dieselmotor
+item.small.electric.engine.name=Kleine Elektrische motor
+item.medium.electric.engine.name=Medium Elektrische motor
+item.large.electric.engine.name=Grote Elektrische motor
+item.seats.wooden.name=Houten Stoel
+item.seats.iron.name=IJzeren Stoel
+item.seats.padded.name=Beklede Stoelen
+item.seats.luxury.name=Luxe Stoelen
+item.hydraulic.transmission.name=Hydraulische Transmissie
+item.pneumatic.transmission.name=Pneumatische transmissie
+item.transformer.name=Transformator
+item.transformer.hv.name=HV-Transformator
+item.electric.controls.name=Elektrische Besturing
+item.engine.piston.name=Zuiger
+item.engine.cylinder.name=Cylinder
+item.camshaft.name=Nokkenas
+item.graphite.name=Grafiet
+item.steel.pin.circuit.name=Stalen Pin Circuit
+item.gold.pin.circuit.name=Gouden Pin Circuit
+item.copper.wire.name=Koperen Draad
+item.gold.wire.name=Gouden Draad
+item.carbon.wire.name=Koolstof Draad
+item.steel.wire.name=Stalen Draad
+item.aluminium.wire.name=Aluminium Draad
+item.insulated.copper.wire.name=Geïsoleerde Koperen Draad
+item.insulated.aluminium.wire.name=Geïsoleerde Aluminium Draad
+item.control.panel.name=Controlepaneel
+item.control.stand.name=Controlestandaard
+item.one.axel.bogie.name=Enkelassig-draaistel
+item.two.axel.bogie.name=Dubbelassig-draaistel
+item.three.axel.bogie.name=Drieassig-Draaistel
+item.four.axel.bogie.name=Vierassig-Draaistel
+item.connecting.rod.name=Verbindingsstok
+item.walschaerts.valve.gear.name=Walschaerts Ventiel
+item.stephenson.valve.gear.name=Stephenson Ventiel
+item.baker.valve.gear.name=Baker Ventiel
+item.radial.valve.gear.name=Radiaal Ventiel
+item.conjugating.valve.gear.name=Geconjugeerd Ventiel
+
+<!-- ## Blocks ## -->
+fluid.oil=Oil
+tile.block.traintable.name=Treinwerktafel
+Track Crafting Table.name=Spoorwerktafel
+tile.block.railtable=Spoorwerktafel
+item.timrail.name=Spoor
+tile.block.timrail.name=Spoor
+tile.block.diesel=Dieselvloeistof
+fluid.diesel=Dieselvloeistof
+tile.block.oil=Olievloeistof
+fluid.oil.name=Olievloeistof
+
+<!-- ## Trains ## -->
+<!-- ## These are actually defined from the item name, so one name covers all areas ## -->
+item.HenschelBrigadelok.name=Brigadelok 0-8-0
+item.HenschelBrigadelok-E.name=Brigadelok 0-8-0 (Elektrisch)
+item.GATX13000GallonTanker.name=GATX 13000 Gallon Tanker
+item.V.A.TLogcar.name=V.A.T Logcar
+item.UnionPacific3-bayHopper.name=UP 3-Bay Hopper
+item.Pullman'sPalace.name=Pullman's Palace
+
+
+<!-- ## Rollingstock ## -->
+<!-- ## These are actually defined from the item name, so one name covers all areas ## -->
+item.pullmanspalace.name=Pullman's Palace
+item.vatlogcar.name=V.A.T Log Car
