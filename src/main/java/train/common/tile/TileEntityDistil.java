@@ -196,14 +196,10 @@ public class TileEntityDistil extends TileTraincraft implements IFluidHandler {
 
 			if (theTank.getFluid() != null) {
 				amount = theTank.getFluid().amount;
-			}
-			else {
-				amount = 0;
-			}
-			if (theTank.getFluid() != null) {
 				liquidItemID = theTank.getFluid().getFluidID();
 			}
 			else {
+				amount = 0;
 				liquidItemID = 0;
 			}
 			if (updateTicks % 8 == 0){
