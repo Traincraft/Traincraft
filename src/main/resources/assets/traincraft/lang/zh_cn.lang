@@ -1,0 +1,104 @@
+# This is a comment, do no remove or modify these!
+# Only replace the words on the right side of "="
+# Save the file the same way this file was saved but replace "en_us" with appropriate language name (lowercase)
+
+# Misc
+itemGroup.traincraft=Traincraft
+
+# Blocks
+traincraft:copper_ore.name=铜矿石
+traincraft:ore_oil_sand.name=油砂
+traincraft:petrol_ore.name=原油矿石
+traincraft:ballast.name=道碴
+traincraft:generator_diesel.name=柴油发电机
+traincraft:wind_mill.name=风车
+traincraft:water_wheel.name=水车
+traincraft:lantern.name=灯笼
+traincraft:hearth_furnace.name=平炉
+traincraft:stopper.name=火车缓冲器
+traincraft:train_workbench.name=火车工作台
+traincraft:distillery.name=蒸馏塔
+traincraft:assembly_table_1.name=组装台I
+traincraft:assembly_table_2.name=组装台II
+traincraft:assembly_table_3.name=组装台III
+traincraft:bridge_pillar.name=桥墩
+traincraft:switch_stand.name=转辙拉杆
+
+# Block GUI Strings
+traincraft:assemblytable.storage=储存
+traincraft:assemblytable.output=输出
+
+# Fluids
+fluid.traincraft:oil=石油
+fluid.traincraft:diesel=柴油
+fluid.traincraft:refined_fuel=精炼燃料
+
+# Items
+item.traincraft:steel_dust.name=钢粉
+item.traincraft:coal_dust.name=煤粉
+item.traincraft:graphite.name=石墨
+item.traincraft:steel_firebox.name=钢燃烧室
+item.traincraft:steel_bogie.name=钢轮
+item.traincraft:steel_frame.name=钢框架
+item.traincraft:steel_cabin.name=钢驾驶室
+item.traincraft:steel_chimney.name=钢烟囱
+item.traincraft:steel_ingot.name=钢锭
+item.traincraft:plastic.name=塑料
+item.traincraft:copper_ingot.name=铜锭
+item.traincraft:chunk_loader_activator.name=区块加载激活器
+item.traincraft:connector.name=连接器
+item.traincraft:canister.name=罐子
+item.traincraft:guide.name=Traincraft指南
+item.traincraft:wrench.name=扳手
+
+item.traincraft:balloon.name=气囊
+item.traincraft:bogie_iron.name=铁转向架
+item.traincraft:bogie_wood.name=木转向架
+item.traincraft:boiler_iron.name=铁锅炉
+item.traincraft:boiler_steel.name=钢锅炉
+item.traincraft:cab_iron.name=铁驾驶室
+item.traincraft:cab_wood.name=木驾驶室
+item.traincraft:camshaft.name=凸轮轴
+item.traincraft:chimney_iron.name=铁烟囱
+item.traincraft:circuit.name=电路板
+item.traincraft:controls.name=控制器
+item.traincraft:cylinder.name=汽缸
+item.traincraft:engine_diesel.name=柴油引擎
+item.traincraft:engine_electric.name=电力引擎
+item.traincraft:engine_steam.name=蒸汽引擎
+item.traincraft:fiberglass_plate.name=玻璃纤维板
+item.traincraft:firebox_iron.name=铁制燃烧室
+item.traincraft:frame_iron.name=铁框架
+item.traincraft:frame_wood.name=木框架
+item.traincraft:piston.name=活塞 (Traincraft)
+item.traincraft:propeller.name=螺旋桨
+item.traincraft:rail_copper.name=铜轨
+item.traincraft:rail_steel.name=钢轨
+item.traincraft:reinforced_plate.name=强化板
+item.traincraft:seats.name=座位
+item.traincraft:signal.name=信号
+item.traincraft:transformer.name=变压器
+item.traincraft:transmission.name=液压传动器
+item.traincraft:fine_copper_wire.name=细铜线
+
+# Armor
+item.traincraft:armor_overalls.name=工程师服
+item.traincraft:armor_jacket.name=反光安全服
+item.traincraft:armor_hat.name=工程师帽
+item.traincraft:armor_ticketman_hat.name=票务员帽
+item.traincraft:armor_ticketman_pants.name=票务员裤
+item.traincraft:armor_ticketman_jacket.name=票务员外套
+item.traincraft:armor_driver_hat.name=驾驶员帽
+item.traincraft:armor_driver_pants.name=驾驶员裤
+item.traincraft:armor_driver_jacket.name=驾驶员外套
+item.traincraft:armor_composite_suit_head.name=复合服头盔
+item.traincraft:armor_composite_suit_legs.name=复合服护腿
+item.traincraft:armor_composite_suit_feet.name=复合服靴子
+item.traincraft:armor_composite_suit_chest.name=复合服胸甲
+
+item.traincraft:skin_changer.name=更换皮肤
+
+# Config
+traincraft:config.title=Traincraft设置
+traincraft:config.copper_ore_gen=铜矿生成
+traincraft:config.other_ore_gen=石油/油砂生成
