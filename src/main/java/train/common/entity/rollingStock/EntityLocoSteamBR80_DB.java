@@ -36,12 +36,13 @@ public class EntityLocoSteamBR80_DB extends SteamTrain {
 
 	@Override
 	public void updateRiderPosition() {
+		if(riddenByEntity==null){return;}
 		double distance = -0.1;
 		double pitchRads = this.anglePitchClient * 3.141592653589793D / 180.0D;
 		float rotationCos1 = (float) Math.cos(Math.toRadians(this.renderYaw + 90));
 		float rotationSin1 = (float) Math.sin(Math.toRadians((this.renderYaw + 90)));
 		float pitch = (float) (posY + ((Math.tan(pitchRads) * distance) + getMountedYOffset())
-				+ riddenByEntity.getYOffset() + 0.35);
+				+ riddenByEntity.getYOffset() + 0.45);
 		double bogieX1 = (this.posX + (rotationCos1 * distance));
 		double bogieZ1 = (this.posZ + (rotationSin1* distance));
 		

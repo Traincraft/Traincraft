@@ -37,6 +37,7 @@ public class EntityLocoSteamC62Class extends SteamTrain {
 
 	@Override
 	public void updateRiderPosition() {
+		if(riddenByEntity==null){return;}
 		
 		/*double rads = this.renderYaw * 3.141592653589793D / 180.0D;
 		double pitchRads = this.renderPitch * 3.141592653589793D / 180.0D;

@@ -8,14 +8,15 @@
 // Last changed on: 07.07.2018 - 13:59:53
 
 package train.client.render.models; //Path where the model is located
- import net.minecraft.client.Minecraft;
- import net.minecraft.entity.Entity;
- import net.minecraft.util.ResourceLocation;
- import org.lwjgl.opengl.GL11;
- import tmt.ModelConverter;
+
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.Entity;
+import net.minecraft.util.ResourceLocation;
+import org.lwjgl.opengl.GL11;
+import tmt.ModelConverter;
 import tmt.ModelRendererTurbo;
- import tmt.Tessellator;
- import train.common.library.Info;
+import tmt.Tessellator;
+import train.common.library.Info;
 
 public class ModelLocoCD151 extends ModelConverter //Same as Filename
 {

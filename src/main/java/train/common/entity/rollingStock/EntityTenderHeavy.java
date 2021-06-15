@@ -104,7 +104,7 @@ public class EntityTenderHeavy extends Tender implements IInventory {
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return 1.15F;
+		return 1.3F;
 	}
 
 	@Override

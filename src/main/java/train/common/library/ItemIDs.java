@@ -64,7 +64,9 @@ public enum ItemIDs {
 	steelRail("ItemTrain", "item_rail_steel", 1),
 	recipeBook("ItemRecipeBook", "item_book_blue", 1),
 	adminBook("ItemAdminBook", "item_book_blue", 0),
+	wirelessTransmitter("ItemWirelessTransmitter", "wireless_transmitter", 3),
 
+	atoCard("ItemATOCard", "ato_card", 5),
 	minecartWork("ItemRollingStock", "train_work", 4),
 	minecartTender("ItemRollingStock", "train_tender", 4),
 	minecartChest("ItemRollingStock", "train_freight_1", 4),
@@ -87,7 +89,7 @@ public enum ItemIDs {
 	minecartVL10("ItemRollingStock", "train_vl10", 10),
 	minecartTramWood("ItemRollingStock", "train_tram", 7),
 	minecartChmE3("ItemRollingStock", "train_chme3", 8),
-	//minecartHeavySteam("ItemRollingStock", "steam", HandleMaxAttachedCarts.HEAVY_STEAM_CARTS, 0D, (int) SpeedHandler.HEAVYSTEAM, "train_steam_heavy"),//TODO put it back once Heavy Steam is back
+	minecartHeavySteam("ItemRollingStock", "train_steam_heavy", 7),
 	minecartTenderHeavy("ItemRollingStock", "train_tender_heavy", 5),
 	minecartFlatCart("ItemRollingStock", "train_flat", 1),
 	//minecartNewHighSpeedLoco("ItemRollingStock","train_speed",10),

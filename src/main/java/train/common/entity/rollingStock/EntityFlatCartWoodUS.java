@@ -40,7 +40,9 @@ public class EntityFlatCartWoodUS extends Freight implements IInventory{
 
 	@Override
 	public void updateRiderPosition() {
-		riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset() + 0.4, posZ);
+		if(riddenByEntity!=null) {
+			riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset() + 0.4, posZ);
+		}
 	}
 	@Override
 	public boolean interactFirst(EntityPlayer entityplayer) {

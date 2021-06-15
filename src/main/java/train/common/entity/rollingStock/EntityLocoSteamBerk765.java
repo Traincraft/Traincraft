@@ -38,7 +38,7 @@ public class EntityLocoSteamBerk765 extends SteamTrain {
 
 	@Override
 	public void updateRiderPosition() {
-		TraincraftUtil.updateRider(this, -1.125, 0.375);
+		TraincraftUtil.updateRider(this, -1.125, 0.2);
 	}
 
 	@Override
@@ -102,7 +102,7 @@ public class EntityLocoSteamBerk765 extends SteamTrain {
 	}
 	@Override
 	public String getInventoryName() {
-		return "Berkshire 1225";
+		return "Berkshire 765";
 	}
 
 	@Override

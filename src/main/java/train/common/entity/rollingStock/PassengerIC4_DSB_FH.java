@@ -26,7 +26,9 @@ public class PassengerIC4_DSB_FH extends EntityRollingStock implements IPassenge
 
 	@Override
 	public void updateRiderPosition() {
-		riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset(), posZ);
+		if(riddenByEntity!=null) {
+			riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset(), posZ);
+		}
 	}
 
 	@Override

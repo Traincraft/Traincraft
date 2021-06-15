@@ -8,11 +8,8 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
 import train.common.Traincraft;
-import train.common.api.DieselTrain;
 import train.common.api.ElectricTrain;
-import train.common.api.LiquidManager;
 import train.common.core.util.TraincraftUtil;
-import train.common.library.EnumTrains;
 import train.common.library.GuiIDs;
 
 public class EntityLocoElectricBP4 extends ElectricTrain {
@@ -33,7 +30,7 @@ public class EntityLocoElectricBP4 extends ElectricTrain {
 
 	@Override
 	public void updateRiderPosition() {
-		TraincraftUtil.updateRider(this, 3.1, 0.325);
+		TraincraftUtil.updateRider(this, 3.9, 0.2);
 	}
 
 	@Override
@@ -44,7 +41,7 @@ public class EntityLocoElectricBP4 extends ElectricTrain {
 
 	@Override
 	public void pressKey(int i) {
-		if (i == 7 && riddenByEntity != null && riddenByEntity instanceof EntityPlayer) {
+		if (i == 7 && riddenByEntity instanceof EntityPlayer) {
 			((EntityPlayer) riddenByEntity).openGui(Traincraft.instance, GuiIDs.LOCO, worldObj, (int) this.posX, (int) this.posY, (int) this.posZ);
 		}
 	}
@@ -109,7 +106,7 @@ public class EntityLocoElectricBP4 extends ElectricTrain {
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return (1.2F);
+		return (0.7F);
 	}
 	@Override
 	public boolean canBeAdjusted(EntityMinecart cart) {

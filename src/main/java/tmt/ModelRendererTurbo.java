@@ -1384,9 +1384,10 @@ public class ModelRendererTurbo extends ModelRenderer {
      * @param file the location of the .obj file. The location is relative to the base directories,
      * which are either resources/models or resources/mods/models.
      */
-    public void addObj(String file){
+    public ModelRendererTurbo addObj(String file){
         useLegacyCompiler = false;
     	addModel(file, ModelPool.OBJ);
+    	return this;
     }
     
     public void addObjF(String file){
