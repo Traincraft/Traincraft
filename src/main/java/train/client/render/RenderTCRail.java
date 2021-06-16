@@ -2,13 +2,13 @@ package train.client.render;
 
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
-import org.lwjgl.opengl.GL11;
 import train.client.render.models.blocks.*;
 import train.common.tile.TileTCRail;
 
 public class RenderTCRail extends TileEntitySpecialRenderer {
 
 	private static final ModelSmallStraightTCTrack modelSmallStraight = new ModelSmallStraightTCTrack();
+	private static final ModelSmallStraightTCTrack modelRoadCrossing = new ModelSmallStraightTCTrack();
 	private static final ModelMediumStraightTCTrack modelMediumStraight = new ModelMediumStraightTCTrack();
 	private static final ModelRightTurnTCTrack modelRightTurn = new ModelRightTurnTCTrack();
 	private static final ModelLeftTurnTCTrack modelLeftTurn = new ModelLeftTurnTCTrack();
@@ -20,7 +20,7 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 	private static final ModelVeryLargeSlopeTCTrack	modelVeryLargeSlope = new ModelVeryLargeSlopeTCTrack();
 
 	public RenderTCRail() {
-		
+
 	}
 
 	@Override
@@ -28,16 +28,8 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 		if(var1 instanceof TileTCRail){
 			TileTCRail railTile = (TileTCRail) var1;
 
-			// Push a blank matrix onto the stack
-			GL11.glPushMatrix();
-
-
 			if (railTile.hasModel && railTile.getTrackType() != null) {
-				// Move the object into the correct position on the block (because the OBJ's origin is the center of the object)
-				GL11.glTranslated( x + 0.5,  y,  z + 0.5);
-				switch (railTile.getTrackType()) {
-					case LONG_STRAIGHT:
-						break;
+				switch (railTile.getTrackType()){
 					case MEDIUM_TURN:
 					case MEDIUM_RIGHT_TURN: {
 						modelRightTurn.render("medium", railTile, x, y, z);
@@ -92,25 +84,23 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 						modelLeftTurn.render("very_large", railTile, x, y, z);
 						break;
 					}
+					case LONG_STRAIGHT:
+						break;
 					case MEDIUM_STRAIGHT: {
 						modelMediumStraight.render(railTile, x, y, z);
 						break;
 					}
-					case SMALL_STRAIGHT: {
-						modelSmallStraight.render("straight", railTile, x, y, z);
-						break;
+					case SMALL_STRAIGHT:{
+						modelSmallStraight.render("straight", railTile, x, y, z);break;
 					}
-					case SMALL_ROAD_CROSSING: {
-						modelSmallStraight.render("crossing", railTile, x, y, z);
-						break;
+					case SMALL_ROAD_CROSSING:{
+						modelRoadCrossing.render("crossing", railTile, x, y, z); break;
 					}
-					case SMALL_ROAD_CROSSING_1: {
-						modelSmallStraight.render("crossing1", railTile, x, y, z);
-						break;
+					case SMALL_ROAD_CROSSING_1:{
+						modelRoadCrossing.render("crossing1", railTile, x, y, z); break;
 					}
-					case SMALL_ROAD_CROSSING_2: {
-						modelSmallStraight.render("crossing2", railTile, x, y, z);
-						break;
+					case SMALL_ROAD_CROSSING_2:{
+						modelRoadCrossing.render("crossing2", railTile, x, y, z); break;
 					}
 					case TWO_WAYS_CROSSING: {
 						modelTwoWaysCrossing.render(x, y, z);
@@ -154,8 +144,8 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 					}
 				}
 
+
 			}
-			GL11.glPopMatrix();
 		}
 	}
 }

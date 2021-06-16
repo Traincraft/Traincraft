@@ -306,7 +306,9 @@ public enum ItemIDs {
 	tcRailLargeSlopeBallast("ItemTCRail", "item_rail_straight_slope_ballast", 3),
 	tcRailVeryLargeSlopeWood("ItemTCRail", "item_rail_straight_slope_wood", 3),
 	tcRailVeryLargeSlopeGravel("ItemTCRail", "item_rail_straight_slope_gravel", 3),
-	tcRailVeryLargeSlopeBallast("ItemTCRail", "item_rail_straight_slope_ballast", 3);
+	tcRailVeryLargeSlopeBallast("ItemTCRail", "item_rail_straight_slope_ballast", 3),
+
+	minecartLocoCF7("ItemRollingStock", "train_cf7", 4);
 
 	public Item item;
 	public String className;

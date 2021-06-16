@@ -340,7 +340,9 @@ item.tc:minecartFowler4FTender.name=Fowler 4F Tender
 item.tc:minecartLocoC41_080.name=C41 0-8-0
 item.tc:minecartLocoAlcoSC4.name=Alco SC4
 item.tc:minecartFreightL.name=Freight Car L
+item.tc:minecartHeavySteam.name=Heavy Steam Locomotive
 
+item.tc:minecartLocoCF7.name=CF7
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -622,6 +624,8 @@ entity.tc.Loco WLs40.name=WLs40
 entity.tc.Freight Car L.name=Freight Car L
 entity.tc.Loco Steam C41 0-8-0.name=C41 0-8-0
 entity.tc.Loco Steam Alco SC4.name=Alco SC4
+
+entity.tc.Loco Diesel CF7.name=CF7
 
 description.villager.profession.tc.station_chief=Station Chief
 

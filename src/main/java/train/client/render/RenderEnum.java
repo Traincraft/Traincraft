@@ -620,7 +620,15 @@ public enum RenderEnum {
 		{
 			add(new double[] { 3.15D, 1.6D, 0.0D });
 		}
-	}, "", null, 0, false);
+	}, "", null, 0, false),
+
+
+	locoDieselCF7(EntityLocoDieselCF7.class, new ModelCF7(), "CF7_", true,new float[] {-1.5F, 0.15F, 0F},  new float[] { 0F, 180F, 180F }, null, "smoke", 6,  new ArrayList<double[]>() {
+		{
+			add(new double[]{0.6D, 1.4D, 0.0D});
+			add(new double[]{1.1D, 1.4D, 0.0D});
+		}
+	}, "", null, 0, false),;
 
 	private Class<? extends AbstractTrains> entityClass;
 	private ModelBase model;

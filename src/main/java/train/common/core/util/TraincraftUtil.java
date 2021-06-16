@@ -30,7 +30,56 @@ public class TraincraftUtil{
         }
         return null;
     }
-    
+
+    public static byte getByteFromColor(String c){
+        if(c.equals("Black")){
+            return 0;
+        } else if (c.equals("Red")){
+            return 1;
+        } else if(c.equals("Green")){
+            return 2;
+        } else if(c.equals("Brown")){
+            return 3;
+        } else if(c.equals("Blue")){
+            return 4;
+        } else if(c.equals("Purple")){
+            return 5;
+        } else if(c.equals("Cyan")){
+            return 6;
+        } else if(c.equals("LightGrey")){
+            return 7;
+        } else if(c.equals("Grey")){
+            return 8;
+        } else if(c.equals("Magenta")){
+            return 13;
+        } else if(c.equals("Lime")){
+            return 10;
+        } else if(c.equals("Yellow")){
+            return 11;
+        } else if(c.equals("LightBlue")){
+            return 12;
+        } else if(c.equals("Pink")){
+            return 9;
+        } else if(c.equals("Orange")){
+            return 14;
+        } else if(c.equals("White")){
+            return 15;
+        } else if(c.equals("Full")){
+            return 101;
+        } else if (c.equals("Empty")){
+            return 100;
+        }
+        return 0;
+    }
+
+    public static byte[] getBytesFromColors(String[] c){
+        byte[] ret = new byte[c.length];
+        for(int i=0; i<c.length;i++){
+            ret[i]=getByteFromColor(c[i]);
+        }
+        return ret;
+    }
+
     public static boolean itemStackMatches(ItemStack item1, ItemStack item2){
     	return (item1.getItem() == item2.getItem()) && 
     			(item1.getItemDamage() == item2.getItemDamage() 
@@ -75,5 +124,46 @@ public class TraincraftUtil{
             transport.riddenByEntity.setPosition(bogieX1, pitch, bogieZ1);
         }
     }
+    public static float atan2f(double x, double z) {
+        float pi =-3.141592653f;
+        float multiplier = 1.0f;
+
+        if (z < 0.0d) {
+            if (x < 0.0d) {
+                z = -z;
+                x = -x;
+            } else {
+                z = -z;
+                multiplier = -1.0f;
+            }
+
+        } else {
+            if (x < 0.0d) {
+                x = -x;
+                multiplier = -1.0f;
+            }
+
+            pi = 0.0f;
+        }
+
+        double invDiv = 1.0D / (((z < x) ? x : z) * (1.0D / (ATAN2_SQRT - 1)));
+        return (atan2[(int)(x * invDiv) * ATAN2_SQRT + (int)(z * invDiv)] + pi) * multiplier;
+    }
+
+    public static float atan2degreesf(double x, double y){
+        return atan2f(x,y)*degreesF;
+    }
+
+    private static final int ATAN2_SQRT = (int) Math.sqrt(1024);
+    private static final float[] atan2 = new float[1024];
+    static {
+        for (int i = 0; i < ATAN2_SQRT; i++) {
+            for (int j = 0; j < ATAN2_SQRT; j++) {
+                atan2[j * ATAN2_SQRT + i] = (float) Math.atan2((float) j / ATAN2_SQRT, (float) i / ATAN2_SQRT);
+            }
+        }
+    }
+
+    public static final float degreesF = (float) (180.0d / Math.PI);
 
 }
