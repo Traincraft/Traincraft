@@ -628,7 +628,12 @@ public enum RenderEnum {
 			add(new double[]{0.6D, 1.4D, 0.0D});
 			add(new double[]{1.1D, 1.4D, 0.0D});
 		}
-	}, "", null, 0, false),;
+	}, "", null, 0, false),
+	locoElectricRenfe446Motor(EntityLocoElectricRenfe446Motor.class, new Modelrenfe446end(), "446_", true, new float[] { -1.9F, 0.1F, 0.0F },   new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	passengerRenfe446Coach(EntityPassengerRenfe446Coach.class, new Modelrenfe446middle(), "446_", true, new float[] { -0.3F, 0.1F, 0.0F },   new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	cabooseRenfe446Tail(EntityCabooseRenfe446Tail.class, new Modelrenfe446end(), "446_", true, new float[] { 0.0F, 0.1F, 0.0F },   new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+
+	;
 
 	private Class<? extends AbstractTrains> entityClass;
 	private ModelBase model;
