@@ -309,9 +309,13 @@ public enum ItemIDs {
 	tcRailVeryLargeSlopeBallast("ItemTCRail", "item_rail_straight_slope_ballast", 3),
 
 	minecartLocoCF7("ItemRollingStock", "train_cf7", 4),
+	minecartLocoGP15("ItemRollingStock", "train_gp15", 4),
+
 	minecartLocoRenfe446Motor("ItemRollingStock", "446_motor_icon", 3),
 	minecartPassengerRenfe446Coach("ItemRollingStock", "446_middle_icon", 3),
 	minecartCabooseRenfe446Tail("ItemRollingStock", "446_tail_icon", 3),
+	minecartPCH120Commute("ItemRollingStock", "pch120", 3),
+	minecartPCH120Car("ItemRollingStock", "pch120car", 3),
 	;
 
 	public Item item;
