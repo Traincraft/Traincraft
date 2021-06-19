@@ -340,7 +340,15 @@ item.tc:minecartFowler4FTender.name=Fowler 4F Tender
 item.tc:minecartLocoC41_080.name=C41 0-8-0
 item.tc:minecartLocoAlcoSC4.name=Alco SC4
 item.tc:minecartFreightL.name=Freight Car L
+item.tc:minecartHeavySteam.name=Heavy Steam Locomotive
 
+item.tc:minecartLocoCF7.name=CF7
+item.tc:minecartLocoGP15.name=GP15-1
+item.tc:minecartLocoRenfe446Motor.name=Renfe Class 446 Powered End
+item.tc:minecartPassengerRenfe446Coach.name=Renfe Class 446 Coach
+item.tc:minecartCabooseRenfe446Tail.name=Renfe Class 446 Unpowered End
+item.tc:minecartPCH120Commute.name=PCH-120 Commute
+item.tc:minecartPCH120Car.name=PCH-120 Commute Car
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -622,6 +630,14 @@ entity.tc.Loco WLs40.name=WLs40
 entity.tc.Freight Car L.name=Freight Car L
 entity.tc.Loco Steam C41 0-8-0.name=C41 0-8-0
 entity.tc.Loco Steam Alco SC4.name=Alco SC4
+
+entity.tc.Loco Diesel CF7.name=CF7
+entity.tc.Loco Diesel GP15.name=GP15-1
+entity.tc.Loco Electric Renfe 446 Motor=Renfe Class 446 Powered End
+entity.tc.Passenger Renfe 446 Coach=Renfe Class 446 Coach
+entity.tc.Passenger Renfe 446 Tail=Renfe Class 446 Unpowered End
+entity.tc.PCH-120 Commute=PCH-120 Commute
+entity.tc.PCH-120 Commute Car=PCH-120 Commute Car
 
 description.villager.profession.tc.station_chief=Station Chief
 

@@ -268,7 +268,16 @@ public enum EnumTrains {
 	locoSteam262T("Loco Steam 262T",EntityLocoSteam262T.class, ItemIDs.minecartLocoSteam262T.item,"steam",300,70,0,60,160,300,0.5,0.968,4250,null,15,-3),
 	locoSteam040VB("Loco Steam 040VB",EntityLocoSteam040VB.class, ItemIDs.minecartLocoSteam040vb.item,"steam",200,32,0,40,120,200,0.5,0.968,2500,null,15,-1.1),
 	locoSteamAdler("Loco Steam Adler",EntityLocoSteamAdler.class, ItemIDs.minecartLocoSteamAdler.item,"steam",200,65,0,60,160,300,0.5,0.968,3000,null,15,-1.5),
-	locoSteamSnowPlow("Loco Steam Snow Plow", EntityLocoSteamSnowPlow.class, ItemIDs.minecartLocoSnowPlow.item, "steam, snow plow", 200, 20, 0, 10, 120, 170, 0.7, 0.965, 6850, null, 18, -4.75),;
+	locoSteamSnowPlow("Loco Steam Snow Plow", EntityLocoSteamSnowPlow.class, ItemIDs.minecartLocoSnowPlow.item, "steam, snow plow", 200, 20, 0, 10, 120, 170, 0.7, 0.965, 6850, null, 18, -4.75),
+
+	locoDieselCF7("Loco Diesel CF7", EntityLocoDieselCF7.class, ItemIDs.minecartLocoCF7.item, "diesel", 1500, 116, 0, 55, 0, 200, 0.8, 0.97, 12000, TraincraftUtil.getBytesFromColors(new String[]{"Yellow", "Lime","Pink"}), 10, -3),
+	locoDieselGP15("Loco Diesel GP15", EntityLocoDieselGP15.class, ItemIDs.minecartLocoGP15.item, "diesel", 1800, 105, 0, 45, 0, 160, 0.79, 0.93, 15000, null, 10, -2.6),
+	locoElectricRenfe446Motor("Loco Electric Renfe 446 Motor", EntityLocoElectricRenfe446Motor.class, ItemIDs.minecartLocoRenfe446Motor.item, "electric", 1050, 100, 0, 3, 0,230, 1.4, 0.98, 0, TraincraftUtil.getBytesFromColors(new String[]{"Red", "White","Purple", "Orange"}), 10,  -3.1),
+	passengerRenfe446Coach("Passenger Renfe 446 Coach", EntityPassengerRenfe446Coach.class, ItemIDs.minecartPassengerRenfe446Coach.item, "passenger", 0, 0, 1, 0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[]{"Red", "White","Purple", "Orange"}), 10, 0),
+	cabooseRenfe446Tail("Passenger Renfe 446 Tail", EntityCabooseRenfe446Tail.class, ItemIDs.minecartCabooseRenfe446Tail.item, "passenger", 0, 0, 1, 0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[]{"Red", "White","Purple", "Orange"}), 10, 0),
+	pch120("PCH-120 Commute", EntityLocoElectricPCH120.class, ItemIDs.minecartPCH120Commute.item, "electric",1400, 120, 0, 5, 0, 160, 0.8, 0.985, 0, TraincraftUtil.getBytesFromColors(new String[]{"White", "Blue","Green"}), 18, -2.7),
+	pch120coach("PCH-120 Commute Car", EntityPassengerPCH120Coach.class, ItemIDs.minecartPCH120Car.item, "passenger",0, 0, 2, 0, 0, 0, 0, 0, 0,TraincraftUtil.getBytesFromColors(new String[]{"White", "Blue","Green"}), 0, 0),
+	;
 
 //String trainType,int MHP,int maxSpeed, double mass, int fuelConsumption, int waterConsumption, int heatingTime, double accelerationRate, double brakeRate, int tankCapacity, String[] colors,
 	

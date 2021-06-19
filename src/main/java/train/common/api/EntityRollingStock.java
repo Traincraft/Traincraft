@@ -91,7 +91,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 	private float rollingServerPitch;
 	public double rotationYawClient;
 	public float rotationYawClientReal;
-	public double anglePitchClient;
+	public float anglePitchClient;//was a double
 	public float serverRealRotation;
 	private float previousServerRealRotation;
 	public boolean isServerInReverse = false;

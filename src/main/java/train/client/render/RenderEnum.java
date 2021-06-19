@@ -620,7 +620,28 @@ public enum RenderEnum {
 		{
 			add(new double[] { 3.15D, 1.6D, 0.0D });
 		}
-	}, "", null, 0, false);
+	}, "", null, 0, false),
+
+
+	locoDieselCF7(EntityLocoDieselCF7.class, new ModelCF7(), "CF7_", true,new float[] {-1.5F, 0.15F, 0F},  new float[] { 0F, 180F, 180F }, null, "smoke", 6,  new ArrayList<double[]>() {
+		{
+			add(new double[]{0.6D, 1.4D, 0.0D});
+			add(new double[]{1.1D, 1.4D, 0.0D});
+		}
+	}, "", null, 0, false),
+	locoDieselGP15(EntityLocoDieselGP15.class, new ModelGP15(),"gp15_Yellow", false,new float[] {-1.3F, 0.155F, 0F},  new float[] { 0F, 180F, 180F }, null, "smoke", 5,  new ArrayList<double[]>() {
+		{
+			add(new double[]{1.33D, 1.45D, 0.0D});
+			add(new double[]{0.75D, 1.45D, 0.0D});
+		}
+	}, "", null, 0, false),
+	locoElectricRenfe446Motor(EntityLocoElectricRenfe446Motor.class, new Modelrenfe446end(), "446_", true, new float[] { -1.9F, 0.1F, 0.0F },   new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	passengerRenfe446Coach(EntityPassengerRenfe446Coach.class, new Modelrenfe446middle(), "446_", true, new float[] { -0.3F, 0.1F, 0.0F },   new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	cabooseRenfe446Tail(EntityCabooseRenfe446Tail.class, new Modelrenfe446end(), "446_", true, new float[] { 0.0F, 0.1F, 0.0F },   new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	pch120(EntityLocoElectricPCH120.class, new ModelPCH120Commute(), "pch120commute_", true,new float[] {-1.3F, 0.01F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	pch120Coach(EntityPassengerPCH120Coach.class, new ModelPCH120Car(), "pch120car_", true,new float[] {0F, 0.01F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+
+	;
 
 	private Class<? extends AbstractTrains> entityClass;
 	private ModelBase model;
