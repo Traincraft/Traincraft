@@ -30,5 +30,6 @@
   "vl10_run": {"category": "master", "sounds": [{"name": "vl10_run","stream": false}]},
   "mg_horn": {"category": "master", "sounds": [{"name": "mg_horn","stream": false}]},
   "mg_run": {"category": "master", "sounds": [{"name": "mg_run","stream": false}]},
-  "mg_idle": {"category": "master", "sounds": [{"name": "mg_idle","stream": false}]}
+  "mg_idle": {"category": "master", "sounds": [{"name": "mg_idle","stream": false}]},
+  "446Horn": {"category": "master", "sounds": [{"name": "446Horn","stream": false}]}
 }
