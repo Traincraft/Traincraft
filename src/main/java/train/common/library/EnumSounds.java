@@ -90,8 +90,12 @@ public enum EnumSounds {
 	//community port
 	locoCF7(EntityLocoDieselCF7.class, "gp40-2_horn", 0.8F, "chme3_idle", 0.65F, 40, "chme3_idle", 0.65F, 40, false),
 	locoGP15(EntityLocoDieselGP15.class, "gp_horn", 0.8F, "chme3_idle", 0.65F, 40, "chme3_idle", 0.65F, 40, false),
+	locoSW8(EntityLocoDieselSW8.class, "tram_horn", 1.0F, "chme3_idle", 0.65F, 40, "chme3_idle", 0.65F, 40, false),
 	locoRenfe446Motor(EntityLocoElectricRenfe446Motor.class, "446Horn", 0.8F, "vl10_idle", 0.6F, 50, "vl10_idle", 0.6F, 50, false),
 	pch120(EntityLocoElectricPCH120.class, "446Horn", 0.8F, "vl10_idle", 0.6F, 50, "vl10_idle", 0.6F, 50, false),
+	LUengine(EntityElectricLUengine.class, "Dstock_whistle", 0.8F, "vl10_idle", 0.6F, 50, "vl10_idle", 0.6F, 50, false),
+	DstockEngine(EntityElectricDstockEngine.class, "Dstock_whistle", 0.8F, "vl10_idle", 0.6F, 50, "vl10_idle", 0.6F, 50, false),
+	Class345(EntityElectricClass345.class, "446Horn", 0.8F, "vl10_idle", 0.6F, 50, "vl10_idle", 0.6F, 50, false),
 	;
 
 
