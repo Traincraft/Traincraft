@@ -310,6 +310,7 @@ public enum ItemIDs {
 
 	minecartLocoCF7("ItemRollingStock", "train_cf7", 4),
 	minecartLocoGP15("ItemRollingStock", "train_gp15", 4),
+	minecartLocoSW8("ItemRollingStock", "train_sw8", 4),
 
 	minecartLocoRenfe446Motor("ItemRollingStock", "446_motor_icon", 3),
 	minecartPassengerRenfe446Coach("ItemRollingStock", "446_middle_icon", 3),
@@ -321,7 +322,7 @@ public enum ItemIDs {
 	minecartDstockEngine("ItemRollingStock","DstockEngine", 4),
 	minecartDstockCar("ItemRollingStock","DstockCar", 3),
 	minecartLUengine("ItemRollingStock","luengine", 4),
-	minecartLUcar("ItemRollingStock","lucar", 3),
+	minecartLUcar("ItemRollingStock","lupassenger", 3),
 	minecartClass345engine("ItemRollingStock", "Class345Engine", 4),
 	minecartClass345car("ItemRollingStock", "Class345Coach", 3),
 	;

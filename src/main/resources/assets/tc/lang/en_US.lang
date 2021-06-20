@@ -349,6 +349,15 @@ item.tc:minecartPassengerRenfe446Coach.name=Renfe Class 446 Coach
 item.tc:minecartCabooseRenfe446Tail.name=Renfe Class 446 Unpowered End
 item.tc:minecartPCH120Commute.name=PCH-120 Commute
 item.tc:minecartPCH120Car.name=PCH-120 Commute Car
+item.tc:minecartLUengine.name=London Underground 1996 Engine
+item.tc:minecartLUcar.name=London Underground 1996 Passenger
+item.tc:minecartClass345engine.name=Class 345 Engine
+item.tc:minecartClass345car.name=Class 345 Passenger
+item.tc:minecartDstockEngine.name=London D Stock Engine
+item.tc:minecartDstockCar.name=London D Stock Passenger
+item.tc:minecartPS52seatCoach.name=Pullman Standard 52 Seat Coach
+item.tc:minecartPScombine.name=Pullman Standard Combine Passenger-Baggage
+item.tc:minecartLocoSW8.name=SW8
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -622,7 +631,6 @@ entity.tc.Loco Steam USATCUS.name=S100 (US)
 entity.tc.1225 tender.name=Berkshire 1225 Tender
 entity.tc.Loco Berkshire 1225.name=Berkshire 1225
 
-
 entity.tc.Loco Hall Class.name=Hall Class
 entity.tc.4000GallonTender.name=4000 Gallon Tender
 entity.tc.Loco King Class.name=King Class
@@ -631,6 +639,7 @@ entity.tc.Freight Car L.name=Freight Car L
 entity.tc.Loco Steam C41 0-8-0.name=C41 0-8-0
 entity.tc.Loco Steam Alco SC4.name=Alco SC4
 
+
 entity.tc.Loco Diesel CF7.name=CF7
 entity.tc.Loco Diesel GP15.name=GP15-1
 entity.tc.Loco Electric Renfe 446 Motor=Renfe Class 446 Powered End
@@ -638,6 +647,16 @@ entity.tc.Passenger Renfe 446 Coach=Renfe Class 446 Coach
 entity.tc.Passenger Renfe 446 Tail=Renfe Class 446 Unpowered End
 entity.tc.PCH-120 Commute=PCH-120 Commute
 entity.tc.PCH-120 Commute Car=PCH-120 Commute Car
+entity.tc.London Underground Engine.name=London Underground 1996 Engine
+entity.tc.London Underground Passenger Car.name=London Underground 1996 Passenger Car
+entity.tc.London D Stock Engine.name=London D Stock Engine
+entity.tc.London D Stock Passenger Car.name=London D Stock Passenger Car
+entity.tc.Class 345 Engine.name=Class 345 Engine
+entity.tc.Class 345 Passenger Car.name=Class 345 Passenger Car
+entity.tc.PS 52 Seat Coach.name=Pullman Standard 52 Seat Coach
+entity.tc.PS Combine Coach.name=Pullman Standard Combine Passenger-Baggage
+entity.tc.SW8.name=SW8
+
 
 description.villager.profession.tc.station_chief=Station Chief
 
