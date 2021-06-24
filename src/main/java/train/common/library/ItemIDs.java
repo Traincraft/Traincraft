@@ -312,6 +312,9 @@ public enum ItemIDs {
 	minecartLocoGP15("ItemRollingStock", "train_gp15", 4),
 	minecartLocoSW8("ItemRollingStock", "train_sw8", 4),
 
+	minecartClimaxNew("ItemRollingStock", "train_climax2", 5),
+	minecartVBShay2("ItemRollingStock", "vbshay2", 5),
+
 	minecartLocoRenfe446Motor("ItemRollingStock", "446_motor_icon", 3),
 	minecartPassengerRenfe446Coach("ItemRollingStock", "446_middle_icon", 3),
 	minecartCabooseRenfe446Tail("ItemRollingStock", "446_tail_icon", 3),
@@ -325,6 +328,14 @@ public enum ItemIDs {
 	minecartLUcar("ItemRollingStock","lupassenger", 3),
 	minecartClass345engine("ItemRollingStock", "Class345Engine", 4),
 	minecartClass345car("ItemRollingStock", "Class345Coach", 3),
+	minecartLocoRenfe450Motor("ItemRollingStock", "450_front_icon", 3),
+	minecartPassengerRenfe450Coach("ItemRollingStock", "450_middle_icon", 3),
+	minecartCabooseRenfe450Tail("ItemRollingStock", "450_tail_icon", 3),
+	minecartCD010("ItemRollingStock", "CD010", 2),
+	minecartCD810("ItemRollingStock", "CD810", 2),
+	minecartCD014("ItemRollingStock", "CD014", 2),// bruh
+	minecartCD814("ItemRollingStock", "CD814", 2),
+	minecartCD914("ItemRollingStock", "CD914", 2),
 	;
 
 	public Item item;

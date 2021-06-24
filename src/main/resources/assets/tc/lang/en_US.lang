@@ -358,6 +358,16 @@ item.tc:minecartDstockCar.name=London D Stock Passenger
 item.tc:minecartPS52seatCoach.name=Pullman Standard 52 Seat Coach
 item.tc:minecartPScombine.name=Pullman Standard Combine Passenger-Baggage
 item.tc:minecartLocoSW8.name=SW8
+item.tc:minecartLocoRenfe450Motor.name=Renfe Class 450 Powered End
+item.tc:minecartPassengerRenfe450Coach.name=Renfe Class 450 Coach
+item.tc:minecartCabooseRenfe450Tail.name=Renfe Class 450 Unpowered End
+item.tc:minecartCD010.name=CD010 Trailer
+item.tc:minecartCD810.name=CD810 Driving Motor
+item.tc:minecartCD014.name=CD014 Trailer
+item.tc:minecartCD814.name=CD814 Driving Motor
+item.tc:minecartCD914.name=CD914 Driving Trailer
+item.tc:minecartClimaxNew.name=2 Truck Climax
+item.tc:minecartVBShay2.name=2 Truck Class A Shay
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -656,6 +666,11 @@ entity.tc.Class 345 Passenger Car.name=Class 345 Passenger Car
 entity.tc.PS 52 Seat Coach.name=Pullman Standard 52 Seat Coach
 entity.tc.PS Combine Coach.name=Pullman Standard Combine Passenger-Baggage
 entity.tc.SW8.name=SW8
+entity.tc.Loco Electric Renfe 450 Motor.name=Renfe Class 450 Powered End
+entity.tc.Passenger Renfe 450 Coach.name=Renfe Class 450 Coach
+entity.tc.Passenger Renfe 450 Tail.name=Renfe Class 450 Unpowered End
+entity.tc.2TruckClimax.name=2 Truck Climax
+entity.tc.2TruckVerticalBoilerShay.name=2 Truck Class A Shay
 
 
 description.villager.profession.tc.station_chief=Station Chief
