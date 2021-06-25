@@ -319,7 +319,7 @@ item.tc:minecartLocoLSSP7.name=LSSP 7
 item.tc:minecartShortCoveredHopper.name=Short Covered Hopper
 item.tc:minecartKClassRailBox.name=K Class Rail Box
 item.tc:minecartLongCoveredHopper.name=Long Covered Hopper
-item.tc:minecartLocoFOLM1.name=FOL M1
+item.tc:minecartLocoFOLM1.name=FOL-M1
 item.tc:minecartHeavyweightFreight.name=Heavyweight Baggage
 item.tc:minecartLocoBP4.name=BP4
 item.tc:minecartASTFAutorack.name=ASTF ft-41 Auto Rack
@@ -368,6 +368,9 @@ item.tc:minecartCD814.name=CD814 Driving Motor
 item.tc:minecartCD914.name=CD914 Driving Trailer
 item.tc:minecartClimaxNew.name=2 Truck Climax
 item.tc:minecartVBShay2.name=2 Truck Class A Shay
+item.tc:minecartRoundHopper.name=Round Covered Hopper
+item.tc:minecartRibbedHopper.name=Ribbed Covered Hopper
+item.tc:minecartFOLM1B.name=FOL-M1B Unit
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -671,6 +674,9 @@ entity.tc.Passenger Renfe 450 Coach.name=Renfe Class 450 Coach
 entity.tc.Passenger Renfe 450 Tail.name=Renfe Class 450 Unpowered End
 entity.tc.2TruckClimax.name=2 Truck Climax
 entity.tc.2TruckVerticalBoilerShay.name=2 Truck Class A Shay
+entity.tc.Freight Round Covered Hopper.name=Round Covered Hopper
+entity.tc.Freight Ribbed Covered Hopper.name=Ribbed Covered Hopper
+entity.tc.FOL-M1B.name=FOL-M1B
 
 
 description.villager.profession.tc.station_chief=Station Chief
