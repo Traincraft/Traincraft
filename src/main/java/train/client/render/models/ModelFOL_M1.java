@@ -13,9 +13,9 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
-import fexcraft.tmt.slim.ModelBase;
-import fexcraft.tmt.slim.ModelRendererTurbo;
-import fexcraft.tmt.slim.Tessellator;
+import tmt.ModelBase;
+import tmt.ModelRendererTurbo;
+import tmt.Tessellator;
 import train.common.api.AbstractTrains;
 import train.common.library.Info;
 
@@ -791,10 +791,10 @@ public class ModelFOL_M1 extends ModelBase
 		for (ModelRendererTurbo mrt : fol_m1Model){
 			if(mrt.boxName.equals("lamp")){
 				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
-				mrt.render(f5);
+				mrt.render(f5,false);
 				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
 			} else {
-				mrt.render(f5);
+				mrt.render(f5,false);
 			}
 		}
 

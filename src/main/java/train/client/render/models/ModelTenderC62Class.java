@@ -1,7 +1,7 @@
 package train.client.render.models;
 
-import fexcraft.tmt.slim.ModelConverter;
-import fexcraft.tmt.slim.ModelRendererTurbo;
+import tmt.ModelConverter;
+import tmt.ModelRendererTurbo;
 
 public class ModelTenderC62Class extends ModelConverter {
 

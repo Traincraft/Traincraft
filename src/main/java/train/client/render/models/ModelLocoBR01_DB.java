@@ -5,7 +5,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
-import fexcraft.tmt.slim.ModelBase;
+import tmt.ModelBase;
 import train.client.core.ClientProxy;
 import train.client.render.CustomModelRenderer;
 import train.client.render.models.blocks.ModelRing;

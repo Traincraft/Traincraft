@@ -10,8 +10,8 @@
 package train.client.render.models; //Path where the model is located
 
 import net.minecraft.entity.Entity;
-import fexcraft.tmt.slim.ModelConverter;
-import fexcraft.tmt.slim.ModelRendererTurbo;
+import tmt.ModelConverter;
+import tmt.ModelRendererTurbo;
 
 public class Model1225Tender extends ModelConverter //Same as Filename
 {

@@ -13,9 +13,9 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
-import fexcraft.tmt.slim.ModelConverter;
-import fexcraft.tmt.slim.ModelRendererTurbo;
-import fexcraft.tmt.slim.Tessellator;
+import tmt.ModelConverter;
+import tmt.ModelRendererTurbo;
+import tmt.Tessellator;
 import train.common.entity.rollingStock.ModelE103Bogie;
 import train.common.library.Info;
 
@@ -45,10 +45,10 @@ public class ModelE103 extends ModelConverter //Same as Filename
 		for (ModelRendererTurbo mrt : bodyModel) {
 			if (mrt.boxName.equals("lamp")) {
 				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
-				mrt.render(f5);
+				mrt.render(f5, false);
 				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
 			} else {
-				mrt.render(f5);
+				mrt.render(f5, false);
 			}
 		}
 
