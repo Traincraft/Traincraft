@@ -43,6 +43,7 @@ public class ConfigHandler {
 	public static boolean ENABLE_LOGGING;
 	public static boolean FIRST_RUN;
 	public static boolean ALLOW_ATO_ON_STEAMERS;
+	public static boolean DISABLECACHE;
 
 	public static void changeFirstLoad(){
 		Configuration cf = new Configuration(new File(Traincraft.configDirectory, Info.modName + ".cfg"));
@@ -59,6 +60,7 @@ public class ConfigHandler {
 			/* General */
 			SOUNDS = cf.get(CATEGORY_GENERAL, "ENABLE_SOUNDS", true).getBoolean(true);
 			FLICKERING = cf.get(CATEGORY_GENERAL, "DISABLE_FLICKERING", true).getBoolean(true);
+			FLICKERING = cf.get(CATEGORY_GENERAL, "DISABLE_GL_CACHE", true).getBoolean(true);
 			ORE_GEN = cf.get(CATEGORY_GENERAL, "ENABLE_FUEL_ORES_SPAWN", true).getBoolean(true);
 			COPPER_ORE_GEN = cf.get(CATEGORY_GENERAL, "ENABLE_COPPER_SPAWN", true).getBoolean(true);
 			ENABLE_ZEPPELIN = cf.get(CATEGORY_GENERAL, "ENABLE_ZEPPELIN", true).getBoolean(true);

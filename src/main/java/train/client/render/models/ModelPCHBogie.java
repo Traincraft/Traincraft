@@ -9,9 +9,9 @@
 
 package train.client.render.models;
 
-import net.minecraft.client.model.ModelBase;
+import fexcraft.tmt.slim.ModelBase;
 import net.minecraft.entity.Entity;
-import tmt.ModelRendererTurbo;
+import fexcraft.tmt.slim.ModelRendererTurbo;
 
 public class ModelPCHBogie extends ModelBase
 {
