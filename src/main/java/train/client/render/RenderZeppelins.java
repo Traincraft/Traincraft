@@ -1,6 +1,6 @@
 package train.client.render;
 
-import fexcraft.tmt.slim.ModelBase;
+import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;

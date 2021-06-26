@@ -10,8 +10,8 @@
 package train.client.render.models; //Path where the model is located
 
 
-import fexcraft.tmt.slim.ModelConverter;
-import fexcraft.tmt.slim.ModelRendererTurbo;
+import tmt.ModelConverter;
+import tmt.ModelRendererTurbo;
 
 public class ModelTypeA extends ModelConverter //Same as Filename
 {

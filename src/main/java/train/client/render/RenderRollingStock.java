@@ -10,7 +10,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Vec3;
 import org.lwjgl.opengl.GL11;
-import fexcraft.tmt.slim.Tessellator;
+import tmt.Tessellator;
 import train.common.api.EntityRollingStock;
 import train.common.api.Locomotive;
 import train.common.core.util.TraincraftUtil;
