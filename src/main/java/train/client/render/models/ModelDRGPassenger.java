@@ -9,8 +9,8 @@
 
 package train.client.render.models;
 
-import tmt.ModelConverter;
-import tmt.ModelRendererTurbo;
+import fexcraft.tmt.slim.ModelConverter;
+import fexcraft.tmt.slim.ModelRendererTurbo;
 
 public class ModelDRGPassenger extends ModelConverter //Same as Filename
 {

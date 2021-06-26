@@ -11,8 +11,8 @@ package train.client.render.models;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
-import tmt.ModelBase;
-import tmt.ModelRendererTurbo;
+import fexcraft.tmt.slim.ModelBase;
+import fexcraft.tmt.slim.ModelRendererTurbo;
 
 public class ModelWLs40 extends ModelBase
 {
@@ -1880,10 +1880,10 @@ public class ModelWLs40 extends ModelBase
 		for (ModelRendererTurbo mrt : wls40Model) {
 			if (mrt.boxName.equals("lamp")) {
 				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
-				mrt.render(f5, false);
+				mrt.render(f5);
 				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
 			} else {
-				mrt.render(f5, false);
+				mrt.render(f5);
 			}
 		}
 	}

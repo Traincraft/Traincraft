@@ -10,8 +10,8 @@
 package train.client.render.models;
 
 import net.minecraft.entity.Entity;
-import tmt.ModelBase;
-import tmt.ModelRendererTurbo;
+import fexcraft.tmt.slim.ModelBase;
+import fexcraft.tmt.slim.ModelRendererTurbo;
 
 public class ModelCoranationClass extends ModelBase
 {
