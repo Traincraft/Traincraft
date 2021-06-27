@@ -687,7 +687,21 @@ public enum RenderEnum {
 	}, 2, true),
 	freightRoundHopper(EntityFreightRoundHopper.class, new ModelRoundHopper(), "roundedhopper_", true, new float[] { -0F,0.15F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	freightRibbedHopper(EntityFreightRibbedHopper.class, new ModelRibbedHopper(), "ribbed_hopper_", true, new float[] { -0F,0.1F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
-
+	locoBR07(EntityLocoDieselBR07.class, new ModelBR_07(), "br_07", false, new float[] { -1.5F, 0.15F, -0.1F }, new float[] { 0F, 180F, 180F }, null, "smoke", 4, new ArrayList<double[]>() {
+		{
+			add(new double[] { 0.6D, 1.55D, 0.0D });
+		}
+	}, "", null, 0, false),
+	locoBR04(EntityLocoDieselBR04.class, new ModelBR_04(), "br_04", false, new float[] { -1.5F, 0.15F, -0.0F }, new float[] { 0F, 180F, 180F }, null, "smoke", 4, new ArrayList<double[]>() {
+		{
+			add(new double[] { 3.6D, 1.55D, 0.0D });
+		}
+	}, "", null, 0, false),
+	/*locoSM42(EntityLocoDieselSM42.class, new ModelSM42(), "SM42_", true, new float[] { -2.0F, 0.15F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "smoke", 4, new ArrayList<double[]>() {
+		{
+			add(new double[] { 0.6D, 1.55D, 0.0D });
+		}
+	}, "", null, 0, false),*/
 	;
 
 	private Class<? extends AbstractTrains> entityClass;

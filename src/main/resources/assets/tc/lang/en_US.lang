@@ -371,6 +371,9 @@ item.tc:minecartVBShay2.name=2 Truck Class A Shay
 item.tc:minecartRoundHopper.name=Round Covered Hopper
 item.tc:minecartRibbedHopper.name=Ribbed Covered Hopper
 item.tc:minecartFOLM1B.name=FOL-M1B Unit
+item.tc:minecartLocoBR07.name=BR Class 07 Shunter
+item.tc:minecartLocoBR04.name=BR Class 04 Shunter
+item.tc:minecartLocoSM42.name= PKP SM42
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -677,6 +680,9 @@ entity.tc.2TruckVerticalBoilerShay.name=2 Truck Class A Shay
 entity.tc.Freight Round Covered Hopper.name=Round Covered Hopper
 entity.tc.Freight Ribbed Covered Hopper.name=Ribbed Covered Hopper
 entity.tc.FOL-M1B.name=FOL-M1B
+entity.tc.BR07.name=BR Class 07 Shunter
+entity.tc.BR07.name=BR Class 04 Shunter
+entity.tc.Loco SM42.name=PKP SM42
 
 
 description.villager.profession.tc.station_chief=Station Chief

@@ -98,7 +98,7 @@ public class EntityFreightRoundHopper extends Freight implements IInventory {
 	}
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return 3.05F;
+		return 3.1F;
 	}
 
 	@Override

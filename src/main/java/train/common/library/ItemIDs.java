@@ -311,10 +311,13 @@ public enum ItemIDs {
 	minecartLocoCF7("ItemRollingStock", "train_cf7", 4),
 	minecartLocoGP15("ItemRollingStock", "train_gp15", 4),
 	minecartLocoSW8("ItemRollingStock", "train_sw8", 4),
+	minecartFOLM1B("ItemRollingStock", "folm1b", 4),
+	minecartLocoBR07("ItemRollingStock", "train_br07", 3),
+	minecartLocoBR04("ItemRollingStock", "train_br04", 3),
+	//minecartLocoSM42("ItemRollingStock", "train_sm42", 4),
 
 	minecartClimaxNew("ItemRollingStock", "train_climax2", 5),
 	minecartVBShay2("ItemRollingStock", "vbshay2", 5),
-	minecartFOLM1B("ItemRollingStock", "folm1b", 4),
 
 	minecartLocoRenfe446Motor("ItemRollingStock", "446_motor_icon", 3),
 	minecartPassengerRenfe446Coach("ItemRollingStock", "446_middle_icon", 3),
