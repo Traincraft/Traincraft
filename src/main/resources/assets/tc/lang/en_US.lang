@@ -374,6 +374,8 @@ item.tc:minecartFOLM1B.name=FOL-M1B Unit
 item.tc:minecartLocoBR07.name=BR Class 07 Shunter
 item.tc:minecartLocoBR04.name=BR Class 04 Shunter
 item.tc:minecartLocoSM42.name= PKP SM42
+item.tc:minecartLocoWWCPGP7.name=WWCP GP7 High Hood
+item.tc:minecartLocoC11.name=JNR C11
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -683,6 +685,13 @@ entity.tc.FOL-M1B.name=FOL-M1B
 entity.tc.BR07.name=BR Class 07 Shunter
 entity.tc.BR07.name=BR Class 04 Shunter
 entity.tc.Loco SM42.name=PKP SM42
+entity.tc.Loco Diesel WWCP GP7.name=WWCP GP7 High Hood
+entity.tc.Loco Steam C11.name=JNR C11
+entity.tc.CD814 Driving Motor.name=CD814 Driving Motor
+entity.tc.CD014 Trailer.name=CD014 Trailer
+entity.tc.CD914 Driving Trailer.name=CD914 Driving Trailer
+entity.tc.CD810 Driving Motor.name=CD810 Driving Motor
+entity.tc.CD010 Trailer.name=CD010 Trailer
 
 
 description.villager.profession.tc.station_chief=Station Chief

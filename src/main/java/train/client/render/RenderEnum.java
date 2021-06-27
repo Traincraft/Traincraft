@@ -634,7 +634,7 @@ public enum RenderEnum {
 			add(new double[]{1.1D, 1.4D, 0.0D});
 		}
 	}, "", null, 0, false),
-	locoDieselGP15(EntityLocoDieselGP15.class, new ModelGP15(),"gp15_Yellow", false,new float[] {-1.3F, 0.155F, 0F},  new float[] { 0F, 180F, 180F }, null, "smoke", 5,  new ArrayList<double[]>() {
+	locoDieselGP15(EntityLocoDieselGP15.class, new ModelGP15(),"gp15_", true,new float[] {-1.3F, 0.155F, 0F},  new float[] { 0F, 180F, 180F }, null, "smoke", 5,  new ArrayList<double[]>() {
 		{
 			add(new double[]{1.33D, 1.45D, 0.0D});
 			add(new double[]{0.75D, 1.45D, 0.0D});
@@ -702,6 +702,22 @@ public enum RenderEnum {
 			add(new double[] { 0.6D, 1.55D, 0.0D });
 		}
 	}, "", null, 0, false),*/
+	locoDieselWWCPGP7(EntityLocoDieselWWCPGP7.class, new ModelWWCPGP7(), "GP7_Highood_", true, new float[]{-2f,0.15f,0}, new float[] { 0F, 0F, 180F }, new float[]{0.9f,1f,0.9f}, "smoke", 4, new ArrayList<double[]>() {
+		{
+			add(new double[] { 1.7D, 1.3D, 0.0D });
+
+			add(new double[] { 0.85D, 1.3D, 0.0D });
+		}
+	}, "", null, 0, false),
+	locoC11(EntityLocoSteamC11.class, new ModellocoC11(), "locoC11", false, new float[] {  -1.5F, 0.2F, 0.0F }, new float[] { 0, 180, 180 }, null, "largesmoke", 5, new ArrayList<double[]>() {
+		{
+			add(new double[] { 3.05D, 1.35D, 0D });
+		}
+	}, "explode", new ArrayList<double[]>() {
+		{
+			add(new double[] { 2.9D, 0.00D, 0.75D });
+		}
+	}, 3, true),
 	;
 
 	private Class<? extends AbstractTrains> entityClass;
