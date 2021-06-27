@@ -1,8 +1,8 @@
 [
 {
   "modid": "tc",
-  "name": "Traincraft",
-  "description": "A mod that adds over 200 trains and rolling stock to the game.",
+  "name": "Traincraft - Community Edition",
+  "description": "The Community Port of Traincraft, built off of version 020.",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "logoFile": "Logo.png",

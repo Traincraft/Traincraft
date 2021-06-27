@@ -2066,9 +2066,11 @@ public class ModelPS52SeatCoach extends ModelConverter //Same as Filename
 		{
 			bodyModel[i].render(f5);
 		}
-		if(entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor()==14 | entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor()==12){
+		if(entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor()==14){
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/41-N-11_truck_silver.png"));
-		} else {
+		} else if (entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 12) {
+			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/BAP_41-N-11_truck_NKP_blue.png"));
+		}else {
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/41-N-11_truck_black.png"));
 		}
 		GL11.glPushMatrix();
