@@ -93,12 +93,7 @@ public class WorldEvents{
  	@SuppressWarnings("unused")
  	public void entityJoinWorldEvent(EntityJoinWorldEvent event) {
  		if (event.entity instanceof EntityPlayer && event.entity.worldObj.isRemote) {
- 
- 			if (event.entity.getUniqueID() == UUID.fromString("157eae46-e464-46c2-9913-433a40896831") ||
- 					event.entity.getUniqueID() == UUID.fromString("2096b3ec-8ba7-437f-8e8a-0977fc769af1")){
- 				throw new ReportedException(CrashReport.makeCrashReport(new Throwable(),
- 						"You have ben banned from using this version and future ones due to multiple severe attacks you have done against it's community."));
- 			}
+
  		} else if(event.entity instanceof EntityPlayer && ConfigHandler.FIRST_RUN) {
 			((EntityPlayer)event.entity).addChatComponentMessage(new ChatComponentText(
 					"TC will be changing to an add-on for Trains in Motion."));

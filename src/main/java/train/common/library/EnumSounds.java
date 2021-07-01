@@ -103,7 +103,9 @@ public enum EnumSounds {
 	LocoBR07(EntityLocoDieselBR07.class, "british_two_tone", 0.8F, "chme3_idle", 0.65F, 40, "chme3_idle", 0.65F, 40, true),
 	LocoWWCPGP7(EntityLocoDieselWWCPGP7.class, "gp_horn", 0.8F, "chme3_idle", 0.65F, 40, "chme3_idle", 0.65F, 40, false),
 	locoSteamC11(EntityLocoSteamC11.class, "american_steam_horn", 0.6F, "steam_run", 0.4F, 20, "steam_run", 0.4F, 20, true),
-	;
+	LocoCD814(EntityLocoDieselCD814.class, "tram_horn", 0.8F, "chme3_idle", 0.65F, 40, "chme3_idle", 0.65F, 40, true),
+	LocoCD810(EntityLocoDieselCD810.class, "tram_horn", 0.8F, "chme3_idle", 0.65F, 40, "chme3_idle", 0.65F, 40, true),
+	LocoGE44Ton(EntityLocoDieselGE44Ton.class, "tram_horn", 1.0F, "chme3_idle", 0.65F, 40, "chme3_idle", 0.65F, 40, false);
 
 
 	private Class entityClass;

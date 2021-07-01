@@ -376,6 +376,8 @@ item.tc:minecartLocoBR04.name=BR Class 04 Shunter
 item.tc:minecartLocoSM42.name= PKP SM42
 item.tc:minecartLocoWWCPGP7.name=WWCP GP7 High Hood
 item.tc:minecartLocoC11.name=JNR C11
+item.tc:minecartPSCenterDiner.name=Pullman Standard Center-Kitchen Dining Car
+item.tc:minecartLocoGE44Ton.name=GE-44 Tonner
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -673,6 +675,7 @@ entity.tc.Class 345 Engine.name=Class 345 Engine
 entity.tc.Class 345 Passenger Car.name=Class 345 Passenger Car
 entity.tc.PS 52 Seat Coach.name=Pullman Standard 52 Seat Coach
 entity.tc.PS Combine Coach.name=Pullman Standard Combine Passenger-Baggage
+entity.tc.PS Center Diner.name=Pullman Standard Center-Kitchen Dining Car
 entity.tc.SW8.name=SW8
 entity.tc.Loco Electric Renfe 450 Motor.name=Renfe Class 450 Powered End
 entity.tc.Passenger Renfe 450 Coach.name=Renfe Class 450 Coach
@@ -692,6 +695,7 @@ entity.tc.CD014 Trailer.name=CD014 Trailer
 entity.tc.CD914 Driving Trailer.name=CD914 Driving Trailer
 entity.tc.CD810 Driving Motor.name=CD810 Driving Motor
 entity.tc.CD010 Trailer.name=CD010 Trailer
+entity.tc.GE 44-Ton.name=GE 44-Tonner
 
 
 description.villager.profession.tc.station_chief=Station Chief
