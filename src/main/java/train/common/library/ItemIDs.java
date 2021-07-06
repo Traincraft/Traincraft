@@ -344,6 +344,8 @@ public enum ItemIDs {
 	minecartCD014("ItemRollingStock", "CD014", 2),// bruh
 	minecartCD814("ItemRollingStock", "CD814", 2),
 	minecartCD914("ItemRollingStock", "CD914", 2),
+	minecartAmfleet("ItemRollingStock", "Amfleet", 3),
+	minecartAmfleet2("ItemRollingStock", "Amfleet2", 3),
 
 	minecartRoundHopper("ItemRollingStock", "train_RoundHopper", 2),
 	minecartRibbedHopper("ItemRollingStock", "train_ribbed_hopper", 2),

@@ -378,6 +378,8 @@ item.tc:minecartLocoWWCPGP7.name=WWCP GP7 High Hood
 item.tc:minecartLocoC11.name=JNR C11
 item.tc:minecartPSCenterDiner.name=Pullman Standard Center-Kitchen Dining Car
 item.tc:minecartLocoGE44Ton.name=GE-44 Tonner
+item.tc:minecartAmfleet.name=Amfleet 1 Coach
+item.tc:minecartAmfleet2.name=Amfleet 2 Coach
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -696,6 +698,8 @@ entity.tc.CD914 Driving Trailer.name=CD914 Driving Trailer
 entity.tc.CD810 Driving Motor.name=CD810 Driving Motor
 entity.tc.CD010 Trailer.name=CD010 Trailer
 entity.tc.GE 44-Ton.name=GE 44-Tonner
+entity.tc.Amfleet.name=Amfleet 1 Car
+entity.tc.Amfleet2.name=Amfleet 2 Car
 
 
 description.villager.profession.tc.station_chief=Station Chief
