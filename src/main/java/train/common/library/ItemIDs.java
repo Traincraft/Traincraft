@@ -314,7 +314,7 @@ public enum ItemIDs {
 	minecartFOLM1B("ItemRollingStock", "folm1b", 4),
 	minecartLocoBR07("ItemRollingStock", "train_br07", 3),
 	minecartLocoBR04("ItemRollingStock", "train_br04", 3),
-	//minecartLocoSM42("ItemRollingStock", "train_sm42", 4),
+	minecartLocoSM42("ItemRollingStock", "train_sm42", 4),
 	minecartLocoWWCPGP7("ItemRollingStock", "train_WWCPGP7", 4),
 	minecartLocoGE44Ton("ItemRollingStock", "44-tonner_icon", 4),
 
@@ -346,9 +346,32 @@ public enum ItemIDs {
 	minecartCD914("ItemRollingStock", "CD914", 2),
 	minecartAmfleet("ItemRollingStock", "Amfleet", 3),
 	minecartAmfleet2("ItemRollingStock", "Amfleet2", 3),
+	minecartPEcooch("ItemRollingStock", "pecoach", 6),
+	minecartPEobserve("ItemRollingStock", "peobserve", 6),
+
 
 	minecartRoundHopper("ItemRollingStock", "train_RoundHopper", 2),
 	minecartRibbedHopper("ItemRollingStock", "train_ribbed_hopper", 2),
+	minecart40highcube("ItemRollingStock", "40highcube", 3),
+	minecartWoodchipHopper("ItemRollingStock", "woodchiphopper", 4),
+	minecartOreJenny("ItemRollingStock", "orejenny", 2),
+	minecartMillGondola("ItemRollingStock", "millgondola", 4),
+	minecartMILW40boxcar("ItemRollingStock", "milw40", 3),
+	minecart60centerbeam("ItemRollingStock", "60centerbeam", 3),
+	minecart66centerbeam("ItemRollingStock", "66centerbeam", 3),
+	minecart73centerbeam("ItemRollingStock", "73centerbeam", 4),
+	minecartPS140("ItemRollingStock", "ps140", 3),
+	minecartPS150("ItemRollingStock", "ps150", 4),
+	minecartPS160("ItemRollingStock", "ps160", 5),
+	minecartOWO60Verticube("ItemRollingStock", "owocube", 6),
+	minecartVersaLongi("ItemRollingStock", "versalongi", 5),
+	minecartVersaTrans("ItemRollingStock", "versatrans", 5),
+	minecart11000DOT111("ItemRollingStock", "11000DOT", 4),
+	minecart20600DOT111("ItemRollingStock", "20600DOT", 5),
+	minecart29080DOT111("ItemRollingStock", "29080DOT", 6),
+
+	minecartWVcaboose("ItemRollingStock", "wvcaboose",6),
+
 	;
 
 	public Item item;

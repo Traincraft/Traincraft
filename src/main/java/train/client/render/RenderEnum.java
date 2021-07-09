@@ -698,11 +698,11 @@ public enum RenderEnum {
 			add(new double[] { 3.2D, 1.35D, 0.0D });
 		}
 	}, "", null, 0, false),
-	/*locoSM42(EntityLocoDieselSM42.class, new ModelSM42(), "SM42_", true, new float[] { -2.0F, 0.15F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "smoke", 4, new ArrayList<double[]>() {
+	locoSM42(EntityLocoDieselSM42.class, new SM42(), "SM42_", true, new float[] { -2.0F, 0.05F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "smoke", 4, new ArrayList<double[]>() {
 		{
 			add(new double[] { 0.6D, 1.55D, 0.0D });
 		}
-	}, "", null, 0, false),*/
+	}, "", null, 0, false),
 	locoDieselWWCPGP7(EntityLocoDieselWWCPGP7.class, new ModelWWCPGP7(), "GP7_Highood_", true, new float[]{-2f,0.15f,0}, new float[] { 0F, 0F, 180F }, new float[]{0.9f,1f,0.9f}, "smoke", 4, new ArrayList<double[]>() {
 		{
 			add(new double[] { 1.7D, 1.3D, 0.0D });
@@ -727,6 +727,28 @@ public enum RenderEnum {
 	}, "", null, 0, false),
 	amfleet(EntityPassengerAmfleet.class, new ModelAmfleet(),"amfleet_", true, new float[]{0F, -0.4F, 0F}, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	amfleet2(EntityPassengerAmfleet2.class, new ModelAmfleet2(),"amfleet2_", true, new float[]{0F, -0.4F, 0F}, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+
+	bawx40highcube(EntityFreightBap40highcube.class, new Model40highcube(),"40highcube_", true, new float[]{0F, 0.15F, 0F}, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	WoodchipHopper(EntityFreightBapWoodchipHopper.class, new ModelWoodchipHopper(),"woodchiphopper_", true, new float[]{0F, 0.15F, 0F}, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	OreJenny(EntityFreightBapOreJenny.class, new ModelOreJenny(),"orejenny_", true, new float[]{0F, 0.2F, 0F}, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	MillGondola(EntityFreightBapMillGondola.class, new ModelMillGondola(),"MillGondola_", true, new float[]{0F, 0.15F, 0F}, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	MILW40boxcar(EntityFreightBapMILW40boxcar.class, new ModelMILW40boxcar(),"milw40_", true, new float[]{0F, 0.15F, 0F}, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	Freight60centerbeam(EntityFreightBap60centerbeam.class, new Model60centerbeam(),"60ftcb_", true, new float[]{0F, 0.15F, 0F}, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	Freight66centerbeam(EntityFreightBap66centerbeam.class, new Model66centerbeam(),"66ftcb_", true, new float[]{0F, 0.15F, 0F}, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	Freight73centerbeam(EntityFreightBap73centerbeam.class, new Model73centerbeam(),"73ftcb_", true, new float[]{0F, 0.15F, 0F}, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	PS140(EntityFreightBapPS140.class, new ModelPS140(),"ps140_", true, new float[]{0F, 0.15F, 0F}, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	PS150(EntityFreightBapPS150.class, new ModelPS150(),"ps150_", true, new float[]{0F, 0.15F, 0F}, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	PS160(EntityFreightBapPS160.class, new ModelPS160(),"ps160_", true, new float[]{0F, 0.1875F, 0F}, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	WVcaboose(EntityCabooseBapWVcaboose.class, new ModelWVcaboose(),"wvcaboose_", true, new float[]{0F, 0.1675F, 0F}, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	OWO60Verticube(EntityFreightBapOWO60Verticube.class, new ModelOWO60Verticube(),"owo60verticube_", true, new float[]{0F, 0.1875F, 0F}, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	PEcoach(EntityPassengerBapPEcoach.class, new ModelPEcoach(),"PECoach_", true, new float[]{0F,  0.105F, 0F}, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	PEobserve(EntityPassengerBapPEobserve.class, new ModelPEobserve(),"PEObserve_", true, new float[]{0F,  0.105F, 0F}, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	VersaLongi(EntityFreightBapVersaLongi.class, new ModelVersaLongi(),"versa_longi_", true, new float[]{0F, 0.15F, 0F}, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	VersaTrans(EntityFreightBapVersaTrans.class, new ModelVersaTrans(),"versa_trans_", true, new float[]{0F, 0.15F, 0F}, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	DOT11111000(EntityFreightBapDOT11111000.class, new Model11000DOT111(),"dot11K_", true, new float[]{0F, 0.20F, 0F}, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	DOT11120600(EntityFreightBapDOT11120600.class, new Model20600DOT111(),"dot206K_", true, new float[]{0F, 0.20F, 0F}, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	DOT11129080(EntityFreightBapDOT11129080.class, new Model29080DOT111(),"dot290K_", true, new float[]{0F, 0.20F, 0F}, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+
 	;
 
 	private Class<? extends AbstractTrains> entityClass;
