@@ -46,6 +46,7 @@ import train.common.core.handlers.*;
 import train.common.core.network.PacketRollingStockRotation;
 import train.common.core.util.TraincraftUtil;
 import train.common.entity.rollingStock.EntityTracksBuilder;
+import train.common.items.ItemPaintbrushThing;
 import train.common.items.ItemTCRail;
 import train.common.items.ItemTCRail.TrackTypes;
 import train.common.items.ItemWrench;
@@ -151,6 +152,8 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 	private int clientTicks = 0;
 	
 	private double derailSpeed = 0.46;
+
+	private int scrollPosition;
 
 	public EntityRollingStock(World world) {
 		super(world);
@@ -1649,6 +1652,23 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			}
 		}
 		else if ((trainsOnClick.onClickWithStake(this, itemstack, playerEntity, worldObj))) { return true; }
+
+		if (itemstack != null && itemstack.getItem() instanceof ItemPaintbrushThing && entityplayer.isSneaking()) {
+			if (this.acceptedColors != null && this.acceptedColors.size() > 0) {
+				if (scrollPosition > this.acceptedColors.size() - 1) {
+					this.setColor(acceptedColors.get(0));
+					scrollPosition = 0;
+				} else {
+					this.setColor(acceptedColors.get(scrollPosition));
+					scrollPosition++;
+				}
+			}
+
+			if (this.acceptedColors != null && this.acceptedColors.size() == 0) {
+				entityplayer.addChatMessage(new ChatComponentText("There are no other colors available."));
+			}
+			return true;
+		}
 
 		return worldObj.isRemote;
 	}
