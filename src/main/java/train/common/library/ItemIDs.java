@@ -309,6 +309,9 @@ public enum ItemIDs {
 	tcRailVeryLargeSlopeWood("ItemTCRail", "item_rail_straight_slope_wood", 3),
 	tcRailVeryLargeSlopeGravel("ItemTCRail", "item_rail_straight_slope_gravel", 3),
 	tcRailVeryLargeSlopeBallast("ItemTCRail", "item_rail_straight_slope_ballast", 3),
+	tcRailLargeSlopeSnowTrack("ItemTCRail","item_rail_straight_slope_snow",3),
+	tcRailSlopeSnowTrack("ItemTCRail","item_rail_straight_slope_snow",3),
+	tcRailVeryLargeSlopeSnow("ItemTCRail","item_rail_straight_slope_snow",3),
 
 	minecartLocoCF7("ItemRollingStock", "train_cf7", 4),
 	minecartLocoGP15("ItemRollingStock", "train_gp15", 4),

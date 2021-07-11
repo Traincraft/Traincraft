@@ -3,6 +3,7 @@ package train.common.blocks.blockSwitch;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockRedstoneLight;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
@@ -18,15 +19,16 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import train.common.Traincraft;
 import train.common.library.Info;
-import train.common.tile.tileSwitch.TileoverheadWire;
+import train.common.tile.TileSignal;
+import train.common.tile.tileSwitch.TilesignalSpanish;
 
 import java.util.List;
 import java.util.Random;
 
-public class BlockoverheadWire extends Block {
+public class BlocksignalSpanish extends Block {
     private IIcon texture;
 
-    public BlockoverheadWire() {
+    public BlocksignalSpanish() {
         super(Material.rock);
         setCreativeTab(Traincraft.tcTab);
         this.setTickRandomly(true);
@@ -55,7 +57,7 @@ public class BlockoverheadWire extends Block {
 
     @Override
     public TileEntity createTileEntity(World world, int metadata) {
-        return new TileoverheadWire();
+        return new TilesignalSpanish();
     }
 
     @Override
@@ -76,7 +78,7 @@ public class BlockoverheadWire extends Block {
     @Override
     public void onBlockPlacedBy(World world, int i, int j, int k, EntityLivingBase entityliving, ItemStack stack) {
         super.onBlockPlacedBy(world, i, j, k, entityliving, stack);
-        TileoverheadWire te = (TileoverheadWire) world.getTileEntity(i, j, k);
+        TilesignalSpanish te = (TilesignalSpanish) world.getTileEntity(i, j, k);
         if (te != null) {
             int dir = MathHelper.floor_double((double) ((entityliving.rotationYaw * 4F) / 360F) + 0.5D) & 3;
             te.setFacing(ForgeDirection.getOrientation(dir == 0 ? 2 : dir == 1 ? 5 : dir == 2 ? 3 : 4));
@@ -132,6 +134,8 @@ public class BlockoverheadWire extends Block {
         }
     }
 
+
+
     public void breakBlock(World p_149749_1_, int p_149749_2_, int p_149749_3_, int p_149749_4_, Block p_149749_5_, int p_149749_6_)
     {
         if ((p_149749_6_ & 8) > 0)
@@ -171,6 +175,8 @@ public class BlockoverheadWire extends Block {
         super.breakBlock(p_149749_1_, p_149749_2_, p_149749_3_, p_149749_4_, p_149749_5_, p_149749_6_);
     }
 
+
+
     public int isProvidingWeakPower(IBlockAccess p_149709_1_, int p_149709_2_, int p_149709_3_, int p_149709_4_, int p_149709_5_)
     {
         return (p_149709_1_.getBlockMetadata(p_149709_2_, p_149709_3_, p_149709_4_) & 8) > 0 ? 15 : 0;
@@ -190,6 +196,23 @@ public class BlockoverheadWire extends Block {
             return j1 == 0 && p_149748_5_ == 0 ? 15 : (j1 == 7 && p_149748_5_ == 0 ? 15 : (j1 == 6 && p_149748_5_ == 1 ? 15 : (j1 == 5 && p_149748_5_ == 1 ? 15 : (j1 == 4 && p_149748_5_ == 2 ? 15 : (j1 == 3 && p_149748_5_ == 3 ? 15 : (j1 == 2 && p_149748_5_ == 4 ? 15 : (j1 == 1 && p_149748_5_ == 5 ? 15 : 0)))))));
         }
     }
+
+    @Override
+    public void onNeighborBlockChange(World world, int i, int j, int k, Block l) {
+        TileSignal te = (TileSignal) world.getTileEntity(i, j, k);
+        if (te == null)
+            return;
+        if (!world.isBlockIndirectlyGettingPowered(i, j, k)) {
+            world.scheduleBlockUpdate(i, j, k, this, 4);
+        }
+        else if (te.state == 0 && world.isBlockIndirectlyGettingPowered(i, j, k)) {
+            // world.setBlockWithNotify(i, j, k,Train.ActiveSignalBlock.blockID);
+
+            te.state = 1;
+            // world.setBlockMetadata(i, j, k,l);
+        }
+    }
+
 
     /**
      * Can this block provide power. Only wire currently seems to have this change based on its state.

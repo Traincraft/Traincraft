@@ -57,6 +57,8 @@ public enum BlockIDs {
 	overheadWire(false,null),
 	overheadWireDouble(false,null),
 	poweredGravel(false,null),
+	snowGravel(false,null),
+	signalSpanish(false,null),
 	;
 
 

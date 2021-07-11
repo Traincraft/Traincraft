@@ -69,6 +69,8 @@ tile.tc:circleSwitchStand.name= Circle Switch Stand
 tile.tc:owoYardSwitchStand.name=OWO Yard Switch Stand
 tile.tc:MILWSwitchStand.name= MILW Switch Stand
 tile.tc:overheadWire.name=Overhead Wires
+tile.tc:overheadWireDouble.name=Double Overhead Wires
+tile.tc:poweredGravel.name=Powered Gravel
 
 <!-- ## Items ## -->
 item.tc:diesel.name=Diesel Canister

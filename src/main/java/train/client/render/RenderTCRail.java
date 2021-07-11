@@ -142,6 +142,18 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 						modelVeryLargeSlope.render("ballast", railTile, x, y, z);
 						break;
 					}
+					case LARGE_SLOPE_SNOW_GRAVEL: {
+						modelLargeSlope.render("snow", railTile, x, y, z);
+						break;
+					}
+					case SLOPE_SNOW_GRAVEL: {
+						modelSlope.render("snow", railTile, x, y, z);
+						break;
+					}
+					case VERY_LARGE_SLOPE_SNOW_GRAVEL: {
+						modelVeryLargeSlope.render("snow", railTile, x, y, z);
+						break;
+					}
 				}
 
 

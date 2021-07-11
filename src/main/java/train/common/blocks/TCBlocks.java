@@ -29,7 +29,7 @@ public class TCBlocks {
 	public static void loadBlocks() {
 		BlockIDs.distilIdle.block = new BlockDistil(2, false).setHardness(3.5F).setStepSound(Block.soundTypeStone);
 		BlockIDs.distilActive.block = new BlockDistil(2, true).setHardness(3.5F).setStepSound(Block.soundTypeStone).setLightLevel(0.8F);
-		//BlockIDs.signal.block = new BlockSignal(BlockIDs.signal.blockID, 16).setHardness(1.7F).setStepSound(Block.soundTypeMetal);
+		//BlockIDs.signal.block = new BlockSignal(BlockIDs.signal.block, 16).setHardness(1.7F).setStepSound(Block.soundTypeMetal);
 
 		BlockIDs.assemblyTableI.block = new BlockAssemblyTableI(Material.wood).setHardness(3.5F).setStepSound(Block.soundTypeWood);
 		BlockIDs.assemblyTableII.block = new BlockAssemblyTableII(Material.rock).setHardness(3.5F).setStepSound(Block.soundTypeWood);
@@ -62,6 +62,8 @@ public class TCBlocks {
 		BlockIDs.overheadWire.block = new BlockoverheadWire().setHardness(2F);
 		BlockIDs.overheadWireDouble.block = new BlockoverheadWireDouble().setHardness(2F);
 		BlockIDs.poweredGravel.block = new BlockpoweredGravel(Material.rock).setHardness(3.5F).setStepSound(Block.soundTypeGravel).setBlockTextureName("tc:poweredGravel").setBlockName("poweredGravel").setCreativeTab(Traincraft.tcTab);
+		BlockIDs.snowGravel.block = new BlocksnowGravel(Material.ground).setHardness(1F).setStepSound(Block.soundTypeGravel).setBlockTextureName("tc:snowgravel").setBlockName("snowGravel").setCreativeTab(Traincraft.tcTab);
+		BlockIDs.signalSpanish.block = new BlocksignalSpanish().setHardness(2F);
 
 		if (Loader.isModLoaded("ComputerCraft")) {
 			BlockIDs.mtcTransmitterSpeed.block = new BlockInfoTransmitterSpeed(Material.rock).setHardness(3.5F).setStepSound(Block.soundTypeMetal).setBlockTextureName("tc:speedTransmitter").setBlockName("mtcspeedtransmitter").setCreativeTab(Traincraft.tcTab);
@@ -97,6 +99,7 @@ public class TCBlocks {
 		BlockIDs.windMill.block.setHarvestLevel("axe", 0);
 		BlockIDs.bridgePillar.block.setHarvestLevel("axe", 0);
 		BlockIDs.oreTC.block.setHarvestLevel("pickaxe", 1);
+		BlockIDs.snowGravel.block.setHarvestLevel("shovel",0);
 
 		Blocks.rail.setHarvestLevel("ItemStacked", 0);
 		Blocks.detector_rail.setHarvestLevel("ItemStacked", 0);

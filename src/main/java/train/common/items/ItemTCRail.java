@@ -58,8 +58,11 @@ public class ItemTCRail extends ItemPart {
 		LARGE_SLOPE_BALLAST("LARGE_SLOPE_BALLAST", "SLOPE", ItemIDs.tcRailLargeSlopeBallast, "1x12"),
 		VERY_LARGE_SLOPE_WOOD("VERY_LARGE_SLOPE_WOOD", "SLOPE", ItemIDs.tcRailVeryLargeSlopeWood, "1x18"),
 		VERY_LARGE_SLOPE_GRAVEL("VERY_LARGE_SLOPE_GRAVEL", "SLOPE", ItemIDs.tcRailVeryLargeSlopeGravel, "1x18"),
-		VERY_LARGE_SLOPE_BALLAST("VERY_LARGE_SLOPE_BALLAST", "SLOPE", ItemIDs.tcRailVeryLargeSlopeBallast, "1x18");
-
+		VERY_LARGE_SLOPE_BALLAST("VERY_LARGE_SLOPE_BALLAST", "SLOPE", ItemIDs.tcRailVeryLargeSlopeBallast, "1x18"),
+		LARGE_SLOPE_SNOW_GRAVEL("LARGE_SLOP_SNOW_GRAVEL","SLOPE", ItemIDs.tcRailLargeSlopeSnowTrack,"1x12"),
+		VERY_LARGE_SLOPE_SNOW_GRAVEL("VERY_LARGE_SLOW_SNOW_GRAVE", "SLOPE", ItemIDs.tcRailVeryLargeSlopeSnow, "1x18"),
+		SLOPE_SNOW_GRAVEL("SLOPE_SNOW_GRAVEL", "SLOPE", ItemIDs.tcRailSlopeSnowTrack, "1x6"),
+		;
 		private String label;
 		private String type;
 		private ItemIDs item;
@@ -127,6 +130,9 @@ public class ItemTCRail extends ItemPart {
 				|| tile.getType().equals(TrackTypes.VERY_LARGE_SLOPE_WOOD.getLabel())
 				|| tile.getType().equals(TrackTypes.VERY_LARGE_SLOPE_GRAVEL.getLabel())
 				|| tile.getType().equals(TrackTypes.VERY_LARGE_SLOPE_BALLAST.getLabel())
+				|| tile.getType().equals(TrackTypes.SLOPE_SNOW_GRAVEL.getLabel())
+				|| tile.getType().equals(TrackTypes.LARGE_SLOPE_SNOW_GRAVEL.getLabel())
+				|| tile.getType().equals(TrackTypes.VERY_LARGE_SLOPE_SNOW_GRAVEL.getLabel())
 		;
 	}
 
@@ -1109,6 +1115,8 @@ public class ItemTCRail extends ItemPart {
 					|| type == TrackTypes.LARGE_SLOPE_WOOD || type == TrackTypes.LARGE_SLOPE_GRAVEL
 					|| type == TrackTypes.LARGE_SLOPE_BALLAST || type == TrackTypes.VERY_LARGE_SLOPE_WOOD
 					|| type == TrackTypes.VERY_LARGE_SLOPE_GRAVEL || type == TrackTypes.VERY_LARGE_SLOPE_BALLAST
+					|| type == TrackTypes.LARGE_SLOPE_SNOW_GRAVEL || type == TrackTypes.SLOPE_SNOW_GRAVEL
+					|| type == TrackTypes.VERY_LARGE_SLOPE_SNOW_GRAVEL
 			) {
 				if (!canPlaceTrack(player, world, x, y + 1, z)) {
 					return false;
