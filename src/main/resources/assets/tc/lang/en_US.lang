@@ -400,6 +400,8 @@ item.tc:minecartVersaTrans.name=Versaflood Transverse Hopper
 item.tc:minecart11000DOT111.name=11,000 Gallon Tank Car
 item.tc:minecart20600DOT111.name=20,600 Gallon Tank Car
 item.tc:minecart29080DOT111.name=29,080 Gallon Tank Car
+item.tc:minecartF7A.name=EMD F7A
+item.tc:minecartF7B.name=EMD F7B
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -740,6 +742,8 @@ entity.tc.VersaTrans.name=Versaflood Transverse Hopper
 entity.tc.DOT11000.name=11,000 Gallon Tank Car
 entity.tc.DOT20600.name=20,600 Gallon Tank Car
 entity.tc.DOT29080.name=29,080 Gallon Tank Car
+entity.tc.F7A.name=EMD F7A
+entity.tc.F7B.name=EMD F7B
 
 
 description.villager.profession.tc.station_chief=Station Chief
