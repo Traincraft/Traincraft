@@ -28,6 +28,7 @@ import train.client.core.helpers.JLayerHook;
 import train.client.gui.*;
 import train.client.render.*;
 import train.client.render.renderSwitch.*;
+import train.client.render.renderSwitch.Rendergp7Small;
 import train.common.Traincraft;
 import train.common.adminbook.GUIAdminBook;
 import train.common.api.EntityBogie;
@@ -143,6 +144,8 @@ public class ClientProxy extends CommonProxy {
 		ClientRegistry.bindTileEntitySpecialRenderer(TilesignalSpanish.class, new RendersignalSpanish());
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockIDs.signalSpanish.block), new ItemRendersignalSpanish());
 
+		ClientRegistry.bindTileEntitySpecialRenderer(Tilegp7Small.class, new Rendergp7Small());
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockIDs.gp7Small.block), new ItemRendergp7Small());
 
 	}
 

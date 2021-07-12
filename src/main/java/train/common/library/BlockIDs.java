@@ -59,6 +59,8 @@ public enum BlockIDs {
 	poweredGravel(false,null),
 	snowGravel(false,null),
 	signalSpanish(false,null),
+	gp7Small(false,null),
+	harieshHead(false,null),
 	;
 
 
