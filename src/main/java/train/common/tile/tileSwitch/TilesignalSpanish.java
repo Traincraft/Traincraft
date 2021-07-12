@@ -10,12 +10,14 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.util.ForgeDirection;
 import train.common.library.BlockIDs;
+import train.common.tile.TileSignal;
 import train.common.tile.TileTraincraft;
 
 import java.util.Random;
 
 public class TilesignalSpanish extends TileTraincraft {
 
+    public int state;// 0=red 1=green
     private int updateTicks = 0;
     private static Random rand = new Random();
     private ForgeDirection facing;
@@ -25,6 +27,7 @@ public class TilesignalSpanish extends TileTraincraft {
         //super.readFromNBT(nbtTag, false);
 
         facing = ForgeDirection.getOrientation(nbtTag.getByte("Orientation"));
+        state = nbtTag.getInteger("state");
     }
 
     @Override
@@ -56,6 +59,8 @@ public class TilesignalSpanish extends TileTraincraft {
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound nbtTag, boolean forSyncing) {
+
+        nbtTag.setInteger("state", this.state);
         //super.writeToNBT(nbtTag, forSyncing);
         if (facing != null) {
 

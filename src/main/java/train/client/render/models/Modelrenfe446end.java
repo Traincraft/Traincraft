@@ -30,7 +30,7 @@ public class Modelrenfe446end extends ModelConverter //Same as Filename
 
 		initbodyModel_1();
 
-		translateAll(0F, 0F, 0F);
+		translateAll(0F, 1F, 0F);
 
 
 		flipAll();

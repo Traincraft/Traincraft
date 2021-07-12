@@ -18,6 +18,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import train.common.Traincraft;
+import train.common.blocks.BlockSignal;
 import train.common.library.Info;
 import train.common.tile.TileSignal;
 import train.common.tile.tileSwitch.TilesignalSpanish;
@@ -31,7 +32,7 @@ public class BlocksignalSpanish extends Block {
     public BlocksignalSpanish() {
         super(Material.rock);
         setCreativeTab(Traincraft.tcTab);
-        this.setTickRandomly(true);
+        //this.setTickRandomly(true);
         //this.setBlockBounds(0.5F , 0.0F, 0.5F , 0.5F ,  2.0F, 0.5F);
     }
 
@@ -65,15 +66,40 @@ public class BlocksignalSpanish extends Block {
         return -1;
     }
 
+    @Override
+    public void onBlockAdded(World world, int i, int j, int k) {
+        super.onBlockAdded(world, i, j, k);
+        TilesignalSpanish te = (TilesignalSpanish) world.getTileEntity(i, j, k);
+
+        if (world.isBlockIndirectlyGettingPowered(i, j, k)) {
+
+            te.state = 1;
+        }
+        /* int l = world.getBlockMetadata(i, j, k); if (l == 2) {
+         *
+         * te.rot = 2; } if (l == 5) {
+         *
+         * te.rot = 5; } if (l == 3) {
+         *
+         * te.rot = 3; } if (l == 4) { te.rot = 4; } */
+        //System.out.println("added " + te.rot);
+        updateTick(world, i, j, k);
+    }
+
+
     @SideOnly(Side.CLIENT)
     /**
      * A randomly called display update to be able to add particles or other items for display
      */
     @Override
-    public void randomDisplayTick(World par1World, int par2, int par3, int par4, Random par5Random) {
-
+    public void randomDisplayTick(World world, int i, int j, int k, Random random) {
+        updateTick(world, i, j, k, random);
     }
 
+
+    public int tickRate() {
+        return 4;
+    }
 
     @Override
     public void onBlockPlacedBy(World world, int i, int j, int k, EntityLivingBase entityliving, ItemStack stack) {
@@ -87,51 +113,10 @@ public class BlocksignalSpanish extends Block {
     }
 
 
-    public boolean onBlockActivated(World p_149727_1_, int p_149727_2_, int p_149727_3_, int p_149727_4_, EntityPlayer p_149727_5_, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_)
-    {
-        if (p_149727_1_.isRemote)
-        {
-            return true;
-        }
-        else
-        {
-            int i1 = p_149727_1_.getBlockMetadata(p_149727_2_, p_149727_3_, p_149727_4_);
-            int j1 = i1 & 7;
-            int k1 = 8 - (i1 & 8);
-            p_149727_1_.setBlockMetadataWithNotify(p_149727_2_, p_149727_3_, p_149727_4_, j1 + k1, 3);
-            p_149727_1_.playSoundEffect((double)p_149727_2_ + 0.5D, (double)p_149727_3_ + 0.5D, (double)p_149727_4_ + 0.5D, "random.click", 0.3F, k1 > 0 ? 0.6F : 0.5F);
-            p_149727_1_.notifyBlocksOfNeighborChange(p_149727_2_, p_149727_3_, p_149727_4_, this);
-
-            if (j1 == 1)
-            {
-                p_149727_1_.notifyBlocksOfNeighborChange(p_149727_2_ - 1, p_149727_3_, p_149727_4_, this);
-            }
-            else if (j1 == 2)
-            {
-                p_149727_1_.notifyBlocksOfNeighborChange(p_149727_2_ + 1, p_149727_3_, p_149727_4_, this);
-            }
-            else if (j1 == 3)
-            {
-                p_149727_1_.notifyBlocksOfNeighborChange(p_149727_2_, p_149727_3_, p_149727_4_ - 1, this);
-            }
-            else if (j1 == 4)
-            {
-                p_149727_1_.notifyBlocksOfNeighborChange(p_149727_2_, p_149727_3_, p_149727_4_ + 1, this);
-            }
-            else if (j1 != 5 && j1 != 6)
-            {
-                if (j1 == 0 || j1 == 7)
-                {
-                    p_149727_1_.notifyBlocksOfNeighborChange(p_149727_2_, p_149727_3_ + 1, p_149727_4_, this);
-                }
-            }
-            else
-            {
-                p_149727_1_.notifyBlocksOfNeighborChange(p_149727_2_, p_149727_3_ - 1, p_149727_4_, this);
-            }
-
-            return true;
-        }
+    @Override
+    public boolean onBlockActivated(World world, int i, int j, int k, EntityPlayer entityplayer, int par6, float par7, float par8, float par9) {
+        updateTick(world, i, j, k);
+        return true;
     }
 
 
@@ -175,8 +160,12 @@ public class BlocksignalSpanish extends Block {
         super.breakBlock(p_149749_1_, p_149749_2_, p_149749_3_, p_149749_4_, p_149749_5_, p_149749_6_);
     }
 
+    @Override
+    protected void dropBlockAsItem(World p_149642_1_, int p_149642_2_, int p_149642_3_, int p_149642_4_, ItemStack p_149642_5_) {
+        super.dropBlockAsItem(p_149642_1_, p_149642_2_, p_149642_3_, p_149642_4_, p_149642_5_);
+    }
 
-
+    /*
     public int isProvidingWeakPower(IBlockAccess p_149709_1_, int p_149709_2_, int p_149709_3_, int p_149709_4_, int p_149709_5_)
     {
         return (p_149709_1_.getBlockMetadata(p_149709_2_, p_149709_3_, p_149709_4_) & 8) > 0 ? 15 : 0;
@@ -197,12 +186,14 @@ public class BlocksignalSpanish extends Block {
         }
     }
 
+     */
+
     @Override
     public void onNeighborBlockChange(World world, int i, int j, int k, Block l) {
-        TileSignal te = (TileSignal) world.getTileEntity(i, j, k);
+        TilesignalSpanish te = (TilesignalSpanish) world.getTileEntity(i, j, k);
         if (te == null)
             return;
-        if (!world.isBlockIndirectlyGettingPowered(i, j, k)) {
+        if (te.state == 1 && !world.isBlockIndirectlyGettingPowered(i, j, k)) {
             world.scheduleBlockUpdate(i, j, k, this, 4);
         }
         else if (te.state == 0 && world.isBlockIndirectlyGettingPowered(i, j, k)) {
@@ -210,6 +201,22 @@ public class BlocksignalSpanish extends Block {
 
             te.state = 1;
             // world.setBlockMetadata(i, j, k,l);
+        }
+        updateTick(world, i, j, k);
+    }
+
+    public void updateTick(World world, int i, int j, int k) {
+
+        TilesignalSpanish te = (TilesignalSpanish) world.getTileEntity(i, j, k);
+        if (te == null)
+            return;
+        //te.rot = l;
+        // int l = world.getBlockMetadata(i, j, k);
+        if (te.state == 1 && !world.isBlockIndirectlyGettingPowered(i, j, k)) {
+            te.state = 0;
+        }
+        if (te.state == 0 && world.isBlockIndirectlyGettingPowered(i, j, k)) {
+            te.state = 1;
         }
     }
 

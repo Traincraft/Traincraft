@@ -6,6 +6,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import tmt.Tessellator;
+import train.client.render.RenderSignal;
 import train.client.render.renderSwitch.models.ModelsignalSpanish;
 import train.common.blocks.blockSwitch.BlocksignalSpanish;
 import train.common.library.Info;
@@ -56,19 +57,18 @@ public class RendersignalSpanish extends TileEntitySpecialRenderer {
 
 
 
-        /*
         if (!skipRender) {
-            private World world = null;
+            World world = null;
             // tileEntity.getWorldObj().getBlock(tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord).isProvidingWeakPower(tileEntity.getWorldObj(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord, 0) > 0
-            if () > 0) {
+            if (((TilesignalSpanish) tileEntity).state == 1) {
                 Tessellator.bindTexture(texture);
                 modelspanishSignal.render(null, 0, 0, 0, 0, 0, 0.0625f);
-            } else {
+            } else if (((TilesignalSpanish) tileEntity).state == 0) {
                 Tessellator.bindTexture(texture2);
                 modelspanishSignal.render(null, 0, 0, 0, 0, 0, 0.0625f);
             }
         }
-        */
+
         GL11.glPopMatrix();
     }
 

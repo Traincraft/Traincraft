@@ -61,9 +61,9 @@ public class TCBlocks {
 		BlockIDs.owoYardSwitchStand.block = new BlockowoYardSwitchStand().setHardness(4F).setStepSound(Block.soundTypeLadder);
 		BlockIDs.overheadWire.block = new BlockoverheadWire().setHardness(2F);
 		BlockIDs.overheadWireDouble.block = new BlockoverheadWireDouble().setHardness(2F);
-		BlockIDs.poweredGravel.block = new BlockpoweredGravel(Material.rock).setHardness(3.5F).setStepSound(Block.soundTypeGravel).setBlockTextureName("tc:poweredGravel").setBlockName("poweredGravel").setCreativeTab(Traincraft.tcTab);
+		BlockIDs.poweredGravel.block = new BlockpoweredGravel(Material.rock).setHardness(0F).setStepSound(Block.soundTypeGravel).setBlockTextureName("tc:poweredGravel").setBlockName("poweredGravel").setCreativeTab(Traincraft.tcTab);
 		BlockIDs.snowGravel.block = new BlocksnowGravel(Material.ground).setHardness(1F).setStepSound(Block.soundTypeGravel).setBlockTextureName("tc:snowgravel").setBlockName("snowGravel").setCreativeTab(Traincraft.tcTab);
-		BlockIDs.signalSpanish.block = new BlocksignalSpanish().setHardness(2F);
+		BlockIDs.signalSpanish.block = new BlocksignalSpanish().setHardness(1F).setResistance(10F).setLightLevel(0.2F).setCreativeTab(Traincraft.tcTab).setStepSound(Block.soundTypeMetal);
 
 		if (Loader.isModLoaded("ComputerCraft")) {
 			BlockIDs.mtcTransmitterSpeed.block = new BlockInfoTransmitterSpeed(Material.rock).setHardness(3.5F).setStepSound(Block.soundTypeMetal).setBlockTextureName("tc:speedTransmitter").setBlockName("mtcspeedtransmitter").setCreativeTab(Traincraft.tcTab);
@@ -100,6 +100,8 @@ public class TCBlocks {
 		BlockIDs.bridgePillar.block.setHarvestLevel("axe", 0);
 		BlockIDs.oreTC.block.setHarvestLevel("pickaxe", 1);
 		BlockIDs.snowGravel.block.setHarvestLevel("shovel",0);
+		BlockIDs.poweredGravel.block.setHarvestLevel("shovel",0);
+		BlockIDs.signalSpanish.block.setHarvestLevel("pickaxe",1);
 
 		Blocks.rail.setHarvestLevel("ItemStacked", 0);
 		Blocks.detector_rail.setHarvestLevel("ItemStacked", 0);
