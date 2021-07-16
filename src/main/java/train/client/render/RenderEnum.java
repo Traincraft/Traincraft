@@ -761,6 +761,12 @@ public enum RenderEnum {
 
 		}
 	}, "", null, 0, false),
+	H1044( EntityLocoDieselBapH1044.class,  new ModelH1044(), "FM_H10-44_", true,new float[] {-1.1F, 0.15F, 0F},  new float[] { 0F, 180F, 180F }, null, "smoke", 4,  new ArrayList<double[]>() {
+		{
+			add(new double[]{1.9D, 1.45D, -0.16D});
+			add(new double[]{1.9D, 1.45D, 0.16D});
+		}
+	}, "", null, 0, false),
 	;
 
 	private Class<? extends AbstractTrains> entityClass;

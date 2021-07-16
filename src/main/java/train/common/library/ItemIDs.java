@@ -319,6 +319,8 @@ public enum ItemIDs {
 	minecartLocoGE44Ton("ItemRollingStock", "44-tonner_icon", 4),
 	minecartF7A("ItemRollingStock", "f7a", 5),
 	minecartF7B("ItemRollingStock", "f7b", 5),
+	minecartH1044("ItemRollingStock", "h1044", 4),
+
 
 	minecartClimaxNew("ItemRollingStock", "train_climax2", 5),
 	minecartVBShay2("ItemRollingStock", "vbshay2", 5),

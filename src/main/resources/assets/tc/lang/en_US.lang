@@ -402,6 +402,7 @@ item.tc:minecart20600DOT111.name=20,600 Gallon Tank Car
 item.tc:minecart29080DOT111.name=29,080 Gallon Tank Car
 item.tc:minecartF7A.name=EMD F7A
 item.tc:minecartF7B.name=EMD F7B
+item.tc:minecartH1044.name=FM H10-44
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -744,6 +745,7 @@ entity.tc.DOT20600.name=20,600 Gallon Tank Car
 entity.tc.DOT29080.name=29,080 Gallon Tank Car
 entity.tc.F7A.name=EMD F7A
 entity.tc.F7B.name=EMD F7B
+entity.tc.H1044.name=FM H10-44
 
 
 description.villager.profession.tc.station_chief=Station Chief

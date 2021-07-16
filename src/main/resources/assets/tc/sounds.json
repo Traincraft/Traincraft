@@ -32,5 +32,6 @@
   "mg_run": {"category": "master", "sounds": [{"name": "mg_run","stream": false}]},
   "mg_idle": {"category": "master", "sounds": [{"name": "mg_idle","stream": false}]},
   "446Horn": {"category": "master", "sounds": [{"name": "446Horn","stream": false}]},
+  "wabco_e2": {"category": "master", "sounds": [{"name": "wabco_e2", "stream":  true}]},
   "Dstock_whistle": {"category": "master", "sounds": [{"name": "Dstock_whistle","stream": false}]}
 }
