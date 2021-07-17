@@ -81,6 +81,16 @@ public class AchievementHandler {
 		AchievementIDs.stockCar.achievement = achievement("stockcar", 5, 12, ItemIDs.minecartStockCar.item, AchievementIDs.assemblyTable.achievement);
 		AchievementIDs.caboose.achievement = achievement("caboose", 7, 12, ItemIDs.minecartCaboose.item, AchievementIDs.assemblyTable.achievement);
 		AchievementIDs.flatCart.achievement = achievement("flatCart", 5, 14, ItemIDs.minecartFlatCartRail_DB.item, AchievementIDs.assemblyTable.achievement);
+		AchievementIDs.mtg.achievement = achievement("mtg",-14,10,ItemIDs.minecartLUengine.item, AchievementIDs.tram.achievement);
+		AchievementIDs.massTransit.achievement = achievement("massTransit", -14, 12, ItemIDs.minecartClass345car.item, AchievementIDs.mtg.achievement);
+		AchievementIDs.cercanias.achievement = achievement("cercanias", -16, 10, ItemIDs.minecartLocoRenfe446Motor.item, AchievementIDs.mtg.achievement);
+
+		AchievementIDs.geared.achievement = achievement("geared", 0, 8, ItemIDs.minecartVBShay2.item, AchievementIDs.normalSteam.achievement);
+		AchievementIDs.powerful.achievement = achievement("powerful", -8, 5, ItemIDs.minecartLocoDD35A.item, AchievementIDs.dieselEngine.achievement);
+		AchievementIDs.switchin.achievement = achievement("switchin", -8, 3, ItemIDs.minecartLocoSW8.item, AchievementIDs.dieselEngine.achievement);
+
+
+
 		//TODO put this: AchievementIDs.heavySteam.achievement  back once Heavy Steam is back
 		Achievement ach[] = new Achievement[] { AchievementIDs.steel.achievement, AchievementIDs.stake.achievement,
 				AchievementIDs.dieselFuel.achievement, AchievementIDs.electMotor.achievement,
@@ -99,7 +109,9 @@ public class AchievementHandler {
 				AchievementIDs.assemblyTable.achievement, AchievementIDs.mail.achievement,
 				AchievementIDs.minetrain.achievement, AchievementIDs.cherepanov.achievement,
 				AchievementIDs.flatCart.achievement, AchievementIDs.stockCar.achievement,
-				AchievementIDs.caboose.achievement };
+				AchievementIDs.caboose.achievement, AchievementIDs.mtg.achievement,
+				AchievementIDs.massTransit.achievement, AchievementIDs.cercanias.achievement,
+				AchievementIDs.powerful.achievement, AchievementIDs.switchin.achievement,};
 
 		tmPage = new AchievementPage("TrainCraft", ach);
 

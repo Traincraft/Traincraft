@@ -308,19 +308,22 @@ public class TileTCRail extends TileEntity {
 		 */
 		if (type.equals(ItemTCRail.TrackTypes.SLOPE_WOOD.getLabel())
 				|| type.equals(ItemTCRail.TrackTypes.SLOPE_GRAVEL.getLabel())
-				|| type.equals(ItemTCRail.TrackTypes.SLOPE_BALLAST.getLabel())) {
+				|| type.equals(ItemTCRail.TrackTypes.SLOPE_BALLAST.getLabel())
+				|| type.equals(ItemTCRail.TrackTypes.SLOPE_SNOW_GRAVEL.getLabel())){
 			slopeAngle = 0.13;
 		}
 		
 		if (type.equals(ItemTCRail.TrackTypes.LARGE_SLOPE_WOOD.getLabel())
 				|| type.equals(ItemTCRail.TrackTypes.LARGE_SLOPE_GRAVEL.getLabel())
-				|| type.equals(ItemTCRail.TrackTypes.LARGE_SLOPE_BALLAST.getLabel())) {
+				|| type.equals(ItemTCRail.TrackTypes.LARGE_SLOPE_BALLAST.getLabel())
+				|| type.equals(ItemTCRail.TrackTypes.LARGE_SLOPE_SNOW_GRAVEL.getLabel())) {
 			slopeAngle = 0.0666;
 		}
 		
 		if (type.equals(ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_WOOD.getLabel())
 				|| type.equals(ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_GRAVEL.getLabel())
-				|| type.equals(ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_BALLAST.getLabel())) {
+				|| type.equals(ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_BALLAST.getLabel())
+				|| type.equals(ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_SNOW_GRAVEL.getLabel())) {
 			slopeAngle = 0.0444;
 		}
 		isLinkedToRail = nbt.getBoolean("isLinkedToRail");

@@ -651,7 +651,7 @@ public enum RenderEnum {
 	pch120(EntityLocoElectricPCH120.class, new ModelPCH120Commute(), "pch120commute_", true,new float[] {-1.3F, 0.01F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	pch120Coach(EntityPassengerPCH120Coach.class, new ModelPCH120Car(), "pch120car_", true,new float[] {0F, 0.01F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	Class345(EntityElectricClass345.class, new ModelClass345(), "class345", false,new float[] {-1.0F, 0.15F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
-	Class345Coach( EntityClass345Coach.class, new ModelClass345Coach(),"class345coach", false, new float[] {0F, 0F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
+	Class345Coach( EntityClass345Coach.class, new ModelClass345Coach(),"class345coach", false, new float[] {0F, 0F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	LUengine(EntityElectricLUengine.class, new ModelLUengine(), "lu_engine", false,new float[] {-1.0F, 0.16F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	LUpassenger(EntityLUpassenger.class, new ModelLUpassenger(), "lu_passenger",false,new float[] {0F, 0.16F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	DstockEngine(EntityElectricDstockEngine.class, new ModelDstockEngine(), "D_stock_engine", false,new float[] {-1.0F, 0.16F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
@@ -709,15 +709,24 @@ public enum RenderEnum {
 			add(new double[] { 0.85D, 1.3D, 0.0D });
 		}
 	}, "", null, 0, false),
+
+	locoElectricBR155(EntityLocoElectricBR155.class, new ModelBR155(), "BR155_", true, new float[] {-1.5F, 0.2F, 0.0F}, new float[] { 0, 180, 180 },  new float[]{1f,1f,1f}, "", 0, null, "", null, 0, false),
+
+
+
+
+
+
+
 	locoC11(EntityLocoSteamC11.class, new ModellocoC11(), "locoC11", false, new float[] {  -1.5F, 0.2F, 0.0F }, new float[] { 0, 180, 180 }, null, "largesmoke", 5, new ArrayList<double[]>() {
 		{
 			add(new double[] { 3.05D, 1.35D, 0D });
 		}
-	}, "explode", new ArrayList<double[]>() {
-		{
-			add(new double[] { 2.9D, 0.00D, 0.75D });
-		}
-	}, 3, true),
+	}, "explode", new ArrayList<double[]>() {{ add(new double[] { 2.9D, 0.00D, 0.75D }); }}, 3, true),
+
+
+	locoSM42(EntityLocoDieselSM42.class, new train.client.render.renderSwitch.models.ModelSM42(), null, false, new float[] {  -1.5F, 0.2F, 0.0F }, new float[] { 0, 180, 180 }, null, "",0, null, "", null, 0, false),
+
 	;
 
 	private Class<? extends AbstractTrains> entityClass;

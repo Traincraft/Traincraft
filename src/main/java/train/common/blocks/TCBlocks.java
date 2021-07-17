@@ -12,7 +12,9 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import train.common.Traincraft;
+import train.common.blocks.blockSwitch.*;
 import train.common.library.BlockIDs;
 import train.common.library.Info;
 import train.common.mtc.*;
@@ -28,7 +30,7 @@ public class TCBlocks {
 	public static void loadBlocks() {
 		BlockIDs.distilIdle.block = new BlockDistil(2, false).setHardness(3.5F).setStepSound(Block.soundTypeStone);
 		BlockIDs.distilActive.block = new BlockDistil(2, true).setHardness(3.5F).setStepSound(Block.soundTypeStone).setLightLevel(0.8F);
-		//BlockIDs.signal.block = new BlockSignal(BlockIDs.signal.blockID, 16).setHardness(1.7F).setStepSound(Block.soundTypeMetal);
+		//BlockIDs.signal.block = new BlockSignal(BlockIDs.signal.block, 16).setHardness(1.7F).setStepSound(Block.soundTypeMetal);
 
 		BlockIDs.assemblyTableI.block = new BlockAssemblyTableI(Material.wood).setHardness(3.5F).setStepSound(Block.soundTypeWood);
 		BlockIDs.assemblyTableII.block = new BlockAssemblyTableII(Material.rock).setHardness(3.5F).setStepSound(Block.soundTypeWood);
@@ -51,6 +53,23 @@ public class TCBlocks {
 		BlockIDs.tcRailGag.block = new BlockTCRailGag().setHardness(1.0F).setStepSound(Block.soundTypeMetal).setCreativeTab(null);
 		
 		BlockIDs.bridgePillar.block = new BlockBridgePillar().setHardness(3.5F).setStepSound(Block.soundTypeWood);
+
+		//Switches by -hariesh
+		BlockIDs.MILWSwitchStand.block = new BlockMILWSwitchStand().setHardness(1F).setStepSound(Block.soundTypeStone);
+		BlockIDs.autoSwtichStand.block = new BlockautoSwitchStand().setHardness(1F).setStepSound(Block.soundTypeAnvil);
+		BlockIDs.owoSwitchStand.block = new BlockowoSwitchStand().setHardness(2F).setStepSound(Block.soundTypeMetal);
+		BlockIDs.circleSwitchStand.block = new BlockcircleSwitchStand().setHardness(2F).setStepSound(Block.soundTypeAnvil);
+		BlockIDs.owoYardSwitchStand.block = new BlockowoYardSwitchStand().setHardness(4F).setStepSound(Block.soundTypeLadder);
+		BlockIDs.overheadWire.block = new BlockoverheadWire().setHardness(2F);
+		BlockIDs.overheadWireDouble.block = new BlockoverheadWireDouble().setHardness(2F);
+		BlockIDs.poweredGravel.block = new BlockpoweredGravel(Material.rock).setHardness(0F).setStepSound(Block.soundTypeGravel).setBlockTextureName("tc:poweredGravel").setBlockName("poweredGravel").setCreativeTab(Traincraft.tcTab);
+		BlockIDs.snowGravel.block = new BlocksnowGravel(Material.ground).setHardness(1F).setStepSound(Block.soundTypeGravel).setBlockTextureName("tc:snowgravel").setBlockName("snowGravel").setCreativeTab(Traincraft.tcTab);
+		BlockIDs.signalSpanish.block = new BlocksignalSpanish().setHardness(1F).setResistance(10F).setLightLevel(0.2F).setCreativeTab(Traincraft.tcTab).setStepSound(Block.soundTypeMetal);
+		BlockIDs.gp7Small.block = new Blockgp7Small().setHardness(1F).setResistance(10F).setLightLevel(0.7F).setCreativeTab(null); //broken texture but does work in game, use /give player tc:gp7small to obtain
+		BlockIDs.harieshHead.block = new harieshHead(Material.dragonEgg).setHardness(1F).setLightLevel(1F).setBlockName("harieshHead").setCreativeTab(null).setBlockTextureName("tc:hariesh"); //easter egg
+		BlockIDs.trackConcrete.block = new BlocktrackConcrete().setHardness(1F).setResistance(2F).setCreativeTab(Traincraft.tcTab);
+		BlockIDs.kSignal.block = new BlockkSignal().setHardness(1F).setResistance(10F).setLightLevel(0.2F).setCreativeTab(Traincraft.tcTab).setStepSound(Block.soundTypeMetal);
+
 
 		if (Loader.isModLoaded("ComputerCraft")) {
 			BlockIDs.mtcTransmitterSpeed.block = new BlockInfoTransmitterSpeed(Material.rock).setHardness(3.5F).setStepSound(Block.soundTypeMetal).setBlockTextureName("tc:speedTransmitter").setBlockName("mtcspeedtransmitter").setCreativeTab(Traincraft.tcTab);
@@ -86,6 +105,9 @@ public class TCBlocks {
 		BlockIDs.windMill.block.setHarvestLevel("axe", 0);
 		BlockIDs.bridgePillar.block.setHarvestLevel("axe", 0);
 		BlockIDs.oreTC.block.setHarvestLevel("pickaxe", 1);
+		BlockIDs.snowGravel.block.setHarvestLevel("shovel",0);
+		BlockIDs.poweredGravel.block.setHarvestLevel("shovel",0);
+		BlockIDs.signalSpanish.block.setHarvestLevel("pickaxe",1);
 
 		Blocks.rail.setHarvestLevel("ItemStacked", 0);
 		Blocks.detector_rail.setHarvestLevel("ItemStacked", 0);
