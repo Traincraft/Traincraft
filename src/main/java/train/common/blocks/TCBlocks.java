@@ -12,6 +12,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import train.common.Traincraft;
 import train.common.blocks.blockSwitch.*;
 import train.common.library.BlockIDs;
@@ -65,7 +66,9 @@ public class TCBlocks {
 		BlockIDs.snowGravel.block = new BlocksnowGravel(Material.ground).setHardness(1F).setStepSound(Block.soundTypeGravel).setBlockTextureName("tc:snowgravel").setBlockName("snowGravel").setCreativeTab(Traincraft.tcTab);
 		BlockIDs.signalSpanish.block = new BlocksignalSpanish().setHardness(1F).setResistance(10F).setLightLevel(0.2F).setCreativeTab(Traincraft.tcTab).setStepSound(Block.soundTypeMetal);
 		BlockIDs.gp7Small.block = new Blockgp7Small().setHardness(1F).setResistance(10F).setLightLevel(0.7F).setCreativeTab(null); //broken texture but does work in game, use /give player tc:gp7small to obtain
-		BlockIDs.harieshHead.block = new harieshHead(Material.dragonEgg).setHardness(1F).setLightLevel(1F).setBlockName("harieshHead").setCreativeTab(null).setBlockTextureName("tc:hariesh.png"); //easter egg
+		BlockIDs.harieshHead.block = new harieshHead(Material.dragonEgg).setHardness(1F).setLightLevel(1F).setBlockName("harieshHead").setCreativeTab(null).setBlockTextureName("tc:hariesh"); //easter egg
+		BlockIDs.trackConcrete.block = new BlocktrackConcrete().setHardness(1F).setResistance(2F).setCreativeTab(Traincraft.tcTab);
+		BlockIDs.kSignal.block = new BlockkSignal().setHardness(1F).setResistance(10F).setLightLevel(0.2F).setCreativeTab(Traincraft.tcTab).setStepSound(Block.soundTypeMetal);
 
 
 		if (Loader.isModLoaded("ComputerCraft")) {

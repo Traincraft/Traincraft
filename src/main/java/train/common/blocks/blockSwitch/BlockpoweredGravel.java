@@ -7,6 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.List;
 
@@ -14,6 +15,7 @@ public class BlockpoweredGravel extends Block {
     public BlockpoweredGravel(Material p_i45394_1_) {
         super(p_i45394_1_);
     }
+
     /*
     @Override
     public boolean canProvidePower() {
@@ -22,8 +24,13 @@ public class BlockpoweredGravel extends Block {
 
      */
 
+    @Override
+    public boolean canConnectRedstone(IBlockAccess world, int x, int y, int z, int side) {
+        return super.canConnectRedstone(world, x, y, z, side);
+    }
 
-    /*
+
+   /*
     @Override
     public void addCollisionBoxesToList(World p_149743_1_, int p_149743_2_, int p_149743_3_, int p_149743_4_, AxisAlignedBB p_149743_5_, List p_149743_6_, Entity p_149743_7_)
     {

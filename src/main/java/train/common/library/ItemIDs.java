@@ -350,6 +350,9 @@ public enum ItemIDs {
 
 	minecartRoundHopper("ItemRollingStock", "train_RoundHopper", 2),
 	minecartRibbedHopper("ItemRollingStock", "train_ribbed_hopper", 2),
+	minecartBR155("ItemRollingStock","BR155",2),
+	minecartSM42("ItemRollingStock","SM42",5),
+	signalSpanish("ItemsignalSpanish","signalSpanish", 1),
 	;
 
 	public Item item;

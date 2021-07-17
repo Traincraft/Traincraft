@@ -58,9 +58,11 @@ public enum BlockIDs {
 	overheadWireDouble(false,null),
 	poweredGravel(false,null),
 	snowGravel(false,null),
-	signalSpanish(false,null),
+	signalSpanish(true,ItemsignalSpanish.class),
 	gp7Small(false,null),
 	harieshHead(false,null),
+	trackConcrete(false,null),
+	kSignal(false,null),
 	;
 
 
