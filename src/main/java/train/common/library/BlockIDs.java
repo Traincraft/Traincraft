@@ -47,7 +47,21 @@ public enum BlockIDs {
 	
 	tcRailGag(false,null),
 	tcRail(false,null),
-	bridgePillar(false,null);
+	bridgePillar(false,null),
+
+	MILWSwitchStand(false, null),
+	autoSwtichStand(false, null),
+	owoSwitchStand(false,null),
+	circleSwitchStand(false,null),
+	owoYardSwitchStand(false,null),
+	overheadWire(false,null),
+	overheadWireDouble(false,null),
+	poweredGravel(false,null),
+	snowGravel(false,null),
+	signalSpanish(true,ItemsignalSpanish.class),
+	trackConcrete(false,null),
+	kSignal(false,null),
+	;
 
 
 	public Block block;

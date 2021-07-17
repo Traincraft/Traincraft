@@ -65,6 +65,8 @@ public enum ItemIDs {
 	recipeBook("ItemRecipeBook", "item_book_blue", 1),
 	adminBook("ItemAdminBook", "item_book_blue", 0),
 	wirelessTransmitter("ItemWirelessTransmitter", "wireless_transmitter", 3),
+	paintbrushThing("ItemPaintbrushThing","paintbrushThing",1),
+
 
 	atoCard("ItemATOCard", "ato_card", 5),
 	minecartWork("ItemRollingStock", "train_work", 4),
@@ -307,6 +309,9 @@ public enum ItemIDs {
 	tcRailVeryLargeSlopeWood("ItemTCRail", "item_rail_straight_slope_wood", 3),
 	tcRailVeryLargeSlopeGravel("ItemTCRail", "item_rail_straight_slope_gravel", 3),
 	tcRailVeryLargeSlopeBallast("ItemTCRail", "item_rail_straight_slope_ballast", 3),
+	tcRailLargeSlopeSnowTrack("ItemTCRail","item_rail_straight_slope_snow",3),
+	tcRailSlopeSnowTrack("ItemTCRail","item_rail_straight_slope_snow",3),
+	tcRailVeryLargeSlopeSnow("ItemTCRail","item_rail_straight_slope_snow",3),
 
 	minecartLocoCF7("ItemRollingStock", "train_cf7", 4),
 	minecartLocoGP15("ItemRollingStock", "train_gp15", 4),
@@ -385,6 +390,7 @@ public enum ItemIDs {
 
 	minecartWVcaboose("ItemRollingStock", "wvcaboose",6),
 
+	signalSpanish("ItemsignalSpanish","signalSpanish", 1),
 	;
 
 	public Item item;

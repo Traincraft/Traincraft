@@ -63,6 +63,17 @@ tile.tc.track.speed.loco.name=Speed Limiter Track
 tile.tc.track.steel.name=Steel Track
 
 
+tile.tc:owoSwitchStand.name=OWO Road Switch Stand
+tile.tc:autoSwtichStand.name=Auto Switch Stand
+tile.tc:circleSwitchStand.name= Circle Switch Stand
+tile.tc:owoYardSwitchStand.name=OWO Yard Switch Stand
+tile.tc:MILWSwitchStand.name= MILW Switch Stand
+tile.tc:overheadWire.name=Overhead Wires
+tile.tc:overheadWireDouble.name=Double Overhead Wires
+tile.tc:poweredGravel.name=Powered Gravel
+tile.tc:snowGravel.name=Snowy Gravel
+tile.tc:signalSpanish.name=Spanish Signal
+
 <!-- ## Items ## -->
 item.tc:diesel.name=Diesel Canister
 item.tc:stake.name=Stake
@@ -323,6 +334,8 @@ item.tc:minecartLocoFOLM1.name=FOL-M1
 item.tc:minecartHeavyweightFreight.name=Heavyweight Baggage
 item.tc:minecartLocoBP4.name=BP4
 item.tc:minecartASTFAutorack.name=ASTF ft-41 Auto Rack
+
+item.tc:paintbrushThing.name=Paintbrush Thing
 
 
 item.tc:minecart4000GallonTender.name=4000 Gallon Tender

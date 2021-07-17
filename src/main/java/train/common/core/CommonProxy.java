@@ -33,6 +33,7 @@ import train.common.inventory.*;
 import train.common.library.GuiIDs;
 import train.common.mtc.*;
 import train.common.tile.*;
+import train.common.tile.tileSwitch.*;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -84,6 +85,20 @@ public class CommonProxy implements IGuiHandler {
 		GameRegistry.registerTileEntity(TileTCRailGag.class, "tileTCRailGag");
 		GameRegistry.registerTileEntity(TileTCRail.class, "tileTCRail");
 		GameRegistry.registerTileEntity(TileBridgePillar.class, "tileTCBridgePillar");
+
+		//switches -hariesh
+		GameRegistry.registerTileEntity(TileowoSwitchStand.class, "tileowoswitchstand");
+		GameRegistry.registerTileEntity(TilecircleSwitchStand.class, "tilecircleswitchstand");
+		GameRegistry.registerTileEntity(TileMILWSwitchStand.class, "tileMILWSwitchStand");
+		GameRegistry.registerTileEntity(TileautoSwitchStand.class, "tileautoSwitchStand");
+		GameRegistry.registerTileEntity(TileowoYardSwitchStand.class, "tileowoYardSwitchStand");
+
+		GameRegistry.registerTileEntity(TileoverheadWire.class, "tileoverheadwire");
+		GameRegistry.registerTileEntity(TileoverheadWireDouble.class, "tileoverheadwiredouble");
+		GameRegistry.registerTileEntity(TilesignalSpanish.class, "tilesignalspanish");
+		GameRegistry.registerTileEntity(TiletrackConcrete.class, "tiletrackconcrete");
+		GameRegistry.registerTileEntity(TilekSignal.class, "tileksignal");
+
 
 		if (Loader.isModLoaded("ComputerCraft")) {
 			GameRegistry.registerTileEntity(TileInfoTransmitterSpeed.class, "tileInfoTransmitterSpeed");
