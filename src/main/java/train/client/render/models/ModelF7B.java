@@ -26,7 +26,7 @@ public class ModelF7B extends ModelConverter //Same as Filename
 
 	public ModelF7B() //Same as Filename
 	{
-		bodyModel = new ModelRendererTurbo[224];
+		bodyModel = new ModelRendererTurbo[225];
 
 		initbodyModel_1();
 
@@ -262,6 +262,7 @@ public class ModelF7B extends ModelConverter //Same as Filename
 		bodyModel[221] = new ModelRendererTurbo(this, 177, 170, textureX, textureY); // Box 450
 		bodyModel[222] = new ModelRendererTurbo(this, 354, 99, textureX, textureY); // Box 451
 		bodyModel[223] = new ModelRendererTurbo(this, 344, 77, textureX, textureY); // Box 452
+		bodyModel[224] = new ModelRendererTurbo(this, 275, 21, textureX, textureY); // Box 398
 
 		bodyModel[0].addBox(0F, 0F, 0F, 57, 1, 20, 0F); // Box 0
 		bodyModel[0].setRotationPoint(-25.5F, 0F, -10F);
@@ -935,11 +936,14 @@ public class ModelF7B extends ModelConverter //Same as Filename
 
 		bodyModel[223].addBox(0F, 0F, 0F, 5, 1, 20, 0F); // Box 452
 		bodyModel[223].setRotationPoint(-30.5F, 0F, -10F);
+
+		bodyModel[224].addBox(0F, 0F, 0F, 4, 1, 4, 0F); // Box 398
+		bodyModel[224].setRotationPoint(-12.5F, -20F, -2F);
 	}
 	ModelBapBlombergB theTrucc = new ModelBapBlombergB();
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-		for (int i = 0; i < 224; i++) {
+		for (int i = 0; i < 225; i++) {
 			if (bodyModel[i].boxName != null && bodyModel[i].boxName.contains("lamp")) {
 				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
 				bodyModel[i].render(f5);

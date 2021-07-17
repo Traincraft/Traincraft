@@ -288,6 +288,7 @@ public enum EnumTrains {
 	passengerPS52SeatCoach("PS 52 Seat Coach", EntityPassengerPS52SeatCoach.class, ItemIDs.minecartPS52seatCoach.item, "passenger", 0, 0, 3, 0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[]{"Blue", "Orange", "LightBlue"}), 10, 0, "Pack: BAP"),
 	passengerPSCombine("PS Combine Coach", EntityPassengerPSCombine.class, ItemIDs.minecartPScombine.item, "passenger/combine", 0, 0, 3, 0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[]{"Blue", "Orange"}), 10, 0, "Pack: BAP"),
 	passengerPScenterDiner("PS Center Diner", EntityPassengerPScenterDiner.class, ItemIDs.minecartPSCenterDiner.item, "passenger", 0, 0, 3, 0, 0, 0, 0, 0, 0, null, 10, 0, "Pack: BAP"),
+	passengerPSFuckYouAnotherDiner("PS Center Diner 2", EntityPassengerPSFuckYouAnotherDiner.class, ItemIDs.minecartPSFuckYouAnotherDiner.item, "passenger", 0, 0, 9, 0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[]{"Blue", "Orange"}), 10, 0, "Pack: BAP"),
 	locoElectricRenfe450Motor("Loco Electric Renfe 450 Motor", EntityLocoElectricRenfe450Motor.class, ItemIDs.minecartLocoRenfe450Motor.item, "electric", 2900, 140, 0, 3, 0,230, 1.4, 0.98, 0, TraincraftUtil.getBytesFromColors(new String[]{"Red", "White"}), 10,  -3.6, "Pack: Spanish Pack"),
 	passengerRenfe450Coach("Passenger Renfe 450 Coach", EntityPassengerRenfe450Coach.class, ItemIDs.minecartPassengerRenfe450Coach.item, "passenger", 0, 0, 2, 0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[]{"Red", "White"}), 10, 0, "Pack: Spanish Pack"),
 	cabooseRenfe450Tail("Passenger Renfe 450 Tail", EntityCabooseRenfe450Tail.class, ItemIDs.minecartCabooseRenfe450Tail.item, "passenger", 0, 0, 2, 0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[]{"Red", "White"}), 10, 0, "Pack: Spanish Pack"),
@@ -303,7 +304,7 @@ public enum EnumTrains {
 	locoDieselBR07("BR07", EntityLocoDieselBR07.class, ItemIDs.minecartLocoBR07.item, "diesel", 275, 44, 0, 55, 0, 160, 0.6, 0.890, 4000, null, 10, -3.0, "Pack: Modern"),
 	locoDieselBR04("BR04", EntityLocoDieselBR04.class, ItemIDs.minecartLocoBR04.item, "diesel", 204, 40, 0, 55, 0, 160, 0.6, 0.890, 5000, null, 10, -2.5, "Pack: Modern"),
 	locoDieselSM42("Loco SM42", EntityLocoDieselSM42.class, ItemIDs.minecartLocoSM42.item, "diesel", 800, 90, 0, 55, 0, 200, 0.8, 0.97, 10000, TraincraftUtil.getBytesFromColors(new String[]{"Green", "Lime"}), 10, -3, "Pack: Modern"),
-	locoDieselWWCPGP7("Loco Diesel WWCP GP7", EntityLocoDieselWWCPGP7.class, ItemIDs.minecartLocoWWCPGP7.item, "diesel", 1500, 105, 0, 55, 0, 200, 0.8, 0.97, 15000, TraincraftUtil.getBytesFromColors(new String[]{"Pink", "Blue","Grey","LightGrey","Lime","Red","Black","Yellow","Orange"}), 10, -4.0, "Pack: WWCP (Duh)"),
+	locoDieselWWCPGP7("Loco Diesel WWCP GP7", EntityLocoDieselWWCPGP7.class, ItemIDs.minecartLocoWWCPGP7.item, "diesel", 1500, 105, 0, 55, 0, 200, 0.8, 0.97, 15000, TraincraftUtil.getBytesFromColors(new String[]{"Pink", "Blue","Grey","LightGrey","Lime","Red","Black","Yellow","Orange", "Green"}), 10, -4.0, "Pack: WWCP (Duh)"),
 	locoSteamC11("Loco Steam C11", EntityLocoSteamC11.class, ItemIDs.minecartLocoC11.item,"steam", 1030, 97, 0, 80, 100, 200, 0.35, 0.975, 16000, null, 10, -3.0, "Pack: BJP"),
 	locoDieselGE44Ton("GE 44-ton", EntityLocoDieselGE44Ton.class, ItemIDs.minecartLocoGE44Ton.item, "diesel", 360, 56, 0, 10, 0, 170, 0.7, 0.965, 6850, TraincraftUtil.getBytesFromColors(new String[]{"Yellow", "Black", "White"}), 10, -2.0, "Pack: BAP"),
 	amfleet("Amfleet", EntityPassengerAmfleet.class, ItemIDs.minecartAmfleet.item, "passenger", 2, TraincraftUtil.getBytesFromColors(new String[] {"White", "Grey", "LightGrey", "LightBlue", "Red", "Blue"}), 10, 0, "Pack: ?"),
@@ -328,9 +329,14 @@ public enum EnumTrains {
 	BapDOT11111000( "DOT11000", EntityFreightBapDOT11111000.class, ItemIDs.minecart11000DOT111.item, "tank", 0, 0, 4, 0, 0, 0, 0, 0, 41000, TraincraftUtil.getBytesFromColors(new String[] {"Black", "LightGrey", "Grey"}), 10, 0, "Capacity: 41000mb. Pack: BAP"),
 	BapDOT11120600( "DOT20600", EntityFreightBapDOT11120600.class, ItemIDs.minecart20600DOT111.item, "tank", 0, 0, 5, 0, 0, 0, 0, 0, 78000, TraincraftUtil.getBytesFromColors(new String[] {"Grey", "Black"}), 10, 0, "Capacity: 78000mb. Pack: BAP"),
 	BapDOT11129080( "DOT29080", EntityFreightBapDOT11129080.class, ItemIDs.minecart29080DOT111.item, "tank", 0, 0, 6, 0, 0, 0, 0, 0, 110000, TraincraftUtil.getBytesFromColors(new String[] {"Black", "Orange", "LightGrey", "White"}), 10, 0, "Capacity: 110000mb. Pack: BAP"),
-	BapF7A("F7A", EntityLocoDieselBapF7A.class, ItemIDs.minecartF7A.item, "diesel", 1500, 133, 0, 5, 0, 180, 0.7, 0.79, 15000, TraincraftUtil.getBytesFromColors(new String[] {"Green", "LightGrey", "White"}), 10, -2.5, "Pack: Bap"),
-	BapF7B("F7B", EntityLocoDieselBapF7B.class, ItemIDs.minecartF7B.item, "diesel", 1500, 133, 0, 5, 0, 180, 0.7, 0.79, 15000, TraincraftUtil.getBytesFromColors(new String[] {"Green", "LightGrey", "White"}), 10, -2.4, "Pack: Bap"),
+	BapF7A("F7A", EntityLocoDieselBapF7A.class, ItemIDs.minecartF7A.item, "diesel", 1500, 133, 0, 5, 0, 180, 0.7, 0.79, 15000, TraincraftUtil.getBytesFromColors(new String[] {"Green", "LightGrey", "White", "Orange"}), 10, -2.5, "Pack: Bap"),
+	BapF7B("F7B", EntityLocoDieselBapF7B.class, ItemIDs.minecartF7B.item, "diesel", 1500, 133, 0, 5, 0, 180, 0.7, 0.79, 15000, TraincraftUtil.getBytesFromColors(new String[] {"Green", "LightGrey", "White", "Orange"}), 10, -2.4, "Pack: Bap"),
 	H1044("H1044", EntityLocoDieselBapH1044.class, ItemIDs.minecartH1044.item, "diesel", 1000, 97, 0, 5, 0, 175, 0.75, 0.85, 10000, TraincraftUtil.getBytesFromColors(new String[]{"Green", "Yellow", "Black", "Red", "Blue", "Grey", "LightBlue", "Orange", "White", "Lime"}), 18, -2.2, "Pack: BAP"),
+	locoSteamStarClass("Loco Steam Star Class",EntityLocoSteamStarClass.class, ItemIDs.minecartStarClass.item,"steam",29,48,0,60,160,300,0.5,0.968,3000,null,15,-1.5, "Pack: WWCP"),
+	tenderStarClass("Tender Star Class",EntityTenderStarClass.class, ItemIDs.minecartStarClassTender.item,"tender",0,0,0.5,0,0,0,0,0,4000,null,18,0,"Water capacity: 4000mb"),
+	passengerStarCarFat("Passenger Star Fat", EntityPassengerStarCarFat.class, ItemIDs.minecartStarCarFat.item, "passenger", 0, 0, 0.5, 0, 0, 0, 0, 0, 0, null, 10, 0, "Pack: WWCP"),
+	passengerStarCarNotFat("Passenger Star Not Fat", EntityPassengerStarCarNotFat.class, ItemIDs.minecartStarCarNotFat.item, "passenger", 0, 0, 0.5, 0, 0, 0, 0, 0, 0, null, 10, 0, "Pack: WWCP"),
+	LightCrane("LightCrane", EntityLightCrane.class, ItemIDs.minecartLightCrane.item, "mobile crane", 5, null, 10, 0, "Pack: ?"),
 
 	;
 

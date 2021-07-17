@@ -658,7 +658,8 @@ public enum RenderEnum {
 	DstockCar(EntityDstockPassenger.class, new ModelDstockPassenger(), "D_stock_passenger",false,new float[] {0F, 0.16F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	passengerPS52SeatCoach(EntityPassengerPS52SeatCoach.class, new ModelPS52SeatCoach(), "PS_lightweight_52seat_", true, new float[] { 0F, 0.15F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	passengerPSCombine(EntityPassengerPSCombine.class, new ModelPSCombine(), "PS_lightweight_baggage-coach_", true, new float[] { 0F, 0.15F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
-	passengerPScenterDiner(EntityPassengerPScenterDiner.class, new ModelPScenterDiner(), "PS_lightweight_center_diner_PM", false, new float[] { 0F, 0.15F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	passengerPScenterDiner(EntityPassengerPScenterDiner.class, new ModelPScenterDiner(), "PS_lightweight_center_diner_Blue", false, new float[] { 0F, 0.15F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	passengerPSFuckYouAnotherDiner(EntityPassengerPSFuckYouAnotherDiner.class, new ModelPSscrewyoutoomanydiners(), "PS_lightweight_center_diner_2_", true, new float[] { 0F, 0.15F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	locoElectricRenfe450Motor(EntityLocoElectricRenfe450Motor.class, new Modelrenfe450endA(), "450_loco_", true, new float[] { -1.9F, 0.1F, 0.0F },   new float[] { 0F, 0F, 180F }, null, "", 0, null, "", null, 0, false),
 	passengerRenfe450Coach(EntityPassengerRenfe450Coach.class, new Modelrenfe450middle(), "450_passenger_", true, new float[] { -0.0F, 0.1F, 0.0F },   new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	cabooseRenfe450Tail(EntityCabooseRenfe450Tail.class, new Modelrenfe450endB(), "450_passenger_", true, new float[] { 0.0F, 0.1F, 0.0F },   new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
@@ -700,7 +701,7 @@ public enum RenderEnum {
 	}, "", null, 0, false),
 	locoSM42(EntityLocoDieselSM42.class, new SM42(), "SM42_", true, new float[] { -2.0F, 0.05F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "smoke", 4, new ArrayList<double[]>() {
 		{
-			add(new double[] { 0.6D, 1.55D, 0.0D });
+			add(new double[] { 0.9D, 1.35D, 0.0D });
 		}
 	}, "", null, 0, false),
 	locoDieselWWCPGP7(EntityLocoDieselWWCPGP7.class, new ModelWWCPGP7(), "GP7_Highood_", true, new float[]{-2f,0.15f,0}, new float[] { 0F, 0F, 180F }, new float[]{0.9f,1f,0.9f}, "smoke", 4, new ArrayList<double[]>() {
@@ -767,6 +768,19 @@ public enum RenderEnum {
 			add(new double[]{1.9D, 1.45D, 0.16D});
 		}
 	}, "", null, 0, false),
+	locoSteamStarClass(EntityLocoSteamStarClass.class, new ModelStarClass(), "StarLoco", false, new float[] { -0.8F, 0.15F, 0F }, new float[] { 0F, 180F, 180F }, null, "smoke", 20, new ArrayList<double[]>() {
+		{
+			add(new double[] { 1.65D, 1.3D, 0.0D });
+		}
+	}, "explode", new ArrayList<double[]>() {
+		{
+			add(new double[] { 1.5D, -0.4D, 0.8D });
+		}
+	}, 2, true),
+	tenderStarClass(EntityTenderStarClass.class, new ModelStarClassTender(), "StarTender", false, new float[] { 0.0F, 0.15F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	passengerStarCarFat(EntityPassengerStarCarFat.class, new ModelStarCarFat(), "GWRClosed", false, new float[] { 0F, 0.15F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	passengerStarCarNotFat(EntityPassengerStarCarNotFat.class, new ModelStarCarNotFat(), "GWROpen", false, new float[] { 0F, 0.15F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	LightCrane(EntityLightCrane.class, new ModelLightCrane(),"LightCrane", false, new float[]{0F,0.15F, 0F}, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	;
 
 	private Class<? extends AbstractTrains> entityClass;

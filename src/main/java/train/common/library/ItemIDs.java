@@ -325,6 +325,8 @@ public enum ItemIDs {
 	minecartClimaxNew("ItemRollingStock", "train_climax2", 5),
 	minecartVBShay2("ItemRollingStock", "vbshay2", 5),
 	minecartLocoC11("ItemRollingStock", "train_C11", 5),
+	minecartStarClass("ItemRollingStock", "StarIcon", 3),
+	minecartStarClassTender("ItemRollingStock", "StarTenderIcon", 3),
 
 	minecartLocoRenfe446Motor("ItemRollingStock", "446_motor_icon", 3),
 	minecartPassengerRenfe446Coach("ItemRollingStock", "446_middle_icon", 3),
@@ -334,6 +336,7 @@ public enum ItemIDs {
 	minecartPS52seatCoach("ItemRollingStock", "PS52seatCoach", 3),
 	minecartPScombine("ItemRollingStock", "PScombine", 3),
 	minecartPSCenterDiner("ItemRollingStock", "PScenterDiner", 3),
+	minecartPSFuckYouAnotherDiner("ItemRollingStock", "BAP_Pullman_Standard_lightweight_center_diner_icom", 3),
 	minecartDstockEngine("ItemRollingStock","DstockEngine", 4),
 	minecartDstockCar("ItemRollingStock","DstockCar", 3),
 	minecartLUengine("ItemRollingStock","luengine", 4),
@@ -352,7 +355,8 @@ public enum ItemIDs {
 	minecartAmfleet2("ItemRollingStock", "Amfleet2", 3),
 	minecartPEcooch("ItemRollingStock", "pecoach", 6),
 	minecartPEobserve("ItemRollingStock", "peobserve", 6),
-
+	minecartStarCarFat("ItemRollingStock", "GWRClosed_Icon", 3),
+	minecartStarCarNotFat("ItemRollingStock", "GWROpen_Icon", 3),
 
 	minecartRoundHopper("ItemRollingStock", "train_RoundHopper", 2),
 	minecartRibbedHopper("ItemRollingStock", "train_ribbed_hopper", 2),
@@ -373,6 +377,7 @@ public enum ItemIDs {
 	minecart11000DOT111("ItemRollingStock", "11000DOT", 4),
 	minecart20600DOT111("ItemRollingStock", "20600DOT", 5),
 	minecart29080DOT111("ItemRollingStock", "29080DOT", 6),
+	minecartLightCrane("ItemRollingStock", "LightCrane", 3),
 
 	minecartWVcaboose("ItemRollingStock", "wvcaboose",6),
 

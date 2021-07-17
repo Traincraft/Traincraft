@@ -377,6 +377,7 @@ item.tc:minecartLocoSM42.name= PKP SM42
 item.tc:minecartLocoWWCPGP7.name=WWCP GP7 High Hood
 item.tc:minecartLocoC11.name=JNR C11
 item.tc:minecartPSCenterDiner.name=Pullman Standard Center-Kitchen Dining Car
+item.tc:minecartPSFuckYouAnotherDiner.name=Pullman Standard Center-Kitchen Dining Car 2
 item.tc:minecartLocoGE44Ton.name=GE-44 Tonner
 item.tc:minecartAmfleet.name=Amfleet 1 Coach
 item.tc:minecartAmfleet2.name=Amfleet 2 Coach
@@ -403,6 +404,11 @@ item.tc:minecart29080DOT111.name=29,080 Gallon Tank Car
 item.tc:minecartF7A.name=EMD F7A
 item.tc:minecartF7B.name=EMD F7B
 item.tc:minecartH1044.name=FM H10-44
+item.tc:minecartStarClass.name=GWR Star Class
+item.tc:minecartStarClassTender.name=GWR Star Class Tender
+item.tc:minecartStarCarFat.name=GWR Enclosed Car
+item.tc:minecartStarCarNotFat.name=GWR Open Air Car
+item.tc:minecartLightCrane.name=Light Crane
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -701,6 +707,7 @@ entity.tc.Class 345 Passenger Car.name=Class 345 Passenger Car
 entity.tc.PS 52 Seat Coach.name=Pullman Standard 52 Seat Coach
 entity.tc.PS Combine Coach.name=Pullman Standard Combine Passenger-Baggage
 entity.tc.PS Center Diner.name=Pullman Standard Center-Kitchen Dining Car
+entity.tc.PS Center Diner 2.name=Pullman Standard Center-Kitchen Dining Car 2
 entity.tc.SW8.name=SW8
 entity.tc.Loco Electric Renfe 450 Motor.name=Renfe Class 450 Powered End
 entity.tc.Passenger Renfe 450 Coach.name=Renfe Class 450 Coach
@@ -746,6 +753,10 @@ entity.tc.DOT29080.name=29,080 Gallon Tank Car
 entity.tc.F7A.name=EMD F7A
 entity.tc.F7B.name=EMD F7B
 entity.tc.H1044.name=FM H10-44
+entity.tc.Tender Star Class.name=GWR Star Class Tender
+entity.tc.Loco Steam Star Class.name=GWR Star Class
+entity.tc.Passenger Star Fat.name=GWR Enclosed Car
+entity.tc.Passenger Star Not Fat.name=GWR Open Air Car
 
 
 description.villager.profession.tc.station_chief=Station Chief

@@ -26,7 +26,7 @@ public class ModelF7A extends ModelConverter //Same as Filename
 
 	public ModelF7A() //Same as Filename
 	{
-		bodyModel = new ModelRendererTurbo[404];
+		bodyModel = new ModelRendererTurbo[406];
 
 		initbodyModel_1();
 
@@ -135,12 +135,12 @@ public class ModelF7A extends ModelConverter //Same as Filename
 		bodyModel[94] = new ModelRendererTurbo(this, 188, 147, textureX, textureY); // Box 178
 		bodyModel[95] = new ModelRendererTurbo(this, 395, 146, textureX, textureY); // Box 179
 		bodyModel[96] = new ModelRendererTurbo(this, 395, 146, textureX, textureY); // Box 180
-		bodyModel[97] = new ModelRendererTurbo(this, 146, 40, textureX, textureY); // Box 348 commander beacon
+		bodyModel[97] = new ModelRendererTurbo(this, 146, 40, textureX, textureY, "lamp"); // Box 348 commander beacon
 		bodyModel[98] = new ModelRendererTurbo(this, 145, 43, textureX, textureY); // Box 349
 		bodyModel[99] = new ModelRendererTurbo(this, 77, 168, textureX, textureY); // Box 183 CNW Gong
-		bodyModel[100] = new ModelRendererTurbo(this, 125, 175, textureX, textureY); // Box 184 numberboard glow
-		bodyModel[101] = new ModelRendererTurbo(this, 45, 175, textureX, textureY); // Box 185 numberboard glow
-		bodyModel[102] = new ModelRendererTurbo(this, 256, 21, textureX, textureY); // Box 186 winterization hatch cull
+		bodyModel[100] = new ModelRendererTurbo(this, 125, 175, textureX, textureY, "lamp"); // Box 184 numberboard glow
+		bodyModel[101] = new ModelRendererTurbo(this, 45, 175, textureX, textureY, "lamp"); // Box 185 numberboard glow
+		bodyModel[102] = new ModelRendererTurbo(this, 256, 21, textureX, textureY, "cull"); // Box 186 winterization hatch cull
 		bodyModel[103] = new ModelRendererTurbo(this, 250, 6, textureX, textureY); // Box 187
 		bodyModel[104] = new ModelRendererTurbo(this, 250, 2, textureX, textureY); // Box 188
 		bodyModel[105] = new ModelRendererTurbo(this, 236, 151, textureX, textureY); // Box 189
@@ -177,17 +177,17 @@ public class ModelF7A extends ModelConverter //Same as Filename
 		bodyModel[136] = new ModelRendererTurbo(this, 461, 82, textureX, textureY); // Box 131
 		bodyModel[137] = new ModelRendererTurbo(this, 462, 74, textureX, textureY); // Box 131
 		bodyModel[138] = new ModelRendererTurbo(this, 273, 2, textureX, textureY); // Box 231
-		bodyModel[139] = new ModelRendererTurbo(this, 384, 69, textureX, textureY); // Box 247 headlight rear left
+		bodyModel[139] = new ModelRendererTurbo(this, 384, 69, textureX, textureY, "lamp"); // Box 247 headlight rear left
 		bodyModel[140] = new ModelRendererTurbo(this, 312, 143, textureX, textureY); // Box 222
 		bodyModel[141] = new ModelRendererTurbo(this, 301, 143, textureX, textureY); // Box 223
 		bodyModel[142] = new ModelRendererTurbo(this, 270, 201, textureX, textureY); // Box 438
 		bodyModel[143] = new ModelRendererTurbo(this, 270, 201, textureX, textureY); // Box 439
 		bodyModel[144] = new ModelRendererTurbo(this, 83, 137, textureX, textureY); // Box 336
-		bodyModel[145] = new ModelRendererTurbo(this, 87, 132, textureX, textureY); // Box 337 ane 2 beam
-		bodyModel[146] = new ModelRendererTurbo(this, 87, 132, textureX, textureY); // Box 338 ane 2 beam
-		bodyModel[147] = new ModelRendererTurbo(this, 124, 243, textureX, textureY); // Box 443 ditchlight front a
+		bodyModel[145] = new ModelRendererTurbo(this, 87, 132, textureX, textureY, "lamp"); // Box 337 ane 2 beam
+		bodyModel[146] = new ModelRendererTurbo(this, 87, 132, textureX, textureY, "lamp"); // Box 338 ane 2 beam
+		bodyModel[147] = new ModelRendererTurbo(this, 124, 243, textureX, textureY, "lamp"); // Box 443 ditchlight front a
 		bodyModel[148] = new ModelRendererTurbo(this, 117, 243, textureX, textureY); // Box 444
-		bodyModel[149] = new ModelRendererTurbo(this, 124, 243, textureX, textureY); // Box 445 ditchlight front a
+		bodyModel[149] = new ModelRendererTurbo(this, 124, 243, textureX, textureY, "lamp"); // Box 445 ditchlight front a
 		bodyModel[150] = new ModelRendererTurbo(this, 117, 243, textureX, textureY); // Box 446
 		bodyModel[151] = new ModelRendererTurbo(this, 209, 41, textureX, textureY); // Box 447
 		bodyModel[152] = new ModelRendererTurbo(this, 209, 38, textureX, textureY); // Box 448
@@ -285,8 +285,8 @@ public class ModelF7A extends ModelConverter //Same as Filename
 		bodyModel[244] = new ModelRendererTurbo(this, 478, 96, textureX, textureY); // Box 604
 		bodyModel[245] = new ModelRendererTurbo(this, 491, 96, textureX, textureY); // Box 605
 		bodyModel[246] = new ModelRendererTurbo(this, 497, 115, textureX, textureY); // Box 606
-		bodyModel[247] = new ModelRendererTurbo(this, 125, 177, textureX, textureY); // Box 352 markerlight
-		bodyModel[248] = new ModelRendererTurbo(this, 51, 177, textureX, textureY); // Box 353 markerlight
+		bodyModel[247] = new ModelRendererTurbo(this, 125, 177, textureX, textureY, "lamp"); // Box 352 markerlight
+		bodyModel[248] = new ModelRendererTurbo(this, 51, 177, textureX, textureY, "lamp"); // Box 353 markerlight
 		bodyModel[249] = new ModelRendererTurbo(this, 475, 125, textureX, textureY); // Box 356
 		bodyModel[250] = new ModelRendererTurbo(this, 478, 105, textureX, textureY); // Box 357
 		bodyModel[251] = new ModelRendererTurbo(this, 474, 104, textureX, textureY); // Box 358
@@ -303,8 +303,8 @@ public class ModelF7A extends ModelConverter //Same as Filename
 		bodyModel[262] = new ModelRendererTurbo(this, 83, 177, textureX, textureY); // Box 103
 		bodyModel[263] = new ModelRendererTurbo(this, 91, 177, textureX, textureY); // Box 103
 		bodyModel[264] = new ModelRendererTurbo(this, 79, 204, textureX, textureY); // Box 380
-		bodyModel[265] = new ModelRendererTurbo(this, 104, 167, textureX, textureY); // Box 186 headlight 2beam top A
-		bodyModel[266] = new ModelRendererTurbo(this, 104, 172, textureX, textureY); // Box 187 headlight 2beam top A
+		bodyModel[265] = new ModelRendererTurbo(this, 104, 167, textureX, textureY, "lamp"); // Box 186 headlight 2beam top A
+		bodyModel[266] = new ModelRendererTurbo(this, 104, 172, textureX, textureY, "lamp"); // Box 187 headlight 2beam top A
 		bodyModel[267] = new ModelRendererTurbo(this, 83, 226, textureX, textureY); // Box 386
 		bodyModel[268] = new ModelRendererTurbo(this, 91, 226, textureX, textureY); // Box 387
 		bodyModel[269] = new ModelRendererTurbo(this, 98, 226, textureX, textureY); // Box 388
@@ -313,14 +313,14 @@ public class ModelF7A extends ModelConverter //Same as Filename
 		bodyModel[272] = new ModelRendererTurbo(this, 83, 230, textureX, textureY); // Box 391
 		bodyModel[273] = new ModelRendererTurbo(this, 78, 230, textureX, textureY); // Box 392
 		bodyModel[274] = new ModelRendererTurbo(this, 78, 226, textureX, textureY); // Box 393
-		bodyModel[275] = new ModelRendererTurbo(this, 111, 172, textureX, textureY); // Box 169 headlight big top
-		bodyModel[276] = new ModelRendererTurbo(this, 104, 221, textureX, textureY); // Box 186 headlight 2beam bottom A
-		bodyModel[277] = new ModelRendererTurbo(this, 104, 226, textureX, textureY); // Box 187 headlight 2beam bottom A
-		bodyModel[278] = new ModelRendererTurbo(this, 111, 226, textureX, textureY); // Box 169 headlight big bottom
-		bodyModel[279] = new ModelRendererTurbo(this, 118, 221, textureX, textureY); // Box 186 headlight 2beam bottom B
-		bodyModel[280] = new ModelRendererTurbo(this, 111, 221, textureX, textureY); // Box 187 headlight 2beam bottom B
-		bodyModel[281] = new ModelRendererTurbo(this, 118, 167, textureX, textureY); // Box 186 headlight 2beam top B
-		bodyModel[282] = new ModelRendererTurbo(this, 111, 167, textureX, textureY); // Box 187 headlight 2beam top B
+		bodyModel[275] = new ModelRendererTurbo(this, 111, 172, textureX, textureY, "lamp"); // Box 169 headlight big top
+		bodyModel[276] = new ModelRendererTurbo(this, 104, 221, textureX, textureY, "lamp"); // Box 186 headlight 2beam bottom A
+		bodyModel[277] = new ModelRendererTurbo(this, 104, 226, textureX, textureY, "lamp"); // Box 187 headlight 2beam bottom A
+		bodyModel[278] = new ModelRendererTurbo(this, 111, 226, textureX, textureY, "lamp"); // Box 169 headlight big bottom
+		bodyModel[279] = new ModelRendererTurbo(this, 118, 221, textureX, textureY, "lamp"); // Box 186 headlight 2beam bottom B
+		bodyModel[280] = new ModelRendererTurbo(this, 111, 221, textureX, textureY, "lamp"); // Box 187 headlight 2beam bottom B
+		bodyModel[281] = new ModelRendererTurbo(this, 118, 167, textureX, textureY, "lamp"); // Box 186 headlight 2beam top B
+		bodyModel[282] = new ModelRendererTurbo(this, 111, 167, textureX, textureY, "lamp"); // Box 187 headlight 2beam top B
 		bodyModel[283] = new ModelRendererTurbo(this, 85, 165, textureX, textureY); // Box 403 headlight cover
 		bodyModel[284] = new ModelRendererTurbo(this, 91, 165, textureX, textureY); // Box 404 headlight cover
 		bodyModel[285] = new ModelRendererTurbo(this, 91, 168, textureX, textureY); // Box 405 headlight cover
@@ -334,7 +334,7 @@ public class ModelF7A extends ModelConverter //Same as Filename
 		bodyModel[293] = new ModelRendererTurbo(this, 86, 126, textureX, textureY); // Box 415
 		bodyModel[294] = new ModelRendererTurbo(this, 106, 127, textureX, textureY); // Box 416
 		bodyModel[295] = new ModelRendererTurbo(this, 68, 127, textureX, textureY); // Box 417
-		bodyModel[296] = new ModelRendererTurbo(this, 384, 64, textureX, textureY); // Box 418 headlight rear right
+		bodyModel[296] = new ModelRendererTurbo(this, 384, 64, textureX, textureY, "lamp"); // Box 418 headlight rear right
 		bodyModel[297] = new ModelRendererTurbo(this, 170, 232, textureX, textureY); // Box 419 pilot b, c
 		bodyModel[298] = new ModelRendererTurbo(this, 192, 232, textureX, textureY); // Box 420 pilot b
 		bodyModel[299] = new ModelRendererTurbo(this, 181, 232, textureX, textureY); // Box 421 pilot b
@@ -352,8 +352,8 @@ public class ModelF7A extends ModelConverter //Same as Filename
 		bodyModel[311] = new ModelRendererTurbo(this, 74, 243, textureX, textureY); // Box 437
 		bodyModel[312] = new ModelRendererTurbo(this, 74, 245, textureX, textureY); // Box 438
 		bodyModel[313] = new ModelRendererTurbo(this, 179, 148, textureX, textureY); // Box 439
-		bodyModel[314] = new ModelRendererTurbo(this, 179, 148, textureX, textureY); // Box 440
-		bodyModel[315] = new ModelRendererTurbo(this, 179, 148, textureX, textureY); // Box 441
+		bodyModel[314] = new ModelRendererTurbo(this, 179, 150, textureX, textureY); // Box 440
+		bodyModel[315] = new ModelRendererTurbo(this, 179, 150, textureX, textureY); // Box 441
 		bodyModel[316] = new ModelRendererTurbo(this, 179, 148, textureX, textureY); // Box 442
 		bodyModel[317] = new ModelRendererTurbo(this, 392, 57, textureX, textureY); // Box 443
 		bodyModel[318] = new ModelRendererTurbo(this, 397, 57, textureX, textureY); // Box 444
@@ -370,10 +370,10 @@ public class ModelF7A extends ModelConverter //Same as Filename
 		bodyModel[329] = new ModelRendererTurbo(this, 289, 4, textureX, textureY); // Box 457
 		bodyModel[330] = new ModelRendererTurbo(this, 289, 4, textureX, textureY); // Box 458
 		bodyModel[331] = new ModelRendererTurbo(this, 94, 137, textureX, textureY); // Box 364 prime base
-		bodyModel[332] = new ModelRendererTurbo(this, 94, 133, textureX, textureY); // Box 6 PRIME1-1
-		bodyModel[333] = new ModelRendererTurbo(this, 94, 133, textureX, textureY); // Box 7 PRIME1-3
-		bodyModel[334] = new ModelRendererTurbo(this, 94, 133, textureX, textureY); // Box 8 PRIME1-2
-		bodyModel[335] = new ModelRendererTurbo(this, 94, 133, textureX, textureY); // Box 9 PRIME1-4
+		bodyModel[332] = new ModelRendererTurbo(this, 94, 133, textureX, textureY, "lamp"); // Box 6 PRIME1-1
+		bodyModel[333] = new ModelRendererTurbo(this, 94, 133, textureX, textureY, "lamp"); // Box 7 PRIME1-3
+		bodyModel[334] = new ModelRendererTurbo(this, 94, 133, textureX, textureY, "lamp"); // Box 8 PRIME1-2
+		bodyModel[335] = new ModelRendererTurbo(this, 94, 133, textureX, textureY, "lamp"); // Box 9 PRIME1-4
 		bodyModel[336] = new ModelRendererTurbo(this, 314, 42, textureX, textureY); // Box 464
 		bodyModel[337] = new ModelRendererTurbo(this, 290, 31, textureX, textureY); // Box 465
 		bodyModel[338] = new ModelRendererTurbo(this, 288, 34, textureX, textureY); // Box 466
@@ -442,6 +442,8 @@ public class ModelF7A extends ModelConverter //Same as Filename
 		bodyModel[401] = new ModelRendererTurbo(this, 73, 227, textureX, textureY); // Box 404 headlight backpart
 		bodyModel[402] = new ModelRendererTurbo(this, 73, 227, textureX, textureY); // Box 405 headlight backpart
 		bodyModel[403] = new ModelRendererTurbo(this, 73, 227, textureX, textureY); // Box 406 headlight backpart
+		bodyModel[404] = new ModelRendererTurbo(this, 171, 51, textureX, textureY); // Box 404
+		bodyModel[405] = new ModelRendererTurbo(this, 158, 51, textureX, textureY); // Box 405
 
 		bodyModel[0].addBox(0F, 0F, 0F, 57, 1, 20, 0F); // Box 0
 		bodyModel[0].setRotationPoint(-25.5F, 0F, -10F);
@@ -1667,11 +1669,17 @@ public class ModelF7A extends ModelConverter //Same as Filename
 
 		bodyModel[403].addShapeBox(0F, 0F, 0F, 0, 2, 2, 0F,0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0.3F, 0F, 0F, -0.3F, 0F, 0F, -0.25F, -0.5F, -0.5F, 0.25F, -0.5F, -0.5F); // Box 406 headlight backpart
 		bodyModel[403].setRotationPoint(-30.7F, -6F, 0F);
+
+		bodyModel[404].addBox(0F, 0F, 0F, 1, 4, 0, 0F); // Box 404
+		bodyModel[404].setRotationPoint(-10F, -23F, 0F);
+
+		bodyModel[405].addBox(0F, 0F, 0F, 4, 0, 4, 0F); // Box 405
+		bodyModel[405].setRotationPoint(-11.5F, -21F, -2F);
 	}
 	ModelBapBlombergB theTrucc = new ModelBapBlombergB();
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-		for (int i = 0; i < 404; i++) {
+		for (int i = 0; i < 406; i++) {
 			if (bodyModel[i].boxName != null && bodyModel[i].boxName.contains("lamp")) {
 				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
 				bodyModel[i].render(f5);
