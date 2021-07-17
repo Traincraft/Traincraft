@@ -108,8 +108,8 @@ public enum EnumSounds {
 	LocoGE44Ton(EntityLocoDieselGE44Ton.class, "tram_horn", 1.0F, "chme3_idle", 0.65F, 40, "chme3_idle", 0.65F, 40, false),
 	DieselH1044(EntityLocoDieselBapH1044.class, "wabco_e2", 10F, "chme3_idle", 0.65F, 40, "chme3_idle", 0.65F, 40, false),
 	SM42(EntityLocoDieselSM42.class, "chme3_horn", 0.8F, "chme3_idle", 0.65F, 40, "chme3_idle", 0.65F, 40, false),
-	locoSteamStarClass(EntityLocoSteamStarClass.class, "adler_whistle", 0.8F, "adler_run", 0.2F, 20, "adler_run", 0.2F, 20,
-			true),
+	locoSteamStarClass(EntityLocoSteamStarClass.class, "adler_whistle", 0.8F, "adler_run", 0.2F, 20, "adler_run", 0.2F, 20, true),
+	BR155(EntityLocoElectricBR155.class, "mg_horn", 1F, "mg_run", 0.6F, 8, "mg_idle", 0.4F, 50, false),
 
 	;
 

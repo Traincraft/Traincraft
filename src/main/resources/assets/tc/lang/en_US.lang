@@ -409,6 +409,9 @@ item.tc:minecartStarClassTender.name=GWR Star Class Tender
 item.tc:minecartStarCarFat.name=GWR Enclosed Car
 item.tc:minecartStarCarNotFat.name=GWR Open Air Car
 item.tc:minecartLightCrane.name=Light Crane
+item.tc:minecartBR155.name=BR 155
+item.tc:minecartOnion.name=Onion
+item.tc:minecartOnionTender.name=Onion's Tender
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -757,6 +760,9 @@ entity.tc.Tender Star Class.name=GWR Star Class Tender
 entity.tc.Loco Steam Star Class.name=GWR Star Class
 entity.tc.Passenger Star Fat.name=GWR Enclosed Car
 entity.tc.Passenger Star Not Fat.name=GWR Open Air Car
+entity.tc.Loco Electric BR155.name=BR 155
+entity.tc.Onion.name=Onion
+entity.tc.Onion Tender.name=Onion's Tender
 
 
 description.villager.profession.tc.station_chief=Station Chief

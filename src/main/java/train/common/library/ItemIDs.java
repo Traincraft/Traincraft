@@ -327,6 +327,8 @@ public enum ItemIDs {
 	minecartLocoC11("ItemRollingStock", "train_C11", 5),
 	minecartStarClass("ItemRollingStock", "StarIcon", 3),
 	minecartStarClassTender("ItemRollingStock", "StarTenderIcon", 3),
+	minecartOnion("ItemRollingStock", "Onion", 10),
+	minecartOnionTender("ItemRollingStock", "OnionTender", 10),
 
 	minecartLocoRenfe446Motor("ItemRollingStock", "446_motor_icon", 3),
 	minecartPassengerRenfe446Coach("ItemRollingStock", "446_middle_icon", 3),
@@ -358,6 +360,8 @@ public enum ItemIDs {
 	minecartStarCarFat("ItemRollingStock", "GWRClosed_Icon", 3),
 	minecartStarCarNotFat("ItemRollingStock", "GWROpen_Icon", 3),
 
+	minecartBR155("ItemRollingStock", "Db_155_icon", 4),
+
 	minecartRoundHopper("ItemRollingStock", "train_RoundHopper", 2),
 	minecartRibbedHopper("ItemRollingStock", "train_ribbed_hopper", 2),
 	minecart40highcube("ItemRollingStock", "40highcube", 3),
@@ -377,7 +381,7 @@ public enum ItemIDs {
 	minecart11000DOT111("ItemRollingStock", "11000DOT", 4),
 	minecart20600DOT111("ItemRollingStock", "20600DOT", 5),
 	minecart29080DOT111("ItemRollingStock", "29080DOT", 6),
-	minecartLightCrane("ItemRollingStock", "LightCrane", 3),
+	minecartLightCrane("ItemRollingStock", "LightCrane_Icon", 3),
 
 	minecartWVcaboose("ItemRollingStock", "wvcaboose",6),
 
