@@ -59,9 +59,9 @@ public class ItemTCRail extends ItemPart {
 		VERY_LARGE_SLOPE_WOOD("VERY_LARGE_SLOPE_WOOD", "SLOPE", ItemIDs.tcRailVeryLargeSlopeWood, "1x18"),
 		VERY_LARGE_SLOPE_GRAVEL("VERY_LARGE_SLOPE_GRAVEL", "SLOPE", ItemIDs.tcRailVeryLargeSlopeGravel, "1x18"),
 		VERY_LARGE_SLOPE_BALLAST("VERY_LARGE_SLOPE_BALLAST", "SLOPE", ItemIDs.tcRailVeryLargeSlopeBallast, "1x18"),
-		LARGE_SLOPE_SNOW_GRAVEL("LARGE_SLOP_SNOW_GRAVEL","SLOPE", ItemIDs.tcRailLargeSlopeSnowTrack,"1x12"),
-		VERY_LARGE_SLOPE_SNOW_GRAVEL("VERY_LARGE_SLOW_SNOW_GRAVE", "SLOPE", ItemIDs.tcRailVeryLargeSlopeSnow, "1x18"),
-		SLOPE_SNOW_GRAVEL("SLOPE_SNOW_GRAVEL", "SLOPE", ItemIDs.tcRailSlopeSnowTrack, "1x6"),
+		SLOPE_SNOW_GRAVEL("SLOPE_SNOW_GRAVEL", "SLOPE", ItemIDs.tcRailSlopeSnowGravel, "1x12"),
+		LARGE_SLOPE_SNOW_GRAVEL("LARGE_SLOPE_SNOW_GRAVEL", "SLOPE", ItemIDs.tcRailLargeSlopeSnowGravel, "1x12"),
+		VERY_LARGE_SLOPE_SNOW_GRAVEL("VERY_LARGE_SLOPE_SNOW_GRAVEL", "SLOPE", ItemIDs.tcRailVeryLargeSlopeSnowGravel, "1x18"),
 		;
 		private String label;
 		private String type;
@@ -1129,19 +1129,19 @@ public class ItemTCRail extends ItemPart {
 				 * against TCs own brain. you need to devide 100 by (gagEnd+1)
 				 **/
 				if (type == TrackTypes.SLOPE_WOOD || type == TrackTypes.SLOPE_GRAVEL
-						|| type == TrackTypes.SLOPE_BALLAST) {
+						|| type == TrackTypes.SLOPE_BALLAST || type == TrackTypes.SLOPE_SNOW_GRAVEL) {
 					gagEnd = 5;
 					slopeAngle = 0.13;
 				}
 				
 				if (type == TrackTypes.LARGE_SLOPE_WOOD || type == TrackTypes.LARGE_SLOPE_GRAVEL
-						|| type == TrackTypes.LARGE_SLOPE_BALLAST) {
+						|| type == TrackTypes.LARGE_SLOPE_BALLAST || type == TrackTypes.LARGE_SLOPE_SNOW_GRAVEL) {
 					gagEnd = 11;
 					slopeAngle = 0.0666;
 				}
 				
 				if (type == TrackTypes.VERY_LARGE_SLOPE_WOOD || type == TrackTypes.VERY_LARGE_SLOPE_GRAVEL
-						|| type == TrackTypes.VERY_LARGE_SLOPE_BALLAST) {
+						|| type == TrackTypes.VERY_LARGE_SLOPE_BALLAST || type == TrackTypes.VERY_LARGE_SLOPE_SNOW_GRAVEL) {
 					gagEnd = 17;
 					slopeAngle = 0.0444;
 				}

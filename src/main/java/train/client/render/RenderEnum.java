@@ -784,15 +784,23 @@ public enum RenderEnum {
 	BR155(EntityLocoElectricBR155.class, new ModelBR155(), "BR155_", true, new float[] { -1.7F, 0.05F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "",0,null, "", null, 0, false),
 	Onion(EntityLocoOnion.class, new ModelOnion(), "Onion_", true, new float[] { -0.7F, 0.1F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "largesmoke", 20, new ArrayList<double[]>() {
 		{
-			add(new double[] { 1.69D, 1.1D, 0.0D });
+			add(new double[] { 0.6D, 1.5D, 0.0D });
 		}
 	}, "explode", new ArrayList<double[]>() {
 		{
-			add(new double[] { 1.6D, -0.4D, 0.8D });
+			add(new double[] { 1.2D, -0.4D, 0.8D });
 		}
 	}, 2, true),
-	OnionTender(EntityTenderOnion.class, new ModelOnionTender(), "Onion_Tender_", true, new float[] { 0.0F, 0.1F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
-	;
+	OnionTender(EntityTenderOnion.class, new ModelOnionTender(), "Onion_Tender_", true, new float[] { 0.0F, 0.1F, 0.0F }, new float[] { 0F, 0F, 180F }, null, "", 0, null, "", null, 0, false),
+	loco440RFront(EntityLocoElectric440RFront.class, new Model440R_Front(), "440R_", true, new float[] { -1.9F, 0.1F, 0.0F },   new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	passenger440RMid(EntityPassenger440RMid.class, new Model440R_Mid(), "440R_", true, new float[] { -0.0F, 0.1F, 0.0F },   new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	passenger440RRear(EntityPassenger440RRear.class, new Model440R_Back(), "440R_", true, new float[] { 0.0F, 0.1F, 0.0F },   new float[] { 0F, 0F, 180F }, null, "", 0, null, "", null, 0, false),
+	GP13(EntityLocoDieselGP13.class, new ModelGP13(), "gp13_", true, new float[] { -0.8F, -0.47F, 0.0F }, new float[] { 0F, 180F, 0F }, null, "smoke", 4, new ArrayList<double[]>() {
+		{
+			add(new double[] { -0.2D, 1.2D, 0.0D });
+			add(new double[] { 0.45D, 1.2D, 0.0D });
+		}
+	}, "", null, 0, false),;
 
 	private Class<? extends AbstractTrains> entityClass;
 	private ModelBase model;

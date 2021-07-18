@@ -63,7 +63,7 @@ public class ItemRendersignalSpanish implements IItemRenderer {
             case INVENTORY: {
                 //renderIcon();
                 //MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockIDs.signalSpanish.block), (net.minecraftforge.client.IItemRenderer) IItemRenderer);
-                renderSwitch(0f, 0f, 0f, 0.5f);
+                renderSwitch(0f, 0f, 0f, 1f);
                 return;
             }
             default:

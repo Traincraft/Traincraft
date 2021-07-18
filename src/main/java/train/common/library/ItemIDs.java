@@ -300,18 +300,18 @@ public enum ItemIDs {
 	tcRailMediumParallelSwitch("ItemTCRail", "item_rail_switch_parallel", 5),
 
 	tcRailTwoWaysCrossing("ItemTCRail","item_rail_two_ways_crossing",5),
-	tcRailSlopeWood("ItemTCRail", "item_rail_straight_slope_wood", 5),
-	tcRailSlopeGravel("ItemTCRail", "item_rail_straight_slope_gravel", 5),
-	tcRailSlopeBallast("ItemTCRail", "item_rail_straight_slope_ballast", 5),
+	tcRailSlopeWood("ItemTCRail", "item_rail_straight_slope_wood", 3),
+	tcRailSlopeGravel("ItemTCRail", "item_rail_straight_slope_gravel", 3),
+	tcRailSlopeBallast("ItemTCRail", "item_rail_straight_slope_ballast", 3),
 	tcRailLargeSlopeWood("ItemTCRail", "item_rail_straight_slope_wood", 3),
 	tcRailLargeSlopeGravel("ItemTCRail", "item_rail_straight_slope_gravel", 3),
 	tcRailLargeSlopeBallast("ItemTCRail", "item_rail_straight_slope_ballast", 3),
 	tcRailVeryLargeSlopeWood("ItemTCRail", "item_rail_straight_slope_wood", 3),
 	tcRailVeryLargeSlopeGravel("ItemTCRail", "item_rail_straight_slope_gravel", 3),
 	tcRailVeryLargeSlopeBallast("ItemTCRail", "item_rail_straight_slope_ballast", 3),
-	tcRailLargeSlopeSnowTrack("ItemTCRail","item_rail_straight_slope_snow",3),
-	tcRailSlopeSnowTrack("ItemTCRail","item_rail_straight_slope_snow",3),
-	tcRailVeryLargeSlopeSnow("ItemTCRail","item_rail_straight_slope_snow",3),
+	tcRailSlopeSnowGravel("ItemTCRail", "item_rail_straight_slope_snow_gravel", 3),
+	tcRailLargeSlopeSnowGravel("ItemTCRail", "item_rail_straight_slope_snow_gravel", 3),
+	tcRailVeryLargeSlopeSnowGravel("ItemTCRail", "item_rail_straight_slope_snow_gravel", 3),
 
 	minecartLocoCF7("ItemRollingStock", "train_cf7", 4),
 	minecartLocoGP15("ItemRollingStock", "train_gp15", 4),
@@ -325,7 +325,7 @@ public enum ItemIDs {
 	minecartF7A("ItemRollingStock", "f7a", 5),
 	minecartF7B("ItemRollingStock", "f7b", 5),
 	minecartH1044("ItemRollingStock", "h1044", 4),
-
+	minecartGP13("ItemRollingStock", "gp13", 9),
 
 	minecartClimaxNew("ItemRollingStock", "train_climax2", 5),
 	minecartVBShay2("ItemRollingStock", "vbshay2", 5),
@@ -364,6 +364,9 @@ public enum ItemIDs {
 	minecartPEobserve("ItemRollingStock", "peobserve", 6),
 	minecartStarCarFat("ItemRollingStock", "GWRClosed_Icon", 3),
 	minecartStarCarNotFat("ItemRollingStock", "GWROpen_Icon", 3),
+	minecart440RFront("ItemRollingStock", "440R_end_icon", 3),
+	minecart440RMid("ItemRollingStock", "440R_middle_icon", 3),
+	minecart440RRear("ItemRollingStock", "440R_tail_icon", 3),
 
 	minecartBR155("ItemRollingStock", "Db_155_icon", 4),
 
@@ -390,7 +393,7 @@ public enum ItemIDs {
 
 	minecartWVcaboose("ItemRollingStock", "wvcaboose",6),
 
-	signalSpanish("ItemsignalSpanish","signalSpanish", 1),
+	//signalSpanish("ItemsignalSpanish","signalSpanish", 1),
 	;
 
 	public Item item;

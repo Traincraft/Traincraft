@@ -95,6 +95,9 @@ public class RecipeHandler {
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailVeryLargeTurn.item, 1), "SS ","S  ","   ", Character.valueOf('S'), ItemIDs.tcRailMediumTurn.item );
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailSlopeGravel.item, 1), " TG","TGG","GGG", Character.valueOf('T'), ItemIDs.tcRailMediumStraight.item, Character.valueOf('G'), Blocks.gravel);
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailLargeSlopeGravel.item,1), "   ","  S"," S ", Character.valueOf('S'), ItemIDs.tcRailSlopeGravel.item);
+		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailSlopeSnowGravel.item, 1), " TS","TSS","SSS", Character.valueOf('T'), ItemIDs.tcRailMediumStraight.item, Character.valueOf('S'), new ItemStack(BlockIDs.oreTC.block, 1,4));
+		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailLargeSlopeSnowGravel.item, 1), "   ","  T"," T ", Character.valueOf('T'), ItemIDs.tcRailSlopeSnowGravel.item);
+		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailVeryLargeSlopeSnowGravel.item, 1), "   ","  T"," T ", Character.valueOf('T'), ItemIDs.tcRailLargeSlopeSnowGravel.item);
 
 		//here we go paintbrush -hariesh
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.paintbrushThing.item,1),"GB ","RIS"," ST", Character.valueOf('G'), new ItemStack(Items.dye,1,2), Character.valueOf('B'), new ItemStack(Items.dye,1,4), Character.valueOf('R'), new ItemStack(Items.dye,1,1), Character.valueOf('I'), new ItemStack(Items.iron_ingot), Character.valueOf('S'), new ItemStack(Items.string), Character.valueOf('T'), new ItemStack(Items.stick));

@@ -354,27 +354,27 @@ public class ModelVersaTrans extends ModelConverter //Same as Filename
 						GL11.glPushMatrix();
 						GL11.glTranslatef(0, 1f + ((Freight) entity).getAmmountOfCargo() * -0.018f, 0); // 1f is the "starting height", the *-0.whatever is the multiplier
 						GL11.glScalef(0.8F, 1, 1);// 0.8
-						bodyModel[70].render(f5);
+						bodyModel[66].render(f5);
 						GL11.glPopMatrix();
 					} else if (cargo <= 10) {
 						GL11.glPushMatrix();
 						GL11.glTranslatef(0, 1f + ((Freight) entity).getAmmountOfCargo() * -0.018f, 0);
 						//GL11.glTranslatef(0, 0.0f + cargo * -0.015f, 0);
 						GL11.glScalef(0.8f, 1, 1); // - (((Freight) entity).getSizeInventory() - cargo) * 0.0168f
-						bodyModel[70].render(f5);
+						bodyModel[66].render(f5);
 						GL11.glPopMatrix();
 					} else if (cargo <= 28) {
 						GL11.glPushMatrix();
 						GL11.glTranslatef(0, 1f + ((Freight) entity).getAmmountOfCargo() * -0.018f, 0);
 						//GL11.glTranslatef(0, 0.0f + cargo * -0.015f, 0);
 						GL11.glScalef(0.8f, 1, 1); // - (((Freight) entity).getSizeInventory() - cargo) * 0.0168f
-						bodyModel[70].render(f5);
+						bodyModel[66].render(f5);
 						GL11.glPopMatrix();
 					} else {
 						GL11.glPushMatrix();
 						GL11.glTranslatef(0, 0.57f + ((Freight) entity).getAmmountOfCargo() * -0.015f, 0);
 						GL11.glScalef(1, 1, 1);
-						bodyModel[70].render(f5);
+						bodyModel[66].render(f5);
 						GL11.glPopMatrix();
 					}
 				}
