@@ -32,6 +32,12 @@ public class Vec3f {
         zCoord = h;
     }
 
+    public Vec3f(double x, double y, double z){
+        xCoord = (float) x;
+        yCoord = (float) y;
+        zCoord = (float) z;
+    }
+
     public Vec3f crossProduct(Vec3f p_72431_1_) {
         return new Vec3f(this.yCoord * p_72431_1_.zCoord - this.zCoord * p_72431_1_.yCoord, this.zCoord * p_72431_1_.xCoord - this.xCoord * p_72431_1_.zCoord, this.xCoord * p_72431_1_.yCoord - this.yCoord * p_72431_1_.xCoord);
     }
