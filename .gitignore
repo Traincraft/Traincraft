@@ -36,5 +36,3 @@ lib
 *.directory
 classes
 runserver
-.classpath
-.project

@@ -8,7 +8,7 @@ import java.util.Map;
 public abstract class ModelPoolEntry {
 	
 	public String name;
-	public TexturedVertex[] vertices;
+	public PositionTransformVertex[] vertices;
 	public TexturedPolygon[] faces;
 	public Map<String, TextureGroup> textures;
 	protected TextureGroup texture;
