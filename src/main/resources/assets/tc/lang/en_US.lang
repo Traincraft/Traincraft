@@ -433,6 +433,7 @@ item.tc:minecart440RFront.name=440R Front
 item.tc:minecart440RMid.name=440R Middle
 item.tc:minecart440RRear.name=440R Rear
 item.tc:minecartGP13.name=EMD GP13
+item.tc:minecartDB143.name=DB Class 143
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -788,6 +789,7 @@ entity.tc.Loco 440R Front.name=440R Front
 entity.tc.Passenger 440R Mid.name=440R Middle
 entity.tc.Passenger 440R Rear.name=440R Rear
 entity.tc.GP13.name=EMD GP13
+entity.tc.Loco Electric DB143.name=DB Class 143
 
 
 description.villager.profession.tc.station_chief=Station Chief

@@ -342,6 +342,7 @@ public enum EnumTrains {
 	passenger440RMid("Passenger 440R Mid", EntityPassenger440RMid.class, ItemIDs.minecart440RMid.item, "passenger", 0, 0, 2, 0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[]{"Red", "White", "Purple"}), 10, 0, "Pack: Spanish Pack"),
 	passenger440RRear("Passenger 440R Rear", EntityPassenger440RRear.class, ItemIDs.minecart440RRear.item, "passenger", 0, 0, 2, 0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[]{"Red", "White", "Purple"}), 10, 0, "Pack: Spanish Pack"),
 	GP13("GP13", EntityLocoDieselGP13.class, ItemIDs.minecartGP13.item, "diesel", 2510,90,0,5,0,200,0.74,0.96,3000, TraincraftUtil.getBytesFromColors(new String[]{"Blue", "LightBlue", "Black", "Orange", "White", "Yellow"}), 10, 1.4, "Pack: ?. Uses the heritage GP40 Model"),
+	DB143("Loco Electric DB143",EntityLocoElectricDB143.class, ItemIDs.minecartDB143.item,"electric",4990,120,0,8,0,170,0.66,0.96,8000,null,15,-3.6, "Pack: ?"),
 
 	;
 

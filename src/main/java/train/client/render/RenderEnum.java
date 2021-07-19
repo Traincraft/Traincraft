@@ -800,7 +800,9 @@ public enum RenderEnum {
 			add(new double[] { -0.2D, 1.2D, 0.0D });
 			add(new double[] { 0.45D, 1.2D, 0.0D });
 		}
-	}, "", null, 0, false),;
+	}, "", null, 0, false),
+	DB143(EntityLocoElectricDB143.class, new ModelDB143(), "DB143", false, new float[] { -1.7F, 0.2F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "",0,null, "", null, 0, false),
+	;
 
 	private Class<? extends AbstractTrains> entityClass;
 	private ModelBase model;
