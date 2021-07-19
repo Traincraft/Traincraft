@@ -669,6 +669,7 @@ entity.tc.Denver Rio Grande Baggage.name=Denver Rio Grande Baggage
 entity.tc.Denver Rio Grande Combo.name=Denver Rio Grande Combo
 entity.tc.Denver Rio Grande Passenger.name=Denver Rio Grande Passenger
 entity.tc.GE 44-ton Diesel switcher.name=GE 44 Ton Switcher
+entity.tc.GE 44-Ton.name=GE 44 Ton Switcher
 entity.tc.Heavyweight Freight Car.name=Heavyweight Mailcar
 entity.tc.Rheingold Dining.name=Rheingold Dining
 entity.tc.Rheingold Dining Alternate.name=Rheingold Dining Alternate
@@ -790,6 +791,7 @@ entity.tc.Passenger 440R Mid.name=440R Middle
 entity.tc.Passenger 440R Rear.name=440R Rear
 entity.tc.GP13.name=EMD GP13
 entity.tc.Loco Electric DB143.name=DB Class 143
+entity.tc.LightCrane.name=Light Crane
 
 
 description.villager.profession.tc.station_chief=Station Chief
