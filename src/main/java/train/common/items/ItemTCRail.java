@@ -12,6 +12,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import org.lwjgl.util.vector.Matrix2f;
+import org.lwjgl.util.vector.Vector2f;
 import train.common.library.BlockIDs;
 import train.common.library.ItemIDs;
 import train.common.tile.TileTCRail;
@@ -269,7 +271,7 @@ public class ItemTCRail extends ItemPart {
 		if(shouldDrop)tcRail.idDrop = ItemIDs.tcRailSmallStraight.item;
 	}
 
-	private String getTrackOrientation(int l, float yaw) {
+	public String getTrackOrientation(int l, float yaw) {
 		if (l == 2 && yaw >= -180 && yaw <= -135) {
 			return "right";
 		}
@@ -297,13 +299,47 @@ public class ItemTCRail extends ItemPart {
 		return "";
 	}
 
+
+	public static Vector2f getDirectionVector(int facing)
+	{
+		Matrix2f nrot90 = new Matrix2f();
+		nrot90.m00 = +0; nrot90.m01 = +1;
+		nrot90.m10 = -1; nrot90.m11 = +0;
+
+		Vector2f vec = new Vector2f();
+		vec.x = 0; vec.y = 1;
+
+		for ( int i = 0; i < facing; i++ )
+		{
+			Vector2f nvec = new Vector2f();
+			nvec.x = vec.x * nrot90.m00 + vec.y * nrot90.m10;
+			nvec.y = vec.x * nrot90.m01 + vec.y * nrot90.m11;
+			vec = nvec;
+		}
+
+		return vec;
+	}
+
+
+	public boolean tryToPlaceTrack( ItemStack itemStack, EntityPlayer player, World world, int x, int y, int z, boolean changeWorld )
+	{
+
+		return false;
+	}
+
+	public int getPlacementHeight( World world, int x, int y, int z )
+	{
+		if(canBeReplaced(world, x, y, z)){
+			y--;
+		}
+		return y;
+	}
+
 	@Override
 	public boolean onItemUse(ItemStack itemstack, EntityPlayer player, World world, int x, int y, int z, int par7, float par8, float par9, float par10) {
 		if (!world.isRemote) {
 			
-			if(canBeReplaced(world, x, y, z)){
-				y--;
-			}
+			y = getPlacementHeight(world, x, y, z);
 			
 			int l = MathHelper.floor_double((player!=null?player.rotationYaw:par10) * 4.0F / 360.0F + 0.5D) & 3;
 			float yaw = MathHelper.wrapAngleTo180_float(player!=null?player.rotationYaw:par10);
@@ -1978,5 +2014,10 @@ public class ItemTCRail extends ItemPart {
 	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
 		par3List.add("\u00a77" + type.getTooltip());
 	}
+
+	public TrackTypes getTrackType() {
+		return this.type;
+	}
+
 }
 
