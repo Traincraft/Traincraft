@@ -23,6 +23,10 @@ public class ModelTwoWaysCrossingTCTrack extends ModelBase {
 	}
 
 	public void render(double x, double y, double z) {
+		render(x, y, z, 1, 1, 1, 1);
+	}
+
+	public void render(double x, double y, double z, float r, float g, float b, float a) {
 		// Push a blank matrix onto the stack
 		GL11.glPushMatrix();
 
@@ -31,7 +35,7 @@ public class ModelTwoWaysCrossingTCTrack extends ModelBase {
 
 		// Bind the texture, so that OpenGL properly textures our block.
 		FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
-		GL11.glColor4f(1, 1, 1, 1);
+		GL11.glColor4f(r, g, b, a);
 		//GL11.glScalef(0.5f, 0.5f, 0.5f);
 
 		this.render();

@@ -7,17 +7,17 @@ import train.common.tile.TileTCRail;
 
 public class RenderTCRail extends TileEntitySpecialRenderer {
 
-	private static final ModelSmallStraightTCTrack modelSmallStraight = new ModelSmallStraightTCTrack();
-	private static final ModelSmallStraightTCTrack modelRoadCrossing = new ModelSmallStraightTCTrack();
-	private static final ModelMediumStraightTCTrack modelMediumStraight = new ModelMediumStraightTCTrack();
-	private static final ModelRightTurnTCTrack modelRightTurn = new ModelRightTurnTCTrack();
-	private static final ModelLeftTurnTCTrack modelLeftTurn = new ModelLeftTurnTCTrack();
-	private static final ModelRightSwitchTCTrack modelRightSwitchTurn = new ModelRightSwitchTCTrack();
-	private static final ModelLeftSwitchTCTrack modelLeftSwitchTurn = new ModelLeftSwitchTCTrack();
-	private static final ModelTwoWaysCrossingTCTrack modelTwoWaysCrossing = new ModelTwoWaysCrossingTCTrack();
-	private static final ModelSlopeTCTrack modelSlope = new ModelSlopeTCTrack();
-	private static final ModelLargeSlopeTCTrack modelLargeSlope = new ModelLargeSlopeTCTrack();
-	private static final ModelVeryLargeSlopeTCTrack	modelVeryLargeSlope = new ModelVeryLargeSlopeTCTrack();
+	public static final ModelSmallStraightTCTrack modelSmallStraight = new ModelSmallStraightTCTrack();
+	public static final ModelSmallStraightTCTrack modelRoadCrossing = new ModelSmallStraightTCTrack();
+	public static final ModelMediumStraightTCTrack modelMediumStraight = new ModelMediumStraightTCTrack();
+	public static final ModelRightTurnTCTrack modelRightTurn = new ModelRightTurnTCTrack();
+	public static final ModelLeftTurnTCTrack modelLeftTurn = new ModelLeftTurnTCTrack();
+	public static final ModelRightSwitchTCTrack modelRightSwitchTurn = new ModelRightSwitchTCTrack();
+	public static final ModelLeftSwitchTCTrack modelLeftSwitchTurn = new ModelLeftSwitchTCTrack();
+	public static final ModelTwoWaysCrossingTCTrack modelTwoWaysCrossing = new ModelTwoWaysCrossingTCTrack();
+	public static final ModelSlopeTCTrack modelSlope = new ModelSlopeTCTrack();
+	public static final ModelLargeSlopeTCTrack modelLargeSlope = new ModelLargeSlopeTCTrack();
+	public static final ModelVeryLargeSlopeTCTrack	modelVeryLargeSlope = new ModelVeryLargeSlopeTCTrack();
 
 	public RenderTCRail() {
 

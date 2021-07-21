@@ -35,6 +35,11 @@ public class ModelRightTurnTCTrack extends ModelBase {
 	}
 
 	public void render(String type, TileTCRail tcRail, double x, double y, double z) {
+		int facing = tcRail.getWorldObj().getBlockMetadata(tcRail.xCoord, tcRail.yCoord, tcRail.zCoord);
+		render( type, facing, x, y, z, 1, 1, 1, 1);
+	}
+
+	public void render(String type, int facing, double x, double y, double z, float r, float g, float b, float a) {
 		// Push a blank matrix onto the stack
 		GL11.glPushMatrix();
 
@@ -43,9 +48,8 @@ public class ModelRightTurnTCTrack extends ModelBase {
 
 		// Bind the texture, so that OpenGL properly textures our block.
 		FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
-		GL11.glColor4f(1, 1, 1, 1);
+		GL11.glColor4f(r, g, b, a);
 		//GL11.glScalef(0.5f, 0.5f, 0.5f);
-		int facing = tcRail.getWorldObj().getBlockMetadata(tcRail.xCoord, tcRail.yCoord, tcRail.zCoord);
 
 		if (facing == 3) {
 			if(type.equals("very_large"))
