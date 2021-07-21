@@ -43,7 +43,7 @@ public class CustomRenderHandler {
         float r = 1;
         float g = 0;
         float b = 0;
-        float a = 0.25f;
+        float a = 0.5f;
         if (validPlacement) {
             r = 0;
             g = 1;
@@ -59,7 +59,8 @@ public class CustomRenderHandler {
         // Render
         GL11.glPushMatrix();
         GL11.glTranslated(x - px, y + 1 - py, z - pz);
-        //GL11.glClear( GL11.GL_DEPTH_BUFFER_BIT );
+        GL11.glClear( GL11.GL_DEPTH_BUFFER_BIT );
+        GL11.glEnable( GL11.GL_BLEND );
 
         // Straights
         if (item.getTrackType() == ItemTCRail.TrackTypes.SMALL_STRAIGHT
