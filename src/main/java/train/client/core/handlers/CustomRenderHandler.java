@@ -3,6 +3,7 @@ package train.client.core.handlers;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
+import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
@@ -42,23 +43,23 @@ public class CustomRenderHandler {
         float r = 1;
         float g = 0;
         float b = 0;
-        float a = 0.5f;
+        float a = 0.25f;
         if (validPlacement) {
             r = 0;
             g = 1;
         }
 
         y = item.getPlacementHeight(world, x, y, z);
-        double px = player.posX;
-        double py = player.posY;
-        double pz = player.posZ;
+        double px = TileEntityRendererDispatcher.staticPlayerX;
+        double py = TileEntityRendererDispatcher.staticPlayerY;
+        double pz = TileEntityRendererDispatcher.staticPlayerZ;
         int facing = MathHelper.floor_double(player.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
         Vector2f dir = ItemTCRail.getDirectionVector(facing);
 
         // Render
         GL11.glPushMatrix();
-        //GL11.glColor4f( r, g, b, a );
         GL11.glTranslated(x - px, y + 1 - py, z - pz);
+        //GL11.glClear( GL11.GL_DEPTH_BUFFER_BIT );
 
         // Straights
         if (item.getTrackType() == ItemTCRail.TrackTypes.SMALL_STRAIGHT
@@ -216,7 +217,6 @@ public class CustomRenderHandler {
                 RenderTCRail.modelRightSwitchTurn.render( switchType, facing, false, dx,0,dz, r, g, b, a );
             }
         }
-
 
         GL11.glPopMatrix();
     }
