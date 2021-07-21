@@ -170,7 +170,7 @@ public class CustomRenderHandler {
             float dz = dir.getY();
             int out_0_start = 3;
             int out_0_end = 3;
-            int facing_1 = isLeftTurn ? facing - 1 : facing + 1;
+            int facing_1 = isLeftTurn ? (facing + 4 - 1)%4 : (facing + 1)%4;
             int out_1_0 = 3;
             int out_1_1 = 3;
 
