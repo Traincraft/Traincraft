@@ -334,6 +334,8 @@ public enum ItemIDs {
 	minecartStarClassTender("ItemRollingStock", "StarTenderIcon", 3),
 	minecartOnion("ItemRollingStock", "Onion", 10),
 	minecartOnionTender("ItemRollingStock", "OnionTender", 10),
+	minecartPELocomotive("ItemRollingStock", "PELocoIcon", 5),
+	minecartPETender("ItemRollingStock", "PETenderIcon", 3),
 
 	minecartLocoRenfe446Motor("ItemRollingStock", "446_motor_icon", 3),
 	minecartPassengerRenfe446Coach("ItemRollingStock", "446_middle_icon", 3),

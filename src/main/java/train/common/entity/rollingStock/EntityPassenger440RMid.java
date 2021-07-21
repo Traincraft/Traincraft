@@ -27,7 +27,7 @@ public class EntityPassenger440RMid extends EntityRollingStock implements IPasse
 	@Override
 	public void updateRiderPosition() {
 		if(riddenByEntity==null){return;}
-		riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset() +0.3f, posZ);
+		riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset() +0.0f, posZ);
 	}
 
 	@Override

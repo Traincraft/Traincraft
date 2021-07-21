@@ -83,6 +83,9 @@ public class ItemHandler {
 		else if (entity instanceof EntityFreightBapWoodchipHopper) {
 			return powderWood(itemstack);
 		}
+		else if (entity instanceof EntityFreightBapOreJenny) {
+			return oreBlocks(itemstack);
+		}
 		else if (entity instanceof EntityFreightSlateWagon){
 			return block.getMaterial() == Material.rock;
 		}
@@ -108,6 +111,21 @@ public class ItemHandler {
 	}
 	private static boolean powderWood(ItemStack itemstack){
 		String[] names = new String[] { "dustWood", "pulpWood"};
+		for (String name: names){
+			if (OreDictionary.getOreID(name) == OreDictionary.getOreID(itemstack)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	private static boolean oreBlocks(ItemStack itemstack){
+		String[] names = new String[] { "oreCoal", "oreIron", "oreCopper", "oreGold", "oreLapis", "oreDiamond", "oreRedstone",
+				"oreEmerald", "oreQuartz", "oreAluminum", "oreSilver", "oreLead", "oreTin", "oreBauxite", "orePlatinum", "orePetroleum",
+				"oreMythril", "oreCobalt", "oreFirestone", "oreSulfur", "oreOsmium", "oreSaltpeter", "orePoorLead", "orePoorTin",
+				"orePoorCopper", "orePoorGold", "orePoorIron", "oreYellorite", "oreYellorium", "oreRuby", "orePeridot", "oreTopaz", "oreTanzanite",
+				"oreMalachite", "oreSapphire", "oreAmber", "oreApatite", "oreUranium", "oreNickel", "oreZinc", "oreElectrotine", "oreTitaniumOre",
+				"oreCinnabar", "orePlatinum", "oreCertusQuartz", "oreChargedCertusQuartz", "oreVinteum", "oreVietnam", "oreChimerite", "oreBlueTopaz",
+				"oreMoonstone", "oreSunstone", "oreDraconium"};
 		for (String name: names){
 			if (OreDictionary.getOreID(name) == OreDictionary.getOreID(itemstack)) {
 				return true;

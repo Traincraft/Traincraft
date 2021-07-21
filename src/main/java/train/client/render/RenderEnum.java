@@ -802,6 +802,16 @@ public enum RenderEnum {
 		}
 	}, "", null, 0, false),
 	DB143(EntityLocoElectricDB143.class, new ModelDB143(), "DB143", false, new float[] { -1.7F, 0.2F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "",0,null, "", null, 0, false),
+	tenderPETender(EntityTenderPETender.class, new ModelPE_Tender(), "PETender", false, new float[] { 0.1F, 0.15F, 0.0F }, new float[] { 0F, 0F, 180F }, null, "", 0, null, "", null, 0, false),
+	locoSteamPELoco(EntityLocoSteamPELoco.class, new ModelPE_Loco(), "PELoco", false, new float[] {  -1.5F, 0.15F, 0.0F }, new float[] { 0, 180, 180 }, null, "largesmoke", 3, new ArrayList<double[]>() {
+		{
+			add(new double[] { 3.1D, 1.4D, 0D });
+		}
+	}, "explode", new ArrayList<double[]>() {
+		{
+			add(new double[] { 2.9D, 0.05D, 0.65D });
+		}
+	}, 2, true),
 	;
 
 	private Class<? extends AbstractTrains> entityClass;

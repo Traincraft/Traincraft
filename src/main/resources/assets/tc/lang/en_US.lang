@@ -434,6 +434,8 @@ item.tc:minecart440RMid.name=440R Middle
 item.tc:minecart440RRear.name=440R Rear
 item.tc:minecartGP13.name=EMD GP13
 item.tc:minecartDB143.name=DB Class 143
+item.tc:minecartPELocomotive.name=Polar Express 1225
+item.tc:minecartPETender.name=Polar Express Tender
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -792,6 +794,8 @@ entity.tc.Passenger 440R Rear.name=440R Rear
 entity.tc.GP13.name=EMD GP13
 entity.tc.Loco Electric DB143.name=DB Class 143
 entity.tc.LightCrane.name=Light Crane
+entity.tc.locoSteamPELoco.name=Polar Express 1225
+entity.tc.tenderPETender.name=Polar Express Tender
 
 
 description.villager.profession.tc.station_chief=Station Chief
