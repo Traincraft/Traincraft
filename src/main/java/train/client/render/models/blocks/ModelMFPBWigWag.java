@@ -47,7 +47,7 @@ public class ModelMFPBWigWag extends ModelConverter {
 		group0[0].setRotationPoint(-3.5f, -1.0f, -3.5f);
 
 		group0[1] = new ModelRendererTurbo(this, 80, 33, textureX, textureY);
-		group0[1].flip = true;
+		group0[1].flip = false;
 		group0[1].addCylinder(0, 0, 0, 1, 4, 8, 1, 1, 4);
 		group0[1].setRotationPoint(0.0f, -5.3125f, 0.0f);
 
@@ -93,7 +93,7 @@ public class ModelMFPBWigWag extends ModelConverter {
 		group0[11].setRotationPoint(1.5f, -32.5f, -1.5f);
 
 		group0[12] = new ModelRendererTurbo(this, 208, 9, textureX, textureY);
-		group0[12].flip = true;
+		group0[12].flip = false;
 		group0[12].addCylinder(0, 0, 0, 2, 1, 10, 0.875f, 0.875f, 3);
 		group0[12].setRotationPoint(2.5f, -34.25f, 0.0f);
 
@@ -122,12 +122,12 @@ public class ModelMFPBWigWag extends ModelConverter {
 		group0[18].setRotationPoint(-1.5f, -5.25f, -0.125f);
 
 		group0[19] = new ModelRendererTurbo(this, 150, 32, textureX, textureY);
-		group0[19].flip = true;
+		group0[19].flip = false;
 		group0[19].addCylinder(0, 0, 0, 1, 13, 8, 0.625f, 0.625f, 4);
 		group0[19].setRotationPoint(0.0f, -18.25f, 0.0f);
 
 		group0[20] = new ModelRendererTurbo(this, 145, 32, textureX, textureY);
-		group0[20].flip = true;
+		group0[20].flip = false;
 		group0[20].addCylinder(0, 0, 0, 1, 3, 8, 1, 1, 4);
 		group0[20].setRotationPoint(0.0f, -21.25f, 0.0f);
 
@@ -1088,17 +1088,17 @@ public class ModelMFPBWigWag extends ModelConverter {
 		group0[231].setRotationPoint(-2.0f, -36.625f, -1.5f);
 
 		group0[232] = new ModelRendererTurbo(this, 93, 9, textureX, textureY);
-		group0[232].flip = true;
+		group0[232].flip = false;
 		group0[232].addCylinder(0, 0, 0, 2, 1, 10, 0.875f, 0.8125f, 3);
 		group0[232].setRotationPoint(2.625f, -34.25f, 0.0f);
 
 		group0[233] = new ModelRendererTurbo(this, 84, 9, textureX, textureY);
-		group0[233].flip = true;
+		group0[233].flip = false;
 		group0[233].addCylinder(0, 0, 0, 2, 1, 10, 0.8125f, 0.625f, 3);
 		group0[233].setRotationPoint(2.875f, -34.25f, 0.0f);
 
 		group0[234] = new ModelRendererTurbo(this, 69, 9, textureX, textureY);
-		group0[234].flip = true;
+		group0[234].flip = false;
 		group0[234].addCylinder(0, 0, 0, 2, 1, 10, 0.625f, 0.375f, 3);
 		group0[234].setRotationPoint(3.125f, -34.25f, 0.0f);
 
@@ -1715,7 +1715,7 @@ public class ModelMFPBWigWag extends ModelConverter {
 
 	private final void initGroup_Signal(){
 		Signal[0] = new ModelRendererTurbo(this, 150, 6, textureX, textureY); // Lamp
-		Signal[0].flip = true;
+		Signal[0].flip = false;
 		Signal[0].addCylinder(3.8125f, 9, 0, 1, 1, 8, 0.4375f, 0.6875f, 2);
 		Signal[0].setRotationPoint(-3.5f, -34.0f, 0.0f);
 
@@ -1724,7 +1724,7 @@ public class ModelMFPBWigWag extends ModelConverter {
 		Signal[1].setRotationPoint(-3.5f, -34.0f, 0.0f);
 
 		Signal[2] = new ModelRendererTurbo(this, 201, 25, textureX, textureY);
-		Signal[2].flip = true;
+		Signal[2].flip = false;
 		Signal[2].addCylinder(2.5312f, 9, 0, 3, 1, 12, 1, 1, 2);
 		Signal[2].setRotationPoint(-3.5f, -34.0f, 0.0f);
 
@@ -2053,7 +2053,7 @@ public class ModelMFPBWigWag extends ModelConverter {
 		Signal[10].setRotationPoint(-3.5f, -34.0f, 0.0f);
 
 		Signal[11] = new ModelRendererTurbo(this, 251, 0, textureX, textureY);
-		Signal[11].flip = true;
+		Signal[11].flip = false;
 		Signal[11].addCylinder(2.5f, 9, 0, 1, 2, 8, 1, 1, 2);
 		Signal[11].setRotationPoint(-3.5f, -34.0f, 0.0f);
 
@@ -2354,27 +2354,27 @@ public class ModelMFPBWigWag extends ModelConverter {
 		Signal[12].setRotationPoint(-3.5f, -34.0f, 0.0f);
 
 		Signal[13] = new ModelRendererTurbo(this, 198, 0, textureX, textureY); // Lamp
-		Signal[13].flip = true;
+		Signal[13].flip = false;
 		Signal[13].addCylinder(3.625f, 9, 0, 1, 1, 8, 0.875f, 0.9375f, 2);
 		Signal[13].setRotationPoint(-3.5f, -34.0f, 0.0f);
 
 		Signal[14] = new ModelRendererTurbo(this, 172, 0, textureX, textureY); // Lamp
-		Signal[14].flip = true;
+		Signal[14].flip = false;
 		Signal[14].addCylinder(3.75f, 9, 0, 1, 1, 8, 0.6875f, 0.875f, 2);
 		Signal[14].setRotationPoint(-3.5f, -34.0f, 0.0f);
 
 		Signal[15] = new ModelRendererTurbo(this, 139, 0, textureX, textureY); // Lamp
-		Signal[15].flip = true;
+		Signal[15].flip = false;
 		Signal[15].addCylinder(1.5f, 9, 0, 1, 1, 8, 0.9375f, 0.875f, 2);
 		Signal[15].setRotationPoint(-3.5f, -34.0f, 0.0f);
 
 		Signal[16] = new ModelRendererTurbo(this, 117, 0, textureX, textureY); // Lamp
-		Signal[16].flip = true;
+		Signal[16].flip = false;
 		Signal[16].addCylinder(1.625f, 9, 0, 1, 1, 8, 0.875f, 0.6875f, 2);
 		Signal[16].setRotationPoint(-3.75f, -34.0f, 0.0f);
 
 		Signal[17] = new ModelRendererTurbo(this, 106, 0, textureX, textureY); // Lamp
-		Signal[17].flip = true;
+		Signal[17].flip = false;
 		Signal[17].addCylinder(1.6875f, 9, 0, 1, 1, 8, 0.6875f, 0.4375f, 2);
 		Signal[17].setRotationPoint(-3.9375f, -34.0f, 0.0f);
 

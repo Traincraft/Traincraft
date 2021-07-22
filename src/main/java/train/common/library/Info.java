@@ -15,7 +15,7 @@ public class Info {
 	public static final String		modVersion				= "@VERSION1@";
 	public static final String channel = "Traincraft";
 	public static final String keyChannel = "TraincraftKey";
-	public static final String rotationChannel = "TraincraftRotation";
+	public static final String rotationChannel = "TCRotation";
 
 	/* Localization keys for versioning */
 
