@@ -52,9 +52,8 @@ public class TileMFPBWigWag extends TileTraincraft {
                     Minecraft.getMinecraft().getSoundHandler().playSound(bell);
                 }
             }
-            if (getWorldObj().getBlock(xCoord, yCoord, zCoord)
-                            .isProvidingWeakPower(getWorldObj(), xCoord, yCoord, zCoord, 0) > 0) {
-                rotation += flip ? 1.5f : -1.5f;
+            if (getWorldObj().isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord)) {
+                rotation += flip ? 1.75f : -1.75f;
             } else {
                 rotation = 0;
             }
