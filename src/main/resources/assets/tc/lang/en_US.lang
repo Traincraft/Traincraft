@@ -439,6 +439,10 @@ item.tc:minecartPETender.name=Polar Express Tender
 item.tc:minecartB23.name=GE B23-7
 item.tc:minecartC425.name=ALCo C425
 item.tc:minecartC424.name=ALCo C424
+item.tc:minecartGP7u.name=EMD GP7u
+item.tc:minecartGP7.name=EMD GP7
+item.tc:minecartGP9.name=EMD GP9
+item.tc:minecartGP7b.name=EMD GP7b
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -802,6 +806,10 @@ entity.tc.tender PETender.name=Polar Express Tender
 entity.tc.B23-7.name=GE B23-7
 entity.tc.C424.name=ALCo C424
 entity.tc.C425.name=ALCo C425
+entity.tc.GP7u.name=EMD GP7u
+entity.tc.GP7.name=EMD GP7
+entity.tc.GP9.name=EMD GP9
+entity.tc.GP7b.name=EMD GP7b
 
 
 description.villager.profession.tc.station_chief=Station Chief
