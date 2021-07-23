@@ -326,6 +326,10 @@ public enum ItemIDs {
 	minecartF7B("ItemRollingStock", "f7b", 5),
 	minecartH1044("ItemRollingStock", "h1044", 4),
 	minecartGP13("ItemRollingStock", "gp13", 9),
+	minecartB23("ItemRollingStock", "b23", 5),
+	minecartC424("ItemRollingStock", "c424", 5),
+	minecartC425("ItemRollingStock", "c425", 5),
+
 
 	minecartClimaxNew("ItemRollingStock", "train_climax2", 5),
 	minecartVBShay2("ItemRollingStock", "vbshay2", 5),

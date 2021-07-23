@@ -812,6 +812,22 @@ public enum RenderEnum {
 			add(new double[] { 2.9D, 0.05D, 0.65D });
 		}
 	}, 2, true),
+	BapB23( EntityLocoDieselBapB23.class,  new ModelB23(), "b23_", true,new float[] {-1.7F, 0.155F, 0F},  new float[] { 0F, 180F, 180F }, null, "smoke", 4,  new ArrayList<double[]>() {
+		{
+			add(new double[]{0.87D, 1.5D, 0.0D});
+		}
+	}, "", null, 0, false),
+	C424( EntityLocoDieselBapC424.class,  new ModelC424(), "c424_", true,new float[] {-1.6F, 0.1F, 0F},  new float[] { 0F, 180F, 180F }, null, "largesmoke", 2,  new ArrayList<double[]>() {
+
+		{
+			add(new double[]{1D, 1.7D, 0.0D});
+		}
+	}, "", null, 0, false),
+	C425( EntityLocoDieselBapC425.class,  new ModelC425(), "c425_", true,new float[] {-1.6F, 0.1F, 0F},  new float[] { 0F, 180F, 180F }, null, "largesmoke", 2,  new ArrayList<double[]>() {
+		{
+			add(new double[]{1D, 1.7D, 0.0D});
+		}
+	}, "", null, 0, false),
 	;
 
 	private Class<? extends AbstractTrains> entityClass;

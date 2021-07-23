@@ -117,6 +117,7 @@ public enum EnumSounds {
 	F7A(EntityLocoDieselBapF7A.class, "gp40-2_horn", 0.8F, "chme3_idle", 0.65F, 40, "chme3_idle", 0.65F, 40, false),
 	F7B(EntityLocoDieselBapF7B.class, "", 0.8F, "chme3_idle", 0.65F, 40, "chme3_idle", 0.65F, 40, false),
 	locoSteamPEloco(EntityLocoSteamPELoco.class, "pe_chime", 0.8F, "pe_run", 0.2F, 20, "pe_idle", 0.2F, 20, true),
+	DieselB23(EntityLocoDieselBapB23.class, "gp_horn", 0.8F, "chme3_idle", 0.65F, 40, "chme3_idle", 0.65F, 40, false),
 
 	;
 

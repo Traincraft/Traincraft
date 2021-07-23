@@ -436,6 +436,9 @@ item.tc:minecartGP13.name=EMD GP13
 item.tc:minecartDB143.name=DB Class 143
 item.tc:minecartPELocomotive.name=Polar Express 1225
 item.tc:minecartPETender.name=Polar Express Tender
+item.tc:minecartB23.name=GE B23-7
+item.tc:minecartC425.name=ALCo C425
+item.tc:minecartC424.name=ALCo C424
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -795,7 +798,10 @@ entity.tc.GP13.name=EMD GP13
 entity.tc.Loco Electric DB143.name=DB Class 143
 entity.tc.LightCrane.name=Light Crane
 entity.tc.locoSteamPELoco.name=Polar Express 1225
-entity.tc.tenderPETender.name=Polar Express Tender
+entity.tc.tender PETender.name=Polar Express Tender
+entity.tc.B23-7.name=GE B23-7
+entity.tc.C424.name=ALCo C424
+entity.tc.C425.name=ALCo C425
 
 
 description.villager.profession.tc.station_chief=Station Chief
