@@ -35,4 +35,8 @@
   "wabco_e2": {"category": "master", "sounds": [{"name": "wabco_e2", "stream":  true}]},
   "bell": {"category": "master", "sounds": [{"name": "bell","stream": false}]},
   "Dstock_whistle": {"category": "master", "sounds": [{"name": "Dstock_whistle","stream": false}]}
+  "Dstock_whistle": {"category": "master", "sounds": [{"name": "Dstock_whistle","stream": false}]},
+  "pe_chime": {"category": "master", "sounds": [{"name": "pe_chime", "stream":  true}]},
+  "pe_idle": {"category": "master", "sounds": [{"name": "pe_idle", "stream":  true}]},
+  "pe_run": {"category": "master", "sounds": [{"name": "pe_run", "stream":  true}]}
 }
