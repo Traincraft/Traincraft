@@ -853,6 +853,17 @@ public enum RenderEnum {
 			add(new double[]{1.25D, 1.45D, 0.0D});
 		}
 	}, "", null, 0, false),
+	GP30( EntityLocoDieselBapGP30.class,  new ModelGP30(), "gp30_", true,new float[] {-1.5F, 0.155F, 0F},  new float[] { 0F, 180F, 180F }, null, "smoke", 4,  new ArrayList<double[]>() {
+		{
+			add(new double[]{1.9D, 1.4D, 0.0D});
+		}
+	}, "", null, 0, false),
+	GP38dash2( EntityLocoDieselBapGP38dash2.class,  new ModelGP38dash2(), "gp38dash2_", true,new float[] {-1.5F, 0.155F, 0F},  new float[] { 0F, 180F, 180F }, null, "smoke", 3,  new ArrayList<double[]>() {
+		{
+			add(new double[]{0.75D, 1.4D, 0.0D});
+			add(new double[]{1.55D, 1.4D, 0.0D});
+		}
+	}, "", null, 0, false),
 	;
 
 	private Class<? extends AbstractTrains> entityClass;

@@ -443,6 +443,8 @@ item.tc:minecartGP7u.name=EMD GP7u
 item.tc:minecartGP7.name=EMD GP7
 item.tc:minecartGP9.name=EMD GP9
 item.tc:minecartGP7b.name=EMD GP7b
+item.tc:minecartGP38dash2.name=EMD GP38-2
+item.tc:minecartGP30.name=GP30
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -810,6 +812,9 @@ entity.tc.GP7u.name=EMD GP7u
 entity.tc.GP7.name=EMD GP7
 entity.tc.GP9.name=EMD GP9
 entity.tc.GP7b.name=EMD GP7b
+entity.tc.GP38dash2.name=EMD GP38-2
+entity.tc.GP30.name=EMD GP30
+
 
 
 description.villager.profession.tc.station_chief=Station Chief
