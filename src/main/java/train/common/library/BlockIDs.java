@@ -52,9 +52,9 @@ public enum BlockIDs {
 
 	MILWSwitchStand(false, null),
 	autoSwtichStand(false, null),
-	owoSwitchStand(false,ItemBlockOWOSwitchStand.class),
+	owoSwitchStand(true,ItemBlockOWOSwitchStand.class),
 	circleSwitchStand(false,null),
-	owoYardSwitchStand(false,ItemBlockOWOYardSwitch.class),
+	owoYardSwitchStand(true,ItemBlockOWOYardSwitch.class),
 	overheadWire(false,null),
 	overheadWireDouble(false,null),
 	poweredGravel(false,null),

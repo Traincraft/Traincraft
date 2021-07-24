@@ -335,6 +335,10 @@ public enum ItemIDs {
 	minecartGP7("ItemRollingStock", "gp7", 4),
 	minecartGP30("ItemRollingStock", "gp30", 5),
 	minecartGP38dash2("ItemRollingStock", "gp38dash2", 5),
+	minecartKofIII("ItemRollingStock", "KofIII_Icon", 3),
+	minecartKofIIIM("ItemRollingStock", "KofIII_Modernized_Icon", 3),
+	minecartU36C( "ItemRollingStock", "u36c", 15),
+	minecartGP49("ItemRollingStock", "gp49", 5),
 
 	minecartClimaxNew("ItemRollingStock", "train_climax2", 5),
 	minecartVBShay2("ItemRollingStock", "vbshay2", 5),

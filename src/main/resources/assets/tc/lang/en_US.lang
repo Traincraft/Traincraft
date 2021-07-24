@@ -445,6 +445,10 @@ item.tc:minecartGP9.name=EMD GP9
 item.tc:minecartGP7b.name=EMD GP7b
 item.tc:minecartGP38dash2.name=EMD GP38-2
 item.tc:minecartGP30.name=GP30
+item.tc:minecartKofIII.name=Kof III
+item.tc:minecartKofIIIM.name=Kof III Modernized
+item.tc:minecartU36C.name=GE U36C
+item.tc:minecartGP49.name=EMD GP49
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -814,7 +818,10 @@ entity.tc.GP9.name=EMD GP9
 entity.tc.GP7b.name=EMD GP7b
 entity.tc.GP38dash2.name=EMD GP38-2
 entity.tc.GP30.name=EMD GP30
-
+entity.tc.Kof III.name=Kof III
+entity.tc.Kof III M.name=Kof III Modernized
+entity.tc.U36C.name=GE U36C
+entity.tc.GP49.name=EMD GP49
 
 
 description.villager.profession.tc.station_chief=Station Chief

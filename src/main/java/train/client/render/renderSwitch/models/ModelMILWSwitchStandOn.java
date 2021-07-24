@@ -59,10 +59,10 @@ public class ModelMILWSwitchStandOn extends ModelConverter //Same as Filename
 		bodyModel[24] = new ModelRendererTurbo(this, 81, 25, textureX, textureY); // Box 21
 		bodyModel[25] = new ModelRendererTurbo(this, 97, 25, textureX, textureY); // Box 26
 		bodyModel[26] = new ModelRendererTurbo(this, 97, 17, textureX, textureY); // Box 2
-		bodyModel[27] = new ModelRendererTurbo(this, 113, 17, textureX, textureY, "lamp"); // Box Glow
-		bodyModel[28] = new ModelRendererTurbo(this, 113, 25, textureX, textureY, "lamp"); // Box Glow
-		bodyModel[29] = new ModelRendererTurbo(this, 121, 25, textureX, textureY, "lamp"); // Box Glow
-		bodyModel[30] = new ModelRendererTurbo(this, 1, 33, textureX, textureY, "lamp"); // Box Glow
+		bodyModel[27] = new ModelRendererTurbo(this, 113, 17, textureX, textureY); // Box Glow
+		bodyModel[28] = new ModelRendererTurbo(this, 113, 25, textureX, textureY); // Box Glow
+		bodyModel[29] = new ModelRendererTurbo(this, 121, 25, textureX, textureY); // Box Glow
+		bodyModel[30] = new ModelRendererTurbo(this, 1, 33, textureX, textureY); // Box Glow
 		bodyModel[31] = new ModelRendererTurbo(this, 9, 33, textureX, textureY); // Box 32
 		bodyModel[32] = new ModelRendererTurbo(this, 17, 33, textureX, textureY); // Box 2
 		bodyModel[33] = new ModelRendererTurbo(this, 1, 41, textureX, textureY); // Box 34

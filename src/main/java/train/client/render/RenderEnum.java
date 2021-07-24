@@ -864,6 +864,25 @@ public enum RenderEnum {
 			add(new double[]{1.55D, 1.4D, 0.0D});
 		}
 	}, "", null, 0, false),
+	KOF_III(EntityLocoDieselKof_III.class, new ModelKOF_III(), "KofIII_", true, new float[] { -0.8F, 0.15F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "smoke", 4, new ArrayList<double[]>() {
+		{
+			add(new double[] { 0.5D, 1.0D, 0.0D });
+		}
+	}, "", null, 0, false),
+	KOF_III_M(EntityLocoDieselKof_III_M.class, new ModelKOF_III_M(), "KofIIIM_", true, new float[] { -0.8F, 0.15F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "smoke", 4, new ArrayList<double[]>() {
+		{
+			add(new double[] { 0.5D, 1.0D, 0.0D });
+		}
+	}, "", null, 0, false),
+	U36C( EntityLocoDieselBapU36C.class,  new ModelU36C(), "u36c_", true,new float[] {-2.3125F, -0.15F/* -0.13F*/, 0F},  new float[] { 0F, 180F, 180F },  new float[] { 1F, 1F, 1F }, "smoke", 3,  new ArrayList<double[]>() {
+		{
+			//add(new double[]{0.75D, 1.75D, 0.0D});
+
+		}
+	}, "", null, 0, false),
+	GP49( EntityLocoDieselBapGP49.class,  new ModelGP49(), "gp49_arr_2807", false,new float[] {-1.5F, 0.155F, 0F},  new float[] { 0F, 180F, 180F }, null, "smoke", 3,  new ArrayList<double[]>() {
+		{ }
+	}, "", null, 0, false),
 	;
 
 	private Class<? extends AbstractTrains> entityClass;

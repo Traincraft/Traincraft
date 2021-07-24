@@ -17,6 +17,8 @@ import train.common.core.util.TraincraftUtil;
 import train.common.entity.rollingStock.EntityTracksBuilder;
 import train.common.library.Info;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -241,12 +243,38 @@ public class RenderRollingStock extends Render {
 
 				//GL11.glEnable(GL11.GL_LIGHTING);
 
-				if (renders.hasSmoke()) {
+				/*if (renders.hasSmoke()) {
 					if (cart.bogieLoco != null) {// || cart.bogieUtility[0]!=null){
 						renderSmokeFX(cart, 90 + cart.rotationYawClientReal, (float) cart.anglePitchClient, renders.getSmokeType(), renders.getSmokeFX(), renders.getSmokeIterations(), time, renders.hasSmokeOnSlopes());
 					}
 					else {
 						renderSmokeFX(cart, (yaw), pitch, renders.getSmokeType(), renders.getSmokeFX(), renders.getSmokeIterations(), time, renders.hasSmokeOnSlopes());
+					}
+				}*/
+				if (renders.hasSmoke()) {
+					ArrayList<double[]> smokePosition = new ArrayList<>();
+					try {
+						if (renders.getModel().getClass().getDeclaredMethod("getSmokePosition") != null) {
+							Method theScaleMethod = renders.getModel().getClass().getDeclaredMethod("getSmokePosition");
+							ArrayList<double[]> thePos = (ArrayList<double[]>) theScaleMethod.invoke(renders.getModel().getClass().newInstance());
+							if (thePos != null) {
+								smokePosition = thePos;
+							}
+						}
+					} catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+						if (renders.getScale() != null) {
+							smokePosition = renders.getSmokeFX();
+						}
+
+					} catch (InstantiationException e) {
+						e.printStackTrace();
+					}
+
+					if (cart.bogieLoco != null) {// || cart.bogieUtility[0]!=null){
+						renderSmokeFX(cart, 90 + cart.rotationYawClientReal, (float) cart.anglePitchClient, renders.getSmokeType(), smokePosition, renders.getSmokeIterations(), time, renders.hasSmokeOnSlopes());
+					}
+					else {
+						renderSmokeFX(cart, (yaw), pitch, renders.getSmokeType(), smokePosition, renders.getSmokeIterations(), time, renders.hasSmokeOnSlopes());
 					}
 				}
 				if (renders.hasExplosion()) {

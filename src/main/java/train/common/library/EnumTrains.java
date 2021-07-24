@@ -330,7 +330,7 @@ public enum EnumTrains {
 	BapF7A("F7A", EntityLocoDieselBapF7A.class, ItemIDs.minecartF7A.item, "diesel", 1500, 133, 0, 15, 0, 180, 0.7, 0.79, 15000, TraincraftUtil.getBytesFromColors(new String[] {"Green", "LightGrey", "White", "Orange"}), 10, -2.5, "Pack: Bap"),
 	BapF7B("F7B", EntityLocoDieselBapF7B.class, ItemIDs.minecartF7B.item, "diesel", 1500, 133, 0, 15, 0, 180, 0.7, 0.79, 15000, TraincraftUtil.getBytesFromColors(new String[] {"Green", "LightGrey", "White", "Orange"}), 10, -2.4, "Pack: Bap"),
 	H1044("H1044", EntityLocoDieselBapH1044.class, ItemIDs.minecartH1044.item, "diesel", 1000, 97, 0, 25, 0, 175, 0.75, 0.85, 10000, TraincraftUtil.getBytesFromColors(new String[]{"Green", "Yellow", "Black", "Red", "Blue", "Grey", "LightBlue", "Orange", "White", "Lime", "LightGrey"}), 18, -2.2, "Pack: BAP"),
-	locoSteamStarClass("Loco Steam Star Class",EntityLocoSteamStarClass.class, ItemIDs.minecartStarClass.item,"steam",29,48,0,60,160,300,0.5,0.968,3000,null,15,-1.5, "Pack: WWCP"),
+	locoSteamStarClass("Loco Steam Star Class",EntityLocoSteamStarClass.class, ItemIDs.minecartStarClass.item,"steam",303,80,0,60,160,300,0.5,0.968,3000,null,15,-1.5, "Pack: WWCP"),
 	tenderStarClass("Tender Star Class",EntityTenderStarClass.class, ItemIDs.minecartStarClassTender.item,"tender",0,0,0.5,0,0,0,0,0,4000,null,18,0,"Water capacity: 4000mb"),
 	passengerStarCarFat("Passenger Star Fat", EntityPassengerStarCarFat.class, ItemIDs.minecartStarCarFat.item, "passenger", 0, 0, 0.5, 0, 0, 0, 0, 0, 0, null, 10, 0, "Pack: WWCP"),
 	passengerStarCarNotFat("Passenger Star Not Fat", EntityPassengerStarCarNotFat.class, ItemIDs.minecartStarCarNotFat.item, "passenger", 0, 0, 0.5, 0, 0, 0, 0, 0, 0, null, 10, 0, "Pack: WWCP"),
@@ -354,6 +354,10 @@ public enum EnumTrains {
 	GP9("GP9", EntityLocoDieselBapGP9.class, ItemIDs.minecartGP9.item, "diesel", 1750, 100, 0, 15, 0, 170, 0.81, 0.93, 18000, TraincraftUtil.getBytesFromColors(new String[] {"Grey", "Red", "Orange", "Magenta", "Yellow","Black","Brown","Blue","Green"}), 10, -3, "Pack: Bap"),
 	GP30("GP30", EntityLocoDieselBapGP30.class, ItemIDs.minecartGP30.item, "diesel", 2250, 114, 0, 25, 0, 180, 0.7, 0.91, 20000, TraincraftUtil.getBytesFromColors(new String[] {"LightGrey", "Black", "Yellow", "Blue", "Orange", "White", "Grey", "Red", "Purple"}), 10, -3.1, "Pack: Bap"),
 	GP38dash2("GP38dash2", EntityLocoDieselBapGP38dash2.class, ItemIDs.minecartGP38dash2.item, "diesel", 2000, 105, 0, 25, 0, 180, 0.75, 0.9, 20000, TraincraftUtil.getBytesFromColors(new  String[] {"Cyan", "Green", "LightGrey", "Red", "Blue", "Yellow", "Orange", "Grey", "Black", "Pink"}), 10, -3.1, "Pack: Bap"),
+	KOF_III("Kof III", EntityLocoDieselKof_III.class, ItemIDs.minecartKofIII.item, "diesel", 240,30,0,45,0,200,0.74,0.96,5000, TraincraftUtil.getBytesFromColors(new String[]{"Red", "LightBlue", "Blue", "Cyan"}), 10, -1.4, "Pack: WWCP"),
+	KOF_III_M("Kof III M", EntityLocoDieselKof_III_M.class, ItemIDs.minecartKofIIIM.item, "diesel", 240,45,0,45,0,200,0.74,0.96,5000, TraincraftUtil.getBytesFromColors(new String[]{"Red", "Yellow"}), 10, -1.4, "Pack: WWCP"),
+	U36C("U36C", EntityLocoDieselBapU36C.class, ItemIDs.minecartU36C.item, "diesel", 3600, 113, 0, 35, 0, 180, 0.75, 0.84, 21000, TraincraftUtil.getBytesFromColors(new String[] {"Grey", "Blue", "Red", "Yellow", "Orange"}), 10, -3.75, "Pack: Bap"),
+	GP49("GP49", EntityLocoDieselBapGP49.class, ItemIDs.minecartGP49.item, "diesel", 2800, 105, 0, 25, 0, 180, 0.75, 0.9, 20000, null, 10, -3.1, "Pack: Bap"),
 	;
 
 //String trainType,int MHP,int maxSpeed, double mass, int fuelConsumption, int waterConsumption, int heatingTime, double accelerationRate, double brakeRate, int tankCapacity, String[] colors,
