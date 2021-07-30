@@ -151,5 +151,6 @@
   "br155_chime": {"category": "master", "sounds": [{"name": "br155_chime", "stream":  true}]},
   "tram_bell": {"category": "master", "sounds": [{"name": "tram_bell", "stream":  true}]},
   "a4_whistle": {"category": "master", "sounds": [{"name": "a4_whistle", "stream":  true}]},
-  "gp40_2_horn": {"category": "master", "sounds": [{"name": "gp40_2_horn", "stream":  true}]}
+  "gp40_2_horn": {"category": "master", "sounds": [{"name": "gp40_2_horn", "stream":  true}]},
+  "skookum_whistle": {"category": "master", "sounds": [{"name": "skookum_whistle", "stream":  true}]}
 }

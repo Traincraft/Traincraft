@@ -855,7 +855,7 @@ public enum RenderEnum {
 	}, "", null, 0, false),
 	GP30( EntityLocoDieselBapGP30.class,  new ModelGP30(), "gp30_", true,new float[] {-1.5F, 0.155F, 0F},  new float[] { 0F, 180F, 180F }, null, "smoke", 4,  new ArrayList<double[]>() {
 		{
-			add(new double[]{1.9D, 1.4D, 0.0D});
+			//add(new double[]{1.9D, 1.4D, 0.0D});
 		}
 	}, "", null, 0, false),
 	GP38dash2( EntityLocoDieselBapGP38dash2.class,  new ModelGP38dash2(), "gp38dash2_", true,new float[] {-1.5F, 0.155F, 0F},  new float[] { 0F, 180F, 180F }, null, "smoke", 3,  new ArrayList<double[]>() {
@@ -883,6 +883,48 @@ public enum RenderEnum {
 	GP49( EntityLocoDieselBapGP49.class,  new ModelGP49(), "gp49_arr_2807", false,new float[] {-1.5F, 0.155F, 0F},  new float[] { 0F, 180F, 180F }, null, "smoke", 3,  new ArrayList<double[]>() {
 		{ }
 	}, "", null, 0, false),
+	GP15( EntityLocoDieselBapGP15.class,  new ModelBapGP15(), "gp15_bap_", true,new float[] {-1.3F, 0.155F, 0F},  new float[] { 0F, 180F, 180F }, null, "smoke", 5,  new ArrayList<double[]>() {
+		{ }
+	}, "", null, 0, false),
+	spookyGarrattFront(EntityLocoSteamGarrattFront.class, new ModelGarrattFront(), "GarrattTexture", false, new float[] {3.5F, 0.155F, 0.0F },/*position*/  new float[] { 0F, 180F, 180F }, new float[]{1f,1f,1f},/*scale*/ "largesmoke", 20, new ArrayList<double[]>() {
+		{
+			//add(new double[] { 4.65D, 1.7D, 0.0D });//smoke
+		}
+	}, "explode", new ArrayList<double[]>() {
+		{
+			//add(new double[] { 4.2D, -0.4D, 0.8D });//steam
+		}
+	}, 2, true),
+	spookyGarrattRear(EntityLocoSteamGarrattRear.class, new ModelGarrattBack(), "GarrattTexture", false, new float[] {3.25F, 0.155F, 0.0F },/*position*/  new float[] { 0F, 0F, 180F }, new float[]{1f,1f,1f},/*scale*/ "largesmoke", 20, new ArrayList<double[]>() {
+		{
+			//add(new double[] { 4.65D, 1.7D, 0.0D });//smoke
+		}
+	}, "explode", new ArrayList<double[]>() {
+		{
+			//add(new double[] { 4.2D, -0.4D, 0.8D });//steam
+		}
+	}, 2, true),
+	spookyGarrattMid(EntityLocoSteamGarrattMid.class, new ModelGarrattMid(), "GarrattTexture", false, new float[] {-2.25F, 0.155F, 0.0F },/*position*/  new float[] { 0F, 0F, 180F }, new float[]{1f,1f,1f},/*scale*/ "largesmoke", 20, new ArrayList<double[]>() {
+		{
+			//add(new double[] { 4.65D, 1.7D, 0.0D });//smoke
+		}
+	}, "explode", new ArrayList<double[]>() {
+		{
+			//add(new double[] { 4.2D, -0.4D, 0.8D });//steam
+		}
+	}, 2, true),
+	Skook(EntityLocoSteamSkook.class, new ModelSkookum(), "skookum", false, new float[] { -0.0F, -0.0F, -0.0F }, new float[] { 0F, 180F, 180F }, null, "largesmoke", 20, new ArrayList<double[]>() {
+		{
+			add(new double[] { 2.4D, 1.5D, -0.0D });
+		}
+	}, "explode", new ArrayList<double[]>() {
+		{
+			add(new double[] { 0.9D, -0.4D, 0.8D });
+			add(new double[] { 2.5D, -0.4D, 0.8D });
+			add(new double[] { -0.5D, 1.5D, 0.0D });
+		}
+	}, 2, true),
+	SkookTender(EntityTenderSkookTender.class, new ModelSkookumTender(), "skookumtender", false, new float[] {-0.00F, 0.0F, 0F},  new float[] { 0F, 0F, 180F }, null, "", 0, null, "", null, 0, false),
 	;
 
 	private Class<? extends AbstractTrains> entityClass;

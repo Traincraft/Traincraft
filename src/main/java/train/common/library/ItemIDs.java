@@ -339,6 +339,7 @@ public enum ItemIDs {
 	minecartKofIIIM("ItemRollingStock", "KofIII_Modernized_Icon", 3),
 	minecartU36C( "ItemRollingStock", "u36c", 15),
 	minecartGP49("ItemRollingStock", "gp49", 5),
+	minecartGP15("ItemRollingStock", "gp15", 11),
 
 	minecartClimaxNew("ItemRollingStock", "train_climax2", 5),
 	minecartVBShay2("ItemRollingStock", "vbshay2", 5),
@@ -349,6 +350,11 @@ public enum ItemIDs {
 	minecartOnionTender("ItemRollingStock", "OnionTender", 10),
 	minecartPELocomotive("ItemRollingStock", "PELocoIcon", 5),
 	minecartPETender("ItemRollingStock", "PETenderIcon", 3),
+	minecartGarrattFront("ItemRollingStock", "GarrattFrontIcon", 3),
+	minecartGarrattMid("ItemRollingStock", "GarrattMidIcon", 3),
+	minecartGarrattBack("ItemRollingStock", "GarrattRearIcon", 3),
+	minecartSkook("ItemRollingStock", "skookum", 14),
+	minecartSkookTender("ItemRollingStock", "skookum_tender", 4),
 
 	minecartLocoRenfe446Motor("ItemRollingStock", "446_motor_icon", 3),
 	minecartPassengerRenfe446Coach("ItemRollingStock", "446_middle_icon", 3),
