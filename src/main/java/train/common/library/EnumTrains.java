@@ -313,7 +313,7 @@ public enum EnumTrains {
 	BapMillGondola("52footMillGondola", EntityFreightBapMillGondola.class, ItemIDs.minecartMillGondola.item, "freight", 5, TraincraftUtil.getBytesFromColors(new String[] {"Red", "Black", "Orange", "Green"}), 30, 50, "Pack: BAP"),
 	BapMILW40boxcar("MILW40boxcar", EntityFreightBapMILW40boxcar.class, ItemIDs.minecartMILW40boxcar.item, "freight", 4, TraincraftUtil.getBytesFromColors(new String[] {"Red", "Brown", "Yellow", "Green", "Blue", "Purple", "Orange", "Lime"}), 0, 27, "Pack: BAP"),
 	Bap60centerbeam("60centerbeam",  EntityFreightBap60centerbeam.class, ItemIDs.minecart60centerbeam.item, "freight", 6, TraincraftUtil.getBytesFromColors(new String[] {"Black", "Yellow", "Green", "LightGrey"}), 0, 54, "Cargo: Woodthings. Pack: BAP"),
-	Bap66centerbeam("66centerbeam",  EntityFreightBap66centerbeam.class, ItemIDs.minecart66centerbeam.item, "freight", 6, TraincraftUtil.getBytesFromColors(new String[] {"Orange", "Cyan", "Green", "Lime", "LightBlue", "Pink"}), 0, 54, "Cargo: Woodthings. Pack: BAP"),
+	Bap66centerbeam("66centerbeam",  EntityFreightBap66centerbeam.class, ItemIDs.minecart66centerbeam.item, "freight", 6, TraincraftUtil.getBytesFromColors(new String[] {"Orange", "Cyan", "Green", "Lime", "LightBlue", "Pink", "Blue", "Yellow", "Red"}), 0, 54, "Cargo: Woodthings. Pack: BAP"),
 	Bap73centerbeam("73centerbeam",  EntityFreightBap73centerbeam.class, ItemIDs.minecart73centerbeam.item, "freight", 7, TraincraftUtil.getBytesFromColors(new String[] {"Pink", "Cyan", "Green", "Orange"}), 0, 54, "Cargo: Woodthings. Pack: BAP"),
 	BapPS140("PS140",  EntityFreightBapPS140.class, ItemIDs.minecartPS140.item, "freight", 4, TraincraftUtil.getBytesFromColors(new String[] {"Brown", "Red", "LightBlue", "Green", "Cyan"}), 0, 27, "Pack: BAP"),
 	BapPS150("PS150",  EntityFreightBapPS150.class, ItemIDs.minecartPS150.item, "freight", 5, TraincraftUtil.getBytesFromColors(new String[] {"White", "Lime", "Red"}), 0, 36, "Pack: BAP"),
@@ -364,6 +364,9 @@ public enum EnumTrains {
 	spookyGarrattMid("Garratt Mid", EntityLocoSteamGarrattMid.class,  ItemIDs.minecartGarrattMid.item, "steam", 1, 112, 0, 60, 200, 160, 0.65, 0.97, 10000, null, 7, -4.25, "Multi-Segment Locomotive. Creative Only."),//mid
 	Skook("Skookum", EntityLocoSteamSkook.class, ItemIDs.minecartSkook.item, "steam", 1000, 75, 0, 75, 75, 190, 0.8, 0.91, 2000, null, 10, -2.4, "Pack: Bap"),
 	SkookTender("Skookum Tender", EntityTenderSkookTender.class, ItemIDs.minecartSkookTender.item,"tender",0,0,2,0,0,0,0,0,15000,null,18,0,"Water capacity: 15000mb. Pack: Bap"),
+	EF1("EF1",EntityLocoElectricBapEF1.class, ItemIDs.minecartEF1.item, "electric", 1720, 64, 0, 55, 0, 150, 0.65, 0.75, 12500, TraincraftUtil.getBytesFromColors(new String[] {"Orange", "Yellow", "Red", "Green", "Black", "Grey"}), 10, -3.4375,"Pack: Bap"),
+	EF1B("EF1B",EntityLocoElectricBapEF1B.class, ItemIDs.minecartEF1B.item, "electric", 1720, 64, 0, 55, 0, 150, 0.65, 0.75, 12500, TraincraftUtil.getBytesFromColors(new String[] {"Orange", "Red", "Black", "Pink"}), 10, -2.3125,"Pack: Bap"),
+	EP1A("EP1A",EntityLocoElectricBapEP1A.class, ItemIDs.minecartEP1A.item, "electric", 2500, 120, 0, 55, 0, 150, 0.75, 0.85, 12500, TraincraftUtil.getBytesFromColors(new String[] {"Orange", "Red"}), 10, -3.4375, "Pack: Bap"),
 	;
 
 //String trainType,int MHP,int maxSpeed, double mass, int fuelConsumption, int waterConsumption, int heatingTime, double accelerationRate, double brakeRate, int tankCapacity, String[] colors,

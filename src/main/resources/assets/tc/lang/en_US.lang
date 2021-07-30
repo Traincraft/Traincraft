@@ -455,6 +455,9 @@ item.tc:minecartGarrattMid.name=Garratt Middle Segment (Creative Only)
 item.tc:minecartGarrattBack.name=Garratt Rear Segment (Creative Only)
 item.tc:minecartSkook.name=Deep River Logging No. 7 Skookum
 item.tc:minecartSkookTender.name=Skookum's Tender
+item.tc:minecartEF1.name=GE-MILW EF-1
+item.tc:minecartEF1B.name=GE-MILW EF-1B
+item.tc:minecartEP1A.name=GE-MILW EP-1A
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -831,6 +834,9 @@ entity.tc.GP49.name=EMD GP49
 entity.tc.GP15.name=EMD GP15-1
 entity.tc.Skookum.name=Deep River Logging No. 7 Skookum
 entity.tc.Skookum Tender.name=Skookum's Tender
+entity.tc.EF1.name=GE MILW EF-1
+entity.tc.EF1B.name=GE MILW EF-1B
+entity.tc.EP1A.name=GE MILW EP-1A
 
 description.villager.profession.tc.station_chief=Station Chief
 

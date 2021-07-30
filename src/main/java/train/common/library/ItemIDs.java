@@ -391,6 +391,9 @@ public enum ItemIDs {
 
 	minecartBR155("ItemRollingStock", "Db_155_icon", 4),
 	minecartDB143("ItemRollingStock", "143_icon", 4),
+	minecartEF1("ItemRollingStock", "ef1", 6),
+	minecartEF1B("ItemRollingStock", "ef1b", 5),
+	minecartEP1A("ItemRollingStock", "ep1a", 6),
 
 	minecartRoundHopper("ItemRollingStock", "train_RoundHopper", 2),
 	minecartRibbedHopper("ItemRollingStock", "train_ribbed_hopper", 2),
