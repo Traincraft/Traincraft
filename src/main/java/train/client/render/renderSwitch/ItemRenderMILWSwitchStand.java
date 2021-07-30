@@ -52,7 +52,6 @@ public class ItemRenderMILWSwitchStand implements IItemRenderer {
 
 	private void renderSwitch(float x, float y, float z, float scale) {
 		GL11.glPushMatrix();
-		GL11.glDisable(GL11.GL_LIGHTING);
 
 		GL11.glTranslatef(x, y, z);
 		GL11.glScalef(scale, scale, scale);
@@ -63,7 +62,6 @@ public class ItemRenderMILWSwitchStand implements IItemRenderer {
 
 		modeSwitch.render(null,0,0,0,0,0,0.0625f);
 
-		GL11.glEnable(GL11.GL_LIGHTING);
 		GL11.glPopMatrix();
 	}
 }
