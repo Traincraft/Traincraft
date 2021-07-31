@@ -458,6 +458,8 @@ item.tc:minecartSkookTender.name=Skookum's Tender
 item.tc:minecartEF1.name=GE-MILW EF-1
 item.tc:minecartEF1B.name=GE-MILW EF-1B
 item.tc:minecartEP1A.name=GE-MILW EP-1A
+item.tc:minecartSD40dash2.name=EMD SD40-2
+item.tc:minecartSD9.name=EMD SD9
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -837,6 +839,8 @@ entity.tc.Skookum Tender.name=Skookum's Tender
 entity.tc.EF1.name=GE MILW EF-1
 entity.tc.EF1B.name=GE MILW EF-1B
 entity.tc.EP1A.name=GE MILW EP-1A
+entity.tc.SD9.name=EMD SD9
+entity.tc.SD40-2.name=EMD SD40-2
 
 description.villager.profession.tc.station_chief=Station Chief
 

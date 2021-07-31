@@ -928,6 +928,17 @@ public enum RenderEnum {
 	EF1(EntityLocoElectricBapEF1.class,  new ModelEF1(), "ef1_", true,new float[] {-1.60F, 0.1875F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	EF1B(EntityLocoElectricBapEF1B.class,  new ModelEF1B(), "ef1b_", true,new float[] {-1.15635F, 0.1875F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	EP1A(EntityLocoElectricBapEP1A.class,  new ModelEP1A(), "ep1a_", true,new float[] {-1.60F, 0.1875F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	SD9(EntityLocoDieselBapSD9.class,  new ModelSD9(), "SD9_", true,new float[] {-1.6F,0.155F, 0F},  new float[] { 0F, 180F, 180F }, null, "smoke", 3,  new ArrayList<double[]>() {
+		{
+			//add(new double[]{0.8D, 1.4D, 0.0D});
+			//add(new double[]{1.6D, 1.4D, 0.0D});
+		}
+	}, "", null, 0, false),
+	SD40dash2(EntityLocoDieselBapSD40dash2.class,  new ModelSD40dash2(), "sd40_", true,new float[] {-1.9F, 0.155F, 0F},  new float[] { 0F, 180F, 180F }, null, "smoke", 6,  new ArrayList<double[]>() {
+		{
+			//add(new double[]{2.3D, 1.5D, 0.0D});
+		}
+	}, "", null, 0, false),
 	;
 
 	private Class<? extends AbstractTrains> entityClass;
