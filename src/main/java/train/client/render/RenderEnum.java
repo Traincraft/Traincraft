@@ -939,6 +939,8 @@ public enum RenderEnum {
 			//add(new double[]{2.3D, 1.5D, 0.0D});
 		}
 	}, "", null, 0, false),
+	WWCP40FootBox(EntityFreightWWCP40FootBox.class, new ModelWWCP40FootBox(),"40ft_Boxcar_", true, new float[]{0F, 0.1875F, 0F}, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	HuskyStackWellcar(EntityFreightBapHuskyStack.class, new ModelHuskyStack(), "huskystack_", true, new float[]{0F, 0.15F, 0F}, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	;
 
 	private Class<? extends AbstractTrains> entityClass;

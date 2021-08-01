@@ -63,7 +63,7 @@ public enum EnumTrains {
 	workCart("Work Cart Yellow", EntityWorkCart.class, ItemIDs.minecartWork.item, "work", 0, 0, 0.7, 0, 0, 0, 0, 0, 0, null, 18, 0),
 	flatCart("Flat Cart", EntityFlatCart.class, ItemIDs.minecartFlatCart.item, "flat", 0, 0, 0.2, 0, 0, 0, 0, 0, 0, null, 18, 0),
 	workCaboose("Work Caboose", EntityCabooseWorkCart.class, ItemIDs.minecartCabooseWork.item, "work", 0, 0, 0.6, 0, 0, 0, 0, 0, 0, null, 18, 0),
-	cabooseLogging("Caboose Logging", EntityCabooseLogging.class, ItemIDs.minecartCabooseLogging.item, "work", 0, 0, 0.2, 0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[]{"Red", "Cyan"}), 18, 0),
+	cabooseLogging("Caboose Logging", EntityCabooseLogging.class, ItemIDs.minecartCabooseLogging.item, "work", 0, 0, 0.2, 0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[]{"Red", "Cyan", "Grey"}), 18, 0),
 	cabooseLoggingPRR("PRR Caboose Logging", EntityCabooseLoggingPRR.class, ItemIDs.minecartCabooseLoggingPRR.item, "work", 0, 0, 0.2, 0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[]{"Red", "Blue", "Green"}), 18, 0),
 	mailWagen_DB("Mail Wagon DB", EntityMailWagen_DB.class, ItemIDs.minecartMailWagon_DB.item, "work", 0, 0, 1, 0, 0, 0, 0, 0, 0, null, 18, 0),
 	jukeBoxCart("JukeBox Cart", EntityJukeBoxCart.class, ItemIDs.minecartJukeBoxCart.item, "special", 0, 0, 0.2, 0, 0, 0, 0, 0, 0, null, 18, 0, "Supports MP3/OGG format M3U/PLS links, like Shoutcast"),
@@ -369,6 +369,8 @@ public enum EnumTrains {
 	EP1A("EP1A",EntityLocoElectricBapEP1A.class, ItemIDs.minecartEP1A.item, "electric", 2500, 120, 0, 55, 0, 150, 0.75, 0.85, 12500, TraincraftUtil.getBytesFromColors(new String[] {"Orange", "Red"}), 10, -3.4375, "Pack: Bap"),
 	SD9("SD9", EntityLocoDieselBapSD9.class, ItemIDs.minecartSD9.item, "diesel", 1750, 104, 0, 5, 0, 190, 0.75, 0.89, 15000, TraincraftUtil.getBytesFromColors(new String[] {"Black", "Green", "Lime", "Orange", "White", "Cyan", "Grey"}), 10, -3.1, "Pack: Bap"),
 	SD40dash2("SD40-2", EntityLocoDieselBapSD40dash2.class, ItemIDs.minecartSD40dash2.item, "diesel", 3000, 105, 0, 5, 0, 190, 0.75, 0.89, 20000, TraincraftUtil.getBytesFromColors(new String[] {"LightGrey", "Orange", "Cyan", "Grey"}), 10, -3.8, "Pack: Bap"),
+	WWCP40FootBox("WWCP 40 Foot Boxcar", EntityFreightWWCP40FootBox.class, ItemIDs.minecartWWCP40FootBox.item, "freight", 6, TraincraftUtil.getBytesFromColors(new String[] {"Brown","Blue","Black","Yellow", "Magenta", "Cyan", "Pink", "LightGrey", "Green", "White", "LightBlue", "Lime", "Red", "Purple", "Orange", "Grey", "Skin16", "Skin17", "Skin18", "Skin19", "Skin20"}), 0, 27, "Pack: WWCP"),
+	HuskyStackWellcar("53' HuskyStack Wellcar", EntityFreightBapHuskyStack.class, ItemIDs.minecartHuskyStackWellcar.item, "freight", 4, TraincraftUtil.getBytesFromColors(new String[] {"Yellow", "Pink"}), 0,0, "Pack: Bap. Load Containers into it by RClicking!"),
 	;
 
 //String trainType,int MHP,int maxSpeed, double mass, int fuelConsumption, int waterConsumption, int heatingTime, double accelerationRate, double brakeRate, int tankCapacity, String[] colors,
