@@ -112,6 +112,8 @@ public class CommonProxy implements IGuiHandler {
 			GameRegistry.registerTileEntity(TileATOTransmitterStopPoint.class, "tileATOTransmitterStopPoint");
 			GameRegistry.registerTileEntity(TilePDMInstructionRadio.class, "tilePDMInstructionRadio");
 		}
+
+		GameRegistry.registerTileEntity(TileFortyFootContainer.class, "tileFortyFootContainer");
 	}
 
 	public void registerComputerCraftPeripherals() throws ClassNotFoundException {

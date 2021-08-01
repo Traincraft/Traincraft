@@ -6,7 +6,7 @@ import org.lwjgl.opengl.GL11;
 import tmt.ModelBase;
 import tmt.ModelRendererTurbo;
 import tmt.Tessellator;
-import train.client.render.models.containers.ModelA40AFootContainer;
+import train.client.render.models.containers.Modelcontainer40;
 import train.common.entity.rollingStock.HuskyStackWellcar;
 import train.common.library.Info;
 
@@ -227,7 +227,7 @@ public class ModelHuskyStackWellcar extends ModelBase
         if (entity instanceof HuskyStackWellcar) {
             HuskyStackWellcar wellcar = (HuskyStackWellcar)entity;
             if (wellcar.container1 != null && wellcar.container1.theType.equals("FortyFootContainer")) {
-                ModelA40AFootContainer theContainer = new ModelA40AFootContainer();
+                Modelcontainer40 theContainer = new Modelcontainer40();
                 Tessellator.bindTexture(new ResourceLocation("tc:textures/trains/container40_" + wellcar.container1.color + ".png"));
 
                 GL11.glPushMatrix();
@@ -237,7 +237,7 @@ public class ModelHuskyStackWellcar extends ModelBase
                 GL11.glPopMatrix();
             }
             if (wellcar.container2 != null && wellcar.container2.theType.equals("FortyFootContainer")) {
-                ModelA40AFootContainer theContainer = new ModelA40AFootContainer();
+                Modelcontainer40 theContainer = new Modelcontainer40();
                 Tessellator.bindTexture(new ResourceLocation("tc:textures/trains/container40_" + wellcar.container2.color + ".png"));
 
                 GL11.glPushMatrix();

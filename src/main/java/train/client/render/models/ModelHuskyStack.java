@@ -15,6 +15,9 @@ import org.lwjgl.opengl.GL11;
 import tmt.ModelConverter;
 import tmt.ModelRendererTurbo;
 import tmt.Tessellator;
+import train.client.render.models.containers.Modelcontainer40;
+import train.common.entity.rollingStock.EntityFreightBapHuskyStack;
+import train.common.entity.rollingStock.HuskyStackWellcar;
 import train.common.library.Info;
 
 public class ModelHuskyStack extends ModelConverter //Same as Filename
@@ -245,5 +248,29 @@ public class ModelHuskyStack extends ModelConverter //Same as Filename
 		GL11.glTranslated(5.15, 0, 0.03);
 		bogie.render(entity, f, f1, f2, f3, f4, f5);
 		GL11.glPopMatrix();
+
+		if (entity instanceof EntityFreightBapHuskyStack) {
+			EntityFreightBapHuskyStack wellcar = (EntityFreightBapHuskyStack)entity;
+			if (wellcar.container1 != null && wellcar.container1.theType.equals("FortyFootContainer")) {
+				Modelcontainer40 theContainer = new Modelcontainer40();
+				Tessellator.bindTexture(new ResourceLocation("tc:textures/trains/container40_" + wellcar.container1.color + ".png"));
+
+				GL11.glPushMatrix();
+				GL11.glScalef(1,1,0.9f);
+				GL11.glTranslated(0,-0.2,0);
+				theContainer.render(entity, f, f1, f2, f3, f4, f5);
+				GL11.glPopMatrix();
+			}
+			if (wellcar.container2 != null && wellcar.container2.theType.equals("FortyFootContainer")) {
+				Modelcontainer40 theContainer = new Modelcontainer40();
+				Tessellator.bindTexture(new ResourceLocation("tc:textures/trains/container40_" + wellcar.container2.color + ".png"));
+
+				GL11.glPushMatrix();
+				GL11.glScalef(1,1,0.9f);
+				GL11.glTranslated(0,-1.5,0);
+				theContainer.render(entity, f, f1, f2, f3, f4, f5);
+				GL11.glPopMatrix();
+			}
+		}
 	}
 }

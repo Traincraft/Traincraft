@@ -5,7 +5,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
-import train.client.render.models.containers.ModelA40AFootContainer;
+import train.client.render.models.containers.Modelcontainer40;
 
 public class ItemRenderFortyFootContainer implements IItemRenderer {
     @Override
@@ -43,17 +43,17 @@ public class ItemRenderFortyFootContainer implements IItemRenderer {
 
     }
     private void renderContainer(float f, float g, float h, ItemStack theItem) {
-        ModelA40AFootContainer theContainer = new ModelA40AFootContainer();
+        Modelcontainer40 theContainer = new Modelcontainer40();
         if (theItem.getTagCompound() != null) {
             if (theItem.getTagCompound().getString("currentColorString").equals("")) {
-                tmt.Tessellator.bindTexture(new ResourceLocation("tc:textures/trains/container40_Grey.png"));
+                tmt.Tessellator.bindTexture(new ResourceLocation("tc:textures/trains/container40_generic.png"));
             } else {
                 tmt.Tessellator.bindTexture(new ResourceLocation("tc:textures/trains/container40_" + theItem.getTagCompound().getString("currentColorString") + ".png"));
             }
 
 
         } else {
-            tmt.Tessellator.bindTexture(new ResourceLocation("tc:textures/trains/container40_Grey.png"));
+            tmt.Tessellator.bindTexture(new ResourceLocation("tc:textures/trains/container40_generic.png"));
         }
 
         GL11.glPushMatrix();
