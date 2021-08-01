@@ -10,6 +10,7 @@ package train.common.library;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import train.common.items.*;
+import train.common.wellcar.ItemFortyFootContainer;
 
 public enum BlockIDs {
 
@@ -62,7 +63,7 @@ public enum BlockIDs {
 	signalSpanish(false,null),//ItemsignalSpanish.class
 	trackConcrete(false,null),
 	kSignal(false,null),
-	;
+	FortyFootContainer(true, ItemFortyFootContainer.class),;
 
 
 	public Block block;
