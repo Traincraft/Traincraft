@@ -76,7 +76,7 @@ public class EntityFreightWWCP40FootBox extends Freight implements IInventory {
 
     @Override
     public String getInventoryName() {
-        return "40' Boxcar";
+        return "Early 40' Boxcar";
     }
 
     @Override

@@ -10,16 +10,16 @@ import net.minecraftforge.common.util.Constants;
 
 import java.util.ArrayList;
 
-public class TileFortyFootContainer extends TileEntity implements IInventory {
+public class TileFiftyThreeFootContainer extends TileEntity implements IInventory {
     public ItemStack[] inventory;
     public int directionPlaced;
     public int currentColor = 0;
 
-    public TileFortyFootContainer() {
+    public TileFiftyThreeFootContainer() {
         this.inventory = new ItemStack[this.getSizeInventory()];
     }
 
-    public TileFortyFootContainer(int pl) {
+    public TileFiftyThreeFootContainer(int pl) {
         this.inventory = new ItemStack[this.getSizeInventory()];
         this.directionPlaced = pl;
     }
@@ -28,7 +28,7 @@ public class TileFortyFootContainer extends TileEntity implements IInventory {
 
     @Override
     public int getSizeInventory() {
-        return 36;
+        return 45;
     }
 
     @Override
@@ -92,7 +92,7 @@ public class TileFortyFootContainer extends TileEntity implements IInventory {
 
     @Override
     public String getInventoryName() {
-        return "40 Foot Container";
+        return "53 Foot Container";
     }
 
     @Override
@@ -165,15 +165,18 @@ public class TileFortyFootContainer extends TileEntity implements IInventory {
 
     public ArrayList<String> getAvailableColors() {
         ArrayList<String> leColors = new ArrayList<String>();
-        leColors.add("flag");
         leColors.add("generic");
-        leColors.add("Honex");
+        leColors.add("PS");
+        leColors.add("cosco");
+        leColors.add("BN1");
+        leColors.add("BN2");
+        leColors.add("mannco");
         return leColors;
     }
 
     public void goToNextColor() {
         if (getAvailableColors().size() > 0) {
-            if (currentColor > getAvailableColors().size() -2) {
+            if (currentColor > getAvailableColors().size() -5) {
                 currentColor = 0;
             } else {
                 currentColor++;

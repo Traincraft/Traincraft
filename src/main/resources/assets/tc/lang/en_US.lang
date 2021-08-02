@@ -460,7 +460,7 @@ item.tc:minecartEF1B.name=GE-MILW EF-1B
 item.tc:minecartEP1A.name=GE-MILW EP-1A
 item.tc:minecartSD40dash2.name=EMD SD40-2
 item.tc:minecartSD9.name=EMD SD9
-item.tc:minecartWWCP40FootBox.name=Early 40' Boxcar
+item.tc:minecartWWCP40FootBox.name=WWCP 40' Boxcar
 item.tc:minecartHuskyStackWellcar.name=53' HuskyStack Wellcar
 
 <!-- ## Achievements ## -->
@@ -843,7 +843,7 @@ entity.tc.EF1B.name=GE MILW EF-1B
 entity.tc.EP1A.name=GE MILW EP-1A
 entity.tc.SD9.name=EMD SD9
 entity.tc.SD40-2.name=EMD SD40-2
-entity.tc.WWCP 40 Foot Boxcar.name=Early 40' Boxcar
+entity.tc.WWCP 40 Foot Boxcar.name=WWCP 40' Boxcar
 entity.tc.HuskyStackWellcar.name=53' HuskyStack Wellcar
 
 description.villager.profession.tc.station_chief=Station Chief

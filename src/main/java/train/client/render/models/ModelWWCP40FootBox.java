@@ -716,7 +716,7 @@ public class ModelWWCP40FootBox extends ModelConverter //Same as Filename
 			bodyModel[i].render(f5);
 		}
 
-		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/test.png"));
+		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/70ton_truck_black.png"));
 
 		GL11.glPushMatrix();
 		GL11.glScalef(1,1,0.9f);
