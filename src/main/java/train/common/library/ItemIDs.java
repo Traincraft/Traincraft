@@ -342,6 +342,8 @@ public enum ItemIDs {
 	minecartGP15("ItemRollingStock", "gp15", 4),
 	minecartSD9("ItemRollingStock", "sd9", 4),
 	minecartSD40dash2("ItemRollingStock", "sd40dash2", 6),
+	minecartU23B("ItemRollingStock", "u23b", 4),
+	minecartU18B("ItemRollingStock", "U18B", 3),
 
 	minecartClimaxNew("ItemRollingStock", "train_climax2", 5),
 	minecartVBShay2("ItemRollingStock", "vbshay2", 5),
@@ -419,6 +421,8 @@ public enum ItemIDs {
 	minecartLightCrane("ItemRollingStock", "LightCrane_Icon", 3),
 	minecartWWCP40FootBox("ItemRollingStock", "40fticon", 3),
 	minecartHuskyStackWellcar("ItemRollingStock", "huskystack", 5),
+	minecarthicube60foot("ItemRollingStock", "hicube60", 5),
+	minecartBNSFGon("ItemRollingStock", "BNSFGondola", 3),
 
 	minecartWVcaboose("ItemRollingStock", "wvcaboose",6),
 

@@ -461,7 +461,12 @@ item.tc:minecartEP1A.name=GE-MILW EP-1A
 item.tc:minecartSD40dash2.name=EMD SD40-2
 item.tc:minecartSD9.name=EMD SD9
 item.tc:minecartWWCP40FootBox.name=WWCP 40' Boxcar
-item.tc:minecartHuskyStackWellcar.name=53' HuskyStack Wellcar
+item.tc:minecartHuskyStackWellcar.name=53' Husky-Stack Wellcar
+item.tc:minecartU23B.name=GE U23B
+item.tc:minecartU18B.name=GE U18B
+item.tc:minecarthicube60foot.name=Gunderson 60' Hi-Cube Double Door Boxcar
+item.tc:minecartBNSFGon.name=BNSF Mill Gondola
+
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -844,7 +849,12 @@ entity.tc.EP1A.name=GE MILW EP-1A
 entity.tc.SD9.name=EMD SD9
 entity.tc.SD40-2.name=EMD SD40-2
 entity.tc.WWCP 40 Foot Boxcar.name=WWCP 40' Boxcar
-entity.tc.HuskyStackWellcar.name=53' HuskyStack Wellcar
+entity.tc.HuskyStackWellcar.name=53' Husky-Stack Wellcar
+entity.tc.U23B.name=GE U23B
+entity.tc.U18B.name=GE U18B
+entity.tc.60 Foot Hi-Cube Boxcar.name=Gunderson 60' Hi-Cube Double Door Boxcar
+entity.tc.Freight BNSF Gondola.name=BNSF Mill Gondola
+
 
 description.villager.profession.tc.station_chief=Station Chief
 
