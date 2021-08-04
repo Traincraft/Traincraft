@@ -465,11 +465,11 @@ public enum RenderEnum {
 	}, 2, false),
 	locoSteamForney(EntityLocoSteamForneyRed.class, new ModelLocoForney(), "locoForney_", true, new float[] { -1.3F, -0.44F, 0.0F }, new float[] { 0F, 90F, 0F }, null, "largesmoke", 3, new ArrayList<double[]>() {
 		{
-			add(new double[] { 1.4D, 1.9D, 0.0D });
+			add(new double[] { 2.2D, 1.9D, 0.0D });
 		}
 	}, "explode", new ArrayList<double[]>() {
 		{
-			add(new double[] { 1.4D, -0.2D, 0.8D });
+			add(new double[] { 2.2D, -0.2D, 0.8D });
 		}
 	}, 2, true),
 	locoSteamMogul(EntityLocoSteamMogulBlue.class, new ModelLocoMogul(), "locoMogul_", true, new float[] { -0.6F, -0.44F, 0.0F }, new float[] { 0F, 90F, 0F }, null, "largesmoke", 3, new ArrayList<double[]>() {
@@ -947,6 +947,8 @@ public enum RenderEnum {
 		{ }}, "", null, 0, false),
 	hicube60foot(EntityFreightBaphicube60foot.class, new Modelhicube60foot(),"hicube60_", true, new float[]{0F, 0.155F, 0F}, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	freightBNSFGon(EntityFreightBNSFGon.class, new ModelBNSFGon(), "BNSFMillGon_", true, new float[] { 0.0F, 0.0F, 0.0F }, null, null, "", 0, null, "", null, 0, false),
+	locoILMA(EntityLocoElectricILMA.class, new ModelILMA(), "ILMA", false, new float[] { 0.0F, 0.15F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	locoILMB(EntityLocoElectricILMB.class, new ModelILMB(), "ILMB", false, new float[] { 0.0F, 0.15F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	;
 
 	private Class<? extends AbstractTrains> entityClass;
