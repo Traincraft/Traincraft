@@ -1659,9 +1659,7 @@ public class ModelU23B extends ModelConverter //Same as Filename
 			}
 		};
 	}
-	public float[] getTrans() {
-		return new float[]{-1.7F, 0.155F, 0F};
-	}
+	public float[] getTrans() { return new float[]{-1.7F, 0.155F, 0F}; }
 
 	public float[] getRotate() {
 		return new float[] { 0F, 180F, 180F };

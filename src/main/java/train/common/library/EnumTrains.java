@@ -377,6 +377,8 @@ public enum EnumTrains {
 	freightBNSFGon("Freight BNSF Gondola", EntityFreightBNSFGon.class, ItemIDs.minecartBNSFGon.item, "freight", 5, TraincraftUtil.getBytesFromColors(new String[] {"Black","Grey"}), 18, 45, "Cargo: Blocks, Vanilla Items. Pack: TCM"),
 	locoElectricILMA("Loco Electric ILMA",EntityLocoElectricILMA.class, ItemIDs.minecartILMA.item,"electric",400,40,0,15,0,400,0.9,0.946,0,null,18,-1, "Pack ?"),
 	locoElectricILMB("Loco Electric ILMB",EntityLocoElectricILMB.class, ItemIDs.minecartILMB.item,"electric",500,40,0,15,0,400,0.9,0.946,0,null,18,-1, "Pack ?"),
+	feve3300front("Feve3300Front", EntityLocoElectricFeve3300.class, ItemIDs.minecart3300Front.item, "electric", 897, 80, 0, 35, 0,230, 1.4, 0.98, 0, TraincraftUtil.getBytesFromColors(new String[]{"Red", "Yellow", "Purple", "Blue"}), 10,  -3.4, "Pack: Spanish Pack"),
+	feve3300rear("Feve3300Rear", EntityPassengerFeve3300.class, ItemIDs.minecart3300Rear.item, "passenger", 0, 0, 2, 0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[]{"Red", "Yellow", "Purple", "Blue"}), 10, 0, "Pack: Spanish Pack"),
 	;
 
 //String trainType,int MHP,int maxSpeed, double mass, int fuelConsumption, int waterConsumption, int heatingTime, double accelerationRate, double brakeRate, int tankCapacity, String[] colors,

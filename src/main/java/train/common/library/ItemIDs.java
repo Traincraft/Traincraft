@@ -392,6 +392,8 @@ public enum ItemIDs {
 	minecart440RFront("ItemRollingStock", "440R_end_icon", 3),
 	minecart440RMid("ItemRollingStock", "440R_middle_icon", 3),
 	minecart440RRear("ItemRollingStock", "440R_tail_icon", 3),
+	minecart3300Front("ItemRollingStock", "3300_engine_icon", 3),
+	minecart3300Rear("ItemRollingStock", "3300_tail_icon", 3),
 
 	minecartBR155("ItemRollingStock", "Db_155_icon", 4),
 	minecartDB143("ItemRollingStock", "143_icon", 4),

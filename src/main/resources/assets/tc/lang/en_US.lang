@@ -468,6 +468,8 @@ item.tc:minecarthicube60foot.name=Gunderson 60' Hi-Cube Double Door Boxcar
 item.tc:minecartBNSFGon.name=BNSF Mill Gondola
 item.tc:minecartILMA.name=I.L.M.A
 item.tc:minecartILMB.name=I.L.M.B
+item.tc:minecart3300Front.name=Feve 3300 Engine
+item.tc:minecart3300Rear.name=Feve 3300 Tail
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -857,6 +859,8 @@ entity.tc.60 Foot Hi-Cube Boxcar.name=Gunderson 60' Hi-Cube Double Door Boxcar
 entity.tc.Freight BNSF Gondola.name=BNSF Mill Gondola
 entity.tc.Loco Electric ILMA.name=I.L.M.A
 entity.tc.Loco Electric ILMB.name=I.L.M.B
+entity.tc.Feve3300Front.name=Feve 3300 Engine
+entity.tc.Feve3300Rear.name=Feve 3300 Tail
 
 description.villager.profession.tc.station_chief=Station Chief
 
