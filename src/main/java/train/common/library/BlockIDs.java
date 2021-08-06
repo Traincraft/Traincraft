@@ -10,6 +10,7 @@ package train.common.library;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import train.common.items.*;
+import train.common.wellcar.ItemFortyFootContainer;
 
 public enum BlockIDs {
 
@@ -32,6 +33,7 @@ public enum BlockIDs {
 	oreTC(true, ItemBlockOreTC.class),
 	lantern(false, null),
 	switchStand(false, null),
+	MFPBWigWag(false, null),
 	waterWheel(true, ItemBlockGeneratorWaterWheel.class),
 	windMill(true, ItemBlockGeneratorWindMill.class),
 	generatorDiesel(true, ItemBlockGeneratorDiesel.class),
@@ -51,19 +53,17 @@ public enum BlockIDs {
 
 	MILWSwitchStand(false, null),
 	autoSwtichStand(false, null),
-	owoSwitchStand(false,null),
+	owoSwitchStand(true,ItemBlockOWOSwitchStand.class),
 	circleSwitchStand(false,null),
-	owoYardSwitchStand(false,null),
+	owoYardSwitchStand(true,ItemBlockOWOYardSwitch.class),
 	overheadWire(false,null),
 	overheadWireDouble(false,null),
 	poweredGravel(false,null),
 	snowGravel(false,null),
-	signalSpanish(true,ItemsignalSpanish.class),
-	gp7Small(false,null),
-	harieshHead(false,null),
+	signalSpanish(false,null),//ItemsignalSpanish.class
 	trackConcrete(false,null),
 	kSignal(false,null),
-	;
+	FortyFootContainer(true, ItemFortyFootContainer.class),;
 
 
 	public Block block;

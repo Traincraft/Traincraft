@@ -12,6 +12,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import org.lwjgl.util.vector.Matrix2f;
+import org.lwjgl.util.vector.Vector2f;
 import train.common.library.BlockIDs;
 import train.common.library.ItemIDs;
 import train.common.tile.TileTCRail;
@@ -59,9 +61,9 @@ public class ItemTCRail extends ItemPart {
 		VERY_LARGE_SLOPE_WOOD("VERY_LARGE_SLOPE_WOOD", "SLOPE", ItemIDs.tcRailVeryLargeSlopeWood, "1x18"),
 		VERY_LARGE_SLOPE_GRAVEL("VERY_LARGE_SLOPE_GRAVEL", "SLOPE", ItemIDs.tcRailVeryLargeSlopeGravel, "1x18"),
 		VERY_LARGE_SLOPE_BALLAST("VERY_LARGE_SLOPE_BALLAST", "SLOPE", ItemIDs.tcRailVeryLargeSlopeBallast, "1x18"),
-		LARGE_SLOPE_SNOW_GRAVEL("LARGE_SLOP_SNOW_GRAVEL","SLOPE", ItemIDs.tcRailLargeSlopeSnowTrack,"1x12"),
-		VERY_LARGE_SLOPE_SNOW_GRAVEL("VERY_LARGE_SLOW_SNOW_GRAVE", "SLOPE", ItemIDs.tcRailVeryLargeSlopeSnow, "1x18"),
-		SLOPE_SNOW_GRAVEL("SLOPE_SNOW_GRAVEL", "SLOPE", ItemIDs.tcRailSlopeSnowTrack, "1x6"),
+		SLOPE_SNOW_GRAVEL("SLOPE_SNOW_GRAVEL", "SLOPE", ItemIDs.tcRailSlopeSnowGravel, "1x6"),
+		LARGE_SLOPE_SNOW_GRAVEL("LARGE_SLOPE_SNOW_GRAVEL", "SLOPE", ItemIDs.tcRailLargeSlopeSnowGravel, "1x12"),
+		VERY_LARGE_SLOPE_SNOW_GRAVEL("VERY_LARGE_SLOPE_SNOW_GRAVEL", "SLOPE", ItemIDs.tcRailVeryLargeSlopeSnowGravel, "1x18"),
 		;
 		private String label;
 		private String type;
@@ -269,7 +271,7 @@ public class ItemTCRail extends ItemPart {
 		if(shouldDrop)tcRail.idDrop = ItemIDs.tcRailSmallStraight.item;
 	}
 
-	private String getTrackOrientation(int l, float yaw) {
+	public String getTrackOrientation(int l, float yaw) {
 		if (l == 2 && yaw >= -180 && yaw <= -135) {
 			return "right";
 		}
@@ -297,13 +299,123 @@ public class ItemTCRail extends ItemPart {
 		return "";
 	}
 
+
+	public static Vector2f getDirectionVector(int facing)
+	{
+		Matrix2f nrot90 = new Matrix2f();
+		nrot90.m00 = +0; nrot90.m01 = +1;
+		nrot90.m10 = -1; nrot90.m11 = +0;
+
+		Vector2f vec = new Vector2f();
+		vec.x = 0; vec.y = 1;
+
+		for ( int i = 0; i < facing; i++ )
+		{
+			Vector2f nvec = new Vector2f();
+			nvec.x = vec.x * nrot90.m00 + vec.y * nrot90.m10;
+			nvec.y = vec.x * nrot90.m01 + vec.y * nrot90.m11;
+			vec = nvec;
+		}
+
+		return vec;
+	}
+
+	private int[][] getUsedSpaceFromType( TrackTypes type )
+	{
+		if ( type == TrackTypes.SMALL_STRAIGHT
+				|| type == TrackTypes.SMALL_ROAD_CROSSING
+				|| type == TrackTypes.SMALL_ROAD_CROSSING_1
+				|| type == TrackTypes.SMALL_ROAD_CROSSING_2 )
+			return new int[][]{ {0,0} };
+		else if ( type == TrackTypes.MEDIUM_STRAIGHT )
+			return new int[][]{ {0,0}, {1,0}, {2,0} };
+		else if ( type == TrackTypes.LONG_STRAIGHT
+				|| type == TrackTypes.SLOPE_BALLAST
+				|| type == TrackTypes.SLOPE_GRAVEL
+				|| type == TrackTypes.SLOPE_WOOD
+				|| type == TrackTypes.SLOPE_SNOW_GRAVEL )
+			return new int[][]{ {0,0}, {1,0}, {2,0}, {3,0}, {4,0}, {5,0} };
+		else if ( type == TrackTypes.LARGE_SLOPE_BALLAST
+				|| type == TrackTypes.LARGE_SLOPE_GRAVEL
+				|| type == TrackTypes.LARGE_SLOPE_WOOD
+				|| type == TrackTypes.LARGE_SLOPE_SNOW_GRAVEL )
+			return new int[][]{ {0,0}, {1,0}, {2,0}, {3,0}, {4,0}, {5,0}, {6,0}, {7,0}, {8,0}, {9,0}, {10,0}, {11,0} };
+		else if ( type == TrackTypes.VERY_LARGE_SLOPE_BALLAST
+				|| type == TrackTypes.VERY_LARGE_SLOPE_GRAVEL
+				|| type == TrackTypes.VERY_LARGE_SLOPE_WOOD
+				|| type == TrackTypes.VERY_LARGE_SLOPE_SNOW_GRAVEL )
+			return new int[][]{ {0,0}, {1,0}, {2,0}, {3,0}, {4,0}, {5,0}, {6,0}, {7,0}, {8,0}, {9,0}, {10,0}, {11,0},
+					{12,0}, {13,0}, {14,0}, {15,0}, {16,0}, {17,0}};
+		else if ( type == TrackTypes.TWO_WAYS_CROSSING )
+			return new int[][] { {0,0}, {1,0}, {2,0}, {1,1}, {1,-1} };
+		else if ( type == TrackTypes.MEDIUM_TURN )
+			return new int[][] { {0,0}, {1,0}, {1,1}, {2,1}, {2,2} };
+		else if ( type == TrackTypes.LARGE_TURN )
+			return new int[][] { {0,0}, {1,0}, {2,0}, {1,1}, {2,1}, {3,1}, {2,2}, {3,2}, {4,2}, {3,3}, {4,3}, {4,4} };
+		else if ( type == TrackTypes.VERY_LARGE_TURN )
+			return new int[][] { {0,0}, {1,0}, {2,0}, {3,0}, {4,0}, {2,1}, {3,1}, {4,1}, {5,1}, {4,2}, {5,2}, {6,2},
+					{6,3}, {7,3}, {7,4}, {8,4}, {7,5}, {8,5}, {9,5}, {8,6}, {9,6}, {8,7}, {9,7}, {9,8}, {9,9} };
+		else if ( type == TrackTypes.MEDIUM_PARALLEL_SWITCH )
+			return new int[][] { {0,0}, {1,0}, {2,0}, {3,0}, {4,0}, {5,0}, {6,0}, {7,0}, {8,0}, {9,0}, {10,0},
+					{2,1}, {3,1}, {4,1}, {5,1},	{4,2}, {5,2}, {6,2}, {7,2}, {8,2}, {6,3}, {7,3}, {8,3}, {9,3}, {10,3}};
+		else if ( type == TrackTypes.MEDIUM_SWITCH )
+			return new int[][] { {0,0}, {1,0}, {2,0}, {3,0}, {2,1}, {3,1}, {3,2}, {3,3} };
+		else if ( type == TrackTypes.LARGE_SWITCH )
+			return new int[][] { {0,0}, {1,0}, {2,0}, {3,0}, {4,0}, {5,0},
+					{2,1}, {3,1}, {4,1}, {3,2}, {4,2}, {5,2}, {4,3}, {5,3},	{5,4}, {5,5}};
+
+		return null;
+	}
+
+	public boolean tryToPlaceTrack( ItemStack itemStack, EntityPlayer player, World world, int x, int y, int z, boolean changeWorld )
+	{
+		if ( !(itemStack.getItem() instanceof ItemTCRail) )
+			return false;
+
+		y = getPlacementHeight(world, x, y, z);
+
+		ItemTCRail item = (ItemTCRail) itemStack.getItem();
+		int facing0 = MathHelper.floor_double(player.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
+		Vector2f dir0 = ItemTCRail.getDirectionVector(facing0);
+
+		float yaw = MathHelper.wrapAngleTo180_float(player.rotationYaw);
+		boolean isLeftTurn = item.getTrackOrientation( facing0, yaw ).equals("left");
+		int facing1 = isLeftTurn ? (facing0 + 4 - 1)%4 : (facing0 + 1)%4;
+		Vector2f dir1 = getDirectionVector( facing1 );
+
+		int[][] trackPositions = getUsedSpaceFromType( item.getTrackType() );
+
+		if ( trackPositions != null )
+		{
+
+			for ( int[] pos : trackPositions )
+			{
+				int dx = (int) (pos[0] * dir0.getX() + pos[1] * dir1.getX());
+				int dz = (int) (pos[0] * dir0.getY() + pos[1] * dir1.getY());
+
+				if( !canPlaceTrack(player, world, x + dx, y+1, z + dz ))
+					return false;
+			}
+
+			return true;
+		}else {
+			return false;
+		}
+	}
+
+	public int getPlacementHeight( World world, int x, int y, int z )
+	{
+		if(canBeReplaced(world, x, y, z)){
+			y--;
+		}
+		return y;
+	}
+
 	@Override
 	public boolean onItemUse(ItemStack itemstack, EntityPlayer player, World world, int x, int y, int z, int par7, float par8, float par9, float par10) {
 		if (!world.isRemote) {
 			
-			if(canBeReplaced(world, x, y, z)){
-				y--;
-			}
+			y = getPlacementHeight(world, x, y, z);
 			
 			int l = MathHelper.floor_double((player!=null?player.rotationYaw:par10) * 4.0F / 360.0F + 0.5D) & 3;
 			float yaw = MathHelper.wrapAngleTo180_float(player!=null?player.rotationYaw:par10);
@@ -1129,19 +1241,19 @@ public class ItemTCRail extends ItemPart {
 				 * against TCs own brain. you need to devide 100 by (gagEnd+1)
 				 **/
 				if (type == TrackTypes.SLOPE_WOOD || type == TrackTypes.SLOPE_GRAVEL
-						|| type == TrackTypes.SLOPE_BALLAST) {
+						|| type == TrackTypes.SLOPE_BALLAST || type == TrackTypes.SLOPE_SNOW_GRAVEL) {
 					gagEnd = 5;
 					slopeAngle = 0.13;
 				}
 				
 				if (type == TrackTypes.LARGE_SLOPE_WOOD || type == TrackTypes.LARGE_SLOPE_GRAVEL
-						|| type == TrackTypes.LARGE_SLOPE_BALLAST) {
+						|| type == TrackTypes.LARGE_SLOPE_BALLAST || type == TrackTypes.LARGE_SLOPE_SNOW_GRAVEL) {
 					gagEnd = 11;
 					slopeAngle = 0.0666;
 				}
 				
 				if (type == TrackTypes.VERY_LARGE_SLOPE_WOOD || type == TrackTypes.VERY_LARGE_SLOPE_GRAVEL
-						|| type == TrackTypes.VERY_LARGE_SLOPE_BALLAST) {
+						|| type == TrackTypes.VERY_LARGE_SLOPE_BALLAST || type == TrackTypes.VERY_LARGE_SLOPE_SNOW_GRAVEL) {
 					gagEnd = 17;
 					slopeAngle = 0.0444;
 				}
@@ -1978,5 +2090,10 @@ public class ItemTCRail extends ItemPart {
 	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
 		par3List.add("\u00a77" + type.getTooltip());
 	}
+
+	public TrackTypes getTrackType() {
+		return this.type;
+	}
+
 }
 

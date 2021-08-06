@@ -465,11 +465,11 @@ public enum RenderEnum {
 	}, 2, false),
 	locoSteamForney(EntityLocoSteamForneyRed.class, new ModelLocoForney(), "locoForney_", true, new float[] { -1.3F, -0.44F, 0.0F }, new float[] { 0F, 90F, 0F }, null, "largesmoke", 3, new ArrayList<double[]>() {
 		{
-			add(new double[] { 1.4D, 1.9D, 0.0D });
+			add(new double[] { 2.2D, 1.9D, 0.0D });
 		}
 	}, "explode", new ArrayList<double[]>() {
 		{
-			add(new double[] { 1.4D, -0.2D, 0.8D });
+			add(new double[] { 2.2D, -0.2D, 0.8D });
 		}
 	}, 2, true),
 	locoSteamMogul(EntityLocoSteamMogulBlue.class, new ModelLocoMogul(), "locoMogul_", true, new float[] { -0.6F, -0.44F, 0.0F }, new float[] { 0F, 90F, 0F }, null, "largesmoke", 3, new ArrayList<double[]>() {
@@ -651,13 +651,15 @@ public enum RenderEnum {
 	pch120(EntityLocoElectricPCH120.class, new ModelPCH120Commute(), "pch120commute_", true,new float[] {-1.3F, 0.01F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	pch120Coach(EntityPassengerPCH120Coach.class, new ModelPCH120Car(), "pch120car_", true,new float[] {0F, 0.01F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	Class345(EntityElectricClass345.class, new ModelClass345(), "class345", false,new float[] {-1.0F, 0.15F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
-	Class345Coach( EntityClass345Coach.class, new ModelClass345Coach(),"class345coach", false, new float[] {0F, 0F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	Class345Coach( EntityClass345Coach.class, new ModelClass345Coach(),"class345coach", false, new float[] {0F, 0F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
 	LUengine(EntityElectricLUengine.class, new ModelLUengine(), "lu_engine", false,new float[] {-1.0F, 0.16F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	LUpassenger(EntityLUpassenger.class, new ModelLUpassenger(), "lu_passenger",false,new float[] {0F, 0.16F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	DstockEngine(EntityElectricDstockEngine.class, new ModelDstockEngine(), "D_stock_engine", false,new float[] {-1.0F, 0.16F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	DstockCar(EntityDstockPassenger.class, new ModelDstockPassenger(), "D_stock_passenger",false,new float[] {0F, 0.16F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	passengerPS52SeatCoach(EntityPassengerPS52SeatCoach.class, new ModelPS52SeatCoach(), "PS_lightweight_52seat_", true, new float[] { 0F, 0.15F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	passengerPSCombine(EntityPassengerPSCombine.class, new ModelPSCombine(), "PS_lightweight_baggage-coach_", true, new float[] { 0F, 0.15F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	passengerPScenterDiner(EntityPassengerPScenterDiner.class, new ModelPScenterDiner(), "PS_lightweight_center_diner_Blue", false, new float[] { 0F, 0.15F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	passengerPSFuckYouAnotherDiner(EntityPassengerPSFuckYouAnotherDiner.class, new ModelPSscrewyoutoomanydiners(), "PS_lightweight_center_diner_2_", true, new float[] { 0F, 0.15F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	locoElectricRenfe450Motor(EntityLocoElectricRenfe450Motor.class, new Modelrenfe450endA(), "450_loco_", true, new float[] { -1.9F, 0.1F, 0.0F },   new float[] { 0F, 0F, 180F }, null, "", 0, null, "", null, 0, false),
 	passengerRenfe450Coach(EntityPassengerRenfe450Coach.class, new Modelrenfe450middle(), "450_passenger_", true, new float[] { -0.0F, 0.1F, 0.0F },   new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	cabooseRenfe450Tail(EntityCabooseRenfe450Tail.class, new Modelrenfe450endB(), "450_passenger_", true, new float[] { 0.0F, 0.1F, 0.0F },   new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
@@ -689,19 +691,19 @@ public enum RenderEnum {
 	freightRibbedHopper(EntityFreightRibbedHopper.class, new ModelRibbedHopper(), "ribbed_hopper_", true, new float[] { -0F,0.1F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	locoBR07(EntityLocoDieselBR07.class, new ModelBR_07(), "br_07", false, new float[] { -1.5F, 0.15F, -0.1F }, new float[] { 0F, 180F, 180F }, null, "smoke", 4, new ArrayList<double[]>() {
 		{
-			add(new double[] { 0.6D, 1.55D, 0.0D });
+			add(new double[] { 2.8D, 1.1D, 0.0D });
 		}
 	}, "", null, 0, false),
 	locoBR04(EntityLocoDieselBR04.class, new ModelBR_04(), "br_04", false, new float[] { -1.5F, 0.15F, -0.0F }, new float[] { 0F, 180F, 180F }, null, "smoke", 4, new ArrayList<double[]>() {
 		{
-			add(new double[] { 3.6D, 1.55D, 0.0D });
+			add(new double[] { 3.2D, 1.35D, 0.0D });
 		}
 	}, "", null, 0, false),
-	/*locoSM42(EntityLocoDieselSM42.class, new ModelSM42(), "SM42_", true, new float[] { -2.0F, 0.15F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "smoke", 4, new ArrayList<double[]>() {
+	locoSM42(EntityLocoDieselSM42.class, new SM42(), "SM42_", true, new float[] { -2.0F, 0.05F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "smoke", 4, new ArrayList<double[]>() {
 		{
-			add(new double[] { 0.6D, 1.55D, 0.0D });
+			add(new double[] { 0.9D, 1.35D, 0.0D });
 		}
-	}, "", null, 0, false),*/
+	}, "", null, 0, false),
 	locoDieselWWCPGP7(EntityLocoDieselWWCPGP7.class, new ModelWWCPGP7(), "GP7_Highood_", true, new float[]{-2f,0.15f,0}, new float[] { 0F, 0F, 180F }, new float[]{0.9f,1f,0.9f}, "smoke", 4, new ArrayList<double[]>() {
 		{
 			add(new double[] { 1.7D, 1.3D, 0.0D });
@@ -709,24 +711,246 @@ public enum RenderEnum {
 			add(new double[] { 0.85D, 1.3D, 0.0D });
 		}
 	}, "", null, 0, false),
-
-	locoElectricBR155(EntityLocoElectricBR155.class, new ModelBR155(), "BR155_", true, new float[] {-1.5F, 0.2F, 0.0F}, new float[] { 0, 180, 180 },  new float[]{1f,1f,1f}, "", 0, null, "", null, 0, false),
-
-
-
-
-
-
-
 	locoC11(EntityLocoSteamC11.class, new ModellocoC11(), "locoC11", false, new float[] {  -1.5F, 0.2F, 0.0F }, new float[] { 0, 180, 180 }, null, "largesmoke", 5, new ArrayList<double[]>() {
 		{
 			add(new double[] { 3.05D, 1.35D, 0D });
 		}
-	}, "explode", new ArrayList<double[]>() {{ add(new double[] { 2.9D, 0.00D, 0.75D }); }}, 3, true),
+	}, "explode", new ArrayList<double[]>() {
+		{
+			add(new double[] { 2.9D, 0.00D, 0.75D });
+		}
+	}, 3, true),
+	LocoDieselGE44Ton( EntityLocoDieselGE44Ton.class,  new ModelGE44Ton(), "44_ton_", true,new float[] {-1.0F, 0.15F, 0F},  new float[] { 0F, 180F, 180F }, null, "smoke", 3,  new ArrayList<double[]>() {
+		{
+			add(new double[]{0.6D, 1.1D, 0.0D});
+			add(new double[]{1.4D, 1.1D, 0.0D});
+		}
+	}, "", null, 0, false),
+	amfleet(EntityPassengerAmfleet.class, new ModelAmfleet(),"amfleet_", true, new float[]{0F, -0.4F, 0F}, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	amfleet2(EntityPassengerAmfleet2.class, new ModelAmfleet2(),"amfleet2_", true, new float[]{0F, -0.4F, 0F}, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	bawx40highcube(EntityFreightBap40highcube.class, new Model40highcube(),"40highcube_", true, new float[]{0F, 0.15F, 0F}, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	WoodchipHopper(EntityFreightBapWoodchipHopper.class, new ModelWoodchipHopper(),"woodchiphopper_", true, new float[]{0F, 0.15F, 0F}, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	OreJenny(EntityFreightBapOreJenny.class, new ModelOreJenny(),"orejenny_", true, new float[]{0F, 0.2F, 0F}, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	MillGondola(EntityFreightBapMillGondola.class, new ModelMillGondola(),"MillGondola_", true, new float[]{0F, 0.15F, 0F}, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	MILW40boxcar(EntityFreightBapMILW40boxcar.class, new ModelMILW40boxcar(),"milw40_", true, new float[]{0F, 0.15F, 0F}, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	Freight60centerbeam(EntityFreightBap60centerbeam.class, new Model60centerbeam(),"60ftcb_", true, new float[]{0F, 0.15F, 0F}, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	Freight66centerbeam(EntityFreightBap66centerbeam.class, new Model66centerbeam(),"66ftcb_", true, new float[]{0F, 0.15F, 0F}, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	Freight73centerbeam(EntityFreightBap73centerbeam.class, new Model73centerbeam(),"73ftcb_", true, new float[]{0F, 0.15F, 0F}, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	PS140(EntityFreightBapPS140.class, new ModelPS140(),"ps140_", true, new float[]{0F, 0.15F, 0F}, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	PS150(EntityFreightBapPS150.class, new ModelPS150(),"ps150_", true, new float[]{0F, 0.15F, 0F}, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	PS160(EntityFreightBapPS160.class, new ModelPS160(),"ps160_", true, new float[]{0F, 0.1875F, 0F}, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	WVcaboose(EntityCabooseBapWVcaboose.class, new ModelWVcaboose(),"wvcaboose_", true, new float[]{0F, 0.1675F, 0F}, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	OWO60Verticube(EntityFreightBapOWO60Verticube.class, new ModelOWO60Verticube(),"owo60verticube_", true, new float[]{0F, 0.1875F, 0F}, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	PEcoach(EntityPassengerBapPEcoach.class, new ModelPEcoach(),"PECoach_", true, new float[]{0F,  0.105F, 0F}, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	PEobserve(EntityPassengerBapPEobserve.class, new ModelPEobserve(),"PEObserve_", true, new float[]{0F,  0.105F, 0F}, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	VersaLongi(EntityFreightBapVersaLongi.class, new ModelVersaLongi(),"versa_longi_", true, new float[]{0F, 0.15F, 0F}, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	VersaTrans(EntityFreightBapVersaTrans.class, new ModelVersaTrans(),"versa_trans_", true, new float[]{0F, 0.15F, 0F}, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	DOT11111000(EntityFreightBapDOT11111000.class, new Model11000DOT111(),"dot11K_", true, new float[]{0F, 0.20F, 0F}, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	DOT11120600(EntityFreightBapDOT11120600.class, new Model20600DOT111(),"dot206K_", true, new float[]{0F, 0.20F, 0F}, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	DOT11129080(EntityFreightBapDOT11129080.class, new Model29080DOT111(),"dot290K_", true, new float[]{0F, 0.00F /*was 0.20F for height*/, 0F}, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	F7A( EntityLocoDieselBapF7A.class,  new ModelF7A(), "F7A_", true,new float[] {-1.375F, 0.15F, 0F},  new float[] { 0F, 180F, 180F },  new float[] { 1F, 1.0F, 1F }, "smoke", 3,  new ArrayList<double[]>() {
+		{
+			add(new double[]{0.9375D, 1.3D, 0.0D});
+			add(new double[]{0.25D, 1.3D, 0.0D});
 
+		}
+	}, "", null, 0, false),
+	F7B( EntityLocoDieselBapF7B.class,  new ModelF7B(), "F7B_", true,new float[] {-1.25F, 0.15F, 0F},  new float[] { 0F, 180F, 180F },  new float[] { 1F, 1.0F, 1F }, "smoke", 3,  new ArrayList<double[]>() {
+		{
+			add(new double[]{1.35D, 1.3D, 0.0D});
+			add(new double[]{0.55D, 1.3D, 0.0D});
 
-	locoSM42(EntityLocoDieselSM42.class, new train.client.render.renderSwitch.models.ModelSM42(), null, false, new float[] {  -1.5F, 0.2F, 0.0F }, new float[] { 0, 180, 180 }, null, "",0, null, "", null, 0, false),
+		}
+	}, "", null, 0, false),
+	H1044( EntityLocoDieselBapH1044.class,  new ModelH1044(), "FM_H10-44_", true,new float[] {-1.1F, 0.15F, 0F},  new float[] { 0F, 180F, 180F }, null, "smoke", 4,  new ArrayList<double[]>() {
+		{
+			add(new double[]{1.9D, 1.45D, -0.16D});
+			add(new double[]{1.9D, 1.45D, 0.16D});
+		}
+	}, "", null, 0, false),
+	locoSteamStarClass(EntityLocoSteamStarClass.class, new ModelStarClass(), "StarLoco", false, new float[] { -0.8F, 0.15F, 0F }, new float[] { 0F, 180F, 180F }, null, "smoke", 20, new ArrayList<double[]>() {
+		{
+			add(new double[] { 1.65D, 1.3D, 0.0D });
+		}
+	}, "explode", new ArrayList<double[]>() {
+		{
+			add(new double[] { 1.5D, -0.4D, 0.8D });
+		}
+	}, 2, true),
+	tenderStarClass(EntityTenderStarClass.class, new ModelStarClassTender(), "StarTender", false, new float[] { 0.0F, 0.15F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	passengerStarCarFat(EntityPassengerStarCarFat.class, new ModelStarCarFat(), "GWRClosed", false, new float[] { 0F, 0.15F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	passengerStarCarNotFat(EntityPassengerStarCarNotFat.class, new ModelStarCarNotFat(), "GWROpen", false, new float[] { 0F, 0.15F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	LightCrane(EntityLightCrane.class, new ModelLightCrane(),"LightCrane", false, new float[]{0F,0.15F, 0F}, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	BR155(EntityLocoElectricBR155.class, new ModelBR155(), "BR155_", true, new float[] { -1.7F, 0.05F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "",0,null, "", null, 0, false),
+	Onion(EntityLocoOnion.class, new ModelOnion(), "Onion_", true, new float[] { -0.7F, 0.1F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "largesmoke", 20, new ArrayList<double[]>() {
+		{
+			add(new double[] { 0.6D, 1.5D, 0.0D });
+		}
+	}, "explode", new ArrayList<double[]>() {
+		{
+			add(new double[] { 1.2D, -0.4D, 0.8D });
+		}
+	}, 2, true),
+	OnionTender(EntityTenderOnion.class, new ModelOnionTender(), "Onion_Tender_", true, new float[] { 0.0F, 0.1F, 0.0F }, new float[] { 0F, 0F, 180F }, null, "", 0, null, "", null, 0, false),
+	loco440RFront(EntityLocoElectric440RFront.class, new Model440R_Front(), "440R_", true, new float[] { -1.9F, 0.1F, 0.0F },   new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	passenger440RMid(EntityPassenger440RMid.class, new Model440R_Mid(), "440R_", true, new float[] { -0.0F, 0.1F, 0.0F },   new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	passenger440RRear(EntityPassenger440RRear.class, new Model440R_Back(), "440R_", true, new float[] { 0.0F, 0.1F, 0.0F },   new float[] { 0F, 0F, 180F }, null, "", 0, null, "", null, 0, false),
+	GP13(EntityLocoDieselGP13.class, new ModelGP13(), "gp13_", true, new float[] { -0.8F, -0.47F, 0.0F }, new float[] { 0F, 180F, 0F }, null, "smoke", 4, new ArrayList<double[]>() {
+		{
+			add(new double[] { -0.2D, 1.2D, 0.0D });
+			add(new double[] { 0.45D, 1.2D, 0.0D });
+		}
+	}, "", null, 0, false),
+	DB143(EntityLocoElectricDB143.class, new ModelDB143(), "DB143", false, new float[] { -1.7F, 0.2F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "",0,null, "", null, 0, false),
+	tenderPETender(EntityTenderPETender.class, new ModelPE_Tender(), "PETender", false, new float[] { 0.1F, 0.15F, 0.0F }, new float[] { 0F, 0F, 180F }, null, "", 0, null, "", null, 0, false),
+	locoSteamPELoco(EntityLocoSteamPELoco.class, new ModelPE_Loco(), "PELoco", false, new float[] {  -1.5F, 0.15F, 0.0F }, new float[] { 0, 180, 180 }, null, "largesmoke", 3, new ArrayList<double[]>() {
+		{
+			add(new double[] { 3.1D, 1.4D, 0D });
+		}
+	}, "explode", new ArrayList<double[]>() {
+		{
+			add(new double[] { 2.9D, 0.05D, 0.65D });
+		}
+	}, 2, true),
+	BapB23( EntityLocoDieselBapB23.class,  new ModelB23(), "b23_", true,new float[] {-1.7F, 0.155F, 0F},  new float[] { 0F, 180F, 180F }, null, "smoke", 4,  new ArrayList<double[]>() {
+		{
+			add(new double[]{0.87D, 1.5D, 0.0D});
+		}
+	}, "", null, 0, false),
+	C424( EntityLocoDieselBapC424.class,  new ModelC424(), "c424_", true,new float[] {-1.6F, 0.1F, 0F},  new float[] { 0F, 180F, 180F }, null, "largesmoke", 2,  new ArrayList<double[]>() {
 
+		{
+			add(new double[]{1D, 1.7D, 0.0D});
+		}
+	}, "", null, 0, false),
+	C425( EntityLocoDieselBapC425.class,  new ModelC425(), "c425_", true,new float[] {-1.6F, 0.1F, 0F},  new float[] { 0F, 180F, 180F }, null, "largesmoke", 2,  new ArrayList<double[]>() {
+		{
+			add(new double[]{1D, 1.7D, 0.0D});
+		}
+	}, "", null, 0, false),
+	GP9( EntityLocoDieselBapGP9.class,  new ModelGP9(), "gp9_", true,new float[] {-1.5F, -0.05F, 0F},  new float[] { 0F, 180F, 180F }, null, "smoke", 5,  new ArrayList<double[]>() {
+		{
+			add(new double[]{0.45D, 1.45D, 0.0D});
+			add(new double[]{1.25D, 1.45D, 0.0D});
+		}
+	}, "", null, 0, false),
+	GP7b( EntityLocoDieselBapGP7b.class,  new ModelGP7b(), "bettergp7b_", true,new float[] {-1.5F, -0.05F, 0F},  new float[] { 0F, 180F, 180F }, null, "smoke", 5,  new ArrayList<double[]>() {
+		{
+			add(new double[]{0.45D, 1.45D, 0.0D});
+			add(new double[]{1.25D, 1.45D, 0.0D});
+		}
+	}, "", null, 0, false),
+	GP7u( EntityLocoDieselBapGP7u.class,  new ModelGP7u(), "gp7u_", true,new float[] {-1.5F, -0.05F, 0F},  new float[] { 0F, 180F, 180F }, null, "smoke", 5,  new ArrayList<double[]>() {
+		{
+			add(new double[]{0.45D, 1.45D, 0.0D});
+			add(new double[]{1.25D, 1.45D, 0.0D});
+
+		}
+	}, "", null, 0, false),
+	GP7( EntityLocoDieselBapGP7.class,  new ModelGP7BAP(), "bettergp7_", true,new float[] {-1.5F, -0.05F, 0F},  new float[] { 0F, 180F, 180F }, null, "smoke", 5,  new ArrayList<double[]>() {
+		{
+			add(new double[]{0.45D, 1.45D, 0.0D});
+			add(new double[]{1.25D, 1.45D, 0.0D});
+		}
+	}, "", null, 0, false),
+	GP30( EntityLocoDieselBapGP30.class,  new ModelGP30(), "gp30_", true,new float[] {-1.5F, 0.155F, 0F},  new float[] { 0F, 180F, 180F }, null, "smoke", 4,  new ArrayList<double[]>() {
+		{
+			//add(new double[]{1.9D, 1.4D, 0.0D});
+		}
+	}, "", null, 0, false),
+	GP38dash2( EntityLocoDieselBapGP38dash2.class,  new ModelGP38dash2(), "gp38dash2_", true,new float[] {-1.5F, 0.155F, 0F},  new float[] { 0F, 180F, 180F }, null, "smoke", 3,  new ArrayList<double[]>() {
+		{
+			add(new double[]{0.75D, 1.4D, 0.0D});
+			add(new double[]{1.55D, 1.4D, 0.0D});
+		}
+	}, "", null, 0, false),
+	KOF_III(EntityLocoDieselKof_III.class, new ModelKOF_III(), "KofIII_", true, new float[] { -0.8F, 0.15F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "smoke", 4, new ArrayList<double[]>() {
+		{
+			add(new double[] { 0.5D, 1.0D, 0.0D });
+		}
+	}, "", null, 0, false),
+	KOF_III_M(EntityLocoDieselKof_III_M.class, new ModelKOF_III_M(), "KofIIIM_", true, new float[] { -0.8F, 0.15F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "smoke", 4, new ArrayList<double[]>() {
+		{
+			add(new double[] { 0.5D, 1.0D, 0.0D });
+		}
+	}, "", null, 0, false),
+	U36C( EntityLocoDieselBapU36C.class,  new ModelU36C(), "u36c_", true,new float[] {-2.3125F, -0.15F/* -0.13F*/, 0F},  new float[] { 0F, 180F, 180F },  new float[] { 1F, 1F, 1F }, "smoke", 3,  new ArrayList<double[]>() {
+		{
+			//add(new double[]{0.75D, 1.75D, 0.0D});
+
+		}
+	}, "", null, 0, false),
+	GP49( EntityLocoDieselBapGP49.class,  new ModelGP49(), "gp49_arr_2807", false,new float[] {-1.5F, 0.155F, 0F},  new float[] { 0F, 180F, 180F }, null, "smoke", 3,  new ArrayList<double[]>() {
+		{ }
+	}, "", null, 0, false),
+	GP15( EntityLocoDieselBapGP15.class,  new ModelBapGP15(), "gp15_bap_", true,new float[] {-1.3F, 0.155F, 0F},  new float[] { 0F, 180F, 180F }, null, "smoke", 5,  new ArrayList<double[]>() {
+		{ }
+	}, "", null, 0, false),
+	spookyGarrattFront(EntityLocoSteamGarrattFront.class, new ModelGarrattFront(), "GarrattTexture", false, new float[] {3.5F, 0.155F, 0.0F },/*position*/  new float[] { 0F, 180F, 180F }, new float[]{1f,1f,1f},/*scale*/ "largesmoke", 20, new ArrayList<double[]>() {
+		{
+			//add(new double[] { 4.65D, 1.7D, 0.0D });//smoke
+		}
+	}, "explode", new ArrayList<double[]>() {
+		{
+			//add(new double[] { 4.2D, -0.4D, 0.8D });//steam
+		}
+	}, 2, true),
+	spookyGarrattRear(EntityLocoSteamGarrattRear.class, new ModelGarrattBack(), "GarrattTexture", false, new float[] {3.25F, 0.155F, 0.0F },/*position*/  new float[] { 0F, 0F, 180F }, new float[]{1f,1f,1f},/*scale*/ "largesmoke", 20, new ArrayList<double[]>() {
+		{
+			//add(new double[] { 4.65D, 1.7D, 0.0D });//smoke
+		}
+	}, "explode", new ArrayList<double[]>() {
+		{
+			//add(new double[] { 4.2D, -0.4D, 0.8D });//steam
+		}
+	}, 2, true),
+	spookyGarrattMid(EntityLocoSteamGarrattMid.class, new ModelGarrattMid(), "GarrattTexture", false, new float[] {-2.25F, 0.155F, 0.0F },/*position*/  new float[] { 0F, 0F, 180F }, new float[]{1f,1f,1f},/*scale*/ "largesmoke", 20, new ArrayList<double[]>() {
+		{
+			//add(new double[] { 4.65D, 1.7D, 0.0D });//smoke
+		}
+	}, "explode", new ArrayList<double[]>() {
+		{
+			//add(new double[] { 4.2D, -0.4D, 0.8D });//steam
+		}
+	}, 2, true),
+	Skook(EntityLocoSteamSkook.class, new ModelSkookum(), "skookum", false, new float[] { -0.0F, -0.0F, -0.0F }, new float[] { 0F, 180F, 180F }, null, "largesmoke", 20, new ArrayList<double[]>() {
+		{
+			add(new double[] { 2.4D, 1.5D, -0.0D });
+		}
+	}, "explode", new ArrayList<double[]>() {
+		{
+			add(new double[] { 0.9D, -0.4D, 0.8D });
+			add(new double[] { 2.5D, -0.4D, 0.8D });
+			add(new double[] { -0.5D, 1.5D, 0.0D });
+		}
+	}, 2, true),
+	SkookTender(EntityTenderSkookTender.class, new ModelSkookumTender(), "skookumtender", false, new float[] {-0.00F, 0.0F, 0F},  new float[] { 0F, 0F, 180F }, null, "", 0, null, "", null, 0, false),
+	EF1(EntityLocoElectricBapEF1.class,  new ModelEF1(), "ef1_", true,new float[] {-1.60F, 0.1875F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	EF1B(EntityLocoElectricBapEF1B.class,  new ModelEF1B(), "ef1b_", true,new float[] {-1.15635F, 0.1875F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	EP1A(EntityLocoElectricBapEP1A.class,  new ModelEP1A(), "ep1a_", true,new float[] {-1.60F, 0.1875F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	SD9(EntityLocoDieselBapSD9.class,  new ModelSD9(), "SD9_", true,new float[] {-1.6F,0.155F, 0F},  new float[] { 0F, 180F, 180F }, null, "smoke", 3,  new ArrayList<double[]>() {
+		{
+			//add(new double[]{0.8D, 1.4D, 0.0D});
+			//add(new double[]{1.6D, 1.4D, 0.0D});
+		}
+	}, "", null, 0, false),
+	SD40dash2(EntityLocoDieselBapSD40dash2.class,  new ModelSD40dash2(), "sd40_", true,new float[] {-1.9F, 0.155F, 0F},  new float[] { 0F, 180F, 180F }, null, "smoke", 6,  new ArrayList<double[]>() {
+		{
+			//add(new double[]{2.3D, 1.5D, 0.0D});
+		}
+	}, "", null, 0, false),
+	WWCP40FootBox(EntityFreightWWCP40FootBox.class, new ModelWWCP40FootBox(),"40ft_Boxcar_", true, new float[]{0F, 0.1875F, 0F}, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	HuskyStackWellcar(EntityFreightBapHuskyStack.class, new ModelHuskyStack(), "huskystack_", true, new float[]{0F, 0.15F, 0F}, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	U23B( EntityLocoDieselBapU23B.class,  new ModelU23B(), "U23B_", true,new float[] {-0F, -0.0F, 0F},  null, null, "smoke", 4,  new ArrayList<double[]>() {
+		{ }}, "", null, 0, false),
+	U18B( EntityLocoDieselBapU18B.class,  new ModelU18B(), "U18B_", true,new float[] {-0F, -0.0F, 0F},  null, null, "smoke", 4,  new ArrayList<double[]>() {
+		{ }}, "", null, 0, false),
+	hicube60foot(EntityFreightBaphicube60foot.class, new Modelhicube60foot(),"hicube60_", true, new float[]{0F, 0.155F, 0F}, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	freightBNSFGon(EntityFreightBNSFGon.class, new ModelBNSFGon(), "BNSFMillGon_", true, new float[] { 0.0F, 0.0F, 0.0F }, null, null, "", 0, null, "", null, 0, false),
+	locoILMA(EntityLocoElectricILMA.class, new ModelILMA(), "ILMA", false, new float[] { 0.0F, 0.15F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	locoILMB(EntityLocoElectricILMB.class, new ModelILMB(), "ILMB", false, new float[] { 0.0F, 0.15F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	Feve3300Front(EntityLocoElectricFeve3300.class, new Modelfeve3300front(), "feve3300_", true, new float[] { -1.8F, 0.1F, 0.0F },   new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	Feve3300Rear(EntityPassengerFeve3300.class, new Modelfeve3300rear(), "feve3300_", true, new float[] { -0.0F, 0.1F, 0.0F },   new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	;
 
 	private Class<? extends AbstractTrains> entityClass;
