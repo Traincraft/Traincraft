@@ -173,6 +173,7 @@ public class AssemblyTableRecipes {
 					for (ItemStack dye: dyeBlack) {
 						cm.addRecipe(1, new ItemStack(i.getItem(), 6, OreDictionary.WILDCARD_VALUE), new ItemStack(ItemIDs.ironBogie.item, 2), new ItemStack(ItemIDs.ironFrame.item, 3), new ItemStack(iron.getItem(), 2), null, null, null, null, new ItemStack(Blocks.hopper, 3), null, new ItemStack(ItemIDs.minecartBNSFGon.item, 1), 1);
 					}
+
 				}
 				cm.addRecipe(1, new ItemStack(Blocks.crafting_table, 1), new ItemStack(ItemIDs.ironBogie.item, 2), new ItemStack(ItemIDs.woodenFrame.item, 1), new ItemStack(i.getItem(), 8, OreDictionary.WILDCARD_VALUE), null, new ItemStack(ItemIDs.woodenCab.item, 1), null, null, new ItemStack(Blocks.furnace, 1), null, new ItemStack(ItemIDs.minecartGWRBrakeVan.item, 1), 1);
 				cm.addRecipe(1, new ItemStack(i.getItem(), 2, OreDictionary.WILDCARD_VALUE), new ItemStack(ItemIDs.ironBogie.item, 2), new ItemStack(ItemIDs.woodenFrame.item, 2), null, new ItemStack(ItemIDs.ironChimney.item, 1), new ItemStack(ItemIDs.woodenCab.item, 1), new ItemStack(ItemIDs.boiler.item, 1), new ItemStack(ItemIDs.firebox.item, 1), null, new ItemStack(i.getItem(), 4, OreDictionary.WILDCARD_VALUE), new ItemStack(ItemIDs.minecartLocoSteamVBShay.item, 1), 1);
@@ -192,7 +193,10 @@ public class AssemblyTableRecipes {
 			cm.addRecipe(1, null, new ItemStack(ItemIDs.woodenBogie.item, 2), new ItemStack(ItemIDs.woodenFrame.item, 1), null, null, null, null, null, new ItemStack(Blocks.chest, 1), null, new ItemStack(ItemIDs.minecartFreightBamboo.item, 1), 1);
 			cm.addRecipe(1, null, new ItemStack(ItemIDs.woodenBogie.item, 2), new ItemStack(ItemIDs.woodenFrame.item, 1), null, null, null, null, new ItemStack(ItemIDs.dieselengine.item, 1), null, null, new ItemStack(ItemIDs.minecartTrainBamboo.item, 1), 1);
 
-
+			for (ItemStack dye : dyeOrange) {
+				cm.addRecipe(1, new ItemStack(ItemIDs.copperWireFine.item, 4), new ItemStack(ItemIDs.ironBogie.item, 6), new ItemStack(ItemIDs.ironFrame.item, 3), new ItemStack(itemSteel, 2, itemDamageSteel), null, new ItemStack(ItemIDs.ironCab.item, 3), new ItemStack(ItemIDs.transformer.item, 3), new ItemStack(ItemIDs.electmotor.item, 4), new ItemStack(ItemIDs.controls.item, 1), dye, new ItemStack(ItemIDs.minecartEF1.item, 1), 1);
+				cm.addRecipe(1, new ItemStack(ItemIDs.copperWireFine.item, 2), new ItemStack(ItemIDs.ironBogie.item, 4), new ItemStack(ItemIDs.ironFrame.item, 1), new ItemStack(itemSteel, 2, itemDamageSteel), null, new ItemStack(ItemIDs.ironCab.item, 2), new ItemStack(ItemIDs.transformer.item, 3), new ItemStack(ItemIDs.electmotor.item, 4), null, dye, new ItemStack(ItemIDs.minecartEF1B.item, 1), 1);
+			}
 			for (ItemStack dye : dyeYellow) {
 				cm.addRecipe(1, new ItemStack(Blocks.chest, 4), new ItemStack(ItemIDs.ironBogie.item, 4), new ItemStack(ItemIDs.woodenFrame.item, 3), null, null, new ItemStack(ItemIDs.woodenCab.item, 3), null, null, null, dye, new ItemStack(ItemIDs.minecartDenverRioGrandeBaggage.item, 1), 1);
 				cm.addRecipe(1, new ItemStack(Blocks.chest, 4), new ItemStack(ItemIDs.ironBogie.item, 4), new ItemStack(ItemIDs.woodenFrame.item, 3), null, null, new ItemStack(ItemIDs.woodenCab.item, 3), null, null, new ItemStack(ItemIDs.seats.item, 1), dye, new ItemStack(ItemIDs.minecartDenverRioGrandeCombo.item, 1), 1);
@@ -204,6 +208,7 @@ public class AssemblyTableRecipes {
 						cm.addRecipe(1, new ItemStack(iron.getItem(), 2), new ItemStack(ItemIDs.ironBogie.item, 2), new ItemStack(ItemIDs.ironFrame.item, 1), new ItemStack(iron.getItem(), 1), null, new ItemStack(ItemIDs.controls.item, 1), new ItemStack(ItemIDs.transformer.item, 1), new ItemStack(ItemIDs.electmotor.item, 2), new ItemStack(rs.getItem(), 1), dye, new ItemStack(ItemIDs.minecartLocoMineTrain.item, 1), 1);
 					}
 				}
+
 
 
 				//=================== TIER II ==================//
@@ -298,6 +303,7 @@ public class AssemblyTableRecipes {
 						new ItemStack(ItemIDs.steelcab.item, 1), new ItemStack(ItemIDs.boiler.item, 3),
 						new ItemStack(ItemIDs.firebox.item, 3), null, dye,
 						new ItemStack(ItemIDs.minecartLocoFowler.item, 1), 1);
+				cm.addRecipe(2, new ItemStack(ItemIDs.controls.item, 2), new ItemStack(ItemIDs.bogie.item, 2), new ItemStack(ItemIDs.steelframe.item, 2), new ItemStack(itemSteel, 2, itemDamageSteel), new ItemStack(ItemIDs.steelchimney.item, 2), new ItemStack(ItemIDs.steelcab.item, 1), new ItemStack(ItemIDs.electmotor.item, 4), new ItemStack(ItemIDs.dieselengine.item, 3), new ItemStack(ItemIDs.generator.item, 2), dye, new ItemStack(ItemIDs.minecartHH660.item, 1), 1);
 				cm.addRecipe(2, null, new ItemStack(ItemIDs.bogie.item, 2), new ItemStack(ItemIDs.steelframe.item, 3),
 						new ItemStack(itemSteel, 2, itemDamageSteel), new ItemStack(ItemIDs.steelchimney.item, 1),
 						new ItemStack(ItemIDs.steelcab.item, 1), new ItemStack(ItemIDs.boiler.item, 1),
@@ -362,6 +368,8 @@ public class AssemblyTableRecipes {
 				cm.addRecipe(2, new ItemStack(itemSteel, 5, itemDamageSteel), new ItemStack(ItemIDs.bogie.item, 2), new ItemStack(ItemIDs.steelframe.item, 2), new ItemStack(itemSteel, 2, itemDamageSteel), null, null, null, null, dye, null, new ItemStack(ItemIDs.minecartShortCoveredHopper.item, 1), 1);
 				cm.addRecipe(2, new ItemStack(itemSteel, 5, itemDamageSteel), new ItemStack(ItemIDs.bogie.item, 2), new ItemStack(ItemIDs.steelframe.item, 2), new ItemStack(itemSteel, 2, itemDamageSteel), null, null, null, null,dye, null, new ItemStack(ItemIDs.minecartLongCoveredHopper.item, 1), 1);
 				cm.addRecipe(2, new ItemStack(itemSteel, 6, itemDamageSteel), new ItemStack(ItemIDs.bogie.item, 2), new ItemStack(ItemIDs.steelframe.item, 2), new ItemStack(itemSteel, 2, itemDamageSteel), null, null, null, null, null, new ItemStack(Blocks.chest, 4), new ItemStack(ItemIDs.minecartRibbedHopper.item), 1);
+				cm.addRecipe(2, new ItemStack(itemSteel, 5, itemDamageSteel), new ItemStack(ItemIDs.bogie.item, 2), new ItemStack(ItemIDs.steelframe.item, 2), new ItemStack(itemSteel, 2, itemDamageSteel), null, null, null, null,dye, new ItemStack(Blocks.chest, 4), new ItemStack(ItemIDs.minecartHopper5201.item, 1), 1);
+				cm.addRecipe(2, new ItemStack(itemSteel, 5, itemDamageSteel), new ItemStack(ItemIDs.bogie.item, 2), new ItemStack(ItemIDs.steelframe.item, 2), new ItemStack(itemSteel, 2, itemDamageSteel), null, null, null, null,dye, new ItemStack(Blocks.chest, 6), new ItemStack(ItemIDs.minecartHopper6260.item, 1), 1);
 			}
 			for (ItemStack dye : dyeYellow) {
 				cm.addRecipe(2, new ItemStack(itemSteel, 5, itemDamageSteel), new ItemStack(ItemIDs.bogie.item, 2), new ItemStack(ItemIDs.steelframe.item, 2), new ItemStack(itemSteel, 2, itemDamageSteel), null, null, null, null, dye, null, new ItemStack(ItemIDs.minecartKClassRailBox.item, 1), 1);
@@ -462,6 +470,7 @@ public class AssemblyTableRecipes {
 			}
 			for (ItemStack dye : dyeOrange) {
 				cm.addRecipe(2, new ItemStack(Blocks.iron_bars, 3), new ItemStack(ItemIDs.bogie.item, 4), new ItemStack(ItemIDs.steelframe.item, 3), new ItemStack(itemSteel, 2, itemDamageSteel), null, new ItemStack(Blocks.iron_bars, 2), null, null, new ItemStack(itemSteel, 2, itemDamageSteel), dye, new ItemStack(ItemIDs.minecart66centerbeam.item, 1), 1);
+				cm.addRecipe(2, new ItemStack(ItemIDs.copperWireFine.item, 6), new ItemStack(ItemIDs.bogie.item, 6), new ItemStack(ItemIDs.steelframe.item, 3), new ItemStack(itemSteel, 2, itemDamageSteel), null, new ItemStack(ItemIDs.steelcab.item, 3), new ItemStack(ItemIDs.transformer.item, 3), new ItemStack(ItemIDs.electmotor.item, 4), new ItemStack(ItemIDs.controls.item, 2), dye, new ItemStack(ItemIDs.minecartEP1A.item, 1), 1);
 			}
 			for (ItemStack dye : dyePink) {
 				cm.addRecipe(2, new ItemStack(Blocks.iron_bars, 3), new ItemStack(ItemIDs.bogie.item, 4), new ItemStack(ItemIDs.steelframe.item, 3), new ItemStack(itemSteel, 2, itemDamageSteel), null, new ItemStack(Blocks.iron_bars, 3), null, null, new ItemStack(itemSteel, 4, itemDamageSteel), dye, new ItemStack(ItemIDs.minecart73centerbeam.item, 1), 1);

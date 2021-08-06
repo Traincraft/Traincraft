@@ -470,6 +470,11 @@ item.tc:minecartILMA.name=I.L.M.A
 item.tc:minecartILMB.name=I.L.M.B
 item.tc:minecart3300Front.name=Feve 3300 Engine
 item.tc:minecart3300Rear.name=Feve 3300 Tail
+item.tc:minecartHH660.name=ALCo HH660
+item.tc:minecartKrautt.name=Krauss-Maffei ML-4000
+item.tc:minecartBoxMotor.name=Box Motor
+item.tc:minecartHopper5201.name=5201 Cubic Foot Hopper
+item.tc:minecartHopper6260.name=6260 Cubic Foot Jumbo Hopper
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -861,6 +866,11 @@ entity.tc.Loco Electric ILMA.name=I.L.M.A
 entity.tc.Loco Electric ILMB.name=I.L.M.B
 entity.tc.Feve3300Front.name=Feve 3300 Engine
 entity.tc.Feve3300Rear.name=Feve 3300 Tail
+entity.tc.HH660.name=ALCo HH660/HH600
+entity.tc.krautt.name=Krauss-Maffei ML-4000
+entity.tc.boxmotor.name=Box Motor
+entity.tc.6260 Cu Foot Jumbo Hopper.name=6260 Cu Foot Jumbo Hopper
+entity.tc.5201 Cu Foot Hopper.name=5201 Cu Foot Hopper
 
 description.villager.profession.tc.station_chief=Station Chief
 

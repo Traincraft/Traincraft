@@ -780,7 +780,7 @@ public enum RenderEnum {
 	tenderStarClass(EntityTenderStarClass.class, new ModelStarClassTender(), "StarTender", false, new float[] { 0.0F, 0.15F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	passengerStarCarFat(EntityPassengerStarCarFat.class, new ModelStarCarFat(), "GWRClosed", false, new float[] { 0F, 0.15F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	passengerStarCarNotFat(EntityPassengerStarCarNotFat.class, new ModelStarCarNotFat(), "GWROpen", false, new float[] { 0F, 0.15F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
-	LightCrane(EntityLightCrane.class, new ModelLightCrane(),"LightCrane", false, new float[]{0F,0.15F, 0F}, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	LightCrane(EntityLightCrane.class, new ModelLightCrane(),"lightcrane2_", true, new float[]{0F,0.15F, 0F}, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	BR155(EntityLocoElectricBR155.class, new ModelBR155(), "BR155_", true, new float[] { -1.7F, 0.05F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "",0,null, "", null, 0, false),
 	Onion(EntityLocoOnion.class, new ModelOnion(), "Onion_", true, new float[] { -0.7F, 0.1F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "largesmoke", 20, new ArrayList<double[]>() {
 		{
@@ -951,7 +951,16 @@ public enum RenderEnum {
 	locoILMB(EntityLocoElectricILMB.class, new ModelILMB(), "ILMB", false, new float[] { 0.0F, 0.15F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	Feve3300Front(EntityLocoElectricFeve3300.class, new Modelfeve3300front(), "feve3300_", true, new float[] { -1.8F, 0.1F, 0.0F },   new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	Feve3300Rear(EntityPassengerFeve3300.class, new Modelfeve3300rear(), "feve3300_", true, new float[] { -0.0F, 0.1F, 0.0F },   new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
-	;
+	HH660( EntityLocoDieselBapHH660.class,  new ModelHH660(), "hh600_", true,new float[] {-1F, -0.1F, 0F},  new float[] { 0F, 180F, 180F }, null, "smoke", 4,  new ArrayList<double[]>() {
+		{
+			add(new double[]{2.0D, 1.35D, 0D});
+		}
+	}, "", null, 0, false),
+	Krautt(EntityLocoDieselBapKrautt.class,  new ModelKrautt(), "KM_ML4000_", true,new float[] {0F, 0.0F, 0F},  new float[] { 0F, 180F, 180F }, null, "smoke", 6,  new ArrayList<double[]>() {
+		{ }}, "", null, 0, false),
+	BoxMotor(EntityLocoElectricBoxMotor.class, new boxmotor(), "BoxMotorTexture", false, new float[] { -1.8F, 0.1F, 0.0F },   new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	Hopper5201(EntityFreightBapHopper5201.class, new ModelHopper5201(), "5201_", true, new float[] { -0F,0.0F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	Hopper6260(EntityFreightBapHopper6260.class, new ModelHopper6260(), "6260_", true, new float[] { -0F,0.0F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),;
 
 	private Class<? extends AbstractTrains> entityClass;
 	private ModelBase model;

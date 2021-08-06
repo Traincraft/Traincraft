@@ -133,4 +133,12 @@ public class ItemHandler {
 		}
 		return false;
 	}
+	/*private static boolean oreBlocks(ItemStack itemstack) {
+		for (String name: names){
+			If(OreDictionary.getOreID(itemstack).startsWith("ore")); {
+				return true;
+			}
+		}
+		return false;
+	}*/
 }

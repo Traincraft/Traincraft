@@ -72,6 +72,6 @@ public class EntityPassengerFeve3300 extends EntityRollingStock implements IPass
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return 2.4F;
+		return 2.35F;
 	}
 }
