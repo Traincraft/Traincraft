@@ -382,7 +382,7 @@ public class Model20600DOT111 extends ModelConverter //Same as Filename
 
 		flipAll();
 	}
-	Model70Truck bogie = new Model70Truck();
+	Model70TonTruck2 bogie = new Model70TonTruck2();
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
@@ -391,14 +391,13 @@ public class Model20600DOT111 extends ModelConverter //Same as Filename
 			bodyModel[i].render(f5);
 		}
 
-		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/70truck_Black.png"));
+		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/70Ton_Greyish.png"));
 
 		GL11.glPushMatrix();
-		GL11.glScalef(1,1,0.9f);
-		GL11.glTranslated(-1.25,0.6,-0.4);
+		GL11.glTranslated(-1.13,0.0,-0.0);
 		bogie.render(entity,f,f1,f2,f3,f4,f5);
 
-		GL11.glTranslated(2.25,0,0.03);
+		GL11.glTranslated(2.25,0,0.00);
 		bogie.render(entity,f,f1,f2,f3,f4,f5);
 		GL11.glPopMatrix();
 	}
@@ -408,4 +407,5 @@ public class Model20600DOT111 extends ModelConverter //Same as Filename
 	}
 
 	public ModelRendererTurbo Model20600DOT111[];
+	public float[] getTrans() { return new float[]{-0F, 0.15F, 0F}; }
 }

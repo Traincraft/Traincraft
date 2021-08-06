@@ -9,12 +9,14 @@
 
 package train.client.render.models; //Path where the model is located
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import tmt.ModelConverter;
 import tmt.ModelRendererTurbo;
 import tmt.Tessellator;
+import train.common.api.AbstractTrains;
 import train.common.library.Info;
 
 public class Modelhicube60foot extends ModelConverter //Same as Filename
@@ -53,14 +55,14 @@ public class Modelhicube60foot extends ModelConverter //Same as Filename
 		bodyModel[14] = new ModelRendererTurbo(this, 172, 230, textureX, textureY); // Box 40
 		bodyModel[15] = new ModelRendererTurbo(this, 181, 226, textureX, textureY); // Box 40
 		bodyModel[16] = new ModelRendererTurbo(this, 181, 230, textureX, textureY); // Box 40
-		bodyModel[17] = new ModelRendererTurbo(this, 36, 114, textureX, textureY); // Box 40 cul
-		bodyModel[18] = new ModelRendererTurbo(this, 58, 114, textureX, textureY); // Box 40 cul
-		bodyModel[19] = new ModelRendererTurbo(this, 25, 114, textureX, textureY); // Box 40 cul
-		bodyModel[20] = new ModelRendererTurbo(this, 25, 194, textureX, textureY); // Box 40 cul
-		bodyModel[21] = new ModelRendererTurbo(this, 36, 194, textureX, textureY); // Box 40 cul
-		bodyModel[22] = new ModelRendererTurbo(this, 47, 194, textureX, textureY); // Box 40 cul
-		bodyModel[23] = new ModelRendererTurbo(this, 47, 114, textureX, textureY); // Box 40 cul
-		bodyModel[24] = new ModelRendererTurbo(this, 58, 194, textureX, textureY); // Box 40 cul
+		bodyModel[17] = new ModelRendererTurbo(this, 36, 114, textureX, textureY, "cull"); // Box 40 cul
+		bodyModel[18] = new ModelRendererTurbo(this, 58, 114, textureX, textureY, "cull"); // Box 40 cul
+		bodyModel[19] = new ModelRendererTurbo(this, 25, 114, textureX, textureY, "cull"); // Box 40 cul
+		bodyModel[20] = new ModelRendererTurbo(this, 25, 194, textureX, textureY, "cull"); // Box 40 cul
+		bodyModel[21] = new ModelRendererTurbo(this, 36, 194, textureX, textureY, "cull"); // Box 40 cul
+		bodyModel[22] = new ModelRendererTurbo(this, 47, 194, textureX, textureY, "cull"); // Box 40 cul
+		bodyModel[23] = new ModelRendererTurbo(this, 47, 114, textureX, textureY, "cull"); // Box 40 cul
+		bodyModel[24] = new ModelRendererTurbo(this, 58, 194, textureX, textureY, "cull"); // Box 40 cul
 		bodyModel[25] = new ModelRendererTurbo(this, 198, 211, textureX, textureY); // Box 87
 		bodyModel[26] = new ModelRendererTurbo(this, 11, 196, textureX, textureY); // Box 87
 		bodyModel[27] = new ModelRendererTurbo(this, 2, 154, textureX, textureY); // Box 3
@@ -587,7 +589,7 @@ public class Modelhicube60foot extends ModelConverter //Same as Filename
 		bodyModel[136].addShapeBox(0F, 0F, 0F, 1, 0, 20, 0F,0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 136
 		bodyModel[136].setRotationPoint(42F, -8F, -10F);
 	}
-	Model70Truck bogie = new Model70Truck();
+	/*Model70Truck bogie = new Model70Truck();
 
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
@@ -607,5 +609,31 @@ public class Modelhicube60foot extends ModelConverter //Same as Filename
 		GL11.glTranslated(3.75,0,0.03);
 		bogie.render(entity,f,f1,f2,f3,f4,f5);
 		GL11.glPopMatrix();
+	}*/
+	Model70TonTruck2 bogie = new Model70TonTruck2();
+
+	@Override
+	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
+	{
+		for(int i = 0; i < 137; i++)
+			if (bodyModel[i].boxName != null && bodyModel[i].boxName.contains("cull")) {
+				GL11.glDisable(GL11.GL_CULL_FACE);
+				bodyModel[i].render(f5);
+				GL11.glEnable(GL11.GL_CULL_FACE);
+			} else {
+				bodyModel[i].render(f5);
+			}
+
+		if(entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor()==9){
+			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/70Ton_Greyish.png"));
+		} else {
+			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/70Ton_Black.png"));
+		}
+		GL11.glScalef(1,1,1f);
+		GL11.glTranslated(-1.9,-0.0,-0.0);
+		bogie.render(entity,f,f1,f2,f3,f4,f5);
+
+		GL11.glTranslated(3.75,-0.0,0.00);
+		bogie.render(entity,f,f1,f2,f3,f4,f5);
 	}
 }
