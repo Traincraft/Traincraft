@@ -17,6 +17,7 @@ import tmt.ModelConverter;
 import tmt.ModelRendererTurbo;
 import tmt.Tessellator;
 import train.client.render.models.loads.ModelBigLog;
+import train.client.render.models.loads.ModelMixedLogs;
 import train.common.api.AbstractTrains;
 import train.common.api.Freight;
 import train.common.library.Info;
@@ -233,6 +234,7 @@ public class ModelSkeletonLogCar extends ModelConverter //Same as Filename
 	}
 	ModelFrictionTruck bogie = new ModelFrictionTruck();
 	ModelBigLog load1 = new ModelBigLog();
+	ModelMixedLogs load2 = new ModelMixedLogs();
 
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
@@ -248,16 +250,24 @@ public class ModelSkeletonLogCar extends ModelConverter //Same as Filename
 		int cargo = ((Freight) entity).getAmmountOfCargo();
 			if(cargo>0) {
 				if(entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor()==8){
+					Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/loads/MixedLogs_Spruce.png"));
+					GL11.glPushMatrix();
+					GL11.glTranslated(-0f,-0.0,0.0);
+					load2.render(entity,f,f1,f2,f3,f4,f5);
+					GL11.glPopMatrix();
+				}else if(entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor()==7) {
 					Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/loads/BigLog_Spruce.png"));
-				}else if(entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor()==746753) {
-					Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/loads/wrappedwood_canfor.png"));
+					GL11.glPushMatrix();
+					GL11.glTranslated(-0f,-0.0,0.0);
+					load1.render(entity,f,f1,f2,f3,f4,f5);
+					GL11.glPopMatrix();
 				} else {
-					Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/loads/BigLog_Oak.png"));
+					Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/loads/MixedLogs_Redwood.png"));
+					GL11.glPushMatrix();
+					GL11.glTranslated(-0f,-0.0,0.0);
+					load2.render(entity,f,f1,f2,f3,f4,f5);
+					GL11.glPopMatrix();
 				}
-				GL11.glPushMatrix();
-				GL11.glTranslated(-0f,-0.0,0.0);
-				load1.render(entity,f,f1,f2,f3,f4,f5);
-				GL11.glPopMatrix();
 			}
 		if(entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor()==5465469){
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/70Ton_Greyish.png"));
