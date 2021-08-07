@@ -113,6 +113,7 @@ public class AssemblyTableRecipes {
 			for (ItemStack i : s1) {
 				for (ItemStack j : s2) {
 					cm.addRecipe(1, new ItemStack(i.getItem(), 6, OreDictionary.WILDCARD_VALUE), new ItemStack(ItemIDs.woodenBogie.item, 2), new ItemStack(ItemIDs.woodenFrame.item, 2), new ItemStack(Items.stick, 2), null, null, null, null, new ItemStack(j.getItem(), 1, OreDictionary.WILDCARD_VALUE), null, new ItemStack(ItemIDs.minecartWood.item, 1), 1);
+					cm.addRecipe(1, new ItemStack(i.getItem(), 6, OreDictionary.WILDCARD_VALUE), new ItemStack(ItemIDs.woodenBogie.item, 2), new ItemStack(ItemIDs.woodenFrame.item, 1), new ItemStack(Items.stick, 4), null, null, null, null, new ItemStack(j.getItem(), 2, OreDictionary.WILDCARD_VALUE), null, new ItemStack(ItemIDs.minecartSkeletonLogCar.item, 1), 1);
 				}
 				for (ItemStack iron : ingotIron) {
 					for (ItemStack dye : dyeGreen) {

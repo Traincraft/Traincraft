@@ -474,6 +474,7 @@ item.tc:minecartKrautt.name=Krauss-Maffei ML-4000
 item.tc:minecartBoxMotor.name=Box Motor
 item.tc:minecartHopper5201.name=5201 Cubic Foot Hopper
 item.tc:minecartHopper6260.name=6260 Cubic Foot Jumbo Hopper
+item.tc:minecartSkeletonLogCar.name=45' Skeleton Log Car
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -870,6 +871,7 @@ entity.tc.krautt.name=Krauss-Maffei ML-4000
 entity.tc.boxmotor.name=Box Motor
 entity.tc.6260 Cu Foot Jumbo Hopper.name=6260 Cu Foot Jumbo Hopper
 entity.tc.5201 Cu Foot Hopper.name=5201 Cu Foot Hopper
+entity.tc.Skeleton.name=45' Skeleton Log Car
 
 description.villager.profession.tc.station_chief=Station Chief
 

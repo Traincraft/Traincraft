@@ -432,6 +432,7 @@ public enum ItemIDs {
 	minecartBNSFGon("ItemRollingStock", "BNSFGondola", 3),
 	minecartHopper5201("ItemRollingStock", "Hopper5201", 4),
 	minecartHopper6260("ItemRollingStock", "Hopper6260", 5),
+	minecartSkeletonLogCar("ItemRollingStock", "Skeleton", 1),
 
 	minecartWVcaboose("ItemRollingStock", "wvcaboose",6),
 

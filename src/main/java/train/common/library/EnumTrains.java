@@ -384,6 +384,7 @@ public enum EnumTrains {
 	//BoxMotor("boxmotor", EntityLocoElectricBoxMotor.class, ItemIDs.minecartBoxMotor.item, "electric", 450, 85, 0, 35, 0,230, 1.4, 0.98, 0, null, 10,  -3.4, "Pack: TCM"),
 	Hopper5201("5201 Cu Foot Hopper", EntityFreightBapHopper5201.class, ItemIDs.minecartHopper5201.item, "freight", 4, TraincraftUtil.getBytesFromColors(new String[]{"Grey", "Cyan", "Black"}), 10, 36,"Pack: Bap"),
 	Hopper6260("6260 Cu Foot Jumbo Hopper", EntityFreightBapHopper6260.class, ItemIDs.minecartHopper6260.item, "freight", 6, TraincraftUtil.getBytesFromColors(new String[]{"Grey", "LightGrey"}), 10, 45,"Pack: Bap"),
+	Skeleton("Skeleton", EntityFreightBapSkeletonLogCar.class, ItemIDs.minecartSkeletonLogCar.item, "freight", 1.5, TraincraftUtil.getBytesFromColors(new String[]{"Black","Grey", "LightGrey"}), 18, 18, "Cargo: only Logs. Pack: Bap"),
 	;
 
 //String trainType,int MHP,int maxSpeed, double mass, int fuelConsumption, int waterConsumption, int heatingTime, double accelerationRate, double brakeRate, int tankCapacity, String[] colors,
