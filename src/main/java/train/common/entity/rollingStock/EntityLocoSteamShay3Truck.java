@@ -13,9 +13,9 @@ import train.common.api.SteamTrain;
 import train.common.library.EnumTrains;
 import train.common.library.GuiIDs;
 
-public class EntityLocoSteamVBShay2 extends SteamTrain {
-	public EntityLocoSteamVBShay2(World world) {
-		super(world, EnumTrains.VBShay.getTankCapacity(), LiquidManager.WATER_FILTER);
+public class EntityLocoSteamShay3Truck extends SteamTrain {
+	public EntityLocoSteamShay3Truck(World world) {
+		super(world, EnumTrains.Shay3Truck.getTankCapacity(), LiquidManager.WATER_FILTER);
 		initLocoSteam();
 	}
 
@@ -24,7 +24,7 @@ public class EntityLocoSteamVBShay2 extends SteamTrain {
 		locoInvent = new ItemStack[inventorySize];
 	}
 
-	public EntityLocoSteamVBShay2(World world, double d, double d1, double d2) {
+	public EntityLocoSteamShay3Truck(World world, double d, double d1, double d2) {
 		this(world);
 		setPosition(d, d1 + (double) yOffset, d2);
 		motionX = 0.0D;
@@ -38,7 +38,7 @@ public class EntityLocoSteamVBShay2 extends SteamTrain {
 	@Override
 	public void updateRiderPosition() {
 		if(riddenByEntity==null){return;}
-		riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset()+0.4F, posZ);// default
+		riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset()+0.0F, posZ);// default
 	}
 
 	@Override
@@ -103,7 +103,7 @@ public class EntityLocoSteamVBShay2 extends SteamTrain {
 
 	@Override
 	public String getInventoryName() {
-		return "2 Truck Vertical Boiler Shay";
+		return "Class 3-PC-13 3-Truck Shay";
 	}
 
 	@Override
@@ -123,7 +123,7 @@ public class EntityLocoSteamVBShay2 extends SteamTrain {
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return 1.5F;
+		return 0.7F;
 	}
 
 	@Override

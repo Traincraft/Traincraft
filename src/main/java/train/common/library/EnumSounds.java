@@ -137,8 +137,9 @@ public enum EnumSounds {
 	SteamPE(EntityLocoSteamPELoco.class, "pe_chime", 0.8F, "pe_run", 0.2F, 20, "pe_idle", 0.2F, 20, true),
 	SteamVBShay(EntityLocoSteamVBShay2.class, "crosby_3chime", 0.8F, "steam_run", 0.2F, 20, "steam_run", 0.2F, 20, true),
 	SteamSkook(EntityLocoSteamSkook.class,"skookum_whistle", 1F, "steam_run", 0.2F, 20, "steam_run", 0.2F, 20, true),
+	SteamShay3Truck(EntityLocoSteamShay3Truck.class, "lukenhimer_3chime", 1F, "steam_run", 0.2F, 20, "steam_run", 0.2F, 20, true),
 
-			//Storage (Touch When Needed)
+	//Storage (Touch When Needed)
 	/*DieselHH600(com.jcirmodelsquad.tcjcir.vehicles.locomotives.DieselHH660.class,"leslie_a200", 2.5F, "ALCO_6_531_Notch8", 0.7F, 40, "ALCO_6_531_Notch8", 0.7F, 60, false ),
 	DieselBeep(com.jcirmodelsquad.tcjcir.vehicles.locomotives.DieselBeep.class,"leslie_s3lr", 2.5F, "EMD_16_567BC_Idle", 0.7F, 40, "EMD_16_567BC_Notch8", 0.7F, 60, false ),
 	DieselAlcoS2(com.jcirmodelsquad.tcjcir.vehicles.locomotives.DieselAlcoS2.class, "leslie_a200", 1F, "ALCO_6_539T_Notch8", 0.50F, 40, "ALCO_6_539T_Idle", 0.65F, 40, true),

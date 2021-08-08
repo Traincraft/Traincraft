@@ -359,8 +359,10 @@ public enum ItemIDs {
 	minecartGarrattFront("ItemRollingStock", "GarrattFrontIcon", 3),
 	minecartGarrattMid("ItemRollingStock", "GarrattMidIcon", 3),
 	minecartGarrattBack("ItemRollingStock", "GarrattRearIcon", 3),
-	minecartSkook("ItemRollingStock", "skookum", 14),
+	minecartSkook("ItemRollingStock", "skookum", 5),
 	minecartSkookTender("ItemRollingStock", "skookum_tender", 4),
+	minecartShay3Truck("ItemRollingStock", "3TruckShay", 5),
+	minecartShay3TruckTender("ItemRollingStock", "3TruckShayTender", 4),
 
 	minecartLocoRenfe446Motor("ItemRollingStock", "446_motor_icon", 3),
 	minecartPassengerRenfe446Coach("ItemRollingStock", "446_middle_icon", 3),

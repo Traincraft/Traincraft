@@ -2,29 +2,35 @@ package train.common.entity.rollingStock;
 
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.fluids.FluidRegistry;
 import train.common.Traincraft;
 import train.common.api.LiquidManager;
-import train.common.api.SteamTrain;
+import train.common.api.Tender;
 import train.common.library.EnumTrains;
 import train.common.library.GuiIDs;
 
-public class EntityLocoSteamVBShay2 extends SteamTrain {
-	public EntityLocoSteamVBShay2(World world) {
-		super(world, EnumTrains.VBShay.getTankCapacity(), LiquidManager.WATER_FILTER);
-		initLocoSteam();
+public class EntityTenderShay3Truck extends Tender implements IInventory {
+
+	public int freightInventorySize;
+	EntityPlayer playerEntity;
+
+	public EntityTenderShay3Truck(World world) {
+		super(world, FluidRegistry.WATER, 0, EnumTrains.Shay3TruckTender.getTankCapacity(), LiquidManager.WATER_FILTER);
+		initFreightTender();
 	}
 
-	public void initLocoSteam() {
-		fuelTrain = 0;
-		locoInvent = new ItemStack[inventorySize];
+	public void initFreightTender() {
+		freightInventorySize = 16;
+		tenderItems = new ItemStack[freightInventorySize];
 	}
 
-	public EntityLocoSteamVBShay2(World world, double d, double d1, double d2) {
+	public EntityTenderShay3Truck(World world, double d, double d1, double d2) {
 		this(world);
 		setPosition(d, d1 + (double) yOffset, d2);
 		motionX = 0.0D;
@@ -36,44 +42,27 @@ public class EntityLocoSteamVBShay2 extends SteamTrain {
 	}
 
 	@Override
-	public void updateRiderPosition() {
-		if(riddenByEntity==null){return;}
-		riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset()+0.4F, posZ);// default
-	}
-
-	@Override
 	public void setDead() {
 		super.setDead();
 		isDead = true;
 	}
 
 	@Override
-	public void pressKey(int i) {
-		if (i == 7 && riddenByEntity instanceof EntityPlayer) {
-			((EntityPlayer) riddenByEntity).openGui(Traincraft.instance, GuiIDs.LOCO, worldObj, (int) this.posX, (int) this.posY, (int) this.posZ);
-		}
-	}
-
-	@Override
 	public void onUpdate() {
 		super.onUpdate();
-		if (worldObj.isRemote) {
-			return;
-		}
-		checkInvent(locoInvent[0], locoInvent[1], this);
+		checkInvent(tenderItems[0], this);
 	}
 
 	@Override
 	protected void writeEntityToNBT(NBTTagCompound nbttagcompound) {
 		super.writeEntityToNBT(nbttagcompound);
 
-		nbttagcompound.setShort("fuelTrain", (short) fuelTrain);
 		NBTTagList nbttaglist = new NBTTagList();
-		for (int i = 0; i < locoInvent.length; i++) {
-			if (locoInvent[i] != null) {
+		for (int i = 0; i < tenderItems.length; i++) {
+			if (tenderItems[i] != null) {
 				NBTTagCompound nbttagcompound1 = new NBTTagCompound();
 				nbttagcompound1.setByte("Slot", (byte) i);
-				locoInvent[i].writeToNBT(nbttagcompound1);
+				tenderItems[i].writeToNBT(nbttagcompound1);
 				nbttaglist.appendTag(nbttagcompound1);
 			}
 		}
@@ -84,26 +73,24 @@ public class EntityLocoSteamVBShay2 extends SteamTrain {
 	protected void readEntityFromNBT(NBTTagCompound nbttagcompound) {
 		super.readEntityFromNBT(nbttagcompound);
 
-		fuelTrain = nbttagcompound.getShort("fuelTrain");
 		NBTTagList nbttaglist = nbttagcompound.getTagList("Items", Constants.NBT.TAG_COMPOUND);
-		locoInvent = new ItemStack[getSizeInventory()];
+		tenderItems = new ItemStack[getSizeInventory()];
 		for (int i = 0; i < nbttaglist.tagCount(); i++) {
 			NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
 			int j = nbttagcompound1.getByte("Slot") & 0xff;
-			if (j >= 0 && j < locoInvent.length) {
-				locoInvent[j] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
+			if (j >= 0 && j < tenderItems.length) {
+				tenderItems[j] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
 			}
 		}
+	}
+	@Override
+	public String getInventoryName() {
+		return "Class 3-PC-13 3-Truck Shay Tender";
 	}
 
 	@Override
 	public int getSizeInventory() {
-		return inventorySize;
-	}
-
-	@Override
-	public String getInventoryName() {
-		return "2 Truck Vertical Boiler Shay";
+		return freightInventorySize;
 	}
 
 	@Override
@@ -112,23 +99,14 @@ public class EntityLocoSteamVBShay2 extends SteamTrain {
 		if ((super.interactFirst(entityplayer))) {
 			return false;
 		}
-		if (!worldObj.isRemote) {
-			if (riddenByEntity != null && (riddenByEntity instanceof EntityPlayer) && riddenByEntity != entityplayer) {
-				return true;
-			}
-			entityplayer.mountEntity(this);
+		if (!this.worldObj.isRemote) {
+			entityplayer.openGui(Traincraft.instance, GuiIDs.TENDER, worldObj, this.getEntityId(), -1, (int) this.posZ);
 		}
 		return true;
 	}
-
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return 1.5F;
-	}
-
-	@Override
-	public boolean canBeAdjusted(EntityMinecart cart) {
-		return canBeAdjusted;
+		return 0.7F;
 	}
 
 	@Override

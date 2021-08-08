@@ -13,7 +13,7 @@ public enum EnumTrains {
 	/**
 	 * Passengers
 	 */
-	passengerCartBlue("Passenger Blue", EntityPassengerBlue.class, ItemIDs.minecartPassengerBlue.item, "passenger", 0, 0, 1, 0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[]{"Blue", "Red", "Green", "White", "Black", "Cyan", "Orange", "Grey", "LightGrey", "Brown", "Pink", "Purple", "Lime", "Magenta"}), 18, 0),
+	passengerCartBlue("Passenger Blue", EntityPassengerBlue.class, ItemIDs.minecartPassengerBlue.item, "passenger", 0, 0, 1, 0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[]{"Blue", "Red", "Green", "White", "Black", "Cyan", "Orange", "Grey", "LightGrey", "Brown", "Pink", "Purple", "Lime", "Magenta", "LightBlue"}), 18, 0),
 	passengerCartBlackSmall("Passenger Small Black", EntityPassenger2.class, ItemIDs.minecartPassenger2.item, "passenger", 0, 0, 0.5, 0, 0, 0, 0, 0, 0, null, 18, 0),
 	passengerLongGreen("Passenger Green Long", EntityPassenger5.class, ItemIDs.minecartPassenger5.item, "passenger", 0, 0, 1, 0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[]{"Green", "Yellow"}), 18, 0),
 	passengerShortGreen("Passenger Short Green", EntityPassenger7.class, ItemIDs.minecartPassenger7.item, "passenger", 0, 0, 1, 0, 0, 0, 0, 0, 0, null, 18, 0),
@@ -295,8 +295,8 @@ public enum EnumTrains {
 	passengerCD914("CD914 Driving Trailer", EntityPassengerCD914.class, ItemIDs.minecartCD914.item, "passenger", 0, 0, 1, 0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[]{"Blue", "Yellow"}), 10, 0, "Pack: Classic"),
 	locoCD810("CD810 Driving Motor", EntityLocoDieselCD810.class, ItemIDs.minecartCD810.item, "diesel", 207, 80, 0, 60, 0, 200, 0.8, 0.97, 6000, TraincraftUtil.getBytesFromColors(new String[]{"Blue", "Red"}), 10, -2.0, "Pack: Classic"),
 	passengerCD010("CD010 Trailer", EntityPassengerCD010.class, ItemIDs.minecartCD010.item, "passenger", 0, 0, 1, 0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[]{"Blue", "Red"}), 10, 0, "Pack: Classic"),
-	VBShay("2TruckVerticalBoilerShay", EntityLocoSteamVBShay2.class, ItemIDs.minecartVBShay2.item, "steam", 230,35,0,50,160,120,0.7,0.99,5000, null,15,-1.3, "Pack: ?"),
-	locoSteamClimax2("2TruckClimax", EntityLocoSteamClimaxNew.class, ItemIDs.minecartClimaxNew.item, "steam", 280,55,0,50,160,120,0.7,0.99,8000, null,15,-1.3, "Pack: ?"),
+	VBShay("2TruckVerticalBoilerShay", EntityLocoSteamVBShay2.class, ItemIDs.minecartVBShay2.item, "steam", 230,35,0,50,160,120,0.7,0.99,5000, null,15,-1.0, "Pack: ?"),
+	locoSteamClimax2("2TruckClimax", EntityLocoSteamClimaxNew.class, ItemIDs.minecartClimaxNew.item, "steam", 280,55,0,50,160,120,0.7,0.99,8000, null,15,-1.0, "Pack: ?"),
 	freightRoundHopper("Freight Round Covered Hopper", EntityFreightRoundHopper.class, ItemIDs.minecartRoundHopper.item, "freight", 3, TraincraftUtil.getBytesFromColors(new String[]{"Red", "Black", "White", "LightGrey"}), 18, 36,"Cargo: any. Pack: Classic"),
 	freightRibbedHopper("Freight Ribbed Covered Hopper", EntityFreightRibbedHopper.class, ItemIDs.minecartRibbedHopper.item, "freight", 3, TraincraftUtil.getBytesFromColors(new String[]{"Grey", "Cyan", "LightGrey", "Red", "Brown", "White"}), 18, 36,"Cargo: any. Pack: Classic"),
 	locoDieselBR07("BR07", EntityLocoDieselBR07.class, ItemIDs.minecartLocoBR07.item, "diesel", 275, 44, 0, 55, 0, 160, 0.6, 0.890, 4000, null, 10, -3.0, "Pack: Modern"),
@@ -385,6 +385,8 @@ public enum EnumTrains {
 	Hopper5201("5201 Cu Foot Hopper", EntityFreightBapHopper5201.class, ItemIDs.minecartHopper5201.item, "freight", 4, TraincraftUtil.getBytesFromColors(new String[]{"Grey", "Cyan", "Black"}), 10, 36,"Pack: Bap"),
 	Hopper6260("6260 Cu Foot Jumbo Hopper", EntityFreightBapHopper6260.class, ItemIDs.minecartHopper6260.item, "freight", 6, TraincraftUtil.getBytesFromColors(new String[]{"Grey", "LightGrey"}), 10, 45,"Pack: Bap"),
 	Skeleton("Skeleton", EntityFreightBapSkeletonLogCar.class, ItemIDs.minecartSkeletonLogCar.item, "freight", 1.5, TraincraftUtil.getBytesFromColors(new String[]{"Black","Grey", "LightGrey"}), 18, 18, "Cargo: only Logs. Pack: Bap"),
+	Shay3Truck("3 Truck Shay", EntityLocoSteamShay3Truck.class, ItemIDs.minecartShay3Truck.item, "steam", 438, 35, 0, 75, 75, 190, 0.8, 0.91, 4000, TraincraftUtil.getBytesFromColors(new String[] {"Black", "Grey", "White"}), 10, -1.7, "Pack: Bap"),
+	Shay3TruckTender("3 Truck Shay Tender", EntityTenderShay3Truck.class, ItemIDs.minecartShay3TruckTender.item,"tender",0,0,2,0,0,0,0,0,15000,TraincraftUtil.getBytesFromColors(new String[] {"Black", "Grey", "White"}),18,0,"Water capacity: 15000mb. Pack: Bap"),
 	;
 
 //String trainType,int MHP,int maxSpeed, double mass, int fuelConsumption, int waterConsumption, int heatingTime, double accelerationRate, double brakeRate, int tankCapacity, String[] colors,

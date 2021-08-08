@@ -962,6 +962,17 @@ public enum RenderEnum {
 	Hopper5201(EntityFreightBapHopper5201.class, new ModelHopper5201(), "5201_", true, new float[] { -0F,0.0F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	Hopper6260(EntityFreightBapHopper6260.class, new ModelHopper6260(), "6260_", true, new float[] { -0F,0.0F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	Skeleton(EntityFreightBapSkeletonLogCar.class, new ModelSkeletonLogCar(), "SkeletonLogCar_", true, new float[] { 0.0F, -0.0F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	Shay3Truck(EntityLocoSteamShay3Truck.class,  new ModelShay3Truck(), "3truckShay_", true,new float[] {0F, 0.0F, 0F},  new float[] { 0F, 180F, 180F }, null, "largesmoke", 4,  new ArrayList<double[]>() {
+		{
+			add(new double[] { 2.15D, 1.3D, -0.17D });//1.1D
+		}
+	}, "explode", new ArrayList<double[]>() {
+		{
+			add(new double[] { 0.9D, -0.4D, 0.6D });
+			//add(new double[] { 0.6D, 1.1D, 0.0D });
+		}
+	}, 2, true),
+	Shay3TruckTender(EntityTenderShay3Truck.class, new ModelShay3TruckTender(), "3truckShay_", true, new float[] { 0.0F, 0.0F, 0.0F }, new float[] { 0F, 0F, 180F }, null, "", 0, null, "", null, 0, false),
 	;
 
 	private Class<? extends AbstractTrains> entityClass;

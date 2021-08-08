@@ -11,6 +11,7 @@ package train.client.render.models; //Path where the model is located
 
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import tmt.ModelConverter;
@@ -21,6 +22,9 @@ import train.client.render.models.loads.ModelMixedLogs;
 import train.common.api.AbstractTrains;
 import train.common.api.Freight;
 import train.common.library.Info;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class ModelSkeletonLogCar extends ModelConverter //Same as Filename
 {
@@ -236,9 +240,16 @@ public class ModelSkeletonLogCar extends ModelConverter //Same as Filename
 	ModelBigLog load1 = new ModelBigLog();
 	ModelMixedLogs load2 = new ModelMixedLogs();
 
+	List<String> redwoods = Arrays.asList(new String[]{"tile.logs3.redwoodWood", "anotherKindofRedwood"});
+
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
+		if (!(entity instanceof Freight)) {
+			return;
+		}
+
+		Freight freight = (Freight)entity;
 		for(int i = 0; i < 45; i++)
 			if (bodyModel[i].boxName != null && bodyModel[i].boxName.contains("cull")) {
 				GL11.glDisable(GL11.GL_CULL_FACE);
@@ -247,15 +258,47 @@ public class ModelSkeletonLogCar extends ModelConverter //Same as Filename
 			} else {
 				bodyModel[i].render(f5);
 			}
-		int cargo = ((Freight) entity).getAmmountOfCargo();
-			if(cargo>0) {
-				if(entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor()==8){
+
+		if(freight.getAmmountOfCargo() > 0) {
+			for (ItemStack item : freight.cargoItems) {
+
+				if (item!=null && redwoods.contains(item.getUnlocalizedName())) {
+					Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/loads/MixedLogs_Redwood.png"));
+					GL11.glPushMatrix();
+					GL11.glTranslated(-0f,-0.0,0.0);
+					load2.render(entity,f,f1,f2,f3,f4,f5);
+					GL11.glPopMatrix();
+					break;
+				}else if(item!=null && (item.getUnlocalizedName().equals("tile.log.spruce"))){
 					Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/loads/MixedLogs_Spruce.png"));
 					GL11.glPushMatrix();
 					GL11.glTranslated(-0f,-0.0,0.0);
 					load2.render(entity,f,f1,f2,f3,f4,f5);
 					GL11.glPopMatrix();
-				}else if(entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor()==7) {
+					break;
+				}else if(item!=null && (item.getUnlocalizedName().equals("tile.log.birch"))){
+					Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/loads/MixedLogs_Birch.png"));
+					GL11.glPushMatrix();
+					GL11.glTranslated(-0f,-0.0,0.0);
+					load2.render(entity,f,f1,f2,f3,f4,f5);
+					GL11.glPopMatrix();
+					break;
+				}else{
+					Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/loads/MixedLogs_Oak.png"));
+					GL11.glPushMatrix();
+					GL11.glTranslated(-0f, -0.0, 0.0);
+					load2.render(entity, f, f1, f2, f3, f4, f5);
+					GL11.glPopMatrix();
+					break;
+				}
+			}
+				/*if (freight.getColor() == 8) {
+					Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/loads/MixedLogs_Spruce.png"));
+					GL11.glPushMatrix();
+					GL11.glTranslated(-0f,-0.0,0.0);
+					load2.render(entity,f,f1,f2,f3,f4,f5);
+					GL11.glPopMatrix();
+				} else if(freight.getColor() == 7) {
 					Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/loads/BigLog_Spruce.png"));
 					GL11.glPushMatrix();
 					GL11.glTranslated(-0f,-0.0,0.0);
@@ -267,9 +310,9 @@ public class ModelSkeletonLogCar extends ModelConverter //Same as Filename
 					GL11.glTranslated(-0f,-0.0,0.0);
 					load2.render(entity,f,f1,f2,f3,f4,f5);
 					GL11.glPopMatrix();
-				}
-			}
-		if(entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor()==5465469){
+				}*/
+		}
+		if(freight.getColor() == 5465469){
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/70Ton_Greyish.png"));
 		} else {
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/FrictionTruck_Greyish.png"));
