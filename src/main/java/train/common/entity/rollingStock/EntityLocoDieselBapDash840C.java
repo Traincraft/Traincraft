@@ -13,13 +13,13 @@ import train.common.api.LiquidManager;
 import train.common.library.EnumTrains;
 import train.common.library.GuiIDs;
 
-public class EntityLocoDieselBapDash840B extends DieselTrain {
-    public EntityLocoDieselBapDash840B(World world) {
-        super(world, EnumTrains.Dash840B.getTankCapacity(), LiquidManager.dieselFilter());
+public class EntityLocoDieselBapDash840C extends DieselTrain {
+    public EntityLocoDieselBapDash840C(World world) {
+        super(world, EnumTrains.U23B.getTankCapacity(), LiquidManager.dieselFilter());
         initLoco();
 
     }
-    public EntityLocoDieselBapDash840B(World world, double d, double d1, double d2){
+    public EntityLocoDieselBapDash840C(World world, double d, double d1, double d2){
         this(world);
         setPosition(d, d1 + yOffset, d2);
         motionX = 0.0D;
@@ -132,7 +132,7 @@ public class EntityLocoDieselBapDash840B extends DieselTrain {
 
     @Override
     public String getInventoryName() {
-        return "GE Dash 8-40B";
+        return "GE Dash 8-40C";
     }
 
     @Override

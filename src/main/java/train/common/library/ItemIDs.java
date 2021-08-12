@@ -346,7 +346,8 @@ public enum ItemIDs {
 	minecartU18B("ItemRollingStock", "U18B", 3),
 	minecartHH660("ItemRollingStock", "hh660", 2),
 	minecartKrautt("ItemRollingStock", "ML4000", 5),
-	minecartDash840B("ItemRollingStock", "b40-8", 4),
+	minecartDash840B("ItemRollingStock", "B40-8", 4),
+	minecartDash840C("ItemRollingStock", "C40-8", 4),
 	minecartClass44("ItemRollingStock", "Class44Icon", 4),
 	minecartSW1("ItemRollingStock","sw1", 2),
 	minecartSW1500("ItemRollingStock", "sw1500", 4),
@@ -413,6 +414,7 @@ public enum ItemIDs {
 	minecartILMB("ItemRollingStock", "I.L.M.B", 2),
 	//minecartBoxMotor("ItemRollingStock", "BoxMotor", 4),
 	minecartEU07("ItemRollingStock", "EU07Icon", 2),
+	minecartGM6C("ItemRollingStock", "GM6C_icon", 5),
 
 	minecartRoundHopper("ItemRollingStock", "train_RoundHopper", 2),
 	minecartRibbedHopper("ItemRollingStock", "train_ribbed_hopper", 2),

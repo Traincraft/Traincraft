@@ -482,6 +482,8 @@ item.tc:minecartClass44.name=BR Class 44
 item.tc:minecartEU07.name=PKP EU07
 item.tc:minecartSW1.name=EMD SW1
 item.tc:minecartSW1500.name=EMD SW1500
+item.tc:minecartGM6C.name=EMD GM6C
+item.tc:minecartDash840C.name=GE Dash 8-40C
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -885,6 +887,9 @@ entity.tc.Class 44.name=BR Class 44
 entity.tc.EU07.name=PKP EU07
 entity.tc.SW1.name=EMD SW1
 entity.tc.SW1500.name=EMD SW1500
+entity.tc.GM6C.name=EMD GM6C
+entity.tc.Dash840B.name=GE Dash 8-40B
+entity.tc.Dash840C.name=GE Dash 8-40C
 
 description.villager.profession.tc.station_chief=Station Chief
 

@@ -983,6 +983,7 @@ public enum RenderEnum {
 	EU07(EntityLocoElectricEU07.class, new EU07Modernised(), "EU07_", true, new float[] { -0F, 0.00F, 0.0F }, new float[] { 0F, 0F, 180F }, new float[]{0.9f,0.9f,0.9f}, "",0,null, "", null, 0, false),
 	SW1( EntityLocoDieselBapSW1.class,  new ModelSW1(), "sw1_", true,new float[] {-0.0F, 0.0F, 0F},  new float[] { 0F, 180F, 180F }, null, "smoke", 3,  new ArrayList<double[]>() {{ }}, "", null, 0, false),
 	SW1500( EntityLocoDieselBapSW1500.class,  new ModelSW1500(), "sw1500_", true,new float[] {-0.0F, 0.0F, 0F},  new float[] { 0F, 180F, 180F }, null, "smoke", 3,  new ArrayList<double[]>() {{ }}, "", null, 0, false),
+	GM6C(EntityLocoElectricBapGM6C.class,  new ModelGM6C(), "GM6C_demo", false,new float[] {-0.0F, 0.0F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	;
 
 	private Class<? extends AbstractTrains> entityClass;
