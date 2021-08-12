@@ -110,6 +110,8 @@ public enum EnumSounds {
 	ElectricRenfe450Motor(EntityLocoElectricRenfe450Motor.class, "446Horn", 0.8F, "vl10_idle", 0.6F, 50, "vl10_idle", 0.6F, 50, false),
 	SteamC11(EntityLocoSteamC11.class, "class62_horn", 0.6F, "steam_run", 0.4F, 20, "steam_run", 0.4F, 20, true),
 	SteamStarClass(EntityLocoSteamStarClass.class, "adler_whistle", 0.8F, "adler_run", 0.2F, 20, "adler_run", 0.2F, 20, true),
+	DieselClass44(EntityLocoDieselClass44.class, "british_two_tone", 0.8F, "vl10_idle", 0.65F, 40, "vl10_idle", 0.65F, 40, false),
+
 
 	//American Stuff
 	DieselB23(EntityLocoDieselBapB23.class, "nathan_m3h", 2.5F, "GE_7FDL_12_Notch8", 0.65F, 40, "GE_7FDL_12_Idle", 0.65F, 50, true),

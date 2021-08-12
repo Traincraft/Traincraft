@@ -346,6 +346,10 @@ public enum ItemIDs {
 	minecartU18B("ItemRollingStock", "U18B", 3),
 	minecartHH660("ItemRollingStock", "hh660", 2),
 	minecartKrautt("ItemRollingStock", "ML4000", 5),
+	minecartDash840B("ItemRollingStock", "b40-8", 4),
+	minecartClass44("ItemRollingStock", "Class44Icon", 4),
+	minecartSW1("ItemRollingStock","sw1", 2),
+	minecartSW1500("ItemRollingStock", "sw1500", 4),
 
 	minecartClimaxNew("ItemRollingStock", "train_climax2", 5),
 	minecartVBShay2("ItemRollingStock", "vbshay2", 5),
@@ -363,6 +367,7 @@ public enum ItemIDs {
 	minecartSkookTender("ItemRollingStock", "skookum_tender", 4),
 	minecartShay3Truck("ItemRollingStock", "3TruckShay", 5),
 	minecartShay3TruckTender("ItemRollingStock", "3TruckShayTender", 4),
+	//minecartSteamCrane("ItemRollingStock", "GarrattMidIcon", 3),
 
 	minecartLocoRenfe446Motor("ItemRollingStock", "446_motor_icon", 3),
 	minecartPassengerRenfe446Coach("ItemRollingStock", "446_middle_icon", 3),
@@ -407,6 +412,7 @@ public enum ItemIDs {
 	minecartILMA("ItemRollingStock", "I.L.MA_icon", 2),
 	minecartILMB("ItemRollingStock", "I.L.M.B", 2),
 	//minecartBoxMotor("ItemRollingStock", "BoxMotor", 4),
+	minecartEU07("ItemRollingStock", "EU07Icon", 2),
 
 	minecartRoundHopper("ItemRollingStock", "train_RoundHopper", 2),
 	minecartRibbedHopper("ItemRollingStock", "train_ribbed_hopper", 2),

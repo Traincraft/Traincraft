@@ -72,6 +72,6 @@ public class EntityPassengerPCH120Coach extends EntityRollingStock implements IP
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return 2.2F;
+		return 2.0F;
 	}
 }

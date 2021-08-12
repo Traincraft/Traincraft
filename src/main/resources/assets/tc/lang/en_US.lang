@@ -477,6 +477,11 @@ item.tc:minecartHopper6260.name=6260 Cubic Foot Jumbo Hopper
 item.tc:minecartSkeletonLogCar.name=45' Skeleton Log Car
 item.tc:minecartShay3Truck.name=Class 3-PC-13 3-Truck Shay
 item.tc:minecartShay3TruckTender.name=Class 3-PC-13 3-Truck Shay Tender
+item.tc:minecartDash840B.name=GE Dash 8-40B
+item.tc:minecartClass44.name=BR Class 44
+item.tc:minecartEU07.name=PKP EU07
+item.tc:minecartSW1.name=EMD SW1
+item.tc:minecartSW1500.name=EMD SW1500
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -810,7 +815,7 @@ entity.tc.73centerbeam.name=73' Center Beam
 entity.tc.PS140.name=Pullman Standard 40' Boxcar
 entity.tc.PS150.name=Pullman Standard 50' Boxcar
 entity.tc.PS160.name=Pullman Standard 60' Boxcar
-enitiy.tc.WVcaboose.name=International Car Co. Wide Vision Caboose
+entity.tc.WVcaboose.name=International Car Co. Wide Vision Caboose
 entity.tc.OWO 60 Verticube.name=OWO 60' Verticube Boxcar
 entity.tc.PEcoach.name=Polar Express Coach
 entity.tc.PEobserve.name=Polar Express Observation
@@ -876,6 +881,10 @@ entity.tc.5201 Cu Foot Hopper.name=5201 Cu Foot Hopper
 entity.tc.Skeleton.name=45' Skeleton Log Car
 entity.tc.3 Truck Shay.name=Class 3-PC-13 3-Truck Shay
 entity.tc.3 Truck Shay Tender.name=Class 3-PC-13 3-Truck Shay Tender
+entity.tc.Class 44.name=BR Class 44
+entity.tc.EU07.name=PKP EU07
+entity.tc.SW1.name=EMD SW1
+entity.tc.SW1500.name=EMD SW1500
 
 description.villager.profession.tc.station_chief=Station Chief
 

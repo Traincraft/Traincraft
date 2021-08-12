@@ -713,7 +713,7 @@ public enum RenderEnum {
 	}, "", null, 0, false),
 	locoC11(EntityLocoSteamC11.class, new ModellocoC11(), "locoC11", false, new float[] {  -1.5F, 0.2F, 0.0F }, new float[] { 0, 180, 180 }, null, "largesmoke", 5, new ArrayList<double[]>() {
 		{
-			add(new double[] { 3.05D, 1.35D, 0D });
+			add(new double[] { 3.05D, 1.25D, 0D });
 		}
 	}, "explode", new ArrayList<double[]>() {
 		{
@@ -973,6 +973,16 @@ public enum RenderEnum {
 		}
 	}, 2, true),
 	Shay3TruckTender(EntityTenderShay3Truck.class, new ModelShay3TruckTender(), "3truckShay_", true, new float[] { 0.0F, 0.0F, 0.0F }, new float[] { 0F, 0F, 180F }, null, "", 0, null, "", null, 0, false),
+	Dash840B( EntityLocoDieselBapDash840B.class,  new ModelDash840B(), "dash8_40b_", true,new float[] {-0F, -0.0F, 0F},  null, null, "smoke", 4,  new ArrayList<double[]>() {
+		{ }}, "", null, 0, false),
+	Class44(EntityLocoDieselClass44.class, new ModelClass44(), "Class44_", true, new float[] { 0F, 0.0F, 0.0F },  new float[] { 0F, 90F, 180F }, null, "largesmoke", 1, new ArrayList<double[]>() {
+		{
+			add(new double[]{2.3D, 1.6D, 0D});
+		}
+	}, "", null, 0, false),
+	EU07(EntityLocoElectricEU07.class, new EU07Modernised(), "EU07_", true, new float[] { -0F, 0.00F, 0.0F }, new float[] { 0F, 0F, 180F }, new float[]{0.9f,0.9f,0.9f}, "",0,null, "", null, 0, false),
+	SW1( EntityLocoDieselBapSW1.class,  new ModelSW1(), "sw1_", true,new float[] {-0.0F, 0.0F, 0F},  new float[] { 0F, 180F, 180F }, null, "smoke", 3,  new ArrayList<double[]>() {{ }}, "", null, 0, false),
+	SW1500( EntityLocoDieselBapSW1500.class,  new ModelSW1500(), "sw1500_", true,new float[] {-0.0F, 0.0F, 0F},  new float[] { 0F, 180F, 180F }, null, "smoke", 3,  new ArrayList<double[]>() {{ }}, "", null, 0, false),
 	;
 
 	private Class<? extends AbstractTrains> entityClass;
