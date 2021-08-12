@@ -1347,7 +1347,7 @@ public class ModelDash840B extends ModelConverter //Same as Filename
 	public ArrayList<double[]> getSmokePosition() {
 		return new ArrayList<double[]>() {
 			{
-				add(new double[]{1.6D, 1.35D, 0.0D});
+				add(new double[]{0.6D, 1.35D, 0.0D});
 			}
 		};
 	}
