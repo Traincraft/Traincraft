@@ -1683,10 +1683,10 @@ public class ModelSW1500 extends ModelConverter //Same as Filename
 		if (entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 13244) {
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/typeA_Silver.png"));
 			GL11.glPushMatrix();
-			GL11.glTranslated(-1.0F ,0.0F,0F);
+			GL11.glTranslated(-1.05, 0.33, 0);
 			theTrucks1.render(entity, f, f1, f2, f3, f4, f5);
 
-			GL11.glTranslated(2.0F,0.0F,0);
+			GL11.glTranslated(2.13, 0, 0);
 			theTrucks1.render(entity, f, f1, f2, f3, f4, f5);
 			GL11.glPopMatrix();
 
@@ -1702,10 +1702,10 @@ public class ModelSW1500 extends ModelConverter //Same as Filename
 		} else {
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/typeA_Black.png"));
 			GL11.glPushMatrix();
-			GL11.glTranslated(-1.0F ,0.0F,0F);
+			GL11.glTranslated(-1.05, 0.33, 0);
 			theTrucks1.render(entity, f, f1, f2, f3, f4, f5);
 
-			GL11.glTranslated(2.0F,0.0F,0);
+			GL11.glTranslated(2.13, 0, 0);
 			theTrucks1.render(entity, f, f1, f2, f3, f4, f5);
 			GL11.glPopMatrix();
 		}

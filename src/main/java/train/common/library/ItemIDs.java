@@ -351,6 +351,7 @@ public enum ItemIDs {
 	minecartClass44("ItemRollingStock", "Class44Icon", 4),
 	minecartSW1("ItemRollingStock","sw1", 2),
 	minecartSW1500("ItemRollingStock", "sw1500", 4),
+	minecartSW1200("ItemRollingStock","sw1200", 4),
 
 	minecartClimaxNew("ItemRollingStock", "train_climax2", 5),
 	minecartVBShay2("ItemRollingStock", "vbshay2", 5),
