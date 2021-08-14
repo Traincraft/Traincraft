@@ -485,6 +485,13 @@ item.tc:minecartSW1500.name=EMD SW1500
 item.tc:minecartGM6C.name=EMD GM6C
 item.tc:minecartDash840C.name=GE Dash 8-40C
 item.tc:minecartSW1200.name=EMD SW1200
+item.tc:minecartRSD15.name=ALCo RSD-15
+item.tc:minecartPS73Baggage.name=Pullman Standard 73' Baggage
+item.tc:minecartES44.name=GE ES44
+item.tc:minecartSD70Mac.name=EMD SD70Mac
+item.tc:minecartDash9_44CW.name=GE Dash 9-44CW
+item.tc:minecartDash840BB.name=GE Dash 8-40BB
+item.tc:minecartDash840BW.name=GE Dash 8-40BW
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -892,10 +899,17 @@ entity.tc.GM6C.name=EMD GM6C
 entity.tc.Dash840B.name=GE Dash 8-40B
 entity.tc.Dash840C.name=GE Dash 8-40C
 entity.tc.SW1200.name=EMD SW1200
+entity.tc.RSD15.name=ALCo RSD-15
+entity.tc.Freight PS 73 Baggage.name=Pullman Standard 73' Baggage
+entity.tc.ES44.name=GE ES44
+entity.tc.SD70Mac.name=EMD SD70Mac
+entity.tc.Dash9_44CW.name=GE Dash 9-44CW
+entity.tc.Dash840BW.name=GE Dash 8-40BW
+entity.tc.Dash840BB.name=GE Dash 8-40BB
 
 description.villager.profession.tc.station_chief=Station Chief
 
-key.categories.traincraft=Traincraft
+key.categories.traincraft=Traincraft-CE
 key.traincraft.horn=Horn
 key.traincraft.inventory=Inventory
 key.traincraft.up=Up
