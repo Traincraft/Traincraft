@@ -466,6 +466,8 @@ public enum ItemIDs {
 	minecartWVcaboose("ItemRollingStock", "wvcaboose",6),
 
 	//signalSpanish("ItemsignalSpanish","signalSpanish", 1),
+
+	tcRailVeryLargeSwitch("ItemTCRail","item_rail_tc_very_large_switch",1),
 	;
 
 	public Item item;
