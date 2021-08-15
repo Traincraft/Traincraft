@@ -495,6 +495,14 @@ item.tc:minecartDash840BB.name=GE Dash 8-40BB
 item.tc:minecartDash840BW.name=GE Dash 8-40BW
 item.tc:minecartReefer64.name=Trinity 64' Mechanical Reefer
 item.tc:minecartDH643.name=ALCo DH643
+item.tc:minecartNRE3gs21b.name=NRE 3GS21B Genset
+item.tc:minecartGP38dash9W.name= MT&S GP38-9W
+item.tc:minecartBeep.name=ATSF SWBLW (The Beep)
+item.tc:minecartCF7.name=EMD CF7 Anglecab
+item.tc:minecartCF7round.name=EMD CF7 Roundcab
+item.tc:minecartAlcoS2.name=ALCo S2
+item.tc:minecartClass158engine.name=Class 158 Engine
+item.tc:minecartClass158car.name=Class 158 Coach
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -526,9 +534,9 @@ achievement.tc:freight.desc=More space!
 achievement.tc:fineCopperWire=Fine wires
 achievement.tc:fineCopperWire.desc=Wire the world!
 achievement.tc:dieselEngine=Diesel engine
-achievement.tc:dieselEngine.desc=More horse power!
+achievement.tc:dieselEngine.desc=More horsepower!
 achievement.tc:stake=Stake
-achievement.tc:stake.desc=Lets build trains!
+achievement.tc:stake.desc=Hook 'em up!
 achievement.tc:firebox=Firebox
 achievement.tc:firebox.desc=A new fireplace!
 achievement.tc:zeppelin=Zeppelin
@@ -912,6 +920,13 @@ entity.tc.Dash840BW.name=GE Dash 8-40BW
 entity.tc.Dash840BB.name=GE Dash 8-40BB
 entity.tc.Reefer64.name=Trinity 64' Mechanical Reefer
 entity.tc.DH643.name=ALCo DH643
+entity.tc.NRE3gs21b.name=NRE 3GS21B Genset
+entity.tc.Beep.name=ATSF SWBLW (The Beep)
+entity.tc.CF7.name=EMD CF7 Anglecab
+entity.tc.CF7round.name=EMD CF7 Roundcab
+entity.tc.Alco S2.name=ALCo S2
+entity.tc.Class 158 Engine.name=Class 158
+entity.tc.Class 158 Passenger Car.name=Class 158
 
 description.villager.profession.tc.station_chief=Station Chief
 

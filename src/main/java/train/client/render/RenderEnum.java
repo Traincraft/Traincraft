@@ -1013,6 +1013,42 @@ public enum RenderEnum {
 	PSBaggage85(EntityFreightPS85Baggage.class, new ModelPS85Baggage(), "PS_lightweight_85_baggage_", true, new float[] { 0F, 0.15F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	Reefer64(EntityFreightBapReefer64Foot.class, new ModelReefer64Foot(),"reefer_64_", true, new float[]{0F, 0.155F, 0F}, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	DH643( EntityLocoDieselBapDH643.class,  new ModelDH643(), "alco_dh423_not_dumb", false,new float[] {-0.0F, 0.0F, 0F},  new float[] { 0F, 180F, 180F }, null, "smoke", 6,  new ArrayList<double[]>() {{ }}, "", null, 0, false),
+	CF7( EntityLocoDieselBapCF7.class,  new ModelCF7Angle(), "cf7angle_", true,new float[] {-0F, -0.0F, 0F},  new float[] { 0F, 180F, 180F }, null, "smoke", 6,  new ArrayList<double[]>() {
+		{ }
+	}, "", null, 0, false),
+	CF7round( EntityLocoDieselBapCF7round.class,  new ModelCF7round(), "cf7round_", true,new float[] {-1.5F, -0.16F, 0F},  new float[] { 0F, 180F, 180F }, null, "smoke", 6,  new ArrayList<double[]>() {
+		{
+			add(new double[]{0.6D, 1.4D, 0.0D});
+			add(new double[]{1.1D, 1.4D, 0.0D});
+		}
+	}, "", null, 0, false),
+	alcoS2( EntityLocoDieselBapAlcoS2.class,  new ModelAlcoS2(), "alcos2_", true,new float[] {0f, 0f, 0f},  new float[] { 0F, 180F, 180F }, null, "smoke", 5,  new ArrayList<double[]>() {
+		{
+			add(new double[]{0.7D, 1.3D, -0.18D});
+		}
+	}, "", null, 0, false),
+	NRE3gs21b( EntityLocoDieselBapNRE3gs21b.class,  new ModelNRE3gs21b(), "3gs21b_", true,new float[] {-1.5F, 0.155F, 0F},  new float[] { 0F, 180F, 180F }, null, "smoke", 3,  new ArrayList<double[]>() {
+		{
+			add(new double[]{0.15D, 1.3D, 0.0D}); //farthest from cab
+			add(new double[]{1.05D, 1.3D, 0.0D}); //middle
+			add(new double[]{2.0D, 1.3D, 0.0D}); // closest to cab
+		}
+	}, "", null, 0, false),
+	Beep( EntityLocoDieselBapBeep.class,  new ModelBeep(), "atsfbeep", false,new float[] {-0F, 0.0F, 0F},  new float[] { 0F, 180F, 180F }, null, "smoke", 4,  new ArrayList<double[]>() {
+		{
+			add(new double[]{1.45D, 1.25D, 0.0D});
+			add(new double[]{1.65D, 1.25D, 0.0D});
+			add(new double[]{1.05D, 1.25D, 0.0D});
+			add(new double[]{1.25D, 1.25D, 0.0D});
+		}
+	}, "", null, 0, false),
+	GP38dash9W( EntityLocoDieselBapGP38dash9W.class,  new ModelGP38dash9W(), "GP38dash9W_Green", false,new float[] {-1.5F, 0.155F, 0F},  new float[] { 0F, 180F, 180F }, null, "smoke", 3,  new ArrayList<double[]>() {
+		{ }
+	}, "", null, 0, false),
+	class158motor(EntityLocoDieselClass158.class, new ModelClass158(), "Class_158_", true, new float[] { -1.9F, 0.15F, 0.0F },   new float[] { 0F, 180F, 180F }, null, "smoke", 2, new ArrayList<double[]>() {
+		{ }
+	}, "", null, 0, false),
+	class158car(EntityClass158Coach.class, new ModelClass158Middle(), "Class_158_Middle_", true, new float[] { -0.0F, 0.15F, 0.0F },   new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	;
 
 	private Class<? extends AbstractTrains> entityClass;
