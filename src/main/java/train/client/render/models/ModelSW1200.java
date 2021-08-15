@@ -1762,8 +1762,8 @@ public class ModelSW1200 extends ModelConverter //Same as Filename
 	public ArrayList<double[]> getSmokePosition() {
 		return new ArrayList<double[]>() {
 			{
-				add(new double[]{0.90D, 1.40D, 0.0D});
-				add(new double[]{1.65D, 1.40D, 0.0D});
+				add(new double[]{0.90D, 1.20D, 0.0D});
+				add(new double[]{1.65D, 1.20D, 0.0D});
 			}
 		};
 	}

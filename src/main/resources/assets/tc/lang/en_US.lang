@@ -487,11 +487,14 @@ item.tc:minecartDash840C.name=GE Dash 8-40C
 item.tc:minecartSW1200.name=EMD SW1200
 item.tc:minecartRSD15.name=ALCo RSD-15
 item.tc:minecartPS73Baggage.name=Pullman Standard 73' Baggage
+item.tc:minecartPS85Baggage.name=Pullman Standard 85' Baggage
 item.tc:minecartES44.name=GE ES44
 item.tc:minecartSD70Mac.name=EMD SD70Mac
 item.tc:minecartDash9_44CW.name=GE Dash 9-44CW
 item.tc:minecartDash840BB.name=GE Dash 8-40BB
 item.tc:minecartDash840BW.name=GE Dash 8-40BW
+item.tc:minecartReefer64.name=Trinity 64' Mechanical Reefer
+item.tc:minecartDH643.name=ALCo DH643
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -901,11 +904,14 @@ entity.tc.Dash840C.name=GE Dash 8-40C
 entity.tc.SW1200.name=EMD SW1200
 entity.tc.RSD15.name=ALCo RSD-15
 entity.tc.Freight PS 73 Baggage.name=Pullman Standard 73' Baggage
+entity.tc.Freight PS 85 Baggage.name=Pullman Standard 85' Baggage
 entity.tc.ES44.name=GE ES44
 entity.tc.SD70Mac.name=EMD SD70Mac
 entity.tc.Dash9_44CW.name=GE Dash 9-44CW
 entity.tc.Dash840BW.name=GE Dash 8-40BW
 entity.tc.Dash840BB.name=GE Dash 8-40BB
+entity.tc.Reefer64.name=Trinity 64' Mechanical Reefer
+entity.tc.DH643.name=ALCo DH643
 
 description.villager.profession.tc.station_chief=Station Chief
 
