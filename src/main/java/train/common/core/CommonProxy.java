@@ -113,7 +113,7 @@ public class CommonProxy implements IGuiHandler {
 			GameRegistry.registerTileEntity(TilePDMInstructionRadio.class, "tilePDMInstructionRadio");
 		}
 
-		GameRegistry.registerTileEntity(TileFortyFootContainer.class, "tileFortyFootContainer");
+		//GameRegistry.registerTileEntity(TileFortyFootContainer.class, "tileFortyFootContainer");
 	}
 
 	public void registerComputerCraftPeripherals() throws ClassNotFoundException {
@@ -192,11 +192,12 @@ public class CommonProxy implements IGuiHandler {
 			return entity1 != null && entity1 instanceof EntityTracksBuilder ? new InventoryBuilder(player.inventory, (EntityTracksBuilder) entity1) : null;
 		case (GuiIDs.LIQUID):
 			return entity1 != null && entity1 instanceof LiquidTank ? new InventoryLiquid(player.inventory, (LiquidTank) entity1) : null;
-		case (GuiIDs.FORTY_FOOT_CONTAINER):
+		/*case (GuiIDs.FORTY_FOOT_CONTAINER):
 			return new ContainerStorage((TileFortyFootContainer)te, player);
-
+			*/
 			default:
 			return null;
+
 		}
 	}
 

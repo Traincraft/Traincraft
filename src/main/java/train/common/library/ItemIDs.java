@@ -455,7 +455,7 @@ public enum ItemIDs {
 	minecart29080DOT111("ItemRollingStock", "29080DOT", 6),
 	minecartLightCrane("ItemRollingStock", "LightCrane_Icon", 3),
 	minecartWWCP40FootBox("ItemRollingStock", "40fticon", 3),
-	minecartHuskyStackWellcar("ItemRollingStock", "huskystack", 5),
+	//minecartHuskyStackWellcar("ItemRollingStock", "huskystack", 5),
 	minecarthicube60foot("ItemRollingStock", "hicube60", 5),
 	minecartBNSFGon("ItemRollingStock", "BNSFGondola", 3),
 	minecartHopper5201("ItemRollingStock", "Hopper5201", 4),

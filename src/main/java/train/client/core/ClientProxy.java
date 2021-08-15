@@ -159,10 +159,10 @@ public class ClientProxy extends CommonProxy {
 		ClientRegistry.bindTileEntitySpecialRenderer(TilekSignal.class, new RenderkSignal());
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockIDs.kSignal.block), new ItemRenderkSignal());
 
-
+		/*
 		ClientRegistry.bindTileEntitySpecialRenderer(TileFortyFootContainer.class, new FortyFootContainerRender());
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockIDs.FortyFootContainer.block), new ItemRenderFortyFootContainer());
-
+		*/
 	}
 
 	@Override
@@ -230,6 +230,7 @@ public class ClientProxy extends CommonProxy {
 			return entity1 != null ? new GuiJukebox(player,(EntityJukeBoxCart)entity1) : null;
 		case (GuiIDs.FORTY_FOOT_CONTAINER):
 			return new GuiFortyFootContainer((TileFortyFootContainer)te, player);
+
 		default:
 			return null;
 		}
