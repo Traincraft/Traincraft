@@ -66,7 +66,7 @@ public enum ItemIDs {
 	adminBook("ItemAdminBook", "item_book_blue", 0),
 	wirelessTransmitter("ItemWirelessTransmitter", "wireless_transmitter", 3),
 	paintbrushThing("ItemPaintbrushThing","paintbrushThing",1),
-
+	whistle("ItemWhistle","whistle", 1),
 
 	atoCard("ItemATOCard", "ato_card", 5),
 	minecartWork("ItemRollingStock", "train_work", 4),

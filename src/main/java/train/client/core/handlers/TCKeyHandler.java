@@ -5,6 +5,7 @@ import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.InputEvent;
+import li.cil.oc.common.item.Tablet;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.player.EntityPlayer;
@@ -20,6 +21,7 @@ import train.common.mtc.packets.PacketATO;
 
 public class TCKeyHandler {
 	public static KeyBinding horn;
+	public static KeyBinding bell;
 	public static KeyBinding inventory;
 	public static KeyBinding up;
 	public static KeyBinding down;
@@ -43,6 +45,9 @@ public class TCKeyHandler {
 		ClientRegistry.registerKeyBinding(idle);
 		furnace = new KeyBinding("key.traincraft.furnace", Keyboard.KEY_F, "key.categories.traincraft");
 		ClientRegistry.registerKeyBinding(furnace);
+		bell = new KeyBinding("key.traincraft.bell", Keyboard.KEY_B, "key.categories.traincraft");
+		ClientRegistry.registerKeyBinding(bell);
+
 		if (Loader.isModLoaded("ComputerCraft")) {
 			MTCScreen = new KeyBinding("key.traincraft.showMTCScreen", Keyboard.KEY_M, "key.categories.traincraft");
 			ClientRegistry.registerKeyBinding(MTCScreen);
@@ -75,6 +80,9 @@ public class TCKeyHandler {
 			}
 			if (furnace.isPressed()) {
 				sendKeyControlsPacket(9);
+			}
+			if (bell.isPressed()) {
+				sendKeyControlsPacket(10);
 			}
 			if (Loader.isModLoaded("ComputerCraft")) {
 				if (MTCScreen.isPressed() && !FMLClientHandler.instance().isGUIOpen(GuiMTCInfo.class)) {

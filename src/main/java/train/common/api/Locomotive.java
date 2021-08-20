@@ -467,6 +467,9 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
         if (i == 8 && ConfigHandler.SOUNDS) {
             soundHorn();
         }
+        if (i == 10){
+            soundWhistle();
+        }
         if (i == 4) {
             forwardPressed = true;
         }
@@ -600,6 +603,11 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
                 ((EntityAnimal) e).getNavigator().setPath(null, 0);
             }
         }
+    }
+
+    public void soundWhistle() {
+        worldObj.playSoundAtEntity(this, Info.resourceLocation + ":" + "bell", 0.5F, 1.0F);
+
     }
 
     @Override
