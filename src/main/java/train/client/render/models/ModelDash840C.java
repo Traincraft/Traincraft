@@ -1310,13 +1310,21 @@ public class ModelDash840C extends ModelConverter //Same as Filename
 		if (entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 843||entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 1544) {
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/fb3_Grey.png"));
 			GL11.glPushMatrix();
-			GL11.glTranslated(-1.375, -0.25, 0);
+			GL11.glTranslated(-1.75, 0.07, 0);
 			theTrucks2.render(entity, f, f1, f2, f3, f4, f5);
 
-			GL11.glTranslated(3.6875, 0, 0);
+			GL11.glTranslated(3.52, 0, 0);
 			theTrucks2.render(entity, f, f1, f2, f3, f4, f5);
 			GL11.glPopMatrix();
+		} else if (entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 11){
+			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/fb3_UpMoment.png"));
+			GL11.glPushMatrix();
+			GL11.glTranslated(-1.75, 0.07, 0);
+			theTrucks2.render(entity, f, f1, f2, f3, f4, f5);
 
+			GL11.glTranslated(3.52, 0, 0);
+			theTrucks2.render(entity, f, f1, f2, f3, f4, f5);
+			GL11.glPopMatrix();
 		} else {
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/fb3_Black.png"));
 			GL11.glPushMatrix();
