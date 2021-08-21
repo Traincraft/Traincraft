@@ -50,20 +50,32 @@ public class ModelSlopeTCTrack extends ModelBase {
 					.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
 			modeltrack.renderAll();
 		}
+		if (type.equals("snow")) {
+			FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/blocks/snowgravel.png"));
+			modelSlopeBallast.renderAll();
+			FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
+			modeltrack.renderAll();
 	}
+
+}
 	
 	public void render(String type, TileTCRail tcRail, double x, double y, double z) {
-		// Push a blank matrix onto the stack
+		int facing = tcRail.getWorldObj().getBlockMetadata(tcRail.xCoord, tcRail.yCoord, tcRail.zCoord);
+		render( type, facing, x, y, z, 1, 1, 1, 1);
+	}
+
+	public void render(String type, int facing, double x, double y, double z, float r, float g, float b, float a)
+	{
+			// Push a blank matrix onto the stack
 		GL11.glPushMatrix();
 		
 		// Move the object into the correct position on the block (because the OBJ's origin is the
 		// center of the object)
 		GL11.glTranslatef((float) x + 0.5f, (float) y, (float) z + 0.5f);
 
-		GL11.glColor4f(1, 1, 1, 1);
+		GL11.glColor4f(r, g, b, a);
 		// GL11.glScalef(0.5f, 0.5f, 0.5f);
-		int facing = tcRail.getWorldObj().getBlockMetadata(tcRail.xCoord, tcRail.yCoord, tcRail.zCoord);
-		
+
 		if (facing == 3) {
 			GL11.glRotatef(-90, 0, 1, 0);
 		}

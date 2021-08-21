@@ -34,6 +34,9 @@ import train.common.library.GuiIDs;
 import train.common.mtc.*;
 import train.common.tile.*;
 import train.common.tile.tileSwitch.*;
+import train.common.wellcar.ContainerStorage;
+import train.common.wellcar.GuiFortyFootContainer;
+import train.common.wellcar.TileFortyFootContainer;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -97,7 +100,6 @@ public class CommonProxy implements IGuiHandler {
 		GameRegistry.registerTileEntity(TileoverheadWire.class, "tileoverheadwire");
 		GameRegistry.registerTileEntity(TileoverheadWireDouble.class, "tileoverheadwiredouble");
 		GameRegistry.registerTileEntity(TilesignalSpanish.class, "tilesignalspanish");
-		GameRegistry.registerTileEntity(Tilegp7Small.class, "tilegp7small");
 		GameRegistry.registerTileEntity(TiletrackConcrete.class, "tiletrackconcrete");
 		GameRegistry.registerTileEntity(TilekSignal.class, "tileksignal");
 
@@ -110,6 +112,8 @@ public class CommonProxy implements IGuiHandler {
 			GameRegistry.registerTileEntity(TileATOTransmitterStopPoint.class, "tileATOTransmitterStopPoint");
 			GameRegistry.registerTileEntity(TilePDMInstructionRadio.class, "tilePDMInstructionRadio");
 		}
+
+		GameRegistry.registerTileEntity(TileFortyFootContainer.class, "tileFortyFootContainer");
 	}
 
 	public void registerComputerCraftPeripherals() throws ClassNotFoundException {
@@ -188,7 +192,10 @@ public class CommonProxy implements IGuiHandler {
 			return entity1 != null && entity1 instanceof EntityTracksBuilder ? new InventoryBuilder(player.inventory, (EntityTracksBuilder) entity1) : null;
 		case (GuiIDs.LIQUID):
 			return entity1 != null && entity1 instanceof LiquidTank ? new InventoryLiquid(player.inventory, (LiquidTank) entity1) : null;
-		default:
+		case (GuiIDs.FORTY_FOOT_CONTAINER):
+			return new ContainerStorage((TileFortyFootContainer)te, player);
+
+			default:
 			return null;
 		}
 	}

@@ -123,7 +123,7 @@ public class EntityLocoSteamVBShay2 extends SteamTrain {
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return 1.0F;
+		return 1.5F;
 	}
 
 	@Override

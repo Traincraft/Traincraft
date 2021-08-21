@@ -62,8 +62,18 @@ public class TraincraftUtil{
             return 9;
         } else if(c.equals("Orange")){
             return 14;
-        } else if(c.equals("White")){
+        } else if(c.equals("White")) {
             return 15;
+        } else if (c.equals("Skin16")) {
+            return 16;
+        } else if (c.equals("Skin17")) {
+            return 17;
+        } else if (c.equals("Skin18")) {
+            return 18;
+        } else if (c.equals("Skin19")) {
+            return 19;
+        } else if (c.equals("Skin20")) {
+            return 20;
         } else if(c.equals("Full")){
             return 101;
         } else if (c.equals("Empty")){

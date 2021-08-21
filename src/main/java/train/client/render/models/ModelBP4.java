@@ -993,7 +993,7 @@ public class ModelBP4 extends ModelConverter
 
 
 		if(entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor()==5){
-			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/bp4bogie_Purple.png"));
+			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/bp4bogie_purple.png"));
 		} else {
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/bp4bogie.png"));
 		}

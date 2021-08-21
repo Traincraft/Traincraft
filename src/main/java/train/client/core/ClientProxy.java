@@ -22,13 +22,13 @@ import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 import org.apache.logging.log4j.Level;
 import train.client.core.handlers.ClientTickHandler;
+import train.client.core.handlers.CustomRenderHandler;
 import train.client.core.handlers.RecipeBookHandler;
 import train.client.core.handlers.TCKeyHandler;
 import train.client.core.helpers.JLayerHook;
 import train.client.gui.*;
 import train.client.render.*;
 import train.client.render.renderSwitch.*;
-import train.client.render.renderSwitch.Rendergp7Small;
 import train.common.Traincraft;
 import train.common.adminbook.GUIAdminBook;
 import train.common.api.EntityBogie;
@@ -45,6 +45,10 @@ import train.common.library.GuiIDs;
 import train.common.library.Info;
 import train.common.tile.*;
 import train.common.tile.tileSwitch.*;
+import train.common.wellcar.GuiFortyFootContainer;
+import train.common.wellcar.TileFortyFootContainer;
+import train.common.wellcar.render.FortyFootContainerRender;
+import train.common.wellcar.render.ItemRenderFortyFootContainer;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -66,6 +70,7 @@ public class ClientProxy extends CommonProxy {
 	public void registerEvents(FMLPreInitializationEvent event) {
 		super.registerEvents(event);
 		ClientTickHandler tickHandler = new ClientTickHandler();
+		CustomRenderHandler renderHandler = new CustomRenderHandler();
 		HUDloco huDloco = new HUDloco();
 		if (Loader.isModLoaded("ComputerCraft")){
 			HUDMTC hudMTC = new HUDMTC();
@@ -73,6 +78,7 @@ public class ClientProxy extends CommonProxy {
 		}
 
 		registerEvent(tickHandler);
+		registerEvent(renderHandler);
 		registerEvent(huDloco);
 	}
 
@@ -147,14 +153,15 @@ public class ClientProxy extends CommonProxy {
 		ClientRegistry.bindTileEntitySpecialRenderer(TilesignalSpanish.class, new RendersignalSpanish());
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockIDs.signalSpanish.block), new ItemRendersignalSpanish());
 
-		ClientRegistry.bindTileEntitySpecialRenderer(Tilegp7Small.class, new Rendergp7Small());
-		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockIDs.gp7Small.block), new ItemRendergp7Small());
-
 		ClientRegistry.bindTileEntitySpecialRenderer(TiletrackConcrete.class, new RendertrackConcrete());
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockIDs.trackConcrete.block), new ItemRendertrackConcrete());
 
 		ClientRegistry.bindTileEntitySpecialRenderer(TilekSignal.class, new RenderkSignal());
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockIDs.kSignal.block), new ItemRenderkSignal());
+
+
+		ClientRegistry.bindTileEntitySpecialRenderer(TileFortyFootContainer.class, new FortyFootContainerRender());
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockIDs.FortyFootContainer.block), new ItemRenderFortyFootContainer());
 
 	}
 
@@ -221,6 +228,8 @@ public class ClientProxy extends CommonProxy {
 			return new GuiLantern(player, (TileLantern)te);
 		case (GuiIDs.JUKEBOX):
 			return entity1 != null ? new GuiJukebox(player,(EntityJukeBoxCart)entity1) : null;
+		case (GuiIDs.FORTY_FOOT_CONTAINER):
+			return new GuiFortyFootContainer((TileFortyFootContainer)te, player);
 		default:
 			return null;
 		}

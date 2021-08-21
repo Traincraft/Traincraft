@@ -515,6 +515,10 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 			return "Skin19";
 		case 20:
 			return "Skin20";
+		case 21:
+			return "Skin21";
+		case 22:
+			return "Skin22";
 		case 100:
 			return "Empty";
 		case 101:
@@ -568,6 +572,10 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 			return "Skin19";
 		case 20:
 			return "Skin20";
+		case 21:
+			return "Skin21";
+		case 22:
+			return "Skin22";
 		case 100:
 			return "Empty";
 		case 101:
@@ -599,6 +607,8 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		if (color.equals("Skin18")) return 18;
 		if (color.equals("Skin19")) return 19;
 		if (color.equals("Skin20")) return 20;
+		if (color.equals("Skin21")) return 21;
+		if (color.equals("Skin22")) return 22;
 		if (color.equals("Empty")) return 100;
 		if (color.equals("Full")) return 101;
 		return -1;
@@ -658,13 +668,13 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 				if (locked) {
 					locked = false;
 					if(worldObj.isRemote) {
-						entityplayer.addChatMessage(new ChatComponentText("unlocked"));
+						entityplayer.addChatMessage(new ChatComponentText("Unlocked."));
 					}
 				}
 				else {
 					locked = true;
 					if(worldObj.isRemote) {
-						entityplayer.addChatMessage(new ChatComponentText("locked"));
+						entityplayer.addChatMessage(new ChatComponentText("Locked."));
 					}
 				}
 			}

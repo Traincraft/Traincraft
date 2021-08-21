@@ -70,12 +70,9 @@ public class ModelWaterWheel extends ModelBase {
 			wheel -= (float) elapsed / 300.0f;
 			lastframe = now;
 			//System.out.println(facing);
-
 			if (waterWheel.getWaterDir() == 0 || waterWheel.getWaterDir() == -3 || waterWheel.getWaterDir() == -1 || waterWheel.getWaterDir() == 1 || waterWheel.getWaterDir() == -2) {
 				GL11.glRotatef(-(wheel + wheel1), 0F, 0F, 1F);
 			}
-
-
 		}
 		this.render();
 		//GL11.glColor3f(1, 1, 1);
