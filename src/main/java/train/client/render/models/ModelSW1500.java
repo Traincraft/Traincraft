@@ -169,10 +169,10 @@ public class ModelSW1500 extends ModelConverter //Same as Filename
 		bodyModel[126] = new ModelRendererTurbo(this, 13, 16, textureX, textureY); // Box 426
 		bodyModel[127] = new ModelRendererTurbo(this, 14, 12, textureX, textureY, "lamp"); // Box 427 glow commander beacon
 		bodyModel[128] = new ModelRendererTurbo(this, 7, 41, textureX, textureY); // Box 430
-		bodyModel[129] = new ModelRendererTurbo(this, 50, 1, textureX, textureY); // Box 360 cull
+		bodyModel[129] = new ModelRendererTurbo(this, 50, 1, textureX, textureY, "cull"); // Box 360 cull
 		bodyModel[130] = new ModelRendererTurbo(this, 34, 16, textureX, textureY); // Box 363
 		bodyModel[131] = new ModelRendererTurbo(this, 35, 12, textureX, textureY, "lamp"); // Box 364 glow commander beacon
-		bodyModel[132] = new ModelRendererTurbo(this, 41, 1, textureX, textureY); // Box 366 cull
+		bodyModel[132] = new ModelRendererTurbo(this, 41, 1, textureX, textureY, "cull"); // Box 366 cull
 		bodyModel[133] = new ModelRendererTurbo(this, 27, 16, textureX, textureY); // Box 367
 		bodyModel[134] = new ModelRendererTurbo(this, 28, 12, textureX, textureY, "lamp"); // Box 368 glow commander beacon
 		bodyModel[135] = new ModelRendererTurbo(this, 10, 41, textureX, textureY); // Box 353
@@ -1689,9 +1689,17 @@ public class ModelSW1500 extends ModelConverter //Same as Filename
 			GL11.glTranslated(2.13, 0, 0);
 			theTrucks2.render(entity, f, f1, f2, f3, f4, f5);
 			GL11.glPopMatrix();
-
 		} else if (entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 12 || entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 4 || entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 7) {
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/flexicoil2_Black.png"));
+			GL11.glPushMatrix();
+			GL11.glTranslated(-1.05, 0.33, 0);
+			theTrucks1.render(entity, f, f1, f2, f3, f4, f5);
+
+			GL11.glTranslated(2.13, 0, 0);
+			theTrucks1.render(entity, f, f1, f2, f3, f4, f5);
+			GL11.glPopMatrix();
+		} else if (entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 6) {
+			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/flexicoil2_Silver.png"));
 			GL11.glPushMatrix();
 			GL11.glTranslated(-1.05, 0.33, 0);
 			theTrucks1.render(entity, f, f1, f2, f3, f4, f5);

@@ -937,7 +937,7 @@ public enum RenderEnum {
 		}
 	}, "", null, 0, false),
 	WWCP40FootBox(EntityFreightWWCP40FootBox.class, new ModelWWCP40FootBox(),"40ft_Boxcar_", true, new float[]{0F, 0.1875F, 0F}, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
-	HuskyStackWellcar(EntityFreightBapHuskyStack.class, new ModelHuskyStack(), "huskystack_", true, new float[]{0F, 0.15F, 0F}, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	//HuskyStackWellcar(EntityFreightBapHuskyStack.class, new ModelHuskyStack(), "huskystack_", true, new float[]{0F, 0.15F, 0F}, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	U23B( EntityLocoDieselBapU23B.class,  new ModelU23B(), "U23B_", true,new float[] {-0F, -0.0F, 0F},  null, null, "smoke", 4,  new ArrayList<double[]>() {
 		{ }}, "", null, 0, false),
 	U18B( EntityLocoDieselBapU18B.class,  new ModelU18B(), "U18B_", true,new float[] {-0F, -0.0F, 0F},  null, null, "smoke", 4,  new ArrayList<double[]>() {
