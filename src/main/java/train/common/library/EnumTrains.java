@@ -372,7 +372,7 @@ public enum EnumTrains {
 	WWCP40FootBox("WWCP 40 Foot Boxcar", EntityFreightWWCP40FootBox.class, ItemIDs.minecartWWCP40FootBox.item, "freight", 6, TraincraftUtil.getBytesFromColors(new String[] {"Brown","Blue","Black","Yellow", "Magenta", "Cyan", "Pink", "LightGrey", "Green", "White", "LightBlue", "Lime", "Red", "Purple", "Orange", "Grey", "Skin16", "Skin17", "Skin18", "Skin19", "Skin20"}), 0, 27, "Pack: WWCP"),
 	//HuskyStackWellcar("53' HuskyStack Wellcar", EntityFreightBapHuskyStack.class, ItemIDs.minecartHuskyStackWellcar.item, "freight", 4, TraincraftUtil.getBytesFromColors(new String[] {"Yellow", "Pink"}), 0,0, "Pack: Bap. Load Containers into it by RClicking!"),
 	U23B("U23B", EntityLocoDieselBapU23B.class, ItemIDs.minecartU23B.item, "diesel", 2250, 70, 0, 35, 0, 180, 0.7, 0.88, 18000, TraincraftUtil.getBytesFromColors(new String[] {"Grey", "Orange", "LightGrey", "Cyan", "Skin16", "Yellow", "Blue", "LightBlue", "Black", "Green"}), 10, -3.3, "Pack: Bap"),
-	U18B("U18B", EntityLocoDieselBapU18B.class, ItemIDs.minecartU18B.item, "diesel", 1800, 70, 0, 20, 0, 140, 0.7, 0.88, 10000, TraincraftUtil.getBytesFromColors(new String[] {"Orange", "Grey", "Cyan"}), 10, -2.5, "Pack: Bap"),
+	U18B("U18B", EntityLocoDieselBapU18B.class, ItemIDs.minecartU18B.item, "diesel", 1800, 70, 0, 20, 0, 140, 0.7, 0.88, 10000, TraincraftUtil.getBytesFromColors(new String[] {"Orange", "Grey", "Cyan", "Blue"}), 10, -2.5, "Pack: Bap"),
 	hicube60foot("60 Foot Hi-Cube Boxcar", EntityFreightBaphicube60foot.class, ItemIDs.minecarthicube60foot.item, "freight", 7, TraincraftUtil.getBytesFromColors(new String[] {"Yellow", "Red", "Pink"}), 10, 54, "Pack: BAP"),
 	freightBNSFGon("Freight BNSF Gondola", EntityFreightBNSFGon.class, ItemIDs.minecartBNSFGon.item, "freight", 5, TraincraftUtil.getBytesFromColors(new String[] {"Black","Grey"}), 18, 45, "Cargo: Blocks, Vanilla Items. Pack: TCM"),
 	locoElectricILMA("Loco Electric ILMA",EntityLocoElectricILMA.class, ItemIDs.minecartILMA.item,"electric",400,40,0,15,0,400,0.9,0.946,0,TraincraftUtil.getBytesFromColors(new String[] {"Green", "Lime"}),18,-1, "Pack: Bigj's Little locos"),
@@ -413,6 +413,8 @@ public enum EnumTrains {
 	Beep("Beep", EntityLocoDieselBapBeep.class, ItemIDs.minecartBeep.item, "diesel", 1500, 105, 0, 25, 0, 180, 0.89, 0.8, 13000, null, 10, -2.2, "Pack: Bap"),
 	Class158("Class 158 Engine", EntityLocoDieselClass158.class, ItemIDs.minecartClass158engine.item, "diesel", 350, 145, 0,60, 0, 100, 0.7, 0.8, 8000, TraincraftUtil.getBytesFromColors(new String[] {"White", "Green"}), 18, -4, "Pack: B.I.P."),
 	Class158Coach("Class 158 Passenger Car", EntityClass158Coach.class, ItemIDs.minecartClass158car.item, "passenger", 0, 0, 3,0 , 0, 0, 0,0,0,TraincraftUtil.getBytesFromColors(new String[] {"White", "Green"}),0,0, "Pack: B.I.P."),
+	HBC1C("HBC1C",EntityCabooseBapHBC1C.class, ItemIDs.minecartHBC1Ccaboose.item, "caboose", 2, TraincraftUtil.getBytesFromColors(new String[] {"Orange", "White", "LightGrey"}), 0, 0, "Pack: BAP"),
+	DRGWCaboose("DRGWCaboose",EntityCabooseBapDRGW.class, ItemIDs.minecartDRGWCaboose.item, "caboose", 2, TraincraftUtil.getBytesFromColors(new String[] {"LightGrey", "Grey", "Lime", "Yellow", "Black", "Red", "Orange", "Pink"}), 0, 0, "Pack: BAP"),
 	;
 
 //String trainType,int MHP,int maxSpeed, double mass, int fuelConsumption, int waterConsumption, int heatingTime, double accelerationRate, double brakeRate, int tankCapacity, String[] colors,

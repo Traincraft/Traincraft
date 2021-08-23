@@ -463,7 +463,9 @@ public enum ItemIDs {
 	minecartSkeletonLogCar("ItemRollingStock", "Skeleton", 1),
 	minecartReefer64("ItemRollingStock", "Reefer64", 5),
 
-	minecartWVcaboose("ItemRollingStock", "wvcaboose",6),
+	minecartWVcaboose("ItemRollingStock", "wvcaboose",3),
+	minecartHBC1Ccaboose("ItemRollingStock", "HBC1C",3),
+	minecartDRGWCaboose("ItemRollingStock", "DRGW_01400_series_caboose",3),
 
 	//signalSpanish("ItemsignalSpanish","signalSpanish", 1),
 	;

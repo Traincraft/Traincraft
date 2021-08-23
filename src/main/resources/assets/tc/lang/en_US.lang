@@ -503,6 +503,8 @@ item.tc:minecartCF7round.name=EMD CF7 Roundcab
 item.tc:minecartAlcoS2.name=ALCo S2
 item.tc:minecartClass158engine.name=Class 158 Engine
 item.tc:minecartClass158car.name=Class 158 Coach
+item.tc:minecartHBC1Ccaboose.name=North Fox HBC1-C Caboose
+item.tc:minecartDRGWCaboose.name=DRGW 01400 Series Caboose
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -928,6 +930,8 @@ entity.tc.CF7round.name=EMD CF7 Roundcab
 entity.tc.Alco S2.name=ALCo S2
 entity.tc.Class 158 Engine.name=Class 158
 entity.tc.Class 158 Passenger Car.name=Class 158
+entity.tc.HBC1C.name=North Fox HBC1-C Caboose
+entity.tc.DRGWCaboose.name=DRGW 01400 Series Caboose
 
 description.villager.profession.tc.station_chief=Station Chief
 
