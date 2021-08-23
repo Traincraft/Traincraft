@@ -505,6 +505,8 @@ item.tc:minecartClass158engine.name=Class 158 Engine
 item.tc:minecartClass158car.name=Class 158 Coach
 item.tc:minecartHBC1Ccaboose.name=North Fox HBC1-C Caboose
 item.tc:minecartDRGWCaboose.name=DRGW 01400 Series Caboose
+item.tc:minecartPSSleeper565DRGW.name=Pullman Standard 5-6-5 Sleeper (DRGW Floorplan)
+item.tc:minecartPSSleeper565.name=Pullman Standard 5-6-5 Sleeper
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -932,6 +934,8 @@ entity.tc.Class 158 Engine.name=Class 158
 entity.tc.Class 158 Passenger Car.name=Class 158
 entity.tc.HBC1C.name=North Fox HBC1-C Caboose
 entity.tc.DRGWCaboose.name=DRGW 01400 Series Caboose
+entity.tc.PS 5-6-5 Sleeper.name=Pullman Standard 5-6-5 Sleeper
+entity.tc.PS 5-6-5 Sleeper DRGW Edition.name=Pullman Standard 5-6-5 Sleeper (DRGW Floorplan)
 
 description.villager.profession.tc.station_chief=Station Chief
 

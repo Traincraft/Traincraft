@@ -415,6 +415,8 @@ public enum EnumTrains {
 	Class158Coach("Class 158 Passenger Car", EntityClass158Coach.class, ItemIDs.minecartClass158car.item, "passenger", 0, 0, 3,0 , 0, 0, 0,0,0,TraincraftUtil.getBytesFromColors(new String[] {"White", "Green"}),0,0, "Pack: B.I.P."),
 	HBC1C("HBC1C",EntityCabooseBapHBC1C.class, ItemIDs.minecartHBC1Ccaboose.item, "caboose", 2, TraincraftUtil.getBytesFromColors(new String[] {"Orange", "White", "LightGrey"}), 0, 0, "Pack: BAP"),
 	DRGWCaboose("DRGWCaboose",EntityCabooseBapDRGW.class, ItemIDs.minecartDRGWCaboose.item, "caboose", 2, TraincraftUtil.getBytesFromColors(new String[] {"LightGrey", "Grey", "Lime", "Yellow", "Black", "Red", "Orange", "Pink"}), 0, 0, "Pack: BAP"),
+	passengerPSSleeper565("PS 5-6-5 Sleeper", EntityPassengerPSSleeper565.class, ItemIDs.minecartPSSleeper565.item, "passenger", 0, 0, 3, 0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[]{"Blue", "LightBlue"}), 10, 0, "Pack: BAP"),
+	passengerPSSleeper565DRGW("PS 5-6-5 Sleeper DRGW Edition", EntityPassengerPSSleeper565DRGW.class, ItemIDs.minecartPSSleeper565DRGW.item, "passenger", 0, 0, 3, 0, 0, 0, 0, 0, 0, null, 10, 0, "Pack: BAP"),
 	;
 
 //String trainType,int MHP,int maxSpeed, double mass, int fuelConsumption, int waterConsumption, int heatingTime, double accelerationRate, double brakeRate, int tankCapacity, String[] colors,

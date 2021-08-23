@@ -422,6 +422,8 @@ public enum ItemIDs {
 	minecartPS85Baggage("ItemRollingStock", "PS_85_baggage_icon", 3),
 	minecartClass158engine("ItemRollingStock", "Class_158_Icon", 4),
 	minecartClass158car("ItemRollingStock", "Class_158_Middle_Icon", 3),
+	minecartPSSleeper565("ItemRollingStock", "BAP_PS_lightweight_5-6-5_sleeper_icon", 3),
+	minecartPSSleeper565DRGW("ItemRollingStock", "BAP_PS_lightweight_DRGW_5-6-5_sleeper_icon", 3),
 
 	minecartBR155("ItemRollingStock", "Db_155_icon", 4),
 	minecartDB143("ItemRollingStock", "143_icon", 4),
