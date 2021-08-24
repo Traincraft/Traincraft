@@ -36,7 +36,7 @@ public class ItemWhistle extends Item {
 
     @Override
     public ItemStack onItemRightClick(ItemStack p_77659_1_, World p_77659_2_, EntityPlayer p_77659_3_) {
-        p_77659_2_.playSoundAtEntity(p_77659_3_, Info.resourceLocation + ":" + "bell", 0.5F, 1.0F);
+        p_77659_2_.playSoundAtEntity(p_77659_3_, Info.resourceLocation + ":" + "whistle", 1F, 1.0F);
         return super.onItemRightClick(p_77659_1_, p_77659_2_, p_77659_3_);
 
     }
