@@ -57,7 +57,7 @@ public class TileTraincraft extends TileEntity implements ISidedInventory{
 
     @Override
     public int getSizeInventory(){
-        return this.slots.length;
+        return this.slots==null?0:this.slots.length;
     }
 
     @Override

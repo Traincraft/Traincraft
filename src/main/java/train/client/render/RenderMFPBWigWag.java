@@ -11,7 +11,9 @@ import train.common.tile.TileMFPBWigWag;
 
 public class RenderMFPBWigWag extends TileEntitySpecialRenderer {
 	private static final ModelMFPBWigWag modelSwitch = new ModelMFPBWigWag();
-	private static final ResourceLocation texture = new ResourceLocation(Info.resourceLocation,Info.modelTexPrefix + "MFPBWigWag.png");
+	private static final ResourceLocation textureOn = new ResourceLocation(Info.resourceLocation,Info.modelTexPrefix + "MFPBWigWagOn.png");
+	private static final ResourceLocation textureOff = new ResourceLocation(Info.resourceLocation,Info.modelTexPrefix + "MFPBWigWagOff.png");
+
 
 	@Override
 	public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float tick) {
@@ -19,8 +21,10 @@ public class RenderMFPBWigWag extends TileEntitySpecialRenderer {
 		GL11.glTranslated(x+0.4,y,z+0.5);
 		GL11.glRotated(180,0,1,0);
 		boolean skipRender = false;
+		TileMFPBWigWag tile = ((TileMFPBWigWag)tileEntity);
 
-		switch (((TileMFPBWigWag)tileEntity).getFacing()){
+
+		switch (tile.getFacing()){
 			case NORTH:{
 				GL11.glRotated(180,0,0,1);
 				GL11.glRotated(90,0,1,0);
@@ -50,8 +54,8 @@ public class RenderMFPBWigWag extends TileEntitySpecialRenderer {
 		}
 
 		if (!skipRender) {
-			Tessellator.bindTexture(texture);
-			modelSwitch.render(null, ((TileMFPBWigWag)tileEntity).rotation, 0, 0, 0, 0, 0.0625f);
+			Tessellator.bindTexture(tile.powered?textureOn:textureOff);
+			modelSwitch.render(null, tile.rotation, 0, 0, 0, 0, 0.0625f);
 		}
 		GL11.glPopMatrix();
 	}

@@ -375,9 +375,9 @@ public enum ItemIDs {
 	minecartOnionTender("ItemRollingStock", "OnionTender", 10),
 	minecartPELocomotive("ItemRollingStock", "PELocoIcon", 5),
 	minecartPETender("ItemRollingStock", "PETenderIcon", 3),
-	minecartGarrattFront("ItemRollingStock", "GarrattFrontIcon", 3),
-	minecartGarrattMid("ItemRollingStock", "GarrattMidIcon", 3),
-	minecartGarrattBack("ItemRollingStock", "GarrattRearIcon", 3),
+	minecartGarrattFront("ItemRollingStock", "garrattFrontIcon", 3),
+	minecartGarrattMid("ItemRollingStock", "garrattMidIcon", 3),
+	minecartGarrattBack("ItemRollingStock", "garrattRearIcon", 3),
 	minecartSkook("ItemRollingStock", "skookum", 5),
 	minecartSkookTender("ItemRollingStock", "skookum_tender", 4),
 	minecartShay3Truck("ItemRollingStock", "3TruckShay", 5),
@@ -422,6 +422,8 @@ public enum ItemIDs {
 	minecartPS85Baggage("ItemRollingStock", "PS_85_baggage_icon", 3),
 	minecartClass158engine("ItemRollingStock", "Class_158_Icon", 4),
 	minecartClass158car("ItemRollingStock", "Class_158_Middle_Icon", 3),
+	minecartPSSleeper565("ItemRollingStock", "BAP_PS_lightweight_5-6-5_sleeper_icon", 3),
+	minecartPSSleeper565DRGW("ItemRollingStock", "BAP_PS_lightweight_DRGW_5-6-5_sleeper_icon", 3),
 
 	minecartBR155("ItemRollingStock", "Db_155_icon", 4),
 	minecartDB143("ItemRollingStock", "143_icon", 4),
@@ -432,7 +434,7 @@ public enum ItemIDs {
 	minecartILMB("ItemRollingStock", "I.L.M.B", 2),
 	//minecartBoxMotor("ItemRollingStock", "BoxMotor", 4),
 	minecartEU07("ItemRollingStock", "EU07Icon", 2),
-	minecartGM6C("ItemRollingStock", "GM6C_icon", 5),
+	minecartGM6C("ItemRollingStock", "GM6C_Icon", 5),
 
 	minecartRoundHopper("ItemRollingStock", "train_RoundHopper", 2),
 	minecartRibbedHopper("ItemRollingStock", "train_ribbed_hopper", 2),
@@ -463,7 +465,9 @@ public enum ItemIDs {
 	minecartSkeletonLogCar("ItemRollingStock", "Skeleton", 1),
 	minecartReefer64("ItemRollingStock", "Reefer64", 5),
 
-	minecartWVcaboose("ItemRollingStock", "wvcaboose",6),
+	minecartWVcaboose("ItemRollingStock", "wvcaboose",3),
+	minecartHBC1Ccaboose("ItemRollingStock", "HBC1C",3),
+	minecartDRGWCaboose("ItemRollingStock", "DRGW_01400_series_caboose",3),
 
 	//signalSpanish("ItemsignalSpanish","signalSpanish", 1),
 

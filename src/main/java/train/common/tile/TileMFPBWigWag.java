@@ -4,7 +4,6 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.audio.ISound;
 import net.minecraft.client.audio.PositionedSound;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.Item;
@@ -24,8 +23,10 @@ public class TileMFPBWigWag extends TileTraincraft {
     private static Random rand = new Random();
     private ForgeDirection facing;
     public float rotation =0;
-    private boolean flip=true;
-    private ISound bell = new PositionedSound(new ResourceLocation(Info.modID,"bell")) {
+    public boolean flip=true, powered =false;
+
+    @SideOnly(Side.CLIENT)//be sure sound is only created on client
+    private net.minecraft.client.audio.ISound bell = new PositionedSound(new ResourceLocation(Info.modID,"bell")) {
         @Override
         public float getXPosF() {return xCoord;}
         @Override
@@ -52,7 +53,7 @@ public class TileMFPBWigWag extends TileTraincraft {
                     Minecraft.getMinecraft().getSoundHandler().playSound(bell);
                 }
             }
-            if (getWorldObj().isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord)) {
+            if (powered = getWorldObj().isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord)) {
                 rotation += flip ? 1.75f : -1.75f;
             } else {
                 rotation = 0;

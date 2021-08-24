@@ -747,9 +747,9 @@ public class ModelBeep extends ModelConverter //Same as Filename
 			}
 		}
 		if(entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor()==135465){
-			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/typea_Grey.png"));
+			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/typeA_Grey.png"));
 		} else {
-			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/typea_Black.png"));
+			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/typeA_Black.png"));
 		}
 		GL11.glPushMatrix();
 		GL11.glTranslatef(-1.10F ,-0.1F,0F);

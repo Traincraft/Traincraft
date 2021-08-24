@@ -193,8 +193,8 @@ public class CommonProxy implements IGuiHandler {
 		case (GuiIDs.LIQUID):
 			return entity1 != null && entity1 instanceof LiquidTank ? new InventoryLiquid(player.inventory, (LiquidTank) entity1) : null;
 		/*case (GuiIDs.FORTY_FOOT_CONTAINER):
-			return new ContainerStorage((TileFortyFootContainer)te, player);
-			*/
+			return new ContainerStorage((TileFortyFootContainer)te, player);*/
+
 			default:
 			return null;
 
