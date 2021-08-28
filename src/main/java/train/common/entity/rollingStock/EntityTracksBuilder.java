@@ -368,18 +368,18 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 			pushX /= d26;
 			pushZ /= d26;
 			double d28 = 0.029D;
-			motionX *= 0.2D;
+			motionX *= 0.4D;
 			motionY *= 0.0D;
-			motionZ *= 0.2D;
+			motionZ *= 0.4D;
 			if (getFuel() > 0) {
 				motionX += pushX * d28;
 				motionZ += pushZ * d28;
 			}
 		}
 		else {
-			motionX *= 0.49999997615814209D;
+			motionX *= 0.69999997615814209D;
 			motionY *= 0.0D;
-			motionZ *= 0.49999997615814209D;
+			motionZ *= 0.69999997615814209D;
 		}
 		motionX *= getDragAir();
 		motionY *= 0.0D;

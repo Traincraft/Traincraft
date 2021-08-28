@@ -1792,6 +1792,8 @@ public class ModelSD40dash2 extends ModelConverter //Same as Filename
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/flexicoil_c2h_Blue.png"));
 		} else if (entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 4 ||entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 5) {
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/flexicoil_c2h_Grey.png"));
+		} else if (entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 6 ) {
+			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/flexicoil_c2h_BeanSniff.png"));
 		} else {
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/flexicoil_c2h_Black.png"));
 		}
@@ -1813,4 +1815,4 @@ public class ModelSD40dash2 extends ModelConverter //Same as Filename
 			}
 		};
 	}
-}
+}//
