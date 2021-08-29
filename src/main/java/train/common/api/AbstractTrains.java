@@ -142,7 +142,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 	/**
 	 * Registers all possible color textures
 	 */
-	public ArrayList<Byte> acceptedColors;
+	public ArrayList<Integer> acceptedColors;
 
 
 	public AbstractTrains(World world) {
@@ -150,7 +150,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		renderDistanceWeight = 2.0D;
 		color = -1;
 		dataWatcher.addObject(12, color);
-		acceptedColors = new ArrayList<Byte>();//was integer
+		acceptedColors = new ArrayList<Integer>();//was integer
 		dataWatcher.addObject(6, trainType);
 		dataWatcher.addObject(7, trainOwner);
 		dataWatcher.addObject(8, trainDestroyer);

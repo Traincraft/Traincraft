@@ -430,7 +430,7 @@ public enum EnumTrains {
 	private double accelerationRate;
 	private double brakeRate;
 	private int tankCapacity;
-	private byte[] colors;
+	private int[] colors;
 	private int guiRenderScale;
 	private double bogieLocoPosition;
 	private String additionnalTooltip;
@@ -454,7 +454,7 @@ public enum EnumTrains {
 	 * @param colors: an array with all possible colors. Index 0 is used as default color when train is first spawned. leave null if no color available
 	 * @param guiRenderScale: scale at which the entity will be rendered inside the GUI (crafting GUI)
 	 */
-	private EnumTrains(String internalName,Class entityClass, Item item, String trainType,int MHP,int maxSpeed, double mass, int fuelConsumption, int waterConsumption, int heatingTime, double accelerationRate, double brakeRate, int tankCapacity, byte[] colors, int guiRenderScale, double bogieLocoPosition){
+	private EnumTrains(String internalName,Class entityClass, Item item, String trainType,int MHP,int maxSpeed, double mass, int fuelConsumption, int waterConsumption, int heatingTime, double accelerationRate, double brakeRate, int tankCapacity, int[] colors, int guiRenderScale, double bogieLocoPosition){
 		this.internalName = internalName;
 		this.entityClass = entityClass;
 		this.item = item;
@@ -493,7 +493,7 @@ public enum EnumTrains {
 	 * @param bogieLocoPositions
 	 * @param additionnalTooltip
 	 */
-	private EnumTrains(String internalName,Class entityClass, Item item, String trainType,int MHP,int maxSpeed, double mass, int fuelConsumption,int waterConsumption, int heatingTime, double accelerationRate, double brakeRate, int tankCapacity, byte[] colors, int guiRenderScale, double bogieLocoPositions, String additionnalTooltip){
+	private EnumTrains(String internalName,Class entityClass, Item item, String trainType,int MHP,int maxSpeed, double mass, int fuelConsumption,int waterConsumption, int heatingTime, double accelerationRate, double brakeRate, int tankCapacity, int[] colors, int guiRenderScale, double bogieLocoPositions, String additionnalTooltip){
 		this.internalName = internalName;
 		this.entityClass = entityClass;
 		this.item = item;
@@ -527,7 +527,7 @@ public enum EnumTrains {
 	 * @param cargoCapacity
 	 * @param additionnalTooltip
 	 */
-	private EnumTrains(String internalName,Class entityClass, Item item, String trainType, double mass, byte[] colors, int guiRenderScale, int cargoCapacity, String additionnalTooltip){
+	private EnumTrains(String internalName,Class entityClass, Item item, String trainType, double mass, int[] colors, int guiRenderScale, int cargoCapacity, String additionnalTooltip){
 		this.internalName = internalName;
 		this.entityClass = entityClass;
 		this.item = item;
@@ -587,7 +587,7 @@ public enum EnumTrains {
 		return this.tankCapacity;
 	}
 	
-	public byte[] getColors(){
+	public int[] getColors(){
 		return this.colors;
 	}
 	
