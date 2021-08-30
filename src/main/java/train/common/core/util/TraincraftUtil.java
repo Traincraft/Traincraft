@@ -31,7 +31,7 @@ public class TraincraftUtil{
         return null;
     }
 
-    public static byte getByteFromColor(String c){
+    public static int getByteFromColor(String c){
         if(c.equals("Black")){
             return 0;
         } else if (c.equals("Red")){
@@ -82,8 +82,8 @@ public class TraincraftUtil{
         return 0;
     }
 
-    public static byte[] getBytesFromColors(String[] c){
-        byte[] ret = new byte[c.length];
+    public static int[] getBytesFromColors(String[] c){
+        int[] ret = new int[c.length];
         for(int i=0; i<c.length;i++){
             ret[i]=getByteFromColor(c[i]);
         }
