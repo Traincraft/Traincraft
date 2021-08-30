@@ -15,6 +15,7 @@ import org.lwjgl.opengl.GL11;
 import tmt.ModelConverter;
 import tmt.ModelRendererTurbo;
 import tmt.Tessellator;
+import train.common.api.AbstractTrains;
 import train.common.library.Info;
 
 public class ModelMILW40boxcar extends ModelConverter //Same as Filename
@@ -67,14 +68,14 @@ public class ModelMILW40boxcar extends ModelConverter //Same as Filename
 		bodyModel[28] = new ModelRendererTurbo(this, 497, 1, textureX, textureY); // Box 40
 		bodyModel[29] = new ModelRendererTurbo(this, 257, 9, textureX, textureY); // Box 40
 		bodyModel[30] = new ModelRendererTurbo(this, 305, 9, textureX, textureY); // Box 40
-		bodyModel[31] = new ModelRendererTurbo(this, 497, 17, textureX, textureY); // Box 40 cul
-		bodyModel[32] = new ModelRendererTurbo(this, 497, 33, textureX, textureY); // Box 40 cul
-		bodyModel[33] = new ModelRendererTurbo(this, 1, 41, textureX, textureY); // Box 40 cul
-		bodyModel[34] = new ModelRendererTurbo(this, 17, 41, textureX, textureY); // Box 40 cul
-		bodyModel[35] = new ModelRendererTurbo(this, 33, 41, textureX, textureY); // Box 40 cul
-		bodyModel[36] = new ModelRendererTurbo(this, 81, 41, textureX, textureY); // Box 40 cul
-		bodyModel[37] = new ModelRendererTurbo(this, 97, 41, textureX, textureY); // Box 40 cul
-		bodyModel[38] = new ModelRendererTurbo(this, 113, 41, textureX, textureY); // Box 40 cul
+		bodyModel[31] = new ModelRendererTurbo(this, 497, 17, textureX, textureY, "cull"); // Box 40 cul
+		bodyModel[32] = new ModelRendererTurbo(this, 497, 33, textureX, textureY, "cull"); // Box 40 cul
+		bodyModel[33] = new ModelRendererTurbo(this, 1, 41, textureX, textureY, "cull"); // Box 40 cul
+		bodyModel[34] = new ModelRendererTurbo(this, 17, 41, textureX, textureY, "cull"); // Box 40 cul
+		bodyModel[35] = new ModelRendererTurbo(this, 33, 41, textureX, textureY, "cull"); // Box 40 cul
+		bodyModel[36] = new ModelRendererTurbo(this, 81, 41, textureX, textureY, "cull"); // Box 40 cul
+		bodyModel[37] = new ModelRendererTurbo(this, 97, 41, textureX, textureY, "cull"); // Box 40 cul
+		bodyModel[38] = new ModelRendererTurbo(this, 113, 41, textureX, textureY, "cull"); // Box 40 cul
 		bodyModel[39] = new ModelRendererTurbo(this, 129, 41, textureX, textureY); // Box 39
 		bodyModel[40] = new ModelRendererTurbo(this, 337, 41, textureX, textureY); // Box 39
 		bodyModel[41] = new ModelRendererTurbo(this, 281, 17, textureX, textureY); // Box 3
@@ -478,15 +479,19 @@ public class ModelMILW40boxcar extends ModelConverter //Same as Filename
 		bodyModel[109].setRotationPoint(24F, -1.75F, -11.2F);
 	}
 	Model70Truck bogie = new Model70Truck();
+	Model70TonTruck2 bogie2 = new Model70TonTruck2();
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
 		for(int i = 0; i < 110; i++)
-		{
-			bodyModel[i].render(f5);
-		}
-
-		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/70truck_Black.png"));
+			if (bodyModel[i].boxName != null && bodyModel[i].boxName.contains("cull")) {
+				GL11.glDisable(GL11.GL_CULL_FACE);
+				bodyModel[i].render(f5);
+				GL11.glEnable(GL11.GL_CULL_FACE);
+			} else {
+				bodyModel[i].render(f5);
+			}
+		/*Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/70truck_Black.png"));
 
 		GL11.glPushMatrix();
 		GL11.glScalef(1,1,0.9f);
@@ -495,7 +500,18 @@ public class ModelMILW40boxcar extends ModelConverter //Same as Filename
 
 		GL11.glTranslated(2.375F,0,0.03);
 		bogie.render(entity,f,f1,f2,f3,f4,f5);
-		GL11.glPopMatrix();
+		GL11.glPopMatrix();*/
+		if(entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor()==14){
+			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/70Ton_Greyish.png"));
+		} else {
+			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/70Ton_Black.png"));
+		}
+		GL11.glScalef(1,1,1f);
+		GL11.glTranslated(-1.18,-0.05,-0.0);
+		bogie2.render(entity,f,f1,f2,f3,f4,f5);
+
+		GL11.glTranslated(2.37,-0.0,0.00);
+		bogie2.render(entity,f,f1,f2,f3,f4,f5);
 	}
 
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5)
@@ -503,4 +519,5 @@ public class ModelMILW40boxcar extends ModelConverter //Same as Filename
 	}
 
 	public ModelRendererTurbo ModelMILW40boxcar[];
+	public float[] getTrans() { return new float[]{-0F, 0.1F, 0F}; }
 }

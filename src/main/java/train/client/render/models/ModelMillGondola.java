@@ -8,6 +8,7 @@ import org.lwjgl.opengl.GL11;
 import tmt.ModelConverter;
 import tmt.ModelRendererTurbo;
 import tmt.Tessellator;
+import train.common.api.AbstractTrains;
 import train.common.api.Freight;
 import train.common.library.Info;
 
@@ -54,16 +55,16 @@ public class ModelMillGondola extends ModelConverter //Same as Filename
 		bodyModel[21] = new ModelRendererTurbo(this, 210, 128, textureX, textureY); // Box 23
 		bodyModel[22] = new ModelRendererTurbo(this, 210, 107, textureX, textureY); // Box 24
 		bodyModel[23] = new ModelRendererTurbo(this, 210, 87, textureX, textureY); // Box 25
-		bodyModel[24] = new ModelRendererTurbo(this, 57, 81, textureX, textureY); // Box 40 cull
+		bodyModel[24] = new ModelRendererTurbo(this, 57, 81, textureX, textureY, "cull"); // Box 40 cull
 		bodyModel[25] = new ModelRendererTurbo(this, 45, 55, textureX, textureY); // Box 27
 		bodyModel[26] = new ModelRendererTurbo(this, 8, 194, textureX, textureY); // Box 28
 		bodyModel[27] = new ModelRendererTurbo(this, 8, 191, textureX, textureY); // Box 29
-		bodyModel[28] = new ModelRendererTurbo(this, 70, 81, textureX, textureY); // Box 30 cull
+		bodyModel[28] = new ModelRendererTurbo(this, 70, 81, textureX, textureY, "cull"); // Box 30 cull
 		bodyModel[29] = new ModelRendererTurbo(this, 45, 63, textureX, textureY); // Box 31
 		bodyModel[30] = new ModelRendererTurbo(this, 45, 59, textureX, textureY); // Box 32
-		bodyModel[31] = new ModelRendererTurbo(this, 57, 66, textureX, textureY); // Box 33 cull
+		bodyModel[31] = new ModelRendererTurbo(this, 57, 66, textureX, textureY, "cull"); // Box 33 cull
 		bodyModel[32] = new ModelRendererTurbo(this, 45, 51, textureX, textureY); // Box 34
-		bodyModel[33] = new ModelRendererTurbo(this, 70, 66, textureX, textureY); // Box 35 cull
+		bodyModel[33] = new ModelRendererTurbo(this, 70, 66, textureX, textureY, "cull"); // Box 35 cull
 		bodyModel[34] = new ModelRendererTurbo(this, 192, 47, textureX, textureY); // Box 36
 		bodyModel[35] = new ModelRendererTurbo(this, 187, 47, textureX, textureY); // Box 38
 		bodyModel[36] = new ModelRendererTurbo(this, 182, 47, textureX, textureY); // Box 39
@@ -86,8 +87,8 @@ public class ModelMillGondola extends ModelConverter //Same as Filename
 		bodyModel[53] = new ModelRendererTurbo(this, 96, 108, textureX, textureY); // Box 72
 		bodyModel[54] = new ModelRendererTurbo(this, 83, 107, textureX, textureY); // Box 86
 		bodyModel[55] = new ModelRendererTurbo(this, 93, 106, textureX, textureY); // Box 87
-		bodyModel[56] = new ModelRendererTurbo(this, 57, 47, textureX, textureY); // Box 60 cull
-		bodyModel[57] = new ModelRendererTurbo(this, 70, 47, textureX, textureY); // Box 61 cull
+		bodyModel[56] = new ModelRendererTurbo(this, 57, 47, textureX, textureY, "cull"); // Box 60 cull
+		bodyModel[57] = new ModelRendererTurbo(this, 70, 47, textureX, textureY, "cull"); // Box 61 cull
 		bodyModel[58] = new ModelRendererTurbo(this, 1, 208, textureX, textureY); // Box FLAT LOAD
 		bodyModel[59] = new ModelRendererTurbo(this, 4, 59, textureX, textureY); // Box 59
 		bodyModel[60] = new ModelRendererTurbo(this, 24, 59, textureX, textureY); // Box 60
@@ -276,11 +277,16 @@ public class ModelMillGondola extends ModelConverter //Same as Filename
 		bodyModel[60].setRotationPoint(17F, -5F, 11F);
 	}
 	Model70Truck bogie = new Model70Truck();
+	Model70TonTruck2 bogie2 = new Model70TonTruck2();
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
 		for (int i = 0; i < 61; i++) {
-			if (i == 58) {
+			if (bodyModel[i].boxName != null && bodyModel[i].boxName.contains("cull")) {
+				GL11.glDisable(GL11.GL_CULL_FACE);
+				bodyModel[i].render(f5);
+				GL11.glEnable(GL11.GL_CULL_FACE);
+			}else if (i == 58) {
 				int cargo = ((Freight) entity).getAmmountOfCargo();
 				if (cargo != 0) {
 					GL11.glPushMatrix();
@@ -293,8 +299,7 @@ public class ModelMillGondola extends ModelConverter //Same as Filename
 			} else
 				bodyModel[i].render(f5);
 		}
-
-		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/70truck_Black.png"));
+		/*Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/70truck_Black.png"));
 
 		GL11.glPushMatrix();
 		GL11.glScalef(1,1,0.9f);
@@ -303,10 +308,23 @@ public class ModelMillGondola extends ModelConverter //Same as Filename
 
 		GL11.glTranslated(3.15,0,0.03);
 		bogie.render(entity,f,f1,f2,f3,f4,f5);
+		GL11.glPopMatrix();*/
+		if(entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor()==14){
+			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/70Ton_Greyish.png"));
+		} else {
+			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/70Ton_Black.png"));
+		}
+		GL11.glPushMatrix();
+		GL11.glTranslated(-1.65,-0.05,-0.0);
+		bogie2.render(entity,f,f1,f2,f3,f4,f5);
+
+		GL11.glTranslated(3.25,-0.0,0.00);
+		bogie2.render(entity,f,f1,f2,f3,f4,f5);
 		GL11.glPopMatrix();
 	}
 
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5)
 	{
 	}
+	public float[] getTrans() { return new float[]{-0F, 0.1F, 0F}; }
 }

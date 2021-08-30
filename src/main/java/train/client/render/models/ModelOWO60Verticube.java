@@ -7,6 +7,7 @@ import org.lwjgl.opengl.GL11;
 import tmt.ModelConverter;
 import tmt.ModelRendererTurbo;
 import tmt.Tessellator;
+import train.common.api.AbstractTrains;
 import train.common.library.Info;
 
 public class ModelOWO60Verticube extends ModelConverter
@@ -52,14 +53,14 @@ public class ModelOWO60Verticube extends ModelConverter
 		bodyModel[21] = new ModelRendererTurbo(this, 2, 109, textureX, textureY); // Box 40
 		bodyModel[22] = new ModelRendererTurbo(this, 2, 120, textureX, textureY); // Box 40
 		bodyModel[23] = new ModelRendererTurbo(this, 2, 105, textureX, textureY); // Box 40
-		bodyModel[24] = new ModelRendererTurbo(this, 176, 57, textureX, textureY); // Box 40 cul
-		bodyModel[25] = new ModelRendererTurbo(this, 12, 77, textureX, textureY); // Box 40 cul
-		bodyModel[26] = new ModelRendererTurbo(this, 176, 42, textureX, textureY); // Box 40 cul
-		bodyModel[27] = new ModelRendererTurbo(this, 191, 102, textureX, textureY); // Box 40 cul
-		bodyModel[28] = new ModelRendererTurbo(this, 202, 102, textureX, textureY); // Box 40 cul
-		bodyModel[29] = new ModelRendererTurbo(this, 12, 89, textureX, textureY); // Box 40 cul
-		bodyModel[30] = new ModelRendererTurbo(this, 1, 77, textureX, textureY); // Box 40 cul
-		bodyModel[31] = new ModelRendererTurbo(this, 1, 89, textureX, textureY); // Box 40 cul
+		bodyModel[24] = new ModelRendererTurbo(this, 176, 57, textureX, textureY, "cull"); // Box 40 cul
+		bodyModel[25] = new ModelRendererTurbo(this, 12, 77, textureX, textureY, "cull"); // Box 40 cul
+		bodyModel[26] = new ModelRendererTurbo(this, 176, 42, textureX, textureY, "cull"); // Box 40 cul
+		bodyModel[27] = new ModelRendererTurbo(this, 191, 102, textureX, textureY, "cull"); // Box 40 cul
+		bodyModel[28] = new ModelRendererTurbo(this, 202, 102, textureX, textureY, "cull"); // Box 40 cul
+		bodyModel[29] = new ModelRendererTurbo(this, 12, 89, textureX, textureY, "cull"); // Box 40 cul
+		bodyModel[30] = new ModelRendererTurbo(this, 1, 77, textureX, textureY, "cull"); // Box 40 cul
+		bodyModel[31] = new ModelRendererTurbo(this, 1, 89, textureX, textureY, "cull"); // Box 40 cul
 		bodyModel[32] = new ModelRendererTurbo(this, 25, 33, textureX, textureY); // Box 3
 		bodyModel[33] = new ModelRendererTurbo(this, 25, 36, textureX, textureY); // Box 3
 		bodyModel[34] = new ModelRendererTurbo(this, 198, 8, textureX, textureY); // Box 87
@@ -325,25 +326,30 @@ public class ModelOWO60Verticube extends ModelConverter
 		bodyModel[71].rotateAngleY = -0.62831853F;
 		bodyModel[71].rotateAngleZ = -0.13962634F;
 	}
-	Model70Truck bogie = new Model70Truck();
+	Model70TonTruck2 bogie2 = new Model70TonTruck2();
 
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
 		for(int i = 0; i < 72; i++)
-		{
-			bodyModel[i].render(f5);
+			if (bodyModel[i].boxName != null && bodyModel[i].boxName.contains("cull")) {
+				GL11.glDisable(GL11.GL_CULL_FACE);
+				bodyModel[i].render(f5);
+				GL11.glEnable(GL11.GL_CULL_FACE);
+			} else {
+				bodyModel[i].render(f5);
+			}
+		if(entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor()==3456){
+			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/70Ton_Black.png"));
+		} else {
+			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/70Ton_Greyish.png"));
 		}
-
-		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/70truck_Black.png"));
-
 		GL11.glPushMatrix();
-		GL11.glScalef(1,1,0.9f);
-		GL11.glTranslated(-1.78375,0.575,-0.4);
-		bogie.render(entity,f,f1,f2,f3,f4,f5);
+		GL11.glTranslated(-1.65,-0.0,-0.0);
+		bogie2.render(entity,f,f1,f2,f3,f4,f5);
 
-		GL11.glTranslated(3.25,0,0.03);
-		bogie.render(entity,f,f1,f2,f3,f4,f5);
+		GL11.glTranslated(3.25,-0.0,0.00);
+		bogie2.render(entity,f,f1,f2,f3,f4,f5);
 		GL11.glPopMatrix();
 	}
 

@@ -1615,6 +1615,7 @@ public class ModelU23B extends ModelConverter //Same as Filename
 	}
 	ModelTypeB theTrucks1 = new ModelTypeB();
 	ModelFB2 theTrucks2 = new ModelFB2();
+	ModelBapBlombergB theTrucks3 = new ModelBapBlombergB();
 
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
@@ -1648,6 +1649,15 @@ public class ModelU23B extends ModelConverter //Same as Filename
 
 			GL11.glTranslated(3.05, 0, 0);
 			theTrucks1.render(entity, f, f1, f2, f3, f4, f5);
+			GL11.glPopMatrix();
+		} else if (entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 5){
+			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/blombergB_Black.png"));
+			GL11.glPushMatrix();
+			GL11.glTranslated(-1.52, 0.17, 0);
+			theTrucks3.render(entity, f, f1, f2, f3, f4, f5);
+
+			GL11.glTranslated(3.05, 0, 0);
+			theTrucks3.render(entity, f, f1, f2, f3, f4, f5);
 			GL11.glPopMatrix();
 		} else if (entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 6){
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/fb2_Grey.png"));

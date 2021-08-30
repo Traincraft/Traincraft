@@ -15,6 +15,7 @@ import org.lwjgl.opengl.GL11;
 import tmt.ModelConverter;
 import tmt.ModelRendererTurbo;
 import tmt.Tessellator;
+import train.common.api.AbstractTrains;
 import train.common.library.Info;
 
 public class ModelPS150 extends ModelConverter //Same as Filename
@@ -67,14 +68,14 @@ public class ModelPS150 extends ModelConverter //Same as Filename
 		bodyModel[28] = new ModelRendererTurbo(this, 353, 9, textureX, textureY); // Box 40
 		bodyModel[29] = new ModelRendererTurbo(this, 369, 9, textureX, textureY); // Box 40
 		bodyModel[30] = new ModelRendererTurbo(this, 433, 9, textureX, textureY); // Box 40
-		bodyModel[31] = new ModelRendererTurbo(this, 497, 17, textureX, textureY); // Box 40 cul
-		bodyModel[32] = new ModelRendererTurbo(this, 281, 25, textureX, textureY); // Box 40 cul
-		bodyModel[33] = new ModelRendererTurbo(this, 393, 33, textureX, textureY); // Box 40 cul
-		bodyModel[34] = new ModelRendererTurbo(this, 409, 33, textureX, textureY); // Box 40 cul
-		bodyModel[35] = new ModelRendererTurbo(this, 105, 33, textureX, textureY); // Box 40 cul
-		bodyModel[36] = new ModelRendererTurbo(this, 497, 33, textureX, textureY); // Box 40 cul
-		bodyModel[37] = new ModelRendererTurbo(this, 425, 41, textureX, textureY); // Box 40 cul
-		bodyModel[38] = new ModelRendererTurbo(this, 121, 33, textureX, textureY); // Box 40 cul
+		bodyModel[31] = new ModelRendererTurbo(this, 497, 17, textureX, textureY, "cull"); // Box 40 cul
+		bodyModel[32] = new ModelRendererTurbo(this, 281, 25, textureX, textureY, "cull"); // Box 40 cul
+		bodyModel[33] = new ModelRendererTurbo(this, 393, 33, textureX, textureY, "cull"); // Box 40 cul
+		bodyModel[34] = new ModelRendererTurbo(this, 409, 33, textureX, textureY, "cull"); // Box 40 cul
+		bodyModel[35] = new ModelRendererTurbo(this, 105, 33, textureX, textureY, "cull"); // Box 40 cul
+		bodyModel[36] = new ModelRendererTurbo(this, 497, 33, textureX, textureY, "cull"); // Box 40 cul
+		bodyModel[37] = new ModelRendererTurbo(this, 425, 41, textureX, textureY, "cull"); // Box 40 cul
+		bodyModel[38] = new ModelRendererTurbo(this, 121, 33, textureX, textureY, "cull"); // Box 40 cul
 		bodyModel[39] = new ModelRendererTurbo(this, 1, 57, textureX, textureY); // Box 39
 		bodyModel[40] = new ModelRendererTurbo(this, 161, 57, textureX, textureY); // Box 39
 		bodyModel[41] = new ModelRendererTurbo(this, 449, 9, textureX, textureY); // Box 3
@@ -222,15 +223,20 @@ public class ModelPS150 extends ModelConverter //Same as Filename
 		bodyModel[45].setRotationPoint(-17.5F, 4F, 11F);
 	}
 	Model70Truck bogie = new Model70Truck();
+	Model70TonTruck2 bogie2 = new Model70TonTruck2();
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
 		for(int i = 0; i < 46; i++)
-		{
-			bodyModel[i].render(f5);
-		}
+			if (bodyModel[i].boxName != null && bodyModel[i].boxName.contains("cull")) {
+				GL11.glDisable(GL11.GL_CULL_FACE);
+				bodyModel[i].render(f5);
+				GL11.glEnable(GL11.GL_CULL_FACE);
+			} else {
+				bodyModel[i].render(f5);
+			}
 
-		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/70truck_Black.png"));
+		/*Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/70truck_Black.png"));
 
 		GL11.glPushMatrix();
 		GL11.glScalef(1,1,0.9f);
@@ -239,6 +245,18 @@ public class ModelPS150 extends ModelConverter //Same as Filename
 
 		GL11.glTranslated(2.875,0,0.03);
 		bogie.render(entity,f,f1,f2,f3,f4,f5);
+		GL11.glPopMatrix();*/
+		if(entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor()==10){
+			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/70Ton_Greyish.png"));
+		} else {
+			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/70Ton_Black.png"));
+		}
+		GL11.glPushMatrix();
+		GL11.glTranslated(-1.435,-0.0,-0.0);
+		bogie2.render(entity,f,f1,f2,f3,f4,f5);
+
+		GL11.glTranslated(2.87,-0.0,0.00);
+		bogie2.render(entity,f,f1,f2,f3,f4,f5);
 		GL11.glPopMatrix();
 	}
 
@@ -247,4 +265,5 @@ public class ModelPS150 extends ModelConverter //Same as Filename
 	}
 
 	public ModelRendererTurbo ModelPS150[];
+	public float[] getTrans() { return new float[]{-0F, 0.15F, 0F}; }
 }
