@@ -15,6 +15,7 @@ import org.lwjgl.opengl.GL11;
 import tmt.ModelConverter;
 import tmt.ModelRendererTurbo;
 import tmt.Tessellator;
+import train.client.render.models.ModelPS_Truck;
 import train.common.api.AbstractTrains;
 import train.common.library.Info;
 
@@ -25,7 +26,7 @@ public class ModelPSSleeper565 extends ModelConverter //Same as Filename
 
 	public ModelPSSleeper565() //Same as Filename
 	{
-		bodyModel = new ModelRendererTurbo[622];
+		bodyModel = new ModelRendererTurbo[624];
 
 		initbodyModel_1();
 		initbodyModel_2();
@@ -2232,6 +2233,8 @@ public class ModelPSSleeper565 extends ModelConverter //Same as Filename
 		bodyModel[619] = new ModelRendererTurbo(this, 171, 271, textureX, textureY); // bed ladder rear
 		bodyModel[620] = new ModelRendererTurbo(this, 359, 271, textureX, textureY); // bed ladder rear
 		bodyModel[621] = new ModelRendererTurbo(this, 322, 64, textureX, textureY); // Box 190
+		bodyModel[622] = new ModelRendererTurbo(this, 58, 104, textureX, textureY); // Box 204
+		bodyModel[623] = new ModelRendererTurbo(this, 48, 79, textureX, textureY); // Box 194
 
 		bodyModel[500].addBox(0F, 0F, 0F, 3, 4, 6, 0F); // Box 38
 		bodyModel[500].setRotationPoint(39F, -3F, -10F);
@@ -2387,7 +2390,7 @@ public class ModelPSSleeper565 extends ModelConverter //Same as Filename
 		bodyModel[548].addShapeBox(0F, 0F, 0F, 31, 1, 1, 0F,0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 38
 		bodyModel[548].setRotationPoint(-60F, -18F, -8F);
 
-		bodyModel[549].addShapeBox(0F, 0F, 0F, 46, 1, 1, 0F,0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 38
+		bodyModel[549].addShapeBox(0F, 0F, 0F, 45, 1, 1, 0F,0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 38
 		bodyModel[549].setRotationPoint(16F, -18F, -8F);
 
 		bodyModel[550].addShapeBox(0F, 0F, 0F, 2, 18, 0, 0F,0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F); // Box 38
@@ -2617,12 +2620,18 @@ public class ModelPSSleeper565 extends ModelConverter //Same as Filename
 
 		bodyModel[621].addShapeBox(0F, 0F, 0F, 3, 3, 1, 0F,-0.6F, -0.75F, -0.5F, -0.6F, -0.75F, -0.5F, -0.6F, -0.75F, -0.5F, -0.6F, -0.75F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 190
 		bodyModel[621].setRotationPoint(46F, -18F, -11.5F);
+
+		bodyModel[622].addShapeBox(0F, 0F, 0F, 0, 6, 1, 0F,0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 204
+		bodyModel[622].setRotationPoint(-60.5F, -6F, 11F);
+
+		bodyModel[623].addShapeBox(0F, 0F, 0F, 0, 6, 1, 0F,0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 194
+		bodyModel[623].setRotationPoint(-60.5F, -6F, -12F);
 	}
 	ModelPS_Truck bogie1 = new ModelPS_Truck();
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
-		for(int i = 0; i < 622; i++)
+		for(int i = 0; i < 624; i++)
 		{
 			bodyModel[i].render(f5);
 		}
