@@ -27,15 +27,15 @@ public class TileBridgePillar extends TileTraincraft {
 
 		facing = ForgeDirection.getOrientation(nbtTag.getByte("Orientation"));
 	}
-
+	/*
 	@Override
 	public void updateEntity() {
 		super.updateEntity();
 		updateTicks++;
 
-		/**
-		 * Remove any block on top of the wind mill
-		 */
+
+		  Remove any block on top of the wind mill
+
 		if (!worldObj.isRemote) {
 			if (updateTicks % 20 == 0) {
 				if (!this.worldObj.isAirBlock(this.xCoord, this.yCoord + 1, this.zCoord)) {
@@ -54,6 +54,7 @@ public class TileBridgePillar extends TileTraincraft {
 			}
 		}
 	}
+	*/
 
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound nbtTag, boolean forSyncing) {

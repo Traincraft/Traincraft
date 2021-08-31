@@ -34,26 +34,17 @@ public class BlockBridgePillar extends Block {
 	}
 
 	@Override
-	public void addCollisionBoxesToList(World p_149743_1_, int p_149743_2_, int p_149743_3_, int p_149743_4_, AxisAlignedBB p_149743_5_, List p_149743_6_, Entity p_149743_7_)
-	{
-	}
-
-	@Override
 	public boolean hasTileEntity(int metadata) {
 		return true;
 	}
 
 
-
-	@Override
-	public boolean renderAsNormalBlock() {
-		return false;
-	}
-
 	@Override
 	public boolean isOpaqueCube() {
 		return false;
 	}
+
+
 
 	@Override
 	public TileEntity createTileEntity(World world, int metadata) {
