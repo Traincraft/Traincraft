@@ -64,7 +64,7 @@ public class Model73centerbeam extends ModelConverter //Same as Filename
 		bodyModel[21] = new ModelRendererTurbo(this, 361, 1, textureX, textureY); // Box 72
 		bodyModel[22] = new ModelRendererTurbo(this, 97, 9, textureX, textureY); // Box 86
 		bodyModel[23] = new ModelRendererTurbo(this, 329, 1, textureX, textureY); // Box 87
-		bodyModel[24] = new ModelRendererTurbo(this, 353, 9, textureX, textureY); // Box 60 cull
+		bodyModel[24] = new ModelRendererTurbo(this, 353, 9, textureX, textureY, "cull"); // Box 60 cull
 		bodyModel[25] = new ModelRendererTurbo(this, 344, 17, textureX, textureY); // Box 62
 		bodyModel[26] = new ModelRendererTurbo(this, 397, 17, textureX, textureY); // Box 65
 		bodyModel[27] = new ModelRendererTurbo(this, 413, 17, textureX, textureY); // Box 67
@@ -75,11 +75,11 @@ public class Model73centerbeam extends ModelConverter //Same as Filename
 		bodyModel[32] = new ModelRendererTurbo(this, 497, 33, textureX, textureY); // Box 74
 		bodyModel[33] = new ModelRendererTurbo(this, 81, 41, textureX, textureY); // Box 75
 		bodyModel[34] = new ModelRendererTurbo(this, 105, 41, textureX, textureY); // Box 79
-		bodyModel[35] = new ModelRendererTurbo(this, 337, 41, textureX, textureY); // Box 80 cull
+		bodyModel[35] = new ModelRendererTurbo(this, 337, 41, textureX, textureY, "cull"); // Box 80 cull
 		bodyModel[36] = new ModelRendererTurbo(this, 353, 41, textureX, textureY); // Box 83
 		bodyModel[37] = new ModelRendererTurbo(this, 1, 49, textureX, textureY); // Box 84
-		bodyModel[38] = new ModelRendererTurbo(this, 105, 17, textureX, textureY); // Box 87 cull
-		bodyModel[39] = new ModelRendererTurbo(this, 66, 54, textureX, textureY); // Box 88 cull
+		bodyModel[38] = new ModelRendererTurbo(this, 105, 17, textureX, textureY, "cull"); // Box 87 cull
+		bodyModel[39] = new ModelRendererTurbo(this, 66, 54, textureX, textureY, "cull"); // Box 88 cull
 		bodyModel[40] = new ModelRendererTurbo(this, 393, 49, textureX, textureY); // Box 89
 		bodyModel[41] = new ModelRendererTurbo(this, 425, 49, textureX, textureY); // Box 90
 		bodyModel[42] = new ModelRendererTurbo(this, 105, 9, textureX, textureY); // Box 91
@@ -356,15 +356,20 @@ public class Model73centerbeam extends ModelConverter //Same as Filename
 		bodyModel[76].setRotationPoint(-40F, -24F, -1.5F);
 	}
 	Model70Truck bogie = new Model70Truck();
+	Model70TonTruck2 bogiebutawesome = new Model70TonTruck2();
 	Modelwrappedwood load1 = new Modelwrappedwood();
 
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
 		for(int i = 0; i < 77; i++)
-		{
-			bodyModel[i].render(f5);
-		}
+			if (bodyModel[i].boxName != null && bodyModel[i].boxName.contains("cull")) {
+				GL11.glDisable(GL11.GL_CULL_FACE);
+				bodyModel[i].render(f5);
+				GL11.glEnable(GL11.GL_CULL_FACE);
+			} else {
+				bodyModel[i].render(f5);
+			}
 		int cargo = ((Freight) entity).getAmmountOfCargo();
 		if (cargo != 0) {
 			if(cargo<=9) {
@@ -980,15 +985,28 @@ public class Model73centerbeam extends ModelConverter //Same as Filename
 				GL11.glPopMatrix();
 			}
 		}
-		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/70truck_Black.png"));
+		//Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/70truck_Black.png"));
+		if(entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor()==2){
+			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/70Ton_Black.png"));
+		} else {
+			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/70Ton_Greyish.png"));
+		}
 
-		GL11.glPushMatrix();
+		/*GL11.glPushMatrix();
 		GL11.glScalef(1,1,0.9f);
 		GL11.glTranslated(-2.84375f,0.55,-0.4);
 		bogie.render(entity,f,f1,f2,f3,f4,f5);
 
 		GL11.glTranslated(5.4375f,0,0.03);
 		bogie.render(entity,f,f1,f2,f3,f4,f5);
+		GL11.glPopMatrix();*/
+		GL11.glPushMatrix();
+		GL11.glScalef(1,1,1f);
+		GL11.glTranslated(-2.73,-0.05,-0.0);
+		bogiebutawesome.render(entity,f,f1,f2,f3,f4,f5);
+
+		GL11.glTranslated(5.45,0,0.00);
+		bogiebutawesome.render(entity,f,f1,f2,f3,f4,f5);
 		GL11.glPopMatrix();
 	}
 
@@ -997,4 +1015,5 @@ public class Model73centerbeam extends ModelConverter //Same as Filename
 	}
 
 	public ModelRendererTurbo Model73centerbeam[];
+	public float[] getTrans() { return new float[]{-0F, 0.1F, 0F}; }
 }

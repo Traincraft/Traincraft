@@ -100,7 +100,7 @@ public class EntityFreightBapOWO60Verticube extends Freight implements IInventor
 
     @Override
     public float getOptimalDistance(EntityMinecart cart) {
-        return 2.8125F;
+        return 2.95F;
     }
 
     @Override
