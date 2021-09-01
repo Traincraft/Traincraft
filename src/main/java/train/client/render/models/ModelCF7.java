@@ -651,6 +651,8 @@ public class ModelCF7 extends ModelConverter //Same as Filename
 			m.render(f5);
 			if(m.boxName.equals("lamp")){
 				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+				GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+				GL11.glEnable(GL11.GL_BLEND);
 			}
 		}
 
@@ -669,6 +671,9 @@ public class ModelCF7 extends ModelConverter //Same as Filename
 		GL11.glTranslatef(2.55f, 0f,0);
 		theTrucks.render(entity, f, f1, f2, f3, f4, f5);
 		GL11.glPopMatrix();
+		GL11.glColor4f(1.0f, 1.0f, 1.0f, 0.5f);
+
+
 	}
 
 }

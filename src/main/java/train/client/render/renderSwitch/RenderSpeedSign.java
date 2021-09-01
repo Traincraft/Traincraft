@@ -15,12 +15,16 @@ import train.common.library.Info;
 import train.common.tile.tileSwitch.TileSpeedSign;
 
 public class RenderSpeedSign extends TileEntitySpecialRenderer {
-	static final ModelspeedSign modelBridgePillar = new ModelspeedSign();
-
+	static final ModelspeedSign modelspeedSign = new ModelspeedSign();
+	/*
 	private static final ResourceLocation texture = new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "speedSign.png");
 	private static final ResourceLocation texture2 = new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "speedSign2.png");
 	private static final ResourceLocation texture3 = new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "speedSign3.png");
 	private static final ResourceLocation texture4 = new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "speedSign4.png");
+
+	 */
+
+	private ResourceLocation[] textures = {new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "SpeedSign10.png"), new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "SpeedSign50.png"), new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "SpeedSign90.png"), new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "SpeedSign125.png"), new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "SpeedSign160.png")};
 
 	@Override
 	public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float tick) {
@@ -64,7 +68,7 @@ public class RenderSpeedSign extends TileEntitySpecialRenderer {
 
 			// tileEntity.getWorldObj().getBlock(tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord).isProvidingWeakPower(tileEntity.getWorldObj(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord, 0) > 0
 
-
+			/*
 			if (((TileSpeedSign) tileEntity).getSkinstate() == 0) {
 				Tessellator.bindTexture(texture);
 			} else if (((TileSpeedSign) tileEntity).getSkinstate() == 1){
@@ -75,8 +79,10 @@ public class RenderSpeedSign extends TileEntitySpecialRenderer {
 				Tessellator.bindTexture(texture4);
 			}
 
+			 */
+			Tessellator.bindTexture(textures[(((TileSpeedSign) tileEntity).getSkinstate())]);
 
-			modelBridgePillar.render(null, 0, 0, 0, 0, 0, 0.0625f);
+			modelspeedSign.render(null, 0, 0, 0, 0, 0, 0.0625f);
 
 
 

@@ -5,13 +5,17 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import train.common.Traincraft;
 import train.common.library.Info;
 import train.common.tile.tileSwitch.TileSpeedSign;
+
+import java.util.List;
 
 public class BlockSpeedSign extends Block {
 	private IIcon texture;
@@ -35,6 +39,17 @@ public class BlockSpeedSign extends Block {
 	@Override
 	public boolean hasTileEntity(int metadata) {
 		return true;
+	}
+
+	@Override
+	public void addCollisionBoxesToList(World p_149743_1_, int p_149743_2_, int p_149743_3_, int p_149743_4_, AxisAlignedBB p_149743_5_, List p_149743_6_, Entity p_149743_7_)
+	{
+	}
+
+
+	@Override
+	public boolean renderAsNormalBlock() {
+		return false;
 	}
 
 

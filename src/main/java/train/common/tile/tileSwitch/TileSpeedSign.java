@@ -84,7 +84,7 @@ public class TileSpeedSign extends TileTraincraft {
 	}
 
 	public void increaseSkinState(){
-		if (skinstate == 3){
+		if (skinstate == 4){
 			skinstate = 0;
 			this.skinstate = skinstate;
 		} else {

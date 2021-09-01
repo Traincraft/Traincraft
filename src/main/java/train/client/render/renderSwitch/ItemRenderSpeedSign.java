@@ -7,7 +7,7 @@ import org.lwjgl.opengl.GL11;
 import tmt.Tessellator;
 import train.common.library.Info;
 
-import static train.client.render.renderSwitch.RenderSpeedSign.modelBridgePillar;
+import static train.client.render.renderSwitch.RenderSpeedSign.modelspeedSign;
 
 public class ItemRenderSpeedSign implements IItemRenderer {
 
@@ -53,7 +53,7 @@ public class ItemRenderSpeedSign implements IItemRenderer {
 		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_slope.png"));
 		GL11.glTranslatef(x, y, z);
 
-		modelBridgePillar.render();
+		modelspeedSign.render();
 		GL11.glPopMatrix();
 	}
 }
