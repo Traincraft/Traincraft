@@ -4,7 +4,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.audio.PositionedSound;
+import net.minecraft.client.audio.ISound;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -25,15 +25,23 @@ public class TileMFPBWigWag extends TileTraincraft {
     public float rotation =0;
     public boolean flip=true, powered =false;
 
+    // private net.minecraft.client.audio.ISound bell = new PositionedSound(new ResourceLocation(Info.modID,"bell"))
+    /*
     @SideOnly(Side.CLIENT)//be sure sound is only created on client
-    private net.minecraft.client.audio.ISound bell = new PositionedSound(new ResourceLocation(Info.modID,"bell")) {
+    private net.minecraft.client.audio.PositionedSound bell = new PositionedSound(new ResourceLocation(Info.modID,"bell")){
+
         @Override
         public float getXPosF() {return xCoord;}
         @Override
         public float getYPosF() {return yCoord+1;}
         @Override
         public float getZPosF() {return zCoord;}
+
+
     };
+
+     */
+
 
     @Override
     public void readFromNBT(NBTTagCompound nbtTag, boolean forSyncing) {
@@ -49,9 +57,13 @@ public class TileMFPBWigWag extends TileTraincraft {
         if(worldObj.isRemote) {
             if (rotation > 20 || rotation < -20) {
                 flip = !flip;
-                if(!Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(bell)){
-                    Minecraft.getMinecraft().getSoundHandler().playSound(bell);
-                }
+
+
+
+                //if(!Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(bell)){
+                    //Minecraft.getMinecraft().getSoundHandler().playSound(bell);
+                worldObj.playSound(xCoord,yCoord,zCoord,Info.resourceLocation + ":" + "bell",1f,1f,true);
+
             }
             if (powered = getWorldObj().isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord)) {
                 rotation += flip ? 1.75f : -1.75f;
