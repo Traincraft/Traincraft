@@ -102,7 +102,7 @@ public class CommonProxy implements IGuiHandler {
 		GameRegistry.registerTileEntity(TilesignalSpanish.class, "tilesignalspanish");
 		GameRegistry.registerTileEntity(TiletrackConcrete.class, "tiletrackconcrete");
 		GameRegistry.registerTileEntity(TilekSignal.class, "tileksignal");
-
+		GameRegistry.registerTileEntity(TileSpeedSign.class, "tilespeedsign");
 
 		if (Loader.isModLoaded("ComputerCraft")) {
 			GameRegistry.registerTileEntity(TileInfoTransmitterSpeed.class, "tileInfoTransmitterSpeed");

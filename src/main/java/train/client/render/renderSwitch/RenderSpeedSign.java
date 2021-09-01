@@ -1,0 +1,87 @@
+package train.client.render.renderSwitch;
+
+import net.minecraft.block.Block;
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.init.Blocks;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
+import org.lwjgl.opengl.GL11;
+import tmt.Tessellator;
+import train.client.render.models.blocks.ModelBridgePillar;
+import train.client.render.renderSwitch.models.ModelspeedSign;
+import train.common.blocks.blockSwitch.BlockSpeedSign;
+import train.common.library.Info;
+import train.common.tile.tileSwitch.TileSpeedSign;
+
+public class RenderSpeedSign extends TileEntitySpecialRenderer {
+	static final ModelspeedSign modelBridgePillar = new ModelspeedSign();
+
+	private static final ResourceLocation texture = new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "speedSign.png");
+	private static final ResourceLocation texture2 = new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "speedSign2.png");
+	private static final ResourceLocation texture3 = new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "speedSign3.png");
+	private static final ResourceLocation texture4 = new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "speedSign4.png");
+
+	@Override
+	public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float tick) {
+		GL11.glPushMatrix();
+		GL11.glTranslated(x , y + 1, z);
+		GL11.glRotated(180, 0, 1, 0);
+		boolean skipRender = false;
+
+		switch (((TileSpeedSign) tileEntity).getFacing()) {
+			case NORTH: {
+				GL11.glRotated(180, 0, 0, 1);
+				GL11.glRotated(90, 0, 1, 0);
+				//GL11.glTranslated(0.1875, -1, 0.125);
+				break;
+			}
+			case SOUTH: {
+				GL11.glRotated(180, 0, 0, 1);
+				GL11.glRotated(270, 0, 1, 0);
+				//GL11.glTranslated(0.1875, -1, 0.125);
+				break;
+			}
+			case EAST: {
+				GL11.glRotated(180, 0, 0, 1);
+				GL11.glRotated(180, 0, 1, 0);
+				//GL11.glTranslated(0.1875, -1, 0.125);
+				break;
+			}
+			case WEST: {
+				GL11.glRotated(180, 0, 0, 1);
+				GL11.glRotated(0, 0, 1, 0);
+				//GL11.glTranslated(0.1875, -1, 0.125);
+				break;
+			}
+			default: {
+				skipRender = true;
+			}
+		}
+
+
+		if (!skipRender) {
+
+			// tileEntity.getWorldObj().getBlock(tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord).isProvidingWeakPower(tileEntity.getWorldObj(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord, 0) > 0
+
+
+			if (((TileSpeedSign) tileEntity).getSkinstate() == 0) {
+				Tessellator.bindTexture(texture);
+			} else if (((TileSpeedSign) tileEntity).getSkinstate() == 1){
+				Tessellator.bindTexture(texture2);
+			} else if (((TileSpeedSign) tileEntity).getSkinstate() == 2){
+				Tessellator.bindTexture(texture3);
+			} else if (((TileSpeedSign) tileEntity).getSkinstate() == 3) {
+				Tessellator.bindTexture(texture4);
+			}
+
+
+			modelBridgePillar.render(null, 0, 0, 0, 0, 0, 0.0625f);
+
+
+
+		}
+		GL11.glPopMatrix();
+	}
+}
+
