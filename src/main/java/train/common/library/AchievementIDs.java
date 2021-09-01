@@ -79,8 +79,8 @@ public enum AchievementIDs {
 			ItemIDs.minecartLocoSteamShay.item, ItemIDs.minecartLocoSteamClimax.item,
 			ItemIDs.minecartLocoLSSP7.item}),
 	switchin(new Item[]{ItemIDs.minecartLocoSW8.item, ItemIDs.minecartLocoGP15.item}),
-	powerful(new Item[]{ItemIDs.minecartLocoDD35A.item});
-
+	powerful(new Item[]{ItemIDs.minecartLocoDD35A.item}),
+	heavySteam(new Item[]{ItemIDs.minecartHeavySteam.item}),
 	;
 
 	public Achievement	achievement;
