@@ -18,7 +18,7 @@ public class RenderBridgePillar extends TileEntitySpecialRenderer {
 	@Override
 	public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float tick) {
 		GL11.glPushMatrix();
-		GL11.glTranslated(x , y, z);
+		GL11.glTranslated(x+0.375 , y, z+0.3125);
 		GL11.glRotated(180, 0, 1, 0);
 		boolean skipRender = false;
 
