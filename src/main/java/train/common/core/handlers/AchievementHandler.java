@@ -111,7 +111,8 @@ public class AchievementHandler {
 				AchievementIDs.flatCart.achievement, AchievementIDs.stockCar.achievement,
 				AchievementIDs.caboose.achievement, AchievementIDs.mtg.achievement,
 				AchievementIDs.massTransit.achievement, AchievementIDs.cercanias.achievement,
-				AchievementIDs.powerful.achievement, AchievementIDs.switchin.achievement,};
+				AchievementIDs.powerful.achievement, AchievementIDs.switchin.achievement,
+				AchievementIDs.heavySteam.achievement,};
 
 		tmPage = new AchievementPage("TrainCraft", ach);
 
