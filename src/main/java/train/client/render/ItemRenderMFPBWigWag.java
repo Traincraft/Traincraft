@@ -10,7 +10,7 @@ import train.common.library.Info;
 
 public class ItemRenderMFPBWigWag implements IItemRenderer {
 	private static final ModelMFPBWigWag modeSwitch = new ModelMFPBWigWag();
-	private static final ResourceLocation texture = new ResourceLocation(Info.resourceLocation,Info.modelTexPrefix + "switchStand_uv_draw_1.png");
+	private static final ResourceLocation texture = new ResourceLocation(Info.resourceLocation,Info.modelTexPrefix + "MFPBWigWagOn.png");
 
 	public ItemRenderMFPBWigWag() {
 	}

@@ -29,7 +29,7 @@ public class RenderSpeedSign extends TileEntitySpecialRenderer {
 	@Override
 	public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float tick) {
 		GL11.glPushMatrix();
-		GL11.glTranslated(x , y + 1, z);
+		GL11.glTranslated(x +0.5 , y+0.625, z +0.125);
 		GL11.glRotated(180, 0, 1, 0);
 		boolean skipRender = false;
 
@@ -37,24 +37,35 @@ public class RenderSpeedSign extends TileEntitySpecialRenderer {
 			case NORTH: {
 				GL11.glRotated(180, 0, 0, 1);
 				GL11.glRotated(90, 0, 1, 0);
-				//GL11.glTranslated(0.1875, -1, 0.125);
+				//GL11.glTranslated(0.5, 0f, 0.5);
+				//System.out.println("N");
+
 				break;
 			}
 			case SOUTH: {
 				GL11.glRotated(180, 0, 0, 1);
 				GL11.glRotated(270, 0, 1, 0);
+				GL11.glTranslated(-0.75, 0f, 0);
+				//GL11.glTranslated(0.5, 0f, 0.5);
+				//System.out.println("S");
+
 				//GL11.glTranslated(0.1875, -1, 0.125);
 				break;
 			}
 			case EAST: {
 				GL11.glRotated(180, 0, 0, 1);
 				GL11.glRotated(180, 0, 1, 0);
+				GL11.glTranslated(-0.5, 0f, 0.25);
+				//System.out.println("E");
+
 				//GL11.glTranslated(0.1875, -1, 0.125);
 				break;
 			}
 			case WEST: {
 				GL11.glRotated(180, 0, 0, 1);
 				GL11.glRotated(0, 0, 1, 0);
+				GL11.glTranslatef(-0.375f,0f, -0.5f);
+				//System.out.println("W");
 				//GL11.glTranslated(0.1875, -1, 0.125);
 				break;
 			}

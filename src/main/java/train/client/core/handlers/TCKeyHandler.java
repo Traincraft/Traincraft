@@ -53,7 +53,7 @@ public class TCKeyHandler {
 			ClientRegistry.registerKeyBinding(MTCScreen);
 			toggleATO = new KeyBinding("key.traincraft.toggleATO", Keyboard.KEY_O, "key.categories.traincraft");
 			ClientRegistry.registerKeyBinding(toggleATO);
-			mtcOverride = new KeyBinding("key.traincraft.mtcOverride", Keyboard.KEY_T, "key.categories.traincraft");
+			mtcOverride = new KeyBinding("key.traincraft.mtcOverride", Keyboard.KEY_O, "key.categories.traincraft");
 			ClientRegistry.registerKeyBinding(mtcOverride);
 			overspeedOverride = new KeyBinding("key.traincraft.overspeedOverride", Keyboard.KEY_L, "key.categories.traincraft");
 			ClientRegistry.registerKeyBinding(overspeedOverride);

@@ -27,6 +27,7 @@ public class TileSpeedSign extends TileTraincraft {
 
 		facing = ForgeDirection.getOrientation(nbtTag.getByte("Orientation"));
 	}
+
 	/*
 	@Override
 	public void updateEntity() {
@@ -69,7 +70,7 @@ public class TileSpeedSign extends TileTraincraft {
 	}
 
 	public ForgeDirection getFacing() {
-		if (facing != null) {
+		if(facing!=null){
 			return this.facing;
 		}
 		return ForgeDirection.UNKNOWN;
@@ -91,8 +92,6 @@ public class TileSpeedSign extends TileTraincraft {
 			skinstate++;
 			this.skinstate = skinstate;
 		}
-
-		System.out.println(skinstate);
 	}
 
 	public void setFacing(ForgeDirection face) {
@@ -106,6 +105,4 @@ public class TileSpeedSign extends TileTraincraft {
 	public AxisAlignedBB getRenderBoundingBox() {
 		return AxisAlignedBB.getBoundingBox(xCoord - 1, yCoord - 1, zCoord - 1, xCoord + 2, yCoord + 2, zCoord + 2);
 	}
-
-
 }

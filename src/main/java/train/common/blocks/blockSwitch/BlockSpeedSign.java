@@ -6,13 +6,18 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
 import train.common.Traincraft;
 import train.common.library.Info;
+import train.common.tile.tileSwitch.TileMILWSwitchStand;
 import train.common.tile.tileSwitch.TileSpeedSign;
 
 import java.util.List;
@@ -56,6 +61,17 @@ public class BlockSpeedSign extends Block {
 	@Override
 	public boolean isOpaqueCube() {
 		return false;
+	}
+
+	@Override
+	public void onBlockPlacedBy(World world, int i, int j, int k, EntityLivingBase entityliving, ItemStack stack) {
+		super.onBlockPlacedBy(world, i, j, k, entityliving, stack);
+		TileSpeedSign te = (TileSpeedSign) world.getTileEntity(i, j, k);
+		if (te != null) {
+			int dir = MathHelper.floor_double((double) ((entityliving.rotationYaw * 4F) / 360F) + 0.5D) & 3;
+			te.setFacing(ForgeDirection.getOrientation(dir == 0 ? 2 : dir == 1 ? 5 : dir == 2 ? 3 : 4));
+			world.markBlockForUpdate(i, j, k);
+		}
 	}
 
 	@Override

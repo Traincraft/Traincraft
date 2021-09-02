@@ -340,6 +340,7 @@ item.tc:minecartLocoBP4.name=BP4
 item.tc:minecartASTFAutorack.name=ASTF ft-41 Auto Rack
 
 item.tc:paintbrushThing.name=Train Paintbrush
+item.tc:whistle.name=Whistle
 
 item.tc:minecart4000GallonTender.name=4000 Gallon Tender
 item.tc:minecartLocoHallClass.name=Hall Class
@@ -950,5 +951,7 @@ key.traincraft.showMTCScreen=Show MTC Screen
 key.traincraft.mtcOverride=Toggle MTC
 key.traincraft.overspeedOverride=Overspeed Override
 key.traincraft.toggleATO=Toggle ATO
+key.traincraft.bell=Bell
 
 tile.tc:MFPBWigWag.name=Wig Wag Crossing
+tile.tc:speedSign.name=Speed Sign
