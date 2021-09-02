@@ -51,7 +51,7 @@ public class ItemRenderSpeedSign implements IItemRenderer {
 
 	private void renderSpeedSign(float x, float y, float z, float rotate) {
 		GL11.glPushMatrix();
-		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "speedSign10.png"));
+		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "SpeedSign10.png"));
 		GL11.glTranslatef(x, y, z);
 		GL11.glRotatef(180f,0f,0f, rotate);
 		//GL11.glRotatef();
