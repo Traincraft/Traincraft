@@ -76,7 +76,8 @@ public class WorldEvents{
 	@SubscribeEvent
 	public void chunkUnloadEvent(ChunkEvent.Unload event){
 		for(Object o : event.getChunk().entityLists){
-			if (o instanceof EntityJukeBoxCart){
+			if (o instanceof EntityJukeBoxCart && ((EntityJukeBoxCart) o).isPlaying){
+				((EntityJukeBoxCart) o).player.stop();
 				((EntityJukeBoxCart) o).player.setVolume(0);
 			}
 		}
@@ -88,30 +89,6 @@ public class WorldEvents{
 		if (event.entity instanceof AbstractTrains){
 			event.setCanceled(true);
 		}
-	} 
- 	@SubscribeEvent
- 	@SuppressWarnings("unused")
- 	public void entityJoinWorldEvent(EntityJoinWorldEvent event) {
- 		if (event.entity instanceof EntityPlayer && event.entity.worldObj.isRemote) {
-
- 		} else if(event.entity instanceof EntityPlayer && ConfigHandler.FIRST_RUN) {
-			((EntityPlayer)event.entity).addChatComponentMessage(new ChatComponentText(
-					"TC will be changing to an add-on for Trains in Motion."));
-
-			((EntityPlayer)event.entity).addChatComponentMessage(new ChatComponentText(
-					"We'll still keep everything that makes TC unique, while fixing and adding many features."));
-
-			((EntityPlayer)event.entity).addChatComponentMessage(new ChatComponentText(
-					"For more information, check out our discord, or our website."));
-			((EntityPlayer)event.entity).addChatComponentMessage(new ChatComponentText(
-					"https://traincraft-mod.blogspot.com/p/default.html"));
-
-			((EntityPlayer)event.entity).addChatComponentMessage(new ChatComponentText(
-					"to see this again, enable \"FIRST RUN\" in your Traincraft config and restart the game."));
-			ConfigHandler.FIRST_RUN=false;
-			ConfigHandler.changeFirstLoad();
-
-		}
- 	}
+	}
  
 }

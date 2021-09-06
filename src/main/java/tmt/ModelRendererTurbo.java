@@ -31,7 +31,7 @@ import net.minecraft.util.ResourceLocation;
  */
 public class ModelRendererTurbo {
 
-    public TexturedPolygon faces[];
+    public List<TexturedPolygon> faces = new ArrayList<>();
     public float rotationPointX, rotationPointY, rotationPointZ;
     public float rotateAngleX, rotateAngleY, rotateAngleZ;
     public int textureOffsetX, textureWidth;
@@ -66,7 +66,7 @@ public class ModelRendererTurbo {
     public float yScale;
     public float zScale;
     
-	private static final float pi = (float)Math.PI;
+	public static final float pi = (float)Math.PI;
 	
 	public ModelRendererTurbo(Object Object, String s){
     	flip = false;
@@ -75,7 +75,7 @@ public class ModelRendererTurbo {
         mirror = false;
         showModel = true;
         field_1402_i = false;
-        faces = new TexturedPolygon[0];
+        faces = new ArrayList<>();
         forcedRecompile = false;
         textureGroup = new HashMap<String, TextureGroup>();
         textureGroup.put("0", new TextureGroup());
@@ -231,7 +231,6 @@ public class ModelRendererTurbo {
      * @param w the width of the shape, used in determining the texture
      * @param h the height of the shape, used in determining the texture
      * @param d the depth of the shape, used in determining the texture
-     * @param sides 
      * @return 
      */
     public ModelRendererTurbo addRectShape(float[] v, float[] v1, float[] v2, float[] v3, float[] v4, float[] v5, float[] v6, float[] v7, float w, float h, float d){
@@ -330,7 +329,6 @@ public class ModelRendererTurbo {
      * @param d the depth (over the z-direction)
      * @param expansion the expansion of the box. It increases the size in each direction by that many. It's independent from the scale.
      * @param scale
-     * @param bs 
      */
     public ModelRendererTurbo addBox(float x, float y, float z, float w, float h, float d, float expansion, float scale){
     	return addBox(x, y, z, w, h, d, expansion, scale, null);
@@ -1458,8 +1456,8 @@ public class ModelRendererTurbo {
     	TexturedVertex[] verts = Arrays.copyOf(entry.vertices, entry.vertices.length);
     	TexturedPolygon[] poly = Arrays.copyOf(entry.faces, entry.faces.length);
     	if(flip){
-            for(int l = 0; l < faces.length; l++){
-                faces[l].flipFace();
+            for (TexturedPolygon face : faces) {
+                face.flipFace();
             }
     	}
     	copyTo(verts, poly, false);
@@ -1473,8 +1471,8 @@ public class ModelRendererTurbo {
     	TexturedVertex[] verts = Arrays.copyOf(entry.vertices, entry.vertices.length);
     	TexturedPolygon[] poly = Arrays.copyOf(entry.faces, entry.faces.length);
     	if(flip){
-            for(int l = 0; l < faces.length; l++){
-                faces[l].flipFace();
+            for (TexturedPolygon face : faces) {
+                face.flipFace();
             }
     	}
     	copyTo(verts, poly, false);
@@ -1552,7 +1550,7 @@ public class ModelRendererTurbo {
      * would need to clear the shape first.
      */
     public void clear(){
-    	faces = new TexturedPolygon[0];
+    	faces = new ArrayList<>();
     }
     
     /**
@@ -1568,13 +1566,8 @@ public class ModelRendererTurbo {
     }
     
     public ModelRendererTurbo copyTo(TexturedVertex[] verts, TexturedPolygon[] poly, boolean copyGroup){
-        faces = Arrays.copyOf(faces, faces.length + poly.length);
-        for(int idx = 0; idx < poly.length; idx++){
-        	faces[faces.length - poly.length + idx] = poly[idx];
-        	if(copyGroup){
-        		currentTextureGroup.addPoly(poly[idx]);
-        	}
-        }
+        faces = new ArrayList<>();
+        faces.addAll(Arrays.asList(poly));
         return this;
     }
     
@@ -1631,6 +1624,17 @@ public class ModelRendererTurbo {
     public void setDefaultTexture(String s){
     	defaultTexture = s;
     }
+
+
+
+    /**
+     * Instances a new FMT CylinderBuilder
+     */
+    public CylinderBuilder newCylinderBuilder(){
+        return new CylinderBuilder(this);
+    }
+
+
     
     public void render(){
     	render(0.0625F, rotorder);

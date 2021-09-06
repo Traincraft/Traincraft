@@ -8,6 +8,8 @@ import tmt.ModelRendererTurbo;
 import tmt.TexturedPolygon;
 import tmt.TexturedVertex;
 
+import java.util.ArrayList;
+
 public class CustomModelRenderer extends ModelRendererTurbo {
 
 
@@ -24,35 +26,27 @@ public class CustomModelRenderer extends ModelRendererTurbo {
 	//for some odd reason the boxes seem inside out normally, so it's likely the values are reversed
 	@Override
 	public ModelRendererTurbo addBox(float f, float f1, float f2, int i, int j, int k, float f3) {
-		faces = new TexturedPolygon[6];
+		faces = new ArrayList<TexturedPolygon>();
 		float f4 = f + i +f3;
 		float f5 = f1 + j +f3;
 		float f6 = f2 + k +f3;
 		f -= f3;
 		f1 -= f3;
 		f2 -= f3;
-		TexturedVertex PositionTransformVertex = new TexturedVertex(f, f1, f2, 0.0F, 0.0F);
-		TexturedVertex PositionTransformVertex1 = new TexturedVertex(f4, f1, f2, 0.0F, 8F);
-		TexturedVertex PositionTransformVertex2 = new TexturedVertex(f4, f5, f2, 8F, 8F);
-		TexturedVertex PositionTransformVertex3 = new TexturedVertex(f, f5, f2, 8F, 0.0F);
-		TexturedVertex PositionTransformVertex4 = new TexturedVertex(f, f1, f6, 0.0F, 0.0F);
-		TexturedVertex PositionTransformVertex5 = new TexturedVertex(f4, f1, f6, 0.0F, 8F);
-		TexturedVertex PositionTransformVertex6 = new TexturedVertex(f4, f5, f6, 8F, 8F);
-		TexturedVertex PositionTransformVertex7 = new TexturedVertex(f, f5, f6, 8F, 0.0F);
-		faces[0] = generateFaces(new TexturedVertex[] { PositionTransformVertex5, PositionTransformVertex1, PositionTransformVertex2, PositionTransformVertex6 }, textureOffsetX + k + i, textureOffsetY + k, textureOffsetX + k + i + k, textureOffsetY + k + j, textureWidth, textureHeight);
-		faces[1] = generateFaces(new TexturedVertex[] { PositionTransformVertex, PositionTransformVertex4, PositionTransformVertex7, PositionTransformVertex3 }, textureOffsetX, textureOffsetY + k, textureOffsetX + k, textureOffsetY + k + j, textureWidth, textureHeight);
-		faces[2] = generateFaces(new TexturedVertex[] { PositionTransformVertex5, PositionTransformVertex4, PositionTransformVertex, PositionTransformVertex1 }, textureOffsetX + k, textureOffsetY, textureOffsetX + k + i, textureOffsetY + k, textureWidth, textureHeight);
-		faces[3] = generateFaces(new TexturedVertex[] { PositionTransformVertex2, PositionTransformVertex3, PositionTransformVertex7, PositionTransformVertex6 }, textureOffsetX + k + i, textureOffsetY, textureOffsetX + k + i + i, textureOffsetY + k, textureWidth, textureHeight);
-		faces[4] = generateFaces(new TexturedVertex[] { PositionTransformVertex1, PositionTransformVertex, PositionTransformVertex3, PositionTransformVertex2 }, textureOffsetX + k, textureOffsetY + k, textureOffsetX + k + i, textureOffsetY + k + j, textureWidth, textureHeight);
-		faces[5] = generateFaces(new TexturedVertex[] { PositionTransformVertex4, PositionTransformVertex5, PositionTransformVertex6, PositionTransformVertex7 }, textureOffsetX + k + i + k, textureOffsetY + k, textureOffsetX + k + i + k + i, textureOffsetY + k + j, textureWidth, textureHeight);
-
-		textureGroup.get("0").poly.clear();
-		textureGroup.get("0").poly.add(faces[0]);
-		textureGroup.get("0").poly.add(faces[1]);
-		textureGroup.get("0").poly.add(faces[2]);
-		textureGroup.get("0").poly.add(faces[3]);
-		textureGroup.get("0").poly.add(faces[4]);
-		textureGroup.get("0").poly.add(faces[5]);
+		TexturedVertex TexturedVertex = new TexturedVertex(f, f1, f2, 0.0F, 0.0F);
+		TexturedVertex TexturedVertex1 = new TexturedVertex(f4, f1, f2, 0.0F, 8F);
+		TexturedVertex TexturedVertex2 = new TexturedVertex(f4, f5, f2, 8F, 8F);
+		TexturedVertex TexturedVertex3 = new TexturedVertex(f, f5, f2, 8F, 0.0F);
+		TexturedVertex TexturedVertex4 = new TexturedVertex(f, f1, f6, 0.0F, 0.0F);
+		TexturedVertex TexturedVertex5 = new TexturedVertex(f4, f1, f6, 0.0F, 8F);
+		TexturedVertex TexturedVertex6 = new TexturedVertex(f4, f5, f6, 8F, 8F);
+		TexturedVertex TexturedVertex7 = new TexturedVertex(f, f5, f6, 8F, 0.0F);
+		faces.add(generateFaces(new TexturedVertex[] { TexturedVertex5, TexturedVertex1, TexturedVertex2, TexturedVertex6 }, textureOffsetX + k + i, textureOffsetY + k, textureOffsetX + k + i + k, textureOffsetY + k + j, textureWidth, textureHeight));
+		faces.add(generateFaces(new TexturedVertex[] { TexturedVertex, TexturedVertex4, TexturedVertex7, TexturedVertex3 }, textureOffsetX, textureOffsetY + k, textureOffsetX + k, textureOffsetY + k + j, textureWidth, textureHeight));
+		faces.add(generateFaces(new TexturedVertex[] { TexturedVertex5, TexturedVertex4, TexturedVertex, TexturedVertex1 }, textureOffsetX + k, textureOffsetY, textureOffsetX + k + i, textureOffsetY + k, textureWidth, textureHeight));
+		faces.add(generateFaces(new TexturedVertex[] { TexturedVertex2, TexturedVertex3, TexturedVertex7, TexturedVertex6 }, textureOffsetX + k + i, textureOffsetY, textureOffsetX + k + i + i, textureOffsetY + k, textureWidth, textureHeight));
+		faces.add(generateFaces(new TexturedVertex[] { TexturedVertex1, TexturedVertex, TexturedVertex3, TexturedVertex2 }, textureOffsetX + k, textureOffsetY + k, textureOffsetX + k + i, textureOffsetY + k + j, textureWidth, textureHeight));
+		faces.add(generateFaces(new TexturedVertex[] { TexturedVertex4, TexturedVertex5, TexturedVertex6, TexturedVertex7 }, textureOffsetX + k + i + k, textureOffsetY + k, textureOffsetX + k + i + k + i, textureOffsetY + k + j, textureWidth, textureHeight));
 		return this;
 	}
 
