@@ -94,6 +94,7 @@ public class TCItems {
 		ItemIDs.tcRailVeryLargeSlopeSnowGravel.item = new ItemTCRail(ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_SNOW_GRAVEL);
 
 		ItemIDs.paintbrushThing.item = new ItemPaintbrushThing();
+		ItemIDs.whistle.item = new ItemWhistle();
 	}
 	
 	private static void registerItems() {

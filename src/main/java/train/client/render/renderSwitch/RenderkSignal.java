@@ -16,6 +16,7 @@ public class RenderkSignal extends TileEntitySpecialRenderer {
     static final ModelkSignal modelspanishSignal = new ModelkSignal();
         private static final ResourceLocation texture = new ResourceLocation(Info.resourceLocation,Info.modelTexPrefix + "kSignalRed.png");
     private static final ResourceLocation texture2 = new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "kSignalGreen.png");
+
     @Override
     public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float tick) {
         GL11.glPushMatrix();

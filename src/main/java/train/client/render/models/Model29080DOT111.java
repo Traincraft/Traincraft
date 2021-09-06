@@ -15,6 +15,7 @@ import org.lwjgl.opengl.GL11;
 import tmt.ModelConverter;
 import tmt.ModelRendererTurbo;
 import tmt.Tessellator;
+import train.common.api.AbstractTrains;
 import train.common.library.Info;
 
 public class Model29080DOT111 extends ModelConverter //Same as Filename
@@ -468,7 +469,11 @@ public class Model29080DOT111 extends ModelConverter //Same as Filename
 			bodyModel[i].render(f5);
 		}
 
-		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/70Ton_Greyish.png"));
+		if(entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor()==15){
+			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/70Ton_Black.png"));
+		} else {
+			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/70Ton_Greyish.png"));
+		}
 
 		/*GL11.glPushMatrix();
 		GL11.glScalef(1,1,0.9f);

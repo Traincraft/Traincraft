@@ -66,7 +66,7 @@ public enum ItemIDs {
 	adminBook("ItemAdminBook", "item_book_blue", 0),
 	wirelessTransmitter("ItemWirelessTransmitter", "wireless_transmitter", 3),
 	paintbrushThing("ItemPaintbrushThing","paintbrushThing",1),
-
+	whistle("ItemWhistle","whistle", 1),
 
 	atoCard("ItemATOCard", "ato_card", 5),
 	minecartWork("ItemRollingStock", "train_work", 4),
@@ -422,6 +422,8 @@ public enum ItemIDs {
 	minecartPS85Baggage("ItemRollingStock", "PS_85_baggage_icon", 3),
 	minecartClass158engine("ItemRollingStock", "Class_158_Icon", 4),
 	minecartClass158car("ItemRollingStock", "Class_158_Middle_Icon", 3),
+	minecartPSSleeper565("ItemRollingStock", "BAP_PS_lightweight_5-6-5_sleeper_icon", 3),
+	minecartPSSleeper565DRGW("ItemRollingStock", "BAP_PS_lightweight_DRGW_5-6-5_sleeper_icon", 3),
 
 	minecartBR155("ItemRollingStock", "Db_155_icon", 4),
 	minecartDB143("ItemRollingStock", "143_icon", 4),
@@ -447,7 +449,7 @@ public enum ItemIDs {
 	minecartPS140("ItemRollingStock", "ps140", 3),
 	minecartPS150("ItemRollingStock", "ps150", 4),
 	minecartPS160("ItemRollingStock", "ps160", 5),
-	minecartOWO60Verticube("ItemRollingStock", "owocube", 6),
+	//minecartOWO60Verticube("ItemRollingStock", "owocube", 6),
 	minecartVersaLongi("ItemRollingStock", "versalongi", 5),
 	minecartVersaTrans("ItemRollingStock", "versatrans", 5),
 	minecart11000DOT111("ItemRollingStock", "11000DOT", 4),
@@ -463,9 +465,13 @@ public enum ItemIDs {
 	minecartSkeletonLogCar("ItemRollingStock", "Skeleton", 1),
 	minecartReefer64("ItemRollingStock", "Reefer64", 5),
 
-	minecartWVcaboose("ItemRollingStock", "wvcaboose",6),
+	minecartWVcaboose("ItemRollingStock", "wvcaboose",3),
+	//minecartHBC1Ccaboose("ItemRollingStock", "HBC1C",3),
+	minecartDRGWCaboose("ItemRollingStock", "DRGW_01400_series_caboose",3),
 
 	//signalSpanish("ItemsignalSpanish","signalSpanish", 1),
+
+	tcRailVeryLargeSwitch("ItemTCRail","item_rail_tc_very_large_switch",1),
 	;
 
 	public Item item;

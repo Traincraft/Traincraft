@@ -63,11 +63,11 @@ public class EU07Modernised extends ModelConverter {
 		bodyModel[9].addBox(0, 0, 0, 2, 11, 1, 0f);
 		bodyModel[9].setRotationPoint(34.0f, -11.0f, -11.0f);
 
-		bodyModel[10] = new ModelRendererTurbo(this, 237, 76, textureX, textureY, "lamp"); // lamp
+		bodyModel[10] = new ModelRendererTurbo(this, 237, 76, textureX, textureY); // test
 		bodyModel[10].addBox(0, 0, 0, 2, 3, 3, 0f);
 		bodyModel[10].setRotationPoint(36.65f, -4.0f, 6.0f);
 
-		bodyModel[11] = new ModelRendererTurbo(this, 206, 120, textureX, textureY, "lamp"); // lamp
+		bodyModel[11] = new ModelRendererTurbo(this, 206, 120, textureX, textureY); // test
 		bodyModel[11].addBox(0, 0, 0, 8, 3, 3, 0f);
 		bodyModel[11].setRotationPoint(29.0f, -21.01f, -1.5f);
 
@@ -159,11 +159,11 @@ public class EU07Modernised extends ModelConverter {
 		bodyModel[33].addShapeBox(0, 0, 0, 7, 3, 6, 0, 0, -3, 0, 0, 0, 0, 0, 0, 0, 0, -3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 		bodyModel[33].setRotationPoint(-36.0f, -21.0f, -3.0f);
 
-		bodyModel[34] = new ModelRendererTurbo(this, 42, 119, textureX, textureY, "lamp"); // lamp
+		bodyModel[34] = new ModelRendererTurbo(this, 42, 119, textureX, textureY); // test
 		bodyModel[34].addBox(0, 0, 0, 8, 3, 3, 0f);
 		bodyModel[34].setRotationPoint(-37.0f, -21.01f, -1.5f);
 
-		bodyModel[35] = new ModelRendererTurbo(this, 55, 74, textureX, textureY, "lamp"); // lamp
+		bodyModel[35] = new ModelRendererTurbo(this, 55, 74, textureX, textureY); // test
 		bodyModel[35].addBox(0, 0, 0, 2, 3, 3, 0f);
 		bodyModel[35].setRotationPoint(-39.0f, -4.0f, 6.0f);
 
@@ -375,31 +375,31 @@ public class EU07Modernised extends ModelConverter {
 		bodyModel[87].addBox(0, 0, 0, 3, 1, 10, 0f);
 		bodyModel[87].setRotationPoint(14.5f, -22.5f, -5.0f);
 
-		bodyModel[88] = new ModelRendererTurbo(this, 174, 69, textureX, textureY, "lamp"); // lampcp
+		bodyModel[88] = new ModelRendererTurbo(this, 174, 69, textureX, textureY); // test
 		bodyModel[88].addShapeBox(0, 0, 0, 2, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 		bodyModel[88].setRotationPoint(36.65f, -4.0f, -9.0f);
 
-		bodyModel[89] = new ModelRendererTurbo(this, 209, 129, textureX, textureY, "lamp"); // lampcp
+		bodyModel[89] = new ModelRendererTurbo(this, 209, 129, textureX, textureY); // desk6
 		bodyModel[89].addShapeBox(0, 0, 0, 2, 11, 7, 0, 0, 0, 0, -2, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 		bodyModel[89].setRotationPoint(36.0f, -11.0f, -10.0f);
 
-		bodyModel[90] = new ModelRendererTurbo(this, 53, 128, textureX, textureY, "lamp"); // lampcp
+		bodyModel[90] = new ModelRendererTurbo(this, 53, 128, textureX, textureY); // desk9
 		bodyModel[90].addShapeBox(0, 0, 0, 2, 11, 7, 0, 0, 0, 0, -1, 0, 0, -2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 		bodyModel[90].setRotationPoint(36.0f, -11.0f, 3.0f);
 
-		bodyModel[91] = new ModelRendererTurbo(this, 21, 109, textureX, textureY, "lamp"); // lampcp
+		bodyModel[91] = new ModelRendererTurbo(this, 21, 109, textureX, textureY); // desk8
 		bodyModel[91].addShapeBox(0, 0, 0, 2, 11, 6, 0, 0, 0, 0, -1, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 		bodyModel[91].setRotationPoint(36.0f, -11.0f, -3.0f);
 
-		bodyModel[92] = new ModelRendererTurbo(this, 199, 83, textureX, textureY, "lamp"); // lampcp
+		bodyModel[92] = new ModelRendererTurbo(this, 199, 83, textureX, textureY); // desk7
 		bodyModel[92].addBox(0, 0, 0, 2, 11, 20, 0f);
 		bodyModel[92].setRotationPoint(34.0f, -11.0f, -10.0f);
 
-		bodyModel[93] = new ModelRendererTurbo(this, 47, 65, textureX, textureY, "lamp"); // lampcp
+		bodyModel[93] = new ModelRendererTurbo(this, 47, 65, textureX, textureY); // desk5
 		bodyModel[93].addBox(0, 0, 0, 3, 1, 20, 0f);
 		bodyModel[93].setRotationPoint(31.0f, -11.0f, -10.0f);
 
-		bodyModel[94] = new ModelRendererTurbo(this, 43, 87, textureX, textureY, "lamp"); // lampcp
+		bodyModel[94] = new ModelRendererTurbo(this, 43, 87, textureX, textureY); // desk9
 		bodyModel[94].addShapeBox(0, 0, 0, 1, 1, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0);
 		bodyModel[94].setRotationPoint(33.0f, -10.0f, -10.0f);
 
@@ -468,7 +468,7 @@ public class EU07Modernised extends ModelConverter {
 		bodyModel[110].addShapeBox(0, 0, 0, 1, 2, 1, 0, 0, 0, 0, -0.5f, 0, 0, -0.5f, 0, 0, 0, 0, 0, 0, 0, 0, -0.5f, 0, 0, -0.5f, 0, 0, 0, 0, 0);
 		bodyModel[110].setRotationPoint(-39.5f, -9.0f, -1.5f);
 
-		bodyModel[111] = new ModelRendererTurbo(this, 74, 65, textureX, textureY, "lamp"); // lamp
+		bodyModel[111] = new ModelRendererTurbo(this, 74, 65, textureX, textureY); // test
 		bodyModel[111].addBox(0, 0, 0, 2, 3, 3, 0f);
 		bodyModel[111].setRotationPoint(-39.0f, -4.0f, -9.0f);
 
@@ -504,23 +504,23 @@ public class EU07Modernised extends ModelConverter {
 		bodyModel[119].addShapeBox(0, 0, 0, 4, 5, 1, 0, -2.9f, 0, 0, 0, 0, 0, 0, 0, 0, -2.9f, 0, 0, -2, 0, 0, 0, 0, 0, 0, 0, 0, -2, 0, 0);
 		bodyModel[119].setRotationPoint(-40.0f, -5.0f, -11.0f);
 
-		bodyModel[120] = new ModelRendererTurbo(this, 171, 125, textureX, textureY, "lamp"); // lampcp
+		bodyModel[120] = new ModelRendererTurbo(this, 171, 125, textureX, textureY); // desk4
 		bodyModel[120].addShapeBox(0, 0, 0, 2, 11, 7, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, -2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 		bodyModel[120].setRotationPoint(-38.0f, -11.0f, 3.0f);
 
-		bodyModel[121] = new ModelRendererTurbo(this, 152, 125, textureX, textureY, "lamp"); // lampcp
+		bodyModel[121] = new ModelRendererTurbo(this, 152, 125, textureX, textureY); // desk2
 		bodyModel[121].addShapeBox(0, 0, 0, 2, 11, 7, 0, -2, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 		bodyModel[121].setRotationPoint(-38.0f, -11.0f, -10.0f);
 
-		bodyModel[122] = new ModelRendererTurbo(this, 0, 109, textureX, textureY, "lamp"); // lampcp
+		bodyModel[122] = new ModelRendererTurbo(this, 0, 109, textureX, textureY); // desk
 		bodyModel[122].addShapeBox(0, 0, 0, 2, 11, 6, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 		bodyModel[122].setRotationPoint(-38.0f, -11.0f, -3.0f);
 
-		bodyModel[123] = new ModelRendererTurbo(this, 0, 65, textureX, textureY, "lamp"); // lampcp
+		bodyModel[123] = new ModelRendererTurbo(this, 0, 65, textureX, textureY); // desk1
 		bodyModel[123].addBox(0, 0, 0, 3, 1, 20, 0f);
 		bodyModel[123].setRotationPoint(-34.0f, -11.0f, -10.0f);
 
-		bodyModel[124] = new ModelRendererTurbo(this, 0, 87, textureX, textureY, "lamp"); // lampcp
+		bodyModel[124] = new ModelRendererTurbo(this, 0, 87, textureX, textureY); // desk10
 		bodyModel[124].addShapeBox(0, 0, 0, 1, 1, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, -1, 0, 0, 0, 0);
 		bodyModel[124].setRotationPoint(-34.0f, -10.0f, -10.0f);
 
@@ -567,35 +567,35 @@ public class EU07Modernised extends ModelConverter {
 		bodyModel[134].addShapeBox(0, 0, 0, 2, 1, 1, 0, -1.82f, -1, 0, 0, 0, 0, 0, 0, 0, -1.82f, -1, 0, -1.82f, 0, 0, 0, 0, 0, 0, 0, 0, -1.82f, 0, 0);
 		bodyModel[134].setRotationPoint(-38.0f, -11.0f, -11.0f);
 
-		bodyModel[135] = new ModelRendererTurbo(this, 182, 69, textureX, textureY, "lamp"); // lampcp
+		bodyModel[135] = new ModelRendererTurbo(this, 182, 69, textureX, textureY); // horny4
 		bodyModel[135].addShapeBox(0, 0, 0, 3, 1, 1, 0, 0, 0, -0.5f, 0, 0, -0.5f, 0, 0, 0, 0, 0, 0, 0, -0.5f, -0.5f, 0, -0.5f, -0.5f, 0, -0.5f, 0, 0, -0.5f, 0);
 		bodyModel[135].setRotationPoint(29.0f, -20.75f, 2.5f);
 
-		bodyModel[136] = new ModelRendererTurbo(this, 250, 20, textureX, textureY, "lamp"); // lampcp
+		bodyModel[136] = new ModelRendererTurbo(this, 250, 20, textureX, textureY); // horny5
 		bodyModel[136].addShapeBox(0, 0, 0, 1, 1, 1, 0, 0, 0, -0.5f, 0, 0.2f, -0.2f, 0, 0.2f, 0.2f, 0, 0, 0, 0, -0.5f, -0.5f, 0, -0.2f, -0.2f, 0, -0.2f, 0.2f, 0, -0.5f, 0);
 		bodyModel[136].setRotationPoint(32.0f, -20.75f, 2.5f);
 
-		bodyModel[137] = new ModelRendererTurbo(this, 82, 65, textureX, textureY, "lamp"); // lampcp
+		bodyModel[137] = new ModelRendererTurbo(this, 82, 65, textureX, textureY); // horny7
 		bodyModel[137].addShapeBox(0, 0, 0, 3, 1, 1, 0, 0, 0, -0.5f, 0, 0, -0.5f, 0, 0, 0, 0, 0, 0, 0, -0.5f, -0.5f, 0, -0.5f, -0.5f, 0, -0.5f, 0, 0, -0.5f, 0);
 		bodyModel[137].setRotationPoint(29.0f, -20.75f, -4.0f);
 
-		bodyModel[138] = new ModelRendererTurbo(this, 250, 17, textureX, textureY, "lamp"); // lampcp
+		bodyModel[138] = new ModelRendererTurbo(this, 250, 17, textureX, textureY); // horny6
 		bodyModel[138].addShapeBox(0, 0, 0, 1, 1, 1, 0, 0, 0, -0.5f, 0, 0.2f, -0.2f, 0, 0.2f, 0.2f, 0, 0, 0, 0, -0.5f, -0.5f, 0, -0.2f, -0.2f, 0, -0.2f, 0.2f, 0, -0.5f, 0);
 		bodyModel[138].setRotationPoint(32.0f, -20.75f, -4.0f);
 
-		bodyModel[139] = new ModelRendererTurbo(this, 247, 50, textureX, textureY, "lamp"); // lampcp
+		bodyModel[139] = new ModelRendererTurbo(this, 247, 50, textureX, textureY); // horny1
 		bodyModel[139].addShapeBox(0, 0, 0, 3, 1, 1, 0, 0, 0, -0.5f, 0, 0, -0.5f, 0, 0, 0, 0, 0, 0, 0, -0.5f, -0.5f, 0, -0.5f, -0.5f, 0, -0.5f, 0, 0, -0.5f, 0);
 		bodyModel[139].setRotationPoint(-32.0f, -20.75f, 2.5f);
 
-		bodyModel[140] = new ModelRendererTurbo(this, 190, 25, textureX, textureY, "lamp"); // lampcp
+		bodyModel[140] = new ModelRendererTurbo(this, 190, 25, textureX, textureY); // horny2
 		bodyModel[140].addShapeBox(0, 0, 0, 3, 1, 1, 0, 0, 0, -0.5f, 0, 0, -0.5f, 0, 0, 0, 0, 0, 0, 0, -0.5f, -0.5f, 0, -0.5f, -0.5f, 0, -0.5f, 0, 0, -0.5f, 0);
 		bodyModel[140].setRotationPoint(-32.0f, -20.75f, -4.0f);
 
-		bodyModel[141] = new ModelRendererTurbo(this, 187, 0, textureX, textureY, "lamp"); // lampcp
+		bodyModel[141] = new ModelRendererTurbo(this, 187, 0, textureX, textureY); // horny
 		bodyModel[141].addShapeBox(0, 0, 0, 1, 1, 1, 0, 0, 0.2f, -0.2f, 0, 0, -0.5f, 0, 0, 0, 0, 0.2f, 0.2f, 0, -0.2f, -0.2f, 0, -0.5f, -0.5f, 0, -0.5f, 0, 0, -0.2f, 0.2f);
 		bodyModel[141].setRotationPoint(-33.0f, -20.75f, 2.5f);
 
-		bodyModel[142] = new ModelRendererTurbo(this, 179, 0, textureX, textureY, "lamp"); // lampcp
+		bodyModel[142] = new ModelRendererTurbo(this, 179, 0, textureX, textureY); // horny3
 		bodyModel[142].addShapeBox(0, 0, 0, 1, 1, 1, 0, 0, 0.2f, -0.2f, 0, 0, -0.5f, 0, 0, 0, 0, 0.2f, 0.2f, 0, -0.2f, -0.2f, 0, -0.5f, -0.5f, 0, -0.5f, 0, 0, -0.2f, 0.2f);
 		bodyModel[142].setRotationPoint(-33.0f, -20.75f, -4.0f);
 
@@ -691,7 +691,7 @@ public class EU07Modernised extends ModelConverter {
 		bodyModel[165].addBox(0, 0, 0, 1, 1, 5, 0f);
 		bodyModel[165].setRotationPoint(-39.0f, -3.0f, -2.5f);
 
-		bodyModel[166] = new ModelRendererTurbo(this, 154, 83, textureX, textureY, "lamp"); // lampcp
+		bodyModel[166] = new ModelRendererTurbo(this, 154, 83, textureX, textureY); // desk
 		bodyModel[166].addBox(0, 0, 0, 2, 11, 20, 0f);
 		bodyModel[166].setRotationPoint(-36.0f, -11.0f, -10.0f);
 
@@ -701,123 +701,123 @@ public class EU07Modernised extends ModelConverter {
 
 		bodyModel[168] = new ModelRendererTurbo(this, 27, 77, textureX, textureY);
 		bodyModel[168].addShapeBox(0, 0, 0, 12, 1, 1, 0, 0, -1, 0, -1, 1, 0, -1, 1, 0, 0, -1, 0, -1, 0, 0, 0, -2, 0, 0, -2, 0, -1, 0, 0);
-		bodyModel[168].setRotationPoint(16.0f, -23.5f, 4.01f);
+		bodyModel[168].setRotationPoint(-16.0f, -23.5f, 4.01f);
 
 		bodyModel[169] = new ModelRendererTurbo(this, 27, 77, textureX, textureY);
 		bodyModel[169].addShapeBox(0, 0, 0, 12, 1, 1, 0, -1, 1, 0, 0, -1, 0, 0, -1, 0, -1, 1, 0, 0, -2, 0, -1, 0, 0, -1, 0, 0, 0, -2, 0);
-		bodyModel[169].setRotationPoint(4.0f, -23.5f, 4.01f);
+		bodyModel[169].setRotationPoint(-28.0f, -23.5f, 4.01f);
 
 		bodyModel[170] = new ModelRendererTurbo(this, 27, 77, textureX, textureY);
 		bodyModel[170].addShapeBox(0, 0, 0, 12, 1, 1, 0, 0, -1, 0, -1, 1, 0, -1, 1, 0, 0, -1, 0, -1, 0, 0, 0, -2, 0, 0, -2, 0, -1, 0, 0);
-		bodyModel[170].setRotationPoint(16.0f, -23.5f, -4.99f);
+		bodyModel[170].setRotationPoint(-16.0f, -23.5f, -4.99f);
 
 		bodyModel[171] = new ModelRendererTurbo(this, 27, 77, textureX, textureY);
 		bodyModel[171].addShapeBox(0, 0, 0, 12, 1, 1, 0, -1, 1, 0, 0, -1, 0, 0, -1, 0, -1, 1, 0, 0, -2, 0, -1, 0, 0, -1, 0, 0, 0, -2, 0);
-		bodyModel[171].setRotationPoint(4.0f, -23.5f, -4.99f);
+		bodyModel[171].setRotationPoint(-28.0f, -23.5f, -4.99f);
 
 		bodyModel[172] = new ModelRendererTurbo(this, 27, 77, textureX, textureY);
 		bodyModel[172].addShapeBox(0, 0, 0, 12, 1, 1, 0, -1, 4, 0, 0, -1, 0, 0, -1, 0, -1, 4, 0, 0, -5, 0, -1, 0, 0, -1, 0, 0, 0, -5, 0);
-		bodyModel[172].setRotationPoint(-28.0f, -23.5f, 4.01f);
+		bodyModel[172].setRotationPoint(4.0f, -23.5f, 4.01f);
 
 		bodyModel[173] = new ModelRendererTurbo(this, 27, 77, textureX, textureY);
 		bodyModel[173].addShapeBox(0, 0, 0, 12, 1, 1, 0, 0, -1, 0, -1, 4, 0, -1, 4, 0, 0, -1, 0, -1, 0, 0, 0, -5, 0, 0, -5, 0, -1, 0, 0);
-		bodyModel[173].setRotationPoint(-16.0f, -23.5f, 4.01f);
+		bodyModel[173].setRotationPoint(16.0f, -23.5f, 4.01f);
 
 		bodyModel[174] = new ModelRendererTurbo(this, 27, 77, textureX, textureY);
 		bodyModel[174].addShapeBox(0, 0, 0, 12, 1, 1, 0, 0, -1, 0, -1, 4, 0, -1, 4, 0, 0, -1, 0, -1, 0, 0, 0, -5, 0, 0, -5, 0, -1, 0, 0);
-		bodyModel[174].setRotationPoint(-16.0f, -23.5f, -4.99f);
+		bodyModel[174].setRotationPoint(16.0f, -23.5f, -4.99f);
 
 		bodyModel[175] = new ModelRendererTurbo(this, 27, 77, textureX, textureY);
 		bodyModel[175].addShapeBox(0, 0, 0, 12, 1, 1, 0, -1, 4, 0, 0, -1, 0, 0, -1, 0, -1, 4, 0, 0, -5, 0, -1, 0, 0, -1, 0, 0, 0, -5, 0);
-		bodyModel[175].setRotationPoint(-28.0f, -23.5f, -4.99f);
+		bodyModel[175].setRotationPoint(4.0f, -23.5f, -4.99f);
 
 		bodyModel[176] = new ModelRendererTurbo(this, 27, 77, textureX, textureY);
 		bodyModel[176].addShapeBox(0, 0, 0, 12, 1, 1, 0, 0, -5, 0, -1, 0, 0, -1, 0, 0, 0, -5, 0, -1, 4, 0, 0, -1, 0, 0, -1, 0, -1, 4, 0);
-		bodyModel[176].setRotationPoint(-28.0f, -32.5f, -4.99f);
+		bodyModel[176].setRotationPoint(4.0f, -32.5f, -4.99f);
 
 		bodyModel[177] = new ModelRendererTurbo(this, 27, 77, textureX, textureY);
 		bodyModel[177].addShapeBox(0, 0, 0, 12, 1, 1, 0, -1, 0, 0, 0, -5, 0, 0, -5, 0, -1, 0, 0, 0, -1, 0, -1, 4, 0, -1, 4, 0, 0, -1, 0);
-		bodyModel[177].setRotationPoint(-16.0f, -32.5f, -4.99f);
+		bodyModel[177].setRotationPoint(16.0f, -32.5f, -4.99f);
 
 		bodyModel[178] = new ModelRendererTurbo(this, 27, 77, textureX, textureY);
 		bodyModel[178].addShapeBox(0, 0, 0, 12, 1, 1, 0, -1, 0, 0, 0, -5, 0, 0, -5, 0, -1, 0, 0, 0, -1, 0, -1, 4, 0, -1, 4, 0, 0, -1, 0);
-		bodyModel[178].setRotationPoint(-16.0f, -32.5f, 4.01f);
+		bodyModel[178].setRotationPoint(16.0f, -32.5f, 4.01f);
 
 		bodyModel[179] = new ModelRendererTurbo(this, 27, 77, textureX, textureY);
 		bodyModel[179].addShapeBox(0, 0, 0, 12, 1, 1, 0, 0, -5, 0, -1, 0, 0, -1, 0, 0, 0, -5, 0, -1, 4, 0, 0, -1, 0, 0, -1, 0, -1, 4, 0);
-		bodyModel[179].setRotationPoint(-28.0f, -32.5f, 4.01f);
+		bodyModel[179].setRotationPoint(4.0f, -32.5f, 4.01f);
 
 		bodyModel[180] = new ModelRendererTurbo(this, 179, 0, textureX, textureY);
 		bodyModel[180].addBox(0, 0, 0, 1, 1, 14, 0f);
-		bodyModel[180].setRotationPoint(-16.5f, -33.5f, -7.01f);
+		bodyModel[180].setRotationPoint(15.5f, -33.5f, -7.01f);
 
 		bodyModel[181] = new ModelRendererTurbo(this, 95, 45, textureX, textureY);
 		bodyModel[181].addShapeBox(0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-		bodyModel[181].setRotationPoint(-16.5f, -33.5f, 6.99f);
+		bodyModel[181].setRotationPoint(15.5f, -33.5f, 6.99f);
 
 		bodyModel[182] = new ModelRendererTurbo(this, 0, 38, textureX, textureY);
 		bodyModel[182].addBox(0, 0, 0, 1, 1, 1, 0f);
-		bodyModel[182].setRotationPoint(-16.5f, -32.5f, 6.99f);
+		bodyModel[182].setRotationPoint(15.5f, -32.5f, 6.99f);
 
 		bodyModel[183] = new ModelRendererTurbo(this, 95, 45, textureX, textureY);
 		bodyModel[183].addShapeBox(0, 0, 0, 1, 1, 1, 0, 0, -1, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-		bodyModel[183].setRotationPoint(-16.5f, -33.5f, -8.01f);
+		bodyModel[183].setRotationPoint(15.5f, -33.5f, -8.01f);
 
 		bodyModel[184] = new ModelRendererTurbo(this, 0, 35, textureX, textureY);
 		bodyModel[184].addBox(0, 0, 0, 1, 1, 1, 0f);
-		bodyModel[184].setRotationPoint(-16.5f, -32.5f, -8.01f);
+		bodyModel[184].setRotationPoint(15.5f, -32.5f, -8.01f);
 
 		bodyModel[185] = new ModelRendererTurbo(this, 27, 77, textureX, textureY);
 		bodyModel[185].addShapeBox(0, 0, 0, 12, 1, 1, 0, 0, -2, 0, -1, 3, 9, -1, 3, -9, 0, -2, 0, -1, 1, 0, 0, -4, 9, 0, -4, -9, -1, 1, 0);
-		bodyModel[185].setRotationPoint(-28.0f, -29.5f, 4.01f);
+		bodyModel[185].setRotationPoint(4.0f, -29.5f, 4.01f);
 
 		bodyModel[186] = new ModelRendererTurbo(this, 27, 77, textureX, textureY);
 		bodyModel[186].addShapeBox(0, 0, 0, 12, 1, 1, 0, -1, 3, 9, 0, -2, 0, 0, -2, 0, -1, 3, -9, 0, -4, 9, -1, 1, 0, -1, 1, 0, 0, -4, -9);
-		bodyModel[186].setRotationPoint(-16.0f, -29.5f, 4.01f);
+		bodyModel[186].setRotationPoint(16.0f, -29.5f, 4.01f);
 
 		bodyModel[187] = new ModelRendererTurbo(this, 27, 77, textureX, textureY);
 		bodyModel[187].addShapeBox(0, 0, 0, 12, 1, 1, 0, -1, 0, 0, 0, -2, 0, 0, -2, 0, -1, 0, 0, 0, -1, 0, -1, 1, 0, -1, 1, 0, 0, -1, 0);
-		bodyModel[187].setRotationPoint(16.0f, -26.5f, 4.01f);
+		bodyModel[187].setRotationPoint(-16.0f, -26.5f, 4.01f);
 
 		bodyModel[188] = new ModelRendererTurbo(this, 27, 77, textureX, textureY);
 		bodyModel[188].addShapeBox(0, 0, 0, 12, 1, 1, 0, 0, -2, 0, -1, 0, 0, -1, 0, 0, 0, -2, 0, -1, 1, 0, 0, -1, 0, 0, -1, 0, -1, 1, 0);
-		bodyModel[188].setRotationPoint(4.0f, -26.5f, 4.01f);
+		bodyModel[188].setRotationPoint(-28.0f, -26.5f, 4.01f);
 
 		bodyModel[189] = new ModelRendererTurbo(this, 27, 77, textureX, textureY);
 		bodyModel[189].addShapeBox(0, 0, 0, 12, 1, 1, 0, 0, -2, 0, -1, 0, 0, -1, 0, 0, 0, -2, 0, -1, 1, 0, 0, -1, 0, 0, -1, 0, -1, 1, 0);
-		bodyModel[189].setRotationPoint(4.0f, -26.5f, -4.99f);
+		bodyModel[189].setRotationPoint(-28.0f, -26.5f, -4.99f);
 
 		bodyModel[190] = new ModelRendererTurbo(this, 27, 77, textureX, textureY);
 		bodyModel[190].addShapeBox(0, 0, 0, 12, 1, 1, 0, -1, 0, 0, 0, -2, 0, 0, -2, 0, -1, 0, 0, 0, -1, 0, -1, 1, 0, -1, 1, 0, 0, -1, 0);
-		bodyModel[190].setRotationPoint(16.0f, -26.5f, -4.99f);
+		bodyModel[190].setRotationPoint(-16.0f, -26.5f, -4.99f);
 
 		bodyModel[191] = new ModelRendererTurbo(this, 27, 77, textureX, textureY);
 		bodyModel[191].addShapeBox(0, 0, 0, 12, 1, 1, 0, -1, 0, -9, 0, -2, 0, 0, -2, 0, -1, 0, 9, 0, -1, -9, -1, 1, 0, -1, 1, 0, 0, -1, 9);
-		bodyModel[191].setRotationPoint(16.0f, -26.5f, -4.99f);
+		bodyModel[191].setRotationPoint(-16.0f, -26.5f, -4.99f);
 
 		bodyModel[192] = new ModelRendererTurbo(this, 27, 77, textureX, textureY);
 		bodyModel[192].addShapeBox(0, 0, 0, 12, 1, 1, 0, 0, -2, 0, -1, 0, -9, -1, 0, 9, 0, -2, 0, -1, 1, 0, 0, -1, -9, 0, -1, 9, -1, 1, 0);
-		bodyModel[192].setRotationPoint(4.0f, -26.5f, -4.99f);
+		bodyModel[192].setRotationPoint(-28.0f, -26.5f, -4.99f);
 
 		bodyModel[193] = new ModelRendererTurbo(this, 179, 0, textureX, textureY);
 		bodyModel[193].addBox(0, 0, 0, 1, 1, 14, 0f);
-		bodyModel[193].setRotationPoint(15.5f, -27.5f, -7.01f);
+		bodyModel[193].setRotationPoint(-16.5f, -27.5f, -7.01f);
 
 		bodyModel[194] = new ModelRendererTurbo(this, 125, 39, textureX, textureY);
 		bodyModel[194].addShapeBox(0, 0, 0, 1, 1, 1, 0, 0, -1, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-		bodyModel[194].setRotationPoint(15.5f, -27.5f, -8.01f);
+		bodyModel[194].setRotationPoint(-16.5f, -27.5f, -8.01f);
 
 		bodyModel[195] = new ModelRendererTurbo(this, 0, 35, textureX, textureY);
 		bodyModel[195].addBox(0, 0, 0, 1, 1, 1, 0f);
-		bodyModel[195].setRotationPoint(15.5f, -26.5f, -8.01f);
+		bodyModel[195].setRotationPoint(-16.5f, -26.5f, -8.01f);
 
 		bodyModel[196] = new ModelRendererTurbo(this, 95, 45, textureX, textureY);
 		bodyModel[196].addShapeBox(0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-		bodyModel[196].setRotationPoint(15.5f, -27.5f, 6.99f);
+		bodyModel[196].setRotationPoint(-16.5f, -27.5f, 6.99f);
 
 		bodyModel[197] = new ModelRendererTurbo(this, 0, 38, textureX, textureY);
 		bodyModel[197].addBox(0, 0, 0, 1, 1, 1, 0f);
-		bodyModel[197].setRotationPoint(15.5f, -26.5f, 6.99f);
+		bodyModel[197].setRotationPoint(-16.5f, -26.5f, 6.99f);
 
 		bodyModel[198] = new ModelRendererTurbo(this, 0, 25, textureX, textureY);
 		bodyModel[198].addShapeBox(0, 0, 0, 58, 1, 8, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);

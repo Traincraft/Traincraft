@@ -34,6 +34,7 @@
   "446Horn": {"category": "master", "sounds": [{"name": "446Horn","stream": false}]},
   "wabco_e2": {"category": "master", "sounds": [{"name": "wabco_e2", "stream":  true}]},
   "bell": {"category": "master", "sounds": [{"name": "bell","stream": false}]},
+  "whistle": {"category": "master", "sounds":  [{"name":  "handwhistle", "stream": false}]},
   "dstock_whistle": {"category": "master", "sounds": [{"name": "Dstock_whistle","stream": false}]},
   "pe_chime": {"category": "master", "sounds": [{"name": "pe_chime", "stream":  true}]},
   "pe_idle": {"category": "master", "sounds": [{"name": "pe_idle", "stream":  true}]},

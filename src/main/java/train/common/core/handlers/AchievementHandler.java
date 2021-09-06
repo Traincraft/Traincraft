@@ -45,7 +45,7 @@ public class AchievementHandler {
 		AchievementIDs.zeppelin.achievement = achievement("zeppelin", 2, 4, ItemIDs.airship.item, AchievementIDs.firebox.achievement);
 		AchievementIDs.smallSteam.achievement = achievement("smallSteam", -2, 6, ItemIDs.minecartLoco3.item, AchievementIDs.firebox.achievement);
 		AchievementIDs.normalSteam.achievement = achievement("normalSteam", 0, 6, ItemIDs.minecartPower.item, AchievementIDs.firebox.achievement);
-		//AchievementIDs.heavySteam.achievement = achievement("heavySteam", 2, 6, ItemIDs.minecartHeavySteam.stack, AchievementIDs.firebox.achievement);
+		AchievementIDs.heavySteam.achievement = achievement("heavySteam", 2, 6, ItemIDs.minecartHeavySteam.item, AchievementIDs.firebox.achievement);
 		//TODO put it back once Heavy Steam is back
 
 		AchievementIDs.openHearth.achievement = achievement("openHearth", -4, 0, BlockIDs.openFurnaceActive.block, null);
@@ -111,7 +111,8 @@ public class AchievementHandler {
 				AchievementIDs.flatCart.achievement, AchievementIDs.stockCar.achievement,
 				AchievementIDs.caboose.achievement, AchievementIDs.mtg.achievement,
 				AchievementIDs.massTransit.achievement, AchievementIDs.cercanias.achievement,
-				AchievementIDs.powerful.achievement, AchievementIDs.switchin.achievement,};
+				AchievementIDs.powerful.achievement, AchievementIDs.switchin.achievement,
+				AchievementIDs.heavySteam.achievement,};
 
 		tmPage = new AchievementPage("TrainCraft", ach);
 

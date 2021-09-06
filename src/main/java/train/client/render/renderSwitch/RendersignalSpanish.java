@@ -56,6 +56,16 @@ public class RendersignalSpanish extends TileEntitySpecialRenderer {
             }
         }
 
+        /**
+         Hey! Wanna learn how to code a mod in minecraft, or code Java and OOP?
+         Join the Minecraft Java Code Club!
+         With your host hariesh, you will learn code strcutres, how java works and
+         making a mod in minecraft!
+
+         Contact Mr Taylor or Hariesh in Y13
+         15HaJe3644@ichs.org.uk
+         **/
+
 
 
         if (!skipRender) {
