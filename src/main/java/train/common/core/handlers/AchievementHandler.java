@@ -112,7 +112,7 @@ public class AchievementHandler {
 				AchievementIDs.caboose.achievement, AchievementIDs.mtg.achievement,
 				AchievementIDs.massTransit.achievement, AchievementIDs.cercanias.achievement,
 				AchievementIDs.powerful.achievement, AchievementIDs.switchin.achievement,
-				AchievementIDs.heavySteam.achievement,};
+				AchievementIDs.heavySteam.achievement,AchievementIDs.jukebox.achievement, AchievementIDs.geared.achievement};
 
 		tmPage = new AchievementPage("TrainCraft", ach);
 

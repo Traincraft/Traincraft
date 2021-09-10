@@ -25,6 +25,9 @@ public class TexturedVertex {
 		textureX = u;
 		textureY = v;
 	}
+	public TexturedVertex(TexturedVertex vert){
+		this(vert.vector3F, vert.textureX, vert.textureY);
+	}
 
 	public TexturedVertex setTexturePosition(float p_78240_1_, float p_78240_2_) {
 		return new TexturedVertex(vector3F, p_78240_1_, p_78240_2_);
