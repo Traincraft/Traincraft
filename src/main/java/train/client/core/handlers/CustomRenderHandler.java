@@ -28,10 +28,11 @@ public class CustomRenderHandler {
 
     private void renderTCRailPreview(EntityClientPlayerMP player, ItemStack stack) {
         World world = Minecraft.getMinecraft().theWorld;
+        if(world==null || Minecraft.getMinecraft().objectMouseOver==null){return;}
         int x = Minecraft.getMinecraft().objectMouseOver.blockX;
         int y = Minecraft.getMinecraft().objectMouseOver.blockY;
         int z = Minecraft.getMinecraft().objectMouseOver.blockZ;
-
+        
         if (world.getBlock(x, y, z) == Blocks.air) {
             return;
         }
