@@ -2,6 +2,8 @@ package tmt;
 
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
+import org.lwjgl.util.vector.Matrix4f;
+import org.lwjgl.util.vector.Vector3f;
 
 /**
  * basically the same as Vec3D, but a float. Usually used for storing rotations.
@@ -60,5 +62,16 @@ public class Vec3f {
         return new Vec3f(xCoord-vec.xCoord,
         yCoord-vec.yCoord,
         zCoord-vec.zCoord);
+    }
+
+
+    //this could be moved to vec3f
+    public Vec3f getRelativeVector(Vec3f vec){
+        Matrix4f mat = new Matrix4f();
+        mat.m00 = vec.xCoord; mat.m10 = vec.yCoord; mat.m20 = vec.zCoord;
+        Matrix4f.rotate(zCoord  * 3.14159265F / 180, new Vector3f(1F, 0F, 0F), mat, mat);
+        Matrix4f.rotate(yCoord * 3.14159265F / 180, new Vector3f(0F, 0F, 1F), mat, mat);
+        Matrix4f.rotate(xCoord   * 3.14159265F / 180, new Vector3f(0F, 1F, 0F), mat, mat);
+        return new Vec3f(mat.m00, mat.m10, mat.m20);
     }
 }
