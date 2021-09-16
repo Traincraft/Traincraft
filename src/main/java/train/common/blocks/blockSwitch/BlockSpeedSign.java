@@ -3,6 +3,7 @@ package train.common.blocks.blockSwitch;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
@@ -22,7 +23,7 @@ import train.common.tile.tileSwitch.TileSpeedSign;
 
 import java.util.List;
 
-public class BlockSpeedSign extends Block {
+public class BlockSpeedSign extends Block implements ITileEntityProvider {
 	private IIcon texture;
 	private int skinstate = 0;
 
@@ -87,6 +88,11 @@ public class BlockSpeedSign extends Block {
 		return new TileSpeedSign();
 	}
 
+	@Override
+	public TileEntity createNewTileEntity(World world, int metadata) {
+		return new TileSpeedSign();
+	}
+
 
 
 	@Override
@@ -100,43 +106,11 @@ public class BlockSpeedSign extends Block {
 
 
 
-	public void breakBlock(World p_149749_1_, int p_149749_2_, int p_149749_3_, int p_149749_4_, Block p_149749_5_, int p_149749_6_)
-	{
-		if ((p_149749_6_ & 8) > 0)
-		{
-			p_149749_1_.notifyBlocksOfNeighborChange(p_149749_2_, p_149749_3_, p_149749_4_, this);
-			int i1 = p_149749_6_ & 7;
-
-			if (i1 == 1)
-			{
-				p_149749_1_.notifyBlocksOfNeighborChange(p_149749_2_ - 1, p_149749_3_, p_149749_4_, this);
-			}
-			else if (i1 == 2)
-			{
-				p_149749_1_.notifyBlocksOfNeighborChange(p_149749_2_ + 1, p_149749_3_, p_149749_4_, this);
-			}
-			else if (i1 == 3)
-			{
-				p_149749_1_.notifyBlocksOfNeighborChange(p_149749_2_, p_149749_3_, p_149749_4_ - 1, this);
-			}
-			else if (i1 == 4)
-			{
-				p_149749_1_.notifyBlocksOfNeighborChange(p_149749_2_, p_149749_3_, p_149749_4_ + 1, this);
-			}
-			else if (i1 != 5 && i1 != 6)
-			{
-				if (i1 == 0 || i1 == 7)
-				{
-					p_149749_1_.notifyBlocksOfNeighborChange(p_149749_2_, p_149749_3_ + 1, p_149749_4_, this);
-				}
-			}
-			else
-			{
-				p_149749_1_.notifyBlocksOfNeighborChange(p_149749_2_, p_149749_3_ - 1, p_149749_4_, this);
-			}
-		}
-
+	public void breakBlock(World p_149749_1_, int p_149749_2_, int p_149749_3_, int p_149749_4_, Block p_149749_5_, int p_149749_6_) {
 		super.breakBlock(p_149749_1_, p_149749_2_, p_149749_3_, p_149749_4_, p_149749_5_, p_149749_6_);
+		if(p_149749_1_.getTileEntity(p_149749_2_,p_149749_3_,p_149749_4_)!=null){
+			p_149749_1_.removeTileEntity(p_149749_2_, p_149749_3_, p_149749_4_);
+		}
 	}
 
 

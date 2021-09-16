@@ -30,7 +30,8 @@ public class CylinderBuilder {
     }
 
     public CylinderBuilder setRadius(float first, float second){
-        this.radius = first; this.radius2 = second; texDiameterW = (int)Math.floor(radius * 2F); texDiameterH = (int)Math.floor(radius * 2F); return this;
+        this.radius = first; this.radius2 = second;
+        texDiameterW = (int)Math.floor(radius * 2F); texDiameterH = (int)Math.floor(radius * 2F); return this;
     }
 
     /** Use AFTER `setRadius`, else values will get overriden. */
