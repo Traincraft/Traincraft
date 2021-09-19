@@ -28,20 +28,28 @@ public class ItemRenderSpeedSign implements IItemRenderer {
 	public void renderItem(ItemRenderType type, ItemStack item, Object... data) {
 		switch (type) {
 		case ENTITY: {
+			GL11.glPushMatrix();
 			renderSpeedSign(0f, 0f, 0f, 0f);
+			GL11.glPopMatrix();
 			return;
 		}
 		case EQUIPPED: {
+			GL11.glPushMatrix();
 			renderSpeedSign(0.2f, 1f, 1f, 0f);
+			GL11.glPopMatrix();
 			return;
 		}
 		case EQUIPPED_FIRST_PERSON: {
+			GL11.glPushMatrix();
 			renderSpeedSign(0.2f, 1f, 1f, 1f);
 			GL11.glRotatef(180,0f,1f,0f);
+			GL11.glPopMatrix();
 			return;
 		}
 		case INVENTORY: {
+			GL11.glPushMatrix();
 			renderSpeedSign(0f, 0f, 0f, 0f);
+			GL11.glPopMatrix();
 			return;
 		}
 		default:
@@ -50,12 +58,10 @@ public class ItemRenderSpeedSign implements IItemRenderer {
 	}
 
 	private void renderSpeedSign(float x, float y, float z, float rotate) {
-		GL11.glPushMatrix();
 		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "SpeedSign10.png"));
 		GL11.glTranslatef(x, y, z);
 		GL11.glRotatef(180f,0f,0f, rotate);
 		//GL11.glRotatef();
 		modelspeedSign.render();
-		GL11.glPopMatrix();
 	}
 }

@@ -1,19 +1,22 @@
 package tmt;
 
-import org.lwjgl.util.vector.Matrix4f;
-import org.lwjgl.util.vector.Vector3f;
-
 import java.util.ArrayList;
 
 import static tmt.ModelRendererTurbo.*;
 
+
+/**
+ * Cylinder Builder Tool, to prevent the need of XYZ amount of chained methods.
+ * @author Ferdinand Calo' (FEX___96)
+ */
 public class CylinderBuilder {
+
     private ModelRendererTurbo root;
     private float x, y, z, radius, radius2, length, base_scale, top_scale;
     private int segments, seglimit, direction, texDiameterW, texDiameterH, texHeight;
     private Vec3f topoff = new Vec3f();
     private boolean[] togglesides = new boolean[]{false,false,false,false};
-    private Axis3DL toprot;
+    private Vec3f toprot;
     //
     private boolean radialtexture = false;
     private float seg_width, seg_height;
@@ -27,7 +30,8 @@ public class CylinderBuilder {
     }
 
     public CylinderBuilder setRadius(float first, float second){
-        this.radius = first; this.radius2 = second; texDiameterW = (int)Math.floor(radius * 2F); texDiameterH = (int)Math.floor(radius * 2F); return this;
+        this.radius = first; this.radius2 = second;
+        texDiameterW = (int)Math.floor(radius * 2F); texDiameterH = (int)Math.floor(radius * 2F); return this;
     }
 
     /** Use AFTER `setRadius`, else values will get overriden. */
@@ -71,6 +75,9 @@ public class CylinderBuilder {
 
     /** Currently no support for hollow-less cylinders to be radial-textured. */
     public CylinderBuilder setRadialTexture(float seg_width, float seg_height){
+        if(seg_width==0 && seg_height==0){
+            return this;
+        }
         radialtexture = true; this.seg_width = seg_width; this.seg_height = seg_height; return this;
     }
 
@@ -79,7 +86,8 @@ public class CylinderBuilder {
     }
 
     public CylinderBuilder setTopRotation(float x, float y, float z){
-        (toprot = new Axis3DL()).setAngles(x, y, z); return this;
+        toprot = new Vec3f(x,y,z);
+        return this;
     }
 
     public CylinderBuilder setTopRotation(Vec3f vec){
@@ -123,7 +131,7 @@ public class CylinderBuilder {
         boolean dirMirror = (direction == MR_LEFT || direction == MR_BOTTOM || direction == MR_BACK);
         if(base_scale == 0) base_scale = 1f; if(top_scale == 0) top_scale = 1f;
         if(segments < 3) segments = 3; if(seglimit <= 0) seglimit = segments; boolean segl = seglimit < segments;
-        ArrayList<TexturedVertex> verts = new ArrayList<>(); ArrayList<TexturedPolygon> polis = new ArrayList<>();
+        ArrayList<TexturedPolygon> polis = new ArrayList<>();
         //Vertex
         float xLength = (dirSide ? length : 0), yLength = (dirTop ? length : 0), zLength = (dirFront ? length : 0);
         float xStart = (dirMirror ? x + xLength : x);
@@ -148,33 +156,37 @@ public class CylinderBuilder {
         ArrayList<TexturedVertex> verts1 = new ArrayList<>();
         ArrayList<TexturedVertex> verts2 = new ArrayList<>();
         ArrayList<TexturedVertex> verts3 = new ArrayList<>();
+        float xSize,ySize,zSize,xPlace,yPlace,zPlace;
         for(int repeat = 0; repeat < 2; repeat++){//top/base faces
             for(int index = 0; index < segments; index++){
-                float xSize = (float)((root.mirror ^ dirMirror ? -1 : 1) * Math.sin((ModelRendererTurbo.pi / segments) * index * 2F + ModelRendererTurbo.pi) * radius * sCur);
-                float zSize = (float)(-Math.cos((ModelRendererTurbo.pi / segments) * index * 2F + ModelRendererTurbo.pi) * radius * sCur);
-                float xPlace = xCur + (!dirSide ? xSize : 0);
-                float yPlace = yCur + (!dirTop ? zSize : 0);
-                float zPlace = zCur + (dirSide ? xSize : (dirTop ? zSize : 0));
+                xSize = (float)((root.mirror ^ dirMirror ? -1 : 1) * Math.sin((ModelRendererTurbo.pi / segments) * index * 2F + ModelRendererTurbo.pi) * radius * sCur);
+                zSize = (float)(-Math.cos((ModelRendererTurbo.pi / segments) * index * 2F + ModelRendererTurbo.pi) * radius * sCur);
+                xPlace = xCur + (!dirSide ? xSize : 0);
+                yPlace = yCur + (!dirTop ? zSize : 0);
+                zPlace = zCur + (dirSide ? xSize : (dirTop ? zSize : 0));
                 verts0.add(new TexturedVertex(xPlace, yPlace, zPlace, 0, 0));
                 if(index == segments - 1){
-                    TexturedVertex copy = new TexturedVertex(verts0.get(0)); verts0.add(copy);
+                    verts0.add(new TexturedVertex(verts0.get(0)));
                 }
                 //
-                float xSize2 = (float)((root.mirror ^ dirMirror ? -1 : 1) * Math.sin((ModelRendererTurbo.pi / segments) * index * 2F + ModelRendererTurbo.pi) * radius2 * sCur);
-                float zSize2 = (float)(-Math.cos((ModelRendererTurbo.pi / segments) * index * 2F + ModelRendererTurbo.pi) * radius2 * sCur);
-                xPlace = xCur + (!dirSide ? xSize2 : 0);
-                yPlace = yCur + (!dirTop ? zSize2 : 0);
-                zPlace = zCur + (dirSide ? xSize2 : (dirTop ? zSize2 : 0));
+                xSize = (float)((root.mirror ^ dirMirror ? -1 : 1) * Math.sin((ModelRendererTurbo.pi / segments) * index * 2F + ModelRendererTurbo.pi) * radius2 * sCur);
+                zSize = (float)(-Math.cos((ModelRendererTurbo.pi / segments) * index * 2F + ModelRendererTurbo.pi) * radius2 * sCur);
+                xPlace = xCur + (!dirSide ? xSize : 0);
+                yPlace = yCur + (!dirTop ? zSize : 0);
+                zPlace = zCur + (dirSide ? xSize : (dirTop ? zSize : 0));
                 verts1.add(new TexturedVertex(xPlace, yPlace, zPlace, 0, 0));
                 if(index == segments - 1){
-                    TexturedVertex copy = new TexturedVertex(verts1.get(0)); verts1.add(copy);
+                    verts1.add(new TexturedVertex(verts1.get(0)));
                 }
             }
-            verts.addAll(verts0); verts.addAll(verts1);
-            if(repeat == 0){ verts2.addAll(verts0); verts2.addAll(verts1); }
-            else{ verts3.addAll(verts0); verts3.addAll(verts1); }
-            float xSize, ySize; float mul = radialtexture ? repeat == 0 ? 0 : seg_height : repeat == 0 ? 0.5f : 1.5f;
-            boolean bool = repeat == 0 ? dirFront ? false : true : dirFront ? true : false;
+            if(repeat == 0){
+                verts2.addAll(verts0);
+                verts2.addAll(verts1);
+            } else{
+                verts3.addAll(verts0);
+                verts3.addAll(verts1);
+            }
+            float mul = radialtexture ? repeat == 0 ? 0 : seg_height : repeat == 0 ? 0.5f : 1.5f;
             if((repeat == 0 && !togglesides[0]) || (repeat == 1 && !togglesides[1])){
                 for(int i = 0; i < verts0.size(); i++){
                     if(i >= (verts0.size() - 1) || i >= seglimit){
@@ -202,7 +214,7 @@ public class CylinderBuilder {
                         ySize = (float)(Math.cos((ModelRendererTurbo.pi / segments) * (i + 1) * 2F + (!dirTop ? 0 : ModelRendererTurbo.pi)) * (0.5F * vCircle - 2F * vOffset));
                         arr[3] = verts0.get(i + 1).setTexturePosition(uStart + mul * uCircle + xSize, vStart + 0.5F * vCircle + ySize);
                     }
-                    else{
+                    else {
                         float diff = (radius - radius2) * uScale / 4;
                         arr[0] = verts0.get(i).setTexturePosition(uStart + (i * seg_width) * uScale, vStart + (mul * vScale));
                         arr[1] = verts1.get(i).setTexturePosition(uStart + (i * seg_width) * uScale + diff, vStart + ((seg_height + mul) * vScale));
@@ -212,11 +224,13 @@ public class CylinderBuilder {
                     if(repeat != 0 && toprot != null){
                         arr[0].vector3F = verts0.get(i).vector3F = toprot.getRelativeVector(arr[0].vector3F);
                         arr[1].vector3F = verts1.get(i).vector3F = toprot.getRelativeVector(arr[1].vector3F);
-                        arr[2].vector3F = /*verts1.get(i + 1).vector =*/ toprot.getRelativeVector(arr[2].vector3F);
-                        arr[3].vector3F = /*verts0.get(i + 1).vector =*/ toprot.getRelativeVector(arr[3].vector3F);
+                        arr[2].vector3F = /*verts1.get(i + 1).vector3F =*/ toprot.getRelativeVector(arr[2].vector3F);
+                        arr[3].vector3F = /*verts0.get(i + 1).vector3F =*/ toprot.getRelativeVector(arr[3].vector3F);
                     }
                     polis.add(new TexturedPolygon(arr));
-                    if(bool) polis.get(polis.size() - 1 ).flipFace();
+                    if((repeat == 0) != dirFront) {
+                        polis.get(polis.size() - 1 ).flipFace();
+                    }
                 }
             }
             verts0.clear(); verts1.clear(); xCur = xEnd; yCur = yEnd; zCur = zEnd; sCur = top_scale;
@@ -261,47 +275,7 @@ public class CylinderBuilder {
                 if(!dirFront) polis.get(polis.size() - 1 ).flipFace();
             }
         }
-        root.faces.addAll(polis);
-        return root;
+        return root.copyTo(null, polis.toArray(new TexturedPolygon[0]));
     }
 
-
-
-    public static class Axis3DL {
-
-        private Matrix4f matrix;
-        private float yaw, pitch, roll;
-
-        public Axis3DL(){ matrix = new Matrix4f(); }
-
-        @Override public String toString(){ return "[ " + yaw + "y, " + pitch + "p, " + roll + "r ]";  }
-
-        public Vec3f getRelativeVector(Vec3f vec){
-            Matrix4f mat = new Matrix4f();
-            mat.m00=(vec.xCoord); mat.m10=(vec.yCoord); mat.m20=(vec.zCoord);
-            mat.rotate(roll  * 3.14159265F / 180f, new Vector3f(1F, 0F, 0F), mat);
-            mat.rotate(pitch * 3.14159265F / 180f, new Vector3f(0F, 0F, 1F), mat);
-            mat.rotate(yaw   * 3.14159265F / 180f, new Vector3f(0F, 1F, 0F), mat);
-            return new Vec3f(mat.m00, mat.m10, mat.m20);
-        }
-
-        private final void convertMatrixToAngles(){
-            yaw = (float)(Math.atan2(matrix.m20, matrix.m00) * 180F / 3.14159265F);
-            pitch = (float)(Math.atan2(-matrix.m10, Math.sqrt(matrix.m12 * matrix.m12 + matrix.m11 * matrix.m11)) * 180F / 3.14159265F);
-            roll = (float)(Math.atan2(matrix.m12, matrix.m11) * 180F / 3.14159265F);
-        }
-
-        private final void convertToMatrix(boolean rad){
-            matrix = new Matrix4f();
-            matrix.rotate((rad ? roll : roll * 3.14159265F / 180F), new Vector3f(1F, 0F, 0F));
-            matrix.rotate((rad ? pitch : pitch * 3.14159265F / 180F), new Vector3f(0F, 0F, 1F));
-            matrix.rotate((rad ? yaw : yaw * 3.14159265F / 180F), new Vector3f(0F, 1F, 0F));
-            convertMatrixToAngles();
-        }
-
-        public void setAngles(float yaw, float pitch, float roll){
-            this.yaw = yaw; this.pitch = pitch; this.roll = roll; convertToMatrix(false);
-        }
-
-    }
 }

@@ -1395,7 +1395,7 @@ public class ModelRendererTurbo {
 			vert[1] = tempVerts[1 + index2].setTexturePosition(uStart + 0.5F * uCircle + uSize1, vStart + 0.5F * vCircle + vSize1);
 			vert[2] = tempVerts[1 + index].setTexturePosition(uStart + 0.5F * uCircle + uSize, vStart + 0.5F * vCircle + vSize);
 			poly[index] = new TexturedPolygon(vert);
-			if(!dirFront || mirror || flip){
+			if(!dirFront || mirror){
 				poly[index].flipFace();
 			}
 			if(!coneBase && !coneTop){
@@ -1405,7 +1405,7 @@ public class ModelRendererTurbo {
 				vert[2] = tempVerts[1 + segments + index2].setTexturePosition(uStart + uOffset + uWidth * (index + 1), vStart + vOffset + vCircle + vHeight);
 				vert[3] = tempVerts[1 + segments + index].setTexturePosition(uStart + uOffset + uWidth * index, vStart + vOffset + vCircle + vHeight);
 				poly[index + segments] = new TexturedPolygon(vert);
-				if(!dirFront || mirror || flip){
+				if(!dirFront || mirror){
 					poly[index + segments].flipFace();
 				}
 			}
@@ -1414,7 +1414,7 @@ public class ModelRendererTurbo {
 			vert[1] = tempVerts[tempVerts.length - 2 - index].setTexturePosition(uStart + 1.5F * uCircle + uSize1, vStart + 0.5F * vCircle + vSize1);
 			vert[2] = tempVerts[tempVerts.length - (1 + segments) + ((segments - index) % segments)].setTexturePosition(uStart + 1.5F * uCircle + uSize, vStart + 0.5F * vCircle + vSize);
 			poly[poly.length - segments + index]  = new TexturedPolygon(vert);
-			if(!dirFront || mirror || flip){
+			if(!dirFront || mirror){
 				poly[poly.length - segments + index].flipFace();
 			}
 		}
@@ -1708,72 +1708,29 @@ public class ModelRendererTurbo {
             }
         }
     }
-    
-    public void renderWithRotation(float f){
-        if(field_1402_i){
-            return;
-        }
-        if(!showModel){
-            return;
-        }
-        if(!compiled){
-            compileDisplayList(f);
-        }
-        GL11.glPushMatrix();
-        GL11.glTranslatef(rotationPointX * f, rotationPointY * f, rotationPointZ * f);
-        if(rotateAngleY != 0.0F){
-            GL11.glRotatef(rotateAngleY * 57.29578F, 0.0F, 1.0F, 0.0F);
-        }
-        if(rotateAngleX != 0.0F){
-            GL11.glRotatef(rotateAngleX * 57.29578F, 1.0F, 0.0F, 0.0F);
-        }
-        if(rotateAngleZ != 0.0F){
-            GL11.glRotatef(rotateAngleZ * 57.29578F, 0.0F, 0.0F, 1.0F);
-        }
-        callDisplayList();
-        GL11.glPopMatrix();
-    }
 
-    public void postRender(float f){
-        if(field_1402_i){
-            return;
-        }
-        if(!showModel){
-            return;
-        }
-        if(!compiled || forcedRecompile){
-            compileDisplayList(f);
-        }
-        if(rotateAngleX != 0.0F || rotateAngleY != 0.0F || rotateAngleZ != 0.0F){
-            GL11.glTranslatef(rotationPointX * f, rotationPointY * f, rotationPointZ * f);
-            if(rotateAngleZ != 0.0F){
-                GL11.glRotatef(rotateAngleZ * 57.29578F, 0.0F, 0.0F, 1.0F);
-            }
-            if(rotateAngleY != 0.0F){
-                GL11.glRotatef(rotateAngleY * 57.29578F, 0.0F, 1.0F, 0.0F);
-            }
-            if(rotateAngleX != 0.0F){
-                GL11.glRotatef(rotateAngleX * 57.29578F, 1.0F, 0.0F, 0.0F);
-            }
-        }
-        else if(rotationPointX != 0.0F || rotationPointY != 0.0F || rotationPointZ != 0.0F){
-            GL11.glTranslatef(rotationPointX * f, rotationPointY * f, rotationPointZ * f);
-        }
-    }
     
     public void callDisplayList(){
     	if(useLegacyCompiler){
-    		GL11.glCallList(displayList);
+    	    if(GL11.glIsList(displayList)) {
+                GL11.glCallList(displayList);
+            } else {
+    	        compiled=false;
+            }
     	}
     	else{
     		Iterator<TextureGroup> itr = textureGroup.values().iterator();
     		for(int i = 0; itr.hasNext(); i++){
-    			TextureGroup curTexGroup = itr.next();
-    			curTexGroup.loadTexture();
-    			GL11.glCallList(displayListArray[i]);
-    			if(!defaultTexture.equals("")){
-    				Tessellator.bindTexture(new ResourceLocation("", defaultTexture));
-    			}
+                if(GL11.glIsList(displayListArray[i])) {
+                    TextureGroup curTexGroup = itr.next();
+                    curTexGroup.loadTexture();
+                    GL11.glCallList(displayListArray[i]);
+                    if(!defaultTexture.equals("")){
+                        Tessellator.bindTexture(new ResourceLocation("", defaultTexture));
+                    }
+                } else {
+                    compiled=false;
+                }
     		}
     	}
     }

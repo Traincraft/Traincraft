@@ -17,55 +17,26 @@ import java.util.Random;
 public class TileSpeedSign extends TileTraincraft {
 
 	private int skinstate = 0;
-	private int updateTicks = 0;
-	private static Random rand = new Random();
-	private ForgeDirection facing;
+	private ForgeDirection facing = ForgeDirection.NORTH;
 
 	@Override
 	public void readFromNBT(NBTTagCompound nbtTag, boolean forSyncing) {
-		//super.readFromNBT(nbtTag, false);
-
-		facing = ForgeDirection.getOrientation(nbtTag.getByte("Orientation"));
-	}
-
-	/*
-	@Override
-	public void updateEntity() {
-		super.updateEntity();
-		updateTicks++;
-
-		if (!worldObj.isRemote) {
-			if (updateTicks % 20 == 0) {
-				if (!this.worldObj.isAirBlock(this.xCoord, this.yCoord + 1, this.zCoord)) {
-					Block block = this.worldObj.getBlock(this.xCoord, this.yCoord + 1, this.zCoord);
-					if (block != null) {
-						EntityItem entityitem = new EntityItem(worldObj, this.xCoord, this.yCoord + 1, this.zCoord, new ItemStack(Item.getItemFromBlock(BlockIDs.bridgePillar.block), 1));
-						float f3 = 0.05F;
-						entityitem.motionX = (float) rand.nextGaussian() * f3;
-						entityitem.motionY = (float) rand.nextGaussian() * f3 + 0.2F;
-						entityitem.motionZ = (float) rand.nextGaussian() * f3;
-						worldObj.spawnEntityInWorld(entityitem);
-					}
-					this.worldObj.setBlockToAir(this.xCoord, this.yCoord, this.zCoord);
-				}
-				syncTileEntity();
-			}
+		super.readFromNBT(nbtTag, false);
+		if(nbtTag.hasKey("Orientation")) {
+			facing = ForgeDirection.getOrientation(nbtTag.getByte("Orientation"));
+		}
+		if(nbtTag.hasKey("skinstate")){
+			skinstate=nbtTag.getInteger("skinstate");
 		}
 	}
 
-	 */
 
 
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound nbtTag, boolean forSyncing) {
-		//super.writeToNBT(nbtTag, forSyncing);
-		if (facing != null) {
-
-			nbtTag.setByte("Orientation", (byte) facing.ordinal());
-		} else {
-
-			nbtTag.setByte("Orientation", (byte) ForgeDirection.NORTH.ordinal());
-		}
+		super.writeToNBT(nbtTag, forSyncing);
+		nbtTag.setByte("Orientation", (byte) facing.ordinal());
+		nbtTag.setInteger("skinstate", skinstate);
 		return nbtTag;
 	}
 
@@ -85,19 +56,15 @@ public class TileSpeedSign extends TileTraincraft {
 	}
 
 	public void increaseSkinState(){
-		if (skinstate == 4){
+		if (skinstate >= 4){
 			skinstate = 0;
-			this.skinstate = skinstate;
 		} else {
 			skinstate++;
-			this.skinstate = skinstate;
 		}
 	}
 
 	public void setFacing(ForgeDirection face) {
-
-		if (facing != face)
-			this.facing = face;
+		this.facing = face;
 	}
 
 	@SideOnly(Side.CLIENT)

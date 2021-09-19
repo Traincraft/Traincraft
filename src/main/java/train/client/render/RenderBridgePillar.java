@@ -1,9 +1,9 @@
 package train.client.render;
 
+import net.minecraft.client.renderer.GLAllocation;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
 import org.lwjgl.opengl.GL11;
 import tmt.Tessellator;
 import train.client.render.models.blocks.ModelBridgePillar;
@@ -12,57 +12,22 @@ import train.common.tile.TileBridgePillar;
 
 public class RenderBridgePillar extends TileEntitySpecialRenderer {
 	static final ModelBridgePillar modelBridgePillar = new ModelBridgePillar();
-
-	private static final ResourceLocation texture = new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "bridgePillar.png");
+	static final ResourceLocation texture = new ResourceLocation(Info.modID,Info.modelTexPrefix + "bridgePillar.png");
+	static Integer GLID = null;
 
 	@Override
 	public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float tick) {
 		GL11.glPushMatrix();
-		GL11.glTranslated(x+0.375 , y, z+0.3125);
-		GL11.glRotated(180, 0, 1, 0);
-		boolean skipRender = false;
-
-		switch (((TileBridgePillar) tileEntity).getFacing()) {
-			case NORTH: {
-				GL11.glRotated(180, 0, 0, 1);
-				GL11.glRotated(90, 0, 1, 0);
-				GL11.glTranslated(0.1875, 0, 0.125);
-				break;
-			}
-			case SOUTH: {
-				GL11.glRotated(180, 0, 0, 1);
-				GL11.glRotated(270, 0, 1, 0);
-				GL11.glTranslated(0.1875, 0, 0.125);
-				break;
-			}
-			case EAST: {
-				GL11.glRotated(180, 0, 0, 1);
-				GL11.glRotated(180, 0, 1, 0);
-				GL11.glTranslated(0.1875, 0, 0.125);
-				break;
-			}
-			case WEST: {
-				GL11.glRotated(180, 0, 0, 1);
-				GL11.glRotated(0, 0, 1, 0);
-				GL11.glTranslated(0.1875, 0, 0.125);
-				break;
-			}
-			default: {
-				skipRender = true;
-			}
-		}
-
-
-		if (!skipRender) {
-			World world = null;
-			// tileEntity.getWorldObj().getBlock(tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord).isProvidingWeakPower(tileEntity.getWorldObj(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord, 0) > 0
-			Tessellator.bindTexture(texture);
-			modelBridgePillar.render(null, 0, 0, 0, 0, 0, 0.0625f);
-
-
-
+		GL11.glTranslated(x+0.5,y+1,z+0.5);
+		Tessellator.bindTexture(texture);
+		if(GLID==null || !GL11.glIsList(GLID)) {
+			GLID = GLAllocation.generateDisplayLists(1);
+			GL11.glNewList(GLID, GL11.GL_COMPILE);
+			modelBridgePillar.render();
+			GL11.glEndList();
+		} else {
+			GL11.glCallList(GLID);
 		}
 		GL11.glPopMatrix();
 	}
 }
-
