@@ -8,12 +8,9 @@
 // Last changed on: 18.10.2020 - 12:47:57
 
 package train.client.render.renderSwitch.models;
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.Entity;
-import org.lwjgl.opengl.GL11;
+
 import tmt.ModelConverter;
 import tmt.ModelRendererTurbo;
-import tmt.ModelConverter;
 
 public class ModelowoSwitchStandOn extends ModelConverter //Same as Filename
 {

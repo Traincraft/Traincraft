@@ -3,18 +3,11 @@ package train.common.entity.rollingStock;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.Constants;
-import train.common.Traincraft;
 import train.common.api.EntityRollingStock;
-import train.common.api.Freight;
 import train.common.api.IPassenger;
 import train.common.library.BlockIDs;
-import train.common.library.GuiIDs;
 import train.common.wellcar.BasicallyContainer;
 
 public class EntityFreightBapHuskyStack extends EntityRollingStock implements IPassenger {

@@ -17,7 +17,6 @@ import tmt.ModelRendererTurbo;
 import tmt.Tessellator;
 import train.client.render.models.containers.Modelcontainer40;
 import train.common.entity.rollingStock.EntityFreightBapHuskyStack;
-import train.common.entity.rollingStock.HuskyStackWellcar;
 import train.common.library.Info;
 
 public class ModelHuskyStack extends ModelConverter //Same as Filename

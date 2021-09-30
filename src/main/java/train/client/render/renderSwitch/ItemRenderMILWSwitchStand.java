@@ -1,12 +1,11 @@
 package train.client.render.renderSwitch;
 
-import train.client.render.renderSwitch.models.ModelMILWSwitchStandOff;
-import train.client.render.renderSwitch.models.ModelMILWSwitchStandOn;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
 import tmt.Tessellator;
+import train.client.render.renderSwitch.models.ModelMILWSwitchStandOff;
 import train.common.library.Info;
 
 public class ItemRenderMILWSwitchStand implements IItemRenderer {

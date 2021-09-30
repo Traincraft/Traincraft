@@ -3,12 +3,7 @@ package train.common.core.handlers;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
-import net.minecraft.crash.CrashReport;
 import net.minecraft.entity.passive.EntityAnimal;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.ReportedException;
-import net.minecraft.world.World;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.EntityStruckByLightningEvent;
 import net.minecraftforge.event.world.ChunkEvent;
@@ -18,7 +13,6 @@ import train.common.entity.ai.EntityAIFearHorn;
 import train.common.entity.rollingStock.EntityJukeBoxCart;
 
 import java.util.Random;
-import java.util.UUID;
 
 public class WorldEvents{
 	private int windTicker = 0;

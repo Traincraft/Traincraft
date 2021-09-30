@@ -1,6 +1,5 @@
 package train.client.render.renderSwitch;
 
-import train.common.tile.tileSwitch.TileautoSwitchStand;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
@@ -9,6 +8,7 @@ import tmt.Tessellator;
 import train.client.render.renderSwitch.models.ModelautoSwitchOff;
 import train.client.render.renderSwitch.models.ModelautoSwitchOn;
 import train.common.library.Info;
+import train.common.tile.tileSwitch.TileautoSwitchStand;
 
 
 public class RenderautoSwitchStand extends TileEntitySpecialRenderer {

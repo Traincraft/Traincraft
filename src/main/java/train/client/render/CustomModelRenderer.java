@@ -2,7 +2,6 @@ package train.client.render;
 
 
 import org.lwjgl.opengl.GL11;
-
 import tmt.ModelBase;
 import tmt.ModelRendererTurbo;
 import tmt.TexturedPolygon;

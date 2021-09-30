@@ -1,17 +1,12 @@
 package train.client.render.renderSwitch;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import train.client.render.renderSwitch.models.ModeloverheadWire;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
 import tmt.Tessellator;
-import train.common.items.ItemoverheadWire;
+import train.client.render.renderSwitch.models.ModeloverheadWire;
 import train.common.library.Info;
-import train.common.library.ItemIDs;
 
 public class ItemRenderoverheadWire implements IItemRenderer {
     private static final ModeloverheadWire modeSwitch = new ModeloverheadWire();

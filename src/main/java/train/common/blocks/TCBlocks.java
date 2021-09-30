@@ -12,13 +12,11 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
 import train.common.Traincraft;
 import train.common.blocks.blockSwitch.*;
 import train.common.library.BlockIDs;
 import train.common.library.Info;
 import train.common.mtc.*;
-import train.common.wellcar.BlockFortyFootContainer;
 
 public class TCBlocks {
 

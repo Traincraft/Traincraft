@@ -14,8 +14,6 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.VillagerRegistry;
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
@@ -33,9 +31,7 @@ import train.common.core.handlers.*;
 import train.common.generation.ComponentVillageTrainstation;
 import train.common.generation.WorldGenWorld;
 import train.common.items.TCItems;
-import train.common.library.BlockIDs;
 import train.common.library.Info;
-import train.common.mtc.*;
 import train.common.recipes.AssemblyTableRecipes;
 
 import java.io.File;

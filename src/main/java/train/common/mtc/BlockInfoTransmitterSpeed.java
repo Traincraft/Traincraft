@@ -5,11 +5,9 @@ import dan200.computercraft.api.peripheral.IPeripheral;
 import dan200.computercraft.api.peripheral.IPeripheralProvider;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import train.client.gui.GuiSpeedTransmitter;
 
 public class BlockInfoTransmitterSpeed extends BlockContainer implements IPeripheralProvider {
 

@@ -9,9 +9,6 @@
 
 package train.client.render.renderSwitch.models; //Path where the model is located
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.Entity;
-import org.lwjgl.opengl.GL11;
 import tmt.ModelConverter;
 import tmt.ModelRendererTurbo;
 

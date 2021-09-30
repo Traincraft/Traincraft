@@ -9,7 +9,6 @@
 
 package train.client.render.models; //Path where the model is located
 
-import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -19,7 +18,6 @@ import tmt.ModelRendererTurbo;
 import tmt.Tessellator;
 import train.client.render.models.loads.ModelBigLog;
 import train.client.render.models.loads.ModelMixedLogs;
-import train.common.api.AbstractTrains;
 import train.common.api.Freight;
 import train.common.library.Info;
 

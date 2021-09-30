@@ -1,18 +1,14 @@
 package train.client.render.renderSwitch;
 
-import net.minecraft.block.Block;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
 import org.lwjgl.opengl.GL11;
 import tmt.Tessellator;
-import train.client.render.RenderSignal;
 import train.client.render.renderSwitch.models.ModelsignalSpanish;
-import train.common.blocks.blockSwitch.BlocksignalSpanish;
 import train.common.library.Info;
-import train.common.tile.TileSignal;
 import train.common.tile.tileSwitch.TilesignalSpanish;
-import net.minecraft.world.World;
 
 public class RendersignalSpanish extends TileEntitySpecialRenderer {
     static final ModelsignalSpanish modelspanishSignal = new ModelsignalSpanish();

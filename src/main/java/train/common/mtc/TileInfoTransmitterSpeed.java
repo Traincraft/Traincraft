@@ -10,8 +10,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.math.NumberUtils;
 import train.common.Traincraft;
 import train.common.api.Locomotive;
 import train.common.mtc.packets.PacketMTC;

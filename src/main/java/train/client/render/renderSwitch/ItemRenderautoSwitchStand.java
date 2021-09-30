@@ -1,12 +1,11 @@
 package train.client.render.renderSwitch;
 
-import train.client.render.renderSwitch.models.ModelautoSwitchOff;
-import train.client.render.renderSwitch.models.ModelautoSwitchOn;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
 import tmt.Tessellator;
+import train.client.render.renderSwitch.models.ModelautoSwitchOff;
 import train.common.library.Info;
 
 public class ItemRenderautoSwitchStand implements IItemRenderer {

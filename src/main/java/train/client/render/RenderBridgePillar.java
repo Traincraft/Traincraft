@@ -8,7 +8,6 @@ import org.lwjgl.opengl.GL11;
 import tmt.Tessellator;
 import train.client.render.models.blocks.ModelBridgePillar;
 import train.common.library.Info;
-import train.common.tile.TileBridgePillar;
 
 public class RenderBridgePillar extends TileEntitySpecialRenderer {
 	static final ModelBridgePillar modelBridgePillar = new ModelBridgePillar();

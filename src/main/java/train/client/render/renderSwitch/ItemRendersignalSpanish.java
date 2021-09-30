@@ -1,25 +1,15 @@
 package train.client.render.renderSwitch;
 
-import buildcraft.core.ItemPaintbrush;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.entity.Entity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
-import net.minecraftforge.client.MinecraftForgeClient;
 import org.lwjgl.opengl.GL11;
 import tmt.Tessellator;
-import train.client.render.RenderEnum;
-import train.client.render.RenderRollingStock;
 import train.client.render.renderSwitch.models.ModelsignalSpanish;
-import train.common.Traincraft;
-import train.common.api.EntityRollingStock;
-import train.common.items.ItemPaintbrushThing;
-import train.common.library.BlockIDs;
 import train.common.library.Info;
 
 public class ItemRendersignalSpanish implements IItemRenderer {

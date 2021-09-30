@@ -6,7 +6,6 @@ import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
-import net.minecraft.tileentity.TileEntity;
 import train.common.api.Locomotive;
 import train.common.mtc.packets.PacketMTC;
 

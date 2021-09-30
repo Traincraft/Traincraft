@@ -10,9 +10,6 @@ import net.minecraft.util.MathHelper;
 import net.minecraftforge.oredict.OreDictionary;
 import train.common.inventory.TrainCraftingManager;
 import train.common.library.AchievementIDs;
-import train.common.library.ItemIDs;
-
-import java.util.ArrayList;
 
 public class SlotOpenHearthFurnace extends Slot {
 	private EntityPlayer thePlayer;

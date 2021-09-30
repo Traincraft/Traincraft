@@ -1,14 +1,14 @@
 package train.client.render.renderSwitch;
 
-import train.client.render.renderSwitch.models.ModelowoSwitchStandOff;
-import train.client.render.renderSwitch.models.ModelowoSwitchStandOn;
-import train.common.tile.tileSwitch.TileowoSwitchStand;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import tmt.Tessellator;
+import train.client.render.renderSwitch.models.ModelowoSwitchStandOff;
+import train.client.render.renderSwitch.models.ModelowoSwitchStandOn;
 import train.common.library.Info;
+import train.common.tile.tileSwitch.TileowoSwitchStand;
 
 public class RenderowoSwitchStand extends TileEntitySpecialRenderer {
     private static final ModelowoSwitchStandOn modelSwitch2 = new ModelowoSwitchStandOn();

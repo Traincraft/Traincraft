@@ -6,7 +6,6 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import tmt.Tessellator;
 import train.client.render.renderSwitch.models.ModeloverheadWire;
-import org.lwjgl.opengl.GL11.*;
 import train.client.render.renderSwitch.models.ModeloverheadWireOn;
 import train.common.library.Info;
 import train.common.tile.tileSwitch.TileoverheadWire;
