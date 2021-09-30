@@ -16,7 +16,6 @@ import train.common.api.Locomotive;
 import train.common.core.util.TraincraftUtil;
 import train.common.entity.rollingStock.EntityTracksBuilder;
 import train.common.library.Info;
-import net.minecraft.entity.Entity;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

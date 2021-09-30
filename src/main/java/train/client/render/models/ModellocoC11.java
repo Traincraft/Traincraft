@@ -16,7 +16,6 @@ import org.lwjgl.opengl.GL11;
 import tmt.ModelConverter;
 import tmt.ModelRendererTurbo;
 import tmt.Tessellator;
-import train.common.api.AbstractTrains;
 import train.common.library.Info;
 
 public class ModellocoC11 extends ModelConverter //Same as Filename

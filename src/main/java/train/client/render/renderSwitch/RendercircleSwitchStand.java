@@ -1,14 +1,14 @@
 package train.client.render.renderSwitch;
 
-import train.client.render.renderSwitch.models.ModelcircleSwitchStandOff;
-import train.client.render.renderSwitch.models.ModelcircleSwitchStandOn;
-import train.common.tile.tileSwitch.TilecircleSwitchStand;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import tmt.Tessellator;
+import train.client.render.renderSwitch.models.ModelcircleSwitchStandOff;
+import train.client.render.renderSwitch.models.ModelcircleSwitchStandOn;
 import train.common.library.Info;
+import train.common.tile.tileSwitch.TilecircleSwitchStand;
 
 
 public class RendercircleSwitchStand extends TileEntitySpecialRenderer {

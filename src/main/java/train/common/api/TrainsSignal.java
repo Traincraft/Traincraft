@@ -2,7 +2,6 @@ package train.common.api;
 
 import net.minecraft.world.World;
 import train.common.library.BlockIDs;
-import train.common.tile.TileSignal;
 
 public class TrainsSignal {
 	// ***Signal behavior***/

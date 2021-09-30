@@ -5,7 +5,6 @@ import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.InputEvent;
-import li.cil.oc.common.item.Tablet;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,7 +16,6 @@ import train.common.api.Locomotive;
 import train.common.api.SteamTrain;
 import train.common.core.handlers.ConfigHandler;
 import train.common.core.network.PacketKeyPress;
-import train.common.mtc.packets.PacketATO;
 
 public class TCKeyHandler {
 	public static KeyBinding horn;

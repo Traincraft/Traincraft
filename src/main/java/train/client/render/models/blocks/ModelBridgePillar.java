@@ -7,10 +7,8 @@
 
 package train.client.render.models.blocks;
 
-import tmt.Coord2D;
 import tmt.ModelConverter;
 import tmt.ModelRendererTurbo;
-import tmt.Shape2D;
 
 public class ModelBridgePillar extends ModelConverter //Same as Filename
 {

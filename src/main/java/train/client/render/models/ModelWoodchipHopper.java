@@ -7,7 +7,6 @@ import tmt.ModelConverter;
 import tmt.ModelRendererTurbo;
 import tmt.Tessellator;
 import train.common.api.AbstractTrains;
-import train.common.api.Freight;
 import train.common.library.Info;
 
 public class ModelWoodchipHopper extends ModelConverter //Same as Filename

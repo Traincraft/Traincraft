@@ -15,7 +15,6 @@ import org.lwjgl.opengl.GL11;
 import tmt.ModelConverter;
 import tmt.ModelRendererTurbo;
 import tmt.Tessellator;
-import train.client.render.models.ModelPS_Truck;
 import train.common.api.AbstractTrains;
 import train.common.library.Info;
 

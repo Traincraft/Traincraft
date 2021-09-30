@@ -1,6 +1,5 @@
 package train.client.render.renderSwitch;
 
-import train.common.tile.tileSwitch.TileowoYardSwitchStand;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
@@ -9,6 +8,7 @@ import tmt.Tessellator;
 import train.client.render.renderSwitch.models.ModelowoYardSwitchStandOff;
 import train.client.render.renderSwitch.models.ModelowoYardSwitchStandOn;
 import train.common.library.Info;
+import train.common.tile.tileSwitch.TileowoYardSwitchStand;
 
 public class RenderowoYardSwtichStand extends TileEntitySpecialRenderer {
     private static final ModelowoYardSwitchStandOn modelSwitch2 = new ModelowoYardSwitchStandOn();

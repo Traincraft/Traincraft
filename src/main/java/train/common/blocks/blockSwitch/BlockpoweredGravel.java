@@ -2,14 +2,9 @@ package train.common.blocks.blockSwitch;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
-
-import java.util.List;
 
 public class BlockpoweredGravel extends Block {
     public BlockpoweredGravel(Material p_i45394_1_) {

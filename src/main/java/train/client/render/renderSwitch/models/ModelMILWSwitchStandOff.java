@@ -9,8 +9,6 @@
 
 package train.client.render.renderSwitch.models;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.Entity;
 import tmt.ModelConverter;
 import tmt.ModelRendererTurbo;
 

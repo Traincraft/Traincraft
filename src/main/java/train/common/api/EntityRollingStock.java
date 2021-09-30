@@ -13,7 +13,6 @@ import mods.railcraft.api.carts.ILinkableCart;
 import mods.railcraft.api.tracks.RailTools;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockAir;
-import net.minecraft.block.BlockRail;
 import net.minecraft.block.BlockRailBase;
 import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.entity.*;
@@ -60,7 +59,6 @@ import java.util.List;
 
 import static train.common.core.util.TraincraftUtil.degrees;
 import static train.common.core.util.TraincraftUtil.isRailBlockAt;
-import static train.common.core.util.TraincraftUtil.radian;
 
 public class EntityRollingStock extends AbstractTrains implements ILinkableCart {
 	public int fuelTrain;

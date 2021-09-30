@@ -16,7 +16,6 @@ import org.lwjgl.opengl.GL11;
 import tmt.ModelConverter;
 import tmt.ModelRendererTurbo;
 import tmt.Tessellator;
-import train.client.render.models.Model70TonTruck2;
 import train.common.library.Info;
 
 public class ModelHopper5201 extends ModelConverter //Same as Filename

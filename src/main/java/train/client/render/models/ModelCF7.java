@@ -17,7 +17,6 @@ import tmt.ModelConverter;
 import tmt.ModelRendererTurbo;
 import tmt.Tessellator;
 import train.common.api.AbstractTrains;
-import train.common.api.Locomotive;
 import train.common.library.Info;
 
 public class ModelCF7 extends ModelConverter //Same as Filename

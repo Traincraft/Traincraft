@@ -7,7 +7,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import train.common.Traincraft;
 import train.common.library.Info;

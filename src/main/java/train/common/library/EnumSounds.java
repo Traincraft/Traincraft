@@ -89,8 +89,6 @@ public enum EnumSounds {
 
 	//Community Port
 	//Not American Stuff
-	DieselBR04(EntityLocoDieselBR04.class, "british_two_tone", 0.8F, "chme3_idle", 0.65F, 40, "chme3_idle", 0.65F, 40, true),
-	DieselBR07(EntityLocoDieselBR07.class, "british_two_tone", 0.8F, "chme3_idle", 0.65F, 40, "chme3_idle", 0.65F, 40, true),
 	DieselCD810(EntityLocoDieselCD810.class, "tram_horn", 0.8F, "chme3_idle", 0.65F, 40, "chme3_idle", 0.65F, 40, true),
 	DieselCD814(EntityLocoDieselCD814.class, "tram_horn", 0.8F, "chme3_idle", 0.65F, 40, "chme3_idle", 0.65F, 40, true),
 	DieselClass44(EntityLocoDieselClass44.class, "british_two_tone", 0.8F, "vl10_idle", 0.65F, 40, "vl10_idle", 0.65F, 40, false),

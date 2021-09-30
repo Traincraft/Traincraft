@@ -1,16 +1,11 @@
 package train.client.render.renderSwitch;
 
-import net.minecraft.block.Block;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
 import org.lwjgl.opengl.GL11;
 import tmt.Tessellator;
-import train.client.render.models.blocks.ModelBridgePillar;
 import train.client.render.renderSwitch.models.ModelspeedSign;
-import train.common.blocks.blockSwitch.BlockSpeedSign;
 import train.common.library.Info;
 import train.common.tile.tileSwitch.TileSpeedSign;
 

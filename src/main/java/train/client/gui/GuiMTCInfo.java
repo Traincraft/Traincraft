@@ -5,22 +5,13 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.gui.GuiTextField;
-import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.Entity;
 import org.lwjgl.input.Keyboard;
-import scala.Char;
-import train.client.gui.GuiTCTextField;
 import train.common.Traincraft;
 import train.common.api.Locomotive;
-import train.common.api.SteamTrain;
 import train.common.core.network.PacketDestination;
 import train.common.core.network.PacketUpdateTrainID;
 import train.common.mtc.packets.PacketMTCLevelUpdate;
-
-import java.util.Collections;
-
-import static org.lwjgl.opengl.GL11.glColor3f;
 
 public class GuiMTCInfo extends GuiScreen {
        Locomotive theLocomotive;

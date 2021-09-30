@@ -7,7 +7,6 @@ import net.minecraft.world.World;
 import org.lwjgl.opengl.GL11;
 import tmt.Tessellator;
 import train.client.render.renderSwitch.models.ModelkSignal;
-import train.client.render.renderSwitch.models.ModelsignalSpanish;
 import train.common.library.Info;
 import train.common.tile.tileSwitch.TilekSignal;
 

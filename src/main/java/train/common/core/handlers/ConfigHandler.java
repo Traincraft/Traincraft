@@ -10,7 +10,6 @@ package train.common.core.handlers;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 import train.common.Traincraft;
-import train.common.library.Info;
 
 import java.io.File;
 

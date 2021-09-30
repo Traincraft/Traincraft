@@ -9,8 +9,6 @@ import org.lwjgl.opengl.GL11;
 import tmt.ModelConverter;
 import tmt.ModelRendererTurbo;
 
-import java.util.ArrayList;
-
 /** This file was exported via the (Default) FlansMod Exporter of<br>
  *  FMT (Fex's Modelling Toolbox) v.2.6.3 &copy; 2021 - Fexcraft.net<br>
  *  All rights reserved. For this Model's License contact the Author/Creator.

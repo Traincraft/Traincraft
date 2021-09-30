@@ -2,17 +2,10 @@ package train.common.tile.tileSwitch;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.Block;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.util.ForgeDirection;
-import train.common.library.BlockIDs;
 import train.common.tile.TileTraincraft;
-
-import java.util.Random;
 
 public class TileSpeedSign extends TileTraincraft {
 
