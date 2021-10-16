@@ -470,6 +470,7 @@ public enum ItemIDs {
 	//signalSpanish("ItemsignalSpanish","signalSpanish", 1),
 
 	tcRailVeryLargeSwitch("ItemTCRail","item_rail_tc_very_large_switch",1),
+	tcRailSuperLargeTurn("ItemTCRail", "item_rail_tc_super_large_turn", 1),
 	;
 
 	public Item item;

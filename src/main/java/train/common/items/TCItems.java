@@ -78,7 +78,11 @@ public class TCItems {
 		ItemIDs.tcRailSmallRoadCrossing1.item = new ItemTCRail(ItemTCRail.TrackTypes.SMALL_ROAD_CROSSING_1);
 		ItemIDs.tcRailSmallRoadCrossing2.item = new ItemTCRail(ItemTCRail.TrackTypes.SMALL_ROAD_CROSSING_2);
 		ItemIDs.tcRailMediumParallelSwitch.item = new ItemTCRail(ItemTCRail.TrackTypes.MEDIUM_PARALLEL_SWITCH);
-		
+
+		ItemIDs.tcRailVeryLargeSwitch.item = new ItemTCRail(ItemTCRail.TrackTypes.VERY_LARGE_SWITCH);
+		ItemIDs.tcRailSuperLargeTurn.item = new ItemTCRail(ItemTCRail.TrackTypes.SUPER_LARGE_TURN);
+
+
 		ItemIDs.tcRailTwoWaysCrossing.item = new ItemTCRail(ItemTCRail.TrackTypes.TWO_WAYS_CROSSING);
 		ItemIDs.tcRailSlopeWood.item = new ItemTCRail(ItemTCRail.TrackTypes.SLOPE_WOOD);
 		ItemIDs.tcRailSlopeGravel.item = new ItemTCRail(ItemTCRail.TrackTypes.SLOPE_GRAVEL);
