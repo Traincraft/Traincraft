@@ -1284,11 +1284,11 @@ public class ItemTCRail extends ItemPart {
 				if (l == 0) {
 					int[] xArray = {x,x ,x ,x,x, x-1,x-1,x-1,x-1,x-1,x-1,x-2,x-2,x-2,x-2,x-3,x-3,x-3,x-3,x-4,x-4,x-4, x-5,x-5,x-5, x-6,x-6,x-6, x-7,x-7,x-8,x-8,x-9,x-9,x-10,x-10,x-10,x-11,x-11,x-12,x-12,x-13,x-13,x-14,x-15};
 					int[] zArray = {z, z + 1, z + 2, z + 3, z + 4,z+1,z+2,z+3,z+4,z+5,z+6, z+5, z+6,z+7,z+8, z+7, z+8,z+9,z+10,z+9,z+10,z+11,z+10,z+11,z+12, z+11,z+12,z+13,z+12,z+13,z+12,z+13,z+14,z+13,z+14,z+13,z+14,z+15,z+14,z+15,z+14,z+15,z+14,z+15,z+15,z+15};
- 						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 1, x - 10, z + 10, 9.5, x - 9,
+ 						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 1, x - 16, z + 16, 15.5, x - 16,
 							y + 1, z, TrackTypes.SUPER_LARGE_RIGHT_TURN.getLabel(), ItemIDs.tcRailSuperLargeTurn.item))
 						return false;
 				}
-				if (l == 1) {
+				if (l == 1) {  //TODO FIX THE ARRAY WITH NUMBERS
 					int[] xArray = {x,x ,x ,x,x, x-1,x-1,x-1,x-1,x-1,x-1,x-2,x-2,x-2,x-2,x-3,x-3,x-3,x-3,x-4,x-4,x-4, x-5,x-5,x-5, x-6,x-6,x-6, x-7,x-7,x-8,x-8,x-9,x-9,x-10,x-10,x-10,x-11,x-11,x-12,x-12,x-13,x-13,x-14,x-15};
 					int[] zArray = {z, z - 1, z - 2, z - 3, z - 4,z-1,z-2,z-3,z-4,z-5,z-6, z-5, z-6,z-7,z-8, z-7, z-8,z-9,z-10,z-9,z-10,z-11,z-10,z-11,z-12, z-11,z-12,z-13,z-12,z-13,z-12,z-13,z-14,z-13,z-14,z-13,z-14,z-15,z-14,z-15,z-14,z-15,z-14,z-15,z-15,z-15};
 					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 2, x - 10, z - 10, 9.5, x + 1,
@@ -1296,7 +1296,7 @@ public class ItemTCRail extends ItemPart {
 							ItemIDs.tcRailSuperLargeTurn.item))
 						return false;
 				}
-				if (l == 3) {
+				if (l == 3) {  //TODO USE THIS FOR LEFT FACING 2
 					int[] xArray = {x,x ,x ,x,x, x+1,x+1,x+1,x+1,x+1,x+1,x+2,x+2,x+2,x+2,x+3,x+3,x+3,x+3,x+4,x+4,x+4, x+5,x+5,x+5, x+6,x+6,x+6, x+7,x+7,x+8,x+8,x+9,x+9,x+10,x+10,x+10,x+11,x+11,x+12,x+12,x+13,x+13,x+14,x+15};
 					int[] zArray = {z, z + 1, z + 2, z + 3, z + 4,z+1,z+2,z+3,z+4,z+5,z+6, z+5, z+6,z+7,z+8, z+7, z+8,z+9,z+10,z+9,z+10,z+11,z+10,z+11,z+12, z+11,z+12,z+13,z+12,z+13,z+12,z+13,z+14,z+13,z+14,z+13,z+14,z+15,z+14,z+15,z+14,z+15,z+14,z+15,z+15,z+15};
 					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 0, x + 10, z + 10, 9.5, x, y + 1,
