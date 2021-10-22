@@ -167,7 +167,7 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 						break;
 					}
 					case SUPER_LARGE_LEFT_TURN: {
-						modelRightTurn.render("super_large", railTile, x , y,z);
+						modelLeftTurn.render("super_large", railTile, x , y, z);
 						break;
 					}
 				}
