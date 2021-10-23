@@ -74,6 +74,7 @@ tile.tc:poweredGravel.name=Powered Gravel
 tile.tc:snowGravel.name=Snowy Gravel
 tile.tc:signalSpanish.name=Spanish Signal
 tile.tc:trackConcrete.name=Concrete Track (WIP do not use)
+tile.tc:kSignal.name=Ks Signal
 
 <!-- ## Items ## -->
 item.tc:diesel.name=Diesel Canister
@@ -556,6 +557,8 @@ achievement.tc:dieselLoco=Diesel locomotive
 achievement.tc:dieselLoco.desc=Bigger topic!
 achievement.tc:smallSteam=Small locomotive
 achievement.tc:smallSteam.desc=Small duty!
+achievement.tc:heavySteam=Heavy Steam locomotive
+achievement.tc:heavySteam.desc=Heavy duty!
 achievement.tc:normalSteam=Steam locomotive
 achievement.tc:normalSteam.desc=Steam era!
 achievement.tc:workCart=Work car
@@ -584,6 +587,12 @@ achievement.tc:flatCart=Flat car
 achievement.tc:flatCart.desc=Flat like a pancake!
 achievement.tc:caboose=Caboose
 achievement.tc:caboose.desc=The last one!
+achievement.tc:geared=Geared
+achievement.tc:geared.desc=Geared steam!
+achievement.tc:switchin=Switchin
+achievement.tc:switchin.desc=Switcher power!
+achievement.tc:powerful=Powerful
+achievement.tc:powerful.desc=More power!
 
 <!-- ## GUI ## -->
 builder.follow.name=Follow tracks
