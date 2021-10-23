@@ -85,6 +85,11 @@ public class ItemTCRail extends ItemPart {
 		SUPER_LARGE_RIGHT_TURN("SUPER_LARGE_RIGHT_TURN", "TURN", ItemIDs.tcRailSuperLargeTurn, ""),
 
 		CONCRETE_SMALL_STRAIGHT("CONCRETE_SMALL_STRAIGHT","STRAIGHT" ,ItemIDs.tcRailConcreteSmallStraight, "1x1"),
+
+		CONCRETE_SUPER_LARGE_TURN("CONCRETE_SUPER_LARGE_TURN", "TURN", ItemIDs.tcRailConcreteSuperLargeTurn, "16x16"),
+		CONCRETE_SUPER_LARGE_LEFT_TURN("CONCRETE_SUPER_LARGE_LEFT_TURN", "TURN",  ItemIDs.tcRailConcreteSuperLargeTurn, ""),
+		CONCRETE_SUPER_LARGE_RIGHT_TURN("CONCRETE_SUPER_LARGE_RIGHT_TURN", "TURN", ItemIDs.tcRailConcreteSuperLargeTurn, ""),
+
 		;
 		private String label;
 		private String type;
@@ -1387,6 +1392,78 @@ public class ItemTCRail extends ItemPart {
 				}
 				return true;
 			}
+
+			if (tempType == TrackTypes.CONCRETE_SUPER_LARGE_RIGHT_TURN) {
+
+				if (l == 2) {
+					int[] xArray = {x,x ,x ,x,x, x+1,x+1,x+1,x+1,x+1,x+1,x+2,x+2,x+2,x+2,x+3,x+3,x+3,x+3,x+4,x+4,x+4, x+5,x+5,x+5, x+6,x+6,x+6, x+7,x+7,x+8,x+8,x+9,x+9,x+10,x+10,x+10,x+11,x+11,x+12,x+12,x+13,x+13,x+14,x+15};
+					int[] zArray = {z, z - 1, z - 2, z - 3, z - 4,z-1,z-2,z-3,z-4,z-5,z-6, z-5, z-6,z-7,z-8, z-7, z-8,z-9,z-10,z-9,z-10,z-11,z-10,z-11,z-12, z-11,z-12,z-13,z-12,z-13,z-12,z-13,z-14,z-13,z-14,z-13,z-14,z-15,z-14,z-15,z-14,z-15,z-14,z-15,z-15,z-15};
+					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 1, x + 16, z - 16, 15.5, x + 16,
+							y + 1, z + 1, TrackTypes.CONCRETE_SUPER_LARGE_RIGHT_TURN.getLabel(), ItemIDs.tcRailConcreteSuperLargeTurn.item))
+						return false;
+				}
+				if (l == 0) {
+					int[] xArray = {x,x ,x ,x,x, x-1,x-1,x-1,x-1,x-1,x-1,x-2,x-2,x-2,x-2,x-3,x-3,x-3,x-3,x-4,x-4,x-4, x-5,x-5,x-5, x-6,x-6,x-6, x-7,x-7,x-8,x-8,x-9,x-9,x-10,x-10,x-10,x-11,x-11,x-12,x-12,x-13,x-13,x-14,x-15, x-15};
+					int[] zArray = {z, z + 1, z + 2, z + 3, z + 4,z+1,z+2,z+3,z+4,z+5,z+6, z+5, z+6,z+7,z+8, z+7, z+8,z+9,z+10,z+9,z+10,z+11,z+10,z+11,z+12, z+11,z+12,z+13,z+12,z+13,z+12,z+13,z+14,z+13,z+14,z+13,z+14,z+15,z+14,z+15,z+14,z+15,z+14,z+15,z+15,z+15};
+					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 1, x - 15, z + 15, 15.5, x - 15,
+							y + 1, z, TrackTypes.CONCRETE_SUPER_LARGE_RIGHT_TURN.getLabel(), ItemIDs.tcRailConcreteSuperLargeTurn.item))
+						return false;
+				}
+				if (l == 1) {
+					int[] xArray = {x, x-1, x-2, x-3, x-4, x-1, x-2, x-3, x-4, x-5, x-6, x-5, x-6, x-7, x-8, x-7, x-8, x-9, x-10, x-9, x-10, x-11, x-10, x-11, x-12, x-11, x-12, x-13, x-12, x-13, x-12, x-13, x-14, x-13, x-14, x-13, x-14, x-15, x-14, x-15, x-14, x-15, x-14, x-15, x-15, x-15,};
+					int[] zArray = {z, z, z, z, z, z-1, z-1, z-1, z-1, z-1, z-1, z-2, z-2, z-2, z-2, z-3, z-3, z-3, z-3, z-4, z-4, z-4, z-5, z-5, z-5, z-6, z-6, z-6, z-7, z-7, z-8, z-8, z-8, z-9, z-9, z-10, z-10, z-10, z-11, z-11, z-12, z-12, z-13, z-13, z-14, z-15,};
+					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 2, x - 15, z - 15, 15.5,  x +1 ,
+							y + 1, z - 15 , TrackTypes.CONCRETE_SUPER_LARGE_RIGHT_TURN.getLabel(), ItemIDs.tcRailConcreteSuperLargeTurn.item))
+						return false;
+				}
+				if (l == 3) {
+					int[] xArray = {x, x+1, x+2, x+3, x+4, x+1, x+2, x+3, x+4, x+5, x+6, x+5, x+6, x+7, x+8, x+7, x+8, x+9, x+10, x+9, x+10, x+11, x+10, x+11, x+12, x+11, x+12, x+13, x+12, x+13, x+12, x+13, x+14, x+13, x+14, x+13, x+14, x+15, x+14, x+15, x+14, x+15, x+14, x+15, x+15, x+15,};
+					int[] zArray = {z, z, z, z, z, z+1, z+1, z+1, z+1, z+1, z+1, z+2, z+2, z+2, z+2, z+3, z+3, z+3, z+3, z+4, z+4, z+4, z+5, z+5, z+5, z+6, z+6, z+6, z+7, z+7, z+8, z+8, z+8, z+9, z+9, z+10, z+10, z+10, z+11, z+11, z+12, z+12, z+13, z+13, z+14, z+15,};
+					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 2, x + 15, z + 15, 15.5, x, y + 1,
+							z + 16 , TrackTypes.CONCRETE_SUPER_LARGE_RIGHT_TURN.getLabel(), ItemIDs.tcRailConcreteSuperLargeTurn.item))
+						return false;
+				}
+
+				if (player ==null || !player.capabilities.isCreativeMode) {
+					--itemstack.stackSize;
+				}
+				return true;
+			}
+			if (tempType == TrackTypes.CONCRETE_SUPER_LARGE_LEFT_TURN) {
+				if (l == 2) {
+					int[] xArray = {x,x ,x ,x,x, x-1,x-1,x-1,x-1,x-1,x-1,x-2,x-2,x-2,x-2,x-3,x-3,x-3,x-3,x-4,x-4,x-4, x-5,x-5,x-5, x-6,x-6,x-6, x-7,x-7,x-8,x-8,x-9,x-9,x-10,x-10,x-10,x-11,x-11,x-12,x-12,x-13,x-13,x-14,x-15};
+					int[] zArray = {z, z - 1, z - 2, z - 3, z - 4,z-1,z-2,z-3,z-4,z-5,z-6, z-5, z-6,z-7,z-8, z-7, z-8,z-9,z-10,z-9,z-10,z-11,z-10,z-11,z-12, z-11,z-12,z-13,z-12,z-13,z-12,z-13,z-14,z-13,z-14,z-13,z-14,z-15,z-14,z-15,z-14,z-15,z-14,z-15,z-15,z-15};
+					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 1, x - 15, z + 15, 15.5, x - 15,
+							y + 1, z+1, TrackTypes.CONCRETE_SUPER_LARGE_LEFT_TURN.getLabel(), ItemIDs.tcRailConcreteSuperLargeTurn.item))
+						return false;
+				}
+				if (l == 0) {
+					int[] xArray = {x,x ,x ,x,x, x+1,x+1,x+1,x+1,x+1,x+1,x+2,x+2,x+2,x+2,x+3,x+3,x+3,x+3,x+4,x+4,x+4, x+5,x+5,x+5, x+6,x+6,x+6, x+7,x+7,x+8,x+8,x+9,x+9,x+10,x+10,x+10,x+11,x+11,x+12,x+12,x+13,x+13,x+14,x+15};
+					int[] zArray = {z, z + 1, z + 2, z + 3, z + 4,z+1,z+2,z+3,z+4,z+5,z+6, z+5, z+6,z+7,z+8, z+7, z+8,z+9,z+10,z+9,z+10,z+11,z+10,z+11,z+12, z+11,z+12,z+13,z+12,z+13,z+12,z+13,z+14,z+13,z+14,z+13,z+14,z+15,z+14,z+15,z+14,z+15,z+14,z+15,z+15,z+15};
+					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 1, x + 15, z + 15, 15.5, x + 16,
+							y + 1, z , TrackTypes.CONCRETE_SUPER_LARGE_LEFT_TURN.getLabel(), ItemIDs.tcRailConcreteSuperLargeTurn.item))
+						return false;
+				}
+				if (l == 1) {
+					int[] xArray = {x, x-1, x-2, x-3, x-4, x-1, x-2, x-3, x-4, x-5, x-6, x-5, x-6, x-7, x-8, x-7, x-8, x-9, x-10, x-9, x-10, x-11, x-10, x-11, x-12, x-11, x-12, x-13, x-12, x-13, x-12, x-13, x-14, x-13, x-14, x-13, x-14, x-15, x-14, x-15, x-14, x-15, x-14, x-15, x-15, x-15,};
+					int[] zArray = {z, z, z, z, z, z+1, z+1, z+1, z+1, z+1, z+1, z+2, z+2, z+2, z+2, z+3, z+3, z+3, z+3, z+4, z+4, z+4, z+5, z+5, z+5, z+6, z+6, z+6, z+7, z+7, z+8, z+8, z+8, z+9, z+9, z+10, z+10, z+10, z+11, z+11, z+12, z+12, z+13, z+13, z+14, z+15,};
+					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 2, x - 15, z + 15, 15.5, x + 1 ,
+							y + 1, z + 16, TrackTypes.CONCRETE_SUPER_LARGE_LEFT_TURN.getLabel(), ItemIDs.tcRailConcreteSuperLargeTurn.item))
+						return false;
+				}
+				if (l == 3) {
+					int[] xArray = {x, x+1, x+2, x+3, x+4, x+1, x+2, x+3, x+4, x+5, x+6, x+5, x+6, x+7, x+8, x+7, x+8, x+9, x+10, x+9, x+10, x+11, x+10, x+11, x+12, x+11, x+12, x+13, x+12, x+13, x+12, x+13, x+14, x+13, x+14, x+13, x+14, x+15, x+14, x+15, x+14, x+15, x+14, x+15, x+15, x+15,};
+					int[] zArray = {z, z, z, z, z, z-1, z-1, z-1, z-1, z-1, z-1, z-2, z-2, z-2, z-2, z-3, z-3, z-3, z-3, z-4, z-4, z-4, z-5, z-5, z-5, z-6, z-6, z-6, z-7, z-7, z-8, z-8, z-8, z-9, z-9, z-10, z-10, z-10, z-11, z-11, z-12, z-12, z-13, z-13, z-14, z-15,};
+					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 0, x + 15, z - 15, 15.5, x , y + 1,
+							z - 15, TrackTypes.CONCRETE_SUPER_LARGE_LEFT_TURN.getLabel(), ItemIDs.tcRailConcreteSuperLargeTurn.item))
+						return false;
+				}
+				if (player ==null || !player.capabilities.isCreativeMode) {
+					--itemstack.stackSize;
+				}
+				return true;
+			}
+
 
 			if (tempType == TrackTypes.VERY_LARGE_RIGHT_SWITCH) {
 				if (l == 2) {
