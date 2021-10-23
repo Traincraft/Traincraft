@@ -56,7 +56,7 @@ public class ModelRightTurnTCTrack extends ModelBase {
 
 		if (facing == 3) {
 			if(type.equals("super_large"))
-				GL11.glTranslatef(14.5f, 0.0f, 15.54f);
+				GL11.glTranslatef(14.5f, 0.0f, 15.5f);
 			if(type.equals("very_large"))
 				GL11.glTranslatef(8.5f, 0.0f, 9.54f);
 			if(type.equals("large"))
@@ -67,7 +67,7 @@ public class ModelRightTurnTCTrack extends ModelBase {
 		if (facing == 1) {
 			GL11.glRotatef(180, 0, 1, 0);
 			if(type.equals("super_large"))
-				GL11.glTranslatef(14.5f, 0.0f, 15.54f);
+				GL11.glTranslatef(14.5f, 0.0f, 15.5f);
 			if(type.equals("very_large"))
 				GL11.glTranslatef(14.5f, 0.0f, 15.54f);
 			if(type.equals("large"))
@@ -78,7 +78,7 @@ public class ModelRightTurnTCTrack extends ModelBase {
 		if (facing == 2) {
 			GL11.glRotatef(90, 0, 1, 0);
 			if(type.equals("super_large"))
-				GL11.glTranslatef(14.5f, 0.0f, 15.54f);
+				GL11.glTranslatef(14.5f, 0.0f, 15.5f);
 			if(type.equals("very_large"))
 				GL11.glTranslatef(8.5f, 0.0f, 9.54f);
 			if(type.equals("large"))
@@ -89,7 +89,7 @@ public class ModelRightTurnTCTrack extends ModelBase {
 		if (facing == 0) {
 			GL11.glRotatef(-90, 0, 1, 0);
 			if(type.equals("super_large"))
-				GL11.glTranslatef(14.5f, 0.0f, 15.54f);
+				GL11.glTranslatef(14.5f, 0.0f, 15.5f);
 			if(type.equals("very_large"))
 				GL11.glTranslatef(8.5f, 0.0f, 9.54f);
 			if(type.equals("large"))
