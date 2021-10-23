@@ -468,6 +468,7 @@ public enum ItemIDs {
 	minecartDRGWCaboose("ItemRollingStock", "DRGW_01400_series_caboose",3),
 
 	//signalSpanish("ItemsignalSpanish","signalSpanish", 1),
+	kSignal("ItemsignalSpanish","signalK",2),
 
 	tcRailVeryLargeSwitch("ItemTCRail","item_rail_tc_very_large_switch",1),
 	tcRailSuperLargeTurn("ItemTCRail", "item_rail_tc_super_large_turn", 1),
