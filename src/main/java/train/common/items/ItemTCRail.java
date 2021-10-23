@@ -76,7 +76,7 @@ public class ItemTCRail extends ItemPart {
 		LARGE_SLOPE_SNOW_GRAVEL("LARGE_SLOPE_SNOW_GRAVEL", "SLOPE", ItemIDs.tcRailLargeSlopeSnowGravel, "1x12"),
 		VERY_LARGE_SLOPE_SNOW_GRAVEL("VERY_LARGE_SLOPE_SNOW_GRAVEL", "SLOPE", ItemIDs.tcRailVeryLargeSlopeSnowGravel, "1x18"),
 
-		VERY_LARGE_SWITCH("VERY_LARGE_SWITCH", "SWITCH", ItemIDs.tcRailVeryLargeSwitch, "11x11"),
+		VERY_LARGE_SWITCH("VERY_LARGE_SWITCH", "SWITCH", ItemIDs.tcRailVeryLargeSwitch, "WIP ITEM"),
 		VERY_LARGE_LEFT_SWITCH("VERY_LARGE_LEFT_SWITCH","SWITCH",ItemIDs.tcRailVeryLargeSwitch, ""),
 		VERY_LARGE_RIGHT_SWITCH("VERY_LARGE_RIGHT_SWITCH","SWITCH",ItemIDs.tcRailVeryLargeSwitch, ""),
 
