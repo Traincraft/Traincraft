@@ -62,7 +62,7 @@ public class ModelLeftTurnTCTrack extends ModelBase {
 			if(type.equals("medium"))
 				GL11.glTranslatef(-8.0f, 0.0f, 2.0f);
 			if (type.equals("super_large"))
-				GL11.glTranslatef(0f,0f,0f);
+				GL11.glTranslatef(-5.5f,0f,1.5f);
 		}
 		if (facing == 1) {
 			GL11.glRotatef(90, 0, 1, 0);
@@ -94,7 +94,7 @@ public class ModelLeftTurnTCTrack extends ModelBase {
 			if(type.equals("medium"))
 				GL11.glTranslatef(-2.0f, 0.0f, 6.0f);
 			if (type.equals("super_large"))
-				GL11.glTranslatef(0f,0f,0f);
+				GL11.glTranslatef(0.5f,0f,5.5f);
 		}
 
 		if(type.equals("medium"))this.renderMedium();
