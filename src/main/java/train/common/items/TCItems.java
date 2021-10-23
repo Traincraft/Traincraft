@@ -96,9 +96,11 @@ public class TCItems {
 		ItemIDs.tcRailSlopeSnowGravel.item = new ItemTCRail(ItemTCRail.TrackTypes.SLOPE_SNOW_GRAVEL);
 		ItemIDs.tcRailLargeSlopeSnowGravel.item = new ItemTCRail(ItemTCRail.TrackTypes.LARGE_SLOPE_SNOW_GRAVEL);
 		ItemIDs.tcRailVeryLargeSlopeSnowGravel.item = new ItemTCRail(ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_SNOW_GRAVEL);
+		ItemIDs.tcRailConcreteSmallStraight.item = new ItemTCRail(ItemTCRail.TrackTypes.CONCRETE_SMALL_STRAIGHT);
 
 		ItemIDs.paintbrushThing.item = new ItemPaintbrushThing();
 		ItemIDs.whistle.item = new ItemWhistle();
+		ItemIDs.bolt.item = new ItemBolt(); //this is the spike for crafting
 	}
 	
 	private static void registerItems() {

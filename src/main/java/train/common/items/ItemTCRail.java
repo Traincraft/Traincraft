@@ -82,7 +82,9 @@ public class ItemTCRail extends ItemPart {
 
 		SUPER_LARGE_TURN("SUPER_LARGE_TURN", "TURN", ItemIDs.tcRailSuperLargeTurn, "16x16"),
 		SUPER_LARGE_LEFT_TURN("SUPER_LARGE_LEFT_TURN", "TURN", ItemIDs.tcRailSuperLargeTurn, ""),
-		SUPER_LARGE_RIGHT_TURN("SUPER_LARGE_RIGHT_TURN", "TURN", ItemIDs.tcRailSuperLargeTurn, "")
+		SUPER_LARGE_RIGHT_TURN("SUPER_LARGE_RIGHT_TURN", "TURN", ItemIDs.tcRailSuperLargeTurn, ""),
+
+		CONCRETE_SMALL_STRAIGHT("CONCRETE_SMALL_STRAIGHT","STRAIGHT" ,ItemIDs.tcRailConcreteSmallStraight, "1x1"),
 		;
 		private String label;
 		private String type;
@@ -143,6 +145,7 @@ public class ItemTCRail extends ItemPart {
 				|| tile.getType().equals(TrackTypes.MEDIUM_STRAIGHT.getLabel())
 				|| tile.getType().equals(TrackTypes.LONG_STRAIGHT.getLabel())
 				|| tile.getType().equals(TrackTypes.SMALL_STRAIGHT.getLabel())
+				|| tile.getType().equals(TrackTypes.CONCRETE_SMALL_STRAIGHT.getLabel())
 				|| tile.getType().equals(TrackTypes.SMALL_ROAD_CROSSING.getLabel())
 				|| tile.getType().equals(TrackTypes.SMALL_ROAD_CROSSING_1.getLabel())
 				|| tile.getType().equals(TrackTypes.SMALL_ROAD_CROSSING_2.getLabel())
@@ -362,7 +365,8 @@ public class ItemTCRail extends ItemPart {
 		if ( type == TrackTypes.SMALL_STRAIGHT
 				|| type == TrackTypes.SMALL_ROAD_CROSSING
 				|| type == TrackTypes.SMALL_ROAD_CROSSING_1
-				|| type == TrackTypes.SMALL_ROAD_CROSSING_2 )
+				|| type == TrackTypes.SMALL_ROAD_CROSSING_2
+				|| type == TrackTypes.CONCRETE_SMALL_STRAIGHT)
 			return new int[][]{ {0,0} };
 		else if ( type == TrackTypes.MEDIUM_STRAIGHT )
 			return new int[][]{ {0,0}, {1,0}, {2,0} };
@@ -542,6 +546,9 @@ public class ItemTCRail extends ItemPart {
 				if (getTrackOrientation(l, yaw).equals("left")) {
 					tempType = TrackTypes.SUPER_LARGE_LEFT_TURN;
 				}
+			}
+			if (type == TrackTypes.CONCRETE_SMALL_STRAIGHT){
+				tempType = TrackTypes.CONCRETE_SMALL_STRAIGHT;
 			}
 
 
@@ -1604,6 +1611,40 @@ public class ItemTCRail extends ItemPart {
 				return true;
 			}
 
+			if (tempType == TrackTypes.CONCRETE_SMALL_STRAIGHT){
+				if (l == 2) {
+					int[] xArray = { x,};
+					int[] zArray = { z,};
+					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 1, x , z , 0, x,
+							y + 1, z, TrackTypes.CONCRETE_SMALL_STRAIGHT.getLabel(), ItemIDs.tcRailConcreteSmallStraight.item))
+						return false;
+
+				}
+				if (l == 0) {
+					int[] xArray = { x,};
+					int[] zArray = { z,};
+					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 1, x , z , 0, x,
+							y + 1, z, TrackTypes.CONCRETE_SMALL_STRAIGHT.getLabel(), ItemIDs.tcRailConcreteSmallStraight.item))
+						return false;
+
+				}
+				if (l == 1) {
+					int[] xArray = { x,};
+					int[] zArray = { z,};
+					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 2, x , z , 0, x,
+							y + 1, z, TrackTypes.CONCRETE_SMALL_STRAIGHT.getLabel(), ItemIDs.tcRailConcreteSmallStraight.item))
+						return false;
+
+				}
+				if (l == 3) {
+					int[] xArray = { x,};
+					int[] zArray = { z,};
+					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 0, x , z , 0, x,
+							y + 1, z, TrackTypes.CONCRETE_SMALL_STRAIGHT.getLabel(), ItemIDs.tcRailConcreteSmallStraight.item))
+						return false;
+				}
+			}
+
 			if (type == TrackTypes.SLOPE_WOOD || type == TrackTypes.SLOPE_GRAVEL || type == TrackTypes.SLOPE_BALLAST
 					|| type == TrackTypes.LARGE_SLOPE_WOOD || type == TrackTypes.LARGE_SLOPE_GRAVEL
 					|| type == TrackTypes.LARGE_SLOPE_BALLAST || type == TrackTypes.VERY_LARGE_SLOPE_WOOD
@@ -1710,6 +1751,7 @@ public class ItemTCRail extends ItemPart {
 				}
 				return true;
 			}
+
 			if (type == TrackTypes.MEDIUM_STRAIGHT || type == TrackTypes.LONG_STRAIGHT) {
 				/** check if first rail can be placed */
 				if (!canPlaceTrack(player, world, x, y + 1, z)) {
@@ -1906,7 +1948,7 @@ public class ItemTCRail extends ItemPart {
 				}
 				return true;
 			}
-			if (type == TrackTypes.SMALL_STRAIGHT || type == TrackTypes.SMALL_ROAD_CROSSING || type == TrackTypes.SMALL_ROAD_CROSSING_1 || type == TrackTypes.SMALL_ROAD_CROSSING_2) {
+			if (type == TrackTypes.SMALL_STRAIGHT || type == TrackTypes.SMALL_ROAD_CROSSING || type == TrackTypes.SMALL_ROAD_CROSSING_1 || type == TrackTypes.SMALL_ROAD_CROSSING_2 ) {
 				if (!canPlaceTrack(player, world, x, y + 1, z)) {
 					return false;
 				}

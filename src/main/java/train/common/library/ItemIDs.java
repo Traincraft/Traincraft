@@ -472,6 +472,9 @@ public enum ItemIDs {
 
 	tcRailVeryLargeSwitch("ItemTCRail","item_rail_tc_very_large_switch",1),
 	tcRailSuperLargeTurn("ItemTCRail", "item_rail_tc_super_large_turn", 1),
+
+	tcRailConcreteSmallStraight("ItemTCRail","item_rail_tc_concrete_small_straight", 1),
+	bolt("ItemBolt", "item_bolt", 1),
 	;
 
 	public Item item;

@@ -170,6 +170,10 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 						modelLeftTurn.render("super_large", railTile, x , y, z);
 						break;
 					}
+					case CONCRETE_SMALL_STRAIGHT: {
+						modelSmallStraight.render("concrete_small_straight", railTile, x , y, z);
+						break;
+					}
 				}
 
 

@@ -16,10 +16,12 @@ public class ModelSmallStraightTCTrack extends ModelBase {
 	
 	private IModelCustom modelSmallStraight;
 	private IModelCustom modelRoadCrossing;
+	private IModelCustom modelConcreteSmallStraight;
 
 	public ModelSmallStraightTCTrack() {
 		modelSmallStraight = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_normal.obj"));
 		modelRoadCrossing = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_roadcrossing.obj"));
+		modelConcreteSmallStraight = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "concrete_track.obj"));
 	}
 
 	public void render(String type) {
@@ -34,6 +36,9 @@ public class ModelSmallStraightTCTrack extends ModelBase {
 		}
 		if (type.equals("crossing2")) {
 			modelRoadCrossing.renderAll();
+		}
+		if (type.equals("concrete_small_straight")) {
+			modelConcreteSmallStraight.renderAll();
 		}
 	}
 	
@@ -63,7 +68,10 @@ public class ModelSmallStraightTCTrack extends ModelBase {
 		}		
 		if (type.equals("crossing2")) {
 			FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_roadcrossing_2.png"));
-		}		
+		}
+		if (type.equals("concrete_small_straight")) {
+			FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
+		}
 
 		if (facing == 3) {
 			GL11.glRotatef(90, 0, 1, 0);
