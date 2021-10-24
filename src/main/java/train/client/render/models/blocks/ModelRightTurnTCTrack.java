@@ -76,7 +76,7 @@ public class ModelRightTurnTCTrack extends ModelBase {
 			if(type.equals("super_large"))
 				GL11.glTranslatef(14.5f, 0.0f, 15.5f);
 			if(type.equals("very_large"))
-				GL11.glTranslatef(14.5f, 0.0f, 15.54f);
+				GL11.glTranslatef(8.5f, 0.0f, 9.54f);
 			if(type.equals("large"))
 				GL11.glTranslatef(-1.0f, 0.0f, 5.0f);
 			if(type.equals("medium"))
