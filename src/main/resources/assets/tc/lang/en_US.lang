@@ -322,7 +322,7 @@ item.tc:minecartPassengerMILWTail.name=Hiawatha 1935 MILW Beavertail
 item.tc:minecartBaggageMILW.name=Hiawatha 1935 MILW Baggage
 item.tc:minecartLocoMILWClassA.name=Hiawatha 1935 Class A MILW
 item.tc:minecartMILWTender.name=Hiawatha 1935 MILW Tender
-item.tc:minecartHeavyweightMailcar.name=Heavyweight Mailcar
+item.tc:minecartHeavyweightMailcar.name=Heavyweight Mail Storage Car
 item.tc:minecartLocoSteamPannier.name=0-6-0 Pannier
 item.tc:minecartE103.name=E103
 item.tc:minecartLocoCD151.name=CD 151
@@ -509,9 +509,9 @@ item.tc:minecartHBC1Ccaboose.name=North Fox HBC1-C Caboose
 item.tc:minecartDRGWCaboose.name=DRGW 01400 Series Caboose
 item.tc:minecartPSSleeper565DRGW.name=Pullman Standard 5-6-5 Sleeper (DRGW Floorplan)
 item.tc:minecartPSSleeper565.name=Pullman Standard 5-6-5 Sleeper
-item.tc:minecartPA1.name=Alco PA-1
-item.tc:minecartPB1.name=Alco PB-1
-item.tc:minecartE8A.name=EMD E8A
+item.tc:minecartAlcoPA1.name=Alco PA-1
+item.tc:minecartAlcoPB1.name=Alco PB-1
+item.tc:minecartEMDE8A.name=EMD E8A
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -757,7 +757,7 @@ entity.tc.Denver Rio Grande Passenger.name=Denver Rio Grande Passenger
 entity.tc.GE 44-ton Diesel switcher.name=GE 44 Ton Switcher
 entity.tc.GE 44-Ton.name=GE 44 Ton Switcher
 entity.tc.GE 44-ton.name=GE 44 Ton Switcher
-entity.tc.Heavyweight Freight Car.name=Heavyweight Mailcar
+entity.tc.Heavyweight Freight Car.name=Heavyweight Mail Storage Car
 entity.tc.Rheingold Dining.name=Rheingold Dining
 entity.tc.Rheingold Dining Alternate.name=Rheingold Dining Alternate
 entity.tc.Passenger Rheingold.name=Rheingold Passenger
@@ -949,9 +949,9 @@ entity.tc.HBC1C.name=North Fox HBC1-C Caboose
 entity.tc.DRGWCaboose.name=DRGW 01400 Series Caboose
 entity.tc.PS 5-6-5 Sleeper.name=Pullman Standard 5-6-5 Sleeper
 entity.tc.PS 5-6-5 Sleeper DRGW Edition.name=Pullman Standard 5-6-5 Sleeper (DRGW Floorplan)
-entity.tc.PA1.name=Alco PA-1
-entity.tc.PB1.name=Alco PB-1
-entity.tc.E8A.name=EMD E8A
+entity.tc.AlcoPA1.name=Alco PA-1
+entity.tc.AlcoPB1.name=Alco PB-1
+entity.tc.EMDE8A.name=EMD E8A
 
 description.villager.profession.tc.station_chief=Station Chief
 
