@@ -466,6 +466,9 @@ public enum ItemIDs {
 	minecartWVcaboose("ItemRollingStock", "wvcaboose",3),
 	//minecartHBC1Ccaboose("ItemRollingStock", "HBC1C",3),
 	minecartDRGWCaboose("ItemRollingStock", "DRGW_01400_series_caboose",3),
+	minecartAlcoPA1("ItemRollingStock", "AlcoPA1Icon",5),
+	minecartAlcoPB1("ItemRollingStock", "AlcoPB1Icon",4),
+	minecartEMDE8A("ItemRollingStock", "EMDE8AIcon",5),
 
 	//signalSpanish("ItemsignalSpanish","signalSpanish", 1),
 	kSignal("ItemsignalSpanish","signalK",2),
