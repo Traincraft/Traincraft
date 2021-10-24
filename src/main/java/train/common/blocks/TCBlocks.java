@@ -81,6 +81,9 @@ public class TCBlocks {
 		}
 
 		//BlockIDs.book.block = new BlockBook(BlockIDs.book.blockID);
+		BlockIDs.dirtyBallast.block = new baseBlock("Dirty Gravel", 1f, 1f, "shovel", 1, Material.ground, Block.soundTypeGravel, "dirtygravel");
+		BlockIDs.dirtierBallast.block = new baseBlock("Dirtier Gravel", 1f, 1f, "shovel", 1, Material.ground, Block.soundTypeGravel, "blackgravel");
+
 	}
 
 	public static void registerBlocks() {
