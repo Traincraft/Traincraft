@@ -25,7 +25,7 @@ public class ModelPS73Baggage extends ModelConverter //Same as Filename
 
 	public ModelPS73Baggage() //Same as Filename
 	{
-		bodyModel = new ModelRendererTurbo[218];
+		bodyModel = new ModelRendererTurbo[222];
 
 		initbodyModel_1();
 
@@ -255,6 +255,10 @@ public class ModelPS73Baggage extends ModelConverter //Same as Filename
 		bodyModel[215] = new ModelRendererTurbo(this, 151, 162, textureX, textureY); // Box 41
 		bodyModel[216] = new ModelRendererTurbo(this, 150, 160, textureX, textureY); // Box 41
 		bodyModel[217] = new ModelRendererTurbo(this, 162, 160, textureX, textureY); // Box 41
+		bodyModel[218] = new ModelRendererTurbo(this, 185, 6, textureX, textureY); // Box 218
+		bodyModel[219] = new ModelRendererTurbo(this, 175, 6, textureX, textureY); // Box 219
+		bodyModel[220] = new ModelRendererTurbo(this, 165, 6, textureX, textureY); // Box 220
+		bodyModel[221] = new ModelRendererTurbo(this, 155, 6, textureX, textureY); // Box 221
 
 		bodyModel[0].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F,0F, 0F, 0F, 0.25F, 0F, 0F, 0.25F, 0F, 0F, 0F, 0F, 0F, -0.75F, 0F, 0F, 0.25F, 0F, 0F, 0.25F, 0F, 0F, -0.75F, 0F, 0F); // Box 2
 		bodyModel[0].setRotationPoint(41.75F, 3F, 10F);
@@ -937,12 +941,24 @@ public class ModelPS73Baggage extends ModelConverter //Same as Filename
 
 		bodyModel[217].addShapeBox(0F, 0F, 0F, 0, 2, 1, 0F,0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.2F, 0F, 0F, -0.2F, 0F, 0F, -0.2F, 0F, 0F, -0.2F, 0F); // Box 41
 		bodyModel[217].setRotationPoint(-4.99F, 3F, -5.75F);
+
+		bodyModel[218].addShapeBox(0F, 0F, 0F, 2, 1, 2, 0F,0F, 0.25F, -0.15F, 0F, 0.25F, -0.15F, 0F, -0.25F, 0.15F, 0F, -0.25F, 0.15F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 218
+		bodyModel[218].setRotationPoint(36F, -20F, 5F);
+
+		bodyModel[219].addShapeBox(0F, 0F, 0F, 2, 1, 2, 0F,0F, 0.25F, -0.15F, 0F, 0.25F, -0.15F, 0F, -0.25F, 0.15F, 0F, -0.25F, 0.15F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 219
+		bodyModel[219].setRotationPoint(10F, -20F, 5F);
+
+		bodyModel[220].addShapeBox(0F, 0F, 0F, 2, 1, 2, 0F,0F, 0.25F, -0.15F, 0F, 0.25F, -0.15F, 0F, -0.25F, 0.15F, 0F, -0.25F, 0.15F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 220
+		bodyModel[220].setRotationPoint(-15F, -20F, 5F);
+
+		bodyModel[221].addShapeBox(0F, 0F, 0F, 2, 1, 2, 0F,0F, 0.25F, -0.15F, 0F, 0.25F, -0.15F, 0F, -0.25F, 0.15F, 0F, -0.25F, 0.15F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 221
+		bodyModel[221].setRotationPoint(-40F, -20F, 5F);
 	}
 	ModelPS_Truck bogie1 = new ModelPS_Truck();
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
-		for(int i = 0; i < 218; i++)
+		for(int i = 0; i < 222; i++)
 		{
 			bodyModel[i].render(f5);
 		}
