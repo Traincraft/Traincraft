@@ -1053,8 +1053,7 @@ public enum RenderEnum {
 	Class319Engine(EntityElectricClass319.class, new ModelClass319Engine(), "Br_319_", true,new float[] {-1.0F, 0.15F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	Class319Middle( EntityPassengerClass319Middle.class, new ModelClass319Middle(),"Br_319_", true, new float[] {0F, .1F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
 	Class319Panto( EntityPassengerClass319Panto.class, new ModelClass319Panto(),"Br_319_", true, new float[] {0F, .1F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
-
-
+	Class319Tail( EntityPassengerClass319Tail.class, new ModelClass319Engine(), "Br_319_", true, new float[] {0F, .1F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
 
 	;
 

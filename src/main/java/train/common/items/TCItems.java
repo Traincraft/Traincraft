@@ -98,6 +98,7 @@ public class TCItems {
 		ItemIDs.tcRailVeryLargeSlopeSnowGravel.item = new ItemTCRail(ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_SNOW_GRAVEL);
 		ItemIDs.tcRailConcreteSmallStraight.item = new ItemTCRail(ItemTCRail.TrackTypes.CONCRETE_SMALL_STRAIGHT);
 		//ItemIDs.tcRailConcreteSuperLargeTurn.item = new ItemTCRail(ItemTCRail.TrackTypes.CONCRETE_SUPER_LARGE_TURN);
+		ItemIDs.tcRailSuperLong.item = new ItemTCRail(ItemTCRail.TrackTypes.SUPER_LONG);
 
 		ItemIDs.paintbrushThing.item = new ItemPaintbrushThing();
 		ItemIDs.whistle.item = new ItemWhistle();

@@ -90,6 +90,8 @@ public class ItemTCRail extends ItemPart {
 		CONCRETE_SUPER_LARGE_LEFT_TURN("CONCRETE_SUPER_LARGE_LEFT_TURN", "TURN",  ItemIDs.tcRailConcreteSuperLargeTurn, ""),
 		CONCRETE_SUPER_LARGE_RIGHT_TURN("CONCRETE_SUPER_LARGE_RIGHT_TURN", "TURN", ItemIDs.tcRailConcreteSuperLargeTurn, ""),
 
+		SUPER_LONG("SUPER_LONG", "STRAIGHT", ItemIDs.tcRailSuperLong, "1x12"),
+
 		;
 		private String label;
 		private String type;
@@ -156,6 +158,7 @@ public class ItemTCRail extends ItemPart {
 				|| tile.getType().equals(TrackTypes.SMALL_ROAD_CROSSING_2.getLabel())
 				|| tile.getType().equals(TrackTypes.VERY_LARGE_LEFT_SWITCH.getLabel())
 				|| tile.getType().equals(TrackTypes.VERY_LARGE_RIGHT_SWITCH.getLabel())
+				|| tile.getType().equals(TrackTypes.SUPER_LONG.getLabel())
 				;
 	}
 
@@ -381,6 +384,8 @@ public class ItemTCRail extends ItemPart {
 				|| type == TrackTypes.SLOPE_WOOD
 				|| type == TrackTypes.SLOPE_SNOW_GRAVEL )
 			return new int[][]{ {0,0}, {1,0}, {2,0}, {3,0}, {4,0}, {5,0} };
+		else if ( type == TrackTypes.SUPER_LONG)
+			return new int[][]{ {0,0}, {1,0}, {2,0}, {3,0}, {4,0}, {5,0}, {6,0}, {7,0}, {8,0}, {9,0}, {10,0}, {11,0}, {12,0}};
 		else if ( type == TrackTypes.LARGE_SLOPE_BALLAST
 				|| type == TrackTypes.LARGE_SLOPE_GRAVEL
 				|| type == TrackTypes.LARGE_SLOPE_WOOD
@@ -554,6 +559,9 @@ public class ItemTCRail extends ItemPart {
 			}
 			if (type == TrackTypes.CONCRETE_SMALL_STRAIGHT){
 				tempType = TrackTypes.CONCRETE_SMALL_STRAIGHT;
+			}
+			if (type == TrackTypes.SUPER_LONG){
+				tempType = TrackTypes.SUPER_LONG;
 			}
 
 
@@ -1721,6 +1729,41 @@ public class ItemTCRail extends ItemPart {
 						return false;
 				}
 			}
+
+			if (tempType == TrackTypes.SUPER_LONG){
+				if (l == 2) {
+					int[] xArray = { x,x,x,x,x,x,x,x,x,x,x,x};
+					int[] zArray = { z, z-1, z-2, z-3, z-4, z-5, z-6, z-7, z-8, z-9, z-10, z-11};
+					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 1, x , z - 11 , 0, x,
+							y + 1, z, TrackTypes.SUPER_LONG.getLabel(), ItemIDs.tcRailSuperLong.item))
+						return false;
+
+				}
+				if (l == 0) {
+					int[] xArray = { x,x,x,x,x,x,x,x,x,x,x,x};
+					int[] zArray = { z, z+1, z+2, z+3, z+4, z+5, z+6, z+7, z+8, z+9, z+10, z+11};
+					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 1, x , z , 0, x,
+							y + 1, z, TrackTypes.SUPER_LONG.getLabel(), ItemIDs.tcRailSuperLong.item))
+						return false;
+
+				}
+				if (l == 1) {
+					int[] xArray = { x, x-1, x-2, x-3, x-4, x-5, x-6, x-7, x-8, x-9, x-10, x-11};
+					int[] zArray =  { z,z,z,z,z,z,z,z,z,z,z,z};
+					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 2, x , z , 0, x,
+							y + 1, z, TrackTypes.SUPER_LONG.getLabel(), ItemIDs.tcRailSuperLong.item))
+						return false;
+
+				}
+				if (l == 3) {
+					int[] xArray = { x, x+1, x+2, x+3, x+4, x+5, x+6, x+7, x+8, x+9, x+10, x+11};
+					int[] zArray =  { z,z,z,z,z,z,z,z,z,z,z,z};
+					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 0, x , z , 0, x,
+							y + 1, z, TrackTypes.SUPER_LONG.getLabel(), ItemIDs.tcRailSuperLong.item))
+						return false;
+				}
+			}
+
 
 			if (type == TrackTypes.SLOPE_WOOD || type == TrackTypes.SLOPE_GRAVEL || type == TrackTypes.SLOPE_BALLAST
 					|| type == TrackTypes.LARGE_SLOPE_WOOD || type == TrackTypes.LARGE_SLOPE_GRAVEL

@@ -180,6 +180,9 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 					case CONCRETE_SUPER_LARGE_RIGHT_TURN: {
 						modelRightTurn.render("concrete_super_large", railTile,x ,y ,z);
 					}
+					case SUPER_LONG: {
+						modelSmallStraight.render("super_long", railTile,x,y,z);
+					}
 				}
 
 

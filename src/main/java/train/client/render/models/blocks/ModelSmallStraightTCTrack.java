@@ -17,11 +17,13 @@ public class ModelSmallStraightTCTrack extends ModelBase {
 	private IModelCustom modelSmallStraight;
 	private IModelCustom modelRoadCrossing;
 	private IModelCustom modelConcreteSmallStraight;
+	private IModelCustom modelSuperLong;
 
 	public ModelSmallStraightTCTrack() {
 		modelSmallStraight = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_normal.obj"));
 		modelRoadCrossing = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_roadcrossing.obj"));
 		modelConcreteSmallStraight = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "concrete_track.obj"));
+		modelSuperLong = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_super_long.obj"));
 	}
 
 	public void render(String type) {
@@ -40,6 +42,9 @@ public class ModelSmallStraightTCTrack extends ModelBase {
 		if (type.equals("concrete_small_straight")) {
 			modelConcreteSmallStraight.renderAll();
 		}
+		if (type.equals("super_long")) {
+			modelSuperLong.renderAll();
+		}
 	}
 	
 	public void render(String type, TileTCRail tcRail, double x, double y, double z) {
@@ -57,7 +62,7 @@ public class ModelSmallStraightTCTrack extends ModelBase {
 		GL11.glColor4f(r, g, b, a);
 
 		// Bind the texture, so that OpenGL properly textures our block.
-		if (type.equals("straight")) {
+		if (type.equals("straight") || type.equals("super_long")) {
  			FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
 		}
 		if (type.equals("crossing")) {
@@ -73,11 +78,20 @@ public class ModelSmallStraightTCTrack extends ModelBase {
 			FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
 		}
 
+
 		if (facing == 3) {
 			GL11.glRotatef(90, 0, 1, 0);
+			if (type.equals("super_long")){
+				GL11.glRotatef(180, 0, 1,0);
+			}
 		}
 		if (facing == 1) {
 			GL11.glRotatef(90, 0, 1, 0);
+		}
+		if (facing == 0) {
+			if (type.equals("super_long")){
+				GL11.glRotatef(180, 0, 1, 0);
+			}
 		}
 
 		render(type);
