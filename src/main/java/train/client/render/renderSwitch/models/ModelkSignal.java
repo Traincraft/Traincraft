@@ -22,7 +22,7 @@ public class ModelkSignal extends ModelConverter //Same as Filename
 
 	public ModelkSignal() //Same as Filename
 	{
-		bodyModel = new ModelRendererTurbo[66];
+		bodyModel = new ModelRendererTurbo[67];
 
 		initbodyModel_1();
 
@@ -94,12 +94,13 @@ public class ModelkSignal extends ModelConverter //Same as Filename
 		bodyModel[57] = new ModelRendererTurbo(this, 1, 81, textureX, textureY); // Box 70
 		bodyModel[58] = new ModelRendererTurbo(this, 17, 81, textureX, textureY); // Box 71
 		bodyModel[59] = new ModelRendererTurbo(this, 33, 81, textureX, textureY); // Box 73
-		bodyModel[60] = new ModelRendererTurbo(this, 41, 81, textureX, textureY); // Shape 74
-		bodyModel[61] = new ModelRendererTurbo(this, 57, 81, textureX, textureY); // Shape 75
-		bodyModel[62] = new ModelRendererTurbo(this, 9, 81, textureX, textureY); // Shape 76
-		bodyModel[63] = new ModelRendererTurbo(this, 73, 81, textureX, textureY); // Shape 77
-		bodyModel[64] = new ModelRendererTurbo(this, 35, 89, textureX, textureY); // Box 78
-		bodyModel[65] = new ModelRendererTurbo(this, 0, 89, textureX, textureY); // Shape 79
+		bodyModel[60] = new ModelRendererTurbo(this, 35, 89, textureX, textureY); // Box 78
+		bodyModel[61] = new ModelRendererTurbo(this, 41, 81, textureX, textureY); // Box 3
+		bodyModel[62] = new ModelRendererTurbo(this, 57, 80, textureX, textureY); // Box 3
+		bodyModel[63] = new ModelRendererTurbo(this, 9, 81, textureX, textureY); // Box 3
+		bodyModel[64] = new ModelRendererTurbo(this, 73, 81, textureX, textureY); // Box 3
+		bodyModel[65] = new ModelRendererTurbo(this, 8, 89, textureX, textureY); // Box 3
+		bodyModel[66] = new ModelRendererTurbo(this, 1, 89, textureX, textureY); // Box 3
 
 		bodyModel[0].addBox(-5F, 0F, -5F, 10, 8, 10, 0F); // Box 0
 		bodyModel[0].setRotationPoint(0F, 0F, 0F);
@@ -281,26 +282,25 @@ public class ModelkSignal extends ModelConverter //Same as Filename
 		bodyModel[59].addBox(-0.5F, -1F, 0.5F, 1, 1, 4, 0F); // Box 73
 		bodyModel[59].setRotationPoint(-4F, -35F, 0F);
 
-		bodyModel[60].addShape3D(0F, 0F, 0F, new Shape2D(new Coord2D[] { new Coord2D(0, 1, 0, 1), new Coord2D(6, 0, 6, 0), new Coord2D(6, 1, 6, 1) }), 2, 6, 1, 14, 2, ModelRendererTurbo.MR_FRONT, new float[] {6 ,1 ,7}); // Shape 74
-		bodyModel[60].setRotationPoint(8F, -40F, 1F);
+		bodyModel[60].addBox(3F, -33F, -2F, 1, 12, 4, 0F); // Box 78
+		bodyModel[60].setRotationPoint(0F, -1F, 0F);
 
-		bodyModel[61].addShape3D(0F, 0F, 0F, new Shape2D(new Coord2D[] { new Coord2D(0, 1, 0, 1), new Coord2D(6, 0, 6, 0), new Coord2D(6, 1, 6, 1) }), 2, 6, 1, 14, 2, ModelRendererTurbo.MR_FRONT, new float[] {6 ,1 ,7}); // Shape 75
-		bodyModel[61].setRotationPoint(1F, -36F, -8F);
-		bodyModel[61].rotateAngleY = -1.57079633F;
+		bodyModel[61].addShapeBox(-2F, 0F, -9F, 6, 1, 2, 0F,0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F); // Box 3
+		bodyModel[61].setRotationPoint(4F, -41F, 8F);
 
-		bodyModel[62].addShape3D(0F, 0F, 0F, new Shape2D(new Coord2D[] { new Coord2D(0, 1, 0, 1), new Coord2D(2, 0, 2, 0), new Coord2D(2, 1, 2, 1) }), 2, 2, 1, 6, 2, ModelRendererTurbo.MR_FRONT, new float[] {2 ,1 ,3}); // Shape 76
-		bodyModel[62].setRotationPoint(-4F, -40F, -8F);
-		bodyModel[62].rotateAngleY = -3.14159265F;
+		bodyModel[62].addShapeBox(-2F, 0F, -9F, 2, 1, 6, 0F,0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 3
+		bodyModel[62].setRotationPoint(1F, -37F, 1F);
 
-		bodyModel[63].addShape3D(0F, 0F, 0F, new Shape2D(new Coord2D[] { new Coord2D(0, 1, 0, 1), new Coord2D(5, 0, 5, 0), new Coord2D(5, 1, 5, 1) }), 2, 5, 1, 12, 2, ModelRendererTurbo.MR_FRONT, new float[] {5 ,1 ,6}); // Shape 77
-		bodyModel[63].setRotationPoint(-8F, -55F, -8F);
-		bodyModel[63].rotateAngleY = -3.14159265F;
+		bodyModel[63].addShapeBox(-2F, 0F, -9F, 2, 1, 2, 0F,0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F); // Box 3
+		bodyModel[63].setRotationPoint(-2F, -41F, 1F);
 
-		bodyModel[64].addBox(3F, -33F, -2F, 1, 12, 4, 0F); // Box 78
-		bodyModel[64].setRotationPoint(0F, -1F, 0F);
+		bodyModel[64].addShapeBox(-2F, 0F, -9F, 5, 1, 2, 0F,0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -1F, 0F); // Box 3
+		bodyModel[64].setRotationPoint(-6F, -56F, 1F);
 
-		bodyModel[65].addShape3D(0F, 0F, 0F, new Shape2D(new Coord2D[] { new Coord2D(0, 10, 0, 10), new Coord2D(2, 0, 2, 0), new Coord2D(4, 10, 4, 10) }), 1, 4, 10, 26, 1, ModelRendererTurbo.MR_FRONT, new float[] {4 ,11 ,11}); // Shape 79
-		bodyModel[65].setRotationPoint(4F, -11F, -2F);
-		bodyModel[65].rotateAngleY = -1.57079633F;
+		bodyModel[65].addShapeBox(-2F, 0F, -9F, 1, 10, 2, 0F,0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F); // Box 3
+		bodyModel[65].setRotationPoint(5F, -21F, 9F);
+
+		bodyModel[66].addShapeBox(-2F, 0F, -9F, 1, 10, 2, 0F,0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 3
+		bodyModel[66].setRotationPoint(5F, -21F, 7F);
 	}
 }

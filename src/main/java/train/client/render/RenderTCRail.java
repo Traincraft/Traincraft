@@ -154,6 +154,35 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 						modelVeryLargeSlope.render("snow", railTile, x, y, z);
 						break;
 					}
+					case VERY_LARGE_LEFT_SWITCH: {
+						modelLeftSwitchTurn.render("very_large", railTile, x, y, z);
+						break;
+					}
+					case VERY_LARGE_RIGHT_SWITCH: {
+						modelRightSwitchTurn.render("very_large", railTile, x, y,z);
+						break;
+					}
+					case SUPER_LARGE_RIGHT_TURN: {
+						modelRightTurn.render("super_large", railTile, x , y, z);
+						break;
+					}
+					case SUPER_LARGE_LEFT_TURN: {
+						modelLeftTurn.render("super_large", railTile, x , y, z);
+						break;
+					}
+					case CONCRETE_SMALL_STRAIGHT: {
+						modelSmallStraight.render("concrete_small_straight", railTile, x , y, z);
+						break;
+					}
+					case CONCRETE_SUPER_LARGE_LEFT_TURN: {
+						modelLeftTurn.render("concrete_super_large", railTile,x, y, z);
+					}
+					case CONCRETE_SUPER_LARGE_RIGHT_TURN: {
+						modelRightTurn.render("concrete_super_large", railTile,x ,y ,z);
+					}
+					case SUPER_LONG: {
+						modelSmallStraight.render("super_long", railTile,x,y,z);
+					}
 				}
 
 

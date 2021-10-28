@@ -65,7 +65,8 @@ public enum BlockIDs {
 	kSignal(false,null),
 	FortyFootContainer(true, ItemFortyFootContainer.class),
 	speedSign(false, null),
-
+	dirtyBallast(false,null),
+	dirtierBallast(false,null),
 	;
 
 	public Block block;

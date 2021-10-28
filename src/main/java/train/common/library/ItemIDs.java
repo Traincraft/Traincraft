@@ -466,10 +466,28 @@ public enum ItemIDs {
 	minecartWVcaboose("ItemRollingStock", "wvcaboose",3),
 	//minecartHBC1Ccaboose("ItemRollingStock", "HBC1C",3),
 	minecartDRGWCaboose("ItemRollingStock", "DRGW_01400_series_caboose",3),
+	minecartAlcoPA1("ItemRollingStock", "AlcoPA1Icon",5),
+	minecartAlcoPB1("ItemRollingStock", "AlcoPB1Icon",4),
+	minecartEMDE8A("ItemRollingStock", "EMDE8AIcon",5),
+	minecartSNCB_M6("ItemRollingStock", "SNCB_M6", 5),
+	minecartClass319Engine("ItemRollingStock", "Class319Engine", 5),
+	minecartClass319passenger("ItemRollingStock", "Class319Middle", 5),
+	minecartClass319panto("ItemRollingStock", "Class319Panto", 5),
+	minecartClass319Tail("ItemRollingStock", "Class319Tail", 5),
+
 
 	//signalSpanish("ItemsignalSpanish","signalSpanish", 1),
+	kSignal("ItemsignalSpanish","signalK",2),
 
 	tcRailVeryLargeSwitch("ItemTCRail","item_rail_tc_very_large_switch",1),
+	tcRailSuperLargeTurn("ItemTCRail", "item_rail_tc_super_large_turn", 1),
+	tcRailConcreteSuperLargeTurn("ItemTCRail", "item_rail_tc_super_large_turn",1),
+
+	tcRailConcreteSmallStraight("ItemTCRail","item_rail_tc_concrete_small_straight", 1),
+	bolt("ItemBolt", "bolt", 1),
+	tcRailSuperLong("ItemTCRail", "item_rail_tc_super_long", 1),
+
+
 	;
 
 	public Item item;

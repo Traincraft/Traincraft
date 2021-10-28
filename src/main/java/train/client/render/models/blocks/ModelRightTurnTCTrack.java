@@ -16,11 +16,15 @@ public class ModelRightTurnTCTrack extends ModelBase {
 	private IModelCustom modelMediumRightTurn;
 	private IModelCustom modelLargeRightTurn;
 	private IModelCustom modelVeryLargeRightTurn;
+	private IModelCustom modelSuperLargeRightTurn;
+	private IModelCustom modelConcreteSuperLargeRightTurn;
 
 	public ModelRightTurnTCTrack() {
 		modelMediumRightTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_medium.obj"));
 		modelLargeRightTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_big.obj"));
 		modelVeryLargeRightTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_very_big.obj"));
+		modelSuperLargeRightTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_super_right_turn.obj"));
+		modelConcreteSuperLargeRightTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_concrete_super_right_turn.obj"));
 	}
 
 	public void renderMedium() {
@@ -33,6 +37,8 @@ public class ModelRightTurnTCTrack extends ModelBase {
 	public void renderVeryLarge() {
 		modelVeryLargeRightTurn.renderAll();
 	}
+	public void renderSuperLarge() {modelSuperLargeRightTurn.renderAll();}
+	public void renderConcreteSuperLarge() {modelConcreteSuperLargeRightTurn.renderAll();}
 
 	public void render(String type, TileTCRail tcRail, double x, double y, double z) {
 		int facing = tcRail.getWorldObj().getBlockMetadata(tcRail.xCoord, tcRail.yCoord, tcRail.zCoord);
@@ -52,6 +58,10 @@ public class ModelRightTurnTCTrack extends ModelBase {
 		//GL11.glScalef(0.5f, 0.5f, 0.5f);
 
 		if (facing == 3) {
+			if (type.equals("concrete_super_large"))
+				GL11.glTranslatef(14.5f, 0.0f, 15.5f);
+			if(type.equals("super_large"))
+				GL11.glTranslatef(14.5f, 0.0f, 15.5f);
 			if(type.equals("very_large"))
 				GL11.glTranslatef(8.5f, 0.0f, 9.54f);
 			if(type.equals("large"))
@@ -61,6 +71,10 @@ public class ModelRightTurnTCTrack extends ModelBase {
 		}
 		if (facing == 1) {
 			GL11.glRotatef(180, 0, 1, 0);
+			if(type.equals("concrete_super_large"))
+				GL11.glTranslatef(14.5f, 0.0f, 15.5f);
+			if(type.equals("super_large"))
+				GL11.glTranslatef(14.5f, 0.0f, 15.5f);
 			if(type.equals("very_large"))
 				GL11.glTranslatef(8.5f, 0.0f, 9.54f);
 			if(type.equals("large"))
@@ -70,6 +84,10 @@ public class ModelRightTurnTCTrack extends ModelBase {
 		}
 		if (facing == 2) {
 			GL11.glRotatef(90, 0, 1, 0);
+			if(type.equals("concrete_super_large"))
+				GL11.glTranslatef(14.5f, 0.0f, 15.5f);
+			if(type.equals("super_large"))
+				GL11.glTranslatef(14.5f, 0.0f, 15.5f);
 			if(type.equals("very_large"))
 				GL11.glTranslatef(8.5f, 0.0f, 9.54f);
 			if(type.equals("large"))
@@ -79,6 +97,10 @@ public class ModelRightTurnTCTrack extends ModelBase {
 		}
 		if (facing == 0) {
 			GL11.glRotatef(-90, 0, 1, 0);
+			if(type.equals("concrete_super_large"))
+				GL11.glTranslatef(14.5f, 0.0f, 15.5f);
+			if(type.equals("super_large"))
+				GL11.glTranslatef(14.5f, 0.0f, 15.5f);
 			if(type.equals("very_large"))
 				GL11.glTranslatef(8.5f, 0.0f, 9.54f);
 			if(type.equals("large"))
@@ -92,6 +114,10 @@ public class ModelRightTurnTCTrack extends ModelBase {
 			this.renderLarge();
 		if (type.equals("very_large"))
 			this.renderVeryLarge();
+		if (type.equals("super_large"))
+			this.renderSuperLarge();
+		if (type.equals("concrete_super_large"))
+			this.renderConcreteSuperLarge();
 
 		// Pop this matrix from the stack.
 		GL11.glPopMatrix();
