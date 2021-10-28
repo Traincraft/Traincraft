@@ -16,56 +16,27 @@ buildscript {
 apply plugin: 'forge'
 apply plugin: 'idea'
 
-def timversion
-def tcversion
-def mcversion
 
 sourceCompatibility = targetCompatibility = "1.7"
 compileJava { sourceCompatibility = targetCompatibility = "1.7" }
 
 ext.configFile = file "build.properties"
 configFile.withReader {
-	def prop = new Properties()
-	prop.load(it)
-	project.ext.config = new ConfigSlurper().parse prop
+    def prop = new Properties()
+    prop.load(it)
+    project.ext.config = new ConfigSlurper().parse prop
 }
 
 
-version=config.modVersion
-tcversion=config.modVersion
-mcversion="1.7.10-10.13.4.1614-1.7.10"
-timversion ="2.4 alpha"
-group="train" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+version = config.modVersion.toString()
+group= "src.train" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "Traincraft"
 
-
 minecraft {
-	version = mcversion
-	runDir = "run"
-	replace "@VERSION1@", tcversion
-	replaceIn "Info.java"
-}
-
-processResources
-{
-	// this will ensure that this task is redone when the versions change.
-	inputs.property "version", tcversion
-	inputs.property "mcversion", mcversion
-	inputs.property "timversion", timversion
-	inputs.property "tcversion", tcversion
-
-	// replace stuff in mcmod.info, nothing else
-	from(sourceSets.main.resources.srcDirs) {
-		include 'mcmod.info'
-
-		// replace version and mcversion
-		expand 'version':tcversion, 'mcversion':project.minecraft.version, 'timversion':timversion, 'tcversion':tcversion
-	}
-
-	// copy everything else, thats not the mcmod.info
-	from(sourceSets.main.resources.srcDirs) {
-		exclude 'mcmod.info'
-	}
+    version = "1.7.10-10.13.4.1614-1.7.10"
+    runDir = "run"
+    replaceIn "Info.java"
+    replace "@VERSION1@", config.modVersion.toString()
 }
 
 repositories {
