@@ -469,6 +469,11 @@ public enum ItemIDs {
 	minecartAlcoPA1("ItemRollingStock", "AlcoPA1Icon",5),
 	minecartAlcoPB1("ItemRollingStock", "AlcoPB1Icon",4),
 	minecartEMDE8A("ItemRollingStock", "EMDE8AIcon",5),
+	minecartSNCB_M6("ItemRollingStock", "SNCB_M6", 5),
+	minecartClass319Engine("ItemRollingStock", "Class319Engine", 5),
+	minecartClass319passenger("ItemRollingStock", "Class319Middle", 5),
+	minecartClass319panto("ItemRollingStock", "Class319Panto", 5),
+
 
 	//signalSpanish("ItemsignalSpanish","signalSpanish", 1),
 	kSignal("ItemsignalSpanish","signalK",2),
@@ -479,6 +484,7 @@ public enum ItemIDs {
 
 	tcRailConcreteSmallStraight("ItemTCRail","item_rail_tc_concrete_small_straight", 1),
 	bolt("ItemBolt", "bolt", 1),
+
 	;
 
 	public Item item;
