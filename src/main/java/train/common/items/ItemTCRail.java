@@ -385,7 +385,7 @@ public class ItemTCRail extends ItemPart {
 				|| type == TrackTypes.SLOPE_SNOW_GRAVEL )
 			return new int[][]{ {0,0}, {1,0}, {2,0}, {3,0}, {4,0}, {5,0} };
 		else if ( type == TrackTypes.SUPER_LONG)
-			return new int[][]{ {0,0}, {1,0}, {2,0}, {3,0}, {4,0}, {5,0}, {6,0}, {7,0}, {8,0}, {9,0}, {10,0}, {11,0}, {12,0}};
+			return new int[][]{ {0,0}, {1,0}, {2,0}, {3,0}, {4,0}, {5,0}, {6,0}, {7,0}, {8,0}, {9,0}, {10,0}, {11,0}};
 		else if ( type == TrackTypes.LARGE_SLOPE_BALLAST
 				|| type == TrackTypes.LARGE_SLOPE_GRAVEL
 				|| type == TrackTypes.LARGE_SLOPE_WOOD

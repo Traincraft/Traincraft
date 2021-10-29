@@ -67,6 +67,7 @@ public enum ItemIDs {
 	wirelessTransmitter("ItemWirelessTransmitter", "wireless_transmitter", 3),
 	paintbrushThing("ItemPaintbrushThing","paintbrushThing",1),
 	whistle("ItemWhistle","whistle", 1),
+	bolt("ItemBolt", "bolt", 1),
 
 	atoCard("ItemATOCard", "ato_card", 5),
 	minecartWork("ItemRollingStock", "train_work", 4),
@@ -214,6 +215,7 @@ public enum ItemIDs {
 	minecartICE1_1stClass("ItemRollingStock", "train_ice1_passenger", 10),
 	minecartICE1_2ndClass("ItemRollingStock", "train_ice1_passenger", 10),
 	minecartICE1_Restaurant("ItemRollingStock", "train_ice1_restaurant", 10),
+	minecartBoulderWagon("ItemRollingStock", "boulderwagon", 1),
 
 	hat_ticketMan_paintable("ItemTCArmor", "armor_ticket_man_hat", 1),
 	pants_ticketMan_paintable("ItemTCArmor", "armor_ticket_man_pants", 1),
@@ -312,6 +314,14 @@ public enum ItemIDs {
 	tcRailSlopeSnowGravel("ItemTCRail", "item_rail_straight_slope_snow_gravel", 3),
 	tcRailLargeSlopeSnowGravel("ItemTCRail", "item_rail_straight_slope_snow_gravel", 3),
 	tcRailVeryLargeSlopeSnowGravel("ItemTCRail", "item_rail_straight_slope_snow_gravel", 3),
+	tcRailVeryLargeSwitch("ItemTCRail","item_rail_tc_very_large_switch",1),
+	tcRailSuperLargeTurn("ItemTCRail", "item_rail_tc_super_large_turn", 1),
+	tcRailConcreteSuperLargeTurn("ItemTCRail", "item_rail_tc_super_large_turn",1),
+
+	tcRailConcreteSmallStraight("ItemTCRail","item_rail_tc_concrete_small_straight", 1),
+	tcRailSuperLong("ItemTCRail", "item_rail_tc_super_long", 1),
+
+
 
 	minecartLocoCF7("ItemRollingStock", "train_cf7", 4),
 	minecartLocoGP15("ItemRollingStock", "train_gp15", 4),
@@ -479,14 +489,6 @@ public enum ItemIDs {
 
 	//signalSpanish("ItemsignalSpanish","signalSpanish", 1),
 	kSignal("ItemsignalSpanish","signalK",2),
-
-	tcRailVeryLargeSwitch("ItemTCRail","item_rail_tc_very_large_switch",1),
-	tcRailSuperLargeTurn("ItemTCRail", "item_rail_tc_super_large_turn", 1),
-	tcRailConcreteSuperLargeTurn("ItemTCRail", "item_rail_tc_super_large_turn",1),
-
-	tcRailConcreteSmallStraight("ItemTCRail","item_rail_tc_concrete_small_straight", 1),
-	bolt("ItemBolt", "bolt", 1),
-	tcRailSuperLong("ItemTCRail", "item_rail_tc_super_long", 1),
 
 
 	;
