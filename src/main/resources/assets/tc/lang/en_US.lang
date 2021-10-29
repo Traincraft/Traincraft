@@ -512,6 +512,7 @@ item.tc:minecartPSSleeper565.name=Pullman Standard 5-6-5 Sleeper
 item.tc:minecartAlcoPA1.name=Alco PA-1
 item.tc:minecartAlcoPB1.name=Alco PB-1
 item.tc:minecartEMDE8A.name=EMD E8A
+item.tc:minecartPSRPOPM.name=Pullman Standard RPO (PM Floorplan)
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -952,6 +953,7 @@ entity.tc.PS 5-6-5 Sleeper DRGW Edition.name=Pullman Standard 5-6-5 Sleeper (DRG
 entity.tc.AlcoPA1.name=Alco PA-1
 entity.tc.AlcoPB1.name=Alco PB-1
 entity.tc.EMDE8A.name=EMD E8A
+entity.tc.PSPMRPO.name=Pullman Standard RPO (PM Floorplan)
 
 description.villager.profession.tc.station_chief=Station Chief
 
