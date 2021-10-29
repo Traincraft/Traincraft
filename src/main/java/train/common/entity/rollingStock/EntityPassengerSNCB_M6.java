@@ -74,6 +74,6 @@ public class EntityPassengerSNCB_M6 extends EntityRollingStock implements IPasse
 
     @Override
     public float getOptimalDistance(EntityMinecart cart) {
-        return 2.4F;
+        return 4.5F;
     }
 }
