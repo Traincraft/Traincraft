@@ -421,7 +421,7 @@ public enum EnumTrains {
 	Class319Middle("Class 319 Passenger Car", EntityPassengerClass319Middle.class, ItemIDs.minecartClass319passenger.item, "passenger", 0, 0, 3,0 , 0, 0, 0,0,0,TraincraftUtil.getBytesFromColors(new String[] {"Blue","Cyan","Green","Magenta","Red","White"}),0,0, "Made by Kranker"),
 	Class319Panto("Class 319 Passenger Car", EntityPassengerClass319Panto.class, ItemIDs.minecartClass319panto.item, "passenger", 0, 0, 3,0 , 0, 0, 0,0,0,TraincraftUtil.getBytesFromColors(new String[] {"Blue","Cyan","Green","Magenta","Red","White"}),0,0, "Made by Kranker"),
 	Class319Tail("Class 319 Passenger Car", EntityPassengerClass319Tail.class, ItemIDs.minecartClass319Tail.item, "passenger", 0, 0, 3,0 , 0, 0, 0,0,0,TraincraftUtil.getBytesFromColors(new String[] {"Blue","Cyan","Green","Magenta","Red","White"}),0,0, "Made by Kranker"),
-
+	PSRPOPM("PSPMRPO", EntityFreightPSRPOPM.class, ItemIDs.minecartPSRPOPM.item, "freight", 1.5, TraincraftUtil.getBytesFromColors(new String[]{"Blue"}), 18, 27,"Pack: Bap"),
 
 
 

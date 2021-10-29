@@ -12,11 +12,11 @@ import train.common.Traincraft;
 import train.common.api.Freight;
 import train.common.library.GuiIDs;
 
-public class EntityFreightPS73Baggage extends Freight implements IInventory {
+public class EntityFreightPSRPOPM extends Freight implements IInventory {
 	public int freightInventorySize;
 	public int numFreightSlots;
 
-	public EntityFreightPS73Baggage(World world) {
+	public EntityFreightPSRPOPM(World world) {
 		super(world);
 		initFreightCart();
 	}
@@ -27,7 +27,7 @@ public class EntityFreightPS73Baggage extends Freight implements IInventory {
 		cargoItems = new ItemStack[freightInventorySize];
 	}
 
-	public EntityFreightPS73Baggage(World world, double d, double d1, double d2) {
+	public EntityFreightPSRPOPM(World world, double d, double d1, double d2) {
 		this(world);
 		setPosition(d, d1 + (double) yOffset, d2);
 		motionX = 0.0D;
@@ -77,7 +77,7 @@ public class EntityFreightPS73Baggage extends Freight implements IInventory {
 
 	@Override
 	public String getInventoryName() {
-		return "Pullman Standard 73' Baggage";
+		return "Pullman Standard PM RPO";
 	}
 
 	@Override
