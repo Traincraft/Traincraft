@@ -74,6 +74,6 @@ public class EntityPassengerClass319Panto extends EntityRollingStock implements 
 
     @Override
     public float getOptimalDistance(EntityMinecart cart) {
-        return 2.4F;
+        return 2.6F;
     }
 }
