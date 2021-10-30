@@ -513,6 +513,7 @@ item.tc:minecartAlcoPA1.name=Alco PA-1
 item.tc:minecartAlcoPB1.name=Alco PB-1
 item.tc:minecartEMDE8A.name=EMD E8A
 item.tc:minecartPSRPOPM.name=Pullman Standard RPO (PM Floorplan)
+item.tc:minecartPSRPO.name=Pullman Standard RPO
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -954,6 +955,7 @@ entity.tc.AlcoPA1.name=Alco PA-1
 entity.tc.AlcoPB1.name=Alco PB-1
 entity.tc.EMDE8A.name=EMD E8A
 entity.tc.PSPMRPO.name=Pullman Standard RPO (PM Floorplan)
+entity.tc.PSRPO.name=Pullman Standard RPO
 
 description.villager.profession.tc.station_chief=Station Chief
 

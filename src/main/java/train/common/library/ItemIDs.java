@@ -499,6 +499,7 @@ public enum ItemIDs {
 	minecartClass319panto("ItemRollingStock", "Class319Panto", 5),
 	minecartClass319Tail("ItemRollingStock", "Class319Tail", 5),
 	minecartPSRPOPM("ItemRollingStock", "PSRPOPMIcon", 3),
+	minecartPSRPO("ItemRollingStock", "PSRPOIcon", 3),
 
 
 	//signalSpanish("ItemsignalSpanish","signalSpanish", 1),
