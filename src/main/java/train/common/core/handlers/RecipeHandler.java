@@ -109,6 +109,7 @@ public class RecipeHandler {
 		GameRegistry.addShapelessRecipe(new ItemStack(BlockIDs.snowGravel.block,1 ), new ItemStack(Items.snowball), new ItemStack(Blocks.gravel));
 		GameRegistry.addShapelessRecipe(new ItemStack(BlockIDs.snowGravel.block,4 ), new ItemStack(Blocks.snow), new ItemStack(Blocks.gravel), new ItemStack(Blocks.gravel), new ItemStack(Blocks.gravel), new ItemStack(Blocks.gravel));
 		GameRegistry.addRecipe(new ItemStack(BlockIDs.signalSpanish.block,1), " L ", " I ", "RIR", Character.valueOf('L'), new ItemStack(Blocks.redstone_lamp), Character.valueOf('I'), new ItemStack(Items.iron_ingot), Character.valueOf('R'), new ItemStack(Items.redstone));
+		GameRegistry.addRecipe(new ItemStack(BlockIDs.kSignal.block,1), "RIR", " I ", " L ", Character.valueOf('L'), new ItemStack(Blocks.redstone_lamp), Character.valueOf('I'), new ItemStack(Items.iron_ingot), Character.valueOf('R'), new ItemStack(Items.redstone));
 		GameRegistry.addRecipe(new ItemStack(BlockIDs.bridgePillar.block, 8), "SSS", "SLS", "SSS", Character.valueOf('S'), new ItemStack(Items.stick), Character.valueOf('L'), new ItemStack(Blocks.log));
 		GameRegistry.addRecipe(new ItemStack(BlockIDs.speedSign.block, 8), " R ", " I ", " I ", Character.valueOf('R'), new ItemStack(Items.dye,1,1), Character.valueOf('I'), new ItemStack(Items.iron_ingot));
 
