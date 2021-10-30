@@ -1069,9 +1069,9 @@ public enum RenderEnum {
 	Class43( EntityLocoDieselClass43.class, new ModelClass43(),"Class_43_", true, new float[] {0F, .1F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
 	Class90( EntityElectricClass90.class, new ModelClass90(),"Class_90_", true, new float[] {0F, .1F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
 	Class91( EntityElectricClass91.class, new ModelClass91(),"Class_91_", true, new float[] {0F, .1F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
-	Class321( EntityElectricClass321.class, new ModelClass321(),"Class_321_", true, new float[] {0F, -.5F, 5F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
-	Class321Motor( EntityFreightClass321Motor.class, new ModelClass321_Motor(),"Class_321_Motor_Car_", true, new float[] {0F, -.5F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
-	Class321Coach( EntityPassengerClass321Coach.class, new ModelClass321Coach(),"Class_321_Trailer_Car_", true, new float[] {0F, -.5F, 5F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
+	Class321( EntityElectricClass321.class, new ModelClass321(),"Class_321_", true, new float[] {0F, 0F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
+	Class321Motor( EntityFreightClass321Motor.class, new ModelClass321_Motor(),"Class_321_Motor_Car_", true, new float[] {0F, 0.5F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
+	Class321Coach( EntityPassengerClass321Coach.class, new ModelClass321Coach(),"Class_321_Trailer_Car_", true, new float[] {0F, .5F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
 
 
 
