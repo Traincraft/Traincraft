@@ -1056,6 +1056,14 @@ public enum RenderEnum {
 	Class319Panto( EntityPassengerClass319Panto.class, new ModelClass319Panto(),"Br_319_", true, new float[] {0F, .1F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
 	Class319Tail( EntityPassengerClass319Tail.class, new ModelClass319Engine(), "Br_319_", true, new float[] {0F, .1F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
 	PSRPOPM(EntityFreightPSRPOPM.class, new ModelPSRPOPM(), "PSRPOPM_", true, new float[] { 0F, 0.15F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	KVB_2300(EntityElectricKVB_2300.class, new ModelKVB_2300(), "KVB_2300_", true,new float[] {-1.0F, 0.15F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	KVB_2300_B( EntityPassengerKVB_2300_B.class, new com.flansmod.client.model.YourPackage.ModelKVB_2300_B(),"kvb_2300_", true, new float[] {0F, .1F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
+
+
+
+
+
+
 	;
 
 	private Class<? extends AbstractTrains> entityClass;

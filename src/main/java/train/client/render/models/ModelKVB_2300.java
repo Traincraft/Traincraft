@@ -9,10 +9,8 @@
 
 package train.client.render.models; //Path where the model is located
 
-import com.flansmod.client.model.ModelPlane;
-import com.flansmod.client.tmt.ModelRendererTurbo;
-import com.flansmod.client.tmt.Coord2D;
-import com.flansmod.client.tmt.Shape2D;
+import tmt.ModelConverter;
+import tmt.ModelRendererTurbo;
 
 public class ModelKVB_2300 extends ModelConverter //Same as Filename
 {
