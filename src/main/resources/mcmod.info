@@ -2,7 +2,7 @@
 {
   "modid": "tc",
   "name": "Traincraft - Community Edition",
-  "description": "The Community Port of Traincraft, built off of version 020 by Bida and Hariesh",
+  "description": "The Community Port of Traincraft, built off of version 020 by Hariesh with help from Bida and Dominik__1",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "logoFile": "Logo.png",
