@@ -110,7 +110,7 @@ public enum EnumTrains {
 	flatCartWoodLogs("Freight Flat Logs", EntityFreightWood2.class, ItemIDs.minecartFreightWood2.item, "freight", 3, null, 18, 18, "Cargo: only logs"),
 	freightClosedRedBrown("Freight Cart Closed RedBrown", EntityFreightClosed.class, ItemIDs.minecartFreightClosed.item, "freight", 2.5, null, 18, 36,"Cargo: any"),
 	freightOpenRedBrown("Freight Open RedBrown", EntityFreightOpen2.class, ItemIDs.minecartFreightOpen2.item, "freight", 5, null, 18, 21,"Cargo: any"),
-	freightWagen_DB("Freight Wagon DB", EntityFreightWagenDB.class, ItemIDs.minecartFreightWagon_DB.item, "freight", 4, TraincraftUtil.getBytesFromColors(new String[]{"Red", "Green", "Yellow"}), 18, 54,"Cargo: any"),
+	freightWagen_DB("Freight Wagon DB", EntityFreightWagenDB.class, ItemIDs.minecartFreightWagon_DB.item, "freight", 4, TraincraftUtil.getBytesFromColors(new String[]{"Red", "Green", "Yellow", "Blue"}), 18, 54,"Cargo: any"),
 	flatCarRails_DB("Freight Flat Cart Rails DB", EntityFlatCarRails_DB.class, ItemIDs.minecartFlatCartRail_DB.item, "freight", 5, TraincraftUtil.getBytesFromColors(new String[]{"Red", "Green"}), 18, 36, "Cargo: only rails"),
 	ASTFAutorack("Freight ASTF Autorack", EntityFreightASTFAutorack.class, ItemIDs.minecartASTFAutorack.item, "freight", 5, null, 18, 36, "Cargo: any | Stack limit 1"),
 	flatCarLogs_DB("Freight Flat Cart Logs DB", EntityFlatCarLogs_DB.class, ItemIDs.minecartFlatCartLogs_DB.item, "freight", 4, TraincraftUtil.getBytesFromColors(new String[]{"Red", "Green"}), 18, 45, "Cargo: only logs"),
@@ -425,6 +425,13 @@ public enum EnumTrains {
 	BoulderWagon("BoulderWagon", EntityBoulderWagon.class, ItemIDs.minecartBoulderWagon.item, "freight", 5, TraincraftUtil.getBytesFromColors(new String[]{"Grey", "Orange"}), 0, 9, "Made by hariesh"),
 	KVB_2300("KVB_2300", EntityElectricKVB_2300.class, ItemIDs.minecartKVB_2300.item, "electric", 300, 60, 0,600, 0, 100, 0.7, 0.8, 1000, TraincraftUtil.getBytesFromColors(new String[] {"Grey", "Red","White"}), 18, -3, "Made by Kranker"),
 	KVB_2300_B("KVB_2300_B", EntityPassengerKVB_2300_B.class, ItemIDs.minecartKVB_2300_B.item, "passenger", 0, 0, 3,0 , 0, 0, 0,0,0,TraincraftUtil.getBytesFromColors(new String[] {"Grey", "Red","White"}),0,0, "Made by Kranker"),
+	BR_MK3_Buffet("BR_MK3_Buffet", EntityPassengerBR_MK3_Buffet.class, ItemIDs.minecartBR_MK3_Buffet.item, "passenger", 0, 0, 3,0 , 0, 0, 0,0,0,TraincraftUtil.getBytesFromColors(new String[] {"Blue", "Cyan","Brown","Red","White","Green",}),0,0),
+	BR_MK3_Coach("BR_MK3_Coach", EntityPassengerBR_MK3_Coach.class, ItemIDs.minecartBR_MK3_Coach.item, "passenger", 0, 0, 3,0 , 0, 0, 0,0,0,TraincraftUtil.getBytesFromColors(new String[] {"Blue", "Cyan","Brown","Red","White","Green",}),0,0),
+	BR_MK4_DVT("BR_MK4_DVT", EntityLocoDieselBR_MK4_DVT.class, ItemIDs.minecartBR_MK4_DVT.item, "diesel", 1500, 105, 0, 25, 0, 180, 0.89, 0.8, 13000, TraincraftUtil.getBytesFromColors(new String[] {"Blue", "Red","White"}), 0, 0),
+	BR_MK4_Coach("BR_MK4_Coach", EntityPassengerBR_MK4_Coach.class, ItemIDs.minecartBR_MK4_Coach.item, "passenger", 0, 0, 3,0 , 0, 0, 0,0,0,TraincraftUtil.getBytesFromColors(new String[] {"Blue", "Red","White"}),0,0),
+	BR_MK4_Buffet("BR_MK4_Buffet", EntityPassengerBR_MK4_Buffet.class, ItemIDs.minecartBR_MK4_Buffet.item, "passenger", 0, 0, 3,0 , 0, 0, 0,0,0,TraincraftUtil.getBytesFromColors(new String[] {"Blue", "Red","White"}),0,0),
+
+
 
 	;
 
