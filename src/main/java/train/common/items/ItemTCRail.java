@@ -1734,28 +1734,12 @@ public class ItemTCRail extends ItemPart {
 				if (l == 2) {
 					int[] xArray = { x,x,x,x,x,x,x,x,x,x,x,x};
 					int[] zArray = { z, z-1, z-2, z-3, z-4, z-5, z-6, z-7, z-8, z-9, z-10, z-11};
-					/*
+
 					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 1, x , z - 11 , 0, x,
 							y + 1, z, TrackTypes.SUPER_LONG.getLabel(), ItemIDs.tcRailSuperLong.item))
 						return false;
-					*/
-					TileTCRailGag[] tileGag = new TileTCRailGag[5];
 
 
-					placeTrack(world,x, y + 1, z , BlockIDs.tcRailGag.block, l);
-					tileGag[0] = (TileTCRailGag) world.getTileEntity(x, y + 1, z);
-
-					placeTrack(world,x, y + 1, z , BlockIDs.tcRailGag.block, l);
-					tileGag[1] = (TileTCRailGag) world.getTileEntity(x, y + 1, z -1);
-
-					placeTrack(world,x, y + 1, z , BlockIDs.tcRailGag.block, l);
-					tileGag[2] = (TileTCRailGag) world.getTileEntity(x, y + 1, z - 2);
-					placeTrack(world,x, y + 1, z , BlockIDs.tcRailGag.block, l);
-					tileGag[3] = (TileTCRailGag) world.getTileEntity(x, y + 1, z - 3);
-					placeTrack(world,x, y + 1, z , BlockIDs.tcRailGag.block, l);
-					tileGag[4] = (TileTCRailGag) world.getTileEntity(x, y + 1, z - 4);
-					placeTrack(world,x, y + 1, z , BlockIDs.tcRailGag.block, l);
-					tileGag[5] = (TileTCRailGag) world.getTileEntity(x, y + 1, z - 5);
 
 				}
 				if (l == 0) {
