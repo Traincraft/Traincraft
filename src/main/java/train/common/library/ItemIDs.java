@@ -223,7 +223,12 @@ public enum ItemIDs {
 	minecartBR_MK4_DVT("ItemRollingStock","br_mk4_dvt",5),
 	minecartBR_MK4_Coach("ItemRollingStock","br_mk4_coach",5),
 	minecartBR_MK4_Buffet("ItemRollingStock", "br_mk4_buffet", 5),
-
+	minecartClass43("ItemRollingStock", "class43",5),
+	minecartClass90("ItemRollingStock", "class90", 5),
+	minecartClass91("ItemRollingStock", "class91", 5),
+	minecartClass321("ItemRollingStock","class321", 5),
+	minecartClass321Motor("ItemRollingStock","class321motor",5),
+	minecartClass321Coach("ItemRollingStock","class321coach", 5),
 
 
 	hat_ticketMan_paintable("ItemTCArmor", "armor_ticket_man_hat", 1),

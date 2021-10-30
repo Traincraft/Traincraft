@@ -408,8 +408,10 @@ public enum EnumTrains {
 	GP38dash9W("GP38dash9W", EntityLocoDieselBapGP38dash9W.class, ItemIDs.minecartGP38dash9W.item, "diesel", 2000, 105, 0, 45, 0, 185, 0.75, 0.8, 10000, null, 10, -3.2, "Pack: Bap"),
 	locoAlcoS2("Alco S2",  EntityLocoDieselBapAlcoS2.class, ItemIDs.minecartAlcoS2.item, "diesel", 1000, 96, 0, 25, 0, 170, 0.7, 0.9, 13000, TraincraftUtil.getBytesFromColors(new String[] {"Black", "Grey", "Green", "Orange", "Pink", "Yellow", "Blue", "LightGrey", "Magenta", "Red"}), 18, -2, "Pack: Bap"),
 	Beep("Beep", EntityLocoDieselBapBeep.class, ItemIDs.minecartBeep.item, "diesel", 1500, 105, 0, 25, 0, 180, 0.89, 0.8, 13000, null, 10, -2.2, "Pack: Bap"),
-	Class158("Class 158 Engine", EntityLocoDieselClass158.class, ItemIDs.minecartClass158engine.item, "diesel", 350, 145, 0,10, 0, 100, 0.7, 0.8, 8000, TraincraftUtil.getBytesFromColors(new String[] {"White", "Green", "Cyan"}), 18, -4, "Pack: B.I.P."),
-	Class158Coach("Class 158 Passenger Car", EntityClass158Coach.class, ItemIDs.minecartClass158car.item, "passenger", 0, 0, 3,0 , 0, 0, 0,0,0,TraincraftUtil.getBytesFromColors(new String[] {"White", "Green", "Cyan"}),0,0, "Pack: B.I.P."),
+
+	Class158("Class 158 Engine", EntityLocoDieselClass158.class, ItemIDs.minecartClass158engine.item, "diesel", 350, 145, 0,10, 0, 100, 0.7, 0.8, 8000, TraincraftUtil.getBytesFromColors(new String[] {"White", "Green", "Cyan", "Blue", "White"}), 18, -4, "Pack: B.I.P."),
+	Class158Coach("Class 158 Passenger Car", EntityClass158Coach.class, ItemIDs.minecartClass158car.item, "passenger", 0, 0, 3,0 , 0, 0, 0,0,0,TraincraftUtil.getBytesFromColors(new String[] {"White", "Green", "Cyan", "Blue", "White"}),0,0, "Pack: B.I.P."),
+
 	DRGWCaboose("DRGWCaboose",EntityCabooseBapDRGW.class, ItemIDs.minecartDRGWCaboose.item, "caboose", 2, TraincraftUtil.getBytesFromColors(new String[] {"LightGrey", "Grey", "Lime", "Yellow", "Black", "Red", "Orange", "Pink"}), 0, 0, "Pack: BAP"),
 	passengerPSSleeper565("PS 5-6-5 Sleeper", EntityPassengerPSSleeper565.class, ItemIDs.minecartPSSleeper565.item, "passenger", 0, 0, 3, 0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[]{"Blue", "LightBlue", "Grey", "Brown", "Orange", "LightGrey"}), 10, 0, "Pack: BAP"),
 	passengerPSSleeper565DRGW("PS 5-6-5 Sleeper DRGW Edition", EntityPassengerPSSleeper565DRGW.class, ItemIDs.minecartPSSleeper565DRGW.item, "passenger", 0, 0, 3, 0, 0, 0, 0, 0, 0, null, 10, 0, "Pack: BAP"),
@@ -430,6 +432,12 @@ public enum EnumTrains {
 	BR_MK4_DVT("BR_MK4_DVT", EntityLocoDieselBR_MK4_DVT.class, ItemIDs.minecartBR_MK4_DVT.item, "diesel", 1500, 105, 0, 25, 0, 180, 0.89, 0.8, 13000, TraincraftUtil.getBytesFromColors(new String[] {"Blue", "Red","White"}), 0, 0),
 	BR_MK4_Coach("BR_MK4_Coach", EntityPassengerBR_MK4_Coach.class, ItemIDs.minecartBR_MK4_Coach.item, "passenger", 0, 0, 3,0 , 0, 0, 0,0,0,TraincraftUtil.getBytesFromColors(new String[] {"Blue", "Red","White"}),0,0),
 	BR_MK4_Buffet("BR_MK4_Buffet", EntityPassengerBR_MK4_Buffet.class, ItemIDs.minecartBR_MK4_Buffet.item, "passenger", 0, 0, 3,0 , 0, 0, 0,0,0,TraincraftUtil.getBytesFromColors(new String[] {"Blue", "Red","White"}),0,0),
+	Class43("Class43", EntityLocoDieselClass43.class, ItemIDs.minecartClass43.item, "diesel", 1500, 105, 0, 25, 0, 180, 0.89, 0.8, 13000, TraincraftUtil.getBytesFromColors(new String[] {"Blue", "Brown", "Green", "Red", "White", "Cyan"}), 0, 0),
+	Class90("Class90", EntityElectricClass90.class, ItemIDs.minecartClass90.item, "electric", 300, 60, 0,600, 0, 100, 0.7, 0.8, 1000, TraincraftUtil.getBytesFromColors(new String[] {"Black","Green","Grey","Pink","Red","White"}), 18, -3),
+	Class91("Class91", EntityElectricClass91.class, ItemIDs.minecartClass91.item, "electric", 300, 60, 0,600, 0, 100, 0.7, 0.8, 1000, TraincraftUtil.getBytesFromColors(new String[] {"Blue", "Red","White"}), 18, -3),
+	Class321("Class321", EntityElectricClass321.class, ItemIDs.minecartClass321.item, "electric", 300, 60, 0,600, 0, 100, 0.7, 0.8, 1000, TraincraftUtil.getBytesFromColors(new String[] {"Purple", "Grey","White"}), 18, -3),
+	Class321Motor("Class321Motor", EntityFreightClass321Motor.class, ItemIDs.minecartClass321Motor.item, "freight", 0.5, TraincraftUtil.getBytesFromColors(new String[] {"Grey","Purple","White"}), 0, 1,"This is a driving car"),
+	Class321Coach("Class321Coach", EntityPassengerClass321Coach.class, ItemIDs.minecartClass321Coach.item, "passenger", 0, 0, 3,0 , 0, 0, 0,0,0,TraincraftUtil.getBytesFromColors(new String[] {"Purple", "Grey","White"}),0,0),
 
 
 
