@@ -175,6 +175,15 @@ public enum EnumSounds {
 	DieselAlcoPA1(EntityLocoDieselAlcoPA1.class, "leslie_a200_2", 1F, "ALCO_16_244_Notch8", 0.25F, 40, "ALCO_16_244_Idle", 0.4F, 40, true),
 	DieselAlcoPB1(EntityLocoDieselAlcoPB1.class, "wabco_e2", 2.5F,  "ALCO_16_244_Notch8", 0.25F, 40, "ALCO_16_244_Idle", 0.4F, 40, true),
 
+
+	Class43(EntityLocoDieselClass43.class, "british_two_tone", 0.8F, "chme3_idle", 0.65F, 40, "chme3_idle", 0.65F, 40, false),
+	Class90(EntityElectricClass90.class, "mg_horn", 1F, "vl10_idle", 0.8F, 10, "vl10_idle", 0.6F, 50, false),
+	Class91(EntityElectricClass91.class, "mg_horn", 1F, "mg_run", 0.8F, 10, "mg_idle", 0.6F, 50, false),
+	Class321(EntityElectricClass321.class, "mg_horn", 1F, "vl10_idle", 0.8F, 10, "vl10_idle", 0.6F, 50, false),
+	Class319Engine(EntityElectricClass319.class, "mg_horn", 1F, "vl10_idle", 0.8F, 10, "vl10_idle", 0.6F, 50, false),
+
+
+
 	//Storage (Touch When Needed)
 	/*
 	DieselC415H(com.jcirmodelsquad.tcjcir.vehicles.locomotives.DieselC415H.class, "nathan_p14r2", 0.65F, "ALCO_8_251F_Notch8", 0.65F, 10, "ALCO_8_251F_Idle", 0.8F, 3, true),
