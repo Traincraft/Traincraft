@@ -81,6 +81,8 @@
   "wabco3bell": {"category": "master", "sounds": [{"name": "wabco3bell", "stream":  true}]},
   "thanos_horn": {"category": "master", "sounds": [{"name": "thanos_horn","stream": true}]},
   "hhgregg600horn": {"category": "master", "sounds": [{"name": "hhgregg600horn", "stream":  true}]},
+  "ALCO_16_244_Idle": {"category": "master", "sounds": [{"name": "ALCO_16_244_Idle", "stream":  true}]},
+  "ALCO_16_244_Notch8": {"category": "master", "sounds": [{"name": "ALCO_16_244_Notch8", "stream":  true}]},
   "ALCO_12_251C_Idle": {"category": "master", "sounds": [{"name": "ALCO_12_251C_Idle", "stream":  true}]},
   "ALCO_12_251C_Notch8": {"category": "master", "sounds": [{"name": "ALCO_12_251C_Notch8", "stream":  true}]},
   "ALCO_16_251C_Idle": {"category": "master", "sounds": [{"name": "ALCO_16_251C_Idle", "stream":  true}]},
