@@ -1,5 +1,6 @@
 package train.common.entity.rollingStock;
 
+//import com.jcirmodelsquad.tcjcir.features.TiltingHandler;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -8,31 +9,26 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
 import train.common.Traincraft;
-import train.common.api.DieselTrain;
-import train.common.api.LiquidManager;
-import train.common.library.EnumTrains;
+import train.common.api.ElectricTrain;
 import train.common.library.GuiIDs;
 
-public class EntityLocoDieselBR_MK4_DVT extends DieselTrain {
-    public EntityLocoDieselBR_MK4_DVT(World world) {
-        super(world, EnumTrains.GP7.getTankCapacity(), LiquidManager.dieselFilter());
-        initLoco();
+public class EntityElectricBR_MK4_DVT extends ElectricTrain {
+    //public TiltingHandler tiltingHandler = new TiltingHandler(7);
+
+    public EntityElectricBR_MK4_DVT(World world) {
+        super(world);
 
     }
-    public EntityLocoDieselBR_MK4_DVT(World world, double d, double d1, double d2){
+
+    public EntityElectricBR_MK4_DVT(World world, double d, double d1, double d2) {
         this(world);
-        setPosition(d, d1 + yOffset, d2);
+        setPosition(d, d1 + (double) yOffset, d2);
         motionX = 0.0D;
         motionY = 0.0D;
         motionZ = 0.0D;
-        prevPosX = d;
+        prevPosX = d ;
         prevPosY = d1;
         prevPosZ = d2;
-    }
-
-    public void initLoco() {
-        fuelTrain = 0;
-        locoInvent = new ItemStack[inventorySize];
     }
 
     @Override
@@ -69,6 +65,7 @@ public class EntityLocoDieselBR_MK4_DVT extends DieselTrain {
             riddenByEntity.setPosition(bogieX1, pitch, bogieZ1);
         }
     }
+
     @Override
     public void setDead() {
         super.setDead();
@@ -78,14 +75,8 @@ public class EntityLocoDieselBR_MK4_DVT extends DieselTrain {
     @Override
     public void pressKey(int i) {
         if (i == 7 && riddenByEntity != null && riddenByEntity instanceof EntityPlayer) {
-            ((EntityPlayer) riddenByEntity).openGui(Traincraft.instance, GuiIDs.LOCO, worldObj, (int) this.posX, (int) this.posY, (int) this.posZ);
+            ((EntityPlayer) riddenByEntity).openGui(Traincraft.instance, GuiIDs.LOCO, worldObj, (int) this.posX + 2, (int) this.posY, (int) this.posZ);
         }
-    }
-
-    @Override
-    public void onUpdate() {
-        checkInvent(locoInvent[0]);
-        super.onUpdate();
     }
 
     @Override
@@ -122,22 +113,13 @@ public class EntityLocoDieselBR_MK4_DVT extends DieselTrain {
     }
 
     @Override
-    public float getOptimalDistance(EntityMinecart cart) { return 2.65F;
-    }
-
-    @Override
     public int getSizeInventory() {
         return inventorySize;
     }
 
     @Override
     public String getInventoryName() {
-        return "EMD GP7";
-    }
-
-    @Override
-    public boolean isItemValidForSlot(int p_94041_1_, ItemStack p_94041_2_) {
-        return false;
+        return "Class 345";
     }
 
     @Override
@@ -155,8 +137,16 @@ public class EntityLocoDieselBR_MK4_DVT extends DieselTrain {
         return true;
     }
     @Override
+    public float getOptimalDistance(EntityMinecart cart) {
+        return 1.2F;
+    }
+
+    @Override
     public boolean canBeAdjusted(EntityMinecart cart) {
         return canBeAdjusted;
     }
-
+    @Override
+    public boolean isItemValidForSlot(int i, ItemStack itemstack) {
+        return true;
+    }
 }
