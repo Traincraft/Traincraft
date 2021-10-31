@@ -345,10 +345,10 @@ public class ModelEMDE8A extends ModelConverter //Same as Filename
 		bodyModel[301] = new ModelRendererTurbo(this, 288, 15, textureX, textureY); // Box 0
 		bodyModel[302] = new ModelRendererTurbo(this, 301, 13, textureX, textureY); // Box 0
 		bodyModel[303] = new ModelRendererTurbo(this, 292, 11, textureX, textureY); // Box 0
-		bodyModel[304] = new ModelRendererTurbo(this, 250, 23, textureX, textureY); // Box 186
+		bodyModel[304] = new ModelRendererTurbo(this, 250, 23, textureX, textureY, "cull"); // Box 186
 		bodyModel[305] = new ModelRendererTurbo(this, 328, 15, textureX, textureY); // Single Steam Genorator
 		bodyModel[306] = new ModelRendererTurbo(this, 328, 19, textureX, textureY); // Single Steam Genorator
-		bodyModel[307] = new ModelRendererTurbo(this, 312, 23, textureX, textureY); // Box 186
+		bodyModel[307] = new ModelRendererTurbo(this, 312, 23, textureX, textureY, "cull"); // Box 186
 		bodyModel[308] = new ModelRendererTurbo(this, 284, 27, textureX, textureY); // Dynamic Brake fan
 		bodyModel[309] = new ModelRendererTurbo(this, 274, 35, textureX, textureY); // Exhaust shrowd
 		bodyModel[310] = new ModelRendererTurbo(this, 274, 35, textureX, textureY); // Exhaust shrowd
