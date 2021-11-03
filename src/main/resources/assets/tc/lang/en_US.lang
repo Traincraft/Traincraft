@@ -537,7 +537,7 @@ item.tc:minecartClass43.name=Class 43 HST
 item.tc:minecartClass90.name=Class 90
 item.tc:minecartClass91.name=Class 91
 item.tc:minecartClass321.name=Class 321 Front
-item.tc:minecartClass321Motor.name=Class 321 Motor
+item.tc:minecartClass321Panto.name=Class 321 Panto Car
 item.tc:minecartClass321Coach.name=Class 321 Trailer
 
 <!-- ## Achievements ## -->
@@ -998,7 +998,7 @@ entity.tc.Class43.name=Class 43 HST
 entity.tc.Class90.name=Class 90
 entity.tc.Class91.name=Class 91
 entity.tc.Class321.name=Class 321 Front
-entity.tc.Class321Motor.name=Class 321 Motor
+entity.tc.Class321Panto.name=Class 321 Panto Car
 entity.tc.Class321Coach.name=Class 321 Trailer
 
 description.villager.profession.tc.station_chief=Station Chief

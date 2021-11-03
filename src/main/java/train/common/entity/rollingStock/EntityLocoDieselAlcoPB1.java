@@ -133,7 +133,7 @@ public class EntityLocoDieselAlcoPB1 extends DieselTrain {
 
     @Override
     public String getInventoryName() {
-        return "Alco PA-1";
+        return "Alco PB-1";
     }
 
     @Override

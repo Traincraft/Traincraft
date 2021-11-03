@@ -74,6 +74,6 @@ public class EntityPassengerBR_MK3_Coach extends EntityRollingStock implements I
 
     @Override
     public float getOptimalDistance(EntityMinecart cart) {
-        return  3F;
+        return  3.02F;
     }
 }

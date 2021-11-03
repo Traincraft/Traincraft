@@ -1052,7 +1052,7 @@ public enum RenderEnum {
 	}, "", null, 0, false),
 
 	//tcce4 new stuff
-	SNCB_M6( EntityPassengerSNCB_M6.class, new ModelSNCB_M6(),"sncb_m6", false, new float[] {0F, .1F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
+	SNCB_M6( EntityPassengerSNCB_M6.class, new ModelSNCB_M6(),"sncb_m6", false, new float[] {-3.3F, .1F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
 	Class319Engine(EntityElectricClass319.class, new ModelClass319Engine(), "Br_319_", true,new float[] {-1.65F, 0.15F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	Class319Middle( EntityPassengerClass319Middle.class, new ModelClass319Middle(),"Br_319_", true, new float[] {0F, 0.15F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
 	Class319Panto( EntityPassengerClass319Panto.class, new ModelClass319Panto(),"Br_319_", true, new float[] {0F, 0.15F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
@@ -1063,14 +1063,14 @@ public enum RenderEnum {
 	KVB_2300_B( EntityPassengerKVB_2300_B.class, new ModelKVB_2300_B(),"kvb_2300_", true, new float[] {0F, 0.15F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
 	BR_MK3_Buffet( EntityPassengerBR_MK3_Buffet.class, new ModelBR_MK3_Buffet(),"BR_Mk3_Buffet_", true, new float[] {0F, 0F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
 	BR_MK3_Coach( EntityPassengerBR_MK3_Coach.class, new ModelBR_MK3_Coach(),"BR_MK3_Coach_", true, new float[] {0F, 0F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
-	BR_MK4_DVT( EntityElectricBR_MK4_DVT.class, new ModelBR_MK4_DVT(),"BR_Mk4_DVT_", true, new float[] {0F, 0F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
+	BR_MK4_DVT( EntityElectricBR_MK4_DVT.class, new ModelBR_MK4_DVT(),"BR_Mk4_DVT_", true, new float[] {-1.2F, 0F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
 	BR_MK4_Coach( EntityPassengerBR_MK4_Coach.class, new ModelBR_MK4_Coach(),"BR_Mk4_", true, new float[] {0F, 0F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
 	BR_MK4_Buffet( EntityPassengerBR_MK4_Buffet.class, new ModelBR_MK4_Buffet(),"BR_Mk4_Buffet_", true, new float[] {0F, 0F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
-	Class43( EntityLocoDieselClass43.class, new ModelClass43(),"Class_43_", true, new float[] {0F, 0F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
-	Class90( EntityElectricClass90.class, new ModelClass90(),"Class_90_", true, new float[] {0F, 0F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
-	Class91( EntityElectricClass91.class, new ModelClass91(),"Class_91_", true, new float[] {0F, 0F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
-	Class321( EntityElectricClass321.class, new ModelClass321(),"Class_321_", true, new float[] {0F, 0.155F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
-	Class321Motor( EntityFreightClass321Motor.class, new ModelClass321_Motor(),"Class_321_Motor_Car_", true, new float[] {0F, 0.155F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
+	Class43( EntityLocoDieselClass43.class, new ModelClass43(),"Class_43_", true, new float[] {-0.65F, 0F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
+	Class90( EntityElectricClass90.class, new ModelClass90(),"Class_90_", true, new float[] {-0.55F, 0F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
+	Class91( EntityElectricClass91.class, new ModelClass91(),"Class_91_", true, new float[] {-0.6F, 0F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
+	Class321( EntityElectricClass321.class, new ModelClass321(),"Class_321_", true, new float[] {-2F, 0.155F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
+	Class321Panto( EntityPassengerClass321Panto.class, new ModelClass321_Panto(),"Class_321_Panto_Car_", true, new float[] {0F, 0.155F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
 	Class321Coach( EntityPassengerClass321Coach.class, new ModelClass321Coach(),"Class_321_Trailer_Car_", true, new float[] {0F, 0.155F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
 
 

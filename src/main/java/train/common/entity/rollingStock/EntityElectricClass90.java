@@ -35,7 +35,7 @@ public class EntityElectricClass90 extends ElectricTrain {
     public void updateRiderPosition() {
         if (riddenByEntity == null) {return;}
         double pitchRads = this.anglePitchClient * Math.PI / 180.0D;
-        double distance = 2.8;
+        double distance = 3.4;
         double yOffset = -0.1;
         float rotationCos1 = (float) Math.cos(Math.toRadians(this.renderYaw + 90));
         float rotationSin1 = (float) Math.sin(Math.toRadians((this.renderYaw + 90)));
@@ -119,7 +119,7 @@ public class EntityElectricClass90 extends ElectricTrain {
 
     @Override
     public String getInventoryName() {
-        return "Class 345";
+        return "Class 90";
     }
 
     @Override
@@ -138,7 +138,7 @@ public class EntityElectricClass90 extends ElectricTrain {
     }
     @Override
     public float getOptimalDistance(EntityMinecart cart) {
-        return 1.2F;
+        return 1.53F;
     }
 
     @Override

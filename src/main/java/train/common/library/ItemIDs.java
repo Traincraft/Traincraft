@@ -227,7 +227,7 @@ public enum ItemIDs {
 	minecartClass90("ItemRollingStock", "class90", 5),
 	minecartClass91("ItemRollingStock", "class91", 5),
 	minecartClass321("ItemRollingStock","class321", 5),
-	minecartClass321Motor("ItemRollingStock","class321motor",5),
+	minecartClass321Panto("ItemRollingStock","class321panto",5),
 	minecartClass321Coach("ItemRollingStock","class321coach", 5),
 
 

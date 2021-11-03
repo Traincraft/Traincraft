@@ -12,12 +12,12 @@ package train.client.render.models; //Path where the model is located
 import tmt.ModelConverter;
 import tmt.ModelRendererTurbo;
 
-public class ModelClass321_Motor extends ModelConverter //Same as Filename
+public class ModelClass321_Panto extends ModelConverter //Same as Filename
 {
 	int textureX = 512;
 	int textureY = 512;
 
-	public ModelClass321_Motor() //Same as Filename
+	public ModelClass321_Panto() //Same as Filename
 	{
 		bodyModel = new ModelRendererTurbo[283];
 

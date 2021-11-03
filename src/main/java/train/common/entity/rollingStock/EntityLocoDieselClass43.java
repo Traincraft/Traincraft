@@ -15,7 +15,7 @@ import train.common.library.GuiIDs;
 
 public class EntityLocoDieselClass43 extends DieselTrain {
     public EntityLocoDieselClass43(World world) {
-        super(world, EnumTrains.BapB23.getTankCapacity(), LiquidManager.dieselFilter());
+        super(world, EnumTrains.Class43.getTankCapacity(), LiquidManager.dieselFilter());
         initLoco();
 
     }
@@ -38,7 +38,7 @@ public class EntityLocoDieselClass43 extends DieselTrain {
     public void updateRiderPosition() {
         if (riddenByEntity == null) {return;}
         double pitchRads = this.anglePitchClient * Math.PI / 180.0D;
-        double distance = 2.65;
+        double distance = 3.25;
         double yOffset = 0;
         float rotationCos1 = (float) Math.cos(Math.toRadians(this.renderYaw + 90));
         float rotationSin1 = (float) Math.sin(Math.toRadians((this.renderYaw + 90)));
@@ -120,7 +120,7 @@ public class EntityLocoDieselClass43 extends DieselTrain {
     }
 
     @Override
-    public float getOptimalDistance(EntityMinecart cart) { return 2F;
+    public float getOptimalDistance(EntityMinecart cart) { return 1.35F;
     }
 
     @Override
@@ -130,7 +130,7 @@ public class EntityLocoDieselClass43 extends DieselTrain {
 
     @Override
     public String getInventoryName() {
-        return "GE B23-7";
+        return "Class 43";
     }
 
     @Override

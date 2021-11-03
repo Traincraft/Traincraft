@@ -7,14 +7,14 @@ import net.minecraft.world.World;
 import train.common.api.EntityRollingStock;
 import train.common.api.IPassenger;
 
-public class EntityPassengerBR_MK3_Buffet extends EntityRollingStock implements IPassenger {
-    //public TiltingHandler tiltingHandler = new TiltingHandler(7);
 
-    public EntityPassengerBR_MK3_Buffet(World world) {
+public class EntityPassengerClass321Panto extends EntityRollingStock implements IPassenger {
+
+    public EntityPassengerClass321Panto(World world) {
         super(world);
     }
 
-    public EntityPassengerBR_MK3_Buffet(World world, double d, double d1, double d2){
+    public EntityPassengerClass321Panto(World world, double d, double d1, double d2){
         this(world);
         setPosition(d, d1 + yOffset, d2);
         motionX = 0.0D;
@@ -74,6 +74,6 @@ public class EntityPassengerBR_MK3_Buffet extends EntityRollingStock implements 
 
     @Override
     public float getOptimalDistance(EntityMinecart cart) {
-        return 3.02F;
+        return 2.63F;
     }
 }

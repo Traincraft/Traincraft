@@ -119,7 +119,7 @@ public class EntityElectricKVB_2300 extends ElectricTrain {
 
     @Override
     public String getInventoryName() {
-        return "Class 345";
+        return "B80D";
     }
 
     @Override
