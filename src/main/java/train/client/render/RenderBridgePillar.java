@@ -18,7 +18,9 @@ public class RenderBridgePillar extends TileEntitySpecialRenderer {
 	public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float tick) {
 		GL11.glPushMatrix();
 		GL11.glTranslated(x+0.5,y+1,z+0.5);
+		GL11.glRotatef(180f,0f,1f,0f);
 		Tessellator.bindTexture(texture);
+		/*
 		if(GLID==null || !GL11.glIsList(GLID)) {
 			GLID = GLAllocation.generateDisplayLists(1);
 			GL11.glNewList(GLID, GL11.GL_COMPILE);
@@ -27,6 +29,10 @@ public class RenderBridgePillar extends TileEntitySpecialRenderer {
 		} else {
 			GL11.glCallList(GLID);
 		}
+
+		 */
+
+		modelBridgePillar.render();
 		GL11.glPopMatrix();
 	}
 }

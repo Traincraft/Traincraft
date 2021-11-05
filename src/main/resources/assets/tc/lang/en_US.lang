@@ -539,6 +539,8 @@ item.tc:minecartClass91.name=Class 91
 item.tc:minecartClass321.name=Class 321 Front
 item.tc:minecartClass321Panto.name=Class 321 Panto Car
 item.tc:minecartClass321Coach.name=Class 321 Trailer
+item.tc:minecartPassengerMinetrain.name=Minecart Ride-able
+
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -1000,6 +1002,7 @@ entity.tc.Class91.name=Class 91
 entity.tc.Class321.name=Class 321 Front
 entity.tc.Class321Panto.name=Class 321 Panto Car
 entity.tc.Class321Coach.name=Class 321 Trailer
+entity.tc.Passenger Minecart Yellow.name = Minecart Ride-able
 
 description.villager.profession.tc.station_chief=Station Chief
 
