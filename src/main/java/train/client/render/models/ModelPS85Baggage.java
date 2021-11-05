@@ -25,7 +25,7 @@ public class ModelPS85Baggage extends ModelConverter//Same as Filename
 
 	public ModelPS85Baggage() //Same as Filename
 	{
-		bodyModel = new ModelRendererTurbo[262];
+		bodyModel = new ModelRendererTurbo[263];
 
 		initbodyModel_1();
 
@@ -256,8 +256,8 @@ public class ModelPS85Baggage extends ModelConverter//Same as Filename
 		bodyModel[216] = new ModelRendererTurbo(this, 126, 186, textureX, textureY); // Box 38
 		bodyModel[217] = new ModelRendererTurbo(this, 11, 186, textureX, textureY); // Box 405
 		bodyModel[218] = new ModelRendererTurbo(this, 11, 194, textureX, textureY); // Box 405
-		bodyModel[219] = new ModelRendererTurbo(this, 6, 186, textureX, textureY); // Box 38
-		bodyModel[220] = new ModelRendererTurbo(this, 1, 186, textureX, textureY); // Box 38
+		bodyModel[219] = new ModelRendererTurbo(this, 6, 195, textureX, textureY); // Box 38
+		bodyModel[220] = new ModelRendererTurbo(this, 1, 194, textureX, textureY); // Box 38
 		bodyModel[221] = new ModelRendererTurbo(this, 68, 208, textureX, textureY); // Box 38
 		bodyModel[222] = new ModelRendererTurbo(this, 94, 211, textureX, textureY); // Box 38 glow
 		bodyModel[223] = new ModelRendererTurbo(this, 85, 211, textureX, textureY); // Box 38 glow
@@ -299,6 +299,7 @@ public class ModelPS85Baggage extends ModelConverter//Same as Filename
 		bodyModel[259] = new ModelRendererTurbo(this, 71, 151, textureX, textureY); // Box 2
 		bodyModel[260] = new ModelRendererTurbo(this, 71, 138, textureX, textureY); // Box 24
 		bodyModel[261] = new ModelRendererTurbo(this, 71, 141, textureX, textureY); // Box 25
+		bodyModel[262] = new ModelRendererTurbo(this, 6, 182, textureX, textureY); // Box 38
 
 		bodyModel[0].addBox(0F, 0F, 0F, 1, 1, 1, 0F); // Box 2
 		bodyModel[0].setRotationPoint(61F, 3F, 10F);
@@ -979,11 +980,11 @@ public class ModelPS85Baggage extends ModelConverter//Same as Filename
 		bodyModel[218].addBox(0F, 0F, 0F, 27, 1, 6, 0F); // Box 405
 		bodyModel[218].setRotationPoint(-60F, -5F, -10F);
 
-		bodyModel[219].addShapeBox(0F, 0F, 0F, 1, 20, 1, 0F,0F, 0F, 0F, -0.01F, 0F, 0F, -0.01F, 0F, -0.01F, 0F, 0F, -0.01F, 0F, 0F, 0F, -0.01F, 0F, 0F, -0.01F, 0F, -0.01F, 0F, 0F, -0.01F); // Box 38
-		bodyModel[219].setRotationPoint(-34F, -19F, -5F);
+		bodyModel[219].addShapeBox(0F, 0F, 0F, 1, 11, 1, 0F,0F, 0F, 0F, -0.01F, 0F, 0F, -0.01F, 0F, -0.01F, 0F, 0F, -0.01F, 0F, 0F, 0F, -0.01F, 0F, 0F, -0.01F, 0F, -0.01F, 0F, 0F, -0.01F); // Box 38
+		bodyModel[219].setRotationPoint(-34F, -10F, -5F);
 
-		bodyModel[220].addBox(0F, 0F, 0F, 1, 20, 1, 0F); // Box 38
-		bodyModel[220].setRotationPoint(-47.5F, -19F, -4F);
+		bodyModel[220].addBox(0F, 0F, 0F, 1, 12, 1, 0F); // Box 38
+		bodyModel[220].setRotationPoint(-47.5F, -11F, -4F);
 
 		bodyModel[221].addShapeBox(0F, 0F, 0F, 4, 2, 4, 0F,0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 38
 		bodyModel[221].setRotationPoint(-25F, -19F, -2F);
@@ -1112,12 +1113,15 @@ public class ModelPS85Baggage extends ModelConverter//Same as Filename
 
 		bodyModel[261].addShapeBox(0F, 0F, 0F, 1, 2, 1, 0F,0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0.5F, 0F, 0F, 0.5F); // Box 25
 		bodyModel[261].setRotationPoint(-61F, 4F, -11F);
+
+		bodyModel[262].addShapeBox(0F, 0F, 0F, 1, 11, 1, 0F,0F, 0F, 0F, -0.01F, 0F, 0F, -0.01F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.01F, 0F, 0F, -0.01F, 0F, 0F, 0F, 0F, 0F); // Box 38
+		bodyModel[262].setRotationPoint(-34F, -10F, -8F);
 	}
 	ModelPS_Truck bogie1 = new ModelPS_Truck();
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
-		for(int i = 0; i < 262; i++)
+		for(int i = 0; i < 263; i++)
 		{
 			bodyModel[i].render(f5);
 		}

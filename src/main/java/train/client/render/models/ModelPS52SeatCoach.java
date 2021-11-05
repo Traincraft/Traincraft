@@ -2062,7 +2062,7 @@ public class ModelPS52SeatCoach extends ModelConverter //Same as Filename
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
-		for(int i = 0; i < 474; i++)
+		for(int i = 0; i < 475; i++)
 		{
 			bodyModel[i].render(f5);
 		}
