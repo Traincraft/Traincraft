@@ -58,7 +58,11 @@ public class ClientProxy extends CommonProxy {
 		Calendar cal = Calendar.getInstance();
 		return(cal.get(Calendar.MONTH) == Calendar.DECEMBER || (cal.get(Calendar.MONTH) == Calendar.JANUARY) && cal.get(Calendar.DATE) < 7);
 	}
-	
+	public static boolean isPumpkin() {
+		Calendar cal = Calendar.getInstance();
+		return(cal.get(Calendar.MONTH) == Calendar.OCTOBER || cal.get(Calendar.MONTH) == Calendar.NOVEMBER && cal.get(Calendar.DATE) < 15);
+	}
+
 	@Override
 	public void throwAlphaException() {
 		throw new AlphaExpiredException();

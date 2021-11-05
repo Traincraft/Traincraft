@@ -9,6 +9,7 @@
 
 package train.client.render.models; //Path where the model is located
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
@@ -174,10 +175,10 @@ public class ModelPS73Baggage extends ModelConverter //Same as Filename
 		bodyModel[134] = new ModelRendererTurbo(this, 175, 11, textureX, textureY); // Box 189
 		bodyModel[135] = new ModelRendererTurbo(this, 165, 11, textureX, textureY); // Box 191
 		bodyModel[136] = new ModelRendererTurbo(this, 155, 11, textureX, textureY); // Box 193
-		bodyModel[137] = new ModelRendererTurbo(this, 89, 186, textureX, textureY); // Box 38 glow
-		bodyModel[138] = new ModelRendererTurbo(this, 89, 215, textureX, textureY); // Box 429 glow
-		bodyModel[139] = new ModelRendererTurbo(this, 118, 186, textureX, textureY); // Box 38 glow
-		bodyModel[140] = new ModelRendererTurbo(this, 137, 215, textureX, textureY); // Box 429 glow
+		bodyModel[137] = new ModelRendererTurbo(this, 89, 186, textureX, textureY, "glow"); // Box 38 glow
+		bodyModel[138] = new ModelRendererTurbo(this, 89, 215, textureX, textureY, "glow"); // Box 429 glow
+		bodyModel[139] = new ModelRendererTurbo(this, 118, 186, textureX, textureY, "glow"); // Box 38 glow
+		bodyModel[140] = new ModelRendererTurbo(this, 137, 215, textureX, textureY, "glow"); // Box 429 glow
 		bodyModel[141] = new ModelRendererTurbo(this, 112, 217, textureX, textureY); // Box 360
 		bodyModel[142] = new ModelRendererTurbo(this, 107, 215, textureX, textureY); // Box 363
 		bodyModel[143] = new ModelRendererTurbo(this, 149, 217, textureX, textureY); // Box 360
@@ -192,14 +193,14 @@ public class ModelPS73Baggage extends ModelConverter //Same as Filename
 		bodyModel[152] = new ModelRendererTurbo(this, 107, 186, textureX, textureY); // Box 38
 		bodyModel[153] = new ModelRendererTurbo(this, 131, 188, textureX, textureY); // Box 38
 		bodyModel[154] = new ModelRendererTurbo(this, 126, 186, textureX, textureY); // Box 38
-		bodyModel[155] = new ModelRendererTurbo(this, 94, 211, textureX, textureY); // Box 38 glow
-		bodyModel[156] = new ModelRendererTurbo(this, 85, 211, textureX, textureY); // Box 38 glow
-		bodyModel[157] = new ModelRendererTurbo(this, 76, 211, textureX, textureY); // Box 38 glow
-		bodyModel[158] = new ModelRendererTurbo(this, 67, 211, textureX, textureY); // Box 38 glow
-		bodyModel[159] = new ModelRendererTurbo(this, 112, 211, textureX, textureY); // Box 38 glow
-		bodyModel[160] = new ModelRendererTurbo(this, 103, 211, textureX, textureY); // Box 38 glow
-		bodyModel[161] = new ModelRendererTurbo(this, 130, 211, textureX, textureY); // Box 38 glow
-		bodyModel[162] = new ModelRendererTurbo(this, 121, 211, textureX, textureY); // Box 38 glow
+		bodyModel[155] = new ModelRendererTurbo(this, 94, 211, textureX, textureY, "glow"); // Box 38 glow
+		bodyModel[156] = new ModelRendererTurbo(this, 85, 211, textureX, textureY, "glow"); // Box 38 glow
+		bodyModel[157] = new ModelRendererTurbo(this, 76, 211, textureX, textureY, "glow"); // Box 38 glow
+		bodyModel[158] = new ModelRendererTurbo(this, 67, 211, textureX, textureY, "glow"); // Box 38 glow
+		bodyModel[159] = new ModelRendererTurbo(this, 112, 211, textureX, textureY, "glow"); // Box 38 glow
+		bodyModel[160] = new ModelRendererTurbo(this, 103, 211, textureX, textureY, "glow"); // Box 38 glow
+		bodyModel[161] = new ModelRendererTurbo(this, 130, 211, textureX, textureY, "glow"); // Box 38 glow
+		bodyModel[162] = new ModelRendererTurbo(this, 121, 211, textureX, textureY, "glow"); // Box 38 glow
 		bodyModel[163] = new ModelRendererTurbo(this, 45, 238, textureX, textureY); // Box 38
 		bodyModel[164] = new ModelRendererTurbo(this, 71, 244, textureX, textureY); // Box 176
 		bodyModel[165] = new ModelRendererTurbo(this, 70, 238, textureX, textureY); // Box 177
@@ -960,7 +961,17 @@ public class ModelPS73Baggage extends ModelConverter //Same as Filename
 	{
 		for(int i = 0; i < 222; i++)
 		{
-			bodyModel[i].render(f5);
+			if (bodyModel[i].boxName != null && bodyModel[i].boxName.contains("glow")) {
+				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+				bodyModel[i].render(f5);
+				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+			} else if (bodyModel[i].boxName != null && bodyModel[i].boxName.contains("cull")) {
+				GL11.glDisable(GL11.GL_CULL_FACE);
+				bodyModel[i].render(f5);
+				GL11.glEnable(GL11.GL_CULL_FACE);
+			} else {
+				bodyModel[i].render(f5);
+			}
 		}
 		if(entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor()==14){
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/41-N-11_truck_silver.png"));

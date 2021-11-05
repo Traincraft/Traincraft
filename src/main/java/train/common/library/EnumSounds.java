@@ -172,8 +172,17 @@ public enum EnumSounds {
 	SteamSkookum(EntityLocoSteamSkook.class,"skookum_whistle", 1F, "steam_run", 0.2F, 20, "steam_run", 0.2F, 20, true),
 	SteamShay3Truck(EntityLocoSteamShay3Truck.class, "lukenhimer_3chime", 1F, "steam_run", 0.2F, 20, "steam_run", 0.2F, 20, true),
 	DieselEMDE8A(EntityLocoDieselEMDE8A.class, "leslie_a200_2", 1F, "EMD_12_567B_Notch8", 0.45F, 15, "EMD_16_567B_Idle", 0.75F, 3, true),
-	DieselAlcoPA1(EntityLocoDieselAlcoPA1.class, "leslie_a200_2", 1F, "ALCO_16_251C_Notch8", 0.50F, 40, "ALCO_16_251C_Idle", 0.65F, 40, true),
-	DieselAlcoPB1(EntityLocoDieselAlcoPB1.class, "wabco_e2", 2.5F,  "ALCO_16_251C_Notch8", 0.50F, 40, "ALCO_16_251C_Idle", 0.65F, 40, true),
+	DieselAlcoPA1(EntityLocoDieselAlcoPA1.class, "leslie_a200_2", 1F, "ALCO_16_244_Notch8", 0.25F, 40, "ALCO_16_244_Idle", 0.4F, 40, true),
+	DieselAlcoPB1(EntityLocoDieselAlcoPB1.class, "wabco_e2", 2.5F,  "ALCO_16_244_Notch8", 0.25F, 40, "ALCO_16_244_Idle", 0.4F, 40, true),
+
+
+	Class43(EntityLocoDieselClass43.class, "british_two_tone", 0.8F, "chme3_idle", 0.65F, 40, "chme3_idle", 0.65F, 40, false),
+	Class90(EntityElectricClass90.class, "mg_horn", 1F, "vl10_idle", 0.8F, 10, "vl10_idle", 0.6F, 50, false),
+	Class91(EntityElectricClass91.class, "mg_horn", 1F, "mg_run", 0.8F, 10, "mg_idle", 0.6F, 50, false),
+	Class321(EntityElectricClass321.class, "mg_horn", 1F, "vl10_idle", 0.8F, 10, "vl10_idle", 0.6F, 50, false),
+	Class319Engine(EntityElectricClass319.class, "mg_horn", 1F, "vl10_idle", 0.8F, 10, "vl10_idle", 0.6F, 50, false),
+
+
 
 	//Storage (Touch When Needed)
 	/*

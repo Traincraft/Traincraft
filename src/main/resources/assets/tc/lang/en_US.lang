@@ -32,6 +32,9 @@ tile.tc:mtcATOStopTransmitter.name=MTC ATO Stop Point Transmitter
 tile.tc:mtcReceiverMTC.name=MTC Status Receiver
 tile.tc:mtcReceiverDestination.name=MTC Destination Receiver
 tile.tc:pdmInstructionBlock.name=W-MTC Wireless Radio
+tile.tc:dirtyBallast.name=Dirty Ballast
+tile.tc:dirtierBallast.name=Dirtier Ballast
+
 
 <!-- ## Fluids ## -->
 fluid.diesel.name=Diesel Fuel
@@ -122,6 +125,7 @@ item.tc:copperWireFine.name=Fine Copper Wire
 item.tc:electronicCircuit.name=Electronic Circuit
 item.tc:chunkLoaderActivator.name=Chunk Loader Activator
 item.tc:emptyCanister.name=Empty Canister
+item.tc:bolt.name=Bolt
 item.tc:recipeBook.name=Traincraft guide
 item.tc:adminBook.name=Traincraft Admin Book
 item.tc:minecartWork.name=Work Train
@@ -229,6 +233,8 @@ item.tc:steelRail.name=Steel Rail
 item.tc:tcRailMediumTurn.name=Medium Turn
 item.tc:tcRailLargeTurn.name=Large Turn
 item.tc:tcRailVeryLargeTurn.name=Very Large Turn
+item.tc:tcRailSuperLargeTurn.name=Super Large Turn
+item.tc:tcRailConcreteSmallStraight.name=Embedded Track
 item.tc:tcRailLongStraight.name=Long Straight
 item.tc:tcRailMediumStraight.name=Medium Straight
 item.tc:tcRailSmallStraight.name=Small Straight
@@ -512,6 +518,29 @@ item.tc:minecartPSSleeper565.name=Pullman Standard 5-6-5 Sleeper
 item.tc:minecartAlcoPA1.name=Alco PA-1
 item.tc:minecartAlcoPB1.name=Alco PB-1
 item.tc:minecartEMDE8A.name=EMD E8A
+item.tc:minecartPSRPOPM.name=Pullman Standard RPO (PM Floorplan)
+item.tc:minecartPSRPO.name=Pullman Standard RPO
+item.tc:minecartClass319Engine.name=Class 319 loco
+item.tc:minecartClass319passenger.name=Class 319 middle car
+item.tc:minecartClass319panto.name=Class 319 pantograph middle car
+item.tc:minecartClass319Tail.name=Class 319 tail
+item.tc:minecartSNCB_M6.name=SNCB M6
+item.tc:minecartKVB_2300.name=B80D A segment
+item.tc:minecartKVB_2300_B.name=B80D B segment
+item.tc:minecartBoulderWagon.name=Boulder Wagon
+item.tc:minecartBR_MK3_Buffet.name=BR Mk3 Buffet
+item.tc:minecartBR_MK3_Coach.name=BR Mk3 Coach
+item.tc:minecartBR_MK4_DVT.name=BR Mk4 DVT
+item.tc:minecartBR_MK4_Coach.name=BR Mk4 Coach
+item.tc:minecartBR_MK4_Buffet.name=BR Mk4 Buffet
+item.tc:minecartClass43.name=Class 43 HST
+item.tc:minecartClass90.name=Class 90
+item.tc:minecartClass91.name=Class 91
+item.tc:minecartClass321.name=Class 321 Front
+item.tc:minecartClass321Panto.name=Class 321 Panto Car
+item.tc:minecartClass321Coach.name=Class 321 Trailer
+item.tc:minecartPassengerMinetrain.name=Minecart Ride-able
+
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -952,6 +981,28 @@ entity.tc.PS 5-6-5 Sleeper DRGW Edition.name=Pullman Standard 5-6-5 Sleeper (DRG
 entity.tc.AlcoPA1.name=Alco PA-1
 entity.tc.AlcoPB1.name=Alco PB-1
 entity.tc.EMDE8A.name=EMD E8A
+entity.tc.PSPMRPO.name=Pullman Standard RPO (PM Floorplan)
+entity.tc.PSRPO.name=Pullman Standard RPO
+entity.tc.Class 319 Engine.name=Class 319 loco
+entity.tc.Class 319 Passenger Car.name=Class 319 middle car
+entity.tc.Class 319 Panto Car.name=Class 319 pantograph middle car
+entity.tc.CClass 319 Tail Car.name=Class 319 tail
+entity.tc.SNCB_M6.name=SNCB M6
+entity.tc.KVB_2300.name=B80D A segment
+entity.tc.KVB_2300_B.name=B80D B segment
+entity.tc.BoulderWagon.name=Boulder Wagon
+entity.tc.BR_MK3_Buffet.name=BR Mk3 Buffet
+entity.tc.BR_MK3_Coach.name=BR Mk3 Coach
+entity.tc.BR_MK4_DVT.name=BR Mk4 DVT
+entity.tc.BR_MK4_Coach.name=BR Mk4 Coach
+entity.tc.BR_MK4_Buffet.name=BR Mk4 Buffet
+entity.tc.Class43.name=Class 43 HST
+entity.tc.Class90.name=Class 90
+entity.tc.Class91.name=Class 91
+entity.tc.Class321.name=Class 321 Front
+entity.tc.Class321Panto.name=Class 321 Panto Car
+entity.tc.Class321Coach.name=Class 321 Trailer
+entity.tc.Passenger Minecart Yellow.name = Minecart Ride-able
 
 description.villager.profession.tc.station_chief=Station Chief
 

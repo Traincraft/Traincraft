@@ -74,6 +74,6 @@ public class EntityPassengerClass319Tail extends EntityRollingStock implements I
 
     @Override
     public float getOptimalDistance(EntityMinecart cart) {
-        return 2.4F;
+        return 2.63F;
     }
 }

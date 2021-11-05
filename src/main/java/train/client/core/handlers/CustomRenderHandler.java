@@ -84,6 +84,9 @@ public class CustomRenderHandler {
         else if (item.getTrackType() == ItemTCRail.TrackTypes.SMALL_ROAD_CROSSING) {
             RenderTCRail.modelSmallStraight.render("crossing", facing, 0, 0, 0, r, g, b, 0.5f);
         }
+        else if (item.getTrackType() == ItemTCRail.TrackTypes.SUPER_LONG) {
+            RenderTCRail.modelSmallStraight.render("super_long", facing, 0, 0, 0, r,g,b,0.5f);
+        }
         else if (item.getTrackType() == ItemTCRail.TrackTypes.SMALL_ROAD_CROSSING_1) {
             RenderTCRail.modelSmallStraight.render("crossing1", facing, 0, 0, 0, r, g, b, 0.5f);
         }
@@ -140,7 +143,9 @@ public class CustomRenderHandler {
         // Turns
         else if (item.getTrackType() == ItemTCRail.TrackTypes.MEDIUM_TURN
             || item.getTrackType() == ItemTCRail.TrackTypes.LARGE_TURN
-            || item.getTrackType() == ItemTCRail.TrackTypes.VERY_LARGE_TURN )
+            || item.getTrackType() == ItemTCRail.TrackTypes.VERY_LARGE_TURN
+            || item.getTrackType() == ItemTCRail.TrackTypes.VERY_LARGE_TURN
+            || item.getTrackType() == ItemTCRail.TrackTypes.SUPER_LARGE_TURN)
         {
             float yaw = MathHelper.wrapAngleTo180_float(player.rotationYaw);
             boolean isLeftTurn = item.getTrackOrientation( facing, yaw ).equals("left");
@@ -150,7 +155,8 @@ public class CustomRenderHandler {
                 turnSize = "large";
             else if ( item.getTrackType() == ItemTCRail.TrackTypes.VERY_LARGE_TURN )
                 turnSize = "very_large";
-
+            else if ( item.getTrackType() == ItemTCRail.TrackTypes.SUPER_LARGE_TURN)
+                turnSize = "super_large";
             if ( isLeftTurn )
             {
                 RenderTCRail.modelLeftTurn.render( turnSize, facing, 0, 0, 0, r, g, b, a );

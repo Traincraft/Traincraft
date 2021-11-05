@@ -2187,7 +2187,7 @@ public class ModelSNCB_M6 extends ModelConverter //Same as Filename
 		GL11.glTranslatef(-3.75f, 0f,-.05f);
 		theTrucks.render(entity, f, f1, f2, f3, f4, f5);
 
-		GL11.glTranslatef(6.75f, 0f,0f);
+		GL11.glTranslatef(6.63f, 0f,0f);
 		theTrucks.render(entity, f, f1, f2, f3, f4, f5);
 		GL11.glPopMatrix();
 		GL11.glColor4f(1.0f, 1.0f, 1.0f, 0.5f);
