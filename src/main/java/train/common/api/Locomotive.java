@@ -1691,7 +1691,7 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
     public void sendMessage(PDMMessage message) {
 
 
-        if (Loader.isModLoaded("ComputerCraft") | Loader.isModLoaded("OpenComputers") && this.worldObj != null && !worldObj.isRemote) {
+        if (Loader.isModLoaded("ComputerCraft") || Loader.isModLoaded("OpenComputers") && this.worldObj != null && !worldObj.isRemote) {
             //	System.out.println("Sendmessage..");
             AxisAlignedBB targetBox = AxisAlignedBB.getBoundingBox(this.posX, this.posY, this.posZ, this.posX + 2000, this.posY + 2000, this.posZ + 2000);
             List allTEs = this.worldObj.loadedTileEntityList;
