@@ -26,7 +26,7 @@ public class ModelKVB_2300_B extends ModelConverter //Same as Filename
 
 		initbodyModel_1();
 
-		translateAll(0F, 0F, 0F);
+		translateAll(0F, -0.4F, 0F);
 
 
 		flipAll();
