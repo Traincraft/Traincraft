@@ -1529,12 +1529,14 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
     }
 
     public void disconnectFromServer() {
+	if (Loader.isModLoaded("ComputerCraft") || Loader.isModLoaded("OpenComputers")) {
         JsonObject sendTo = new JsonObject();
         sendTo.addProperty("funct", "disconnect");
         sendMessage(new PDMMessage(this.trainID, serverUUID, sendTo.toString(), 0));
         this.mtcType = 1;
         this.serverUUID = "";
         isConnected = false;
+	}
     }
 
 
