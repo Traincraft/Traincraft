@@ -32,7 +32,7 @@ jobs:
       run: chmod +x gradlew
 
     - name: Build with Gradle
-      run: ./gradlew build
+      run: ./gradlew setupDecompWorkspace --refresh-dependencies build
 
     - name: Create artifact
       uses: actions/upload-artifact@v2
