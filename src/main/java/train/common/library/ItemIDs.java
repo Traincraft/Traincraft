@@ -303,6 +303,7 @@ public enum ItemIDs {
 	tcRailSmallStraight("ItemTCRail", "item_rail_straight_small", 5),
 	tcRailMediumStraight("ItemTCRail", "item_rail_straight_medium", 5),
 	tcRailLongStraight("ItemTCRail", "item_rail_straight_large", 5),
+	tcRailSuperLongStraight("ItemTCRail", "item_rail_straight_super_large", 5),
 	tcRailSmallRoadCrossing("ItemTCRail", "item_rail_small_road_crossing", 5),
 	tcRailSmallRoadCrossing1("ItemTCRail", "item_rail_small_road_crossing_1", 5),
 	tcRailSmallRoadCrossing2("ItemTCRail", "item_rail_small_road_crossing_2", 5),
@@ -332,8 +333,8 @@ public enum ItemIDs {
 	tcRailSuperLargeTurn("ItemTCRail", "item_rail_tc_super_large_turn", 1),
 	tcRailConcreteSuperLargeTurn("ItemTCRail", "item_rail_tc_super_large_turn",1),
 
-	tcRailConcreteSmallStraight("ItemTCRail","item_rail_tc_concrete_small_straight", 1),
-	tcRailSuperLong("ItemTCRail", "item_rail_tc_super_long", 1),
+	tcRailEmbeddedSmallStraight("ItemTCRail","item_rail_straight_embedded_small_", 1),
+
 
 
 

@@ -10,6 +10,7 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 	public static final ModelSmallStraightTCTrack modelSmallStraight = new ModelSmallStraightTCTrack();
 	public static final ModelSmallStraightTCTrack modelRoadCrossing = new ModelSmallStraightTCTrack();
 	public static final ModelMediumStraightTCTrack modelMediumStraight = new ModelMediumStraightTCTrack();
+	public static final ModelEmbeddedSmallStraightTCTrack modelEmbeddedSmallStraight = new ModelEmbeddedSmallStraightTCTrack();
 	public static final ModelRightTurnTCTrack modelRightTurn = new ModelRightTurnTCTrack();
 	public static final ModelLeftTurnTCTrack modelLeftTurn = new ModelLeftTurnTCTrack();
 	public static final ModelRightSwitchTCTrack modelRightSwitchTurn = new ModelRightSwitchTCTrack();
@@ -18,6 +19,7 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 	public static final ModelSlopeTCTrack modelSlope = new ModelSlopeTCTrack();
 	public static final ModelLargeSlopeTCTrack modelLargeSlope = new ModelLargeSlopeTCTrack();
 	public static final ModelVeryLargeSlopeTCTrack	modelVeryLargeSlope = new ModelVeryLargeSlopeTCTrack();
+
 
 	public RenderTCRail() {
 
@@ -84,6 +86,9 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 						modelLeftTurn.render("very_large", railTile, x, y, z);
 						break;
 					}
+					case SUPER_LONG_STRAIGHT: {
+						break;
+					}
 					case LONG_STRAIGHT:
 						break;
 					case MEDIUM_STRAIGHT: {
@@ -91,21 +96,31 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 						break;
 					}
 					case SMALL_STRAIGHT:{
-						modelSmallStraight.render("straight", railTile, x, y, z);break;
+						modelSmallStraight.render("straight", railTile, x, y, z);
+						break;
 					}
 					case SMALL_ROAD_CROSSING:{
-						modelRoadCrossing.render("crossing", railTile, x, y, z); break;
+						modelRoadCrossing.render("crossing", railTile, x, y, z);
+						break;
 					}
 					case SMALL_ROAD_CROSSING_1:{
-						modelRoadCrossing.render("crossing1", railTile, x, y, z); break;
+						modelRoadCrossing.render("crossing1", railTile, x, y, z);
+						break;
 					}
 					case SMALL_ROAD_CROSSING_2:{
-						modelRoadCrossing.render("crossing2", railTile, x, y, z); break;
+						modelRoadCrossing.render("crossing2", railTile, x, y, z);
+						break;
 					}
 					case TWO_WAYS_CROSSING: {
 						modelTwoWaysCrossing.render(x, y, z);
 						break;
 					}
+
+					case EMBEDDED_SMALL_STRAIGHT: {
+						modelEmbeddedSmallStraight.render("straight", railTile, x, y, z);
+						break;
+					}
+
 					case SLOPE_WOOD: {
 						modelSlope.render("wood", railTile, x, y, z);
 						break;
@@ -163,14 +178,7 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 						modelLeftTurn.render("super_large", railTile, x , y, z);
 						break;
 					}
-					case CONCRETE_SMALL_STRAIGHT: {
-						modelSmallStraight.render("concrete_small_straight", railTile, x , y, z);
-						break;
-					}
 
-					case SUPER_LONG: {
-						modelSmallStraight.render("super_long", railTile,x,y,z);
-					}
 				}
 
 
