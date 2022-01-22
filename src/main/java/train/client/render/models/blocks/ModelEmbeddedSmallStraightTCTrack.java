@@ -43,7 +43,7 @@ public class ModelEmbeddedSmallStraightTCTrack extends ModelBase {
         GL11.glColor4f(r, g, b, a);
 
         if (type.equals("straight")) {
-            FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_embedded_straight.png"));
+            FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
         }
 
         if (facing == 0) {
