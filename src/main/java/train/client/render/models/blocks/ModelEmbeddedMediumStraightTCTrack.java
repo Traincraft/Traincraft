@@ -12,15 +12,15 @@ import train.common.library.Info;
 import train.common.tile.TileTCRail;
 
 @SideOnly(Side.CLIENT)
-public class ModelMediumStraightTCTrack extends ModelBase {
-	private IModelCustom modelMediumStraight;
+public class ModelEmbeddedMediumStraightTCTrack extends ModelBase {
+	private IModelCustom modelEmbeddedMediumStraight;
 
-	public ModelMediumStraightTCTrack() {
-		modelMediumStraight = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_normal.obj"));
+	public ModelEmbeddedMediumStraightTCTrack() {
+		modelEmbeddedMediumStraight = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_embedded_straight.obj"));
 	}
 
 	public void render() {
-		modelMediumStraight.renderAll();
+		modelEmbeddedMediumStraight.renderAll();
 	}
 
 	public void render(TileTCRail tcRail, double x, double y, double z) {
@@ -28,14 +28,13 @@ public class ModelMediumStraightTCTrack extends ModelBase {
 		GL11.glPushMatrix();
 
 		// Move the object into the correct position on the block (because the OBJ's origin is the center of the object)
-		GL11.glTranslatef((float) x + 0.5f, (float) y, (float) z + 0.5f);
+		GL11.glTranslatef((float) x + 0.5f, (float) y - 0.025F, (float) z + 0.5f);
 
 		// Bind the texture, so that OpenGL properly textures our block.
 		FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
 		GL11.glColor4f(1, 1, 1, 1);
 		//GL11.glScalef(0.5f, 0.5f, 0.5f);
 		int facing = tcRail.getWorldObj().getBlockMetadata(tcRail.xCoord, tcRail.yCoord, tcRail.zCoord);
-
 
 		if (facing == 3) {
 			GL11.glRotatef(-90, 0, 1, 0);

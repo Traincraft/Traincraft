@@ -11,6 +11,7 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 	public static final ModelSmallStraightTCTrack modelRoadCrossing = new ModelSmallStraightTCTrack();
 	public static final ModelMediumStraightTCTrack modelMediumStraight = new ModelMediumStraightTCTrack();
 	public static final ModelEmbeddedSmallStraightTCTrack modelEmbeddedSmallStraight = new ModelEmbeddedSmallStraightTCTrack();
+	public static final ModelEmbeddedMediumStraightTCTrack modelEmbeddedMediumStraight = new ModelEmbeddedMediumStraightTCTrack();
 	public static final ModelRightTurnTCTrack modelRightTurn = new ModelRightTurnTCTrack();
 	public static final ModelLeftTurnTCTrack modelLeftTurn = new ModelLeftTurnTCTrack();
 	public static final ModelRightSwitchTCTrack modelRightSwitchTurn = new ModelRightSwitchTCTrack();
@@ -29,6 +30,9 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 	public void renderTileEntityAt(TileEntity var1, double x, double y, double z, float var8) {
 		if(var1 instanceof TileTCRail){
 			TileTCRail railTile = (TileTCRail) var1;
+
+
+
 
 			if (railTile.hasModel && railTile.getTrackType() != null) {
 				switch (railTile.getTrackType()){
@@ -118,6 +122,11 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 
 					case EMBEDDED_SMALL_STRAIGHT: {
 						modelEmbeddedSmallStraight.render("straight", railTile, x, y, z);
+						break;
+					}
+
+					case EMBEDDED_MEDIUM_STRAIGHT: {
+						modelEmbeddedMediumStraight.render(railTile, x, y, z);
 						break;
 					}
 

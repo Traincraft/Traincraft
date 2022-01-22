@@ -39,7 +39,7 @@ public class ModelEmbeddedSmallStraightTCTrack extends ModelBase {
         GL11.glPushMatrix();
 
         // Move the object into the correct position on the block (because the OBJ's origin is the center of the object)
-        GL11.glTranslatef((float) x + 0.5f, (float) y, (float) z + 0.5f);
+        GL11.glTranslatef((float) x + 0.5f, (float) y - 0.025F, (float) z + 0.5f);
         GL11.glColor4f(r, g, b, a);
 
         if (type.equals("straight")) {
