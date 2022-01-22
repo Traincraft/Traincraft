@@ -100,7 +100,7 @@ public class RecipeHandler {
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailVeryLargeSlopeSnowGravel.item, 1), "   ","  T"," T ", Character.valueOf('T'), ItemIDs.tcRailLargeSlopeSnowGravel.item);
 		GameRegistry.addShapelessRecipe(new ItemStack(ItemIDs.tcRailSuperLargeTurn.item, 1), ItemIDs.tcRailVeryLargeTurn.item, ItemIDs.tcRailVeryLargeTurn.item);
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.bolt.item, 16), " II", " I ", " I ", Character.valueOf('I'), Items.iron_ingot);
-		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailConcreteSmallStraight.item, 16), "I I", "IBI", "I I", Character.valueOf('I'), Items.iron_ingot, Character.valueOf('B'), ItemIDs.bolt.item);
+		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailEmbeddedSmallStraight.item, 16), "I I", "IBI", "I I", Character.valueOf('I'), Items.iron_ingot, Character.valueOf('B'), ItemIDs.bolt.item);
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailSmallStraight.item, 32), "I I", "BLB", "I I", Character.valueOf('I'), Items.iron_ingot, Character.valueOf('B'), ItemIDs.bolt.item, Character.valueOf('L'), Blocks.log);
 
 		//here we go paintbrush -hariesh

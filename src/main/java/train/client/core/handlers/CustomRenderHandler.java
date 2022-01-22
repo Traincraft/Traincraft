@@ -44,7 +44,7 @@ public class CustomRenderHandler {
         float r = 1;
         float g = 0;
         float b = 0;
-        float a = 0.5f;
+        float a = 0.8f;
         if (validPlacement) {
             r = 0;
             g = 1;
@@ -66,12 +66,15 @@ public class CustomRenderHandler {
         // Straights
         if (item.getTrackType() == ItemTCRail.TrackTypes.SMALL_STRAIGHT
                 || item.getTrackType() == ItemTCRail.TrackTypes.MEDIUM_STRAIGHT
-                || item.getTrackType() == ItemTCRail.TrackTypes.LONG_STRAIGHT) {
+                || item.getTrackType() == ItemTCRail.TrackTypes.LONG_STRAIGHT
+                || item.getTrackType() == ItemTCRail.TrackTypes.SUPER_LONG_STRAIGHT) {
             int length = 1;
             if (item.getTrackType() == ItemTCRail.TrackTypes.MEDIUM_STRAIGHT)
                 length = 3;
-            else if (item.getTrackType() == ItemTCRail.TrackTypes.LONG_STRAIGHT)
+            if (item.getTrackType() == ItemTCRail.TrackTypes.LONG_STRAIGHT)
                 length = 6;
+            else if (item.getTrackType() == ItemTCRail.TrackTypes.SUPER_LONG_STRAIGHT)
+                length = 12;
 
             for (int i = 0; i < length; i++) {
                 float dx = dir.getX() * i;
@@ -80,11 +83,22 @@ public class CustomRenderHandler {
             }
         }
 
+        if (item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_SMALL_STRAIGHT) {
+            int length = 1;
+
+            for (int i = 0; i < length; i++) {
+                float dx = dir.getX() * i;
+                float dz = dir.getY() * i;
+                RenderTCRail.modelEmbeddedSmallStraight.render("straight", facing, dx, 0, dz, r, g, b, a);
+            }
+        }
+
+
         // Crossing
         else if (item.getTrackType() == ItemTCRail.TrackTypes.SMALL_ROAD_CROSSING) {
             RenderTCRail.modelSmallStraight.render("crossing", facing, 0, 0, 0, r, g, b, 0.5f);
         }
-        else if (item.getTrackType() == ItemTCRail.TrackTypes.SUPER_LONG) {
+        else if (item.getTrackType() == ItemTCRail.TrackTypes.SUPER_LONG_STRAIGHT) {
             RenderTCRail.modelSmallStraight.render("super_long", facing, 0, 0, 0, r,g,b,0.5f);
         }
         else if (item.getTrackType() == ItemTCRail.TrackTypes.SMALL_ROAD_CROSSING_1) {

@@ -153,14 +153,17 @@ public class ClientProxy extends CommonProxy {
 		ClientRegistry.bindTileEntitySpecialRenderer(TilesignalSpanish.class, new RendersignalSpanish());
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockIDs.signalSpanish.block), new ItemRendersignalSpanish());
 
-		ClientRegistry.bindTileEntitySpecialRenderer(TiletrackConcrete.class, new RendertrackConcrete());
-		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockIDs.trackConcrete.block), new ItemRendertrackConcrete());
+		//ClientRegistry.bindTileEntitySpecialRenderer(TiletrackConcrete.class, new RendertrackEmbeddedSmallStraight());
+		//MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockIDs.trackConcrete.block), new ItemRendertrackEmbeddedSmallStraight());
+
 
 		ClientRegistry.bindTileEntitySpecialRenderer(TilekSignal.class, new RenderkSignal());
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockIDs.kSignal.block), new ItemRenderkSignal());
 
 		ClientRegistry.bindTileEntitySpecialRenderer(TileSpeedSign.class, new RenderSpeedSign());
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockIDs.speedSign.block), new ItemRenderSpeedSign());
+
+
 
 		/*
 		ClientRegistry.bindTileEntitySpecialRenderer(TileFortyFootContainer.class, new FortyFootContainerRender());

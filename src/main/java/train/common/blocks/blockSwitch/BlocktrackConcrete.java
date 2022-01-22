@@ -14,7 +14,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import train.common.Traincraft;
 import train.common.library.Info;
-import train.common.tile.tileSwitch.TiletrackConcrete;
+import train.common.tile.TiletrackEmbeddedSmallStraight;
 
 public class BlocktrackConcrete extends BlockContainer {
 
@@ -47,7 +47,7 @@ public class BlocktrackConcrete extends BlockContainer {
 
     @Override
     public TileEntity createNewTileEntity(World world, int meta) {
-        return new TiletrackConcrete();
+        return new TiletrackEmbeddedSmallStraight();
     }
 
     /**

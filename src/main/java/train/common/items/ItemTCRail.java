@@ -51,9 +51,17 @@ public class ItemTCRail extends ItemPart {
 		VERY_LARGE_RIGHT_TURN("VERY_LARGE_RIGHT_TURN", "TURN", ItemIDs.tcRailVeryLargeTurn, ""),
 		VERY_LARGE_LEFT_TURN("VERY_LARGE_LEFT_TURN", "TURN", ItemIDs.tcRailVeryLargeTurn, ""),
 
-		LONG_STRAIGHT("LONG_STRAIGHT", "STRAIGHT", ItemIDs.tcRailLongStraight, "1x6"),
-		MEDIUM_STRAIGHT("MEDIUM_STRAIGHT", "STRAIGHT", ItemIDs.tcRailMediumStraight, "1x3"),
+		SUPER_LARGE_TURN("SUPER_LARGE_TURN", "TURN", ItemIDs.tcRailSuperLargeTurn, "16x16"),
+		SUPER_LARGE_LEFT_TURN("SUPER_LARGE_LEFT_TURN", "TURN", ItemIDs.tcRailSuperLargeTurn, ""),
+		SUPER_LARGE_RIGHT_TURN("SUPER_LARGE_RIGHT_TURN", "TURN", ItemIDs.tcRailSuperLargeTurn, ""),
+
 		SMALL_STRAIGHT("SMALL_STRAIGHT", "STRAIGHT", ItemIDs.tcRailSmallStraight, "1x1"),
+		MEDIUM_STRAIGHT("MEDIUM_STRAIGHT", "STRAIGHT", ItemIDs.tcRailMediumStraight, "1x3"),
+		LONG_STRAIGHT("LONG_STRAIGHT", "STRAIGHT", ItemIDs.tcRailLongStraight, "1x6"),
+		SUPER_LONG_STRAIGHT("SUPER_LONG_STRAIGHT", "STRAIGHT", ItemIDs.tcRailSuperLongStraight, "1x12"),
+
+		EMBEDDED_SMALL_STRAIGHT("EMBEDDED_SMALL_STRAIGHT","STRAIGHT" ,ItemIDs.tcRailEmbeddedSmallStraight, "1x1"),
+
 
 		SMALL_ROAD_CROSSING("SMALL_ROAD_CROSSING", "STRAIGHT", ItemIDs.tcRailSmallRoadCrossing, "1x1"),
 		SMALL_ROAD_CROSSING_1("SMALL_ROAD_CROSSING_1", "STRAIGHT", ItemIDs.tcRailSmallRoadCrossing1, "1x1"),
@@ -82,11 +90,11 @@ public class ItemTCRail extends ItemPart {
 
 
 		 */
-		SUPER_LARGE_TURN("SUPER_LARGE_TURN", "TURN", ItemIDs.tcRailSuperLargeTurn, "16x16"),
-		SUPER_LARGE_LEFT_TURN("SUPER_LARGE_LEFT_TURN", "TURN", ItemIDs.tcRailSuperLargeTurn, ""),
-		SUPER_LARGE_RIGHT_TURN("SUPER_LARGE_RIGHT_TURN", "TURN", ItemIDs.tcRailSuperLargeTurn, ""),
 
-		CONCRETE_SMALL_STRAIGHT("CONCRETE_SMALL_STRAIGHT","STRAIGHT" ,ItemIDs.tcRailConcreteSmallStraight, "1x1"),
+
+
+
+
 		/*
 		CONCRETE_SUPER_LARGE_TURN("CONCRETE_SUPER_LARGE_TURN", "TURN", ItemIDs.tcRailConcreteSuperLargeTurn, "16x16"),
 		CONCRETE_SUPER_LARGE_LEFT_TURN("CONCRETE_SUPER_LARGE_LEFT_TURN", "TURN",  ItemIDs.tcRailConcreteSuperLargeTurn, ""),
@@ -94,7 +102,7 @@ public class ItemTCRail extends ItemPart {
 
 
 		 */
-		SUPER_LONG("SUPER_LONG", "STRAIGHT", ItemIDs.tcRailSuperLong, "1x12"),
+
 
 		;
 		private String label;
@@ -154,11 +162,11 @@ public class ItemTCRail extends ItemPart {
 				|| tile.getType().equals(TrackTypes.MEDIUM_STRAIGHT.getLabel())
 				|| tile.getType().equals(TrackTypes.LONG_STRAIGHT.getLabel())
 				|| tile.getType().equals(TrackTypes.SMALL_STRAIGHT.getLabel())
-				|| tile.getType().equals(TrackTypes.CONCRETE_SMALL_STRAIGHT.getLabel())
+				|| tile.getType().equals(TrackTypes.EMBEDDED_SMALL_STRAIGHT.getLabel())
 				|| tile.getType().equals(TrackTypes.SMALL_ROAD_CROSSING.getLabel())
 				|| tile.getType().equals(TrackTypes.SMALL_ROAD_CROSSING_1.getLabel())
 				|| tile.getType().equals(TrackTypes.SMALL_ROAD_CROSSING_2.getLabel())
-				|| tile.getType().equals(TrackTypes.SUPER_LONG.getLabel())
+				|| tile.getType().equals(TrackTypes.SUPER_LONG_STRAIGHT.getLabel())
 				;
 	}
 
@@ -374,7 +382,7 @@ public class ItemTCRail extends ItemPart {
 				|| type == TrackTypes.SMALL_ROAD_CROSSING
 				|| type == TrackTypes.SMALL_ROAD_CROSSING_1
 				|| type == TrackTypes.SMALL_ROAD_CROSSING_2
-				|| type == TrackTypes.CONCRETE_SMALL_STRAIGHT)
+				|| type == TrackTypes.EMBEDDED_SMALL_STRAIGHT)
 			return new int[][]{ {0,0} };
 		else if ( type == TrackTypes.MEDIUM_STRAIGHT )
 			return new int[][]{ {0,0}, {1,0}, {2,0} };
@@ -384,7 +392,7 @@ public class ItemTCRail extends ItemPart {
 				|| type == TrackTypes.SLOPE_WOOD
 				|| type == TrackTypes.SLOPE_SNOW_GRAVEL )
 			return new int[][]{ {0,0}, {1,0}, {2,0}, {3,0}, {4,0}, {5,0} };
-		else if ( type == TrackTypes.SUPER_LONG)
+		else if ( type == TrackTypes.SUPER_LONG_STRAIGHT)
 			return new int[][]{ {0,0}, {1,0}, {2,0}, {3,0}, {4,0}, {5,0}, {6,0}, {7,0}, {8,0}, {9,0}, {10,0}, {11,0}};
 		else if ( type == TrackTypes.LARGE_SLOPE_BALLAST
 				|| type == TrackTypes.LARGE_SLOPE_GRAVEL
@@ -562,11 +570,11 @@ public class ItemTCRail extends ItemPart {
 					tempType = TrackTypes.SUPER_LARGE_LEFT_TURN;
 				}
 			}
-			if (type == TrackTypes.CONCRETE_SMALL_STRAIGHT){
-				tempType = TrackTypes.CONCRETE_SMALL_STRAIGHT;
+			if (type == TrackTypes.EMBEDDED_SMALL_STRAIGHT){
+				tempType = TrackTypes.EMBEDDED_SMALL_STRAIGHT;
 			}
-			if (type == TrackTypes.SUPER_LONG){
-				tempType = TrackTypes.SUPER_LONG;
+			if (type == TrackTypes.SUPER_LONG_STRAIGHT){
+				tempType = TrackTypes.SUPER_LONG_STRAIGHT;
 			}
 
 
@@ -1407,12 +1415,12 @@ public class ItemTCRail extends ItemPart {
 			}
 
 
-			if (tempType == TrackTypes.CONCRETE_SMALL_STRAIGHT){
+		if (tempType == TrackTypes.EMBEDDED_SMALL_STRAIGHT){
 				if (l == 2) {
 					int[] xArray = { x,};
 					int[] zArray = { z,};
 					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 1, x , z , 0, x,
-							y + 1, z, TrackTypes.CONCRETE_SMALL_STRAIGHT.getLabel(), ItemIDs.tcRailConcreteSmallStraight.item))
+							y + 1, z, TrackTypes.EMBEDDED_SMALL_STRAIGHT.getLabel(), ItemIDs.tcRailEmbeddedSmallStraight.item))
 						return false;
 
 				}
@@ -1420,7 +1428,7 @@ public class ItemTCRail extends ItemPart {
 					int[] xArray = { x,};
 					int[] zArray = { z,};
 					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 1, x , z , 0, x,
-							y + 1, z, TrackTypes.CONCRETE_SMALL_STRAIGHT.getLabel(), ItemIDs.tcRailConcreteSmallStraight.item))
+							y + 1, z, TrackTypes.EMBEDDED_SMALL_STRAIGHT.getLabel(), ItemIDs.tcRailEmbeddedSmallStraight.item))
 						return false;
 
 				}
@@ -1428,7 +1436,7 @@ public class ItemTCRail extends ItemPart {
 					int[] xArray = { x,};
 					int[] zArray = { z,};
 					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 2, x , z , 0, x,
-							y + 1, z, TrackTypes.CONCRETE_SMALL_STRAIGHT.getLabel(), ItemIDs.tcRailConcreteSmallStraight.item))
+							y + 1, z, TrackTypes.EMBEDDED_SMALL_STRAIGHT.getLabel(), ItemIDs.tcRailEmbeddedSmallStraight.item))
 						return false;
 
 				}
@@ -1436,18 +1444,18 @@ public class ItemTCRail extends ItemPart {
 					int[] xArray = { x,};
 					int[] zArray = { z,};
 					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 0, x , z , 0, x,
-							y + 1, z, TrackTypes.CONCRETE_SMALL_STRAIGHT.getLabel(), ItemIDs.tcRailConcreteSmallStraight.item))
+							y + 1, z, TrackTypes.EMBEDDED_SMALL_STRAIGHT.getLabel(), ItemIDs.tcRailEmbeddedSmallStraight.item))
 						return false;
 				}
 			}
 
-			if (tempType == TrackTypes.SUPER_LONG){
+			if (tempType == TrackTypes.SUPER_LONG_STRAIGHT){
 				if (l == 2) {
 					int[] xArray = { x,x,x,x,x,x,x,x,x,x,x,x};
 					int[] zArray = { z, z-1, z-2, z-3, z-4, z-5, z-6, z-7, z-8, z-9, z-10, z-11};
 
 					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 1, x , z - 11 , 0, x,
-							y + 1, z, TrackTypes.SUPER_LONG.getLabel(), ItemIDs.tcRailSuperLong.item))
+							y + 1, z, TrackTypes.SUPER_LONG_STRAIGHT.getLabel(), ItemIDs.tcRailSuperLongStraight.item))
 						return false;
 
 
@@ -1457,7 +1465,7 @@ public class ItemTCRail extends ItemPart {
 					int[] xArray = { x,x,x,x,x,x,x,x,x,x,x,x};
 					int[] zArray = { z, z+1, z+2, z+3, z+4, z+5, z+6, z+7, z+8, z+9, z+10, z+11};
 					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 1, x , z , 0, x,
-							y + 1, z, TrackTypes.SUPER_LONG.getLabel(), ItemIDs.tcRailSuperLong.item))
+							y + 1, z, TrackTypes.SUPER_LONG_STRAIGHT.getLabel(), ItemIDs.tcRailSuperLongStraight.item))
 						return false;
 
 				}
@@ -1465,7 +1473,7 @@ public class ItemTCRail extends ItemPart {
 					int[] xArray = { x, x-1, x-2, x-3, x-4, x-5, x-6, x-7, x-8, x-9, x-10, x-11};
 					int[] zArray =  { z,z,z,z,z,z,z,z,z,z,z,z};
 					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 2, x , z , 0, x,
-							y + 1, z, TrackTypes.SUPER_LONG.getLabel(), ItemIDs.tcRailSuperLong.item))
+							y + 1, z, TrackTypes.SUPER_LONG_STRAIGHT.getLabel(), ItemIDs.tcRailSuperLongStraight.item))
 						return false;
 
 				}
@@ -1473,7 +1481,7 @@ public class ItemTCRail extends ItemPart {
 					int[] xArray = { x, x+1, x+2, x+3, x+4, x+5, x+6, x+7, x+8, x+9, x+10, x+11};
 					int[] zArray =  { z,z,z,z,z,z,z,z,z,z,z,z};
 					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 0, x , z , 0, x,
-							y + 1, z, TrackTypes.SUPER_LONG.getLabel(), ItemIDs.tcRailSuperLong.item))
+							y + 1, z, TrackTypes.SUPER_LONG_STRAIGHT.getLabel(), ItemIDs.tcRailSuperLongStraight.item))
 						return false;
 				}
 			}

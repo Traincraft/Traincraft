@@ -69,6 +69,8 @@ public class TCItems {
 		ItemIDs.tcRailMediumTurn.item = new ItemTCRail(ItemTCRail.TrackTypes.MEDIUM_TURN);
 		ItemIDs.tcRailLargeTurn.item = new ItemTCRail(ItemTCRail.TrackTypes.LARGE_TURN);
 		ItemIDs.tcRailVeryLargeTurn.item = new ItemTCRail(ItemTCRail.TrackTypes.VERY_LARGE_TURN);
+		ItemIDs.tcRailSuperLargeTurn.item = new ItemTCRail(ItemTCRail.TrackTypes.SUPER_LARGE_TURN);
+		ItemIDs.tcRailSuperLongStraight.item = new ItemTCRail(ItemTCRail.TrackTypes.SUPER_LONG_STRAIGHT);
 		ItemIDs.tcRailLongStraight.item = new ItemTCRail(ItemTCRail.TrackTypes.LONG_STRAIGHT);
 		ItemIDs.tcRailMediumStraight.item = new ItemTCRail(ItemTCRail.TrackTypes.MEDIUM_STRAIGHT);
 		ItemIDs.tcRailSmallStraight.item = new ItemTCRail(ItemTCRail.TrackTypes.SMALL_STRAIGHT);
@@ -80,7 +82,7 @@ public class TCItems {
 		ItemIDs.tcRailMediumParallelSwitch.item = new ItemTCRail(ItemTCRail.TrackTypes.MEDIUM_PARALLEL_SWITCH);
 
 		//ItemIDs.tcRailVeryLargeSwitch.item = new ItemTCRail(ItemTCRail.TrackTypes.VERY_LARGE_SWITCH);
-		ItemIDs.tcRailSuperLargeTurn.item = new ItemTCRail(ItemTCRail.TrackTypes.SUPER_LARGE_TURN);
+
 
 
 		ItemIDs.tcRailTwoWaysCrossing.item = new ItemTCRail(ItemTCRail.TrackTypes.TWO_WAYS_CROSSING);
@@ -96,7 +98,7 @@ public class TCItems {
 		ItemIDs.tcRailSlopeSnowGravel.item = new ItemTCRail(ItemTCRail.TrackTypes.SLOPE_SNOW_GRAVEL);
 		ItemIDs.tcRailLargeSlopeSnowGravel.item = new ItemTCRail(ItemTCRail.TrackTypes.LARGE_SLOPE_SNOW_GRAVEL);
 		ItemIDs.tcRailVeryLargeSlopeSnowGravel.item = new ItemTCRail(ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_SNOW_GRAVEL);
-		ItemIDs.tcRailConcreteSmallStraight.item = new ItemTCRail(ItemTCRail.TrackTypes.CONCRETE_SMALL_STRAIGHT);
+		ItemIDs.tcRailEmbeddedSmallStraight.item = new ItemTCRail(ItemTCRail.TrackTypes.EMBEDDED_SMALL_STRAIGHT);
 		//ItemIDs.tcRailConcreteSuperLargeTurn.item = new ItemTCRail(ItemTCRail.TrackTypes.CONCRETE_SUPER_LARGE_TURN);
 		//ItemIDs.tcRailSuperLong.item = new ItemTCRail(ItemTCRail.TrackTypes.SUPER_LONG);
 
