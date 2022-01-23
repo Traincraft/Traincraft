@@ -193,7 +193,7 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 		if(tileentity!=null && tileentity instanceof TileTCRailGag){
 			TileTCRailGag tileGag = (TileTCRailGag) tileentity;
 			TileTCRail tile = (TileTCRail) par3World.getTileEntity(tileGag.originX, tileGag.originY, tileGag.originZ);
-			if(tile!=null && tile.getType().equals(TrackTypes.MEDIUM_STRAIGHT.getLabel()) ){
+			if(tile!=null && tile.getType().equals(TrackTypes.MEDIUM_STRAIGHT.getLabel()) || tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_STRAIGHT.getLabel()) ){
 				this.placeCart(par2EntityPlayer, par1ItemStack, par3World, par4, par5, par6);
 				return true;
 			}

@@ -39,22 +39,26 @@ public class ModelEmbeddedSmallStraightTCTrack extends ModelBase {
         GL11.glPushMatrix();
 
         // Move the object into the correct position on the block (because the OBJ's origin is the center of the object)
-        GL11.glTranslatef((float) x + 0.5f, (float) y - 0.025F, (float) z + 0.5f);
+        GL11.glTranslatef((float) x + 0.5f, (float) y , (float) z + 0.5f);
         GL11.glColor4f(r, g, b, a);
 
         if (type.equals("straight")) {
             FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
         }
 
-        if (facing == 0) {
+        if (facing == 3) {
             GL11.glRotatef(90, 0, 1, 0);
+            if (type.equals("super_long")){
+                GL11.glRotatef(180, 0, 1,0);
+            }
         }
         if (facing == 1) {
             GL11.glRotatef(90, 0, 1, 0);
         }
-
-        if (facing == 3) {
-            GL11.glRotatef(90, 0, 1, 0);
+        if (facing == 0) {
+            if (type.equals("super_long")){
+                GL11.glRotatef(180, 0, 1, 0);
+            }
         }
 
         render(type);

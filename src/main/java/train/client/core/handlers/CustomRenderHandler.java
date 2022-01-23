@@ -110,9 +110,6 @@ public class CustomRenderHandler {
         else if (item.getTrackType() == ItemTCRail.TrackTypes.SMALL_ROAD_CROSSING) {
             RenderTCRail.modelSmallStraight.render("crossing", facing, 0, 0, 0, r, g, b, 0.5f);
         }
-        else if (item.getTrackType() == ItemTCRail.TrackTypes.SUPER_LONG_STRAIGHT) {
-            RenderTCRail.modelSmallStraight.render("super_long", facing, 0, 0, 0, r,g,b,0.5f);
-        }
         else if (item.getTrackType() == ItemTCRail.TrackTypes.SMALL_ROAD_CROSSING_1) {
             RenderTCRail.modelSmallStraight.render("crossing1", facing, 0, 0, 0, r, g, b, 0.5f);
         }

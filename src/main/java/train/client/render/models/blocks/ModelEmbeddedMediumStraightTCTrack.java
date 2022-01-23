@@ -28,7 +28,7 @@ public class ModelEmbeddedMediumStraightTCTrack extends ModelBase {
 		GL11.glPushMatrix();
 
 		// Move the object into the correct position on the block (because the OBJ's origin is the center of the object)
-		GL11.glTranslatef((float) x + 0.5f, (float) y - 0.025F, (float) z + 0.5f);
+		GL11.glTranslatef((float) x + 0.5f, (float) y , (float) z + 0.5f);
 
 		// Bind the texture, so that OpenGL properly textures our block.
 		FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
