@@ -69,7 +69,7 @@ public class TCItems {
 		ItemIDs.tcRailSmallStraight.item = new ItemTCRail(ItemTCRail.TrackTypes.SMALL_STRAIGHT);
 		ItemIDs.tcRailMediumStraight.item = new ItemTCRail(ItemTCRail.TrackTypes.MEDIUM_STRAIGHT);
 		ItemIDs.tcRailLongStraight.item = new ItemTCRail(ItemTCRail.TrackTypes.LONG_STRAIGHT);
-		ItemIDs.tcRailSuperLongStraight.item = new ItemTCRail(ItemTCRail.TrackTypes.SUPER_LONG_STRAIGHT);
+		ItemIDs.tcRailVeryLongStraight.item = new ItemTCRail(ItemTCRail.TrackTypes.VERY_LONG_STRAIGHT);
 
 		/**Embedded Straights*/
 

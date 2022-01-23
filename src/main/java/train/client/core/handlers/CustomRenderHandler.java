@@ -68,13 +68,13 @@ public class CustomRenderHandler {
         if (item.getTrackType() == ItemTCRail.TrackTypes.SMALL_STRAIGHT
                 || item.getTrackType() == ItemTCRail.TrackTypes.MEDIUM_STRAIGHT
                 || item.getTrackType() == ItemTCRail.TrackTypes.LONG_STRAIGHT
-                || item.getTrackType() == ItemTCRail.TrackTypes.SUPER_LONG_STRAIGHT) {
+                || item.getTrackType() == ItemTCRail.TrackTypes.VERY_LONG_STRAIGHT) {
             int length = 1;
             if (item.getTrackType() == ItemTCRail.TrackTypes.MEDIUM_STRAIGHT)
                 length = 3;
             if (item.getTrackType() == ItemTCRail.TrackTypes.LONG_STRAIGHT)
                 length = 6;
-            else if (item.getTrackType() == ItemTCRail.TrackTypes.SUPER_LONG_STRAIGHT)
+            else if (item.getTrackType() == ItemTCRail.TrackTypes.VERY_LONG_STRAIGHT)
                 length = 12;
 
             for (int i = 0; i < length; i++) {

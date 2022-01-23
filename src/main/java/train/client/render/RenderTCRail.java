@@ -90,7 +90,7 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 						modelLeftTurn.render("very_large", railTile, x, y, z);
 						break;
 					}
-					case SUPER_LONG_STRAIGHT: {
+					case VERY_LONG_STRAIGHT: {
 						break;
 					}
 					case LONG_STRAIGHT:

@@ -303,7 +303,7 @@ public enum ItemIDs {
 	tcRailSmallStraight("ItemTCRail", "item_rail_straight_small", 5),
 	tcRailMediumStraight("ItemTCRail", "item_rail_straight_medium", 5),
 	tcRailLongStraight("ItemTCRail", "item_rail_straight_large", 5),
-	tcRailSuperLongStraight("ItemTCRail", "item_rail_straight_super_large", 5),
+	tcRailVeryLongStraight("ItemTCRail", "item_rail_straight_very_large", 5),
 
 	tcRailEmbeddedSmallStraight("ItemTCRail","item_rail_straight_embedded_small_", 5),
 	tcRailEmbeddedMediumStraight("ItemTCRail", "item_rail_straight_embedded_medium", 5),
