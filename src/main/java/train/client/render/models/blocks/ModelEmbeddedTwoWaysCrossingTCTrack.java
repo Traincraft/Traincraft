@@ -11,15 +11,14 @@ import org.lwjgl.opengl.GL11;
 import train.common.library.Info;
 
 @SideOnly(Side.CLIENT)
-public class ModelTwoWaysCrossingTCTrack extends ModelBase {
-	private IModelCustom modelTwoWaysCrossing;
+public class ModelEmbeddedTwoWaysCrossingTCTrack extends ModelBase {
+	private IModelCustom modelEmbeddedTwoWaysCrossing;
 
-
-	public ModelTwoWaysCrossingTCTrack() {
-		modelTwoWaysCrossing = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_x.obj"));}
+	public ModelEmbeddedTwoWaysCrossingTCTrack() {
+		modelEmbeddedTwoWaysCrossing = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_embedded_x.obj"));}
 
 	public void render() {
-		modelTwoWaysCrossing.renderAll();
+		modelEmbeddedTwoWaysCrossing.renderAll();
 	}
 
 

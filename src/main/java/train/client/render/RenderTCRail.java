@@ -14,9 +14,12 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 	public static final ModelEmbeddedMediumStraightTCTrack modelEmbeddedMediumStraight = new ModelEmbeddedMediumStraightTCTrack();
 	public static final ModelRightTurnTCTrack modelRightTurn = new ModelRightTurnTCTrack();
 	public static final ModelLeftTurnTCTrack modelLeftTurn = new ModelLeftTurnTCTrack();
+	public static final ModelEmbeddedRightTurnTCTrack modelEmbeddedRightTurn = new ModelEmbeddedRightTurnTCTrack();
+	public static final ModelEmbeddedLeftTurnTCTrack modelEmbeddedLeftTurn = new ModelEmbeddedLeftTurnTCTrack();
 	public static final ModelRightSwitchTCTrack modelRightSwitchTurn = new ModelRightSwitchTCTrack();
 	public static final ModelLeftSwitchTCTrack modelLeftSwitchTurn = new ModelLeftSwitchTCTrack();
 	public static final ModelTwoWaysCrossingTCTrack modelTwoWaysCrossing = new ModelTwoWaysCrossingTCTrack();
+	public static final ModelEmbeddedTwoWaysCrossingTCTrack modelEmbeddedTwoWaysCrossing = new ModelEmbeddedTwoWaysCrossingTCTrack();
 	public static final ModelSlopeTCTrack modelSlope = new ModelSlopeTCTrack();
 	public static final ModelLargeSlopeTCTrack modelLargeSlope = new ModelLargeSlopeTCTrack();
 	public static final ModelVeryLargeSlopeTCTrack	modelVeryLargeSlope = new ModelVeryLargeSlopeTCTrack();
@@ -45,6 +48,43 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 						modelLeftTurn.render("medium", railTile, x, y, z);
 						break;
 					}
+					case EMBEDDED_MEDIUM_TURN:
+					case EMBEDDED_MEDIUM_RIGHT_TURN: {
+						modelEmbeddedRightTurn.render("medium", railTile, x, y, z);
+						break;
+					}
+					case EMBEDDED_MEDIUM_LEFT_TURN: {
+						modelEmbeddedLeftTurn.render("medium", railTile, x, y, z);
+						break;
+					}
+					case EMBEDDED_LARGE_TURN:
+					case EMBEDDED_LARGE_RIGHT_TURN: {
+						modelEmbeddedRightTurn.render("large", railTile, x, y, z);
+						break;
+					}
+					case EMBEDDED_LARGE_LEFT_TURN: {
+						modelEmbeddedLeftTurn.render("large", railTile, x, y, z);
+						break;
+					}
+					case EMBEDDED_VERY_LARGE_TURN:
+					case EMBEDDED_VERY_LARGE_RIGHT_TURN: {
+						modelEmbeddedRightTurn.render("very_large", railTile, x, y, z);
+						break;
+					}
+					case EMBEDDED_VERY_LARGE_LEFT_TURN: {
+						modelEmbeddedLeftTurn.render("very_large", railTile, x, y, z);
+						break;
+					}
+					case EMBEDDED_SUPER_LARGE_TURN:
+					case EMBEDDED_SUPER_LARGE_RIGHT_TURN: {
+						modelEmbeddedRightTurn.render("super_large", railTile, x, y, z);
+						break;
+					}
+					case EMBEDDED_SUPER_LARGE_LEFT_TURN: {
+						modelEmbeddedLeftTurn.render("super_large", railTile, x, y, z);
+						break;
+					}
+					
 					case MEDIUM_SWITCH:
 					case MEDIUM_RIGHT_SWITCH: {
 						modelRightSwitchTurn.render("medium", railTile, x, y, z);
@@ -90,11 +130,23 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 						modelLeftTurn.render("very_large", railTile, x, y, z);
 						break;
 					}
-					case VERY_LONG_STRAIGHT: {
+					case SUPER_LARGE_TURN:
+					case SUPER_LARGE_RIGHT_TURN: {
+						modelRightTurn.render("super_large", railTile, x , y, z);
 						break;
 					}
-					case LONG_STRAIGHT:
+					case SUPER_LARGE_LEFT_TURN: {
+						modelLeftTurn.render("super_large", railTile, x , y, z);
 						break;
+					}
+					case VERY_LONG_STRAIGHT: {
+						modelMediumStraight.render(railTile, x, y, z);
+						break;
+					}
+					case LONG_STRAIGHT: {
+						modelMediumStraight.render(railTile, x, y, z);
+						break;
+					}
 					case MEDIUM_STRAIGHT: {
 						modelMediumStraight.render(railTile, x, y, z);
 						break;
@@ -120,12 +172,26 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 						break;
 					}
 
+					case EMBEDDED_TWO_WAYS_CROSSING: {
+						modelEmbeddedTwoWaysCrossing.render(x, y, z);
+						break;
+					}
+
 					case EMBEDDED_SMALL_STRAIGHT: {
 						modelEmbeddedSmallStraight.render("straight", railTile, x, y, z);
 						break;
 					}
 
 					case EMBEDDED_MEDIUM_STRAIGHT: {
+						modelEmbeddedMediumStraight.render(railTile, x, y, z);
+						break;
+					}
+
+					case EMBEDDED_LONG_STRAIGHT: {
+						modelEmbeddedMediumStraight.render(railTile, x, y, z);
+						break;
+					}
+					case EMBEDDED_VERY_LONG_STRAIGHT: {
 						modelEmbeddedMediumStraight.render(railTile, x, y, z);
 						break;
 					}
@@ -179,14 +245,6 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 						break;
 					}
 
-					case SUPER_LARGE_RIGHT_TURN: {
-						modelRightTurn.render("super_large", railTile, x , y, z);
-						break;
-					}
-					case SUPER_LARGE_LEFT_TURN: {
-						modelLeftTurn.render("super_large", railTile, x , y, z);
-						break;
-					}
 
 				}
 

@@ -12,29 +12,25 @@ import train.common.library.Info;
 import train.common.tile.TileTCRail;
 
 @SideOnly(Side.CLIENT)
-public class ModelLeftTurnTCTrack extends ModelBase {
-	private IModelCustom modelMediumLeftTurn;
-	private IModelCustom modelLargeLeftTurn;
-	private IModelCustom modelVeryLargeLeftTurn;
-	private IModelCustom modelSuperLargeLeftTurn;
+public class ModelEmbeddedLeftTurnTCTrack extends ModelBase {
+	private IModelCustom modelEmbeddedMediumLeftTurn;
+	private IModelCustom modelEmbeddedLargeLeftTurn;
+	private IModelCustom modelEmbeddedVeryLargeLeftTurn;
+	private IModelCustom modelEmbeddedSuperLargeLeftTurn;
 
-	public ModelLeftTurnTCTrack() {
-		modelMediumLeftTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_medium.obj"));
-		modelLargeLeftTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_big.obj"));
-		modelVeryLargeLeftTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_very_big.obj"));
-		modelSuperLargeLeftTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_super_big.obj"));
+	public ModelEmbeddedLeftTurnTCTrack() {
+		modelEmbeddedMediumLeftTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_embedded_curve_medium.obj"));
+		modelEmbeddedLargeLeftTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_embedded_curve_big.obj"));
+		modelEmbeddedVeryLargeLeftTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_embedded_curve_very_big.obj"));
+		modelEmbeddedSuperLargeLeftTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_embedded_curve_super_big.obj"));
 	}
 
-	public void renderMedium() {
-		modelMediumLeftTurn.renderAll();
+	public void renderEmbeddedMedium() {
+		modelEmbeddedMediumLeftTurn.renderAll();
 	}
-	public void renderLarge() {
-		modelLargeLeftTurn.renderAll();
-	}
-	public void renderVeryLarge() {
-		modelVeryLargeLeftTurn.renderAll();
-	}
-	public void renderSuperLarge() { modelSuperLargeLeftTurn.renderAll();}
+	public void renderEmbeddedLarge() {modelEmbeddedLargeLeftTurn.renderAll();}
+	public void renderEmbeddedVeryLarge() {modelEmbeddedVeryLargeLeftTurn.renderAll();}
+	public void renderEmbeddedSuperLarge() { modelEmbeddedSuperLargeLeftTurn.renderAll();}
 
 	public void render(String type, TileTCRail tcRail, double x, double y, double z) {
 		int facing = tcRail.getWorldObj().getBlockMetadata(tcRail.xCoord, tcRail.yCoord, tcRail.zCoord);
@@ -97,10 +93,10 @@ public class ModelLeftTurnTCTrack extends ModelBase {
 				GL11.glTranslatef(0.5f,0f,5.5f);
 		}
 
-		if(type.equals("medium"))this.renderMedium();
-		if(type.equals("large"))this.renderLarge();
-		if(type.equals("very_large"))this.renderVeryLarge();
-		if(type.equals("super_large"))this.renderSuperLarge();
+		if(type.equals("medium"))this.renderEmbeddedMedium();
+		if(type.equals("large"))this.renderEmbeddedLarge();
+		if(type.equals("very_large"))this.renderEmbeddedVeryLarge();
+		if(type.equals("super_large"))this.renderEmbeddedSuperLarge();
 
 		// Pop this matrix from the stack.
 		GL11.glPopMatrix();
