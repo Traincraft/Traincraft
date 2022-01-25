@@ -5,7 +5,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
@@ -167,30 +166,63 @@ public class CustomRenderHandler {
         else if (item.getTrackType() == ItemTCRail.TrackTypes.MEDIUM_TURN
             || item.getTrackType() == ItemTCRail.TrackTypes.LARGE_TURN
             || item.getTrackType() == ItemTCRail.TrackTypes.VERY_LARGE_TURN
-            || item.getTrackType() == ItemTCRail.TrackTypes.VERY_LARGE_TURN
-            || item.getTrackType() == ItemTCRail.TrackTypes.SUPER_LARGE_TURN)
+           // || item.getTrackType() == ItemTCRail.TrackTypes.SUPER_LARGE_TURN
+            || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_MEDIUM_TURN
+            || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_LARGE_TURN
+            || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_VERY_LARGE_TURN
+            //|| item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_SUPER_LARGE_TURN
+        )
+
         {
             float yaw = MathHelper.wrapAngleTo180_float(player.rotationYaw);
             boolean isLeftTurn = item.getTrackOrientation( facing, yaw ).equals("left");
 
-            String turnSize = "medium";
-            if ( item.getTrackType() == ItemTCRail.TrackTypes.LARGE_TURN )
-                turnSize = "large";
-            else if ( item.getTrackType() == ItemTCRail.TrackTypes.VERY_LARGE_TURN )
-                turnSize = "very_large";
-            else if ( item.getTrackType() == ItemTCRail.TrackTypes.SUPER_LARGE_TURN)
-                turnSize = "super_large";
-            if ( isLeftTurn )
-            {
-                RenderTCRail.modelLeftTurn.render( turnSize, facing, 0, 0, 0, r, g, b, a );
-            } else
-            {
-                RenderTCRail.modelRightTurn.render( turnSize, facing, 0, 0, 0, r, g, b, a );
+
+            if (item.getTrackType() == ItemTCRail.TrackTypes.MEDIUM_TURN || item.getTrackType() == ItemTCRail.TrackTypes.LARGE_TURN
+                || item.getTrackType() == ItemTCRail.TrackTypes.VERY_LARGE_TURN || item.getTrackType() == ItemTCRail.TrackTypes.SUPER_LARGE_TURN) {
+                String turnSize = "medium";
+                if ( item.getTrackType() == ItemTCRail.TrackTypes.LARGE_TURN )
+                    turnSize = "large";
+                else if ( item.getTrackType() == ItemTCRail.TrackTypes.VERY_LARGE_TURN )
+                    turnSize = "very_large";
+                else if ( item.getTrackType() == ItemTCRail.TrackTypes.SUPER_LARGE_TURN)
+                    turnSize = "super_large";
+                if ( isLeftTurn )
+                {
+                    RenderTCRail.modelLeftTurn.render( turnSize, facing, 0, 0, 0, r, g, b, a );
+                } else
+                {
+                    RenderTCRail.modelRightTurn.render( turnSize, facing, 0, 0, 0, r, g, b, a );
+                }
             }
+
+            if (item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_MEDIUM_TURN || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_LARGE_TURN
+                || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_VERY_LARGE_TURN || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_SUPER_LARGE_TURN){
+                String turnSize = "medium";
+                if ( item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_LARGE_TURN )
+                    turnSize = "large";
+                else if ( item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_VERY_LARGE_TURN )
+                    turnSize = "very_large";
+                else if ( item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_SUPER_LARGE_TURN)
+                    turnSize = "super_large";
+                if ( isLeftTurn )
+                {
+                    RenderTCRail.modelEmbeddedLeftTurn.render( turnSize, facing, 0, 0, 0, r, g, b, a );
+                } else
+                {
+                    RenderTCRail.modelEmbeddedRightTurn.render( turnSize, facing, 0, 0, 0, r, g, b, a );
+                }
+            }
+
+
+
+
+
+
 
         }
 
-            // switchs
+            // switches
         else if (item.getTrackType() == ItemTCRail.TrackTypes.MEDIUM_SWITCH
                 || item.getTrackType() == ItemTCRail.TrackTypes.MEDIUM_PARALLEL_SWITCH
                 || item.getTrackType() == ItemTCRail.TrackTypes.LARGE_SWITCH )
