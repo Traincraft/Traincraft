@@ -253,6 +253,7 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 					}
 					case SMALL_LEFT_PARALLEL_CURVE:{
 						modelLeftParallelCurve.render("small", railTile, x, y, z);
+						break;
 					}
 
 					case MEDIUM_PARALLEL_CURVE:

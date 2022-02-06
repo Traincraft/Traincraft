@@ -1292,8 +1292,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			this.posX = (this.boundingBox.minX + this.boundingBox.maxX) / 2.0D;
 			this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
 			this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) / 2.0D;
-			System.out.println(rotationPitch + " + " + rotationYaw);
-			//System.out.println("straight z "+Math.copySign(norm, motionZ));
+
 		}
 		if (meta == 1 || meta == 3) {
 
@@ -1394,7 +1393,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 	int check = 0;
 	protected void moveOnTC90TurnRail(int i, int j, int k, double r, double cx, double cz) {
 		check++;
-		//System.out.println("curve " + check);
+
 		posY = j + 0.2;
 		double cpx = posX - cx;
 		double cpz = posZ - cz;
@@ -1419,7 +1418,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 
 		motionX = vx2;
 		motionZ = vz2;
-		//System.out.println("rotationyaw " + rotationYaw);
+
 
 	}
 

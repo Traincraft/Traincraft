@@ -1,6 +1,8 @@
 package train.client.render.models.blocks;
 
 import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.AdvancedModelLoader;
@@ -9,6 +11,7 @@ import org.lwjgl.opengl.GL11;
 import train.common.library.Info;
 import train.common.tile.TileTCRail;
 
+@SideOnly(Side.CLIENT)
 public class ModelLeftParallelCurveTCTrack extends ModelBase {
 
     private IModelCustom modelSmallLeftParallelCurve;
@@ -16,9 +19,9 @@ public class ModelLeftParallelCurveTCTrack extends ModelBase {
     private IModelCustom modelLargeLeftParallelCurve;
 
     public ModelLeftParallelCurveTCTrack() {
-        modelSmallLeftParallelCurve = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_parallel_s.obj"));
-        modelMediumLeftParallelCurve = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_parallel_m.obj"));
-        modelLargeLeftParallelCurve = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_parallel_l.obj"));
+        modelSmallLeftParallelCurve = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_parallel_s_left.obj"));
+        modelMediumLeftParallelCurve = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_parallel_m_left.obj"));
+        modelLargeLeftParallelCurve = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_parallel_l_left.obj"));
     }
 
     public void renderSmall() {modelSmallLeftParallelCurve.renderAll();}
@@ -49,14 +52,16 @@ public class ModelLeftParallelCurveTCTrack extends ModelBase {
          */
         if (facing == 0) {
             GL11.glRotatef(180, 0, 1, 0);
-            GL11.glTranslatef(1, 0.0f, 5);
-
-
+            if(type == "small") {
+                GL11.glTranslatef(1, 0.0f, 7);
+            }
         }
 
         if (facing == 1) {
             GL11.glRotatef(90, 0, 1, 0);
-            GL11.glTranslatef(5, 0.0f, -1);
+            if(type == "small") {
+            GL11.glTranslatef(5, 0.0f, 1);
+             }
         }
 
         if (facing == 2) {
@@ -73,7 +78,10 @@ public class ModelLeftParallelCurveTCTrack extends ModelBase {
 
         if (facing == 3) {
             GL11.glRotatef(-90, 0, 1, 0);
-            GL11.glTranslatef(-5, 0.0f, 1);
+            if(type == "small") {
+                GL11.glTranslatef(-5, 0.0f, 3);
+            }
+
         }
 
         if(type.equals("small"))this.renderSmall();
