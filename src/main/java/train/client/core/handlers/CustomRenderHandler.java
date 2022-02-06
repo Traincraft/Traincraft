@@ -83,7 +83,7 @@ public class CustomRenderHandler {
             }
         }
 
-        if (item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_SMALL_STRAIGHT
+            else  if (item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_SMALL_STRAIGHT
                 || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_MEDIUM_STRAIGHT
                 || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_LONG_STRAIGHT
                 || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_VERY_LONG_STRAIGHT) {
@@ -98,7 +98,7 @@ public class CustomRenderHandler {
             for (int i = 0; i < length; i++) {
                 float dx = dir.getX() * i;
                 float dz = dir.getY() * i;
-                RenderTCRail.modelEmbeddedSmallStraight.render("straight", facing, 0,0,0,r, g, b, a);
+                RenderTCRail.modelEmbeddedSmallStraight.render("straight", facing, dx, 0 ,dz,r, g, b, a);
             }
         }
 

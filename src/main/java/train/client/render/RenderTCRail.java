@@ -24,7 +24,7 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 	public static final ModelLargeSlopeTCTrack modelLargeSlope = new ModelLargeSlopeTCTrack();
 	public static final ModelVeryLargeSlopeTCTrack	modelVeryLargeSlope = new ModelVeryLargeSlopeTCTrack();
 	public static final ModelRightParallelCurveTCTrack modelRightParallelCurve = new ModelRightParallelCurveTCTrack();
-
+	public static final ModelLeftParallelCurveTCTrack modelLeftParallelCurve = new ModelLeftParallelCurveTCTrack();
 
 	public RenderTCRail() {
 
@@ -250,6 +250,9 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 					case SMALL_RIGHT_PARALLEL_CURVE:{
 						modelRightParallelCurve.render("small", railTile, x, y, z);
 						break;
+					}
+					case SMALL_LEFT_PARALLEL_CURVE:{
+						modelLeftParallelCurve.render("small", railTile, x, y, z);
 					}
 
 					case MEDIUM_PARALLEL_CURVE:

@@ -344,9 +344,9 @@ public enum ItemIDs {
 	tcRailVeryLargeSlopeSnowGravel("ItemTCRail", "item_rail_straight_slope_snow_gravel", 3),
 	tcRailVeryLargeSwitch("ItemTCRail","item_rail_tc_very_large_switch",1),
 
-	tcRailSmallParallelCurve("ItemTCRail", "item_rail_curve_small", 3),
-	tcRailMediumParallelCurve("ItemTCRail", "item_rail_curve_medium", 3),
-	tcRailLargeParallelCurve("ItemTCRail", "item_rail_curve_large", 3),
+	tcRailSmallParallelCurve("ItemTCRail", "item_rail_tc_parallel_curve_small", 3),
+	tcRailMediumParallelCurve("ItemTCRail", "item_rail_tc_parallel_curve_medium", 3),
+	tcRailLargeParallelCurve("ItemTCRail", "item_rail_tc_parallel_curve_large", 3),
 
 
 

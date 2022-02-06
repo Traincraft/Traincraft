@@ -9,21 +9,21 @@ import org.lwjgl.opengl.GL11;
 import train.common.library.Info;
 import train.common.tile.TileTCRail;
 
-public class ModelRightParallelCurveTCTrack extends ModelBase {
+public class ModelLeftParallelCurveTCTrack extends ModelBase {
 
-    private IModelCustom modelSmallRightParallelCurve;
-    private IModelCustom modelMediumRightParallelCurve;
-    private IModelCustom modelLargeRightParallelCurve;
+    private IModelCustom modelSmallLeftParallelCurve;
+    private IModelCustom modelMediumLeftParallelCurve;
+    private IModelCustom modelLargeLeftParallelCurve;
 
-    public ModelRightParallelCurveTCTrack() {
-        modelSmallRightParallelCurve = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_parallel_s.obj"));
-        modelMediumRightParallelCurve = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_parallel_m.obj"));
-        modelLargeRightParallelCurve = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_parallel_l.obj"));
+    public ModelLeftParallelCurveTCTrack() {
+        modelSmallLeftParallelCurve = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_parallel_s.obj"));
+        modelMediumLeftParallelCurve = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_parallel_m.obj"));
+        modelLargeLeftParallelCurve = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_parallel_l.obj"));
     }
 
-    public void renderSmall() {modelSmallRightParallelCurve.renderAll();}
-    public void renderMedium() {modelMediumRightParallelCurve.renderAll();}
-    public void renderLarge() {modelLargeRightParallelCurve.renderAll();}
+    public void renderSmall() {modelSmallLeftParallelCurve.renderAll();}
+    public void renderMedium() {modelMediumLeftParallelCurve.renderAll();}
+    public void renderLarge() {modelLargeLeftParallelCurve.renderAll();}
 
     public void render(String type, TileTCRail tcRail, double x, double y, double z) {
         int facing = tcRail.getWorldObj().getBlockMetadata(tcRail.xCoord, tcRail.yCoord, tcRail.zCoord);
