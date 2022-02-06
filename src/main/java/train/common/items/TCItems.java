@@ -102,8 +102,6 @@ public class TCItems {
 		/**Normal Switches*/
 		ItemIDs.tcRailMediumSwitch.item = new ItemTCRail(ItemTCRail.TrackTypes.MEDIUM_SWITCH);
 		ItemIDs.tcRailLargeSwitch.item = new ItemTCRail(ItemTCRail.TrackTypes.LARGE_SWITCH);
-
-
 		ItemIDs.tcRailMediumParallelSwitch.item = new ItemTCRail(ItemTCRail.TrackTypes.MEDIUM_PARALLEL_SWITCH);
 
 		/**Normal Slopes*/
@@ -119,6 +117,11 @@ public class TCItems {
 		ItemIDs.tcRailSlopeSnowGravel.item = new ItemTCRail(ItemTCRail.TrackTypes.SLOPE_SNOW_GRAVEL);
 		ItemIDs.tcRailLargeSlopeSnowGravel.item = new ItemTCRail(ItemTCRail.TrackTypes.LARGE_SLOPE_SNOW_GRAVEL);
 		ItemIDs.tcRailVeryLargeSlopeSnowGravel.item = new ItemTCRail(ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_SNOW_GRAVEL);
+
+		/** Normal Parallel Curves*/
+		ItemIDs.tcRailSmallParallelCurve.item = new ItemTCRail(ItemTCRail.TrackTypes.SMALL_PARALLEL_CURVE);
+		ItemIDs.tcRailMediumParallelCurve.item = new ItemTCRail(ItemTCRail.TrackTypes.MEDIUM_PARALLEL_CURVE);
+		ItemIDs.tcRailLargeParallelCurve.item = new ItemTCRail(ItemTCRail.TrackTypes.LARGE_PARALLEL_CURVE);
 
 		ItemIDs.paintbrushThing.item = new ItemPaintbrushThing();
 		ItemIDs.whistle.item = new ItemWhistle();

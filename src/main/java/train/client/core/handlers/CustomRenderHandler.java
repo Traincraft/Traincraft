@@ -32,7 +32,7 @@ public class CustomRenderHandler {
         int x = Minecraft.getMinecraft().objectMouseOver.blockX;
         int y = Minecraft.getMinecraft().objectMouseOver.blockY;
         int z = Minecraft.getMinecraft().objectMouseOver.blockZ;
-        
+
         if (world.getBlock(x, y, z) == Blocks.air) {
             return;
         }
@@ -98,7 +98,7 @@ public class CustomRenderHandler {
             for (int i = 0; i < length; i++) {
                 float dx = dir.getX() * i;
                 float dz = dir.getY() * i;
-                RenderTCRail.modelEmbeddedSmallStraight.render("straight", facing, dx, 0, dz, r, g, b, a);
+                RenderTCRail.modelEmbeddedSmallStraight.render("straight", facing, 0,0,0,r, g, b, a);
             }
         }
 
@@ -162,16 +162,22 @@ public class CustomRenderHandler {
         else if (item.getTrackType() == ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_SNOW_GRAVEL) {
             RenderTCRail.modelVeryLargeSlope.render("snow", facing, 0, 0, 0, r, g, b, 0.5f);
         }
+
+
+
+
+
         // Turns
         else if (item.getTrackType() == ItemTCRail.TrackTypes.MEDIUM_TURN
             || item.getTrackType() == ItemTCRail.TrackTypes.LARGE_TURN
             || item.getTrackType() == ItemTCRail.TrackTypes.VERY_LARGE_TURN
-           // || item.getTrackType() == ItemTCRail.TrackTypes.SUPER_LARGE_TURN
+            || item.getTrackType() == ItemTCRail.TrackTypes.SUPER_LARGE_TURN
             || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_MEDIUM_TURN
             || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_LARGE_TURN
             || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_VERY_LARGE_TURN
-            //|| item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_SUPER_LARGE_TURN
-        )
+            || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_SUPER_LARGE_TURN)
+
+
 
         {
             float yaw = MathHelper.wrapAngleTo180_float(player.rotationYaw);

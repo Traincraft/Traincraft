@@ -1136,6 +1136,30 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			TileTCRail tile = (TileTCRail) worldObj.getTileEntity(i, j, k);
 
 			//System.out.println(tile.getType());
+
+
+			/*if (ItemTCRail.isTCParallelCurveTRack(tile)) {
+				if(bogieLoco != null) {
+					if (!bogieLoco.isOnRail()) {
+						derailSpeed = 0;
+					}
+				}
+				if(derailSpeed == 0){
+					this.unLink();
+					moveOnTCStraight(i, j, k, tile.xCoord, tile.zCoord, (tile.getBlockMetadata()+1)%4);
+				}
+				else {
+					int meta = tile.getBlockMetadata();
+					if (shouldIgnoreSwitch(tile, i, j, k, meta)) {
+						moveOnTCStraight(i, j, k, tile.xCoord, tile.zCoord, meta);
+					} else {
+						if (ItemTCRail.isTCParallelCurveTRack(tile))
+							moveOnTC90TurnRail(i, j, k, tile.r, tile.cx, tile.cz);
+					}
+				}
+			}*/
+
+
 			if (ItemTCRail.isTCTurnTrack(tile)) {
 				
 				if(bogieLoco != null) {
@@ -1268,7 +1292,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			this.posX = (this.boundingBox.minX + this.boundingBox.maxX) / 2.0D;
 			this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
 			this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) / 2.0D;
-
+			System.out.println(rotationPitch + " + " + rotationYaw);
 			//System.out.println("straight z "+Math.copySign(norm, motionZ));
 		}
 		if (meta == 1 || meta == 3) {
@@ -1367,9 +1391,10 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			this.motionZ = 0.0D;
 		}
 	}
-
+	int check = 0;
 	protected void moveOnTC90TurnRail(int i, int j, int k, double r, double cx, double cz) {
-		//System.out.println("curve");
+		check++;
+		//System.out.println("curve " + check);
 		posY = j + 0.2;
 		double cpx = posX - cx;
 		double cpz = posZ - cz;
@@ -1394,6 +1419,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 
 		motionX = vx2;
 		motionZ = vz2;
+		//System.out.println("rotationyaw " + rotationYaw);
 
 	}
 

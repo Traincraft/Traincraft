@@ -12,10 +12,12 @@ import net.minecraft.block.BlockRailBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
@@ -446,13 +448,19 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 					//applyDragAndPushForces();
 					limitSpeedOnTCRail();
 
+				//	if (ItemTCRail.isTCParallelCurveTRack(tileRail)) {
+				//		//int meta = tileRail.getBlockMetadata();
+				//		if (ItemTCRail.isTCParallelCurveTRack(tileRail)) moveOnTC90TurnRail(j, tileRail.r, tileRail.cx, tileRail.cz);
+				//	}
+
 					if (ItemTCRail.isTCTurnTrack(tileRail)) {
 
-						int meta = tileRail.getBlockMetadata();
+
 
 					if (shouldIgnoreSwitch(tileRail, i, j, k, meta)) {
 						moveOnTCStraight(j, tileRail.xCoord, tileRail.zCoord, tileRail.getBlockMetadata());
-					} else {
+					}
+					else {
 						if (ItemTCRail.isTCTurnTrack(tileRail)) moveOnTC90TurnRail(j, tileRail.r, tileRail.cx, tileRail.cz);
 					}
 					
@@ -524,24 +532,27 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		}
 	}
 
+
 	private void moveOnTCStraight(int j, double cx, double cz, int meta) {
-		posY = j + 0.2;
+		posY = j + 0.2; /** posY is height of locomotive first hitbox*/
+		/** posX and posZ is the position of hitbox*/
 		if (meta == 2 || meta == 0) {
-			double norm = Math.sqrt(motionX * motionX + motionZ * motionZ);
+			double norm = Math.sqrt(motionX * motionX + motionZ * motionZ); /** pytho formula thing*/
 
 			setPosition(cx + 0.5, posY + yOffset, posZ);
 			//setPosition(posX, posY + yOffset, posZ);
-
-			motionX = 0;
-			motionZ = Math.copySign(norm, motionZ);
+			motionX = 0; /** Motion set to 0 because you can't move in x while going north on straight*/
+			motionZ = Math.copySign(norm, motionZ); /** sets Z motion norm, adds the sign of motionZ*/
 			this.boundingBox.offset(0, 0 , Math.copySign(norm, this.motionZ));
 
+			/** prob checks for hitboxes placed on rails, I think*/
 			List boxes = worldObj.getCollidingBoundingBoxes(this, boundingBox);
 			for(Object b : boxes){
 				if(!(b instanceof BlockRailBase) && !(b instanceof BlockTCRail) && !(b instanceof BlockTCRailGag) && !(b instanceof BlockAir)){
 					return;
 				}
 			}
+			/** moves the driving first bounding box to new position */
 			this.posX = (this.boundingBox.minX + this.boundingBox.maxX) / 2.0D;
 			this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
 			this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) / 2.0D;
@@ -554,15 +565,16 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 			//setPosition(posX, posY + yOffset, posZ);
 
 			motionX = Math.copySign(Math.sqrt(motionX * motionX + motionZ * motionZ), motionX);
-			motionZ = 0;
+			motionZ = 0; /** Motion set to 0 because you can't move in z while going east on straight*/
 			this.boundingBox.offset(motionX, 0 , 0);
-
+			/** prob checks for hitboxes placed on rails, I think*/
 			List boxes = worldObj.getCollidingBoundingBoxes(this, boundingBox);
 			for(Object b : boxes){
 				if(!(b instanceof BlockRailBase) && !(b instanceof BlockTCRail) && !(b instanceof BlockTCRailGag) && !(b instanceof BlockAir)){
 					return;
 				}
 			}
+			/** moves the driving bounding box to new position */
 			this.posX = (this.boundingBox.minX + this.boundingBox.maxX) / 2.0D;
 			this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
 			this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) / 2.0D;
@@ -615,7 +627,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 				cz += 1;
 			}
 
-			double norm = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
+			double norm = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ); /** pytho theory thing */
 			double newPosY = Math.abs(j + (Math.tan(slopeAngle * Math.abs(cz - this.posZ))) + this.yOffset + 0.3);
 			this.setPosition(cx + 0.5D, newPosY, this.posZ);
 
@@ -648,15 +660,16 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 	}
 
 	private void moveOnTC90TurnRail(int j,double r, double cx, double cz){
-		posY = j + 0.2;
-		double cpx = posX - cx;
-		double cpz = posZ - cz;
-		double cp_norm = Math.sqrt(cpx * cpx + cpz * cpz);
+		/** j is the pitch (going up or down, default is .2),  */
+		posY = j + 0.2; /** height of bounding box */
+		double cpx = posX - cx; /** xpos of player - x tile rail pos, I think*/
+		double cpz = posZ - cz;/** zpos of player - z tile rail pos*/
+		double cp_norm = Math.sqrt(cpx * cpx + cpz * cpz); /** again pytho thing */
 
-		double vnorm = Math.sqrt(motionX * motionX + motionZ * motionZ);
+		double vnorm = Math.sqrt(motionX * motionX + motionZ * motionZ); /** again pytho thing */
 
-		double norm_cpx = cpx / cp_norm;//u
-		double norm_cpz = cpz / cp_norm;//v
+		double norm_cpx = cpx / cp_norm; /** divides cpx by the pytho thing*///u
+		double norm_cpz = cpz / cp_norm; /** divides cpx by the pytho thing*///v
 
 		double vx2 = -norm_cpz * vnorm;//-v
 		double vz2 = norm_cpx * vnorm;//u
@@ -689,6 +702,9 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		moveEntity(vx2, 0.0D, vz2);
 		motionX = vx2;
 		motionZ = vz2;
+		System.out.println("motionX +  " + motionX);
+		System.out.println("motionZ +  " + motionZ);
+		System.out.println("==================================================");
 	}
 	private boolean shouldIgnoreSwitch(TileTCRail tile, int i, int j, int k, int meta) {
 		if (tile != null
