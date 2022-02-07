@@ -741,8 +741,8 @@ public class ItemTCRail extends ItemPart {
 					int[] xArray = {x    ,   x  ,   x  , x};
 					int[] zArray = {z + 2, z + 3, z + 1, z};
 
-					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 0, x - 1, z + 4, 6.5, x - 7,
-							y + 1, z - 1 , TrackTypes.SMALL_RIGHT_PARALLEL_CURVE.getLabel(), ItemIDs.tcRailSmallParallelCurve.item))
+					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 0, x - 1, z + 4, 6.5, x - 6,
+							y + 1, z , TrackTypes.SMALL_RIGHT_PARALLEL_CURVE.getLabel(), ItemIDs.tcRailSmallParallelCurve.item))
 						return false;
 					TileTCRail tcRailTurn = (TileTCRail) world.getTileEntity(x , y + 1, z + 2);
 
@@ -752,8 +752,8 @@ public class ItemTCRail extends ItemPart {
 						int[] xArray2 = {x - 1, x - 1, x - 1, x - 1};
 						int[] zArray2 = {z + 3, z + 2, z + 4, z + 1};
 
-						if (!putDownTurn(player, world, false, x, y, z, xArray2, zArray2, 1, false, 0, x - 1, z + 4, 6.5, x + 5,
-								y + 1, z + 4, TrackTypes.MEDIUM_LEFT_TURN.getLabel(), null))
+						if (!putDownTurn(player, world, false, x, y, z, xArray2, zArray2, 1, false, 0, x - 1, z + 4, 6.5, x + 6,
+								y + 1, z + 5, TrackTypes.MEDIUM_LEFT_TURN.getLabel(), null))
 							return false;
 
 						TileTCRail tcRailTurn2 = (TileTCRail) world.getTileEntity(x - 1, y + 1, z + 3);
@@ -924,7 +924,7 @@ public class ItemTCRail extends ItemPart {
 					int[] xArray = {x    ,   x  ,   x  , x};
 					int[] zArray = {z + 2, z + 3, z + 1, z};
 
-					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 0, x + 1, z + 4, 6.5, x - 7,
+					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 0, x + 1, z + 4, 6.5, x + 7,
 							y + 1, z , TrackTypes.SMALL_LEFT_PARALLEL_CURVE.getLabel(), ItemIDs.tcRailSmallParallelCurve.item))
 						return false;
 					TileTCRail tcRailTurn = (TileTCRail) world.getTileEntity(x , y + 1, z + 2);
@@ -935,7 +935,7 @@ public class ItemTCRail extends ItemPart {
 						int[] xArray2 = {x + 1, x + 1, x + 1, x + 1};
 						int[] zArray2 = {z + 3, z + 2, z + 4, z + 1};
 
-						if (!putDownTurn(player, world, false, x, y, z, xArray2, zArray2, 3, false, 2, x + 1, z + 4, 6.5, x - 7,
+						if (!putDownTurn(player, world, false, x, y, z, xArray2, zArray2, 3, false, 2, x + 1, z + 4, 6.5, x - 5,
 								y + 1, z + 5, TrackTypes.MEDIUM_RIGHT_TURN.getLabel(), null))
 							return false;
 

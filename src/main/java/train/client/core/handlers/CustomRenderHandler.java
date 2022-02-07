@@ -164,7 +164,62 @@ public class CustomRenderHandler {
         }
 
 
+        // S Curves
 
+        else if (item.getTrackType() == ItemTCRail.TrackTypes.SMALL_PARALLEL_CURVE
+                || item.getTrackType() == ItemTCRail.TrackTypes.MEDIUM_PARALLEL_CURVE
+            || item.getTrackType() == ItemTCRail.TrackTypes.LARGE_PARALLEL_CURVE)
+        {
+            float yaw = MathHelper.wrapAngleTo180_float(player.rotationYaw);
+            boolean isLeftTurn = item.getTrackOrientation( facing, yaw ).equals("left");
+
+            if (item.getTrackType() == ItemTCRail.TrackTypes.SMALL_PARALLEL_CURVE || item.getTrackType() == ItemTCRail.TrackTypes.MEDIUM_PARALLEL_CURVE
+                    || item.getTrackType() == ItemTCRail.TrackTypes.LARGE_PARALLEL_CURVE) {
+                String turnSize = "small";
+                if ( item.getTrackType() == ItemTCRail.TrackTypes.MEDIUM_PARALLEL_CURVE )
+                    turnSize = "medium";
+                else if ( item.getTrackType() == ItemTCRail.TrackTypes.LARGE_PARALLEL_CURVE )
+                    turnSize = "large";
+                if ( isLeftTurn )
+                {
+                    if (facing == 2) {
+                        RenderTCRail.modelLeftParallelCurve.render( turnSize, facing, 0, 0, - 2, r, g, b, a );
+                    }
+
+                    if (facing == 0) {
+                        RenderTCRail.modelLeftParallelCurve.render( turnSize, facing, 0, 0,2, r, g, b, a );
+                    }
+
+                    if (facing == 1) {
+                        RenderTCRail.modelLeftParallelCurve.render( turnSize, facing, - 2, 0,0, r, g, b, a );
+                    }
+
+                    if (facing == 3) {
+                        RenderTCRail.modelLeftParallelCurve.render( turnSize, facing, 2, 0,0, r, g, b, a );
+                    }
+
+
+                }
+                else
+                {
+                    if (facing == 2) {
+                        RenderTCRail.modelRightParallelCurve.render( turnSize, facing, 0, 0, - 2, r, g, b, a );
+                    }
+
+                    if (facing == 0) {
+                        RenderTCRail.modelRightParallelCurve.render( turnSize, facing, 0, 0,2, r, g, b, a );
+                    }
+
+                    if (facing == 1) {
+                        RenderTCRail.modelRightParallelCurve.render( turnSize, facing, - 2, 0,0, r, g, b, a );
+                    }
+
+                    if (facing == 3) {
+                        RenderTCRail.modelRightParallelCurve.render( turnSize, facing, 2, 0,0, r, g, b, a );
+                    }
+                }
+            }
+        }
 
 
         // Turns

@@ -702,9 +702,6 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		moveEntity(vx2, 0.0D, vz2);
 		motionX = vx2;
 		motionZ = vz2;
-		System.out.println("motionX +  " + motionX);
-		System.out.println("motionZ +  " + motionZ);
-		System.out.println("==================================================");
 	}
 	private boolean shouldIgnoreSwitch(TileTCRail tile, int i, int j, int k, int meta) {
 		if (tile != null

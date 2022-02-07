@@ -39,7 +39,7 @@ public class ModelLeftParallelCurveTCTrack extends ModelBase {
         GL11.glPushMatrix();
 
         // Move the object into the correct position on the block (because the OBJ's origin is the center of the object)
-        GL11.glTranslatef((float) x + 1.5f, (float) y, (float) z + 5.5f);
+        GL11.glTranslatef((float) x + 0.5f, (float) y, (float) z - 1.5f);
 
         // Bind the texture, so that OpenGL properly textures our block.
         FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
@@ -53,20 +53,20 @@ public class ModelLeftParallelCurveTCTrack extends ModelBase {
         if (facing == 0) {
             GL11.glRotatef(180, 0, 1, 0);
             if(type == "small") {
-                GL11.glTranslatef(1, 0.0f, 7);
+                GL11.glTranslatef(0, 0.0f, 0.0f);
             }
         }
 
         if (facing == 1) {
             GL11.glRotatef(90, 0, 1, 0);
             if(type == "small") {
-            GL11.glTranslatef(5, 0.0f, 1);
+            GL11.glTranslatef(-2, 0.0f, 2.0f);
              }
         }
 
         if (facing == 2) {
             if (type == "small") {
-                GL11.glTranslatef(-1, 0.0f, - 3);
+                GL11.glTranslatef(0, 0.0f,   4.0f);
             }
             if (type == "medium") {
                 GL11.glTranslatef(- 1, 0.0f, - 3);
@@ -79,7 +79,7 @@ public class ModelLeftParallelCurveTCTrack extends ModelBase {
         if (facing == 3) {
             GL11.glRotatef(-90, 0, 1, 0);
             if(type == "small") {
-                GL11.glTranslatef(-5, 0.0f, 3);
+                GL11.glTranslatef(2.0f, 0.0f, 2);
             }
 
         }
