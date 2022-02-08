@@ -359,7 +359,7 @@ public enum EnumTrains {
 	BapGP15("GP15", EntityLocoDieselBapGP15.class, ItemIDs.minecartGP15.item, "diesel", 1800, 105, 0, 15, 0, 160, 0.79, 0.90, 15000, TraincraftUtil.getBytesFromColors(new  String[] {"Yellow", "LightGrey"}), 10, -2.6, "Pack: Bap"),
 	spookyGarrattFront("Garratt Front", EntityLocoSteamGarrattFront.class,  ItemIDs.minecartGarrattFront.item, "steam", 2838, 112, 0, 1, 1, 10, 0.65, 0.90, 10000, null, 7, -2.25, "Multi-Segment Locomotive. Creative Only."),//front
 	spookyGarrattRear("Garratt Rear", EntityLocoSteamGarrattRear.class,  ItemIDs.minecartGarrattBack.item, "steam", 2838, 112, 0, 1, 1, 10, 0.65, 0.90, 10000, null, 7, -2.25, "Multi-Segment Locomotive. Creative Only."),//rear
-	spookyGarrattMid("Garratt Mid", EntityLocoSteamGarrattMid.class,  ItemIDs.minecartGarrattMid.item, "steam", 1, 112, 0, 60, 200, 160, 0.65, 0.90, 10000, null, 7, -4.25, "Multi-Segment Locomotive. Creative Only."),//mid
+	spookyGarrattMid("Garratt Mid", EntityLocoSteamGarrattMid.class,  ItemIDs.minecartGarrattMid.item, "steam", 2838, 112, 0, 1, 1, 160, 0.65, 0.90, 10000, null, 7, -4.25, "Multi-Segment Locomotive. Creative Only."),//mid
 	Skook("Skookum", EntityLocoSteamSkook.class, ItemIDs.minecartSkook.item, "steam", 1000, 75, 0, 75, 75, 190, 0.8, 0.91, 2000, null, 10, -2.4, "Pack: Bap"),
 	SkookTender("Skookum Tender", EntityTenderSkookTender.class, ItemIDs.minecartSkookTender.item,"tender",0,0,2,0,0,0,0,0,15000,null,18,0,"Water capacity: 15000mb. Pack: Bap"),
 	EF1("EF1",EntityLocoElectricBapEF1.class, ItemIDs.minecartEF1.item, "electric", 1720, 64, 0, 55, 0, 150, 0.65, 0.75, 12500, TraincraftUtil.getBytesFromColors(new String[] {"Orange", "Yellow", "Red", "Green", "Black", "Grey"}), 10, -3.4375,"Pack: Bap"),

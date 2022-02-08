@@ -67,6 +67,9 @@ public class ModelSmallStraightTCTrack extends ModelBase {
 		}
 
 
+
+
+
 		if (facing == 3) {
 			GL11.glRotatef(90, 0, 1, 0);
 			if (type.equals("super_long")){

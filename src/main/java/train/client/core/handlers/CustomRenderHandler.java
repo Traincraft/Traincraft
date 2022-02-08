@@ -183,7 +183,7 @@ public class CustomRenderHandler {
                 if ( isLeftTurn )
                 {
                     if (facing == 2) {
-                        RenderTCRail.modelLeftParallelCurve.render( turnSize, facing, 0, 0, - 2, r, g, b, a );
+                        RenderTCRail.modelLeftParallelCurve.render( turnSize, facing, 0, 0, - 4, r, g, b, a );
                     }
 
                     if (facing == 0) {
@@ -203,7 +203,7 @@ public class CustomRenderHandler {
                 else
                 {
                     if (facing == 2) {
-                        RenderTCRail.modelRightParallelCurve.render( turnSize, facing, 0, 0, - 2, r, g, b, a );
+                        RenderTCRail.modelRightParallelCurve.render( turnSize, facing, 0, 0, -2, r, g, b, a );
                     }
 
                     if (facing == 0) {

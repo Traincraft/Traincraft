@@ -55,6 +55,9 @@ public class ModelRightParallelCurveTCTrack extends ModelBase {
             if (type == "small") {
                 GL11.glTranslatef(1, 0.0f, 7);
             }
+            if (type == "medium") {
+                GL11.glTranslatef(1, 0.0f, 7);
+            }
 
 
 
@@ -73,7 +76,7 @@ public class ModelRightParallelCurveTCTrack extends ModelBase {
                 GL11.glTranslatef(-1, 0.0f, - 3);
             }
             if (type == "medium") {
-                GL11.glTranslatef(- 1, 0.0f, - 3);
+                GL11.glTranslatef(- 2,0.0f, - 2);
             }
             if (type == "large") {
                 GL11.glTranslatef(- 1, 0.0f, - 3);
