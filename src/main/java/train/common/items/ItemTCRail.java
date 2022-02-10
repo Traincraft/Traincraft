@@ -41,9 +41,9 @@ public class ItemTCRail extends ItemPart {
 		MEDIUM_RIGHT_PARALLEL_SWITCH("MEDIUM_RIGHT_PARALLEL_SWITCH", "SWITCH", ItemIDs.tcRailMediumParallelSwitch, ""),
 		MEDIUM_LEFT_PARALLEL_SWITCH("MEDIUM_LEFT_PARALLEL_SWITCH", "SWITCH", ItemIDs.tcRailMediumParallelSwitch, ""),
 
-		EMBEDDED_MEDIUM_PARALLEL_SWITCH("MEDIUM_PARALLEL_SWITCH", "SWITCH", ItemIDs.tcRailEmbeddedMediumParallelSwitch, "4x11"),
-		EMBEDDED_MEDIUM_RIGHT_PARALLEL_SWITCH("MEDIUM_RIGHT_PARALLEL_SWITCH", "SWITCH", ItemIDs.tcRailEmbeddedMediumParallelSwitch, ""),
-		EMBEDDED_MEDIUM_LEFT_PARALLEL_SWITCH("MEDIUM_LEFT_PARALLEL_SWITCH", "SWITCH", ItemIDs.tcRailEmbeddedMediumParallelSwitch, ""),
+		EMBEDDED_MEDIUM_PARALLEL_SWITCH("EMBEDDED_MEDIUM_PARALLEL_SWITCH", "SWITCH", ItemIDs.tcRailEmbeddedMediumParallelSwitch, "4x11"),
+		EMBEDDED_MEDIUM_RIGHT_PARALLEL_SWITCH("EMBEDDED_MEDIUM_RIGHT_PARALLEL_SWITCH", "SWITCH", ItemIDs.tcRailEmbeddedMediumParallelSwitch, ""),
+		EMBEDDED_MEDIUM_LEFT_PARALLEL_SWITCH("EMBEDDED_MEDIUM_LEFT_PARALLEL_SWITCH", "SWITCH", ItemIDs.tcRailEmbeddedMediumParallelSwitch, ""),
 
 		MEDIUM_TURN("MEDIUM_TURN", "TURN", ItemIDs.tcRailMediumTurn, "3x3"),
 		MEDIUM_RIGHT_TURN("MEDIUM_RIGHT_TURN", "TURN", ItemIDs.tcRailMediumTurn, ""),
@@ -1740,7 +1740,7 @@ public class ItemTCRail extends ItemPart {
 				return true;
 			}
 
-			if (tempType == TrackTypes.MEDIUM_RIGHT_PARALLEL_SWITCH || tempType == TrackTypes.EMBEDDED_MEDIUM_RIGHT_PARALLEL_SWITCH) {
+			if (tempType == TrackTypes.MEDIUM_RIGHT_PARALLEL_SWITCH ) {
 				if (l == 2) {
 					if (!parallelRightSwitchNorth(player, world, x, y, z, l, tempType))
 						return false;
@@ -1763,7 +1763,7 @@ public class ItemTCRail extends ItemPart {
 				}
 				return true;
 			}
-			if (tempType == TrackTypes.MEDIUM_LEFT_PARALLEL_SWITCH || tempType == TrackTypes.EMBEDDED_MEDIUM_LEFT_PARALLEL_SWITCH) {
+			if (tempType == TrackTypes.MEDIUM_LEFT_PARALLEL_SWITCH ) {
 				if (l == 2) {
 					if (!parallelLeftSwitchNorth(player, world, x, y, z, l, tempType))
 						return false;
