@@ -706,9 +706,13 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 	private boolean shouldIgnoreSwitch(TileTCRail tile, int i, int j, int k, int meta) {
 		if (tile != null
 				&& (tile.getType().equals(TrackTypes.MEDIUM_RIGHT_TURN.getLabel())
-						|| tile.getType().equals(TrackTypes.MEDIUM_LEFT_TURN.getLabel())
-						|| tile.getType().equals(TrackTypes.LARGE_LEFT_TURN.getLabel())
-						|| tile.getType().equals(TrackTypes.LARGE_RIGHT_TURN.getLabel()))
+				|| tile.getType().equals(TrackTypes.MEDIUM_LEFT_TURN.getLabel())
+				|| tile.getType().equals(TrackTypes.LARGE_LEFT_TURN.getLabel())
+				|| tile.getType().equals(TrackTypes.LARGE_RIGHT_TURN.getLabel()))
+				|| tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_RIGHT_TURN.getLabel())
+				|| tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_LEFT_TURN.getLabel())
+				|| tile.getType().equals(TrackTypes.EMBEDDED_LARGE_LEFT_TURN.getLabel())
+				|| tile.getType().equals(TrackTypes.EMBEDDED_LARGE_RIGHT_TURN.getLabel())
 				&& tile.canTypeBeModifiedBySwitch) {
 			if (meta == 2) {
 				if (motionZ > 0 && Math.abs(motionX) < 0.01) {

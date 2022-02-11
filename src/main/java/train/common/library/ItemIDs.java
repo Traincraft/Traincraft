@@ -42,6 +42,7 @@ public enum ItemIDs {
 	steel("ItemTrain", "item_steel", 4),
 	refinedFuel("ItemContainer", "item_fuel_filled", 15),
 	signal("ItemSignal", "item_signal", 0),
+	kSignal("ItemsignalSpanish","signalK",2),
 	seats("ItemTrain", "item_seats", 15),
 	transformer("ItemTrain", "item_transformer", 4),
 	controls("ItemTrain", "item_controls", 7),
@@ -522,7 +523,7 @@ public enum ItemIDs {
 	minecartPassengerMinetrain("ItemRollingStock","train_mine_cart", 1),
 
 	//signalSpanish("ItemsignalSpanish","signalSpanish", 1),
-	kSignal("ItemsignalSpanish","signalK",2),
+
 
 
 	;
