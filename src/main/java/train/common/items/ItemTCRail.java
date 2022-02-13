@@ -32,6 +32,7 @@ public class ItemTCRail extends ItemPart {
 	private String typeVariantSTurn;
 	private String idVariantStraight;
 	private Item idVariant90Turn;
+	private Item idVariant45Turn;
 	private Item idVariantSwitch;
 	private Item idVariantCrossing;
 	private Item idVariantSTurn;
@@ -773,10 +774,11 @@ public class ItemTCRail extends ItemPart {
 			}
 			if (type == TrackTypes.MEDIUM_45DEGREE_TURN) {
 				if (getTrackOrientation(l, yaw).equals("right")) {
-					tempType = TrackTypes.MEDIUM_45DEGREE_TURN;
+					tempType = TrackTypes.MEDIUM_RIGHT_45DEGREE_TURN;
 				}
 				if (getTrackOrientation(l, yaw).equals("left")) {
-					tempType = TrackTypes.EMBEDDED_MEDIUM_LEFT_PARALLEL_SWITCH;
+					tempType = TrackTypes.MEDIUM_LEFT_45DEGREE_TURN;
+
 				}
 			}
 
@@ -806,6 +808,60 @@ public class ItemTCRail extends ItemPart {
 			 *  l = 3 = east
 			**/
 			//System.out.println(type +" "+l);
+
+
+
+			if (tempType == TrackTypes.MEDIUM_RIGHT_45DEGREE_TURN) {
+				switch (getTrackType()){
+					case MEDIUM_RIGHT_45DEGREE_TURN:
+						idVariant45Turn = ItemIDs.tcRailMedium45DegreeTurn.item;
+						break;
+					case EMBEDDED_MEDIUM_RIGHT_45DEGREE_TURN:
+						idVariant45Turn = ItemIDs.tcRailEmbeddedMedium45DegreeTurn.item;
+						break;
+				}
+				System.out.println(tempType);
+					if (l == 2) {
+						System.out.println(tempType);
+						int[] xArray = {x,   x  ,   x  , x + 1, x + 1};
+						int[] zArray = {z, z - 1, z - 2,   z  , z - 1};
+						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 3, x + 1, z -2, 2.5, x + 3,
+								y + 1, z + 1, tempType.getLabel(), idVariant45Turn))
+							return false;
+
+					}
+					if (l == 0) {
+						int[] xArray = {x,   x  ,   x  , x - 1, x - 1, x - 1};
+						int[] zArray = {z, z + 1, z + 2,   z  , z + 1, z + 2};
+						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 1, x - 1, z + 2, 2.5, x - 2,
+								y + 1, z, tempType.getLabel(), idVariant45Turn))
+							return false;
+					}
+					if (l == 1) {
+						int[] xArray = {x, x - 1, x - 2 };
+						int[] zArray = {z , z , z , z - 1, z - 2 };
+						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 0, x - 2, z - 1, 2.5, x,
+								y + 1, z - 2, tempType.getLabel(), idVariant45Turn))
+							return false;
+					}
+					if (l == 3) {
+						int[] xArray = {x, x + 1, x + 2, x, x + 1, x + 2  };
+						int[] zArray = {z,z,z ,z + 1, z + 1, z + 1 };
+						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 2, x + 2, z + 1, 2.5, x, y + 1,
+								z + 3, tempType.getLabel(), idVariant45Turn))
+							return false;
+					}
+
+					if (player==null || !player.capabilities.isCreativeMode) {
+						--itemstack.stackSize;
+					}
+					return true;
+				}
+
+
+
+
+
 
 			if (tempType == TrackTypes.SMALL_RIGHT_PARALLEL_CURVE) {
 				switch (getTrackType()){
@@ -3257,6 +3313,7 @@ public class ItemTCRail extends ItemPart {
 
 	public TrackTypes getTrackType() {
 		return this.type;
+
 	}
 
 }

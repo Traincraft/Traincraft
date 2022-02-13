@@ -357,7 +357,7 @@ item.tc:minecartHeavyweightFreight.name=Heavyweight Baggage
 item.tc:minecartLocoBP4.name=BP4
 item.tc:minecartASTFAutorack.name=ASTF ft-41 Auto Rack
 
-item.tc:paintbrushThing.name=Train Paintbrush
+item.tc:paintbrushThing.name=Train Paintbrush Thing
 item.tc:whistle.name=Whistle
 
 item.tc:minecart4000GallonTender.name=4000 Gallon Tender

@@ -525,6 +525,8 @@ public enum ItemIDs {
 	minecartPSRPOPM("ItemRollingStock", "PSRPOPMIcon", 3),
 	minecartPSRPO("ItemRollingStock", "PSRPOIcon", 3),
 	minecartPassengerMinetrain("ItemRollingStock","train_mine_cart", 1),
+	minecartBNLRV_A("ItemRollingStock", "BNLRV_A", 1 ),
+	minecartBNLRV_B("ItemRollingStock", "BNLRV_B", 1 ),
 
 	//signalSpanish("ItemsignalSpanish","signalSpanish", 1),
 
