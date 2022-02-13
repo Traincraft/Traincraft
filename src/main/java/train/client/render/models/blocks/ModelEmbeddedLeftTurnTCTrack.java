@@ -56,7 +56,7 @@ public class ModelEmbeddedLeftTurnTCTrack extends ModelBase {
 			if(type.equals("large"))
 				GL11.glTranslatef(-10.0f, 0.0f, 2.0f);
 			if(type.equals("medium"))
-				GL11.glTranslatef(-8.0f, 0.0f, 2.0f);
+				GL11.glTranslatef(-5.5f, 0.0f, 1.5f);
 			if (type.equals("super_large"))
 				GL11.glTranslatef(-5.5f,0f,1.5f);
 		}
@@ -67,7 +67,7 @@ public class ModelEmbeddedLeftTurnTCTrack extends ModelBase {
 			if(type.equals("large"))
 				GL11.glTranslatef(0.0f, 0.0f, 0.0f);
 			if(type.equals("medium"))
-				GL11.glTranslatef(2.0f, 0.0f, 0.0f);
+				GL11.glTranslatef(4.50f, 0.0f, -0.5f);
 			if (type.equals("super_large"))
 				GL11.glTranslatef(4.5f,0f,-0.5f);
 		}
@@ -77,7 +77,7 @@ public class ModelEmbeddedLeftTurnTCTrack extends ModelBase {
 			if(type.equals("large"))
 				GL11.glTranslatef(-6.0f, 0.0f, -4.0f);
 			if(type.equals("medium"))
-				GL11.glTranslatef(-4.0f, 0.0f, -4.0f);
+				GL11.glTranslatef(-1.5f, 0.0f, -4.50f);
 			if (type.equals("super_large"))
 				GL11.glTranslatef(-1.5f,0f,-4.5f);
 		}
@@ -88,7 +88,7 @@ public class ModelEmbeddedLeftTurnTCTrack extends ModelBase {
 			if(type.equals("large"))
 				GL11.glTranslatef(-4.0f, 0.0f, 6.0f);
 			if(type.equals("medium"))
-				GL11.glTranslatef(-2.0f, 0.0f, 6.0f);
+				GL11.glTranslatef(0.5f, 0.0f, 5.5f);
 			if (type.equals("super_large"))
 				GL11.glTranslatef(0.5f,0f,5.5f);
 		}

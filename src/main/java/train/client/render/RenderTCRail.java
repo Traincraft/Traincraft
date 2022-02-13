@@ -12,6 +12,8 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 	public static final ModelMediumStraightTCTrack modelMediumStraight = new ModelMediumStraightTCTrack();
 	public static final ModelRightTurnTCTrack modelRightTurn = new ModelRightTurnTCTrack();
 	public static final ModelLeftTurnTCTrack modelLeftTurn = new ModelLeftTurnTCTrack();
+	public static final ModelRight45DegreeTurnTCTrack model45DegreeRightTurn = new ModelRight45DegreeTurnTCTrack();
+	public static final ModelLeft45DegreeTurnTCTrack model45DegreeLeftTurn = new ModelLeft45DegreeTurnTCTrack();
 	public static final ModelRightParallelCurveTCTrack modelRightParallelCurve = new ModelRightParallelCurveTCTrack();
 	public static final ModelLeftParallelCurveTCTrack modelLeftParallelCurve = new ModelLeftParallelCurveTCTrack();
 	public static final ModelTwoWaysCrossingTCTrack modelTwoWaysCrossing = new ModelTwoWaysCrossingTCTrack();
@@ -90,6 +92,15 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 					}
 					case SUPER_LARGE_LEFT_TURN: {
 						modelLeftTurn.render("super_large", railTile, x , y, z);
+						break;
+					}
+					case MEDIUM_45DEGREE_TURN:
+					case MEDIUM_RIGHT_45DEGREE_TURN: {
+						model45DegreeRightTurn.render("medium", railTile, x, y, z);
+						break;
+					}
+					case MEDIUM_LEFT_45DEGREE_TURN:{
+						model45DegreeLeftTurn.render("medium", railTile, x, y, z);
 						break;
 					}
 					case SMALL_PARALLEL_CURVE:
@@ -258,6 +269,14 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 						modelEmbeddedLeftTurn.render("super_large", railTile, x, y, z);
 						break;
 					}
+					/*case EMBEDDED_MEDIUM_45DEGREE_TURN:
+					case EMBEDDED_MEDIUM_RIGHT_45DEGREE_TURN: {
+						modelEmbedded45DegreeRightTurn.render("medium", railTile, x, y, z);
+						break;
+					}
+					case EMBEDDED_MEDIUM_LEFT_45DEGREE_TURN:{
+						modelEmbedded45DegreeLeftTurn.render("medium", railTile, x, y, z);
+					}*/
 					case EMBEDDED_TWO_WAYS_CROSSING: {
 						modelEmbeddedTwoWaysCrossing.render(x, y, z);
 						break;

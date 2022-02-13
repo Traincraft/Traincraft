@@ -63,7 +63,7 @@ public class ModelRightTurnTCTrack extends ModelBase {
 			if(type.equals("large"))
 				GL11.glTranslatef(-1.0f, 0.0f, 5.0f);
 			if(type.equals("medium"))
-				GL11.glTranslatef(-1.0f, 0.0f, 3.0f);
+				GL11.glTranslatef(1.5f, 0.0f, 2.5f);
 		}
 		if (facing == 1) {
 			GL11.glRotatef(180, 0, 1, 0);
@@ -74,7 +74,7 @@ public class ModelRightTurnTCTrack extends ModelBase {
 			if(type.equals("large"))
 				GL11.glTranslatef(-1.0f, 0.0f, 5.0f);
 			if(type.equals("medium"))
-				GL11.glTranslatef(-1.0f, 0.0f, 3.0f);
+				GL11.glTranslatef(1.5f, 0.0f, 2.5f);
 		}
 		if (facing == 2) {
 			GL11.glRotatef(90, 0, 1, 0);
@@ -85,7 +85,7 @@ public class ModelRightTurnTCTrack extends ModelBase {
 			if(type.equals("large"))
 				GL11.glTranslatef(-1.0f, 0.0f, 5.0f);
 			if(type.equals("medium"))
-				GL11.glTranslatef(-1.0f, 0.0f, 3.0f);
+				GL11.glTranslatef(1.5f, 0.0f, 2.5f);
 		}
 		if (facing == 0) {
 			GL11.glRotatef(-90, 0, 1, 0);
@@ -96,7 +96,7 @@ public class ModelRightTurnTCTrack extends ModelBase {
 			if(type.equals("large"))
 				GL11.glTranslatef(-1.0f, 0.0f, 5.0f);
 			if(type.equals("medium"))
-				GL11.glTranslatef(-1.0f, 0.0f, 3.0f);
+				GL11.glTranslatef(1.5f, 0.0f, 2.5f);
 		}
 		if (type.equals("medium"))
 			this.renderMedium();
