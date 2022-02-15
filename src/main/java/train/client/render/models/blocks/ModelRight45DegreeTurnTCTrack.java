@@ -42,18 +42,19 @@ public class ModelRight45DegreeTurnTCTrack {
 
         if (facing == 0) {
             GL11.glRotatef(180, 0, 1, 0);
-            GL11.glTranslatef(0.5f,0,0.5f);
+            GL11.glTranslatef(-0.5f,0,0.5f);
         }
         if (facing == 1) {
-            GL11.glRotatef(180, 0, 1, 0);
-            GL11.glTranslatef(0,0,0);
+            GL11.glRotatef(90, 0, 1, 0);
+            GL11.glTranslatef(-0.5f,0,0.5f);
         }
         if (facing == 2) {
             GL11.glRotatef(0, 0, 1, 0);
-            GL11.glTranslatef(0.5f,0,0.5f);
+            GL11.glTranslatef(-0.5f,0,0.5f);
         }
         if (facing == 3) {
-            GL11.glTranslatef(0,0,0);
+            GL11.glRotatef(-90,0,1,0);
+            GL11.glTranslatef(-0.5f,0,0.5f);
         }
 
         if (type.equals("medium"))

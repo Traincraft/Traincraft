@@ -223,7 +223,7 @@ public class CustomRenderHandler {
 
         // 45 Degree Turns
 
-        else if (item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_MEDIUM_45DEGREE_TURN) {
+        else if (item.getTrackType() == ItemTCRail.TrackTypes.MEDIUM_45DEGREE_TURN || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_MEDIUM_45DEGREE_TURN) {
             float yaw = MathHelper.wrapAngleTo180_float(player.rotationYaw);
             boolean isLeftTurn = item.getTrackOrientation( facing, yaw ).equals("left");
 

@@ -38,7 +38,7 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 	}
 
 	@Override
-	public void renderTileEntityAt(TileEntity var1, double x, double y, double z, float var8) {
+	public void renderTileEntityAt(TileEntity var1, double x, double y, double z, float var8 ) {
 		if(var1 instanceof TileTCRail){
 			TileTCRail railTile = (TileTCRail) var1;
 

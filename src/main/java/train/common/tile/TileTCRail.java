@@ -1,5 +1,6 @@
 package train.common.tile;
 
+import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
@@ -50,6 +51,22 @@ public class TileTCRail extends TileEntity {
 	public int getFacing() {
 
 		return facingMeta;
+	}
+
+	public double getMaxRenderDistanceSquared() {
+		/*if(FMLClientHandler.instance()!=null && FMLClientHandler.instance().getClient()!=null && FMLClientHandler.instance().getClient().gameSettings!=null){
+			if (FMLClientHandler.instance().getClient().gameSettings.renderDistanceChunks == 12) {
+				return 30000.0D;
+			}
+			else if (FMLClientHandler.instance().getClient().gameSettings.renderDistanceChunks == 1) {
+				return 15900.0D;
+			}
+			else if (FMLClientHandler.instance().getClient().gameSettings.renderDistanceChunks == 2) {
+				return 4000.0D;
+			} else return 4096.0;
+		}else{*/
+			return 16384.0;
+		//}
 	}
 
 	public void setFacing(int facing) {

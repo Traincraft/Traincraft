@@ -376,7 +376,8 @@ item.tc:minecartLocoC41_080.name=C41 0-8-0
 item.tc:minecartLocoAlcoSC4.name=Alco SC4
 item.tc:minecartFreightL.name=Freight Car L
 item.tc:minecartHeavySteam.name=Heavy Steam Locomotive
-
+item.tc:minecartBNLRV_A.name=BNLRV Powered End
+item.tc:minecartBNLRV_B.name=BNLRV Unpowered End
 item.tc:minecartLocoCF7.name=CF7
 item.tc:minecartLocoGP15.name=GP15
 item.tc:minecartLocoRenfe446Motor.name=Renfe Class 446 Powered End
