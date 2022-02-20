@@ -536,7 +536,8 @@ item.tc:minecartClass319Engine.name=Class 319 loco
 item.tc:minecartClass319passenger.name=Class 319 middle car
 item.tc:minecartClass319panto.name=Class 319 pantograph middle car
 item.tc:minecartClass319Tail.name=Class 319 tail
-item.tc:minecartSNCB_M6.name=SNCB M6
+item.tc:minecartSNCB_M6.name=NMBS M6 Coach
+item.tc:minecartSNCB_M6_TAIL.name=NMBS M6 Tail
 item.tc:minecartKVB_2300.name=B80D A segment
 item.tc:minecartKVB_2300_B.name=B80D B segment
 item.tc:minecartBoulderWagon.name=Boulder Wagon
@@ -552,6 +553,8 @@ item.tc:minecartClass321.name=Class 321 Front
 item.tc:minecartClass321Panto.name=Class 321 Panto Car
 item.tc:minecartClass321Coach.name=Class 321 Trailer
 item.tc:minecartPassengerMinetrain.name=Minecart Ride-able
+item.tc:minecartClass153engine.name=Class 153 Engine
+item.tc:minecartClass153Coach.name=Class 153 Coach
 
 
 <!-- ## Achievements ## -->
@@ -843,8 +846,8 @@ entity.tc.Loco WLs40.name=WLs40
 entity.tc.Freight Car L.name=Freight Car L
 entity.tc.Loco Steam C41 0-8-0.name=C41 0-8-0
 entity.tc.Loco Steam Alco SC4.name=Alco SC4
-
-
+entity.tc.BNLRV_A.name=BNLRV Powered End
+entity.tc.BNLRV_B.name=BNLRV Unpowered End
 entity.tc.Loco Diesel CF7.name=CF7
 entity.tc.Loco Diesel GP15.name=GP15
 entity.tc.Loco Electric Renfe 446 Motor=Renfe Class 446 Powered End
@@ -999,7 +1002,8 @@ entity.tc.Class 319 Engine.name=Class 319 loco
 entity.tc.Class 319 Passenger Car.name=Class 319 middle car
 entity.tc.Class 319 Panto Car.name=Class 319 pantograph middle car
 entity.tc.CClass 319 Tail Car.name=Class 319 tail
-entity.tc.SNCB_M6.name=SNCB M6
+entity.tc.SNCB_M6.name=NMBS M6 Coach
+entity.tc.SNCB_M6_TAIL.name=NMBS M6 Tail
 entity.tc.KVB_2300.name=B80D A segment
 entity.tc.KVB_2300_B.name=B80D B segment
 entity.tc.BoulderWagon.name=Boulder Wagon
@@ -1015,6 +1019,8 @@ entity.tc.Class321.name=Class 321 Front
 entity.tc.Class321Panto.name=Class 321 Panto Car
 entity.tc.Class321Coach.name=Class 321 Trailer
 entity.tc.Passenger Minecart Yellow.name = Minecart Ride-able
+entity.tc.Class 153 Engine.name=Class 153 Engine
+entity.tc.Class 153 Coach.name=Class 153 Coach
 
 description.villager.profession.tc.station_chief=Station Chief
 

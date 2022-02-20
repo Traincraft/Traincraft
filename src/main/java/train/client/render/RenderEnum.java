@@ -250,8 +250,8 @@ public enum RenderEnum {
 	locoBR185(EntityLocoElectricBR185.class, new BR185_EngineModel(), "BR185_Engine_", true, new float[] { -2.0F, 0.1F, 0.0F },  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	locoClass85(EntityLocoElectricClass85.class, new ModelClass85(), "Class85_", true, new float[] { -3.0F, 0.65F, 0.0F },  new float[] { 0F, 90F, 180F }, null, "", 0, null, "", null, 0, false),
 	locoBP4(EntityLocoElectricBP4.class, new ModelBP4(), "bp4_", true, new float[] { -2.2F, 0.15F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
-	locoBNLRV_A(EntityLocoElectricBNLRV_A.class, new ModelBNLRV_A(), "bnlrv_", true, new float[] {-2f, 0.10f, 0.0f}, new float[] {0F, 180F, 180F}, null, "", 0, null, "", null, 0, false ),
 	passengerBNLRV_B(EntityPassengerBNLRV_B.class, new ModelBNLRV_B(), "bnlrv_", true, new float[] {0.0f, 0.10f, 0.0f}, new float[] {0F, 180F, 180F}, null, "", 0, null, "", null, 0, false ),
+	locoBNLRV_A(EntityLocoElectricBNLRV_A.class, new ModelBNLRV_A(), "bnlrv_", true, new float[] {-2f, 0.10f, 0.0f}, new float[] {0F, 180F, 180F}, null, "", 0, null, "", null, 0, false ),
 
 	locoDeltic(EntityLocoDieselDeltic.class, new ModelDeltic(), "Deltic", false, new float[] { -2.25F, 0.8F, 0.0F },  new float[] { 0F, 90F, 180F }, null, "largesmoke", 1, new ArrayList<double[]>() {
 		{
@@ -1056,7 +1056,12 @@ public enum RenderEnum {
 
 	//tcce4 new stuff
 	SNCB_M6( EntityPassengerSNCB_M6.class, new ModelSNCB_M6(),"sncb_m6", false, new float[] {0, .1F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
-	Class319Engine(EntityElectricClass319.class, new ModelClass319Engine(), "Br_319_", true,new float[] {-1.65F, 0.15F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	SNCB_M6_TAIL( EntityPassengerSNCB_M6_TAIL.class, new ModelSNCB_M6_TAIL(),"sncb_m6_tail", false, new float[] {0, .1F, 0F},  new float[] { 0F, 0F, 180F },null, "", 0, null, "", null, 0, false),
+	Class153Engine( EntityLocoDieselClass153.class, new ModelClass153(), "class_153_", true, new float[] {-2.1F, .1F, 0F}, new float[] {0F, 180F, 180F }, null, "smoke", 3,  new ArrayList<double[]>() {
+		{}
+	}, "", null, 0, false),
+	Class153Coach( EntityPassengerClass153.class, new ModelClass153(), "class_153_", true, new float[] {0F, .1F, 0F}, new float[] {0F, 180F, 180F }, null, "",0 , null, "", null, 0, false),
+	Class319Engine(EntityElectricClass319.class, new ModelClass319Engine(), "Br_319_", true,new float[] {-1.65F, 0.15F, 0F},  new float[] { 0F, 180F, 180F }, null, "smoke", 3, null, "", null, 0, false),
 	Class319Middle( EntityPassengerClass319Middle.class, new ModelClass319Middle(),"Br_319_", true, new float[] {0F, 0.15F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
 	Class319Panto( EntityPassengerClass319Panto.class, new ModelClass319Panto(),"Br_319_", true, new float[] {0F, 0.15F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
 	Class319Tail( EntityPassengerClass319Tail.class, new ModelClass319Engine(), "Br_319_", true, new float[] {0F, 0.15F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),

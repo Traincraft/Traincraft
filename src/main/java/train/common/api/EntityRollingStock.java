@@ -1422,7 +1422,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 
 		motionX = vx2;
 		motionZ = vz2;
-		System.out.println(motionX +  " + " + motionZ);
 
 	}
 

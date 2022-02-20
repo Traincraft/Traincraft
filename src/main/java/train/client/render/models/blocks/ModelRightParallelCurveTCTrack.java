@@ -53,40 +53,34 @@ public class ModelRightParallelCurveTCTrack extends ModelBase {
         if (facing == 0) {
             GL11.glRotatef(180, 0, 1, 0);
             if (type == "small") {
-                GL11.glTranslatef(1, 0.0f, 7);
+                GL11.glTranslatef(1, 0.0f, 5);
             }
             if (type == "medium") {
-                GL11.glTranslatef(1, 0.0f, 7);
+                GL11.glTranslatef(1, 0.0f, 5);
             }
-
-
-
         }
-
         if (facing == 1) {
             GL11.glRotatef(90, 0, 1, 0);
             if(type == "small") {
-                GL11.glTranslatef(5, 0.0f, + 1);
+                GL11.glTranslatef(5, 0.0f, - 1);
             }
-
         }
-
         if (facing == 2) {
             if (type == "small") {
-                GL11.glTranslatef(-1, 0.0f, - 3);
+                GL11.glTranslatef(-1, 0.0f, - 5);
             }
             if (type == "medium") {
-                GL11.glTranslatef(- 2,0.0f, - 2);
+                GL11.glTranslatef(- 1,0.0f, - 5);
             }
             if (type == "large") {
-                GL11.glTranslatef(- 1, 0.0f, - 3);
+                GL11.glTranslatef(- 1, 0.0f, - 5);
             }
         }
 
         if (facing == 3) {
             GL11.glRotatef(-90, 0, 1, 0);
             if (type == "small") {
-                GL11.glTranslatef(-5, 0.0f, 3);
+                GL11.glTranslatef(-5, 0.0f, 1);
             }
 
         }

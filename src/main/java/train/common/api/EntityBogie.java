@@ -662,8 +662,8 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 	private void moveOnTC90TurnRail(int j,double r, double cx, double cz){
 		/** j is the pitch (going up or down, default is .2),  */
 		posY = j + 0.2; /** height of bounding box */
-		double cpx = posX - cx; /** xpos of player - x tile rail pos, I think*/
-		double cpz = posZ - cz;/** zpos of player - z tile rail pos*/
+		double cpx = posX - cx; /** xpos of player - x centre circle pos*/
+		double cpz = posZ - cz;/** zpos of player - z centre circle pos*/
 		double cp_norm = Math.sqrt(cpx * cpx + cpz * cpz); /** again pytho thing */
 
 		double vnorm = Math.sqrt(motionX * motionX + motionZ * motionZ); /** again pytho thing */
