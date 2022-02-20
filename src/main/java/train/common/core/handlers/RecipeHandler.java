@@ -112,7 +112,9 @@ public class RecipeHandler {
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailSmallParallelCurve.item, 1), " S ", "SS ", "S  ", Character.valueOf('S'), ItemIDs.tcRailSmallStraight.item);
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailMediumParallelCurve.item, 1), " S ", "SS ", "S  ", Character.valueOf('S'), ItemIDs.tcRailSmallParallelCurve.item);
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailLargeParallelCurve.item, 1), " S ", "SS ", "S  ", Character.valueOf('S'), ItemIDs.tcRailMediumParallelCurve.item);
-
+		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailEmbeddedSmallParallelCurve.item, 1), " S ", "SS ", "S  ", Character.valueOf('S'), ItemIDs.tcRailEmbeddedSmallStraight.item);
+		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailEmbeddedMediumParallelCurve.item, 1), " S ", "SS ", "S  ", Character.valueOf('S'), ItemIDs.tcRailEmbeddedSmallParallelCurve.item);
+		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailEmbeddedLargeParallelCurve.item, 1), " S ", "SS ", "S  ", Character.valueOf('S'), ItemIDs.tcRailEmbeddedMediumParallelCurve.item);
 		//here we go paintbrush -hariesh
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.paintbrushThing.item,1),"GB ","RIS"," ST", Character.valueOf('G'), new ItemStack(Items.dye,1,2), Character.valueOf('B'), new ItemStack(Items.dye,1,4), Character.valueOf('R'), new ItemStack(Items.dye,1,1), Character.valueOf('I'), new ItemStack(Items.iron_ingot), Character.valueOf('S'), new ItemStack(Items.string), Character.valueOf('T'), new ItemStack(Items.stick));
 		GameRegistry.addShapelessRecipe(new ItemStack(BlockIDs.poweredGravel.block,1), new ItemStack(Items.redstone), new ItemStack(Blocks.gravel));

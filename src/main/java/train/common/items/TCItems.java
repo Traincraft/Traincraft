@@ -86,6 +86,16 @@ public class TCItems {
 
 		ItemIDs.tcRailEmbeddedMedium45DegreeTurn.item = new ItemTCRail(ItemTCRail.TrackTypes.EMBEDDED_MEDIUM_45DEGREE_TURN);
 
+		/** Normal Parallel Curves*/
+		ItemIDs.tcRailSmallParallelCurve.item = new ItemTCRail(ItemTCRail.TrackTypes.SMALL_PARALLEL_CURVE);
+		ItemIDs.tcRailMediumParallelCurve.item = new ItemTCRail(ItemTCRail.TrackTypes.MEDIUM_PARALLEL_CURVE);
+		ItemIDs.tcRailLargeParallelCurve.item = new ItemTCRail(ItemTCRail.TrackTypes.LARGE_PARALLEL_CURVE);
+
+		/** Embedded Parallel Curves*/
+		ItemIDs.tcRailEmbeddedSmallParallelCurve.item = new ItemTCRail(ItemTCRail.TrackTypes.EMBEDDED_SMALL_PARALLEL_CURVE);
+		ItemIDs.tcRailEmbeddedMediumParallelCurve.item = new ItemTCRail(ItemTCRail.TrackTypes.EMBEDDED_MEDIUM_PARALLEL_CURVE);
+		ItemIDs.tcRailEmbeddedLargeParallelCurve.item = new ItemTCRail(ItemTCRail.TrackTypes.EMBEDDED_LARGE_PARALLEL_CURVE);
+
 		/**Normal Turns*/
 		ItemIDs.tcRailMediumTurn.item = new ItemTCRail(ItemTCRail.TrackTypes.MEDIUM_TURN);
 		ItemIDs.tcRailLargeTurn.item = new ItemTCRail(ItemTCRail.TrackTypes.LARGE_TURN);
@@ -130,10 +140,7 @@ public class TCItems {
 		ItemIDs.tcRailLargeSlopeSnowGravel.item = new ItemTCRail(ItemTCRail.TrackTypes.LARGE_SLOPE_SNOW_GRAVEL);
 		ItemIDs.tcRailVeryLargeSlopeSnowGravel.item = new ItemTCRail(ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_SNOW_GRAVEL);
 
-		/** Normal Parallel Curves*/
-		ItemIDs.tcRailSmallParallelCurve.item = new ItemTCRail(ItemTCRail.TrackTypes.SMALL_PARALLEL_CURVE);
-		ItemIDs.tcRailMediumParallelCurve.item = new ItemTCRail(ItemTCRail.TrackTypes.MEDIUM_PARALLEL_CURVE);
-		ItemIDs.tcRailLargeParallelCurve.item = new ItemTCRail(ItemTCRail.TrackTypes.LARGE_PARALLEL_CURVE);
+
 
 		ItemIDs.paintbrushThing.item = new ItemPaintbrushThing();
 		ItemIDs.whistle.item = new ItemWhistle();

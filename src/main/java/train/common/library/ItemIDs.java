@@ -120,6 +120,10 @@ public enum ItemIDs {
 
 	tcRailEmbeddedMedium45DegreeTurn("ItemTCRail", "item_rail_embedded_45degree_turn_medium", 5),
 
+	tcRailEmbeddedSmallParallelCurve("ItemTCRail", "item_rail_tc_embedded_parallel_curve_small", 3),
+	tcRailEmbeddedMediumParallelCurve("ItemTCRail", "item_rail_tc_embedded_parallel_curve_medium", 3),
+	tcRailEmbeddedLargeParallelCurve("ItemTCRail", "item_rail_tc_embedded_parallel_curve_large", 3),
+
 	tcRailEmbeddedTwoWaysCrossing("ItemTCRail","item_rail_embedded_two_ways_crossing",5),
 
 	tcRailEmbeddedMediumSwitch("ItemTCRail", "item_rail_embedded_switch_medium", 5),
@@ -528,8 +532,8 @@ public enum ItemIDs {
 	minecartPSRPOPM("ItemRollingStock", "PSRPOPMIcon", 3),
 	minecartPSRPO("ItemRollingStock", "PSRPOIcon", 3),
 	minecartPassengerMinetrain("ItemRollingStock","train_mine_cart", 1),
-	minecartBNLRV_A("ItemRollingStock", "BNLRV_A", 1 ),
 	minecartBNLRV_B("ItemRollingStock", "BNLRV_B", 1 ),
+	minecartBNLRV_A("ItemRollingStock", "BNLRV_A", 1 ),
 
 	//signalSpanish("ItemsignalSpanish","signalSpanish", 1),
 

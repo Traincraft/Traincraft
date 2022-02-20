@@ -16,6 +16,8 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 	public static final ModelLeft45DegreeTurnTCTrack model45DegreeLeftTurn = new ModelLeft45DegreeTurnTCTrack();
 	public static final ModelRightParallelCurveTCTrack modelRightParallelCurve = new ModelRightParallelCurveTCTrack();
 	public static final ModelLeftParallelCurveTCTrack modelLeftParallelCurve = new ModelLeftParallelCurveTCTrack();
+	public static final ModelEmbeddedRightParallelCurveTCTrack modelEmbeddedRightParallelCurve = new ModelEmbeddedRightParallelCurveTCTrack();
+	public static final ModelEmbeddedLeftParallelCurveTCTrack modelEmbeddedLeftParallelCurve = new ModelEmbeddedLeftParallelCurveTCTrack();
 	public static final ModelTwoWaysCrossingTCTrack modelTwoWaysCrossing = new ModelTwoWaysCrossingTCTrack();
 	public static final ModelRightSwitchTCTrack modelRightSwitchTurn = new ModelRightSwitchTCTrack();
 	public static final ModelLeftSwitchTCTrack modelLeftSwitchTurn = new ModelLeftSwitchTCTrack();
@@ -277,6 +279,16 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 					case EMBEDDED_MEDIUM_LEFT_45DEGREE_TURN:{
 						modelEmbedded45DegreeLeftTurn.render("medium", railTile, x, y, z);
 					}*/
+					case EMBEDDED_SMALL_PARALLEL_CURVE:
+					case EMBEDDED_SMALL_RIGHT_PARALLEL_CURVE:{
+						modelEmbeddedRightParallelCurve.render("small", railTile, x, y, z);
+						break;
+					}
+					case EMBEDDED_SMALL_LEFT_PARALLEL_CURVE:{
+						modelEmbeddedLeftParallelCurve.render("small", railTile, x, y, z);
+						break;
+					}
+
 					case EMBEDDED_TWO_WAYS_CROSSING: {
 						modelEmbeddedTwoWaysCrossing.render(x, y, z);
 						break;

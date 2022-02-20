@@ -12,21 +12,21 @@ import train.common.library.Info;
 import train.common.tile.TileTCRail;
 
 @SideOnly(Side.CLIENT)
-public class ModelLeftParallelCurveTCTrack extends ModelBase {
+public class ModelEmbeddedLeftParallelCurveTCTrack extends ModelBase {
 
-    private IModelCustom modelSmallLeftParallelCurve;
-    private IModelCustom modelMediumLeftParallelCurve;
-    private IModelCustom modelLargeLeftParallelCurve;
+    private IModelCustom modelEmbeddedSmallLeftParallelCurve;
+    private IModelCustom modelEmbeddedMediumLeftParallelCurve;
+    private IModelCustom modelEmbeddedLargeLeftParallelCurve;
 
-    public ModelLeftParallelCurveTCTrack() {
-        modelSmallLeftParallelCurve = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_parallel_s_left.obj"));
-        modelMediumLeftParallelCurve = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_parallel_m_left.obj"));
-        modelLargeLeftParallelCurve = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_parallel_l_left.obj"));
+    public ModelEmbeddedLeftParallelCurveTCTrack() {
+        modelEmbeddedSmallLeftParallelCurve = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_embedded_curve_parallel_s_left.obj"));
+       // modelEmbeddedMediumLeftParallelCurve = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_embedded_curve_parallel_m_left.obj"));
+      //  modelEmbeddedLargeLeftParallelCurve = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_embedded_curve_parallel_l_left.obj"));
     }
 
-    public void renderSmall() {modelSmallLeftParallelCurve.renderAll();}
-    public void renderMedium() {modelMediumLeftParallelCurve.renderAll();}
-    public void renderLarge() {modelLargeLeftParallelCurve.renderAll();}
+    public void renderSmall() {modelEmbeddedSmallLeftParallelCurve.renderAll();}
+    public void renderMedium() {modelEmbeddedMediumLeftParallelCurve.renderAll();}
+    public void renderLarge() {modelEmbeddedLargeLeftParallelCurve.renderAll();}
 
     public void render(String type, TileTCRail tcRail, double x, double y, double z) {
         int facing = tcRail.getWorldObj().getBlockMetadata(tcRail.xCoord, tcRail.yCoord, tcRail.zCoord);
@@ -60,8 +60,8 @@ public class ModelLeftParallelCurveTCTrack extends ModelBase {
         if (facing == 1) {
             GL11.glRotatef(90, 0, 1, 0);
             if(type == "small") {
-            GL11.glTranslatef(-2f, 0.0f, 0f);
-             }
+                GL11.glTranslatef(-2f, 0.0f, 0f);
+            }
         }
 
         if (facing == 2) {
