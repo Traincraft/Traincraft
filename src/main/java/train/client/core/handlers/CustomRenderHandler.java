@@ -164,7 +164,7 @@ public class CustomRenderHandler {
         }
 
 
-        // S Curves
+        /** Normal Parallel Curves*/
 
         else if (item.getTrackType() == ItemTCRail.TrackTypes.SMALL_PARALLEL_CURVE
                 || item.getTrackType() == ItemTCRail.TrackTypes.MEDIUM_PARALLEL_CURVE
@@ -191,6 +191,31 @@ public class CustomRenderHandler {
             }
         }
 
+        /** Embedded Parallel Curves*/
+        else if (item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_SMALL_PARALLEL_CURVE
+                || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_MEDIUM_PARALLEL_CURVE
+                || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_LARGE_PARALLEL_CURVE)
+        {
+            float yaw = MathHelper.wrapAngleTo180_float(player.rotationYaw);
+            boolean isLeftTurn = item.getTrackOrientation( facing, yaw ).equals("left");
+
+            if (item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_SMALL_PARALLEL_CURVE || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_MEDIUM_PARALLEL_CURVE
+                    || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_LARGE_PARALLEL_CURVE) {
+                String turnSize = "small";
+                if ( item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_MEDIUM_PARALLEL_CURVE )
+                    turnSize = "medium";
+                else if ( item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_LARGE_PARALLEL_CURVE )
+                    turnSize = "large";
+                if ( isLeftTurn )
+                {
+                    RenderTCRail.modelEmbeddedLeftParallelCurve.render( turnSize, facing, 0, 0, 0, r, g, b, a );
+                }
+                else
+                {
+                    RenderTCRail.modelEmbeddedRightParallelCurve.render( turnSize, facing, 0, 0, 0, r, g, b, a );
+                }
+            }
+        }
         // 45 Degree Turns
 
         else if (item.getTrackType() == ItemTCRail.TrackTypes.MEDIUM_45DEGREE_TURN || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_MEDIUM_45DEGREE_TURN) {

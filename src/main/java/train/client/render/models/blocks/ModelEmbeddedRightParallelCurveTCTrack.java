@@ -20,8 +20,8 @@ public class ModelEmbeddedRightParallelCurveTCTrack extends ModelBase {
 
     public ModelEmbeddedRightParallelCurveTCTrack() {
         modelEmbeddedSmallRightParallelCurve = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_embedded_curve_parallel_s.obj"));
-       // modelEmbeddedMediumRightParallelCurve = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_embedded_curve_parallel_m.obj"));
-       // modelEmbeddedLargeRightParallelCurve = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_embedded_curve_parallel_l.obj"));
+        modelEmbeddedMediumRightParallelCurve = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_embedded_curve_parallel_m.obj"));
+        modelEmbeddedLargeRightParallelCurve = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_embedded_curve_parallel_l.obj"));
     }
 
     public void renderSmall() {modelEmbeddedSmallRightParallelCurve.renderAll();}
@@ -58,19 +58,29 @@ public class ModelEmbeddedRightParallelCurveTCTrack extends ModelBase {
             if (type == "medium") {
                 GL11.glTranslatef(1, 0.0f, 5);
             }
+            if (type == "large") {
+                GL11.glTranslatef(1, 0.0f, 5);
+            }
         }
         if (facing == 1) {
             GL11.glRotatef(90, 0, 1, 0);
             if(type == "small") {
                 GL11.glTranslatef(5, 0.0f, - 1);
             }
+            if(type == "medium") {
+                GL11.glTranslatef(5, 0.0f, - 1);
+            }
+            if (type == "large") {
+                GL11.glTranslatef(5, 0.0f, -1);
+            }
         }
         if (facing == 2) {
+            GL11.glRotatef(0, 0, 1, 0);
             if (type == "small") {
                 GL11.glTranslatef(-1, 0.0f, - 5);
             }
             if (type == "medium") {
-                GL11.glTranslatef(- 1,0.0f, - 5);
+                GL11.glTranslatef(-1,0.0f, - 5);
             }
             if (type == "large") {
                 GL11.glTranslatef(- 1, 0.0f, - 5);
@@ -82,7 +92,12 @@ public class ModelEmbeddedRightParallelCurveTCTrack extends ModelBase {
             if (type == "small") {
                 GL11.glTranslatef(-5, 0.0f, 1);
             }
-
+            if(type == "medium") {
+                GL11.glTranslatef(-5, 0.0f, + 1);
+            }
+            if (type == "large") {
+                GL11.glTranslatef(-5, 0.0f, +1);
+            }
         }
 
         if(type.equals("small"))this.renderSmall();

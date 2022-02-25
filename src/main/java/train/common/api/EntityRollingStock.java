@@ -1394,10 +1394,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			this.motionZ = 0.0D;
 		}
 	}
-	int check = 0;
 	protected void moveOnTC90TurnRail(int i, int j, int k, double r, double cx, double cz) {
-		check++;
-
 		posY = j + 0.2;
 		double cpx = posX - cx;
 		double cpz = posZ - cz;
@@ -1427,10 +1424,9 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 
 	protected void moveOnTCTwoWaysCrossing(int i, int j, int k, double cx, double cy, double cz, int meta) {
 		posY = j + 0.2;
-
+/** 2-0 is West - East, 1-3 is NORTH SOUTH, unlike other times*/
 		if (!(this instanceof Locomotive)) {
 			int l = MathHelper.floor_double(serverRealRotation * 4.0F / 360.0F + 0.5D) & 3;
-			//System.out.println(l);
 			if (l == 2 || l == 0){
 				moveEntity(motionX, 0.0D, 0.0D);
 			} else if (l == 1 || l == 3){
@@ -1439,7 +1435,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		}
 		else {
 			int l = MathHelper.floor_double(rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
-			//System.out.println(l);
 			if (l == 2 || l == 0){
 				moveEntity(motionX, 0.0D, 0.0D);
 			}
