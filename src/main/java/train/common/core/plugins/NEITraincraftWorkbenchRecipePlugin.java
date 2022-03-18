@@ -101,35 +101,30 @@ public class NEITraincraftWorkbenchRecipePlugin extends ShapedRecipeHandler {
 		public List<PositionedStack> getCycledIngredients(int cycle, List<PositionedStack> ingredients) {
 			cycleTicks++;
 
-			CachedRecipe recipe = !arecipes.isEmpty() ? arecipes.get(0) : null;
+			int id = getOutputID(result.item.getItem());
+			List<ShapedTrainRecipes> recipes = recipeListWB.get(id);
 
-			if (recipe != null) {
+			for (int itemIndex = 0; itemIndex < ingredients.size(); itemIndex++) {
 
-				int id = getOutputID(recipe.getResult().item.getItem());
-				List<ShapedTrainRecipes> recipes = recipeListWB.get(id);
-
-				for (int itemIndex = 0; itemIndex < ingredients.size(); itemIndex++) {
-
-					Set<ItemStack> stacks = new HashSet<>();
-					for(ShapedTrainRecipes otherRecipe:recipes) {
-						PositionedStack incredient = getShape(otherRecipe).ingredients.get(itemIndex);
-						if(incredient != null) {
-							stacks.add(incredient.item);
-						}
+				Set<ItemStack> stacks = new HashSet<>();
+				for (ShapedTrainRecipes otherRecipe : recipes) {
+					ArrayList<PositionedStack> ingreds = getShape(otherRecipe).ingredients;
+					PositionedStack incredient = itemIndex < ingreds.size() ? ingreds.get(itemIndex) : null;
+					if (incredient != null) {
+						stacks.add(incredient.item);
 					}
-					
-					ArrayList<ItemStack> list = new ArrayList<>(stacks);
-					if (list != null && list.size() > 1) {
-						Random rand = new Random(cycle + System.currentTimeMillis());
-						if (cycleTicks % 15 == 0) {
-							int stackSize = ingredients.get(itemIndex).item.stackSize;
-							ingredients.get(itemIndex).item = (ItemStack) list
-									.get(Math.abs(rand.nextInt()) % list.size());
-							ingredients.get(itemIndex).item.stackSize = stackSize;
-						}
-					} else {
-						randomRenderPermutation(ingredients.get(itemIndex), cycle + itemIndex);
+				}
+
+				ArrayList<ItemStack> list = new ArrayList<>(stacks);
+				if (list != null && list.size() > 1) {
+					Random rand = new Random(cycle + System.currentTimeMillis());
+					if (cycleTicks % 15 == 0) {
+						int stackSize = ingredients.get(itemIndex).item.stackSize;
+						ingredients.get(itemIndex).item = (ItemStack) list.get(Math.abs(rand.nextInt()) % list.size());
+						ingredients.get(itemIndex).item.stackSize = stackSize;
 					}
+				} else {
+					randomRenderPermutation(ingredients.get(itemIndex), cycle + itemIndex);
 				}
 			}
 
@@ -178,12 +173,17 @@ public class NEITraincraftWorkbenchRecipePlugin extends ShapedRecipeHandler {
 
 	@Override
 	public void loadUsageRecipes(ItemStack ingredient) {
+		Set<Integer> outputIDs = new HashSet<>();
 		for (List<ShapedTrainRecipes> recipes : recipeListWB.values()) {
 			for (ShapedTrainRecipes recipe : recipes) {
 				for (ItemStack source : recipe.recipeItems) {
-					if (NEIClientUtils.areStacksSameTypeCrafting(source, ingredient)) {
-						this.arecipes.add(getShape(recipe));
-						break;
+					int outputID = getOutputID(recipe.getRecipeOutput().getItem());
+					if (!outputIDs.contains(outputID)) {
+						if (NEIClientUtils.areStacksSameTypeCrafting(source, ingredient)) {
+							outputIDs.add(outputID);
+							this.arecipes.add(getShape(recipe));
+							break;
+						}
 					}
 				}
 			}
