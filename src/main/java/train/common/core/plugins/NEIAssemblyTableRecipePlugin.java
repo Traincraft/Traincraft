@@ -300,7 +300,7 @@ public class NEIAssemblyTableRecipePlugin extends ShapedRecipeHandler {
 		Map<Integer, List<TierRecipe>> sortedRecipes = new HashMap<>();
 
 		for (int i = 0; i < recipeList.size(); i++) {
-			if (recipeList.get(i) instanceof ShapedTrainRecipes) {
+			if (recipeList.get(i) instanceof TierRecipe) {
 				TierRecipe tierRecipe = (TierRecipe) recipeList.get(i);
 
 				Item output = tierRecipe.getOutput().getItem();
