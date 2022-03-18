@@ -1,5 +1,19 @@
 package train.common.core.plugins;
 
+import static codechicken.lib.gui.GuiDraw.changeTexture;
+import static codechicken.lib.gui.GuiDraw.drawString;
+import static codechicken.lib.gui.GuiDraw.drawTexturedModalRect;
+
+import java.awt.Rectangle;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+
+import org.lwjgl.opengl.GL11;
+
 import codechicken.nei.NEIClientUtils;
 import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.ShapedRecipeHandler;
@@ -9,21 +23,12 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraftforge.oredict.OreDictionary;
-import org.lwjgl.opengl.GL11;
 import train.client.gui.GuiCrafterTier;
 import train.common.core.managers.TierRecipe;
 import train.common.core.managers.TierRecipeManager;
 
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Random;
-
-import static codechicken.lib.gui.GuiDraw.*;
-
 public class NEIAssemblyTableRecipePlugin extends ShapedRecipeHandler {
-	private List<TierRecipe> recipeList = assemblyListCleaner(TierRecipeManager.getInstance().getRecipeList());
+	private Map<Integer, TierRecipe> recipeList = assemblyListCleaner(TierRecipeManager.getInstance().getRecipeList());
 
 	private CachedShapedRecipe getShape(TierRecipe recipe) {
 		CachedShapedRecipe shape = new CachedShapedRecipe(0, 0, null, recipe.getOutput());
@@ -111,13 +116,13 @@ public class NEIAssemblyTableRecipePlugin extends ShapedRecipeHandler {
 		/**
 		 * @param width
 		 * @param height
-		 * @param items
-		 * an ItemStack[] or ItemStack[][]
+		 * @param items  an ItemStack[] or ItemStack[][]
 		 */
 		public void setIngredients(int width, int height, Object[] items) {
 			for (int x = 0; x < width; x++) {
 				for (int y = 0; y < height; y++) {
-					if (items[y * width + x] == null) continue;
+					if (items[y * width + x] == null)
+						continue;
 
 					PositionedStack stack = new PositionedStack(items[y * width + x], 25 + x * 18, 6 + y * 18, false);
 					stack.setMaxSize(1);
@@ -154,17 +159,16 @@ public class NEIAssemblyTableRecipePlugin extends ShapedRecipeHandler {
 			cycleTicks++;
 			for (int itemIndex = 0; itemIndex < ingredients.size(); itemIndex++) {
 
-				String oreName = OreDictionary.getOreName(OreDictionary.getOreID(ingredients.get(itemIndex).item));
-				if (oreName.equals("ingotSteel") || oreName.equals("ingotIron") || oreName.equals("ingotCopper") || oreName.equals("dustPlastic") || oreName.equals("dustCoal")) {
-					ArrayList list = OreDictionary.getOres(OreDictionary.getOreName(OreDictionary.getOreID(ingredients.get(itemIndex).item)));
+				ArrayList<ItemStack> list = OreDictionary.getOres(ingredients.get(itemIndex).item.getUnlocalizedName());
+				if (list != null && list.size() > 1) {
+
 					Random rand = new Random(cycle + System.currentTimeMillis());
 					if (cycleTicks % 15 == 0) {
 						int stackSize = ingredients.get(itemIndex).item.stackSize;
 						ingredients.get(itemIndex).item = (ItemStack) list.get(Math.abs(rand.nextInt()) % list.size());
 						ingredients.get(itemIndex).item.stackSize = stackSize;
 					}
-				}
-				else {
+				} else {
 					randomRenderPermutation(ingredients.get(itemIndex), cycle + itemIndex);
 				}
 			}
@@ -175,7 +179,7 @@ public class NEIAssemblyTableRecipePlugin extends ShapedRecipeHandler {
 
 	@Override
 	public void loadCraftingRecipes(ItemStack result) {
-		for (TierRecipe recipe : recipeList) {
+		for (TierRecipe recipe : recipeList.values()) {
 			if (NEIClientUtils.areStacksSameTypeCrafting(recipe.getOutput(), result)) {
 				this.arecipes.add(getShape(recipe));
 			}
@@ -199,11 +203,11 @@ public class NEIAssemblyTableRecipePlugin extends ShapedRecipeHandler {
 	public String getGuiTexture(int tier) {
 		if (tier == 1) {
 			return "tc:textures/gui/gui_tierI_ironAge.png";
-		}
-		else if (tier == 2) {
+		} else if (tier == 2) {
 			return "tc:textures/gui/gui_tierII_steelAge.png";
+		} else if (tier == 3) {
+			return "tc:textures/gui/gui_tierIII_advancedAge.png";
 		}
-		else if (tier == 3) { return "tc:textures/gui/gui_tierIII_advancedAge.png"; }
 		return "tc:textures/gui/gui_tierI_ironAge.png";
 	}
 
@@ -212,22 +216,22 @@ public class NEIAssemblyTableRecipePlugin extends ShapedRecipeHandler {
 		return false;
 	}
 
-	
 	public void drawBackground(int recipe) {
 		GL11.glColor4f(1, 1, 1, 1);
-		TierRecipe tierRecipe = null;
-		if (recipe < recipeList.size()) {
-			tierRecipe = recipeList.get(recipe);
-			if (tierRecipe != null) {
-				changeTexture(getGuiTexture(tierRecipe.getTier()));
-			}
+		PositionedStack result = super.getResultStack(recipe);
+		Item output = result.item.getItem();
+		int id = getOutputID(output);
+
+		TierRecipe tierRecipe = recipeList.get(id);
+		if (tierRecipe != null) {
+			changeTexture(getGuiTexture(tierRecipe.getTier()));
 		}
 		drawTexturedModalRect(0, 0, 5, 11, 172, 133);
 		if (tierRecipe != null) {
 			drawString("Tier: " + tierRecipe.getTier(), 0, -11, 0x404040, false);
 		}
 	}
-	
+
 	@Override
 	public int recipiesPerPage() {
 		return 1;
@@ -240,7 +244,7 @@ public class NEIAssemblyTableRecipePlugin extends ShapedRecipeHandler {
 
 	@Override
 	public void loadUsageRecipes(ItemStack ingredient) {
-		for (TierRecipe recipe : recipeList) {
+		for (TierRecipe recipe : recipeList.values()) {
 			for (int i = 0; i < 10; i++) {
 				ItemStack source = recipe.getInput().get(i);
 				if (NEIClientUtils.areStacksSameTypeCrafting(source, ingredient)) {
@@ -254,31 +258,33 @@ public class NEIAssemblyTableRecipePlugin extends ShapedRecipeHandler {
 	@Override
 	public void loadCraftingRecipes(String outputId, Object... results) {
 		if (outputId.equals("assembly tables") && getClass() == NEIAssemblyTableRecipePlugin.class) {
-			for (TierRecipe recipe : recipeList) {
+			for (TierRecipe recipe : recipeList.values()) {
 				this.arecipes.add(getShape(recipe));
 			}
-		}
-		else {
+		} else {
 			super.loadCraftingRecipes(outputId, results);
 		}
 	}
 
-	public static List assemblyListCleaner(List recipeList) {
+	public static Map<Integer, TierRecipe> assemblyListCleaner(List recipeList) {
 		HashSet outputList = new HashSet();
-		ArrayList cleanedList = new ArrayList();
+		Map cleanedList = new HashMap();
 		for (int i = 0; i < recipeList.size(); i++) {
-			//ItemStack output = ((TierRecipe) recipeList.get(i)).getOutput();
-			int id=Item.getIdFromItem(((TierRecipe) recipeList.get(i)).getOutput().getItem());
+			Item output = ((TierRecipe) recipeList.get(i)).getOutput().getItem();
+			int id = getOutputID(output);
 			if (outputList != null) {
 				if (!outputList.contains(id)) {
-					cleanedList.add(recipeList.get(i));
+					cleanedList.put(id, recipeList.get(i));
 				}
-			}
-			else {
-				cleanedList.add(recipeList.get(i));
+			} else {
+				cleanedList.put(id, recipeList.get(i));
 			}
 			outputList.add(id);
 		}
 		return cleanedList;
+	}
+
+	private static int getOutputID(Item pOutputItem) {
+		return Item.getIdFromItem(pOutputItem);
 	}
 }
