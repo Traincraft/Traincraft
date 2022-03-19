@@ -6,8 +6,8 @@ import static codechicken.lib.gui.GuiDraw.drawTexturedModalRect;
 
 import java.awt.Rectangle;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -18,17 +18,14 @@ import org.lwjgl.opengl.GL11;
 import codechicken.nei.NEIClientUtils;
 import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.ShapedRecipeHandler;
-import codechicken.nei.recipe.TemplateRecipeHandler.CachedRecipe;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.Container;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.ShapedRecipes;
-import net.minecraftforge.oredict.OreDictionary;
 import train.client.gui.GuiCrafterTier;
 import train.common.core.managers.TierRecipe;
 import train.common.core.managers.TierRecipeManager;
-import train.common.recipes.ShapedTrainRecipes;
 
 public class NEIAssemblyTableRecipePlugin extends ShapedRecipeHandler {
 	private Map<Integer, List<TierRecipe>> recipeList = assemblyListCleaner(
@@ -164,28 +161,16 @@ public class NEIAssemblyTableRecipePlugin extends ShapedRecipeHandler {
 
 			int id = getOutputID(result.item.getItem());
 			List<TierRecipe> recipes = recipeList.get(id);
+			
+			if (cycleTicks % 15 == 0 && recipes.size() > 1) {
+				Random ranIndex = new Random(cycle + System.currentTimeMillis());
+				int recipeIndex = Math.max(0, Math.abs(ranIndex.nextInt() % recipes.size()));
+				TierRecipe recipe2use = recipes.get(recipeIndex < recipes.size() ? recipeIndex : 0);
+				ArrayList<PositionedStack> ingreds2use = getShape(recipe2use).ingredients;
 
-			for (int itemIndex = 0; itemIndex < ingredients.size(); itemIndex++) {
-
-				Set<ItemStack> stacks = new HashSet<>();
-				for (TierRecipe otherRecipe : recipes) {
-					ArrayList<PositionedStack> ingreds = getShape(otherRecipe).ingredients;
-					PositionedStack incredient = itemIndex < ingreds.size() ? ingreds.get(itemIndex) : null;
-					if (incredient != null) {
-						stacks.add(incredient.item);
-					}
-				}
-
-				ArrayList<ItemStack> list = new ArrayList<>(stacks);
-				if (list != null && list.size() > 1) {
-					Random rand = new Random(cycle + System.currentTimeMillis());
-					if (cycleTicks % 15 == 0) {
-						int stackSize = ingredients.get(itemIndex).item.stackSize;
-						ingredients.get(itemIndex).item = (ItemStack) list.get(Math.abs(rand.nextInt()) % list.size());
-						ingredients.get(itemIndex).item.stackSize = stackSize;
-					}
-				} else {
-					randomRenderPermutation(ingredients.get(itemIndex), cycle + itemIndex);
+				for (int itemIndex = 0; itemIndex < ingredients.size(); itemIndex++) {
+					ingredients.get(itemIndex).item = ingreds2use.get(itemIndex).item;
+					ingredients.get(itemIndex).item.stackSize = ingreds2use.get(itemIndex).item.stackSize;
 				}
 			}
 
@@ -296,7 +281,7 @@ public class NEIAssemblyTableRecipePlugin extends ShapedRecipeHandler {
 	}
 
 	public static Map<Integer, List<TierRecipe>> assemblyListCleaner(List recipeList) {
-		Map<Integer, List<TierRecipe>> sortedRecipes = new HashMap<>();
+		Map<Integer, List<TierRecipe>> sortedRecipes = new LinkedHashMap<>();
 
 		for (int i = 0; i < recipeList.size(); i++) {
 			if (recipeList.get(i) instanceof TierRecipe) {

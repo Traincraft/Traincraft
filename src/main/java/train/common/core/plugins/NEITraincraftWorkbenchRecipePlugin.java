@@ -2,8 +2,8 @@ package train.common.core.plugins;
 
 import java.awt.Rectangle;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -103,28 +103,16 @@ public class NEITraincraftWorkbenchRecipePlugin extends ShapedRecipeHandler {
 
 			int id = getOutputID(result.item.getItem());
 			List<ShapedTrainRecipes> recipes = recipeListWB.get(id);
+			
+			if (cycleTicks % 15 == 0 && recipes.size() > 1) {
+				Random ranIndex = new Random(cycle + System.currentTimeMillis());
+				int recipeIndex = Math.max(0, Math.abs(ranIndex.nextInt() % recipes.size()));
+				ShapedTrainRecipes recipe2use = recipes.get(recipeIndex < recipes.size() ? recipeIndex : 0);
+				ArrayList<PositionedStack> ingreds2use = getShape(recipe2use).ingredients;
 
-			for (int itemIndex = 0; itemIndex < ingredients.size(); itemIndex++) {
-
-				Set<ItemStack> stacks = new HashSet<>();
-				for (ShapedTrainRecipes otherRecipe : recipes) {
-					ArrayList<PositionedStack> ingreds = getShape(otherRecipe).ingredients;
-					PositionedStack incredient = itemIndex < ingreds.size() ? ingreds.get(itemIndex) : null;
-					if (incredient != null) {
-						stacks.add(incredient.item);
-					}
-				}
-
-				ArrayList<ItemStack> list = new ArrayList<>(stacks);
-				if (list != null && list.size() > 1) {
-					Random rand = new Random(cycle + System.currentTimeMillis());
-					if (cycleTicks % 15 == 0) {
-						int stackSize = ingredients.get(itemIndex).item.stackSize;
-						ingredients.get(itemIndex).item = (ItemStack) list.get(Math.abs(rand.nextInt()) % list.size());
-						ingredients.get(itemIndex).item.stackSize = stackSize;
-					}
-				} else {
-					randomRenderPermutation(ingredients.get(itemIndex), cycle + itemIndex);
+				for (int itemIndex = 0; itemIndex < ingredients.size(); itemIndex++) {
+					ingredients.get(itemIndex).item = ingreds2use.get(itemIndex).item;
+					ingredients.get(itemIndex).item.stackSize = ingreds2use.get(itemIndex).item.stackSize;
 				}
 			}
 
@@ -202,7 +190,7 @@ public class NEITraincraftWorkbenchRecipePlugin extends ShapedRecipeHandler {
 	}
 
 	public static Map<Integer, List<ShapedTrainRecipes>> workbenchListCleaner(List recipeList) {
-		Map<Integer, List<ShapedTrainRecipes>> sortedRecipes = new HashMap<>();
+		Map<Integer, List<ShapedTrainRecipes>> sortedRecipes = new LinkedHashMap<>();
 
 		for (int i = 0; i < recipeList.size(); i++) {
 			if (recipeList.get(i) instanceof ShapedTrainRecipes) {
