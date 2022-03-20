@@ -10,7 +10,6 @@ import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 import java.util.Set;
 
 import org.lwjgl.opengl.GL11;
@@ -101,7 +100,7 @@ public class NEIAssemblyTableRecipePlugin extends ShapedRecipeHandler {
 	}
 
 	public class CachedShapedRecipe extends CachedRecipe {
-		public ArrayList<PositionedStack> ingredients;
+		public List<PositionedStack> ingredients;
 		public PositionedStack result;
 
 		public CachedShapedRecipe(int width, int height, Object[] items, ItemStack out) {
@@ -134,7 +133,8 @@ public class NEIAssemblyTableRecipePlugin extends ShapedRecipeHandler {
 
 		@Override
 		public List<PositionedStack> getIngredients() {
-			return getCycledIngredients(cycleticks / 20, ingredients);
+			ingredients = getCycledIngredients(cycleticks / 20, ingredients);
+			return ingredients;
 		}
 
 		public PositionedStack getResult() {
@@ -153,28 +153,26 @@ public class NEIAssemblyTableRecipePlugin extends ShapedRecipeHandler {
 		 * 
 		 * @return
 		 */
-		private int cycleTicks = 0;
+		private int mCycleTicks = 0;
+		private int mRecipeIndex = 0;
 
 		@Override
-		public List<PositionedStack> getCycledIngredients(int cycle, List<PositionedStack> ingredients) {
-			cycleTicks++;
+		public List<PositionedStack> getCycledIngredients(int pCycle, List<PositionedStack> pIngredients) {
+			mCycleTicks++;
 
 			int id = getOutputID(result.item.getItem());
 			List<TierRecipe> recipes = recipeList.get(id);
-			
-			if (cycleTicks % 15 == 0 && recipes.size() > 1) {
-				Random ranIndex = new Random(cycle + System.currentTimeMillis());
-				int recipeIndex = Math.max(0, Math.abs(ranIndex.nextInt() % recipes.size()));
-				TierRecipe recipe2use = recipes.get(recipeIndex < recipes.size() ? recipeIndex : 0);
-				ArrayList<PositionedStack> ingreds2use = getShape(recipe2use).ingredients;
+			List<PositionedStack> ingreds2show = pIngredients;
 
-				for (int itemIndex = 0; itemIndex < ingredients.size(); itemIndex++) {
-					ingredients.get(itemIndex).item = ingreds2use.get(itemIndex).item;
-					ingredients.get(itemIndex).item.stackSize = ingreds2use.get(itemIndex).item.stackSize;
+			if (mCycleTicks == 25 && recipes.size() > 1) {
+				mCycleTicks = 0;
+				if (mRecipeIndex >= recipes.size()) {
+					mRecipeIndex = 0;
 				}
+				ingreds2show = getShape(recipes.get(mRecipeIndex++)).ingredients;
 			}
 
-			return ingredients;
+			return ingreds2show;
 		}
 	}
 
@@ -271,13 +269,7 @@ public class NEIAssemblyTableRecipePlugin extends ShapedRecipeHandler {
 
 	@Override
 	public void loadCraftingRecipes(String outputId, Object... results) {
-		if (outputId.equals("assembly tables") && getClass() == NEIAssemblyTableRecipePlugin.class) {
-			for (List<TierRecipe> recipe : recipeList.values()) {
-				this.arecipes.add(getShape(recipe.get(0)));
-			}
-		} else {
-			super.loadCraftingRecipes(outputId, results);
-		}
+		super.loadCraftingRecipes(outputId, results);
 	}
 
 	public static Map<Integer, List<TierRecipe>> assemblyListCleaner(List recipeList) {
