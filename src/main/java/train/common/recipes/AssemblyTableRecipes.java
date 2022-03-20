@@ -721,8 +721,8 @@ public class AssemblyTableRecipes {
 		return pItem == null || pItem.getItemDamage() == OreDictionary.WILDCARD_VALUE ? 0 : pItem.getItemDamage();
 	}
 
-	public static List<ItemStack> waterContainers() {
-		List<ItemStack> containers = new ArrayList<ItemStack>();
+	public static ArrayList<ItemStack> waterContainers() {
+		ArrayList<ItemStack> containers = new ArrayList<ItemStack>();
 		for (FluidContainerRegistry.FluidContainerData data : FluidContainerRegistry.getRegisteredFluidContainerData()) {
 			if (data.fluid.fluid == FluidRegistry.WATER) {
 				containers.add(data.filledContainer);
