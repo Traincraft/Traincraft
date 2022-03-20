@@ -30,7 +30,12 @@ public class RecipeHandler {
 	private static ArrayList<ItemStack> multiNameOreDict(String ... names){
 		ArrayList<ItemStack> entries = new ArrayList<ItemStack>();
 		for (String name : names){
-			entries.addAll(OreDictionary.getOres(name));
+			List<ItemStack> dir =OreDictionary.getOres(name);
+			for (ItemStack s : dir){
+				if(!dir.contains(s)){
+					dir.add(s);
+				}
+			}
 		}
 		return entries;
 	}
@@ -136,10 +141,7 @@ public class RecipeHandler {
 		ArrayList<ItemStack> iron = OreDictionary.getOres("ingotIron");
 		ArrayList<ItemStack> planks = OreDictionary.getOres("plankWood");
 		ArrayList<ItemStack> logs = OreDictionary.getOres("logWood");
-		ArrayList<ItemStack> plastics	= multiNameOreDict("itemPlastic", "sheetPlastic", "platePlastic");
-		if(plastics.isEmpty()) {
-			plastics = OreDictionary.getOres("dustPlastic"); //dustPlastic for MFR support, but do not add dustPlastic if other plastics present
-		}
+		ArrayList<ItemStack> plastics	= multiNameOreDict("itemPlastic", "sheetPlastic", "platePlastic", "dustPlastic");
 		ArrayList<ItemStack> copper = OreDictionary.getOres("ingotCopper");
 		ArrayList<ItemStack> dustCoal = OreDictionary.getOres("dustCoal");
 		List<ItemStack> coal = new ArrayList<ItemStack>();
