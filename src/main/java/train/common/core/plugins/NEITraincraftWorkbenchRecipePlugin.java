@@ -1,25 +1,29 @@
 package train.common.core.plugins;
 
+import java.awt.Rectangle;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+import java.util.Set;
+
 import codechicken.nei.NEIClientUtils;
 import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.ShapedRecipeHandler;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.Container;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.ShapedRecipes;
-import net.minecraftforge.oredict.OreDictionary;
 import train.client.gui.GuiTrainCraftingBlock;
 import train.common.inventory.TrainCraftingManager;
 import train.common.recipes.ShapedTrainRecipes;
-import train.common.recipes.ShapelessTrainRecipe;
-
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 public class NEITraincraftWorkbenchRecipePlugin extends ShapedRecipeHandler {
-	private List<ShapedTrainRecipes> recipeListWB = workbenchListCleaner(TrainCraftingManager.getInstance().getShapedRecipes());
+	private Map<Integer, List<ShapedTrainRecipes>> recipeListWB = workbenchListCleaner(
+			TrainCraftingManager.getInstance().getShapedRecipes());
 
 	private CachedShapedRecipe getShape(ShapedTrainRecipes recipe) {
 		CachedShapedRecipe shape = new CachedShapedRecipe(0, 0, null, recipe.getRecipeOutput());
@@ -39,7 +43,7 @@ public class NEITraincraftWorkbenchRecipePlugin extends ShapedRecipeHandler {
 	}
 
 	public class CachedShapedRecipe extends CachedRecipe {
-		public ArrayList<PositionedStack> ingredients;
+		public List<PositionedStack> ingredients;
 		public PositionedStack result;
 
 		public CachedShapedRecipe(int width, int height, Object[] items, ItemStack out) {
@@ -55,13 +59,13 @@ public class NEITraincraftWorkbenchRecipePlugin extends ShapedRecipeHandler {
 		/**
 		 * @param width
 		 * @param height
-		 * @param items
-		 * an ItemStack[] or ItemStack[][]
+		 * @param items  an ItemStack[] or ItemStack[][]
 		 */
 		public void setIngredients(int width, int height, Object[] items) {
 			for (int x = 0; x < width; x++) {
 				for (int y = 0; y < height; y++) {
-					if (items[y * width + x] == null) continue;
+					if (items[y * width + x] == null)
+						continue;
 
 					PositionedStack stack = new PositionedStack(items[y * width + x], 25 + x * 18, 6 + y * 18, false);
 					stack.setMaxSize(1);
@@ -72,7 +76,8 @@ public class NEITraincraftWorkbenchRecipePlugin extends ShapedRecipeHandler {
 
 		@Override
 		public List<PositionedStack> getIngredients() {
-			return getCycledIngredients(cycleticks / 20, ingredients);
+			ingredients = getCycledIngredients(cycleticks / 20, ingredients);
+			return ingredients;
 		}
 
 		public PositionedStack getResult() {
@@ -91,37 +96,39 @@ public class NEITraincraftWorkbenchRecipePlugin extends ShapedRecipeHandler {
 		 * 
 		 * @return
 		 */
-		private int cycleTicks = 0;
+		private int mCycleTicks = 0;
+		private int mRecipeIndex = 0;
 
 		@Override
-		public List<PositionedStack> getCycledIngredients(int cycle, List<PositionedStack> ingredients) {
-			cycleTicks++;
-			for (int itemIndex = 0; itemIndex < ingredients.size(); itemIndex++) {
+		public List<PositionedStack> getCycledIngredients(int pCycle, List<PositionedStack> pIngredients) {
+			mCycleTicks++;
 
-				String oreName = OreDictionary.getOreName(OreDictionary.getOreID(ingredients.get(itemIndex).item));
-				if (oreName.equals("ingotSteel") || oreName.equals("ingotIron") || oreName.equals("ingotCopper") || oreName.equals("dustPlastic") || oreName.equals("dustCoal")) {
-					ArrayList list = OreDictionary.getOres(OreDictionary.getOreName(OreDictionary.getOreID(ingredients.get(itemIndex).item)));
-					Random rand = new Random(cycle + System.currentTimeMillis());
-					if (cycleTicks % 15 == 0) {
-						int stackSize = ingredients.get(itemIndex).item.stackSize;
-						ingredients.get(itemIndex).item = (ItemStack) list.get(Math.abs(rand.nextInt()) % list.size());
-						ingredients.get(itemIndex).item.stackSize = stackSize;
-					}
+			int id = getOutputID(result.item.getItem());
+			List<ShapedTrainRecipes> recipes = recipeListWB.get(id);
+			List<PositionedStack> ingreds2show = pIngredients;
+
+			if (mCycleTicks  == 25 && recipes.size() > 1) {
+				mCycleTicks = 0;
+				if(mRecipeIndex >= recipes.size()) {
+					mRecipeIndex = 0;
 				}
-				else {
-					randomRenderPermutation(ingredients.get(itemIndex), cycle + itemIndex);
-				}
+				ingreds2show = getShape(recipes.get(mRecipeIndex++)).ingredients;
 			}
 
-			return ingredients;
+			return ingreds2show;
 		}
 	}
 
 	@Override
 	public void loadCraftingRecipes(ItemStack result) {
-		for (ShapedTrainRecipes recipe : recipeListWB) {
-			if (NEIClientUtils.areStacksSameTypeCrafting(recipe.getRecipeOutput(), result)) {
-				this.arecipes.add(getShape(recipe));
+		if (result != null) {
+			int id = getOutputID(result.getItem());
+			List<ShapedTrainRecipes> results = recipeListWB.get(id);
+			if (results != null) {
+				for (ShapedTrainRecipes recipe : results) {
+					this.arecipes.add(getShape(recipe));
+					break;
+				}
 			}
 		}
 	}
@@ -153,11 +160,18 @@ public class NEITraincraftWorkbenchRecipePlugin extends ShapedRecipeHandler {
 
 	@Override
 	public void loadUsageRecipes(ItemStack ingredient) {
-		for (ShapedTrainRecipes recipe : recipeListWB) {
-			for (ItemStack source : recipe.recipeItems) {
-				if (NEIClientUtils.areStacksSameTypeCrafting(source, ingredient)) {
-					this.arecipes.add(getShape(recipe));
-					break;
+		Set<Integer> outputIDs = new HashSet<>();
+		for (List<ShapedTrainRecipes> recipes : recipeListWB.values()) {
+			for (ShapedTrainRecipes recipe : recipes) {
+				for (ItemStack source : recipe.recipeItems) {
+					int outputID = getOutputID(recipe.getRecipeOutput().getItem());
+					if (!outputIDs.contains(outputID)) {
+						if (NEIClientUtils.areStacksSameTypeCrafting(source, ingredient)) {
+							outputIDs.add(outputID);
+							this.arecipes.add(getShape(recipe));
+							break;
+						}
+					}
 				}
 			}
 		}
@@ -165,44 +179,32 @@ public class NEITraincraftWorkbenchRecipePlugin extends ShapedRecipeHandler {
 
 	@Override
 	public void loadCraftingRecipes(String outputId, Object... results) {
-		if (outputId.equals("train workbench") && getClass() == NEITraincraftWorkbenchRecipePlugin.class) {
-			for (ShapedTrainRecipes recipe : recipeListWB) {
-				this.arecipes.add(getShape(recipe));
-			}
-		}
-		else {
-			super.loadCraftingRecipes(outputId, results);
-		}
+		super.loadCraftingRecipes(outputId, results);
 	}
 
-	public static List workbenchListCleaner(List recipeList) {
-		ArrayList outputList = new ArrayList();
-		ArrayList cleanedList = new ArrayList();
+	public static Map<Integer, List<ShapedTrainRecipes>> workbenchListCleaner(List recipeList) {
+		Map<Integer, List<ShapedTrainRecipes>> sortedRecipes = new LinkedHashMap<>();
+
 		for (int i = 0; i < recipeList.size(); i++) {
 			if (recipeList.get(i) instanceof ShapedTrainRecipes) {
-				if (outputList != null) {
-					if (!outputList.contains(((ShapedTrainRecipes) recipeList.get(i)).getRecipeOutput().getItem())) {
-						cleanedList.add(recipeList.get(i));
-					}
-				}
-				else {
-					cleanedList.add(recipeList.get(i));
-				}
-				outputList.add(((ShapedTrainRecipes) recipeList.get(i)).getRecipeOutput().getItem());
-			}
-			if (recipeList.get(i) instanceof ShapelessTrainRecipe) {
+				ShapedTrainRecipes shapedRecipe = (ShapedTrainRecipes) recipeList.get(i);
 
-				if (outputList != null) {
-					if (!outputList.contains(((ShapelessTrainRecipe) recipeList.get(i)).getRecipeOutput().getItem())) {
-						cleanedList.add(recipeList.get(i));
-					}
+				Item output = shapedRecipe.getRecipeOutput().getItem();
+				int id = getOutputID(output);
+
+				List<ShapedTrainRecipes> recipes = sortedRecipes.get(id);
+				if (recipes == null) {
+					recipes = new ArrayList<ShapedTrainRecipes>();
+					sortedRecipes.put(id, recipes);
 				}
-				else {
-					cleanedList.add(recipeList.get(i));
-				}
-				outputList.add(((ShapelessTrainRecipe) recipeList.get(i)).getRecipeOutput().getItem());
+				recipes.add(shapedRecipe);
 			}
 		}
-		return cleanedList;
+		return sortedRecipes;
 	}
+
+	private static int getOutputID(Item pOutputItem) {
+		return Item.getIdFromItem(pOutputItem);
+	}
+
 }

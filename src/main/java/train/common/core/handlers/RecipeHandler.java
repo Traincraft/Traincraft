@@ -136,7 +136,10 @@ public class RecipeHandler {
 		ArrayList<ItemStack> iron = OreDictionary.getOres("ingotIron");
 		ArrayList<ItemStack> planks = OreDictionary.getOres("plankWood");
 		ArrayList<ItemStack> logs = OreDictionary.getOres("logWood");
-		ArrayList<ItemStack> plastics	= multiNameOreDict("itemPlastic", "dustPlastic");//dustPlastic for MFR support
+		ArrayList<ItemStack> plastics	= multiNameOreDict("itemPlastic", "sheetPlastic", "platePlastic");
+		if(plastics.isEmpty()) {
+			plastics = OreDictionary.getOres("dustPlastic"); //dustPlastic for MFR support, but do not add dustPlastic if other plastics present
+		}
 		ArrayList<ItemStack> copper = OreDictionary.getOres("ingotCopper");
 		ArrayList<ItemStack> dustCoal = OreDictionary.getOres("dustCoal");
 		List<ItemStack> coal = new ArrayList<ItemStack>();
