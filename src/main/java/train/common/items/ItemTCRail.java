@@ -73,7 +73,7 @@ public class ItemTCRail extends ItemPart {
 		MEDIUM_RIGHT_PARALLEL_CURVE("MEDIUM_RIGHT_PARALLEL_CURVE", "CURVE", ItemIDs.tcRailMediumParallelCurve, ""),
 		MEDIUM_LEFT_PARALLEL_CURVE("MEDIUM_LEFT_PARALLEL_CURVE", "CURVE", ItemIDs.tcRailMediumParallelCurve, ""),
 
-		LARGE_PARALLEL_CURVE("LARGE_PARALLEL_CURVE", "CURVE", ItemIDs.tcRailLargeParallelCurve, "4x9"),
+		LARGE_PARALLEL_CURVE("LARGE_PARALLEL_CURVE", "CURVE", ItemIDs.tcRailLargeParallelCurve, "4x16"),
 		LARGE_RIGHT_PARALLEL_CURVE("LARGE_RIGHT_PARALLEL_CURVE", "CURVE", ItemIDs.tcRailLargeParallelCurve, ""),
 		LARGE_LEFT_PARALLEL_CURVE("LARGE_LEFT_PARALLEL_CURVE", "CURVE", ItemIDs.tcRailLargeParallelCurve, ""),
 
@@ -984,6 +984,7 @@ public class ItemTCRail extends ItemPart {
 				}
 
 				if (l == 0) {
+				//	player.addChatMessage(new ChatComponentText("South side seems to be bugged. Place me from the north side"));
 					for (int check = 1; check < 6; check++) {
 						if (!canPlaceTrack(player, world, x, y + 1, z + check))
 							return false;
@@ -1180,7 +1181,8 @@ public class ItemTCRail extends ItemPart {
 				}
 
 				if (l == 0) {
-					for (int check = 1; check < 6; check++) {
+					player.addChatMessage(new ChatComponentText("South side seems to be bugged. Place me from the north side"));
+					/*for (int check = 1; check < 6; check++) {
 						if (!canPlaceTrack(player, world, x, y + 1, z + check))
 							return false;
 					}
@@ -1220,7 +1222,7 @@ public class ItemTCRail extends ItemPart {
 						tcRailTurn.linkedX = x + 1;
 						tcRailTurn.linkedY = y + 1;
 						tcRailTurn.linkedZ = z + 7;
-					}
+					}*/
 					return true;
 				}
 
@@ -1378,6 +1380,8 @@ public class ItemTCRail extends ItemPart {
 				}
 
 				if (l == 0) {
+					player.addChatMessage(new ChatComponentText("South side seems to be bugged. Place me from the north side"));
+					/*
 					for (int check = 1; check < 5; check++) {
 						if (!canPlaceTrack(player, world, x, y + 1, z + check))
 							return false;
@@ -1423,7 +1427,7 @@ public class ItemTCRail extends ItemPart {
 						tcRailTurn.linkedX = x - 2;
 						tcRailTurn.linkedY = y + 1;
 						tcRailTurn.linkedZ = z + 11;
-					}
+					}*/
 					return true;
 				}
 
@@ -1590,6 +1594,8 @@ public class ItemTCRail extends ItemPart {
 				}
 
 				if (l == 0) {
+					player.addChatMessage(new ChatComponentText("South side seems to be bugged. Place me from the north side"));
+					/*
 					for (int check = 1; check < 5; check++) {
 						if (!canPlaceTrack(player, world, x, y + 1, z + check))
 							return false;
@@ -1635,7 +1641,7 @@ public class ItemTCRail extends ItemPart {
 						tcRailTurn.linkedX = x + 2;
 						tcRailTurn.linkedY = y + 1;
 						tcRailTurn.linkedZ = z + 11;
-					}
+					}*/
 					return true;
 				}
 
@@ -1805,8 +1811,8 @@ public class ItemTCRail extends ItemPart {
 				}
 
 				if (l == 0) {
-
-					for (int check = 1; check < 6; check++) {
+					player.addChatMessage(new ChatComponentText("South side seems to be bugged. Place me from the north side"));
+					/*for (int check = 1; check < 6; check++) {
 						if (!canPlaceTrack(player, world, x , y + 1, z + check))
 							return false;
 					}
@@ -1836,7 +1842,7 @@ public class ItemTCRail extends ItemPart {
 
 					if (tcRailTurn != null) {
 						tcRailTurn.hasModel = true;
-						if (!putDownTurn(player, world, false, x, y, z, xArray2, zArray2, 1, false, 0, x - 3, z +15, 22, x + 19.5,
+						if (!putDownTurn(player, world, false, x, y, z, xArray2, zArray2, 1, false, 0, x - 3, z + 15, 22, x + 19.5,
 								y + 1, z + 16, TrackTypes.MEDIUM_LEFT_TURN.getLabel(), null))
 							return false;
 						TileTCRail tcRailTurn2 = (TileTCRail) world.getTileEntity(x-3, y + 1, z+15);
@@ -1852,7 +1858,7 @@ public class ItemTCRail extends ItemPart {
 						tcRailTurn.linkedX = x - 3;
 						tcRailTurn.linkedY = y + 1;
 						tcRailTurn.linkedZ = z + 15;
-					}
+					}*/
 					return true;
 
 				}
@@ -2031,8 +2037,8 @@ public class ItemTCRail extends ItemPart {
 				}
 
 				if (l == 0) {
-
-					for (int check = 1; check < 6; check++) {
+					player.addChatMessage(new ChatComponentText("South side seems to be bugged. Place me from the north side"));
+				/*	for (int check = 1; check < 6; check++) {
 						if (!canPlaceTrack(player, world, x , y + 1, z + check))
 							return false;
 					}
@@ -2078,7 +2084,7 @@ public class ItemTCRail extends ItemPart {
 						tcRailTurn.linkedX = x + 3;
 						tcRailTurn.linkedY = y + 1;
 						tcRailTurn.linkedZ = z + 15;
-					}
+					}*/
 					return true;
 
 				}
@@ -2851,11 +2857,11 @@ public class ItemTCRail extends ItemPart {
 
 			if (tempType == TrackTypes.LARGE_RIGHT_TURN || tempType == TrackTypes.EMBEDDED_LARGE_RIGHT_TURN) {
 				switch (tempType){
-					case LARGE_LEFT_TURN:
+					case LARGE_RIGHT_TURN:
 						idVariant90Turn = ItemIDs.tcRailLargeTurn.item;
 						typeVariant90Turn = TrackTypes.LARGE_RIGHT_TURN.getLabel();
 						break;
-					case EMBEDDED_LARGE_LEFT_TURN:
+					case EMBEDDED_LARGE_RIGHT_TURN:
 						idVariant90Turn = ItemIDs.tcRailEmbeddedLargeTurn.item;
 						typeVariant90Turn = TrackTypes.EMBEDDED_LARGE_RIGHT_TURN.getLabel();
 						break;

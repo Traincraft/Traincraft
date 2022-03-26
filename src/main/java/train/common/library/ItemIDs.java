@@ -217,6 +217,7 @@ public enum ItemIDs {
 	minecartFreightGondola_DB("ItemRollingStock", "train_freight_gondola", 3),
 	minecartFreightL("ItemRollingStock", "train_freight_l", 3),
 	minecartTankWagon_DB("ItemRollingStock", "train_tank_db", 6),
+	minecart7Plank("ItemRollingStock","7_plank", 6),
 	minecartLocoSD70("ItemRollingStock", "train_sd70", 10),
 	minecartLocoBP4("ItemRollingStock", "train_bp4", 10),
 	minecartHeavyweightFreight("ItemRollingStock", "train_heavyweight_freight", 10),
