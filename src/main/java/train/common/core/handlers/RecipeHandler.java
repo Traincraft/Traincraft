@@ -29,13 +29,15 @@ import train.common.recipes.RecipesArmorDyes;
 
 public class RecipeHandler {
 
-	private static ArrayList<ItemStack> multiNameOreDict(String ... names){
+	private static ArrayList<ItemStack> multiNameOreDict0(String ... names){
 		ArrayList<ItemStack> entries = new ArrayList<ItemStack>();
+		Set<Item> addedItems = new HashSet<>();
 		for (String name : names){
-			List<ItemStack> dir =OreDictionary.getOres(name);
-			for (ItemStack s : dir){
-				if(!dir.contains(s)){
-					dir.add(s);
+			for(ItemStack itemStack : OreDictionary.getOres(name)) {
+				Item item = itemStack.getItem();
+				if(!addedItems.contains(item)) {
+					addedItems.add(item);
+					entries.add(itemStack);
 				}
 			}
 		}
