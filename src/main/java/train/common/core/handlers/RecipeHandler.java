@@ -31,13 +31,11 @@ public class RecipeHandler {
 
 	private static ArrayList<ItemStack> multiNameOreDict(String ... names){
 		ArrayList<ItemStack> entries = new ArrayList<ItemStack>();
-		Set<Item> addedItems = new HashSet<>();
 		for (String name : names){
-			for(ItemStack itemStack : OreDictionary.getOres(name)) {
-				Item item = itemStack.getItem();
-				if(!addedItems.contains(item)) {
-					addedItems.add(item);
-					entries.add(itemStack);
+			List<ItemStack> dir = OreDictionary.getOres(name);
+			for (ItemStack s : dir){
+				if(!dir.contains(s)){
+					dir.add(s);
 				}
 			}
 		}
