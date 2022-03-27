@@ -29,7 +29,7 @@ import train.common.recipes.RecipesArmorDyes;
 
 public class RecipeHandler {
 
-	private static ArrayList<ItemStack> multiNameOreDict0(String ... names){
+	private static ArrayList<ItemStack> multiNameOreDict(String ... names){
 		ArrayList<ItemStack> entries = new ArrayList<ItemStack>();
 		Set<Item> addedItems = new HashSet<>();
 		for (String name : names){
