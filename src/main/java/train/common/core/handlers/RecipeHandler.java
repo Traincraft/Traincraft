@@ -32,7 +32,7 @@ public class RecipeHandler {
 	private static ArrayList<ItemStack> multiNameOreDict(String ... names){
 		ArrayList<ItemStack> entries = new ArrayList<ItemStack>();
 		for (String name : names){
-			List<ItemStack> dir = OreDictionary.getOres(name);
+			List<ItemStack> dir =OreDictionary.getOres(name);
 			for (ItemStack s : dir){
 				if(!dir.contains(s)){
 					dir.add(s);
