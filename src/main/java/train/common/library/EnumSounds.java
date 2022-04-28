@@ -109,6 +109,7 @@ public enum EnumSounds {
 	ElectricPCH120(EntityLocoElectricPCH120.class, "446Horn", 0.8F, "vl10_idle", 0.6F, 50, "vl10_idle", 0.6F, 50, false),
 	ElectricRenfe446Motor(EntityLocoElectricRenfe446Motor.class, "446Horn", 0.8F, "vl10_idle", 0.6F, 50, "vl10_idle", 0.6F, 50, false),
 	ElectricRenfe450Motor(EntityLocoElectricRenfe450Motor.class, "446Horn", 0.8F, "vl10_idle", 0.6F, 50, "vl10_idle", 0.6F, 50, false),
+	Electric81717(EntityLocoElectric81717_Motor.class, "81717_horn", 1F, "vl10_idle", 1.0F, 25, "81717_idle", 1.0F, 45, true),
 	SteamC11(EntityLocoSteamC11.class, "class62_horn", 0.6F, "steam_run", 0.4F, 20, "steam_run", 0.4F, 20, true),
 	SteamStarClass(EntityLocoSteamStarClass.class, "adler_whistle", 0.8F, "adler_run", 0.2F, 20, "adler_run", 0.2F, 20, true),
 
