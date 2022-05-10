@@ -35,14 +35,6 @@ public class LinkHandler {
 			if (lis != null && lis.size() > 0) {
 				for (Object ent : lis) {
 
-					/**
-					 * first testing if the link can be emptied
-					 */
-					//if (entityOne instanceof AbstractTrains && entity instanceof AbstractTrains && ((EntityRollingStock)entityOne).updateTicks%10==0) {
-					//doesLink1StillExist(entityOne, lis);
-					//doesLink2StillExist(entityOne, lis);
-					//}
-
 					if (ent instanceof EntityRollingStock && ((EntityRollingStock) ent).isAttaching) {
 						addStake((EntityRollingStock) ent, entityOne, true);
 					}
@@ -60,88 +52,6 @@ public class LinkHandler {
 			}
 	}
 
-	/**
-	 * testing if the attached cart on link1 still exist
-	 * 
-	 * @param entityOne
-	 * @param lis
-	 */
-	private void doesLink1StillExist(Entity entityOne, List lis) {
-		boolean link1Missing = false;
-		boolean link2Missing = false;
-		
-		for (int j1 = 0; j1 < lis.size(); j1++) {
-			Entity entity = (Entity) lis.get(j1);
-			/**
-			 * Check if the entity with the registered ID still exist
-			 */
-			if (entity instanceof AbstractTrains && (((AbstractTrains) entity).getUniqueTrainID() == ((AbstractTrains) entityOne).Link1)) {
-				link1Missing = false;
-			}
-			else{
-				link1Missing = true;
-			}
-			if (entity instanceof AbstractTrains && (((AbstractTrains) entity).getUniqueTrainID() == ((AbstractTrains) entityOne).Link2)) {
-				link2Missing = false;
-			}else{
-				link2Missing = true;
-			}
-
-		}
-		((AbstractTrains)entityOne).clearLinkTimer++;
-		if(((AbstractTrains)entityOne).clearLinkTimer<20)return;
-		((AbstractTrains)entityOne).clearLinkTimer=0;
-		//System.out.println("link1Missing "+link1Missing+" link2Missing "+link2Missing);
-		
-		if(link1Missing && ((AbstractTrains) entityOne).Link1!=0 && ((AbstractTrains) entityOne).Link1!=-1){
-			System.out.println("clear 1   "+((AbstractTrains) entityOne).Link1+"  "+entityOne);
-			freeLink1(entityOne);
-		}
-		if(link2Missing && ((AbstractTrains) entityOne).Link2!=0 && ((AbstractTrains) entityOne).Link2!=-1){
-			System.out.println("clear 2   "+((AbstractTrains) entityOne).Link2+"  "+entityOne);
-			freeLink2(entityOne);
-		}
-		/*if (((AbstractTrains) entityOne).Link1 != 0)
-			freeLink1(entityOne);
-		/**
-		 * When links are reseted with Draft gear, it's set to -1 so freeLink() is called
-		 */
-		/*if (((AbstractTrains) entityOne).Link1 == -1)
-			freeLink1(entityOne);*/
-
-	}
-
-	/**
-	 * testing if the attached cart on link2 still exist
-	 * 
-	 * @param entityOne
-	 * @param lis
-	 */
-	private void doesLink2StillExist(Entity entityOne, List lis) {
-		for (int j1 = 0; j1 < lis.size(); j1++) {
-			Entity entity = (Entity) lis.get(j1);
-			/**
-			 * Check if the entity with the registered ID still exist
-			 */
-			if (entity instanceof AbstractTrains && (((AbstractTrains) entity).getUniqueTrainID() == ((AbstractTrains) entityOne).Link2)) {
-
-				return;
-			}
-		}
-		((AbstractTrains)entityOne).clearLinkTimer++;
-		if(((AbstractTrains)entityOne).clearLinkTimer<60)return;
-		((AbstractTrains)entityOne).clearLinkTimer=0;
-		System.out.println("clear 1   "+((AbstractTrains) entityOne).Link1+"  "+entityOne);
-		//System.out.println("clear 2"+entityOne);
-		
-		if (((AbstractTrains) entityOne).Link2 != 0)
-			freeLink2(entityOne);
-		/**
-		 * When links are reseted with Draft gear, it's set to -1 so freeLink() is called
-		 */
-		if (((AbstractTrains) entityOne).Link2 == -1)
-			freeLink2(entityOne);
-	}
 
 	/**
 	 * obvious
@@ -153,7 +63,6 @@ public class LinkHandler {
 			((AbstractTrains) entity).Link1 = 0;
 			((AbstractTrains) entity).cartLinked1 = null;
 			((EntityRollingStock) entity).RollingStock.clear();
-			// System.out.println("free link1 "+entity);
 		}
 
 	}
@@ -168,31 +77,7 @@ public class LinkHandler {
 			((AbstractTrains) entity).Link2 = 0;
 			((AbstractTrains) entity).cartLinked2 = null;
 			((EntityRollingStock) entity).RollingStock.clear();
-			// System.out.println("free link2 "+entity);
 		}
-	}
-
-	/**
-	 * First it resets linkageNumber then it checks the links if link1 exist then linkageNumber++ else linkageNumber-- (only if linkageNumber is higher than 0) Same for link2
-	 * 
-	 * @param entity
-	 */
-	private void addLinkNumber(Entity entity) {
-		((EntityRollingStock) entity).linkageNumber = 0;
-
-		if (((AbstractTrains) entity).Link1 != 0) {
-			((EntityRollingStock) entity).linkageNumber++;
-		}
-		else if (((EntityRollingStock) entity).linkageNumber > 0) {
-			((EntityRollingStock) entity).linkageNumber--;
-		}
-		if (((AbstractTrains) entity).Link2 != 0) {
-			((EntityRollingStock) entity).linkageNumber++;
-		}
-		else if (((EntityRollingStock) entity).linkageNumber > 0) {
-			((EntityRollingStock) entity).linkageNumber--;
-		}
-
 	}
 
 
@@ -204,17 +89,16 @@ public class LinkHandler {
 		if (worldObj.isRemote) {
 			return;
 		}
-			distanceBehindCart = cart1.getLinkageDistance((EntityMinecart) cart1);
+			distanceBehindCart = cart1.getLinkageDistance(cart1);
 			if (cart2.isAttaching && cart1.isAttaching) {
-
-				double distancesX[] = new double[4];
-				double distancesZ[] = new double[4];
-				double euclidian[] = new double[4];
 
 				double d=0;
 				double d1=0;
 
 				if(cart1.bogieLoco!=null || cart2.bogieLoco!=null){
+					double distancesX[] = new double[4];
+					double distancesZ[] = new double[4];
+					double euclidian[] = new double[4];
 
 					if(cart1.bogieLoco!=null && cart2.bogieLoco==null){
 						distancesX[0] = cart1.posX - cart2.posX ;
@@ -406,17 +290,17 @@ public class LinkHandler {
 			boolean adj2 = canCartBeAdjustedBy(cart2, cart1);
 
 
-			double distancesX[] = new double[4];
-			double distancesZ[] = new double[4];
-			double euclidian[] = new double[4];
 
 			double d=0;
 			double d1=0;
 			double vecX=0;
 			double vecZ=0;
-			int minIndex=0;
 
 			if(cart1.bogieLoco!=null || cart2.bogieLoco!=null){
+				double distancesX[] = new double[4];
+				double distancesZ[] = new double[4];
+				double euclidian[] = new double[4];
+				int minIndex=0;
 
 				if(cart1.bogieLoco!=null && cart2.bogieLoco==null){
 					distancesX[0] = cart1.posX - cart2.posX ;
@@ -543,8 +427,5 @@ public class LinkHandler {
 
 	private double limitForce(double force) {
 		return Math.copySign(Math.abs(Math.min(Math.abs(force), 14.0D)), force);
-	}
-	private double limitForce(double force, double max) {
-		return Math.copySign(Math.abs(Math.min(Math.abs(force), max)),  force);
 	}
 }
