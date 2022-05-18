@@ -216,7 +216,7 @@ public class CustomRenderHandler {
                 }
             }
         }
-        // 45 Degree Turns
+        /** Half turns*/
 
         else if (item.getTrackType() == ItemTCRail.TrackTypes.MEDIUM_45DEGREE_TURN || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_MEDIUM_45DEGREE_TURN) {
             float yaw = MathHelper.wrapAngleTo180_float(player.rotationYaw);
@@ -233,7 +233,7 @@ public class CustomRenderHandler {
                 }
             }
 
-           /* if (item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_MEDIUM_45DEGREE_TURN) {
+            if (item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_MEDIUM_45DEGREE_TURN) {
                 String turnSize = "medium";
                 if ( isLeftTurn )
                 {
@@ -242,7 +242,7 @@ public class CustomRenderHandler {
                 {
                     RenderTCRail.modelEmbedded45DegreeRightTurn.render( turnSize, facing, 0, 0, 0, r, g, b, a );
                 }
-            }*/
+            }
         }
 
         // Turns

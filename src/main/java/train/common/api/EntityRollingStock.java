@@ -1193,7 +1193,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			if (ItemTCRail.isTCTwoWaysCrossingTrack(tile)) {
 				moveOnTCTwoWaysCrossing(i, j, k, tile.xCoord, tile.yCoord, tile.zCoord, tile.getBlockMetadata());
 			}
-			System.out.println(tile.getType());
 		}
 		else if (l == BlockIDs.tcRailGag.block) {
 			//applyDragAndPushForces();
@@ -1203,7 +1202,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			//if(worldObj.getBlockTileEntity(tileGag.originX, tileGag.originY, tileGag.originZ)==null || !(worldObj.getBlockTileEntity(tileGag.originX, tileGag.originY, tileGag.originZ) instanceof TileTCRail))return;
 			if (worldObj.getTileEntity(tileGag.originX, tileGag.originY, tileGag.originZ) instanceof TileTCRail) {
 				TileTCRail tile = (TileTCRail) worldObj.getTileEntity(tileGag.originX, tileGag.originY, tileGag.originZ);
-				System.out.println(tile.getType());
 				if (ItemTCRail.isTCTurnTrack(tile)) {
 					moveOnTC90TurnRail(i, j, k, tile.r, tile.cx, tile.cz);
 				}
@@ -1317,7 +1315,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
 			this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) / 2.0D;
 
-			//System.out.println("straight x "+Math.copySign(norm, motionX));
+
 		}
 	}
 
@@ -1419,8 +1417,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 
 		motionX = vx2;
 		motionZ = vz2;
-		System.out.println("posX = " + posX);
-		System.out.println("posZ = " + posZ);
 	}
 
 	protected void moveOnTCTwoWaysCrossing(int i, int j, int k, double cx, double cy, double cz, int meta) {

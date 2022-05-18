@@ -20,8 +20,8 @@ public class ModelRightParallelCurveTCTrack extends ModelBase {
 
     public ModelRightParallelCurveTCTrack() {
         modelSmallRightParallelCurve = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_parallel_segment_s.obj"));
-        modelMediumRightParallelCurve = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_parallel_m.obj"));
-        modelLargeRightParallelCurve = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_parallel_l.obj"));
+        modelMediumRightParallelCurve = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_parallel_segment_m.obj"));
+        modelLargeRightParallelCurve = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_parallel_segment_l.obj"));
     }
 
     public void renderSmall() {modelSmallRightParallelCurve.renderAll();}
