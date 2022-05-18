@@ -483,6 +483,10 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 
 						moveOnTCSlope(j, tileRail.xCoord, tileRail.zCoord, tileRail.slopeAngle, tileRail.slopeHeight, tileRail.getBlockMetadata());
 					}
+
+					else if (ItemTCRail.isTCDiagonalTrack(tileRail)) {
+						moveOnTCDiagonal(j, tileRail.xCoord, tileRail.zCoord, tileRail.getBlockMetadata());
+					}
 		        }
 			}
 
@@ -532,7 +536,11 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		}
 	}
 
+	private void moveOnTCDiagonal(int j, double cx, double cz, int meta) {
 
+
+
+	}
 	private void moveOnTCStraight(int j, double cx, double cz, int meta) {
 		posY = j + 0.2; /** posY is height of locomotive first hitbox*/
 		/** posX and posZ is the position of hitbox*/

@@ -1193,6 +1193,10 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			if (ItemTCRail.isTCTwoWaysCrossingTrack(tile)) {
 				moveOnTCTwoWaysCrossing(i, j, k, tile.xCoord, tile.yCoord, tile.zCoord, tile.getBlockMetadata());
 			}
+
+			if (ItemTCRail.isTCDiagonalTrack(tile)) {
+				moveOnTCDiagonal(i, j, k, tile.xCoord, tile.zCoord, tile.getBlockMetadata());
+			}
 		}
 		else if (l == BlockIDs.tcRailGag.block) {
 			//applyDragAndPushForces();
@@ -1271,6 +1275,15 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			}
 		}
 		return false;
+	}
+
+	private void moveOnTCDiagonal(int i, int j, int k, double cx, double cz, int meta) {
+
+		posY = j + 0.2;
+
+		System.out.println(meta);
+
+
 	}
 
 	private void moveOnTCStraight(int i, int j, int k, double cx, double cz, int meta) {

@@ -76,6 +76,8 @@ public enum ItemIDs {
 	tcRailLongStraight("ItemTCRail", "item_rail_straight_large", 5),
 	tcRailVeryLongStraight("ItemTCRail", "item_rail_straight_very_large", 5),
 
+	tcRailSmallDiagonalStraight("ItemTCRail", "item_rail_diagonal_straight_small", 5),
+
 	tcRailMediumTurn("ItemTCRail", "item_rail_turn_medium", 5),
 	tcRailLargeTurn("ItemTCRail", "item_rail_turn_large", 5),
 	tcRailVeryLargeTurn("ItemTCRail", "item_rail_turn_veryLarge", 5),

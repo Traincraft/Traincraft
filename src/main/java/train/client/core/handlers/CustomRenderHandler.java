@@ -233,7 +233,7 @@ public class CustomRenderHandler {
                 }
             }
 
-            if (item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_MEDIUM_45DEGREE_TURN) {
+            else if (item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_MEDIUM_45DEGREE_TURN) {
                 String turnSize = "medium";
                 if ( isLeftTurn )
                 {

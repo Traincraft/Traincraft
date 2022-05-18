@@ -25,10 +25,14 @@ import java.util.List;
 public class ItemTCRail extends ItemPart {
 	private TrackTypes type;
 	private String typeVariantStraight;
+
+	private String typeVariantDiagonal;
 	private String typeVariant90Turn;
 	private String typeVariantCrossing;
 
 	private String typeVariant45Turn;
+
+	private Item idVariantDiagonal;
 	private Item idVariant90Turn;
 	private Item idVariant45Turn;
 	private Item idVariantSwitch;
@@ -44,6 +48,8 @@ public class ItemTCRail extends ItemPart {
 		LONG_STRAIGHT("LONG_STRAIGHT", "STRAIGHT", ItemIDs.tcRailLongStraight, "1x6"),
 		VERY_LONG_STRAIGHT("VERY_LONG_STRAIGHT", "STRAIGHT", ItemIDs.tcRailVeryLongStraight, "1x12"),
 
+
+		SMALL_DIAGONAL_STRAIGHT("SMALL_DIAGONAL_STRAIGHT", "DIAGONAL", ItemIDs.tcRailSmallDiagonalStraight, "1x1"),
 		MEDIUM_TURN("MEDIUM_TURN", "TURN", ItemIDs.tcRailMediumTurn, "3x3"),
 		MEDIUM_RIGHT_TURN("MEDIUM_RIGHT_TURN", "TURN", ItemIDs.tcRailMediumTurn, ""),
 		MEDIUM_LEFT_TURN("MEDIUM_LEFT_TURN", "TURN", ItemIDs.tcRailMediumTurn, ""),
@@ -252,6 +258,10 @@ public class ItemTCRail extends ItemPart {
 	}
 
 
+	public static boolean isTCDiagonalTrack(TileTCRail tile) {
+		return (tile.getType().equals(TrackTypes.SMALL_DIAGONAL_STRAIGHT.getLabel()));
+	}
+
 
 	public static boolean isTCStraightTrack(TileTCRail tile) {/**Determines if a track should act like a straight, */
 		return (tile.getType().equals(TrackTypes.MEDIUM_LEFT_SWITCH.getLabel()) && !tile.getSwitchState())
@@ -360,6 +370,9 @@ public class ItemTCRail extends ItemPart {
 	 * @param type
 	 * @return
 	 */
+
+
+
 	private boolean putDownTurn(@Nullable EntityPlayer player, World world, boolean putDownEnterTrack, int x, int y, int z, int[] posX, int[] posZ,
 								int l, boolean putDownExitTrack, int exitFacing, int posExitX, int posExitZ, double r, double cx, double cy,
 								double cz, String type, Item idDrop) {
@@ -430,7 +443,11 @@ public class ItemTCRail extends ItemPart {
 		return true;
 	}
 
+
+
+
 	private void putDownSingleRail(World world, int posX, int posY, int posZ, int l, double cx, double cy, double cz, double r, String label, boolean hasModel, int linkedX, int linkedY, int linkedZ, boolean canTypeBeModifiedBySwitch, boolean shouldDrop) {
+
 		/** Switch rail */
 		placeTrack(world,posX, posY, posZ, BlockIDs.tcRail.block, l);
 		TileTCRail tcRail = (TileTCRail) world.getTileEntity(posX, posY, posZ);
@@ -506,7 +523,8 @@ public class ItemTCRail extends ItemPart {
 				|| type == TrackTypes.SMALL_ROAD_CROSSING
 				|| type == TrackTypes.SMALL_ROAD_CROSSING_1
 				|| type == TrackTypes.SMALL_ROAD_CROSSING_2
-				|| type == TrackTypes.EMBEDDED_SMALL_STRAIGHT)
+				|| type == TrackTypes.EMBEDDED_SMALL_STRAIGHT
+				|| type == TrackTypes.SMALL_DIAGONAL_STRAIGHT)
 			return new int[][]{ {0,0} };
 		else if ( type == TrackTypes.MEDIUM_STRAIGHT || type == TrackTypes.EMBEDDED_MEDIUM_STRAIGHT)
 			return new int[][]{ {0,0}, {1,0}, {2,0} };
@@ -626,10 +644,20 @@ public class ItemTCRail extends ItemPart {
 	@Override
 	public boolean onItemUse(ItemStack itemstack, EntityPlayer player, World world, int x, int y, int z, int par7, float par8, float par9, float par10) {
 		if (!world.isRemote) {
-
+			int l;
 			y = getPlacementHeight(world, x, y, z);
 			/** Determines if track is left or right*/
-			int l = MathHelper.floor_double((player!=null?player.rotationYaw:par10) * 4.0F / 360.0F + 0.5D) & 3;
+
+			if (type == TrackTypes.SMALL_DIAGONAL_STRAIGHT) {
+				l = MathHelper.floor_double(((player!=null?player.rotationYaw:par10) * 4.0F / 360.0F )+4);
+
+			}
+
+			else {
+				l = MathHelper.floor_double((player!=null?player.rotationYaw:par10) * 4.0F / 360.0F + 0.5D) & 3;
+
+			}
+			System.out.println(l);
 			float yaw = MathHelper.wrapAngleTo180_float(player!=null?player.rotationYaw:par10);
 			TrackTypes tempType = type;
 			if (type == TrackTypes.MEDIUM_TURN) {
@@ -2746,7 +2774,38 @@ public class ItemTCRail extends ItemPart {
 				}
 				return true;
 			}
-			if (type == TrackTypes.SMALL_STRAIGHT  || type == TrackTypes.EMBEDDED_SMALL_STRAIGHT || type == TrackTypes.SMALL_ROAD_CROSSING || type == TrackTypes.SMALL_ROAD_CROSSING_1 || type == TrackTypes.SMALL_ROAD_CROSSING_2  ) {
+/*
+			if (tempType == TrackTypes.SMALL_DIAGONAL_STRAIGHT) {
+				switch (tempType){
+					case SMALL_DIAGONAL_STRAIGHT:
+						idVariantDiagonal = ItemIDs.tcRailSmallDiagonalStraight.item;
+						typeVariantDiagonal = TrackTypes.SMALL_DIAGONAL_STRAIGHT.getLabel();
+						break;
+				}
+
+
+				if (!canPlaceTrack(player, world, x, y + 1, z )) {
+					return false;
+				}
+
+				placeTrack(world,x, y + 1, z, BlockIDs.tcRail.block, l);
+				TileTCRail tcRail = (TileTCRail) world.getTileEntity(x, y + 1, z);
+				tcRail.setFacing(l);
+				tcRail.cx = x;
+				tcRail.cy = y + 1;
+				tcRail.cz = z;
+				tcRail.setType(type.getLabel());
+				tcRail.idDrop = this.type.getItem().item;
+
+				if (player ==null || !player.capabilities.isCreativeMode) {
+					--itemstack.stackSize;
+				}
+				return true;
+			}
+
+
+*/
+			if (type == TrackTypes.SMALL_STRAIGHT  || tempType == TrackTypes.SMALL_DIAGONAL_STRAIGHT || type == TrackTypes.EMBEDDED_SMALL_STRAIGHT || type == TrackTypes.SMALL_ROAD_CROSSING || type == TrackTypes.SMALL_ROAD_CROSSING_1 || type == TrackTypes.SMALL_ROAD_CROSSING_2  ) {
 				if (!canPlaceTrack(player, world, x, y + 1, z)) {
 					return false;
 				}
