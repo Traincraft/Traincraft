@@ -875,7 +875,7 @@ public class ItemTCRail extends ItemPart {
 					--itemstack.stackSize;
 				}
 				return true;
-			}*/
+			}
 
 			if (tempType == TrackTypes.SMALL_RIGHT_PARALLEL_CURVE || tempType == TrackTypes.EMBEDDED_SMALL_RIGHT_PARALLEL_CURVE) {
 				switch (tempType) {
