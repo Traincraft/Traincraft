@@ -1,7 +1,6 @@
 package train.common.items;
 
 import com.mojang.authlib.GameProfile;
-import com.sun.istack.internal.Nullable;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mods.railcraft.api.carts.IMinecart;
@@ -414,47 +413,6 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 		}
 		return rollingStock;
 	}
-
-	public static ItemStack setPersistentData(@Nullable ItemStack oldStack, @Nullable AbstractTrains train, @Nullable Integer trainID, @Nullable String player, @Nullable String creator, int color) {
-
-		ItemStack stack = oldStack;
-
-		if (train != null){
-			for (EnumTrains trains : EnumTrains.values()) {
-				if (trains.getEntityClass().equals(train.getClass())) {
-					stack = (new ItemStack(trains.getItem()));
-					break;
-				}
-			}
-		}
-		if(stack!=null) {
-			NBTTagCompound tag = stack.getTagCompound();
-			if(tag==null){
-				tag=new NBTTagCompound();
-			}
-			if(train!=null) {
-				tag.setString("puuid", train.getPersistentUUID());
-				tag.setString("trainCreator", creator==null?train.getEntityData().getString("theCreator"):creator);
-				if(player!=null && player.length()>1) {
-					tag.setString("theOwner", player);
-				}
-				if(color >0) {
-					tag.setInteger("trainColor",color);
-				}
-			} else {
-				tag.setString("trainCreator", creator!=null && creator.length()>1?creator:"Creative");
-			}
-			tag.setInteger("uniqueID", trainID==null?AbstractTrains.uniqueIDs++:trainID);
-
-
-			stack.setTagCompound(tag);
-		} else {
-			return null;//THIS SHOULD NEVER HAPPEN, but compensate anyway because java is stupid and forge is unreliable.
-		}
-		return stack;
-
-	}
-
 
 	@Override
 	public boolean canBePlacedByNonPlayer(ItemStack cart) {

@@ -19,9 +19,9 @@ public class ModelEmbeddedLeftParallelCurveTCTrack extends ModelBase {
     private IModelCustom modelEmbeddedLargeLeftParallelCurve;
 
     public ModelEmbeddedLeftParallelCurveTCTrack() {
-        modelEmbeddedSmallLeftParallelCurve = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_embedded_curve_parallel_segment_s_left.obj"));
-        modelEmbeddedMediumLeftParallelCurve = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_embedded_curve_parallel_segment_m_left.obj"));
-        modelEmbeddedLargeLeftParallelCurve = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_embedded_curve_parallel_segment_l_left.obj"));
+        modelEmbeddedSmallLeftParallelCurve = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_embedded_curve_parallel_s_left.obj"));
+        modelEmbeddedMediumLeftParallelCurve = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_embedded_curve_parallel_m_left.obj"));
+        modelEmbeddedLargeLeftParallelCurve = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_embedded_curve_parallel_l_left.obj"));
     }
 
     public void renderSmall() {modelEmbeddedSmallLeftParallelCurve.renderAll();}

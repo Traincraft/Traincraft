@@ -20,7 +20,7 @@ public class TrainCraftingManager {
 	public static final TrainCraftingManager instance = new TrainCraftingManager();
 
 	/** A list of all the recipes added */
-	private List<ITCRecipe> recipes = new ArrayList<>();
+	private List recipes = new ArrayList();
 	
 	private final ArrayList<ShapedTrainRecipes> shapedRecipes = new ArrayList<ShapedTrainRecipes>();
 
@@ -163,7 +163,7 @@ public class TrainCraftingManager {
 	/**
 	 * returns the List<> of all recipes
 	 */
-	public List<ITCRecipe> getRecipeList() {
+	public List getRecipeList() {
 		return this.recipes;
 	}
 	

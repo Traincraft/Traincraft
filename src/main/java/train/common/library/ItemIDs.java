@@ -76,8 +76,6 @@ public enum ItemIDs {
 	tcRailLongStraight("ItemTCRail", "item_rail_straight_large", 5),
 	tcRailVeryLongStraight("ItemTCRail", "item_rail_straight_very_large", 5),
 
-	tcRailSmallDiagonalStraight("ItemTCRail", "item_rail_diagonal_straight_small", 5),
-
 	tcRailMediumTurn("ItemTCRail", "item_rail_turn_medium", 5),
 	tcRailLargeTurn("ItemTCRail", "item_rail_turn_large", 5),
 	tcRailVeryLargeTurn("ItemTCRail", "item_rail_turn_veryLarge", 5),
@@ -85,9 +83,9 @@ public enum ItemIDs {
 
 	tcRailMedium45DegreeTurn("ItemTCRail", "item_rail_45degree_turn_medium", 5),
 
-	tcRailSmallParallelCurve("ItemTCRail", "item_rail_tc_parallel_curve_small", 5),
-	tcRailMediumParallelCurve("ItemTCRail", "item_rail_tc_parallel_curve_medium", 5),
-	tcRailLargeParallelCurve("ItemTCRail", "item_rail_tc_parallel_curve_large", 5),
+	tcRailSmallParallelCurve("ItemTCRail", "item_rail_tc_parallel_curve_small", 3),
+	tcRailMediumParallelCurve("ItemTCRail", "item_rail_tc_parallel_curve_medium", 3),
+	tcRailLargeParallelCurve("ItemTCRail", "item_rail_tc_parallel_curve_large", 3),
 
 	tcRailTwoWaysCrossing("ItemTCRail","item_rail_two_ways_crossing",5),
 
@@ -128,9 +126,6 @@ public enum ItemIDs {
 
 	tcRailEmbeddedTwoWaysCrossing("ItemTCRail","item_rail_embedded_two_ways_crossing",5),
 
-	tcRailEmbeddedMediumSwitch("ItemTCRail", "item_rail_embedded_switch_medium", 5),
-	tcRailEmbeddedLargeSwitch("ItemTCRail", "item_rail_embedded_switch_large", 5),
-	tcRailEmbeddedMediumParallelSwitch("ItemTCRail", "item_rail_embedded_switch_parallel", 5),
 
 	tcRailSmallRoadCrossing("ItemTCRail", "item_rail_small_road_crossing", 5),
 	tcRailSmallRoadCrossing1("ItemTCRail", "item_rail_small_road_crossing_1", 5),
@@ -284,8 +279,6 @@ public enum ItemIDs {
 	minecartICE1_1stClass("ItemRollingStock", "train_ice1_passenger", 10),
 	minecartICE1_2ndClass("ItemRollingStock", "train_ice1_passenger", 10),
 	minecartICE1_Restaurant("ItemRollingStock", "train_ice1_restaurant", 10),
-	minecart81717_motor("ItemRollingStock", "81-717_motor", 10),
-	minecart81717_passenger("ItemRollingStock", "81-717_passenger", 10),
 	minecartBoulderWagon("ItemRollingStock", "BoulderWagon", 1),
 	minecartKVB_2300("ItemRollingStock", "kvb_2300", 3),
 	minecartKVB_2300_B("ItemRollingStock", "kvb_2300_b", 3),

@@ -83,7 +83,6 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		this.yOffset = 0.65f;
 		//this.setSize(0.1F, 1.98F);
 		this.side = FMLCommonHandler.instance().getEffectiveSide();
-		isImmuneToFire = true;
 	}
 
 	public EntityBogie(World world, double d, double d1, double d2, EntityRollingStock mainTrain, int id, int index, double bogieShift) {
@@ -101,7 +100,6 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		this.bogieIndex = index;
 		this.bogieShift = bogieShift;
 		this.setPosition(d, d1 + this.yOffset, d2);
-		isImmuneToFire = true;
 	}
 
 	@Override
@@ -139,7 +137,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		float angle = (float) Math.toDegrees(Math.atan2(dz, dx)) - 90F;
 		angle = MathHelper.wrapAngleTo180_float(angle);
 		float serverRealRotation = angle;
-		//System.out.println("distance "+Math.sqrt(dx*dx+dz*dz)+" "+this.entityMainTrain);
+
 		//
 		//		double rads = serverRealRotation * Math.PI / 180.0D;
 		//		double pitchRads = entityMainTrain.serverRealPitch * Math.PI / 180.0D;
@@ -147,21 +145,15 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		//		double sin = Math.sin(rads);
 		//this.setPosition((entityMainTrain.posX - Math.cos(rads) * this.bogieShift), entityMainTrain.posY + ((Math.tan(pitchRads) * -this.bogieShift)+ entityMainTrain.getMountedYOffset()), (entityMainTrain.posZ - Math.sin(rads) * this.bogieShift));
 		//this.bogieLoco[i] = new EntityBogie(worldObj, (posX - Math.cos(rads) * this.bogieShift), posY + ((Math.tan(pitchRads) * -this.bogieShift) + getMountedYOffset()), (posZ - Math.sin(rads) * this.bogieShift), this, this.ID, i, this.bogieShift[i]);
-		//System.out.println("sin "+ sin);
-		//System.out.println("cos "+ cos);
+
 		//if (cos==-1)cos=0;
-		//System.out.println("shift "+bogieShift);
-		//System.out.println(this.posZ +" Z "+  (posZ - (sin * this.bogieShift)));
-		//System.out.println(this.posX +" X "+  (posX - (cos * this.bogieShift)));
+
 		float rotationCos1 = (float) Math.cos(Math.toRadians(serverRealRotation + 90));
 		float rotationSin1 = (float) Math.sin(Math.toRadians((serverRealRotation + 90)));
 		//float anglePitchClient = serverRealPitch*60;
 		double bogieX1 = (entityMainTrain.posX + (rotationCos1 * Math.abs(this.bogieShift)));
 		double bogieZ1 = (entityMainTrain.posZ + (rotationSin1 * Math.abs(this.bogieShift)));
-		/*System.out.println("rotation "+serverRealRotation);
-		System.out.println(this.posZ +" Z "+  bogieZ1);
-		System.out.println(this.posX +" X "+  bogieX1);
-		/*System.out.println(this.posX +" X "+  bogieX1);*/
+
 		this.motionX = (bogieX1 - this.posX);
 		this.motionZ = (bogieZ1 - this.posZ);
 		//this.setPosition(bogieX1, this.posY, bogieZ1);
@@ -194,8 +186,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		//
 		//		/* if (adj1) { ((AbstractTrains) cart1).motionX += springX; ((AbstractTrains) cart1).motionZ += springZ; }
 		//		if (adj2) {
-		//		System.out.println(entityMainTrain.motionX + " " + entityMainTrain.motionZ);
-		//		System.out.println(Math.sqrt(entityMainTrain.motionX*entityMainTrain.motionX + entityMainTrain.motionZ*entityMainTrain.motionZ));
+
 		//
 		//		if (Math.abs(entityMainTrain.motionX) > 0.003 || Math.abs(entityMainTrain.motionZ) > 0.003) {
 		//			this.motionX -= springX;
@@ -247,9 +238,9 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 	
 	private boolean isDerail = false;
 	public boolean isOnRail(){
-		if(isDerail) {
+		if(isDerail)
 			return false;
-		}
+		
 		int i = MathHelper.floor_double(this.posX);
 		int j = MathHelper.floor_double(this.posY);
 		int k = MathHelper.floor_double(this.posZ);
@@ -398,7 +389,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 				super.onUpdate();
 			if (!worldObj.isRemote) {
 				this.setPosition(this.posX, this.posY + yOffset - 0.3d, this.posZ);
-				// System.out.println("Server Y: " + this.posY);
+
 			}
 			} else {
 		        if (this.worldObj.isRemote)
@@ -456,7 +447,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 				//	}
 
 					if (ItemTCRail.isTCTurnTrack(tileRail)) {
-
+						int meta = tileRail.getBlockMetadata();
 
 
 					if (shouldIgnoreSwitch(tileRail, i, j, k, meta)) {
@@ -484,10 +475,6 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 					else if (ItemTCRail.isTCSlopeTrack(tileRail)) {
 
 						moveOnTCSlope(j, tileRail.xCoord, tileRail.zCoord, tileRail.slopeAngle, tileRail.slopeHeight, tileRail.getBlockMetadata());
-					}
-
-					else if (ItemTCRail.isTCDiagonalTrack(tileRail)) {
-						moveOnTCDiagonal(j, tileRail.xCoord, tileRail.zCoord, tileRail.getBlockMetadata());
 					}
 		        }
 			}
@@ -538,11 +525,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		}
 	}
 
-	private void moveOnTCDiagonal(int j, double cx, double cz, int meta) {
 
-
-
-	}
 	private void moveOnTCStraight(int j, double cx, double cz, int meta) {
 		posY = j + 0.2; /** posY is height of locomotive first hitbox*/
 		/** posX and posZ is the position of hitbox*/
@@ -567,7 +550,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 			this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
 			this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) / 2.0D;
 
-			//System.out.println("straight z "+Math.copySign(norm, motionZ));
+
 		}
 		if (meta == 1 || meta == 3) {
 
@@ -589,7 +572,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 			this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
 			this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) / 2.0D;
 
-			//System.out.println("straight x "+Math.copySign(norm, motionX));
+
 		}
 	}
 
@@ -600,11 +583,10 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		 * trains down on 2 way crossings.
 		 */
 		// this.posY = j + 0.2D;
-		//System.out.println(l);
+
 		//if(l==2||l==0)moveEntity(motionX, 0.0D, 0.0D);
 		//if(l==1||l==3)moveEntity(0.0D, 0.0D, motionZ);
-		//if(Math.abs(motionX)>Math.abs(motionZ))System.out.println("X");
-		//if(Math.abs(motionZ)>Math.abs(motionX))System.out.println("Z");
+
 		
 		double norm = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 		
@@ -711,7 +693,8 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		moveEntity(vx2, 0.0D, vz2);
 		motionX = vx2;
 		motionZ = vz2;
-
+		System.out.println("posX = " + posX);
+		System.out.println("posZ = " + posZ);
 	}
 	private boolean shouldIgnoreSwitch(TileTCRail tile, int i, int j, int k, int meta) {
 		if (tile != null

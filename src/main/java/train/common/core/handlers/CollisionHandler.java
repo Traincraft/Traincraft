@@ -43,8 +43,8 @@ public class CollisionHandler {
 		 */
 		listRide = worldObj.getEntitiesWithinAABBExcludingEntity(entityOne, boundingBox.expand(-0.5, -0.5, -0.5));
 		if (listRide != null && listRide.size() > 0) {
-			for (Object aListRide : listRide) {
-				entity = (Entity) aListRide;
+			for (int j1 = 0; j1 < listRide.size(); j1++) {
+				entity = (Entity) listRide.get(j1);
 				if (!(entity instanceof EntityLasersLines) && !entity.noClip) {
 					if (entity != entity.riddenByEntity && !(unAutorizedMob(entity, entityOne)) && (entity instanceof EntityLiving)) {
 						applyRideEntity(entity, entityOne);
@@ -64,8 +64,8 @@ public class CollisionHandler {
 		listRide = worldObj.getEntitiesWithinAABBExcludingEntity(entityOne, box);
 		if (listRide != null && listRide.size() > 0) {
 
-			for (Object aListRide : listRide) {
-				entity = (Entity) aListRide;
+			for (int j1 = 0; j1 < listRide.size(); j1++) {
+				entity = (Entity) listRide.get(j1);
 
 				if (!(entity instanceof EntityLasersLines) && !entity.noClip) {
 
@@ -90,8 +90,8 @@ public class CollisionHandler {
 		listRide = worldObj.getEntitiesWithinAABBExcludingEntity(entityOne, box);
 		if (listRide != null && listRide.size() > 0) {
 
-			for (Object aListRide : listRide) {
-				entity = (Entity) aListRide;
+			for (int j1 = 0; j1 < listRide.size(); j1++) {
+				entity = (Entity) listRide.get(j1);
 				if (!(entity instanceof EntityLasersLines) && !entity.noClip && !(entity instanceof EntityLiving) && !(entityOne instanceof EntityLiving)) {
 
 					if (entity != entity.riddenByEntity && entity.canBePushed() && (entityOne instanceof AbstractTrains) && (entity instanceof AbstractTrains) && !((AbstractTrains) entityOne).isAttached) {
@@ -129,8 +129,8 @@ public class CollisionHandler {
 	 */
 	public void applyEntityCollisionVanilla(Entity par1Entity, EntityMinecart entityOne) {
 		MinecraftForge.EVENT_BUS.post(new MinecartCollisionEvent(entityOne, par1Entity));
-		if (EntityMinecart.getCollisionHandler() != null) {
-			EntityMinecart.getCollisionHandler().onEntityCollision(entityOne, par1Entity);
+		if (entityOne.getCollisionHandler() != null) {
+			entityOne.getCollisionHandler().onEntityCollision(entityOne, par1Entity);
 			return;
 		}
 		if (!this.worldObj.isRemote) {
@@ -389,16 +389,13 @@ public class CollisionHandler {
 						if ((f1 * 3.6) < 35) {//if speed is smaller than 35km/h then don't do any damage but push entities
 							if (f7 == 0) {
 
-								//movingobjectposition.entityHit.addVelocity(d * 0.666666667, 0.0D, d1 * 0.666666667);
-								movingobjectposition.entityHit.motionX+=d * 0.666666667;
-								movingobjectposition.entityHit.motionZ+=d1 * 0.666666667;
+								movingobjectposition.entityHit.addVelocity(d * 0.666666667, 0.0D, d1 * 0.666666667);
+
 								entity.velocityChanged = true;
 								return;
 							}
 							//System.out.println("bla");
-							//movingobjectposition.entityHit.addVelocity(((entityOne.motionX * 1 * 0.060000002384185791D)) / f7, 0.00000000000000001D, (((entityOne.motionZ * 1 * 0.060000002384185791D)) / f7));
-							movingobjectposition.entityHit.motionX+=((entityOne.motionX * 1 * 0.060000002384185791D)) / f7;
-							movingobjectposition.entityHit.motionZ+=(((entityOne.motionZ * 1 * 0.060000002384185791D)) / f7);
+							movingobjectposition.entityHit.addVelocity(((entityOne.motionX * 1 * 0.060000002384185791D)) / f7, 0.00000000000000001D, (((entityOne.motionZ * 1 * 0.060000002384185791D)) / f7));
 							entity.velocityChanged = true;
 							return;
 						}
@@ -413,9 +410,7 @@ public class CollisionHandler {
 
 							entity.attackEntityFrom(TrainsDamageSource.ranOver, j1);//DamageSource.causeMobDamage((EntityLiving) entity);
 							if (f7 > 0.0F) {
-								//movingobjectposition.entityHit.addVelocity((entityOne.motionX * 2 * 0.60000002384185791D) / f7, 0.10000000000000001D, (entityOne.motionZ * 2 * 0.60000002384185791D) / f7);
-								movingobjectposition.entityHit.motionX+=(entityOne.motionX * 2 * 0.60000002384185791D) / f7;
-								movingobjectposition.entityHit.motionZ+=(entityOne.motionZ * 2 * 0.60000002384185791D) / f7;
+								movingobjectposition.entityHit.addVelocity((entityOne.motionX * 2 * 0.60000002384185791D) / f7, 0.10000000000000001D, (entityOne.motionZ * 2 * 0.60000002384185791D) / f7);
 								entity.velocityChanged = true;
 							}
 

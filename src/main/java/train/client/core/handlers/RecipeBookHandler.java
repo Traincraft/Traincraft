@@ -1,12 +1,5 @@
 package train.client.core.handlers;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import net.minecraft.item.Item;
 import train.common.core.interfaces.ITCRecipe;
 import train.common.core.managers.TierRecipe;
@@ -14,6 +7,11 @@ import train.common.library.BlockIDs;
 import train.common.library.ItemIDs;
 import train.common.recipes.ShapedTrainRecipes;
 import train.common.recipes.ShapelessTrainRecipe;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class RecipeBookHandler {
 	/**
@@ -42,53 +40,37 @@ public class RecipeBookHandler {
 		vanillaWorkTableRecipes[20] = BlockIDs.switchStand.block.getUnlocalizedName();
 	}
 
-	public static Map<Integer, List<ITCRecipe>> workbenchListCleaner(List<ITCRecipe> recipeList) {
-		Map<Integer, List<ITCRecipe>> sortedRecipes = new LinkedHashMap<>();
-
-		for (int i = 0; i < recipeList.size(); i++) {
-			if (recipeList.get(i) != null) {
-				ITCRecipe recipe = (ITCRecipe) recipeList.get(i);
-
-				if (recipe instanceof ShapedTrainRecipes || recipe instanceof ShapelessTrainRecipe) {
-
-					Item output = recipe.getRecipeOutput().getItem();
-					int id = getOutputID(output);
-
-					List<ITCRecipe> recipes = sortedRecipes.get(id);
-					if (recipes == null) {
-						recipes = new ArrayList<ITCRecipe>();
-						sortedRecipes.put(id, recipes);
-					}
-					recipes.add(recipe);
+	// TODO: Make parameters more specific than List
+	public static List<ITCRecipe> workbenchListCleaner(List recipeList) {
+		Set<String> outputs = new HashSet<String>();
+		ArrayList<ITCRecipe> cleaned = new ArrayList<ITCRecipe>();
+		for(Object r: recipeList) {
+			if (r instanceof ShapedTrainRecipes || r instanceof ShapelessTrainRecipe) {
+				ITCRecipe recipe = (ITCRecipe) r;
+				String output = Item.itemRegistry.getNameForObject(recipe.getRecipeOutput().getItem());
+				if (!outputs.contains(output)) {
+					cleaned.add(recipe);
+					outputs.add(output);
 				}
 			}
 		}
-		return sortedRecipes;
-	}
-
-	private static int getOutputID(Item pOutputItem) {
-		return Item.getIdFromItem(pOutputItem);
+		return cleaned;
 	}
 
 	// TODO: Make it more generic: TierRecipe -> ITierRecipe
-	public static Map<Integer, List<TierRecipe>> assemblyListCleaner(List recipeList) {
-		Map<Integer, List<TierRecipe>> sortedRecipes = new LinkedHashMap<>();
-
-		for (int i = 0; i < recipeList.size(); i++) {
-			if (recipeList.get(i) instanceof TierRecipe) {
-				TierRecipe tierRecipe = (TierRecipe) recipeList.get(i);
-
-				Item output = tierRecipe.getOutput().getItem();
-				int id = getOutputID(output);
-
-				List<TierRecipe> recipes = sortedRecipes.get(id);
-				if (recipes == null) {
-					recipes = new ArrayList<TierRecipe>();
-					sortedRecipes.put(id, recipes);
+	public static List<TierRecipe> assemblyListCleaner(List recipeList) {
+		Set<String> outputs = new HashSet<String>();
+		ArrayList<TierRecipe> cleanedList = new ArrayList<TierRecipe>();
+		for(Object r: recipeList) {
+			if(r instanceof TierRecipe) {
+				TierRecipe recipe = (TierRecipe) r;
+				String output = Item.itemRegistry.getNameForObject(recipe.getOutput().getItem());
+				if (!outputs.contains(output)) {
+					cleanedList.add(recipe);
+					outputs.add(output);
 				}
-				recipes.add(tierRecipe);
 			}
 		}
-		return sortedRecipes;
+		return cleanedList;
 	}
 }

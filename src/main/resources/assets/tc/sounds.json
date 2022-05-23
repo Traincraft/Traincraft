@@ -162,7 +162,5 @@
   "tram_bell": {"category": "master", "sounds": [{"name": "tram_bell", "stream":  true}]},
   "a4_whistle": {"category": "master", "sounds": [{"name": "a4_whistle", "stream":  true}]},
   "gp40_2_horn": {"category": "master", "sounds": [{"name": "gp40_2_horn", "stream":  true}]},
-  "skookum_whistle": {"category": "master", "sounds": [{"name": "skookum_whistle", "stream":  true}]},
-  "81717_horn": {"category": "master", "sounds": [{"name": "81717_horn","stream": false}]},
-  "81717_idle": {"category": "master", "sounds": [{"name": "81717_idle","stream": false}]}
+  "skookum_whistle": {"category": "master", "sounds": [{"name": "skookum_whistle", "stream":  true}]}
 }

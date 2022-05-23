@@ -78,10 +78,6 @@ public class TCItems {
 		ItemIDs.tcRailEmbeddedLongStraight.item = new ItemTCRail(ItemTCRail.TrackTypes.EMBEDDED_LONG_STRAIGHT);
 		ItemIDs.tcRailEmbeddedVeryLongStraight.item = new ItemTCRail(ItemTCRail.TrackTypes.EMBEDDED_VERY_LONG_STRAIGHT);
 
-		/**Normal Diagonal Straights*/
-
-		ItemIDs.tcRailSmallDiagonalStraight.item = new ItemTCRail(ItemTCRail.TrackTypes.SMALL_DIAGONAL_STRAIGHT);
-
 		/**Normal 45Degree Turns*/
 
 		ItemIDs.tcRailMedium45DegreeTurn.item = new ItemTCRail(ItemTCRail.TrackTypes.MEDIUM_45DEGREE_TURN);
@@ -126,9 +122,6 @@ public class TCItems {
 		ItemIDs.tcRailLargeSwitch.item = new ItemTCRail(ItemTCRail.TrackTypes.LARGE_SWITCH);
 		ItemIDs.tcRailMediumParallelSwitch.item = new ItemTCRail(ItemTCRail.TrackTypes.MEDIUM_PARALLEL_SWITCH);
 
-
-		/**Embedded Switches*/
-		ItemIDs.tcRailEmbeddedMediumParallelSwitch.item = new ItemTCRail(ItemTCRail.TrackTypes.EMBEDDED_MEDIUM_PARALLEL_SWITCH);
 
 		/**Normal Slopes*/
 		ItemIDs.tcRailSlopeWood.item = new ItemTCRail(ItemTCRail.TrackTypes.SLOPE_WOOD);
