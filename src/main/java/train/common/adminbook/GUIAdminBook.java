@@ -77,6 +77,13 @@ public class GUIAdminBook extends GuiScreen {
                 initGui();
                 break;
             }
+            case 3:{
+                if(list[0]!=null && list[0].length()>1) {
+                    Traincraft.keyChannel.sendToServer(new ItemAdminBook.PacketAdminBookClient("0:" + list[0].substring(1), Minecraft.getMinecraft().thePlayer.getEntityId()));//tell server to drop items
+                    Traincraft.keyChannel.sendToServer(new ItemAdminBook.PacketAdminBookClient("1:" + list[0].substring(1), Minecraft.getMinecraft().thePlayer.getEntityId()));//tell server to drop items
+                }
+                break;
+            }
             default:{
                 Traincraft.keyChannel.sendToServer(new ItemAdminBook.PacketAdminBookClient( list[button.id-3], Minecraft.getMinecraft().thePlayer.getEntityId()));//tell server to send a new gui
                 break;
@@ -118,8 +125,9 @@ public class GUIAdminBook extends GuiScreen {
         } else {
             try {
                 //draw back
-                this.buttonList.add(new GuiButton(-1,guiLeft+80,guiTop+140,120,20,"clone inventory"));
-                this.buttonList.add(new GuiButton(0,guiLeft+10,guiTop+140,70,20,"delete entry"));
+                this.buttonList.add(new GuiButton(-1,guiLeft+85,guiTop+140,90,20,"clone inventory"));
+                this.buttonList.add(new GuiButton(0,guiLeft+5,guiTop+140,70,20,"delete entry"));
+                this.buttonList.add(new GuiButton(3,guiLeft+180,guiTop+140,80,20,"clone & delete"));
                 this.buttonList.add(new GuiButton(1, guiLeft-70, guiTop+140 , 70, 20, "back"));
                 items = ServerLogger.getItems(list[9]);
             } catch (Exception e){}
