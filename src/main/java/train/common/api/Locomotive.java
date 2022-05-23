@@ -1,7 +1,13 @@
 package train.common.api;
 
+import java.util.List;
+import java.util.Random;
+
+import org.lwjgl.input.Keyboard;
+
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Loader;
@@ -18,9 +24,12 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.*;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-import org.lwjgl.input.Keyboard;
 import train.common.Traincraft;
 import train.common.adminbook.ServerLogger;
 import train.common.core.HandleMaxAttachedCarts;
@@ -32,10 +41,11 @@ import train.common.library.EnumSounds;
 import train.common.library.Info;
 import train.common.mtc.PDMMessage;
 import train.common.mtc.TilePDMInstructionRadio;
-import train.common.mtc.packets.*;
-
-import java.util.List;
-import java.util.Random;
+import train.common.mtc.packets.PacketATO;
+import train.common.mtc.packets.PacketATOSetStopPoint;
+import train.common.mtc.packets.PacketMTC;
+import train.common.mtc.packets.PacketNextSpeed;
+import train.common.mtc.packets.PacketSetSpeed;
 
 public abstract class Locomotive extends EntityRollingStock implements IInventory, WirelessTransmitter {
     public int inventorySize;

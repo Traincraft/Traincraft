@@ -4,6 +4,10 @@ buildscript {
 	repositories {
 		mavenCentral()
 		maven {
+            		name = "forge"
+            		url = "https://files.minecraftforge.net/maven"
+        	}
+		maven {
 			name = "gt"
 			url = "https://gregtech.overminddl1.com/"
 		}
@@ -58,7 +62,6 @@ dependencies {
     // quality of life line to simplify importing jars for experimental testing
     compile fileTree(dir: 'libs', include: ['*.jar'])
 }
-
 
 idea
 {

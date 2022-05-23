@@ -210,7 +210,8 @@ public class ItemTCRail extends ItemPart {
 
 	}
 
-	public static boolean isTCTurnTrack(TileTCRail tile) { /**Determines if a track should act like a turn*/
+	public static boolean isTCTurnTrack(TileTCRail tile) {
+		if(tile==null || tile.getType()==null){return false;}
 		return (tile.getType().equals(TrackTypes.MEDIUM_LEFT_SWITCH.getLabel()) && tile.getSwitchState())
 				|| (tile.getType().equals(TrackTypes.MEDIUM_RIGHT_SWITCH.getLabel()) && tile.getSwitchState())
 				|| (tile.getType().equals(TrackTypes.LARGE_LEFT_SWITCH.getLabel()) && tile.getSwitchState())
@@ -257,13 +258,8 @@ public class ItemTCRail extends ItemPart {
 
 	}
 
-
-	public static boolean isTCDiagonalTrack(TileTCRail tile) {
-		return (tile.getType().equals(TrackTypes.SMALL_DIAGONAL_STRAIGHT.getLabel()));
-	}
-
-
-	public static boolean isTCStraightTrack(TileTCRail tile) {/**Determines if a track should act like a straight, */
+	public static boolean isTCStraightTrack(TileTCRail tile) {
+		if(tile==null || tile.getType()==null){return false;}
 		return (tile.getType().equals(TrackTypes.MEDIUM_LEFT_SWITCH.getLabel()) && !tile.getSwitchState())
 				|| (tile.getType().equals(TrackTypes.MEDIUM_RIGHT_SWITCH.getLabel()) && !tile.getSwitchState())
 				|| (tile.getType().equals(TrackTypes.LARGE_LEFT_SWITCH.getLabel()) && !tile.getSwitchState())
@@ -290,27 +286,18 @@ public class ItemTCRail extends ItemPart {
 				;
 	}
 
-	public static boolean isTCTwoWaysCrossingTrack(TileTCRail tile) { //Determines if a track should act like a crossing
+	public static boolean isTCTwoWaysCrossingTrack(TileTCRail tile) {
+		if(tile==null || tile.getType()==null){return false;}
 		return tile.getType().equals(TrackTypes.TWO_WAYS_CROSSING.getLabel());
 	}
 
-	public static boolean isTCSwitch(TileTCRail tile) { /**Determines if a track should act like a switch*/
-		return (tile.getType().equals(TrackTypes.MEDIUM_LEFT_SWITCH.getLabel()))
-				|| (tile.getType().equals(TrackTypes.MEDIUM_RIGHT_SWITCH.getLabel()))
-				|| (tile.getType().equals(TrackTypes.LARGE_LEFT_SWITCH.getLabel()))
-				|| (tile.getType().equals(TrackTypes.LARGE_RIGHT_SWITCH.getLabel()))
-				|| (tile.getType().equals(TrackTypes.MEDIUM_RIGHT_PARALLEL_SWITCH.getLabel()))
-				|| (tile.getType().equals(TrackTypes.MEDIUM_LEFT_PARALLEL_SWITCH.getLabel()))
-				|| (tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_LEFT_SWITCH.getLabel()))
-				|| (tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_RIGHT_SWITCH.getLabel()))
-				|| (tile.getType().equals(TrackTypes.EMBEDDED_LARGE_LEFT_SWITCH.getLabel()))
-				|| (tile.getType().equals(TrackTypes.EMBEDDED_LARGE_RIGHT_SWITCH.getLabel()))
-				|| (tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_RIGHT_PARALLEL_SWITCH.getLabel()))
-				|| (tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_LEFT_PARALLEL_SWITCH.getLabel()))
-				;
+	public static boolean isTCSwitch(TileTCRail tile) {
+		if(tile==null || tile.getType()==null){return false;}
+		return (tile.getType().equals(TrackTypes.MEDIUM_LEFT_SWITCH.getLabel())) || (tile.getType().equals(TrackTypes.MEDIUM_RIGHT_SWITCH.getLabel())) || (tile.getType().equals(TrackTypes.LARGE_LEFT_SWITCH.getLabel())) || (tile.getType().equals(TrackTypes.LARGE_RIGHT_SWITCH.getLabel())) || (tile.getType().equals(TrackTypes.MEDIUM_RIGHT_PARALLEL_SWITCH.getLabel())) || (tile.getType().equals(TrackTypes.MEDIUM_LEFT_PARALLEL_SWITCH.getLabel()));
 	}
 
-	public static boolean isTCSlopeTrack(TileTCRail tile) { /**Determines if a track should act like a slope*/
+	public static boolean isTCSlopeTrack(TileTCRail tile) {
+		if(tile==null || tile.getType()==null){return false;}
 		return tile.getType().equals(TrackTypes.SLOPE_WOOD.getLabel())
 				|| tile.getType().equals(TrackTypes.SLOPE_GRAVEL.getLabel())
 				|| tile.getType().equals(TrackTypes.SLOPE_BALLAST.getLabel())

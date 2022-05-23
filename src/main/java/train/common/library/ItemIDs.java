@@ -284,6 +284,8 @@ public enum ItemIDs {
 	minecartICE1_1stClass("ItemRollingStock", "train_ice1_passenger", 10),
 	minecartICE1_2ndClass("ItemRollingStock", "train_ice1_passenger", 10),
 	minecartICE1_Restaurant("ItemRollingStock", "train_ice1_restaurant", 10),
+	minecart81717_motor("ItemRollingStock", "81-717_motor", 10),
+	minecart81717_passenger("ItemRollingStock", "81-717_passenger", 10),
 	minecartBoulderWagon("ItemRollingStock", "BoulderWagon", 1),
 	minecartKVB_2300("ItemRollingStock", "kvb_2300", 3),
 	minecartKVB_2300_B("ItemRollingStock", "kvb_2300_b", 3),
