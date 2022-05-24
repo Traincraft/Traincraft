@@ -1,7 +1,7 @@
 package train.common.items;
 
 import com.mojang.authlib.GameProfile;
-import com.sun.istack.internal.Nullable;
+import javax.annotation.Nullable;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mods.railcraft.api.carts.IMinecart;
