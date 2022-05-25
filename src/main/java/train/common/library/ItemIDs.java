@@ -312,6 +312,7 @@ public enum ItemIDs {
 
 	minecartPassengerHighSpeedCarZeroED("ItemRollingStock", "train_high_speed_cart_zeroed", 14),
 	minecartNYTram("ItemRollingStock", "train_tram_ny", 7),
+	minecartMetro2000Loco("ItemRollingStock", "metro2000_motor", 5),
 	minecartLocoHighSpeedZeroED("ItemRollingStock", "train_high_speed_loco_zeroed", 17),
 	minecartLocoA4Mallard("ItemRollingStock", "train_loco_a4_mallard", 14),
 	minecartLocoA4MallardTender("ItemRollingStock", "train_loco_a4_mallard_tender", 5),
