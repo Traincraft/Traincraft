@@ -1681,6 +1681,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				} else {
 					this.setColor(acceptedColors.get(scrollPosition));
 					scrollPosition++;
+
 				}
 			}
 

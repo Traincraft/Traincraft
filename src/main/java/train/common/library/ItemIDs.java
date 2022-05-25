@@ -282,6 +282,8 @@ public enum ItemIDs {
 	minecartBoulderWagon("ItemRollingStock", "BoulderWagon", 1),
 	minecartKVB_2300("ItemRollingStock", "kvb_2300", 3),
 	minecartKVB_2300_B("ItemRollingStock", "kvb_2300_b", 3),
+	minecartBR_MK2F_Coach("ItemRollingStock", "Mk2f_Coach_Icon", 3),
+	minecartBR_Mk2f_BSO("ItemRollingStock", "Mk2f_BSO_Icon", 3),
 	minecartBR_MK3_DVT("ItemRollingStock", "br_mk3_dvt", 3),
 	minecartBR_MK3_Buffet("ItemRollingStock", "br_mk3_buffet", 5),
 	minecartBR_MK3_Coach("ItemRollingStock", "br_mk3_coach", 5),
