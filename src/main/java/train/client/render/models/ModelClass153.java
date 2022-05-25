@@ -11,12 +11,13 @@ package train.client.render.models;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
-import net.minecraft.util.ResourceLocation;
+
 import org.lwjgl.opengl.GL11;
 import tmt.ModelBase;
 import tmt.ModelRendererTurbo;
-import tmt.Tessellator;
-import train.common.library.Info;
+
+import java.util.ArrayList;
+
 
 public class ModelClass153 extends ModelBase
 {
@@ -1531,7 +1532,13 @@ public class ModelClass153 extends ModelBase
 			}
 		}
 	}
-
+	public ArrayList<double[]> getSmokePosition() {
+		return new ArrayList<double[]>() {
+			{
+				add(new double[]{0.77D, 1.45D, 0.0D});
+			}
+		};
+	}
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5)
 	{
 	}

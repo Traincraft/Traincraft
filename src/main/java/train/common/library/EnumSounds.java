@@ -39,6 +39,8 @@ public enum EnumSounds {
 	MILWClassA(EntityLocoSteamMILWClassA.class, "american_steam_horn", 0.8F, "steam_run", 0.4F, 20, "steam_run", 0.4F, 20, true),
 	locoAlice(EntityLocoSteamAlice0_4_0.class, "german_steam_horn", 0.8F, "steam_run", 0.4F, 20, "steam_run", 0.4F, 20,
 			true),
+	locoElectricBR_MK3_DVT(EntityElectricBR_MK3_DVT.class, "british_two_tone", 0.8F, "", 0F, 0, "", 0F, 0, false),
+	locoElectricBR_MK4_DVT(EntityElectricBR_MK4_DVT.class, "british_two_tone", 0.8F, "", 0F, 0, "", 0F, 0, false),
 	locoGLYN(EntityLocoSteamGLYN042T.class, "german_steam_horn", 0.8F, "steam_run", 0.4F, 20, "steam_run", 0.4F, 20,
 			true),
 	locovb(EntityLocoSteam040VB.class, "adler_whistle", 0.8F, "adler_run", 0.2F, 20, "adler_run", 0.2F, 20, true),

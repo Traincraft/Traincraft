@@ -125,6 +125,17 @@ public class CustomRenderHandler {
             RenderTCRail.modelSmallStraight.render("straight", 2, dx, 0, dz - 1, r, g, b, a);
             RenderTCRail.modelSmallStraight.render("straight", 3, dx - 1, 0, dz, r, g, b, a);
         }
+        else if (item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_TWO_WAYS_CROSSING) {
+            float dx = dir.getX();
+            float dz = dir.getY();
+
+            RenderTCRail.modelEmbeddedTwoWaysCrossing.render( dx, 0, dz, r, g, b, 0.5f );
+            RenderTCRail.modelEmbeddedSmallStraight.render("straight", 0, dx, 0, dz +1, r, g, b, a);
+            RenderTCRail.modelEmbeddedSmallStraight.render("straight", 1, dx + 1, 0, dz, r, g, b, a);
+            RenderTCRail.modelEmbeddedSmallStraight.render("straight", 2, dx, 0, dz - 1, r, g, b, a);
+            RenderTCRail.modelEmbeddedSmallStraight.render("straight", 3, dx - 1, 0, dz, r, g, b, a);
+        }
+
         // Slopes
         else if (item.getTrackType() == ItemTCRail.TrackTypes.SLOPE_BALLAST) {
             RenderTCRail.modelSlope.render("ballast", facing, 0, 0, 0, r, g, b, 0.5f);
@@ -233,16 +244,16 @@ public class CustomRenderHandler {
                 }
             }
 
-           /* if (item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_MEDIUM_45DEGREE_TURN) {
+            if (item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_MEDIUM_45DEGREE_TURN) {
                 String turnSize = "medium";
                 if ( isLeftTurn )
                 {
-                    RenderTCRail.modelEmbedded45DegreeLeftTurn.render( turnSize, facing, 0, 0, 0, r, g, b, a );
+                    RenderTCRail.modelEmbeddedLeft45DegreeTurn.render( turnSize, facing, 0, 0, 0, r, g, b, a );
                 } else
                 {
-                    RenderTCRail.modelEmbedded45DegreeRightTurn.render( turnSize, facing, 0, 0, 0, r, g, b, a );
+                    RenderTCRail.modelEmbeddedRight45DegreeTurn.render( turnSize, facing, 0, 0, 0, r, g, b, a );
                 }
-            }*/
+            }
         }
 
         // Turns
