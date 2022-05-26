@@ -507,6 +507,9 @@ public class AssemblyTableRecipes {
 				for (ItemStack rs : redstone) {
 				cm.addRecipe(3, new ItemStack(itemSteel, 2, itemDamageSteel), new ItemStack(ItemIDs.bogie.item, 2), new ItemStack(ItemIDs.steelframe.item, 2), new ItemStack(itemSteel, 2, itemDamageSteel), null, new ItemStack(ItemIDs.steelcab.item, 1), null, new ItemStack(ItemIDs.seats.item, 4), new ItemStack(rs.getItem(), 4), dye, new ItemStack(ItemIDs.minecartBNLRV_A.item, 1), 1);
 				cm.addRecipe(3, new ItemStack(itemSteel, 2, itemDamageSteel), new ItemStack(ItemIDs.bogie.item, 2), new ItemStack(ItemIDs.steelframe.item, 2), new ItemStack(itemSteel, 2, itemDamageSteel), null, new ItemStack(ItemIDs.steelcab.item, 1), null, new ItemStack(ItemIDs.seats.item, 4), new ItemStack(rs.getItem(), 4), dye, new ItemStack(ItemIDs.minecartBNLRV_B.item, 1), 1);
+					cm.addRecipe(3, new ItemStack(itemSteel, 2, itemDamageSteel), new ItemStack(ItemIDs.bogie.item, 2), new ItemStack(ItemIDs.steelframe.item, 2), new ItemStack(itemSteel, 2, itemDamageSteel), null, new ItemStack(ItemIDs.steelcab.item, 1), null, new ItemStack(ItemIDs.seats.item, 4), new ItemStack(rs.getItem(), 4), dye, new ItemStack(ItemIDs.minecartMetro2000Loco.item, 1), 1);
+					cm.addRecipe(3, new ItemStack(itemSteel, 2, itemDamageSteel), new ItemStack(ItemIDs.bogie.item, 2), new ItemStack(ItemIDs.steelframe.item, 2), new ItemStack(itemSteel, 2, itemDamageSteel), null, new ItemStack(ItemIDs.steelcab.item, 1), null, new ItemStack(ItemIDs.seats.item, 4), new ItemStack(rs.getItem(), 4), dye, new ItemStack(ItemIDs.minecartMetro2000Passenger.item, 1), 1);
+
 				}
 			}
 

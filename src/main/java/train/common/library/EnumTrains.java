@@ -282,8 +282,8 @@ public enum EnumTrains {
 	LUpassenger("London Underground Passenger Car", EntityLUpassenger.class, ItemIDs.minecartLUcar.item, "passenger", 0, 0, 1, 0, 0, 0, 0, 0, 0, null, 10, 0, "Pack: B.I.P."),
 	DstockEngine("London D Stock Engine", EntityElectricDstockEngine.class, ItemIDs.minecartDstockEngine.item, "electric", 600, 80, 0, 10, 0, 100, 0.7, 0.8, 1000, null, 18, -2, "Pack: MetroIM"),
 	DstockPassenger("London D Stock Passenger Car", EntityDstockPassenger.class, ItemIDs.minecartDstockCar.item, "passenger", 0, 0, 2, 0, 0, 0, 0, 0, 0, null, 10, 0, "Pack: MetroIM"),
-	Class345("Class 345 Engine", EntityElectricClass345.class, ItemIDs.minecartClass345engine.item, "electric", 1500, 300, 0,10, 0, 100, 0.9, 0.9, 1000,  TraincraftUtil.getBytesFromColors(new String[]{"White", "Red"}), 18, -3, "Pack: B.I.P."),
-	Class345Coach("Class 345 Passenger Car", EntityClass345Coach.class, ItemIDs.minecartClass345car.item, "passenger", 0, 0, 3,0 , 0, 0, 0,0,0,TraincraftUtil.getBytesFromColors(new String[]{"White", "Red"}),0,0, "Pack: B.I.P."),
+	Class345("Class 345 Engine", EntityElectricClass345.class, ItemIDs.minecartClass345engine.item, "electric", 1500, 300, 0,10, 0, 100, 0.9, 0.9, 1000,  TraincraftUtil.getBytesFromColors(new String[]{"White", "Red", "Orange", "Pink"}), 18, -3, "Pack: B.I.P."),
+	Class345Coach("Class 345 Passenger Car", EntityClass345Coach.class, ItemIDs.minecartClass345car.item, "passenger", 0, 0, 3,0 , 0, 0, 0,0,0,TraincraftUtil.getBytesFromColors(new String[]{"White", "Red", "Orange", "Pink"}),0,0, "Pack: B.I.P."),
 	passengerPS52SeatCoach("PS 52 Seat Coach", EntityPassengerPS52SeatCoach.class, ItemIDs.minecartPS52seatCoach.item, "passenger", 0, 0, 3, 0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[]{"Blue", "Orange", "LightBlue", "Black"}), 10, 0, "Pack: BAP"),
 	passengerPSCombine("PS Combine Coach", EntityPassengerPSCombine.class, ItemIDs.minecartPScombine.item, "passenger/combine", 0, 0, 3, 0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[]{"Blue", "Orange"}), 10, 0, "Pack: BAP"),
 	passengerPScenterDiner("PS Center Diner", EntityPassengerPScenterDiner.class, ItemIDs.minecartPSCenterDiner.item, "passenger", 0, 0, 3, 0, 0, 0, 0, 0, 0, null, 10, 0, "Pack: BAP"),
@@ -291,7 +291,9 @@ public enum EnumTrains {
 	locoElectricBNLRV_A("BNLRV_A", EntityLocoElectricBNLRV_A.class, ItemIDs.minecartBNLRV_A.item, "electric", 500 , 70, 3, 10, 0,0,0.9,0.9, 0,  TraincraftUtil.getBytesFromColors(new String[]{"Orange", "White", "Yellow", "Grey", "Black"}), 10, -4, "Pack: Trams In Motion"),
 	passengerBNLRV_B("BNLRV_B", EntityPassengerBNLRV_B.class, ItemIDs.minecartBNLRV_B.item, "passenger", 0, 0, 3, 0, 0,0,0,0,0, TraincraftUtil.getBytesFromColors(new String[]{"Orange", "White", "Yellow", "Grey", "Black"}), 10, 0, "Pack: Trams in Motion" ),
 
-	locoElectricMetro2000("Metro2000loco",EntityElectricMetro2000Motor.class,ItemIDs.minecartMetro2000Loco.item, "electric",600,65,3,10,0,0,0.8,0.9,0,TraincraftUtil.getBytesFromColors(new String[]{"Blue"}),18,-3,"Pack: Metro in Motion"),
+	locoElectricMetro2000("Metro2000loco",EntityElectricMetro2000Motor.class,ItemIDs.minecartMetro2000Loco.item, "electric",600,65,3,10,0,0,0.8,0.9,0,TraincraftUtil.getBytesFromColors(new String[]{"Blue", "White"}),18,-3,"Pack: Metro in Motion"),
+	passengerMetro2000("Metro2000Passenger", EntityPassengerMetro2000.class, ItemIDs.minecartMetro2000Passenger.item, "passenger", 0, 0, 3, 0,0,0,0,0,0,TraincraftUtil.getBytesFromColors(new String[]{"Blue", "White"}), 0, 0, "Pack: Metro In Motion"),
+
 	locoElectricRenfe450Motor("Loco Electric Renfe 450 Motor", EntityLocoElectricRenfe450Motor.class, ItemIDs.minecartLocoRenfe450Motor.item, "electric", 2900, 140, 0, 3, 0,230, 1.4, 0.98, 0, TraincraftUtil.getBytesFromColors(new String[]{"Red", "White"}), 10,  -3.6, "Pack: Spanish Pack"),
 	passengerRenfe450Coach("Passenger Renfe 450 Coach", EntityPassengerRenfe450Coach.class, ItemIDs.minecartPassengerRenfe450Coach.item, "passenger", 0, 0, 2, 0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[]{"Red", "White"}), 10, 0, "Pack: Spanish Pack"),
 	cabooseRenfe450Tail("Passenger Renfe 450 Tail", EntityCabooseRenfe450Tail.class, ItemIDs.minecartCabooseRenfe450Tail.item, "passenger", 0, 0, 2, 0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[]{"Red", "White"}), 10, 0, "Pack: Spanish Pack"),

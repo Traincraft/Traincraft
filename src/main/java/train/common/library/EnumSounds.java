@@ -89,7 +89,7 @@ public enum EnumSounds {
 	locoCD151(EntityLocoElectricCD151.class,"mg_horn", 1F, "mg_run", 0.8F, 10, "mg_idle", 0.6F, 50, false),
 	locoLSSP7(EntityLocoSteamLSSP7.class, "american_steam_horn", 0.8F, "steam_run", 0.2F, 20, "steam_run", 0.2F, 20, true),
 	E103(EntityLocoElectricE103.class, "mg_horn", 1F, "mg_run", 0.6F, 8, "mg_idle", 0.4F, 50, false),
-
+	Metro2000Loco(EntityElectricMetro2000Motor.class, "4300_horn", 1F,"chme3_idle", 0.8F, 40, "chme3_idle", 0.2F, 20, false),
 	//Community Port
 	//Not American Stuff
 	DieselCD810(EntityLocoDieselCD810.class, "tram_horn", 0.8F, "chme3_idle", 0.65F, 40, "chme3_idle", 0.65F, 40, true),
