@@ -184,7 +184,7 @@ public enum EnumSounds {
 	Class91(EntityElectricClass91.class, "mg_horn", 1F, "mg_run", 0.8F, 10, "mg_idle", 0.6F, 50, false),
 	Class321(EntityElectricClass321.class, "mg_horn", 1F, "vl10_idle", 0.8F, 10, "vl10_idle", 0.6F, 50, false),
 	Class319Engine(EntityElectricClass319.class, "mg_horn", 1F, "vl10_idle", 0.8F, 10, "vl10_idle", 0.6F, 50, false),
-
+	asteri(EntityLocoSteamasteri.class, "asteri", 1F, "asteri", 0.2F, 212,"mg_idle", 0.6F, 50, false),
 
 
 	//Storage (Touch When Needed)

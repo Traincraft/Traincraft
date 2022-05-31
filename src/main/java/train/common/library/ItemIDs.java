@@ -537,7 +537,7 @@ public enum ItemIDs {
 	minecartPassengerMinetrain("ItemRollingStock","train_mine_cart", 1),
 	minecartBNLRV_B("ItemRollingStock", "BNLRV_B", 1 ),
 	minecartBNLRV_A("ItemRollingStock", "BNLRV_A", 1 ),
-
+	minecartasteri("ItemRollingStock", "asteri",1),
 	//signalSpanish("ItemsignalSpanish","signalSpanish", 1),
 
 
