@@ -291,8 +291,8 @@ public enum EnumTrains {
 	locoElectricBNLRV_A("BNLRV_A", EntityLocoElectricBNLRV_A.class, ItemIDs.minecartBNLRV_A.item, "electric", 500 , 70, 3, 10, 0,0,0.9,0.9, 0,  TraincraftUtil.getBytesFromColors(new String[]{"Orange", "White", "Yellow", "Grey", "Black"}), 10, -4, "Pack: Trams In Motion"),
 	passengerBNLRV_B("BNLRV_B", EntityPassengerBNLRV_B.class, ItemIDs.minecartBNLRV_B.item, "passenger", 0, 0, 3, 0, 0,0,0,0,0, TraincraftUtil.getBytesFromColors(new String[]{"Orange", "White", "Yellow", "Grey", "Black"}), 10, 0, "Pack: Trams in Motion" ),
 
-	locoElectricMetro2000("Metro2000loco",EntityElectricMetro2000Motor.class,ItemIDs.minecartMetro2000Loco.item, "electric",600,65,3,10,0,0,0.8,0.9,0,TraincraftUtil.getBytesFromColors(new String[]{"Blue", "White"}),18,-3,"Pack: Metro in Motion"),
-	passengerMetro2000("Metro2000Passenger", EntityPassengerMetro2000.class, ItemIDs.minecartMetro2000Passenger.item, "passenger", 0, 0, 3, 0,0,0,0,0,0,TraincraftUtil.getBytesFromColors(new String[]{"Blue", "White"}), 0, 0, "Pack: Metro In Motion"),
+	locoElectricMetro2000("Metro2000loco",EntityElectricMetro2000Motor.class,ItemIDs.minecartMetro2000Loco.item, "electric",600,65,3,10,0,0,0.8,0.9,0,TraincraftUtil.getBytesFromColors(new String[]{"Blue", "White","Red"}),18,-3,"Pack: Metro in Motion"),
+	passengerMetro2000("Metro2000Passenger", EntityPassengerMetro2000.class, ItemIDs.minecartMetro2000Passenger.item, "passenger", 0, 0, 3, 0,0,0,0,0,0,TraincraftUtil.getBytesFromColors(new String[]{"Blue", "White","Red"}), 0, 0, "Pack: Metro In Motion"),
 
 	locoElectricRenfe450Motor("Loco Electric Renfe 450 Motor", EntityLocoElectricRenfe450Motor.class, ItemIDs.minecartLocoRenfe450Motor.item, "electric", 2900, 140, 0, 3, 0,230, 1.4, 0.98, 0, TraincraftUtil.getBytesFromColors(new String[]{"Red", "White"}), 10,  -3.6, "Pack: Spanish Pack"),
 	passengerRenfe450Coach("Passenger Renfe 450 Coach", EntityPassengerRenfe450Coach.class, ItemIDs.minecartPassengerRenfe450Coach.item, "passenger", 0, 0, 2, 0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[]{"Red", "White"}), 10, 0, "Pack: Spanish Pack"),

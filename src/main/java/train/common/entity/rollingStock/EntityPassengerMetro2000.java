@@ -71,6 +71,6 @@ public class EntityPassengerMetro2000 extends EntityRollingStock implements IPas
 
     @Override
     public float getOptimalDistance(EntityMinecart cart) {
-        return 2.5F;
+        return 2.22F;
     }
 }
