@@ -934,7 +934,7 @@ public class ItemTCRail extends ItemPart {
 				}
 
 				if (l == 0) {
-				//	player.addChatMessage(new ChatComponentText("South side seems to be bugged. Place me from the north side"));
+
 					for (int check = 1; check < 6; check++) {
 						if (!canPlaceTrack(player, world, x, y + 1, z + check))
 							return false;
@@ -1131,7 +1131,6 @@ public class ItemTCRail extends ItemPart {
 				}
 
 				if (l == 0) {
-					player.addChatMessage(new ChatComponentText("South side seems to be bugged. Place me from the north side"));
 					for (int check = 1; check < 6; check++) {
 						if (!canPlaceTrack(player, world, x, y + 1, z + check))
 							return false;
@@ -1330,7 +1329,6 @@ public class ItemTCRail extends ItemPart {
 				}
 
 				if (l == 0) {
-					player.addChatMessage(new ChatComponentText("South side seems to be bugged. Place me from the north side"));
 
 					for (int check = 1; check < 5; check++) {
 						if (!canPlaceTrack(player, world, x, y + 1, z + check))
