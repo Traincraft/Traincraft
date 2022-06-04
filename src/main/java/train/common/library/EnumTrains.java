@@ -135,7 +135,7 @@ public enum EnumTrains {
 	freightDepressedFlatbed("Freight Depressed Flatcar", EntityFreightDepressedFlatbed.class, ItemIDs.minecartFreightDepressedFlatbed.item, "freight", 0.5, TraincraftUtil.getBytesFromColors(new String[]{"Black", "Grey", "LightGrey", "Yellow"}), 18, 36,"Cargo: any"),
 	freightCarL("Freight Car L", EntityFreightCartL.class, ItemIDs.minecartFreightL.item, "freight", 3, TraincraftUtil.getBytesFromColors(new String[]{"Red", "Blue"}), 18, 27,"Cargo: any"),
 	freightHeavyweight("Freight Heavyweight Baggage", EntityFreightHeavyweightBaggage.class, ItemIDs.minecartHeavyweightFreight.item, "freight", 3, TraincraftUtil.getBytesFromColors(new String[]{"Red", "Grey"}), 18, 36,"Cargo: any"),
-	freight7Plank("Freight 7 Plank", EntityFreight7Plank.class, ItemIDs.minecart7Plank.item, "freight", 0.5, TraincraftUtil.getBytesFromColors(new String[]{"Black", "Brown", "LightGrey", "Lime", "Red"}), 18, 27, "Pack: B.I.P."),
+	//freight7Plank("Freight 7 Plank", EntityFreight7Plank.class, ItemIDs.minecart7Plank.item, "freight", 0.5, TraincraftUtil.getBytesFromColors(new String[]{"Black", "Brown", "LightGrey", "Lime", "Red"}), 18, 27, "Pack: B.I.P."),
 	/**
 	 * Tanks
 	 **/
@@ -174,7 +174,7 @@ public enum EnumTrains {
 	tender_C41("Tender C41",EntityTender_C41.class, ItemIDs.minecartTenderC41.item,"tender",0,0,1.5,0,0,0,0,0,16000,null,18,0,"Water capacity: 16000mb"),
 	tender_Southern1102("Tender Southern1102",EntityTender_Southern1102.class, ItemIDs.minecartTenderSouthern1102.item,"tender",0,0,1.5,0,0,0,0,0,16000,null,18,0,"Water capacity: 16000mb"),
 	tender_MILW("Tender MILW",EntityTenderMILW.class, ItemIDs.minecartMILWTender.item,"tender",0,0,1.5,0,0,0,0,0,16000,null,18,0,"Water capacity: 16000mb"),
-
+	tender_BR_Black_5("Tender_BR_Black_5", EntityTenderBR_Black_5.class, ItemIDs.minecartBR_Black_5_Tender.item, "tender", 0, 0, 0.5, 0, 0, 0, 0, 0, 16000, TraincraftUtil.getBytesFromColors(new String[] {"Blue", "Cyan", "Green", "Grey", "LightGrey", "Red", "White"}), 18, 0, "Water capacity: 16000mb"),
 	/** Diesel */
 	locoDieselKOF("Loco Diesel KOF DB",EntityLocoDieselKof_DB.class,ItemIDs.minecartKof_DB.item, "diesel",750,45,0,60,0,170,0.66,0.96,5000,TraincraftUtil.getBytesFromColors(new String[] {"Red","Green","Yellow","Black","Blue"}),17,-1.6),
 	locoDieselGP40("Loco Diesel CD742", EntityLocoDieselCD742.class,  ItemIDs.minecartCD742.item, "diesel", 1727, 70,
@@ -419,6 +419,7 @@ public enum EnumTrains {
 	Class153("Class 153 Engine", EntityLocoDieselClass153.class, ItemIDs.minecartClass153engine.item, "diesel", 350, 120, 1.4, 10,0,100,0.7,0.8,8000,TraincraftUtil.getBytesFromColors(new String[] {"LightBlue", "Green", "Grey", "Orange", "Yellow"}), 18, -4.25,"Pack: B.I.P."),
 	Class153Coach("Class 153 Coach", EntityPassengerClass153.class, ItemIDs.minecartClass153Coach.item, "passenger", 0, 0, 1.4, 0,0,0,0,0,0,TraincraftUtil.getBytesFromColors(new String[] { "LightBlue", "Green", "Grey", "Orange", "Yellow"}), 0, 0,"Pack: B.I.P."),
 	Class156("Class 156 Engine", EntityLocoDieselClass156.class, ItemIDs.minecartClass156engine.item, "diesel", 285, 121, 1.4, 10,  0, 100, 0.7, 0.8, 8000, TraincraftUtil.getBytesFromColors(new String[] { "Black",  "Blue", "Cyan", "Green", "Grey,","LightBlue", "LightGrey", "Magenta", "Pink", "Red", "White"}), 18, -5.25, "Pack:  B.I.P."),
+	Class47("Class 47", EntityLocoDieselClass47.class, ItemIDs.minecartClass47.item, "diesel", 2580, 154, 1.4, 10, 0, 100, 0.7, 0.8, 8000, TraincraftUtil.getBytesFromColors(new String[] {"Black", "Blue", "Green", "Grey", "LightBlue", "LightGrey", "Magenta", "Orange", "Purple", "Red", "White", "Yellow"}), 18, -5.25, "Pack: B.I.P."),
 	DRGWCaboose("DRGWCaboose",EntityCabooseBapDRGW.class, ItemIDs.minecartDRGWCaboose.item, "caboose", 2, TraincraftUtil.getBytesFromColors(new String[] {"LightGrey", "Grey", "Lime", "Yellow", "Black", "Red", "Orange", "Pink"}), 0, 0, "Pack: BAP"),
 	passengerPSSleeper565("PS 5-6-5 Sleeper", EntityPassengerPSSleeper565.class, ItemIDs.minecartPSSleeper565.item, "passenger", 0, 0, 3, 0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[]{"Blue", "LightBlue", "Grey", "Brown", "Orange", "LightGrey"}), 10, 0, "Pack: BAP"),
 	passengerPSSleeper565DRGW("PS 5-6-5 Sleeper DRGW Edition", EntityPassengerPSSleeper565DRGW.class, ItemIDs.minecartPSSleeper565DRGW.item, "passenger", 0, 0, 3, 0, 0, 0, 0, 0, 0, null, 10, 0, "Pack: BAP"),
@@ -444,6 +445,7 @@ public enum EnumTrains {
 	BR_MK4_DVT("BR_MK4_DVT", EntityElectricBR_MK4_DVT.class, ItemIDs.minecartBR_MK4_DVT.item, "electric", 500, 260, 0,25, 0, 100, 0.8, 0.8, 1000, TraincraftUtil.getBytesFromColors(new String[] {"Blue", "Red","White", "Black"}), 18, -3.15, "Pack: B.I.P."),
 	BR_MK4_Coach("BR_MK4_Coach", EntityPassengerBR_MK4_Coach.class, ItemIDs.minecartBR_MK4_Coach.item, "passenger", 0, 0, 3,0 , 0, 0, 0,0,0,TraincraftUtil.getBytesFromColors(new String[] {"Blue", "Red","White", "Black"}),0,0, "Pack: B.I.P."),
 	BR_MK4_Buffet("BR_MK4_Buffet", EntityPassengerBR_MK4_Buffet.class, ItemIDs.minecartBR_MK4_Buffet.item, "passenger", 0, 0, 3,0 , 0, 0, 0,0,0,TraincraftUtil.getBytesFromColors(new String[] {"Blue", "Red","White", "Black"}),0,0, "Pack: B.I.P."),
+	BR_Black_5("BR_Black_5", EntityLocoSteamBR_Black_5.class, ItemIDs.minecartBR_Black_5.item, "steam", 1400, 95, 3, 10, 10 , 100, 0.7, 0.7, 1000, TraincraftUtil.getBytesFromColors(new String[]   {"Black", "Grey", "LightGrey", "Red", "White"}), 18, -3.5f, "Pack: B.I.P."),
 	Class43("Class43", EntityLocoDieselClass43.class, ItemIDs.minecartClass43.item, "diesel", 2250, 238, 0, 25, 0, 180, 0.89, 0.8, 13000, TraincraftUtil.getBytesFromColors(new String[] {"White", "Blue", "Brown", "Green", "Red", "Cyan", "LightBlue"}), 0, -3.15),
 	Class90("Class90", EntityElectricClass90.class, ItemIDs.minecartClass90.item, "electric", 5000, 178, 0,60, 0, 100, 0.7, 0.8, 1000, TraincraftUtil.getBytesFromColors(new String[] {"Black","Green","Grey","Pink","Red","White", "Magenta"}), 18, -2.75),
 	Class91("Class91", EntityElectricClass91.class, ItemIDs.minecartClass91.item, "electric", 6300, 260, 0,60, 0, 100, 0.7, 0.8, 1000, TraincraftUtil.getBytesFromColors(new String[] {"Blue", "Red","White"}), 18, -2.8),

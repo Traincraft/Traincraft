@@ -569,6 +569,9 @@ item.tc:minecartPassengerMinetrain.name=Minecart Ride-able
 item.tc:minecartClass153engine.name=Class 153 Engine
 item.tc:minecartClass153Coach.name=Class 153 Coach
 item.tc:minecartClass156engine.name=Class 156 Engine
+item.tc:minecartBR_Black_5.name=BR Black 5
+item.tc:minecartBR_Black_5_Tender=BR Black 5 Tender
+item.tc:minecartClass47.name=Class 47
 
 
 <!-- ## Achievements ## -->
@@ -1061,6 +1064,9 @@ entity.tc.Passenger Minecart Yellow.name=Minecart Ride-able
 entity.tc.Class 153 Engine.name=Class 153 Engine
 entity.tc.Class 153 Coach.name=Class 153 Coach
 entity.tc.Class 156 Engine.name=Class 156 Engine
+entity.tc.BR_Black_5.name=BR Black 5
+entity.tc.Tender_BR_Black_5.name=BR Black 5 Tender
+entity.tc.Class 47.name=Class 47
 
 description.villager.profession.tc.station_chief=Station Chief
 

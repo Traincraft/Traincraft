@@ -69,6 +69,20 @@ public enum ItemIDs {
 	paintbrushThing("ItemPaintbrushThing","paintbrushThing",1),
 	whistle("ItemWhistle","whistle", 1),
 	bolt("ItemBolt", "bolt", 1),
+	hat_ticketMan_paintable("ItemTCArmor", "armor_ticket_man_hat", 1),
+	pants_ticketMan_paintable("ItemTCArmor", "armor_ticket_man_pants", 1),
+	jacket_ticketMan_paintable("ItemTCArmor", "armor_ticket_man_jacket", 1),
+	hat_driver_paintable("ItemTCArmor", "armor_driver_hat", 1),
+	pants_driver_paintable("ItemTCArmor", "armor_driver_pants", 1),
+	jacket_driver_paintable("ItemTCArmor", "armor_driver_jacket", 1),
+
+	helmet_suit_paintable("ItemTCArmor", "armor_composite_helmet", 1),
+	pants_suit_paintable("ItemTCArmor", "armor_composite_pants", 1),
+	boots_suit_paintable("ItemTCArmor", "armor_composite_boots", 1),
+	jacket_suit_paintable("ItemTCArmor", "armor_composite_chest", 1),
+	reinforcedPlastic("ItemTrain", "item_fiberglass_plate", 10),
+	reinforcedPlates("ItemTrain", "item_reinforced_plate", 10),
+	composite_wrench("ItemWrench", "item_composite_wrench", 1),
 
 	/**Normal Tracks*/
 	tcRailSmallStraight("ItemTCRail", "item_rail_straight_small", 5),
@@ -214,7 +228,6 @@ public enum ItemIDs {
 	minecartFreightGondola_DB("ItemRollingStock", "train_freight_gondola", 3),
 	minecartFreightL("ItemRollingStock", "train_freight_l", 3),
 	minecartTankWagon_DB("ItemRollingStock", "train_tank_db", 6),
-	minecart7Plank("ItemRollingStock","7_plank", 6),
 	minecartLocoSD70("ItemRollingStock", "train_sd70", 10),
 	minecartLocoBP4("ItemRollingStock", "train_bp4", 10),
 	minecartHeavyweightFreight("ItemRollingStock", "train_heavyweight_freight", 10),
@@ -296,23 +309,6 @@ public enum ItemIDs {
 	minecartClass321("ItemRollingStock","class321", 5),
 	minecartClass321Panto("ItemRollingStock","class321panto",5),
 	minecartClass321Coach("ItemRollingStock","class321coach", 5),
-
-
-	hat_ticketMan_paintable("ItemTCArmor", "armor_ticket_man_hat", 1),
-	pants_ticketMan_paintable("ItemTCArmor", "armor_ticket_man_pants", 1),
-	jacket_ticketMan_paintable("ItemTCArmor", "armor_ticket_man_jacket", 1),
-	hat_driver_paintable("ItemTCArmor", "armor_driver_hat", 1),
-	pants_driver_paintable("ItemTCArmor", "armor_driver_pants", 1),
-	jacket_driver_paintable("ItemTCArmor", "armor_driver_jacket", 1),
-
-	helmet_suit_paintable("ItemTCArmor", "armor_composite_helmet", 1),
-	pants_suit_paintable("ItemTCArmor", "armor_composite_pants", 1),
-	boots_suit_paintable("ItemTCArmor", "armor_composite_boots", 1),
-	jacket_suit_paintable("ItemTCArmor", "armor_composite_chest", 1),
-	reinforcedPlastic("ItemTrain", "item_fiberglass_plate", 10),
-	reinforcedPlates("ItemTrain", "item_reinforced_plate", 10),
-	composite_wrench("ItemWrench", "item_composite_wrench", 1),
-
 	minecartPassengerHighSpeedCarZeroED("ItemRollingStock", "train_high_speed_cart_zeroed", 14),
 	minecartNYTram("ItemRollingStock", "train_tram_ny", 7),
 	minecartMetro2000Loco("ItemRollingStock", "metro2000_motor", 5),
@@ -475,6 +471,7 @@ public enum ItemIDs {
 	minecartPS85Baggage("ItemRollingStock", "PS_85_baggage_icon", 3),
 	minecartClass158engine("ItemRollingStock", "Class_158_Icon", 4),
 	minecartClass158car("ItemRollingStock", "Class_158_Middle_Icon", 3),
+	minecartClass47("ItemRollingStock", "Class_47_Icon", 3),
 	minecartClass156engine("ItemRollingStock", "Class_156_Icon", 3),
 	minecartClass153engine("ItemRollingStock", "153_icon", 3),
 	minecartClass153Coach("ItemRollingStock", "153_icon", 3),
@@ -539,6 +536,8 @@ public enum ItemIDs {
 	minecartBNLRV_B("ItemRollingStock", "BNLRV_B", 1 ),
 	minecartBNLRV_A("ItemRollingStock", "BNLRV_A", 1 ),
 	minecartasteri("ItemRollingStock", "asteri",1),
+	minecartBR_Black_5("ItemRollingStock", "BR_Black_5", 1),
+	minecartBR_Black_5_Tender("ItemRollingStock", "BR_Black_5_Tender", 1),
 	//signalSpanish("ItemsignalSpanish","signalSpanish", 1),
 
 
