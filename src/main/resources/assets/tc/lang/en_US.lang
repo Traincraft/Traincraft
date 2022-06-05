@@ -254,6 +254,7 @@ item.tc:tcRailTwoWaysCrossing.name=Two Ways Crossing
 item.tc:tcRailSlopeWood.name=Slope Track (Wood)
 item.tc:tcRailSlopeGravel.name=Slope Track (Gravel)
 item.tc:tcRailSlopeBallast.name=Slope Track (Ballast)
+item.tc:tcRailSlopeDynamic.name=Slope Track (Dynamic)
 item.tc:tcRailLargeSlopeWood.name=Large Slope Track (Wood)
 item.tc:tcRailLargeSlopeGravel.name=Large Slope Track (Gravel)
 item.tc:tcRailLargeSlopeBallast.name=Large Slope Track (Ballast)

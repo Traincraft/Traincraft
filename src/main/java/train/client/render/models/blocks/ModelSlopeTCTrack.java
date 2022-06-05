@@ -11,6 +11,8 @@ import org.lwjgl.opengl.GL11;
 import train.common.library.Info;
 import train.common.tile.TileTCRail;
 
+import javax.annotation.Nullable;
+
 @SideOnly(Side.CLIENT)
 public class ModelSlopeTCTrack extends ModelBase {
 
@@ -85,7 +87,6 @@ public class ModelSlopeTCTrack extends ModelBase {
 	public void render(String type, TileTCRail tcRail, double x, double y, double z) {
 		int facing = tcRail.getWorldObj().getBlockMetadata(tcRail.xCoord, tcRail.yCoord, tcRail.zCoord);
 
-		System.out.println(type);
 		render( type, facing, x, y, z, 1, 1, 1, 1, tcRail.getBallastMaterial());
 
 
@@ -93,6 +94,8 @@ public class ModelSlopeTCTrack extends ModelBase {
 
 	public void render(String type, int facing, double x, double y, double z, float r, float g, float b, float a, String ballastTexture)
 	{
+
+
 		// Push a blank matrix onto the stack
 		GL11.glPushMatrix();
 		

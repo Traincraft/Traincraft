@@ -11,6 +11,7 @@ import net.minecraft.item.Item;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
@@ -112,7 +113,7 @@ public class ItemTCRail extends ItemPart {
 		LARGE_SLOPE_SNOW_GRAVEL("LARGE_SLOPE_SNOW_GRAVEL", "SLOPE", ItemIDs.tcRailLargeSlopeSnowGravel, "1x12"),
 		VERY_LARGE_SLOPE_SNOW_GRAVEL("VERY_LARGE_SLOPE_SNOW_GRAVEL", "SLOPE", ItemIDs.tcRailVeryLargeSlopeSnowGravel, "1x18"),
 
-		SLOPE_DYNAMIC("SLOPE_DYNAMIC", "SLOPE", ItemIDs.tcRailSlopeDynamic, "1x6"),
+		SLOPE_DYNAMIC("SLOPE_DYNAMIC", "SLOPE", ItemIDs.tcRailSlopeDynamic, "1x6 " + EnumChatFormatting.YELLOW + "Will grab the texture from underneath the rail " + EnumChatFormatting.DARK_PURPLE +  "-TheDoctor1138"),
 
 		/**Embedded Tracks*/
 
@@ -3166,6 +3167,7 @@ public class ItemTCRail extends ItemPart {
 				IIcon iconName = block.getIcon(l, metadata);
 				tcRail.setBallastMaterial(iconName.getIconName());
 
+
 				for (int i2 = 1; i2 <= gagEnd; i2++) {
 					if (l == 2) {
 						placeTrack(world,x, y + 1, z - i2, BlockIDs.tcRailGag.block, l);
@@ -3203,8 +3205,11 @@ public class ItemTCRail extends ItemPart {
 					--itemstack.stackSize;
 				}
 				return true;
-			}
 
+
+
+
+			}
 
 
 
