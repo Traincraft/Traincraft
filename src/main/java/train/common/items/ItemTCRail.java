@@ -113,8 +113,9 @@ public class ItemTCRail extends ItemPart {
 		LARGE_SLOPE_SNOW_GRAVEL("LARGE_SLOPE_SNOW_GRAVEL", "SLOPE", ItemIDs.tcRailLargeSlopeSnowGravel, "1x12"),
 		VERY_LARGE_SLOPE_SNOW_GRAVEL("VERY_LARGE_SLOPE_SNOW_GRAVEL", "SLOPE", ItemIDs.tcRailVeryLargeSlopeSnowGravel, "1x18"),
 
-		SLOPE_DYNAMIC("SLOPE_DYNAMIC", "SLOPE", ItemIDs.tcRailSlopeDynamic, "1x6 " + EnumChatFormatting.YELLOW + "Will grab the texture from underneath the rail " + EnumChatFormatting.DARK_PURPLE +  "-TheDoctor1138"),
-
+		SLOPE_DYNAMIC("SLOPE_DYNAMIC", "SLOPE", ItemIDs.tcRailSlopeDynamic, "1x6 " + EnumChatFormatting.YELLOW + "Grabs texture from block " + EnumChatFormatting.DARK_PURPLE +  "-TheDoctor1138"),
+		LARGE_SLOPE_DYNAMIC("LARGE_SLOPE_DYNAMIC", "SLOPE", ItemIDs.tcRailLargeSlopeDynamic, "1x12 "  + EnumChatFormatting.YELLOW + "Grabs texture from block " + EnumChatFormatting.DARK_PURPLE +  "-TheDoctor1138") ,
+		VERY_LARGE_SLOPE_DYNAMIC("VERY_LARGE_SLOPE_DYNAMIC", "SLOPE", ItemIDs.tcRailVeryLargeSlopeDynamic, "1x18 "  + EnumChatFormatting.YELLOW + "Grabs texture from block " + EnumChatFormatting.DARK_PURPLE +  "-TheDoctor1138"),
 		/**Embedded Tracks*/
 
 		EMBEDDED_SMALL_STRAIGHT("EMBEDDED_SMALL_STRAIGHT","STRAIGHT" ,ItemIDs.tcRailEmbeddedSmallStraight, "1x1"),
@@ -281,11 +282,13 @@ public class ItemTCRail extends ItemPart {
 				|| tile.getType().equals(TrackTypes.LARGE_SLOPE_WOOD.getLabel())
 				|| tile.getType().equals(TrackTypes.LARGE_SLOPE_GRAVEL.getLabel())
 				|| tile.getType().equals(TrackTypes.LARGE_SLOPE_BALLAST.getLabel())
+				|| tile.getType().equals(TrackTypes.LARGE_SLOPE_DYNAMIC.getLabel())
 				|| tile.getType().equals(TrackTypes.LARGE_SLOPE_SNOW_GRAVEL.getLabel())
 				|| tile.getType().equals(TrackTypes.VERY_LARGE_SLOPE_WOOD.getLabel())
 				|| tile.getType().equals(TrackTypes.VERY_LARGE_SLOPE_GRAVEL.getLabel())
 				|| tile.getType().equals(TrackTypes.VERY_LARGE_SLOPE_BALLAST.getLabel())
 				|| tile.getType().equals(TrackTypes.VERY_LARGE_SLOPE_SNOW_GRAVEL.getLabel())
+				|| tile.getType().equals(TrackTypes.VERY_LARGE_SLOPE_DYNAMIC.getLabel())
 		;
 	}
 
@@ -484,27 +487,30 @@ public class ItemTCRail extends ItemPart {
 		else if ( type == TrackTypes.MEDIUM_STRAIGHT || type == TrackTypes.EMBEDDED_MEDIUM_STRAIGHT)
 			return new int[][]{ {0,0}, {1,0}, {2,0} };
 		else if ( type == TrackTypes.LONG_STRAIGHT
-				|| type == TrackTypes.EMBEDDED_LONG_STRAIGHT
-				|| type == TrackTypes.SLOPE_BALLAST
+				|| type == TrackTypes.EMBEDDED_LONG_STRAIGHT)
+			return new int[][]{ {0,0}, {1,0}, {2,0}, {3,0}, {4,0}, {5,0} };
+		else if ( type == TrackTypes.VERY_LONG_STRAIGHT
+				|| type == TrackTypes.EMBEDDED_VERY_LONG_STRAIGHT)
+			return new int[][]{ {0,0}, {1,0}, {2,0}, {3,0}, {4,0}, {5,0}, {6,0}, {7,0}, {8,0}, {9,0}, {10,0}, {11,0}};
+		/** Slopes */
+		else if ( type == TrackTypes.SLOPE_BALLAST
 				|| type == TrackTypes.SLOPE_GRAVEL
 				|| type == TrackTypes.SLOPE_WOOD
 				|| type == TrackTypes.SLOPE_SNOW_GRAVEL
 				|| type == TrackTypes.SLOPE_DYNAMIC)
 			return new int[][]{ {0,0}, {1,0}, {2,0}, {3,0}, {4,0}, {5,0} };
-		else if ( type == TrackTypes.VERY_LONG_STRAIGHT
-				|| type == TrackTypes.EMBEDDED_VERY_LONG_STRAIGHT)
-			return new int[][]{ {0,0}, {1,0}, {2,0}, {3,0}, {4,0}, {5,0}, {6,0}, {7,0}, {8,0}, {9,0}, {10,0}, {11,0}};
 
-		/** Slopes */
 		else if ( type == TrackTypes.LARGE_SLOPE_BALLAST
 				|| type == TrackTypes.LARGE_SLOPE_GRAVEL
 				|| type == TrackTypes.LARGE_SLOPE_WOOD
-				|| type == TrackTypes.LARGE_SLOPE_SNOW_GRAVEL )
+				|| type == TrackTypes.LARGE_SLOPE_SNOW_GRAVEL
+				|| type == TrackTypes.LARGE_SLOPE_DYNAMIC)
 			return new int[][]{ {0,0}, {1,0}, {2,0}, {3,0}, {4,0}, {5,0}, {6,0}, {7,0}, {8,0}, {9,0}, {10,0}, {11,0} };
 		else if ( type == TrackTypes.VERY_LARGE_SLOPE_BALLAST
 				|| type == TrackTypes.VERY_LARGE_SLOPE_GRAVEL
 				|| type == TrackTypes.VERY_LARGE_SLOPE_WOOD
-				|| type == TrackTypes.VERY_LARGE_SLOPE_SNOW_GRAVEL )
+				|| type == TrackTypes.VERY_LARGE_SLOPE_SNOW_GRAVEL
+				|| type == TrackTypes.VERY_LARGE_SLOPE_DYNAMIC)
 			return new int[][]{ {0,0}, {1,0}, {2,0}, {3,0}, {4,0}, {5,0}, {6,0}, {7,0}, {8,0}, {9,0}, {10,0}, {11,0},
 					{12,0}, {13,0}, {14,0}, {15,0}, {16,0}, {17,0}};
 		/** Crossing */
@@ -3095,8 +3101,10 @@ public class ItemTCRail extends ItemPart {
 					|| type == TrackTypes.SLOPE_SNOW_GRAVEL || type == TrackTypes.SLOPE_DYNAMIC
 					|| type == TrackTypes.LARGE_SLOPE_WOOD || type == TrackTypes.LARGE_SLOPE_GRAVEL
 					|| type == TrackTypes.LARGE_SLOPE_BALLAST || type == TrackTypes.LARGE_SLOPE_SNOW_GRAVEL
+					|| type == TrackTypes.LARGE_SLOPE_DYNAMIC
 					|| type == TrackTypes.VERY_LARGE_SLOPE_WOOD || type == TrackTypes.VERY_LARGE_SLOPE_GRAVEL
 					|| type == TrackTypes.VERY_LARGE_SLOPE_BALLAST || type == TrackTypes.VERY_LARGE_SLOPE_SNOW_GRAVEL
+					|| type == TrackTypes.VERY_LARGE_SLOPE_DYNAMIC
 			) {
 				if (!canPlaceTrack(player, world, x, y + 1, z)) {
 					return false;
@@ -3116,13 +3124,15 @@ public class ItemTCRail extends ItemPart {
 				}
 
 				if (type == TrackTypes.LARGE_SLOPE_WOOD || type == TrackTypes.LARGE_SLOPE_GRAVEL
-						|| type == TrackTypes.LARGE_SLOPE_BALLAST || type == TrackTypes.LARGE_SLOPE_SNOW_GRAVEL) {
+						|| type == TrackTypes.LARGE_SLOPE_BALLAST || type == TrackTypes.LARGE_SLOPE_SNOW_GRAVEL
+					|| type == TrackTypes.LARGE_SLOPE_DYNAMIC){
 					gagEnd = 11;
 					slopeAngle = 0.0666;
 				}
 
 				if (type == TrackTypes.VERY_LARGE_SLOPE_WOOD || type == TrackTypes.VERY_LARGE_SLOPE_GRAVEL
-						|| type == TrackTypes.VERY_LARGE_SLOPE_BALLAST || type == TrackTypes.VERY_LARGE_SLOPE_SNOW_GRAVEL) {
+						|| type == TrackTypes.VERY_LARGE_SLOPE_BALLAST || type == TrackTypes.VERY_LARGE_SLOPE_SNOW_GRAVEL
+						|| type == TrackTypes.VERY_LARGE_SLOPE_DYNAMIC) {
 					gagEnd = 17;
 					slopeAngle = 0.0444;
 				}

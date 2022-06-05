@@ -70,7 +70,6 @@ public class ModelSlopeTCTrack extends ModelBase {
 			modeltrack.renderAll();
 		}
 		if (type.equals("dynamic")) {
-
 			FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(ballastTexture[0],  "textures/blocks/" + ballastTexture[1] +".png"));
 			modelSlopeBallast.renderAll();
 			FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));

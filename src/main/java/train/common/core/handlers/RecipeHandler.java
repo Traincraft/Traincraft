@@ -31,6 +31,7 @@ public class RecipeHandler {
 		ArrayList<ItemStack> entries = new ArrayList<ItemStack>();
 		for (String name : names){
 			entries.addAll(OreDictionary.getOres(name));
+
 		}
 		return entries;
 	}
@@ -115,6 +116,10 @@ public class RecipeHandler {
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailSlopeGravel.item, 1), " TG","TGG","GGG", Character.valueOf('T'), ItemIDs.tcRailMediumStraight.item, Character.valueOf('G'), Blocks.gravel);
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailLargeSlopeGravel.item,1), "   ","  S"," S ", Character.valueOf('S'), ItemIDs.tcRailSlopeGravel.item);
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailVeryLargeSlopeGravel.item, 1), "  T", " T ","T  ", Character.valueOf('T'), ItemIDs.tcRailSlopeGravel.item);
+
+		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailSlopeDynamic.item, 1), " TG","TGG","GGG", Character.valueOf('T'), ItemIDs.tcRailMediumStraight.item, Character.valueOf('G'), new  ItemStack(Items.dye, 1, 1));
+		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailLargeSlopeDynamic.item,1), "   ","  S"," S ", Character.valueOf('S'), ItemIDs.tcRailSlopeDynamic.item);
+		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailVeryLargeSlopeDynamic.item, 1), "  T", " T ","T  ", Character.valueOf('T'), ItemIDs.tcRailSlopeDynamic.item);
 
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailSlopeBallast.item, 1), " TG","TGG","GGG", Character.valueOf('T'), ItemIDs.tcRailMediumStraight.item, Character.valueOf('G'), new ItemStack(BlockIDs.oreTC.block, 1, 3));
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailLargeSlopeBallast.item,1), "   ","  S"," S ", Character.valueOf('S'), ItemIDs.tcRailSlopeBallast.item);
