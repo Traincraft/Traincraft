@@ -288,7 +288,7 @@ public enum EnumTrains {
 	passengerPSCombine("PS Combine Coach", EntityPassengerPSCombine.class, ItemIDs.minecartPScombine.item, "passenger/combine", 0, 0, 3, 0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[]{"Blue", "Orange"}), 10, 0, "Pack: BAP"),
 	passengerPScenterDiner("PS Center Diner", EntityPassengerPScenterDiner.class, ItemIDs.minecartPSCenterDiner.item, "passenger", 0, 0, 3, 0, 0, 0, 0, 0, 0, null, 10, 0, "Pack: BAP"),
 	passengerPSAnotherDiner("PS Center Diner 2", EntityPassengerPSAnotherDiner.class, ItemIDs.minecartPSAnotherDiner.item, "passenger", 0, 0, 3, 0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[]{"Blue", "Orange"}), 10, 0, "Pack: BAP"),
-	locoElectricBNLRV_A("BNLRV_A", EntityLocoElectricBNLRV_A.class, ItemIDs.minecartBNLRV_A.item, "electric", 500 , 70, 3, 10, 0,0,0.9,0.9, 0,  TraincraftUtil.getBytesFromColors(new String[]{"Orange", "White", "Yellow", "Grey", "Black"}), 10, -4, "Pack: Trams In Motion"),
+	locoElectricBNLRV_A("BNLRV_A", EntityLocoElectricBNLRV_A.class, ItemIDs.minecartBNLRV_A.item, "electric", 500 , 70, 3, 10, 0,0,0.7,0.95, 0,  TraincraftUtil.getBytesFromColors(new String[]{"Orange", "White", "Yellow", "Grey", "Black"}), 10, -4, "Pack: Trams In Motion"),
 	passengerBNLRV_B("BNLRV_B", EntityPassengerBNLRV_B.class, ItemIDs.minecartBNLRV_B.item, "passenger", 0, 0, 3, 0, 0,0,0,0,0, TraincraftUtil.getBytesFromColors(new String[]{"Orange", "White", "Yellow", "Grey", "Black"}), 10, 0, "Pack: Trams in Motion" ),
 
 	locoElectricMetro2000("Metro2000loco",EntityElectricMetro2000Motor.class,ItemIDs.minecartMetro2000Loco.item, "electric",600,65,3,10,0,0,0.8,0.9,0,TraincraftUtil.getBytesFromColors(new String[]{"Blue", "White","Red"}),18,-3,"Pack: Metro in Motion"),
