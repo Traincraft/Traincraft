@@ -45,12 +45,11 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 	public void renderTileEntityAt(TileEntity var1, double x, double y, double z, float var8 ) {
 		if(var1 instanceof TileTCRail){
 			TileTCRail railTile = (TileTCRail) var1;
-
-
-
-
 			if (railTile.hasModel && railTile.getTrackType() != null) {
 				switch (railTile.getTrackType()){
+
+
+
 					/**Normal Tracks*/
 					case SMALL_STRAIGHT:{
 						modelSmallStraight.render("straight", railTile, x, y, z);
@@ -176,6 +175,11 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 					}
 					case SLOPE_BALLAST: {
 						modelSlope.render("ballast", railTile, x, y, z);
+						break;
+					}
+					case SLOPE_DYNAMIC: {
+						modelSlope.render("dynamic", railTile, x, y, z);
+
 						break;
 					}
 					case LARGE_SLOPE_WOOD: {

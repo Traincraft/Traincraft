@@ -13,8 +13,11 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Vector2f;
 import train.client.render.RenderTCRail;
 import train.common.items.ItemTCRail;
+import train.common.tile.TileTCRail;
 
 public class CustomRenderHandler {
+
+
 
     @SubscribeEvent
     public void onRenderWorldLast(RenderWorldLastEvent event )
@@ -136,9 +139,9 @@ public class CustomRenderHandler {
             RenderTCRail.modelEmbeddedSmallStraight.render("straight", 3, dx - 1, 0, dz, r, g, b, a);
         }
 
-        // Slopes
+       /*// Slopes
         else if (item.getTrackType() == ItemTCRail.TrackTypes.SLOPE_BALLAST) {
-            RenderTCRail.modelSlope.render("ballast", facing, 0, 0, 0, r, g, b, 0.5f);
+            RenderTCRail.modelSlope.render("ballast", facing, 0, 0, 0, r, g, b, 0.5f );
         }
         else if (item.getTrackType() == ItemTCRail.TrackTypes.SLOPE_GRAVEL) {
             RenderTCRail.modelSlope.render("gravel", facing, 0, 0, 0, r, g, b, 0.5f);
@@ -173,7 +176,7 @@ public class CustomRenderHandler {
         else if (item.getTrackType() == ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_SNOW_GRAVEL) {
             RenderTCRail.modelVeryLargeSlope.render("snow", facing, 0, 0, 0, r, g, b, 0.5f);
         }
-
+*/
 
         /** Normal Parallel Curves*/
 

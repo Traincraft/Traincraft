@@ -8,9 +8,12 @@ import net.minecraft.block.BlockMushroom;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import org.lwjgl.util.vector.Matrix2f;
 import org.lwjgl.util.vector.Vector2f;
@@ -24,6 +27,8 @@ import java.util.List;
 
 public class ItemTCRail extends ItemPart {
 	private TrackTypes type;
+
+	private String ballastMaterial;
 	private String typeVariantStraight;
 	private String typeVariant90Turn;
 	private String typeVariantSwitch;
@@ -106,6 +111,8 @@ public class ItemTCRail extends ItemPart {
 		SLOPE_SNOW_GRAVEL("SLOPE_SNOW_GRAVEL", "SLOPE", ItemIDs.tcRailSlopeSnowGravel, "1x6"),
 		LARGE_SLOPE_SNOW_GRAVEL("LARGE_SLOPE_SNOW_GRAVEL", "SLOPE", ItemIDs.tcRailLargeSlopeSnowGravel, "1x12"),
 		VERY_LARGE_SLOPE_SNOW_GRAVEL("VERY_LARGE_SLOPE_SNOW_GRAVEL", "SLOPE", ItemIDs.tcRailVeryLargeSlopeSnowGravel, "1x18"),
+
+		SLOPE_DYNAMIC("SLOPE_DYNAMIC", "SLOPE", ItemIDs.tcRailSlopeDynamic, "1x6"),
 
 		/**Embedded Tracks*/
 
@@ -268,14 +275,15 @@ public class ItemTCRail extends ItemPart {
 		return tile.getType().equals(TrackTypes.SLOPE_WOOD.getLabel())
 				|| tile.getType().equals(TrackTypes.SLOPE_GRAVEL.getLabel())
 				|| tile.getType().equals(TrackTypes.SLOPE_BALLAST.getLabel())
+				|| tile.getType().equals(TrackTypes.SLOPE_SNOW_GRAVEL.getLabel())
+				|| tile.getType().equals(TrackTypes.SLOPE_DYNAMIC.getLabel())
 				|| tile.getType().equals(TrackTypes.LARGE_SLOPE_WOOD.getLabel())
 				|| tile.getType().equals(TrackTypes.LARGE_SLOPE_GRAVEL.getLabel())
 				|| tile.getType().equals(TrackTypes.LARGE_SLOPE_BALLAST.getLabel())
+				|| tile.getType().equals(TrackTypes.LARGE_SLOPE_SNOW_GRAVEL.getLabel())
 				|| tile.getType().equals(TrackTypes.VERY_LARGE_SLOPE_WOOD.getLabel())
 				|| tile.getType().equals(TrackTypes.VERY_LARGE_SLOPE_GRAVEL.getLabel())
 				|| tile.getType().equals(TrackTypes.VERY_LARGE_SLOPE_BALLAST.getLabel())
-				|| tile.getType().equals(TrackTypes.SLOPE_SNOW_GRAVEL.getLabel())
-				|| tile.getType().equals(TrackTypes.LARGE_SLOPE_SNOW_GRAVEL.getLabel())
 				|| tile.getType().equals(TrackTypes.VERY_LARGE_SLOPE_SNOW_GRAVEL.getLabel())
 		;
 	}
@@ -479,7 +487,8 @@ public class ItemTCRail extends ItemPart {
 				|| type == TrackTypes.SLOPE_BALLAST
 				|| type == TrackTypes.SLOPE_GRAVEL
 				|| type == TrackTypes.SLOPE_WOOD
-				|| type == TrackTypes.SLOPE_SNOW_GRAVEL )
+				|| type == TrackTypes.SLOPE_SNOW_GRAVEL
+				|| type == TrackTypes.SLOPE_DYNAMIC)
 			return new int[][]{ {0,0}, {1,0}, {2,0}, {3,0}, {4,0}, {5,0} };
 		else if ( type == TrackTypes.VERY_LONG_STRAIGHT
 				|| type == TrackTypes.EMBEDDED_VERY_LONG_STRAIGHT)
@@ -1924,7 +1933,6 @@ public class ItemTCRail extends ItemPart {
 					case LARGE_LEFT_PARALLEL_CURVE:
 						idVariantSTurn = ItemIDs.tcRailLargeParallelCurve.item;
 						typeVariantSTurn = TrackTypes.LARGE_LEFT_PARALLEL_CURVE.getLabel();
-						System.out.println("test");
 						break;
 					case EMBEDDED_LARGE_LEFT_PARALLEL_CURVE:
 						idVariantSTurn = ItemIDs.tcRailEmbeddedLargeParallelCurve.item;
@@ -3083,11 +3091,11 @@ public class ItemTCRail extends ItemPart {
 
 
 			if (type == TrackTypes.SLOPE_WOOD || type == TrackTypes.SLOPE_GRAVEL || type == TrackTypes.SLOPE_BALLAST
+					|| type == TrackTypes.SLOPE_SNOW_GRAVEL || type == TrackTypes.SLOPE_DYNAMIC
 					|| type == TrackTypes.LARGE_SLOPE_WOOD || type == TrackTypes.LARGE_SLOPE_GRAVEL
-					|| type == TrackTypes.LARGE_SLOPE_BALLAST || type == TrackTypes.VERY_LARGE_SLOPE_WOOD
-					|| type == TrackTypes.VERY_LARGE_SLOPE_GRAVEL || type == TrackTypes.VERY_LARGE_SLOPE_BALLAST
-					|| type == TrackTypes.LARGE_SLOPE_SNOW_GRAVEL || type == TrackTypes.SLOPE_SNOW_GRAVEL
-					|| type == TrackTypes.VERY_LARGE_SLOPE_SNOW_GRAVEL
+					|| type == TrackTypes.LARGE_SLOPE_BALLAST || type == TrackTypes.LARGE_SLOPE_SNOW_GRAVEL
+					|| type == TrackTypes.VERY_LARGE_SLOPE_WOOD || type == TrackTypes.VERY_LARGE_SLOPE_GRAVEL
+					|| type == TrackTypes.VERY_LARGE_SLOPE_BALLAST || type == TrackTypes.VERY_LARGE_SLOPE_SNOW_GRAVEL
 			) {
 				if (!canPlaceTrack(player, world, x, y + 1, z)) {
 					return false;
@@ -3100,7 +3108,8 @@ public class ItemTCRail extends ItemPart {
 				 * against TCs own brain. you need to devide 100 by (gagEnd+1)
 				 **/
 				if (type == TrackTypes.SLOPE_WOOD || type == TrackTypes.SLOPE_GRAVEL
-						|| type == TrackTypes.SLOPE_BALLAST || type == TrackTypes.SLOPE_SNOW_GRAVEL) {
+						|| type == TrackTypes.SLOPE_BALLAST || type == TrackTypes.SLOPE_SNOW_GRAVEL
+				|| type == TrackTypes.SLOPE_DYNAMIC) {
 					gagEnd = 5;
 					slopeAngle = 0.13;
 				}
@@ -3150,6 +3159,13 @@ public class ItemTCRail extends ItemPart {
 				tcRail.slopeHeight = 1;
 				tcRail.slopeAngle = slopeAngle;
 				tcRail.slopeLength = gagEnd + 1;
+
+				Block block = world.getBlock(x,y,z);
+				int metadata = world.getBlockMetadata(x,y,z);
+
+				IIcon iconName = block.getIcon(l, metadata);
+				tcRail.setBallastMaterial(iconName.getIconName());
+
 				for (int i2 = 1; i2 <= gagEnd; i2++) {
 					if (l == 2) {
 						placeTrack(world,x, y + 1, z - i2, BlockIDs.tcRailGag.block, l);

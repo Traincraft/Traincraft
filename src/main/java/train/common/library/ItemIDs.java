@@ -111,6 +111,7 @@ public enum ItemIDs {
 	tcRailSlopeWood("ItemTCRail", "item_rail_straight_slope_wood", 3),
 	tcRailSlopeGravel("ItemTCRail", "item_rail_straight_slope_gravel", 3),
 	tcRailSlopeBallast("ItemTCRail", "item_rail_straight_slope_ballast", 3),
+	tcRailSlopeDynamic("ItemTCRail", "item_rail_straight_slope_dynamic", 3),
 	tcRailSlopeSnowGravel("ItemTCRail", "item_rail_straight_slope_snow_gravel", 3),
 	tcRailLargeSlopeWood("ItemTCRail", "item_rail_straight_slope_wood", 3),
 	tcRailLargeSlopeGravel("ItemTCRail", "item_rail_straight_slope_gravel", 3),
