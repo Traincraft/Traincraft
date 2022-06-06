@@ -30,7 +30,7 @@ public class EntityElectricMetro2000Motor extends ElectricTrain {
 
     @Override
     public void updateRiderPosition() {
-        TraincraftUtil.updateRider(this, 4.1f, -0.2);
+        TraincraftUtil.updateRider(this, 3.2f, -0.2);
     }
 
     @Override
@@ -106,7 +106,7 @@ public class EntityElectricMetro2000Motor extends ElectricTrain {
 
     @Override
     public float getOptimalDistance(EntityMinecart cart) {
-        return (0F);
+        return (0.57F);
     }
     @Override
     public boolean canBeAdjusted(EntityMinecart cart) {

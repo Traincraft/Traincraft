@@ -24,6 +24,8 @@ public class TileTCRail extends TileEntity {
 	public double slopeHeight;
 	public double slopeLength;
 	public double slopeAngle;
+
+	private String ballastMaterial;
 	private String type;
 	private int facingMeta;
 	public boolean isLinkedToRail = false;
@@ -83,6 +85,22 @@ public class TileTCRail extends TileEntity {
 
 		return this.type;
 	}
+
+
+
+	public void setBallastMaterial(String ballast) {
+		worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+		this.ballastMaterial = ballast;
+	}
+
+	public String getBallastMaterial(){
+		if (ballastMaterial !=  null){
+			return ballastMaterial;
+		}
+		return ("tc:ores/ore_copper");
+	}
+
+
 
 	private ItemTCRail.TrackTypes renderType = null;
 	public ItemTCRail.TrackTypes getTrackType(){
@@ -320,13 +338,16 @@ public class TileTCRail extends TileEntity {
 		} else {
 			type = ItemTCRail.TrackTypes.SMALL_STRAIGHT.getLabel();
 		}
+		ballastMaterial  = nbt.getString("ballastMaterial");
+
 		/**
 		 * Hacky TC Code to fix already placed slopes
 		 */
 		if (type.equals(ItemTCRail.TrackTypes.SLOPE_WOOD.getLabel())
 				|| type.equals(ItemTCRail.TrackTypes.SLOPE_GRAVEL.getLabel())
 				|| type.equals(ItemTCRail.TrackTypes.SLOPE_BALLAST.getLabel())
-				|| type.equals(ItemTCRail.TrackTypes.SLOPE_SNOW_GRAVEL.getLabel())){
+				|| type.equals(ItemTCRail.TrackTypes.SLOPE_SNOW_GRAVEL.getLabel())
+				|| type.equals(ItemTCRail.TrackTypes.SLOPE_DYNAMIC.getLabel())){
 			slopeAngle = 0.13;
 		}
 		
@@ -369,6 +390,9 @@ public class TileTCRail extends TileEntity {
 		nbt.setInteger("linkedZ", linkedZ);
 		if (type != null) {
 			nbt.setString("type", type);
+		}
+		if (ballastMaterial  != null) {
+			nbt.setString("ballastMaterial", ballastMaterial);
 		}
 		nbt.setBoolean("isLinkedToRail", isLinkedToRail);
 		nbt.setBoolean("hasModel", hasModel);

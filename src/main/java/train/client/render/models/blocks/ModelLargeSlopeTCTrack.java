@@ -24,7 +24,24 @@ public class ModelLargeSlopeTCTrack extends ModelBase {
 				.loadModel(new ResourceLocation(Info.modelPrefix + "supports_ballast_long.obj"));
 	}
 
-	public void render(String type) {
+
+
+
+
+	public void render(String type, String ballast) {
+
+		String[] ballastTexture = new String[2];
+		if (ballast.contains(":")) {
+			ballastTexture = ballast.split(":", 5);
+		}
+
+		else {
+			ballastTexture[0] = "minecraft";
+			ballastTexture[1] = ballast;
+
+		}
+
+
 		if(type.equals("wood")) {
 			FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_slope.png"));
 			modelLargeSlopeWood.renderAll();
@@ -46,14 +63,20 @@ public class ModelLargeSlopeTCTrack extends ModelBase {
 			FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
 			modeltrack.renderAll();
 		}
+		if (type.equals("dynamic")) {
+			FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(ballastTexture[0],  "textures/blocks/" + ballastTexture[1] +".png"));
+			modelLargeSlopeBallast.renderAll();
+			FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
+			modeltrack.renderAll();
+		}
 	}
 
 	public void render(String type, TileTCRail tcRail, double x, double y, double z) {
 		int facing = tcRail.getWorldObj().getBlockMetadata(tcRail.xCoord, tcRail.yCoord, tcRail.zCoord);
-		render( type, facing, x, y, z, 1, 1, 1, 1);
+		render( type, facing, x, y, z, 1, 1, 1, 1, tcRail.getBallastMaterial());
 	}
 
-	public void render(String type, int facing, double x, double y, double z, float r, float g, float b, float a)
+	public void render(String type, int facing, double x, double y, double z, float r, float g, float b, float a, String ballastTexture)
 	{
 		// Push a blank matrix onto the stack
 		GL11.glPushMatrix();
@@ -74,7 +97,7 @@ public class ModelLargeSlopeTCTrack extends ModelBase {
 			GL11.glRotatef(180, 0, 1, 0);
 		}
 		//GL11.glTranslatef(0.0f, 0.0f, -1.0f);
-		render(type);
+		render(type, ballastTexture);
 
 		// Pop this matrix from the stack.
 		GL11.glPopMatrix();

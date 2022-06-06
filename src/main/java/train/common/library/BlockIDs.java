@@ -60,6 +60,7 @@ public enum BlockIDs {
 	overheadWireDouble(false,null),
 	poweredGravel(false,null),
 	snowGravel(false,null),
+	asphalt(false, null),
 	signalSpanish(false,null),//ItemsignalSpanish.class
 	kSignal(false,null),
 	FortyFootContainer(true, ItemFortyFootContainer.class),

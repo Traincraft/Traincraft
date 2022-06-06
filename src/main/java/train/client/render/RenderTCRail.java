@@ -45,12 +45,11 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 	public void renderTileEntityAt(TileEntity var1, double x, double y, double z, float var8 ) {
 		if(var1 instanceof TileTCRail){
 			TileTCRail railTile = (TileTCRail) var1;
-
-
-
-
 			if (railTile.hasModel && railTile.getTrackType() != null) {
 				switch (railTile.getTrackType()){
+
+
+
 					/**Normal Tracks*/
 					case SMALL_STRAIGHT:{
 						modelSmallStraight.render("straight", railTile, x, y, z);
@@ -178,6 +177,15 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 						modelSlope.render("ballast", railTile, x, y, z);
 						break;
 					}
+					case SLOPE_SNOW_GRAVEL: {
+						modelSlope.render("snow", railTile, x, y, z);
+						break;
+					}
+					case SLOPE_DYNAMIC: {
+						modelSlope.render("dynamic", railTile, x, y, z);
+
+						break;
+					}
 					case LARGE_SLOPE_WOOD: {
 						modelLargeSlope.render("wood", railTile, x, y, z);
 						break;
@@ -188,6 +196,14 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 					}
 					case LARGE_SLOPE_BALLAST: {
 						modelLargeSlope.render("ballast", railTile, x, y, z);
+						break;
+					}
+					case LARGE_SLOPE_SNOW_GRAVEL: {
+						modelLargeSlope.render("snow", railTile, x, y, z);
+						break;
+					}
+					case LARGE_SLOPE_DYNAMIC: {
+						modelLargeSlope.render("dynamic", railTile, x, y, z);
 						break;
 					}
 					case VERY_LARGE_SLOPE_WOOD: {
@@ -202,18 +218,15 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 						modelVeryLargeSlope.render("ballast", railTile, x, y, z);
 						break;
 					}
-					case LARGE_SLOPE_SNOW_GRAVEL: {
-						modelLargeSlope.render("snow", railTile, x, y, z);
-						break;
-					}
-					case SLOPE_SNOW_GRAVEL: {
-						modelSlope.render("snow", railTile, x, y, z);
-						break;
-					}
 					case VERY_LARGE_SLOPE_SNOW_GRAVEL: {
 						modelVeryLargeSlope.render("snow", railTile, x, y, z);
 						break;
 					}
+					case VERY_LARGE_SLOPE_DYNAMIC: {
+						modelVeryLargeSlope.render("dynamic", railTile, x, y, z);
+						break;
+					}
+
 					/**Embedded Tracks*/
 					case EMBEDDED_SMALL_STRAIGHT: {
 						modelEmbeddedSmallStraight.render("straight", railTile, x, y, z);
