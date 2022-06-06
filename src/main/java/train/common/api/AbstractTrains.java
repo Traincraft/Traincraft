@@ -196,22 +196,11 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 
 	@Override
 	public AxisAlignedBB getCollisionBox(Entity p_70114_1_) {
-		if(riddenByEntity==p_70114_1_){
+		if(riddenByEntity!=p_70114_1_){
+			return super.getCollisionBox(p_70114_1_);
+		} else {
 			return null;
 		}
-		if (getCollisionHandler() != null) {
-			return getCollisionHandler().getCollisionBox(this, p_70114_1_);
-		}
-		return p_70114_1_.boundingBox;
-	}
-	@Override
-	public AxisAlignedBB getBoundingBox() {
-		if (getCollisionHandler() != null) {
-			return getCollisionHandler().getBoundingBox(this);
-		}
-		return AxisAlignedBB.getBoundingBox(
-				posX-0.5,posY,posZ-0.5,
-				posX+0.5, posY+2, posZ+0.5);
 	}
 
 	/**
