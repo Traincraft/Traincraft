@@ -574,7 +574,7 @@ item.tc:minecartClass153engine.name=Class 153 Engine
 item.tc:minecartClass153Coach.name=Class 153 Coach
 item.tc:minecartClass156engine.name=Class 156 Engine
 item.tc:minecartBR_Black_5.name=BR Black 5
-item.tc:minecartBR_Black_5_Tender=BR Black 5 Tender
+item.tc:minecartBR_Black_5_Tender.name=BR Black 5 Tender
 item.tc:minecartClass47.name=Class 47
 
 
