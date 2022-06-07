@@ -1,13 +1,17 @@
 package train.client.render.models.blocks;
 
 import cpw.mods.fml.client.FMLClientHandler;
+import net.minecraft.block.Block;
 import net.minecraft.client.model.ModelBase;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.IModelCustom;
 import org.lwjgl.opengl.GL11;
 import train.common.library.Info;
 import train.common.tile.TileTCRail;
+
+import javax.annotation.Nullable;
 
 public class ModelVeryLargeSlopeTCTrack extends ModelBase {
 	
@@ -29,7 +33,6 @@ public class ModelVeryLargeSlopeTCTrack extends ModelBase {
 		if (ballast.contains(":")) {
 			ballastTexture = ballast.split(":", 5);
 		}
-
 		else {
 			ballastTexture[0] = "minecraft";
 			ballastTexture[1] = ballast;
@@ -78,7 +81,18 @@ public class ModelVeryLargeSlopeTCTrack extends ModelBase {
 
 	public void render(String type, TileTCRail tcRail, double x, double y, double z) {
 		int facing = tcRail.getWorldObj().getBlockMetadata(tcRail.xCoord, tcRail.yCoord, tcRail.zCoord);
-		render( type, facing, x, y, z, 1, 1, 1, 1, tcRail.getBallastMaterial());
+		Block block = tcRail.getWorldObj().getBlock(tcRail.xCoord, tcRail.yCoord-1, tcRail.zCoord);
+		IIcon icon = block.getIcon(1, tcRail.getWorldObj().getBlockMetadata(tcRail.xCoord, tcRail.yCoord-1, tcRail.zCoord));
+		String iconName;
+		if (icon == null) {
+
+			iconName = "tc:ballast";
+		}
+
+		else {
+			iconName = icon.getIconName();
+		}
+		render( type, facing, x, y, z, 1, 1, 1, 1, iconName);
 	}
 
 	public void render(String type, int facing, double x, double y, double z, float r, float g, float b, float a, String ballastTexture)

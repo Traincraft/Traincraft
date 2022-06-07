@@ -41,6 +41,7 @@ public class ItemTCRail extends ItemPart {
 	private Item idVariantSwitch;
 	private Item idVariantCrossing;
 	private Item idVariantSTurn;
+	public IBlockAccess blockAccess;
 
 	public enum TrackTypes {
 
@@ -793,7 +794,6 @@ public class ItemTCRail extends ItemPart {
 			 *  l = 0 = SOUTH
 			 *  l = 3 = east
 			**/
-			//System.out.println(type +" "+l);
 
 
 
@@ -3098,13 +3098,13 @@ public class ItemTCRail extends ItemPart {
 
 
 			if (type == TrackTypes.SLOPE_WOOD || type == TrackTypes.SLOPE_GRAVEL || type == TrackTypes.SLOPE_BALLAST
-					|| type == TrackTypes.SLOPE_SNOW_GRAVEL || type == TrackTypes.SLOPE_DYNAMIC
+					|| type == TrackTypes.SLOPE_SNOW_GRAVEL /*|| type == TrackTypes.SLOPE_DYNAMIC*/
 					|| type == TrackTypes.LARGE_SLOPE_WOOD || type == TrackTypes.LARGE_SLOPE_GRAVEL
 					|| type == TrackTypes.LARGE_SLOPE_BALLAST || type == TrackTypes.LARGE_SLOPE_SNOW_GRAVEL
-					|| type == TrackTypes.LARGE_SLOPE_DYNAMIC
+					/*|| type == TrackTypes.LARGE_SLOPE_DYNAMIC*/
 					|| type == TrackTypes.VERY_LARGE_SLOPE_WOOD || type == TrackTypes.VERY_LARGE_SLOPE_GRAVEL
 					|| type == TrackTypes.VERY_LARGE_SLOPE_BALLAST || type == TrackTypes.VERY_LARGE_SLOPE_SNOW_GRAVEL
-					|| type == TrackTypes.VERY_LARGE_SLOPE_DYNAMIC
+					/*|| type == TrackTypes.VERY_LARGE_SLOPE_DYNAMIC*/
 			) {
 				if (!canPlaceTrack(player, world, x, y + 1, z)) {
 					return false;
@@ -3170,12 +3170,6 @@ public class ItemTCRail extends ItemPart {
 				tcRail.slopeHeight = 1;
 				tcRail.slopeAngle = slopeAngle;
 				tcRail.slopeLength = gagEnd + 1;
-
-				Block block = world.getBlock(x,y,z);
-				int metadata = world.getBlockMetadata(x,y,z);
-
-				IIcon iconName = block.getIcon(l, metadata);
-				tcRail.setBallastMaterial(iconName.getIconName());
 
 
 				for (int i2 = 1; i2 <= gagEnd; i2++) {

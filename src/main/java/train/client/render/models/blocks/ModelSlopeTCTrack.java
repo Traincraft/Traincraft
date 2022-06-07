@@ -3,7 +3,9 @@ package train.client.render.models.blocks;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.block.Block;
 import net.minecraft.client.model.ModelBase;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.IModelCustom;
@@ -12,6 +14,7 @@ import train.common.library.Info;
 import train.common.tile.TileTCRail;
 
 import javax.annotation.Nullable;
+import java.util.Arrays;
 
 @SideOnly(Side.CLIENT)
 public class ModelSlopeTCTrack extends ModelBase {
@@ -28,11 +31,11 @@ public class ModelSlopeTCTrack extends ModelBase {
 	
 	public void render(String type, String ballast) {
 
+
 		String[] ballastTexture = new String[2];
 		if (ballast.contains(":")) {
 			ballastTexture = ballast.split(":", 5);
 		}
-
 		else {
 			ballastTexture[0] = "minecraft";
 			ballastTexture[1] = ballast;
@@ -85,8 +88,27 @@ public class ModelSlopeTCTrack extends ModelBase {
 
 	public void render(String type, TileTCRail tcRail, double x, double y, double z) {
 		int facing = tcRail.getWorldObj().getBlockMetadata(tcRail.xCoord, tcRail.yCoord, tcRail.zCoord);
+		Block block = tcRail.getWorldObj().getBlock(tcRail.xCoord, tcRail.yCoord-1, tcRail.zCoord);
+		IIcon icon = block.getIcon(1, tcRail.getWorldObj().getBlockMetadata(tcRail.xCoord, tcRail.yCoord-1, tcRail.zCoord));
 
-		render( type, facing, x, y, z, 1, 1, 1, 1, tcRail.getBallastMaterial());
+		String iconName;
+		if (icon == null ) {
+			iconName = "tc:ballast";
+		}
+
+		if (tcRail.getBallastMaterial() != null) {
+
+			iconName = tcRail.getBallastMaterial();
+		}
+
+		else {
+			iconName = icon.getIconName();
+
+		}
+		render( type, facing, x, y, z, 1, 1, 1, 1, iconName);
+
+
+
 
 
 	}

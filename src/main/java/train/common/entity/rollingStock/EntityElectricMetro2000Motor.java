@@ -106,7 +106,7 @@ public class EntityElectricMetro2000Motor extends ElectricTrain {
 
     @Override
     public float getOptimalDistance(EntityMinecart cart) {
-        return (0.57F);
+        return (0.65F);
     }
     @Override
     public boolean canBeAdjusted(EntityMinecart cart) {

@@ -43,7 +43,7 @@ public class EntityLocoSteamBR_Black_5 extends SteamTrain {
 		riddenByEntity.setPosition(posX - Math.cos(rads)*3, posY + (Math.tan(pitchRads)*-3F)+( getMountedYOffset() + riddenByEntity.getYOffset() + 0.55F), posZ - Math.sin(rads)*3);
 		*/
         if(riddenByEntity==null){return;}
-        riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset() + 0f, posZ);
+        riddenByEntity.setPosition(posX - 0.3, posY + getMountedYOffset() + riddenByEntity.getYOffset() + 0f, posZ);
     }
 
     @Override

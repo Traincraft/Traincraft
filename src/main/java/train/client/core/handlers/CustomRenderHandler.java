@@ -67,8 +67,21 @@ public class CustomRenderHandler {
         Block block = world.getBlock(x,y,z);
         int metadata = world.getBlockMetadata(x,y,z);
 
-        IIcon iconName = block.getIcon(facing, metadata);
-        String ballastMaterial = iconName.getIconName();
+        IIcon icon = block.getIcon(1, metadata);
+
+        String iconName;
+        if (icon == null) {
+
+            iconName = "tc:ballast";
+        }
+
+        else {
+            iconName = icon.getIconName();
+        }
+
+        String ballastMaterial = iconName;
+
+
 
         // Render
         GL11.glPushMatrix();
@@ -120,13 +133,13 @@ public class CustomRenderHandler {
 
         // Crossing
         else if (item.getTrackType() == ItemTCRail.TrackTypes.SMALL_ROAD_CROSSING) {
-            RenderTCRail.modelSmallStraight.render("crossing", facing, 0, 0, 0, r, g, b, 0.5f);
+            RenderTCRail.modelSmallStraight.render("crossing", facing, 0, 0, 0, r, g, b, a);
         }
         else if (item.getTrackType() == ItemTCRail.TrackTypes.SMALL_ROAD_CROSSING_1) {
-            RenderTCRail.modelSmallStraight.render("crossing1", facing, 0, 0, 0, r, g, b, 0.5f);
+            RenderTCRail.modelSmallStraight.render("crossing1", facing, 0, 0, 0, r, g, b, a);
         }
         else if (item.getTrackType() == ItemTCRail.TrackTypes.SMALL_ROAD_CROSSING_2) {
-            RenderTCRail.modelSmallStraight.render("crossing2", facing, 0, 0, 0, r, g, b, 0.5f);
+            RenderTCRail.modelSmallStraight.render("crossing2", facing, 0, 0, 0, r, g, b, a);
         }
         else if (item.getTrackType() == ItemTCRail.TrackTypes.TWO_WAYS_CROSSING) {
             float dx = dir.getX();
@@ -151,49 +164,49 @@ public class CustomRenderHandler {
 
         // Slopes
         else if (item.getTrackType() == ItemTCRail.TrackTypes.SLOPE_BALLAST) {
-            RenderTCRail.modelSlope.render("ballast", facing, 0, 0, 0, r, g, b, 0.5f, ballastMaterial);
+            RenderTCRail.modelSlope.render("ballast", facing, 0, 0, 0, r, g, b, a, ballastMaterial);
         }
         else if (item.getTrackType() == ItemTCRail.TrackTypes.SLOPE_GRAVEL) {
-            RenderTCRail.modelSlope.render("gravel", facing, 0, 0, 0, r, g, b, 0.5f, ballastMaterial);
+            RenderTCRail.modelSlope.render("gravel", facing, 0, 0, 0, r, g, b, a, ballastMaterial);
         }
         else if (item.getTrackType() == ItemTCRail.TrackTypes.SLOPE_WOOD) {
-            RenderTCRail.modelSlope.render("wood", facing, 0, 0, 0, r, g, b, 0.5f, ballastMaterial);
+            RenderTCRail.modelSlope.render("wood", facing, 0, 0, 0, r, g, b, a, ballastMaterial);
         }
         else if (item.getTrackType() == ItemTCRail.TrackTypes.SLOPE_SNOW_GRAVEL) {
-            RenderTCRail.modelSlope.render("snow", facing, 0, 0, 0, r, g, b, 0.5f, ballastMaterial);
+            RenderTCRail.modelSlope.render("snow", facing, 0, 0, 0, r, g, b, a, ballastMaterial);
         }
         else if (item.getTrackType() == ItemTCRail.TrackTypes.SLOPE_DYNAMIC) {
-            RenderTCRail.modelSlope.render("dynamic", facing, 0, 0, 0, r, g, b, 0.5f, ballastMaterial);
+            RenderTCRail.modelSlope.render("dynamic", facing, 0, 0, 0, r, g, b, a, ballastMaterial);
         }
         else if (item.getTrackType() == ItemTCRail.TrackTypes.LARGE_SLOPE_BALLAST) {
-            RenderTCRail.modelLargeSlope.render("ballast", facing, 0, 0, 0, r, g, b, 0.5f, ballastMaterial);
+            RenderTCRail.modelLargeSlope.render("ballast", facing, 0, 0, 0, r, g, b, a, ballastMaterial);
         }
         else if (item.getTrackType() == ItemTCRail.TrackTypes.LARGE_SLOPE_GRAVEL) {
-            RenderTCRail.modelLargeSlope.render("gravel", facing, 0, 0, 0, r, g, b, 0.5f, ballastMaterial);
+            RenderTCRail.modelLargeSlope.render("gravel", facing, 0, 0, 0, r, g, b, a, ballastMaterial);
         }
         else if (item.getTrackType() == ItemTCRail.TrackTypes.LARGE_SLOPE_WOOD) {
-            RenderTCRail.modelLargeSlope.render("wood", facing, 0, 0, 0, r, g, b, 0.5f, ballastMaterial);
+            RenderTCRail.modelLargeSlope.render("wood", facing, 0, 0, 0, r, g, b, a, ballastMaterial);
         }
         else if (item.getTrackType() == ItemTCRail.TrackTypes.LARGE_SLOPE_SNOW_GRAVEL) {
-            RenderTCRail.modelLargeSlope.render("snow", facing, 0, 0, 0, r, g, b, 0.5f, ballastMaterial);
+            RenderTCRail.modelLargeSlope.render("snow", facing, 0, 0, 0, r, g, b, a, ballastMaterial);
         }
         else if (item.getTrackType() == ItemTCRail.TrackTypes.LARGE_SLOPE_DYNAMIC) {
-            RenderTCRail.modelLargeSlope.render("dynamic", facing, 0, 0, 0, r, g, b, 0.5f, ballastMaterial);
+            RenderTCRail.modelLargeSlope.render("dynamic", facing, 0, 0, 0, r, g, b, a, ballastMaterial);
         }
         else if (item.getTrackType() == ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_BALLAST) {
-            RenderTCRail.modelVeryLargeSlope.render("ballast", facing, 0, 0, 0, r, g, b, 0.5f, ballastMaterial);
+            RenderTCRail.modelVeryLargeSlope.render("ballast", facing, 0, 0, 0, r, g, b, a, ballastMaterial);
         }
         else if (item.getTrackType() == ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_GRAVEL) {
-            RenderTCRail.modelVeryLargeSlope.render("gravel", facing, 0, 0, 0, r, g, b, 0.5f, ballastMaterial);
+            RenderTCRail.modelVeryLargeSlope.render("gravel", facing, 0, 0, 0, r, g, b, a, ballastMaterial);
         }
         else if (item.getTrackType() == ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_WOOD) {
-            RenderTCRail.modelVeryLargeSlope.render("wood", facing, 0, 0, 0, r, g, b, 0.5f, ballastMaterial);
+            RenderTCRail.modelVeryLargeSlope.render("wood", facing, 0, 0, 0, r, g, b, a, ballastMaterial);
         }
         else if (item.getTrackType() == ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_SNOW_GRAVEL) {
-            RenderTCRail.modelVeryLargeSlope.render("snow", facing, 0, 0, 0, r, g, b, 0.5f, ballastMaterial);
+            RenderTCRail.modelVeryLargeSlope.render("snow", facing, 0, 0, 0, r, g, b, a, ballastMaterial);
         }
         else if (item.getTrackType() == ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_DYNAMIC) {
-            RenderTCRail.modelVeryLargeSlope.render("dynamic", facing, 0, 0, 0, r, g, b, 0.5f, ballastMaterial);
+            RenderTCRail.modelVeryLargeSlope.render("dynamic", facing, 0, 0, 0, r, g, b, a, ballastMaterial);
         }
 
 
