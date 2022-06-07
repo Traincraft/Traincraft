@@ -1,11 +1,13 @@
 package train.client.core.handlers;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
@@ -13,8 +15,11 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Vector2f;
 import train.client.render.RenderTCRail;
 import train.common.items.ItemTCRail;
+import train.common.tile.TileTCRail;
 
 public class CustomRenderHandler {
+
+
 
     @SubscribeEvent
     public void onRenderWorldLast(RenderWorldLastEvent event )
@@ -32,10 +37,12 @@ public class CustomRenderHandler {
         int x = Minecraft.getMinecraft().objectMouseOver.blockX;
         int y = Minecraft.getMinecraft().objectMouseOver.blockY;
         int z = Minecraft.getMinecraft().objectMouseOver.blockZ;
-        
+
         if (world.getBlock(x, y, z) == Blocks.air) {
             return;
         }
+
+
 
         ItemTCRail item = (ItemTCRail) player.getHeldItem().getItem();
 
@@ -44,7 +51,7 @@ public class CustomRenderHandler {
         float r = 1;
         float g = 0;
         float b = 0;
-        float a = 0.5f;
+        float a = 0.8f;
         if (validPlacement) {
             r = 0;
             g = 1;
@@ -57,6 +64,25 @@ public class CustomRenderHandler {
         int facing = MathHelper.floor_double(player.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
         Vector2f dir = ItemTCRail.getDirectionVector(facing);
 
+        Block block = world.getBlock(x,y,z);
+        int metadata = world.getBlockMetadata(x,y,z);
+
+        IIcon icon = block.getIcon(1, metadata);
+
+        String iconName;
+        if (icon == null) {
+
+            iconName = "tc:ballast";
+        }
+
+        else {
+            iconName = icon.getIconName();
+        }
+
+        String ballastMaterial = iconName;
+
+
+
         // Render
         GL11.glPushMatrix();
         GL11.glTranslated(x - px, y + 1 - py, z - pz);
@@ -66,12 +92,15 @@ public class CustomRenderHandler {
         // Straights
         if (item.getTrackType() == ItemTCRail.TrackTypes.SMALL_STRAIGHT
                 || item.getTrackType() == ItemTCRail.TrackTypes.MEDIUM_STRAIGHT
-                || item.getTrackType() == ItemTCRail.TrackTypes.LONG_STRAIGHT) {
+                || item.getTrackType() == ItemTCRail.TrackTypes.LONG_STRAIGHT
+                || item.getTrackType() == ItemTCRail.TrackTypes.VERY_LONG_STRAIGHT) {
             int length = 1;
             if (item.getTrackType() == ItemTCRail.TrackTypes.MEDIUM_STRAIGHT)
                 length = 3;
-            else if (item.getTrackType() == ItemTCRail.TrackTypes.LONG_STRAIGHT)
+            if (item.getTrackType() == ItemTCRail.TrackTypes.LONG_STRAIGHT)
                 length = 6;
+            else if (item.getTrackType() == ItemTCRail.TrackTypes.VERY_LONG_STRAIGHT)
+                length = 12;
 
             for (int i = 0; i < length; i++) {
                 float dx = dir.getX() * i;
@@ -80,18 +109,37 @@ public class CustomRenderHandler {
             }
         }
 
+            else  if (item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_SMALL_STRAIGHT
+                || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_MEDIUM_STRAIGHT
+                || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_LONG_STRAIGHT
+                || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_VERY_LONG_STRAIGHT) {
+            int length = 1;
+            if (item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_MEDIUM_STRAIGHT)
+                length = 3;
+            if (item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_LONG_STRAIGHT)
+                length = 6;
+            else if (item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_VERY_LONG_STRAIGHT)
+                length = 12;
+
+            for (int i = 0; i < length; i++) {
+                float dx = dir.getX() * i;
+                float dz = dir.getY() * i;
+                RenderTCRail.modelEmbeddedSmallStraight.render("straight", facing, dx, 0 ,dz,r, g, b, a);
+            }
+        }
+
+
+
+
         // Crossing
         else if (item.getTrackType() == ItemTCRail.TrackTypes.SMALL_ROAD_CROSSING) {
-            RenderTCRail.modelSmallStraight.render("crossing", facing, 0, 0, 0, r, g, b, 0.5f);
-        }
-        else if (item.getTrackType() == ItemTCRail.TrackTypes.SUPER_LONG) {
-            RenderTCRail.modelSmallStraight.render("super_long", facing, 0, 0, 0, r,g,b,0.5f);
+            RenderTCRail.modelSmallStraight.render("crossing", facing, 0, 0, 0, r, g, b, a);
         }
         else if (item.getTrackType() == ItemTCRail.TrackTypes.SMALL_ROAD_CROSSING_1) {
-            RenderTCRail.modelSmallStraight.render("crossing1", facing, 0, 0, 0, r, g, b, 0.5f);
+            RenderTCRail.modelSmallStraight.render("crossing1", facing, 0, 0, 0, r, g, b, a);
         }
         else if (item.getTrackType() == ItemTCRail.TrackTypes.SMALL_ROAD_CROSSING_2) {
-            RenderTCRail.modelSmallStraight.render("crossing2", facing, 0, 0, 0, r, g, b, 0.5f);
+            RenderTCRail.modelSmallStraight.render("crossing2", facing, 0, 0, 0, r, g, b, a);
         }
         else if (item.getTrackType() == ItemTCRail.TrackTypes.TWO_WAYS_CROSSING) {
             float dx = dir.getX();
@@ -103,71 +151,208 @@ public class CustomRenderHandler {
             RenderTCRail.modelSmallStraight.render("straight", 2, dx, 0, dz - 1, r, g, b, a);
             RenderTCRail.modelSmallStraight.render("straight", 3, dx - 1, 0, dz, r, g, b, a);
         }
+        else if (item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_TWO_WAYS_CROSSING) {
+            float dx = dir.getX();
+            float dz = dir.getY();
+
+            RenderTCRail.modelEmbeddedTwoWaysCrossing.render( dx, 0, dz, r, g, b, 0.5f );
+            RenderTCRail.modelEmbeddedSmallStraight.render("straight", 0, dx, 0, dz +1, r, g, b, a);
+            RenderTCRail.modelEmbeddedSmallStraight.render("straight", 1, dx + 1, 0, dz, r, g, b, a);
+            RenderTCRail.modelEmbeddedSmallStraight.render("straight", 2, dx, 0, dz - 1, r, g, b, a);
+            RenderTCRail.modelEmbeddedSmallStraight.render("straight", 3, dx - 1, 0, dz, r, g, b, a);
+        }
+
         // Slopes
         else if (item.getTrackType() == ItemTCRail.TrackTypes.SLOPE_BALLAST) {
-            RenderTCRail.modelSlope.render("ballast", facing, 0, 0, 0, r, g, b, 0.5f);
+            RenderTCRail.modelSlope.render("ballast", facing, 0, 0, 0, r, g, b, a, ballastMaterial);
         }
         else if (item.getTrackType() == ItemTCRail.TrackTypes.SLOPE_GRAVEL) {
-            RenderTCRail.modelSlope.render("gravel", facing, 0, 0, 0, r, g, b, 0.5f);
+            RenderTCRail.modelSlope.render("gravel", facing, 0, 0, 0, r, g, b, a, ballastMaterial);
         }
         else if (item.getTrackType() == ItemTCRail.TrackTypes.SLOPE_WOOD) {
-            RenderTCRail.modelSlope.render("wood", facing, 0, 0, 0, r, g, b, 0.5f);
+            RenderTCRail.modelSlope.render("wood", facing, 0, 0, 0, r, g, b, a, ballastMaterial);
         }
         else if (item.getTrackType() == ItemTCRail.TrackTypes.SLOPE_SNOW_GRAVEL) {
-            RenderTCRail.modelSlope.render("snow", facing, 0, 0, 0, r, g, b, 0.5f);
+            RenderTCRail.modelSlope.render("snow", facing, 0, 0, 0, r, g, b, a, ballastMaterial);
+        }
+        else if (item.getTrackType() == ItemTCRail.TrackTypes.SLOPE_DYNAMIC) {
+            RenderTCRail.modelSlope.render("dynamic", facing, 0, 0, 0, r, g, b, a, ballastMaterial);
         }
         else if (item.getTrackType() == ItemTCRail.TrackTypes.LARGE_SLOPE_BALLAST) {
-            RenderTCRail.modelLargeSlope.render("ballast", facing, 0, 0, 0, r, g, b, 0.5f);
+            RenderTCRail.modelLargeSlope.render("ballast", facing, 0, 0, 0, r, g, b, a, ballastMaterial);
         }
         else if (item.getTrackType() == ItemTCRail.TrackTypes.LARGE_SLOPE_GRAVEL) {
-            RenderTCRail.modelLargeSlope.render("gravel", facing, 0, 0, 0, r, g, b, 0.5f);
+            RenderTCRail.modelLargeSlope.render("gravel", facing, 0, 0, 0, r, g, b, a, ballastMaterial);
         }
         else if (item.getTrackType() == ItemTCRail.TrackTypes.LARGE_SLOPE_WOOD) {
-            RenderTCRail.modelLargeSlope.render("wood", facing, 0, 0, 0, r, g, b, 0.5f);
+            RenderTCRail.modelLargeSlope.render("wood", facing, 0, 0, 0, r, g, b, a, ballastMaterial);
         }
         else if (item.getTrackType() == ItemTCRail.TrackTypes.LARGE_SLOPE_SNOW_GRAVEL) {
-            RenderTCRail.modelLargeSlope.render("snow", facing, 0, 0, 0, r, g, b, 0.5f);
+            RenderTCRail.modelLargeSlope.render("snow", facing, 0, 0, 0, r, g, b, a, ballastMaterial);
+        }
+        else if (item.getTrackType() == ItemTCRail.TrackTypes.LARGE_SLOPE_DYNAMIC) {
+            RenderTCRail.modelLargeSlope.render("dynamic", facing, 0, 0, 0, r, g, b, a, ballastMaterial);
         }
         else if (item.getTrackType() == ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_BALLAST) {
-            RenderTCRail.modelVeryLargeSlope.render("ballast", facing, 0, 0, 0, r, g, b, 0.5f);
+            RenderTCRail.modelVeryLargeSlope.render("ballast", facing, 0, 0, 0, r, g, b, a, ballastMaterial);
         }
         else if (item.getTrackType() == ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_GRAVEL) {
-            RenderTCRail.modelVeryLargeSlope.render("gravel", facing, 0, 0, 0, r, g, b, 0.5f);
+            RenderTCRail.modelVeryLargeSlope.render("gravel", facing, 0, 0, 0, r, g, b, a, ballastMaterial);
         }
         else if (item.getTrackType() == ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_WOOD) {
-            RenderTCRail.modelVeryLargeSlope.render("wood", facing, 0, 0, 0, r, g, b, 0.5f);
+            RenderTCRail.modelVeryLargeSlope.render("wood", facing, 0, 0, 0, r, g, b, a, ballastMaterial);
         }
         else if (item.getTrackType() == ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_SNOW_GRAVEL) {
-            RenderTCRail.modelVeryLargeSlope.render("snow", facing, 0, 0, 0, r, g, b, 0.5f);
+            RenderTCRail.modelVeryLargeSlope.render("snow", facing, 0, 0, 0, r, g, b, a, ballastMaterial);
         }
-        // Turns
-        else if (item.getTrackType() == ItemTCRail.TrackTypes.MEDIUM_TURN
-            || item.getTrackType() == ItemTCRail.TrackTypes.LARGE_TURN
-            || item.getTrackType() == ItemTCRail.TrackTypes.VERY_LARGE_TURN
-            || item.getTrackType() == ItemTCRail.TrackTypes.VERY_LARGE_TURN
-            || item.getTrackType() == ItemTCRail.TrackTypes.SUPER_LARGE_TURN)
+        else if (item.getTrackType() == ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_DYNAMIC) {
+            RenderTCRail.modelVeryLargeSlope.render("dynamic", facing, 0, 0, 0, r, g, b, a, ballastMaterial);
+        }
+
+
+        /** Normal Parallel Curves*/
+
+        else if (item.getTrackType() == ItemTCRail.TrackTypes.SMALL_PARALLEL_CURVE
+                || item.getTrackType() == ItemTCRail.TrackTypes.MEDIUM_PARALLEL_CURVE
+            || item.getTrackType() == ItemTCRail.TrackTypes.LARGE_PARALLEL_CURVE)
         {
             float yaw = MathHelper.wrapAngleTo180_float(player.rotationYaw);
             boolean isLeftTurn = item.getTrackOrientation( facing, yaw ).equals("left");
 
-            String turnSize = "medium";
-            if ( item.getTrackType() == ItemTCRail.TrackTypes.LARGE_TURN )
-                turnSize = "large";
-            else if ( item.getTrackType() == ItemTCRail.TrackTypes.VERY_LARGE_TURN )
-                turnSize = "very_large";
-            else if ( item.getTrackType() == ItemTCRail.TrackTypes.SUPER_LARGE_TURN)
-                turnSize = "super_large";
-            if ( isLeftTurn )
-            {
-                RenderTCRail.modelLeftTurn.render( turnSize, facing, 0, 0, 0, r, g, b, a );
-            } else
-            {
-                RenderTCRail.modelRightTurn.render( turnSize, facing, 0, 0, 0, r, g, b, a );
+            if (item.getTrackType() == ItemTCRail.TrackTypes.SMALL_PARALLEL_CURVE || item.getTrackType() == ItemTCRail.TrackTypes.MEDIUM_PARALLEL_CURVE
+                    || item.getTrackType() == ItemTCRail.TrackTypes.LARGE_PARALLEL_CURVE) {
+                String turnSize = "small";
+                if ( item.getTrackType() == ItemTCRail.TrackTypes.MEDIUM_PARALLEL_CURVE )
+                    turnSize = "medium";
+                else if ( item.getTrackType() == ItemTCRail.TrackTypes.LARGE_PARALLEL_CURVE )
+                    turnSize = "large";
+                if ( isLeftTurn )
+                {
+                    RenderTCRail.modelLeftParallelCurve.render( turnSize, facing, 0, 0, 0, r, g, b, a );
+                }
+                else
+                {
+                    RenderTCRail.modelRightParallelCurve.render( turnSize, facing, 0, 0, 0, r, g, b, a );
+                }
             }
+        }
+
+        /** Embedded Parallel Curves*/
+        else if (item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_SMALL_PARALLEL_CURVE
+                || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_MEDIUM_PARALLEL_CURVE
+                || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_LARGE_PARALLEL_CURVE)
+        {
+            float yaw = MathHelper.wrapAngleTo180_float(player.rotationYaw);
+            boolean isLeftTurn = item.getTrackOrientation( facing, yaw ).equals("left");
+
+            if (item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_SMALL_PARALLEL_CURVE || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_MEDIUM_PARALLEL_CURVE
+                    || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_LARGE_PARALLEL_CURVE) {
+                String turnSize = "small";
+                if ( item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_MEDIUM_PARALLEL_CURVE )
+                    turnSize = "medium";
+                else if ( item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_LARGE_PARALLEL_CURVE )
+                    turnSize = "large";
+                if ( isLeftTurn )
+                {
+                    RenderTCRail.modelEmbeddedLeftParallelCurve.render( turnSize, facing, 0, 0, 0, r, g, b, a );
+                }
+                else
+                {
+                    RenderTCRail.modelEmbeddedRightParallelCurve.render( turnSize, facing, 0, 0, 0, r, g, b, a );
+                }
+            }
+        }
+        // 45 Degree Turns
+
+        else if (item.getTrackType() == ItemTCRail.TrackTypes.MEDIUM_45DEGREE_TURN || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_MEDIUM_45DEGREE_TURN) {
+            float yaw = MathHelper.wrapAngleTo180_float(player.rotationYaw);
+            boolean isLeftTurn = item.getTrackOrientation( facing, yaw ).equals("left");
+
+            if (item.getTrackType() == ItemTCRail.TrackTypes.MEDIUM_45DEGREE_TURN) {
+                String turnSize = "medium";
+                if ( isLeftTurn )
+                {
+                    RenderTCRail.model45DegreeLeftTurn.render( turnSize, facing, 0, 0, 0, r, g, b, a );
+                } else
+                {
+                    RenderTCRail.model45DegreeRightTurn.render( turnSize, facing, 0, 0, 0, r, g, b, a );
+                }
+            }
+
+            if (item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_MEDIUM_45DEGREE_TURN) {
+                String turnSize = "medium";
+                if ( isLeftTurn )
+                {
+                    RenderTCRail.modelEmbeddedLeft45DegreeTurn.render( turnSize, facing, 0, 0, 0, r, g, b, a );
+                } else
+                {
+                    RenderTCRail.modelEmbeddedRight45DegreeTurn.render( turnSize, facing, 0, 0, 0, r, g, b, a );
+                }
+            }
+        }
+
+        // Turns
+        else if (item.getTrackType() == ItemTCRail.TrackTypes.MEDIUM_TURN
+            || item.getTrackType() == ItemTCRail.TrackTypes.LARGE_TURN
+            || item.getTrackType() == ItemTCRail.TrackTypes.VERY_LARGE_TURN
+            || item.getTrackType() == ItemTCRail.TrackTypes.SUPER_LARGE_TURN
+            || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_MEDIUM_TURN
+            || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_LARGE_TURN
+            || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_VERY_LARGE_TURN
+            || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_SUPER_LARGE_TURN)
+
+
+
+        {
+            float yaw = MathHelper.wrapAngleTo180_float(player.rotationYaw);
+            boolean isLeftTurn = item.getTrackOrientation( facing, yaw ).equals("left");
+
+
+            if (item.getTrackType() == ItemTCRail.TrackTypes.MEDIUM_TURN || item.getTrackType() == ItemTCRail.TrackTypes.LARGE_TURN
+                || item.getTrackType() == ItemTCRail.TrackTypes.VERY_LARGE_TURN || item.getTrackType() == ItemTCRail.TrackTypes.SUPER_LARGE_TURN) {
+                String turnSize = "medium";
+                if ( item.getTrackType() == ItemTCRail.TrackTypes.LARGE_TURN )
+                    turnSize = "large";
+                else if ( item.getTrackType() == ItemTCRail.TrackTypes.VERY_LARGE_TURN )
+                    turnSize = "very_large";
+                else if ( item.getTrackType() == ItemTCRail.TrackTypes.SUPER_LARGE_TURN)
+                    turnSize = "super_large";
+                if ( isLeftTurn )
+                {
+                    RenderTCRail.modelLeftTurn.render( turnSize, facing, 0, 0, 0, r, g, b, a );
+                } else
+                {
+                    RenderTCRail.modelRightTurn.render( turnSize, facing, 0, 0, 0, r, g, b, a );
+                }
+            }
+
+            if (item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_MEDIUM_TURN || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_LARGE_TURN
+                || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_VERY_LARGE_TURN || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_SUPER_LARGE_TURN){
+                String turnSize = "medium";
+                if ( item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_LARGE_TURN )
+                    turnSize = "large";
+                else if ( item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_VERY_LARGE_TURN )
+                    turnSize = "very_large";
+                else if ( item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_SUPER_LARGE_TURN)
+                    turnSize = "super_large";
+                if ( isLeftTurn )
+                {
+                    RenderTCRail.modelEmbeddedLeftTurn.render( turnSize, facing, 0, 0, 0, r, g, b, a );
+                } else
+                {
+                    RenderTCRail.modelEmbeddedRightTurn.render( turnSize, facing, 0, 0, 0, r, g, b, a );
+                }
+            }
+
+
+
+
+
+
 
         }
 
-            // switchs
+            // switches
         else if (item.getTrackType() == ItemTCRail.TrackTypes.MEDIUM_SWITCH
                 || item.getTrackType() == ItemTCRail.TrackTypes.MEDIUM_PARALLEL_SWITCH
                 || item.getTrackType() == ItemTCRail.TrackTypes.LARGE_SWITCH )

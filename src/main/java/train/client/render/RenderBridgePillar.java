@@ -17,8 +17,8 @@ public class RenderBridgePillar extends TileEntitySpecialRenderer {
 	@Override
 	public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float tick) {
 		GL11.glPushMatrix();
-		GL11.glTranslated(x+0.5,y+1,z+0.5);
-		GL11.glRotatef(180f,0f,1f,0f);
+		GL11.glTranslated(x+0.5,y,z+0.5);
+		GL11.glRotatef(180f,180f,1f,0f);
 		Tessellator.bindTexture(texture);
 		/*
 		if(GLID==null || !GL11.glIsList(GLID)) {

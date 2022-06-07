@@ -12,6 +12,8 @@ package train.client.render.models; //Path where the model is located
 import tmt.ModelConverter;
 import tmt.ModelRendererTurbo;
 
+import java.util.ArrayList;
+
 public class ModelClass43 extends ModelConverter //Same as Filename
 {
 	int textureX = 512;
@@ -1050,5 +1052,13 @@ public class ModelClass43 extends ModelConverter //Same as Filename
 
 		bodyModel[248].addShapeBox(0F, 0F, 0F, 3, 3, 3, 0F,-0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, -0.5F, 0F, 0F); // Box 180
 		bodyModel[248].setRotationPoint(-44F, -5F, 4F);
+	}
+
+	public ArrayList<double[]> getSmokePosition() {
+		return new ArrayList<double[]>() {
+			{
+				add(new double[]{0D, 1.45D, 0.0D});
+			}
+		};
 	}
 }

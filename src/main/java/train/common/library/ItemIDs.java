@@ -42,6 +42,7 @@ public enum ItemIDs {
 	steel("ItemTrain", "item_steel", 4),
 	refinedFuel("ItemContainer", "item_fuel_filled", 15),
 	signal("ItemSignal", "item_signal", 0),
+	kSignal("ItemsignalSpanish","signalK",2),
 	seats("ItemTrain", "item_seats", 15),
 	transformer("ItemTrain", "item_transformer", 4),
 	controls("ItemTrain", "item_controls", 7),
@@ -68,7 +69,86 @@ public enum ItemIDs {
 	paintbrushThing("ItemPaintbrushThing","paintbrushThing",1),
 	whistle("ItemWhistle","whistle", 1),
 	bolt("ItemBolt", "bolt", 1),
+	hat_ticketMan_paintable("ItemTCArmor", "armor_ticket_man_hat", 1),
+	pants_ticketMan_paintable("ItemTCArmor", "armor_ticket_man_pants", 1),
+	jacket_ticketMan_paintable("ItemTCArmor", "armor_ticket_man_jacket", 1),
+	hat_driver_paintable("ItemTCArmor", "armor_driver_hat", 1),
+	pants_driver_paintable("ItemTCArmor", "armor_driver_pants", 1),
+	jacket_driver_paintable("ItemTCArmor", "armor_driver_jacket", 1),
 
+	helmet_suit_paintable("ItemTCArmor", "armor_composite_helmet", 1),
+	pants_suit_paintable("ItemTCArmor", "armor_composite_pants", 1),
+	boots_suit_paintable("ItemTCArmor", "armor_composite_boots", 1),
+	jacket_suit_paintable("ItemTCArmor", "armor_composite_chest", 1),
+	reinforcedPlastic("ItemTrain", "item_fiberglass_plate", 10),
+	reinforcedPlates("ItemTrain", "item_reinforced_plate", 10),
+	composite_wrench("ItemWrench", "item_composite_wrench", 1),
+
+	/**Normal Tracks*/
+	tcRailSmallStraight("ItemTCRail", "item_rail_straight_small", 5),
+	tcRailMediumStraight("ItemTCRail", "item_rail_straight_medium", 5),
+	tcRailLongStraight("ItemTCRail", "item_rail_straight_large", 5),
+	tcRailVeryLongStraight("ItemTCRail", "item_rail_straight_very_large", 5),
+
+	tcRailMediumTurn("ItemTCRail", "item_rail_turn_medium", 5),
+	tcRailLargeTurn("ItemTCRail", "item_rail_turn_large", 5),
+	tcRailVeryLargeTurn("ItemTCRail", "item_rail_turn_veryLarge", 5),
+	tcRailSuperLargeTurn("ItemTCRail", "item_rail_tc_super_large_turn", 5),
+
+	tcRailMedium45DegreeTurn("ItemTCRail", "item_rail_45degree_turn_medium", 5),
+
+	tcRailSmallParallelCurve("ItemTCRail", "item_rail_tc_parallel_curve_small", 3),
+	tcRailMediumParallelCurve("ItemTCRail", "item_rail_tc_parallel_curve_medium", 3),
+	tcRailLargeParallelCurve("ItemTCRail", "item_rail_tc_parallel_curve_large", 3),
+
+	tcRailTwoWaysCrossing("ItemTCRail","item_rail_two_ways_crossing",5),
+
+	tcRailMediumSwitch("ItemTCRail", "item_rail_switch_medium", 5),
+	tcRailLargeSwitch("ItemTCRail", "item_rail_switch_large", 5),
+//	tcRailVeryLargeSwitch("ItemTCRail","item_rail_tc_very_large_switch",1),
+	tcRailMediumParallelSwitch("ItemTCRail", "item_rail_switch_parallel", 5),
+
+	tcRailSlopeWood("ItemTCRail", "item_rail_straight_slope_wood", 3),
+	tcRailSlopeGravel("ItemTCRail", "item_rail_straight_slope_gravel", 3),
+	tcRailSlopeBallast("ItemTCRail", "item_rail_straight_slope_ballast", 3),
+	tcRailSlopeSnowGravel("ItemTCRail", "item_rail_straight_slope_snow_gravel", 3),
+	tcRailSlopeDynamic("ItemTCRail", "item_rail_straight_slope_dynamic", 3),
+	tcRailLargeSlopeWood("ItemTCRail", "item_rail_straight_slope_wood", 3),
+	tcRailLargeSlopeGravel("ItemTCRail", "item_rail_straight_slope_gravel", 3),
+	tcRailLargeSlopeBallast("ItemTCRail", "item_rail_straight_slope_ballast", 3),
+	tcRailLargeSlopeSnowGravel("ItemTCRail", "item_rail_straight_slope_snow_gravel", 3),
+	tcRailLargeSlopeDynamic("ItemTCRail", "item_rail_straight_slope_dynamic", 3),
+	tcRailVeryLargeSlopeWood("ItemTCRail", "item_rail_straight_slope_wood", 3),
+	tcRailVeryLargeSlopeGravel("ItemTCRail", "item_rail_straight_slope_gravel", 3),
+	tcRailVeryLargeSlopeBallast("ItemTCRail", "item_rail_straight_slope_ballast", 3),
+	tcRailVeryLargeSlopeSnowGravel("ItemTCRail", "item_rail_straight_slope_snow_gravel", 3),
+	tcRailVeryLargeSlopeDynamic("ItemTCRail", "item_rail_straight_slope_dynamic", 3),
+
+	/**Embedded Tracks*/
+	tcRailEmbeddedSmallStraight("ItemTCRail","item_rail_straight_embedded_small_", 5),
+	tcRailEmbeddedMediumStraight("ItemTCRail", "item_rail_straight_embedded_medium", 5),
+	tcRailEmbeddedLongStraight("ItemTCRail", "item_rail_straight_embedded_large", 5),
+	tcRailEmbeddedVeryLongStraight("ItemTCRail", "item_rail_straight_embedded_very_large", 5),
+
+	tcRailEmbeddedMediumTurn("ItemTCRail", "item_rail_tc_embedded_medium_turn", 5),
+	tcRailEmbeddedLargeTurn("ItemTCRail", "item_rail_tc_embedded_large_turn", 5),
+	tcRailEmbeddedVeryLargeTurn("ItemTCRail", "item_rail_tc_embedded_very_large_turn", 5),
+	tcRailEmbeddedSuperLargeTurn("ItemTCRail", "item_rail_tc_embedded_super_large_turn", 5 ),
+
+	tcRailEmbeddedMedium45DegreeTurn("ItemTCRail", "item_rail_embedded_45degree_turn_medium", 5),
+
+	tcRailEmbeddedSmallParallelCurve("ItemTCRail", "item_rail_tc_embedded_parallel_curve_small", 3),
+	tcRailEmbeddedMediumParallelCurve("ItemTCRail", "item_rail_tc_embedded_parallel_curve_medium", 3),
+	tcRailEmbeddedLargeParallelCurve("ItemTCRail", "item_rail_tc_embedded_parallel_curve_large", 3),
+
+	tcRailEmbeddedTwoWaysCrossing("ItemTCRail","item_rail_embedded_two_ways_crossing",5),
+
+
+	tcRailSmallRoadCrossing("ItemTCRail", "item_rail_small_road_crossing", 5),
+	tcRailSmallRoadCrossing1("ItemTCRail", "item_rail_small_road_crossing_1", 5),
+	tcRailSmallRoadCrossing2("ItemTCRail", "item_rail_small_road_crossing_2", 5),
+
+	/**RollingStock*/
 	atoCard("ItemATOCard", "ato_card", 5),
 	minecartWork("ItemRollingStock", "train_work", 4),
 	minecartTender("ItemRollingStock", "train_tender", 4),
@@ -215,11 +295,12 @@ public enum ItemIDs {
 	minecartICE1_1stClass("ItemRollingStock", "train_ice1_passenger", 10),
 	minecartICE1_2ndClass("ItemRollingStock", "train_ice1_passenger", 10),
 	minecartICE1_Restaurant("ItemRollingStock", "train_ice1_restaurant", 10),
-	minecart81717_motor("ItemRollingStock", "81-717_motor", 10),
-	minecart81717_passenger("ItemRollingStock", "81-717_passenger", 10),
 	minecartBoulderWagon("ItemRollingStock", "BoulderWagon", 1),
 	minecartKVB_2300("ItemRollingStock", "kvb_2300", 3),
 	minecartKVB_2300_B("ItemRollingStock", "kvb_2300_b", 3),
+	minecartBR_MK2F_Coach("ItemRollingStock", "Mk2f_Coach_Icon", 3),
+	minecartBR_Mk2f_BSO("ItemRollingStock", "Mk2f_BSO_Icon", 3),
+	minecartBR_MK3_DVT("ItemRollingStock", "br_mk3_dvt", 3),
 	minecartBR_MK3_Buffet("ItemRollingStock", "br_mk3_buffet", 5),
 	minecartBR_MK3_Coach("ItemRollingStock", "br_mk3_coach", 5),
 	minecartBR_MK4_DVT("ItemRollingStock","br_mk4_dvt",5),
@@ -231,25 +312,10 @@ public enum ItemIDs {
 	minecartClass321("ItemRollingStock","class321", 5),
 	minecartClass321Panto("ItemRollingStock","class321panto",5),
 	minecartClass321Coach("ItemRollingStock","class321coach", 5),
-
-
-	hat_ticketMan_paintable("ItemTCArmor", "armor_ticket_man_hat", 1),
-	pants_ticketMan_paintable("ItemTCArmor", "armor_ticket_man_pants", 1),
-	jacket_ticketMan_paintable("ItemTCArmor", "armor_ticket_man_jacket", 1),
-	hat_driver_paintable("ItemTCArmor", "armor_driver_hat", 1),
-	pants_driver_paintable("ItemTCArmor", "armor_driver_pants", 1),
-	jacket_driver_paintable("ItemTCArmor", "armor_driver_jacket", 1),
-
-	helmet_suit_paintable("ItemTCArmor", "armor_composite_helmet", 1),
-	pants_suit_paintable("ItemTCArmor", "armor_composite_pants", 1),
-	boots_suit_paintable("ItemTCArmor", "armor_composite_boots", 1),
-	jacket_suit_paintable("ItemTCArmor", "armor_composite_chest", 1),
-	reinforcedPlastic("ItemTrain", "item_fiberglass_plate", 10),
-	reinforcedPlates("ItemTrain", "item_reinforced_plate", 10),
-	composite_wrench("ItemWrench", "item_composite_wrench", 1),
-
 	minecartPassengerHighSpeedCarZeroED("ItemRollingStock", "train_high_speed_cart_zeroed", 14),
 	minecartNYTram("ItemRollingStock", "train_tram_ny", 7),
+	minecartMetro2000Loco("ItemRollingStock", "metro2000_motor", 5),
+	minecartMetro2000Passenger("ItemRollingStock", "metro2000_Tail", 5),
 	minecartLocoHighSpeedZeroED("ItemRollingStock", "train_high_speed_loco_zeroed", 17),
 	minecartLocoA4Mallard("ItemRollingStock", "train_loco_a4_mallard", 14),
 	minecartLocoA4MallardTender("ItemRollingStock", "train_loco_a4_mallard_tender", 5),
@@ -301,50 +367,12 @@ public enum ItemIDs {
 	minecartPassengerDBOriental("ItemRollingStock", "train_passenger_orient", 2),
 	minecartLocoSD40("ItemRollingStock", "train_sd40", 10),
 	zeppelin("ItemZeppelin", "item_zeppelin_one_balloon", 1),
-
-	tcRailSmallStraight("ItemTCRail", "item_rail_straight_small", 5),
-	tcRailMediumStraight("ItemTCRail", "item_rail_straight_medium", 5),
-	tcRailLongStraight("ItemTCRail", "item_rail_straight_large", 5),
-	tcRailSmallRoadCrossing("ItemTCRail", "item_rail_small_road_crossing", 5),
-	tcRailSmallRoadCrossing1("ItemTCRail", "item_rail_small_road_crossing_1", 5),
-	tcRailSmallRoadCrossing2("ItemTCRail", "item_rail_small_road_crossing_2", 5),
-
-	tcRailMediumTurn("ItemTCRail", "item_rail_turn_medium", 5),
-	tcRailLargeTurn("ItemTCRail", "item_rail_turn_large", 5),
-	tcRailVeryLargeTurn("ItemTCRail", "item_rail_turn_veryLarge", 5),
-
-	tcRailMediumSwitch("ItemTCRail", "item_rail_switch_medium", 5),
-	tcRailLargeSwitch("ItemTCRail", "item_rail_switch_large", 5),
-	tcRailMediumParallelSwitch("ItemTCRail", "item_rail_switch_parallel", 5),
-
-	tcRailTwoWaysCrossing("ItemTCRail","item_rail_two_ways_crossing",5),
-	tcRailSlopeWood("ItemTCRail", "item_rail_straight_slope_wood", 3),
-	tcRailSlopeGravel("ItemTCRail", "item_rail_straight_slope_gravel", 3),
-	tcRailSlopeBallast("ItemTCRail", "item_rail_straight_slope_ballast", 3),
-	tcRailLargeSlopeWood("ItemTCRail", "item_rail_straight_slope_wood", 3),
-	tcRailLargeSlopeGravel("ItemTCRail", "item_rail_straight_slope_gravel", 3),
-	tcRailLargeSlopeBallast("ItemTCRail", "item_rail_straight_slope_ballast", 3),
-	tcRailVeryLargeSlopeWood("ItemTCRail", "item_rail_straight_slope_wood", 3),
-	tcRailVeryLargeSlopeGravel("ItemTCRail", "item_rail_straight_slope_gravel", 3),
-	tcRailVeryLargeSlopeBallast("ItemTCRail", "item_rail_straight_slope_ballast", 3),
-	tcRailSlopeSnowGravel("ItemTCRail", "item_rail_straight_slope_snow_gravel", 3),
-	tcRailLargeSlopeSnowGravel("ItemTCRail", "item_rail_straight_slope_snow_gravel", 3),
-	tcRailVeryLargeSlopeSnowGravel("ItemTCRail", "item_rail_straight_slope_snow_gravel", 3),
-	tcRailVeryLargeSwitch("ItemTCRail","item_rail_tc_very_large_switch",1),
-	tcRailSuperLargeTurn("ItemTCRail", "item_rail_tc_super_large_turn", 1),
-	tcRailConcreteSuperLargeTurn("ItemTCRail", "item_rail_tc_super_large_turn",1),
-
-	tcRailConcreteSmallStraight("ItemTCRail","item_rail_tc_concrete_small_straight", 1),
-	tcRailSuperLong("ItemTCRail", "item_rail_tc_super_long", 1),
-
-
-
 	minecartLocoCF7("ItemRollingStock", "train_cf7", 4),
 	minecartLocoGP15("ItemRollingStock", "train_gp15", 4),
 	minecartLocoSW8("ItemRollingStock", "train_sw8", 4),
 	minecartFOLM1B("ItemRollingStock", "folm1b", 4),
 	minecartLocoSM42("ItemRollingStock", "train_sm42", 4),
-	minecartLocoWWCPGP7("ItemRollingStock", "train_WWCPGP7", 4),
+	//minecartLocoWWCPGP7("ItemRollingStock", "train_WWCPGP7", 4),
 	minecartLocoGE44Ton("ItemRollingStock", "44-tonner_icon", 4),
 	minecartF7A("ItemRollingStock", "f7a", 5),
 	minecartF7B("ItemRollingStock", "f7b", 5),
@@ -446,6 +474,10 @@ public enum ItemIDs {
 	minecartPS85Baggage("ItemRollingStock", "PS_85_baggage_icon", 3),
 	minecartClass158engine("ItemRollingStock", "Class_158_Icon", 4),
 	minecartClass158car("ItemRollingStock", "Class_158_Middle_Icon", 3),
+	minecartClass47("ItemRollingStock", "Class_47_Icon", 3),
+	minecartClass156engine("ItemRollingStock", "Class_156_Icon", 3),
+	minecartClass153engine("ItemRollingStock", "153_icon", 3),
+	minecartClass153Coach("ItemRollingStock", "153_icon", 3),
 	minecartPSSleeper565("ItemRollingStock", "BAP_PS_lightweight_5-6-5_sleeper_icon", 3),
 	minecartPSSleeper565DRGW("ItemRollingStock", "BAP_PS_lightweight_DRGW_5-6-5_sleeper_icon", 3),
 
@@ -480,7 +512,7 @@ public enum ItemIDs {
 	minecart20600DOT111("ItemRollingStock", "20600DOT", 5),
 	minecart29080DOT111("ItemRollingStock", "29080DOT", 6),
 	minecartLightCrane("ItemRollingStock", "LightCrane_Icon", 3),
-	minecartWWCP40FootBox("ItemRollingStock", "40fticon", 3),
+	//minecartWWCP40FootBox("ItemRollingStock", "40fticon", 3),
 	//minecartHuskyStackWellcar("ItemRollingStock", "huskystack", 5),
 	minecarthicube60foot("ItemRollingStock", "hicube60", 5),
 	minecartBNSFGon("ItemRollingStock", "BNSFGondola", 3),
@@ -496,6 +528,7 @@ public enum ItemIDs {
 	minecartAlcoPB1("ItemRollingStock", "AlcoPB1Icon",4),
 	minecartEMDE8A("ItemRollingStock", "EMDE8AIcon",5),
 	minecartSNCB_M6("ItemRollingStock", "SNCB_M6", 5),
+	minecartSNCB_M6_TAIL("ItemRollingStock", "SNCB_M6_TAIL", 5),
 	minecartClass319Engine("ItemRollingStock", "Class319Engine", 5),
 	minecartClass319passenger("ItemRollingStock", "Class319Middle", 5),
 	minecartClass319panto("ItemRollingStock", "Class319Panto", 5),
@@ -503,9 +536,13 @@ public enum ItemIDs {
 	minecartPSRPOPM("ItemRollingStock", "PSRPOPMIcon", 3),
 	minecartPSRPO("ItemRollingStock", "PSRPOIcon", 3),
 	minecartPassengerMinetrain("ItemRollingStock","train_mine_cart", 1),
-
+	minecartBNLRV_B("ItemRollingStock", "BNLRV_B", 1 ),
+	minecartBNLRV_A("ItemRollingStock", "BNLRV_A", 1 ),
+	minecartasteri("ItemRollingStock", "asteri",1),
+	minecartBR_Black_5("ItemRollingStock", "BR_Black_5", 1),
+	minecartBR_Black_5_Tender("ItemRollingStock", "BR_Black_5_Tender", 1),
 	//signalSpanish("ItemsignalSpanish","signalSpanish", 1),
-	kSignal("ItemsignalSpanish","signalK",2),
+
 
 
 	;

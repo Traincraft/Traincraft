@@ -14,13 +14,14 @@ import train.common.library.Info;
 public class ModelTwoWaysCrossingTCTrack extends ModelBase {
 	private IModelCustom modelTwoWaysCrossing;
 
+
 	public ModelTwoWaysCrossingTCTrack() {
-		modelTwoWaysCrossing = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_x.obj"));
-	}
+		modelTwoWaysCrossing = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_x.obj"));}
 
 	public void render() {
 		modelTwoWaysCrossing.renderAll();
 	}
+
 
 	public void render(double x, double y, double z) {
 		render(x, y, z, 1, 1, 1, 1);

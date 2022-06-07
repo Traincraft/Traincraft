@@ -60,13 +60,14 @@ public enum BlockIDs {
 	overheadWireDouble(false,null),
 	poweredGravel(false,null),
 	snowGravel(false,null),
+	dirtyBallast(false,null),
+	dirtierBallast(false,null),
+	asphalt(false, null),
 	signalSpanish(false,null),//ItemsignalSpanish.class
-	trackConcrete(false,null),
 	kSignal(false,null),
 	FortyFootContainer(true, ItemFortyFootContainer.class),
 	speedSign(false, null),
-	dirtyBallast(false,null),
-	dirtierBallast(false,null),
+
 	;
 
 	public Block block;

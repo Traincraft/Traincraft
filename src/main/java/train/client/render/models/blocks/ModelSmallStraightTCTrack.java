@@ -16,14 +16,10 @@ public class ModelSmallStraightTCTrack extends ModelBase {
 	
 	private IModelCustom modelSmallStraight;
 	private IModelCustom modelRoadCrossing;
-	private IModelCustom modelConcreteSmallStraight;
-	private IModelCustom modelSuperLong;
 
 	public ModelSmallStraightTCTrack() {
 		modelSmallStraight = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_normal.obj"));
 		modelRoadCrossing = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_roadcrossing.obj"));
-		modelConcreteSmallStraight = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "concrete_track.obj"));
-		modelSuperLong = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_super_long.obj"));
 	}
 
 	public void render(String type) {
@@ -39,12 +35,7 @@ public class ModelSmallStraightTCTrack extends ModelBase {
 		if (type.equals("crossing2")) {
 			modelRoadCrossing.renderAll();
 		}
-		if (type.equals("concrete_small_straight")) {
-			modelConcreteSmallStraight.renderAll();
-		}
-		if (type.equals("super_long")) {
-			modelSuperLong.renderAll();
-		}
+
 	}
 	
 	public void render(String type, TileTCRail tcRail, double x, double y, double z) {
@@ -74,9 +65,9 @@ public class ModelSmallStraightTCTrack extends ModelBase {
 		if (type.equals("crossing2")) {
 			FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_roadcrossing_2.png"));
 		}
-		if (type.equals("concrete_small_straight")) {
-			FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
-		}
+
+
+
 
 
 		if (facing == 3) {

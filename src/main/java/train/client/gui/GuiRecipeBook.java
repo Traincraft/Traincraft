@@ -1,18 +1,7 @@
 package train.client.gui;
 
-import static codechicken.lib.gui.GuiDraw.drawMultilineTip;
-
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
-import org.lwjgl.opengl.GL11;
-
-import codechicken.lib.gui.GuiDraw;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.RenderHelper;
@@ -23,8 +12,8 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
+import org.lwjgl.opengl.GL11;
 import train.client.core.handlers.RecipeBookHandler;
-import train.common.core.interfaces.ITCRecipe;
 import train.common.core.managers.TierRecipe;
 import train.common.core.managers.TierRecipeManager;
 import train.common.inventory.TrainCraftingManager;
@@ -35,6 +24,9 @@ import train.common.library.Info;
 import train.common.library.ItemIDs;
 import train.common.recipes.ShapedTrainRecipes;
 import train.common.recipes.ShapelessTrainRecipe;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @SideOnly(Side.CLIENT)
 public class GuiRecipeBook extends GuiScreen {
@@ -54,22 +46,14 @@ public class GuiRecipeBook extends GuiScreen {
 	public ArrayList<String> rightPage = new ArrayList<String>();
 	public ArrayList<String> rightPageImage = new ArrayList<String>();
 	public ArrayList<ArrayList> rightPageItemStacks = new ArrayList<ArrayList>();
-	private Map<Integer, List<ITCRecipe>> recipeListWB = RecipeBookHandler.workbenchListCleaner(TrainCraftingManager.getInstance().getRecipeList());
-	private Map<Integer, List<TierRecipe>> recipeList = RecipeBookHandler.assemblyListCleaner(TierRecipeManager.getInstance().getRecipeList());
+	private List recipeListWB = RecipeBookHandler.workbenchListCleaner(TrainCraftingManager.getInstance().getRecipeList());
+	private List<TierRecipe> recipeList = RecipeBookHandler.assemblyListCleaner(TierRecipeManager.getInstance().getRecipeList());
 
 	private GuiButtonNextPage buttonRead;
 	private GuiButtonNextPage buttonNextPage;
 	private GuiButtonNextPage buttonPreviousPage;
 	private GuiButtonNextPage buttonBack;
 	private RenderItem renderItem = new RenderItem();
-
-	private int mLeftPage = -1;
-	private int mLeftRecipeIndex = 0;
-	private long mLeftLastTime = 0;
-
-	private int mRightPage = -1;
-	private int mRightRecipeIndex = 0;
-	private long mRightLastTime = 0;
 
 	public GuiRecipeBook(EntityPlayer par1EntityPlayer, ItemStack par2ItemStack) {
 		this.editingPlayer = par1EntityPlayer;
@@ -105,13 +89,14 @@ public class GuiRecipeBook extends GuiScreen {
 			}
 		});
 		addPage("World generation:\n\n By default, petrol and oil sands will be generated in the world. If you don't want them, open Traincraft.cfg and change the line ENABLE_ORE_SPAWN from true to false.\nOnly the new ores will generate, the old ones can be transformed into the new ones in a crafting table.", "", "left", new ArrayList<StackToDraw>() {
-			{
+			{ 
 				add(new StackToDraw(new ItemStack(BlockIDs.oreTC.block, 1, 1), 60, 160));
 				add(new StackToDraw(new ItemStack(BlockIDs.oreTC.block, 1, 2), 120, 160));
 			}
 		});
 
-		addPage("Keys:\nTo interact with the trains (e.g. enter, display the inventory) click above the shadow the train is casting on the ground.\nInside the locomotive press R to open up the GUI: This is where you can put fuel, water, additional cargo, set brakes, etc.\n", "", "right", new ArrayList<StackToDraw>() {
+		addPage("Keys:\nTo interact with the trains (e.g. enter, display the inventory) click above the shadow the train is casting on the ground.\nInside the locomotive press R to open up the GUI: This is where you can put fuel, water, additional cargo, set brakes, etc.\n",
+				"", "right", new ArrayList<StackToDraw>() {
 			{
 				add(new StackToDraw(new ItemStack(Items.coal), 60, 160));
 				add(new StackToDraw(new ItemStack(Items.water_bucket), 120, 160));
@@ -130,7 +115,8 @@ public class GuiRecipeBook extends GuiScreen {
 				add(new StackToDraw(new ItemStack(ItemIDs.minecartLocoBR01_DB.item), 140, 145));
 			}
 		});
-		addPage("Zeppelin:\nRight click on the Zeppelin to enter it. \nInside, press R to open its GUI. \nUse the WASD keys to move the zeppelin around. \nPress once Y to ascend or X to descend, To lock altitude, press C. \n", "", "right", new ArrayList<StackToDraw>() {
+		addPage("Zeppelin:\nRight click on the Zeppelin to enter it. \nInside, press R to open its GUI. \nUse the WASD keys to move the zeppelin around. \nPress once Y to ascend or X to descend, To lock altitude, press C. \n", "", "right",
+				new ArrayList<StackToDraw>() {
 			{
 				add(new StackToDraw(new ItemStack(ItemIDs.airship.item), 20, 16));
 				add(new StackToDraw(new ItemStack(ItemIDs.balloon.item), 170, 16));
@@ -154,7 +140,8 @@ public class GuiRecipeBook extends GuiScreen {
 			}
 		});
 
-		addPage("Electric locomotives need redstone or RF-based energy storages, they can also be powered by Electric tracks.\n\nHeat:\nHeat level is indicated by the heat bar in the HUD.\nHeat level will go to a normal state when the train is fueled but don't forget to put water in steam locomotive or it will overheat very fast.\n", "", "right", new ArrayList<StackToDraw>() {
+		addPage("Electric locomotives need redstone or RF-based energy storages, they can also be powered by Electric tracks.\n\nHeat:\nHeat level is indicated by the heat bar in the HUD.\nHeat level will go to a normal state when the train is fueled but don't forget to put water in steam locomotive or it will overheat very fast.\n",
+				"", "right", new ArrayList<StackToDraw>() {
 			{
 				add(new StackToDraw(new ItemStack(ItemIDs.minecartBR_E69.item), 20, 16));
 				add(new StackToDraw(new ItemStack(Items.redstone), 170, 16));
@@ -230,13 +217,13 @@ public class GuiRecipeBook extends GuiScreen {
 				add(new StackToDraw(new ItemStack(Blocks.golden_rail), 170, 16));
 			}
 		});
-		addPage("A word about tracks II:\nTo check the current charge click the track with a crowbar.\nAn electric track connected to a redstone power source gets 1 energy unit every two ticks.\nLocomotive holding track will only hold TC locomotives. No boost is given, the previous speed is restored once released.\nAll tracks require Railcraft to be installed.", "", "left", new ArrayList<StackToDraw>() {
-			{
-				add(new StackToDraw(new ItemStack(Blocks.activator_rail), 17, 16));
-				add(new StackToDraw(new ItemStack(Blocks.golden_rail), 170, 16));
-			}
-		});
-		addPage("Steel rails parts and copper rails parts are crafted inside RC Rolling Machine, tracks are assembled in vanilla workbench.\nTC boarding/disembarking track are designed to work only on the Stock Car. Animal boarding will take any nearby animal and put it inside a passing Stock Car. Mob boarding will affect any mob.\nDisembark will eject any mob inside the Stock Car.", "", "right", new ArrayList<StackToDraw>() {
+		addPage("A word about tracks II:\nTo check the current charge click the track with a crowbar.\nAn electric track connected to a redstone power source gets 1 energy unit every two ticks.\nLocomotive holding track will only hold TC locomotives. No boost is given, the previous speed is restored once released.\nAll tracks require Railcraft to be installed.","","left",new ArrayList<StackToDraw>() {
+					{
+						add(new StackToDraw(new ItemStack(Blocks.activator_rail), 17, 16));
+						add(new StackToDraw(new ItemStack(Blocks.golden_rail), 170, 16));
+					}
+				});
+		addPage("Steel rails parts and copper rails parts are crafted inside RC Rolling Machine, tracks are assembled in vanilla workbench.\nTC boarding/disembarking track are designed to work only on the Stock Car. Animal boarding will take any nearby animal and put it inside a passing Stock Car. Mob boarding will affect any mob.\nDisembark will eject any mob inside the Stock Car.","","right",new ArrayList<StackToDraw>() {
 			{
 				add(new StackToDraw(new ItemStack(Blocks.detector_rail), 17, 16));
 				add(new StackToDraw(new ItemStack(Blocks.golden_rail), 170, 16));
@@ -333,44 +320,46 @@ public class GuiRecipeBook extends GuiScreen {
 				add(new StackToDraw(new ItemStack(ItemIDs.pants_driver_paintable.item), 140, 165));
 			}
 		});
-		addPage("Armors II: \nThe helmet cures poisons, helps you breathe under water, and gives night vision in dark places (not when riding an entity)\nThe chest regen half a heart every 5s.\nThe pants protect you against fire damage.\nThe boots absorb fall damage.\n" + "Ticket man, driver and composite armors are paintable (in train workbench)", "", "right", new ArrayList<StackToDraw>() {
+		addPage("Armors II: \nThe helmet cures poisons, helps you breathe under water, and gives night vision in dark places (not when riding an entity)\nThe chest regen half a heart every 5s.\nThe pants protect you against fire damage.\nThe boots absorb fall damage.\n"+
+				"Ticket man, driver and composite armors are paintable (in train workbench)", "", "right", new ArrayList<StackToDraw>() {
 			{
 				add(new StackToDraw(new ItemStack(ItemIDs.helmet_suit_paintable.item), 20, 16));
 				add(new StackToDraw(new ItemStack(ItemIDs.reinforcedPlates.item), 170, 16));
 			}
 		});
-		addPage("Generators:\nThere are three generators in the mod.\nWater wheel, Wind mill, and Diesel Generator are RF generators. Water wheel has to be placed beside flowing water. Plug kinesis pipes to the sides.\nWind mill will produce various energy amount depending on wind strength.\nFill the Diesel Generator with diesel, power it with redstone, plug some kinesis pipes.\n", "", "left", new ArrayList<StackToDraw>() {
-			{
-				add(new StackToDraw(new ItemStack(BlockIDs.windMill.block, 1, 4), 20, 16));
-				add(new StackToDraw(new ItemStack(BlockIDs.waterWheel.block, 1, 4), 170, 16));
-			}
-		});
-		addPage("Villager\n\nTraincraft adds a new villager and a train station to village generation.\n\nThe villager will trade all traincraft items with you upon various prices.\n", "", "right", new ArrayList<StackToDraw>() {
-			{
-				add(new StackToDraw(new ItemStack(ItemIDs.jacket_driver_paintable.item, 1, 4), 20, 16));
-				add(new StackToDraw(new ItemStack(ItemIDs.hat_driver_paintable.item, 1, 4), 170, 16));
-			}
-		});
-		addPage("Known bugs:\n- Sharp turns are not supported (close 180 turns)\n- When coming backwards from the Curve of a switch too slow Switchstate can be false\n- Jukebox Volume incorrect after rejoin/restart\n- Don't use 4 TC Slopes in a row!\n- TC Slopes won't work above about y=160 ", "", "left", new ArrayList<StackToDraw>() {
-			{
-				add(new StackToDraw(new ItemStack(Items.skull, 1, 4), 20, 16));
-				add(new StackToDraw(new ItemStack(Items.skull, 1, 4), 170, 16));
-			}
-		});
-
-		addPage("Advice:\nDue to the bounding box issues, carts have to be attached and PULLED. Don't try to push\n\nRailcraft pull system has been deactivated on Traincraft loco. Use TC's system. \n", "", "right", new ArrayList<StackToDraw>() {
-			{
-				add(new StackToDraw(new ItemStack(ItemIDs.minecartTankWagon_DB.item), 20, 16));
-				add(new StackToDraw(new ItemStack(BlockIDs.oreTC.block), 170, 16));
-				add(new StackToDraw(new ItemStack(ItemIDs.minecartCaboose3.item), 40, 155));
-				add(new StackToDraw(new ItemStack(ItemIDs.minecartFreightWellcar.item), 60, 155));
-				add(new StackToDraw(new ItemStack(ItemIDs.minecartOpenWagon.item), 80, 155));
-				add(new StackToDraw(new ItemStack(ItemIDs.minecartStockCar.item), 100, 155));
-				add(new StackToDraw(new ItemStack(ItemIDs.minecartOpenWagon.item), 120, 155));
-				add(new StackToDraw(new ItemStack(ItemIDs.minecartBR_E69.item), 140, 155));
-			}
-		});
-
+		addPage("Generators:\nThere are three generators in the mod.\nWater wheel, Wind mill, and Diesel Generator are RF generators. Water wheel has to be placed beside flowing water. Plug kinesis pipes to the sides.\nWind mill will produce various energy amount depending on wind strength.\nFill the Diesel Generator with diesel, power it with redstone, plug some kinesis pipes.\n","","left",new ArrayList<StackToDraw>() {
+					{
+						add(new StackToDraw(new ItemStack(BlockIDs.windMill.block, 1, 4), 20, 16));
+						add(new StackToDraw(new ItemStack(BlockIDs.waterWheel.block, 1, 4), 170, 16));
+					}
+				});
+		addPage("Villager\n\nTraincraft adds a new villager and a train station to village generation.\n\nThe villager will trade all traincraft items with you upon various prices.\n","","right",new ArrayList<StackToDraw>() {
+					{
+						add(new StackToDraw(new ItemStack(ItemIDs.jacket_driver_paintable.item, 1, 4), 20, 16));
+						add(new StackToDraw(new ItemStack(ItemIDs.hat_driver_paintable.item, 1, 4), 170, 16));
+					}
+				});
+		addPage("Known bugs:\n- Sharp turns are not supported (close 180 turns)\n- When coming backwards from the Curve of a switch too slow Switchstate can be false\n- Jukebox Volume incorrect after rejoin/restart\n- Don't use 4 TC Slopes in a row!\n- TC Slopes won't work above about y=160 ",
+				"", "left", new ArrayList<StackToDraw>() {
+					{
+						add(new StackToDraw(new ItemStack(Items.skull, 1, 4), 20, 16));
+						add(new StackToDraw(new ItemStack(Items.skull, 1, 4), 170, 16));
+					}
+				});
+		
+		addPage("Advice:\nDue to the bounding box issues, carts have to be attached and PULLED. Don't try to push\n\nRailcraft pull system has been deactivated on Traincraft loco. Use TC's system. \n","","right",new ArrayList<StackToDraw>() {
+					{
+						add(new StackToDraw(new ItemStack(ItemIDs.minecartTankWagon_DB.item), 20, 16));
+						add(new StackToDraw(new ItemStack(BlockIDs.oreTC.block), 170, 16));
+						add(new StackToDraw(new ItemStack(ItemIDs.minecartCaboose3.item), 40, 155));
+						add(new StackToDraw(new ItemStack(ItemIDs.minecartFreightWellcar.item), 60, 155));
+						add(new StackToDraw(new ItemStack(ItemIDs.minecartOpenWagon.item), 80, 155));
+						add(new StackToDraw(new ItemStack(ItemIDs.minecartStockCar.item), 100, 155));
+						add(new StackToDraw(new ItemStack(ItemIDs.minecartOpenWagon.item), 120, 155));
+						add(new StackToDraw(new ItemStack(ItemIDs.minecartBR_E69.item), 140, 155));
+					}
+				});
+		
 		addPage("On the following pages you will find all the train workbench recipes and assembly table recipes.\nIt is however strongly suggested to try to discover the recipes by yourself...\n\nWe hope you will enjoy the mod!\n\nSpitfire4466 and MrBrutal", "", "left", new ArrayList<StackToDraw>() {
 			{
 				add(new StackToDraw(new ItemStack(BlockIDs.trainWorkbench.block), 20, 16));
@@ -379,7 +368,7 @@ public class GuiRecipeBook extends GuiScreen {
 				add(new StackToDraw(new ItemStack(ItemIDs.overalls.item), 140, 155));
 			}
 		});
-		addPage("this page was intentionally left blank, as a joke.", "", "right", null);
+		addPage("this page was intentionally left blank, as a joke.","","right",null);
 		if (rightPage != null && recipeList != null && recipeListWB != null)
 			bookTotalPages = this.rightPage.size() + (recipeList.size() / 2) + (recipeListWB.size() / 2);
 	}
@@ -438,7 +427,7 @@ public class GuiRecipeBook extends GuiScreen {
 	}
 
 	private void updateButtons() {
-		this.buttonBack.visible = (this.currPage == bookTotalPages - 1);
+		this.buttonBack.visible = (this.currPage == bookTotalPages-1);
 		this.buttonBack.showButton = true;
 		this.buttonRead.visible = (this.currPage == 0);
 		this.buttonRead.showButton = false;
@@ -449,8 +438,7 @@ public class GuiRecipeBook extends GuiScreen {
 	}
 
 	/**
-	 * Fired when a control is clicked. This is the equivalent of
-	 * ActionListener.actionPerformed(ActionEvent e).
+	 * Fired when a control is clicked. This is the equivalent of ActionListener.actionPerformed(ActionEvent e).
 	 */
 	@Override
 	protected void actionPerformed(GuiButton par1GuiButton) {
@@ -460,18 +448,21 @@ public class GuiRecipeBook extends GuiScreen {
 					++this.currPage;
 					this.currRecipe += 2;
 				}
-			} else if (par1GuiButton.id == 2) {
+			}
+			else if (par1GuiButton.id == 2) {
 				if (this.currPage > 0) {
 					--this.currPage;
 					this.currRecipe -= 2;
 				}
-			} else if (par1GuiButton.id == 3) {
+			}
+			else if (par1GuiButton.id == 3) {
 				if (this.currPage == 0) {
 					++this.currPage;
 					this.currRecipe += 2;
 				}
-			} else if (par1GuiButton.id == 4) {
-				if (this.currPage == bookTotalPages - 1) {
+			}
+			else if (par1GuiButton.id == 4) {
+				if (this.currPage == bookTotalPages-1) {
 					this.currPage = 0;
 					this.currRecipe = 0;
 				}
@@ -491,19 +482,20 @@ public class GuiRecipeBook extends GuiScreen {
 		int var6 = (this.height) / 2 - bookImageHeight / 2;
 
 		if (this.currPage > 0) {
-			// GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-			mc.renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, Info.bookPrefix + "bookright.png"));
+			//GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+			mc.renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation,Info.bookPrefix + "bookright.png"));
 			this.drawTexturedModalRect(var5, var6, 0, 0, this.bookImageWidth, this.bookImageHeight + 20);
-			// GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-			mc.renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, Info.bookPrefix + "bookleft.png"));
+			//GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+			mc.renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation,Info.bookPrefix + "bookleft.png"));
 			var5 -= this.bookImageWidth;
 			this.drawTexturedModalRect(var5, var6, 256 - this.bookImageWidth, 0, this.bookImageWidth, this.bookImageHeight);
-		} else {
-			mc.renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, Info.bookPrefix + "bookcover.png"));
+		}
+		else {
+			mc.renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation,Info.bookPrefix + "bookcover.png"));
 			this.drawTexturedModalRect(var5 - 55, var6 - 15, 0, 0, 256, 256);
 		}
 
-		pageIndic = String.format(StatCollector.translateToLocal("book.pageIndicator"), new Object[] { this.currPage + 1, this.bookTotalPages });
+		pageIndic = String.format(StatCollector.translateToLocal("book.pageIndicator"), new Object[] {this.currPage + 1, this.bookTotalPages});
 
 		var9 = this.fontRendererObj.getStringWidth(pageIndic);
 		if (this.currPage > 0) {
@@ -534,334 +526,180 @@ public class GuiRecipeBook extends GuiScreen {
 			}
 			GL11.glDisable(32826);
 		}
-
-		ItemStack selectedItem = null;
-
 		if (this.currPage > rightPage.size() - 1) {
-			// System.out.println((rightPage.size()*2) -1);
+			//System.out.println((rightPage.size()*2) -1);
 			int page = this.currRecipe - (rightPage.size() * 2) + 1;
-			if (page < recipeListWB.size()) {
-
-				drawWorkBenchBackground(var5, var6, 0, var9, "right");
-				drawWorkBenchBackground(var5, var6, 0, var9, "left");
+			if (!(page > recipeListWB.size() - 1)) {
+				drawWorkBenchBackground(recipeListWB, var5, var6, 0, var9, "right");
+				drawWorkBenchBackground(recipeListWB, var5, var6, 0, var9, "left");
 				RenderHelper.enableGUIStandardItemLighting();
-				selectedItem = drawWorkBenchRecipe(recipeListWB, par1, par2, var5, var6, page - 1, var9, "right");
-				ItemStack selectedItemLeft = drawWorkBenchRecipe(recipeListWB, par1, par2, var5, var6, page, var9, "left");
-				if(selectedItem == null) {
-					selectedItem = selectedItemLeft;
-				}
-
-			} else if ((page - recipeListWB.size()) >= 0 && (page - recipeListWB.size()) < recipeList.size() && recipeList.get(new ArrayList<>(recipeList.keySet()).get(page - recipeListWB.size())) != null) {
-
-				drawAssemblyBackground(var5 - 125, var6 - 33, page - recipeListWB.size(), var9, "right");
-				drawAssemblyBackground(var5 - 50, var6 - 33, page - recipeListWB.size() - 1, var9, "left");
+				drawWorkBenchRecipe(recipeListWB, var5, var6, page - 1, var9, "right");
+				drawWorkBenchRecipe(recipeListWB, var5, var6, page, var9, "left");
+			}
+			else if ((page - recipeListWB.size()) >= 0 && (page - recipeListWB.size()) < recipeList.size() && recipeList.get(page - recipeListWB.size()) != null) {
+				drawAssemblyBackground(recipeList, var5 - 125, var6 - 33, page - recipeListWB.size(), var9, "right");
+				drawAssemblyBackground(recipeList, var5 - 50, var6 - 33, page - recipeListWB.size() - 1, var9, "left");
 				RenderHelper.enableGUIStandardItemLighting();
-				selectedItem = drawAssemblyRecipe(recipeList, par1, par2, var5 - 125, var6 - 33, page - recipeListWB.size(), var9, "right");
-				ItemStack selectedItemLeft = drawAssemblyRecipe(recipeList, par1, par2, var5 - 50, var6 - 33, page - recipeListWB.size() - 1, var9, "left");
-				if(selectedItem == null) {
-					selectedItem = selectedItemLeft;
-				}
-
+				drawAssemblyRecipe(recipeList, var5 - 125, var6 - 33, page - recipeListWB.size(), var9, "right");
+				drawAssemblyRecipe(recipeList, var5 - 50, var6 - 33, page - recipeListWB.size() - 1, var9, "left");
 			}
 		}
-
-		if (selectedItem != null) {
-			List<String> tooltip = new LinkedList<String>();
-			tooltip.add(selectedItem.getDisplayName());
-			FontRenderer font = GuiDraw.fontRenderer;
-
-			drawMultilineTip(font, par1 + 12, par2 + 12, tooltip);
-		}
-
 		GL11.glDisable(GL11.GL_LIGHTING);
 	}
 
-	private void drawAssemblyBackground(int var5, int var6, int page, int var9, String side) {
-		List<Integer> keys = new ArrayList<Integer>(recipeList.keySet());
-		if (keys.get(page) != null) {
-			int tier = recipeList.get(keys.get(page)).get(0).getTier();
-			switch (tier) {
-			case 1:
-				mc.renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, Info.TEX_TIER_I));
-				break;
-			case 2:
-				mc.renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, Info.TEX_TIER_II));
-				break;
-			case 3:
-				mc.renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, Info.TEX_TIER_III));
-				break;
-			}
-
-			// if (side.equals("right"))
-			// GL11.glScaled(0.7, 0.7, 0.7);
-			if (side.equals("left")) {
-				this.drawTexturedModalRect(var5 + 70, var6 + 50, 0, 0, 177, 163);
-			} else if (side.equals("right")) {
-				this.drawTexturedModalRect(var5 + 340, var6 + 50, 0, 0, 177, 163);
-			}
-		}
+	private void drawAssemblyBackground(List<TierRecipe> recipeList, int var5, int var6, int page, int var9, String side) {
+		if (page < 0)
+			return;
+		int tier = recipeList.get(page).getTier();
+		if (tier == 1)
+			mc.renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation,Info.TEX_TIER_I));
+		if (tier == 2)
+			mc.renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation,Info.TEX_TIER_II));
+		if (tier == 3)
+			mc.renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation,Info.TEX_TIER_III));
+		//if (side.equals("right"))
+		//GL11.glScaled(0.7, 0.7, 0.7);
+		if (side.equals("left"))
+			this.drawTexturedModalRect(var5 + 70, var6 + 50, 0, 0, 177, 163);
+		if (side.equals("right"))
+			this.drawTexturedModalRect(var5 + 340, var6 + 50, 0, 0, 177, 163);
 	}
 
-	private void drawWorkBenchBackground(int var5, int var6, int page, int var9, String side) {
-		// int var4 = this.mc.renderEngine.getTexture("/gui/crafting.png");
-		// GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		mc.renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, Info.guiPrefix + "crafting_table.png"));
+	private void drawWorkBenchBackground(List<ShapedTrainRecipes> recipeListWB, int var5, int var6, int page, int var9, String side) {
+		//int var4 = this.mc.renderEngine.getTexture("/gui/crafting.png");
+		//GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+		mc.renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation,Info.guiPrefix+"crafting_table.png"));
 		if (side.equals("left"))
 			this.drawTexturedModalRect(var5 + 20, var6 + 50, 0, 0, 177, 80);
 		if (side.equals("right"))
 			this.drawTexturedModalRect(var5 + 215, var6 + 50, 0, 0, 177, 80);
 	}
 
-	private ItemStack drawWorkBenchRecipe(Map<Integer, List<ITCRecipe>> pRecipeListWB, int pMouseX, int pMouseY, int var5, int var6, int page, int var9, String side) {
-		ItemStack underMouse = null;
-		List<Integer> keys = new ArrayList<Integer>(pRecipeListWB.keySet());
-
-		if (keys.get(page) != null) {
-
-			ItemStack[] itemList = new ItemStack[9];
-			ItemStack itemOutput = null;
-
-			List<ITCRecipe> recipes = pRecipeListWB.get(keys.get(page));
-
-			long time = System.currentTimeMillis() / 1000;
-
-			boolean isLeft = "left".equals(side);
-
-			if (isLeft) {
-				if (recipes != null && (time % 3) == 0 && time != mLeftLastTime) {
-					mLeftRecipeIndex++;
-					mLeftLastTime = time;
-				}
-				if (mLeftRecipeIndex >= recipes.size() || mLeftPage != page) {
-					mLeftPage = page;
-					mLeftRecipeIndex = 0;
-				}
-			} else {
-				if (recipes != null && (time % 3) == 0 && time != mRightLastTime) {
-					mRightRecipeIndex++;
-					mRightLastTime = time;
-				}
-				if (mRightRecipeIndex >= recipes.size() || mRightPage != page) {
-					mRightPage = page;
-					mRightRecipeIndex = 0;
-				}
-			}
-
-			ITCRecipe recipe = recipes != null ? recipes.get(isLeft ? mLeftRecipeIndex : mRightRecipeIndex) : null;
-
-			if (recipe instanceof ShapedTrainRecipes) {
-				itemList = ((ShapedTrainRecipes) recipe).recipeItems;
-				itemOutput = ((ShapedTrainRecipes) recipe).getRecipeOutput();
-			}
-			if (recipe instanceof ShapelessTrainRecipe) {
-				List<ItemStack> itemListShapeless = ((ShapelessTrainRecipe) recipe).recipeItems;
-				for (int t = 0; t < itemListShapeless.size(); t++) {
-					if (itemListShapeless != null && itemListShapeless.get(t) != null)
-						itemList[t] = itemListShapeless.get(t);
-				}
-				itemOutput = ((ShapelessTrainRecipe) recipe).getRecipeOutput();
-			}
-
-			// System.out.println(itemOutput);
-			int offset = isLeft ? 0 : 194;
-
-			GL11.glEnable(32826);
-			int x;
-			int y;
-			drawItemInSlot(itemList[0], x = var5 + 50 + offset, y = var6 + 67);
-			if (underMouse == null && isStackUnderMouse(x, y, pMouseX, pMouseY)) {
-				underMouse = itemList[0];
-			}
-
-			drawItemInSlot(itemList[1], x = var5 + 68 + offset, y = var6 + 67);
-			if (underMouse == null && isStackUnderMouse(x, y, pMouseX, pMouseY)) {
-				underMouse = itemList[1];
-			}
-			
-			drawItemInSlot(itemList[2], x = var5 + 86 + offset, y = var6 + 67);
-			if (underMouse == null && isStackUnderMouse(x, y, pMouseX, pMouseY)) {
-				underMouse = itemList[2];
-			}
-
-			drawItemInSlot(itemList[3], x = var5 + 50 + offset, y = var6 + 85);
-			if (underMouse == null && isStackUnderMouse(x, y, pMouseX, pMouseY)) {
-				underMouse = itemList[3];
-			}
-			
-			drawItemInSlot(itemList[4], x = var5 + 68 + offset, y = var6 + 85);
-			if (underMouse == null && isStackUnderMouse(x, y, pMouseX, pMouseY)) {
-				underMouse = itemList[4];
-			}
-			
-			drawItemInSlot(itemList[5], x = var5 + 86 + offset, y = var6 + 85);
-			if (underMouse == null && isStackUnderMouse(x, y, pMouseX, pMouseY)) {
-				underMouse = itemList[5];
-			}
-			
-			drawItemInSlot(itemList[6], x = var5 + 50 + offset, y = var6 + 103);
-			if (underMouse == null && isStackUnderMouse(x, y, pMouseX, pMouseY)) {
-				underMouse = itemList[6];
-			}
-			
-			drawItemInSlot(itemList[7], x = var5 + 68 + offset, y = var6 + 103);
-			if (underMouse == null && isStackUnderMouse(x, y, pMouseX, pMouseY)) {
-				underMouse = itemList[7];
-			}
-			
-			drawItemInSlot(itemList[8], x = var5 + 86 + offset, y = var6 + 103);
-			if (underMouse == null && isStackUnderMouse(x, y, pMouseX, pMouseY)) {
-				underMouse = itemList[8];
-			}
-			
-			drawItemInSlot(itemOutput, x = var5 + 145 + offset, y = var6 + 85);
-			if (underMouse == null && isStackUnderMouse(x, y, pMouseX, pMouseY)) {
-				underMouse = itemOutput;
-			}
-			
-
-			if (itemOutput != null && itemOutput.getItem() != null) {
-				this.fontRendererObj.drawString(itemOutput.getItem().getItemStackDisplayName(itemOutput), var5 + 20 + offset, var6 + 40, 0);
-			}
-			if (itemOutput != null) {
-				this.fontRendererObj.drawString("Crafted in: Train Workbench", var5 + 20 + offset, var6 + 130, 0);
-			}
-			if (itemOutput != null) {
-				for (int z = 0; z < RecipeBookHandler.vanillaWorkTableRecipes.length; z++) {
-					if (itemOutput.getItem() != null && RecipeBookHandler.vanillaWorkTableRecipes[z] != null && RecipeBookHandler.vanillaWorkTableRecipes[z].equals(itemOutput.getItem().getItemStackDisplayName(itemOutput))) {
-						this.fontRendererObj.drawString("Also crafted in: Crafting Table", var5 + 20 + offset, var6 + 140, 0);
-						break;
-					}
-				}
-			}
-			GL11.glDisable(32826);
+	private void drawWorkBenchRecipe(List recipeList, int var5, int var6, int page, int var9, String side) {
+		if (recipeList.get(page) == null)
+			return;
+		ItemStack[] itemList = new ItemStack[9];
+		ItemStack itemOutput = null;
+		if (recipeList.get(page) instanceof ShapedTrainRecipes) {
+			itemList = ((ShapedTrainRecipes) recipeList.get(page)).recipeItems;
+			itemOutput = ((ShapedTrainRecipes) recipeList.get(page)).getRecipeOutput();
 		}
-		return underMouse;
+		if (recipeList.get(page) instanceof ShapelessTrainRecipe) {
+			List<ItemStack> itemListShapeless = ((ShapelessTrainRecipe) recipeList.get(page)).recipeItems;
+			for (int t = 0; t < itemListShapeless.size(); t++) {
+				if (itemListShapeless != null && itemListShapeless.get(t) != null)
+					itemList[t] = itemListShapeless.get(t);
+			}
+			itemOutput = ((ShapelessTrainRecipe) recipeList.get(page)).getRecipeOutput();
+		}
+
+		//System.out.println(itemOutput);
+		int offset = 0;
+		if (side.equals("right"))
+			offset = 194;
+		GL11.glEnable(32826);
+		if (itemList[0] != null)
+			renderItem.renderItemIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList[0], var5 + 50 + offset, var6 + 67);
+		if (itemList[1] != null)
+			renderItem.renderItemIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList[1], var5 + 68 + offset, var6 + 67);
+		if (itemList[2] != null)
+			renderItem.renderItemIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList[2], var5 + 86 + offset, var6 + 67);
+		if (itemList[3] != null)
+			renderItem.renderItemIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList[3], var5 + 50 + offset, var6 + 85);
+		if (itemList[4] != null)
+			renderItem.renderItemIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList[4], var5 + 68 + offset, var6 + 85);
+		if (itemList[5] != null)
+			renderItem.renderItemIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList[5], var5 + 86 + offset, var6 + 85);
+		if (itemList[6] != null)
+			renderItem.renderItemIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList[6], var5 + 50 + offset, var6 + 103);
+		if (itemList[7] != null)
+			renderItem.renderItemIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList[7], var5 + 68 + offset, var6 + 103);
+		if (itemList[8] != null)
+			renderItem.renderItemIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList[8], var5 + 86 + offset, var6 + 103);
+		if (itemOutput != null && itemOutput.getItem() !=null)
+			renderItem.renderItemIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemOutput, var5 + 145 + offset, var6 + 85);
+		if (itemOutput != null && itemOutput.getItem() !=null)
+			this.fontRendererObj.drawString(itemOutput.getItem().getItemStackDisplayName(itemOutput), var5 + 20 + offset, var6 + 40, 0);
+		if (itemOutput != null)
+			this.fontRendererObj.drawString("Crafted in: Train Workbench", var5 + 20 + offset, var6 + 130, 0);
+		if (itemOutput != null) {
+			for (int z = 0; z < RecipeBookHandler.vanillaWorkTableRecipes.length; z++) {
+				if (itemOutput.getItem()!= null && RecipeBookHandler.vanillaWorkTableRecipes[z]!=null && RecipeBookHandler.vanillaWorkTableRecipes[z].equals(itemOutput.getItem().getItemStackDisplayName(itemOutput))) {
+					this.fontRendererObj.drawString("Also crafted in: Crafting Table", var5 + 20 + offset, var6 + 140, 0);
+					break;
+				}
+			}
+		}
+		GL11.glDisable(32826);
 	}
 
-	private ItemStack drawAssemblyRecipe(Map<Integer, List<TierRecipe>> pRecipeList, int pMouseX, int pMouseY, int var5, int var6, int page, int var9, String side) {
-		ItemStack underMouse = null;
+	private void drawAssemblyRecipe(List<TierRecipe> recipeList, int var5, int var6, int page, int var9, String side) {
+		if (page < 0)
+			return;
+		int tier = recipeList.get(page).getTier();
 
-		List<Integer> keys = new ArrayList<Integer>(pRecipeList.keySet());
-		if (keys.get(page) != null) {
-			ItemStack itemOutput = null;
-
-			List<TierRecipe> recipes = pRecipeList.get(keys.get(page));
-
-			long time = System.currentTimeMillis() / 1000;
-
-			boolean isLeft = "left".equals(side);
-
-			if (isLeft) {
-				if (recipes != null && (time % 3) == 0 && time != mLeftLastTime) {
-					mLeftRecipeIndex++;
-					mLeftLastTime = time;
-				}
-				if (mLeftRecipeIndex >= recipes.size() || mLeftPage != page) {
-					mLeftPage = page;
-					mLeftRecipeIndex = 0;
-				}
-			} else {
-				if (recipes != null && (time % 3) == 0 && time != mRightLastTime) {
-					mRightRecipeIndex++;
-					mRightLastTime = time;
-				}
-				if (mRightRecipeIndex >= recipes.size() || mRightPage != page) {
-					mRightPage = page;
-					mRightRecipeIndex = 0;
-				}
-			}
-
-			TierRecipe recipe = recipes != null ? recipes.get(isLeft ? mLeftRecipeIndex : mRightRecipeIndex) : null;
-
-			int tier = recipe.getTier();
-
-			List<ItemStack> itemList = recipe.getInput();
-			int offset = isLeft ? 0 : 271;
-			GL11.glEnable(32826);
-
-			int x;
-			int y;
-			drawItemInSlot(itemList.get(0), x = var5 + 94 + offset, y = var6 + 76);
-			if (underMouse == null && isStackUnderMouse(x, y, pMouseX, pMouseY)) {
-				underMouse = itemList.get(0);
-			}
-
-			drawItemInSlot(itemList.get(1), x = var5 + 113 + offset, y = var6 + 143);
-			if (underMouse == null && isStackUnderMouse(x, y, pMouseX, pMouseY)) {
-				underMouse = itemList.get(1);
-			}
-
-			drawItemInSlot(itemList.get(2), x = var5 + 148 + offset, y = var6 + 143);
-			if (underMouse == null && isStackUnderMouse(x, y, pMouseX, pMouseY)) {
-				underMouse = itemList.get(2);
-			}
-
-			drawItemInSlot(itemList.get(3), x = var5 + 214 + offset, y = var6 + 143);
-			if (underMouse == null && isStackUnderMouse(x, y, pMouseX, pMouseY)) {
-				underMouse = itemList.get(3);
-			}
-
-			drawItemInSlot(itemList.get(4), x = var5 + 148 + offset, y = var6 + 77);
-			if (underMouse == null && isStackUnderMouse(x, y, pMouseX, pMouseY)) {
-				underMouse = itemList.get(4);
-			}
-
-			drawItemInSlot(itemList.get(5), x = var5 + 184 + offset, y = var6 + 77);
-			if (underMouse == null && isStackUnderMouse(x, y, pMouseX, pMouseY)) {
-				underMouse = itemList.get(5);
-			}
-
-			drawItemInSlot(itemList.get(6), x = var5 + 149 + offset, y = var6 + 110);
-			if (underMouse == null && isStackUnderMouse(x, y, pMouseX, pMouseY)) {
-				underMouse = itemList.get(6);
-			}
-
-			drawItemInSlot(itemList.get(7), x = var5 + 185 + offset, y = var6 + 110);
-			if (underMouse == null && isStackUnderMouse(x, y, pMouseX, pMouseY)) {
-				underMouse = itemList.get(7);
-			}
-
-			drawItemInSlot(itemList.get(8), x = var5 + 94 + offset, y = var6 + 110);
-			if (underMouse == null && isStackUnderMouse(x, y, pMouseX, pMouseY)) {
-				underMouse = itemList.get(8);
-			}
-
-			drawItemInSlot(itemList.get(9), x = var5 + 214 + offset, y = var6 + 77);
-			if (underMouse == null && isStackUnderMouse(x, y, pMouseX, pMouseY)) {
-				underMouse = itemList.get(9);
-			}
-
-			ItemStack output = recipe.getOutput();
-			drawItemInSlot(output, x = var5 + 161 + offset, y = var6 + 179);
-			if (underMouse == null && isStackUnderMouse(x, y, pMouseX, pMouseY)) {
-				underMouse = output;
-			}
-
-			String name = "";
-			if (output != null && output.getItem() instanceof ItemRollingStock) {
-				name = output.getDisplayName();
-			}
-			if (isLeft) {
-				this.fontRendererObj.drawString("Tier: " + tier, var5 - var9 + this.bookImageWidth - 56, var6 + 40, 0);
-				this.fontRendererObj.drawString(name, var5 - var9 + this.bookImageWidth - 55, var6 + 56, 0xffffff);
-			} else {
-				this.fontRendererObj.drawString(name, var5 - var9 + this.bookImageWidth + 215, var6 + 56, 0xffffff);
-				this.fontRendererObj.drawString("Tier: " + tier, var5 - var9 + this.bookImageWidth + 338, var6 + 40, 0);
-			}
-			GL11.glDisable(32826);
+		List<ItemStack> itemList = recipeList.get(page).getInput();
+		int offset = 0;
+		if (side.equals("right"))
+			offset = 271;
+		GL11.glEnable(32826);
+		if (itemList.get(0) != null)
+			renderItem.renderItemIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList.get(0), var5 + 94 + offset, var6 + 76);
+		if (itemList.get(0) != null)
+			renderItem.renderItemOverlayIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList.get(0), var5 + 94 + offset, var6 + 76);
+		if (itemList.get(1) != null)
+			renderItem.renderItemIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList.get(1), var5 + 113 + offset, var6 + 143);
+		if (itemList.get(1) != null)
+			renderItem.renderItemOverlayIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList.get(1), var5 + 113 + offset, var6 + 143);
+		if (itemList.get(2) != null)
+			renderItem.renderItemIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList.get(2), var5 + 148 + offset, var6 + 143);
+		if (itemList.get(2) != null)
+			renderItem.renderItemOverlayIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList.get(2), var5 + 148 + offset, var6 + 143);
+		if (itemList.get(3) != null)
+			renderItem.renderItemIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList.get(3), var5 + 214 + offset, var6 + 143);
+		if (itemList.get(3) != null)
+			renderItem.renderItemOverlayIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList.get(3), var5 + 214 + offset, var6 + 143);
+		if (itemList.get(4) != null)
+			renderItem.renderItemIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList.get(4), var5 + 148 + offset, var6 + 77);
+		if (itemList.get(4) != null)
+			renderItem.renderItemOverlayIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList.get(4), var5 + 148 + offset, var6 + 77);
+		if (itemList.get(5) != null)
+			renderItem.renderItemIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList.get(5), var5 + 184 + offset, var6 + 77);
+		if (itemList.get(5) != null)
+			renderItem.renderItemOverlayIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList.get(5), var5 + 184 + offset, var6 + 77);
+		if (itemList.get(6) != null)
+			renderItem.renderItemIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList.get(6), var5 + 149 + offset, var6 + 110);
+		if (itemList.get(6) != null)
+			renderItem.renderItemOverlayIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList.get(6), var5 + 149 + offset, var6 + 110);
+		if (itemList.get(7) != null)
+			renderItem.renderItemIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList.get(7), var5 + 185 + offset, var6 + 110);
+		if (itemList.get(7) != null)
+			renderItem.renderItemOverlayIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList.get(7), var5 + 185 + offset, var6 + 110);
+		if (itemList.get(8) != null)
+			renderItem.renderItemIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList.get(8), var5 + 94 + offset, var6 + 110);
+		if (itemList.get(8) != null)
+			renderItem.renderItemOverlayIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList.get(8), var5 + 94 + offset, var6 + 110);
+		if (itemList.get(9) != null)
+			renderItem.renderItemIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList.get(9), var5 + 214 + offset, var6 + 77);
+		if (itemList.get(9) != null)
+			renderItem.renderItemOverlayIntoGUI(this.fontRendererObj, this.mc.renderEngine, itemList.get(9), var5 + 214 + offset, var6 + 77);
+		ItemStack output = recipeList.get(page).getOutput();
+		if (output != null && side.equals("left"))
+			renderItem.renderItemIntoGUI(this.fontRendererObj, this.mc.renderEngine, output, var5 + 162, var6 + 177);
+		if (output != null && side.equals("right"))
+			renderItem.renderItemIntoGUI(this.fontRendererObj, this.mc.renderEngine, output, var5 + 432, var6 + 177);
+		String name = "";
+		if (output != null && output.getItem() instanceof ItemRollingStock)
+			name = output.getDisplayName();
+		if (side.equals("left")) {
+			this.fontRendererObj.drawString("Tier: " + tier, var5 - var9 + this.bookImageWidth - 56, var6 + 40, 0);
+			this.fontRendererObj.drawString(name, var5 - var9 + this.bookImageWidth - 55, var6 + 56, 0xffffff);
 		}
-		return underMouse;
-	}
-
-	private boolean isStackUnderMouse(int pX, int pY, int pMouseX, int pMouseY) {
-		return pX <= pMouseX && pX  + 16 >= pMouseX && pY <= pMouseY && pY + 16 >= pMouseY;
-	}
-
-	private void drawItemInSlot(ItemStack pItemStack, int pX, int pY) {
-		if (pItemStack != null) {
-			renderItem.renderItemIntoGUI(this.fontRendererObj, this.mc.renderEngine, pItemStack, pX, pY);
-			renderItem.renderItemOverlayIntoGUI(this.fontRendererObj, this.mc.renderEngine, pItemStack, pX, pY);
-		}
+		if (side.equals("right")) {
+			this.fontRendererObj.drawString(name, var5 - var9 + this.bookImageWidth + 215, var6 + 56, 0xffffff);
+			this.fontRendererObj.drawString("Tier: " + tier, var5 - var9 + this.bookImageWidth + 338, var6 + 40, 0);
+		}			
+		GL11.glDisable(32826);
 	}
 
 	@Override
@@ -877,10 +715,10 @@ public class GuiRecipeBook extends GuiScreen {
 	public boolean doesGuiPauseGame() {
 		return false;
 	}
-
+	
 	@Override
 	protected void keyTyped(char par1, int par2) {
-		if (par2 == 1 || par2 == this.mc.gameSettings.keyBindInventory.getKeyCode()) {
+		if(par2 == 1 || par2 == this.mc.gameSettings.keyBindInventory.getKeyCode()) {
 			this.mc.thePlayer.closeScreen();
 		}
 	}

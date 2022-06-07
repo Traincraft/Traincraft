@@ -1,13 +1,17 @@
 package train.client.render.models.blocks;
 
 import cpw.mods.fml.client.FMLClientHandler;
+import net.minecraft.block.Block;
 import net.minecraft.client.model.ModelBase;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.IModelCustom;
 import org.lwjgl.opengl.GL11;
 import train.common.library.Info;
 import train.common.tile.TileTCRail;
+
+import javax.annotation.Nullable;
 
 public class ModelVeryLargeSlopeTCTrack extends ModelBase {
 	
@@ -23,7 +27,18 @@ public class ModelVeryLargeSlopeTCTrack extends ModelBase {
 				.loadModel(new ResourceLocation(Info.modelPrefix + "supports_ballast_verylong.obj"));
 	}
 	
-	public void render(String type) {
+	public void render(String type, String ballast) {
+
+		String[] ballastTexture = new String[2];
+		if (ballast.contains(":")) {
+			ballastTexture = ballast.split(":", 5);
+		}
+		else {
+			ballastTexture[0] = "minecraft";
+			ballastTexture[1] = ballast;
+
+		}
+
 		if (type.equals("wood")) {
 			FMLClientHandler.instance().getClient().renderEngine
 					.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_slope.png"));
@@ -56,14 +71,31 @@ public class ModelVeryLargeSlopeTCTrack extends ModelBase {
 					.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
 			modeltrack.renderAll();
 		}
+		if (type.equals("dynamic")) {
+			FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(ballastTexture[0],  "textures/blocks/" + ballastTexture[1] +".png"));
+			modelVeryLargeSlopeBallast.renderAll();
+			FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
+			modeltrack.renderAll();
+		}
 	}
 
 	public void render(String type, TileTCRail tcRail, double x, double y, double z) {
 		int facing = tcRail.getWorldObj().getBlockMetadata(tcRail.xCoord, tcRail.yCoord, tcRail.zCoord);
-		render( type, facing, x, y, z, 1, 1, 1, 1);
+		Block block = tcRail.getWorldObj().getBlock(tcRail.xCoord, tcRail.yCoord-1, tcRail.zCoord);
+		IIcon icon = block.getIcon(1, tcRail.getWorldObj().getBlockMetadata(tcRail.xCoord, tcRail.yCoord-1, tcRail.zCoord));
+		String iconName;
+		if (icon == null) {
+
+			iconName = "tc:ballast";
+		}
+
+		else {
+			iconName = icon.getIconName();
+		}
+		render( type, facing, x, y, z, 1, 1, 1, 1, iconName);
 	}
 
-	public void render(String type, int facing, double x, double y, double z, float r, float g, float b, float a)
+	public void render(String type, int facing, double x, double y, double z, float r, float g, float b, float a, String ballastTexture)
 	{
 		// Push a blank matrix onto the stack
 		GL11.glPushMatrix();
@@ -85,7 +117,7 @@ public class ModelVeryLargeSlopeTCTrack extends ModelBase {
 			GL11.glRotatef(180, 0, 1, 0);
 		}
 		// GL11.glTranslatef(0.0f, 0.0f, -1.0f);
-		render(type);
+		render(type, ballastTexture);
 		
 		// Pop this matrix from the stack.
 		GL11.glPopMatrix();

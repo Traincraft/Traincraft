@@ -36,6 +36,9 @@ public class ModelMediumStraightTCTrack extends ModelBase {
 		//GL11.glScalef(0.5f, 0.5f, 0.5f);
 		int facing = tcRail.getWorldObj().getBlockMetadata(tcRail.xCoord, tcRail.yCoord, tcRail.zCoord);
 
+		if (facing == 2) {
+			GL11.glRotatef(0, 0, 1, 0);
+		}
 		if (facing == 3) {
 			GL11.glRotatef(-90, 0, 1, 0);
 		}
