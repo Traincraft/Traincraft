@@ -813,7 +813,7 @@ public class ItemTCRail extends ItemPart {
 				if (l == 2) {
 					int[] xArray = { x,   x  ,x , x + 1, x + 1};
 					int[] zArray = { z, z - 1,z - 2, z - 1, z - 2};
-					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 3, x + 1, z - 2, 4.5, x + 5,
+					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 3, x + 1, z - 2, 3.75, x + 4.25,
 							y + 1, z + 1, typeVariant90Turn, idVariant45Turn))
 						return false;
 
@@ -868,7 +868,7 @@ public class ItemTCRail extends ItemPart {
 				if (l == 0) {
 					int[] xArray = {x,   x , x , x + 1, x + 1};
 					int[] zArray = {z, z + 1, z + 2, z + 1, z + 2};
-					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 3, x + 1, z + 2, 4.5, x + 5,
+					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 3, x + 1, z + 2, 3.75, x + 4.25,
 							y + 1, z, typeVariant90Turn, idVariant45Turn ))
 						return false;
 				}
