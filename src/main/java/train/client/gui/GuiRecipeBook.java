@@ -47,7 +47,7 @@ public class GuiRecipeBook extends GuiScreen {
 	public ArrayList<String> rightPageImage = new ArrayList<String>();
 	public ArrayList<ArrayList> rightPageItemStacks = new ArrayList<ArrayList>();
 	private List recipeListWB =null;
-	private List<TierRecipe> recipeList=null
+	private List<TierRecipe> recipeList=null;
 
 	private GuiButtonNextPage buttonRead;
 	private GuiButtonNextPage buttonNextPage;
