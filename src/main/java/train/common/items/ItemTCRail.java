@@ -201,41 +201,48 @@ public class ItemTCRail extends ItemPart {
 	}
 
 	public static boolean isTCTurnTrack(TileTCRail tile) {
-		if(tile==null || tile.getType()==null){return false;}
+		if (tile == null || tile.getType() == null) {
+			return false;
+		}
 		return (tile.getType().equals(TrackTypes.MEDIUM_LEFT_SWITCH.getLabel()) && tile.getSwitchState())
 				|| (tile.getType().equals(TrackTypes.MEDIUM_RIGHT_SWITCH.getLabel()) && tile.getSwitchState())
 				|| (tile.getType().equals(TrackTypes.LARGE_LEFT_SWITCH.getLabel()) && tile.getSwitchState())
 				|| (tile.getType().equals(TrackTypes.LARGE_RIGHT_SWITCH.getLabel()) && tile.getSwitchState())
 				|| (tile.getType().equals(TrackTypes.MEDIUM_RIGHT_PARALLEL_SWITCH.getLabel()) && tile.getSwitchState())
 				|| (tile.getType().equals(TrackTypes.MEDIUM_LEFT_PARALLEL_SWITCH.getLabel()) && tile.getSwitchState())
+				|| (tile.getType().equals(TrackTypes.MEDIUM_RIGHT_45DEGREE_SWITCH.getLabel())) && tile.getSwitchState()
+				|| (tile.getType().equals(TrackTypes.MEDIUM_LEFT_45DEGREE_SWITCH.getLabel())) && tile.getSwitchState()
 				|| tile.getType().equals(TrackTypes.MEDIUM_RIGHT_TURN.getLabel())
 				|| tile.getType().equals(TrackTypes.MEDIUM_LEFT_TURN.getLabel())
 				|| tile.getType().equals(TrackTypes.LARGE_RIGHT_TURN.getLabel())
 				|| tile.getType().equals(TrackTypes.LARGE_LEFT_TURN.getLabel())
 				|| tile.getType().equals(TrackTypes.VERY_LARGE_RIGHT_TURN.getLabel())
 				|| tile.getType().equals(TrackTypes.VERY_LARGE_LEFT_TURN.getLabel())
-				|| tile.getType().equals(TrackTypes.SUPER_LARGE_LEFT_TURN.getLabel())
 				|| tile.getType().equals(TrackTypes.SUPER_LARGE_RIGHT_TURN.getLabel())
+				|| tile.getType().equals(TrackTypes.SUPER_LARGE_LEFT_TURN.getLabel())
+				|| tile.getType().equals(TrackTypes.SMALL_RIGHT_PARALLEL_CURVE.getLabel())
+				|| tile.getType().equals(TrackTypes.SMALL_LEFT_PARALLEL_CURVE.getLabel())
+				|| tile.getType().equals(TrackTypes.MEDIUM_RIGHT_PARALLEL_CURVE.getLabel())
+				|| tile.getType().equals(TrackTypes.MEDIUM_LEFT_PARALLEL_CURVE.getLabel())
+				|| tile.getType().equals(TrackTypes.LARGE_RIGHT_PARALLEL_CURVE.getLabel())
+				|| tile.getType().equals(TrackTypes.LARGE_LEFT_PARALLEL_CURVE.getLabel())
+				|| tile.getType().equals(TrackTypes.MEDIUM_RIGHT_45DEGREE_TURN.getLabel())
+				|| tile.getType().equals(TrackTypes.MEDIUM_LEFT_45DEGREE_TURN.getLabel())
+				|| tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_RIGHT_TURN.getLabel())
+				|| tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_LEFT_TURN.getLabel())
 				|| tile.getType().equals(TrackTypes.EMBEDDED_LARGE_RIGHT_TURN.getLabel())
 				|| tile.getType().equals(TrackTypes.EMBEDDED_LARGE_LEFT_TURN.getLabel())
 				|| tile.getType().equals(TrackTypes.EMBEDDED_VERY_LARGE_RIGHT_TURN.getLabel())
 				|| tile.getType().equals(TrackTypes.EMBEDDED_VERY_LARGE_LEFT_TURN.getLabel())
 				|| tile.getType().equals(TrackTypes.EMBEDDED_SUPER_LARGE_RIGHT_TURN.getLabel())
 				|| tile.getType().equals(TrackTypes.EMBEDDED_SUPER_LARGE_LEFT_TURN.getLabel())
-				|| tile.getType().equals(TrackTypes.SMALL_RIGHT_PARALLEL_CURVE.getLabel())
-				|| tile.getType().equals(TrackTypes.SMALL_LEFT_PARALLEL_CURVE.getLabel())
 				|| tile.getType().equals(TrackTypes.EMBEDDED_SMALL_RIGHT_PARALLEL_CURVE.getLabel())
 				|| tile.getType().equals(TrackTypes.EMBEDDED_SMALL_LEFT_PARALLEL_CURVE.getLabel())
-				|| tile.getType().equals(TrackTypes.MEDIUM_RIGHT_PARALLEL_CURVE.getLabel())
-				|| tile.getType().equals(TrackTypes.MEDIUM_LEFT_PARALLEL_CURVE.getLabel())
 				|| tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_RIGHT_PARALLEL_CURVE.getLabel())
 				|| tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_LEFT_PARALLEL_CURVE.getLabel())
 				|| tile.getType().equals(TrackTypes.EMBEDDED_LARGE_RIGHT_PARALLEL_CURVE.getLabel())
 				|| tile.getType().equals(TrackTypes.EMBEDDED_LARGE_LEFT_PARALLEL_CURVE.getLabel())
-				|| tile.getType().equals(TrackTypes.LARGE_RIGHT_PARALLEL_CURVE.getLabel())
-				|| tile.getType().equals(TrackTypes.LARGE_LEFT_PARALLEL_CURVE.getLabel())
-				|| tile.getType().equals(TrackTypes.MEDIUM_RIGHT_45DEGREE_TURN.getLabel())
-				|| tile.getType().equals(TrackTypes.MEDIUM_LEFT_45DEGREE_TURN.getLabel())
+				|| tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_RIGHT_45DEGREE_TURN.getLabel())
 				|| tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_LEFT_45DEGREE_TURN.getLabel())
 				;
 
@@ -249,6 +256,8 @@ public class ItemTCRail extends ItemPart {
 				|| (tile.getType().equals(TrackTypes.LARGE_RIGHT_SWITCH.getLabel()) && !tile.getSwitchState())
 				|| (tile.getType().equals(TrackTypes.MEDIUM_RIGHT_PARALLEL_SWITCH.getLabel()) && !tile.getSwitchState())
 				|| (tile.getType().equals(TrackTypes.MEDIUM_LEFT_PARALLEL_SWITCH.getLabel()) && !tile.getSwitchState())
+				|| (tile.getType().equals(TrackTypes.MEDIUM_RIGHT_45DEGREE_SWITCH.getLabel()))&& !tile.getSwitchState()
+				|| (tile.getType().equals(TrackTypes.MEDIUM_LEFT_45DEGREE_SWITCH.getLabel()))&& !tile.getSwitchState()
 				|| tile.getType().equals(TrackTypes.MEDIUM_STRAIGHT.getLabel())
 				|| tile.getType().equals(TrackTypes.VERY_LONG_STRAIGHT.getLabel())
 				|| tile.getType().equals(TrackTypes.LONG_STRAIGHT.getLabel())
@@ -340,6 +349,10 @@ public class ItemTCRail extends ItemPart {
 	private boolean putDownTurn(@Nullable EntityPlayer player, World world, boolean putDownEnterTrack, int x, int y, int z, int[] posX, int[] posZ,
 								int l, boolean putDownExitTrack, int exitFacing, int posExitX, int posExitZ, double r, double cx, double cy,
 								double cz, String type, Item idDrop) {
+		if (typeVariantStraight == null) {
+			typeVariantStraight = TrackTypes.SMALL_STRAIGHT.getLabel();
+		}
+
 		TileTCRailGag[] tileGag = new TileTCRailGag[posX.length - 1];
 
 		/** check if first straight rail can be placed */
@@ -1558,7 +1571,6 @@ public class ItemTCRail extends ItemPart {
 				}
 
 				if (l == 0) {
-					player.addChatMessage(new ChatComponentText("South side seems to be bugged. Place me from the north side"));
 
 					for (int check = 1; check < 5; check++) {
 						if (!canPlaceTrack(player, world, x, y + 1, z + check))
@@ -1775,7 +1787,6 @@ public class ItemTCRail extends ItemPart {
 				}
 
 				if (l == 0) {
-					player.addChatMessage(new ChatComponentText("South side seems to be bugged. Place me from the north side"));
 					for (int check = 1; check < 6; check++) {
 						if (!canPlaceTrack(player, world, x , y + 1, z + check))
 							return false;
@@ -2000,7 +2011,6 @@ public class ItemTCRail extends ItemPart {
 				}
 
 				if (l == 0) {
-					player.addChatMessage(new ChatComponentText("South side seems to be bugged. Place me from the north side"));
 					for (int check = 1; check < 6; check++) {
 						if (!canPlaceTrack(player, world, x , y + 1, z + check))
 							return false;
