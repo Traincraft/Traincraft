@@ -68,6 +68,7 @@ public enum BlockIDs {
 	FortyFootContainer(true, ItemFortyFootContainer.class),
 	speedSign(false, null),
 
+	asphaltslab(false,null)
 	;
 
 	public Block block;
