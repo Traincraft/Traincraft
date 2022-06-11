@@ -27,6 +27,7 @@ public enum BlockIDs {
 	trainWorkbench(false, null),
 
 	stopper(false, null),
+	embeddedStopper(false, null),
 
 	openFurnaceIdle(false, null),
 	openFurnaceActive(false, null),
@@ -63,6 +64,7 @@ public enum BlockIDs {
 	dirtyBallast(false,null),
 	dirtierBallast(false,null),
 	asphalt(false, null),
+	asphaltSlab(false, null),
 	signalSpanish(false,null),//ItemsignalSpanish.class
 	kSignal(false,null),
 	FortyFootContainer(true, ItemFortyFootContainer.class),

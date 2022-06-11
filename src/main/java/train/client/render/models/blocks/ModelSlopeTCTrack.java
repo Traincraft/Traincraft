@@ -90,7 +90,7 @@ public class ModelSlopeTCTrack extends ModelBase {
 		int facing = tcRail.getWorldObj().getBlockMetadata(tcRail.xCoord, tcRail.yCoord, tcRail.zCoord);
 		Block block = tcRail.getWorldObj().getBlock(tcRail.xCoord, tcRail.yCoord-1, tcRail.zCoord);
 		IIcon icon = block.getIcon(1, tcRail.getWorldObj().getBlockMetadata(tcRail.xCoord, tcRail.yCoord-1, tcRail.zCoord));
-
+/*
 		String iconName;
 		if (icon == null ) {
 			iconName = "tc:ballast";
@@ -105,7 +105,8 @@ public class ModelSlopeTCTrack extends ModelBase {
 			iconName = icon.getIconName();
 
 		}
-		render( type, facing, x, y, z, 1, 1, 1, 1, iconName);
+ */
+		render( type, facing, x, y, z, 1, 1, 1, 1, tcRail.getBallastMaterial());
 
 
 

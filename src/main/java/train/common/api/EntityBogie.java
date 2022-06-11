@@ -23,6 +23,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import train.common.blocks.BlockTCRail;
 import train.common.blocks.BlockTCRailGag;
+import train.common.core.interfaces.ITCRecipe;
 import train.common.items.ItemTCRail;
 import train.common.items.ItemTCRail.TrackTypes;
 import train.common.library.BlockIDs;
@@ -418,6 +419,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		        	TileEntity tileEntity = this.worldObj.getTileEntity(i, j, k);
 		        	TileTCRail tileRail;
 
+
 					if (block == BlockIDs.tcRailGag.block) {
 
 						if (tileEntity instanceof TileTCRailGag) {
@@ -443,10 +445,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 					//applyDragAndPushForces();
 					limitSpeedOnTCRail();
 
-				//	if (ItemTCRail.isTCParallelCurveTRack(tileRail)) {
-				//		//int meta = tileRail.getBlockMetadata();
-				//		if (ItemTCRail.isTCParallelCurveTRack(tileRail)) moveOnTC90TurnRail(j, tileRail.r, tileRail.cx, tileRail.cz);
-				//	}
+
 
 					if (ItemTCRail.isTCTurnTrack(tileRail)) {
 						int meta = tileRail.getBlockMetadata();
@@ -690,6 +689,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 
 		double p_corr_x = cx + ((cpx / cp_norm) * r);
 		double p_corr_z = cz + ((cpz / cp_norm) * r);
+
 
 		setPosition(p_corr_x, posY + yOffset, p_corr_z);
 		moveEntity(vx2, 0.0D, vz2);
