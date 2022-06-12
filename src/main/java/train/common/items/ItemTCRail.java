@@ -47,6 +47,8 @@ public class ItemTCRail extends ItemPart {
 		LONG_STRAIGHT("LONG_STRAIGHT", "STRAIGHT", ItemIDs.tcRailLongStraight, "1x6"),
 		VERY_LONG_STRAIGHT("VERY_LONG_STRAIGHT", "STRAIGHT", ItemIDs.tcRailVeryLongStraight, "1x12"),
 
+		SMALL_DIAGONAL_STRAIGHT("SMALL_DIAGONA_STAIGHT", "DIAGONAL", ItemIDs.tcRailSmallDiagonalStraight, "1x1"),
+
 		MEDIUM_TURN("MEDIUM_TURN", "TURN", ItemIDs.tcRailMediumTurn, "3x3"),
 		MEDIUM_RIGHT_TURN("MEDIUM_RIGHT_TURN", "TURN", ItemIDs.tcRailMediumTurn, ""),
 		MEDIUM_LEFT_TURN("MEDIUM_LEFT_TURN", "TURN", ItemIDs.tcRailMediumTurn, ""),
@@ -348,6 +350,14 @@ public class ItemTCRail extends ItemPart {
 		;
 	}
 
+	public static boolean isTCDiagonalStraightTrack(TileTCRail tile) {
+		if(tile==null || tile.getType()==null){return false;}
+		return tile.getType().equals(TrackTypes.SMALL_DIAGONAL_STRAIGHT.getLabel())
+
+		;
+	}
+
+
 
 	public ItemTCRail(TrackTypes t) {
 		super(t.getItem().iconName);
@@ -554,6 +564,9 @@ public class ItemTCRail extends ItemPart {
 		else if ( type == TrackTypes.VERY_LONG_STRAIGHT
 				|| type == TrackTypes.EMBEDDED_VERY_LONG_STRAIGHT)
 			return new int[][]{ {0,0}, {1,0}, {2,0}, {3,0}, {4,0}, {5,0}, {6,0}, {7,0}, {8,0}, {9,0}, {10,0}, {11,0}};
+		/** Diagonals*/
+		else if (type == TrackTypes.SMALL_DIAGONAL_STRAIGHT)
+			return new int [][]{{0,0}};
 		/** Slopes */
 		else if ( type == TrackTypes.SLOPE_BALLAST
 				|| type == TrackTypes.SLOPE_GRAVEL
@@ -671,8 +684,19 @@ public class ItemTCRail extends ItemPart {
 		if (!world.isRemote) {
 
 			y = getPlacementHeight(world, x, y, z);
+			int l;
 			/** Determines if track is left or right*/
-			int l = MathHelper.floor_double((player!=null?player.rotationYaw:par10) * 4.0F / 360.0F + 0.5D) & 3;
+			if (type == TrackTypes.SMALL_DIAGONAL_STRAIGHT) {
+				l = MathHelper.floor_double((player!=null?player.rotationYaw:par10) * 4.0F / 360.0F) & 3;
+				l += 4;
+				player.addChatMessage(new ChatComponentText("direction = " + l));
+			}
+
+			else {
+				l = MathHelper.floor_double((player!=null?player.rotationYaw:par10) * 4.0F / 360.0F + 0.5D) & 3;
+				player.addChatMessage(new ChatComponentText("direction = " + l));
+			}
+
 			float yaw = MathHelper.wrapAngleTo180_float(player!=null?player.rotationYaw:par10);
 			TrackTypes tempType = type;
 			if (type == TrackTypes.MEDIUM_TURN) {
@@ -897,6 +921,110 @@ public class ItemTCRail extends ItemPart {
 			 *  l = 0 = SOUTH
 			 *  l = 3 = east
 			**/
+
+
+
+			if (type == TrackTypes.SMALL_DIAGONAL_STRAIGHT) {
+
+					if (!canPlaceTrack(player, world, x, y + 1, z)) {
+						return false;
+					}
+					TileTCRailGag[] tileGag = new TileTCRailGag[2];
+
+					if (l == 6) {
+						if (!canPlaceTrack(player, world, x - 1, y + 1, z) || !canPlaceTrack(player, world, x, y + 1, z + 1)) {
+							return false;
+						}
+					placeTrack(world, x, y + 1, z, BlockIDs.tcRail.block, l);
+					TileTCRail tcRail = (TileTCRail) world.getTileEntity(x, y + 1, z);
+					tcRail.setFacing(l);
+					tcRail.cx = x;
+					tcRail.cy = y + 1;
+					tcRail.cz = z;
+					tcRail.setType(type.getLabel());
+
+				/*	placeTrack(world, x - 1, y + 1, z, BlockIDs.tcRailGag.block, l);
+					tileGag[0] = (TileTCRailGag) world.getTileEntity(x - 1, y + 1, z);
+
+					placeTrack(world, x, y + 1, z + 1, BlockIDs.tcRailGag.block, l);
+					tileGag[1] = (TileTCRailGag) world.getTileEntity(x, y + 1, z + 1);*/
+					tcRail.idDrop = this.type.getItem().item;
+					}
+				if (l == 4) {
+					if (!canPlaceTrack(player, world, x + 1, y + 1, z) || !canPlaceTrack(player, world, x, y + 1, z - 1)) {
+						return false;
+					}
+					placeTrack(world, x, y + 1, z, BlockIDs.tcRail.block, l);
+					TileTCRail tcRail = (TileTCRail) world.getTileEntity(x, y + 1, z);
+					tcRail.setFacing(l);
+					tcRail.cx = x;
+					tcRail.cy = y + 1;
+					tcRail.cz = z;
+					tcRail.setType(type.getLabel());
+
+					/*placeTrack(world, x + 1, y + 1, z, BlockIDs.tcRailGag.block, l);
+					tileGag[0] = (TileTCRailGag) world.getTileEntity(x + 1, y + 1, z);
+
+					placeTrack(world, x, y + 1, z - 1, BlockIDs.tcRailGag.block, l);
+					tileGag[1] = (TileTCRailGag) world.getTileEntity(x, y + 1, z - 1);*/
+					tcRail.idDrop = this.type.getItem().item;
+				}
+				if (l == 5) {
+					if (!canPlaceTrack(player, world, x, y + 1, z + 1) || !canPlaceTrack(player, world, x + 1, y + 1, z)) {
+						return false;
+					}
+					placeTrack(world, x, y + 1, z, BlockIDs.tcRail.block, l);
+					TileTCRail tcRail = (TileTCRail) world.getTileEntity(x, y + 1, z);
+					tcRail.setFacing(l);
+					tcRail.cx = x;
+					tcRail.cy = y + 1;
+					tcRail.cz = z;
+					tcRail.setType(type.getLabel());
+
+					/*placeTrack(world, x, y + 1, z + 1, BlockIDs.tcRailGag.block, l);
+					tileGag[0] = (TileTCRailGag) world.getTileEntity(x, y + 1, z + 1);
+
+					placeTrack(world, x + 1, y + 1, z, BlockIDs.tcRailGag.block, l);
+					tileGag[1] = (TileTCRailGag) world.getTileEntity(x + 1, y + 1, z);*/
+					tcRail.idDrop = this.type.getItem().item;
+				}
+				if (l == 7) {
+					if (!canPlaceTrack(player, world, x, y + 1, z - 1) || !canPlaceTrack(player, world, x - 1, y + 1, z)) {
+						return false;
+					}
+					placeTrack(world, x, y + 1, z, BlockIDs.tcRail.block, l);
+					TileTCRail tcRail = (TileTCRail) world.getTileEntity(x, y + 1, z);
+					tcRail.setFacing(l);
+					tcRail.cx = x;
+					tcRail.cy = y + 1;
+					tcRail.cz = z;
+					tcRail.setType(type.getLabel());
+
+				/*	placeTrack(world, x, y + 1, z - 1, BlockIDs.tcRailGag.block, l);
+					tileGag[0] = (TileTCRailGag) world.getTileEntity(x, y + 1, z - 1);
+
+					placeTrack(world, x - 1, y + 1, z, BlockIDs.tcRailGag.block, l);
+					tileGag[1] = (TileTCRailGag) world.getTileEntity(x - 1, y + 1, z);*/
+					tcRail.idDrop = this.type.getItem().item;
+				}
+
+
+				/*for (int i = 0; i < tileGag.length; i++) {
+					if (player !=null && tileGag[i] == null) {
+						player.addChatMessage(new ChatComponentText("There was a problem when placing the track. Possibly too many tracks around"));
+						return false;
+					}
+					tileGag[i].originX = x;
+					tileGag[i].originY = y + 1;
+					tileGag[i].originZ = z;
+					tileGag[i].type = TrackTypes.MEDIUM_STRAIGHT.getLabel();
+				}
+*/
+				if (player ==null || !player.capabilities.isCreativeMode) {
+					--itemstack.stackSize;
+				}
+				return true;
+			}
 
 
 
