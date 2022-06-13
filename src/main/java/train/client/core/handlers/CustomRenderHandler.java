@@ -19,7 +19,8 @@ import train.common.tile.TileTCRail;
 
 public class CustomRenderHandler {
 
-
+    String ballastMaterial;
+    int blockColour;
 
     @SubscribeEvent
     public void onRenderWorldLast(RenderWorldLastEvent event )
@@ -61,27 +62,9 @@ public class CustomRenderHandler {
         double px = TileEntityRendererDispatcher.staticPlayerX;
         double py = TileEntityRendererDispatcher.staticPlayerY;
         double pz = TileEntityRendererDispatcher.staticPlayerZ;
+
         int facing = MathHelper.floor_double(player.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
         Vector2f dir = ItemTCRail.getDirectionVector(facing);
-
-        Block block = world.getBlock(x,y,z);
-        int metadata = world.getBlockMetadata(x,y,z);
-
-        IIcon icon = block.getIcon(1, metadata);
-
-        String iconName;
-        if (icon == null) {
-
-            iconName = "tc:ballast";
-        }
-
-        else {
-            iconName = icon.getIconName();
-        }
-
-        String ballastMaterial = iconName;
-
-
 
         // Render
         GL11.glPushMatrix();
@@ -127,6 +110,10 @@ public class CustomRenderHandler {
                 RenderTCRail.modelEmbeddedSmallStraight.render("straight", facing, dx, 0 ,dz,r, g, b, a);
             }
         }
+        else if (item.getTrackType() == ItemTCRail.TrackTypes.SMALL_DIAGONAL_STRAIGHT) {
+            facing = MathHelper.floor_double(player.rotationYaw * 4.0F / 360.0F) & 3;
+            RenderTCRail.modelSmallDiagonalStraight.render("diagonal", facing + 4, 0,0,0,r,g,b,a);
+        }
 
 
 
@@ -164,49 +151,64 @@ public class CustomRenderHandler {
 
         // Slopes
         else if (item.getTrackType() == ItemTCRail.TrackTypes.SLOPE_BALLAST) {
-            RenderTCRail.modelSlope.render("ballast", facing, 0, 0, 0, r, g, b, a, ballastMaterial);
+            blockInfo();
+            RenderTCRail.modelSlope.render("ballast", facing, 0, 0, 0, r, g, b, a, ballastMaterial, blockColour );
         }
         else if (item.getTrackType() == ItemTCRail.TrackTypes.SLOPE_GRAVEL) {
-            RenderTCRail.modelSlope.render("gravel", facing, 0, 0, 0, r, g, b, a, ballastMaterial);
+            blockInfo();
+            RenderTCRail.modelSlope.render("gravel", facing, 0, 0, 0, r, g, b, a, ballastMaterial, blockColour);
         }
         else if (item.getTrackType() == ItemTCRail.TrackTypes.SLOPE_WOOD) {
-            RenderTCRail.modelSlope.render("wood", facing, 0, 0, 0, r, g, b, a, ballastMaterial);
+            blockInfo();
+            RenderTCRail.modelSlope.render("wood", facing, 0, 0, 0, r, g, b, a, ballastMaterial, blockColour);
         }
         else if (item.getTrackType() == ItemTCRail.TrackTypes.SLOPE_SNOW_GRAVEL) {
-            RenderTCRail.modelSlope.render("snow", facing, 0, 0, 0, r, g, b, a, ballastMaterial);
+            blockInfo();
+            RenderTCRail.modelSlope.render("snow", facing, 0, 0, 0, r, g, b, a, ballastMaterial, blockColour);
         }
         else if (item.getTrackType() == ItemTCRail.TrackTypes.SLOPE_DYNAMIC) {
-            RenderTCRail.modelSlope.render("dynamic", facing, 0, 0, 0, r, g, b, a, ballastMaterial);
+            blockInfo();
+            RenderTCRail.modelSlope.render("dynamic", facing, 0, 0, 0, r, g, b, a, ballastMaterial, blockColour);
         }
         else if (item.getTrackType() == ItemTCRail.TrackTypes.LARGE_SLOPE_BALLAST) {
-            RenderTCRail.modelLargeSlope.render("ballast", facing, 0, 0, 0, r, g, b, a, ballastMaterial);
+            blockInfo();
+            RenderTCRail.modelLargeSlope.render("ballast", facing, 0, 0, 0, r, g, b, a, ballastMaterial, blockColour);
         }
         else if (item.getTrackType() == ItemTCRail.TrackTypes.LARGE_SLOPE_GRAVEL) {
-            RenderTCRail.modelLargeSlope.render("gravel", facing, 0, 0, 0, r, g, b, a, ballastMaterial);
+            blockInfo();
+            RenderTCRail.modelLargeSlope.render("gravel", facing, 0, 0, 0, r, g, b, a, ballastMaterial, blockColour);
         }
         else if (item.getTrackType() == ItemTCRail.TrackTypes.LARGE_SLOPE_WOOD) {
-            RenderTCRail.modelLargeSlope.render("wood", facing, 0, 0, 0, r, g, b, a, ballastMaterial);
+            blockInfo();
+            RenderTCRail.modelLargeSlope.render("wood", facing, 0, 0, 0, r, g, b, a, ballastMaterial, blockColour);
         }
         else if (item.getTrackType() == ItemTCRail.TrackTypes.LARGE_SLOPE_SNOW_GRAVEL) {
-            RenderTCRail.modelLargeSlope.render("snow", facing, 0, 0, 0, r, g, b, a, ballastMaterial);
+            blockInfo();
+            RenderTCRail.modelLargeSlope.render("snow", facing, 0, 0, 0, r, g, b, a, ballastMaterial, blockColour);
         }
         else if (item.getTrackType() == ItemTCRail.TrackTypes.LARGE_SLOPE_DYNAMIC) {
-            RenderTCRail.modelLargeSlope.render("dynamic", facing, 0, 0, 0, r, g, b, a, ballastMaterial);
+            blockInfo();
+            RenderTCRail.modelLargeSlope.render("dynamic", facing, 0, 0, 0, r, g, b, a, ballastMaterial, blockColour);
         }
         else if (item.getTrackType() == ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_BALLAST) {
-            RenderTCRail.modelVeryLargeSlope.render("ballast", facing, 0, 0, 0, r, g, b, a, ballastMaterial);
+            blockInfo();
+            RenderTCRail.modelVeryLargeSlope.render("ballast", facing, 0, 0, 0, r, g, b, a, ballastMaterial, blockColour);
         }
         else if (item.getTrackType() == ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_GRAVEL) {
-            RenderTCRail.modelVeryLargeSlope.render("gravel", facing, 0, 0, 0, r, g, b, a, ballastMaterial);
+            blockInfo();
+            RenderTCRail.modelVeryLargeSlope.render("gravel", facing, 0, 0, 0, r, g, b, a, ballastMaterial, blockColour);
         }
         else if (item.getTrackType() == ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_WOOD) {
-            RenderTCRail.modelVeryLargeSlope.render("wood", facing, 0, 0, 0, r, g, b, a, ballastMaterial);
+            blockInfo();
+            RenderTCRail.modelVeryLargeSlope.render("wood", facing, 0, 0, 0, r, g, b, a, ballastMaterial, blockColour);
         }
         else if (item.getTrackType() == ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_SNOW_GRAVEL) {
-            RenderTCRail.modelVeryLargeSlope.render("snow", facing, 0, 0, 0, r, g, b, a, ballastMaterial);
+            blockInfo();
+            RenderTCRail.modelVeryLargeSlope.render("snow", facing, 0, 0, 0, r, g, b, a, ballastMaterial, blockColour);
         }
         else if (item.getTrackType() == ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_DYNAMIC) {
-            RenderTCRail.modelVeryLargeSlope.render("dynamic", facing, 0, 0, 0, r, g, b, a, ballastMaterial);
+            blockInfo();
+            RenderTCRail.modelVeryLargeSlope.render("dynamic", facing, 0, 0, 0, r, g, b, a, ballastMaterial, blockColour);
         }
 
 
@@ -504,5 +506,20 @@ public class CustomRenderHandler {
         }
 
         GL11.glPopMatrix();
+    }
+
+    private void blockInfo() {
+        World world = Minecraft.getMinecraft().theWorld;
+        EntityClientPlayerMP player = Minecraft.getMinecraft().thePlayer;
+        ItemTCRail item = (ItemTCRail) player.getHeldItem().getItem();
+        int x = Minecraft.getMinecraft().objectMouseOver.blockX;
+        int y = Minecraft.getMinecraft().objectMouseOver.blockY;
+        int z = Minecraft.getMinecraft().objectMouseOver.blockZ;
+        Block block = world.getBlock(x,y,z);
+        int metadata = world.getBlockMetadata(x,y,z);
+        blockColour = block.colorMultiplier(world, x, y, z);
+        IIcon icon = block.getIcon(1, metadata);
+        String iconName = icon.getIconName();
+        ballastMaterial = iconName;
     }
 }

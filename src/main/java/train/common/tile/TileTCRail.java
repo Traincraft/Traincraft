@@ -1,6 +1,6 @@
 package train.common.tile;
 
-import cpw.mods.fml.client.FMLClientHandler;
+import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
@@ -25,7 +25,9 @@ public class TileTCRail extends TileEntity {
 	public double slopeLength;
 	public double slopeAngle;
 
-	private String ballastMaterial;
+	private int ballastMaterial;
+	public int ballastMetadata;
+	public int ballastColour;
 	private String type;
 	private int facingMeta;
 	public boolean isLinkedToRail = false;
@@ -88,16 +90,19 @@ public class TileTCRail extends TileEntity {
 
 
 
-	public void setBallastMaterial(String ballast) {
+	public void setBallastMaterial(int  ballast) {
 		worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 		this.ballastMaterial = ballast;
 	}
 
-	public String getBallastMaterial(){
-		if (ballastMaterial !=  null){
+	public int getBallastMaterial(){
+		if (ballastMaterial != 0){
+
 			return ballastMaterial;
 		}
-		return ("tc:ores/ore_copper");
+		else {
+		return (0);
+		}
 	}
 
 
@@ -334,13 +339,16 @@ public class TileTCRail extends TileEntity {
 		linkedX = nbt.getInteger("linkedX");
 		linkedY = nbt.getInteger("linkedY");
 		linkedZ = nbt.getInteger("linkedZ");
+		ballastMetadata = nbt.getInteger("ballastMetadata");
+		ballastColour = nbt.getInteger("ballastColour");
 		String tempType = nbt.getString("type");
 		if (tempType != null) {
 			type = tempType;
 		} else {
 			type = ItemTCRail.TrackTypes.SMALL_STRAIGHT.getLabel();
 		}
-		ballastMaterial  = nbt.getString("ballastMaterial");
+		ballastMaterial  = nbt.getInteger("ballastMaterial");
+
 
 		/**
 		 * Hacky TC Code to fix already placed slopes
@@ -392,11 +400,13 @@ public class TileTCRail extends TileEntity {
 		nbt.setInteger("linkedX", linkedX);
 		nbt.setInteger("linkedY", linkedY);
 		nbt.setInteger("linkedZ", linkedZ);
+		nbt.setInteger("ballastMetadata", ballastMetadata);
+		nbt.setInteger("ballastColour", ballastColour);
 		if (type != null) {
 			nbt.setString("type", type);
 		}
-		if (ballastMaterial  != null) {
-			nbt.setString("ballastMaterial", ballastMaterial);
+		if (ballastMaterial  != 0) {
+			nbt.setInteger("ballastMaterial", ballastMaterial);
 		}
 		nbt.setBoolean("isLinkedToRail", isLinkedToRail);
 		nbt.setBoolean("hasModel", hasModel);

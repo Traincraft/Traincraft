@@ -8,13 +8,10 @@ import net.minecraft.block.BlockMushroom;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
-import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import org.lwjgl.util.vector.Matrix2f;
 import org.lwjgl.util.vector.Vector2f;
@@ -689,12 +686,12 @@ public class ItemTCRail extends ItemPart {
 			if (type == TrackTypes.SMALL_DIAGONAL_STRAIGHT) {
 				l = MathHelper.floor_double((player!=null?player.rotationYaw:par10) * 4.0F / 360.0F) & 3;
 				l += 4;
-				player.addChatMessage(new ChatComponentText("direction = " + l));
+
 			}
 
 			else {
 				l = MathHelper.floor_double((player!=null?player.rotationYaw:par10) * 4.0F / 360.0F + 0.5D) & 3;
-				player.addChatMessage(new ChatComponentText("direction = " + l));
+
 			}
 
 			float yaw = MathHelper.wrapAngleTo180_float(player!=null?player.rotationYaw:par10);
@@ -3650,8 +3647,14 @@ public class ItemTCRail extends ItemPart {
 				tcRail.slopeLength = gagEnd + 1;
 
 				Block block = world.getBlock(x, y, z);
+				tcRail.ballastColour = block.colorMultiplier(world, x, y, z);
+				int blockID = 	Block.getIdFromBlock(block);
+				tcRail.setBallastMaterial(blockID);
+				tcRail.ballastMetadata = world.getBlockMetadata(x,y,z);
 
-				tcRail.setBallastMaterial(block.toString());
+
+
+
 
 
 				for (int i2 = 1; i2 <= gagEnd; i2++) {
