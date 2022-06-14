@@ -85,6 +85,7 @@ public class TCItems {
 		/**Normal 45Degree Turns*/
 
 		ItemIDs.tcRailMedium45DegreeTurn.item = new ItemTCRail(ItemTCRail.TrackTypes.MEDIUM_45DEGREE_TURN);
+		ItemIDs.tcRailLarge45DegreeTurn.item = new ItemTCRail(ItemTCRail.TrackTypes.LARGE_45DEGREE_TURN);
 
 		/**Embedded 45Degree Turns*/
 

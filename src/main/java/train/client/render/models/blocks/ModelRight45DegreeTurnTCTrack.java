@@ -16,12 +16,15 @@ import train.common.tile.TileTCRail;
 public class ModelRight45DegreeTurnTCTrack {
 
     private IModelCustom modelMediumRight45DegreeTurn;
+    private IModelCustom modelLargeRight45DegreeTurn;
 
     public ModelRight45DegreeTurnTCTrack(){
         modelMediumRight45DegreeTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_45degree_medium.obj"));
+        modelLargeRight45DegreeTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_45degree_large.obj"));
     }
 
     public void renderMedium() {modelMediumRight45DegreeTurn.renderAll();}
+    public void renderLarge() {modelLargeRight45DegreeTurn.renderAll();}
 
     public void render(String type, TileTCRail tcRail, double x, double y, double z) {
         int facing = tcRail.getWorldObj().getBlockMetadata(tcRail.xCoord, tcRail.yCoord, tcRail.zCoord);
@@ -59,6 +62,8 @@ public class ModelRight45DegreeTurnTCTrack {
 
         if (type.equals("medium"))
             this.renderMedium();
+        if (type.equals("large"))
+            this.renderLarge();
 
 
         // Pop this matrix from the stack.
