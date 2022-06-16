@@ -540,26 +540,11 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		double directionZ;
 		double norm = Math.sqrt(motionX * motionX + motionZ * motionZ);
 		double distanceNorm;
-
-
-
-
-
-
-
-
 		if (meta == 6  || meta == 4){
-
-
 			if (motionX > 0){
-
-
-
 				exitX = cx + 1.5;
 				exitZ = cz - 0.5;
-
 			}
-
 			if (motionX < 0) {
 				exitX = cx - 0.5;
 				exitZ = cz + 1.5;
@@ -571,8 +556,6 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 
 			motionX = (directionX / distanceNorm) * norm ;
 			motionZ = (directionZ / distanceNorm) * norm ;
-
-			System.out.println(motionX + "+ " + motionZ + "+ " + norm);
 
 			this.boundingBox.offset(Math.copySign(motionX, this.motionX), 0 , Math.copySign(motionZ, this.motionZ));
 

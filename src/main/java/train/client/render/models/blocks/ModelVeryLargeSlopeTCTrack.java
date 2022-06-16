@@ -89,7 +89,7 @@ public class ModelVeryLargeSlopeTCTrack extends ModelBase {
 		String iconName;
 		Block block = Block.getBlockById(tcRail.getBallastMaterial());
 		IIcon icon = block.getIcon(1, tcRail.ballastMetadata);
-		int colour = tcRail.ballastColour;
+		int colour = block.colorMultiplier(tcRail.getWorldObj(), tcRail.xCoord, tcRail.yCoord - 1, tcRail.zCoord);
 		if (icon != null) {
 			iconName = icon.getIconName();
 		}
