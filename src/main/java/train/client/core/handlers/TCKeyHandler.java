@@ -13,8 +13,9 @@ import org.lwjgl.input.Keyboard;
 import train.client.gui.GuiMTCInfo;
 import train.common.Traincraft;
 import train.common.api.Locomotive;
+import train.common.api.SteamTrain;
+import train.common.core.handlers.ConfigHandler;
 import train.common.core.network.PacketKeyPress;
-
 
 public class TCKeyHandler {
 	public static KeyBinding horn;
@@ -28,10 +29,7 @@ public class TCKeyHandler {
 	public static KeyBinding toggleATO;
 	public static KeyBinding mtcOverride;
 	public static KeyBinding overspeedOverride;
-/*	public static KeyBinding remoteControlForward;
-	public static KeyBinding remoteControlBackwards;
-	public static KeyBinding remoteControlHorn;
-	public static KeyBinding remoteControlBrake;*/
+
 	public TCKeyHandler() {
 		horn = new KeyBinding("key.traincraft.horn", Keyboard.KEY_H, "key.categories.traincraft");
 		ClientRegistry.registerKeyBinding(horn);
@@ -57,9 +55,7 @@ public class TCKeyHandler {
 			ClientRegistry.registerKeyBinding(mtcOverride);
 			overspeedOverride = new KeyBinding("key.traincraft.overspeedOverride", Keyboard.KEY_L, "key.categories.traincraft");
 			ClientRegistry.registerKeyBinding(overspeedOverride);
-}
-
-
+		}
 	}
 
 	@SubscribeEvent
@@ -88,24 +84,16 @@ public class TCKeyHandler {
 			}
 			if (Loader.isModLoaded("ComputerCraft")) {
 				if (MTCScreen.isPressed() && !FMLClientHandler.instance().isGUIOpen(GuiMTCInfo.class)) {
-					if (Minecraft.getMinecraft().thePlayer.ridingEntity != null && Minecraft.getMinecraft().thePlayer.ridingEntity instanceof Locomotive) {
-//&&((Locomotive)Minecraft.getMinecraft().thePlayer.ridingEntity).getTrainOwner().equals(Minecraft.getMinecraft().thePlayer.getDisplayName()))
-						if (((Locomotive)Minecraft.getMinecraft().thePlayer.ridingEntity).locked) {
-							if (((Locomotive)Minecraft.getMinecraft().thePlayer.ridingEntity).getTrainOwner().equals(Minecraft.getMinecraft().thePlayer.getDisplayName())) {
-								Minecraft.getMinecraft().displayGuiScreen(new GuiMTCInfo(Minecraft.getMinecraft().thePlayer.ridingEntity));
-						}
-
-						} else {
-							Minecraft.getMinecraft().displayGuiScreen(new GuiMTCInfo(Minecraft.getMinecraft().thePlayer.ridingEntity));
-						}
+					if (Minecraft.getMinecraft().thePlayer.ridingEntity != null) {
+						Minecraft.getMinecraft().displayGuiScreen(new GuiMTCInfo(Minecraft.getMinecraft().thePlayer.ridingEntity));
 					}
 				}
 				if (toggleATO.isPressed() && Minecraft.getMinecraft().thePlayer.ridingEntity instanceof Locomotive) {
 					sendKeyControlsPacket(16);
 					Locomotive train = (Locomotive) Minecraft.getMinecraft().thePlayer.ridingEntity;
 					if (train.mtcStatus != 0 && train.mtcType == 2) {
-						if (!train.trainIsATOSupported()) {
-							((EntityPlayer) train.riddenByEntity).addChatMessage(new ChatComponentText("Automatic Train Operation is not supported for this train"));
+						if (train instanceof SteamTrain && !ConfigHandler.ALLOW_ATO_ON_STEAMERS) {
+							((EntityPlayer) train.riddenByEntity).addChatMessage(new ChatComponentText("Automatic Train Operation cannot be used with steam trains"));
 						} else {
 							if (train.atoStatus == 1) {
 								train.atoStatus = 0;
@@ -160,9 +148,9 @@ public class TCKeyHandler {
 			}
 		}
 
-		//if (FMLClientHandler.instance().getClient().gameSettings.keyBindSneak.isPressed() && Keyboard.isKeyDown(Keyboard.KEY_F3)) {
-		//	sendKeyControlsPacket(404);
-		//}
+		if (FMLClientHandler.instance().getClient().gameSettings.keyBindSneak.isPressed() && Keyboard.isKeyDown(Keyboard.KEY_F3)) {
+			sendKeyControlsPacket(404);
+		}
 	}
 
 

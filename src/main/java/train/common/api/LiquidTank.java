@@ -15,7 +15,7 @@ import train.common.entity.rollingStock.EntityTankLava;
 
 import javax.annotation.Nullable;
 
-public abstract class LiquidTank extends EntityRollingStock implements IFluidHandler, ISidedInventory {
+public class LiquidTank extends EntityRollingStock implements IFluidHandler, ISidedInventory {
 	private int capacity;
 	protected ItemStack cargoItems[];
 	private int update = 8;
@@ -124,7 +124,7 @@ public abstract class LiquidTank extends EntityRollingStock implements IFluidHan
 	 * Handle mass depending on liquid amount
 	 */
 	protected void handleMass() {
-		if (this.ticksExisted % 10 != 0 && theTank.getFluid().amount > 0) {
+		if (this.updateTicks % 10 != 0 && theTank.getFluid().amount > 0) {
 			this.mass = this.getDefaultMass();
 			double preciseAmount = theTank.getFluid().amount;
 			mass += (preciseAmount / 10000);//1 bucket = 1 kilo

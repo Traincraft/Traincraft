@@ -2738,7 +2738,7 @@ public class ModelAlcoPA extends ModelConverter //Same as Filename
 		bodyModel[633].setRotationPoint(-25F, -20.5F, 1.5F);
 
 		bodyModel[634].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F,0F, -0.05F, 0F, 0F, 0F, 0F, 0F, 0.05F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F); // Box 643
-		bodyModel[634].setRotationPoint(-24F, -20.5F, -7F);
+		bodyModel[634].setRotationPoint(-24F, -18.5F, -7F);
 		bodyModel[634].rotateAngleX = 0.15707963F;
 
 		bodyModel[635].addShapeBox(0F, 0F, 0F, 2, 1, 2, 0F,0F, 0F, 0F, -0.75F, 0F, 0F, -0.75F, 0F, -0.75F, 0F, 0F, -0.75F, 0F, -0.5F, 0F, -0.75F, -0.5F, 0F, -0.75F, -0.5F, -0.75F, 0F, -0.5F, -0.75F); // Box 643
@@ -3082,7 +3082,7 @@ public class ModelAlcoPA extends ModelConverter //Same as Filename
 		}
 		if (entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 4||entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 6) {
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/AlcoPATruckNKPBlue.png"));
-		} else if (entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 1||entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 11) {
+		} else if (entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 1||entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 11||entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 7||entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 9) {
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/AlcoPATruckSilver.png"));
 		} else {
 			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/AlcoPATruckBlack.png"));

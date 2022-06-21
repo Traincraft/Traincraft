@@ -3,7 +3,6 @@ package train.common.entity;
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
-import train.common.core.util.TraincraftUtil;
 
 public class EntityLasersLines extends Entity {
 	public double x1, y1, z1, x2, y2, z2;
@@ -87,11 +86,11 @@ public class EntityLasersLines extends Entity {
 
 		renderSize = Math.sqrt(dx * dx + dy * dy + dz * dz);
 
-		angleZ = 360 - TraincraftUtil.atan2degreesf(dz,dx)+180;
+		angleZ = 360 - (Math.atan2(dz, dx) * 180.0 / Math.PI + 180.0);
 
 		dx = Math.sqrt(renderSize * renderSize - dy * dy);
 
-		angleY = -TraincraftUtil.atan2degreesf(dy, dx);
+		angleY = -Math.atan2(dy, dx) * 180 / Math.PI;
 	}
 
 	@Override

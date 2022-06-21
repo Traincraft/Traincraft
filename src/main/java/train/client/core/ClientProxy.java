@@ -74,7 +74,7 @@ public class ClientProxy extends CommonProxy {
 		ClientTickHandler tickHandler = new ClientTickHandler();
 		CustomRenderHandler renderHandler = new CustomRenderHandler();
 		HUDloco huDloco = new HUDloco();
-		if (Loader.isModLoaded("ComputerCraft") || Loader.isModLoaded("OpenComputers")){
+		if (Loader.isModLoaded("ComputerCraft")){
 			HUDMTC hudMTC = new HUDMTC();
 			registerEvent(hudMTC);
 		}
@@ -99,6 +99,9 @@ public class ClientProxy extends CommonProxy {
 
 		ClientRegistry.bindTileEntitySpecialRenderer(TileStopper.class, new RenderStopper());
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockIDs.stopper.block), new ItemRenderStopper());
+
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEmbeddedStopper.class, new RenderEmbeddedStopper());
+		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockIDs.embeddedStopper.block), new ItemRenderEmbeddedStopper());
 		
 		//ClientRegistry.bindTileEntitySpecialRenderer(TileBook.class, new RenderTCBook());
 		//MinecraftForgeClient.registerItemRenderer(BlockIDs.book.blockID, new ItemRenderBook());
@@ -221,7 +224,7 @@ public class ClientProxy extends CommonProxy {
 		case (GuiIDs.DIGGER):
 			return riddenByEntity != null ? new GuiBuilder(player, riddenByEntity.inventory, entity) : null;
 		case (GuiIDs.MTC_INFO):
-			return riddenByEntity != null && Loader.isModLoaded("ComputerCraft")  || Loader.isModLoaded("OpenComputers") ? new GuiMTCInfo(player) : null;
+			return riddenByEntity != null && Loader.isModLoaded("ComputerCraft") ? new GuiMTCInfo(player) : null;
 
 			//Stationary entities while player is not riding. 
 		case (GuiIDs.FREIGHT):

@@ -125,20 +125,21 @@ public class RenderRollingStock extends Render {
 			//GL11.glRotatef((float)(90-cart.rotationYawClientReal), 0.0F, 1.0F, 0.0F);
 			if (cart.oldClientYaw == 0) cart.oldClientYaw = cart.rotationYawClientReal;
 
+			float rotationYawBogie = cart.rotationYawClientReal;
 			float tempYaw = (cart.rotationYawClientReal - cart.oldClientYaw);
 			float newYaw = 0;
 			//System.out.println("rotationYawBogie "+rotationYawBogie+" oldYaw "+cart.oldClientYaw+" tempYaw "+(Math.abs(tempYaw)/10));
 			//System.out.println(Math.abs(cart.oldClientYaw-rotationYawBogie));
-			if(Math.abs(cart.oldClientYaw-cart.rotationYawClientReal)>170){
-				cart.oldClientYaw = cart.rotationYawClientReal;
+			if(Math.abs(cart.oldClientYaw-rotationYawBogie)>170){
+				cart.oldClientYaw = rotationYawBogie;
 			}
-			if (cart.oldClientYaw != cart.rotationYawClientReal && Math.abs(cart.oldClientYaw-cart.rotationYawClientReal)>(Math.abs(tempYaw)/10)) {
+			if (cart.oldClientYaw != rotationYawBogie && Math.abs(cart.oldClientYaw-rotationYawBogie)>(Math.abs(tempYaw)/10)) {
 				newYaw = cart.oldClientYaw + Math.copySign((Math.abs(tempYaw)/10), tempYaw);
 				cart.oldClientYaw += Math.copySign((Math.abs(tempYaw)/10), tempYaw);
 			}
 			else {
-				newYaw = cart.rotationYawClientReal;
-				cart.oldClientYaw = cart.rotationYawClientReal;
+				newYaw = rotationYawBogie;
+				cart.oldClientYaw = rotationYawBogie;
 			}
 			//System.out.println("newYaw "+newYaw);
 			//System.out.println(90 - cart.rotationYawClientReal);
@@ -159,22 +160,23 @@ public class RenderRollingStock extends Render {
 			}else{
 				if (cart.oldClientYaw == 0) cart.oldClientYaw = cart.rotationYawClientReal;
 
+				float rotationYaw = cart.rotationYawClientReal;
 				float tempYaw = (cart.rotationYawClientReal - cart.oldClientYaw);
 				float newYaw = 0;
 				//System.out.println("rotationYawBogie "+rotationYawBogie+" oldYaw "+cart.oldClientYaw+" tempYaw "+(Math.abs(tempYaw)/10));
 				//System.out.println(Math.abs(cart.oldClientYaw-rotationYawBogie));
-				if(Math.abs(cart.oldClientYaw-cart.rotationYawClientReal)>170){
-					cart.oldClientYaw = cart.rotationYawClientReal;
+				if(Math.abs(cart.oldClientYaw-rotationYaw)>170){
+					cart.oldClientYaw = rotationYaw;
 				}
-				if (cart.oldClientYaw != cart.rotationYawClientReal && Math.abs(cart.oldClientYaw-cart.rotationYawClientReal)>(Math.abs(tempYaw)/10)) {
+				if (cart.oldClientYaw != rotationYaw && Math.abs(cart.oldClientYaw-rotationYaw)>(Math.abs(tempYaw)/10)) {
 					newYaw = cart.oldClientYaw + Math.copySign((Math.abs(tempYaw)/10), tempYaw);
 					cart.oldClientYaw += Math.copySign((Math.abs(tempYaw)/10), tempYaw);
 				}
 				else {
-					newYaw = cart.rotationYawClientReal;
-					cart.oldClientYaw = cart.rotationYawClientReal;
+					newYaw = rotationYaw;
+					cart.oldClientYaw = rotationYaw;
 				}
-				GL11.glRotatef(-newYaw, 0.0F, 1.0F, 0.0F);
+				GL11.glRotatef((90.0f-(newYaw+90.0f)), 0.0F, 1.0F, 0.0F);
 				cart.setRenderYaw(yaw);
 				cart.setRenderPitch(pitch);
 			}
@@ -184,11 +186,11 @@ public class RenderRollingStock extends Render {
 
 		//GL11.glRotatef(180.0F - yaw, 0.0F, 1.0F, 0.0F);
 		if (cart.bogieLoco != null) {// || cart.bogieUtility[0]!=null){
-			GL11.glRotatef(-cart.anglePitchClient, 0.0F, 0.0F, 1.0F);
+			GL11.glRotatef((float) -cart.anglePitchClient, 0.0F, 0.0F, 1.0F);
 		}
 		else {
 			if(renderYVect != null){
-				pitch = cart.anglePitchClient/60f;
+				pitch = (float)cart.anglePitchClient/60;
 				if(cart.rotationYawClientReal>-5 && cart.rotationYawClientReal<5){
 					pitch=-pitch;
 				}
@@ -411,7 +413,8 @@ public class RenderRollingStock extends Render {
 		//if (pitch != 0 && !hasSmokeOnSlopes) { return; }
 		if(Math.abs(pitch)>30)return;
 		if (cart instanceof Locomotive && ((Locomotive) cart).getFuel() > 0) {
-			if (random.nextInt(300) < (explosionFXIterations * 10)) {
+			int r = random.nextInt(300);
+			if (r < (explosionFXIterations * 10)) {
 				for (int j = 0; j < explosionFXIterations; j++) {
 					if (yawMod == 180) {
 						for (double[] explosion : explosionFX) {

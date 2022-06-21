@@ -102,22 +102,19 @@ public class TraincraftUtil{
     }
 
     public static final double degrees = (180d / Math.PI);
-    public static final float radian = (float)(Math.PI / 180.0D);
+    public static final double radian = (Math.PI / 180.0D);
     public static void updateRider(EntityRollingStock transport,double distance, double yOffset) {
         if(transport.riddenByEntity==null){return;}
         double pitchRads = transport.anglePitchClient * radian;
         double rotationCos1 = Math.cos(Math.toRadians(transport.renderYaw+((transport instanceof Locomotive)?90:180)));
         double rotationSin1 = Math.sin(Math.toRadians(transport.renderYaw+((transport instanceof Locomotive)?90:180)));
-        float pitch = (float) (transport.posY + (Math.tan(pitchRads) * distance) + transport.getMountedYOffset()
-                + transport.riddenByEntity.getYOffset() + yOffset+0.2f);
-        float pitch1 = (float)(transport.posY + transport.getMountedYOffset() + transport.riddenByEntity.getYOffset() + yOffset);
         if(transport.side.isServer()){
             rotationCos1 =  Math.cos(Math.toRadians(transport.serverRealRotation + 90));
             rotationSin1 = Math.sin(Math.toRadians((transport.serverRealRotation + 90)));
             transport.anglePitchClient = transport.serverRealPitch*60;
-            pitch+=0.5;
-            pitch1+=0.5;
         }
+        float pitch = (float) (transport.posY + ((Math.tan(pitchRads) * distance) + transport.getMountedYOffset())
+                + transport.riddenByEntity.getYOffset() + yOffset);
 
         double bogieX1 = (transport.posX + (rotationCos1 * distance));
         double bogieZ1 = (transport.posZ + (rotationSin1* distance));
@@ -130,10 +127,11 @@ public class TraincraftUtil{
             bogieZ1-=pitchRads*2;
             pitch-=pitchRads*1.2;
         }
+        if (pitchRads == 0.0) {
+            transport.riddenByEntity.setPosition(bogieX1, (transport.posY + transport.getMountedYOffset() + transport.riddenByEntity.getYOffset() + yOffset), bogieZ1);
+        }
         if (pitchRads > -1.01 && pitchRads < 1.01) {
             transport.riddenByEntity.setPosition(bogieX1, pitch, bogieZ1);
-        } else if(pitchRads == 0.0) {
-            transport.riddenByEntity.setPosition(bogieX1, pitch1, bogieZ1);
         }
     }
     public static float atan2f(double x, double z) {

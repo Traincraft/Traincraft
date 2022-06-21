@@ -53,7 +53,7 @@ public class BlockAssemblyTableIII extends BlockContainer {
 			return false;
 		}
 		if (!world.isRemote) {
-			if (te instanceof TileCrafterTierIII) {
+			if (te != null && te instanceof TileCrafterTierIII) {
 				player.openGui(Traincraft.instance, GuiIDs.CRAFTER_TIER_III, world, i, j, k);
 			}
 		}
@@ -90,7 +90,6 @@ public class BlockAssemblyTableIII extends BlockContainer {
 		TileCrafterTierIII tileentitytierIII = (TileCrafterTierIII) world.getTileEntity(i, j, k);
 		if (tileentitytierIII != null) {
 			label0: for (int l = 0; l < tileentitytierIII.getSizeInventory(); l++) {
-				if((l>9 && l<18)){continue;}
 				ItemStack itemstack = tileentitytierIII.getStackInSlot(l);
 				if (itemstack == null) {
 					continue;

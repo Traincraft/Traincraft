@@ -16,10 +16,10 @@ import train.common.api.EntityRollingStock;
 public class PacketRollingStockRotation implements IMessage {
 
 	int entityID;
-	float rotationYawServer;
-	float realRotation;
+	int rotationYawServer;
+	int realRotation;
 	int anglePitch;
-	float posY;
+	int posY;
 	boolean isInReverse;
 
 	public PacketRollingStockRotation() {}
@@ -27,10 +27,10 @@ public class PacketRollingStockRotation implements IMessage {
 	public PacketRollingStockRotation(EntityRollingStock entity, int anglePitch) {
 
 		this.entityID = entity.getEntityId();
-		this.rotationYawServer = entity.rotationYaw; // Don't even ASK ME why we do this. Probably an attempt to reduce Packet size, but at what cost of precision..?
-		this.realRotation = entity.serverRealRotation;
+		this.rotationYawServer = (int) entity.rotationYaw; // Don't even ASK ME why we do this. Probably an attempt to reduce Packet size, but at what cost of precision..?
+		this.realRotation = (int) entity.serverRealRotation;
 		this.anglePitch = anglePitch;
-		this.posY = (float) entity.posY;
+		this.posY = Float.floatToIntBits((float) entity.posY); // improved accuracy with no usage increase
 		this.isInReverse = entity.isServerInReverse;
 	}
 
@@ -38,10 +38,10 @@ public class PacketRollingStockRotation implements IMessage {
 	public void fromBytes(ByteBuf bbuf) {
 
 		this.entityID = bbuf.readInt();
-		this.rotationYawServer = bbuf.readFloat();
-		this.realRotation = bbuf.readFloat();
+		this.rotationYawServer = bbuf.readInt();
+		this.realRotation = bbuf.readInt();
 		this.anglePitch = bbuf.readInt();
-		this.posY = bbuf.readFloat();
+		this.posY = bbuf.readInt();
 		this.isInReverse = bbuf.readBoolean();
 	}
 
@@ -49,10 +49,10 @@ public class PacketRollingStockRotation implements IMessage {
 	public void toBytes(ByteBuf bbuf) {
 
 		bbuf.writeInt(this.entityID);
-		bbuf.writeFloat(this.rotationYawServer);
-		bbuf.writeFloat(this.realRotation);
+		bbuf.writeInt(this.rotationYawServer);
+		bbuf.writeInt(this.realRotation);
 		bbuf.writeInt(this.anglePitch);
-		bbuf.writeFloat(this.posY);
+		bbuf.writeInt(this.posY);
 		bbuf.writeBoolean(this.isInReverse);
 	}
 
@@ -61,8 +61,9 @@ public class PacketRollingStockRotation implements IMessage {
 		@Override
 		public IMessage onMessage(PacketRollingStockRotation message, MessageContext context) {
 
-			if(Minecraft.getMinecraft().theWorld != null){
-				Entity entity = Minecraft.getMinecraft().theWorld.getEntityByID(message.entityID);
+			Minecraft mc = Minecraft.getMinecraft();
+			if(mc.theWorld != null){
+				Entity entity = mc.theWorld.getEntityByID(message.entityID);
 				if (entity instanceof EntityRollingStock) {
 
 					EntityRollingStock rollingStock = (EntityRollingStock) entity;
@@ -70,7 +71,7 @@ public class PacketRollingStockRotation implements IMessage {
 					rollingStock.rotationYawClientReal = message.realRotation;
 					rollingStock.anglePitchClient = message.anglePitch;
 					rollingStock.isClientInReverse = message.isInReverse;
-					rollingStock.setYFromServer(message.posY);
+					rollingStock.setYFromServer(Float.intBitsToFloat(message.posY));
 				}
 
 			}

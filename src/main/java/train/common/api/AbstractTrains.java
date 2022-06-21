@@ -1,7 +1,6 @@
 package train.common.api;
 
 import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import io.netty.buffer.ByteBuf;
 import mods.railcraft.api.carts.IMinecart;
@@ -44,7 +43,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 	protected int color;
 	public boolean isAttached = false;
 	public boolean isAttaching = false;
-	public static int numberOfTrains = Integer.MIN_VALUE;
+	public static int numberOfTrains;
 	public EntityPlayer playerEntity;
 	public double Link1;
 	public double Link2;
@@ -138,7 +137,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 	/**
 	 * Registers all possible color textures
 	 */
-	public ArrayList<Byte> acceptedColors;
+	public ArrayList<Integer> acceptedColors;
 
 
 	public AbstractTrains(World world) {
@@ -151,7 +150,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		dataWatcher.addObject(7, trainOwner);
 		dataWatcher.addObject(8, trainDestroyer);
 		dataWatcher.addObject(9, trainName);
-		//dataWatcher.addObject(10, numberOfTrains);
+		dataWatcher.addObject(10, numberOfTrains);
 		dataWatcher.addObject(11, uniqueID);
 		dataWatcher.addObject(13, trainCreator);
 		shouldChunkLoad=ConfigHandler.CHUNK_LOADING;
@@ -164,7 +163,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 				trainSpec = trains;
 				if (trains.getColors() != null) {
 					for (int i = 0; i < trains.getColors().length; i++) {
-						this.acceptedColors.add((trains.getColors()[i]));
+						this.acceptedColors.add(AbstractTrains.getColorFromString(trains.getColors()[i]));
 					}
 				}
 				this.setSize(0.98f, 1.98f);
@@ -210,25 +209,10 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 	@Override
 	public void readSpawnData(ByteBuf additionalData) {
 		locked = additionalData.readBoolean();
-		if(additionalData.readBoolean()){
-			getEntityData().setString("puuid", ByteBufUtils.readUTF8String(additionalData));
-			getEntityData().setString("theCreator", ByteBufUtils.readUTF8String(additionalData));
-			getEntityData().setString("theOwner", ByteBufUtils.readUTF8String(additionalData));
-			getEntityData().setInteger("color", additionalData.readInt());
-		}
 	}
 	@Override
 	public void writeSpawnData(ByteBuf buffer) {
 		buffer.writeBoolean(locked);
-		if(getEntityData().hasKey("puuid")) {
-			buffer.writeBoolean(true);
-			ByteBufUtils.writeUTF8String(buffer, getEntityData().getString("puuid"));
-			ByteBufUtils.writeUTF8String(buffer, getEntityData().getString("theCreator"));
-			ByteBufUtils.writeUTF8String(buffer, getEntityData().getString("theOwner"));
-			buffer.writeInt(getEntityData().getInteger("color"));
-		} else {
-			buffer.writeBoolean(false);
-		}
 	}
 
 
@@ -275,7 +259,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 				//TraincraftSaveHandler.createFile(FMLCommonHandler.instance().getMinecraftServerInstance());
 				//int readID = TraincraftSaveHandler.readInt(FMLCommonHandler.instance().getMinecraftServerInstance(), "numberOfTrains:");
 				//int newID = setNewUniqueID(readID);
-				setNewUniqueID();
+				setNewUniqueID(this.getEntityId());
 				//TraincraftSaveHandler.writeValue(FMLCommonHandler.instance().getMinecraftServerInstance(), "numberOfTrains:", new String("" + newID));
 				//System.out.println("Train is missing an ID, adding new one for "+this.trainName+" "+this.uniqueID);
 			}
@@ -317,9 +301,9 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		ForgeChunkManager.releaseTicket(chunkTicket);
 	}
 
-	public int setNewUniqueID() {
+	public int setNewUniqueID(int numberOfTrains) {
 		// System.out.println(numberOfTrains);
-		if (numberOfTrains == Integer.MIN_VALUE) {
+		if (numberOfTrains <= 0) {
 			numberOfTrains = uniqueIDs++;
 		}
 		else {
@@ -440,11 +424,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		trainName = nbttagcompound.getString("theName");
 		trainType = nbttagcompound.getString("theType");
 		uniqueID = nbttagcompound.getInteger("uniqueID");
-		if(uniqueIDs==Integer.MIN_VALUE && nbttagcompound.hasKey("uniqueIDs")) {
-			uniqueIDs = nbttagcompound.getInteger("uniqueIDs");
-		} else {
-			uniqueIDs =Integer.MIN_VALUE;
-		}
+		//uniqueIDs = nbttagcompound.getInteger("uniqueIDs");
 		setInformation(trainType, trainOwner, trainCreator, trainName, uniqueID);
 
 		numberOfTrains = nbttagcompound.getInteger("numberOfTrains");
@@ -535,6 +515,8 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 			return "Skin21";
 		case 22:
 			return "Skin22";
+		case 23:
+			return "Skin23";
 		case 100:
 			return "Empty";
 		case 101:
@@ -592,6 +574,8 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 			return "Skin21";
 		case 22:
 			return "Skin22";
+		case 23:
+			return "Skin23";
 		case 100:
 			return "Empty";
 		case 101:
@@ -625,6 +609,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		if (color.equals("Skin20")) return 20;
 		if (color.equals("Skin21")) return 21;
 		if (color.equals("Skin22")) return 22;
+		if (color.equals("Skin23")) return 23;
 		if (color.equals("Empty")) return 100;
 		if (color.equals("Full")) return 101;
 		return -1;
@@ -645,9 +630,15 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		}
 	}
 
-	@Override
-	public ItemStack getPickedResult(MovingObjectPosition target) {
-		return getCartItem();
+	protected void setUniqueIDToItem(ItemStack stack) {
+		NBTTagCompound var3 = stack.getTagCompound();
+		if (var3 == null) {
+			var3 = new NBTTagCompound();
+			stack.setTagCompound(var3);
+		}
+		if (this.uniqueID != -1) stack.getTagCompound().setInteger("uniqueID", this.uniqueID);
+		if (this.trainCreator != null && this.trainCreator.length() > 0) stack.getTagCompound().setString("trainCreator", this.trainCreator);
+		if (this.getColor() != -1) stack.getTagCompound().setInteger("trainColor", this.getColor());
 	}
 
 	protected void setDefaultMass(double def) {
@@ -679,7 +670,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 	protected boolean lockThisCart(ItemStack itemstack, EntityPlayer entityplayer) {
 		if (itemstack != null && (itemstack.getItem() instanceof ItemWrench || itemstack.getItem() instanceof ItemAdminBook)) {
 			if (entityplayer.getDisplayName().equals(this.trainOwner) || entityplayer.getGameProfile().getName().equals(this.trainOwner)
-					|| this.trainOwner.equals("") || entityplayer.canCommandSenderUseCommand(2, "tc.admin")) {
+					|| this.trainOwner.equals("") || entityplayer.canCommandSenderUseCommand(2, "")) {
 				if (locked) {
 					locked = false;
 					if(worldObj.isRemote) {
@@ -709,7 +700,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		if (this.getTrainLockedFromPacket()) {
 			if (damagesource.getEntity() instanceof EntityPlayer) {
 				if ((damagesource.getEntity() instanceof EntityPlayerMP) &&
-						((EntityPlayerMP)damagesource.getEntity()).canCommandSenderUseCommand(2, "tc.admin") &&
+						((EntityPlayerMP)damagesource.getEntity()).canCommandSenderUseCommand(2, "") &&
 						((EntityPlayer) damagesource.getEntity()).inventory.getCurrentItem() != null &&
 						((EntityPlayer) damagesource.getEntity()).inventory.getCurrentItem().getItem() instanceof ItemWrench) {
 

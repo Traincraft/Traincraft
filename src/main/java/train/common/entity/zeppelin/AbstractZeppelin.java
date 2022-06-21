@@ -26,7 +26,6 @@ import train.common.Traincraft;
 import train.common.core.handlers.ConfigHandler;
 import train.common.core.handlers.FuelHandler;
 import train.common.core.network.PacketKeyPress;
-import train.common.core.util.TraincraftUtil;
 import train.common.library.GuiIDs;
 
 import java.util.List;
@@ -485,7 +484,7 @@ public abstract class AbstractZeppelin extends Entity implements IInventory {
 		double div10 = this.prevPosZ - this.posZ;
 
 		if ((div11 * div11) + (div10 * div10) > 0.001D) {
-			rot = TraincraftUtil.atan2degreesf(div10, div11);
+			rot = ((float) (Math.atan2(div10, div11) * 180.0D / Math.PI));
 		}
 
 		double d12 = MathHelper.wrapAngleTo180_double(rot - this.rotationYaw);

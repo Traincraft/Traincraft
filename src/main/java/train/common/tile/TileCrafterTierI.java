@@ -18,18 +18,21 @@ import train.common.library.Info;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class TileCrafterTierI extends TileEntity implements IInventory, ITier {
+	private Random rand;
 	private ItemStack[] crafterInventory;
 
 	private ForgeDirection facing;
 	private final int Tier = 1;
-	private List<Item> resultList;
+	private List<Item>			resultList;
 	private static List<Item> knownRecipes = new ArrayList<Item>();
 	private static int[] slotSelected;
 
 	public TileCrafterTierI() {
 		crafterInventory = new ItemStack[26];
+		this.rand = new Random();
 		this.resultList = new ArrayList<Item>();
 		slotSelected = new int[8];
 	}
@@ -201,9 +204,9 @@ public class TileCrafterTierI extends TileEntity implements IInventory, ITier {
 			}
 		}
 
-		for (Item item : resultList) {
-			if (!listContainsItem(knownRecipes, item)) {
-				knownRecipes.add(item);
+		for (int i = 0; i < resultList.size(); i++) {
+			if (!listContainsItem(knownRecipes, resultList.get(i))) {
+				knownRecipes.add(resultList.get(i));
 			}
 		}
 	}
@@ -251,8 +254,8 @@ public class TileCrafterTierI extends TileEntity implements IInventory, ITier {
 	}
 
 	private boolean listContainsItem(List<Item> list, Item stack) {
-		for (Item item : list) {
-			if (Item.getIdFromItem(item) == Item.getIdFromItem(stack)) {
+		for (int i = 0; i < list.size(); i++) {
+			if (Item.getIdFromItem(list.get(i)) == Item.getIdFromItem(stack)) {
 				return true;
 			}
 		}
@@ -296,6 +299,8 @@ public class TileCrafterTierI extends TileEntity implements IInventory, ITier {
 
 	@Override
 	public boolean isItemValidForSlot(int i, ItemStack stack) {
+		if(i>17)
+			return true;
 		if(i>9)
 			return false;
 
