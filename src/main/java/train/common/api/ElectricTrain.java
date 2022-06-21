@@ -76,7 +76,7 @@ public abstract class ElectricTrain extends Locomotive {
 		  * 
 		  * if (locoInvent[u] != null) { if (locoInvent[u].itemID == PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[21]).itemID) { reduceExplosionChance += 10000; if (rand.nextInt(10) == 0 && (!worldObj.isRemote)) { locoInvent[u].setItemDamage(1); } } } } } else if ((locoInvent[0].itemID == PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[23]).itemID)) { hasUranium = true; fuelTrain = 800 + 1000000; // locoInvent[0] = null; if (!worldObj.isRemote) { decrStackSize(0, 1); } reduceExplosionChance = 1000; for (int u = 1; u < locoInvent.length; u++) {// checks the inventory if (locoInvent[u] != null) { if (locoInvent[u].itemID == PluginIndustrialCraft.getItems().get(PluginIndustrialCraft.getNames()[21]).itemID) { reduceExplosionChance += 10000; if (rand.nextInt(10) == 0 && (!worldObj.isRemote)) { locoInvent[u].setItemDamage(1); } } } } } } } */
 
-		blocksToCheck = new TileEntity[]{worldObj.getTileEntity(MathHelper.floor_double(posX), MathHelper.floor_double(posY-1),MathHelper.floor_double(posZ)),
+		blocksToCheck = new TileEntity[]{worldObj.getTileEntity(MathHelper.floor_double(posX), MathHelper.floor_double(posY-2),MathHelper.floor_double(posZ)),
 				worldObj.getTileEntity(MathHelper.floor_double(posX), MathHelper.floor_double(posY+2),MathHelper.floor_double(posZ)),
 				worldObj.getTileEntity(MathHelper.floor_double(posX), MathHelper.floor_double(posY+3),MathHelper.floor_double(posZ)),
 				worldObj.getTileEntity(MathHelper.floor_double(posX), MathHelper.floor_double(posY+4),MathHelper.floor_double(posZ))
@@ -91,7 +91,7 @@ public abstract class ElectricTrain extends Locomotive {
 					}
 					int max = ((IEnergyHandler) block).getEnergyStored(direction);
 					if (max > 0) {
-						draw = ((IEnergyHandler) block).receiveEnergy(direction, Math.max(-MathHelper.floor_double(Math.min(200, maxEnergy - getFuel()) * 0.1), -max), false);
+						draw = ((IEnergyHandler) block).receiveEnergy(direction, Math.max(-MathHelper.floor_double(Math.min(200, maxEnergy - getFuel()) * 0.2), -max), false);
 					}
 				}
 				fuelTrain += -draw;
@@ -101,6 +101,8 @@ public abstract class ElectricTrain extends Locomotive {
 			}
 		}
 	}
+
+
 	@Override
 	protected void updateFuelTrain(int amount) {
 		//reduceExplosionChance = 1000;

@@ -314,5 +314,6 @@ public class GuiLoco2 extends GuiContainer {
 		fontRendererObj.drawStringWithShadow("Heat level: " + loco.getOverheatLevel(), 1, 100, 0xFFFFFF);
 		fontRendererObj.drawStringWithShadow("Maximum Speed: " + (loco.getCustomSpeedGUI()) + " km/h" + " ("+(loco.getCustomSpeedGUI()+loco.getCurrentSpeedSlowDown())+")", 1, 110, 0xFFFFFF);
 		fontRendererObj.drawStringWithShadow("Destination: " + (loco.getDestinationGUI()), 1, 120, 0xFFFFFF);
+		fontRendererObj.drawStringWithShadow("UUID: " + loco.getPersistentUUID() + " - Entity UUID" + loco.getUniqueID().toString(),1,0,0xFFFFFF);
 	}
 }

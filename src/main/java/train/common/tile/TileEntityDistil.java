@@ -13,6 +13,7 @@ import train.common.api.LiquidManager;
 import train.common.api.LiquidManager.StandardTank;
 import train.common.blocks.BlockDistil;
 import train.common.library.BlockIDs;
+import train.common.library.ItemIDs;
 import train.common.recipes.DistilRecipes;
 
 import java.util.Random;
@@ -277,7 +278,7 @@ public class TileEntityDistil extends TileTraincraft implements IFluidHandler {
 		{
 			getTank().fill(resultLiquid, true);
 			if (random.nextInt(plasticChance) == 0)
-				outputPlastic(plasticStack);
+				outputPlastic(plasticStack, slots[0].getItem() == ItemIDs.diesel.item);
 			if (theTank.getFluid() != null) {
 				amount = theTank.getFluid().amount;
 			}
@@ -301,11 +302,20 @@ public class TileEntityDistil extends TileTraincraft implements IFluidHandler {
 		this.syncTileEntity();
 	}
 
-	private void outputPlastic(ItemStack plasticStack) {
+	private void outputPlastic(ItemStack plasticStack, boolean wasDeisel) {
 		if (slots[3] == null) {
-			slots[3] = plasticStack.copy();
-		}
-		else if (Item.getIdFromItem(slots[3].getItem()) == Item.getIdFromItem(plasticStack.getItem())) {
+			if(wasDeisel){
+				slots[3]= new ItemStack(ItemIDs.emptyCanister.item,1);
+			} else {
+				slots[3] = plasticStack.copy();
+			}
+		} else if(wasDeisel){
+			if(slots[3].getItem()==ItemIDs.emptyCanister.item){
+				slots[3].stackSize += plasticStack.stackSize;
+			} else {
+				slots[3].stackSize += plasticStack.stackSize;
+			}
+		} else if (Item.getIdFromItem(slots[3].getItem()) == Item.getIdFromItem(plasticStack.getItem())) {
 			slots[3].stackSize += plasticStack.stackSize;
 		}
 		this.markDirty();

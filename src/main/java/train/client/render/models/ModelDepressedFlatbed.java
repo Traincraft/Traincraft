@@ -40,7 +40,6 @@ public class ModelDepressedFlatbed extends ModelConverter //Same as Filename
 	private ModelCharB1 tank1 = new ModelCharB1();
 	private ModelFT17 tank2 = new ModelFT17();
 	private ModelPanzerI tank3 = new ModelPanzerI();
-	private ModelGP7 gp7 = new ModelGP7();
 
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
@@ -69,13 +68,6 @@ public class ModelDepressedFlatbed extends ModelConverter //Same as Filename
 			GL11.glTranslated(0.45,0.025,-0.11);
 			GL11.glScalef(0.55f,0.55f,0.55f);
 			tank3.render(entity,f,f1,f2,f3,f4,f5);
-			GL11.glPopMatrix();
-		}else if( entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor()==11) {
-			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/gp7_Yellow.png"));
-			GL11.glPushMatrix();
-			GL11.glTranslated(0.3,0.45,-0.1);
-			GL11.glRotatef(180, 0, 0, 1);
-			gp7.render(entity,f,f1,f2,f3,f4,f5);
 			GL11.glPopMatrix();
 		} else {     Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/FT17.png"));
 			GL11.glPushMatrix();

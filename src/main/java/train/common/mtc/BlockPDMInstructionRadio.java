@@ -2,12 +2,13 @@ package train.common.mtc;
 
 import dan200.computercraft.api.peripheral.IPeripheral;
 import dan200.computercraft.api.peripheral.IPeripheralProvider;
-import net.minecraft.block.BlockContainer;
+import net.minecraft.block.Block;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public class BlockPDMInstructionRadio  extends BlockContainer implements IPeripheralProvider {
+public class BlockPDMInstructionRadio  extends Block implements IPeripheralProvider, ITileEntityProvider {
 
 
     public static BlockPDMInstructionRadio instance;
@@ -20,6 +21,8 @@ public class BlockPDMInstructionRadio  extends BlockContainer implements IPeriph
         TileEntity tileEntity = world.getTileEntity(x, y, z);
         return (IPeripheral)tileEntity;
     }
+
+
 
     @Override
     public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {

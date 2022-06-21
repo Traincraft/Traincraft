@@ -151,6 +151,9 @@ public class TileTraincraft extends TileEntity implements ISidedInventory{
 
     public NBTTagCompound writeToNBT(NBTTagCompound nbt, boolean forSyncing){
         if(!forSyncing){
+            if(slots==null){
+                return nbt;
+            }
             NBTTagList nbttaglist = new NBTTagList();
             for (int i = 0; i < this.slots.length; i++) {
                 if (this.slots[i] != null) {

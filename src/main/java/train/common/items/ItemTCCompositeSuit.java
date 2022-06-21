@@ -185,7 +185,7 @@ public class ItemTCCompositeSuit extends ItemTCArmor {
 		if(event.entity instanceof EntityPlayer){
 			EntityPlayer player = (EntityPlayer)event.entity;
 			ItemStack armor = player.inventory.armorItemInSlot(1);
-			if(armor!=null && armor.getItem() instanceof ItemTCArmor){
+			if(armor!=null && armor.getItem() instanceof ItemTCArmor && !player.isInWater()){
 				ItemTCArmor itemarmor = (ItemTCArmor)armor.getItem();
 				if(itemarmor.getArmorMaterial() == Traincraft.instance.armorCompositeSuit){
 					if (armor.getMaxDamage()-armor.getItemDamage()>5) {
@@ -208,7 +208,7 @@ public class ItemTCCompositeSuit extends ItemTCArmor {
 		if(event.entity instanceof EntityPlayer){
 			EntityPlayer player = (EntityPlayer)event.entity;
 			ItemStack armor = player.inventory.armorItemInSlot(0);
-			if(armor!=null && armor.getItem() instanceof ItemTCCompositeSuit){
+			if(armor!=null && armor.getItem() instanceof ItemTCCompositeSuit && !player.isInWater()){
 				ItemTCCompositeSuit itemarmor = (ItemTCCompositeSuit)armor.getItem();
 				if(itemarmor.getArmorMaterial() == Traincraft.instance.armorCompositeSuit){
 					if(event.distance-3>0){

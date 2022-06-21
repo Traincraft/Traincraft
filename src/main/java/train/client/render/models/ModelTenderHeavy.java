@@ -1,194 +1,158 @@
 package train.client.render.models;
-//tender
+
 import net.minecraft.entity.Entity;
 import tmt.ModelBase;
-import train.client.render.CustomModelRenderer;
+import tmt.ModelRendererTurbo;
 
 public class ModelTenderHeavy extends ModelBase
 {
-	public CustomModelRenderer box;
-	public CustomModelRenderer box0;
-	public CustomModelRenderer box1;
-	public CustomModelRenderer box10;
-	public CustomModelRenderer box11;
-	public CustomModelRenderer box12;
-	public CustomModelRenderer box13;
-	public CustomModelRenderer box14;
-	public CustomModelRenderer box15;
-	public CustomModelRenderer box16;
-	public CustomModelRenderer box17;
-	public CustomModelRenderer box18;
-	public CustomModelRenderer box19;
-	public CustomModelRenderer box2;
-	public CustomModelRenderer box20;
-	public CustomModelRenderer box21;
-	public CustomModelRenderer box22;
-	public CustomModelRenderer box23;
-	public CustomModelRenderer box24;
-	public CustomModelRenderer box25;
-	public CustomModelRenderer box26;
-	public CustomModelRenderer box27;
-	public CustomModelRenderer box3;
-	public CustomModelRenderer box4;
-	public CustomModelRenderer box5;
-	public CustomModelRenderer box6;
-	public CustomModelRenderer box7;
-	public CustomModelRenderer box8;
-	public CustomModelRenderer box9;
+	private static final int textureX = 128;
 
-	public ModelTenderHeavy() {
+	private static final int textureY = 256;
 
-		box = new CustomModelRenderer(this, 0, 27, 128, 256);
-		box.addBox(0.0f, 0.0f, 0.0f, 43, 16, 20);
-		box.setPosition(-21.0f, 5.0f, -10.0f);
+	public ModelTenderHeavy()
+	{
+		tenderheavyModel = new ModelRendererTurbo[31];
+		tenderheavyModel[0] = new ModelRendererTurbo(this, 1, 1, textureX, textureY); // Box 0
+		tenderheavyModel[1] = new ModelRendererTurbo(this, 1, 1, textureX, textureY); // wheel
+		tenderheavyModel[2] = new ModelRendererTurbo(this, 105, 1, textureX, textureY); // wheel
+		tenderheavyModel[3] = new ModelRendererTurbo(this, 1, 41, textureX, textureY); // Box 4
+		tenderheavyModel[4] = new ModelRendererTurbo(this, 1, 49, textureX, textureY); // Box 5
+		tenderheavyModel[5] = new ModelRendererTurbo(this, 1, 57, textureX, textureY); // coal
+		tenderheavyModel[6] = new ModelRendererTurbo(this, 73, 41, textureX, textureY); // Box 7
+		tenderheavyModel[7] = new ModelRendererTurbo(this, 65, 65, textureX, textureY); // Box 8
+		tenderheavyModel[8] = new ModelRendererTurbo(this, 1, 89, textureX, textureY); // Box 9
+		tenderheavyModel[9] = new ModelRendererTurbo(this, 105, 9, textureX, textureY); // Box 10
+		tenderheavyModel[10] = new ModelRendererTurbo(this, 1, 9, textureX, textureY); // Box 12
+		tenderheavyModel[11] = new ModelRendererTurbo(this, 73, 41, textureX, textureY); // Box 13
+		tenderheavyModel[12] = new ModelRendererTurbo(this, 97, 41, textureX, textureY); // Box 14
+		tenderheavyModel[13] = new ModelRendererTurbo(this, 73, 49, textureX, textureY); // wheel
+		tenderheavyModel[14] = new ModelRendererTurbo(this, 97, 49, textureX, textureY); // wheel
+		tenderheavyModel[15] = new ModelRendererTurbo(this, 89, 65, textureX, textureY); // Box 17
+		tenderheavyModel[16] = new ModelRendererTurbo(this, 89, 73, textureX, textureY); // Box 18
+		tenderheavyModel[17] = new ModelRendererTurbo(this, 113, 49, textureX, textureY); // wheel
+		tenderheavyModel[18] = new ModelRendererTurbo(this, 113, 65, textureX, textureY); // wheel
+		tenderheavyModel[19] = new ModelRendererTurbo(this, 1, 81, textureX, textureY); // Box 21
+		tenderheavyModel[20] = new ModelRendererTurbo(this, 25, 81, textureX, textureY); // wheel
+		tenderheavyModel[21] = new ModelRendererTurbo(this, 41, 81, textureX, textureY); // wheel
+		tenderheavyModel[22] = new ModelRendererTurbo(this, 97, 89, textureX, textureY); // Box 24
+		tenderheavyModel[23] = new ModelRendererTurbo(this, 1, 113, textureX, textureY); // Box 25
+		tenderheavyModel[24] = new ModelRendererTurbo(this, 97, 97, textureX, textureY); // Box 26
+		tenderheavyModel[25] = new ModelRendererTurbo(this, 113, 105, textureX, textureY); // Box 27
+		tenderheavyModel[26] = new ModelRendererTurbo(this, 1, 113, textureX, textureY); // Box 28
+		tenderheavyModel[27] = new ModelRendererTurbo(this, 89, 105, textureX, textureY); // Box 29
+		tenderheavyModel[28] = new ModelRendererTurbo(this, 33, 121, textureX, textureY); // Box 30
+		tenderheavyModel[29] = new ModelRendererTurbo(this, 33, 113, textureX, textureY); // Box 31
+		tenderheavyModel[30] = new ModelRendererTurbo(this, 1, 145, textureX, textureY); // Box 32
 
-		box0 = new CustomModelRenderer(this, 2, 66, 128, 256);
-		box0.addBox(0.0f, 0.0f, 0.0f, 6, 6, 1);
-		box0.setPosition(-18.0f, -1.0f, -7.0f);
+		tenderheavyModel[0].addBox(0F, 0F, 0F, 42, 15, 19, 0F); // Box 0
+		tenderheavyModel[0].setRotationPoint(-21F, 4F, -10F);
 
-		box1 = new CustomModelRenderer(this, 2, 66, 128, 256);
-		box1.addBox(0.0f, 0.0f, 0.0f, 6, 6, 1);
-		box1.setPosition(-11.0f, -1.0f, -7.0f);
+		tenderheavyModel[1].addBox(0F, 0F, 0F, 6, 6, 1, 0F); // wheel
+		tenderheavyModel[1].setRotationPoint(-11F, 19F, -8F);
 
-		box10 = new CustomModelRenderer(this, 37, 64, 128, 256);
-		box10.addBox(0.0f, 0.0f, 0.0f, 31, 4, 1);
-		box10.setPosition(-24.0f, 21.0f, -10.0f);
+		tenderheavyModel[2].addBox(0F, 0F, 0F, 6, 6, 1, 0F); // wheel
+		tenderheavyModel[2].setRotationPoint(-18F, 19F, -8F);
 
-		box11 = new CustomModelRenderer(this, 37, 64, 128, 256);
-		box11.addBox(0.0f, 0.0f, 0.0f, 31, 4, 1);
-		box11.setPosition(-24.0f, 21.0f, 9.0f);
+		tenderheavyModel[3].addBox(0F, 0F, 0F, 32, 3, 1, 0F); // Box 4
+		tenderheavyModel[3].setRotationPoint(-21F, 1F, 8F);
 
-		box12 = new CustomModelRenderer(this, 1, 1, 128, 256);
-		box12.addBox(0.0f, 0.0f, 0.0f, 26, 3, 12);
-		box12.setPosition(-20.0f, 21.0f, -6.0f);
+		tenderheavyModel[4].addBox(0F, 0F, 0F, 31, 4, 1, 0F); // Box 5
+		tenderheavyModel[4].setRotationPoint(-24F, -1F, 8F);
 
-		box13 = new CustomModelRenderer(this, 82, 65, 128, 256);
-		box13.addBox(0.0f, 0.0f, 0.0f, 2, 4, 20);
-		box13.setPosition(-21.0f, 1.0f, -10.0f);
+		tenderheavyModel[5].addBox(0F, 0F, 0F, 26, 3, 13, 0F); // coal
+		tenderheavyModel[5].setRotationPoint(-20F, 1F, -7F);
 
-		box14 = new CustomModelRenderer(this, 82, 65, 128, 256);
-		box14.addBox(0.0f, 0.0f, 0.0f, 2, 4, 20);
-		box14.setPosition(20.0f, 1.0f, -10.0f);
+		tenderheavyModel[6].addBox(0F, 0F, 0F, 2, 4, 19, 0F); // Box 7
+		tenderheavyModel[6].setRotationPoint(-21F, 19F, -10F);
 
-		box15 = new CustomModelRenderer(this, 1, 96, 128, 256);
-		box15.addBox(0.0f, 0.0f, 0.0f, 39, 4, 12);
-		box15.setPosition(-19.0f, 1.0f, -6.0f);
+		tenderheavyModel[7].addBox(0F, 0F, 0F, 2, 4, 19, 0F); // Box 8
+		tenderheavyModel[7].setRotationPoint(20F, 19F, -10F);
 
-		box16 = new CustomModelRenderer(this, 3, 118, 128, 256);
-		box16.addBox(0.0f, 0.0f, 0.0f, 9, 2, 1);
-		box16.setPosition(-16.0f, 1.0f, -8.0f);
+		tenderheavyModel[8].addBox(0F, 0F, 0F, 39, 4, 13, 0F); // Box 9
+		tenderheavyModel[8].setRotationPoint(-19F, 19F, -7F);
 
-		box17 = new CustomModelRenderer(this, 3, 118, 128, 256);
-		box17.addBox(0.0f, 0.0f, 0.0f, 9, 2, 1);
-		box17.setPosition(-16.0f, 1.0f, 7.0f);
+		tenderheavyModel[9].addBox(0F, 0F, 0F, 9, 2, 1, 0F); // Box 10
+		tenderheavyModel[9].setRotationPoint(-16F, 21F, -9F);
 
-		box18 = new CustomModelRenderer(this, 3, 118, 128, 256);
-		box18.addBox(0.0f, 0.0f, 0.0f, 9, 2, 1);
-		box18.setPosition(8.0f, 1.0f, 7.0f);
+		tenderheavyModel[10].addBox(0F, 0F, 0F, 3, 2, 2, 0F); // Box 12
+		tenderheavyModel[10].setRotationPoint(22F, 20F, 5F);
 
-		box19 = new CustomModelRenderer(this, 3, 118, 128, 256);
-		box19.addBox(0.0f, 0.0f, 0.0f, 9, 2, 1);
-		box19.setPosition(8.0f, 1.0f, -8.0f);
+		tenderheavyModel[11].addBox(0F, 0F, 0F, 3, 2, 2, 0F); // Box 13
+		tenderheavyModel[11].setRotationPoint(22F, 20F, -7F);
 
-		box2 = new CustomModelRenderer(this, 2, 66, 128, 256);
-		box2.addBox(0.0f, 0.0f, 0.0f, 6, 6, 1);
-		box2.setPosition(-11.0f, -1.0f, 6.0f);
+		tenderheavyModel[12].addBox(0F, 0F, 0F, 10, 2, 2, 0F); // Box 14
+		tenderheavyModel[12].setRotationPoint(-31F, 20F, -7F);
 
-		box20 = new CustomModelRenderer(this, 7, 77, 128, 256);
-		box20.addBox(0.0f, 0.0f, 0.0f, 3, 2, 2);
-		box20.setPosition(22.0f, 2.0f, 5.0f);
+		tenderheavyModel[13].addBox(0F, 0F, 0F, 6, 6, 1, 0F); // wheel
+		tenderheavyModel[13].setRotationPoint(-18F, 19F, 6F);
 
-		box21 = new CustomModelRenderer(this, 7, 77, 128, 256);
-		box21.addBox(0.0f, 0.0f, 0.0f, 3, 2, 2);
-		box21.setPosition(22.0f, 2.0f, -7.0f);
+		tenderheavyModel[14].addBox(0F, 0F, 0F, 6, 6, 1, 0F); // wheel
+		tenderheavyModel[14].setRotationPoint(-11F, 19F, 6F);
 
-		box22 = new CustomModelRenderer(this, 34, 70, 128, 256);
-		box22.addBox(0.0f, 0.0f, 0.0f, 10, 2, 2);
-		box22.setPosition(-31.0f, 2.0f, -7.0f);
+		tenderheavyModel[15].addBox(0F, 0F, 0F, 9, 2, 1, 0F); // Box 17
+		tenderheavyModel[15].setRotationPoint(-16F, 21F, 7F);
 
-		box23 = new CustomModelRenderer(this, 34, 70, 128, 256);
-		box23.addBox(0.0f, 0.0f, 0.0f, 10, 2, 2);
-		box23.setPosition(-31.0f, 2.0f, 5.0f);
+		tenderheavyModel[16].addBox(0F, 0F, 0F, 10, 2, 2, 0F); // Box 18
+		tenderheavyModel[16].setRotationPoint(-31F, 20F, 5F);
 
-		box24 = new CustomModelRenderer(this, 3, 65, 128, 256);
-		box24.addBox(0.0f, 0.0f, 0.0f, 5, 3, 20);
-		box24.setPosition(-26.0f, 5.0f, -10.0f);
+		tenderheavyModel[17].addBox(0F, 0F, 0F, 6, 6, 1, 0F); // wheel
+		tenderheavyModel[17].setRotationPoint(13F, 19F, -8F);
 
-		box25 = new CustomModelRenderer(this, 34, 70, 128, 256);
-		box25.addBox(0.0f, 0.0f, 0.0f, 10, 2, 2);
-		box25.setPosition(-31.0f, 2.0f, -1.0f);
+		tenderheavyModel[18].addBox(0F, 0F, 0F, 6, 6, 1, 0F); // wheel
+		tenderheavyModel[18].setRotationPoint(6F, 19F, -8F);
 
-		box26 = new CustomModelRenderer(this, 2, 27, 128, 256);
-		box26.addBox(0.0f, 0.0f, 0.0f, 3, 14, 1);
-		box26.setPosition(-24.0f, 7.0f, -10.0f);
+		tenderheavyModel[19].addBox(0F, 0F, 0F, 9, 2, 1, 0F); // Box 21
+		tenderheavyModel[19].setRotationPoint(8F, 21F, -9F);
 
-		box27 = new CustomModelRenderer(this, 20, 46, 128, 256);
-		box27.addBox(0.0f, 0.0f, 0.0f, 3, 14, 1);
-		box27.setPosition(-24.0f, 7.0f, 9.0f);
+		tenderheavyModel[20].addBox(0F, 0F, 0F, 6, 6, 1, 0F); // wheel
+		tenderheavyModel[20].setRotationPoint(6F, 19F, 6F);
 
-		box3 = new CustomModelRenderer(this, 2, 66, 128, 256);
-		box3.addBox(0.0f, 0.0f, 0.0f, 6, 6, 1);
-		box3.setPosition(-18.0f, -1.0f, 6.0f);
+		tenderheavyModel[21].addBox(0F, 0F, 0F, 6, 6, 1, 0F); // wheel
+		tenderheavyModel[21].setRotationPoint(13F, 19F, 6F);
 
-		box4 = new CustomModelRenderer(this, 2, 66, 128, 256);
-		box4.addBox(0.0f, 0.0f, 0.0f, 6, 6, 1);
-		box4.setPosition(13.0f, -1.0f, -7.0f);
+		tenderheavyModel[22].addBox(0F, 0F, 0F, 9, 2, 1, 0F); // Box 24
+		tenderheavyModel[22].setRotationPoint(8F, 21F, 7F);
 
-		box5 = new CustomModelRenderer(this, 2, 66, 128, 256);
-		box5.addBox(0.0f, 0.0f, 0.0f, 6, 6, 1);
-		box5.setPosition(6.0f, -1.0f, -7.0f);
+		tenderheavyModel[23].addBox(0F, 0F, 0F, 5, 3, 19, 0F); // Box 25
+		tenderheavyModel[23].setRotationPoint(-26F, 17F, -10F);
 
-		box6 = new CustomModelRenderer(this, 2, 66, 128, 256);
-		box6.addBox(0.0f, 0.0f, 0.0f, 6, 6, 1);
-		box6.setPosition(6.0f, -1.0f, 6.0f);
+		tenderheavyModel[24].addBox(0F, 0F, 0F, 10, 2, 2, 0F); // Box 26
+		tenderheavyModel[24].setRotationPoint(-31F, 20F, -1F);
 
-		box7 = new CustomModelRenderer(this, 2, 66, 128, 256);
-		box7.addBox(0.0f, 0.0f, 0.0f, 6, 6, 1);
-		box7.setPosition(13.0f, -1.0f, 6.0f);
+		tenderheavyModel[25].addBox(0F, 0F, 0F, 3, 14, 1, 0F); // Box 27
+		tenderheavyModel[25].setRotationPoint(-24F, 3F, -10F);
 
-		box8 = new CustomModelRenderer(this, 55, 73, 128, 256);
-		box8.addBox(0.0f, 0.0f, 0.0f, 1, 4, 18);
-		box8.setPosition(6.0f, 21.0f, -9.0f);
+		tenderheavyModel[26].addBox(0F, 0F, 0F, 3, 14, 1, 0F); // Box 28
+		tenderheavyModel[26].setRotationPoint(-24F, 3F, 8F);
 
-		box9 = new CustomModelRenderer(this, 65, 1, 128, 256);
-		box9.addBox(0.0f, 0.0f, 0.0f, 9, 4, 20);
-		box9.setPosition(-4.0f, 1.0f, -10.0f);
+		tenderheavyModel[27].addBox(0F, 0F, 0F, 1, 5, 17, 0F); // Box 29
+		tenderheavyModel[27].setRotationPoint(6F, -1F, -9F);
+
+		tenderheavyModel[28].addBox(0F, 0F, 0F, 8, 4, 17, 0F); // Box 30
+		tenderheavyModel[28].setRotationPoint(-3F, 19F, -9F);
+
+		tenderheavyModel[29].addBox(0F, 0F, 0F, 32, 3, 1, 0F); // Box 31
+		tenderheavyModel[29].setRotationPoint(-21F, 1F, -10F);
+
+		tenderheavyModel[30].addBox(0F, 0F, 0F, 31, 4, 1, 0F); // Box 32
+		tenderheavyModel[30].setRotationPoint(-24F, -1F, -10F);
+
+
 	}
-
 
 	@Override
-	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-
-
-		box.render(f5);
-		box0.render(f5);
-		box1.render(f5);
-		box10.render(f5);
-		box11.render(f5);
-		box12.render(f5);
-		box13.render(f5);
-		box14.render(f5);
-		box15.render(f5);
-		box16.render(f5);
-		box17.render(f5);
-		box18.render(f5);
-		box19.render(f5);
-		box2.render(f5);
-		box20.render(f5);
-		box21.render(f5);
-		box22.render(f5);
-		box23.render(f5);
-		box24.render(f5);
-		box25.render(f5);
-		box26.render(f5);
-		box27.render(f5);
-		box3.render(f5);
-		box4.render(f5);
-		box5.render(f5);
-		box6.render(f5);
-		box7.render(f5);
-		box8.render(f5);
-		box9.render(f5);
+	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
+	{
+		for(int i = 0; i < 31; i++)
+		{
+			tenderheavyModel[i].render(f5);
+		}
 	}
 
-	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5) {}}
+	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5)
+	{
+	}
+
+	public ModelRendererTurbo tenderheavyModel[];
+}

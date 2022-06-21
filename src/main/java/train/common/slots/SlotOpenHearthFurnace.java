@@ -60,10 +60,8 @@ public class SlotOpenHearthFurnace extends Slot {
 		itemstack.onCrafting(this.thePlayer.worldObj, this.thePlayer, this.amount);
 		
 		FMLCommonHandler.instance().firePlayerSmeltedEvent(thePlayer, itemstack);
-		for (ItemStack stack : OreDictionary.getOres("ingotSteel")) {
-			if (stack.getItem() ==itemstack.getItem() && stack.getItemDamage() == itemstack.getItemDamage()) {
-				thePlayer.addStat(AchievementIDs.steel.achievement, 1);
-			}
+		if (OreDictionary.getOres("ingotSteel").contains(itemstack)) {
+			thePlayer.addStat(AchievementIDs.steel.achievement, 1);
 		}
 
 		if (!this.thePlayer.worldObj.isRemote) {

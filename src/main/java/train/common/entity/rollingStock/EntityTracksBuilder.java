@@ -5,10 +5,7 @@ import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
 import mods.railcraft.api.core.items.ITrackItem;
 import mods.railcraft.api.tracks.RailTools;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockFalling;
-import net.minecraft.block.BlockRail;
-import net.minecraft.block.BlockRailBase;
+import net.minecraft.block.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityMinecart;
@@ -35,6 +32,7 @@ import train.common.api.EntityRollingStock;
 import train.common.api.Freight;
 import train.common.blocks.BlockTCRail;
 import train.common.blocks.BlockTCRailGag;
+import train.common.core.TrainModBlockUtil;
 import train.common.core.handlers.FuelHandler;
 import train.common.core.plugins.PluginRailcraft;
 import train.common.core.util.TraincraftUtil;
@@ -370,18 +368,18 @@ public class EntityTracksBuilder extends EntityRollingStock implements IInventor
 			pushX /= d26;
 			pushZ /= d26;
 			double d28 = 0.029D;
-			motionX *= 0.4D;
+			motionX *= 0.2D;
 			motionY *= 0.0D;
-			motionZ *= 0.4D;
+			motionZ *= 0.2D;
 			if (getFuel() > 0) {
 				motionX += pushX * d28;
 				motionZ += pushZ * d28;
 			}
 		}
 		else {
-			motionX *= 0.69999997615814209D;
+			motionX *= 0.49999997615814209D;
 			motionY *= 0.0D;
-			motionZ *= 0.69999997615814209D;
+			motionZ *= 0.49999997615814209D;
 		}
 		motionX *= getDragAir();
 		motionY *= 0.0D;

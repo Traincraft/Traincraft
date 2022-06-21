@@ -78,10 +78,8 @@ public class GUIAdminBook extends GuiScreen {
                 break;
             }
             case 3:{
-                if(list[0]!=null && list[0].length()>1) {
-                    Traincraft.keyChannel.sendToServer(new ItemAdminBook.PacketAdminBookClient("0:" + list[0].substring(1), Minecraft.getMinecraft().thePlayer.getEntityId()));//tell server to drop items
-                    Traincraft.keyChannel.sendToServer(new ItemAdminBook.PacketAdminBookClient("1:" + list[0].substring(1), Minecraft.getMinecraft().thePlayer.getEntityId()));//tell server to drop items
-                }
+                Traincraft.keyChannel.sendToServer(new ItemAdminBook.PacketAdminBookClient( "0:"+list[0].substring(1,list[0].length()), Minecraft.getMinecraft().thePlayer.getEntityId()));//tell server to drop items
+                Traincraft.keyChannel.sendToServer(new ItemAdminBook.PacketAdminBookClient( "1:"+list[0].substring(1), Minecraft.getMinecraft().thePlayer.getEntityId()));//tell server to drop items
                 break;
             }
             default:{

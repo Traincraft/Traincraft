@@ -23,6 +23,7 @@ import net.minecraftforge.common.util.Constants;
 import train.common.Traincraft;
 import train.common.core.handlers.ConfigHandler;
 import train.common.core.network.PacketKeyPress;
+import train.common.core.util.TraincraftUtil;
 import train.common.library.ItemIDs;
 
 import java.util.List;
@@ -473,7 +474,7 @@ public class EntityRotativeDigger extends Entity implements IInventory {
 			double db = 0 - vecLook.xCoord;
 			double dc = 0 - vecLook.zCoord;
 			if (db * db + dc * dc > 0.0000001D) {
-				da = (float) ((Math.atan2(dc, db) * 180D) / 3.1415926535897931D);
+				da = TraincraftUtil.atan2degreesf(dc,db);
 			}
 
 			double d19;

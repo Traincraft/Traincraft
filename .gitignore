@@ -4,6 +4,7 @@ bin
 .settings
 .metadata
 eclipse
+.debris
 
 # idea
 out
@@ -36,5 +37,6 @@ lib
 *.directory
 classes
 runserver
-.classpath
-.project
+buildtotest.bat
+
+src/main/java/train/common/api/TrainsOnClick.java

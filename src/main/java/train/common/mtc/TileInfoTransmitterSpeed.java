@@ -1,12 +1,18 @@
 package train.common.mtc;
 
 
+import cpw.mods.fml.common.Optional;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import dan200.computercraft.api.lua.ILuaContext;
 import dan200.computercraft.api.lua.LuaException;
 import dan200.computercraft.api.peripheral.IComputerAccess;
 import dan200.computercraft.api.peripheral.IPeripheral;
+import li.cil.oc.api.machine.Arguments;
+import li.cil.oc.api.machine.Callback;
+import li.cil.oc.api.machine.Context;
+import li.cil.oc.api.network.SimpleComponent;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
@@ -14,11 +20,12 @@ import train.common.Traincraft;
 import train.common.api.Locomotive;
 import train.common.mtc.packets.PacketMTC;
 import train.common.mtc.packets.PacketNextSpeed;
+import train.common.mtc.packets.PacketPlaySoundOnClient;
 import train.common.mtc.packets.PacketSetSpeed;
 
 import java.util.List;
-
-public class TileInfoTransmitterSpeed  extends TileEntity implements IPeripheral {
+@Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = "OpenComputers")
+public class TileInfoTransmitterSpeed  extends TileEntity implements IPeripheral, SimpleComponent {
     public Boolean isActivated = false;
     public int setSpeed = 0;
     public int nextSpeedLimit = 0;
@@ -33,6 +40,8 @@ public class TileInfoTransmitterSpeed  extends TileEntity implements IPeripheral
 
 	public boolean hadSentPacket = false;
 	public boolean hadSentMTCPacket = false;
+
+	public boolean enforceSpeedLimits = false;
     @Override
     public void readFromNBT(NBTTagCompound nbttagcompound) {
         super.readFromNBT(nbttagcompound);
@@ -42,8 +51,7 @@ public class TileInfoTransmitterSpeed  extends TileEntity implements IPeripheral
         this.xFromSpeedChange = nbttagcompound.getDouble("xFromSpeedChange");
         this.yFromSpeedChange = nbttagcompound.getDouble("yFromSpeedChange");
         this.zFromSpeedChange = nbttagcompound.getDouble("zFromSpeedChange");
-
-
+        this.enforceSpeedLimits = nbttagcompound.getBoolean("enforceSpeedLimits");
     }
 
     @Override
@@ -55,7 +63,7 @@ public class TileInfoTransmitterSpeed  extends TileEntity implements IPeripheral
         nbttagcompound.setDouble("xFromSpeedChange", this.xFromSpeedChange);
         nbttagcompound.setDouble("yFromSpeedChange",  this.yFromSpeedChange);
         nbttagcompound.setDouble("zFromSpeedChange",  this.zFromSpeedChange);
-
+        nbttagcompound.setBoolean("enforceSpeedLimits", this.enforceSpeedLimits);
     }
     @Override
 
@@ -78,22 +86,31 @@ public class TileInfoTransmitterSpeed  extends TileEntity implements IPeripheral
                     if (obj instanceof Locomotive) {
 
                         Locomotive daTrain = (Locomotive) obj;
+                        daTrain.enforceSpeedLimits = enforceSpeedLimits;
                         if (daTrain.mtcOverridePressed) { return;}
                          if (daTrain.mtcStatus == 0  && hadSentMTCPacket == false) {
                              daTrain.mtcStatus = 1;
-                            Traincraft.mscChannel.sendToAllAround(new PacketMTC(daTrain.getEntityId(),   daTrain.mtcStatus, 1)  , new NetworkRegistry.TargetPoint(this.worldObj.provider.dimensionId, daTrain.posX, daTrain.posY, daTrain.posZ, 150.0D));
-							 hadSentMTCPacket = true;
+                            Traincraft.mscChannel.sendToAllAround(new PacketMTC(daTrain.getEntityId(),   1, 1)  , new NetworkRegistry.TargetPoint(this.worldObj.provider.dimensionId, daTrain.posX, daTrain.posY, daTrain.posZ, 150.0D));
+                            hadSentMTCPacket = true;
                          }
 
+                        if (daTrain.speedLimit != setSpeed) {
+
+                                if (daTrain.riddenByEntity != null ) {
+
+                                   // worldObj.playSoundAtEntity(daTrain.ridingEntity, Info.resourceLocation + ":" + "mtc_speedchange", 1.0F, 1.0F);
+                                    // worldObj.playSoundAtEntity(this, Info.resourceLocation + ":" + sounds.getHornString(), sounds.getHornVolume(), 1.0F);
+                                    Traincraft.playSoundOnClientChannel.sendTo(new PacketPlaySoundOnClient(7, "tc:mtc_speedchange"), (EntityPlayerMP)daTrain.riddenByEntity);
+                                }
+
+                            }
 
                         daTrain.speedLimit = setSpeed;
-
                         if (!worldObj.isRemote && hadSentPacket == false) {
 
                             trainNumber = daTrain.getEntityId();
 							hadSentPacket = true;
                             Traincraft.itsChannel.sendToAllAround(new PacketSetSpeed(setSpeed, this.xCoord, this.yCoord, this.zCoord, daTrain.getEntityId()) , new NetworkRegistry.TargetPoint(this.worldObj.provider.dimensionId, daTrain.posX, daTrain.posY, daTrain.posZ, 150.0D));
-
 
                                 daTrain.nextSpeedLimit = this.nextSpeedLimit;
                                 daTrain.xSpeedLimitChange = this.xFromSpeedChange;
@@ -127,7 +144,7 @@ public class TileInfoTransmitterSpeed  extends TileEntity implements IPeripheral
 
     @Override
     public String[] getMethodNames() {
-        return new String[]  {"activate", "deactivate", "setSpeed", "getSpeed", "setNextSpeed", "setNextX", "setNextY", "setNextZ"};
+        return new String[]  {"activate", "deactivate", "setSpeed", "getSpeed", "setNextSpeed", "setNextX", "setNextY", "setNextZ", "enforceSpeedLimits"};
     }
 
     @Override
@@ -165,8 +182,16 @@ public class TileInfoTransmitterSpeed  extends TileEntity implements IPeripheral
                 if (arguments[0] instanceof Double) { this.yFromSpeedChange = Double.parseDouble(arguments[0].toString()); } else { return new Object[] {"nil"};}
                 return new Object[] {true};
             }case 7: {
-                if (arguments[0] instanceof Double) { this.zFromSpeedChange = Double.parseDouble(arguments[0].toString()); } else { return new Object[] {"nil"};}
-                return new Object[] {true};
+                if (arguments[0] instanceof Double) {
+                    this.zFromSpeedChange = Double.parseDouble(arguments[0].toString());
+                } else {
+                    return new Object[]{"nil"};
+                }
+                return new Object[]{true};
+            }case 8: {
+                if (arguments[0] instanceof Boolean) {
+                    this.enforceSpeedLimits = (Boolean) arguments[0];
+                }
             } default:
                 return new Object[] {"nil"};
         }
@@ -220,49 +245,61 @@ public class TileInfoTransmitterSpeed  extends TileEntity implements IPeripheral
         }
 
     }
-
-    public boolean saveStringNBT(Entity theEntity, String key, String value) {
-
-        if (!theEntity.getEntityData().hasKey(key)){
-            theEntity.getEntityData().setString(key, value);//sets the NBT value if it exists, or creates the entry if it doesn't.
-            return true;
-        }
-
-
-        return false;
+    @Override
+    public String getComponentName() {
+        return "info_transmitter_speed";
     }
 
-    public boolean saveIntegerNBT(Entity theEntity, String key, int value) {
+    @Callback
+    @Optional.Method(modid = "OpenComputers")
+    public Object[] activate(Context context, Arguments args) {
+        this.isActivated = true;
+        return new Object[]{true};
+    }
+    @Callback
+    @Optional.Method(modid = "OpenComputers")
+    public Object[] deactivate(Context context, Arguments args) {
+        this.isActivated = false;
+        return new Object[]{true};
+    }
+    @Callback
+    @Optional.Method(modid = "OpenComputers")
+    public Object[] setNextSpeed(Context context, Arguments args) {
+        if (args.isInteger(0)) { this.nextSpeedLimit = args.checkInteger(0);}
+        return new Object[]{true};
+    }
+    @Callback
+    @Optional.Method(modid = "OpenComputers")
+    public Object[] setSpeed(Context context, Arguments args) {
+        if (args.isInteger(0)) { this.setSpeed = args.checkInteger(0);}
+        System.out.println(args.isInteger(0));
 
-        if (!theEntity.getEntityData().hasKey(key)){
-            theEntity.getEntityData().setInteger(key, value);//sets the NBT value if it exists, or creates the entry if it doesn't.
-            return true;
-        }
-
-
-        return false;
+        return new Object[]{true};
+    }
+    @Callback
+    @Optional.Method(modid = "OpenComputers")
+    public Object[] setNextX(Context context, Arguments args) {
+        if (args.isDouble(0)) { this.xFromSpeedChange = args.checkDouble(0);}
+        return new Object[]{true};
+    }
+    @Callback
+    @Optional.Method(modid = "OpenComputers")
+    public Object[] setNextY(Context context, Arguments args) {
+        if (args.isDouble(0)) { this.yFromSpeedChange = args.checkDouble(0);}
+        return new Object[]{true};
+    }
+    @Callback
+    @Optional.Method(modid = "OpenComputers")
+    public Object[] setNextZ(Context context, Arguments args) {
+        if (args.isDouble(0)) { this.zFromSpeedChange = args.checkDouble(0);}
+        return new Object[]{true};
+    }
+    @Callback
+    @Optional.Method(modid = "OpenComputers")
+    public Object[] enforceSpeedLimits(Context context, Arguments args) {
+        if (args.isBoolean(0)) { this.enforceSpeedLimits = args.checkBoolean(0);}
+        return new Object[]{true};
     }
 
-    public boolean readStringNBT(Entity theEntity, String key) {
-
-        if (!theEntity.getEntityData().hasKey(key)){
-            theEntity.getEntityData().getString(key);
-            return true;
-        }
-
-
-        return false;
-    }
-
-    public boolean readIntegerNBT(Entity theEntity, String key) {
-
-        if (!theEntity.getEntityData().hasKey(key)){
-            theEntity.getEntityData().getInteger(key);
-            return true;
-        }
-
-
-        return false;
-    }
 
 }

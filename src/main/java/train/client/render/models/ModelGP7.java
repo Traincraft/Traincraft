@@ -2,7 +2,6 @@ package train.client.render.models;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
-import org.lwjgl.opengl.GL11;
 import tmt.ModelConverter;
 import tmt.ModelRendererTurbo;
 
@@ -33,14 +32,6 @@ public class ModelGP7 extends ModelConverter //Same as Filename
 			m.render(f5);
 			if(m.boxName.equals("lamp")){
 				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
-
-			}
-			if(m.boxName.equals("cull")){
-				GL11.glDisable(GL11.GL_CULL_FACE);
-				m.render(f5);
-			}
-			if(m.boxName.equals("cull")){
-				GL11.glEnable(GL11.GL_CULL_FACE);
 			}
 		}
 	}
@@ -86,7 +77,7 @@ public class ModelGP7 extends ModelConverter //Same as Filename
 		bodyModel[36] = new ModelRendererTurbo(this, 94, 49, textureX, textureY); // Box 36
 		bodyModel[37] = new ModelRendererTurbo(this, 177, 31, textureX, textureY); // Box 38
 		bodyModel[38] = new ModelRendererTurbo(this, 190, 56, textureX, textureY); // Box 39
-		bodyModel[39] = new ModelRendererTurbo(this, 0, 17, textureX, textureY, "cull"); // Box 40
+		bodyModel[39] = new ModelRendererTurbo(this, 0, 17, textureX, textureY); // Box 40
 		bodyModel[40] = new ModelRendererTurbo(this, 133, 78, textureX, textureY); // Box 41
 		bodyModel[41] = new ModelRendererTurbo(this, 246, 112, textureX, textureY, "lamp"); // Box 42 lamp
 		bodyModel[42] = new ModelRendererTurbo(this, 112, 70, textureX, textureY); // Box 43
@@ -96,7 +87,7 @@ public class ModelGP7 extends ModelConverter //Same as Filename
 		bodyModel[46] = new ModelRendererTurbo(this, 179, 71, textureX, textureY, "lamp"); // Box 47 lamp
 		bodyModel[47] = new ModelRendererTurbo(this, 244, 118, textureX, textureY); // Box 48
 		bodyModel[48] = new ModelRendererTurbo(this, 244, 118, textureX, textureY); // Box 49
-		bodyModel[49] = new ModelRendererTurbo(this, 245, 107, textureX, textureY, "lamp"); // Box 50
+		bodyModel[49] = new ModelRendererTurbo(this, 245, 107, textureX, textureY); // Box 50
 		bodyModel[50] = new ModelRendererTurbo(this, 246, 112, textureX, textureY, "lamp"); // Box 51 lamp
 		bodyModel[51] = new ModelRendererTurbo(this, 133, 78, textureX, textureY); // Box 53
 		bodyModel[52] = new ModelRendererTurbo(this, 246, 112, textureX, textureY, "lamp"); // Box 54 lamp

@@ -10,12 +10,11 @@ import net.minecraftforge.common.util.Constants;
 import train.common.Traincraft;
 import train.common.api.LiquidManager;
 import train.common.api.SteamTrain;
-import train.common.library.EnumTrains;
 import train.common.library.GuiIDs;
 
 public class EntityLocoSteamHeavy extends SteamTrain {
 	public EntityLocoSteamHeavy(World world) {
-		super(world, EnumTrains.locoHeavySteam.getTankCapacity()/*change value here to EnumTrains..getTankCapacity()*/, LiquidManager.WATER_FILTER);
+		super(world, 5000/*change value here to EnumTrains..getTankCapacity()*/, LiquidManager.WATER_FILTER);
 		initLocoSteam();
 	}
 
@@ -38,7 +37,7 @@ public class EntityLocoSteamHeavy extends SteamTrain {
 	@Override
 	public void updateRiderPosition() {
 		if(riddenByEntity==null){return;}
-		riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset() + 0.5F, posZ);
+		riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset() + 0.2F, posZ);
 	}
 
 	@Override
@@ -123,7 +122,8 @@ public class EntityLocoSteamHeavy extends SteamTrain {
 
 	@Override
 	public float getOptimalDistance(EntityMinecart cart) {
-		return 1.2F; }
+		return 0.6F;
+	}
 
 	@Override
 	public boolean canBeAdjusted(EntityMinecart cart) {

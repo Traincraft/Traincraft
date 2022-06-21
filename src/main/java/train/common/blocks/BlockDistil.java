@@ -40,7 +40,7 @@ public class BlockDistil extends BlockContainer {
 	private IIcon textureBack;
 
 	public BlockDistil(int j, boolean flag) {
-		super(Material.anvil);
+		super(Material.rock);
 		isActive = flag;
 		distilRand = new Random();
 		//setRequiresSelfNotify();

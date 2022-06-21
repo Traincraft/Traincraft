@@ -17,8 +17,6 @@ import train.common.core.util.TraincraftUtil;
 import train.common.entity.rollingStock.EntityTracksBuilder;
 import train.common.library.Info;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -125,21 +123,20 @@ public class RenderRollingStock extends Render {
 			//GL11.glRotatef((float)(90-cart.rotationYawClientReal), 0.0F, 1.0F, 0.0F);
 			if (cart.oldClientYaw == 0) cart.oldClientYaw = cart.rotationYawClientReal;
 
-			float rotationYawBogie = cart.rotationYawClientReal;
 			float tempYaw = (cart.rotationYawClientReal - cart.oldClientYaw);
 			float newYaw = 0;
 			//System.out.println("rotationYawBogie "+rotationYawBogie+" oldYaw "+cart.oldClientYaw+" tempYaw "+(Math.abs(tempYaw)/10));
 			//System.out.println(Math.abs(cart.oldClientYaw-rotationYawBogie));
-			if(Math.abs(cart.oldClientYaw-rotationYawBogie)>170){
-				cart.oldClientYaw = rotationYawBogie;
+			if(Math.abs(cart.oldClientYaw-cart.rotationYawClientReal)>170){
+				cart.oldClientYaw = cart.rotationYawClientReal;
 			}
-			if (cart.oldClientYaw != rotationYawBogie && Math.abs(cart.oldClientYaw-rotationYawBogie)>(Math.abs(tempYaw)/10)) {
+			if (cart.oldClientYaw != cart.rotationYawClientReal && Math.abs(cart.oldClientYaw-cart.rotationYawClientReal)>(Math.abs(tempYaw)/10)) {
 				newYaw = cart.oldClientYaw + Math.copySign((Math.abs(tempYaw)/10), tempYaw);
 				cart.oldClientYaw += Math.copySign((Math.abs(tempYaw)/10), tempYaw);
 			}
 			else {
-				newYaw = rotationYawBogie;
-				cart.oldClientYaw = rotationYawBogie;
+				newYaw = cart.rotationYawClientReal;
+				cart.oldClientYaw = cart.rotationYawClientReal;
 			}
 			//System.out.println("newYaw "+newYaw);
 			//System.out.println(90 - cart.rotationYawClientReal);
@@ -160,23 +157,22 @@ public class RenderRollingStock extends Render {
 			}else{
 				if (cart.oldClientYaw == 0) cart.oldClientYaw = cart.rotationYawClientReal;
 
-				float rotationYaw = cart.rotationYawClientReal;
 				float tempYaw = (cart.rotationYawClientReal - cart.oldClientYaw);
 				float newYaw = 0;
 				//System.out.println("rotationYawBogie "+rotationYawBogie+" oldYaw "+cart.oldClientYaw+" tempYaw "+(Math.abs(tempYaw)/10));
 				//System.out.println(Math.abs(cart.oldClientYaw-rotationYawBogie));
-				if(Math.abs(cart.oldClientYaw-rotationYaw)>170){
-					cart.oldClientYaw = rotationYaw;
+				if(Math.abs(cart.oldClientYaw-cart.rotationYawClientReal)>170){
+					cart.oldClientYaw = cart.rotationYawClientReal;
 				}
-				if (cart.oldClientYaw != rotationYaw && Math.abs(cart.oldClientYaw-rotationYaw)>(Math.abs(tempYaw)/10)) {
+				if (cart.oldClientYaw != cart.rotationYawClientReal && Math.abs(cart.oldClientYaw-cart.rotationYawClientReal)>(Math.abs(tempYaw)/10)) {
 					newYaw = cart.oldClientYaw + Math.copySign((Math.abs(tempYaw)/10), tempYaw);
 					cart.oldClientYaw += Math.copySign((Math.abs(tempYaw)/10), tempYaw);
 				}
 				else {
-					newYaw = rotationYaw;
-					cart.oldClientYaw = rotationYaw;
+					newYaw = cart.rotationYawClientReal;
+					cart.oldClientYaw = cart.rotationYawClientReal;
 				}
-				GL11.glRotatef((90.0f-(newYaw+90.0f)), 0.0F, 1.0F, 0.0F);
+				GL11.glRotatef(-newYaw, 0.0F, 1.0F, 0.0F);
 				cart.setRenderYaw(yaw);
 				cart.setRenderPitch(pitch);
 			}
@@ -186,11 +182,11 @@ public class RenderRollingStock extends Render {
 
 		//GL11.glRotatef(180.0F - yaw, 0.0F, 1.0F, 0.0F);
 		if (cart.bogieLoco != null) {// || cart.bogieUtility[0]!=null){
-			GL11.glRotatef((float) -cart.anglePitchClient, 0.0F, 0.0F, 1.0F);
+			GL11.glRotatef(-cart.anglePitchClient, 0.0F, 0.0F, 1.0F);
 		}
 		else {
 			if(renderYVect != null){
-				pitch = (float)cart.anglePitchClient/60;
+				pitch = cart.anglePitchClient/60f;
 				if(cart.rotationYawClientReal>-5 && cart.rotationYawClientReal<5){
 					pitch=-pitch;
 				}
@@ -222,80 +218,17 @@ public class RenderRollingStock extends Render {
 		for (RenderEnum renders : RenderEnum.values()) {
 			if (renders.getEntityClass() != null && renders.getEntityClass().equals(cart.getClass())) {
 				//loadTexture(getTextureFile(renders.getTexture(), renders.getIsMultiTextured(), cart));
-
-				try {
-					if (renders.getModel().getClass().getDeclaredMethod("getTrans") != null) {
-						Method theTransMethod = renders.getModel().getClass().getDeclaredMethod("getTrans");
-						float[] theTrans = (float[]) theTransMethod.invoke(renders.getModel().getClass().newInstance());
-						if (theTrans != null) {
-							GL11.glTranslatef(theTrans[0], theTrans[1], theTrans[2]);
-						}
-
-					}
-				} catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-					if (renders.getTrans() != null) {
-						GL11.glTranslatef(renders.getTrans()[0], renders.getTrans()[1], renders.getTrans()[2]);
-					}
-
-				} catch (InstantiationException e) {
-					e.printStackTrace();
-				}
-
-
-				/*if (renders.getTrans() != null) {
+				if (renders.getTrans() != null) {
 					GL11.glTranslatef(renders.getTrans()[0], renders.getTrans()[1], renders.getTrans()[2]);
-				}*/
-
-				try {
-					if (renders.getModel().getClass().getDeclaredMethod("getRotate") != null) {
-						Method theTransMethod = renders.getModel().getClass().getDeclaredMethod("getRotate");
-						float[] theRotate = (float[]) theTransMethod.invoke(renders.getModel().getClass().newInstance());
-						if (theRotate != null) {
-							GL11.glRotatef(theRotate[0], 1.0F, 0.0F, 0.0F);
-							GL11.glRotatef(theRotate[1], 0.0F, 1.0F, 0.0F);
-							GL11.glRotatef(theRotate[2], 0.0F, 0.0F, 1.0F);
-						}
-
-					}
-				} catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-					if (renders.getRotate() != null) {
-						GL11.glRotatef(renders.getRotate()[0], 1.0F, 0.0F, 0.0F);
-						GL11.glRotatef(renders.getRotate()[1], 0.0F, 1.0F, 0.0F);
-						GL11.glRotatef(renders.getRotate()[2], 0.0F, 0.0F, 1.0F);
-					}
-				} catch (InstantiationException e) {
-					e.printStackTrace();
 				}
-
-				/*if (renders.getRotate() != null) {
+				if (renders.getRotate() != null) {
 					GL11.glRotatef(renders.getRotate()[0], 1.0F, 0.0F, 0.0F);
 					GL11.glRotatef(renders.getRotate()[1], 0.0F, 1.0F, 0.0F);
 					GL11.glRotatef(renders.getRotate()[2], 0.0F, 0.0F, 1.0F);
-				}*/
-
-				try {
-					if (renders.getModel().getClass().getDeclaredMethod("getScale") != null) {
-						Method theScaleMethod = renders.getModel().getClass().getDeclaredMethod("getScale");
-						float[] theRotate = (float[]) theScaleMethod.invoke(renders.getModel().getClass().newInstance());
-						if (theRotate != null) {
-							GL11.glScalef(theRotate[0], theRotate[1], theRotate[2]);
-						}
-					}
-				} catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-					if (renders.getScale() != null) {
-						GL11.glScalef(renders.getScale()[0], renders.getScale()[1], renders.getScale()[2]);
-					}
-
-				} catch (InstantiationException e) {
-					e.printStackTrace();
 				}
-
-
-				/*if (renders.getScale() != null) {
+				if (renders.getScale() != null) {
 					GL11.glScalef(renders.getScale()[0], renders.getScale()[1], renders.getScale()[2]);
-				}*/
-
-
+				}
 				Tessellator.bindTexture(getTexture(cart));
 
 				GL11.glEnable(GL11.GL_LIGHTING);
@@ -309,27 +242,11 @@ public class RenderRollingStock extends Render {
 				//GL11.glEnable(GL11.GL_LIGHTING);
 
 				if (renders.hasSmoke()) {
-					ArrayList<double[]> smokePosition = new ArrayList<>();
-					try {
-						if (renders.getModel().getClass().getDeclaredMethod("getSmokePosition") != null) {
-							Method theScaleMethod = renders.getModel().getClass().getDeclaredMethod("getSmokePosition");
-							ArrayList<double[]> thePos = (ArrayList<double[]>) theScaleMethod.invoke(renders.getModel().getClass().newInstance());
-							if (thePos != null) {
-								smokePosition = thePos;
-							}
-						}
-					} catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-
-						smokePosition = renders.getSmokeFX();
-					} catch (InstantiationException e) {
-						smokePosition = renders.getSmokeFX();
-					}
-
 					if (cart.bogieLoco != null) {// || cart.bogieUtility[0]!=null){
-						renderSmokeFX(cart, 90 + cart.rotationYawClientReal, (float) cart.anglePitchClient, renders.getSmokeType(), smokePosition, renders.getSmokeIterations(), time, renders.hasSmokeOnSlopes());
+						renderSmokeFX(cart, 90 + cart.rotationYawClientReal, (float) cart.anglePitchClient, renders.getSmokeType(), renders.getSmokeFX(), renders.getSmokeIterations(), time, renders.hasSmokeOnSlopes());
 					}
 					else {
-						renderSmokeFX(cart, (yaw), pitch, renders.getSmokeType(), smokePosition, renders.getSmokeIterations(), time, renders.hasSmokeOnSlopes());
+						renderSmokeFX(cart, (yaw), pitch, renders.getSmokeType(), renders.getSmokeFX(), renders.getSmokeIterations(), time, renders.hasSmokeOnSlopes());
 					}
 				}
 				if (renders.hasExplosion()) {
@@ -405,7 +322,6 @@ public class RenderRollingStock extends Render {
 		return xyz;
 	}
 
-
 	private static void renderExplosionFX(EntityRollingStock cart, float yaw, float pitch, String explosionType, ArrayList<double[]> explosionFX, int explosionFXIterations, boolean hasSmokeOnSlopes) {
 		if(cart instanceof Locomotive && !((Locomotive)cart).isLocoTurnedOn())return;
 		float yawMod = yaw % 360;
@@ -413,8 +329,7 @@ public class RenderRollingStock extends Render {
 		//if (pitch != 0 && !hasSmokeOnSlopes) { return; }
 		if(Math.abs(pitch)>30)return;
 		if (cart instanceof Locomotive && ((Locomotive) cart).getFuel() > 0) {
-			int r = random.nextInt(300);
-			if (r < (explosionFXIterations * 10)) {
+			if (random.nextInt(300) < (explosionFXIterations * 10)) {
 				for (int j = 0; j < explosionFXIterations; j++) {
 					if (yawMod == 180) {
 						for (double[] explosion : explosionFX) {
@@ -449,8 +364,6 @@ public class RenderRollingStock extends Render {
 	public void doRender(Entity par1Entity, double x, double y, double d2, float yaw, float time) {
 		renderTheMinecart((EntityRollingStock) par1Entity, x, y, d2, yaw, time);
 	}
-
-
 
 	//@Override
 	protected ResourceLocation getEntityTexture(Entity entity) {
