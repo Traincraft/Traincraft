@@ -1,4 +1,4 @@
-# Blender v3.2.0 OBJ File: ''
+# Blender v3.0.1 OBJ File: 'medium45turntest.blend'
 # www.blender.org
 mtllib track_straight_45degree_small.mtl
 o track_normal.002
@@ -1243,7 +1243,7 @@ vn 0.7071 0.0000 0.7071
 vn -0.7071 0.0000 -0.7071
 vn -0.8165 -0.5774 0.0000
 vn -0.8165 0.5774 0.0000
-vn -0.0000 1.0000 -0.0000
+vn -0.0000 1.0000 0.0000
 vn 0.0000 -1.0000 -0.0000
 vn -0.8165 -0.5773 0.0000
 vn -0.8165 0.5773 0.0000

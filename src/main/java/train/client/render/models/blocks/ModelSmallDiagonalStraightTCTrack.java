@@ -49,18 +49,27 @@ public class ModelSmallDiagonalStraightTCTrack extends ModelBase {
         if (type.equals("diagonal") ) {
             FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
         }
-        if (facing == 4 || facing == 6) {
+        if (facing == 4) {
             GL11.glTranslatef(0f,0,1f);
             GL11.glRotatef(90, 0, 1,0);
         }
 
-        if (facing == 5 || facing == 7) {
+        if (facing == 5) {
             GL11.glTranslatef(0f,0,0f);
             GL11.glRotatef(0, 0, 1,0f);
 
         }
 
+        if (facing == 6) {
+            GL11.glTranslatef(0f,0,1f);
+            GL11.glRotatef(90, 0, 1,0f);
 
+        }
+
+        if (facing == 7) {
+            GL11.glTranslatef(-0f,0,0f);
+            GL11.glRotatef(0, 0, 1,0);
+        }
 
 
         render(type);

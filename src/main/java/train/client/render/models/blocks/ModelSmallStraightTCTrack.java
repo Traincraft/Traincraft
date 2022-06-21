@@ -53,7 +53,7 @@ public class ModelSmallStraightTCTrack extends ModelBase {
 		GL11.glColor4f(r, g, b, a);
 
 		// Bind the texture, so that OpenGL properly textures our block.
-		if (type.equals("straight")) {
+		if (type.equals("straight") || type.equals("super_long")) {
  			FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
 		}
 		if (type.equals("crossing")) {
@@ -70,11 +70,20 @@ public class ModelSmallStraightTCTrack extends ModelBase {
 
 
 
-		if (facing == 3 || facing == 1) {
+		if (facing == 3) {
 			GL11.glRotatef(90, 0, 1, 0);
-
+			if (type.equals("super_long")){
+				GL11.glRotatef(180, 0, 1,0);
+			}
 		}
-
+		if (facing == 1) {
+			GL11.glRotatef(90, 0, 1, 0);
+		}
+		if (facing == 0) {
+			if (type.equals("super_long")){
+				GL11.glRotatef(180, 0, 1, 0);
+			}
+		}
 
 		render(type);
 
