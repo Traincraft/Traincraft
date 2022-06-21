@@ -30,7 +30,7 @@ public class ModelLargeSlopeTCTrack extends ModelBase {
 
 
 
-	public void render(String type, String ballast) {
+	public void render(String type, String ballast, int ballastColour) {
 
 		String[] ballastTexture = new String[2];
 		if (ballast.contains(":")) {
@@ -65,31 +65,35 @@ public class ModelLargeSlopeTCTrack extends ModelBase {
 			modeltrack.renderAll();
 		}
 		if (type.equals("dynamic")) {
-			FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(ballastTexture[0],  "textures/blocks/" + ballastTexture[1] +".png"));
-			modelLargeSlopeBallast.renderAll();
 			FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
 			modeltrack.renderAll();
+			FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(ballastTexture[0],  "textures/blocks/" + ballastTexture[1] +".png"));
+			float r = (float)(ballastColour >> 16 & 255) / 255.0F;
+			float g = (float)(ballastColour >> 8 & 255) / 255.0F;
+			float b = (float)(ballastColour & 255) / 255.0F;
+			GL11.glColor4f(r,g,b,1);
+			modelLargeSlopeBallast.renderAll();
 		}
 	}
 
 	public void render(String type, TileTCRail tcRail, double x, double y, double z) {
 		int facing = tcRail.getWorldObj().getBlockMetadata(tcRail.xCoord, tcRail.yCoord, tcRail.zCoord);
-		Block block = tcRail.getWorldObj().getBlock(tcRail.xCoord, tcRail.yCoord-1, tcRail.zCoord);
-		IIcon icon = block.getIcon(1, tcRail.getWorldObj().getBlockMetadata(tcRail.xCoord, tcRail.yCoord-1, tcRail.zCoord));
-
 		String iconName;
-		if (icon == null) {
-
-			iconName = "tc:ballast";
-		}
-
-		else {
+		Block block = Block.getBlockById(tcRail.getBallastMaterial());
+		IIcon icon = block.getIcon(1, tcRail.ballastMetadata);
+		int colour = tcRail.ballastColour;
+		if (icon != null) {
 			iconName = icon.getIconName();
 		}
-		render( type, facing, x, y, z, 1, 1, 1, 1, iconName);
+		else {
+			iconName = "tc:ballast_test";
+			colour = 16777215;
+		}
+
+		render( type, facing, x, y, z, 1, 1, 1, 1, iconName, colour);
 	}
 
-	public void render(String type, int facing, double x, double y, double z, float r, float g, float b, float a, String ballastTexture)
+	public void render(String type, int facing, double x, double y, double z, float r, float g, float b, float a, String ballastTexture, int colour)
 	{
 		// Push a blank matrix onto the stack
 		GL11.glPushMatrix();
@@ -110,7 +114,7 @@ public class ModelLargeSlopeTCTrack extends ModelBase {
 			GL11.glRotatef(180, 0, 1, 0);
 		}
 		//GL11.glTranslatef(0.0f, 0.0f, -1.0f);
-		render(type, ballastTexture);
+		render(type, ballastTexture, colour);
 
 		// Pop this matrix from the stack.
 		GL11.glPopMatrix();
