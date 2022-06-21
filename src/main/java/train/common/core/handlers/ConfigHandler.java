@@ -10,7 +10,6 @@ package train.common.core.handlers;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 import train.common.Traincraft;
-import train.common.library.Info;
 
 import java.io.File;
 
@@ -43,14 +42,6 @@ public class ConfigHandler {
 	public static boolean ENABLE_LOGGING;
 	public static boolean ALLOW_ATO_ON_STEAMERS;
 
-	public static int UPDATE_FREQUENCY=3;
-
-	public static void changeFirstLoad(){
-		Configuration cf = new Configuration(new File(Traincraft.configDirectory, Info.modName + ".cfg"));
-		cf.load();
-		cf.get(CATEGORY_GENERAL, "FIRST_RUN", true).set(false);
-		cf.save();
-	}
 
 	public static void init(File configFile) {
 		Configuration cf = new Configuration(configFile);
@@ -85,11 +76,7 @@ public class ConfigHandler {
 			ENABLE_WAGON_REMOVAL_NOTICES = cf.get(CATEGORY_GENERAL, "ENABLE_WAGON_REMOVAL_NOTICES", true, "Displays a server-wide message of when a OP player removes a train or rollingstock, also saying the owner.").getBoolean(true);
 			ENABLE_LOGGING = cf.get(CATEGORY_GENERAL, "ENABLE_TRANSPORT_LOGGING", true, "Logs data for the Admin book on all trains and rollingstock, this data can be found in /config/traincraft, this has a performance cost similar to core protect, as it does similar work, but for Traincraft specifically").getBoolean(true);
 
-			ALLOW_ATO_ON_STEAMERS = cf.get(CATEGORY_GENERAL, "ALLOW_ATO_ON_STEAMERS", false, "Allows remote control of steam trains via the Minecraft Train Control (MTC) ATO system.").getBoolean(true);
-
-			UPDATE_FREQUENCY = cf.get(CATEGORY_GENERAL, "MOVEMENT_PACKET_FREQUENCY", 3,"how often to send and receive update packets, Older TC uses 1, Default is 3 like horses, max is 20").setMaxValue(20).setMinValue(1).getInt();
-
-
+			ALLOW_ATO_ON_STEAMERS = cf.get(CATEGORY_GENERAL, "ALLOW_ATO_ON_STEAMERS", false, "Allows Minecraft Train Control's ATO system to be used on steam trains").getBoolean(true);
 		} catch (Exception e) {
 			Traincraft.tcLog.fatal("Traincraft had a problem loading its configuration\n" + e);
 		} finally {

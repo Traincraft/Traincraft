@@ -7,10 +7,6 @@ import dan200.computercraft.api.lua.ILuaContext;
 import dan200.computercraft.api.lua.LuaException;
 import dan200.computercraft.api.peripheral.IComputerAccess;
 import dan200.computercraft.api.peripheral.IPeripheral;
-import li.cil.oc.api.machine.Arguments;
-import li.cil.oc.api.machine.Callback;
-import li.cil.oc.api.machine.Context;
-import li.cil.oc.api.network.SimpleComponent;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
@@ -20,8 +16,8 @@ import train.common.mtc.packets.PacketATOSetStopPoint;
 
 import java.util.Iterator;
 import java.util.List;
-@Optional.Interface(iface = "li.cil.oc.api.network.SimpleComponent", modid = "OpenComputers")
-public class TileATOTransmitterStopPoint extends TileEntity implements IPeripheral, SimpleComponent {
+
+public class TileATOTransmitterStopPoint extends TileEntity implements IPeripheral {
 
    public Boolean isActivated = false;
    public double stopX = 0.0;

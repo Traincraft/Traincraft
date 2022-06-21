@@ -38,7 +38,7 @@ public class EntityLocoSteamBerk1225 extends SteamTrain {
 
 	@Override
 	public void updateRiderPosition() {
-		TraincraftUtil.updateRider(this, -1.125, 0.375);
+		TraincraftUtil.updateRider(this, -1.125, 0.2);
 	}
 
 	@Override

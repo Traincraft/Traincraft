@@ -37,6 +37,5 @@ lib
 *.directory
 classes
 runserver
-buildtotest.bat
-
-src/main/java/train/common/api/TrainsOnClick.java
+.classpath
+.project

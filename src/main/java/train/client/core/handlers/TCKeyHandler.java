@@ -18,6 +18,7 @@ import train.common.core.network.PacketKeyPress;
 
 public class TCKeyHandler {
 	public static KeyBinding horn;
+	public static KeyBinding bell;
 	public static KeyBinding inventory;
 	public static KeyBinding up;
 	public static KeyBinding down;
@@ -44,12 +45,15 @@ public class TCKeyHandler {
 		ClientRegistry.registerKeyBinding(idle);
 		furnace = new KeyBinding("key.traincraft.furnace", Keyboard.KEY_F, "key.categories.traincraft");
 		ClientRegistry.registerKeyBinding(furnace);
-		if (Loader.isModLoaded("ComputerCraft") || Loader.isModLoaded("OpenComputers")) {
+		bell = new KeyBinding("key.traincraft.bell", Keyboard.KEY_B, "key.categories.traincraft");
+		ClientRegistry.registerKeyBinding(bell);
+
+		if (Loader.isModLoaded("ComputerCraft")) {
 			MTCScreen = new KeyBinding("key.traincraft.showMTCScreen", Keyboard.KEY_M, "key.categories.traincraft");
 			ClientRegistry.registerKeyBinding(MTCScreen);
 			toggleATO = new KeyBinding("key.traincraft.toggleATO", Keyboard.KEY_O, "key.categories.traincraft");
 			ClientRegistry.registerKeyBinding(toggleATO);
-			mtcOverride = new KeyBinding("key.traincraft.mtcOverride", Keyboard.KEY_T, "key.categories.traincraft");
+			mtcOverride = new KeyBinding("key.traincraft.mtcOverride", Keyboard.KEY_O, "key.categories.traincraft");
 			ClientRegistry.registerKeyBinding(mtcOverride);
 			overspeedOverride = new KeyBinding("key.traincraft.overspeedOverride", Keyboard.KEY_L, "key.categories.traincraft");
 			ClientRegistry.registerKeyBinding(overspeedOverride);
@@ -79,7 +83,10 @@ public class TCKeyHandler {
 			if (furnace.isPressed()) {
 				sendKeyControlsPacket(9);
 			}
-			if (Loader.isModLoaded("ComputerCraft") || Loader.isModLoaded("OpenComputers")) {
+			if (bell.isPressed()) {
+				sendKeyControlsPacket(10);
+			}
+			if (Loader.isModLoaded("ComputerCraft")) {
 				if (MTCScreen.isPressed() && !FMLClientHandler.instance().isGUIOpen(GuiMTCInfo.class)) {
 					if (Minecraft.getMinecraft().thePlayer.ridingEntity != null && Minecraft.getMinecraft().thePlayer.ridingEntity instanceof Locomotive) {
 //&&((Locomotive)Minecraft.getMinecraft().thePlayer.ridingEntity).getTrainOwner().equals(Minecraft.getMinecraft().thePlayer.getDisplayName()))

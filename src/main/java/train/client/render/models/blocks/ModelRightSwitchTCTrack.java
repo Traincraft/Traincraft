@@ -41,11 +41,19 @@ public class ModelRightSwitchTCTrack extends ModelBase {
 	public void renderLarge90Inactive() {
 		modelLargeRightSwitchInactive.renderAll();
 	}
-	public void render(String type,TileTCRail tcRail, double x, double y, double z) {
+
+	public void render(String type, TileTCRail tcRail, double x, double y, double z) {
+		int facing = tcRail.getWorldObj().getBlockMetadata(tcRail.xCoord, tcRail.yCoord, tcRail.zCoord);
+		render( type, facing, tcRail.getSwitchState(), x, y, z, 1, 1, 1, 1);
+	}
+
+	public void render(String type, int facing, boolean active, double x, double y, double z, float r, float g, float b, float a) {
+		// Push a blank matrix onto the stack
+		GL11.glPushMatrix();
 
 		// Bind the texture, so that OpenGL properly textures our block.
-		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
-		GL11.glColor4f(1, 1, 1, 1);
+		FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
+		GL11.glColor4f(r, g, b, a);
 		//GL11.glScalef(0.5f, 0.5f, 0.5f);
 
 		if (tcRail.getFacing() == 3) {
@@ -99,15 +107,13 @@ public class ModelRightSwitchTCTrack extends ModelBase {
 				GL11.glRotatef(180, 0, 1, 0);
 			}
 		}
-		if(tcRail.getSwitchState()){
-			if(type.equals("medium")){this.renderMediumActive();}
-			else if(type.equals("medium_parallel")){this.renderMediumParallelActive();}
-			else if(type.equals("large_90")){this.renderLarge90Active();}
-		} else {
-			if(type.equals("medium")){this.renderMediumInactive();}
-			else if(type.equals("medium_parallel")){this.renderMediumParallelInactive();}
-			else if(type.equals("large_90")){this.renderLarge90Inactive();}
-		}
+		if(type.equals("medium")&&!active)this.renderMediumInactive();
+		if(type.equals("medium")&&active)this.renderMediumActive();
+		if(type.equals("medium_parallel")&&!active)this.renderMediumParallelInactive();
+		if(type.equals("medium_parallel")&&active)this.renderMediumParallelActive();
+		if(type.equals("large_90")&&!active)this.renderLarge90Inactive();
+		if(type.equals("large_90")&&active)this.renderLarge90Active();
+		
 		//if(type.equals("large"))this.renderLarge();
 
 	}

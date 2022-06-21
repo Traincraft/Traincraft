@@ -32,7 +32,7 @@ public class EntityLocoElectricHighSpeedZeroED extends ElectricTrain {
 		if(riddenByEntity==null){return;}
 		double pitchRads = this.anglePitchClient * Math.PI / 180.0D;
 		double distance = 2.3;
-		double yOffset = 0.43;
+		double yOffset = 0.55;
 		float rotationCos1 = (float) Math.cos(Math.toRadians(this.renderYaw + 90));
 		float rotationSin1 = (float) Math.sin(Math.toRadians((this.renderYaw + 90)));
 		if(side.isServer()){

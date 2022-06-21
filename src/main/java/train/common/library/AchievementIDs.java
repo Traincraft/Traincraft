@@ -71,7 +71,17 @@ public enum AchievementIDs {
 	caboose(new Item[] { ItemIDs.minecartCaboose.item, ItemIDs.minecartCaboose3.item,
 			ItemIDs.minecartCabooseWork.item }),
 	stockCar(new Item[] { ItemIDs.minecartStockCar.item, ItemIDs.minecartDRWGStockCar.item }),
-	distilationTower(new Item[] { Item.getItemFromBlock(BlockIDs.distilIdle.block) });
+	distilationTower(new Item[] { Item.getItemFromBlock(BlockIDs.distilIdle.block) }),
+	mtg(new Item[] {ItemIDs.minecartLUengine.item}),
+	massTransit(new Item[] { ItemIDs.minecartClass345engine.item, ItemIDs.minecartDstockEngine.item, ItemIDs.minecartLocoRenfe446Motor.item }),
+	cercanias(new Item[] { ItemIDs.minecartLocoRenfe446Motor.item,}),
+	geared(new Item[] { ItemIDs.minecartVBShay2.item, ItemIDs.minecartLocoSteamVBShay.item,
+			ItemIDs.minecartLocoSteamShay.item, ItemIDs.minecartLocoSteamClimax.item,
+			ItemIDs.minecartLocoLSSP7.item}),
+	switchin(new Item[]{ItemIDs.minecartLocoSW8.item, ItemIDs.minecartLocoGP15.item}),
+	powerful(new Item[]{ItemIDs.minecartLocoDD35A.item}),
+	heavySteam(new Item[]{ItemIDs.minecartHeavySteam.item}),
+	;
 
 	public Achievement	achievement;
 	protected Item[]	items;

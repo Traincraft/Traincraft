@@ -45,6 +45,7 @@ import train.common.core.handlers.*;
 import train.common.core.network.PacketRollingStockRotation;
 import train.common.core.util.TraincraftUtil;
 import train.common.entity.rollingStock.EntityTracksBuilder;
+import train.common.items.ItemPaintbrushThing;
 import train.common.items.ItemRollingStock;
 import train.common.items.ItemTCRail;
 import train.common.items.ItemTCRail.TrackTypes;
@@ -67,7 +68,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 
 	protected EntityPlayer playerEntity;
 
-	/** Axis aligned bounding box. */
+	/** Axis aligned bounding box. this needs to be it's own thing because collisions */
 	private AxisAlignedBB boundingBoxSmall;
 
 	public float maxSpeed;
@@ -91,7 +92,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 	private float rollingServerPitch;
 	public double rotationYawClient;
 	public float rotationYawClientReal;
-	public float anglePitchClient;
+	public float anglePitchClient;//was a double
 	public float serverRealRotation;
 	private float previousServerRealRotation;
 	public boolean isServerInReverse = false;
@@ -148,6 +149,8 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 	private boolean shouldServerSetPosYOnClient = true;
 	private int clientTicks = 0;
 
+	private int scrollPosition;
+
 	public EntityRollingStock(World world) {
 		super(world);
 		initRollingStock(world);
@@ -179,7 +182,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 		isImmuneToFire = true;
 		//field_70499_f = false;
 
-		//setSize(0.98F, 1.98F);
+		setSize(0.98F, 1.98F);
 		//yOffset = 0;
 		//ySize = 0.98F;
 		yOffset = 0.65f;
@@ -190,7 +193,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 
 		boundingBoxSmall = AxisAlignedBB.getBoundingBox(0.0D, 0.0D, 0.0D, 0.0D, 2.0D, 1.0D);
 		//setBoundingBoxSmall(0.0D, 0.0D, 0.0D, 0.98F, 0.7F);
-		setBoundingBoxSmall(0.0D, 0.0D, 0.0D, 2.0F, 1.0F);
+		setBoundingBoxSmall(0.0D, 0.0D, 0.0D, 2.0F, 1.5F);
 		RollingStock = new ArrayList<EntityRollingStock>();
 		handleOverheating = new HandleOverheating(this);
 
@@ -402,13 +405,13 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 					cartLinked1.Link1 = 0;
 					cartLinked1.cartLinked1 = null;
 					if(cartLinked1.RollingStock!=null)cartLinked1.RollingStock.clear();
-					//System.out.println("clear cartLinked1 link1");
+
 				}
 				else if (cartLinked1.Link2 == this.uniqueID) {
 					cartLinked1.Link2 = 0;
 					cartLinked1.cartLinked2 = null;
 					if(cartLinked1.RollingStock!=null)cartLinked1.RollingStock.clear();
-					//System.out.println("clear cartLinked1 link2");
+
 				}
 			}
 			if (this.cartLinked2 != null) {
@@ -416,13 +419,13 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 					cartLinked2.Link1 = 0;
 					cartLinked2.cartLinked1 = null;
 					if(cartLinked2.RollingStock!=null)cartLinked2.RollingStock.clear();
-					//System.out.println("clear cartLinked2 link1");
+
 				}
 				else if (cartLinked2.Link2 == this.uniqueID) {
 					cartLinked2.Link2 = 0;
 					cartLinked2.cartLinked2 = null;
 					if(cartLinked2.RollingStock!=null)cartLinked2.RollingStock.clear();
-					//System.out.println("clear cartLinked2 link2");
+
 				}
 			}
 			this.cartLinked1 = null;
@@ -490,7 +493,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 					ticksSinceHeld = 40;
 					if (!((Locomotive) this).canBeAdjusted) {
 						((Locomotive) this).setCanBeAdjusted(true);
-						//System.out.println(((Locomotive)this)+" canBeAdjusted=true");
+
 					}
 				}
 				cartLocked = false;
@@ -501,7 +504,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 			if (ticksSinceHeld <= 0 && !cartLocked) {
 				if (((Locomotive) this).canBeAdjusted && !((Locomotive) this).canBePulled) {
 					((Locomotive) this).setCanBeAdjusted(false);
-					//System.out.println(((Locomotive)this)+" canBeAdjusted=false");
+
 				}
 			}
 		}
@@ -524,9 +527,9 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 		 */
 		if (ticksExisted % 40 != 0) return;
 		if (allTrains.size() == 0) {
-			//System.out.println("array empty");
+
 			if ((this.cartLinked1 != null || this.cartLinked2 != null)) {
-				//System.out.println("array empty => add");
+
 				train = new TrainHandler(this);
 			}
 			/**
@@ -544,7 +547,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 					train = cartLinked2.train;
 					return;
 				}
-				//System.out.println("add");
+
 				train = new TrainHandler(this);
 			}
 		}
@@ -590,17 +593,18 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 
 	@Override
 	public void onUpdate() {
-		if (this.trainSpec.getBogieLocoPosition() != 0 && this.bogieLoco ==null) {
+
+		if (addedToChunk && !this.hasSpawnedBogie && this.trainSpec.getBogieLocoPosition() != 0) {
+
+				if (bogieLoco == null) {
 					this.bogieShift = this.trainSpec.getBogieLocoPosition();
 					this.bogieLoco = new EntityBogie(worldObj,
 							(posX - Math.cos(this.serverRealRotation * TraincraftUtil.radian) * this.bogieShift),
 							posY + ((Math.tan(this.renderPitch * TraincraftUtil.radian) * -this.bogieShift) + getMountedYOffset()),
 							(posZ - Math.sin(this.serverRealRotation * TraincraftUtil.radian) * this.bogieShift), this, this.uniqueID, 0, this.bogieShift);
 
-					//if(!worldObj.isRemote)System.out.println("ID: "+this.getID());
-					if (!worldObj.isRemote){
-						worldObj.spawnEntityInWorld(bogieLoco);
-					}
+
+					if (!worldObj.isRemote) worldObj.spawnEntityInWorld(bogieLoco);
 					this.needsBogieUpdate = true;
 		}
 
@@ -619,7 +623,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 				setNewUniqueID();
 
 				//TraincraftSaveHandler.writeValue(FMLCommonHandler.instance().getMinecraftServerInstance(), "numberOfTrains:", "" + newID);
-				//System.out.println("Train is missing an ID, adding new one for "+this.trainName+" "+this.uniqueID);
+
 			}
 		}
 
@@ -694,15 +698,15 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 						this.posZ + (this.rollingZ - this.posZ) / this.rollingturnProgress);
 				--this.rollingturnProgress;
 				this.setRotation(this.rotationYaw, this.rotationPitch);
-				//System.out.println("1 client "+var46 +" Server "+this.posYFromServer + "ticks "+clientTicks);
+
 			}
 			else {
 				setPosition(posX, posY, posZ);
 				setRotation(rotationYaw, rotationPitch);
-				//System.out.println("2 client "+posY +" Server "+this.posYFromServer);
+
 			}
 			if (posYFromServer != 0 && clientTicks < 600 && posY > posYFromServer && shouldServerSetPosYOnClient && Math.abs(posY - posYFromServer) > 0.04) {
-				//System.out.println(posYFromServer);
+
 				posY = posYFromServer;
 			}
 			return;
@@ -710,7 +714,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 
 		/*
 		 * if(this.updateTicks<5){
-		 * System.out.println(this.getID()+" "+this.entityName); }
+
 		 */
 		/**
 		 * As entities can't be registered in nbttagcompound I had to setup this
@@ -721,7 +725,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 		 */
 		if (((this.cartLinked1 == null && this.Link1 != 0) || (this.cartLinked2 == null && this.Link2 != 0))) {
 			list = worldObj.getEntitiesWithinAABBExcludingEntity(this, boundingBox.expand(15, 15, 15));
-			//System.out.println("link " + this.uniqueID + " " + this + " to " + this.Link1 + " " + this.Link2);
+
 			if (list != null && list.size() > 0) {
 				for (Object entity : list) {
 					if (entity instanceof EntityRollingStock) {
@@ -743,7 +747,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 		int i = MathHelper.floor_double(posX);
 		int j = MathHelper.floor_double(posY);
 		int k = MathHelper.floor_double(posZ);
-		//System.out.println(this.serverRealRotation);
+
 		if (needsBogieUpdate) {
 			if (bogieLoco != null) {
 				double rotationCos1 = Math.cos(Math.toRadians(serverRealRotation));
@@ -778,7 +782,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 			 * ((Math.tan(pitchRads) * -this.bogieShift[bog]) +
 			 * getMountedYOffset()), (float) (posZ - Math.sin(rads) *
 			 * this.bogieShift[bog]));
-			 * //System.out.println("updatePos "+this.bogieUtility
+
 			 * [bog].posX+" "+ this.bogieUtility[bog].posY
 			 * +" "+this.bogieUtility[bog].posZ); } }
 			 */
@@ -799,14 +803,15 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 
 
 		updateOnTrack(i, j, k, l);
-		// System.out.println(this.posY);
 
+
+		updateTicks++;
 		d6 = prevPosX - posX;
 		d7 = prevPosZ - posZ;
 		prevRotationYaw = rotationYaw;
-		//System.out.println("before "+rotationYaw +" "+prevRotationYaw);
+
 		//this.rotationPitch = 0.0F;
-		//System.out.println(Math.sqrt(d6*d6+d7*d7));
+
 		if (d6 * d6 + d7 * d7 > 0.0001D) {
 			this.rotationYaw = (TraincraftUtil.atan2degreesf(d7, d6));
 			if (this.isClientInReverse) {
@@ -882,8 +887,8 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 			anglePitch = -tempPitch2;
 			rollingServerPitch = tempPitch2;
 		}
-		//System.out.println(updateTicks);
-		if (ticksExisted % ConfigHandler.UPDATE_FREQUENCY == 0) {
+
+		if (updateTicks % 2 == 0) {
 			shouldServerSetPosYOnClient = true;
 		}
 		if (shouldServerSetPosYOnClient) {
@@ -952,7 +957,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 			 flag = false;
 			 flag1 = false;
 			 if (l == Blocks.golden_rail) {
-				 flag = (worldObj.getBlockMetadata(i, j, k) & 8) != 0;
+				 flag = ((BlockRailBase)worldObj.getBlock(i, j, k)).getBasicRailMetadata(worldObj, this,i,j,k) != 0;
 				 flag1 = !flag;
 				 if (i1 == 8) {i1 = 0;}
 				 else if (i1 == 9) {i1 = 1;}
@@ -1012,7 +1017,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 			 else {
 			 d17 = ((posX - d18) * d9 + (posZ - d19) * d10) * 2D;
 			 //double derailSpeed = 0;//0.46;
-			 //System.out.println(d13);
+
 			 if(bogieLoco != null) {
 				 if (!bogieLoco.isOnRail()) {
 					 this.unLink();
@@ -1117,7 +1122,31 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 			TileTCRail tile = (TileTCRail) worldObj.getTileEntity(i, j, k);
 			//j+=0.2;
 
-			//System.out.println(tile.getType());
+
+
+
+			/*if (ItemTCRail.isTCParallelCurveTRack(tile)) {
+				if(bogieLoco != null) {
+					if (!bogieLoco.isOnRail()) {
+						derailSpeed = 0;
+					}
+				}
+				if(derailSpeed == 0){
+					this.unLink();
+					moveOnTCStraight(i, j, k, tile.xCoord, tile.zCoord, (tile.getBlockMetadata()+1)%4);
+				}
+				else {
+					int meta = tile.getBlockMetadata();
+					if (shouldIgnoreSwitch(tile, i, j, k, meta)) {
+						moveOnTCStraight(i, j, k, tile.xCoord, tile.zCoord, meta);
+					} else {
+						if (ItemTCRail.isTCParallelCurveTRack(tile))
+							moveOnTC90TurnRail(i, j, k, tile.r, tile.cx, tile.cz);
+					}
+				}
+			}*/
+
+
 			if (ItemTCRail.isTCTurnTrack(tile)) {
 
 				if (bogieLoco != null) {
@@ -1165,7 +1194,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 			//if(worldObj.getBlockTileEntity(tileGag.originX, tileGag.originY, tileGag.originZ)==null || !(worldObj.getBlockTileEntity(tileGag.originX, tileGag.originY, tileGag.originZ) instanceof TileTCRail))return;
 			if (tileGag!=null && worldObj.getTileEntity(tileGag.originX, tileGag.originY, tileGag.originZ) instanceof TileTCRail) {
 				TileTCRail tile = (TileTCRail) worldObj.getTileEntity(tileGag.originX, tileGag.originY, tileGag.originZ);
-				//System.out.println(tile.getType());
+
 				if (ItemTCRail.isTCTurnTrack(tile)) {
 					moveOnTC90TurnRail(i, j, k, tile.r, tile.cx, tile.cz);
 				}
@@ -1190,6 +1219,10 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 						|| tile.getType().equals(TrackTypes.MEDIUM_LEFT_TURN.getLabel())
 						|| tile.getType().equals(TrackTypes.LARGE_LEFT_TURN.getLabel())
 						|| tile.getType().equals(TrackTypes.LARGE_RIGHT_TURN.getLabel()))
+						|| tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_RIGHT_TURN.getLabel())
+						|| tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_LEFT_TURN.getLabel())
+						|| tile.getType().equals(TrackTypes.EMBEDDED_LARGE_LEFT_TURN.getLabel())
+						|| tile.getType().equals(TrackTypes.EMBEDDED_LARGE_RIGHT_TURN.getLabel())
 				&& tile.canTypeBeModifiedBySwitch) {
 
 
@@ -1257,7 +1290,6 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 					(this.boundingBox.minZ + this.boundingBox.maxZ)*0.5
 			);
 
-			//System.out.println("straight z "+Math.copySign(norm, motionZ));
 		}
 		if (meta == 1 || meta == 3) {
 
@@ -1279,7 +1311,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 					(this.boundingBox.minZ + this.boundingBox.maxZ)*0.5
 			);
 
-			//System.out.println("straight x "+Math.copySign(norm, motionX));
+
 		}
 	}
 
@@ -1292,8 +1324,17 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 				if (!(this instanceof Locomotive) && !(this instanceof EntityTracksBuilder)) {
 					motionZ += rotationPitch<90?0.01:-0.01;
 				}
-			} else if (!(this instanceof Locomotive) && !(this instanceof EntityTracksBuilder)) {
-				motionZ += rotationPitch>90?0.01:-0.01;
+				if (norm < 0.01) {
+
+					if ((motionZ) < 0 && meta == 2) {
+						norm += 0.0001;
+						motionZ = Math.copySign(motionZ, 1);
+					}
+					if ((motionZ) > 0 && meta == 0) {
+						norm += 0.0001;
+						motionZ = Math.copySign(motionZ, -1);
+					}
+				}
 			}
 
 			this.setPosition(cx + 0.5D,  Math.abs(j + (Math.tan(slopeAngle * Math.abs(cz - this.posZ))) + this.yOffset-this.ySize+0.1), this.posZ+motionZ);
@@ -1311,15 +1352,33 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 
 			this.setPosition(this.posX+motionX, (j + (Math.tan(slopeAngle * Math.abs(cx - this.posX))) + this.yOffset-this.ySize+0.1), cz + 0.5D);
 
+			if (!(this instanceof Locomotive) && !(this instanceof EntityTracksBuilder)) {
+				if ((this.posY - this.prevPosY) < 0) {
+					norm *= 1.02;
+				} else if ((this.posY - this.prevPosY) > 0) {
+					norm *= 0.98;
+				}
+				if (norm < 0.01) {
+
+					if ((motionX) < 0 && meta == 1) {
+						norm += 0.0001;
+						motionX = Math.copySign(motionX, 1);
+					}
+					if ((motionX) > 0 && meta == 3) {
+						norm += 0.0001;
+						motionX = Math.copySign(motionX, -1);
+					}
+				}
+			}
+			this.motionX = Math.copySign(norm, this.motionX);
+			this.motionY = 0.0D;
 			this.motionZ = 0.0D;
 		}
 
 		updateRiderPosition();
 	}
-
 	protected void moveOnTC90TurnRail(int i, int j, int k, double r, double cx, double cz) {
-		//System.out.println("curve");
-		posY = j;
+		posY = j + 0.2;
 		double cpx = posX - cx;
 		double cpz = posZ - cz;
 		double cp_norm = Math.sqrt(cpx * cpx + cpz * cpz);
@@ -1347,10 +1406,10 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 	}
 
 	protected void moveOnTCTwoWaysCrossing(int i, int j, int k, double cx, double cy, double cz, int meta) {
-		posY = j+0.1;
+		posY = j + 0.2;
+/** 2-0 is West - East, 1-3 is NORTH SOUTH, unlike other times*/
 		if (!(this instanceof Locomotive)) {
 			int l = MathHelper.floor_double(serverRealRotation * 4.0F / 360.0F + 0.5D) & 3;
-			//System.out.println(l);
 			if (l == 2 || l == 0){
 				moveEntity(motionX, 0.0D, 0.0D);
 			} else {
@@ -1359,7 +1418,6 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 		}
 		else {
 			int l = MathHelper.floor_double(rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
-			//System.out.println(l);
 			if (l == 2 || l == 0){
 				moveEntity(motionX, 0.0D, 0.0D);
 			}
@@ -1374,7 +1432,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 		railMaxSpeed = 3;
 		maxSpeed = Math.min(railMaxSpeed, getMaxCartSpeedOnRail());
 		maxSpeed = SpeedHandler.handleSpeed(railMaxSpeed, maxSpeed, this);
-		//System.out.println(maxSpeed);
+
 		if (this.speedLimiter != 0 && speedWasSet) {
 			//maxSpeed *= this.speedLimiter;
 			adjustSpeed(maxSpeed, speedLimiter);
@@ -1599,6 +1657,24 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 		}
 		else if ((trainsOnClick.onClickWithStake(this, itemstack, playerEntity, worldObj))) { return true; }
 
+		if (itemstack != null && itemstack.getItem() instanceof ItemPaintbrushThing && entityplayer.isSneaking()) {
+			if (this.acceptedColors != null && this.acceptedColors.size() > 0) {
+				if (scrollPosition > this.acceptedColors.size() - 1) {
+					this.setColor(acceptedColors.get(0));
+					scrollPosition = 0;
+				} else {
+					this.setColor(acceptedColors.get(scrollPosition));
+					scrollPosition++;
+
+				}
+			}
+
+			if (this.acceptedColors != null && this.acceptedColors.size() == 0) {
+				entityplayer.addChatMessage(new ChatComponentText("There are no other colors available."));
+			}
+			return true;
+		}
+
 		return worldObj.isRemote;
 	}
 
@@ -1620,7 +1696,6 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 	 */
 	@Override
 	public void applyEntityCollision(Entity par1Entity) {
-		//System.out.println(par1Entity +" " +this.bogieLoco +" "+this.bogieUtility[0]);
 		//if(par1Entity instanceof EntityPlayer)return;
 		if (this.bogieLoco == null) return;
 
@@ -1667,7 +1742,6 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 				 * ((EntityBogie)par1Entity).entityMainTrain.isAttached)return;
 				 * }
 				 */
-				//System.out.println(par1Entity);
 				double d0 = par1Entity.posX - this.posX;
 				double d1 = par1Entity.posZ - this.posZ;
 				double distancesX[] = new double[4];
@@ -1770,7 +1844,6 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 						double d8 = par1Entity.motionZ + this.motionZ;
 
 						if ((par1Entity instanceof Locomotive && !isPoweredCart()) || (((EntityMinecart) par1Entity).isPoweredCart()) && !isPoweredCart()) {
-							//System.out.println("1 "+par1Entity +"     "+ this);
 
 							this.motionX *= 0.20000000298023224D;
 							this.motionZ *= 0.20000000298023224D;
@@ -1781,7 +1854,6 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 							}
 						}
 						else if ((!(par1Entity instanceof Locomotive) && isPoweredCart()) || (!((EntityMinecart) par1Entity).isPoweredCart() && isPoweredCart())) {
-							//System.out.println("2 "+par1Entity +"     "+ this);
 							if (par1Entity instanceof EntityBogie && ((EntityBogie) par1Entity).entityMainTrain != null) {
 								this.motionX *= 0.2;
 								this.motionZ *= 0.2;
@@ -1805,7 +1877,6 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 
 						}
 						else {
-							//System.out.println("3 "+par1Entity +"     "+ this);
 							d9 *= 0.4D;
 							d8 *= 0.4D;
 
@@ -1832,7 +1903,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 					}
 					else {
 
-						if (!(par1Entity instanceof EntityItem) && !(par1Entity instanceof EntityPlayer && this instanceof Locomotive) && !(par1Entity instanceof EntityCreature) && !(par1Entity instanceof EntityBogie)) {
+						if (!(par1Entity instanceof EntityItem) && !(par1Entity instanceof EntityPlayer && this instanceof Locomotive) && !(par1Entity instanceof EntityLiving) && !(par1Entity instanceof EntityBogie)) {
 							this.addVelocity(-d0 * 2, 0.0D, -d1 * 2);
 						}
 						else if ((par1Entity instanceof EntityBogie)) {
@@ -2113,8 +2184,6 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 		if (motionZ > targetSpeedZ && motionZ != 0) motionZ -= 0.01;
 		if (motionX < targetSpeedX && motionX != 0) motionX += 0.01;
 		if (motionZ < targetSpeedZ && motionZ != 0) motionZ += 0.01;
-		//System.out.println(motionX + " X " + targetSpeedX);
-		//System.out.println(motionZ + " Z " + targetSpeedZ);
 		if ((Math.abs(motionX) < Math.abs(targetSpeedX) + 0.01) && (Math.abs(motionX) > Math.abs(targetSpeedX) - 0.01)) {
 			speedWasSet = false;
 		}
@@ -2294,7 +2363,7 @@ public abstract class EntityRollingStock extends AbstractTrains implements ILink
 		List<ItemStack> items = new ArrayList<ItemStack>();
 		for (EnumTrains trains : EnumTrains.values()) {
 			if (trains.getEntityClass().equals(this.getClass())) {
-				items.add(ItemRollingStock.setPersistentData(new ItemStack(trains.getItem()), this,getUniqueTrainID(),null));
+				items.add(ItemRollingStock.setPersistentData(new ItemStack(trains.getItem()), this,this.getUniqueTrainID(),trainCreator, trainOwner, getColor()));
 				return items;
 			}
 		}

@@ -116,8 +116,11 @@ public class TileCrafterTierIII extends TileEntity implements IInventory, ITier 
 			NBTTagCompound nbttagcompound2 = nbttaglist2.getCompoundTagAt(i);
 			byte byte1 = nbttagcompound2.getByte("Recipe");
 			if (byte1 >= 0) {
-				if (!listContainsItem(knownRecipes, ItemStack.loadItemStackFromNBT(nbttagcompound2).getItem())) {
-					knownRecipes.add(ItemStack.loadItemStackFromNBT(nbttagcompound2).getItem());
+				ItemStack stack = ItemStack.loadItemStackFromNBT(nbttagcompound2);
+
+				if (stack!=null && !listContainsItem(knownRecipes, stack.getItem())) {
+
+					knownRecipes.add(stack.getItem());
 				}
 			}
 		}

@@ -26,10 +26,11 @@ public class ModelMediumStraightTCTrack extends ModelBase {
 		GL11.glColor4f(1, 1, 1, 1);
 		//GL11.glScalef(0.5f, 0.5f, 0.5f);
 
-		switch (tcRail.getFacing()){
-			case 3:{GL11.glRotatef(-90, 0, 1, 0);break;}
-			case 1:{GL11.glRotatef(90, 0, 1, 0);break;}
-			case 0:{GL11.glRotatef(180, 0, 1, 0);}
+		if (facing == 2) {
+			GL11.glRotatef(0, 0, 1, 0);
+		}
+		if (facing == 3) {
+			GL11.glRotatef(-90, 0, 1, 0);
 		}
 		for (int i = 0; i < 3; i++) {
 			render();

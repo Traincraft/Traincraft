@@ -14,7 +14,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -38,7 +37,6 @@ import train.common.mtc.PDMMessage;
 import train.common.mtc.TilePDMInstructionRadio;
 import train.common.mtc.packets.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Locomotive extends EntityRollingStock implements IInventory, WirelessTransmitter {
@@ -487,6 +485,9 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
         if (i == 8 && ConfigHandler.SOUNDS) {
             soundHorn();
         }
+        if (i == 10){
+            soundWhistle();
+        }
         if (i == 4) {
             forwardPressed = true;
         }
@@ -624,6 +625,11 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
                 ((EntityAnimal) e).getNavigator().setPath(null, 0);
             }
         }
+    }
+
+    public void soundWhistle() {
+        worldObj.playSoundAtEntity(this, Info.resourceLocation + ":" + "bell", 0.5F, 1.0F);
+
     }
 
     @Override
@@ -1777,15 +1783,14 @@ public abstract class Locomotive extends EntityRollingStock implements IInventor
     }
 
     public void disconnectFromServer() {
-        if (this.worldObj != null && !worldObj.isRemote){
-            JsonObject sendTo = new JsonObject();
-            sendTo.addProperty("funct", "disconnect");
-            sendMessage(new PDMMessage(this.trainID, serverUUID, sendTo.toString(), 0));
-            this.mtcType = 1;
-            this.serverUUID = "";
-            isConnected = false;
-        }
-
+	if (Loader.isModLoaded("ComputerCraft") || Loader.isModLoaded("OpenComputers")) {
+        JsonObject sendTo = new JsonObject();
+        sendTo.addProperty("funct", "disconnect");
+        sendMessage(new PDMMessage(this.trainID, serverUUID, sendTo.toString(), 0));
+        this.mtcType = 1;
+        this.serverUUID = "";
+        isConnected = false;
+	}
     }
 
 	public void stationStopComplete() {}

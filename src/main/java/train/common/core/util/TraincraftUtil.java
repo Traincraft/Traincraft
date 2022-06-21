@@ -27,7 +27,7 @@ public class TraincraftUtil{
         return null;
     }
 
-    public static byte getByteFromColor(String c){
+    public static int getByteFromColor(String c){
         if(c.equals("Black")){
             return 0;
         } else if (c.equals("Red")){
@@ -58,8 +58,22 @@ public class TraincraftUtil{
             return 9;
         } else if(c.equals("Orange")){
             return 14;
-        } else if(c.equals("White")){
+        } else if(c.equals("White")) {
             return 15;
+        } else if (c.equals("Skin16")) {
+            return 16;
+        } else if (c.equals("Skin17")) {
+            return 17;
+        } else if (c.equals("Skin18")) {
+            return 18;
+        } else if (c.equals("Skin19")) {
+            return 19;
+        } else if (c.equals("Skin20")) {
+            return 20;
+        } else if (c.equals("Skin21")) {
+            return 21;
+        } else if (c.equals("Skin22")) {
+            return 22;
         } else if(c.equals("Full")){
             return 101;
         } else if (c.equals("Empty")){
@@ -68,8 +82,8 @@ public class TraincraftUtil{
         return 0;
     }
 
-    public static byte[] getBytesFromColors(String[] c){
-        byte[] ret = new byte[c.length];
+    public static int[] getBytesFromColors(String[] c){
+        int[] ret = new int[c.length];
         for(int i=0; i<c.length;i++){
             ret[i]=getByteFromColor(c[i]);
         }
@@ -91,7 +105,7 @@ public class TraincraftUtil{
     public static final float radian = (float)(Math.PI / 180.0D);
     public static void updateRider(EntityRollingStock transport,double distance, double yOffset) {
         if(transport.riddenByEntity==null){return;}
-        float pitchRads = transport.anglePitchClient * radian;
+        double pitchRads = transport.anglePitchClient * radian;
         double rotationCos1 = Math.cos(Math.toRadians(transport.renderYaw+((transport instanceof Locomotive)?90:180)));
         double rotationSin1 = Math.sin(Math.toRadians(transport.renderYaw+((transport instanceof Locomotive)?90:180)));
         float pitch = (float) (transport.posY + (Math.tan(pitchRads) * distance) + transport.getMountedYOffset()
@@ -122,7 +136,6 @@ public class TraincraftUtil{
             transport.riddenByEntity.setPosition(bogieX1, pitch1, bogieZ1);
         }
     }
-
     public static float atan2f(double x, double z) {
         float pi =-3.141592653f;
         float multiplier = 1.0f;
@@ -164,6 +177,5 @@ public class TraincraftUtil{
     }
 
     public static final float degreesF = (float) (180.0d / Math.PI);
-
 
 }

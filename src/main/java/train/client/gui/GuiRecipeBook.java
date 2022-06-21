@@ -37,7 +37,7 @@ public class GuiRecipeBook extends GuiScreen {
 	/** Update ticks since the gui was opened */
 	private int bookImageWidth = 206;
 	private int bookImageHeight = 200;
-	public static int bookTotalPages = 102;
+	public static int bookTotalPages = 2;
 	private int currPage;
 	private int currRecipe;
 	public ArrayList<String> leftPage = new ArrayList<String>();
@@ -46,8 +46,8 @@ public class GuiRecipeBook extends GuiScreen {
 	public ArrayList<String> rightPage = new ArrayList<String>();
 	public ArrayList<String> rightPageImage = new ArrayList<String>();
 	public ArrayList<ArrayList> rightPageItemStacks = new ArrayList<ArrayList>();
-	private List recipeListWB = RecipeBookHandler.workbenchListCleaner(TrainCraftingManager.getInstance().getRecipeList());
-	private List<TierRecipe> recipeList = RecipeBookHandler.assemblyListCleaner(TierRecipeManager.getInstance().getRecipeList());
+	private List recipeListWB =null;
+	private List<TierRecipe> recipeList=null;
 
 	private GuiButtonNextPage buttonRead;
 	private GuiButtonNextPage buttonNextPage;
@@ -369,6 +369,10 @@ public class GuiRecipeBook extends GuiScreen {
 			}
 		});
 		addPage("this page was intentionally left blank, as a joke.","","right",null);
+		if(recipeListWB==null || recipeListWB.size()<1){
+			recipeListWB= RecipeBookHandler.workbenchListCleaner(TrainCraftingManager.getInstance().getRecipeList());
+			recipeList = RecipeBookHandler.assemblyListCleaner(TierRecipeManager.getInstance().getRecipeList());
+		}
 		if (rightPage != null && recipeList != null && recipeListWB != null)
 			bookTotalPages = this.rightPage.size() + (recipeList.size() / 2) + (recipeListWB.size() / 2);
 	}
