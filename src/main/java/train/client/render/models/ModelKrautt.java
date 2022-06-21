@@ -24,11 +24,11 @@ import java.util.ArrayList;
 public class ModelKrautt extends ModelConverter //Same as Filename
 {
 	int textureX = 512;
-	int textureY = 512;
+	int textureY = 256;
 
 	public ModelKrautt() //Same as Filename
 	{
-		bodyModel = new ModelRendererTurbo[376];
+		bodyModel = new ModelRendererTurbo[390];
 
 		initbodyModel_1();
 
@@ -231,8 +231,8 @@ public class ModelKrautt extends ModelConverter //Same as Filename
 		bodyModel[188] = new ModelRendererTurbo(this, 497, 33, textureX, textureY); // Box 0
 		bodyModel[189] = new ModelRendererTurbo(this, 313, 41, textureX, textureY); // Box 0
 		bodyModel[190] = new ModelRendererTurbo(this, 505, 33, textureX, textureY); // Box 216
-		bodyModel[191] = new ModelRendererTurbo(this, 481, 9, textureX, textureY, "lamp"); // Front numberboard L
-		bodyModel[192] = new ModelRendererTurbo(this, 385, 33, textureX, textureY, "lamp"); // Front numberboard R
+		bodyModel[191] = new ModelRendererTurbo(this, 481, 9, textureX, textureY); // Front numberboard L
+		bodyModel[192] = new ModelRendererTurbo(this, 385, 33, textureX, textureY); // Front numberboard R
 		bodyModel[193] = new ModelRendererTurbo(this, 369, 17, textureX, textureY, "lamp"); // Front marker light L
 		bodyModel[194] = new ModelRendererTurbo(this, 377, 17, textureX, textureY, "lamp"); // Front marker light L
 		bodyModel[195] = new ModelRendererTurbo(this, 241, 49, textureX, textureY); // Box 0
@@ -416,6 +416,20 @@ public class ModelKrautt extends ModelConverter //Same as Filename
 		bodyModel[373] = new ModelRendererTurbo(this, 338, 122, textureX, textureY); // Box 0
 		bodyModel[374] = new ModelRendererTurbo(this, 330, 130, textureX, textureY); // Box 0
 		bodyModel[375] = new ModelRendererTurbo(this, 329, 134, textureX, textureY); // Box 0
+		bodyModel[376] = new ModelRendererTurbo(this, 73, 153, textureX, textureY, "lamp"); // Rear lamp U
+		bodyModel[377] = new ModelRendererTurbo(this, 73, 162, textureX, textureY, "lamp"); // Rear lamp L
+		bodyModel[378] = new ModelRendererTurbo(this, 73, 158, textureX, textureY, "lamp"); // Rear lamp U
+		bodyModel[379] = new ModelRendererTurbo(this, 59, 154, textureX, textureY, "lamp"); // Front gyralight L
+		bodyModel[380] = new ModelRendererTurbo(this, 45, 155, textureX, textureY); // Box 150
+		bodyModel[381] = new ModelRendererTurbo(this, 52, 154, textureX, textureY, "lamp"); // Front gyralight L
+		bodyModel[382] = new ModelRendererTurbo(this, 33, 153, textureX, textureY); // Box 150
+		bodyModel[383] = new ModelRendererTurbo(this, 42, 154, textureX, textureY, "lamp"); // SP emergency light
+		bodyModel[384] = new ModelRendererTurbo(this, 33, 145, textureX, textureY); // Front numberboard L
+		bodyModel[385] = new ModelRendererTurbo(this, 77, 145, textureX, textureY); // Front numberboard R
+		bodyModel[386] = new ModelRendererTurbo(this, 46, 145, textureX, textureY, "lamp"); // Front numberboard L
+		bodyModel[387] = new ModelRendererTurbo(this, 66, 145, textureX, textureY, "lamp"); // Front numberboard R
+		bodyModel[388] = new ModelRendererTurbo(this, 490, 13, textureX, textureY, "lamp"); // Front numberboard L
+		bodyModel[389] = new ModelRendererTurbo(this, 374, 33, textureX, textureY, "lamp"); // Front numberboard R
 
 		bodyModel[0].addShapeBox(0F, 0F, 0F, 85, 3, 22, 0F,0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 0
 		bodyModel[0].setRotationPoint(-42.5F, -0.75F, -11F);
@@ -1577,11 +1591,59 @@ public class ModelKrautt extends ModelConverter //Same as Filename
 
 		bodyModel[375].addShapeBox(0F, 0F, 0F, 2, 2, 2, 0F,0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -0.75F, 0F, 0F, -0.75F, 0F, 0F, -0.75F, -0.5F, 0F, -0.75F, -0.5F); // Box 0
 		bodyModel[375].setRotationPoint(-33.5F, -13.75F, -0.75F);
+
+		bodyModel[376].addShapeBox(0F, 0F, 0F, 1, 2, 2, 0F,0F, -0.25F, -0.25F, -0.25F, -0.25F, -0.25F, -0.25F, -0.25F, -0.25F, 0F, -0.25F, -0.25F, 0F, -0.25F, -0.25F, -0.25F, -0.25F, -0.25F, -0.25F, -0.25F, -0.25F, 0F, -0.25F, -0.25F); // Rear lamp U
+		bodyModel[376].setRotationPoint(42.5F, -6.25F, -1F);
+
+		bodyModel[377].addShapeBox(0F, 0F, 0F, 1, 2, 2, 0F,0F, -0.25F, -0.25F, -0.25F, -0.25F, -0.25F, -0.25F, -0.25F, -0.25F, 0F, -0.25F, -0.25F, 0F, -0.25F, -0.25F, -0.25F, -0.25F, -0.25F, -0.25F, -0.25F, -0.25F, 0F, -0.25F, -0.25F); // Rear lamp L
+		bodyModel[377].setRotationPoint(42.5F, -4.25F, -1F);
+
+		bodyModel[378].addShapeBox(0F, 0F, 0F, 1, 1, 2, 0F,0F, -0.25F, -0.25F, -0.5F, -0.25F, -0.25F, -0.5F, -0.25F, -0.25F, 0F, -0.25F, -0.25F, 0F, -0.25F, -0.25F, -0.5F, -0.25F, -0.25F, -0.5F, -0.25F, -0.25F, 0F, -0.25F, -0.25F); // Rear lamp U
+		bodyModel[378].setRotationPoint(42.5F, -4.75F, -1F);
+
+		bodyModel[379].addShapeBox(0F, 0F, 0F, 1, 2, 2, 0F,-0.5F, -0.25F, -0.25F, 0F, -0.25F, -0.25F, 0F, -0.25F, -0.25F, -0.5F, -0.25F, -0.25F, -0.5F, -0.25F, -0.25F, 0F, -0.25F, -0.25F, 0F, -0.25F, -0.25F, -0.5F, -0.25F, -0.25F); // Front gyralight L
+		bodyModel[379].setRotationPoint(42.75F, -9.25F, 0F);
+
+		bodyModel[380].addBox(0F, 0F, 0F, 1, 2, 4, 0F); // Box 150
+		bodyModel[380].setRotationPoint(42.5F, -9.25F, -2F);
+
+		bodyModel[381].addShapeBox(0F, 0F, 0F, 1, 2, 2, 0F,-0.5F, -0.25F, -0.25F, 0F, -0.25F, -0.25F, 0F, -0.25F, -0.25F, -0.5F, -0.25F, -0.25F, -0.5F, -0.25F, -0.25F, 0F, -0.25F, -0.25F, 0F, -0.25F, -0.25F, -0.5F, -0.25F, -0.25F); // Front gyralight L
+		bodyModel[381].setRotationPoint(42.75F, -9.25F, -2F);
+
+		bodyModel[382].addShapeBox(0F, 0F, 0F, 1, 2, 3, 0F,0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F); // Box 150
+		bodyModel[382].setRotationPoint(42.5F, -11.5F, -1.25F);
+
+		bodyModel[383].addShapeBox(0F, 0F, 0F, 1, 2, 2, 0F,-0.5F, -0.25F, -0.25F, 0F, -0.25F, -0.25F, 0F, -0.25F, -0.25F, -0.5F, -0.25F, -0.25F, -0.5F, -0.25F, -0.25F, 0F, -0.25F, -0.25F, 0F, -0.25F, -0.25F, -0.5F, -0.25F, -0.25F); // SP emergency light
+		bodyModel[383].setRotationPoint(42.75F, -11.5F, -1F);
+
+		bodyModel[384].addShapeBox(0F, 0F, 0F, 1, 2, 5, 0F,0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0.25F, 0F, 0F, 0.25F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0.25F, 0F, 0F, 0.25F); // Front numberboard L
+		bodyModel[384].setRotationPoint(42.64F, -17F, -6F);
+		bodyModel[384].rotateAngleY = -0.13962634F;
+
+		bodyModel[385].addShapeBox(0F, 0F, 0F, 1, 2, 5, 0F,0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0.25F, 0F, 0F, 0.25F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0.25F, 0F, 0F, 0.25F); // Front numberboard R
+		bodyModel[385].setRotationPoint(43.4F, -17F, 0.75F);
+		bodyModel[385].rotateAngleY = 0.13962634F;
+
+		bodyModel[386].addShapeBox(0F, 0F, 0F, 0, 2, 5, 0F,0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0.25F, 0F, 0F, 0.25F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0.25F, 0F, 0F, 0.25F); // Front numberboard L
+		bodyModel[386].setRotationPoint(43.14F, -17F, -6.07F);
+		bodyModel[386].rotateAngleY = -0.13962634F;
+
+		bodyModel[387].addShapeBox(0F, 0F, 0F, 0, 2, 5, 0F,0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0.25F, 0F, 0F, 0.25F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0.25F, 0F, 0F, 0.25F); // Front numberboard R
+		bodyModel[387].setRotationPoint(43.9F, -17F, 0.82F);
+		bodyModel[387].rotateAngleY = 0.13962634F;
+
+		bodyModel[388].addShapeBox(0F, 0F, 0F, 0, 2, 5, 0F,0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.75F, 0F, 0F, -0.75F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.75F, 0F, 0F, -0.75F); // Front numberboard L
+		bodyModel[388].setRotationPoint(-40.41F, -12F, -6.4F);
+		bodyModel[388].rotateAngleY = 0.49741884F;
+
+		bodyModel[389].addShapeBox(0F, 0F, 0F, 0, 2, 5, 0F,0F, 0F, -0.75F, 0F, 0F, -0.75F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.75F, 0F, 0F, -0.75F, 0F, 0F, 0F, 0F, 0F, 0F); // Front numberboard R
+		bodyModel[389].setRotationPoint(-42.81F, -12F, 2F);
+		bodyModel[389].rotateAngleY = -0.49741884F;
 	}
 	ModelKrauttTrucc theTrucks = new ModelKrauttTrucc();
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-		for (int i = 0; i < 376; i++) {
+		for (int i = 0; i < 390; i++) {
 			if (bodyModel[i].boxName != null && bodyModel[i].boxName.contains("lamp")) {
 				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
 				bodyModel[i].render(f5);
