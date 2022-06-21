@@ -396,7 +396,7 @@ public class LinkHandler {
 	 * Handles the cart coupling physics
 	 */
 	private void StakePhysic(EntityRollingStock cart1, EntityRollingStock cart2, int linkIndex) {
-		if (worldObj.isRemote || cart1.ticksExisted<5 || cart2.ticksExisted<5) {
+		if (worldObj.isRemote || cart1.updateTicks<5 || cart2.updateTicks<5) {
 			return;
 		}
 		if (cart2.isAttached && cart1.isAttached && areLinked(cart2, cart1)) {

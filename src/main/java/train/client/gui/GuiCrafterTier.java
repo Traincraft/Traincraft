@@ -87,7 +87,7 @@ public class GuiCrafterTier extends GuiTraincraft {
 		drawTexturedModalRect(j, k, 0, 0, this.xSize, this.ySize);
 
 		borderSlots(recipeList, states);
-		
+
 		if(!isTabRecipeOpen){
 			currentRenderTabY=40;
 		}
@@ -144,13 +144,13 @@ public class GuiCrafterTier extends GuiTraincraft {
 				}
 			}
 		}
-		
+
 		if (isShow) {
 			if (tier1.knownRecipes().size() != 0) {
 				drawOverlays(recipeSize, recipes);
 			}
 		}
-		
+
 		for (int i = 0; i < slotStates.length / 2; i++) {
 			if (slotStates[i] == 1) {
 				colorSlot(92 + i * 18, 128);

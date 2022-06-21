@@ -18,7 +18,7 @@ import train.common.entity.rollingStock.EntityBUnitEMDF7;
 public abstract class DieselTrain extends Locomotive implements IFluidHandler {
 
 	public int fuelSlot = 1;
-	private int maxTank = 7000;
+	private int maxTank = 7 * 1000;
 	private int update = 8;
 	private StandardTank theTank;
 
@@ -49,17 +49,19 @@ public abstract class DieselTrain extends Locomotive implements IFluidHandler {
 		numCargoSlots1 = 3;
 		numCargoSlots2 = 3;
 		inventorySize = numCargoSlots + numCargoSlots2 + numCargoSlots1 + fuelSlot;
-		this.dataWatcher.addObject(23, "null-_-"+0);
+		this.dataWatcher.addObject(23, 0);
+		this.dataWatcher.addObject(5, "");
 	}
 
 	@Override
 	public void onUpdate() {
 		super.onUpdate();
 		if (!worldObj.isRemote) {
-			if (theTank.getFluidAmount() != Integer.parseInt(this.dataWatcher.getWatchableObjectString(23).split("-_-")[1])){
-				this.dataWatcher.updateObject(23,(theTank.getFluid()!=null?theTank.getFluid().getUnlocalizedName():"null")+"-_-"+theTank.getFluidAmount());
+			if (theTank.getFluidAmount() != this.dataWatcher.getWatchableObjectInt(23)){
+				this.dataWatcher.updateObject(23, theTank.getFluidAmount());
 				fuelTrain = theTank.getFluidAmount();
 				this.dataWatcher.updateObject(4, theTank.getFluid()!=null?theTank.getFluid().getFluidID():0);
+				this.dataWatcher.updateObject(5, theTank.getFluid()!=null?theTank.getFluid().getUnlocalizedName():"");
 			}
 			if (isLocoTurnedOn() && theTank.getFluidAmount() >0) {
 				if (theTank.getFluid().amount <= 1) {
@@ -71,9 +73,9 @@ public abstract class DieselTrain extends Locomotive implements IFluidHandler {
 	}
 
 	public int getDiesel() {
-		return getFuel()==0?Integer.parseInt(this.dataWatcher.getWatchableObjectString(23).split("-_-")[1]):getFuel();
+		return getFuel()==0?(this.dataWatcher.getWatchableObjectInt(23)):getFuel();
 	}
-	public String getLiquidName(){ return  this.dataWatcher.getWatchableObjectString(23).split("-_-")[0];}
+	public String getLiquidName(){ return  this.dataWatcher.getWatchableObjectString(5);}
 
 	public int getLiquidItemID() {
 		return (this.dataWatcher.getWatchableObjectInt(4));

@@ -22,6 +22,7 @@ import java.util.Random;
 
 public class BlockTCRailGag extends Block {
 	private IIcon texture;
+	float f = 0.125F;
 
 	public BlockTCRailGag() {
 		super(Material.iron);
@@ -83,10 +84,10 @@ public class BlockTCRailGag extends Block {
 	 */
 	@Override
 	public void setBlockBoundsBasedOnState(IBlockAccess par1IBlockAccess, int i, int j, int k) {
-		TileEntity tileEntity = par1IBlockAccess.getTileEntity(i, j, k);
-		if (tileEntity instanceof TileTCRailGag) {
+		TileTCRailGag tileEntity = (TileTCRailGag) par1IBlockAccess.getTileEntity(i, j, k);
+		if (tileEntity != null) {
 			//System.out.println(tileEntity.type+" "+tileEntity.bbHeight);
-			this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, ((TileTCRailGag)tileEntity).bbHeight, 1.0F);
+			this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, tileEntity.bbHeight, 1.0F);
 		}
 	}
 

@@ -48,10 +48,10 @@ public class BlockAssemblyTableI extends BlockContainer {
 
 	@Override
 	public boolean onBlockActivated(World world, int i, int j, int k, EntityPlayer player, int par6, float par7, float par8, float par9) {
+		TileEntity te = world.getTileEntity(i, j, k);
 		if (!world.isRemote) {
 			if (!player.isSneaking()) {
-				TileEntity te = world.getTileEntity(i, j, k);
-				if (te instanceof TileCrafterTierI) {
+				if (te != null && te instanceof TileCrafterTierI) {
 					player.openGui(Traincraft.instance, GuiIDs.CRAFTER_TIER_I, world, i, j, k);
 				}
 			}
@@ -92,7 +92,6 @@ public class BlockAssemblyTableI extends BlockContainer {
 		TileCrafterTierI tileentitytierI = (TileCrafterTierI) world.getTileEntity(i, j, k);
 		if (tileentitytierI != null) {
 			label0: for (int l = 0; l < tileentitytierI.getSizeInventory(); l++) {
-			if((l>9 && l<18)){continue;}
 				ItemStack itemstack = tileentitytierI.getStackInSlot(l);
 				if (itemstack == null) {
 					continue;

@@ -24,6 +24,7 @@ import train.common.entity.zeppelin.AbstractZeppelin;
  * 		2 = X<br>
  * 		3 = D<br>
  * 		6 = C<br>
+ * 		10 = B<br>
  */
 public class PacketKeyPress implements IMessage {
 

@@ -24,10 +24,8 @@ public class TileBridgePillar extends TileEntity {
 			return 4096.0;
 		}
 	}
-	
-	/*
-	@Override // Why would you even do this..?
-	public void updateEntity() {
-		super.updateEntity();
-	}*/
+	public boolean canUpdate()
+	{
+		return false;
+	}
 }

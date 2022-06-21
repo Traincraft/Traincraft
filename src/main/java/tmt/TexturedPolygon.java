@@ -9,9 +9,9 @@ public class TexturedPolygon {
 
     private float[] normals;
     private ArrayList<Vec3f> iNormals;
-	public PositionTransformVertex[] vertices;
+	public TexturedVertex[] vertices;
 	
-	public TexturedPolygon(PositionTransformVertex apositionTexturevertex[]){
+	public TexturedPolygon(TexturedVertex apositionTexturevertex[]){
 		normals = new float[0];
 		iNormals = new ArrayList<Vec3f>();
 		vertices = apositionTexturevertex;
@@ -53,7 +53,7 @@ public class TexturedPolygon {
 	        }
         }
         for(int i = 0; i < vertices.length; i++){
-            PositionTransformVertex positionTexturevertex = vertices[i];
+            TexturedVertex positionTexturevertex = vertices[i];
             if(i < iNormals.size()){
             	tessellator.setNormal(iNormals.get(i).xCoord, iNormals.get(i).yCoord, iNormals.get(i).zCoord);
             }
@@ -64,7 +64,7 @@ public class TexturedPolygon {
 
 
 	public void flipFace() {
-		PositionTransformVertex[] apositiontexturevertex = new PositionTransformVertex[this.vertices.length];
+		TexturedVertex[] apositiontexturevertex = new TexturedVertex[this.vertices.length];
 
 		for (int i = 0; i < this.vertices.length; ++i) {
 			apositiontexturevertex[i] = this.vertices[this.vertices.length - i - 1];

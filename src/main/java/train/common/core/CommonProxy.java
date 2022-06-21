@@ -33,6 +33,7 @@ import train.common.inventory.*;
 import train.common.library.GuiIDs;
 import train.common.mtc.*;
 import train.common.tile.*;
+import train.common.tile.tileSwitch.*;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -74,9 +75,11 @@ public class CommonProxy implements IGuiHandler {
 		GameRegistry.registerTileEntity(TileEntityDistil.class, "Tile Distil");
 		GameRegistry.registerTileEntity(TileEntityOpenHearthFurnace.class, "Tile OpenHearthFurnace");
 		GameRegistry.registerTileEntity(TileStopper.class, "TileStopper");
+		GameRegistry.registerTileEntity(TileEmbeddedStopper.class, "TileEmbeddedStopper");
 		GameRegistry.registerTileEntity(TileSignal.class, "TileTrainSignal");
 		GameRegistry.registerTileEntity(TileLantern.class, "tileLantern");
 		GameRegistry.registerTileEntity(TileSwitchStand.class, "tileSwitchStand");
+		GameRegistry.registerTileEntity(TileMFPBWigWag.class, "tileMFPBWigWag");
 		GameRegistry.registerTileEntity(TileWaterWheel.class, "tileWaterWheel");
 		GameRegistry.registerTileEntity(TileWindMill.class, "tileWindMill");
 		GameRegistry.registerTileEntity(TileGeneratorDiesel.class, "tileGeneratorDiesel");
@@ -85,7 +88,20 @@ public class CommonProxy implements IGuiHandler {
 		GameRegistry.registerTileEntity(TileTCRail.class, "tileTCRail");
 		GameRegistry.registerTileEntity(TileBridgePillar.class, "tileTCBridgePillar");
 
-		if (Loader.isModLoaded("ComputerCraft") || Loader.isModLoaded("OpenComputers")) {
+		//switches -hariesh
+		GameRegistry.registerTileEntity(TileowoSwitchStand.class, "tileowoswitchstand");
+		GameRegistry.registerTileEntity(TilecircleSwitchStand.class, "tilecircleswitchstand");
+		GameRegistry.registerTileEntity(TileMILWSwitchStand.class, "tileMILWSwitchStand");
+		GameRegistry.registerTileEntity(TileautoSwitchStand.class, "tileautoSwitchStand");
+		GameRegistry.registerTileEntity(TileowoYardSwitchStand.class, "tileowoYardSwitchStand");
+
+		GameRegistry.registerTileEntity(TileoverheadWire.class, "tileoverheadwire");
+		GameRegistry.registerTileEntity(TileoverheadWireDouble.class, "tileoverheadwiredouble");
+		GameRegistry.registerTileEntity(TilesignalSpanish.class, "tilesignalspanish");
+		GameRegistry.registerTileEntity(TilekSignal.class, "tileksignal");
+		GameRegistry.registerTileEntity(TileSpeedSign.class, "tilespeedsign");
+
+		if (Loader.isModLoaded("ComputerCraft")) {
 			GameRegistry.registerTileEntity(TileInfoTransmitterSpeed.class, "tileInfoTransmitterSpeed");
 			GameRegistry.registerTileEntity(TileInfoTransmitterMTC.class, "tileInfoTransmitterMTC");
 			GameRegistry.registerTileEntity(TileInfoGrabberMTC.class, "tileInfoReceiverMTC");
@@ -93,6 +109,8 @@ public class CommonProxy implements IGuiHandler {
 			GameRegistry.registerTileEntity(TileATOTransmitterStopPoint.class, "tileATOTransmitterStopPoint");
 			GameRegistry.registerTileEntity(TilePDMInstructionRadio.class, "tilePDMInstructionRadio");
 		}
+
+		//GameRegistry.registerTileEntity(TileFortyFootContainer.class, "tileFortyFootContainer");
 	}
 
 	public void registerComputerCraftPeripherals() throws ClassNotFoundException {
@@ -171,8 +189,12 @@ public class CommonProxy implements IGuiHandler {
 			return entity1 != null && entity1 instanceof EntityTracksBuilder ? new InventoryBuilder(player.inventory, (EntityTracksBuilder) entity1) : null;
 		case (GuiIDs.LIQUID):
 			return entity1 != null && entity1 instanceof LiquidTank ? new InventoryLiquid(player.inventory, (LiquidTank) entity1) : null;
-		default:
+		/*case (GuiIDs.FORTY_FOOT_CONTAINER):
+			return new ContainerStorage((TileFortyFootContainer)te, player);*/
+
+			default:
 			return null;
+
 		}
 	}
 

@@ -40,7 +40,7 @@ public class ItemRenderBridgePillar implements IItemRenderer {
 			return;
 		}
 		case INVENTORY: {
-			renderBridgePillar(0f, -0.5f, 0f);
+			renderBridgePillar(0f, 0f, 0f);
 			return;
 		}
 		default:
@@ -50,9 +50,9 @@ public class ItemRenderBridgePillar implements IItemRenderer {
 
 	private void renderBridgePillar(float x, float y, float z) {
 		GL11.glPushMatrix();
-		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_slope.png"));
-		GL11.glTranslatef(x, y, z);
-
+		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "bridgePillar.png"));
+		GL11.glTranslatef(x, y-0.5f, z);
+		GL11.glRotatef(180f,0f,0f, 1f);
 		modelBridgePillar.render();
 		GL11.glPopMatrix();
 	}
