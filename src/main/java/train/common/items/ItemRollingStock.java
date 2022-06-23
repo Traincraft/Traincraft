@@ -45,8 +45,12 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 		maxStackSize = 1;
 		trainName = this.getUnlocalizedName();
 
-		if  (this.iconName != "asteri") {
-			setCreativeTab(Traincraft.tcTab);
+		if  (!this.iconName.equals("asteri")) {
+			if(!ConfigHandler.SPLIT_CREATIVE) {
+				setCreativeTab(Traincraft.tcTab);
+			} else {
+				setCreativeTab(Traincraft.tcTrainTab);
+			}
 		}
 	}
 
