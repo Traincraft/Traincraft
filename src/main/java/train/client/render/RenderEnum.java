@@ -804,6 +804,7 @@ public enum RenderEnum {
 	passenger440RMid(EntityPassenger440RMid.class, new Model440R_Mid(), "440R_", true, new float[] { -0.0F, 0.1F, 0.0F },   new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	passenger440RRear(EntityPassenger440RRear.class, new Model440R_Back(), "440R_", true, new float[] { 0.0F, 0.1F, 0.0F },   new float[] { 0F, 0F, 180F }, null, "", 0, null, "", null, 0, false),
 	passengerBW305(EntityPassengerBW305.class, new ModelBW305(), "tw_", true, new float[]{ 0.0F, 0.18F, 0.0F}, new float[]{ 0.0F, 180F, 180F} , null, "", 0, null, "", null, 0 , false ),
+	LocoElectricTW305(EntityLocoElectricTW305.class, new ModelTW305(), "tw_", true, new float[]{ -1.0F, 0.18F, 0.0F}, new float[]{ 0.0F, 180F, 180F} , null, "", 0, null, "", null, 0 , false ),
 	GP13(EntityLocoDieselGP13.class, new ModelGP13(), "gp13_", true, new float[] { -0.8F, -0.47F, 0.0F }, new float[] { 0F, 180F, 0F }, null, "smoke", 4, new ArrayList<double[]>() {
 		{
 			add(new double[] { -0.2D, 1.2D, 0.0D });
