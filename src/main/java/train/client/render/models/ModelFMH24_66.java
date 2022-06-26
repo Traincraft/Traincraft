@@ -29,7 +29,7 @@ public class ModelFMH24_66 extends ModelConverter //Same as Filename
 
 	public ModelFMH24_66() //Same as Filename
 	{
-		bodyModel = new ModelRendererTurbo[685];
+		bodyModel = new ModelRendererTurbo[687];
 
 		initbodyModel_1();
 		initbodyModel_2();
@@ -2292,6 +2292,8 @@ public class ModelFMH24_66 extends ModelConverter //Same as Filename
 		bodyModel[682] = new ModelRendererTurbo(this, 259, 122, textureX, textureY); // Box 125
 		bodyModel[683] = new ModelRendererTurbo(this, 390, 136, textureX, textureY); // Box 2
 		bodyModel[684] = new ModelRendererTurbo(this, 390, 122, textureX, textureY); // Box 125
+		bodyModel[685] = new ModelRendererTurbo(this, 20, 18, textureX, textureY); // Box 2
+		bodyModel[686] = new ModelRendererTurbo(this, 27, 36, textureX, textureY, "lamp"); // numberboard type 4 F
 
 		bodyModel[500].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F,0F, 0.25F, 0.25F, -0.25F, 0F, 0F, -0.25F, 0F, 0F, 0F, 0.25F, 0.25F, 0F, 0.25F, 0.25F, -0.25F, 0F, 0F, -0.25F, 0F, 0F, 0F, 0.25F, 0.25F); // Box 471
 		bodyModel[500].setRotationPoint(-42.75F, -21F, -0.5F);
@@ -2878,11 +2880,19 @@ public class ModelFMH24_66 extends ModelConverter //Same as Filename
 
 		bodyModel[684].addShapeBox(0F, 0F, 0F, 2, 1, 7, 0F,0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.25F, 0F, 0F, -0.25F, 0F); // Box 125
 		bodyModel[684].setRotationPoint(29.25F, 1F, 4F);
+
+		bodyModel[685].addShapeBox(-1F, 0F, 0F, 1, 2, 3, 0F,0F, 0F, 0.4F, 0F, 0F, 0.4F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0.4F, 0F, 0F, 0.4F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 2
+		bodyModel[685].setRotationPoint(-41.54F, -19F, 4.33F);
+		bodyModel[685].rotateAngleY = -0.33161256F;
+
+		bodyModel[686].addShapeBox(-1F, 0F, 0F, 0, 2, 3, 0F,0F, 0F, 0.4F, 0F, 0F, 0.4F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0.4F, 0F, 0F, 0.4F, 0F, 0F, 0F, 0F, 0F, 0F); // numberboard type 4 F
+		bodyModel[686].setRotationPoint(-41.55F, -19F, 4.33F);
+		bodyModel[686].rotateAngleY = -0.33161256F;
 	}
 	ModelFMTrimountTruck theTruc = new ModelFMTrimountTruck();
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-		for (int i = 0; i < 685; i++) {
+		for (int i = 0; i < 687; i++) {
 			if (bodyModel[i].boxName != null && bodyModel[i].boxName.contains("lamp")) {
 				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
 				bodyModel[i].render(f5);
