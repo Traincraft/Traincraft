@@ -3727,7 +3727,6 @@ public class ItemTCRail extends ItemPart {
 				tcRail.slopeLength = gagEnd + 1;
 
 				Block block = world.getBlock(x, y, z);
-				tcRail.ballastColour = block.colorMultiplier(world, x, y, z);
 				int blockID = 	Block.getIdFromBlock(block);
 				tcRail.setBallastMaterial(blockID);
 				tcRail.ballastMetadata = world.getBlockMetadata(x,y,z);
