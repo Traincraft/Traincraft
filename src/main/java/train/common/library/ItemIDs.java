@@ -360,6 +360,7 @@ public enum ItemIDs {
 	minecartPassengerRheingoldDining1("ItemRollingStock", "train_passenger_rheingolddining1", 5),
 	minecartPassengerRheingoldDining2("ItemRollingStock", "train_passenger_rheingolddining2", 5),
 	minecartPassengerRheingoldPanorama("ItemRollingStock", "train_passenger_rheingoldpanorama", 5),
+    minecartPassengerBW305("ItemRollingStock","bw_icon",3),
 
 	minecartPassengerMILW("ItemRollingStock", "train_passenger_milw", 5),
 	minecartPassengerMILWTail("ItemRollingStock", "train_passenger_milw_tail", 5),
