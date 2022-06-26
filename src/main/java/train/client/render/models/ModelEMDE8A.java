@@ -2205,7 +2205,7 @@ public class ModelEMDE8A extends ModelConverter //Same as Filename
 		bodyModel[530].addShapeBox(0F, 0F, 0F, 1, 2, 2, 0F,-0.5F, -0.25F, -0.25F, 0F, -0.25F, -0.25F, 0F, -0.25F, -0.25F, -0.5F, -0.25F, -0.25F, -0.5F, -0.25F, -0.25F, 0F, -0.25F, -0.25F, 0F, -0.25F, -0.25F, -0.5F, -0.25F, -0.25F); // Box 418 headlight rear middle
 		bodyModel[530].setRotationPoint(45.5F, -17.5F, -1F);
 	}
-	ModelBlombergA1ATruck theTruck = new ModelBlombergA1ATruck();
+	ModelNewBlombergA1ATruck theTruck = new ModelNewBlombergA1ATruck();
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
 		for (int i = 0; i < 531; i++) {
@@ -2222,9 +2222,9 @@ public class ModelEMDE8A extends ModelConverter //Same as Filename
 			}
 		}
 		if (entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 6 || entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 1 || entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 9 || entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 8 || entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 7) {
-			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/BlombergA1ATruckGrey.png"));
+			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/NewBlombergA1ATruckSilver.png"));
 		} else {
-			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/BlombergA1ATruckBlack.png"));
+			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/NewBlombergA1ATruckBlack.png"));
 		}
 		GL11.glPushMatrix();
 		GL11.glTranslated(-1.6, -0.0, 0);

@@ -1435,7 +1435,7 @@ public class ModelEMDE7B extends ModelConverter //Same as Filename
 		bodyModel[347].addBox(0F, 0F, 0F, 0, 11, 1, 0F); // Box 178
 		bodyModel[347].setRotationPoint(4.5F, -9F, 10.75F);
 	}
-	ModelBlombergA1ATruck theTruck = new ModelBlombergA1ATruck();
+	ModelNewBlombergA1ATruck theTruck = new ModelNewBlombergA1ATruck();
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
 		for (int i = 0; i < 348; i++) {
@@ -1452,9 +1452,9 @@ public class ModelEMDE7B extends ModelConverter //Same as Filename
 			}
 		}
 		if (entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 11 || entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 7 || entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 8) {
-			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/BlombergA1ATruckGrey.png"));
+			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/NewBlombergA1ATruckSilverFriction.png"));
 		} else {
-			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/BlombergA1ATruckBlack.png"));
+			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/NewBlombergA1ATruckBlackFriction.png"));
 		}
 		GL11.glPushMatrix();
 		GL11.glTranslated(-1.85, -0.0, 0);
