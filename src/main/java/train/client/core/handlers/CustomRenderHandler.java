@@ -439,7 +439,7 @@ public class CustomRenderHandler {
             else
             {
                 RenderTCRail.modelSmallStraight.render( "straight", facing, 0, 0, 0, r, g, b, a );
-                RenderTCRail.modelSmallStraight.render( "straight", facing_1, dx * out_1_0 + dx_1 * out_1_1, 0, dz * out_1_0 + dz_1 * out_1_1, r, g, b, a );
+
             }
 
                 // Render switch
@@ -514,7 +514,6 @@ public class CustomRenderHandler {
             else
             {
                 RenderTCRail.modelEmbeddedSmallStraight.render( "straight", facing, 0, 0, 0, r, g, b, a );
-                RenderTCRail.modelEmbeddedSmallStraight.render( "straight", facing_1, dx * out_1_0 + dx_1 * out_1_1, 0, dz * out_1_0 + dz_1 * out_1_1, r, g, b, a );
             }
 
             // Render switch
