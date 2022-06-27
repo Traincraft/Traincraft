@@ -1142,6 +1142,8 @@ public enum RenderEnum {
 	EMDE7B( EntityLocoDieselEMDE7B.class,  new ModelEMDE7B(), "EMDE7B_", true,new float[] {-1.75F, 0.15F, 0F},  new float[] { 0F, 180F, 180F },  new float[] { 1F, 1.0F, 1F }, "smoke", 3,  new ArrayList<double[]>() {
 		{}
 	}, "", null, 0, false),
+	freight5Plank(EntityFreight5Plank.class, new Model5Plank(), "5_plank_", true, new float[] {0f, 0.15f, 0f}, new float[] {0f, 180f, 180f}, null, "", 0, null, "", null, 0, false ),
+
 
 
 	;

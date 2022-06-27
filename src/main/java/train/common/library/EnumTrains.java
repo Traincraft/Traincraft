@@ -456,6 +456,8 @@ public enum EnumTrains {
 	Class321Coach("Class321Coach", EntityPassengerClass321Coach.class, ItemIDs.minecartClass321Coach.item, "passenger", 0, 0, 3,0 , 0, 0, 0,0,0,TraincraftUtil.getBytesFromColors(new String[] {"Purple", "Grey", "White", "Red", "Green"}),0,0),
 	passengerMinetrain("Passenger Minecart Yellow", EntityPassengerMinetrain.class, ItemIDs.minecartPassengerMinetrain.item, "passenger", 0, 0, 1,0 , 0, 0, 0,0,0, null,0,0, EnumChatFormatting.YELLOW + "Not the most comfortabel of seats " + EnumChatFormatting.DARK_PURPLE +  "-hariesh" ),
 	asteri("asteri", EntityLocoSteamasteri.class, ItemIDs.minecartasteri.item, "steam",303,69420,0,1,1,1,10,50,69420,null,15,-1.5, "Pack: Your Mum"),
+
+	/** TCCE 6 */
 	C415H("C415H", EntityLocoDieselC415H.class, ItemIDs.minecartC415H.item, "diesel", 1500, 106, 0, 35, 0, 200, 0.87, 0.93, 10000, TraincraftUtil.getBytesFromColors(new String[] {"Purple", "Magenta", "Yellow", "Orange", "Grey", "LightGrey", "Red", "Pink", }), 10, -2.5),
 	C415S("C415S", EntityLocoDieselC415S.class, ItemIDs.minecartC415S.item, "diesel", 1500, 106, 0, 35, 0, 200, 0.87, 0.93, 10000, TraincraftUtil.getBytesFromColors(new String[] {"Green", "Yellow"}), 10, -2.5),
 	C415L("C415L", EntityLocoDieselC415L.class, ItemIDs.minecartC415L.item, "diesel", 1500, 106, 0, 35, 0, 200, 0.87, 0.93, 17000, TraincraftUtil.getBytesFromColors(new String[] {"Black"}), 10, -2.5),
@@ -471,8 +473,10 @@ public enum EnumTrains {
 	passengerPSBM56SeatCoach("PS B&M 56 Seat Coach", EntityPassengerPSBM56SeatCoach.class, ItemIDs.minecartPSBM56SeatCoach.item, "passenger", 0, 0, 3, 0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[]{"Magenta", "LightGrey", "Grey", "Brown", "Red", "Pink"}), 10, 0, "Pack: BAP"),
 	passengerPSBMCombine("PS B&M Combine", EntityPassengerPSBMCombine.class, ItemIDs.minecartPSBMCombine.item, "passenger", 0, 0, 3, 0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[]{"Magenta", "Brown"}), 10, 0, "Pack: BAP"),
 	passengerPSBMDiner_Lounge("PS B&M Diner_Lounge", EntityPassengerPSBMDiner_Lounge.class, ItemIDs.minecartPSBMDiner_Lounge.item, "passenger", 0, 0, 3, 0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[]{"Magenta", "Brown", "LightGrey"}), 10, 0, "Pack: BAP"),
-	EMDE7A("E7A", EntityLocoDieselEMDE7A.class, ItemIDs.minecartEMDE7A.item, "diesel", 2000, 188, 0, 20, 0, 180, 0.7, 0.79, 15000, TraincraftUtil.getBytesFromColors(new String[] {"Magenta", "Cyan", "Green", "Lime", "Brown", "Black", "Orange", "Blue", "LightBlue", "Yellow", "Grey", "LightGrey", "Purple", "Red", "Pink", "White", "Skin16", "Skin17"}), 10, -3.45, "Pack: BAP"),
-	EMDE7B("E7B", EntityLocoDieselEMDE7B.class, ItemIDs.minecartEMDE7B.item, "diesel", 2000, 188, 0, 20, 0, 180, 0.7, 0.79, 15000, TraincraftUtil.getBytesFromColors(new String[] {"Magenta", "Orange", "Yellow", "Grey", "LightGrey", "Purple", "Red", "Pink"}), 10, -3.77, "Pack: BAP"),
+	EMDE7A("E7A", EntityLocoDieselEMDE7A.class, ItemIDs.minecartEMDE7A.item, "diesel", 2000, 188, 4.5, 20, 0, 180, 0.7, 0.79, 15000, TraincraftUtil.getBytesFromColors(new String[] {"Magenta", "Cyan", "Green", "Lime", "Brown", "Black", "Orange", "Blue", "LightBlue", "Yellow", "Grey", "LightGrey", "Purple", "Red", "Pink", "White", "Skin16", "Skin17"}), 10, -3.45, "Pack: BAP"),
+	EMDE7B("E7B", EntityLocoDieselEMDE7B.class, ItemIDs.minecartEMDE7B.item, "diesel", 2000, 188, 4.5, 20, 0, 180, 0.7, 0.79, 15000, TraincraftUtil.getBytesFromColors(new String[] {"Magenta", "Orange", "Yellow", "Grey", "LightGrey", "Purple", "Red", "Pink"}), 10, -3.77, "Pack: BAP"),
+	freight5Plank("5Plank", EntityFreight5Plank.class, ItemIDs.minecart5Plank.item, "freight", 1, TraincraftUtil.getBytesFromColors(new String[] {"Black", "Brown", "Green", "Grey", "LightBlue", "Lime", "Magenta", "Red"}), 18,  36, "Pack: B.I.P." )
+
 	;
 
 //String trainType,int MHP,int maxSpeed, double mass, int fuelConsumption, int waterConsumption, int heatingTime, double accelerationRate, double brakeRate, int tankCapacity, String[] colors,

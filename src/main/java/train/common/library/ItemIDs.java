@@ -569,6 +569,7 @@ public enum ItemIDs {
 	minecartPSBMDiner_Lounge("ItemRollingStock", "PSBMDiner_Lounge", 3),
 	minecartEMDE7A("ItemRollingStock", "EMDE7AIcon",5),
 	minecartEMDE7B("ItemRollingStock", "EMDE7BIcon",5),
+	minecart5Plank("ItemRollingStock", "5 plank icon", 5),
 	//signalSpanish("ItemsignalSpanish","signalSpanish", 1),
 
 

@@ -80,6 +80,7 @@ tile.tc:asphalt.name=Asphalt
 tile.tc:signalSpanish.name=Spanish Signal
 tile.tc:trackConcrete.name=Concrete Track (WIP do not use)
 tile.tc:kSignal.name=Ks Signal
+tile.tc:asphaltSlab.name=Asphalt Slab
 
 <!-- ## Items ## -->
 item.tc:diesel.name=Diesel Canister
@@ -603,6 +604,7 @@ item.tc:minecartPSBMCombine.name=Pullman Standard B&M Combine Passenger-Baggage
 item.tc:minecartPSBMDiner_Lounge.name=Pullman Standard B&M Diner-Lounge
 item.tc:minecartEMDE7A.name=EMD E7A
 item.tc:minecartEMDE7B.name=EMD E7B
+item.tc:minecart5Plank.name=5 Plank
 
 
 <!-- ## Achievements ## -->
@@ -1114,6 +1116,7 @@ entity.tc.PS B&M Combine.name=Pullman Standard B&M Combine Passenger-Baggage
 entity.tc.PS B&M Diner_Lounge.name=Pullman Standard B&M Diner-Lounge
 entity.tc.E7A.name=EMD E7A
 entity.tc.E7B.name=EMD E7B
+entity.tc.5Plank.name=5 Plank
 
 description.villager.profession.tc.station_chief=Station Chief
 
