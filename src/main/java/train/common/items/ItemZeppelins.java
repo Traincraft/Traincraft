@@ -24,7 +24,11 @@ public class ItemZeppelins extends Item {
 	public ItemZeppelins(int type) {
 		super();
 		maxStackSize = 5;
-		setCreativeTab(Traincraft.tcTab);
+		if(!ConfigHandler.SPLIT_CREATIVE) {
+			setCreativeTab(Traincraft.tcTab);
+		} else {
+			setCreativeTab(Traincraft.tcTrainTab);
+		}
 		this.type=type;
 	}
 

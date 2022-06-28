@@ -24,9 +24,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import train.common.api.LiquidManager;
 import train.common.blocks.TCBlocks;
-import train.common.core.CommonProxy;
-import train.common.core.CreativeTabTraincraft;
-import train.common.core.TrainModCore;
+import train.common.core.*;
 import train.common.core.handlers.*;
 import train.common.generation.ComponentVillageTrainstation;
 import train.common.generation.WorldGenWorld;
@@ -86,7 +84,7 @@ public class Traincraft {
 	public static File configDirectory;
 
 	/* Creative tab for Traincraft */
-	public static CreativeTabs tcTab;
+	public static CreativeTabs tcTab, tcTrainTab;
 
 	public ArmorMaterial armor = EnumHelper.addArmorMaterial("Armor", 5, new int[] { 1, 2, 2, 1 }, 25);
 	public ArmorMaterial armorCloth = EnumHelper.addArmorMaterial("TCcloth", 5, new int[] {1, 2, 2, 1}, 25);
@@ -111,6 +109,9 @@ public class Traincraft {
 		/* Register Items, Blocks, ... */
 		tcLog.info("Initialize Blocks, Items, ...");
 		tcTab = new CreativeTabTraincraft(CreativeTabs.getNextID(), "Traincraft");
+		if(ConfigHandler.SPLIT_CREATIVE) {
+			tcTrainTab = new CreativeTabTraincraftTrains(CreativeTabs.getNextID(), "Traincraft Trains");
+		}
 		trainArmor = proxy.addArmor("armor");
 		trainCloth = proxy.addArmor("Paintable");
 		trainCompositeSuit = proxy.addArmor("CompositeSuit");
