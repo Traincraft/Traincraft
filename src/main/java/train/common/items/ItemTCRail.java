@@ -44,7 +44,7 @@ public class ItemTCRail extends ItemPart {
 		LONG_STRAIGHT("LONG_STRAIGHT", "STRAIGHT", ItemIDs.tcRailLongStraight, "1x6"),
 		VERY_LONG_STRAIGHT("VERY_LONG_STRAIGHT", "STRAIGHT", ItemIDs.tcRailVeryLongStraight, "1x12"),
 
-		SMALL_DIAGONAL_STRAIGHT("SMALL_DIAGONA_STAIGHT", "DIAGONAL", ItemIDs.tcRailSmallDiagonalStraight, "1x1"),
+		SMALL_DIAGONAL_STRAIGHT("SMALL_DIAGONAL_STRAIGHT", "DIAGONAL", ItemIDs.tcRailSmallDiagonalStraight, "1x1"),
 
 		MEDIUM_TURN("MEDIUM_TURN", "TURN", ItemIDs.tcRailMediumTurn, "3x3"),
 		MEDIUM_RIGHT_TURN("MEDIUM_RIGHT_TURN", "TURN", ItemIDs.tcRailMediumTurn, ""),
@@ -125,6 +125,8 @@ public class ItemTCRail extends ItemPart {
 		EMBEDDED_MEDIUM_STRAIGHT("EMBEDDED_MEDIUM_STRAIGHT", "STRAIGHT", ItemIDs.tcRailEmbeddedMediumStraight, "1x3"),
 		EMBEDDED_LONG_STRAIGHT("EMBEDDED_LONG_STRAIGHT", "STRAIGHT", ItemIDs.tcRailEmbeddedLongStraight, "1x6"),
 		EMBEDDED_VERY_LONG_STRAIGHT("EMBEDDED_VERY_LONG_STRAIGHT", "STRAIGHT", ItemIDs.tcRailEmbeddedVeryLongStraight, "1x12"),
+
+		EMBEDDED_SMALL_DIAGONAL_STRAIGHT("EMBEDDED_SMALL_DIAGONAL_STRAIGHT", "DIAGONAL", ItemIDs.tcRailEmbeddedSmallDiagonalStraight, "1x1"),
 
 		EMBEDDED_MEDIUM_TURN("EMBEDDED_MEDIUM_TURN", "TURN", ItemIDs.tcRailEmbeddedMediumTurn, "3x3"),
 		EMBEDDED_MEDIUM_RIGHT_TURN("EMBEDDED_MEDIUM_RIGHT_TURN", "TURN", ItemIDs.tcRailEmbeddedMediumTurn, ""),
@@ -355,7 +357,7 @@ public class ItemTCRail extends ItemPart {
 
 	public static boolean isTCDiagonalStraightTrack(TileTCRail tile) {
 		if(tile==null || tile.getType()==null){return false;}
-		return tile.getType().equals(TrackTypes.SMALL_DIAGONAL_STRAIGHT.getLabel())
+		return tile.getType().equals(TrackTypes.SMALL_DIAGONAL_STRAIGHT.getLabel()) || tile.getType().equals(TrackTypes.EMBEDDED_SMALL_DIAGONAL_STRAIGHT.getLabel())
 
 		;
 	}
@@ -568,7 +570,7 @@ public class ItemTCRail extends ItemPart {
 				|| type == TrackTypes.EMBEDDED_VERY_LONG_STRAIGHT)
 			return new int[][]{ {0,0}, {1,0}, {2,0}, {3,0}, {4,0}, {5,0}, {6,0}, {7,0}, {8,0}, {9,0}, {10,0}, {11,0}};
 		/** Diagonals*/
-		else if (type == TrackTypes.SMALL_DIAGONAL_STRAIGHT)
+		else if (type == TrackTypes.SMALL_DIAGONAL_STRAIGHT || type == TrackTypes.EMBEDDED_SMALL_DIAGONAL_STRAIGHT)
 			return new int [][]{{0,0}};
 		/** Slopes */
 		else if ( type == TrackTypes.SLOPE_BALLAST
@@ -691,7 +693,7 @@ public class ItemTCRail extends ItemPart {
 			y = getPlacementHeight(world, x, y, z);
 			int l;
 			/** Determines if track is left or right*/
-			if (type == TrackTypes.SMALL_DIAGONAL_STRAIGHT) {
+			if (type == TrackTypes.SMALL_DIAGONAL_STRAIGHT || type == TrackTypes.EMBEDDED_SMALL_DIAGONAL_STRAIGHT) {
 				l = MathHelper.floor_double((player!=null?player.rotationYaw:par10) * 4.0F / 360.0F) & 3;
 				l += 4;
 
@@ -938,7 +940,7 @@ public class ItemTCRail extends ItemPart {
 
 
 
-			if (type == TrackTypes.SMALL_DIAGONAL_STRAIGHT) {
+			if (type == TrackTypes.SMALL_DIAGONAL_STRAIGHT || type == TrackTypes.EMBEDDED_SMALL_DIAGONAL_STRAIGHT) {
 
 					if (!canPlaceTrack(player, world, x, y + 1, z)) {
 						return false;
