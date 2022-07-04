@@ -37,6 +37,7 @@ public class TCBlocks {
 
 		BlockIDs.trainWorkbench.block = new BlockTrainWorkbench(16).setHardness(1.7F).setStepSound(Block.soundTypeWood);
 		BlockIDs.stopper.block = new BlockStopper().setHardness(1.7F).setStepSound(Block.soundTypeWood);
+		BlockIDs.embeddedStopper.block = new BlockEmbeddedStopper().setHardness(1.7F).setStepSound(Block.soundTypeMetal);
 
 		BlockIDs.openFurnaceIdle.block = new BlockOpenHearthFurnace(false).setHardness(3.5F).setStepSound(Block.soundTypeStone);
 		BlockIDs.openFurnaceActive.block = new BlockOpenHearthFurnace(true).setHardness(3.5F).setStepSound(Block.soundTypeStone);
@@ -68,7 +69,6 @@ public class TCBlocks {
 		BlockIDs.kSignal.block = new BlockkSignal().setHardness(1F).setResistance(10F).setLightLevel(0.2F).setStepSound(Block.soundTypeMetal).setCreativeTab(null);
 		BlockIDs.speedSign.block = new BlockSpeedSign().setCreativeTab(Traincraft.tcTab);
 		BlockIDs.asphaltSlab.block = new baseSlab(false,Material.ground,"AsphaltSlab",2f,2F,Block.soundTypeStone,"pickaxe",1,0F,"asphalt").setCreativeTab(Traincraft.tcTab);
-
 
 		//BlockIDs.FortyFootContainer.block = new BlockFortyFootContainer(Material.rock).setHardness(4.5F).setCreativeTab(Traincraft.tcTab).setStepSound(Block.soundTypeMetal);
 

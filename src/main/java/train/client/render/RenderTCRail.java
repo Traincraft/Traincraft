@@ -10,14 +10,13 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 	public static final ModelSmallStraightTCTrack modelSmallStraight = new ModelSmallStraightTCTrack();
 	public static final ModelSmallStraightTCTrack modelRoadCrossing = new ModelSmallStraightTCTrack();
 	public static final ModelMediumStraightTCTrack modelMediumStraight = new ModelMediumStraightTCTrack();
+	public static final ModelSmallDiagonalStraightTCTrack modelSmallDiagonalStraight = new ModelSmallDiagonalStraightTCTrack();
 	public static final ModelRightTurnTCTrack modelRightTurn = new ModelRightTurnTCTrack();
 	public static final ModelLeftTurnTCTrack modelLeftTurn = new ModelLeftTurnTCTrack();
 	public static final ModelRight45DegreeTurnTCTrack model45DegreeRightTurn = new ModelRight45DegreeTurnTCTrack();
 	public static final ModelLeft45DegreeTurnTCTrack model45DegreeLeftTurn = new ModelLeft45DegreeTurnTCTrack();
 	public static final ModelRightParallelCurveTCTrack modelRightParallelCurve = new ModelRightParallelCurveTCTrack();
 	public static final ModelLeftParallelCurveTCTrack modelLeftParallelCurve = new ModelLeftParallelCurveTCTrack();
-	public static final ModelEmbeddedRightParallelCurveTCTrack modelEmbeddedRightParallelCurve = new ModelEmbeddedRightParallelCurveTCTrack();
-	public static final ModelEmbeddedLeftParallelCurveTCTrack modelEmbeddedLeftParallelCurve = new ModelEmbeddedLeftParallelCurveTCTrack();
 	public static final ModelTwoWaysCrossingTCTrack modelTwoWaysCrossing = new ModelTwoWaysCrossingTCTrack();
 	public static final ModelRightSwitchTCTrack modelRightSwitchTurn = new ModelRightSwitchTCTrack();
 	public static final ModelLeftSwitchTCTrack modelLeftSwitchTurn = new ModelLeftSwitchTCTrack();
@@ -34,6 +33,10 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 	public static final ModelEmbeddedRight45DegreeTurnTCTrack modelEmbeddedRight45DegreeTurn = new ModelEmbeddedRight45DegreeTurnTCTrack();
 
 	public static final ModelEmbeddedLeft45DegreeTurnTCTrack modelEmbeddedLeft45DegreeTurn = new ModelEmbeddedLeft45DegreeTurnTCTrack();
+	public static final ModelEmbeddedRightParallelCurveTCTrack modelEmbeddedRightParallelCurve = new ModelEmbeddedRightParallelCurveTCTrack();
+	public static final ModelEmbeddedLeftParallelCurveTCTrack modelEmbeddedLeftParallelCurve = new ModelEmbeddedLeftParallelCurveTCTrack();
+	public static final ModelEmbeddedRightSwitchTCTrack modelEmbeddedRightSwitchTurn = new ModelEmbeddedRightSwitchTCTrack();
+	public static final ModelEmbeddedLeftSwitchTCTrack modelEmbeddedLeftSwitchTurn = new ModelEmbeddedLeftSwitchTCTrack();
 	public static final ModelEmbeddedTwoWaysCrossingTCTrack modelEmbeddedTwoWaysCrossing = new ModelEmbeddedTwoWaysCrossingTCTrack();
 
 
@@ -60,6 +63,10 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 					case LONG_STRAIGHT:
 					case VERY_LONG_STRAIGHT:{
 						modelMediumStraight.render(railTile, x, y, z);
+						break;
+					}
+					case SMALL_DIAGONAL_STRAIGHT:{
+						modelSmallDiagonalStraight.render("diagonal", railTile, x, y, z);
 						break;
 					}
 					case MEDIUM_TURN:
@@ -107,6 +114,15 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 						model45DegreeLeftTurn.render("medium", railTile, x, y, z);
 						break;
 					}
+					case LARGE_45DEGREE_TURN:
+					case LARGE_RIGHT_45DEGREE_TURN: {
+						model45DegreeRightTurn.render("large", railTile, x, y, z);
+						break;
+					}
+					case LARGE_LEFT_45DEGREE_TURN:{
+						model45DegreeLeftTurn.render("large", railTile, x, y, z);
+						break;
+					}
 					case SMALL_PARALLEL_CURVE:
 					case SMALL_RIGHT_PARALLEL_CURVE:{
 						modelRightParallelCurve.render("small", railTile, x, y, z);
@@ -127,11 +143,11 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 						break;
 					}
 					case LARGE_PARALLEL_CURVE:
-					case LARGE_RIGHT_PARALLEL_CURVE:{
+					case LARGE_RIGHT_PARALLEL_CURVE: {
 						modelRightParallelCurve.render("large", railTile, x, y, z);
 						break;
 					}
-					case LARGE_LEFT_PARALLEL_CURVE:{
+					case LARGE_LEFT_PARALLEL_CURVE: {
 						modelLeftParallelCurve.render("large", railTile, x, y, z);
 						break;
 					}
@@ -164,6 +180,15 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 					}
 					case MEDIUM_LEFT_PARALLEL_SWITCH: {
 						modelLeftSwitchTurn.render("medium_parallel", railTile, x, y, z);
+						break;
+					}
+					case MEDIUM_45DEGREE_SWITCH:
+					case MEDIUM_RIGHT_45DEGREE_SWITCH: {
+						modelRightSwitchTurn.render("medium_45degree", railTile, x, y, z);
+						break;
+					}
+					case MEDIUM_LEFT_45DEGREE_SWITCH: {
+						modelLeftSwitchTurn.render("medium_45degree", railTile, x, y, z);
 						break;
 					}
 					case SLOPE_WOOD: {
@@ -331,6 +356,42 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 
 					case EMBEDDED_TWO_WAYS_CROSSING: {
 						modelEmbeddedTwoWaysCrossing.render(x, y, z);
+						break;
+					}
+					case EMBEDDED_MEDIUM_SWITCH:
+					case EMBEDDED_MEDIUM_RIGHT_SWITCH: {
+						modelEmbeddedRightSwitchTurn.render("medium", railTile, x, y, z);
+						break;
+					}
+					case EMBEDDED_MEDIUM_LEFT_SWITCH: {
+						modelEmbeddedLeftSwitchTurn.render("medium", railTile, x, y, z);
+						break;
+					}
+					case EMBEDDED_LARGE_SWITCH:
+					case EMBEDDED_LARGE_RIGHT_SWITCH: {
+						modelEmbeddedRightSwitchTurn.render("large_90", railTile, x, y, z);
+						break;
+					}
+					case EMBEDDED_LARGE_LEFT_SWITCH: {
+						modelEmbeddedLeftSwitchTurn.render("large_90", railTile, x, y, z);
+						break;
+					}
+					case EMBEDDED_MEDIUM_PARALLEL_SWITCH:
+					case EMBEDDED_MEDIUM_RIGHT_PARALLEL_SWITCH: {
+						modelEmbeddedRightSwitchTurn.render("medium_parallel", railTile, x, y, z);
+						break;
+					}
+					case EMBEDDED_MEDIUM_LEFT_PARALLEL_SWITCH: {
+						modelEmbeddedLeftSwitchTurn.render("medium_parallel", railTile, x, y, z);
+						break;
+					}
+					case EMBEDDED_MEDIUM_45DEGREE_SWITCH:
+					case EMBEDDED_MEDIUM_RIGHT_45DEGREE_SWITCH: {
+						modelEmbeddedRightSwitchTurn.render("medium_45degree", railTile, x, y, z);
+						break;
+					}
+					case EMBEDDED_MEDIUM_LEFT_45DEGREE_SWITCH: {
+						modelEmbeddedLeftSwitchTurn.render("medium_45degree", railTile, x, y, z);
 						break;
 					}
 

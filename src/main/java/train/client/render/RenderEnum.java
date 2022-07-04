@@ -1072,7 +1072,7 @@ public enum RenderEnum {
 	SNCB_M6_TAIL( EntityPassengerSNCB_M6_TAIL.class, new ModelSNCB_M6_TAIL(),"sncb_m6_tail", false, new float[] {0, .16F, 0F},  new float[] { 0F, 0, 180F },null, "", 0, null, "", null, 0, false),
 	Class153Engine( EntityLocoDieselClass153.class, new ModelClass153(), "class_153_", true, new float[] {-2.1F, .15F, 0F}, new float[] {0F, 180F, 180F }, null, "smoke", 3,  new ArrayList<double[]>() {{}}, "", null, 0, false),
 	Class153Coach( EntityPassengerClass153.class, new ModelClass153(), "class_153_", true, new float[] {0F, .15F, 0F}, new float[] {0F, 180F, 180F }, null, "",0 , null, "", null, 0, false),
-	Class156Engine( EntityLocoDieselClass156.class, new ModelClass156(), "Class_156_", true, new float[] {-1.9F, -0.57F, 0F}, new float[] {0F, 180F, 180F},  null, "smoke",3, new ArrayList<double[]>() {{}}, "", null, 0, false ),
+	Class156Engine( EntityLocoDieselClass156.class, new ModelClass156(), "Class_156_", true, new float[] {-1.3F, -0.57F, 0F}, new float[] {0F, 180F, 180F},  null, "smoke",3, new ArrayList<double[]>() {{}}, "", null, 0, false ),
 	Class47(EntityLocoDieselClass47.class, new ModelClass47(), "Class_47_", true, new float[] {-4f, 0f, 0f}, new float[] {0f, 180f, 180f}, null, "smoke", 3, new ArrayList<double[]>() {{}}, "", null, 0, false),
 	Class319Engine(EntityElectricClass319.class, new ModelClass319Engine(), "Br_319_", true,new float[] {-1.65F, 0.15F, 0F},  new float[] { 0F, 180F, 180F }, null, "smoke", 3, new ArrayList<double[]>(), "", null, 0, false),
 	Class319Middle( EntityPassengerClass319Middle.class, new ModelClass319Middle(),"Br_319_", true, new float[] {0F, 0.15F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),

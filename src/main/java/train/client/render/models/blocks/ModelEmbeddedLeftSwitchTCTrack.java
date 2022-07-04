@@ -19,14 +19,18 @@ public class ModelEmbeddedLeftSwitchTCTrack extends ModelBase {
     private IModelCustom modelEmbeddedMediumLeftParallelSwitchActive;
     private IModelCustom modelEmbeddedLargeLeftSwitchActive;
     private IModelCustom modelEmbeddedLargeLeftSwitchInactive;
+    private IModelCustom modelEmbeddedMediumLeft45degreeSwitchActive;
+    private IModelCustom modelEmbeddedMediumLeft45degreeSwitchInActive;
 
     public ModelEmbeddedLeftSwitchTCTrack() {
-        modelEmbeddedMediumLeftSwitchActive = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_switch_small_active_left_new.obj"));
-        modelEmbeddedMediumLeftSwitchInactive = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_switch_small_inactive_left_new.obj"));
+        modelEmbeddedMediumLeftSwitchActive = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_embedded_switch_small_active_left.obj"));
+        modelEmbeddedMediumLeftSwitchInactive = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_embedded_switch_small_inactive_left.obj"));
         modelEmbeddedMediumLeftParallelSwitchInactive = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_embedded_switch_parallel_inactive_left.obj"));
         modelEmbeddedMediumLeftParallelSwitchActive = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_embedded_switch_parallel_active_left.obj"));
-        modelEmbeddedLargeLeftSwitchActive = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_switch_medium_active_left.obj"));
-        modelEmbeddedLargeLeftSwitchInactive = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_switch_medium_inactive_left.obj"));
+        modelEmbeddedLargeLeftSwitchActive = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_embedded_switch_medium_active_left.obj"));
+        modelEmbeddedLargeLeftSwitchInactive = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_embedded_switch_medium_inactive_left.obj"));
+        modelEmbeddedMediumLeft45degreeSwitchActive = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_embedded_switch_medium_45degree_active_left.obj"));
+        modelEmbeddedMediumLeft45degreeSwitchInActive = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_embedded_switch_medium_45degree_inactive_left.obj"));
 
     }
 
@@ -48,6 +52,8 @@ public class ModelEmbeddedLeftSwitchTCTrack extends ModelBase {
     public void renderEmbeddedLarge90Inactive() {
         modelEmbeddedLargeLeftSwitchInactive.renderAll();
     }
+    public void renderEmbeddedMedium45degreeActive() {modelEmbeddedMediumLeft45degreeSwitchActive.renderAll();}
+    public void renderEmbeddedMedium45degreeInActive() {modelEmbeddedMediumLeft45degreeSwitchInActive.renderAll();}
 
 
     public void render(String type, TileTCRail tcRail, double x, double y, double z) {
@@ -69,7 +75,7 @@ public class ModelEmbeddedLeftSwitchTCTrack extends ModelBase {
 
         if (facing == 3) {
             if(type.equals("medium")){
-                GL11.glTranslatef(-1.0f, 0.0f, 1.0f);
+                GL11.glTranslatef(-1.0f, 0.0f, -3.0f);
             }
             if(type.equals("large_90")){
                 GL11.glRotatef(0, 0, 1, 0);
@@ -78,11 +84,15 @@ public class ModelEmbeddedLeftSwitchTCTrack extends ModelBase {
             if(type.equals("medium_parallel")){
                 GL11.glRotatef(-90, 0, 1, 0);
             }
+            if(type.equals("medium_45degree")){
+                GL11.glRotatef(-90, 0, 1, 0);
+                GL11.glTranslatef(0.0f, 0.0f, 0);
+            }
         }
         if (facing == 1) {
             if(type.equals("medium")){
                 GL11.glRotatef(180, 0, 1, 0);
-                GL11.glTranslatef(-1.0f, 0.0f, 1.0f);
+                GL11.glTranslatef(-1.0f, 0.0f, -3.0f);
             }
             if(type.equals("large_90")){
                 GL11.glRotatef(180, 0, 1, 0);
@@ -91,11 +101,15 @@ public class ModelEmbeddedLeftSwitchTCTrack extends ModelBase {
             if(type.equals("medium_parallel")){
                 GL11.glRotatef(90, 0, 1, 0);
             }
+            if(type.equals("medium_45degree")){
+                GL11.glRotatef(90, 0, 1, 0);
+                GL11.glTranslatef(0.0f, 0.0f, 0);
+            }
         }
         if(facing == 2){
             if(type.equals("medium")){
                 GL11.glRotatef(90, 0, 1, 0);
-                GL11.glTranslatef(-1.0f, 0.0f, 1.0f);
+                GL11.glTranslatef(-1.0f, 0.0f, -3.0f);
             }
             if(type.equals("large_90")){
                 GL11.glRotatef(90, 0, 1, 0);
@@ -104,11 +118,15 @@ public class ModelEmbeddedLeftSwitchTCTrack extends ModelBase {
             if(type.equals("medium_parallel")){
                 //do something if needed
             }
+            if(type.equals("medium_45degree")){
+                GL11.glRotatef(0, 0, 1, 0);
+                GL11.glTranslatef(0.0f, 0.0f, 0f);
+            }
         }
         if(facing == 0){
             if(type.equals("medium")){
                 GL11.glRotatef(-90, 0, 1, 0);
-                GL11.glTranslatef(-1.0f, 0.0f, 1.0f);
+                GL11.glTranslatef(-1.0f, 0.0f, -3.0f);
             }
             if(type.equals("large_90")){
                 GL11.glRotatef(-90, 0, 1, 0);
@@ -117,6 +135,10 @@ public class ModelEmbeddedLeftSwitchTCTrack extends ModelBase {
             if(type.equals("medium_parallel")){
                 GL11.glRotatef(180, 0, 1, 0);
             }
+            if(type.equals("medium_45degree")){
+                GL11.glRotatef(180, 0, 1, 0);
+                GL11.glTranslatef(0f, 0.0f, 0);
+            }
         }
         if(type.equals("medium")&&!active)this.renderEmbeddedMediumInactive();
         if(type.equals("medium")&&active)this.renderEmbeddedMediumActive();
@@ -124,6 +146,8 @@ public class ModelEmbeddedLeftSwitchTCTrack extends ModelBase {
         if(type.equals("medium_parallel")&&active)this.renderEmbeddedMediumParallelActive();
         if(type.equals("large_90")&&!active)this.renderEmbeddedLarge90Inactive();
         if(type.equals("large_90")&&active)this.renderEmbeddedLarge90Active();
+        if(type.equals("medium_45degree")&&!active)this.renderEmbeddedMedium45degreeInActive();
+        if(type.equals("medium_45degree")&&active)this.renderEmbeddedMedium45degreeActive();
 
         //if(type.equals("large"))this.renderLarge();
 

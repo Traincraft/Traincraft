@@ -868,10 +868,10 @@ public class ModelEF1 extends ModelConverter //Same as Filename
 			}
 		}
 		if (entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 15) {
-			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/ef1d_Black.png"));
-			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/ef1tp_Black.png"));
+			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/ef1d_black.png"));
+			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/ef1tp_black.png"));
 		} else {
-			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/ef1d_Black.png"));
+			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/ef1d_black.png"));
 
 		}
 		GL11.glPushMatrix();
@@ -880,7 +880,7 @@ public class ModelEF1 extends ModelConverter //Same as Filename
 		theTrucksRear.render(entity, f, f1, f2, f3, f4, f5);
 		GL11.glPopMatrix();
 
-		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/ef1tp_Black.png"));
+		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/ef1tp_black.png"));
 		GL11.glPushMatrix();
 		GL11.glTranslated(-1.3125F, -0F, 0);
 		theTrucksFront.render(entity, f, f1, f2, f3, f4, f5);
