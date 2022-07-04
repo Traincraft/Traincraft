@@ -52,6 +52,8 @@ public class ItemTCRail extends ItemPart {
 		LONG_STRAIGHT("LONG_STRAIGHT", "STRAIGHT", ItemIDs.tcRailLongStraight, "1x6"),
 		VERY_LONG_STRAIGHT("VERY_LONG_STRAIGHT", "STRAIGHT", ItemIDs.tcRailVeryLongStraight, "1x12"),
 
+		SMALL_DIAGONAL_STRAIGHT("SMALL_DIAGONAL_STRAIGHT", "DIAGONAL", ItemIDs.tcRailSmallDiagonalStraight, "1x1"),
+
 		MEDIUM_TURN("MEDIUM_TURN", "TURN", ItemIDs.tcRailMediumTurn, "3x3"),
 		MEDIUM_RIGHT_TURN("MEDIUM_RIGHT_TURN", "TURN", ItemIDs.tcRailMediumTurn, ""),
 		MEDIUM_LEFT_TURN("MEDIUM_LEFT_TURN", "TURN", ItemIDs.tcRailMediumTurn, ""),
@@ -123,6 +125,8 @@ public class ItemTCRail extends ItemPart {
 		EMBEDDED_MEDIUM_STRAIGHT("EMBEDDED_MEDIUM_STRAIGHT", "STRAIGHT", ItemIDs.tcRailEmbeddedMediumStraight, "1x3"),
 		EMBEDDED_LONG_STRAIGHT("EMBEDDED_LONG_STRAIGHT", "STRAIGHT", ItemIDs.tcRailEmbeddedLongStraight, "1x6"),
 		EMBEDDED_VERY_LONG_STRAIGHT("EMBEDDED_VERY_LONG_STRAIGHT", "STRAIGHT", ItemIDs.tcRailEmbeddedVeryLongStraight, "1x12"),
+
+		EMBEDDED_SMALL_DIAGONAL_STRAIGHT("EMBEDDED_SMALL_DIAGONAL_STRAIGHT", "DIAGONAL", ItemIDs.tcRailEmbeddedSmallDiagonalStraight, "1x1"),
 
 		EMBEDDED_MEDIUM_TURN("EMBEDDED_MEDIUM_TURN", "TURN", ItemIDs.tcRailEmbeddedMediumTurn, "3x3"),
 		EMBEDDED_MEDIUM_RIGHT_TURN("EMBEDDED_MEDIUM_RIGHT_TURN", "TURN", ItemIDs.tcRailEmbeddedMediumTurn, ""),
@@ -302,6 +306,9 @@ public class ItemTCRail extends ItemPart {
 		;
 	}
 
+	public static boolean isTCDiagonalStraightTrack(TileTCRail tile) {
+		if(tile==null || tile.getType()==null){return false;}
+		return tile.getType().equals(TrackTypes.SMALL_DIAGONAL_STRAIGHT.getLabel()) || tile.getType().equals(TrackTypes.EMBEDDED_SMALL_DIAGONAL_STRAIGHT.getLabel())
 
 	public ItemTCRail(TrackTypes t) {
 		super(t.getItem().iconName);
@@ -506,6 +513,9 @@ public class ItemTCRail extends ItemPart {
 		else if ( type == TrackTypes.VERY_LONG_STRAIGHT
 				|| type == TrackTypes.EMBEDDED_VERY_LONG_STRAIGHT)
 			return new int[][]{ {0,0}, {1,0}, {2,0}, {3,0}, {4,0}, {5,0}, {6,0}, {7,0}, {8,0}, {9,0}, {10,0}, {11,0}};
+		/** Diagonals*/
+		else if (type == TrackTypes.SMALL_DIAGONAL_STRAIGHT || type == TrackTypes.EMBEDDED_SMALL_DIAGONAL_STRAIGHT)
+			return new int [][]{{0,0}};
 		/** Slopes */
 		else if ( type == TrackTypes.SLOPE_BALLAST
 				|| type == TrackTypes.SLOPE_GRAVEL
@@ -622,7 +632,17 @@ public class ItemTCRail extends ItemPart {
 
 			y = getPlacementHeight(world, x, y, z);
 			/** Determines if track is left or right*/
-			int l = MathHelper.floor_double((player!=null?player.rotationYaw:par10) * 4.0F / 360.0F + 0.5D) & 3;
+			if (type == TrackTypes.SMALL_DIAGONAL_STRAIGHT || type == TrackTypes.EMBEDDED_SMALL_DIAGONAL_STRAIGHT) {
+				l = MathHelper.floor_double((player!=null?player.rotationYaw:par10) * 4.0F / 360.0F) & 3;
+				l += 4;
+
+			}
+
+			else {
+				l = MathHelper.floor_double((player!=null?player.rotationYaw:par10) * 4.0F / 360.0F + 0.5D) & 3;
+
+			}
+
 			float yaw = MathHelper.wrapAngleTo180_float(player!=null?player.rotationYaw:par10);
 			TrackTypes tempType = type;
 			if (type == TrackTypes.MEDIUM_TURN) {
@@ -807,6 +827,173 @@ public class ItemTCRail extends ItemPart {
 			 *  l = 0 = SOUTH
 			 *  l = 3 = east
 			**/
+
+
+
+			if (type == TrackTypes.SMALL_DIAGONAL_STRAIGHT || type == TrackTypes.EMBEDDED_SMALL_DIAGONAL_STRAIGHT) {
+
+					if (!canPlaceTrack(player, world, x, y + 1, z)) {
+						return false;
+					}
+
+					if (l == 6) {
+					placeTrack(world, x, y + 1, z, BlockIDs.tcRail.block, l);
+					TileTCRail tcRail = (TileTCRail) world.getTileEntity(x, y + 1, z);
+					tcRail.setFacing(l);
+					tcRail.cx = x;
+					tcRail.cy = y + 1;
+					tcRail.cz = z;
+					tcRail.setType(type.getLabel());
+					tcRail.idDrop = this.type.getItem().item;
+					}
+				if (l == 4) {
+
+					placeTrack(world, x, y + 1, z, BlockIDs.tcRail.block, l);
+					TileTCRail tcRail = (TileTCRail) world.getTileEntity(x, y + 1, z);
+					tcRail.setFacing(l);
+					tcRail.cx = x;
+					tcRail.cy = y + 1;
+					tcRail.cz = z;
+					tcRail.setType(type.getLabel());
+					tcRail.idDrop = this.type.getItem().item;
+				}
+				if (l == 5) {
+
+					placeTrack(world, x, y + 1, z, BlockIDs.tcRail.block, l);
+					TileTCRail tcRail = (TileTCRail) world.getTileEntity(x, y + 1, z);
+					tcRail.setFacing(l);
+					tcRail.cx = x;
+					tcRail.cy = y + 1;
+					tcRail.cz = z;
+					tcRail.setType(type.getLabel());
+					tcRail.idDrop = this.type.getItem().item;
+				}
+				if (l == 7) {
+
+					placeTrack(world, x, y + 1, z, BlockIDs.tcRail.block, l);
+					TileTCRail tcRail = (TileTCRail) world.getTileEntity(x, y + 1, z);
+					tcRail.setFacing(l);
+					tcRail.cx = x;
+					tcRail.cy = y + 1;
+					tcRail.cz = z;
+					tcRail.setType(type.getLabel());
+					tcRail.idDrop = this.type.getItem().item;
+				}
+
+				if (player ==null || !player.capabilities.isCreativeMode) {
+					--itemstack.stackSize;
+				}
+				return true;
+			}
+
+
+			if (tempType == TrackTypes.LARGE_LEFT_45DEGREE_TURN) {
+				switch (tempType){
+					case LARGE_LEFT_45DEGREE_TURN:
+						idVariant45Turn = ItemIDs.tcRailLarge45DegreeTurn.item;
+						typeVariant90Turn = TrackTypes.LARGE_LEFT_45DEGREE_TURN.getLabel();
+						break;
+					/*case EMBEDDED_LARGE_LEFT_45DEGREE_TURN:
+						idVariant45Turn = ItemIDs.tcRailEmbeddedLarge45DegreeTurn.item;
+						typeVariant90Turn = TrackTypes.EMBEDDED_LARGE_LEFT_45DEGREE_TURN.getLabel();
+						break;*/
+				}
+
+				if (l == 2) {
+
+					int[] xArray = {x,   x  ,   x  ,   x  , x - 1, x - 1, x - 1, x - 1, x - 1, x - 2, x - 2};
+					int[] zArray = {z, z - 1, z - 2, z - 3, z - 1, z - 2, z - 3, z - 4, z - 5, z - 4, z - 5};
+					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 1, x - 2, z - 5, 8.49, x - 7.98,
+							y + 1, z + 1, typeVariant90Turn, idVariant45Turn))
+						return false;
+				}
+
+				if (l == 0) {
+
+					int[] xArray = {x,   x  ,   x  ,   x  , x + 1, x + 1, x + 1, x + 1, x + 1, x + 2, x + 2};
+					int[] zArray = {z, z + 1, z + 2, z + 3, z + 1, z + 2, z + 3, z + 4, z + 5, z + 4, z + 5};
+					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 3, x + 2, z + 5, 8.49, x + 8.98,
+							y + 1, z , typeVariant90Turn, idVariant45Turn))
+						return false;
+				}
+				if (l == 1) {
+
+					int[] xArray = {x, x - 1, x - 2, x - 3, x - 1, x - 2, x - 3, x - 4, x - 5, x - 4, x - 5};
+					int[] zArray = {z,   z  ,   z  ,   z  , z + 1, z + 1, z + 1, z + 1, z + 1, z + 2, z + 2};
+					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 0, x - 5, z + 2, 8.49, x + 1,
+							y + 1, z + 8.98, typeVariant90Turn, idVariant45Turn))
+						return false;
+				}
+
+				if (l == 3) {
+
+					int[] xArray = {x, x + 1, x + 2, x + 3, x + 1, x + 2, x + 3, x + 4, x + 5, x + 4, x + 5};
+					int[] zArray = {z,   z  ,   z  ,   z  , z - 1, z - 1, z - 1, z - 1, z - 1, z - 2, z - 2};
+					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 2, x + 5, z - 2, 8.49, x ,
+							y + 1, z - 7.98, typeVariant90Turn, idVariant45Turn))
+						return false;
+				}
+
+				if (player==null || !player.capabilities.isCreativeMode) {
+					--itemstack.stackSize;
+				}
+				return true;
+			}
+
+			if (tempType == TrackTypes.LARGE_RIGHT_45DEGREE_TURN) {
+				switch (tempType){
+					case LARGE_RIGHT_45DEGREE_TURN:
+						idVariant45Turn = ItemIDs.tcRailLarge45DegreeTurn.item;
+						typeVariant90Turn = TrackTypes.LARGE_RIGHT_45DEGREE_TURN.getLabel();
+						break;
+					/*case EMBEDDED_LARGE_RIGHT_45DEGREE_TURN:
+						idVariant45Turn = ItemIDs.tcRailEmbeddedLarge45DegreeTurn.item;
+						typeVariant90Turn = TrackTypes.EMBEDDED_LARGE_RIGHT_45DEGREE_TURN.getLabel();
+						break;*/
+				}
+
+				if (l == 2) {
+
+					int[] xArray = {x,   x  ,   x  ,   x  , x + 1, x + 1, x + 1, x + 1, x + 1, x + 2, x + 2};
+					int[] zArray = {z, z - 1, z - 2, z - 3, z - 1, z - 2, z - 3, z - 4, z - 5, z - 4, z - 5};
+					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 3, x + 2, z - 5, 8.49, x + 8.98,
+							y + 1, z + 1, typeVariant90Turn, idVariant45Turn))
+						return false;
+				}
+
+				if (l == 0) {
+
+					int[] xArray = {x,   x  ,   x  ,   x  , x - 1, x - 1, x - 1, x - 1, x - 1, x - 2, x - 2};
+					int[] zArray = {z, z + 1, z + 2, z + 3, z + 1, z + 2, z + 3, z + 4, z + 5, z + 4, z + 5};
+					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 1, x - 2, z + 5, 8.49, x - 7.98,
+							y + 1, z , typeVariant90Turn, idVariant45Turn))
+						return false;
+				}
+				if (l == 1) {
+
+					int[] xArray = {x, x - 1, x - 2, x - 3, x - 1, x - 2, x - 3, x - 4, x - 5, x - 4, x - 5};
+					int[] zArray = {z,   z  ,   z  ,   z  , z - 1, z - 1, z - 1, z - 1, z - 1, z - 2, z - 2};
+					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 2, x - 5, z - 2, 8.49, x + 1,
+							y + 1, z - 7.98, typeVariant90Turn, idVariant45Turn))
+						return false;
+				}
+
+				if (l == 3) {
+
+					int[] xArray = {x, x + 1, x + 2, x + 3, x + 1, x + 2, x + 3, x + 4, x + 5, x + 4, x + 5};
+					int[] zArray = {z,   z  ,   z  ,   z  , z + 1, z + 1, z + 1, z + 1, z + 1, z + 2, z + 2};
+					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 0, x + 5, z + 2, 8.49, x ,
+							y + 1, z + 8.98, typeVariant90Turn, idVariant45Turn))
+						return false;
+				}
+
+				if (player==null || !player.capabilities.isCreativeMode) {
+					--itemstack.stackSize;
+				}
+				return true;
+			}
+
+
 
 
 
@@ -3181,6 +3368,10 @@ public class ItemTCRail extends ItemPart {
 				tcRail.slopeAngle = slopeAngle;
 				tcRail.slopeLength = gagEnd + 1;
 
+				Block block = world.getBlock(x, y, z);
+				int blockID = 	Block.getIdFromBlock(block);
+				tcRail.setBallastMaterial(blockID);
+				tcRail.ballastMetadata = world.getBlockMetadata(x,y,z);
 
 				for (int i2 = 1; i2 <= gagEnd; i2++) {
 					if (l == 2) {

@@ -15,7 +15,7 @@ import tmt.ModelRendererTurbo;
 public class ModelKrauttTrucc extends ModelConverter //Same as Filename
 {
 	int textureX = 512;
-	int textureY = 512;
+	int textureY = 32;
 
 	public ModelKrauttTrucc() //Same as Filename
 	{

@@ -52,7 +52,7 @@ public class ModelSlopeTCTrack extends ModelBase {
 		}
 		if (type.equals("gravel")) {
 			FMLClientHandler.instance().getClient().renderEngine
-					.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/blocks/gravel.png"));
+					.bindTexture(new ResourceLocation("minecraft", "textures/blocks/gravel.png"));
 			modelSlopeBallast.renderAll();
 			FMLClientHandler.instance().getClient().renderEngine
 					.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
@@ -92,8 +92,11 @@ public class ModelSlopeTCTrack extends ModelBase {
 		IIcon icon = block.getIcon(1, tcRail.getWorldObj().getBlockMetadata(tcRail.xCoord, tcRail.yCoord-1, tcRail.zCoord));
 
 		String iconName;
-		if (icon == null ) {
-			iconName = "tc:ballast";
+		Block block = Block.getBlockById(tcRail.getBallastMaterial());
+		IIcon icon = block.getIcon(1, tcRail.ballastMetadata);
+		int colour = block.colorMultiplier(tcRail.getWorldObj(), tcRail.xCoord, tcRail.yCoord- 1, tcRail.zCoord);
+		if (icon != null) {
+			iconName = icon.getIconName();
 		}
 
 		if (tcRail.getBallastMaterial() != null) {

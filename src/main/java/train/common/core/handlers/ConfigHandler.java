@@ -71,8 +71,7 @@ public class ConfigHandler {
 			MAKE_MODPACKS_GREAT_AGAIN = cf.getBoolean("MAKE_MODPACKS_GREAT_AGAIN", CATEGORY_GENERAL, false,
 					"This will disable some of Traincrafts easier recipes to balance Modpacks");
 			SPLIT_CREATIVE = cf.getBoolean("SPLIT_CREATIVE_TAB", CATEGORY_GENERAL, false,
-					"setting this to true will split the creative tab in 3, one for trains, one for stock, and one for everything else.");
-
+					"setting this to true will split the creative tab in 2, one is used for trains, the other for materials and Tracks.");
 			WINDMILL_CHECK_RADIUS = cf.getInt("WINDMILL_CHECK_RADIUS", CATEGORY_GENERAL, 1, -1, 10, "This sets the radius for the can-see-the-sky-check area around the windmill. 0=only location of windmill, 1=3x3, 2=5x5 etc. Use -1 to turn of this check completely. DEFAULT: 1");
 			FORCE_TEXTURE_BINDING = cf.get(CATEGORY_GENERAL, "Force_Texture_Binding", true, "Enable this if trains and rollingstock are using block/item textures").getBoolean(true);
 			FORCE_TEXTURE_BINDING = cf.get(CATEGORY_GENERAL, "Force_Texture_Binding", true, "Enable this if trains and rollingstock are using block/item textures").getBoolean(false);

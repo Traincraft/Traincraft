@@ -92,10 +92,15 @@ public class RecipeHandler {
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailLongStraight.item, 1),  "G  ", "G  ", "   ", Character.valueOf('G'), ItemIDs.tcRailMediumStraight.item );
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailVeryLongStraight.item, 1), "G  ", "G  ", "   ", Character.valueOf('G'), ItemIDs.tcRailLongStraight.item);
 
+		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailSmallDiagonalStraight.item, 1 ), " G ", "G  ", "   ", Character.valueOf('G'), ItemIDs.tcRailSmallStraight.item);
+
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailMediumTurn.item, 1),  "GG ", "G  ", "   ", Character.valueOf('G'), ItemIDs.tcRailSmallStraight.item );
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailLargeTurn.item, 1), " SS", "SS ", "S  ", Character.valueOf('S'), ItemIDs.tcRailSmallStraight.item );
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailVeryLargeTurn.item, 1), "GG ","G  ","   ", Character.valueOf('G'), ItemIDs.tcRailLargeTurn.item );
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailSuperLargeTurn.item, 1), "GG ","G  ","   ", Character.valueOf('G'), ItemIDs.tcRailVeryLargeTurn.item );
+
+		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailMedium45DegreeTurn.item, 1), "TG ", "G  ", "   ", Character.valueOf('G'), ItemIDs.tcRailSmallStraight.item, Character.valueOf('T'), ItemIDs.tcRailMediumTurn.item);
+		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailLarge45DegreeTurn.item, 1), "TG ", "G  ", "   ", Character.valueOf('G'), ItemIDs.tcRailSmallStraight.item, Character.valueOf('T'), ItemIDs.tcRailLargeTurn.item);
 
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailSmallParallelCurve.item, 1), " S ", "SS ", "S  ", Character.valueOf('S'), ItemIDs.tcRailSmallStraight.item);
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailMediumParallelCurve.item, 1), " S ", "S  ", "   ", Character.valueOf('S'), ItemIDs.tcRailSmallParallelCurve.item);
@@ -127,6 +132,7 @@ public class RecipeHandler {
 
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailTwoWaysCrossing.item, 1), " S ", "SSS", " S ", Character.valueOf('S'), ItemIDs.tcRailSmallStraight.item );
 
+
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailEmbeddedSmallStraight.item, 16), "I I", "B B", "I I", Character.valueOf('I'), Items.iron_ingot, Character.valueOf('B'), ItemIDs.bolt.item);
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailEmbeddedMediumStraight.item, 1),  "G  ", "G  ", "G  ", Character.valueOf('G'), ItemIDs.tcRailEmbeddedSmallStraight.item );
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailEmbeddedLongStraight.item, 1),  "G  ", "G  ", "   ", Character.valueOf('G'), ItemIDs.tcRailEmbeddedMediumStraight.item );
@@ -136,6 +142,9 @@ public class RecipeHandler {
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailEmbeddedLargeTurn.item, 1), " SS", "SS ", "S  ", Character.valueOf('S'), ItemIDs.tcRailEmbeddedSmallStraight.item );
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailEmbeddedVeryLargeTurn.item, 1), "GG ","G  ","   ", Character.valueOf('G'), ItemIDs.tcRailEmbeddedLargeTurn.item );
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailEmbeddedSuperLargeTurn.item, 1), "GG ","G  ","   ", Character.valueOf('G'), ItemIDs.tcRailEmbeddedVeryLargeTurn.item );
+
+		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailEmbeddedMedium45DegreeTurn.item, 1), "TG ", "G  ", "   ", Character.valueOf('G'), ItemIDs.tcRailEmbeddedSmallStraight.item, Character.valueOf('T'), ItemIDs.tcRailEmbeddedMediumTurn.item);
+		//GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailEmbeddedLarge45DegreeTurn.item, 1), "TG ", "G  ", "   ", Character.valueOf('G'), ItemIDs.tcRailEmbeddedSmallStraight.item, Character.valueOf('T'), ItemIDs.tcRailEmbeddedLargeTurn.item);
 
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailEmbeddedSmallParallelCurve.item, 1), " S ", "SS ", "S  ", Character.valueOf('S'), ItemIDs.tcRailEmbeddedSmallStraight.item);
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailEmbeddedMediumParallelCurve.item, 1), " S ", "SS ", "S  ", Character.valueOf('S'), ItemIDs.tcRailEmbeddedSmallParallelCurve.item);

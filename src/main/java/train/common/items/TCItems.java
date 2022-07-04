@@ -78,6 +78,14 @@ public class TCItems {
 		ItemIDs.tcRailEmbeddedLongStraight.item = new ItemTCRail(ItemTCRail.TrackTypes.EMBEDDED_LONG_STRAIGHT);
 		ItemIDs.tcRailEmbeddedVeryLongStraight.item = new ItemTCRail(ItemTCRail.TrackTypes.EMBEDDED_VERY_LONG_STRAIGHT);
 
+		/**Normal Diagonal Tracks*/
+
+		ItemIDs.tcRailSmallDiagonalStraight.item = new ItemTCRail(ItemTCRail.TrackTypes.SMALL_DIAGONAL_STRAIGHT);
+
+		/**Embedded Diagonal Tracks*/
+
+		ItemIDs.tcRailEmbeddedSmallDiagonalStraight.item = new ItemTCRail(ItemTCRail.TrackTypes.EMBEDDED_SMALL_DIAGONAL_STRAIGHT);
+
 		/**Normal 45Degree Turns*/
 
 		ItemIDs.tcRailMedium45DegreeTurn.item = new ItemTCRail(ItemTCRail.TrackTypes.MEDIUM_45DEGREE_TURN);

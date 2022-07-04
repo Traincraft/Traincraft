@@ -49,7 +49,7 @@ public class ModelVeryLargeSlopeTCTrack extends ModelBase {
 		}
 		if (type.equals("gravel")) {
 			FMLClientHandler.instance().getClient().renderEngine
-					.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/blocks/gravel.png"));
+					.bindTexture(new ResourceLocation("minecraft", "textures/blocks/gravel.png"));
 			modelVeryLargeSlopeBallast.renderAll();
 			FMLClientHandler.instance().getClient().renderEngine
 					.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
@@ -84,9 +84,11 @@ public class ModelVeryLargeSlopeTCTrack extends ModelBase {
 		Block block = tcRail.getWorldObj().getBlock(tcRail.xCoord, tcRail.yCoord-1, tcRail.zCoord);
 		IIcon icon = block.getIcon(1, tcRail.getWorldObj().getBlockMetadata(tcRail.xCoord, tcRail.yCoord-1, tcRail.zCoord));
 		String iconName;
-		if (icon == null) {
-
-			iconName = "tc:ballast";
+		Block block = Block.getBlockById(tcRail.getBallastMaterial());
+		IIcon icon = block.getIcon(1, tcRail.ballastMetadata);
+		int colour = block.colorMultiplier(tcRail.getWorldObj(), tcRail.xCoord, tcRail.yCoord - 1, tcRail.zCoord);
+		if (icon != null) {
+			iconName = icon.getIconName();
 		}
 
 		else {
