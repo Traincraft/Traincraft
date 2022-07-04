@@ -250,6 +250,7 @@ item.tc:tcRailLongStraight.name=Long Straight
 item.tc:tcRailMediumStraight.name=Medium Straight
 item.tc:tcRailSmallStraight.name=Small Straight
 item.tc:tcRailSmallDiagonalStraight.name=Small Diagonal Straight
+item.tc:tcRailEmbeddedSmallDiagonalStraight.name=Embedded Small Diagonal Straight
 item.tc:tcRailMediumSwitch.name=Medium 90 Degrees Switch
 item.tc:tcRailMedium45DegreeSwitch.name=Medium 45 Degree Switch
 item.tc:tcRailLargeSwitch.name=Large 90 Degrees Switch
