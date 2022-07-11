@@ -2,11 +2,16 @@ package train.common.tile;
 
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
+import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
+import train.common.blocks.BlockTCRail;
+import train.common.blocks.BlockTCRailGag;
 
 import java.util.Random;
 
@@ -45,6 +50,20 @@ public class TileTCRailGag extends TileEntity {
 		nbt.setString("type", type);
 
 		super.writeToNBT(nbt);
+	}
+
+	private static final int[] matrixXZ = {0,-1,1}, matrixY = {0,-1,+1};
+	public void breakBlock(World p_149749_1_, int p_149749_2_, int p_149749_3_, int p_149749_4_, Block p_149749_5_, int p_149749_6_) {
+		for(int x : matrixXZ){
+			for(int z : matrixXZ){
+				for(int y : matrixY){
+					if(p_149749_1_.getBlock(xCoord,yCoord,zCoord)instanceof BlockTCRail){
+						p_149749_1_.func_147453_f(p_149749_2_,p_149749_3_,p_149749_4_, Blocks.air);
+						p_149749_1_.markBlockForUpdate(p_149749_2_,p_149749_3_,p_149749_4_);
+					}
+				}
+			}
+		}
 	}
 
 	public double getMaxRenderDistanceSquared() {

@@ -81,6 +81,10 @@ public class TCItems {
 		/**Normal Diagonal Tracks*/
 
 		ItemIDs.tcRailSmallDiagonalStraight.item = new ItemTCRail(ItemTCRail.TrackTypes.SMALL_DIAGONAL_STRAIGHT);
+		ItemIDs.tcRailMediumDiagonalStraight.item = new ItemTCRail(ItemTCRail.TrackTypes.MEDIUM_DIAGONAL_STRAIGHT);
+		ItemIDs.tcRailLongDiagonalStraight.item = new ItemTCRail(ItemTCRail.TrackTypes.LONG_DIAGONAL_STRAIGHT);
+		ItemIDs.tcRailVeryLongDiagonalStraight.item = new ItemTCRail(ItemTCRail.TrackTypes.VERY_LONG_DIAGONAL_STRAIGHT);
+
 
 		/**Embedded Diagonal Tracks*/
 

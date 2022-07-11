@@ -6,6 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
@@ -56,7 +57,7 @@ public class BlockTCRail extends Block {
 	public boolean hasTileEntity(int metadata) {
 		return true;
 	}
-
+	private static final int[] matrixXZ = {0,-1,-2,1,2}, matrixY = {0,-1,-2,1,2};
 	@Override
 	public void breakBlock(World world, int i, int j, int k, Block par5, int par6) {
 		TileTCRail tileEntity = (TileTCRail) world.getTileEntity(i, j, k);
@@ -71,6 +72,19 @@ public class BlockTCRail extends Block {
 				this.dropBlockAsItem(world, i, j, k, new ItemStack(tileEntity.idDrop, 1, 0));
 			}
 		}
+		for(int x : matrixXZ){
+			for(int z : matrixXZ){
+				for(int y : matrixY){
+					if (tileEntity != null && world.getBlock(x + tileEntity.xCoord, y + tileEntity.yCoord, z + tileEntity.zCoord)instanceof BlockTCRailGag){
+						world.notifyBlockChange((x +  tileEntity.xCoord), (y + tileEntity.yCoord + 1), (z  + tileEntity.zCoord), Blocks.air);
+						world.markBlockForUpdate((x + tileEntity.xCoord), (y + tileEntity.yCoord + 1), (z + tileEntity.zCoord));
+
+
+					}
+				}
+			}
+		}
+
 		world.removeTileEntity(i, j, k);
 	}
 

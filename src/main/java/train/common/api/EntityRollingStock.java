@@ -1136,7 +1136,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			limitSpeedOnTCRail();
 			//if(worldObj.getTileEntity(i,j,k)==null || !(worldObj.getTileEntity(i,j,k) instanceof TileTCRail))return;
 			TileTCRail tile = (TileTCRail) worldObj.getTileEntity(i, j, k);
-
+			int meta = tile.getBlockMetadata();
 
 
 
@@ -1152,10 +1152,11 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 					moveOnTCStraight(i, j, k, tile.xCoord, tile.zCoord, (tile.getBlockMetadata()+1)%4);
 				}
 				else{
-					int meta = tile.getBlockMetadata();
+
 					if (shouldIgnoreSwitch(tile, i, j, k, meta)) {
 						moveOnTCStraight(i, j, k, tile.xCoord, tile.zCoord, meta);
-					} else {
+					}
+					else {
 						if (ItemTCRail.isTCTurnTrack(tile))
 							moveOnTC90TurnRail(i, j, k, tile.r, tile.cx, tile.cz);
 					}
@@ -1174,7 +1175,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				moveOnTCTwoWaysCrossing(i, j, k, tile.xCoord, tile.yCoord, tile.zCoord, tile.getBlockMetadata());
 			}
 			if (ItemTCRail.isTCDiagonalStraightTrack(tile)) {
-				moveOnTCDiagonal(i, j, k, tile.xCoord, tile.zCoord, tile.getBlockMetadata());
+				moveOnTCDiagonal(i, j, k, tile.xCoord, tile.zCoord, tile.getBlockMetadata(), tile.getRailLength());
 			}
 
 		}
@@ -1195,6 +1196,9 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				}
 				if (ItemTCRail.isTCSlopeTrack(tile)) {
 					moveOnTCSlope(j, tile.xCoord, tile.zCoord, tile.slopeAngle, tile.slopeHeight, tile.getBlockMetadata());
+				}
+				if (ItemTCRail.isTCDiagonalStraightTrack(tile)) {
+					moveOnTCDiagonal(i, j, k, tile.xCoord, tile.zCoord, tile.getBlockMetadata(), tile.getRailLength());
 				}
 			}
 		}
@@ -1258,7 +1262,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		return false;
 	}
 
-	private void moveOnTCDiagonal(int i, int j, int k, double cx, double cz, int meta) {
+	private void moveOnTCDiagonal(int i, int j, int k, double cx, double cz, int meta, double length) {
 
 		posY = j + 0.2;
 
@@ -1271,12 +1275,12 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 
 		if (meta == 6  || meta == 4){
 			if (motionX > 0){
-				exitX = cx + 1.5;
-				exitZ = cz - 0.5;
+				exitX = cx + (length + 1.5);
+				exitZ = cz - (length + 0.5);
 			}
 			if (motionX < 0) {
-				exitX = cx - 0.5;
-				exitZ = cz + 1.5;
+				exitX = cx - (length + 0.5);
+				exitZ = cz + (length + 1.5);
 			}
 			directionX = exitX - posX;
 			directionZ = exitZ - posZ;
@@ -1298,12 +1302,12 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 
 		if (meta == 5  || meta == 7){
 			if (motionX > 0){
-				exitX = cx + 1.1;
-				exitZ = cz + 1.1;
+				exitX = cx + (length + 1.5);
+				exitZ = cz + (length + 1.5);
 			}
 			if (motionX < 0) {
-				exitX = cx - 0.1;
-				exitZ = cz - 0.1;
+				exitX = cx - (length + 1.5);
+				exitZ = cz - (length + 1.5);
 			}
 			directionX = exitX - posX;
 			directionZ = exitZ - posZ;
@@ -1322,9 +1326,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
 			this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) / 2.0D;
 		}
-
-
-
 	}
 
 
@@ -1372,6 +1373,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 
 
 		}
+		System.out.println(cx + " + " + cz);
 	}
 
 	private void moveOnTCSlope(int j, double cx, double cz, double slopeAngle, double slopeHeight, int meta) {
@@ -1455,21 +1457,38 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 
 		double vnorm = Math.sqrt(motionX * motionX + motionZ * motionZ);
 
-		double vx2 = -(cpz / cp_norm) * vnorm;//-v
-		double vz2 = (cpx / cp_norm) * vnorm;//u
+		double norm_cpx = cpx / cp_norm; //u
+		double norm_cpz = cpz / cp_norm; //v
 
-		double px2_cx = (posX + motionX * 2) - cx;
-		double pz2_cz = (posZ + motionZ * 2) - cz;
+		double vx2 = -norm_cpz * vnorm;//-v
+		double vz2 = norm_cpx * vnorm;//u
+
+		double px2 = posX + motionX;
+		double pz2 = posZ + motionZ;
+
+		double px2_cx = px2 - cx;
+		double pz2_cz = pz2 - cz;
 
 		double p2_c_norm = Math.sqrt((px2_cx * px2_cx) + (pz2_cz * pz2_cz));
 
-		vx2 = Math.copySign(vx2, (cx + ((px2_cx / p2_c_norm) * r)) - posX);
-		vz2 = Math.copySign(vz2, (cz + ((pz2_cz / p2_c_norm) * r)) - posZ);
+		double px2_cx_norm = px2_cx / p2_c_norm;
+		double pz2_cz_norm = pz2_cz / p2_c_norm;
 
-		setPosition(cx + ((cpx / cp_norm) * r), posY + yOffset, cz + ((cpz / cp_norm) * r));
+		double px3 = cx + (px2_cx_norm * r);
+		double pz3 = cz + (pz2_cz_norm * r);
 
+		double signX = px3 - posX;
+		double signZ = pz3 - posZ;
+
+		vx2 = Math.copySign(vx2, signX);
+		vz2 = Math.copySign(vz2, signZ);
+
+		double p_corr_x = cx + ((cpx / cp_norm) * r);
+		double p_corr_z = cz + ((cpz / cp_norm) * r);
+
+
+		setPosition(p_corr_x, posY + yOffset, p_corr_z);
 		moveEntity(vx2, 0.0D, vz2);
-
 		motionX = vx2;
 		motionZ = vz2;
 

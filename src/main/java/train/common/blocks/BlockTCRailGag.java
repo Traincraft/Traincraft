@@ -6,6 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
@@ -37,14 +38,30 @@ public class BlockTCRailGag extends Block {
 	public boolean canPlaceBlockAt(World par1World, int par2, int par3, int par4) {
 		return false;
 	}
-
+	private static final int[] matrixXZ = {0,-1,-2,1,2}, matrixY = {0,-1,-2,1,2};
 	@Override
 	public void breakBlock(World world, int i, int j, int k, Block par5, int par6) {
 		TileTCRailGag tileEntity = (TileTCRailGag) world.getTileEntity(i, j, k);
 		if (tileEntity != null) {
-			// NOTE: func_147480_a = destroyBlock
 			world.func_147480_a(tileEntity.originX, tileEntity.originY, tileEntity.originZ, false);
 			world.removeTileEntity(tileEntity.originX, tileEntity.originY, tileEntity.originZ);
+			// NOTE: func_147480_a = destroyBlock
+			for(int x : matrixXZ){
+				for(int z : matrixXZ){
+					for(int y : matrixY){
+						if (world.getBlock(x + tileEntity.xCoord, y + tileEntity.yCoord, z + tileEntity.zCoord)instanceof BlockTCRailGag){
+							world.notifyBlockChange((x  + tileEntity.xCoord), (y + tileEntity.yCoord + 1), (z  + tileEntity.zCoord), Blocks.air);
+							world.markBlockForUpdate((x  + tileEntity.xCoord), (y + tileEntity.yCoord + 1 ), (z  + tileEntity.zCoord));
+						}
+						if (world.getBlock(x + tileEntity.xCoord, y + tileEntity.yCoord, z + tileEntity.zCoord)instanceof BlockTCRail){
+							world.notifyBlockChange((x  + tileEntity.xCoord), (y + tileEntity.yCoord + 1), (z  + tileEntity.zCoord), Blocks.air);
+							world.markBlockForUpdate((x  + tileEntity.xCoord), (y + tileEntity.yCoord + 1 ), (z  + tileEntity.zCoord));
+							System.out.println("Test");
+						}
+					}
+				}
+			}
+
 		}
 		world.removeTileEntity(i, j, k);
 	}

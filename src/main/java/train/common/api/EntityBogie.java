@@ -445,17 +445,16 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 					//applyDragAndPushForces();
 					limitSpeedOnTCRail();
 
-
+					int meta = tileRail.getBlockMetadata();
 
 					if (ItemTCRail.isTCTurnTrack(tileRail)) {
-						int meta = tileRail.getBlockMetadata();
-
-
-					if (shouldIgnoreSwitch(tileRail, i, j, k, meta)) {
+						if (shouldIgnoreSwitch(tileRail, i, j, k, meta)) {
 						moveOnTCStraight(j, tileRail.xCoord, tileRail.zCoord, tileRail.getBlockMetadata());
 					}
 					else {
-						if (ItemTCRail.isTCTurnTrack(tileRail)) moveOnTC90TurnRail(j, tileRail.r, tileRail.cx, tileRail.cz);
+						if (ItemTCRail.isTCTurnTrack(tileRail)) {
+							moveOnTC90TurnRail(j, tileRail.r, tileRail.cx, tileRail.cz);
+						}
 					}
 					
 					// shouldIgnoreSwitch(tileRail, i, j, k, meta);
@@ -478,8 +477,8 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 						moveOnTCSlope(j, tileRail.xCoord, tileRail.zCoord, tileRail.slopeAngle, tileRail.slopeHeight, tileRail.getBlockMetadata());
 					}
 
-					if (ItemTCRail.isTCDiagonalStraightTrack(tileRail)) {
-						moveOnTCDiagonal(i, j, k, tileRail.xCoord, tileRail.zCoord, tileRail.getBlockMetadata());
+					else if (ItemTCRail.isTCDiagonalStraightTrack(tileRail)) {
+						moveOnTCDiagonal(i, j, k, tileRail.xCoord, tileRail.zCoord, tileRail.getBlockMetadata(), tileRail.getRailLength());
 					}
 		        }
 			}
@@ -530,7 +529,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		}
 	}
 
-	private void moveOnTCDiagonal(int i, int j, int k, double cx, double cz, int meta) {
+	private void moveOnTCDiagonal(int i, int j, int k, double cx, double cz, int meta, double length) {
 
 		posY = j + 0.2;
 
@@ -540,23 +539,21 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		double directionZ;
 		double norm = Math.sqrt(motionX * motionX + motionZ * motionZ);
 		double distanceNorm;
+
 		if (meta == 6  || meta == 4){
 			if (motionX > 0){
-				exitX = cx + 1.5;
-				exitZ = cz - 0.5;
+				exitX = cx + (length + 1.5);
+				exitZ = cz - (length + 0.5);
 			}
 			if (motionX < 0) {
-				exitX = cx - 0.5;
-				exitZ = cz + 1.5;
+				exitX = cx - (length + 0.5);
+				exitZ = cz + (length + 1.5);
 			}
-
 			directionX = exitX - posX;
 			directionZ = exitZ - posZ;
 			distanceNorm = Math.sqrt(directionX * directionX + directionZ * directionZ);
-
 			motionX = (directionX / distanceNorm) * norm ;
 			motionZ = (directionZ / distanceNorm) * norm ;
-
 			this.boundingBox.offset(Math.copySign(motionX, this.motionX), 0 , Math.copySign(motionZ, this.motionZ));
 
 			List boxes = worldObj.getCollidingBoundingBoxes(this, boundingBox);
@@ -572,26 +569,20 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 
 		if (meta == 5  || meta == 7){
 			if (motionX > 0){
-				exitX = cx + 1.1;
-				exitZ = cz + 1.1;
+				exitX = cx + (length + 1.5);
+				exitZ = cz + (length + 1.5);
 			}
-
 			if (motionX < 0) {
-				exitX = cx - 0.1;
-				exitZ = cz - 0.1;
+				exitX = cx - (length + 1.5);
+				exitZ = cz - (length + 1.5);
 			}
-
 			directionX = exitX - posX;
 			directionZ = exitZ - posZ;
 			distanceNorm = Math.sqrt(directionX * directionX + directionZ * directionZ);
-
 			motionX = (directionX / distanceNorm) * norm ;
 			motionZ = (directionZ / distanceNorm) * norm ;
 
-			System.out.println(motionX + "+ " + motionZ + "+ " + norm);
-
 			this.boundingBox.offset(Math.copySign(motionX, this.motionX), 0 , Math.copySign(motionZ, this.motionZ));
-
 			List boxes = worldObj.getCollidingBoundingBoxes(this, boundingBox);
 			for(Object b : boxes){
 				if(!(b instanceof BlockRailBase) && !(b instanceof BlockTCRail) && !(b instanceof BlockTCRailGag) && !(b instanceof BlockAir)){
@@ -602,6 +593,8 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 			this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
 			this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) / 2.0D;
 		}
+
+
 
 	}
 	private void moveOnTCStraight(int j, double cx, double cz, int meta) {
@@ -730,16 +723,16 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 	}
 
 	private void moveOnTC90TurnRail(int j,double r, double cx, double cz){
-		/** j is the pitch (going up or down, default is .2),  */
-		posY = j + 0.2; /** height of bounding box */
-		double cpx = posX - cx; /** xpos of player - x centre circle pos*/
-		double cpz = posZ - cz;/** zpos of player - z centre circle pos*/
-		double cp_norm = Math.sqrt(cpx * cpx + cpz * cpz); /** again pytho thing */
 
-		double vnorm = Math.sqrt(motionX * motionX + motionZ * motionZ); /** again pytho thing */
+		posY = j + 0.2;
+		double cpx = posX - cx;
+		double cpz = posZ - cz;
+		double cp_norm = Math.sqrt(cpx * cpx + cpz * cpz);
 
-		double norm_cpx = cpx / cp_norm; /** divides cpx by the pytho thing*///u
-		double norm_cpz = cpz / cp_norm; /** divides cpx by the pytho thing*///v
+		double vnorm = Math.sqrt(motionX * motionX + motionZ * motionZ);
+
+		double norm_cpx = cpx / cp_norm; //u
+		double norm_cpz = cpz / cp_norm; //v
 
 		double vx2 = -norm_cpz * vnorm;//-v
 		double vz2 = norm_cpx * vnorm;//u
@@ -779,10 +772,19 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 				|| tile.getType().equals(TrackTypes.MEDIUM_LEFT_TURN.getLabel())
 				|| tile.getType().equals(TrackTypes.LARGE_LEFT_TURN.getLabel())
 				|| tile.getType().equals(TrackTypes.LARGE_RIGHT_TURN.getLabel()))
+				|| tile.getType().equals(TrackTypes.MEDIUM_RIGHT_45DEGREE_TURN.getLabel())
+				|| tile.getType().equals(TrackTypes.MEDIUM_LEFT_45DEGREE_TURN.getLabel())
+				|| tile.getType().equals(TrackTypes.LARGE_RIGHT_45DEGREE_TURN.getLabel())
+				|| tile.getType().equals(TrackTypes.LARGE_LEFT_45DEGREE_TURN.getLabel())
 				|| tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_RIGHT_TURN.getLabel())
 				|| tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_LEFT_TURN.getLabel())
 				|| tile.getType().equals(TrackTypes.EMBEDDED_LARGE_LEFT_TURN.getLabel())
 				|| tile.getType().equals(TrackTypes.EMBEDDED_LARGE_RIGHT_TURN.getLabel())
+				|| tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_RIGHT_45DEGREE_TURN.getLabel())
+				|| tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_LEFT_45DEGREE_TURN.getLabel())
+				//|| tile.getType().equals(TrackTypes.EMBEDDED_LARGE_RIGHT_45DEGREE_TURN.getLabel())
+				//|| tile.getType().equals(TrackTypes.EMBEDDED_LARGE_LEFT_45DEGREE_TURN.getLabel())
+
 				&& tile.canTypeBeModifiedBySwitch) {
 			if (meta == 2) {
 				if (motionZ > 0 && Math.abs(motionX) < 0.01) {

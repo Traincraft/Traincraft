@@ -11,6 +11,7 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 	public static final ModelSmallStraightTCTrack modelRoadCrossing = new ModelSmallStraightTCTrack();
 	public static final ModelMediumStraightTCTrack modelMediumStraight = new ModelMediumStraightTCTrack();
 	public static final ModelSmallDiagonalStraightTCTrack modelSmallDiagonalStraight = new ModelSmallDiagonalStraightTCTrack();
+	public static final ModelMediumDiagonalStraightTCTrack modelMediumDiagonalStraight = new ModelMediumDiagonalStraightTCTrack();
 	public static final ModelRightTurnTCTrack modelRightTurn = new ModelRightTurnTCTrack();
 	public static final ModelLeftTurnTCTrack modelLeftTurn = new ModelLeftTurnTCTrack();
 	public static final ModelRight45DegreeTurnTCTrack model45DegreeRightTurn = new ModelRight45DegreeTurnTCTrack();
@@ -69,6 +70,13 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 						modelSmallDiagonalStraight.render("diagonal", railTile, x, y, z);
 						break;
 					}
+					case MEDIUM_DIAGONAL_STRAIGHT:
+					case LONG_DIAGONAL_STRAIGHT:
+					case VERY_LONG_DIAGONAL_STRAIGHT:{
+						modelMediumDiagonalStraight.render("diagonal", railTile, x, y, z);
+						break;
+					}
+
 					case MEDIUM_TURN:
 					case MEDIUM_RIGHT_TURN: {
 						modelRightTurn.render("medium", railTile, x, y, z);
