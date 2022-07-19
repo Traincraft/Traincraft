@@ -1149,7 +1149,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				}
 				if(derailSpeed == 0){
 					this.unLink();
-					moveOnTCStraight(i, j, k, tile.xCoord, tile.zCoord, (tile.getBlockMetadata()+1)%4);
+					moveOnTCStraight(i, j, k, tile.xCoord, tile.zCoord, meta);
 				}
 				else{
 
@@ -1166,16 +1166,16 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				}
 			}
 			if (ItemTCRail.isTCStraightTrack(tile)) {
-				moveOnTCStraight(i, j, k, tile.xCoord, tile.zCoord, tile.getBlockMetadata());
+				moveOnTCStraight(i, j, k, tile.xCoord, tile.zCoord, meta);
 			}
 			if (ItemTCRail.isTCSlopeTrack(tile)) {
-				moveOnTCSlope( j, tile.xCoord, tile.zCoord, tile.slopeAngle, tile.slopeHeight, tile.getBlockMetadata());
+				moveOnTCSlope( j, tile.xCoord, tile.zCoord, tile.slopeAngle, tile.slopeHeight, meta);
 			}
 			if (ItemTCRail.isTCTwoWaysCrossingTrack(tile)) {
-				moveOnTCTwoWaysCrossing(i, j, k, tile.xCoord, tile.yCoord, tile.zCoord, tile.getBlockMetadata());
+				moveOnTCTwoWaysCrossing(i, j, k, tile.xCoord, tile.yCoord, tile.zCoord, meta);
 			}
 			if (ItemTCRail.isTCDiagonalStraightTrack(tile)) {
-				moveOnTCDiagonal(i, j, k, tile.xCoord, tile.zCoord, tile.getBlockMetadata(), tile.getRailLength());
+				moveOnTCDiagonal(i, j, k, tile.xCoord, tile.zCoord, tile.getBlockMetadata(), meta);
 			}
 
 		}
@@ -1373,7 +1373,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 
 
 		}
-		System.out.println(cx + " + " + cz);
 	}
 
 	private void moveOnTCSlope(int j, double cx, double cz, double slopeAngle, double slopeHeight, int meta) {

@@ -1090,6 +1090,7 @@ public class ItemTCRail extends ItemPart {
 					TileTCRail tcRail = (TileTCRail) world.getTileEntity(x, y + 1, z);
 					tcRail.setFacing(l);
 					tcRail.setType(type.getLabel());
+					tcRail.setRailLength(3D);
 
 					placeTrack(world,x - 1, y + 1, z + 1, BlockIDs.tcRailGag.block, l);
 					tileGag[0] = (TileTCRailGag) world.getTileEntity(x - 1, y + 1, z + 1);
@@ -1112,6 +1113,7 @@ public class ItemTCRail extends ItemPart {
 						tcRail2.linkedX = x - 1;
 						tcRail2.linkedY = y + 1;
 						tcRail2.linkedZ = z + 1;
+						tcRail.setRailLength(6D);
 
 						placeTrack(world,x - 4, y + 1, z + 4, BlockIDs.tcRailGag.block, l);
 						tileGag[2] = (TileTCRailGag) world.getTileEntity(x - 4, y + 1, z + 4);
@@ -1135,6 +1137,7 @@ public class ItemTCRail extends ItemPart {
 						tcRail3.linkedX = x - 1;
 						tcRail3.linkedY = y + 1;
 						tcRail3.linkedZ = z + 1;
+						tcRail.setRailLength(12D);
 
 						placeTrack(world,x - 7, y + 1, z + 7, BlockIDs.tcRailGag.block, l);
 						tileGag[4] = (TileTCRailGag) world.getTileEntity(x - 7, y + 1, z + 7);
@@ -1248,7 +1251,7 @@ public class ItemTCRail extends ItemPart {
 
 					int[] xArray = {x,   x  ,   x  ,   x  , x - 1, x - 1, x - 1, x - 1, x - 1, x - 2, x - 2};
 					int[] zArray = {z, z - 1, z - 2, z - 3, z - 1, z - 2, z - 3, z - 4, z - 5, z - 4, z - 5};
-					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 1, x - 2, z - 5, 8.49, x - 7.98,
+					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 1, x - 2, z - 5, 8.49, x - 7.99,
 							y + 1, z + 1, typeVariant90Turn, idVariant45Turn))
 						return false;
 				}
@@ -1257,7 +1260,7 @@ public class ItemTCRail extends ItemPart {
 
 					int[] xArray = {x,   x  ,   x  ,   x  , x + 1, x + 1, x + 1, x + 1, x + 1, x + 2, x + 2};
 					int[] zArray = {z, z + 1, z + 2, z + 3, z + 1, z + 2, z + 3, z + 4, z + 5, z + 4, z + 5};
-					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 3, x + 2, z + 5, 8.49, x + 8.98,
+					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 3, x + 2, z + 5, 8.49, x + 8.99,
 							y + 1, z , typeVariant90Turn, idVariant45Turn))
 						return false;
 				}
@@ -1266,7 +1269,7 @@ public class ItemTCRail extends ItemPart {
 					int[] xArray = {x, x - 1, x - 2, x - 3, x - 1, x - 2, x - 3, x - 4, x - 5, x - 4, x - 5};
 					int[] zArray = {z,   z  ,   z  ,   z  , z + 1, z + 1, z + 1, z + 1, z + 1, z + 2, z + 2};
 					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 0, x - 5, z + 2, 8.49, x + 1,
-							y + 1, z + 8.98, typeVariant90Turn, idVariant45Turn))
+							y + 1, z + 8.99, typeVariant90Turn, idVariant45Turn))
 						return false;
 				}
 
@@ -1275,7 +1278,7 @@ public class ItemTCRail extends ItemPart {
 					int[] xArray = {x, x + 1, x + 2, x + 3, x + 1, x + 2, x + 3, x + 4, x + 5, x + 4, x + 5};
 					int[] zArray = {z,   z  ,   z  ,   z  , z - 1, z - 1, z - 1, z - 1, z - 1, z - 2, z - 2};
 					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 2, x + 5, z - 2, 8.49, x ,
-							y + 1, z - 7.98, typeVariant90Turn, idVariant45Turn))
+							y + 1, z - 7.99, typeVariant90Turn, idVariant45Turn))
 						return false;
 				}
 
@@ -1301,7 +1304,7 @@ public class ItemTCRail extends ItemPart {
 
 					int[] xArray = {x,   x  ,   x  ,   x  , x + 1, x + 1, x + 1, x + 1, x + 1, x + 2, x + 2};
 					int[] zArray = {z, z - 1, z - 2, z - 3, z - 1, z - 2, z - 3, z - 4, z - 5, z - 4, z - 5};
-					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 3, x + 2, z - 5, 8.49, x + 8.98,
+					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 3, x + 2, z - 5, 8.49, x + 8.99,
 							y + 1, z + 1, typeVariant90Turn, idVariant45Turn))
 						return false;
 				}
@@ -1310,7 +1313,7 @@ public class ItemTCRail extends ItemPart {
 
 					int[] xArray = {x,   x  ,   x  ,   x  , x - 1, x - 1, x - 1, x - 1, x - 1, x - 2, x - 2};
 					int[] zArray = {z, z + 1, z + 2, z + 3, z + 1, z + 2, z + 3, z + 4, z + 5, z + 4, z + 5};
-					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 1, x - 2, z + 5, 8.49, x - 7.98,
+					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 1, x - 2, z + 5, 8.49, x - 7.99,
 							y + 1, z , typeVariant90Turn, idVariant45Turn))
 						return false;
 				}
@@ -1319,7 +1322,7 @@ public class ItemTCRail extends ItemPart {
 					int[] xArray = {x, x - 1, x - 2, x - 3, x - 1, x - 2, x - 3, x - 4, x - 5, x - 4, x - 5};
 					int[] zArray = {z,   z  ,   z  ,   z  , z - 1, z - 1, z - 1, z - 1, z - 1, z - 2, z - 2};
 					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 2, x - 5, z - 2, 8.49, x + 1,
-							y + 1, z - 7.98, typeVariant90Turn, idVariant45Turn))
+							y + 1, z - 7.99, typeVariant90Turn, idVariant45Turn))
 						return false;
 				}
 
@@ -1328,7 +1331,7 @@ public class ItemTCRail extends ItemPart {
 					int[] xArray = {x, x + 1, x + 2, x + 3, x + 1, x + 2, x + 3, x + 4, x + 5, x + 4, x + 5};
 					int[] zArray = {z,   z  ,   z  ,   z  , z + 1, z + 1, z + 1, z + 1, z + 1, z + 2, z + 2};
 					if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 0, x + 5, z + 2, 8.49, x ,
-							y + 1, z + 8.98, typeVariant90Turn, idVariant45Turn))
+							y + 1, z + 8.99, typeVariant90Turn, idVariant45Turn))
 						return false;
 				}
 
@@ -1337,9 +1340,6 @@ public class ItemTCRail extends ItemPart {
 				}
 				return true;
 			}
-
-
-
 
 
 			if (tempType == TrackTypes.MEDIUM_RIGHT_45DEGREE_TURN || tempType == TrackTypes.EMBEDDED_MEDIUM_RIGHT_45DEGREE_TURN) {
@@ -4404,6 +4404,8 @@ public class ItemTCRail extends ItemPart {
 					}
 
 				}
+
+
 				for (int i = 0; i < tileGag.length; i++) {
 					if (player !=null && tileGag[i] == null) {
 						player.addChatMessage(new ChatComponentText("There was a problem when placing the track. Possibly too many tracks around"));
@@ -4419,6 +4421,8 @@ public class ItemTCRail extends ItemPart {
 				}
 				return true;
 			}
+
+
 			if (type == TrackTypes.SMALL_STRAIGHT  || type == TrackTypes.EMBEDDED_SMALL_STRAIGHT || type == TrackTypes.SMALL_ROAD_CROSSING || type == TrackTypes.SMALL_ROAD_CROSSING_1 || type == TrackTypes.SMALL_ROAD_CROSSING_2  ) {
 				if (!canPlaceTrack(player, world, x, y + 1, z)) {
 					return false;

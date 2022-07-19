@@ -94,7 +94,7 @@ public class EntityFreight5Plank extends Freight implements IInventory {
     }
     @Override
     public float getOptimalDistance(EntityMinecart cart) {
-        return 2F;
+        return 1.5F;
     }
 
     @Override

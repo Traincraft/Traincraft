@@ -415,7 +415,7 @@ public class TileTCRail extends TileEntity {
 		nbt.setDouble("cx", cx);
 		nbt.setDouble("cy", cy);
 		nbt.setDouble("cz", cz);
-		nbt.setDouble("RailLength", railLength);
+		nbt.setDouble("railLength", railLength);
 		nbt.setDouble("slopeHeight", slopeHeight);
 		nbt.setDouble("slopeLength", slopeLength);
 		nbt.setDouble("slopeAngle", slopeAngle);
