@@ -53,7 +53,7 @@ public class ModelSlopeTCTrack extends ModelBase {
 		}
 		if (type.equals("gravel")) {
 			FMLClientHandler.instance().getClient().renderEngine
-					.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/blocks/gravel.png"));
+					.bindTexture(new ResourceLocation("minecraft", "textures/blocks/gravel.png"));
 			modelSlopeBallast.renderAll();
 			FMLClientHandler.instance().getClient().renderEngine
 					.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));

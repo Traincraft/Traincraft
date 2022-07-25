@@ -115,6 +115,11 @@ public class CustomRenderHandler {
             RenderTCRail.modelSmallDiagonalStraight.render("diagonal", facing + 4, 0,0,0,r,g,b,a);
         }
 
+        else if (item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_SMALL_DIAGONAL_STRAIGHT) {
+            facing = MathHelper.floor_double(player.rotationYaw * 4.0F / 360.0F) & 3;
+            RenderTCRail.modelEmbeddedSmallDiagonalStraight.render("diagonal", facing + 4, 0,0,0,r,g,b,a);
+        }
+
 
 
 

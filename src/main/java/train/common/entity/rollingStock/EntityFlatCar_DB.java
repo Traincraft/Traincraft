@@ -24,11 +24,11 @@ public class EntityFlatCar_DB extends EntityRollingStock implements IPassenger {
 		prevPosZ = d2;
 	}
 
-	@Override
+	/*@Override
 	public void onUpdate(){
 		super.onUpdate();
 		boundingBox.maxY-=1;
-	}
+	}*/
 
 	@Override
 	public void updateRiderPosition() {
