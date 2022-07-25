@@ -583,6 +583,7 @@ public enum ItemIDs {
 	minecartEMDE7A("ItemRollingStock", "EMDE7AIcon",5),
 	minecartEMDE7B("ItemRollingStock", "EMDE7BIcon",5),
 	minecart5Plank("ItemRollingStock", "5 plank icon", 5),
+	minecartH16_66("ItemRollingStock", "FM_H16-66_icon", 5),
 	//signalSpanish("ItemsignalSpanish","signalSpanish", 1),
 
 

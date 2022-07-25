@@ -614,6 +614,7 @@ item.tc:minecartPSBMDiner_Lounge.name=Pullman Standard B&M Diner-Lounge
 item.tc:minecartEMDE7A.name=EMD E7A
 item.tc:minecartEMDE7B.name=EMD E7B
 item.tc:minecart5Plank.name=5 Plank
+item.tc:minecartH16_66.name=FM H16-66
 
 
 <!-- ## Achievements ## -->
@@ -1134,6 +1135,7 @@ entity.tc.PS B&M Diner_Lounge.name=Pullman Standard B&M Diner-Lounge
 entity.tc.E7A.name=EMD E7A
 entity.tc.E7B.name=EMD E7B
 entity.tc.5Plank.name=5 Plank
+entity.tc.H16-66.name=FM H16-66
 
 description.villager.profession.tc.station_chief=Station Chief
 
