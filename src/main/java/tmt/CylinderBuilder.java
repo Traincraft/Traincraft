@@ -131,7 +131,7 @@ public class CylinderBuilder {
         boolean dirMirror = (direction == MR_LEFT || direction == MR_BOTTOM || direction == MR_BACK);
         if(base_scale == 0) base_scale = 1f; if(top_scale == 0) top_scale = 1f;
         if(segments < 3) segments = 3; if(seglimit <= 0) seglimit = segments; boolean segl = seglimit < segments;
-        ArrayList<TexturedPolygon> polis = new ArrayList<>();
+        ArrayList<TexturedPolygon> polis = new ArrayList<TexturedPolygon>();
         //Vertex
         float xLength = (dirSide ? length : 0), yLength = (dirTop ? length : 0), zLength = (dirFront ? length : 0);
         float xStart = (dirMirror ? x + xLength : x);
@@ -152,10 +152,10 @@ public class CylinderBuilder {
         float vHeight = texHeight * vScale - uOffset * 2f;
         float uStart = root.textureOffsetX * uScale, vStart = root.textureOffsetY * vScale;
         //Temporary Arrays
-        ArrayList<TexturedVertex> verts0 = new ArrayList<>();
-        ArrayList<TexturedVertex> verts1 = new ArrayList<>();
-        ArrayList<TexturedVertex> verts2 = new ArrayList<>();
-        ArrayList<TexturedVertex> verts3 = new ArrayList<>();
+        ArrayList<TexturedVertex> verts0 = new ArrayList<TexturedVertex>();
+        ArrayList<TexturedVertex> verts1 = new ArrayList<TexturedVertex>();
+        ArrayList<TexturedVertex> verts2 = new ArrayList<TexturedVertex>();
+        ArrayList<TexturedVertex> verts3 = new ArrayList<TexturedVertex>();
         float xSize,ySize,zSize,xPlace,yPlace,zPlace;
         for(int repeat = 0; repeat < 2; repeat++){//top/base faces
             for(int index = 0; index < segments; index++){
