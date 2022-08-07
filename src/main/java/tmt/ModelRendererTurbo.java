@@ -31,7 +31,7 @@ import net.minecraft.util.ResourceLocation;
  */
 public class ModelRendererTurbo {
 
-    public List<TexturedPolygon> faces = new ArrayList<>();
+    public List<TexturedPolygon> faces = new ArrayList<TexturedPolygon>();
     public float rotationPointX, rotationPointY, rotationPointZ;
     public float rotateAngleX, rotateAngleY, rotateAngleZ;
     public int textureOffsetX, textureWidth;
@@ -75,7 +75,7 @@ public class ModelRendererTurbo {
         mirror = false;
         showModel = true;
         field_1402_i = false;
-        faces = new ArrayList<>();
+        faces = new ArrayList<TexturedPolygon>();
         forcedRecompile = false;
         textureGroup = new HashMap<String, TextureGroup>();
         textureGroup.put("0", new TextureGroup());
@@ -1550,7 +1550,7 @@ public class ModelRendererTurbo {
      * would need to clear the shape first.
      */
     public void clear(){
-    	faces = new ArrayList<>();
+    	faces = new ArrayList<TexturedPolygon>();
     }
     
     /**
@@ -1566,7 +1566,7 @@ public class ModelRendererTurbo {
     }
     
     public ModelRendererTurbo copyTo(TexturedVertex[] verts, TexturedPolygon[] poly, boolean copyGroup){
-        faces = new ArrayList<>();
+        faces = new ArrayList<TexturedPolygon>();
         faces.addAll(Arrays.asList(poly));
         return this;
     }
