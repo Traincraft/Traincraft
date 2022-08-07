@@ -1627,9 +1627,13 @@ public class ItemTCRail extends ItemPart {
 						tcRailTurn.linkedY = y + 1;
 						tcRailTurn.linkedZ = z + 1;
 					}
+
 					return true;
 				}
-
+				if (player==null || !player.capabilities.isCreativeMode) {
+					--itemstack.stackSize;
+				}
+				return true;
 			}
 
 			if (tempType == TrackTypes.SMALL_LEFT_PARALLEL_CURVE || tempType == TrackTypes.EMBEDDED_SMALL_LEFT_PARALLEL_CURVE) {
@@ -1825,7 +1829,10 @@ public class ItemTCRail extends ItemPart {
 					}
 					return true;
 				}
-
+				if (player==null || !player.capabilities.isCreativeMode) {
+					--itemstack.stackSize;
+				}
+				return true;
 			}
 
 			if (tempType == TrackTypes.MEDIUM_RIGHT_PARALLEL_CURVE || tempType == TrackTypes.EMBEDDED_MEDIUM_RIGHT_PARALLEL_CURVE) {
@@ -2039,6 +2046,10 @@ public class ItemTCRail extends ItemPart {
 					}
 					return true;
 				}
+				if (player==null || !player.capabilities.isCreativeMode) {
+					--itemstack.stackSize;
+				}
+				return true;
 			}
 
 			if (tempType == TrackTypes.MEDIUM_LEFT_PARALLEL_CURVE || tempType == TrackTypes.EMBEDDED_MEDIUM_LEFT_PARALLEL_CURVE) {
@@ -2252,6 +2263,10 @@ public class ItemTCRail extends ItemPart {
 					}
 					return true;
 				}
+				if (player==null || !player.capabilities.isCreativeMode) {
+					--itemstack.stackSize;
+				}
+
 			}
 			if (tempType == TrackTypes.LARGE_RIGHT_PARALLEL_CURVE || tempType == TrackTypes.EMBEDDED_LARGE_RIGHT_PARALLEL_CURVE) {
 
@@ -2474,7 +2489,10 @@ public class ItemTCRail extends ItemPart {
 					return true;
 
 				}
-
+				if (player==null || !player.capabilities.isCreativeMode) {
+					--itemstack.stackSize;
+				}
+				return true;
 			}
 
 			if (tempType == TrackTypes.LARGE_LEFT_PARALLEL_CURVE|| tempType == TrackTypes.EMBEDDED_LARGE_LEFT_PARALLEL_CURVE) {
@@ -2698,6 +2716,10 @@ public class ItemTCRail extends ItemPart {
 					return true;
 
 				}
+				if (player==null || !player.capabilities.isCreativeMode) {
+					--itemstack.stackSize;
+				}
+				return true;
 
 			}
 
