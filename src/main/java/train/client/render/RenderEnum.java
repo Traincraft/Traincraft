@@ -1152,7 +1152,11 @@ public enum RenderEnum {
 	BR_Mk_1_BG(EntityPassengerBR_Mk1_BG.class, new ModelBR_Mk1_BG(),"BR_Mk1_BG_", true, new float[]{0,0,0}, new float[] {0, 180, 180}, null, "", 0, null, "", null, 0, false),
 	Class175(EntityLocoDieselClass175.class, new ModelClass175(), "Class_175_", true, new float[]{-2.25f,-0.127f,0}, new float[] {0, 180, 180}, null , "smoke", 1,  new ArrayList<double[]>() {{}}, "", null, 0, false),
 	Class175Coach(EntityPassengerClass175Coach.class, new ModelClass175Coach(), "Class_175_Middle_Car_", true, new float[]{0, -0.127f, 0}, new float[] {0, 180F, 180F}, null, "", 0, null, "", null,0, false),
-
+	FMH16_66( EntityLocoDieselFMH16_66.class,  new ModelFMH16_66(), "FM_H16-66_", true,new float[] {-1.7F, 0.15F, 0F},  new float[] { 0F, 180F, 180F }, null, "smoke", 4,  new ArrayList<double[]>() {
+		{
+			//add(new double[]{1.85D, 1.55D, 0.0D});
+		}
+	}, "", null, 0, false),
 
 
 

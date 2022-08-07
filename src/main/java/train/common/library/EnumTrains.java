@@ -485,7 +485,7 @@ public enum EnumTrains {
 	NMBS_HLE_18("NMBS_HLE_18", EntityLocoElectricNMBS_HLE_18.class, ItemIDs.minecartNMBS_HLE_18.item, "electric", 2850, 201, 0, 10, 0, 0, 0.9, 0.79, 0, TraincraftUtil.getBytesFromColors(new String[]{"White"}), 10, -3.7, "Pack: B.I.P."),
 	Class175("Class175", EntityLocoDieselClass175.class, ItemIDs.minecartClass175.item, "diesel", 900, 161, 0, 10, 0,100,0.9,0.79, 15000, TraincraftUtil.getBytesFromColors(new String[]{"Cyan", "Green", "Grey", "LightBlue", "Purple", "White"}), 18, -4.5, "Pack: B.I.P."),
 	Class175Coach("Class175Coach", EntityPassengerClass175Coach.class, ItemIDs.minecartClass175Coach.item, "passenger", 0, 0, 3, 0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[]{"Cyan", "Green", "Grey", "LightBlue", "Purple", "White"}), 0, 0, "Pack: B.I.P." ),
-
+	H16_66("H16-66", EntityLocoDieselFMH16_66.class, ItemIDs.minecartH16_66.item, "diesel", 1600, 130, 0, 45, 0, 200, 0.87, 0.93, 16000, TraincraftUtil.getBytesFromColors(new String[] {"Blue", "Yellow", "LightGrey", "Green", "Lime", "Black", "Grey", "Orange", "Brown", "Red", "Pink", "Magenta"}), 10, -3.35),
 
 
 
