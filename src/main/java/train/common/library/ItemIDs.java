@@ -91,6 +91,9 @@ public enum ItemIDs {
 	tcRailVeryLongStraight("ItemTCRail", "item_rail_straight_very_large", 5),
 
 	tcRailSmallDiagonalStraight("ItemTCRail", "item_rail_diagonal_straight_small", 5 ),
+	tcRailMediumDiagonalStraight("ItemTCRail", "item_rail_diagonal_straight_medium", 5 ),
+	tcRailLongDiagonalStraight("ItemTCRail", "item_rail_diagonal_straight_long", 5 ),
+	tcRailVeryLongDiagonalStraight("ItemTCRail", "item_rail_diagonal_straight_very_long", 5 ),
 
 	tcRailMediumTurn("ItemTCRail", "item_rail_turn_medium", 5),
 	tcRailLargeTurn("ItemTCRail", "item_rail_turn_large", 5),
@@ -308,6 +311,11 @@ public enum ItemIDs {
 	minecartBoulderWagon("ItemRollingStock", "BoulderWagon", 1),
 	minecartKVB_2300("ItemRollingStock", "kvb_2300", 3),
 	minecartKVB_2300_B("ItemRollingStock", "kvb_2300_b", 3),
+	minecartBR_Mk1_BSO("ItemRollingStock", "Mk1_BSO_Icon", 3),
+	minecartBR_Mk1_TSO("ItemRollingStock", "Mk1_TSO_Icon", 3),
+	minecartBR_Mk1_Buffet("ItemRollingStock", "Mk1_Buffet_Icon", 3),
+	minecartBR_Mk1_BG("ItemRollingStock", "Mk1_BG_Icon", 3),
+	minecartBR_Mk1_TPO_Stowage("ItemRollingStock", "Mk1_TPO_Stowage_Icon", 3),
 	minecartBR_MK2F_Coach("ItemRollingStock", "Mk2f_Coach_Icon", 3),
 	minecartBR_Mk2f_BSO("ItemRollingStock", "Mk2f_BSO_Icon", 3),
 	minecartBR_MK3_DVT("ItemRollingStock", "br_mk3_dvt", 3),
@@ -490,6 +498,8 @@ public enum ItemIDs {
 	minecartClass156engine("ItemRollingStock", "Class_156_Icon", 3),
 	minecartClass153engine("ItemRollingStock", "153_icon", 3),
 	minecartClass153Coach("ItemRollingStock", "153_icon", 3),
+	minecartClass175("ItemRollingStock", "Class_175_Icon", 3),
+	minecartClass175Coach("ItemRollingStock", "Class_175_Middle_Car_Icon", 3),
 	minecartPSSleeper565("ItemRollingStock", "BAP_PS_lightweight_5-6-5_sleeper_icon", 3),
 	minecartPSSleeper565DRGW("ItemRollingStock", "BAP_PS_lightweight_DRGW_5-6-5_sleeper_icon", 3),
 
@@ -540,8 +550,9 @@ public enum ItemIDs {
 	minecartAlcoPB1("ItemRollingStock", "AlcoPB1Icon",4),
 	minecartEMDE8A("ItemRollingStock", "EMDE8AIcon",5),
 	minecartEMDE8B("ItemRollingStock", "EMDE8BIcon",5),
-	minecartSNCB_M6("ItemRollingStock", "SNCB_M6", 5),
-	minecartSNCB_M6_TAIL("ItemRollingStock", "SNCB_M6_TAIL", 5),
+	minecartSNCB_M6("ItemRollingStock", "SNCB_M6_Coach_Icon", 5),
+	minecartSNCB_M6_TAIL("ItemRollingStock", "SNCB_M6_Tail_Icon", 5),
+	minecartNMBS_HLE_18("ItemRollingStock", "NMBS_HLE_18", 5),
 	minecartClass319Engine("ItemRollingStock", "Class319Engine", 5),
 	minecartClass319passenger("ItemRollingStock", "Class319Middle", 5),
 	minecartClass319panto("ItemRollingStock", "Class319Panto", 5),
@@ -572,6 +583,7 @@ public enum ItemIDs {
 	minecartEMDE7A("ItemRollingStock", "EMDE7AIcon",5),
 	minecartEMDE7B("ItemRollingStock", "EMDE7BIcon",5),
 	minecart5Plank("ItemRollingStock", "5 plank icon", 5),
+	minecartH16_66("ItemRollingStock", "FM_H16-66_icon", 5),
 	//signalSpanish("ItemsignalSpanish","signalSpanish", 1),
 
 

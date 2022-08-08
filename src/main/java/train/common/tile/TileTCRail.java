@@ -2,6 +2,7 @@ package train.common.tile;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityMinecart;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -10,6 +11,8 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
+import train.common.blocks.BlockTCRail;
+import train.common.blocks.BlockTCRailGag;
 import train.common.items.ItemTCRail;
 
 import java.util.ArrayList;
@@ -24,6 +27,7 @@ public class TileTCRail extends TileEntity {
 	public double slopeHeight;
 	public double slopeLength;
 	public double slopeAngle;
+	public double railLength;
 
 	private int ballastMaterial;
 	public int ballastMetadata;
@@ -73,6 +77,10 @@ public class TileTCRail extends TileEntity {
 		//}
 	}
 
+
+
+
+
 	public void setFacing(int facing) {
 
 		this.facingMeta = facing;
@@ -87,6 +95,17 @@ public class TileTCRail extends TileEntity {
 
 		return this.type;
 	}
+
+	public void setRailLength(Double railLength){
+		worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+		this.railLength = railLength;
+	}
+
+
+	public double getRailLength() {
+		return this.railLength;
+	}
+
 
 
 
@@ -333,6 +352,8 @@ public class TileTCRail extends TileEntity {
 		cy = nbt.getDouble("cy");
 		cz = nbt.getDouble("cz");
 		cy = nbt.getDouble("cy");
+		railLength = nbt.getDouble("railLength");
+
 		slopeHeight = nbt.getDouble("slopeHeight");
 		slopeLength = nbt.getDouble("slopeLength");
 		slopeAngle = nbt.getDouble("slopeAngle");
@@ -394,6 +415,7 @@ public class TileTCRail extends TileEntity {
 		nbt.setDouble("cx", cx);
 		nbt.setDouble("cy", cy);
 		nbt.setDouble("cz", cz);
+		nbt.setDouble("railLength", railLength);
 		nbt.setDouble("slopeHeight", slopeHeight);
 		nbt.setDouble("slopeLength", slopeLength);
 		nbt.setDouble("slopeAngle", slopeAngle);
