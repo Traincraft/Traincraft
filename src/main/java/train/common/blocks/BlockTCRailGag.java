@@ -15,6 +15,7 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import train.common.Traincraft;
+import train.common.core.util.TraincraftUtil;
 import train.common.library.BlockIDs;
 import train.common.library.Info;
 import train.common.tile.TileTCRailGag;
@@ -56,7 +57,7 @@ public class BlockTCRailGag extends Block {
 						if (world.getBlock(x + tileEntity.xCoord, y + tileEntity.yCoord, z + tileEntity.zCoord)instanceof BlockTCRail){
 							world.notifyBlockChange((x  + tileEntity.xCoord), (y + tileEntity.yCoord + 1), (z  + tileEntity.zCoord), Blocks.air);
 							world.markBlockForUpdate((x  + tileEntity.xCoord), (y + tileEntity.yCoord + 1 ), (z  + tileEntity.zCoord));
-							System.out.println("Test");
+							TraincraftUtil.println("Test");
 						}
 					}
 				}

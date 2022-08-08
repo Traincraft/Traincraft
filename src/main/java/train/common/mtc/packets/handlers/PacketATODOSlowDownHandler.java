@@ -8,6 +8,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.Vec3;
 import train.common.Traincraft;
 import train.common.api.Locomotive;
+import train.common.core.util.TraincraftUtil;
 import train.common.mtc.packets.PacketATO;
 import train.common.mtc.packets.PacketATODoSlowDown;
 import train.common.mtc.packets.PacketATOSetStopPoint;
@@ -43,7 +44,7 @@ public class PacketATODOSlowDownHandler implements IMessageHandler<PacketATODoSl
          ((Locomotive)entity).zFromStopPoint = 0.0;
          Traincraft.atoSetStopPoint.sendToAll(new PacketATOSetStopPoint(entity.getEntityId(),0.0, 0.0, 0.0, 0.0,0.0,0.0));
          ((Locomotive)entity).atoStatus = 0;
-         System.out.println("ato ended!");
+         TraincraftUtil.println("ato ended!");
          Traincraft.atoChannel.sendToServer(new PacketATO(entity.getEntityId(), 0));
 
       }

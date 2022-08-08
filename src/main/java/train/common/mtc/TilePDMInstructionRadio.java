@@ -9,6 +9,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import train.common.api.Locomotive;
 import train.common.api.WirelessTransmitter;
+import train.common.core.util.TraincraftUtil;
 
 import java.util.*;
 
@@ -53,7 +54,7 @@ public class TilePDMInstructionRadio extends TileEntity implements IPeripheral, 
         switch(method) {
             case 0: {
                 isActivated = true;
-                System.out.println(uniqueID);
+                TraincraftUtil.println(uniqueID);
                 return new Object[] {true};
 
             } case 1: {
@@ -65,7 +66,7 @@ public class TilePDMInstructionRadio extends TileEntity implements IPeripheral, 
                 return new Object[]{true};
             } case 3 : {
 
-                System.out.println(uniqueID);
+                TraincraftUtil.println(uniqueID);
                 return new Object[]{uniqueID};
             } case 4 : {
                return new Object[]{connectedTrains};

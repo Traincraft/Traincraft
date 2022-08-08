@@ -11,6 +11,19 @@ import train.common.api.Locomotive;
 
 public class TraincraftUtil{
 
+    public static boolean dev=false;
+
+    public static void println(Object... o) {
+        if (dev) {
+            System.out.println("------------------Traincraft Debug Begin------------------");
+            System.out.println(Thread.currentThread().getStackTrace()[2]);//print what function just called this
+            for (Object obj : o) {
+                System.out.println(obj);
+            }
+            System.out.println("------------------Traincraft Debug End--------------------");
+        }
+    }
+
     public static Item getItemFromName(String name){
         if (Item.itemRegistry.containsKey(name)){
             return (Item) Item.itemRegistry.getObject(name);

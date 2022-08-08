@@ -15,6 +15,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import org.lwjgl.util.vector.Matrix2f;
 import org.lwjgl.util.vector.Vector2f;
+import train.common.core.util.TraincraftUtil;
 import train.common.library.BlockIDs;
 import train.common.library.ItemIDs;
 import train.common.tile.TileTCRail;
@@ -1177,7 +1178,7 @@ public class ItemTCRail extends ItemPart {
 					tileGag[i].originY = y + 1;
 					tileGag[i].originZ = z;
 					tileGag[i].type = TrackTypes.MEDIUM_DIAGONAL_STRAIGHT.getLabel();
-					System.out.println(tileGag[i].type);
+					TraincraftUtil.println(tileGag[i].type);
 				}
 
 				return true;

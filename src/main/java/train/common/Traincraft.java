@@ -16,6 +16,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.VillagerRegistry;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
+import net.minecraft.launchwrapper.Launch;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraftforge.common.AchievementPage;
 import net.minecraftforge.common.MinecraftForge;
@@ -26,6 +27,7 @@ import train.common.api.LiquidManager;
 import train.common.blocks.TCBlocks;
 import train.common.core.*;
 import train.common.core.handlers.*;
+import train.common.core.util.TraincraftUtil;
 import train.common.generation.ComponentVillageTrainstation;
 import train.common.generation.WorldGenWorld;
 import train.common.items.TCItems;
@@ -98,6 +100,7 @@ public class Traincraft {
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
+		TraincraftUtil.dev = (Boolean) Launch.blackboard.get("fml.deobfuscatedEnvironment");
 		tcLog.info("Starting Traincraft " + Info.modVersion + "!");
 		/* Config handler */
 		configDirectory= event.getModConfigurationDirectory();
