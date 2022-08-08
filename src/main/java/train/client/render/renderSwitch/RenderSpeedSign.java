@@ -23,6 +23,7 @@ public class RenderSpeedSign extends TileEntitySpecialRenderer {
 
 	@Override
 	public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float tick) {
+		Tessellator.bindTexture(textures[(((TileSpeedSign) tileEntity).getSkinstate())]);
 		GL11.glPushMatrix();
 		GL11.glTranslated(x +0.5 , y+0.625, z +0.125);
 		GL11.glRotated(180, 0, 1, 0);
@@ -86,7 +87,6 @@ public class RenderSpeedSign extends TileEntitySpecialRenderer {
 			}
 
 			 */
-			Tessellator.bindTexture(textures[(((TileSpeedSign) tileEntity).getSkinstate())]);
 
 			modelspeedSign.render(null, 0, 0, 0, 0, 0, 0.0625f);
 

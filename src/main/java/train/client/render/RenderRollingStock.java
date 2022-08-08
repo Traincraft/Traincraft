@@ -34,6 +34,7 @@ public class RenderRollingStock extends Render {
 	 * Renders the Minecart.
 	 */
 	public static void renderTheMinecart(EntityRollingStock cart, double x, double y, double z, float yaw, float time) {
+		Tessellator.bindTexture(getTexture(cart));
 		GL11.glPushMatrix();
 		long var10 = cart.getEntityId() * 493286711L;
 		var10 = var10 * var10 * 4392167121L + var10 * 98761L;
@@ -233,11 +234,11 @@ public class RenderRollingStock extends Render {
 
 					}
 				} catch (InstantiationException e) {
+					e.printStackTrace();
+				} catch (Exception e){
 					if (renders.getTrans() != null) {
 						GL11.glTranslatef(renders.getTrans()[0], renders.getTrans()[1], renders.getTrans()[2]);
 					}
-				} catch (Exception e){
-					e.printStackTrace();
 				}
 
 
@@ -295,7 +296,6 @@ public class RenderRollingStock extends Render {
 				}*/
 
 
-				Tessellator.bindTexture(getTexture(cart));
 
 				GL11.glEnable(GL11.GL_LIGHTING);
 				int skyLight = cart.worldObj.getLightBrightnessForSkyBlocks(i, j, k, 0);
@@ -317,8 +317,6 @@ public class RenderRollingStock extends Render {
 								smokePosition = thePos;
 							}
 						}
-					} catch (InstantiationException e) {
-						smokePosition = renders.getSmokeFX();
 					} catch (Exception e) {
 
 						smokePosition = renders.getSmokeFX();
