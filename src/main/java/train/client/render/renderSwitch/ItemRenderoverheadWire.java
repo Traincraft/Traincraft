@@ -52,6 +52,7 @@ public class ItemRenderoverheadWire implements IItemRenderer {
     }
 
     private void renderSwitch(float x, float y, float z, float scale) {
+        Tessellator.bindTexture(texture);
         GL11.glPushMatrix();
         GL11.glDisable(GL11.GL_LIGHTING);
 
@@ -60,7 +61,6 @@ public class ItemRenderoverheadWire implements IItemRenderer {
         GL11.glRotated(180,0,0,1);
         GL11.glRotated(180,0,1,0);
 
-        Tessellator.bindTexture(texture);
 
         modeSwitch.render(null,0,0,0,0,0,0.0625f);
 

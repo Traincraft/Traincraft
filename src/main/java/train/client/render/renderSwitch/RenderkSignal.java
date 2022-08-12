@@ -18,6 +18,8 @@ public class RenderkSignal extends TileEntitySpecialRenderer {
 
     @Override
     public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float tick) {
+        boolean powered = ((TilekSignal)tileEntity).state ==0;
+        Tessellator.bindTexture(powered?texture2:texture);
         GL11.glPushMatrix();
         GL11.glTranslated(x+0.5,y+0.6,z+0.5);
         GL11.glRotated(180,0,1,0);
@@ -56,13 +58,10 @@ public class RenderkSignal extends TileEntitySpecialRenderer {
 
 
         if (!skipRender) {
-            World world = null;
             // tileEntity.getWorldObj().getBlock(tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord).isProvidingWeakPower(tileEntity.getWorldObj(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord, 0) > 0
-            if (((TilekSignal) tileEntity).state == 1) {
-                Tessellator.bindTexture(texture);
+            if (!powered) {
                 modelspanishSignal.render(null, 0, 0, 0, 0, 0, 0.0625f);
-            } else if (((TilekSignal) tileEntity).state == 0) {
-                Tessellator.bindTexture(texture2);
+            } else {
                 modelspanishSignal.render(null, 0, 0, 0, 0, 0, 0.0625f);
             }
         }

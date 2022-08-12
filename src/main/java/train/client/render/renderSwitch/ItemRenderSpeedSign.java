@@ -26,6 +26,7 @@ public class ItemRenderSpeedSign implements IItemRenderer {
 
 	@Override
 	public void renderItem(ItemRenderType type, ItemStack item, Object... data) {
+		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "SpeedSign10.png"));
 		switch (type) {
 		case ENTITY: {
 			GL11.glPushMatrix();
@@ -58,7 +59,6 @@ public class ItemRenderSpeedSign implements IItemRenderer {
 	}
 
 	private void renderSpeedSign(float x, float y, float z, float rotate) {
-		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "SpeedSign10.png"));
 		GL11.glTranslatef(x, y, z);
 		GL11.glRotatef(180f,0f,0f, rotate);
 		//GL11.glRotatef();
