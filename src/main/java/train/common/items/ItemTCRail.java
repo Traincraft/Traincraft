@@ -4512,14 +4512,17 @@ public class ItemTCRail extends ItemPart {
 
 				if (!canPlaceTrack(player, world, x + xDisplace, y + 1, z + zDisplace)
 						|| !canPlaceTrack(player, world, x + (xDisplace * 2), y + 1, z + (zDisplace * 2))) {
+					player.addChatMessage(new ChatComponentText("front"));
 					return false;
 				}
-				if (!canPlaceTrack(player, world, x + (xDisplace * 2) + (xSideDisplace), y + 1,
+				if (!canPlaceTrack(player, world, x + (xDisplace) + (xSideDisplace), y + 1,
 						z + (zDisplace) + (zSideDisplace))) {
+					player.addChatMessage(new ChatComponentText("right "));
 					return false;
 				}
-				if (!canPlaceTrack(player, world, x + (xDisplace * 2) - (xSideDisplace), y + 1,
+				if (!canPlaceTrack(player, world, x + (xDisplace) - (xSideDisplace), y + 1,
 						z + (zDisplace) - (zSideDisplace))) {
+					player.addChatMessage(new ChatComponentText("left"));
 					return false;
 				}
 
