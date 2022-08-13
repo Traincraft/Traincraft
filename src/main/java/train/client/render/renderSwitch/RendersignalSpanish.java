@@ -16,6 +16,8 @@ public class RendersignalSpanish extends TileEntitySpecialRenderer {
     private static final ResourceLocation texture2 = new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "signalSpanishGreen.png");
     @Override
     public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float tick) {
+        boolean state=((TilesignalSpanish) tileEntity).state == 1;
+        Tessellator.bindTexture(state?texture:texture2);
         GL11.glPushMatrix();
         GL11.glTranslated(x+0.5,y+0.6,z+0.5);
         //GL11.glRotated(180,0,1,0);
@@ -65,13 +67,10 @@ public class RendersignalSpanish extends TileEntitySpecialRenderer {
 
 
         if (!skipRender) {
-            World world = null;
             // tileEntity.getWorldObj().getBlock(tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord).isProvidingWeakPower(tileEntity.getWorldObj(), tileEntity.xCoord, tileEntity.yCoord, tileEntity.zCoord, 0) > 0
-            if (((TilesignalSpanish) tileEntity).state == 1) {
-                Tessellator.bindTexture(texture);
+            if (state) {
                 modelspanishSignal.render(null, 0, 0, 0, 0, 0, 0.0625f);
-            } else if (((TilesignalSpanish) tileEntity).state == 0) {
-                Tessellator.bindTexture(texture2);
+            } else {
                 modelspanishSignal.render(null, 0, 0, 0, 0, 0, 0.0625f);
             }
         }

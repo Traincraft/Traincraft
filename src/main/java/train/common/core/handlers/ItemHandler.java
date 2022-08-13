@@ -143,7 +143,7 @@ public class ItemHandler {
 
 	public static boolean oreBlocks(ItemStack i){
 		if (OREDICT_ORES==null){
-			OREDICT_ORES = new LinkedList<>();
+			OREDICT_ORES = new LinkedList<String>();
 		}
 		if (!OREDICT_ORES.contains(i.getUnlocalizedName())){
 			for(Integer ore : OreDictionary.getOreIDs(i)) {

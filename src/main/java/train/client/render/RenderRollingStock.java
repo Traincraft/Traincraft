@@ -34,6 +34,7 @@ public class RenderRollingStock extends Render {
 	 * Renders the Minecart.
 	 */
 	public static void renderTheMinecart(EntityRollingStock cart, double x, double y, double z, float yaw, float time) {
+		Tessellator.bindTexture(getTexture(cart));
 		GL11.glPushMatrix();
 		long var10 = cart.getEntityId() * 493286711L;
 		var10 = var10 * var10 * 4392167121L + var10 * 98761L;
@@ -232,13 +233,12 @@ public class RenderRollingStock extends Render {
 						}
 
 					}
-				} catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+				} catch (InstantiationException e) {
+					e.printStackTrace();
+				} catch (Exception e){
 					if (renders.getTrans() != null) {
 						GL11.glTranslatef(renders.getTrans()[0], renders.getTrans()[1], renders.getTrans()[2]);
 					}
-
-				} catch (InstantiationException e) {
-					e.printStackTrace();
 				}
 
 
@@ -257,14 +257,14 @@ public class RenderRollingStock extends Render {
 						}
 
 					}
-				} catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+				} catch (InstantiationException e) {
+					e.printStackTrace();
+				} catch (Exception e) {
 					if (renders.getRotate() != null) {
 						GL11.glRotatef(renders.getRotate()[0], 1.0F, 0.0F, 0.0F);
 						GL11.glRotatef(renders.getRotate()[1], 0.0F, 1.0F, 0.0F);
 						GL11.glRotatef(renders.getRotate()[2], 0.0F, 0.0F, 1.0F);
 					}
-				} catch (InstantiationException e) {
-					e.printStackTrace();
 				}
 
 				/*if (renders.getRotate() != null) {
@@ -281,13 +281,13 @@ public class RenderRollingStock extends Render {
 							GL11.glScalef(theRotate[0], theRotate[1], theRotate[2]);
 						}
 					}
-				} catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+				} catch (InstantiationException e) {
+					e.printStackTrace();
+				} catch (Exception e) {
 					if (renders.getScale() != null) {
 						GL11.glScalef(renders.getScale()[0], renders.getScale()[1], renders.getScale()[2]);
 					}
 
-				} catch (InstantiationException e) {
-					e.printStackTrace();
 				}
 
 
@@ -296,7 +296,6 @@ public class RenderRollingStock extends Render {
 				}*/
 
 
-				Tessellator.bindTexture(getTexture(cart));
 
 				GL11.glEnable(GL11.GL_LIGHTING);
 				int skyLight = cart.worldObj.getLightBrightnessForSkyBlocks(i, j, k, 0);
@@ -309,7 +308,7 @@ public class RenderRollingStock extends Render {
 				//GL11.glEnable(GL11.GL_LIGHTING);
 
 				if (renders.hasSmoke()) {
-					ArrayList<double[]> smokePosition = new ArrayList<>();
+					ArrayList<double[]> smokePosition = new ArrayList<double[]>();
 					try {
 						if (renders.getModel().getClass().getDeclaredMethod("getSmokePosition") != null) {
 							Method theScaleMethod = renders.getModel().getClass().getDeclaredMethod("getSmokePosition");
@@ -318,10 +317,8 @@ public class RenderRollingStock extends Render {
 								smokePosition = thePos;
 							}
 						}
-					} catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+					} catch (Exception e) {
 
-						smokePosition = renders.getSmokeFX();
-					} catch (InstantiationException e) {
 						smokePosition = renders.getSmokeFX();
 					}
 

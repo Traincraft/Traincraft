@@ -3,6 +3,7 @@ package train.client.render;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.util.ForgeDirection;
 import org.lwjgl.opengl.GL11;
 import tmt.Tessellator;
 import train.client.render.models.blocks.ModelMFPBWigWag;
@@ -17,11 +18,15 @@ public class RenderMFPBWigWag extends TileEntitySpecialRenderer {
 
 	@Override
 	public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float tick) {
+		TileMFPBWigWag tile = ((TileMFPBWigWag)tileEntity);
+		if(tile.getFacing()!= ForgeDirection.UNKNOWN){
+			Tessellator.bindTexture(tile.powered?textureOn:textureOff);
+		}
+
 		GL11.glPushMatrix();
 		GL11.glTranslated(x+0.4,y,z+0.5);
 		GL11.glRotated(180,0,1,0);
 		boolean skipRender = false;
-		TileMFPBWigWag tile = ((TileMFPBWigWag)tileEntity);
 
 
 		switch (tile.getFacing()){
@@ -54,7 +59,6 @@ public class RenderMFPBWigWag extends TileEntitySpecialRenderer {
 		}
 
 		if (!skipRender) {
-			Tessellator.bindTexture(tile.powered?textureOn:textureOff);
 			modelSwitch.render(null, tile.rotation, 0, 0, 0, 0, 0.0625f);
 		}
 		GL11.glPopMatrix();

@@ -45,8 +45,8 @@ public class RetrogenHandler {
 						Traincraft.worldGen.generate(rand, chunk.xPosition, chunk.zPosition, world, world.theChunkProviderServer.currentChunkProvider, world.theChunkProviderServer.currentChunkProvider);
 					}
 				}
-				chunksToRetroGen= new ArrayList<>();
-				gennedChunks= new ArrayList<>();
+				chunksToRetroGen= new ArrayList<Chunk>();
+				gennedChunks= new ArrayList<ChunkData>();
 			}
 		}
 	}

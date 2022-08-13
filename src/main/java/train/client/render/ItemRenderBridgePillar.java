@@ -49,8 +49,8 @@ public class ItemRenderBridgePillar implements IItemRenderer {
 	}
 
 	private void renderBridgePillar(float x, float y, float z) {
-		GL11.glPushMatrix();
 		Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "bridgePillar.png"));
+		GL11.glPushMatrix();
 		GL11.glTranslatef(x, y-0.5f, z);
 		GL11.glRotatef(180f,0f,0f, 1f);
 		modelBridgePillar.render();

@@ -428,8 +428,8 @@ public enum EnumTrains {
 	AlcoPB1("PB1", EntityLocoDieselAlcoPB1.class, ItemIDs.minecartAlcoPB1.item, "diesel", 2000, 188, 0, 25, 0, 180, 0.7, 0.79, 15000, TraincraftUtil.getBytesFromColors(new String[] {"Red", "Black", "Yellow", "Orange", "LightGrey"}), 10, -3.1, "Pack: BAP"),
 	EMDE8A("E8A", EntityLocoDieselEMDE8A.class, ItemIDs.minecartEMDE8A.item, "diesel", 2250, 188, 0, 20, 0, 180, 0.7, 0.79, 15000, TraincraftUtil.getBytesFromColors(new String[] {"Orange", "Purple", "Cyan", "Blue", "Brown", "Red", "Pink", "Yellow", "Lime", "Grey", "LightGrey"}), 10, -3.45, "Pack: BAP"),
 	EMDE8B("E8B", EntityLocoDieselEMDE8B.class, ItemIDs.minecartEMDE8B.item, "diesel", 2250, 188, 0, 20, 0, 180, 0.7, 0.79, 15000, TraincraftUtil.getBytesFromColors(new String[] {"Orange", "Blue", "Red", "Grey", "LightGrey"}), 10, -3.77, "Pack: BAP"),
-	SNCB_M6("SNCB_M6", EntityPassengerSNCB_M6.class, ItemIDs.minecartSNCB_M6.item, "passenger", 0, 0, 3.0,0 , 0, 0, 0,0,0,null,0,0, "Pack: B.I.P."),
-	SNCB_M6_TAIL("SNCB_M6_TAIL", EntityPassengerSNCB_M6_TAIL.class, ItemIDs.minecartSNCB_M6_TAIL.item, "passenger", 0, 0, 3.0,0 , 0, 0, 0,0,0,null,0,0, "Pack: B.I.P."),
+	SNCB_M6("SNCB_M6", EntityPassengerSNCB_M6.class, ItemIDs.minecartSNCB_M6.item, "passenger", 0, 0, 3.0,0 , 0, 0, 0,0,0, TraincraftUtil.getBytesFromColors(new String[] {"White"}),0,0, "Pack: B.I.P."),
+	SNCB_M6_TAIL("SNCB_M6_TAIL", EntityPassengerSNCB_M6_TAIL.class, ItemIDs.minecartSNCB_M6_TAIL.item, "passenger", 0, 0, 3.0,0 , 0, 0, 0,0,0,TraincraftUtil.getBytesFromColors(new String[] {"White"}),0,0, "Pack: B.I.P."),
 
 	Class319Engine("Class 319 Engine", EntityElectricClass319.class, ItemIDs.minecartClass319Engine.item, "electric", 750, 160, 0,60, 0, 100, 0.7, 0.8, 1000, TraincraftUtil.getBytesFromColors(new String[] {"Red", "Blue","Cyan","Green","Magenta", "White", "Lime"}), 18, -3.3, "Made by Kranker"),
 	Class319Middle("Class 319 Passenger Car", EntityPassengerClass319Middle.class, ItemIDs.minecartClass319passenger.item, "passenger", 0, 0, 3,0 , 0, 0, 0,0,0,TraincraftUtil.getBytesFromColors(new String[] {"Red", "Blue","Cyan","Green","Magenta", "White"}),0,0, "Made by Kranker"),
