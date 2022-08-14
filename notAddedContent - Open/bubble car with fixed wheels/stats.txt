@@ -1,0 +1,6 @@
+name: bubble car
+type: diesel 
+horse power: 750
+speed: 120
+inventory slots: 6
+fuel capacity: 8000mb
