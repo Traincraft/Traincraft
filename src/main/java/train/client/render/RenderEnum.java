@@ -1157,6 +1157,9 @@ public enum RenderEnum {
 			//add(new double[]{1.85D, 1.55D, 0.0D});
 		}
 	}, "", null, 0, false),
+	ACFGNRPO_30(EntityPassengerACFGNRPO_30.class, new ModelACFGNRPO_30(), "AC&F_lightweight_GNRPO30_", true, new float[] { 0F, 0.15F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	ACFGN60SeatCoach(EntityPassengerACFGN60SeatCoach.class, new ModelACFGN60SeatCoach(), "AC&F_lightweight_GN60SeatCoach_", true, new float[] { 0F, 0.15F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+
 
 
 
