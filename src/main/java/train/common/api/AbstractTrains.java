@@ -638,6 +638,8 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		if (color.equals("Skin21")) return 21;
 		if (color.equals("Skin22")) return 22;
 		if (color.equals("Skin23")) return 23;
+		if (color.equals("Skin24")) return 24;
+		if (color.equals("Skin25")) return 25;
 		if (color.equals("Empty")) return 100;
 		if (color.equals("Full")) return 101;
 		return -1;

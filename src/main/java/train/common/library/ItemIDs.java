@@ -586,6 +586,7 @@ public enum ItemIDs {
 	minecartH16_66("ItemRollingStock", "FM_H16-66_icon", 5),
 	minecartACFGNRPO_30("ItemRollingStock", "ACFGNRPO_30", 3),
 	minecartACFGN60SeatCoach("ItemRollingStock", "ACFGN60SeatCoach", 3),
+	minecartFGV4300Motor("ItemRollingStock","FVG4300", 5 ),
 	//signalSpanish("ItemsignalSpanish","signalSpanish", 1),
 
 
