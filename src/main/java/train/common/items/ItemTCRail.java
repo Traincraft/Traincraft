@@ -24,7 +24,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public class ItemTCRail extends ItemPart {
-	private TrackTypes type;
+	private final TrackTypes type;
 
 	private String typeVariantStraight = TrackTypes.SMALL_STRAIGHT.getLabel();
 	private String typeVariant90Turn;
@@ -67,7 +67,7 @@ public class ItemTCRail extends ItemPart {
 		SUPER_LARGE_LEFT_TURN("SUPER_LARGE_LEFT_TURN", "TURN", ItemIDs.tcRailSuperLargeTurn, ""),
 		SUPER_LARGE_RIGHT_TURN("SUPER_LARGE_RIGHT_TURN", "TURN", ItemIDs.tcRailSuperLargeTurn, ""),
 
-		MEDIUM_45DEGREE_TURN("MEDIUM_45DEGREE_TURN", "TURN", ItemIDs.tcRailMedium45DegreeTurn, "2x3"),
+		MEDIUM_45DEGREE_TURN("MEDIUM_45DEGREE_TURN", "TURN", ItemIDs.tcRailMedium45DegreeTurn, "3x4, hold sneak for placement compatibility"),
 		MEDIUM_RIGHT_45DEGREE_TURN("MEDIUM_RIGHT_45DEGREE_TURN", "TURN", ItemIDs.tcRailMedium45DegreeTurn, ""),
 		MEDIUM_LEFT_45DEGREE_TURN("MEDIUM_LEFT_45DEGREE_TURN", "TURN", ItemIDs.tcRailMedium45DegreeTurn, ""),
 
@@ -195,10 +195,10 @@ public class ItemTCRail extends ItemPart {
 
 
 
-		private String label;
-		private String type;
-		private ItemIDs item;
-		private String tooltip;
+		private final String label;
+		private final String type;
+		private final ItemIDs item;
+		private final String tooltip;
 
 		TrackTypes(String label, String type, ItemIDs item, String tooltip) {
 			this.label = label;
@@ -714,7 +714,7 @@ public class ItemTCRail extends ItemPart {
 				l = MathHelper.floor_double((player!=null?player.rotationYaw:par10) * 4.0F / 360.0F + 0.5D) & 3;
 			}
 
-			tempType = getPlacementDirection(player, world, l, par10);
+			tempType = getPlacementDirection(player, world,  l, par10);
 
 
 
