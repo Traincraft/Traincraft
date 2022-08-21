@@ -291,7 +291,6 @@ public enum EnumTrains {
 	passengerBNLRV_B("BNLRV_B", EntityPassengerBNLRV_B.class, ItemIDs.minecartBNLRV_B.item, "passenger", 0, 0, 3, 0, 0,0,0,0,0, TraincraftUtil.getBytesFromColors(new String[]{"Orange", "White", "Yellow", "Grey", "Black"}), 10, 0, "Pack: Trams in Motion" ),
     passengerBW305("BW305",EntityPassengerBW305.class, ItemIDs.minecartPassengerBW305.item, "passenger", 0, 0, 2, 0, 0, 0, 0, 0, 0,TraincraftUtil.getBytesFromColors(new String[]{"Orange", "Green", "Yellow", "Blue", "Magenta", "Cyan"}), 0, 0, "Pack: Trams in Motion" ),
 	locoElectricTW305("TW305",EntityLocoElectricTW305.class, ItemIDs.minecartLocoElectricTW305.item,"electric",350,55,0,10,0,140,0.75,0.7,0,TraincraftUtil.getBytesFromColors(new String[]{"Orange", "Green", "Yellow", "Blue", "Magenta", "Cyan"}),14,-2,"Pack: Trams in Motion"  ),
-
 	locoElectricMetro2000("Metro2000loco",EntityElectricMetro2000Motor.class,ItemIDs.minecartMetro2000Loco.item, "electric",600,65,3,10,0,0,0.8,0.9,0,TraincraftUtil.getBytesFromColors(new String[]{"Blue", "White","Red"}),18,-3.1,"Pack: Metro in Motion"),
 	passengerMetro2000("Metro2000Passenger", EntityPassengerMetro2000.class, ItemIDs.minecartMetro2000Passenger.item, "passenger", 0, 0, 3, 0,0,0,0,0,0,TraincraftUtil.getBytesFromColors(new String[]{"Blue", "White","Red"}), 0, 0, "Pack: Metro In Motion"),
 
@@ -489,6 +488,10 @@ public enum EnumTrains {
 	ACFGNRPO_30("AC&F GN RPO (30' mail)", EntityPassengerACFGNRPO_30.class, ItemIDs.minecartACFGNRPO_30.item, "freight", 1.5, TraincraftUtil.getBytesFromColors(new String[]{"Orange", "Green"}), 18, 27, "Pack: BAP"),
 	ACFGN60SeatCoach("AC&F GN 60 Seat Coach", EntityPassengerACFGN60SeatCoach.class, ItemIDs.minecartACFGN60SeatCoach.item, "passenger", 0, 0, 3, 0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[]{"Orange", "Yellow", "Green", "LightGrey"}), 10, 0, "Pack: BAP"),
 	FGV4300Motor("FGV_4300_Motor", EntityLocoElectricFGV4300.class, ItemIDs.minecartFGV4300Motor.item, "electric", 500, 80, 0, 10, 0,0,0.9,0.9,0,null,10,-2.75),
+	H16_66("H16-66", EntityLocoDieselFMH16_66.class, ItemIDs.minecartH16_66.item, "diesel", 1600, 130, 0, 45, 0, 200, 0.87, 0.93, 16000, TraincraftUtil.getBytesFromColors(new String[] {"Blue", "Yellow", "LightGrey", "Green", "Lime", "Black", "Grey", "Orange", "Brown", "Red", "Pink", "Magenta"}), 10, -3.35),
+	locoElectricInterurban_Series_100("Interurban Series 100", EntityElectricInterurbanSeries100.class, ItemIDs.minecartLocoElectricInterurbanSeries100.item,"electric",600,70,0,10,0,0,0.7,0.7,0,TraincraftUtil.getBytesFromColors(new String[]{"Green", "Blue"}),14,-3,"Pack: Trams in Motion"),
+
+
 
 	;
 

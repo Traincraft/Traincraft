@@ -805,6 +805,7 @@ public enum RenderEnum {
 	passenger440RRear(EntityPassenger440RRear.class, new Model440R_Back(), "440R_", true, new float[] { 0.0F, 0.1F, 0.0F },   new float[] { 0F, 0F, 180F }, null, "", 0, null, "", null, 0, false),
 	passengerBW305(EntityPassengerBW305.class, new ModelBW305(), "tw_", true, new float[]{ 0.0F, 0.18F, 0.0F}, new float[]{ 0.0F, 180F, 180F} , null, "", 0, null, "", null, 0 , false ),
 	LocoElectricTW305(EntityLocoElectricTW305.class, new ModelTW305(), "tw_", true, new float[]{ -1.0F, 0.18F, 0.0F}, new float[]{ 0.0F, 180F, 180F} , null, "", 0, null, "", null, 0 , false ),
+	LocoElectricInterurbanSeries100(EntityElectricInterurbanSeries100.class, new ModelInterurbanSeries100(), "Interurban_tram_", true, new float[]{ -1.5F, 0.18F, 0.0F}, new float[]{ 0.0F, 180F, 180F} , null, "", 0, null, "", null, 0 , false ),
 	GP13(EntityLocoDieselGP13.class, new ModelGP13(), "gp13_", true, new float[] { -0.8F, -0.47F, 0.0F }, new float[] { 0F, 180F, 0F }, null, "smoke", 4, new ArrayList<double[]>() {
 		{
 			add(new double[] { -0.2D, 1.2D, 0.0D });
@@ -956,8 +957,8 @@ public enum RenderEnum {
 	freightBNSFGon(EntityFreightBNSFGon.class, new ModelBNSFGon(), "BNSFMillGon_", true, new float[] { 0.0F, 0.0F, 0.0F }, null, null, "", 0, null, "", null, 0, false),
 	locoILMA(EntityLocoElectricILMA.class, new ModelILMA(), "ILMA_", true, new float[] { 0.0F, 0.15F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	locoILMB(EntityLocoElectricILMB.class, new ModelILMB(), "ILMB_", true, new float[] { 0.0F, 0.15F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
-	Feve3300Front(EntityLocoElectricFeve3300.class, new Modelfeve3300front(), "feve3300_", true, new float[] { -1.8F, 0.1F, 0.0F },   new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
-	Feve3300Rear(EntityPassengerFeve3300.class, new Modelfeve3300rear(), "feve3300_", true, new float[] { -0.0F, 0.1F, 0.0F },   new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	Feve3300Front(EntityLocoElectricFeve3300.class, new Modelfeve3300front(), "feve3300_", true, new float[] { -1.8F, 0.18F, 0.0F },   new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	Feve3300Rear(EntityPassengerFeve3300.class, new Modelfeve3300rear(), "feve3300_", true, new float[] { -0.0F, 0.18F, 0.0F },   new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	HH660( EntityLocoDieselBapHH660.class,  new ModelHH660(), "hh600_", true,new float[] {-1F, -0.1F, 0F},  new float[] { 0F, 180F, 180F }, null, "smoke", 4,  new ArrayList<double[]>() {
 		{
 			add(new double[]{2.0D, 1.35D, 0D});
@@ -1049,10 +1050,10 @@ public enum RenderEnum {
 	GP38dash9W( EntityLocoDieselBapGP38dash9W.class,  new ModelGP38dash9W(), "GP38dash9W_Green", false,new float[] {-1.5F, 0.155F, 0F},  new float[] { 0F, 180F, 180F }, null, "smoke", 3,  new ArrayList<double[]>() {
 		{ }
 	}, "", null, 0, false),
-	class158motor(EntityLocoDieselClass158.class, new ModelClass158(), "Class_158_", true, new float[] { -1.9F, 0.15F, 0.0F },   new float[] { 0F, 180F, 180F }, null, "smoke", 2, new ArrayList<double[]>() {
+	class158motor(EntityLocoDieselClass158.class, new ModelClass158(), "Class_158_", true, new float[] { -1.9F, -0.45F, 0.0F },   new float[] { 0F, 180F, 180F }, null, "smoke", 2, new ArrayList<double[]>() {
 		{ }
 	}, "", null, 0, false),
-	class158car(EntityClass158Coach.class, new ModelClass158Middle(), "Class_158_Middle_", true, new float[] { -0.0F, 0.15F, 0.0F },   new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	class158car(EntityClass158Coach.class, new ModelClass158Middle(), "Class_158_", true, new float[] { -0.0F, -0.45F, 0.0F },   new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	//HBC1C(EntityCabooseBapHBC1C.class, new ModelHBC1C(),"HBC1C_", true, null, null, null, "", 0, null, "", null, 0, false),
 	DRGWCaboose(EntityCabooseBapDRGW.class, new ModelDRGW01400Caboose(),"BAP_DRGW_01400_", true, null, null, null, "", 0, null, "", null, 0, false),
 	passengerPSSleeper565(EntityPassengerPSSleeper565.class, new ModelPSSleeper565(), "PS_lightweight_5-6-5_sleeper_", true, new float[] { 0F, 0.15F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),

@@ -356,6 +356,7 @@ item.tc:minecartPassengerRheingold.name=Rheingold Passenger
 item.tc:minecartPassengerRheingoldPanorama.name=Rheingold Panorama
 item.tc:minecartPassengerBW305.name=Bw 305
 item.tc:minecartLocoElectricTW305.name=Tw 305
+item.tc:minecartLocoElectricInterurbanSeries100.name=Interurban Series 100
 item.tc:minecartBulkheadFlatCart.name=Bulkhead Flat Cart
 item.tc:minecartLocoSouthern1102.name=Baldwin F-14
 item.tc:minecartTenderSouthern1102.name=Baldwin F-14 Tender
