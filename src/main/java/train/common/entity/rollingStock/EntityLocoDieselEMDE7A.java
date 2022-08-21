@@ -16,7 +16,7 @@ import train.common.library.GuiIDs;
 
 public class EntityLocoDieselEMDE7A extends DieselTrain {
     public EntityLocoDieselEMDE7A(World world) {
-        super(world, EnumTrains.EMDE8A.getTankCapacity(), LiquidManager.dieselFilter());
+        super(world, EnumTrains.EMDE7A.getTankCapacity(), LiquidManager.dieselFilter());
         initLoco();
         //when the benis sus
     }
@@ -123,7 +123,7 @@ public class EntityLocoDieselEMDE7A extends DieselTrain {
     }
 
     @Override
-    public float getOptimalDistance(EntityMinecart cart) { return 1.3F;
+    public float getOptimalDistance(EntityMinecart cart) { return 1.1F;
     }
 
     @Override

@@ -517,6 +517,20 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 			return "Skin22";
 		case 23:
 			return "Skin23";
+		case 24:
+			return "Skin24";
+		case 25:
+			return "Skin25";
+		case 26:
+			return "Skin26";
+		case 27:
+			return "Skin27";
+		case 28:
+			return "Skin28";
+		case 29:
+			return "Skin29";
+		case 30:
+			return "Skin30";
 		case 100:
 			return "Empty";
 		case 101:
@@ -576,6 +590,20 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 			return "Skin22";
 		case 23:
 			return "Skin23";
+		case 24:
+			return "Skin24";
+		case 25:
+			return "Skin25";
+		case 26:
+			return "Skin26";
+		case 27:
+			return "Skin27";
+		case 28:
+			return "Skin28";
+		case 29:
+			return "Skin29";
+		case 30:
+			return "Skin30";
 		case 100:
 			return "Empty";
 		case 101:

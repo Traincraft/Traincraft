@@ -940,7 +940,7 @@ public class ModelF7B extends ModelConverter //Same as Filename
 		bodyModel[224].addBox(0F, 0F, 0F, 4, 1, 4, 0F); // Box 398
 		bodyModel[224].setRotationPoint(-12.5F, -20F, -2F);
 	}
-	ModelBapBlombergB theTrucc = new ModelBapBlombergB();
+	ModelBlombergBnew theTrucc = new ModelBlombergBnew();
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
 		for (int i = 0; i < 225; i++) {
@@ -954,30 +954,30 @@ public class ModelF7B extends ModelConverter //Same as Filename
 		}
 
 		if (entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 3||entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 11||entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 1||entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 4||entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 5) {
-			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/blombergB_Grey.png"));
+			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/blombergB_2_Silver.png"));
 			GL11.glPushMatrix();
-			GL11.glTranslated(-1.1, 0.16, 0);
+			GL11.glTranslated(-1.2, -0.01, 0);
 			theTrucc.render(entity, f, f1, f2, f3, f4, f5);
 
-			GL11.glTranslated(2.2, 0, 0);
+			GL11.glTranslated(2.45, 0.0, 0);
 			theTrucc.render(entity, f, f1, f2, f3, f4, f5);
 			GL11.glPopMatrix();
 		} else if (entity instanceof AbstractTrains && ((AbstractTrains) entity).getColor() == 8) {
-			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/blombergb_SPgrey.png"));
+			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/blombergb_2_Espee.png"));
 			GL11.glPushMatrix();
-			GL11.glTranslated(-1.1, 0.16, 0);
+			GL11.glTranslated(-1.2, -0.01, 0);
 			theTrucc.render(entity, f, f1, f2, f3, f4, f5);
 
-			GL11.glTranslated(2.2, 0, 0);
+			GL11.glTranslated(2.45, 0.0, 0);
 			theTrucc.render(entity, f, f1, f2, f3, f4, f5);
 			GL11.glPopMatrix();
 		} else {
-			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/blombergB_Black.png"));
+			Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/blombergB_2_Blac.png"));
 			GL11.glPushMatrix();
-			GL11.glTranslated(-1.1f, 0.16, 0);
+			GL11.glTranslated(-1.2, -0.01, 0);
 			theTrucc.render(entity, f, f1, f2, f3, f4, f5);
 
-			GL11.glTranslated(2.3, 0, 0);
+			GL11.glTranslated(2.45, 0.0, 0);
 			theTrucc.render(entity, f, f1, f2, f3, f4, f5);
 			GL11.glPopMatrix();
 		}

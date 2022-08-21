@@ -615,6 +615,8 @@ item.tc:minecartEMDE7A.name=EMD E7A
 item.tc:minecartEMDE7B.name=EMD E7B
 item.tc:minecart5Plank.name=5 Plank
 item.tc:minecartH16_66.name=FM H16-66
+item.tc:minecartACFGNRPO_30.name=American Car & Foundry GN RPO (30' mail section)
+item.tc:minecartACFGN60SeatCoach.name=American Car & Foundry GN 60 Seat Coach
 
 
 <!-- ## Achievements ## -->
@@ -1136,6 +1138,8 @@ entity.tc.E7A.name=EMD E7A
 entity.tc.E7B.name=EMD E7B
 entity.tc.5Plank.name=5 Plank
 entity.tc.H16-66.name=FM H16-66
+entity.tc.AC&F GN RPO (30' mail).name=American Car & Foundry GN RPO (30' mail section)
+entity.tc.AC&F GN 60 Seat Coach.name=American Car & Foundry GN 60 Seat Coach
 
 description.villager.profession.tc.station_chief=Station Chief
 
