@@ -1141,6 +1141,9 @@ entity.tc.E7A.name=EMD E7A
 entity.tc.E7B.name=EMD E7B
 entity.tc.5Plank.name=5 Plank
 entity.tc.H16-66.name=FM H16-66
+entity.tc.ElectricMetro3000Loco=Metro Madrid 3000 Loco
+entity.tc.PassengerMetro3000=Metro Madrid 3000 Middle
+entity.tc.PassengerMetro3000Tail=Metro Madrid 3000 Tail
 
 description.villager.profession.tc.station_chief=Station Chief
 

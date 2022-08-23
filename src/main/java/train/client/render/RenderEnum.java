@@ -1072,8 +1072,8 @@ public enum RenderEnum {
 	SNCB_M6( EntityPassengerSNCB_M6.class, new ModelSNCB_M6(),"SNCB_M6_", true, new float[] {0, .095F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
 	SNCB_M6_TAIL( EntityPassengerSNCB_M6_TAIL.class, new ModelSNCB_M6_TAIL(),"SNCB_M6_Tail_", true, new float[] {0, 0.04f, 0F},  new float[] { 0F, 0, 180F },null, "", 0, null, "", null, 0, false),
 
-	Class153Engine( EntityLocoDieselClass153.class, new ModelClass153(), "class_153_", true, new float[] {-2.1F, .15F, 0F}, new float[] {0F, 180F, 180F }, null, "smoke", 3,  new ArrayList<double[]>() {{}}, "", null, 0, false),
-	Class153Coach( EntityPassengerClass153.class, new ModelClass153(), "class_153_", true, new float[] {0F, .15F, 0F}, new float[] {0F, 180F, 180F }, null, "",0 , null, "", null, 0, false),
+	Class153Engine( EntityLocoDieselClass153.class, new ModelClass153(), "class_153_", true, new float[] {-2.1F, 0.18F, 0F}, new float[] {0F, 180F, 180F }, null, "smoke", 3,  new ArrayList<double[]>() {{}}, "", null, 0, false),
+	Class153Coach( EntityPassengerClass153.class, new ModelClass153(), "class_153_", true, new float[] {0F, 0.18F, 0F}, new float[] {0F, 180F, 180F }, null, "",0 , null, "", null, 0, false),
 	Class156Engine( EntityLocoDieselClass156.class, new ModelClass156(), "Class_156_", true, new float[] {-1.3F, -0.57F, 0F}, new float[] {0F, 180F, 180F},  null, "smoke",3, new ArrayList<double[]>() {{}}, "", null, 0, false ),
 	Class47(EntityLocoDieselClass47.class, new ModelClass47(), "Class_47_", true, new float[] {-4f, 0f, 0f}, new float[] {0f, 180f, 180f}, null, "smoke", 3, new ArrayList<double[]>() {{}}, "", null, 0, false),
 	Class319Engine(EntityElectricClass319.class, new ModelClass319Engine(), "Br_319_", true,new float[] {-1.65F, 0.15F, 0F},  new float[] { 0F, 180F, 180F }, null, "smoke", 3, new ArrayList<double[]>(), "", null, 0, false),
@@ -1161,9 +1161,9 @@ public enum RenderEnum {
 	ACFGNRPO_30(EntityPassengerACFGNRPO_30.class, new ModelACFGNRPO_30(), "AC&F_lightweight_GNRPO30_", true, new float[] { 0F, 0.15F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	ACFGN60SeatCoach(EntityPassengerACFGN60SeatCoach.class, new ModelACFGN60SeatCoach(), "AC&F_lightweight_GN60SeatCoach_", true, new float[] { 0F, 0.15F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	FGV4300Motor(EntityLocoElectricFGV4300.class, new ModelFGV4300Motor(), "4300_motorcar", false, new float[] {-1.3F, 0.0F, -0.03F, 0F}, new float[]{0F,180F,180F}, null, "", 0, null, "", null, 0, false),
-
-
-
+	MetroMadrid3000Loco(EntityElectricMetro3000Motor.class, new ModelMetroMadrid3000Loco(), "MM3000_", true, new float[] {-1.5F, 0.2F, 0F}, new float[]{0F,180F,180F}, null, "", 0, null, "", null, 0, false),
+	PassengerMetro3000(EntityPassengerMetro3000.class, new ModelMetroMadrid3000Passenger(), "MM3000_", true, new float[] {0F, 0.2F, 0F}, new float[] {0F,180F,180F}, null, "", 0, null, "", null , 0, false),
+	PassengerMetro3000Tail(EntityPassengerMetro3000Tail.class, new ModelMetroMadrid3000Loco(), "MM3000_", true, new float[] {0F, 0.2F, 0F}, new float[] {0F,180F,180F}, null, "", 0, null, "", null , 0, false),
 
 
 	;
