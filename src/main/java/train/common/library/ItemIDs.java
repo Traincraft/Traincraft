@@ -372,6 +372,7 @@ public enum ItemIDs {
 	minecartPassengerRheingoldPanorama("ItemRollingStock", "train_passenger_rheingoldpanorama", 5),
     minecartPassengerBW305("ItemRollingStock","bw_icon",3),
 	minecartLocoElectricTW305("ItemRollingStock","tw_icon",5),
+	minecartLocoElectricInterurbanSeries100("ItemRollingStock","Interurban_100_icon",2),
 
 	minecartPassengerMILW("ItemRollingStock", "train_passenger_milw", 5),
 	minecartPassengerMILWTail("ItemRollingStock", "train_passenger_milw_tail", 5),
@@ -586,6 +587,11 @@ public enum ItemIDs {
 	minecartH16_66("ItemRollingStock", "FM_H16-66_icon", 5),
 	minecartACFGNRPO_30("ItemRollingStock", "ACFGNRPO_30", 3),
 	minecartACFGN60SeatCoach("ItemRollingStock", "ACFGN60SeatCoach", 3),
+	minecartFGV4300Motor("ItemRollingStock","FVG4300", 5 ),
+	minecartMetro3000Loco("ItemRollingStock","MM3000_Motor_icon",4),
+	minecartMetro3000Passenger("ItemRollingStock","MM3000_Middle_icon",4),
+	minecartMetro3000Tail("ItemRollingStock","MM3000_Tail_icon",4),
+
 	//signalSpanish("ItemsignalSpanish","signalSpanish", 1),
 
 

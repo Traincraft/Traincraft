@@ -55,8 +55,8 @@ public class ModelMediumDiagonalStraightTCTrack extends ModelBase {
         }
 
         if (facing == 5) {
-            GL11.glTranslatef(0f,0,0f);
-            GL11.glRotatef(0, 0, 1,0f);
+            GL11.glTranslatef(1f,0,1f);
+            GL11.glRotatef(180, 0, 1,0f);
 
         }
         if (facing == 6) {

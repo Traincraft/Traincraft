@@ -198,7 +198,7 @@ public enum EnumSounds {
 	DieselEMDE7A(EntityLocoDieselEMDE7A.class, "leslie_a200_2", 1F, "EMD_12_567B_Notch8", 0.45F, 15, "EMD_16_567B_Idle", 0.75F, 3, true),
 	DieselEMDE7B(EntityLocoDieselEMDE7B.class, "leslie_a200_2", 1F, "EMD_12_567B_Notch8", 0.45F, 15, "EMD_16_567B_Idle", 0.75F, 3, true),
 	DieselFMH16_66(EntityLocoDieselFMH16_66.class,"leslie_a200_2", 1F,"FM_38D_6_Notch8", 0.65F, 40, "FM_38D_6_Notch8", 0.45F, 40, false),
-
+	FGV4300(EntityLocoElectricFGV4300.class, "4300_horn", 1F, "vl10_idle", 0.65F, 10, "vl10_idle", 0.6F, 40, false),
 
 
 	//Storage (Touch When Needed)

@@ -250,6 +250,9 @@ item.tc:tcRailLongStraight.name=Long Straight
 item.tc:tcRailMediumStraight.name=Medium Straight
 item.tc:tcRailSmallStraight.name=Small Straight
 item.tc:tcRailSmallDiagonalStraight.name=Small Diagonal Straight
+item.tc:tcRailMediumDiagonalStraight.name=Medium Diagonal Straight
+item.tc:tcRailLongDiagonalStraight.name=Long Diagonal Straight
+item.tc:tcRailVeryLongDiagonalStraight.name=Very Long Diagonal Straight
 item.tc:tcRailEmbeddedSmallDiagonalStraight.name=Embedded Small Diagonal Straight
 item.tc:tcRailMediumSwitch.name=Medium 90 Degrees Switch
 item.tc:tcRailMedium45DegreeSwitch.name=Medium 45 Degree Switch
@@ -353,6 +356,7 @@ item.tc:minecartPassengerRheingold.name=Rheingold Passenger
 item.tc:minecartPassengerRheingoldPanorama.name=Rheingold Panorama
 item.tc:minecartPassengerBW305.name=Bw 305
 item.tc:minecartLocoElectricTW305.name=Tw 305
+item.tc:minecartLocoElectricInterurbanSeries100.name=Interurban Series 100
 item.tc:minecartBulkheadFlatCart.name=Bulkhead Flat Cart
 item.tc:minecartLocoSouthern1102.name=Baldwin F-14
 item.tc:minecartTenderSouthern1102.name=Baldwin F-14 Tender
@@ -615,8 +619,7 @@ item.tc:minecartEMDE7A.name=EMD E7A
 item.tc:minecartEMDE7B.name=EMD E7B
 item.tc:minecart5Plank.name=5 Plank
 item.tc:minecartH16_66.name=FM H16-66
-item.tc:minecartACFGNRPO_30.name=American Car & Foundry GN RPO (30' mail section)
-item.tc:minecartACFGN60SeatCoach.name=American Car & Foundry GN 60 Seat Coach
+item.tc:minecartFGV4300Motor.name=FGV 4300 Motor
 
 
 <!-- ## Achievements ## -->
@@ -1138,8 +1141,9 @@ entity.tc.E7A.name=EMD E7A
 entity.tc.E7B.name=EMD E7B
 entity.tc.5Plank.name=5 Plank
 entity.tc.H16-66.name=FM H16-66
-entity.tc.AC&F GN RPO (30' mail).name=American Car & Foundry GN RPO (30' mail section)
-entity.tc.AC&F GN 60 Seat Coach.name=American Car & Foundry GN 60 Seat Coach
+entity.tc.ElectricMetro3000Loco=Metro Madrid 3000 Loco
+entity.tc.PassengerMetro3000=Metro Madrid 3000 Middle
+entity.tc.PassengerMetro3000Tail=Metro Madrid 3000 Tail
 
 description.villager.profession.tc.station_chief=Station Chief
 
