@@ -28,7 +28,6 @@ public enum BlockIDs {
 
 	stopper(false, null),
 	embeddedStopper(false, null),
-	hayesBumper(false, null),
 
 	openFurnaceIdle(false, null),
 	openFurnaceActive(false, null),

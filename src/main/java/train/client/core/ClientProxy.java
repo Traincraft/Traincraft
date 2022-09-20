@@ -102,9 +102,6 @@ public class ClientProxy extends CommonProxy {
 
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEmbeddedStopper.class, new RenderEmbeddedStopper());
 		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockIDs.embeddedStopper.block), new ItemRenderEmbeddedStopper());
-
-		ClientRegistry.bindTileEntitySpecialRenderer(TileHayesBumper.class, new RenderHayesBumper());
-		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockIDs.hayesBumper.block), new ItemRenderHayesBumper());
 		
 		//ClientRegistry.bindTileEntitySpecialRenderer(TileBook.class, new RenderTCBook());
 		//MinecraftForgeClient.registerItemRenderer(BlockIDs.book.blockID, new ItemRenderBook());
