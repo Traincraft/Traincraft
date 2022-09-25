@@ -591,6 +591,8 @@ public enum ItemIDs {
 	minecartMetro3000Loco("ItemRollingStock","MM3000_Motor_icon",4),
 	minecartMetro3000Passenger("ItemRollingStock","MM3000_Middle_icon",4),
 	minecartMetro3000Tail("ItemRollingStock","MM3000_Tail_icon",4),
+	minecartcq310Loco("ItemRollingStock","CQ_310_Loco_icon",3),
+	minecartcq310Tail("ItemRollingStock","CQ_310_Tail_icon",2),
 
 	//signalSpanish("ItemsignalSpanish","signalSpanish", 1),
 

@@ -911,7 +911,7 @@ entity.tc.Loco Steam C41 0-8-0.name=C41 0-8-0
 entity.tc.Loco Steam Alco SC4.name=Alco SC4
 entity.tc.BNLRV_A.name=BNLRV Powered End
 entity.tc.BNLRV_B.name=BNLRV Unpowered End
-entity.tc.Metro2000Passemger.name=Metro Madrid 2000 Tail
+entity.tc.Metro2000Passenger.name=Metro Madrid 2000 Tail
 entity.tc.Metro2000loco.name=Metro Madrid 2000 Motor
 entity.tc.Loco Diesel CF7.name=CF7
 entity.tc.Loco Diesel GP15.name=GP15
@@ -1144,6 +1144,8 @@ entity.tc.H16-66.name=FM H16-66
 entity.tc.ElectricMetro3000Loco=Metro Madrid 3000 Loco
 entity.tc.PassengerMetro3000=Metro Madrid 3000 Middle
 entity.tc.PassengerMetro3000Tail=Metro Madrid 3000 Tail
+entity.tc.CQ310Loco=CQ310 Loco
+
 
 description.villager.profession.tc.station_chief=Station Chief
 

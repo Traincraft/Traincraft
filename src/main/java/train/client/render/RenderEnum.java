@@ -1164,7 +1164,8 @@ public enum RenderEnum {
 	MetroMadrid3000Loco(EntityElectricMetro3000Motor.class, new ModelMetroMadrid3000Loco(), "MM3000_", true, new float[] {-1.5F, 0.2F, 0F}, new float[]{0F,180F,180F}, null, "", 0, null, "", null, 0, false),
 	PassengerMetro3000(EntityPassengerMetro3000.class, new ModelMetroMadrid3000Passenger(), "MM3000_", true, new float[] {0F, 0.2F, 0F}, new float[] {0F,180F,180F}, null, "", 0, null, "", null , 0, false),
 	PassengerMetro3000Tail(EntityPassengerMetro3000Tail.class, new ModelMetroMadrid3000Loco(), "MM3000_", true, new float[] {0F, 0.2F, 0F}, new float[] {0F,180F,180F}, null, "", 0, null, "", null , 0, false),
-
+	CQ310(EntityElectricCQ310Loco.class, new Modelcq310loco(), "CQ_310_", true, new float[] {-1.5F, 0.2F, 0F}, new float[] {0F,180F,180F}, null, "", 0, null, "", null , 0, false),
+	CQ310Passenger(EntityPassengerCQ310Passenger.class, new Modelcq310loco(), "CQ_310_", true, new float[] {0F, 0.2F, 0F}, new float[] {0F,180F,180F}, null, "", 0, null, "", null , 0, false),
 
 	;
 
