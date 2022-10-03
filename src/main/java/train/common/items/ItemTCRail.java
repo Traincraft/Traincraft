@@ -70,11 +70,11 @@ public class ItemTCRail extends ItemPart {
 		SUPER_LARGE_LEFT_TURN("SUPER_LARGE_LEFT_TURN", "TURN", ItemIDs.tcRailSuperLargeTurn, ""),
 		SUPER_LARGE_RIGHT_TURN("SUPER_LARGE_RIGHT_TURN", "TURN", ItemIDs.tcRailSuperLargeTurn, ""),
 
-		MEDIUM_45DEGREE_TURN("MEDIUM_45DEGREE_TURN", "TURN", ItemIDs.tcRailMedium45DegreeTurn, "3x4, hold sneak for placement compatibility"),
+		MEDIUM_45DEGREE_TURN("MEDIUM_45DEGREE_TURN", "TURN", ItemIDs.tcRailMedium45DegreeTurn, "3x4 hold sneak to attach to the back of another curve"),
 		MEDIUM_RIGHT_45DEGREE_TURN("MEDIUM_RIGHT_45DEGREE_TURN", "TURN", ItemIDs.tcRailMedium45DegreeTurn, ""),
 		MEDIUM_LEFT_45DEGREE_TURN("MEDIUM_LEFT_45DEGREE_TURN", "TURN", ItemIDs.tcRailMedium45DegreeTurn, ""),
 
-		LARGE_45DEGREE_TURN("LARGE_45DEGREE_TURN", "TURN", ItemIDs.tcRailLarge45DegreeTurn, "3x6"),
+		LARGE_45DEGREE_TURN("LARGE_45DEGREE_TURN", "TURN", ItemIDs.tcRailLarge45DegreeTurn, "3x6 hold sneak to attach to the back of another curve"),
 		LARGE_RIGHT_45DEGREE_TURN("LARGE_RIGHT_45DEGREE_TURN", "TURN", ItemIDs.tcRailLarge45DegreeTurn, ""),
 		LARGE_LEFT_45DEGREE_TURN("LARGE_LEFT_45DEGREE_TURN", "TURN", ItemIDs.tcRailLarge45DegreeTurn, ""),
 
@@ -104,7 +104,7 @@ public class ItemTCRail extends ItemPart {
 		MEDIUM_RIGHT_PARALLEL_SWITCH("MEDIUM_RIGHT_PARALLEL_SWITCH", "SWITCH", ItemIDs.tcRailMediumParallelSwitch, ""),
 		MEDIUM_LEFT_PARALLEL_SWITCH("MEDIUM_LEFT_PARALLEL_SWITCH", "SWITCH", ItemIDs.tcRailMediumParallelSwitch, ""),
 
-		MEDIUM_45DEGREE_SWITCH("MEDIUM_45DEGREE_SWITCH", "SWITCH", ItemIDs.tcRailMedium45DegreeSwitch,""),
+		MEDIUM_45DEGREE_SWITCH("MEDIUM_45DEGREE_SWITCH", "SWITCH", ItemIDs.tcRailMedium45DegreeSwitch,"3x5 hold sneak to attach to the back of another curve"),
 		MEDIUM_RIGHT_45DEGREE_SWITCH("MEDIUM_RIGHT_45DEGREE_SWITCH", "SWITCH", ItemIDs.tcRailMedium45DegreeSwitch,""),
 		MEDIUM_LEFT_45DEGREE_SWITCH("MEDIUM_LEFT_45DEGREE_SWITCH", "SWITCH", ItemIDs.tcRailMedium45DegreeSwitch,""),
 
@@ -155,7 +155,7 @@ public class ItemTCRail extends ItemPart {
 		EMBEDDED_SUPER_LARGE_RIGHT_TURN("EMBEDDED_SUPER_LARGE_RIGHT_TURN", "TURN", ItemIDs.tcRailEmbeddedSuperLargeTurn, ""),
 		EMBEDDED_SUPER_LARGE_LEFT_TURN("EMBEDDED_SUPER_LARGE_LEFT_TURN", "TURN", ItemIDs.tcRailEmbeddedSuperLargeTurn, ""),
 
-		EMBEDDED_MEDIUM_45DEGREE_TURN("EMBEDDED_MEDIUM_45DEGREE_TURN", "TURN", ItemIDs.tcRailEmbeddedMedium45DegreeTurn, "3x4, hold sneak for placement compatibility"),
+		EMBEDDED_MEDIUM_45DEGREE_TURN("EMBEDDED_MEDIUM_45DEGREE_TURN", "TURN", ItemIDs.tcRailEmbeddedMedium45DegreeTurn, "3x4 hold sneak to attach to the back of another curve"),
 		EMBEDDED_MEDIUM_RIGHT_45DEGREE_TURN("EMBEDDED_MEDIUM_RIGHT_45DEGREE_TURN", "TURN", ItemIDs.tcRailEmbeddedMedium45DegreeTurn, ""),
 		EMBEDDED_MEDIUM_LEFT_45DEGREE_TURN("EMBEDDED_MEDIUM_LEFT_45DEGREE_TURN", "TURN", ItemIDs.tcRailEmbeddedMedium45DegreeTurn, ""),
 
@@ -185,9 +185,10 @@ public class ItemTCRail extends ItemPart {
 		EMBEDDED_MEDIUM_RIGHT_PARALLEL_SWITCH("EMBEDDED_MEDIUM_RIGHT_PARALLEL_SWITCH", "SWITCH", ItemIDs.tcRailEmbeddedMediumParallelSwitch, ""),
 		EMBEDDED_MEDIUM_LEFT_PARALLEL_SWITCH("EMBEDDED_MEDIUM_LEFT_PARALLEL_SWITCH", "SWITCH", ItemIDs.tcRailEmbeddedMediumParallelSwitch, ""),
 
-		EMBEDDED_MEDIUM_45DEGREE_SWITCH("EMBEDDED_MEDIUM_45DEGREE_SWITCH", "SWITCH", ItemIDs.tcRailEmbeddedMedium45DegreeSwitch,""),
+		EMBEDDED_MEDIUM_45DEGREE_SWITCH("EMBEDDED_MEDIUM_45DEGREE_SWITCH", "SWITCH", ItemIDs.tcRailEmbeddedMedium45DegreeSwitch,"3x5 hold sneak to attach to the back of another curve"),
 		EMBEDDED_MEDIUM_RIGHT_45DEGREE_SWITCH("EMBEDDED_MEDIUM_RIGHT_45DEGREE_SWITCH", "SWITCH", ItemIDs.tcRailEmbeddedMedium45DegreeSwitch,""),
 		EMBEDDED_MEDIUM_LEFT_45DEGREE_SWITCH("EMBEDDED_MEDIUM_LEFT_45DEGREE_SWITCH", "SWITCH", ItemIDs.tcRailEmbeddedMedium45DegreeSwitch,""),
+
 		SMALL_ROAD_CROSSING("SMALL_ROAD_CROSSING", "STRAIGHT", ItemIDs.tcRailSmallRoadCrossing, "1x1"),
 		SMALL_ROAD_CROSSING_1("SMALL_ROAD_CROSSING_1", "STRAIGHT", ItemIDs.tcRailSmallRoadCrossing1, "1x1"),
 		SMALL_ROAD_CROSSING_2("SMALL_ROAD_CROSSING_2", "STRAIGHT", ItemIDs.tcRailSmallRoadCrossing2, "1x1");
@@ -573,7 +574,7 @@ public class ItemTCRail extends ItemPart {
 
 	}
 
-	private int[][] getUsedSpaceFromType( TrackTypes type )
+	private int[][] getUsedSpaceFromType( TrackTypes type, @Nullable EntityPlayer player)
 	{
 		/** Straights */
 		if ( type == TrackTypes.SMALL_STRAIGHT
@@ -641,8 +642,7 @@ public class ItemTCRail extends ItemPart {
 		else if ( type == TrackTypes.LARGE_SWITCH || type == TrackTypes.EMBEDDED_LARGE_SWITCH)
 			return new int[][] { {0,0}, {1,0}, {2,0}, {3,0}, {4,0}, {5,0},
 					{2,1}, {3,1}, {4,1}, {3,2}, {4,2}, {5,2}, {4,3}, {5,3},	{5,4}, {5,5}};
-		else if ( type == TrackTypes.MEDIUM_45DEGREE_SWITCH || type == TrackTypes.EMBEDDED_MEDIUM_45DEGREE_SWITCH)
-			return new int[][] {{0,0}, {1,0},{2,0},{3,0},{2,1},{3,1}};
+
 		/*else if ( type == TrackTypes.VERY_LARGE_SWITCH )
 			return new int[][] { {0,0}, {1,0}, {2,0}, {3,0}, {4,0}, {5,0}, {6,0}, {7,0}, {8,0}, {9,0}, {10,0},
 					{2,1}, {3,1}, {4,1}, {5,1}, {4,2}, {5,2}, {6,2}, {6,3}, {7,3}, {7,4}, {8,4}, {7,5}, {8,5}, {9,5}, {8,6}, {9,6}, {8,7}, {9,7}, {9,8}, {9,9}};
@@ -654,15 +654,24 @@ public class ItemTCRail extends ItemPart {
 			return new int[][] { {0,0}, {1,0}, {2,0}, {3,0}, {4,0}, {3,1}, {4,1}, {5,1}, {6,1}, {7,1}, {8,1}, {7,2}, {8,2}, {9,2}, {10,2}, {11,2}};
 		else if (type == TrackTypes.LARGE_PARALLEL_CURVE || type == TrackTypes.EMBEDDED_LARGE_PARALLEL_CURVE)
 			return new int[][] { {0,0}, {1,0}, {2,0}, {3,0}, {4,0}, {5,0}, {4,1}, {5,1}, {6,1}, {7,1}, {8,1}, {7,2}, {8,2}, {9,2}, {10,2}, {11,2}, {10,3}, {11,3}, {12,3}, {13,3}, {14,3}, {15,3}};
-
-		else if (type == TrackTypes.MEDIUM_45DEGREE_TURN || type == TrackTypes.EMBEDDED_MEDIUM_45DEGREE_TURN)
+		else if ((type == TrackTypes.MEDIUM_45DEGREE_TURN || type == TrackTypes.EMBEDDED_MEDIUM_45DEGREE_TURN) && !player.isSneaking())
+			return new int[][] {{0,0}, {1,0}, {2,0}, {1,1}, {2,1}, {3,1}, {2,2}};
+		else if ((type == TrackTypes.LARGE_45DEGREE_TURN /* || type == TrackTypes.EMBEDDED_LARGE_45DEGREE_TURN*/) && !player.isSneaking())
+			return new int[][] {{0,0}, {1,0}, {2,0}, {3,0}, {1,1}, {2,1}, {3,1}, {4,1}, {5,1},{4,2}, {5,2}, {6,2}, {5,3}};
+		else if (( type == TrackTypes.MEDIUM_45DEGREE_SWITCH || type == TrackTypes.EMBEDDED_MEDIUM_45DEGREE_SWITCH) && !player.isSneaking())
+			return new int[][] {{0,0}, {1,0},{2,0},{3,0},{2,1},{3,1}, {4,1}, {3,2}};
+		else if ((type == TrackTypes.MEDIUM_45DEGREE_TURN || type == TrackTypes.EMBEDDED_MEDIUM_45DEGREE_TURN) && player.isSneaking())
 			return new int[][] {{0,0}, {1,0}, {2,0}, {1,1}, {2,1}};
-		else if (type == TrackTypes.LARGE_45DEGREE_TURN /* || type == TrackTypes.EMBEDDED_LARGE_45DEGREE_TURN*/)
+		else if ((type == TrackTypes.LARGE_45DEGREE_TURN /* || type == TrackTypes.EMBEDDED_LARGE_45DEGREE_TURN*/) && player.isSneaking())
 			return new int[][] {{0,0}, {1,0}, {2,0}, {3,0}, {1,1}, {2,1}, {3,1}, {4,1}, {5,1},{4,2}, {5,2}};
+		else if (( type == TrackTypes.MEDIUM_45DEGREE_SWITCH || type == TrackTypes.EMBEDDED_MEDIUM_45DEGREE_SWITCH) && player.isSneaking())
+			return new int[][] {{0,0}, {1,0},{2,0},{3,0},{2,1},{3,1}};
+
 
 		else{
 			return null;
 		}
+
 	}
 
 	public boolean tryToPlaceTrack( ItemStack itemStack, EntityPlayer player, World world, int x, int y, int z, boolean changeWorld )
@@ -681,7 +690,7 @@ public class ItemTCRail extends ItemPart {
 		int facing1 = isLeftTurn ? (facing0 + 4 - 1)%4 : (facing0 + 1)%4;
 		Vector2f dir1 = getDirectionVector( facing1 );
 
-		int[][] trackPositions = getUsedSpaceFromType( item.getTrackType() );
+		int[][] trackPositions = getUsedSpaceFromType( item.getTrackType() , player);
 
 		if ( trackPositions != null )
 		{
