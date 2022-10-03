@@ -138,6 +138,9 @@ public enum ItemIDs {
 	tcRailEmbeddedVeryLongStraight("ItemTCRail", "item_rail_straight_embedded_very_large", 5),
 
 	tcRailEmbeddedSmallDiagonalStraight("ItemTCRail", "item_rail_embedded_straight_diagonal_small", 5),
+	tcRailEmbeddedMediumDiagonalStraight("ItemTCRail", "item_rail_embedded_straight_diagonal_medium", 5),
+	tcRailEmbeddedLongDiagonalStraight("ItemTCRail", "item_rail_embedded_straight_diagonal_long", 5),
+	tcRailEmbeddedVeryLongDiagonalStraight("ItemTCRail", "item_rail_embedded_straight_diagonal_very_long", 5),
 
 	tcRailEmbeddedMediumTurn("ItemTCRail", "item_rail_tc_embedded_medium_turn", 5),
 	tcRailEmbeddedLargeTurn("ItemTCRail", "item_rail_tc_embedded_large_turn", 5),
@@ -563,7 +566,7 @@ public enum ItemIDs {
 	minecartPassengerMinetrain("ItemRollingStock","train_mine_cart", 1),
 	minecartBNLRV_B("ItemRollingStock", "BNLRV_B", 1 ),
 	minecartBNLRV_A("ItemRollingStock", "BNLRV_A", 1 ),
-	minecartasteri("ItemRollingStock", "asteri",1),
+	//minecartasteri("ItemRollingStock", "asteri",1),
 	minecartBR_Black_5("ItemRollingStock", "BR_Black_5", 1),
 	minecartBR_Black_5_Tender("ItemRollingStock", "BR_Black_5_Tender", 1),
 	minecartC415H("ItemRollingStock", "c415h", 4),

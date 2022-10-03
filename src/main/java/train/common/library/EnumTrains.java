@@ -455,7 +455,7 @@ public enum EnumTrains {
 	Class321Motor("Class321Motor", EntityPassengerClass321Panto.class, ItemIDs.minecartClass321Panto.item, "passenger", 0, 0, 3,0 , 0, 0, 0,0,0, TraincraftUtil.getBytesFromColors(new String[] {"Purple", "Grey", "White", "Red", "Green"}), 0, 0),
 	Class321Coach("Class321Coach", EntityPassengerClass321Coach.class, ItemIDs.minecartClass321Coach.item, "passenger", 0, 0, 3,0 , 0, 0, 0,0,0,TraincraftUtil.getBytesFromColors(new String[] {"Purple", "Grey", "White", "Red", "Green"}),0,0),
 	passengerMinetrain("Passenger Minecart Yellow", EntityPassengerMinetrain.class, ItemIDs.minecartPassengerMinetrain.item, "passenger", 0, 0, 1,0 , 0, 0, 0,0,0, null,0,0, EnumChatFormatting.YELLOW + "Not the most comfortabel of seats " + EnumChatFormatting.DARK_PURPLE +  "-hariesh" ),
-	asteri("asteri", EntityLocoSteamasteri.class, ItemIDs.minecartasteri.item, "steam",303,69420,0,1,1,1,10,50,69420,null,15,-1.5, "Pack: Your Mum"),
+	//asteri("asteri", EntityLocoSteamasteri.class, ItemIDs.minecartasteri.item, "steam",303,69420,0,1,1,1,10,50,69420,null,15,-1.5, "Pack: Your Mum"),
 
 	/** TCCE 6 */
 	C415H("C415H", EntityLocoDieselC415H.class, ItemIDs.minecartC415H.item, "diesel", 1500, 106, 0, 35, 0, 200, 0.87, 0.93, 10000, TraincraftUtil.getBytesFromColors(new String[] {"Purple", "Magenta", "Yellow", "Orange", "Grey", "LightGrey", "Red", "Pink", }), 10, -2.5),
@@ -492,7 +492,7 @@ public enum EnumTrains {
 	locoElectricMetro3000("Metro3000loco",EntityElectricMetro3000Motor.class,ItemIDs.minecartMetro3000Loco.item, "electric",700,70,3,10,0,0,0.8,0.9,0,TraincraftUtil.getBytesFromColors(new String[]{"Blue", "White","Grey"}),18,-3.1,"Pack: Metro in Motion"),
 	PassengerMetro3000("Metro3000Passenger", EntityPassengerMetro3000.class, ItemIDs.minecartMetro3000Passenger.item, "passenger", 0, 0, 3, 0,0,0,0,0,0,TraincraftUtil.getBytesFromColors(new String[]{"Blue", "White","Grey"}), 0, 0, "Pack: Metro In Motion"),
 	PassengerMetro3000Tail("Metro3000Tail", EntityPassengerMetro3000Tail.class, ItemIDs.minecartMetro3000Tail.item, "passenger", 0, 0, 3, 0,0,0,0,0,0,TraincraftUtil.getBytesFromColors(new String[]{"Blue", "White","Grey"}), 0, 0, "Pack: Metro In Motion"),
-	CQ310("CQ310 Loco", EntityElectricCQ310Loco.class, ItemIDs.minecartcq310Loco.item, "electric", 500, 110, 30, 7,0,0,1,0.7,0,TraincraftUtil.getBytesFromColors(new String[]{"Black","Grey"}), 0, -2.75, "Pack: Metro In Motion"),
+	CQ310("CQ310 Loco", EntityElectricCQ310Loco.class, ItemIDs.minecartcq310Loco.item, "electric", 500, 110, 3, 7,0,0,0.9,0.7,0,TraincraftUtil.getBytesFromColors(new String[]{"Black","Grey"}), 0, -2.75, "Pack: Metro In Motion"),
 	CQ310Passenger("CQ310 Tail", EntityPassengerCQ310Passenger.class, ItemIDs.minecartcq310Tail.item, "Passenger", 0, 0, 3, 0,0,0,0,0,0,TraincraftUtil.getBytesFromColors(new String[]{"Black","Grey"}), 0, 0, "Pack: Metro In Motion"),
 	;
 

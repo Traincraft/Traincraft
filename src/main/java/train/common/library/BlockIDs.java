@@ -28,6 +28,7 @@ public enum BlockIDs {
 
 	stopper(false, null),
 	embeddedStopper(false, null),
+	americanstopper(false, null),
 
 	openFurnaceIdle(false, null),
 	openFurnaceActive(false, null),

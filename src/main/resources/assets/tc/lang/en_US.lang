@@ -254,6 +254,9 @@ item.tc:tcRailMediumDiagonalStraight.name=Medium Diagonal Straight
 item.tc:tcRailLongDiagonalStraight.name=Long Diagonal Straight
 item.tc:tcRailVeryLongDiagonalStraight.name=Very Long Diagonal Straight
 item.tc:tcRailEmbeddedSmallDiagonalStraight.name=Embedded Small Diagonal Straight
+item.tc:tcRailEmbeddedMediumDiagonalStraight.name=Embedded Medium Diagonal Straight
+item.tc:tcRailEmbeddedLongDiagonalStraight.name=Embedded Long Diagonal Straight
+item.tc:tcRailEmbeddedVeryLongDiagonalStraight.name=Embedded Very Long Diagonal Straight
 item.tc:tcRailMediumSwitch.name=Medium 90 Degrees Switch
 item.tc:tcRailMedium45DegreeSwitch.name=Medium 45 Degree Switch
 item.tc:tcRailLargeSwitch.name=Large 90 Degrees Switch
@@ -620,7 +623,13 @@ item.tc:minecartEMDE7B.name=EMD E7B
 item.tc:minecart5Plank.name=5 Plank
 item.tc:minecartH16_66.name=FM H16-66
 item.tc:minecartFGV4300Motor.name=FGV 4300 Motor
-
+item.tc:minecartcq310Loco.name= CQ 310 Locomotive
+item.tc:minecartcq310Tail.name= CQ 310 Tail
+item.tc:minecartMetro3000Tail.name=Metro 3000 Tail
+item.tc:minecartMetro3000Loco.name=Metro 3000 Loco
+item.tc:minecartMetro3000Passenger.name=Metro 3000 Passenger
+item.tc:minecartACFGN60SeatCoach.name=ACFGN60 Coach
+item.tc:minecartACFGNRPO_30.name=ACFGNRPO 30
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -1144,8 +1153,8 @@ entity.tc.H16-66.name=FM H16-66
 entity.tc.ElectricMetro3000Loco=Metro Madrid 3000 Loco
 entity.tc.PassengerMetro3000=Metro Madrid 3000 Middle
 entity.tc.PassengerMetro3000Tail=Metro Madrid 3000 Tail
-entity.tc.CQ310Loco=CQ310 Loco
-
+entity.tc.CQ310 Loco.name=CQ310 Loco
+entity.tc.CQ310 Tail.name=CQ310 Tail
 
 description.villager.profession.tc.station_chief=Station Chief
 
