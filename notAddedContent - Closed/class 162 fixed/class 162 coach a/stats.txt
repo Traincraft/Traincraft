@@ -1,0 +1,3 @@
+name: class 162 coach a
+type: passenger
+mass: 25.0

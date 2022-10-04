@@ -438,6 +438,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 	@Override
 	public void setDead() {
 		super.setDead();
+		System.out.println("Unlinked because of broken thing");
 		this.unLink();
 		if (train != null) {
 			if (train.getTrains() != null) {
@@ -1034,6 +1035,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 
 			 if(bogieLoco != null) {
 				 if (!bogieLoco.isOnRail()) {
+					 System.out.println("Unlinked because derail");
 					 derailSpeed = 0;
 					 this.unLink();
 				 }
@@ -1144,10 +1146,12 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				
 				if(bogieLoco != null) {
 					if (!bogieLoco.isOnRail()) {
+						System.out.println("Derailed, derailspeed is 0");
 						derailSpeed = 0;
 					}
 				}
 				if(derailSpeed == 0){
+					System.out.println("Unlinked because derailspeed");
 					this.unLink();
 					moveOnTCStraight(i, j, k, tile.xCoord, tile.zCoord, meta);
 				}
@@ -1212,13 +1216,22 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 	private boolean shouldIgnoreSwitch(TileTCRail tile, int i, int j, int k, int meta) {
 		if (tile != null
 				&& (tile.getType().equals(TrackTypes.MEDIUM_RIGHT_TURN.getLabel())
-						|| tile.getType().equals(TrackTypes.MEDIUM_LEFT_TURN.getLabel())
-						|| tile.getType().equals(TrackTypes.LARGE_LEFT_TURN.getLabel())
-						|| tile.getType().equals(TrackTypes.LARGE_RIGHT_TURN.getLabel()))
-						|| tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_RIGHT_TURN.getLabel())
-						|| tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_LEFT_TURN.getLabel())
-						|| tile.getType().equals(TrackTypes.EMBEDDED_LARGE_LEFT_TURN.getLabel())
-						|| tile.getType().equals(TrackTypes.EMBEDDED_LARGE_RIGHT_TURN.getLabel())
+				|| tile.getType().equals(TrackTypes.MEDIUM_LEFT_TURN.getLabel())
+				|| tile.getType().equals(TrackTypes.LARGE_LEFT_TURN.getLabel())
+				|| tile.getType().equals(TrackTypes.LARGE_RIGHT_TURN.getLabel()))
+				|| tile.getType().equals(TrackTypes.MEDIUM_RIGHT_45DEGREE_TURN.getLabel())
+				|| tile.getType().equals(TrackTypes.MEDIUM_LEFT_45DEGREE_TURN.getLabel())
+				|| tile.getType().equals(TrackTypes.LARGE_RIGHT_45DEGREE_TURN.getLabel())
+				|| tile.getType().equals(TrackTypes.LARGE_LEFT_45DEGREE_TURN.getLabel())
+				|| tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_RIGHT_TURN.getLabel())
+				|| tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_LEFT_TURN.getLabel())
+				|| tile.getType().equals(TrackTypes.EMBEDDED_LARGE_LEFT_TURN.getLabel())
+				|| tile.getType().equals(TrackTypes.EMBEDDED_LARGE_RIGHT_TURN.getLabel())
+				|| tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_RIGHT_45DEGREE_TURN.getLabel())
+				|| tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_LEFT_45DEGREE_TURN.getLabel())
+				//|| tile.getType().equals(TrackTypes.EMBEDDED_LARGE_RIGHT_45DEGREE_TURN.getLabel())
+				//|| tile.getType().equals(TrackTypes.EMBEDDED_LARGE_LEFT_45DEGREE_TURN.getLabel())
+
 				&& tile.canTypeBeModifiedBySwitch) {
 			
 
@@ -1452,8 +1465,8 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		posY = j + 0.2;
 		double cpx = posX - cx;
 		double cpz = posZ - cz;
-		double cp_norm = Math.sqrt(cpx * cpx + cpz * cpz);
 
+		double cp_norm = Math.sqrt(cpx * cpx + cpz * cpz);
 		double vnorm = Math.sqrt(motionX * motionX + motionZ * motionZ);
 
 		double norm_cpx = cpx / cp_norm; //u
@@ -1485,9 +1498,9 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		double p_corr_x = cx + ((cpx / cp_norm) * r);
 		double p_corr_z = cz + ((cpz / cp_norm) * r);
 
-
 		setPosition(p_corr_x, posY + yOffset, p_corr_z);
 		moveEntity(vx2, 0.0D, vz2);
+
 		motionX = vx2;
 		motionZ = vz2;
 

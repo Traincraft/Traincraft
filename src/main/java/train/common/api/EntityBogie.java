@@ -242,6 +242,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 	private boolean isDerail = false;
 	public boolean isOnRail(){
 		if(isDerail) {
+
 			return false;
 		}
 		int i = MathHelper.floor_double(this.posX);
@@ -252,6 +253,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 			j--;
 		}
 		Block block = this.worldObj.getBlock(i, j, k);
+
 		return (BlockRailBase.func_150051_a(block) || block == BlockIDs.tcRail.block || block == BlockIDs.tcRailGag.block);
 	}
 

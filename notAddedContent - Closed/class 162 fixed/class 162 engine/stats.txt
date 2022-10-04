@@ -1,0 +1,4 @@
+name: class 162 engine
+type: electric
+power: 800mhp
+max speed: 161km/h
