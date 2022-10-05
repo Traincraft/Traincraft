@@ -624,8 +624,9 @@ item.tc:minecartEMDE7B.name=EMD E7B
 item.tc:minecart5Plank.name=5 Plank
 item.tc:minecartH16_66.name=FM H16-66
 item.tc:minecartFGV4300Motor.name=FGV 4300 Motor
-item.tc:minecartcq310Loco.name= CQ 310 Locomotive
-item.tc:minecartcq310Tail.name= CQ 310 Tail
+item.tc:minecartFGV4300Coach.name=FGV 4300 Coach
+item.tc:minecartcq310Loco.name=CQ 310 Locomotive
+item.tc:minecartcq310Tail.name=CQ 310 Tail
 item.tc:minecartMetro3000Tail.name=Metro 3000 Tail
 item.tc:minecartMetro3000Loco.name=Metro 3000 Loco
 item.tc:minecartMetro3000Passenger.name=Metro 3000 Passenger
@@ -1156,6 +1157,8 @@ entity.tc.PassengerMetro3000=Metro Madrid 3000 Middle
 entity.tc.PassengerMetro3000Tail=Metro Madrid 3000 Tail
 entity.tc.CQ310 Loco.name=CQ310 Loco
 entity.tc.CQ310 Tail.name=CQ310 Tail
+entity.tc.FGV_4300_Coach.name=FGV 4300 Coach
+entity.tc.FGV_4300_Motor.name=FGV 4300 Motor
 
 description.villager.profession.tc.station_chief=Station Chief
 

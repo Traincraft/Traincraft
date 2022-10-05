@@ -556,6 +556,9 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 			distanceNorm = Math.sqrt(directionX * directionX + directionZ * directionZ);
 			motionX = (directionX / distanceNorm) * norm ;
 			motionZ = (directionZ / distanceNorm) * norm ;
+
+			motionX = motionX / 1.41;
+			motionZ = motionZ / 1.41;
 			this.boundingBox.offset(Math.copySign(motionX, this.motionX), 0 , Math.copySign(motionZ, this.motionZ));
 
 			List boxes = worldObj.getCollidingBoundingBoxes(this, boundingBox);
@@ -583,6 +586,9 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 			distanceNorm = Math.sqrt(directionX * directionX + directionZ * directionZ);
 			motionX = (directionX / distanceNorm) * norm ;
 			motionZ = (directionZ / distanceNorm) * norm ;
+
+			motionX = motionX / 1.41;
+			motionZ = motionZ / 1.41;
 
 			this.boundingBox.offset(Math.copySign(motionX, this.motionX), 0 , Math.copySign(motionZ, this.motionZ));
 			List boxes = worldObj.getCollidingBoundingBoxes(this, boundingBox);
@@ -767,6 +773,9 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		moveEntity(vx2, 0.0D, vz2);
 		motionX = vx2;
 		motionZ = vz2;
+
+		motionX = motionX / 1.41;
+		motionZ = motionZ / 1.41;
 	}
 	private boolean shouldIgnoreSwitch(TileTCRail tile, int i, int j, int k, int meta) {
 		if (tile != null

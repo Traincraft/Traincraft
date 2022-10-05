@@ -163,7 +163,8 @@
   "a4_whistle": {"category": "master", "sounds": [{"name": "a4_whistle", "stream":  true}]},
   "gp40_2_horn": {"category": "master", "sounds": [{"name": "gp40_2_horn", "stream":  true}]},
   "skookum_whistle": {"category": "master", "sounds": [{"name": "skookum_whistle", "stream":  true}]},
-  "asteri": {"category":  "master", "sounds" :  [{"name": "asteri", "stream":  true}]}
+  "asteri": {"category":  "master", "sounds" :  [{"name": "asteri", "stream":  true}]},
+  "4300_horn": {"category": "master", "sounds" :  [{"name": "4300_horn", "stream": true}]}
 
 
 
