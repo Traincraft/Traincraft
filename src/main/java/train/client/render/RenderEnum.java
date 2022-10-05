@@ -1168,6 +1168,7 @@ public enum RenderEnum {
 	PassengerMetro3000Tail(EntityPassengerMetro3000Tail.class, new ModelMetroMadrid3000Loco(), "MM3000_", true, new float[] {0F, 0.2F, 0F}, new float[] {0F,180F,180F}, null, "", 0, null, "", null , 0, false),
 	CQ310(EntityElectricCQ310Loco.class, new Modelcq310loco(), "CQ_310_", true, new float[] {-1.5F, 0.2F, 0F}, new float[] {0F,180F,180F}, null, "", 0, null, "", null , 0, false),
 	CQ310Passenger(EntityPassengerCQ310Passenger.class, new Modelcq310loco(), "CQ_310_", true, new float[] {0F, 0.2F, 0F}, new float[] {0F,180F,180F}, null, "", 0, null, "", null , 0, false),
+	Class34(EntityLocoDieselClass34.class, new ModelClass34(), "class_34_", true, new float[] {-1.65F, 0F, 0F}, new float[] {0F,180F,180F}, null, "smoke", 3,  new ArrayList<double[]>() {{}}, "", null, 0, false),
 
 	;
 
