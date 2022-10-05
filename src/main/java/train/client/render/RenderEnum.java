@@ -1,5 +1,8 @@
 package train.client.render;
 
+import com.flansmod.client.model.YourPackage.ModelClass162CoachA;
+import com.flansmod.client.model.YourPackage.ModelClass162CoachB;
+import com.flansmod.client.model.YourPackage.ModelClass162Engine;
 import tmt.ModelBase;
 import train.client.render.models.*;
 import train.common.api.AbstractTrains;
@@ -1168,7 +1171,9 @@ public enum RenderEnum {
 	PassengerMetro3000Tail(EntityPassengerMetro3000Tail.class, new ModelMetroMadrid3000Loco(), "MM3000_", true, new float[] {0F, 0.2F, 0F}, new float[] {0F,180F,180F}, null, "", 0, null, "", null , 0, false),
 	CQ310(EntityElectricCQ310Loco.class, new Modelcq310loco(), "CQ_310_", true, new float[] {-1.5F, 0.2F, 0F}, new float[] {0F,180F,180F}, null, "", 0, null, "", null , 0, false),
 	CQ310Passenger(EntityPassengerCQ310Passenger.class, new Modelcq310loco(), "CQ_310_", true, new float[] {0F, 0.2F, 0F}, new float[] {0F,180F,180F}, null, "", 0, null, "", null , 0, false),
-
+	Class162Engine( EntityElectricClass162.class, new ModelClass162Engine(),"Class_162_engine_", true, new float[] {-2F, 0.155F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
+	Class162CoachB( EntityPassengerClass162CoachB.class, new ModelClass162CoachB(),"Class_162_Coach_B_", true, new float[] {0F, 0.155F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
+	Class162CoachA( EntityPassengerClass162CoachA.class, new ModelClass162CoachA(),"Class_162_Coach_A_", true, new float[] {0F, 0.155F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
 	;
 
 	private Class<? extends AbstractTrains> entityClass;
