@@ -598,6 +598,10 @@ public enum ItemIDs {
 	minecartMetro3000Tail("ItemRollingStock","MM3000_Tail_icon",4),
 	minecartcq310Loco("ItemRollingStock","CQ_310_Loco_icon",3),
 	minecartcq310Tail("ItemRollingStock","CQ_310_Tail_icon",2),
+	minecartClass162Engine("ItemRollingStock","Class_162_Engine_icon",2),
+	minecartClass162CoachB("ItemRollingStock","Class_162_Coach_B_icon",1),
+	minecartClass162CoachA("ItemRollingStock","Class_162_Coach_A_icon",1),
+	minecartClass34("ItemRollingStock", "class_34_icon", 4),
 
 	//signalSpanish("ItemsignalSpanish","signalSpanish", 1),
 

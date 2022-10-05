@@ -633,6 +633,9 @@ item.tc:minecartMetro3000Loco.name=Metro 3000 Loco
 item.tc:minecartMetro3000Passenger.name=Metro 3000 Passenger
 item.tc:minecartACFGN60SeatCoach.name=ACFGN60 Coach
 item.tc:minecartACFGNRPO_30.name=ACFGNRPO 30
+item.tc:minecartClass162Engine.name=Class 162 Engine
+item.tc:minecartClass162CoachB.name=Class 162 Coach B
+item.tc:minecartClass162CoachA.name=Class 162 Coach A
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -1161,6 +1164,7 @@ entity.tc.CQ310 Tail.name=CQ310 Tail
 entity.tc.FGV_4300_Coach.name=FGV 4300 Coach
 entity.tc.FGV_4300_Motor.name=FGV 4300 Motor
 entity.tc.FGV_4300_Tail.name=FGV 4300 Tail
+entity.tc.Class162Engine.name=Class 162 Engine
 
 description.villager.profession.tc.station_chief=Station Chief
 
