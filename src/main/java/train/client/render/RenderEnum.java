@@ -1162,6 +1162,7 @@ public enum RenderEnum {
 	ACFGN60SeatCoach(EntityPassengerACFGN60SeatCoach.class, new ModelACFGN60SeatCoach(), "AC&F_lightweight_GN60SeatCoach_", true, new float[] { 0F, 0.15F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	FGV4300Motor(EntityLocoElectricFGV4300.class, new ModelFGV4300Motor(), "4300_motorcar", false, new float[] {-1.3F, -0.03F, 0F}, new float[]{0F,180F,180F}, null, "", 0, null, "", null, 0, false),
 	FGV4300Coach(EntityPassengerFGV4300Coach.class, new ModelFGV4300Coach(), "4300_middle", false, new float[] {0F, -0.03F, 0F}, new float[]{0F, 180F, 180F}, null, "", 0, null, "", null, 0, false ),
+	FGV4300Tail(EntityPassengerFGV4300Tail.class, new ModelFGV4300Tail(), "4300_motorcar", false, new float[] {0F, -0.03F, 0F}, new float[]{0F, 180F, 180F}, null, "", 0, null, "", null, 0, false ),
 	MetroMadrid3000Loco(EntityElectricMetro3000Motor.class, new ModelMetroMadrid3000Loco(), "MM3000_", true, new float[] {-1.5F, 0.2F, 0F}, new float[]{0F,180F,180F}, null, "", 0, null, "", null, 0, false),
 	PassengerMetro3000(EntityPassengerMetro3000.class, new ModelMetroMadrid3000Passenger(), "MM3000_", true, new float[] {0F, 0.2F, 0F}, new float[] {0F,180F,180F}, null, "", 0, null, "", null , 0, false),
 	PassengerMetro3000Tail(EntityPassengerMetro3000Tail.class, new ModelMetroMadrid3000Loco(), "MM3000_", true, new float[] {0F, 0.2F, 0F}, new float[] {0F,180F,180F}, null, "", 0, null, "", null , 0, false),
