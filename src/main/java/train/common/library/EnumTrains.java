@@ -499,6 +499,7 @@ public enum EnumTrains {
 	Class162Engine("Class162Engine", EntityElectricClass162.class, ItemIDs.minecartClass162Engine.item, "electric", 800, 160, 0,50, 0, 100, 0.7, 0.8, 1000, TraincraftUtil.getBytesFromColors(new String[] {"Blue", "Grey", "LightBlue", "Yellow", "Green"}), 18, -4,"Pack: B.I.P."),
 	Class162CoachB("Class162CoachB", EntityPassengerClass162CoachB.class, ItemIDs.minecartClass162CoachB.item, "passenger", 0, 0, 0,0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[] {"Blue", "Grey", "LightBlue", "Yellow", "Green"}), 18, 0,"Pack: B.I.P."),
 	Class162CoachA("Class162CoachA", EntityPassengerClass162CoachA.class, ItemIDs.minecartClass162CoachA.item, "passenger", 0, 0, 0,0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[] {"Blue", "Grey", "LightBlue", "Yellow", "Green"}), 18, 0,"Pack: B.I.P."),
+	Class34("Class34", EntityLocoDieselClass34.class, ItemIDs.minecartClass34.item, "diesel", 2000, 146, 0, 10, 0, 100, 0.7, 0.98, 6000, TraincraftUtil.getBytesFromColors(new String[]{"Blue","Green","Grey","Orange","Red","White"}), 18, -3, "Pack: B.I.P." ),
 	;
 
 //String trainType,int MHP,int maxSpeed, double mass, int fuelConsumption, int waterConsumption, int heatingTime, double accelerationRate, double brakeRate, int tankCapacity, String[] colors,
