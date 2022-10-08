@@ -1056,7 +1056,7 @@ public enum RenderEnum {
 	class158motor(EntityLocoDieselClass158.class, new ModelClass158(), "Class_158_", true, new float[] { -1.9F, -0.45F, 0.0F },   new float[] { 0F, 180F, 180F }, null, "smoke", 2, new ArrayList<double[]>() {
 		{ }
 	}, "", null, 0, false),
-	class158car(EntityClass158Coach.class, new ModelClass158Middle(), "Class_158_", true, new float[] { -0.0F, -0.45F, 0.0F },   new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	class158car(EntityClass158Coach.class, new ModelClass158Middle(), "Class_158_", true, new float[] { 0.5F, -0.45F, 0.0F },   new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	//HBC1C(EntityCabooseBapHBC1C.class, new ModelHBC1C(),"HBC1C_", true, null, null, null, "", 0, null, "", null, 0, false),
 	DRGWCaboose(EntityCabooseBapDRGW.class, new ModelDRGW01400Caboose(),"BAP_DRGW_01400_", true, null, null, null, "", 0, null, "", null, 0, false),
 	passengerPSSleeper565(EntityPassengerPSSleeper565.class, new ModelPSSleeper565(), "PS_lightweight_5-6-5_sleeper_", true, new float[] { 0F, 0.15F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),

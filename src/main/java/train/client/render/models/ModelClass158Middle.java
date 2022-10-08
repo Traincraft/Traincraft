@@ -1,5 +1,5 @@
 //This File was created with the Minecraft-SMP Modelling Toolbox 2.3.0.0
-// Copyright (C) 2021 Minecraft-SMP.de
+// Copyright (C) 2022 Minecraft-SMP.de
 // This file is for Flan's Flying Mod Version 4.0.x+
 
 // Model: 
@@ -8,6 +8,7 @@
 // Last changed on: 12.08.2021 - 04:26:31
 
 package train.client.render.models; //Path where the model is located
+
 
 import tmt.ModelConverter;
 import tmt.ModelRendererTurbo;
@@ -35,7 +36,7 @@ public class ModelClass158Middle extends ModelConverter //Same as Filename
 		bodyModel[1] = new ModelRendererTurbo(this, 218, 165, textureX, textureY); // 02
 		bodyModel[2] = new ModelRendererTurbo(this, 218, 182, textureX, textureY); // 03
 		bodyModel[3] = new ModelRendererTurbo(this, 218, 201, textureX, textureY); // 04
-		bodyModel[4] = new ModelRendererTurbo(this, 218, 201, textureX, textureY); // 05
+		bodyModel[4] = new ModelRendererTurbo(this, 218, 206, textureX, textureY); // 05
 		bodyModel[5] = new ModelRendererTurbo(this, 193, 41, textureX, textureY); // 12
 		bodyModel[6] = new ModelRendererTurbo(this, 1, 49, textureX, textureY); // 13
 		bodyModel[7] = new ModelRendererTurbo(this, 193, 49, textureX, textureY); // 14

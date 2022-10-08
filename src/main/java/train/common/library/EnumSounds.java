@@ -78,6 +78,7 @@ public enum EnumSounds {
 	locoBamboo(EntityLocoDieselBamboo.class, "gp_horn", 0F, "chme3_idle", 0.2F, 40, "chme3_idle", 0.1F, 40, false),
 	locoSD70(EntityLocoDieselSD70.class, "sd70_horn", 0.8F, "chme3_idle", 0.65F, 40, "chme3_idle", 0.65F, 40, false),
 	locoDD35A(EntityLocoDieselDD35A.class, "sd70_horn", 0.8F, "chme3_idle", 0.65F, 40, "chme3_idle", 0.65F, 40, false),
+	lococlass158(EntityLocoDieselClass158.class, "british_two_tone", 0.8F, "chme3_idle", 0.65F, 40, "chme3_idle", 0.65F, 40, false),
 	lococlass153(EntityLocoDieselClass153.class, "british_two_tone", 0.8F, "chme3_idle", 0.65F, 40, "chme3_idle", 0.65F, 40, false),
 	lococlass175(EntityLocoDieselClass175.class, "british_two_tone", 0.8F, "chme3_idle", 0.65F, 40, "chme3_idle", 0.65F, 40, false),
 	lococlass156(EntityLocoDieselClass156.class, "british_two_tone", 0.8F, "chme3_idle", 0.65F, 40, "chme3_idle", 0.65F, 40, false),
@@ -107,7 +108,6 @@ public enum EnumSounds {
 	ElectricClass345(EntityElectricClass345.class, "subway_horn", 0.8F, "vl10_idle", 0.6F, 50, "vl10_idle", 0.6F, 50, false),
 	Electric440R(EntityLocoElectric440RFront.class, "446Horn", 0.8F, "vl10_idle", 0.6F, 50, "vl10_idle", 0.6F, 50, false),
 	ElectricBR155(EntityLocoElectricBR155.class, "br155_chime", 1F, "mg_run", 0.6F, 8, "mg_idle", 0.4F, 50, false),
-	ElectricClass158(EntityLocoDieselClass158.class, "british_two_tone", 0.8F, "mg_run", 0.65F, 40, "mg_idle", 0.65F, 40, false),
 	ElectricDB143(EntityLocoElectricDB143.class, "mg_horn", 1F, "mg_run", 0.6F, 8, "mg_idle", 0.4F, 50, false),
 	ElectricDStockEngine(EntityElectricDstockEngine.class, "dstock_whistle", 0.8F, "vl10_idle", 0.6F, 50, "vl10_idle", 0.6F, 50, false),
 	ElectricEU07(EntityLocoElectricEU07.class, "mg_horn", 1F, "mg_run", 0.6F, 8, "mg_idle", 0.4F, 50, false),
@@ -128,6 +128,7 @@ public enum EnumSounds {
 	asteri(EntityLocoSteamasteri.class, "asteri", 1F, "asteri", 0.2F, 212,"mg_idle", 0.6F, 50, false),
 	FGV4300(EntityLocoElectricFGV4300.class, "4300_horn", 1F, "vl10_idle", 0.65F, 10, "vl10_idle", 0.6F, 40, false),
 	Class162Engine(EntityElectricClass162.class, "mg_horn", 1F, "vl10_idle", 0.8F, 10, "vl10_idle", 0.6F, 50, false),
+	Class34(EntityLocoDieselClass34.class, "british_two_tone", 0.8F, "chme3_idle", 0.65F, 40, "chme3_idle", 0.65F, 40, false),
 
 
 	//American Stuff
