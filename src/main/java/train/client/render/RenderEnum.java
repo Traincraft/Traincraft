@@ -1176,6 +1176,8 @@ public enum RenderEnum {
 	Class162CoachA( EntityPassengerClass162CoachA.class, new ModelClass162CoachA(),"Class_162_Coach_A_", true, new float[] {0F, 0.155F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
 	Class34(EntityLocoDieselClass34.class, new ModelClass34(), "class_34_", true, new float[] {-2.75F, 0.17F, 0F}, new float[] {0F,180F,180F}, null, "smoke", 3,  new ArrayList<double[]>() {{}}, "", null, 0, false),
 	tankerUK(EntityTankerUK.class, new ModelTankerUK(), "Tanker_UK_", true, new float[] {0F,0.155F,0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	MetalTram(EntityLocoElectricMetalTram.class, new ModelMetalTram(), "Metal_Tram_", true, new float[]{ -1F, 0.18F, 0.0F}, new float[]{ 0.0F, 180F, 180F} , null, "", 0, null, "", null, 0 , false ),
+	MetalTramCoach(EntityPassengerMetalTramCoach.class, new ModelMetalTramCoach(), "Metal_Tram_", true, new float[]{ 0.0F, 0.18F, 0.0F}, new float[]{ 0.0F, 180F, 180F} , null, "", 0, null, "", null, 0 , false ),
 	;
 
 	private Class<? extends AbstractTrains> entityClass;
