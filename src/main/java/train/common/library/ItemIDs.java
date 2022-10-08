@@ -602,6 +602,7 @@ public enum ItemIDs {
 	minecartClass162CoachB("ItemRollingStock","Class_162_Coach_B_icon",1),
 	minecartClass162CoachA("ItemRollingStock","Class_162_Coach_A_icon",1),
 	minecartClass34("ItemRollingStock", "class_34_icon", 4),
+	minecartTanker_UK("ItemRollingStock", "Tanker_UK_icon", 1),
 
 	//signalSpanish("ItemsignalSpanish","signalSpanish", 1),
 

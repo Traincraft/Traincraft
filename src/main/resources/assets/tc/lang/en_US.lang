@@ -637,6 +637,7 @@ item.tc:minecartClass162Engine.name=Class 162 Engine
 item.tc:minecartClass162CoachB.name=Class 162 Coach B
 item.tc:minecartClass162CoachA.name=Class 162 Coach A
 item.tc:minecartClass34.name=Class 34
+item.tc:minecartTanker_UK.name= Tanker UK
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -1167,6 +1168,7 @@ entity.tc.FGV_4300_Motor.name=FGV 4300 Motor
 entity.tc.FGV_4300_Tail.name=FGV 4300 Tail
 entity.tc.Class162Engine.name=Class 162 Engine
 entity.tc.Class34.name=Class 34
+entity.tc.TankerUK.name=Tanker UK
 
 description.villager.profession.tc.station_chief=Station Chief
 
