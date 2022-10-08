@@ -567,7 +567,7 @@ public enum ItemIDs {
 	minecartBNLRV_B("ItemRollingStock", "BNLRV_B", 1 ),
 	minecartBNLRV_A("ItemRollingStock", "BNLRV_A", 1 ),
 	//minecartasteri("ItemRollingStock", "asteri",1),
-	minecartBR_Black_5("ItemRollingStock", "BR_Black_5", 1),
+	minecartBR_Black_5("ItemRollingStock", "BR_Black_5", 2),
 	minecartBR_Black_5_Tender("ItemRollingStock", "BR_Black_5_Tender", 1),
 	minecartC415H("ItemRollingStock", "c415h", 4),
 	minecartC415S("ItemRollingStock", "c415s", 4),
@@ -605,6 +605,7 @@ public enum ItemIDs {
 	minecartTanker_UK("ItemRollingStock", "Tanker_UK_icon", 1),
 	minecartMetalTram("ItemRollingStock", "Metal_Tram_icon", 2),
 	minecartMetalTramCoach("ItemRollingStock", "Metal_Tram_Coach_icon", 1),
+	minecartRW_Type_3("ItemRollingStock", "RW_Type_3_icon",2)
 
 	//signalSpanish("ItemsignalSpanish","signalSpanish", 1),
 

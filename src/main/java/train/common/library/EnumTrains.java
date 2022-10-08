@@ -503,6 +503,7 @@ public enum EnumTrains {
 	tankTankerUK("TankerUK", EntityTankerUK.class, ItemIDs.minecartTanker_UK.item, "tank", 10, TraincraftUtil.getBytesFromColors(new String[] {"Black", "Red", "Green", "Yellow", "White"}), 18,  36, "Pack: B.I.P." ),
 	MetalTram("MetalTram", EntityLocoElectricMetalTram.class, ItemIDs.minecartMetalTram.item, "electric", 500, 50, 0, 10, 0, 100, 0.7, 0.8, 1000,TraincraftUtil.getBytesFromColors(new String[]{"Green","Brown","Yellow"}) , 18, -2, "Modeller: Lord Squid"),
 	MetalTramCoach("MetalTramCoach",EntityPassengerMetalTramCoach.class, ItemIDs.minecartMetalTramCoach.item, "passenger", 0, 0, 2, 0, 0, 0, 0, 0, 0,TraincraftUtil.getBytesFromColors(new String[]{"Green", "Brown", "Yellow"}), 0, 0, "Modeller: Lord Squid" ),
+	RW_Type_3("RW_Type_3", EntityLocoSteamRW_Type_3.class, ItemIDs.minecartRW_Type_3.item, "steam", 900, 101, 3, 10, 10 , 100, 0.7, 0.7, 4000, TraincraftUtil.getBytesFromColors(new String[]   {"Black", "Blue", "Green", "Lime", "Pink", "Red"}), 18, -2.7f, "Pack: B.I.P."),
 	;
 
 //String trainType,int MHP,int maxSpeed, double mass, int fuelConsumption, int waterConsumption, int heatingTime, double accelerationRate, double brakeRate, int tankCapacity, String[] colors,
