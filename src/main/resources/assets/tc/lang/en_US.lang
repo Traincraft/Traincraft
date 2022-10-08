@@ -640,6 +640,7 @@ item.tc:minecartClass34.name=Class 34
 item.tc:minecartTanker_UK.name=Tanker UK
 item.tc:minecartMetalTram.name=Metal Tram
 item.tc:minecartMetalTramCoach.name=Metal Tram Coach
+item.tc:minecartHopper_UK.name=Hopper UK
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -1173,6 +1174,7 @@ entity.tc.Class34.name=Class 34
 entity.tc.TankerUK.name=Tanker UK
 entity.tc.MetalTram.name=Metal Tram
 entity.tc.MetalTramCoach.name=Metal Tram Coach
+entity.tc.HopperUK.name=Hopper UK
 
 description.villager.profession.tc.station_chief=Station Chief
 

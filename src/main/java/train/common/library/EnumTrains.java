@@ -279,9 +279,9 @@ public enum EnumTrains {
 	pch120coach("PCH-120 Commute Car", EntityPassengerPCH120Coach.class, ItemIDs.minecartPCH120Car.item, "passenger",0, 0, 2, 0, 0, 0, 0, 0, 0,TraincraftUtil.getBytesFromColors(new String[]{"White", "Blue","Green"}), 0, 0, "Pack: Peachy's Railtech"),
 	LUengine("London Underground Engine", EntityElectricLUengine.class, ItemIDs.minecartLUengine.item, "electric", 600, 100, 0, 10, 0, 100, 0.7, 0.8, 1000, null, 18, -2, "Pack: B.I.P."),
 	LUpassenger("London Underground Passenger Car", EntityLUpassenger.class, ItemIDs.minecartLUcar.item, "passenger", 0, 0, 1, 0, 0, 0, 0, 0, 0, null, 10, 0, "Pack: B.I.P."),
-	DstockEngine("London D Stock Engine", EntityElectricDstockEngine.class, ItemIDs.minecartDstockEngine.item, "electric", 600, 80, 0, 10, 0, 100, 0.7, 0.8, 1000, null, 18, -2, "Pack: MetroIM"),
-	DstockPassenger("London D Stock Passenger Car", EntityDstockPassenger.class, ItemIDs.minecartDstockCar.item, "passenger", 0, 0, 2, 0, 0, 0, 0, 0, 0, null, 10, 0, "Pack: MetroIM"),
-	Class345("Class 345 Engine", EntityElectricClass345.class, ItemIDs.minecartClass345engine.item, "electric", 1500, 300, 0,10, 0, 100, 0.9, 0.9, 1000,  TraincraftUtil.getBytesFromColors(new String[]{"White", "Red", "Orange", "Pink"}), 18, -3, "Pack: B.I.P."),
+	DstockEngine("London D Stock Engine", EntityElectricDstockEngine.class, ItemIDs.minecartDstockEngine.item, "electric", 600, 80, 0, 10, 0, 100, 0.7, 0.8, 1000, TraincraftUtil.getBytesFromColors(new String[]{"Red", "Blue", "Grey"}), 18, -2, "Pack: MetroIM"),
+	DstockPassenger("London D Stock Passenger Car", EntityDstockPassenger.class, ItemIDs.minecartDstockCar.item, "passenger", 0, 0, 2, 0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[]{"Red", "Blue", "Grey"}), 10, 0, "Pack: MetroIM"),
+	Class345("Class 345 Engine", EntityElectricClass345.class, ItemIDs.minecartClass345engine.item, "electric", 1500, 300, 0,10, 0, 100, 0.9, 0.9, 1000,TraincraftUtil.getBytesFromColors(new String[]{"White", "Red", "Orange", "Pink"}), 18, -3, "Pack: B.I.P."),
 	Class345Coach("Class 345 Passenger Car", EntityClass345Coach.class, ItemIDs.minecartClass345car.item, "passenger", 0, 0, 3,0 , 0, 0, 0,0,0,TraincraftUtil.getBytesFromColors(new String[]{"White", "Red", "Orange", "Pink"}),0,0, "Pack: B.I.P."),
 	passengerPS52SeatCoach("PS 52 Seat Coach", EntityPassengerPS52SeatCoach.class, ItemIDs.minecartPS52seatCoach.item, "passenger", 0, 0, 3, 0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[]{"Blue", "Orange", "LightBlue", "Black", "Cyan", "Yellow", "Pink", "Magenta"}), 10, 0, "Pack: BAP"),
 	passengerPSCombine("PS Combine Coach", EntityPassengerPSCombine.class, ItemIDs.minecartPScombine.item, "passenger/combine", 0, 0, 3, 0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[]{"Blue", "Orange"}), 10, 0, "Pack: BAP"),
@@ -504,6 +504,7 @@ public enum EnumTrains {
 	MetalTram("MetalTram", EntityLocoElectricMetalTram.class, ItemIDs.minecartMetalTram.item, "electric", 500, 50, 0, 10, 0, 100, 0.7, 0.8, 1000,TraincraftUtil.getBytesFromColors(new String[]{"Green","Brown","Yellow"}) , 18, -2, "Modeller: Lord Squid"),
 	MetalTramCoach("MetalTramCoach",EntityPassengerMetalTramCoach.class, ItemIDs.minecartMetalTramCoach.item, "passenger", 0, 0, 2, 0, 0, 0, 0, 0, 0,TraincraftUtil.getBytesFromColors(new String[]{"Green", "Brown", "Yellow"}), 0, 0, "Modeller: Lord Squid" ),
 	RW_Type_3("RW_Type_3", EntityLocoSteamRW_Type_3.class, ItemIDs.minecartRW_Type_3.item, "steam", 900, 101, 3, 10, 10 , 100, 0.7, 0.7, 4000, TraincraftUtil.getBytesFromColors(new String[]   {"Black", "Blue", "Green", "Lime", "Pink", "Red"}), 18, -2.7f, "Pack: B.I.P."),
+	HopperUK("HopperUK", EntityFreightHopperUK.class, ItemIDs.minecartHopper_UK.item, "freight", 1, TraincraftUtil.getBytesFromColors(new String[] {"Grey", "Yellow"}), 18,  36, "Pack: B.I.P." ),
 	;
 
 //String trainType,int MHP,int maxSpeed, double mass, int fuelConsumption, int waterConsumption, int heatingTime, double accelerationRate, double brakeRate, int tankCapacity, String[] colors,

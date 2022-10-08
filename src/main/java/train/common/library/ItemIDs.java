@@ -605,7 +605,8 @@ public enum ItemIDs {
 	minecartTanker_UK("ItemRollingStock", "Tanker_UK_icon", 1),
 	minecartMetalTram("ItemRollingStock", "Metal_Tram_icon", 2),
 	minecartMetalTramCoach("ItemRollingStock", "Metal_Tram_Coach_icon", 1),
-	minecartRW_Type_3("ItemRollingStock", "RW_Type_3_icon",2)
+	minecartRW_Type_3("ItemRollingStock", "RW_Type_3_icon",2),
+	minecartHopper_UK("ItemRollingStock", "Hopper_UK_icon", 1),
 
 	//signalSpanish("ItemsignalSpanish","signalSpanish", 1),
 
