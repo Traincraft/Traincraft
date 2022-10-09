@@ -607,6 +607,9 @@ public enum ItemIDs {
 	minecartMetalTramCoach("ItemRollingStock", "Metal_Tram_Coach_icon", 1),
 	minecartRW_Type_3("ItemRollingStock", "RW_Type_3_icon",2),
 	minecartHopper_UK("ItemRollingStock", "Hopper_UK_icon", 1),
+	minecartGWR_42xx("ItemRollingStock", "2-8-0_icon",2),
+	minecartGWR_72xx("ItemRollingStock", "72xx_icon",2),
+	minecartGWR_101_Class("ItemRollingStock", "GWR_101_icon",2),
 
 	//signalSpanish("ItemsignalSpanish","signalSpanish", 1),
 

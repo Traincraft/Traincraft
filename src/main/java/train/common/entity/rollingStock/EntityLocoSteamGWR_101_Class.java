@@ -13,8 +13,8 @@ import train.common.api.SteamTrain;
 import train.common.library.EnumTrains;
 import train.common.library.GuiIDs;
 
-public class EntityLocoSteamRW_Type_3 extends SteamTrain {
-    public EntityLocoSteamRW_Type_3(World world) {
+public class EntityLocoSteamGWR_101_Class extends SteamTrain {
+    public EntityLocoSteamGWR_101_Class(World world) {
         super(world, EnumTrains.locosteamHallClass.getTankCapacity(), LiquidManager.WATER_FILTER);
         initLocoSteam();
     }
@@ -24,7 +24,7 @@ public class EntityLocoSteamRW_Type_3 extends SteamTrain {
         locoInvent = new ItemStack[inventorySize];
     }
 
-    public EntityLocoSteamRW_Type_3(World world, double d, double d1, double d2) {
+    public EntityLocoSteamGWR_101_Class(World world, double d, double d1, double d2) {
         this(world);
         setPosition(d, d1 + yOffset, d2);
         motionX = 0.0D;
@@ -39,7 +39,7 @@ public class EntityLocoSteamRW_Type_3 extends SteamTrain {
     public void updateRiderPosition() {
         if (riddenByEntity == null) {return;}
         double pitchRads = this.anglePitchClient * Math.PI / 180.0D;
-        double distance = 0.05;
+        double distance = -0.2;
         double yOffset = 0.2;
         float rotationCos1 = (float) Math.cos(Math.toRadians(this.renderYaw + 90));
         float rotationSin1 = (float) Math.sin(Math.toRadians((this.renderYaw + 90)));
@@ -131,7 +131,7 @@ public class EntityLocoSteamRW_Type_3 extends SteamTrain {
     }
     @Override
     public String getInventoryName() {
-        return "RW Type 3";
+        return "GWR 101 Class";
     }
 
     @Override
@@ -151,7 +151,7 @@ public class EntityLocoSteamRW_Type_3 extends SteamTrain {
 
     @Override
     public float getOptimalDistance(EntityMinecart cart) {
-        return 0.83F;
+        return 0.81F;
     }
 
 

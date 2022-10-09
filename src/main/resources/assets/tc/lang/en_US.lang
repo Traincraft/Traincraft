@@ -641,6 +641,10 @@ item.tc:minecartTanker_UK.name=Tanker UK
 item.tc:minecartMetalTram.name=Metal Tram
 item.tc:minecartMetalTramCoach.name=Metal Tram Coach
 item.tc:minecartHopper_UK.name=Hopper UK
+item.tc:minecartRW_Type_3.name=RW Type 3
+item.tc:minecartGWR_42xx.name=GWR 42xx
+item.tc:minecartGWR_72xx.name=GWR 72xx
+item.tc:minecartGWR_101_Class.name=GWR 101 Class
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -1175,6 +1179,10 @@ entity.tc.TankerUK.name=Tanker UK
 entity.tc.MetalTram.name=Metal Tram
 entity.tc.MetalTramCoach.name=Metal Tram Coach
 entity.tc.HopperUK.name=Hopper UK
+entity.tc.RW_Type_3= RW Type 3
+entity.tc.GWR_42xx= GWR 42xx
+entity.tc.GWR_72xx= GWR 72xx
+entity.tc.GWR_101_Class= GWR 101 Class
 
 description.villager.profession.tc.station_chief=Station Chief
 

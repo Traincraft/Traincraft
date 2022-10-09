@@ -317,11 +317,42 @@ public enum RenderEnum {
 
 	locoRW_Type_3(EntityLocoSteamRW_Type_3.class, new ModelRW_Type_3(), "RW_Type_3_", true, new float[] {-1.25f, 0.17f, 0 }, new float[] {0,180,180}, null, "largesmoke", 3, new ArrayList<double[]>() {
 		{
-			add(new double[] { 3.55D, 1.65D, 0D });
+			add(new double[] { 2.4D, 1.55D, 0D });
 		}
 	}, "explode", new ArrayList<double[]>() {
 		{
 			add(new double[] { 2.9D, 0.05D, 0.65D });
+		}
+	}, 2, true),
+
+	locoGWR_101_Class(EntityLocoSteamGWR_101_Class.class, new ModelGWR101Class(), "Gwr_101_", true, new float[] {-1.25f, 0.17f, 0 }, new float[] {0,180,180}, null, "largesmoke", 3, new ArrayList<double[]>() {
+		{
+			add(new double[] { 2.6D, 1.55D, 0D });
+		}
+	}, "explode", new ArrayList<double[]>() {
+		{
+			add(new double[] { 3D, 0.05D, 0.65D });
+		}
+	}, 2, true),
+
+
+	locoGWR_42xx(EntityLocoSteamGWR_42xx.class, new ModelGWR42xx(), "2-8-0_", true, new float[] {-2.1f, 0.17f, 0 }, new float[] {0,180,180}, null, "largesmoke", 3, new ArrayList<double[]>() {
+		{
+			add(new double[] { 4.1D, 1.6D, 0D });
+		}
+	}, "explode", new ArrayList<double[]>() {
+		{
+			add(new double[] { 4.3D, 0.05D, 0.65D });
+		}
+	}, 2, true),
+
+	locoGWR_72xx(EntityLocoSteamGWR_72xx.class, new ModelGWR72xx(), "72xx_", true, new float[] {-2.5f, 0.17f, 0 }, new float[] {0,180,180}, null, "largesmoke", 3, new ArrayList<double[]>() {
+		{
+			add(new double[] { 4.8D, 1.6D, 0D });
+		}
+	}, "explode", new ArrayList<double[]>() {
+		{
+			add(new double[] { 5.0D, 0.05D, 0.65D });
 		}
 	}, 2, true),
 

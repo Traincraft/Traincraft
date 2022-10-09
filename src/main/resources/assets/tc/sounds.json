@@ -164,7 +164,8 @@
   "gp40_2_horn": {"category": "master", "sounds": [{"name": "gp40_2_horn", "stream":  true}]},
   "skookum_whistle": {"category": "master", "sounds": [{"name": "skookum_whistle", "stream":  true}]},
   "asteri": {"category":  "master", "sounds" :  [{"name": "asteri", "stream":  true}]},
-  "4300_horn": {"category": "master", "sounds" :  [{"name": "4300_horn", "stream": true}]}
+  "4300_horn": {"category": "master", "sounds" :  [{"name": "4300_horn", "stream": true}]},
+  "RW_type_3": {"category": "master", "sounds" :  [{"name": "RW_type_3", "stream": true}]}
 
 
 
