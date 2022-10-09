@@ -508,8 +508,9 @@ public enum EnumTrains {
 	GWR_42xx("GWR_42xx", EntityLocoSteamGWR_42xx.class, ItemIDs.minecartGWR_42xx.item, "steam", 1300, 105, 0, 10, 10 , 100, 0.7, 0.7, 8200, TraincraftUtil.getBytesFromColors(new String[]   {"Black", "Blue", "Green", "Lime"}), 18, -4.3f, "Pack: B.I.P."),
 	GWR_72xx("GWR_72xx", EntityLocoSteamGWR_72xx.class, ItemIDs.minecartGWR_72xx.item, "steam", 1375, 105, 0, 10, 10 , 100, 0.7, 0.7, 9000, TraincraftUtil.getBytesFromColors(new String[]   {"Black", "Blue", "Green", "Lime"}), 18, -5.0f, "Pack: B.I.P."),
 	GWR_101_Class("GWR_101_Class", EntityLocoSteamGWR_101_Class.class, ItemIDs.minecartGWR_101_Class.item, "steam", 550, 51, 0, 10, 10 , 100, 0.7, 0.7, 9500, TraincraftUtil.getBytesFromColors(new String[]   {"Blue", "Brown", "Green", "Grey", "Lime", "Purple", "Red"}), 18, -2.6f, "Pack: B.I.P."),
-	B80C_A("B80C_A", EntityElectricB80C_A.class, ItemIDs.minecartB80C_A.item, "electric", 300, 80, 0,60, 0, 100, 0.7, 0.8, 1000, TraincraftUtil.getBytesFromColors(new String[] {"Red", "Grey", "White","Pink","Yellow","Green"}), 18, -2.4, "Made by Kranker"),
-	B80C_B("B80C_B", EntityPassengerB80C_B.class, ItemIDs.minecartB80C_B.item, "passenger", 0, 0, 3,0 , 0, 0, 0,0,0,TraincraftUtil.getBytesFromColors(new String[] {"Red", "Grey", "White","Pink","Yellow","Green"}),0,0, "Made by Kranker"),
+	B80C_A("B80C_A", EntityElectricB80C_A.class, ItemIDs.minecartB80C_A.item, "electric", 300, 80, 0,60, 0, 100, 0.7, 0.8, 1000, TraincraftUtil.getBytesFromColors(new String[] {"Red", "Grey", "White","Pink","Yellow","Green"}), 18, -2.4, "Pack: Metro In Motion"),
+	B80C_B("B80C_B", EntityPassengerB80C_B.class, ItemIDs.minecartB80C_B.item, "passenger", 0, 0, 3,0 , 0, 0, 0,0,0,TraincraftUtil.getBytesFromColors(new String[] {"Red", "Grey", "White","Pink","Yellow","Green"}),0,0, "Pack: Metro In Motion"),
+	WoodenTramCoach("WoodenTramCoach", EntityPassengerWoodenTramCoach.class, ItemIDs.minecartWoodenTramCoach.item, "passenger", 0, 0, 1, 0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[]{"Green", "Pink","Yellow","Lime"}), 18, 0),
 	;
 
 //String trainType,int MHP,int maxSpeed, double mass, int fuelConsumption, int waterConsumption, int heatingTime, double accelerationRate, double brakeRate, int tankCapacity, String[] colors,

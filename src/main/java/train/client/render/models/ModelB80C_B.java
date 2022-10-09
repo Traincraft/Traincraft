@@ -49,10 +49,10 @@ public class ModelB80C_B extends ModelConverter //Same as Filename
 		bodyModel[12] = new ModelRendererTurbo(this, 153, 1, textureX, textureY); // Box 31
 		bodyModel[13] = new ModelRendererTurbo(this, 73, 1, textureX, textureY); // Box 32
 		bodyModel[14] = new ModelRendererTurbo(this, 321, 1, textureX, textureY); // Box 31
-		bodyModel[15] = new ModelRendererTurbo(this, 97, 1, textureX, textureY); // Box 340
+		bodyModel[15] = new ModelRendererTurbo(this, 97, 1, textureX, textureY,"lamp"); // Box 340
 		bodyModel[16] = new ModelRendererTurbo(this, 105, 1, textureX, textureY); // Box 341
 		bodyModel[17] = new ModelRendererTurbo(this, 113, 1, textureX, textureY); // Box 228
-		bodyModel[18] = new ModelRendererTurbo(this, 121, 1, textureX, textureY); // Box 229
+		bodyModel[18] = new ModelRendererTurbo(this, 121, 1, textureX, textureY,"lamp"); // Box 229
 		bodyModel[19] = new ModelRendererTurbo(this, 265, 1, textureX, textureY); // Box 230
 		bodyModel[20] = new ModelRendererTurbo(this, 241, 1, textureX, textureY); // Box 231
 		bodyModel[21] = new ModelRendererTurbo(this, 233, 1, textureX, textureY); // Box 232
@@ -76,7 +76,7 @@ public class ModelB80C_B extends ModelConverter //Same as Filename
 		bodyModel[39] = new ModelRendererTurbo(this, 48, 9, textureX, textureY); // Box 90
 		bodyModel[40] = new ModelRendererTurbo(this, 96, 9, textureX, textureY); // Box 91
 		bodyModel[41] = new ModelRendererTurbo(this, 473, 9, textureX, textureY); // Box 92
-		bodyModel[42] = new ModelRendererTurbo(this, 233, 25, textureX, textureY); // Box 93
+		bodyModel[42] = new ModelRendererTurbo(this, 233, 25, textureX, textureY,"lamp"); // Box 93
 		bodyModel[43] = new ModelRendererTurbo(this, 313, 1, textureX, textureY); // Box 94
 		bodyModel[44] = new ModelRendererTurbo(this, 361, 1, textureX, textureY); // Box 95
 		bodyModel[45] = new ModelRendererTurbo(this, 265, 25, textureX, textureY); // Box 104
@@ -263,7 +263,7 @@ public class ModelB80C_B extends ModelConverter //Same as Filename
 		bodyModel[226] = new ModelRendererTurbo(this, 1, 25, textureX, textureY); // Box 391
 		bodyModel[227] = new ModelRendererTurbo(this, 409, 145, textureX, textureY); // Box 392
 		bodyModel[228] = new ModelRendererTurbo(this, 273, 145, textureX, textureY); // Box 393
-		bodyModel[229] = new ModelRendererTurbo(this, 229, 145, textureX, textureY); // Box 364
+		bodyModel[229] = new ModelRendererTurbo(this, 229, 145, textureX, textureY,"lamp"); // Box 364
 		bodyModel[230] = new ModelRendererTurbo(this, 231, 152, textureX, textureY); // Box 403
 		bodyModel[231] = new ModelRendererTurbo(this, 229, 145, textureX, textureY); // Box 404
 		bodyModel[232] = new ModelRendererTurbo(this, 231, 152, textureX, textureY); // Box 405
@@ -349,7 +349,7 @@ public class ModelB80C_B extends ModelConverter //Same as Filename
 		bodyModel[312] = new ModelRendererTurbo(this, 425, 135, textureX, textureY); // Box 394
 		bodyModel[313] = new ModelRendererTurbo(this, 57, 81, textureX, textureY); // Box 386
 		bodyModel[314] = new ModelRendererTurbo(this, 232, 177, textureX, textureY); // Box 386
-		bodyModel[315] = new ModelRendererTurbo(this, 232, 177, textureX, textureY); // Box 387
+		bodyModel[315] = new ModelRendererTurbo(this, 232, 177, textureX, textureY,"lamp"); // Box 387
 		bodyModel[316] = new ModelRendererTurbo(this, 290, 176, textureX, textureY); // Box 388
 		bodyModel[317] = new ModelRendererTurbo(this, 311, 176, textureX, textureY); // Box 389
 		bodyModel[318] = new ModelRendererTurbo(this, 311, 176, textureX, textureY); // Box 390
@@ -1451,4 +1451,21 @@ public class ModelB80C_B extends ModelConverter //Same as Filename
 		bodyModel[352].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F,0F, 0F, -0.9F, 0F, 0F, -0.9F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.9F, 0F, 0F, -0.9F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 408
 		bodyModel[352].setRotationPoint(-32.5F, -20.25F, -0.7F);
 	}
+	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
+
+		for (int i = 0; i < 353; i++) {
+			if (bodyModel[i].boxName != null && bodyModel[i].boxName.contains("lamp")) {
+				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+				bodyModel[i].render(f5);
+				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+			} else if (bodyModel[i].boxName != null && bodyModel[i].boxName.contains("cull")) {
+				GL11.glDisable(GL11.GL_CULL_FACE);
+				bodyModel[i].render(f5);
+				GL11.glEnable(GL11.GL_CULL_FACE);
+			} else {
+				bodyModel[i].render(f5);
+			}
+		}
+	}
+
 }
