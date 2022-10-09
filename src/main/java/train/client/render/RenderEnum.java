@@ -1223,6 +1223,8 @@ public enum RenderEnum {
 	B80C_A(EntityElectricB80C_A.class, new ModelB80C_A(), "B80C_", true,new float[] {-1.25F, 0.15F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	B80C_B( EntityPassengerB80C_B.class, new ModelB80C_B(),"B80C_", true, new float[] {0F, 0.15F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
 	WoodenTramCoach(EntityPassengerWoodenTramCoach.class, new ModelWoodenTramCoach(), "Wooden_Tram_Coach_", true, new float[]{ 0.0F, 0.18F, 0.0F}, new float[]{ 0.0F, 180F, 180F} , null, "", 0, null, "", null, 0 , false ),
+	MA100_Loco(EntityElectricMA100_Loco.class, new ModelMA100_Loco(), "MA100_", true,new float[] {-0.95F, 0.16F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	MA100_Tail(EntityPassengerMA100_Tail.class, new ModelMA100_Tail(), "MA100_",true,new float[] {0F, 0.16F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	;
 
 	private Class<? extends AbstractTrains> entityClass;

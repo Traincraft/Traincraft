@@ -613,7 +613,8 @@ public enum ItemIDs {
 	minecartB80C_A("ItemRollingStock", "B80C_A_icon",2),
 	minecartB80C_B("ItemRollingStock", "B80C_B_icon",1),
 	minecartWoodenTramCoach("ItemRollingStock", "Wooden_Tram_Coach_icon",1),
-
+	minecartMA100_Loco("ItemRollingStock", "MA100_Loco_icon",2),
+	minecartMA100_Tail("ItemRollingStock", "MA100_Tail_icon",1),
 
 	//signalSpanish("ItemsignalSpanish","signalSpanish", 1),
 

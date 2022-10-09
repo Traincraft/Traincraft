@@ -511,6 +511,8 @@ public enum EnumTrains {
 	B80C_A("B80C_A", EntityElectricB80C_A.class, ItemIDs.minecartB80C_A.item, "electric", 300, 80, 0,60, 0, 100, 0.7, 0.8, 1000, TraincraftUtil.getBytesFromColors(new String[] {"Red", "Grey", "White","Pink","Yellow","Green"}), 18, -2.4, "Pack: Metro In Motion"),
 	B80C_B("B80C_B", EntityPassengerB80C_B.class, ItemIDs.minecartB80C_B.item, "passenger", 0, 0, 3,0 , 0, 0, 0,0,0,TraincraftUtil.getBytesFromColors(new String[] {"Red", "Grey", "White","Pink","Yellow","Green"}),0,0, "Pack: Metro In Motion"),
 	WoodenTramCoach("WoodenTramCoach", EntityPassengerWoodenTramCoach.class, ItemIDs.minecartWoodenTramCoach.item, "passenger", 0, 0, 1, 0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[]{"Green", "Pink","Yellow","Lime"}), 18, 0),
+	MA100_Loco("MA100_Loco", EntityElectricMA100_Loco.class, ItemIDs.minecartMA100_Loco.item, "electric", 600, 70, 0, 10, 0, 100, 0.7, 0.8, 1000, TraincraftUtil.getBytesFromColors(new String[]{"Black", "Cyan", "Purple"}), 18, -2, "Pack: MetroIM"),
+	MA100_Tail("MA100_Tail", EntityPassengerMA100_Tail.class, ItemIDs.minecartMA100_Tail.item, "passenger", 0, 0, 2, 0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[]{"Black", "Cyan", "Purple"}), 10, 0, "Pack: MetroIM"),
 	;
 
 //String trainType,int MHP,int maxSpeed, double mass, int fuelConsumption, int waterConsumption, int heatingTime, double accelerationRate, double brakeRate, int tankCapacity, String[] colors,

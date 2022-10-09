@@ -648,6 +648,8 @@ item.tc:minecartGWR_101_Class.name=GWR 101 Class
 item.tc:minecartB80C_A.name=B80C A segment
 item.tc:minecartB80C_B.name=B80C B segment
 item.tc:minecartWoodenTramCoach.name=Wooden Tram Coach
+item.tc:minecartMA100_Loco.name=MA100 Loco
+item.tc:minecartMA100_Tail.name=MA100 Tail
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -1189,6 +1191,8 @@ entity.tc.GWR_101_Class= GWR 101 Class
 entity.tc.B80C_A=B80C A segment
 entity.tc.B80C_B=B80C B segment
 entity.tc.WoodenTramCoach=Wooden Tram Coach
+entity.tc.MA100_Loco=MA100 Loco
+entity.tc.MA100_Tail=MA100 Tail
 
 description.villager.profession.tc.station_chief=Station Chief
 
