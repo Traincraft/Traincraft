@@ -516,6 +516,7 @@ public enum EnumTrains {
 	WoodenTramCoach("WoodenTramCoach", EntityPassengerWoodenTramCoach.class, ItemIDs.minecartWoodenTramCoach.item, "passenger", 0, 0, 1, 0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[]{"Green", "Pink","Yellow","Lime"}), 18, 0),
 	MA100_Loco("MA100_Loco", EntityElectricMA100_Loco.class, ItemIDs.minecartMA100_Loco.item, "electric", 600, 70, 0, 10, 0, 100, 0.7, 0.8, 1000, TraincraftUtil.getBytesFromColors(new String[]{"Black", "Cyan", "Purple"}), 18, -2, "Pack: MetroIM"),
 	MA100_Tail("MA100_Tail", EntityPassengerMA100_Tail.class, ItemIDs.minecartMA100_Tail.item, "passenger", 0, 0, 2, 0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[]{"Black", "Cyan", "Purple"}), 10, 0, "Pack: MetroIM"),
+	ExpressFreightVan("ExpressFreightVan", EntityFreightExpressFreightVan.class, ItemIDs.minecartExpressFreightVan.item, "freight", 1.5, TraincraftUtil.getBytesFromColors(new String[] {"Purple","Blue", "Yellow"}), 18,  36, "Pack: B.I.P." ),
 	WWCP_Class_062T("WWCPClass062T", EntityLocoSteamWWCPClass062T.class, ItemIDs.minecartWWCPClass062T.item, "steam", 1100, 72, 0, 10, 10 , 100, 0.7, 0.7, 8500, TraincraftUtil.getBytesFromColors(new String[]   {"Blue"}), 18, -4.15f, "Pack: WWCP"),
 	;
 

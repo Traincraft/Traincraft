@@ -654,6 +654,7 @@ item.tc:minecartWoodenTramCoach.name=Wooden Tram Coach
 item.tc:minecartMA100_Loco.name=MA100 Loco
 item.tc:minecartMA100_Tail.name=MA100 Tail
 item.tc:minecartWWCPClass062T.name=Mule Class 0-6-2T
+item.tc:minecartExpressFreightVan.name=Express Freight Van
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -1201,6 +1202,7 @@ entity.tc.WoodenTramCoach.name=Wooden Tram Coach
 entity.tc.MA100_Loco.name=MA100 Loco
 entity.tc.MA100_Tail.name=MA100 Tail
 entity.tc.WWCPClass062T.name=Mule Class 0-6-2T
+entity.tc.ExpressFreightVan.name=Express Freight Van
 
 description.villager.profession.tc.station_chief=Station Chief
 
