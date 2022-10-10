@@ -13,8 +13,8 @@ import train.common.api.SteamTrain;
 import train.common.library.EnumTrains;
 import train.common.library.GuiIDs;
 
-public class EntityLocoSteamGWR_72xx extends SteamTrain {
-    public EntityLocoSteamGWR_72xx(World world) {
+public class EntityLocoSteamGWR72xx extends SteamTrain {
+    public EntityLocoSteamGWR72xx(World world) {
         super(world, EnumTrains.locosteamHallClass.getTankCapacity(), LiquidManager.WATER_FILTER);
         initLocoSteam();
     }
@@ -24,7 +24,7 @@ public class EntityLocoSteamGWR_72xx extends SteamTrain {
         locoInvent = new ItemStack[inventorySize];
     }
 
-    public EntityLocoSteamGWR_72xx(World world, double d, double d1, double d2) {
+    public EntityLocoSteamGWR72xx(World world, double d, double d1, double d2) {
         this(world);
         setPosition(d, d1 + yOffset, d2);
         motionX = 0.0D;

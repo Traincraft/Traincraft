@@ -315,7 +315,7 @@ public enum RenderEnum {
 		}
 	}, 2, true),
 
-	locoRW_Type_3(EntityLocoSteamRW_Type_3.class, new ModelRW_Type_3(), "RW_Type_3_", true, new float[] {-1.25f, 0.17f, 0 }, new float[] {0,180,180}, null, "largesmoke", 3, new ArrayList<double[]>() {
+	locoRW_Type_3(EntityLocoSteamRWType3.class, new ModelRW_Type_3(), "RW_Type_3_", true, new float[] {-1.25f, 0.17f, 0 }, new float[] {0,180,180}, null, "largesmoke", 3, new ArrayList<double[]>() {
 		{
 			add(new double[] { 2.4D, 1.55D, 0D });
 		}
@@ -325,7 +325,18 @@ public enum RenderEnum {
 		}
 	}, 2, true),
 
-	locoGWR_101_Class(EntityLocoSteamGWR_101_Class.class, new ModelGWR101Class(), "Gwr_101_", true, new float[] {-1.25f, 0.17f, 0 }, new float[] {0,180,180}, null, "largesmoke", 3, new ArrayList<double[]>() {
+	locoRW_Type_2(EntityLocoSteamRWType2.class, new ModelRW_Type_2(), "Type_2_", true, new float[] {-1.25f, 0.17f, 0 }, new float[] {0,180,180}, null, "largesmoke", 3, new ArrayList<double[]>() {
+		{
+			add(new double[] { 2.2D, 1.55D, 0D });
+		}
+	}, "explode", new ArrayList<double[]>() {
+		{
+			add(new double[] { 2.6D, 0.05D, 0.65D });
+		}
+	}, 2, true),
+
+
+	locoGWR_101_Class(EntityLocoSteamGWR101Class.class, new ModelGWR101Class(), "Gwr_101_", true, new float[] {-1.25f, 0.17f, 0 }, new float[] {0,180,180}, null, "largesmoke", 3, new ArrayList<double[]>() {
 		{
 			add(new double[] { 2.6D, 1.55D, 0D });
 		}
@@ -336,7 +347,7 @@ public enum RenderEnum {
 	}, 2, true),
 
 
-	locoGWR_42xx(EntityLocoSteamGWR_42xx.class, new ModelGWR42xx(), "2-8-0_", true, new float[] {-2.1f, 0.17f, 0 }, new float[] {0,180,180}, null, "largesmoke", 3, new ArrayList<double[]>() {
+	locoGWR_42xx(EntityLocoSteamGWR42xx.class, new ModelGWR42xx(), "2-8-0_", true, new float[] {-2.1f, 0.17f, 0 }, new float[] {0,180,180}, null, "largesmoke", 3, new ArrayList<double[]>() {
 		{
 			add(new double[] { 4.1D, 1.6D, 0D });
 		}
@@ -346,7 +357,7 @@ public enum RenderEnum {
 		}
 	}, 2, true),
 
-	locoGWR_72xx(EntityLocoSteamGWR_72xx.class, new ModelGWR72xx(), "72xx_", true, new float[] {-2.5f, 0.17f, 0 }, new float[] {0,180,180}, null, "largesmoke", 3, new ArrayList<double[]>() {
+	locoGWR_72xx(EntityLocoSteamGWR72xx.class, new ModelGWR72xx(), "72xx_", true, new float[] {-2.5f, 0.17f, 0 }, new float[] {0,180,180}, null, "largesmoke", 3, new ArrayList<double[]>() {
 		{
 			add(new double[] { 4.8D, 1.6D, 0D });
 		}
@@ -355,6 +366,17 @@ public enum RenderEnum {
 			add(new double[] { 5.0D, 0.05D, 0.65D });
 		}
 	}, 2, true),
+
+	locoWWCP_Class_062T(EntityLocoSteamWWCPClass062T.class, new ModelWWCPClass062T(), "WWCP_Standard_0-6-2T_", true, new float[] {-2.5f, 0.17f, 0 }, new float[] {0,180,180}, null, "largesmoke", 3, new ArrayList<double[]>() {
+		{
+			add(new double[] { 4.3D, 1.6D, 0D });
+		}
+	}, "explode", new ArrayList<double[]>() {
+		{
+			add(new double[] { 4.6D, 0.05D, 0.65D });
+		}
+	}, 2, true),
+
 
 	locoC41_080(EntityLocoSteamC41_080.class, new ModelC41_080(), "locoC41_080", false, new float[] {  -3.5F, -0.5F, 0.0F }, new float[] { 0, 180, 180 }, null, "largesmoke", 3, new ArrayList<double[]>() {
 		{
@@ -677,6 +699,7 @@ public enum RenderEnum {
 	}, 2, true),
 	locoSteamA4Tender(EntityTenderA4.class, new ModelTenderA4(), "tenderA4_UK_", true, new float[] { -0.2F, 0.2F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	LocoBR_Black_5_Tender(EntityTenderBR_Black_5.class, new ModelBR_Black_5_Tender(), "BR_Black_5_Tender_", true, new float[]  {0f, 0f, 0f,}, new float[] {0F, 180F, 180F}, null, "", 0, null, "", null, 0, false),
+	LocoRW_Type_2_Tender(EntityTenderRWType2.class, new ModelRW_Type_2_Tender(), "Type_2_", true, new float[]  {0f, 0.16f, 0f,}, new float[] {0F, 180F, 180F}, null, "", 0, null, "", null, 0, false),
 	PropagandaUS(EntityPropagandaUS.class, new ModelPropagandaCar(), "propaganda_US_", true, new float[] { 1.1F, 0.2F, -0.1F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	PropagandaJapan(EntityPropagandaJapan.class, new ModelPropagandaCar(), "propaganda_Japan_", true, new float[] { 1.1F, 0.2F, -0.1F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	PropagandaUSSR(EntityPropagandaUSSR.class, new ModelPropagandaCar(), "propaganda_USSR_", true, new float[] { 1.1F, 0.2F, -0.1F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
@@ -1131,8 +1154,9 @@ public enum RenderEnum {
 	//tcce5 new stuff (its mixed around in the file tbh)
 	BR_MK2F_Coach( EntityPassengerBR_MK2F_Coach.class, new ModelBR_MK2F_Coach(), "BR_Mk2f_", true, new float[] {0.5F,0F,0F}, new float[] {0F, 180F, 180F}, null, "",0,null, "", null, 0, false),
 	BR_MK2F_BSO(EntityPassengerBR_MK2F_BSO.class, new ModelBR_MK2F_BSO(), "BR_Mk2f_BSO_", true, new float[] {0.5F,0F,0F}, new float[] {0F, 180F, 180F}, null, "", 0 , null, "", null, 0, false),
-	BR_MK3_Buffet( EntityPassengerBR_MK3_Buffet.class, new ModelBR_MK3_Buffet(),"BR_Mk3_Buffet_", true, new float[] {0F, 0F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
-	BR_MK3_Coach( EntityPassengerBR_MK3_Coach.class, new ModelBR_MK3_Coach(),"BR_Mk3_Coach_", true, new float[] {0F, 0F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
+	BR_MK3_Buffet( EntityPassengerBR_MK3_Buffet.class, new ModelBR_MK3_Buffet(),"BR_Mk3_Buffet_", true, new float[] {0.2F, 0F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
+	BR_MK3_Coach( EntityPassengerBR_MK3_Coach.class, new ModelBR_MK3_Coach(),"BR_Mk3_Coach_", true, new float[] {0.2F, 0F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
+	BR_MK3a_Coach( EntityPassengerBR_MK3a_Coach.class, new ModelBR_Mk3a_Coach(),"BR_Mk3a_", true, new float[] {0.2F, 0F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
 	BR_MK3_DVT(EntityElectricBR_MK3_DVT.class, new ModelBR_MK3_DVT(), "BR_Mk3_DVT_", true, new float[] {-1.5F, 0F, 0F},new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	BR_MK4_DVT( EntityElectricBR_MK4_DVT.class, new ModelBR_MK4_DVT(),"BR_Mk4_DVT_", true, new float[] {-1.9F, 0F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
 	BR_MK4_Coach( EntityPassengerBR_MK4_Coach.class, new ModelBR_MK4_Coach(),"BR_Mk4_", true, new float[] {0F, 0F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),

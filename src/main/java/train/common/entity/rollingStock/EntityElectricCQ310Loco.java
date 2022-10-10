@@ -30,7 +30,7 @@ public class EntityElectricCQ310Loco extends ElectricTrain {
 
     @Override
     public void updateRiderPosition() {
-        TraincraftUtil.updateRider(this, 3.5f, -0.2);
+        TraincraftUtil.updateRider(this, 3.35f, -0.2);
     }
 
     @Override
