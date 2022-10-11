@@ -174,7 +174,8 @@ public enum EnumTrains {
 	tender_C41("Tender C41",EntityTender_C41.class, ItemIDs.minecartTenderC41.item,"tender",0,0,1.5,0,0,0,0,0,16000,null,18,0,"Water capacity: 16000mb"),
 	tender_Southern1102("Tender Southern1102",EntityTender_Southern1102.class, ItemIDs.minecartTenderSouthern1102.item,"tender",0,0,1.5,0,0,0,0,0,16000,null,18,0,"Water capacity: 16000mb"),
 	tender_MILW("Tender MILW",EntityTenderMILW.class, ItemIDs.minecartMILWTender.item,"tender",0,0,1.5,0,0,0,0,0,16000,null,18,0,"Water capacity: 16000mb"),
-	tender_BR_Black_5("Tender_BR_Black_5", EntityTenderBR_Black_5.class, ItemIDs.minecartBR_Black_5_Tender.item, "tender", 0, 0, 0.5, 0, 0, 0, 0, 0, 16000, TraincraftUtil.getBytesFromColors(new String[] {"Blue", "Cyan", "Green", "Grey", "LightGrey", "Red", "White", "Magenta"}), 18, 0, "Water capacity: 16000mb"),
+	tender_BR_Black_5("Tender_BR_Black_5", EntityTenderBR_Black_5.class, ItemIDs.minecartBR_Black_5_Tender.item, "tender", 0, 0, 0.6, 0, 0, 0, 0, 0, 16000, TraincraftUtil.getBytesFromColors(new String[] {"Blue", "Cyan", "Green", "Grey", "LightGrey", "Red", "White", "Magenta"}), 18, 0, "Water capacity: 16000mb"),
+	tender_BR1("Tender_BR1", EntityTenderBR1.class, ItemIDs.minecartBR1Tender.item, "tender", 0, 0, 0.6, 0, 0, 0, 0, 0, 16000, TraincraftUtil.getBytesFromColors(new String[] {"Green", "Black", "Blue", "Grey", "LightGrey", "Orange", "Yellow"}), 18, 0, "Water capacity: 16000mb"),
 	tender_RW_Type_2("Tender_RW_Type_2", EntityTenderRWType2.class, ItemIDs.minecartRWType2Tender.item, "tender", 0, 0, 0.6, 0, 0, 0, 0, 0, 10000, TraincraftUtil.getBytesFromColors(new String[] {"Black", "Brown", "Green", "Grey", "LightGrey", "Red", "Purple", "Pink"}), 18, 0, "Water capacity: 10000mb"),
 	/** Diesel */
 	locoDieselKOF("Loco Diesel KOF DB",EntityLocoDieselKof_DB.class,ItemIDs.minecartKof_DB.item, "diesel",750,45,0,60,0,170,0.66,0.96,5000,TraincraftUtil.getBytesFromColors(new String[] {"Red","Green","Yellow","Black","Blue"}),17,-1.6),
@@ -449,7 +450,7 @@ public enum EnumTrains {
 	BR_MK4_DVT("BR_MK4_DVT", EntityElectricBR_MK4_DVT.class, ItemIDs.minecartBR_MK4_DVT.item, "electric", 1500, 260, 0,25, 0, 100, 0.8, 0.8, 1000, TraincraftUtil.getBytesFromColors(new String[] {"Blue", "Red","White", "Black"}), 18, -4.65, "Pack: B.I.P."),
 	BR_MK4_Coach("BR_MK4_Coach", EntityPassengerBR_MK4_Coach.class, ItemIDs.minecartBR_MK4_Coach.item, "passenger", 0, 0, 3,0 , 0, 0, 0,0,0,TraincraftUtil.getBytesFromColors(new String[] {"Blue", "Red","White", "Black"}),0,0, "Pack: B.I.P."),
 	BR_MK4_Buffet("BR_MK4_Buffet", EntityPassengerBR_MK4_Buffet.class, ItemIDs.minecartBR_MK4_Buffet.item, "passenger", 0, 0, 3,0 , 0, 0, 0,0,0,TraincraftUtil.getBytesFromColors(new String[] {"Blue", "Red","White", "Black"}),0,0, "Pack: B.I.P."),
-	BR_Black_5("BR_Black_5", EntityLocoSteamBR_Black_5.class, ItemIDs.minecartBR_Black_5.item, "steam", 1450, 149, 3, 10, 10 , 100, 0.7, 0.7, 1000, TraincraftUtil.getBytesFromColors(new String[]   {"Black", "Grey", "LightGrey", "Red", "White", "Magenta"}), 18, -3.5f, "Pack: B.I.P."),
+	BR_Black_5("BR_Black_5", EntityLocoSteamBR_Black_5.class, ItemIDs.minecartBR_Black_5.item, "steam", 1450, 149, 3, 10, 10 , 100, 0.7, 0.7, 6000, TraincraftUtil.getBytesFromColors(new String[]   {"Black", "Grey", "LightGrey", "Red", "White", "Magenta"}), 18, -3.5f, "Pack: B.I.P."),
 	Class43("Class43", EntityLocoDieselClass43.class, ItemIDs.minecartClass43.item, "diesel", 2250, 238, 0, 25, 0, 180, 0.89, 0.8, 13000, TraincraftUtil.getBytesFromColors(new String[] {"White", "Blue", "Brown", "Green", "Red", "Cyan", "LightBlue", "Orange"}), 0, -3.15),
 	Class90("Class90", EntityElectricClass90.class, ItemIDs.minecartClass90.item, "electric", 5000, 178, 0,60, 0, 100, 0.7, 0.8, 1000, TraincraftUtil.getBytesFromColors(new String[] {"Black","Green","Grey","Pink","Red","White", "Magenta"}), 18, -2.75),
 	Class91("Class91", EntityElectricClass91.class, ItemIDs.minecartClass91.item, "electric", 6300, 260, 0,60, 0, 100, 0.7, 0.8, 1000, TraincraftUtil.getBytesFromColors(new String[] {"Blue", "Red","White"}), 18, -4.2),
@@ -518,6 +519,7 @@ public enum EnumTrains {
 	MA100_Tail("MA100_Tail", EntityPassengerMA100_Tail.class, ItemIDs.minecartMA100_Tail.item, "passenger", 0, 0, 2, 0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[]{"Black", "Cyan", "Purple"}), 10, 0, "Pack: MetroIM"),
 	ExpressFreightVan("ExpressFreightVan", EntityFreightExpressFreightVan.class, ItemIDs.minecartExpressFreightVan.item, "freight", 1.5, TraincraftUtil.getBytesFromColors(new String[] {"Purple","Blue", "Yellow"}), 18,  36, "Pack: B.I.P." ),
 	WWCP_Class_062T("WWCPClass062T", EntityLocoSteamWWCPClass062T.class, ItemIDs.minecartWWCPClass062T.item, "steam", 1100, 72, 0, 10, 10 , 100, 0.7, 0.7, 8500, TraincraftUtil.getBytesFromColors(new String[]   {"Blue"}), 18, -4.15f, "Pack: WWCP"),
+	BR_Britannia_Class("BRBritanniaClass", EntityLocoSteamBR_Britannia_Class.class, ItemIDs.minecartBRBritanniaClass.item, "steam", 1950, 161, 0, 10, 10 , 100, 0.7, 0.7, 8000, TraincraftUtil.getBytesFromColors(new String[]   {"Green", "Black", "Blue", "Grey", "Magenta", "Red", "White", "Yellow"}), 18, -4.1f, "Pack: B.I.P."),
 	;
 
 //String trainType,int MHP,int maxSpeed, double mass, int fuelConsumption, int waterConsumption, int heatingTime, double accelerationRate, double brakeRate, int tankCapacity, String[] colors,
