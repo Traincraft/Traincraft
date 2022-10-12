@@ -244,7 +244,7 @@ public enum RenderEnum {
 	locoSpeedZeroED(EntityLocoElectricHighSpeedZeroED.class, new ModelLocoHighSpeedZeroED(), "locoHighSpeedZeroED", false, new float[] { -1.7F, -0.44F, 0.0F }, null, null, "", 0, null, "", null, 0, false),
 	locoICE1(EntityLocoElectricICE1.class, new ModelICE1(), "ICE1_Engine_", true, new float[] { 0.0F, 0.18F, 0.1F }, new float[] { 0F, 180F, 180F }, new float[]{0.8f,1f,0.8f}, "", 0, null, "", null, 0, false),
 	//locoSpeedGrey(EntityNewHighSpeedLoco.class, new ModelNewHighSpeedLoco(), "newhighspeedloco", false, new float[] { -0.05F, -0.5F, 0.0F }, new float[] { 0F, 90F, 0F }, new float[] { 0.8F, 0.8F, 0.8F }, "", 0, null, "", null, 0),
-	locoTramYellow(EntityLocoElectricTramWood.class, new ModelTram(), "tram", false, new float[] { -0.8F, -0.44F, 0.0F }, null, null, "", 0, null, "", null, 0, false),
+	locoTramYellow(EntityLocoElectricTramWood.class, new ModelTram(), "tram", false, new float[] { -0.8F, -0.44F, 0F }, new float[] { 0F, 180F, 0F }, null, "", 0, null, "", null, 0, false),
 	locoTramNY(EntityLocoElectricTramNY.class, new ModelTramNY(), "locoTramNY", false, new float[] { -1.5F, -0.44F, 0.0F }, null, null, "", 0, null, "", null, 0, false),
 
 	passengerC4FG(PassengerIC4_DSB_FG.class, new ModelLocoDieselIC4_DSB_FG(), "IC4_DSB_FG", false, new float[] { -0.8F, -0.44F, 0.0F }, null, null, "", 0, null, "", null, 0, false),
@@ -1147,7 +1147,7 @@ public enum RenderEnum {
 
 	//tcce4 new stuff
 	SNCB_M6( EntityPassengerSNCB_M6.class, new ModelSNCB_M6(),"SNCB_M6_", true, new float[] {0, .095F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
-	SNCB_M6_TAIL( EntityPassengerSNCB_M6_TAIL.class, new ModelSNCB_M6_TAIL(),"SNCB_M6_Tail_", true, new float[] {0, 0.04f, 0F},  new float[] { 0F, 0, 180F },null, "", 0, null, "", null, 0, false),
+	SNCB_M6_TAIL( EntityPassengerSNCB_M6_TAIL.class, new ModelSNCB_M6_TAIL(),"SNCB_M6_Tail_", true, new float[] {-0.05F, 0.04f, 0F},  new float[] { 0F, 0, 180F },null, "", 0, null, "", null, 0, false),
 
 	Class153Engine( EntityLocoDieselClass153.class, new ModelClass153(), "class_153_", true, new float[] {-2.1F, 0.18F, 0F}, new float[] {0F, 180F, 180F }, null, "smoke", 3,  new ArrayList<double[]>() {{}}, "", null, 0, false),
 	Class153Coach( EntityPassengerClass153.class, new ModelClass153(), "class_153_", true, new float[] {0F, 0.18F, 0F}, new float[] {0F, 180F, 180F }, null, "",0 , null, "", null, 0, false),
