@@ -622,6 +622,9 @@ public enum ItemIDs {
 	minecartWWCPClass062T("ItemRollingStock", "WWCP_Standard_0-6-2_icon",2),
 	minecartBRBritanniaClass("ItemRollingStock", "BR_Britannia_Icon",3),
 	minecartBR1Tender("ItemRollingStock", "BR1_Tender_Icon", 1),
+	minecartClass390Front("ItemRollingStock", "Class_390_Front_Icon", 3),
+	minecartClass390Coach("ItemRollingStock", "Class_390_Coach_Icon", 1),
+	minecartClass390Panto("ItemRollingStock", "Class_390_Panto_Icon", 1),
 
 	//signalSpanish("ItemsignalSpanish","signalSpanish", 1),
 

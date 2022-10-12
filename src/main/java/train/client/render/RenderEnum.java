@@ -1260,6 +1260,9 @@ public enum RenderEnum {
 	MA100_Loco(EntityElectricMA100_Loco.class, new ModelMA100_Loco(), "MA100_", true,new float[] {-0.95F, 0.16F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	MA100_Tail(EntityPassengerMA100_Tail.class, new ModelMA100_Tail(), "MA100_",true,new float[] {0F, 0.16F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	ExpressFreightVan(EntityFreightExpressFreightVan.class, new ModelExpressFreightVan(), "Express_Freight_Van_", true, new float[] {0F,0.1F,0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	Class390Front( EntityElectricClass390.class, new ModelClass390Front(),"Class_390_Front_", true, new float[] {-2.3F, 0F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
+	Class390Coach( EntityPassengerClass390Coach.class, new ModelClass390Coach(),"Class_390_Coach_", true, new float[] {0F, 0.F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
+	Class390Panto( EntityPassengerClass390Panto.class, new ModelClass390Panto(),"Class_390_Panto_", true, new float[] {0F, 0.F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
 	;
 
 	private Class<? extends AbstractTrains> entityClass;

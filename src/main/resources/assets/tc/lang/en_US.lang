@@ -657,6 +657,9 @@ item.tc:minecartWWCPClass062T.name=Mule Class 0-6-2T
 item.tc:minecartExpressFreightVan.name=Express Freight Van
 item.tc:minecartBRBritanniaClass.name=BR Britannia Class
 item.tc:minecartBR1Tender.name=BR1 Tender
+item.tc:minecartClass390Front.name=Class 390 Front
+item.tc:minecartClass390Coach.name=Class 390 Coach
+item.tc:minecartClass390Panto.name=Class 390 Panto
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -1207,6 +1210,11 @@ entity.tc.WWCPClass062T.name=Mule Class 0-6-2T
 entity.tc.ExpressFreightVan.name=Express Freight Van
 entity.tc.BRBritanniaClass.name=BR Britannia Class
 entity.tc.BR1Tender.name=BR1 Tender
+entity.tc.Class390Front.name=Class 390 Front
+entity.tc.Class390Coach.name=Class 390 Coach
+entity.tc.Class390Panto.name=Class 390 Panto
+
+
 
 description.villager.profession.tc.station_chief=Station Chief
 
