@@ -660,6 +660,10 @@ item.tc:minecartBR1Tender.name=BR1 Tender
 item.tc:minecartClass390Front.name=Class 390 Front
 item.tc:minecartClass390Coach.name=Class 390 Coach
 item.tc:minecartClass390Panto.name=Class 390 Panto
+item.tc:minecartClass121Bubblecar.name=Class 121 Bubblecar
+item.tc:minecartClass121Trailer.name=Class 121 Trailer
+item.tc:minecartClass117.name=Class 117
+item.tc:minecartClass117Middle.name=Class 117 Middle Car
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -1213,6 +1217,10 @@ entity.tc.BR1Tender.name=BR1 Tender
 entity.tc.Class390Front.name=Class 390 Front
 entity.tc.Class390Coach.name=Class 390 Coach
 entity.tc.Class390Panto.name=Class 390 Panto
+entity.tc.Class121Bubblecar.name=Class 121 Bubblecar
+entity.tc.Class121Trailer.name=Class 121 Trailer
+entity.tc.Class117.name=Class 117
+entity.tc.Class117Middle.name=Class 117 Middle Car
 
 
 

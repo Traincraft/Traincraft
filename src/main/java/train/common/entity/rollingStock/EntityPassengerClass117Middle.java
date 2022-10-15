@@ -7,16 +7,15 @@ import net.minecraft.world.World;
 import train.common.api.EntityRollingStock;
 import train.common.api.IPassenger;
 
-public class EntityClass158Coach extends EntityRollingStock implements IPassenger {
-    //public TiltingHandler tiltingHandler = new TiltingHandler(7);
+public class EntityPassengerClass117Middle extends EntityRollingStock implements IPassenger {
 
-    public EntityClass158Coach(World world) {
+    public EntityPassengerClass117Middle(World world) {
         super(world);
     }
 
-    public EntityClass158Coach(World world, double d, double d1, double d2){
+    public EntityPassengerClass117Middle(World world, double d, double d1, double d2) {
         this(world);
-        setPosition(d, d1 + yOffset, d2);
+        setPosition(d, d1 + (double) yOffset, d2);
         motionX = 0.0D;
         motionY = 0.0D;
         motionZ = 0.0D;
@@ -28,11 +27,10 @@ public class EntityClass158Coach extends EntityRollingStock implements IPassenge
     @Override
     public void updateRiderPosition() {
         if(riddenByEntity!=null) {
-            riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset() - 0.1, posZ);
+            riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset() + 0., posZ);
         }
     }
 
-    @Override
     public void setDead() {
         super.setDead();
         isDead = true;
@@ -56,7 +54,6 @@ public class EntityClass158Coach extends EntityRollingStock implements IPassenge
         }
         return true;
     }
-
     @Override
     public boolean canBeRidden() {
         return true;
@@ -74,6 +71,6 @@ public class EntityClass158Coach extends EntityRollingStock implements IPassenge
 
     @Override
     public float getOptimalDistance(EntityMinecart cart) {
-        return 3.15F;
+        return 3F;
     }
 }
