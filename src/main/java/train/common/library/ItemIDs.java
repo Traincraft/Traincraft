@@ -625,6 +625,10 @@ public enum ItemIDs {
 	minecartClass390Front("ItemRollingStock", "Class_390_Front_Icon", 3),
 	minecartClass390Coach("ItemRollingStock", "Class_390_Coach_Icon", 1),
 	minecartClass390Panto("ItemRollingStock", "Class_390_Panto_Icon", 1),
+	minecartClass121Bubblecar("ItemRollingStock", "Icon_121", 3),
+	minecartClass121Trailer("ItemRollingStock", "Icon_121_Trailer", 1),
+	minecartClass117("ItemRollingStock", "Icon_117", 3),
+	minecartClass117Middle("ItemRollingStock", "Icon_117_Middle", 1),
 
 	//signalSpanish("ItemsignalSpanish","signalSpanish", 1),
 
