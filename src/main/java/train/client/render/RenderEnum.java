@@ -1227,7 +1227,7 @@ public enum RenderEnum {
 	BR_Mk_1_BSO(EntityPassengerBR_Mk1_BSO.class, new ModelBR_Mk1_BSO(),"BR_Mk1_BSO_", true, new float[]{0,0,0,}, new float[] {0,180,180}, null, "", 0, null, "", null, 0, false),
 	BR_Mk_1_TSO(EntityPassengerBR_Mk1_TSO.class, new ModelBR_Mk1_TSO(),"BR_Mk1_TSO_", true, new float[]{0,0,0,}, new float[] {0,180,180}, null, "", 0, null, "", null, 0, false),
 	BR_Mk_1_Buffet(EntityPassengerBR_Mk1_Buffet.class, new ModelBR_Mk1_Buffet(),"BR_Mk1_Buffet_", true, new float[]{0,0,0,}, new float[] {0,180,180}, null, "", 0, null, "", null, 0, false),
-	BR_Mk_1_TPO_Stowage(EntityPassengerBR_Mk1_TPO_Stowage.class, new ModelBR_Mk1_TPO_Stowage(),"BR_Mk1_TPO_", true, new float[]{0,0,0,}, new float[] {0,180,180}, null, "", 0, null, "", null, 0, false),
+	BR_Mk_1_TPO_Stowage(EntityFreightBR_Mk1_TPO_Stowage.class, new ModelBR_Mk1_TPO_Stowage(), "BR_Mk1_TPO_", true, new float[] {0F,0F,0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	BR_Mk_1_BG(EntityPassengerBR_Mk1_BG.class, new ModelBR_Mk1_BG(),"BR_Mk1_BG_", true, new float[]{0,0,0}, new float[] {0, 180, 180}, null, "", 0, null, "", null, 0, false),
 	Class175(EntityLocoDieselClass175.class, new ModelClass175(), "Class_175_", true, new float[]{-2.25f,-0.127f,0}, new float[] {0, 180, 180}, null , "smoke", 1,  new ArrayList<double[]>() {{}}, "", null, 0, false),
 	Class175Coach(EntityPassengerClass175Coach.class, new ModelClass175Coach(), "Class_175_Middle_Car_", true, new float[]{0, -0.127f, 0}, new float[] {0, 180F, 180F}, null, "", 0, null, "", null,0, false),
