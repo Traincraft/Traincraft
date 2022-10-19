@@ -15,6 +15,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+import scala.Char;
 import train.common.Traincraft;
 import train.common.blocks.blockSwitch.Blockasphalt;
 import train.common.inventory.TrainCraftingManager;
@@ -200,7 +201,9 @@ public class RecipeHandler {
 			addDictRecipe(new ItemStack(BlockIDs.stopper.block, 1), "WWW", "I I", "RRR", Character.valueOf('W'), "plankWood", Character.valueOf('R'), Blocks.rail, Character.valueOf('I'), ironingot);
 			addDictRecipe(new ItemStack(BlockIDs.embeddedStopper.block, 1), "   ", "I I", "RRR", Character.valueOf('R'), Blocks.rail, Character.valueOf('I'), ironingot);
 			addDictRecipe(new ItemStack(BlockIDs.americanstopper.block, 1), "III", "I I", "RRR",  Character.valueOf('R'), Blocks.rail, Character.valueOf('I'), ironingot);
+			addDictRecipe(new ItemStack(BlockIDs.metroMadridPole.block, 1), "III", " I ", "C C", Character.valueOf('I'), ironingot, Character.valueOf('C'), ItemIDs.ingotCopper.item);
 		}
+
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.bolt.item, 16), " II", " I ", " I ", Character.valueOf('I'), Items.iron_ingot);
 
 	}

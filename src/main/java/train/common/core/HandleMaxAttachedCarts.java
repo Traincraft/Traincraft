@@ -33,6 +33,7 @@ public class HandleMaxAttachedCarts {
 	public static void PullPhysic(Locomotive cart1) {
 		double totalMass = 0;
 		if (( cart1).train != null && ( cart1).train.getTrains().size() != 0) {
+
 			for (int j1 = 0; j1 < ( cart1).train.getTrains().size(); j1++) {
 				totalMass += ( cart1).train.getTrains().get(j1).mass;
 			}

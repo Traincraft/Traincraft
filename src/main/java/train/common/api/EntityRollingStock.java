@@ -438,7 +438,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 	@Override
 	public void setDead() {
 		super.setDead();
-		System.out.println("Unlinked because of broken thing");
 		this.unLink();
 		if (train != null) {
 			if (train.getTrains() != null) {

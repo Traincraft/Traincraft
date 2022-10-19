@@ -14,6 +14,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import train.common.Traincraft;
 import train.common.blocks.blockSwitch.*;
+import train.common.core.handlers.TrainHandler;
 import train.common.library.BlockIDs;
 import train.common.library.Info;
 import train.common.mtc.*;
@@ -69,8 +70,8 @@ public class TCBlocks {
 		BlockIDs.signalSpanish.block = new BlocksignalSpanish().setHardness(1F).setResistance(10F).setLightLevel(0.2F).setCreativeTab(Traincraft.tcTab).setStepSound(Block.soundTypeMetal);
 		BlockIDs.kSignal.block = new BlockkSignal().setHardness(1F).setResistance(10F).setLightLevel(0.2F).setStepSound(Block.soundTypeMetal).setCreativeTab(null);
 		BlockIDs.speedSign.block = new BlockSpeedSign().setCreativeTab(Traincraft.tcTab);
-		BlockIDs.asphaltSlab.block = new baseSlab(false,Material.ground,"AsphaltSlab",2f,2F,Block.soundTypeStone,"pickaxe",1,0F,"asphalt").setCreativeTab(Traincraft.tcTab);
-
+		BlockIDs.asphaltSlab.block = new baseSlab(false, Material.ground,"AsphaltSlab",2f,2F,Block.soundTypeStone,"pickaxe",1,0F,"asphalt").setCreativeTab(Traincraft.tcTab);
+		BlockIDs.metroMadridPole.block = new BlockMetroMadridPole( Material.iron).setHardness(2F).setCreativeTab(Traincraft.tcTab).setBlockName("MetroMadridPole");
 		//BlockIDs.FortyFootContainer.block = new BlockFortyFootContainer(Material.rock).setHardness(4.5F).setCreativeTab(Traincraft.tcTab).setStepSound(Block.soundTypeMetal);
 
 		if (Loader.isModLoaded("ComputerCraft")) {
@@ -114,6 +115,7 @@ public class TCBlocks {
 		BlockIDs.poweredGravel.block.setHarvestLevel("shovel",0);
 		BlockIDs.signalSpanish.block.setHarvestLevel("pickaxe",1);
 		BlockIDs.asphalt.block.setHarvestLevel("pickaxe", 0);
+		BlockIDs.metroMadridPole.block.setHarvestLevel("pickaxed", 0);
 
 		Blocks.rail.setHarvestLevel("ItemStacked", 0);
 		Blocks.detector_rail.setHarvestLevel("ItemStacked", 0);

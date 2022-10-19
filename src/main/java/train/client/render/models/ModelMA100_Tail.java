@@ -11,14 +11,22 @@ package train.client.render.models;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
-
 import org.lwjgl.opengl.GL11;
-import tmt.ModelBase;
 import tmt.ModelConverter;
 import tmt.ModelRendererTurbo;
+import train.common.api.AbstractTrains;
+import train.common.core.handlers.*;
+import train.common.api.*;
+import train.common.api.EntityRollingStock;
+import train.common.api.Locomotive;
+import train.common.core.handlers.TrainHandler;
+import train.common.entity.rollingStock.EntityPassengerFGV4300Coach;
+
+import java.util.ArrayList;
 
 public class ModelMA100_Tail extends ModelConverter //Same as Filename
 {
+
 	int textureX = 512;
 	int textureY = 256;
 
@@ -1629,7 +1637,24 @@ public class ModelMA100_Tail extends ModelConverter //Same as Filename
 		bodyModel[397].addShapeBox(0F, 0F, 0F, 10, 1, 21, 0F,0F, -0.6F, -8F, 0F, -0.6F, -8F, 0F, -0.6F, -6F, 0F, -0.6F, -6F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 388
 		bodyModel[397].setRotationPoint(-31.5F, -20F, -11.5F);
 	}
+
+	//private ArrayList<EntityRollingStock> train = new ArrayList<EntityRollingStock>();
+
 		public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
+;
+			//if ( entity != null && entity instanceof AbstractTrains &&  ((AbstractTrains) entity).cartLinked1 instanceof Locomotive) {
+
+			/*	for (int j1 = 0; j1 < ((AbstractTrains) entity).train.getTrains().size(); j1++) {
+					if (((((AbstractTrains) entity).train.getTrains().get(j1) instanceof Locomotive)) && ((Locomotive) ((AbstractTrains) entity).train.getTrains().get(j1)).isLocoTurnedOn && ((Locomotive) ((AbstractTrains) entity).train.getTrains().get(j1)).getIsFuelled()) {
+						if (((Locomotive) entity).isLocoTurnedOn() && ((Locomotive)entity).getIsFuelled()) {
+
+						}
+					}
+				}
+				*/
+
+
+
 
 		for (int i = 0; i < 398; i++) {
 			if (bodyModel[i].boxName != null && bodyModel[i].boxName.contains("lamp")) {

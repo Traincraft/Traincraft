@@ -36,6 +36,7 @@ tile.tc:mtcReceiverDestination.name=MTC Destination Receiver
 tile.tc:pdmInstructionBlock.name=W-MTC Wireless Radio
 tile.tc:dirtyBallast.name=Dirty Ballast
 tile.tc:dirtierBallast.name=Dirtier Ballast
+tile.tc:metroMadridPole.name=Metro Madrid Overhead Line
 
 
 <!-- ## Fluids ## -->

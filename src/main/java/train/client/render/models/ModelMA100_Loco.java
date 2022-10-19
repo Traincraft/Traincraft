@@ -16,6 +16,8 @@ import org.lwjgl.opengl.GL11;
 import tmt.ModelBase;
 import tmt.ModelConverter;
 import tmt.ModelRendererTurbo;
+import train.common.api.AbstractTrains;
+import train.common.api.Locomotive;
 
 public class ModelMA100_Loco extends ModelConverter//Same as Filename
 {
@@ -1665,19 +1667,20 @@ public class ModelMA100_Loco extends ModelConverter//Same as Filename
 	}
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
 
-		for (int i = 0; i < 405; i++) {
-			if (bodyModel[i].boxName != null && bodyModel[i].boxName.contains("lamp")) {
-				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
-				bodyModel[i].render(f5);
-				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
-			} else if (bodyModel[i].boxName != null && bodyModel[i].boxName.contains("cull")) {
-				GL11.glDisable(GL11.GL_CULL_FACE);
-				bodyModel[i].render(f5);
-				GL11.glEnable(GL11.GL_CULL_FACE);
-			} else {
-				bodyModel[i].render(f5);
+			for (int i = 0; i < 405; i++) {
+				if (bodyModel[i].boxName != null && bodyModel[i].boxName.contains("lamp") && entity instanceof Locomotive && ((Locomotive)entity).isLocoTurnedOn() && ((Locomotive)entity).getIsFuelled()) {
+					Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
+					bodyModel[i].render(f5);
+					Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+				} else if (bodyModel[i].boxName != null && bodyModel[i].boxName.contains("cull")) {
+					GL11.glDisable(GL11.GL_CULL_FACE);
+					bodyModel[i].render(f5);
+					GL11.glEnable(GL11.GL_CULL_FACE);
+				} else {
+					bodyModel[i].render(f5);
+				}
 			}
 		}
-	}
+
 
 }
