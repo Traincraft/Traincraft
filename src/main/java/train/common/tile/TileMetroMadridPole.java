@@ -8,10 +8,11 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.util.ForgeDirection;
 
 public class TileMetroMadridPole extends TileEntity {
 
-    private int facingMeta;
+    private ForgeDirection facing;
 
     @SideOnly(Side.CLIENT)
     @Override
@@ -31,33 +32,36 @@ public class TileMetroMadridPole extends TileEntity {
         }
     }
 
-    public  TileMetroMadridPole(int meta){
 
-        this.facingMeta = meta;
+
+    public ForgeDirection getFacing() {
+        if(facing != null){
+            return this.facing;
+        }
+        return ForgeDirection.UNKNOWN;
     }
 
-    public int getFacing() {
-        return facingMeta;
-    }
-
-    public void setFacing(int facing) {
-        this.facingMeta = facing;
+    public void setFacing(ForgeDirection face) {
+        worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+        this.facing = face;
     }
 
     @Override
     public void readFromNBT(NBTTagCompound nbtTag) {
 
-        super.readFromNBT(nbtTag);
+        if(nbtTag.hasKey("Orientation")) {
+            facing = ForgeDirection.getOrientation(nbtTag.getByte("Orientation"));
+        }
 
-        facingMeta = nbtTag.getByte("Orientation");
+        super.readFromNBT(nbtTag);
     }
 
     @Override
     public void writeToNBT(NBTTagCompound nbtTag) {
-
+        nbtTag.setByte("Orientation", (byte) facing.ordinal());
         super.writeToNBT(nbtTag);
 
-        nbtTag.setByte("Orientation", (byte) facingMeta);
+
     }
 
     @Override

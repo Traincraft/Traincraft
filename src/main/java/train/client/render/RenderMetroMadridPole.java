@@ -16,7 +16,6 @@ import train.client.render.models.blocks.ModelMetroMadridOHW;
 
 import train.common.library.Info;
 import train.common.tile.TileMetroMadridPole;
-import train.common.tile.tileSwitch.TileSpeedSign;
 
 
 public class RenderMetroMadridPole extends TileEntitySpecialRenderer {
@@ -36,7 +35,7 @@ public class RenderMetroMadridPole extends TileEntitySpecialRenderer {
         GL11.glTranslatef(0.5F, 0.65F, 0.5F);
 
         switch (((TileMetroMadridPole) var1).getFacing()) {
-            case 2: {
+            case NORTH: {
                 GL11.glRotated(180, 0, 0, 1);
                 GL11.glRotated(90, 0, 1, 0);
                 //GL11.glTranslated(0.5, 0f, 0.5);
@@ -44,7 +43,7 @@ public class RenderMetroMadridPole extends TileEntitySpecialRenderer {
 
                 break;
             }
-            case 0: {
+            case SOUTH: {
                 GL11.glRotated(180, 0, 0, 1);
                 GL11.glRotated(270, 0, 1, 0);
                 //GL11.glTranslated(0.5, 0f, 0.5);
@@ -53,7 +52,7 @@ public class RenderMetroMadridPole extends TileEntitySpecialRenderer {
                 //GL11.glTranslated(0.1875, -1, 0.125);
                 break;
             }
-            case 1: {
+            case WEST: {
                 GL11.glRotated(180, 0, 0, 1);
                 GL11.glRotated(180, 0, 1, 0);
                 //System.out.println("E");
@@ -61,7 +60,7 @@ public class RenderMetroMadridPole extends TileEntitySpecialRenderer {
                 //GL11.glTranslated(0.1875, -1, 0.125);
                 break;
             }
-            case 3: {
+            case EAST: {
                 GL11.glRotated(180, 0, 0, 1);
                 GL11.glRotated(0, 0, 1, 0);
                 //System.out.println("W");

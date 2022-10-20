@@ -1145,12 +1145,10 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				
 				if(bogieLoco != null) {
 					if (!bogieLoco.isOnRail()) {
-						System.out.println("Derailed, derailspeed is 0");
 						derailSpeed = 0;
 					}
 				}
 				if(derailSpeed == 0){
-					System.out.println("Unlinked because derailspeed");
 					this.unLink();
 					moveOnTCStraight(i, j, k, tile.xCoord, tile.zCoord, meta);
 				}

@@ -619,7 +619,7 @@ public enum ItemIDs {
 	minecartMA100_Loco("ItemRollingStock", "MA100_Loco_icon",2),
 	minecartMA100_Tail("ItemRollingStock", "MA100_Tail_icon",1),
 	minecartExpressFreightVan("ItemRollingStock", "Express_Freight_Van_icon",1),
-	minecartWWCPClass062T("ItemRollingStock", "WWCP_Standard_0-6-2_icon",2),
+	minecartWWCPClass062T("ItemRollingStock", "WWCP_Standard_0-6-2_Icon",2),
 	minecartBRBritanniaClass("ItemRollingStock", "BR_Britannia_Icon",3),
 	minecartBR1Tender("ItemRollingStock", "BR1_Tender_Icon", 1),
 	minecartClass390Front("ItemRollingStock", "Class_390_Front_Icon", 3),
