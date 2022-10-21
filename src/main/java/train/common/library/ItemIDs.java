@@ -629,6 +629,8 @@ public enum ItemIDs {
 	minecartClass121Trailer("ItemRollingStock", "Icon_121_Trailer", 1),
 	minecartClass117("ItemRollingStock", "Icon_117", 3),
 	minecartClass117Middle("ItemRollingStock", "Icon_117_Middle", 1),
+	minecartTipperUK("ItemRollingStock", "tipper_icon",1),
+	minecartShuntingTenderUK("ItemRollingStock", "shunting_tender_icon",1),
 
 	//signalSpanish("ItemsignalSpanish","signalSpanish", 1),
 
