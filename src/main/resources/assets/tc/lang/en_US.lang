@@ -665,6 +665,8 @@ item.tc:minecartClass121Bubblecar.name=Class 121 Bubblecar
 item.tc:minecartClass121Trailer.name=Class 121 Trailer
 item.tc:minecartClass117.name=Class 117
 item.tc:minecartClass117Middle.name=Class 117 Middle Car
+item.tc:minecartTipperUK.name=Tipper UK
+item.tc:minecartShuntingTenderUK.name=Shunting Tender UK
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -1222,8 +1224,8 @@ entity.tc.Class121Bubblecar.name=Class 121 Bubblecar
 entity.tc.Class121Trailer.name=Class 121 Trailer
 entity.tc.Class117.name=Class 117
 entity.tc.Class117Middle.name=Class 117 Middle Car
-
-
+entity.tc.TipperUK.name=Tipper UK
+entity.tc.ShuntingTenderUK.name=Shunting Tender UK
 
 description.villager.profession.tc.station_chief=Station Chief
 

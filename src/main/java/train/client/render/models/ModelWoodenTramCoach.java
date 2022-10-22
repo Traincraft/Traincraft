@@ -181,7 +181,7 @@ public class ModelWoodenTramCoach extends ModelConverter //Same as Filename
 		bodyModel[142] = new ModelRendererTurbo(this, 273, 129, textureX, textureY); // Box 1
 		bodyModel[143] = new ModelRendererTurbo(this, 198, 150, textureX, textureY); // Box 1
 		bodyModel[144] = new ModelRendererTurbo(this, 246, 150, textureX, textureY); // Box 1
-		bodyModel[145] = new ModelRendererTurbo(this, 320, 129, textureX, textureY); // Box 1
+		bodyModel[145] = new ModelRendererTurbo(this, 321, 130, textureX, textureY); // Box 1
 		bodyModel[146] = new ModelRendererTurbo(this, 246, 150, textureX, textureY); // Box 1
 		bodyModel[147] = new ModelRendererTurbo(this, 245, 150, textureX, textureY); // Box 5
 		bodyModel[148] = new ModelRendererTurbo(this, 1, 49, textureX, textureY); // Box 212
