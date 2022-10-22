@@ -64,6 +64,7 @@ public class TileSpeedSign extends TileEntity {
 	public void writeToNBT(NBTTagCompound nbtTag) {
 		nbtTag.setByte("Orientation", (byte) facing.ordinal());
 		nbtTag.setInteger("skinstate", this.skinstate);
+
 		super.writeToNBT(nbtTag);
 	}
 

@@ -1009,14 +1009,14 @@ public class ItemTCRail extends ItemPart {
 					if (l == 1) {
 						int[] xArray = {x , x - 1, x - 2, x - 1, x - 2};
 						int[] zArray = {z ,   z  , z,  z - 1, z - 1};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 0, x - 2, z - 1, 3.75, x + 1 ,
+						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 2, x - 2, z - 1, 3.75, x + 1 ,
 								y + 1, z - 3.25, typeVariant90Turn, idVariant45Turn))
 							return false;
 					}
 					if (l == 3) {
 						int[] xArray = {x, x + 1,x + 2, x + 1 , x + 2 };
 						int[] zArray = {z,   z, z,  z + 1 ,z + 1, z + 1};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 2, x + 2, z + 1, 3.75, x, y + 1,
+						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 0, x + 2, z + 1, 3.75, x, y + 1,
 								z + 4.25, typeVariant90Turn, idVariant45Turn))
 							return false;
 					}
@@ -1040,14 +1040,14 @@ public class ItemTCRail extends ItemPart {
 					if (l == 1) {
 						int[] xArray = {x, x - 1, x - 2, x - 1, x - 2, x - 3, x - 2};
 						int[] zArray = {z, z, z, z - 1, z - 1, z - 1, z - 2};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 0, x - 2, z - 1, 3.75, x + 1,
+						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 2, x - 2, z - 1, 3.75, x + 1,
 								y + 1, z - 3.25, typeVariant90Turn, idVariant45Turn))
 							return false;
 					}
 					if (l == 3) {
 						int[] xArray = {x, x + 1, x + 2, x + 1, x + 2, x + 3, x + 2};
 						int[] zArray = {z, z, z, z + 1, z + 1, z + 1, z + 2};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 2, x + 2, z + 1, 3.75, x, y + 1,
+						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 0, x + 2, z + 1, 3.75, x, y + 1,
 								z + 4.25, typeVariant90Turn, idVariant45Turn))
 							return false;
 
@@ -1090,14 +1090,14 @@ public class ItemTCRail extends ItemPart {
 					if (l == 1) {
 						int[] xArray = {x , x - 1, x - 2, x - 1, x - 2};
 						int[] zArray = {z ,   z  , z,  z + 1, z + 1};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 2, x - 2, z + 1, 3.75, x + 1 ,
+						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 0, x - 2, z + 1, 3.75, x + 1 ,
 								y + 1, z + 4.25, typeVariant90Turn, idVariant45Turn))
 							return false;
 					}
 					if (l == 3) {
 						int[] xArray = {x, x + 1,x + 2, x + 1 , x + 2};
 						int[] zArray = {z,   z, z,  z - 1 ,z- 1};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 0, x + 2, z - 1, 3.75, x, y + 1,
+						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 2, x + 2, z - 1, 3.75, x, y + 1,
 								z - 3.25, typeVariant90Turn, idVariant45Turn))
 							return false;
 					}
@@ -1121,14 +1121,14 @@ public class ItemTCRail extends ItemPart {
 						if (l == 1) {
 							int[] xArray = {x, x - 1, x - 2, x - 1, x - 2, x - 3, x - 2};
 							int[] zArray = {z, z, z, z + 1, z + 1, z + 1, z + 2};
-							if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 2, x - 2, z + 1, 3.75, x + 1,
+							if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 0, x - 2, z + 1, 3.75, x + 1,
 									y + 1, z + 4.25, typeVariant90Turn, idVariant45Turn))
 								return false;
 						}
 						if (l == 3) {
 							int[] xArray = {x, x + 1, x + 2, x + 1, x + 2, x + 3, x + 2};
 							int[] zArray = {z, z, z, z - 1, z - 1, z - 1, z - 2};
-							if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 0, x + 2, z - 1, 3.75, x, y + 1,
+							if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 2, x + 2, z - 1, 3.75, x, y + 1,
 									z - 3.25, typeVariant90Turn, idVariant45Turn))
 								return false;
 						}
@@ -2430,12 +2430,12 @@ public class ItemTCRail extends ItemPart {
 				switch (tempType) {
 					case MEDIUM_RIGHT_45DEGREE_SWITCH:
 						typeVariantStraight = TrackTypes.SMALL_STRAIGHT.getLabel();
-						typeVariant90Turn = TrackTypes.MEDIUM_RIGHT_TURN.getLabel();
+						typeVariant90Turn = TrackTypes.MEDIUM_RIGHT_45DEGREE_TURN.getLabel();
 						idVariantSwitch = ItemIDs.tcRailMedium45DegreeSwitch.item;
 						break;
 					case EMBEDDED_MEDIUM_RIGHT_45DEGREE_SWITCH:
 						typeVariantStraight = TrackTypes.EMBEDDED_SMALL_STRAIGHT.getLabel();
-						typeVariant90Turn = TrackTypes.EMBEDDED_MEDIUM_RIGHT_TURN.getLabel();
+						typeVariant90Turn = TrackTypes.EMBEDDED_MEDIUM_RIGHT_45DEGREE_TURN.getLabel();
 						idVariantSwitch = ItemIDs.tcRailEmbeddedMedium45DegreeSwitch.item;
 						break;
 				}
@@ -2581,7 +2581,7 @@ public class ItemTCRail extends ItemPart {
 					if (l == 3) {
 						int[] xArray = {x + 2, x + 3, x + 4, x + 3};
 						int[] zArray = {z + 1, z + 1, z + 1, z + 2};
-						if (!putDownTurn(player, world, true, x, y, z, xArray, zArray, l, false, 2, x + 3, z + 1, 3.75, x + 1, y + 1,
+						if (!putDownTurn(player, world, true, x, y, z, xArray, zArray, l, false, 0, x + 3, z + 1, 3.75, x + 1, y + 1,
 								z + 4.25, typeVariant90Turn, idVariantSwitch))
 							return false;
 						TileTCRail tcRailTurn = (TileTCRail) world.getTileEntity(x + 2, y + 1, z + 1);
@@ -2611,12 +2611,12 @@ public class ItemTCRail extends ItemPart {
 				switch (tempType) {
 					case MEDIUM_LEFT_45DEGREE_SWITCH:
 						typeVariantStraight = TrackTypes.SMALL_STRAIGHT.getLabel();
-						typeVariant90Turn = TrackTypes.MEDIUM_LEFT_TURN.getLabel();
+						typeVariant90Turn = TrackTypes.MEDIUM_LEFT_45DEGREE_TURN.getLabel();
 						idVariantSwitch = ItemIDs.tcRailMedium45DegreeSwitch.item;
 						break;
 					case EMBEDDED_MEDIUM_LEFT_45DEGREE_SWITCH:
 						typeVariantStraight = TrackTypes.EMBEDDED_SMALL_STRAIGHT.getLabel();
-						typeVariant90Turn = TrackTypes.EMBEDDED_MEDIUM_LEFT_TURN.getLabel();
+						typeVariant90Turn = TrackTypes.EMBEDDED_MEDIUM_LEFT_45DEGREE_TURN.getLabel();
 						idVariantSwitch = ItemIDs.tcRailEmbeddedMedium45DegreeSwitch.item;
 						break;
 				}
@@ -2644,7 +2644,7 @@ public class ItemTCRail extends ItemPart {
 					if (l == 0) {
 						int[] xArray = {x + 1, x + 1};
 						int[] zArray = {z + 2, z + 3};
-						if (!putDownTurn(player, world, true, x, y, z, xArray, zArray, l, false, 1, x + 1, z + 3, 3.75, x + 4.25, y + 1,
+						if (!putDownTurn(player, world, true, x, y, z, xArray, zArray, l, false, 3, x + 1, z + 3, 3.75, x + 4.25, y + 1,
 								z + 1, typeVariant90Turn, idVariantSwitch))
 							return false;
 						TileTCRail tcRailTurn = (TileTCRail) world.getTileEntity(x + 1, y + 1, z + 2);
@@ -2663,7 +2663,7 @@ public class ItemTCRail extends ItemPart {
 					if (l == 1) {
 						int[] xArray = {x - 2, x - 3};
 						int[] zArray = {z + 1, z + 1};
-						if (!putDownTurn(player, world, true, x, y, z, xArray, zArray, l, false, 2, x - 3, z + 1, 3.75, x, y + 1,
+						if (!putDownTurn(player, world, true, x, y, z, xArray, zArray, l, false, 0, x - 3, z + 1, 3.75, x, y + 1,
 								z + 4.25, typeVariant90Turn, idVariantSwitch))
 							return false;
 						TileTCRail tcRailTurn = (TileTCRail) world.getTileEntity(x - 2, y + 1, z + 1);
@@ -2724,7 +2724,7 @@ public class ItemTCRail extends ItemPart {
 					if (l == 0) {
 						int[] xArray = {x + 1, x + 1, x + 1, x + 2};
 						int[] zArray = {z + 2, z + 3, z + 4, z + 3};
-						if (!putDownTurn(player, world, true, x, y, z, xArray, zArray, l, false, 1, x + 1, z + 3, 3.75, x + 4.25, y + 1,
+						if (!putDownTurn(player, world, true, x, y, z, xArray, zArray, l, false, 3, x + 1, z + 3, 3.75, x + 4.25, y + 1,
 								z + 1, typeVariant90Turn, idVariantSwitch))
 							return false;
 						TileTCRail tcRailTurn = (TileTCRail) world.getTileEntity(x + 1, y + 1, z + 2);
@@ -2743,7 +2743,7 @@ public class ItemTCRail extends ItemPart {
 					if (l == 1) {
 						int[] xArray = {x - 2, x - 3, x - 4, z - 3};
 						int[] zArray = {z + 1, z + 1, z + 1, z + 2};
-						if (!putDownTurn(player, world, true, x, y, z, xArray, zArray, l, false, 2, x - 3, z  + 1, 3.75, x , y + 1,
+						if (!putDownTurn(player, world, true, x, y, z, xArray, zArray, l, false, 0, x - 3, z  + 1, 3.75, x , y + 1,
 								z + 4.25, typeVariant90Turn, idVariantSwitch))
 							return false;
 						TileTCRail tcRailTurn = (TileTCRail) world.getTileEntity(x - 2 , y + 1, z + 1);
