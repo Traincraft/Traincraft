@@ -667,6 +667,7 @@ item.tc:minecartClass117.name=Class 117
 item.tc:minecartClass117Middle.name=Class 117 Middle Car
 item.tc:minecartTipperUK.name=Tipper UK
 item.tc:minecartShuntingTenderUK.name=Shunting Tender UK
+item.tc:minecartBR_Mk2f_DBSO.name=BR Mk2f DBSO
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -1147,8 +1148,8 @@ entity.tc.BR_Mk1_TSO.name=BR Mk1 Coach
 entity.tc.BR_Mk1_Baggage.name=BR Mk1 Baggage Car
 entity.tc.BR_Mk1_Buffet.name=BR Mk1 Buffet
 entity.tc.BR_Mk1_TPO_Stowage.name=BR Mk1 TPO Stowage
-entity.tc.BR_MK2F_Coach.name=MK2F Coach
-entity.tc.BR_MK2F_BSO.name=MK2F BSO
+entity.tc.BR_MK2F_Coach.name=BR MK2F Coach
+entity.tc.BR_MK2F_BSO.name=BR MK2F BSO
 entity.tc.BR_MK3_DVT.name=BR Mk3 DVT
 entity.tc.BR_MK3_Buffet.name=BR Mk3 Buffet
 entity.tc.BR_MK3_Coach.name=BR Mk3 Coach
@@ -1226,6 +1227,7 @@ entity.tc.Class117.name=Class 117
 entity.tc.Class117Middle.name=Class 117 Middle Car
 entity.tc.TipperUK.name=Tipper UK
 entity.tc.ShuntingTenderUK.name=Shunting Tender UK
+entity.tc.BR_MK2F_DBSO.name=MK2F DBSO
 
 description.villager.profession.tc.station_chief=Station Chief
 

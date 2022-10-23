@@ -166,8 +166,12 @@
   "asteri": {"category":  "master", "sounds" :  [{"name": "asteri", "stream":  true}]},
   "4300_horn": {"category": "master", "sounds" :  [{"name": "4300_horn", "stream": true}]},
   "RW_type_3": {"category": "master", "sounds" :  [{"name": "RW_type_3", "stream": true}]},
+  "type_2": {"category": "master", "sounds" :  [{"name": "type_2", "stream": true}]},
   "PendolinoHorn": {"category": "master", "sounds" :  [{"name": "PendolinoHorn", "stream": true}]},
-  "metro2000_running": {"category": "master", "sounds" :  [{"name": "metro2000_running", "stream": true}]}
+  "metro2000_running": {"category": "master", "sounds" :  [{"name": "metro2000_running", "stream": true}]},
+  "BritanniaWhistle": {"category": "master", "sounds" :  [{"name": "BritanniaWhistle", "stream": true}]},
+  "BritanniaMediumChuff": {"category": "master", "sounds" :  [{"name": "BritanniaMediumChuff", "stream": true}]},
+  "StanierHooter": {"category": "master", "sounds" :  [{"name": "StanierHooter", "stream": true}]}
 
 
 }
