@@ -1270,6 +1270,7 @@ public enum RenderEnum {
 	Class117Middle( EntityPassengerClass117Middle.class, new ModelClass117Middle(),"bubble_car_", true, new float[] {0F, 0.17F, 0F},  new float[] { 0F, 180F, 180F },null, "", 0, null, "", null, 0, false),
 	TipperUK(EntityFreightTipperUK.class, new ModelTipperUK(), "tipper_", true, new float[] {0F,0.1F,0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	ShuntingTenderUK(EntityTenderShuntingTenderUK.class, new ModelShuntingTenderUK(), "shunting_tender_", true, new float[] {0f, 0.15f, 0f}, new float[] {0f, 180f, 180f}, null, "", 0, null, "", null, 0, false ),
+	BRBrakeVan(EntityCabooseBRBrakeVan.class, new ModelBRBrakeVan(), "br_brake_van_", true, new float[] {0F,0.1F,0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	;
 
 	private Class<? extends AbstractTrains> entityClass;
