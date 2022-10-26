@@ -1283,59 +1283,90 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		double norm = Math.sqrt(motionX * motionX + motionZ * motionZ);
 		double distanceNorm;
 
-		if (meta == 6  || meta == 4){
-			if (motionX > 0){
-				exitX = cx + (length + 1.5);
-				exitZ = cz - (length + 0.5);
+
+
+		if (meta == 6) {
+			if (motionX > 0) {
+				exitX = cx + (length + 0.5);
+				exitZ = cz - (length - 0.5);
+			}
+			if (motionX < 0) {
+				exitX = cx - (0.5);
+				exitZ = cz + (1.5);
+			}
+			directionX = exitX - posX;
+			directionZ = exitZ - posZ;
+			distanceNorm = Math.sqrt(directionX * directionX + directionZ * directionZ);
+			motionX = (directionX / distanceNorm) * norm;
+			motionZ = (directionZ / distanceNorm) * norm;
+		}
+		if (meta == 4) {
+			if (motionX > 0) {
+				exitX = cx + (1.5);
+				exitZ = cz - (0.5);
+			}
+			if (motionX < 0) {
+				exitX = cx - (length - 0.5);
+				exitZ = cz + (length + 0.5);
+			}
+			directionX = exitX - posX;
+			directionZ = exitZ - posZ;
+			distanceNorm = Math.sqrt(directionX * directionX + directionZ * directionZ);
+			motionX = (directionX / distanceNorm) * norm;
+			motionZ = (directionZ / distanceNorm) * norm;
+		}
+
+
+		if (meta == 5 ) {
+			if (motionX > 0) {
+				exitX = cx + ( 1.5);
+				exitZ = cz + ( 1.5);
 			}
 			if (motionX < 0) {
 				exitX = cx - (length + 0.5);
-				exitZ = cz + (length + 1.5);
+				exitZ = cz - (length + 0.5);
 			}
 			directionX = exitX - posX;
 			directionZ = exitZ - posZ;
 			distanceNorm = Math.sqrt(directionX * directionX + directionZ * directionZ);
-			motionX = (directionX / distanceNorm) * norm ;
-			motionZ = (directionZ / distanceNorm) * norm ;
-			this.boundingBox.offset(Math.copySign(motionX, this.motionX), 0 , Math.copySign(motionZ, this.motionZ));
+			motionX = (directionX / distanceNorm) * norm;
+			motionZ = (directionZ / distanceNorm) * norm;
 
-			List boxes = worldObj.getCollidingBoundingBoxes(this, boundingBox);
-			for(Object b : boxes){
-				if(!(b instanceof BlockRailBase) && !(b instanceof BlockTCRail) && !(b instanceof BlockTCRailGag) && !(b instanceof BlockAir)){
-					return;
-				}
-			}
-			this.posX = (this.boundingBox.minX + this.boundingBox.maxX) / 2.0D;
-			this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
-			this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) / 2.0D;
 		}
 
-		if (meta == 5  || meta == 7){
-			if (motionX > 0){
-				exitX = cx + (length + 1.5);
-				exitZ = cz + (length + 1.5);
+		if (meta == 7 ) {
+			if (motionX > 0) {
+				exitX = cx + (length + 0.5);
+				exitZ = cz + (length + 0.5);
 			}
 			if (motionX < 0) {
-				exitX = cx - (length + 1.5);
-				exitZ = cz - (length + 1.5);
+				exitX = cx - (0.5);
+				exitZ = cz - (0.5);
 			}
 			directionX = exitX - posX;
 			directionZ = exitZ - posZ;
 			distanceNorm = Math.sqrt(directionX * directionX + directionZ * directionZ);
-			motionX = (directionX / distanceNorm) * norm ;
-			motionZ = (directionZ / distanceNorm) * norm ;
+			motionX = (directionX / distanceNorm) * norm;
+			motionZ = (directionZ / distanceNorm) * norm;
 
-			this.boundingBox.offset(Math.copySign(motionX, this.motionX), 0 , Math.copySign(motionZ, this.motionZ));
-			List boxes = worldObj.getCollidingBoundingBoxes(this, boundingBox);
-			for(Object b : boxes){
-				if(!(b instanceof BlockRailBase) && !(b instanceof BlockTCRail) && !(b instanceof BlockTCRailGag) && !(b instanceof BlockAir)){
-					return;
-				}
-			}
-			this.posX = (this.boundingBox.minX + this.boundingBox.maxX) / 2.0D;
-			this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
-			this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) / 2.0D;
 		}
+
+
+
+		this.boundingBox.offset(Math.copySign(motionX, this.motionX), 0 , Math.copySign(motionZ, this.motionZ));
+
+		List boxes = worldObj.getCollidingBoundingBoxes(this, boundingBox);
+		for(Object b : boxes){
+			if(!(b instanceof BlockRailBase) && !(b instanceof BlockTCRail) && !(b instanceof BlockTCRailGag) && !(b instanceof BlockAir)){
+				return;
+			}
+		}
+		this.posX = (this.boundingBox.minX + this.boundingBox.maxX) / 2.0D;
+		this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
+		this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) / 2.0D;
+
+
+		System.out.println("CX: " + cx + ", CZ: " + cz + ", META: " + meta + ", LENGTH: " + length +  ", EXIT_X: " + exitX + ", EXIT_Z: " + exitZ);
 	}
 
 
