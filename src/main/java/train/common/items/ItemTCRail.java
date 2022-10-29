@@ -994,61 +994,62 @@ public class ItemTCRail extends ItemPart {
 					if (l == 2) {
 						int[] xArray = { x,   x  ,x , x + 1, x + 1 };
 						int[] zArray = { z, z - 1,z - 2, z - 1, z - 2};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 3, x + 1, z - 2, 3.75, x + 4.25,
-								y + 1, z + 1, typeVariant90Turn, idVariant45Turn))
+						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 3, x + 1, z - 2, 5.3, x + 5.75,
+								y + 1, z + 1.75, typeVariant90Turn, idVariant45Turn))
 							return false;
 
 					}
 					if (l == 0) {
 						int[] xArray = {x,   x  ,   x  , x - 1, x - 1};
 						int[] zArray = {z, z + 1, z + 2, z + 1, z + 2};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 1, x - 1, z + 2, 3.75, x - 3.25,
-								y + 1, z, typeVariant90Turn, idVariant45Turn))
+						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 1, x - 1, z + 2, 5.3, x - 4.85,
+								y + 1, z - 0.75, typeVariant90Turn, idVariant45Turn))
 							return false;
 					}
 					if (l == 1) {
 						int[] xArray = {x , x - 1, x - 2, x - 1, x - 2};
 						int[] zArray = {z ,   z  , z,  z - 1, z - 1};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 2, x - 2, z - 1, 3.75, x + 1 ,
-								y + 1, z - 3.25, typeVariant90Turn, idVariant45Turn))
+						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 2, x - 2, z - 1, 5.3, x + 1.75 ,
+								y + 1, z - 4.85, typeVariant90Turn, idVariant45Turn))
 							return false;
 					}
 					if (l == 3) {
 						int[] xArray = {x, x + 1,x + 2, x + 1 , x + 2 };
 						int[] zArray = {z,   z, z,  z + 1 ,z + 1, z + 1};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 0, x + 2, z + 1, 3.75, x, y + 1,
-								z + 4.25, typeVariant90Turn, idVariant45Turn))
+						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 0, x + 2, z + 1, 5.3, x - 0.75, y + 1,
+								z + 5.75, typeVariant90Turn, idVariant45Turn))
 							return false;
+
 					}
 				}
 				else {
 					if (l == 2) {
 						int[] xArray = {x, x, x, x + 1, x + 1, x + 1, x + 2};
 						int[] zArray = {z, z - 1, z - 2, z - 1, z - 2, z - 3, z - 2};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 3, x + 1, z - 2, 3.75, x + 4.25,
-								y + 1, z + 1, typeVariant90Turn, idVariant45Turn))
+						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 3, x + 1, z - 2, 5.3, x + 5.75,
+								y + 1, z + 1.75, typeVariant90Turn, idVariant45Turn))
 							return false;
 
 					}
 					if (l == 0) {
 						int[] xArray = {x, x, x, x - 1, x - 1, x - 1, x - 2};
 						int[] zArray = {z, z + 1, z + 2, z + 1, z + 2, z + 3, z + 2};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 1, x - 1, z + 2, 3.75, x - 3.25,
-								y + 1, z, typeVariant90Turn, idVariant45Turn))
+						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 1, x - 1, z + 2, 5.3, x - 4.85,
+								y + 1, z - 0.75, typeVariant90Turn, idVariant45Turn))
 							return false;
 					}
 					if (l == 1) {
 						int[] xArray = {x, x - 1, x - 2, x - 1, x - 2, x - 3, x - 2};
 						int[] zArray = {z, z, z, z - 1, z - 1, z - 1, z - 2};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 2, x - 2, z - 1, 3.75, x + 1,
-								y + 1, z - 3.25, typeVariant90Turn, idVariant45Turn))
+						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 2, x - 2, z - 1, 5.3, x + 1.75,
+								y + 1, z - 4.85, typeVariant90Turn, idVariant45Turn))
 							return false;
 					}
 					if (l == 3) {
 						int[] xArray = {x, x + 1, x + 2, x + 1, x + 2, x + 3, x + 2};
 						int[] zArray = {z, z, z, z + 1, z + 1, z + 1, z + 2};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 0, x + 2, z + 1, 3.75, x, y + 1,
-								z + 4.25, typeVariant90Turn, idVariant45Turn))
+						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 0, x + 2, z + 1, 5.3, x - 0.75, y + 1,
+								z + 5.75, typeVariant90Turn, idVariant45Turn))
 							return false;
 
 					}
@@ -1075,64 +1076,64 @@ public class ItemTCRail extends ItemPart {
 					if (l == 2) {
 						int[] xArray = { x,   x  ,x , x - 1, x - 1};
 						int[] zArray = { z, z - 1,z - 2, z - 1, z - 2};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 1, x - 1, z - 2, 3.75, x - 3.25,
-								y + 1, z + 1, typeVariant90Turn, idVariant45Turn))
+						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 1, x - 1, z - 2, 5.3, x - 4.85,
+								y + 1, z + 1.75, typeVariant90Turn, idVariant45Turn))
 							return false;
 
 					}
 					if (l == 0) {
 						int[] xArray = {x,   x , x , x + 1, x + 1};
 						int[] zArray = {z, z + 1, z + 2, z + 1, z + 2};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 3, x + 1, z + 2, 3.75, x + 4.25,
-								y + 1, z, typeVariant90Turn, idVariant45Turn ))
+						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 3, x + 1, z + 2, 5.3, x + 5.75,
+								y + 1, z - 0.75, typeVariant90Turn, idVariant45Turn ))
 							return false;
 					}
 					if (l == 1) {
 						int[] xArray = {x , x - 1, x - 2, x - 1, x - 2};
 						int[] zArray = {z ,   z  , z,  z + 1, z + 1};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 0, x - 2, z + 1, 3.75, x + 1 ,
-								y + 1, z + 4.25, typeVariant90Turn, idVariant45Turn))
+						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 0, x - 2, z + 1, 5.3, x + 1.75 ,
+								y + 1, z + 5.75, typeVariant90Turn, idVariant45Turn))
 							return false;
 					}
 					if (l == 3) {
 						int[] xArray = {x, x + 1,x + 2, x + 1 , x + 2};
 						int[] zArray = {z,   z, z,  z - 1 ,z- 1};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 2, x + 2, z - 1, 3.75, x, y + 1,
-								z - 3.25, typeVariant90Turn, idVariant45Turn))
+						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 2, x + 2, z - 1, 5.3, x - 0.75, y + 1,
+								z - 4.85, typeVariant90Turn, idVariant45Turn))
 							return false;
 					}
 				}
 				else{
-						if (l == 2) {
-							int[] xArray = {x, x, x, x - 1, x - 1, x - 1, x - 2};
-							int[] zArray = {z, z - 1, z - 2, z - 1, z - 2, z - 3, z - 2};
-							if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 1, x - 1, z - 2, 3.75, x - 3.25,
-									y + 1, z + 1, typeVariant90Turn, idVariant45Turn))
-								return false;
+					if (l == 2) {
+						int[] xArray = {x, x, x, x - 1, x - 1, x - 1, x - 2};
+						int[] zArray = {z, z - 1, z - 2, z - 1, z - 2, z - 3, z - 2};
+						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 1, x - 1, z - 2, 5.8, x - 4.85,
+								y + 1, z + 1.75, typeVariant90Turn, idVariant45Turn))
+							return false;
 
-						}
-						if (l == 0) {
-							int[] xArray = {x, x, x, x + 1, x + 1, x + 1, x + 2};
-							int[] zArray = {z, z + 1, z + 2, z + 1, z + 2, z + 3, z + 2};
-							if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 3, x + 1, z + 2, 3.75, x + 4.25,
-									y + 1, z, typeVariant90Turn, idVariant45Turn))
-								return false;
-						}
-						if (l == 1) {
-							int[] xArray = {x, x - 1, x - 2, x - 1, x - 2, x - 3, x - 2};
-							int[] zArray = {z, z, z, z + 1, z + 1, z + 1, z + 2};
-							if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 0, x - 2, z + 1, 3.75, x + 1,
-									y + 1, z + 4.25, typeVariant90Turn, idVariant45Turn))
-								return false;
-						}
-						if (l == 3) {
-							int[] xArray = {x, x + 1, x + 2, x + 1, x + 2, x + 3, x + 2};
-							int[] zArray = {z, z, z, z - 1, z - 1, z - 1, z - 2};
-							if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 2, x + 2, z - 1, 3.75, x, y + 1,
-									z - 3.25, typeVariant90Turn, idVariant45Turn))
-								return false;
-						}
 					}
+					if (l == 0) {
+						int[] xArray = {x, x, x, x + 1, x + 1, x + 1, x + 2};
+						int[] zArray = {z, z + 1, z + 2, z + 1, z + 2, z + 3, z + 2};
+						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 3, x + 1, z + 2, 5.8, x + 5.75,
+								y + 1, z - 0.75, typeVariant90Turn, idVariant45Turn))
+							return false;
+					}
+					if (l == 1) {
+						int[] xArray = {x, x - 1, x - 2, x - 1, x - 2, x - 3, x - 2};
+						int[] zArray = {z, z, z, z + 1, z + 1, z + 1, z + 2};
+						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 0, x - 2, z + 1, 5.8, x + 1.75,
+								y + 1, z + 5.75, typeVariant90Turn, idVariant45Turn))
+							return false;
+					}
+					if (l == 3) {
+						int[] xArray = {x, x + 1, x + 2, x + 1, x + 2, x + 3, x + 2};
+						int[] zArray = {z, z, z, z - 1, z - 1, z - 1, z - 2};
+						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 2, x + 2, z - 1, 5.8, x - 0.75, y + 1,
+								z - 4.85, typeVariant90Turn, idVariant45Turn))
+							return false;
+					}
+				}
 				if (player==null || !player.capabilities.isCreativeMode) {
 					--itemstack.stackSize;
 				}
@@ -2502,7 +2503,7 @@ public class ItemTCRail extends ItemPart {
 					if (l == 3) {
 						int[] xArray = {x + 2, x + 3};
 						int[] zArray = {z + 1, z + 1};
-						if (!putDownTurn(player, world, true, x, y, z, xArray, zArray, l, false, 2, x + 3, z +1, 3.75, x + 1 , y + 1,
+						if (!putDownTurn(player, world, true, x, y, z, xArray, zArray, l, false, 0, x + 3, z +1, 3.75, x + 1 , y + 1,
 								z + 4.25, typeVariant90Turn, idVariantSwitch))
 							return false;
 						TileTCRail tcRailTurn = (TileTCRail) world.getTileEntity(x + 2 , y + 1, z + 1);
