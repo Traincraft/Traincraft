@@ -1287,8 +1287,8 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 
 		if (meta == 6) {
 			if (motionX > 0) {
-				exitX = cx + (length + 0.5);
-				exitZ = cz - (length + 0.5);
+				exitX = (cx + length) + 0.5;
+				exitZ = (cz - length) + 0.5;
 			}
 			if (motionX < 0) {
 				exitX = cx - (0.5);
@@ -1364,6 +1364,8 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		this.posX = (this.boundingBox.minX + this.boundingBox.maxX) / 2.0D;
 		this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
 		this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) / 2.0D;
+
+		System.out.println("CX: " + cx + ", CZ: " + cz + ", META: " + meta + ", LENGTH: " + length +  ", EXIT_X: " + exitX + ", EXIT_Z: " + exitZ);
 
 
 	}
