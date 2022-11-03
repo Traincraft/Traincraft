@@ -364,7 +364,7 @@ public class ItemTCRail extends ItemPart {
 				|| tile.getType().equals(TrackTypes.VERY_LARGE_SLOPE_BALLAST.getLabel())
 				|| tile.getType().equals(TrackTypes.VERY_LARGE_SLOPE_SNOW_GRAVEL.getLabel())
 				|| tile.getType().equals(TrackTypes.VERY_LARGE_SLOPE_DYNAMIC.getLabel())
-		;
+				;
 	}
 
 	public static boolean isTCDiagonalStraightTrack(TileTCRail tile) {
@@ -378,7 +378,7 @@ public class ItemTCRail extends ItemPart {
 				|| tile.getType().equals(TrackTypes.EMBEDDED_LONG_DIAGONAL_STRAIGHT.getLabel())
 				|| tile.getType().equals(TrackTypes.EMBEDDED_VERY_LONG_DIAGONAL_STRAIGHT.getLabel())
 
-		;
+				;
 	}
 
 
@@ -748,7 +748,7 @@ public class ItemTCRail extends ItemPart {
 			 *  l = 5 = north west
 			 *  l = 6 = north east
 			 *  l = 7 = south east
-			**/
+			 **/
 
 			if (type == TrackTypes.SMALL_STRAIGHT  || type == TrackTypes.EMBEDDED_SMALL_STRAIGHT || type == TrackTypes.SMALL_ROAD_CROSSING || type == TrackTypes.SMALL_ROAD_CROSSING_1 || type == TrackTypes.SMALL_ROAD_CROSSING_2  ) {
 
@@ -994,71 +994,70 @@ public class ItemTCRail extends ItemPart {
 					if (l == 2) {
 						int[] xArray = { x,   x  ,x , x + 1, x + 1 };
 						int[] zArray = { z, z - 1,z - 2, z - 1, z - 2};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 3, x + 1, z - 2, 5.3, x + 5.75,
-								y + 1, z + 1.75, typeVariant90Turn, idVariant45Turn))
+						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 3, x + 1, z - 2, 3.75, x + 4.25,
+								y + 1, z + 1, typeVariant90Turn, idVariant45Turn))
 							return false;
 
 					}
 					if (l == 0) {
 						int[] xArray = {x,   x  ,   x  , x - 1, x - 1};
 						int[] zArray = {z, z + 1, z + 2, z + 1, z + 2};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 1, x - 1, z + 2, 5.3, x - 4.85,
-								y + 1, z - 0.75, typeVariant90Turn, idVariant45Turn))
+						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 1, x - 1, z + 2, 3.75, x - 3.25,
+								y + 1, z, typeVariant90Turn, idVariant45Turn))
 							return false;
 					}
 					if (l == 1) {
 						int[] xArray = {x , x - 1, x - 2, x - 1, x - 2};
 						int[] zArray = {z ,   z  , z,  z - 1, z - 1};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 2, x - 2, z - 1, 5.3, x + 1.75 ,
-								y + 1, z - 4.85, typeVariant90Turn, idVariant45Turn))
+						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 2, x - 2, z - 1, 3.75, x + 1 ,
+								y + 1, z - 3.25, typeVariant90Turn, idVariant45Turn))
 							return false;
 					}
 					if (l == 3) {
 						int[] xArray = {x, x + 1,x + 2, x + 1 , x + 2 };
 						int[] zArray = {z,   z, z,  z + 1 ,z + 1, z + 1};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 0, x + 2, z + 1, 5.3, x - 0.75, y + 1,
-								z + 5.75, typeVariant90Turn, idVariant45Turn))
+						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 0, x + 2, z + 1, 3.75, x, y + 1,
+								z + 4.25, typeVariant90Turn, idVariant45Turn))
 							return false;
-
 					}
 				}
 				else {
 					if (l == 2) {
 						int[] xArray = {x, x, x, x + 1, x + 1, x + 1, x + 2};
 						int[] zArray = {z, z - 1, z - 2, z - 1, z - 2, z - 3, z - 2};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 3, x + 1, z - 2, 5.3, x + 5.75,
-								y + 1, z + 1.75, typeVariant90Turn, idVariant45Turn))
+						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 3, x + 1, z - 2, 3.75, x + 4.25,
+								y + 1, z + 1, typeVariant90Turn, idVariant45Turn))
 							return false;
 
 					}
 					if (l == 0) {
 						int[] xArray = {x, x, x, x - 1, x - 1, x - 1, x - 2};
 						int[] zArray = {z, z + 1, z + 2, z + 1, z + 2, z + 3, z + 2};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 1, x - 1, z + 2, 5.3, x - 4.85,
-								y + 1, z - 0.75, typeVariant90Turn, idVariant45Turn))
+						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 1, x - 1, z + 2, 3.75, x - 3.25,
+								y + 1, z, typeVariant90Turn, idVariant45Turn))
 							return false;
 					}
 					if (l == 1) {
 						int[] xArray = {x, x - 1, x - 2, x - 1, x - 2, x - 3, x - 2};
 						int[] zArray = {z, z, z, z - 1, z - 1, z - 1, z - 2};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 2, x - 2, z - 1, 5.3, x + 1.75,
-								y + 1, z - 4.85, typeVariant90Turn, idVariant45Turn))
+						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 2, x - 2, z - 1, 3.75, x + 1,
+								y + 1, z - 3.25, typeVariant90Turn, idVariant45Turn))
 							return false;
 					}
 					if (l == 3) {
 						int[] xArray = {x, x + 1, x + 2, x + 1, x + 2, x + 3, x + 2};
 						int[] zArray = {z, z, z, z + 1, z + 1, z + 1, z + 2};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 0, x + 2, z + 1, 5.3, x - 0.75, y + 1,
-								z + 5.75, typeVariant90Turn, idVariant45Turn))
+						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 0, x + 2, z + 1, 3.75, x, y + 1,
+								z + 4.25, typeVariant90Turn, idVariant45Turn))
 							return false;
 
 					}
 				}
-					if (player==null || !player.capabilities.isCreativeMode) {
-						--itemstack.stackSize;
-					}
-					return true;
+				if (player==null || !player.capabilities.isCreativeMode) {
+					--itemstack.stackSize;
 				}
+				return true;
+			}
 
 			if (tempType == TrackTypes.MEDIUM_LEFT_45DEGREE_TURN || tempType == TrackTypes.EMBEDDED_MEDIUM_LEFT_45DEGREE_TURN) {
 				switch (tempType){
@@ -1076,30 +1075,30 @@ public class ItemTCRail extends ItemPart {
 					if (l == 2) {
 						int[] xArray = { x,   x  ,x , x - 1, x - 1};
 						int[] zArray = { z, z - 1,z - 2, z - 1, z - 2};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 1, x - 1, z - 2, 5.3, x - 4.85,
-								y + 1, z + 1.75, typeVariant90Turn, idVariant45Turn))
+						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 1, x - 1, z - 2, 3.75, x - 3.25,
+								y + 1, z + 1, typeVariant90Turn, idVariant45Turn))
 							return false;
 
 					}
 					if (l == 0) {
 						int[] xArray = {x,   x , x , x + 1, x + 1};
 						int[] zArray = {z, z + 1, z + 2, z + 1, z + 2};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 3, x + 1, z + 2, 5.3, x + 5.75,
-								y + 1, z - 0.75, typeVariant90Turn, idVariant45Turn ))
+						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 3, x + 1, z + 2, 3.75, x + 4.25,
+								y + 1, z, typeVariant90Turn, idVariant45Turn ))
 							return false;
 					}
 					if (l == 1) {
 						int[] xArray = {x , x - 1, x - 2, x - 1, x - 2};
 						int[] zArray = {z ,   z  , z,  z + 1, z + 1};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 0, x - 2, z + 1, 5.3, x + 1.75 ,
-								y + 1, z + 5.75, typeVariant90Turn, idVariant45Turn))
+						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 0, x - 2, z + 1, 3.75, x + 1 ,
+								y + 1, z + 4.25, typeVariant90Turn, idVariant45Turn))
 							return false;
 					}
 					if (l == 3) {
 						int[] xArray = {x, x + 1,x + 2, x + 1 , x + 2};
 						int[] zArray = {z,   z, z,  z - 1 ,z- 1};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 2, x + 2, z - 1, 5.3, x - 0.75, y + 1,
-								z - 4.85, typeVariant90Turn, idVariant45Turn))
+						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 2, x + 2, z - 1, 3.75, x, y + 1,
+								z - 3.25, typeVariant90Turn, idVariant45Turn))
 							return false;
 					}
 				}
@@ -1107,30 +1106,30 @@ public class ItemTCRail extends ItemPart {
 					if (l == 2) {
 						int[] xArray = {x, x, x, x - 1, x - 1, x - 1, x - 2};
 						int[] zArray = {z, z - 1, z - 2, z - 1, z - 2, z - 3, z - 2};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 1, x - 1, z - 2, 5.8, x - 4.85,
-								y + 1, z + 1.75, typeVariant90Turn, idVariant45Turn))
+						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 1, x - 1, z - 2, 3.75, x - 3.25,
+								y + 1, z + 1, typeVariant90Turn, idVariant45Turn))
 							return false;
 
 					}
 					if (l == 0) {
 						int[] xArray = {x, x, x, x + 1, x + 1, x + 1, x + 2};
 						int[] zArray = {z, z + 1, z + 2, z + 1, z + 2, z + 3, z + 2};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 3, x + 1, z + 2, 5.8, x + 5.75,
-								y + 1, z - 0.75, typeVariant90Turn, idVariant45Turn))
+						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 3, x + 1, z + 2, 3.75, x + 4.25,
+								y + 1, z, typeVariant90Turn, idVariant45Turn))
 							return false;
 					}
 					if (l == 1) {
 						int[] xArray = {x, x - 1, x - 2, x - 1, x - 2, x - 3, x - 2};
 						int[] zArray = {z, z, z, z + 1, z + 1, z + 1, z + 2};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 0, x - 2, z + 1, 5.8, x + 1.75,
-								y + 1, z + 5.75, typeVariant90Turn, idVariant45Turn))
+						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 0, x - 2, z + 1, 3.75, x + 1,
+								y + 1, z + 4.25, typeVariant90Turn, idVariant45Turn))
 							return false;
 					}
 					if (l == 3) {
 						int[] xArray = {x, x + 1, x + 2, x + 1, x + 2, x + 3, x + 2};
 						int[] zArray = {z, z, z, z - 1, z - 1, z - 1, z - 2};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 2, x + 2, z - 1, 5.8, x - 0.75, y + 1,
-								z - 4.85, typeVariant90Turn, idVariant45Turn))
+						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 2, x + 2, z - 1, 3.75, x, y + 1,
+								z - 3.25, typeVariant90Turn, idVariant45Turn))
 							return false;
 					}
 				}
@@ -1972,16 +1971,16 @@ public class ItemTCRail extends ItemPart {
 			}
 			if (tempType == TrackTypes.LARGE_RIGHT_PARALLEL_CURVE || tempType == TrackTypes.EMBEDDED_LARGE_RIGHT_PARALLEL_CURVE) {
 
-					switch (tempType){
-						case LARGE_RIGHT_PARALLEL_CURVE:
-							idVariantSTurn = ItemIDs.tcRailLargeParallelCurve.item;
-							typeVariantSTurn = TrackTypes.LARGE_RIGHT_PARALLEL_CURVE.getLabel();
-							break;
-						case EMBEDDED_LARGE_RIGHT_PARALLEL_CURVE:
-							idVariantSTurn = ItemIDs.tcRailEmbeddedLargeParallelCurve.item;
-							typeVariantSTurn = TrackTypes.EMBEDDED_LARGE_RIGHT_PARALLEL_CURVE.getLabel();
-							break;
-					}
+				switch (tempType){
+					case LARGE_RIGHT_PARALLEL_CURVE:
+						idVariantSTurn = ItemIDs.tcRailLargeParallelCurve.item;
+						typeVariantSTurn = TrackTypes.LARGE_RIGHT_PARALLEL_CURVE.getLabel();
+						break;
+					case EMBEDDED_LARGE_RIGHT_PARALLEL_CURVE:
+						idVariantSTurn = ItemIDs.tcRailEmbeddedLargeParallelCurve.item;
+						typeVariantSTurn = TrackTypes.EMBEDDED_LARGE_RIGHT_PARALLEL_CURVE.getLabel();
+						break;
+				}
 				if (l == 2) {
 
 					for (int check = 1; check < 6; check++) {
@@ -2015,23 +2014,23 @@ public class ItemTCRail extends ItemPart {
 					if (tcRailTurn != null) {
 						tcRailTurn.hasModel = true;
 						if (!putDownTurn(player, world, false, x, y, z, xArray2, zArray2, 3, false, 2, x+3, z-15, 22, x - 18.5,
-							y + 1, z - 15, TrackTypes.MEDIUM_LEFT_TURN.getLabel(), null))
+								y + 1, z - 15, TrackTypes.MEDIUM_LEFT_TURN.getLabel(), null))
 							return false;
-					TileTCRail tcRailTurn2 = (TileTCRail) world.getTileEntity(x+3, y + 1, z-15);
+						TileTCRail tcRailTurn2 = (TileTCRail) world.getTileEntity(x+3, y + 1, z-15);
 
-					if (tcRailTurn2 != null) {
-						tcRailTurn2.hasModel = false;
-						tcRailTurn2.isLinkedToRail = true;
-						tcRailTurn2.linkedX = x;
-						tcRailTurn2.linkedY = y + 1;
-						tcRailTurn2.linkedZ = z ;
+						if (tcRailTurn2 != null) {
+							tcRailTurn2.hasModel = false;
+							tcRailTurn2.isLinkedToRail = true;
+							tcRailTurn2.linkedX = x;
+							tcRailTurn2.linkedY = y + 1;
+							tcRailTurn2.linkedZ = z ;
+						}
+						tcRailTurn.isLinkedToRail = true;
+						tcRailTurn.linkedX = x+3;
+						tcRailTurn.linkedY = y + 1;
+						tcRailTurn.linkedZ = z-15;
 					}
-					tcRailTurn.isLinkedToRail = true;
-					tcRailTurn.linkedX = x+3;
-					tcRailTurn.linkedY = y + 1;
-					tcRailTurn.linkedZ = z-15;
-				}
-				return true;
+					return true;
 
 				}
 
@@ -3337,7 +3336,7 @@ public class ItemTCRail extends ItemPart {
 					case EMBEDDED_MEDIUM_RIGHT_PARALLEL_SWITCH:
 						typeVariantStraight = TrackTypes.EMBEDDED_SMALL_STRAIGHT.getLabel();
 						idVariantSwitch = ItemIDs.tcRailEmbeddedMediumParallelSwitch.item;
-					break;
+						break;
 				}
 
 				if (l == 2) {
@@ -3591,14 +3590,14 @@ public class ItemTCRail extends ItemPart {
 				 **/
 				if (type == TrackTypes.SLOPE_WOOD || type == TrackTypes.SLOPE_GRAVEL
 						|| type == TrackTypes.SLOPE_BALLAST || type == TrackTypes.SLOPE_SNOW_GRAVEL
-				|| type == TrackTypes.SLOPE_DYNAMIC) {
+						|| type == TrackTypes.SLOPE_DYNAMIC) {
 					gagEnd = 5;
 					slopeAngle = 0.13;
 				}
 
 				if (type == TrackTypes.LARGE_SLOPE_WOOD || type == TrackTypes.LARGE_SLOPE_GRAVEL
 						|| type == TrackTypes.LARGE_SLOPE_BALLAST || type == TrackTypes.LARGE_SLOPE_SNOW_GRAVEL
-					|| type == TrackTypes.LARGE_SLOPE_DYNAMIC){
+						|| type == TrackTypes.LARGE_SLOPE_DYNAMIC){
 					gagEnd = 11;
 					slopeAngle = 0.0666;
 				}
@@ -3845,219 +3844,219 @@ public class ItemTCRail extends ItemPart {
 	private TrackTypes getPlacementDirection(EntityPlayer player, World world, int l,  float par10) {
 		if (!world.isRemote) {
 
-		/** Determines if track is left or right*/
-		float yaw = MathHelper.wrapAngleTo180_float(player!=null?player.rotationYaw:par10);
-		tempType = type;
+			/** Determines if track is left or right*/
+			float yaw = MathHelper.wrapAngleTo180_float(player!=null?player.rotationYaw:par10);
+			tempType = type;
 
-		if (type == TrackTypes.MEDIUM_TURN) {
-			if (getTrackOrientation(l, yaw).equals("right")) {
-				tempType = TrackTypes.MEDIUM_RIGHT_TURN;
+			if (type == TrackTypes.MEDIUM_TURN) {
+				if (getTrackOrientation(l, yaw).equals("right")) {
+					tempType = TrackTypes.MEDIUM_RIGHT_TURN;
 
+				}
+				if (getTrackOrientation(l, yaw).equals("left")) {
+					tempType = TrackTypes.MEDIUM_LEFT_TURN;
+				}
 			}
-			if (getTrackOrientation(l, yaw).equals("left")) {
-				tempType = TrackTypes.MEDIUM_LEFT_TURN;
+			if (type == TrackTypes.LARGE_TURN) {
+				if (getTrackOrientation(l, yaw).equals("right")) {
+					tempType = TrackTypes.LARGE_RIGHT_TURN;
+				}
+				if (getTrackOrientation(l, yaw).equals("left")) {
+					tempType = TrackTypes.LARGE_LEFT_TURN;
+				}
 			}
-		}
-		if (type == TrackTypes.LARGE_TURN) {
-			if (getTrackOrientation(l, yaw).equals("right")) {
-				tempType = TrackTypes.LARGE_RIGHT_TURN;
+			if (type == TrackTypes.VERY_LARGE_TURN) {
+				if (getTrackOrientation(l, yaw).equals("right")) {
+					tempType = TrackTypes.VERY_LARGE_RIGHT_TURN;
+				}
+				if (getTrackOrientation(l, yaw).equals("left")) {
+					tempType = TrackTypes.VERY_LARGE_LEFT_TURN;
+				}
 			}
-			if (getTrackOrientation(l, yaw).equals("left")) {
-				tempType = TrackTypes.LARGE_LEFT_TURN;
+			if (type == TrackTypes.SUPER_LARGE_TURN) {
+				if (getTrackOrientation(l, yaw).equals("right")) {
+					tempType = TrackTypes.SUPER_LARGE_RIGHT_TURN;
+				}
+				if (getTrackOrientation(l, yaw).equals("left")) {
+					tempType = TrackTypes.SUPER_LARGE_LEFT_TURN;
+				}
 			}
-		}
-		if (type == TrackTypes.VERY_LARGE_TURN) {
-			if (getTrackOrientation(l, yaw).equals("right")) {
-				tempType = TrackTypes.VERY_LARGE_RIGHT_TURN;
-			}
-			if (getTrackOrientation(l, yaw).equals("left")) {
-				tempType = TrackTypes.VERY_LARGE_LEFT_TURN;
-			}
-		}
-		if (type == TrackTypes.SUPER_LARGE_TURN) {
-			if (getTrackOrientation(l, yaw).equals("right")) {
-				tempType = TrackTypes.SUPER_LARGE_RIGHT_TURN;
-			}
-			if (getTrackOrientation(l, yaw).equals("left")) {
-				tempType = TrackTypes.SUPER_LARGE_LEFT_TURN;
-			}
-		}
-		if (type == TrackTypes.MEDIUM_45DEGREE_TURN) {
-			if (getTrackOrientation(l, yaw).equals("right")) {
-				tempType = TrackTypes.MEDIUM_RIGHT_45DEGREE_TURN;
-			}
-			if (getTrackOrientation(l, yaw).equals("left")) {
-				tempType = TrackTypes.MEDIUM_LEFT_45DEGREE_TURN;
+			if (type == TrackTypes.MEDIUM_45DEGREE_TURN) {
+				if (getTrackOrientation(l, yaw).equals("right")) {
+					tempType = TrackTypes.MEDIUM_RIGHT_45DEGREE_TURN;
+				}
+				if (getTrackOrientation(l, yaw).equals("left")) {
+					tempType = TrackTypes.MEDIUM_LEFT_45DEGREE_TURN;
 
+				}
 			}
-		}
-		if (type == TrackTypes.LARGE_45DEGREE_TURN) {
-			if (getTrackOrientation(l, yaw).equals("right")) {
-				tempType = TrackTypes.LARGE_RIGHT_45DEGREE_TURN;
-			}
-			if (getTrackOrientation(l, yaw).equals("left")) {
-				tempType = TrackTypes.LARGE_LEFT_45DEGREE_TURN;
+			if (type == TrackTypes.LARGE_45DEGREE_TURN) {
+				if (getTrackOrientation(l, yaw).equals("right")) {
+					tempType = TrackTypes.LARGE_RIGHT_45DEGREE_TURN;
+				}
+				if (getTrackOrientation(l, yaw).equals("left")) {
+					tempType = TrackTypes.LARGE_LEFT_45DEGREE_TURN;
 
+				}
 			}
-		}
-		if (type == TrackTypes.SMALL_PARALLEL_CURVE) {
-			if (getTrackOrientation(l, yaw).equals("right")) {
-				tempType = TrackTypes.SMALL_RIGHT_PARALLEL_CURVE;
+			if (type == TrackTypes.SMALL_PARALLEL_CURVE) {
+				if (getTrackOrientation(l, yaw).equals("right")) {
+					tempType = TrackTypes.SMALL_RIGHT_PARALLEL_CURVE;
+				}
+				if (getTrackOrientation(l, yaw).equals("left")) {
+					tempType = TrackTypes.SMALL_LEFT_PARALLEL_CURVE;
+				}
 			}
-			if (getTrackOrientation(l, yaw).equals("left")) {
-				tempType = TrackTypes.SMALL_LEFT_PARALLEL_CURVE;
+			if (type == TrackTypes.MEDIUM_PARALLEL_CURVE) {
+				if (getTrackOrientation(l, yaw).equals("right")) {
+					tempType = TrackTypes.MEDIUM_RIGHT_PARALLEL_CURVE;
+				}
+				if (getTrackOrientation(l, yaw).equals("left")) {
+					tempType = TrackTypes.MEDIUM_LEFT_PARALLEL_CURVE;
+				}
 			}
-		}
-		if (type == TrackTypes.MEDIUM_PARALLEL_CURVE) {
-			if (getTrackOrientation(l, yaw).equals("right")) {
-				tempType = TrackTypes.MEDIUM_RIGHT_PARALLEL_CURVE;
+			if (type == TrackTypes.LARGE_PARALLEL_CURVE) {
+				if (getTrackOrientation(l, yaw).equals("right")) {
+					tempType = TrackTypes.LARGE_RIGHT_PARALLEL_CURVE;
+				}
+				if (getTrackOrientation(l, yaw).equals("left")) {
+					tempType = TrackTypes.LARGE_LEFT_PARALLEL_CURVE;
+				}
 			}
-			if (getTrackOrientation(l, yaw).equals("left")) {
-				tempType = TrackTypes.MEDIUM_LEFT_PARALLEL_CURVE;
+			if (type == TrackTypes.MEDIUM_SWITCH) {
+				if (getTrackOrientation(l, yaw).equals("right")) {
+					tempType = TrackTypes.MEDIUM_RIGHT_SWITCH;
+				}
+				if (getTrackOrientation(l, yaw).equals("left")) {
+					tempType = TrackTypes.MEDIUM_LEFT_SWITCH;
+				}
 			}
-		}
-		if (type == TrackTypes.LARGE_PARALLEL_CURVE) {
-			if (getTrackOrientation(l, yaw).equals("right")) {
-				tempType = TrackTypes.LARGE_RIGHT_PARALLEL_CURVE;
+			if (type == TrackTypes.LARGE_SWITCH) {
+				if (getTrackOrientation(l, yaw).equals("right")) {
+					tempType = TrackTypes.LARGE_RIGHT_SWITCH;
+				}
+				if (getTrackOrientation(l, yaw).equals("left")) {
+					tempType = TrackTypes.LARGE_LEFT_SWITCH;
+				}
 			}
-			if (getTrackOrientation(l, yaw).equals("left")) {
-				tempType = TrackTypes.LARGE_LEFT_PARALLEL_CURVE;
+			if (type == TrackTypes.MEDIUM_PARALLEL_SWITCH) {
+				if (getTrackOrientation(l, yaw).equals("right")) {
+					tempType = TrackTypes.MEDIUM_RIGHT_PARALLEL_SWITCH;
+				}
+				if (getTrackOrientation(l, yaw).equals("left")) {
+					tempType = TrackTypes.MEDIUM_LEFT_PARALLEL_SWITCH;
+				}
 			}
-		}
-		if (type == TrackTypes.MEDIUM_SWITCH) {
-			if (getTrackOrientation(l, yaw).equals("right")) {
-				tempType = TrackTypes.MEDIUM_RIGHT_SWITCH;
+			if (type == TrackTypes.MEDIUM_45DEGREE_SWITCH) {
+				if (getTrackOrientation(l, yaw).equals("right")) {
+					tempType = TrackTypes.MEDIUM_RIGHT_45DEGREE_SWITCH;
+				}
+				if (getTrackOrientation(l, yaw).equals("left")) {
+					tempType = TrackTypes.MEDIUM_LEFT_45DEGREE_SWITCH;
+				}
 			}
-			if (getTrackOrientation(l, yaw).equals("left")) {
-				tempType = TrackTypes.MEDIUM_LEFT_SWITCH;
+			if (type == TrackTypes.EMBEDDED_MEDIUM_TURN) {
+				if (getTrackOrientation(l, yaw).equals("right")) {
+					tempType = TrackTypes.EMBEDDED_MEDIUM_RIGHT_TURN;
+				}
+				if (getTrackOrientation(l, yaw).equals("left")) {
+					tempType = TrackTypes.EMBEDDED_MEDIUM_LEFT_TURN;
+				}
 			}
-		}
-		if (type == TrackTypes.LARGE_SWITCH) {
-			if (getTrackOrientation(l, yaw).equals("right")) {
-				tempType = TrackTypes.LARGE_RIGHT_SWITCH;
+			if (type == TrackTypes.EMBEDDED_LARGE_TURN) {
+				if (getTrackOrientation(l, yaw).equals("right")) {
+					tempType = TrackTypes.EMBEDDED_LARGE_RIGHT_TURN;
+				}
+				if (getTrackOrientation(l, yaw).equals("left")) {
+					tempType = TrackTypes.EMBEDDED_LARGE_LEFT_TURN;
+				}
 			}
-			if (getTrackOrientation(l, yaw).equals("left")) {
-				tempType = TrackTypes.LARGE_LEFT_SWITCH;
+			if (type == TrackTypes.EMBEDDED_VERY_LARGE_TURN) {
+				if (getTrackOrientation(l, yaw).equals("right")) {
+					tempType = TrackTypes.EMBEDDED_VERY_LARGE_RIGHT_TURN;
+				}
+				if (getTrackOrientation(l, yaw).equals("left")) {
+					tempType = TrackTypes.EMBEDDED_VERY_LARGE_LEFT_TURN;
+				}
 			}
-		}
-		if (type == TrackTypes.MEDIUM_PARALLEL_SWITCH) {
-			if (getTrackOrientation(l, yaw).equals("right")) {
-				tempType = TrackTypes.MEDIUM_RIGHT_PARALLEL_SWITCH;
+			if (type == TrackTypes.EMBEDDED_SUPER_LARGE_TURN) {
+				if (getTrackOrientation(l, yaw).equals("right")) {
+					tempType = TrackTypes.EMBEDDED_SUPER_LARGE_RIGHT_TURN;
+				}
+				if (getTrackOrientation(l, yaw).equals("left")) {
+					tempType = TrackTypes.EMBEDDED_SUPER_LARGE_LEFT_TURN;
+				}
 			}
-			if (getTrackOrientation(l, yaw).equals("left")) {
-				tempType = TrackTypes.MEDIUM_LEFT_PARALLEL_SWITCH;
-			}
-		}
-		if (type == TrackTypes.MEDIUM_45DEGREE_SWITCH) {
-			if (getTrackOrientation(l, yaw).equals("right")) {
-				tempType = TrackTypes.MEDIUM_RIGHT_45DEGREE_SWITCH;
-			}
-			if (getTrackOrientation(l, yaw).equals("left")) {
-				tempType = TrackTypes.MEDIUM_LEFT_45DEGREE_SWITCH;
-			}
-		}
-		if (type == TrackTypes.EMBEDDED_MEDIUM_TURN) {
-			if (getTrackOrientation(l, yaw).equals("right")) {
-				tempType = TrackTypes.EMBEDDED_MEDIUM_RIGHT_TURN;
-			}
-			if (getTrackOrientation(l, yaw).equals("left")) {
-				tempType = TrackTypes.EMBEDDED_MEDIUM_LEFT_TURN;
-			}
-		}
-		if (type == TrackTypes.EMBEDDED_LARGE_TURN) {
-			if (getTrackOrientation(l, yaw).equals("right")) {
-				tempType = TrackTypes.EMBEDDED_LARGE_RIGHT_TURN;
-			}
-			if (getTrackOrientation(l, yaw).equals("left")) {
-				tempType = TrackTypes.EMBEDDED_LARGE_LEFT_TURN;
-			}
-		}
-		if (type == TrackTypes.EMBEDDED_VERY_LARGE_TURN) {
-			if (getTrackOrientation(l, yaw).equals("right")) {
-				tempType = TrackTypes.EMBEDDED_VERY_LARGE_RIGHT_TURN;
-			}
-			if (getTrackOrientation(l, yaw).equals("left")) {
-				tempType = TrackTypes.EMBEDDED_VERY_LARGE_LEFT_TURN;
-			}
-		}
-		if (type == TrackTypes.EMBEDDED_SUPER_LARGE_TURN) {
-			if (getTrackOrientation(l, yaw).equals("right")) {
-				tempType = TrackTypes.EMBEDDED_SUPER_LARGE_RIGHT_TURN;
-			}
-			if (getTrackOrientation(l, yaw).equals("left")) {
-				tempType = TrackTypes.EMBEDDED_SUPER_LARGE_LEFT_TURN;
-			}
-		}
-		if (type == TrackTypes.EMBEDDED_MEDIUM_45DEGREE_TURN) {
-			if (getTrackOrientation(l, yaw).equals("right")) {
-				tempType = TrackTypes.EMBEDDED_MEDIUM_RIGHT_45DEGREE_TURN;
-			}
-			if (getTrackOrientation(l, yaw).equals("left")) {
-				tempType = TrackTypes.EMBEDDED_MEDIUM_LEFT_45DEGREE_TURN;
+			if (type == TrackTypes.EMBEDDED_MEDIUM_45DEGREE_TURN) {
+				if (getTrackOrientation(l, yaw).equals("right")) {
+					tempType = TrackTypes.EMBEDDED_MEDIUM_RIGHT_45DEGREE_TURN;
+				}
+				if (getTrackOrientation(l, yaw).equals("left")) {
+					tempType = TrackTypes.EMBEDDED_MEDIUM_LEFT_45DEGREE_TURN;
 
+				}
+			}
+			if (type == TrackTypes.EMBEDDED_SMALL_PARALLEL_CURVE) {
+				if (getTrackOrientation(l, yaw).equals("right")) {
+					tempType = TrackTypes.EMBEDDED_SMALL_RIGHT_PARALLEL_CURVE;
+				}
+				if (getTrackOrientation(l, yaw).equals("left")) {
+					tempType = TrackTypes.EMBEDDED_SMALL_LEFT_PARALLEL_CURVE;
+				}
+			}
+			if (type == TrackTypes.EMBEDDED_MEDIUM_PARALLEL_CURVE) {
+				if (getTrackOrientation(l, yaw).equals("right")) {
+					tempType = TrackTypes.EMBEDDED_MEDIUM_RIGHT_PARALLEL_CURVE;
+				}
+				if (getTrackOrientation(l, yaw).equals("left")) {
+					tempType = TrackTypes.EMBEDDED_MEDIUM_LEFT_PARALLEL_CURVE;
+				}
+			}
+			if (type == TrackTypes.EMBEDDED_LARGE_PARALLEL_CURVE) {
+				if (getTrackOrientation(l, yaw).equals("right")) {
+					tempType = TrackTypes.EMBEDDED_LARGE_RIGHT_PARALLEL_CURVE;
+				}
+				if (getTrackOrientation(l, yaw).equals("left")) {
+					tempType = TrackTypes.EMBEDDED_LARGE_LEFT_PARALLEL_CURVE;
+				}
+			}
+			if (type == TrackTypes.EMBEDDED_MEDIUM_SWITCH) {
+				if (getTrackOrientation(l, yaw).equals("right")) {
+					tempType = TrackTypes.EMBEDDED_MEDIUM_RIGHT_SWITCH;
+				}
+				if (getTrackOrientation(l, yaw).equals("left")) {
+					tempType = TrackTypes.EMBEDDED_MEDIUM_LEFT_SWITCH;
+				}
+			}
+			if (type == TrackTypes.EMBEDDED_LARGE_SWITCH) {
+				if (getTrackOrientation(l, yaw).equals("right")) {
+					tempType = TrackTypes.EMBEDDED_LARGE_RIGHT_SWITCH;
+				}
+				if (getTrackOrientation(l, yaw).equals("left")) {
+					tempType = TrackTypes.EMBEDDED_LARGE_LEFT_SWITCH;
+				}
+			}
+			if (type == TrackTypes.EMBEDDED_MEDIUM_PARALLEL_SWITCH) {
+				if (getTrackOrientation(l, yaw).equals("right")) {
+					tempType = TrackTypes.EMBEDDED_MEDIUM_RIGHT_PARALLEL_SWITCH;
+				}
+				if (getTrackOrientation(l, yaw).equals("left")) {
+					tempType = TrackTypes.EMBEDDED_MEDIUM_LEFT_PARALLEL_SWITCH;
+				}
+			}
+			if (type == TrackTypes.EMBEDDED_MEDIUM_45DEGREE_SWITCH) {
+				if (getTrackOrientation(l, yaw).equals("right")) {
+					tempType = TrackTypes.EMBEDDED_MEDIUM_RIGHT_45DEGREE_SWITCH;
+				}
+				if (getTrackOrientation(l, yaw).equals("left")) {
+					tempType = TrackTypes.EMBEDDED_MEDIUM_LEFT_45DEGREE_SWITCH;
+				}
 			}
 		}
-		if (type == TrackTypes.EMBEDDED_SMALL_PARALLEL_CURVE) {
-			if (getTrackOrientation(l, yaw).equals("right")) {
-				tempType = TrackTypes.EMBEDDED_SMALL_RIGHT_PARALLEL_CURVE;
-			}
-			if (getTrackOrientation(l, yaw).equals("left")) {
-				tempType = TrackTypes.EMBEDDED_SMALL_LEFT_PARALLEL_CURVE;
-			}
-		}
-		if (type == TrackTypes.EMBEDDED_MEDIUM_PARALLEL_CURVE) {
-			if (getTrackOrientation(l, yaw).equals("right")) {
-				tempType = TrackTypes.EMBEDDED_MEDIUM_RIGHT_PARALLEL_CURVE;
-			}
-			if (getTrackOrientation(l, yaw).equals("left")) {
-				tempType = TrackTypes.EMBEDDED_MEDIUM_LEFT_PARALLEL_CURVE;
-			}
-		}
-		if (type == TrackTypes.EMBEDDED_LARGE_PARALLEL_CURVE) {
-			if (getTrackOrientation(l, yaw).equals("right")) {
-				tempType = TrackTypes.EMBEDDED_LARGE_RIGHT_PARALLEL_CURVE;
-			}
-			if (getTrackOrientation(l, yaw).equals("left")) {
-				tempType = TrackTypes.EMBEDDED_LARGE_LEFT_PARALLEL_CURVE;
-			}
-		}
-		if (type == TrackTypes.EMBEDDED_MEDIUM_SWITCH) {
-			if (getTrackOrientation(l, yaw).equals("right")) {
-				tempType = TrackTypes.EMBEDDED_MEDIUM_RIGHT_SWITCH;
-			}
-			if (getTrackOrientation(l, yaw).equals("left")) {
-				tempType = TrackTypes.EMBEDDED_MEDIUM_LEFT_SWITCH;
-			}
-		}
-		if (type == TrackTypes.EMBEDDED_LARGE_SWITCH) {
-			if (getTrackOrientation(l, yaw).equals("right")) {
-				tempType = TrackTypes.EMBEDDED_LARGE_RIGHT_SWITCH;
-			}
-			if (getTrackOrientation(l, yaw).equals("left")) {
-				tempType = TrackTypes.EMBEDDED_LARGE_LEFT_SWITCH;
-			}
-		}
-		if (type == TrackTypes.EMBEDDED_MEDIUM_PARALLEL_SWITCH) {
-			if (getTrackOrientation(l, yaw).equals("right")) {
-				tempType = TrackTypes.EMBEDDED_MEDIUM_RIGHT_PARALLEL_SWITCH;
-			}
-			if (getTrackOrientation(l, yaw).equals("left")) {
-				tempType = TrackTypes.EMBEDDED_MEDIUM_LEFT_PARALLEL_SWITCH;
-			}
-		}
-		if (type == TrackTypes.EMBEDDED_MEDIUM_45DEGREE_SWITCH) {
-			if (getTrackOrientation(l, yaw).equals("right")) {
-				tempType = TrackTypes.EMBEDDED_MEDIUM_RIGHT_45DEGREE_SWITCH;
-			}
-			if (getTrackOrientation(l, yaw).equals("left")) {
-				tempType = TrackTypes.EMBEDDED_MEDIUM_LEFT_45DEGREE_SWITCH;
-			}
-		}
-	}
 		return tempType;
 	}
 
-/** Track Placement (because onItemUse is getting too big)*/
+	/** Track Placement (because onItemUse is getting too big)*/
 
 	private boolean smallStraight(EntityPlayer player, World world, int x, int y, int z, int l, TrackTypes type) {
 		if (!canPlaceTrack(player, world, x, y + 1, z)) {
@@ -4579,27 +4578,27 @@ public class ItemTCRail extends ItemPart {
 		if (l == 6) {
 
 			if (!canPlaceTrack(player, world, x , y + 1, z - 1) || !canPlaceTrack(player, world, x + 1, y + 1, z)
-				|| !canPlaceTrack(player, world, x + 1 , y + 1, z - 1)|| !canPlaceTrack(player, world, x + 1, y + 1, z - 2) || !canPlaceTrack(player, world, x + 2, y + 1, z - 1)
-				|| !canPlaceTrack(player, world, x + 2, y + 1, z - 2) || !canPlaceTrack(player, world, x + 2, y + 1, z - 3) || !canPlaceTrack(player, world, x + 3, y + 1, z - 2)) {
+					|| !canPlaceTrack(player, world, x + 1 , y + 1, z - 1)|| !canPlaceTrack(player, world, x + 1, y + 1, z - 2) || !canPlaceTrack(player, world, x + 2, y + 1, z - 1)
+					|| !canPlaceTrack(player, world, x + 2, y + 1, z - 2) || !canPlaceTrack(player, world, x + 2, y + 1, z - 3) || !canPlaceTrack(player, world, x + 3, y + 1, z - 2)) {
 				return false;
 			}
 			if (type == TrackTypes.LONG_DIAGONAL_STRAIGHT || type == TrackTypes.EMBEDDED_LONG_DIAGONAL_STRAIGHT){
 				if (!canPlaceTrack(player, world, x + 3, y + 1, z - 3) || !canPlaceTrack(player, world, x + 3, y + 1, z - 4) || !canPlaceTrack(player, world, x + 4, y + 1, z - 3)
-				|| !canPlaceTrack(player, world, x + 4, y + 1, z - 4) || !canPlaceTrack(player, world, x + 4, y + 1, z - 5) || !canPlaceTrack(player, world, x + 5, y + 1, z - 4)
-				|| !canPlaceTrack(player, world, x + 5, y + 1, z - 5) || !canPlaceTrack(player, world, x + 5, y + 1, z - 6) || !canPlaceTrack(player, world, x + 6, y + 1, z - 5)) {
+						|| !canPlaceTrack(player, world, x + 4, y + 1, z - 4) || !canPlaceTrack(player, world, x + 4, y + 1, z - 5) || !canPlaceTrack(player, world, x + 5, y + 1, z - 4)
+						|| !canPlaceTrack(player, world, x + 5, y + 1, z - 5) || !canPlaceTrack(player, world, x + 5, y + 1, z - 6) || !canPlaceTrack(player, world, x + 6, y + 1, z - 5)) {
 					return false;
 				}
 			}
 			if (type == TrackTypes.VERY_LONG_DIAGONAL_STRAIGHT || type == TrackTypes.EMBEDDED_VERY_LONG_DIAGONAL_STRAIGHT){
 				if (!canPlaceTrack(player, world, x + 3, y + 1, z - 3) || !canPlaceTrack(player, world, x + 3, y + 1, z - 4) || !canPlaceTrack(player, world, x + 4, y + 1, z - 3)
-				|| !canPlaceTrack(player, world, x + 4, y + 1, z - 4) || !canPlaceTrack(player, world, x + 4, y + 1, z - 5) || !canPlaceTrack(player, world, x + 5, y + 1, z - 4)
-				|| !canPlaceTrack(player, world, x + 5, y + 1, z - 5) || !canPlaceTrack(player, world, x + 5, y + 1, z - 6) || !canPlaceTrack(player, world, x + 6, y + 1, z - 5)
-				|| !canPlaceTrack(player, world, x + 6, y+1, z - 6)  || !canPlaceTrack(player, world, x + 6, y+1, z - 7)  || !canPlaceTrack(player, world, x + 7, y+1, z - 6)
-				|| !canPlaceTrack(player, world, x + 7, y+1, z - 7)  || !canPlaceTrack(player, world, x + 7, y+1, z - 8)  || !canPlaceTrack(player, world, x + 8, y+1, z - 7)
-				|| !canPlaceTrack(player, world, x + 8, y+1, z - 8)  || !canPlaceTrack(player, world, x + 8, y+1, z - 9)  || !canPlaceTrack(player, world, x + 9, y+1, z - 8)
-				|| !canPlaceTrack(player, world, x + 9, y+1, z - 9)  || !canPlaceTrack(player, world, x + 9, y+1, z - 10) || !canPlaceTrack(player, world, x + 10, y+1, z - 9)
-				|| !canPlaceTrack(player, world,x + 10, y+1, z - 10) || !canPlaceTrack(player, world,x + 10, y+1, z - 11) || !canPlaceTrack(player, world,x + 11, y+1, z - 10)
-				|| !canPlaceTrack(player, world, x + 11, y+1, z - 11)|| !canPlaceTrack(player, world, x + 11, y+1, z - 12)|| !canPlaceTrack(player, world, x + 12, y+1, z - 11)) {
+						|| !canPlaceTrack(player, world, x + 4, y + 1, z - 4) || !canPlaceTrack(player, world, x + 4, y + 1, z - 5) || !canPlaceTrack(player, world, x + 5, y + 1, z - 4)
+						|| !canPlaceTrack(player, world, x + 5, y + 1, z - 5) || !canPlaceTrack(player, world, x + 5, y + 1, z - 6) || !canPlaceTrack(player, world, x + 6, y + 1, z - 5)
+						|| !canPlaceTrack(player, world, x + 6, y+1, z - 6)  || !canPlaceTrack(player, world, x + 6, y+1, z - 7)  || !canPlaceTrack(player, world, x + 7, y+1, z - 6)
+						|| !canPlaceTrack(player, world, x + 7, y+1, z - 7)  || !canPlaceTrack(player, world, x + 7, y+1, z - 8)  || !canPlaceTrack(player, world, x + 8, y+1, z - 7)
+						|| !canPlaceTrack(player, world, x + 8, y+1, z - 8)  || !canPlaceTrack(player, world, x + 8, y+1, z - 9)  || !canPlaceTrack(player, world, x + 9, y+1, z - 8)
+						|| !canPlaceTrack(player, world, x + 9, y+1, z - 9)  || !canPlaceTrack(player, world, x + 9, y+1, z - 10) || !canPlaceTrack(player, world, x + 10, y+1, z - 9)
+						|| !canPlaceTrack(player, world,x + 10, y+1, z - 10) || !canPlaceTrack(player, world,x + 10, y+1, z - 11) || !canPlaceTrack(player, world,x + 11, y+1, z - 10)
+						|| !canPlaceTrack(player, world, x + 11, y+1, z - 11)|| !canPlaceTrack(player, world, x + 11, y+1, z - 12)|| !canPlaceTrack(player, world, x + 12, y+1, z - 11)) {
 					return false;
 				}
 			}
@@ -4764,27 +4763,27 @@ public class ItemTCRail extends ItemPart {
 		if (l == 4) {
 
 			if (!canPlaceTrack(player, world, x , y + 1, z + 1) || !canPlaceTrack(player, world, x - 1, y + 1, z)
-			 || !canPlaceTrack(player, world, x - 1 , y + 1, z + 1) || !canPlaceTrack(player, world, x - 1, y + 1, z + 2) || !canPlaceTrack(player, world, x - 2, y + 1, z + 1)
-			 || !canPlaceTrack(player, world, x - 2, y + 1, z + 2) || !canPlaceTrack(player, world, x - 2, y + 1, z + 3) || !canPlaceTrack(player, world, x - 3, y + 1, z + 2)) {
+					|| !canPlaceTrack(player, world, x - 1 , y + 1, z + 1) || !canPlaceTrack(player, world, x - 1, y + 1, z + 2) || !canPlaceTrack(player, world, x - 2, y + 1, z + 1)
+					|| !canPlaceTrack(player, world, x - 2, y + 1, z + 2) || !canPlaceTrack(player, world, x - 2, y + 1, z + 3) || !canPlaceTrack(player, world, x - 3, y + 1, z + 2)) {
 				return false;
 			}
 			if (type == TrackTypes.LONG_DIAGONAL_STRAIGHT || type == TrackTypes.EMBEDDED_LONG_DIAGONAL_STRAIGHT){
 				if (!canPlaceTrack(player, world, x - 3, y + 1, z + 3) || !canPlaceTrack(player, world, x - 3, y + 1, z + 4) || !canPlaceTrack(player, world, x - 4, y + 1, z + 3)
-				 || !canPlaceTrack(player, world, x - 4, y + 1, z + 4) || !canPlaceTrack(player, world, x - 4, y + 1, z + 5) || !canPlaceTrack(player, world, x - 5, y + 1, z + 4)
-				 || !canPlaceTrack(player, world, x - 5, y + 1, z + 5) || !canPlaceTrack(player, world, x - 5, y + 1, z + 6) || !canPlaceTrack(player, world, x - 6, y + 1, z + 5)) {
+						|| !canPlaceTrack(player, world, x - 4, y + 1, z + 4) || !canPlaceTrack(player, world, x - 4, y + 1, z + 5) || !canPlaceTrack(player, world, x - 5, y + 1, z + 4)
+						|| !canPlaceTrack(player, world, x - 5, y + 1, z + 5) || !canPlaceTrack(player, world, x - 5, y + 1, z + 6) || !canPlaceTrack(player, world, x - 6, y + 1, z + 5)) {
 					return false;
 				}
 			}
 			if (type == TrackTypes.VERY_LONG_DIAGONAL_STRAIGHT || type == TrackTypes.EMBEDDED_VERY_LONG_DIAGONAL_STRAIGHT){
 				if (!canPlaceTrack(player, world, x - 3, y + 1, z + 3) || !canPlaceTrack(player, world, x - 3, y + 1, z - 4) || !canPlaceTrack(player, world, x - 4, y + 1, z + 3)
-				 || !canPlaceTrack(player, world, x - 4, y + 1, z + 4) || !canPlaceTrack(player, world, x - 4, y + 1, z + 5) || !canPlaceTrack(player, world, x - 5, y + 1, z + 4)
-				 || !canPlaceTrack(player, world, x - 5, y + 1, z + 5) || !canPlaceTrack(player, world, x - 5, y + 1, z + 6) || !canPlaceTrack(player, world, x - 6, y + 1, z + 5)
-				 || !canPlaceTrack(player, world, x - 6, y+1, z + 6)  || !canPlaceTrack(player, world, x - 6, y+1, z + 7)  || !canPlaceTrack(player, world, x - 7, y+1, z + 6)
-				 || !canPlaceTrack(player, world, x - 7, y+1, z + 7)  || !canPlaceTrack(player, world, x - 7, y+1, z + 8)  || !canPlaceTrack(player, world, x - 8, y+1, z + 7)
-				 || !canPlaceTrack(player, world, x - 8, y+1, z + 8)  || !canPlaceTrack(player, world, x - 8, y+1, z + 9)  || !canPlaceTrack(player, world, x - 9, y+1, z + 8)
-				 || !canPlaceTrack(player, world, x - 9, y+1, z + 9)  || !canPlaceTrack(player, world, x - 9, y+1, z + 10) || !canPlaceTrack(player, world, x - 10, y+1, z + 9)
-				 || !canPlaceTrack(player, world,x - 10, y+1, z + 10) || !canPlaceTrack(player, world,x - 10, y+1, z + 11) || !canPlaceTrack(player, world,x - 11, y+1, z + 10)
-				 || !canPlaceTrack(player, world, x - 11, y+1, z + 11)|| !canPlaceTrack(player, world, x - 11, y+1, z + 12)|| !canPlaceTrack(player, world, x - 12, y+1, z + 11)) {
+						|| !canPlaceTrack(player, world, x - 4, y + 1, z + 4) || !canPlaceTrack(player, world, x - 4, y + 1, z + 5) || !canPlaceTrack(player, world, x - 5, y + 1, z + 4)
+						|| !canPlaceTrack(player, world, x - 5, y + 1, z + 5) || !canPlaceTrack(player, world, x - 5, y + 1, z + 6) || !canPlaceTrack(player, world, x - 6, y + 1, z + 5)
+						|| !canPlaceTrack(player, world, x - 6, y+1, z + 6)  || !canPlaceTrack(player, world, x - 6, y+1, z + 7)  || !canPlaceTrack(player, world, x - 7, y+1, z + 6)
+						|| !canPlaceTrack(player, world, x - 7, y+1, z + 7)  || !canPlaceTrack(player, world, x - 7, y+1, z + 8)  || !canPlaceTrack(player, world, x - 8, y+1, z + 7)
+						|| !canPlaceTrack(player, world, x - 8, y+1, z + 8)  || !canPlaceTrack(player, world, x - 8, y+1, z + 9)  || !canPlaceTrack(player, world, x - 9, y+1, z + 8)
+						|| !canPlaceTrack(player, world, x - 9, y+1, z + 9)  || !canPlaceTrack(player, world, x - 9, y+1, z + 10) || !canPlaceTrack(player, world, x - 10, y+1, z + 9)
+						|| !canPlaceTrack(player, world,x - 10, y+1, z + 10) || !canPlaceTrack(player, world,x - 10, y+1, z + 11) || !canPlaceTrack(player, world,x - 11, y+1, z + 10)
+						|| !canPlaceTrack(player, world, x - 11, y+1, z + 11)|| !canPlaceTrack(player, world, x - 11, y+1, z + 12)|| !canPlaceTrack(player, world, x - 12, y+1, z + 11)) {
 					return false;
 				}
 			}
@@ -5931,10 +5930,10 @@ public class ItemTCRail extends ItemPart {
 				tcRailTurn2.linkedY = y + 1;
 				tcRailTurn2.linkedZ = z - 1;
 			}
-				tcRailTurn.isLinkedToRail = true;
-				tcRailTurn.linkedX = x + 4;
-				tcRailTurn.linkedY = y + 1;
-				tcRailTurn.linkedZ = z - 2;
+			tcRailTurn.isLinkedToRail = true;
+			tcRailTurn.linkedX = x + 4;
+			tcRailTurn.linkedY = y + 1;
+			tcRailTurn.linkedZ = z - 2;
 		}
 		/** Put down straight **/
 		putDownSingleRail(world, x + 4, y + 1, z, l, x, y + 1, z, 0, typeVariantStraight, false, x + 3, y + 1, z - 1, false, false);
