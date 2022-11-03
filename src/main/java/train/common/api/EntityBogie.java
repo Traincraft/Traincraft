@@ -547,7 +547,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		if (meta == 6) {
 			if (motionX > 0) {
 				exitX = cx + (length + 0.5);
-				exitZ = cz - (length + 0.5);
+				exitZ = cz - (length - 0.5);
 			}
 			if (motionX < 0) {
 				exitX = cx - (0.5);
@@ -625,6 +625,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) / 2.0D;
 
 
+		System.out.println("CX: " + cx + ", CZ: " + cz + ", META: " + meta + ", LENGTH: " + length +  ", EXIT_X: " + exitX + ", EXIT_Z: " + exitZ);
 	}
 	private void moveOnTCStraight(int j, double cx, double cz, int meta) {
 		posY = j + 0.2; /** posY is height of locomotive first hitbox*/

@@ -2503,7 +2503,7 @@ public class ItemTCRail extends ItemPart {
 					if (l == 3) {
 						int[] xArray = {x + 2, x + 3};
 						int[] zArray = {z + 1, z + 1};
-						if (!putDownTurn(player, world, true, x, y, z, xArray, zArray, l, false, 0, x + 3, z +1, 3.75, x + 1 , y + 1,
+						if (!putDownTurn(player, world, true, x, y, z, xArray, zArray, l, false, 2, x + 3, z +1, 3.75, x + 1 , y + 1,
 								z + 4.25, typeVariant90Turn, idVariantSwitch))
 							return false;
 						TileTCRail tcRailTurn = (TileTCRail) world.getTileEntity(x + 2 , y + 1, z + 1);
