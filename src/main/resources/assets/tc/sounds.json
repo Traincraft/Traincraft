@@ -171,7 +171,9 @@
   "metro2000_running": {"category": "master", "sounds" :  [{"name": "metro2000_running", "stream": true}]},
   "BritanniaWhistle": {"category": "master", "sounds" :  [{"name": "BritanniaWhistle", "stream": true}]},
   "BritanniaMediumChuff": {"category": "master", "sounds" :  [{"name": "BritanniaMediumChuff", "stream": true}]},
-  "StanierHooter": {"category": "master", "sounds" :  [{"name": "StanierHooter", "stream": true}]}
+  "StanierHooter": {"category": "master", "sounds" :  [{"name": "StanierHooter", "stream": true}]},
+  "Class90Idle": {"category": "master", "sounds" :  [{"name": "Class90Idle", "stream": true}]},
+  "Class868790Thrash": {"category": "master", "sounds" :  [{"name": "Class868790Thrash", "stream": true}]}
 
 
 }
