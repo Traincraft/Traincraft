@@ -96,6 +96,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		return trainOwner;
 	}
 
+
 	public void setTrainOwner(String trainOwner) {
 		this.trainOwner = trainOwner;
 	}

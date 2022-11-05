@@ -161,7 +161,7 @@ public class ModelFGV4300Motor extends ModelConverter //Same as Filename
 		bodyModel[124] = new ModelRendererTurbo(this, 65, 49, textureX, textureY); // Box 159
 		bodyModel[125] = new ModelRendererTurbo(this, 65, 49, textureX, textureY); // Box 160
 		bodyModel[126] = new ModelRendererTurbo(this, 153, 0, textureX, textureY); // Box 161
-		bodyModel[127] = new ModelRendererTurbo(this, 65, 49, textureX, textureY); // Box 162
+		bodyModel[127] = new ModelRendererTurbo(this, 65, 49, textureX, textureY,"lamp"); // Box 162
 		bodyModel[128] = new ModelRendererTurbo(this, 65, 49, textureX, textureY); // Box 163
 		bodyModel[129] = new ModelRendererTurbo(this, 65, 49, textureX, textureY); // Box 164
 		bodyModel[130] = new ModelRendererTurbo(this, 153, 0, textureX, textureY); // Box 165

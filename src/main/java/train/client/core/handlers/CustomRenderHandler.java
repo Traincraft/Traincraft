@@ -62,8 +62,14 @@ public class CustomRenderHandler {
         double px = TileEntityRendererDispatcher.staticPlayerX;
         double py = TileEntityRendererDispatcher.staticPlayerY;
         double pz = TileEntityRendererDispatcher.staticPlayerZ;
+        int facing;
 
-        int facing = MathHelper.floor_double(player.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
+        if (item.getTrackType().getType().equals("DIAGONAL")) {
+            facing = (MathHelper.floor_double(player.rotationYaw * 4.0F / 360.0F ) & 3) + 4;
+        }
+        else {
+            facing = MathHelper.floor_double(player.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
+        }
         Vector2f dir = ItemTCRail.getDirectionVector(facing);
 
         // Render
@@ -110,15 +116,7 @@ public class CustomRenderHandler {
                 RenderTCRail.modelEmbeddedSmallStraight.render("straight", facing, dx, 0 ,dz,r, g, b, a);
             }
         }
-        else if (item.getTrackType() == ItemTCRail.TrackTypes.SMALL_DIAGONAL_STRAIGHT) {
-            facing = MathHelper.floor_double(player.rotationYaw * 4.0F / 360.0F) & 3;
-            RenderTCRail.modelSmallDiagonalStraight.render("diagonal", facing + 4, 0,0,0,r,g,b,a);
-        }
 
-        else if (item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_SMALL_DIAGONAL_STRAIGHT) {
-            facing = MathHelper.floor_double(player.rotationYaw * 4.0F / 360.0F) & 3;
-            RenderTCRail.modelEmbeddedSmallDiagonalStraight.render("diagonal", facing + 4, 0,0,0,r,g,b,a);
-        }
 
 
 

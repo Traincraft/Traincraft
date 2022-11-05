@@ -223,6 +223,25 @@ public class GuiRecipeBook extends GuiScreen {
 						add(new StackToDraw(new ItemStack(Blocks.golden_rail), 170, 16));
 					}
 				});
+		addPage("A word about tracks III:\nShift-clicking 45-degree turns and switches allows them\n to be placed closer to eachother,\nenabling you to make N or X switches","", "left", new ArrayList<StackToDraw>() {
+					{
+						add(new StackToDraw(new ItemStack(Blocks.rail), 17, 16));
+						add(new StackToDraw(new ItemStack(Blocks.rail), 17, 32));
+						add(new StackToDraw(new ItemStack(Blocks.rail), 17, 48));
+						add(new StackToDraw(new ItemStack(Blocks.rail), 17, 64));
+						add(new StackToDraw(new ItemStack(Blocks.rail), 17, 80));
+						add(new StackToDraw(new ItemStack(Blocks.rail), 17, 96));
+						add(new StackToDraw(new ItemStack(Blocks.rail), 17, 112));
+						add(new StackToDraw(new ItemStack(Blocks.rail), 17, 128));
+						add(new StackToDraw(new ItemStack(Blocks.rail), 17, 144));
+						add(new StackToDraw(new ItemStack(Blocks.rail), 17, 160));
+						add(new StackToDraw(new ItemStack(ItemIDs.tcRailMedium45DegreeTurn.item), 65, 116));
+						add(new StackToDraw(new ItemStack(ItemIDs.tcRailEmbeddedMedium45DegreeTurn.item), 82, 116));
+						add(new StackToDraw(new ItemStack(ItemIDs.tcRailMedium45DegreeSwitch.item), 99, 116));
+						add(new StackToDraw(new ItemStack(ItemIDs.tcRailEmbeddedMedium45DegreeSwitch.item), 116, 116));
+					}
+		});
+
 		addPage("Steel rails parts and copper rails parts are crafted inside RC Rolling Machine, tracks are assembled in vanilla workbench.\nTC boarding/disembarking track are designed to work only on the Stock Car. Animal boarding will take any nearby animal and put it inside a passing Stock Car. Mob boarding will affect any mob.\nDisembark will eject any mob inside the Stock Car.","","right",new ArrayList<StackToDraw>() {
 			{
 				add(new StackToDraw(new ItemStack(Blocks.detector_rail), 17, 16));

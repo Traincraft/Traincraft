@@ -28,7 +28,7 @@ public class EntityClass158Coach extends EntityRollingStock implements IPassenge
     @Override
     public void updateRiderPosition() {
         if(riddenByEntity!=null) {
-            riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset() + 0.0, posZ);
+            riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset() - 0.1, posZ);
         }
     }
 

@@ -28,6 +28,7 @@ public enum BlockIDs {
 
 	stopper(false, null),
 	embeddedStopper(false, null),
+	americanstopper(false, null),
 
 	openFurnaceIdle(false, null),
 	openFurnaceActive(false, null),
@@ -67,6 +68,7 @@ public enum BlockIDs {
 	asphaltSlab(false, null),
 	signalSpanish(false,null),//ItemsignalSpanish.class
 	kSignal(false,null),
+	metroMadridPole(false, null),
 	FortyFootContainer(true, ItemFortyFootContainer.class),
 	speedSign(false, null),
 

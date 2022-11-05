@@ -70,7 +70,10 @@ public class BlockSpeedSign extends Block implements ITileEntityProvider {
 		if (te != null) {
 			int dir = MathHelper.floor_double((double) ((entityliving.rotationYaw * 4F) / 360F) + 0.5D) & 3;
 			te.setFacing(ForgeDirection.getOrientation(dir == 0 ? 2 : dir == 1 ? 5 : dir == 2 ? 3 : 4));
+			te.setSkinstate(0);
 			world.markBlockForUpdate(i, j, k);
+
+
 		}
 	}
 
@@ -78,6 +81,8 @@ public class BlockSpeedSign extends Block implements ITileEntityProvider {
 	public boolean onBlockActivated(World p_149727_1_, int p_149727_2_, int p_149727_3_, int p_149727_4_, EntityPlayer p_149727_5_, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_) {
 		TileSpeedSign te = (TileSpeedSign) p_149727_1_.getTileEntity(p_149727_2_, p_149727_3_, p_149727_4_);
 		te.increaseSkinState();
+		p_149727_1_.markBlockForUpdate(p_149727_2_, p_149727_3_, p_149727_4_);
+
 
 		return super.onBlockActivated(p_149727_1_, p_149727_2_, p_149727_3_, p_149727_4_, p_149727_5_, p_149727_6_, p_149727_7_, p_149727_8_, p_149727_9_);
 	}

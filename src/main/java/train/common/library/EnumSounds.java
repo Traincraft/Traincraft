@@ -14,7 +14,14 @@ public enum EnumSounds {
 	locoSteamEr_USSR(EntityLocoSteamEr_Ussr.class, "steam_horn", 0.6F, "steam_run", 0.4F, 20, "steam_run", 0.4F, 20, true),
 	locoSteamPannier(EntityLocoSteamPannier.class, "steam_horn", 0.6F, "steam_run", 0.4F, 20, "steam_run", 0.4F, 20, true),
 	locoSteamC41(EntityLocoSteamC41.class, "american_steam_horn", 0.6F, "steam_run", 0.4F, 20, "steam_run", 0.4F, 20, true),
-	locoSteamBR_Black_5(EntityLocoSteamBR_Black_5.class, "steam_horn", 0.6F, "steam_run", 0.4F, 20, "steam_run", 0.4F, 20, true),
+	locoSteamBR_Black_5(EntityLocoSteamBR_Black_5.class, "StanierHooter", 1F, "steam_run", 0.4F, 20, "steam_run", 0.4F, 20, true),
+	locoSteamBR_Britannia_Class(EntityLocoSteamBR_Britannia_Class.class, "BritanniaWhistle", 1F, "BritanniaMediumChuff", 0.4F, 20, "steam_run", 0.4F, 20, true),
+	locoSteamRWType3(EntityLocoSteamRWType3.class, "RW_type_3", 1.2F, "steam_run", 0.4F, 20, "steam_run", 0.4F, 20, true),
+	locoSteamRWType2(EntityLocoSteamRWType2.class, "type_2", 1.4F, "steam_run", 0.4F, 20, "steam_run", 0.4F, 20, true),
+	locoSteamGWR42xx(EntityLocoSteamGWR42xx.class, "steam_horn", 0.6F, "steam_run", 0.4F, 20, "steam_run", 0.4F, 20, true),
+	locoSteamGWR72xx(EntityLocoSteamGWR72xx.class, "steam_horn", 0.6F, "steam_run", 0.4F, 20, "steam_run", 0.4F, 20, true),
+	locoSteamGWR101Class(EntityLocoSteamGWR101Class.class, "steam_horn", 0.6F, "steam_run", 0.4F, 20, "steam_run", 0.4F, 20, true),
+	locoSteamWWCPClass062T(EntityLocoSteamWWCPClass062T.class, "steam_horn", 0.6F, "steam_run", 0.4F, 20, "steam_run", 0.4F, 20, true),
 	locoSteamC41080(EntityLocoSteamC41_080.class, "american_steam_horn", 0.6F, "steam_run", 0.4F, 20, "steam_run", 0.4F, 20, true),
 	locoSteamfowler(EntityLocoSteamFowler.class, "steam_horn", 0.6F, "steam_run", 0.4F, 20, "steam_run", 0.4F, 20, true),
 	locoSteamberk765(EntityLocoSteamBerk765.class, "class62_horn", 0.6F, "steam_run", 0.4F, 20, "steam_run", 0.4F, 20, true),
@@ -40,6 +47,7 @@ public enum EnumSounds {
 	MILWClassA(EntityLocoSteamMILWClassA.class, "american_steam_horn", 0.8F, "steam_run", 0.4F, 20, "steam_run", 0.4F, 20, true),
 	locoAlice(EntityLocoSteamAlice0_4_0.class, "german_steam_horn", 0.8F, "steam_run", 0.4F, 20, "steam_run", 0.4F, 20,
 			true),
+	locoElectricBR_MK2F_DBSO(EntityElectricBR_MK2F_DBSO.class, "british_two_tone", 0.8F, "", 0F, 0, "", 0F, 0, false),
 	locoElectricBR_MK3_DVT(EntityElectricBR_MK3_DVT.class, "british_two_tone", 0.8F, "", 0F, 0, "", 0F, 0, false),
 	locoElectricBR_MK4_DVT(EntityElectricBR_MK4_DVT.class, "british_two_tone", 0.8F, "", 0F, 0, "", 0F, 0, false),
 	locoGLYN(EntityLocoSteamGLYN042T.class, "german_steam_horn", 0.8F, "steam_run", 0.4F, 20, "steam_run", 0.4F, 20,
@@ -78,6 +86,9 @@ public enum EnumSounds {
 	locoBamboo(EntityLocoDieselBamboo.class, "gp_horn", 0F, "chme3_idle", 0.2F, 40, "chme3_idle", 0.1F, 40, false),
 	locoSD70(EntityLocoDieselSD70.class, "sd70_horn", 0.8F, "chme3_idle", 0.65F, 40, "chme3_idle", 0.65F, 40, false),
 	locoDD35A(EntityLocoDieselDD35A.class, "sd70_horn", 0.8F, "chme3_idle", 0.65F, 40, "chme3_idle", 0.65F, 40, false),
+	lococlass117(EntityLocoDieselClass117.class, "eu07_horn", 1F, "chme3_idle", 0.65F, 40, "chme3_idle", 0.65F, 40, false),
+	lococlass121(EntityLocoDieselClass121.class, "eu07_horn", 1F, "chme3_idle", 0.65F, 40, "chme3_idle", 0.65F, 40, false),
+	lococlass158(EntityLocoDieselClass158.class, "british_two_tone", 0.8F, "chme3_idle", 0.65F, 40, "chme3_idle", 0.65F, 40, false),
 	lococlass153(EntityLocoDieselClass153.class, "british_two_tone", 0.8F, "chme3_idle", 0.65F, 40, "chme3_idle", 0.65F, 40, false),
 	lococlass175(EntityLocoDieselClass175.class, "british_two_tone", 0.8F, "chme3_idle", 0.65F, 40, "chme3_idle", 0.65F, 40, false),
 	lococlass156(EntityLocoDieselClass156.class, "british_two_tone", 0.8F, "chme3_idle", 0.65F, 40, "chme3_idle", 0.65F, 40, false),
@@ -95,7 +106,7 @@ public enum EnumSounds {
 	locoCD151(EntityLocoElectricCD151.class,"mg_horn", 1F, "mg_run", 0.8F, 10, "mg_idle", 0.6F, 50, false),
 	locoLSSP7(EntityLocoSteamLSSP7.class, "american_steam_horn", 0.8F, "steam_run", 0.2F, 20, "steam_run", 0.2F, 20, true),
 	E103(EntityLocoElectricE103.class, "mg_horn", 1F, "mg_run", 0.6F, 8, "mg_idle", 0.4F, 50, false),
-	Metro2000Loco(EntityElectricMetro2000Motor.class, "4300_horn", 1F,"chme3_idle", 0.8F, 40, "chme3_idle", 0.2F, 20, false),
+	locoElectricMetro2000(EntityElectricMetro2000Motor.class, "4300_horn", 1F,"metro2000_running", 1.5F, 70, "chme3_idle", 1F, 20, true),
 	//Community Port
 	//Not American Stuff
 	DieselCD810(EntityLocoDieselCD810.class, "tram_horn", 0.8F, "chme3_idle", 0.65F, 40, "chme3_idle", 0.65F, 40, true),
@@ -107,7 +118,6 @@ public enum EnumSounds {
 	ElectricClass345(EntityElectricClass345.class, "subway_horn", 0.8F, "vl10_idle", 0.6F, 50, "vl10_idle", 0.6F, 50, false),
 	Electric440R(EntityLocoElectric440RFront.class, "446Horn", 0.8F, "vl10_idle", 0.6F, 50, "vl10_idle", 0.6F, 50, false),
 	ElectricBR155(EntityLocoElectricBR155.class, "br155_chime", 1F, "mg_run", 0.6F, 8, "mg_idle", 0.4F, 50, false),
-	ElectricClass158(EntityLocoDieselClass158.class, "british_two_tone", 0.8F, "mg_run", 0.65F, 40, "mg_idle", 0.65F, 40, false),
 	ElectricDB143(EntityLocoElectricDB143.class, "mg_horn", 1F, "mg_run", 0.6F, 8, "mg_idle", 0.4F, 50, false),
 	ElectricDStockEngine(EntityElectricDstockEngine.class, "dstock_whistle", 0.8F, "vl10_idle", 0.6F, 50, "vl10_idle", 0.6F, 50, false),
 	ElectricEU07(EntityLocoElectricEU07.class, "mg_horn", 1F, "mg_run", 0.6F, 8, "mg_idle", 0.4F, 50, false),
@@ -125,9 +135,17 @@ public enum EnumSounds {
 	Class91(EntityElectricClass91.class, "mg_horn", 1F, "mg_run", 0.8F, 10, "mg_idle", 0.6F, 50, false),
 	Class321(EntityElectricClass321.class, "mg_horn", 1F, "vl10_idle", 0.8F, 10, "vl10_idle", 0.6F, 50, false),
 	Class319Engine(EntityElectricClass319.class, "mg_horn", 1F, "vl10_idle", 0.8F, 10, "vl10_idle", 0.6F, 50, false),
+	Class390Front(EntityElectricClass390.class, "PendolinoHorn", 1.4F, "vl10_idle", 0.8F, 10, "vl10_idle", 0.6F, 50, false),
 	asteri(EntityLocoSteamasteri.class, "asteri", 1F, "asteri", 0.2F, 212,"mg_idle", 0.6F, 50, false),
-
-
+	FGV4300(EntityLocoElectricFGV4300.class, "4300_horn", 1F, "vl10_idle", 0.65F, 10, "vl10_idle", 0.6F, 40, false),
+	Class162Engine(EntityElectricClass162.class, "mg_horn", 1F, "vl10_idle", 0.8F, 10, "vl10_idle", 0.6F, 50, false),
+	Class34(EntityLocoDieselClass34.class, "british_two_tone", 0.8F, "chme3_idle", 0.65F, 40, "chme3_idle", 0.65F, 40, false),
+	TW305(EntityLocoElectricTW305.class, "tram_bell", 1F, "vl10_idle", 0.6F, 50, "vl10_idle", 0.6F, 50, false),
+	MetalTram(EntityLocoElectricMetalTram.class, "tram_bell", 1F, "vl10_idle", 0.6F, 50, "vl10_idle", 0.6F, 50, false),
+	KVB_2300(EntityElectricKVB_2300.class, "tram_bell", 1F, "mg_run", 0.6F, 50, "mg_run", 0.6F, 50, false),
+	MA100(EntityElectricMA100_Loco.class, "4300_horn", 1F, "mg_run", 0.6F, 50, "mg_run", 0.6F, 50, false),
+	B80C_A(EntityElectricB80C_A.class, "tram_bell", 1F, "mg_run", 0.6F, 50, "mg_run", 0.6F, 50, false),
+	CQ310(EntityElectricCQ310Loco.class, "subway_horn", 1F, "vl10_idle", 0.6F, 50, "vl10_idle", 0.6F, 50, false),
 
 	//American Stuff
 	Diesel3GS21B(EntityLocoDieselBapNRE3gs21b.class, "nathan_k3ha", 2.5F, "QSK19C_Notch8", 0.65F, 40, "QSK19C_Idle", 0.65F, 50, true),
@@ -198,7 +216,6 @@ public enum EnumSounds {
 	DieselEMDE7A(EntityLocoDieselEMDE7A.class, "leslie_a200_2", 1F, "EMD_12_567B_Notch8", 0.45F, 15, "EMD_16_567B_Idle", 0.75F, 3, true),
 	DieselEMDE7B(EntityLocoDieselEMDE7B.class, "leslie_a200_2", 1F, "EMD_12_567B_Notch8", 0.45F, 15, "EMD_16_567B_Idle", 0.75F, 3, true),
 	DieselFMH16_66(EntityLocoDieselFMH16_66.class,"leslie_a200_2", 1F,"FM_38D_6_Notch8", 0.65F, 40, "FM_38D_6_Notch8", 0.45F, 40, false),
-	FGV4300(EntityLocoElectricFGV4300.class, "4300_horn", 1F, "vl10_idle", 0.65F, 10, "vl10_idle", 0.6F, 40, false),
 
 
 	//Storage (Touch When Needed)

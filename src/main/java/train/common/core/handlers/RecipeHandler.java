@@ -15,6 +15,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+import scala.Char;
+import train.common.Traincraft;
+import train.common.blocks.blockSwitch.Blockasphalt;
 import train.common.inventory.TrainCraftingManager;
 import train.common.library.BlockIDs;
 import train.common.library.ItemIDs;
@@ -93,6 +96,9 @@ public class RecipeHandler {
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailVeryLongStraight.item, 1), "G  ", "G  ", "   ", Character.valueOf('G'), ItemIDs.tcRailLongStraight.item);
 
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailSmallDiagonalStraight.item, 1 ), " G ", "G  ", "   ", Character.valueOf('G'), ItemIDs.tcRailSmallStraight.item);
+		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailMediumDiagonalStraight.item, 1 ), "  G", " G ", "G  ", Character.valueOf('G'), ItemIDs.tcRailSmallDiagonalStraight.item);
+		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailLongDiagonalStraight.item, 1 ), " G ", "G  ", "   ", Character.valueOf('G'), ItemIDs.tcRailMediumDiagonalStraight.item);
+		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailVeryLongDiagonalStraight.item, 1 ), " G ", "G  ", "   ", Character.valueOf('G'), ItemIDs.tcRailLongDiagonalStraight.item);
 
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailMediumTurn.item, 1),  "GG ", "G  ", "   ", Character.valueOf('G'), ItemIDs.tcRailSmallStraight.item );
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailLargeTurn.item, 1), " SS", "SS ", "S  ", Character.valueOf('S'), ItemIDs.tcRailSmallStraight.item );
@@ -138,6 +144,11 @@ public class RecipeHandler {
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailEmbeddedLongStraight.item, 1),  "G  ", "G  ", "   ", Character.valueOf('G'), ItemIDs.tcRailEmbeddedMediumStraight.item );
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailEmbeddedVeryLongStraight.item, 1),  "G  ", "G  ", "   ", Character.valueOf('G'), ItemIDs.tcRailEmbeddedLongStraight.item );
 
+		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailEmbeddedSmallDiagonalStraight.item, 1 ), " G ", "G  ", "   ", Character.valueOf('G'), ItemIDs.tcRailEmbeddedSmallStraight.item);
+		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailEmbeddedMediumDiagonalStraight.item, 1 ), "  G", " G ", "G  ", Character.valueOf('G'), ItemIDs.tcRailEmbeddedSmallDiagonalStraight.item);
+		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailEmbeddedLongDiagonalStraight.item, 1 ), " G ", "G  ", "   ", Character.valueOf('G'), ItemIDs.tcRailEmbeddedMediumDiagonalStraight.item);
+		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailEmbeddedVeryLongDiagonalStraight.item, 1 ), " G ", "G  ", "   ", Character.valueOf('G'), ItemIDs.tcRailEmbeddedLongDiagonalStraight.item);
+
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailEmbeddedMediumTurn.item, 1),  "GG ", "G  ", "   ", Character.valueOf('G'), ItemIDs.tcRailEmbeddedSmallStraight.item );
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailEmbeddedLargeTurn.item, 1), " SS", "SS ", "S  ", Character.valueOf('S'), ItemIDs.tcRailEmbeddedSmallStraight.item );
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailEmbeddedVeryLargeTurn.item, 1), "GG ","G  ","   ", Character.valueOf('G'), ItemIDs.tcRailEmbeddedLargeTurn.item );
@@ -168,6 +179,9 @@ public class RecipeHandler {
 		GameRegistry.addShapelessRecipe(new ItemStack(BlockIDs.snowGravel.block,1 ), new ItemStack(Items.snowball), new ItemStack(Blocks.gravel));
 		GameRegistry.addShapelessRecipe(new ItemStack(BlockIDs.snowGravel.block,4 ), new ItemStack(Blocks.snow), new ItemStack(Blocks.gravel), new ItemStack(Blocks.gravel), new ItemStack(Blocks.gravel), new ItemStack(Blocks.gravel));
 		GameRegistry.addShapelessRecipe(new ItemStack(BlockIDs.asphalt.block,  8), new ItemStack(ItemIDs.coaldust.item),new ItemStack(ItemIDs.coaldust.item),new ItemStack(ItemIDs.coaldust.item),new ItemStack(ItemIDs.coaldust.item), new ItemStack(Blocks.cobblestone), new ItemStack(Blocks.cobblestone), new ItemStack(Blocks.cobblestone), new ItemStack(Blocks.cobblestone), new ItemStack(Blocks.cobblestone));
+		GameRegistry.addRecipe(new ItemStack(BlockIDs.asphaltSlab.block, 6), "BBB", "   ", "   ", Character.valueOf('B'), new ItemStack(BlockIDs.asphalt.block));
+		GameRegistry.addRecipe(new ItemStack(BlockIDs.asphaltSlab.block, 6), "   ", "BBB", "   ", Character.valueOf('B'), new ItemStack(BlockIDs.asphalt.block));
+		GameRegistry.addRecipe(new ItemStack(BlockIDs.asphaltSlab.block, 6), "   ", "   ", "BBB", Character.valueOf('B'), new ItemStack(BlockIDs.asphalt.block));
 		GameRegistry.addRecipe(new ItemStack(BlockIDs.signalSpanish.block,1), " L ", " I ", "RIR", Character.valueOf('L'), new ItemStack(Blocks.redstone_lamp), Character.valueOf('I'), new ItemStack(Items.iron_ingot), Character.valueOf('R'), new ItemStack(Items.redstone));
 		GameRegistry.addRecipe(new ItemStack(BlockIDs.kSignal.block,1), "RIR", " I ", " L ", Character.valueOf('L'), new ItemStack(Blocks.redstone_lamp), Character.valueOf('I'), new ItemStack(Items.iron_ingot), Character.valueOf('R'), new ItemStack(Items.redstone));
 		GameRegistry.addRecipe(new ItemStack(BlockIDs.bridgePillar.block, 8), "SSS", "SLS", "SSS", Character.valueOf('S'), new ItemStack(Items.stick), Character.valueOf('L'), new ItemStack(Blocks.log));
@@ -185,7 +199,11 @@ public class RecipeHandler {
 			addDictRecipe(new ItemStack(BlockIDs.MFPBWigWag.block, 1), "IWI", " I ", " I ", Character.valueOf('W'), Blocks.lever, Character.valueOf('I'), ironingot);
 			/*Buffer*/
 			addDictRecipe(new ItemStack(BlockIDs.stopper.block, 1), "WWW", "I I", "RRR", Character.valueOf('W'), "plankWood", Character.valueOf('R'), Blocks.rail, Character.valueOf('I'), ironingot);
+			addDictRecipe(new ItemStack(BlockIDs.embeddedStopper.block, 1), "   ", "I I", "RRR", Character.valueOf('R'), Blocks.rail, Character.valueOf('I'), ironingot);
+			addDictRecipe(new ItemStack(BlockIDs.americanstopper.block, 1), "III", "I I", "RRR",  Character.valueOf('R'), Blocks.rail, Character.valueOf('I'), ironingot);
+			addDictRecipe(new ItemStack(BlockIDs.metroMadridPole.block, 1), "III", " I ", "C C", Character.valueOf('I'), ironingot, Character.valueOf('C'), ItemIDs.ingotCopper.item);
 		}
+
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.bolt.item, 16), " II", " I ", " I ", Character.valueOf('I'), Items.iron_ingot);
 
 	}
@@ -444,6 +462,11 @@ public class RecipeHandler {
 		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailLongStraight.item, 1), "M  ", "M  ", "   ", Character.valueOf('M'), ItemIDs.tcRailMediumStraight.item );
 		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailVeryLongStraight.item, 1), "L  ", "L  ", "   ", Character.valueOf('L'), ItemIDs.tcRailLongStraight.item);
 
+		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailSmallDiagonalStraight.item, 1), " G ", "G  ", "   ", Character.valueOf('G'), ItemIDs.tcRailSmallStraight.item);
+		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailMediumDiagonalStraight.item, 1), "  G", " G ", "G  ", Character.valueOf('G'), ItemIDs.tcRailSmallDiagonalStraight.item);
+		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailLongDiagonalStraight.item, 1), " G ", "G  ", "   ", Character.valueOf('G'), ItemIDs.tcRailMediumDiagonalStraight.item);
+		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailVeryLongDiagonalStraight.item, 1), " G ", "G  ", "   ", Character.valueOf('G'), ItemIDs.tcRailLongDiagonalStraight.item);
+
 		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailMediumTurn.item, 1), "SS ", "S  ", Character.valueOf('S'), ItemIDs.tcRailSmallStraight.item );
 		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailLargeTurn.item, 1), " SS", "SS ", "S  ", Character.valueOf('S'), ItemIDs.tcRailSmallStraight.item );
 		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailVeryLargeTurn.item, 1), "MM ", "M  ", "   ", Character.valueOf('M'), ItemIDs.tcRailMediumTurn.item );
@@ -463,6 +486,11 @@ public class RecipeHandler {
 		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailEmbeddedMediumStraight.item, 1), "S  ", "S  ", "S  ", Character.valueOf('S'), ItemIDs.tcRailEmbeddedSmallStraight.item );
 		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailEmbeddedLongStraight.item, 1), "M  ", "M ", "  ", Character.valueOf('M'), ItemIDs.tcRailEmbeddedMediumStraight.item );
 		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailEmbeddedVeryLongStraight.item, 1), "L  ", "L  ", "   ", Character.valueOf('L'), ItemIDs.tcRailEmbeddedLongStraight.item);
+
+		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailEmbeddedSmallDiagonalStraight.item, 1 ), " G ", "G  ", "   ", Character.valueOf('G'), ItemIDs.tcRailEmbeddedSmallStraight.item);
+		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailEmbeddedMediumDiagonalStraight.item, 1 ), "  G", " G ", "G  ", Character.valueOf('G'), ItemIDs.tcRailEmbeddedSmallDiagonalStraight.item);
+		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailEmbeddedLongDiagonalStraight.item, 1 ), " G ", "G  ", "   ", Character.valueOf('G'), ItemIDs.tcRailEmbeddedMediumDiagonalStraight.item);
+		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailEmbeddedVeryLongDiagonalStraight.item, 1 ), " G ", "G  ", "   ", Character.valueOf('G'), ItemIDs.tcRailEmbeddedLongDiagonalStraight.item);
 
 		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailEmbeddedMediumTurn.item, 1), "SS ", "S  ", Character.valueOf('S'), ItemIDs.tcRailEmbeddedSmallStraight.item );
 		TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.tcRailEmbeddedLargeTurn.item, 1), " SS", "SS ", "S  ", Character.valueOf('S'), ItemIDs.tcRailEmbeddedSmallStraight.item );
