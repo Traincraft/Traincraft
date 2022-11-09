@@ -546,8 +546,8 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 
 		if (meta == 6) {
 			if (motionX > 0) {
-				exitX = cx + (length + 0.5);
-				exitZ = cz - (length - 0.5);
+				exitX = (cx + length) + 0.5;
+				exitZ = (cz - length) + 0.5;
 			}
 			if (motionX < 0) {
 				exitX = cx - (0.5);
