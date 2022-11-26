@@ -101,6 +101,7 @@ public class TCItems {
 		/**Embedded 45Degree Turns*/
 
 		ItemIDs.tcRailEmbeddedMedium45DegreeTurn.item = new ItemTCRail(ItemTCRail.TrackTypes.EMBEDDED_MEDIUM_45DEGREE_TURN);
+		ItemIDs.tcRailEmbeddedLarge45DegreeTurn.item = new ItemTCRail(ItemTCRail.TrackTypes.EMBEDDED_LARGE_45DEGREE_TURN);
 
 		/** Normal Parallel Curves*/
 		ItemIDs.tcRailSmallParallelCurve.item = new ItemTCRail(ItemTCRail.TrackTypes.SMALL_PARALLEL_CURVE);
