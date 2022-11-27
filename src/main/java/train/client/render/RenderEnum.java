@@ -526,7 +526,7 @@ public enum RenderEnum {
 			add(new double[] { 4.6D, -0.2D, 0.8D });
 		}
 	}, 2, false),
-	locoSteamBR01_DB(EntityLocoSteamBR01_DB.class, new ModelLocoBR01_DB(), "locoBR01_DB", false, new float[] { -1.0F, -0.44F, 0.0F }, null, null, "largesmoke", 3, new ArrayList<double[]>() {
+	locoSteamBR01_DB(EntityLocoSteamBR01_DB.class, new ModelLocoBR01_DB(), "locoBR01_DB_", true, new float[] { -1.0F, -0.44F, 0.0F }, null, null, "largesmoke", 3, new ArrayList<double[]>() {
 		{
 			add(new double[] { 3.45D, 1.8D, 0.0D });
 		}
