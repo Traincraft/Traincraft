@@ -223,6 +223,7 @@ public class GuiRecipeBook extends GuiScreen {
 						add(new StackToDraw(new ItemStack(Blocks.golden_rail), 170, 16));
 					}
 				});
+
 		addPage("Steel rails parts and copper rails parts are crafted inside RC Rolling Machine, tracks are assembled in vanilla workbench.\nTC boarding/disembarking track are designed to work only on the Stock Car. Animal boarding will take any nearby animal and put it inside a passing Stock Car. Mob boarding will affect any mob.\nDisembark will eject any mob inside the Stock Car.","","right",new ArrayList<StackToDraw>() {
 			{
 				add(new StackToDraw(new ItemStack(Blocks.detector_rail), 17, 16));

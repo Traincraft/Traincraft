@@ -96,6 +96,7 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		return trainOwner;
 	}
 
+
 	public void setTrainOwner(String trainOwner) {
 		this.trainOwner = trainOwner;
 	}
@@ -517,6 +518,20 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 			return "Skin22";
 		case 23:
 			return "Skin23";
+		case 24:
+			return "Skin24";
+		case 25:
+			return "Skin25";
+		case 26:
+			return "Skin26";
+		case 27:
+			return "Skin27";
+		case 28:
+			return "Skin28";
+		case 29:
+			return "Skin29";
+		case 30:
+			return "Skin30";
 		case 100:
 			return "Empty";
 		case 101:
@@ -576,6 +591,20 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 			return "Skin22";
 		case 23:
 			return "Skin23";
+		case 24:
+			return "Skin24";
+		case 25:
+			return "Skin25";
+		case 26:
+			return "Skin26";
+		case 27:
+			return "Skin27";
+		case 28:
+			return "Skin28";
+		case 29:
+			return "Skin29";
+		case 30:
+			return "Skin30";
 		case 100:
 			return "Empty";
 		case 101:
@@ -610,6 +639,8 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		if (color.equals("Skin21")) return 21;
 		if (color.equals("Skin22")) return 22;
 		if (color.equals("Skin23")) return 23;
+		if (color.equals("Skin24")) return 24;
+		if (color.equals("Skin25")) return 25;
 		if (color.equals("Empty")) return 100;
 		if (color.equals("Full")) return 101;
 		return -1;

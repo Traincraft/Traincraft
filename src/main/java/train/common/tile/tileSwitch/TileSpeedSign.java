@@ -3,44 +3,28 @@ package train.common.tile.tileSwitch;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.util.ForgeDirection;
 import train.common.tile.TileTraincraft;
 
-public class TileSpeedSign extends TileTraincraft {
+public class TileSpeedSign extends TileEntity {
 
-	private int skinstate = 0;
-	private ForgeDirection facing = ForgeDirection.NORTH;
-
-	@Override
-	public void readFromNBT(NBTTagCompound nbtTag, boolean forSyncing) {
-		super.readFromNBT(nbtTag, false);
-		if(nbtTag.hasKey("Orientation")) {
-			facing = ForgeDirection.getOrientation(nbtTag.getByte("Orientation"));
-		}
-		if(nbtTag.hasKey("skinstate")){
-			skinstate=nbtTag.getInteger("skinstate");
-		}
-	}
-
-
-
-	@Override
-	public NBTTagCompound writeToNBT(NBTTagCompound nbtTag, boolean forSyncing) {
-		super.writeToNBT(nbtTag, forSyncing);
-		nbtTag.setByte("Orientation", (byte) facing.ordinal());
-		nbtTag.setInteger("skinstate", skinstate);
-		return nbtTag;
-	}
+	private int skinstate;
+	private ForgeDirection facing;
 
 	public ForgeDirection getFacing() {
-		if(facing!=null){
+		if(facing != null){
 			return this.facing;
 		}
 		return ForgeDirection.UNKNOWN;
 	}
 
 	public void setSkinstate(int skinstate) {
+		worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 		this.skinstate = skinstate;
 	}
 
@@ -54,10 +38,48 @@ public class TileSpeedSign extends TileTraincraft {
 		} else {
 			skinstate++;
 		}
+		worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 	}
 
 	public void setFacing(ForgeDirection face) {
+		worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 		this.facing = face;
+	}
+
+	public void readFromNBT(NBTTagCompound nbtTag) {
+		if(nbtTag.hasKey("Orientation")) {
+			facing = ForgeDirection.getOrientation(nbtTag.getByte("Orientation"));
+		}
+		if(nbtTag.hasKey("skinstate")){
+			skinstate = nbtTag.getInteger("skinstate");
+		}
+
+		else {
+			System.out.println("No Skins or Direction");
+		}
+		super.readFromNBT(nbtTag);
+	}
+
+	@Override
+	public void writeToNBT(NBTTagCompound nbtTag) {
+		nbtTag.setByte("Orientation", (byte) facing.ordinal());
+		nbtTag.setInteger("skinstate", this.skinstate);
+
+		super.writeToNBT(nbtTag);
+	}
+
+	public Packet getDescriptionPacket() {
+
+		NBTTagCompound nbt = new NBTTagCompound();
+		this.writeToNBT(nbt);
+
+		return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, nbt);
+	}
+
+	@Override
+	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt){
+		this.readFromNBT(pkt.func_148857_g());
+		super.onDataPacket(net, pkt);
 	}
 
 	@SideOnly(Side.CLIENT)

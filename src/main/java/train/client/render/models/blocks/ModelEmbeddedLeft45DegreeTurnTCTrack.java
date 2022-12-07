@@ -11,17 +11,24 @@ import org.lwjgl.opengl.GL11;
 import train.common.library.Info;
 import train.common.tile.TileTCRail;
 
+import javax.swing.*;
+
 @SideOnly(Side.CLIENT)
 
 public class ModelEmbeddedLeft45DegreeTurnTCTrack {
 
     private IModelCustom modelEmbeddedMediumLeft45DegreeTurn;
+    private IModelCustom modelEmbeddedLargeLeft45DegreeTurn;
+
 
     public ModelEmbeddedLeft45DegreeTurnTCTrack(){
         modelEmbeddedMediumLeft45DegreeTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_embedded_curve_45degree_medium_l.obj"));
+        modelEmbeddedLargeLeft45DegreeTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_embedded_curve_45degree_large_l.obj"));
+
     }
 
     public void renderMedium() {modelEmbeddedMediumLeft45DegreeTurn.renderAll();}
+    public void renderLarge() {modelEmbeddedLargeLeft45DegreeTurn.renderAll();}
 
     public void render(String type, TileTCRail tcRail, double x, double y, double z) {
         int facing = tcRail.getWorldObj().getBlockMetadata(tcRail.xCoord, tcRail.yCoord, tcRail.zCoord);
@@ -43,21 +50,32 @@ public class ModelEmbeddedLeft45DegreeTurnTCTrack {
         if (facing == 0) {
             GL11.glRotatef(180, 0, 1, 0);
             GL11.glTranslatef(0.5f,0,0.5f);
+            if (type.equals("large"))
+                GL11.glTranslatef(-1f,0f,0f);
+
         }
         if (facing == 1) {
             GL11.glRotatef(90, 0, 1, 0);
             GL11.glTranslatef(0.5f,0,0.5f);
+            if (type.equals("large"))
+                GL11.glTranslatef(-1f,0f,0f);
         }
         if (facing == 2) {
             GL11.glTranslatef(0.5f,0,0.5f);
+            if (type.equals("large"))
+                GL11.glTranslatef(-1f,0f,0f);
         }
         if (facing == 3) {
             GL11.glRotatef(-90, 0, 1, 0);
             GL11.glTranslatef(0.5f,0,0.5f);
+            if (type.equals("large"))
+                GL11.glTranslatef(-1f,0f,0f);
         }
 
         if (type.equals("medium"))
             this.renderMedium();
+        if (type.equals("large"))
+            this.renderLarge();
 
 
         // Pop this matrix from the stack.

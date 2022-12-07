@@ -28,11 +28,10 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 	public static final ModelEmbeddedSmallStraightTCTrack modelEmbeddedSmallStraight = new ModelEmbeddedSmallStraightTCTrack();
 	public static final ModelEmbeddedMediumStraightTCTrack modelEmbeddedMediumStraight = new ModelEmbeddedMediumStraightTCTrack();
 	public static final ModelEmbeddedSmallDiagonalStraightTCTrack modelEmbeddedSmallDiagonalStraight = new ModelEmbeddedSmallDiagonalStraightTCTrack();
+	public static final ModelEmbeddedMediumDiagonalStraightTCTrack modelEmbeddedMediumDiagonalStraight = new ModelEmbeddedMediumDiagonalStraightTCTrack();
 	public static final ModelEmbeddedRightTurnTCTrack modelEmbeddedRightTurn = new ModelEmbeddedRightTurnTCTrack();
 	public static final ModelEmbeddedLeftTurnTCTrack modelEmbeddedLeftTurn = new ModelEmbeddedLeftTurnTCTrack();
-
 	public static final ModelEmbeddedRight45DegreeTurnTCTrack modelEmbeddedRight45DegreeTurn = new ModelEmbeddedRight45DegreeTurnTCTrack();
-
 	public static final ModelEmbeddedLeft45DegreeTurnTCTrack modelEmbeddedLeft45DegreeTurn = new ModelEmbeddedLeft45DegreeTurnTCTrack();
 	public static final ModelEmbeddedRightParallelCurveTCTrack modelEmbeddedRightParallelCurve = new ModelEmbeddedRightParallelCurveTCTrack();
 	public static final ModelEmbeddedLeftParallelCurveTCTrack modelEmbeddedLeftParallelCurve = new ModelEmbeddedLeftParallelCurveTCTrack();
@@ -288,6 +287,12 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 						modelEmbeddedSmallDiagonalStraight.render("diagonal", railTile, x, y, z);
 						break;
 					}
+					case EMBEDDED_MEDIUM_DIAGONAL_STRAIGHT:
+					case EMBEDDED_LONG_DIAGONAL_STRAIGHT:
+					case EMBEDDED_VERY_LONG_DIAGONAL_STRAIGHT:{
+						modelEmbeddedMediumDiagonalStraight.render("diagonal", railTile, x, y, z);
+						break;
+					}
 					case EMBEDDED_MEDIUM_TURN:
 					case EMBEDDED_MEDIUM_RIGHT_TURN: {
 						modelEmbeddedRightTurn.render("medium", railTile, x, y, z);
@@ -331,6 +336,15 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 					}
 					case EMBEDDED_MEDIUM_LEFT_45DEGREE_TURN:{
 						modelEmbeddedLeft45DegreeTurn.render("medium", railTile, x, y, z);
+						break;
+					}
+					case EMBEDDED_LARGE_45DEGREE_TURN:
+					case EMBEDDED_LARGE_RIGHT_45DEGREE_TURN: {
+						modelEmbeddedRight45DegreeTurn.render("large", railTile, x, y, z);
+						break;
+					}
+					case EMBEDDED_LARGE_LEFT_45DEGREE_TURN:{
+						modelEmbeddedLeft45DegreeTurn.render("large", railTile, x, y, z);
 						break;
 					}
 					case EMBEDDED_SMALL_PARALLEL_CURVE:

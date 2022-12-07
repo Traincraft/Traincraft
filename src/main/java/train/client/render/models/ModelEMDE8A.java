@@ -477,8 +477,8 @@ public class ModelEMDE8A extends ModelConverter //Same as Filename
 		bodyModel[433] = new ModelRendererTurbo(this, 213, 46, textureX, textureY); // horn base
 		bodyModel[434] = new ModelRendererTurbo(this, 209, 37, textureX, textureY); // Stupid UP horns
 		bodyModel[435] = new ModelRendererTurbo(this, 209, 40, textureX, textureY); // horn base
-		bodyModel[436] = new ModelRendererTurbo(this, 252, 23, textureX, textureY); // Box 186
-		bodyModel[437] = new ModelRendererTurbo(this, 252, 23, textureX, textureY); // Box 186
+		bodyModel[436] = new ModelRendererTurbo(this, 254, 23, textureX, textureY); // Box 186
+		bodyModel[437] = new ModelRendererTurbo(this, 254, 23, textureX, textureY); // Box 186
 		bodyModel[438] = new ModelRendererTurbo(this, 248, 32, textureX, textureY); // Stupid UP snow sheild
 		bodyModel[439] = new ModelRendererTurbo(this, 252, 23, textureX, textureY); // Stupid UP snow sheild
 		bodyModel[440] = new ModelRendererTurbo(this, 252, 23, textureX, textureY); // Stupid UP snow sheild

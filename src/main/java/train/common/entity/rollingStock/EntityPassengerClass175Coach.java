@@ -28,7 +28,7 @@ public class EntityPassengerClass175Coach extends EntityRollingStock implements 
     @Override
     public void updateRiderPosition() {
         if(riddenByEntity!=null) {
-            riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset() + 0.0, posZ);
+            riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset() - 0.1, posZ);
         }//ew yucky rider position code, good thing its a passenger car so it doesnt matter! Wheeze.png
     }
 

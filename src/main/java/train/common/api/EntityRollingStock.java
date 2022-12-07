@@ -1175,7 +1175,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				moveOnTCTwoWaysCrossing(i, j, k, tile.xCoord, tile.yCoord, tile.zCoord, meta);
 			}
 			if (ItemTCRail.isTCDiagonalStraightTrack(tile)) {
-				moveOnTCDiagonal(i, j, k, tile.xCoord, tile.zCoord, tile.getBlockMetadata(), meta);
+				moveOnTCDiagonal(i, j, k, tile.xCoord, tile.zCoord, tile.getBlockMetadata(), tile.getRailLength());
 			}
 
 		}
@@ -1212,13 +1212,22 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 	private boolean shouldIgnoreSwitch(TileTCRail tile, int i, int j, int k, int meta) {
 		if (tile != null
 				&& (tile.getType().equals(TrackTypes.MEDIUM_RIGHT_TURN.getLabel())
-						|| tile.getType().equals(TrackTypes.MEDIUM_LEFT_TURN.getLabel())
-						|| tile.getType().equals(TrackTypes.LARGE_LEFT_TURN.getLabel())
-						|| tile.getType().equals(TrackTypes.LARGE_RIGHT_TURN.getLabel()))
-						|| tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_RIGHT_TURN.getLabel())
-						|| tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_LEFT_TURN.getLabel())
-						|| tile.getType().equals(TrackTypes.EMBEDDED_LARGE_LEFT_TURN.getLabel())
-						|| tile.getType().equals(TrackTypes.EMBEDDED_LARGE_RIGHT_TURN.getLabel())
+				|| tile.getType().equals(TrackTypes.MEDIUM_LEFT_TURN.getLabel())
+				|| tile.getType().equals(TrackTypes.LARGE_LEFT_TURN.getLabel())
+				|| tile.getType().equals(TrackTypes.LARGE_RIGHT_TURN.getLabel()))
+				|| tile.getType().equals(TrackTypes.MEDIUM_RIGHT_45DEGREE_TURN.getLabel())
+				|| tile.getType().equals(TrackTypes.MEDIUM_LEFT_45DEGREE_TURN.getLabel())
+				|| tile.getType().equals(TrackTypes.LARGE_RIGHT_45DEGREE_TURN.getLabel())
+				|| tile.getType().equals(TrackTypes.LARGE_LEFT_45DEGREE_TURN.getLabel())
+				|| tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_RIGHT_TURN.getLabel())
+				|| tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_LEFT_TURN.getLabel())
+				|| tile.getType().equals(TrackTypes.EMBEDDED_LARGE_LEFT_TURN.getLabel())
+				|| tile.getType().equals(TrackTypes.EMBEDDED_LARGE_RIGHT_TURN.getLabel())
+				|| tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_RIGHT_45DEGREE_TURN.getLabel())
+				|| tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_LEFT_45DEGREE_TURN.getLabel())
+				//|| tile.getType().equals(TrackTypes.EMBEDDED_LARGE_RIGHT_45DEGREE_TURN.getLabel())
+				//|| tile.getType().equals(TrackTypes.EMBEDDED_LARGE_LEFT_45DEGREE_TURN.getLabel())
+
 				&& tile.canTypeBeModifiedBySwitch) {
 			
 
@@ -1273,59 +1282,90 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		double norm = Math.sqrt(motionX * motionX + motionZ * motionZ);
 		double distanceNorm;
 
-		if (meta == 6  || meta == 4){
-			if (motionX > 0){
-				exitX = cx + (length + 1.5);
-				exitZ = cz - (length + 0.5);
+
+
+		if (meta == 6) {
+			if (motionX > 0) {
+				exitX = (cx + length) + 0.5;
+				exitZ = (cz - length) + 0.5;
+			}
+			if (motionX < 0) {
+				exitX = cx - (0.5);
+				exitZ = cz + (1.5);
+			}
+			directionX = exitX - posX;
+			directionZ = exitZ - posZ;
+			distanceNorm = Math.sqrt(directionX * directionX + directionZ * directionZ);
+			motionX = (directionX / distanceNorm) * norm;
+			motionZ = (directionZ / distanceNorm) * norm;
+		}
+		if (meta == 4) {
+			if (motionX > 0) {
+				exitX = cx + (1.5);
+				exitZ = cz - (0.5);
+			}
+			if (motionX < 0) {
+				exitX = cx - (length - 0.5);
+				exitZ = cz + (length + 0.5);
+			}
+			directionX = exitX - posX;
+			directionZ = exitZ - posZ;
+			distanceNorm = Math.sqrt(directionX * directionX + directionZ * directionZ);
+			motionX = (directionX / distanceNorm) * norm;
+			motionZ = (directionZ / distanceNorm) * norm;
+		}
+
+
+		if (meta == 5 ) {
+			if (motionX > 0) {
+				exitX = cx + ( 1.5);
+				exitZ = cz + ( 1.5);
 			}
 			if (motionX < 0) {
 				exitX = cx - (length + 0.5);
-				exitZ = cz + (length + 1.5);
+				exitZ = cz - (length + 0.5);
 			}
 			directionX = exitX - posX;
 			directionZ = exitZ - posZ;
 			distanceNorm = Math.sqrt(directionX * directionX + directionZ * directionZ);
-			motionX = (directionX / distanceNorm) * norm ;
-			motionZ = (directionZ / distanceNorm) * norm ;
-			this.boundingBox.offset(Math.copySign(motionX, this.motionX), 0 , Math.copySign(motionZ, this.motionZ));
+			motionX = (directionX / distanceNorm) * norm;
+			motionZ = (directionZ / distanceNorm) * norm;
 
-			List boxes = worldObj.getCollidingBoundingBoxes(this, boundingBox);
-			for(Object b : boxes){
-				if(!(b instanceof BlockRailBase) && !(b instanceof BlockTCRail) && !(b instanceof BlockTCRailGag) && !(b instanceof BlockAir)){
-					return;
-				}
-			}
-			this.posX = (this.boundingBox.minX + this.boundingBox.maxX) / 2.0D;
-			this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
-			this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) / 2.0D;
 		}
 
-		if (meta == 5  || meta == 7){
-			if (motionX > 0){
-				exitX = cx + (length + 1.5);
-				exitZ = cz + (length + 1.5);
+		if (meta == 7 ) {
+			if (motionX > 0) {
+				exitX = cx + (length + 0.5);
+				exitZ = cz + (length + 0.5);
 			}
 			if (motionX < 0) {
-				exitX = cx - (length + 1.5);
-				exitZ = cz - (length + 1.5);
+				exitX = cx - (0.5);
+				exitZ = cz - (0.5);
 			}
 			directionX = exitX - posX;
 			directionZ = exitZ - posZ;
 			distanceNorm = Math.sqrt(directionX * directionX + directionZ * directionZ);
-			motionX = (directionX / distanceNorm) * norm ;
-			motionZ = (directionZ / distanceNorm) * norm ;
+			motionX = (directionX / distanceNorm) * norm;
+			motionZ = (directionZ / distanceNorm) * norm;
 
-			this.boundingBox.offset(Math.copySign(motionX, this.motionX), 0 , Math.copySign(motionZ, this.motionZ));
-			List boxes = worldObj.getCollidingBoundingBoxes(this, boundingBox);
-			for(Object b : boxes){
-				if(!(b instanceof BlockRailBase) && !(b instanceof BlockTCRail) && !(b instanceof BlockTCRailGag) && !(b instanceof BlockAir)){
-					return;
-				}
-			}
-			this.posX = (this.boundingBox.minX + this.boundingBox.maxX) / 2.0D;
-			this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
-			this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) / 2.0D;
 		}
+
+
+
+		this.boundingBox.offset(Math.copySign(motionX, this.motionX), 0 , Math.copySign(motionZ, this.motionZ));
+
+		List boxes = worldObj.getCollidingBoundingBoxes(this, boundingBox);
+		for(Object b : boxes){
+			if(!(b instanceof BlockRailBase) && !(b instanceof BlockTCRail) && !(b instanceof BlockTCRailGag) && !(b instanceof BlockAir)){
+				return;
+			}
+		}
+		this.posX = (this.boundingBox.minX + this.boundingBox.maxX) / 2.0D;
+		this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
+		this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) / 2.0D;
+
+
+		System.out.println("CX: " + cx + ", CZ: " + cz + ", META: " + meta + ", LENGTH: " + length +  ", EXIT_X: " + exitX + ", EXIT_Z: " + exitZ);
 	}
 
 
@@ -1452,8 +1492,8 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		posY = j + 0.2;
 		double cpx = posX - cx;
 		double cpz = posZ - cz;
-		double cp_norm = Math.sqrt(cpx * cpx + cpz * cpz);
 
+		double cp_norm = Math.sqrt(cpx * cpx + cpz * cpz);
 		double vnorm = Math.sqrt(motionX * motionX + motionZ * motionZ);
 
 		double norm_cpx = cpx / cp_norm; //u
@@ -1485,9 +1525,9 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		double p_corr_x = cx + ((cpx / cp_norm) * r);
 		double p_corr_z = cz + ((cpz / cp_norm) * r);
 
-
 		setPosition(p_corr_x, posY + yOffset, p_corr_z);
 		moveEntity(vx2, 0.0D, vz2);
+
 		motionX = vx2;
 		motionZ = vz2;
 
