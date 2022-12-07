@@ -58,7 +58,7 @@ public class ItemRenderWindMill implements IItemRenderer {
 		GL11.glTranslatef(x, y, z);
 		GL11.glScalef(scale, scale, scale);
 
-		FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "water_wheel_uv.png"));
+		tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "water_wheel_uv.png"));
 		float f2 = (float) (0x331D14 >> 16 & 255) / 255.0F;
 		float f3 = (float) (0x331D14 >> 8 & 255) / 255.0F;
 		float f4 = (float) (0x331D14 & 255) / 255.0F;

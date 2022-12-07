@@ -446,7 +446,7 @@ public class ModelLocoBR80_DB extends ModelBase {
 		lastframe = now;
 		
 		if (ClientProxy.isHoliday()) {
-			FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/locoBR80_DB_winter.png"));
+			tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/trains/locoBR80_DB_winter.png"));
 		}
 		
 		body.render(f5);

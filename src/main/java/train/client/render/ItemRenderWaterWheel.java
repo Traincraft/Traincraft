@@ -57,7 +57,7 @@ public class ItemRenderWaterWheel implements IItemRenderer {
 		GL11.glScalef(0.36F, 0.36F, 1F);
 		GL11.glRotatef(180f, 0f, 1f, 0f);
 
-		FMLClientHandler.instance().getClient().renderEngine.bindTexture(texture);
+		tmt.Tessellator.bindTexture(texture);
 		float f2 = (float) (0x331D14 >> 16 & 255) / 255.0F;
 		float f3 = (float) (0x331D14 >> 8 & 255) / 255.0F;
 		float f4 = (float) (0x331D14 & 255) / 255.0F;

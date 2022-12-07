@@ -57,7 +57,7 @@ public class ItemRenderStopper implements IItemRenderer {
 	}
 
 	private void renderStopper(float f, float g, float h, float rotation) {
-		FMLClientHandler.instance().getClient().renderEngine.bindTexture(texture);
+		tmt.Tessellator.bindTexture(texture);
 		GL11.glPushMatrix(); //start
 		GL11.glTranslatef(f, g, h); //size
 		GL11.glRotatef(rotation, f, g, h);

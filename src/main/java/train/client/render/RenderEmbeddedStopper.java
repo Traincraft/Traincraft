@@ -28,7 +28,7 @@ public class RenderEmbeddedStopper extends TileEntitySpecialRenderer {
         GL11.glPushMatrix();
 
         GL11.glTranslated(x, y, z);
-        FMLClientHandler.instance().getClient().renderEngine.bindTexture(texture);
+        tmt.Tessellator.bindTexture(texture);
 
         GL11.glTranslatef(0.5F, 0.0F, 0.5F);
         modelEmbeddedStopper.render(0.0625F, ((TileEmbeddedStopper) var1).getFacing());

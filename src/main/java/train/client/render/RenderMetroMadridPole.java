@@ -30,7 +30,7 @@ public class RenderMetroMadridPole extends TileEntitySpecialRenderer {
         GL11.glPushMatrix();
 
         GL11.glTranslated(x, y, z);
-        FMLClientHandler.instance().getClient().renderEngine.bindTexture(texture);
+        tmt.Tessellator.bindTexture(texture);
 
         GL11.glTranslatef(0.5F, 0.65F, 0.5F);
 
