@@ -24,6 +24,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 import train.common.api.ElectricTrain;
 import train.common.api.EntityRollingStock;
 import train.common.core.handlers.ConfigHandler;
+import train.common.core.util.TraincraftUtil;
 import train.common.library.Tracks;
 
 import java.io.DataInputStream;
@@ -84,7 +85,7 @@ public class BlockEnergyTrack extends TrackBaseTraincraft implements ITrackPower
         if(this.updateTicks % 10 == 0) {
 			if (this.maxEnergy > this.RFChandler.getCharge()) {
 				if (this.getWorld().getTileEntity(this.getX(), this.getY() - 1, this.getZ()) instanceof IEnergyProvider) {
-					System.out.println("found input and it gives " + ((IEnergyProvider)this.getWorld().getTileEntity(this.getX(), this.getY() - 1, this.getZ())).extractEnergy(ForgeDirection.UP, 100, true));
+					TraincraftUtil.println("found input and it gives " + ((IEnergyProvider)this.getWorld().getTileEntity(this.getX(), this.getY() - 1, this.getZ())).extractEnergy(ForgeDirection.UP, 100, true));
 					this.receiveEnergy(ForgeDirection.DOWN, ((IEnergyProvider) this.getWorld().getTileEntity(this.getX(), this.getY() - 1, this.getZ())).extractEnergy(ForgeDirection.UP, 100, false), false);
 				}
 				int x = this.getX();

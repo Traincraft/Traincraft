@@ -813,7 +813,6 @@ public abstract class AbstractTrains extends EntityMinecart implements IMinecart
 		if(getEntityData().hasKey("puuid")) {
 			return getEntityData().getString("puuid");
 		} else {
-			System.out.println("setting UUID");
 			getEntityData().setString("puuid", getUniqueID().toString());
 			return this.getUniqueID().toString();
 		}

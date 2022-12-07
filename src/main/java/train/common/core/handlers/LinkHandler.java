@@ -10,6 +10,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import train.common.api.AbstractTrains;
 import train.common.api.EntityRollingStock;
+import train.common.core.util.TraincraftUtil;
 
 import java.util.List;
 
@@ -94,11 +95,11 @@ public class LinkHandler {
 		//System.out.println("link1Missing "+link1Missing+" link2Missing "+link2Missing);
 		
 		if(link1Missing && ((AbstractTrains) entityOne).Link1!=0 && ((AbstractTrains) entityOne).Link1!=-1){
-			System.out.println("clear 1   "+((AbstractTrains) entityOne).Link1+"  "+entityOne);
+			TraincraftUtil.println("clear 1   "+((AbstractTrains) entityOne).Link1+"  "+entityOne);
 			freeLink1(entityOne);
 		}
 		if(link2Missing && ((AbstractTrains) entityOne).Link2!=0 && ((AbstractTrains) entityOne).Link2!=-1){
-			System.out.println("clear 2   "+((AbstractTrains) entityOne).Link2+"  "+entityOne);
+			TraincraftUtil.println("clear 2   "+((AbstractTrains) entityOne).Link2+"  "+entityOne);
 			freeLink2(entityOne);
 		}
 		/*if (((AbstractTrains) entityOne).Link1 != 0)
@@ -131,7 +132,7 @@ public class LinkHandler {
 		((AbstractTrains)entityOne).clearLinkTimer++;
 		if(((AbstractTrains)entityOne).clearLinkTimer<60)return;
 		((AbstractTrains)entityOne).clearLinkTimer=0;
-		System.out.println("clear 1   "+((AbstractTrains) entityOne).Link1+"  "+entityOne);
+		TraincraftUtil.println("clear 1   "+((AbstractTrains) entityOne).Link1+"  "+entityOne);
 		//System.out.println("clear 2"+entityOne);
 		
 		if (((AbstractTrains) entityOne).Link2 != 0)

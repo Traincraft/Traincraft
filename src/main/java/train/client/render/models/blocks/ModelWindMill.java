@@ -36,7 +36,7 @@ public class ModelWindMill extends ModelBase {
 		GL11.glTranslatef((float) x + 0.5f, (float) y + 0.43f, (float) z + 0.5f);
 
 		// Bind the texture, so that OpenGL properly textures our block.
-		FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation,Info.modelTexPrefix + "water_wheel_uv.png"));
+		tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation,Info.modelTexPrefix + "water_wheel_uv.png"));
 		int j = 0x331D14;//0x1C0F0A; //0x5a3222;
 		//System.out.println(j);
 		float f1 = 1.0F;

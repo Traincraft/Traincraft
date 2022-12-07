@@ -150,7 +150,7 @@ public abstract class SideTab {
 
 			GL11.glColor4f(colorR, colorG, colorB, 1.0F);
 
-			FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation,texture));
+			tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation,texture));
 			gui.drawTexturedModalRect(x + 24 - currentWidth, y + 2, 0, 256 - currentHeight + 2, 4, currentHeight - 2);
 			gui.drawTexturedModalRect(x + 28 - currentWidth, y, 256 - currentWidth + 4, 0, currentWidth - 4, 4);
 			// Add in top left corner again
@@ -162,7 +162,7 @@ public abstract class SideTab {
 			texture = Info.guiPrefix + "sideTab_right.png";
 
 			GL11.glColor4f(colorR, colorG, colorB, 1.0F);
-			FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation,texture));
+			tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation,texture));
 			gui.drawTexturedModalRect(x, y, 0, 256 - currentHeight, 4, currentHeight);
 			gui.drawTexturedModalRect(x + 4, y, 256 - currentWidth + 4, 0, currentWidth - 4, 4);
 			// Add in top left corner again
@@ -173,7 +173,7 @@ public abstract class SideTab {
 	}
 
 	public void drawIcon(String texture, int iconIndex, int x, int y) {
-		FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation,texture));
+		tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation,texture));
 		if (side) {
 			GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0F);
 			int textureRow = iconIndex >> 4;

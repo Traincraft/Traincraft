@@ -1,0 +1,46 @@
+# This workflow will build a Java project with Gradle
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-gradle
+
+name: Java CI with Gradle
+
+on:
+  push:
+    branches: [ 1.7-Community-4.3 ]
+  pull_request:
+    branches: [ 1.7-Community-4.3 ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      
+    - name: Install 7z and extract data
+      run: |
+        sudo apt-get install -y p7zip-full
+        mkdir ~/.gradle
+        mkdir ~/.gradle/caches
+        cd ~/.gradle/caches
+        7z x /home/runner/work/Traincraft-5/Traincraft-5/gradle/caches.7z.001 -y
+        cd /home/runner/work/Traincraft-5/Traincraft-5
+
+
+    - name: Set up JDK 1.8
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+      
+    - name: setup with Gradle
+      run: ./gradlew setupDecompWorkspace --refresh-dependencies idea
+
+    - name: Build with Gradle
+      run: ./gradlew setupDecompWorkspace --refresh-dependencies build
+
+    - name: Create artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: TCCE-Experimental
+        path: build/libs/*

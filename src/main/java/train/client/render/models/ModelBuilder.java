@@ -553,10 +553,10 @@ public class ModelBuilder extends ModelBase {
 		lastframe = now;
 
 		if (((EntityTracksBuilder) entity).getState()) {
-			FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation,Info.trainsPrefix + "builder2.png"));
+			tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation,Info.trainsPrefix + "builder2.png"));
 		}
 		else {
-			FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation,Info.trainsPrefix + "builder.png"));
+			tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation,Info.trainsPrefix + "builder.png"));
 		}
 
 		box.render(f5);
@@ -653,7 +653,7 @@ public class ModelBuilder extends ModelBase {
 		box90.render(f5);
 		box91.render(f5);
 
-		FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation,Info.trainsPrefix + "builder_rotor.png"));
+		tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation,Info.trainsPrefix + "builder_rotor.png"));
 
 		rotor1.render(f5);
 		rotor2.render(f5);

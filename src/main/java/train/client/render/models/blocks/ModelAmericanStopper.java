@@ -46,7 +46,7 @@ public class ModelAmericanStopper extends ModelBase {
         GL11.glPushMatrix();
         GL11.glTranslatef(0, 0, 0);
         GL11.glRotatef(90, 0, 1, 0);
-        FMLClientHandler.instance().getClient().renderEngine
+        tmt.Tessellator
                 .bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "american_stopper.png"));
         GL11.glColor4f(1, 1, 1, 1);
         track.renderAll();
@@ -57,7 +57,7 @@ public class ModelAmericanStopper extends ModelBase {
     public void render2(float f5) {
 
         GL11.glRotatef(90, 0, 1, 0);
-        FMLClientHandler.instance().getClient().renderEngine
+        tmt.Tessellator
                 .bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "american_stopper.png"));
         GL11.glColor4f(1, 1, 1, 1);
         track.renderAll();

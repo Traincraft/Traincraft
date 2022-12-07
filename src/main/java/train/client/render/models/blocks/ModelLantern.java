@@ -50,7 +50,7 @@ public class ModelLantern extends ModelBase {
 		GL11.glScalef(0.5f, 0.5f, 0.5f);
 
 		// Bind the texture, so that OpenGL properly textures our block.
-		FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation,Info.modelTexPrefix + "lantern_uv_draw_2.png"));
+		tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation,Info.modelTexPrefix + "lantern_uv_draw_2.png"));
 		int j = lantern.getRandomColor();
 		//System.out.println(j);
 		float f1 = 1.0F;

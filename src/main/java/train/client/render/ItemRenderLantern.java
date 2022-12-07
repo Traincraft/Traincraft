@@ -56,7 +56,7 @@ public class ItemRenderLantern implements IItemRenderer {
 		GL11.glTranslatef(x, y, z);
 		GL11.glScalef(scale, scale, scale);
 
-		FMLClientHandler.instance().getClient().renderEngine.bindTexture(texture);
+		tmt.Tessellator.bindTexture(texture);
 		float f2 = (float) (0x4f4e4a >> 16 & 255) / 255.0F;
 		float f3 = (float) (0x4f4e4a >> 8 & 255) / 255.0F;
 		float f4 = (float) (0x4f4e4a & 255) / 255.0F;

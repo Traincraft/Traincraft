@@ -70,7 +70,7 @@ public class ItemRenderBook implements IItemRenderer {
 
 	private void renderBook(float left, float up, float right, float rotation, float x, float y, float z, float scale) {
 		Tessellator tesselator = Tessellator.instance;
-		FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation,Info.modelTexPrefix + "book2.png"));
+		tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation,Info.modelTexPrefix + "book2.png"));
 		GL11.glPushMatrix();
 		GL11.glTranslatef(left, up, right);
 		GL11.glRotatef(rotation, x, y, z);
@@ -95,7 +95,7 @@ public class ItemRenderBook implements IItemRenderer {
 //			down = false;
 //		}
 		//System.out.println(w/10);
-		FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation,Info.modelTexPrefix + "book2.png"));
+		tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation,Info.modelTexPrefix + "book2.png"));
 		GL11.glPushMatrix();
 		GL11.glTranslatef(left, up, right);
 		GL11.glTranslatef(0.5f, 1.f, -0.5f);

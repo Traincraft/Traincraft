@@ -40,41 +40,41 @@ public class ModelVeryLargeSlopeTCTrack extends ModelBase {
 		}
 
 		if (type.equals("wood")) {
-			FMLClientHandler.instance().getClient().renderEngine
+			tmt.Tessellator
 					.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_slope.png"));
 			modelVeryLargeSlopeWood.renderAll();
-			FMLClientHandler.instance().getClient().renderEngine
+			tmt.Tessellator
 					.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
 			modeltrack.renderAll();
 		}
 		if (type.equals("gravel")) {
-			FMLClientHandler.instance().getClient().renderEngine
+			tmt.Tessellator
 					.bindTexture(new ResourceLocation("minecraft", "textures/blocks/gravel.png"));
 			modelVeryLargeSlopeBallast.renderAll();
-			FMLClientHandler.instance().getClient().renderEngine
+			tmt.Tessellator
 					.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
 			modeltrack.renderAll();
 		}
 		if (type.equals("ballast")) {
-			FMLClientHandler.instance().getClient().renderEngine
+			tmt.Tessellator
 					.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/blocks/ballast_test.png"));
 			modelVeryLargeSlopeBallast.renderAll();
-			FMLClientHandler.instance().getClient().renderEngine
+			tmt.Tessellator
 					.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
 			modeltrack.renderAll();
 		}
 		if (type.equals("snow")) {
-			FMLClientHandler.instance().getClient().renderEngine
+			tmt.Tessellator
 					.bindTexture(new ResourceLocation(Info.resourceLocation, "textures/blocks/snowgravel.png"));
 			modelVeryLargeSlopeBallast.renderAll();
-			FMLClientHandler.instance().getClient().renderEngine
+			tmt.Tessellator
 					.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
 			modeltrack.renderAll();
 		}
 		if (type.equals("dynamic")) {
-			FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
+			tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
 			modeltrack.renderAll();
-			FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(ballastTexture[0],  "textures/blocks/" + ballastTexture[1] +".png"));
+			tmt.Tessellator.bindTexture(new ResourceLocation(ballastTexture[0],  "textures/blocks/" + ballastTexture[1] +".png"));
 			float r = (float)(ballastColour >> 16 & 255) / 255.0F;
 			float g = (float)(ballastColour >> 8 & 255) / 255.0F;
 			float b = (float)(ballastColour & 255) / 255.0F;

@@ -103,7 +103,7 @@ public class ModelEmbeddedStopper extends ModelBase {
         GL11.glPushMatrix();
         GL11.glTranslatef(0, 0, 0);
         GL11.glRotatef(90, 0, 1, 0);
-        FMLClientHandler.instance().getClient().renderEngine
+        tmt.Tessellator
                 .bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
         GL11.glColor4f(1, 1, 1, 1);
         track.renderAll();
@@ -121,7 +121,7 @@ public class ModelEmbeddedStopper extends ModelBase {
         // box4.render(f5);
         box5.render(f5);
         GL11.glRotatef(90, 0, 1, 0);
-        FMLClientHandler.instance().getClient().renderEngine
+        tmt.Tessellator
                 .bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
         GL11.glColor4f(1, 1, 1, 1);
         track.renderAll();

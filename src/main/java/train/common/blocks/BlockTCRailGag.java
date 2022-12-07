@@ -15,6 +15,7 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import train.common.Traincraft;
+import train.common.core.util.TraincraftUtil;
 import train.common.library.BlockIDs;
 import train.common.library.Info;
 import train.common.tile.TileTCRailGag;

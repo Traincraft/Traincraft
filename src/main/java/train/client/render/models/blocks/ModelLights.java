@@ -31,11 +31,11 @@ public class ModelLights extends ModelBase {
 		//GL11.glEnable(GL11.GL_LIGHTING);
 		GL11.glPushMatrix();
 		GL11.glRotatef(90f, 0, 1, 0);
-		FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation,Info.modelTexPrefix + "lights3.png"));
+		tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation,Info.modelTexPrefix + "lights3.png"));
 		render("Branch_1");
 		Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
 		GL11.glEnable(GL11.GL_BLEND);
-		FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation,Info.modelTexPrefix + "lights.png"));
+		tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation,Info.modelTexPrefix + "lights.png"));
 		render("Bulb_1");
 		GL11.glColor4f(1.0f, 1.0f, 1.0f, 0.3f);
 		render("Plane_1");

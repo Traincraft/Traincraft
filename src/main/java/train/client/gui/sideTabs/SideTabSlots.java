@@ -48,7 +48,7 @@ public class SideTabSlots extends SideTab {
 		fontRenderer.drawString("Output slot", x - 69, y + 8, 0x000000);
 		fontRenderer.drawString("Output slot", x - 70, y + 8, headerColour);
 
-		FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Info.resourceLocation,Info.guiPrefix + "Icons.png"));
+		tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation,Info.guiPrefix + "Icons.png"));
 
 		drawRect(x - 91, y + 30, -4, 135, 0xff02142d);
 		drawRect(x - 90, y + 29, -5, 136, 0xff02142d);
