@@ -14,7 +14,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import train.common.Traincraft;
 import train.common.blocks.blockSwitch.*;
-import train.common.core.handlers.TrainHandler;
 import train.common.library.BlockIDs;
 import train.common.library.Info;
 import train.common.mtc.*;

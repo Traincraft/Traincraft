@@ -12,8 +12,6 @@ package com.flansmod.client.model.YourPackage; //Path where the model is located
 import tmt.ModelConverter;
 import tmt.ModelRendererTurbo;
 
-import java.util.ArrayList;
-
 public class ModelClass162CoachB extends ModelConverter //Same as Filename
 {
 	int textureX = 512;

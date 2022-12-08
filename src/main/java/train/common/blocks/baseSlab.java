@@ -2,14 +2,10 @@ package train.common.blocks;
 
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.material.Material;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import train.common.Traincraft;
 import train.common.library.Info;
-
-import javax.annotation.Nullable;
 
 public class baseSlab extends BlockSlab {
 

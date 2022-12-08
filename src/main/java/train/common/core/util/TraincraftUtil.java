@@ -1,9 +1,6 @@
 package train.common.core.util;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockRailBase;
-import net.minecraft.entity.item.EntityMinecart;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;

@@ -14,15 +14,6 @@ import net.minecraft.entity.Entity;
 import org.lwjgl.opengl.GL11;
 import tmt.ModelConverter;
 import tmt.ModelRendererTurbo;
-import train.common.api.AbstractTrains;
-import train.common.core.handlers.*;
-import train.common.api.*;
-import train.common.api.EntityRollingStock;
-import train.common.api.Locomotive;
-import train.common.core.handlers.TrainHandler;
-import train.common.entity.rollingStock.EntityPassengerFGV4300Coach;
-
-import java.util.ArrayList;
 
 public class ModelMA100_Tail extends ModelConverter //Same as Filename
 {

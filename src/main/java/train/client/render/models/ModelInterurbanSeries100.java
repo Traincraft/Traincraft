@@ -11,8 +11,6 @@
 
 package train.client.render.models;
 
-import net.minecraft.entity.Entity;
-import tmt.ModelBase;
 import tmt.ModelConverter;
 import tmt.ModelRendererTurbo;
 

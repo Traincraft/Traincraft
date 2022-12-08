@@ -1,6 +1,5 @@
 package train.common.tile;
 
-import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -11,7 +10,6 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import train.common.blocks.BlockTCRail;
-import train.common.blocks.BlockTCRailGag;
 
 import java.util.Random;
 
