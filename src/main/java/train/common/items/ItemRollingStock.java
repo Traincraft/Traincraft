@@ -252,7 +252,7 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 				}
 
 				int dir = 0;
-				int meta = world.getBlockMetadata(i, j, k);
+				int meta = ((BlockRailBase) world.getBlock(i,j,k)).getBasicRailMetadata(world, rollingStock, i, j, k);
 				if (player != null)
 					dir = MathHelper.floor_double((player.rotationYaw * 4F) / 360F + 0.5D) & 3;
 				//180 = 3 = EAST

@@ -150,10 +150,15 @@ public class Traincraft {
 		proxy.registerRenderInformation();
 		proxy.registerEvents(event);
 
-		/* Networking and Packet initialisation */
-		PacketHandler.init();
 
 		tcLog.info("Finished PreInitialization");
+	}
+
+	@Mod.EventHandler
+	public void init(FMLInitializationEvent event) {
+
+		/* Networking and Packet initialisation, apparently this needs to be in init to prevent conflicts */
+		PacketHandler.init();
 	}
 
 	@EventHandler

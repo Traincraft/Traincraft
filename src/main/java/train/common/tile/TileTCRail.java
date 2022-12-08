@@ -346,6 +346,7 @@ public class TileTCRail extends TileEntity {
 
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
+		super.readFromNBT(nbt);
 		facingMeta = nbt.getByte("Orientation");
 		r = nbt.getDouble("r");
 		cx = nbt.getDouble("cx");
@@ -362,54 +363,58 @@ public class TileTCRail extends TileEntity {
 		linkedZ = nbt.getInteger("linkedZ");
 		ballastMetadata = nbt.getInteger("ballastMetadata");
 		ballastColour = nbt.getInteger("ballastColour");
-		String tempType = nbt.getString("type");
-		if (tempType != null) {
-			type = tempType;
+		if (nbt.hasKey("type")) {
+			type = nbt.getString("type");
 		} else {
 			type = ItemTCRail.TrackTypes.SMALL_STRAIGHT.getLabel();
 		}
-		ballastMaterial  = nbt.getInteger("ballastMaterial");
+		if(nbt.hasKey("ballastMaterial")) {
+			ballastMaterial = nbt.getInteger("ballastMaterial");
+		} else {
+			ballastMaterial=0;
+		}
 
 
-		/**
-		 * Hacky TC Code to fix already placed slopes
-		 */
-		if (type.equals(ItemTCRail.TrackTypes.SLOPE_WOOD.getLabel())
-				|| type.equals(ItemTCRail.TrackTypes.SLOPE_GRAVEL.getLabel())
-				|| type.equals(ItemTCRail.TrackTypes.SLOPE_BALLAST.getLabel())
-				|| type.equals(ItemTCRail.TrackTypes.SLOPE_SNOW_GRAVEL.getLabel())
-				|| type.equals(ItemTCRail.TrackTypes.SLOPE_DYNAMIC.getLabel())){
-			slopeAngle = 0.13;
-		}
-		
-		if (type.equals(ItemTCRail.TrackTypes.LARGE_SLOPE_WOOD.getLabel())
-				|| type.equals(ItemTCRail.TrackTypes.LARGE_SLOPE_GRAVEL.getLabel())
-				|| type.equals(ItemTCRail.TrackTypes.LARGE_SLOPE_BALLAST.getLabel())
-				|| type.equals(ItemTCRail.TrackTypes.LARGE_SLOPE_SNOW_GRAVEL.getLabel())
-				|| type.equals(ItemTCRail.TrackTypes.LARGE_SLOPE_DYNAMIC.getLabel())) {
-			slopeAngle = 0.0666;
-		}
-		
-		if (type.equals(ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_WOOD.getLabel())
-				|| type.equals(ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_GRAVEL.getLabel())
-				|| type.equals(ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_BALLAST.getLabel())
-				|| type.equals(ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_SNOW_GRAVEL.getLabel())
-				|| type.equals(ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_DYNAMIC.getLabel())) {
-			slopeAngle = 0.0444;
-		}
 		isLinkedToRail = nbt.getBoolean("isLinkedToRail");
 		hasModel = nbt.getBoolean("hasModel");
 		switchActive = nbt.getBoolean("switchActive");
 		canTypeBeModifiedBySwitch = nbt.getBoolean("canTypeBeModifiedBySwitch");
 		manualOverride = nbt.getBoolean("manualOverride");
-		idDrop = Item.getItemById(nbt.getInteger("idDrop"));
 		hasRotated = nbt.getBoolean("hasRotated");
+		idDrop = Item.getItemById(nbt.getInteger("idDrop"));
 		previousRedstoneState = nbt.getBoolean("previousRedstoneState");
-		super.readFromNBT(nbt);
+
+
+		/**
+		 * Hacky TC Code to fix already placed slopes
+		 * ETERNAL NOTE: checking if it's a slope before checking what kind of slope, in theory, should improve performance
+		 */
+		if(type.contains("SLOPE")) {
+			if (type.equals(ItemTCRail.TrackTypes.SLOPE_WOOD.getLabel())
+					|| type.equals(ItemTCRail.TrackTypes.SLOPE_GRAVEL.getLabel())
+					|| type.equals(ItemTCRail.TrackTypes.SLOPE_BALLAST.getLabel())
+					|| type.equals(ItemTCRail.TrackTypes.SLOPE_SNOW_GRAVEL.getLabel())
+					|| type.equals(ItemTCRail.TrackTypes.SLOPE_DYNAMIC.getLabel())) {
+				slopeAngle = 0.13;
+			} else if (type.equals(ItemTCRail.TrackTypes.LARGE_SLOPE_WOOD.getLabel())
+					|| type.equals(ItemTCRail.TrackTypes.LARGE_SLOPE_GRAVEL.getLabel())
+					|| type.equals(ItemTCRail.TrackTypes.LARGE_SLOPE_BALLAST.getLabel())
+					|| type.equals(ItemTCRail.TrackTypes.LARGE_SLOPE_SNOW_GRAVEL.getLabel())
+					|| type.equals(ItemTCRail.TrackTypes.LARGE_SLOPE_DYNAMIC.getLabel())) {
+				slopeAngle = 0.0666;
+			} else if (type.equals(ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_WOOD.getLabel())
+					|| type.equals(ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_GRAVEL.getLabel())
+					|| type.equals(ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_BALLAST.getLabel())
+					|| type.equals(ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_SNOW_GRAVEL.getLabel())
+					|| type.equals(ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_DYNAMIC.getLabel())) {
+				slopeAngle = 0.0444;
+			}
+		}
 	}
 
 	@Override
 	public void writeToNBT(NBTTagCompound nbt) {
+		super.writeToNBT(nbt);
 		nbt.setByte("Orientation", (byte) facingMeta);
 		nbt.setDouble("r", r);
 		nbt.setDouble("cx", cx);
@@ -438,7 +443,6 @@ public class TileTCRail extends TileEntity {
 		nbt.setBoolean("hasRotated", hasRotated);
 		nbt.setInteger("idDrop", Item.getIdFromItem(idDrop));
 		nbt.setBoolean("previousRedstoneState", previousRedstoneState);
-		super.writeToNBT(nbt);
 	}
 
 	@Override
@@ -457,23 +461,7 @@ public class TileTCRail extends TileEntity {
 	}
 
 	public void changeSwitchState(World world, TileTCRail tileEntity, int i, int j, int k) {
-		if (tileEntity.getType() != null && (tileEntity.getType().equals(ItemTCRail.TrackTypes.MEDIUM_RIGHT_SWITCH.getLabel())
-				|| tileEntity.getType().equals(ItemTCRail.TrackTypes.MEDIUM_LEFT_SWITCH.getLabel())
-				|| tileEntity.getType().equals(ItemTCRail.TrackTypes.LARGE_RIGHT_SWITCH.getLabel())
-				|| tileEntity.getType().equals(ItemTCRail.TrackTypes.LARGE_LEFT_SWITCH.getLabel())
-				|| tileEntity.getType().equals(ItemTCRail.TrackTypes.MEDIUM_RIGHT_PARALLEL_SWITCH.getLabel())
-				|| tileEntity.getType().equals(ItemTCRail.TrackTypes.MEDIUM_LEFT_PARALLEL_SWITCH.getLabel())
-				|| tileEntity.getType().equals(ItemTCRail.TrackTypes.MEDIUM_RIGHT_45DEGREE_SWITCH.getLabel())
-				|| tileEntity.getType().equals(ItemTCRail.TrackTypes.MEDIUM_LEFT_45DEGREE_SWITCH.getLabel())
-				|| tileEntity.getType().equals(ItemTCRail.TrackTypes.EMBEDDED_MEDIUM_RIGHT_SWITCH.getLabel())
-				|| tileEntity.getType().equals(ItemTCRail.TrackTypes.EMBEDDED_MEDIUM_LEFT_SWITCH.getLabel())
-				|| tileEntity.getType().equals(ItemTCRail.TrackTypes.EMBEDDED_LARGE_RIGHT_SWITCH.getLabel())
-				|| tileEntity.getType().equals(ItemTCRail.TrackTypes.EMBEDDED_LARGE_LEFT_SWITCH.getLabel())
-				|| tileEntity.getType().equals(ItemTCRail.TrackTypes.EMBEDDED_MEDIUM_RIGHT_PARALLEL_SWITCH.getLabel())
-				|| tileEntity.getType().equals(ItemTCRail.TrackTypes.EMBEDDED_MEDIUM_LEFT_PARALLEL_SWITCH.getLabel())
-				|| tileEntity.getType().equals(ItemTCRail.TrackTypes.EMBEDDED_MEDIUM_RIGHT_45DEGREE_SWITCH.getLabel())
-				|| tileEntity.getType().equals(ItemTCRail.TrackTypes.EMBEDDED_MEDIUM_LEFT_45DEGREE_SWITCH.getLabel())))
-		 {
+		if (tileEntity.getType() != null && (tileEntity.getType().contains("SWITCH"))) {
 			if (tileEntity.getSwitchState()) {
 				tileEntity.setSwitchState(false, false);
 				if (tileEntity.getBlockMetadata() == 2) {
