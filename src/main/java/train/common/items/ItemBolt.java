@@ -9,7 +9,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 import train.common.Traincraft;
 import train.common.library.Info;
-import net.minecraft.enchantment.EnchantmentProtection;
 
 import java.util.ArrayList;
 import java.util.List;

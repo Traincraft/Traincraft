@@ -9,16 +9,8 @@
 
 package train.client.render.models; //Path where the model is located
 
-import net.minecraft.entity.Entity;
-import net.minecraft.util.ResourceLocation;
-import org.lwjgl.opengl.GL11;
 import tmt.ModelConverter;
 import tmt.ModelRendererTurbo;
-import tmt.Tessellator;
-import train.client.render.models.loads.Modelwrappedwood;
-import train.common.api.AbstractTrains;
-import train.common.api.Freight;
-import train.common.library.Info;
 
 public class Model5Plank extends ModelConverter //Same as Filename
 {

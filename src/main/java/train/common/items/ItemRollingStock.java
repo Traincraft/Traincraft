@@ -1,7 +1,6 @@
 package train.common.items;
 
 import com.mojang.authlib.GameProfile;
-import javax.annotation.Nullable;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mods.railcraft.api.carts.IMinecart;
@@ -30,6 +29,7 @@ import train.common.library.Info;
 import train.common.tile.TileTCRail;
 import train.common.tile.TileTCRailGag;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 public class ItemRollingStock extends ItemMinecart implements IMinecart, IMinecartItem {
@@ -252,7 +252,7 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 				}
 
 				int dir = 0;
-				int meta = world.getBlockMetadata(i, j, k);
+				int meta = ((BlockRailBase) world.getBlock(i,j,k)).getBasicRailMetadata(world, rollingStock, i, j, k);
 				if (player != null)
 					dir = MathHelper.floor_double((player.rotationYaw * 4F) / 360F + 0.5D) & 3;
 				//180 = 3 = EAST

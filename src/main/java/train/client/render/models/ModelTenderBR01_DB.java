@@ -1,6 +1,5 @@
 package train.client.render.models;
 
-import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;

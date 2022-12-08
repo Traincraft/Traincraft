@@ -7,7 +7,6 @@
 
 package train.client.render.models.blocks;
 
-import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.IModelCustom;

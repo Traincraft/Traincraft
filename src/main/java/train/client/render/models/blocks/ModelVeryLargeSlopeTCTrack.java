@@ -1,6 +1,5 @@
 package train.client.render.models.blocks;
 
-import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.block.Block;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.util.IIcon;
@@ -10,8 +9,6 @@ import net.minecraftforge.client.model.IModelCustom;
 import org.lwjgl.opengl.GL11;
 import train.common.library.Info;
 import train.common.tile.TileTCRail;
-
-import javax.annotation.Nullable;
 
 public class ModelVeryLargeSlopeTCTrack extends ModelBase {
 	

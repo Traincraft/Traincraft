@@ -5,8 +5,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
 import tmt.Tessellator;
-import train.common.library.Info;
 import train.client.render.models.blocks.ModelMetroMadridOHW;
+import train.common.library.Info;
 
 public class ItemRenderModelMetroMadridPole implements IItemRenderer {
 

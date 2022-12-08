@@ -15,7 +15,6 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import org.lwjgl.util.vector.Matrix2f;
 import org.lwjgl.util.vector.Vector2f;
-import train.common.core.util.TraincraftUtil;
 import train.common.library.BlockIDs;
 import train.common.library.ItemIDs;
 import train.common.tile.TileTCRail;

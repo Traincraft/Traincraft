@@ -1,21 +1,16 @@
 package train.client.render.models.blocks;
 
-import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.IModelCustom;
 import org.lwjgl.opengl.GL11;
 import train.common.library.Info;
 import train.common.tile.TileTCRail;
-
-import javax.annotation.Nullable;
-import java.util.Arrays;
 
 @SideOnly(Side.CLIENT)
 public class ModelSlopeTCTrack extends ModelBase {

@@ -15,7 +15,6 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Vector2f;
 import train.client.render.RenderTCRail;
 import train.common.items.ItemTCRail;
-import train.common.tile.TileTCRail;
 
 public class CustomRenderHandler {
 

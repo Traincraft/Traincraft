@@ -10,10 +10,8 @@
 package train.client.render.renderSwitch.models; //Path where the model is located
 
 
-import tmt.Coord2D;
 import tmt.ModelConverter;
 import tmt.ModelRendererTurbo;
-import tmt.Shape2D;
 
 public class ModelkSignal extends ModelConverter //Same as Filename
 {

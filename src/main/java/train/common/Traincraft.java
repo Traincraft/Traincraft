@@ -25,7 +25,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import train.common.api.LiquidManager;
 import train.common.blocks.TCBlocks;
-import train.common.core.*;
+import train.common.core.CommonProxy;
+import train.common.core.CreativeTabTraincraft;
+import train.common.core.CreativeTabTraincraftTrains;
+import train.common.core.TrainModCore;
 import train.common.core.handlers.*;
 import train.common.core.util.TraincraftUtil;
 import train.common.generation.ComponentVillageTrainstation;
@@ -150,10 +153,15 @@ public class Traincraft {
 		proxy.registerRenderInformation();
 		proxy.registerEvents(event);
 
-		/* Networking and Packet initialisation */
-		PacketHandler.init();
 
 		tcLog.info("Finished PreInitialization");
+	}
+
+	@Mod.EventHandler
+	public void init(FMLInitializationEvent event) {
+
+		/* Networking and Packet initialisation, apparently this needs to be in init to prevent conflicts */
+		PacketHandler.init();
 	}
 
 	@EventHandler

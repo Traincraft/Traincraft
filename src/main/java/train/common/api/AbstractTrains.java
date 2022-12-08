@@ -21,7 +21,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeChunkManager;
 import net.minecraftforge.common.ForgeChunkManager.Ticket;
 import org.apache.commons.lang3.ArrayUtils;
-import train.client.render.RenderEnum;
 import train.common.Traincraft;
 import train.common.adminbook.ItemAdminBook;
 import train.common.core.handlers.ConfigHandler;

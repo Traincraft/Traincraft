@@ -9,7 +9,6 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.util.ForgeDirection;
-import train.common.tile.TileTraincraft;
 
 public class TileSpeedSign extends TileEntity {
 
