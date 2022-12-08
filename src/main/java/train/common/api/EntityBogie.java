@@ -288,7 +288,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		//super.func_145821_a(x, y, z, maxSpeed, slopeAdjustment, block, railMeta);
 		super.func_145821_a(x, y, z, this.getMaxCartSpeedOnRail(), slopeAdjustment, block, railMeta);
 	}
-	private static final double[][][] martix = new double[][][] {
+	private static final double[][][] matrix = new double[][][] {
 			//straight
 			{{0, -0.5}, {0, 0.5}, {0, -1}},
 			{{ -0.5, 0}, {0.5, 0}, {-1, 0}},
@@ -308,8 +308,8 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 	private void updateOnTrack(int i, int j, int k, Block l) {
 		railMetadata=((BlockRailBase)l).getBasicRailMetadata(worldObj,this,i,j,k);
 		//figure out the current rail's direction
-		railPathX = (martix[railMetadata][2][0]);
-		railPathZ = (martix[railMetadata][2][1]);
+		railPathX = (matrix[railMetadata][2][0]);
+		railPathZ = (matrix[railMetadata][2][1]);
 
 		//cover moving reverse of track direction using the rotation from the closed loop rather than the full motion
 		if(motionX * railPathX + motionZ * railPathZ <= 0.0D) {
@@ -342,10 +342,10 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 
 
 		//define the rail path again, to center the transport.
-		railPathX2 = i + 0.5D + martix[railMetadata][0][0];
-		railPathZ2 = k + 0.5D + martix[railMetadata][0][1];
-		railPathX = (i + 0.5D + martix[railMetadata][1][0]) - railPathX2;
-		railPathZ = (k + 0.5D + martix[railMetadata][1][1]) - railPathZ2;
+		railPathX2 = i + 0.5D + matrix[railMetadata][0][0];
+		railPathZ2 = k + 0.5D + matrix[railMetadata][0][1];
+		railPathX = (i + 0.5D + matrix[railMetadata][1][0]) - railPathX2;
+		railPathZ = (k + 0.5D + matrix[railMetadata][1][1]) - railPathZ2;
 
 		//based on the path direction, try to center the bogie on the track
 		if (railPathX == 0.0D) {
