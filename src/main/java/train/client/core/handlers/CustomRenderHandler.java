@@ -268,7 +268,7 @@ public class CustomRenderHandler {
         }
         // 45 Degree Turns
 
-        else if (item.getTrackType() == ItemTCRail.TrackTypes.MEDIUM_45DEGREE_TURN || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_MEDIUM_45DEGREE_TURN || item.getTrackType() == ItemTCRail.TrackTypes.LARGE_45DEGREE_TURN /*|| item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_LARGE_45DEGREE_TURN */) {
+        else if (item.getTrackType() == ItemTCRail.TrackTypes.MEDIUM_45DEGREE_TURN || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_MEDIUM_45DEGREE_TURN || item.getTrackType() == ItemTCRail.TrackTypes.LARGE_45DEGREE_TURN || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_LARGE_45DEGREE_TURN ) {
             float yaw = MathHelper.wrapAngleTo180_float(player.rotationYaw);
             boolean isLeftTurn = item.getTrackOrientation( facing, yaw ).equals("left");
 
@@ -305,7 +305,7 @@ public class CustomRenderHandler {
                 }
             }
 
-           /* if (item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_LARGE_45DEGREE_TURN) {
+            if (item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_LARGE_45DEGREE_TURN) {
                 String turnSize = "large";
                 if ( isLeftTurn )
                 {
@@ -314,7 +314,7 @@ public class CustomRenderHandler {
                 {
                     RenderTCRail.modelEmbeddedRight45DegreeTurn.render( turnSize, facing, 0, 0, 0, r, g, b, a );
                 }
-            }*/
+            }
         }
 
         // Turns
