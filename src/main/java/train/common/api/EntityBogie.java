@@ -51,12 +51,8 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
     private double minecartZ;
     private double minecartYaw;
     private double minecartPitch;
-    @SideOnly(Side.CLIENT)
-    private double velocityX;
-    @SideOnly(Side.CLIENT)
-    private double velocityY;
-    @SideOnly(Side.CLIENT)
-    private double velocityZ;
+
+    public double fakeY=0;
 
 
 
@@ -306,6 +302,12 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 	int railMetadata;
 	double motionSqrt, railPathX,railPathZ,railPathX2,railPathZ2;
 	private void updateOnTrack(int i, int j, int k, Block l) {
+		if(motionZ==0 && motionX==0){
+			this.posY=j+0.2d;
+			setPosition(posX, posY+yOffset, posZ);
+			this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
+			return;
+		}
 		railMetadata=((BlockRailBase)l).getBasicRailMetadata(worldObj,this,i,j,k);
 		//figure out the current rail's direction
 		railPathX = (matrix[railMetadata][2][0]);
@@ -356,10 +358,11 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 			motionSqrt = ((this.posX - railPathX2) * railPathX + (this.posZ - railPathZ2) * railPathZ) * 2.0D;
 		}
 		//do the centering movement
-		setPosition((railPathX2 + railPathX * motionSqrt), posY, (railPathZ2 + railPathZ * motionSqrt));
-		this.posX=(railPathX2 + railPathX * motionSqrt);
-		this.posZ=(railPathZ2 + railPathZ * motionSqrt);
+		this.posY=j+0.2d;
+		setPosition((railPathX2 + railPathX * motionSqrt), posY+yOffset, (railPathZ2 + railPathZ * motionSqrt));
+		this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
 		//endMagic();
+
 
 	}
 
@@ -409,8 +412,6 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 	 */
 	@Override
 	public void onUpdate(){
-		//super.onUpdate(); // XXX I'll just assume that this is not supposed to be there. Why would you run Vanilla update code, only to run your own code afterwards to do basically the same..?
-		
 		this.setCurrentCartSpeedCapOnRail(1.8F);
 		this.setMaxSpeedAirLateral(1.8F);
 
@@ -418,67 +419,45 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		this.prevPosY = this.posY;
 		this.prevPosZ = this.posZ;
 
-		int i = MathHelper.floor_double(this.posX);
-		int j = MathHelper.floor_double(this.posY);
-		int k = MathHelper.floor_double(this.posZ);
-		Block block = this.worldObj.getBlock(i, j - 1, k);
-
-		if (BlockRailBase.func_150051_a(block) || block == BlockIDs.tcRail.block || block == BlockIDs.tcRailGag.block) {
-			j--;
-		} else {
-			Block block2 = this.worldObj.getBlock(i, j + 1, k);
-			if(BlockRailBase.func_150051_a(block2) || block2 == BlockIDs.tcRail.block || block2 == BlockIDs.tcRailGag.block){
-				j++;
-			}
-			block = this.worldObj.getBlock(i, j, k);
-		}
-
-		if (BlockRailBase.func_150051_a(block)) {
-			if (this.worldObj.isRemote)
-			{
-				if (this.turnProgress > 0)
-				{
-					double d6 = this.posX + (this.minecartX - this.posX) / this.turnProgress;
-					double d7 = this.posY + (this.minecartY - this.posY) / this.turnProgress;
-					double d1 = this.posZ + (this.minecartZ - this.posZ) / this.turnProgress;
-					double d3 = MathHelper.wrapAngleTo180_double(this.minecartYaw - this.rotationYaw);
-					this.rotationYaw = (float)(this.rotationYaw + d3 / this.turnProgress);
-					this.rotationPitch = (float)(this.rotationPitch + (this.minecartPitch - this.rotationPitch) / this.turnProgress);
-					--this.turnProgress;
-					this.setPosition(d6, d7, d1);
-					this.setRotation(this.rotationYaw, this.rotationPitch);
-				}
-				else
-				{
-					this.setPosition(this.posX, this.posY, this.posZ);
-					this.setRotation(this.rotationYaw, this.rotationPitch);
-				}
+		if (this.worldObj.isRemote) {
+			if (this.turnProgress > 0) {
+				double d6 = this.posX + (this.minecartX - this.posX) / this.turnProgress;
+				double d7 = this.posY + (this.minecartY - this.posY) / this.turnProgress;
+				double d1 = this.posZ + (this.minecartZ - this.posZ) / this.turnProgress;
+				double d3 = MathHelper.wrapAngleTo180_double(this.minecartYaw - this.rotationYaw);
+				this.rotationYaw = (float)(this.rotationYaw + d3 / this.turnProgress);
+				this.rotationPitch = (float)(this.rotationPitch + (this.minecartPitch - this.rotationPitch) / this.turnProgress);
+				--this.turnProgress;
+				this.setPosition(d6, d7, d1);
+				this.setRotation(this.rotationYaw, this.rotationPitch);
 			} else {
-				updateOnTrack(i, j, k, block);
+				this.setPosition(this.posX, this.posY, this.posZ);
+				this.setRotation(this.rotationYaw, this.rotationPitch);
 			}
+
 		} else {
 
-			if (this.worldObj.isRemote)
-			{
-				if (this.turnProgress > 0)
-				{
-					double d6 = this.posX + (this.minecartX - this.posX) / this.turnProgress;
-					double d7 = this.posY + (this.minecartY - this.posY) / this.turnProgress;
-					double d1 = this.posZ + (this.minecartZ - this.posZ) / this.turnProgress;
-					double d3 = MathHelper.wrapAngleTo180_double(this.minecartYaw - this.rotationYaw);
-					this.rotationYaw = (float)(this.rotationYaw + d3 / this.turnProgress);
-					this.rotationPitch = (float)(this.rotationPitch + (this.minecartPitch - this.rotationPitch) / this.turnProgress);
-					--this.turnProgress;
-					this.setPosition(d6, d7, d1);
-					this.setRotation(this.rotationYaw, this.rotationPitch);
+			int i = MathHelper.floor_double(this.posX);
+			int j = MathHelper.floor_double(this.posY);
+			int k = MathHelper.floor_double(this.posZ);
+			Block block = this.worldObj.getBlock(i, j - 1, k);
+
+			if (BlockRailBase.func_150051_a(block) || block == BlockIDs.tcRail.block || block == BlockIDs.tcRailGag.block) {
+				j--;
+			} else {
+				Block block2 = this.worldObj.getBlock(i, j + 1, k);
+				if(BlockRailBase.func_150051_a(block2) || block2 == BlockIDs.tcRail.block || block2 == BlockIDs.tcRailGag.block){
+					j++;
 				}
-				else
-				{
-					this.setPosition(this.posX, this.posY, this.posZ);
-					this.setRotation(this.rotationYaw, this.rotationPitch);
-				}
+				block = this.worldObj.getBlock(i, j, k);
 			}
-			else{
+
+			if (BlockRailBase.func_150051_a(block)) {
+				//vanilla/TiM tracl
+				updateOnTrack(i, j, k, block);
+
+				} else {
+				//TC track
 				TileEntity tileEntity = this.worldObj.getTileEntity(i, j, k);
 				TileTCRail tileRail;
 
@@ -489,8 +468,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 
 						TileTCRailGag tileGag = (TileTCRailGag) tileEntity;
 						tileEntity = this.worldObj.getTileEntity(tileGag.originX, tileGag.originY, tileGag.originZ);
-					}
-					else {
+					} else {
 
 						return;
 					}
@@ -499,8 +477,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 				if (tileEntity instanceof TileTCRail) {
 
 					tileRail = (TileTCRail) tileEntity;
-				}
-				else {
+				} else {
 					super.onUpdate();
 					return;
 				}
@@ -513,32 +490,25 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 				if (ItemTCRail.isTCStraightTrack(tileRail)) {
 
 					moveOnTCStraight(j, tileRail.xCoord, tileRail.zCoord, tileRail.getBlockMetadata());
-				}
-				else if (ItemTCRail.isTCTurnTrack(tileRail)) {
+				} else if (ItemTCRail.isTCTurnTrack(tileRail)) {
 					if (shouldIgnoreSwitch(tileRail, i, j, k, meta)) {
 						moveOnTCStraight(j, tileRail.xCoord, tileRail.zCoord, tileRail.getBlockMetadata());
 					} else {
 						if (ItemTCRail.isTCTurnTrack(tileRail)) {
-						moveOnTC90TurnRail(j, tileRail.r, tileRail.cx, tileRail.cz);
+							moveOnTC90TurnRail(j, tileRail.r, tileRail.cx, tileRail.cz);
 						}
 					}
 
-				// shouldIgnoreSwitch(tileRail, i, j, k, meta);
-				// if (ItemTCRail.isTCTurnTrack(tileRail)) moveOnTC90TurnRail(i, j, k,
-				// tileRail.r, tileRail.cx, tileRail.cy, tileRail.cz, tileRail.getType(), meta);
-				}
+					// shouldIgnoreSwitch(tileRail, i, j, k, meta);
+					// if (ItemTCRail.isTCTurnTrack(tileRail)) moveOnTC90TurnRail(i, j, k,
+					// tileRail.r, tileRail.cx, tileRail.cy, tileRail.cz, tileRail.getType(), meta);
+				} else if (ItemTCRail.isTCTwoWaysCrossingTrack(tileRail)) {
 
-				else if (ItemTCRail.isTCTwoWaysCrossingTrack(tileRail)) {
-
-				moveOnTCTwoWaysCrossing();
-				}
-
-				else if (ItemTCRail.isTCSlopeTrack(tileRail)) {
+					moveOnTCTwoWaysCrossing();
+				} else if (ItemTCRail.isTCSlopeTrack(tileRail)) {
 
 					moveOnTCSlope(j, tileRail.xCoord, tileRail.zCoord, tileRail.slopeAngle, tileRail.slopeHeight, tileRail.getBlockMetadata());
-				}
-
-				else if (ItemTCRail.isTCDiagonalStraightTrack(tileRail)) {
+				} else if (ItemTCRail.isTCDiagonalStraightTrack(tileRail)) {
 					moveOnTCDiagonal(i, j, k, tileRail.xCoord, tileRail.zCoord, tileRail.getBlockMetadata(), tileRail.getRailLength());
 				}
 			}
@@ -573,9 +543,9 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 
 				Entity entity;
 
-				for(i = 0; i < list.size(); ++i) {
+				for (Object o : list) {
 
-					entity = (Entity) list.get(i);
+					entity = (Entity) o;
 
 					if (entity != this.riddenByEntity) {
 
@@ -965,8 +935,5 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		this.minecartYaw = p_70056_7_;
 		this.minecartPitch = p_70056_8_;
 		this.turnProgress = p_70056_9_ + 2;
-		this.motionX = this.velocityX;
-		this.motionY = this.velocityY;
-		this.motionZ = this.velocityZ;
 	}
 }

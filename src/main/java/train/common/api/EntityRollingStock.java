@@ -150,8 +150,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 	private boolean hasSpawnedBogie = false;
 	private double mountedOffset = -0.5;
 	public double posYFromServer;
-	private boolean shouldServerSetPosYOnClient = true;
-	private int clientTicks = 0;
 	
 	private double derailSpeed = 0.46;
 
@@ -604,7 +602,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 					this.bogieShift = this.trainSpec.getBogieLocoPosition();
 					this.bogieLoco = new EntityBogie(worldObj,
 							(posX - Math.cos(this.serverRealRotation * TraincraftUtil.radian) * this.bogieShift),
-							posY + ((Math.tan(this.renderPitch * TraincraftUtil.radian) * -this.bogieShift) + getMountedYOffset()),
+							posY + ((Math.tan(this.renderPitch * TraincraftUtil.radian) * -this.bogieShift) + getMountedYOffset()-0.1d),
 							(posZ - Math.sin(this.serverRealRotation * TraincraftUtil.radian) * this.bogieShift), this, this.uniqueID, 0, this.bogieShift);
 
 
@@ -700,7 +698,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		}
 
 		if (worldObj.isRemote) {
-			clientTicks++;
 			//rotationYaw = (float) rotationYawClient;
 			if (rollingturnProgress > 0) {
 				rotationYaw = (float) rotationYawClient;
@@ -717,10 +714,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				setPosition(posX, posY, posZ);
 				setRotation(rotationYaw, rotationPitch);
 
-			}
-			if (posYFromServer != 0 && clientTicks < 600 && posY > posYFromServer && shouldServerSetPosYOnClient && Math.abs(posY - posYFromServer) > 0.04) {
-
-				posY = posYFromServer;
 			}
 			return;
 		}
@@ -896,15 +889,12 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				tempPitch2 -= 0.5;
 			}
 			anglePitch = -tempPitch2;
-			rollingServerPitch = tempPitch2;
+			rollingServerPitch = 0;
 		}
 
+
 		if (updateTicks % 2 == 0) {
-			shouldServerSetPosYOnClient = true;
-		}
-		if (shouldServerSetPosYOnClient) {
 			Traincraft.rotationChannel.sendToAllAround(new PacketRollingStockRotation(this, (int) (anglePitch * 60)), new TargetPoint(worldObj.provider.dimensionId, posX, posY, posZ, 300.0D));
-			shouldServerSetPosYOnClient = false;
 		}
 		if(!worldObj.isRemote){
 			anglePitchClient=(anglePitch * 60);
