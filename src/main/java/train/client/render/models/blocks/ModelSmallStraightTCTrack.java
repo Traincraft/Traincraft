@@ -65,14 +65,9 @@ public class ModelSmallStraightTCTrack extends ModelBase {
 			tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_roadcrossing_2.png"));
 		}
 
+		GL11.glRotatef(90 * facing , 0, 1, 0);
 
 
-
-
-		if (facing == 3 || facing == 1) {
-			GL11.glRotatef(90, 0, 1, 0);
-
-		}
 
 
 		render(type);
