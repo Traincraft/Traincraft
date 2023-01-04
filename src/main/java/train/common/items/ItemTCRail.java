@@ -5546,13 +5546,13 @@ public class ItemTCRail extends ItemPart {
 		}
 		if (l == 1) {
 			if (!putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, true), flipArraySign(xArray, z, false), l, false, 0, x - 11, z + 4 , 15.69, x + 1,
-					y + 1,  z - 15.69, tempType.getLabel(), tempType.getItem().item))
+					y + 1,  z + 16.19, tempType.getLabel(), tempType.getItem().item))
 				return false;
 		}
 
 		if (l == 3) {
 			if (!putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, false), flipArraySign(xArray, z, true), l, false, 2, x + 11, z - 4 , 15.69, x,
-					y + 1,  z + 15.19, tempType.getLabel(), tempType.getItem().item))
+					y + 1,  z - 15.19, tempType.getLabel(), tempType.getItem().item))
 				return false;
 		}
 		return true;
