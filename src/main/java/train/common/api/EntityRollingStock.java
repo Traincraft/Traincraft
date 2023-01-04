@@ -956,12 +956,11 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			 meta = i1;
 			 posY = j;
 			 flag = false;
-			 flag1 = false;
+			 flag1=l == Blocks.golden_rail;
 			 if (l == Blocks.golden_rail) {
-				 flag = ((BlockRailBase)l).getBasicRailMetadata(worldObj, this,i,j,k) != 0;
-				 flag1 = !flag;
+				 flag = worldObj.getBlockMetadata(i,j,k) >2;
 				 if (i1 == 8) {i1 = 0;}
-				 else if (i1 == 9) {i1 = 1;}
+				 else if(i1 == 9) {i1 = 1;}
 			 }
 
 			if (l == Blocks.detector_rail){
@@ -990,7 +989,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			 double d13 = Math.sqrt(motionX * motionX + motionZ * motionZ);
 			 motionX = (d13 * d9) / d11;
 			 motionZ = (d13 * d10) / d11;
-			 if (flag1 && shouldDoRailFunctions()) {
+			 if (flag1 && !flag && shouldDoRailFunctions()) {
 			 if (Math.sqrt(motionX * motionX + motionZ * motionZ) < 0.029999999999999999D) {
 			 motionX = 0.0D;
 			 motionY = 0.0D;
