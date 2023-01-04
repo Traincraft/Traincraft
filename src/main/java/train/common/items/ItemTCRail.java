@@ -838,248 +838,87 @@ public class ItemTCRail extends ItemPart {
 				return true;
 			}
 
-			if (tempType == TrackTypes.SUPER_LARGE_LEFT_45DEGREE_TURN) {
-				switch (tempType){
-					case SUPER_LARGE_LEFT_45DEGREE_TURN:
-						idVariant45Turn = ItemIDs.tcRailSuperLarge45DegreeTurn.item;
-						typeVariant90Turn = TrackTypes.SUPER_LARGE_LEFT_45DEGREE_TURN.getLabel();
-						break;
-					/*case SUPER_LARGE_RIGHT_45DEGREE_TURN:
-						idVariant45Turn = ItemIDs.tcRailLarge45DegreeTurn.item;
-						typeVariant90Turn = TrackTypes.SUPER_LARGE_RIGHT_45DEGREE_TURN.getLabel();
-						break;*/
+
+
+
+
+			if (tempType == TrackTypes.MEDIUM_RIGHT_45DEGREE_TURN || tempType == TrackTypes.EMBEDDED_MEDIUM_RIGHT_45DEGREE_TURN) {
+
+				if (!mediumRight45DegreeTurn(player, world, x, y, z, l, tempType)){
+					return false;
 				}
 
-				if (!player.isSneaking()) {
-					if (l == 2) {
-
-						int[] xArray = {x,   x  ,   x  ,   x  ,   x  ,   x  , x - 1, x - 1, x - 1, x - 1, x - 1, x - 1, x - 1, x - 2, x - 2, x - 2, x - 2, x - 2, x - 3, x - 3, x - 3, x - 3 , x - 4, x - 4, x - 4, x - 5};
-						int[] zArray = {z, z - 1, z - 2, z - 3, z - 4, z - 5, z - 1, z - 2, z - 3, z - 4, z - 5, z - 6, z - 7, z - 5, z - 6, z - 7, z - 8, z - 9, z - 7, z - 8, z - 9, z - 10, z - 9, z - 10, z - 11, z - 10};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 1, x - 4, z - 11 , 15.69, x - 15.19,
-								y + 1, z + 1, typeVariant90Turn, idVariant45Turn))
-							return false;
-					}
-
-					if (l == 0) {
-
-						int[] xArray = {x,   x  ,   x  ,   x  ,   x  ,   x  , x + 1, x + 1, x + 1, x + 1, x + 1, x + 1, x + 1, x + 2, x + 2, x + 2, x + 2, x + 2, x + 3, x + 3, x + 3, x + 3 , x + 4, x + 4, x + 4, x + 5};
-						int[] zArray = {z, z + 1, z + 2, z + 3, z + 4, z + 5, z + 1, z + 2, z + 3, z + 4, z + 5, z + 6, z + 7, z + 5, z + 6, z + 7, z + 8, z + 9, z + 7, z + 8, z + 9, z + 10, z + 9, z + 10, z + 11, z + 10};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 3, x + 4, z + 11 , 15.69, x + 16.19,
-								y + 1, z , typeVariant90Turn, idVariant45Turn))
-							return false;
-					}
-					if (l == 1) {
-
-						int[] xArray = {x, x - 1, x - 2, x - 3, x - 4, x - 5, x - 1, x - 2, x - 3, x - 4, x - 5, x - 6, x - 7, x - 5, x - 6, x - 7, x - 8, x - 9, x - 7, x - 8, x - 9, x - 10, x - 9, x - 10 , x - 11, x - 10};
-						int[] zArray = {z,   z  ,   z  ,   z  ,   z  ,   z  , z + 1, z + 1, z + 1, z + 1, z + 1, z + 1, z + 1, z + 2, z + 2, z + 2, z + 2, z + 2, z + 3, z + 3, z + 3, z + 3 , z + 4, z + 4, z + 4, z + 5};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 0, x - 11, z + 4 , 15.69, x + 1,
-								y + 1,  z - 15.69, typeVariant90Turn, idVariant45Turn))
-							return false;
-					}
-
-					if (l == 3) {
-
-						int[] xArray = {x, x + 1, x + 2, x + 3, x + 4, x + 5, x + 1, x + 2, x + 3, x + 4, x + 5, x + 6, x + 7, x + 5, x + 6, x + 7, x + 8, x + 9, x + 7, x + 8, x + 9, x + 10, x + 9, x + 10 , x + 11, x + 10};
-						int[] zArray = {z,   z  ,   z  ,   z  ,   z  ,   z  , z - 1, z - 1, z - 1, z - 1, z - 1, z - 1, z - 1, z - 2, z - 2, z - 2, z - 2, z - 2, z - 3, z - 3, z - 3, z - 3 , z - 4, z - 4, z - 4, z - 5};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 2, x + 11, z - 4 , 15.69, x,
-								y + 1,  z + 15.19, typeVariant90Turn, idVariant45Turn))
-							return false;
-					}
-
-
+				if (player==null || !player.capabilities.isCreativeMode) {
+					--itemstack.stackSize;
 				}
+				return true;
+			}
+			if (tempType == TrackTypes.MEDIUM_LEFT_45DEGREE_TURN || tempType == TrackTypes.EMBEDDED_MEDIUM_LEFT_45DEGREE_TURN) {
 
-				else {
-
-
-					if (l == 2) {
-
-						int[] xArray = {x,   x  ,   x  ,   x  ,   x  ,   x  , x - 1, x - 1, x - 1, x - 1, x - 1, x - 1, x - 1, x - 2, x - 2, x - 2, x - 2, x - 2, x - 3, x - 3, x - 3, x - 3 , x - 4, x - 4};
-						int[] zArray = {z, z - 1, z - 2, z - 3, z - 4, z - 5, z - 1, z - 2, z - 3, z - 4, z - 5, z - 6, z - 7, z - 5, z - 6, z - 7, z - 8, z - 9, z - 7, z - 8, z - 9, z - 10, z - 9, z - 10};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 1, x - 4, z - 11 , 15.69, x - 15.19,
-								y + 1, z + 1, typeVariant90Turn, idVariant45Turn))
-							return false;
-					}
-
-					if (l == 0) {
-
-						int[] xArray = {x,   x  ,   x  ,   x  ,   x  ,   x  , x + 1, x + 1, x + 1, x + 1, x + 1, x + 1, x + 1, x + 2, x + 2, x + 2, x + 2, x + 2, x + 3, x + 3, x + 3, x + 3 , x + 4, x + 4};
-						int[] zArray = {z, z + 1, z + 2, z + 3, z + 4, z + 5, z + 1, z + 2, z + 3, z + 4, z + 5, z + 6, z + 7, z + 5, z + 6, z + 7, z + 8, z + 9, z + 7, z + 8, z + 9, z + 10, z + 9, z + 10};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 3, x + 4, z + 11 , 15.69, x + 16.19,
-								y + 1, z , typeVariant90Turn, idVariant45Turn))
-							return false;
-					}
-					if (l == 1) {
-
-						int[] xArray = {x, x - 1, x - 2, x - 3, x - 4, x - 5, x - 1, x - 2, x - 3, x - 4, x - 5, x - 6, x - 7, x - 5, x - 6, x - 7, x - 8, x - 9, x - 7, x - 8, x - 9, x - 10, x - 9, x - 10};
-						int[] zArray = {z,   z  ,   z  ,   z  ,   z  ,   z  , z + 1, z + 1, z + 1, z + 1, z + 1, z + 1, z + 1, z + 2, z + 2, z + 2, z + 2, z + 2, z + 3, z + 3, z + 3, z + 3 , z + 4, z + 4};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 0, x - 11, z + 4 , 15.69, x + 1,
-								y + 1,  z - 15.69, typeVariant90Turn, idVariant45Turn))
-							return false;
-					}
-
-					if (l == 3) {
-
-						int[] xArray = {x, x + 1, x + 2, x + 3, x + 4, x + 5, x + 1, x + 2, x + 3, x + 4, x + 5, x + 6, x + 7, x + 5, x + 6, x + 7, x + 8, x + 9, x + 7, x + 8, x + 9, x + 10, x + 9, x + 10 };
-						int[] zArray = {z,   z  ,   z  ,   z  ,   z  ,   z  , z - 1, z - 1, z - 1, z - 1, z - 1, z - 1, z - 1, z - 2, z - 2, z - 2, z - 2, z - 2, z - 3, z - 3, z - 3, z - 3 , z - 4, z - 4};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 2, x + 11, z - 4 , 15.69, x,
-								y + 1,  z + 15.19, typeVariant90Turn, idVariant45Turn))
-							return false;
-					}
+				if (!mediumLeft45DegreeTurn(player, world, x, y, z, l, tempType)){
+					return false;
 				}
 				if (player==null || !player.capabilities.isCreativeMode) {
 					--itemstack.stackSize;
 				}
 				return true;
 			}
+			if (tempType == TrackTypes.LARGE_RIGHT_45DEGREE_TURN || tempType == TrackTypes.EMBEDDED_LARGE_RIGHT_45DEGREE_TURN) {
 
-
-			if (tempType == TrackTypes.SUPER_LARGE_RIGHT_45DEGREE_TURN) {
-				switch (tempType){
-					case SUPER_LARGE_RIGHT_45DEGREE_TURN:
-						idVariant45Turn = ItemIDs.tcRailSuperLarge45DegreeTurn.item;
-						typeVariant90Turn = TrackTypes.SUPER_LARGE_RIGHT_45DEGREE_TURN.getLabel();
-						break;
-					/*case SUPER_LARGE_RIGHT_45DEGREE_TURN:
-						idVariant45Turn = ItemIDs.tcRailLarge45DegreeTurn.item;
-						typeVariant90Turn = TrackTypes.SUPER_LARGE_RIGHT_45DEGREE_TURN.getLabel();
-						break;*/
+				if (!largeRight45DegreeTurn(player, world, x, y, z, l, tempType)){
+					return false;
 				}
 
-				if (!player.isSneaking()) {
-					if (l == 2) {
-
-						int[] xArray = {x,   x  ,   x  ,   x  ,   x  ,   x  , x + 1, x + 1, x + 1, x + 1, x + 1, x + 1, x + 1, x + 2, x + 2, x + 2, x + 2, x + 2, x + 3, x + 3, x + 3, x + 3 , x + 4, x + 4, x + 4, x + 5};
-						int[] zArray = {z, z - 1, z - 2, z - 3, z - 4, z - 5, z - 1, z - 2, z - 3, z - 4, z - 5, z - 6, z - 7, z - 5, z - 6, z - 7, z - 8, z - 9, z - 7, z - 8, z - 9, z - 10, z - 9, z - 10, z - 11, z - 10};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 3, x + 4, z - 11 , 15.69, x + 16.19,
-								y + 1, z + 1, typeVariant90Turn, idVariant45Turn))
-							return false;
-					}
-
-					if (l == 0) {
-
-						int[] xArray = {x,   x  ,   x  ,   x  ,   x  ,   x  , x - 1, x - 1, x - 1, x - 1, x - 1, x - 1, x - 1, x - 2, x - 2, x - 2, x - 2, x - 2, x - 3, x - 3, x - 3, x - 3 , x - 4, x - 4, x - 4, x - 5};
-						int[] zArray = {z, z + 1, z + 2, z + 3, z + 4, z + 5, z + 1, z + 2, z + 3, z + 4, z + 5, z + 6, z + 7, z + 5, z + 6, z + 7, z + 8, z + 9, z + 7, z + 8, z + 9, z + 10, z + 9, z + 10, z + 11, z + 10};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 1, x - 4, z + 11 , 15.69, x - 15.19,
-								y + 1, z , typeVariant90Turn, idVariant45Turn))
-							return false;
-					}
-					if (l == 1) {
-
-						int[] xArray = {x, x - 1, x - 2, x - 3, x - 4, x - 5, x - 1, x - 2, x - 3, x - 4, x - 5, x - 6, x - 7, x - 5, x - 6, x - 7, x - 8, x - 9, x - 7, x - 8, x - 9, x - 10, x - 9, x - 10 , x - 11, x - 10};
-						int[] zArray = {z,   z  ,   z  ,   z  ,   z  ,   z  , z - 1, z - 1, z - 1, z - 1, z - 1, z - 1, z - 1, z - 2, z - 2, z - 2, z - 2, z - 2, z - 3, z - 3, z - 3, z - 3 , z - 4, z - 4, z - 4, z - 5};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 2, x - 11, z - 4 , 15.69, x + 1,
-								y + 1,  z - 15.19, typeVariant90Turn, idVariant45Turn))
-							return false;
-					}
-
-					if (l == 3) {
-
-						int[] xArray = {x, x + 1, x + 2, x + 3, x + 4, x + 5, x + 1, x + 2, x + 3, x + 4, x + 5, x + 6, x + 7, x + 5, x + 6, x + 7, x + 8, x + 9, x + 7, x + 8, x + 9, x + 10, x + 9, x + 10 , x + 11, x + 10};
-						int[] zArray = {z,   z  ,   z  ,   z  ,   z  ,   z  , z + 1, z + 1, z + 1, z + 1, z + 1, z + 1, z + 1, z + 2, z + 2, z + 2, z + 2, z + 2, z + 3, z + 3, z + 3, z + 3 , z + 4, z + 4, z + 4, z + 5};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 0, x + 11, z + 4 , 15.69, x,
-								y + 1,  z + 16.19, typeVariant90Turn, idVariant45Turn))
-							return false;
-					}
-
-
+				if (player==null || !player.capabilities.isCreativeMode) {
+					--itemstack.stackSize;
 				}
+				return true;
+			}
+			if (tempType == TrackTypes.LARGE_LEFT_45DEGREE_TURN || tempType == TrackTypes.EMBEDDED_LARGE_LEFT_45DEGREE_TURN) {
 
-				else {
-
-
-					if (l == 2) {
-
-						int[] xArray = {x,   x  ,   x  ,   x  ,   x  ,   x  , x + 1, x + 1, x + 1, x + 1, x + 1, x + 1, x + 1, x + 2, x + 2, x + 2, x + 2, x + 2, x + 3, x + 3, x + 3, x + 3 , x + 4, x + 4};
-						int[] zArray = {z, z - 1, z - 2, z - 3, z - 4, z - 5, z - 1, z - 2, z - 3, z - 4, z - 5, z - 6, z - 7, z - 5, z - 6, z - 7, z - 8, z - 9, z - 7, z - 8, z - 9, z - 10, z - 9, z - 10};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 3, x + 4, z - 11 , 15.69, x + 16.19,
-								y + 1, z + 1, typeVariant90Turn, idVariant45Turn))
-							return false;
-					}
-
-					if (l == 0) {
-
-						int[] xArray = {x,   x  ,   x  ,   x  ,   x  ,   x  , x - 1, x - 1, x - 1, x - 1, x - 1, x - 1, x - 1, x - 2, x - 2, x - 2, x - 2, x - 2, x - 3, x - 3, x - 3, x - 3 , x - 4, x - 4};
-						int[] zArray = {z, z + 1, z + 2, z + 3, z + 4, z + 5, z + 1, z + 2, z + 3, z + 4, z + 5, z + 6, z + 7, z + 5, z + 6, z + 7, z + 8, z + 9, z + 7, z + 8, z + 9, z + 10, z + 9, z + 10};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 1, x - 4, z + 11 , 15.69, x - 15.19,
-								y + 1, z , typeVariant90Turn, idVariant45Turn))
-							return false;
-					}
-					if (l == 1) {
-
-						int[] xArray = {x, x - 1, x - 2, x - 3, x - 4, x - 5, x - 1, x - 2, x - 3, x - 4, x - 5, x - 6, x - 7, x - 5, x - 6, x - 7, x - 8, x - 9, x - 7, x - 8, x - 9, x - 10, x - 9, x - 10 };
-						int[] zArray = {z,   z  ,   z  ,   z  ,   z  ,   z  , z - 1, z - 1, z - 1, z - 1, z - 1, z - 1, z - 1, z - 2, z - 2, z - 2, z - 2, z - 2, z - 3, z - 3, z - 3, z - 3 , z - 4, z - 4};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 2, x - 11, z - 4 , 15.69, x + 1,
-								y + 1,  z - 15.19, typeVariant90Turn, idVariant45Turn))
-							return false;
-					}
-
-					if (l == 3) {
-
-						int[] xArray = {x, x + 1, x + 2, x + 3, x + 4, x + 5, x + 1, x + 2, x + 3, x + 4, x + 5, x + 6, x + 7, x + 5, x + 6, x + 7, x + 8, x + 9, x + 7, x + 8, x + 9, x + 10, x + 9, x + 10 };
-						int[] zArray = {z,   z  ,   z  ,   z  ,   z  ,   z  , z + 1, z + 1, z + 1, z + 1, z + 1, z + 1, z + 1, z + 2, z + 2, z + 2, z + 2, z + 2, z + 3, z + 3, z + 3, z + 3 , z + 4, z + 4};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 0, x + 11, z + 4  , 15.69, x,
-								y + 1,  z + 16.19, typeVariant90Turn, idVariant45Turn))
-							return false;
-					}
+				if (!largeLeft45DegreeTurn(player, world, x, y, z, l, tempType)){
+					return false;
 				}
 				if (player==null || !player.capabilities.isCreativeMode) {
 					--itemstack.stackSize;
 				}
 				return true;
 			}
-
 			if (tempType == TrackTypes.VERY_LARGE_RIGHT_45DEGREE_TURN) {
-				switch (tempType) {
-					case VERY_LARGE_RIGHT_45DEGREE_TURN:
-						idVariant45Turn = ItemIDs.tcRailVeryLarge45DegreeTurn.item;
-						typeVariant90Turn = TrackTypes.VERY_LARGE_RIGHT_45DEGREE_TURN.getLabel();
-						break;
-					/*case SUPER_LARGE_RIGHT_45DEGREE_TURN:
-						idVariant45Turn = ItemIDs.tcRailLarge45DegreeTurn.item;
-						typeVariant90Turn = TrackTypes.SUPER_LARGE_RIGHT_45DEGREE_TURN.getLabel();
-						break;*/
+
+				if (!veryLargeRight45DegreeTurn(player, world, x, y, z, l, tempType)){
+					return false;
 				}
-
-				int[] xArray;
-				int[] zArray;
-				if (!player.isSneaking()) {
-					xArray = new int[]{0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 4};
-					zArray = new int[]{0, 1, 2, 3, 4, 1, 2, 3, 4, 5, 6, 4, 5, 6, 7, 6, 7, 8, 7};
+				if (player == null || !player.capabilities.isCreativeMode) {
+					--itemstack.stackSize;
 				}
-				else {
+				return true;
+			}
+			if (tempType == TrackTypes.VERY_LARGE_LEFT_45DEGREE_TURN) {
 
-					xArray = new int[]{0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3};
-					zArray = new int[]{0, 1, 2, 3, 4, 1, 2, 3, 4, 5, 6, 4, 5, 6, 7, 6, 7};
+				if (!veryLargeLeft45DegreeTurn(player, world, x, y, z, l, tempType)){
+					return false;
 				}
-				if (l == 2) {
-
-					if (!putDownTurn(player, world, false, x, y, z, flipArraySign(xArray, x, false), flipArraySign(zArray, z, true), l, false, 3, x + 3, z - 7, 10.89, x + 11.39,
-							y + 1, z + 1, typeVariant90Turn, idVariant45Turn))
-						return false;
+				if (player == null || !player.capabilities.isCreativeMode) {
+					--itemstack.stackSize;
 				}
+				return true;
+			}
+			if (tempType == TrackTypes.SUPER_LARGE_RIGHT_45DEGREE_TURN) {
 
-				if (l == 0) {
-
-					if (!putDownTurn(player, world, false, x, y, z, flipArraySign(xArray, x, true), flipArraySign(zArray, z, false), l, false, 1, x - 3, z + 7, 10.89, x - 10.39,
-							y + 1, z , typeVariant90Turn, idVariant45Turn))
-						return false;
+				if (!superLargeRight45DegreeTurn(player, world, x, y, z, l, tempType)){
+					return false;
 				}
-				if (l == 1) {
-					if (!putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, true), flipArraySign(xArray, z, true), l, false, 2, x - 7, z - 3, 10.89, x - 10.39,
-							y + 1, z + 1, typeVariant90Turn, idVariant45Turn))
-						return false;
+				if (player == null || !player.capabilities.isCreativeMode) {
+					--itemstack.stackSize;
 				}
+				return true;
+			}
+			if (tempType == TrackTypes.SUPER_LARGE_LEFT_45DEGREE_TURN) {
 
-				if (l == 3) {
-					if (!putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, false), flipArraySign(xArray, z, false), l, false, 0, x + 7, z + 3, 10.89, x - 11.39,
-							y + 1, z , typeVariant90Turn, idVariant45Turn))
-						return false;
+				if (!superLargeLeft45DegreeTurn(player, world, x, y, z, l, tempType)){
+					return false;
 				}
-
-
-
-
 				if (player == null || !player.capabilities.isCreativeMode) {
 					--itemstack.stackSize;
 				}
@@ -1087,347 +926,6 @@ public class ItemTCRail extends ItemPart {
 			}
 
 
-			if (tempType == TrackTypes.LARGE_LEFT_45DEGREE_TURN || tempType == TrackTypes.EMBEDDED_LARGE_LEFT_45DEGREE_TURN) {
-				switch (tempType){
-					case LARGE_LEFT_45DEGREE_TURN:
-						idVariant45Turn = ItemIDs.tcRailLarge45DegreeTurn.item;
-						typeVariant90Turn = TrackTypes.LARGE_LEFT_45DEGREE_TURN.getLabel();
-						break;
-					case EMBEDDED_LARGE_LEFT_45DEGREE_TURN:
-						idVariant45Turn = ItemIDs.tcRailEmbeddedLarge45DegreeTurn.item;
-						typeVariant90Turn = TrackTypes.EMBEDDED_LARGE_LEFT_45DEGREE_TURN.getLabel();
-						break;
-				}
-				if (!player.isSneaking()) {
-					if (l == 2) {
-
-						int[] xArray = {x, x, x, x, x - 1, x - 1, x - 1, x - 1, x - 1, x - 2, x - 2, x - 2, x - 3};
-						int[] zArray = {z, z - 1, z - 2, z - 3, z - 1, z - 2, z - 3, z - 4, z - 5, z - 4, z - 5, z - 6, z - 5};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 1, x - 2, z - 5, 8.49, x - 7.99,
-								y + 1, z + 1, typeVariant90Turn, idVariant45Turn))
-							return false;
-					}
-
-					if (l == 0) {
-
-						int[] xArray = {x, x, x, x, x + 1, x + 1, x + 1, x + 1, x + 1, x + 2, x + 2, x + 2, x + 3};
-						int[] zArray = {z, z + 1, z + 2, z + 3, z + 1, z + 2, z + 3, z + 4, z + 5, z + 4, z + 5, z + 6, z + 5};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 3, x + 2, z + 5, 8.49, x + 8.99,
-								y + 1, z, typeVariant90Turn, idVariant45Turn))
-							return false;
-					}
-					if (l == 1) {
-
-						int[] xArray = {x, x - 1, x - 2, x - 3, x - 1, x - 2, x - 3, x - 4, x - 5, x - 4, x - 5, x - 6, x - 5};
-						int[] zArray = {z, z, z, z, z + 1, z + 1, z + 1, z + 1, z + 1, z + 2, z + 2, z + 2, z + 3};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 0, x - 5, z + 2, 8.49, x + 1,
-								y + 1, z + 8.99, typeVariant90Turn, idVariant45Turn))
-							return false;
-					}
-
-					if (l == 3) {
-
-						int[] xArray = {x, x + 1, x + 2, x + 3, x + 1, x + 2, x + 3, x + 4, x + 5, x + 4, x + 5, x + 6, x + 5};
-						int[] zArray = {z, z, z, z, z - 1, z - 1, z - 1, z - 1, z - 1, z - 2, z - 2, z - 2, z - 3};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 2, x + 5, z - 2, 8.49, x,
-								y + 1, z - 7.99, typeVariant90Turn, idVariant45Turn))
-							return false;
-					}
-				}
-				else {
-					if (l == 2) {
-
-						int[] xArray = {x, x, x, x, x - 1, x - 1, x - 1, x - 1, x - 1, x - 2, x - 2};
-						int[] zArray = {z, z - 1, z - 2, z - 3, z - 1, z - 2, z - 3, z - 4, z - 5, z - 4, z - 5};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 1, x - 2, z - 5, 8.49, x - 7.99,
-								y + 1, z + 1, typeVariant90Turn, idVariant45Turn))
-							return false;
-					}
-
-					if (l == 0) {
-
-						int[] xArray = {x, x, x, x, x + 1, x + 1, x + 1, x + 1, x + 1, x + 2, x + 2};
-						int[] zArray = {z, z + 1, z + 2, z + 3, z + 1, z + 2, z + 3, z + 4, z + 5, z + 4, z + 5};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 3, x + 2, z + 5, 8.49, x + 8.99,
-								y + 1, z, typeVariant90Turn, idVariant45Turn))
-							return false;
-					}
-					if (l == 1) {
-
-						int[] xArray = {x, x - 1, x - 2, x - 3, x - 1, x - 2, x - 3, x - 4, x - 5, x - 4, x - 5};
-						int[] zArray = {z, z, z, z, z + 1, z + 1, z + 1, z + 1, z + 1, z + 2, z + 2};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 0, x - 5, z + 2, 8.49, x + 1,
-								y + 1, z + 8.99, typeVariant90Turn, idVariant45Turn))
-							return false;
-					}
-
-					if (l == 3) {
-
-						int[] xArray = {x, x + 1, x + 2, x + 3, x + 1, x + 2, x + 3, x + 4, x + 5, x + 4, x + 5};
-						int[] zArray = {z, z, z, z, z - 1, z - 1, z - 1, z - 1, z - 1, z - 2, z - 2};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 2, x + 5, z - 2, 8.49, x,
-								y + 1, z - 7.99, typeVariant90Turn, idVariant45Turn))
-							return false;
-					}
-				}
-
-				if (player==null || !player.capabilities.isCreativeMode) {
-					--itemstack.stackSize;
-				}
-				return true;
-			}
-
-			if (tempType == TrackTypes.LARGE_RIGHT_45DEGREE_TURN || tempType == TrackTypes.EMBEDDED_LARGE_RIGHT_45DEGREE_TURN) {
-				switch (tempType){
-					case LARGE_RIGHT_45DEGREE_TURN:
-						idVariant45Turn = ItemIDs.tcRailLarge45DegreeTurn.item;
-						typeVariant90Turn = TrackTypes.LARGE_RIGHT_45DEGREE_TURN.getLabel();
-						break;
-					case EMBEDDED_LARGE_RIGHT_45DEGREE_TURN:
-						idVariant45Turn = ItemIDs.tcRailEmbeddedLarge45DegreeTurn.item;
-						typeVariant90Turn = TrackTypes.EMBEDDED_LARGE_RIGHT_45DEGREE_TURN.getLabel();
-						break;
-				}
-
-				if (!player.isSneaking()) {
-					if (l == 2) {
-
-						int[] xArray = {x, x, x, x, x + 1, x + 1, x + 1, x + 1, x + 1, x + 2, x + 2, x + 2, x + 3};
-						int[] zArray = {z, z - 1, z - 2, z - 3, z - 1, z - 2, z - 3, z - 4, z - 5, z - 4, z - 5, z - 6, z - 5};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 3, x + 2, z - 5, 8.49, x + 8.99,
-								y + 1, z + 1, typeVariant90Turn, idVariant45Turn))
-							return false;
-					}
-
-					if (l == 0) {
-
-						int[] xArray = {x, x, x, x, x - 1, x - 1, x - 1, x - 1, x - 1, x - 2, x - 2, x - 2, x - 3};
-						int[] zArray = {z, z + 1, z + 2, z + 3, z + 1, z + 2, z + 3, z + 4, z + 5, z + 4, z + 5, z + 6, z + 5};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 1, x - 2, z + 5, 8.49, x - 7.99,
-								y + 1, z, typeVariant90Turn, idVariant45Turn))
-							return false;
-					}
-					if (l == 1) {
-
-						int[] xArray = {x, x - 1, x - 2, x - 3, x - 1, x - 2, x - 3, x - 4, x - 5, x - 4, x - 5, x - 6, x - 5};
-						int[] zArray = {z, z, z, z, z - 1, z - 1, z - 1, z - 1, z - 1, z - 2, z - 2, z - 2, z - 3};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 2, x - 5, z - 2, 8.49, x + 1,
-								y + 1, z - 7.99, typeVariant90Turn, idVariant45Turn))
-							return false;
-					}
-
-					if (l == 3) {
-
-						int[] xArray = {x, x + 1, x + 2, x + 3, x + 1, x + 2, x + 3, x + 4, x + 5, x + 4, x + 5, x + 6, x + 5};
-						int[] zArray = {z, z, z, z, z + 1, z + 1, z + 1, z + 1, z + 1, z + 2, z + 2, z + 2, z + 3};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 0, x + 5, z + 2, 8.49, x,
-								y + 1, z + 8.99, typeVariant90Turn, idVariant45Turn))
-							return false;
-					}
-				}
-
-				else {
-					if (l == 2) {
-
-						int[] xArray = {x, x, x, x, x + 1, x + 1, x + 1, x + 1, x + 1, x + 2, x + 2};
-						int[] zArray = {z, z - 1, z - 2, z - 3, z - 1, z - 2, z - 3, z - 4, z - 5, z - 4, z - 5};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 3, x + 2, z - 5, 8.49, x + 8.99,
-								y + 1, z + 1, typeVariant90Turn, idVariant45Turn))
-							return false;
-					}
-
-					if (l == 0) {
-
-						int[] xArray = {x, x, x, x, x - 1, x - 1, x - 1, x - 1, x - 1, x - 2, x - 2};
-						int[] zArray = {z, z + 1, z + 2, z + 3, z + 1, z + 2, z + 3, z + 4, z + 5, z + 4, z + 5};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 1, x - 2, z + 5, 8.49, x - 7.99,
-								y + 1, z, typeVariant90Turn, idVariant45Turn))
-							return false;
-					}
-					if (l == 1) {
-
-						int[] xArray = {x, x - 1, x - 2, x - 3, x - 1, x - 2, x - 3, x - 4, x - 5, x - 4, x - 5};
-						int[] zArray = {z, z, z, z, z - 1, z - 1, z - 1, z - 1, z - 1, z - 2, z - 2};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 2, x - 5, z - 2, 8.49, x + 1,
-								y + 1, z - 7.99, typeVariant90Turn, idVariant45Turn))
-							return false;
-					}
-
-					if (l == 3) {
-
-						int[] xArray = {x, x + 1, x + 2, x + 3, x + 1, x + 2, x + 3, x + 4, x + 5, x + 4, x + 5};
-						int[] zArray = {z, z, z, z, z + 1, z + 1, z + 1, z + 1, z + 1, z + 2, z + 2};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 0, x + 5, z + 2, 8.49, x,
-								y + 1, z + 8.99, typeVariant90Turn, idVariant45Turn))
-							return false;
-					}
-				}
-
-				if (player==null || !player.capabilities.isCreativeMode) {
-					--itemstack.stackSize;
-				}
-				return true;
-			}
-
-			if (tempType == TrackTypes.MEDIUM_RIGHT_45DEGREE_TURN || tempType == TrackTypes.EMBEDDED_MEDIUM_RIGHT_45DEGREE_TURN) {
-				switch (tempType){
-					case MEDIUM_RIGHT_45DEGREE_TURN:
-						idVariant45Turn = ItemIDs.tcRailMedium45DegreeTurn.item;
-						typeVariant90Turn = TrackTypes.MEDIUM_RIGHT_45DEGREE_TURN.getLabel();
-						break;
-					case EMBEDDED_MEDIUM_RIGHT_45DEGREE_TURN:
-						idVariant45Turn = ItemIDs.tcRailEmbeddedMedium45DegreeTurn.item;
-						typeVariant90Turn = TrackTypes.EMBEDDED_MEDIUM_RIGHT_45DEGREE_TURN.getLabel();
-						break;
-				}
-				if (player.isSneaking()){
-					if (l == 2) {
-						int[] xArray = { x,   x  ,x , x + 1, x + 1 };
-						int[] zArray = { z, z - 1,z - 2, z - 1, z - 2};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 3, x + 1, z - 2, 3.75, x + 4.25,
-								y + 1, z + 1, typeVariant90Turn, idVariant45Turn))
-							return false;
-
-					}
-					if (l == 0) {
-						int[] xArray = {x,   x  ,   x  , x - 1, x - 1};
-						int[] zArray = {z, z + 1, z + 2, z + 1, z + 2};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 1, x - 1, z + 2, 3.75, x - 3.25,
-								y + 1, z, typeVariant90Turn, idVariant45Turn))
-							return false;
-					}
-					if (l == 1) {
-						int[] xArray = {x , x - 1, x - 2, x - 1, x - 2};
-						int[] zArray = {z ,   z  , z,  z - 1, z - 1};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 2, x - 2, z - 1, 3.75, x + 1 ,
-								y + 1, z - 3.25, typeVariant90Turn, idVariant45Turn))
-							return false;
-					}
-					if (l == 3) {
-						int[] xArray = {x, x + 1,x + 2, x + 1 , x + 2 };
-						int[] zArray = {z,   z, z,  z + 1 ,z + 1, z + 1};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 0, x + 2, z + 1, 3.75, x, y + 1,
-								z + 4.25, typeVariant90Turn, idVariant45Turn))
-							return false;
-					}
-				}
-				else {
-					if (l == 2) {
-						int[] xArray = {x, x, x, x + 1, x + 1, x + 1, x + 2};
-						int[] zArray = {z, z - 1, z - 2, z - 1, z - 2, z - 3, z - 2};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 3, x + 1, z - 2, 3.75, x + 4.25,
-								y + 1, z + 1, typeVariant90Turn, idVariant45Turn))
-							return false;
-
-					}
-					if (l == 0) {
-						int[] xArray = {x, x, x, x - 1, x - 1, x - 1, x - 2};
-						int[] zArray = {z, z + 1, z + 2, z + 1, z + 2, z + 3, z + 2};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 1, x - 1, z + 2, 3.75, x - 3.25,
-								y + 1, z, typeVariant90Turn, idVariant45Turn))
-							return false;
-					}
-					if (l == 1) {
-						int[] xArray = {x, x - 1, x - 2, x - 1, x - 2, x - 3, x - 2};
-						int[] zArray = {z, z, z, z - 1, z - 1, z - 1, z - 2};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 2, x - 2, z - 1, 3.75, x + 1,
-								y + 1, z - 3.25, typeVariant90Turn, idVariant45Turn))
-							return false;
-					}
-					if (l == 3) {
-						int[] xArray = {x, x + 1, x + 2, x + 1, x + 2, x + 3, x + 2};
-						int[] zArray = {z, z, z, z + 1, z + 1, z + 1, z + 2};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 0, x + 2, z + 1, 3.75, x, y + 1,
-								z + 4.25, typeVariant90Turn, idVariant45Turn))
-							return false;
-
-					}
-				}
-				if (player==null || !player.capabilities.isCreativeMode) {
-					--itemstack.stackSize;
-				}
-				return true;
-			}
-
-			if (tempType == TrackTypes.MEDIUM_LEFT_45DEGREE_TURN || tempType == TrackTypes.EMBEDDED_MEDIUM_LEFT_45DEGREE_TURN) {
-				switch (tempType){
-					case MEDIUM_LEFT_45DEGREE_TURN:
-						idVariant45Turn = ItemIDs.tcRailMedium45DegreeTurn.item;
-						typeVariant90Turn = TrackTypes.MEDIUM_LEFT_45DEGREE_TURN.getLabel();
-						break;
-					case EMBEDDED_MEDIUM_LEFT_45DEGREE_TURN:
-						idVariant45Turn = ItemIDs.tcRailEmbeddedMedium45DegreeTurn.item;
-						typeVariant90Turn = TrackTypes.EMBEDDED_MEDIUM_LEFT_45DEGREE_TURN.getLabel();
-						break;
-				}
-
-				if (player.isSneaking()) {
-					if (l == 2) {
-						int[] xArray = { x,   x  ,x , x - 1, x - 1};
-						int[] zArray = { z, z - 1,z - 2, z - 1, z - 2};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 1, x - 1, z - 2, 3.75, x - 3.25,
-								y + 1, z + 1, typeVariant90Turn, idVariant45Turn))
-							return false;
-
-					}
-					if (l == 0) {
-						int[] xArray = {x,   x , x , x + 1, x + 1};
-						int[] zArray = {z, z + 1, z + 2, z + 1, z + 2};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 3, x + 1, z + 2, 3.75, x + 4.25,
-								y + 1, z, typeVariant90Turn, idVariant45Turn ))
-							return false;
-					}
-					if (l == 1) {
-						int[] xArray = {x , x - 1, x - 2, x - 1, x - 2};
-						int[] zArray = {z ,   z  , z,  z + 1, z + 1};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 0, x - 2, z + 1, 3.75, x + 1 ,
-								y + 1, z + 4.25, typeVariant90Turn, idVariant45Turn))
-							return false;
-					}
-					if (l == 3) {
-						int[] xArray = {x, x + 1,x + 2, x + 1 , x + 2};
-						int[] zArray = {z,   z, z,  z - 1 ,z- 1};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 2, x + 2, z - 1, 3.75, x, y + 1,
-								z - 3.25, typeVariant90Turn, idVariant45Turn))
-							return false;
-					}
-				}
-				else{
-					if (l == 2) {
-						int[] xArray = {x, x, x, x - 1, x - 1, x - 1, x - 2};
-						int[] zArray = {z, z - 1, z - 2, z - 1, z - 2, z - 3, z - 2};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 1, x - 1, z - 2, 3.75, x - 3.25,
-								y + 1, z + 1, typeVariant90Turn, idVariant45Turn))
-							return false;
-
-					}
-					if (l == 0) {
-						int[] xArray = {x, x, x, x + 1, x + 1, x + 1, x + 2};
-						int[] zArray = {z, z + 1, z + 2, z + 1, z + 2, z + 3, z + 2};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 3, x + 1, z + 2, 3.75, x + 4.25,
-								y + 1, z, typeVariant90Turn, idVariant45Turn))
-							return false;
-					}
-					if (l == 1) {
-						int[] xArray = {x, x - 1, x - 2, x - 1, x - 2, x - 3, x - 2};
-						int[] zArray = {z, z, z, z + 1, z + 1, z + 1, z + 2};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 0, x - 2, z + 1, 3.75, x + 1,
-								y + 1, z + 4.25, typeVariant90Turn, idVariant45Turn))
-							return false;
-					}
-					if (l == 3) {
-						int[] xArray = {x, x + 1, x + 2, x + 1, x + 2, x + 3, x + 2};
-						int[] zArray = {z, z, z, z - 1, z - 1, z - 1, z - 2};
-						if (!putDownTurn(player, world, false, x, y, z, xArray, zArray, l, false, 2, x + 2, z - 1, 3.75, x, y + 1,
-								z - 3.25, typeVariant90Turn, idVariant45Turn))
-							return false;
-					}
-				}
-				if (player==null || !player.capabilities.isCreativeMode) {
-					--itemstack.stackSize;
-				}
-				return true;
-			}
 
 			if (tempType == TrackTypes.SMALL_RIGHT_PARALLEL_CURVE || tempType == TrackTypes.EMBEDDED_SMALL_RIGHT_PARALLEL_CURVE) {
 				switch (tempType) {
@@ -3710,7 +3208,7 @@ public class ItemTCRail extends ItemPart {
 
 			if (tempType == TrackTypes.LARGE_RIGHT_TURN || tempType == TrackTypes.EMBEDDED_LARGE_RIGHT_TURN) {
 
-				if (!LargeRightTurn(player, world, x, y, z, l, tempType)){
+				if (!largeRightTurn(player, world, x, y, z, l, tempType)){
 					return false;
 				}
 				if (player ==null || !player.capabilities.isCreativeMode) {
@@ -3721,7 +3219,7 @@ public class ItemTCRail extends ItemPart {
 
 			if (tempType == TrackTypes.LARGE_LEFT_TURN || tempType == TrackTypes.EMBEDDED_LARGE_LEFT_TURN) {
 
-				if (!LargeLeftTurn(player, world, x, y, z, l, tempType)){
+				if (!largeLeftTurn(player, world, x, y, z, l, tempType)){
 					return false;
 				}
 
@@ -3733,7 +3231,7 @@ public class ItemTCRail extends ItemPart {
 
 			if (tempType == TrackTypes.VERY_LARGE_RIGHT_TURN || tempType == TrackTypes.EMBEDDED_VERY_LARGE_RIGHT_TURN) {
 
-				if (!VeryLargeRightTurn(player, world, x, y, z, l, tempType)){
+				if (!veryLargeRightTurn(player, world, x, y, z, l, tempType)){
 					return false;
 				}
 
@@ -3745,7 +3243,7 @@ public class ItemTCRail extends ItemPart {
 
 			if (tempType == TrackTypes.VERY_LARGE_LEFT_TURN || tempType == TrackTypes.EMBEDDED_VERY_LARGE_LEFT_TURN) {
 
-				if (!VeryLargeLeftTurn(player, world, x, y, z, l, tempType)){
+				if (!veryLargeLeftTurn(player, world, x, y, z, l, tempType)){
 					return false;
 				}
 
@@ -3757,7 +3255,7 @@ public class ItemTCRail extends ItemPart {
 
 			if (tempType == TrackTypes.SUPER_LARGE_RIGHT_TURN || tempType == TrackTypes.EMBEDDED_SUPER_LARGE_RIGHT_TURN) {
 
-				if (!SuperLargeRightTurn(player, world, x, y, z, l, tempType)){
+				if (!superLargeRightTurn(player, world, x, y, z, l, tempType)){
 					return false;
 				}
 
@@ -3770,7 +3268,7 @@ public class ItemTCRail extends ItemPart {
 			if (tempType == TrackTypes.SUPER_LARGE_LEFT_TURN || tempType == TrackTypes.EMBEDDED_SUPER_LARGE_LEFT_TURN) {
 
 
-				if (!SuperLargeLeftTurn(player, world, x, y, z, l, tempType)){
+				if (!superLargeLeftTurn(player, world, x, y, z, l, tempType)){
 					return false;
 				}
 
@@ -5586,7 +5084,6 @@ public class ItemTCRail extends ItemPart {
 				return false;
 		}
 		if (l == 3) {
-
 			if (!putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, false), flipArraySign(xArray, z, false), l, false, 0, x + 3, z + 3, 2.5, x, y + 1,
 					z + 3, tempType.getLabel(), tempType.getItem().item))
 				return false;
@@ -5621,7 +5118,7 @@ public class ItemTCRail extends ItemPart {
 		return true;
 	}
 
-	private boolean LargeRightTurn(EntityPlayer player, World world, int x, int y, int z, int l, TrackTypes tempType) {
+	private boolean largeRightTurn(EntityPlayer player, World world, int x, int y, int z, int l, TrackTypes tempType) {
 
 		int[] xArray = { 0, 0, 1, 1, 2, 0, 1, 2, 3, 4, 3, 2};
 		int[] zArray = { 0, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4};
@@ -5648,7 +5145,7 @@ public class ItemTCRail extends ItemPart {
 		}
 		return true;
 	}
-	private boolean LargeLeftTurn(EntityPlayer player, World world, int x, int y, int z, int l, TrackTypes tempType) {
+	private boolean largeLeftTurn(EntityPlayer player, World world, int x, int y, int z, int l, TrackTypes tempType) {
 		int[] xArray = { 0, 0, 1, 1, 2, 0, 1, 2, 3, 4, 3, 2};
 		int[] zArray = { 0, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4};
 		if (l == 2) {
@@ -5674,7 +5171,7 @@ public class ItemTCRail extends ItemPart {
 		return true;
 	}
 
-	private boolean VeryLargeRightTurn(EntityPlayer player, World world, int x, int y, int z, int l, TrackTypes tempType) {
+	private boolean veryLargeRightTurn(EntityPlayer player, World world, int x, int y, int z, int l, TrackTypes tempType) {
 		int[] xArray = { 0, 0, 0, 1, 0, 1, 0, 1, 1, 2, 2, 2, 3, 3, 4, 4, 5, 5, 5, 6, 6, 7, 7, 8, 9};
 		int[] zArray = { 0, 1, 2, 2, 3, 3, 4, 4, 5, 4, 5, 6, 6, 7, 7, 8, 7, 8, 9, 8, 9, 8, 9, 9, 9};
 
@@ -5700,7 +5197,7 @@ public class ItemTCRail extends ItemPart {
 		}
 		return true;
 	}
-	private boolean VeryLargeLeftTurn(EntityPlayer player, World world, int x, int y, int z, int l, TrackTypes tempType) {
+	private boolean veryLargeLeftTurn(EntityPlayer player, World world, int x, int y, int z, int l, TrackTypes tempType) {
 		int[] xArray = { 0, 0, 0, 1, 0, 1, 0, 1, 1, 2, 2, 2, 3, 3, 4, 4, 5, 5, 5, 6, 6, 7, 7, 8, 9};
 		int[] zArray = { 0, 1, 2, 2, 3, 3, 4, 4, 5, 4, 5, 6, 6, 7, 7, 8, 7, 8, 9, 8, 9, 8, 9, 9, 9};
 
@@ -5726,7 +5223,7 @@ public class ItemTCRail extends ItemPart {
 		}
 		return true;
 	}
-	private boolean SuperLargeRightTurn(EntityPlayer player, World world, int x, int y, int z, int l, TrackTypes tempType) {
+	private boolean superLargeRightTurn(EntityPlayer player, World world, int x, int y, int z, int l, TrackTypes tempType) {
 		int[] xArray = {0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 3, 3, 4, 4 , 5 , 5 , 6 , 6 , 7 , 7 , 8 , 9 , 9 , 10, 11, 11, 12, 12, 13, 14, 15};
 		int[] zArray = {0, 1, 2, 3, 4, 3, 4, 5, 6, 6, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12, 13, 13, 13, 14, 14, 14, 15, 14, 15, 15, 15, 15};
 
@@ -5752,7 +5249,7 @@ public class ItemTCRail extends ItemPart {
 		}
 		return true;
 	}
-	private boolean SuperLargeLeftTurn(EntityPlayer player, World world, int x, int y, int z, int l, TrackTypes tempType) {
+	private boolean superLargeLeftTurn(EntityPlayer player, World world, int x, int y, int z, int l, TrackTypes tempType) {
 		int[] xArray = {0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 3, 3, 4, 4 , 5 , 5 , 6 , 6 , 7 , 7 , 8 , 9 , 9 , 10, 11, 11, 12, 12, 13, 14, 15};
 		int[] zArray = {0, 1, 2, 3, 4, 3, 4, 5, 6, 6, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12, 13, 13, 13, 14, 14, 14, 15, 14, 15, 15, 15, 15};
 		if (l == 2) {
@@ -5777,6 +5274,307 @@ public class ItemTCRail extends ItemPart {
 		}
 		return true;
 	}
+
+	private boolean mediumRight45DegreeTurn(EntityPlayer player, World world, int x, int y, int z, int l, TrackTypes tempType){
+
+		int[] xArray;
+		int[] zArray;
+		if (player.isSneaking()) {
+			xArray = new int[]{0, 0, 0, 1, 1};
+			zArray = new int[]{0, 1, 2, 1, 2};
+		}
+		else {
+			xArray = new int[]{0, 0, 0, 1, 1, 1, 2};
+			zArray = new int[]{0, 1, 2, 1, 2, 3, 2};
+		}
+		if (l == 2) {
+			if (!putDownTurn(player, world, false, x, y, z, flipArraySign(xArray, x, false), flipArraySign(zArray, z, true), l, false, 3, x + 1, z - 2, 3.75, x + 4.25,
+					y + 1, z + 1, tempType.getLabel(), tempType.getItem().item))
+				return false;
+		}
+		if (l == 0) {
+			if (!putDownTurn(player, world, false, x, y, z, flipArraySign(xArray, x, true), flipArraySign(zArray, z, false), l, false, 1, x - 1, z + 2, 3.75, x - 3.25,
+					y + 1, z, tempType.getLabel(), tempType.getItem().item))
+				return false;
+		}
+		if (l == 1) {
+			if (!putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, true), flipArraySign(xArray, z, true), l, false, 2, x - 2, z - 1, 3.75, x + 1 ,
+					y + 1, z - 3.25, tempType.getLabel(), tempType.getItem().item))
+				return false;
+		}
+		if (l == 3) {
+			if (!putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, false), flipArraySign(xArray, z, false), l, false, 0, x + 2, z + 1, 3.75, x, y + 1,
+					z + 4.25, tempType.getLabel(), tempType.getItem().item))
+				return false;
+		}
+		return true;
+	}
+
+	private boolean mediumLeft45DegreeTurn(EntityPlayer player, World world, int x, int y, int z, int l, TrackTypes tempType) {
+
+		int[] xArray;
+		int[] zArray;
+		if (player.isSneaking()) {
+			xArray = new int[]{0, 0, 0, 1, 1};
+			zArray = new int[]{0, 1, 2, 1, 2};
+		}
+		else {
+			xArray = new int[]{0, 0, 0, 1, 1, 1, 2};
+			zArray = new int[]{0, 1, 2, 1, 2, 3, 2};
+		}
+
+		if (l == 2) {
+			if (!putDownTurn(player, world, false, x, y, z, flipArraySign(xArray, x, true), flipArraySign(zArray, z, true), l, false, 1, x - 1, z - 2, 3.75, x - 3.25,
+					y + 1, z + 1, tempType.getLabel(), tempType.getItem().item))
+				return false;
+		}
+		if (l == 0) {
+			if (!putDownTurn(player, world, false, x, y, z, flipArraySign(xArray, x, false), flipArraySign(zArray, z, false), l, false, 3, x + 1, z + 2, 3.75, x + 4.25,
+					y + 1, z, tempType.getLabel(), tempType.getItem().item))
+				return false;
+		}
+		if (l == 1) {
+			if (!putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, true), flipArraySign(xArray, z, false), l, false, 0, x - 2, z + 1, 3.75, x + 1 ,
+					y + 1, z + 4.25, tempType.getLabel(), tempType.getItem().item))
+				return false;
+		}
+		if (l == 3) {
+			if (!putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, false), flipArraySign(xArray, z, true), l, false, 2, x + 2, z - 1, 3.75, x, y + 1,
+					z - 3.25, tempType.getLabel(), tempType.getItem().item))
+				return false;
+		}
+		return true;
+	}
+
+	private boolean largeRight45DegreeTurn(EntityPlayer player, World world, int x, int y ,int z, int l, TrackTypes tempType){
+		int[] xArray;
+		int[]zArray;
+		if (player.isSneaking()) {
+			xArray = new int[]{0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2 };
+			zArray = new int[]{0, 1, 2, 3, 1, 2, 3, 4, 5, 4, 5 };
+		} else {
+			xArray = new int[]{0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 3};
+			zArray = new int[]{0, 1, 2, 3, 1, 2, 3, 4, 5, 4, 5, 6, 5};
+		}
+		if (l == 2) {
+			if (!putDownTurn(player, world, false, x, y, z, flipArraySign(xArray, x, false), flipArraySign(zArray, z, true), l, false, 3, x + 2, z - 5, 8.49, x + 8.99,
+					y + 1, z + 1, tempType.getLabel(), tempType.getItem().item))
+				return false;
+		}
+		if (l == 0) {
+			if (!putDownTurn(player, world, false, x, y, z, flipArraySign(xArray, x, true), flipArraySign(zArray, z, false), l, false, 1, x - 2, z + 5, 8.49, x - 7.99,
+					y + 1, z, tempType.getLabel(), tempType.getItem().item))
+				return false;
+		}
+		if (l == 1) {
+			if (!putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, true), flipArraySign(xArray, z, true), l, false, 2, x - 5, z - 2, 8.49, x + 1,
+					y + 1, z - 7.99, tempType.getLabel(), tempType.getItem().item))
+				return false;
+		}
+		if (l == 3) {
+			if (!putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, false), flipArraySign(xArray, z, false), l, false, 0, x + 5, z + 2, 8.49, x,
+					y + 1, z + 8.99, tempType.getLabel(), tempType.getItem().item))
+				return false;
+		}
+		return true;
+	}
+
+	private boolean largeLeft45DegreeTurn(EntityPlayer player, World world, int x, int y ,int z, int l, TrackTypes tempType) {
+		int[] xArray;
+		int[] zArray;
+		if (player.isSneaking()) {
+			xArray = new int[]{0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2 };
+			zArray = new int[]{0, 1, 2, 3, 1, 2, 3, 4, 5, 4, 5 };
+		} else {
+			xArray = new int[]{0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 3};
+			zArray = new int[]{0, 1, 2, 3, 1, 2, 3, 4, 5, 4, 5, 6, 5};
+		}
+		if (l == 2) {
+			if (!putDownTurn(player, world, false, x, y, z, flipArraySign(xArray, x, true), flipArraySign(zArray, z, true), l, false, 1, x - 2, z - 5, 8.49, x - 7.99,
+					y + 1, z + 1, tempType.getLabel(), tempType.getItem().item))
+				return false;
+		}
+		if (l == 0) {
+			if (!putDownTurn(player, world, false, x, y, z, flipArraySign(xArray, x, false), flipArraySign(zArray, z, false), l, false, 3, x + 2, z + 5, 8.49, x + 8.99,
+					y + 1, z, tempType.getLabel(), tempType.getItem().item))
+				return false;
+		}
+		if (l == 1) {
+			if (!putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, true), flipArraySign(xArray, z, false), l, false, 0, x - 5, z + 2, 8.49, x + 1,
+					y + 1, z + 8.99, tempType.getLabel(), tempType.getItem().item))
+				return false;
+		}
+		if (l == 3) {
+			if (!putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, false), flipArraySign(xArray, z, true), l, false, 2, x + 5, z - 2, 8.49, x,
+					y + 1, z - 7.99, tempType.getLabel(), tempType.getItem().item))
+				return false;
+		}
+		return true;
+	}
+
+	public boolean veryLargeRight45DegreeTurn(EntityPlayer player, World world, int x, int y, int z, int l, TrackTypes tempType){
+		int[] xArray;
+		int[] zArray;
+		if (player.isSneaking()) {
+			xArray = new int[]{0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3};
+			zArray = new int[]{0, 1, 2, 3, 4, 1, 2, 3, 4, 5, 6, 4, 5, 6, 7, 6, 7};
+		}
+		else {
+			xArray = new int[]{0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 4};
+			zArray = new int[]{0, 1, 2, 3, 4, 1, 2, 3, 4, 5, 6, 4, 5, 6, 7, 6, 7, 8, 7};
+
+		}
+		if (l == 2) {
+
+			if (!putDownTurn(player, world, false, x, y, z, flipArraySign(xArray, x, false), flipArraySign(zArray, z, true), l, false, 3, x + 3, z - 7, 10.89, x + 11.39,
+					y + 1, z + 1, tempType.getLabel(), tempType.getItem().item))
+				return false;
+		}
+
+		if (l == 0) {
+
+			if (!putDownTurn(player, world, false, x, y, z, flipArraySign(xArray, x, true), flipArraySign(zArray, z, false), l, false, 1, x - 3, z + 7, 10.89, x - 10.39,
+					y + 1, z , tempType.getLabel(), tempType.getItem().item))
+				return false;
+		}
+		if (l == 1) {
+			if (!putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, true), flipArraySign(xArray, z, true), l, false, 2, x - 7, z - 3, 10.89, x + 1,
+					y + 1, z - 10.39, tempType.getLabel(), tempType.getItem().item))
+				return false;
+		}
+
+		if (l == 3) {
+			if (!putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, false), flipArraySign(xArray, z, false), l, false, 0, x + 7, z + 3, 10.89, x ,
+					y + 1, z + 11.39 , tempType.getLabel(), tempType.getItem().item))
+				return false;
+		}
+		return true;
+	}
+
+	public boolean veryLargeLeft45DegreeTurn(EntityPlayer player, World world, int x, int y, int z, int l, TrackTypes tempType){
+		int[] xArray;
+		int[] zArray;
+		if (player.isSneaking()) {
+			xArray = new int[]{0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3};
+			zArray = new int[]{0, 1, 2, 3, 4, 1, 2, 3, 4, 5, 6, 4, 5, 6, 7, 6, 7};
+		}
+		else {
+			xArray = new int[]{0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 4};
+			zArray = new int[]{0, 1, 2, 3, 4, 1, 2, 3, 4, 5, 6, 4, 5, 6, 7, 6, 7, 8, 7};
+		}
+		if (l == 2) {
+			if (!putDownTurn(player, world, false, x, y, z, flipArraySign(xArray, x, true), flipArraySign(zArray, z, true), l, false, 3, x + 3, z - 7, 10.89, x - 10.39,
+					y + 1, z + 1, tempType.getLabel(), tempType.getItem().item))
+				return false;
+		}
+		if (l == 0) {
+			if (!putDownTurn(player, world, false, x, y, z, flipArraySign(xArray, x, false), flipArraySign(zArray, z, false), l, false, 1, x - 3, z + 7, 10.89, x + 11.39,
+					y + 1, z , tempType.getLabel(), tempType.getItem().item))
+				return false;
+		}
+		if (l == 1) {
+			if (!putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, true), flipArraySign(xArray, z, false), l, false, 2, x - 7, z - 3, 10.89, x + 1,
+					y + 1, z + 11.39, tempType.getLabel(), tempType.getItem().item))
+				return false;
+		}
+		if (l == 3) {
+			if (!putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, false), flipArraySign(xArray, z, true), l, false, 0, x + 7, z + 3, 10.89, x ,
+					y + 1, z - 10.39, tempType.getLabel(), tempType.getItem().item))
+				return false;
+		}
+		return true;
+	}
+
+	public boolean superLargeRight45DegreeTurn(EntityPlayer player, World world, int x, int y, int z, int l, TrackTypes tempType){
+
+		int[] xArray;
+		int[] zArray;
+			if (player.isSneaking()) {
+				xArray = new int[] {0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3 , 4, 4 };
+				zArray = new int[] {0, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 6, 7, 5, 6, 7, 8, 9, 7, 8, 9, 10, 9, 10};
+			}
+			else {
+				xArray = new int[] {0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3 , 4, 4 , 4 , 5 };
+				zArray = new int[] {0, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 6, 7, 5, 6, 7, 8, 9, 7, 8, 9, 10, 9, 10, 11, 10};
+			}
+
+			if (l == 2) {
+				if (!putDownTurn(player, world, false, x, y, z, flipArraySign(xArray, x, false), flipArraySign(zArray, z, true), l, false, 3, x + 4, z - 11 , 15.69, x + 16.19,
+						y + 1, z + 1, tempType.getLabel(), tempType.getItem().item))
+					return false;
+			}
+			if (l == 0) {
+				if (!putDownTurn(player, world, false, x, y, z, flipArraySign(xArray, x, true), flipArraySign(zArray, z, false), l, false, 1, x - 4, z + 11 , 15.69, x - 15.19,
+						y + 1, z , tempType.getLabel(), tempType.getItem().item))
+					return false;
+			}
+			if (l == 1) {
+				if (!putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, true), flipArraySign(xArray, z, true), l, false, 2, x - 11, z - 4 , 15.69, x + 1,
+						y + 1,  z - 15.19, tempType.getLabel(), tempType.getItem().item))
+					return false;
+			}
+			if (l == 3) {
+				if (!putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, false), flipArraySign(xArray, z, false), l, false, 0, x + 11, z + 4 , 15.69, x,
+						y + 1,  z + 16.19, tempType.getLabel(), tempType.getItem().item))
+					return false;
+			}
+			return true;
+		}
+
+	public boolean superLargeLeft45DegreeTurn(EntityPlayer player, World world, int x, int y, int z, int l, TrackTypes tempType){
+
+		int[] xArray;
+		int[] zArray;
+		if (player.isSneaking()) {
+			xArray = new int[] {0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3 , 4, 4 };
+			zArray = new int[] {0, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 6, 7, 5, 6, 7, 8, 9, 7, 8, 9, 10, 9, 10};
+		}
+		else {
+			xArray = new int[] {0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3 , 4, 4 , 4 , 5 };
+			zArray = new int[] {0, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 6, 7, 5, 6, 7, 8, 9, 7, 8, 9, 10, 9, 10, 11, 10};
+		}
+		if (l == 2) {
+			if (!putDownTurn(player, world, false, x, y, z, flipArraySign(xArray, x, true), flipArraySign(zArray, z, true), l, false, 1, x - 4, z - 11 , 15.69, x - 15.19,
+					y + 1, z + 1, tempType.getLabel(), tempType.getItem().item))
+				return false;
+		}
+
+		if (l == 0) {
+			if (!putDownTurn(player, world, false, x, y, z, flipArraySign(xArray, x, false), flipArraySign(zArray, z, false), l, false, 3, x + 4, z + 11 , 15.69, x + 16.19,
+					y + 1, z , tempType.getLabel(), tempType.getItem().item))
+				return false;
+		}
+		if (l == 1) {
+			if (!putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, true), flipArraySign(xArray, z, false), l, false, 0, x - 11, z + 4 , 15.69, x + 1,
+					y + 1,  z - 15.69, tempType.getLabel(), tempType.getItem().item))
+				return false;
+		}
+
+		if (l == 3) {
+			if (!putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, false), flipArraySign(xArray, z, true), l, false, 2, x + 11, z - 4 , 15.69, x,
+					y + 1,  z + 15.19, tempType.getLabel(), tempType.getItem().item))
+				return false;
+		}
+		return true;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	private boolean parallelRightSwitchEast(EntityPlayer player, World world, int x, int y, int z, int l, TrackTypes tempType, String typeVariantStraight, Item idVariantSwitch) {
 		for (int check = 1; check < 10; check++) {
 			if (!canPlaceTrack(player, world, x + check, y + 1, z))
