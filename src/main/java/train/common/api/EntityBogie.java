@@ -561,7 +561,10 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 
 	private void moveOnTCDiagonal(int i, int j, int k, double cx, double cz, int meta, double length) {
 
-		posY = j + 0.2;
+		double Y_OFFSET = 0.2;
+		double X_OFFSET = 0.5;
+		double Z_OFFSET = 1.5;
+		posY = j + Y_OFFSET;
 
 		double exitX = 0;
 		double exitZ = 0;
@@ -570,76 +573,25 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		double norm = Math.sqrt(motionX * motionX + motionZ * motionZ);
 		double distanceNorm;
 
-
-
 		if (meta == 6) {
-			if (motionX > 0) {
-				exitX = (cx + length) + 0.5;
-				exitZ = (cz - length) + 0.5;
-			}
-			if (motionX < 0) {
-				exitX = cx - (0.5);
-				exitZ = cz + (1.5);
-			}
-			directionX = exitX - posX;
-			directionZ = exitZ - posZ;
-			distanceNorm = Math.sqrt(directionX * directionX + directionZ * directionZ);
-			motionX = (directionX / distanceNorm) * norm;
-			motionZ = (directionZ / distanceNorm) * norm;
-		}
-		if (meta == 4) {
-			if (motionX > 0) {
-				exitX = cx + (1.5);
-				exitZ = cz - (0.5);
-			}
-			if (motionX < 0) {
-				exitX = cx - (length - 0.5);
-				exitZ = cz + (length + 0.5);
-			}
-			directionX = exitX - posX;
-			directionZ = exitZ - posZ;
-			distanceNorm = Math.sqrt(directionX * directionX + directionZ * directionZ);
-			motionX = (directionX / distanceNorm) * norm;
-			motionZ = (directionZ / distanceNorm) * norm;
+			exitX = (motionX > 0) ? cx + length + X_OFFSET : cx - X_OFFSET;
+			exitZ = (motionX > 0) ? cz - length + X_OFFSET : cz + Z_OFFSET;
+		} else if (meta == 4) {
+			exitX = (motionX > 0) ? cx + Z_OFFSET : cx - (length - X_OFFSET);
+			exitZ = (motionX > 0) ? cz - X_OFFSET : cz + (length + X_OFFSET);
+		} else if (meta == 5) {
+			exitX = (motionX > 0) ? cx + Z_OFFSET : cx - (length + X_OFFSET);
+			exitZ = (motionX > 0) ? cz + Z_OFFSET : cz - (length + X_OFFSET);
+		} else if (meta == 7) {
+			exitX = (motionX > 0) ? cx + X_OFFSET : cx - (length - X_OFFSET);
+			exitZ = (motionX > 0) ? cz + Z_OFFSET : cz - X_OFFSET;
 		}
 
-
-		if (meta == 5 ) {
-			if (motionX > 0) {
-				exitX = cx + ( 1.5);
-				exitZ = cz + ( 1.5);
-			}
-			if (motionX < 0) {
-				exitX = cx - (length + 0.5);
-				exitZ = cz - (length + 0.5);
-			}
-			directionX = exitX - posX;
-			directionZ = exitZ - posZ;
-			distanceNorm = Math.sqrt(directionX * directionX + directionZ * directionZ);
-			motionX = (directionX / distanceNorm) * norm;
-			motionZ = (directionZ / distanceNorm) * norm;
-
-		}
-
-		if (meta == 7 ) {
-			if (motionX > 0) {
-				exitX = cx + (length + 0.5);
-				exitZ = cz + (length + 0.5);
-			}
-			if (motionX < 0) {
-				exitX = cx - (0.5);
-				exitZ = cz - (0.5);
-			}
-			directionX = exitX - posX;
-			directionZ = exitZ - posZ;
-			distanceNorm = Math.sqrt(directionX * directionX + directionZ * directionZ);
-			motionX = (directionX / distanceNorm) * norm;
-			motionZ = (directionZ / distanceNorm) * norm;
-
-		}
-
-
-
+		directionX = exitX - posX;
+		directionZ = exitZ - posZ;
+		distanceNorm = Math.sqrt(directionX * directionX + directionZ * directionZ);
+		motionX = (directionX / distanceNorm) * norm;
+		motionZ = (directionZ / distanceNorm) * norm;
 		this.boundingBox.offset(Math.copySign(motionX, this.motionX), 0 , Math.copySign(motionZ, this.motionZ));
 
 		List boxes = worldObj.getCollidingBoundingBoxes(this, boundingBox);
@@ -651,9 +603,99 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		this.posX = (this.boundingBox.minX + this.boundingBox.maxX) / 2.0D;
 		this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
 		this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) / 2.0D;
-
-
 	}
+
+
+	/**
+	 * 		private void moveOnTCDiagonal(int i, int j, int k, double cx, double cz, int meta, double length) {
+	 posY = j + 0.2;
+
+	 double exitX = 0;
+	 double exitZ = 0;
+	 double directionX;
+	 double directionZ;
+	 double norm = Math.sqrt(motionX * motionX + motionZ * motionZ);
+	 double distanceNorm;
+
+
+
+	 if (meta == 6) {
+	 if (motionX > 0) {
+	 exitX = (cx + length) + 0.5;
+	 exitZ = (cz - length) + 0.5;
+	 }
+	 if (motionX < 0) {
+	 exitX = cx - (0.5);
+	 exitZ = cz + (1.5);
+	 }
+	 directionX = exitX - posX;
+	 directionZ = exitZ - posZ;
+	 distanceNorm = Math.sqrt(directionX * directionX + directionZ * directionZ);
+	 motionX = (directionX / distanceNorm) * norm;
+	 motionZ = (directionZ / distanceNorm) * norm;
+	 }
+	 else if (meta == 4) {
+	 if (motionX > 0) {
+	 exitX = cx + (1.5);
+	 exitZ = cz - (0.5);
+	 }
+	 if (motionX < 0) {
+	 exitX = cx - (length - 0.5);
+	 exitZ = cz + (length + 0.5);
+	 }
+	 directionX = exitX - posX;
+	 directionZ = exitZ - posZ;
+	 distanceNorm = Math.sqrt(directionX * directionX + directionZ * directionZ);
+	 motionX = (directionX / distanceNorm) * norm;
+	 motionZ = (directionZ / distanceNorm) * norm;
+	 }
+
+
+	 else if (meta == 5 ) {
+	 if (motionX > 0) {
+	 exitX = cx + ( 1.5);
+	 exitZ = cz + ( 1.5);
+	 }
+	 if (motionX < 0) {
+	 exitX = cx - (length + 0.5);
+	 exitZ = cz - (length + 0.5);
+	 }
+	 directionX = exitX - posX;
+	 directionZ = exitZ - posZ;
+	 distanceNorm = Math.sqrt(directionX * directionX + directionZ * directionZ);
+	 motionX = (directionX / distanceNorm) * norm;
+	 motionZ = (directionZ / distanceNorm) * norm;
+
+	 }
+
+	 else if (meta == 7 ) {
+	 if (motionX > 0) {
+	 exitX = cx + (length + 0.5);
+	 exitZ = cz + (length + 0.5);
+	 }
+	 if (motionX < 0) {
+	 exitX = cx - (0.5);
+	 exitZ = cz - (0.5);
+	 }
+	 directionX = exitX - posX;
+	 directionZ = exitZ - posZ;
+	 distanceNorm = Math.sqrt(directionX * directionX + directionZ * directionZ);
+	 motionX = (directionX / distanceNorm) * norm;
+	 motionZ = (directionZ / distanceNorm) * norm;
+	 this.boundingBox.offset(Math.copySign(motionX, this.motionX), 0 , Math.copySign(motionZ, this.motionZ));
+
+	 List boxes = worldObj.getCollidingBoundingBoxes(this, boundingBox);
+	 for(Object b : boxes){
+	 if(!(b instanceof BlockRailBase) && !(b instanceof BlockTCRail) && !(b instanceof BlockTCRailGag) && !(b instanceof BlockAir)){
+	 return;
+	 }
+	 }
+	 this.posX = (this.boundingBox.minX + this.boundingBox.maxX) / 2.0D;
+	 this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
+	 this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) / 2.0D;
+	 }
+
+	 */
 	private void moveOnTCStraight(int j, double cx, double cz, int meta) {
 		posY = j + 0.2; /** posY is height of locomotive first hitbox*/
 		/** posX and posZ is the position of hitbox*/

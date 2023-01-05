@@ -254,8 +254,8 @@ public class ItemTCRail extends ItemPart {
 				|| (tile.getType().equals(TrackTypes.LARGE_RIGHT_SWITCH.getLabel()) && tile.getSwitchState())
 				|| (tile.getType().equals(TrackTypes.MEDIUM_RIGHT_PARALLEL_SWITCH.getLabel()) && tile.getSwitchState())
 				|| (tile.getType().equals(TrackTypes.MEDIUM_LEFT_PARALLEL_SWITCH.getLabel()) && tile.getSwitchState())
-				|| (tile.getType().equals(TrackTypes.MEDIUM_RIGHT_45DEGREE_SWITCH.getLabel())) && tile.getSwitchState()
-				|| (tile.getType().equals(TrackTypes.MEDIUM_LEFT_45DEGREE_SWITCH.getLabel())) && tile.getSwitchState()
+				|| (tile.getType().equals(TrackTypes.MEDIUM_RIGHT_45DEGREE_SWITCH.getLabel()) && tile.getSwitchState())
+				|| (tile.getType().equals(TrackTypes.MEDIUM_LEFT_45DEGREE_SWITCH.getLabel()) && tile.getSwitchState())
 				|| tile.getType().equals(TrackTypes.MEDIUM_RIGHT_TURN.getLabel())
 				|| tile.getType().equals(TrackTypes.MEDIUM_LEFT_TURN.getLabel())
 				|| tile.getType().equals(TrackTypes.LARGE_RIGHT_TURN.getLabel())
@@ -284,8 +284,8 @@ public class ItemTCRail extends ItemPart {
 				|| (tile.getType().equals(TrackTypes.EMBEDDED_LARGE_RIGHT_SWITCH.getLabel()) && tile.getSwitchState())
 				|| (tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_RIGHT_PARALLEL_SWITCH.getLabel()) && tile.getSwitchState())
 				|| (tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_LEFT_PARALLEL_SWITCH.getLabel()) && tile.getSwitchState())
-				|| (tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_RIGHT_45DEGREE_SWITCH.getLabel())) && tile.getSwitchState()
-				|| (tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_LEFT_45DEGREE_SWITCH.getLabel())) && tile.getSwitchState()
+				|| (tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_RIGHT_45DEGREE_SWITCH.getLabel()) && tile.getSwitchState())
+				|| (tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_LEFT_45DEGREE_SWITCH.getLabel()) && tile.getSwitchState())
 				|| tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_RIGHT_TURN.getLabel())
 				|| tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_LEFT_TURN.getLabel())
 				|| tile.getType().equals(TrackTypes.EMBEDDED_LARGE_RIGHT_TURN.getLabel())
@@ -316,8 +316,8 @@ public class ItemTCRail extends ItemPart {
 				|| (tile.getType().equals(TrackTypes.LARGE_RIGHT_SWITCH.getLabel()) && !tile.getSwitchState())
 				|| (tile.getType().equals(TrackTypes.MEDIUM_RIGHT_PARALLEL_SWITCH.getLabel()) && !tile.getSwitchState())
 				|| (tile.getType().equals(TrackTypes.MEDIUM_LEFT_PARALLEL_SWITCH.getLabel()) && !tile.getSwitchState())
-				|| (tile.getType().equals(TrackTypes.MEDIUM_RIGHT_45DEGREE_SWITCH.getLabel()))&& !tile.getSwitchState()
-				|| (tile.getType().equals(TrackTypes.MEDIUM_LEFT_45DEGREE_SWITCH.getLabel()))&& !tile.getSwitchState()
+				|| (tile.getType().equals(TrackTypes.MEDIUM_RIGHT_45DEGREE_SWITCH.getLabel())&& !tile.getSwitchState())
+				|| (tile.getType().equals(TrackTypes.MEDIUM_LEFT_45DEGREE_SWITCH.getLabel())&& !tile.getSwitchState())
 				|| tile.getType().equals(TrackTypes.MEDIUM_STRAIGHT.getLabel())
 				|| tile.getType().equals(TrackTypes.VERY_LONG_STRAIGHT.getLabel())
 				|| tile.getType().equals(TrackTypes.LONG_STRAIGHT.getLabel())
@@ -328,8 +328,8 @@ public class ItemTCRail extends ItemPart {
 				|| (tile.getType().equals(TrackTypes.EMBEDDED_LARGE_RIGHT_SWITCH.getLabel()) && !tile.getSwitchState())
 				|| (tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_RIGHT_PARALLEL_SWITCH.getLabel()) && !tile.getSwitchState())
 				|| (tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_LEFT_PARALLEL_SWITCH.getLabel()) && !tile.getSwitchState())
-				|| (tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_RIGHT_45DEGREE_SWITCH.getLabel())) && !tile.getSwitchState()
-				|| (tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_LEFT_45DEGREE_SWITCH.getLabel())) && !tile.getSwitchState()
+				|| (tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_RIGHT_45DEGREE_SWITCH.getLabel()) && !tile.getSwitchState())
+				|| (tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_LEFT_45DEGREE_SWITCH.getLabel()) && !tile.getSwitchState())
 				|| tile.getType().equals(TrackTypes.EMBEDDED_SMALL_STRAIGHT.getLabel())
 				|| tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_STRAIGHT.getLabel())
 				|| tile.getType().equals(TrackTypes.EMBEDDED_LONG_STRAIGHT.getLabel())
@@ -354,7 +354,7 @@ public class ItemTCRail extends ItemPart {
 				|| (tile.getType().equals(TrackTypes.MEDIUM_RIGHT_PARALLEL_SWITCH.getLabel()))
 				|| (tile.getType().equals(TrackTypes.MEDIUM_LEFT_PARALLEL_SWITCH.getLabel()))
 				|| (tile.getType().equals(TrackTypes.MEDIUM_RIGHT_45DEGREE_SWITCH.getLabel()))
-				|| (tile.getType().equals(TrackTypes.MEDIUM_LEFT_45DEGREE_SWITCH.getLabel())
+				|| (tile.getType().equals(TrackTypes.MEDIUM_LEFT_45DEGREE_SWITCH.getLabel()))
 				|| (tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_LEFT_SWITCH.getLabel()))
 				|| (tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_RIGHT_SWITCH.getLabel()))
 				|| (tile.getType().equals(TrackTypes.EMBEDDED_LARGE_LEFT_SWITCH.getLabel()))
@@ -362,7 +362,7 @@ public class ItemTCRail extends ItemPart {
 				|| (tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_RIGHT_PARALLEL_SWITCH.getLabel()))
 				|| (tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_LEFT_PARALLEL_SWITCH.getLabel()))
 				|| (tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_RIGHT_45DEGREE_SWITCH.getLabel()))
-				|| (tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_LEFT_45DEGREE_SWITCH.getLabel())));
+				|| (tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_LEFT_45DEGREE_SWITCH.getLabel()));
 	}
 
 	public static boolean isTCSlopeTrack(TileTCRail tile) {
@@ -747,7 +747,7 @@ public class ItemTCRail extends ItemPart {
 	public  int[] flipArraySign(int[] array, int pos, boolean needsConverting) {
 		if (needsConverting)
 		for (int i = 0; i < array.length; i++) {
-			array[i] = (array[i] - (array[i] * 2) + pos);
+			array[i] = (array[i] * -1)  + pos;
 		}
 		else{
 			for (int i = 0; i < array.length; i++) {
