@@ -163,6 +163,11 @@ public enum ItemIDs {
 	tcRailEmbeddedMediumParallelSwitch("ItemTCRail", "item_rail_embedded_switch_parallel", 5),
 	tcRailEmbeddedMedium45DegreeSwitch("ItemTCRail","item_rail_embedded_switch_45degree_medium", 5 ),
 
+	tcRailEmbeddedSlopeDynamic("ItemTCRail", "item_rail_embedded_slope_dynamic", 5),
+	tcRailEmbeddedLargeSlopeDynamic("ItemTCRail", "item_rail_embedded_slope_dynamic", 5),
+	tcRailEmbeddedVeryLargeSlopeDynamic("ItemTCRail", "item_rail_embedded_slope_dynamic", 5),
+
+
 	tcRailSmallRoadCrossing("ItemTCRail", "item_rail_small_road_crossing", 5),
 	tcRailSmallRoadCrossing1("ItemTCRail", "item_rail_small_road_crossing_1", 5),
 	tcRailSmallRoadCrossing2("ItemTCRail", "item_rail_small_road_crossing_2", 5),

@@ -33,8 +33,6 @@ public class ItemTCRail extends ItemPart {
 	private String typeVariant90Turn;
 	private String typeVariantCrossing;
 	private String typeVariantSTurn;
-	private Item idVariant90Turn;
-	private Item idVariant45Turn;
 	private Item idVariantSwitch;
 	private Item idVariantSTurn;
 	TrackTypes tempType;
@@ -200,6 +198,10 @@ public class ItemTCRail extends ItemPart {
 		EMBEDDED_MEDIUM_45DEGREE_SWITCH("EMBEDDED_MEDIUM_45DEGREE_SWITCH", "SWITCH", ItemIDs.tcRailEmbeddedMedium45DegreeSwitch,"3x5 hold sneak to attach to the back of another curve"),
 		EMBEDDED_MEDIUM_RIGHT_45DEGREE_SWITCH("EMBEDDED_MEDIUM_RIGHT_45DEGREE_SWITCH", "SWITCH", ItemIDs.tcRailEmbeddedMedium45DegreeSwitch,""),
 		EMBEDDED_MEDIUM_LEFT_45DEGREE_SWITCH("EMBEDDED_MEDIUM_LEFT_45DEGREE_SWITCH", "SWITCH", ItemIDs.tcRailEmbeddedMedium45DegreeSwitch,""),
+
+		EMBEDDED_SLOPE_DYNAMIC("EMBEDDED_SLOPE_DYNAMIC", "SLOPE", ItemIDs.tcRailEmbeddedSlopeDynamic, "1x6 " + EnumChatFormatting.YELLOW + "Grabs texture from block " + EnumChatFormatting.DARK_PURPLE +  "-TheDoctor1138"),
+		EMBEDDED_LARGE_SLOPE_DYNAMIC("EMBEDDED_LARGE_SLOPE_DYNAMIC", "SLOPE", ItemIDs.tcRailEmbeddedLargeSlopeDynamic, "1x12 "  + EnumChatFormatting.YELLOW + "Grabs texture from block " + EnumChatFormatting.DARK_PURPLE +  "-TheDoctor1138") ,
+		EMBEDDED_VERY_LARGE_SLOPE_DYNAMIC("EMBEDDED_VERY_LARGE_SLOPE_DYNAMIC", "SLOPE", ItemIDs.tcRailEmbeddedVeryLargeSlopeDynamic, "1x18 "  + EnumChatFormatting.YELLOW + "Grabs texture from block " + EnumChatFormatting.DARK_PURPLE +  "-TheDoctor1138"),
 
 		SMALL_ROAD_CROSSING("SMALL_ROAD_CROSSING", "STRAIGHT", ItemIDs.tcRailSmallRoadCrossing, "1x1"),
 		SMALL_ROAD_CROSSING_1("SMALL_ROAD_CROSSING_1", "STRAIGHT", ItemIDs.tcRailSmallRoadCrossing1, "1x1"),
@@ -382,6 +384,9 @@ public class ItemTCRail extends ItemPart {
 				|| tile.getType().equals(TrackTypes.VERY_LARGE_SLOPE_BALLAST.getLabel())
 				|| tile.getType().equals(TrackTypes.VERY_LARGE_SLOPE_SNOW_GRAVEL.getLabel())
 				|| tile.getType().equals(TrackTypes.VERY_LARGE_SLOPE_DYNAMIC.getLabel())
+				|| tile.getType().equals(TrackTypes.EMBEDDED_SLOPE_DYNAMIC.getLabel())
+				|| tile.getType().equals(TrackTypes.EMBEDDED_LARGE_SLOPE_DYNAMIC.getLabel())
+				|| tile.getType().equals(TrackTypes.EMBEDDED_VERY_LARGE_SLOPE_DYNAMIC.getLabel())
 				;
 	}
 
@@ -514,11 +519,11 @@ public class ItemTCRail extends ItemPart {
 			tcRailEnd.linkedZ = posZ[0];
 		}
 
-		for (int i = 0; i < tileGag.length; i++) {
-			tileGag[i].originX = posX[0];
-			tileGag[i].originY = y + 1;
-			tileGag[i].originZ = posZ[0];
-			tileGag[i].type = type;
+		for (TileTCRailGag tileTCRailGag : tileGag) {
+			tileTCRailGag.originX = posX[0];
+			tileTCRailGag.originY = y + 1;
+			tileTCRailGag.originZ = posZ[0];
+			tileTCRailGag.type = type;
 		}
 		return true;
 	}
@@ -619,20 +624,25 @@ public class ItemTCRail extends ItemPart {
 				|| type == TrackTypes.SLOPE_GRAVEL
 				|| type == TrackTypes.SLOPE_WOOD
 				|| type == TrackTypes.SLOPE_SNOW_GRAVEL
-				|| type == TrackTypes.SLOPE_DYNAMIC)
+				|| type == TrackTypes.SLOPE_DYNAMIC
+				|| type == TrackTypes.EMBEDDED_SLOPE_DYNAMIC
+		)
 			return new int[][]{ {0,0}, {1,0}, {2,0}, {3,0}, {4,0}, {5,0} };
 
 		else if ( type == TrackTypes.LARGE_SLOPE_BALLAST
 				|| type == TrackTypes.LARGE_SLOPE_GRAVEL
 				|| type == TrackTypes.LARGE_SLOPE_WOOD
 				|| type == TrackTypes.LARGE_SLOPE_SNOW_GRAVEL
-				|| type == TrackTypes.LARGE_SLOPE_DYNAMIC)
+				|| type == TrackTypes.LARGE_SLOPE_DYNAMIC
+				|| type == TrackTypes.EMBEDDED_LARGE_SLOPE_DYNAMIC)
 			return new int[][]{ {0,0}, {1,0}, {2,0}, {3,0}, {4,0}, {5,0}, {6,0}, {7,0}, {8,0}, {9,0}, {10,0}, {11,0} };
 		else if ( type == TrackTypes.VERY_LARGE_SLOPE_BALLAST
 				|| type == TrackTypes.VERY_LARGE_SLOPE_GRAVEL
 				|| type == TrackTypes.VERY_LARGE_SLOPE_WOOD
 				|| type == TrackTypes.VERY_LARGE_SLOPE_SNOW_GRAVEL
-				|| type == TrackTypes.VERY_LARGE_SLOPE_DYNAMIC)
+				|| type == TrackTypes.VERY_LARGE_SLOPE_DYNAMIC
+				|| type == TrackTypes.EMBEDDED_VERY_LARGE_SLOPE_DYNAMIC
+		)
 			return new int[][]{ {0,0}, {1,0}, {2,0}, {3,0}, {4,0}, {5,0}, {6,0}, {7,0}, {8,0}, {9,0}, {10,0}, {11,0},
 					{12,0}, {13,0}, {14,0}, {15,0}, {16,0}, {17,0}};
 		/** Crossing */
@@ -3279,13 +3289,13 @@ public class ItemTCRail extends ItemPart {
 			}
 
 			if (type == TrackTypes.SLOPE_WOOD || type == TrackTypes.SLOPE_GRAVEL || type == TrackTypes.SLOPE_BALLAST
-					|| type == TrackTypes.SLOPE_SNOW_GRAVEL || type == TrackTypes.SLOPE_DYNAMIC
+					|| type == TrackTypes.SLOPE_SNOW_GRAVEL || type == TrackTypes.SLOPE_DYNAMIC || type == TrackTypes.EMBEDDED_SLOPE_DYNAMIC
 					|| type == TrackTypes.LARGE_SLOPE_WOOD || type == TrackTypes.LARGE_SLOPE_GRAVEL
 					|| type == TrackTypes.LARGE_SLOPE_BALLAST || type == TrackTypes.LARGE_SLOPE_SNOW_GRAVEL
-					|| type == TrackTypes.LARGE_SLOPE_DYNAMIC
+					|| type == TrackTypes.LARGE_SLOPE_DYNAMIC || type == TrackTypes.EMBEDDED_LARGE_SLOPE_DYNAMIC
 					|| type == TrackTypes.VERY_LARGE_SLOPE_WOOD || type == TrackTypes.VERY_LARGE_SLOPE_GRAVEL
 					|| type == TrackTypes.VERY_LARGE_SLOPE_BALLAST || type == TrackTypes.VERY_LARGE_SLOPE_SNOW_GRAVEL
-					|| type == TrackTypes.VERY_LARGE_SLOPE_DYNAMIC
+					|| type == TrackTypes.VERY_LARGE_SLOPE_DYNAMIC || type == TrackTypes.EMBEDDED_VERY_LARGE_SLOPE_DYNAMIC
 			) {
 				if (!canPlaceTrack(player, world, x, y + 1, z)) {
 					return false;
@@ -3299,21 +3309,21 @@ public class ItemTCRail extends ItemPart {
 				 **/
 				if (type == TrackTypes.SLOPE_WOOD || type == TrackTypes.SLOPE_GRAVEL
 						|| type == TrackTypes.SLOPE_BALLAST || type == TrackTypes.SLOPE_SNOW_GRAVEL
-						|| type == TrackTypes.SLOPE_DYNAMIC) {
+						|| type == TrackTypes.SLOPE_DYNAMIC || type == TrackTypes.EMBEDDED_SLOPE_DYNAMIC) {
 					gagEnd = 5;
 					slopeAngle = 0.13;
 				}
 
 				if (type == TrackTypes.LARGE_SLOPE_WOOD || type == TrackTypes.LARGE_SLOPE_GRAVEL
 						|| type == TrackTypes.LARGE_SLOPE_BALLAST || type == TrackTypes.LARGE_SLOPE_SNOW_GRAVEL
-						|| type == TrackTypes.LARGE_SLOPE_DYNAMIC){
+						|| type == TrackTypes.LARGE_SLOPE_DYNAMIC || type == TrackTypes.EMBEDDED_LARGE_SLOPE_DYNAMIC){
 					gagEnd = 11;
 					slopeAngle = 0.0666;
 				}
 
 				if (type == TrackTypes.VERY_LARGE_SLOPE_WOOD || type == TrackTypes.VERY_LARGE_SLOPE_GRAVEL
 						|| type == TrackTypes.VERY_LARGE_SLOPE_BALLAST || type == TrackTypes.VERY_LARGE_SLOPE_SNOW_GRAVEL
-						|| type == TrackTypes.VERY_LARGE_SLOPE_DYNAMIC) {
+						|| type == TrackTypes.VERY_LARGE_SLOPE_DYNAMIC || type == TrackTypes.EMBEDDED_VERY_LARGE_SLOPE_DYNAMIC) {
 					gagEnd = 17;
 					slopeAngle = 0.0444;
 				}
@@ -3399,7 +3409,6 @@ public class ItemTCRail extends ItemPart {
 					--itemstack.stackSize;
 				}
 				return true;
-
 
 
 
@@ -4193,15 +4202,15 @@ public class ItemTCRail extends ItemPart {
 			}
 
 		}
-		for (int i = 0; i < tileGag.length; i++) {
-			if (player !=null && tileGag[i] == null) {
+		for (TileTCRailGag tileTCRailGag : tileGag) {
+			if (player != null && tileTCRailGag == null) {
 				player.addChatMessage(new ChatComponentText("There was a problem when placing the track. Possibly too many tracks around"));
 				return false;
 			}
-			tileGag[i].originX = x;
-			tileGag[i].originY = y + 1;
-			tileGag[i].originZ = z;
-			tileGag[i].type = TrackTypes.MEDIUM_STRAIGHT.getLabel();
+			tileTCRailGag.originX = x;
+			tileTCRailGag.originY = y + 1;
+			tileTCRailGag.originZ = z;
+			tileTCRailGag.type = TrackTypes.MEDIUM_STRAIGHT.getLabel();
 		}
 		return true;
 	}
@@ -4287,15 +4296,15 @@ public class ItemTCRail extends ItemPart {
 			tcRail.idDrop = this.type.getItem().item;
 		}
 
-		for (int i = 0; i < tileGag.length; i++) {
-			if (player !=null && tileGag[i] == null) {
+		for (TileTCRailGag tileTCRailGag : tileGag) {
+			if (player != null && tileTCRailGag == null) {
 				player.addChatMessage(new ChatComponentText("There was a problem when placing the track. Possibly too many tracks around"));
 				return false;
 			}
-			tileGag[i].originX = x;
-			tileGag[i].originY = y + 1;
-			tileGag[i].originZ = z;
-			tileGag[i].type = TrackTypes.SMALL_DIAGONAL_STRAIGHT.getLabel();
+			tileTCRailGag.originX = x;
+			tileTCRailGag.originY = y + 1;
+			tileTCRailGag.originZ = z;
+			tileTCRailGag.type = TrackTypes.SMALL_DIAGONAL_STRAIGHT.getLabel();
 		}
 		return true;
 	}
@@ -5049,15 +5058,15 @@ public class ItemTCRail extends ItemPart {
 
 		}
 
-		for (int i = 0; i < tileGag.length; i++) {
-			if (player !=null && tileGag[i] == null) {
+		for (TileTCRailGag tileTCRailGag : tileGag) {
+			if (player != null && tileTCRailGag == null) {
 				player.addChatMessage(new ChatComponentText("There was a problem when placing the track. Possibly too many tracks around"));
 				return false;
 			}
-			tileGag[i].originX = x;
-			tileGag[i].originY = y + 1;
-			tileGag[i].originZ = z;
-			tileGag[i].type = type.getLabel();
+			tileTCRailGag.originX = x;
+			tileTCRailGag.originY = y + 1;
+			tileTCRailGag.originZ = z;
+			tileTCRailGag.type = type.getLabel();
 
 		}
 
@@ -5084,9 +5093,8 @@ public class ItemTCRail extends ItemPart {
 				return false;
 		}
 		if (l == 3) {
-			if (!putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, false), flipArraySign(xArray, z, false), l, false, 0, x + 3, z + 3, 2.5, x, y + 1,
-					z + 3, tempType.getLabel(), tempType.getItem().item))
-				return false;
+			return putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, false), flipArraySign(xArray, z, false), l, false, 0, x + 3, z + 3, 2.5, x, y + 1,
+					z + 3, tempType.getLabel(), tempType.getItem().item);
 		}
 		return true;
 	}
@@ -5111,9 +5119,8 @@ public class ItemTCRail extends ItemPart {
 				return false;
 		}
 		if (l == 3) {
-			if (!putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, false), flipArraySign(xArray, z, true), l, false, 2, x + 3, z - 3, 2.5, x, y + 1,
-					z - 2, tempType.getLabel(), tempType.getItem().item))
-				return false;
+			return putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, false), flipArraySign(xArray, z, true), l, false, 2, x + 3, z - 3, 2.5, x, y + 1,
+					z - 2, tempType.getLabel(), tempType.getItem().item);
 		}
 		return true;
 	}
@@ -5139,9 +5146,8 @@ public class ItemTCRail extends ItemPart {
 				return false;
 		}
 		if (l == 3) {
-			if (!putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, false), flipArraySign(xArray, z, false), l, false, 0, x + 5, z + 5, 4.5, x, y + 1,
-					z + 5, tempType.getLabel(), tempType.getItem().item))
-				return false;
+			return putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, false), flipArraySign(xArray, z, false), l, false, 0, x + 5, z + 5, 4.5, x, y + 1,
+					z + 5, tempType.getLabel(), tempType.getItem().item);
 		}
 		return true;
 	}
@@ -5164,9 +5170,8 @@ public class ItemTCRail extends ItemPart {
 				return false;
 		}
 		if (l == 3) {
-			if (!putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, false), flipArraySign(xArray, z, true), l, false, 0, x + 5, z - 5, 4.5, x, y + 1,
-					z - 4, tempType.getLabel(), tempType.getItem().item))
-				return false;
+			return putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, false), flipArraySign(xArray, z, true), l, false, 0, x + 5, z - 5, 4.5, x, y + 1,
+					z - 4, tempType.getLabel(), tempType.getItem().item);
 		}
 		return true;
 	}
@@ -5191,9 +5196,8 @@ public class ItemTCRail extends ItemPart {
 				return false;
 		}
 		if (l == 3) {
-			if (!putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, false), flipArraySign(xArray, z, false), l, false, 0, x + 10, z + 10, 9.5, x, y + 1,
-					z + 10, tempType.getLabel(), tempType.getItem().item))
-				return false;
+			return putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, false), flipArraySign(xArray, z, false), l, false, 0, x + 10, z + 10, 9.5, x, y + 1,
+					z + 10, tempType.getLabel(), tempType.getItem().item);
 		}
 		return true;
 	}
@@ -5217,9 +5221,8 @@ public class ItemTCRail extends ItemPart {
 				return false;
 		}
 		if (l == 3) {
-			if (!putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, false), flipArraySign(xArray, z, true), l, false, 0, x + 10, z - 10, 9.5, x, y + 1,
-					z - 9, tempType.getLabel(), tempType.getItem().item))
-				return false;
+			return putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, false), flipArraySign(xArray, z, true), l, false, 0, x + 10, z - 10, 9.5, x, y + 1,
+					z - 9, tempType.getLabel(), tempType.getItem().item);
 		}
 		return true;
 	}
@@ -5243,9 +5246,8 @@ public class ItemTCRail extends ItemPart {
 				return false;
 		}
 		if (l == 3) {
-			if (!putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, false), flipArraySign(xArray, z, false), l, false, 2, x + 15, z + 15, 15.5, x, y + 1,
-					z + 16 , tempType.getLabel(), tempType.getItem().item))
-				return false;
+			return putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, false), flipArraySign(xArray, z, false), l, false, 2, x + 15, z + 15, 15.5, x, y + 1,
+					z + 16, tempType.getLabel(), tempType.getItem().item);
 		}
 		return true;
 	}
@@ -5268,9 +5270,8 @@ public class ItemTCRail extends ItemPart {
 				return false;
 		}
 		if (l == 3) {
-			if (!putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, false), flipArraySign(xArray, z, true), l, false, 0, x + 15, z - 15, 15.5, x , y + 1,
-					z - 15, tempType.getLabel(), tempType.getItem().item))
-				return false;
+			return putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, false), flipArraySign(xArray, z, true), l, false, 0, x + 15, z - 15, 15.5, x, y + 1,
+					z - 15, tempType.getLabel(), tempType.getItem().item);
 		}
 		return true;
 	}
@@ -5303,9 +5304,8 @@ public class ItemTCRail extends ItemPart {
 				return false;
 		}
 		if (l == 3) {
-			if (!putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, false), flipArraySign(xArray, z, false), l, false, 0, x + 2, z + 1, 3.75, x, y + 1,
-					z + 4.25, tempType.getLabel(), tempType.getItem().item))
-				return false;
+			return putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, false), flipArraySign(xArray, z, false), l, false, 0, x + 2, z + 1, 3.75, x, y + 1,
+					z + 4.25, tempType.getLabel(), tempType.getItem().item);
 		}
 		return true;
 	}
@@ -5339,9 +5339,8 @@ public class ItemTCRail extends ItemPart {
 				return false;
 		}
 		if (l == 3) {
-			if (!putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, false), flipArraySign(xArray, z, true), l, false, 2, x + 2, z - 1, 3.75, x, y + 1,
-					z - 3.25, tempType.getLabel(), tempType.getItem().item))
-				return false;
+			return putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, false), flipArraySign(xArray, z, true), l, false, 2, x + 2, z - 1, 3.75, x, y + 1,
+					z - 3.25, tempType.getLabel(), tempType.getItem().item);
 		}
 		return true;
 	}
@@ -5372,9 +5371,8 @@ public class ItemTCRail extends ItemPart {
 				return false;
 		}
 		if (l == 3) {
-			if (!putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, false), flipArraySign(xArray, z, false), l, false, 0, x + 5, z + 2, 8.49, x,
-					y + 1, z + 8.99, tempType.getLabel(), tempType.getItem().item))
-				return false;
+			return putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, false), flipArraySign(xArray, z, false), l, false, 0, x + 5, z + 2, 8.49, x,
+					y + 1, z + 8.99, tempType.getLabel(), tempType.getItem().item);
 		}
 		return true;
 	}
@@ -5405,9 +5403,8 @@ public class ItemTCRail extends ItemPart {
 				return false;
 		}
 		if (l == 3) {
-			if (!putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, false), flipArraySign(xArray, z, true), l, false, 2, x + 5, z - 2, 8.49, x,
-					y + 1, z - 7.99, tempType.getLabel(), tempType.getItem().item))
-				return false;
+			return putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, false), flipArraySign(xArray, z, true), l, false, 2, x + 5, z - 2, 8.49, x,
+					y + 1, z - 7.99, tempType.getLabel(), tempType.getItem().item);
 		}
 		return true;
 	}
@@ -5444,9 +5441,8 @@ public class ItemTCRail extends ItemPart {
 		}
 
 		if (l == 3) {
-			if (!putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, false), flipArraySign(xArray, z, false), l, false, 0, x + 7, z + 3, 10.89, x ,
-					y + 1, z + 11.39 , tempType.getLabel(), tempType.getItem().item))
-				return false;
+			return putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, false), flipArraySign(xArray, z, false), l, false, 0, x + 7, z + 3, 10.89, x,
+					y + 1, z + 11.39, tempType.getLabel(), tempType.getItem().item);
 		}
 		return true;
 	}
@@ -5478,9 +5474,8 @@ public class ItemTCRail extends ItemPart {
 				return false;
 		}
 		if (l == 3) {
-			if (!putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, false), flipArraySign(xArray, z, true), l, false, 0, x + 7, z + 3, 10.89, x ,
-					y + 1, z - 10.39, tempType.getLabel(), tempType.getItem().item))
-				return false;
+			return putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, false), flipArraySign(xArray, z, true), l, false, 0, x + 7, z + 3, 10.89, x,
+					y + 1, z - 10.39, tempType.getLabel(), tempType.getItem().item);
 		}
 		return true;
 	}
@@ -5514,9 +5509,8 @@ public class ItemTCRail extends ItemPart {
 					return false;
 			}
 			if (l == 3) {
-				if (!putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, false), flipArraySign(xArray, z, false), l, false, 0, x + 11, z + 4 , 15.69, x,
-						y + 1,  z + 16.19, tempType.getLabel(), tempType.getItem().item))
-					return false;
+				return putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, false), flipArraySign(xArray, z, false), l, false, 0, x + 11, z + 4, 15.69, x,
+						y + 1, z + 16.19, tempType.getLabel(), tempType.getItem().item);
 			}
 			return true;
 		}
@@ -5551,9 +5545,8 @@ public class ItemTCRail extends ItemPart {
 		}
 
 		if (l == 3) {
-			if (!putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, false), flipArraySign(xArray, z, true), l, false, 2, x + 11, z - 4 , 15.69, x,
-					y + 1,  z - 15.19, tempType.getLabel(), tempType.getItem().item))
-				return false;
+			return putDownTurn(player, world, false, x, y, z, flipArraySign(zArray, x, false), flipArraySign(xArray, z, true), l, false, 2, x + 11, z - 4, 15.69, x,
+					y + 1, z - 15.19, tempType.getLabel(), tempType.getItem().item);
 		}
 		return true;
 	}

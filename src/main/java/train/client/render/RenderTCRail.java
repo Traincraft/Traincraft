@@ -234,7 +234,10 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 					}
 					case SLOPE_DYNAMIC: {
 						modelSlope.render("dynamic", railTile, x, y, z);
-
+						break;
+					}
+					case EMBEDDED_SLOPE_DYNAMIC: {
+						modelSlope.render("embedded_dynamic", railTile, x, y, z);
 						break;
 					}
 					case LARGE_SLOPE_WOOD: {
@@ -257,6 +260,10 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 						modelLargeSlope.render("dynamic", railTile, x, y, z);
 						break;
 					}
+					case EMBEDDED_LARGE_SLOPE_DYNAMIC: {
+						modelLargeSlope.render("embedded_dynamic", railTile, x, y, z);
+						break;
+					}
 					case VERY_LARGE_SLOPE_WOOD: {
 						modelVeryLargeSlope.render("wood", railTile, x, y, z);
 						break;
@@ -275,6 +282,10 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 					}
 					case VERY_LARGE_SLOPE_DYNAMIC: {
 						modelVeryLargeSlope.render("dynamic", railTile, x, y, z);
+						break;
+					}
+					case EMBEDDED_VERY_LARGE_SLOPE_DYNAMIC: {
+						modelVeryLargeSlope.render("embedded_dynamic", railTile, x, y, z);
 						break;
 					}
 

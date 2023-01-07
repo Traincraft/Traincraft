@@ -131,6 +131,10 @@ public class RecipeHandler {
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailLargeSlopeDynamic.item,1), "   ","  S"," S ", Character.valueOf('S'), ItemIDs.tcRailSlopeDynamic.item);
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailVeryLargeSlopeDynamic.item, 1), "  T", " T ","T  ", Character.valueOf('T'), ItemIDs.tcRailSlopeDynamic.item);
 
+		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailEmbeddedSlopeDynamic.item, 1), " TG","TGG","GGG", Character.valueOf('T'), ItemIDs.tcRailEmbeddedMediumStraight.item, Character.valueOf('G'), new  ItemStack(Items.dye, 1, 1));
+		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailEmbeddedLargeSlopeDynamic.item,1), "   ","  S"," S ", Character.valueOf('S'), ItemIDs.tcRailEmbeddedSlopeDynamic.item);
+		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailEmbeddedVeryLargeSlopeDynamic.item, 1), "  T", " T ","T  ", Character.valueOf('T'), ItemIDs.tcRailEmbeddedSlopeDynamic.item);
+
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailSlopeBallast.item, 1), " TG","TGG","GGG", Character.valueOf('T'), ItemIDs.tcRailMediumStraight.item, Character.valueOf('G'), new ItemStack(BlockIDs.oreTC.block, 1, 3));
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailLargeSlopeBallast.item,1), "   ","  S"," S ", Character.valueOf('S'), ItemIDs.tcRailSlopeBallast.item);
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailVeryLargeSlopeBallast.item, 1), "  T", " T ","T  ", Character.valueOf('T'), ItemIDs.tcRailSlopeBallast.item);

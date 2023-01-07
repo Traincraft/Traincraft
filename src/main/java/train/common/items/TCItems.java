@@ -166,6 +166,10 @@ public class TCItems {
 		ItemIDs.tcRailVeryLargeSlopeSnowGravel.item = new ItemTCRail(ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_SNOW_GRAVEL);
 		ItemIDs.tcRailVeryLargeSlopeDynamic.item = new ItemTCRail(ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_DYNAMIC);
 
+		/**Embedded Slopes*/
+		ItemIDs.tcRailEmbeddedSlopeDynamic.item = new ItemTCRail(ItemTCRail.TrackTypes.EMBEDDED_SLOPE_DYNAMIC);
+		ItemIDs.tcRailEmbeddedLargeSlopeDynamic.item = new ItemTCRail(ItemTCRail.TrackTypes.EMBEDDED_LARGE_SLOPE_DYNAMIC);
+		ItemIDs.tcRailEmbeddedVeryLargeSlopeDynamic.item = new ItemTCRail(ItemTCRail.TrackTypes.EMBEDDED_VERY_LARGE_SLOPE_DYNAMIC);
 
 
 		ItemIDs.paintbrushThing.item = new ItemPaintbrushThing();

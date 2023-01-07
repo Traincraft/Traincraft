@@ -16,11 +16,14 @@ import train.common.tile.TileTCRail;
 public class ModelSlopeTCTrack extends ModelBase {
 
 	private IModelCustom	modeltrack;
+
+	private IModelCustom    modelEmbeddedTrack;
 	private IModelCustom	modelSlopeWood;
 	private IModelCustom	modelSlopeBallast;
 	
 	public ModelSlopeTCTrack() {
 		modeltrack = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_slope.obj"));
+		modelEmbeddedTrack = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_embedded_slope.obj"));
 		modelSlopeWood = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "supports_wood.obj"));
 		modelSlopeBallast = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "supports_ballast.obj"));
 	}
@@ -74,7 +77,18 @@ public class ModelSlopeTCTrack extends ModelBase {
 			modeltrack.renderAll();
 			tmt.Tessellator.bindTexture(new ResourceLocation(ballastTexture[0],  "textures/blocks/" + ballastTexture[1] +".png"));
 
+			float r = (float)(ballastColour >> 16 & 255) / 255.0F;
+			float g = (float)(ballastColour >> 8 & 255) / 255.0F;
+			float b = (float)(ballastColour & 255) / 255.0F;
+			GL11.glColor4f(r,g,b,1);
+			modelSlopeBallast.renderAll();
 
+		}
+
+		if (type.equals("embedded_dynamic")) {
+			tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
+			modelEmbeddedTrack.renderAll();
+			tmt.Tessellator.bindTexture(new ResourceLocation(ballastTexture[0],  "textures/blocks/" + ballastTexture[1] +".png"));
 
 			float r = (float)(ballastColour >> 16 & 255) / 255.0F;
 			float g = (float)(ballastColour >> 8 & 255) / 255.0F;
