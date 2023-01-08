@@ -376,6 +376,24 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 						modelEmbeddedLeft45DegreeTurn.render("large", railTile, x, y, z);
 						break;
 					}
+					case EMBEDDED_VERY_LARGE_45DEGREE_TURN:
+					case EMBEDDED_VERY_LARGE_RIGHT_45DEGREE_TURN: {
+						modelEmbeddedRight45DegreeTurn.render("verylarge", railTile, x, y, z);
+						break;
+					}
+					case EMBEDDED_VERY_LARGE_LEFT_45DEGREE_TURN: {
+						modelEmbeddedLeft45DegreeTurn.render("verylarge", railTile, x, y, z);
+						break;
+					}
+					case EMBEDDED_SUPER_LARGE_45DEGREE_TURN:
+					case EMBEDDED_SUPER_LARGE_RIGHT_45DEGREE_TURN: {
+						modelEmbeddedRight45DegreeTurn.render("superlarge", railTile, x, y, z);
+						break;
+					}
+					case EMBEDDED_SUPER_LARGE_LEFT_45DEGREE_TURN: {
+						modelEmbeddedLeft45DegreeTurn.render("superlarge", railTile, x, y, z);
+						break;
+					}
 					case EMBEDDED_SMALL_PARALLEL_CURVE:
 					case EMBEDDED_SMALL_RIGHT_PARALLEL_CURVE:{
 						modelEmbeddedRightParallelCurve.render("small", railTile, x, y, z);

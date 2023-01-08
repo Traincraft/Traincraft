@@ -16,13 +16,19 @@ public class ModelEmbeddedRight45DegreeTurnTCTrack {
     private IModelCustom modelEmbeddedMediumRight45DegreeTurn;
     private IModelCustom modelEmbeddedLargeRight45DegreeTurn;
 
+    private IModelCustom modelEmbeddedVeryLargeRight45DegreeTurn;
+    private IModelCustom modelEmbeddedSuperLargeRight45DegreeTurn;
     public ModelEmbeddedRight45DegreeTurnTCTrack(){
         modelEmbeddedMediumRight45DegreeTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_embedded_curve_45degree_medium.obj"));
         modelEmbeddedLargeRight45DegreeTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_embedded_curve_45degree_large.obj"));
+        modelEmbeddedVeryLargeRight45DegreeTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_embedded_curve_45degree_very_large.obj"));
+        modelEmbeddedSuperLargeRight45DegreeTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_embedded_curve_45degree_super_large.obj"));
     }
 
     public void renderMedium() {modelEmbeddedMediumRight45DegreeTurn.renderAll();}
     public void renderLarge() {modelEmbeddedLargeRight45DegreeTurn.renderAll();}
+    public void renderVeryLarge() {modelEmbeddedVeryLargeRight45DegreeTurn.renderAll();}
+    public void renderSuperLarge() {modelEmbeddedSuperLargeRight45DegreeTurn.renderAll();}
 
     public void render(String type, TileTCRail tcRail, double x, double y, double z) {
         int facing = tcRail.getWorldObj().getBlockMetadata(tcRail.xCoord, tcRail.yCoord, tcRail.zCoord);
@@ -62,6 +68,11 @@ public class ModelEmbeddedRight45DegreeTurnTCTrack {
             this.renderMedium();
         if (type.equals("large"))
             this.renderLarge();
+        if (type.equals("verylarge"))
+            this.renderVeryLarge();
+        if (type.equals("superlarge"))
+            this.renderSuperLarge();
+
 
         // Pop this matrix from the stack.
         GL11.glPopMatrix();
