@@ -511,6 +511,9 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 				} else if (ItemTCRail.isTCDiagonalStraightTrack(tileRail)) {
 					moveOnTCDiagonal(i, j, k, tileRail.xCoord, tileRail.zCoord, tileRail.getBlockMetadata(), tileRail.getRailLength());
 				}
+				else if (ItemTCRail.isTCCurvedSlopeTrack(tileRail)) {
+					moveOnTCCurvedSlope(i, j, k, tileRail.r, tileRail.cx, tileRail.cz, tileRail.xCoord, tileRail.zCoord, meta, 1, tileRail.slopeAngle);
+				}
 			}
 		}
 
@@ -605,97 +608,6 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) / 2.0D;
 	}
 
-
-	/**
-	 * 		private void moveOnTCDiagonal(int i, int j, int k, double cx, double cz, int meta, double length) {
-	 posY = j + 0.2;
-
-	 double exitX = 0;
-	 double exitZ = 0;
-	 double directionX;
-	 double directionZ;
-	 double norm = Math.sqrt(motionX * motionX + motionZ * motionZ);
-	 double distanceNorm;
-
-
-
-	 if (meta == 6) {
-	 if (motionX > 0) {
-	 exitX = (cx + length) + 0.5;
-	 exitZ = (cz - length) + 0.5;
-	 }
-	 if (motionX < 0) {
-	 exitX = cx - (0.5);
-	 exitZ = cz + (1.5);
-	 }
-	 directionX = exitX - posX;
-	 directionZ = exitZ - posZ;
-	 distanceNorm = Math.sqrt(directionX * directionX + directionZ * directionZ);
-	 motionX = (directionX / distanceNorm) * norm;
-	 motionZ = (directionZ / distanceNorm) * norm;
-	 }
-	 else if (meta == 4) {
-	 if (motionX > 0) {
-	 exitX = cx + (1.5);
-	 exitZ = cz - (0.5);
-	 }
-	 if (motionX < 0) {
-	 exitX = cx - (length - 0.5);
-	 exitZ = cz + (length + 0.5);
-	 }
-	 directionX = exitX - posX;
-	 directionZ = exitZ - posZ;
-	 distanceNorm = Math.sqrt(directionX * directionX + directionZ * directionZ);
-	 motionX = (directionX / distanceNorm) * norm;
-	 motionZ = (directionZ / distanceNorm) * norm;
-	 }
-
-
-	 else if (meta == 5 ) {
-	 if (motionX > 0) {
-	 exitX = cx + ( 1.5);
-	 exitZ = cz + ( 1.5);
-	 }
-	 if (motionX < 0) {
-	 exitX = cx - (length + 0.5);
-	 exitZ = cz - (length + 0.5);
-	 }
-	 directionX = exitX - posX;
-	 directionZ = exitZ - posZ;
-	 distanceNorm = Math.sqrt(directionX * directionX + directionZ * directionZ);
-	 motionX = (directionX / distanceNorm) * norm;
-	 motionZ = (directionZ / distanceNorm) * norm;
-
-	 }
-
-	 else if (meta == 7 ) {
-	 if (motionX > 0) {
-	 exitX = cx + (length + 0.5);
-	 exitZ = cz + (length + 0.5);
-	 }
-	 if (motionX < 0) {
-	 exitX = cx - (0.5);
-	 exitZ = cz - (0.5);
-	 }
-	 directionX = exitX - posX;
-	 directionZ = exitZ - posZ;
-	 distanceNorm = Math.sqrt(directionX * directionX + directionZ * directionZ);
-	 motionX = (directionX / distanceNorm) * norm;
-	 motionZ = (directionZ / distanceNorm) * norm;
-	 this.boundingBox.offset(Math.copySign(motionX, this.motionX), 0 , Math.copySign(motionZ, this.motionZ));
-
-	 List boxes = worldObj.getCollidingBoundingBoxes(this, boundingBox);
-	 for(Object b : boxes){
-	 if(!(b instanceof BlockRailBase) && !(b instanceof BlockTCRail) && !(b instanceof BlockTCRailGag) && !(b instanceof BlockAir)){
-	 return;
-	 }
-	 }
-	 this.posX = (this.boundingBox.minX + this.boundingBox.maxX) / 2.0D;
-	 this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
-	 this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) / 2.0D;
-	 }
-
-	 */
 	private void moveOnTCStraight(int j, double cx, double cz, int meta) {
 		posY = j + 0.2; /** posY is height of locomotive first hitbox*/
 		/** posX and posZ is the position of hitbox*/
@@ -745,6 +657,71 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 
 		}
 	}
+	private void moveOnTCCurvedSlope(int i, int j, int k,double r, double cx, double cz, int tilex, int tilez, int meta, double slopeHeight, double slopeAngle) {
+		if (meta == 2 ) {
+			tilez += 1;
+			tilex += 0.5;
+		}
+		if (meta == 0) {
+			tilex += 0.5;
+		}
+		if (meta == 1 ) {
+			tilex += 1;
+			tilez += 0.5;
+		}
+		if (meta == 3) {
+			tilez += 0.5;
+		}
+		double cpx = posX - cx;
+		double cpz = posZ - cz;
+		double tpx = tilex - posX;
+		double tpz = tilez - posZ;
+
+		double tpnorm = Math.sqrt(tpx * tpx + tpz * tpz);
+
+		double cp_norm = Math.sqrt(cpx * cpx + cpz * cpz);
+		double vnorm = Math.sqrt(motionX * motionX + motionZ * motionZ);
+
+		double norm_cpx = cpx / cp_norm; //u
+		double norm_cpz = cpz / cp_norm; //v
+
+		double vx2 = -norm_cpz * vnorm;//-v
+		double vz2 = norm_cpx * vnorm;//u
+
+		double px2 = posX + motionX;
+		double pz2 = posZ + motionZ;
+
+		double px2_cx = px2 - cx;
+		double pz2_cz = pz2 - cz;
+
+		double p2_c_norm = Math.sqrt((px2_cx * px2_cx) + (pz2_cz * pz2_cz));
+
+		double px2_cx_norm = px2_cx / p2_c_norm;
+		double pz2_cz_norm = pz2_cz / p2_c_norm;
+
+		double px3 = cx + (px2_cx_norm * r);
+		double pz3 = cz + (pz2_cz_norm * r);
+
+		double signX = px3 - posX;
+		double signZ = pz3 - posZ;
+
+		vx2 = Math.copySign(vx2, signX);
+		vz2 = Math.copySign(vz2, signZ);
+
+		double p_corr_x = cx + ((cpx / cp_norm) * r);
+		double p_corr_z = cz + ((cpz / cp_norm) * r);
+		this.motionX = vx2;
+		this.motionZ = vz2;
+		double newYPos = Math.abs(j + (Math.tan(slopeAngle * Math.abs(tpnorm))) + yOffset + 0.3f);
+		System.out.println("newYpos, " + newYPos + ", tpnorm" + tpnorm );
+		setPosition(p_corr_x, newYPos, p_corr_z);
+		moveEntity(vx2,  0, vz2);
+		this.boundingBox.offset(Math.copySign(this.motionX, this.motionX),  0 , Math.copySign(this.motionZ, this.motionZ));
+		this.posX = (this.boundingBox.minX + this.boundingBox.maxX) / 2.0D;
+		this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
+		this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) / 2.0D;
+
+	}
 
 	private void moveOnTCTwoWaysCrossing() {
 		/*
@@ -789,7 +766,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 				cz += 1;
 			}
 
-			double norm = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ); /** pytho theory thing */
+			double norm = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 			double newPosY = Math.abs(j + (Math.tan(slopeAngle * Math.abs(cz - this.posZ))) + this.yOffset + 0.3);
 			this.setPosition(cx + 0.5D, newPosY, this.posZ);
 

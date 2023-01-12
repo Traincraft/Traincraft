@@ -167,6 +167,8 @@ public class TCItems {
 		ItemIDs.tcRailEmbeddedLargeSlopeDynamic.item = new ItemTCRail(ItemTCRail.TrackTypes.EMBEDDED_LARGE_SLOPE_DYNAMIC);
 		ItemIDs.tcRailEmbeddedVeryLargeSlopeDynamic.item = new ItemTCRail(ItemTCRail.TrackTypes.EMBEDDED_VERY_LARGE_SLOPE_DYNAMIC);
 
+		/* Curved Slopes*/
+		ItemIDs.tcRailLargeCurvedSlopeDynamic.item = new ItemTCRail(ItemTCRail.TrackTypes.LARGE_CURVED_SLOPE_DYNAMIC);
 
 		ItemIDs.paintbrushThing.item = new ItemPaintbrushThing();
 		ItemIDs.whistle.item = new ItemWhistle();

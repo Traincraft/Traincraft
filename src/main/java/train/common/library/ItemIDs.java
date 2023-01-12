@@ -100,7 +100,6 @@ public enum ItemIDs {
 	tcRailVeryLargeTurn("ItemTCRail", "item_rail_turn_veryLarge", 5),
 	tcRailSuperLargeTurn("ItemTCRail", "item_rail_tc_super_large_turn", 5),
 
-
 	tcRailMedium45DegreeTurn("ItemTCRail", "item_rail_45degree_turn_medium", 5),
 	tcRailLarge45DegreeTurn("ItemTCRail", "item_rail_45degree_turn_large", 5),
 	tcRailVeryLarge45DegreeTurn("ItemTCRail", "item_rail_45degree_turn_very_large", 5),
@@ -122,16 +121,20 @@ public enum ItemIDs {
 	tcRailSlopeBallast("ItemTCRail", "item_rail_straight_slope_ballast", 3),
 	tcRailSlopeSnowGravel("ItemTCRail", "item_rail_straight_slope_snow_gravel", 3),
 	tcRailSlopeDynamic("ItemTCRail", "item_rail_straight_slope_dynamic", 3),
+
 	tcRailLargeSlopeWood("ItemTCRail", "item_rail_straight_slope_wood", 3),
 	tcRailLargeSlopeGravel("ItemTCRail", "item_rail_straight_slope_gravel", 3),
 	tcRailLargeSlopeBallast("ItemTCRail", "item_rail_straight_slope_ballast", 3),
 	tcRailLargeSlopeSnowGravel("ItemTCRail", "item_rail_straight_slope_snow_gravel", 3),
 	tcRailLargeSlopeDynamic("ItemTCRail", "item_rail_straight_slope_dynamic", 3),
+
 	tcRailVeryLargeSlopeWood("ItemTCRail", "item_rail_straight_slope_wood", 3),
 	tcRailVeryLargeSlopeGravel("ItemTCRail", "item_rail_straight_slope_gravel", 3),
 	tcRailVeryLargeSlopeBallast("ItemTCRail", "item_rail_straight_slope_ballast", 3),
 	tcRailVeryLargeSlopeSnowGravel("ItemTCRail", "item_rail_straight_slope_snow_gravel", 3),
 	tcRailVeryLargeSlopeDynamic("ItemTCRail", "item_rail_straight_slope_dynamic", 3),
+
+	tcRailLargeCurvedSlopeDynamic("ItemTCRail", "item_rail_slope_curved_dynamic", 3),
 
 	/**Embedded Tracks*/
 	tcRailEmbeddedSmallStraight("ItemTCRail","item_rail_straight_embedded_small_", 5),

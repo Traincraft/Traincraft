@@ -24,6 +24,7 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 	public static final ModelSlopeTCTrack modelSlope = new ModelSlopeTCTrack();
 	public static final ModelLargeSlopeTCTrack modelLargeSlope = new ModelLargeSlopeTCTrack();
 	public static final ModelVeryLargeSlopeTCTrack	modelVeryLargeSlope = new ModelVeryLargeSlopeTCTrack();
+	public static final ModelRightCurvedSlopeTCTrack modelRightCurvedSlope = new ModelRightCurvedSlopeTCTrack();
 	/**Embedded Tracks*/
 	public static final ModelEmbeddedSmallStraightTCTrack modelEmbeddedSmallStraight = new ModelEmbeddedSmallStraightTCTrack();
 	public static final ModelEmbeddedMediumStraightTCTrack modelEmbeddedMediumStraight = new ModelEmbeddedMediumStraightTCTrack();
@@ -286,6 +287,15 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 					}
 					case EMBEDDED_VERY_LARGE_SLOPE_DYNAMIC: {
 						modelVeryLargeSlope.render("embedded_dynamic", railTile, x, y, z);
+						break;
+					}
+					case LARGE_CURVED_SLOPE_DYNAMIC:
+					case LARGE_RIGHT_CURVED_SLOPE_DYNAMIC:{
+						modelRightCurvedSlope.render("large", railTile, x, y, z);
+						break;
+					}
+					case LARGE_LEFT_CURVED_SLOPE_DYNAMIC:{
+						//modelLeftCurvedSlope("large", railTile, x, y, z);
 						break;
 					}
 
