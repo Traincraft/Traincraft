@@ -676,6 +676,7 @@ item.tc:minecartTipperUK.name=Tipper UK
 item.tc:minecartShuntingTenderUK.name=Shunting Tender UK
 item.tc:minecartBR_Mk2f_DBSO.name=BR Mk2f DBSO
 item.tc:minecartBRBrakeVan.name=BR Brake Van
+item.tc:minecartDuewagT4ER.name=Duewag T4 ER
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -1237,6 +1238,7 @@ entity.tc.TipperUK.name=Tipper UK
 entity.tc.ShuntingTenderUK.name=Shunting Tender UK
 entity.tc.BR_MK2F_DBSO.name=MK2F DBSO
 entity.tc.BRBrakeVan.name=BR Brake Van
+entity.tc.DuewagT4ER.name=Duewag T4 ER
 
 description.villager.profession.tc.station_chief=Station Chief
 

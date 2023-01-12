@@ -646,6 +646,7 @@ public enum ItemIDs {
 	minecartShuntingTenderUK("ItemRollingStock", "shunting_tender_icon",1),
 	minecartBR_Mk2f_DBSO("ItemRollingStock", "Mk2f_DBSO_Icon", 3),
 	minecartBRBrakeVan("ItemRollingStock", "br_brake_van_icon",1),
+	minecartDuewagT4ER("ItemRollingStock","Duewag_T4ER_icon",3),
 
 
 	//signalSpanish("ItemsignalSpanish","signalSpanish", 1),

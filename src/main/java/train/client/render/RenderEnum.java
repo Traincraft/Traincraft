@@ -253,7 +253,7 @@ public enum RenderEnum {
 	locoBR185(EntityLocoElectricBR185.class, new BR185_EngineModel(), "BR185_Engine_", true, new float[] { -2.0F, 0.1F, 0.0F },  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	locoClass85(EntityLocoElectricClass85.class, new ModelClass85(), "Class85_", true, new float[] { -3.0F, 0.65F, 0.0F },  new float[] { 0F, 90F, 180F }, null, "", 0, null, "", null, 0, false),
 	locoBP4(EntityLocoElectricBP4.class, new ModelBP4(), "bp4_", true, new float[] { -2.2F, 0.15F, 0.0F }, new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
-	passengerBNLRV_B(EntityPassengerBNLRV_B.class, new ModelBNLRV_B(), "bnlrv_", true, new float[] {0.0f, 0.10f, 0.0f}, new float[] {0F, 180F, 180F}, null, "", 0, null, "", null, 0, false ),
+	passengerBNLRV_B(EntityPassengerBNLRV_B.class, new ModelBNLRV_B(), "bnlrv_", true, new float[] {0.0f, 0.10f, 0.0f}, new float[] {0F, 0F, 180F}, null, "", 0, null, "", null, 0, false ),
 	locoBNLRV_A(EntityLocoElectricBNLRV_A.class, new ModelBNLRV_A(), "bnlrv_", true, new float[] {-2f, 0.10f, 0.0f}, new float[] {0F, 180F, 180F}, null, "", 0, null, "", null, 0, false ),
 
 	locoDeltic(EntityLocoDieselDeltic.class, new ModelDeltic(), "Deltic", false, new float[] { -2.25F, 0.8F, 0.0F },  new float[] { 0F, 90F, 180F }, null, "largesmoke", 1, new ArrayList<double[]>() {
@@ -1271,8 +1271,9 @@ public enum RenderEnum {
 	TipperUK(EntityFreightTipperUK.class, new ModelTipperUK(), "tipper_", true, new float[] {0F,0.1F,0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 	ShuntingTenderUK(EntityTenderShuntingTenderUK.class, new ModelShuntingTenderUK(), "shunting_tender_", true, new float[] {0f, 0.15f, 0f}, new float[] {0f, 180f, 180f}, null, "", 0, null, "", null, 0, false ),
 	BRBrakeVan(EntityCabooseBRBrakeVan.class, new ModelBRBrakeVan(), "br_brake_van_", true, new float[] {0F,0.1F,0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
-	//TCCE7
 
+	//TCCE7
+	DuewagT4ER(EntityElectricDuewagT4ER.class, new ModelDuewagT4ER(), "Duewag_T4_", true,new float[] {-1.25F, 0.2F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
 
 
 

@@ -531,6 +531,9 @@ public enum EnumTrains {
 	TipperUK("TipperUK", EntityFreightTipperUK.class, ItemIDs.minecartTipperUK.item, "freight", 1.5, TraincraftUtil.getBytesFromColors(new String[] {"Grey", "Red","Brown","Black"}), 18,  36, "Pack: B.I.P." ),
 	ShuntingTenderUK("ShuntingTenderUK", EntityTenderShuntingTenderUK.class, ItemIDs.minecartShuntingTenderUK.item, "tender", 1, TraincraftUtil.getBytesFromColors(new String[] {"Black", "Blue"}), 18,  36, "Pack: B.I.P." ),
 	BRBrakeVan("BRBrakeVan", EntityCabooseBRBrakeVan.class, ItemIDs.minecartBRBrakeVan.item, "passenger", 1.5, TraincraftUtil.getBytesFromColors(new String[] {"Grey","Blue","Brown", "Yellow","Red","LightBlue","LightGrey","Pink"}), 18,  36, "Pack: B.I.P." ),
+
+	/** TCCE 7 */
+	DuewagT4ER("DuewagT4ER", EntityElectricDuewagT4ER.class, ItemIDs.minecartDuewagT4ER.item, "electric", 200, 70, 0,20, 0, 100, 0.7, 0.8, 1000, TraincraftUtil.getBytesFromColors(new String[] {"Red", "Grey","Yellow","Green"}), 18, -2.4, "Pack: Trams In Motion"),
 	;
 
 //String trainType,int MHP,int maxSpeed, double mass, int fuelConsumption, int waterConsumption, int heatingTime, double accelerationRate, double brakeRate, int tankCapacity, String[] colors,
