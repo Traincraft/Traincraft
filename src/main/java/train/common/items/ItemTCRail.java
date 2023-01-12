@@ -586,8 +586,8 @@ public class ItemTCRail extends ItemPart {
 				continue;
 			}
 
-			tileGag[gag - 1].bbHeight = Math.max(0.125f, Math.min(1f, (gag - 1) / (float) (posX.length)));
-			System.out.println(gag - 1);*/
+			tileGag[gag - 1].bbHeight = Math.max(0.125f, Math.min(1f, (gag - 1) / (float) (posX.length)));*/
+			System.out.println(gag - 1);
 
 		}
 			for (TileTCRailGag tileTCRailGag : tileGag) {
