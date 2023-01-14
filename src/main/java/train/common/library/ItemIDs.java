@@ -134,7 +134,7 @@ public enum ItemIDs {
 	tcRailVeryLargeSlopeSnowGravel("ItemTCRail", "item_rail_straight_slope_snow_gravel", 3),
 	tcRailVeryLargeSlopeDynamic("ItemTCRail", "item_rail_straight_slope_dynamic", 3),
 
-	tcRailLargeCurvedSlopeDynamic("ItemTCRail", "item_rail_slope_curved_dynamic", 3),
+	tcRailLargeCurvedSlopeDynamic("ItemTCRail", "item_rail_slope_curved_large_dynamic", 3),
 
 	/**Embedded Tracks*/
 	tcRailEmbeddedSmallStraight("ItemTCRail","item_rail_straight_embedded_small_", 5),
