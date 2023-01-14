@@ -409,7 +409,10 @@ public class ItemTCRail extends ItemPart {
 
 	public static boolean isTCCurvedSlopeTrack(TileTCRail tile) {
 		if(tile==null || tile.getType()==null){return false;}
-		return tile.getType().equals(TrackTypes.LARGE_RIGHT_CURVED_SLOPE_DYNAMIC.getLabel());
+		return tile.getType().equals(TrackTypes.LARGE_RIGHT_CURVED_SLOPE_DYNAMIC.getLabel())
+				|| tile.getType().equals(TrackTypes.LARGE_LEFT_CURVED_SLOPE_DYNAMIC.getLabel())
+
+				;
 	}
 
 	public static boolean isTCDiagonalStraightTrack(TileTCRail tile) {
@@ -575,6 +578,10 @@ public class ItemTCRail extends ItemPart {
 		tcRail.slopeAngle = slopeAngle;
 		tcRail.slopeHeight = 1;
 		tcRail.slopeLength = slopeLength;
+		Block block = world.getBlock(x, y, z);
+		int blockID = 	Block.getIdFromBlock(block);
+		tcRail.setBallastMaterial(blockID);
+		tcRail.ballastMetadata = world.getBlockMetadata(x,y,z);
 
 		/** Gag rails containing reference to first turn rail */
 		for (int gag = 1; gag <= posX.length - 1; gag++) {
@@ -1008,6 +1015,15 @@ public class ItemTCRail extends ItemPart {
 
 			if (tempType == TrackTypes.LARGE_RIGHT_CURVED_SLOPE_DYNAMIC) {
 				if(!largeRightCurvedSlope(player, world, x, y, z, l, tempType)) {
+					return false;
+				}
+				if (player == null || !player.capabilities.isCreativeMode) {
+					--itemstack.stackSize;
+				}
+				return true;
+			}
+			if (tempType == TrackTypes.LARGE_LEFT_CURVED_SLOPE_DYNAMIC) {
+				if(!largeLeftCurvedSlope(player, world, x, y, z, l, tempType)) {
 					return false;
 				}
 				if (player == null || !player.capabilities.isCreativeMode) {
@@ -5669,19 +5685,40 @@ public class ItemTCRail extends ItemPart {
 ;		}
 		if (l == 0 ) {
 			return putDownSlopedTurn(player, world, x, y, z, flipArraySign(xArray,x, true), flipArraySign(zArray, z, false), l, 4.5, x- 4,
-					y + 1, z , 0.1558f, 6.3639, tempType.getLabel(), tempType.getItem().item)
-					;		}
+					y + 1, z , 0.1558f, 6.3639, tempType.getLabel(), tempType.getItem().item);
+		}
 		if (l == 1 ) {
 			return putDownSlopedTurn(player, world, x, y, z, flipArraySign(zArray,x, true), flipArraySign(xArray, z, true), l, 4.5, x + 1,
-					y + 1, z - 4, 0.1558f, 6.3639, tempType.getLabel(), tempType.getItem().item)
-					;		}
+					y + 1, z - 4, 0.1558f, 6.3639, tempType.getLabel(), tempType.getItem().item);
+		}
 		if (l == 3 ) {
 			return putDownSlopedTurn(player, world, x, y, z, flipArraySign(zArray,x, false), flipArraySign(xArray, z, false), l, 4.5, x,
-					y + 1, z + 5, 0.1558f, 6.3639, tempType.getLabel(), tempType.getItem().item)
+					y + 1, z + 5, 0.1558f, 6.3639, tempType.getLabel(), tempType.getItem().item);
+		}
+		return true;
+	}
+
+	public boolean largeLeftCurvedSlope(EntityPlayer player, World world, int x, int y, int z, int l, TrackTypes tempType){
+
+		int[] xArray = {0, 0, 1, 0, 1, 1, 2, 2, 2, 3, 3, 4};
+		int[] zArray = {0, 1, 1, 2, 2, 3, 2, 3, 4, 3, 4, 4};
+
+		if (l == 2 ) {
+			return putDownSlopedTurn(player, world, x, y, z, flipArraySign(xArray,x, true), flipArraySign(zArray, z, true), l, 4.5, x - 4,
+					y + 1, z + 1, 0.1558f, 6.3639, tempType.getLabel(), tempType.getItem().item)
 					;		}
-
-
-
+		if (l == 0 ) {
+			return putDownSlopedTurn(player, world, x, y, z, flipArraySign(xArray,x, false), flipArraySign(zArray, z, false), l, 4.5, x +  5,
+					y + 1, z , 0.1558f, 6.3639, tempType.getLabel(), tempType.getItem().item);
+		}
+		if (l == 1 ) {
+			return putDownSlopedTurn(player, world, x, y, z, flipArraySign(zArray,x, true), flipArraySign(xArray, z, false), l, 4.5, x + 1,
+					y + 1, z +  5, 0.1558f, 6.3639, tempType.getLabel(), tempType.getItem().item);
+		}
+		if (l == 3 ) {
+			return putDownSlopedTurn(player, world, x, y, z, flipArraySign(zArray,x, false), flipArraySign(xArray, z, true), l, 4.5, x,
+					y + 1, z - 4 , 0.1558f, 6.3639, tempType.getLabel(), tempType.getItem().item);
+		}
 		return true;
 	}
 

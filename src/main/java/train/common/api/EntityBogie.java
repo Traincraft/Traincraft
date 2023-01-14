@@ -712,21 +712,12 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 
 		double p_corr_x = cx + ((cpx / cp_norm) * r);
 		double p_corr_z = cz + ((cpz / cp_norm) * r);
-		this.motionX = vx2;
-		this.motionZ = vz2;
-
-
+		motionX = vx2;
+		motionZ = vz2;
 
 		double newYPos = Math.abs(j+ Math.min(1, (slopeAngle * Math.abs(tpnorm))) + yOffset + 0.3f);
-		//System.out.println((slopeAngle * tpnorm) +", " + Math.tan(slopeAngle * tpnorm));
-		//	System.out.println("j: " + j + " multiplier " + (Math.min(1, (slopeAngle * Math.abs(tpnorm)))) + " slopeAngle: " + slopeAngle + " tpnorm: " + tpnorm + " yOffset: " + this.yOffset + " = " + newYPos );
-		//System.out.println("tilex: " + newTilex + ", tilez: " + newTilez + ", tpnorm: " + tpnorm + ", slopeangle: " + slopeAngle + ", multiplied: " + (slopeAngle * tpnorm));
 		setPosition(p_corr_x, newYPos, p_corr_z);
 		moveEntity(vx2,  0, vz2);
-		this.boundingBox.offset(Math.copySign(this.motionX, this.motionX),  0 , Math.copySign(this.motionZ, this.motionZ));
-		this.posX = (this.boundingBox.minX + this.boundingBox.maxX) / 2.0D;
-		this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
-		this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) / 2.0D;
 
 	}
 
