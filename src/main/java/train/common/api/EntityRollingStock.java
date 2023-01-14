@@ -1314,25 +1314,26 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 
 
 	private void moveOnTCCurvedSlope(int i, int j, int k,double r, double cx, double cz, int tilex, int tilez, int meta, double slopeHeight, double slopeAngle) {
-
+		double newTilex = tilex;
+		double newTilez = tilez;
 		if (meta == 2 ) {
-			tilez += 1;
-			tilex += 0.5;
+			newTilez += 1;
+			newTilex += 0.5;
 		}
 		if (meta == 0) {
-			tilex += 0.5;
+			newTilex += 0.5;
 		}
 		if (meta == 1 ) {
-			tilex += 1;
-			tilez += 0.5;
+			newTilex += 1;
+			newTilez += 0.5;
 		}
 		if (meta == 3) {
-			tilez += 0.5;
+			newTilez += 0.5;
 		}
 		double cpx = posX - cx;
 		double cpz = posZ - cz;
-		double tpx = tilex - posX;
-		double tpz = tilez - posZ;
+		double tpx = newTilex - posX;
+		double tpz = newTilez - posZ;
 
 		double tpnorm = Math.sqrt(tpx * tpx + tpz * tpz);
 
@@ -1369,7 +1370,13 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		double p_corr_z = cz + ((cpz / cp_norm) * r);
 		this.motionX = vx2;
 		this.motionZ = vz2;
-		double newYPos = Math.abs(j+ Math.min(1, (Math.tan( slopeAngle * Math.abs(tpnorm)))) + yOffset + 0.35f);
+
+
+
+		double newYPos = Math.abs(j+ Math.min(1, (slopeAngle * Math.abs(tpnorm))) + yOffset + 0.3f);
+		//System.out.println((slopeAngle * tpnorm) +", " + Math.tan(slopeAngle * tpnorm));
+	//	System.out.println("j: " + j + " multiplier " + (Math.min(1, (slopeAngle * Math.abs(tpnorm)))) + " slopeAngle: " + slopeAngle + " tpnorm: " + tpnorm + " yOffset: " + this.yOffset + " = " + newYPos );
+		//System.out.println("tilex: " + newTilex + ", tilez: " + newTilez + ", tpnorm: " + tpnorm + ", slopeangle: " + slopeAngle + ", multiplied: " + (slopeAngle * tpnorm));
 		setPosition(p_corr_x, newYPos, p_corr_z);
 		moveEntity(vx2,  0, vz2);
 		this.boundingBox.offset(Math.copySign(this.motionX, this.motionX),  0 , Math.copySign(this.motionZ, this.motionZ));
