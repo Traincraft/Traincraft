@@ -534,7 +534,7 @@ public enum EnumTrains {
 
 	/** TCCE 7 */
 	DuewagT4ER("DuewagT4ER", EntityElectricDuewagT4ER.class, ItemIDs.minecartDuewagT4ER.item, "electric", 200, 70, 0,20, 0, 100, 0.7, 0.8, 1000, TraincraftUtil.getBytesFromColors(new String[] {"Grey", "Red","Yellow","Green"}), 18, -2.4, "Pack: Trams In Motion"),
-	DuewagGT6ZRLoco("DuewagGT6ZRLoco", EntityElectricDuewagGT6ZRLoco.class, ItemIDs.minecartDuewagGT6ZRLoco.item, "electric", 250, 70, 0,20, 0, 100, 0.7, 0.8, 1000, TraincraftUtil.getBytesFromColors(new String[] {"Green","Blue"}), 18, -2, "Pack: Trams In Motion"),
+	DuewagGT6ZRLoco("DuewagGT6ZRLoco", EntityElectricDuewagGT6ZRLoco.class, ItemIDs.minecartDuewagGT6ZRLoco.item, "electric", 250, 70, 0,20, 0, 100, 0.7, 0.8, 1000, TraincraftUtil.getBytesFromColors(new String[] {"Green","Blue"}), 18, -2.55, "Pack: Trams In Motion"),
 	DuewagGT6ZRTail("DuewagGT6ZRTail", EntityPassengerDuewagGT6ZRTail.class, ItemIDs.minecartDuewagGT6ZRTail.item, "passenger", 0, 0, 1,0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[] {"Green","Blue"}), 18, 0, "Pack: Trams In Motion"),
 	;
 

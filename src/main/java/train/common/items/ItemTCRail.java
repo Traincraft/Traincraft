@@ -587,13 +587,8 @@ public class ItemTCRail extends ItemPart {
 		for (int gag = 1; gag <= posX.length - 1; gag++) {
 			placeTrack(world, posX[gag], y + 1, posZ[gag], BlockIDs.tcRailGag.block, 0);
 			tileGag[gag - 1] = (TileTCRailGag) world.getTileEntity(posX[gag], y + 1, posZ[gag]);
-			tileGag[gag - 1].bbHeight = Math.max(0.125f, Math.min(1f, (gag - 1) / (float) (posX.length - 1)));
-			/*if (gag % 2 == 0) {
-				tileGag[gag - 1].bbHeight = Math.max(0.125f, Math.min(1f, gag / (float) (posX.length)));
-				continue;
-			}
-
-			tileGag[gag - 1].bbHeight = Math.max(0.125f, Math.min(1f, (gag - 1) / (float) (posX.length)));*/
+			//tileGag[gag - 1].bbHeight = Math.max(0.125f, Math.min(1f, (gag - 1) / (float) (posX.length - 1)));
+			tileGag[gag - 1].bbHeight = Math.max(0.125f, Math.min(1f, gag / (float) (posX.length - 1 )));
 
 		}
 			for (TileTCRailGag tileTCRailGag : tileGag) {
