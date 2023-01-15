@@ -1274,8 +1274,8 @@ public enum RenderEnum {
 
 	//TCCE7
 	DuewagT4ER(EntityElectricDuewagT4ER.class, new ModelDuewagT4ER(), "Duewag_T4_", true,new float[] {-1.25F, 0.2F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
-
-
+	DuewagGT6ZRLoco(EntityElectricDuewagGT6ZRLoco.class, new ModelDuewagGT6ZRLoco(), "Duewag_GT6_", true,new float[] {-1.25F, 0.2F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	DuewagGT6ZTail(EntityPassengerDuewagGT6ZRTail.class, new ModelDuewagGT6ZRTail(), "Duewag_GT6_", true,new float[] {0F, 0.2F, 0F},  new float[] { 0F, 0F, 180F }, null, "", 0, null, "", null, 0, false),
 
 	;
 

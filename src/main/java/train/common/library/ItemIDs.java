@@ -647,6 +647,8 @@ public enum ItemIDs {
 	minecartBR_Mk2f_DBSO("ItemRollingStock", "Mk2f_DBSO_Icon", 3),
 	minecartBRBrakeVan("ItemRollingStock", "br_brake_van_icon",1),
 	minecartDuewagT4ER("ItemRollingStock","Duewag_T4ER_icon",3),
+	minecartDuewagGT6ZRLoco("ItemRollingStock","Duewag_GT6_Loco_icon",2),
+	minecartDuewagGT6ZRTail("ItemRollingStock","Duewag_GT6_Tail_icon",2),
 
 
 	//signalSpanish("ItemsignalSpanish","signalSpanish", 1),
