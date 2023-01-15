@@ -292,6 +292,7 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 					}
 					case LARGE_CURVED_SLOPE_DYNAMIC:
 					case LARGE_RIGHT_CURVED_SLOPE_DYNAMIC:{
+						System.out.println("YEES");
 						modelRightCurvedSlope.render("large", railTile, x, y, z);
 						break;
 					}
@@ -299,6 +300,26 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 						modelLeftCurvedSlope.render("large", railTile, x, y, z);
 						break;
 					}
+					case VERY_LARGE_CURVED_SLOPE_DYNAMIC:
+					case VERY_LARGE_RIGHT_CURVED_SLOPE_DYNAMIC:{
+						modelRightCurvedSlope.render("verylarge", railTile, x, y, z);
+						break;
+					}
+					case VERY_LARGE_LEFT_CURVED_SLOPE_DYNAMIC:{
+						modelLeftCurvedSlope.render("verylarge", railTile, x, y, z);
+						break;
+					}
+					case SUPER_LARGE_CURVED_SLOPE_DYNAMIC:
+					case SUPER_LARGE_RIGHT_CURVED_SLOPE_DYNAMIC:{
+						System.out.println("NOOO");
+						modelRightCurvedSlope.render("superlarge", railTile, x, y, z);
+						break;
+					}
+					case SUPER_LARGE_LEFT_CURVED_SLOPE_DYNAMIC:{
+						modelLeftCurvedSlope.render("superlarge", railTile, x, y, z);
+						break;
+					}
+
 
 					/**Embedded Tracks*/
 					case EMBEDDED_SMALL_STRAIGHT: {
@@ -472,6 +493,33 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 					}
 					case EMBEDDED_MEDIUM_LEFT_45DEGREE_SWITCH: {
 						modelEmbeddedLeftSwitchTurn.render("medium_45degree", railTile, x, y, z);
+						break;
+					}
+					case EMBEDDED_LARGE_CURVED_SLOPE_DYNAMIC:
+					case EMBEDDED_LARGE_RIGHT_CURVED_SLOPE_DYNAMIC:{
+						modelRightCurvedSlope.render("embedded_large", railTile, x, y, z);
+						break;
+					}
+					case EMBEDDED_LARGE_LEFT_CURVED_SLOPE_DYNAMIC:{
+						modelLeftCurvedSlope.render("embedded_large", railTile, x, y, z);
+						break;
+					}
+					case EMBEDDED_VERY_LARGE_CURVED_SLOPE_DYNAMIC:
+					case EMBEDDED_VERY_LARGE_RIGHT_CURVED_SLOPE_DYNAMIC:{
+						modelRightCurvedSlope.render("embedded_verylarge", railTile, x, y, z);
+						break;
+					}
+					case EMBEDDED_VERY_LARGE_LEFT_CURVED_SLOPE_DYNAMIC:{
+						modelLeftCurvedSlope.render("embedded_verylarge", railTile, x, y, z);
+						break;
+					}
+					case EMBEDDED_SUPER_LARGE_CURVED_SLOPE_DYNAMIC:
+					case EMBEDDED_SUPER_LARGE_RIGHT_CURVED_SLOPE_DYNAMIC:{
+						modelRightCurvedSlope.render("embedded_superlarge", railTile, x, y, z);
+						break;
+					}
+					case EMBEDDED_SUPER_LARGE_LEFT_CURVED_SLOPE_DYNAMIC:{
+						modelLeftCurvedSlope.render("embedded_superlarge", railTile, x, y, z);
 						break;
 					}
 

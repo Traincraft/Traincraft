@@ -114,6 +114,7 @@ public class RecipeHandler {
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailMediumSwitch.item, 1),  "G  ", "GHG", "G  ", Character.valueOf('G'), ItemIDs.tcRailSmallStraight.item, Character.valueOf('H'), ItemIDs.tcRailMediumTurn.item );
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailMediumParallelSwitch.item, 1),  "I G", "IHH", "IH ", Character.valueOf('G'), ItemIDs.tcRailSmallStraight.item, Character.valueOf('H'), ItemIDs.tcRailMediumTurn.item, Character.valueOf('I'), ItemIDs.tcRailMediumStraight.item );
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailLargeSwitch.item, 1),  "G  ", "HIG", "G  ", Character.valueOf('G'), ItemIDs.tcRailSmallStraight.item, Character.valueOf('H'), ItemIDs.tcRailMediumStraight.item, Character.valueOf('I'), ItemIDs.tcRailLargeTurn.item );
+		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailMedium45DegreeSwitch.item, 1),  "G D", "GH ", "G  ", Character.valueOf('G'), ItemIDs.tcRailSmallStraight.item, Character.valueOf('H'), ItemIDs.tcRailMedium45DegreeTurn.item, Character.valueOf('D'), ItemIDs.tcRailSmallDiagonalStraight.item);
 
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailSlopeWood.item, 1), " TP","TPP","PPP", Character.valueOf('T'), ItemIDs.tcRailMediumStraight.item, Character.valueOf('P'), Blocks.planks);
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailLargeSlopeWood.item, 1), "   ","  T"," T ", Character.valueOf('T'), ItemIDs.tcRailSlopeWood.item);
@@ -134,6 +135,8 @@ public class RecipeHandler {
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailEmbeddedSlopeDynamic.item, 1), " TG","TGG","GGG", Character.valueOf('T'), ItemIDs.tcRailEmbeddedMediumStraight.item, Character.valueOf('G'), new  ItemStack(Items.dye, 1, 1));
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailEmbeddedLargeSlopeDynamic.item,1), "   ","  S"," S ", Character.valueOf('S'), ItemIDs.tcRailEmbeddedSlopeDynamic.item);
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailEmbeddedVeryLargeSlopeDynamic.item, 1), "  T", " T ","T  ", Character.valueOf('T'), ItemIDs.tcRailEmbeddedSlopeDynamic.item);
+
+		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailLargeCurvedSlopeDynamic.item, 1), "   ", " T ", " S ", Character.valueOf('T'), ItemIDs.tcRailLargeTurn.item, Character.valueOf('S'), ItemIDs.tcRailSlopeDynamic.item);
 
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailSlopeBallast.item, 1), " TG","TGG","GGG", Character.valueOf('T'), ItemIDs.tcRailMediumStraight.item, Character.valueOf('G'), new ItemStack(BlockIDs.oreTC.block, 1, 3));
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailLargeSlopeBallast.item,1), "   ","  S"," S ", Character.valueOf('S'), ItemIDs.tcRailSlopeBallast.item);
@@ -165,6 +168,11 @@ public class RecipeHandler {
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailEmbeddedSmallParallelCurve.item, 1), " S ", "SS ", "S  ", Character.valueOf('S'), ItemIDs.tcRailEmbeddedSmallStraight.item);
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailEmbeddedMediumParallelCurve.item, 1), " S ", "SS ", "S  ", Character.valueOf('S'), ItemIDs.tcRailEmbeddedSmallParallelCurve.item);
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailEmbeddedLargeParallelCurve.item, 1), " S ", "SS ", "S  ", Character.valueOf('S'), ItemIDs.tcRailEmbeddedMediumParallelCurve.item);
+
+		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailEmbeddedMediumSwitch.item, 1),  "G  ", "GHG", "G  ", Character.valueOf('G'), ItemIDs.tcRailEmbeddedSmallStraight.item, Character.valueOf('H'), ItemIDs.tcRailEmbeddedMediumTurn.item );
+		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailEmbeddedMediumParallelSwitch.item, 1),  "I G", "IHH", "IH ", Character.valueOf('G'), ItemIDs.tcRailEmbeddedSmallStraight.item, Character.valueOf('H'), ItemIDs.tcRailEmbeddedMediumTurn.item, Character.valueOf('I'), ItemIDs.tcRailEmbeddedMediumStraight.item );
+		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailEmbeddedLargeSwitch.item, 1),  "G  ", "HIG", "G  ", Character.valueOf('G'), ItemIDs.tcRailEmbeddedSmallStraight.item, Character.valueOf('H'), ItemIDs.tcRailEmbeddedMediumStraight.item, Character.valueOf('I'), ItemIDs.tcRailEmbeddedLargeTurn.item );
+		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailEmbeddedMedium45DegreeSwitch.item, 1),  "G D", "GH ", "G  ", Character.valueOf('G'), ItemIDs.tcRailEmbeddedSmallStraight.item, Character.valueOf('H'), ItemIDs.tcRailEmbeddedMedium45DegreeTurn.item, Character.valueOf('D'), ItemIDs.tcRailEmbeddedSmallDiagonalStraight.item);
 
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailEmbeddedTwoWaysCrossing.item, 1), " S ", "SSS", " S ", Character.valueOf('S'), ItemIDs.tcRailEmbeddedSmallStraight.item );
 
@@ -338,9 +346,6 @@ public class RecipeHandler {
 						"   ", "   ", "###", Character.valueOf('#'), c.getItem());
 			}
 		}
-		
-		//TrainCraftingManager.instance.addShapelessRecipe(new ItemStack(ItemIDs.coaldust.item, 4),  c.getItem(), c.getItem(), c.getItem(), c.getItem() );// coal dust
-		
 		//TrainCraftingManager.instance.addRecipe(new ItemStack(ItemIDs.signal.item, 2),  "#", "X", "X", Character.valueOf('X'), ItemIDs.steel.item, Character.valueOf('#'), rs );
 		/* diesel generator */
 		TrainCraftingManager.instance.addRecipe(new ItemStack(BlockIDs.generatorDiesel.block, 1),  "C  ", "DE ", Character.valueOf('C'), ItemIDs.steelchimney.item, Character.valueOf('D'), ItemIDs.dieselengine.item, Character.valueOf('E'), ItemIDs.electronicCircuit.item );

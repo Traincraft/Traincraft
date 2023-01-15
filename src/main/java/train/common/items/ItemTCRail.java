@@ -134,9 +134,17 @@ public class ItemTCRail extends ItemPart {
 		LARGE_SLOPE_DYNAMIC("LARGE_SLOPE_DYNAMIC", "SLOPE", ItemIDs.tcRailLargeSlopeDynamic, "1x12 "  + EnumChatFormatting.YELLOW + "Grabs texture from block " + EnumChatFormatting.DARK_PURPLE +  "-TheDoctor1138") ,
 		VERY_LARGE_SLOPE_DYNAMIC("VERY_LARGE_SLOPE_DYNAMIC", "SLOPE", ItemIDs.tcRailVeryLargeSlopeDynamic, "1x18 "  + EnumChatFormatting.YELLOW + "Grabs texture from block " + EnumChatFormatting.DARK_PURPLE +  "-TheDoctor1138"),
 
-		LARGE_CURVED_SLOPE_DYNAMIC("LARGE_RIGHT_CURVED_SLOPE_DYNAMIC", "CURVED_SLOPE", ItemIDs.tcRailLargeCurvedSlopeDynamic, "xxx"),
-		LARGE_RIGHT_CURVED_SLOPE_DYNAMIC("LARGE_LEFT_CURVED_SLOPE_DYNAMIC", "CURVED_SLOPE", ItemIDs.tcRailLargeCurvedSlopeDynamic, "xxx"),
-		LARGE_LEFT_CURVED_SLOPE_DYNAMIC("LARGE_CURVED_SLOPE_DYNAMIC", "CURVED_SLOPE", ItemIDs.tcRailLargeCurvedSlopeDynamic, "xxx"),
+		LARGE_CURVED_SLOPE_DYNAMIC("LARGE_CURVED_SLOPE_DYNAMIC", "CURVED_SLOPE", ItemIDs.tcRailLargeCurvedSlopeDynamic, "5x5"),
+		LARGE_RIGHT_CURVED_SLOPE_DYNAMIC("LARGE_RIGHT_CURVED_SLOPE_DYNAMIC", "CURVED_SLOPE", ItemIDs.tcRailLargeCurvedSlopeDynamic, "xxx"),
+		LARGE_LEFT_CURVED_SLOPE_DYNAMIC("LARGE_LEFT_CURVED_SLOPE_DYNAMIC", "CURVED_SLOPE", ItemIDs.tcRailLargeCurvedSlopeDynamic, "xxx"),
+
+		VERY_LARGE_CURVED_SLOPE_DYNAMIC("VERY_LARGE_CURVED_SLOPE_DYNAMIC", "CURVED_SLOPE", ItemIDs.tcRailVeryLargeCurvedSlopeDynamic, "9x9"),
+		VERY_LARGE_RIGHT_CURVED_SLOPE_DYNAMIC("VERY_LARGE_RIGHT_CURVED_SLOPE_DYNAMIC", "CURVED_SLOPE", ItemIDs.tcRailVeryLargeSlopeDynamic, "xxx"),
+		VERY_LARGE_LEFT_CURVED_SLOPE_DYNAMIC("VERY_LARGE_LEFT_CURVED_SLOPE_DYNAMIC", "CURVED_SLOPE", ItemIDs.tcRailVeryLargeCurvedSlopeDynamic, "xxx"),
+
+		SUPER_LARGE_CURVED_SLOPE_DYNAMIC("SUPER_LARGE_CURVED_SLOPE_DYNAMIC", "CURVED_SLOPE", ItemIDs.tcRailSuperLargeCurvedSlopeDynamic, "16x16"),
+		SUPER_LARGE_RIGHT_CURVED_SLOPE_DYNAMIC("SUPER_LARGE_RIGHT_CURVED_SLOPE_DYNAMIC", "CURVED_SLOPE", ItemIDs.tcRailSuperLargeCurvedSlopeDynamic, "xxx"),
+		SUPER_LARGE_LEFT_CURVED_SLOPE_DYNAMIC("SUPER_LARGE_LEFT_CURVED_SLOPE_DYNAMIC", "CURVED_SLOPE", ItemIDs.tcRailSuperLargeCurvedSlopeDynamic, "xxx"),
 		/**Embedded Tracks*/
 
 		EMBEDDED_SMALL_STRAIGHT("EMBEDDED_SMALL_STRAIGHT","STRAIGHT" ,ItemIDs.tcRailEmbeddedSmallStraight, "1x1"),
@@ -214,6 +222,18 @@ public class ItemTCRail extends ItemPart {
 		EMBEDDED_SLOPE_DYNAMIC("EMBEDDED_SLOPE_DYNAMIC", "SLOPE", ItemIDs.tcRailEmbeddedSlopeDynamic, "1x6 " + EnumChatFormatting.YELLOW + "Grabs texture from block " + EnumChatFormatting.DARK_PURPLE +  "-TheDoctor1138"),
 		EMBEDDED_LARGE_SLOPE_DYNAMIC("EMBEDDED_LARGE_SLOPE_DYNAMIC", "SLOPE", ItemIDs.tcRailEmbeddedLargeSlopeDynamic, "1x12 "  + EnumChatFormatting.YELLOW + "Grabs texture from block " + EnumChatFormatting.DARK_PURPLE +  "-TheDoctor1138") ,
 		EMBEDDED_VERY_LARGE_SLOPE_DYNAMIC("EMBEDDED_VERY_LARGE_SLOPE_DYNAMIC", "SLOPE", ItemIDs.tcRailEmbeddedVeryLargeSlopeDynamic, "1x18 "  + EnumChatFormatting.YELLOW + "Grabs texture from block " + EnumChatFormatting.DARK_PURPLE +  "-TheDoctor1138"),
+
+		EMBEDDED_LARGE_CURVED_SLOPE_DYNAMIC("EMBEDDED_LARGE_CURVED_SLOPE_DYNAMIC", "CURVED_SLOPE", ItemIDs.tcRailEmbeddedLargeCurvedSlopeDynamic, "5x5"),
+		EMBEDDED_LARGE_RIGHT_CURVED_SLOPE_DYNAMIC("EMBEDDED_LARGE_RIGHT_CURVED_SLOPE_DYNAMIC", "CURVED_SLOPE", ItemIDs.tcRailEmbeddedLargeCurvedSlopeDynamic, "xxx"),
+		EMBEDDED_LARGE_LEFT_CURVED_SLOPE_DYNAMIC("EMBEDDED_LARGE_LEFT_CURVED_SLOPE_DYNAMIC", "CURVED_SLOPE", ItemIDs.tcRailEmbeddedLargeCurvedSlopeDynamic, "xxx"),
+
+		EMBEDDED_VERY_LARGE_CURVED_SLOPE_DYNAMIC("EMBEDDED_VERY_LARGE_CURVED_SLOPE_DYNAMIC", "CURVED_SLOPE", ItemIDs.tcRailEmbeddedVeryLargeCurvedSlopeDynamic, "9x9"),
+		EMBEDDED_VERY_LARGE_RIGHT_CURVED_SLOPE_DYNAMIC("EMBEDDED_VERY_LARGE_RIGHT_CURVED_SLOPE_DYNAMIC", "CURVED_SLOPE", ItemIDs.tcRailEmbeddedVeryLargeCurvedSlopeDynamic, "xxx"),
+		EMBEDDED_VERY_LARGE_LEFT_CURVED_SLOPE_DYNAMIC("EMBEDDED_VERY_LARGE_LEFT_CURVED_SLOPE_DYNAMIC", "CURVED_SLOPE", ItemIDs.tcRailEmbeddedVeryLargeCurvedSlopeDynamic, "xxx"),
+
+		EMBEDDED_SUPER_LARGE_CURVED_SLOPE_DYNAMIC("EMBEDDED_SUPER_LARGE_CURVED_SLOPE_DYNAMIC", "CURVED_SLOPE", ItemIDs.tcRailEmbeddedSuperLargeCurvedSlopeDynamic, "16x16"),
+		EMBEDDED_SUPER_LARGE_RIGHT_CURVED_SLOPE_DYNAMIC("EMBEDDED_SUPER_LARGE_RIGHT_CURVED_SLOPE_DYNAMIC", "CURVED_SLOPE", ItemIDs.tcRailEmbeddedSuperLargeCurvedSlopeDynamic, "xxx"),
+		EMBEDDED_SUPER_LARGE_LEFT_CURVED_SLOPE_DYNAMIC("EMBEDDED_SUPER_LARGE_LEFT_CURVED_SLOPE_DYNAMIC", "CURVED_SLOPE", ItemIDs.tcRailEmbeddedSuperLargeCurvedSlopeDynamic, "xxx"),
 
 		SMALL_ROAD_CROSSING("SMALL_ROAD_CROSSING", "STRAIGHT", ItemIDs.tcRailSmallRoadCrossing, "1x1"),
 		SMALL_ROAD_CROSSING_1("SMALL_ROAD_CROSSING_1", "STRAIGHT", ItemIDs.tcRailSmallRoadCrossing1, "1x1"),
@@ -409,9 +429,18 @@ public class ItemTCRail extends ItemPart {
 
 	public static boolean isTCCurvedSlopeTrack(TileTCRail tile) {
 		if(tile==null || tile.getType()==null){return false;}
-		return tile.getType().equals(TrackTypes.LARGE_RIGHT_CURVED_SLOPE_DYNAMIC.getLabel())
+		return     tile.getType().equals(TrackTypes.LARGE_RIGHT_CURVED_SLOPE_DYNAMIC.getLabel())
 				|| tile.getType().equals(TrackTypes.LARGE_LEFT_CURVED_SLOPE_DYNAMIC.getLabel())
-
+				|| tile.getType().equals(TrackTypes.EMBEDDED_LARGE_RIGHT_CURVED_SLOPE_DYNAMIC.getLabel())
+				|| tile.getType().equals(TrackTypes.EMBEDDED_LARGE_LEFT_CURVED_SLOPE_DYNAMIC.getLabel())
+				|| tile.getType().equals(TrackTypes.VERY_LARGE_RIGHT_CURVED_SLOPE_DYNAMIC.getLabel())
+				|| tile.getType().equals(TrackTypes.VERY_LARGE_LEFT_CURVED_SLOPE_DYNAMIC.getLabel())
+				|| tile.getType().equals(TrackTypes.EMBEDDED_VERY_LARGE_RIGHT_CURVED_SLOPE_DYNAMIC.getLabel())
+				|| tile.getType().equals(TrackTypes.EMBEDDED_VERY_LARGE_LEFT_CURVED_SLOPE_DYNAMIC.getLabel())
+				|| tile.getType().equals(TrackTypes.SUPER_LARGE_RIGHT_CURVED_SLOPE_DYNAMIC.getLabel())
+				|| tile.getType().equals(TrackTypes.SUPER_LARGE_LEFT_CURVED_SLOPE_DYNAMIC.getLabel())
+				|| tile.getType().equals(TrackTypes.EMBEDDED_SUPER_LARGE_RIGHT_CURVED_SLOPE_DYNAMIC.getLabel())
+				|| tile.getType().equals(TrackTypes.EMBEDDED_SUPER_LARGE_LEFT_CURVED_SLOPE_DYNAMIC.getLabel())
 				;
 	}
 
@@ -1008,7 +1037,7 @@ public class ItemTCRail extends ItemPart {
 				return true;
 			}
 
-			if (tempType == TrackTypes.LARGE_RIGHT_CURVED_SLOPE_DYNAMIC) {
+			if (tempType == TrackTypes.LARGE_RIGHT_CURVED_SLOPE_DYNAMIC || tempType == TrackTypes.EMBEDDED_LARGE_RIGHT_CURVED_SLOPE_DYNAMIC) {
 				if(!largeRightCurvedSlope(player, world, x, y, z, l, tempType)) {
 					return false;
 				}
@@ -1017,7 +1046,7 @@ public class ItemTCRail extends ItemPart {
 				}
 				return true;
 			}
-			if (tempType == TrackTypes.LARGE_LEFT_CURVED_SLOPE_DYNAMIC) {
+			if (tempType == TrackTypes.LARGE_LEFT_CURVED_SLOPE_DYNAMIC || tempType == TrackTypes.EMBEDDED_LARGE_LEFT_CURVED_SLOPE_DYNAMIC) {
 				if(!largeLeftCurvedSlope(player, world, x, y, z, l, tempType)) {
 					return false;
 				}
@@ -3915,6 +3944,50 @@ public class ItemTCRail extends ItemPart {
 					tempType = TrackTypes.LARGE_LEFT_CURVED_SLOPE_DYNAMIC;
 				}
 			}
+
+			if (type == TrackTypes.EMBEDDED_LARGE_CURVED_SLOPE_DYNAMIC) {
+				if (getTrackOrientation(l, yaw).equals("right")) {
+					tempType = TrackTypes.EMBEDDED_LARGE_RIGHT_CURVED_SLOPE_DYNAMIC;
+				}
+				if (getTrackOrientation(l, yaw).equals("left")) {
+					tempType = TrackTypes.EMBEDDED_LARGE_LEFT_CURVED_SLOPE_DYNAMIC;
+				}
+			}
+			if (type == TrackTypes.VERY_LARGE_CURVED_SLOPE_DYNAMIC) {
+				if (getTrackOrientation(l, yaw).equals("right")) {
+					tempType = TrackTypes.VERY_LARGE_RIGHT_CURVED_SLOPE_DYNAMIC;
+				}
+				if (getTrackOrientation(l, yaw).equals("left")) {
+					tempType = TrackTypes.VERY_LARGE_LEFT_CURVED_SLOPE_DYNAMIC;
+				}
+			}
+
+			if (type == TrackTypes.EMBEDDED_VERY_LARGE_CURVED_SLOPE_DYNAMIC) {
+				if (getTrackOrientation(l, yaw).equals("right")) {
+					tempType = TrackTypes.EMBEDDED_VERY_LARGE_RIGHT_CURVED_SLOPE_DYNAMIC;
+				}
+				if (getTrackOrientation(l, yaw).equals("left")) {
+					tempType = TrackTypes.EMBEDDED_VERY_LARGE_LEFT_CURVED_SLOPE_DYNAMIC;
+				}
+			}
+			if (type == TrackTypes.SUPER_LARGE_CURVED_SLOPE_DYNAMIC) {
+				if (getTrackOrientation(l, yaw).equals("right")) {
+					tempType = TrackTypes.SUPER_LARGE_RIGHT_CURVED_SLOPE_DYNAMIC;
+				}
+				if (getTrackOrientation(l, yaw).equals("left")) {
+					tempType = TrackTypes.SUPER_LARGE_LEFT_CURVED_SLOPE_DYNAMIC;
+				}
+			}
+
+			if (type == TrackTypes.EMBEDDED_SUPER_LARGE_CURVED_SLOPE_DYNAMIC) {
+				if (getTrackOrientation(l, yaw).equals("right")) {
+					tempType = TrackTypes.EMBEDDED_SUPER_LARGE_RIGHT_CURVED_SLOPE_DYNAMIC;
+				}
+				if (getTrackOrientation(l, yaw).equals("left")) {
+					tempType = TrackTypes.EMBEDDED_SUPER_LARGE_LEFT_CURVED_SLOPE_DYNAMIC;
+				}
+			}
+
 		}
 		return tempType;
 	}
@@ -5673,7 +5746,7 @@ public class ItemTCRail extends ItemPart {
 
 		int[] xArray = {0, 0, 1, 0, 1, 1, 2, 2, 2, 3, 3, 4};
 		int[] zArray = {0, 1, 1, 2, 2, 3, 2, 3, 4, 3, 4, 4};
-
+		System.out.println(tempType + ", " + tempType.getLabel());
 		if (l == 2 ) {
 			return putDownSlopedTurn(player, world, x, y, z, flipArraySign(xArray,x, false), flipArraySign(zArray, z, true), l, 4.5, x+5,
 					y + 1, z + 1, 0.1558f, 6.3639, tempType.getLabel(), tempType.getItem().item)
