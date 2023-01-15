@@ -432,9 +432,9 @@ public class Modelrenfe446end extends ModelConverter //Same as Filename
 		bodyModel[391] = new ModelRendererTurbo(this, 481, 81, textureX, textureY); // Box 406
 		bodyModel[392] = new ModelRendererTurbo(this, 1, 137, textureX, textureY); // Box 392
 		bodyModel[393] = new ModelRendererTurbo(this, 1, 10, textureX, textureY); // Box 394
-		bodyModel[394] = new ModelRendererTurbo(this, 8, 10, textureX, textureY); // Box 395
+		bodyModel[394] = new ModelRendererTurbo(this, 8, 10, textureX, textureY,"lamp"); // Box 395
 		bodyModel[395] = new ModelRendererTurbo(this, 1, 10, textureX, textureY); // Box 397
-		bodyModel[396] = new ModelRendererTurbo(this, 8, 10, textureX, textureY); // Box 398
+		bodyModel[396] = new ModelRendererTurbo(this, 8, 10, textureX, textureY,"lamp"); // Box 398
 		bodyModel[397] = new ModelRendererTurbo(this, 12, 14, textureX, textureY); // Box 399
 		bodyModel[398] = new ModelRendererTurbo(this, 12, 14, textureX, textureY); // Box 400
 		bodyModel[399] = new ModelRendererTurbo(this, 0, 199, textureX, textureY); // Box 399
@@ -1652,14 +1652,17 @@ public class Modelrenfe446end extends ModelConverter //Same as Filename
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
 
-		for(ModelRendererTurbo m :bodyModel)
-		{
-			if(m.boxName.equals("lamp")){
+		for (int i = 0; i < 401; i++) {
+			if (bodyModel[i].boxName != null && bodyModel[i].boxName.contains("lamp")) {
 				Minecraft.getMinecraft().entityRenderer.disableLightmap(1D);
-			}
-			m.render(f5);
-			if(m.boxName.equals("lamp")){
+				bodyModel[i].render(f5);
 				Minecraft.getMinecraft().entityRenderer.enableLightmap(1D);
+			} else if (bodyModel[i].boxName != null && bodyModel[i].boxName.contains("cull")) {
+				GL11.glDisable(GL11.GL_CULL_FACE);
+				bodyModel[i].render(f5);
+				GL11.glEnable(GL11.GL_CULL_FACE);
+			} else {
+				bodyModel[i].render(f5);
 			}
 		}
 

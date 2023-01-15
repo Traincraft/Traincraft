@@ -405,6 +405,9 @@ public class TileTCRail extends TileEntity {
 					|| type.equals(ItemTCRail.TrackTypes.VERY_LARGE_SLOPE_DYNAMIC.getLabel())) {
 				slopeAngle = 0.0444;
 			}
+			else if (type.equals(ItemTCRail.TrackTypes.LARGE_CURVED_SLOPE_DYNAMIC.getLabel())){
+				slopeAngle = 0.1558;
+			}
 		}
 	}
 

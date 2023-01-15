@@ -1163,7 +1163,11 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				moveOnTCTwoWaysCrossing(i, j, k, tile.xCoord, tile.yCoord, tile.zCoord, meta);
 			}
 			else if (ItemTCRail.isTCDiagonalStraightTrack(tile)) {
+
 				moveOnTCDiagonal(i, j, k, tile.xCoord, tile.zCoord, tile.getBlockMetadata(), tile.getRailLength());
+			}
+			else if (ItemTCRail.isTCCurvedSlopeTrack(tile)) {
+				moveOnTCCurvedSlope(i, j, k, tile.r, tile.cx, tile.cz, tile.xCoord, tile.zCoord, meta, 1, tile.slopeAngle);
 			}
 
 		}
@@ -1187,6 +1191,9 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				}
 				if (ItemTCRail.isTCDiagonalStraightTrack(tile)) {
 					moveOnTCDiagonal(i, j, k, tile.xCoord, tile.zCoord, tile.getBlockMetadata(), tile.getRailLength());
+				}
+				if (ItemTCRail.isTCCurvedSlopeTrack(tile)) {
+					moveOnTCCurvedSlope(i, j, k, tile.r, tile.cx, tile.cz, tile.xCoord, tile.zCoord, meta, 1, tile.slopeAngle);
 				}
 			}
 		}
@@ -1213,8 +1220,8 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				|| tile.getType().equals(TrackTypes.EMBEDDED_LARGE_RIGHT_TURN.getLabel())
 				|| tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_RIGHT_45DEGREE_TURN.getLabel())
 				|| tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_LEFT_45DEGREE_TURN.getLabel())
-				//|| tile.getType().equals(TrackTypes.EMBEDDED_LARGE_RIGHT_45DEGREE_TURN.getLabel())
-				//|| tile.getType().equals(TrackTypes.EMBEDDED_LARGE_LEFT_45DEGREE_TURN.getLabel())
+				|| tile.getType().equals(TrackTypes.EMBEDDED_LARGE_RIGHT_45DEGREE_TURN.getLabel())
+				|| tile.getType().equals(TrackTypes.EMBEDDED_LARGE_LEFT_45DEGREE_TURN.getLabel())
 
 				&& tile.canTypeBeModifiedBySwitch) {
 			
@@ -1261,7 +1268,10 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 
 	private void moveOnTCDiagonal(int i, int j, int k, double cx, double cz, int meta, double length) {
 
-		posY = j + 0.2;
+		double Y_OFFSET = 0.2;
+		double X_OFFSET = 0.5;
+		double Z_OFFSET = 1.5;
+		posY = j + Y_OFFSET;
 
 		double exitX = 0;
 		double exitZ = 0;
@@ -1270,76 +1280,25 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		double norm = Math.sqrt(motionX * motionX + motionZ * motionZ);
 		double distanceNorm;
 
-
-
 		if (meta == 6) {
-			if (motionX > 0) {
-				exitX = (cx + length) + 0.5;
-				exitZ = (cz - length) + 0.5;
-			}
-			if (motionX < 0) {
-				exitX = cx - (0.5);
-				exitZ = cz + (1.5);
-			}
-			directionX = exitX - posX;
-			directionZ = exitZ - posZ;
-			distanceNorm = Math.sqrt(directionX * directionX + directionZ * directionZ);
-			motionX = (directionX / distanceNorm) * norm;
-			motionZ = (directionZ / distanceNorm) * norm;
-		}
-		else if (meta == 4) {
-			if (motionX > 0) {
-				exitX = cx + (1.5);
-				exitZ = cz - (0.5);
-			}
-			if (motionX < 0) {
-				exitX = cx - (length - 0.5);
-				exitZ = cz + (length + 0.5);
-			}
-			directionX = exitX - posX;
-			directionZ = exitZ - posZ;
-			distanceNorm = Math.sqrt(directionX * directionX + directionZ * directionZ);
-			motionX = (directionX / distanceNorm) * norm;
-			motionZ = (directionZ / distanceNorm) * norm;
+			exitX = (motionX > 0) ? cx + length + X_OFFSET : cx - X_OFFSET;
+			exitZ = (motionX > 0) ? cz - length + X_OFFSET : cz + Z_OFFSET;
+		} else if (meta == 4) {
+			exitX = (motionX > 0) ? cx + Z_OFFSET : cx - (length - X_OFFSET);
+			exitZ = (motionX > 0) ? cz - X_OFFSET : cz + (length + X_OFFSET);
+		} else if (meta == 5) {
+			exitX = (motionX > 0) ? cx + Z_OFFSET : cx - (length + X_OFFSET);
+			exitZ = (motionX > 0) ? cz + Z_OFFSET : cz - (length + X_OFFSET);
+		} else if (meta == 7) {
+			exitX = (motionX > 0) ? cx + X_OFFSET : cx - (length - X_OFFSET);
+			exitZ = (motionX > 0) ? cz + Z_OFFSET : cz - X_OFFSET;
 		}
 
-
-		else if (meta == 5 ) {
-			if (motionX > 0) {
-				exitX = cx + ( 1.5);
-				exitZ = cz + ( 1.5);
-			}
-			if (motionX < 0) {
-				exitX = cx - (length + 0.5);
-				exitZ = cz - (length + 0.5);
-			}
-			directionX = exitX - posX;
-			directionZ = exitZ - posZ;
-			distanceNorm = Math.sqrt(directionX * directionX + directionZ * directionZ);
-			motionX = (directionX / distanceNorm) * norm;
-			motionZ = (directionZ / distanceNorm) * norm;
-
-		}
-
-		else if (meta == 7 ) {
-			if (motionX > 0) {
-				exitX = cx + (length + 0.5);
-				exitZ = cz + (length + 0.5);
-			}
-			if (motionX < 0) {
-				exitX = cx - (0.5);
-				exitZ = cz - (0.5);
-			}
-			directionX = exitX - posX;
-			directionZ = exitZ - posZ;
-			distanceNorm = Math.sqrt(directionX * directionX + directionZ * directionZ);
-			motionX = (directionX / distanceNorm) * norm;
-			motionZ = (directionZ / distanceNorm) * norm;
-
-		}
-
-
-
+		directionX = exitX - posX;
+		directionZ = exitZ - posZ;
+		distanceNorm = Math.sqrt(directionX * directionX + directionZ * directionZ);
+		motionX = (directionX / distanceNorm) * norm;
+		motionZ = (directionZ / distanceNorm) * norm;
 		this.boundingBox.offset(Math.copySign(motionX, this.motionX), 0 , Math.copySign(motionZ, this.motionZ));
 
 		List boxes = worldObj.getCollidingBoundingBoxes(this, boundingBox);
@@ -1351,11 +1310,73 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		this.posX = (this.boundingBox.minX + this.boundingBox.maxX) / 2.0D;
 		this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
 		this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) / 2.0D;
-
-
-		//System.out.println("CX: " + cx + ", CZ: " + cz + ", META: " + meta + ", LENGTH: " + length +  ", EXIT_X: " + exitX + ", EXIT_Z: " + exitZ);
 	}
 
+
+	private void moveOnTCCurvedSlope(int i, int j, int k,double r, double cx, double cz, int tilex, int tilez, int meta, double slopeHeight, double slopeAngle) {
+		double newTilex = tilex;
+		double newTilez = tilez;
+		if (meta == 2 ) {
+			newTilez += 1;
+			newTilex += 0.5;
+		}
+		if (meta == 0) {
+			newTilex += 0.5;
+		}
+		if (meta == 1 ) {
+			newTilex += 1;
+			newTilez += 0.5;
+		}
+		if (meta == 3) {
+			newTilez += 0.5;
+		}
+		double cpx = posX - cx;
+		double cpz = posZ - cz;
+		double tpx = newTilex - posX;
+		double tpz = newTilez - posZ;
+
+		double tpnorm = Math.sqrt(tpx * tpx + tpz * tpz);
+
+		double cp_norm = Math.sqrt(cpx * cpx + cpz * cpz);
+		double vnorm = Math.sqrt(motionX * motionX + motionZ * motionZ);
+
+		double norm_cpx = cpx / cp_norm; //u
+		double norm_cpz = cpz / cp_norm; //v
+
+		double vx2 = -norm_cpz * vnorm;//-v
+		double vz2 = norm_cpx * vnorm;//u
+
+		double px2 = posX + motionX;
+		double pz2 = posZ + motionZ;
+
+		double px2_cx = px2 - cx;
+		double pz2_cz = pz2 - cz;
+
+		double p2_c_norm = Math.sqrt((px2_cx * px2_cx) + (pz2_cz * pz2_cz));
+
+		double px2_cx_norm = px2_cx / p2_c_norm;
+		double pz2_cz_norm = pz2_cz / p2_c_norm;
+
+		double px3 = cx + (px2_cx_norm * r);
+		double pz3 = cz + (pz2_cz_norm * r);
+
+		double signX = px3 - posX;
+		double signZ = pz3 - posZ;
+
+		vx2 = Math.copySign(vx2, signX);
+		vz2 = Math.copySign(vz2, signZ);
+
+		double p_corr_x = cx + ((cpx / cp_norm) * r);
+		double p_corr_z = cz + ((cpz / cp_norm) * r);
+		motionX = vx2;
+		motionZ = vz2;
+
+		double newYPos = Math.abs(j+ Math.min(1, (slopeAngle * Math.abs(tpnorm))) + yOffset + 0.3f);
+		setPosition(p_corr_x, newYPos, p_corr_z);
+		moveEntity(vx2,  0, vz2);
+
+
+	}
 
 	private void moveOnTCStraight(int i, int j, int k, double cx, double cz, int meta) {
 		posY = j + 0.2;
@@ -1363,7 +1384,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			double norm = Math.sqrt(motionX * motionX + motionZ * motionZ);
 
 			setPosition(cx + 0.5, posY + yOffset, posZ);
-			//setPosition(posX, posY + yOffset, posZ);
 
 			motionX = 0;
 			motionZ = Math.copySign(norm, motionZ);

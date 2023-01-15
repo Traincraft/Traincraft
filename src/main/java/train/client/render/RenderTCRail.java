@@ -24,6 +24,8 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 	public static final ModelSlopeTCTrack modelSlope = new ModelSlopeTCTrack();
 	public static final ModelLargeSlopeTCTrack modelLargeSlope = new ModelLargeSlopeTCTrack();
 	public static final ModelVeryLargeSlopeTCTrack	modelVeryLargeSlope = new ModelVeryLargeSlopeTCTrack();
+	public static final ModelRightCurvedSlopeTCTrack modelRightCurvedSlope = new ModelRightCurvedSlopeTCTrack();
+	public static final ModelLeftCurvedSlopeTCTrack modelLeftCurvedSlope = new ModelLeftCurvedSlopeTCTrack();
 	/**Embedded Tracks*/
 	public static final ModelEmbeddedSmallStraightTCTrack modelEmbeddedSmallStraight = new ModelEmbeddedSmallStraightTCTrack();
 	public static final ModelEmbeddedMediumStraightTCTrack modelEmbeddedMediumStraight = new ModelEmbeddedMediumStraightTCTrack();
@@ -130,6 +132,24 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 						model45DegreeLeftTurn.render("large", railTile, x, y, z);
 						break;
 					}
+					case VERY_LARGE_45DEGREE_TURN:
+					case VERY_LARGE_RIGHT_45DEGREE_TURN: {
+						model45DegreeRightTurn.render("verylarge", railTile, x, y, z);
+						break;
+					}
+					case VERY_LARGE_LEFT_45DEGREE_TURN:{
+						model45DegreeLeftTurn.render("verylarge", railTile, x, y, z);
+						break;
+					}
+					case SUPER_LARGE_45DEGREE_TURN:
+					case SUPER_LARGE_RIGHT_45DEGREE_TURN: {
+						model45DegreeRightTurn.render("superlarge", railTile, x, y, z);
+						break;
+					}
+					case SUPER_LARGE_LEFT_45DEGREE_TURN:{
+						model45DegreeLeftTurn.render("superlarge", railTile, x, y, z);
+						break;
+					}
 					case SMALL_PARALLEL_CURVE:
 					case SMALL_RIGHT_PARALLEL_CURVE:{
 						modelRightParallelCurve.render("small", railTile, x, y, z);
@@ -216,7 +236,10 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 					}
 					case SLOPE_DYNAMIC: {
 						modelSlope.render("dynamic", railTile, x, y, z);
-
+						break;
+					}
+					case EMBEDDED_SLOPE_DYNAMIC: {
+						modelSlope.render("embedded_dynamic", railTile, x, y, z);
 						break;
 					}
 					case LARGE_SLOPE_WOOD: {
@@ -239,6 +262,10 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 						modelLargeSlope.render("dynamic", railTile, x, y, z);
 						break;
 					}
+					case EMBEDDED_LARGE_SLOPE_DYNAMIC: {
+						modelLargeSlope.render("embedded_dynamic", railTile, x, y, z);
+						break;
+					}
 					case VERY_LARGE_SLOPE_WOOD: {
 						modelVeryLargeSlope.render("wood", railTile, x, y, z);
 						break;
@@ -257,6 +284,19 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 					}
 					case VERY_LARGE_SLOPE_DYNAMIC: {
 						modelVeryLargeSlope.render("dynamic", railTile, x, y, z);
+						break;
+					}
+					case EMBEDDED_VERY_LARGE_SLOPE_DYNAMIC: {
+						modelVeryLargeSlope.render("embedded_dynamic", railTile, x, y, z);
+						break;
+					}
+					case LARGE_CURVED_SLOPE_DYNAMIC:
+					case LARGE_RIGHT_CURVED_SLOPE_DYNAMIC:{
+						modelRightCurvedSlope.render("large", railTile, x, y, z);
+						break;
+					}
+					case LARGE_LEFT_CURVED_SLOPE_DYNAMIC:{
+						modelLeftCurvedSlope.render("large", railTile, x, y, z);
 						break;
 					}
 
@@ -345,6 +385,24 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 					}
 					case EMBEDDED_LARGE_LEFT_45DEGREE_TURN:{
 						modelEmbeddedLeft45DegreeTurn.render("large", railTile, x, y, z);
+						break;
+					}
+					case EMBEDDED_VERY_LARGE_45DEGREE_TURN:
+					case EMBEDDED_VERY_LARGE_RIGHT_45DEGREE_TURN: {
+						modelEmbeddedRight45DegreeTurn.render("verylarge", railTile, x, y, z);
+						break;
+					}
+					case EMBEDDED_VERY_LARGE_LEFT_45DEGREE_TURN: {
+						modelEmbeddedLeft45DegreeTurn.render("verylarge", railTile, x, y, z);
+						break;
+					}
+					case EMBEDDED_SUPER_LARGE_45DEGREE_TURN:
+					case EMBEDDED_SUPER_LARGE_RIGHT_45DEGREE_TURN: {
+						modelEmbeddedRight45DegreeTurn.render("superlarge", railTile, x, y, z);
+						break;
+					}
+					case EMBEDDED_SUPER_LARGE_LEFT_45DEGREE_TURN: {
+						modelEmbeddedLeft45DegreeTurn.render("superlarge", railTile, x, y, z);
 						break;
 					}
 					case EMBEDDED_SMALL_PARALLEL_CURVE:
