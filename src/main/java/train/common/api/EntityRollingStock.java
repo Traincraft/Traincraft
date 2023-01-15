@@ -798,7 +798,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			bogieLoco.updateDistance();
 		}
 
-		if (isRailBlockAt(worldObj, i, j - 1, k) || worldObj.getBlock(i, j - 1, k) == BlockIDs.tcRail.block || worldObj.getBlock(i, j - 1, k) == BlockIDs.tcRailGag.block) {
+		if (worldObj.isAirBlock(i,j,k)) {
 			j--;
 		} else if (isRailBlockAt(worldObj, i, j + 1, k) || worldObj.getBlock(i, j + 1, k) == BlockIDs.tcRail.block || worldObj.getBlock(i, j + 1, k) == BlockIDs.tcRailGag.block) {
 			j++;

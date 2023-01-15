@@ -12,15 +12,17 @@ import net.minecraft.block.BlockRailBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.minecart.MinecartUpdateEvent;
 import train.common.blocks.BlockTCRail;
 import train.common.blocks.BlockTCRailGag;
+import train.common.core.util.TraincraftUtil;
 import train.common.items.ItemTCRail;
 import train.common.items.ItemTCRail.TrackTypes;
 import train.common.library.BlockIDs;
@@ -299,79 +301,135 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 			{{0, -0.5}, { -0.5, 0}, {1, -1}},
 			{{0, -0.5}, {0.5, 0}, {-1, -1}}
 	};
-	int railMetadata;
-	double motionSqrt, railPathX,railPathZ,railPathX2,railPathZ2;
+
 	private void updateOnTrack(int i, int j, int k, Block l) {
-		if(motionZ==0 && motionX==0){
-			this.posY=j+0.2d;
-			setPosition(posX, posY+yOffset, posZ);
-			this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
-			return;
-		}
-		railMetadata=((BlockRailBase)l).getBasicRailMetadata(worldObj,this,i,j,k);
-		//figure out the current rail's direction
-		railPathX = (matrix[railMetadata][2][0]);
-		railPathZ = (matrix[railMetadata][2][1]);
 
-		//cover moving reverse of track direction using the rotation from the closed loop rather than the full motion
-		if(motionX * railPathX + motionZ * railPathZ <= 0.0D) {
-			railPathX = -railPathX;
-			railPathZ = -railPathZ;
+		int i1 = ((BlockRailBase) l).getBasicRailMetadata(worldObj, this, i, j, k);
+		meta = i1;
+		posY = j;
+		boolean flag = false;
+		boolean flag1=l == Blocks.golden_rail;
+		if (l == Blocks.golden_rail) {
+			flag = worldObj.getBlockMetadata(i,j,k) >2;
+			if (i1 == 8) {i1 = 0;}
+			else if(i1 == 9) {i1 = 1;}
 		}
 
-
-		//NOTE: when moving on corners both X and Z are 1 or -1, which would double speed. don't do that.
-		if (railPathX != 0 && railPathZ != 0) {
-			motionSqrt = (Math.abs(motionX) + Math.abs(motionZ)) * 0.5;
-		} else {
-			motionSqrt = (Math.abs(motionX) + Math.abs(motionZ));
+		if (l == Blocks.detector_rail){
+			worldObj.setBlockMetadataWithNotify(i, j, k, meta | 8, 3);
+			worldObj.notifyBlocksOfNeighborChange(i, j, k, l);
+			worldObj.notifyBlocksOfNeighborChange(i, j - 1, k, l);
+			worldObj.markBlockRangeForRenderUpdate(i, j, k, i, j, k);
+			worldObj.scheduleBlockUpdate(i, j, k, l, l.tickRate(worldObj));
 		}
-		motionX = motionSqrt * (railPathX);
-		motionZ = motionSqrt * (railPathZ);
 
-		//for every iteration of the loop, use the current movement direction to update the position
-		//    and rotate movement for the next cycle.
-		//NOTE: when moving on corners both X and Z are 1 or -1, which would double speed. don't do that.
-		if (railPathX != 0 && railPathZ != 0) {
-			motionSqrt = (Math.abs(motionX)+Math.abs(motionZ))*0.5;
-			setPositionRelative((motionSqrt * railPathX) * 0.5, 0, (motionSqrt * railPathZ) * 0.5);
-		} else {
-			motionSqrt = (Math.abs(motionX)+Math.abs(motionZ));
-			setPositionRelative((motionSqrt * railPathX), 0, (motionSqrt * railPathZ));
+		if (i1 >= 2 && i1 <= 5) {
+			posY = (j + 1);
 		}
-		motionX = motionSqrt * (railPathX);
-		motionZ = motionSqrt * (railPathZ);
 
 
-		//define the rail path again, to center the transport.
-		railPathX2 = i + 0.5D + matrix[railMetadata][0][0];
-		railPathZ2 = k + 0.5D + matrix[railMetadata][0][1];
-		railPathX = (i + 0.5D + matrix[railMetadata][1][0]) - railPathX2;
-		railPathZ = (k + 0.5D + matrix[railMetadata][1][1]) - railPathZ2;
-
-		//based on the path direction, try to center the bogie on the track
-		if (railPathX == 0.0D) {
-			motionSqrt = this.posZ - k;
-		} else if (railPathZ == 0.0D) {
-			motionSqrt = this.posX - i;
-		} else {
-			motionSqrt = ((this.posX - railPathX2) * railPathX + (this.posZ - railPathZ2) * railPathZ) * 2.0D;
+		int[][] ai = EntityRollingStock.matrix[i1];
+		double d9 = ai[1][0] - ai[0][0];
+		double d10 = ai[1][2] - ai[0][2];
+		double d11 = Math.sqrt(d9 * d9 + d10 * d10);
+		if (motionX * d9 + motionZ * d10 < 0.0D) {
+			d9 = -d9;
+			d10 = -d10;
 		}
-		//do the centering movement
-		this.posY=j+0.2d;
-		setPosition((railPathX2 + railPathX * motionSqrt), posY+yOffset, (railPathZ2 + railPathZ * motionSqrt));
-		this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
-		//endMagic();
-
-
-	}
-
-	public void setPositionRelative(double x, double y, double z) {
-		posX+=((int)(x*1000))*0.001;
-		if(y!=0) {//usually we won't be changing this, so this is more efficient
-			posY += ((int) (y * 1000)) * 0.001;
+		double d13 = Math.sqrt(motionX * motionX + motionZ * motionZ);
+		motionX = (d13 * d9) / d11;
+		motionZ = (d13 * d10) / d11;
+		if (flag1 && !flag && shouldDoRailFunctions()) {
+			if (Math.sqrt(motionX * motionX + motionZ * motionZ) < 0.029999999999999999D) {
+				motionX = 0.0D;
+				motionY = 0.0D;
+				motionZ = 0.0D;
+			}
+			else {
+				motionX *= 0.5D;
+				motionY *= 0.0D;
+				motionZ *= 0.5D;
+			}
 		}
-		posZ+=((int)(z*1000))*0.001;
+		double d17 = 0.0D;
+		double d18 = i + 0.5D + ai[0][0] * 0.5D;
+		double d19 = k + 0.5D + ai[0][2] * 0.5D;
+		double d20 = i + 0.5D + ai[1][0] * 0.5D;
+		double d21 = k + 0.5D + ai[1][2] * 0.5D;
+		d9 = d20 - d18;
+		d10 = d21 - d19;
+		if (d9 == 0.0D) {
+			posX = i + 0.5D;
+			d17 = posZ - k;
+		}
+		else if (d10 == 0.0D) {
+			posZ = k + 0.5D;
+			d17 = posX - i;
+		}
+		else {
+			double d22 = posX - d18;
+			double d24 = posZ - d19;
+			d17 = (d22 * d9 + d24 * d10) * 2D;
+			//double derailSpeed = 0;//0.46;
+
+		}
+		posX = d18 + d9 * d17;
+		posZ = d19 + d10 * d17;
+		setPosition(posX, posY + yOffset + 0.35, posZ);
+
+		moveMinecartOnRail(i, j, k, 0.0D);
+
+		if (ai[0][1] != 0 && MathHelper.floor_double(posX) - i == ai[0][0] &&
+				MathHelper.floor_double(posZ) - k == ai[0][2]) {
+			setPosition(posX, posY + ai[0][1], posZ);
+		}
+		else if (ai[1][1] != 0 && MathHelper.floor_double(posX) - i == ai[1][0] &&
+				MathHelper.floor_double(posZ) - k == ai[1][2]) {
+			setPosition(posX, posY + ai[1][1], posZ);
+		}
+
+		double d14 = Math.sqrt(motionX * motionX + motionZ * motionZ);
+		if (d14 > 0.0D) {
+			motionX = (motionX / d14) * (d14);
+			motionZ = (motionZ / d14) * (d14);
+		}
+		setPosition(posX, posY + yOffset - 0.8d, posZ);
+		int k1 = MathHelper.floor_double(posX);
+		int l1 = MathHelper.floor_double(posZ);
+		if (k1 != i || l1 != k) {
+			double d15 = Math.sqrt(motionX * motionX + motionZ * motionZ);
+			motionX = d15 * (k1 - i);
+			motionZ = d15 * (l1 - k);
+		}
+
+		if (shouldDoRailFunctions()) {
+			((BlockRailBase) l).onMinecartPass(worldObj, this, i, j, k);
+		}
+
+		if (flag && shouldDoRailFunctions()) {
+			double d31 = Math.sqrt(motionX * motionX + motionZ * motionZ);
+			if (d31 > 0.01D) {
+				motionX += (motionX / d31) * 0.059999999999999998D;
+				motionZ += (motionZ / d31) * 0.059999999999999998D;
+			}
+			else if (i1 == 1) {
+				if (worldObj.isBlockNormalCubeDefault(i - 1, j, k,false)) {
+					motionX = 0.02D;
+				}
+				else if (worldObj.isBlockNormalCubeDefault(i + 1, j, k,false)) {
+					motionX = -0.02D;
+				}
+			}
+			else if (i1 == 0) {
+				if (worldObj.isBlockNormalCubeDefault(i, j, k - 1,false)) {
+					motionZ = 0.02D;
+				}
+				else if (worldObj.isBlockNormalCubeDefault(i, j, k + 1,false)) {
+					motionZ = -0.02D;
+				}
+			}
+		}
+
 	}
 
 
@@ -442,7 +500,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 			int k = MathHelper.floor_double(this.posZ);
 			Block block = this.worldObj.getBlock(i, j - 1, k);
 
-			if (BlockRailBase.func_150051_a(block) || block == BlockIDs.tcRail.block || block == BlockIDs.tcRailGag.block) {
+			if (worldObj.isAirBlock(i,j,k)) {
 				j--;
 			} else {
 				Block block2 = this.worldObj.getBlock(i, j + 1, k);
@@ -512,6 +570,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 					moveOnTCDiagonal(i, j, k, tileRail.xCoord, tileRail.zCoord, tileRail.getBlockMetadata(), tileRail.getRailLength());
 				}
 			}
+			MinecraftForge.EVENT_BUS.post(new MinecartUpdateEvent(this, i, j, k));
 		}
 
 		this.func_145775_I();
