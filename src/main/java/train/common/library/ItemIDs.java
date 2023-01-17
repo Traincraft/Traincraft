@@ -135,8 +135,8 @@ public enum ItemIDs {
 	tcRailVeryLargeSlopeDynamic("ItemTCRail", "item_rail_straight_slope_dynamic", 3),
 
 	tcRailLargeCurvedSlopeDynamic("ItemTCRail", "item_rail_slope_curved_large_dynamic", 3),
-	tcRailVeryLargeCurvedSlopeDynamic("ItemTCRail", "item_rail_slope_curved_very_large_dynamic", 3),
-	tcRailSuperLargeCurvedSlopeDynamic("ItemTCRail", "item_rail_slope_curved_super_large_dynamic", 3),
+	tcRailVeryLargeCurvedSlopeDynamic("ItemTCRail", "item_rail_slope_curved_large_dynamic", 3),
+	tcRailSuperLargeCurvedSlopeDynamic("ItemTCRail", "item_rail_slope_curved_large_dynamic", 3),
 
 
 	/**Embedded Tracks*/
@@ -176,8 +176,8 @@ public enum ItemIDs {
 	tcRailEmbeddedVeryLargeSlopeDynamic("ItemTCRail", "item_rail_embedded_slope_dynamic", 5),
 
 	tcRailEmbeddedLargeCurvedSlopeDynamic("ItemTCRail", "item_rail_embedded_slope_curved_large_dynamic", 3),
-	tcRailEmbeddedVeryLargeCurvedSlopeDynamic("ItemTCRail", "item_rail_embedded_slope_curved_very_large_dynamic", 3),
-	tcRailEmbeddedSuperLargeCurvedSlopeDynamic("ItemTCRail", "item_rail_embedded_slope_curved_super_large_dynamic", 3),
+	tcRailEmbeddedVeryLargeCurvedSlopeDynamic("ItemTCRail", "item_rail_embedded_slope_curved_large_dynamic", 3),
+	tcRailEmbeddedSuperLargeCurvedSlopeDynamic("ItemTCRail", "item_rail_embedded_slope_curved_large_dynamic", 3),
 
 	tcRailSmallRoadCrossing("ItemTCRail", "item_rail_small_road_crossing", 5),
 	tcRailSmallRoadCrossing1("ItemTCRail", "item_rail_small_road_crossing_1", 5),

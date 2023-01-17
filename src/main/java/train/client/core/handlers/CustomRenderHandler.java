@@ -212,6 +212,37 @@ public class CustomRenderHandler {
             blockInfo();
             RenderTCRail.modelVeryLargeSlope.render("dynamic", facing, 0, 0, 0, r, g, b, a, ballastMaterial, blockColour);
         }
+        else if (item.getTrackType() == ItemTCRail.TrackTypes.LARGE_CURVED_SLOPE_DYNAMIC || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_LARGE_CURVED_SLOPE_DYNAMIC
+        || item.getTrackType() == ItemTCRail.TrackTypes.VERY_LARGE_CURVED_SLOPE_DYNAMIC || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_VERY_LARGE_CURVED_SLOPE_DYNAMIC
+        || item.getTrackType() == ItemTCRail.TrackTypes.SUPER_LARGE_CURVED_SLOPE_DYNAMIC || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_SUPER_LARGE_CURVED_SLOPE_DYNAMIC) {
+            float yaw = MathHelper.wrapAngleTo180_float(player.rotationYaw);
+            boolean isLeftTurn = item.getTrackOrientation( facing, yaw ).equals("left");
+
+            if (item.getTrackType() == ItemTCRail.TrackTypes.LARGE_CURVED_SLOPE_DYNAMIC || item.getTrackType() == ItemTCRail.TrackTypes.VERY_LARGE_CURVED_SLOPE_DYNAMIC || item.getTrackType() == ItemTCRail.TrackTypes.SUPER_LARGE_CURVED_SLOPE_DYNAMIC
+            || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_LARGE_CURVED_SLOPE_DYNAMIC || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_VERY_LARGE_CURVED_SLOPE_DYNAMIC || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_SUPER_LARGE_CURVED_SLOPE_DYNAMIC){
+                String turnSize = "large";
+                if (item.getTrackType() == ItemTCRail.TrackTypes.VERY_LARGE_CURVED_SLOPE_DYNAMIC)
+                    turnSize = "verylarge";
+                else if (item.getTrackType() == ItemTCRail.TrackTypes.SUPER_LARGE_CURVED_SLOPE_DYNAMIC)
+                turnSize = "superlarge";
+                else if (item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_LARGE_CURVED_SLOPE_DYNAMIC)
+                turnSize = "embedded_large";
+                else if (item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_VERY_LARGE_CURVED_SLOPE_DYNAMIC)
+                turnSize = "embedded_verylarge";
+                else if (item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_SUPER_LARGE_CURVED_SLOPE_DYNAMIC)
+                turnSize = "embedded_superlarge";
+                blockInfo();
+                if ( isLeftTurn )
+                {
+                    RenderTCRail.modelLeftCurvedSlope.render( turnSize, facing, 0, 0, 0, r, g, b, a, ballastMaterial, blockColour );
+                }
+                else
+                {
+                    RenderTCRail.modelRightCurvedSlope.render( turnSize, facing, 0, 0, 0, r, g, b, a, ballastMaterial, blockColour );
+                }
+            }
+
+        }
 
 
         /** Normal Parallel Curves*/

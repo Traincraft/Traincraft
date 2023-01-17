@@ -292,7 +292,6 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 					}
 					case LARGE_CURVED_SLOPE_DYNAMIC:
 					case LARGE_RIGHT_CURVED_SLOPE_DYNAMIC:{
-						System.out.println("YEES");
 						modelRightCurvedSlope.render("large", railTile, x, y, z);
 						break;
 					}
@@ -311,7 +310,6 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 					}
 					case SUPER_LARGE_CURVED_SLOPE_DYNAMIC:
 					case SUPER_LARGE_RIGHT_CURVED_SLOPE_DYNAMIC:{
-						System.out.println("NOOO");
 						modelRightCurvedSlope.render("superlarge", railTile, x, y, z);
 						break;
 					}

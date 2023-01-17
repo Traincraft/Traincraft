@@ -37,7 +37,6 @@ public class ModelRightCurvedSlopeTCTrack extends ModelBase {
 
     public void render(String type, String ballast, int ballastColour) {
 
-        System.out.println(type);
         String[] ballastTexture = new String[2];
         if (ballast.contains(":")) {
             ballastTexture = ballast.split(":", 5);
