@@ -16,12 +16,20 @@ public class ModelRightTurnTCTrack extends ModelBase {
 	private IModelCustom modelLargeRightTurn;
 	private IModelCustom modelVeryLargeRightTurn;
 	private IModelCustom modelSuperLargeRightTurn;
+	private IModelCustom modelEmbeddedMediumRightTurn;
+	private IModelCustom modelEmbeddedLargeRightTurn;
+	private IModelCustom modelEmbeddedVeryLargeRightTurn;
+	private IModelCustom modelEmbeddedSuperLargeRightTurn;
 
 	public ModelRightTurnTCTrack() {
 		modelMediumRightTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_medium.obj"));
 		modelLargeRightTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_big.obj"));
 		modelVeryLargeRightTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_very_big.obj"));
 		modelSuperLargeRightTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_super_big.obj"));
+		modelEmbeddedMediumRightTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_embedded_curve_medium.obj"));
+		modelEmbeddedLargeRightTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_embedded_curve_big.obj"));
+		modelEmbeddedVeryLargeRightTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_embedded_curve_very_big.obj"));
+		modelEmbeddedSuperLargeRightTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_embedded_curve_super_big.obj"));
 	}
 
 	public void renderMedium() {
@@ -35,6 +43,18 @@ public class ModelRightTurnTCTrack extends ModelBase {
 	}
 	public void renderSuperLarge() {
 		modelSuperLargeRightTurn.renderAll();
+	}
+	public void renderEmbeddedMedium() {
+		modelEmbeddedMediumRightTurn.renderAll();
+	}
+	public void renderEmbeddedLarge() {
+		modelEmbeddedLargeRightTurn.renderAll();
+	}
+	public void renderEmbeddedVeryLarge() {
+		modelEmbeddedVeryLargeRightTurn.renderAll();
+	}
+	public void renderEmbeddedSuperLarge() {
+		modelEmbeddedSuperLargeRightTurn.renderAll();
 	}
 
 	public void render(String type, TileTCRail tcRail, double x, double y, double z) {
@@ -55,46 +75,46 @@ public class ModelRightTurnTCTrack extends ModelBase {
 		//GL11.glScalef(0.5f, 0.5f, 0.5f);
 
 		if (facing == 3) {
-			if(type.equals("super_large"))
+			if(type.equals("super_large") || type.equals("embedded_super_large"))
 				GL11.glTranslatef(14.5f, 0.0f, 15.5f);
-			if(type.equals("very_large"))
+			if(type.equals("very_large") || type.equals("embedded_very_large"))
 				GL11.glTranslatef(8.5f, 0.0f, 9.5f);
-			if(type.equals("large"))
+			if(type.equals("large") || type.equals("embedded_large"))
 				GL11.glTranslatef(-1.0f, 0.0f, 5.0f);
-			if(type.equals("medium"))
+			if(type.equals("medium") || type.equals("embedded_medium"))
 				GL11.glTranslatef(1.5f, 0.0f, 2.5f);
 		}
 		if (facing == 1) {
 			GL11.glRotatef(180, 0, 1, 0);
-			if(type.equals("super_large"))
+			if(type.equals("super_large") || type.equals("embedded_super_large"))
 				GL11.glTranslatef(14.5f, 0.0f, 15.5f);
-			if(type.equals("very_large"))
+			if(type.equals("very_large") || type.equals("embedded_very_large"))
 				GL11.glTranslatef(8.5f, 0.0f, 9.54f);
-			if(type.equals("large"))
+			if(type.equals("large") || type.equals("embedded_large"))
 				GL11.glTranslatef(-1.0f, 0.0f, 5.0f);
-			if(type.equals("medium"))
+			if(type.equals("medium") || type.equals("embedded_medium"))
 				GL11.glTranslatef(1.5f, 0.0f, 2.5f);
 		}
 		if (facing == 2) {
 			GL11.glRotatef(90, 0, 1, 0);
-			if(type.equals("super_large"))
+			if(type.equals("super_large") || type.equals("embedded_super_large"))
 				GL11.glTranslatef(14.5f, 0.0f, 15.5f);
-			if(type.equals("very_large"))
+			if(type.equals("very_large") || type.equals("embedded_very_large"))
 				GL11.glTranslatef(8.5f, 0.0f, 9.50f);
-			if(type.equals("large"))
+			if(type.equals("large") || type.equals("embedded_large"))
 				GL11.glTranslatef(-1.0f, 0.0f, 5.0f);
-			if(type.equals("medium"))
+			if(type.equals("medium") || type.equals("embedded_medium"))
 				GL11.glTranslatef(1.5f, 0.0f, 2.5f);
 		}
 		if (facing == 0) {
 			GL11.glRotatef(-90, 0, 1, 0);
-			if(type.equals("super_large"))
+			if(type.equals("super_large") || type.equals("embedded_super_large"))
 				GL11.glTranslatef(14.5f, 0.0f, 15.5f);
-			if(type.equals("very_large"))
+			if(type.equals("very_large") || type.equals("embedded_very_large"))
 				GL11.glTranslatef(8.5f, 0.0f, 9.50f);
-			if(type.equals("large"))
+			if(type.equals("large") || type.equals("embedded_large"))
 				GL11.glTranslatef(-1.0f, 0.0f, 5.0f);
-			if(type.equals("medium"))
+			if(type.equals("medium") || type.equals("embedded_medium"))
 				GL11.glTranslatef(1.5f, 0.0f, 2.5f);
 		}
 		if (type.equals("medium"))
@@ -105,6 +125,14 @@ public class ModelRightTurnTCTrack extends ModelBase {
 			this.renderVeryLarge();
 		if (type.equals("super_large"))
 			this.renderSuperLarge();
+		if (type.equals("embedded_medium"))
+			this.renderEmbeddedMedium();
+		if (type.equals("embedded_large"))
+			this.renderEmbeddedLarge();
+		if (type.equals("embedded_very_large"))
+			this.renderEmbeddedVeryLarge();
+		if (type.equals("embedded_super_large"))
+			this.renderEmbeddedSuperLarge();
 
 		// Pop this matrix from the stack.
 		GL11.glPopMatrix();

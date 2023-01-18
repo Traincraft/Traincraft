@@ -14,16 +14,21 @@ import train.common.tile.TileTCRail;
 public class ModelMediumDiagonalStraightTCTrack extends ModelBase {
 
     private IModelCustom modelMediumDiagonalStraight;
+    private IModelCustom modelEmbeddedMediumDiagonalStraight;
 
 
     public ModelMediumDiagonalStraightTCTrack() {
         modelMediumDiagonalStraight = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_straight_diagonal_medium.obj"));
+        modelEmbeddedMediumDiagonalStraight = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_embedded_straight_diagonal_medium.obj"));
 
     }
 
     public void render(String type) {
         if (type.equals("diagonal")) {
             modelMediumDiagonalStraight.renderAll();
+        }
+        if (type.equals("embedded_diagonal")) {
+            modelEmbeddedMediumDiagonalStraight.renderAll();
         }
 
     }
@@ -45,9 +50,9 @@ public class ModelMediumDiagonalStraightTCTrack extends ModelBase {
 
 
         // Bind the texture, so that OpenGL properly textures our block.
-        if (type.equals("diagonal") ) {
-            tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
-        }
+
+        tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
+
         if (facing == 4) {
             GL11.glTranslatef(1f,0,0f);
             GL11.glRotatef(-90, 0, 1,0);

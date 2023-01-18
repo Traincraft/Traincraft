@@ -15,10 +15,12 @@ public class ModelSmallStraightTCTrack extends ModelBase {
 	
 	private IModelCustom modelSmallStraight;
 	private IModelCustom modelRoadCrossing;
+	private IModelCustom modelEmbeddedSmallStraight;
 
 	public ModelSmallStraightTCTrack() {
 		modelSmallStraight = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_normal.obj"));
 		modelRoadCrossing = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_roadcrossing.obj"));
+		modelEmbeddedSmallStraight = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_embedded_straight.obj"));
 	}
 
 	public void render(String type) {
@@ -33,6 +35,9 @@ public class ModelSmallStraightTCTrack extends ModelBase {
 		}
 		if (type.equals("crossing2")) {
 			modelRoadCrossing.renderAll();
+		}
+		if (type.equals("embedded_straight")) {
+			modelEmbeddedSmallStraight.renderAll();
 		}
 
 	}
@@ -52,7 +57,7 @@ public class ModelSmallStraightTCTrack extends ModelBase {
 		GL11.glColor4f(r, g, b, a);
 
 		// Bind the texture, so that OpenGL properly textures our block.
-		if (type.equals("straight")) {
+		if (type.equals("straight") || type.equals("embedded_straight")) {
  			tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
 		}
 		if (type.equals("crossing")) {

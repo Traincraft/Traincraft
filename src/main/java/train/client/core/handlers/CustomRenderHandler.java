@@ -81,40 +81,29 @@ public class CustomRenderHandler {
         if (item.getTrackType() == ItemTCRail.TrackTypes.SMALL_STRAIGHT
                 || item.getTrackType() == ItemTCRail.TrackTypes.MEDIUM_STRAIGHT
                 || item.getTrackType() == ItemTCRail.TrackTypes.LONG_STRAIGHT
-                || item.getTrackType() == ItemTCRail.TrackTypes.VERY_LONG_STRAIGHT) {
-            int length = 1;
-            if (item.getTrackType() == ItemTCRail.TrackTypes.MEDIUM_STRAIGHT)
-                length = 3;
-            if (item.getTrackType() == ItemTCRail.TrackTypes.LONG_STRAIGHT)
-                length = 6;
-            else if (item.getTrackType() == ItemTCRail.TrackTypes.VERY_LONG_STRAIGHT)
-                length = 12;
-
-            for (int i = 0; i < length; i++) {
-                float dx = dir.getX() * i;
-                float dz = dir.getY() * i;
-                RenderTCRail.modelSmallStraight.render("straight", facing, dx, 0, dz, r, g, b, a);
-            }
-        }
-
-            else  if (item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_SMALL_STRAIGHT
+                || item.getTrackType() == ItemTCRail.TrackTypes.VERY_LONG_STRAIGHT
+                || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_SMALL_STRAIGHT
                 || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_MEDIUM_STRAIGHT
                 || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_LONG_STRAIGHT
                 || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_VERY_LONG_STRAIGHT) {
             int length = 1;
-            if (item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_MEDIUM_STRAIGHT)
+            if (item.getTrackType() == ItemTCRail.TrackTypes.MEDIUM_STRAIGHT  || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_MEDIUM_STRAIGHT)
                 length = 3;
-            if (item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_LONG_STRAIGHT)
+            if (item.getTrackType() == ItemTCRail.TrackTypes.LONG_STRAIGHT   || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_LONG_STRAIGHT)
                 length = 6;
-            else if (item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_VERY_LONG_STRAIGHT)
+            else if (item.getTrackType() == ItemTCRail.TrackTypes.VERY_LONG_STRAIGHT  || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_VERY_LONG_STRAIGHT)
                 length = 12;
 
             for (int i = 0; i < length; i++) {
                 float dx = dir.getX() * i;
                 float dz = dir.getY() * i;
-                RenderTCRail.modelEmbeddedSmallStraight.render("straight", facing, dx, 0 ,dz,r, g, b, a);
+                if (item.getTrackType().getLabel().contains("EMBEDDED"))
+                RenderTCRail.modelSmallStraight.render("embedded_straight", facing, dx, 0, dz, r, g, b, a);
+                else  RenderTCRail.modelSmallStraight.render("straight", facing, dx, 0, dz, r, g, b, a);
             }
         }
+
+
 
 
 
@@ -408,38 +397,27 @@ public class CustomRenderHandler {
 
 
             if (item.getTrackType() == ItemTCRail.TrackTypes.MEDIUM_TURN || item.getTrackType() == ItemTCRail.TrackTypes.LARGE_TURN
-                || item.getTrackType() == ItemTCRail.TrackTypes.VERY_LARGE_TURN || item.getTrackType() == ItemTCRail.TrackTypes.SUPER_LARGE_TURN) {
+                || item.getTrackType() == ItemTCRail.TrackTypes.VERY_LARGE_TURN || item.getTrackType() == ItemTCRail.TrackTypes.SUPER_LARGE_TURN
+                    || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_MEDIUM_TURN || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_LARGE_TURN
+                    || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_VERY_LARGE_TURN || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_SUPER_LARGE_TURN) {
                 String turnSize = "medium";
-                if ( item.getTrackType() == ItemTCRail.TrackTypes.LARGE_TURN )
+                if ( item.getTrackType() == ItemTCRail.TrackTypes.LARGE_TURN || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_LARGE_TURN)
                     turnSize = "large";
-                else if ( item.getTrackType() == ItemTCRail.TrackTypes.VERY_LARGE_TURN )
+                else if ( item.getTrackType() == ItemTCRail.TrackTypes.VERY_LARGE_TURN || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_VERY_LARGE_TURN)
                     turnSize = "very_large";
-                else if ( item.getTrackType() == ItemTCRail.TrackTypes.SUPER_LARGE_TURN)
+                else if ( item.getTrackType() == ItemTCRail.TrackTypes.SUPER_LARGE_TURN || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_SUPER_LARGE_TURN)
                     turnSize = "super_large";
-                if ( isLeftTurn )
-                {
-                    RenderTCRail.modelLeftTurn.render( turnSize, facing, 0, 0, 0, r, g, b, a );
-                } else
-                {
-                    RenderTCRail.modelRightTurn.render( turnSize, facing, 0, 0, 0, r, g, b, a );
-                }
-            }
 
-            if (item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_MEDIUM_TURN || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_LARGE_TURN
-                || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_VERY_LARGE_TURN || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_SUPER_LARGE_TURN){
-                String turnSize = "medium";
-                if ( item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_LARGE_TURN )
-                    turnSize = "large";
-                else if ( item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_VERY_LARGE_TURN )
-                    turnSize = "very_large";
-                else if ( item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_SUPER_LARGE_TURN)
-                    turnSize = "super_large";
                 if ( isLeftTurn )
                 {
-                    RenderTCRail.modelEmbeddedLeftTurn.render( turnSize, facing, 0, 0, 0, r, g, b, a );
+                    if (item.getTrackType().getLabel().contains("EMBEDDED"))
+                    RenderTCRail.modelLeftTurn.render( "embedded_" + turnSize, facing, 0, 0, 0, r, g, b, a );
+                    else  RenderTCRail.modelLeftTurn.render( turnSize, facing, 0, 0, 0, r, g, b, a );
                 } else
                 {
-                    RenderTCRail.modelEmbeddedRightTurn.render( turnSize, facing, 0, 0, 0, r, g, b, a );
+                    if (item.getTrackType().getLabel().contains("EMBEDDED"))
+                        RenderTCRail.modelRightTurn.render( "embedded_" + turnSize, facing, 0, 0, 0, r, g, b, a );
+                    else  RenderTCRail.modelRightTurn.render( turnSize, facing, 0, 0, 0, r, g, b, a );
                 }
             }
 

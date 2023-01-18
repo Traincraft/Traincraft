@@ -13,16 +13,23 @@ import train.common.tile.TileTCRail;
 @SideOnly(Side.CLIENT)
 public class ModelMediumStraightTCTrack extends ModelBase {
 	private IModelCustom modelMediumStraight;
+	private IModelCustom modelEmbeddedMediumStraight;
 
 	public ModelMediumStraightTCTrack() {
 		modelMediumStraight = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_normal.obj"));
+		modelEmbeddedMediumStraight = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_embedded_straight.obj"));
 	}
 
-	public void render() {
-		modelMediumStraight.renderAll();
+	public void render(String type) {
+		if (type.equals("medium")) {
+			modelMediumStraight.renderAll();
+		}
+		if (type.equals("embedded_medium")){
+			modelEmbeddedMediumStraight.renderAll();
+		}
 	}
 
-	public void render(TileTCRail tcRail, double x, double y, double z) {
+	public void render(String type, TileTCRail tcRail, double x, double y, double z) {
 		// Push a blank matrix onto the stack
 		GL11.glPushMatrix();
 
@@ -49,7 +56,7 @@ public class ModelMediumStraightTCTrack extends ModelBase {
 		}
 
 		for (int i = 0; i < 3; i++) {
-			render();
+			render(type);
 			GL11.glTranslatef(0.0f, 0.0f, -1.0f);
 		}
 
