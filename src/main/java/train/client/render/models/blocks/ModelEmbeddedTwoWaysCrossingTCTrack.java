@@ -21,7 +21,7 @@ public class ModelEmbeddedTwoWaysCrossingTCTrack extends ModelBase {
 	}
 
 
-	public void render(double x, double y, double z) {
+	public void render(String type, double x, double y, double z) {
 		render(x, y, z, 1, 1, 1, 1);
 	}
 

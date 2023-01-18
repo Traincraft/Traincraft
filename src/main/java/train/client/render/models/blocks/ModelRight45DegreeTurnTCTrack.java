@@ -17,19 +17,29 @@ public class ModelRight45DegreeTurnTCTrack {
     private IModelCustom modelLargeRight45DegreeTurn;
     private IModelCustom modelVeryLargeRight45DegreeTurn;
     private IModelCustom modelSuperLargeRight45DegreeTurn;
-
+    private IModelCustom modelEmbeddedMediumRight45DegreeTurn;
+    private IModelCustom modelEmbeddedLargeRight45DegreeTurn;
+    private IModelCustom modelEmbeddedVeryLargeRight45DegreeTurn;
+    private IModelCustom modelEmbeddedSuperLargeRight45DegreeTurn;
     public ModelRight45DegreeTurnTCTrack(){
         modelMediumRight45DegreeTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_45degree_medium.obj"));
         modelLargeRight45DegreeTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_45degree_large.obj"));
         modelVeryLargeRight45DegreeTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_45degree_very_large.obj"));
         modelSuperLargeRight45DegreeTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_45degree_super_large.obj"));
+        modelEmbeddedMediumRight45DegreeTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_embedded_curve_45degree_medium.obj"));
+        modelEmbeddedLargeRight45DegreeTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_embedded_curve_45degree_large.obj"));
+        modelEmbeddedVeryLargeRight45DegreeTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_embedded_curve_45degree_very_large.obj"));
+        modelEmbeddedSuperLargeRight45DegreeTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_embedded_curve_45degree_super_large.obj"));
     }
 
     public void renderMedium() {modelMediumRight45DegreeTurn.renderAll();}
     public void renderLarge() {modelLargeRight45DegreeTurn.renderAll();}
-
     public void renderVeryLarge() {modelVeryLargeRight45DegreeTurn.renderAll();}
     public void renderSuperLarge() {modelSuperLargeRight45DegreeTurn.renderAll();}
+    public void renderEmbeddedMedium() {modelEmbeddedMediumRight45DegreeTurn.renderAll();}
+    public void renderEmbeddedLarge() {modelEmbeddedLargeRight45DegreeTurn.renderAll();}
+    public void renderEmbeddedVeryLarge() {modelEmbeddedVeryLargeRight45DegreeTurn.renderAll();}
+    public void renderEmbeddedSuperLarge() {modelEmbeddedSuperLargeRight45DegreeTurn.renderAll();}
 
     public void render(String type, TileTCRail tcRail, double x, double y, double z) {
         int facing = tcRail.getWorldObj().getBlockMetadata(tcRail.xCoord, tcRail.yCoord, tcRail.zCoord);
@@ -73,6 +83,14 @@ public class ModelRight45DegreeTurnTCTrack {
             this.renderVeryLarge();
         if (type.equals("superlarge"))
             this.renderSuperLarge();
+        if (type.equals("embedded_medium"))
+            this.renderEmbeddedMedium();
+        if (type.equals("embedded_large"))
+            this.renderEmbeddedLarge();
+        if (type.equals("embedded_verylarge"))
+            this.renderEmbeddedVeryLarge();
+        if (type.equals("embedded_superlarge"))
+            this.renderEmbeddedSuperLarge();
 
 
 

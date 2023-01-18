@@ -123,7 +123,7 @@ public class CustomRenderHandler {
             float dx = dir.getX();
             float dz = dir.getY();
 
-            RenderTCRail.modelTwoWaysCrossing.render( dx, 0, dz, r, g, b, a );
+            RenderTCRail.modelTwoWaysCrossing.render( "crossing", dx, 0, dz, r, g, b, a );
             RenderTCRail.modelSmallStraight.render("straight", 0, dx, 0, dz +1, r, g, b, a);
             RenderTCRail.modelSmallStraight.render("straight", 1, dx + 1, 0, dz, r, g, b, a);
             RenderTCRail.modelSmallStraight.render("straight", 2, dx, 0, dz - 1, r, g, b, a);
@@ -133,11 +133,11 @@ public class CustomRenderHandler {
             float dx = dir.getX();
             float dz = dir.getY();
 
-            RenderTCRail.modelEmbeddedTwoWaysCrossing.render( dx, 0, dz, r, g, b, a );
-            RenderTCRail.modelEmbeddedSmallStraight.render("straight", 0, dx, 0, dz +1, r, g, b, a);
-            RenderTCRail.modelEmbeddedSmallStraight.render("straight", 1, dx + 1, 0, dz, r, g, b, a);
-            RenderTCRail.modelEmbeddedSmallStraight.render("straight", 2, dx, 0, dz - 1, r, g, b, a);
-            RenderTCRail.modelEmbeddedSmallStraight.render("straight", 3, dx - 1, 0, dz, r, g, b, a);
+            RenderTCRail.modelTwoWaysCrossing.render("embedded_crossing", dx, 0, dz, r, g, b, a );
+            RenderTCRail.modelSmallStraight.render("embedded_straight", 0, dx, 0, dz +1, r, g, b, a);
+            RenderTCRail.modelSmallStraight.render("embedded_straight", 1, dx + 1, 0, dz, r, g, b, a);
+            RenderTCRail.modelSmallStraight.render("embedded_straight", 2, dx, 0, dz - 1, r, g, b, a);
+            RenderTCRail.modelSmallStraight.render("embedded_straight", 3, dx - 1, 0, dz, r, g, b, a);
         }
 
         // Slopes
@@ -288,96 +288,35 @@ public class CustomRenderHandler {
         }
         // 45 Degree Turns
 
-        else if (item.getTrackType() == ItemTCRail.TrackTypes.MEDIUM_45DEGREE_TURN || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_MEDIUM_45DEGREE_TURN || item.getTrackType() == ItemTCRail.TrackTypes.LARGE_45DEGREE_TURN || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_LARGE_45DEGREE_TURN  || item.getTrackType() == ItemTCRail.TrackTypes.VERY_LARGE_45DEGREE_TURN  || item.getTrackType() == ItemTCRail.TrackTypes.SUPER_LARGE_45DEGREE_TURN
+        else if (item.getTrackType() == ItemTCRail.TrackTypes.MEDIUM_45DEGREE_TURN || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_MEDIUM_45DEGREE_TURN
+                || item.getTrackType() == ItemTCRail.TrackTypes.LARGE_45DEGREE_TURN || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_LARGE_45DEGREE_TURN
+                || item.getTrackType() == ItemTCRail.TrackTypes.VERY_LARGE_45DEGREE_TURN  || item.getTrackType() == ItemTCRail.TrackTypes.SUPER_LARGE_45DEGREE_TURN
                 || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_VERY_LARGE_45DEGREE_TURN  || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_SUPER_LARGE_45DEGREE_TURN) {
             float yaw = MathHelper.wrapAngleTo180_float(player.rotationYaw);
             boolean isLeftTurn = item.getTrackOrientation( facing, yaw ).equals("left");
-
-            if (item.getTrackType() == ItemTCRail.TrackTypes.MEDIUM_45DEGREE_TURN) {
                 String turnSize = "medium";
+                if (item.getTrackType() == ItemTCRail.TrackTypes.LARGE_45DEGREE_TURN || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_LARGE_45DEGREE_TURN )
+                turnSize = "large";
+                if (item.getTrackType() == ItemTCRail.TrackTypes.VERY_LARGE_45DEGREE_TURN || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_VERY_LARGE_45DEGREE_TURN )
+                turnSize = "verylarge";
+                if (item.getTrackType() == ItemTCRail.TrackTypes.SUPER_LARGE_45DEGREE_TURN || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_SUPER_LARGE_45DEGREE_TURN )
+                turnSize = "superlarge";
                 if ( isLeftTurn )
                 {
-                    RenderTCRail.model45DegreeLeftTurn.render( turnSize, facing, 0, 0, 0, r, g, b, a );
-                } else
+                    if (item.getTrackType().getLabel().contains("EMBEDDED"))
+                    RenderTCRail.model45DegreeLeftTurn.render( "embedded_" + turnSize, facing, 0, 0, 0, r, g, b, a );
+                    else  RenderTCRail.model45DegreeLeftTurn.render( turnSize, facing, 0, 0, 0, r, g, b, a );
+                }
+                else
                 {
-                    RenderTCRail.model45DegreeRightTurn.render( turnSize, facing, 0, 0, 0, r, g, b, a );
+                    if (item.getTrackType().getLabel().contains("EMBEDDED"))
+                        RenderTCRail.model45DegreeRightTurn.render( "embedded_" + turnSize, facing, 0, 0, 0, r, g, b, a );
+                    else  RenderTCRail.model45DegreeRightTurn.render( turnSize, facing, 0, 0, 0, r, g, b, a );
                 }
             }
 
-            if (item.getTrackType() == ItemTCRail.TrackTypes.LARGE_45DEGREE_TURN) {
-                String turnSize = "large";
-                if ( isLeftTurn )
-                {
-                    RenderTCRail.model45DegreeLeftTurn.render( turnSize, facing, 0, 0, 0, r, g, b, a );
-                } else
-                {
-                    RenderTCRail.model45DegreeRightTurn.render( turnSize, facing, 0, 0, 0, r, g, b, a );
-                }
-            }
 
-            if (item.getTrackType() == ItemTCRail.TrackTypes.VERY_LARGE_45DEGREE_TURN) {
-                String turnSize = "verylarge";
-                if ( isLeftTurn )
-                {
-                    RenderTCRail.model45DegreeLeftTurn.render( turnSize, facing, 0, 0, 0, r, g, b, a );
-                } else
-                {
-                    RenderTCRail.model45DegreeRightTurn.render( turnSize, facing, 0, 0, 0, r, g, b, a );
-                }
-            }
-            if (item.getTrackType() == ItemTCRail.TrackTypes.SUPER_LARGE_45DEGREE_TURN) {
-                String turnSize = "superlarge";
-                if ( isLeftTurn )
-                {
-                    RenderTCRail.model45DegreeLeftTurn.render( turnSize, facing, 0, 0, 0, r, g, b, a );
-                } else
-                {
-                    RenderTCRail.model45DegreeRightTurn.render( turnSize, facing, 0, 0, 0, r, g, b, a );
-                }
-            }
 
-            if (item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_MEDIUM_45DEGREE_TURN) {
-                String turnSize = "medium";
-                if ( isLeftTurn )
-                {
-                    RenderTCRail.modelEmbeddedLeft45DegreeTurn.render( turnSize, facing, 0, 0, 0, r, g, b, a );
-                } else
-                {
-                    RenderTCRail.modelEmbeddedRight45DegreeTurn.render( turnSize, facing, 0, 0, 0, r, g, b, a );
-                }
-            }
-
-            if (item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_LARGE_45DEGREE_TURN) {
-                String turnSize = "large";
-                if ( isLeftTurn )
-                {
-                    RenderTCRail.modelEmbeddedLeft45DegreeTurn.render( turnSize, facing, 0, 0, 0, r, g, b, a );
-                } else
-                {
-                    RenderTCRail.modelEmbeddedRight45DegreeTurn.render( turnSize, facing, 0, 0, 0, r, g, b, a );
-                }
-            }
-            if (item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_VERY_LARGE_45DEGREE_TURN) {
-                String turnSize = "verylarge";
-                if ( isLeftTurn )
-                {
-                    RenderTCRail.modelEmbeddedLeft45DegreeTurn.render( turnSize, facing, 0, 0, 0, r, g, b, a );
-                } else
-                {
-                    RenderTCRail.modelEmbeddedRight45DegreeTurn.render( turnSize, facing, 0, 0, 0, r, g, b, a );
-                }
-            }
-            if (item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_SUPER_LARGE_45DEGREE_TURN) {
-                String turnSize = "superlarge";
-                if ( isLeftTurn )
-                {
-                    RenderTCRail.modelEmbeddedLeft45DegreeTurn.render( turnSize, facing, 0, 0, 0, r, g, b, a );
-                } else
-                {
-                    RenderTCRail.modelEmbeddedRight45DegreeTurn.render( turnSize, facing, 0, 0, 0, r, g, b, a );
-                }
-            }
-        }
 
         // Turns
         else if (item.getTrackType() == ItemTCRail.TrackTypes.MEDIUM_TURN

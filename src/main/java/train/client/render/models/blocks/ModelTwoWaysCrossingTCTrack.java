@@ -12,21 +12,25 @@ import train.common.library.Info;
 @SideOnly(Side.CLIENT)
 public class ModelTwoWaysCrossingTCTrack extends ModelBase {
 	private IModelCustom modelTwoWaysCrossing;
-
+	private IModelCustom modelEmbeddedTwoWaysCrossing;
 
 	public ModelTwoWaysCrossingTCTrack() {
-		modelTwoWaysCrossing = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_x.obj"));}
+		modelTwoWaysCrossing = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_x.obj"));
+		modelEmbeddedTwoWaysCrossing = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_embedded_x.obj"));}
 
-	public void render() {
+	public void render(String type) {
+	if (type.equals("crossing"))
 		modelTwoWaysCrossing.renderAll();
+	if (type.equals("embedded_crossing"))
+		modelEmbeddedTwoWaysCrossing.renderAll();
 	}
 
 
-	public void render(double x, double y, double z) {
-		render(x, y, z, 1, 1, 1, 1);
+	public void render(String type, double x, double y, double z) {
+		render(type, x, y, z, 1, 1, 1, 1);
 	}
 
-	public void render(double x, double y, double z, float r, float g, float b, float a) {
+	public void render(String type , double x, double y, double z, float r, float g, float b, float a) {
 		// Push a blank matrix onto the stack
 		GL11.glPushMatrix();
 
@@ -38,7 +42,7 @@ public class ModelTwoWaysCrossingTCTrack extends ModelBase {
 		GL11.glColor4f(r, g, b, a);
 		//GL11.glScalef(0.5f, 0.5f, 0.5f);
 
-		this.render();
+		this.render(type);
 		// Pop this matrix from the stack.
 		GL11.glPopMatrix();
 	}
