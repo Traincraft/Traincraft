@@ -16,7 +16,6 @@ import train.common.tile.TileTCRail;
 public class ModelLargeSlopeTCTrack extends ModelBase {
 	private IModelCustom modeltrack;
 
-	private IModelCustom embeddedModelTrack;
 	private IModelCustom modelLargeSlopeWood;
 	private IModelCustom modelLargeSlopeBallast;
 
@@ -27,8 +26,6 @@ public class ModelLargeSlopeTCTrack extends ModelBase {
 				.loadModel(new ResourceLocation(Info.modelPrefix + "supports_wood_long.obj"));
 		modelLargeSlopeBallast = AdvancedModelLoader
 				.loadModel(new ResourceLocation(Info.modelPrefix + "supports_ballast_long.obj"));
-		embeddedModelTrack = AdvancedModelLoader
-				.loadModel(new ResourceLocation(Info.modelPrefix+ "track_embedded_slope_long.obj"));
 	}
 
 
@@ -80,8 +77,8 @@ public class ModelLargeSlopeTCTrack extends ModelBase {
 			modelLargeSlopeBallast.renderAll();
 		}
 		if (type.equals("embedded_dynamic")) {
-			tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
-			embeddedModelTrack.renderAll();
+			tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_embedded.png"));
+			modeltrack.renderAll();
 			tmt.Tessellator.bindTexture(new ResourceLocation(ballastTexture[0],  "textures/blocks/" + ballastTexture[1] +".png"));
 			float r = (float)(ballastColour >> 16 & 255) / 255.0F;
 			float g = (float)(ballastColour >> 8 & 255) / 255.0F;

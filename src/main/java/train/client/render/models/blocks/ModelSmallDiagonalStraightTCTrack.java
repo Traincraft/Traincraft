@@ -19,16 +19,10 @@ public class ModelSmallDiagonalStraightTCTrack extends ModelBase {
 
     public ModelSmallDiagonalStraightTCTrack() {
         modelSmallDiagonalStraight = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_straight_diagonal.obj"));
-        modelEmbeddedSmallDiagonalStraight = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_embedded_straight_diagonal.obj"));
     }
 
     public void render(String type) {
-        if (type.equals("diagonal")) {
-            modelSmallDiagonalStraight.renderAll();
-        }
-        if (type.equals("embedded_diagonal")){
-            modelEmbeddedSmallDiagonalStraight.renderAll();
-        }
+        modelSmallDiagonalStraight.renderAll();
     }
 
     public void render(String type, TileTCRail tcRail, double x, double y, double z) {
@@ -49,7 +43,9 @@ public class ModelSmallDiagonalStraightTCTrack extends ModelBase {
 
         // Bind the texture, so that OpenGL properly textures our block.
 
-        tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
+        if (type.contains("embedded"))
+            tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_embedded.png"));
+        else tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
 
         if (facing == 4 || facing == 6) {
             GL11.glTranslatef(0f,0,1f);

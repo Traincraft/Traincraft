@@ -27,10 +27,6 @@ public class ModelLeft45DegreeTurnTCTrack {
         modelLargeLeft45DegreeTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_45degree_large_left.obj"));
         modelVeryLarge45DegreeTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_45degree_very_large_left.obj"));
         modelSuperLarge45DegreeTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_45degree_super_large_left.obj"));
-        modelEmbeddedMediumLeft45DegreeTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_embedded_curve_45degree_medium_left.obj"));
-        modelEmbeddedLargeLeft45DegreeTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_embedded_curve_45degree_large_left.obj"));
-        modelEmbeddedVeryLargeLeft45DegreeTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_embedded_curve_45degree_very_large_left.obj"));
-        modelEmbeddedSuperLargeLeft45DegreeTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_embedded_curve_45degree_super_large_left.obj"));
 
     }
 
@@ -38,18 +34,14 @@ public class ModelLeft45DegreeTurnTCTrack {
     public void renderLarge() {modelLargeLeft45DegreeTurn.renderAll();}
     public void renderVeryLarge() {modelVeryLarge45DegreeTurn.renderAll();}
     public void renderSuperLarge() {modelSuperLarge45DegreeTurn.renderAll();}
-    public void renderEmbeddedMedium() {modelEmbeddedMediumLeft45DegreeTurn.renderAll();}
-    public void renderEmbeddedLarge() {modelEmbeddedLargeLeft45DegreeTurn.renderAll();}
-    public void renderEmbeddedVeryLarge() {modelEmbeddedVeryLargeLeft45DegreeTurn.renderAll();}
-    public void renderEmbeddedSuperLarge() {modelEmbeddedSuperLargeLeft45DegreeTurn.renderAll();}
 
 
-    public void render(String type, TileTCRail tcRail, double x, double y, double z) {
+    public void render(String type,String variant, TileTCRail tcRail, double x, double y, double z) {
         int facing = tcRail.getWorldObj().getBlockMetadata(tcRail.xCoord, tcRail.yCoord, tcRail.zCoord);
-        render( type, facing, x, y, z, 1, 1, 1, 1);
+        render( type, variant, facing, x, y, z, 1, 1, 1, 1);
     }
 
-    public void render(String type, int facing, double x, double y, double z, float r, float g, float b, float a) {
+    public void render(String type, String variant ,int facing, double x, double y, double z, float r, float g, float b, float a) {
         // Push a blank matrix onto the stack
         GL11.glPushMatrix();
 
@@ -57,7 +49,9 @@ public class ModelLeft45DegreeTurnTCTrack {
         GL11.glTranslatef((float) x + 0.5f, (float) y, (float) z + 0.5f);
 
         // Bind the texture, so that OpenGL properly textures our block.
-        tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
+        if (variant.contains("embedded"))
+            tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_embedded.png"));
+        else  tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
         GL11.glColor4f(r, g, b, a);
         //GL11.glScalef(0.5f, 0.5f, 0.5f);
 
@@ -77,22 +71,14 @@ public class ModelLeft45DegreeTurnTCTrack {
             GL11.glTranslatef(0.5f,0,0.5f);
         }
 
-        if (type.equals("medium"))
+        if (type.equals("medium") )
             this.renderMedium();
-        if (type.equals("large"))
+        if (type.equals("large") )
             this.renderLarge();
-        if (type.equals("verylarge"))
+        if (type.equals("verylarge") )
             this.renderVeryLarge();
-        if (type.equals("superlarge"))
+        if (type.equals("superlarge") )
             this.renderSuperLarge();
-        if (type.equals("embedded_medium"))
-            this.renderEmbeddedMedium();
-        if (type.equals("embedded_large"))
-            this.renderEmbeddedLarge();
-        if (type.equals("embedded_verylarge"))
-            this.renderEmbeddedVeryLarge();
-        if (type.equals("embedded_superlarge"))
-            this.renderEmbeddedSuperLarge();
 
         // Pop this matrix from the stack.
         GL11.glPopMatrix();
