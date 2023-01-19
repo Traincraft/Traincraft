@@ -710,17 +710,19 @@ public class ItemTCRail extends ItemPart {
 			return new int[][]{ {0,0} };
 		else if ( type == TrackTypes.MEDIUM_STRAIGHT || type == TrackTypes.EMBEDDED_MEDIUM_STRAIGHT)
 			return new int[][]{ {0,0}, {1,0}, {2,0} };
-		else if ( type == TrackTypes.LONG_STRAIGHT
-				|| type == TrackTypes.EMBEDDED_LONG_STRAIGHT)
+		else if ( type == TrackTypes.LONG_STRAIGHT || type == TrackTypes.EMBEDDED_LONG_STRAIGHT)
 			return new int[][]{ {0,0}, {1,0}, {2,0}, {3,0}, {4,0}, {5,0} };
-		else if ( type == TrackTypes.VERY_LONG_STRAIGHT
-				|| type == TrackTypes.EMBEDDED_VERY_LONG_STRAIGHT)
+		else if ( type == TrackTypes.VERY_LONG_STRAIGHT || type == TrackTypes.EMBEDDED_VERY_LONG_STRAIGHT)
 			return new int[][]{ {0,0}, {1,0}, {2,0}, {3,0}, {4,0}, {5,0}, {6,0}, {7,0}, {8,0}, {9,0}, {10,0}, {11,0}};
 		/** Diagonals*/
 		else if (type == TrackTypes.SMALL_DIAGONAL_STRAIGHT || type == TrackTypes.EMBEDDED_SMALL_DIAGONAL_STRAIGHT)
 			return new int [][]{{0,0}};
 		else if (type == TrackTypes.MEDIUM_DIAGONAL_STRAIGHT || type == TrackTypes.EMBEDDED_MEDIUM_DIAGONAL_STRAIGHT)
 			return new int [][]{{0,0}, {1,1}, {2,2}};
+		else if (type == TrackTypes.LONG_DIAGONAL_STRAIGHT || type == TrackTypes.EMBEDDED_LONG_DIAGONAL_STRAIGHT)
+			return new int [][]{{0,0}, {1,1}, {2,2},{3,3},{4,4},{5,5}};
+		else if (type == TrackTypes.VERY_LONG_DIAGONAL_STRAIGHT || type == TrackTypes.EMBEDDED_VERY_LONG_DIAGONAL_STRAIGHT)
+			return new int [][]{{0,0}, {1,1}, {2,2},{3,3},{4,4},{5,5},{6,6},{7,7},{8,8},{9,9},{10,10},{11,11}};
 		/** Slopes */
 		else if ( type == TrackTypes.SLOPE_BALLAST
 				|| type == TrackTypes.SLOPE_GRAVEL

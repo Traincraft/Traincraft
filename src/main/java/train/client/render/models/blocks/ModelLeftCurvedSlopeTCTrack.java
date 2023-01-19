@@ -16,9 +16,6 @@ public class ModelLeftCurvedSlopeTCTrack extends ModelBase {
     private IModelCustom modelLargeLeftCurvedTrack;
     private IModelCustom modelVeryLargeLeftCurvedTrack;
     private IModelCustom modelSuperLargeLeftCurvedTrack;
-    private IModelCustom modelEmbeddedLargeLeftCurvedTrack;
-    private IModelCustom modelEmbeddedVeryLargeLeftCurvedTrack;
-    private IModelCustom modelEmbeddedSuperLargeLeftCurvedTrack;
     private IModelCustom modelLargeLeftCurvedBallast;
     private IModelCustom modelVeryLargeLeftCurvedBallast;
     private IModelCustom modelSuperLargeLeftCurvedBallast;
@@ -27,9 +24,6 @@ public class ModelLeftCurvedSlopeTCTrack extends ModelBase {
         modelLargeLeftCurvedTrack = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_slope_curve_large_l.obj"));
         modelVeryLargeLeftCurvedTrack = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_slope_curve_very_large_l.obj"));
         modelSuperLargeLeftCurvedTrack = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_slope_curve_super_large_l.obj"));
-        modelEmbeddedLargeLeftCurvedTrack = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_embedded_slope_curve_large_l.obj"));
-        modelEmbeddedVeryLargeLeftCurvedTrack = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_embedded_slope_curve_very_large_l.obj"));
-        modelEmbeddedSuperLargeLeftCurvedTrack = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_embedded_slope_curve_super_large_l.obj"));
         modelLargeLeftCurvedBallast = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "ballast_curved_slope_large_l.obj"));
         modelVeryLargeLeftCurvedBallast = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "ballast_curved_slope_very_large_l.obj"));
         modelSuperLargeLeftCurvedBallast = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "ballast_curved_slope_super_large_l.obj"));
@@ -61,8 +55,8 @@ public class ModelLeftCurvedSlopeTCTrack extends ModelBase {
         }
 
         if (type.equals("embedded_large")) {
-            tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
-            modelEmbeddedLargeLeftCurvedTrack.renderAll();
+            tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_embedded.png"));
+            modelLargeLeftCurvedTrack.renderAll();
             tmt.Tessellator.bindTexture(new ResourceLocation(ballastTexture[0],  "textures/blocks/" + ballastTexture[1] +".png"));
 
             float r = (float)(ballastColour >> 16 & 255) / 255.0F;
@@ -87,8 +81,8 @@ public class ModelLeftCurvedSlopeTCTrack extends ModelBase {
         }
 
         if (type.equals("embedded_verylarge")) {
-            tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
-            modelEmbeddedVeryLargeLeftCurvedTrack.renderAll();
+            tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_embedded.png"));
+            modelVeryLargeLeftCurvedTrack.renderAll();
             tmt.Tessellator.bindTexture(new ResourceLocation(ballastTexture[0],  "textures/blocks/" + ballastTexture[1] +".png"));
 
             float r = (float)(ballastColour >> 16 & 255) / 255.0F;
@@ -112,8 +106,8 @@ public class ModelLeftCurvedSlopeTCTrack extends ModelBase {
         }
 
         if (type.equals("embedded_superlarge")) {
-            tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
-            modelEmbeddedSuperLargeLeftCurvedTrack.renderAll();
+            tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_embedded.png"));
+            modelSuperLargeLeftCurvedTrack.renderAll();
             tmt.Tessellator.bindTexture(new ResourceLocation(ballastTexture[0],  "textures/blocks/" + ballastTexture[1] +".png"));
 
             float r = (float)(ballastColour >> 16 & 255) / 255.0F;

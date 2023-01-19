@@ -12,17 +12,14 @@ import train.common.library.Info;
 @SideOnly(Side.CLIENT)
 public class ModelTwoWaysCrossingTCTrack extends ModelBase {
 	private IModelCustom modelTwoWaysCrossing;
-	private IModelCustom modelEmbeddedTwoWaysCrossing;
 
 	public ModelTwoWaysCrossingTCTrack() {
 		modelTwoWaysCrossing = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_x.obj"));
-		modelEmbeddedTwoWaysCrossing = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_embedded_x.obj"));}
+	}
 
 	public void render(String type) {
-	if (type.equals("crossing"))
+	if (type.equals("crossing") || type.equals("embedded_crossing"))
 		modelTwoWaysCrossing.renderAll();
-	if (type.equals("embedded_crossing"))
-		modelEmbeddedTwoWaysCrossing.renderAll();
 	}
 
 
@@ -38,7 +35,9 @@ public class ModelTwoWaysCrossingTCTrack extends ModelBase {
 		GL11.glTranslatef((float) x + 0.5f, (float) y, (float) z + 0.5f);
 
 		// Bind the texture, so that OpenGL properly textures our block.
-		tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
+		if (type.contains("embedded"))
+			tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_embedded.png"));
+		else  tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
 		GL11.glColor4f(r, g, b, a);
 		//GL11.glScalef(0.5f, 0.5f, 0.5f);
 
