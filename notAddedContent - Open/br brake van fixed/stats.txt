@@ -1,3 +1,0 @@
-Name: br brake van
-Type: Passenger
-Mass: 6.0

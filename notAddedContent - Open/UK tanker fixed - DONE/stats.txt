@@ -1,4 +1,0 @@
-name: Tanker (UK)
-mass: 40
-type: tank
-max capacity: 45000

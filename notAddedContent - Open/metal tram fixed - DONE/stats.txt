@@ -1,5 +1,0 @@
-name: metal tram
-type: electric
-power: 750
-inventory slots: 27
-max speed: 70km/h

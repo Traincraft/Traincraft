@@ -1,6 +1,0 @@
-name: 72xx
-type: steam
-horse power: 1475
-max speed: 145km/h
-inventory slots: 24
-water capacity: 9000

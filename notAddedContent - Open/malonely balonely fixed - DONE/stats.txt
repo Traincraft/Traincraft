@@ -1,6 +1,0 @@
-name: RW type 3
-type: steam
-power: 900mhp
-max speed: 100
-inventory slots: 9
-water capacity: 4000mb
