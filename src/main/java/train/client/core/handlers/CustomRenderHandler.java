@@ -460,7 +460,7 @@ public class CustomRenderHandler {
 
             if ( item.getTrackType() == ItemTCRail.TrackTypes.MEDIUM_PARALLEL_SWITCH  || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_MEDIUM_PARALLEL_SWITCH)
             {
-
+                RenderTCRail.modelSmallStraight.render( variant, facing, 0, 0, 0, r, g, b, a );
                 RenderTCRail.modelSmallStraight.render( variant, facing, dx * out_1_0 + dx_1 * out_1_1, 0, dz * out_1_0 + dz_1 * out_1_1, r, g, b, a );
             }
             if ( item.getTrackType() == ItemTCRail.TrackTypes.MEDIUM_45DEGREE_SWITCH || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_MEDIUM_45DEGREE_SWITCH )
@@ -471,7 +471,7 @@ public class CustomRenderHandler {
             else
             {
                 RenderTCRail.modelSmallStraight.render( variant, facing, 0, 0, 0, r, g, b, a );
-
+                RenderTCRail.modelSmallStraight.render( variant, facing_1, dx * out_1_0 + dx_1 * out_1_1, 0, dz * out_1_0 + dz_1 * out_1_1, r, g, b, a );
             }
 
                 // Render switch

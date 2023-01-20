@@ -849,16 +849,12 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 				|| tile.getType().equals(TrackTypes.LARGE_RIGHT_TURN.getLabel()))
 				|| tile.getType().equals(TrackTypes.MEDIUM_RIGHT_45DEGREE_TURN.getLabel())
 				|| tile.getType().equals(TrackTypes.MEDIUM_LEFT_45DEGREE_TURN.getLabel())
-				|| tile.getType().equals(TrackTypes.LARGE_RIGHT_45DEGREE_TURN.getLabel())
-				|| tile.getType().equals(TrackTypes.LARGE_LEFT_45DEGREE_TURN.getLabel())
 				|| tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_RIGHT_TURN.getLabel())
 				|| tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_LEFT_TURN.getLabel())
 				|| tile.getType().equals(TrackTypes.EMBEDDED_LARGE_LEFT_TURN.getLabel())
 				|| tile.getType().equals(TrackTypes.EMBEDDED_LARGE_RIGHT_TURN.getLabel())
 				|| tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_RIGHT_45DEGREE_TURN.getLabel())
 				|| tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_LEFT_45DEGREE_TURN.getLabel())
-				|| tile.getType().equals(TrackTypes.EMBEDDED_LARGE_RIGHT_45DEGREE_TURN.getLabel())
-				|| tile.getType().equals(TrackTypes.EMBEDDED_LARGE_LEFT_45DEGREE_TURN.getLabel())
 
 				&& tile.canTypeBeModifiedBySwitch) {
 			if (meta == 2) {

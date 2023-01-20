@@ -1212,20 +1212,16 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				|| tile.getType().equals(TrackTypes.LARGE_RIGHT_TURN.getLabel()))
 				|| tile.getType().equals(TrackTypes.MEDIUM_RIGHT_45DEGREE_TURN.getLabel())
 				|| tile.getType().equals(TrackTypes.MEDIUM_LEFT_45DEGREE_TURN.getLabel())
-				|| tile.getType().equals(TrackTypes.LARGE_RIGHT_45DEGREE_TURN.getLabel())
-				|| tile.getType().equals(TrackTypes.LARGE_LEFT_45DEGREE_TURN.getLabel())
 				|| tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_RIGHT_TURN.getLabel())
 				|| tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_LEFT_TURN.getLabel())
 				|| tile.getType().equals(TrackTypes.EMBEDDED_LARGE_LEFT_TURN.getLabel())
 				|| tile.getType().equals(TrackTypes.EMBEDDED_LARGE_RIGHT_TURN.getLabel())
 				|| tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_RIGHT_45DEGREE_TURN.getLabel())
 				|| tile.getType().equals(TrackTypes.EMBEDDED_MEDIUM_LEFT_45DEGREE_TURN.getLabel())
-				|| tile.getType().equals(TrackTypes.EMBEDDED_LARGE_RIGHT_45DEGREE_TURN.getLabel())
-				|| tile.getType().equals(TrackTypes.EMBEDDED_LARGE_LEFT_45DEGREE_TURN.getLabel())
 
 				&& tile.canTypeBeModifiedBySwitch) {
 			
-
+			/* Handles reverse straight movement of a cart on a switch that happened to be turned on*/
 			if (meta == 2) {
 				if (motionZ > 0 && Math.abs(motionX) < 0.01) {
 					TileEntity tile2 = worldObj.getTileEntity(i, j, k + 1);
