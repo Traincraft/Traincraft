@@ -13,20 +13,21 @@ import train.common.library.Info;
 public class ModelTwoWaysCrossingTCTrack extends ModelBase {
 	private IModelCustom modelTwoWaysCrossing;
 
-
 	public ModelTwoWaysCrossingTCTrack() {
-		modelTwoWaysCrossing = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_x.obj"));}
+		modelTwoWaysCrossing = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_x.obj"));
+	}
 
-	public void render() {
+	public void render(String type) {
+	if (type.equals("crossing") || type.equals("embedded_crossing"))
 		modelTwoWaysCrossing.renderAll();
 	}
 
 
-	public void render(double x, double y, double z) {
-		render(x, y, z, 1, 1, 1, 1);
+	public void render(String type, double x, double y, double z) {
+		render(type, x, y, z, 1, 1, 1, 1);
 	}
 
-	public void render(double x, double y, double z, float r, float g, float b, float a) {
+	public void render(String type , double x, double y, double z, float r, float g, float b, float a) {
 		// Push a blank matrix onto the stack
 		GL11.glPushMatrix();
 
@@ -34,11 +35,13 @@ public class ModelTwoWaysCrossingTCTrack extends ModelBase {
 		GL11.glTranslatef((float) x + 0.5f, (float) y, (float) z + 0.5f);
 
 		// Bind the texture, so that OpenGL properly textures our block.
-		tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
+		if (type.contains("embedded"))
+			tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_embedded.png"));
+		else  tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
 		GL11.glColor4f(r, g, b, a);
 		//GL11.glScalef(0.5f, 0.5f, 0.5f);
 
-		this.render();
+		this.render(type);
 		// Pop this matrix from the stack.
 		GL11.glPopMatrix();
 	}

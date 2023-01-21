@@ -1,3 +1,0 @@
-name: metal tram coach
-type: passenger
-mass: 6.0

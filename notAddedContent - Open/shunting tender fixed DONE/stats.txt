@@ -1,5 +1,0 @@
-Name: shunting tender
-Mass: 2.0
-Type: Tender
-Slots: 36
-Water capacity: 1000

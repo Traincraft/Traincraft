@@ -1,6 +1,0 @@
-name: class 34
-type: diesel
-horse power: 2000
-inventory slots: 12
-fuel capacity: 6000mb
-max speed: 146

@@ -48,58 +48,61 @@ public class ModelLeftTurnTCTrack extends ModelBase {
 		GL11.glTranslatef((float) x + 1.5f, (float) y, (float) z + 5.5f);
 
 		// Bind the texture, so that OpenGL properly textures our block.
-		tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
+		if (type.contains("embedded"))
+			tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_embedded.png"));
+		else tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
 		GL11.glColor4f(r, g, b, a);
 		//GL11.glScalef(0.5f, 0.5f, 0.5f);
 
 		if (facing == 3) {
 			GL11.glRotatef(-90, 0, 1, 0);
-			if(type.equals("very_large"))
+			if(type.equals("very_large") || type.equals("embedded_very_large"))
 				GL11.glTranslatef(-5.5f, 0.0f, 1.54f);
-			if(type.equals("large"))
+			if(type.equals("large") || type.equals("embedded_large"))
 				GL11.glTranslatef(-10.0f, 0.0f, 2.0f);
-			if(type.equals("medium"))
+			if(type.equals("medium") || type.equals("embedded_medium"))
 				GL11.glTranslatef(-5.5f, 0.0f, 1.5f);
-			if (type.equals("super_large"))
+			if(type.equals("super_large") || type.equals("embedded_super_large"))
 				GL11.glTranslatef(-5.5f,0f,1.5f);
 		}
 		if (facing == 1) {
 			GL11.glRotatef(90, 0, 1, 0);
-			if(type.equals("very_large"))
+			if(type.equals("very_large") || type.equals("embedded_very_large"))
 				GL11.glTranslatef(4.5f, 0.0f, -0.455f);
-			if(type.equals("large"))
+			if(type.equals("large") || type.equals("embedded_large"))
 				GL11.glTranslatef(0.0f, 0.0f, 0.0f);
-			if(type.equals("medium"))
+			if(type.equals("medium") || type.equals("embedded_medium"))
 				GL11.glTranslatef(4.50f, 0.0f, -0.5f);
-			if (type.equals("super_large"))
+			if(type.equals("super_large") || type.equals("embedded_super_large"))
 				GL11.glTranslatef(4.5f,0f,-0.5f);
 		}
 		if(facing == 2){
-			if(type.equals("very_large"))
+			if(type.equals("very_large") || type.equals("embedded_very_large"))
 				GL11.glTranslatef(-1.5f, 0.0f, -4.469f);
-			if(type.equals("large"))
+			if(type.equals("large") || type.equals("embedded_large"))
 				GL11.glTranslatef(-6.0f, 0.0f, -4.0f);
-			if(type.equals("medium"))
+			if(type.equals("medium") || type.equals("embedded_medium"))
 				GL11.glTranslatef(-1.5f, 0.0f, -4.50f);
-			if (type.equals("super_large"))
+			if(type.equals("super_large") || type.equals("embedded_super_large"))
 				GL11.glTranslatef(-1.5f,0f,-4.5f);
 		}
 		if(facing == 0){
 			GL11.glRotatef(180, 0, 1, 0);
-			if(type.equals("very_large"))
+			if(type.equals("very_large") || type.equals("embedded_very_large"))
 				GL11.glTranslatef(0.5f, 0.0f, 5.54f);
-			if(type.equals("large"))
+			if(type.equals("large") || type.equals("embedded_large"))
 				GL11.glTranslatef(-4.0f, 0.0f, 6.0f);
-			if(type.equals("medium"))
+			if(type.equals("medium") || type.equals("embedded_medium"))
 				GL11.glTranslatef(0.5f, 0.0f, 5.5f);
-			if (type.equals("super_large"))
+			if(type.equals("super_large") || type.equals("embedded_super_large"))
 				GL11.glTranslatef(0.5f,0f,5.5f);
 		}
 
-		if(type.equals("medium"))this.renderMedium();
-		if(type.equals("large"))this.renderLarge();
-		if(type.equals("very_large"))this.renderVeryLarge();
-		if(type.equals("super_large"))this.renderSuperLarge();
+		if(type.equals("medium") || type.equals("embedded_medium") )this.renderMedium();
+		if(type.equals("large") || type.equals("embedded_large"))this.renderLarge();
+		if(type.equals("very_large") || type.equals("embedded_very_large"))this.renderVeryLarge();
+		if(type.equals("super_large") || type.equals("embedded_super_large"))this.renderSuperLarge();
+
 
 		// Pop this matrix from the stack.
 		GL11.glPopMatrix();

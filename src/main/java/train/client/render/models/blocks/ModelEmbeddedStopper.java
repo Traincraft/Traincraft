@@ -32,7 +32,7 @@ public class ModelEmbeddedStopper extends ModelBase {
 
     public ModelEmbeddedStopper(float scale) {
 
-        track =  AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_embedded_straight.obj"));
+        track =  AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_normal.obj"));
 
         box = new CustomModelRenderer(this, 43, 4, 64, 64);
         box.addBox(0F, 0F, 0F, 2, 15, 1, scale);
@@ -103,7 +103,7 @@ public class ModelEmbeddedStopper extends ModelBase {
         GL11.glTranslatef(0, 0, 0);
         GL11.glRotatef(90, 0, 1, 0);
         tmt.Tessellator
-                .bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
+                .bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_embedded.png"));
         GL11.glColor4f(1, 1, 1, 1);
         track.renderAll();
         GL11.glPopMatrix();

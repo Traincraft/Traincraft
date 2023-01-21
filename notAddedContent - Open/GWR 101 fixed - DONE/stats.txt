@@ -1,6 +1,0 @@
-name: GWR class 101
-type: steam
-horse power: 550mhp
-inventory slots: 18
-water capacity: 9500
-max speed: 50km/h

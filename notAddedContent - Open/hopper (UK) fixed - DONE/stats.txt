@@ -1,5 +1,0 @@
-name: Hopper (UK)
-type: freight
-mass: 5.0
-slots: 18
-cargo: materials

@@ -169,6 +169,13 @@ public class TCItems {
 
 		/* Curved Slopes*/
 		ItemIDs.tcRailLargeCurvedSlopeDynamic.item = new ItemTCRail(ItemTCRail.TrackTypes.LARGE_CURVED_SLOPE_DYNAMIC);
+		ItemIDs.tcRailVeryLargeCurvedSlopeDynamic.item = new ItemTCRail(ItemTCRail.TrackTypes.VERY_LARGE_CURVED_SLOPE_DYNAMIC);
+		ItemIDs.tcRailSuperLargeCurvedSlopeDynamic.item = new ItemTCRail(ItemTCRail.TrackTypes.SUPER_LARGE_CURVED_SLOPE_DYNAMIC);
+
+		/* Embedded Curved Slopes*/
+		ItemIDs.tcRailEmbeddedLargeCurvedSlopeDynamic.item = new ItemTCRail(ItemTCRail.TrackTypes.EMBEDDED_LARGE_CURVED_SLOPE_DYNAMIC);
+		ItemIDs.tcRailEmbeddedVeryLargeCurvedSlopeDynamic.item = new ItemTCRail(ItemTCRail.TrackTypes.EMBEDDED_VERY_LARGE_CURVED_SLOPE_DYNAMIC);
+		ItemIDs.tcRailEmbeddedSuperLargeCurvedSlopeDynamic.item = new ItemTCRail(ItemTCRail.TrackTypes.EMBEDDED_SUPER_LARGE_CURVED_SLOPE_DYNAMIC);
 
 		ItemIDs.paintbrushThing.item = new ItemPaintbrushThing();
 		ItemIDs.whistle.item = new ItemWhistle();

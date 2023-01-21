@@ -22,6 +22,7 @@ public class ModelRightTurnTCTrack extends ModelBase {
 		modelLargeRightTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_big.obj"));
 		modelVeryLargeRightTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_very_big.obj"));
 		modelSuperLargeRightTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_super_big.obj"));
+
 	}
 
 	public void renderMedium() {
@@ -50,60 +51,64 @@ public class ModelRightTurnTCTrack extends ModelBase {
 		GL11.glTranslatef((float) x + 0.5f, (float) y, (float) z + 0.5f);
 
 		// Bind the texture, so that OpenGL properly textures our block.
-		tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
+
+		if (type.contains("embedded"))
+
+		tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_embedded.png"));
+		else tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
 		GL11.glColor4f(r, g, b, a);
 		//GL11.glScalef(0.5f, 0.5f, 0.5f);
 
 		if (facing == 3) {
-			if(type.equals("super_large"))
+			if(type.equals("super_large") || type.equals("embedded_super_large"))
 				GL11.glTranslatef(14.5f, 0.0f, 15.5f);
-			if(type.equals("very_large"))
+			if(type.equals("very_large") || type.equals("embedded_very_large"))
 				GL11.glTranslatef(8.5f, 0.0f, 9.5f);
-			if(type.equals("large"))
+			if(type.equals("large") || type.equals("embedded_large"))
 				GL11.glTranslatef(-1.0f, 0.0f, 5.0f);
-			if(type.equals("medium"))
+			if(type.equals("medium") || type.equals("embedded_medium"))
 				GL11.glTranslatef(1.5f, 0.0f, 2.5f);
 		}
 		if (facing == 1) {
 			GL11.glRotatef(180, 0, 1, 0);
-			if(type.equals("super_large"))
+			if(type.equals("super_large") || type.equals("embedded_super_large"))
 				GL11.glTranslatef(14.5f, 0.0f, 15.5f);
-			if(type.equals("very_large"))
+			if(type.equals("very_large") || type.equals("embedded_very_large"))
 				GL11.glTranslatef(8.5f, 0.0f, 9.54f);
-			if(type.equals("large"))
+			if(type.equals("large") || type.equals("embedded_large"))
 				GL11.glTranslatef(-1.0f, 0.0f, 5.0f);
-			if(type.equals("medium"))
+			if(type.equals("medium") || type.equals("embedded_medium"))
 				GL11.glTranslatef(1.5f, 0.0f, 2.5f);
 		}
 		if (facing == 2) {
 			GL11.glRotatef(90, 0, 1, 0);
-			if(type.equals("super_large"))
+			if(type.equals("super_large") || type.equals("embedded_super_large"))
 				GL11.glTranslatef(14.5f, 0.0f, 15.5f);
-			if(type.equals("very_large"))
+			if(type.equals("very_large") || type.equals("embedded_very_large"))
 				GL11.glTranslatef(8.5f, 0.0f, 9.50f);
-			if(type.equals("large"))
+			if(type.equals("large") || type.equals("embedded_large"))
 				GL11.glTranslatef(-1.0f, 0.0f, 5.0f);
-			if(type.equals("medium"))
+			if(type.equals("medium") || type.equals("embedded_medium"))
 				GL11.glTranslatef(1.5f, 0.0f, 2.5f);
 		}
 		if (facing == 0) {
 			GL11.glRotatef(-90, 0, 1, 0);
-			if(type.equals("super_large"))
+			if(type.equals("super_large") || type.equals("embedded_super_large"))
 				GL11.glTranslatef(14.5f, 0.0f, 15.5f);
-			if(type.equals("very_large"))
+			if(type.equals("very_large") || type.equals("embedded_very_large"))
 				GL11.glTranslatef(8.5f, 0.0f, 9.50f);
-			if(type.equals("large"))
+			if(type.equals("large") || type.equals("embedded_large"))
 				GL11.glTranslatef(-1.0f, 0.0f, 5.0f);
-			if(type.equals("medium"))
+			if(type.equals("medium") || type.equals("embedded_medium"))
 				GL11.glTranslatef(1.5f, 0.0f, 2.5f);
 		}
-		if (type.equals("medium"))
+		if (type.equals("medium") || type.equals("embedded_medium"))
 			this.renderMedium();
-		if (type.equals("large"))
+		if (type.equals("large") || type.equals("embedded_large"))
 			this.renderLarge();
-		if (type.equals("very_large"))
+		if (type.equals("very_large") || type.equals("embedded_very_large"))
 			this.renderVeryLarge();
-		if (type.equals("super_large"))
+		if (type.equals("super_large") || type.equals("embedded_super_large"))
 			this.renderSuperLarge();
 
 		// Pop this matrix from the stack.

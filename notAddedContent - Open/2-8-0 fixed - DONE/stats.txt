@@ -1,6 +1,0 @@
-name: 2-8-0
-type: steam
-horse power: 1300
-max speed: 125km/h
-inventory slots: 12
-water capacity: 8200

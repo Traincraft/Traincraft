@@ -17,6 +17,10 @@ public class ModelLeft45DegreeTurnTCTrack {
     private IModelCustom modelLargeLeft45DegreeTurn;
     private IModelCustom modelVeryLarge45DegreeTurn;
     private IModelCustom modelSuperLarge45DegreeTurn;
+    private IModelCustom modelEmbeddedMediumLeft45DegreeTurn;
+    private IModelCustom modelEmbeddedLargeLeft45DegreeTurn;
+    private IModelCustom modelEmbeddedVeryLargeLeft45DegreeTurn;
+    private IModelCustom modelEmbeddedSuperLargeLeft45DegreeTurn;
 
     public ModelLeft45DegreeTurnTCTrack(){
         modelMediumLeft45DegreeTurn = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_curve_45degree_medium_left.obj"));
@@ -27,18 +31,17 @@ public class ModelLeft45DegreeTurnTCTrack {
     }
 
     public void renderMedium() {modelMediumLeft45DegreeTurn.renderAll();}
-
     public void renderLarge() {modelLargeLeft45DegreeTurn.renderAll();}
-
     public void renderVeryLarge() {modelVeryLarge45DegreeTurn.renderAll();}
     public void renderSuperLarge() {modelSuperLarge45DegreeTurn.renderAll();}
 
-    public void render(String type, TileTCRail tcRail, double x, double y, double z) {
+
+    public void render(String type,String variant, TileTCRail tcRail, double x, double y, double z) {
         int facing = tcRail.getWorldObj().getBlockMetadata(tcRail.xCoord, tcRail.yCoord, tcRail.zCoord);
-        render( type, facing, x, y, z, 1, 1, 1, 1);
+        render( type, variant, facing, x, y, z, 1, 1, 1, 1);
     }
 
-    public void render(String type, int facing, double x, double y, double z, float r, float g, float b, float a) {
+    public void render(String type, String variant ,int facing, double x, double y, double z, float r, float g, float b, float a) {
         // Push a blank matrix onto the stack
         GL11.glPushMatrix();
 
@@ -46,7 +49,9 @@ public class ModelLeft45DegreeTurnTCTrack {
         GL11.glTranslatef((float) x + 0.5f, (float) y, (float) z + 0.5f);
 
         // Bind the texture, so that OpenGL properly textures our block.
-        tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
+        if (variant.contains("embedded"))
+            tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_embedded.png"));
+        else  tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
         GL11.glColor4f(r, g, b, a);
         //GL11.glScalef(0.5f, 0.5f, 0.5f);
 
@@ -66,13 +71,13 @@ public class ModelLeft45DegreeTurnTCTrack {
             GL11.glTranslatef(0.5f,0,0.5f);
         }
 
-        if (type.equals("medium"))
+        if (type.equals("medium") )
             this.renderMedium();
-        if (type.equals("large"))
+        if (type.equals("large") )
             this.renderLarge();
-        if (type.equals("verylarge"))
+        if (type.equals("verylarge") )
             this.renderVeryLarge();
-        if (type.equals("superlarge"))
+        if (type.equals("superlarge") )
             this.renderSuperLarge();
 
         // Pop this matrix from the stack.

@@ -1,4 +1,0 @@
-name: tipper (UK)
-mass: 3.0
-type: freight (any)
-slots: 18

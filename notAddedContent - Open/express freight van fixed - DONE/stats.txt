@@ -1,5 +1,0 @@
-name: express freight van
-type: freight
-mass: 7.0
-slots: 72
-cargo: any

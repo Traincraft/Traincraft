@@ -14,15 +14,22 @@ import train.common.tile.TileTCRail;
 @SideOnly(Side.CLIENT)
 public class ModelRightCurvedSlopeTCTrack extends ModelBase {
     private IModelCustom modelLargeRightCurvedTrack;
+    private IModelCustom modelVeryLargeRightCurvedTrack;
+    private IModelCustom modelSuperLargeRightCurvedTrack;
     private IModelCustom modelLargeRightCurvedBallast;
+    private IModelCustom modelVeryLargeRightCurvedBallast;
+    private IModelCustom modelSuperLargeRightCurvedBallast;
 
     public ModelRightCurvedSlopeTCTrack() {
         modelLargeRightCurvedTrack = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_slope_curve_large.obj"));
-        modelLargeRightCurvedBallast = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "turn_slope_ballast_large.obj"));
+        modelVeryLargeRightCurvedTrack = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_slope_curve_very_large.obj"));
+        modelSuperLargeRightCurvedTrack = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_slope_curve_super_large.obj"));
+        modelLargeRightCurvedBallast = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "ballast_curved_slope_large.obj"));
+        modelVeryLargeRightCurvedBallast = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "ballast_curved_slope_very_large.obj"));
+        modelSuperLargeRightCurvedBallast = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "ballast_curved_slope_super_large.obj"));
     }
 
     public void render(String type, String ballast, int ballastColour) {
-
 
         String[] ballastTexture = new String[2];
         if (ballast.contains(":")) {
@@ -33,6 +40,7 @@ public class ModelRightCurvedSlopeTCTrack extends ModelBase {
             ballastTexture[1] = ballast;
 
         }
+
         if (type.equals("large")) {
             tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
            modelLargeRightCurvedTrack.renderAll();
@@ -45,9 +53,8 @@ public class ModelRightCurvedSlopeTCTrack extends ModelBase {
             modelLargeRightCurvedBallast.renderAll();
 
         }
-
         if (type.equals("embedded_large")) {
-            tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
+            tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_embedded.png"));
             modelLargeRightCurvedTrack.renderAll();
             tmt.Tessellator.bindTexture(new ResourceLocation(ballastTexture[0],  "textures/blocks/" + ballastTexture[1] +".png"));
 
@@ -56,6 +63,54 @@ public class ModelRightCurvedSlopeTCTrack extends ModelBase {
             float b = (float)(ballastColour & 255) / 255.0F;
             GL11.glColor4f(r,g,b,1);
            modelLargeRightCurvedBallast.renderAll();
+
+        }
+        if (type.equals("verylarge")) {
+            tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
+            modelVeryLargeRightCurvedTrack.renderAll();
+            tmt.Tessellator.bindTexture(new ResourceLocation(ballastTexture[0],  "textures/blocks/" + ballastTexture[1] +".png"));
+
+            float r = (float)(ballastColour >> 16 & 255) / 255.0F;
+            float g = (float)(ballastColour >> 8 & 255) / 255.0F;
+            float b = (float)(ballastColour & 255) / 255.0F;
+            GL11.glColor4f(r,g,b,1);
+            modelVeryLargeRightCurvedBallast.renderAll();
+
+        }
+        if (type.equals("embedded_verylarge")) {
+            tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_embedded.png"));
+            modelVeryLargeRightCurvedTrack.renderAll();
+            tmt.Tessellator.bindTexture(new ResourceLocation(ballastTexture[0],  "textures/blocks/" + ballastTexture[1] +".png"));
+
+            float r = (float)(ballastColour >> 16 & 255) / 255.0F;
+            float g = (float)(ballastColour >> 8 & 255) / 255.0F;
+            float b = (float)(ballastColour & 255) / 255.0F;
+            GL11.glColor4f(r,g,b,1);
+            modelVeryLargeRightCurvedBallast.renderAll();
+
+        }
+        if (type.equals("superlarge")) {
+            tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
+            modelSuperLargeRightCurvedTrack.renderAll();
+            tmt.Tessellator.bindTexture(new ResourceLocation(ballastTexture[0],  "textures/blocks/" + ballastTexture[1] +".png"));
+
+            float r = (float)(ballastColour >> 16 & 255) / 255.0F;
+            float g = (float)(ballastColour >> 8 & 255) / 255.0F;
+            float b = (float)(ballastColour & 255) / 255.0F;
+            GL11.glColor4f(r,g,b,1);
+            modelSuperLargeRightCurvedBallast.renderAll();
+
+        }
+        if (type.equals("embedded_superlarge")) {
+            tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_embedded.png"));
+            modelSuperLargeRightCurvedTrack.renderAll();
+            tmt.Tessellator.bindTexture(new ResourceLocation(ballastTexture[0],  "textures/blocks/" + ballastTexture[1] +".png"));
+
+            float r = (float)(ballastColour >> 16 & 255) / 255.0F;
+            float g = (float)(ballastColour >> 8 & 255) / 255.0F;
+            float b = (float)(ballastColour & 255) / 255.0F;
+            GL11.glColor4f(r,g,b,1);
+            modelSuperLargeRightCurvedBallast.renderAll();
 
         }
     }

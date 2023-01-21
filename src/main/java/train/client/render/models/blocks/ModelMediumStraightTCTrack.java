@@ -13,24 +13,26 @@ import train.common.tile.TileTCRail;
 @SideOnly(Side.CLIENT)
 public class ModelMediumStraightTCTrack extends ModelBase {
 	private IModelCustom modelMediumStraight;
+	private IModelCustom modelEmbeddedMediumStraight;
 
 	public ModelMediumStraightTCTrack() {
 		modelMediumStraight = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_normal.obj"));
 	}
 
-	public void render() {
+	public void render(String type) {
 		modelMediumStraight.renderAll();
 	}
 
-	public void render(TileTCRail tcRail, double x, double y, double z) {
+	public void render(String type, TileTCRail tcRail, double x, double y, double z) {
 		// Push a blank matrix onto the stack
 		GL11.glPushMatrix();
 
 		// Move the object into the correct position on the block (because the OBJ's origin is the center of the object)
 		GL11.glTranslatef((float) x + 0.5f, (float) y, (float) z + 0.5f);
-
 		// Bind the texture, so that OpenGL properly textures our block.
-		tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
+		if (type.contains("embedded"))
+		tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_embedded.png"));
+		else tmt.Tessellator.bindTexture(new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "track_normal.png"));
 		GL11.glColor4f(1, 1, 1, 1);
 		//GL11.glScalef(0.5f, 0.5f, 0.5f);
 		int facing = tcRail.getWorldObj().getBlockMetadata(tcRail.xCoord, tcRail.yCoord, tcRail.zCoord);
@@ -49,7 +51,7 @@ public class ModelMediumStraightTCTrack extends ModelBase {
 		}
 
 		for (int i = 0; i < 3; i++) {
-			render();
+			render(type);
 			GL11.glTranslatef(0.0f, 0.0f, -1.0f);
 		}
 
