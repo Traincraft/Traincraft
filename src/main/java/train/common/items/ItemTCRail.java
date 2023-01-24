@@ -5809,21 +5809,6 @@ public class ItemTCRail extends ItemPart {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	private boolean parallelRightSwitchEast(EntityPlayer player, World world, int x, int y, int z, int l, TrackTypes tempType, String typeVariantStraight, Item idVariantSwitch) {
 		for (int check = 1; check < 10; check++) {
 			if (!canPlaceTrack(player, world, x + check, y + 1, z))

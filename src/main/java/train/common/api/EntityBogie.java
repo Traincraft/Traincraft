@@ -20,9 +20,9 @@ import net.minecraft.util.*;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.minecart.MinecartUpdateEvent;
+import train.common.Traincraft;
 import train.common.blocks.BlockTCRail;
 import train.common.blocks.BlockTCRailGag;
-import train.common.core.util.TraincraftUtil;
 import train.common.items.ItemTCRail;
 import train.common.items.ItemTCRail.TrackTypes;
 import train.common.library.BlockIDs;
@@ -311,8 +311,10 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		boolean flag1=l == Blocks.golden_rail;
 		if (l == Blocks.golden_rail) {
 			flag = worldObj.getBlockMetadata(i,j,k) >2;
-			if (i1 == 8) {i1 = 0;}
-			else if(i1 == 9) {i1 = 1;}
+			if (i1 == 8) {
+				i1 = 0;}
+			else if(i1 == 9) {
+				i1 = 1;}
 		}
 
 		if (l == Blocks.detector_rail){
@@ -462,12 +464,14 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 			motionZ = maxSpeed;
 		}
 		moveEntity(motionX, 0.0D, motionZ);
+		Traincraft.tcLog.info(motionX + ", " + motionZ);
 	}
 
 
 	/**
 	 * Called to update the entity's position/logic.
 	 */
+	Block l;
 	@Override
 	public void onUpdate(){
 		this.setCurrentCartSpeedCapOnRail(1.8F);
@@ -493,26 +497,35 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 				this.setRotation(this.rotationYaw, this.rotationPitch);
 			}
 
-		} else {
+		}
+		else {
 
 			int i = MathHelper.floor_double(this.posX);
 			int j = MathHelper.floor_double(this.posY);
 			int k = MathHelper.floor_double(this.posZ);
-			Block block = this.worldObj.getBlock(i, j - 1, k);
 
-			if (worldObj.isAirBlock(i,j,k)) {
+			/*if (worldObj.isAirBlock(i,j,k)) {
 				j--;
-			} else {
+			}
+			else {
 				Block block2 = this.worldObj.getBlock(i, j + 1, k);
 				if(BlockRailBase.func_150051_a(block2) || block2 == BlockIDs.tcRail.block || block2 == BlockIDs.tcRailGag.block){
 					j++;
 				}
-				block = this.worldObj.getBlock(i, j, k);
+			}*/
+
+			if (worldObj.isAirBlock(i,j,k)) {
+				j--;
+			}
+			else if (isRailBlockAt(worldObj, i, j + 1, k) || worldObj.getBlock(i, j + 1, k) == BlockIDs.tcRail.block || worldObj.getBlock(i, j + 1, k) == BlockIDs.tcRailGag.block) {
+				j++;
 			}
 
-			if (BlockRailBase.func_150051_a(block)) {
-				//vanilla/TiM tracl
-				updateOnTrack(i, j, k, block);
+			l = worldObj.getBlock(i, j, k);
+		//	Traincraft.tcLog.info("EntityBogie: i: " + i + " j: " + j + " k: " + k  + " meta:"  + worldObj.getBlockMetadata(i, j ,k) + " posX: " + posX + " posZ: " + posZ);
+			if (BlockRailBase.func_150051_a(l)) {
+				//vanilla/TiM track
+				updateOnTrack(i, j, k, l);
 
 				} else {
 				//TC track
@@ -520,7 +533,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 				TileTCRail tileRail;
 
 
-				if (block == BlockIDs.tcRailGag.block) {
+				if (l == BlockIDs.tcRailGag.block) {
 
 					if (tileEntity instanceof TileTCRailGag) {
 
@@ -791,9 +804,9 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		//if(l==2||l==0)moveEntity(motionX, 0.0D, 0.0D);
 		//if(l==1||l==3)moveEntity(0.0D, 0.0D, motionZ);
 
-		
+
 		double norm = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
-		
+
 		if (Math.abs(motionZ) > Math.abs(motionX)) {
 
 			// this.setPosition(this.posX, this.posY + this.yOffset, cz + 0.5D);
@@ -803,9 +816,9 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 			// this.motionZ = Math.copySign(norm, this.motionZ);
 		}
 		else {
-			
+
 			// double norm = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
-			
+
 			// this.setPosition(cx + 0.5D, this.posY + this.yOffset, this.posZ);
 			this.moveEntity(Math.copySign(norm, this.motionX), 0.0D, 0.0D);
 
