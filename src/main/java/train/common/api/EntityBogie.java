@@ -301,139 +301,192 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 			{{0, -0.5}, { -0.5, 0}, {1, -1}},
 			{{0, -0.5}, {0.5, 0}, {-1, -1}}
 	};
-
+	boolean flag,flag1;
 	private void updateOnTrack(int i, int j, int k, Block l) {
 
-		int i1 = ((BlockRailBase) l).getBasicRailMetadata(worldObj, this, i, j, k);
-		meta = i1;
-		posY = j;
-		boolean flag = false;
-		boolean flag1=l == Blocks.golden_rail;
-		if (l == Blocks.golden_rail) {
-			flag = worldObj.getBlockMetadata(i,j,k) >2;
-			if (i1 == 8) {
-				i1 = 0;}
-			else if(i1 == 9) {
-				i1 = 1;}
-		}
-
-		if (l == Blocks.detector_rail){
-			worldObj.setBlockMetadataWithNotify(i, j, k, meta | 8, 3);
-			worldObj.notifyBlocksOfNeighborChange(i, j, k, l);
-			worldObj.notifyBlocksOfNeighborChange(i, j - 1, k, l);
-			worldObj.markBlockRangeForRenderUpdate(i, j, k, i, j, k);
-			worldObj.scheduleBlockUpdate(i, j, k, l, l.tickRate(worldObj));
-		}
-
-		if (i1 >= 2 && i1 <= 5) {
-			posY = (j + 1);
-		}
+		if (canUseRail() && BlockRailBase.func_150051_a(l)) {
 
 
-		int[][] ai = EntityRollingStock.matrix[i1];
-		double d9 = ai[1][0] - ai[0][0];
-		double d10 = ai[1][2] - ai[0][2];
-		double d11 = Math.sqrt(d9 * d9 + d10 * d10);
-		if (motionX * d9 + motionZ * d10 < 0.0D) {
-			d9 = -d9;
-			d10 = -d10;
-		}
-		double d13 = Math.sqrt(motionX * motionX + motionZ * motionZ);
-		motionX = (d13 * d9) / d11;
-		motionZ = (d13 * d10) / d11;
-		if (flag1 && !flag && shouldDoRailFunctions()) {
-			if (Math.sqrt(motionX * motionX + motionZ * motionZ) < 0.029999999999999999D) {
-				motionX = 0.0D;
-				motionY = 0.0D;
-				motionZ = 0.0D;
+			int i1 = ((BlockRailBase) l).getBasicRailMetadata(worldObj, this, i, j, k);
+			meta = i1;
+			Traincraft.tcLog.info("EntityBogie: i: " + i + " j: " + j + " k: " + k  + " meta:"  + i1 + " posX: " + posX + " posZ: " + posZ);
+
+			posY = j;
+			flag = false;
+			flag1 = l == Blocks.golden_rail;
+			if (l == Blocks.golden_rail) {
+				flag = worldObj.getBlockMetadata(i, j, k) > 2;
+				if (i1 == 8) {
+					i1 = 0;
+				} else if (i1 == 9) {
+					i1 = 1;
+				}
 			}
-			else {
-				motionX *= 0.5D;
-				motionY *= 0.0D;
-				motionZ *= 0.5D;
+
+			if (l == Blocks.detector_rail) {
+				worldObj.setBlockMetadataWithNotify(i, j, k, meta | 8, 3);
+				worldObj.notifyBlocksOfNeighborChange(i, j, k, l);
+				worldObj.notifyBlocksOfNeighborChange(i, j - 1, k, l);
+				worldObj.markBlockRangeForRenderUpdate(i, j, k, i, j, k);
+				worldObj.scheduleBlockUpdate(i, j, k, l, l.tickRate(worldObj));
 			}
+
+			if (i1 >= 2 && i1 <= 5) {
+				posY = (j + 1);
+			}
+
+
+			int ai[][] = EntityRollingStock.matrix[i1];
+			double d9 = ai[1][0] - ai[0][0];
+			double d10 = ai[1][2] - ai[0][2];
+			double d11 = Math.sqrt(d9 * d9 + d10 * d10);
+			if (motionX * d9 + motionZ * d10 < 0.0D) {
+				d9 = -d9;
+				d10 = -d10;
+			}
+			double d13 = Math.sqrt(motionX * motionX + motionZ * motionZ);
+			motionX = (d13 * d9) / d11;
+			motionZ = (d13 * d10) / d11;
+			if (flag1 && !flag && shouldDoRailFunctions()) {
+				if (Math.sqrt(motionX * motionX + motionZ * motionZ) < 0.029999999999999999D) {
+					motionX = 0.0D;
+					motionY = 0.0D;
+					motionZ = 0.0D;
+				} else {
+					motionX *= 0.5D;
+					motionY *= 0.0D;
+					motionZ *= 0.5D;
+				}
+			}
+			double d17 = 0.0D;
+			double d18 = i + 0.5D + ai[0][0] * 0.5D;
+			double d19 = k + 0.5D + ai[0][2] * 0.5D;
+			double d20 = i + 0.5D + ai[1][0] * 0.5D;
+			double d21 = k + 0.5D + ai[1][2] * 0.5D;
+			d9 = d20 - d18;
+			d10 = d21 - d19;
+			if (d9 == 0.0D) {
+				posX = i + 0.5D;
+				d17 = posZ - k;
+			} else if (d10 == 0.0D) {
+				posZ = k + 0.5D;
+				d17 = posX - i;
+			} else {
+				double d22 = posX - d18;
+				double d24 = posZ - d19;
+				d17 = (d22 * d9 + d24 * d10) * 2D;
+				//double derailSpeed = 0;//0.46;
+
+			}
+			posX = d18 + d9 * d17;
+			posZ = d19 + d10 * d17;
+			setPosition(posX, posY + yOffset + 0.35, posZ);
+
+			moveMinecartOnRail(i, j, k, 0.0D);
+
+			if (ai[0][1] != 0 && MathHelper.floor_double(posX) - i == ai[0][0] &&
+					MathHelper.floor_double(posZ) - k == ai[0][2]) {
+				setPosition(posX, posY + ai[0][1], posZ);
+			} else if (ai[1][1] != 0 && MathHelper.floor_double(posX) - i == ai[1][0] &&
+					MathHelper.floor_double(posZ) - k == ai[1][2]) {
+				setPosition(posX, posY + ai[1][1], posZ);
+			}
+
+			double d14 = Math.sqrt(motionX * motionX + motionZ * motionZ);
+			if (d14 > 0.0D) {
+				motionX = (motionX / d14) * (d14);
+				motionZ = (motionZ / d14) * (d14);
+			}
+			setPosition(posX, posY + yOffset - 0.8d, posZ);
+			int k1 = MathHelper.floor_double(posX);
+			int l1 = MathHelper.floor_double(posZ);
+			if (k1 != i || l1 != k) {
+				double d15 = Math.sqrt(motionX * motionX + motionZ * motionZ);
+				motionX = d15 * (k1 - i);
+				motionZ = d15 * (l1 - k);
+			}
+
+			if (shouldDoRailFunctions()) {
+				((BlockRailBase) l).onMinecartPass(worldObj, this, i, j, k);
+			}
+
+			if (flag && shouldDoRailFunctions()) {
+				double d31 = Math.sqrt(motionX * motionX + motionZ * motionZ);
+				if (d31 > 0.01D) {
+					motionX += (motionX / d31) * 0.059999999999999998D;
+					motionZ += (motionZ / d31) * 0.059999999999999998D;
+				} else if (i1 == 1) {
+					if (worldObj.isBlockNormalCubeDefault(i - 1, j, k, false)) {
+						motionX = 0.02D;
+					} else if (worldObj.isBlockNormalCubeDefault(i + 1, j, k, false)) {
+						motionX = -0.02D;
+					}
+				} else if (i1 == 0) {
+					if (worldObj.isBlockNormalCubeDefault(i, j, k - 1, false)) {
+						motionZ = 0.02D;
+					} else if (worldObj.isBlockNormalCubeDefault(i, j, k + 1, false)) {
+						motionZ = -0.02D;
+					}
+				}
+			}
+
 		}
-		double d17 = 0.0D;
-		double d18 = i + 0.5D + ai[0][0] * 0.5D;
-		double d19 = k + 0.5D + ai[0][2] * 0.5D;
-		double d20 = i + 0.5D + ai[1][0] * 0.5D;
-		double d21 = k + 0.5D + ai[1][2] * 0.5D;
-		d9 = d20 - d18;
-		d10 = d21 - d19;
-		if (d9 == 0.0D) {
-			posX = i + 0.5D;
-			d17 = posZ - k;
+		else if (l == BlockIDs.tcRail.block) {
+			limitSpeedOnTCRail();
+			TileTCRail tileRail = (TileTCRail) worldObj.getTileEntity(i, j, k);
+			int meta = tileRail.getBlockMetadata();
+
+			if (ItemTCRail.isTCStraightTrack(tileRail)) {
+				moveOnTCStraight(j, tileRail.xCoord, tileRail.zCoord, tileRail.getBlockMetadata());
+			}
+			else if (ItemTCRail.isTCTurnTrack(tileRail)) {
+				if (shouldIgnoreSwitch(tileRail, i, j, k, meta)) {
+					moveOnTCStraight(j, tileRail.xCoord, tileRail.zCoord, tileRail.getBlockMetadata());
+				}
+				else {
+					if (ItemTCRail.isTCTurnTrack(tileRail)) {
+						moveOnTC90TurnRail(j, tileRail.r, tileRail.cx, tileRail.cz);
+					}
+				}
+			} else if (ItemTCRail.isTCTwoWaysCrossingTrack(tileRail)) {
+				moveOnTCTwoWaysCrossing();
+			} else if (ItemTCRail.isTCSlopeTrack(tileRail)) {
+				moveOnTCSlope(j, tileRail.xCoord, tileRail.zCoord, tileRail.slopeAngle, tileRail.slopeHeight, tileRail.getBlockMetadata());
+			} else if (ItemTCRail.isTCDiagonalStraightTrack(tileRail)) {
+				moveOnTCDiagonal(i, j, k, tileRail.xCoord, tileRail.zCoord, tileRail.getBlockMetadata(), tileRail.getRailLength());
+			}
+			else if (ItemTCRail.isTCCurvedSlopeTrack(tileRail)) {
+				moveOnTCCurvedSlope(i, j, k, tileRail.r, tileRail.cx, tileRail.cz, tileRail.xCoord, tileRail.zCoord, meta, 1, tileRail.slopeAngle);
+			}
+
 		}
-		else if (d10 == 0.0D) {
-			posZ = k + 0.5D;
-			d17 = posX - i;
+		else if (l == BlockIDs.tcRailGag.block) {
+			limitSpeedOnTCRail();
+			TileTCRailGag tileGag = (TileTCRailGag) worldObj.getTileEntity(i, j, k);
+			if (worldObj.getTileEntity(tileGag.originX, tileGag.originY, tileGag.originZ) instanceof TileTCRail) {
+				TileTCRail tile = (TileTCRail) worldObj.getTileEntity(tileGag.originX, tileGag.originY, tileGag.originZ);
+
+				if (ItemTCRail.isTCTurnTrack(tile)) {
+					moveOnTC90TurnRail(j, tile.r, tile.cx, tile.cz);
+				}
+				if (ItemTCRail.isTCStraightTrack(tile)) {
+					moveOnTCStraight(j, tile.xCoord, tile.zCoord, tile.getBlockMetadata());
+				}
+				if (ItemTCRail.isTCSlopeTrack(tile)) {
+					moveOnTCSlope(j, tile.xCoord, tile.zCoord, tile.slopeAngle, tile.slopeHeight, tile.getBlockMetadata());
+				}
+				if (ItemTCRail.isTCDiagonalStraightTrack(tile)) {
+					moveOnTCDiagonal(i, j, k, tile.xCoord, tile.zCoord, tile.getBlockMetadata(), tile.getRailLength());
+				}
+				if (ItemTCRail.isTCCurvedSlopeTrack(tile)) {
+					moveOnTCCurvedSlope(i, j, k, tile.r, tile.cx, tile.cz, tile.xCoord, tile.zCoord, tile.getBlockMetadata(), 1, tile.slopeAngle);
+				}
+			}
 		}
 		else {
-			double d22 = posX - d18;
-			double d24 = posZ - d19;
-			d17 = (d22 * d9 + d24 * d10) * 2D;
-			//double derailSpeed = 0;//0.46;
-
+			super.onUpdate();
 		}
-		posX = d18 + d9 * d17;
-		posZ = d19 + d10 * d17;
-		setPosition(posX, posY + yOffset + 0.35, posZ);
-
-		moveMinecartOnRail(i, j, k, 0.0D);
-
-		if (ai[0][1] != 0 && MathHelper.floor_double(posX) - i == ai[0][0] &&
-				MathHelper.floor_double(posZ) - k == ai[0][2]) {
-			setPosition(posX, posY + ai[0][1], posZ);
-		}
-		else if (ai[1][1] != 0 && MathHelper.floor_double(posX) - i == ai[1][0] &&
-				MathHelper.floor_double(posZ) - k == ai[1][2]) {
-			setPosition(posX, posY + ai[1][1], posZ);
-		}
-
-		double d14 = Math.sqrt(motionX * motionX + motionZ * motionZ);
-		if (d14 > 0.0D) {
-			motionX = (motionX / d14) * (d14);
-			motionZ = (motionZ / d14) * (d14);
-		}
-		setPosition(posX, posY + yOffset - 0.8d, posZ);
-		int k1 = MathHelper.floor_double(posX);
-		int l1 = MathHelper.floor_double(posZ);
-		if (k1 != i || l1 != k) {
-			double d15 = Math.sqrt(motionX * motionX + motionZ * motionZ);
-			motionX = d15 * (k1 - i);
-			motionZ = d15 * (l1 - k);
-		}
-
-		if (shouldDoRailFunctions()) {
-			((BlockRailBase) l).onMinecartPass(worldObj, this, i, j, k);
-		}
-
-		if (flag && shouldDoRailFunctions()) {
-			double d31 = Math.sqrt(motionX * motionX + motionZ * motionZ);
-			if (d31 > 0.01D) {
-				motionX += (motionX / d31) * 0.059999999999999998D;
-				motionZ += (motionZ / d31) * 0.059999999999999998D;
-			}
-			else if (i1 == 1) {
-				if (worldObj.isBlockNormalCubeDefault(i - 1, j, k,false)) {
-					motionX = 0.02D;
-				}
-				else if (worldObj.isBlockNormalCubeDefault(i + 1, j, k,false)) {
-					motionX = -0.02D;
-				}
-			}
-			else if (i1 == 0) {
-				if (worldObj.isBlockNormalCubeDefault(i, j, k - 1,false)) {
-					motionZ = 0.02D;
-				}
-				else if (worldObj.isBlockNormalCubeDefault(i, j, k + 1,false)) {
-					motionZ = -0.02D;
-				}
-			}
-		}
-
 	}
-
 
 	@Override
 	public void moveMinecartOnRail(int i, int j, int k, double d) {
@@ -503,17 +556,6 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 			int i = MathHelper.floor_double(this.posX);
 			int j = MathHelper.floor_double(this.posY);
 			int k = MathHelper.floor_double(this.posZ);
-
-			/*if (worldObj.isAirBlock(i,j,k)) {
-				j--;
-			}
-			else {
-				Block block2 = this.worldObj.getBlock(i, j + 1, k);
-				if(BlockRailBase.func_150051_a(block2) || block2 == BlockIDs.tcRail.block || block2 == BlockIDs.tcRailGag.block){
-					j++;
-				}
-			}*/
-
 			if (worldObj.isAirBlock(i,j,k)) {
 				j--;
 			}
@@ -522,71 +564,8 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 			}
 
 			l = worldObj.getBlock(i, j, k);
-		//	Traincraft.tcLog.info("EntityBogie: i: " + i + " j: " + j + " k: " + k  + " meta:"  + worldObj.getBlockMetadata(i, j ,k) + " posX: " + posX + " posZ: " + posZ);
-			if (BlockRailBase.func_150051_a(l)) {
-				//vanilla/TiM track
-				updateOnTrack(i, j, k, l);
+			updateOnTrack(i, j, k, l);
 
-				} else {
-				//TC track
-				TileEntity tileEntity = this.worldObj.getTileEntity(i, j, k);
-				TileTCRail tileRail;
-
-
-				if (l == BlockIDs.tcRailGag.block) {
-
-					if (tileEntity instanceof TileTCRailGag) {
-
-						TileTCRailGag tileGag = (TileTCRailGag) tileEntity;
-						tileEntity = this.worldObj.getTileEntity(tileGag.originX, tileGag.originY, tileGag.originZ);
-					} else {
-
-						return;
-					}
-				}
-
-				if (tileEntity instanceof TileTCRail) {
-
-					tileRail = (TileTCRail) tileEntity;
-				} else {
-					super.onUpdate();
-					return;
-				}
-
-				//applyDragAndPushForces();
-				limitSpeedOnTCRail();
-
-				int meta = tileRail.getBlockMetadata();
-
-				if (ItemTCRail.isTCStraightTrack(tileRail)) {
-
-					moveOnTCStraight(j, tileRail.xCoord, tileRail.zCoord, tileRail.getBlockMetadata());
-				} else if (ItemTCRail.isTCTurnTrack(tileRail)) {
-					if (shouldIgnoreSwitch(tileRail, i, j, k, meta)) {
-						moveOnTCStraight(j, tileRail.xCoord, tileRail.zCoord, tileRail.getBlockMetadata());
-					} else {
-						if (ItemTCRail.isTCTurnTrack(tileRail)) {
-							moveOnTC90TurnRail(j, tileRail.r, tileRail.cx, tileRail.cz);
-						}
-					}
-
-					// shouldIgnoreSwitch(tileRail, i, j, k, meta);
-					// if (ItemTCRail.isTCTurnTrack(tileRail)) moveOnTC90TurnRail(i, j, k,
-					// tileRail.r, tileRail.cx, tileRail.cy, tileRail.cz, tileRail.getType(), meta);
-				} else if (ItemTCRail.isTCTwoWaysCrossingTrack(tileRail)) {
-
-					moveOnTCTwoWaysCrossing();
-				} else if (ItemTCRail.isTCSlopeTrack(tileRail)) {
-
-					moveOnTCSlope(j, tileRail.xCoord, tileRail.zCoord, tileRail.slopeAngle, tileRail.slopeHeight, tileRail.getBlockMetadata());
-				} else if (ItemTCRail.isTCDiagonalStraightTrack(tileRail)) {
-					moveOnTCDiagonal(i, j, k, tileRail.xCoord, tileRail.zCoord, tileRail.getBlockMetadata(), tileRail.getRailLength());
-				}
-				else if (ItemTCRail.isTCCurvedSlopeTrack(tileRail)) {
-					moveOnTCCurvedSlope(i, j, k, tileRail.r, tileRail.cx, tileRail.cz, tileRail.xCoord, tileRail.zCoord, meta, 1, tileRail.slopeAngle);
-				}
-			}
-			MinecraftForge.EVENT_BUS.post(new MinecartUpdateEvent(this, i, j, k));
 		}
 
 		this.func_145775_I();

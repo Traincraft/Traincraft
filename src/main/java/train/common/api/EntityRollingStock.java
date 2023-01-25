@@ -807,7 +807,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		}
 		
 		l = worldObj.getBlock(i, j, k);
-		//Traincraft.tcLog.info("EntityRollingStock: i: " + i + " j: " + j + " k: " + k + " l: " + l);
 
 		updateOnTrack(i, j, k, l);
 
@@ -953,18 +952,18 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 	boolean flag,flag1;
 	private void updateOnTrack(int i, int j, int k, Block l) {
 		if (canUseRail() && BlockRailBase.func_150051_a(l)) {
-			
+
 			Vec3 vec3d = TraincraftUtil.func_514_g(posX, posY, posZ);
-			 int i1 = ((BlockRailBase) l).getBasicRailMetadata(worldObj, this, i, j, k);
-			 meta = i1;
-			 posY = j;
-			 flag = false;
-			 flag1=l == Blocks.golden_rail;
-			 if (l == Blocks.golden_rail) {
-				 flag = worldObj.getBlockMetadata(i,j,k) >2;
-				 if (i1 == 8) {i1 = 0;}
-				 else if(i1 == 9) {i1 = 1;}
-			 }
+			int i1 = ((BlockRailBase) l).getBasicRailMetadata(worldObj, this, i, j, k);
+		 	meta = i1;
+		 	posY = j;
+		 	flag = false;
+		 	flag1=l == Blocks.golden_rail;
+		 	if (l == Blocks.golden_rail) {
+				flag = worldObj.getBlockMetadata(i,j,k) >2;
+			 	if (i1 == 8) {i1 = 0;}
+			 	else if(i1 == 9) {i1 = 1;}
+		 	}
 
 			if (l == Blocks.detector_rail){
 				worldObj.setBlockMetadataWithNotify(i, j, k, meta | 8, 3);
@@ -974,9 +973,9 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				worldObj.scheduleBlockUpdate(i, j, k, l, l.tickRate(worldObj));
 			}
 
-			 if (i1 >= 2 && i1 <= 5) {
-			 posY = (j + 1);
-			 }
+		 	if (i1 >= 2 && i1 <= 5) {
+				 posY = (j + 1);
+		    }
 			
 			 adjustSlopeVelocities(i1);
 			
@@ -1060,8 +1059,8 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			 }
 			
 			 }
-			 posX = d18 + d9 * d17;
-			 posZ = d19 + d10 * d17;
+		 	posX = d18 + d9 * d17;
+		 	posZ = d19 + d10 * d17;
 			setPosition(posX, posY + yOffset + 0.35, posZ);
 
 			moveMinecartOnRail(i, j, k, 0.0D);
@@ -1089,9 +1088,9 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			 int k1 = MathHelper.floor_double(posX);
 			 int l1 = MathHelper.floor_double(posZ);
 			 if (k1 != i || l1 != k) {
-			 double d15 = Math.sqrt(motionX * motionX + motionZ * motionZ);
-			 motionX = d15 * (k1 - i);
-			 motionZ = d15 * (l1 - k);
+				 double d15 = Math.sqrt(motionX * motionX + motionZ * motionZ);
+				 motionX = d15 * (k1 - i);
+				 motionZ = d15 * (l1 - k);
 			 }
 			
 			 if (shouldDoRailFunctions()) {
@@ -1123,13 +1122,10 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			 }
 		}
 		else if (l == BlockIDs.tcRail.block) {
-			//applyDragAndPushForces();
 			limitSpeedOnTCRail();
 			//if(worldObj.getTileEntity(i,j,k)==null || !(worldObj.getTileEntity(i,j,k) instanceof TileTCRail))return;
 			TileTCRail tile = (TileTCRail) worldObj.getTileEntity(i, j, k);
 			int meta = tile.getBlockMetadata();
-
-
 
 			if (ItemTCRail.isTCStraightTrack(tile)) {
 				moveOnTCStraight(i, j, k, tile.xCoord, tile.zCoord, meta);
@@ -1175,11 +1171,8 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 
 		}
 		else if (l == BlockIDs.tcRailGag.block) {
-			//applyDragAndPushForces();
 			limitSpeedOnTCRail();
-			//if(worldObj.getBlockTileEntity(i,j,k)==null || !(worldObj.getBlockTileEntity(i,j,k) instanceof TileTCRailGag))return;
 			TileTCRailGag tileGag = (TileTCRailGag) worldObj.getTileEntity(i, j, k);
-			//if(worldObj.getBlockTileEntity(tileGag.originX, tileGag.originY, tileGag.originZ)==null || !(worldObj.getBlockTileEntity(tileGag.originX, tileGag.originY, tileGag.originZ) instanceof TileTCRail))return;
 			if (worldObj.getTileEntity(tileGag.originX, tileGag.originY, tileGag.originZ) instanceof TileTCRail) {
 				TileTCRail tile = (TileTCRail) worldObj.getTileEntity(tileGag.originX, tileGag.originY, tileGag.originZ);
 
