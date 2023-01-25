@@ -418,8 +418,8 @@ public enum EnumTrains {
 
 	Class158("Class 158 Engine", EntityLocoDieselClass158.class, ItemIDs.minecartClass158engine.item, "diesel", 350, 145, 3,10, 0, 100, 0.7, 0.8, 8000, TraincraftUtil.getBytesFromColors(new String[] {"White", "Green", "Cyan", "Blue", "Purple", "Grey", "LightBlue","Lime", "LightGrey"}), 18, -4.95, "Pack: B.I.P."),
 	Class158Coach("Class 158 Passenger Car", EntityClass158Coach.class, ItemIDs.minecartClass158car.item, "passenger", 0, 0, 3,0 , 0, 0, 0,0,0,TraincraftUtil.getBytesFromColors(new String[] {"White", "Green", "Cyan", "Blue", "Purple", "Grey","LightBlue","Lime", "LightGrey"}),0,0, "Pack: B.I.P."),
-	Class153("Class 153 Engine", EntityLocoDieselClass153.class, ItemIDs.minecartClass153engine.item, "diesel", 350, 120, 1.4, 10,0,100,0.7,0.9,8000,TraincraftUtil.getBytesFromColors(new String[] {"LightBlue", "Green", "Grey", "Orange", "Yellow","Blue"}), 18, -4.25,"Pack: B.I.P."),
-	Class153Coach("Class 153 Coach", EntityPassengerClass153.class, ItemIDs.minecartClass153Coach.item, "passenger", 0, 0, 1.4, 0,0,0,0,0,0,TraincraftUtil.getBytesFromColors(new String[] { "LightBlue", "Green", "Grey", "Orange", "Yellow","Blue"}), 0, 0,"Pack: B.I.P."),
+	Class153("Class 153 Engine", EntityLocoDieselClass153.class, ItemIDs.minecartClass153engine.item, "diesel", 350, 120, 1.4, 10,0,100,0.7,0.9,8000,TraincraftUtil.getBytesFromColors(new String[] {"LightBlue", "Green", "Grey", "Orange", "Yellow","Blue","Lime"}), 18, -4.25,"Pack: B.I.P."),
+	Class153Coach("Class 153 Coach", EntityPassengerClass153.class, ItemIDs.minecartClass153Coach.item, "passenger", 0, 0, 1.4, 0,0,0,0,0,0,TraincraftUtil.getBytesFromColors(new String[] { "LightBlue", "Green", "Grey", "Orange", "Yellow","Blue","Lime"}), 0, 0,"Pack: B.I.P."),
 	Class156("Class 156 Engine", EntityLocoDieselClass156.class, ItemIDs.minecartClass156engine.item, "diesel", 285, 121, 1.4, 10,  0, 100, 0.8, 0.9, 8000, TraincraftUtil.getBytesFromColors(new String[] { "Black",  "Blue", "Cyan", "Green", "Grey","LightBlue", "LightGrey", "Magenta", "Pink", "Red", "White"}), 18, -3.7, "Pack:  B.I.P."),
 	Class47("Class 47", EntityLocoDieselClass47.class, ItemIDs.minecartClass47.item, "diesel", 2580, 154, 1.4, 10, 0, 100, 0.7, 0.8, 8000, TraincraftUtil.getBytesFromColors(new String[] {"Black", "Blue","Green", "Grey", "LightBlue", "LightGrey", "Magenta", "Orange", "Purple", "Red", "White", "Yellow", "Brown", "Cyan", "Pink"}), 18, -4.25, "Pack: B.I.P."),
 	DRGWCaboose("DRGWCaboose",EntityCabooseBapDRGW.class, ItemIDs.minecartDRGWCaboose.item, "caboose", 2, TraincraftUtil.getBytesFromColors(new String[] {"LightGrey", "Grey", "Lime", "Yellow", "Black", "Red", "Orange", "Pink"}), 0, 0, "Pack: BAP"),
@@ -534,8 +534,8 @@ public enum EnumTrains {
 
 	/** TCCE 7 */
 	DuewagT4ER("DuewagT4ER", EntityElectricDuewagT4ER.class, ItemIDs.minecartDuewagT4ER.item, "electric", 200, 70, 0,20, 0, 100, 0.7, 0.8, 1000, TraincraftUtil.getBytesFromColors(new String[] {"Grey", "Red","Yellow","Green"}), 18, -2.4, "Pack: Trams In Motion"),
-	DuewagGT6ZRLoco("DuewagGT6ZRLoco", EntityElectricDuewagGT6ZRLoco.class, ItemIDs.minecartDuewagGT6ZRLoco.item, "electric", 250, 70, 0,20, 0, 100, 0.7, 0.8, 1000, TraincraftUtil.getBytesFromColors(new String[] {"Green","Blue"}), 18, -2.55, "Pack: Trams In Motion"),
-	DuewagGT6ZRTail("DuewagGT6ZRTail", EntityPassengerDuewagGT6ZRTail.class, ItemIDs.minecartDuewagGT6ZRTail.item, "passenger", 0, 0, 1,0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[] {"Green","Blue"}), 18, 0, "Pack: Trams In Motion"),
+	DuewagGT6ZRLoco("DuewagGT6ZRLoco", EntityElectricDuewagGT6ZRLoco.class, ItemIDs.minecartDuewagGT6ZRLoco.item, "electric", 250, 70, 0,20, 0, 100, 0.7, 0.8, 1000, TraincraftUtil.getBytesFromColors(new String[] {"Green","Blue","Grey","Cyan"}), 18, -2.55, "Pack: Trams In Motion"),
+	DuewagGT6ZRTail("DuewagGT6ZRTail", EntityPassengerDuewagGT6ZRTail.class, ItemIDs.minecartDuewagGT6ZRTail.item, "passenger", 0, 0, 1,0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[] {"Green","Blue","Grey","Cyan"}), 18, 0, "Pack: Trams In Motion"),
 	;
 
 //String trainType,int MHP,int maxSpeed, double mass, int fuelConsumption, int waterConsumption, int heatingTime, double accelerationRate, double brakeRate, int tankCapacity, String[] colors,
