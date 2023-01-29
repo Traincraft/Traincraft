@@ -8,6 +8,7 @@
 package train.common.library;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockSlab;
 import net.minecraft.item.ItemBlock;
 import train.common.items.*;
 import train.common.wellcar.ItemFortyFootContainer;
@@ -65,16 +66,25 @@ public enum BlockIDs {
 	dirtyBallast(false,null),
 	dirtierBallast(false,null),
 	asphalt(false, null),
-	asphaltSlab(false, null),
 	signalSpanish(false,null),//ItemsignalSpanish.class
 	kSignal(false,null),
 	metroMadridPole(false, null),
 	FortyFootContainer(true, ItemFortyFootContainer.class),
 	speedSign(false, null),
 
+
+
+	//Slabs
+	asphaltSlab(true, ItemAsphaltSlab.class),
+	asphaltDoubleSlab(true, ItemAsphaltSlab.class),
+
+	//Stairs
+	asphaltStairs(false, null),
+
 	;
 
 	public Block block;
+	public BlockSlab blockSlab;
 	public boolean hasItemBlock;
 	public Class itemBlockClass;
 

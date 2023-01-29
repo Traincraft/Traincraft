@@ -201,6 +201,8 @@ public class RecipeHandler {
 		GameRegistry.addRecipe(new ItemStack(BlockIDs.asphaltSlab.block, 6), "BBB", "   ", "   ", Character.valueOf('B'), new ItemStack(BlockIDs.asphalt.block));
 		GameRegistry.addRecipe(new ItemStack(BlockIDs.asphaltSlab.block, 6), "   ", "BBB", "   ", Character.valueOf('B'), new ItemStack(BlockIDs.asphalt.block));
 		GameRegistry.addRecipe(new ItemStack(BlockIDs.asphaltSlab.block, 6), "   ", "   ", "BBB", Character.valueOf('B'), new ItemStack(BlockIDs.asphalt.block));
+		GameRegistry.addRecipe(new ItemStack(BlockIDs.asphaltStairs.block, 4), "B  ", "BB ", "BBB", Character.valueOf('B'), new ItemStack(BlockIDs.asphalt.block));
+		GameRegistry.addRecipe(new ItemStack(BlockIDs.asphaltStairs.block, 4), "  B", " BB", "BBB", Character.valueOf('B'), new ItemStack(BlockIDs.asphalt.block));
 		GameRegistry.addRecipe(new ItemStack(BlockIDs.signalSpanish.block,1), " L ", " I ", "RIR", Character.valueOf('L'), new ItemStack(Blocks.redstone_lamp), Character.valueOf('I'), new ItemStack(Items.iron_ingot), Character.valueOf('R'), new ItemStack(Items.redstone));
 		GameRegistry.addRecipe(new ItemStack(BlockIDs.kSignal.block,1), "RIR", " I ", " L ", Character.valueOf('L'), new ItemStack(Blocks.redstone_lamp), Character.valueOf('I'), new ItemStack(Items.iron_ingot), Character.valueOf('R'), new ItemStack(Items.redstone));
 		GameRegistry.addRecipe(new ItemStack(BlockIDs.bridgePillar.block, 8), "SSS", "SLS", "SSS", Character.valueOf('S'), new ItemStack(Items.stick), Character.valueOf('L'), new ItemStack(Blocks.log));

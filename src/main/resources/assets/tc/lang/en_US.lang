@@ -78,11 +78,13 @@ tile.tc:overheadWire.name=Overhead Wires
 tile.tc:overheadWireDouble.name=Double Overhead Wires
 tile.tc:poweredGravel.name=Powered Gravel
 tile.tc:snowGravel.name=Snowy Gravel
-tile.tc:asphalt.name=Asphalt
+tile.tc:asphalt.name=Asphalt Block
+tile.tc:asphaltSlab.name=Asphalt Slab
+tile.tc:asphaltStairs.name=Asphalt Stairs
 tile.tc:signalSpanish.name=Spanish Signal
 tile.tc:trackConcrete.name=Concrete Track (WIP do not use)
 tile.tc:kSignal.name=Ks Signal
-tile.tc:asphaltSlab.name=Asphalt Slab
+
 
 <!-- ## Items ## -->
 item.tc:diesel.name=Diesel Canister

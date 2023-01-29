@@ -65,11 +65,10 @@ public class TCBlocks {
 		BlockIDs.overheadWireDouble.block = new BlockoverheadWireDouble().setHardness(2F);
 		BlockIDs.poweredGravel.block = new BlockpoweredGravel(Material.rock).setHardness(0F).setStepSound(Block.soundTypeGravel).setBlockTextureName("tc:poweredGravel").setBlockName("poweredGravel").setCreativeTab(Traincraft.tcTab);
 		BlockIDs.snowGravel.block = new BlocksnowGravel(Material.ground).setHardness(1F).setStepSound(Block.soundTypeGravel).setBlockTextureName("tc:snowgravel").setBlockName("snowGravel").setCreativeTab(Traincraft.tcTab);
-		BlockIDs.asphalt.block = new Blockasphalt(Material.ground).setHardness(2F).setStepSound(Block.soundTypeStone).setBlockTextureName("tc:asphalt").setBlockName("Asphalt").setResistance(10F).setCreativeTab(Traincraft.tcTab);
+		BlockIDs.asphalt.block = new Blockasphalt(Material.ground).setHardness(2F).setStepSound(Block.soundTypeStone).setBlockTextureName("tc:asphalt").setBlockName("tc.asphalt").setResistance(10F).setCreativeTab(Traincraft.tcTab);
 		BlockIDs.signalSpanish.block = new BlocksignalSpanish().setHardness(1F).setResistance(10F).setLightLevel(0.2F).setCreativeTab(Traincraft.tcTab).setStepSound(Block.soundTypeMetal);
 		BlockIDs.kSignal.block = new BlockkSignal().setHardness(1F).setResistance(10F).setLightLevel(0.2F).setStepSound(Block.soundTypeMetal).setCreativeTab(null);
 		BlockIDs.speedSign.block = new BlockSpeedSign().setCreativeTab(Traincraft.tcTab);
-		BlockIDs.asphaltSlab.block = new baseSlab(false, Material.ground,"AsphaltSlab",2f,2F,Block.soundTypeStone,"pickaxe",1,0F,"asphalt").setCreativeTab(Traincraft.tcTab);
 		BlockIDs.metroMadridPole.block = new BlockMetroMadridPole( Material.iron).setHardness(2F).setCreativeTab(Traincraft.tcTab).setBlockName("MetroMadridPole");
 		//BlockIDs.FortyFootContainer.block = new BlockFortyFootContainer(Material.rock).setHardness(4.5F).setCreativeTab(Traincraft.tcTab).setStepSound(Block.soundTypeMetal);
 
@@ -85,7 +84,9 @@ public class TCBlocks {
 		//BlockIDs.book.block = new BlockBook(BlockIDs.book.blockID);
 		BlockIDs.dirtyBallast.block = new baseBlock("Dirty Gravel", 1f, 1f, "shovel", 1, Material.ground, Block.soundTypeGravel, "dirtygravel");
 		BlockIDs.dirtierBallast.block = new baseBlock("Dirtier Gravel", 1f, 1f, "shovel", 1, Material.ground, Block.soundTypeGravel, "blackgravel");
-
+		BlockIDs.asphaltSlab.block = new BlockAsphaltSlab(false).setCreativeTab(Traincraft.tcTab);
+		BlockIDs.asphaltDoubleSlab.block = new BlockAsphaltSlab(true);
+		BlockIDs.asphaltStairs.block = new BlockAsphaltStairs().setHardness(2.0F).setStepSound(Block.soundTypeStone).setBlockName("asphalt stairs").setCreativeTab(Traincraft.tcTab).setLightOpacity(0);;
 	}
 
 	public static void registerBlocks() {
