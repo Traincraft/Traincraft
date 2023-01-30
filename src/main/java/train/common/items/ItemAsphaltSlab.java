@@ -11,6 +11,5 @@ public class ItemAsphaltSlab extends ItemSlab
     {
         super(block, (BlockSlab) BlockIDs.asphaltSlab.block, (BlockSlab) BlockIDs.asphaltDoubleSlab.block, block == (BlockSlab)  BlockIDs.asphaltDoubleSlab.block);
         this.setUnlocalizedName("asphalt slab");
-        System.out.println(this.getUnlocalizedName());
     }
 }

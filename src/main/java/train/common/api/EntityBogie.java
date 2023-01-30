@@ -47,6 +47,9 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 	protected Side side;
 
 
+
+
+
 	private int turnProgress;
     private double minecartX;
     private double minecartY;
@@ -309,7 +312,6 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 
 			int i1 = ((BlockRailBase) l).getBasicRailMetadata(worldObj, this, i, j, k);
 			meta = i1;
-			Traincraft.tcLog.info("EntityBogie: i: " + i + " j: " + j + " k: " + k  + " meta:"  + i1 + " posX: " + posX + " posZ: " + posZ);
 
 			posY = j;
 			flag = false;
@@ -452,6 +454,8 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 				moveOnTCTwoWaysCrossing();
 			} else if (ItemTCRail.isTCSlopeTrack(tileRail)) {
 				moveOnTCSlope(j, tileRail.xCoord, tileRail.zCoord, tileRail.slopeAngle, tileRail.slopeHeight, tileRail.getBlockMetadata());
+			} else if (ItemTCRail.isTCDiamondCrossingTrack(tileRail)) {
+				moveOnTCDiamondCrossing(i, j, k, tileRail.xCoord,  tileRail.zCoord );
 			} else if (ItemTCRail.isTCDiagonalStraightTrack(tileRail)) {
 				moveOnTCDiagonal(i, j, k, tileRail.xCoord, tileRail.zCoord, tileRail.getBlockMetadata(), tileRail.getRailLength());
 			}
@@ -474,6 +478,9 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 				}
 				if (ItemTCRail.isTCSlopeTrack(tile)) {
 					moveOnTCSlope(j, tile.xCoord, tile.zCoord, tile.slopeAngle, tile.slopeHeight, tile.getBlockMetadata());
+				}
+				else if (ItemTCRail.isTCDiamondCrossingTrack(tile)) {
+					moveOnTCDiamondCrossing(i, j, k, tile.xCoord,  tile.zCoord );
 				}
 				if (ItemTCRail.isTCDiagonalStraightTrack(tile)) {
 					moveOnTCDiagonal(i, j, k, tile.xCoord, tile.zCoord, tile.getBlockMetadata(), tile.getRailLength());
@@ -517,7 +524,6 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 			motionZ = maxSpeed;
 		}
 		moveEntity(motionX, 0.0D, motionZ);
-		Traincraft.tcLog.info(motionX + ", " + motionZ);
 	}
 
 
@@ -613,6 +619,48 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		}
 	}
 
+	protected void moveOnTCDiamondCrossing(int i, int j, int k, double cx, double cz) {
+
+
+
+		double norm = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
+
+		if (Math.abs(motionZ) > Math.abs(motionX * 2)) {
+			this.moveEntity(0.0D, 0.0D, Math.copySign(norm, this.motionZ));
+		}
+		else if (Math.abs(motionZ * 2) < Math.abs(motionX)) {
+			this.moveEntity(Math.copySign(norm, this.motionX), 0.0D, 0.0D);
+		}
+		else {
+			this.moveEntity(Math.copySign(norm, this.motionX), 0.0D, Math.copySign(norm, this.motionZ));
+		}
+/*
+
+		int l = MathHelper.floor_double(rotationYaw * 8.0F / 360.0F + 0.5) & 7;
+		Traincraft.tcLog.info("ROTATION: " + rotationYaw);
+
+		if (l == 0 || l == 4) {
+			moveEntity(motionX, 0.0D, 0.0D);
+		}
+		else if (l == 2 || l == 6) {
+			moveEntity(0.0D, 0.0D, motionZ);
+		}
+		else if (l == 1) {
+			moveOnTCDiagonal(i, j, k, cx, cz, 5, 1);
+		}
+		else if (l == 3){
+			moveOnTCDiagonal(i, j, k, cx, cz, 6, 1);
+		}
+		else if (l == 5) {
+			moveOnTCDiagonal(i, j, k, cx, cz, 7, 1);
+		}
+		else if (l == 7) {
+			moveOnTCDiagonal(i, j, k, cx, cz, 4, 1);
+		}*/
+	}
+
+
+
 	private void moveOnTCDiagonal(int i, int j, int k, double cx, double cz, int meta, double length) {
 
 		double Y_OFFSET = 0.2;
@@ -637,8 +685,8 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 			exitX = (motionX > 0) ? cx + Z_OFFSET : cx - (length + X_OFFSET);
 			exitZ = (motionX > 0) ? cz + Z_OFFSET : cz - (length + X_OFFSET);
 		} else if (meta == 7) {
-			exitX = (motionX > 0) ? cx + X_OFFSET : cx - (length - X_OFFSET);
-			exitZ = (motionX > 0) ? cz + Z_OFFSET : cz - X_OFFSET;
+			exitX = (motionX > 0) ? cx + (length + X_OFFSET) : cx - X_OFFSET;
+			exitZ = (motionX > 0) ? cz + (length + X_OFFSET) : cz - X_OFFSET;
 		}
 
 		directionX = exitX - posX;

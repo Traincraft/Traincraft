@@ -26,6 +26,9 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 	public static final ModelVeryLargeSlopeTCTrack	modelVeryLargeSlope = new ModelVeryLargeSlopeTCTrack();
 	public static final ModelRightCurvedSlopeTCTrack modelRightCurvedSlope = new ModelRightCurvedSlopeTCTrack();
 	public static final ModelLeftCurvedSlopeTCTrack modelLeftCurvedSlope = new ModelLeftCurvedSlopeTCTrack();
+	public static final ModelRightDiamondCrossing modelRightDiamondCrossing = new ModelRightDiamondCrossing();
+	public static final ModelLeftDiamondCrossing modelLeftDiamondCrossing = new ModelLeftDiamondCrossing();
+
 	/**Embedded Tracks*/
 
 
@@ -167,6 +170,15 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 					}
 					case TWO_WAYS_CROSSING: {
 						modelTwoWaysCrossing.render("crossing", x, y, z);
+						break;
+					}
+					case DIAMOND_CROSSING:
+					case RIGHT_DIAMOND_CROSSING: {
+						modelRightDiamondCrossing.render("crossing", railTile, x, y, z);
+						break;
+					}
+					case LEFT_DIAMOND_CROSSING: {
+						modelLeftDiamondCrossing.render("crossing",  railTile,x, y, z);
 						break;
 					}
 					case MEDIUM_SWITCH:
@@ -442,6 +454,16 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 
 					case EMBEDDED_TWO_WAYS_CROSSING: {
 						modelTwoWaysCrossing.render("embedded_crossing", x, y, z);
+						break;
+					}
+
+					case EMBEDDED_DIAMOND_CROSSING:
+					case EMBEDDED_RIGHT_DIAMOND_CROSSING: {
+						modelRightDiamondCrossing.render("embedded_crossing", railTile, x, y, z);
+						break;
+					}
+					case EMBEDDED_LEFT_DIAMOND_CROSSING: {
+						modelLeftDiamondCrossing.render("embedded_crossing",  railTile,x, y, z);
 						break;
 					}
 					case EMBEDDED_MEDIUM_SWITCH:

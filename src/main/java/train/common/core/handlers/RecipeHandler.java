@@ -15,6 +15,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+import scala.Char;
 import train.common.inventory.TrainCraftingManager;
 import train.common.library.BlockIDs;
 import train.common.library.ItemIDs;
@@ -145,7 +146,8 @@ public class RecipeHandler {
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailVeryLargeSlopeBallast.item, 1), "  T", " T ","T  ", Character.valueOf('T'), ItemIDs.tcRailSlopeBallast.item);
 
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailTwoWaysCrossing.item, 1), " S ", "SSS", " S ", Character.valueOf('S'), ItemIDs.tcRailSmallStraight.item );
-
+		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailDiamondCrossing.item, 1), " SD", " S ", "DS ", Character.valueOf('S'), ItemIDs.tcRailSmallStraight.item, Character.valueOf('D'), ItemIDs.tcRailSmallDiagonalStraight.item);
+		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailDiamondCrossing.item, 1), "DS ", " S ", " SD", Character.valueOf('S'), ItemIDs.tcRailSmallStraight.item, Character.valueOf('D'), ItemIDs.tcRailSmallDiagonalStraight.item);
 
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailEmbeddedSmallStraight.item, 16), "I I", "B B", "I I", Character.valueOf('I'), Items.iron_ingot, Character.valueOf('B'), ItemIDs.bolt.item);
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailEmbeddedMediumStraight.item, 1),  "G  ", "G  ", "G  ", Character.valueOf('G'), ItemIDs.tcRailEmbeddedSmallStraight.item );
@@ -181,7 +183,8 @@ public class RecipeHandler {
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailEmbeddedSuperLargeCurvedSlopeDynamic.item, 1), "   ", " T ", " S ", Character.valueOf('T'), ItemIDs.tcRailEmbeddedSuperLargeTurn.item, Character.valueOf('S'), ItemIDs.tcRailEmbeddedVeryLargeSlopeDynamic.item);
 
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailEmbeddedTwoWaysCrossing.item, 1), " S ", "SSS", " S ", Character.valueOf('S'), ItemIDs.tcRailEmbeddedSmallStraight.item );
-
+		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailEmbeddedDiamondCrossing.item, 1), " SD", " S ", "DS ", Character.valueOf('S'), ItemIDs.tcRailEmbeddedSmallStraight.item, Character.valueOf('D'), ItemIDs.tcRailEmbeddedSmallDiagonalStraight.item);
+		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailEmbeddedDiamondCrossing.item, 1), "DS ", " S ", " SD", Character.valueOf('S'), ItemIDs.tcRailEmbeddedSmallStraight.item, Character.valueOf('D'), ItemIDs.tcRailEmbeddedSmallDiagonalStraight.item);
 		//Track Conversion Recipes to Normal Rails
 
 		GameRegistry.addRecipe(new ItemStack(ItemIDs.tcRailSmallStraight.item, 1),  "   ", " R ", "   ", Character.valueOf('R'), Item.getItemFromBlock(Blocks.rail));// small straight track

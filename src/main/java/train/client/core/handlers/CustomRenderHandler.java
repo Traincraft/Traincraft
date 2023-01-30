@@ -165,6 +165,23 @@ public class CustomRenderHandler {
         else if (item.getTrackType() == ItemTCRail.TrackTypes.SMALL_ROAD_CROSSING_2) {
             RenderTCRail.modelSmallStraight.render("crossing2", facing, 0, 0, 0, r, g, b, a);
         }
+        else if (item.getTrackType() == ItemTCRail.TrackTypes.DIAMOND_CROSSING){
+            float yaw = MathHelper.wrapAngleTo180_float(player.rotationYaw);
+            boolean isLeftTurn = item.getTrackOrientation( facing, yaw ).equals("left");
+            float dx = dir.getX();
+            float dz = dir.getY();
+
+            if (isLeftTurn){
+                RenderTCRail.modelLeftDiamondCrossing.render("crossing", dx, 0, dz, facing, r, g, b, a);
+            }
+            else {
+                RenderTCRail.modelRightDiamondCrossing.render("crossing", dx, 0, dz, facing, r, g, b, a);
+            }
+        }
+
+
+
+
         else if (item.getTrackType() == ItemTCRail.TrackTypes.TWO_WAYS_CROSSING) {
             float dx = dir.getX();
             float dz = dir.getY();

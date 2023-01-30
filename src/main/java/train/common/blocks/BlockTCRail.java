@@ -29,6 +29,7 @@ public class BlockTCRail extends Block {
 		super(Material.iron);
 		setCreativeTab(Traincraft.tcTab);
 		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.125F, 1.0F);
+		getUseNeighborBrightness();
 	}
 
 	/**

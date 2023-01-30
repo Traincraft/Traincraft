@@ -1161,8 +1161,10 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			else if (ItemTCRail.isTCTwoWaysCrossingTrack(tile)) {
 				moveOnTCTwoWaysCrossing(i, j, k, tile.xCoord, tile.yCoord, tile.zCoord, meta);
 			}
+			else if (ItemTCRail.isTCDiamondCrossingTrack(tile)) {
+				moveOnTCDiamondCrossing(i, j, k, tile.xCoord, tile.yCoord, tile.zCoord, meta );
+			}
 			else if (ItemTCRail.isTCDiagonalStraightTrack(tile)) {
-
 				moveOnTCDiagonal(i, j, k, tile.xCoord, tile.zCoord, tile.getBlockMetadata(), tile.getRailLength());
 			}
 			else if (ItemTCRail.isTCCurvedSlopeTrack(tile)) {
@@ -1264,7 +1266,9 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		double X_OFFSET = 0.5;
 		double Z_OFFSET = 1.5;
 		posY = j + Y_OFFSET;
-
+		if (length == 0){
+			length = 1;
+		}
 		double exitX = 0;
 		double exitZ = 0;
 		double directionX;
@@ -1282,8 +1286,8 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			exitX = (motionX > 0) ? cx + Z_OFFSET : cx - (length + X_OFFSET);
 			exitZ = (motionX > 0) ? cz + Z_OFFSET : cz - (length + X_OFFSET);
 		} else if (meta == 7) {
-			exitX = (motionX > 0) ? cx + X_OFFSET : cx - (length - X_OFFSET);
-			exitZ = (motionX > 0) ? cz + Z_OFFSET : cz - X_OFFSET;
+			exitX = (motionX > 0) ? cx + (length + X_OFFSET) : cx - X_OFFSET;
+			exitZ = (motionX > 0) ? cz + (length + X_OFFSET) : cz - X_OFFSET;
 		}
 
 		directionX = exitX - posX;
@@ -1302,6 +1306,8 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		this.posX = (this.boundingBox.minX + this.boundingBox.maxX) / 2.0D;
 		this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
 		this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) / 2.0D;
+		Traincraft.tcLog.info("rotation: " + serverRealRotation + " l: " + (MathHelper.floor_double( serverRealRotation * 8.0F / 360.0F + 0.5) & 7));
+
 	}
 
 
@@ -1553,8 +1559,37 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			}
 			//moveEntity(motionX, 0.0D, motionZ);
 		}
-	}
+	}	protected void moveOnTCDiamondCrossing(int i, int j, int k, double cx, double cy, double cz, int meta) {
 
+		int l;
+		if (!(this instanceof Locomotive)) {
+			l = MathHelper.floor_double(serverRealRotation * 8.0F / 360.0F + 0.5) & 7;
+			Traincraft.tcLog.info(l);
+		}
+
+		else {
+			l = MathHelper.floor_double(rotationYaw * 8.0F / 360.0F + 0.5) & 7;
+
+		}
+		if (l == 0 || l == 4) {
+			moveEntity(motionX, 0.0D, 0.0D);
+		}
+		else if (l == 2 || l == 6) {
+			moveEntity(0.0D, 0.0D, motionZ);
+		}
+		else if (l == 1) {
+			moveOnTCDiagonal(i, j, k, cx, cz, 5, 1);
+		}
+		else if (l == 3){
+			moveOnTCDiagonal(i, j, k, cx, cz, 6, 1);
+		}
+		else if (l == 5) {
+			moveOnTCDiagonal(i, j, k, cx, cz, 7, 1);
+		}
+		else if (l == 7) {
+			moveOnTCDiagonal(i, j, k, cx, cz, 4, 1);
+		}
+	}
 	public void limitSpeedOnTCRail() {
 		railMaxSpeed = 3;
 		maxSpeed = Math.min(railMaxSpeed, getMaxCartSpeedOnRail());

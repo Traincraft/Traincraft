@@ -110,6 +110,7 @@ public enum ItemIDs {
 	tcRailLargeParallelCurve("ItemTCRail", "item_rail_tc_parallel_curve_large", 3),
 
 	tcRailTwoWaysCrossing("ItemTCRail","item_rail_two_ways_crossing",5),
+	tcRailDiamondCrossing("ItemTCRail", "item_rail_diamond_crossing", 5),
 
 	tcRailMediumSwitch("ItemTCRail", "item_rail_switch_medium", 5),
 	tcRailLargeSwitch("ItemTCRail", "item_rail_switch_large", 5),
@@ -165,6 +166,7 @@ public enum ItemIDs {
 	tcRailEmbeddedLargeParallelCurve("ItemTCRail", "item_rail_tc_embedded_parallel_curve_large", 3),
 
 	tcRailEmbeddedTwoWaysCrossing("ItemTCRail","item_rail_embedded_two_ways_crossing",5),
+	tcRailEmbeddedDiamondCrossing("ItemTCRail", "item_rail_embedded_diamond_crossing", 5),
 
 	tcRailEmbeddedMediumSwitch("ItemTCRail", "item_rail_embedded_switch_medium", 5),
 	tcRailEmbeddedLargeSwitch("ItemTCRail", "item_rail_embedded_switch_large", 5),
