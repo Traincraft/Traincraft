@@ -17,7 +17,7 @@ public class ModelRightDiamondCrossing extends ModelBase{
 
 
     public void render(String type) {
-        if (type.equals("crossing") || type.equals("embedded_crossing"))
+        if (type.equals("normal") || type.equals("embedded"))
            modelDiamondCrossing.renderAll();
     }
 

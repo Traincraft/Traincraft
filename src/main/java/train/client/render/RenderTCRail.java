@@ -169,16 +169,20 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 						break;
 					}
 					case TWO_WAYS_CROSSING: {
-						modelTwoWaysCrossing.render("crossing", x, y, z);
+						modelTwoWaysCrossing.render("crossing",railTile, x, y, z);
 						break;
 					}
 					case DIAMOND_CROSSING:
 					case RIGHT_DIAMOND_CROSSING: {
-						modelRightDiamondCrossing.render("crossing", railTile, x, y, z);
+						modelRightDiamondCrossing.render("normal", railTile, x, y, z);
 						break;
 					}
 					case LEFT_DIAMOND_CROSSING: {
-						modelLeftDiamondCrossing.render("crossing",  railTile,x, y, z);
+						modelLeftDiamondCrossing.render("normal",  railTile,x, y, z);
+						break;
+					}
+					case DOUBLE_DIAMOND_CROSSING:{
+						modelTwoWaysCrossing.render("normal_diamond", railTile, x, y, z);
 						break;
 					}
 					case MEDIUM_SWITCH:
@@ -453,17 +457,21 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 					}
 
 					case EMBEDDED_TWO_WAYS_CROSSING: {
-						modelTwoWaysCrossing.render("embedded_crossing", x, y, z);
+						modelTwoWaysCrossing.render("embedded_crossing", railTile, x, y, z);
 						break;
 					}
 
 					case EMBEDDED_DIAMOND_CROSSING:
 					case EMBEDDED_RIGHT_DIAMOND_CROSSING: {
-						modelRightDiamondCrossing.render("embedded_crossing", railTile, x, y, z);
+						modelRightDiamondCrossing.render("embedded", railTile, x, y, z);
 						break;
 					}
 					case EMBEDDED_LEFT_DIAMOND_CROSSING: {
-						modelLeftDiamondCrossing.render("embedded_crossing",  railTile,x, y, z);
+						modelLeftDiamondCrossing.render("embedded",  railTile,x, y, z);
+						break;
+					}
+					case EMBEDDED_DOUBLE_DIAMOND_CROSSING:{
+						modelTwoWaysCrossing.render("embedded_diamond", railTile, x, y, z);
 						break;
 					}
 					case EMBEDDED_MEDIUM_SWITCH:

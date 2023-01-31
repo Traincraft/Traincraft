@@ -165,17 +165,74 @@ public class CustomRenderHandler {
         else if (item.getTrackType() == ItemTCRail.TrackTypes.SMALL_ROAD_CROSSING_2) {
             RenderTCRail.modelSmallStraight.render("crossing2", facing, 0, 0, 0, r, g, b, a);
         }
-        else if (item.getTrackType() == ItemTCRail.TrackTypes.DIAMOND_CROSSING){
+        else if (item.getTrackType() == ItemTCRail.TrackTypes.DIAMOND_CROSSING || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_DIAMOND_CROSSING){
             float yaw = MathHelper.wrapAngleTo180_float(player.rotationYaw);
             boolean isLeftTurn = item.getTrackOrientation( facing, yaw ).equals("left");
+            String type = "normal";
+            if (item.getTrackType().getLabel().contains("EMBEDDED"))
+              type = "embedded";
             float dx = dir.getX();
             float dz = dir.getY();
-
+            int zDisplace = 0;
+            int xDisplace = 0;
+            int xSideDisplace = 0;
+            int zSideDisplace = 0;
+            int sideFacing = facing;
             if (isLeftTurn){
-                RenderTCRail.modelLeftDiamondCrossing.render("crossing", dx, 0, dz, facing, r, g, b, a);
+
+                if (facing == 2){
+                    zDisplace = -1;
+                    xSideDisplace = 1;
+                    sideFacing = 5;
+                }
+                else if (facing == 0) {
+                    zDisplace = 1;
+                    xSideDisplace = -1;
+                    sideFacing = 7;
+                }
+                else if (facing == 1) {
+                    xDisplace = -1;
+                    zSideDisplace= -1;
+                    sideFacing = 4;
+                }
+                else if (facing == 3) {
+                    xDisplace = 1;
+                    zSideDisplace=1;
+                    sideFacing = 6;
+                }
+
+                RenderTCRail.modelLeftDiamondCrossing.render(type + "single", dx, 0, dz, facing, r, g, b, a);
+                RenderTCRail.modelSmallStraight.render(type, facing, dx + xDisplace, 0, dz + (zDisplace), r, g, b, a);
+                RenderTCRail.modelSmallStraight.render(type, facing, dx - xDisplace, 0, dz - zDisplace, r, g, b, a);
+                RenderTCRail.modelSmallDiagonalStraight.render(type, sideFacing, dx + xDisplace - xSideDisplace, 0, dz + zDisplace - zSideDisplace, r, g, b, a);
+                RenderTCRail.modelSmallDiagonalStraight.render(type, sideFacing, dx - xDisplace + xSideDisplace, 0, dz - zDisplace + zSideDisplace, r, g, b, a);
             }
             else {
-                RenderTCRail.modelRightDiamondCrossing.render("crossing", dx, 0, dz, facing, r, g, b, a);
+                if (facing == 2){
+                    zDisplace = -1;
+                    xSideDisplace = 1;
+                    sideFacing = 6;
+                }
+                else  if (facing == 0) {
+                    zDisplace = 1;
+                    xSideDisplace = -1;
+                    sideFacing = 4;
+                }
+                else  if (facing == 1) {
+                    xDisplace = -1;
+                    zSideDisplace= -1;
+                    sideFacing = 5;
+                }
+                else  if (facing == 3) {
+                    xDisplace = 1;
+                    zSideDisplace=1;
+                    sideFacing = 7;
+                }
+                RenderTCRail.modelRightDiamondCrossing.render(type + "single" , dx, 0, dz, facing, r, g, b, a);
+                RenderTCRail.modelSmallStraight.render(type, facing, dx + (xDisplace), 0, dz + (zDisplace), r, g, b, a);
+                RenderTCRail.modelSmallStraight.render(type, facing, dx - xDisplace, 0, dz - zDisplace, r, g, b, a);
+                RenderTCRail.modelSmallDiagonalStraight.render(type, sideFacing, dx + xDisplace + xSideDisplace, 0, dz + zDisplace + zSideDisplace, r, g, b, a);
+                RenderTCRail.modelSmallDiagonalStraight.render(type, sideFacing, dx - xDisplace - xSideDisplace, 0, dz - zDisplace - zSideDisplace, r, g, b, a);
             }
         }
 
@@ -186,7 +243,7 @@ public class CustomRenderHandler {
             float dx = dir.getX();
             float dz = dir.getY();
 
-            RenderTCRail.modelTwoWaysCrossing.render( "crossing", dx, 0, dz, r, g, b, a );
+            RenderTCRail.modelTwoWaysCrossing.render( "crossing", dx, 0, dz, facing, r, g, b, a );
             RenderTCRail.modelSmallStraight.render("normal", 0, dx, 0, dz +1, r, g, b, a);
             RenderTCRail.modelSmallStraight.render("normal", 1, dx + 1, 0, dz, r, g, b, a);
             RenderTCRail.modelSmallStraight.render("normal", 2, dx, 0, dz - 1, r, g, b, a);
@@ -196,7 +253,7 @@ public class CustomRenderHandler {
             float dx = dir.getX();
             float dz = dir.getY();
 
-            RenderTCRail.modelTwoWaysCrossing.render("embedded_crossing", dx, 0, dz, r, g, b, a );
+            RenderTCRail.modelTwoWaysCrossing.render("embedded_crossing", dx, 0, dz, facing, r, g, b, a );
             RenderTCRail.modelSmallStraight.render("embedded", 0, dx, 0, dz +1, r, g, b, a);
             RenderTCRail.modelSmallStraight.render("embedded", 1, dx + 1, 0, dz, r, g, b, a);
             RenderTCRail.modelSmallStraight.render("embedded", 2, dx, 0, dz - 1, r, g, b, a);
