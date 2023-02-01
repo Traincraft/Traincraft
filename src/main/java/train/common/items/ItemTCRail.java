@@ -778,6 +778,8 @@ public class ItemTCRail extends ItemPart {
 			return new int[][] { {0,0}, {1,0}, {2,0}, {1,1}, {1,-1} };
 		else if ( type == TrackTypes.DIAMOND_CROSSING  || type == TrackTypes.EMBEDDED_DIAMOND_CROSSING)
 			return new int[][] { {0,0}, {1,0}, {2,0}, {0,-1}, {2,1} };
+		else if ( type == TrackTypes.DOUBLE_DIAMOND_CROSSING  || type == TrackTypes.EMBEDDED_DOUBLE_DIAMOND_CROSSING)
+			return new int[][] { {0,0}, {1,0}, {2,0}, {0,-1}, {2,-1},{0,1},{2,1}};
 		/** Turns */
 		else if ( type == TrackTypes.MEDIUM_TURN || type == TrackTypes.EMBEDDED_MEDIUM_TURN )
 			return new int[][] { {0,0}, {1,0}, {1,1}, {2,1}, {2,2} };
