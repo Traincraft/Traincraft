@@ -104,6 +104,109 @@ item.tc:electronicCircuit.name=Elektrisch Circuit
 item.tc:chunkLoaderActivator.name=Chunk Lader Activator
 item.tc:emptyCanister.name=Lege Jerrycan
 item.tc:recipeBook.name=Traincraft gids
+
+
+item.tc:tcRailSmallStraight.name=Klein Recht Spoor
+item.tc:tcRailMediumStraight.name=Medium Recht Spoor
+item.tc:tcRailLongStraight.name=Lang Recht Spoor
+item.tc:tcRailVeryLongStraight.name=Heel Lang Recht Spoor
+
+item.tc:tcRailEmbeddedSmallStraight.name=Verzonken Klein Recht Spoor
+item.tc:tcRailEmbeddedMediumStraight.name=Verzonken Medium Recht Spoor
+item.tc:tcRailEmbeddedLongStraight.name=Verzonken Lang Recht Spoor
+item.tc:tcRailEmbeddedVeryLongStraight.name=Verzonken Heel Lang Recht Spoor
+
+item.tc:tcRailSmallDiagonalStraight.name=Klein Diagonaal Recht Spoor
+item.tc:tcRailMediumDiagonalStraight.name=Medium Diagonaal Recht Spoor
+item.tc:tcRailLongDiagonalStraight.name=Lang Diagonaal Recht Spoor
+item.tc:tcRailVeryLongDiagonalStraight.name=Heel Lang Diagonaal Recht Spoor
+
+item.tc:tcRailEmbeddedSmallDiagonalStraight.name=Verzonken Klein Diagonaal Recht Spoor
+item.tc:tcRailEmbeddedMediumDiagonalStraight.name=Verzonken Medium Diagonaal Recht Spoor
+item.tc:tcRailEmbeddedLongDiagonalStraight.name=Verzonken Lang Diagonaal Recht Spoor
+item.tc:tcRailEmbeddedVeryLongDiagonalStraight.name=Verzonken Heel Lang Diagonaal Recht Spoor
+
+item.tc:tcRailMediumTurn.name=Medium Bocht
+item.tc:tcRailLargeTurn.name=Grote Bocht
+item.tc:tcRailVeryLargeTurn.name=Hele Grote Bocht
+item.tc:tcRailSuperLargeTurn.name=Super Grote Bocht
+
+item.tc:tcRailEmbeddedMediumTurn.name=Verzonken Medium Bocht
+item.tc:tcRailEmbeddedLargeTurn.name=Verzonken Grote Bocht
+item.tc:tcRailEmbeddedVeryLargeTurn.name=Verzonken Hele Grote Bocht
+item.tc:tcRailEmbeddedSuperLargeTurn.name=Verzonken Super Grote Bocht
+
+item.tc:tcRailMedium45DegreeTurn.name=Medium Halve Bocht
+item.tc:tcRailLarge45DegreeTurn.name=Grote Halve Bocht
+item.tc:tcRailVeryLarge45DegreeTurn.name=Hele Grote Halve Bocht
+item.tc:tcRailSuperLarge45DegreeTurn.name=Super Grote Halve Bocht
+
+item.tc:tcRailEmbeddedMedium45DegreeTurn.name=Verzonken Medium Halve Bocht
+item.tc:tcRailEmbeddedLarge45DegreeTurn.name=Verzonken Grote Halve Bocht
+item.tc:tcRailEmbeddedVeryLarge45DegreeTurn.name=Verzonken Hele Grote Halve Bocht
+item.tc:tcRailEmbeddedSuperLarge45DegreeTurn.name=Verzonken Super Grote Halve Bocht
+
+item.tc:tcRailSmallParallelCurve.name=Kleine Evenwijdige Bocht
+item.tc:tcRailMediumParallelCurve.name=Medium Evenwijdige Bocht
+item.tc:tcRailLargeParallelCurve.name=Grote Evenwijdige Bocht
+
+item.tc:tcRailEmbeddedSmallParallelCurve.name=Verzonken Kleine Evenwijdige Bocht
+item.tc:tcRailEmbeddedMediumParallelCurve.name=Verzonken Medium Evenwijdige Bocht
+item.tc:tcRailEmbeddedLargeParallelCurve.name=Verzonken Grote Evenwijdige Bocht
+
+item.tc:tcRailTwoWaysCrossing.name=Kruising
+item.tc:tcRailDiamondCrossing.name=Diamant Kruising
+item.tc:tcRailDoubleDiamondCrossing.name=Dubbele Diamant Kruising
+
+item.tc:tcRailEmbeddedTwoWaysCrossing.name=Verzakte Kruising
+item.tc:tcRailEmbeddedDiamondCrossing.name=Verzakte Diamant Kruising
+item.tc:tcRailEmbeddedDoubleDiamondCrossing.name=Verzakte Dubbele Diamant Kruising
+
+item.tc:tcRailSmallRoadCrossing.name=Spoorwegovergang (Zwart Asfalt)
+item.tc:tcRailSmallRoadCrossing1.name=Spoorwegovergang (Ongekleurd Asfalt)
+item.tc:tcRailSmallRoadCrossing2.name=Spoorwegovergang (Licht Grijs Asfalt)
+
+item.tc:tcRailSlopeWood.name=Stijgend Spoor (Hout)
+item.tc:tcRailSlopeGravel.name=Stijgend Spoor (Grind)
+item.tc:tcRailSlopeBallast.name=Stijgend Spoor (Ballast)
+item.tc:tcRailSlopeSnowGravel.name=Stijgend Spoor (Besneeuwd Grind)
+item.tc:tcRailSlopeDynamic.name=Stijgend Spoor (Dynamisch)
+
+item.tc:tcRailLargeSlopeWood.name=Groot Stijgend Spoor (Hout)
+item.tc:tcRailLargeSlopeGravel.name=Groot Stijgend Spoor (Grind)
+item.tc:tcRailLargeSlopeBallast.name=Groot Stijgend Spoor (Ballast)
+item.tc:tcRailLargeSlopeSnowGravel.name=Groot Stijgend Spoor (Besneeuwd Grind)
+item.tc:tcRailLargeSlopeDynamic.name=Groot Stijgend Spoor (Dynamisch)
+
+item.tc:tcRailVeryLargeSlopeWood.name=Heel Groot Stijgend Spoor (Hout)
+item.tc:tcRailVeryLargeSlopeGravel.name=Heel Groot Stijgend Spoor (Grind)
+item.tc:tcRailVeryLargeSlopeBallast.name=Heel Groot Stijgend Spoor (Ballast)
+item.tc:tcRailVeryLargeSlopeSnowGravel.name=Heel Groot Stijgend Spoor (Besneeuwd Grind)
+item.tc:tcRailVeryLargeSlopeDynamic.name=Heel Groot Stijgend Spoor (Dynamisch)
+
+item.tc:tcRailEmbeddedSlopeDynamic.name=Verzonken Stijgend Spoor (Dynamisch)
+item.tc:tcRailEmbeddedLargeSlopeDynamic.name=Verzonken Groot Stijgend Spoor (Dynamisch)
+item.tc:tcRailEmbeddedVerylargeSlopeDynamic.name=Verzonken Heel Groot Stijgend Spoor (Dynamisch)
+
+item.tc:tcRailLargeCurvedSlopeDynamic.name=Grote Stijgende Bocht (Dynamisch)
+item.tc:tcRailVeryLargeCurvedSlopeDynamic.name=Heel Grote Stijgende Bocht (Dynamisch)
+item.tc:tcRailSuperLargeCurvedSlopeDynamic.name=Super Grote Stijgende Bocht (Dynamisch)
+
+item.tc:tcRailEmbeddedLargeCurvedSlopeDynamic.name=Verzonken Grote Stijgende Bocht (Dynamisch)
+item.tc:tcRailEmbeddedVeryLargeCurvedSlopeDynamic.name=Verzonken Heel Grote Stijgende Bocht (Dynamisch)
+item.tc:tcRailEmbeddedSuperLargeCurvedSlopeDynamic.name=Verzonken Super Grote Stijgende Bocht (Dynamisch)
+
+item.tc:tcRailMediumSwitch.name=90 Graden Medium Wissel
+item.tc:tcRailLargeSwitch.name=90 Graden Grote Wissel
+item.tc:tcRailMediumParallelSwitch.name=Parallel Wissel
+item.tc:tcRailMedium45DegreeSwitch.name=45 Graden Medium Wissel
+
+item.tc:tcRailEmbeddedMediumSwitch.name=Verzonken 90 Graden Medium Wissel
+item.tc:tcRailEmbeddedLargeSwitch.name=Verzonken 90 Graden Grote Wissel
+item.tc:tcRailEmbeddedMediumParallelSwitch.name=Verzonken Parallel Wissel
+item.tc:tcRailEmbeddedMedium45DegreeSwitch.name=Verzonken 45 Graden Medium Wissel
+
+
 item.tc:minecartWork.name=Werk Trein
 item.tc:minecartTender.name=Kleine Tender
 item.tc:minecartChest.name=Vrachtwagon
@@ -202,28 +305,6 @@ item.tc:minecartLocoSD40.name=SD40-2 (US)
 item.tc:zeppelin.name=Zeppelin
 item.tc:copperRail.name=Koperen Spoor
 item.tc:steelRail.name=Stalen Spoor
-item.tc:tcRailMediumTurn.name=Medium Bocht
-item.tc:tcRailLargeTurn.name=Grote Bocht
-item.tc:tcRailVeryLargeTurn.name=Hele Grote Bocht
-item.tc:tcRailLongStraight.name=Lang Recht Spoor
-item.tc:tcRailMediumStraight.name=Medium Recht Spoor
-item.tc:tcRailSmallStraight.name=Klein Recht Spoor
-item.tc:tcRailMediumSwitch.name=90 Graden Medium Wissel
-item.tc:tcRailLargeSwitch.name=90 Graden Grote Wissel
-item.tc:tcRailMediumParallelSwitch.name=Parallel Wissel
-item.tc:tcRailTwoWaysCrossing.name=Kruising
-item.tc:tcRailSlopeWood.name=Stijgend Spoor (Hout)
-item.tc:tcRailSlopeGravel.name=Stijgend Spoor (Grind)
-item.tc:tcRailSlopeBallast.name=Stijgend Spoor (Ballast)
-item.tc:tcRailLargeSlopeWood.name=Groot Stijgend Spoor (Hout)
-item.tc:tcRailLargeSlopeGravel.name=Groot Stijgend Spoor (Grind)
-item.tc:tcRailLargeSlopeBallast.name=Groot Stijgend Spoor (Ballast)
-item.tc:tcRailVeryLargeSlopeWood.name=Extreem Groot Stijgend Spoor (Hout)
-item.tc:tcRailVeryLargeSlopeGravel.name=Extreem Groot Stijgend Spoor (Grind)
-item.tc:tcRailVeryLargeSlopeBallast.name=Extreem Groot Stijgend Spoor (Ballast)
-item.tc:tcRailSmallRoadCrossing.name=Spoorwegovergang (Zwart Asfalt)
-item.tc:tcRailSmallRoadCrossing1.name=Spoorwegovergang (Ongekleurd Asfalt)
-item.tc:tcRailSmallRoadCrossing2.name=Spoorwegovergang (Licht Grijs Asfalt)
 item.tc:minecartLocoA4Mallard.name=A4 Mallard
 item.tc:minecartLocoA4MallardTender.name=A4 Mallard Tender
 item.tc:minecartIC4_DSB_MG.name=IC4 DSB MG

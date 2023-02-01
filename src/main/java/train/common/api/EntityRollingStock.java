@@ -1190,6 +1190,9 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				if (ItemTCRail.isTCDiagonalStraightTrack(tile)) {
 					moveOnTCDiagonal(i, j, k, tile.xCoord, tile.zCoord, tile.getBlockMetadata(), tile.getRailLength());
 				}
+				else if (ItemTCRail.isTCDiamondCrossingTrack(tile)) {
+					moveOnTCDiamondCrossing(i, j, k, tile.xCoord, tile.yCoord, tile.zCoord, meta );
+				}
 				if (ItemTCRail.isTCCurvedSlopeTrack(tile)) {
 					moveOnTCCurvedSlope(i, j, k, tile.r, tile.cx, tile.cz, tile.xCoord, tile.zCoord, tile.getBlockMetadata(), 1, tile.slopeAngle);
 				}

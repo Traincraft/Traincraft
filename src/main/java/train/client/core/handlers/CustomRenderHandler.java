@@ -201,7 +201,7 @@ public class CustomRenderHandler {
                     sideFacing = 6;
                 }
 
-                RenderTCRail.modelLeftDiamondCrossing.render(type + "single", dx, 0, dz, facing, r, g, b, a);
+                RenderTCRail.modelLeftDiamondCrossing.render(type , dx, 0, dz, facing, r, g, b, a);
                 RenderTCRail.modelSmallStraight.render(type, facing, dx + xDisplace, 0, dz + (zDisplace), r, g, b, a);
                 RenderTCRail.modelSmallStraight.render(type, facing, dx - xDisplace, 0, dz - zDisplace, r, g, b, a);
                 RenderTCRail.modelSmallDiagonalStraight.render(type, sideFacing, dx + xDisplace - xSideDisplace, 0, dz + zDisplace - zSideDisplace, r, g, b, a);
@@ -228,7 +228,7 @@ public class CustomRenderHandler {
                     zSideDisplace=1;
                     sideFacing = 7;
                 }
-                RenderTCRail.modelRightDiamondCrossing.render(type + "single" , dx, 0, dz, facing, r, g, b, a);
+                RenderTCRail.modelRightDiamondCrossing.render(type  , dx, 0, dz, facing, r, g, b, a);
                 RenderTCRail.modelSmallStraight.render(type, facing, dx + (xDisplace), 0, dz + (zDisplace), r, g, b, a);
                 RenderTCRail.modelSmallStraight.render(type, facing, dx - xDisplace, 0, dz - zDisplace, r, g, b, a);
                 RenderTCRail.modelSmallDiagonalStraight.render(type, sideFacing, dx + xDisplace + xSideDisplace, 0, dz + zDisplace + zSideDisplace, r, g, b, a);
