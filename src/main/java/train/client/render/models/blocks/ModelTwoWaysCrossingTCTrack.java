@@ -15,10 +15,12 @@ import train.common.tile.TileTCRail;
 public class ModelTwoWaysCrossingTCTrack extends ModelBase {
 	private IModelCustom modelTwoWaysCrossing;
 	private IModelCustom modelDoubleDiamondCrossing;
+	private IModelCustom modelDiagonalTwoWaysCrossing;
 
 	public ModelTwoWaysCrossingTCTrack() {
 		modelTwoWaysCrossing = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_x.obj"));
 		modelDoubleDiamondCrossing = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_double_diamond_crossing.obj"));
+		modelDiagonalTwoWaysCrossing = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_diagonal_crossing.obj"));
 	}
 
 	public void render(String type) {
@@ -26,6 +28,8 @@ public class ModelTwoWaysCrossingTCTrack extends ModelBase {
 		modelTwoWaysCrossing.renderAll();
 	else if(type.equals("normal_diamond") || type.equals("embedded_diamond"))
 		modelDoubleDiamondCrossing.renderAll();
+	else if (type.equals("diagonal_crossing") || type.equals("embedded_diagonal_crossing"))
+		modelDiagonalTwoWaysCrossing.renderAll();
 	}
 
 

@@ -134,13 +134,14 @@ public class TCItems {
 		ItemIDs.tcRailTwoWaysCrossing.item = new ItemTCRail(ItemTCRail.TrackTypes.TWO_WAYS_CROSSING);
 		ItemIDs.tcRailDiamondCrossing.item = new ItemTCRail(ItemTCRail.TrackTypes.DIAMOND_CROSSING);
 		ItemIDs.tcRailDoubleDiamondCrossing.item = new ItemTCRail(ItemTCRail.TrackTypes.DOUBLE_DIAMOND_CROSSING);
+		ItemIDs.tcRailDiagonalTwoWaysCrossing.item	= new ItemTCRail(ItemTCRail.TrackTypes.DIAGONAL_TWO_WAYS_CROSSING);
 
 
 		/*Embedded Crossways*/
 		ItemIDs.tcRailEmbeddedTwoWaysCrossing.item = new ItemTCRail(ItemTCRail.TrackTypes.EMBEDDED_TWO_WAYS_CROSSING);
 		ItemIDs.tcRailEmbeddedDiamondCrossing.item = new ItemTCRail(ItemTCRail.TrackTypes.EMBEDDED_DIAMOND_CROSSING);
 		ItemIDs.tcRailEmbeddedDoubleDiamondCrossing.item = new ItemTCRail(ItemTCRail.TrackTypes.EMBEDDED_DOUBLE_DIAMOND_CROSSING);
-
+		ItemIDs.tcRailEmbeddedDiagonalTwoWaysCrossing.item	= new ItemTCRail(ItemTCRail.TrackTypes.EMBEDDED_DIAGONAL_TWO_WAYS_CROSSING);
 
 		/* Normal Switches*/
 		ItemIDs.tcRailMediumSwitch.item = new ItemTCRail(ItemTCRail.TrackTypes.MEDIUM_SWITCH);

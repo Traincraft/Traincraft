@@ -112,6 +112,7 @@ public enum ItemIDs {
 	tcRailTwoWaysCrossing("ItemTCRail","item_rail_two_ways_crossing",5),
 	tcRailDiamondCrossing("ItemTCRail", "item_rail_diamond_crossing", 5),
 	tcRailDoubleDiamondCrossing("ItemTCRail", "item_rail_tc_double_diamond_crossing", 5),
+	tcRailDiagonalTwoWaysCrossing("ItemTCRail", "item_rail_tc_diagonal_two_ways_crossing", 5),
 
 	tcRailMediumSwitch("ItemTCRail", "item_rail_switch_medium", 5),
 	tcRailLargeSwitch("ItemTCRail", "item_rail_switch_large", 5),
@@ -169,6 +170,7 @@ public enum ItemIDs {
 	tcRailEmbeddedTwoWaysCrossing("ItemTCRail","item_rail_embedded_two_ways_crossing",5),
 	tcRailEmbeddedDiamondCrossing("ItemTCRail", "item_rail_embedded_diamond_crossing", 5),
 	tcRailEmbeddedDoubleDiamondCrossing("ItemTCRail", "item_rail_tc_embedded_double_diamond_crossing", 5),
+	tcRailEmbeddedDiagonalTwoWaysCrossing("ItemTCRail", "item_rail_tc_embedded_diagonal_two_ways_crossing", 5),
 
 	tcRailEmbeddedMediumSwitch("ItemTCRail", "item_rail_embedded_switch_medium", 5),
 	tcRailEmbeddedLargeSwitch("ItemTCRail", "item_rail_embedded_switch_large", 5),

@@ -185,6 +185,10 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 						modelTwoWaysCrossing.render("normal_diamond", railTile, x, y, z);
 						break;
 					}
+					case DIAGONAL_TWO_WAYS_CROSSING:{
+						modelTwoWaysCrossing.render("diagonal_crossing", railTile, x, y, z);
+						break;
+					}
 					case MEDIUM_SWITCH:
 					case MEDIUM_RIGHT_SWITCH: {
 						modelRightSwitchTurn.render("medium", "", railTile, x, y, z);

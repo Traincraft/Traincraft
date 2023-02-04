@@ -21,6 +21,7 @@ import train.common.tile.TileTCRail;
 import train.common.tile.TileTCRailGag;
 
 import javax.annotation.Nullable;
+import javax.sound.midi.Track;
 import java.util.List;
 
 public class ItemTCRail extends ItemPart {
@@ -104,6 +105,7 @@ public class ItemTCRail extends ItemPart {
 		LEFT_DIAMOND_CROSSING("LEFT_DIAMOND_CROSSING", "DIAGONAL_CROSSING", ItemIDs.tcRailDiamondCrossing, "3x3"),
 
 		DOUBLE_DIAMOND_CROSSING("DOUBLE_DIAMOND_CROSSING", "DIAGONAL_CROSSING", ItemIDs.tcRailDoubleDiamondCrossing, "3x3"),
+		DIAGONAL_TWO_WAYS_CROSSING("DIAGONAL_TWO_WAYS_CROSSING", "DIAGONAL_CROSSING", ItemIDs.tcRailDiagonalTwoWaysCrossing, "3x3"),
 
 		MEDIUM_SWITCH("MEDIUM_RIGHT_SWITCH", "SWITCH", ItemIDs.tcRailMediumSwitch, "4x4"),
 		MEDIUM_RIGHT_SWITCH("MEDIUM_SWITCH", "SWITCH", ItemIDs.tcRailMediumSwitch, ""),
@@ -209,6 +211,7 @@ public class ItemTCRail extends ItemPart {
 		EMBEDDED_LARGE_LEFT_PARALLEL_CURVE("EMBEDDED_LARGE_LEFT_PARALLEL_CURVE", "CURVE", ItemIDs.tcRailEmbeddedLargeParallelCurve, ""),
 
 		EMBEDDED_TWO_WAYS_CROSSING("EMBEDDED_TWO_WAYS_CROSSING", "CROSSING", ItemIDs.tcRailEmbeddedTwoWaysCrossing, "3x3"),
+		EMBEDDED_DIAGONAL_TWO_WAYS_CROSSING("EMBEDDED_DIAGONAL_TWO_WAYS_CROSSING", "DIAGONAL_CROSSING", ItemIDs.tcRailEmbeddedDiagonalTwoWaysCrossing, "3x3"),
 
 		EMBEDDED_DIAMOND_CROSSING("EMBEDDED_DIAMOND_CROSSING", "DIAGONAL_CROSSING", ItemIDs.tcRailEmbeddedDiamondCrossing, "3x3"),
 		EMBEDDED_RIGHT_DIAMOND_CROSSING("EMBEDDED_RIGHT_DIAMOND_CROSSING", "DIAGONAL_CROSSING", ItemIDs.tcRailEmbeddedDiamondCrossing, "3x3"),
@@ -405,7 +408,9 @@ public class ItemTCRail extends ItemPart {
 				|| (tile.getType().equals(TrackTypes.DOUBLE_DIAMOND_CROSSING.getLabel()))
 				|| (tile.getType().equals(TrackTypes.EMBEDDED_RIGHT_DIAMOND_CROSSING.getLabel()))
 				|| (tile.getType().equals(TrackTypes.EMBEDDED_LEFT_DIAMOND_CROSSING.getLabel()))
-				|| (tile.getType().equals(TrackTypes.EMBEDDED_DOUBLE_DIAMOND_CROSSING.getLabel()));
+				|| (tile.getType().equals(TrackTypes.EMBEDDED_DOUBLE_DIAMOND_CROSSING.getLabel()))
+				|| (tile.getType().equals(TrackTypes.DIAGONAL_TWO_WAYS_CROSSING.getLabel()))
+				|| (tile.getType().equals(TrackTypes.EMBEDDED_DIAGONAL_TWO_WAYS_CROSSING.getLabel()));
 	}
 
 	public static boolean isTCSwitch(TileTCRail tile) {
@@ -780,6 +785,8 @@ public class ItemTCRail extends ItemPart {
 			return new int[][] { {0,0}, {1,0}, {2,0}, {0,-1}, {2,1} };
 		else if ( type == TrackTypes.DOUBLE_DIAMOND_CROSSING  || type == TrackTypes.EMBEDDED_DOUBLE_DIAMOND_CROSSING)
 			return new int[][] { {0,0}, {1,0}, {2,0}, {0,-1}, {2,-1},{0,1},{2,1}};
+		else if ( type == TrackTypes.DIAGONAL_TWO_WAYS_CROSSING  || type == TrackTypes.EMBEDDED_DIAGONAL_TWO_WAYS_CROSSING)
+			return new int[][] { {0,0}, {1,0}, {2,0}, {0,-1},{1,-1}, {2,-1},{0,1},{1,1},{2,1}};
 		/** Turns */
 		else if ( type == TrackTypes.MEDIUM_TURN || type == TrackTypes.EMBEDDED_MEDIUM_TURN )
 			return new int[][] { {0,0}, {1,0}, {1,1}, {2,1}, {2,2} };
@@ -1162,6 +1169,15 @@ public class ItemTCRail extends ItemPart {
 
 			else if (type == TrackTypes.DOUBLE_DIAMOND_CROSSING || type == TrackTypes.EMBEDDED_DOUBLE_DIAMOND_CROSSING) {
 				if (!doubleDiamondCrossing(player, world, x, y, z, l, type)){
+					return false;
+				}
+				if (player == null || !player.capabilities.isCreativeMode) {
+					--itemstack.stackSize;
+				}
+				return true;
+			}
+			else if (type == TrackTypes.DIAGONAL_TWO_WAYS_CROSSING || type == TrackTypes.EMBEDDED_DIAGONAL_TWO_WAYS_CROSSING) {
+				if (!diagonalTwoWaysCrossing(player, world, x, y, z, l, type)){
 					return false;
 				}
 				if (player == null || !player.capabilities.isCreativeMode) {
@@ -4187,7 +4203,7 @@ public class ItemTCRail extends ItemPart {
 		//Top
 
 		putDownSingleRail(world, x + (xDisplace * 2), y + 1, z + (zDisplace * 2), l, x + (xDisplace * 2), y + 1,
-				z + (zDisplace * 2), 0, typeVariantStraight, true, x + (xDisplace), y + 1,
+				z + (zDisplace * 2), 0, typeVariantStraight, false, x + (xDisplace), y + 1,
 				z + (zDisplace), false, false);
 
 		//Main
@@ -4204,7 +4220,7 @@ public class ItemTCRail extends ItemPart {
 		//Bottom
 
 
-		putDownSingleRail(world, x, y + 1, z, l, x, y + 1, z, 0, typeVariantStraight, true,
+		putDownSingleRail(world, x, y + 1, z, l, x, y + 1, z, 0, typeVariantStraight, false,
 				x + (xDisplace), y + 1, z + (zDisplace), false, false);
 
 		//Right
@@ -4212,7 +4228,7 @@ public class ItemTCRail extends ItemPart {
 		putDownSingleRail(world, x + (xDisplace * 2) + (xSideDisplace), y + 1,
 				z + (zDisplace * 2) + (zSideDisplace), sideFacing,
 				x + (xDisplace) + (xSideDisplace), y + 1, z + (zDisplace * 2) + (zSideDisplace), 0,
-				typeVariantDiagonal, true, x + (xDisplace), y + 1, z + (zDisplace),
+				typeVariantDiagonal, false, x + (xDisplace), y + 1, z + (zDisplace),
 				false, false);
 
 		//Left
@@ -4220,7 +4236,7 @@ public class ItemTCRail extends ItemPart {
 		putDownSingleRail(world, x  - (xSideDisplace), y + 1,
 				z -  (zSideDisplace), sideFacing,
 				x - (xSideDisplace), y + 1, z - (zSideDisplace), 0,
-				typeVariantDiagonal, true, x + (xDisplace), y + 1, z + (zDisplace),
+				typeVariantDiagonal, false, x + (xDisplace), y + 1, z + (zDisplace),
 				false, false);
 
 
@@ -4279,7 +4295,7 @@ public class ItemTCRail extends ItemPart {
 		//Top
 
 		putDownSingleRail(world, x + (xDisplace * 2), y + 1, z + (zDisplace * 2), l, x + (xDisplace * 2), y + 1,
-				z + (zDisplace * 2), 0, typeVariantStraight, true, x + (xDisplace), y + 1,
+				z + (zDisplace * 2), 0, typeVariantStraight, false, x + (xDisplace), y + 1,
 				z + (zDisplace), false, false);
 
 		//Main
@@ -4296,7 +4312,7 @@ public class ItemTCRail extends ItemPart {
 		//Bottom
 
 
-		putDownSingleRail(world, x, y + 1, z, l, x, y + 1, z, 0, typeVariantStraight, true,
+		putDownSingleRail(world, x, y + 1, z, l, x, y + 1, z, 0, typeVariantStraight, false,
 				x + (xDisplace), y + 1, z + (zDisplace), false, false);
 
 		//Left
@@ -4304,7 +4320,7 @@ public class ItemTCRail extends ItemPart {
 		putDownSingleRail(world, x + (xDisplace * 2) - (xSideDisplace), y + 1,
 				z + (zDisplace * 2) - (zSideDisplace), sideFacing,
 				x - (xDisplace) - (xSideDisplace), y + 1, z + (zDisplace * 2) - (zSideDisplace), 0,
-				typeVariantDiagonal, true, x + (xDisplace), y + 1, z + (zDisplace),
+				typeVariantDiagonal, false, x + (xDisplace), y + 1, z + (zDisplace),
 				false, false);
 
 		//Right
@@ -4312,7 +4328,7 @@ public class ItemTCRail extends ItemPart {
 		putDownSingleRail(world, x  + (xSideDisplace), y + 1,
 				z +  (zSideDisplace), sideFacing,
 				x + (xSideDisplace), y + 1, z + (zSideDisplace), 0,
-				typeVariantDiagonal, true, x + (xDisplace), y + 1, z + (zDisplace),
+				typeVariantDiagonal, false, x + (xDisplace), y + 1, z + (zDisplace),
 				false, false);
 
 
@@ -4382,7 +4398,7 @@ public class ItemTCRail extends ItemPart {
 		//Top
 
 		putDownSingleRail(world, x + (xDisplace * 2), y + 1, z + (zDisplace * 2), l, x + (xDisplace * 2), y + 1,
-				z + (zDisplace * 2), 0, typeVariantStraight, true, x + (xDisplace), y + 1,
+				z + (zDisplace * 2), 0, typeVariantStraight, false, x + (xDisplace), y + 1,
 				z + (zDisplace), false, false);
 
 		//Main
@@ -4399,13 +4415,13 @@ public class ItemTCRail extends ItemPart {
 		//Bottom
 
 
-		putDownSingleRail(world, x, y + 1, z, l, x, y + 1, z, 0, typeVariantStraight, true,
+		putDownSingleRail(world, x, y + 1, z, l, x, y + 1, z, 0, typeVariantStraight, false,
 				x + (xDisplace), y + 1, z + (zDisplace), false, false);
 		//RIGHT
 		putDownSingleRail(world, x + (xDisplace * 2) + (xSideDisplace), y + 1,
 				z + (zDisplace * 2) + (zSideDisplace), sideFacing,
 				x + (xDisplace) + (xSideDisplace), y + 1, z + (zDisplace * 2) + (zSideDisplace), 0,
-				typeVariantDiagonal, true, x + (xDisplace), y + 1, z + (zDisplace),
+				typeVariantDiagonal, false,x + (xDisplace), y + 1, z + (zDisplace),
 				false, false);
 
 		//Left
@@ -4413,14 +4429,14 @@ public class ItemTCRail extends ItemPart {
 		putDownSingleRail(world, x  - (xSideDisplace), y + 1,
 				z -  (zSideDisplace), sideFacing,
 				x - (xSideDisplace), y + 1, z - (zSideDisplace), 0,
-				typeVariantDiagonal, true, x + (xDisplace), y + 1, z + (zDisplace),
+				typeVariantDiagonal, false, x + (xDisplace), y + 1, z + (zDisplace),
 				false, false);
 		//Left2
 
 		putDownSingleRail(world, x + (xDisplace * 2) - (xSideDisplace), y + 1,
 				z + (zDisplace * 2) - (zSideDisplace), sideFacing2,
 				x - (xDisplace) - (xSideDisplace), y + 1, z + (zDisplace * 2) - (zSideDisplace), 0,
-				typeVariantDiagonal, true, x + (xDisplace), y + 1, z + (zDisplace),
+				typeVariantDiagonal, false, x + (xDisplace), y + 1, z + (zDisplace),
 				false, false);
 
 		//Right2
@@ -4428,8 +4444,108 @@ public class ItemTCRail extends ItemPart {
 		putDownSingleRail(world, x  + (xSideDisplace), y + 1,
 				z +  (zSideDisplace), sideFacing2,
 				x + (xSideDisplace), y + 1, z + (zSideDisplace), 0,
-				typeVariantDiagonal, true, x + (xDisplace), y + 1, z + (zDisplace),
+				typeVariantDiagonal, false, x + (xDisplace), y + 1, z + (zDisplace),
 				false, false);
+
+		return true;
+	}
+
+	private boolean diagonalTwoWaysCrossing(EntityPlayer player, World world, int x, int y, int z, int l, TrackTypes type){
+		if (type.getLabel().contains("EMBEDDED")) {
+			typeVariantDiagonal = TrackTypes.EMBEDDED_SMALL_DIAGONAL_STRAIGHT.getLabel();
+		}
+
+
+		if (!canPlaceTrack(player, world, x, y + 1, z)) {
+			return false;
+		}
+
+		int zDisplace = 0;
+		int xDisplace = 0;
+		int xSideDisplace = 0;
+		int zSideDisplace = 0;
+		int sideFacing = l;
+		int sideFacing2 = l;
+
+		if (l == 2){
+			zDisplace = -1;
+			xSideDisplace = 1;
+			sideFacing = 6;
+			sideFacing2 = 5;
+		}
+		if (l == 0) {
+			zDisplace = 1;
+			xSideDisplace = -1;
+			sideFacing = 4;
+			sideFacing2 = 7;
+		}
+		if (l == 1) {
+			xDisplace = -1;
+			zSideDisplace= -1;
+			sideFacing = 5;
+			sideFacing2 = 4;
+		}
+		if (l == 3) {
+			xDisplace = 1;
+			zSideDisplace=1;
+			sideFacing = 7;
+			sideFacing2 = 6;
+		}
+
+		if (!canPlaceTrack(player, world, x + (xDisplace * 2) - xSideDisplace, y + 1, z + (zDisplace * 2) - zSideDisplace) ) {
+			return false;
+		}
+		if (!canPlaceTrack(player, world, x + (xSideDisplace), y + 1, z + zSideDisplace)) {
+			return false;
+		}
+		if (!canPlaceTrack(player, world, x + (xDisplace * 2) + xSideDisplace, y + 1, z + (zDisplace * 2) + zSideDisplace) ) {
+			return false;
+		}
+		if (!canPlaceTrack(player, world, x - (xSideDisplace), y + 1, z - zSideDisplace)) {
+			return false;
+		}
+
+
+		//Main
+		placeTrack(world,x , y + 1, z , BlockIDs.tcRail.block, l);
+		TileTCRail tcRail2 = (TileTCRail) world.getTileEntity(x , y + 1, z);
+		tcRail2.setFacing(l);
+		tcRail2.cx = x + (xDisplace);
+		tcRail2.cy = y + 1;
+		tcRail2.cz = z + (zDisplace);
+		tcRail2.setType(type.getLabel());
+		tcRail2.idDrop = this.type.getItem().item;
+
+		//RIGHT
+		putDownSingleRail(world, x + xDisplace + (xSideDisplace), y + 1,
+				z + zDisplace + (zSideDisplace), sideFacing,
+				x + (xDisplace) + (xSideDisplace), y + 1, z + zDisplace + (zSideDisplace), 0,
+				typeVariantDiagonal, false,x , y + 1, z,
+				false, false);
+
+		//Left
+
+		putDownSingleRail(world, x -  xDisplace - (xSideDisplace), y + 1,
+				z -  zDisplace - (zSideDisplace), sideFacing,
+				x - xDisplace -  (xSideDisplace), y + 1, z -  zDisplace - (zSideDisplace), 0,
+				typeVariantDiagonal, false, x , y + 1, z,
+				false, false);
+		//Left2
+
+		putDownSingleRail(world, x + xDisplace  - (xSideDisplace), y + 1,
+				z + zDisplace  - (zSideDisplace), sideFacing2,
+				x + (xDisplace) - (xSideDisplace), y + 1, z + zDisplace  - (zSideDisplace), 0,
+				typeVariantDiagonal, false, x , y + 1, z ,
+				false, false);
+
+		//Right2
+
+		putDownSingleRail(world, x   - xDisplace + (xSideDisplace), y + 1,
+				z - zDisplace +  (zSideDisplace), sideFacing2,
+				x - xDisplace + (xSideDisplace), y + 1, z - zDisplace + (zSideDisplace), 0,
+				typeVariantDiagonal, false, x, y + 1, z ,
+				false, false);
+
 
 		return true;
 	}
