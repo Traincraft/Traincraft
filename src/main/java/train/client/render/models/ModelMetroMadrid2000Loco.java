@@ -249,7 +249,7 @@ public class ModelMetroMadrid2000Loco extends ModelConverter //Same as Filename
 		bodyModel[211] = new ModelRendererTurbo(this, 129, 97, textureX, textureY); // Import Box83
 		bodyModel[212] = new ModelRendererTurbo(this, 297, 97, textureX, textureY); // Import Box52
 		bodyModel[213] = new ModelRendererTurbo(this, 393, 97, textureX, textureY); // Import Box413
-		bodyModel[214] = new ModelRendererTurbo(this, 137, 97, textureX, textureY, "lamp"); // Import Lamp4
+		bodyModel[214] = new ModelRendererTurbo(this, 137, 97, textureX, textureY); // Import Lamp4
 		bodyModel[215] = new ModelRendererTurbo(this, 265, 97, textureX, textureY); // Import Box415
 		bodyModel[216] = new ModelRendererTurbo(this, 297, 105, textureX, textureY); // Import Box424
 		bodyModel[217] = new ModelRendererTurbo(this, 306, 106, textureX, textureY); // Import Box425
@@ -313,7 +313,7 @@ public class ModelMetroMadrid2000Loco extends ModelConverter //Same as Filename
 		bodyModel[275] = new ModelRendererTurbo(this, 49, 49, textureX, textureY); // Import Box335
 		bodyModel[276] = new ModelRendererTurbo(this, 147, 112, textureX, textureY); // Import Box336
 		bodyModel[277] = new ModelRendererTurbo(this, 185, 89, textureX, textureY); // Import Box337
-		bodyModel[278] = new ModelRendererTurbo(this, 209, 89, textureX, textureY); // Import Lamp1l
+		bodyModel[278] = new ModelRendererTurbo(this, 209, 89, textureX, textureY,"lamp"); // Import Lamp1l
 		bodyModel[279] = new ModelRendererTurbo(this, 297, 105, textureX, textureY); // Import Box339
 		bodyModel[280] = new ModelRendererTurbo(this, 505, 89, textureX, textureY); // Import Box340
 		bodyModel[281] = new ModelRendererTurbo(this, 297, 97, textureX, textureY); // Import Box341
