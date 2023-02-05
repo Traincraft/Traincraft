@@ -1,6 +1,10 @@
 package train.common.tile;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityMinecart;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -9,7 +13,10 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
+import train.common.Traincraft;
+import train.common.blocks.TCBlocks;
 import train.common.items.ItemTCRail;
+import train.common.library.BlockIDs;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +31,7 @@ public class TileTCRail extends TileEntity {
 	public double slopeLength;
 	public double slopeAngle;
 	public double railLength;
+	public float bbHeight = 0.125f;
 
 	private int ballastMaterial;
 	public int ballastMetadata;
@@ -120,7 +128,18 @@ public class TileTCRail extends TileEntity {
 		}
 	}
 
+	@SideOnly(Side.CLIENT)
+	public AxisAlignedBB getRenderBoundingBox()
+	{
+		AxisAlignedBB bb = INFINITE_EXTENT_AABB;
+		Block type = getBlockType();
+		if (type == BlockIDs.tcRail.block )
+		{
+			bb = AxisAlignedBB.getBoundingBox(xCoord - 18, yCoord, zCoord - 18, xCoord + 18, yCoord , zCoord + 18);
+		}
 
+		return bb;
+	}
 
 	private ItemTCRail.TrackTypes renderType = null;
 	public ItemTCRail.TrackTypes getTrackType(){
