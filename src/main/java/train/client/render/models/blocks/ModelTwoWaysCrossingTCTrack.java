@@ -24,11 +24,11 @@ public class ModelTwoWaysCrossingTCTrack extends ModelBase {
 	}
 
 	public void render(String type) {
-	if (type.equals("crossing") || type.equals("embedded_crossing"))
+	if (type.equals("normal_crossing") || type.equals("embedded_crossing"))
 		modelTwoWaysCrossing.renderAll();
 	else if(type.equals("normal_diamond") || type.equals("embedded_diamond"))
 		modelDoubleDiamondCrossing.renderAll();
-	else if (type.equals("diagonal_crossing") || type.equals("embedded_diagonal_crossing"))
+	else if (type.equals("normal_diagonal_crossing") || type.equals("embedded_diagonal_crossing"))
 		modelDiagonalTwoWaysCrossing.renderAll();
 	}
 

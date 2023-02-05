@@ -169,7 +169,7 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 						break;
 					}
 					case TWO_WAYS_CROSSING: {
-						modelTwoWaysCrossing.render("crossing",railTile, x, y, z);
+						modelTwoWaysCrossing.render("normal_crossing",railTile, x, y, z);
 						break;
 					}
 					case DIAMOND_CROSSING:
@@ -186,7 +186,7 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 						break;
 					}
 					case DIAGONAL_TWO_WAYS_CROSSING:{
-						modelTwoWaysCrossing.render("diagonal_crossing", railTile, x, y, z);
+						modelTwoWaysCrossing.render("normal_diagonal_crossing", railTile, x, y, z);
 						break;
 					}
 					case MEDIUM_SWITCH:
@@ -462,6 +462,10 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 
 					case EMBEDDED_TWO_WAYS_CROSSING: {
 						modelTwoWaysCrossing.render("embedded_crossing", railTile, x, y, z);
+						break;
+					}
+					case EMBEDDED_DIAGONAL_TWO_WAYS_CROSSING:{
+						modelTwoWaysCrossing.render("embedded_diagonal_crossing", railTile, x, y, z);
 						break;
 					}
 

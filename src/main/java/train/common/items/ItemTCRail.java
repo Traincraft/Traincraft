@@ -4492,16 +4492,16 @@ public class ItemTCRail extends ItemPart {
 			sideFacing2 = 6;
 		}
 
-		if (!canPlaceTrack(player, world, x + (xDisplace * 2) - xSideDisplace, y + 1, z + (zDisplace * 2) - zSideDisplace) ) {
+		if (!canPlaceTrack(player, world, x + xDisplace  + xSideDisplace, y + 1, z + zDisplace  + zSideDisplace) ) {
 			return false;
 		}
-		if (!canPlaceTrack(player, world, x + (xSideDisplace), y + 1, z + zSideDisplace)) {
+		if (!canPlaceTrack(player, world, x - xDisplace - (xSideDisplace), y + 1, z - zDisplace - zSideDisplace)) {
 			return false;
 		}
-		if (!canPlaceTrack(player, world, x + (xDisplace * 2) + xSideDisplace, y + 1, z + (zDisplace * 2) + zSideDisplace) ) {
+		if (!canPlaceTrack(player, world, x + xDisplace - xSideDisplace, y + 1, z + zDisplace - zSideDisplace) ) {
 			return false;
 		}
-		if (!canPlaceTrack(player, world, x - (xSideDisplace), y + 1, z - zSideDisplace)) {
+		if (!canPlaceTrack(player, world, x - xDisplace + (xSideDisplace), y + 1, z - zDisplace  + zSideDisplace)) {
 			return false;
 		}
 
@@ -4540,7 +4540,7 @@ public class ItemTCRail extends ItemPart {
 
 		//Right2
 
-		putDownSingleRail(world, x   - xDisplace + (xSideDisplace), y + 1,
+		putDownSingleRail(world, x  - xDisplace + (xSideDisplace), y + 1,
 				z - zDisplace +  (zSideDisplace), sideFacing2,
 				x - xDisplace + (xSideDisplace), y + 1, z - zDisplace + (zSideDisplace), 0,
 				typeVariantDiagonal, false, x, y + 1, z ,
