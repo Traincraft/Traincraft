@@ -188,8 +188,8 @@ item.tc:composite_wrench.name=Llave inglesa compuesta
 item.tc:minecartPassengerHighSpeedCarZeroED.name=Vagón de pasajeros de alta velocidad 
 item.tc:minecartNYTram.name=Metro N.Y. (EE.UU.) item.tc:minecartLocoHighSpeedZeroED.name=High Locomotora de alta velocidad item.tc:minecartLocoC62Class.name=Serie C62  [JNR] item.tc:minecartTenderC62Class.name=Ténder de la Serie C62  [JNR] item.tc:minecartLocoSteamShay.name=Shay (EE.UU.) item.tc:minecartLocoSteamAdler.name=Adler (R.U.) item.tc:minecartTenderAdler.name=Ténder Adler (R.U.) item.tc:minecartPassengerAdler.name=Vagón de pasajeros Adler (R.U.)
 item.tc:minecartCabooseLogging.name=Furgón de cola item.tc:minecartPassengerTramNY.name= Vagón de pasajeros del metro de N.Y. item.tc:minecartLocoSD40.name=SD40-2 (US) item.tc:zeppelin.name=Zepelín item.tc:copperRail.name=Fiel de cobre item.tc:steelRail.name=Riel de acero item.tc:tcRailMediumTurn.name=Curva mediana item.tc:tcRailLargeTurn.name=Curva grande item.tc:tcRailVeryLargeTurn.name=Curva más grande item.tc:tcRailLongStraight.name=Vía recta larga item.tc:tcRailMediumStraight.name=Vía recta mediana item.tc:tcRailSmallStraight.name=Vía recta pequeña item.tc:tcRailMediumSwitch.name=Conmutador perpendicular pequeño
-item.tc:tcRailLargeSwitch.name=Conmutador perpendicular grande 
-item.tc:tcRailMediumParallelSwitch.name=Conmutador en paralelo 
+item.tc:tcRailLargeSwitch.name=Desvio perpendicular grande
+item.tc:tcRailMediumParallelSwitch.name=Desvio en paralelo
 i
 tem.tc:tcRailTwoWaysCrossing.name=Cruce perpenficular 
 item.tc:tcRailSlopeWood.name=Vía en pendiete (madera) 
