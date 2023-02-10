@@ -409,7 +409,7 @@ public class TileTCRail extends TileEntity {
 					|| type.equals(ItemTCRail.TrackTypes.SLOPE_GRAVEL.getLabel())
 					|| type.equals(ItemTCRail.TrackTypes.SLOPE_BALLAST.getLabel())
 					|| type.equals(ItemTCRail.TrackTypes.SLOPE_SNOW_GRAVEL.getLabel())
-					|| type.equals(ItemTCRail.TrackTypes.SLOPE_DYNAMIC.getLabel())) {
+						|| type.equals(ItemTCRail.TrackTypes.SLOPE_DYNAMIC.getLabel())) {
 				slopeAngle = 0.13;
 			} else if (type.equals(ItemTCRail.TrackTypes.LARGE_SLOPE_WOOD.getLabel())
 					|| type.equals(ItemTCRail.TrackTypes.LARGE_SLOPE_GRAVEL.getLabel())

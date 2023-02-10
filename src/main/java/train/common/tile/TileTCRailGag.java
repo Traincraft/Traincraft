@@ -22,6 +22,7 @@ public class TileTCRailGag extends TileEntity {
 	public int originZ;
 	public String type = "";
 	public float bbHeight = 0.125f;
+	public boolean canPlaceRollingstock = true;
 
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
@@ -31,9 +32,15 @@ public class TileTCRailGag extends TileEntity {
 		originZ = nbt.getInteger("originZ");
 		bbHeight = nbt.getFloat("bbHeight");
 		type = nbt.getString("type");
+		canPlaceRollingstock = nbt.getBoolean("canPlaceRollingstock");
+
 
 		super.readFromNBT(nbt);
 	}
+
+
+
+
 
 	@Override
 	public void writeToNBT(NBTTagCompound nbt) {
@@ -46,6 +53,7 @@ public class TileTCRailGag extends TileEntity {
 			type = "null";
 		}
 		nbt.setString("type", type);
+		nbt.setBoolean("canPlaceRollingstock", canPlaceRollingstock);
 
 		super.writeToNBT(nbt);
 	}

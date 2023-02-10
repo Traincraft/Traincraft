@@ -65,6 +65,7 @@ public enum ItemIDs {
 	steelRail("ItemTrain", "item_rail_steel", 1),
 	recipeBook("ItemRecipeBook", "item_book_blue", 1),
 	adminBook("ItemAdminBook", "item_book_blue", 0),
+	trackDebugger("ItemTrackDebugger", "item_composite_wrench", 0),
 	wirelessTransmitter("ItemWirelessTransmitter", "wireless_transmitter", 3),
 	paintbrushThing("ItemPaintbrushThing","paintbrushThing",1),
 	whistle("ItemWhistle","whistle", 1),
@@ -113,6 +114,7 @@ public enum ItemIDs {
 	tcRailDiamondCrossing("ItemTCRail", "item_rail_diamond_crossing", 5),
 	tcRailDoubleDiamondCrossing("ItemTCRail", "item_rail_tc_double_diamond_crossing", 5),
 	tcRailDiagonalTwoWaysCrossing("ItemTCRail", "item_rail_two_ways_crossing", 5),
+	tcRailFourWaysCrossing("ItemTCRail", "item_rail_two_ways_crossing", 5),
 
 	tcRailMediumSwitch("ItemTCRail", "item_rail_switch_medium", 5),
 	tcRailLargeSwitch("ItemTCRail", "item_rail_switch_large", 5),
@@ -171,6 +173,7 @@ public enum ItemIDs {
 	tcRailEmbeddedDiamondCrossing("ItemTCRail", "item_rail_embedded_diamond_crossing", 5),
 	tcRailEmbeddedDoubleDiamondCrossing("ItemTCRail", "item_rail_tc_embedded_double_diamond_crossing", 5),
 	tcRailEmbeddedDiagonalTwoWaysCrossing("ItemTCRail", "item_rail_embedded_two_ways_crossing", 5),
+	tcRailEmbeddedFourWaysCrossing("ItemTCRail", "item_rail_embedded_two_ways_crossing", 5),
 
 	tcRailEmbeddedMediumSwitch("ItemTCRail", "item_rail_embedded_switch_medium", 5),
 	tcRailEmbeddedLargeSwitch("ItemTCRail", "item_rail_embedded_switch_large", 5),

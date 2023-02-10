@@ -172,6 +172,10 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 						modelTwoWaysCrossing.render("normal_crossing",railTile, x, y, z);
 						break;
 					}
+					case FOUR_WAYS_CROSSING: {
+						modelTwoWaysCrossing.render("normal_universal_crossing",railTile, x, y, z);
+						break;
+					}
 					case DIAMOND_CROSSING:
 					case RIGHT_DIAMOND_CROSSING: {
 						modelRightDiamondCrossing.render("normal", railTile, x, y, z);
@@ -462,6 +466,10 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 
 					case EMBEDDED_TWO_WAYS_CROSSING: {
 						modelTwoWaysCrossing.render("embedded_crossing", railTile, x, y, z);
+						break;
+					}
+					case EMBEDDED_FOUR_WAYS_CROSSING: {
+						modelTwoWaysCrossing.render("embedded_universal_crossing", railTile, x, y, z);
 						break;
 					}
 					case EMBEDDED_DIAGONAL_TWO_WAYS_CROSSING:{

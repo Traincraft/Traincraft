@@ -29,6 +29,7 @@ import train.common.library.BlockIDs;
 import train.common.tile.TileTCRail;
 import train.common.tile.TileTCRailGag;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static train.common.core.util.TraincraftUtil.isRailBlockAt;
@@ -309,7 +310,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 
 		if (canUseRail() && BlockRailBase.func_150051_a(l)) {
 
-
+			Traincraft.tcLog.info(prevRotationYaw);
 			int i1 = ((BlockRailBase) l).getBasicRailMetadata(worldObj, this, i, j, k);
 			meta = i1;
 
@@ -454,7 +455,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 				moveOnTCTwoWaysCrossing();
 			} else if (ItemTCRail.isTCSlopeTrack(tileRail)) {
 				moveOnTCSlope(j, tileRail.xCoord, tileRail.zCoord, tileRail.slopeAngle, tileRail.slopeHeight, tileRail.getBlockMetadata());
-			} else if (ItemTCRail.isTCDiamondCrossingTrack(tileRail)) {
+			} else if (ItemTCRail.isTCDiagonalCrossingTrack(tileRail)) {
 				moveOnTCDiamondCrossing(i, j, k, tileRail.xCoord,  tileRail.zCoord );
 			} else if (ItemTCRail.isTCDiagonalStraightTrack(tileRail)) {
 				moveOnTCDiagonal(i, j, k, tileRail.xCoord, tileRail.zCoord, tileRail.getBlockMetadata(), tileRail.getRailLength());
@@ -479,7 +480,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 				if (ItemTCRail.isTCSlopeTrack(tile)) {
 					moveOnTCSlope(j, tile.xCoord, tile.zCoord, tile.slopeAngle, tile.slopeHeight, tile.getBlockMetadata());
 				}
-				else if (ItemTCRail.isTCDiamondCrossingTrack(tile)) {
+				else if (ItemTCRail.isTCDiagonalCrossingTrack(tile)) {
 					moveOnTCDiamondCrossing(i, j, k, tile.xCoord,  tile.zCoord );
 				}
 				if (ItemTCRail.isTCDiagonalStraightTrack(tile)) {

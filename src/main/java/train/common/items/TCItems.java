@@ -41,6 +41,7 @@ public class TCItems {
 		ItemIDs.chunkLoaderActivator.item = new ItemChunkLoaderActivator();
 		ItemIDs.recipeBook.item = new ItemRecipeBook();
 		ItemIDs.adminBook.item = new ItemAdminBook();
+		ItemIDs.trackDebugger.item = new ItemTrackDebugger();
 		
 		ItemIDs.stake.item = new ItemStacked(200);
 		ItemIDs.airship.item = new ItemZeppelins(0);
@@ -135,6 +136,7 @@ public class TCItems {
 		ItemIDs.tcRailDiamondCrossing.item = new ItemTCRail(ItemTCRail.TrackTypes.DIAMOND_CROSSING);
 		ItemIDs.tcRailDoubleDiamondCrossing.item = new ItemTCRail(ItemTCRail.TrackTypes.DOUBLE_DIAMOND_CROSSING);
 		ItemIDs.tcRailDiagonalTwoWaysCrossing.item	= new ItemTCRail(ItemTCRail.TrackTypes.DIAGONAL_TWO_WAYS_CROSSING);
+		ItemIDs.tcRailFourWaysCrossing.item = new ItemTCRail(ItemTCRail.TrackTypes.FOUR_WAYS_CROSSING);
 
 
 		/*Embedded Crossways*/
@@ -142,6 +144,7 @@ public class TCItems {
 		ItemIDs.tcRailEmbeddedDiamondCrossing.item = new ItemTCRail(ItemTCRail.TrackTypes.EMBEDDED_DIAMOND_CROSSING);
 		ItemIDs.tcRailEmbeddedDoubleDiamondCrossing.item = new ItemTCRail(ItemTCRail.TrackTypes.EMBEDDED_DOUBLE_DIAMOND_CROSSING);
 		ItemIDs.tcRailEmbeddedDiagonalTwoWaysCrossing.item	= new ItemTCRail(ItemTCRail.TrackTypes.EMBEDDED_DIAGONAL_TWO_WAYS_CROSSING);
+		ItemIDs.tcRailEmbeddedFourWaysCrossing.item = new ItemTCRail(ItemTCRail.TrackTypes.EMBEDDED_FOUR_WAYS_CROSSING);
 
 		/* Normal Switches*/
 		ItemIDs.tcRailMediumSwitch.item = new ItemTCRail(ItemTCRail.TrackTypes.MEDIUM_SWITCH);

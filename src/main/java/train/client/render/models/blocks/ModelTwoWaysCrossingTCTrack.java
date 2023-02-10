@@ -16,11 +16,13 @@ public class ModelTwoWaysCrossingTCTrack extends ModelBase {
 	private IModelCustom modelTwoWaysCrossing;
 	private IModelCustom modelDoubleDiamondCrossing;
 	private IModelCustom modelDiagonalTwoWaysCrossing;
+	private IModelCustom modelFourWaysCrossing;
 
 	public ModelTwoWaysCrossingTCTrack() {
 		modelTwoWaysCrossing = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_x.obj"));
 		modelDoubleDiamondCrossing = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_double_diamond_crossing.obj"));
 		modelDiagonalTwoWaysCrossing = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_diagonal_crossing.obj"));
+		modelFourWaysCrossing = AdvancedModelLoader.loadModel(new ResourceLocation(Info.modelPrefix + "track_universal_crossing.obj"));
 	}
 
 	public void render(String type) {
@@ -30,6 +32,8 @@ public class ModelTwoWaysCrossingTCTrack extends ModelBase {
 		modelDoubleDiamondCrossing.renderAll();
 	else if (type.equals("normal_diagonal_crossing") || type.equals("embedded_diagonal_crossing"))
 		modelDiagonalTwoWaysCrossing.renderAll();
+	else if (type.equals("normal_universal_crossing") || type.equals("embedded_universal_crossing"))
+		modelFourWaysCrossing.renderAll();
 	}
 
 

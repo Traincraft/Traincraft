@@ -179,6 +179,12 @@ public class CustomRenderHandler {
                 type = "embedded";
             RenderTCRail.modelTwoWaysCrossing.render(type + "_diagonal_crossing", 0, 0, 0, facing, r, g, b, a);
         }
+        else if (item.getTrackType() == ItemTCRail.TrackTypes.FOUR_WAYS_CROSSING || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_FOUR_WAYS_CROSSING){
+            String type = "normal";
+            if (item.getTrackType().getLabel().contains("EMBEDDED"))
+                type = "embedded";
+            RenderTCRail.modelTwoWaysCrossing.render(type + "_universal_crossing", 0, 0, 0, facing, r, g, b, a);
+        }
         else if (item.getTrackType() == ItemTCRail.TrackTypes.DIAMOND_CROSSING || item.getTrackType() == ItemTCRail.TrackTypes.EMBEDDED_DIAMOND_CROSSING){
             float yaw = MathHelper.wrapAngleTo180_float(player.rotationYaw);
             boolean isLeftTurn = item.getTrackOrientation( facing, yaw ).equals("left");

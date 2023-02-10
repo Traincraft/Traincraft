@@ -59,6 +59,7 @@ import train.common.tile.TileTCRail;
 import train.common.tile.TileTCRailGag;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static train.common.core.util.TraincraftUtil.degrees;
@@ -981,6 +982,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			
 
 			 int ai[][] = matrix[i1];
+				Traincraft.tcLog.info("ER i1: " + i1 + " ai: " + Arrays.deepToString(ai));
 			 double d9 = ai[1][0] - ai[0][0];
 			 double d10 = ai[1][2] - ai[0][2];
 			 double d11 = Math.sqrt(d9 * d9 + d10 * d10);
@@ -1161,7 +1163,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			else if (ItemTCRail.isTCTwoWaysCrossingTrack(tile)) {
 				moveOnTCTwoWaysCrossing(i, j, k, tile.xCoord, tile.yCoord, tile.zCoord, meta);
 			}
-			else if (ItemTCRail.isTCDiamondCrossingTrack(tile)) {
+			else if (ItemTCRail.isTCDiagonalCrossingTrack(tile)) {
 				moveOnTCDiamondCrossing(i, j, k, tile.xCoord, tile.yCoord, tile.zCoord, meta );
 			}
 			else if (ItemTCRail.isTCDiagonalStraightTrack(tile)) {
@@ -1190,7 +1192,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 				if (ItemTCRail.isTCDiagonalStraightTrack(tile)) {
 					moveOnTCDiagonal(i, j, k, tile.xCoord, tile.zCoord, tile.getBlockMetadata(), tile.getRailLength());
 				}
-				else if (ItemTCRail.isTCDiamondCrossingTrack(tile)) {
+				else if (ItemTCRail.isTCDiagonalCrossingTrack(tile)) {
 					moveOnTCDiamondCrossing(i, j, k, tile.xCoord, tile.yCoord, tile.zCoord, meta );
 				}
 				if (ItemTCRail.isTCCurvedSlopeTrack(tile)) {
@@ -1309,7 +1311,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		this.posX = (this.boundingBox.minX + this.boundingBox.maxX) / 2.0D;
 		this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
 		this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) / 2.0D;
-		Traincraft.tcLog.info("rotation: " + serverRealRotation + " l: " + (MathHelper.floor_double( serverRealRotation * 8.0F / 360.0F + 0.5) & 7));
 
 	}
 
