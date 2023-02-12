@@ -8,7 +8,6 @@
 package train.common.library;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockSlab;
 import net.minecraft.item.ItemBlock;
 import train.common.items.*;
 import train.common.wellcar.ItemFortyFootContainer;
@@ -84,7 +83,6 @@ public enum BlockIDs {
 	;
 
 	public Block block;
-	public BlockSlab blockSlab;
 	public boolean hasItemBlock;
 	public Class itemBlockClass;
 
