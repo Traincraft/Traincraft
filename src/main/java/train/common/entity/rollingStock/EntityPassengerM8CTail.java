@@ -7,15 +7,16 @@ import net.minecraft.world.World;
 import train.common.api.EntityRollingStock;
 import train.common.api.IPassenger;
 
-public class EntityPassengerMetro2000 extends EntityRollingStock implements IPassenger {
+public class EntityPassengerM8CTail extends EntityRollingStock implements IPassenger {
+    //public TiltingHandler tiltingHandler = new TiltingHandler(7);
 
-    public EntityPassengerMetro2000(World world) {
+    public EntityPassengerM8CTail(World world) {
         super(world);
     }
 
-    public EntityPassengerMetro2000(World world, double d, double d1, double d2) {
+    public EntityPassengerM8CTail(World world, double d, double d1, double d2){
         this(world);
-        setPosition(d, d1 + (double) yOffset, d2);
+        setPosition(d, d1 + yOffset, d2);
         motionX = 0.0D;
         motionY = 0.0D;
         motionZ = 0.0D;
@@ -27,10 +28,11 @@ public class EntityPassengerMetro2000 extends EntityRollingStock implements IPas
     @Override
     public void updateRiderPosition() {
         if(riddenByEntity!=null) {
-            riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset() + -0.1, posZ);
-        }
+            riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset() + 0.0, posZ);
+        }//ew yucky rider position code, good thing its a passenger car so it doesnt matter! Wheeze.png
     }
 
+    @Override
     public void setDead() {
         super.setDead();
         isDead = true;
@@ -54,6 +56,7 @@ public class EntityPassengerMetro2000 extends EntityRollingStock implements IPas
         }
         return true;
     }
+
     @Override
     public boolean canBeRidden() {
         return true;
@@ -71,6 +74,6 @@ public class EntityPassengerMetro2000 extends EntityRollingStock implements IPas
 
     @Override
     public float getOptimalDistance(EntityMinecart cart) {
-        return 2.15F;
+        return 1.95F;
     }
 }

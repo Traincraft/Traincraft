@@ -715,6 +715,8 @@ item.tc:minecartBRBrakeVan.name=BR Brake Van
 item.tc:minecartDuewagT4ER.name=Duewag T4 ER
 item.tc:minecartDuewagGT6ZRLoco.name=Duewag GT6ZR Loco
 item.tc:minecartDuewagGT6ZRTail.name=Duewag GT6ZR Tail
+item.tc:minecartM8CLoco.name=M8C Loco
+item.tc:minecartM8CTail.name=M8C Tail
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -1279,6 +1281,8 @@ entity.tc.BRBrakeVan.name=BR Brake Van
 entity.tc.DuewagT4ER.name=Duewag T4 ER
 entity.tc.DuewagGT6ZRLoco.name=Duewag GT6ZR Loco
 entity.tc.DuewagGT6ZRTail.name=Duewag GT6ZR Tail
+entity.tc.M8CLoco.name=M8C Loco
+entity.tc.M8CTail.name=M8C Tail
 
 description.villager.profession.tc.station_chief=Station Chief
 
