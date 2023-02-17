@@ -1,0 +1,6 @@
+name: Class 205 engine
+type: diesel
+fuel capacity: 10000
+inventory: 12
+MHP: 600
+speed: 121 (i know right, like all of this southern region stuff maxes out at 75mph)
