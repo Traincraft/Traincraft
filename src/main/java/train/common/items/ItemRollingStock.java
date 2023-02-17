@@ -44,8 +44,14 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 		this.iconName = iconName;
 		maxStackSize = 1;
 		trainName = this.getUnlocalizedName();
-
+		if(!ConfigHandler.SPLIT_CREATIVE) {
+			setCreativeTab(Traincraft.tcTab);
+		} else {
+			setCreativeTab(Traincraft.tcTrainTab);
+		}
 	}
+
+
 
 	public int setNewUniqueID(ItemStack stack, EntityPlayer player, int numberOfTrains) {
 		NBTTagCompound var3 = stack.getTagCompound();
