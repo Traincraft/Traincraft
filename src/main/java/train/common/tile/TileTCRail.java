@@ -33,7 +33,7 @@ public class TileTCRail extends TileEntity {
 	public double railLength;
 	public float bbHeight = 0.125f;
 
-	private int ballastMaterial;
+	public int ballastMaterial;
 	public int ballastMetadata;
 	public int ballastColour;
 	private String type;

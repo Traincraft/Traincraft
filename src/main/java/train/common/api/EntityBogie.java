@@ -310,7 +310,6 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 
 		if (canUseRail() && BlockRailBase.func_150051_a(l)) {
 
-			Traincraft.tcLog.info(prevRotationYaw);
 			int i1 = ((BlockRailBase) l).getBasicRailMetadata(worldObj, this, i, j, k);
 			meta = i1;
 
@@ -638,7 +637,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 /*
 
 		int l = MathHelper.floor_double(rotationYaw * 8.0F / 360.0F + 0.5) & 7;
-		Traincraft.tcLog.info("ROTATION: " + rotationYaw);
+
 
 		if (l == 0 || l == 4) {
 			moveEntity(motionX, 0.0D, 0.0D);
