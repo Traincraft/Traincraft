@@ -149,7 +149,7 @@ public enum EnumSounds {
 	DuewagT4ER(EntityElectricDuewagT4ER.class, "tram_bell", 1F, "vl10_idle", 0.6F, 50, "vl10_idle", 0.6F, 50, false),
 	DuewagGT6ZRLoco(EntityElectricDuewagGT6ZRLoco.class, "tram_bell", 1F, "vl10_idle", 0.6F, 50, "vl10_idle", 0.6F, 50, false),
 	M8CLoco(EntityElectricM8CLoco.class, "tram_bell", 1F, "vl10_idle", 0.6F, 50, "vl10_idle", 0.6F, 50, false),
-	Class416Loco(EntityElectricM8CLoco.class, "british_two_tone", 1F, "vl10_idle", 0.6F, 50, "vl10_idle", 0.6F, 50, true),
+	Class416Loco(EntityElectricClass416Loco.class, "british_two_tone", 1F, "vl10_idle", 0.6F, 50, "vl10_idle", 0.6F, 50, true),
 
 
 	//American Stuff
