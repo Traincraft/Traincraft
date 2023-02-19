@@ -1281,9 +1281,9 @@ public enum RenderEnum {
 	M8CTail(EntityPassengerM8CTail.class, new ModelM8CTail(), "M8C_", true,new float[] {0F, 0.2F, 0F},  new float[] { 0F, 0F, 180F }, null, "", 0, null, "", null, 0, false),
 	Class416Loco(EntityElectricClass416Loco.class, new ModelClass416Engine(), "Class_205_", true, new float[] {-2.05F, 0.17F, 0F}, new float[] {0F, 180F, 180F}, null, "", 0, null, "", null, 0, false),
 	Class416Tail(EntityPassengerClass416Tail.class, new ModelClass416Tail(), "Class_205_", true, new float[] {0F, 0.17F, 0F}, new float[] {0F, 0F, 180F}, null, "", 0, null, "", null, 0, false),
-
-
-
+	DB420Loco(EntityElectricDB420Loco.class, new ModelDB420End(), "db420_", true,new float[] {-1.7F, 0.16F, 0F},  new float[] { 0F, 180F, 180F }, null, "", 0, null, "", null, 0, false),
+	DB420Middle(EntityPassengerDB420Middle.class, new ModelDB420Middle(), "db420_",true,new float[] {0F, 0.16F, 0F},  new float[] { 0F, 0F, 180F }, null, "", 0, null, "", null, 0, false),
+	DB420Tail(EntityPassengerDB420Tail.class, new ModelDB420End(), "db420_",true,new float[] {0F, 0.16F, 0F},  new float[] { 0F, 0F, 180F }, null, "", 0, null, "", null, 0, false),
 
 	;
 

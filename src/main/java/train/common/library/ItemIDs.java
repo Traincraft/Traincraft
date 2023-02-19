@@ -668,6 +668,9 @@ public enum ItemIDs {
 	minecartM8CTail("ItemRollingStock","M8C_Tail_icon",2),
 	minecartClass416Locomotive("ItemRollingStock", "Class_416_engine_icon", 1),
 	minecartClass416Tail("ItemRollingStock", "Class_416_tail_icon", 1),
+	minecartDB420Loco("ItemRollingStock","db420_Loco_icon",1),
+	minecartDB420Middle("ItemRollingStock","db420_Middle_icon",1),
+	minecartDB420Tail("ItemRollingStock","db420_Tail_icon",1),
 
 	//signalSpanish("ItemsignalSpanish","signalSpanish", 1),
 
