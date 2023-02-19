@@ -1,0 +1,5 @@
+name: Midland compound loco
+speed:137km/h
+mhp: 2265
+water capacity: 16000mb
+

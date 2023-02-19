@@ -1,0 +1,3 @@
+name: Flatbed
+type: Flat
+mass: 2.5

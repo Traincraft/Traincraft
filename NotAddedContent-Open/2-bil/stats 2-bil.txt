@@ -1,0 +1,5 @@
+Name: 2-bil engine
+type: electric
+MHP: 428
+speed: 121 km/h
+

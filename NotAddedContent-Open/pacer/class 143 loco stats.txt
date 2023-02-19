@@ -1,0 +1,4 @@
+speed: 121 km/h
+mhp: 800
+fuel: 10000mb
+type: diesel
