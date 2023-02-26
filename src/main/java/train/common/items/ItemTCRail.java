@@ -619,6 +619,11 @@ public class ItemTCRail extends ItemPart {
 	private boolean putDownSlopedTurn(@Nullable EntityPlayer player, World world, int x, int y, int z, int[] posX, int[] posZ,
 								int l,  double r, double cx, double cy, double cz, float slopeAngle, double slopeLength, String type, Item idDrop) {
 
+
+		if (world.getBlock(x, y, z) == BlockIDs.bridgePillar.block){
+			return false;
+		}
+
 		TileTCRailGag[] tileGag = new TileTCRailGag[posX.length - 1];
 
 		/** check if Gag rails can be placed */
@@ -870,6 +875,9 @@ public class ItemTCRail extends ItemPart {
 		y = getPlacementHeight(world, x, y, z);
 
 		ItemTCRail item = (ItemTCRail) itemStack.getItem();
+		if (world.getBlock(x, y, z) == BlockIDs.bridgePillar.block && item.getTrackType().getLabel().contains("DYNAMIC")){
+			return false;
+		}
 		int facing0 = MathHelper.floor_double(player.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
 		Vector2f dir0 = ItemTCRail.getDirectionVector(facing0);
 
@@ -3157,7 +3165,7 @@ public class ItemTCRail extends ItemPart {
 				return true;
 			}
 
-			else 	if (type == TrackTypes.SLOPE_WOOD || type == TrackTypes.SLOPE_GRAVEL || type == TrackTypes.SLOPE_BALLAST
+			else if (type == TrackTypes.SLOPE_WOOD || type == TrackTypes.SLOPE_GRAVEL || type == TrackTypes.SLOPE_BALLAST
 					|| type == TrackTypes.SLOPE_SNOW_GRAVEL || type == TrackTypes.SLOPE_DYNAMIC || type == TrackTypes.EMBEDDED_SLOPE_DYNAMIC
 					|| type == TrackTypes.LARGE_SLOPE_WOOD || type == TrackTypes.LARGE_SLOPE_GRAVEL
 					|| type == TrackTypes.LARGE_SLOPE_BALLAST || type == TrackTypes.LARGE_SLOPE_SNOW_GRAVEL
@@ -3169,6 +3177,10 @@ public class ItemTCRail extends ItemPart {
 				if (!canPlaceTrack(player, world, x, y + 1, z)) {
 					return false;
 				}
+				if ( type.getLabel().contains("DYNAMIC") &&  world.getBlock(x, y, z) == BlockIDs.bridgePillar.block){
+					return false;
+				}
+
 
 				int gagEnd = 0;
 				double slopeAngle = 0;
@@ -3196,6 +3208,9 @@ public class ItemTCRail extends ItemPart {
 					gagEnd = 17;
 					slopeAngle = 0.0444;
 				}
+
+
+
 
 				Item idDropped = this.type.getItem().item;
 				TileTCRailGag[] tileGag = new TileTCRailGag[gagEnd];

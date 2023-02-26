@@ -13,9 +13,8 @@ import train.client.render.renderSwitch.models.ModelsignalSpanish;
 import train.common.library.Info;
 
 public class ItemRendersignalSpanish implements IItemRenderer {
-    private static final ModelsignalSpanish modeSwitch = new ModelsignalSpanish();
-    private static final ResourceLocation texture = new ResourceLocation(Info.resourceLocation,Info.modelTexPrefix + "overheadWire.png");
-    private static final ResourceLocation iconTexture = new ResourceLocation(Info.resourceLocation, Info.modelTexPrefix + "texture.png");
+    private static final ModelsignalSpanish modelSwitch = new ModelsignalSpanish();
+    private static final ResourceLocation texture = new ResourceLocation(Info.resourceLocation,Info.modelTexPrefix + "signalSpanishGreen.png");
     private Object IIconRegister;
     private Object IItemRenderer;
     private IIcon itemIcon;
@@ -47,13 +46,12 @@ public class ItemRendersignalSpanish implements IItemRenderer {
                 return;
             }
             case EQUIPPED_FIRST_PERSON: {
-                renderSwitch(0.2f, 1f, 1f, 1f);
+                renderSwitch(0, 0, 0, 1f);
                 return;
             }
             case INVENTORY: {
-                //renderIcon();
-                //MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(BlockIDs.signalSpanish.block), (net.minecraftforge.client.IItemRenderer) IItemRenderer);
                 renderSwitch(0f, 0f, 0f, 1f);
+
                 return;
             }
             default:
@@ -80,11 +78,6 @@ public class ItemRendersignalSpanish implements IItemRenderer {
 
      */
 
-    private void renderIcon() {
-        IIconRegister iconRegister = (net.minecraft.client.renderer.texture.IIconRegister) IIconRegister;
-        iconRegister.registerIcon(Info.modID.toLowerCase() + ":paintbrushThing");
-    }
-
     private void renderSwitch(float x, float y, float z, float scale) {
         Tessellator.bindTexture(texture);
         GL11.glPushMatrix();
@@ -96,7 +89,7 @@ public class ItemRendersignalSpanish implements IItemRenderer {
         GL11.glRotated(180,0,1,0);
 
 
-        modeSwitch.render(null,0,0,0,0,0,0.0625f);
+        modelSwitch.render(null,0,0,0,0,0,0.0625f);
 
         GL11.glEnable(GL11.GL_LIGHTING);
         GL11.glPopMatrix();
