@@ -722,6 +722,7 @@ item.tc:minecartClass416Tail.name=Class 416 Tail
 item.tc:minecartDB420Loco.name=DB class 420 Loco
 item.tc:minecartDB420Middle.name=DB class 420 Middle
 item.tc:minecartDB420Tail.name=DB class 420 Tail
+item.tc:minecartCattleVan.name=Cattle Van
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -1293,6 +1294,7 @@ entity.tc.Class416Tail.name=Class 416 Tail
 entity.tc.DB420Loco.name=DB class 420 Loco
 entity.tc.DB420Middle.name=DB class 420 Middle
 entity.tc.DB420Tail.name=DB class 420 Tail
+entity.tc.CattleVan.name=Cattle Van
 
 description.villager.profession.tc.station_chief=Station Chief
 

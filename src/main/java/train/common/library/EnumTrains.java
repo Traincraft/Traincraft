@@ -543,6 +543,8 @@ public enum EnumTrains {
 	DB420Loco("DB420Loco", EntityElectricDB420Loco.class, ItemIDs.minecartDB420Loco.item, "electric", 800, 120, 0, 10, 0, 100, 0.7, 0.8, 1000, TraincraftUtil.getBytesFromColors(new String[]{"Red", "Yellow"}), 18, -3.4, "Pack: MetroIM"),
 	DB420Middle("DB420Middle", EntityPassengerDB420Middle.class, ItemIDs.minecartDB420Middle.item, "passenger", 0, 0, 2, 0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[]{"Red", "Yellow"}), 10, 0, "Pack: MetroIM"),
 	DB420Tail("DB420Tail", EntityPassengerDB420Tail.class, ItemIDs.minecartDB420Tail.item, "passenger", 0, 0, 2, 0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[]{"Red", "Yellow"}), 10, 0, "Pack: MetroIM"),
+	CattleVan("CattleVan", EntityCattleVan.class, ItemIDs.minecartCattleVan.item, "special", 0, 0, 7.5, 0, 0, 0, 0, 0, 0,null ,18, 0),
+
 	;
 
 //String trainType,int MHP,int maxSpeed, double mass, int fuelConsumption, int waterConsumption, int heatingTime, double accelerationRate, double brakeRate, int tankCapacity, String[] colors,
