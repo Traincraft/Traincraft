@@ -672,6 +672,7 @@ public enum ItemIDs {
 	minecartDB420Middle("ItemRollingStock","db420_Middle_icon",1),
 	minecartDB420Tail("ItemRollingStock","db420_Tail_icon",1),
 	minecartCattleVan("ItemRollingStock","cattle_van_icon",1),
+	minecartTENtonBrakeVan("ItemRollingStock", "10ton_brakevan_icon", 1)
 
 	//signalSpanish("ItemsignalSpanish","signalSpanish", 1),
 
