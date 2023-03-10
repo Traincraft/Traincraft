@@ -19,6 +19,7 @@ import train.common.library.BlockIDs;
 import train.common.library.ItemIDs;
 import train.common.tile.TileTCRail;
 import train.common.tile.TileTCRailGag;
+import tv.twitch.chat.Chat;
 
 import javax.annotation.Nullable;
 import javax.sound.midi.Track;
@@ -755,7 +756,7 @@ public class ItemTCRail extends ItemPart {
 			return new int[][]{ {0,0}, {1,0}, {2,0}, {3,0}, {4,0}, {5,0}, {6,0}, {7,0}, {8,0}, {9,0}, {10,0}, {11,0}};
 		/** Diagonals*/
 		else if (type == TrackTypes.SMALL_DIAGONAL_STRAIGHT || type == TrackTypes.EMBEDDED_SMALL_DIAGONAL_STRAIGHT)
-			return new int [][]{{0,0}};
+			return new int [][]{{0,0}, {1,0}, {0,1}};
 		else if (type == TrackTypes.MEDIUM_DIAGONAL_STRAIGHT || type == TrackTypes.EMBEDDED_MEDIUM_DIAGONAL_STRAIGHT)
 			return new int [][]{{0,0}, {1,1}, {2,2}};
 		else if (type == TrackTypes.LONG_DIAGONAL_STRAIGHT || type == TrackTypes.EMBEDDED_LONG_DIAGONAL_STRAIGHT)
@@ -4732,7 +4733,7 @@ public class ItemTCRail extends ItemPart {
 
 	private boolean smallDiagonalStraight(EntityPlayer player, World world, int x, int y, int z, int l, TrackTypes type) {
 
-
+		player.addChatMessage(new ChatComponentText("l: " + l));
 
 		TileTCRailGag[] tileGag = new TileTCRailGag[2];
 
@@ -4778,7 +4779,7 @@ public class ItemTCRail extends ItemPart {
 		}
 		if (l == 5) {
 
-			if (!canPlaceTrack(player, world, x, y + 1, z) || !canPlaceTrack(player, world, x - 1, y + 1, z - 1) || !canPlaceTrack(player, world, x - 1, y + 1, z)  ) {
+			if (!canPlaceTrack(player, world, x, y + 1, z) || !canPlaceTrack(player, world, x - 1, y + 1, z) || !canPlaceTrack(player, world, x - 1, y + 1, z)  ) {
 				return false;
 			}
 

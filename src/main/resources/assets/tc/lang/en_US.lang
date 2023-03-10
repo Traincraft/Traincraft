@@ -187,11 +187,13 @@ item.tc:tcRailTwoWaysCrossing.name=Two Ways Crossing
 item.tc:tcRailDiamondCrossing.name=Diamond Crossing
 item.tc:tcRailDoubleDiamondCrossing.name=Double Diamond Crossing
 item.tc:tcRailDiagonalTwoWaysCrossing.name=Diagonal Two Ways Crossing
+item.tc:tcRailFourWaysCrossing.name=Four Ways Crossing
 
 item.tc:tcRailEmbeddedTwoWaysCrossing.name=Embedded Two Ways Crossing
 item.tc:tcRailEmbeddedDiamondCrossing.name=Embedded Diamond Crossing
 item.tc:tcRailEmbeddedDoubleDiamondCrossing.name=Embedded Double Diamond Crossing
 item.tc:tcRailEmbeddedDiagonalTwoWaysCrossing.name=Embedded Diagonal Two Ways Crossing
+item.tc:tcRailEmbeddedFourWaysCrossing.name=Embedded Four Ways Crossing
 
 item.tc:tcRailSmallRoadCrossing.name=RailRoad Crossing (Black Asphalt)
 item.tc:tcRailSmallRoadCrossing1.name=RailRoad Crossing (Clean Asphalt)
