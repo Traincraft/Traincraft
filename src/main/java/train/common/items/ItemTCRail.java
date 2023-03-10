@@ -4733,7 +4733,6 @@ public class ItemTCRail extends ItemPart {
 
 	private boolean smallDiagonalStraight(EntityPlayer player, World world, int x, int y, int z, int l, TrackTypes type) {
 
-		player.addChatMessage(new ChatComponentText("l: " + l));
 
 		TileTCRailGag[] tileGag = new TileTCRailGag[2];
 
