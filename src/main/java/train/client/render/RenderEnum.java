@@ -1285,7 +1285,7 @@ public enum RenderEnum {
 	DB420Middle(EntityPassengerDB420Middle.class, new ModelDB420Middle(), "db420_",true,new float[] {0F, 0.16F, 0F},  new float[] { 0F, 0F, 180F }, null, "", 0, null, "", null, 0, false),
 	DB420Tail(EntityPassengerDB420Tail.class, new ModelDB420End(), "db420_",true,new float[] {0F, 0.16F, 0F},  new float[] { 0F, 0F, 180F }, null, "", 0, null, "", null, 0, false),
 	CattleVan(EntityCattleVan.class, new ModelCattleVan(), "cattle_van", false, new float[] { 0F, 0.15F, 0.0F }, new float[]{0F,0F,180F}, null, "", 0, null, "", null, 0, false),
-	Class401Loco(EntityElectricClass401Loco.class, new ModelClass401Engine(), "2-bil_", true, new float[] {-2.0F, 0.17F, 0.1F}, new float[] {0F, 180F, 180F}, null, "", 0, null, "", null, 0, false),
+	//Class401Loco(EntityElectric2bilLoco.class, new ModelClass401Engine(), "2-bil_", true, new float[] {-2.0F, 0.17F, 0.1F}, new float[] {0F, 180F, 180F}, null, "", 0, null, "", null, 0, false),
 	Class401Tail(EntityPassengerClass401Tail.class, new ModelClass401tail(), "2-bil_", true, new float[] {0F, 0.17F, 0F}, new float[] {0F, 0F, 180F}, null, "", 0, null, "", null, 0, false),
 	passenger10tonBrakeVan(EntityPassenger10tonBrakeVan.class, new Model10tonBrakeVan(), "10ton_brakevan_", true, new float[] { 0F, 0.15F, 0.0F }, new float[]{0F,0F,180F}, null, "", 0, null, "", null, 0, false),
 	;

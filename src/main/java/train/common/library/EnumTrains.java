@@ -543,8 +543,8 @@ public enum EnumTrains {
 	DB420Loco("DB420Loco", EntityElectricDB420Loco.class, ItemIDs.minecartDB420Loco.item, "electric", 800, 120, 0, 10, 0, 100, 0.7, 0.8, 1000, TraincraftUtil.getBytesFromColors(new String[]{"Red", "Yellow"}), 18, -3.4, "Pack: MetroIM"),
 	DB420Middle("DB420Middle", EntityPassengerDB420Middle.class, ItemIDs.minecartDB420Middle.item, "passenger", 0, 0, 2, 0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[]{"Red", "Yellow"}), 10, 0, "Pack: MetroIM"),
 	DB420Tail("DB420Tail", EntityPassengerDB420Tail.class, ItemIDs.minecartDB420Tail.item, "passenger", 0, 0, 2, 0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[]{"Red", "Yellow"}), 10, 0, "Pack: MetroIM"),
-	CattleVan("CattleVan", EntityCattleVan.class, ItemIDs.minecartCattleVan.item, "special", 0, 0, 7.5, 0, 0, 0, 0, 0, 0,null ,18, 0, "pack: B.I.P. Moo"),
-	Class401Engine("Class401Engine", EntityElectricClass401Loco.class, ItemIDs.minecartClass401Loco.item, "electric", 428, 121, 0, 7, 0, 0, 0.5, 0.9, 0, TraincraftUtil.getBytesFromColors(new String[] {"Blue", "Lime", "Green", "Grey", "LightBlue"}), 18, -3.75, "Pack: B.I.P." ),
+	Class401Engine("Class401Engine", EntityElectric2bilLoco.class, ItemIDs.minecartClass401Loco.item, "electric", 428, 121, 0, 7, 0, 0, 0.5, 0.9, 0, TraincraftUtil.getBytesFromColors(new String[] {"Blue", "Lime", "Green", "Grey", "LightBlue"}), 18, -3.75, "Pack: B.I.P." ),
+	CattleVan("CattleVan", EntityCattleVan.class, ItemIDs.minecartCattleVan.item, "special", 0, 0, 7.5, 0, 0, 0, 0, 0, 0,null ,18, 0, "pack: B.I.P."),
 	Class401Tail("Class401Tail", EntityPassengerClass401Tail.class, ItemIDs.minecartClass401Tail.item, "passenger", 0, 0, 1, 0, 0, 0, 0, 0, 0,  TraincraftUtil.getBytesFromColors(new String[]{"Blue", "Lime", "Green", "Grey", "LightBlue"}), 18, 0, "Pack: B.I.P."),
 	passenger10tonBrakeVan("10tonbrakevan", EntityPassenger10tonBrakeVan.class, ItemIDs.minecartTENtonBrakeVan.item, "passenger", 0, 0, 1, 0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[]{"Black", "Orange", "Brown", "Red", "Grey", "White", "LightGrey"}), 18, 0),
 
