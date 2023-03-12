@@ -814,7 +814,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		motionX = vx2;
 		motionZ = vz2;
 
-		double newYPos = Math.abs(j+ Math.min(1, (slopeAngle * Math.abs(tpnorm))) + yOffset + 0.33f);
+		double newYPos = Math.abs(j+ Math.min(1, (slopeAngle * Math.abs(tpnorm))) + yOffset + 0.34f);
 		setPosition(p_corr_x, newYPos, p_corr_z);
 		moveEntity(vx2,  0, vz2);
 

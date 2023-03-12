@@ -982,7 +982,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 			
 
 			 int ai[][] = matrix[i1];
-				Traincraft.tcLog.info("ER i1: " + i1 + " ai: " + Arrays.deepToString(ai));
 			 double d9 = ai[1][0] - ai[0][0];
 			 double d10 = ai[1][2] - ai[0][2];
 			 double d11 = Math.sqrt(d9 * d9 + d10 * d10);
@@ -1373,7 +1372,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		motionX = vx2;
 		motionZ = vz2;
 
-		double newYPos = Math.abs(j+ Math.min(1, (slopeAngle * Math.abs(tpnorm))) + yOffset + 0.33f);
+		double newYPos = Math.abs(j+ Math.min(1, (slopeAngle * Math.abs(tpnorm))) + yOffset + 0.34f);
 		setPosition(p_corr_x, newYPos, p_corr_z);
 		moveEntity(vx2,  0, vz2);
 
@@ -1568,7 +1567,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 		int l;
 		if (!(this instanceof Locomotive)) {
 			l = MathHelper.floor_double(serverRealRotation * 8.0F / 360.0F + 0.5) & 7;
-			Traincraft.tcLog.info(l);
 		}
 
 		else {
