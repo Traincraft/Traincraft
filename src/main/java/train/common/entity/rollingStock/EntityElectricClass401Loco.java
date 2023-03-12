@@ -1,6 +1,5 @@
 package train.common.entity.rollingStock;
 
-//import com.jcirmodelsquad.tcjcir.features.TiltingHandler;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -13,7 +12,6 @@ import train.common.api.ElectricTrain;
 import train.common.library.GuiIDs;
 
 public class EntityElectricClass401Loco extends ElectricTrain {
-    //public TiltingHandler tiltingHandler = new TiltingHandler(7);
 
     public EntityElectricClass401Loco(World world) {
         super(world);
@@ -119,7 +117,7 @@ public class EntityElectricClass401Loco extends ElectricTrain {
 
     @Override
     public String getInventoryName() {
-        return "Class 416 loco";
+        return "Class 416 Loco";
     }
 
     @Override
