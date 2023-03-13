@@ -11,20 +11,18 @@ import train.common.Traincraft;
 import train.common.api.ElectricTrain;
 import train.common.library.GuiIDs;
 
-public class EntityElectricClass401Loco extends ElectricTrain {
-
-    public EntityElectricClass401Loco(World world) {
+public class EntityElectric2bilLoco extends ElectricTrain {
+    public EntityElectric2bilLoco(World world) {
         super(world);
-
     }
 
-    public EntityElectricClass401Loco(World world, double d, double d1, double d2) {
+    public EntityElectric2bilLoco(World world, double d, double d1, double d2) {
         this(world);
         setPosition(d, d1 + (double) yOffset, d2);
         motionX = 0.0D;
         motionY = 0.0D;
         motionZ = 0.0D;
-        prevPosX = d ;
+        prevPosX = d;
         prevPosY = d1;
         prevPosZ = d2;
     }
@@ -33,7 +31,7 @@ public class EntityElectricClass401Loco extends ElectricTrain {
     public void updateRiderPosition() {
         if (riddenByEntity == null) {return;}
         double pitchRads = this.anglePitchClient * Math.PI / 180.0D;
-        double distance = 3.85;
+        double distance = 3.6;
         double yOffset = -0.1;
         float rotationCos1 = (float) Math.cos(Math.toRadians(this.renderYaw + 90));
         float rotationSin1 = (float) Math.sin(Math.toRadians((this.renderYaw + 90)));
@@ -73,7 +71,7 @@ public class EntityElectricClass401Loco extends ElectricTrain {
     @Override
     public void pressKey(int i) {
         if (i == 7 && riddenByEntity != null && riddenByEntity instanceof EntityPlayer) {
-            ((EntityPlayer) riddenByEntity).openGui(Traincraft.instance, GuiIDs.LOCO, worldObj, (int) this.posX + 2, (int) this.posY, (int) this.posZ);
+            ((EntityPlayer) riddenByEntity).openGui(Traincraft.instance, GuiIDs.LOCO, worldObj, (int) this.posX, (int) this.posY, (int) this.posZ);
         }
     }
 
@@ -117,7 +115,7 @@ public class EntityElectricClass401Loco extends ElectricTrain {
 
     @Override
     public String getInventoryName() {
-        return "Class 416 Loco";
+        return "2-bil engine";
     }
 
     @Override
