@@ -170,6 +170,110 @@ item.tc:minecartCabooseLogging.name=Лесозаготовочный кабуз
 item.tc:minecartPassengerTramNY.name=Прицепной вагон метро
 item.tc:minecartLocoSD40.name=SD40-2 (США)
 
+item.tc:tcRailSmallStraight.name=Маленький Прямой Путь
+item.tc:tcRailMediumStraight.name=Средний Прямой Путь
+item.tc:tcRailLongStraight.name=Длинный Прямой Путь
+item.tc:tcRailVeryLongStraight.name=Сверхдлинный Прямой Путь
+
+item.tc:tcRailEmbeddedSmallStraight.name=Встроенный Маленький Прямой Путь
+item.tc:tcRailEmbeddedMediumStraight.name=Встроенный Средний Прямой Путь
+item.tc:tcRailEmbeddedLongStraight.name=Встроенный Длинный Прямой Путь
+item.tc:tcRailEmbeddedVeryLongStraight.name=Встроенный Сверхдлинный Прямой Путь
+
+item.tc:tcRailSmallDiagonalStraight.name=Маленький Диагональный Путь
+item.tc:tcRailMediumDiagonalStraight.name=Средний Диагональный Путь
+item.tc:tcRailLongDiagonalStraight.name=Длинный Диагональный Путь
+item.tc:tcRailVeryLongDiagonalStraight.name=Сверхдлинный Диагональный Путь
+
+item.tc:tcRailEmbeddedSmallDiagonalStraight.name=Встроенный Маленький Диагональный Путь
+item.tc:tcRailEmbeddedMediumDiagonalStraight.name=Встроенный Средний Диагональный Путь
+item.tc:tcRailEmbeddedLongDiagonalStraight.name=Встроенный Длинный Диагональный Путь
+item.tc:tcRailEmbeddedVeryLongDiagonalStraight.name=Встроенный Сверхдлинный Диагональный Путь
+
+item.tc:tcRailMediumTurn.name=Средний Поворот
+item.tc:tcRailLargeTurn.name=Большой Поворот
+item.tc:tcRailVeryLargeTurn.name=Очень Большой Поворот
+item.tc:tcRailSuperLargeTurn.name=Огромный Поворот
+
+item.tc:tcRailEmbeddedMediumTurn.name=Встроенный Средний Поворот
+item.tc:tcRailEmbeddedLargeTurn.name=Встроенный Большой Поворот
+item.tc:tcRailEmbeddedVeryLargeTurn.name=Встроенный Очень Большой Поворот
+item.tc:tcRailEmbeddedSuperLargeTurn.name=Встроенный Огромный Поворот
+
+item.tc:tcRailMedium45DegreeTurn.name=Средний Поворот (45 Градусов)
+item.tc:tcRailLarge45DegreeTurn.name=Большой Поворот  (45 Градусов)
+item.tc:tcRailVeryLarge45DegreeTurn.name=Очень Большой Поворот  (45 Градусов)
+item.tc:tcRailSuperLarge45DegreeTurn.name=Огромный Поворот  (45 Градусов)
+
+item.tc:tcRailEmbeddedMedium45DegreeTurn.name=Встроенный Средний Поворот (45 Градусов)
+item.tc:tcRailEmbeddedLarge45DegreeTurn.name=Встроенный Большой Поворот  (45 Градусов)
+item.tc:tcRailEmbeddedVeryLarge45DegreeTurn.name=Встроенный Очень Большой Поворот  (45 Градусов)
+item.tc:tcRailEmbeddedSuperLarge45DegreeTurn.name=Встроенный Огромный Поворот  (45 Градусов)
+
+item.tc:tcRailSmallParallelCurve.name=Маленькая Параллельная Кривая
+item.tc:tcRailMediumParallelCurve.name=Средняя Параллельная Кривая
+item.tc:tcRailLargeParallelCurve.name=Большая Параллельная Кривая
+item.tc:tcRailEmbeddedSmallParallelCurve.name=Встроенная Маленькая Параллельная Кривая
+item.tc:tcRailEmbeddedMediumParallelCurve.name=Встроенная Средняя Параллельная Кривая
+item.tc:tcRailEmbeddedLargeParallelCurve.name=Встроенная Большая Параллельная Кривая
+
+item.tc:tcRailTwoWaysCrossing.name=Двухпутное Пересечение
+item.tc:tcRailDiamondCrossing.name=Алмазное Пересечение
+item.tc:tcRailDoubleDiamondCrossing.name=Двойное Алмазное Пересечение
+item.tc:tcRailFourWaysCrossing.name=Четырехпутное Пересечение
+item.tc:tcRailDiagonalTwoWaysCrossing.name=Диагональное Двухпутное Пересечение
+
+item.tc:tcRailEmbeddedTwoWaysCrossing.name=Встроенное Двухпутное Пересечение
+item.tc:tcRailEmbeddedDiamondCrossing.name=Встроенное Алмазное Пересечение
+item.tc:tcRailEmbeddedDoubleDiamondCrossing.name=Встроенное Двойное Алмазное Пересечение
+item.tc:tcRailEmbeddedDiagonalTwoWaysCrossing.name=Встроенное Четырехпутное Пересечение
+item.tc:tcRailEmbeddedFourWaysCrossing.name=Встроенное Диагональное Двухпутное Пересечение
+
+item.tc:tcRailMediumSwitch.name=Средняя Стрелка (90 Градусов)
+item.tc:tcRailLargeSwitch.name=Большая Стрелка (90 Градусов)
+item.tc:tcRailMediumParallelSwitch.name=Параллельная Стрелка
+item.tc:tcRailMedium45DegreeSwitch.name=Средняя Стрелка (45 Градусов)
+
+item.tc:tcRailEmbeddedMediumSwitch.name=Встроенная Средняя Стрелка (90 Градусов)
+item.tc:tcRailEmbeddedLargeSwitch.name=Встроенная Большая Стрелка (90 Градусов)
+item.tc:tcRailEmbeddedMediumParallel=Встроенная Параллельная Стрелка
+item.tc:tcRailEmbeddedMedium45DegreeSwitch.name=Встроенная Средняя Стрелка (45 Градусов)
+
+item.tc:tcRailSlopeWood.name=Наклонный Путь (Древесина)
+item.tc:tcRailSlopeGravel.name=Наклонный Путь (Гравий)
+item.tc:tcRailSlopeBallast.name=Наклонный Путь (Балласт)
+item.tc:tcRailSlopeSnowGravel.name=Наклонный Путь (Заснеженный Гравий)
+item.tc:tcRailSlopeDynamic.name=Наклонный Путь (Динамический)
+
+item.tc:tcRailLargeSlopeWood.name=Большой Наклонный Путь (Древесина)
+item.tc:tcRailLargeSlopeGravel.name=Большой Наклонный Путь (Гравий)
+item.tc:tcRailLargeSlopeBallast.name=Большой Наклонный Путь (Балласт)
+item.tc:tcRailLargeSlopeSnowGravel.name=Большой Наклонный Путь (Заснеженный Гравий)
+item.tc:tcRailLargeSlopeDynamic.name=Большой Наклонный Путь (Динамический)
+
+item.tc:tcRailVeryLargeSlopeWood.name=Очень Большой Наклонный Путь (Древесина)
+item.tc:tcRailVeryLargeSlopeBallast.name=Очень Большой Наклонный Путь (Балласт)
+item.tc:tcRailVeryLargeSlopeSnowGravel.name=Очень Большой Наклонный Путь (Заснеженный Гравий)
+item.tc:tcRailVeryLargeSlopeDynamic.name=Очень Большой Наклонный Путь (Динамический)
+
+item.tc:tcRailEmbeddedSlopeDynamic.name=Встроенный Наклонный Путь (Динамический)
+item.tc:tcRailEmbeddedLargeSlopeDynamic.name=Встроенный Большой Наклонный Путь (Динамический)
+item.tc:tcRailEmbeddedVeryLargeSlopeDynamic.name=Встроенный Очень Большой Наклонный Путь (Динамический)
+
+item.tc:tcRailLargeCurvedSlopeDynamic.name=Большой Кривой Наклонный Путь (Динамический)
+item.tc:tcRailVeryLargeCurvedSlopeDynamic.name=Очень Большой Кривой Наклонный Путь (Динамический)
+item.tc:tcRailSuperLargeCurvedSlopeDynamic.name=Огромный Кривой Наклонный Путь (Динамический)
+
+item.tc:tcRailEmbeddedLargeCurvedSlopeDynamic.name=Встроенный Большой Кривой Наклонный Путь (Динамический)
+item.tc:tcRailEmbeddedVeryLargeCurvedSlopeDynamic.name=Встроенный Очень Большой Кривой Наклонный Путь (Динамический)
+item.tc:tcRailEmbeddedSuperLargeCurvedSlopeDynamic.name=Встроенный Огромный Кривой Наклонный Путь (Динамический)
+
+
+
+item.tc:tcRailSmallRoadCrossing.name=ЖД Переезд (Чёрный Асфальт)
+item.tc:tcRailSmallRoadCrossing1.name=ЖД Переезд (Чистый Асфальт)
+item.tc:tcRailSmallRoadCrossing2.name=ЖД Переезд (Светло-Серый Асфальт)
+
 <!-- ## Достижения ## -->
 achievement.tc:engineer=Одежда кочегара
 achievement.tc:engineer.desc=Настоящий путеец!

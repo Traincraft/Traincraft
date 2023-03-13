@@ -132,6 +132,7 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		if (this.entityMainTrain != null && entity != this.entityMainTrain) {
 
 			this.entityMainTrain.applyEntityCollision(entity);
+
 		}
 	}
 

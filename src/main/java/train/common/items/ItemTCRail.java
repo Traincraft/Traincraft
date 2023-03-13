@@ -406,7 +406,7 @@ public class ItemTCRail extends ItemPart {
 
 	public static boolean isTCDiagonalCrossingTrack(TileTCRail tile) {
 		if(tile==null || tile.getType()==null){return false;}
-		return (tile.getType().equals(TrackTypes.RIGHT_DIAMOND_CROSSING.getLabel()))
+		return     (tile.getType().equals(TrackTypes.RIGHT_DIAMOND_CROSSING.getLabel()))
 				|| (tile.getType().equals(TrackTypes.LEFT_DIAMOND_CROSSING.getLabel()))
 				|| (tile.getType().equals(TrackTypes.DOUBLE_DIAMOND_CROSSING.getLabel()))
 				|| (tile.getType().equals(TrackTypes.EMBEDDED_RIGHT_DIAMOND_CROSSING.getLabel()))

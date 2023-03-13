@@ -1565,7 +1565,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 	}	protected void moveOnTCDiamondCrossing(int i, int j, int k, double cx, double cy, double cz, int meta) {
 
 		int l;
-		if (!(this instanceof Locomotive)) {
+		if ((this.bogieLoco == null)) {
 			l = MathHelper.floor_double(serverRealRotation * 8.0F / 360.0F + 0.5) & 7;
 		}
 
@@ -2025,7 +2025,7 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 						 */
 						//if(!(par1Entity instanceof EntityPlayer))par1Entity.addVelocity(d0 / 4.0D, 0.0D, d1 / 4.0D);
 						//par1Entity.setVelocity(0, 0.0D, 0);
-						par1Entity.addVelocity(d0 * 2 * 100, 0.0D, d1 * 2 * 100);
+						par1Entity.addVelocity(d0 * 2, 0.0D, d1 * 2 );
 						/*
 						 * if(this.bogieUtility[0]!=null &&
 						 * this.bogieUtility[1]!=null){
