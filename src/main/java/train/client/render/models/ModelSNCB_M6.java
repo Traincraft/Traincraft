@@ -1,5 +1,5 @@
 //This File was created with the Minecraft-SMP Modelling Toolbox 2.3.0.0
-// Copyright (C) 2022 Minecraft-SMP.de
+// Copyright (C) 2023 Minecraft-SMP.de
 // This file is for Flan's Flying Mod Version 4.0.x+
 
 // Model: SNCB_M6
@@ -8,6 +8,8 @@
 // Last changed on: 18.07.2022 - 22:30:33
 
 package train.client.render.models; //Path where the model is located
+
+
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
@@ -34,22 +36,22 @@ public class ModelSNCB_M6 extends ModelConverter //Same as Filename
 
 	private void initbodyModel_1()
 	{
-		bodyModel[0] = new ModelRendererTurbo(this, 1, 1, textureX, textureY, "lamp"); // Import Importlamp
-		bodyModel[1] = new ModelRendererTurbo(this, 9, 1, textureX, textureY, "lamp"); // Import Importlamp
-		bodyModel[2] = new ModelRendererTurbo(this, 17, 1, textureX, textureY, "lamp"); // Import Importlamp
-		bodyModel[3] = new ModelRendererTurbo(this, 25, 1, textureX, textureY, "lamp"); // Import Importlamp
-		bodyModel[4] = new ModelRendererTurbo(this, 33, 1, textureX, textureY, "lamp"); // Import Importlamp
-		bodyModel[5] = new ModelRendererTurbo(this, 41, 1, textureX, textureY, "lamp"); // Import Importlamp
-		bodyModel[6] = new ModelRendererTurbo(this, 49, 1, textureX, textureY, "lamp"); // Import Importlamp
-		bodyModel[7] = new ModelRendererTurbo(this, 57, 1, textureX, textureY, "lamp"); // Import Importlamp
-		bodyModel[8] = new ModelRendererTurbo(this, 65, 1, textureX, textureY, "lamp"); // Import Importlamp
-		bodyModel[9] = new ModelRendererTurbo(this, 73, 1, textureX, textureY, "lamp"); // Import Importlamp
-		bodyModel[10] = new ModelRendererTurbo(this, 81, 1, textureX, textureY, "lamp"); // Import Importlamp
-		bodyModel[11] = new ModelRendererTurbo(this, 89, 1, textureX, textureY, "lamp"); // Import Importlamp
-		bodyModel[12] = new ModelRendererTurbo(this, 97, 1, textureX, textureY, "lamp"); // Import Importlamp
-		bodyModel[13] = new ModelRendererTurbo(this, 105, 1, textureX, textureY, "lamp"); // Import Importlamp
-		bodyModel[14] = new ModelRendererTurbo(this, 113, 1, textureX, textureY, "lamp"); // Import Importlamp
-		bodyModel[15] = new ModelRendererTurbo(this, 121, 1, textureX, textureY, "lamp"); // Import Importlamp
+		bodyModel[0] = new ModelRendererTurbo(this, 1, 1, textureX, textureY); // Import Importlamp
+		bodyModel[1] = new ModelRendererTurbo(this, 9, 1, textureX, textureY); // Import Importlamp
+		bodyModel[2] = new ModelRendererTurbo(this, 17, 1, textureX, textureY); // Import Importlamp
+		bodyModel[3] = new ModelRendererTurbo(this, 25, 1, textureX, textureY); // Import Importlamp
+		bodyModel[4] = new ModelRendererTurbo(this, 33, 1, textureX, textureY); // Import Importlamp
+		bodyModel[5] = new ModelRendererTurbo(this, 41, 1, textureX, textureY); // Import Importlamp
+		bodyModel[6] = new ModelRendererTurbo(this, 49, 1, textureX, textureY); // Import Importlamp
+		bodyModel[7] = new ModelRendererTurbo(this, 57, 1, textureX, textureY); // Import Importlamp
+		bodyModel[8] = new ModelRendererTurbo(this, 65, 1, textureX, textureY); // Import Importlamp
+		bodyModel[9] = new ModelRendererTurbo(this, 73, 1, textureX, textureY); // Import Importlamp
+		bodyModel[10] = new ModelRendererTurbo(this, 81, 1, textureX, textureY); // Import Importlamp
+		bodyModel[11] = new ModelRendererTurbo(this, 89, 1, textureX, textureY); // Import Importlamp
+		bodyModel[12] = new ModelRendererTurbo(this, 97, 1, textureX, textureY); // Import Importlamp
+		bodyModel[13] = new ModelRendererTurbo(this, 105, 1, textureX, textureY); // Import Importlamp
+		bodyModel[14] = new ModelRendererTurbo(this, 113, 1, textureX, textureY); // Import Importlamp
+		bodyModel[15] = new ModelRendererTurbo(this, 121, 1, textureX, textureY); // Import Importlamp
 		bodyModel[16] = new ModelRendererTurbo(this, 129, 1, textureX, textureY); // Import ImportBox9
 		bodyModel[17] = new ModelRendererTurbo(this, 225, 1, textureX, textureY); // Import ImportBox8
 		bodyModel[18] = new ModelRendererTurbo(this, 353, 1, textureX, textureY); // Import ImportBox73
@@ -1248,7 +1250,7 @@ public class ModelSNCB_M6 extends ModelConverter //Same as Filename
 		bodyModel[248].addShapeBox(0F, 0F, 0F, 1, 13, 13, 0F,0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F); // Import ImportBox212
 		bodyModel[248].setRotationPoint(-23F, -5F, -3F);
 
-		bodyModel[249].addBox(0F, 0F, 0F, 43, 1, 20, 0F); // Import ImportBox202
+		bodyModel[249].addShapeBox(0F, 0F, 0F, 43, 1, 20, 0F,0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.8F, 0F, 0F, -0.8F, 0F, 0F, -0.8F, 0F, 0F, -0.8F, 0F); // Import ImportBox202
 		bodyModel[249].setRotationPoint(-22F, -5F, -10F);
 
 		bodyModel[250].addShapeBox(0F, 0F, 0F, 3, 4, 20, 0F,0F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -2F, 0F, 0F); // Import ImportBox20
@@ -1660,16 +1662,16 @@ public class ModelSNCB_M6 extends ModelConverter //Same as Filename
 		bodyModel[385].setRotationPoint(48F, -22F, -4F);
 
 		bodyModel[386].addShapeBox(0F, 0F, 0F, 2, 1, 1, 0F,-0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F); // Import Box215
-		bodyModel[386].setRotationPoint(-51F, 2F, -8F);
+		bodyModel[386].setRotationPoint(-51F, 1F, -8F);
 
 		bodyModel[387].addShapeBox(0F, 0F, 0F, 2, 1, 1, 0F,-0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F); // Import Box215
-		bodyModel[387].setRotationPoint(-51F, 2F, 7F);
+		bodyModel[387].setRotationPoint(-51F, 1F, 7F);
 
 		bodyModel[388].addShapeBox(0F, 0F, 0F, 1, 3, 4, 0F,0F, 0F, -1F, -0.5F, 0F, -1F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F); // Import Box215
-		bodyModel[388].setRotationPoint(-51F, 1F, 5F);
+		bodyModel[388].setRotationPoint(-51F, 0F, 5F);
 
 		bodyModel[389].addShapeBox(0F, 0F, 0F, 1, 3, 4, 0F,0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F); // Import Box215
-		bodyModel[389].setRotationPoint(-51F, 1F, -9F);
+		bodyModel[389].setRotationPoint(-51F, 0F, -9F);
 
 		bodyModel[390].addShapeBox(0F, 0F, 0F, 48, 12, 1, 0F,-36F, 0F, -0.125F, -2F, 0F, -0.125F, -2F, 0F, 0.025F, -36F, 0F, 0.025F, -36F, -9F, -0.125F, -2F, -9F, -0.125F, -2F, -9F, 0.025F, -36F, -9F, 0.025F); // Import Box31
 		bodyModel[390].setRotationPoint(-41F, -10F, 10F);

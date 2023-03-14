@@ -627,6 +627,7 @@ item.tc:minecartBR_Mk1_TSO.name=BR Mk1 Coach
 item.tc:minecartBR_Mk1_BG.name=BR Mk1 Baggage Car
 item.tc:minecartBR_Mk1_Buffet.name=BR Mk1 Buffet
 item.tc:minecartBR_Mk1_TPO_Stowage.name=BR Mk1 TPO Stowage
+item.tc:minecartBR_Mk2c_BSO.name=BR Mk2c BSO
 item.tc:minecartBR_MK2C_Coach.name=BR Mk2c Coach
 item.tc:minecartBR_Mk2f_BSO.name=BR Mk2f BSO
 item.tc:minecartBR_MK2F_Coach.name=BR Mk2f Coach
@@ -729,6 +730,8 @@ item.tc:minecartCattleVan.name=Cattle Van
 item.tc:minecartTENtonBrakeVan.name= BR 10ton Brake Van
 item.tc:minecartClass401Loco.name=2-bil loco
 item.tc:minecartClass401Tail.name=2-bil tail
+item.tc:minecartClass230Engine.name=Class 230 Engine
+item.tc:minecartClass230Middle.name=Class 230 Middle
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -1209,6 +1212,8 @@ entity.tc.BR_Mk1_TSO.name=BR Mk1 Coach
 entity.tc.BR_Mk1_Baggage.name=BR Mk1 Baggage Car
 entity.tc.BR_Mk1_Buffet.name=BR Mk1 Buffet
 entity.tc.BR_Mk1_TPO_Stowage.name=BR Mk1 TPO Stowage
+entity.tc.BR_MK2C_Coach.name=BR MK2C Coach
+entity.tc.BR_MK2C_BSO.name=BR MK2C BSO
 entity.tc.BR_MK2F_Coach.name=BR MK2F Coach
 entity.tc.BR_MK2F_BSO.name=BR MK2F BSO
 entity.tc.BR_MK3_DVT.name=BR Mk3 DVT
@@ -1306,6 +1311,8 @@ entity.tc.CattleVan.name=Cattle Van
 entity.tc.10tonbrakevan.name=BR 10ton Brake Van
 entity.tc.Class401Engine.name=2-bil loco
 entity.tc.Class401Tail.name=2-bil tail
+entity.tc.Class230Engine.name=Class 230 Engine
+entity.tc.Class230Middle.name=Class 230 Middle
 
 description.villager.profession.tc.station_chief=Station Master
 
