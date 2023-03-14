@@ -352,10 +352,11 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 
 				if (dir == 1) {
 					rollingStock.rotationYaw = -135; // BACK
-					if (meta == 4) {
-						rollingStock.serverRealRotation = 135; // RIGHT
-					} else {
-						rollingStock.serverRealRotation = 45; // FRONT
+					if (meta == 0) {
+						rollingStock.serverRealRotation = 90; // RIGHT
+					}
+					else {
+						rollingStock.serverRealRotation = 180; // FRONT
 					}
 					if (world.getBlock(i, j, k) == BlockIDs.tcRail.block || world.getBlock(i, j, k) == BlockIDs.tcRailGag.block) {
 						if (meta == 6 || meta == 4) {
@@ -434,10 +435,10 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 
 				if (dir == 3) {
 					rollingStock.rotationYaw = -45; // BACK
-					if (meta == 5) {
-						rollingStock.serverRealRotation = -135; // RIGHT
+					if (meta == 0) {
+						rollingStock.serverRealRotation = -90; // RIGHT
 					} else {
-						rollingStock.serverRealRotation = 138; // FRONT
+						rollingStock.serverRealRotation = 180; // FRONT
 					}
 					if (world.getBlock(i, j, k) == BlockIDs.tcRail.block || world.getBlock(i, j, k) == BlockIDs.tcRailGag.block) {
 						if (meta == 5 || meta == 7) {
@@ -522,10 +523,10 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 
 				if (dir == 5) {
 					rollingStock.rotationYaw = 45; // BACK
-					if (meta == 6) {
-						rollingStock.serverRealRotation = -45; // RIGHT
+					if (meta == 0) {
+						rollingStock.serverRealRotation = -90; // RIGHT
 					} else {
-						rollingStock.serverRealRotation = -135; // FRONT
+						rollingStock.serverRealRotation = 0; // FRONT
 					}
 					if (world.getBlock(i, j, k) == BlockIDs.tcRail.block || world.getBlock(i, j, k) == BlockIDs.tcRailGag.block) {
 						if (meta == 6 || meta == 4) {
@@ -603,10 +604,10 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 
 				if (dir == 7) {
 					rollingStock.rotationYaw = 135; // BACK
-					if (meta == 5) {
-						rollingStock.serverRealRotation = 45; // RIGHT
+					if (meta == 0) {
+						rollingStock.serverRealRotation = 90; // RIGHT
 					} else {
-						rollingStock.serverRealRotation = -45; // FRONT
+						rollingStock.serverRealRotation = 0; // FRONT
 					}
 					if (world.getBlock(i, j, k) == BlockIDs.tcRail.block || world.getBlock(i, j, k) == BlockIDs.tcRailGag.block) {
 						if (meta == 5 || meta == 7) {
