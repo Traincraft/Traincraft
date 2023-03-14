@@ -401,11 +401,11 @@ public class RenderTCRail extends TileEntitySpecialRenderer {
 					}
 					case EMBEDDED_MEDIUM_45DEGREE_TURN:
 					case EMBEDDED_MEDIUM_RIGHT_45DEGREE_TURN: {
-						model45DegreeRightTurn.render("embedded_medium", "embedded" ,railTile, x, y, z);
+						model45DegreeRightTurn.render("medium", "embedded" ,railTile, x, y, z);
 						break;
 					}
 					case EMBEDDED_MEDIUM_LEFT_45DEGREE_TURN:{
-						model45DegreeLeftTurn.render("embedded_medium", "embedded" ,railTile, x, y, z);
+						model45DegreeLeftTurn.render("medium", "embedded" ,railTile, x, y, z);
 						break;
 					}
 					case EMBEDDED_LARGE_45DEGREE_TURN:

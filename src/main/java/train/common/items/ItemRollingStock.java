@@ -299,6 +299,8 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 				// -135 = 5 = NORTH-EAST
 				// -90  = 6 = EAST
 				// -45  = 7 = SOUTH-EAST
+				player.addChatMessage(new ChatComponentText("dir: " + dir + " meta: " + meta));
+
 				if (dir == 0) {
 
 					rollingStock.rotationYaw = 180; // BACK
@@ -312,18 +314,23 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 
 						if (meta == 0 || meta == 2) {
 							rollingStock.rotationYaw = -90; // LEFT
+							rollingStock.serverRealRotation = 90;
 						}
 						else if (meta == 1 || meta == 3) {
-							rollingStock.serverRealRotation = 0;
+							rollingStock.rotationYaw = 0;
+							rollingStock.serverRealRotation = 180;
 						}
 						else if (meta == 6 || meta == 4) {
 							rollingStock.rotationYaw = -45; // LEFT
+							rollingStock.serverRealRotation = 135;
 						}
 						else {
 							rollingStock.rotationYaw = -135;
+							rollingStock.serverRealRotation = 45;
 						}
 					}
 					if (rollingStock instanceof Locomotive) {
+
 						if ((meta == 2 || meta == 0) && (world.getBlock(i, j, k + 1) == BlockIDs.tcRail.block || world.getBlock(i, j, k + 1) == BlockIDs.tcRailGag.block || BlockRailBase.func_150051_a(world.getBlock(i, j, k + 1))) && (world.getBlock(i, j, k + 2) == BlockIDs.tcRail.block || world.getBlock(i, j, k + 2) == BlockIDs.tcRailGag.block || BlockRailBase.func_150051_a(world.getBlock(i, j, k + 2)))) {
 							rollingStock.serverRealRotation = 90;
 						} else if ((meta == 6 || meta == 4) && (world.getBlock(i - 1, j, k + 1) == BlockIDs.tcRail.block || world.getBlock(i - 1, j, k + 1) == BlockIDs.tcRailGag.block || BlockRailBase.func_150051_a(world.getBlock(i - 1, j, k + 1))) && (world.getBlock(i - 2, j, k + 2) == BlockIDs.tcRail.block || world.getBlock(i - 2, j, k + 2) == BlockIDs.tcRailGag.block || BlockRailBase.func_150051_a(world.getBlock(i - 2, j, k + 2)))) {
@@ -340,24 +347,30 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 
 						}
 					}
+
 				}
 
 				if (dir == 1) {
 					rollingStock.rotationYaw = -135; // BACK
-					if (meta == 4) {
-						rollingStock.serverRealRotation = 135; // RIGHT
-					} else {
-						rollingStock.serverRealRotation = 45; // FRONT
+					if (meta == 0) {
+						rollingStock.serverRealRotation = 90; // RIGHT
+					}
+					else {
+						rollingStock.serverRealRotation = 180; // FRONT
 					}
 					if (world.getBlock(i, j, k) == BlockIDs.tcRail.block || world.getBlock(i, j, k) == BlockIDs.tcRailGag.block) {
 						if (meta == 6 || meta == 4) {
 							rollingStock.rotationYaw = -45; // LEFT
+							rollingStock.serverRealRotation = 135;
 						} else if (meta == 2 || meta == 0) {
 							rollingStock.rotationYaw = -90; // LEFT
+							rollingStock.serverRealRotation = 90;
 						} else if (meta == 1 || meta == 3) {
 							rollingStock.rotationYaw = 0; // LEFT
+							rollingStock.serverRealRotation = 180;
 						} else {
 							rollingStock.rotationYaw = 45; // FRONT
+							rollingStock.serverRealRotation = -135;
 						}
 					}
 					if (rollingStock instanceof Locomotive) {
@@ -386,15 +399,19 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 					if (world.getBlock(i, j, k) == BlockIDs.tcRail.block || world.getBlock(i, j, k) == BlockIDs.tcRailGag.block) {
 						if (meta == 1 || meta == 3){
 							rollingStock.rotationYaw = 0; // LEFT
+							rollingStock.serverRealRotation = 180;
 						}
 						else if(meta == 5 || meta == 7){
 							rollingStock.rotationYaw = 45;
+							rollingStock.serverRealRotation = -135;
 						}
 						else if (meta == 6 || meta == 4){
-							rollingStock.rotationYaw = -45;
+							rollingStock.rotationYaw = 135;
+							rollingStock.serverRealRotation = 135;
 						}
 						else {
 							rollingStock.rotationYaw = -90; // BACK
+							rollingStock.serverRealRotation = 90;
 						}
 					}
 					if (rollingStock instanceof Locomotive) {
@@ -418,23 +435,27 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 
 				if (dir == 3) {
 					rollingStock.rotationYaw = -45; // BACK
-					if (meta == 5) {
-						rollingStock.serverRealRotation = -135; // RIGHT
+					if (meta == 0) {
+						rollingStock.serverRealRotation = -90; // RIGHT
 					} else {
-						rollingStock.serverRealRotation = 138; // FRONT
+						rollingStock.serverRealRotation = 180; // FRONT
 					}
 					if (world.getBlock(i, j, k) == BlockIDs.tcRail.block || world.getBlock(i, j, k) == BlockIDs.tcRailGag.block) {
 						if (meta == 5 || meta == 7) {
 							rollingStock.rotationYaw = 45; // LEFT
+							rollingStock.serverRealRotation = -135;
 						}
 					 	else if (meta == 2 || meta == 0) {
 							rollingStock.rotationYaw = 90;
+							rollingStock.serverRealRotation = -90;
 					    }
 						else if (meta == 1 || meta == 3){
 							rollingStock.rotationYaw = 0; // LEFT
+							rollingStock.serverRealRotation = 180;
 						}
 						else {
 							rollingStock.rotationYaw = -45; // BACK
+							rollingStock.serverRealRotation = 135;
 						}
 					}
 					if (rollingStock instanceof Locomotive) {
@@ -465,16 +486,20 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 					if (world.getBlock(i, j, k) == BlockIDs.tcRail.block || world.getBlock(i, j, k) == BlockIDs.tcRailGag.block) {
 						if (meta == 0 || meta == 2) {
 							rollingStock.rotationYaw = 90; // LEFT
+							rollingStock.serverRealRotation = -90;
 						}
 						else if (meta == 5 || meta == 7) {
 							rollingStock.rotationYaw = 45; // LEFT
+							rollingStock.serverRealRotation = -135;
 						}
 						else if (meta == 6 || meta == 4){
 							rollingStock.rotationYaw = 135;
+							rollingStock.serverRealRotation = -45;
 						}
 
 						else {
 							rollingStock.rotationYaw = 0; // BACK
+							rollingStock.serverRealRotation = 180;
 						}
 
 					}
@@ -498,22 +523,26 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 
 				if (dir == 5) {
 					rollingStock.rotationYaw = 45; // BACK
-					if (meta == 6) {
-						rollingStock.serverRealRotation = -45; // RIGHT
+					if (meta == 0) {
+						rollingStock.serverRealRotation = -90; // RIGHT
 					} else {
-						rollingStock.serverRealRotation = -135; // FRONT
+						rollingStock.serverRealRotation = 0; // FRONT
 					}
 					if (world.getBlock(i, j, k) == BlockIDs.tcRail.block || world.getBlock(i, j, k) == BlockIDs.tcRailGag.block) {
 						if (meta == 6 || meta == 4) {
 							rollingStock.rotationYaw = 135; // LEFT
+							rollingStock.serverRealRotation = -45;
 						}
 						else if (meta == 0 || meta == 2) {
 							rollingStock.rotationYaw = 90; // LEFT
+							rollingStock.serverRealRotation = -90;
 						}
 						else if (meta == 1 || meta == 3){
-							rollingStock.rotationYaw = -178.5f; // LEFT
+							rollingStock.rotationYaw = -180f; // LEFT
+							rollingStock.serverRealRotation = 0;
 						}else {
 							rollingStock.rotationYaw = 45; // BEHIND
+							rollingStock.serverRealRotation = -135;
 						}
 					}
 					if (rollingStock instanceof Locomotive) {
@@ -542,15 +571,19 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 					}
 					if (world.getBlock(i, j, k) == BlockIDs.tcRail.block || world.getBlock(i, j, k) == BlockIDs.tcRailGag.block) {
 						if (meta == 1 || meta == 3) {
-							rollingStock.rotationYaw = 178.5f; // LEFT
+							rollingStock.rotationYaw = 180; // LEFT
+							rollingStock.serverRealRotation = 0;
 						}
 						else if (meta == 6 || meta == 4) {
 							rollingStock.rotationYaw = 135; // LEFT
+							rollingStock.serverRealRotation = -45;
 						}
 						else if (meta == 5 || meta == 7) {
 							rollingStock.rotationYaw = -135; // LEFT
+							rollingStock.serverRealRotation = 45;
 						}else {
 							rollingStock.rotationYaw = 90; // BACK
+							rollingStock.serverRealRotation = -90;
 						}
 					}
 					if (rollingStock instanceof Locomotive) {
@@ -571,23 +604,27 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 
 				if (dir == 7) {
 					rollingStock.rotationYaw = 135; // BACK
-					if (meta == 5) {
-						rollingStock.serverRealRotation = 45; // RIGHT
+					if (meta == 0) {
+						rollingStock.serverRealRotation = 90; // RIGHT
 					} else {
-						rollingStock.serverRealRotation = -45; // FRONT
+						rollingStock.serverRealRotation = 0; // FRONT
 					}
 					if (world.getBlock(i, j, k) == BlockIDs.tcRail.block || world.getBlock(i, j, k) == BlockIDs.tcRailGag.block) {
 						if (meta == 5 || meta == 7) {
 							rollingStock.rotationYaw = -135; // LEFT
+							rollingStock.serverRealRotation = 45;
 						}
 						else if (meta == 1 || meta == 3) {
-							rollingStock.rotationYaw = 178.5f; // LEFT
+							rollingStock.rotationYaw = 180f; // LEFT
+							rollingStock.serverRealRotation = 0;
 						}
 						else if (meta == 0 || meta == 2) {
 							rollingStock.rotationYaw = -90; // LEFT
+							rollingStock.serverRealRotation = 90;
 						}
 						else {
 							rollingStock.rotationYaw = 135; // BACK
+							rollingStock.serverRealRotation = -45;
 						}
 					}
 					if (rollingStock instanceof Locomotive) {
