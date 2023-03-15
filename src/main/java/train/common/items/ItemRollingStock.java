@@ -299,7 +299,6 @@ public class ItemRollingStock extends ItemMinecart implements IMinecart, IMineca
 				// -135 = 5 = NORTH-EAST
 				// -90  = 6 = EAST
 				// -45  = 7 = SOUTH-EAST
-				player.addChatMessage(new ChatComponentText("dir: " + dir + " meta: " + meta));
 
 				if (dir == 0) {
 

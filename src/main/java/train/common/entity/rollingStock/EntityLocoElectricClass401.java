@@ -1,6 +1,6 @@
 package train.common.entity.rollingStock;
 
-
+//import com.jcirmodelsquad.tcjcir.features.TiltingHandler;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -12,18 +12,21 @@ import train.common.Traincraft;
 import train.common.api.ElectricTrain;
 import train.common.library.GuiIDs;
 
-public class EntityElectric2bilLoco extends ElectricTrain {
-    public EntityElectric2bilLoco(World world) {
+public class EntityLocoElectricClass401 extends ElectricTrain {
+    //public TiltingHandler tiltingHandler = new TiltingHandler(7);
+
+    public EntityLocoElectricClass401(World world) {
         super(world);
+
     }
 
-    public EntityElectric2bilLoco(World world, double d, double d1, double d2) {
+    public EntityLocoElectricClass401(World world, double d, double d1, double d2) {
         this(world);
         setPosition(d, d1 + (double) yOffset, d2);
         motionX = 0.0D;
         motionY = 0.0D;
         motionZ = 0.0D;
-        prevPosX = d;
+        prevPosX = d ;
         prevPosY = d1;
         prevPosZ = d2;
     }
@@ -32,8 +35,8 @@ public class EntityElectric2bilLoco extends ElectricTrain {
     public void updateRiderPosition() {
         if (riddenByEntity == null) {return;}
         double pitchRads = this.anglePitchClient * Math.PI / 180.0D;
-        double distance = 3.6;
-        double yOffset = -0.1;
+        double distance = 3.9;
+        double yOffset = -0.05;
         float rotationCos1 = (float) Math.cos(Math.toRadians(this.renderYaw + 90));
         float rotationSin1 = (float) Math.sin(Math.toRadians((this.renderYaw + 90)));
         if(side.isServer()){
@@ -72,7 +75,7 @@ public class EntityElectric2bilLoco extends ElectricTrain {
     @Override
     public void pressKey(int i) {
         if (i == 7 && riddenByEntity != null && riddenByEntity instanceof EntityPlayer) {
-            ((EntityPlayer) riddenByEntity).openGui(Traincraft.instance, GuiIDs.LOCO, worldObj, (int) this.posX, (int) this.posY, (int) this.posZ);
+            ((EntityPlayer) riddenByEntity).openGui(Traincraft.instance, GuiIDs.LOCO, worldObj, (int) this.posX + 2, (int) this.posY, (int) this.posZ);
         }
     }
 
@@ -116,7 +119,7 @@ public class EntityElectric2bilLoco extends ElectricTrain {
 
     @Override
     public String getInventoryName() {
-        return "2-bil engine";
+        return "2-Bill Locomotive";
     }
 
     @Override
@@ -135,7 +138,7 @@ public class EntityElectric2bilLoco extends ElectricTrain {
     }
     @Override
     public float getOptimalDistance(EntityMinecart cart) {
-        return 0.9F;
+        return 1.2F;
     }
 
     @Override
