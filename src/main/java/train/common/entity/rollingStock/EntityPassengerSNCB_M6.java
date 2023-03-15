@@ -27,11 +27,7 @@ public class EntityPassengerSNCB_M6 extends EntityRollingStock implements IPasse
 
     @Override
     public void updateRiderPosition() {
-<<<<<<< HEAD
-        if(riddenByEntity!=null) {
-            riddenByEntity.setPosition(posX, posY + getMountedYOffset() + riddenByEntity.getYOffset() - .7, posZ);
-        }//ew yucky rider position code, good thing its a passenger car so it doesnt matter! Wheeze.png
-=======
+
         if (riddenByEntity == null) {return;}
         double pitchRads = this.anglePitchClient * Math.PI / 180.0D;
         double distance = 2.1f;
@@ -63,7 +59,6 @@ public class EntityPassengerSNCB_M6 extends EntityRollingStock implements IPasse
         if (pitchRads > -1.01 && pitchRads < 1.01) {
             riddenByEntity.setPosition(bogieX1, pitch, bogieZ1);
         }
->>>>>>> 1.7-Community-4.3
     }
 
     @Override
