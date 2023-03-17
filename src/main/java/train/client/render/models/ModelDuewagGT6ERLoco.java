@@ -23,7 +23,7 @@ public class ModelDuewagGT6ERLoco extends ModelConverter //Same as Filename
 
 	public ModelDuewagGT6ERLoco() //Same as Filename
 	{
-		bodyModel = new ModelRendererTurbo[336];
+		bodyModel = new ModelRendererTurbo[338];
 
 		initbodyModel_1();
 
@@ -371,6 +371,8 @@ public class ModelDuewagGT6ERLoco extends ModelConverter //Same as Filename
 		bodyModel[333] = new ModelRendererTurbo(this, 104, 230, textureX, textureY); // Box 333
 		bodyModel[334] = new ModelRendererTurbo(this, 121, 240, textureX, textureY); // Box 334
 		bodyModel[335] = new ModelRendererTurbo(this, 121, 232, textureX, textureY); // Box 335
+		bodyModel[336] = new ModelRendererTurbo(this, 3, 52, textureX, textureY); // Box 336
+		bodyModel[337] = new ModelRendererTurbo(this, 6, 60, textureX, textureY); // Box 337
 
 		bodyModel[0].addShapeBox(0F, 0F, 0F, 4, 1, 17, 0F,2F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 1F, 2F, 0F, 0F, 2F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 1F, 2F, 0F, 0F); // Box 9
 		bodyModel[0].setRotationPoint(-20.5F, 4F, -9F);
@@ -1379,5 +1381,12 @@ public class ModelDuewagGT6ERLoco extends ModelConverter //Same as Filename
 
 		bodyModel[335].addShapeBox(0F, 0F, 0F, 8, 1, 0, 0F,1F, -4F, 0F, 0F, 2F, 0F, 0F, 2F, 0F, 1F, -4F, 0F, 1F, 4F, 0F, 0F, -2F, 0F, 0F, -2F, 0F, 1F, 4F, 0F); // Box 335
 		bodyModel[335].setRotationPoint(2F, -30.25F, 5F);
+
+		bodyModel[336].addShapeBox(0F, 0F, 0F, 5, 7, 0, 0F,0F, 0F, 0F, 0F, 0F, 3F, 0F, 0F, -3F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 3F, 0F, 0F, -3F, 0F, 0F, 0F); // Box 336
+		bodyModel[336].setRotationPoint(-33F, -15F, 10F);
+
+		bodyModel[337].addShapeBox(0F, 0F, 0F, 1, 2, 1, 0F,0.25F, 0F, 0F, -1F, 0F, 0F, -0.75F, 0F, 0F, 0F, 0F, 0F, 0.25F, 0F, 0F, -1F, 0F, 0F, -0.75F, 0F, 0F, 0F, 0F, 0F); // Box 337
+		bodyModel[337].setRotationPoint(-32.15F, -10F, 9F);
+		bodyModel[337].rotateAngleY = -0.2268928F;
 	}
 }
