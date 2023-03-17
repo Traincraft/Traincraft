@@ -732,6 +732,9 @@ item.tc:minecartClass401Loco.name=2-bil loco
 item.tc:minecartClass401Tail.name=2-bil tail
 item.tc:minecartClass230Engine.name=Class 230 Engine
 item.tc:minecartClass230Middle.name=Class 230 Middle
+item.tc:minecartDuewagGT6ERLoco.name=Duewag GT6ER Loco
+item.tc:minecartDuewagGT6ERTail.name=Duewag GT6ER Tail
+
 
 <!-- ## Achievements ## -->
 achievement.tc:engineer=Engineers clothes
@@ -1313,6 +1316,9 @@ entity.tc.Class401Engine.name=2-bil loco
 entity.tc.Class401Tail.name=2-bil tail
 entity.tc.Class230Engine.name=Class 230 Engine
 entity.tc.Class230Middle.name=Class 230 Middle
+entity.tc.DuewagGT6ERLoco.name=Duewag GT6ER Loco
+entity.tc.DuewagGT6ERTail.name=Duewag GT6ER Tail
+
 
 description.villager.profession.tc.station_chief=Station Master
 

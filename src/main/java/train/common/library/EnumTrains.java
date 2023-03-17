@@ -551,6 +551,8 @@ public enum EnumTrains {
 	passenger10tonBrakeVan("10tonbrakevan", EntityPassenger10tonBrakeVan.class, ItemIDs.minecartTENtonBrakeVan.item, "passenger", 0, 0, 1, 0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[]{"Black", "Orange", "Brown", "Red", "Grey", "White", "LightGrey"}), 18, 0),
 	Class230Engine("Class 230 Engine", EntityElectricClass230.class, ItemIDs.minecartClass230Engine.item, "electric", 789, 101, 0, 10, 0, 100, 0.7, 0.8, 1000, TraincraftUtil.getBytesFromColors(new String[]{"Red", "Green"}), 18, -2.6, "Pack: B.I.P."),
 	Class230Middle("Class 230 Middle", EntityClass230Middle.class, ItemIDs.minecartClass230Middle.item, "passenger", 0, 0, 2, 0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[]{"Red", "Green"}), 10, 0, "Pack: B.I.P."),
+	DuewagGT6ERLoco("DuewagGT6ERLoco", EntityElectricDuewagGT6ERLoco.class, ItemIDs.minecartDuewagGT6ERLoco.item, "electric", 250, 70, 0,20, 0, 100, 0.7, 0.8, 1000, TraincraftUtil.getBytesFromColors(new String[] {"Magenta","Green","Blue","White","Grey"}), 18, -1.9, "Pack: Trams In Motion"),
+	DuewagGT6ERTail("DuewagGT6ERTail", EntityPassengerDuewagGT6ERTail.class, ItemIDs.minecartDuewagGT6ERTail.item, "passenger", 0, 0, 1,0, 0, 0, 0, 0, 0, TraincraftUtil.getBytesFromColors(new String[] {"Magenta","Green","Blue","White","Grey"}), 18, -1.9, "Pack: Trams In Motion"),
 	;
 
 //String trainType,int MHP,int maxSpeed, double mass, int fuelConsumption, int waterConsumption, int heatingTime, double accelerationRate, double brakeRate, int tankCapacity, String[] colors,
