@@ -709,25 +709,23 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 	}
 
 	private void moveOnTCStraight(int j, double cx, double cz, int meta) {
-		posY = j + 0.2; /** posY is height of locomotive first hitbox*/
-		/** posX and posZ is the position of hitbox*/
+		posY = j + 0.2;
 		if (meta == 2 || meta == 0) {
-			double norm = Math.sqrt(motionX * motionX + motionZ * motionZ); /** pytho formula thing*/
+			double norm = Math.sqrt(motionX * motionX + motionZ * motionZ);
 
 			setPosition(cx + 0.5, posY + yOffset, posZ);
 			//setPosition(posX, posY + yOffset, posZ);
-			motionX = 0; /** Motion set to 0 because you can't move in x while going north on straight*/
-			motionZ = Math.copySign(norm, motionZ); /** sets Z motion norm, adds the sign of motionZ*/
+			motionX = 0;
+			motionZ = Math.copySign(norm, motionZ);
 			this.boundingBox.offset(0, 0 , Math.copySign(norm, this.motionZ));
 
-			/** prob checks for hitboxes placed on rails, I think*/
+
 			List boxes = worldObj.getCollidingBoundingBoxes(this, boundingBox);
 			for(Object b : boxes){
 				if(!(b instanceof BlockRailBase) && !(b instanceof BlockTCRail) && !(b instanceof BlockTCRailGag) && !(b instanceof BlockAir)){
 					return;
 				}
 			}
-			/** moves the driving first bounding box to new position */
 			this.posX = (this.boundingBox.minX + this.boundingBox.maxX) / 2.0D;
 			this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
 			this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) / 2.0D;
@@ -740,16 +738,16 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 			//setPosition(posX, posY + yOffset, posZ);
 
 			motionX = Math.copySign(Math.sqrt(motionX * motionX + motionZ * motionZ), motionX);
-			motionZ = 0; /** Motion set to 0 because you can't move in z while going east on straight*/
+			motionZ = 0;
 			this.boundingBox.offset(motionX, 0 , 0);
-			/** prob checks for hitboxes placed on rails, I think*/
+
 			List boxes = worldObj.getCollidingBoundingBoxes(this, boundingBox);
 			for(Object b : boxes){
 				if(!(b instanceof BlockRailBase) && !(b instanceof BlockTCRail) && !(b instanceof BlockTCRailGag) && !(b instanceof BlockAir)){
 					return;
 				}
 			}
-			/** moves the driving bounding box to new position */
+
 			this.posX = (this.boundingBox.minX + this.boundingBox.maxX) / 2.0D;
 			this.posY = this.boundingBox.minY + (double)this.yOffset - (double)this.ySize;
 			this.posZ = (this.boundingBox.minZ + this.boundingBox.maxZ) / 2.0D;
@@ -827,10 +825,6 @@ public class EntityBogie extends EntityMinecart implements IMinecart, IRoutableC
 		 * need something to parse to this function. setPosition is superflous since you can't place
 		 * trains down on 2 way crossings.
 		 */
-		// this.posY = j + 0.2D;
-
-		//if(l==2||l==0)moveEntity(motionX, 0.0D, 0.0D);
-		//if(l==1||l==3)moveEntity(0.0D, 0.0D, motionZ);
 
 
 		double norm = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);

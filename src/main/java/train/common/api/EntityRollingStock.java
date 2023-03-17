@@ -152,7 +152,6 @@ public class EntityRollingStock extends AbstractTrains implements ILinkableCart 
 	private boolean hasSpawnedBogie = false;
 	private double mountedOffset = -0.5;
 	public double posYFromServer;
-	
 	private double derailSpeed = 0.46;
 
 	private int scrollPosition;

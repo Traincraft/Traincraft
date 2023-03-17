@@ -758,11 +758,12 @@ public class ItemTCRail extends ItemPart {
 		else if (type == TrackTypes.SMALL_DIAGONAL_STRAIGHT || type == TrackTypes.EMBEDDED_SMALL_DIAGONAL_STRAIGHT)
 			return new int [][]{{0,0}, {1,0}, {0,1}};
 		else if (type == TrackTypes.MEDIUM_DIAGONAL_STRAIGHT || type == TrackTypes.EMBEDDED_MEDIUM_DIAGONAL_STRAIGHT)
-			return new int [][]{{0,0}, {1,1}, {2,2}};
+			return new int [][]{{0,0}, {1,0}, {0,1}, {1,1}, {2,1}, {1,2},{2,2}, {3,2}, {2,3}};
 		else if (type == TrackTypes.LONG_DIAGONAL_STRAIGHT || type == TrackTypes.EMBEDDED_LONG_DIAGONAL_STRAIGHT)
-			return new int [][]{{0,0}, {1,1}, {2,2},{3,3},{4,4},{5,5}};
+			return new int [][]{{0,0}, {1,0}, {0,1}, {1,1}, {2,1}, {1,2}, {2,2}, {3,2}, {2,3},{3,3}, {4,3},{3,4}, {4,4}, {4,5}, {5,4}, {5,5}, {6,5}, {5,6}};
 		else if (type == TrackTypes.VERY_LONG_DIAGONAL_STRAIGHT || type == TrackTypes.EMBEDDED_VERY_LONG_DIAGONAL_STRAIGHT)
-			return new int [][]{{0,0}, {1,1}, {2,2},{3,3},{4,4},{5,5},{6,6},{7,7},{8,8},{9,9},{10,10},{11,11}};
+			return new int [][]{{0,0}, {1,0}, {0,1}, {1,1}, {2,1}, {1,2}, {2,2}, {3,2}, {2,3},{3,3}, {4,3},{3,4}, {4,4}, {4,5}, {5,4}, {5,5}, {6,5}, {5,6},
+					{6,6},{6,7},{7,6},{7,7},{8,7},{7,8}, {8,8}, {9,8}, {8,9}, {9,9}, {10,9}, {9,10}, {10,10}, {11,10}, {10,11}, {11,11}, {12,11}, {11,12}};
 		/** Slopes */
 		else if ( type == TrackTypes.SLOPE_BALLAST
 				|| type == TrackTypes.SLOPE_GRAVEL
