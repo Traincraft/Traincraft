@@ -115,7 +115,7 @@ public class EntityElectricClass230 extends ElectricTrain {
 
     @Override
     public String getInventoryName() {
-        return "London D stock";
+        return "Class 230";
     }
 
     @Override
