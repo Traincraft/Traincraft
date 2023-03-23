@@ -224,7 +224,7 @@ public class ModelDuewagGT6ERTail extends ModelConverter//Same as Filename
 		bodyModel[186] = new ModelRendererTurbo(this, 19, 198, textureX, textureY); // Box 380
 		bodyModel[187] = new ModelRendererTurbo(this, 2, 203, textureX, textureY); // Box 381
 		bodyModel[188] = new ModelRendererTurbo(this, 2, 196, textureX, textureY); // Box 382
-		bodyModel[189] = new ModelRendererTurbo(this, 9, 234, textureX, textureY); // Box 374
+		bodyModel[189] = new ModelRendererTurbo(this, 9, 215, textureX, textureY); // Box 374
 
 		bodyModel[0].addShapeBox(0F, 0F, 0F, 4, 1, 16, 0F,2F, 0F, 0F, 0F, 0F, 1F, 0F, 0F, 0F, 2F, 0F, -0.25F, 2F, 0F, 0F, 0F, 0F, 1F, 0F, 0F, 0F, 2F, 0F, -0.25F); // Box 9
 		bodyModel[0].setRotationPoint(-17.5F, 4F, -7F);
