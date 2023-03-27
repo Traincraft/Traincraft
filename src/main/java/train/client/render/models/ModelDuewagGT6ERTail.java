@@ -775,22 +775,22 @@ public class ModelDuewagGT6ERTail extends ModelConverter//Same as Filename
 		bodyModel[182].addShapeBox(0F, 0F, 0F, 1, 1, 1, 0F,1.5F, 0F, 0.7F, 0.5F, 0F, -1F, 0.5F, 0F, 1F, 0.5F, 0F, -0.2F, 1.5F, -0.75F, 0.7F, 0.5F, -0.75F, -1F, 0.5F, -0.75F, 1F, 0.5F, -0.75F, -0.2F); // Box 186
 		bodyModel[182].setRotationPoint(-25F, 4F, 6.71F);
 
-		bodyModel[183].addShapeBox(0F, 0F, 0F, 43, 1, 5, 0F,0F, -1F, 0F, 0F, -1F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 377
+		bodyModel[183].addShapeBox(0F, 0F, 0F, 43, 1, 5, 0F,0F, -1F, 0F, 0F, -1F, 0F, 0F, -0.4F, 0F, 0F, -0.4F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 377
 		bodyModel[183].setRotationPoint(-13.5F, -20F, -8F);
 
-		bodyModel[184].addShapeBox(0F, 0F, 0F, 43, 1, 5, 0F,0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 378
+		bodyModel[184].addShapeBox(0F, 0F, 0F, 43, 1, 5, 0F,0F, -0.4F, 0F, 0F, -0.4F, 0F, 0F, -1F, 0F, 0F, -1F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 378
 		bodyModel[184].setRotationPoint(-13.5F, -20F, 3F);
 
-		bodyModel[185].addShapeBox(0F, 0F, 0F, 43, 1, 6, 0F,0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 379
+		bodyModel[185].addShapeBox(0F, 0F, 0F, 43, 1, 6, 0F,0F, -0.4F, 0F, 0F, -0.4F, 0F, 0F, -0.4F, 0F, 0F, -0.4F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F); // Box 379
 		bodyModel[185].setRotationPoint(-13.5F, -20F, -3F);
 
-		bodyModel[186].addShapeBox(0F, 0F, 0F, 10, 1, 6, 0F,0F, -1.5F, 0F, 0F, -0.5F, 0F, 0F, -0.5F, 0F, 0F, -1.5F, 0F, 0F, 0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0.5F, 0F); // Box 380
+		bodyModel[186].addShapeBox(0F, 0F, 0F, 10, 1, 6, 0F,0F, -1.5F, 0F, 0F, -0.4F, 0F, 0F, -0.4F, 0F, 0F, -1.5F, 0F, 0F, 0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0.5F, 0F); // Box 380
 		bodyModel[186].setRotationPoint(-23.5F, -20F, -3F);
 
-		bodyModel[187].addShapeBox(0F, 0F, 0F, 10, 1, 5, 0F,0F, -1.5F, 0F, 0F, -0.5F, 0F, 0F, -1F, 0F, 0F, -1.5F, -0.75F, 0F, 0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0.5F, -0.75F); // Box 381
+		bodyModel[187].addShapeBox(0F, 0F, 0F, 10, 1, 5, 0F,0F, -1.5F, 0F, 0F, -0.4F, 0F, 0F, -1F, 0F, 0F, -1.5F, -0.75F, 0F, 0.5F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0.5F, -0.75F); // Box 381
 		bodyModel[187].setRotationPoint(-23.5F, -20F, 3F);
 
-		bodyModel[188].addShapeBox(0F, 0F, 0F, 10, 1, 5, 0F,0F, -1.5F, -0.25F, 0F, -1F, 0F, 0F, -0.5F, 0F, 0F, -1.5F, 0F, 0F, 0.5F, -0.25F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0.5F, 0F); // Box 382
+		bodyModel[188].addShapeBox(0F, 0F, 0F, 10, 1, 5, 0F,0F, -1.5F, -0.25F, 0F, -1F, 0F, 0F, -0.4F, 0F, 0F, -1.5F, 0F, 0F, 0.5F, -0.25F, 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0.5F, 0F); // Box 382
 		bodyModel[188].setRotationPoint(-23.5F, -20F, -8F);
 
 		bodyModel[189].addShapeBox(0F, 0F, 0F, 84, 12, 1, 0F,0F, 0F, 0F, -42F, 0F, 0F, -42F, 0F, 0F, 0F, 0F, 0F, 0F, -6F, 0.1F, -42F, -6F, 0.1F, -42F, -6F, 0F, 0F, -6F, 0F); // Box 374
