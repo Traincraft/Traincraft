@@ -355,6 +355,7 @@ public enum ItemIDs {
 	minecartBR_MK3_Buffet("ItemRollingStock", "br_mk3_buffet", 3),
 	minecartBR_MK3_Coach("ItemRollingStock", "br_mk3_coach", 3),
 	minecartBR_MK3a_Coach("ItemRollingStock", "Mk3a_Coach_Icon", 3),
+	minecartBR_MK3_Pantograph("ItemRollingStock", "Mk3_Pantograph", 3),
 	minecartBR_MK4_DVT("ItemRollingStock","br_mk4_dvt",5),
 	minecartBR_MK4_Coach("ItemRollingStock","br_mk4_coach",3),
 	minecartBR_MK4_Buffet("ItemRollingStock", "br_mk4_buffet", 3),
