@@ -31,7 +31,7 @@ public class EntityPassengerDuewagGT6ERTail extends EntityRollingStock implement
         if (riddenByEntity == null) {return;}
         double pitchRads = this.anglePitchClient * Math.PI / 180.0D;
         double distance = 1.5f;
-        double yOffset = 0.15f;
+        double yOffset = 0.0f;
         float rotationCos1 = (float) Math.cos(Math.toRadians(this.renderYaw + 90));
         float rotationSin1 = (float) Math.sin(Math.toRadians((this.renderYaw + 90)));
         if(side.isServer()){
