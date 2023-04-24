@@ -23,7 +23,7 @@ public class ModelDuewagGT6ERTail extends ModelConverter//Same as Filename
 
 	public ModelDuewagGT6ERTail() //Same as Filename
 	{
-		bodyModel = new ModelRendererTurbo[190];
+		bodyModel = new ModelRendererTurbo[192];
 
 		initbodyModel_1();
 
@@ -225,6 +225,8 @@ public class ModelDuewagGT6ERTail extends ModelConverter//Same as Filename
 		bodyModel[187] = new ModelRendererTurbo(this, 2, 203, textureX, textureY); // Box 381
 		bodyModel[188] = new ModelRendererTurbo(this, 2, 196, textureX, textureY); // Box 382
 		bodyModel[189] = new ModelRendererTurbo(this, 9, 215, textureX, textureY); // Box 374
+		bodyModel[190] = new ModelRendererTurbo(this, 137, 247, textureX, textureY); // Box 239
+		bodyModel[191] = new ModelRendererTurbo(this, 321, 247, textureX, textureY); // Box 325
 
 		bodyModel[0].addShapeBox(0F, 0F, 0F, 4, 1, 16, 0F,2F, 0F, 0F, 0F, 0F, 1F, 0F, 0F, 0F, 2F, 0F, -0.25F, 2F, 0F, 0F, 0F, 0F, 1F, 0F, 0F, 0F, 2F, 0F, -0.25F); // Box 9
 		bodyModel[0].setRotationPoint(-17.5F, 4F, -7F);
@@ -795,5 +797,11 @@ public class ModelDuewagGT6ERTail extends ModelConverter//Same as Filename
 
 		bodyModel[189].addShapeBox(0F, 0F, 0F, 84, 12, 1, 0F,0F, 0F, 0F, -42F, 0F, 0F, -42F, 0F, 0F, 0F, 0F, 0F, 0F, -6F, 0.1F, -42F, -6F, 0.1F, -42F, -6F, 0F, 0F, -6F, 0F); // Box 374
 		bodyModel[189].setRotationPoint(-13F, -3F, 9.21F);
+
+		bodyModel[190].addShapeBox(0F, 0F, 0F, 90, 6, 1, 0F,0F, 0F, 0F, -50F, 0F, 0F, -50F, 0F, -0.9F, 0F, 0F, -0.9F, 0F, -3F, 0F, -50F, -3F, 0F, -50F, -3F, -0.9F, 0F, -3F, -0.9F); // Box 239
+		bodyModel[190].setRotationPoint(-12F, -20F, -9.5F);
+
+		bodyModel[191].addShapeBox(0F, 0F, 0F, 90, 6, 1, 0F,0F, 0F, 0F, -50F, 0F, 0F, -50F, 0F, -0.9F, 0F, 0F, -0.9F, 0F, -3F, 0F, -50F, -3F, 0F, -50F, -3F, -0.9F, 0F, -3F, -0.9F); // Box 325
+		bodyModel[191].setRotationPoint(-12F, -20F, 9.5F);
 	}
 }
